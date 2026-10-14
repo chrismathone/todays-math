@@ -8,7 +8,7 @@ import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
 import { BodyContainer } from "./BodyContainer";
 import { ProblemBody } from "./ProblemBody";
-import { ArithmeticRoundHeader, ProblemHeader } from "./ProblemMeta";
+import { ArithmeticRoundLabel, ProblemHeader } from "./ProblemMeta";
 
 import type { PrintTemplateProps } from "../types";
 
@@ -116,8 +116,7 @@ export function JeongtongTemplate({
         flexDirection: "column",
       }}
     >
-      <ArithmeticRoundHeader round={round} />
-      {isFirstPage && (
+      {(isFirstPage || round !== undefined) && (
         <>
           {/* 시험 정보 표 */}
           <table
@@ -128,12 +127,15 @@ export function JeongtongTemplate({
               fontFamily: "var(--paper-font-serif)",
               fontSize: 12,
               flexShrink: 0,
+              ...(round !== undefined
+                ? { tableLayout: "fixed", marginBottom: isFirstPage ? 0 : 18 }
+                : {}),
             }}
           >
             <tbody>
               <tr style={{ height: 38 }}>
                 <td
-                  colSpan={6}
+                  colSpan={round !== undefined ? 5 : 6}
                   style={{
                     textAlign: "center",
                     fontSize: 22,
@@ -141,117 +143,143 @@ export function JeongtongTemplate({
                     letterSpacing: "0.12em",
                     padding: "6px 12px",
                     borderBottom: `1.5px solid ${PAPER_COLORS.ink}`,
+                    ...(round !== undefined
+                      ? { overflowWrap: "anywhere" }
+                      : {}),
                   }}
                 >
                   {meta.title}
                 </td>
+                {round !== undefined && (
+                  <td
+                    style={{
+                      ...tdVal(),
+                      borderLeft: `1.5px solid ${PAPER_COLORS.ink}`,
+                      borderBottom: `1.5px solid ${PAPER_COLORS.ink}`,
+                    }}
+                  >
+                    <ArithmeticRoundLabel round={round} />
+                  </td>
+                )}
               </tr>
-              <tr style={{ height: 32 }}>
-                <td style={tdLabel(80)}>학 교</td>
-                <td style={tdVal()}>{meta.schoolName ?? "○○고등학교"}</td>
-                <td style={tdLabel(60)}>학 년</td>
-                <td style={tdVal(50)}>{meta.grade ?? "2"}</td>
-                <td style={tdLabel(70)}>과 목</td>
-                <td style={tdVal(undefined, true)}>
-                  {[meta.subject, meta.semester].filter(Boolean).join(" · ")}
-                </td>
-              </tr>
-              <tr style={{ height: 32 }}>
-                <td style={tdLabel()}>일 시</td>
-                <td style={tdVal()}>
-                  {options.showDate ? (meta.examDate ?? "—") : ""}
-                </td>
-                <td style={tdLabel()}>시 간</td>
-                <td style={tdVal()}>{meta.examDuration ?? "50분"}</td>
-                <td style={tdLabel()}>출제</td>
-                <td style={tdVal(undefined, true)}>{meta.examiner ?? "—"}</td>
-              </tr>
+              {isFirstPage && (
+                <>
+                  <tr style={{ height: 32 }}>
+                    <td style={tdLabel(80)}>학 교</td>
+                    <td style={tdVal()}>{meta.schoolName ?? "○○고등학교"}</td>
+                    <td style={tdLabel(60)}>학 년</td>
+                    <td style={tdVal(50)}>{meta.grade ?? "2"}</td>
+                    <td style={tdLabel(70)}>과 목</td>
+                    <td style={tdVal(undefined, true)}>
+                      {[meta.subject, meta.semester]
+                        .filter(Boolean)
+                        .join(" · ")}
+                    </td>
+                  </tr>
+                  <tr style={{ height: 32 }}>
+                    <td style={tdLabel()}>일 시</td>
+                    <td style={tdVal()}>
+                      {options.showDate ? (meta.examDate ?? "—") : ""}
+                    </td>
+                    <td style={tdLabel()}>시 간</td>
+                    <td style={tdVal()}>{meta.examDuration ?? "50분"}</td>
+                    <td style={tdLabel()}>출제</td>
+                    <td style={tdVal(undefined, true)}>
+                      {meta.examiner ?? "—"}
+                    </td>
+                  </tr>
+                </>
+              )}
             </tbody>
           </table>
 
-          {/* 학생 정보 + 점수 표 */}
-          <div
-            style={{
-              display: "flex",
-              marginTop: 8,
-              gap: 8,
-              flexShrink: 0,
-            }}
-          >
-            <table
-              style={{
-                flex: 1,
-                borderCollapse: "collapse",
-                border: `2px solid ${PAPER_COLORS.ink}`,
-                fontSize: 12,
-                fontFamily: "var(--paper-font-serif)",
-              }}
-            >
-              <tbody>
-                <tr style={{ height: 34 }}>
-                  <td style={tdLabel(45)}>학년</td>
-                  <td style={tdVal(55)}></td>
-                  <td style={tdLabel(45)}>반</td>
-                  <td style={tdVal(55)}></td>
-                  <td style={tdLabel(45)}>번호</td>
-                  <td style={tdVal(55)}></td>
-                  <td style={tdLabel(45)}>이름</td>
-                  <td style={tdVal(undefined, true)}></td>
-                </tr>
-              </tbody>
-            </table>
-            <table
-              style={{
-                width: 140,
-                borderCollapse: "collapse",
-                border: `2px solid ${PAPER_COLORS.ink}`,
-                fontSize: 12,
-                fontFamily: "var(--paper-font-serif)",
-              }}
-            >
-              <tbody>
-                <tr style={{ height: 34 }}>
-                  <td
-                    style={{
-                      ...tdLabel(58),
-                      background: PAPER_COLORS.ink04,
-                    }}
-                  >
-                    점 수
-                  </td>
-                  <td
-                    style={{
-                      ...tdVal(undefined, true),
-                      textAlign: "right",
-                      paddingRight: 10,
-                      fontWeight: 700,
-                    }}
-                  >
-                    <span style={{ color: PAPER_COLORS.mutedText }}>
-                      /{meta.totalScore ?? 100}
-                    </span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          {isFirstPage && (
+            <>
+              {/* 학생 정보 + 점수 표 */}
+              <div
+                style={{
+                  display: "flex",
+                  marginTop: 8,
+                  gap: 8,
+                  flexShrink: 0,
+                }}
+              >
+                <table
+                  style={{
+                    flex: 1,
+                    borderCollapse: "collapse",
+                    border: `2px solid ${PAPER_COLORS.ink}`,
+                    fontSize: 12,
+                    fontFamily: "var(--paper-font-serif)",
+                  }}
+                >
+                  <tbody>
+                    <tr style={{ height: 34 }}>
+                      <td style={tdLabel(45)}>학년</td>
+                      <td style={tdVal(55)}></td>
+                      <td style={tdLabel(45)}>반</td>
+                      <td style={tdVal(55)}></td>
+                      <td style={tdLabel(45)}>번호</td>
+                      <td style={tdVal(55)}></td>
+                      <td style={tdLabel(45)}>이름</td>
+                      <td style={tdVal(undefined, true)}></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table
+                  style={{
+                    width: 140,
+                    borderCollapse: "collapse",
+                    border: `2px solid ${PAPER_COLORS.ink}`,
+                    fontSize: 12,
+                    fontFamily: "var(--paper-font-serif)",
+                  }}
+                >
+                  <tbody>
+                    <tr style={{ height: 34 }}>
+                      <td
+                        style={{
+                          ...tdLabel(58),
+                          background: PAPER_COLORS.ink04,
+                        }}
+                      >
+                        점 수
+                      </td>
+                      <td
+                        style={{
+                          ...tdVal(undefined, true),
+                          textAlign: "right",
+                          paddingRight: 10,
+                          fontWeight: 700,
+                        }}
+                      >
+                        <span style={{ color: PAPER_COLORS.mutedText }}>
+                          /{meta.totalScore ?? 100}
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
 
-          {/* 유의사항 */}
-          <div
-            style={{
-              marginTop: 10,
-              padding: "8px 12px",
-              border: `1px solid ${PAPER_COLORS.ink70}`,
-              fontSize: 10.5,
-              lineHeight: 1.55,
-              color: PAPER_COLORS.ink70,
-              fontFamily: "var(--paper-font-serif)",
-              flexShrink: 0,
-            }}
-          >
-            ※ 답안은 OMR 카드에 컴퓨터용 사인펜으로 표기하시오. 한 문항에 두 개
-            이상 표기한 경우 0점 처리합니다.
-          </div>
+              {/* 유의사항 */}
+              <div
+                style={{
+                  marginTop: 10,
+                  padding: "8px 12px",
+                  border: `1px solid ${PAPER_COLORS.ink70}`,
+                  fontSize: 10.5,
+                  lineHeight: 1.55,
+                  color: PAPER_COLORS.ink70,
+                  fontFamily: "var(--paper-font-serif)",
+                  flexShrink: 0,
+                }}
+              >
+                ※ 답안은 OMR 카드에 컴퓨터용 사인펜으로 표기하시오. 한 문항에 두
+                개 이상 표기한 경우 0점 처리합니다.
+              </div>
+            </>
+          )}
         </>
       )}
 

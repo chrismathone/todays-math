@@ -9,7 +9,7 @@ import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
 import { readablePaperColor } from "../readableColor";
 import { BodyContainer } from "./BodyContainer";
-import { ArithmeticRoundHeader, ProblemHeader } from "./ProblemMeta";
+import { ArithmeticRoundLabel, ProblemHeader } from "./ProblemMeta";
 import { ProblemBody } from "./ProblemBody";
 import type { PrintTemplateProps } from "../types";
 import { ExamDetails } from "../ExamDetails";
@@ -167,8 +167,7 @@ export function JaseupTemplate({
         flexDirection: "column",
       }}
     >
-      <ArithmeticRoundHeader round={round} />
-      {isFirstPage && (
+      {(isFirstPage || round !== undefined) && (
         <>
           {/* 헤더 */}
           <div
@@ -178,9 +177,16 @@ export function JaseupTemplate({
               alignItems: "flex-start",
               marginBottom: 12,
               flexShrink: 0,
+              ...(round !== undefined ? { gap: 16 } : {}),
             }}
           >
-            <div>
+            <div
+              style={
+                round !== undefined
+                  ? { minWidth: 0, overflowWrap: "anywhere" }
+                  : undefined
+              }
+            >
               <div
                 style={{
                   fontFamily: "var(--paper-font-sans)",
@@ -204,7 +210,7 @@ export function JaseupTemplate({
               >
                 {meta.title}
               </div>
-              {meta.todayGoal && (
+              {isFirstPage && meta.todayGoal && (
                 <div
                   style={{
                     fontFamily: "var(--paper-font-sans)",
@@ -217,7 +223,22 @@ export function JaseupTemplate({
                 </div>
               )}
             </div>
-            <div style={{ textAlign: "right" }}>
+            <div
+              style={{
+                textAlign: "right",
+                ...(round !== undefined
+                  ? {
+                      flexShrink: 0,
+                      paddingLeft: 16,
+                      borderLeft: `1px solid ${PAPER_COLORS.ink30}`,
+                    }
+                  : {}),
+              }}
+            >
+              <ArithmeticRoundLabel
+                round={round}
+                style={{ color: readablePaperColor(accent), marginBottom: 6 }}
+              />
               <div
                 style={{
                   fontFamily: "var(--paper-font-sans)",
@@ -241,7 +262,7 @@ export function JaseupTemplate({
           </div>
 
           {/* 개념 박스 */}
-          {meta.conceptNote && (
+          {isFirstPage && meta.conceptNote && (
             <div
               style={{
                 background: PAPER_COLORS.paper,

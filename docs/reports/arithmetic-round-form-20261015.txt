@@ -1,0 +1,77 @@
+Arithmetic round inside existing worksheet forms — 2026-10-15
+Branch: BIGSHOL/arithmetic-round-form
+Base: 46f9781c8
+
+Implemented
+- Removed the standalone ArithmeticRoundHeader above all six paper forms and
+  AnswerPage. ArithmeticRoundLabel is an inline field, with no outer header or
+  bottom margin of its own; each form owns its border, placement and ink.
+- Yuhyung: round field inside the black PATTERN title band's count panel,
+  separated from the per-round question count by a vertical rule.
+- Jeongtong: dedicated sixth cell in the existing title table row; the title
+  spans five cells. The title/round row remains on continuation pages.
+- Modern: round field inside the existing outlined assessment box, separated
+  from the assessment label by a rule.
+- Workbook: round field between the title and student/date fields in the
+  existing black unit band.
+- Jaseup: round field in the existing study-date area beside the title.
+- Pyeongga: round cell inside the existing subject/period frame.
+- AnswerPage: round field within the existing answer-title header.
+- Arithmetic continuation pages repeat their template's title/round region;
+  first-page-only instructions, student tables and concept/strategy details
+  stay first-page-only. Each new round still receives its first-page form.
+- Question-only measurement remains free of header chrome. Existing live
+  first/continuation probes render the modified forms and measure their space.
+  No fixed geometry estimate, packer, adapter or question body was changed.
+
+Validation
+- 185 permanent targeted tests passed across seven files:
+  src/__tests__/components/ArithmeticRoundForm.test.tsx (26 new SSR tests)
+  src/__tests__/components/ArithmeticGroupedOutput.test.tsx
+  src/__tests__/components/printScoreVisibility.test.tsx
+  src/__tests__/components/printReadableColors.test.tsx
+  src/__tests__/unit/printPack.test.ts
+  src/__tests__/unit/printGeometryPin.test.ts
+  src/__tests__/unit/arithmeticRoundLimits.test.ts
+- New SSR coverage: all six templates, 1/2 columns, first and continuation
+  pages, next-round first page, identical field placement within each form,
+  no orphan round element above the form, round excluded from measurement,
+  quick/full answer headers, and 200 questions across two rounds. Checks
+  preserve all numbers 1–200, type headings, answer text, round boundaries
+  and input data; quick-answer pages omit solutions.
+- Additional one-off before/after SSR comparison: all 28 ordinary-paper
+  cases are byte-identical (six templates + AnswerPage, first/continuation,
+  one/two columns, with optional strategy/concept/goal fields populated).
+  Temporary comparison/preview tests were removed after verification.
+- ESLint passed on all nine changed TSX files. Prettier applied.
+- Scoped TypeScript check passed for templates, AnswerPage and the new test
+  with their imported dependencies. Installed Next global types supplied
+  CSS declarations because this worktree has no generated next-env.d.ts.
+- git diff --check passed.
+
+Runner/evidence
+- Used root-installed Vitest, Prettier, ESLint and TypeScript binaries under
+  C:/Creative/testautocreator/node_modules. No node_modules junction created.
+- Temporary Vitest config maps @ to this worktree's src, maps packages to
+  the root installation, uses the normal vitest.setup.ts, one worker and
+  jsdom, and does not call loadEnv. No database or application server used.
+- Local-only artifacts are under
+  C:/Users/user/AppData/Local/Temp/arithmetic-round-form-20261015/:
+  vitest.config.mts, tsconfig.json, baseline.json (pre-change SSR), gallery.html
+  (14 first/continuation SSR previews using a long title and wide margins).
+- Example rerun from this worktree:
+  node C:/Creative/testautocreator/node_modules/vitest/vitest.mjs run --config C:/Users/user/AppData/Local/Temp/arithmetic-round-form-20261015/vitest.config.mts src/__tests__/components/ArithmeticRoundForm.test.tsx
+
+Scope and handoff
+- Read AGENTS.md, DESIGN.md, menu implementation map, installed Next use-client
+  and Vitest guides, and the React/Orca skill guidance.
+- ArithmeticWorkflow, arithmeticOutput, pack/measurement logic, review tabs,
+  partial regeneration, geometry output projection, DB and env are untouched.
+- The automatic setup's package-lock.json npm-install drift was restored as
+  explicitly requested by root and is excluded from this commit.
+- No push/deployment and no extra workers. Worktree kept for root to merge
+  and remove only after it is merged, clean and idle.
+- SSR and deterministic pagination tests do not establish physical PDF
+  layout. Root owns the final combined browser/PDF check with the other
+  branches. In particular inspect the long-title case, actual measured
+  continuation capacity, and Yuhyung's black band after integration.

@@ -7,7 +7,7 @@ import type { ProblemReview } from "../types";
 import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
 import { BodyContainer } from "./BodyContainer";
-import { ArithmeticRoundHeader, ProblemHeader } from "./ProblemMeta";
+import { ArithmeticRoundLabel, ProblemHeader } from "./ProblemMeta";
 import { ProblemBody } from "./ProblemBody";
 import type { PrintTemplateProps } from "../types";
 import { ExamDetails } from "../ExamDetails";
@@ -91,9 +91,8 @@ export function PyeonggaTemplate({
         flexDirection: "column",
       }}
     >
-      <ArithmeticRoundHeader round={round} />
-      {/* 헤더 — 첫 페이지만 큰 박스, 이후 페이지는 간소 */}
-      {isFirstPage ? (
+      {/* 연산은 회차 칸이 있는 영역 표를 매 쪽 유지; 일반 시험지는 기존 간소 헤더. */}
+      {isFirstPage || round !== undefined ? (
         <div style={{ padding: "0 0 18px", flexShrink: 0 }}>
           <div
             style={{
@@ -101,7 +100,7 @@ export function PyeonggaTemplate({
               alignItems: "stretch",
               border: `2.5px solid ${PAPER_COLORS.ink}`,
               height: 56,
-              marginBottom: 22,
+              marginBottom: isFirstPage ? 22 : 0,
             }}
           >
             <div
@@ -118,6 +117,19 @@ export function PyeonggaTemplate({
             >
               {meta.subject} 영역
             </div>
+            {round !== undefined && (
+              <div
+                style={{
+                  width: 100,
+                  display: "grid",
+                  placeItems: "center",
+                  borderRight: `2.5px solid ${PAPER_COLORS.ink}`,
+                  flexShrink: 0,
+                }}
+              >
+                <ArithmeticRoundLabel round={round} />
+              </div>
+            )}
             <div
               style={{
                 width: 124,
@@ -132,33 +144,35 @@ export function PyeonggaTemplate({
               제 1 교시
             </div>
           </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              fontSize: 11.5,
-              color: PAPER_COLORS.ink70,
-            }}
-          >
-            <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <span
-                style={{
-                  display: "inline-grid",
-                  placeItems: "center",
-                  width: 24,
-                  height: 16,
-                  border: `1.5px solid ${PAPER_COLORS.ink}`,
-                  fontSize: 10,
-                  fontWeight: 700,
-                }}
-              >
-                홀
+          {isFirstPage && (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                fontSize: 11.5,
+                color: PAPER_COLORS.ink70,
+              }}
+            >
+              <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <span
+                  style={{
+                    display: "inline-grid",
+                    placeItems: "center",
+                    width: 24,
+                    height: 16,
+                    border: `1.5px solid ${PAPER_COLORS.ink}`,
+                    fontSize: 10,
+                    fontWeight: 700,
+                  }}
+                >
+                  홀
+                </span>
+                <span style={{ fontWeight: 600 }}>{meta.title}</span>
               </span>
-              <span style={{ fontWeight: 600 }}>{meta.title}</span>
-            </span>
-            <span style={{ fontWeight: 600 }}>● 다음 물음에 답하시오.</span>
-          </div>
+              <span style={{ fontWeight: 600 }}>● 다음 물음에 답하시오.</span>
+            </div>
+          )}
         </div>
       ) : (
         <div

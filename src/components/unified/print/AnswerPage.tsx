@@ -5,7 +5,7 @@ import { printPagePadding, scaledItemStyle } from "./geometry";
 import { BodyContainer } from "./templates/BodyContainer";
 import type { PrintTemplateProps } from "./types";
 import { EnglishWorksheetAnswer } from "@/components/english/print/EnglishWorksheetQuestion";
-import { ArithmeticRoundHeader } from "./templates/ProblemMeta";
+import { ArithmeticRoundLabel } from "./templates/ProblemMeta";
 
 /** Answers share measured pagination; long solutions and quick keys never truncate. */
 export function AnswerPage({
@@ -75,13 +75,20 @@ export function AnswerPage({
         color: "#0E0E10",
       }}
     >
-      <ArithmeticRoundHeader round={round} />
       <header
         style={{
           borderBottom: `2px solid ${options.color}`,
           marginBottom: 16,
           paddingBottom: 12,
           flexShrink: 0,
+          ...(round !== undefined
+            ? {
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: 16,
+              }
+            : {}),
         }}
       >
         <h2
@@ -89,10 +96,17 @@ export function AnswerPage({
             fontFamily: "var(--paper-font-sans)",
             fontSize: 18,
             fontWeight: 800,
+            ...(round !== undefined
+              ? { minWidth: 0, overflowWrap: "anywhere" }
+              : {}),
           }}
         >
           {meta.title} · {options.quickAnswerOnly ? "빠른 정답" : "정답과 해설"}
         </h2>
+        <ArithmeticRoundLabel
+          round={round}
+          style={{ border: `1px solid ${options.color}`, padding: "4px 12px" }}
+        />
       </header>
       <BodyContainer
         columns={options.columns}
