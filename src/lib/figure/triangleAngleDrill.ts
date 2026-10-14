@@ -48,6 +48,22 @@ export function createTriangleAngleDrillSpec(given: readonly [number, number]) {
   };
 }
 
+/** The square supplies the known 90°; only the given acute angle has a label. */
+export function createRightTriangleAngleDrillSpec(acute: number) {
+  if (!Number.isFinite(acute) || acute <= 0 || acute >= 90)
+    throw new Error(
+      "직각삼각형의 주어진 예각은 0°보다 크고 90°보다 작아야 합니다",
+    );
+  const spec = createTriangleAngleDrillSpec([acute, 90]);
+  return {
+    ...spec,
+    angles: {
+      ...spec.angles,
+      atB: { vertex: "B", points: ["A", "C"], right: true, label: "" },
+    },
+  };
+}
+
 /**
  * Use this entrypoint to retain the legibility gate as well as strict layout.
  * Unrenderable/very extreme triangles return an explicit error; never shrink
@@ -63,6 +79,29 @@ export async function renderTriangleAngleDrill(
   } catch (error) {
     return { ok: false, error: (error as Error).message };
   }
+  return renderLegibleDrill(spec, 2, options);
+}
+
+export async function renderRightTriangleAngleDrill(
+  acute: number,
+  options: { signal?: AbortSignal } = {},
+): Promise<RenderFigureResult> {
+  try {
+    return await renderLegibleDrill(
+      createRightTriangleAngleDrillSpec(acute),
+      1,
+      options,
+    );
+  } catch (error) {
+    return { ok: false, error: (error as Error).message };
+  }
+}
+
+async function renderLegibleDrill(
+  spec: unknown,
+  expectedLabels: number,
+  options: { signal?: AbortSignal },
+): Promise<RenderFigureResult> {
   const result = await renderFigureSpec(spec, { ...options, strict: true });
   if (!result.ok) return result;
   const viewBox = /viewBox="([^"]+)"/
@@ -75,7 +114,7 @@ export async function renderTriangleAngleDrill(
   if (
     !Number.isFinite(extent) ||
     extent <= 0 ||
-    labels.length !== 2 ||
+    labels.length !== expectedLabels ||
     labels.some(
       (label) =>
         !label.typeset ||

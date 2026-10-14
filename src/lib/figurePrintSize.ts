@@ -38,6 +38,7 @@ import {
   FIGURE_SVG_PRINT_MM,
   figureSvgSize,
   figureSvgViewBox,
+  figureSvgAngleDrillWidthMm,
 } from "@/lib/figure/figureSvgFrame";
 import { JASEUP_MEASURED_PX } from "@/lib/printGeometry";
 
@@ -313,7 +314,9 @@ export function figureSvgUrlPrintMm(
   const box = figureSvgViewBox(svg);
   if (!box) return null;
   return {
-    widthMm: FIGURE_SVG_PRINT_MM[figureSvgSize(svg)],
+    widthMm:
+      figureSvgAngleDrillWidthMm(svg) ??
+      FIGURE_SVG_PRINT_MM[figureSvgSize(svg)],
     width: box.width,
     height: box.height,
   };

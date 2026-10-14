@@ -35,7 +35,9 @@ export default function UnifiedProblem({
         }}
       />
     );
-  if (problem.ocr || problem.studioCrop)
+  // Arithmetic projects figure positions into [그림N], just like native content.
+  // The fallback renders inline SVG and URLs separately and would duplicate it.
+  if (problem.ocr || problem.studioCrop || problem.arithmetic)
     return (
       <NativeProblem
         problem={problem}

@@ -1,0 +1,21 @@
+.prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 216px;
+  color: var(--learn-ink);
+  font-size: var(--text-body, 14px);
+}
+.figure {
+  display: block;
+  width: 216px;
+  height: 216px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+.blank {
+  display: inline-block;
+  width: 3em;
+  border-bottom: 1px solid currentColor;
+}

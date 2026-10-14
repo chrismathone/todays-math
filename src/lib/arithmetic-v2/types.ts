@@ -5,7 +5,7 @@
 export type ArithmeticGrade =
   "초1" | "초2" | "초3" | "초4" | "초5" | "초6" | "중1" | "중2" | "중3";
 export type ArithmeticStrand =
-  "자연수" | "분수" | "소수" | "정수·유리수" | "문자식" | "근호";
+  "자연수" | "분수" | "소수" | "정수·유리수" | "문자식" | "근호" | "도형";
 export type ArithmeticV2Prompt =
   | {
       layout: "vertical";
@@ -14,7 +14,14 @@ export type ArithmeticV2Prompt =
       right: number;
       instruction?: string;
     }
-  | { layout: "math"; text: string; latex: string; instruction?: string };
+  | {
+      layout: "math";
+      text: string;
+      latex: string;
+      instruction?: string;
+      /** Frozen SVG in the sheet's figures pack; only catalog examples use bundled assets. */
+      figureId?: string;
+    };
 /** Canonical exact values are integer strings, never floating-point estimates.
  * integer=[value]; rational=[numerator,positiveDenominator] reduced;
  * decimal=[coefficient,scale]; remainder=[quotient,remainder];
