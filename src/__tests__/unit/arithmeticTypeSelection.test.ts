@@ -1,8 +1,10 @@
 import { describe, expect, it } from "vitest";
 import {
   availableArithmeticTypes,
+  arithmeticTypeSelectionIssue,
   randomArithmeticTypes,
 } from "@/components/arithmetic/typeSelection";
+import { ARITHMETIC_MAX_ITEMS_TOTAL } from "@/contracts/arithmetic.contract";
 
 const choice = (id: string, count = 9) => ({
   id,
@@ -44,12 +46,46 @@ describe("bounded arithmetic type selection", () => {
       3,
       () => 0.5,
     );
-    expect(picked).toHaveLength(2);
+    expect(picked).toHaveLength(3);
     expect(picked.every((item) => item.defaultCount === 9)).toBe(true);
     expect(
       (12 + picked.reduce((sum, item) => sum + item.defaultCount, 0)) * 3,
-    ).toBeLessThanOrEqual(100);
+    ).toBeLessThanOrEqual(ARITHMETIC_MAX_ITEMS_TOTAL);
     expect(selected).toEqual([{ id: "selected", count: 12 }]);
+  });
+  it("allows two full rounds and separates budget limits from domain exhaustion", () => {
+    const selected = [{ id: "selected", count: 91 }];
+    expect(availableArithmeticTypes([choice("a")], selected, 2)).toEqual([
+      choice("a"),
+    ]);
+    expect(
+      randomArithmeticTypes(
+        [choice("a"), choice("b")],
+        selected,
+        2,
+        2,
+        () => 0,
+      ),
+    ).toHaveLength(1);
+    expect(
+      arithmeticTypeSelectionIssue(choice("a"), [{ id: "b", count: 100 }], 2),
+    ).toBe("limit");
+    expect(arithmeticTypeSelectionIssue(choice("a", 10), [], 2)).toBe("domain");
+    expect(arithmeticTypeSelectionIssue(choice("a"), [], 21)).toBe(
+      "invalid-quantity",
+    );
+    expect(
+      arithmeticTypeSelectionIssue(choice("a"), [{ id: "a", count: 9 }], 2),
+    ).toBe("selected");
+    expect(
+      arithmeticTypeSelectionIssue({ ...choice("a"), disabled: true }, [], 2),
+    ).toBe("disabled");
+    expect(
+      availableArithmeticTypes([choice("a")], [{ id: "b", count: 1 }], 20),
+    ).toEqual([choice("a")]);
+    expect(
+      availableArithmeticTypes([choice("a")], [{ id: "b", count: 2 }], 20),
+    ).toEqual([]);
   });
   it("terminates for exhausted filters, invalid quantities and full selections", () => {
     for (const rounds of [0, NaN, Infinity, 21, 1.5])

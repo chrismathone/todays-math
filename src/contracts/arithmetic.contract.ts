@@ -13,7 +13,9 @@ export const ARITHMETIC_SHEET_PAYLOAD_VERSION = 1 as const;
 export const ARITHMETIC_SHEET_KIND = "arithmeticSheet" as const;
 
 export const ARITHMETIC_MAX_ITEMS_PER_ROUND = 100;
-export const ARITHMETIC_MAX_ITEMS_TOTAL = 100;
+// Keep generated snapshots within the existing 256 KiB arithmetic save guard.
+// 20 full rounds exceed it; two full rounds leave room for seed/presentation data.
+export const ARITHMETIC_MAX_ITEMS_TOTAL = 2 * ARITHMETIC_MAX_ITEMS_PER_ROUND;
 export const ARITHMETIC_MAX_ROUNDS = 20;
 export const ARITHMETIC_MAX_SEED_LENGTH = 128;
 /** 조건 조합을 세거나 고를 때 이 횟수를 넘기면 생성을 멈춘다. */
@@ -61,7 +63,9 @@ export type ArithmeticNotation =
 
 export type ArithmeticRange = { min: number; max: number };
 
-export function isArithmeticSkillId(value: unknown): value is ArithmeticSkillId {
+export function isArithmeticSkillId(
+  value: unknown,
+): value is ArithmeticSkillId {
   return (
     typeof value === "string" &&
     (ARITHMETIC_SKILL_IDS as readonly string[]).includes(value)
@@ -95,19 +99,11 @@ function rangeSchema(bounds: { min: number; max: number }) {
     });
 }
 
-const countSchema = z
-  .number()
-  .int()
-  .min(1)
-  .max(ARITHMETIC_MAX_ITEMS_PER_ROUND);
+const countSchema = z.number().int().min(1).max(ARITHMETIC_MAX_ITEMS_PER_ROUND);
 
-export const arithmeticSeedSchema = z
-  .string()
-  .regex(/^[\x20-\x7E]{1,128}$/);
+export const arithmeticSeedSchema = z.string().regex(/^[\x20-\x7E]{1,128}$/);
 
-export const arithmeticAnswerSchema = z
-  .string()
-  .regex(/^(0|[1-9][0-9]{0,2})$/);
+export const arithmeticAnswerSchema = z.string().regex(/^(0|[1-9][0-9]{0,2})$/);
 
 export const oneDigitAddConstraintsSchema = z.strictObject({
   carry: z.enum(["none", "some"]),
@@ -134,7 +130,9 @@ export const twoDigitVerticalSubConstraintsSchema = z.strictObject({
 
 export const timesTableConstraintsSchema = z.strictObject({
   dans: z
-    .array(z.number().int().min(ARITHMETIC_FACTOR.min).max(ARITHMETIC_FACTOR.max))
+    .array(
+      z.number().int().min(ARITHMETIC_FACTOR.min).max(ARITHMETIC_FACTOR.max),
+    )
     .min(1)
     .max(ARITHMETIC_FACTOR.max)
     .superRefine((dans, ctx) => {
@@ -271,7 +269,10 @@ export const arithmeticGenerateRequestSchema = z
   .superRefine((request, ctx) => {
     let total = 0;
     request.rounds.forEach((round, roundIndex) => {
-      const roundCount = round.skills.reduce((sum, skill) => sum + skill.count, 0);
+      const roundCount = round.skills.reduce(
+        (sum, skill) => sum + skill.count,
+        0,
+      );
       total += roundCount;
       if (roundCount > ARITHMETIC_MAX_ITEMS_PER_ROUND) {
         ctx.addIssue({
@@ -324,9 +325,9 @@ export const arithmeticSpecSchema = z
         message: "arithmetic:operator",
       });
     }
-    const constraints = arithmeticConstraintSchemaBySkill[spec.skillId].safeParse(
-      spec.constraints,
-    );
+    const constraints = arithmeticConstraintSchemaBySkill[
+      spec.skillId
+    ].safeParse(spec.constraints);
     if (!constraints.success) {
       ctx.addIssue({
         code: "custom",
@@ -349,10 +350,7 @@ const verticalPromptSchema = z.strictObject({
   notation: z.literal("vertical"),
   operator: z.enum(["+", "-"]),
   operands: z.tuple([z.number().int(), z.number().int()]),
-  rows: z.tuple([
-    z.string().regex(/^\d{2}$/),
-    z.string().regex(/^\d{2}$/),
-  ]),
+  rows: z.tuple([z.string().regex(/^\d{2}$/), z.string().regex(/^\d{2}$/)]),
 });
 
 export const arithmeticPromptSchema = z.discriminatedUnion("notation", [

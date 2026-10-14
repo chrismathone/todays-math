@@ -846,13 +846,14 @@ describe("결정적 생성과 거절", () => {
         buildArithmeticSheet(
           request("total-limit", [
             { skills: [oneAdd(60, "none")] },
-            { skills: [oneAdd(41, "some")] },
+            { skills: [oneAdd(60, "some")] },
+            { skills: [oneAdd(81, "some")] },
           ]),
         ),
       ).limit,
     ).toMatchObject({
       scope: "total",
-      count: 101,
+      count: 201,
       max: ARITHMETIC_MAX_ITEMS_TOTAL,
     });
     expect(

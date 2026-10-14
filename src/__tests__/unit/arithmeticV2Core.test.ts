@@ -263,7 +263,7 @@ describe("v2 indexed snapshots", () => {
       },
       {
         ...fixtureRequest(100, "test-large"),
-        rounds: Array(2).fill(fixtureRequest(100, "test-large").rounds[0]),
+        rounds: Array(3).fill(fixtureRequest(100, "test-large").rounds[0]),
       },
     ])
       expect(() => buildArithmeticV2Sheet(request)).toThrow();
