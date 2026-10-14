@@ -178,7 +178,8 @@ export function family(spec: Family): ArithmeticV2Definition {
         if (
           !candidate ||
           !Array.isArray(candidate.parameters) ||
-          !candidate.parameters.every(
+          candidate.parameters.length > 6 ||
+          !Array.from(candidate.parameters).every(
             (p) => Number.isSafeInteger(p) && !Object.is(p, -0),
           ) ||
           !domain.contains(candidate.parameters) ||
