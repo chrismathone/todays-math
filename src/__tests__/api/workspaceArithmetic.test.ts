@@ -31,6 +31,7 @@ import {
   ARITHMETIC_SKILL_IDS,
   buildArithmeticSheet,
   defaultArithmeticConstraints,
+  reopenArithmeticSheet,
   type ArithmeticGenerateRequest,
 } from "@/lib/arithmetic";
 import { settleErrorLogWrites } from "@/lib/errorLog/withErrorLog";
@@ -94,7 +95,7 @@ describe("arithmetic catalog and preview API", () => {
     expect(body.data).toMatchObject({
       engineVersion: ARITHMETIC_ENGINE_VERSION,
       catalogVersion: ARITHMETIC_CATALOG_VERSION,
-      limits: { itemsPerRound: 100, itemsTotal: 100, rounds: 20 },
+      limits: { itemsPerRound: 100, itemsTotal: 200, rounds: 20 },
       writerEnabled: false,
     });
     expect(
@@ -116,6 +117,34 @@ describe("arithmetic catalog and preview API", () => {
     expect(body.data).not.toHaveProperty("ranking");
     expect(mocks.log).not.toHaveBeenCalled();
   });
+
+  it.each([
+    [100, 2],
+    [10, 20],
+  ])(
+    "generates and reopens %i x %i with no database access",
+    async (count, rounds) => {
+      const body = input();
+      body.rounds = Array.from({ length: rounds }, () => ({
+        skills: [
+          {
+            skillId: "two-digit-vertical-add",
+            count,
+            constraints: defaultArithmeticConstraints("two-digit-vertical-add"),
+          },
+        ],
+      }));
+      const response = await POST(request(body));
+      expect(response.status).toBe(200);
+      const { data: sheet } = await response.json();
+      expect(sheet.rounds).toHaveLength(rounds);
+      expect(
+        sheet.rounds.flatMap((round: { items: unknown[] }) => round.items),
+      ).toHaveLength(200);
+      expect(reopenArithmeticSheet(sheet)).toEqual(sheet);
+      expect(mocks.log).not.toHaveBeenCalled();
+    },
+  );
 
   it.each([
     [null, 401],
@@ -177,11 +206,11 @@ describe("arithmetic catalog and preview API", () => {
 
   it("rejects aggregate item limits with the engine limit detail", async () => {
     const body = input();
-    body.rounds = Array.from({ length: 12 }, () => ({
+    body.rounds = Array.from({ length: 20 }, () => ({
       skills: [
         {
           skillId: "times-table",
-          count: 9,
+          count: 11,
           constraints: defaultArithmeticConstraints("times-table"),
         },
       ],
@@ -190,7 +219,7 @@ describe("arithmetic catalog and preview API", () => {
     expect(response.status).toBe(400);
     expect((await response.json()).error).toMatchObject({
       code: "limit",
-      limit: { scope: "total", count: 108, max: 100 },
+      limit: { scope: "total", count: 220, max: 200 },
     });
   });
 

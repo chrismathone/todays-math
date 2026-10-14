@@ -50,6 +50,39 @@ afterEach(() => {
 });
 
 describe("web generation with the actual expanded catalog", () => {
+  it.each([
+    [100, 2],
+    [10, 20],
+  ])(
+    "generates and reopens %i x %i while saving is disabled",
+    async (count, rounds) => {
+      const response = await POST(
+        new Request("http://localhost/api/arithmetic/v2/generate", {
+          method: "POST",
+          headers: {
+            origin: "http://localhost",
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            engineVersion: ARITHMETIC_V2_ENGINE_VERSION,
+            catalogVersion: ARITHMETIC_V2_CATALOG_VERSION,
+            seed: "two-full-rounds",
+            rounds: Array.from({ length: rounds }, () => ({
+              allocations: [{ typeId: "m2-polynomial-add", count }],
+            })),
+          }),
+        }),
+      );
+      expect(response.status).toBe(200);
+      const { data: sheet } = await response.json();
+      expect(sheet.rounds).toHaveLength(rounds);
+      expect(
+        sheet.rounds.flatMap((round: { items: unknown[] }) => round.items),
+      ).toHaveLength(200);
+      expect(reopenArithmeticV2Sheet(sheet)).toEqual(sheet);
+    },
+  );
+
   it("exposes every implemented family and generates its exact readable snapshot while saving is disabled", async () => {
     const catalogResponse = await GET(
       new Request("http://localhost/api/arithmetic/v2/catalog"),

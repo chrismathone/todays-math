@@ -78,7 +78,7 @@ describe("v2 catalog and generation routes", () => {
     expect((await response.json()).data).toMatchObject({
       engineVersion: "arithmetic-engine-v2",
       catalogVersion: "arithmetic-catalog-v2",
-      limits: { itemsPerRound: 100, itemsTotal: 100, rounds: 20 },
+      limits: { itemsPerRound: 100, itemsTotal: 200, rounds: 20 },
       writerEnabled: false,
       types: [
         expect.objectContaining({ id: "test-add", domainSize: 7 }),
@@ -132,12 +132,12 @@ describe("v2 catalog and generation routes", () => {
         ],
       },
     });
-    const request = fixtureRequest(51, "test-large");
-    request.rounds.push(request.rounds[0]);
+    const request = fixtureRequest(67, "test-large");
+    request.rounds.push(request.rounds[0], request.rounds[0]);
     const limit = await POST(post(request));
     expect(limit.status).toBe(400);
     expect(await limit.json()).toMatchObject({
-      error: { code: "limit", limit: { scope: "total", count: 102, max: 100 } },
+      error: { code: "limit", limit: { scope: "total", count: 201, max: 200 } },
     });
   });
   it.each([

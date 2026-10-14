@@ -23,6 +23,20 @@ export function validateArithmeticV2Request(
   if (!parsed.success) {
     const error = arithmeticV2SchemaError(parsed.error);
     if (
+      parsed.error.issues.some(
+        (issue) =>
+          issue.path.length === 1 &&
+          issue.path[0] === "rounds" &&
+          issue.code === "too_big",
+      )
+    ) {
+      throw new ArithmeticV2EngineError("limit", undefined, {
+        scope: "rounds",
+        count: (input as { rounds: unknown[] }).rounds.length,
+        max: ARITHMETIC_MAX_ROUNDS,
+      });
+    }
+    if (
       error.code === "limit" &&
       input &&
       typeof input === "object" &&
@@ -63,20 +77,6 @@ export function validateArithmeticV2Request(
         scope: "total",
         count: total,
         max: ARITHMETIC_MAX_ITEMS_TOTAL,
-      });
-    }
-    if (
-      parsed.error.issues.some(
-        (issue) =>
-          issue.path.length === 1 &&
-          issue.path[0] === "rounds" &&
-          issue.code === "too_big",
-      )
-    ) {
-      throw new ArithmeticV2EngineError("limit", undefined, {
-        scope: "rounds",
-        count: (input as { rounds: unknown[] }).rounds.length,
-        max: ARITHMETIC_MAX_ROUNDS,
       });
     }
     throw error;

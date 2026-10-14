@@ -1,6 +1,9 @@
 import type { ZodError } from "zod";
 
-import type { ArithmeticSkillId } from "@/contracts/arithmetic.contract";
+import {
+  ARITHMETIC_MAX_ITEMS_PER_ROUND,
+  type ArithmeticSkillId,
+} from "@/contracts/arithmetic.contract";
 
 export const ARITHMETIC_ENGINE_ERROR_CODES = [
   "version",
@@ -47,9 +50,10 @@ const MESSAGES: Record<ArithmeticEngineErrorCode, string> = {
   "unsupported-skill": "지원하지 않는 연산 기능입니다.",
   "unsupported-constraint": "지원하지 않는 연산 조건입니다.",
   "invalid-seed": "시드는 출력 가능 문자 1~128자입니다.",
-  "invalid-count": "문항 수는 1 이상 100 이하의 정수입니다.",
-  limit: "한 회차 또는 전체 문항 수가 상한을 넘습니다.",
-  capacity: "요청한 문항 수가 조건에서 만들 수 있는 수를 넘습니다.",
+  "invalid-count": `문항 수는 1 이상 ${ARITHMETIC_MAX_ITEMS_PER_ROUND} 이하의 정수입니다.`,
+  limit: "문항 수 또는 회차 수가 요청 한도를 넘습니다.",
+  capacity:
+    "선택한 조건으로 한 회차 안에서 서로 다른 식을 요청한 수만큼 만들 수 없습니다. 문항 수를 줄이거나 조건을 넓혀 주세요. 회차 사이에는 같은 식을 다시 사용할 수 있습니다.",
   schema: "연산 학습지 형식이 올바르지 않습니다.",
   "answer-mismatch": "저장된 정답이 명세와 맞지 않습니다.",
   "prompt-mismatch": "저장된 발문이 명세와 맞지 않습니다.",
@@ -84,7 +88,9 @@ export class ArithmeticEngineError extends Error {
   }
 }
 
-export function arithmeticCodeFromZod(error: ZodError): ArithmeticEngineErrorCode {
+export function arithmeticCodeFromZod(
+  error: ZodError,
+): ArithmeticEngineErrorCode {
   const issue = error.issues[0];
   if (!issue) return "schema";
   if (issue.message.startsWith("arithmetic:")) {
