@@ -1,0 +1,210 @@
+Arithmetic geometry measurement worker — 2026-10-15
+
+Delivered scope
+66 definitions, 3,139 unique finite tasks, 3,114 stable figure IDs.
+The 25 inverse polygon side-count tasks deliberately have no figureId: a full
+n-gon reveals the answer by counting. Root authorized this exception and owns
+the text-only geometry renderer/schema support.
+Only geometryMeasure.ts, its owned subfolder, focused geometryMeasure test,
+geometry-measure QA scripts and this report are changed. Root owns registration,
+schema, selected SVG packs, sheet persistence/reopen/regeneration and all UI.
+No push, deploy, DB access, environment-file changes or node_modules links.
+
+Exports
+MEASUREMENT_GEOMETRY_DEFINITIONS: readonly ArithmeticV2Definition[]
+MEASUREMENT_GEOMETRY_FIGURES: Readonly<Record<string,string>>
+The figure map has enumerable lazy getters. Import enumerates bounded parameter
+tuples but never renders/caches all SVG strings. Root must read selected entries,
+not spread the map or JSON-serialize every figure. IDs are gm-<type>-<parameters>,
+all at most 64 characters. Domain order and parameter IDs are deterministic.
+Family code imports only local geometryMeasure helpers, arithmetic types/errors;
+it never imports contracts, registry or either shared geometry module.
+
+Exact answers
+integer [n]; rational [n,d]; surd [n,r,d] means n*sqrt(r)/d;
+polynomial [aNumerator,aDenominator,bNumerator,bDenominator] means a+b*pi.
+This family uses integer constant a, so aDenominator is always 1. Coefficients
+are reduced, denominators positive, radical radicands squarefree and >1.
+Rational results use integer/rational kinds, never a reducible surd. Pi is
+symbolic throughout middle school. Sector perimeter includes both 2r and arc.
+Answer text/latex includes the physical unit or degrees; exact tuples do not.
+Prompt answerUnit is degrees (°), cm, cm², cm³, 개, or empty for trig ratios.
+No answer is rounded or stored as a floating-point approximation.
+
+Domain census (type ID / actual task count)
+m1-parallel-angle                   14
+m1-triangle-exterior                27
+m1-triangle-interior-exterior       27
+m1-polygon-sum                      10
+m1-polygon-interior                 10
+m1-polygon-exterior                 10
+m1-polygon-sides-interior             8
+m1-polygon-sides-exterior             8
+m1-polygon-diagonals                10
+m1-polygon-sides-diagonals            9
+m1-circle-circumference             14
+m1-circle-area                      14
+m1-circle-radius-circumference      14
+m1-circle-radius-area               14
+m1-sector-arc                       50
+m1-sector-area                      50
+m1-sector-perimeter                 50
+m1-sector-angle-arc                 50
+m1-sector-angle-area                50
+m1-sector-radius-arc                50
+m1-sector-radius-area               50
+m1-sector-area-arc                  50
+m1-prism-volume                    114
+m1-prism-surface                    75
+m1-cylinder-volume                 54
+m1-cylinder-surface                54
+m1-cylinder-lateral                54
+m1-pyramid-volume                  64
+m1-pyramid-surface                 50
+m1-cone-volume                     54
+m1-cone-surface                    72
+m1-cone-lateral                    72
+m1-sphere-surface                  15
+m1-sphere-volume                   15
+m3-circle-inscribed                 9
+m3-circle-central                   9
+m3-circle-same-arc                  9
+m3-circle-cyclic-opposite            9
+m3-circle-chord-length             33
+m3-circle-chord-distance           33
+m3-circle-tangent-angle             9
+m3-trig-ratio                     120
+m3-trig-special-value               9
+m3-trig-special-length            342
+m3-trig-triangle-area               60
+m1-prism-base-area-volume          114
+m1-prism-height-volume             114
+m1-pyramid-base-area-volume         64
+m1-pyramid-height-volume            64
+m1-prism-base-area-surface           75
+m1-prism-height-surface              75
+m1-pyramid-slant-surface             50
+m1-cylinder-height-volume           54
+m1-cylinder-radius-volume           54
+m1-cone-height-volume               54
+m1-cone-radius-volume               54
+m1-cylinder-height-lateral          54
+m1-cylinder-radius-lateral          54
+m1-cylinder-height-surface          54
+m1-cone-radius-lateral              72
+m1-cone-generator-lateral           72
+m1-cone-generator-surface           72
+m1-sphere-radius-surface            15
+m1-sphere-radius-volume             15
+m3-circle-tangent-chord             16
+m3-circle-equal-tangents             19
+
+Coverage decisions and exclusions
+Grade grounding: src/lib/middle/m1Geo2.ts (polygons), m1Geo3.ts (circles/sectors),
+m1Solid.ts plus m1Book2.ts/m1Stat.ts (solids), m3Trig.ts (ratios and special-angle
+length/area), m3AngleApply.ts and m3Tangent.ts (circle angle/chord/tangent).
+This is engine-grounded placement, not a new official achievement-standard audit.
+
+Parallel lines are explicitly given; the family computes a supplement across
+two intersections. Basic e4 complementary/supplementary and existing triangle
+interior sums are not duplicated. Exterior-angle forward/inverse remain here.
+Same-arc equality is intentionally retained as requested concept practice;
+copy-only corresponding/alternate/vertical-angle types are not inflated.
+Polygon n=3..12; inverse regular-angle tasks use integer degree inputs; direct
+regular angles may have rational answers (e.g. n=7). Inverse diagonals excludes
+n=3 so it practices a positive diagonal count. Counting families use 개.
+Following m1Geo2.ts:925 and root's review, the three inverse side-count families
+are text-only. Root owns additional inverse-sum and polyhedron count families.
+Circle radius inverses use perfect-square pi coefficients, avoiding middle1
+radicals. Sector domains include reflex sectors 240° and 270°; drawings use
+the correct major arc. Inverse angle/radius inputs show the measured arc/area,
+not the unknown numeric radius/angle. There is no hidden answer text in SVG.
+Solid volumes use explicit base area/height or radius/height. Prism surface
+domains use realizable rectangular bases (base area and perimeter both given),
+and explicitly right prisms. Pyramid surface uses a regular square pyramid
+with face slant height s > half base edge. Cone surface uses l > r and labels
+l as generator; h remains the perpendicular height. Sphere answers include
+exact fractional pi volumes. Every 3-D instruction explicitly says schematic.
+Direct solid inverses include prism/pyramid base area and perpendicular height
+from volume, right-prism height/base area from surface, square-pyramid face
+height from surface, cylinder/cone radius/height from volume, cylinder
+radius/height from lateral area and height from surface, cone radius/generator
+from lateral area and generator from surface, and sphere radius from area or
+volume. Square/cube root answers are exact positive integers. Existing explicit
+inverse examples: m1Solid.ts:1360 (face height), :1385 (cone generator), :1472
+(pyramid height), :1506 (cone height); m1Stat.ts:432 recovers a sphere radius
+from volume in its surface-area conversion. No new middle1 radical notation.
+Chord length and distance are direct one-right-triangle circle applications;
+generic Pythagoras, centers, similarity and middle2 quadrilaterals belong to
+the other worker and are not duplicated. Trig ratios use actual right-triangle
+coordinates and supplied legs/hypotenuse. Special length combines all six
+given/target side pairs, including rationalized inverse ratios; area uses two
+given sides with included 30°,45°,60°,90°. No high-school trig laws or domains.
+Tangent-chord angles support a given central angle (half) or an inscribed angle
+on the same intercepted arc (equal); source m3AngleApply.ts:1363-1418.
+Equal tangent lengths from one exterior
+point are retained as explicitly requested core relation practice; both drawn
+radius/tangent pairs independently measure 90°.
+Excluded: proofs, hidden auxiliary construction, tangent chains, composite
+shaded/solid subtraction puzzles, arbitrary approximate angles/lengths,
+surface area from insufficient base/slant data, general oblique solids,
+non-elementary inverse roots, and reading lengths off an unlabelled sketch.
+Cylinder/cone radius from total surface area plus height/generator is omitted:
+the general form is quadratic, unlike the direct linear or perfect-root
+inversions above. Power-of-point and hidden tangent constructions are excluded.
+These require reasoning, approximation, unsupported grade content or more
+givens than a direct arithmetic drill supplies.
+
+Verification
+Focused suite: src/__tests__/unit/geometryMeasure.test.ts — 6 tests passing,
+with full enumeration of all 3,139 candidates. Independent numerical oracle
+uses circular fractions, physical surface decompositions and Math trig, never
+the family solver/checker. All candidate verifies pass; unique visible math
+identities/figure IDs match actual domainSize. Every out-of-range/noninteger
+index throws. Malformed values, parameters, units, text/latex, extra prompt
+fields and bad figures are rejected. Reversed prompt key order is accepted.
+Exact regressions include sqrt(3)/3, 14sqrt(3)/3, 7sqrt(2), 4+pi/3,
+32pi/3 cm³ and 10/3 cm³. Equivalent noncanonical radicals/fractions fail.
+SVG tests independently measure every given and target angle from coordinates,
+check every right-angle mark, label anchors, bounds conventions and safe markup.
+Targeted strict TypeScript check passed. ESLint and formatting passed.
+The inverse-solid test parses the actual visible input measurements and
+reconstructs every given volume/surface/lateral area from the candidate answer,
+independently of generation helpers. Text-only polygon inverse coverage checks
+that figureId is absent and the figure map contains exactly 25 fewer entries.
+
+Real browser evidence
+Orca embedded Chromium, local read-only gallery http://127.0.0.1:4743.
+scripts/qa/geometry-measure-gallery.ts serves only in-memory candidates/SVGs.
+window.auditAll(true) measures all finite SVG text and primitive bounds,
+pairwise label overlaps and sampled stroke/text intersections. Final result:
+3,139 tasks / 66 families / 3,114 figures; zero failures across 10,340 labels
+and 19,887 primitives. Minimum measured effective font size: 18px.
+All visible glyphs use font-size 20
+in a 240-square SVG and render at 18px in the 216px gallery. Each of the 66
+family representatives was visually reviewed, with domain extrema samples
+also available through the gallery selector. Early checks caught/fixed the
+60° trig base-label overlap, large-sector center label, circular angle labels,
+dimension labels on ellipses and chord-foot label. Numeric angle labels use
+outside leaders where needed; radius/height/slant labels remain distinct.
+Evidence (local, not shipped):
+C:/Users/user/AppData/Local/Temp/geometry-measure-20261015/
+  browser-audit.json, families-0.png, families-9.png, families-18.png,
+  families-27.png, families-36.png, families-45.png, families-54.png,
+  families-63.png, circle-angles.png, tsconfig.json.
+This is browser rendering evidence, not a claim of physical paper inspection.
+Root performs integrated schema/pack/save/reopen/regeneration/UI checks.
+
+Reproduction without a worktree node_modules junction
+node C:/Creative/testautocreator/node_modules/vitest/vitest.mjs run --config scripts/qa/geometry-measure-vitest.config.mjs
+The focused config resolves the installed runner/dependencies at its executable
+location and does not load environment files. Standalone gallery runs with the
+installed tsx CLI; process-local NODE_PATH may point to the existing dependency
+directory. No project dependency or lockfile is installed/modified. The normal
+npx commit hook fetched lint-staged 17.6.0 into the external npm cache.
+Normal commit hook uses the existing main checkout's .husky/_ wrapper because
+this worktree does not contain the ignored generated wrapper. The tracked
+pre-commit still runs npx lint-staged, ESLint --fix and Prettier --write against
+this worktree. A temporary process-local Node resolution hook resolves missing
+packages through the existing main node_modules; it does not bypass checks or
+change any repo configuration/environment file.
