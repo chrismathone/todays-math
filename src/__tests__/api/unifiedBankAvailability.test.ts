@@ -16,7 +16,10 @@ import {
   composeUnifiedBankProblems,
   selectUnifiedBankProblems,
 } from "@/lib/unifiedBankSelection";
-import { loadBankSourceAvailability } from "@/lib/bankSourceAvailability";
+import {
+  loadBankSourceAvailability,
+  loadBankSourceMaterials,
+} from "@/lib/bankSourceAvailability";
 import {
   GET as sourcesGET,
   POST as sourcesPOST,
@@ -24,6 +27,7 @@ import {
 import {
   bankSourceAvailabilitySchema,
   bankSourceCountsSchema,
+  bankSourceMaterialsSchema,
   type BankSourceAvailability,
 } from "@/contracts/bankSource.contract";
 import {
@@ -132,7 +136,12 @@ async function book(grade = "중1", publisher = "천재교육") {
     },
   });
 }
-async function material(bookId: string, kind: string) {
+/** 자료 — 메타데이터 칸을 다 둔다(빈 칸은 DB 처럼 null). 대역은 없는 칸을 고르면 던진다. */
+async function material(
+  bookId: string,
+  kind: string,
+  meta: Record<string, unknown> = {},
+) {
   seq += 1;
   return db.sourceMaterial.create({
     data: {
@@ -141,7 +150,16 @@ async function material(bookId: string, kind: string) {
       kind,
       kindRaw: kind,
       title: `${kind} ${seq}`,
-    },
+      chapterNo: null,
+      middleNo: null,
+      sectionNo: null,
+      unitRaw: null,
+      semester: null,
+      round: null,
+      levelRaw: null,
+      sequence: null,
+      ...meta,
+    } as never,
   });
 }
 
@@ -562,5 +580,184 @@ describe("구성 — 목록과 같은 조건을 받는다", () => {
       counts: tiers({ 기본: 5 }),
     });
     expect(random.available.기본).toBe(1);
+  });
+});
+
+describe("책 → 자료 → 자료 안 번호 (materials)", () => {
+  async function seedBook() {
+    const kim = await book("중1", "천재교육");
+    const other = await book("중2", "YBM");
+    const late = await material(kim.id, "형성 평가", {
+      chapterNo: 2,
+      middleNo: 1,
+      sectionNo: 1,
+      unitRaw: "일차방정식",
+      sequence: 2,
+    });
+    const early = await material(kim.id, "형성 평가", {
+      chapterNo: 1,
+      middleNo: 1,
+      sectionNo: 2,
+      sequence: 1,
+    });
+    // 단원 번호가 없는 자료 — 뒤로 간다. 빈 칸은 지어내지 않는다
+    const loose = await material(kim.id, "기초 연산");
+    const empty = await material(kim.id, "진단 평가", { chapterNo: 1 });
+    const foreign = await material(other.id, "형성 평가", { chapterNo: 1 });
+    const textbook = (sourceMaterialId: string, patch = {}) =>
+      plant({ source: "school_textbook", sourceMaterialId, ...patch });
+    const n3 = await textbook(early.id, { questionNumber: 3 });
+    const n1 = await textbook(early.id, { questionNumber: 1 });
+    const n2 = await textbook(early.id, {
+      questionNumber: 2,
+      directUseAllowed: false,
+    });
+    await textbook(late.id, { questionNumber: 1, difficulty: "응용" });
+    await textbook(loose.id, { questionNumber: 1 });
+    await textbook(foreign.id, { questionNumber: 1 });
+    return { kim, other, late, early, loose, empty, foreign, n1, n2, n3 };
+  }
+
+  it("자료를 고르면 그 자료의 문항만, 자료 → 자료 안 번호 → 은행 차례로 묻는다", async () => {
+    const { early, n1, n3 } = await seedBook();
+    const find = vi.mocked(db.problem.findMany);
+    find.mockClear();
+    const list = await loadUnifiedBank(
+      params({ sourceGroup: "school_textbook", materials: early.id }),
+    );
+    expect(list.problems.map((row) => row.id).sort()).toEqual(
+      [n1.id, n3.id].sort(),
+    );
+    expect(list.total).toBe(2);
+    // 대역은 problem 의 orderBy 를 적용하지 않는다 — 실제 질의에 실린 차례를 본다
+    const page = find.mock.calls.find(([args]) => args?.select?.unit)?.[0];
+    expect(page?.orderBy).toEqual([
+      { sourceMaterialId: "asc" },
+      { questionNumber: "asc" },
+      { unit: { orderIndex: "asc" } },
+      { problemCode: "asc" },
+    ]);
+    // 자료를 안 고르면 은행 차례 그대로(옛 목록과 같다)
+    find.mockClear();
+    await loadUnifiedBank(params({ sourceGroup: "school_textbook" }));
+    expect(
+      find.mock.calls.find(([args]) => args?.select?.unit)?.[0]?.orderBy,
+    ).toEqual([{ unit: { orderIndex: "asc" } }, { problemCode: "asc" }]);
+    // 행은 자료 안 번호를 싣는다(화면은 문항 코드와 함께 보인다 — 번호는 자료 안에서도 겹칠 수 있다)
+    expect(list.problems.map((row) => row.questionNumber).sort()).toEqual([
+      1, 3,
+    ]);
+    expect(list.problems.every((row) => row.problemCode)).toBe(true);
+  });
+
+  it("교과서가 아닌 출처와 섞으면 400 — 조용히 0 건을 내지 않는다", async () => {
+    const { early } = await seedBook();
+    await expect(
+      loadUnifiedBank(params({ sourceGroup: "engine", materials: early.id })),
+    ).rejects.toBeInstanceOf(UnifiedBankQueryError);
+    await expect(
+      loadUnifiedBank(params({ materials: "not-a-uuid" })),
+    ).rejects.toBeInstanceOf(UnifiedBankQueryError);
+  });
+
+  it("🔴 짝 — 자료를 고른 조건에서도 가용량 = 목록 total = 랜덤 풀 = 구성 풀", async () => {
+    const { early, late, loose } = await seedBook();
+    for (const materials of [
+      early.id,
+      `${early.id},${late.id}`,
+      `${late.id},${loose.id}`,
+    ]) {
+      const filters = { sourceGroup: "school_textbook", materials };
+      const scoped = await available(filters);
+      expect((await loadUnifiedBank(params(filters))).total).toBe(
+        scoped.available,
+      );
+      const random = await selectUnifiedBankProblems({
+        filters: params(filters).toString(),
+        counts: tiers({ 기본: 1 }),
+      });
+      expect(sumTiers(random.available)).toBe(scoped.available);
+      const composed = await composeUnifiedBankProblems({
+        allocations: [{ unitId: U0, count: 10 }],
+        filters: params(filters).toString(),
+      });
+      expect(composed.allocations[0]!.available).toBe(scoped.available);
+      // 출처 갈래는 출처 축(자료 포함)을 풀고 센다
+      expect(scoped.facets!.sources.school_textbook.held).toBe(6);
+    }
+  });
+
+  it("자료 보기 — 고른 책의 자료 전부를 저장된 메타데이터 그대로, 자료마다 F 의 보유 · 사용 가능과 함께", async () => {
+    const { kim, early, late, loose, empty, foreign } = await seedBook();
+    const result = bankSourceMaterialsSchema.parse(
+      await loadBankSourceMaterials(
+        params({
+          view: "materials",
+          books: kim.id,
+          difficulty: "기본",
+          // 출처 축은 이 보기에서 풀린다 — 엔진을 골라 두어도 교과서 자료를 센다
+          sourceGroup: "engine",
+        }),
+      ),
+    );
+    expect(result.materials.map((m) => m.id)).toEqual([
+      early.id,
+      empty.id,
+      late.id,
+      loose.id,
+    ]);
+    expect(result.materials.map((m) => m.id)).not.toContain(foreign.id);
+    const byId = new Map(result.materials.map((m) => [m.id, m]));
+    expect(byId.get(early.id)).toMatchObject({
+      held: 3,
+      available: 2,
+      chapterNo: 1,
+      sectionNo: 2,
+      round: null,
+      unitRaw: null,
+    });
+    // 난이도 기본 조건 — 응용 한 문항뿐인 자료는 0 이지만 목록에 남는다
+    expect(byId.get(late.id)).toMatchObject({
+      held: 0,
+      available: 0,
+      unitRaw: "일차방정식",
+    });
+    expect(byId.get(empty.id)).toMatchObject({ held: 0, available: 0 });
+    expect(byId.get(loose.id)).toMatchObject({
+      chapterNo: null,
+      middleNo: null,
+      sectionNo: null,
+      semester: null,
+      sequence: null,
+      levelRaw: null,
+    });
+  });
+
+  it("자료 보기는 책이 있어야 하고, 라우트도 같은 모양으로 답한다", async () => {
+    const { kim } = await seedBook();
+    await expect(
+      loadBankSourceMaterials(params({ view: "materials" })),
+    ).rejects.toBeInstanceOf(UnifiedBankQueryError);
+    await expect(
+      loadBankSourceMaterials(
+        params({ view: "materials", books: kim.id, version: "2" }),
+      ),
+    ).rejects.toBeInstanceOf(UnifiedBankQueryError);
+    vi.stubEnv("NODE_ENV", "development");
+    const response = await sourcesGET(
+      new Request(
+        `https://math.example/api/dev/unified/problems/sources?${params({ view: "materials", books: kim.id })}`,
+      ),
+    );
+    expect(response.status).toBe(200);
+    expect(
+      bankSourceMaterialsSchema.parse(await response.json()).materials,
+    ).toHaveLength(4);
+    const missing = await sourcesGET(
+      new Request(
+        "https://math.example/api/dev/unified/problems/sources?view=materials",
+      ),
+    );
+    expect(missing.status).toBe(400);
   });
 });

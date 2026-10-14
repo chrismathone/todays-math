@@ -63,6 +63,7 @@ export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
     sourceGroup,
     books,
     materialKinds,
+    materials,
   } = parsed.data;
   // Explicit status inspection may include rows that cannot be issued. Private
   // pools never become visible, and the returned eligibility controls adding.
@@ -98,6 +99,8 @@ export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
   if (books) clauses.push({ sourceMaterial: { bookId: { in: books } } });
   if (materialKinds)
     clauses.push({ sourceMaterial: { kind: { in: materialKinds } } });
+  // 자료(문제은행 P0 — 책 → 자료 → 자료 안 번호). 자료가 없는 문항은 고르는 순간 빠진다.
+  if (materials) clauses.push({ sourceMaterialId: { in: materials } });
   const rangeIds = [
     ...new Set([unitFrom, unitTo].filter((id): id is string => Boolean(id))),
   ];
@@ -175,6 +178,17 @@ export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
     semester,
     requestedPage,
     pageSize,
+    /**
+     * 목록 차례. 자료를 골랐으면 자료 → 자료 안 번호(`questionNumber`) → 은행 차례 — 번호는 자료 안에서도
+     * 겹칠 수 있어(실측 86편) 마지막 열쇠가 동률을 정한다. 안 골랐으면 은행 차례 그대로.
+     */
+    orderBy: (materials
+      ? [
+          { sourceMaterialId: "asc" },
+          { questionNumber: "asc" },
+          ...PROBLEM_BANK_ORDER_BY,
+        ]
+      : PROBLEM_BANK_ORDER_BY) satisfies Prisma.ProblemOrderByWithRelationInput[],
   };
 }
 
@@ -203,6 +217,11 @@ export const UNIFIED_PROBLEM_SELECT = {
    * 그 누락이 드러나지 않았다.
    */
   originProblemId: true,
+  /**
+   * 자료 안 번호(교과서) · 시험지 번호(기출) — 문제은행 P0 의 «책 → 자료 → 자료 안 번호». 자료 안에서도 겹칠 수
+   * 있어(실측 86편) 화면은 문항 코드와 함께 보인다. `sourceReference` 는 변형의 **원본**을 말하므로 이 행의 번호가 아니다.
+   */
+  questionNumber: true,
   pool: true,
   directUseAllowed: true,
   unit: { select: { grade: true, chapter: true, section: true } },
@@ -333,8 +352,7 @@ export async function loadUnifiedBank(
   params = new URLSearchParams(),
 ): Promise<BankData> {
   const resolved = await resolveUnifiedBankQuery(params);
-  const { where, format, requestedPage, pageSize } = resolved;
-  const orderBy = PROBLEM_BANK_ORDER_BY;
+  const { where, format, requestedPage, pageSize, orderBy } = resolved;
   const formatIds = await findProblemIdsByFormat(format, where, orderBy);
   const metadata = await loadUnifiedBankMetadata(
     resolved,
