@@ -118,3 +118,20 @@ export function arithmeticGeometryAnswerUnit(
     (prompt.figureId && arithmeticAngleAssetIds.has(prompt.figureId) ? "°" : "")
   );
 }
+
+/** New geometry families may put givens in prose as well as in the diagram.
+ * The initial angle figures already contain every given and retain their form.
+ */
+export function arithmeticGeometryPromptLines(
+  prompt: ArithmeticV2Prompt,
+): string[] {
+  if (prompt.layout !== "math" || !prompt.figureId) return [];
+  return [
+    ...new Set(
+      [
+        arithmeticAngleAssetIds.has(prompt.figureId) ? "" : prompt.text,
+        prompt.instruction ?? "",
+      ].filter(Boolean),
+    ),
+  ];
+}

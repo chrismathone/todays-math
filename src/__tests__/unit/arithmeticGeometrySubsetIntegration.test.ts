@@ -83,6 +83,7 @@ describe("saved geometry subsets across generation, regeneration and shared outp
     ).toBe(true);
     expect(problems.every((p) => p.figureSourceMm[0] === 57.15)).toBe(true);
     expect(problems[0].figureSvg).toContain("arithmetic-geometry-drill-v1");
+    expect(problems[0].content).toContain("세로 3 cm인 직사각형");
   });
 
   it("replaces the selected question's packed figure and keeps other rounds/items byte-identical", () => {

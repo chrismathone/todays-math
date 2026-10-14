@@ -3,6 +3,7 @@ import type { ArithmeticV2Prompt } from "@/lib/arithmetic-v2/types";
 import {
   arithmeticGeometryAnswerUnit,
   arithmeticGeometryCatalogSvg,
+  arithmeticGeometryPromptLines,
 } from "@/lib/arithmetic-v2/geometry";
 import { GradeArithmeticExpression as NumericExpression } from "./GradeArithmeticPaper";
 import s from "./GradeArithmeticPrompt.module.css";
@@ -20,7 +21,11 @@ export function GradeArithmeticExpression({
   const svg = arithmeticGeometryCatalogSvg(prompt.figureId);
   return (
     <span className={s.prompt}>
-      <span>{prompt.instruction}</span>
+      {arithmeticGeometryPromptLines(prompt).map((line) => (
+        <span className={s.givens} key={line}>
+          {line}
+        </span>
+      ))}
       <img
         className={s.figure}
         width={216}

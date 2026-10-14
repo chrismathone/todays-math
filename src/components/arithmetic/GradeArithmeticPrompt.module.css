@@ -19,3 +19,10 @@
   width: 3em;
   border-bottom: 1px solid currentColor;
 }
+.givens {
+  width: 100%;
+  text-align: left;
+  line-height: 1.5;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}

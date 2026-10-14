@@ -8,6 +8,7 @@ import { arithmeticFeatureLabels } from "@/lib/arithmeticPresentation";
 import {
   arithmeticGeometrySvg,
   arithmeticGeometryAnswerUnit,
+  arithmeticGeometryPromptLines,
   arithmeticAngleWidthMm,
 } from "@/lib/arithmetic-v2/geometry";
 
@@ -72,7 +73,7 @@ export function arithmeticToStudioProblems(
           ...base,
           id: `arithmetic-v2:${sheet.seed}:${round.round}:${item.order}`,
           content: svg
-            ? `${item.prompt.instruction}\n\n[그림1]\n\n답: ${answerBlank}`
+            ? `${arithmeticGeometryPromptLines(item.prompt).join("\n\n")}\n\n[그림1]\n\n답: ${answerBlank}`
             : `${item.prompt.instruction ? `${item.prompt.instruction}\n\n` : ""}$$${formula}$$`,
           ...(svg
             ? {
