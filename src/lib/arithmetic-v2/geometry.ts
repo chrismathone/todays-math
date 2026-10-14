@@ -125,11 +125,13 @@ export function arithmeticGeometryAnswerUnit(
 export function arithmeticGeometryPromptLines(
   prompt: ArithmeticV2Prompt,
 ): string[] {
-  if (prompt.layout !== "math" || !prompt.figureId) return [];
+  if (prompt.layout !== "math") return [];
   return [
     ...new Set(
       [
-        arithmeticAngleAssetIds.has(prompt.figureId) ? "" : prompt.text,
+        prompt.figureId && arithmeticAngleAssetIds.has(prompt.figureId)
+          ? ""
+          : prompt.text,
         prompt.instruction ?? "",
       ].filter(Boolean),
     ),

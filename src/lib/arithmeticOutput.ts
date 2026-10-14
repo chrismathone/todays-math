@@ -57,6 +57,10 @@ export function arithmeticToStudioProblems(
           ? /viewBox="([^"]+)"/.exec(svg)![1].split(/\s+/).map(Number).slice(2)
           : undefined;
         const answerUnit = arithmeticGeometryAnswerUnit(item.prompt);
+        const geometryPrompt =
+          Boolean(svg) ||
+          (item.prompt.layout === "math" &&
+            item.prompt.answerUnit !== undefined);
         const answerBlank =
           answerUnit === "°"
             ? "$\\underline{\\hspace{2em}}^{\\circ}$"
@@ -72,8 +76,8 @@ export function arithmeticToStudioProblems(
         return {
           ...base,
           id: `arithmetic-v2:${sheet.seed}:${round.round}:${item.order}`,
-          content: svg
-            ? `${arithmeticGeometryPromptLines(item.prompt).join("\n\n")}\n\n[그림1]\n\n답: ${answerBlank}`
+          content: geometryPrompt
+            ? `${arithmeticGeometryPromptLines(item.prompt).join("\n\n")}${svg ? "\n\n[그림1]" : ""}\n\n답: ${answerBlank}`
             : `${item.prompt.instruction ? `${item.prompt.instruction}\n\n` : ""}$$${formula}$$`,
           ...(svg
             ? {

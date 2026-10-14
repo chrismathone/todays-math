@@ -60,7 +60,13 @@ describe("arithmetic shared output adapter", () => {
       expect(problem.section).toBe(type.title);
       if (item.prompt.layout === "math" && item.prompt.figureId)
         expect(problem.figureSvg).toContain("<svg");
-      else if (item.prompt.layout === "math")
+      else if (
+        item.prompt.layout === "math" &&
+        item.prompt.answerUnit !== undefined
+      ) {
+        expect(problem.content).toContain(item.prompt.text);
+        expect(problem.content).not.toContain("[그림1]");
+      } else if (item.prompt.layout === "math")
         expect(problem.content).toContain(item.prompt.latex);
       else expect(problem.content).toContain("\\begin{array}{r}");
       for (const match of problem.content.matchAll(/\$\$([\s\S]+?)\$\$/g))

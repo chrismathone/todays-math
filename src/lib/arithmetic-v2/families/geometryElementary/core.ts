@@ -61,7 +61,12 @@ export function exactAnswer(
     exact = [String(coefficient), String(scale)];
     value = decimal(coefficient, scale);
   }
-  const suffix = unit === "°" ? "^{\\circ}" : `\\,\\text{${unit}}`;
+  const suffix =
+    unit === "°"
+      ? "^{\\circ}"
+      : unit === "개"
+        ? "\\,\\text{개}"
+        : `\\,\\mathrm{${unit.replace(/[²³]/g, "")}}${unit.endsWith("²") ? "^{2}" : unit.endsWith("³") ? "^{3}" : ""}`;
   return {
     kind,
     exact,

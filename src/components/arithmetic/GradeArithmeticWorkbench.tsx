@@ -396,7 +396,16 @@ export default function GradeArithmeticWorkbench({
       const replacements = result.sheet.rounds
         .find((round) => round.round === target.round)!
         .items.filter((item) => result.changedOrders.includes(item.order));
-      setSheet(mergeArithmeticRegeneration(sheet, target.round, replacements));
+      const merged = mergeArithmeticRegeneration(
+        sheet,
+        target.round,
+        replacements,
+      );
+      // Selected geometry can introduce new figure IDs. Preserve the user's
+      // metadata while carrying the helper's verified replacement SVG subset.
+      setSheet(
+        merged === sheet ? sheet : { ...merged, figures: result.sheet.figures },
+      );
       setNotice(arithmeticRegenerationNotice(result));
     } catch (cause) {
       if (mounted.current) setError(message(cause));

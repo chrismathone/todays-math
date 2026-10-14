@@ -16,9 +16,14 @@ export function GradeArithmeticExpression({
 }: {
   prompt: ArithmeticV2Prompt;
 }) {
-  if (prompt.layout !== "math" || !prompt.figureId)
+  if (
+    prompt.layout !== "math" ||
+    (!prompt.figureId && prompt.answerUnit === undefined)
+  )
     return <NumericExpression prompt={prompt} />;
-  const svg = arithmeticGeometryCatalogSvg(prompt.figureId);
+  const svg = prompt.figureId
+    ? arithmeticGeometryCatalogSvg(prompt.figureId)
+    : undefined;
   return (
     <span className={s.prompt}>
       {arithmeticGeometryPromptLines(prompt).map((line) => (
@@ -26,13 +31,15 @@ export function GradeArithmeticExpression({
           {line}
         </span>
       ))}
-      <img
-        className={s.figure}
-        width={216}
-        height={216}
-        src={`data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`}
-        alt={prompt.text}
-      />
+      {svg && (
+        <img
+          className={s.figure}
+          width={216}
+          height={216}
+          src={`data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`}
+          alt={prompt.text}
+        />
+      )}
       <span>
         답: <span className={s.blank} aria-label="답란" />{" "}
         {arithmeticGeometryAnswerUnit(prompt)}

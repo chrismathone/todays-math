@@ -1,0 +1,137 @@
+Arithmetic geometry expansion integration — 2026-10-15
+
+Owner scope
+Complete feasible direct numerical geometry for elementary 1 through middle 3
+first, including circumcenter and incenter. High school remains out of scope.
+No arbitrary family-count target. Retain the established three-step workflow,
+round tabs, per-item/per-section regeneration, units and form-local rounds.
+Arithmetic autosave, environment settings and database activation are unchanged.
+
+Delivered census
+347 total grade-arithmetic types, including 263 geometry types.
+261 new geometry types / 17,638 unique finite candidates / 17,471 SVG entries.
+Including the previous two types / 81 candidates: 17,719 geometry candidates.
+Final grade census (types / candidates, including the previous 81):
+  elementary 2:   7 / 1,856
+  elementary 3:   8 /   815
+  elementary 4:  10 /   993
+  elementary 5:  35 / 4,600
+  elementary 6:  24 / 3,558
+  middle 1:      76 / 2,718
+  middle 2:      83 / 1,547
+  middle 3:      20 / 1,632
+Elementary 1 recognition, comparison and construction were not invented into
+formula drills. This census is implemented coverage, not a claim of complete
+official achievement-standard alignment or measured learning outcomes.
+
+Merged family work
+Elementary: 82 types / 11,741 candidates (85d68658e + c6c31fcdb).
+  Length/unit conversions; polygon totals; angle relations; perimeters, areas
+  and direct inverses; cuboid/cube; explicit decimal-pi circle measurements;
+  cylinder-net lateral rectangle area and inverse height/radius/diameter.
+Centers/triangles: 90 types / 2,502 candidates (661f64ffa).
+  Acute and obtuse circumcenters, incenter, centroid, angle bisectors,
+  midsegments, proportions, similarity, quadrilateral relations, integer and
+  exact-surd Pythagoras, projections. 83 middle-2 and 7 middle-3 types.
+Measurement: 66 types / 3,139 candidates (0ca71759a).
+  Parallel/exterior angles, polygons, circle/sector, solids and 19 direct
+  inverse solid families; middle-3 circle/chord/tangent and trigonometry.
+  25 inverse polygon count tasks intentionally have no full polygon diagram.
+Root counting integration: 23 types / 256 candidates / 114 SVGs.
+  Vertex diagonals, fan triangles, inverse counts and inverse interior sum;
+  prism/pyramid/frustum face, edge, vertex totals and inverse base-side counts.
+  142 inverse tasks are text-only to avoid disclosing the answer by counting.
+All three merged worker worktrees were clean and idle before Orca removal.
+Their Git branches and reports/evidence are retained.
+
+Concrete exclusions
+High-school geometry, proofs/classification/construction, folding/hidden
+auxiliary-line puzzles, shaded/shortest-path multistep puzzles, generic quadratic
+surface-to-radius inverses, approximate or unsupported roots. Exact-root inverse
+families are included. Detailed domain tables and family-specific exclusions:
+  arithmetic-geometry-elementary-20261015.txt
+  arithmetic-geometry-triangles-20261015.txt
+  arithmetic-geometry-measure-20261015.txt
+
+Shared integration and fixes
+Definitions register through extraGeometry.ts. SVG maps remain separate lazy
+enumerable getter records: no eager spreading or rendering all 17,471 assets.
+Each new sheet freezes only used, trusted SVGs in a version-2 subset pack;
+canonical IDs, exact content, bounded cache and compressed-string checks apply.
+Legacy version-1 angle snapshots retain exact bytes and remain reopenable.
+Physical units and count units are explicit; unitless ratios use an explicit
+empty answerUnit. Text-only geometry still displays its complete visible givens.
+Elementary decimal answers are exact; middle-school pi and square roots remain
+symbolic. Surds use [coefficient, radicand, denominator]; pi polynomials use
+[constant numerator, constant denominator, pi numerator, pi denominator].
+Changed elementary answer LaTeX from Unicode superscripts inside text to proper
+math superscripts, preventing KaTeX missing-glyph warnings for area and volume.
+
+Actual browser QA found and fixed a workbench callback that merged regenerated
+items but dropped their new figure pack. The callback now carries the helper's
+verified pack while preserving other sheet metadata. API and preview callback
+tests cover geometry, two rounds, retained items, zero-change and error states.
+No-change keeps the original sheet/dirty state; changed selected figures reopen.
+
+Verification
+Independent family numeric/canonical/given/geometry tests enumerate every
+candidate. Root integration additionally checks all 261 definitions through the
+public schema/registry, identities, save/reopen, shared output givens and units,
+200-item mixed packs, selected regeneration and strict request parsing.
+An initial broad run had 2,303 passing cases and one stale output assertion that
+assumed every math prompt was formula-only. The assertion now covers text-only
+geometry; the focused post-fix run passed all 29 cases in 4 suites.
+Final broad rerun: 2,310 / 2,310 tests passed across all 42 related suites
+(52.08 seconds). Full-project npm run type-check passed after the callback and
+unit changes. Normal commit/push hooks are also required for this integration.
+
+Full-domain browser geometry evidence
+Elementary: 11,741 SVGs; triangles: 2,502; measurement: 3,114; root counts: 114.
+Every SVG passed its browser bounds/font/label/stroke gates at 216px.
+Worker family reports describe independent numeric and coordinate-angle checks.
+New figure labels have at least 18px effective size at the tested display size.
+
+Integrated real-browser QA
+48 generated geometry questions / two rounds, with circumcenter, incenter,
+incircle-area, centroid-area, similarity, surd Pythagoras, trapezoid area,
+decimal-pi circle area, sector perimeter, sphere volume, trig and cuboid volume.
+390px and 900px layouts have no horizontal overflow; SVGs load at 216px.
+One selected item and one complete section regenerate while all other items
+and the other round stay byte-equivalent. No page errors or KaTeX errors.
+All six templates preserve 48 numbered questions and 48 figures inside page
+bounds, with rounds inside the form and before the question content.
+Page counts: assessment 12, traditional 12, modern 14, workbook 12, self-study
+12, type 12 (question pages). The exported type-form PDF has 14 pages including
+two round-specific answer pages, 277,956 bytes. First, continuation, second-round
+and answer pages were rendered for inspection; centers and units are legible.
+PDF export used the real output payload and pdfDocument in local Chromium;
+the authenticated production PDF endpoint was not called for this QA.
+Supplementary export passed: 10 questions covering cylinder-net area/inverse
+height, obtuse outside circumcenter, inverse interior-sum count and frustum
+edges; eight diagrams and two intentionally text-only questions. Its 3-page,
+141,287-byte PDF was visually inspected, including the outside O label, planar
+net proportions and physical/count units. No page or KaTeX errors.
+
+200-item sizing samples (including selected SVGs and save-envelope overhead)
+Longest prompt rows: 157,510 bytes; 17,300-byte compressed pack.
+200 diverse types: 127,401 bytes; 25,508-byte pack (197 figures).
+200 largest raw SVG rows: 127,264 bytes; 23,008-byte pack.
+All samples are below the unchanged 256KiB request limit and the new 128KiB
+compressed-string cap. Exact valid-sheet round trips are covered by tests.
+
+Evidence retained under tmp/ (not committed)
+geometry-expansion-final-census.json
+geometry-expansion-all-verified-tests.log
+geometry-expansion-regeneration-fix-tests.log
+geometry-expansion-types-verified.log
+geometry-expansion-browser-proof.json and geometry-expansion.pdf
+geometry-expansion-pdf-{1,2,4,5,7,13,14}.png
+geometry-expansion-supplement-proof.json / supplement.pdf
+geometry-count-inverse-browser-proof.json / inverse-mobile.png
+geometry-counts-browser-proof.json / polygon.png / polyhedra.png / print.png
+geometry-expansion-pack-size.json
+Worker full-domain evidence paths are recorded in their retained reports.
+
+No authenticated production-save or autosave activation is claimed. The existing
+account/menu gates and manual-save configuration remain in place. No DB/env
+changes, dependency installation, lockfile changes or node_modules junctions.

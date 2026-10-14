@@ -20,6 +20,7 @@ import {
 } from "@/lib/arithmeticRegeneration";
 import { buildArithmeticSheet } from "@/lib/arithmetic/sheet";
 import { buildArithmeticV2Sheet } from "@/lib/arithmetic-v2/sheet";
+import { reopenArithmeticV2Sheet } from "@/lib/arithmetic-v2/reopen";
 import { listArithmeticV2Types } from "@/lib/arithmetic-v2/catalog";
 import { defaultArithmeticPresentation } from "@/contracts/arithmeticPresentation.contract";
 import type { ArithmeticOutputSheet } from "@/lib/arithmeticOutput";
@@ -56,6 +57,22 @@ vi.mock("@/components/arithmetic/ArithmeticWorkflow", () => ({
 }));
 
 const versions = [
+  {
+    name: "geometry",
+    Component: GradeWorkbench,
+    build: () =>
+      buildArithmeticV2Sheet({
+        engineVersion: "arithmetic-engine-v2",
+        catalogVersion: "arithmetic-catalog-v2",
+        seed: "saved-geometry",
+        rounds: [1, 2].map(() => ({
+          allocations: [
+            { typeId: "e6-circle-area-radius", count: 2 },
+            { typeId: "m2-incenter-central-angle", count: 1 },
+          ],
+        })),
+      }),
+  },
   {
     name: "legacy",
     Component: LegacyWorkbench,
@@ -208,6 +225,11 @@ describe.each(versions)(
       });
       expect(latest.sheet!.rounds[0]).toBe(sheet.rounds[0]);
       expect(latest.sheet!.rounds[1].items[1]).toBe(sheet.rounds[1].items[1]);
+      if (latest.sheet!.payloadVersion === 2) {
+        expect(reopenArithmeticV2Sheet(latest.sheet)).toEqual(latest.sheet);
+        if (sheet.payloadVersion === 2 && sheet.figures?.version === 2)
+          expect(latest.sheet!.figures).not.toEqual(sheet.figures);
+      }
       expect(latest.title).toBe("보존할 제목");
       expect(latest.presentation).toBe(presentation);
       expect(latest.dirty).toBe(true);
@@ -286,6 +308,8 @@ describe.each(versions)(
       );
       expect(latest.sheet!.rounds[0]).toBe(sheet.rounds[0]);
       expect(fetch).not.toHaveBeenCalled();
+      if (latest.sheet!.payloadVersion === 2)
+        expect(reopenArithmeticV2Sheet(latest.sheet)).toEqual(latest.sheet);
       expect(save).not.toHaveBeenCalled();
     });
   },

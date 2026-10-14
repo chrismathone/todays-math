@@ -17,6 +17,18 @@ import {
 } from "@/lib/arithmetic-v2/geometry";
 
 describe("arithmetic geometry figures on catalog and shared review/output", () => {
+  it("shows givens and the unit without a revealing polygon in inverse-count examples", () => {
+    const { prompt } = getArithmeticV2Definition(
+      "m1-polygon-sides-sum",
+    ).problemAt(0);
+    if (prompt.layout !== "math") throw new Error("Unexpected prompt");
+    const { container } = render(<GradeArithmeticExpression prompt={prompt} />);
+    expect(container.textContent).toContain(prompt.text);
+    expect(container.textContent).toContain(prompt.instruction);
+    expect(container.textContent).toContain("개");
+    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+    expect(screen.getByLabelText("답란")).toBeInTheDocument();
+  });
   it.each(["e4-triangle-missing-angle", "e4-right-triangle-missing-angle"])(
     "renders the real catalog example at 216px with no question mark: %s",
     (id) => {
