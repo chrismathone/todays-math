@@ -1,4 +1,7 @@
-import type { StudioSessionData } from "./studioSessionStore";
+import type {
+  StudioSessionData,
+  StudioSessionStoreOptions,
+} from "./studioSessionStore";
 import type {
   DocumentSharing,
   DocumentVisibility,
@@ -125,6 +128,7 @@ export class PrivateStudioSessionStore {
     private readonly legacy?: () => Promise<Session | null>,
     private readonly client = new PrivateCloudClient(scope),
     private readonly recovery = sessionRecovery(scope),
+    private readonly options: StudioSessionStoreOptions = {},
   ) {}
   get documentId() {
     return this.id;
@@ -153,6 +157,9 @@ export class PrivateStudioSessionStore {
     }));
   }
   private async restore(): Promise<Session | null> {
+    // No selection means a new extraction. Leave current, cached originals,
+    // pending revisions and legacy stores untouched until explicitly resumed.
+    if (this.options.autoResume === false && !this.selectedId) return null;
     while (pendingSessionSaves.get(this.scope)?.size)
       await Promise.allSettled(pendingSessionSaves.get(this.scope)!);
     const current = await this.recovery.get<{ id: string | null }>("current");

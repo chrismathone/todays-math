@@ -34,13 +34,28 @@ interface Envelope {
   data: StudioSessionData;
 }
 
+export interface StudioSessionStoreOptions {
+  autoResume?: boolean;
+}
+
 const DB_NAME = "today-math-studio-v1";
 const CONFLICT =
   "다른 창에서 문제 추출 작업이 변경되었습니다. 현재 작업을 확인한 뒤 새로고침해 주세요.";
 
 /** 원본 Blob은 한 번만 저장하고 검수 상태는 별도로 갱신한다. */
 export class LocalStudioSessionStore {
-  constructor(private readonly scope?: string) {}
+  private readonly sessionKey: string;
+  constructor(
+    private readonly scope?: string,
+    private readonly options: StudioSessionStoreOptions = {},
+    private readonly selectedId?: string,
+  ) {
+    this.sessionKey =
+      selectedId ??
+      (options.autoResume === false
+        ? `session-${crypto.randomUUID()}`
+        : "active");
+  }
   private revision = 0;
   private tail: Promise<unknown> = Promise.resolve();
 
@@ -67,10 +82,11 @@ export class LocalStudioSessionStore {
     data: StudioSessionData;
     originals: Map<string, Blob>;
   } | null> {
+    if (this.options.autoResume === false && !this.selectedId) return null;
     const db = await this.open();
     return new Promise((resolve, reject) => {
       const tx = db.transaction(["session", "originals"], "readonly");
-      const request = tx.objectStore("session").get("active");
+      const request = tx.objectStore("session").get(this.sessionKey);
       let envelope: Envelope | undefined;
       let invalid = false;
       const originals = new Map<string, Blob>();
@@ -133,6 +149,12 @@ export class LocalStudioSessionStore {
   }
 
   save(data: StudioSessionData, originals: Map<string, Blob>): Promise<void> {
+    if (
+      this.options.autoResume === false &&
+      !data.sources.length &&
+      !data.crops.length
+    )
+      return Promise.resolve();
     return this.write(data, originals);
   }
 
@@ -153,7 +175,7 @@ export class LocalStudioSessionStore {
           const tx = db.transaction(["session", "originals"], "readwrite");
           const state = tx.objectStore("session");
           const assets = tx.objectStore("originals");
-          const request = state.get("active");
+          const request = state.get(this.sessionKey);
           let conflict = false;
           let nextRevision = this.revision;
           request.onsuccess = () => {
@@ -191,14 +213,17 @@ export class LocalStudioSessionStore {
                   revision: nextRevision,
                   data: empty,
                 } satisfies Envelope,
-                "active",
+                this.sessionKey,
               );
-              assets.clear();
+              if (this.sessionKey === "active") assets.clear();
+              else
+                for (const source of previous?.data.sources ?? [])
+                  assets.delete(source.id);
               return;
             }
             state.put(
               { version: 1, revision: nextRevision, data } satisfies Envelope,
-              "active",
+              this.sessionKey,
             );
             for (const [id, blob] of originals) {
               const existing = assets.getKey(id);
@@ -230,12 +255,21 @@ export class LocalStudioSessionStore {
 /** Unscoped developer previews keep their original IndexedDB-only semantics. */
 export class StudioSessionStore {
   private readonly store: LocalStudioSessionStore | PrivateStudioSessionStore;
-  constructor(scope?: string, documentId?: string) {
+  constructor(
+    scope?: string,
+    documentId?: string,
+    options: StudioSessionStoreOptions = {},
+  ) {
     this.store = scope
-      ? new PrivateStudioSessionStore(scope, documentId, () =>
-          new LocalStudioSessionStore(scope).load(),
+      ? new PrivateStudioSessionStore(
+          scope,
+          documentId,
+          () => new LocalStudioSessionStore(scope).load(),
+          undefined,
+          undefined,
+          options,
         )
-      : new LocalStudioSessionStore();
+      : new LocalStudioSessionStore(undefined, options, documentId);
   }
   load() {
     return this.store.load();
