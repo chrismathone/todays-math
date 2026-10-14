@@ -68,6 +68,11 @@ export interface BankProblem extends StudioProblem {
    *    `[?형식]` 으로 조용히 떨어진다.
    */
   questionTypeRaw: string | null;
+  /**
+   * 자료 안 번호(교과서) · 시험지 번호(기출) — 서버 목록(`UNIFIED_PROBLEM_SELECT`)이 싣는다(문제은행 P0 2026-10-14).
+   * 자료 안에서도 겹칠 수 있다 — 번호만으로 문항을 가리키지 말고 문항 코드와 함께 보인다. 옛 저장 초안에는 없다.
+   */
+  questionNumber?: number | null;
 }
 
 export interface BankData {

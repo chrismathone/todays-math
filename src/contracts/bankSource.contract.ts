@@ -78,6 +78,23 @@ export const bankBookIdsParamSchema = splitComma.pipe(
       error: `책은 한 번에 ${BANK_BOOK_LIMIT}권까지 고를 수 있습니다.`,
     }),
 );
+/** 한 번에 고를 수 있는 자료의 상한 — 책 한 권의 자료가 가장 많아야 216편이다(2026-10-14 실측). 주소 길이를 막는 방어선. */
+export const BANK_MATERIAL_LIMIT = 300;
+
+/**
+ * 자료 열쇠 — `source_material.id`(문제은행 P0 2026-10-14 · 책 → 자료 → 자료 안 번호). 교과서일 때만 받는다.
+ * 고르면 목록 차례가 자료 → 자료 안 번호(`questionNumber`)가 된다 — 번호는 자료 안에서도 겹칠 수 있어
+ * (실측 86편) 번호만으로 문항을 가리키지 않는다(화면은 문항 코드와 함께 보인다).
+ */
+export const bankMaterialIdsParamSchema = splitComma.pipe(
+  z
+    .array(z.uuid({ error: "자료 식별자 형식이 올바르지 않습니다." }))
+    .min(1, EMPTY_PICK)
+    .max(BANK_MATERIAL_LIMIT, {
+      error: `자료는 한 번에 ${BANK_MATERIAL_LIMIT}편까지 고를 수 있습니다.`,
+    }),
+);
+
 /** 자료 종류 — 계약의 목록(`SOURCE_MATERIAL_KINDS`)만. 적재기도 목록 밖의 값을 거절한다. */
 export const bankMaterialKindsParamSchema = splitComma.pipe(
   z.array(sourceMaterialKindSchema).min(1, EMPTY_PICK),
@@ -122,13 +139,14 @@ export const unifiedBankQuerySchema = problemFilterQuerySchema
     sourceGroup: bankSourceGroupSchema.optional(),
     books: bankBookIdsParamSchema.optional(),
     materialKinds: bankMaterialKindsParamSchema.optional(),
+    materials: bankMaterialIdsParamSchema.optional(),
   })
   .superRefine((query, ctx) => {
     const textbook =
       query.sourceGroup === "school_textbook" ||
       query.source === "school_textbook";
     if (textbook) return;
-    for (const key of ["books", "materialKinds"] as const)
+    for (const key of ["books", "materialKinds", "materials"] as const)
       if (query[key])
         ctx.addIssue({
           code: "custom",
@@ -199,7 +217,7 @@ export type BankSourceCounts = z.infer<typeof bankSourceCountsSchema>;
 
 /** 가용량 보기의 판 — 모양을 바꾸면 올린다(옛 화면이 새 모양을 오독하지 않게). */
 export const BANK_SOURCE_AVAILABILITY_VERSION = 1;
-export const BANK_SOURCE_VIEWS = ["available"] as const;
+export const BANK_SOURCE_VIEWS = ["available", "materials"] as const;
 export const bankSourceViewSchema = z.enum(BANK_SOURCE_VIEWS, {
   error: "알 수 없는 보기입니다.",
 });
@@ -208,7 +226,7 @@ export const bankSourceViewSchema = z.enum(BANK_SOURCE_VIEWS, {
 export const BANK_AVAILABILITY_AXES = {
   units: ["unitIds", "unitFrom", "unitTo"],
   difficulties: ["difficulty"],
-  sources: ["source", "sourceGroup", "books", "materialKinds"],
+  sources: ["source", "sourceGroup", "books", "materialKinds", "materials"],
 } as const;
 
 /** 한 칸의 두 수 — 사용 가능은 보유를 넘지 않는다. */
@@ -269,3 +287,42 @@ export const bankSourceAvailabilitySchema = z.strictObject({
 export type BankSourceAvailability = z.infer<
   typeof bankSourceAvailabilitySchema
 >;
+
+// ── 자료 보기 (`GET|POST …/problems/sources?view=materials&books=…`) — 문제은행 P0 (2026-10-14) ──────────
+//
+// 책 → 자료 → 자료 안 번호 탐색의 둘째 단. 고른 책들의 자료 전부를, 저장된 메타데이터 **그대로**(빈 칸은 null —
+// 파일 이름이나 문항에서 추정해 채우지 않는다) 싣고, 자료마다 현재 조건 F(출처 축은 뺀다 — 이 보기는 늘 교과서)의
+// 보유 · 사용 가능 수를 붙인다. 수가 0 인 자료도 싣는다(화면이 «이 조건에서는 없음»으로 둔다).
+// 차례: 요청한 책 차례 → 교과서 대 · 중 · 소단원 번호(없으면 뒤) → 자료 종류 → 회차(없으면 뒤) → 제목.
+
+export const bankSourceMaterialSchema = z
+  .strictObject({
+    id: z.uuid(),
+    bookId: z.uuid(),
+    kind: z.string().min(1),
+    /** 출판사가 부른 이름 그대로 */
+    kindRaw: z.string(),
+    /** 자료 제목(파일 이름) */
+    title: z.string(),
+    chapterNo: z.number().int().nullable(),
+    middleNo: z.number().int().nullable(),
+    sectionNo: z.number().int().nullable(),
+    unitRaw: z.string().nullable(),
+    semester: z.number().int().nullable(),
+    round: z.string().nullable(),
+    levelRaw: z.string().nullable(),
+    sequence: z.number().int().nullable(),
+    held: countSchema,
+    available: countSchema,
+  })
+  .refine((material) => material.available <= material.held, {
+    error: "사용 가능 수가 보유 수보다 클 수 없습니다.",
+  });
+export type BankSourceMaterial = z.infer<typeof bankSourceMaterialSchema>;
+
+export const bankSourceMaterialsSchema = z.strictObject({
+  view: z.literal("materials"),
+  version: z.literal(BANK_SOURCE_AVAILABILITY_VERSION),
+  materials: z.array(bankSourceMaterialSchema),
+});
+export type BankSourceMaterials = z.infer<typeof bankSourceMaterialsSchema>;

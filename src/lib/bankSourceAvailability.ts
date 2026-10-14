@@ -5,10 +5,12 @@ import {
   BANK_SOURCE_AVAILABILITY_VERSION,
   BANK_SOURCE_GROUP_SOURCES,
   BANK_SOURCE_GROUPS,
-  bankSourceViewSchema,
+  bankBookIdsParamSchema,
   type BankAvailabilityTally,
   type BankSourceAvailability,
   type BankSourceGroup,
+  type BankSourceMaterial,
+  type BankSourceMaterials,
 } from "@/contracts/bankSource.contract";
 import { DIFFICULTY_LADDER, type Difficulty } from "@/contracts/difficulty";
 import { db } from "@/lib/db";
@@ -80,19 +82,24 @@ const sum = (map: Map<string, number>) =>
   [...map.values()].reduce((total, n) => total + n, 0);
 
 /**
- * `view=available` 요청 → 가용량. 조건이 틀리면 `UnifiedBankQueryError`(라우트가 400 으로 낸다).
- * `version` 은 생략하거나 지금 판(1)만 받는다 — 다른 판을 달라는 화면에 이 판을 내주지 않는다.
+ * 보기 · 판의 문지기 — `view` 가 그 보기가 아니거나 `version` 이 지금 판(1)이 아니면 `UnifiedBankQueryError`
+ * (라우트가 400 으로 낸다). 다른 판을 달라는 화면에 이 판을 내주지 않는다.
  */
-export async function loadBankSourceAvailability(
-  params: URLSearchParams,
-): Promise<BankSourceAvailability> {
-  if (!bankSourceViewSchema.safeParse(params.get("view")).success)
+function checkView(params: URLSearchParams, view: "available" | "materials") {
+  if (params.get("view") !== view)
     throw new UnifiedBankQueryError("알 수 없는 보기입니다.");
   const version = params.get("version");
   if (version !== null && version !== String(BANK_SOURCE_AVAILABILITY_VERSION))
     throw new UnifiedBankQueryError(
-      `가용량 보기는 판 ${BANK_SOURCE_AVAILABILITY_VERSION}만 냅니다.`,
+      `이 보기는 판 ${BANK_SOURCE_AVAILABILITY_VERSION}만 냅니다.`,
     );
+}
+
+/** `view=available` 요청 → 가용량. 조건이 틀리면 `UnifiedBankQueryError`(라우트가 400 으로 낸다). */
+export async function loadBankSourceAvailability(
+  params: URLSearchParams,
+): Promise<BankSourceAvailability> {
+  checkView(params, "available");
   const filters = stripped(params, NOT_FILTERS);
   const main = await resolveUnifiedBankQuery(filters);
   const heldWhere = { AND: [problemVisibleWhere(), ...main.selection] };
@@ -216,5 +223,76 @@ export async function loadBankSourceAvailability(
           .map(([id, book]) => ({ id, ...book })),
       },
     },
+  };
+}
+
+/** 빈 칸(null)은 뒤로 — 단원 번호 · 회차가 없는 자료가 앞을 가리지 않게. */
+const nullsLast = (a: number | null, b: number | null) =>
+  a === b ? 0 : a === null ? 1 : b === null ? -1 : a - b;
+
+/**
+ * `view=materials&books=…` → 고른 책들의 자료와 자료마다의 보유 · 사용 가능 수(`bankSourceMaterialsSchema`).
+ *
+ * 수는 조건 F 에서 **출처 축을 뺀**(이 보기는 늘 교과서다 — 다른 갈래 · 고른 자료 · 자료 종류에 묶이지 않는다)
+ * 나머지 조건 + 출처 = 교과서 + 고른 책으로 센다. 메타데이터는 저장된 값 그대로 — 빈 칸을 지어내지 않는다.
+ */
+export async function loadBankSourceMaterials(
+  params: URLSearchParams,
+): Promise<BankSourceMaterials> {
+  checkView(params, "materials");
+  const books = bankBookIdsParamSchema.safeParse(params.get("books") ?? "");
+  if (!books.success)
+    throw new UnifiedBankQueryError("자료를 볼 책을 골라 주세요.");
+  const query = await resolveUnifiedBankQuery(
+    stripped(params, [...NOT_FILTERS, ...BANK_AVAILABILITY_AXES.sources]),
+  );
+  const [materials, counts] = await Promise.all([
+    db.sourceMaterial.findMany({
+      where: { bookId: { in: books.data } },
+      select: {
+        id: true,
+        bookId: true,
+        kind: true,
+        kindRaw: true,
+        title: true,
+        chapterNo: true,
+        middleNo: true,
+        sectionNo: true,
+        unitRaw: true,
+        semester: true,
+        round: true,
+        levelRaw: true,
+        sequence: true,
+      },
+    }),
+    countBy(
+      [
+        ...query.selection,
+        { source: "school_textbook" },
+        { sourceMaterial: { bookId: { in: books.data } } },
+      ],
+      "sourceMaterialId",
+    ),
+  ]);
+  const bookOrder = new Map(books.data.map((id, index) => [id, index]));
+  return {
+    view: "materials",
+    version: BANK_SOURCE_AVAILABILITY_VERSION,
+    materials: materials
+      .map((material): BankSourceMaterial => ({
+        ...material,
+        ...tally(counts.held, counts.available, material.id),
+      }))
+      .sort(
+        (a, b) =>
+          bookOrder.get(a.bookId)! - bookOrder.get(b.bookId)! ||
+          nullsLast(a.chapterNo, b.chapterNo) ||
+          nullsLast(a.middleNo, b.middleNo) ||
+          nullsLast(a.sectionNo, b.sectionNo) ||
+          a.kind.localeCompare(b.kind, "ko") ||
+          nullsLast(a.sequence, b.sequence) ||
+          a.title.localeCompare(b.title, "ko") ||
+          a.id.localeCompare(b.id),
+      ),
   };
 }
