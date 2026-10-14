@@ -52,6 +52,7 @@ export const arithmeticV2PromptSchema = z.discriminatedUnion("layout", [
     text: display,
     latex: display,
     instruction: display.optional(),
+    answerUnit: display.optional(),
     figureId: z
       .string()
       .max(64)

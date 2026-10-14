@@ -21,6 +21,8 @@ export type ArithmeticV2Prompt =
       instruction?: string;
       /** Frozen SVG in the sheet's figures pack; only catalog examples use bundled assets. */
       figureId?: string;
+      /** Unit printed beside the answer blank; omitted legacy angle figures use degrees. */
+      answerUnit?: string;
     };
 /** Canonical exact values are integer strings, never floating-point estimates.
  * integer=[value]; rational=[numerator,positiveDenominator] reduced;
