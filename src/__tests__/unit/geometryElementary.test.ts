@@ -36,6 +36,14 @@ function expected(id: string, p: number[]): number {
     );
   if (id === "e4-quadrilateral-missing-angle") return (a + b) / 2;
   if (id.includes("isosceles")) return id.includes("-base-") ? a : 180 - a * 2;
+  if (id.includes("cylinder-net-"))
+    return id.endsWith("height")
+      ? b
+      : id.endsWith("radius")
+        ? a
+        : id.endsWith("diameter")
+          ? 2 * a
+          : (2 * a * b * c) / 100;
   if (id.startsWith("e6-circle-")) {
     const kind = id.slice("e6-circle-".length);
     if (kind.startsWith("radius-")) return a;
@@ -313,5 +321,56 @@ test("rendered planar measurements and all labelled/target arcs agree with numer
           `${def.id} ${i}: ${angle} != ${stated}`,
         );
       }
+    }
+});
+
+test("cylinder net tasks solve from public givens and preserve real net proportions", () => {
+  const nets = definitions.filter((d) => d.id.startsWith("e6-cylinder-net-"));
+  assert.equal(nets.length, 4);
+  for (const def of nets)
+    for (let index = 0; index < def.domainSize; index++) {
+      const c = def.problemAt(index);
+      if (c.prompt.layout !== "math") throw new Error("math expected");
+      const text = c.prompt.text;
+      const pi = Number(text.match(/원주율 ([\d.]+)/)![1]);
+      const A = Number(text.match(/옆면 넓이 ([\d.]+) cm²/)?.[1]);
+      const h = Number(text.match(/높이 (\d+) cm/)?.[1]);
+      const base = text.match(/밑면 (반지름|지름) (\d+) cm/);
+      const radius = base
+        ? Number(base[2]) / (base[1] === "지름" ? 2 : 1)
+        : Number.NaN;
+      const publicResult = def.id.endsWith("height")
+        ? A / (2 * pi * radius)
+        : def.id.endsWith("radius")
+          ? A / (2 * pi * h)
+          : def.id.endsWith("diameter")
+            ? A / (pi * h)
+            : 2 * pi * radius * h;
+      assert.ok(Math.abs(answerValue(c) - publicResult) < 1e-9);
+      assert.equal(def.grade, "초6");
+      const markup = figures[c.prompt.figureId!];
+      const rectangle = markup.match(
+        /data-drill-shape="polygon" d="([^"]+)"/,
+      )![1];
+      const p = [...rectangle.matchAll(/(?:M|L)([-.\d]+),([-.\d]+)/g)].map(
+        (m) => [Number(m[1]), Number(m[2])],
+      );
+      const circles = [
+        ...markup.matchAll(
+          /data-drill-net-base="true" cx="120" cy="([\d.]+)" r="([\d.]+)"/g,
+        ),
+      ];
+      assert.equal(circles.length, 2);
+      const R = Number(circles[0][2]),
+        width = p[1][0] - p[0][0],
+        height = p[2][1] - p[1][1];
+      assert.ok(Math.abs(width / (2 * R) - Math.PI) < 1e-5);
+      assert.ok(
+        Math.abs(height / R - c.parameters[1] / c.parameters[0]) < 1e-5,
+      );
+      // Three independently rounded 5-decimal coordinates can accumulate
+      // 1.5e-5 SVG units; this is below 0.000014 displayed pixels.
+      assert.ok(Math.abs(Number(circles[0][1]) + R - p[0][1]) < 1.6e-5);
+      assert.ok(Math.abs(Number(circles[1][1]) - R - p[2][1]) < 1.6e-5);
     }
 });

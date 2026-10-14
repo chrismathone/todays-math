@@ -28,15 +28,17 @@ prisma/seed-data/units.ts:
   초3 1-5 길이와 시간, 2-3 원, 2-5 들이와 무게: mm/cm, km/m, radius/diameter, L/mL.
   초4 1-2 각도, 2-2 삼각형: angle arithmetic, quadrilateral sum, isosceles properties.
   초5 1-6 다각형의 둘레와 넓이, 2-5 직육면체: perimeter, area, area units, edge totals.
-  초6 1-6 직육면체의 겉넓이와 부피, 2-5 원의 둘레와 넓이:
-       cuboid/cube measurements and circle calculations.
+  초6 1-6 직육면체의 겉넓이와 부피, 2-5 원의 둘레와 넓이,
+       2-6 원기둥, 원뿔, 구: cuboid/cube, circle and cylindrical lateral net.
 src/lib/elementary/g3.ts:1301-1311 explicitly computes radius/diameter both ways.
 src/lib/elementary/g4.ts:1296-1310 uses quadrilateral 360-degree arithmetic;
   the isosceles and angle-arithmetic sections provide the remaining placement.
 src/lib/elementary/g5.ts:700-852 covers perimeter, area units and all six
   plane-area shapes; :1373/:1501 cover cube/cuboid total edge length.
 src/lib/elementary/g6.ts:692-762 covers cuboid measurements; :1294-1409
-  explicitly uses pi conventions 3 and 3.14.
+  explicitly uses pi conventions 3 and 3.14; :1447 explicitly computes the
+  rectangle formed by unfolding the cylinder's lateral face. Its direct
+  height/radius/diameter inverses use that same grade-supported relation.
 No elementary g1.ts/g2.ts exists in this checkout; early-grade placement uses
 the actual unit metadata instead of inventing absent engine evidence.
 
@@ -50,7 +52,11 @@ missing-side inverses; rectangle/square/triangle/parallelogram/rhombus/
 trapezoid area and directly computable side/height/diagonal inverses; unit
 square area; cuboid/cube edge totals/surface/volume and direct inverses;
 cuboid base-area/height forms; circle circumference/area from radius or
-diameter and inverse radius/diameter.
+diameter and inverse radius/diameter; cylindrical lateral-net rectangle area
+and direct height/radius/diameter inverses. Net area/height tasks include
+both radius-given and diameter-given forms within the same finite type.
+The net uses real circle/rectangle proportions (width=2πr); the stipulated
+3 or 3.14 is the classroom arithmetic convention, not a distorted circle.
 
 All answers are canonical integer or terminating decimal exact values.
 Decimal exact=[positive integer coefficient, minimum decimal scale]; integer
@@ -72,7 +78,7 @@ not random retry budgets. Root's sampler/regenerator owns count enforcement
 and maximum-change selection over these finite unique tasks.
 
 Verification
-Focused Vitest suite: 3 exhaustive tests, passed.
+Focused Vitest suite: 4 exhaustive tests, passed.
   Every finite candidate: independent test oracle, production relational
   verifier, canonical exact answer, no duplicate public latex, stable unique
   key, deterministic SVG, explicit units, no script/network/answer metadata.
@@ -83,7 +89,12 @@ Focused Vitest suite: 3 exhaustive tests, passed.
   Coordinate checks cover rectangle/parallelogram/triangle perimeter ratios,
   plane bases/heights/diagonals, trapezoid proportions, cuboid front ratios,
   isosceles equal sides, actual polygon angles and every given/target arc.
+  Every cylinder-net candidate is independently solved from the public
+  givens, and its real circumference/rectangle ratio, height/radius ratio
+  and the two circular-base attachment locations are checked numerically.
   Angle tolerance <0.005 degrees, ratio tolerance <0.00001.
+  Net attachment tolerance is 0.000016 SVG units for independently rounded
+  five-decimal coordinates (observed maximum 0.00001000000004 SVG units).
 Strict targeted TypeScript check of the elementary entrypoint: passed.
 ESLint on all owned TypeScript files: passed after formatting.
 Browser proof: all candidates rendered offline at 216x216 in Chromium,
@@ -116,11 +127,10 @@ Concrete exclusions
    middle-school geometry belong to the other worker scopes.
 4. Cylinder/cone/sphere general surface or volume formulas, sectors, general
    polygon angle-sum formulas, Pythagoras and trigonometry are not promoted
-   into elementary grades. A feasible cylinder lateral-net rectangle example
-   was observed at g6.ts:1447, but no additional cylinder type is shipped:
-   root explicitly closed additional scope after accepting the 78-type,
-   10,337-candidate census. This is a scope exclusion, not an assertion that
-   the rectangle calculation is mathematically impossible for elementary.
+   into elementary grades. The cylinder lateral-net rectangle and its
+   direct inverses are included, as explicitly supported by g6.ts:1447.
+   Net width from radius alone is already the circle-circumference family;
+   re-labelling that identical computation is not counted as another type.
 5. Non-perfect-root inverse lengths, irrational answers, compound/composite
    regions requiring auxiliary constructions, nets requiring spatial
    deduction, hidden solid stacks and wordy application situations are out.
@@ -129,13 +139,13 @@ Concrete exclusions
    contract; mixed given measurements convert to one explicit requested unit.
 
 Finite catalog counts (generated from the actual definitions)
-Total: 78 types, 10337 candidates.
+Total: 82 types, 11741 candidates.
 초1: 0 types, 0 candidates
 초2: 7 types, 1856 candidates
 초3: 8 types, 815 candidates
 초4: 8 types, 912 candidates
 초5: 35 types, 4600 candidates
-초6: 20 types, 2154 candidates
+초6: 24 types, 3558 candidates
 e2-length-m-cm: 98
 e3-length-cm-mm: 98
 e3-length-km-m: 98
@@ -214,3 +224,7 @@ e6-circle-radius-circumference: 58
 e6-circle-diameter-circumference: 58
 e6-circle-radius-area: 58
 e6-circle-diameter-area: 58
+e6-cylinder-net-area: 468
+e6-cylinder-net-area-height: 468
+e6-cylinder-net-area-radius: 234
+e6-cylinder-net-area-diameter: 234

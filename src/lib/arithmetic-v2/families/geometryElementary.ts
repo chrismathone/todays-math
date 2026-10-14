@@ -3,6 +3,7 @@ import { compile } from "./geometryElementary/core";
 import { measurementSpecs } from "./geometryElementary/measurement";
 import { planeSpecs } from "./geometryElementary/plane";
 import { solidCircleSpecs } from "./geometryElementary/solidsCircle";
+import { netSpecs } from "./geometryElementary/net";
 
 /** Local curriculum placement and exact-domain exclusions are recorded in
  * docs/reports/arithmetic-geometry-elementary-20261015.txt.
@@ -13,6 +14,7 @@ const compiled = compile([
   ...angleSpecs,
   ...planeSpecs,
   ...solidCircleSpecs,
+  ...netSpecs,
 ]);
 export const ELEMENTARY_GEOMETRY_DEFINITIONS = compiled.definitions;
 /** Enumerable lazy accessors: looking up a chosen ID creates exactly that SVG. */
