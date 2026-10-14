@@ -428,7 +428,14 @@ describe("authored arithmetic presets", () => {
       { ...small.selection, count: small.domainSize },
       { ...fixedOne.selection, count: fixedOne.domainSize },
     ];
-    expect(() => buildArithmeticSheet(input)).toThrow(/넘습니다/);
+    expect(() => buildArithmeticSheet(input)).toThrow(
+      expect.objectContaining({
+        code: "capacity",
+        violations: expect.arrayContaining([
+          expect.objectContaining({ reason: "overlap" }),
+        ]),
+      }),
+    );
   });
 });
 

@@ -18,7 +18,7 @@ import {
 } from "@/lib/arithmetic-v2";
 import { useUsageLabels } from "@/components/usage-labels/useUsageLabels";
 import UsageLabel from "@/components/usage-labels/UsageLabel";
-import { GradeArithmeticExpression } from "./GradeArithmeticPaper";
+import { GradeArithmeticExpression } from "./GradeArithmeticPrompt";
 import type { ArithmeticWorkbenchProps } from "./ArithmeticWorkbench";
 import { ArithmeticWorkflow, type ArithmeticStep } from "./ArithmeticWorkflow";
 import { ArithmeticRandomSelection } from "./ArithmeticRandomSelection";
@@ -554,7 +554,7 @@ export default function GradeArithmeticWorkbench({
                 <input
                   type="search"
                   value={query}
-                  placeholder="예: 분수, 소수, 근호"
+                  placeholder="예: 분수, 근호, 도형"
                   onChange={(event) => {
                     setQuery(event.target.value);
                     setPage(1);

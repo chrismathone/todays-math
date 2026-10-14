@@ -213,16 +213,19 @@ describe("arithmetic grouped shared output", () => {
         <div>범위</div>
       </ArithmeticWorkflow>,
     );
-    expect(screen.getByRole("heading", { name: "1회차" })).toBeVisible();
-    expect(screen.getByRole("heading", { name: "2회차" })).toBeVisible();
+    expect(screen.getByRole("tab", { name: "1회차 4문항" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
+    expect(screen.getByRole("tab", { name: "2회차 2문항" })).toBeVisible();
     expect(
       screen.getAllByRole("heading", { name: types[1].title }),
-    ).toHaveLength(2);
+    ).toHaveLength(1);
     expect(
       [...container.querySelectorAll("[data-arithmetic-question-number]")].map(
         (number) => number.textContent,
       ),
-    ).toEqual(["1.", "2.", "3.", "4.", "5.", "6."]);
+    ).toEqual(["1.", "2.", "3.", "4."]);
     for (const list of screen.getAllByRole("list")) {
       for (const item of within(list).getAllByRole("listitem")) {
         expect(item.textContent).not.toMatch(/회차|\d+번/);
@@ -230,7 +233,14 @@ describe("arithmetic grouped shared output", () => {
     }
     expect(screen.queryByLabelText("정답")).toBeNull();
     fireEvent.click(screen.getByRole("button", { name: "정답 보기" }));
-    expect(screen.getAllByLabelText("정답")).toHaveLength(selected.length);
+    expect(screen.getAllByLabelText("정답")).toHaveLength(4);
+    fireEvent.click(screen.getByRole("tab", { name: "2회차 2문항" }));
+    expect(screen.getAllByLabelText("정답")).toHaveLength(2);
+    expect(
+      [...container.querySelectorAll("[data-arithmetic-question-number]")].map(
+        (number) => number.textContent,
+      ),
+    ).toEqual(["5.", "6."]);
     expect(sheet).toEqual(before);
   });
 });

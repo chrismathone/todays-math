@@ -162,7 +162,7 @@ function RoundReview({
         return (
           <section key={group.problems[0].id} aria-label={group.title}>
             <div className={layout.typeHeader}>
-              <h3 className={layout.typeHeading}>
+              <h3 className={layout.typeHeading} aria-label={group.title}>
                 <label className={layout.selectionLabel}>
                   <input
                     type="checkbox"
