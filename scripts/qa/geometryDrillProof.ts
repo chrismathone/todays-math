@@ -131,12 +131,29 @@ export async function measureGeometryDrills(page: Page) {
         return signs.every((x) => x >= 0) || signs.every((x) => x <= 0);
       };
       const outsideWithoutLeader: number[] = [];
+      const ambiguousInside: number[] = [];
       labels.forEach(({ box }, i) => {
-        if (
-          vertices.length !== 3 ||
-          withinTriangle([(box[0] + box[2]) / 2, (box[1] + box[3]) / 2])
-        )
+        if (vertices.length !== 3) return;
+        if (withinTriangle([(box[0] + box[2]) / 2, (box[1] + box[3]) / 2])) {
+          // A legible label must also unambiguously belong to its own vertex.
+          // Measure the actual typeset ink/halo box in screen coordinates.
+          const own = vertices[i];
+          if (
+            vertices.some(
+              (other, j) =>
+                j !== i &&
+                [box[0], box[2]].some((x) =>
+                  [box[1], box[3]].some(
+                    (y) =>
+                      Math.hypot(x - other[0], y - other[1]) <=
+                      Math.hypot(x - own[0], y - own[1]),
+                  ),
+                ),
+            )
+          )
+            ambiguousInside.push(i);
           return;
+        }
         const arc = arcs[i];
         const p = arc?.getPointAtLength(arc.getTotalLength() / 2);
         const middle = p && point(arc, p.x, p.y);
@@ -171,6 +188,7 @@ export async function measureGeometryDrills(page: Page) {
         labelHits,
         clipped,
         outsideWithoutLeader,
+        ambiguousInside,
       };
     }),
   );
@@ -211,6 +229,9 @@ export function geometryDrillFailures(
     ...(proof.clipped.length ? ["label clipped"] : []),
     ...(proof.outsideWithoutLeader.length
       ? ["outside label lacks its own arc leader"]
+      : []),
+    ...(proof.ambiguousInside.length
+      ? ["inside label is ambiguous between marked vertices"]
       : []),
   ];
 }

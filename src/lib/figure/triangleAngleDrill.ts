@@ -2,7 +2,8 @@
  * Opt-in triangle angle drills, intended for a 216px square (also 57.15mm print).
  * Fit the geometry BEFORE the engine places its fixed-size MathJax labels.
  * Scaling an already labelled, arbitrarily tall SVG makes the labels unreadable.
- * The v2 engine still owns SVG generation, collision layout and sanitization.
+ * The v2 engine owns SVG generation, collision layout and sanitization. Labels
+ * that could be read as another marked vertex's angle go outside with a leader.
  */
 import { renderFigureSpec, type RenderFigureResult } from "./renderFigureSpec";
 import { svgLabels } from "./svgLabels";

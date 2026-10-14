@@ -101,6 +101,11 @@ describe("opt-in triangle angle drills", () => {
       });
       expect(proofs[5].leaderCount).toBeGreaterThan(0);
       expect(proofs[5].labels[0].fontPx).toBeGreaterThan(17);
+      // Owner's 25°/70° example: 70° sat between the right and top arcs.
+      // Move both given values outside; roomy angles still stay inside.
+      expect(proofs[4].leaderCount).toBe(2);
+      expect(proofs[3].leaderCount).toBe(0);
+      expect(proofs[6].leaderCount).toBe(0);
     },
   );
 

@@ -1828,6 +1828,24 @@ class FigureScene:
         #    **밑의 실선을 지운다** — 글자 상자만 보면 「안 겹친다」인데 지면에서는
         #    선이 끊긴다(lint_svg 규칙 7). 경계(viewBox)에는 안 넓힌 상자를 쓴다.
         pad = self.style.halo_width / 2.0 + 0.5
+        other_vertices = {
+            mark.vertex for mark in self.angles.values()
+            if mark.vertex != angle.vertex
+        } if self.style.clear_angle_labels else set()
+
+        def ambiguous_inside(box: Box) -> bool:
+            # Even without an ink collision, a label spanning the halfway line
+            # to another marked vertex can read as that other angle's value.
+            # Require the whole label (including its halo) to belong to this
+            # vertex; otherwise use the existing outside label + arc leader.
+            left, top, right, bottom = _expand_box(box, pad)
+            return any(
+                (x - self.points[name].x) ** 2
+                + (y - self.points[name].y) ** 2
+                <= (x - vertex.x) ** 2 + (y - vertex.y) ** 2
+                for name in other_vertices
+                for x in (left, right) for y in (top, bottom)
+            )
 
         def blocked(box: Box) -> bool:
             if not self.style.clear_angle_labels:
@@ -1863,7 +1881,7 @@ class FigureScene:
             # 그래서 **「잉크를 밟나」를 첫째 항으로** 올린다. 안 밟는 후보가 하나라도
             # 있으면 그것이 이기고, 그러면 아래 판정도 자연히 「안에 남는다」가 된다.
             # (같은 값을 두 번 재지 않도록 그 결과를 `best` 에 함께 싣는다.)
-            hits = blocked(box)
+            hits = blocked(box) or ambiguous_inside(box)
             cost = (1 if hits else 0,) + self._candidate_cost(
                 "", _expand_box(box, pad), occupied, rank, 0, own_angle=angle.name)
             if best is None or cost < best[0]:
