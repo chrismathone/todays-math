@@ -139,12 +139,30 @@
   min-height: 48px;
 }
 .settings {
+  position: sticky;
+  top: var(--workspace-sticky-inset, 16px);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  max-height: calc(100dvh - var(--workspace-sticky-inset, 16px) - 16px);
+  min-height: 0;
   background: var(--learn-surface);
   border: 1px solid var(--learn-track);
   border-radius: 10px;
   padding: 20px;
 }
-.settings > label,
+.settingsContent {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-gutter: stable;
+  padding: 6px;
+  margin: -6px -6px 0;
+}
+.settingsFooter {
+  flex: none;
+}
+.settingsContent > label,
 .constraints label {
   display: grid;
   gap: 6px;
@@ -248,7 +266,7 @@
 .root .primary:hover {
   background: var(--learn-accent-hover);
 }
-.settings > .primary {
+.settingsFooter > .primary {
   width: 100%;
 }
 .notice,
@@ -362,6 +380,16 @@
   }
   .catalog {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .settings {
+    position: static;
+    max-height: none;
+  }
+  .settingsContent {
+    overflow: visible;
+    padding: 0;
+    margin: 0;
+    scrollbar-gutter: auto;
   }
 }
 @media (max-width: 760px) {

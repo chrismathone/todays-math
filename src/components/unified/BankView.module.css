@@ -530,7 +530,7 @@ label.rowSelect {
 .detailDialog {
   position: fixed;
   inset: 0;
-  width: min(980px, calc(100vw - 32px));
+  width: min(var(--workspace-dialog-max-width, 880px), calc(100vw - 32px));
   margin: auto;
   border-radius: var(--learn-radius, 14px);
   box-shadow: 0 24px 70px #14243d40;

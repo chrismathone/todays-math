@@ -422,8 +422,8 @@
   margin: auto;
   color: var(--learn-ink);
   padding: 0;
-  width: 880px;
-  max-width: min(880px, calc(100vw - 40px));
+  width: var(--workspace-dialog-max-width, 880px);
+  max-width: min(var(--workspace-dialog-max-width, 880px), calc(100vw - 40px));
   max-height: min(760px, calc(100dvh - 64px));
   overflow: auto;
   border: 1px solid var(--learn-track);

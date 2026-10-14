@@ -28,7 +28,7 @@ it("keeps generated drafts when switching between grade and basic arithmetic", a
   );
   await screen.findByRole("button", { name: "연습지 만들기" });
   expect(screen.getByRole("textbox", { name: "학습지 제목" })).toHaveValue(
-    "연산 기초 다지기 1회",
+    "연산 기초 다지기",
   );
   expect(dirty).toHaveBeenLastCalledWith(true);
   fireEvent.click(screen.getByRole("button", { name: "학년별 연산" }));

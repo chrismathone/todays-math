@@ -8,6 +8,9 @@ import {
 import {
   ARITHMETIC_CATALOG_VERSION,
   ARITHMETIC_ENGINE_VERSION,
+  ARITHMETIC_MAX_ITEMS_PER_ROUND,
+  ARITHMETIC_MAX_ITEMS_TOTAL,
+  ARITHMETIC_MAX_ROUNDS,
   type ArithmeticAllocation,
   type ArithmeticGenerateRequest,
 } from "@/contracts/arithmetic.contract";
@@ -39,6 +42,7 @@ import {
 } from "./typeSelection";
 import { useArithmeticTypeSelection } from "./useArithmeticTypeSelection";
 import { arithmeticReviewRounds } from "@/lib/arithmeticOutput";
+import { arithmeticQuantityIssue } from "@/lib/arithmetic/quantity";
 import {
   defaultArithmeticPresentation,
   type ArithmeticPresentation,
@@ -81,7 +85,7 @@ export default function LegacyArithmeticWorkbench({
   onDocumentChange?: (id: string | undefined) => void;
   onBusyChange?: (busy: boolean) => void;
 }) {
-  const [title, setTitle] = useState("연산 기초 다지기 1회");
+  const [title, setTitle] = useState("연산 기초 다지기");
   const [allocations, setAllocations] = useState<WorkbenchAllocation[]>(() => [
     presetAllocation("add-two-carry-0", "initial"),
   ]);
@@ -151,18 +155,21 @@ export default function LegacyArithmeticWorkbench({
     allocations.find((item) => item.id === active) ?? allocations[0];
   const totalPerRound = allocations.reduce((sum, item) => sum + item.count, 0);
   const total = totalPerRound * rounds;
-  const valid =
-    allocations.length > 0 &&
-    Number.isInteger(rounds) &&
-    rounds > 0 &&
-    rounds <= 20 &&
-    total <= 100 &&
-    allocations.every(
-      (item) =>
-        Number.isInteger(item.count) &&
-        item.count > 0 &&
-        item.count <= (capacity(item) ?? 0),
-    );
+  const quantityIssue = arithmeticQuantityIssue(
+    allocations.map((item) => item.count),
+    rounds,
+  );
+  const unavailable = allocations
+    .map((item) => ({ item, count: capacity(item) }))
+    .find(({ item, count }) => count === null || item.count > count);
+  const selectionError =
+    quantityIssue?.message ??
+    (unavailable?.count === null
+      ? `${unavailable.item.title}: 숫자 범위와 연산 조건을 확인해 주세요.`
+      : unavailable
+        ? `${unavailable.item.title}: 현재 조건에서 중복 없이 만들 수 있는 식은 ${unavailable.count}개입니다. 이 유형의 문항 수를 줄이거나 조건을 넓혀 주세요.`
+        : "");
+  const valid = !selectionError;
   const selectedTypes = allocations.map((item) => ({
     id: item.presetId ?? item.id,
     count: item.count,
@@ -457,7 +464,7 @@ export default function LegacyArithmeticWorkbench({
               setSaved(undefined);
               pendingId.current = null;
               loadedId.current = undefined;
-              setTitle("연산 기초 다지기 1회");
+              setTitle("연산 기초 다지기");
               setError("");
               setNotice("");
               onDocumentChange?.(undefined);
@@ -579,219 +586,230 @@ export default function LegacyArithmeticWorkbench({
               </button>
             </div>
           </div>
-          <div className={s.settings}>
-            <label>
-              학습지 제목
-              <input
-                maxLength={200}
-                value={title}
-                disabled={busy}
-                onChange={(event) => setTitle(event.target.value)}
-              />
-            </label>
-            <h2>
-              담은 유형 <small>{allocations.length}개</small>
-            </h2>
-            {allocations.map((item) => (
-              <div className={s.allocation} key={item.id}>
-                <button
-                  type="button"
-                  aria-pressed={active === item.id}
+          <aside className={s.settings} aria-label="연습지 구성">
+            <div
+              className={s.settingsContent}
+              role="region"
+              aria-label="담은 유형과 생성 조건"
+              tabIndex={0}
+            >
+              <label>
+                학습지 제목
+                <input
+                  maxLength={200}
+                  value={title}
                   disabled={busy}
-                  onClick={() => setActive(item.id)}
-                >
-                  {item.title}
-                </button>
+                  onChange={(event) => setTitle(event.target.value)}
+                />
+              </label>
+              <h2>
+                담은 유형 <small>{allocations.length}개</small>
+              </h2>
+              {allocations.map((item) => (
+                <div className={s.allocation} key={item.id}>
+                  <button
+                    type="button"
+                    aria-pressed={active === item.id}
+                    disabled={busy}
+                    onClick={() => setActive(item.id)}
+                  >
+                    {item.title}
+                  </button>
+                  <input
+                    type="number"
+                    min={1}
+                    max={ARITHMETIC_MAX_ITEMS_PER_ROUND}
+                    value={item.count}
+                    disabled={busy}
+                    aria-label={`${item.title} 문항 수`}
+                    onChange={(event) =>
+                      update({ ...item, count: Number(event.target.value) })
+                    }
+                  />
+                  <button
+                    type="button"
+                    disabled={busy}
+                    aria-label={`${item.title} 빼기`}
+                    onClick={() =>
+                      setAllocations((current) =>
+                        current.filter((value) => value.id !== item.id),
+                      )
+                    }
+                  >
+                    빼기
+                  </button>
+                </div>
+              ))}
+              {selection && (
+                <fieldset disabled={busy} className={s.constraints}>
+                  <legend>{selection.title} 조건</legend>
+                  {Object.entries(selection.constraints).map(([key, value]) => {
+                    const labels: Record<string, string> = {
+                      carry: "받아올림",
+                      carryCount: "받아올림 횟수",
+                      borrowCount: "받아내림 횟수",
+                      left: "첫째 수",
+                      right: "둘째 수",
+                      minuend: "피감수",
+                      subtrahend: "감수",
+                      multiplier: "곱하는 수",
+                      multiplicand: "곱해지는 수",
+                      dividend: "나누어지는 수",
+                      divisor: "나누는 수",
+                      dans: "연습할 단",
+                    };
+                    const change = (next: unknown) =>
+                      update({
+                        ...selection,
+                        presetId: undefined,
+                        title: `${catalog.find((skill) => skill.skillId === selection.skillId)?.label} · 직접 설정`,
+                        constraints: { ...selection.constraints, [key]: next },
+                      } as WorkbenchAllocation);
+                    if (key === "carry")
+                      return (
+                        <label key={key}>
+                          {labels[key]}
+                          <select
+                            value={String(value)}
+                            onChange={(event) => change(event.target.value)}
+                          >
+                            <option value="none">없음</option>
+                            <option value="some">있음</option>
+                          </select>
+                        </label>
+                      );
+                    if (typeof value === "number")
+                      return (
+                        <label key={key}>
+                          {labels[key]}
+                          <select
+                            value={value}
+                            onChange={(event) =>
+                              change(Number(event.target.value))
+                            }
+                          >
+                            {(key === "borrowCount" ? [0, 1] : [0, 1, 2]).map(
+                              (number) => (
+                                <option key={number} value={number}>
+                                  {number === 0 ? "없음" : `${number}회`}
+                                </option>
+                              ),
+                            )}
+                          </select>
+                        </label>
+                      );
+                    if (Array.isArray(value))
+                      return (
+                        <div key={key}>
+                          <span>{labels[key]}</span>
+                          <div className={s.dans}>
+                            {Array.from({ length: 9 }, (_, i) => i + 1).map(
+                              (dan) => (
+                                <label key={dan}>
+                                  <input
+                                    type="checkbox"
+                                    checked={value.includes(dan)}
+                                    onChange={() =>
+                                      change(
+                                        value.includes(dan)
+                                          ? value.filter(
+                                              (number) => number !== dan,
+                                            )
+                                          : [...value, dan].sort(
+                                              (a, b) => a - b,
+                                            ),
+                                      )
+                                    }
+                                  />
+                                  {dan}단
+                                </label>
+                              ),
+                            )}
+                          </div>
+                        </div>
+                      );
+                    if (
+                      typeof value === "object" &&
+                      value !== null &&
+                      "min" in value
+                    )
+                      return (
+                        <div key={key}>
+                          <span>{labels[key]} 범위</span>
+                          <div className={s.range}>
+                            <input
+                              aria-label={`${labels[key]} 최솟값`}
+                              type="number"
+                              value={value.min}
+                              onChange={(event) =>
+                                change({
+                                  ...value,
+                                  min: Number(event.target.value),
+                                })
+                              }
+                            />
+                            <span>~</span>
+                            <input
+                              aria-label={`${labels[key]} 최댓값`}
+                              type="number"
+                              value={value.max}
+                              onChange={(event) =>
+                                change({
+                                  ...value,
+                                  max: Number(event.target.value),
+                                })
+                              }
+                            />
+                          </div>
+                        </div>
+                      );
+                    return null;
+                  })}
+                  {capacity(selection) === null && (
+                    <p>지원 범위에 맞게 조건을 확인해 주세요.</p>
+                  )}
+                </fieldset>
+              )}
+              <p className={s.catalogCount}>
+                한 회차 안에서는 같은 식을 제외합니다. 회차 사이에는 같은 식이
+                다시 나올 수 있습니다.
+              </p>
+              <label>
+                회차
                 <input
                   type="number"
                   min={1}
-                  max={100}
-                  value={item.count}
+                  max={ARITHMETIC_MAX_ROUNDS}
+                  value={rounds}
                   disabled={busy}
-                  aria-label={`${item.title} 문항 수`}
-                  onChange={(event) =>
-                    update({ ...item, count: Number(event.target.value) })
-                  }
+                  onChange={(event) => setRounds(Number(event.target.value))}
                 />
-                <button
-                  type="button"
-                  disabled={busy}
-                  aria-label={`${item.title} 빼기`}
-                  onClick={() =>
-                    setAllocations((current) =>
-                      current.filter((value) => value.id !== item.id),
-                    )
-                  }
-                >
-                  빼기
-                </button>
-              </div>
-            ))}
-            {selection && (
-              <fieldset disabled={busy} className={s.constraints}>
-                <legend>{selection.title} 조건</legend>
-                {Object.entries(selection.constraints).map(([key, value]) => {
-                  const labels: Record<string, string> = {
-                    carry: "받아올림",
-                    carryCount: "받아올림 횟수",
-                    borrowCount: "받아내림 횟수",
-                    left: "첫째 수",
-                    right: "둘째 수",
-                    minuend: "피감수",
-                    subtrahend: "감수",
-                    multiplier: "곱하는 수",
-                    multiplicand: "곱해지는 수",
-                    dividend: "나누어지는 수",
-                    divisor: "나누는 수",
-                    dans: "연습할 단",
-                  };
-                  const change = (next: unknown) =>
-                    update({
-                      ...selection,
-                      presetId: undefined,
-                      title: `${catalog.find((skill) => skill.skillId === selection.skillId)?.label} · 직접 설정`,
-                      constraints: { ...selection.constraints, [key]: next },
-                    } as WorkbenchAllocation);
-                  if (key === "carry")
-                    return (
-                      <label key={key}>
-                        {labels[key]}
-                        <select
-                          value={String(value)}
-                          onChange={(event) => change(event.target.value)}
-                        >
-                          <option value="none">없음</option>
-                          <option value="some">있음</option>
-                        </select>
-                      </label>
-                    );
-                  if (typeof value === "number")
-                    return (
-                      <label key={key}>
-                        {labels[key]}
-                        <select
-                          value={value}
-                          onChange={(event) =>
-                            change(Number(event.target.value))
-                          }
-                        >
-                          {(key === "borrowCount" ? [0, 1] : [0, 1, 2]).map(
-                            (number) => (
-                              <option key={number} value={number}>
-                                {number === 0 ? "없음" : `${number}회`}
-                              </option>
-                            ),
-                          )}
-                        </select>
-                      </label>
-                    );
-                  if (Array.isArray(value))
-                    return (
-                      <div key={key}>
-                        <span>{labels[key]}</span>
-                        <div className={s.dans}>
-                          {Array.from({ length: 9 }, (_, i) => i + 1).map(
-                            (dan) => (
-                              <label key={dan}>
-                                <input
-                                  type="checkbox"
-                                  checked={value.includes(dan)}
-                                  onChange={() =>
-                                    change(
-                                      value.includes(dan)
-                                        ? value.filter(
-                                            (number) => number !== dan,
-                                          )
-                                        : [...value, dan].sort((a, b) => a - b),
-                                    )
-                                  }
-                                />
-                                {dan}단
-                              </label>
-                            ),
-                          )}
-                        </div>
-                      </div>
-                    );
-                  if (
-                    typeof value === "object" &&
-                    value !== null &&
-                    "min" in value
-                  )
-                    return (
-                      <div key={key}>
-                        <span>{labels[key]} 범위</span>
-                        <div className={s.range}>
-                          <input
-                            aria-label={`${labels[key]} 최솟값`}
-                            type="number"
-                            value={value.min}
-                            onChange={(event) =>
-                              change({
-                                ...value,
-                                min: Number(event.target.value),
-                              })
-                            }
-                          />
-                          <span>~</span>
-                          <input
-                            aria-label={`${labels[key]} 최댓값`}
-                            type="number"
-                            value={value.max}
-                            onChange={(event) =>
-                              change({
-                                ...value,
-                                max: Number(event.target.value),
-                              })
-                            }
-                          />
-                        </div>
-                      </div>
-                    );
-                  return null;
-                })}
-                {capacity(selection) === null && (
-                  <p>지원 범위에 맞게 조건을 확인해 주세요.</p>
-                )}
-              </fieldset>
-            )}
-            <p className={s.catalogCount}>
-              한 회차 안에서는 같은 식을 제외합니다. 회차 사이에는 같은 식이
-              다시 나올 수 있습니다.
-            </p>
-            <label>
-              회차
-              <input
-                type="number"
-                min={1}
-                max={20}
-                value={rounds}
-                disabled={busy}
-                onChange={(event) => setRounds(Number(event.target.value))}
-              />
-            </label>
-            <p className={s.total}>
-              회차당 {totalPerRound}문항 · 총 {total}문항{" "}
-              <small>한 번에 총 100문항까지</small>
-            </p>
-            {!valid && (
-              <p className={s.error}>
-                문항 수·회차·생성 가능 수를 확인해 주세요.
+              </label>
+            </div>
+            <div className={s.settingsFooter}>
+              <p className={s.total}>
+                회차당 {totalPerRound}문항 · 총 {total}문항{" "}
+                <small>
+                  회차당 {ARITHMETIC_MAX_ITEMS_PER_ROUND}문항 · 최대{" "}
+                  {ARITHMETIC_MAX_ROUNDS}회차 · 한 번에 총{" "}
+                  {ARITHMETIC_MAX_ITEMS_TOTAL}문항까지
+                </small>
               </p>
-            )}
-            <button
-              className={s.primary}
-              type="button"
-              disabled={busy || !valid || !catalogState.ready}
-              onClick={() => void generate()}
-            >
-              {busy
-                ? "작업 중…"
-                : sheet
-                  ? "설정한 범위로 문항 만들기"
-                  : "연습지 만들기"}
-            </button>
-          </div>
+              {!valid && <p className={s.error}>{selectionError}</p>}
+              <button
+                className={s.primary}
+                type="button"
+                disabled={busy || !valid || !catalogState.ready}
+                onClick={() => void generate()}
+              >
+                {busy
+                  ? "작업 중…"
+                  : sheet
+                    ? "설정한 범위로 문항 만들기"
+                    : "연습지 만들기"}
+              </button>
+            </div>
+          </aside>
         </div>
       </ArithmeticWorkflow>
     </section>

@@ -96,6 +96,32 @@ async function ready() {
 }
 
 describe("arithmetic workbench", () => {
+  it("allows 100 questions in each of two rounds and explains the total size cap", async () => {
+    render(<ArithmeticWorkbench canOutput preview />);
+    fireEvent.change(
+      screen.getByRole("spinbutton", {
+        name: "두 자리 덧셈 · 받아올림 0회 문항 수",
+      }),
+      { target: { value: "100" } },
+    );
+    fireEvent.change(screen.getByLabelText("회차"), { target: { value: "3" } });
+    expect(
+      screen.getByText(/한 번에 총 200문항까지 만들 수 있습니다/),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "연습지 만들기" }),
+    ).toBeDisabled();
+    fireEvent.change(screen.getByLabelText("회차"), { target: { value: "2" } });
+    expect(screen.getByRole("button", { name: "연습지 만들기" })).toBeEnabled();
+    make();
+    await screen.findByText(/200문항을 생성하고/);
+    expect(
+      within(
+        screen.getByRole("region", { name: "생성한 문항 검토" }),
+      ).getAllByRole("listitem"),
+    ).toHaveLength(200);
+    expect(fetch).not.toHaveBeenCalled();
+  });
   it("randomly adds distinct filtered presets and preserves their default constraints and selected count", () => {
     render(<ArithmeticWorkbench canOutput preview />);
     fireEvent.change(screen.getByLabelText("연산 종류"), {

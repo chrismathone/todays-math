@@ -28,6 +28,12 @@ import {
 } from "./typeSelection";
 import { useArithmeticTypeSelection } from "./useArithmeticTypeSelection";
 import { arithmeticV2ReviewRounds } from "@/lib/arithmeticOutput";
+import { arithmeticQuantityIssue } from "@/lib/arithmetic/quantity";
+import {
+  ARITHMETIC_MAX_ITEMS_PER_ROUND,
+  ARITHMETIC_MAX_ITEMS_TOTAL,
+  ARITHMETIC_MAX_ROUNDS,
+} from "@/contracts/arithmetic.contract";
 import {
   defaultArithmeticPresentation,
   type ArithmeticPresentation,
@@ -71,7 +77,7 @@ export default function GradeArithmeticWorkbench({
   onDocumentChange,
   onBusyChange,
 }: ArithmeticWorkbenchProps) {
-  const [title, setTitle] = useState("연산 실력 다지기 1회");
+  const [title, setTitle] = useState("연산 실력 다지기");
   const [allocations, setAllocations] = useState<Allocation[]>(initial);
   const [grade, setGrade] = useState("전체");
   const [strand, setStrand] = useState("전체");
@@ -156,18 +162,19 @@ export default function GradeArithmeticWorkbench({
   });
   const totalPerRound = allocations.reduce((sum, item) => sum + item.count, 0);
   const total = totalPerRound * rounds;
-  const valid =
-    allocations.length > 0 &&
-    Number.isInteger(rounds) &&
-    rounds > 0 &&
-    rounds <= 20 &&
-    total <= 100 &&
-    allocations.every(
-      (item) =>
-        Number.isInteger(item.count) &&
-        item.count > 0 &&
-        item.count <= (byId.get(item.typeId)?.domainSize ?? 0),
-    );
+  const quantityIssue = arithmeticQuantityIssue(
+    allocations.map((item) => item.count),
+    rounds,
+  );
+  const exhausted = allocations.find(
+    (item) => item.count > (byId.get(item.typeId)?.domainSize ?? 0),
+  );
+  const selectionError =
+    quantityIssue?.message ??
+    (exhausted
+      ? `${byId.get(exhausted.typeId)?.title ?? "선택한 유형"}: 같은 회차에서 중복 없이 만들 수 있는 식은 ${byId.get(exhausted.typeId)?.domainSize ?? 0}개입니다. 이 유형의 문항 수를 줄여 주세요.`
+      : "");
+  const valid = !selectionError;
   const selectedTypes = allocations.map((item) => ({
     id: item.typeId,
     count: item.count,
@@ -448,7 +455,7 @@ export default function GradeArithmeticWorkbench({
               setSaved(undefined);
               pendingId.current = null;
               loadedId.current = undefined;
-              setTitle("연산 실력 다지기 1회");
+              setTitle("연산 실력 다지기");
               setError("");
               setNotice("");
               onDocumentChange?.(undefined);
@@ -587,104 +594,121 @@ export default function GradeArithmeticWorkbench({
               </button>
             </div>
           </div>
-          <div className={s.settings}>
-            <label>
-              학습지 제목
-              <input
-                maxLength={200}
-                value={title}
-                disabled={busy}
-                onChange={(event) => setTitle(event.target.value)}
-              />
-            </label>
-            <h2>
-              담은 유형 <small>{allocations.length}개</small>
-            </h2>
-            {!allocations.length && (
-              <p className={s.catalogCount}>왼쪽에서 연습할 유형을 담으세요.</p>
-            )}
-            {allocations.map((item) => {
-              const type = byId.get(item.typeId)!;
-              return (
-                <div key={item.typeId}>
-                  <div className={s.allocation}>
-                    <span className={s.selectionTitle}>
-                      {type.grade} · {type.title}
-                    </span>
-                    <input
-                      type="number"
-                      min={1}
-                      max={Math.min(100, type.domainSize)}
-                      value={item.count}
-                      disabled={busy}
-                      aria-label={type.title + " 문항 수"}
-                      onChange={(event) =>
-                        setAllocations((current) =>
-                          current.map((value) =>
-                            value.typeId === item.typeId
-                              ? { ...value, count: Number(event.target.value) }
-                              : value,
-                          ),
-                        )
-                      }
-                    />
-                    <button
-                      type="button"
-                      disabled={busy}
-                      aria-label={type.title + " 빼기"}
-                      onClick={() =>
-                        setAllocations((current) =>
-                          current.filter(
-                            (value) => value.typeId !== item.typeId,
-                          ),
-                        )
-                      }
-                    >
-                      빼기
-                    </button>
-                  </div>
-                  {item.count > type.domainSize && (
-                    <p className={s.error}>
-                      이 유형은 회차당 {type.domainSize}문항까지 만들 수
-                      있습니다.
-                    </p>
-                  )}
-                </div>
-              );
-            })}
-            <label>
-              회차
-              <input
-                type="number"
-                min={1}
-                max={20}
-                value={rounds}
-                disabled={busy}
-                onChange={(event) => setRounds(Number(event.target.value))}
-              />
-            </label>
-            <p className={s.total}>
-              회차당 {totalPerRound}문항 · 총 {total}문항{" "}
-              <small>한 번에 총 100문항까지</small>
-            </p>
-            {!valid && (
-              <p className={s.error}>
-                문항 수·회차·생성 가능 수를 확인해 주세요.
-              </p>
-            )}
-            <button
-              className={s.primary}
-              type="button"
-              disabled={busy || !valid || !catalogState.ready}
-              onClick={() => void generate()}
+          <aside className={s.settings} aria-label="연습지 구성">
+            <div
+              className={s.settingsContent}
+              role="region"
+              aria-label="담은 유형과 생성 조건"
+              tabIndex={0}
             >
-              {busy
-                ? "작업 중…"
-                : sheet
-                  ? "설정한 범위로 문항 만들기"
-                  : "연습지 만들기"}
-            </button>
-          </div>
+              <label>
+                학습지 제목
+                <input
+                  maxLength={200}
+                  value={title}
+                  disabled={busy}
+                  onChange={(event) => setTitle(event.target.value)}
+                />
+              </label>
+              <h2>
+                담은 유형 <small>{allocations.length}개</small>
+              </h2>
+              {!allocations.length && (
+                <p className={s.catalogCount}>
+                  왼쪽에서 연습할 유형을 담으세요.
+                </p>
+              )}
+              {allocations.map((item) => {
+                const type = byId.get(item.typeId)!;
+                return (
+                  <div key={item.typeId}>
+                    <div className={s.allocation}>
+                      <span className={s.selectionTitle}>
+                        {type.grade} · {type.title}
+                      </span>
+                      <input
+                        type="number"
+                        min={1}
+                        max={Math.min(
+                          ARITHMETIC_MAX_ITEMS_PER_ROUND,
+                          type.domainSize,
+                        )}
+                        value={item.count}
+                        disabled={busy}
+                        aria-label={type.title + " 문항 수"}
+                        onChange={(event) =>
+                          setAllocations((current) =>
+                            current.map((value) =>
+                              value.typeId === item.typeId
+                                ? {
+                                    ...value,
+                                    count: Number(event.target.value),
+                                  }
+                                : value,
+                            ),
+                          )
+                        }
+                      />
+                      <button
+                        type="button"
+                        disabled={busy}
+                        aria-label={type.title + " 빼기"}
+                        onClick={() =>
+                          setAllocations((current) =>
+                            current.filter(
+                              (value) => value.typeId !== item.typeId,
+                            ),
+                          )
+                        }
+                      >
+                        빼기
+                      </button>
+                    </div>
+                    {item.count > type.domainSize && (
+                      <p className={s.error}>
+                        같은 회차에서 중복 없이 만들 수 있는 식은{" "}
+                        {type.domainSize}개입니다.
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
+              <label>
+                회차
+                <input
+                  type="number"
+                  min={1}
+                  max={ARITHMETIC_MAX_ROUNDS}
+                  value={rounds}
+                  disabled={busy}
+                  onChange={(event) => setRounds(Number(event.target.value))}
+                />
+              </label>
+            </div>
+            <div className={s.settingsFooter}>
+              <p className={s.total}>
+                회차당 {totalPerRound}문항 · 총 {total}문항{" "}
+                <small>
+                  회차당 {ARITHMETIC_MAX_ITEMS_PER_ROUND}문항 · 최대{" "}
+                  {ARITHMETIC_MAX_ROUNDS}회차 · 한 번에 총{" "}
+                  {ARITHMETIC_MAX_ITEMS_TOTAL}문항까지
+                </small>
+              </p>
+              {!valid && <p className={s.error}>{selectionError}</p>}
+              <button
+                className={s.primary}
+                type="button"
+                disabled={busy || !valid || !catalogState.ready}
+                onClick={() => void generate()}
+              >
+                {busy
+                  ? "작업 중…"
+                  : sheet
+                    ? "설정한 범위로 문항 만들기"
+                    : "연습지 만들기"}
+              </button>
+            </div>
+          </aside>
         </div>
       </ArithmeticWorkflow>
     </section>

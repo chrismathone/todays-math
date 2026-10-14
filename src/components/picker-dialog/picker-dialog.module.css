@@ -1,7 +1,7 @@
 /* 고르기 창의 틀 — 색은 작업실의 --learn-* 를 쓰고, 없는 자리에서는 같은 값으로 선다. */
 .dialog {
   box-sizing: border-box;
-  width: min(880px, calc(100vw - 32px));
+  width: min(var(--workspace-dialog-max-width, 880px), calc(100vw - 32px));
   height: min(850px, calc(100dvh - 48px));
   max-width: none;
   max-height: none;

@@ -99,6 +99,26 @@ const ready = () =>
   );
 
 describe("grade arithmetic user flow", () => {
+  it("generates two full rounds and explains the per-round limit before generating", async () => {
+    render(<GradeArithmeticWorkbench canOutput preview />);
+    const quantity = screen.getByLabelText(types[0].title + " 문항 수");
+    fireEvent.change(quantity, { target: { value: "101" } });
+    expect(screen.getByText(/한 회차에는 100문항까지/)).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "연습지 만들기" }),
+    ).toBeDisabled();
+    fireEvent.change(quantity, { target: { value: "100" } });
+    fireEvent.change(screen.getByLabelText("회차"), { target: { value: "2" } });
+    expect(screen.getByRole("button", { name: "연습지 만들기" })).toBeEnabled();
+    make();
+    await screen.findByText(/200문항을 생성하고/);
+    expect(
+      within(
+        screen.getByRole("region", { name: "생성한 문항 검토" }),
+      ).getAllByRole("listitem"),
+    ).toHaveLength(200);
+    expect(fetch).not.toHaveBeenCalled();
+  });
   it("randomly adds the requested number only from current grade/strand/search, preserving existing quantities", () => {
     render(<GradeArithmeticWorkbench canOutput preview />);
     fireEvent.change(screen.getByLabelText(types[0].title + " 문항 수"), {
