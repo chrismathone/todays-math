@@ -388,7 +388,10 @@ describe("🔴 짝 — 조건 조합 전부에서 가용량 · 목록 total · �
 
     for (const variant of VARIANTS)
       for (const excludeIds of ["", excluded]) {
-        const filters = { ...variant, ...(excludeIds ? { excludeIds } : {}) };
+        const filters: Record<string, string> = {
+          ...variant,
+          ...(excludeIds ? { excludeIds } : {}),
+        };
         const label = JSON.stringify(filters);
         const scoped = await available(filters);
         // 목록 total

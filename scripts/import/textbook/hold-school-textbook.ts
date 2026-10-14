@@ -20,10 +20,22 @@
  * 왜 있나 — 2026-10-07 에 6,121문항을 «바로 쓸 수 있음»으로 실은 직후, 수식 안에 한글 수식 낱말이 그대로 남은 문항
  * (`boldx` · `x->4` · `SMALLPROD` …)과 «풀이 칸에 다음 문항이 붙은» 문항을 찾았다. 답은 맞지만 지면에 그대로 찍힌다.
  * 고치는 동안 시험지에 뽑히지 않게 먼저 잠갔다.
+ *
+ * 🔴 지정 두 슬롯(복습 변형 `tb-retry-v1:…`) — `--hold` 는 잠그는 원문의 **열린 지정 변형도 같은 트랜잭션에서** 잠근다
+ *    (`designatedSlotLocks.ts` · 문제은행 P0 2026-10-14). `--release*` 는 원문만 푼다 — 변형은 원문과의 대응을 다시
+ *    검증한 뒤에 연다(여기서 같이 풀면 «원문이 그동안 바뀌었는지»를 아무도 안 본다). 풀고 나서 잠긴 채 남는 수를 알린다.
  */
 import { readFileSync } from "node:fs";
 
 import { PrismaClient } from "@prisma/client";
+
+import {
+  designatedSlotWhere,
+  findDesignatedSlotRows,
+  lockDesignatedSlotsArgs,
+  planDesignatedSlotLocks,
+  SLOT_LOCK_REASON,
+} from "../../../src/lib/import/schoolTextbook/designatedSlotLocks";
 
 const prisma = new PrismaClient();
 const has = (flag: string): boolean => process.argv.includes(flag);
@@ -42,6 +54,21 @@ async function counts(): Promise<{ open: number; held: number }> {
     }),
   ]);
   return { open, held };
+}
+
+/** 원문을 풀어도 잠긴 채 남는 지정 변형 — 다시 검증해 여는 것은 따로다(읽기만). */
+async function lockedSlotsOf(sourceIds: string[]): Promise<number> {
+  let locked = 0;
+  for (let start = 0; start < sourceIds.length; start += 1000)
+    locked += await prisma.problem.count({
+      where: {
+        AND: [
+          designatedSlotWhere(sourceIds.slice(start, start + 1000)),
+          { directUseAllowed: false },
+        ],
+      },
+    });
+  return locked;
 }
 
 /** 잠긴 교과서 문항 가운데 «마지막 검수 판정이 통과»인 것 */
@@ -85,6 +112,9 @@ async function releasePassed(): Promise<void> {
   console.log(
     `푼 문항 ${result.count}\n이제 — 출제 가능 ${after.open} · 잠김 ${after.held}`,
   );
+  console.log(
+    `잠긴 채 남는 지정 변형(대응을 다시 검증한 뒤 연다) ${await lockedSlotsOf(passed.map((row) => row.id))}`,
+  );
 }
 
 async function main(): Promise<void> {
@@ -103,6 +133,20 @@ async function main(): Promise<void> {
   if (ids && (!Array.isArray(ids) || ids.some((id) => typeof id !== "string")))
     throw new Error("목록은 externalId 의 JSON 배열이어야 한다");
   console.log(ids ? `풀 문항 ${ids.length}` : "교과서 문항 전부를 잠근다");
+  // 잠그는 원문의 열린 지정 변형 — 같은 트랜잭션에서 잠근다
+  const openSources = ids
+    ? []
+    : (
+        await prisma.problem.findMany({
+          where: { source: "school_textbook", directUseAllowed: true },
+          select: { id: true },
+        })
+      ).map((row) => row.id);
+  const slotLocks = planDesignatedSlotLocks(
+    new Map(openSources.map((id) => [id, SLOT_LOCK_REASON.locked])),
+    await findDesignatedSlotRows(prisma, openSources),
+  );
+  if (!ids) console.log(`같이 잠그는 열린 지정 변형 ${slotLocks.length}`);
 
   if (!has("--apply")) {
     console.log("\n드라이런이다 — DB 에 아무것도 쓰지 않았다.");
@@ -124,12 +168,39 @@ async function main(): Promise<void> {
       });
       changed += result.count;
     }
+    const released: string[] = [];
+    for (let start = 0; start < ids.length; start += 1000)
+      for (const row of await prisma.problem.findMany({
+        where: {
+          source: "school_textbook",
+          externalId: { in: ids.slice(start, start + 1000) },
+        },
+        select: { id: true },
+      }))
+        released.push(row.id);
+    console.log(
+      `잠긴 채 남는 지정 변형(대응을 다시 검증한 뒤 연다) ${await lockedSlotsOf(released)}`,
+    );
   } else {
-    const result = await prisma.problem.updateMany({
-      where: { source: "school_textbook", directUseAllowed: true },
-      data: { directUseAllowed: false },
-    });
-    changed = result.count;
+    const [result, ...slots] = await prisma.$transaction([
+      prisma.problem.updateMany({
+        where: { source: "school_textbook", directUseAllowed: true },
+        data: { directUseAllowed: false },
+      }),
+      ...Array.from(
+        { length: Math.ceil(slotLocks.length / 5000) },
+        (_, index) =>
+          prisma.problem.updateMany(
+            lockDesignatedSlotsArgs(
+              slotLocks.slice(index * 5000, (index + 1) * 5000),
+            ),
+          ),
+      ),
+    ]);
+    changed = result!.count;
+    console.log(
+      `잠근 지정 변형 ${slots.reduce((total, part) => total + part.count, 0)}`,
+    );
   }
   const after = await counts();
   console.log(

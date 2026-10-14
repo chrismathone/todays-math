@@ -59,6 +59,9 @@
  * 🔴 **사람이 고친 문항은 덮어쓰지 않는다** — 적재기가 마지막으로 쓴 다섯 칸의 지문을 `load/written.json` 에 두고, DB 의 값이
  *    그 지문이 아니면(문제은행에서 고쳤다 · 잠금을 풀었다) 건드리지 않고 수만 알린다(`refreshPlan.ts`).
  *    지문 원장이 없으면 고치지 않는다 — `--refresh --adopt` 는 지금 DB 를 기준으로 삼는다(아무도 손대지 않은 것이 확실할 때만).
+ * 🔴 **원문의 글 · 정답 · 해설 · 그림이 바뀌거나 원문이 잠기면 그 원문의 지정 두 슬롯(복습 변형 `tb-retry-v1:…`)도 같은
+ *    트랜잭션에서 잠근다**(`designatedSlotLocks.ts` — 문제은행 P0 2026-10-14). 변형은 그때의 원문에 맞춰 검산됐다 —
+ *    다시 여는 것은 대응을 다시 검증한 뒤다. 드라이런의 «지정_변형을_잠금»을 먼저 본다.
  * 전부를 한꺼번에 잠그거나 목록으로 푸는 일은 `hold-school-textbook.ts`, 실린 것을 세는 일은 `census.ts`.
  */
 import {
@@ -101,6 +104,12 @@ import {
   blatantWords,
   createRenamer,
 } from "../../../src/lib/import/schoolTextbook/neutralNames";
+import {
+  findDesignatedSlotRows,
+  lockDesignatedSlotsArgs,
+  planDesignatedSlotLocks,
+  slotBreakingReason,
+} from "../../../src/lib/import/schoolTextbook/designatedSlotLocks";
 import {
   fingerprintOf,
   planRefresh,
@@ -983,6 +992,26 @@ async function refresh(
     ),
     written,
   );
+  // 원문이 바뀌거나 잠기는 줄 → 그 원문의 열린 지정 슬롯을 같이 잠근다(대응은 그때의 원문으로 검산됐다).
+  const slotReasons = new Map(
+    changes.flatMap((change) => {
+      const reason = slotBreakingReason(change.before, change.after);
+      return reason ? [[change.id, reason] as const] : [];
+    }),
+  );
+  const slotLocks = planDesignatedSlotLocks(
+    slotReasons,
+    await findDesignatedSlotRows(prisma, [...slotReasons.keys()]),
+  );
+  // 사람이 고친 원문(건드리지 않는다)의 열린 지정 슬롯 — 원문이 바뀌었는지 도구는 모른다. 수만 알린다.
+  const foreignIds = new Set(foreign);
+  const foreignSources = saved
+    .filter((row) => foreignIds.has(row.externalId ?? ""))
+    .map((row) => row.id);
+  const foreignOpenSlots = planDesignatedSlotLocks(
+    new Map(foreignSources.map((id) => [id, "사람이 고친 원문"])),
+    await findDesignatedSlotRows(prisma, foreignSources),
+  ).length;
   const differs = (key: keyof RefreshColumns): number =>
     changes.filter((change) => change.before[key] !== change.after[key]).length;
   const after = new Map(changes.map((change) => [change.id, change.after]));
@@ -1016,6 +1045,10 @@ async function refresh(
         ).length,
         고친_뒤_출제_가능: openAfter,
         고친_뒤_잠김: saved.length - openAfter,
+        // 원문이 바뀌거나 잠겨 같이 잠그는 열린 지정 변형(복습 두 슬롯) — 다시 검증한 뒤 연다
+        지정_변형을_잠금: slotLocks.length,
+        // 🔴 사람이 고친 원문의 열린 지정 변형 — 원문의 대응이 깨졌는지 도구가 모른다. 사람이 확인한다
+        사람이_고친_원문의_열린_지정_변형: foreignOpenSlots,
       },
       null,
       1,
@@ -1025,7 +1058,7 @@ async function refresh(
     // 무엇이 바뀌는지 읽어 볼 수 있게 — 드라이런의 것은 덮어써도 된다(원장이 아니다)
     writeFileSync(
       join(OUT, "refresh-dryrun.json"),
-      JSON.stringify({ foreign, changes }, null, 1),
+      JSON.stringify({ foreign, changes, slotLocks }, null, 1),
       "utf8",
     );
     console.log(
@@ -1039,6 +1072,12 @@ async function refresh(
     );
   if (changes.length === 0) return;
   const changed = new Set(changes.map((change) => change.externalId));
+  const locksByOrigin = new Map<string, typeof slotLocks>();
+  for (const lock of slotLocks)
+    locksByOrigin.set(lock.originProblemId, [
+      ...(locksByOrigin.get(lock.originProblemId) ?? []),
+      lock,
+    ]);
   const withoutFiles = missingFigureFiles(
     loadable.filter((row) => changed.has(row.externalId)),
   );
@@ -1051,22 +1090,37 @@ async function refresh(
   // 원장을 먼저 쓴다 — 고치다 끊겨도 «무엇을 고치려 했나»가 남는다
   writeFileSync(
     ledgerPath,
-    JSON.stringify({ refreshedAt: stamp, changes }, null, 1),
+    JSON.stringify({ refreshedAt: stamp, changes, slotLocks }, null, 1),
     "utf8",
   );
   let done = 0;
+  let slotsLocked = 0;
   for (let start = 0; start < changes.length; start += 200) {
-    await prisma.$transaction(
-      changes.slice(start, start + 200).map((change) =>
+    const batch = changes.slice(start, start + 200);
+    // 원문과 그 원문의 지정 슬롯 잠금을 한 트랜잭션에 — 끊겨도 «원문만 바뀌고 변형은 열린» 자리가 안 남는다
+    const batchLocks = batch.flatMap(
+      (change) => locksByOrigin.get(change.id) ?? [],
+    );
+    const results = await prisma.$transaction([
+      ...batch.map((change) =>
         prisma.problem.update({
           where: { id: change.id },
           data: change.after,
         }),
       ),
-    );
+      ...(batchLocks.length
+        ? [prisma.problem.updateMany(lockDesignatedSlotsArgs(batchLocks))]
+        : []),
+    ]);
+    if (batchLocks.length)
+      slotsLocked += (results.at(-1) as { count: number }).count;
     done = Math.min(start + 200, changes.length);
     console.log(`  ${done}/${changes.length}`);
   }
+  if (slotLocks.length)
+    console.log(
+      `지정 변형 잠금 — 계획 ${slotLocks.length} · 실제 ${slotsLocked}`,
+    );
   // 고친 문항의 지문을 새 값으로 — 다음 회차가 «내가 쓴 값»으로 알아본다
   for (const change of changes)
     written.set(change.externalId, fingerprintOf(change.after));
