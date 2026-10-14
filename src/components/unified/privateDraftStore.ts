@@ -6,6 +6,7 @@ import {
   type WorkspaceDraft,
   type WorkspaceDraftSnapshot,
   type DraftStoreOptions,
+  type DraftSummary,
 } from "./draftStore";
 import { parseWorkspaceWorkflow } from "@/contracts/workspaceWorkflow.contract";
 import {
@@ -84,7 +85,7 @@ export function createPrivateDraftStore(
   const publish = () => {
     const state = local.getSnapshot();
     // The library needs metadata, not every worksheet's payload and images.
-    const recent = new Map(
+    const recent = new Map<string, DraftSummary>(
       remoteSummaries.map((item) => [
         item.id,
         {

@@ -380,7 +380,7 @@ export default function StudioView({
   );
   const busy = importingBusy || restoring;
   const [sessionStore] = useState(
-    () => new StudioSessionStore(storageScope, documentId),
+    () => new StudioSessionStore(storageScope, documentId, { autoResume: false }),
   );
   const reportDocument = useEffectEvent(() =>
     onDocumentChange?.(sessionStore.documentId),
