@@ -6,6 +6,8 @@ import type { FontPackId } from "./fontPacks";
 export interface ProblemReview {
   id: string;
   variant: StudioProblem & { topic: string };
+  /** Measured with the first question, so a type heading cannot be orphaned. */
+  sectionHeading?: string;
 }
 
 /** 6 신규 인쇄 템플릿. */
@@ -53,6 +55,9 @@ export interface PrintMeta {
 
 /** 6 신규 template 컴포넌트가 모두 받는 공통 props. */
 export interface PrintTemplateProps {
+  /** Arithmetic starts a fresh sheet/header per round while pages stay globally numbered. */
+  round?: number;
+  firstPage?: boolean;
   /** 페이지 번호 (1-indexed). */
   page: number;
   /** 총 페이지. */

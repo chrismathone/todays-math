@@ -70,7 +70,7 @@ function problem(
   };
 }
 
-function setup(selected: StudioProblem[]) {
+function setup(selected: StudioProblem[], arithmetic = false) {
   const reorder = vi.fn();
   const props = {
     selected,
@@ -89,13 +89,38 @@ function setup(selected: StudioProblem[]) {
     reorder,
     navigate: vi.fn(),
     onEditSource: vi.fn(),
+    fixedComposition: arithmetic,
   };
   render(<WorksheetEditor {...props} />);
-  fireEvent.click(screen.getByRole("tab", { name: /문제 순서/ }));
+  fireEvent.click(
+    screen.getByRole("tab", { name: arithmetic ? /유형별 구성/ : /문제 순서/ }),
+  );
   return { reorder, props };
 }
 
 describe("문제 순서 칸 — 이름", () => {
+  it("shows type counts and number ranges once per group for arithmetic", () => {
+    const selected = Array.from({ length: 6 }, (_, index) => ({
+      ...problem(`arithmetic-${index}`, 1),
+      arithmetic: {
+        round: index < 4 ? 1 : 2,
+        number: index + 1,
+        groupKey: index < 2 ? "add" : "subtract",
+        groupTitle: index < 2 ? "두 자리 덧셈" : "두 자리 뺄셈",
+      },
+    }));
+    setup(selected, true);
+    expect(screen.getByRole("heading", { name: "유형별 구성" })).toBeVisible();
+    expect(screen.getByRole("heading", { name: "1회차" })).toBeVisible();
+    expect(screen.getByRole("heading", { name: "2회차" })).toBeVisible();
+    expect(screen.getByText("두 자리 덧셈")).toBeVisible();
+    expect(screen.getAllByText("두 자리 뺄셈")).toHaveLength(2);
+    expect(screen.getAllByText("2문항")).toHaveLength(3);
+    for (const range of ["1–2번", "3–4번", "5–6번"])
+      expect(screen.getByText(range)).toBeVisible();
+    expect(screen.queryByRole("button", { name: "순서 초기화" })).toBeNull();
+    expect(screen.queryByRole("button", { name: /문제 위로/ })).toBeNull();
+  });
   it("«N쪽 M번» 만 글자로 쓰고 파일 이름은 title 에만 둔다", () => {
     setup([problem("a", 1, 3)]);
     const name = screen.getByText("1쪽 3번");

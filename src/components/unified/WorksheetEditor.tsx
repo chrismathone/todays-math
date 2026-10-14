@@ -2,6 +2,7 @@
 import {
   useCallback,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
   type ReactNode,
@@ -28,6 +29,7 @@ import {
   worksheetRowLabel,
 } from "./worksheetOrder";
 import s from "./WorksheetEditor.module.css";
+import { arithmeticOutputGroups } from "@/lib/arithmeticOutputLayout";
 interface Props {
   /** Arithmetic output has a key only, with no solution pages. */
   answersOnly?: boolean;
@@ -121,6 +123,13 @@ export default function WorksheetEditor({
   const [tab, setTab] = useState<"settings" | "order">("settings");
   // 「순서 초기화」는 이미 원본 차례이면 할 일이 없다 — 그때는 흐리게 둔다.
   const sourceOrdered = isSourceOrdered(selected);
+  const arithmeticRounds = useMemo(
+    () =>
+      selected.length > 0 && selected.every((problem) => problem.arithmetic)
+        ? arithmeticOutputGroups(selected)
+        : null,
+    [selected],
+  );
   // Archived concept callers still work; the live workspace persists through its draft store.
   const [localOptions, setLocalOptions] = useState(() => ({
     ...DEFAULT_PRINT_OPTIONS,
@@ -431,7 +440,8 @@ export default function WorksheetEditor({
                 aria-controls="worksheet-order-panel"
                 onClick={() => setTab("order")}
               >
-                문제 순서 · {selected.length}
+                {arithmeticRounds ? "유형별 구성" : "문제 순서"} ·{" "}
+                {selected.length}
               </button>
             </div>
             <button
@@ -453,6 +463,7 @@ export default function WorksheetEditor({
             >
               <PrintOptionsPanel
                 answersOnly={answersOnly}
+                groupedArithmetic={Boolean(arithmeticRounds)}
                 title={title}
                 setTitle={setTitle}
                 options={options}
@@ -469,9 +480,9 @@ export default function WorksheetEditor({
               className={s.orderPanel}
             >
               <div className={s.orderHeading}>
-                <h3>문제 순서</h3>
+                <h3>{arithmeticRounds ? "유형별 구성" : "문제 순서"}</h3>
                 <span>{selected.length}문항</span>
-                {!fixedComposition && (
+                {!fixedComposition && !arithmeticRounds && (
                   <button
                     type="button"
                     className={`${s.secondaryButton} ${s.orderReset}`}
@@ -482,65 +493,98 @@ export default function WorksheetEditor({
                   </button>
                 )}
               </div>
-              <ol className={s.orderList} ref={orderListRef}>
-                {selected.map((p, i) => {
-                  const row = worksheetRowLabel(p);
-                  return (
-                    <li key={p.id}>
-                      <span className={s.orderNumber}>
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <div>
-                        <strong title={row.title}>{row.text}</strong>
-                        <small>
-                          {p.grade ? `${p.grade} · ` : ""}
-                          {p.difficulty || "내 자료"}
-                        </small>
-                      </div>
-                      {!fixedComposition && (
-                        <div className={s.orderActions}>
-                          {can("studio") && p.studioCrop && onEditSource && (
+              {arithmeticRounds ? (
+                <div className={s.composition}>
+                  {arithmeticRounds.map((round) => (
+                    <section
+                      key={round.round}
+                      aria-label={`${round.round}회차 구성`}
+                    >
+                      <header>
+                        <h4>{round.round}회차</h4>
+                        <span>
+                          {round.groups.length}개 유형 묶음 · {round.count}문항
+                        </span>
+                      </header>
+                      <ul>
+                        {round.groups.map((group) => (
+                          <li key={group.problems[0].id}>
+                            <strong>{group.title}</strong>
+                            <span>{group.problems.length}문항</span>
+                            <small>
+                              {group.problems[0].arithmetic?.number}
+                              {group.problems.length > 1
+                                ? `–${group.problems.at(-1)?.arithmetic?.number}`
+                                : ""}
+                              번
+                            </small>
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+                  ))}
+                </div>
+              ) : (
+                <ol className={s.orderList} ref={orderListRef}>
+                  {selected.map((p, i) => {
+                    const row = worksheetRowLabel(p);
+                    return (
+                      <li key={p.id}>
+                        <span className={s.orderNumber}>
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <div>
+                          <strong title={row.title}>{row.text}</strong>
+                          <small>
+                            {p.grade ? `${p.grade} · ` : ""}
+                            {p.difficulty || "내 자료"}
+                          </small>
+                        </div>
+                        {!fixedComposition && (
+                          <div className={s.orderActions}>
+                            {can("studio") && p.studioCrop && onEditSource && (
+                              <button
+                                type="button"
+                                className={`${s.secondaryButton} ${s.orderEdit}`}
+                                aria-label={`${i + 1}번 원본 편집`}
+                                onClick={() => onEditSource(p)}
+                              >
+                                <span>원본 편집</span>
+                              </button>
+                            )}
                             <button
                               type="button"
-                              className={`${s.secondaryButton} ${s.orderEdit}`}
-                              aria-label={`${i + 1}번 원본 편집`}
-                              onClick={() => onEditSource(p)}
+                              className={s.orderStep}
+                              disabled={i === 0}
+                              aria-label={`${i + 1}번 문제 위로`}
+                              onClick={() => move(i, -1)}
                             >
-                              <span>원본 편집</span>
+                              ↑
                             </button>
-                          )}
-                          <button
-                            type="button"
-                            className={s.orderStep}
-                            disabled={i === 0}
-                            aria-label={`${i + 1}번 문제 위로`}
-                            onClick={() => move(i, -1)}
-                          >
-                            ↑
-                          </button>
-                          <button
-                            type="button"
-                            className={s.orderStep}
-                            disabled={i === selected.length - 1}
-                            aria-label={`${i + 1}번 문제 아래로`}
-                            onClick={() => move(i, 1)}
-                          >
-                            ↓
-                          </button>
-                          <button
-                            type="button"
-                            className={s.orderStep}
-                            aria-label={`${i + 1}번 문제 빼기`}
-                            onClick={() => removeProblem(p, i)}
-                          >
-                            ×
-                          </button>
-                        </div>
-                      )}
-                    </li>
-                  );
-                })}
-              </ol>
+                            <button
+                              type="button"
+                              className={s.orderStep}
+                              disabled={i === selected.length - 1}
+                              aria-label={`${i + 1}번 문제 아래로`}
+                              onClick={() => move(i, 1)}
+                            >
+                              ↓
+                            </button>
+                            <button
+                              type="button"
+                              className={s.orderStep}
+                              aria-label={`${i + 1}번 문제 빼기`}
+                              onClick={() => removeProblem(p, i)}
+                            >
+                              ×
+                            </button>
+                          </div>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ol>
+              )}
             </div>
             {(can("bank") || draftActions) && (
               <div className={s.bottomActions}>

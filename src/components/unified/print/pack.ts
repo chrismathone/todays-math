@@ -13,7 +13,30 @@ export function packMeasured(
     PrintOptions,
     "template" | "columns" | "layoutMode" | "problemsPerColumn" | "spacing"
   >,
+  /** Explicit sheet boundaries (arithmetic rounds); each gets first-page header space. */
+  sectionStarts: number[] = [],
 ): PackedPage[] {
+  if (sectionStarts.length) {
+    const boundaries = [
+      0,
+      ...[...new Set(sectionStarts)]
+        .filter((index) => index > 0 && index < heights.length)
+        .sort((a, b) => a - b),
+      heights.length,
+    ];
+    return boundaries
+      .slice(0, -1)
+      .flatMap((start, index) =>
+        packMeasured(
+          heights.slice(start, boundaries[index + 1]),
+          avail,
+          options,
+        ).map((page) => ({
+          ...page,
+          indices: page.indices.map((item) => item + start),
+        })),
+      );
+  }
   const pages: PackedPage[] = [];
   let start = 0;
   const stretch =

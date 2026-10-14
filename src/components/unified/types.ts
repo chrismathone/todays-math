@@ -7,6 +7,13 @@ import type { EnglishBankQuestion } from "@/contracts/englishQuestionBank.contra
 export type SchoolLevel = "elementary" | "secondary";
 
 export interface StudioProblem {
+  /** Display-only arithmetic grouping; the saved item remains untouched in source. */
+  arithmetic?: {
+    round: number;
+    number: number;
+    groupKey: string;
+    groupTitle: string;
+  };
   /** Lossless English output adapter. Never feed English prose through the math parser. */
   english?: {
     item: EnglishBankQuestion;

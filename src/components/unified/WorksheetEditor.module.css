@@ -215,6 +215,53 @@ label.checkField {
   border: 1px solid #e2e8f3;
   border-radius: 7px;
 }
+.composition {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+.composition header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--learn-muted);
+  font-size: var(--text-caption, 12px);
+}
+.composition h4 {
+  margin: 0;
+  color: var(--learn-ink);
+  font-size: var(--text-body, 14px);
+}
+.composition ul {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+.composition li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--learn-track);
+  font-size: var(--text-body, 14px);
+  color: var(--learn-ink);
+}
+.composition strong {
+  min-width: 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.composition li > span {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.composition small {
+  grid-column: 1 / -1;
+  color: var(--learn-muted);
+  font-size: var(--text-caption, 12px);
+}
 .orderNumber {
   align-self: start;
   font-size: var(--text-caption, 12px);

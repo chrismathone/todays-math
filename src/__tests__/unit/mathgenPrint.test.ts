@@ -135,4 +135,36 @@ describe("restored Mathgen options and measured pagination", () => {
     expect(pages[0].indices).toEqual([0]);
     expect(pages.flatMap((p) => p.indices)).toEqual([0, 1, 2, 3]);
   });
+  it.each(["spacing", "count"] as const)(
+    "%s starts each round on a fresh sheet and reserves its full header height again",
+    (layoutMode) => {
+      const pages = packMeasured(
+        [200, 200, 200, 200, 200, 200, 200, 200],
+        { first: 450, cont: 700 },
+        { ...DEFAULT_PRINT_OPTIONS, columns: 1, spacing: 20, layoutMode },
+        [4],
+      );
+      expect(pages.map((page) => page.indices)).toEqual([
+        [0, 1],
+        [2, 3],
+        [4, 5],
+        [6, 7],
+      ]);
+      expect(pages.flatMap((page) => page.indices)).toEqual([
+        0, 1, 2, 3, 4, 5, 6, 7,
+      ]);
+    },
+  );
+  it("keeps short rounds separate even when both fit in one column", () => {
+    const pages = packMeasured(
+      [30, 30, 30],
+      { first: 700, cont: 900 },
+      { ...DEFAULT_PRINT_OPTIONS, columns: 2 },
+      [2],
+    );
+    expect(pages.map((page) => page.indices)).toEqual([[0, 1], [2]]);
+    expect(
+      pages.every((page) => page.scales.every((scale) => scale === 1)),
+    ).toBe(true);
+  });
 });

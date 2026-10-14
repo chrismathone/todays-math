@@ -62,6 +62,7 @@ export function defaultArithmeticPresentation(
       template: "yuhyung",
       columns: 2,
       quickAnswerOnly: true,
+      showChapter: false,
       showDifficulty: false,
     },
     printMeta: { ...DEFAULT_PRINT_META, academyName: academyName ?? "" },

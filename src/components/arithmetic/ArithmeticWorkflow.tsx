@@ -18,6 +18,8 @@ import {
   type ArithmeticOutputSheet,
 } from "@/lib/arithmeticOutput";
 import s from "./ArithmeticWorkbench.module.css";
+import layout from "./ArithmeticWorkflow.module.css";
+import { arithmeticOutputGroups } from "@/lib/arithmeticOutputLayout";
 
 const WorksheetEditor = dynamic(
   () => import("@/components/unified/WorksheetEditor"),
@@ -93,6 +95,7 @@ export function ArithmeticWorkflow({
     () => (sheet ? arithmeticToStudioProblems(sheet) : []),
     [sheet],
   );
+  const rounds = useMemo(() => arithmeticOutputGroups(problems), [problems]);
   useEffect(() => {
     root.current?.scrollIntoView?.({ block: "start" });
   }, [step]);
@@ -186,19 +189,44 @@ export function ArithmeticWorkflow({
           {!canOutput && (
             <p className={s.notice}>출력하려면 출력 메뉴 권한이 필요합니다.</p>
           )}
-          <ol className={s.reviewGrid}>
-            {problems.map((problem) => (
-              <li key={problem.id} className={s.reviewCard}>
-                <NativeProblem problem={problem} print={false} />
-                {showAnswers && (
-                  <div className={s.reviewAnswer} aria-label="정답">
-                    <strong>정답</strong>{" "}
-                    <MathText text={fractionViewFor(problem)(problem.answer)} />
-                  </div>
-                )}
-              </li>
-            ))}
-          </ol>
+          {rounds.map((round) => (
+            <section
+              key={round.round}
+              className={layout.round}
+              aria-label={`${round.round}회차 문항`}
+            >
+              <header className={layout.roundHeader}>
+                <h2>{round.round}회차</h2>
+                <span>{round.count}문항</span>
+              </header>
+              {round.groups.map((group) => (
+                <section key={group.problems[0].id} aria-label={group.title}>
+                  <h3 className={layout.typeHeading}>{group.title}</h3>
+                  <ol className={s.reviewGrid}>
+                    {group.problems.map((problem) => (
+                      <li key={problem.id} className={s.reviewCard}>
+                        <strong
+                          className={layout.questionNumber}
+                          data-arithmetic-question-number
+                        >
+                          {problem.arithmetic?.number}.
+                        </strong>
+                        <NativeProblem problem={problem} print={false} />
+                        {showAnswers && (
+                          <div className={s.reviewAnswer} aria-label="정답">
+                            <strong>정답</strong>{" "}
+                            <MathText
+                              text={fractionViewFor(problem)(problem.answer)}
+                            />
+                          </div>
+                        )}
+                      </li>
+                    ))}
+                  </ol>
+                </section>
+              ))}
+            </section>
+          ))}
         </section>
       ) : step === "output" && sheet ? (
         <WorksheetEditor

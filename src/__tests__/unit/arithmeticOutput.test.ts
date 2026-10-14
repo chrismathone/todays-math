@@ -22,6 +22,7 @@ import {
   ARITHMETIC_CATALOG_VERSION,
 } from "@/contracts/arithmetic.contract";
 import { listArithmeticPresets } from "@/lib/arithmeticPresets";
+import { arithmeticOutputGroups } from "@/lib/arithmeticOutputLayout";
 
 describe("arithmetic shared output adapter", () => {
   it("preserves every supported grade prompt, exact answer and snapshot with valid math markup", () => {
@@ -49,7 +50,14 @@ describe("arithmetic shared output adapter", () => {
       );
       expect(markup).toContain("katex");
       expect(markup).not.toContain("katex-error");
-      expect(problem.content).toContain("1회차 · 1번");
+      expect(problem.content).not.toMatch(/회차|\d+번/);
+      expect(problem.arithmetic).toEqual({
+        round: 1,
+        number: 1,
+        groupKey: type.id,
+        groupTitle: type.title,
+      });
+      expect(problem.section).toBe(type.title);
       if (item.prompt.layout === "math")
         expect(problem.content).toContain(item.prompt.latex);
       else expect(problem.content).toContain("\\begin{array}{r}");
@@ -88,12 +96,15 @@ describe("arithmetic shared output adapter", () => {
     });
     const problems = arithmeticToStudioProblems(sheet);
     expect(new Set(problems.map((item) => item.id)).size).toBe(4);
-    expect(problems.map((item) => item.section)).toEqual([
-      "1회차",
-      "1회차",
-      "2회차",
-      "2회차",
+    expect(problems.map((item) => item.arithmetic?.round)).toEqual([
+      1, 1, 2, 2,
     ]);
+    expect(problems.map((item) => item.arithmetic?.number)).toEqual([
+      1, 2, 3, 4,
+    ]);
+    expect(problems.every((item) => !item.content.includes("회차"))).toBe(true);
+    expect(problems[0].section).toContain(problems[0].chapter);
+    expect(problems[0].section).toContain("세로셈");
     expect(problems.map((item) => item.answer)).toEqual(
       sheet.rounds.flatMap((round) => round.items.map((item) => item.answer)),
     );
@@ -123,5 +134,30 @@ describe("arithmetic shared output adapter", () => {
       "AR2-R2-Q1",
       "AR2-R2-Q2",
     ]);
+  });
+  it("groups legacy conditions separately and keeps every saved item in its original position", () => {
+    const presets = listArithmeticPresets().filter((preset) =>
+      ["add-one-small-0-4", "add-one-small-5-9-carry"].includes(preset.id),
+    );
+    const sheet = buildArithmeticSheet({
+      engineVersion: ARITHMETIC_ENGINE_VERSION,
+      catalogVersion: ARITHMETIC_CATALOG_VERSION,
+      seed: "group-conditions",
+      rounds: [
+        {
+          skills: presets.map((preset) => ({ ...preset.selection, count: 2 })),
+        },
+      ],
+    });
+    const before = structuredClone(sheet);
+    const problems = arithmeticToStudioProblems(sheet);
+    const [round] = arithmeticOutputGroups(problems);
+    expect(round.groups).toHaveLength(presets.length);
+    expect(new Set(round.groups.map((group) => group.title)).size).toBe(
+      presets.length,
+    );
+    expect(round.groups.flatMap((group) => group.problems)).toEqual(problems);
+    expect(round.count).toBe(problems.length);
+    expect(sheet).toEqual(before);
   });
 });

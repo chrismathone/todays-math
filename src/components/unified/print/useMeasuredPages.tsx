@@ -161,9 +161,16 @@ export function useMeasuredPages(
             answer
               ? { ...options, template: "jeongtong", layoutMode: "spacing" }
               : options,
+            problems.flatMap((problem, index) =>
+              index > 0 &&
+              problem.variant.arithmetic?.round !==
+                problems[index - 1].variant.arithmetic?.round
+                ? [index]
+                : [],
+            ),
           )
         : [],
-    [contentKey, layoutError, measured, options, answer],
+    [contentKey, layoutError, measured, options, answer, problems],
   );
   const base = {
     columns: options.columns,
@@ -172,6 +179,7 @@ export function useMeasuredPages(
     startingNumber: 1,
     totalPages: 2,
     totalProblems: problems.length,
+    round: problems[0]?.variant.arithmetic?.round,
   };
   const measureNode = (
     <div

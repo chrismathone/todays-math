@@ -9,13 +9,15 @@ import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
 import { readablePaperColor } from "../readableColor";
 import { BodyContainer } from "./BodyContainer";
-import { ProblemHeader } from "./ProblemMeta";
+import { ArithmeticRoundHeader, ProblemHeader } from "./ProblemMeta";
 import { ProblemBody } from "./ProblemBody";
 import type { PrintTemplateProps } from "../types";
 import { ExamDetails } from "../ExamDetails";
 
 export function JaseupTemplate({
   page,
+  round,
+  firstPage,
   columns,
   meta,
   problems,
@@ -26,7 +28,7 @@ export function JaseupTemplate({
   measure,
 }: PrintTemplateProps) {
   const accent = options.color || PAPER_COLORS.accentGold;
-  const isFirstPage = page === 1;
+  const isFirstPage = firstPage ?? page === 1;
   const fs = bodyFontSize("jaseup", columns);
   const gap = Math.max(0, options.spacing);
   const embeddedSolvingArea =
@@ -52,6 +54,7 @@ export function JaseupTemplate({
       >
         <div>
           <ProblemHeader
+            sectionHeading={p.sectionHeading}
             num={num}
             problem={p.variant}
             options={options}
@@ -164,6 +167,7 @@ export function JaseupTemplate({
         flexDirection: "column",
       }}
     >
+      <ArithmeticRoundHeader round={round} />
       {isFirstPage && (
         <>
           {/* 헤더 */}

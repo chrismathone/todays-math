@@ -9,6 +9,10 @@ import type { PrintMeta, PrintOptions, ProblemReview } from "./types";
 import s from "./WorksheetPrint.module.css";
 import { kstDateOf } from "@/lib/kstDate";
 import editor from "../WorksheetEditor.module.css";
+import {
+  arithmeticGroupStarts,
+  arithmeticOutputGroups,
+} from "@/lib/arithmeticOutputLayout";
 
 const EMPTY: ProblemReview[] = [];
 
@@ -28,12 +32,16 @@ export function WorksheetPrint({
   const [dismissedNotice, setDismissedNotice] = useState("");
   const problems = useMemo(
     () =>
-      selected.map((p) => ({
+      selected.map((p, index) => ({
         id: p.id,
         variant: { ...p, topic: p.section || p.chapter },
+        sectionHeading: arithmeticGroupStarts(p, selected[index - 1])
+          ? p.arithmetic?.groupTitle
+          : undefined,
       })),
     [selected],
   );
+  const rounds = useMemo(() => arithmeticOutputGroups(selected), [selected]);
   const meta = useMemo(() => {
     const result = Object.fromEntries(
       Object.entries(printMeta).map(([key, value]) => [
@@ -78,6 +86,17 @@ export function WorksheetPrint({
     return () => onReady(false);
   }, [ready, onReady]);
   const total = questions.pages.length + answers.pages.length;
+  function roundPageProps(indices: number[]) {
+    const first = problems[indices[0]]?.variant.arithmetic;
+    if (!first) return {};
+    const round = rounds.find((item) => item.round === first.round);
+    return {
+      round: first.round,
+      firstPage:
+        first.number === round?.groups[0]?.problems[0].arithmetic?.number,
+      totalProblems: round?.count,
+    };
+  }
   const pages = [
     ...questions.pages.map((page, i) => ({
       key: `question-${i}`,
@@ -87,6 +106,7 @@ export function WorksheetPrint({
           page={i + 1}
           totalPages={total}
           totalProblems={problems.length}
+          {...roundPageProps(page.indices)}
           columns={options.columns}
           meta={meta}
           options={options}
@@ -105,6 +125,7 @@ export function WorksheetPrint({
           page={questions.pages.length + i + 1}
           totalPages={total}
           totalProblems={problems.length}
+          {...roundPageProps(page.indices)}
           columns={options.columns}
           meta={meta}
           options={{ ...options, solvingArea: "off" }}
