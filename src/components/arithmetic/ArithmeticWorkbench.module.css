@@ -34,7 +34,7 @@
 .catalog {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 8px;
 }
 .catalogFilters {
   display: grid;
@@ -91,10 +91,12 @@
   flex-direction: column;
   align-items: stretch;
   text-align: left;
-  min-height: 190px;
-  gap: 12px;
-  padding: 16px;
+  min-height: 130px;
+  gap: 6px;
+  padding: 10px 12px;
   border-color: var(--learn-track);
+  user-select: none;
+  touch-action: pan-y;
 }
 .root .card[aria-pressed="true"] {
   background: var(--learn-soft);
@@ -107,7 +109,7 @@
   flex-wrap: wrap;
 }
 .cardTop strong {
-  font-size: 15px;
+  font-size: 14px;
 }
 .cardTop > span {
   color: var(--learn-accent);
@@ -129,8 +131,8 @@
 .example {
   display: block;
   margin-top: auto;
-  font-size: 24px;
-  min-height: 72px;
+  font-size: 19px;
+  min-height: 48px;
 }
 .settings {
   background: var(--learn-surface);
@@ -260,6 +262,78 @@
 }
 .output {
   margin-top: 24px;
+}
+.workflow {
+  min-width: 0;
+  scroll-margin-top: 68px;
+}
+.randomSelection {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+.randomSelection label {
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+}
+.randomSelection input {
+  width: 90px;
+}
+.randomSelection > span,
+.randomSelection > small {
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+.randomSelection > small {
+  flex-basis: 100%;
+}
+.review {
+  padding: 16px 0;
+}
+.reviewToolbar {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px 0;
+}
+.reviewToolbar label {
+  display: grid;
+  gap: 4px;
+  flex: 1 1 220px;
+  font-size: 13px;
+}
+.reviewToolbar > span {
+  font-size: 13px;
+  color: var(--learn-muted);
+}
+.reviewGrid {
+  list-style: none;
+  margin: 16px 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 12px;
+}
+.reviewCard {
+  min-width: 0;
+  background: var(--learn-surface);
+  border: 1px solid var(--learn-track);
+  border-radius: 8px;
+  padding: 16px;
+}
+.reviewCard :global(.katex-display) {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.reviewAnswer {
+  border-top: 1px solid var(--learn-track);
+  margin-top: 12px;
+  padding-top: 12px;
+  color: var(--learn-accent);
 }
 .outputBar {
   display: flex;

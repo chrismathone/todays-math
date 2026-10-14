@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import WorkspacePageHeader from "@/components/unified/WorkspacePageHeader";
+import type { ArithmeticStep } from "./ArithmeticWorkflow";
 import {
   PrivateCloudClient,
   cloudError,
@@ -15,6 +15,7 @@ type Mode = "grade" | "basic";
 export type ArithmeticWorkbenchProps = {
   storageScope?: string;
   initialDocumentId?: string;
+  initialStep?: ArithmeticStep;
   canOutput: boolean;
   academyName?: string;
   preview?: boolean;
@@ -129,10 +130,6 @@ function WorkbenchRouter({
 
   return (
     <section className={s.root} aria-label="연산대장">
-      <WorkspacePageHeader
-        title="연산대장"
-        description="연습할 연산 유형과 문항 수를 고르고 문제지와 정답지를 만드세요."
-      />
       <div className={s.modeSwitch} aria-label="연산 구성 방식">
         {(["grade", "basic"] as const).map((value) => (
           <button

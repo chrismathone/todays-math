@@ -17,14 +17,45 @@ import type { ArithmeticSheetPayload } from "@/contracts/arithmeticSheet.contrac
 import type { PrivateDocument } from "@/contracts/privateWorkspace.contract";
 import { buildArithmeticSheet } from "@/lib/arithmetic/sheet";
 
+vi.mock("@/components/unified/WorksheetEditor", () => ({
+  default: (
+    props: import("react").ComponentProps<
+      typeof import("@/components/unified/WorksheetEditor").default
+    >,
+  ) => (
+    <section aria-label="공통 출력 편집기">
+      {props.stepNavigation?.items.map((item) => (
+        <button key={item.id} disabled={item.disabled} onClick={item.onSelect}>
+          {item.label}
+        </button>
+      ))}
+      <select
+        aria-label="공통 양식"
+        value={props.printOptions?.template}
+        onChange={(event) =>
+          props.setPrintOptions?.({ template: event.target.value as "modern" })
+        }
+      >
+        <option value="yuhyung">유형</option>
+        <option value="modern">모던</option>
+      </select>
+      <output aria-label="공통 정답 방식">
+        {props.printOptions?.quickAnswerOnly ? "답만" : "해설 포함"}
+      </output>
+      <output aria-label="공통 문항 수">{props.selected.length}</output>
+      {props.outputNotice}
+    </section>
+  ),
+}));
+
 const requests: ArithmeticGenerateRequest[] = [];
 const sheets: ArithmeticSheetPayload[] = [];
 const currentProblems = () =>
-  document.querySelector('[data-page-kind="questions"]')?.textContent;
+  screen.getByRole("region", { name: "생성한 문항 검토" })?.textContent;
 const make = () =>
   fireEvent.click(
     screen.getByRole("button", {
-      name: /^(연습지 만들기|같은 조건으로 다시 만들기)$/,
+      name: /^(연습지 만들기|숫자 바꿔 새로 만들기)$/,
     }),
   );
 
@@ -65,17 +96,54 @@ async function ready() {
 }
 
 describe("arithmetic workbench", () => {
+  it("randomly adds distinct filtered presets and preserves their default constraints and selected count", () => {
+    render(<ArithmeticWorkbench canOutput preview />);
+    fireEvent.change(screen.getByLabelText("연산 종류"), {
+      target: { value: "곱셈" },
+    });
+    fireEvent.change(screen.getByLabelText("유형 찾기"), {
+      target: { value: "단" },
+    });
+    fireEvent.change(screen.getByLabelText("무작위 유형 수"), {
+      target: { value: "2" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "무작위로 담기" }));
+    const quantities = screen.getAllByRole("spinbutton", { name: / 문항 수$/ });
+    expect(quantities).toHaveLength(3);
+    expect(quantities[0]).toHaveValue(20);
+    for (const input of quantities.slice(1)) {
+      expect(input.getAttribute("aria-label")).toMatch(/^\d단 문항 수$/);
+      expect(input).toHaveValue(9);
+    }
+    expect(
+      new Set(quantities.map((input) => input.getAttribute("aria-label"))).size,
+    ).toBe(3);
+  });
+  it("keeps save and output gates while allowing local review", async () => {
+    render(<ArithmeticWorkbench canOutput={false} preview />);
+    make();
+    await screen.findByRole("region", { name: "생성한 문항 검토" });
+    expect(
+      screen.getByRole("button", { name: "내 시험지에 저장" }),
+    ).toBeDisabled();
+    expect(
+      screen.getByRole("button", { name: "3 양식 구성·출력" }),
+    ).toBeDisabled();
+    expect(
+      screen.queryByRole("region", { name: "공통 출력 편집기" }),
+    ).toBeNull();
+  });
   it("generates over the web, changes operands on regeneration and keeps answers off question pages", async () => {
     render(<ArithmeticWorkbench canOutput storageScope="teacher" />);
     await ready();
     make();
     await screen.findByText(/20문항을 생성하고/);
     const first = currentProblems();
-    expect(document.querySelector('[data-page-kind="answers"]')).toBeNull();
+    expect(screen.queryByLabelText("정답")).toBeNull();
     expect(
-      document.querySelectorAll(
-        '[data-page-kind="questions"] [aria-label="답란"]',
-      ),
+      within(
+        screen.getByRole("region", { name: "생성한 문항 검토" }),
+      ).getAllByRole("listitem"),
     ).toHaveLength(20);
     make();
     await waitFor(() => expect(requests).toHaveLength(2));
@@ -87,17 +155,12 @@ describe("arithmetic workbench", () => {
       "count",
       "skillId",
     ]);
-    fireEvent.change(screen.getByLabelText("출력 구성"), {
-      target: { value: "both" },
-    });
-    const answers = document.querySelector('[data-page-kind="answers"]')!;
-    const answerCells = [...answers.querySelectorAll("div > div > span")].map(
-      (item) => item.textContent,
-    );
-    expect(answerCells).toEqual(
-      sheets[1].rounds[0].items.map((item) => item.answer),
-    );
-    expect(answers.textContent).not.toContain("해설");
+    fireEvent.click(screen.getByRole("button", { name: "정답 보기" }));
+    expect(
+      screen
+        .getAllByLabelText("정답")
+        .map((item) => item.textContent?.replace("정답 ", "")),
+    ).toEqual(sheets[1].rounds[0].items.map((item) => item.answer));
   });
 
   it("enforces a fixed table capacity and permits different presets of one operation", async () => {
@@ -137,8 +200,8 @@ describe("arithmetic workbench", () => {
     make();
     await screen.findByText(/18문항을 생성하고/);
     const text = currentProblems();
-    expect(text).toContain("2 ×");
-    expect(text).toContain("3 ×");
+    expect(text).toContain("2");
+    expect(text).toContain("3");
     expect(fetch).not.toHaveBeenCalled();
   });
 
@@ -171,7 +234,12 @@ describe("arithmetic workbench", () => {
     await ready();
     make();
     await screen.findByText(/20문항을 생성하고/);
-    const original = currentProblems();
+    const original = within(
+      screen.getByRole("region", { name: "생성한 문항 검토" }),
+    )
+      .getAllByRole("listitem")
+      .map((item) => item.textContent)
+      .join("");
     fireEvent.click(screen.getByRole("button", { name: "내 시험지에 저장" }));
     await screen.findByText("내 시험지에 저장했습니다.");
     expect(onDocumentChange).toHaveBeenCalledWith(stored!.id);
@@ -202,8 +270,12 @@ describe("arithmetic workbench", () => {
     await screen.findByText(/저장된 연산식과 정답/);
     expect(requests).toHaveLength(1);
     expect(
-      currentProblems()?.replace("덧셈 집중 연습", "연산 기초 다지기 1회"),
+      within(screen.getByRole("region", { name: "생성한 문항 검토" }))
+        .getAllByRole("listitem")
+        .map((item) => item.textContent)
+        .join(""),
     ).toBe(original);
+    fireEvent.click(screen.getByRole("button", { name: "1 범위 설정" }));
     expect(
       screen.getByRole("spinbutton", {
         name: "두 자리 덧셈 · 받아올림 0회 문항 수",
@@ -211,37 +283,28 @@ describe("arithmetic workbench", () => {
     ).toHaveValue(20);
   });
 
-  it("prints only the chosen paper pages, then removes the temporary print portal", async () => {
-    Object.defineProperty(document, "fonts", {
-      configurable: true,
-      value: { ready: Promise.resolve() },
-    });
-    const print = vi.spyOn(window, "print").mockImplementation(() => {
-      expect(document.body).toHaveAttribute("data-arithmetic-print", "true");
-      const portal = document.querySelector("[data-arithmetic-print-root]")!;
-      expect(
-        portal.querySelectorAll("[data-page-kind=questions]"),
-      ).toHaveLength(2);
-      expect(portal.querySelectorAll("[data-page-kind=answers]")).toHaveLength(
-        1,
-      );
-      expect(portal.textContent).not.toContain("담은 유형");
-    });
+  it("opens shared output and preserves controlled format and sheet across steps", async () => {
     render(<ArithmeticWorkbench canOutput preview />);
     make();
     await screen.findByText(/20문항을 생성하고/);
-    fireEvent.change(screen.getByLabelText("쪽당 문항"), {
-      target: { value: "12" },
-    });
-    fireEvent.change(screen.getByLabelText("출력 구성"), {
-      target: { value: "both" },
-    });
-    fireEvent.click(screen.getByRole("button", { name: "인쇄 / PDF" }));
-    await waitFor(() => expect(print).toHaveBeenCalledOnce());
-    await waitFor(() =>
-      expect(document.querySelector("[data-arithmetic-print-root]")).toBeNull(),
-    );
-    expect(document.body).not.toHaveAttribute("data-arithmetic-print");
-    Reflect.deleteProperty(document, "fonts");
+    const before = within(
+      screen.getByRole("region", { name: "생성한 문항 검토" }),
+    )
+      .getAllByRole("listitem")
+      .map((item) => item.textContent);
+    fireEvent.click(screen.getByRole("button", { name: "3 양식 구성·출력" }));
+    const template = await screen.findByLabelText("공통 양식");
+    fireEvent.change(template, { target: { value: "modern" } });
+    expect(screen.getByLabelText("공통 정답 방식")).toHaveTextContent("답만");
+    fireEvent.click(screen.getByRole("button", { name: "2 문항 검토" }));
+    expect(
+      within(screen.getByRole("region", { name: "생성한 문항 검토" }))
+        .getAllByRole("listitem")
+        .map((item) => item.textContent),
+    ).toEqual(before);
+    fireEvent.click(screen.getByRole("button", { name: "1 범위 설정" }));
+    fireEvent.click(screen.getByRole("button", { name: "3 양식 구성·출력" }));
+    expect(await screen.findByLabelText("공통 양식")).toHaveValue("modern");
+    expect(fetch).not.toHaveBeenCalled();
   });
 });

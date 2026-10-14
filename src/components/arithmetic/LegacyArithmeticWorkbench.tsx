@@ -1,9 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { createPortal } from "react-dom";
-import { PaperStrip } from "@/components/paper-strip/PaperStrip";
-import WorkspacePageHeader from "@/components/unified/WorkspacePageHeader";
 import {
   PrivateCloudClient,
   cloudError,
@@ -26,12 +23,7 @@ import { arithmeticFeatureLabels } from "@/lib/arithmeticPresentation";
 import { arithmeticUsageTypeKey } from "@/lib/usageLabels/typeKey";
 import { useUsageLabels } from "@/components/usage-labels/useUsageLabels";
 import UsageLabel from "@/components/usage-labels/UsageLabel";
-import {
-  ArithmeticExpression,
-  arithmeticPaperPages,
-  type ArithmeticDensity,
-  type ArithmeticPaperMode,
-} from "./ArithmeticPaper";
+import { ArithmeticExpression } from "./ArithmeticPaper";
 import { listArithmeticPresets } from "@/lib/arithmeticPresets";
 import {
   coreAllocation,
@@ -39,6 +31,14 @@ import {
   restoreWorkbenchAllocations,
   type WorkbenchAllocation,
 } from "./workbenchState";
+import { ArithmeticWorkflow, type ArithmeticStep } from "./ArithmeticWorkflow";
+import { ArithmeticRandomSelection } from "./ArithmeticRandomSelection";
+import {
+  availableArithmeticTypes,
+  randomArithmeticTypes,
+} from "./typeSelection";
+import { useArithmeticTypeSelection } from "./useArithmeticTypeSelection";
+import { arithmeticReviewRounds } from "@/lib/arithmeticOutput";
 import s from "./ArithmeticWorkbench.module.css";
 
 const catalog = listArithmeticSkills();
@@ -58,16 +58,17 @@ const message = (error: unknown) =>
 export default function LegacyArithmeticWorkbench({
   storageScope,
   initialDocumentId,
+  initialStep = "review",
   canOutput,
   academyName,
   preview = false,
-  hideHeader = false,
   onDirtyChange,
   onDocumentChange,
   onBusyChange,
 }: {
   storageScope?: string;
   initialDocumentId?: string;
+  initialStep?: ArithmeticStep;
   canOutput: boolean;
   academyName?: string;
   preview?: boolean;
@@ -114,9 +115,7 @@ export default function LegacyArithmeticWorkbench({
     writer: boolean;
   }>({ ready: preview, writer: false });
   const [retry, setRetry] = useState(0);
-  const [mode, setMode] = useState<ArithmeticPaperMode>("questions");
-  const [density, setDensity] = useState<ArithmeticDensity>(24);
-  const [printing, setPrinting] = useState(false);
+  const [step, setStep] = useState<ArithmeticStep>("scope");
   const client = useMemo(
     () => (storageScope ? new PrivateCloudClient(storageScope) : null),
     [storageScope],
@@ -141,19 +140,47 @@ export default function LegacyArithmeticWorkbench({
         item.count > 0 &&
         item.count <= (capacity(item) ?? 0),
     );
-  const pages = useMemo(
-    () =>
-      sheet
-        ? arithmeticPaperPages({
-            sheet,
-            title: title.trim() || "연산 연습",
-            academyName,
-            mode,
-            density,
-          })
-        : [],
-    [sheet, title, academyName, mode, density],
-  );
+  const selectedTypes = allocations.map((item) => ({
+    id: item.presetId ?? item.id,
+    count: item.count,
+  }));
+  const available = availableArithmeticTypes(filtered, selectedTypes, rounds);
+  const availableIds = new Set(available.map((item) => item.id));
+  const cardSelection = useArithmeticTypeSelection((id, selected) => {
+    if (busy) return;
+    if (selected) setActive(id);
+    setAllocations((current) => {
+      if (!selected) return current.filter((item) => item.presetId !== id);
+      const preset = presets.find((item) => item.id === id);
+      if (
+        !preset ||
+        !availableArithmeticTypes(
+          [preset],
+          current.map((item) => ({
+            id: item.presetId ?? item.id,
+            count: item.count,
+          })),
+          rounds,
+        ).length
+      )
+        return current;
+      return [...current, presetAllocation(id, id)];
+    });
+  });
+  function randomSelect(count: number) {
+    setAllocations((current) => [
+      ...current,
+      ...randomArithmeticTypes(
+        filtered,
+        current.map((item) => ({
+          id: item.presetId ?? item.id,
+          count: item.count,
+        })),
+        rounds,
+        count,
+      ).map((item) => presetAllocation(item.id, item.id)),
+    ]);
+  }
   useEffect(() => {
     onDirtyChange?.(dirty);
   }, [dirty, onDirtyChange]);
@@ -220,6 +247,9 @@ export default function LegacyArithmeticWorkbench({
         setActive(restored[0].id);
         setRounds(payload.rounds.length);
         setSheet(payload);
+        setStep(
+          initialStep === "output" && !canOutput ? "review" : initialStep,
+        );
         setTitle(document.title);
         setSaved({
           id: document.id,
@@ -230,7 +260,7 @@ export default function LegacyArithmeticWorkbench({
           }),
         });
         setNotice(
-          "저장된 연산식과 정답을 그대로 열었습니다. 다시 만들기에는 1회차의 유형 구성을 사용합니다.",
+          "저장된 연산식과 정답을 그대로 열었습니다. 문항 검토에서 회차별 구성을 유지해 숫자를 바꿀 수 있습니다.",
         );
       })
       .catch((cause: unknown) => {
@@ -245,38 +275,21 @@ export default function LegacyArithmeticWorkbench({
     return () => {
       cancelled = true;
     };
-  }, [client, initialDocumentId]);
-  useEffect(() => {
-    if (!printing) return;
-    let cancelled = false;
-    document.body.setAttribute("data-arithmetic-print", "true");
-    void document.fonts.ready
-      .then(
-        () =>
-          new Promise<void>((resolve) =>
-            requestAnimationFrame(() => resolve()),
-          ),
-      )
-      .then(() => {
-        if (!cancelled) window.print();
-      })
-      .catch((cause: unknown) => setError(message(cause)))
-      .finally(() => {
-        if (!cancelled) setPrinting(false);
-      });
-    return () => {
-      cancelled = true;
-      document.body.removeAttribute("data-arithmetic-print");
-    };
-  }, [printing]);
+  }, [client, initialDocumentId, initialStep, canOutput]);
 
   function update(item: WorkbenchAllocation) {
     setAllocations((current) =>
       current.map((value) => (value.id === item.id ? item : value)),
     );
   }
-  async function generate() {
-    if (!valid || !catalogState.ready || inFlight.current) return;
+  async function generate(fromReview = false) {
+    if (
+      (!fromReview && !valid) ||
+      (fromReview && !sheet) ||
+      !catalogState.ready ||
+      inFlight.current
+    )
+      return;
     inFlight.current = true;
     setBusy(true);
     setError("");
@@ -286,9 +299,12 @@ export default function LegacyArithmeticWorkbench({
         engineVersion: ARITHMETIC_ENGINE_VERSION,
         catalogVersion: ARITHMETIC_CATALOG_VERSION,
         seed: crypto.randomUUID(),
-        rounds: Array.from({ length: rounds }, () => ({
-          skills: allocations.map(coreAllocation),
-        })),
+        rounds:
+          fromReview && sheet
+            ? arithmeticReviewRounds(sheet)
+            : Array.from({ length: rounds }, () => ({
+                skills: allocations.map(coreAllocation),
+              })),
       });
       let payload: ArithmeticSheetPayload;
       if (preview) payload = buildArithmeticSheet(request);
@@ -305,8 +321,9 @@ export default function LegacyArithmeticWorkbench({
         payload = reopenArithmeticSheet(body.data);
       }
       setSheet(payload);
+      setStep("review");
       setNotice(
-        `${total}문항을 생성하고 정답을 확인했습니다. 저장 전에는 현재 화면에만 보관됩니다.`,
+        `${payload.rounds.reduce((sum, round) => sum + round.items.length, 0)}문항을 생성하고 정답을 확인했습니다. 저장 전에는 현재 화면에만 보관됩니다.`,
       );
     } catch (cause) {
       setError(message(cause));
@@ -349,36 +366,6 @@ export default function LegacyArithmeticWorkbench({
   }
   return (
     <section className={s.root} aria-label="연산대장">
-      {!hideHeader && (
-        <WorkspacePageHeader
-          title="연산대장"
-          description="자연수 기초 연산의 유형을 고르고 조건과 문항 수를 정하세요."
-        />
-      )}
-      <div className={s.actions}>
-        <button
-          disabled={busy}
-          onClick={() => {
-            if (
-              dirty &&
-              !window.confirm(
-                "저장하지 않은 연습지가 있습니다. 새 연습지를 시작할까요?",
-              )
-            )
-              return;
-            setSheet(undefined);
-            setSaved(undefined);
-            pendingId.current = null;
-            loadedId.current = undefined;
-            setTitle("연산 기초 다지기 1회");
-            setError("");
-            setNotice("");
-            onDocumentChange?.(undefined);
-          }}
-        >
-          새 연습지
-        </button>
-      </div>
       {preview && (
         <p className={s.notice}>
           화면 확인용입니다. 생성과 인쇄 미리보기를 사용할 수 있으며 계정에는
@@ -405,403 +392,373 @@ export default function LegacyArithmeticWorkbench({
           {notice}
         </p>
       )}
-      <div className={s.layout}>
-        <div>
-          <div className={s.catalogFilters}>
-            <label>
-              연산 종류
-              <select
-                value={group}
-                onChange={(event) => {
-                  setGroup(event.target.value);
-                  setPage(1);
-                }}
-              >
-                {groups.map((value) => (
-                  <option key={value}>{value}</option>
-                ))}
-              </select>
-            </label>
-            <label>
-              유형 찾기
-              <input
-                type="search"
-                value={query}
-                placeholder="예: 2단, 받아올림"
-                onChange={(event) => {
-                  setQuery(event.target.value);
-                  setPage(1);
-                }}
-              />
-            </label>
-          </div>
-          <p className={s.catalogCount}>
-            {filtered.length}개 유형 · 자연수 기초 연산
-          </p>
-          <p className={s.catalogCount}>
-            같은 조건으로 반복 생성할 수 있습니다. 가능한 식을 모두 담으면
-            순서만 바뀔 수 있고, 식이 하나뿐이면 그대로입니다.
-          </p>
-          {!preview && (
-            <p className={s.catalogCount}>
-              {usage.unavailable
-                ? "사용 기록을 불러오지 못했습니다."
-                : "내 학습지 사용 · 최근 30일 · 같은 연산 종류 안의 순위"}{" "}
-              원본 학습지 5장 이상·사용 유형 2개 이상일 때 순위를 표시합니다.
-            </p>
-          )}
-          <div className={s.catalog} aria-label="연산 유형">
-            {visible.map((preset) => {
-              const item = allocations.find(
-                (value) => value.presetId === preset.id,
-              );
-              return (
-                <button
-                  type="button"
-                  className={s.card}
-                  aria-pressed={Boolean(item)}
-                  key={preset.id}
-                  disabled={busy}
-                  onClick={() => {
-                    if (item) setActive(item.id);
-                    else {
-                      const next = presetAllocation(
-                        preset.id,
-                        crypto.randomUUID(),
-                      );
-                      setAllocations((current) => [...current, next]);
-                      setActive(next.id);
-                    }
+      <ArithmeticWorkflow
+        step={step}
+        setStep={setStep}
+        sheet={sheet}
+        title={title}
+        setTitle={setTitle}
+        academyName={academyName}
+        busy={busy}
+        canOutput={canOutput}
+        canSave={Boolean(client && catalogState.writer)}
+        canRegenerate={catalogState.ready}
+        dirty={dirty}
+        onSave={() => void save()}
+        onRegenerate={() => void generate(true)}
+        actions={
+          <button
+            disabled={busy}
+            onClick={() => {
+              if (
+                dirty &&
+                !window.confirm(
+                  "저장하지 않은 연습지가 있습니다. 새 연습지를 시작할까요?",
+                )
+              )
+                return;
+              setSheet(undefined);
+              setStep("scope");
+              setSaved(undefined);
+              pendingId.current = null;
+              loadedId.current = undefined;
+              setTitle("연산 기초 다지기 1회");
+              setError("");
+              setNotice("");
+              onDocumentChange?.(undefined);
+            }}
+          >
+            새 연습지
+          </button>
+        }
+      >
+        <div className={s.layout}>
+          <div>
+            <div className={s.catalogFilters}>
+              <label>
+                연산 종류
+                <select
+                  value={group}
+                  onChange={(event) => {
+                    setGroup(event.target.value);
+                    setPage(1);
                   }}
                 >
-                  <span className={s.cardTop}>
-                    <strong>{preset.title}</strong>
-                    {item && <span>✓ {item.count}문항</span>}
-                  </span>
-                  <UsageLabel
-                    item={usage.arithmeticTypes.get(
-                      arithmeticUsageTypeKey(preset.selection),
-                    )}
-                    kind="arithmetic"
-                    note={usage.note}
-                  />
-                  <span className={s.labels}>
-                    {arithmeticFeatureLabels(preset.selection).map((label) => (
-                      <span key={label}>{label}</span>
-                    ))}
-                  </span>
-                  <span className={s.example}>
-                    <ArithmeticExpression prompt={preset.example} />
-                  </span>
-                  <span className={s.capacity}>
-                    중복 없이 {preset.domainSize.toLocaleString()}문항
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-          {!filtered.length && (
-            <p role="status">조건에 맞는 유형이 없습니다.</p>
-          )}
-          <div className={s.pagination} aria-label="연산 유형 페이지">
-            <button
-              disabled={page === 1}
-              onClick={() => setPage((value) => value - 1)}
-            >
-              이전
-            </button>
-            <span>
-              {page} / {pageCount}
-            </span>
-            <button
-              disabled={page === pageCount}
-              onClick={() => setPage((value) => value + 1)}
-            >
-              다음
-            </button>
-          </div>
-        </div>
-        <div className={s.settings}>
-          <label>
-            학습지 제목
-            <input
-              maxLength={200}
-              value={title}
+                  {groups.map((value) => (
+                    <option key={value}>{value}</option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                유형 찾기
+                <input
+                  type="search"
+                  value={query}
+                  placeholder="예: 2단, 받아올림"
+                  onChange={(event) => {
+                    setQuery(event.target.value);
+                    setPage(1);
+                  }}
+                />
+              </label>
+            </div>
+            <p className={s.catalogCount}>
+              {filtered.length}개 유형 · 자연수 기초 연산
+            </p>
+            <p className={s.catalogCount}>
+              같은 조건으로 반복 생성할 수 있습니다. 가능한 식을 모두 담으면
+              순서만 바뀔 수 있고, 식이 하나뿐이면 그대로입니다.
+            </p>
+            {!preview && (
+              <p className={s.catalogCount}>
+                {usage.unavailable
+                  ? "사용 기록을 불러오지 못했습니다."
+                  : "내 학습지 사용 · 최근 30일 · 같은 연산 종류 안의 순위"}{" "}
+                원본 학습지 5장 이상·사용 유형 2개 이상일 때 순위를 표시합니다.
+              </p>
+            )}
+            <ArithmeticRandomSelection
+              available={available.length}
               disabled={busy}
-              onChange={(event) => setTitle(event.target.value)}
+              onSelect={randomSelect}
             />
-          </label>
-          <h2>
-            담은 유형 <small>{allocations.length}개</small>
-          </h2>
-          {allocations.map((item) => (
-            <div className={s.allocation} key={item.id}>
+            <div className={s.catalog} aria-label="연산 유형">
+              {visible.map((preset) => {
+                const item = allocations.find(
+                  (value) => value.presetId === preset.id,
+                );
+                return (
+                  <button
+                    type="button"
+                    className={s.card}
+                    key={preset.id}
+                    {...cardSelection(
+                      preset.id,
+                      Boolean(item),
+                      busy || (!item && !availableIds.has(preset.id)),
+                    )}
+                  >
+                    <span className={s.cardTop}>
+                      <strong>{preset.title}</strong>
+                      {item && <span>✓ {item.count}문항</span>}
+                    </span>
+                    <UsageLabel
+                      item={usage.arithmeticTypes.get(
+                        arithmeticUsageTypeKey(preset.selection),
+                      )}
+                      kind="arithmetic"
+                      note={usage.note}
+                    />
+                    <span className={s.labels}>
+                      {arithmeticFeatureLabels(preset.selection).map(
+                        (label) => (
+                          <span key={label}>{label}</span>
+                        ),
+                      )}
+                    </span>
+                    <span className={s.example}>
+                      <ArithmeticExpression prompt={preset.example} />
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+            {!filtered.length && (
+              <p role="status">조건에 맞는 유형이 없습니다.</p>
+            )}
+            <div className={s.pagination} aria-label="연산 유형 페이지">
               <button
-                type="button"
-                aria-pressed={active === item.id}
-                disabled={busy}
-                onClick={() => setActive(item.id)}
+                disabled={page === 1}
+                onClick={() => setPage((value) => value - 1)}
               >
-                {item.title}
+                이전
               </button>
+              <span>
+                {page} / {pageCount}
+              </span>
+              <button
+                disabled={page === pageCount}
+                onClick={() => setPage((value) => value + 1)}
+              >
+                다음
+              </button>
+            </div>
+          </div>
+          <div className={s.settings}>
+            <label>
+              학습지 제목
+              <input
+                maxLength={200}
+                value={title}
+                disabled={busy}
+                onChange={(event) => setTitle(event.target.value)}
+              />
+            </label>
+            <h2>
+              담은 유형 <small>{allocations.length}개</small>
+            </h2>
+            {allocations.map((item) => (
+              <div className={s.allocation} key={item.id}>
+                <button
+                  type="button"
+                  aria-pressed={active === item.id}
+                  disabled={busy}
+                  onClick={() => setActive(item.id)}
+                >
+                  {item.title}
+                </button>
+                <input
+                  type="number"
+                  min={1}
+                  max={100}
+                  value={item.count}
+                  disabled={busy}
+                  aria-label={`${item.title} 문항 수`}
+                  onChange={(event) =>
+                    update({ ...item, count: Number(event.target.value) })
+                  }
+                />
+                <button
+                  type="button"
+                  disabled={busy}
+                  aria-label={`${item.title} 빼기`}
+                  onClick={() =>
+                    setAllocations((current) =>
+                      current.filter((value) => value.id !== item.id),
+                    )
+                  }
+                >
+                  빼기
+                </button>
+              </div>
+            ))}
+            {selection && (
+              <fieldset disabled={busy} className={s.constraints}>
+                <legend>{selection.title} 조건</legend>
+                {Object.entries(selection.constraints).map(([key, value]) => {
+                  const labels: Record<string, string> = {
+                    carry: "받아올림",
+                    carryCount: "받아올림 횟수",
+                    borrowCount: "받아내림 횟수",
+                    left: "첫째 수",
+                    right: "둘째 수",
+                    minuend: "피감수",
+                    subtrahend: "감수",
+                    multiplier: "곱하는 수",
+                    multiplicand: "곱해지는 수",
+                    dividend: "나누어지는 수",
+                    divisor: "나누는 수",
+                    dans: "연습할 단",
+                  };
+                  const change = (next: unknown) =>
+                    update({
+                      ...selection,
+                      presetId: undefined,
+                      title: `${catalog.find((skill) => skill.skillId === selection.skillId)?.label} · 직접 설정`,
+                      constraints: { ...selection.constraints, [key]: next },
+                    } as WorkbenchAllocation);
+                  if (key === "carry")
+                    return (
+                      <label key={key}>
+                        {labels[key]}
+                        <select
+                          value={String(value)}
+                          onChange={(event) => change(event.target.value)}
+                        >
+                          <option value="none">없음</option>
+                          <option value="some">있음</option>
+                        </select>
+                      </label>
+                    );
+                  if (typeof value === "number")
+                    return (
+                      <label key={key}>
+                        {labels[key]}
+                        <select
+                          value={value}
+                          onChange={(event) =>
+                            change(Number(event.target.value))
+                          }
+                        >
+                          {(key === "borrowCount" ? [0, 1] : [0, 1, 2]).map(
+                            (number) => (
+                              <option key={number} value={number}>
+                                {number === 0 ? "없음" : `${number}회`}
+                              </option>
+                            ),
+                          )}
+                        </select>
+                      </label>
+                    );
+                  if (Array.isArray(value))
+                    return (
+                      <div key={key}>
+                        <span>{labels[key]}</span>
+                        <div className={s.dans}>
+                          {Array.from({ length: 9 }, (_, i) => i + 1).map(
+                            (dan) => (
+                              <label key={dan}>
+                                <input
+                                  type="checkbox"
+                                  checked={value.includes(dan)}
+                                  onChange={() =>
+                                    change(
+                                      value.includes(dan)
+                                        ? value.filter(
+                                            (number) => number !== dan,
+                                          )
+                                        : [...value, dan].sort((a, b) => a - b),
+                                    )
+                                  }
+                                />
+                                {dan}단
+                              </label>
+                            ),
+                          )}
+                        </div>
+                      </div>
+                    );
+                  if (
+                    typeof value === "object" &&
+                    value !== null &&
+                    "min" in value
+                  )
+                    return (
+                      <div key={key}>
+                        <span>{labels[key]} 범위</span>
+                        <div className={s.range}>
+                          <input
+                            aria-label={`${labels[key]} 최솟값`}
+                            type="number"
+                            value={value.min}
+                            onChange={(event) =>
+                              change({
+                                ...value,
+                                min: Number(event.target.value),
+                              })
+                            }
+                          />
+                          <span>~</span>
+                          <input
+                            aria-label={`${labels[key]} 최댓값`}
+                            type="number"
+                            value={value.max}
+                            onChange={(event) =>
+                              change({
+                                ...value,
+                                max: Number(event.target.value),
+                              })
+                            }
+                          />
+                        </div>
+                      </div>
+                    );
+                  return null;
+                })}
+                {capacity(selection) === null && (
+                  <p>지원 범위에 맞게 조건을 확인해 주세요.</p>
+                )}
+              </fieldset>
+            )}
+            <p className={s.catalogCount}>
+              한 회차 안에서는 같은 식을 제외합니다. 회차 사이에는 같은 식이
+              다시 나올 수 있습니다.
+            </p>
+            <label>
+              회차
               <input
                 type="number"
                 min={1}
-                max={100}
-                value={item.count}
+                max={20}
+                value={rounds}
                 disabled={busy}
-                aria-label={`${item.title} 문항 수`}
-                onChange={(event) =>
-                  update({ ...item, count: Number(event.target.value) })
-                }
+                onChange={(event) => setRounds(Number(event.target.value))}
               />
-              <button
-                type="button"
-                disabled={busy}
-                aria-label={`${item.title} 빼기`}
-                onClick={() =>
-                  setAllocations((current) =>
-                    current.filter((value) => value.id !== item.id),
-                  )
-                }
-              >
-                빼기
-              </button>
-            </div>
-          ))}
-          {selection && (
-            <fieldset disabled={busy} className={s.constraints}>
-              <legend>{selection.title} 조건</legend>
-              {Object.entries(selection.constraints).map(([key, value]) => {
-                const labels: Record<string, string> = {
-                  carry: "받아올림",
-                  carryCount: "받아올림 횟수",
-                  borrowCount: "받아내림 횟수",
-                  left: "첫째 수",
-                  right: "둘째 수",
-                  minuend: "피감수",
-                  subtrahend: "감수",
-                  multiplier: "곱하는 수",
-                  multiplicand: "곱해지는 수",
-                  dividend: "나누어지는 수",
-                  divisor: "나누는 수",
-                  dans: "연습할 단",
-                };
-                const change = (next: unknown) =>
-                  update({
-                    ...selection,
-                    presetId: undefined,
-                    title: `${catalog.find((skill) => skill.skillId === selection.skillId)?.label} · 직접 설정`,
-                    constraints: { ...selection.constraints, [key]: next },
-                  } as WorkbenchAllocation);
-                if (key === "carry")
-                  return (
-                    <label key={key}>
-                      {labels[key]}
-                      <select
-                        value={String(value)}
-                        onChange={(event) => change(event.target.value)}
-                      >
-                        <option value="none">없음</option>
-                        <option value="some">있음</option>
-                      </select>
-                    </label>
-                  );
-                if (typeof value === "number")
-                  return (
-                    <label key={key}>
-                      {labels[key]}
-                      <select
-                        value={value}
-                        onChange={(event) => change(Number(event.target.value))}
-                      >
-                        {(key === "borrowCount" ? [0, 1] : [0, 1, 2]).map(
-                          (number) => (
-                            <option key={number} value={number}>
-                              {number === 0 ? "없음" : `${number}회`}
-                            </option>
-                          ),
-                        )}
-                      </select>
-                    </label>
-                  );
-                if (Array.isArray(value))
-                  return (
-                    <div key={key}>
-                      <span>{labels[key]}</span>
-                      <div className={s.dans}>
-                        {Array.from({ length: 9 }, (_, i) => i + 1).map(
-                          (dan) => (
-                            <label key={dan}>
-                              <input
-                                type="checkbox"
-                                checked={value.includes(dan)}
-                                onChange={() =>
-                                  change(
-                                    value.includes(dan)
-                                      ? value.filter((number) => number !== dan)
-                                      : [...value, dan].sort((a, b) => a - b),
-                                  )
-                                }
-                              />
-                              {dan}단
-                            </label>
-                          ),
-                        )}
-                      </div>
-                    </div>
-                  );
-                if (
-                  typeof value === "object" &&
-                  value !== null &&
-                  "min" in value
-                )
-                  return (
-                    <div key={key}>
-                      <span>{labels[key]} 범위</span>
-                      <div className={s.range}>
-                        <input
-                          aria-label={`${labels[key]} 최솟값`}
-                          type="number"
-                          value={value.min}
-                          onChange={(event) =>
-                            change({
-                              ...value,
-                              min: Number(event.target.value),
-                            })
-                          }
-                        />
-                        <span>~</span>
-                        <input
-                          aria-label={`${labels[key]} 최댓값`}
-                          type="number"
-                          value={value.max}
-                          onChange={(event) =>
-                            change({
-                              ...value,
-                              max: Number(event.target.value),
-                            })
-                          }
-                        />
-                      </div>
-                    </div>
-                  );
-                return null;
-              })}
-              <p>
-                {capacity(selection) === null
-                  ? "지원 범위에 맞게 조건을 확인해 주세요."
-                  : `이 조건에서 중복 없이 ${capacity(selection)?.toLocaleString()}문항 생성 가능`}
-              </p>
-            </fieldset>
-          )}
-          <p className={s.catalogCount}>
-            한 회차 안에서는 같은 식을 제외합니다. 회차 사이에는 같은 식이 다시
-            나올 수 있습니다.
-          </p>
-          <label>
-            회차
-            <input
-              type="number"
-              min={1}
-              max={20}
-              value={rounds}
-              disabled={busy}
-              onChange={(event) => setRounds(Number(event.target.value))}
-            />
-          </label>
-          <p className={s.total}>
-            회차당 {totalPerRound}문항 · 총 {total}문항{" "}
-            <small>한 번에 총 100문항까지</small>
-          </p>
-          {!valid && (
-            <p className={s.error}>
-              문항 수·회차·생성 가능 수를 확인해 주세요.
+            </label>
+            <p className={s.total}>
+              회차당 {totalPerRound}문항 · 총 {total}문항{" "}
+              <small>한 번에 총 100문항까지</small>
             </p>
-          )}
-          <button
-            className={s.primary}
-            type="button"
-            disabled={busy || !valid || !catalogState.ready}
-            onClick={() => void generate()}
-          >
-            {busy
-              ? "작업 중…"
-              : sheet
-                ? "같은 조건으로 다시 만들기"
-                : "연습지 만들기"}
-          </button>
-        </div>
-      </div>
-      {sheet && (
-        <section className={s.output} aria-label="생성한 연산 연습지">
-          <div className={s.outputBar}>
-            <h2>
-              지면 확인 <small>{dirty ? "저장 전" : "저장됨"}</small>
-            </h2>
-            <label>
-              출력 구성
-              <select
-                value={mode}
-                onChange={(event) =>
-                  setMode(event.target.value as ArithmeticPaperMode)
-                }
-              >
-                <option value="questions">문제지만</option>
-                <option value="answers">정답지만</option>
-                <option value="both">문제지 + 정답지</option>
-              </select>
-            </label>
-            <label>
-              쪽당 문항
-              <select
-                value={density}
-                onChange={(event) =>
-                  setDensity(Number(event.target.value) as ArithmeticDensity)
-                }
-              >
-                <option value={12}>12개 · 크게</option>
-                <option value={24}>24개 · 기본</option>
-                <option value={40}>40개 · 조밀</option>
-              </select>
-            </label>
-            <button
-              disabled={
-                busy || !client || !catalogState.writer || !title.trim()
-              }
-              onClick={() => void save()}
-            >
-              내 시험지에 저장
-            </button>
+            {!valid && (
+              <p className={s.error}>
+                문항 수·회차·생성 가능 수를 확인해 주세요.
+              </p>
+            )}
             <button
               className={s.primary}
-              disabled={busy || !canOutput || printing}
-              onClick={() => setPrinting(true)}
+              type="button"
+              disabled={busy || !valid || !catalogState.ready}
+              onClick={() => void generate()}
             >
-              인쇄 / PDF
+              {busy
+                ? "작업 중…"
+                : sheet
+                  ? "설정한 범위로 문항 만들기"
+                  : "연습지 만들기"}
             </button>
           </div>
-          {!preview && !catalogState.writer && (
-            <p className={s.notice}>
-              연습지 저장은 준비 중입니다.
-              {canOutput
-                ? " 생성한 문제지와 정답지는 출력할 수 있습니다."
-                : " 출력하려면 출력 메뉴 권한이 필요합니다."}
-            </p>
-          )}
-          <PaperStrip
-            pages={pages}
-            hint="문제지와 답만 있는 정답지입니다. 쪽을 누르면 크게 볼 수 있습니다."
-          />
-        </section>
-      )}
-      {printing &&
-        createPortal(
-          <div className={s.printRoot} data-arithmetic-print-root>
-            {pages.map((page) => page.node)}
-          </div>,
-          document.body,
-        )}
+        </div>
+      </ArithmeticWorkflow>
     </section>
   );
 }
