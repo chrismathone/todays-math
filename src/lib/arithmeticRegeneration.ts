@@ -24,6 +24,7 @@ import { verifyArithmeticSpec } from "@/lib/arithmetic/verify";
 import { ArithmeticV2EngineError } from "@/lib/arithmetic-v2/errors";
 import { getArithmeticV2Definition } from "@/lib/arithmetic-v2/registry";
 import { reopenArithmeticV2Sheet } from "@/lib/arithmetic-v2/reopen";
+import { arithmeticGeometrySnapshotForPrompts } from "@/lib/arithmetic-v2/geometry";
 
 /** Orders are saved, one-based item.order values, never review display indexes. */
 export type ArithmeticRegenerationTarget = { round: number; orders: number[] };
@@ -304,6 +305,16 @@ export function regenerateArithmeticV2Items(
       };
     },
   );
+  if (result.changedOrders.length && result.sheet.figures?.version === 2) {
+    result.sheet = {
+      ...result.sheet,
+      figures: arithmeticGeometrySnapshotForPrompts(
+        result.sheet.rounds.flatMap((round) =>
+          round.items.map((item) => item.prompt),
+        ),
+      ),
+    };
+  }
   reopenArithmeticV2Sheet(result.sheet);
   return result;
 }

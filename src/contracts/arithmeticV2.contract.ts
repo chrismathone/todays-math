@@ -1,9 +1,12 @@
 import { z } from "zod";
 import { arithmeticPresentationSchema } from "./arithmeticPresentation.contract";
 import {
-  arithmeticAngleAssetIds,
+  arithmeticGeometryAssetIds,
   isArithmeticAngleSnapshot,
+  isArithmeticGeometrySubsetSnapshot,
+  arithmeticGeometrySnapshotContains,
 } from "@/lib/arithmetic-v2/geometry";
+import { ARITHMETIC_GEOMETRY_PACK_MAX_LENGTH } from "@/lib/arithmetic-v2/geometryPack";
 import {
   ARITHMETIC_MAX_ITEMS_PER_ROUND,
   ARITHMETIC_MAX_ITEMS_TOTAL,
@@ -52,11 +55,15 @@ export const arithmeticV2PromptSchema = z.discriminatedUnion("layout", [
     text: display,
     latex: display,
     instruction: display.optional(),
-    answerUnit: display.optional(),
+    answerUnit: z
+      .string()
+      .max(32)
+      .regex(/^[^<>\x00-\x1f]*$/)
+      .optional(),
     figureId: z
       .string()
       .max(64)
-      .refine((id) => arithmeticAngleAssetIds.has(id))
+      .refine((id) => arithmeticGeometryAssetIds.has(id))
       .optional(),
   }),
 ]);
@@ -181,11 +188,27 @@ export const arithmeticV2SheetPayloadSchema = z
     seed: arithmeticSeedSchema,
     presentation: arithmeticPresentationSchema.optional(),
     figures: z
-      .strictObject({
-        version: z.literal(1),
-        svgPack: z.string().max(80000),
-      })
-      .refine(isArithmeticAngleSnapshot, "arithmetic:figure-mismatch")
+      .union([
+        z
+          .strictObject({
+            version: z.literal(1),
+            svgPack: z.string().max(80000),
+          })
+          .refine(isArithmeticAngleSnapshot, "arithmetic:figure-mismatch"),
+        z
+          .strictObject({
+            version: z.literal(2),
+            ids: z
+              .array(z.string().max(64))
+              .min(1)
+              .max(ARITHMETIC_MAX_ITEMS_TOTAL),
+            svgPack: z.string().max(ARITHMETIC_GEOMETRY_PACK_MAX_LENGTH),
+          })
+          .refine(
+            isArithmeticGeometrySubsetSnapshot,
+            "arithmetic:figure-mismatch",
+          ),
+      ])
       .optional(),
     rounds: z
       .array(
@@ -217,7 +240,11 @@ export const arithmeticV2SheetPayloadSchema = z
         if (
           item.prompt.layout === "math" &&
           item.prompt.figureId &&
-          !sheet.figures
+          (!sheet.figures ||
+            !arithmeticGeometrySnapshotContains(
+              sheet.figures,
+              item.prompt.figureId,
+            ))
         )
           ctx.addIssue({
             code: "custom",

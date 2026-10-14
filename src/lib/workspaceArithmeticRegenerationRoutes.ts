@@ -5,6 +5,7 @@ import { privateError, privateHeaders } from "@/lib/privateWorkspace";
 import { readStrictJson } from "@/lib/textbook/strictJson";
 import type { ArithmeticSheetPayload } from "@/contracts/arithmeticSheet.contract";
 import type { ArithmeticV2SheetPayload } from "@/contracts/arithmeticV2.contract";
+import { ARITHMETIC_GEOMETRY_PACK_MAX_LENGTH } from "@/lib/arithmetic-v2/geometryPack";
 import {
   arithmeticRegenerationRequestSchema,
   regenerateArithmeticItems,
@@ -23,8 +24,9 @@ async function regenerate(request: Request, version: 1 | 2) {
       maxBytes: 256 * 1024,
       maxDepth: 16,
       maxTokens: 40_000,
-      // Geometry snapshots include one immutable compressed SVG pack (~35 KiB).
-      maxStringLength: version === 2 ? 64 * 1024 : 4096,
+      // Geometry snapshots include one bounded, checked compressed SVG pack.
+      maxStringLength:
+        version === 2 ? ARITHMETIC_GEOMETRY_PACK_MAX_LENGTH : 4096,
     });
   } catch {
     return privateError("숫자 변경 요청의 형식과 크기를 확인해 주세요.", 400);

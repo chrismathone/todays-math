@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element -- immutable, local SVG data URI */
 import type { ArithmeticV2Prompt } from "@/lib/arithmetic-v2/types";
 import {
-  arithmeticAngleSnapshot,
-  arithmeticAngleSvg,
+  arithmeticGeometryAnswerUnit,
+  arithmeticGeometryCatalogSvg,
 } from "@/lib/arithmetic-v2/geometry";
 import { GradeArithmeticExpression as NumericExpression } from "./GradeArithmeticPaper";
 import s from "./GradeArithmeticPrompt.module.css";
@@ -17,7 +17,7 @@ export function GradeArithmeticExpression({
 }) {
   if (prompt.layout !== "math" || !prompt.figureId)
     return <NumericExpression prompt={prompt} />;
-  const svg = arithmeticAngleSvg(prompt.figureId, arithmeticAngleSnapshot);
+  const svg = arithmeticGeometryCatalogSvg(prompt.figureId);
   return (
     <span className={s.prompt}>
       <span>{prompt.instruction}</span>
@@ -29,7 +29,8 @@ export function GradeArithmeticExpression({
         alt={prompt.text}
       />
       <span>
-        답: <span className={s.blank} aria-label="답란" /> °
+        답: <span className={s.blank} aria-label="답란" />{" "}
+        {arithmeticGeometryAnswerUnit(prompt)}
       </span>
     </span>
   );

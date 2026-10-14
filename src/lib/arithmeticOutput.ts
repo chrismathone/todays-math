@@ -6,7 +6,8 @@ import { listArithmeticSkills } from "@/lib/arithmetic/catalog";
 import { listArithmeticV2Types } from "@/lib/arithmetic-v2";
 import { arithmeticFeatureLabels } from "@/lib/arithmeticPresentation";
 import {
-  arithmeticAngleSvg,
+  arithmeticGeometrySvg,
+  arithmeticGeometryAnswerUnit,
   arithmeticAngleWidthMm,
 } from "@/lib/arithmetic-v2/geometry";
 
@@ -47,13 +48,18 @@ export function arithmeticToStudioProblems(
         const figureId =
           item.prompt.layout === "math" ? item.prompt.figureId : undefined;
         if (figureId && !sheet.figures)
-          throw new Error("저장된 각도 도형이 없습니다");
+          throw new Error("저장된 연산 도형이 없습니다");
         const svg = figureId
-          ? arithmeticAngleSvg(figureId, sheet.figures!)
+          ? arithmeticGeometrySvg(figureId, sheet.figures!)
           : undefined;
         const dimensions = svg
           ? /viewBox="([^"]+)"/.exec(svg)![1].split(/\s+/).map(Number).slice(2)
           : undefined;
+        const answerUnit = arithmeticGeometryAnswerUnit(item.prompt);
+        const answerBlank =
+          answerUnit === "°"
+            ? "$\\underline{\\hspace{2em}}^{\\circ}$"
+            : `$\\underline{\\hspace{2em}}$${answerUnit ? ` ${answerUnit}` : ""}`;
         const formula =
           item.prompt.layout === "vertical"
             ? vertical(
@@ -66,7 +72,7 @@ export function arithmeticToStudioProblems(
           ...base,
           id: `arithmetic-v2:${sheet.seed}:${round.round}:${item.order}`,
           content: svg
-            ? `${item.prompt.instruction}\n\n[그림1]\n\n답: $\\underline{\\hspace{2em}}^{\\circ}$`
+            ? `${item.prompt.instruction}\n\n[그림1]\n\n답: ${answerBlank}`
             : `${item.prompt.instruction ? `${item.prompt.instruction}\n\n` : ""}$$${formula}$$`,
           ...(svg
             ? {

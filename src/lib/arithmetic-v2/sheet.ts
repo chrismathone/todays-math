@@ -10,26 +10,23 @@ import {
   validateArithmeticV2Request,
 } from "./generate";
 import { reopenArithmeticV2Sheet } from "./reopen";
-import { arithmeticAngleSnapshot } from "./geometry";
+import { arithmeticGeometrySnapshotForPrompts } from "./geometry";
 
 export function buildArithmeticV2Sheet(
   input: unknown,
 ): ArithmeticV2SheetPayload {
   const request = validateArithmeticV2Request(input);
   const items = generateArithmeticV2Items(request);
+  const figures = arithmeticGeometrySnapshotForPrompts(
+    items.flatMap((round) => round.map((item) => item.prompt)),
+  );
   return reopenArithmeticV2Sheet({
     payloadVersion: ARITHMETIC_V2_PAYLOAD_VERSION,
     kind: "arithmeticSheet",
     engineVersion: ARITHMETIC_V2_ENGINE_VERSION,
     catalogVersion: ARITHMETIC_V2_CATALOG_VERSION,
     seed: request.seed,
-    ...(items.some((round) =>
-      round.some(
-        (item) => item.prompt.layout === "math" && item.prompt.figureId,
-      ),
-    )
-      ? { figures: arithmeticAngleSnapshot }
-      : {}),
+    ...(figures ? { figures } : {}),
     rounds: items.map((items, index) => ({ round: index + 1, items })),
   });
 }

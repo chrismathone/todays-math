@@ -4,6 +4,7 @@ import { MIDDLE_ARITHMETIC_DEFINITIONS } from "./families/middle";
 import { ALGEBRA_RADICAL_SUPPLEMENT_DEFINITIONS } from "./families/middle/algebraRadicalSupplement";
 import { NUMERIC_SUPPLEMENT_DEFINITIONS } from "./families/middle/numericSupplement";
 import { GEOMETRY_ARITHMETIC_DEFINITIONS } from "./families/geometry";
+import { EXTRA_GEOMETRY_DEFINITIONS } from "./extraGeometry";
 import { arithmeticV2TypeIdSchema } from "@/contracts/arithmeticV2.contract";
 import { ArithmeticV2EngineError } from "./errors";
 import type { ArithmeticV2Definition } from "./types";
@@ -15,6 +16,7 @@ const definitions: readonly ArithmeticV2Definition[] = [
   ...NUMERIC_SUPPLEMENT_DEFINITIONS,
   ...ALGEBRA_RADICAL_SUPPLEMENT_DEFINITIONS,
   ...GEOMETRY_ARITHMETIC_DEFINITIONS,
+  ...EXTRA_GEOMETRY_DEFINITIONS,
 ];
 const byId = new Map<string, ArithmeticV2Definition>();
 for (const definition of definitions) {
