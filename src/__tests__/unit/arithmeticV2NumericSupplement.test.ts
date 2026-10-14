@@ -220,8 +220,9 @@ describe("numeric supplements: exact finite domains and independent displayed or
         expect(definition.problemAt(index)).toEqual(candidate);
         if (candidate.prompt.layout !== "math")
           throw new Error("Non-math prompt");
+        const latex = candidate.prompt.latex;
         expect(() =>
-          katex.renderToString(candidate.prompt.latex, { throwOnError: true }),
+          katex.renderToString(latex, { throwOnError: true }),
         ).not.toThrow();
         expect(() =>
           katex.renderToString(candidate.answer.latex, { throwOnError: true }),
@@ -406,7 +407,9 @@ describe("rejects malformed candidates, zero divisors and tampered display", () 
           } as ArithmeticV2Candidate),
         ).toBe(false);
       for (const value of [null, undefined, {}, { parameters: [] }])
-        expect(definition.verify(value as ArithmeticV2Candidate)).toBe(false);
+        expect(
+          definition.verify(value as unknown as ArithmeticV2Candidate),
+        ).toBe(false);
     });
   }
 
