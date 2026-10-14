@@ -10,6 +10,7 @@ import {
   validateArithmeticV2Request,
 } from "./generate";
 import { reopenArithmeticV2Sheet } from "./reopen";
+import { arithmeticAngleSnapshot } from "./geometry";
 
 export function buildArithmeticV2Sheet(
   input: unknown,
@@ -22,6 +23,13 @@ export function buildArithmeticV2Sheet(
     engineVersion: ARITHMETIC_V2_ENGINE_VERSION,
     catalogVersion: ARITHMETIC_V2_CATALOG_VERSION,
     seed: request.seed,
+    ...(items.some((round) =>
+      round.some(
+        (item) => item.prompt.layout === "math" && item.prompt.figureId,
+      ),
+    )
+      ? { figures: arithmeticAngleSnapshot }
+      : {}),
     rounds: items.map((items, index) => ({ round: index + 1, items })),
   });
 }

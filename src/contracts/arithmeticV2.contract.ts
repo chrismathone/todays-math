@@ -1,6 +1,10 @@
 import { z } from "zod";
 import { arithmeticPresentationSchema } from "./arithmeticPresentation.contract";
 import {
+  arithmeticAngleAssetIds,
+  isArithmeticAngleSnapshot,
+} from "@/lib/arithmetic-v2/geometry";
+import {
   ARITHMETIC_MAX_ITEMS_PER_ROUND,
   ARITHMETIC_MAX_ITEMS_TOTAL,
   ARITHMETIC_MAX_ROUNDS,
@@ -48,11 +52,16 @@ export const arithmeticV2PromptSchema = z.discriminatedUnion("layout", [
     text: display,
     latex: display,
     instruction: display.optional(),
+    figureId: z
+      .string()
+      .max(64)
+      .refine((id) => arithmeticAngleAssetIds.has(id))
+      .optional(),
   }),
 ]);
 /** Same visible task across families; no collapsing of commuted operands. */
 export function arithmeticV2PromptIdentity(prompt: ArithmeticV2Prompt): string {
-  return JSON.stringify(
+  const identity =
     prompt.layout === "vertical"
       ? [
           prompt.layout,
@@ -65,8 +74,11 @@ export function arithmeticV2PromptIdentity(prompt: ArithmeticV2Prompt): string {
           prompt.layout,
           prompt.latex.replace(/\s+/g, ""),
           prompt.instruction ?? "",
-        ],
-  );
+        ];
+  // Preserve every existing non-geometry identity/seed while distinguishing figures.
+  if (prompt.layout === "math" && prompt.figureId)
+    identity.push(prompt.figureId);
+  return JSON.stringify(identity);
 }
 export const arithmeticV2AnswerSchema = z
   .strictObject({
@@ -167,6 +179,13 @@ export const arithmeticV2SheetPayloadSchema = z
     catalogVersion: z.literal(ARITHMETIC_V2_CATALOG_VERSION),
     seed: arithmeticSeedSchema,
     presentation: arithmeticPresentationSchema.optional(),
+    figures: z
+      .strictObject({
+        version: z.literal(1),
+        svgPack: z.string().max(80000),
+      })
+      .refine(isArithmeticAngleSnapshot, "arithmetic:figure-mismatch")
+      .optional(),
     rounds: z
       .array(
         z.strictObject({
@@ -194,6 +213,16 @@ export const arithmeticV2SheetPayloadSchema = z
       const prompts = new Set<string>();
       round.items.forEach((item, itemIndex) => {
         const path = ["rounds", roundIndex, "items", itemIndex];
+        if (
+          item.prompt.layout === "math" &&
+          item.prompt.figureId &&
+          !sheet.figures
+        )
+          ctx.addIssue({
+            code: "custom",
+            path,
+            message: "arithmetic:missing-figures",
+          });
         if (item.order !== itemIndex + 1)
           ctx.addIssue({ code: "custom", path, message: "arithmetic:order" });
         const key = `${item.typeId}:${item.domainIndex}`;

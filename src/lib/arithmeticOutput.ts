@@ -5,6 +5,10 @@ import type { ArithmeticSkillSelection } from "@/contracts/arithmetic.contract";
 import { listArithmeticSkills } from "@/lib/arithmetic/catalog";
 import { listArithmeticV2Types } from "@/lib/arithmetic-v2";
 import { arithmeticFeatureLabels } from "@/lib/arithmeticPresentation";
+import {
+  arithmeticAngleSvg,
+  arithmeticAngleWidthMm,
+} from "@/lib/arithmetic-v2/geometry";
 
 export type ArithmeticOutputSheet =
   ArithmeticSheetPayload | ArithmeticV2SheetPayload;
@@ -40,6 +44,16 @@ export function arithmeticToStudioProblems(
       round.items.map((item) => {
         const type = types.get(item.typeId);
         const groupTitle = type?.title ?? item.typeId;
+        const figureId =
+          item.prompt.layout === "math" ? item.prompt.figureId : undefined;
+        if (figureId && !sheet.figures)
+          throw new Error("저장된 각도 도형이 없습니다");
+        const svg = figureId
+          ? arithmeticAngleSvg(figureId, sheet.figures!)
+          : undefined;
+        const dimensions = svg
+          ? /viewBox="([^"]+)"/.exec(svg)![1].split(/\s+/).map(Number).slice(2)
+          : undefined;
         const formula =
           item.prompt.layout === "vertical"
             ? vertical(
@@ -51,7 +65,19 @@ export function arithmeticToStudioProblems(
         return {
           ...base,
           id: `arithmetic-v2:${sheet.seed}:${round.round}:${item.order}`,
-          content: `${item.prompt.instruction ? `${item.prompt.instruction}\n\n` : ""}$$${formula}$$`,
+          content: svg
+            ? `${item.prompt.instruction}\n\n[그림1]\n\n답: $\\underline{\\hspace{2em}}^{\\circ}$`
+            : `${item.prompt.instruction ? `${item.prompt.instruction}\n\n` : ""}$$${formula}$$`,
+          ...(svg
+            ? {
+                figureSvg: svg,
+                figureUrls: [
+                  `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`,
+                ],
+                figureDims: dimensions!,
+                figureSourceMm: [arithmeticAngleWidthMm(svg)],
+              }
+            : {}),
           answer: `$${item.answer.latex}$`,
           grade: type?.grade ?? "",
           chapter: groupTitle,
