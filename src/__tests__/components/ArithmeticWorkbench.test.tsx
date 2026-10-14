@@ -120,18 +120,20 @@ describe("arithmetic workbench", () => {
     ).toBe(3);
   });
   it("keeps save and output gates while allowing local review", async () => {
+    const save = vi.spyOn(PrivateCloudClient.prototype, "save");
     render(<ArithmeticWorkbench canOutput={false} preview />);
     make();
     await screen.findByRole("region", { name: "생성한 문항 검토" });
     expect(
-      screen.getByRole("button", { name: "내 시험지에 저장" }),
-    ).toBeDisabled();
+      screen.queryByRole("button", { name: "내 시험지에 저장" }),
+    ).toBeNull();
     expect(
       screen.getByRole("button", { name: "3 양식 구성·출력" }),
     ).toBeDisabled();
     expect(
       screen.queryByRole("region", { name: "공통 출력 편집기" }),
     ).toBeNull();
+    expect(save).not.toHaveBeenCalled();
   });
   it("generates over the web, changes operands on regeneration and keeps answers off question pages", async () => {
     render(<ArithmeticWorkbench canOutput storageScope="teacher" />);
@@ -240,16 +242,31 @@ describe("arithmetic workbench", () => {
       .getAllByRole("listitem")
       .map((item) => item.textContent)
       .join("");
+    expect(save).not.toHaveBeenCalled();
+    expect(
+      screen.queryByRole("button", { name: "내 시험지에 저장" }),
+    ).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "3 양식 구성·출력" }));
+    await screen.findByRole("region", { name: "공통 출력 편집기" });
     fireEvent.click(screen.getByRole("button", { name: "내 시험지에 저장" }));
-    await screen.findByText("내 시험지에 저장했습니다.");
+    await screen.findByText(
+      "내 시험지에 저장했습니다. 다음에 같은 문항과 양식으로 열 수 있습니다.",
+    );
     expect(onDocumentChange).toHaveBeenCalledWith(stored!.id);
+    expect(stored?.payload.presentation).toMatchObject({ step: "output" });
+    fireEvent.click(screen.getByRole("button", { name: "2 문항 검토" }));
     fireEvent.change(screen.getByLabelText("학습지 제목"), {
       target: { value: "덧셈 집중 연습" },
     });
+    expect(save).toHaveBeenCalledTimes(1);
+    fireEvent.click(screen.getByRole("button", { name: "3 양식 구성·출력" }));
+    await screen.findByRole("region", { name: "공통 출력 편집기" });
     fireEvent.click(screen.getByRole("button", { name: "내 시험지에 저장" }));
     await waitFor(() => expect(save).toHaveBeenCalledTimes(2));
     await waitFor(() => expect(stored?.revision).toBe(2));
     expect(save.mock.calls[1][0]).toBe(save.mock.calls[0][0]);
+    expect(save.mock.calls.map((call) => call[4])).toEqual([null, 1]);
+    expect(stored?.payload.rounds).toEqual(sheets[0].rounds);
     view.unmount();
     let resolve!: (value: PrivateDocument) => void;
     vi.spyOn(PrivateCloudClient.prototype, "get").mockImplementation(
@@ -268,7 +285,11 @@ describe("arithmetic workbench", () => {
     expect(screen.getByRole("button", { name: "작업 중…" })).toBeDisabled();
     resolve(stored!);
     await screen.findByText(/저장된 연산식과 정답/);
+    await screen.findByRole("region", { name: "공통 출력 편집기" });
     expect(requests).toHaveLength(1);
+    expect(save).toHaveBeenCalledTimes(2);
+    fireEvent.click(screen.getByRole("button", { name: "2 문항 검토" }));
+    expect(screen.getByLabelText("학습지 제목")).toHaveValue("덧셈 집중 연습");
     expect(
       within(screen.getByRole("region", { name: "생성한 문항 검토" }))
         .getAllByRole("listitem")
