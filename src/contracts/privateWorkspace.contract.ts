@@ -1,4 +1,5 @@
 import { z } from "zod";
+import type { DocumentWorkflow } from "./workspaceWorkflow.contract";
 
 export const documentIdSchema = z
   .string()
@@ -32,6 +33,7 @@ export const saveDocumentSchema = z.strictObject({
   sharedBranchId: z.uuid().nullable().optional(),
 });
 export type PrivateDocumentSummary = {
+  workflow?: DocumentWorkflow;
   ownerId?: string;
   ownerName?: string;
   isOwner?: boolean;

@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
+import type { WorkspaceWorkflowStep } from "@/contracts/workspaceWorkflow.contract";
 
 /** Subject data stays in its native contract; this UI only owns the common workflow. */
-export type ExamBuilderStep = "scope" | "review" | "output";
+export type ExamBuilderStep = WorkspaceWorkflowStep;
 export interface ExamScope {
   id: string;
   label: string;
@@ -62,6 +63,10 @@ export interface ExamBuilderProps<T> {
   /** Optional seed from the surrounding workspace; subject is already selected there. */
   initialScopeIds?: string[];
   initialGroup?: string;
+  /** Restore only after the owner explicitly opens this document; key by draft id. */
+  initialStep?: ExamBuilderStep;
+  /** User transitions and successful output validation; never called on blank mount. */
+  onStepChange?: (step: ExamBuilderStep) => void;
   canOutput?: boolean;
   onOutputIntent?: () => void;
   disabled?: boolean;

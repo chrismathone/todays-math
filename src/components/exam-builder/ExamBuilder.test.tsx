@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import { useState } from "react";
+import { StrictMode, useState } from "react";
 import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 import {
   cleanup,
@@ -10,7 +10,7 @@ import {
   within,
 } from "@testing-library/react";
 import ExamBuilder from "./ExamBuilder";
-import type { ExamBuilderSource } from "./types";
+import type { ExamBuilderSource, ExamBuilderStep } from "./types";
 
 type Item = { id: string; scope: string; difficulty: string };
 const questions: Item[] = [
@@ -46,9 +46,15 @@ function source(
 function Harness({
   adapter,
   initial = [],
+  initialStep,
+  onStepChange,
+  canOutput = true,
 }: {
   adapter: ExamBuilderSource<Item>;
   initial?: Item[];
+  initialStep?: ExamBuilderStep;
+  onStepChange?: (step: ExamBuilderStep) => void;
+  canOutput?: boolean;
 }) {
   const [items, setItems] = useState(initial);
   const [title, setTitle] = useState("단원 평가");
@@ -59,6 +65,9 @@ function Harness({
       </output>
       <ExamBuilder
         source={adapter}
+        initialStep={initialStep}
+        onStepChange={onStepChange}
+        canOutput={canOutput}
         questions={items}
         onQuestionsChange={setItems}
         title={title}
@@ -108,6 +117,107 @@ beforeAll(() => {
 });
 afterEach(cleanup);
 describe("shared exam builder workflow", () => {
+  it("does not report a stage or prepare output on blank mount", async () => {
+    const onStepChange = vi.fn();
+    const adapter = source();
+    render(
+      <StrictMode>
+        <Harness
+          adapter={adapter}
+          initialStep="output"
+          onStepChange={onStepChange}
+        />
+      </StrictMode>,
+    );
+    await screen.findByRole("button", { name: "문항 구성 →" });
+    expect(onStepChange).not.toHaveBeenCalled();
+    expect(adapter.prepareOutput).not.toHaveBeenCalled();
+  });
+  it("restores review and reports subsequent scope/review/output transitions", async () => {
+    const onStepChange = vi.fn();
+    render(
+      <Harness
+        adapter={source()}
+        initial={questions}
+        initialStep="review"
+        onStepChange={onStepChange}
+      />,
+    );
+    expect(screen.getByRole("button", { name: "2 문항 검토" })).toHaveAttribute(
+      "aria-current",
+      "step",
+    );
+    expect(onStepChange).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole("button", { name: "1 범위 설정" }));
+    expect(onStepChange).toHaveBeenLastCalledWith("scope");
+    fireEvent.click(screen.getByRole("button", { name: "2 문항 검토" }));
+    expect(onStepChange).toHaveBeenLastCalledWith("review");
+    fireEvent.click(screen.getByRole("button", { name: "3 양식 구성·출력" }));
+    await screen.findByRole("region", { name: "실제 출력 연결" });
+    expect(onStepChange).toHaveBeenLastCalledWith("output");
+  });
+  it("validates explicitly resumed output before rendering it, including StrictMode", async () => {
+    let finish!: (items: Item[]) => void;
+    const adapter = source({
+      prepareOutput: vi.fn(
+        () =>
+          new Promise<Item[]>((resolve) => {
+            finish = resolve;
+          }),
+      ),
+    });
+    render(
+      <StrictMode>
+        <Harness adapter={adapter} initial={questions} initialStep="output" />
+      </StrictMode>,
+    );
+    expect(
+      screen.queryByRole("region", { name: "실제 출력 연결" }),
+    ).not.toBeInTheDocument();
+    expect(
+      within(screen.getByRole("region", { name: "출력 문항 확인" })).getByRole(
+        "status",
+      ),
+    ).toHaveTextContent("확인하는 중");
+    finish(questions);
+    await screen.findByRole("region", { name: "실제 출력 연결" });
+    expect(adapter.prepareOutput).toHaveBeenCalled();
+  });
+  it("keeps resumed output closed on validation failure or missing output permission", async () => {
+    const onStepChange = vi.fn();
+    const adapter = source({
+      prepareOutput: vi
+        .fn()
+        .mockRejectedValue(new Error("원본이 변경되었습니다.")),
+    });
+    const view = render(
+      <Harness
+        adapter={adapter}
+        initial={questions}
+        initialStep="output"
+        onStepChange={onStepChange}
+      />,
+    );
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "원본이 변경되었습니다.",
+    );
+    expect(onStepChange).toHaveBeenCalledWith("review");
+    expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a,b,c");
+    view.unmount();
+    const denied = source();
+    render(
+      <Harness
+        adapter={denied}
+        initial={questions}
+        initialStep="output"
+        canOutput={false}
+      />,
+    );
+    expect(
+      screen.queryByRole("region", { name: "실제 출력 연결" }),
+    ).not.toBeInTheDocument();
+    expect(denied.prepareOutput).not.toHaveBeenCalled();
+  });
   it("does not select unknown math inventory through select-all or an individual row", async () => {
     const adapter = source({
       requireScopeCounts: true,

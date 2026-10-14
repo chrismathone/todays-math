@@ -37,6 +37,7 @@ import { useUsageLabels } from "@/components/usage-labels/useUsageLabels";
 import UsageLabel from "@/components/usage-labels/UsageLabel";
 import s from "./MathExamBuilder.module.css";
 import ExamBuilder from "./ExamBuilder";
+import type { ExamBuilderStep } from "./types";
 import MaterialPicker from "./MaterialPicker";
 import {
   createMathExamBuilderSource,
@@ -55,12 +56,16 @@ export default function MathExamBuilder({
   editor,
   onQuestionsChange,
   canOutput,
+  initialStep,
+  onStepChange,
 }: {
   initialData: BankData;
   initialGroup?: string;
   editor: ComponentProps<typeof WorksheetEditorComponent>;
   onQuestionsChange: (items: StudioProblem[]) => void;
   canOutput: boolean;
+  initialStep?: ExamBuilderStep;
+  onStepChange?: (step: ExamBuilderStep) => void;
 }) {
   const [pick, setPick] = useState<SourcePick>({
     group: "",
@@ -229,6 +234,8 @@ export default function MathExamBuilder({
       title={editor.title}
       onTitleChange={editor.setTitle}
       initialGroup={initialGroup}
+      initialStep={initialStep}
+      onStepChange={onStepChange}
       difficulties={MATH_EXAM_DIFFICULTIES}
       maxQuestions={MATH_EXAM_MAX_QUESTIONS}
       canOutput={canOutput}

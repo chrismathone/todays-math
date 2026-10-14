@@ -26,15 +26,23 @@ export default function ExamBuilder<T>({
   renderOutput,
   initialScopeIds,
   initialGroup,
+  initialStep,
+  onStepChange,
   canOutput = true,
   onOutputIntent,
   disabled = false,
   status,
 }: ExamBuilderProps<T>) {
   const uid = useId();
-  // Restored questions belong to the shared draft; they do not mean that this
-  // visit has already completed scope selection. Keep them while starting here.
-  const [step, setStep] = useState<ExamBuilderStep>("scope");
+  // A known saved stage is opt-in; legacy content alone never implies progress.
+  const [step, updateStep] = useState<ExamBuilderStep>(() =>
+    questions.length ? (initialStep ?? "scope") : "scope",
+  );
+  const [outputReady, setOutputReady] = useState(false);
+  function setStep(next: ExamBuilderStep) {
+    updateStep(next);
+    onStepChange?.(next);
+  }
   const [loaded, setLoaded] = useState<{
     source: typeof source;
     scopes: ExamScope[];
@@ -199,6 +207,8 @@ export default function ExamBuilder<T>({
       ];
       if (distinct.length > maxQuestions)
         throw new Error(`최대 ${maxQuestions}문항까지 구성할 수 있습니다.`);
+      if (kind === "output" && !distinct.length)
+        throw new Error("출력할 문항이 없습니다. 문항을 다시 확인해 주세요.");
       change(distinct);
       if (kind === "compose") {
         setNotice(
@@ -208,7 +218,10 @@ export default function ExamBuilder<T>({
         );
         go("review");
         onOutputIntent?.();
-      } else setStep("output");
+      } else {
+        setOutputReady(true);
+        setStep("output");
+      }
     } catch (cause) {
       if (!controller.signal.aborted)
         setError(
@@ -223,7 +236,65 @@ export default function ExamBuilder<T>({
       }
     }
   }
+  // Explicit resume of output must pass the same eligibility/revision gate as
+  // the output button. Do not mount the printable editor before validation.
+  useEffect(() => {
+    if (step !== "output" || outputReady || disabled || !canOutput) return;
+    const controller = new AbortController();
+    void (async () => {
+      try {
+        const next = source.prepareOutput
+          ? await source.prepareOutput(questions, controller.signal)
+          : questions;
+        if (controller.signal.aborted) return;
+        const distinct = [
+          ...new Map(next.map((item) => [source.info(item).id, item])).values(),
+        ];
+        if (!distinct.length || distinct.length > maxQuestions)
+          throw new Error("출력할 문항을 다시 확인해 주세요.");
+        if (
+          distinct.length !== questions.length ||
+          distinct.some((item, index) => item !== questions[index])
+        )
+          onQuestionsChange(distinct);
+        setOutputReady(true);
+      } catch (cause) {
+        if (controller.signal.aborted) return;
+        updateStep("review");
+        onStepChange?.("review");
+        setError(
+          cause instanceof Error
+            ? cause.message
+            : "출력할 문항을 확인하지 못했습니다.",
+        );
+      }
+    })();
+    return () => controller.abort();
+  }, [
+    step,
+    outputReady,
+    disabled,
+    canOutput,
+    source,
+    questions,
+    maxQuestions,
+    onQuestionsChange,
+    onStepChange,
+  ]);
   const actionsDisabled = disabled || busy;
+  if (step === "output" && (!outputReady || disabled || !canOutput))
+    return (
+      <section className={s.output} aria-label="출력 문항 확인">
+        <p role="status">
+          {!canOutput
+            ? "출력 권한을 확인해 주세요."
+            : "출력할 문항을 확인하는 중입니다…"}
+        </p>
+        <button type="button" onClick={() => go("review")}>
+          문항 검토로 돌아가기
+        </button>
+      </section>
+    );
   if (step === "output")
     return (
       <section className={s.output} data-exam-builder-output>
