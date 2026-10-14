@@ -12,6 +12,7 @@ import {
   sharedDocumentWhere,
   mutationOwnerError,
   documentAssetIds,
+  arithmeticDocumentsOnly,
 } from "@/lib/privateWorkspace";
 import {
   documentIdSchema,
@@ -25,12 +26,24 @@ import {
 } from "@/contracts/conceptBlank.contract";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { z } from "zod";
+import { parseStrictJson } from "@/lib/textbook/strictJson";
+import {
+  ARITHMETIC_SHEET_KIND,
+  arithmeticSheetProblemCount,
+  reopenArithmeticSheet,
+} from "@/lib/arithmetic";
+import {
+  arithmeticEngineErrorResponse,
+  arithmeticSheetPayloadError,
+  arithmeticSheetWriteError,
+} from "@/lib/arithmeticDocumentPolicy";
 
 /** 자료를 저장하려면 있어야 하는 메뉴 — 그 자료를 만드는 화면. */
 const EDITOR_MENU: Readonly<Record<DocumentKind, WorkspaceMenu>> = {
   draft: "export",
   extraction: "studio",
   conceptBlank: "conceptBlank",
+  arithmeticSheet: "bank",
 };
 
 /**
@@ -41,6 +54,8 @@ async function problemCountOf(
   kind: DocumentKind,
   payload: Record<string, unknown>,
 ): Promise<number | null> {
+  if (kind === ARITHMETIC_SHEET_KIND)
+    return arithmeticSheetProblemCount(reopenArithmeticSheet(payload));
   if (kind === "conceptBlank") {
     const document = conceptBlankDocumentSchema.safeParse(payload);
     if (!document.success) return null;
@@ -66,7 +81,7 @@ export async function readDocument(
   id: string,
   owner?: string,
 ) {
-  const access = await authorizePrivate(request, owner);
+  const access = await authorizePrivate(request, owner, true);
   if (access.response) return access.response;
   if (!documentIdSchema.safeParse(id).success)
     return privateError("자료를 찾지 못했습니다.", 404);
@@ -91,6 +106,16 @@ export async function readDocument(
         include: { user: { select: { name: true } } },
       });
   if (!document) return privateError("자료를 찾지 못했습니다.", 404);
+  if (
+    !owner &&
+    arithmeticDocumentsOnly(access.account!) &&
+    document.kind !== ARITHMETIC_SHEET_KIND
+  )
+    return privateError("자료를 찾지 못했습니다.", 404);
+  if (document.kind === ARITHMETIC_SHEET_KIND) {
+    const invalid = arithmeticSheetPayloadError(document.payload);
+    if (invalid) return invalid;
+  }
   const dto = documentDto(document, access.account!.id);
   return Response.json(
     {
@@ -105,7 +130,7 @@ export async function readDocument(
 }
 
 export async function saveDocument(request: Request, id: string) {
-  const access = await authorizePrivate(request);
+  const access = await authorizePrivate(request, undefined, true);
   if (access.response) return access.response;
   const ownerError = mutationOwnerError(request, access.ownerId!);
   if (ownerError) return ownerError;
@@ -130,6 +155,17 @@ export async function saveDocument(request: Request, id: string) {
     return privateError("저장할 자료 형식을 확인해 주세요.", 400);
   const { kind, title, payload, expectedRevision, visibility, sharedBranchId } =
     parsed.data;
+  if (!access.account!.menus.includes(EDITOR_MENU[kind]))
+    return privateError("이 자료를 편집할 권한이 없습니다.", 403);
+  if (kind === ARITHMETIC_SHEET_KIND) {
+    const disabled = arithmeticSheetWriteError();
+    if (disabled) return disabled;
+    try {
+      parseStrictJson(text, { maxBytes: 256 * 1024, maxDepth: 16 });
+    } catch {
+      return privateError("연산 학습지의 형식과 크기를 확인해 주세요.", 400);
+    }
+  }
   if (
     visibility === "branch" &&
     (!access.account!.branchId || sharedBranchId !== access.account!.branchId)
@@ -145,7 +181,12 @@ export async function saveDocument(request: Request, id: string) {
   } catch (cause) {
     return privateError((cause as Error).message, 400);
   }
-  const problemCount = await problemCountOf(kind, payload);
+  let problemCount: number | null;
+  try {
+    problemCount = await problemCountOf(kind, payload);
+  } catch (error) {
+    return arithmeticEngineErrorResponse(error);
+  }
   if (problemCount === null)
     return privateError(
       kind === "conceptBlank"
@@ -158,8 +199,6 @@ export async function saveDocument(request: Request, id: string) {
       `개념 백지 이름은 ${CONCEPT_BLANK_TITLE_MAX}자까지입니다.`,
       400,
     );
-  if (!access.account!.menus.includes(EDITOR_MENU[kind]))
-    return privateError("이 자료를 편집할 권한이 없습니다.", 403);
   const userId = access.ownerId!;
   try {
     const result = await db.$transaction(async (tx) => {
@@ -254,7 +293,7 @@ export async function saveDocument(request: Request, id: string) {
   }
 }
 export async function deleteDocument(request: Request, id: string) {
-  const access = await authorizePrivate(request);
+  const access = await authorizePrivate(request, undefined, true);
   if (access.response) return access.response;
   const ownerError = mutationOwnerError(request, access.ownerId!);
   if (ownerError) return ownerError;
@@ -265,7 +304,9 @@ export async function deleteDocument(request: Request, id: string) {
     revision < 1
   )
     return privateError("자료 버전을 확인해 주세요.", 400);
-  if (!access.account!.menus.includes("library"))
+  if (
+    !access.account!.menus.some((menu) => menu === "library" || menu === "bank")
+  )
     return privateError("내 시험지 메뉴를 사용할 권한이 없습니다.", 403);
   const userId = access.ownerId!;
   const deleted = await db.$transaction(async (tx) => {
@@ -273,6 +314,11 @@ export async function deleteDocument(request: Request, id: string) {
       where: { userId, id, revision },
     });
     if (!document) return false;
+    if (document.kind === ARITHMETIC_SHEET_KIND) {
+      const disabled = arithmeticSheetWriteError();
+      if (disabled) return disabled;
+    } else if (!access.account!.menus.includes("library"))
+      return privateError("내 시험지 메뉴를 사용할 권한이 없습니다.", 403);
     const removed = await tx.workspaceDocument.deleteMany({
       where: { userId, id, revision },
     });
@@ -288,6 +334,7 @@ export async function deleteDocument(request: Request, id: string) {
     });
     return true;
   });
+  if (deleted instanceof Response) return deleted;
   return deleted
     ? Response.json({ data: { deleted: true } }, { headers: privateHeaders })
     : privateError(
@@ -297,11 +344,13 @@ export async function deleteDocument(request: Request, id: string) {
 }
 
 export async function renameDocument(request: Request, id: string) {
-  const access = await authorizePrivate(request);
+  const access = await authorizePrivate(request, undefined, true);
   if (access.response) return access.response;
   const ownerError = mutationOwnerError(request, access.ownerId!);
   if (ownerError) return ownerError;
-  if (!access.account!.menus.includes("library"))
+  if (
+    !access.account!.menus.some((menu) => menu === "library" || menu === "bank")
+  )
     return privateError("내 시험지 메뉴를 사용할 권한이 없습니다.", 403);
   const parsed = z
     .object({
@@ -319,6 +368,13 @@ export async function renameDocument(request: Request, id: string) {
       where: { userId, id, revision: expectedRevision },
     });
     if (!previous) return null;
+    if (previous.kind === ARITHMETIC_SHEET_KIND) {
+      const denied =
+        arithmeticSheetWriteError() ??
+        arithmeticSheetPayloadError(previous.payload);
+      if (denied) return denied;
+    } else if (!access.account!.menus.includes("library"))
+      return privateError("내 시험지 메뉴를 사용할 권한이 없습니다.", 403);
     // 개념 백지는 자료 이름 = 지면 제목(26 §9 ⑾) — 제목 상한 안에서만 바꾼다.
     const blank = previous.kind === "conceptBlank";
     if (blank && title.length > CONCEPT_BLANK_TITLE_MAX) return "too-long";
@@ -357,6 +413,7 @@ export async function renameDocument(request: Request, id: string) {
       include: { user: { select: { name: true } } },
     });
   });
+  if (document instanceof Response) return document;
   if (document === "too-long")
     return privateError(
       `개념 백지 이름은 ${CONCEPT_BLANK_TITLE_MAX}자까지입니다.`,
@@ -375,7 +432,7 @@ export async function renameDocument(request: Request, id: string) {
 
 /** Opening a colleague's document creates an independent, private snapshot. */
 export async function copyDocument(request: Request, id: string) {
-  const access = await authorizePrivate(request);
+  const access = await authorizePrivate(request, undefined, true);
   if (access.response) return access.response;
   const ownerId = new URL(request.url).searchParams.get("ownerId");
   if (
@@ -393,6 +450,18 @@ export async function copyDocument(request: Request, id: string) {
       !access.account!.menus.includes(EDITOR_MENU[source.kind as DocumentKind])
     )
       return "forbidden" as const;
+    let problemCount = source.problemCount;
+    if (source.kind === ARITHMETIC_SHEET_KIND) {
+      const disabled = arithmeticSheetWriteError();
+      if (disabled) return disabled;
+      try {
+        problemCount = arithmeticSheetProblemCount(
+          reopenArithmeticSheet(source.payload),
+        );
+      } catch (error) {
+        return arithmeticEngineErrorResponse(error);
+      }
+    }
     const assetIds = documentAssetIds(
       source.payload as Record<string, unknown>,
     );
@@ -434,7 +503,7 @@ export async function copyDocument(request: Request, id: string) {
               }
             : {}),
         } as Prisma.InputJsonObject,
-        problemCount: source.problemCount,
+        problemCount,
         visibility: "private",
         sharedBranchId: null,
       },
@@ -462,6 +531,7 @@ export async function copyDocument(request: Request, id: string) {
     });
     return document;
   });
+  if (copied instanceof Response) return copied;
   if (copied === "forbidden")
     return privateError("이 자료를 편집할 권한이 없습니다.", 403);
   if (copied === "invalid-asset")

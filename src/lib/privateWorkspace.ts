@@ -67,7 +67,18 @@ export const privateError = (message: string, status: number, code?: string) =>
     },
     { status, headers: privateHeaders },
   );
-export async function authorizePrivate(request: Request, ownerId?: string) {
+/** Bank-only access is limited to arithmetic documents, never private assets. */
+export function arithmeticDocumentsOnly(account: AccountAccess): boolean {
+  return !account.menus.some((menu) =>
+    ["studio", "export", "library", "conceptBlank"].includes(menu),
+  );
+}
+
+export async function authorizePrivate(
+  request: Request,
+  ownerId?: string,
+  allowArithmeticDocuments = false,
+) {
   const access = await authorizeAccount(
     request,
     Boolean(ownerId),
@@ -89,9 +100,8 @@ export async function authorizePrivate(request: Request, ownerId?: string) {
     };
   if (
     !ownerId &&
-    !access.account!.menus.some((menu) =>
-      ["studio", "export", "library", "conceptBlank"].includes(menu),
-    )
+    arithmeticDocumentsOnly(access.account!) &&
+    !(allowArithmeticDocuments && access.account!.menus.includes("bank"))
   )
     return {
       account: null,

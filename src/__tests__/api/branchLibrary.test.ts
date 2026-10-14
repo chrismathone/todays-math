@@ -1,5 +1,5 @@
 // Pure in-memory database boundary: never connects to the configured remote DB.
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { AccountAccess } from "@/contracts/accountAccess.contract";
 vi.mock("server-only", () => ({}));
 const mocks = vi.hoisted(() => ({
@@ -41,6 +41,12 @@ import {
   copyDocument,
 } from "@/lib/privateDocumentActions";
 import { readPrivateAsset } from "@/lib/privateAssets";
+import {
+  buildArithmeticSheet,
+  ARITHMETIC_ENGINE_VERSION,
+  ARITHMETIC_CATALOG_VERSION,
+} from "@/lib/arithmetic";
+import type { ArithmeticSheetPayload } from "@/contracts/arithmeticSheet.contract";
 
 const viewer = "10000000-0000-4000-8000-000000000001";
 const colleague = "20000000-0000-4000-8000-000000000002";
@@ -596,5 +602,492 @@ describe("document-bound assets and independent copies", () => {
       (await copyDocument(req("POST", shareQuery), "same-id")).status,
     ).toBe(403);
     expect(mocks.document.create).not.toHaveBeenCalled();
+  });
+});
+
+describe("arithmetic document persistence", () => {
+  let sheet: ArithmeticSheetPayload;
+  const saveSheet = (patch: Row = {}) =>
+    saveBody({
+      kind: "arithmeticSheet",
+      payload: sheet,
+      title: "연산 연습",
+      ...patch,
+    });
+
+  beforeEach(() => {
+    vi.stubEnv("ARITHMETIC_SHEET_WRITE", "on");
+    account.menus = ["bank"];
+    sheet = buildArithmeticSheet({
+      engineVersion: ARITHMETIC_ENGINE_VERSION,
+      catalogVersion: ARITHMETIC_CATALOG_VERSION,
+      seed: "stored-snapshot",
+      rounds: [3, 2].map((count) => ({
+        skills: [
+          {
+            skillId: "one-digit-add",
+            count,
+            constraints: {
+              carry: "none",
+              left: { min: 0, max: 9 },
+              right: { min: 0, max: 9 },
+            },
+          },
+        ],
+      })),
+    });
+    for (const doc of docs)
+      Object.assign(doc, {
+        kind: "arithmeticSheet",
+        payload: structuredClone(sheet),
+        problemCount: 5,
+      });
+    mocks.document.deleteMany.mockImplementation(
+      async ({ where }: { where: Row }) => {
+        const before = docs.length;
+        docs = docs.filter((doc) => !matches(doc, where));
+        return { count: before - docs.length };
+      },
+    );
+  });
+  afterEach(() => vi.unstubAllEnvs());
+
+  it.each([undefined, "off", "true", "ON", "on "])(
+    "blocks all arithmetic writes with gate=%s before changing storage",
+    async (gate) => {
+      vi.stubEnv("ARITHMETIC_SHEET_WRITE", gate);
+      const before = structuredClone(docs);
+      const responses = [
+        await saveDocument(req("PUT", "", saveSheet()), "same-id"),
+        await saveDocument(
+          req("PUT", "", saveSheet({ expectedRevision: null })),
+          "new-sheet",
+        ),
+        await copyDocument(req("POST", shareQuery), "same-id"),
+        await renameDocument(
+          req("PATCH", "", { title: "새 이름", expectedRevision: 1 }),
+          "same-id",
+        ),
+        await deleteDocument(req("DELETE", "?revision=1"), "same-id"),
+      ];
+      for (const response of responses) {
+        expect(response.status).toBe(503);
+        expect((await response.json()).error.code).toBe(
+          "ARITHMETIC_WRITE_DISABLED",
+        );
+      }
+      expect(docs).toEqual(before);
+      expect(mocks.document.create).not.toHaveBeenCalled();
+      expect(mocks.document.updateMany).not.toHaveBeenCalled();
+      expect(mocks.document.deleteMany).not.toHaveBeenCalled();
+      expect(mocks.asset.upsert).not.toHaveBeenCalled();
+      expect(mocks.link.deleteMany).not.toHaveBeenCalled();
+      expect(mocks.audit.create).not.toHaveBeenCalled();
+    },
+  );
+
+  it("keeps list and verified snapshot reads usable with writers off and makes no usage writes", async () => {
+    vi.stubEnv("ARITHMETIC_SHEET_WRITE", undefined);
+    // A valid stored snapshot is authoritative; a seed is not a command to re-generate.
+    sheet.seed = "different-seed-after-generation";
+    for (const round of sheet.rounds)
+      for (const item of round.items) item.spec.seed = sheet.seed;
+    docs[0].payload = structuredClone(sheet);
+    docs.push({
+      ...docs[0],
+      id: "old-draft",
+      kind: "draft",
+      payload: { problems: [] },
+    });
+    const result = await readDocument(req(), "same-id");
+    expect(result.status).toBe(200);
+    expect((await result.json()).data.payload).toEqual(sheet);
+    expect(result.headers.get("cache-control")).toContain("no-store");
+    const listing = await listDocuments(req());
+    expect((await listing.json()).data.map((doc: Doc) => doc.kind)).toEqual([
+      "arithmeticSheet",
+      "arithmeticSheet",
+    ]);
+    expect(mocks.document.findMany).toHaveBeenCalledWith(
+      expect.objectContaining({
+        where: expect.objectContaining({ kind: "arithmeticSheet" }),
+        select: expect.not.objectContaining({ payload: true }),
+      }),
+    );
+    expect(mocks.document.updateMany).not.toHaveBeenCalled();
+    expect(mocks.document.create).not.toHaveBeenCalled();
+    expect(mocks.audit.create).not.toHaveBeenCalled();
+  });
+
+  it("saves privately, computes the count, reopens unchanged, and rejects stale revisions", async () => {
+    const created = await saveDocument(
+      req("PUT", "", saveSheet({ expectedRevision: null })),
+      "new-sheet",
+    );
+    expect(created.status).toBe(200);
+    expect((await created.json()).data).toMatchObject({
+      kind: "arithmeticSheet",
+      ownerId: viewer,
+      payload: sheet,
+      problemCount: 5,
+      revision: 1,
+      visibility: "private",
+      sharedBranchId: null,
+    });
+    const updated = await saveDocument(
+      req("PUT", "", saveSheet({ title: "2회 연습" })),
+      "new-sheet",
+    );
+    expect(updated.status).toBe(200);
+    expect((await updated.json()).data.revision).toBe(2);
+    expect(
+      (await saveDocument(req("PUT", "", saveSheet()), "new-sheet")).status,
+    ).toBe(409);
+    expect(
+      (await (await readDocument(req(), "new-sheet")).json()).data.payload,
+    ).toEqual(sheet);
+    expect(mocks.asset.upsert).not.toHaveBeenCalled();
+    expect(mocks.link.createMany).not.toHaveBeenCalled();
+  });
+
+  it("copies a shared snapshot privately with a new identity and a verified count", async () => {
+    docs[1].problemCount = 999; // Do not trust a stale summary when copying.
+    const original = structuredClone(docs[1]);
+    const response = await copyDocument(req("POST", shareQuery), "same-id");
+    expect(response.status).toBe(200);
+    const copy = (await response.json()).data;
+    expect(copy).toMatchObject({
+      ownerId: viewer,
+      kind: "arithmeticSheet",
+      payload: sheet,
+      problemCount: 5,
+      visibility: "private",
+      sharedBranchId: null,
+      revision: 1,
+    });
+    expect(copy.id).not.toBe("same-id");
+    expect(docs[1]).toEqual(original);
+    expect(
+      (await (await readDocument(req(), copy.id)).json()).data.payload,
+    ).toEqual(sheet);
+    expect(mocks.asset.upsert).not.toHaveBeenCalled();
+  });
+
+  it("renames only document metadata and preserves optimistic deletion", async () => {
+    const renamed = await renameDocument(
+      req("PATCH", "", { title: "새 이름", expectedRevision: 1 }),
+      "same-id",
+    );
+    expect(renamed.status).toBe(200);
+    expect((await renamed.json()).data).toMatchObject({
+      title: "새 이름",
+      revision: 2,
+      payload: sheet,
+    });
+    expect(
+      (
+        await renameDocument(
+          req("PATCH", "", { title: "오래된 이름", expectedRevision: 1 }),
+          "same-id",
+        )
+      ).status,
+    ).toBe(409);
+    expect(
+      (await deleteDocument(req("DELETE", "?revision=1"), "same-id")).status,
+    ).toBe(409);
+    expect(
+      (await deleteDocument(req("DELETE", "?revision=2"), "same-id")).status,
+    ).toBe(200);
+    expect(find(viewer, "same-id")).toBeUndefined();
+    expect(find(colleague, "same-id")).toBeDefined();
+  });
+
+  it.each([
+    [
+      "answer",
+      (payload: ArithmeticSheetPayload) => {
+        payload.rounds[0].items[0].answer = "999";
+      },
+    ],
+    [
+      "prompt",
+      (payload: ArithmeticSheetPayload) => {
+        payload.rounds[0].items[0].prompt = {
+          notation: "horizontal",
+          operator: "+",
+          operands: [9, 9],
+          expression: "9+9",
+        };
+      },
+    ],
+    [
+      "version",
+      (payload: ArithmeticSheetPayload) => {
+        Object.assign(payload, { payloadVersion: 2 });
+      },
+    ],
+    [
+      "order",
+      (payload: ArithmeticSheetPayload) => {
+        payload.rounds[0].items[0].order = 2;
+      },
+    ],
+    [
+      "duplicate",
+      (payload: ArithmeticSheetPayload) => {
+        const item = structuredClone(payload.rounds[0].items[0]);
+        item.order = 2;
+        item.spec.order = 2;
+        payload.rounds[0].items[1] = item;
+      },
+    ],
+    [
+      "foreign field",
+      (payload: ArithmeticSheetPayload) => {
+        Object.assign(payload, { usageCount: 10 });
+      },
+    ],
+  ] as const)(
+    "rejects %s tampering on save, reopen, copy and rename",
+    async (_name, mutate) => {
+      mutate(sheet);
+      docs[0].payload = structuredClone(sheet);
+      docs[1].payload = structuredClone(sheet);
+      const before = structuredClone(docs);
+      for (const response of [
+        await saveDocument(req("PUT", "", saveSheet()), "same-id"),
+        await readDocument(req(), "same-id"),
+        await readDocument(req("GET", shareQuery), "same-id"),
+        await copyDocument(req("POST", shareQuery), "same-id"),
+        await renameDocument(
+          req("PATCH", "", { title: "새 이름", expectedRevision: 1 }),
+          "same-id",
+        ),
+      ])
+        expect(response.status).toBe(400);
+      expect(docs).toEqual(before);
+      expect(mocks.document.create).not.toHaveBeenCalled();
+      expect(mocks.document.updateMany).not.toHaveBeenCalled();
+      expect(mocks.audit.create).not.toHaveBeenCalled();
+    },
+  );
+
+  it("enforces the saved snapshot total quota, including shared copies", async () => {
+    const oversized = buildArithmeticSheet({
+      engineVersion: ARITHMETIC_ENGINE_VERSION,
+      catalogVersion: ARITHMETIC_CATALOG_VERSION,
+      seed: "quota",
+      rounds: [
+        {
+          skills: [
+            {
+              skillId: "two-digit-vertical-add",
+              count: 100,
+              constraints: {
+                carryCount: 0,
+                left: { min: 10, max: 99 },
+                right: { min: 10, max: 99 },
+              },
+            },
+          ],
+        },
+      ],
+    });
+    const extra = structuredClone(oversized.rounds[0].items[0]);
+    extra.order = 1;
+    extra.spec.order = 1;
+    extra.spec.round = 2;
+    oversized.rounds.push({ round: 2, items: [extra] });
+    docs[1].payload = oversized;
+    expect(
+      (
+        await saveDocument(
+          req("PUT", "", saveSheet({ payload: oversized })),
+          "same-id",
+        )
+      ).status,
+    ).toBe(400);
+    expect(
+      (await copyDocument(req("POST", shareQuery), "same-id")).status,
+    ).toBe(400);
+    expect(mocks.document.create).not.toHaveBeenCalled();
+  });
+
+  it("accepts the maximum valid sheet and rejects ambiguous duplicate JSON keys", async () => {
+    const maximum = buildArithmeticSheet({
+      engineVersion: ARITHMETIC_ENGINE_VERSION,
+      catalogVersion: ARITHMETIC_CATALOG_VERSION,
+      seed: "x".repeat(128),
+      rounds: [
+        {
+          skills: [
+            {
+              skillId: "two-digit-vertical-add",
+              count: 100,
+              constraints: {
+                carryCount: 0,
+                left: { min: 10, max: 99 },
+                right: { min: 10, max: 99 },
+              },
+            },
+          ],
+        },
+      ],
+    });
+    const saved = await saveDocument(
+      req("PUT", "", saveSheet({ payload: maximum })),
+      "same-id",
+    );
+    expect(saved.status).toBe(200);
+    expect((await saved.json()).data).toMatchObject({
+      problemCount: 100,
+      revision: 2,
+      payload: maximum,
+    });
+    const ambiguous = JSON.stringify(
+      saveSheet({ expectedRevision: 2 }),
+    ).replace(
+      '"expectedRevision":2',
+      '"expectedRevision":1,"expectedRevision":2',
+    );
+    const response = await saveDocument(
+      new Request("http://localhost/api/library/documents/same-id", {
+        method: "PUT",
+        headers: { origin: "http://localhost" },
+        body: ambiguous,
+      }),
+      "same-id",
+    );
+    expect(response.status).toBe(400);
+    expect(find(viewer, "same-id")!.revision).toBe(2);
+  });
+
+  it.each(["private", "owner-moved", "viewer-moved", "owner-suspended"])(
+    "rejects shared arithmetic read and copy after %s",
+    async (change) => {
+      if (change === "private") docs[1].visibility = "private";
+      if (change === "owner-moved") users.get(colleague)!.branchId = elsewhere;
+      if (change === "viewer-moved") users.get(viewer)!.branchId = elsewhere;
+      if (change === "owner-suspended")
+        users.get(colleague)!.suspendedAt = date;
+      expect(
+        (await readDocument(req("GET", shareQuery), "same-id")).status,
+      ).toBe(404);
+      expect(
+        (await copyDocument(req("POST", shareQuery), "same-id")).status,
+      ).toBe(404);
+      expect(mocks.document.create).not.toHaveBeenCalled();
+    },
+  );
+
+  it("never allows a colleague to mutate the original and validates current branch sharing", async () => {
+    expect(
+      (await saveDocument(req("PUT", shareQuery, saveSheet()), "same-id"))
+        .status,
+    ).toBe(403);
+    expect(
+      (
+        await renameDocument(
+          req("PATCH", shareQuery, { title: "이름", expectedRevision: 1 }),
+          "same-id",
+        )
+      ).status,
+    ).toBe(403);
+    expect(
+      (
+        await deleteDocument(
+          req("DELETE", `${shareQuery}&revision=1`),
+          "same-id",
+        )
+      ).status,
+    ).toBe(403);
+    expect(
+      (
+        await saveDocument(
+          req(
+            "PUT",
+            "",
+            saveSheet({ visibility: "branch", sharedBranchId: elsewhere }),
+          ),
+          "same-id",
+        )
+      ).status,
+    ).toBe(409);
+    const shared = await saveDocument(
+      req(
+        "PUT",
+        "",
+        saveSheet({ visibility: "branch", sharedBranchId: branch }),
+      ),
+      "same-id",
+    );
+    expect(shared.status).toBe(200);
+    expect((await shared.json()).data).toMatchObject({
+      visibility: "branch",
+      sharedBranchId: branch,
+    });
+  });
+
+  it("keeps legacy storage inaccessible to bank-only accounts", async () => {
+    docs[0].kind = "draft";
+    docs[0].payload = { problems: [] };
+    docs[1].kind = "draft";
+    docs[1].payload = { problems: [] };
+    expect((await readDocument(req(), "same-id")).status).toBe(404);
+    expect((await listDocuments(req("GET", "?kind=draft"))).status).toBe(403);
+    expect(
+      (await saveDocument(req("PUT", "", saveBody()), "same-id")).status,
+    ).toBe(403);
+    expect(
+      (await copyDocument(req("POST", shareQuery), "same-id")).status,
+    ).toBe(403);
+    expect(
+      (
+        await renameDocument(
+          req("PATCH", "", { title: "이름", expectedRevision: 1 }),
+          "same-id",
+        )
+      ).status,
+    ).toBe(403);
+    expect(
+      (await deleteDocument(req("DELETE", "?revision=1"), "same-id")).status,
+    ).toBe(403);
+    expect((await readPrivateAsset(req(), hash)).status).toBe(403);
+    expect(mocks.document.updateMany).not.toHaveBeenCalled();
+    expect(mocks.document.deleteMany).not.toHaveBeenCalled();
+  });
+
+  it("retains library management but requires bank to save or copy arithmetic", async () => {
+    account.menus = ["library"];
+    expect((await readDocument(req(), "same-id")).status).toBe(200);
+    expect(
+      (await listDocuments(req("GET", "?kind=arithmeticSheet"))).status,
+    ).toBe(200);
+    expect(
+      (await saveDocument(req("PUT", "", saveSheet()), "same-id")).status,
+    ).toBe(403);
+    expect(
+      (await copyDocument(req("POST", shareQuery), "same-id")).status,
+    ).toBe(403);
+    expect(
+      (
+        await renameDocument(
+          req("PATCH", "", { title: "이름", expectedRevision: 1 }),
+          "same-id",
+        )
+      ).status,
+    ).toBe(200);
+    expect(
+      (await deleteDocument(req("DELETE", "?revision=2"), "same-id")).status,
+    ).toBe(200);
+  });
+
+  it("cannot convert an existing kind to bypass revision or writer rules", async () => {
+    account.menus = ["bank", "export"];
+    vi.stubEnv("ARITHMETIC_SHEET_WRITE", "off");
+    expect(
+      (await saveDocument(req("PUT", "", saveBody()), "same-id")).status,
+    ).toBe(409);
+    expect(mocks.document.updateMany).not.toHaveBeenCalled();
   });
 });

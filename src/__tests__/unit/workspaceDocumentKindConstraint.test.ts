@@ -1,3 +1,4 @@
+// @vitest-environment node
 /**
  * 내 시험지 자료 종류를 코드에 더하면 DB 의 CHECK 도 같이 넓혀야 한다 — `workspace_document.kind` 는
  * `workspace_document_kind_check` 로 막혀 있다(처음엔 표를 만들 때 칸 옆에 쓴 CHECK — 이름은 Postgres 가 붙였다).
@@ -10,6 +11,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 import { describe, expect, it } from "vitest";
+import { PGlite } from "@electric-sql/pglite";
 
 import { documentKindSchema } from "@/contracts/privateWorkspace.contract";
 
@@ -48,5 +50,67 @@ describe("내 시험지 자료 종류 ↔ DB CHECK(workspace_document_kind_check
 
   it("개념 백지가 종류에 있다(26 §9 ⑾)", () => {
     expect(documentKindSchema.options).toContain("conceptBlank");
+  });
+
+  it("widens the real PostgreSQL CHECK without losing old rows or allowing unknown kinds", async () => {
+    const memory = new PGlite();
+    try {
+      await memory.exec(`
+        CREATE TABLE "workspace_document" (
+          id text PRIMARY KEY,
+          kind text CONSTRAINT "workspace_document_kind_check"
+            CHECK (kind IN ('draft', 'extraction', 'conceptBlank')),
+          payload jsonb NOT NULL
+        );
+        INSERT INTO "workspace_document" VALUES
+          ('old-draft', 'draft', '{"problems":[]}'),
+          ('old-extraction', 'extraction', '{"data":{"crops":[]}}'),
+          ('old-blank', 'conceptBlank', '{"version":1}');
+      `);
+      const before = await memory.query(
+        'SELECT * FROM "workspace_document" ORDER BY id',
+      );
+      await expect(
+        memory.query('INSERT INTO "workspace_document" VALUES ($1,$2,$3)', [
+          "blocked",
+          "arithmeticSheet",
+          "{}",
+        ]),
+      ).rejects.toMatchObject({ code: "23514" });
+      await memory.exec(
+        readFileSync(
+          path.join(
+            MIGRATIONS,
+            "20261014190000_workspace_document_arithmetic_sheet",
+            "migration.sql",
+          ),
+          "utf8",
+        ),
+      );
+      expect(
+        (await memory.query('SELECT * FROM "workspace_document" ORDER BY id'))
+          .rows,
+      ).toEqual(before.rows);
+      for (const kind of documentKindSchema.options)
+        await memory.query(
+          'INSERT INTO "workspace_document" VALUES ($1,$2,$3)',
+          [kind, kind, "{}"],
+        );
+      await expect(
+        memory.query('INSERT INTO "workspace_document" VALUES ($1,$2,$3)', [
+          "bad",
+          "arithmetic-sheet",
+          "{}",
+        ]),
+      ).rejects.toMatchObject({ code: "23514" });
+      await expect(
+        memory.query('UPDATE "workspace_document" SET kind=$1 WHERE id=$2', [
+          "unknown",
+          "old-draft",
+        ]),
+      ).rejects.toMatchObject({ code: "23514" });
+    } finally {
+      await memory.close();
+    }
   });
 });
