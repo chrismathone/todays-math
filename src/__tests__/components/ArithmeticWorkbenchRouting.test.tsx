@@ -20,9 +20,9 @@ it("keeps generated drafts when switching between grade and basic arithmetic", a
   });
   fireEvent.click(make);
   await screen.findByText(/문항을 생성하고 정답을 확인했습니다/);
-  const gradeQuestion = document.querySelector(
-    '[data-page-kind="questions"]',
-  )?.textContent;
+  const gradeQuestion = screen.getByRole("region", {
+    name: "생성한 문항 검토",
+  })?.textContent;
   fireEvent.click(
     screen.getByRole("button", { name: "기초 연산 · 세부 조건" }),
   );
@@ -36,7 +36,7 @@ it("keeps generated drafts when switching between grade and basic arithmetic", a
     "분수 연산 복습",
   );
   expect(
-    document.querySelector('[data-page-kind="questions"]')?.textContent,
+    screen.getByRole("region", { name: "생성한 문항 검토" })?.textContent,
   ).toBe(gradeQuestion);
   expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
 });
