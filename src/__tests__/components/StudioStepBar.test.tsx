@@ -262,11 +262,25 @@ describe("3 · 확대를 켠 채 ①로 가도 풀 길이 남는다 (2026-09-21 
 });
 
 describe("4 · 시험지 구성 탭", () => {
-  it("담은 문항이 없으면 흐리고 배지는 0 이다", async () => {
-    await openStudio([crop("c1")], { step: "crop" }, { pickedCount: 0 });
+  it("담은 문항과 추가할 추출 문항이 모두 없으면 흐리고 배지는 0 이다", async () => {
+    await openStudio([], { step: "crop" }, { pickedCount: 0 });
     const worksheet = tab(/^시험지 구성/);
     expect(worksheet).toBeDisabled();
     expect(worksheet).toHaveTextContent(/^시험지 구성 0$/);
+  });
+
+  it("추출 문항을 추가할 수 있으면 배지 0을 유지하면서 구성으로 이동한다", async () => {
+    const onExport = vi.fn();
+    await openStudio(
+      [crop("c1")],
+      { step: "crop" },
+      { pickedCount: 0, onExport },
+    );
+    const worksheet = tab(/^시험지 구성/);
+    expect(worksheet).toBeEnabled();
+    expect(worksheet).toHaveTextContent(/^시험지 구성 0$/);
+    fireEvent.click(worksheet);
+    expect(onExport).toHaveBeenCalledOnce();
   });
 
   it("담은 문항이 있으면 눌러서 시험지 화면으로 간다", async () => {
