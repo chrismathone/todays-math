@@ -1,7 +1,8 @@
 import "server-only";
-import { ArithmeticEngineError, reopenArithmeticSheet } from "@/lib/arithmetic";
+import { ArithmeticEngineError } from "@/lib/arithmetic/errors";
+import { ArithmeticV2EngineError } from "@/lib/arithmetic-v2/errors";
+import { reopenAnyArithmeticSheet } from "@/lib/arithmeticDocument";
 import { privateError, privateHeaders } from "@/lib/privateWorkspace";
-import type { WorkspaceArithmeticErrorResponse } from "@/contracts/workspaceArithmetic.contract";
 
 /** Open only after the CHECK migration and all compatible readers are deployed. */
 export function arithmeticSheetWriterEnabled(): boolean {
@@ -19,8 +20,12 @@ export function arithmeticSheetWriteError(): Response | null {
 }
 
 export function arithmeticEngineErrorResponse(error: unknown): Response {
-  if (!(error instanceof ArithmeticEngineError)) throw error;
-  const body: WorkspaceArithmeticErrorResponse = {
+  if (
+    !(error instanceof ArithmeticEngineError) &&
+    !(error instanceof ArithmeticV2EngineError)
+  )
+    throw error;
+  const body = {
     error: {
       code: error.code,
       message: error.message,
@@ -34,7 +39,7 @@ export function arithmeticEngineErrorResponse(error: unknown): Response {
 /** Reopen checks stored prompts and answers; it never generates replacements. */
 export function arithmeticSheetPayloadError(payload: unknown): Response | null {
   try {
-    reopenArithmeticSheet(payload);
+    reopenAnyArithmeticSheet(payload);
     return null;
   } catch (error) {
     return arithmeticEngineErrorResponse(error);

@@ -4,6 +4,10 @@ import {
   type ArithmeticSkillId,
 } from "@/contracts/arithmetic.contract";
 import { parseArithmeticSelection } from "@/lib/arithmetic/constraints";
+import {
+  ARITHMETIC_V2_CATALOG_VERSION,
+  arithmeticV2TypeIdSchema,
+} from "@/contracts/arithmeticV2.contract";
 
 /**
  * 연산 유형의 동일성 키.
@@ -26,4 +30,9 @@ export function arithmeticUsageTypeKey(
   );
   const catalogVersion = selection.catalogVersion ?? ARITHMETIC_CATALOG_VERSION;
   return `${catalogVersion}\n${parsed.skillId}\n${JSON.stringify(parsed.constraints)}`;
+}
+
+/** Explicit stable type identity. Never folds a v2 family into a v1 operator. */
+export function arithmeticV2UsageTypeKey(typeId: string): string {
+  return `${ARITHMETIC_V2_CATALOG_VERSION}\n${arithmeticV2TypeIdSchema.parse(typeId)}`;
 }

@@ -12,7 +12,8 @@ import {
   type UsageLabelPeriod,
   type UsageLabelsResponse,
 } from "@/contracts/usageLabels.contract";
-import { reopenArithmeticSheet } from "@/lib/arithmetic/reopen";
+import { reopenAnyArithmeticSheet } from "@/lib/arithmeticDocument";
+import { getArithmeticV2Definition } from "@/lib/arithmetic-v2/registry";
 import { db } from "@/lib/db";
 import type { ScopeViewer } from "@/lib/ownerScope";
 import {
@@ -25,10 +26,14 @@ import {
   usagePeriodWindow,
   type UsageArithmeticSide,
   type UsageArithmeticUse,
+  type UsageArithmeticV2Use,
   type UsageProblemRecord,
   type UsageProblemSide,
 } from "@/lib/usageLabels/assemble";
-import { arithmeticUsageTypeKey } from "@/lib/usageLabels/typeKey";
+import {
+  arithmeticUsageTypeKey,
+  arithmeticV2UsageTypeKey,
+} from "@/lib/usageLabels/typeKey";
 
 export class UsageLabelsInputError extends Error {
   constructor(message: string) {
@@ -55,11 +60,12 @@ export async function loadUsageLabels(
   const period = parsed.data.period ?? "30d";
   const problemIds = parsed.data.problemIds ?? [];
   const arithmeticTypes = parsed.data.arithmeticTypes ?? [];
+  const arithmeticV2TypeIds = parsed.data.arithmeticV2TypeIds ?? [];
   const [problems, arithmetic] = await Promise.all([
     problemIds.length
       ? loadProblemSide(viewer, problemIds, period, now)
       : Promise.resolve(null),
-    arithmeticTypes.length
+    arithmeticTypes.length || arithmeticV2TypeIds.length
       ? loadArithmeticSide(viewer, period, now)
       : Promise.resolve(null),
   ]);
@@ -69,6 +75,7 @@ export async function loadUsageLabels(
     now,
     problemIds,
     arithmeticTypes,
+    arithmeticV2TypeIds,
     problems,
     arithmetic,
   });
@@ -246,17 +253,27 @@ async function loadArithmeticSide(
       if (copyId) copyIds.add(copyId);
     }
     const counts = new Map<string, UsageArithmeticUse>();
+    const v2Counts = new Map<string, UsageArithmeticV2Use>();
     for (const document of documents) {
       if (isCopiedDocument(document.id, document.payload, copyIds)) continue;
       const types = typesInOriginal(document.payload);
       if (!types) continue;
-      for (const use of types.values()) {
+      for (const use of types.v1.values()) {
         const existing = counts.get(use.typeKey);
         if (existing) existing.documentCount += 1;
         else counts.set(use.typeKey, { ...use, documentCount: 1 });
       }
+      for (const use of types.v2.values()) {
+        const existing = v2Counts.get(use.typeKey);
+        if (existing) existing.documentCount += 1;
+        else v2Counts.set(use.typeKey, { ...use, documentCount: 1 });
+      }
     }
-    return { complete: true, uses: [...counts.values()] };
+    return {
+      complete: true,
+      uses: [...counts.values()],
+      v2Uses: [...v2Counts.values()],
+    };
   } catch {
     return { complete: false, uses: [] };
   }
@@ -281,16 +298,30 @@ function copiedDocumentId(details: unknown): string | null {
     : null;
 }
 
-function typesInOriginal(
-  payload: unknown,
-): Map<string, Omit<UsageArithmeticUse, "documentCount">> | null {
+function typesInOriginal(payload: unknown): {
+  v1: Map<string, Omit<UsageArithmeticUse, "documentCount">>;
+  v2: Map<string, Omit<UsageArithmeticV2Use, "documentCount">>;
+} | null {
   let sheet;
   try {
-    sheet = reopenArithmeticSheet(payload);
+    sheet = reopenAnyArithmeticSheet(payload);
   } catch {
     return null;
   }
   const types = new Map<string, Omit<UsageArithmeticUse, "documentCount">>();
+  const v2 = new Map<string, Omit<UsageArithmeticV2Use, "documentCount">>();
+  if (sheet.payloadVersion === 2) {
+    for (const round of sheet.rounds)
+      for (const item of round.items) {
+        const typeKey = arithmeticV2UsageTypeKey(item.typeId);
+        v2.set(typeKey, {
+          typeKey,
+          typeId: item.typeId,
+          rankGroup: getArithmeticV2Definition(item.typeId).rankGroup,
+        });
+      }
+    return { v1: types, v2 };
+  }
   for (const round of sheet.rounds) {
     for (const item of round.items) {
       const request = {
@@ -310,5 +341,5 @@ function typesInOriginal(
       });
     }
   }
-  return types;
+  return { v1: types, v2 };
 }

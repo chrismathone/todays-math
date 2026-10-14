@@ -1,5 +1,6 @@
 export {
   arithmeticUsageTypeKey,
+  arithmeticV2UsageTypeKey,
   type ArithmeticUsageSelection,
 } from "@/lib/usageLabels/typeKey";
 export {

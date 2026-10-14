@@ -15,11 +15,17 @@ import {
   USAGE_LABELS_CONTRACT_VERSION,
   type UsageArithmeticLabel,
   type UsageArithmeticTypeRequest,
+  type UsageArithmeticV2Label,
   type UsageLabelPeriod,
   type UsageLabelsResponse,
   type UsageProblemLabel,
 } from "@/contracts/usageLabels.contract";
-import { arithmeticUsageTypeKey } from "@/lib/usageLabels/typeKey";
+import {
+  arithmeticUsageTypeKey,
+  arithmeticV2UsageTypeKey,
+} from "@/lib/usageLabels/typeKey";
+import { ARITHMETIC_V2_CATALOG_VERSION } from "@/contracts/arithmeticV2.contract";
+import { getArithmeticV2Definition } from "@/lib/arithmetic-v2/registry";
 import { decideUsageRank, usageRankLabel } from "@/lib/usageLabels/rank";
 
 const PERIOD_NOTE =
@@ -53,6 +59,14 @@ export type UsageArithmeticSide = {
   complete: boolean;
   /** 원본 학습지에서 한 번이라도 나온 유형. 값은 서로 다른 문서 수. */
   uses: readonly UsageArithmeticUse[];
+  v2Uses?: readonly UsageArithmeticV2Use[];
+};
+
+export type UsageArithmeticV2Use = {
+  typeId: string;
+  typeKey: string;
+  rankGroup: string;
+  documentCount: number;
 };
 
 export type UsageArithmeticUse = {
@@ -77,6 +91,7 @@ export function assembleUsageLabels(input: {
   now: Date;
   problemIds: readonly string[];
   arithmeticTypes: readonly UsageArithmeticTypeRequest[];
+  arithmeticV2TypeIds?: readonly string[];
   problems: UsageProblemSide | null;
   arithmetic: UsageArithmeticSide | null;
 }): UsageLabelsResponse {
@@ -124,6 +139,18 @@ export function assembleUsageLabels(input: {
         top: USAGE_LABEL_TOP,
         tie: "competition-joint",
       },
+      arithmeticV2: {
+        id: "my-v2-sheet-type-rank",
+        label: "내 학습지 사용",
+        population: "같은 연산 계열(rankGroup)의 v2 학습지 유형",
+        countUnit: "distinct-original-documents",
+        group: "rankGroup",
+        copies: "excluded",
+        minimumDistinctUses: USAGE_LABEL_MIN_DISTINCT,
+        minimumObservedCandidates: USAGE_LABEL_MIN_CANDIDATES,
+        top: USAGE_LABEL_TOP,
+        tie: "competition-joint",
+      },
     },
     problems: input.problems
       ? problemLabels(input.problemIds, input.problems, periodLabel)
@@ -131,7 +158,76 @@ export function assembleUsageLabels(input: {
     arithmeticTypes: input.arithmetic
       ? arithmeticLabels(input.arithmeticTypes, input.arithmetic, periodLabel)
       : [],
+    arithmeticV2Types: input.arithmetic
+      ? arithmeticV2Labels(
+          input.arithmeticV2TypeIds ?? [],
+          input.arithmetic,
+          periodLabel,
+        )
+      : [],
   };
+}
+
+function arithmeticV2Labels(
+  ids: readonly string[],
+  side: UsageArithmeticSide,
+  periodLabel: string,
+): UsageArithmeticV2Label[] {
+  const byGroup = new Map<string, { key: string; count: number }[]>();
+  for (const use of side.v2Uses ?? []) {
+    if (use.documentCount <= 0) continue;
+    const group = byGroup.get(use.rankGroup) ?? [];
+    group.push({ key: use.typeKey, count: use.documentCount });
+    byGroup.set(use.rankGroup, group);
+  }
+  return ids.map((typeId) => {
+    let rankGroup: string | null = null;
+    try {
+      rankGroup = getArithmeticV2Definition(typeId).rankGroup;
+    } catch {
+      /* Unknown IDs carry no invented counts. */
+    }
+    const typeKey = arithmeticV2UsageTypeKey(typeId);
+    const base = {
+      typeId,
+      typeKey,
+      catalogVersion: ARITHMETIC_V2_CATALOG_VERSION,
+      rankGroup,
+    };
+    if (!rankGroup || !side.complete) {
+      const state = rankGroup ? "unavailable" : "unknown";
+      return {
+        ...base,
+        state,
+        reason: state,
+        count: null,
+        rank: null,
+        tied: null,
+        label: null,
+        tooltip: null,
+        observedCandidates: null,
+      };
+    }
+    const decision = decideUsageRank(byGroup.get(rankGroup) ?? [], typeKey);
+    return {
+      ...base,
+      state: decision.state,
+      reason: decision.reason,
+      count: decision.count,
+      rank: decision.rank,
+      tied: decision.tied,
+      label:
+        decision.state === "ranked" && decision.rank !== null
+          ? usageRankLabel(
+              "내 학습지 사용",
+              decision.rank,
+              decision.tied === true,
+            )
+          : null,
+      tooltip: `연산 계열 ${rankGroup} · ${periodLabel} · ${decision.count}장`,
+      observedCandidates: decision.observedCandidates,
+    };
+  });
 }
 
 function problemLabels(

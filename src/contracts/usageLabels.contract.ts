@@ -1,4 +1,8 @@
 import { z } from "zod";
+import {
+  ARITHMETIC_V2_CATALOG_VERSION,
+  arithmeticV2TypeIdSchema,
+} from "@/contracts/arithmeticV2.contract";
 
 import {
   ARITHMETIC_CATALOG_VERSION,
@@ -124,6 +128,10 @@ export const usageLabelsRequestSchema = z
       .array(usageArithmeticTypeSchema)
       .max(USAGE_LABEL_REQUEST_LIMIT)
       .optional(),
+    arithmeticV2TypeIds: z
+      .array(arithmeticV2TypeIdSchema)
+      .max(USAGE_LABEL_REQUEST_LIMIT)
+      .optional(),
     period: usageLabelPeriodSchema.optional(),
   })
   .superRefine((value, ctx) => {
@@ -136,6 +144,9 @@ export const usageLabelsRequestSchema = z
     if (new Set(identities).size !== identities.length) {
       ctx.addIssue({ code: "custom", message: "usage:duplicate-type" });
     }
+    const v2Ids = value.arithmeticV2TypeIds ?? [];
+    if (new Set(v2Ids).size !== v2Ids.length)
+      ctx.addIssue({ code: "custom", message: "usage:duplicate-type" });
   });
 export type UsageLabelsRequest = z.infer<typeof usageLabelsRequestSchema>;
 
@@ -245,6 +256,19 @@ export const usageArithmeticLabelSchema = z.discriminatedUnion("skillId", [
 ]);
 export type UsageArithmeticLabel = z.infer<typeof usageArithmeticLabelSchema>;
 
+export const usageArithmeticV2LabelSchema = z.strictObject({
+  typeId: arithmeticV2TypeIdSchema,
+  typeKey: z.string().min(1),
+  catalogVersion: z.literal(ARITHMETIC_V2_CATALOG_VERSION),
+  rankGroup: z.string().min(1).nullable(),
+  state: z.enum(USAGE_ARITHMETIC_STATES),
+  reason: z.enum(USAGE_LABEL_REASONS),
+  ...rankFields,
+});
+export type UsageArithmeticV2Label = z.infer<
+  typeof usageArithmeticV2LabelSchema
+>;
+
 export const usageLabelsResponseSchema = z.strictObject({
   contractVersion: z.literal(USAGE_LABELS_CONTRACT_VERSION),
   observedAt: isoDateTimeSchema,
@@ -264,10 +288,23 @@ export const usageLabelsResponseSchema = z.strictObject({
       group: z.literal("operator"),
       copies: z.literal("excluded"),
     }),
+    arithmeticV2: metricSchema
+      .extend({
+        id: z.literal("my-v2-sheet-type-rank"),
+        label: z.literal("내 학습지 사용"),
+        countUnit: z.literal("distinct-original-documents"),
+        group: z.literal("rankGroup"),
+        copies: z.literal("excluded"),
+      })
+      .optional(),
   }),
   problems: z.array(usageProblemLabelSchema).max(USAGE_LABEL_REQUEST_LIMIT),
   arithmeticTypes: z
     .array(usageArithmeticLabelSchema)
     .max(USAGE_LABEL_REQUEST_LIMIT),
+  arithmeticV2Types: z
+    .array(usageArithmeticV2LabelSchema)
+    .max(USAGE_LABEL_REQUEST_LIMIT)
+    .default([]),
 });
 export type UsageLabelsResponse = z.infer<typeof usageLabelsResponseSchema>;

@@ -27,11 +27,8 @@ import {
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { z } from "zod";
 import { parseStrictJson } from "@/lib/textbook/strictJson";
-import {
-  ARITHMETIC_SHEET_KIND,
-  arithmeticSheetProblemCount,
-  reopenArithmeticSheet,
-} from "@/lib/arithmetic";
+import { ARITHMETIC_SHEET_KIND } from "@/contracts/arithmetic.contract";
+import { anyArithmeticSheetProblemCount } from "@/lib/arithmeticDocument";
 import {
   arithmeticEngineErrorResponse,
   arithmeticSheetPayloadError,
@@ -55,7 +52,7 @@ async function problemCountOf(
   payload: Record<string, unknown>,
 ): Promise<number | null> {
   if (kind === ARITHMETIC_SHEET_KIND)
-    return arithmeticSheetProblemCount(reopenArithmeticSheet(payload));
+    return anyArithmeticSheetProblemCount(payload);
   if (kind === "conceptBlank") {
     const document = conceptBlankDocumentSchema.safeParse(payload);
     if (!document.success) return null;
@@ -455,9 +452,7 @@ export async function copyDocument(request: Request, id: string) {
       const disabled = arithmeticSheetWriteError();
       if (disabled) return disabled;
       try {
-        problemCount = arithmeticSheetProblemCount(
-          reopenArithmeticSheet(source.payload),
-        );
+        problemCount = anyArithmeticSheetProblemCount(source.payload);
       } catch (error) {
         return arithmeticEngineErrorResponse(error);
       }

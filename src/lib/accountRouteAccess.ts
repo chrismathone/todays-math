@@ -174,9 +174,15 @@ export function accountRouteAllowed(
     under(path, "/q")
   )
     return any("textbook");
-  if (path === "/api/arithmetic/catalog")
+  if (
+    path === "/api/arithmetic/catalog" ||
+    path === "/api/arithmetic/v2/catalog"
+  )
     return any("bank") && (method === "GET" || method === "HEAD");
-  if (path === "/api/arithmetic/generate")
+  if (
+    path === "/api/arithmetic/generate" ||
+    path === "/api/arithmetic/v2/generate"
+  )
     return any("bank") && method === "POST";
   // Handlers restrict bank-only access to arithmeticSheet; assets stay separate.
   if (
