@@ -170,6 +170,10 @@ const ENGINE_PREFIX: ReadonlyArray<readonly [string, ProblemOrigin]> = [
   ["elem:", "elem_engine"],
   ["mid:", "middle_engine"],
 ];
+/** 엔진 표지(`familyKey` 머리) — 조사 도구가 «엔진 표지 없는 manual» 을 셀 때 같은 목록을 쓴다. */
+export const ENGINE_FAMILY_PREFIXES: readonly string[] = ENGINE_PREFIX.map(
+  ([prefix]) => prefix,
+);
 
 /** 저장소가 그림 파일을 두는 뿌리. 실측(2026-08-25) 이 둘 말고는 없다. */
 const SVG_ENGINE_PREFIX = "/figures-svg/";

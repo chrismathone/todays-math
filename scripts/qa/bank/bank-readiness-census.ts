@@ -22,6 +22,7 @@ import {
   BANK_SOURCE_GROUP_SOURCES,
   BANK_SOURCE_GROUPS,
 } from "../../../src/contracts/bankSource.contract";
+import { ENGINE_FAMILY_PREFIXES } from "../../../src/lib/problem/provenance";
 import { problemEligibleWhere } from "../../../src/lib/problemEligibility";
 import { problemVisibleWhere } from "../../../src/lib/problemPool";
 import {
@@ -267,7 +268,20 @@ async function sources(tx: Tx) {
       where: ELIGIBLE,
       _count: { _all: true },
     }),
-    both(tx, { source: "manual", familyKey: null }),
+    // 엔진 표지(`familyKey` 머리 elem: · mid: — `provenance.ts` `classifyOrigin`)가 없는 manual = 출처 배지 «미분류»
+    both(tx, {
+      source: "manual",
+      OR: [
+        { familyKey: null },
+        {
+          NOT: {
+            OR: ENGINE_FAMILY_PREFIXES.map((prefix) => ({
+              familyKey: { startsWith: prefix },
+            })),
+          },
+        },
+      ],
+    }),
   ]);
   const of = (rows: typeof held, values: readonly string[]) =>
     rows
@@ -306,7 +320,7 @@ function markdown(report: Awaited<ReturnType<typeof collect>>): string {
     ...Object.entries(report.sources.groups).map(
       ([group, value]) => `| ${group} | ${pair(value)} |`,
     ),
-    `| 엔진 갈래 중 엔진 표지 없음 | ${pair(report.sources.engineWithoutFamilyKey)} |`,
+    `| 엔진 갈래 중 엔진 표지(elem: · mid:) 없음 — 엔진 문항 수로 광고하지 않는다 | ${pair(report.sources.engineWithoutFamilyKey)} |`,
     "",
     "## 교과서",
     "",
