@@ -55,7 +55,7 @@ const currentProblems = () =>
 const make = () =>
   fireEvent.click(
     screen.getByRole("button", {
-      name: /^(연습지 만들기|숫자 바꿔 새로 만들기)$/,
+      name: /^(연습지 만들기|모든 회차 숫자 바꾸기)$/,
     }),
   );
 
@@ -119,7 +119,10 @@ describe("arithmetic workbench", () => {
       within(
         screen.getByRole("region", { name: "생성한 문항 검토" }),
       ).getAllByRole("listitem"),
-    ).toHaveLength(200);
+    ).toHaveLength(100);
+    expect(
+      screen.getByRole("tab", { name: "2회차 100문항" }),
+    ).toBeInTheDocument();
     expect(fetch).not.toHaveBeenCalled();
   });
   it("randomly adds distinct filtered presets and preserves their default constraints and selected count", () => {

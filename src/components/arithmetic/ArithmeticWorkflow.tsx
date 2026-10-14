@@ -10,15 +10,12 @@ import {
   type ArithmeticPresentation,
 } from "@/contracts/arithmeticPresentation.contract";
 import type { PrintMeta, PrintOptions } from "@/components/unified/print/types";
-import { MathText } from "@/components/math/MathText";
-import NativeProblem from "@/components/unified/NativeProblem";
-import { fractionViewFor } from "@/components/unified/fractionDisplay";
+import ArithmeticReview from "./ArithmeticReview";
 import {
   arithmeticToStudioProblems,
   type ArithmeticOutputSheet,
 } from "@/lib/arithmeticOutput";
 import s from "./ArithmeticWorkbench.module.css";
-import layout from "./ArithmeticWorkflow.module.css";
 import { arithmeticOutputGroups } from "@/lib/arithmeticOutputLayout";
 
 const WorksheetEditor = dynamic(
@@ -63,7 +60,7 @@ export function ArithmeticWorkflow({
   canRegenerate: boolean;
   dirty: boolean;
   onSave: () => void;
-  onRegenerate: () => void;
+  onRegenerate: (target?: { round: number; orders: number[] }) => void;
   children: ReactNode;
   actions?: ReactNode;
   presentation?: ArithmeticPresentation;
@@ -165,9 +162,9 @@ export function ArithmeticWorkflow({
             <button
               type="button"
               disabled={busy || !canRegenerate}
-              onClick={onRegenerate}
+              onClick={() => onRegenerate()}
             >
-              숫자 바꿔 새로 만들기
+              모든 회차 숫자 바꾸기
             </button>
             <button
               type="button"
@@ -179,8 +176,8 @@ export function ArithmeticWorkflow({
             </button>
           </div>
           <p className={s.catalogCount}>
-            현재 문항의 회차별 유형과 수량으로 숫자를 바꿉니다. 가능한 식이 적은
-            유형은 이전 식이 다시 나올 수 있습니다.
+            회차를 선택한 뒤 문항을 체크하거나 유형 옆 버튼으로 숫자를 바꿀 수
+            있습니다.
           </p>
           <p className={s.catalogCount}>
             완성한 연습지는 양식 구성·출력에서 ‘내 시험지에 저장’을 눌러
@@ -189,44 +186,12 @@ export function ArithmeticWorkflow({
           {!canOutput && (
             <p className={s.notice}>출력하려면 출력 메뉴 권한이 필요합니다.</p>
           )}
-          {rounds.map((round) => (
-            <section
-              key={round.round}
-              className={layout.round}
-              aria-label={`${round.round}회차 문항`}
-            >
-              <header className={layout.roundHeader}>
-                <h2>{round.round}회차</h2>
-                <span>{round.count}문항</span>
-              </header>
-              {round.groups.map((group) => (
-                <section key={group.problems[0].id} aria-label={group.title}>
-                  <h3 className={layout.typeHeading}>{group.title}</h3>
-                  <ol className={s.reviewGrid}>
-                    {group.problems.map((problem) => (
-                      <li key={problem.id} className={s.reviewCard}>
-                        <strong
-                          className={layout.questionNumber}
-                          data-arithmetic-question-number
-                        >
-                          {problem.arithmetic?.number}.
-                        </strong>
-                        <NativeProblem problem={problem} print={false} />
-                        {showAnswers && (
-                          <div className={s.reviewAnswer} aria-label="정답">
-                            <strong>정답</strong>{" "}
-                            <MathText
-                              text={fractionViewFor(problem)(problem.answer)}
-                            />
-                          </div>
-                        )}
-                      </li>
-                    ))}
-                  </ol>
-                </section>
-              ))}
-            </section>
-          ))}
+          <ArithmeticReview
+            rounds={rounds}
+            showAnswers={showAnswers}
+            disabled={busy || !canRegenerate}
+            onRegenerate={onRegenerate}
+          />
         </section>
       ) : step === "output" && sheet ? (
         <WorksheetEditor
