@@ -38,6 +38,12 @@ const STAGE_LABEL: Record<DocumentWorkflow["step"], string> = {
   review: "2 문항 검토",
   output: "3 양식 구성·출력",
 };
+function isWorkingDocument(item: PrivateDocumentSummary) {
+  return Boolean(
+    item.workflow &&
+    !(item.kind === "arithmeticSheet" && item.workflow.step === "output"),
+  );
+}
 type PrivateLibraryProps = {
   storageScope: string;
   branchId?: string | null;
@@ -144,7 +150,7 @@ function PrivateLibraryContent({
           (kind === "all" ||
             item.kind === kind ||
             (kind === "working" &&
-              Boolean(item.workflow) &&
+              isWorkingDocument(item) &&
               (item.ownerId
                 ? item.ownerId === storageScope
                 : item.isOwner !== false))) &&
@@ -212,7 +218,7 @@ function PrivateLibraryContent({
                 ? items.length
                 : items.filter((item) =>
                     value === "working"
-                      ? Boolean(item.workflow) &&
+                      ? isWorkingDocument(item) &&
                         (item.ownerId
                           ? item.ownerId === storageScope
                           : item.isOwner !== false)
@@ -336,7 +342,7 @@ function PrivateLibraryContent({
                   number={index + 1}
                   client={client}
                   onResume={
-                    item.workflow
+                    item.workflow && isWorkingDocument(item)
                       ? item.kind === "draft" && canExport
                         ? () =>
                             openDocument(item, (id) =>

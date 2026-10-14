@@ -32,7 +32,6 @@ import {
   defaultArithmeticPresentation,
   type ArithmeticPresentation,
 } from "@/contracts/arithmeticPresentation.contract";
-import { useArithmeticAutosave } from "./useArithmeticAutosave";
 import s from "./ArithmeticWorkbench.module.css";
 
 const catalog = listArithmeticV2Types();
@@ -98,7 +97,6 @@ export default function GradeArithmeticWorkbench({
   const [retry, setRetry] = useState(0);
   const [step, setStep] = useState<ArithmeticStep>("scope");
   const [presentation, setPresentation] = useState<ArithmeticPresentation>();
-  const [autosavePaused, setAutosavePaused] = useState(false);
   const mounted = useRef(true);
   useEffect(() => {
     mounted.current = true;
@@ -125,19 +123,6 @@ export default function GradeArithmeticWorkbench({
     ? JSON.stringify({ title: title.trim(), sheet: savePayload })
     : "";
   const dirty = Boolean(sheet && fingerprint !== saved?.fingerprint);
-  useArithmeticAutosave({
-    enabled: Boolean(
-      client &&
-      catalogState.writer &&
-      !preview &&
-      !autosavePaused &&
-      title.trim(),
-    ),
-    dirty,
-    busy,
-    fingerprint,
-    save: () => save(true),
-  });
   const strands = [
     ...new Set(
       catalog
@@ -285,7 +270,6 @@ export default function GradeArithmeticWorkbench({
         const nextStep = initialStep ?? payload.presentation?.step ?? "review";
         setStep(nextStep === "output" && !canOutput ? "review" : nextStep);
         setPresentation(payload.presentation);
-        setAutosavePaused(false);
         setTitle(document.title);
         setSaved({
           id: document.id,
@@ -366,8 +350,9 @@ export default function GradeArithmeticWorkbench({
       inFlight.current = false;
     }
   }
-  async function save(automatic = false) {
+  async function save() {
     if (
+      step !== "output" ||
       !savePayload ||
       !client ||
       preview ||
@@ -390,22 +375,13 @@ export default function GradeArithmeticWorkbench({
       );
       if (!mounted.current) return;
       setSaved({ id: document.id, revision: document.revision, fingerprint });
-      setAutosavePaused(false);
       loadedId.current = document.id;
       onDocumentChange?.(document.id);
       setNotice(
-        automatic
-          ? "내 시험지에 자동 저장했습니다."
-          : "내 시험지에 저장했습니다.",
+        "내 시험지에 저장했습니다. 다음에 같은 문항과 양식으로 열 수 있습니다.",
       );
     } catch (cause) {
-      setAutosavePaused(true);
-      setError(
-        cloudError(cause) +
-          (automatic
-            ? " 자동 저장을 멈췄습니다. 내 시험지에 저장 버튼으로 다시 시도할 수 있습니다."
-            : ""),
-      );
+      setError(cloudError(cause));
     } finally {
       setBusy(false);
       inFlight.current = false;
@@ -469,7 +445,6 @@ export default function GradeArithmeticWorkbench({
               setSheet(undefined);
               setStep("scope");
               setPresentation(undefined);
-              setAutosavePaused(false);
               setSaved(undefined);
               pendingId.current = null;
               loadedId.current = undefined;

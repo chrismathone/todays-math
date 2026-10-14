@@ -166,7 +166,6 @@ export function ArithmeticWorkflow({
             >
               숫자 바꿔 새로 만들기
             </button>
-            {saveButton}
             <button
               type="button"
               className={s.primary}
@@ -179,6 +178,10 @@ export function ArithmeticWorkflow({
           <p className={s.catalogCount}>
             현재 문항의 회차별 유형과 수량으로 숫자를 바꿉니다. 가능한 식이 적은
             유형은 이전 식이 다시 나올 수 있습니다.
+          </p>
+          <p className={s.catalogCount}>
+            완성한 연습지는 양식 구성·출력에서 ‘내 시험지에 저장’을 눌러
+            보관하세요.
           </p>
           {!canOutput && (
             <p className={s.notice}>출력하려면 출력 메뉴 권한이 필요합니다.</p>
@@ -228,9 +231,12 @@ export function ArithmeticWorkflow({
           outputNotice={
             <div className={s.reviewToolbar}>
               {saveButton}
+              <span role="status">{dirty ? "저장 전" : "저장됨"}</span>
               <span>
-                정답지는 답만 포함합니다. 생성한 문항의 회차와 순서를
-                유지합니다.
+                {canSave
+                  ? "문항과 양식을 직접 저장하면 내 시험지에서 다시 열 수 있습니다."
+                  : "현재 연산 시험지를 저장할 수 없습니다. 문항 확인과 출력은 가능합니다."}{" "}
+                정답지는 답만 포함합니다.
               </span>
             </div>
           }

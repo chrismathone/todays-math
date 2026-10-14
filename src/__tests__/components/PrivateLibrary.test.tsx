@@ -80,6 +80,43 @@ const titles = () =>
     .map((button) => button.textContent);
 
 describe("private library board", () => {
+  it("keeps saved arithmetic output in its library category, outside autosaved work", async () => {
+    const arithmetic: PrivateDocumentSummary = {
+      ...boardItems[0],
+      kind: "arithmeticSheet",
+      title: "분수 연산 복습",
+      workflow: { source: "arithmetic", step: "output" },
+    };
+    const working: PrivateDocumentSummary = {
+      ...boardItems[1],
+      workflow: { source: "bank", step: "review" },
+    };
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => listResponse([arithmetic, working])),
+    );
+    const onOpenArithmetic = vi.fn();
+    render(
+      <PrivateLibrary
+        {...boardProps()}
+        canArithmetic
+        onOpenArithmetic={onOpenArithmetic}
+      />,
+    );
+    await screen.findByRole("button", { name: "분수 연산 복습 수정" });
+    expect(
+      screen.queryByRole("button", { name: "분수 연산 복습 이어서 작업" }),
+    ).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "작업 중 1" }));
+    expect(
+      screen.queryByRole("button", { name: "분수 연산 복습 열기" }),
+    ).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "연산 연습지 1" }));
+    fireEvent.click(
+      screen.getByRole("button", { name: "분수 연산 복습 수정" }),
+    );
+    await waitFor(() => expect(onOpenArithmetic).toHaveBeenCalledWith("alpha"));
+  });
   it("separates working documents and resumes the saved stage while edit opens output", async () => {
     const working = {
       ...boardItems[0],

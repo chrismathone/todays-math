@@ -78,6 +78,8 @@
 
 연산 유형 카드와 세부 조건에는 생성 가능한 조합 수를 표시하지 않는다(2026-10-14 사용자 결정). 즉시 생성하는 유형이 저장된 문항 재고로 오해되지 않도록 실제 생성할 문항 수와 회차 수를 중심으로 표시한다. 중복 없는 조합 수와 요청 한도 검증은 엔진 내부에서 유지한다.
 
+2026-10-15 사용자 결정: 연산은 생성·검토·양식 변경 시 자동저장하지 않는다. 마지막 양식 구성·출력 단계에서 ‘내 시험지에 저장’을 누른 완성본만 저장한다. 저장한 문항·정답·회차·양식을 재생성 없이 복원하며, 출력 단계에서 저장한 연산은 ‘작업 중’ 자동저장 목록에서 제외하고 연산 연습지 목록의 수정으로 연다. 기존 문제은행·추출 작업의 자동저장은 유지한다. 운영 저장 활성화는 사용자 요청으로 보류하며 기존 쓰기 게이트와 DB 제약은 변경하지 않는다.
+
 ### 영어듣기 — `english-listening`
 
 구현: [ListeningStudio](../../src/components/english/listening/ListeningStudio.tsx), [ListeningTeacherWorkspace](../../src/components/english/listening/ListeningTeacherWorkspace.tsx), [CSS](../../src/components/english/listening/ListeningTeacherWorkspace.module.css).
