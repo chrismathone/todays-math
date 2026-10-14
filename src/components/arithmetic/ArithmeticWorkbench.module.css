@@ -37,7 +37,7 @@
 }
 .catalog {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 244px), 1fr));
   gap: 8px;
 }
 .catalogFilters {
@@ -378,9 +378,6 @@
   .layout {
     grid-template-columns: minmax(0, 1fr);
   }
-  .catalog {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
   .settings {
     position: static;
     max-height: none;
@@ -393,9 +390,6 @@
   }
 }
 @media (max-width: 760px) {
-  .catalog {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
   .root .card {
     padding: 12px;
   }

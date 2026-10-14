@@ -12,9 +12,20 @@ import layout from "./ArithmeticWorkflow.module.css";
 type Regenerate = (target: { round: number; orders: number[] }) => void;
 
 function itemOrder(problem: StudioProblem) {
-  return problem.source?.kind === "arithmeticSheet"
-    ? problem.source.item.order
-    : 0;
+  const source = problem.source;
+  if (
+    source &&
+    typeof source === "object" &&
+    "kind" in source &&
+    source.kind === "arithmeticSheet" &&
+    "item" in source &&
+    source.item &&
+    typeof source.item === "object" &&
+    "order" in source.item &&
+    typeof source.item.order === "number"
+  )
+    return source.item.order;
+  throw new Error("연산 문항의 저장된 번호를 확인할 수 없습니다.");
 }
 
 export default function ArithmeticReview({

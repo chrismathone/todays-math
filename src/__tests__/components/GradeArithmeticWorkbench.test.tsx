@@ -235,7 +235,13 @@ describe("grade arithmetic user flow", () => {
       within(
         screen.getByRole("region", { name: "생성한 문항 검토" }),
       ).getAllByRole("listitem"),
-    ).toHaveLength(5);
+    ).toHaveLength(3);
+    fireEvent.click(screen.getByRole("tab", { name: "2회차 2문항" }));
+    expect(
+      within(
+        screen.getByRole("region", { name: "생성한 문항 검토" }),
+      ).getAllByRole("listitem"),
+    ).toHaveLength(2);
     expect(save).not.toHaveBeenCalled();
     expect(
       screen.queryByRole("button", { name: "내 시험지에 저장" }),
