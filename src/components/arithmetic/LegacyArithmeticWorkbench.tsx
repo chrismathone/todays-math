@@ -39,6 +39,11 @@ import {
 } from "./typeSelection";
 import { useArithmeticTypeSelection } from "./useArithmeticTypeSelection";
 import { arithmeticReviewRounds } from "@/lib/arithmeticOutput";
+import {
+  defaultArithmeticPresentation,
+  type ArithmeticPresentation,
+} from "@/contracts/arithmeticPresentation.contract";
+import { useArithmeticAutosave } from "./useArithmeticAutosave";
 import s from "./ArithmeticWorkbench.module.css";
 
 const catalog = listArithmeticSkills();
@@ -58,7 +63,7 @@ const message = (error: unknown) =>
 export default function LegacyArithmeticWorkbench({
   storageScope,
   initialDocumentId,
-  initialStep = "review",
+  initialStep,
   canOutput,
   academyName,
   preview = false,
@@ -116,14 +121,47 @@ export default function LegacyArithmeticWorkbench({
   }>({ ready: preview, writer: false });
   const [retry, setRetry] = useState(0);
   const [step, setStep] = useState<ArithmeticStep>("scope");
+  const [presentation, setPresentation] = useState<ArithmeticPresentation>();
+  const [autosavePaused, setAutosavePaused] = useState(false);
+  const mounted = useRef(true);
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
+  function changeStep(next: ArithmeticStep) {
+    setStep(next);
+    setPresentation((current) => ({
+      ...(current ?? defaultArithmeticPresentation(academyName)),
+      step: next,
+    }));
+  }
+  const savePayload = useMemo(
+    () => (sheet && presentation ? { ...sheet, presentation } : sheet),
+    [sheet, presentation],
+  );
   const client = useMemo(
     () => (storageScope ? new PrivateCloudClient(storageScope) : null),
     [storageScope],
   );
-  const fingerprint = sheet
-    ? JSON.stringify({ title: title.trim(), sheet })
+  const fingerprint = savePayload
+    ? JSON.stringify({ title: title.trim(), sheet: savePayload })
     : "";
   const dirty = Boolean(sheet && fingerprint !== saved?.fingerprint);
+  useArithmeticAutosave({
+    enabled: Boolean(
+      client &&
+      catalogState.writer &&
+      !preview &&
+      !autosavePaused &&
+      title.trim(),
+    ),
+    dirty,
+    busy,
+    fingerprint,
+    save: () => save(true),
+  });
   const selection =
     allocations.find((item) => item.id === active) ?? allocations[0];
   const totalPerRound = allocations.reduce((sum, item) => sum + item.count, 0);
@@ -247,9 +285,10 @@ export default function LegacyArithmeticWorkbench({
         setActive(restored[0].id);
         setRounds(payload.rounds.length);
         setSheet(payload);
-        setStep(
-          initialStep === "output" && !canOutput ? "review" : initialStep,
-        );
+        const nextStep = initialStep ?? payload.presentation?.step ?? "review";
+        setStep(nextStep === "output" && !canOutput ? "review" : nextStep);
+        setPresentation(payload.presentation);
+        setAutosavePaused(false);
         setTitle(document.title);
         setSaved({
           id: document.id,
@@ -322,6 +361,10 @@ export default function LegacyArithmeticWorkbench({
       }
       setSheet(payload);
       setStep("review");
+      setPresentation((current) => ({
+        ...(current ?? defaultArithmeticPresentation(academyName)),
+        step: "review",
+      }));
       setNotice(
         `${payload.rounds.reduce((sum, round) => sum + round.items.length, 0)}문항을 생성하고 정답을 확인했습니다. 저장 전에는 현재 화면에만 보관됩니다.`,
       );
@@ -332,10 +375,11 @@ export default function LegacyArithmeticWorkbench({
       inFlight.current = false;
     }
   }
-  async function save() {
+  async function save(automatic = false) {
     if (
-      !sheet ||
+      !savePayload ||
       !client ||
+      preview ||
       !catalogState.writer ||
       !title.trim() ||
       inFlight.current
@@ -350,15 +394,27 @@ export default function LegacyArithmeticWorkbench({
         saved?.id ?? pendingId.current,
         "arithmeticSheet",
         title.trim(),
-        sheet,
+        savePayload,
         saved?.revision ?? null,
       );
+      if (!mounted.current) return;
       setSaved({ id: document.id, revision: document.revision, fingerprint });
+      setAutosavePaused(false);
       loadedId.current = document.id;
       onDocumentChange?.(document.id);
-      setNotice("내 시험지에 저장했습니다.");
+      setNotice(
+        automatic
+          ? "내 시험지에 자동 저장했습니다."
+          : "내 시험지에 저장했습니다.",
+      );
     } catch (cause) {
-      setError(cloudError(cause));
+      setAutosavePaused(true);
+      setError(
+        cloudError(cause) +
+          (automatic
+            ? " 자동 저장을 멈췄습니다. 내 시험지에 저장 버튼으로 다시 시도할 수 있습니다."
+            : ""),
+      );
     } finally {
       setBusy(false);
       inFlight.current = false;
@@ -394,14 +450,16 @@ export default function LegacyArithmeticWorkbench({
       )}
       <ArithmeticWorkflow
         step={step}
-        setStep={setStep}
+        setStep={changeStep}
+        presentation={presentation}
+        onPresentationChange={setPresentation}
         sheet={sheet}
         title={title}
         setTitle={setTitle}
         academyName={academyName}
         busy={busy}
         canOutput={canOutput}
-        canSave={Boolean(client && catalogState.writer)}
+        canSave={Boolean(client && catalogState.writer && !preview)}
         canRegenerate={catalogState.ready}
         dirty={dirty}
         onSave={() => void save()}
@@ -419,6 +477,8 @@ export default function LegacyArithmeticWorkbench({
                 return;
               setSheet(undefined);
               setStep("scope");
+              setPresentation(undefined);
+              setAutosavePaused(false);
               setSaved(undefined);
               pendingId.current = null;
               loadedId.current = undefined;

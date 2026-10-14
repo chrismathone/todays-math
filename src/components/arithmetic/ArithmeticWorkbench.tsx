@@ -101,9 +101,9 @@ function WorkbenchRouter({
   const changeDocument = useCallback(
     (which: Mode, id: string | undefined) => {
       setIds((current) => ({ ...current, [which]: id }));
-      onDocumentChange?.(id);
+      if (mode === which) onDocumentChange?.(id);
     },
-    [onDocumentChange],
+    [mode, onDocumentChange],
   );
   const gradeDocument = useCallback(
     (id: string | undefined) => changeDocument("grade", id),

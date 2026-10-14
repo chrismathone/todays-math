@@ -6,11 +6,10 @@ import StudioStepBar, {
   type StudioStepNavigation,
 } from "@/components/unified/StudioStepBar";
 import {
-  DEFAULT_PRINT_META,
-  DEFAULT_PRINT_OPTIONS,
-  type PrintMeta,
-  type PrintOptions,
-} from "@/components/unified/print/types";
+  defaultArithmeticPresentation,
+  type ArithmeticPresentation,
+} from "@/contracts/arithmeticPresentation.contract";
+import type { PrintMeta, PrintOptions } from "@/components/unified/print/types";
 import { MathText } from "@/components/math/MathText";
 import NativeProblem from "@/components/unified/NativeProblem";
 import { fractionViewFor } from "@/components/unified/fractionDisplay";
@@ -47,6 +46,8 @@ export function ArithmeticWorkflow({
   onRegenerate,
   children,
   actions,
+  presentation,
+  onPresentationChange,
 }: {
   step: ArithmeticStep;
   setStep: (step: ArithmeticStep) => void;
@@ -63,20 +64,31 @@ export function ArithmeticWorkflow({
   onRegenerate: () => void;
   children: ReactNode;
   actions?: ReactNode;
+  presentation?: ArithmeticPresentation;
+  onPresentationChange: (presentation: ArithmeticPresentation) => void;
 }) {
   const root = useRef<HTMLDivElement>(null);
   const [showAnswers, setShowAnswers] = useState(false);
-  const [printOptions, setPrintOptions] = useState<PrintOptions>(() => ({
-    ...DEFAULT_PRINT_OPTIONS,
-    template: "yuhyung",
-    columns: 2,
-    quickAnswerOnly: true,
-    showDifficulty: false,
-  }));
-  const [printMeta, setPrintMeta] = useState<PrintMeta>(() => ({
-    ...DEFAULT_PRINT_META,
-    academyName,
-  }));
+  const defaults = useMemo(
+    () => defaultArithmeticPresentation(academyName),
+    [academyName],
+  );
+  const currentPresentation = presentation ?? defaults;
+  const { printOptions, printMeta } = currentPresentation;
+  function updateOptions(patch: Partial<PrintOptions>) {
+    onPresentationChange({
+      ...currentPresentation,
+      step,
+      printOptions: { ...printOptions, ...patch, quickAnswerOnly: true },
+    });
+  }
+  function updateMeta(patch: Partial<PrintMeta>) {
+    onPresentationChange({
+      ...currentPresentation,
+      step,
+      printMeta: { ...printMeta, ...patch },
+    });
+  }
   const problems = useMemo(
     () => (sheet ? arithmeticToStudioProblems(sheet) : []),
     [sheet],
@@ -201,25 +213,12 @@ export function ArithmeticWorkflow({
           savedAt=""
           printOptions={printOptions}
           printMeta={printMeta}
-          setPrintOptions={(patch) =>
-            setPrintOptions((current) => ({
-              ...current,
-              ...patch,
-              quickAnswerOnly: true,
-            }))
-          }
-          setPrintMeta={(patch) =>
-            setPrintMeta((current) => ({ ...current, ...patch }))
-          }
+          setPrintOptions={updateOptions}
+          setPrintMeta={updateMeta}
           setColumns={(columns) =>
-            setPrintOptions((current) => ({
-              ...current,
-              columns: columns === 1 ? 1 : 2,
-            }))
+            updateOptions({ columns: columns === 1 ? 1 : 2 })
           }
-          setAnswers={(showAnswers) =>
-            setPrintOptions((current) => ({ ...current, showAnswers }))
-          }
+          setAnswers={(showAnswers) => updateOptions({ showAnswers })}
           beforeOutput={async () => {
             if (!canOutput || busy)
               throw new Error(

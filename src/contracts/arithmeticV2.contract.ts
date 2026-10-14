@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { arithmeticPresentationSchema } from "./arithmeticPresentation.contract";
 import {
   ARITHMETIC_MAX_ITEMS_PER_ROUND,
   ARITHMETIC_MAX_ITEMS_TOTAL,
@@ -165,6 +166,7 @@ export const arithmeticV2SheetPayloadSchema = z
     engineVersion: z.literal(ARITHMETIC_V2_ENGINE_VERSION),
     catalogVersion: z.literal(ARITHMETIC_V2_CATALOG_VERSION),
     seed: arithmeticSeedSchema,
+    presentation: arithmeticPresentationSchema.optional(),
     rounds: z
       .array(
         z.strictObject({
