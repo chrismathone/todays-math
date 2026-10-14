@@ -1,0 +1,63 @@
+Arithmetic parameter presets — 2026-10-14
+
+Scope and delivery
+- Merged local main 7c28d9072 before implementation.
+- Foundation commit: 533619e4a (src/lib/arithmeticPresets.ts and initial test); sent early for root UI integration.
+- Final owned files: new preset module, src/__tests__/unit/arithmeticPresets.test.ts and this report.
+- No core, persistence, UI, bank, usageLabels, schema or student-record changes. No paid API, copied questions, live database rows, push or deployment.
+
+Catalog
+- 97 authored parameter presets within the existing seven skill families, grouped as 덧셈 34 / 뺄셈 21 / 곱셈 33 / 나눗셈 9.
+- one-digit-add: 20 presets, exact domain sizes 1–25. Fixed additions 1–9 with/without carrying and the 0–4 / 5–9 operand ranges.
+- one-digit-sub: 12 presets, exact domain sizes 1–21. Fixed subtractions 0–9, subtraction within 0–5, and subtraction from 9; differences are nonnegative.
+- two-digit-vertical-add: 14 presets, exact domain sizes 2–3,735. Carry counts 0/1/2, fixed additions 11/19, and fixed tens 10/20/30/40/50 without carrying.
+- two-digit-vertical-sub: 9 presets, exact domain sizes 9–2,475. Borrow counts 0/1, fixed subtraction 19, and fixed tens 10/20/30/40/50 without borrowing.
+- times-table: 9 presets, exact domain size 9 each. Individual tables 1–9, each multiplied by 1–9.
+- two-digit-times-one: 24 presets, exact domain sizes 2–72. Fixed multipliers 2–9, each with carry counts 0/1/2.
+- two-digit-div-one: 9 presets, exact domain sizes 10–90. Fixed divisors 1–9, dividends 10–99, integer quotients and remainder 0.
+- Only supported engine constraints are authored. IDs describe the operation, fixed value and carry/borrow condition; they do not depend on array order, titles or generated numbers.
+- Core request normalization canonicalizes selections before deduplication. Duplicate IDs or normalized selections and empty domains fail catalog construction. Tests additionally reject equivalent full operand domains within the same skill even if constraints were written differently.
+- defaultCount is exactly min(20, domainSize) for every preset. The engine's per-round and document limits still apply to mixed requests.
+
+Exact coverage and omissions
+- This is one-/two-digit nonnegative integer arithmetic in seven existing families. It does not establish elementary grade 3 through middle grade 3 coverage, official grade assignment or achievement-standard alignment.
+- Fractions, decimals, negative integers/rationals, signed operations, algebraic expressions/equations, polynomials and radicals are not implemented here.
+- Mixed-operation order, division with remainder, larger-digit families, word problems, geometry, official grade claims and student grading/SRS integration remain outside this task.
+- 97 counts the available parameter presets, not additional curriculum families or problem-bank inventory.
+
+UI integration contract
+- Import listArithmeticPresets() and findArithmeticPreset(id) from @/lib/arithmeticPresets.
+- list returns readonly {id,title,group,description,selection,defaultCount,domainSize,example}[]; find returns the matching entry or undefined.
+- The default full-range two-digit addition with zero carries is add-two-carry-0.
+- selection is the frozen core ArithmeticSkillSelection; send it in a core request allocation with count. No preset-only keys belong in the arithmeticSheet payload.
+- The cached catalog and all nested objects are deeply frozen. Clone selection/constraints before user editing.
+- Each example is an ArithmeticPrompt only, generated with seed preset-example-v1:<stable-id> and verified through buildArithmeticSheet. It carries no answer or solution field.
+- Mixed presets can overlap within a skill: exact per-preset domain sizes do not imply their default counts can always be added. The existing engine rejects depleted/overlapping round allocations without padding them; a mixed-preset regression test confirms this.
+
+Finite regeneration behavior
+- At default counts, 38 presets sample only part of their domain; the seed tests verify a changed numeric membership set can be obtained.
+- 56 presets use their entire domain of multiple items; regeneration can change order while retaining the same members.
+- Three presets have one possible item: add-one-fixed-1-carry (9+1), add-one-fixed-9-no-carry (0+9), and sub-one-fixed-9 (9−9). Their defaultCount is 1, and no seed can create a different legal item.
+- Fresh seeds may collide, and earlier seeds may reuse items. The variation checks use up to 32 deterministic seed probes and require variation only where possible; they do not promise a new item on every click or historical non-repetition.
+
+Verified fixtures and evidence
+- Final test command: npx --no-install vitest run src/__tests__/unit/arithmeticPresets.test.ts src/__tests__/unit/arithmeticEngine.test.ts --maxWorkers=2 --reporter=json --outputFile=.tmp-arithmetic-presets/results.json
+- Result: 313/313 tests passed across the new preset matrix and the existing arithmetic engine tests.
+- Independently enumerated all 0–99 ordered operand pairs against each preset's ranges and arithmetic conditions, then compared the complete accepted set to the engine domain. All 97 domains match, totaling 14,387 preset-domain memberships (overlaps across presets included; not a unique question-inventory count).
+- Verified 97 deterministic card examples with independent answers and prompt shape checks.
+- Verified eight seeds per preset: 776 sheet fixtures, 1,552 rounds, and 19,456 generated item fixtures. Every item was checked against its independent domain, constraints, BigInt-computed answer, prompt/notation/operator, numbering and absence of a solution field.
+- Every round is duplicate-free. Every sheet reproduces exactly for the same request/seed, survives JSON serialization/reopen unchanged, and rejects an intentionally corrupted stored answer.
+- Fresh seed probes found membership/order variation for all 94 domains with more than one item; the three singleton domains correctly remain unchanged.
+- Verified normalized deduplication, supported families, stable lookup, honest groups/wording, frozen objects and mixed-preset overlap rejection.
+- ESLint passed for the module and test. Scoped TypeScript checking of both files and their dependencies passed using the repository compiler settings with no incremental output.
+- Scoped typecheck reproduction: create ignored .tmp-arithmetic-presets/tsconfig.json containing {"extends":"../tsconfig.json","compilerOptions":{"incremental":false},"include":["../src/lib/arithmeticPresets.ts","../src/__tests__/unit/arithmeticPresets.test.ts"]}, then run node --max-old-space-size=8192 node_modules/typescript/bin/tsc --noEmit --project .tmp-arithmetic-presets/tsconfig.json.
+- No full fixture corpus is written or imported by product code. Test fixtures are generated in memory; the local JSON artifact contains test results only and is ignored by Git.
+
+Size and performance boundary
+- Product code derives 97 compact descriptors and one prompt example each on first use, then caches them; it does not bundle generated worksheets.
+- Serializing the resolved catalog produced 42,081 UTF-8 bytes in this revision. One local Node cold catalog construction measured 79 ms; this is a local observation, not a browser latency guarantee.
+- Root owns card pagination/search/grouping, fresh-seed controls, browser measurements and the integrated save/reopen/print flow.
+
+Remaining work
+- Root can integrate the foundation commit while merging the final verification/report commit afterward.
+- No additional engine family or grade-coverage expansion was attempted following the coordinator's clarification. Such coverage needs a separately scoped contract, generator and validation effort.
