@@ -16,6 +16,7 @@ import {
   PaperStrip,
   type PaperStripPage,
 } from "@/components/paper-strip/PaperStrip";
+import { A4_DIMENSIONS } from "@/components/print/tokens";
 
 // jsdom 에는 모달 API 가 없다.
 const dialogMethods = ["showModal", "close"] as const;
@@ -141,6 +142,68 @@ describe("지면 띠", () => {
     const dialog = screen.getByRole("dialog", { name: "지면 확대 보기" });
     expect(within(dialog).getByText("2 / 2쪽")).toBeVisible();
     expect(within(dialog).queryByText("지면 2")).toBeNull();
+  });
+
+  it("fits whole overview pages to the available height and resizes to a narrow container", () => {
+    let width = 1200;
+    vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockImplementation(
+      () => width,
+    );
+    vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockReturnValue({
+      top: 300,
+      height: 24,
+    } as DOMRect);
+    render(
+      <PaperStrip pages={[page(1), page(2)]} hint="" id="worksheet-preview" />,
+    );
+    const strip = screen.getByRole("region", { name: "지면 미리보기" });
+    const scale = () =>
+      Number(strip.style.getPropertyValue("--paper-strip-scale"));
+    expect(strip).toHaveAttribute("id", "worksheet-preview");
+    expect(scale() * A4_DIMENSIONS.heightPx + 32 + 24 + 16).toBeLessThanOrEqual(
+      window.innerHeight - 300 - 16,
+    );
+    width = 280;
+    fireEvent(window, new Event("resize"));
+    expect(scale() * A4_DIMENSIONS.widthPx).toBeLessThanOrEqual(248);
+  });
+
+  it("defaults enlarged pages to whole-page fit and preserves width/percent zoom and the current page", () => {
+    let width = 900;
+    let height = 500;
+    vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockImplementation(
+      () => width,
+    );
+    vi.spyOn(HTMLElement.prototype, "clientHeight", "get").mockImplementation(
+      () => height,
+    );
+    render(<PaperStrip pages={[page(1), page(2)]} hint="" />);
+    fireEvent.click(screen.getByRole("button", { name: "2쪽 확대" }));
+    const dialog = screen.getByRole("dialog");
+    const expanded = within(dialog).getByRole("region", {
+      name: "확대한 지면",
+    });
+    const zoom = within(dialog).getByRole("combobox", {
+      name: "미리보기 확대",
+    });
+    const scale = () =>
+      Number(expanded.style.getPropertyValue("--paper-strip-scale"));
+    expect(zoom).toHaveValue("page");
+    expect(scale() * A4_DIMENSIONS.heightPx).toBeLessThanOrEqual(height - 32);
+    expect(scale() * A4_DIMENSIONS.widthPx).toBeLessThanOrEqual(width - 32);
+    fireEvent.change(zoom, { target: { value: "width" } });
+    expect(scale()).toBe(1);
+    fireEvent.keyDown(zoom, { key: "ArrowLeft" });
+    expect(within(dialog).getByText("2 / 2쪽")).toBeVisible();
+    fireEvent.change(zoom, { target: { value: "1.25" } });
+    width = 300;
+    height = 360;
+    fireEvent(window, new Event("resize"));
+    expect(scale()).toBe(1.25);
+    expect(within(dialog).getByText("2 / 2쪽")).toBeVisible();
+    fireEvent.change(zoom, { target: { value: "page" } });
+    expect(scale() * A4_DIMENSIONS.widthPx).toBeLessThanOrEqual(width - 32);
+    expect(scale() * A4_DIMENSIONS.heightPx).toBeLessThanOrEqual(height - 32);
   });
 
   it("가리킨 쪽으로 띠를 옮긴다 — 같은 쪽을 다시 가리켜도 옮긴다", () => {

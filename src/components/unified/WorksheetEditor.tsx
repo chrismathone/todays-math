@@ -383,8 +383,7 @@ export default function WorksheetEditor({
         </div>
       ) : (
         <div className={s.exportGrid}>
-          <aside className={s.exportInspector}>
-            <h2>시험지 설정</h2>
+          <aside className={s.exportInspector} aria-label="시험지 설정">
             <div
               className={s.inspectorTabs}
               role="tablist"
