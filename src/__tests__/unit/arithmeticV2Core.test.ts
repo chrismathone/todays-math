@@ -33,6 +33,43 @@ import {
 
 afterEach(() => vi.restoreAllMocks());
 describe("v2 indexed snapshots", () => {
+  it("excludes identical displayed tasks across type IDs and reports exact exhausted overlap", () => {
+    const request = fixtureRequest(7);
+    request.rounds[0].allocations.push({ typeId: "test-peer", count: 4 });
+    const result = buildArithmeticV2Sheet(request);
+    expect(
+      result.rounds[0].items
+        .slice(7)
+        .map((item) => item.domainIndex)
+        .sort((a, b) => a - b),
+    ).toEqual([7, 8, 9, 10]);
+    expect(buildArithmeticV2Sheet(request)).toEqual(result);
+    request.rounds[0].allocations[1].count = 5;
+    expect(() => buildArithmeticV2Sheet(request)).toThrow(
+      expect.objectContaining({
+        code: "capacity",
+        violations: [
+          {
+            round: 1,
+            allocation: 2,
+            typeId: "test-peer",
+            requested: 5,
+            available: 4,
+            reason: "overlap",
+          },
+        ],
+      }),
+    );
+    const duplicate = buildArithmeticV2Sheet(fixtureRequest(1));
+    duplicate.rounds[0].items.push({
+      ...duplicate.rounds[0].items[0],
+      typeId: "test-peer",
+      order: 2,
+    });
+    expect(() => reopenArithmeticV2Sheet(duplicate)).toThrow(
+      expect.objectContaining({ code: "duplicate" }),
+    );
+  });
   it("has deterministic selection without replacement across repeated allocations", () => {
     const request = fixtureRequest(3);
     request.rounds[0].allocations.push({ typeId: "test-add", count: 4 });

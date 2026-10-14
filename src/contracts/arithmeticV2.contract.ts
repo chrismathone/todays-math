@@ -6,7 +6,10 @@ import {
   ARITHMETIC_SHEET_KIND,
   arithmeticSeedSchema,
 } from "@/contracts/arithmetic.contract";
-import type { ArithmeticV2CatalogEntry } from "@/lib/arithmetic-v2/types";
+import type {
+  ArithmeticV2CatalogEntry,
+  ArithmeticV2Prompt,
+} from "@/lib/arithmetic-v2/types";
 
 export const ARITHMETIC_V2_ENGINE_VERSION = "arithmetic-engine-v2" as const;
 export const ARITHMETIC_V2_CATALOG_VERSION = "arithmetic-catalog-v2" as const;
@@ -46,6 +49,24 @@ export const arithmeticV2PromptSchema = z.discriminatedUnion("layout", [
     instruction: display.optional(),
   }),
 ]);
+/** Same visible task across families; no collapsing of commuted operands. */
+export function arithmeticV2PromptIdentity(prompt: ArithmeticV2Prompt): string {
+  return JSON.stringify(
+    prompt.layout === "vertical"
+      ? [
+          prompt.layout,
+          prompt.operator,
+          prompt.left,
+          prompt.right,
+          prompt.instruction ?? "",
+        ]
+      : [
+          prompt.layout,
+          prompt.latex.replace(/\s+/g, ""),
+          prompt.instruction ?? "",
+        ],
+  );
+}
 export const arithmeticV2AnswerSchema = z
   .strictObject({
     kind: z.enum([
@@ -168,6 +189,7 @@ export const arithmeticV2SheetPayloadSchema = z
         });
       total += round.items.length;
       const keys = new Set<string>();
+      const prompts = new Set<string>();
       round.items.forEach((item, itemIndex) => {
         const path = ["rounds", roundIndex, "items", itemIndex];
         if (item.order !== itemIndex + 1)
@@ -180,6 +202,14 @@ export const arithmeticV2SheetPayloadSchema = z
             message: "arithmetic:duplicate",
           });
         keys.add(key);
+        const promptKey = arithmeticV2PromptIdentity(item.prompt);
+        if (prompts.has(promptKey))
+          ctx.addIssue({
+            code: "custom",
+            path,
+            message: "arithmetic:duplicate",
+          });
+        prompts.add(promptKey);
       });
     });
     if (total > ARITHMETIC_MAX_ITEMS_TOTAL)

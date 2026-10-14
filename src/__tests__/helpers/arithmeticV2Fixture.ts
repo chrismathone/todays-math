@@ -24,7 +24,12 @@ function definition(
         throw new RangeError("index");
       return {
         parameters: [index, 1],
-        prompt: { layout: "math", text: `${index} + 1`, latex: `${index}+1` },
+        prompt: {
+          layout: "math",
+          text: `${index} + 1`,
+          latex: `${index}+1`,
+          ...(id === "test-other" ? { instruction: "다른 조건의 연습" } : {}),
+        },
         answer: {
           kind: "integer",
           exact: [String(index + 1)],

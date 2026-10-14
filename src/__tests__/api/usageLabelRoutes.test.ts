@@ -60,6 +60,35 @@ afterEach(() => {
 });
 
 describe("순위 라우트 관문", () => {
+  it("accepts explicit v2 IDs and keeps owner-only counts and family grouping", async () => {
+    const response = await labels(
+      post({ arithmeticV2TypeIds: ["m1-integer-add", "unknown-type"] }),
+    );
+    expect(response.status).toBe(200);
+    const body = usageLabelsResponseSchema.parse(await response.json());
+    expect(body.arithmeticV2Types).toEqual([
+      expect.objectContaining({
+        typeId: "m1-integer-add",
+        state: "zero",
+        count: 0,
+      }),
+      expect.objectContaining({
+        typeId: "unknown-type",
+        state: "unknown",
+        count: null,
+      }),
+    ]);
+    expect(body.metrics.arithmeticV2?.group).toBe("rankGroup");
+    expect(db.workspaceDocument.findMany).toHaveBeenCalledWith(
+      expect.objectContaining({
+        where: expect.objectContaining({
+          userId: "owner-17",
+          kind: "arithmeticSheet",
+        }),
+      }),
+    );
+    expect(db.test.findMany).not.toHaveBeenCalled();
+  });
   it("로그인·검수 계정·다른 사이트를 막고, 틀린 본문은 조회하지 않는다", async () => {
     vi.mocked(getSessionUser).mockResolvedValueOnce(null);
     expect((await labels(post({ problemIds: [problemId] }))).status).toBe(401);

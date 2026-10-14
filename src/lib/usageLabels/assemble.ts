@@ -142,7 +142,7 @@ export function assembleUsageLabels(input: {
       arithmeticV2: {
         id: "my-v2-sheet-type-rank",
         label: "내 학습지 사용",
-        population: "같은 연산 계열(rankGroup)의 v2 학습지 유형",
+        population: "같은 연산 묶음에서 내가 만든 원본 학습지의 유형",
         countUnit: "distinct-original-documents",
         group: "rankGroup",
         copies: "excluded",
@@ -224,7 +224,7 @@ function arithmeticV2Labels(
               decision.tied === true,
             )
           : null,
-      tooltip: `연산 계열 ${rankGroup} · ${periodLabel} · ${decision.count}장`,
+      tooltip: `같은 연산 묶음 · ${periodLabel} · 원본 ${decision.count}장`,
       observedCandidates: decision.observedCandidates,
     };
   });

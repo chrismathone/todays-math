@@ -4,6 +4,7 @@ import {
   ARITHMETIC_MAX_ROUNDS,
   arithmeticV2GenerateRequestSchema,
   arithmeticV2CandidateSchema,
+  arithmeticV2PromptIdentity,
   type ArithmeticV2GenerateRequest,
   type ArithmeticV2SheetItem,
 } from "@/contracts/arithmeticV2.contract";
@@ -30,6 +31,21 @@ export function validateArithmeticV2Request(
     ) {
       let total = 0;
       for (const [index, round] of input.rounds.entries()) {
+        // Diagnostics must not trust a body that just failed schema validation.
+        if (
+          !round ||
+          typeof round !== "object" ||
+          !Array.isArray(round.allocations) ||
+          !round.allocations.every(
+            (item: unknown) =>
+              item !== null &&
+              typeof item === "object" &&
+              "count" in item &&
+              Number.isSafeInteger(item.count) &&
+              Number(item.count) > 0,
+          )
+        )
+          throw error;
         const count = round.allocations.reduce(
           (sum: number, item: { count: number }) => sum + item.count,
           0,
@@ -76,6 +92,7 @@ function sampler(size: number, random: () => number) {
   const swaps = new Map<number, number>();
   let remaining = size;
   return () => {
+    if (remaining === 0) return null;
     // Two PRNG draws retain integer precision for domains beyond 2^32.
     const unit =
       (Math.floor(random() * 0x200000) * 0x100000000 +
@@ -118,9 +135,10 @@ export function generateArithmeticV2Items(
   if (violations.length)
     throw new ArithmeticV2EngineError("capacity", violations);
   return request.rounds.map((round, roundIndex) => {
-    const streams = new Map<string, () => number>();
+    const streams = new Map<string, () => number | null>();
     const items: ArithmeticV2SheetItem[] = [];
-    for (const allocation of round.allocations) {
+    const prompts = new Set<string>();
+    for (const [allocationIndex, allocation] of round.allocations.entries()) {
       const definition = getArithmeticV2Definition(allocation.typeId);
       let next = streams.get(definition.id);
       if (!next) {
@@ -140,20 +158,36 @@ export function generateArithmeticV2Items(
         );
         streams.set(definition.id, next);
       }
-      for (let i = 0; i < allocation.count; i++) {
+      let taken = 0;
+      while (taken < allocation.count) {
         const domainIndex = next();
+        if (domainIndex === null)
+          throw new ArithmeticV2EngineError("capacity", [
+            {
+              round: roundIndex + 1,
+              allocation: allocationIndex + 1,
+              typeId: allocation.typeId,
+              requested: allocation.count,
+              available: taken,
+              reason: "overlap",
+            },
+          ]);
         const parsed = arithmeticV2CandidateSchema.safeParse(
           definition.problemAt(domainIndex),
         );
         if (!parsed.success) throw arithmeticV2SchemaError(parsed.error);
         if (!definition.verify(parsed.data))
           throw new ArithmeticV2EngineError("verification");
+        const promptKey = arithmeticV2PromptIdentity(parsed.data.prompt);
+        if (prompts.has(promptKey)) continue;
+        prompts.add(promptKey);
         items.push({
           order: items.length + 1,
           typeId: definition.id,
           domainIndex,
           ...parsed.data,
         });
+        taken += 1;
       }
     }
     return items;
