@@ -1,0 +1,219 @@
+Middle triangle geometry arithmetic — 2026-10-15
+Worker branch: BIGSHOL/arithmetic-geometry-triangles (base main 278d081dd)
+Commit: the normal-hook commit containing this report; hash sent to root separately.
+
+Delivered interface
+- src/lib/arithmetic-v2/families/geometryTriangles.ts exports
+  TRIANGLE_GEOMETRY_DEFINITIONS and TRIANGLE_GEOMETRY_FIGURES.
+- 90 types (83 중2, 7 중3), 2,502 distinct finite candidates. The domain table below is authoritative.
+- All prompts include visible text, instruction, stable unique latex identity,
+  figureId and explicit answerUnit. Unitless quotients use the empty string.
+- No contracts, registry, shared geometry pack, assets, UI, output or print changes.
+- Figures are enumerable lazy getters, cached individually. Merely importing the
+  catalog does not draw or allocate the 4.5 MB full SVG map. Each gt1 figure ID
+  includes the type and full domain parameters and is at most 64 characters.
+- No direct family import of shared contracts/registry/geometry.ts. The existing
+  engine error class remains the ordinary out-of-domain error dependency.
+- Verify checks independent defining equations and canonical exact forms; it
+  never calls problemAt. Prompt and answer key order is irrelevant (Zod-safe).
+
+Coverage and grade decisions
+- Acute-triangle circumcenter: central/vertex/radius-base angles and inverses,
+  the three radius-base angles, equal radii, right-triangle hypotenuse/radius,
+  and the radius from two given legs. Circumcenters are actual equidistant points.
+- Obtuse-triangle circumcenter: small central angle 360-2A, inverse vertex
+  angle and radius-triangle base angle A-90. A=100..150 in steps of 5; O is
+  truly across BC from A, and the prompt explicitly distinguishes the minor
+  central angle. Both rays and the correct minor arc are drawn. Arc radii adapt
+  to nearby sides so a near-straight central arc does not cross BC.
+- Incenter: half/whole angles, 90+A/2 and inverse, three half-angles,
+  isosceles base half-angle, area/radius/perimeter, a component triangle area,
+  and right-triangle inradius. Radius, area, perimeter and coordinates all agree;
+  the finite metric examples are scaled 3-4-5 and 5-12-13 triangles.
+- Centroid: all six direct median/long-part/short-part directions, 1/3 and 1/6
+  areas, and the sum of the three vertex-to-centroid segments.
+- Isosceles apex bisector/altitude/base properties (plain apex/base angle drills
+  remain the elementary worker's scope). Midsegment/inverse, quarter/remainder
+  area, medial perimeter/inverse, median areas, and explicit same-height area ratio.
+- Similarity: corresponding length, perimeter, area and volume, enlarge/reduce,
+  powers of the length ratio and inverse square/cube ratios. Volume diagrams are
+  explicitly the corresponding triangular bases of two similar triangular prisms.
+- Parallel section proportions in triangles, three parallel lines, trapezoid
+  midline/inverse, diagonal midpoint separation, general parallel section; internal
+  and external angle-bisector segment proportions (external ray is actually drawn).
+- Parallelogram adjacent angles, diagonal bisection/inverse and quarter area;
+  rectangle cross-diagonal halves; rhombus diagonal angle; isosceles-trapezoid angle.
+- Pythagoras: missing hypotenuse/leg, rectangle diagonal/side, isosceles altitude,
+  rhombus side, integer and radical domains, drawn altitude/projection/area,
+  and geometric-mean altitude/leg relations with all needed givens explicit.
+- Integer/rational direct triangle relationships are 중2. Square-root-dependent
+  families are 중3: prisma/seed-data/units.ts 2877ff places 제곱근의 뜻과 성질 and
+  근호를 포함한 식의 계산 in 중3, as does arithmetic-v2/families/middle/radical.ts.
+  There are no high-school entries and no trigonometry or middle3 circle-angle types.
+
+Finite-domain and exact-answer conventions
+- Domains are constructed explicitly, never random retries or advertised capacity.
+  Pythagoras legs: integers 3..20, a<=b, b<=3a. Known leg/hypotenuse: a=3..20,
+  c=5..25, positive other leg with aspect ratio between 1/3 and 3. Perfect-square
+  and non-square domains are disjoint. Each title corresponds to a different
+  requested geometric quantity, not a reworded duplicate task.
+- Acute center-angle examples use A=40..80 in steps of 4. Obtuse examples have
+  distinct type identities, actual outside centers and dedicated numerical gates.
+- Length and centroid scalar domains are generally 2..20. Ratio pairs are reduced,
+  1<=p<q<=5, p<=4, q<=3p. Exact domain sizes are listed below.
+- Integer exact=[n]; rational exact=[reduced n, positive d]. Surd exact=[c,r,d]
+  means c*sqrt(r)/d, with squarefree r>1, positive integers and gcd(c,d)=1.
+  Perfect-square radicals collapse to integer/rational. There is no pi family here.
+  Answer text and latex contain only the answer with its unit, never working.
+- Oversized hostile exact components are rejected before root factorization.
+
+Geometry and display verification
+- Mathematical construction precedes one uniform fit to the 240x240 viewBox.
+  No nonuniform scaling or angle/length distortion. Actual circumcenters,
+  weighted incenters, bisectors, medians and perpendicular feet are calculated.
+- Black on white, <desc>arithmetic-geometry-drill-v1</desc>, explicit XML escaping,
+  named vertices and relevant equal/right/parallel/angle marks. Target angles
+  are named in the instruction; no question mark or answer text is drawn.
+- The first eligible numerical given is repeated on the figure with a leader.
+  All givens remain in visible prompt.text; dense diagrams do not shrink text.
+  Sum expressions such as AD+BE+CF are never mislabelled as one segment.
+- All 2,502 SVGs were rendered in the real Orca embedded browser at 216px.
+  Native text bounding boxes and sampled line/path/circle strokes: 13,459 labels,
+  2,426 leaders, zero clipping, label overlap or geometry-label collision.
+  Minimum displayed nominal font is 18px (20 SVG units at 216/240 scale).
+- Acute/obtuse circumcenter, incenter and Pythagoras screenshots inspected. Root also reviewed
+  the incenter gallery. This is browser SVG evidence, not an authenticated final
+  workspace flow, integrated PDF check, official curriculum alignment or a claim
+  about measured student learning effects. Root owns shared schema/pack/output QA.
+
+Tests and reproduction
+- 92 focused tests pass, including every finite candidate: independent numerical
+  oracle, actual coordinate angles/lengths/areas/ratios, center geometry, exact
+  right/equal/parallel marks, rendered SVG uniform scale/angles, unique tasks and
+  identities, finite index rejection, canonicality, forged answers/units/figures,
+  huge radicands and permuted prompt/answer keys.
+- Root-installed binaries were used without installs, links or package changes:
+  GEOMETRY_TRIANGLES_DEPS=C:/Creative/testautocreator
+  NODE_PATH=C:/Creative/testautocreator/node_modules
+  node <deps>/node_modules/vitest/vitest.mjs run
+    --config scripts/qa/geometry-triangles-vitest.config.mts --reporter=dot
+  node <deps>/node_modules/tsx/dist/cli.mjs scripts/qa/geometry-triangles-gallery.ts
+- Scoped ESLint, focused tsc (production family files plus focused tests, temporary
+  config using root dependencies) and git diff --check pass. Integrated full tsc
+  remains root-owned.
+- Worktree has no local node_modules or generated Husky launchers. The normal
+  pre-commit hook is run through the existing root Husky launcher, with missing
+  packages resolved from the existing root install by geometry-triangles-deps.mjs.
+  A temporary npx wrapper adds the root --prefix; hook commands remain unchanged.
+  No HUSKY=0, no hook bypass, no package installation, no filesystem junction.
+
+Local evidence (not published)
+C:/Users/user/AppData/Local/Temp/geometryTriangles-20261015/
+  gallery.html, domains.json, browser-proof.json,
+  gallery-first.png, gallery-incenter.png, gallery-pythagoras.png, gallery-obtuse.png
+Exact map SHA-256: cce9eb680e52e1db64704739d4a6b960c8a6715034b6edab6c0b97a946a119f6
+Uncompressed map values: 4,579,804 bytes. Root persists selected subsets only.
+
+Boundaries/exclusions
+- Elementary plain angles/area/perimeter, middle1 polygons/solids, middle3
+  circle-angle/trigonometry remain other workers' scopes.
+- Proof/classification/congruence selection, folded paper, overlap/hidden auxiliary
+  constructions, geographic applications, solid surface shortest paths, shaded
+  lunes/semicircle puzzles and mixed multi-step figure puzzles are not turned into
+  disguised direct-arithmetic duplicates. The direct underlying right-triangle,
+  proportion or area relation is represented where applicable.
+- No official achievement-standard completeness assertion. No push/deploy/DB/env
+  file/autosave changes, extra workers, lifecycle task commands or worktree removal.
+  Preserve this clean branch/worktree for root's merge and cleanup.
+
+Type/domain table
+중2 | m2-obtuse-circum-central-angle | 11
+중2 | m2-obtuse-circum-vertex-angle | 11
+중2 | m2-obtuse-circum-base-angle | 11
+중2 | m2-circum-central-angle | 11
+중2 | m2-circum-vertex-angle | 11
+중2 | m2-circum-radius-base-angle | 11
+중2 | m2-circum-base-central-angle | 11
+중2 | m2-circum-three-base-angles | 14
+중2 | m2-circum-equal-radii | 19
+중2 | m2-right-circumradius | 19
+중2 | m2-right-circum-diameter | 19
+중2 | m2-incenter-half-angle | 11
+중2 | m2-incenter-whole-angle | 11
+중2 | m2-incenter-central-angle | 11
+중2 | m2-incenter-inverse-angle | 11
+중2 | m2-incenter-three-half-angles | 13
+중2 | m2-iso-incenter-base-half | 11
+중2 | m2-incenter-area | 20
+중2 | m2-incenter-radius | 20
+중2 | m2-incenter-perimeter | 20
+중2 | m2-incenter-part-area | 20
+중2 | m2-incenter-right-radius | 20
+중2 | m2-centroid-vertex-from-short | 19
+중2 | m2-centroid-short-from-vertex | 19
+중2 | m2-centroid-vertex-from-median | 19
+중2 | m2-centroid-short-from-median | 19
+중2 | m2-centroid-median-from-vertex | 19
+중2 | m2-centroid-median-from-short | 19
+중2 | m2-centroid-area-3 | 20
+중2 | m2-centroid-area-6 | 20
+중2 | m2-iso-bisector-angle | 11
+중2 | m2-iso-bisector-base | 19
+중2 | m2-iso-bisector-half-base | 19
+중2 | m2-triangle-midsegment | 19
+중2 | m2-midsegment-to-base | 19
+중2 | m2-midsegment-area-small | 19
+중2 | m2-midsegment-area-remainder | 19
+중2 | m2-trapezoid-midline | 20
+중2 | m2-trapezoid-base | 20
+중2 | m2-trapezoid-diagonal-midpoints | 20
+중2 | m2-similarity-ratio-power-1 | 7
+중2 | m2-similarity-length-enlarge | 35
+중2 | m2-similarity-length-reduce | 35
+중2 | m2-similarity-ratio-power-2 | 7
+중2 | m2-similarity-length-from-power-2 | 7
+중2 | m2-similarity-area-enlarge | 35
+중2 | m2-similarity-area-reduce | 35
+중2 | m2-similarity-ratio-power-3 | 7
+중2 | m2-similarity-length-from-power-3 | 7
+중2 | m2-similarity-volume-enlarge | 35
+중2 | m2-similarity-volume-reduce | 35
+중2 | m2-similarity-perimeter | 35
+중2 | m2-parallel-triangle-side-part | 45
+중2 | m2-parallel-triangle-base | 12
+중2 | m2-parallel-triangle-whole-side | 45
+중2 | m2-triangle-bisector-segment | 27
+중2 | m2-parallelogram-adjacent | 8
+중2 | m2-parallelogram-diagonal-half | 19
+중2 | m2-parallelogram-diagonal-whole | 19
+중2 | m2-parallelogram-area-quarter | 19
+중2 | m2-rectangle-diagonal-half | 19
+중2 | m2-rhombus-diagonal-angle | 11
+중2 | m2-isosceles-trapezoid-angle | 7
+중2 | m2-pythagoras-hypotenuse-integer | 7
+중2 | m2-pythagoras-leg-integer | 14
+중2 | m2-pythagoras-rectangle-diagonal-integer | 7
+중2 | m2-pythagoras-rectangle-side-integer | 14
+중2 | m2-pythagoras-isosceles-height-integer | 14
+중2 | m2-pythagoras-rhombus-side-integer | 7
+중3 | m3-pythagoras-hypotenuse-surd | 138
+중3 | m3-pythagoras-leg-surd | 177
+중3 | m3-pythagoras-rectangle-diagonal-surd | 138
+중3 | m3-pythagoras-rectangle-side-surd | 177
+중3 | m3-pythagoras-isosceles-height-surd | 177
+중3 | m3-pythagoras-rhombus-side-surd | 138
+중2 | m2-right-radius-from-legs | 7
+중2 | m2-right-triangle-height | 7
+중2 | m2-right-triangle-projection | 7
+중2 | m2-right-triangle-area | 7
+중2 | m2-right-altitude-product | 10
+중3 | m3-right-leg-product | 10
+중2 | m2-centroid-median-sum | 27
+중2 | m2-triangle-median-area | 29
+중2 | m2-same-height-area-ratio | 36
+중2 | m2-three-parallel-segments | 32
+중2 | m2-trapezoid-parallel-section | 64
+중2 | m2-external-bisector-part | 18
+중2 | m2-external-bisector-base | 18
+중2 | m2-midpoint-triangle-perimeter-part | 28
+중2 | m2-midpoint-triangle-perimeter-whole | 28
