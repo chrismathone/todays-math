@@ -3,7 +3,7 @@
  * domains of actual arithmetic practice, never word problems or equation solving.
  */
 export type ArithmeticGrade =
-  "초3" | "초4" | "초5" | "초6" | "중1" | "중2" | "중3";
+  "초1" | "초2" | "초3" | "초4" | "초5" | "초6" | "중1" | "중2" | "중3";
 export type ArithmeticStrand =
   "자연수" | "분수" | "소수" | "정수·유리수" | "문자식" | "근호";
 export type ArithmeticV2Prompt =
