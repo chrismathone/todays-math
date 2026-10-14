@@ -21,6 +21,8 @@ export interface ExamQuestionInfo {
   detail?: string;
 }
 export interface ExamBuilderSource<T> {
+  /** Math inventory must be confirmed before a scope can be selected. */
+  requireScopeCounts?: boolean;
   /** Scopes already present with the selected content can be shown before effects run. */
   initialScopes?: ExamScope[];
   loadScopes: (signal: AbortSignal) => Promise<ExamScope[]>;

@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { createMathExamBuilderSource } from "@/components/exam-builder/mathSource";
 import type { StudioProblem } from "@/components/unified/types";
 import { MOCK_UNITS } from "@/mocks/data";
+import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 
 const signal = new AbortController().signal;
 const unit = MOCK_UNITS[0];
@@ -40,6 +41,122 @@ afterEach(() => {
 });
 
 describe("Math exam builder source", () => {
+  it("reports the recorded eligibility reason if a saved problem is no longer issuable", async () => {
+    const id = "e4e83b15-0e42-4f77-9bd1-14892741964d";
+    const fetcher = vi
+      .fn<typeof fetch>()
+      .mockResolvedValueOnce(reply({ problems: [] }))
+      .mockResolvedValueOnce(
+        reply({
+          items: [
+            {
+              id,
+              state: "ineligible",
+              code: "locked",
+              reason: "잠금",
+              reviewStatus: "approved",
+              unitId: null,
+              source: "school_textbook",
+            },
+          ],
+          counts: { requested: 1, eligible: 0, ineligible: 1, missing: 0 },
+        }),
+      );
+    const source = createMathExamBuilderSource({
+      fetch: fetcher,
+      problemsUrl: "/api/studio/problems",
+    });
+    await expect(source.prepareOutput!([row(id)], signal)).rejects.toThrow(
+      "M-001: 출제 잠금(사유 미기록)",
+    );
+    expect(fetcher.mock.calls[1][0]).toBe("/api/studio/problems/check");
+  });
+  it("uses the same source conditions for availability, candidate list and composition", async () => {
+    const tally = { held: 30, available: 24 };
+    const filters =
+      "sourceGroup=school_textbook&books=30000000-0000-4000-8000-000000000001&materials=40000000-0000-4000-8000-000000000001";
+    const availability = {
+      view: "available",
+      version: 1,
+      ...tally,
+      facets: {
+        units: { [unit.id]: tally },
+        difficulties: Object.fromEntries(
+          DIFFICULTY_LADDER.map((level) => [level, tally]),
+        ),
+        sources: Object.fromEntries(
+          ["total", "engine", "school_textbook", "past_exam", "other"].map(
+            (key) => [key, tally],
+          ),
+        ),
+        textbook: { ...tally, books: [] },
+      },
+    };
+    const fetcher = vi
+      .fn<typeof fetch>()
+      .mockResolvedValueOnce(reply(availability))
+      .mockResolvedValueOnce(reply({ problems: [row()], total: 24, page: 2 }))
+      .mockResolvedValueOnce(reply({ problems: [row()] }));
+    const source = createMathExamBuilderSource({
+      initialUnits: MOCK_UNITS,
+      initialUnitCounts: { [unit.id]: 999 },
+      filters,
+      fetch: fetcher,
+      problemsUrl: "/api/studio/problems",
+    });
+    expect(source.initialScopes).toBeUndefined();
+    const scopes = await source.loadScopes(signal);
+    expect(scopes[0].count).toBe(24);
+    expect(scopes[1].count).toBe(0);
+    expect(JSON.parse(fetcher.mock.calls[0][1]!.body as string)).toMatchObject({
+      view: "available",
+      sourceGroup: "school_textbook",
+      materials: "40000000-0000-4000-8000-000000000001",
+    });
+    await source.list(listRequest, signal);
+    expect(
+      new URL(
+        String(fetcher.mock.calls[1][0]),
+        "https://math.test",
+      ).searchParams.get("books"),
+    ).toBe("30000000-0000-4000-8000-000000000001");
+    expect(
+      new URL(
+        String(fetcher.mock.calls[1][0]),
+        "https://math.test",
+      ).searchParams.get("materials"),
+    ).toBe("40000000-0000-4000-8000-000000000001");
+    await source.compose([{ scopeId: unit.id, count: 24 }], signal);
+    expect(JSON.parse(fetcher.mock.calls[2][1]!.body as string)).toEqual({
+      filters,
+      allocations: [{ unitId: unit.id, count: 24 }],
+    });
+  });
+
+  it("keeps uncounted facets unknown and never falls back to stale inventory on failure", async () => {
+    const fetcher = vi
+      .fn<typeof fetch>()
+      .mockResolvedValueOnce(
+        reply({
+          view: "available",
+          version: 1,
+          held: 30,
+          available: 24,
+          facets: null,
+        }),
+      )
+      .mockResolvedValueOnce(reply({ error: "수량 확인 실패" }, 500));
+    const source = createMathExamBuilderSource({
+      initialUnits: MOCK_UNITS,
+      initialUnitCounts: { [unit.id]: 999 },
+      refreshAvailability: true,
+      fetch: fetcher,
+    });
+    expect((await source.loadScopes(signal))[0].count).toBeUndefined();
+    await expect(source.loadScopes(signal)).rejects.toThrow("수량 확인 실패");
+    expect(source.initialScopes).toBeUndefined();
+  });
+
   it("uses the initial ordered curriculum without fetching and identifies legacy rows by unit metadata", async () => {
     const fetcher = vi.fn<typeof fetch>();
     const source = createMathExamBuilderSource({

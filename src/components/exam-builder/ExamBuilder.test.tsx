@@ -108,6 +108,49 @@ beforeAll(() => {
 });
 afterEach(cleanup);
 describe("shared exam builder workflow", () => {
+  it("does not select unknown math inventory through select-all or an individual row", async () => {
+    const adapter = source({
+      requireScopeCounts: true,
+      loadScopes: vi
+        .fn()
+        .mockResolvedValue([
+          { ...scopes[0], count: 0 },
+          scopes[1],
+          { ...scopes[2], count: 3 },
+        ]),
+    });
+    render(<Harness adapter={adapter} />);
+    await waitFor(() =>
+      expect(screen.getByRole("button", { name: "범위 선택" })).toBeEnabled(),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "범위 선택" }));
+    const dialog = within(screen.getByRole("dialog"));
+    expect(dialog.getByRole("checkbox", { name: /범위 2/ })).toBeDisabled();
+    expect(dialog.getByText("출제 가능 수 확인 필요")).toBeInTheDocument();
+    fireEvent.click(
+      dialog.getByRole("checkbox", { name: "현재 결과 전체 선택" }),
+    );
+    fireEvent.click(dialog.getByRole("button", { name: "1개 범위 적용" }));
+    fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
+    await waitFor(() =>
+      expect(adapter.compose).toHaveBeenCalledWith(
+        [{ scopeId: "u3", count: 3 }],
+        expect.any(AbortSignal),
+      ),
+    );
+  });
+  it("removes a restored empty scope without discarding saved questions", async () => {
+    const adapter = source({
+      requireScopeCounts: true,
+      loadScopes: vi.fn().mockResolvedValue([{ ...scopes[0], count: 0 }]),
+    });
+    render(<Harness adapter={adapter} initial={[questions[0]]} />);
+    await screen.findByText(/없는 1개 범위를 구성에서 제외/);
+    expect(screen.queryByRole("spinbutton")).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "문항 구성 →" })).toBeDisabled();
+    expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a");
+    expect(adapter.compose).not.toHaveBeenCalled();
+  });
   it("marks empty curriculum scopes unavailable and caps requests to actual bank counts", async () => {
     const available = [
       { ...scopes[0], count: 0 },

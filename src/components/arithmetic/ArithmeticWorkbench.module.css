@@ -1,0 +1,302 @@
+.root {
+  color: var(--learn-ink);
+}
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 12px;
+}
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.8fr);
+  gap: 20px;
+  align-items: start;
+}
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.catalogFilters {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.catalogFilters label {
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+}
+.catalogCount,
+.capacity {
+  font-size: 12px;
+  color: var(--learn-muted);
+  line-height: 1.5;
+}
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 16px;
+}
+:where(.root) button,
+:where(.root) input,
+:where(.root) select {
+  font: inherit;
+  min-height: 44px;
+  border: 1px solid var(--learn-control);
+  border-radius: 8px;
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  padding: 8px 12px;
+  box-sizing: border-box;
+}
+:where(.root) button {
+  cursor: pointer;
+}
+:where(.root) button:hover {
+  background: var(--learn-soft);
+}
+:where(.root) button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.root :is(button, input, select):focus-visible {
+  outline: 3px solid var(--learn-focus);
+  outline-offset: 2px;
+}
+.root .card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: left;
+  min-height: 190px;
+  gap: 12px;
+  padding: 16px;
+  border-color: var(--learn-track);
+}
+.root .card[aria-pressed="true"] {
+  background: var(--learn-soft);
+  border-color: var(--learn-accent);
+}
+.cardTop {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.cardTop strong {
+  font-size: 15px;
+}
+.cardTop > span {
+  color: var(--learn-accent);
+  font-size: 12px;
+}
+.labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  min-height: 23px;
+}
+.labels > span {
+  background: var(--learn-neutral);
+  border-radius: 4px;
+  color: var(--learn-muted);
+  font-size: 12px;
+  padding: 2px 7px;
+}
+.example {
+  display: block;
+  margin-top: auto;
+  font-size: 24px;
+  min-height: 72px;
+}
+.settings {
+  background: var(--learn-surface);
+  border: 1px solid var(--learn-track);
+  border-radius: 10px;
+  padding: 20px;
+}
+.settings > label,
+.constraints label {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+  font-size: 13px;
+}
+:where(.root) input,
+:where(.root) select {
+  width: 100%;
+  min-width: 0;
+}
+.settings h2,
+.output h2 {
+  font-size: 17px;
+  margin: 16px 0 12px;
+}
+:where(.root) small {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--learn-muted);
+}
+.allocation {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 64px 58px;
+  gap: 6px;
+  margin: 8px 0;
+  align-items: center;
+}
+.allocation button {
+  font-size: 12px;
+  padding: 6px;
+}
+.allocation button:first-child {
+  text-align: left;
+}
+.allocation button[aria-pressed="true"] {
+  border-color: var(--learn-accent);
+}
+.allocation input {
+  padding: 6px;
+}
+.constraints {
+  border: 1px solid var(--learn-track);
+  padding: 12px;
+  border-radius: 8px;
+  margin: 18px 0;
+}
+.constraints legend {
+  padding: 0 6px;
+  font-size: 13px;
+}
+.constraints > div {
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+.constraints p {
+  color: var(--learn-muted);
+  font-size: 12px;
+  margin-bottom: 0;
+}
+.range {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 6px;
+  align-items: center;
+  margin-top: 6px;
+}
+.dans {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+.dans label {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  gap: 4px;
+  min-height: 32px;
+}
+.dans input {
+  width: 16px;
+  height: 16px;
+  min-height: 0;
+  padding: 0;
+}
+.total {
+  border-top: 1px solid var(--learn-track);
+  padding-top: 14px;
+  font-size: 14px;
+}
+.total small {
+  display: block;
+  margin-top: 4px;
+}
+.root .primary {
+  background: var(--learn-accent);
+  border-color: var(--learn-accent);
+  color: var(--learn-on-accent);
+}
+.root .primary:hover {
+  background: var(--learn-accent-hover);
+}
+.settings > .primary {
+  width: 100%;
+}
+.notice,
+.error {
+  padding: 12px;
+  font-size: 13px;
+  border-radius: 8px;
+}
+.notice {
+  background: var(--learn-soft);
+}
+.error {
+  background: var(--learn-danger-bg);
+  color: var(--learn-danger);
+}
+.output {
+  margin-top: 24px;
+}
+.outputBar {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.outputBar h2 {
+  margin-right: auto;
+}
+.outputBar label {
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+}
+.printRoot {
+  display: none;
+}
+@media (max-width: 1050px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .catalog {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .catalog {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .root .card {
+    padding: 12px;
+  }
+  .settings {
+    padding: 16px;
+  }
+}
+@media (max-width: 480px) {
+  .catalog {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .allocation {
+    grid-template-columns: minmax(0, 1fr) 58px 52px;
+  }
+}
+@media print {
+  :global(body[data-arithmetic-print="true"])
+    > :not([data-arithmetic-print-root]) {
+    display: none !important;
+  }
+  :global(body[data-arithmetic-print="true"]) {
+    margin: 0;
+    padding: 0;
+    background: white;
+  }
+  .printRoot {
+    display: block !important;
+  }
+}

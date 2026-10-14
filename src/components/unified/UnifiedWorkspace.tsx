@@ -67,6 +67,10 @@ const MathExamBuilder = dynamic(loadMathBuilder, {
     />
   ),
 });
+const ArithmeticWorkbench = dynamic(
+  () => import("@/components/arithmetic/ArithmeticWorkbench"),
+  { loading: () => <WorkProgress label="연산대장을 여는 중입니다…" /> },
+);
 const loadStudioView = () => import("./StudioView");
 const StudioView = dynamic(loadStudioView, {
   ssr: false,
@@ -141,10 +145,7 @@ const EnglishStudio = dynamic(
   {
     ssr: false,
     loading: () => (
-      <WorkProgress
-        className={s.loading}
-        label="오늘의 영어를 여는 중입니다…"
-      />
+      <WorkProgress className={s.loading} label="오늘 영어를 여는 중입니다…" />
     ),
   },
 );
@@ -411,7 +412,7 @@ function UnifiedWorkspaceContent({
   const product = productOf(view);
   const productLabel =
     WORKSPACE_PRODUCTS.find((item) => item.id === product)?.label ??
-    "오늘의수학";
+    "오늘 수학";
   /** 권한 있는 제품만(25 §1.1) — 하나뿐이면 고르기 단추 없이 지금 모습 그대로 */
   const products = WORKSPACE_PRODUCTS.filter((item) =>
     workspaceMenusOf(item.id).some((menu) => enabledMenus.has(menu)),
@@ -515,6 +516,13 @@ function UnifiedWorkspaceContent({
     id?: string;
     version: number;
   }>({ version: 0 });
+  const [bankMode, setBankMode] = useState<"bank" | "arithmetic">("bank");
+  const [arithmeticOpened, setArithmeticOpened] = useState(false);
+  const [arithmeticDocument, setArithmeticDocument] = useState<{
+    id?: string;
+    version: number;
+  }>({ version: 0 });
+  const [arithmeticDirty, setArithmeticDirty] = useState(false);
   /** 내 시험지에서 연 개념 백지(26 §9 ⑾) — 판을 올려 같은 자료를 다시 열어도 개념 백지가 다시 읽는다. */
   const [blankDocument, setBlankDocument] = useState<{
     id: string;
@@ -1096,7 +1104,7 @@ function UnifiedWorkspaceContent({
       }
     } catch {
       setNotice(
-        "작업 파일을 읽지 못했습니다. 오늘의수학에서 내보낸 JSON 파일인지 확인해 주세요.",
+        "작업 파일을 읽지 못했습니다. 오늘 수학에서 내보낸 JSON 파일인지 확인해 주세요.",
         true,
       );
     }
@@ -1285,7 +1293,7 @@ function UnifiedWorkspaceContent({
                 onClick={() => defaultView && navigate(defaultView)}
                 aria-label={
                   defaultView === "home"
-                    ? "오늘의수학 홈"
+                    ? "오늘 수학 홈"
                     : `${productLabel} 작업실`
                 }
                 disabled={!hasMenus}
@@ -1664,14 +1672,55 @@ function UnifiedWorkspaceContent({
             can("bank") &&
             (opened.has("bank") || view === "bank") && (
               <main hidden={view !== "bank"} className={s.viewContent}>
-                <MathExamBuilder
-                  key={`${draft.id}:${bankEntry.version}`}
-                  initialData={initialData}
-                  initialGroup={bankEntry.grade}
-                  editor={editorProps}
-                  onQuestionsChange={changeBankSelection}
-                  canOutput={can("export")}
-                />
+                <div
+                  className={s.builderModes}
+                  role="group"
+                  aria-label="시험지 종류"
+                >
+                  <button
+                    type="button"
+                    aria-pressed={bankMode === "bank"}
+                    onClick={() => setBankMode("bank")}
+                  >
+                    문제은행
+                  </button>
+                  <button
+                    type="button"
+                    aria-pressed={bankMode === "arithmetic"}
+                    onClick={() => {
+                      setBankMode("arithmetic");
+                      setArithmeticOpened(true);
+                    }}
+                  >
+                    연산대장
+                  </button>
+                </div>
+                <div hidden={bankMode !== "bank"}>
+                  <MathExamBuilder
+                    key={`${draft.id}:${bankEntry.version}`}
+                    initialData={initialData}
+                    initialGroup={bankEntry.grade}
+                    editor={editorProps}
+                    onQuestionsChange={changeBankSelection}
+                    canOutput={can("export")}
+                  />
+                </div>
+                {arithmeticOpened && (
+                  <div hidden={bankMode !== "arithmetic"}>
+                    <ArithmeticWorkbench
+                      key={`${storageScope ?? "preview"}:${arithmeticDocument.version}`}
+                      storageScope={storageScope}
+                      initialDocumentId={arithmeticDocument.id}
+                      canOutput={can("export")}
+                      academyName={printMeta.academyName || "오늘 수학"}
+                      preview={!storageScope}
+                      onDirtyChange={setArithmeticDirty}
+                      onDocumentChange={(id) =>
+                        setArithmeticDocument((current) => ({ ...current, id }))
+                      }
+                    />
+                  </div>
+                )}
               </main>
             )}
           {hydrated &&
@@ -1835,6 +1884,25 @@ function UnifiedWorkspaceContent({
               branchId={branchId}
               canExport={can("export")}
               canStudio={can("studio")}
+              canArithmetic={can("bank")}
+              onOpenArithmetic={(id) => {
+                if (!can("bank")) return;
+                if (
+                  arithmeticDirty &&
+                  !window.confirm(
+                    "저장하지 않은 연산 연습지를 닫고 선택한 자료를 여시겠습니까?",
+                  )
+                )
+                  return;
+                setArithmeticDocument((current) => ({
+                  id,
+                  version: current.version + 1,
+                }));
+                setArithmeticDirty(false);
+                setArithmeticOpened(true);
+                setBankMode("arithmetic");
+                navigate("bank");
+              }}
               onOpenDraft={openSaved}
               onOpenExtraction={(id) => {
                 if (!can("studio")) return;
@@ -1867,6 +1935,15 @@ function UnifiedWorkspaceContent({
                 }
                 // 개념 백지는 고르기만 담는다 — 지울 것이 화면에 없다. 열어 둔 것이었으면 개념 백지 탭이 돌아올 때 다시 읽어 «저장됨»을 풀고, 다음 저장은 새 자료로 간다.
                 if (item.kind === "conceptBlank") return;
+                if (item.kind === "arithmeticSheet") {
+                  if (arithmeticDocument.id === item.id) {
+                    setArithmeticDocument((current) => ({
+                      version: current.version + 1,
+                    }));
+                    setArithmeticDirty(false);
+                  }
+                  return;
+                }
                 await forgetPrivateExtraction(storageScope, item.id);
                 const url = new URL(window.location.href);
                 if (
@@ -2076,7 +2153,7 @@ function UnifiedWorkspaceContent({
                 ? "빠른 실행"
                 : modal === "new"
                   ? "새로운 수업 자료"
-                  : "오늘의수학 작업실"}
+                  : "오늘 수학 작업실"}
             </span>
             <h2 id="workspace-dialog-title">
               {modal === "search"
@@ -2098,7 +2175,7 @@ function UnifiedWorkspaceContent({
                 ref={newTitleRef}
                 value={newTitle}
                 onChange={(event) => setNewTitle(event.target.value)}
-                placeholder="오늘의 수학 학습지"
+                placeholder="오늘 수학 학습지"
                 maxLength={80}
               />
             </label>

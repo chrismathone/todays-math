@@ -66,6 +66,12 @@
 - 수학 `bank`는 `MathExamBuilder`, 영어 `english-questions`는 `EnglishExamBuilder`로 실제 진입을 전환했다. 수학 초안·저장·권한과 영어 native 원문·검토·resolve를 유지한다. 개발용 5개 시안은 비교 이력으로 남는다.
 - 시험지 로딩은 최근 작업 메타데이터와 현재 초안만 먼저 읽고 나머지는 열 때 읽는다. 저장 전 실제 복원 완료를 기다리며 실패를 준비 완료로 처리하지 않는다. [적용·검증 기록](exam-builder-implementation-20261008.md)을 참고한다. 소스 적용과 운영 배포는 구분한다.
 
+### 연산대장과 수학 출처 탐색 — 2026-10-14
+
+수학 문제은행 메뉴 안에서 `문제은행 / 연산대장`을 전환한다. 승인된 A 구조·기존 작업실 시각안을 적용한 [ArithmeticWorkbench](../../src/components/arithmetic/ArithmeticWorkbench.tsx)는 유형 카드 → 조건·수량 구성판 → 공통 PaperStrip 미리보기로 이어진다. 자연수 7개 스킬군의 97개 조건 프리셋이며 학년 전체 지원으로 표시하지 않는다. 생성은 저장과 별개다. 저장된 식과 답은 다시 생성하지 않고 복원하며, 문제지·정답지·둘 다와 12/24/40문항 밀도를 고른다. 인쇄는 물리 A4와 paper 토큰 예외를 유지한다.
+
+문항의 `내 출제`와 유형의 `내 학습지 사용`은 개인의 실제 기록이 충분할 때만 표시한다. 같은 차시/연산 기호, 최근 30일, 횟수·기준 시각을 함께 설명한다. 화면을 여는 것으로 기록을 만들지 않는다. 자료별 출제 가능 수와 전체 보유량을 구분하며, 교과서 자료 선택기는 880px 중앙 모달과 페이지별 20행을 쓴다. 출제 불가 자료·확인 전인 수학 차시는 선택할 수 없다. [구현·검증 및 운영 전환 경계](../reports/bank-arithmetic-ui-20261014.md)를 참고한다.
+
 ### 영어듣기 — `english-listening`
 
 구현: [ListeningStudio](../../src/components/english/listening/ListeningStudio.tsx), [ListeningTeacherWorkspace](../../src/components/english/listening/ListeningTeacherWorkspace.tsx), [CSS](../../src/components/english/listening/ListeningTeacherWorkspace.module.css).

@@ -20,6 +20,7 @@ const KIND_LABEL: Readonly<Record<DocumentKind, string>> = {
   draft: "시험지",
   extraction: "추출한 자료",
   conceptBlank: "개념 백지",
+  arithmeticSheet: "연산 연습지",
 };
 
 type PrivateLibraryProps = {
@@ -32,6 +33,8 @@ type PrivateLibraryProps = {
   /** 개념 백지 메뉴가 있나 — 없으면 저장한 개념 백지를 열 수 없다(이름 변경 · 삭제는 된다). */
   canConceptBlank?: boolean;
   onOpenConceptBlank?: (id: string) => void | Promise<void>;
+  canArithmetic?: boolean;
+  onOpenArithmetic?: (id: string) => void | Promise<void>;
   onImport?: () => void;
   onNew?: () => void;
   onDeleted?: (item: PrivateDocumentSummary) => void | Promise<void>;
@@ -56,6 +59,8 @@ function PrivateLibraryContent({
   onOpenExtraction,
   canConceptBlank = false,
   onOpenConceptBlank,
+  canArithmetic = false,
+  onOpenArithmetic,
   onImport,
   onNew,
   onDeleted,
@@ -282,9 +287,13 @@ function PrivateLibraryContent({
                         ? canConceptBlank && onOpenConceptBlank
                           ? () => openDocument(item, onOpenConceptBlank)
                           : undefined
-                        : canStudio
-                          ? () => openDocument(item, onOpenExtraction)
-                          : undefined
+                        : item.kind === "arithmeticSheet"
+                          ? canArithmetic && onOpenArithmetic
+                            ? () => openDocument(item, onOpenArithmetic)
+                            : undefined
+                          : canStudio
+                            ? () => openDocument(item, onOpenExtraction)
+                            : undefined
                   }
                 />
               ))}

@@ -1,4 +1,12 @@
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
+import {
+  bankCheckResponseSchema,
+  BANK_INELIGIBLE_LABEL,
+} from "@/contracts/bankReadiness.contract";
+import {
+  bankSourceAvailabilitySchema,
+  type BankSourceAvailability,
+} from "@/contracts/bankSource.contract";
 import type { UnitEntity } from "@/contracts/unit.contract";
 import type { BankData, StudioProblem } from "@/components/unified/types";
 import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
@@ -13,6 +21,10 @@ interface MathSourceOptions {
   /** Omit in the workspace to retain the existing production/development routing. */
   problemsUrl?: string;
   fetch?: typeof fetch;
+  /** Same serialized conditions for counts, candidates and composition. */
+  filters?: string;
+  refreshAvailability?: boolean;
+  onAvailability?: (value: BankSourceAvailability) => void;
 }
 
 const unitKey = (unit: Pick<UnitEntity, "grade" | "chapter" | "section">) =>
@@ -48,9 +60,10 @@ export function createMathExamBuilderSource(
       };
     });
   }
-  const initialScopes = options.initialUnits
-    ? toScopes(options.initialUnits, options.initialUnitCounts)
-    : undefined;
+  const initialScopes =
+    options.initialUnits && !options.refreshAvailability && !options.filters
+      ? toScopes(options.initialUnits, options.initialUnitCounts)
+      : undefined;
 
   async function request<T>(
     url: string,
@@ -80,8 +93,39 @@ export function createMathExamBuilderSource(
   }
 
   return {
+    requireScopeCounts: true,
     ...(initialScopes ? { initialScopes } : {}),
     async loadScopes(signal) {
+      if (options.refreshAvailability || options.filters) {
+        const params = new URLSearchParams(options.filters);
+        params.set("view", "available");
+        const [inventory, curriculum] = await Promise.all([
+          request<unknown>(`${endpoint()}/sources`, signal, {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(Object.fromEntries(params)),
+          }),
+          options.initialUnits
+            ? Promise.resolve({ units: options.initialUnits })
+            : request<BankData>(`${endpoint()}?pageSize=1`, signal),
+        ]);
+        const available = bankSourceAvailabilitySchema.parse(inventory);
+        if (!curriculum.units)
+          throw new Error("단원 목록을 불러오지 못했습니다.");
+        if (signal.aborted) throw new DOMException("Aborted", "AbortError");
+        options.onAvailability?.(available);
+        return toScopes(
+          curriculum.units,
+          available.facets
+            ? Object.fromEntries(
+                curriculum.units.map((unit) => [
+                  unit.id,
+                  available.facets!.units[unit.id]?.available ?? 0,
+                ]),
+              )
+            : undefined,
+        );
+      }
       if (options.initialUnits)
         return toScopes(options.initialUnits, options.initialUnitCounts);
       // The bank already returns the full ordered curriculum. Only one question
@@ -92,11 +136,10 @@ export function createMathExamBuilderSource(
     },
     async list(input, signal) {
       if (!input.scopeIds.length) return { items: [], total: 0 };
-      const params = new URLSearchParams({
-        unitIds: [...new Set(input.scopeIds)].join(","),
-        page: String(input.page),
-        pageSize: String(input.pageSize),
-      });
+      const params = new URLSearchParams(options.filters);
+      params.set("unitIds", [...new Set(input.scopeIds)].join(","));
+      params.set("page", String(input.page));
+      params.set("pageSize", String(input.pageSize));
       if (input.difficulty) params.set("difficulty", input.difficulty);
       if (input.query.trim()) params.set("q", input.query.trim());
       if (input.excludeIds.length)
@@ -126,6 +169,7 @@ export function createMathExamBuilderSource(
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
+            ...(options.filters ? { filters: options.filters } : {}),
             allocations: positive.map(({ scopeId, count }) => ({
               unitId: scopeId,
               count,
@@ -161,13 +205,43 @@ export function createMathExamBuilderSource(
         pageSize: String(bankItems.length),
       });
       const data = await request<BankData>(`${endpoint()}?${params}`, signal);
+      const returned = new Set(
+        data.problems
+          .filter((item) => item.eligible === true)
+          .map((item) => item.id),
+      );
+      if (bankItems.some((item) => !returned.has(item.id))) {
+        const check = bankCheckResponseSchema.parse(
+          await request<unknown>(`${endpoint()}/check`, signal, {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ ids: bankItems.map((item) => item.id) }),
+          }),
+        );
+        const unavailable = check.items.filter(
+          (item) => item.state !== "eligible",
+        );
+        if (unavailable.length)
+          throw new Error(
+            unavailable
+              .map((item) => {
+                const original = bankItems.find((row) => row.id === item.id);
+                return `${original?.problemCode || "선택 문항"}: ${item.code ? BANK_INELIGIBLE_LABEL[item.code] : "문항을 찾을 수 없음"}`;
+              })
+              .join(" · "),
+          );
+      }
       const byId = new Map(
         eligible(data.problems).map((item) => [item.id, item]),
       );
       return items.map((item) => {
         if (localCrop(item)) return item;
         const current = byId.get(item.id);
-        if (!current || scopeId(current) !== scopeId(item))
+        if (
+          !current ||
+          scopeId(current) !== scopeId(item) ||
+          (typeof item.source === "string" && current.source !== item.source)
+        )
           throw new Error(
             "삭제되었거나 출제 조건이 바뀐 문항이 있습니다. 문항을 다시 선택해 주세요.",
           );

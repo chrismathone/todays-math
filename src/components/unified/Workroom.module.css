@@ -1943,3 +1943,7 @@
     box-shadow: 0 12px 30px #07162a33;
   }
 }
+.builderModes { display: flex; gap: 8px; margin-bottom: 16px; }
+.builderModes button { min-height: 44px; padding: 8px 16px; border: 1px solid var(--learn-control); border-radius: 8px; background: var(--learn-surface); color: var(--learn-ink); font: inherit; cursor: pointer; }
+.builderModes button[aria-pressed="true"] { background: var(--learn-soft); border-color: var(--learn-accent); color: var(--learn-accent); }
+.builderModes button:focus-visible { outline: 3px solid var(--learn-focus); outline-offset: 2px; }

@@ -1,0 +1,19 @@
+.rank,
+.count {
+  display: inline-flex;
+  width: fit-content;
+  border-radius: 4px;
+  padding: 3px 7px;
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+.rank {
+  background: var(--learn-soft);
+  color: var(--learn-accent);
+  border: 1px solid var(--learn-track);
+}
+.count {
+  background: var(--learn-neutral);
+  color: var(--learn-muted);
+}

@@ -1,0 +1,73 @@
+.sourceBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  margin-bottom: 16px;
+}
+
+.sourceBar > div:first-of-type {
+  flex: 0 1 420px;
+  min-width: 0;
+}
+.sourceBar > small {
+  flex-basis: 100%;
+  order: 1;
+}
+.sourceBar p {
+  margin: 0;
+  font-size: 13px;
+}
+.sourceBar small {
+  display: block;
+  margin-top: 4px;
+  color: var(--learn-muted);
+}
+.reference {
+  margin: 0 0 8px;
+  color: var(--learn-muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.materialControl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.materialControl button {
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--learn-control);
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  cursor: pointer;
+}
+.materialControl button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.materialControl button:focus-visible {
+  outline: 3px solid var(--learn-focus);
+  outline-offset: 2px;
+}
+.readiness {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--learn-ink);
+}
+.readiness span {
+  color: var(--learn-muted);
+}
+
+@media print {
+  .sourceBar,
+  .reference,
+  .readiness {
+    display: none;
+  }
+}

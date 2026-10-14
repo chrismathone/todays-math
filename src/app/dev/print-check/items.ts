@@ -83,6 +83,22 @@ export const SPECIMEN_ITEM_IDS = [
 
 export const ITEMS: PrintCheckItem[] = [
   {
+    id: "arithmetic-paper-20261014",
+    title: "연산대장 — 문제지와 정답지",
+    changed:
+      "자연수 기초 연산을 쪽당 12·24·40문항으로 출력한다. 세로셈 자릿수를 맞추고 정답은 별도 지면에만 표시한다.",
+    look: "(제안) 세 가지 밀도로 가로셈·세로셈을 섞어 출력한다. 식·답란·문항 번호가 셀 밖으로 겹치거나 잘리면 불합격이다. 문제지와 정답지 번호 및 회차가 일치하고, 문제지에는 정답이 없어야 한다.",
+    lookFromSource: false,
+    evidence: [
+      "src/components/arithmetic/ArithmeticPaper.tsx",
+      "docs/planning/arithmetic-paper-benchmark-20261014.md",
+    ],
+    status: "대기",
+    needs:
+      "/dev/arithmetic 에서 생성 또는 /dev/arithmetic/print?density=12 (24·40도 확인)",
+    changedOn: "2026-10-14",
+  },
+  {
     id: "product-display-name-20261014",
     title: "오늘 수학 · 오늘 영어 — 인쇄 제품명",
     changed:

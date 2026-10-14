@@ -35,6 +35,9 @@ export interface StudioProblem {
   /** Whole-problem image from a local crop; used when text has not been transcribed. */
   croppedImage?: string;
   sourceLabel?: string;
+  /** Optional on imported/local crops; retained when a bank problem is selected. */
+  sourceReference?: ProblemSourceReference | null;
+  source?: unknown;
   /** Bank inspection can include shared rows that cannot be issued. */
   eligible?: boolean;
   ineligibleReason?: string | null;
@@ -43,7 +46,6 @@ export interface StudioProblem {
 }
 
 export interface BankProblem extends StudioProblem {
-  sourceReference?: ProblemSourceReference | null;
   source?: string;
   /**
    * 출처 배지(`provenanceBadges`)의 판정 근거 — 엔진이 적는 자기 유형 정체(D-105).

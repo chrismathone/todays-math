@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import BuilderDialog from "./BuilderDialog";
 import type { ExamScope } from "./types";
+import { canSelectScope } from "./scopeAvailability";
 import s from "./ExamBuilder.module.css";
 
 const PAGE_SIZE = 20;
@@ -10,20 +11,25 @@ export default function ScopePicker({
   scopes,
   selected,
   initialGroup,
+  requireCounts = false,
   onClose,
   onApply,
 }: {
   scopes: ExamScope[];
   selected: string[];
   initialGroup?: string;
+  requireCounts?: boolean;
   onClose: () => void;
   onApply: (ids: string[]) => void;
 }) {
   const [chosen, setChosen] = useState(
     () =>
       new Set(
-        selected.filter(
-          (id) => scopes.find((scope) => scope.id === id)?.count !== 0,
+        selected.filter((id) =>
+          canSelectScope(
+            scopes.find((scope) => scope.id === id),
+            requireCounts,
+          ),
         ),
       ),
   );
@@ -49,15 +55,17 @@ export default function ScopePicker({
   );
   const filtered = useMemo(
     () =>
-      scopes.filter(
-        (scope) =>
-          (!group || scope.group === group) &&
-          (!detail || scope.detail === detail) &&
-          (!onlyChosen || chosen.has(scope.id)) &&
-          `${scope.label} ${scope.group} ${scope.detail ?? ""}`
-            .toLocaleLowerCase()
-            .includes(query.trim().toLocaleLowerCase()),
-      ),
+      scopes
+        .filter(
+          (scope) =>
+            (!group || scope.group === group) &&
+            (!detail || scope.detail === detail) &&
+            (!onlyChosen || chosen.has(scope.id)) &&
+            `${scope.label} ${scope.group} ${scope.detail ?? ""}`
+              .toLocaleLowerCase()
+              .includes(query.trim().toLocaleLowerCase()),
+        )
+        .toSorted((a, b) => Number(a.count === 0) - Number(b.count === 0)),
     [scopes, group, detail, onlyChosen, chosen, query],
   );
   const pages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
@@ -66,8 +74,14 @@ export default function ScopePicker({
     (currentPage - 1) * PAGE_SIZE,
     currentPage * PAGE_SIZE,
   );
-  const selectable = filtered.filter(
-    (row) => row.count === undefined || row.count > 0,
+  const selectable = filtered.filter((row) =>
+    canSelectScope(row, requireCounts),
+  );
+  const applicable = [...chosen].filter((id) =>
+    canSelectScope(
+      scopes.find((scope) => scope.id === id),
+      requireCounts,
+    ),
   );
   const allVisible =
     selectable.length > 0 && selectable.every((row) => chosen.has(row.id));
@@ -75,7 +89,13 @@ export default function ScopePicker({
     setChosen((current) => {
       const next = new Set(current);
       if (next.has(id)) next.delete(id);
-      else next.add(id);
+      else if (
+        canSelectScope(
+          scopes.find((scope) => scope.id === id),
+          requireCounts,
+        )
+      )
+        next.add(id);
       return next;
     });
   return (
@@ -157,7 +177,7 @@ export default function ScopePicker({
           현재 결과 전체 선택
         </label>
         <span>
-          {filtered.length.toLocaleString()}개 범위 · {chosen.size}개 선택
+          {filtered.length.toLocaleString()}개 범위 · {applicable.length}개 선택
         </span>
         <button
           type="button"
@@ -175,8 +195,8 @@ export default function ScopePicker({
                 <label>
                   <input
                     type="checkbox"
-                    checked={chosen.has(scope.id)}
-                    disabled={scope.count === 0}
+                    checked={applicable.includes(scope.id)}
+                    disabled={!canSelectScope(scope, requireCounts)}
                     onChange={() => toggle(scope.id)}
                   />
                   <span>
@@ -191,6 +211,9 @@ export default function ScopePicker({
                         ? `${scope.count}문항`
                         : "출제 가능 문항 없음"}
                     </small>
+                  )}
+                  {requireCounts && scope.count === undefined && (
+                    <small>출제 가능 수 확인 필요</small>
                   )}
                 </label>
               </li>
@@ -225,9 +248,9 @@ export default function ScopePicker({
         <button
           type="button"
           className={s.primary}
-          onClick={() => onApply([...chosen])}
+          onClick={() => onApply(applicable)}
         >
-          {chosen.size}개 범위 적용
+          {applicable.length}개 범위 적용
         </button>
       </footer>
     </BuilderDialog>

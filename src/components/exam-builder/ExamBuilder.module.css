@@ -503,6 +503,13 @@
 .scopeList label:hover {
   background: var(--learn-soft);
 }
+.scopeList label:has(input:disabled) {
+  cursor: default;
+  color: var(--learn-muted);
+}
+.scopeList label:has(input:disabled):hover {
+  background: transparent;
+}
 .scopeList label > span {
   flex: 1;
   min-width: 0;

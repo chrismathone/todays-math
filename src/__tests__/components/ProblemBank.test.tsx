@@ -1135,11 +1135,18 @@ describe("[S-08] 문제은행 — 출처 필터 (MSW)", () => {
     return captured;
   }
 
-  it("네 출처를 모두 고를 수 있다 — 하나라도 빠지면 그 문항은 못 찾는다", async () => {
+  it("모든 출처를 고를 수 있다 — 하나라도 빠지면 그 문항은 못 찾는다", async () => {
     await renderBank();
     const box = screen.getByLabelText("출처");
     const names = [...box.querySelectorAll("option")].map((o) => o.textContent);
-    expect(names).toEqual(["전체", "기출", "변형", "자작", "AI 생성"]);
+    expect(names).toEqual([
+      "전체",
+      "기출",
+      "변형",
+      "자작",
+      "교과서",
+      "AI 생성",
+    ]);
   });
 
   it("AI 생성을 고르면 source=ai_generated 로 조회하고, 되돌리면 빠진다", async () => {

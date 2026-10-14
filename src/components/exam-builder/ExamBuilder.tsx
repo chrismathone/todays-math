@@ -9,6 +9,7 @@ import type {
   ExamScope,
 } from "./types";
 import ScopePicker from "./ScopePicker";
+import { canSelectScope } from "./scopeAvailability";
 import QuestionPicker from "./QuestionPicker";
 import { moveQuestion, useQuestionReorder } from "./useQuestionReorder";
 import s from "./ExamBuilder.module.css";
@@ -46,19 +47,21 @@ export default function ExamBuilder<T>({
     [loaded, source],
   );
   const scopeLoading = loaded?.source !== source && !source.initialScopes;
-  const [allocations, setAllocations] = useState<ExamAllocation[]>(() => {
-    const counts = new Map<string, number>();
-    questions.forEach((item) => {
-      const id = source.info(item).scopeId;
-      if (id) counts.set(id, (counts.get(id) ?? 0) + 1);
-    });
-    return initialScopeIds?.length
-      ? initialScopeIds.map((scopeId) => ({
-          scopeId,
-          count: counts.get(scopeId) ?? 5,
-        }))
-      : Array.from(counts, ([scopeId, count]) => ({ scopeId, count }));
-  });
+  const [configuredAllocations, setAllocations] = useState<ExamAllocation[]>(
+    () => {
+      const counts = new Map<string, number>();
+      questions.forEach((item) => {
+        const id = source.info(item).scopeId;
+        if (id) counts.set(id, (counts.get(id) ?? 0) + 1);
+      });
+      return initialScopeIds?.length
+        ? initialScopeIds.map((scopeId) => ({
+            scopeId,
+            count: counts.get(scopeId) ?? 5,
+          }))
+        : Array.from(counts, ([scopeId, count]) => ({ scopeId, count }));
+    },
+  );
   const [scopeOpen, setScopeOpen] = useState(false);
   const [scopePage, setScopePage] = useState(1);
   const [picker, setPicker] = useState<{
@@ -82,7 +85,7 @@ export default function ExamBuilder<T>({
     element?.focus({ preventScroll: true });
     element?.scrollIntoView({ block: "start", behavior: "smooth" });
   }, [focusRequest, step]);
-  useEffect(() => () => operation.current?.abort(), []);
+  useEffect(() => () => operation.current?.abort(), [source]);
   useEffect(() => {
     const controller = new AbortController();
     void source
@@ -107,6 +110,12 @@ export default function ExamBuilder<T>({
     () => new Map(scopes.map((scope) => [scope.id, scope])),
     [scopes],
   );
+  // Preserve restored questions, but never restore a confirmed empty scope as
+  // a new composition request. Unknown counts remain visible and block math.
+  const allocations = configuredAllocations.filter(
+    (row) => scopeMap.get(row.scopeId)?.count !== 0,
+  );
+  const unavailableRestored = configuredAllocations.length - allocations.length;
   const selectedScopes = allocations.flatMap((row) => {
     const scope = scopeMap.get(row.scopeId);
     return scope ? [scope] : [];
@@ -118,7 +127,10 @@ export default function ExamBuilder<T>({
     requested <= maxQuestions &&
     allocations.every((row) => {
       const scope = scopeMap.get(row.scopeId);
-      return !!scope && (scope.count === undefined || row.count <= scope.count);
+      return (
+        canSelectScope(scope, source.requireScopeCounts) &&
+        (scope?.count === undefined || row.count <= scope.count)
+      );
     });
   const counts = new Map<string, number>();
   questions.forEach((item) => {
@@ -205,7 +217,7 @@ export default function ExamBuilder<T>({
             : "작업을 완료하지 못했습니다. 다시 시도해 주세요.",
         );
     } finally {
-      if (!controller.signal.aborted) {
+      if (operation.current === controller) {
         setBusy(false);
         work.current = false;
       }
@@ -334,6 +346,12 @@ export default function ExamBuilder<T>({
                 {allocations.length ? "범위 변경" : "범위 선택"}
               </button>
             </header>
+            {unavailableRestored > 0 && (
+              <p className={s.empty} role="status">
+                출제 가능한 문항이 없는 {unavailableRestored}개 범위를 구성에서
+                제외했습니다. 저장된 문항은 출력 전에 다시 확인합니다.
+              </p>
+            )}
             {scopeLoading ? (
               <p className={s.empty} role="status">
                 출제 범위를 불러오는 중입니다…
@@ -379,7 +397,9 @@ export default function ExamBuilder<T>({
                                     .join(" · ")}
                                   {scope?.count !== undefined
                                     ? ` · 출제 가능 ${scope.count}문항`
-                                    : ""}
+                                    : source.requireScopeCounts
+                                      ? " · 출제 가능 수 확인 필요"
+                                      : ""}
                                 </small>
                               </td>
                               <td>
@@ -689,18 +709,23 @@ export default function ExamBuilder<T>({
           scopes={scopes}
           selected={allocations.map((row) => row.scopeId)}
           initialGroup={initialGroup}
+          requireCounts={source.requireScopeCounts}
           onClose={() => setScopeOpen(false)}
           onApply={(ids) => {
             setAllocations(
-              ids.map((scopeId) => ({
-                scopeId,
-                count: Math.min(
-                  allocations.find((row) => row.scopeId === scopeId)?.count ??
-                    5,
-                  scopeMap.get(scopeId)?.count ?? maxQuestions,
-                  Math.floor(maxQuestions / Math.max(ids.length, 1)),
-                ),
-              })),
+              ids
+                .filter((id) =>
+                  canSelectScope(scopeMap.get(id), source.requireScopeCounts),
+                )
+                .map((scopeId) => ({
+                  scopeId,
+                  count: Math.min(
+                    allocations.find((row) => row.scopeId === scopeId)?.count ??
+                      5,
+                    scopeMap.get(scopeId)?.count ?? maxQuestions,
+                    Math.floor(maxQuestions / Math.max(ids.length, 1)),
+                  ),
+                })),
             );
             setScopePage(1);
             setStep("scope");

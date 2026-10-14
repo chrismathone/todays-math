@@ -11,6 +11,9 @@ import {
   conceptBlankDocumentSchema,
 } from "@/contracts/conceptBlank.contract";
 import { getBlankSection } from "@/lib/concept-blank/sections";
+import { reopenArithmeticSheet } from "@/lib/arithmetic/reopen";
+import { arithmeticPaperPages } from "@/components/arithmetic/ArithmeticPaper";
+import { PaperStrip } from "@/components/paper-strip/PaperStrip";
 import {
   ADMIN_KIND_LABEL,
   objectValue,
@@ -180,6 +183,8 @@ export default function AdminDocumentPreview({
 
   if (document.kind === "conceptBlank")
     return <ConceptBlankPreview document={document} />;
+  if (document.kind === "arithmeticSheet")
+    return <ArithmeticPreview document={document} />;
 
   return (
     <article>
@@ -239,6 +244,32 @@ export default function AdminDocumentPreview({
           </div>
         ) : null}
       </div>
+    </article>
+  );
+}
+
+function ArithmeticPreview({ document }: { document: DocumentDetail }) {
+  let pages;
+  try {
+    pages = arithmeticPaperPages({
+      sheet: reopenArithmeticSheet(document.payload),
+      title: document.title,
+      mode: "both",
+      density: 24,
+    });
+  } catch {
+    return <p role="alert">저장된 연산 명세와 정답을 확인할 수 없습니다.</p>;
+  }
+  return (
+    <article>
+      <header className={d.previewHeading}>
+        <span className={d.kind}>연산 연습지 · 읽기 전용</span>
+        <h2>{document.title}</h2>
+        <p>
+          버전 {document.revision} · 수정 {accountDate(document.updatedAt)}
+        </p>
+      </header>
+      <PaperStrip pages={pages} hint="저장된 식과 답을 그대로 표시합니다." />
     </article>
   );
 }
