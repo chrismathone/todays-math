@@ -493,9 +493,6 @@ export default function LegacyArithmeticWorkbench({
                   <span className={s.example}>
                     <ArithmeticExpression prompt={preset.example} />
                   </span>
-                  <span className={s.capacity}>
-                    중복 없이 {preset.domainSize.toLocaleString()}문항
-                  </span>
                 </button>
               );
             })}
@@ -688,11 +685,9 @@ export default function LegacyArithmeticWorkbench({
                   );
                 return null;
               })}
-              <p>
-                {capacity(selection) === null
-                  ? "지원 범위에 맞게 조건을 확인해 주세요."
-                  : `이 조건에서 중복 없이 ${capacity(selection)?.toLocaleString()}문항 생성 가능`}
-              </p>
+              {capacity(selection) === null && (
+                <p>지원 범위에 맞게 조건을 확인해 주세요.</p>
+              )}
             </fieldset>
           )}
           <p className={s.catalogCount}>

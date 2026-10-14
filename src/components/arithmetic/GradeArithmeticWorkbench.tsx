@@ -513,9 +513,6 @@ export default function GradeArithmeticWorkbench({
                   <span className={s.example}>
                     <GradeArithmeticExpression prompt={type.example} />
                   </span>
-                  <span className={s.capacity}>
-                    중복 없이 {type.domainSize.toLocaleString()}문항
-                  </span>
                 </button>
               );
             })}

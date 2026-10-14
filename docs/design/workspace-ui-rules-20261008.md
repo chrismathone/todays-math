@@ -72,6 +72,8 @@
 
 문항의 `내 출제`와 유형의 `내 학습지 사용`은 개인의 실제 기록이 충분할 때만 표시한다. 같은 차시/연산 기호, 최근 30일, 횟수·기준 시각을 함께 설명한다. 화면을 여는 것으로 기록을 만들지 않는다. 자료별 출제 가능 수와 전체 보유량을 구분하며, 교과서 자료 선택기는 880px 중앙 모달과 페이지별 20행을 쓴다. 출제 불가 자료·확인 전인 수학 차시는 선택할 수 없다. [구현·검증 및 운영 전환 경계](../reports/bank-arithmetic-ui-20261014.md)를 참고한다.
 
+연산 유형 카드와 세부 조건에는 생성 가능한 조합 수를 표시하지 않는다(2026-10-14 사용자 결정). 즉시 생성하는 유형이 저장된 문항 재고로 오해되지 않도록 실제 생성할 문항 수와 회차 수를 중심으로 표시한다. 중복 없는 조합 수와 요청 한도 검증은 엔진 내부에서 유지한다.
+
 ### 영어듣기 — `english-listening`
 
 구현: [ListeningStudio](../../src/components/english/listening/ListeningStudio.tsx), [ListeningTeacherWorkspace](../../src/components/english/listening/ListeningTeacherWorkspace.tsx), [CSS](../../src/components/english/listening/ListeningTeacherWorkspace.module.css).
