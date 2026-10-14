@@ -107,24 +107,33 @@ export function ProblemHeader({
   );
 }
 
-/** Round belongs to the sheet header, never to question metadata or body text. */
-export function ArithmeticRoundHeader({ round }: { round?: number }) {
+/** Inline field inside each template's own title band or information table. */
+export function ArithmeticRoundLabel({
+  round,
+  style,
+}: {
+  round?: number;
+  style?: React.CSSProperties;
+}) {
   if (round === undefined) return null;
   return (
-    <header
+    <span
       data-arithmetic-round
       style={{
+        display: "inline-block",
         flexShrink: 0,
-        marginBottom: 10,
         fontFamily: "var(--paper-font-sans)",
         fontSize: 13,
         lineHeight: 1.5,
         fontWeight: 700,
-        color: PAPER_COLORS.ink,
+        letterSpacing: "normal",
+        fontVariantNumeric: "tabular-nums",
+        whiteSpace: "nowrap",
+        ...style,
       }}
     >
       {round}회차
-    </header>
+    </span>
   );
 }
 

@@ -7,7 +7,7 @@ import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
 import { readablePaperColor, inkOnColor } from "../readableColor";
 import { BodyContainer } from "./BodyContainer";
-import { ArithmeticRoundHeader, ProblemHeader } from "./ProblemMeta";
+import { ArithmeticRoundLabel, ProblemHeader } from "./ProblemMeta";
 import { ProblemBody } from "./ProblemBody";
 import type { PrintTemplateProps } from "../types";
 import { ExamDetails } from "../ExamDetails";
@@ -134,78 +134,78 @@ export function WorkbookTemplate({
         flexDirection: "column",
       }}
     >
-      <ArithmeticRoundHeader round={round} />
-      {isFirstPage && (
+      {(isFirstPage || round !== undefined) && (
         <>
           {/* 학원 헤더 */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: 14,
-              flexShrink: 0,
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <div
-                style={{
-                  width: 36,
-                  height: 36,
-                  background: accent,
-                  color: inkOnColor(accent),
-                  display: "grid",
-                  placeItems: "center",
-                  fontFamily: "var(--paper-font-sans)",
-                  fontWeight: 900,
-                  fontSize: 18,
-                  letterSpacing: "-0.04em",
-                }}
-              >
-                {meta.academyName?.[0] ?? "M"}
-              </div>
-              <div>
-                <div
-                  style={{
-                    fontFamily: "var(--paper-font-sans)",
-                    fontWeight: 800,
-                    fontSize: 17,
-                    letterSpacing: "-0.01em",
-                  }}
-                >
-                  {meta.academyName ?? "수학 학원"}
-                </div>
-                <div
-                  style={{
-                    fontFamily: "var(--paper-font-sans)",
-                    fontSize: 10.5,
-                    color: PAPER_COLORS.ink50,
-                    letterSpacing: "0.04em",
-                  }}
-                >
-                  MATH ACADEMY WORKBOOK
-                </div>
-              </div>
-            </div>
+          {isFirstPage && (
             <div
               style={{
-                fontFamily: "var(--paper-font-sans)",
-                fontSize: 11,
-                color: PAPER_COLORS.ink70,
-                textAlign: "right",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: 14,
+                flexShrink: 0,
               }}
             >
-              <div>
-                <span style={{ color: PAPER_COLORS.ink50 }}>강의</span> ·{" "}
-                {meta.instructorName ?? "—"} T
+              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                <div
+                  style={{
+                    width: 36,
+                    height: 36,
+                    background: accent,
+                    color: inkOnColor(accent),
+                    display: "grid",
+                    placeItems: "center",
+                    fontFamily: "var(--paper-font-sans)",
+                    fontWeight: 900,
+                    fontSize: 18,
+                    letterSpacing: "-0.04em",
+                  }}
+                >
+                  {meta.academyName?.[0] ?? "M"}
+                </div>
+                <div>
+                  <div
+                    style={{
+                      fontFamily: "var(--paper-font-sans)",
+                      fontWeight: 800,
+                      fontSize: 17,
+                      letterSpacing: "-0.01em",
+                    }}
+                  >
+                    {meta.academyName ?? "수학 학원"}
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "var(--paper-font-sans)",
+                      fontSize: 10.5,
+                      color: PAPER_COLORS.ink50,
+                      letterSpacing: "0.04em",
+                    }}
+                  >
+                    MATH ACADEMY WORKBOOK
+                  </div>
+                </div>
               </div>
-              <div>
-                <span style={{ color: PAPER_COLORS.ink50 }}>일자</span> ·{" "}
-                {options.showDate ? (meta.examDate ?? "—") : ""}
+              <div
+                style={{
+                  fontFamily: "var(--paper-font-sans)",
+                  fontSize: 11,
+                  color: PAPER_COLORS.ink70,
+                  textAlign: "right",
+                }}
+              >
+                <div>
+                  <span style={{ color: PAPER_COLORS.ink50 }}>강의</span> ·{" "}
+                  {meta.instructorName ?? "—"} T
+                </div>
+                <div>
+                  <span style={{ color: PAPER_COLORS.ink50 }}>일자</span> ·{" "}
+                  {options.showDate ? (meta.examDate ?? "—") : ""}
+                </div>
               </div>
             </div>
-          </div>
-
+          )}
           {/* 단원 배너 */}
           <div
             style={{
@@ -218,7 +218,14 @@ export function WorkbookTemplate({
               flexShrink: 0,
             }}
           >
-            <div style={{ flex: 1 }}>
+            <div
+              style={{
+                flex: 1,
+                ...(round !== undefined
+                  ? { minWidth: 0, overflowWrap: "anywhere" }
+                  : {}),
+              }}
+            >
               <span
                 style={{
                   fontFamily: "var(--paper-font-sans)",
@@ -230,12 +237,24 @@ export function WorkbookTemplate({
                 {meta.title}
               </span>
             </div>
+            <ArithmeticRoundLabel
+              round={round}
+              style={{
+                margin: "0 14px",
+                padding: "0 14px",
+                borderLeft: "1px solid rgba(255,255,255,0.4)",
+                borderRight: "1px solid rgba(255,255,255,0.4)",
+              }}
+            />
             <div
               style={{
                 fontFamily: "var(--paper-font-sans)",
                 fontSize: 11,
                 display: "flex",
                 gap: 14,
+                ...(round !== undefined
+                  ? { flexShrink: 0, whiteSpace: "nowrap" }
+                  : {}),
               }}
             >
               <span>

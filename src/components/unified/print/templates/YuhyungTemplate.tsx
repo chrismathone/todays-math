@@ -7,7 +7,7 @@ import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
 import { readablePaperColor } from "../readableColor";
 import { BodyContainer } from "./BodyContainer";
-import { ArithmeticRoundHeader, ProblemHeader } from "./ProblemMeta";
+import { ArithmeticRoundLabel, ProblemHeader } from "./ProblemMeta";
 import { ProblemBody } from "./ProblemBody";
 import type { PrintTemplateProps } from "../types";
 import { ExamDetails } from "../ExamDetails";
@@ -92,8 +92,7 @@ export function YuhyungTemplate({
         flexDirection: "column",
       }}
     >
-      <ArithmeticRoundHeader round={round} />
-      {isFirstPage && (
+      {(isFirstPage || round !== undefined) && (
         <>
           {/* 유형 배너 */}
           <div
@@ -106,9 +105,19 @@ export function YuhyungTemplate({
               justifyContent: "space-between",
               marginBottom: 14,
               flexShrink: 0,
+              ...(round !== undefined ? { gap: 16 } : {}),
             }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 12,
+                ...(round !== undefined
+                  ? { minWidth: 0, overflowWrap: "anywhere" }
+                  : {}),
+              }}
+            >
               <span
                 style={{
                   fontFamily: "var(--paper-font-sans)",
@@ -139,14 +148,29 @@ export function YuhyungTemplate({
                 letterSpacing: "0.06em",
                 background: "rgba(255,255,255,0.12)",
                 padding: "4px 10px",
+                ...(round !== undefined
+                  ? {
+                      flexShrink: 0,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 12,
+                    }
+                  : {}),
               }}
             >
+              <ArithmeticRoundLabel
+                round={round}
+                style={{
+                  paddingRight: 12,
+                  borderRight: "1px solid rgba(255,255,255,0.4)",
+                }}
+              />
               {String(totalProblems ?? problems.length).padStart(2, "0")} 문항
             </div>
           </div>
 
           {/* 전략 + 이름·날짜 */}
-          {meta.patternStrategy && (
+          {isFirstPage && meta.patternStrategy && (
             <div
               style={{
                 display: "flex",
