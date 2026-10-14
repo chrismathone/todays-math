@@ -340,6 +340,28 @@ function promptOperands(id: string, p: number[]): number[][] {
 }
 function assertPrompt(id: string, candidate: ArithmeticV2Candidate): void {
   if (candidate.prompt.layout !== "math") throw new Error("unexpected layout");
+  const decodedLatex = candidate.prompt.latex
+    .replace(/\\left|\\right/g, "")
+    .replace(/\\times/g, "×")
+    .replace(/\\div/g, "÷")
+    .replace(/\\sqrt\{(\d+)\}/g, "√$1")
+    .replace(/\^\{(\d+)\}/g, "^$1")
+    .replace(/\\frac\{(-?\d+)\}\{(\d+)\}/g, "$1/$2")
+    .replace(/\\frac\{(-?\d+)\}\{([^}]+)\}/g, "$1/($2)");
+  if (decodedLatex !== candidate.prompt.text)
+    throw new Error("text/latex disagreement");
+  const operation = id.split("-").at(-1)!;
+  const symbol = (
+    {
+      add: "+",
+      subtract: "-",
+      multiply: "×",
+      divide: "÷",
+      terms: "+",
+    } as Record<string, string>
+  )[operation];
+  if (symbol && !candidate.prompt.text.includes(` ${symbol} `))
+    throw new Error("wrong displayed operation");
   if (candidate.answer.kind === "polynomial") {
     const parts = /^\((.*)\) ([+×÷-]) \((.*)\)$/.exec(candidate.prompt.text);
     if (!parts) throw new Error("bad polynomial prompt");
@@ -352,13 +374,32 @@ function assertPrompt(id: string, candidate: ArithmeticV2Candidate): void {
       JSON.stringify(promptOperands(id, candidate.parameters))
     )
       throw new Error("prompt/parameter mismatch");
+  } else if (id.startsWith("m3-radical-")) {
+    const parseRadical = (text: string): number[] => {
+      const match = /^(-?\d*)√(\d+)$/.exec(text);
+      if (!match) throw new Error("bad radical operand");
+      return [
+        match[1] === "" ? 1 : match[1] === "-" ? -1 : Number(match[1]),
+        Number(match[2]),
+      ];
+    };
+    let actual: number[];
+    if (operation === "simplify")
+      actual = [parseRadical(candidate.prompt.text)[1]];
+    else if (operation === "rationalize") {
+      const match = /^(-?\d+)\/\((.*)\)$/.exec(candidate.prompt.text);
+      if (!match) throw new Error("bad rationalization prompt");
+      actual = [Number(match[1]), ...parseRadical(match[2])];
+    } else {
+      const match = /^\((.*)\) [+×÷-] \((.*)\)$/.exec(candidate.prompt.text);
+      if (!match) throw new Error("bad radical operation");
+      actual = [...parseRadical(match[1]), ...parseRadical(match[2])];
+    }
+    if (JSON.stringify(actual) !== JSON.stringify(candidate.parameters))
+      throw new Error("radical prompt/parameter mismatch");
   } else {
     const actual = candidate.prompt.text.match(/-?\d+/g)?.map(Number);
-    // Unit radical coefficients are intentionally not printed.
-    if (
-      !id.startsWith("m3-radical-") &&
-      JSON.stringify(actual) !== JSON.stringify(candidate.parameters)
-    )
+    if (JSON.stringify(actual) !== JSON.stringify(candidate.parameters))
       throw new Error("numeric prompt/parameter mismatch");
   }
 }
@@ -507,8 +548,9 @@ describe("middle arithmetic v2 finite exact families", () => {
         if (wrong.length) wrong[position] = String(Number(wrong[position]) + 1);
         else wrong.push("1", "1", "1");
         expect(definition.verify(replaceExact(candidate, wrong))).toBe(false);
+        const promptLatex = candidate.prompt.latex;
         expect(() =>
-          katex.renderToString(candidate.prompt.latex, {
+          katex.renderToString(promptLatex, {
             throwOnError: true,
             strict: "error",
           }),
@@ -537,7 +579,9 @@ describe("middle arithmetic v2 finite exact families", () => {
         { parameters: [] },
         { parameters: "bad" },
       ])
-        expect(definition.verify(bad as ArithmeticV2Candidate)).toBe(false);
+        expect(definition.verify(bad as unknown as ArithmeticV2Candidate)).toBe(
+          false,
+        );
     });
   }
 });
