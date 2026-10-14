@@ -53,6 +53,7 @@ export default function Preview({
         isAdmin: true,
         isSuperAdmin: true,
       }}
+      storageScope="workspace-preview"
       allowedMenus={WORKSPACE_MENUS.map((menu) => menu.id)}
     />
   );

@@ -18,7 +18,7 @@ import type { StudioProblem } from "@/components/unified/types";
  * 원장님 2026-09-21 «4단계 헤더 구성 일치화 시킬것. 대신 각 단계에서 필요없는 헤더는 지울것.
  * 단계마다 헤더 구조가 바뀌는 치명적인 ux 고칠것» → **안 A 확정**(2026-09-21).
  *
- * 뼈대: 제목 줄은 네 단계가 똑같다 — 「자료 제작」 + 단계 탭 넷 + 그 단계의 큰 단추.
+ * 뼈대: 제목 줄은 네 단계가 똑같다 — 「자료 제작」 + 단계 탭 셋 + 그 단계의 큰 단추.
  * 파일·학년을 포함한 모든 도구는 둘째 줄. 큰 제목·설명 줄·원형 체크 막대는 없앴다.
  *
  * 계산된 모양(높이·꺾임)은 jsdom 이 못 잰다 — `e2e/studio-ai/step-header.spec.ts` 가 브라우저에서 잰다.
@@ -158,7 +158,7 @@ const pressed = () =>
 const toolRow = () =>
   document.querySelector("[data-studio-tool-row]") as HTMLElement | null;
 
-describe("1 · 뼈대 — 네 단계가 같은 제목 줄을 쓴다", () => {
+describe("1 · 뼈대 — 세 단계가 같은 제목 줄을 쓴다", () => {
   it("① 원본 가져오기에도 띠가 서고, 큰 제목·설명 줄·원형 막대·로컬 작업 배지는 없다", async () => {
     await openStudio([], { step: "upload" });
     expect(bar()).not.toBeNull();
@@ -173,30 +173,37 @@ describe("1 · 뼈대 — 네 단계가 같은 제목 줄을 쓴다", () => {
     expect(document.querySelector("[data-workspace-page-header]")).toBeNull();
   });
 
-  it("단계 탭은 늘 넷이고 눌린 것은 정확히 하나다", async () => {
+  it("단계 탭은 늘 셋이고 눌린 것은 정확히 하나다", async () => {
     await openStudio([crop("c1")], { step: "upload" });
-    expect(within(tabs()).getAllByRole("button")).toHaveLength(4);
+    expect(within(tabs()).getAllByRole("button")).toHaveLength(3);
     expect(pressed()).toHaveLength(1);
-    expect(pressed()[0]).toMatch(/^원본 가져오기$/);
-    fireEvent.click(tab("문제&도형 잘라내기"));
-    expect(pressed()[0]).toMatch(/^문제&도형 잘라내기$/);
-    expect(within(tabs()).getAllByRole("button")).toHaveLength(4);
-    fireEvent.click(tab(/^OCR · 디지털화/));
-    expect(pressed()[0]).toMatch(/^OCR · 디지털화/);
-    expect(within(tabs()).getAllByRole("button")).toHaveLength(4);
+    expect(pressed()[0]).toMatch(/^1 범위 설정$/);
+    fireEvent.click(
+      within(
+        screen.getByRole("navigation", { name: "원본 범위 작업" }),
+      ).getByRole("button", { name: "문제&도형 잘라내기" }),
+    );
+    expect(pressed()[0]).toMatch(/^1 범위 설정$/);
+    expect(within(tabs()).getAllByRole("button")).toHaveLength(3);
+    fireEvent.click(tab(/^2 문항 검토/));
+    expect(pressed()[0]).toMatch(/^2 문항 검토/);
+    expect(within(tabs()).getAllByRole("button")).toHaveLength(3);
   });
 
-  it("네 단계 어디서나 제목 줄의 구성이 같다 — 제목 하나 · 탭 넷 · 단추 묶음 하나", async () => {
+  it("네 단계 어디서나 제목 줄의 구성이 같다 — 제목 하나 · 탭 셋 · 단추 묶음 하나", async () => {
     await openStudio([crop("c1")], { step: "upload" });
     const shape = () => ({
       제목: within(bar()).getAllByRole("heading").length,
       탭: within(tabs()).getAllByRole("button").length,
-      묶음: bar().children.length,
     });
     const upload = shape();
-    fireEvent.click(tab("문제&도형 잘라내기"));
+    fireEvent.click(
+      within(
+        screen.getByRole("navigation", { name: "원본 범위 작업" }),
+      ).getByRole("button", { name: "문제&도형 잘라내기" }),
+    );
     expect(shape()).toEqual(upload);
-    fireEvent.click(tab(/^OCR · 디지털화/));
+    fireEvent.click(tab(/^2 문항 검토/));
     expect(shape()).toEqual(upload);
   });
 });
@@ -207,7 +214,7 @@ describe("2 · 단계마다 필요 없는 것은 지운다", () => {
     expect(
       within(toolRow()!).getByRole("button", { name: "현재 페이지 90도 회전" }),
     ).toBeInTheDocument();
-    fireEvent.click(tab(/^OCR · 디지털화/));
+    fireEvent.click(tab(/^2 문항 검토/));
     expect(
       within(toolRow()!).queryByRole("button", {
         name: "현재 페이지 90도 회전",
@@ -218,7 +225,7 @@ describe("2 · 단계마다 필요 없는 것은 지운다", () => {
   it("파일·학년은 둘째 줄에 있고 제목 줄에는 없다 — ②③ 둘 다", async () => {
     await openStudio([crop("c1")], { step: "crop" });
     for (const step of ["crop", "review"] as const) {
-      if (step === "review") fireEvent.click(tab(/^OCR · 디지털화/));
+      if (step === "review") fireEvent.click(tab(/^2 문항 검토/));
       for (const name of ["원본 파일", "시험지 학년"]) {
         expect(
           within(toolRow()!).getByRole("combobox", { name }),
@@ -253,7 +260,7 @@ describe("3 · 확대를 켠 채 ①로 가도 풀 길이 남는다 (2026-09-21 
     await openStudio([crop("c1")], { step: "crop" });
     fireEvent.click(within(bar()).getByRole("button", { name: "편집창 확대" }));
     expect(focused()).toBe(true);
-    fireEvent.click(tab("원본 가져오기"));
+    fireEvent.click(tab("1 범위 설정"));
     expect(focused()).toBe(true);
     const shrink = within(bar()).getByRole("button", { name: "편집창 축소" });
     fireEvent.click(shrink);
@@ -264,9 +271,9 @@ describe("3 · 확대를 켠 채 ①로 가도 풀 길이 남는다 (2026-09-21 
 describe("4 · 시험지 구성 탭", () => {
   it("담은 문항과 추가할 추출 문항이 모두 없으면 흐리고 배지는 0 이다", async () => {
     await openStudio([], { step: "crop" }, { pickedCount: 0 });
-    const worksheet = tab(/^시험지 구성/);
+    const worksheet = tab(/^3 양식 구성·출력/);
     expect(worksheet).toBeDisabled();
-    expect(worksheet).toHaveTextContent(/^시험지 구성 0$/);
+    expect(worksheet).toHaveTextContent(/^3 양식 구성·출력 0$/);
   });
 
   it("추출 문항을 추가할 수 있으면 배지 0을 유지하면서 구성으로 이동한다", async () => {
@@ -276,9 +283,9 @@ describe("4 · 시험지 구성 탭", () => {
       { step: "crop" },
       { pickedCount: 0, onExport },
     );
-    const worksheet = tab(/^시험지 구성/);
+    const worksheet = tab(/^3 양식 구성·출력/);
     expect(worksheet).toBeEnabled();
-    expect(worksheet).toHaveTextContent(/^시험지 구성 0$/);
+    expect(worksheet).toHaveTextContent(/^3 양식 구성·출력 0$/);
     fireEvent.click(worksheet);
     expect(onExport).toHaveBeenCalledOnce();
   });
@@ -290,9 +297,9 @@ describe("4 · 시험지 구성 탭", () => {
       { step: "crop" },
       { pickedCount: 3, onExport },
     );
-    const worksheet = tab(/^시험지 구성/);
+    const worksheet = tab(/^3 양식 구성·출력/);
     expect(worksheet).toBeEnabled();
-    expect(worksheet).toHaveTextContent(/^시험지 구성 3$/);
+    expect(worksheet).toHaveTextContent(/^3 양식 구성·출력 3$/);
     fireEvent.click(worksheet);
     expect(onExport).toHaveBeenCalledTimes(1);
   });
@@ -336,19 +343,19 @@ describe("5 · ④ 시험지 구성 화면도 같은 띠를 쓴다", () => {
     render(<WorksheetEditor {...props} cropCount={19} onGoToStep={vi.fn()} />);
     expect(bar()).not.toBeNull();
     expect(
-      within(bar()).getByRole("heading", { name: "문제 추출" }),
+      within(bar()).getByRole("heading", { name: "시험지 만들기" }),
     ).toBeInTheDocument();
     expect(
       screen.queryByRole("heading", { name: "시험지 구성하기" }),
     ).toBeNull();
-    expect(within(tabs()).getAllByRole("button")).toHaveLength(4);
-    expect(pressed()[0]).toMatch(/^시험지 구성/);
+    expect(within(tabs()).getAllByRole("button")).toHaveLength(3);
+    expect(pressed()[0]).toMatch(/^3 양식 구성·출력/);
   });
 
   it("문제 추출을 못 쓰는 계정이면 앞 세 탭을 아예 세우지 않는다", () => {
     render(<WorksheetEditor {...props} allowedMenus={["export"]} />);
     expect(
-      within(bar()).getByRole("heading", { name: "시험지 구성" }),
+      within(bar()).getByRole("heading", { name: "시험지 만들기" }),
     ).toBeInTheDocument();
     expect(within(tabs()).getAllByRole("button")).toHaveLength(1);
   });
@@ -356,7 +363,7 @@ describe("5 · ④ 시험지 구성 화면도 같은 띠를 쓴다", () => {
   it("작업실의 셈을 몰라도 «OCR · 디지털화»로 돌아갈 수 있다 — 배지만 빠진다", () => {
     const onGoToStep = vi.fn();
     render(<WorksheetEditor {...props} onGoToStep={onGoToStep} />);
-    const review = tab(/^OCR · 디지털화$/);
+    const review = tab(/^2 문항 검토$/);
     expect(review).toBeEnabled();
     fireEvent.click(review);
     expect(onGoToStep).toHaveBeenCalledWith("review");
@@ -368,7 +375,7 @@ describe("5 · ④ 시험지 구성 화면도 같은 띠를 쓴다", () => {
       <WorksheetEditor {...props} cropCount={19} onGoToStep={onGoToStep} />,
     );
     expect(screen.queryByRole("button", { name: /이전 검토 단계/ })).toBeNull();
-    fireEvent.click(tab(/^OCR · 디지털화/));
+    fireEvent.click(tab(/^2 문항 검토/));
     expect(onGoToStep).toHaveBeenCalledWith("review");
   });
 

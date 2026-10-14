@@ -234,7 +234,7 @@ describe("⑸ 파일 가져오기는 완전히 빈 상태에서만", () => {
 
   it("«원본 가져오기» 단계로 가면 파일을 더 넣을 수 있다", async () => {
     await openStudio([crop("c1")]);
-    fireEvent.click(screen.getByRole("button", { name: /원본 가져오기/ }));
+    fireEvent.click(screen.getByRole("button", { name: "1 범위 설정" }));
     expect(
       await screen.findByRole("button", { name: "내 컴퓨터에서 선택" }),
     ).toBeInTheDocument();
@@ -321,8 +321,8 @@ describe("⑻ 단계 표시는 어느 단계에서든 «지금 여기»를 보�
       .getAllByRole("button")
       .filter((button) => button.getAttribute("aria-pressed") === "true");
     expect(pressed).toHaveLength(1);
-    expect(pressed[0]).toHaveAccessibleName(/문제&도형 잘라내기/);
-    expect(within(tabs).getAllByRole("button")).toHaveLength(4);
+    expect(pressed[0]).toHaveAccessibleName("1 범위 설정");
+    expect(within(tabs).getAllByRole("button")).toHaveLength(3);
   });
 
   it("검수 단계에서도 현재 단계가 드러난다", async () => {
@@ -332,6 +332,6 @@ describe("⑻ 단계 표시는 어느 단계에서든 «지금 여기»를 보�
       .getAllByRole("button")
       .filter((button) => button.getAttribute("aria-pressed") === "true");
     expect(pressed).toHaveLength(1);
-    expect(pressed[0]).toHaveAccessibleName(/OCR · 디지털화/);
+    expect(pressed[0]).toHaveAccessibleName(/2 문항 검토/);
   });
 });

@@ -4,6 +4,7 @@ import {
   useEffect,
   useState,
   type ComponentType,
+  type ComponentProps,
   type ReactNode,
 } from "react";
 import {
@@ -16,6 +17,7 @@ import {
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import UnifiedWorkspace from "@/components/unified/UnifiedWorkspace";
+import WorksheetEditor from "@/components/unified/WorksheetEditor";
 import userEvent from "@testing-library/user-event";
 import type { EnglishBankMakerSeed } from "@/contracts/englishBank.contract";
 import { signOutAction } from "@/app/actions/auth";
@@ -167,6 +169,37 @@ vi.mock("next/dynamic", () => ({
   default: (
     loader: () => Promise<{ default: ComponentType } | ComponentType>,
   ) => {
+    // Keep this shell test isolated from the separately tested bank builder,
+    // including its eager preload path.
+    if (loader.toString().includes("MathExamBuilder")) {
+      return function BankProbe({
+        editor,
+        canOutput,
+        initialStep,
+      }: {
+        editor: Omit<ComponentProps<typeof WorksheetEditor>, "navigate"> & {
+          navigate: (view: "bank" | "studio" | "export") => void;
+        };
+        canOutput: boolean;
+        initialStep?: string;
+      }) {
+        useEffect(() => {
+          mocks.bankMount();
+        }, []);
+        return (
+          <>
+            <h2>은행 패널</h2>
+            <button onClick={() => editor.navigate("export")}>
+              내보내기 우회 검증
+            </button>
+            <span data-testid="bank-export-access">{String(canOutput)}</span>
+            {initialStep === "output" && canOutput && (
+              <WorksheetEditor {...editor} />
+            )}
+          </>
+        );
+      };
+    }
     const Component = lazy(async () => {
       const loaded = await loader();
       return typeof loaded === "function" ? { default: loaded } : loaded;
@@ -196,7 +229,7 @@ vi.mock("@/components/unified/useDevAi", () => ({
 vi.mock("@/components/unified/DevAiStatusPanel", () => ({
   default: () => <button>AI 연결 설정</button>,
 }));
-vi.mock("@/components/exam-builder/MathExamBuilder", () => ({
+vi.mock("../../components/exam-builder/MathExamBuilder", () => ({
   default: function BankProbe({
     editor,
     canOutput,
@@ -240,6 +273,21 @@ vi.mock("@/components/unified/StudioView", () => ({
         />
         <span data-testid="studio-export-access">{String(canExport)}</span>
         <span data-testid="studio-document-id">{documentId ?? ""}</span>
+      </>
+    );
+  },
+}));
+vi.mock("@/components/arithmetic/ArithmeticWorkbench", () => ({
+  default: function ArithmeticProbe() {
+    const [value, setValue] = useState("");
+    return (
+      <>
+        <h2>연산 패널</h2>
+        <input
+          aria-label="연산 작업 초안"
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
+        />
       </>
     );
   },
@@ -408,6 +456,53 @@ afterEach(() => {
 });
 
 describe("per-account workspace menu access", () => {
+  it("opens arithmetic as a separate sidebar view and preserves its draft across bank navigation", async () => {
+    window.history.replaceState(null, "", "/#arithmetic");
+    render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["bank", "export"]}
+      />,
+    );
+    expect(
+      await screen.findByRole("heading", { name: "연산 패널" }),
+    ).toBeVisible();
+    const menu = screen.getByRole("navigation", { name: "작업실 메뉴" });
+    expect(
+      within(menu).getByRole("button", { name: "연산대장" }),
+    ).toHaveAttribute("aria-current", "page");
+    fireEvent.change(screen.getByLabelText("연산 작업 초안"), {
+      target: { value: "분수 20문항" },
+    });
+    fireEvent.click(
+      within(menu).getByRole("button", { name: "시험지 만들기" }),
+    );
+    expect(
+      await screen.findByRole("heading", { name: "은행 패널" }),
+    ).toBeVisible();
+    expect(
+      screen.queryByRole("group", { name: "시험지 종류" }),
+    ).not.toBeInTheDocument();
+    fireEvent.click(within(menu).getByRole("button", { name: "연산대장" }));
+    expect(screen.getByLabelText("연산 작업 초안")).toHaveValue("분수 20문항");
+    expect(window.location.hash).toBe("#arithmetic");
+  });
+
+  it("does not expose arithmetic when bank access is absent", async () => {
+    window.history.replaceState(null, "", "/#arithmetic");
+    render(
+      <UnifiedWorkspace initialData={initialData} allowedMenus={["home"]} />,
+    );
+    expect(
+      await screen.findByRole("heading", { name: "오늘의 작업" }),
+    ).toBeVisible();
+    expect(
+      screen.queryByRole("button", { name: "연산대장" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "연산 패널" }),
+    ).not.toBeInTheDocument();
+  });
   it("opens the standalone English bank without mounting exam-dependent screens", async () => {
     window.history.replaceState(null, "", "/#english-bank");
     render(
@@ -519,6 +614,10 @@ describe("per-account workspace menu access", () => {
         storageScope="teacher-one"
       />,
     );
+    fireEvent.click(nav().getByRole("button", { name: "우리학원 시험지" }));
+    fireEvent.click(
+      await screen.findByRole("button", { name: "공유할 시험지 수정" }),
+    );
     const save = await screen.findByRole("button", {
       name: "우리학원 시험지에 저장",
     });
@@ -629,17 +728,18 @@ describe("per-account workspace menu access", () => {
       act(() => window.dispatchEvent(new Event("pagehide")));
       if (tab === "home") {
         await waitFor(() =>
-          expect(
-            cloud.transport.mock.calls.some(([url]) =>
-              String(url).endsWith("/saved-draft"),
-            ),
-          ).toBe(true),
+          expect(cloud.transport.mock.calls.length > 0).toBe(true),
         );
         expect(
           cloud.transport.mock.calls.every(
             ([, init]) => !init?.method || init.method === "GET",
           ),
         ).toBe(true);
+        expect(
+          cloud.transport.mock.calls.some(([url]) =>
+            String(url).endsWith("/saved-draft"),
+          ),
+        ).toBe(false);
       } else {
         expect(cloud.transport).not.toHaveBeenCalled();
       }
@@ -652,7 +752,11 @@ describe("per-account workspace menu access", () => {
       ).not.toBeInTheDocument();
 
       await openWorksheet();
-      const title = await screen.findByRole("textbox", { name: "제목" });
+      fireEvent.click(
+        await screen.findByRole("button", { name: "저장한 작업 불러오기" }),
+      );
+      await waitFor(() => expect(window.location.hash).toBe("#bank"));
+      const title = await screen.findByDisplayValue("기존 시험지");
       expect(cloud.transport).toHaveBeenCalled();
       expect(
         within(screen.getByRole("banner")).queryByText(/저장|작업 준비/),
@@ -671,9 +775,9 @@ describe("per-account workspace menu access", () => {
       await act(async () => {});
       expect(cloud.transport).not.toHaveBeenCalled();
       await openWorksheet();
-      expect(
-        await screen.findByDisplayValue("탭 이동 전 시험지"),
-      ).toBeVisible();
+      expect(await screen.findByRole("textbox", { name: "제목" })).toHaveValue(
+        "탭 이동 전 시험지",
+      );
       expect(cloud.transport).not.toHaveBeenCalled();
     },
   );
@@ -1044,7 +1148,7 @@ describe("per-account workspace menu access", () => {
     // 안 A(2026-09-21) — 큰 제목 대신 같은 띠다. 자료 제작을 못 쓰는 계정이면
     // 앞 세 탭은 아예 서지 않고 제목도 「시험지 구성」이 된다.
     expect(
-      await screen.findByRole("heading", { name: "시험지 구성" }),
+      await screen.findByRole("heading", { name: "시험지 만들기" }),
     ).toBeVisible();
     expect(
       within(
@@ -1164,6 +1268,9 @@ describe("per-account workspace menu access", () => {
         storageScope="teacher-one"
         allowedMenus={["export", "studio"]}
       />,
+    );
+    fireEvent.click(
+      await screen.findByRole("button", { name: "저장한 작업 불러오기" }),
     );
     const title = await screen.findByRole("textbox", { name: "제목" });
     fireEvent.change(title, { target: { value: "권한 변경 중인 시험지" } });
@@ -1408,6 +1515,7 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     expect(labels()).toEqual([
       "오늘의 작업",
       "시험지 만들기",
+      "연산대장",
       "문제 추출",
       "내 시험지",
       "교재 제작",
@@ -1599,7 +1707,7 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     fireEvent.click(brand());
     fireEvent.click(screen.getByRole("option", { name: "오늘 수학" }));
     // «시험지 · 내보내기»는 옆 메뉴에 줄이 없다(원장님 2026-10-01)
-    expect(nav().getAllByRole("button")).toHaveLength(MATH_ONLY.length - 1);
+    expect(nav().getAllByRole("button")).toHaveLength(MATH_ONLY.length);
     expect(window.location.hash).toBe("");
     expect(brand()).toHaveAccessibleName("제품 고르기 — 오늘 수학");
     // 영어 뷰는 숨김으로 남는다(상태를 잃지 않는다) — 다시 마운트하지 않는다
@@ -1674,7 +1782,7 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     fireEvent.click(dialog.getByRole("button", { name: "내 시험지" }));
     expect(window.location.hash).toBe("#library");
     // «시험지 · 내보내기»는 옆 메뉴에 줄이 없다(원장님 2026-10-01)
-    expect(nav().getAllByRole("button")).toHaveLength(MATH_ONLY.length - 1);
+    expect(nav().getAllByRole("button")).toHaveLength(MATH_ONLY.length);
   });
 
   it("영어 메뉴가 없으면 #english 는 첫 허용 메뉴로 떨어지고 영어 뷰는 마운트되지 않는다", async () => {

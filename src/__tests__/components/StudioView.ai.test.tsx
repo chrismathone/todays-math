@@ -163,7 +163,7 @@ async function recognize() {
       screen.getByRole("button", { name: "다음: OCR · 디지털화" }),
     ).toBeEnabled(),
   );
-  fireEvent.click(screen.getByRole("button", { name: /^OCR · 디지털화 \d+$/ }));
+  fireEvent.click(screen.getByRole("button", { name: /^2 문항 검토 \d+$/ }));
   await waitFor(() => expect(reviewCard()).toHaveTextContent(/값을 구하세요/));
 }
 /** 검수 칸의 문항 카드 — 인식한 본문·편집·해설 단추가 모두 이 안에 있다. */
@@ -180,9 +180,7 @@ describe("Studio AI review controls", () => {
         screen.getByRole("button", { name: "다음: OCR · 디지털화" }),
       ).toBeEnabled(),
     );
-    fireEvent.click(
-      screen.getByRole("button", { name: /^OCR · 디지털화 \d+$/ }),
-    );
+    fireEvent.click(screen.getByRole("button", { name: /^2 문항 검토 \d+$/ }));
     expect(
       screen.queryByRole("button", { name: /담고 내보내기|^내보내기$/ }),
     ).not.toBeInTheDocument();
@@ -270,12 +268,12 @@ describe("Studio AI review controls", () => {
       ).toBeDisabled(),
     );
     expect(
-      screen.getByRole("button", { name: /^OCR · 디지털화 \d+$/ }),
+      screen.getByRole("button", { name: /^2 문항 검토 \d+$/ }),
     ).toBeEnabled();
     expect(
       within(
         screen.getByRole("navigation", { name: "제작 단계 이동" }),
-      ).getByRole("button", { name: /OCR · 디지털화/ }),
+      ).getByRole("button", { name: /2 문항 검토/ }),
     ).toBeEnabled();
     expect(screen.getByText(/남음$/)).toBeInTheDocument();
     await act(async () => {
@@ -544,7 +542,7 @@ describe("Studio AI review controls", () => {
       await recognizeInCropStep();
       expect(redraws()).toEqual([]);
       fireEvent.click(
-        screen.getByRole("button", { name: /^OCR · 디지털화 \d+$/ }),
+        screen.getByRole("button", { name: /^2 문항 검토 \d+$/ }),
       );
       await waitFor(() => expect(redraws()).toHaveLength(1));
     });
@@ -628,9 +626,7 @@ describe("Studio AI review controls", () => {
     expect(
       screen.getByRole("img", { name: "검수할 자른 원본 문제" }),
     ).toBeInTheDocument();
-    fireEvent.click(
-      screen.getByRole("button", { name: /^OCR · 디지털화 \d+$/ }),
-    );
+    fireEvent.click(screen.getByRole("button", { name: /^2 문항 검토 \d+$/ }));
     fireEvent.click(screen.getByRole("button", { name: "1문항 담기" }));
     expect(posts).toEqual([]);
     expect(onAdd).toHaveBeenCalledWith([

@@ -19,6 +19,12 @@ const paths = {
       <path d="m11 13 10-10" />
     </>
   ),
+  calculator: (
+    <>
+      <rect x="4" y="2" width="16" height="20" rx="2" />
+      <path d="M8 6h8M8 11h2m4 0h2M8 15h2m4 0h2M8 19h2m4 0h2" />
+    </>
+  ),
   paper: (
     <>
       <path d="M5 3h10l4 4v14H5Z" />
@@ -114,7 +120,25 @@ const paths = {
   /** 브랜드 자리 고르기 단추의 ▾ (D-148 · 시안 C) */
   down: <path d="m6 9 6 6 6-6" />,
 } satisfies Record<string, ReactNode>;
-export type WorkspaceIconName = keyof typeof paths;
+const assetIcons = new Set<string>([
+  "home",
+  "bank",
+  "calculator",
+  "crop",
+  "folder",
+  "paper",
+  "class",
+  "play",
+  "pen",
+  "clock",
+  "headphones",
+  "spark",
+  "school",
+  "info",
+  "edit",
+  "trash",
+]);
+export type WorkspaceIconName = keyof typeof paths | "info" | "edit" | "trash";
 export default function WorkspaceIcon({
   name,
   size = 20,
@@ -129,12 +153,16 @@ export default function WorkspaceIcon({
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.9"
+      strokeWidth="1.8"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
     >
-      {paths[name]}
+      {assetIcons.has(name) ? (
+        <use href={`/brand/workspace-icons.svg#${name}`} />
+      ) : (
+        paths[name as keyof typeof paths]
+      )}
     </svg>
   );
 }

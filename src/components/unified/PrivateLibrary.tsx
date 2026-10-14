@@ -4,15 +4,19 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { CONCEPT_BLANK_TITLE_MAX } from "@/contracts/conceptBlank.contract";
 import type {
   DocumentKind,
+  PrivateDocument,
   PrivateDocumentSummary,
 } from "@/contracts/privateWorkspace.contract";
 import { documentKey } from "@/contracts/privateWorkspace.contract";
+import type { DocumentWorkflow } from "@/contracts/workspaceWorkflow.contract";
 import { workspaceLibraryLabel } from "@/contracts/accountAccess.contract";
 import ConfirmDialog from "./ConfirmDialog";
 import { PrivateCloudClient, cloudError } from "./privateCloudClient";
 import WorkspacePageHeader from "./WorkspacePageHeader";
 import { formatDraftDate } from "./WorkroomHome";
 import WorkProgress from "./WorkProgress";
+import Icon from "./WorkspaceIcon";
+import { libraryDocumentInfo } from "./libraryDocumentInfo";
 import s from "./PrivateLibrary.module.css";
 
 /** 자료 종류 이름 — 목록의 종류 칸 · 종류 고르기. 개념 백지는 26 §9 ⑾. */
@@ -23,18 +27,35 @@ const KIND_LABEL: Readonly<Record<DocumentKind, string>> = {
   arithmeticSheet: "연산 연습지",
 };
 
+export type LibraryOpenOptions = {
+  mode: "resume";
+  workflow?: DocumentWorkflow;
+};
+const STAGE_LABEL: Record<DocumentWorkflow["step"], string> = {
+  import: "원본 가져오기",
+  crop: "문제 잘라내기",
+  scope: "1 범위 설정",
+  review: "2 문항 검토",
+  output: "3 양식 구성·출력",
+};
 type PrivateLibraryProps = {
   storageScope: string;
   branchId?: string | null;
   canExport: boolean;
   canStudio: boolean;
-  onOpenDraft: (id: string) => void | Promise<void>;
-  onOpenExtraction: (id: string) => void;
+  onOpenDraft: (
+    id: string,
+    options?: LibraryOpenOptions,
+  ) => void | Promise<void>;
+  onOpenExtraction: (id: string, options?: LibraryOpenOptions) => void;
   /** 개념 백지 메뉴가 있나 — 없으면 저장한 개념 백지를 열 수 없다(이름 변경 · 삭제는 된다). */
   canConceptBlank?: boolean;
   onOpenConceptBlank?: (id: string) => void | Promise<void>;
   canArithmetic?: boolean;
-  onOpenArithmetic?: (id: string) => void | Promise<void>;
+  onOpenArithmetic?: (
+    id: string,
+    options?: LibraryOpenOptions,
+  ) => void | Promise<void>;
   onImport?: () => void;
   onNew?: () => void;
   onDeleted?: (item: PrivateDocumentSummary) => void | Promise<void>;
@@ -120,7 +141,13 @@ function PrivateLibraryContent({
     return items
       .filter(
         (item) =>
-          (kind === "all" || item.kind === kind) &&
+          (kind === "all" ||
+            item.kind === kind ||
+            (kind === "working" &&
+              Boolean(item.workflow) &&
+              (item.ownerId
+                ? item.ownerId === storageScope
+                : item.isOwner !== false))) &&
           item.title.toLocaleLowerCase().includes(search),
       )
       .sort((a, b) => {
@@ -131,7 +158,7 @@ function PrivateLibraryContent({
           b.updatedAt.localeCompare(a.updatedAt) || a.id.localeCompare(b.id)
         );
       });
-  }, [items, kind, query, sort]);
+  }, [items, kind, query, sort, storageScope]);
   const hasFilters = Boolean(query.trim()) || kind !== "all" || mineOnly;
   const openDocument = async (
     item: PrivateDocumentSummary,
@@ -158,6 +185,43 @@ function PrivateLibraryContent({
         )}
         {onNew && <button onClick={onNew}>새 시험지</button>}
       </WorkspacePageHeader>
+      <nav className={s.kindTabs} aria-label="자료 종류별 보기">
+        {(
+          [
+            "all",
+            "working",
+            "draft",
+            "arithmeticSheet",
+            "extraction",
+            "conceptBlank",
+          ] as const
+        ).map((value) => (
+          <button
+            key={value}
+            type="button"
+            aria-pressed={kind === value}
+            onClick={() => setKind(value)}
+          >
+            {value === "all"
+              ? "전체"
+              : value === "working"
+                ? "작업 중"
+                : KIND_LABEL[value]}{" "}
+            <span>
+              {value === "all"
+                ? items.length
+                : items.filter((item) =>
+                    value === "working"
+                      ? Boolean(item.workflow) &&
+                        (item.ownerId
+                          ? item.ownerId === storageScope
+                          : item.isOwner !== false)
+                      : item.kind === value,
+                  ).length}
+            </span>
+          </button>
+        ))}
+      </nav>
       <div className={s.tools}>
         {branchId && (
           <label className={s.mineFilter}>
@@ -184,9 +248,13 @@ function PrivateLibraryContent({
             onChange={(event) => setKind(event.target.value)}
           >
             <option value="all">전체 자료</option>
+            <option value="working">작업 중</option>
             <option value="draft">{KIND_LABEL.draft}</option>
             <option value="extraction">{KIND_LABEL.extraction}</option>
             <option value="conceptBlank">{KIND_LABEL.conceptBlank}</option>
+            <option value="arithmeticSheet">
+              {KIND_LABEL.arithmeticSheet}
+            </option>
           </select>
         </label>
         <label>
@@ -205,6 +273,12 @@ function PrivateLibraryContent({
           새로고침
         </button>
       </div>
+      {kind === "working" && (
+        <p className={s.note}>
+          자동저장한 작업입니다. ‘이어서 작업’은 저장한 단계로, 수정 아이콘은
+          출력 설정으로 이동합니다.
+        </p>
+      )}
       <p className={s.resultCount} aria-live="polite">
         저장한 자료 <strong>{items.length}</strong>개
         {hasFilters && (
@@ -261,6 +335,37 @@ function PrivateLibraryContent({
                   showAuthor={Boolean(branchId)}
                   number={index + 1}
                   client={client}
+                  onResume={
+                    item.workflow
+                      ? item.kind === "draft" && canExport
+                        ? () =>
+                            openDocument(item, (id) =>
+                              onOpenDraft(id, {
+                                mode: "resume",
+                                workflow: item.workflow,
+                              }),
+                            )
+                        : item.kind === "arithmeticSheet" &&
+                            canArithmetic &&
+                            onOpenArithmetic
+                          ? () =>
+                              openDocument(item, (id) =>
+                                onOpenArithmetic(id, {
+                                  mode: "resume",
+                                  workflow: item.workflow,
+                                }),
+                              )
+                          : item.kind === "extraction" && canStudio
+                            ? () =>
+                                openDocument(item, (id) =>
+                                  onOpenExtraction(id, {
+                                    mode: "resume",
+                                    workflow: item.workflow,
+                                  }),
+                                )
+                            : undefined
+                      : undefined
+                  }
                   onDeleted={async () => {
                     await onDeleted?.(item);
                   }}
@@ -355,6 +460,7 @@ function LibraryItem({
   number,
   client,
   onOpen,
+  onResume,
   onChanged,
   onDeleted,
 }: {
@@ -364,25 +470,46 @@ function LibraryItem({
   number: number;
   client: PrivateCloudClient;
   onOpen?: () => void | Promise<void>;
+  onResume?: () => void | Promise<void>;
   onChanged: (next?: PrivateDocumentSummary) => void;
   onDeleted: () => Promise<void>;
 }) {
   const [action, setAction] = useState<{
-    kind: "rename" | "delete";
+    kind: "info" | "delete";
     revision: number;
     title: string;
   } | null>(null);
   const [name, setName] = useState(item.title);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [details, setDetails] = useState<PrivateDocument | null>(null);
+  const [detailsLoading, setDetailsLoading] = useState(false);
+  const detailsRequest = useRef(0);
   const renameButton = useRef<HTMLButtonElement>(null);
   const deleteButton = useRef<HTMLButtonElement>(null);
   // Keep the confirmed revision even if another device refreshes this row while
   // its dialog is open: the existing API conflict protects unseen changes.
   const dialogOpen = action !== null;
   const closeDialog = () => {
+    detailsRequest.current++;
     setAction(null);
     setError("");
+  };
+  const openInfo = async () => {
+    const request = ++detailsRequest.current;
+    setName(item.title);
+    setError("");
+    setDetails(null);
+    setDetailsLoading(true);
+    setAction({ kind: "info", revision: item.revision, title: item.title });
+    try {
+      const document = await client.get(item.id, item.ownerId);
+      if (request === detailsRequest.current) setDetails(document);
+    } catch (cause) {
+      if (request === detailsRequest.current) setError(cloudError(cause));
+    } finally {
+      if (request === detailsRequest.current) setDetailsLoading(false);
+    }
   };
   const perform = async (work: () => Promise<void>) => {
     setBusy(true);
@@ -424,6 +551,25 @@ function LibraryItem({
           <span className={s.titleText}>{item.title}</span>
         )}
         {!onOpen && <small>열기 권한 없음</small>}
+        {item.workflow && (
+          <div className={s.progressLine}>
+            <span>{STAGE_LABEL[item.workflow.step]}</span>
+            {owned && onResume && (
+              <button
+                type="button"
+                disabled={busy}
+                aria-label={`${item.title} 이어서 작업`}
+                onClick={() =>
+                  void perform(async () => {
+                    await onResume();
+                  })
+                }
+              >
+                이어서 작업 <Icon name="arrow" size={14} />
+              </button>
+            )}
+          </div>
+        )}
         {showAuthor && (
           <small>
             작성자: {item.ownerName ?? "선생님"}
@@ -448,27 +594,36 @@ function LibraryItem({
         <time dateTime={item.updatedAt}>{formatDraftDate(item.updatedAt)}</time>
       </td>
       <td className={s.actionsCell} role="cell">
-        {owned && (
-          <div className={s.actions}>
+        <div className={s.actions}>
+          <button
+            ref={renameButton}
+            aria-label={`${item.title} 정보`}
+            title="정보 · 이름 수정"
+            disabled={busy}
+            onClick={() => void openInfo()}
+          >
+            <Icon name="info" />
+          </button>
+          {onOpen && (
             <button
-              ref={renameButton}
-              aria-label={`${item.title} 이름 변경`}
+              type="button"
+              aria-label={`${item.title} 수정`}
+              title={owned ? "수정 · 출력 설정 열기" : "사본으로 수정"}
               disabled={busy}
-              onClick={() => {
-                setName(item.title);
-                setError("");
-                setAction({
-                  kind: "rename",
-                  revision: item.revision,
-                  title: item.title,
-                });
-              }}
+              onClick={() =>
+                void perform(async () => {
+                  await onOpen();
+                })
+              }
             >
-              이름 변경
+              <Icon name="edit" />
             </button>
+          )}
+          {owned && (
             <button
               ref={deleteButton}
               aria-label={`${item.title} 삭제`}
+              title="삭제"
               disabled={busy}
               onClick={() => {
                 setError("");
@@ -479,37 +634,80 @@ function LibraryItem({
                 });
               }}
             >
-              삭제
+              <Icon name="trash" />
             </button>
-          </div>
-        )}
-        {action?.kind === "rename" && (
+          )}
+        </div>
+        {action?.kind === "info" && (
           <ConfirmDialog
-            title="이름 변경"
-            field={{
-              label: "새 자료 이름",
-              value: name,
-              maxLength:
-                item.kind === "draft"
-                  ? 80
-                  : item.kind === "conceptBlank"
-                    ? CONCEPT_BLANK_TITLE_MAX
-                    : 200,
-              onChange: setName,
-            }}
-            confirmLabel="이름 저장"
+            title="시험지 정보"
+            field={
+              owned
+                ? {
+                    label: "자료 이름",
+                    value: name,
+                    maxLength:
+                      item.kind === "draft"
+                        ? 80
+                        : item.kind === "conceptBlank"
+                          ? CONCEPT_BLANK_TITLE_MAX
+                          : 200,
+                    onChange: setName,
+                  }
+                : undefined
+            }
+            confirmLabel={owned ? "이름 저장" : "닫기"}
             busy={busy}
             error={error}
             returnFocus={renameButton}
             onConfirm={() =>
               void perform(async () => {
+                if (!owned || name.trim() === action.title) return;
                 onChanged(
                   await client.rename(item.id, name.trim(), action.revision),
                 );
               })
             }
             onCancel={closeDialog}
-          />
+          >
+            {!owned && <p>{item.title}</p>}
+            <dl className={s.infoList}>
+              <div>
+                <dt>진행 단계</dt>
+                <dd>
+                  {item.workflow
+                    ? STAGE_LABEL[item.workflow.step]
+                    : "기록 없음"}
+                </dd>
+              </div>
+              <div>
+                <dt>종류</dt>
+                <dd>{KIND_LABEL[item.kind]}</dd>
+              </div>
+              <div>
+                <dt>문항 수</dt>
+                <dd>{item.problemCount}문항</dd>
+              </div>
+              <div>
+                <dt>저장일</dt>
+                <dd>{formatDraftDate(item.createdAt)}</dd>
+              </div>
+              <div>
+                <dt>최근 수정</dt>
+                <dd>{formatDraftDate(item.updatedAt)}</dd>
+              </div>
+              {details &&
+                libraryDocumentInfo(details).map(([label, value]) => (
+                  <div key={label}>
+                    <dt>{label}</dt>
+                    <dd>{value}</dd>
+                  </div>
+                ))}
+            </dl>
+            {detailsLoading && (
+              <WorkProgress label="시험지 정보를 확인하는 중입니다…" />
+            )}
+          </ConfirmDialog>
         )}
         {action?.kind === "delete" && (
           <ConfirmDialog

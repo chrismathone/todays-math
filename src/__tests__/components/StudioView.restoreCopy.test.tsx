@@ -56,7 +56,10 @@ const session: StudioSessionData = {
   level: "secondary",
 };
 
-function renderStudio(branchId?: string) {
+function renderStudio(
+  branchId?: string,
+  stepRequest?: { id: number; step: "review" },
+) {
   // 제목 줄은 네 단계에 다 선다(안 A, 2026-09-21) — 그 줄의 높이를 재는 관찰자가 늘 붙는다.
   vi.stubGlobal(
     "ResizeObserver",
@@ -77,6 +80,7 @@ function renderStudio(branchId?: string) {
         canExport
         storageScope="owner-a"
         branchId={branchId}
+        stepRequest={stepRequest}
       />
     </DevAiProvider>,
   );
@@ -91,6 +95,31 @@ afterEach(() => {
 });
 
 describe("작업실 — 이전 작업 되살리기 문구", () => {
+  it("opens the requested review step after restoring a source saved at scope", async () => {
+    vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(
+      new Proxy({}, { get: () => vi.fn() }) as CanvasRenderingContext2D,
+    );
+    vi.spyOn(HTMLCanvasElement.prototype, "toDataURL").mockReturnValue(
+      "data:image/png;base64,c291cmNl",
+    );
+    saved.current = Promise.resolve({
+      data: {
+        ...session,
+        sources: [{ id: "s1", name: "예제", kind: "sample", pages: 1 }],
+        step: "upload",
+      },
+      originals: new Map(),
+    });
+    renderStudio(undefined, { id: 1, step: "review" });
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", {
+          name: /^2 문항 검토/,
+        }),
+      ).toHaveAttribute("aria-pressed", "true"),
+    );
+  });
+
   it("지점 추출 자료 저장은 비공개 기본 확인창을 거쳐 공개 범위를 전송한다", async () => {
     Object.defineProperty(HTMLDialogElement.prototype, "showModal", {
       configurable: true,

@@ -204,6 +204,42 @@ describe("useWorkspaceDrafts browser lifecycle", () => {
     expect(localStorage.getItem(DRAFT_STORE_KEY)).toBeNull();
   });
 
+  it("retains this session through revoked access but starts blank on a new visit", async () => {
+    const server = privateServer();
+    vi.stubGlobal("fetch", server.transport);
+    const { result, rerender, unmount } = renderHook(
+      ({ enabled }) => useWorkspaceDrafts("owner-a", enabled),
+      { initialProps: { enabled: true } },
+    );
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(0);
+    });
+    act(() => result.current.setProblems([problem("a")]));
+    act(() => result.current.setTitle("이어서 쓸 작업"));
+    const id = result.current.draft.id;
+    rerender({ enabled: false });
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(0);
+    });
+    expect(result.current.draft.problems).toEqual([]);
+    expect(result.current.saveNow()).toBe(false);
+    server.transport.mockClear();
+    act(() => result.current.setTitle("권한 없는 변경"));
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(2000);
+    });
+    expect(server.transport).not.toHaveBeenCalled();
+    rerender({ enabled: true });
+    expect(result.current.draft).toMatchObject({ id, title: "이어서 쓸 작업" });
+    unmount();
+    const nextVisit = renderHook(() => useWorkspaceDrafts("owner-a"));
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(0);
+    });
+    expect(nextVisit.result.current.draft.problems).toEqual([]);
+    expect(nextVisit.result.current.recent).toHaveLength(1);
+  });
+
   it("does not access cloud documents or account caches when private menus are disabled", () => {
     const fetch = vi.fn();
     vi.stubGlobal("fetch", fetch);

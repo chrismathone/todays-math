@@ -13,6 +13,10 @@
   background: var(--learn-soft);
   border-color: var(--learn-accent);
 }
+.root:has(> div:not([hidden]) [data-arithmetic-step="output"]) > .modeSwitch,
+.root:has(> [data-arithmetic-step="output"]) > .notice {
+  display: none;
+}
 .catalogFilters.gradeFilters {
   grid-template-columns: 90px 120px minmax(0, 1fr);
 }

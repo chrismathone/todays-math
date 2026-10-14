@@ -29,6 +29,8 @@ import {
 } from "./worksheetOrder";
 import s from "./WorksheetEditor.module.css";
 interface Props {
+  /** Arithmetic output has a key only, with no solution pages. */
+  answersOnly?: boolean;
   /** Saved retry plans preserve both designated slots and cannot add, remove, or reorder. */
   fixedComposition?: boolean;
   /** Read-only plans have no workspace draft storage actions. */
@@ -73,6 +75,7 @@ interface Props {
   onEditSource?: (problem: StudioProblem) => void;
 }
 export default function WorksheetEditor({
+  answersOnly = false,
   fixedComposition = false,
   draftActions = true,
   beforeOutput,
@@ -449,6 +452,7 @@ export default function WorksheetEditor({
               className={s.settingsPanel}
             >
               <PrintOptionsPanel
+                answersOnly={answersOnly}
                 title={title}
                 setTitle={setTitle}
                 options={options}

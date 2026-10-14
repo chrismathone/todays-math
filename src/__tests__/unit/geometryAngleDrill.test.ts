@@ -141,8 +141,11 @@ describe("opt-in triangle angle drills", () => {
       c = 25,
       r = Math.PI / 180;
     const ac = (240 * Math.sin(b * r)) / Math.sin(c * r);
+    const drill = createTriangleAngleDrillSpec([a, b]);
     const spec = {
-      ...createTriangleAngleDrillSpec([a, b]),
+      ...drill,
+      // Historical non-drill input keeps its question-mark label unchanged.
+      angles: { ...drill.angles, atC: { ...drill.angles.atC, label: "?" } },
       style: undefined,
       points: {
         A: [0, 0],

@@ -369,11 +369,6 @@ export default function StudioView({
    * 어느 단계로든 갈 수 있어야 해 단계까지 실어 나른다.
    * 검수 패널은 건드리지 않는다 — 원장님이 접어 둔 것을 펴지 않는다.
    */
-  useEffect(() => {
-    if (!stepRequest || handledStep.current === stepRequest.id) return;
-    handledStep.current = stepRequest.id;
-    setStep(stepRequest.step);
-  }, [stepRequest]);
   const [level, setLevel] = useState<SchoolLevel>("secondary");
   const [grade, setGrade] = useState("미지정");
   const [zoom, setZoom] = useState(100);
@@ -381,9 +376,16 @@ export default function StudioView({
   const [restoring, setRestoring] = useState(
     () => Boolean(storageScope) || typeof indexedDB !== "undefined",
   );
+  useEffect(() => {
+    if (restoring || !stepRequest || handledStep.current === stepRequest.id)
+      return;
+    handledStep.current = stepRequest.id;
+    setStep(stepRequest.step);
+  }, [stepRequest, restoring]);
   const busy = importingBusy || restoring;
   const [sessionStore] = useState(
-    () => new StudioSessionStore(storageScope, documentId, { autoResume: false }),
+    () =>
+      new StudioSessionStore(storageScope, documentId, { autoResume: false }),
   );
   const reportDocument = useEffectEvent(() =>
     onDocumentChange?.(sessionStore.documentId),

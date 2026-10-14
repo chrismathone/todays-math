@@ -1,6 +1,7 @@
 import type { EnglishExam, EnglishSet } from "@/contracts/english.contract";
 import type { EnglishListeningDocument } from "@/contracts/englishListening.contract";
 import type { EnglishPassageDetail } from "@/contracts/englishBank.contract";
+import { DEFAULT_PRINT_OPTIONS } from "@/components/unified/print/types";
 import {
   englishExamCandidatesSchema,
   englishExamComposeSchema,
@@ -8,6 +9,49 @@ import {
 
 // Authored examples for visual review; never copied from an exam or user account.
 const stamp = "2026-10-08T00:00:00.000Z";
+const libraryDocuments = ["review", "output"].map((step, index) => ({
+  id: `preview-draft-${index + 1}`,
+  ownerId: "workspace-preview",
+  isOwner: true,
+  kind: "draft",
+  title: index ? "중1 문자와 식 확인 학습지" : "초3 덧셈 기초 다지기",
+  problemCount: 1,
+  revision: 1,
+  createdAt: stamp,
+  updatedAt: stamp,
+  workflow: { source: "bank", step },
+  payload: {
+    version: 1,
+    title: index ? "중1 문자와 식 확인 학습지" : "초3 덧셈 기초 다지기",
+    columns: 2,
+    answers: false,
+    problems: [
+      {
+        id: `preview-question-${index}`,
+        content: index ? "$2x+3x$를 간단히 하세요." : "$123+234$를 계산하세요.",
+        answer: index ? "$5x$" : "357",
+        solution: "",
+        grade: index ? "중1" : "초3",
+        chapter: "",
+        section: "",
+        difficulty: "",
+        problemCode: "",
+        figureUrls: [],
+        figureSvg: null,
+        figureDims: [],
+        figureSourceMm: [],
+      },
+    ],
+    printOptions: DEFAULT_PRINT_OPTIONS,
+    printMeta: {
+      title: "",
+      subject: "수학",
+      schoolName: "한빛학원",
+      grade: index ? "중1" : "초3",
+    },
+    workflow: { source: "bank", step },
+  },
+}));
 const exam: EnglishExam = {
   id: "30000000-0000-4000-8000-000000000002",
   school: "한빛중학교",
@@ -110,6 +154,23 @@ export async function previewFetch(
   const method = init?.method?.toUpperCase() ?? "GET";
   const json = (value: unknown, status = 200) =>
     Response.json(value, { status });
+  if (method === "GET" && path === "/api/library/documents") {
+    const kind = url.searchParams.get("kind");
+    const docs = libraryDocuments.filter((item) => !kind || item.kind === kind);
+    return json({
+      data: docs.map(({ payload, ...summary }) => {
+        void payload;
+        return summary;
+      }),
+      meta: { total: docs.length },
+    });
+  }
+  if (method === "GET" && path.startsWith("/api/library/documents/")) {
+    const doc = libraryDocuments.find((item) => path.endsWith(`/${item.id}`));
+    return doc
+      ? json({ data: doc })
+      : json({ error: { message: "예시 자료가 없습니다." } }, 404);
+  }
   if (method === "GET" && path === "/api/english/questions/scopes") {
     const page = Math.max(1, Number(url.searchParams.get("page") ?? 1));
     const scopes = sets.map((item) => ({

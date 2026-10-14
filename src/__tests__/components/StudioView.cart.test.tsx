@@ -282,7 +282,8 @@ const stepTab = (name: RegExp) =>
     "button",
     { name },
   );
-const tabBadge = () => stepTab(/시험지 구성/).querySelector("b")?.textContent;
+const tabBadge = () =>
+  stepTab(/3 양식 구성·출력/).querySelector("b")?.textContent;
 const panel = () => screen.getByRole("region", { name: "담은 문항 목록" });
 
 describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () => {
@@ -297,9 +298,9 @@ describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () =
     );
     await openReview(extracted, { initial: existing, onExport });
 
-    expect(stepTab(/OCR · 디지털화/)).toHaveTextContent("18");
+    expect(stepTab(/2 문항 검토/)).toHaveTextContent("18");
     expect(tabBadge()).toBe("20");
-    fireEvent.click(stepTab(/시험지 구성/));
+    fireEvent.click(stepTab(/3 양식 구성·출력/));
 
     expect(onExport).toHaveBeenCalledOnce();
     expect(worksheet().map((problem) => problem.id)).toEqual([
@@ -309,7 +310,7 @@ describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () =
     expect(tabBadge()).toBe("38");
     expect(footer()).toHaveTextContent("18문항 담음");
     // Re-entering composition must not duplicate the imported questions.
-    fireEvent.click(stepTab(/시험지 구성/));
+    fireEvent.click(stepTab(/3 양식 구성·출력/));
     expect(worksheet()).toHaveLength(38);
     expect(onExport).toHaveBeenCalledTimes(2);
   });
@@ -319,8 +320,8 @@ describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () =
     await openReview([crop("a"), crop("b")], { onExport });
     expect(tabBadge()).toBe("0");
     expect(footer()).toHaveTextContent("2문항 추가 예정");
-    expect(stepTab(/시험지 구성/)).toBeEnabled();
-    fireEvent.click(stepTab(/시험지 구성/));
+    expect(stepTab(/3 양식 구성·출력/)).toBeEnabled();
+    fireEvent.click(stepTab(/3 양식 구성·출력/));
     expect(worksheet().map((problem) => problem.id)).toEqual(["a", "b"]);
     expect(onExport).toHaveBeenCalledOnce();
   });
@@ -353,7 +354,7 @@ describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () =
       onExport,
     });
     fireEvent.click(screen.getByRole("button", { name: "④ 3번 문제 빼기" }));
-    fireEvent.click(stepTab(/시험지 구성/));
+    fireEvent.click(stepTab(/3 양식 구성·출력/));
     expect(worksheet().map((problem) => problem.id)).toEqual([
       "a",
       "bank-1",
@@ -368,7 +369,7 @@ describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () =
   it("현재 추출이 없어도 기존 시험지는 구성 탭으로 이어서 열 수 있다", async () => {
     const onExport = vi.fn();
     await openReview([], { initial: [bank], onExport });
-    fireEvent.click(stepTab(/시험지 구성/));
+    fireEvent.click(stepTab(/3 양식 구성·출력/));
     expect(worksheet().map((problem) => problem.id)).toEqual([bank.id]);
     expect(onExport).toHaveBeenCalledOnce();
   });
@@ -421,7 +422,7 @@ describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () =
       />,
     );
     await screen.findByText("원본 복원 실패");
-    expect(stepTab(/시험지 구성/)).toBeDisabled();
+    expect(stepTab(/3 양식 구성·출력/)).toBeDisabled();
     expect(worksheet().map((problem) => problem.id)).toEqual([bank.id]);
     expect(onExport).not.toHaveBeenCalled();
   });
@@ -434,7 +435,7 @@ describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () =
       canExport: false,
       exportRequest: { id: 1 },
     });
-    expect(stepTab(/시험지 구성/)).toBeDisabled();
+    expect(stepTab(/3 양식 구성·출력/)).toBeDisabled();
     expect(worksheet().map((problem) => problem.id)).toEqual([bank.id]);
     expect(onExport).not.toHaveBeenCalled();
   });
@@ -565,7 +566,8 @@ describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () =
       within(chipOf(1)!).getByText("담음 · 고친 내용 반영 전"),
     ).not.toHaveAttribute("aria-hidden");
     // ② 자른 문제 목록 배지도 같은 표시 — 목록 단추의 이름에 긴 뜻이 실린다(목록은 ② 단계에서 보인다).
-    fireEvent.click(stepTab(/잘라내기/));
+    fireEvent.click(stepTab(/1 범위 설정/));
+    fireEvent.click(screen.getByRole("button", { name: "문제&도형 잘라내기" }));
     const listItem = within(screen.getByLabelText("자른 문제 목록")).getByRole(
       "button",
       { name: /문제 01.*담음 · 고친 내용 반영 전/ },
@@ -573,7 +575,7 @@ describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () =
     expect(
       listItem.querySelector('[data-studio-cart-chip] [aria-hidden="true"]'),
     ).toHaveTextContent("반영 전");
-    fireEvent.click(stepTab(/OCR · 디지털화/));
+    fireEvent.click(stepTab(/2 문항 검토/));
     // 고친 것은 한꺼번에 담기의 일이 아니다 — 시험지에는 있으니 «모두 담았습니다».
     expect(addButton()).toHaveTextContent("모두 담았습니다");
     expect(worksheet()[0]).toMatchObject({ id: "a", mode: "text" });

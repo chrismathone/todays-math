@@ -34,7 +34,8 @@ export function createTriangleAngleDrillSpec(given: readonly [number, number]) {
     angles: {
       atA: { vertex: "A", points: ["B", "C"], label: `${a}°` },
       atB: { vertex: "B", points: ["A", "C"], label: `${b}°` },
-      atC: { vertex: "C", points: ["A", "B"], label: "?" },
+      // The single unlabelled arc is the requested angle; no question-mark label.
+      atC: { vertex: "C", points: ["A", "B"], label: "" },
     },
     style: {
       clear_angle_labels: true,
@@ -73,7 +74,7 @@ export async function renderTriangleAngleDrill(
   if (
     !Number.isFinite(extent) ||
     extent <= 0 ||
-    labels.length !== 3 ||
+    labels.length !== 2 ||
     labels.some(
       (label) =>
         !label.typeset ||

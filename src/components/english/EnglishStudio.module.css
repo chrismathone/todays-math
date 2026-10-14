@@ -15,7 +15,7 @@
   --e-meta: var(--e-muted);
   --e-accent: var(--accent, #3159df);
   --e-accent-ink: #2447b8;
-  --e-soft: #edf2ff;
+  --e-soft: var(--learn-soft, #edf2ff);
   --e-draft-bg: #fbf0d4;
   --e-draft-ink: #86590a;
   --e-review-bg: #eef1f5;

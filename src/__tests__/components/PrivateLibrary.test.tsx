@@ -80,6 +80,40 @@ const titles = () =>
     .map((button) => button.textContent);
 
 describe("private library board", () => {
+  it("separates working documents and resumes the saved stage while edit opens output", async () => {
+    const working = {
+      ...boardItems[0],
+      workflow: { source: "bank" as const, step: "review" as const },
+    };
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => listResponse([working, boardItems[1]])),
+    );
+    const props = boardProps();
+    render(<PrivateLibrary {...props} />);
+    await screen.findByRole("button", { name: "Alpha 학습지 이어서 작업" });
+    fireEvent.click(screen.getByRole("button", { name: "작업 중 1" }));
+    expect(screen.queryByRole("button", { name: "beta 평가 열기" })).toBeNull();
+    expect(screen.getByText("2 문항 검토")).toBeVisible();
+    fireEvent.click(
+      screen.getByRole("button", { name: "Alpha 학습지 이어서 작업" }),
+    );
+    await waitFor(() =>
+      expect(props.onOpenDraft).toHaveBeenCalledWith("alpha", {
+        mode: "resume",
+        workflow: working.workflow,
+      }),
+    );
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", { name: "Alpha 학습지 수정" }),
+      ).toBeEnabled(),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Alpha 학습지 수정" }));
+    await waitFor(() =>
+      expect(props.onOpenDraft).toHaveBeenLastCalledWith("alpha"),
+    );
+  });
   it("shows branch authors, separates colliding IDs, opens a private copy, and filters to mine", async () => {
     const mine = {
       ...boardItems[0],
@@ -120,11 +154,11 @@ describe("private library board", () => {
     expect(screen.getByText(/작성자: 동료/)).toBeVisible();
     expect(
       within(shared.closest("tr")!).queryByRole("button", {
-        name: /이름 변경|삭제/,
+        name: /삭제/,
       }),
     ).toBeNull();
     expect(
-      boardRow(mine.title).getByRole("button", { name: /이름 변경/ }),
+      boardRow(mine.title).getByRole("button", { name: /정보/ }),
     ).toBeVisible();
     fireEvent.click(shared);
     await waitFor(() =>
@@ -274,13 +308,13 @@ describe("private library board", () => {
     expect(props.onOpenDraft).not.toHaveBeenCalled();
     expect(props.onOpenExtraction).not.toHaveBeenCalled();
 
-    // 개념 백지 메뉴가 없으면 열 수 없다(이름 변경 · 삭제는 그대로)
+    // 개념 백지 메뉴가 없으면 열 수 없다(정보 · 삭제는 그대로)
     rerender(<PrivateLibrary {...props} canConceptBlank={false} />);
     expect(
       screen.queryByRole("button", { name: "합동 백지 열기" }),
     ).not.toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: "합동 백지 이름 변경" }),
+      screen.getByRole("button", { name: "합동 백지 정보" }),
     ).toBeEnabled();
   });
 
@@ -303,11 +337,12 @@ describe("private library board", () => {
     );
     render(<PrivateLibrary {...boardProps()} />);
     fireEvent.click(
-      await screen.findByRole("button", { name: "합동 백지 이름 변경" }),
+      await screen.findByRole("button", { name: "합동 백지 정보" }),
     );
-    expect(
-      screen.getByRole("textbox", { name: "새 자료 이름" }),
-    ).toHaveAttribute("maxLength", "40");
+    expect(screen.getByRole("textbox", { name: "자료 이름" })).toHaveAttribute(
+      "maxLength",
+      "40",
+    );
   });
 
   it("preserves both types and management actions when opening permissions are absent", async () => {
@@ -330,7 +365,7 @@ describe("private library board", () => {
     ).not.toBeInTheDocument();
     expect(screen.getAllByText("열기 권한 없음")).toHaveLength(3);
     expect(
-      screen.getByRole("button", { name: "Gamma 추출 자료 이름 변경" }),
+      screen.getByRole("button", { name: "Gamma 추출 자료 정보" }),
     ).toBeEnabled();
     expect(
       screen.getByRole("button", { name: "Gamma 추출 자료 삭제" }),
@@ -435,20 +470,21 @@ describe("private library", () => {
     await waitFor(() =>
       expect(
         boardRow("추출 원본").getByRole("button", {
-          name: "추출 원본 이름 변경",
+          name: "추출 원본 정보",
         }),
       ).toBeEnabled(),
     );
     fireEvent.click(
       boardRow("추출 원본").getByRole("button", {
-        name: "추출 원본 이름 변경",
+        name: "추출 원본 정보",
       }),
     );
     // 추출 자료는 이름을 200자까지 — 시험지(80자)와 다르다. 창으로 옮겨도 그대로.
-    expect(
-      screen.getByRole("textbox", { name: "새 자료 이름" }),
-    ).toHaveAttribute("maxLength", "200");
-    fireEvent.change(screen.getByRole("textbox", { name: "새 자료 이름" }), {
+    expect(screen.getByRole("textbox", { name: "자료 이름" })).toHaveAttribute(
+      "maxLength",
+      "200",
+    );
+    fireEvent.change(screen.getByRole("textbox", { name: "자료 이름" }), {
       target: { value: "바꾼 원본" },
     });
     fireEvent.click(screen.getByRole("button", { name: "이름 저장" }));
@@ -493,7 +529,7 @@ describe("private library", () => {
       screen.queryByRole("button", { name: /열기$/ }),
     ).not.toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: "읽기 자료 이름 변경" }),
+      screen.getByRole("button", { name: "읽기 자료 정보" }),
     ).toBeVisible();
     expect(
       screen.queryByRole("button", { name: "작업 파일 불러오기" }),
@@ -691,19 +727,19 @@ describe("private library delete confirmation dialog", () => {
   });
 
   /**
-   * 2026-09-19 원장님 결정(리드 추가 지시) — «이름 변경»도 삭제와 같은 겹쳐 뜨는 창으로.
-   * 창 안에 지금의 입력칸(라벨 «새 자료 이름», 시험지 80자·추출 자료 200자)과 [취소][이름 저장].
+   * 2026-09-19 원장님 결정(리드 추가 지시) — «정보»도 삭제와 같은 겹쳐 뜨는 창으로.
+   * 창 안에 지금의 입력칸(라벨 «자료 이름», 시험지 80자·추출 자료 200자)과 [취소][이름 저장].
    */
   describe("rename dialog", () => {
     const renameTrigger = (row: HTMLElement) =>
       within(row).getByRole("button", {
-        name: "오늘 수학 학습지 이름 변경",
+        name: "오늘 수학 학습지 정보",
       });
     const openRename = (row: HTMLElement) => {
       const trigger = renameTrigger(row);
       trigger.focus();
       fireEvent.click(trigger);
-      return screen.getByRole("dialog", { name: "이름 변경" });
+      return screen.getByRole("dialog", { name: "시험지 정보" });
     };
 
     it("opens a modal with the current name selected instead of expanding the row", async () => {
@@ -713,7 +749,7 @@ describe("private library delete confirmation dialog", () => {
       expect(row.contains(dialog)).toBe(false);
       expect(within(row).queryByRole("textbox")).not.toBeInTheDocument();
       const input = within(dialog).getByRole("textbox", {
-        name: "새 자료 이름",
+        name: "자료 이름",
       }) as HTMLInputElement;
       expect(input).toHaveValue("오늘 수학 학습지");
       expect(input).toHaveAttribute("maxLength", "80");
@@ -778,7 +814,7 @@ describe("private library delete confirmation dialog", () => {
         "1학기 기말",
       );
       expect(
-        screen.getByRole("button", { name: "1학기 기말 이름 변경" }),
+        screen.getByRole("button", { name: "1학기 기말 정보" }),
       ).toHaveFocus();
     });
 
@@ -787,6 +823,10 @@ describe("private library delete confirmation dialog", () => {
       const client = new PrivateCloudClient("owner-a", server.transport);
       await client.rename("worksheet", "다른 기기 변경", 1);
       const dialog = openRename(row);
+      fireEvent.change(
+        within(dialog).getByRole("textbox", { name: "자료 이름" }),
+        { target: { value: "새 제목" } },
+      );
       fireEvent.click(
         within(dialog).getByRole("button", { name: "이름 저장" }),
       );
@@ -922,13 +962,12 @@ describe("private library delete confirmation dialog", () => {
       if (action === "rename") {
         fireEvent.click(
           within(row).getByRole("button", {
-            name: "오늘 수학 학습지 이름 변경",
+            name: "오늘 수학 학습지 정보",
           }),
         );
-        fireEvent.change(
-          screen.getByRole("textbox", { name: "새 자료 이름" }),
-          { target: { value: "확정한 새 이름" } },
-        );
+        fireEvent.change(screen.getByRole("textbox", { name: "자료 이름" }), {
+          target: { value: "확정한 새 이름" },
+        });
         fireEvent.click(screen.getByRole("button", { name: "이름 저장" }));
         await screen.findByRole("button", { name: "확정한 새 이름 열기" });
       } else {

@@ -48,6 +48,8 @@ import {
   restoreToCart,
 } from "./studioCart";
 import { useWorkspaceDrafts } from "./useWorkspaceDrafts";
+import type { WorkspaceWorkflowStep } from "@/contracts/workspaceWorkflow.contract";
+import type { LibraryOpenOptions } from "./PrivateLibrary";
 import WorkroomHome, { formatDraftDate } from "./WorkroomHome";
 import Icon, { type WorkspaceIconName } from "./WorkspaceIcon";
 import TodayMathMark from "@/components/brand/TodayMathMark";
@@ -171,7 +173,8 @@ const EnglishResourceBank = dynamic(
  * 영어 학교 메뉴는 기존 english 주소를 유지하고, 각 뷰는 개별 메뉴 권한을 본다.
  * 제품(수학 · 영어)은 뷰에서 파생하고 따로 저장하지 않는다(`productOf`).
  */
-type View = Exclude<WorkspaceMenu, "english-school"> | EnglishView;
+type View =
+  Exclude<WorkspaceMenu, "english-school"> | EnglishView | "arithmetic";
 /**
  * 옆 메뉴의 짜임은 두 제품이 한 벌이다(원장님 2026-10-08 «왼쪽에 많은 탭을 둬도 되지만 편의상 수학 · 영어로
  * 구분한 것 — 통일»). `common` 은 두 제품에 같은 자리 · 같은 일로 서는 메뉴(오늘의 작업 → 시험지 만들기 →
@@ -198,6 +201,13 @@ const mathNav: NavItem[] = [
     label: "시험지 만들기",
     short: "만들기",
     icon: "bank",
+    group: "common",
+  },
+  {
+    id: "arithmetic",
+    label: "연산대장",
+    short: "연산대장",
+    icon: "calculator",
     group: "common",
   },
   {
@@ -323,7 +333,11 @@ const viewValid = (value: string): value is View =>
   allNavItems.some((item) => item.id === value);
 /** 뷰가 딸린 메뉴 — 권한은 이것으로 본다 */
 const menuOf = (view: View): WorkspaceMenu =>
-  isEnglishView(view) ? englishViewMenu(view) : view;
+  view === "arithmetic"
+    ? "bank"
+    : isEnglishView(view)
+      ? englishViewMenu(view)
+      : view;
 const productOf = (view: View | null): WorkspaceProduct =>
   view &&
   (isEnglishView(view) ||
@@ -464,6 +478,8 @@ function UnifiedWorkspaceContent({
     setAnswers,
     setPrintOptions,
     setPrintMeta,
+    setWorkflow,
+    getCurrentDraft,
     saveNow,
     visibility,
     createDraft,
@@ -512,15 +528,18 @@ function UnifiedWorkspaceContent({
     id: number;
     step: "upload" | "crop" | "review";
   }>();
+  const [studioExportRequest, setStudioExportRequest] = useState<{
+    id: number;
+  }>();
+  const studioExportSequence = useRef(0);
   const [extraction, setExtraction] = useState<{
     id?: string;
     version: number;
   }>({ version: 0 });
-  const [bankMode, setBankMode] = useState<"bank" | "arithmetic">("bank");
-  const [arithmeticOpened, setArithmeticOpened] = useState(false);
   const [arithmeticDocument, setArithmeticDocument] = useState<{
     id?: string;
     version: number;
+    initialStep?: WorkspaceWorkflowStep;
   }>({ version: 0 });
   const [arithmeticDirty, setArithmeticDirty] = useState(false);
   /** 내 시험지에서 연 개념 백지(26 §9 ⑾) — 판을 올려 같은 자료를 다시 열어도 개념 백지가 다시 읽는다. */
@@ -537,6 +556,7 @@ function UnifiedWorkspaceContent({
     q?: string;
     grade?: string;
     version: number;
+    initialStep?: WorkspaceWorkflowStep;
   }>({ version: 0 });
   const [notice, setNoticeMessage] = useState("");
   const [noticeError, setNoticeError] = useState(false);
@@ -626,6 +646,7 @@ function UnifiedWorkspaceContent({
       )
         return false;
       setView(next);
+      if (next !== "studio") setStudioExportRequest(undefined);
       setOpened((current) =>
         current.has(next) ? current : new Set([...current, next]),
       );
@@ -646,6 +667,10 @@ function UnifiedWorkspaceContent({
   const navigate = useCallback(
     (next: View): boolean => {
       if (!can(next)) return false;
+      if (next === "export" && view === "studio") {
+        setStudioExportRequest({ id: ++studioExportSequence.current });
+        return true;
+      }
       if (
         can("textbook") &&
         next !== "textbook" &&
@@ -664,7 +689,7 @@ function UnifiedWorkspaceContent({
         return false;
       return performNavigation(next);
     },
-    [can, performNavigation],
+    [can, performNavigation, view],
   );
   useEffect(() => {
     try {
@@ -961,6 +986,7 @@ function UnifiedWorkspaceContent({
   }
   /** Bank composition changes keep replacement positions and recovery in one update. */
   function changeBankSelection(problems: StudioProblem[]) {
+    setWorkflow({ source: "bank", step: "review" });
     const next = [
       ...new Map(
         problems
@@ -986,6 +1012,11 @@ function UnifiedWorkspaceContent({
   }
   /** 작업실의 담기·반영 — 같은 id 는 제자리에서 갈고 새것은 뒤에(`addToCart`). */
   const add = (problems: StudioProblem[]) => {
+    setWorkflow({
+      source: "extraction",
+      step: "review",
+      sourceDocumentId: extraction.id,
+    });
     setSelected((current) => addToCart(current, problems));
     updateRemovals((items) =>
       forgetRemovals(
@@ -1056,13 +1087,38 @@ function UnifiedWorkspaceContent({
       );
     return saved;
   }
-  async function openSaved(id: string) {
+  async function openSaved(id: string, options?: LibraryOpenOptions) {
     if (!can("export")) return;
     await prepareDrafts();
     if (!permissionsRef.current.has("export")) return;
     if (await openDraft(id)) {
       setUndo(null);
-      navigate("export");
+      const openedDraft = getCurrentDraft();
+      const workflow = openedDraft.workflow;
+      const step =
+        options?.mode === "resume" ? (workflow?.step ?? "output") : "output";
+      if (
+        workflow?.source === "extraction" &&
+        step !== "output" &&
+        can("studio")
+      ) {
+        setStudioExportRequest(undefined);
+        setExtraction((current) => ({
+          id: workflow.sourceDocumentId,
+          version: current.version + 1,
+        }));
+        setStudioStepRequest((current) => ({
+          id: (current?.id ?? 0) + 1,
+          step: step === "review" ? "review" : "upload",
+        }));
+        navigate("studio");
+      } else if (workflow?.source !== "extraction" && can("bank")) {
+        setBankEntry((current) => ({
+          version: current.version + 1,
+          initialStep: step,
+        }));
+        navigate("bank");
+      } else navigate("export");
       setNotice("저장한 시험지를 불러왔습니다.");
     }
   }
@@ -1672,55 +1728,37 @@ function UnifiedWorkspaceContent({
             can("bank") &&
             (opened.has("bank") || view === "bank") && (
               <main hidden={view !== "bank"} className={s.viewContent}>
-                <div
-                  className={s.builderModes}
-                  role="group"
-                  aria-label="시험지 종류"
-                >
-                  <button
-                    type="button"
-                    aria-pressed={bankMode === "bank"}
-                    onClick={() => setBankMode("bank")}
-                  >
-                    문제은행
-                  </button>
-                  <button
-                    type="button"
-                    aria-pressed={bankMode === "arithmetic"}
-                    onClick={() => {
-                      setBankMode("arithmetic");
-                      setArithmeticOpened(true);
-                    }}
-                  >
-                    연산대장
-                  </button>
-                </div>
-                <div hidden={bankMode !== "bank"}>
-                  <MathExamBuilder
-                    key={`${draft.id}:${bankEntry.version}`}
-                    initialData={initialData}
-                    initialGroup={bankEntry.grade}
-                    editor={editorProps}
-                    onQuestionsChange={changeBankSelection}
-                    canOutput={can("export")}
-                  />
-                </div>
-                {arithmeticOpened && (
-                  <div hidden={bankMode !== "arithmetic"}>
-                    <ArithmeticWorkbench
-                      key={`${storageScope ?? "preview"}:${arithmeticDocument.version}`}
-                      storageScope={storageScope}
-                      initialDocumentId={arithmeticDocument.id}
-                      canOutput={can("export")}
-                      academyName={printMeta.academyName || "오늘 수학"}
-                      preview={!storageScope}
-                      onDirtyChange={setArithmeticDirty}
-                      onDocumentChange={(id) =>
-                        setArithmeticDocument((current) => ({ ...current, id }))
-                      }
-                    />
-                  </div>
-                )}
+                <MathExamBuilder
+                  key={`${draft.id}:${bankEntry.version}`}
+                  initialData={initialData}
+                  initialGroup={bankEntry.grade}
+                  initialStep={bankEntry.initialStep}
+                  onStepChange={(step) => {
+                    if (view === "bank") setWorkflow({ source: "bank", step });
+                  }}
+                  editor={editorProps}
+                  onQuestionsChange={changeBankSelection}
+                  canOutput={can("export")}
+                />
+              </main>
+            )}
+          {navigationReady &&
+            can("arithmetic") &&
+            (opened.has("arithmetic") || view === "arithmetic") && (
+              <main hidden={view !== "arithmetic"} className={s.viewContent}>
+                <ArithmeticWorkbench
+                  key={`${storageScope ?? "preview"}:${arithmeticDocument.version}`}
+                  storageScope={storageScope}
+                  initialDocumentId={arithmeticDocument.id}
+                  initialStep={arithmeticDocument.initialStep}
+                  canOutput={can("export")}
+                  academyName={printMeta.academyName || "오늘 수학"}
+                  preview={!storageScope}
+                  onDirtyChange={setArithmeticDirty}
+                  onDocumentChange={(id) =>
+                    setArithmeticDocument((current) => ({ ...current, id }))
+                  }
+                />
               </main>
             )}
           {hydrated &&
@@ -1735,7 +1773,15 @@ function UnifiedWorkspaceContent({
                   onAdd={add}
                   onRemove={remove}
                   onRestore={restoreRemoved}
-                  onExport={() => navigate("export")}
+                  onExport={() => {
+                    setWorkflow({
+                      source: "extraction",
+                      step: "output",
+                      sourceDocumentId: extraction.id,
+                    });
+                    performNavigation("export");
+                  }}
+                  exportRequest={studioExportRequest}
                   canExport={can("export")}
                   importRequest={importRequest}
                   stepRequest={studioStepRequest}
@@ -1746,6 +1792,9 @@ function UnifiedWorkspaceContent({
                   branchId={branchId}
                   onDocumentChange={(id) => {
                     if (!storageScope) return;
+                    setExtraction((current) =>
+                      current.id === id ? current : { ...current, id },
+                    );
                     const url = new URL(window.location.href);
                     if (id) url.searchParams.set("extraction", id);
                     else url.searchParams.delete("extraction");
@@ -1885,7 +1934,7 @@ function UnifiedWorkspaceContent({
               canExport={can("export")}
               canStudio={can("studio")}
               canArithmetic={can("bank")}
-              onOpenArithmetic={(id) => {
+              onOpenArithmetic={(id, options) => {
                 if (!can("bank")) return;
                 if (
                   arithmeticDirty &&
@@ -1897,15 +1946,21 @@ function UnifiedWorkspaceContent({
                 setArithmeticDocument((current) => ({
                   id,
                   version: current.version + 1,
+                  initialStep:
+                    options?.mode === "resume" ? undefined : "output",
                 }));
                 setArithmeticDirty(false);
-                setArithmeticOpened(true);
-                setBankMode("arithmetic");
-                navigate("bank");
+                navigate("arithmetic");
               }}
               onOpenDraft={openSaved}
-              onOpenExtraction={(id) => {
+              onOpenExtraction={(id, options) => {
                 if (!can("studio")) return;
+                setStudioExportRequest(undefined);
+                setStudioStepRequest(
+                  options?.mode === "resume"
+                    ? undefined
+                    : { id: Date.now(), step: "review" },
+                );
                 setExtraction((current) => ({
                   id,
                   version: current.version + 1,

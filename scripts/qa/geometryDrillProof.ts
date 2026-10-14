@@ -186,13 +186,13 @@ export function geometryDrillFailures(
 ) {
   const expected = [given[0], given[1], 180 - given[0] - given[1]];
   return [
-    ...(proof.labels.length === 3 ? [] : ["expected three typeset labels"]),
+    ...(proof.labels.length === 2
+      ? []
+      : ["expected only the two given angle labels"]),
     ...(proof.sideCount === 3 && proof.arcCount === 3
       ? []
       : ["expected three sides and three angle arcs"]),
-    ...(proof.labels.every(
-      (label, i) => label.text === (i === 2 ? "?" : `${given[i]}°`),
-    )
+    ...(proof.labels.every((label, i) => label.text === `${given[i]}°`)
       ? []
       : ["incorrect label text"]),
     ...(proof.labels.every(

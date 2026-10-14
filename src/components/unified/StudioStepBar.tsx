@@ -88,7 +88,9 @@ export default function StudioStepBar({
       data-studio-band
     >
       <div className={styles.editorTabs}>
-        <h1>{headerTitle ?? (canStudio ? "문제 추출" : "시험지 구성")}</h1>
+        <h1>
+          {headerTitle ?? (step === "export" ? "시험지 만들기" : "문제 추출")}
+        </h1>
         {stepNavigation ? (
           <nav className={styles.stepTabs} aria-label={stepNavigation.label}>
             {stepNavigation.items.map((item) => (
@@ -110,18 +112,10 @@ export default function StudioStepBar({
               <>
                 <button
                   type="button"
-                  aria-pressed={step === "upload"}
+                  aria-pressed={step === "upload" || step === "crop"}
                   onClick={() => onStep("upload")}
                 >
-                  원본 가져오기
-                </button>
-                <button
-                  type="button"
-                  aria-pressed={step === "crop"}
-                  disabled={!canCrop}
-                  onClick={() => onStep("crop")}
-                >
-                  문제&amp;도형 잘라내기
+                  1 범위 설정
                 </button>
                 <button
                   type="button"
@@ -129,7 +123,7 @@ export default function StudioStepBar({
                   disabled={!canReview}
                   onClick={() => onStep("review")}
                 >
-                  OCR · 디지털화{" "}
+                  2 문항 검토{" "}
                   {typeof cropCount === "number" && <b>{cropCount}</b>}
                 </button>
               </>
@@ -140,11 +134,32 @@ export default function StudioStepBar({
               disabled={!canExport || !(canCompose ?? pickedCount > 0)}
               onClick={() => onStep("export")}
             >
-              시험지 구성 <b>{pickedCount}</b>
+              3 양식 구성·출력 <b>{pickedCount}</b>
             </button>
           </nav>
         )}
       </div>
+      {!stepNavigation &&
+        canStudio &&
+        (step === "upload" || step === "crop") && (
+          <nav className={styles.stepTabs} aria-label="원본 범위 작업">
+            <button
+              type="button"
+              aria-pressed={step === "upload"}
+              onClick={() => onStep("upload")}
+            >
+              원본 가져오기
+            </button>
+            <button
+              type="button"
+              aria-pressed={step === "crop"}
+              disabled={!canCrop}
+              onClick={() => onStep("crop")}
+            >
+              문제&amp;도형 잘라내기
+            </button>
+          </nav>
+        )}
       {children && <div className={styles.editorTools}>{children}</div>}
     </div>
   );

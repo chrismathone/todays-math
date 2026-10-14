@@ -20,6 +20,7 @@ const CHOICE_LAYOUT_NOTES: Partial<
 import panel from "./PrintOptionsPanel.module.css";
 
 export function PrintOptionsPanel({
+  answersOnly = false,
   title,
   setTitle,
   options,
@@ -27,6 +28,7 @@ export function PrintOptionsPanel({
   onOptions,
   onMeta,
 }: {
+  answersOnly?: boolean;
   title: string;
   setTitle: (title: string) => void;
   options: PrintOptions;
@@ -324,9 +326,13 @@ export function PrintOptionsPanel({
         <p className={s.subtle}>이미지에 포함된 배점은 그대로 남습니다.</p>
       </fieldset>
       <fieldset className={s.optionGroup}>
-        <legend>정답 · 해설</legend>
-        {toggle("showAnswers", "정답 · 해설지 포함")}
+        <legend>{answersOnly ? "정답지" : "정답 · 해설"}</legend>
+        {toggle(
+          "showAnswers",
+          answersOnly ? "정답지 포함" : "정답 · 해설지 포함",
+        )}
         {options.showAnswers &&
+          !answersOnly &&
           toggle("quickAnswerOnly", "빠른 정답만 (해설 생략)")}
       </fieldset>
       <button

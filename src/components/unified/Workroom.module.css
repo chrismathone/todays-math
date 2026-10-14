@@ -8,9 +8,9 @@
   --text-title: 24px;
   --ink: #172b4d;
   --muted: #596c86;
-  --accent: #3159df;
+  --accent: var(--learn-accent);
   min-height: 100dvh;
-  background: #f4f6fa;
+  background: var(--learn-bg);
   color: var(--ink);
   font-family:
     var(--font-pretendard),
@@ -21,6 +21,77 @@
     sans-serif;
   font-size: var(--text-body, 14px);
   line-height: 1.5;
+}
+.workspace[data-product="english"] {
+  --learn-accent: #b54458;
+  --learn-accent-hover: #96364a;
+  --learn-soft: #fbeef0;
+  --learn-soft-hover: #f5dfe4;
+  --learn-focus: #d993a2;
+  --learn-control: #d5bdc3;
+  --learn-track: #e8dce0;
+  --learn-bg: #f8f5f6;
+  --accent: var(--learn-accent);
+  --blue: var(--learn-accent);
+}
+.workspace[data-product="english"] .sidebar {
+  background: #38242c;
+  border-color: #49323c;
+  color: #e1cbd2;
+  scrollbar-color: #805e6c transparent;
+}
+.workspace[data-product="english"] .newButton {
+  background: var(--learn-accent);
+  border-color: #cb6578;
+}
+.workspace[data-product="english"] .newButton:hover {
+  background: var(--learn-accent-hover);
+}
+.workspace[data-product="english"] .navigation button {
+  color: #d9c2ca;
+}
+.workspace[data-product="english"] .navigation button svg {
+  color: #b594a2;
+}
+.workspace[data-product="english"] .navigation button:hover,
+.workspace[data-product="english"] .accountButton:hover,
+.workspace[data-product="english"] .productPicker button:hover {
+  background: #4d323e;
+}
+.workspace[data-product="english"] .navigation button.navActive,
+.workspace[data-product="english"] .productPicker button.productCurrent {
+  background: #63414f;
+  color: white;
+}
+.workspace[data-product="english"] .navigation button.navActive svg,
+.workspace[data-product="english"] .productPicker button.productCurrent::after {
+  color: #edbac7;
+}
+.workspace[data-product="english"] .navGroupStart,
+.workspace[data-product="english"] .accountButton {
+  border-color: #583b48;
+}
+.workspace[data-product="english"] .productPicker {
+  background: #302029;
+  border-color: #63414f;
+}
+.workspace[data-product="english"] .accountButton > span:first-child {
+  background: #63414f;
+  color: #f7e6eb;
+}
+.workspace[data-product="english"] .sidebarFooter > button:first-child,
+.workspace[data-product="english"] .accountButton small,
+.workspace[data-product="english"] .accountButton > svg {
+  color: #bea0ac;
+}
+.workspace[data-product="english"] .accountButton strong {
+  color: #ead5de;
+}
+.workspace[data-product="english"] .primaryButton {
+  background: var(--learn-accent);
+}
+.workspace[data-product="english"] .primaryButton:hover {
+  background: var(--learn-accent-hover);
 }
 .workspace button {
   cursor: pointer;
@@ -35,7 +106,7 @@
   opacity: 0.45;
 }
 .workspace :is(button, input, select, a):focus-visible {
-  outline: 3px solid #82a1ff;
+  outline: 3px solid var(--learn-focus);
   outline-offset: 3px;
 }
 .workspace [hidden] {
@@ -1943,7 +2014,3 @@
     box-shadow: 0 12px 30px #07162a33;
   }
 }
-.builderModes { display: flex; gap: 8px; margin-bottom: 16px; }
-.builderModes button { min-height: 44px; padding: 8px 16px; border: 1px solid var(--learn-control); border-radius: 8px; background: var(--learn-surface); color: var(--learn-ink); font: inherit; cursor: pointer; }
-.builderModes button[aria-pressed="true"] { background: var(--learn-soft); border-color: var(--learn-accent); color: var(--learn-accent); }
-.builderModes button:focus-visible { outline: 3px solid var(--learn-focus); outline-offset: 2px; }

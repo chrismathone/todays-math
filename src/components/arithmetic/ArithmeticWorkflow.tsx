@@ -120,7 +120,7 @@ export function ArithmeticWorkflow({
     </button>
   );
   return (
-    <div ref={root} className={s.workflow}>
+    <div ref={root} className={s.workflow} data-arithmetic-step={step}>
       {step !== "output" && (
         <StudioStepBar
           headerTitle="연산대장"

@@ -11,23 +11,23 @@ export function useWorkspaceDrafts(
   active = true,
   branchId?: string | null,
 ) {
-  const store = useMemo(
-    () =>
-      storageScope
-        ? enabled
-          ? createPrivateDraftStore(storageScope, undefined, undefined, {
-              autoResume: false,
-            })
-          : createWorkspaceDraftStore(
-              () => ({
-                getItem: () => null,
-                setItem: () => {},
-              }),
-              { autoResume: false },
-            )
+  // Keep this mounted session's work through temporary permission changes.
+  // A new page still starts blank; disabled views use a separate inert store.
+  const stores = useMemo(
+    () => ({
+      allowed: storageScope
+        ? createPrivateDraftStore(storageScope, undefined, undefined, {
+            autoResume: false,
+          })
         : createWorkspaceDraftStore(undefined, { autoResume: false }),
-    [storageScope, enabled],
+      disabled: createWorkspaceDraftStore(
+        () => ({ getItem: () => null, setItem: () => {} }),
+        { autoResume: false },
+      ),
+    }),
+    [storageScope],
   );
+  const store = enabled ? stores.allowed : stores.disabled;
   const snapshot = useSyncExternalStore(
     store.subscribe,
     store.getSnapshot,
