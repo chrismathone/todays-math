@@ -1,0 +1,216 @@
+Elementary numeric geometry / measurement implementation — 2026-10-15
+
+Scope and integration
+Base: main 278d081dd. This worker adds only its elementary family, owned
+submodules, focused tests/QA scripts and this report. It does not register
+types, change contracts, modify old geometry assets, UI or print code.
+
+Exports from src/lib/arithmetic-v2/families/geometryElementary.ts:
+  ELEMENTARY_GEOMETRY_DEFINITIONS: readonly ArithmeticV2Definition[]
+  ELEMENTARY_GEOMETRY_FIGURES: Readonly<Record<string,string>>
+SVG entries are enumerable lazy getters. Import builds finite integer domains
+and keys, not SVG strings. Reading a selected key renders only that diagram;
+there is no ever-growing SVG cache. Definitions have no runtime dependency on
+contracts, registry, legacy geometry, AI, network or database code.
+
+Every prompt is math layout and has text, latex, instruction, figureId and
+answerUnit. Units include degrees, cm, mm, m, km, cm², m², km², cm³, m³, L,
+mL and the explicit count unit 개. No unitless exception needs root handling.
+Latex contains the public task and givens, never a hidden inverse answer.
+Figure keys are age-<type>-v1-<integer parameters>, at most 64 characters.
+The v1 keys and SVG recipe must remain stable; incompatible visual revisions
+need a new version. Root owns selected-subset packing and saved exact bytes.
+
+Placement evidence (repository curriculum, not an official standards audit)
+prisma/seed-data/units.ts:
+  초1 1-2 여러 가지 모양, 1-4 비교하기: recognition/construction/comparison.
+  초2 1-2 여러 가지 도형, 1-4/2-3 길이 재기: sides/vertices, cm/m, sums/differences.
+  초3 1-5 길이와 시간, 2-3 원, 2-5 들이와 무게: mm/cm, km/m, radius/diameter, L/mL.
+  초4 1-2 각도, 2-2 삼각형: angle arithmetic, quadrilateral sum, isosceles properties.
+  초5 1-6 다각형의 둘레와 넓이, 2-5 직육면체: perimeter, area, area units, edge totals.
+  초6 1-6 직육면체의 겉넓이와 부피, 2-5 원의 둘레와 넓이:
+       cuboid/cube measurements and circle calculations.
+src/lib/elementary/g3.ts:1301-1311 explicitly computes radius/diameter both ways.
+src/lib/elementary/g4.ts:1296-1310 uses quadrilateral 360-degree arithmetic;
+  the isosceles and angle-arithmetic sections provide the remaining placement.
+src/lib/elementary/g5.ts:700-852 covers perimeter, area units and all six
+  plane-area shapes; :1373/:1501 cover cube/cuboid total edge length.
+src/lib/elementary/g6.ts:692-762 covers cuboid measurements; :1294-1409
+  explicitly uses pi conventions 3 and 3.14.
+No elementary g1.ts/g2.ts exists in this checkout; early-grade placement uses
+the actual unit metadata instead of inventing absent engine evidence.
+
+Coverage and exact conventions
+The family covers polygon side/vertex totals, length/capacity/area/volume
+conversion, mixed-unit to single-unit conversion, length sum/difference and
+broken line; radius/diameter; angle sum/difference/right/straight/full-turn
+remainders, quadrilateral and plain isosceles apex/base; triangle, rectangle,
+square, parallelogram, rhombus and regular-polygon perimeter with direct
+missing-side inverses; rectangle/square/triangle/parallelogram/rhombus/
+trapezoid area and directly computable side/height/diagonal inverses; unit
+square area; cuboid/cube edge totals/surface/volume and direct inverses;
+cuboid base-area/height forms; circle circumference/area from radius or
+diameter and inverse radius/diameter.
+
+All answers are canonical integer or terminating decimal exact values.
+Decimal exact=[positive integer coefficient, minimum decimal scale]; integer
+answers use kind=integer, exact=[integer string]. text and latex include the
+same meaningful unit as answerUnit. Pi is always stated as 3 or 3.14, evaluated
+as 300/100 or 314/100 using integer arithmetic. No floating approximations,
+polynomial, surd or symbolic-pi normal form is needed. Square/cube/circle-area
+inverses contain only positive integer roots in their finite domains; they
+ask for the missing length, never introduce radical notation or equations.
+
+Domains are genuine unique public tasks. No rotations, decorative variations
+or identical givens inflate capacity. In particular, the cyclic quadrilateral
+construction fixes one circular arc, leaving two independent parameters;
+all displayed elementary angles are integers. Polygon groups are sorted
+multisets of 2-4 separated 3-6 sided polygons (65 tasks per target). Every type
+has at least 24 tasks and supports the ordinary 20-item request; larger
+requests must respect its declared finite domain. Capacity limits are honest,
+not random retry budgets. Root's sampler/regenerator owns count enforcement
+and maximum-change selection over these finite unique tasks.
+
+Verification
+Focused Vitest suite: 3 exhaustive tests, passed.
+  Every finite candidate: independent test oracle, production relational
+  verifier, canonical exact answer, no duplicate public latex, stable unique
+  key, deterministic SVG, explicit units, no script/network/answer metadata.
+  Corrupted numeric answers, changed prompt fields, non-integer parameters,
+  invalid indices and out-of-domain parameters fail verification.
+  Reversed prompt/answer property order verifies successfully. Replacing
+  problemAt with a throwing function proves verify does not call it.
+  Coordinate checks cover rectangle/parallelogram/triangle perimeter ratios,
+  plane bases/heights/diagonals, trapezoid proportions, cuboid front ratios,
+  isosceles equal sides, actual polygon angles and every given/target arc.
+  Angle tolerance <0.005 degrees, ratio tolerance <0.00001.
+Strict targeted TypeScript check of the elementary entrypoint: passed.
+ESLint on all owned TypeScript files: passed after formatting.
+Browser proof: all candidates rendered offline at 216x216 in Chromium,
+  viewBox 0 0 240 240, 20-unit SVG text => 18 displayed pixels. Checks cover
+  SVG/geometry/text bounds, label-label overlaps and sampled stroke-label
+  collisions; zero failures. Representatives include first/middle/last of
+  every domain and print media. This is screen/print-media proof, not a
+  physical paper test. Representative sheets were also inspected visually.
+
+Reproduction (use the root checkout's installed tools; no node_modules link):
+  From C:/Creative/testautocreator:
+    node node_modules/vitest/vitest.mjs run --config <worker>/scripts/qa/geometry-elementary-vitest.config.mts
+  From the worker:
+    node C:/Creative/testautocreator/node_modules/tsx/dist/cli.mjs scripts/qa/geometry-elementary-browser.ts C:/Creative/testautocreator C:/Creative/testautocreator/tmp/geometry-elementary-20261015
+    node C:/Creative/testautocreator/node_modules/typescript/bin/tsc --noEmit --strict --target es2020 --module nodenext --moduleResolution nodenext --skipLibCheck src/lib/arithmetic-v2/families/geometryElementary.ts
+Browser evidence directory:
+  C:/Creative/testautocreator/tmp/geometry-elementary-20261015/
+  browser-report.json, representative-*.html/png, print-representatives.png
+
+Concrete exclusions
+1. 초1 has zero new types: the repository describes recognizing/making shapes
+   and comparing length/area/capacity, not numeric geometry formulas. No
+   grade-one formula drills or disguised ordinary arithmetic were invented.
+2. Single-shape side/vertex recall, identifying names, constructing/moving/
+   reflecting/folding shapes, measuring a physical drawing and proofs remain
+   conceptual activities. Useful numeric early practice is the visible total
+   of separated polygons. No visual rotation is counted as a fresh task.
+3. Existing e4 triangle/right-triangle missing-angle types are untouched and
+   not duplicated. Bisector/property variants, circumcenter/incenter and
+   middle-school geometry belong to the other worker scopes.
+4. Cylinder/cone/sphere general surface or volume formulas, sectors, general
+   polygon angle-sum formulas, Pythagoras and trigonometry are not promoted
+   into elementary grades. A feasible cylinder lateral-net rectangle example
+   was observed at g6.ts:1447, but no additional cylinder type is shipped:
+   root explicitly closed additional scope after accepting the 78-type,
+   10,337-candidate census. This is a scope exclusion, not an assertion that
+   the rectangle calculation is mathematically impossible for elementary.
+5. Non-perfect-root inverse lengths, irrational answers, compound/composite
+   regions requiring auxiliary constructions, nets requiring spatial
+   deduction, hidden solid stacks and wordy application situations are out.
+6. Time, mass and money are outside this geometry/length/area/volume scope.
+   Mixed-unit answers with multiple blanks are not added to a scalar-answer
+   contract; mixed given measurements convert to one explicit requested unit.
+
+Finite catalog counts (generated from the actual definitions)
+Total: 78 types, 10337 candidates.
+초1: 0 types, 0 candidates
+초2: 7 types, 1856 candidates
+초3: 8 types, 815 candidates
+초4: 8 types, 912 candidates
+초5: 35 types, 4600 candidates
+초6: 20 types, 2154 candidates
+e2-length-m-cm: 98
+e3-length-cm-mm: 98
+e3-length-km-m: 98
+e3-capacity-l-ml: 98
+e5-area-m2-cm2: 98
+e5-area-km2-m2: 98
+e6-volume-m3-cm3: 98
+e2-length-mixed-cm: 891
+e3-length-mixed-mm: 81
+e3-length-mixed-m: 171
+e3-capacity-mixed-ml: 171
+e6-volume-decimal-units: 180
+e2-length-sum: 253
+e2-length-difference: 231
+e2-length-broken: 253
+e2-polygon-sides-total: 65
+e2-polygon-vertices-total: 65
+e3-circle-radius: 49
+e3-circle-diameter: 49
+e5-unit-square-area: 28
+e4-angle-sum: 121
+e4-angle-difference: 181
+e4-angle-right-remainder: 51
+e4-angle-straight-remainder: 71
+e4-angle-turn-remainder: 57
+e4-quadrilateral-missing-angle: 331
+e4-isosceles-base-angle: 50
+e4-isosceles-apex-angle: 50
+e5-rectangle-perimeter: 89
+e5-rectangle-perimeter-side: 89
+e5-parallelogram-perimeter: 89
+e5-parallelogram-perimeter-side: 89
+e5-square-perimeter: 39
+e5-square-perimeter-side: 39
+e5-rhombus-perimeter: 39
+e5-rhombus-perimeter-side: 39
+e5-regular-polygon-perimeter: 120
+e5-regular-polygon-perimeter-side: 120
+e5-triangle-perimeter: 294
+e5-triangle-perimeter-side: 294
+e5-rectangle-area: 89
+e5-rectangle-area-side: 89
+e5-square-area: 24
+e5-square-area-side: 24
+e5-triangle-area: 166
+e5-triangle-area-base: 166
+e5-triangle-area-height: 166
+e5-parallelogram-area: 166
+e5-parallelogram-area-base: 166
+e5-parallelogram-area-height: 166
+e5-rhombus-area: 89
+e5-rhombus-area-diagonal: 89
+e5-trapezoid-area: 265
+e5-trapezoid-area-height: 265
+e5-trapezoid-area-top: 265
+e5-trapezoid-area-bottom: 265
+e5-cuboid-edges: 264
+e5-cube-edges: 24
+e5-cuboid-edges-height: 264
+e5-cube-edges-side: 24
+e6-cuboid-surface: 264
+e6-cube-surface: 24
+e6-cuboid-surface-height: 264
+e6-cube-surface-side: 24
+e6-cuboid-volume: 264
+e6-cube-volume: 24
+e6-cuboid-volume-height: 264
+e6-cube-volume-side: 24
+e6-cuboid-base-volume: 130
+e6-cuboid-base-height: 130
+e6-circle-circumference-radius: 58
+e6-circle-circumference-diameter: 58
+e6-circle-area-radius: 58
+e6-circle-area-diameter: 58
+e6-circle-radius-circumference: 58
+e6-circle-diameter-circumference: 58
+e6-circle-radius-area: 58
+e6-circle-diameter-area: 58
