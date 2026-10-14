@@ -9,7 +9,7 @@ import RouteLinkStatus from "@/components/ui/RouteLinkStatus";
 import { getAccountAccess } from "@/lib/accountAccess";
 import s from "@/components/admin/admin.module.css";
 
-export const metadata: Metadata = { title: "지점관리 | 오늘의수학" };
+export const metadata: Metadata = { title: "지점관리 | 오늘 수학" };
 
 export default async function BranchPage({
   searchParams,
@@ -32,7 +32,7 @@ export default async function BranchPage({
         <div className={s.headerBrand}>
           <Link href="/" className={s.brand}>
             <TodayMathMark size={28} inverse />
-            <span>오늘의수학</span>
+            <span>오늘 수학</span>
           </Link>
           <span className={s.adminLabel}>지점관리</span>
         </div>

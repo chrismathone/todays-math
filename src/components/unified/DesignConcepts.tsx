@@ -146,7 +146,7 @@ export function DesignGallery({
     <main className={c.gallery}>
       <header>
         <div>
-          <p className={c.overline}>오늘의수학 · DESIGN DIRECTIONS</p>
+          <p className={c.overline}>오늘 수학 · DESIGN DIRECTIONS</p>
           <h1>
             하나의 작업실,
             <br />
@@ -480,7 +480,7 @@ function EditorHome({
           </div>
           <article className={c.editorPage}>
             <header>
-              <small>오늘의수학</small>
+              <small>오늘 수학</small>
               <h2>{title || "제목 없는 시험지"}</h2>
               <div>
                 <span>{preview.length}문항 미리보기</span>
@@ -763,7 +763,7 @@ function BoardHome({
     <main className={c.boardHome}>
       <header className={c.boardHeading}>
         <div>
-          <p className={c.overline}>오늘의수학 · MATERIAL WORKFLOW</p>
+          <p className={c.overline}>오늘 수학 · MATERIAL WORKFLOW</p>
           <h1>
             준비에서 완성까지,
             <br />한 흐름으로.
@@ -887,7 +887,7 @@ function BoardHome({
           </header>
           <p>순서를 정하고, 한 장으로 출력.</p>
           <div className={c.finishPaper}>
-            <small>오늘의수학</small>
+            <small>오늘 수학</small>
             <h3>{title}</h3>
             <span>이름 __________________</span>
             <div>

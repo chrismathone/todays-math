@@ -290,11 +290,11 @@ describe("ConceptBlankPaper — 형식 다섯", () => {
 });
 
 describe("ConceptBlankPaper — 머리 · 발 · 보기", () => {
-  it("머리 — 오늘의수학 · 영문 라벨 · 제목 · 목표 · 학습일 · 이름/반 · 단원", () => {
+  it("머리 — 오늘 수학 · 영문 라벨 · 제목 · 목표 · 학습일 · 이름/반 · 단원", () => {
     render(<ConceptBlankPaper sheets={[sheetOf("term")]} view="student" />);
     const head = document.querySelector('[data-cb-head="first"]')!;
     const h = within(head as HTMLElement);
-    expect(h.getByText("오늘의수학")).toBeTruthy();
+    expect(h.getByText("오늘 수학")).toBeTruthy();
     expect(h.getByText("CONCEPT RECALL")).toBeTruthy();
     expect(h.getByText("개념 백지 · 합동과 대칭")).toBeTruthy();
     expect(h.getByText("2026. 10. 1 (목)")).toBeTruthy();
@@ -471,7 +471,7 @@ describe("쪽 나누기 — 고정 규칙(DOM 재기 없음)", () => {
     expect(studentPages("term")).toHaveLength(2);
     // 이어지는 장 — 간소 머리 «오늘의수학 · 제목» + p. 2, 번호는 이어진다
     const next = document.querySelector('[data-cb-head="next"]')!;
-    expect(next.textContent).toContain("오늘의수학");
+    expect(next.textContent).toContain("오늘 수학");
     expect(next.textContent).toContain("개념 백지 · 시험 제목");
     expect(next.textContent).toContain("p. 2");
     expect(studentPages("term")[1]!.textContent).toContain("문 10");

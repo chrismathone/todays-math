@@ -12,7 +12,7 @@ import { QuickPhone } from "../QuickPhone";
 import { parseDifficulty, shapeByTemplate } from "../samples";
 
 export const metadata = {
-  title: "한 걸음 문항 폰 화면 · 오늘의수학",
+  title: "한 걸음 문항 폰 화면 · 오늘 수학",
   robots: { index: false, follow: false },
 };
 

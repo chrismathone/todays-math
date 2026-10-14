@@ -314,7 +314,7 @@ export function AuthForm({ mode, callbackUrl, notice }: AuthFormProps) {
       </button>
       <p className={styles.switchLine}>
         <span>
-          {isSignup ? "이미 계정이 있나요?" : "오늘의수학이 처음인가요?"}
+          {isSignup ? "이미 계정이 있나요?" : "오늘 수학이 처음인가요?"}
         </span>
         <Link href={alternateHref}>
           {isSignup ? "로그인" : "회원가입"}
@@ -324,7 +324,7 @@ export function AuthForm({ mode, callbackUrl, notice }: AuthFormProps) {
       <p className={styles.formNote}>
         문제를 고르고, 다듬고, 한 장으로.
         <br />
-        수업을 준비하는 선생님 곁에 오늘의수학.
+        수업을 준비하는 선생님 곁에 오늘 수학.
       </p>
     </form>
   );

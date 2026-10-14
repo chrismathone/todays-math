@@ -10,7 +10,7 @@ import { Bench } from "./Bench";
  * (jsdom 은 CSS·글꼴을 안 돈다 — 공통 규칙). 2026-09-20 t29.
  */
 export const metadata = {
-  title: "도형 틀 확인대 · 오늘의수학",
+  title: "도형 틀 확인대 · 오늘 수학",
   robots: { index: false, follow: false },
 };
 

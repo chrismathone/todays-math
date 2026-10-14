@@ -4,7 +4,7 @@ import styles from "./auth.module.css";
 export function AuthExperience({ children }: { children: ReactNode }) {
   return (
     <div className={styles.experience}>
-      <aside className={styles.editorial} aria-label="오늘의수학 작업실 소개">
+      <aside className={styles.editorial} aria-label="오늘 수학 작업실 소개">
         <div className={styles.editorialHeading}>
           <p className={styles.artEyebrow}>TODAY’S MATH · TEACHER’S WORKROOM</p>
           <h2>

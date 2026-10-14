@@ -484,7 +484,7 @@ describe("ChatGPT 로 제작 — 수정 요청문 (3자 합의 25 §12.13 · F1)
     const box = screen.getByRole("textbox", { name: "수정 요청문" });
     expect(box).toHaveAttribute("readonly");
     expect((box as HTMLTextAreaElement).value).toMatch(
-      /^\[오늘의 영어 — 고쳐 쓰기 요청\][\s\S]*\[고칠 곳\]/,
+      /^\[오늘 영어 — 고쳐 쓰기 요청\][\s\S]*\[고칠 곳\]/,
     );
     fireEvent.click(
       within(screen.getByRole("alert")).getByRole("button", {

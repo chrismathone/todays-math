@@ -21,7 +21,7 @@ import learn from "@/components/learn/learn.module.css";
 import styles from "@/components/learn/textbook/textbookLearn.module.css";
 
 export const metadata = {
-  title: "교재 학습 · 오늘의수학",
+  title: "교재 학습 · 오늘 수학",
   robots: { index: false, follow: false },
 };
 export default async function TextbookQrPage({

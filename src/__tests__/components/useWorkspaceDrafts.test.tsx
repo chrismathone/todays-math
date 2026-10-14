@@ -219,7 +219,7 @@ describe("useWorkspaceDrafts browser lifecycle", () => {
       );
     }
     expect(renderToString(<ServerSnapshot />)).toBe(
-      "<span>false:loading:오늘의 수학 학습지::</span>",
+      "<span>false:loading:오늘 수학 학습지::</span>",
     );
     expect(get).not.toHaveBeenCalled();
     expect(set).not.toHaveBeenCalled();

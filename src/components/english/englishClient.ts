@@ -18,7 +18,7 @@ export type Load<T> =
   | { status: "ready"; data: T };
 
 export const ENGLISH_LOAD_ERROR =
-  "오늘의 영어 자료를 불러오지 못했습니다. 다시 시도해 주세요.";
+  "오늘 영어 자료를 불러오지 못했습니다. 다시 시도해 주세요.";
 
 export class EnglishRequestError extends Error {
   status: number;

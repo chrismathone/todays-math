@@ -24,10 +24,10 @@ export default function ReviewShell({
           <Link
             href="/review"
             className={s.brand}
-            aria-label="오늘의수학 검수 콘솔"
+            aria-label="오늘 수학 검수 콘솔"
           >
             <TodayMathMark size={28} inverse />
-            <span>오늘의수학</span>
+            <span>오늘 수학</span>
           </Link>
           <span className={s.sidebarLabel}>검수 콘솔</span>
         </div>

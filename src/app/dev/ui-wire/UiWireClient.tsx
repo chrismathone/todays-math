@@ -129,7 +129,7 @@ function HeaderWire({
 
   const mark = (
     <span className="flex shrink-0 items-baseline whitespace-nowrap">
-      <span className={wordmark}>오늘의수학</span>
+      <span className={wordmark}>오늘 수학</span>
       <span aria-hidden className="mx-[7px] text-[28.5px] text-divider">
         │
       </span>
@@ -577,7 +577,7 @@ export function UiWireClient({
           <Case key={id} id={id} title={title} note={note}>
             <div className="flex flex-col gap-2">
               <div className="flex items-baseline gap-4 border-b border-divider pb-2">
-                <span className="text-[28.5px] font-black">오늘의수학</span>
+                <span className="text-[28.5px] font-black">오늘 수학</span>
                 <span className="text-[17.25px] font-bold">메인</span>
                 <span className="text-[17.25px] font-bold">반 관리</span>
               </div>

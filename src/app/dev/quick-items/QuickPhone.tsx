@@ -115,13 +115,13 @@ export function QuickPhone({
     >
       {/* `LearnTopBar` 와 같은 틀 — 나가기가 로그아웃 API 를 부르지 않게 글자만 둔다 */}
       <header className={learn.top}>
-        <b>오늘의수학</b>
+        <b>오늘 수학</b>
         <span className={learn.who}>
           <span>미리보기</span>
         </span>
       </header>
       <main className={`${s.body} ${s.practiceBody}`}>
-        <h1 className={review.srOnly}>오늘의 수학 복습</h1>
+        <h1 className={review.srOnly}>오늘 수학 복습</h1>
         <div className={s.practiceHeader}>
           <BackButton disabled>학습 홈</BackButton>
           <span>중1 · 일차방정식</span>

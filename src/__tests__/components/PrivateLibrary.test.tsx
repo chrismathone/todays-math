@@ -555,7 +555,7 @@ describe("private library delete confirmation dialog", () => {
     await client.save(
       "worksheet",
       "draft",
-      "오늘의 수학 학습지",
+      "오늘 수학 학습지",
       { problems: [] },
       null,
     );
@@ -571,19 +571,19 @@ describe("private library delete confirmation dialog", () => {
         onDeleted={deleted}
       />,
     );
-    await screen.findByRole("button", { name: "오늘의 수학 학습지 열기" });
+    await screen.findByRole("button", { name: "오늘 수학 학습지 열기" });
     const row = screen
-      .getByRole("button", { name: "오늘의 수학 학습지 열기" })
+      .getByRole("button", { name: "오늘 수학 학습지 열기" })
       .closest("tr")!;
     const trigger = within(row).getByRole("button", {
-      name: "오늘의 수학 학습지 삭제",
+      name: "오늘 수학 학습지 삭제",
     });
     await waitFor(() => expect(trigger).toBeEnabled());
     const open = () => {
       trigger.focus();
       fireEvent.click(trigger);
       return screen.getByRole("dialog", {
-        name: "‘오늘의 수학 학습지’ 자료를 삭제할까요?",
+        name: "‘오늘 수학 학습지’ 자료를 삭제할까요?",
       });
     };
     return { server, row, trigger, open, deleted };
@@ -663,7 +663,7 @@ describe("private library delete confirmation dialog", () => {
     release();
     await waitFor(() =>
       expect(
-        screen.queryByRole("button", { name: "오늘의 수학 학습지 열기" }),
+        screen.queryByRole("button", { name: "오늘 수학 학습지 열기" }),
       ).not.toBeInTheDocument(),
     );
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
@@ -697,7 +697,7 @@ describe("private library delete confirmation dialog", () => {
   describe("rename dialog", () => {
     const renameTrigger = (row: HTMLElement) =>
       within(row).getByRole("button", {
-        name: "오늘의 수학 학습지 이름 변경",
+        name: "오늘 수학 학습지 이름 변경",
       });
     const openRename = (row: HTMLElement) => {
       const trigger = renameTrigger(row);
@@ -715,12 +715,12 @@ describe("private library delete confirmation dialog", () => {
       const input = within(dialog).getByRole("textbox", {
         name: "새 자료 이름",
       }) as HTMLInputElement;
-      expect(input).toHaveValue("오늘의 수학 학습지");
+      expect(input).toHaveValue("오늘 수학 학습지");
       expect(input).toHaveAttribute("maxLength", "80");
       expect(input).toHaveFocus();
       expect([input.selectionStart, input.selectionEnd]).toEqual([
         0,
-        "오늘의 수학 학습지".length,
+        "오늘 수학 학습지".length,
       ]);
       expect(
         within(dialog)
@@ -740,7 +740,7 @@ describe("private library delete confirmation dialog", () => {
       ).toBeDisabled();
       fireEvent.submit(within(dialog).getByRole("textbox"));
       expect(server.documents.get("owner-a:worksheet")?.title).toBe(
-        "오늘의 수학 학습지",
+        "오늘 수학 학습지",
       );
     });
 
@@ -828,7 +828,7 @@ describe("private library delete confirmation dialog", () => {
       expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
       expect(renameTrigger(row)).toHaveFocus();
       expect(server.documents.get("owner-a:worksheet")?.title).toBe(
-        "오늘의 수학 학습지",
+        "오늘 수학 학습지",
       );
     });
   });
@@ -868,7 +868,7 @@ describe("private library delete confirmation dialog", () => {
       new CustomEvent("private-library-change", { detail: "owner-a" }),
     );
     await waitFor(() => expect(lists).toBe(3));
-    await screen.findByRole("button", { name: "오늘의 수학 학습지 열기" });
+    await screen.findByRole("button", { name: "오늘 수학 학습지 열기" });
     expect(screen.getByRole("dialog")).toBe(dialog);
     expect(within(dialog).getByRole("button", { name: "취소" })).toBeEnabled();
   });
@@ -877,7 +877,7 @@ describe("private library delete confirmation dialog", () => {
     await seeded();
     fireEvent.click(screen.getByRole("button", { name: "새로고침" }));
     expect(screen.getByText("저장한 자료를 불러오는 중입니다…")).toBeVisible();
-    await screen.findByRole("button", { name: "오늘의 수학 학습지 열기" });
+    await screen.findByRole("button", { name: "오늘 수학 학습지 열기" });
   });
 
   it("preserves an open dialog across a new remote revision without confirming unseen changes", async () => {
@@ -891,7 +891,7 @@ describe("private library delete confirmation dialog", () => {
     await screen.findByRole("button", { name: "다른 기기 변경 열기" });
     expect(screen.getByRole("dialog")).toBe(dialog);
     expect(within(dialog).getByRole("heading")).toHaveTextContent(
-      "오늘의 수학 학습지",
+      "오늘 수학 학습지",
     );
     fireEvent.click(within(dialog).getByRole("button", { name: "삭제 확인" }));
     expect(await within(dialog).findByRole("alert")).toHaveTextContent(
@@ -922,7 +922,7 @@ describe("private library delete confirmation dialog", () => {
       if (action === "rename") {
         fireEvent.click(
           within(row).getByRole("button", {
-            name: "오늘의 수학 학습지 이름 변경",
+            name: "오늘 수학 학습지 이름 변경",
           }),
         );
         fireEvent.change(
@@ -941,7 +941,7 @@ describe("private library delete confirmation dialog", () => {
       }
       await act(async () => release());
       expect(
-        screen.queryByRole("button", { name: "오늘의 수학 학습지 열기" }),
+        screen.queryByRole("button", { name: "오늘 수학 학습지 열기" }),
       ).not.toBeInTheDocument();
       if (action === "rename")
         expect(

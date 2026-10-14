@@ -8,7 +8,7 @@ import { QuickQuestionCard } from "../QuickPhone";
 import { stressItems } from "../samples";
 
 export const metadata = {
-  title: "한 걸음 문항 넘침 측정 · 오늘의수학",
+  title: "한 걸음 문항 넘침 측정 · 오늘 수학",
   robots: { index: false, follow: false },
 };
 

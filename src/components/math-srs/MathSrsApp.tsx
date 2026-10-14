@@ -302,7 +302,7 @@ export default function MathSrsApp() {
           <TodayMathMark size={28} className={s.brandMark} />
           <TodayMathMark size={28} inverse className={s.brandInverse} />
           <span>
-            오늘의수학 <b>학생 학습 · 오늘의 기억</b>
+            오늘 수학 <b>학생 학습 · 오늘의 기억</b>
           </span>
         </Link>
         <nav aria-label="기억 학습 메뉴">
@@ -473,7 +473,7 @@ export default function MathSrsApp() {
             최근 90회 미션은 이 브라우저에 저장됩니다. 다른 기기와 공유되지
             않아요.
           </span>
-          <span>오늘의수학 · 기억</span>
+          <span>오늘 수학 · 기억</span>
         </footer>
       </main>
     </div>

@@ -133,7 +133,7 @@ const expectNoAiNotice = () => {
 describe("학생 로그인 (/learn/login — 시안 sLogin)", () => {
   it("로고 · 아이디 · 비밀번호 · 들어가기 · 도움말 · 원장님 로그인", () => {
     render(<StudentLoginForm />);
-    expect(screen.getByText("오늘의수학")).toBeInTheDocument();
+    expect(screen.getByText("오늘 수학")).toBeInTheDocument();
     expect(screen.getByText("오늘의 개념 · 학생")).toBeInTheDocument();
     expect(screen.getByLabelText("아이디")).toHaveAttribute(
       "autocomplete",
@@ -434,12 +434,12 @@ describe("첫 로그인 — 비밀번호 바꾸기 (/learn/password — 시안 s
     ]);
   });
 
-  it("🔴 «오늘의수학»은 윗줄 한 번뿐 — 큰 로고를 뺐다 (D-128 ⑴ · 원장님 답 17 ①)", () => {
+  it("🔴 «오늘 수학»은 윗줄 한 번뿐 — 큰 로고를 뺐다 (D-128 ⑴ · 원장님 답 17 ①)", () => {
     // D-127 로 윗줄(목록과 같은 부품)을 둔 뒤, 그 아래 로고가 같은 이름을 한 번 더 세우고 있었다
     render(<StudentPasswordForm studentName="이서준" />);
-    expect(screen.getAllByText("오늘의수학")).toHaveLength(1);
+    expect(screen.getAllByText("오늘 수학")).toHaveLength(1);
     expect(
-      within(screen.getByRole("banner")).getByText("오늘의수학"),
+      within(screen.getByRole("banner")).getByText("오늘 수학"),
     ).toBeInTheDocument();
     expect(screen.queryByText("오늘의 개념 · 학생")).not.toBeInTheDocument();
     expect(
@@ -451,11 +451,11 @@ describe("첫 로그인 — 비밀번호 바꾸기 (/learn/password — 시안 s
     // 다른 학생 아이디로 잘못 들어온 학생이 윗줄 이름으로 바로 안다 — 그러면 «나가기»
     render(<StudentPasswordForm studentName="이서준" />);
     expect(screen.getByRole("banner").textContent).toBe(
-      "오늘의수학이서준·로그아웃",
+      "오늘 수학이서준·로그아웃",
     );
     cleanup();
     render(<StudentPasswordForm studentName={null} />);
-    expect(screen.getByRole("banner").textContent).toBe("오늘의수학로그아웃");
+    expect(screen.getByRole("banner").textContent).toBe("오늘 수학로그아웃");
   });
 
   it("학생 세션이 없으면(받은 번호 탓이 아닌 401) 학생 로그인으로", async () => {
@@ -496,7 +496,7 @@ describe("🔴 ③ 목록 (/learn — 시안 sList) — 수업한 날로 묶는�
   it("윗줄 — 이름 · 반 · 나가기", async () => {
     await renderList();
     const top = screen.getByRole("banner");
-    expect(top).toHaveTextContent("오늘의수학");
+    expect(top).toHaveTextContent("오늘 수학");
     expect(top).toHaveTextContent("김도윤 · 중1 A반");
     expect(
       within(top).getByRole("button", { name: "로그아웃" }),

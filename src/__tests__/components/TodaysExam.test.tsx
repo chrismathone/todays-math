@@ -65,7 +65,7 @@ describe("오늘의 시험 계기판", () => {
       screen.getByRole("link", { name: /오늘의시험/, current: "page" }),
     ).toHaveAttribute("href", "/exam");
     // 반대쪽은 '오늘의 수학'으로 건너가는 링크여야 한다.
-    expect(screen.getByRole("link", { name: "오늘의수학" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "오늘 수학" })).toHaveAttribute(
       "href",
       "/",
     );
@@ -282,9 +282,7 @@ describe("데이터가 없을 때", () => {
     }
 
     // 크롬은 그대로 서 있어야 한다 — 탭을 잃으면 돌아갈 길이 없다.
-    expect(
-      screen.getByRole("link", { name: "오늘의수학" }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "오늘 수학" })).toBeInTheDocument();
     expect(screen.queryByRole("article")).not.toBeInTheDocument();
   });
 

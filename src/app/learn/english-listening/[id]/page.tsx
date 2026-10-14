@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { z } from "zod";
 import { ListeningAssignment } from "@/components/learn/english-listening/ListeningAssignment";
 
-export const metadata: Metadata = { title: "듣기 학습 · 오늘의영어" };
+export const metadata: Metadata = { title: "듣기 학습 · 오늘 영어" };
 
 export default async function ListeningAssignmentPage({
   params,

@@ -19,8 +19,8 @@ import {
 import s from "./admin.module.css";
 
 const TABS = [
-  { id: "math", label: "오늘의 수학" },
-  { id: "english", label: "오늘의 영어" },
+  { id: "math", label: "오늘 수학" },
+  { id: "english", label: "오늘 영어" },
 ] as const;
 
 export default function BranchMenuEditor({

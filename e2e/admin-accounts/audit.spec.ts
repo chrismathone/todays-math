@@ -68,7 +68,7 @@ for (const width of [320, 390, 1440]) {
     await expect(activity).toHaveAttribute("aria-selected", "true");
     await expect(panel.getByText("계정 설정 변경").first()).toBeVisible();
     await expect(
-      panel.getByText("오늘의 영어 전체", { exact: false }).first(),
+      panel.getByText("오늘 영어 전체", { exact: false }).first(),
     ).toBeVisible();
     await expect(panel.getByText("총 31개")).toBeVisible();
     await expect(panel.locator("details[open]")).toHaveCount(0);

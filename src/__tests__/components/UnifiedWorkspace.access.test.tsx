@@ -425,7 +425,7 @@ describe("per-account workspace menu access", () => {
     );
     expect(mocks.englishMount).not.toHaveBeenCalled();
     expect(
-      screen.getByRole("button", { name: "오늘의영어 작업실" }),
+      screen.getByRole("button", { name: "오늘 영어 작업실" }),
     ).toBeVisible();
   });
 
@@ -1332,7 +1332,7 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
       />,
     );
     fireEvent.click(brand());
-    fireEvent.click(screen.getByRole("option", { name: "오늘의영어" }));
+    fireEvent.click(screen.getByRole("option", { name: "오늘 영어" }));
     expect(await screen.findByTestId("english-view")).toHaveTextContent(
       "english-maker",
     );
@@ -1422,7 +1422,7 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     const mathFolder = iconOf("내 시험지");
 
     fireEvent.click(brand());
-    fireEvent.click(screen.getByRole("option", { name: "오늘의영어" }));
+    fireEvent.click(screen.getByRole("option", { name: "오늘 영어" }));
     await screen.findByRole("heading", { name: "영어 패널" });
     expect(labels()).toEqual([...ENGLISH_NAV, "영어듣기", "자료은행"]);
     expect(groupStarts()).toEqual(["영어듣기"]);
@@ -1508,7 +1508,7 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
       <UnifiedWorkspace initialData={initialData} allowedMenus={MATH_ONLY} />,
     );
     expect(screen.queryByRole("button", { name: /제품 고르기/ })).toBeNull();
-    const plain = screen.getByRole("button", { name: "오늘의수학 홈" });
+    const plain = screen.getByRole("button", { name: "오늘 수학 홈" });
     expect(plain).not.toHaveAttribute("aria-haspopup");
     fireEvent.click(plain);
     expect(screen.queryByRole("listbox", { name: "제품" })).toBeNull();
@@ -1523,8 +1523,8 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     const list = within(screen.getByRole("listbox", { name: "제품" }));
     expect(
       list.getAllByRole("option").map((option) => option.textContent),
-    ).toEqual(["오늘의수학", "오늘의영어"]);
-    expect(list.getByRole("option", { name: "오늘의수학" })).toHaveAttribute(
+    ).toEqual(["오늘 수학", "오늘 영어"]);
+    expect(list.getByRole("option", { name: "오늘 수학" })).toHaveAttribute(
       "aria-selected",
       "true",
     );
@@ -1537,7 +1537,7 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     );
     expect(screen.queryByRole("button", { name: /제품 고르기/ })).toBeNull();
     expect(
-      screen.getByRole("button", { name: "오늘의영어 작업실" }),
+      screen.getByRole("button", { name: "오늘 영어 작업실" }),
     ).toBeVisible();
     expect(
       nav()
@@ -1557,7 +1557,7 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
   it("영어로 넘어가면 허용된 영어 메뉴와 새 시험 등록이 보이고 수학 메뉴도 유지된다", async () => {
     render(<UnifiedWorkspace initialData={initialData} allowedMenus={ALL} />);
     fireEvent.click(brand());
-    fireEvent.click(screen.getByRole("option", { name: "오늘의영어" }));
+    fireEvent.click(screen.getByRole("option", { name: "오늘 영어" }));
     expect(
       nav()
         .getAllByRole("button")
@@ -1573,13 +1573,13 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     ).toBeVisible();
     expect(screen.getByTestId("english-view")).toHaveTextContent("english");
     // 옆 메뉴는 두 제품이 한 벌이다 — 수학에 없는 캡션 줄은 영어에도 없다(원장님 2026-10-08)
-    expect(screen.queryByText("오늘의 영어", { selector: "p" })).toBeNull();
+    expect(screen.queryByText("오늘 영어", { selector: "p" })).toBeNull();
     expect(screen.getByRole("button", { name: "새 시험 등록" })).toBeVisible();
     expect(
       screen.queryByRole("button", { name: "새 시험지 만들기" }),
     ).toBeNull();
     expect(screen.queryByRole("listbox", { name: "제품" })).toBeNull();
-    expect(brand()).toHaveAccessibleName("제품 고르기 — 오늘의영어");
+    expect(brand()).toHaveAccessibleName("제품 고르기 — 오늘 영어");
     expect(
       within(screen.getByRole("banner")).getByText("오늘의 작업"),
     ).toBeVisible();
@@ -1597,11 +1597,11 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     expect(screen.getByTestId("english-new-exam")).toHaveTextContent("false");
 
     fireEvent.click(brand());
-    fireEvent.click(screen.getByRole("option", { name: "오늘의수학" }));
+    fireEvent.click(screen.getByRole("option", { name: "오늘 수학" }));
     // «시험지 · 내보내기»는 옆 메뉴에 줄이 없다(원장님 2026-10-01)
     expect(nav().getAllByRole("button")).toHaveLength(MATH_ONLY.length - 1);
     expect(window.location.hash).toBe("");
-    expect(brand()).toHaveAccessibleName("제품 고르기 — 오늘의수학");
+    expect(brand()).toHaveAccessibleName("제품 고르기 — 오늘 수학");
     // 영어 뷰는 숨김으로 남는다(상태를 잃지 않는다) — 다시 마운트하지 않는다
     expect(mocks.englishMount).toHaveBeenCalledOnce();
     expect(screen.queryByRole("heading", { name: "영어 패널" })).toBeNull();
@@ -1755,7 +1755,7 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     // 딱지는 브랜드 단추의 마크 안에 있다 — 수학에서도 접힌 채 마크를 눌러 제품을 바꾼다
     expect(brand().contains(mathBadge)).toBe(true);
     fireEvent.click(brand());
-    fireEvent.click(screen.getByRole("option", { name: "오늘의영어" }));
+    fireEvent.click(screen.getByRole("option", { name: "오늘 영어" }));
     expect(root()).toHaveAttribute("data-product", "english");
     const badge = screen.getByTestId("product-badge");
     expect(badge).toHaveTextContent("영");
@@ -1763,7 +1763,7 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     expect(brand().contains(badge)).toBe(true);
     fireEvent.click(brand());
     expect(screen.getByRole("listbox", { name: "제품" })).toBeVisible();
-    fireEvent.click(screen.getByRole("option", { name: "오늘의수학" }));
+    fireEvent.click(screen.getByRole("option", { name: "오늘 수학" }));
     expect(root()).toHaveAttribute("data-product", "math");
     expect(screen.getByTestId("product-badge")).toHaveTextContent("수");
   });
@@ -1786,11 +1786,11 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
       screen.getByRole("button", { name: "AI 연결 설정" }),
     ).toBeInTheDocument();
     fireEvent.click(brand());
-    fireEvent.click(screen.getByRole("option", { name: "오늘의영어" }));
+    fireEvent.click(screen.getByRole("option", { name: "오늘 영어" }));
     await screen.findByRole("heading", { name: "영어 패널" });
     expect(screen.queryByRole("button", { name: "AI 연결 설정" })).toBeNull();
     fireEvent.click(brand());
-    fireEvent.click(screen.getByRole("option", { name: "오늘의수학" }));
+    fireEvent.click(screen.getByRole("option", { name: "오늘 수학" }));
     expect(
       screen.getByRole("button", { name: "AI 연결 설정" }),
     ).toBeInTheDocument();
@@ -1828,7 +1828,7 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     render(<UnifiedWorkspace initialData={initialData} allowedMenus={ALL} />);
     expect(await screen.findByText("현재 시험지")).toBeVisible();
     fireEvent.click(brand());
-    fireEvent.click(screen.getByRole("option", { name: "오늘의영어" }));
+    fireEvent.click(screen.getByRole("option", { name: "오늘 영어" }));
     expect(screen.queryByText("현재 시험지")).toBeNull();
     expect(screen.queryByRole("textbox", { name: "제목" })).toBeNull();
     fireEvent.click(await screen.findByRole("button", { name: "영어 알림" }));

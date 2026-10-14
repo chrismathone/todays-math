@@ -331,7 +331,7 @@ export default function WorkroomHome({
                 </div>
                 <div className={s.draftPreview}>
                   <div className={s.tinyPaper} aria-hidden="true">
-                    <small>오늘의수학</small>
+                    <small>오늘 수학</small>
                     <b>수학 학습지</b>
                     <i />
                     <span>01</span>

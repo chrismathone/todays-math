@@ -133,7 +133,7 @@ export default function StudentCoursePractice(props: Props) {
         key={questionKey}
         {...props}
         problem={problem}
-        title={section?.title ?? "오늘의 수학"}
+        title={section?.title ?? "오늘 수학"}
         turnPage={turnPage}
         last={
           inRetry

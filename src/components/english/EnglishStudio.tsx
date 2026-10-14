@@ -732,7 +732,7 @@ function NewExamDialog({
   return (
     <EnglishDialog
       title="새 시험 등록"
-      kicker="오늘의 영어"
+      kicker="오늘 영어"
       busy={busy}
       onClose={onClose}
     >

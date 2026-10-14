@@ -1437,7 +1437,7 @@ export default function StudioView({
     try {
       const sample: StudioSource = {
         id: crypto.randomUUID(),
-        name: "오늘의 수학 · 연습용 예제",
+        name: "오늘 수학 · 연습용 예제",
         kind: "sample",
         pages: 1,
         image: drawStudioSample(),

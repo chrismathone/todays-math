@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import AdminBranches from "@/components/admin/AdminBranches";
 import { getAccountAccess } from "@/lib/accountAccess";
 
-export const metadata: Metadata = { title: "지점 개설 | 오늘의수학" };
+export const metadata: Metadata = { title: "지점 개설 | 오늘 수학" };
 
 export default async function AdminBranchesPage() {
   const account = await getAccountAccess();

@@ -40,7 +40,7 @@ const 조각빼기: Record<string, (html: string) => string> = {
   "머리글을 이어지는 장처럼": (h) =>
     h.replace(
       /<header class="firstHeader">[\s\S]*?<\/header>/,
-      '<header class="continuationHeader"><span>오늘의수학 · 일일테스트</span><span>p. 1</span></header>',
+      '<header class="continuationHeader"><span>오늘 수학 · 일일테스트</span><span>p. 1</span></header>',
     ),
 };
 

@@ -112,7 +112,7 @@ describe("branch-capped personal account menus", () => {
         : json(branchList()),
     );
     render(<ReviewHarness initial={account} />);
-    fireEvent.click(screen.getByRole("tab", { name: "오늘의 영어" }));
+    fireEvent.click(screen.getByRole("tab", { name: "오늘 영어" }));
     const listening = screen.getByRole("checkbox", { name: "영어듣기" });
     expect(listening).toBeEnabled();
     expect(listening).not.toBeChecked();
@@ -141,7 +141,7 @@ describe("branch-capped personal account menus", () => {
         : json(branchList()),
     );
     render(<ReviewHarness initial={account} />);
-    fireEvent.click(screen.getByRole("tab", { name: "오늘의 영어" }));
+    fireEvent.click(screen.getByRole("tab", { name: "오늘 영어" }));
     const listening = screen.getByRole("checkbox", { name: /^영어듣기/ });
     expect(listening).not.toBeChecked();
     expect(listening).toBeDisabled();
@@ -184,7 +184,7 @@ describe("branch-capped personal account menus", () => {
     fireEvent.change(screen.getByRole("combobox", { name: "지점" }), {
       target: { value: nextBranchId },
     });
-    fireEvent.click(screen.getByRole("tab", { name: "오늘의 영어" }));
+    fireEvent.click(screen.getByRole("tab", { name: "오늘 영어" }));
     const listening = screen.getByRole("checkbox", { name: /^영어듣기/ });
     expect(listening).not.toBeChecked();
     expect(listening).toBeDisabled();
@@ -210,7 +210,7 @@ describe("branch-capped personal account menus", () => {
         }}
       />,
     );
-    fireEvent.click(screen.getByRole("tab", { name: "오늘의 영어" }));
+    fireEvent.click(screen.getByRole("tab", { name: "오늘 영어" }));
     const listening = screen.getByRole("checkbox", { name: /^영어듣기/ });
     expect(listening).not.toBeChecked();
     expect(listening).toBeDisabled();
@@ -359,7 +359,7 @@ describe("branch-capped personal account menus", () => {
         }}
       />,
     );
-    fireEvent.click(screen.getByRole("tab", { name: "오늘의 영어" }));
+    fireEvent.click(screen.getByRole("tab", { name: "오늘 영어" }));
     fireEvent.click(screen.getByRole("checkbox", { name: "자료은행" }));
     expect(screen.getByRole("alert")).toHaveTextContent(
       "중 하나 이상도 선택해 주세요",
@@ -661,7 +661,7 @@ describe("branch management scope and explicit saves", () => {
         onLockChange={() => {}}
       />,
     );
-    fireEvent.click(screen.getByRole("tab", { name: "오늘의 영어" }));
+    fireEvent.click(screen.getByRole("tab", { name: "오늘 영어" }));
     fireEvent.click(screen.getByRole("checkbox", { name: "자료은행" }));
     fireEvent.click(screen.getByRole("button", { name: "사용 메뉴 저장" }));
     await waitFor(() => expect(onUpdate).toHaveBeenCalled());

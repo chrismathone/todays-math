@@ -150,7 +150,7 @@ function productItemShape(
   const { container } = render(
     <PastPaperTemplate
       columns={[[problem]]}
-      meta={{ academyName: "오늘의수학", title: "제목", subtitle: "부제" }}
+      meta={{ academyName: "오늘 수학", title: "제목", subtitle: "부제" }}
       numberOf={() => number}
       page={2}
       scoreOf={() => score}
@@ -215,7 +215,7 @@ describe("기출 탐침 지면이 제품 지면과 같은 것을 그린다", () 
       const { container } = render(
         <PastPaperTemplate
           columns={[[], []]}
-          meta={{ academyName: "오늘의수학", title: "제목", subtitle: "부제" }}
+          meta={{ academyName: "오늘 수학", title: "제목", subtitle: "부제" }}
           numberOf={() => 1}
           page={page}
           scoreOf={() => null}

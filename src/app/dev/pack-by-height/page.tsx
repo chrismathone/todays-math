@@ -56,7 +56,7 @@ const {
 } = JASEUP_MEASURED_PX;
 
 const META: JaseupPrintMeta = {
-  academyName: "오늘의수학",
+  academyName: "오늘 수학",
   title: "일일테스트 · 이차방정식",
   examDate: "2026-08-21",
   todayGoal: "이차방정식의 풀이를 확인하고 문제에 적용한다.",

@@ -8,7 +8,7 @@ import { getAccountAccess } from "@/lib/accountAccess";
 import { contextParams, type QueryValues } from "@/lib/adminReturn";
 import s from "@/components/admin/admin.module.css";
 
-export const metadata: Metadata = { title: "반 관리 | 오늘의수학" };
+export const metadata: Metadata = { title: "반 관리 | 오늘 수학" };
 
 export default async function TeacherClassesPage({
   searchParams,
@@ -31,7 +31,7 @@ export default async function TeacherClassesPage({
         <div className={s.headerBrand}>
           <Link href="/" className={s.brand}>
             <TodayMathMark size={28} inverse />
-            <span>오늘의수학</span>
+            <span>오늘 수학</span>
           </Link>
           <span className={s.adminLabel}>반 관리</span>
         </div>

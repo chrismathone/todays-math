@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { getAccountAccess } from "@/lib/accountAccess";
 import ApprovalPending from "@/components/approval-pending/ApprovalPending";
 
-export const metadata: Metadata = { title: "가입 승인 확인 | 오늘의수학" };
+export const metadata: Metadata = { title: "가입 승인 확인 | 오늘 수학" };
 
 export default async function ApprovalPendingPage() {
   const account = await getAccountAccess();

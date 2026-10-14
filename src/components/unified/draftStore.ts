@@ -13,7 +13,7 @@ import { parsePrintOptions, parsePrintMeta } from "./print/settings";
 
 export const DRAFT_STORE_KEY = "today-math-workspace-drafts-v1";
 export const LEGACY_DRAFT_KEY = "today-math-unified-draft-v1";
-export const DEFAULT_DRAFT_TITLE = "오늘의 수학 학습지";
+export const DEFAULT_DRAFT_TITLE = "오늘 수학 학습지";
 const AUTOSAVE_MS = 600;
 
 export interface WorkspaceDraft {

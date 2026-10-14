@@ -32,8 +32,8 @@ export const STATUS_LABELS = {
 } as const;
 
 const MENU_TABS = [
-  { id: "math", label: "오늘의 수학" },
-  { id: "english", label: "오늘의 영어" },
+  { id: "math", label: "오늘 수학" },
+  { id: "english", label: "오늘 영어" },
 ] as const;
 
 export function AccountStatus({ account }: { account: ManagedAccount }) {

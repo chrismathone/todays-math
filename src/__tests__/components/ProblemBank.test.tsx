@@ -188,7 +188,7 @@ describe("[T3.3 S-08] 문제은행 — 크롬·필터·액션", () => {
   it("AppChrome 내비와 학년/중단원/소단원/난이도/유형/상태 필터, 등록·생성을 보여 준다", async () => {
     await renderBank();
 
-    expect(screen.getByRole("link", { name: "오늘의수학" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "오늘 수학" })).toHaveAttribute(
       "href",
       "/",
     );

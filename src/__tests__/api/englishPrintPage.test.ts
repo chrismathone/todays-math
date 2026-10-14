@@ -170,7 +170,7 @@ beforeEach(() => {
   ownerInBranch(null);
 });
 
-describe("오늘의 영어 인쇄 페이지 — 관문", () => {
+describe("오늘 영어 인쇄 페이지 — 관문", () => {
   it("세션이 없으면 /login 으로 — DB 는 건드리지 않는다", async () => {
     mocks.session.mockResolvedValue(null);
     await expect(page()).rejects.toThrow("REDIRECT /login");
@@ -235,12 +235,12 @@ describe("오늘의 영어 인쇄 페이지 — 관문", () => {
   });
 });
 
-describe("오늘의 영어 인쇄 페이지 — 지면에 넘기는 것", () => {
-  it("세트는 계약 모양으로, 시험은 학교·학년·이름만, 기본은 학생용, 지점이 없으면 «오늘의수학»", async () => {
+describe("오늘 영어 인쇄 페이지 — 지면에 넘기는 것", () => {
+  it("세트는 계약 모양으로, 시험은 학교·학년·이름만, 기본은 학생용, 지점이 없으면 «오늘 수학»", async () => {
     const props = await rendered();
     expect(props.initialView).toBe("student");
     expect(props.academyName).toBe(ENGLISH_PRINT_DEFAULT_ACADEMY);
-    expect(ENGLISH_PRINT_DEFAULT_ACADEMY).toBe("오늘의수학");
+    expect(ENGLISH_PRINT_DEFAULT_ACADEMY).toBe("오늘 수학");
     expect(props.exam).toStrictEqual({
       school: "한빛중",
       grade: "중2",

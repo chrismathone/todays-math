@@ -61,7 +61,7 @@ export default function ApprovalPending({
   return (
     <div className={s.shell}>
       <header className={s.header}>
-        <span className={s.brand}>오늘의수학</span>
+        <span className={s.brand}>오늘 수학</span>
         <span className={s.headerLabel}>가입 승인 확인</span>
       </header>
       <main className={s.main}>
@@ -162,7 +162,7 @@ export default function ApprovalPending({
         </section>
       </main>
       <footer className={s.footer}>
-        오늘의수학 · 선생님의 다음 수업을 위해
+        오늘 수학 · 선생님의 다음 수업을 위해
       </footer>
     </div>
   );

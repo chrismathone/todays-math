@@ -5,8 +5,8 @@ import { z } from "zod";
  * 메뉴는 제품 하나에 딸린다(`product` 없음 = 수학). 제품은 뷰에서 파생하고 따로 저장하지 않는다.
  */
 export const WORKSPACE_PRODUCTS = [
-  { id: "math", label: "오늘의수학" },
-  { id: "english", label: "오늘의영어" },
+  { id: "math", label: "오늘 수학" },
+  { id: "english", label: "오늘 영어" },
 ] as const;
 export type WorkspaceProduct = (typeof WORKSPACE_PRODUCTS)[number]["id"];
 

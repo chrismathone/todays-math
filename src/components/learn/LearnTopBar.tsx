@@ -41,7 +41,7 @@ export function LearnTopBar({ student }: { student: TopBarStudent | null }) {
   if (chrome.managed) return null;
   return (
     <header className={s.top} data-student-header="true">
-      <b>오늘의수학</b>
+      <b>오늘 수학</b>
       <span className={s.who}>
         {student ? (
           <>

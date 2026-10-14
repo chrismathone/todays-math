@@ -21,7 +21,7 @@ import { SAMPLE_EXAM as EXAM, SAMPLE_SET } from "../fixtures/englishPrintSet";
 function paper(view: "student" | "teacher", pages?: number[][]) {
   return render(
     <EnglishPaper
-      academyName="오늘의수학"
+      academyName="오늘 수학"
       exam={EXAM}
       pages={pages}
       set={SAMPLE_SET}
@@ -228,7 +228,7 @@ describe("EnglishPaper — 지면 규칙", () => {
     for (const view of ["student", "teacher"] as const) {
       const { container, unmount } = render(
         <EnglishPaper
-          academyName="오늘의수학"
+          academyName="오늘 수학"
           exam={EXAM}
           set={{ ...SAMPLE_SET, questions: [insertion, grammar] }}
           view={view}
@@ -268,12 +268,12 @@ describe("EnglishPaper — 지면 규칙", () => {
 });
 
 describe("EnglishPaper — 머리 · 쪽", () => {
-  it("첫 쪽 머리: «오늘의 영어 · 학원» | «학생용 · 검토 상태» · 세트 제목 · «학교 학년 · 시험» · 이름·날짜 줄", () => {
+  it("첫 쪽 머리: «오늘 영어 · 학원» | «학생용 · 검토 상태» · 세트 제목 · «학교 학년 · 시험» · 이름·날짜 줄", () => {
     const { container } = paper("student");
     const first = within(
       container.querySelector('[data-page-number="1"]') as HTMLElement,
     );
-    expect(first.getByText("오늘의 영어 · 오늘의수학")).toBeInTheDocument();
+    expect(first.getByText("오늘 영어 · 오늘 수학")).toBeInTheDocument();
     expect(first.getByText("학생용 · 검토 완료")).toBeInTheDocument();
     expect(
       first.getByRole("heading", { level: 1, name: "2학기 중간 대비 1차" }),
@@ -296,7 +296,7 @@ describe("EnglishPaper — 머리 · 쪽", () => {
     expect(pages).toHaveLength(3);
     const second = within(pages[1] as HTMLElement);
     expect(
-      second.getByText("오늘의 영어 · 2학기 중간 대비 1차"),
+      second.getByText("오늘 영어 · 2학기 중간 대비 1차"),
     ).toBeInTheDocument();
     expect(second.getByText("학생용 · p. 2")).toBeInTheDocument();
     expect(second.getByText("지문 (이어짐)")).toBeInTheDocument();
@@ -352,7 +352,7 @@ describe("EnglishPaper — 묶음 · 어법의 밑줄 · 교사용 안내 (D-151
   ) =>
     render(
       <EnglishPaper
-        academyName="오늘의수학"
+        academyName="오늘 수학"
         bundle={bundle}
         exam={EXAM}
         pages={extra.pages}
@@ -610,7 +610,7 @@ describe("EnglishPaper — 유형 확장 (D-158 · 25 §13)", () => {
   const sheet = (view: "student" | "teacher") =>
     render(
       <EnglishPaper
-        academyName="오늘의수학"
+        academyName="오늘 수학"
         exam={EXAM}
         set={expanded}
         view={view}

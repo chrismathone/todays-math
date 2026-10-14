@@ -6,7 +6,7 @@ import { readJourneyTheme } from "@/lib/journeyThemeStore";
 import { getStudentSession } from "@/lib/learn/studentRequest";
 import { TextbookReturnLink } from "@/components/learn/textbook/TextbookReturnLink";
 
-export const metadata: Metadata = { title: "수학 탐험 · 오늘의수학" };
+export const metadata: Metadata = { title: "수학 탐험 · 오늘 수학" };
 
 /** One entry for bank practice, concepts and review, sharing the same expedition. */
 export default async function LearnHomePage({

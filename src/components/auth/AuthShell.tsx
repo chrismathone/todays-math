@@ -10,9 +10,9 @@ export function AuthShell({ children }: { children: React.ReactNode }) {
   return (
     <div className={styles.shell}>
       <header className={styles.header}>
-        <Link href="/" className={styles.brand} aria-label="오늘의수학 홈">
+        <Link href="/" className={styles.brand} aria-label="오늘 수학 홈">
           <TodayMathMark size={34} />
-          오늘의수학
+          오늘 수학
         </Link>
         <Link href="/" className={styles.homeLink}>
           홈으로<span aria-hidden="true">↗</span>
@@ -25,7 +25,7 @@ export function AuthShell({ children }: { children: React.ReactNode }) {
       </noscript>
       <main className={styles.content}>{children}</main>
       <footer className={styles.footer}>
-        <span>© 오늘의수학</span>
+        <span>© 오늘 수학</span>
         <span>EVERY GOOD LESSON STARTS WITH A PAGE.</span>
       </footer>
     </div>

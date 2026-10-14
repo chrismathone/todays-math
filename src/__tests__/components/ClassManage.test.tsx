@@ -59,7 +59,7 @@ describe("[T2.3 S-07] 반/학생 관리 — 크롬·표·학생", () => {
   it("AppChrome으로 감싸고 반 표와 학생 이름을 보여 준다", async () => {
     await readyManage();
 
-    expect(screen.getByRole("link", { name: "오늘의수학" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "오늘 수학" })).toHaveAttribute(
       "href",
       "/",
     );

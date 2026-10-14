@@ -208,7 +208,7 @@ export function EywaManagement({
           <h2>새 연결 등록</h2>
           {status.automaticProvisioningEnabled ? (
             <p>
-              에이와에서 오늘의수학을 켜면 지점과 직원·반·학생 연결이 자동으로
+              에이와에서 오늘 수학을 켜면 지점과 직원·반·학생 연결이 자동으로
               생성됩니다.
             </p>
           ) : null}
@@ -235,8 +235,8 @@ export function EywaManagement({
           </h2>
           {binding.branchNameMismatch ? (
             <p>
-              지점 이름 확인 필요: 에이와는 “{binding.sourceTenantName}”,
-              오늘의수학은 “{binding.targetBranchName}”입니다. 기존 이름을
+              지점 이름 확인 필요: 에이와는 “{binding.sourceTenantName}”, 오늘
+              수학은 “{binding.targetBranchName}”입니다. 기존 이름을
               유지했습니다.
             </p>
           ) : null}
@@ -594,7 +594,7 @@ export function EywaManagement({
               <p>
                 에이와: {account.sourceEmail}
                 <br />
-                오늘의수학: {account.localName ?? "연결 계정 없음"} ·{" "}
+                오늘 수학: {account.localName ?? "연결 계정 없음"} ·{" "}
                 {account.localEmail ?? "—"}
               </p>
               {account.localEmail &&
@@ -664,7 +664,7 @@ export function EywaManagement({
                     </label>
                   ) : (
                     <label>
-                      현재 오늘의수학 비밀번호{" "}
+                      현재 오늘 수학 비밀번호{" "}
                       <input
                         required
                         type="password"

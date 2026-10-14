@@ -26,7 +26,7 @@ export function LabShell({
       <header className={styles.chrome}>
         <Link href="/lab" className={styles.wordmark}>
           <TodayMathMark size={28} />
-          오늘의수학
+          오늘 수학
         </Link>
         <span className={styles.sub}>{kicker ?? "개념 실험실"}</span>
         <div className={styles.tools}>

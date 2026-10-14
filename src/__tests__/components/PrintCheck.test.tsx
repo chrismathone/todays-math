@@ -234,7 +234,7 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 110: english-four-choice-unmentioned · english-open-types-d158 둘을 더했다(D-158 — 오늘의 영어 유형 확장).
     // 111: math-block-tail-break 추가 (2026-10-08 — 연립식 · 행렬 줄 바로 다음 줄이 그 줄에 붙어 나가던 것을 고쳤다.
     //      교과서 문항 218행의 지면이 «줄이 갈리는 쪽»으로 움직인다).
-    expect(ITEMS.length).toBe(111);
+    expect(ITEMS.length).toBe(112);
   });
 
   /**

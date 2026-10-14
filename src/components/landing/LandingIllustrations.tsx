@@ -85,7 +85,7 @@ export function DeskIllustration() {
       </div>
       <div className={styles.heroPaper}>
         <div className={styles.paperEyebrow}>
-          오늘의수학 <span>LESSON 01</span>
+          오늘 수학 <span>LESSON 01</span>
         </div>
         <div className={styles.paperTitle}>
           닮음에서 찾은

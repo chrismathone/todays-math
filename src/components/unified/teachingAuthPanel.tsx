@@ -122,7 +122,7 @@ export function TeachingAuthPanel({
           한곳에서 관리하세요.
         </h2>
         <p className={s.introDescription}>
-          사용 중인 오늘의수학 계정으로 로그인하면 내 반과 학생 정보를 바로
+          사용 중인 오늘 수학 계정으로 로그인하면 내 반과 학생 정보를 바로
           이어서 관리할 수 있습니다.
         </p>
         <ul className={s.featureList}>

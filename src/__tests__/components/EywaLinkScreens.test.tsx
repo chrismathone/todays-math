@@ -59,7 +59,7 @@ const seal = (now = new Date(), secret = process.env.AUTH_SECRET) =>
   sealEywaLinkPending(WHO, { secret, now })!;
 
 const LOGIN_NOTICE =
-  "처음 한 번만: 오늘의 수학 비밀번호로 로그인하면 eywa 김선생(kim@eywa.example) 계정과 연결됩니다. 본인이 아니면 로그인하지 마세요.";
+  "처음 한 번만: 오늘 수학 비밀번호로 로그인하면 eywa 김선생(kim@eywa.example) 계정과 연결됩니다. 본인이 아니면 로그인하지 마세요.";
 const CONFIRM_BODY =
   "eywa 계정 «김선생(kim@eywa.example)»을 이 계정(teacher@example.test)에 연결할까요? 연결하면 다음부터 eywa에서 바로 들어옵니다. 본인 eywa 계정이 아니면 «연결 안 함»을 누르세요.";
 
@@ -124,15 +124,15 @@ describe("로그인 화면 — 에이와 자동 로그인 안내", () => {
   it.each([
     [
       "not-linked",
-      "에이와 자동 로그인 대상이 아닙니다. 오늘의 수학 계정으로 로그인해 주세요.",
+      "에이와 자동 로그인 대상이 아닙니다. 오늘 수학 계정으로 로그인해 주세요.",
     ],
     [
       "retry",
-      "에이와 자동 로그인 요청이 만료되었거나 완료되지 않았습니다. 다시 이동하거나 오늘의 수학 계정으로 로그인해 주세요.",
+      "에이와 자동 로그인 요청이 만료되었거나 완료되지 않았습니다. 다시 이동하거나 오늘 수학 계정으로 로그인해 주세요.",
     ],
     [
       "unavailable",
-      "에이와 자동 로그인 연결을 확인할 수 없습니다. 오늘의 수학 계정으로 로그인해 주세요.",
+      "에이와 자동 로그인 연결을 확인할 수 없습니다. 오늘 수학 계정으로 로그인해 주세요.",
     ],
   ])(
     "%s 요청에서 기존 로그인 양식과 안내를 표시한다",
@@ -152,7 +152,7 @@ describe("로그인 화면 — 에이와 자동 로그인 안내", () => {
     jar.values.set(EYWA_LINK_PENDING_COOKIE, seal());
     await renderLogin(undefined, "not-linked");
     expect(screen.getByRole("status")).toHaveTextContent(
-      "오늘의 수학 계정으로 로그인해 주세요.",
+      "오늘 수학 계정으로 로그인해 주세요.",
     );
     expect(screen.queryByText(LOGIN_NOTICE)).not.toBeInTheDocument();
   });
@@ -211,7 +211,7 @@ describe("확인 화면 /account/eywa-link", () => {
     }
     // 로그인 화면의 틀(편집 패널 + 폼 패널) 안에 선다
     expect(
-      screen.getByRole("complementary", { name: "오늘의수학 작업실 소개" }),
+      screen.getByRole("complementary", { name: "오늘 수학 작업실 소개" }),
     ).toBeInTheDocument();
   });
 
@@ -256,7 +256,7 @@ describe("확인 화면 — 누르면", () => {
             error: {
               code: "CONFLICT",
               message:
-                "이 eywa 계정은 이미 다른 오늘의 수학 계정과 연결돼 있습니다.",
+                "이 eywa 계정은 이미 다른 오늘 수학 계정과 연결돼 있습니다.",
             },
           },
           { status: 409 },
@@ -267,7 +267,7 @@ describe("확인 화면 — 누르면", () => {
     await user.click(screen.getByRole("button", { name: "연결" }));
     const alert = await screen.findByRole("alert");
     expect(alert).toHaveTextContent(
-      "이 eywa 계정은 이미 다른 오늘의 수학 계정과 연결돼 있습니다.",
+      "이 eywa 계정은 이미 다른 오늘 수학 계정과 연결돼 있습니다.",
     );
     expect(alert).toHaveClass(styles.alert);
     expect(nav.push).not.toHaveBeenCalled();

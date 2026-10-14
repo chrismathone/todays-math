@@ -89,7 +89,7 @@ function labelFrom(labels: Readonly<Record<string, string>>, value: unknown) {
 
 function menuLabel(value: unknown, branchId: unknown) {
   // This historical permission covered all English menus before they split.
-  if (value === "english") return "오늘의 영어 전체";
+  if (value === "english") return "오늘 영어 전체";
   if (value === "library")
     return typeof branchId === "string" || branchId === null
       ? workspaceLibraryLabel(branchId)
@@ -121,7 +121,7 @@ function locationLabel(value: unknown, branchId: unknown) {
   if (path === "/") return "작업실";
   if (path === "/admin" || path === "/api/admin/users") return "계정 관리";
   if (/^\/(?:api\/)?concept-blank(?:\/|$)/.test(path)) return "개념 백지";
-  if (/^\/(?:api\/)?english(?:\/|$)/.test(path)) return "오늘의 영어";
+  if (/^\/(?:api\/)?english(?:\/|$)/.test(path)) return "오늘 영어";
   if (/^\/(?:api\/)?test\/[^/]+\/print\/?$/.test(path))
     return "시험지 인쇄 화면";
   if (/^\/api\/library(?:\/|$)/.test(path))

@@ -137,7 +137,7 @@ export default function LegacyUnifiedWorkspace({
     version: number;
   }>({ version: 0 });
   const [selected, setSelected] = useState<StudioProblem[]>([]);
-  const [title, setTitle] = useState("오늘의 수학 학습지");
+  const [title, setTitle] = useState("오늘 수학 학습지");
   const [columns, setColumns] = useState(2);
   const [answers, setAnswers] = useState(false);
   const [notice, setNotice] = useState("");
@@ -283,11 +283,11 @@ export default function LegacyUnifiedWorkspace({
           <button
             className={s.brand}
             onClick={() => navigate("home")}
-            aria-label="오늘의수학 홈"
+            aria-label="오늘 수학 홈"
           >
             <span className={s.brandSymbol}>∑</span>
             <span>
-              오늘의수학<small>수학 수업의 모든 작업</small>
+              오늘 수학<small>수학 수업의 모든 작업</small>
             </span>
           </button>
           <button className={s.newButton} onClick={() => navigate("bank")}>
@@ -358,7 +358,7 @@ export default function LegacyUnifiedWorkspace({
         <div className={s.main}>
           <header className={s.topbar}>
             <div className={s.breadcrumb}>
-              오늘의수학 <span>/</span>
+              오늘 수학 <span>/</span>
               <strong>{labels[view]}</strong>
             </div>
             <div className={s.topRight}>
@@ -858,7 +858,7 @@ export default function LegacyUnifiedWorkspace({
                     <article className={s.paper} data-unified-paper>
                       <header className={s.paperHeader}>
                         <span>TODAY’S MATH</span>
-                        <h2>{title || "오늘의 수학 학습지"}</h2>
+                        <h2>{title || "오늘 수학 학습지"}</h2>
                         <div>
                           <span>{selected.length}문항</span>
                           <span>이름 __________________</span>
@@ -878,7 +878,7 @@ export default function LegacyUnifiedWorkspace({
                         ))}
                       </div>
                       <footer className={s.paperFooter}>
-                        오늘의수학 <span>수학의 힘을, 매일 조금씩.</span>
+                        오늘 수학 <span>수학의 힘을, 매일 조금씩.</span>
                       </footer>
                     </article>
                     {answers && (

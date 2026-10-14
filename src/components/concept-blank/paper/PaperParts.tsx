@@ -167,7 +167,7 @@ export function SheetHead({
   return (
     <header className={styles.head} data-cb-head="first">
       <div className={styles.headMain}>
-        <div className={styles.brand}>오늘의수학</div>
+        <div className={styles.brand}>오늘 수학</div>
         <div className={styles.kicker}>{label ?? face.label}</div>
         <h2 className={titleClass(sheetTitle(header))}>{sheetTitle(header)}</h2>
         <div className={styles.goal}>{goal ?? face.goal}</div>
@@ -203,7 +203,7 @@ export function ContinuationHead({
   return (
     <header className={styles.miniHead} data-cb-head="next">
       <span>
-        <b>오늘의수학</b> · {sheetTitle(header)}
+        <b>오늘 수학</b> · {sheetTitle(header)}
         {suffix ? ` · ${suffix}` : ""}
       </span>
       <span className={styles.pageNo}>p. {page}</span>

@@ -10,7 +10,7 @@ import { Bench } from "./Bench";
  * (jsdom 은 CSS·글꼴을 안 돈다 — 클래스가 붙었는지와 그렇게 그려지는지는 다르다). 2026-09-21 t36.
  */
 export const metadata = {
-  title: "도형 묶기·정렬 확인대 · 오늘의수학",
+  title: "도형 묶기·정렬 확인대 · 오늘 수학",
   robots: { index: false, follow: false },
 };
 

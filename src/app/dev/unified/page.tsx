@@ -7,7 +7,7 @@ import type { BankData } from "@/components/unified/types";
 import type { DesignId } from "@/components/unified/DesignConcepts";
 
 export const metadata = {
-  title: "통합 작업실 · 오늘의수학",
+  title: "통합 작업실 · 오늘 수학",
   robots: { index: false, follow: false },
 };
 

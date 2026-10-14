@@ -64,7 +64,7 @@ export function WorksheetPrint({
     const today = new Date();
     return {
       ...result,
-      title: title || "오늘의 수학 학습지",
+      title: title || "오늘 수학 학습지",
       subject: result.subject || "수학",
       grade:
         result.grade ||

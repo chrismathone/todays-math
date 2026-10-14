@@ -61,7 +61,7 @@ export function buildChatgptRequest({
   materialText,
 }: ChatgptRequestInput): string {
   const lines = [
-    "[오늘의 영어 — 내신 대비 문제 제작 요청]",
+    "[오늘 영어 — 내신 대비 문제 제작 요청]",
     `대상: ${exam.school} ${exam.grade} · ${exam.title}`,
     `제작 방식: ${ENGLISH_MODE_LABEL[request.mode]}`,
   ];
@@ -277,7 +277,7 @@ export function buildChatgptFixRequest({
   if (!reasons.length) return null;
 
   const lines = [
-    "[오늘의 영어 — 고쳐 쓰기 요청]",
+    "[오늘 영어 — 고쳐 쓰기 요청]",
     "앞서 만든 결과가 자동 검사에 걸려 저장되지 않았습니다. 아래 [고칠 곳]만 고쳐 주세요.",
     "",
     "[고칠 곳]",

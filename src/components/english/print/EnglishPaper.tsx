@@ -298,7 +298,7 @@ export function EnglishPaper({
               <header className={styles.head}>
                 <div className={styles.headRow}>
                   <span className={styles.brand}>
-                    오늘의 영어 · {academyName}
+                    오늘 영어 · {academyName}
                   </span>
                   <span className={styles.viewTag}>
                     {viewLabel} · {set.status}
@@ -327,7 +327,7 @@ export function EnglishPaper({
               </header>
             ) : (
               <header className={styles.slimHead}>
-                <span>오늘의 영어 · {set.title}</span>
+                <span>오늘 영어 · {set.title}</span>
                 <span>
                   {bundleNo !== null ? `문제 묶음 ${bundleNo}` : viewLabel} · p.{" "}
                   {page}

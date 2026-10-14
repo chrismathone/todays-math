@@ -85,7 +85,7 @@ export function TestPrint({ data, initialMode = "questions" }: TestPrintProps) {
   // 매 렌더 새 객체를 만들면 아래 JaseupTemplate 의 memo 가 통째로 무력해진다.
   const meta = useMemo<JaseupPrintMeta>(
     () => ({
-      academyName: "오늘의수학",
+      academyName: "오늘 수학",
       title,
       examDate: data.testDate,
       todayGoal: data.todayGoal,

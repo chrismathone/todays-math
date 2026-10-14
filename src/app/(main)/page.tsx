@@ -11,9 +11,9 @@ import {
 } from "@/lib/loginLanding";
 
 export const metadata = {
-  title: "오늘의수학 · 선생님의 수학 작업실",
+  title: "오늘 수학 · 선생님의 수학 작업실",
   description:
-    "가지고 있는 수학 자료를 읽고, 다듬고, 나만의 시험지로. 문제은행부터 수업 준비까지 오늘의수학에서 이어가세요.",
+    "가지고 있는 수학 자료를 읽고, 다듬고, 나만의 시험지로. 문제은행부터 수업 준비까지 오늘 수학에서 이어가세요.",
 };
 
 export default async function MainPage({

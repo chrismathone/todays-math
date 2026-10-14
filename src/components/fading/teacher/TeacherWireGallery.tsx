@@ -533,7 +533,7 @@ export function TeacherWireGallery({
   return (
     <div className={s.root}>
       <aside className={s.workspaceRail} aria-label="작업실 위치">
-        <strong>오늘의수학</strong>
+        <strong>오늘 수학</strong>
         <p>작업실</p>
         <div>오늘의 작업</div>
         <div>오늘의 개념</div>

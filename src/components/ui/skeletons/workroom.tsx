@@ -17,7 +17,7 @@ export function WorkroomHomeSkeleton() {
         <div className={s.brand}>
           <TodayMathMark inverse size={36} />
           <span>
-            오늘의수학
+            오늘 수학
             <small>TEACHER’S WORKROOM</small>
           </span>
         </div>
@@ -121,9 +121,9 @@ export function LandingSkeleton() {
     <div aria-busy="true" className={s.landing}>
       <Status label="소개 화면을 불러오는 중" />
       <header className={s.landingHeader}>
-        <Link className={s.landingBrand} href="/" aria-label="오늘의수학 홈">
+        <Link className={s.landingBrand} href="/" aria-label="오늘 수학 홈">
           <TodayMathMark size={35} />
-          오늘의수학
+          오늘 수학
         </Link>
         <nav aria-label="서비스 소개" className={s.landingNav}>
           <a href="#how-it-works">이용 방법</a>

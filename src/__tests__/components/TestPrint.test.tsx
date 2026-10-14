@@ -74,7 +74,7 @@ describe("TestPrint", () => {
     expect(firstPage).not.toBeNull();
     const page = within(firstPage as HTMLElement);
 
-    expect(page.getByText("오늘의수학")).toBeInTheDocument();
+    expect(page.getByText("오늘 수학")).toBeInTheDocument();
     expect(page.getByText("2026.08.14")).toBeInTheDocument();
     expect(page.getByText("이름 ________ · 반 ______")).toBeInTheDocument();
     expect(

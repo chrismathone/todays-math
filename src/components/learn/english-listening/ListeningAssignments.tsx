@@ -54,7 +54,7 @@ export function ListeningAssignments() {
     <main className={s.page}>
       <header className={s.heading}>
         <div>
-          <p>오늘의 영어 · 나의 학습</p>
+          <p>오늘 영어 · 나의 학습</p>
           <h1>영어듣기</h1>
           <p>선생님이 배정한 듣기를 확인하세요.</p>
         </div>

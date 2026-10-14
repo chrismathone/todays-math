@@ -460,7 +460,7 @@ export function AuthFormSkeleton({ fields = 2 }: { fields?: number } = {}) {
       <div aria-hidden="true" className={`skeleton ${s.authSubmit}`} />
       <p className={s.authSwitch}>
         <span>
-          {signup ? "이미 계정이 있나요?" : "오늘의수학이 처음인가요?"}
+          {signup ? "이미 계정이 있나요?" : "오늘 수학이 처음인가요?"}
         </span>
         <Link href={signup ? "/login" : "/signup"}>
           {signup ? "로그인" : "회원가입"}
@@ -469,7 +469,7 @@ export function AuthFormSkeleton({ fields = 2 }: { fields?: number } = {}) {
       <p className={s.authNote}>
         문제를 고르고, 다듬고, 한 장으로.
         <br />
-        수업을 준비하는 선생님 곁에 오늘의수학.
+        수업을 준비하는 선생님 곁에 오늘 수학.
       </p>
     </div>
   );
