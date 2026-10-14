@@ -596,6 +596,28 @@ function find(id: string, parameters: number[]): ArithmeticV2Candidate {
   throw new Error(`missing ${id}: ${parameters}`);
 }
 describe("middle arithmetic hand-checked exact cases and noncanonical attacks", () => {
+  it("rejects sparse and oversized parameter arrays before mathematical verification", () => {
+    const definition = definitions.find((d) => d.id === "m1-integer-power")!;
+    const parameters = new Array<number>(2);
+    parameters[0] = -8;
+    const candidate: ArithmeticV2Candidate = {
+      parameters,
+      prompt: {
+        layout: "math",
+        text: "(-8)^undefined",
+        latex: "(-8)^{undefined}",
+        instruction: "계산하시오.",
+      },
+      answer: { kind: "integer", exact: ["1"], text: "1", latex: "1" },
+    };
+    expect(definition.verify(candidate)).toBe(false);
+    expect(
+      definition.verify({
+        ...candidate,
+        parameters: new Array<number>(1000000),
+      }),
+    ).toBe(false);
+  });
   it.each([
     ["m1-integer-divide", [-100, -10], ["10"], "10"],
     ["m1-integer-power", [-2, 3], ["-8"], "-8"],
