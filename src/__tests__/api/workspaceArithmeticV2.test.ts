@@ -42,6 +42,11 @@ const account = {
   menus: ["bank"],
 };
 const catalog = () => new Request("http://localhost/api/arithmetic/v2/catalog");
+const unsafeOriginHeaders: Record<string, string>[] = [
+  {},
+  { origin: "https://elsewhere.test" },
+  { origin: "http://localhost", "sec-fetch-site": "cross-site" },
+];
 const post = (
   body: unknown = fixtureRequest(),
   headers: Record<string, string> = { origin: "http://localhost" },
@@ -103,13 +108,12 @@ describe("v2 catalog and generation routes", () => {
     expect((await GET(catalog())).status).toBe(status);
     expect((await POST(post())).status).toBe(status);
   });
-  it.each([
-    {},
-    { origin: "https://elsewhere.test" },
-    { origin: "http://localhost", "sec-fetch-site": "cross-site" },
-  ])("rejects unsafe origin headers", async (headers) => {
-    expect((await POST(post(fixtureRequest(), headers))).status).toBe(403);
-  });
+  it.each(unsafeOriginHeaders)(
+    "rejects unsafe origin headers",
+    async (headers) => {
+      expect((await POST(post(fixtureRequest(), headers))).status).toBe(403);
+    },
+  );
   it("returns exact capacity and total limit detail without partial output", async () => {
     const response = await POST(post(fixtureRequest(8)));
     expect(response.status).toBe(400);
