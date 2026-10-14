@@ -71,7 +71,7 @@
   width: 210mm;
   height: 297mm;
   margin: 0 auto 20px;
-  zoom: var(--preview-scale, 1);
+  zoom: var(--paper-strip-scale, 1);
   background: white;
   box-shadow: 0 3px 12px #243d6020;
 }
@@ -83,21 +83,20 @@
   visibility: hidden;
 }
 @media screen {
-  .document:not(.measureHost) {
-    display: flex;
-    align-items: flex-start;
-    gap: 24px;
-    width: max-content;
-    min-width: 100%;
-    padding-right: var(--preview-trailing-space, 0px);
+  .printDocument {
+    position: fixed;
+    left: -100000px;
+    top: 0;
+    width: 210mm;
+    visibility: hidden;
+    pointer-events: none;
   }
   .page {
-    flex: none;
     margin: 0;
-    scroll-snap-align: start;
   }
 }
 @media print {
+  .screenPreview,
   .previewNotice {
     display: none !important;
   }
