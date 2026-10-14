@@ -174,6 +174,18 @@ export function accountRouteAllowed(
     under(path, "/q")
   )
     return any("textbook");
+  if (path === "/api/arithmetic/catalog")
+    return any("bank") && (method === "GET" || method === "HEAD");
+  if (path === "/api/arithmetic/generate")
+    return any("bank") && method === "POST";
+  // Handlers restrict bank-only access to arithmeticSheet; assets stay separate.
+  if (
+    any("bank") &&
+    ((path === "/api/library/documents" && ["GET", "HEAD"].includes(method)) ||
+      (/^\/api\/library\/documents\/[^/]+$/.test(path) &&
+        ["GET", "HEAD", "PUT", "POST", "PATCH", "DELETE"].includes(method)))
+  )
+    return true;
   if (under(path, "/api/library")) return any("library", "studio", "export");
   if (
     under(path, "/api/studio/ai") ||

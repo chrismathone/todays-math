@@ -13,6 +13,7 @@ export const documentKindSchema = z.enum([
   "draft",
   "extraction",
   "conceptBlank",
+  "arithmeticSheet",
 ]);
 export type DocumentKind = z.infer<typeof documentKindSchema>;
 export const documentVisibilitySchema = z.enum(["private", "branch"]);

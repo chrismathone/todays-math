@@ -1,0 +1,59 @@
+Arithmetic document persistence and API — 2026-10-14
+
+Scope and foundation
+- Branch: BIGSHOL/today-brand-20261014; arithmetic foundation 3dfd55383d795c797ad82ba136fc78d96b7dbedf merged without changing its files.
+- Approved plan: docs/planning/goal-bank-arithmetic-brand-20261014.md revision 4.
+- Changed only persistence/server contracts, server helpers, dedicated routes, account route policy, Prisma CHECK migration and tests/report artifacts.
+- No UI, arithmetic core/contracts, bank source APIs, branding, Problem/Test/SRS records, production data, payments, deployment or remote push changed.
+
+API contract for integration
+- Types: src/contracts/workspaceArithmetic.contract.ts.
+- GET /api/arithmetic/catalog -> WorkspaceArithmeticCatalogResponse:
+  {data:{engineVersion,catalogVersion,skills,limits:{itemsPerRound,itemsTotal,rounds},writerEnabled}}.
+  Skills are the core's catalog entries; limits are 100 per round, 100 total and 20 rounds.
+- POST /api/arithmetic/generate takes WorkspaceArithmeticGenerateRequest (alias of core ArithmeticGenerateRequest) and returns {data: ArithmeticSheetPayload}.
+  Preview does not require the document writer gate and never touches document/bank/student storage or usage counters.
+  The request body is bounded to 64 KiB, depth 12, 20,000 tokens and 128-character strings; duplicate keys and invalid JSON numbers/encoding are rejected.
+- Both routes require an approved authenticated account with bank rights. POST uses the existing same-origin mutation guard. Responses are private/no-store.
+- Engine errors return HTTP 400 {error:{code,message,violations?,limit?}}. Capacity violations retain skillId/round/allocation/requested/available/reason. No partial sheet is returned.
+- Existing /api/library/documents endpoints carry kind arithmeticSheet and the exact version-1 payload. PUT takes {kind,title,payload,expectedRevision,visibility?,sharedBranchId?}; new documents default to private.
+- GET list/read, PUT save, POST shared copy, PATCH rename and DELETE revision-checked deletion support arithmeticSheet.
+  Save and shared copy validate with reopenArithmeticSheet and compute the summary count with arithmeticSheetProblemCount.
+  Read and rename validate the saved snapshot without regenerating it. Rename changes the envelope title only. Shared copy keeps prompt/answer snapshots, allocates a new document ID and becomes private.
+  Stored payload versions, prompt/answer consistency, duplicate identity, ordering, schema and item quotas are verified by the frozen core.
+  Arithmetic saves additionally reject ambiguous JSON and bodies over 256 KiB; a valid 100-item sheet with a 128-character seed is covered.
+
+Permissions and concurrency
+- bank-only accounts can list/read their arithmetic documents and eligible same-branch shares, and save/copy/rename/delete arithmetic documents.
+- bank-only access does not permit legacy draft/extraction/conceptBlank reads, writes or private assets. List filters are constrained to arithmeticSheet.
+- Existing storage-menu readers retain their previous document read scope. library retains owner rename/delete; arithmetic save/copy always require bank.
+- Existing live branch-membership predicates, owner-only original mutation, explicit branch sharing, optimistic revisions and material audit logs are preserved.
+- Existing administrative inspection audit logs and failure error logging remain; these are not usage/ranking counters.
+- No labels or ranking fields were invented. The document title/sharing/revision envelope stays separate from the strict core snapshot. Root owns any further label metadata design.
+
+Writer gate and deployment prerequisites
+1. Keep ARITHMETIC_SHEET_WRITE unset or off while integrating; only the exact value on enables arithmetic document mutations. Unknown values, true, ON and on-with-space are closed.
+2. Under separate live-DB authorization, apply prisma/migrations/20261014190000_workspace_document_arithmetic_sheet/migration.sql using the project's Prisma migration workflow. This worker did not apply it.
+   It atomically widens workspace_document_kind_check in one ALTER TABLE, preserving draft/extraction/conceptBlank and adding arithmeticSheet. Unknown kinds remain rejected. There are no data rewrites, schema enum changes or browser grants.
+   Verify the deployed CHECK includes all four kinds. PostgreSQL ALTER TABLE normally takes an ACCESS EXCLUSIVE lock; schedule application according to the target database's operational constraints (https://www.postgresql.org/docs/current/sql-altertable.html).
+3. Deploy and verify compatible server AND UI readers with the writer still OFF: library list/filter/open, admin document kind/preview, saved-sheet reopen, existing document types, and problem/answer print pages. Root owns UI/print work.
+4. Confirm all deployed readers and background consumers are compatible before setting ARITHMETIC_SHEET_WRITE=on in the intended environment. Then verify create/update/copy/rename/delete, cross-owner denial and stale revisions in an authorized test environment.
+5. After the first arithmetic document is saved, keep this compatible-reader floor. Turning the gate off stops mutations but leaves existing documents readable; it does not permit rollback to an older reader that misunderstands the new kind.
+- Gate-off returns HTTP 503 with error.code ARITHMETIC_WRITE_DISABLED for arithmetic saves, copies, renames and deletes, before mutation or audit creation. Catalog, preview, list and verified reads remain available.
+- Existing administrative/Eywa branch-transfer security revocations still privatize shared documents and increment revisions even when the writer gate is off. Gating those would preserve stale sharing and break existing account behavior; they do not create or modify arithmetic content. Root was informed of this deliberate boundary.
+
+Validation and remaining integration
+- Initial run: six scoped suites passed all 133 tests (workspaceArithmetic, branchLibrary, privateAccounts, workspaceDocumentKindConstraint, accountRouteAccess, privateWorkspacePersistence).
+- After adding maximum-size and duplicate-key persistence coverage, branchLibrary rerun passed 45/45; the current six-suite set contains 134 tests.
+- PGlite executed the actual new CHECK migration in memory, confirmed old rows unchanged, accepted all four kinds, and rejected unknown inserts/updates. No configured remote database was connected.
+- API tests use the actual route wrappers/auth guards/core with a database-access trap; successful catalog/preview cause no storage access or error-log writes. Error logs are mocked for rejected requests.
+- ESLint on the 14 owned TypeScript files passed. git diff --check passed.
+- Full npm run type-check reported exactly two UI integration diagnostics: missing arithmeticSheet labels in src/components/admin/documentTypes.ts:4 and src/components/unified/PrivateLibrary.tsx:19. Both were reported to root and left untouched.
+- Additional existing errorLogRouteCoverage guard: 12/14 pass, two fail because five pre-existing English question routes (root, candidates, compose, resolve, scopes) do not use withErrorLog. The new arithmetic routes pass its source and runtime coverage; the five unchanged routes were confirmed in HEAD.
+- Focused server typecheck passed with no diagnostics using this directory's tsconfig.server.json (including server dependencies and the changed tests).
+- Live migration, compatible UI/print readers, production verification and enabling the writer gate remain the coordinator's deployment steps. This commit is not evidence that deployment or live DB acceptance has happened.
+
+Reproduction commands
+npx --no-install vitest run src/__tests__/api/workspaceArithmetic.test.ts src/__tests__/api/branchLibrary.test.ts src/__tests__/api/privateAccounts.test.ts src/__tests__/unit/workspaceDocumentKindConstraint.test.ts src/__tests__/unit/accountRouteAccess.test.ts src/__tests__/unit/privateWorkspacePersistence.test.ts --maxWorkers=2
+node --max-old-space-size=8192 node_modules/typescript/bin/tsc --noEmit --project docs/reports/arithmetic-persistence-20261014/tsconfig.server.json
+npx --no-install eslint src/contracts/privateWorkspace.contract.ts src/contracts/workspaceArithmetic.contract.ts src/lib/arithmeticDocumentPolicy.ts src/lib/workspaceArithmeticRoutes.ts src/lib/privateWorkspace.ts src/lib/privateDocumentActions.ts src/lib/privateDocumentList.ts src/lib/accountRouteAccess.ts src/app/api/arithmetic/catalog/route.ts src/app/api/arithmetic/generate/route.ts src/__tests__/api/workspaceArithmetic.test.ts src/__tests__/api/branchLibrary.test.ts src/__tests__/unit/accountRouteAccess.test.ts src/__tests__/unit/workspaceDocumentKindConstraint.test.ts
