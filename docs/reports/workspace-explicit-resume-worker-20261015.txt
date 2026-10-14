@@ -1,0 +1,35 @@
+Explicit resume / workflow persistence worker report
+Date: 2026-10-15 (Asia/Seoul)
+Branch: BIGSHOL/workspace-explicit-resume
+
+Implementation commits (in order)
+ec2d38fdb - Persist workflow and require explicit worksheet resume.
+2ebb91f59 - Start extraction sessions blank until explicit resume; fix optional summary Map typing.
+
+Interface for coordinator
+- WorkspaceDraft.workflow?: { source: bank | extraction; step: scope | review | output; sourceDocumentId?: string }.
+- useWorkspaceDrafts exposes setWorkflow(workflow | undefined) and getCurrentDraft(). After await openDraft(id), read getCurrentDraft() rather than a stale render closure.
+- MathExamBuilder and ExamBuilder accept optional initialStep and onStepChange. Key the builder by draft.id when explicitly opening another document. Legacy content without workflow starts at scope. Saved output must pass prepareOutput before the printable editor mounts.
+- PrivateDocumentSummary.workflow?: DocumentWorkflow. Sources: bank, extraction, arithmetic. Steps: scope, review, output, import, crop. Extraction upload maps to import; crop/review stay unchanged; export maps to output. Missing/unsupported stages remain absent. Arithmetic summary reads only optional presentation.version=1 and presentation.step.
+
+Persistence behavior
+- The live hook opts into autoResume:false; direct store constructors retain default legacy behavior for existing callers/tests.
+- Hydration lists summaries and starts a new blank editor without fetching the previous document or its assets. Unopened cached drafts, optimistic bases, and unsent changes remain preserved, without retrying their cloud writes on a visit.
+- Explicitly opening unsent recovery uses that recovery and its original revision. Conflicting server data is not silently adopted. Blank workflow seeding does not schedule a save or create a library entry.
+- StudioSessionStore and PrivateStudioSessionStore support optional autoResume:false. StudioView changes only its store construction to use that option. With no selected document ID, they skip previous current/latest/legacy restoration. An explicit document ID still resumes.
+- New local extraction sessions use distinct keys and retain the old active record and original bytes. Default local-store behavior remains backward compatible.
+
+List projection / permissions
+- Existing authorized and paginated Prisma list remains unchanged in scope, ordering, and payload-free selection.
+- The follow-up PostgreSQL projection accepts only owner/document/revision tuples returned by that list, with at most 100 eligible rows. JSON source/step fields are bounded to 16 characters and sourceDocumentId to 101 characters (the parser rejects IDs longer than 100).
+- No full payloads, image arrays, crop contents, or asset tables are returned. The result also checks owner/id/kind/revision before attaching optional metadata.
+- No schema migration, actual database query/write, browser session, paid operation, or push was performed. Database and HTTP behavior in tests is mocked.
+
+Validation
+- Focused store, hook, recovery, permission, and projection suites passed across targeted runs (198 tests).
+- Shared ExamBuilder component suite: 14/14 passed, including blank mount, saved-stage transitions, StrictMode output validation, revision failure, and denied output permission.
+- Scoped ESLint passed; git diff --check passed.
+- Full repository type-check passed: node --max-old-space-size=8192 node_modules/typescript/bin/tsc --noEmit. Initial default-heap run exhausted memory; the first 8 GB run exposed one optional-property Map inference error fixed in 2ebb91f59, and the final run exited 0.
+
+Integration boundary
+Coordinator owns UnifiedWorkspace, PrivateLibrary presentation, shell/theme/icons, arithmetic integration, and actual browser QA. This worker did not edit those files. No deployment or real-account verification is claimed.
