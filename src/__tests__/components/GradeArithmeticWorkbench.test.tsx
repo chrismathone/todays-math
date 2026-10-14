@@ -219,7 +219,7 @@ describe("grade arithmetic user flow", () => {
         "saved-grade",
         "arithmeticSheet",
         savedDocument.title,
-        payload,
+        expect.objectContaining(payload),
         4,
       ),
     );

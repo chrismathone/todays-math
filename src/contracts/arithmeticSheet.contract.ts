@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { arithmeticPresentationSchema } from "./arithmeticPresentation.contract";
 
 import {
   ARITHMETIC_CATALOG_VERSION,
@@ -42,6 +43,7 @@ export const arithmeticSheetPayloadSchema = z
     engineVersion: z.literal(ARITHMETIC_ENGINE_VERSION),
     catalogVersion: z.literal(ARITHMETIC_CATALOG_VERSION),
     seed: arithmeticSeedSchema,
+    presentation: arithmeticPresentationSchema.optional(),
     rounds: z
       .array(
         z.strictObject({
@@ -83,7 +85,10 @@ export const arithmeticSheetPayloadSchema = z
             message: "arithmetic:order",
           });
         }
-        const key = arithmeticIdentityKey(item.spec.skillId, item.spec.operands);
+        const key = arithmeticIdentityKey(
+          item.spec.skillId,
+          item.spec.operands,
+        );
         if (keys.has(key)) {
           ctx.addIssue({
             code: "custom",
@@ -92,7 +97,9 @@ export const arithmeticSheetPayloadSchema = z
           });
         }
         keys.add(key);
-        if (item.prompt.notation !== ARITHMETIC_SKILL_NOTATION[item.spec.skillId]) {
+        if (
+          item.prompt.notation !== ARITHMETIC_SKILL_NOTATION[item.spec.skillId]
+        ) {
           ctx.addIssue({
             code: "custom",
             path: [...path, "prompt"],
@@ -121,4 +128,6 @@ export const arithmeticSheetPayloadSchema = z
     }
   });
 
-export type ArithmeticSheetPayload = z.infer<typeof arithmeticSheetPayloadSchema>;
+export type ArithmeticSheetPayload = z.infer<
+  typeof arithmeticSheetPayloadSchema
+>;
