@@ -52,24 +52,54 @@ export type ProblemEligibilityInput = {
 };
 
 /**
- * 못 내는 사유 한 줄, 낼 수 있으면 `null`.
+ * 못 내는 까닭의 **열쇠** — 화면이 문구를 고를 때 쓴다(문제은행 P0 · 2026-10-14).
  *
- * 문구는 **사무적**이다(D-08) — 화면의 버튼 설명과 API 의 422 사유가 같은 문장을 쓴다.
- * 순서가 곧 우선순위다: 여럿이 걸리면 앞의 것을 말한다.
+ * `locked` 는 `directUseAllowed = false` 다. 이 칸은 법적 권리만이 아니라 그림 유실 · 재검토 · 원문 갱신 등
+ * 여러 잠금이 같이 쓰고 **까닭을 저장하지 않는다** — 화면은 이 열쇠를 «출제 잠금(사유 미기록)»으로 읽는다
+ * (`BANK_INELIGIBLE_LABEL`). 까닭을 지어내지 않는다.
+ */
+export const PROBLEM_INELIGIBLE_CODES = [
+  "notShared",
+  "notApproved",
+  "locked",
+  "noAnswer",
+] as const;
+export type ProblemIneligibleCode = (typeof PROBLEM_INELIGIBLE_CODES)[number];
+
+const INELIGIBLE_REASON: Record<ProblemIneligibleCode, string> = {
+  notShared: "공용 풀 문항이 아닙니다.",
+  notApproved: "검수를 통과하지 않은 문항입니다.",
+  locked: "출제가 잠긴 문항입니다.",
+  noAnswer: "정답이 없는 문항입니다.",
+};
+
+/**
+ * 못 내는 까닭의 열쇠, 낼 수 있으면 `null`. 순서가 곧 우선순위다: 여럿이 걸리면 앞의 것을 말한다.
  *
  * ⚠️ 정답 판정은 `hasRealAnswer` 가 아니라 **`where` 와 똑같이** 센티널 하나만 본다.
  *    빈 문자열까지 여기서 막으면 DB 조회와 답이 갈리고, 그 어긋남은 「화면은 담을 수
  *    있다는데 서버가 거부」로 나타난다. 자격 규칙을 넓히려면 **양쪽을 같이** 고칠 것.
  */
+export function problemIneligibleCode(
+  problem: ProblemEligibilityInput,
+): ProblemIneligibleCode | null {
+  if (problem.pool !== DEFAULT_PROBLEM_POOL) return "notShared";
+  if (problem.reviewStatus !== "approved") return "notApproved";
+  if (!problem.directUseAllowed) return "locked";
+  if (problem.answer === MISSING_ANSWER) return "noAnswer";
+  return null;
+}
+
+/**
+ * 못 내는 사유 한 줄, 낼 수 있으면 `null` — `problemIneligibleCode` 의 문장판.
+ *
+ * 문구는 **사무적**이다(D-08) — 화면의 버튼 설명과 API 의 422 사유가 같은 문장을 쓴다.
+ */
 export function problemIneligibleReason(
   problem: ProblemEligibilityInput,
 ): string | null {
-  if (problem.pool !== DEFAULT_PROBLEM_POOL) return "공용 풀 문항이 아닙니다.";
-  if (problem.reviewStatus !== "approved")
-    return "검수를 통과하지 않은 문항입니다.";
-  if (!problem.directUseAllowed) return "출제가 잠긴 문항입니다.";
-  if (problem.answer === MISSING_ANSWER) return "정답이 없는 문항입니다.";
-  return null;
+  const code = problemIneligibleCode(problem);
+  return code === null ? null : INELIGIBLE_REASON[code];
 }
 
 /** 낼 수 있는가 — 사유가 필요 없는 자리를 위한 얇은 껍데기. */
