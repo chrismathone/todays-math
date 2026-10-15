@@ -1,0 +1,83 @@
+Arithmetic elementary angle presentation adapter — 2026-10-15
+
+Scope and integration
+  src/lib/arithmetic-v2/presentation/angles.ts exports:
+    presentArithmeticAngleSvg(id: string, originalSvg: string): string | undefined
+  Call ONLY after exact canonical ID + original SVG matching or validated snapshot
+  lookup. The marker check inside this adapter is not source authentication.
+  Use result ?? originalSvg for display. Never store the presentation in canonical
+  figures, arithmetic snapshots, or their compressed packs.
+  The root integration owns the additional arithmetic-geometry-presentation-v1
+  sizing marker, 280px longest extent and responsive max-width. The output retains
+  arithmetic-geometry-drill-v1 and complete existing MathJax data-label groups.
+  No source family, published figure ID, published asset pack, registry, shared UI
+  or shared figure-engine/editor code was changed.
+
+Implementation
+  All 8 elementary angle families, 912 finite cases:
+    sum 121; difference 181; right remainder 51; straight remainder 71;
+    turn remainder 57; quadrilateral missing angle 331;
+    isosceles base angle 50; isosceles apex angle 50.
+  Existing source SVG coordinates are read, then uniformly scaled; there is no
+  anisotropic stretching or independent construction of the polygon geometry.
+  Existing renderFigureSpec calls the vendored Python FigureSpec v2 engine through
+  scripts/figure/render_spec.py and existing MathJax metrics/substitution.
+  Reflex turn angles use the engine's directed circle arcs, since minor-angle
+  marks intentionally cannot express them. Equal-side ticks/right-square marks
+  also come from that engine. No additional SVG geometry renderer was created.
+  The figure editor's angleMarkCorner parses the delivered arcs during checks.
+  The 280x280 viewBox is centered on actual visible ink measured in Chromium.
+  This removes the engine's conservative full-circle angle-bound whitespace.
+  Polygon/ray geometry spans 240 units (turn geometry uses 118-unit rays and
+  85/105-unit given/target arcs). Labels are 16 units: 16px at280, 18.286px at320.
+  Givens stay in their own sector; whole-angle values sit just beyond the outer
+  arc, with angular clearance from the dividing ray. Sum/difference and all
+  quadrilateral cases have no leaders. Only 10 shallow isosceles cases use the
+  engine's short local leader attached to the given arc, never the target.
+  Target arcs are unnumbered; no question marks or answer labels are introduced.
+
+Asset/runtime behavior
+  angles.assets.json is a display-only, DEFLATE/base64 pack. It is required and
+  inflated once on the first handled lookup; unsupported families do not load it.
+  The synchronous contract cannot defer a network fetch. A bundler may include
+  this static require in a client chunk even though execution/inflation is lazy.
+  Expanded SVG strings are cached for subsequent synchronous display lookups.
+  Exact compressed/raw bytes and SHA-256 are in the asset header and tested.
+  Final pack: 319,401 compressed bytes; 425,868 base64 characters;
+  7,119,988 raw JSON bytes (912 SVG strings).
+  SHA-256: ebc0b8afe6cdaa7441983b1130b4374b4b04f918ac5a1b6d8e3feed6873071f0
+
+Validation
+  arithmeticAnglePresentation.test.ts checks every finite tuple, coordinate
+  equivalence, all given/target angles, all expected arc/tick/right-angle marks,
+  given label contents, sector/vertex ownership and pack digest/domain/fallbacks.
+  Polygon labels must remain inside and closer to their own marked vertex at
+  every corner of their ink/halo box. Whole/part labels must lie on opposite
+  sides of the outer arc. Isosceles external leaders must start on the given
+  arc, stay short, and be nearer that vertex than the target.
+  arithmetic-angle-presentation-verify.ts measures actual rendered glyphs and
+  all stroked geometry in Chromium at280 and320, 1,824 diagram-size checks.
+  Final result: 912 coordinate/ownership checks passed; 1,824 browser checks,
+  zero failures. Measured font size 16.000–18.286px; minimum glyph ink height
+  11.312px. Focused Vitest 3/3, focused TypeScript 6 entry files, ESLint passed.
+  It includes actual path/font metrics, halo/stroke collisions, label collisions
+  and clipping; independent coordinate and ownership checks precede the browser.
+  Evidence: arithmetic-angle-presentation-evidence/checks.json and four PNGs:
+    representatives-280-1.png; representatives-280-2.png;
+    representatives-320-1.png; representatives-320-2.png.
+  Representatives cover all families and endpoint shapes, narrow rotated 20°,
+  a bisected whole angle, reflex turns, a square, skew cyclic quadrilaterals and
+  shallow/tall isosceles triangles. Screenshots were inspected for legibility and
+  annotation relationships in addition to automated collision checks.
+  This is mathematical/presentation verification, not an official curriculum
+  alignment audit or a measured student-learning claim.
+
+Reproduction (PowerShell, no install/link/env files)
+  Set <tools> to C:/Creative/testautocreator (existing installation).
+  node --import file:///<tools>/node_modules/tsx/dist/loader.mjs --import ./scripts/qa/arithmetic-angle-presentation-deps.mjs scripts/qa/arithmetic-angle-presentation-build.ts <tools>
+  node --import file:///<tools>/node_modules/tsx/dist/loader.mjs --import ./scripts/qa/arithmetic-angle-presentation-deps.mjs scripts/qa/arithmetic-angle-presentation-verify.ts <tools>
+  node scripts/qa/arithmetic-angle-presentation-typecheck.mjs <tools>
+  From <tools>, run:
+    node node_modules/vitest/vitest.mjs run --config <worker>/scripts/qa/arithmetic-angle-presentation-vitest.config.mts
+  The builder also supports --sample, --id=<canonical-id>, and an incremental
+  --update-family=<family-suffix> for inspection; full rebuilding is deterministic.
