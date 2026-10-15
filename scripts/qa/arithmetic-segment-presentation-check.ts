@@ -4,11 +4,29 @@ import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { chromium } from "playwright";
 import { typesetArithmeticGeometrySvg as typeset } from "../../src/lib/arithmetic-v2/presentation/typography";
+import { arithmeticGeometryDisplaySize } from "../../src/lib/arithmetic-v2/presentation";
+import {
+  figureSvgUrlPrintMm,
+  figureWidthStyle,
+} from "../../src/lib/figurePrintSize";
 import type { SegmentPlan } from "./arithmetic-segment-presentation-model";
 
 const out = path.resolve("tmp/arithmetic-segment-presentation");
 const style = (size: number) =>
-  `<style>body{font:13px Arial;margin:16px}main{display:grid;grid-template-columns:repeat(3,${size + 24}px);gap:16px}article{padding:8px;border:1px solid #ddd;break-inside:avoid}h2{font-size:12px;font-weight:normal;overflow-wrap:anywhere;height:32px}svg{display:block;width:${size}px;height:${size}px;max-width:100%;margin:auto}@media print{main{grid-template-columns:repeat(2,84mm)}svg{width:74.083333mm;height:74.083333mm}article{border:0}}</style>`;
+  `<style>body{font:13px Arial;margin:16px}main{display:grid;grid-template-columns:repeat(3,${size + 24}px);gap:16px}article{padding:8px;border:1px solid #ddd;break-inside:avoid}h2{font-size:12px;font-weight:normal;overflow-wrap:anywhere;height:32px}svg{display:block;width:var(--screen-w);height:var(--screen-h);max-width:100%;margin:auto}@media print{main{grid-template-columns:repeat(2,84mm)}svg{width:var(--print-w);height:var(--print-h)}article{border:0}}</style>`;
+function card(svg: string, size: number, title = "") {
+  const presented = svg.replace(
+    /(<svg\b[^>]*>)/,
+    "$1<desc>arithmetic-geometry-presentation-v1</desc>",
+  );
+  const screen = arithmeticGeometryDisplaySize(presented);
+  const print = figureSvgUrlPrintMm(
+    `data:image/svg+xml,${encodeURIComponent(presented)}`,
+  )!;
+  const printWidth = figureWidthStyle(print.widthMm, print.maxWidthMm)!.width;
+  const printHeight = `${(parseFloat(printWidth) * print.height) / print.width}mm`;
+  return `<article style="--screen-w:${(screen.width * size) / 280}px;--screen-h:${(screen.height * size) / 280}px;--print-w:${printWidth};--print-h:${printHeight}">${title ? `<h2>${title}</h2>` : ""}${presented}</article>`;
+}
 async function main() {
   const plans = JSON.parse(
     await readFile(path.join(out, "plans.json"), "utf8"),
@@ -40,7 +58,7 @@ async function main() {
         for (let i = 0; i < plans.length; i += 70) {
           const batch = plans.slice(i, i + 70);
           await page.setContent(
-            `<html><meta charset="utf-8">${style(size)}<main>${batch.map((p) => `<article>${typed ? typeset(displays[p.id]) : displays[p.id]}</article>`).join("")}</main></html>`,
+            `<html><meta charset="utf-8">${style(size)}<main>${batch.map((p) => card(typed ? typeset(displays[p.id]) : displays[p.id], size)).join("")}</main></html>`,
           );
           const checks = await page
             .locator("svg")
@@ -347,10 +365,7 @@ async function main() {
     for (let part = 0; part < 2; part++) {
       const html = `<html lang="ko"><meta charset="utf-8">${style(280)}<main>${representatives
         .slice(part * 6, part * 6 + 6)
-        .map(
-          (p) =>
-            `<article><h2>${p.id}</h2>${typeset(displays[p.id])}</article>`,
-        )
+        .map((p) => card(typeset(displays[p.id]), 280, p.id))
         .join("")}</main></html>`;
       await writeFile(path.join(out, `gallery-${part + 1}.html`), html);
       await page.setContent(html);
@@ -378,10 +393,7 @@ async function main() {
       await page.setContent(
         `<html lang="ko"><meta charset="utf-8">${style(280)}<main>${everyType
           .slice(i, i + 6)
-          .map(
-            (p) =>
-              `<article><h2>${p.id}</h2>${typeset(displays[p.id])}</article>`,
-          )
+          .map((p) => card(typeset(displays[p.id]), 280, p.id))
           .join("")}</main></html>`,
       );
       await page.screenshot({

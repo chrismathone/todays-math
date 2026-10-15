@@ -187,18 +187,113 @@ async function main() {
         await page.setContent(
           `<html><body>${batch
             .flatMap((d) => {
-              const svg = `<svg xmlns="http://www.w3.org/2000/svg">${d.label}</svg>`;
+              const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-180 -180 360 360">${d.sourceGeometry}${d.label.replace("<text ", '<text data-measured-dimension="true" ')}</svg>`;
               return [svg, typeset(svg)];
             })
             .join("")}</body></html>`,
         );
         const boxes = await page
-          .locator("svg > text, svg > g")
-          .evaluateAll((nodes) =>
-            nodes.map((n) => {
-              const b = (n as SVGGraphicsElement).getBBox();
-              return { x: b.x, y: b.y, width: b.width, height: b.height };
-            }),
+          .locator("[data-measured-dimension]")
+          .evaluateAll(async (nodes) =>
+            Promise.all(
+              nodes.map(async (n) => {
+                const label = n as SVGGraphicsElement,
+                  b = label.getBBox();
+                const scale = 4,
+                  pad = 10,
+                  left = b.x - pad,
+                  top = b.y - pad;
+                const width = Math.ceil((b.width + pad * 2) * scale),
+                  height = Math.ceil((b.height + pad * 2) * scale);
+                const canvas = document.createElement("canvas");
+                canvas.width = width;
+                canvas.height = height;
+                const context = canvas.getContext("2d", {
+                  willReadFrequently: true,
+                })!;
+                const image = new Image();
+                image.src =
+                  "data:image/svg+xml;charset=utf-8," +
+                  encodeURIComponent(
+                    `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="${left} ${top} ${width / scale} ${height / scale}">${label.outerHTML}</svg>`,
+                  );
+                await image.decode();
+                context.drawImage(image, 0, 0);
+                const pixels = context.getImageData(0, 0, width, height).data;
+                const painted = (x: number, y: number) => {
+                  const xx = Math.floor((x - left) * scale),
+                    yy = Math.floor((y - top) * scale);
+                  // Reserve one raster pixel (0.25 SVG units) for the final
+                  // fitted viewport's subpixel phase. This changes candidate
+                  // acceptance only; editor paths, halos and masks stay exact.
+                  for (let dy = -1; dy <= 1; dy++) {
+                    for (let dx = -1; dx <= 1; dx++) {
+                      const px = xx + dx,
+                        py = yy + dy;
+                      if (
+                        px >= 0 &&
+                        py >= 0 &&
+                        px < width &&
+                        py < height &&
+                        pixels[(py * width + px) * 4 + 3] > 8
+                      )
+                        return true;
+                    }
+                  }
+                  return false;
+                };
+                let sourceInkClear = true;
+                for (const geometry of label.ownerSVGElement!.querySelectorAll<SVGGeometryElement>(
+                  "[data-segment-source] line,[data-segment-source] path,[data-segment-source] circle",
+                )) {
+                  const m = label
+                    .getCTM()!
+                    .inverse()
+                    .multiply(geometry.getCTM()!);
+                  const radius =
+                    (parseFloat(getComputedStyle(geometry).strokeWidth) *
+                      Math.hypot(m.a, m.b)) /
+                    2;
+                  const length = geometry.getTotalLength(),
+                    steps = Math.ceil(length * 2);
+                  for (let step = 0; step <= steps && sourceInkClear; step++) {
+                    const p = geometry.getPointAtLength(
+                        (length * step) / steps,
+                      ),
+                      x = m.a * p.x + m.c * p.y + m.e,
+                      y = m.b * p.x + m.d * p.y + m.f;
+                    if (
+                      x < left - radius ||
+                      x > left + width / scale + radius ||
+                      y < top - radius ||
+                      y > top + height / scale + radius
+                    )
+                      continue;
+                    for (let point = 0; point < 9; point++) {
+                      const r = point === 8 ? 0 : radius,
+                        angle = (point * Math.PI) / 4;
+                      if (
+                        painted(
+                          x + r * Math.cos(angle),
+                          y + r * Math.sin(angle),
+                        )
+                      ) {
+                        sourceInkClear = false;
+                        break;
+                      }
+                    }
+                  }
+                  if (!sourceInkClear) break;
+                }
+                return {
+                  x: b.x,
+                  y: b.y,
+                  width: b.width,
+                  height: b.height,
+                  sourceInkClear,
+                };
+              }),
+            ),
           );
         assert.equal(boxes.length, batch.length * 2);
         batch.forEach((d, j) => {
@@ -206,6 +301,7 @@ async function main() {
             b = boxes[j * 2 + 1];
           const x = Math.min(a.x, b.x),
             y = Math.min(a.y, b.y);
+          d.sourceInkClear = a.sourceInkClear && b.sourceInkClear;
           d.box = {
             x: x - d.at[0],
             y: y - d.at[1],
@@ -350,9 +446,10 @@ async function main() {
       if (process.argv.includes("--write"))
         await writeFile(assetPath, serialized);
       else
-        assert.equal(
-          (await readFile(assetPath, "utf8")).replace(/\r\n/g, "\n"),
-          serialized,
+        assert.ok(
+          (await readFile(assetPath, "utf8")).replace(/\r\n/g, "\n") ===
+            serialized,
+          "Generated segment asset differs; review the display proof before using --write",
         );
     }
     const summary = {

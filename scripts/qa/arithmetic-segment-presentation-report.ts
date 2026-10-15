@@ -12,12 +12,15 @@ async function main() {
     JSON.parse(await readFile(path.join(out, name), "utf8"));
   const build = await read("build.json"),
     proof = await read("proof.json"),
+    ink = await read("ink-proof.json"),
     runtime = await read("runtime.json");
   const plans = (await read("plans.json")) as SegmentPlan[];
   const layouts = (await read("layouts.json")) as Layout[];
   assert.equal(build.figures, 1827);
   assert.equal(runtime.figures, 1827);
   assert.deepEqual(proof.failures, []);
+  assert.equal(ink.figures, 1827);
+  assert.deepEqual(ink.failures, []);
   assert.equal(Object.keys(proof.modes).length, 6);
   assert.ok(
     Object.values(proof.modes).every(
@@ -49,7 +52,7 @@ async function main() {
       curve:
         "Offline directly calls actual figure-editor addFigureMark(addDimension). When its default overlaps content, replays addFigureObject(curve), moveFigureHandle(CURVE_BEND_HANDLE), addMidLabel and, when needed, editFigureObject at sampleFigurePath positions. No separate curve construction or translated measured chord.",
       label:
-        "Editor-returned horizontal label coordinates, font and attributes are retained. Existing editor label-position edits can move a number along its same curve to clear intersecting diagonals. Actual plain and typeset browser bounds jointly constrain layout.",
+        "Editor-returned horizontal label coordinates, font and attributes are retained. Existing editor label-position edits can move a number along its same curve to clear intersecting diagonals. Actual plain and typeset browser bounds jointly constrain layout; rasterized glyph and halo paint must also clear the full source stroke width.",
       gap: "Default editor gapped paths and label halo are retained. Manual curves retain raw labels with the exact mask and attachment extracted from actual typesetFigureSvg(). No copied gap geometry, width estimate or custom padding. Source geometry needs no masking because layout keeps the numeric label clear of it.",
       geometry:
         "All frozen line/path/circle elements, equal/parallel/right/angle marks retained under a uniform 1.5 transform. Point/center labels relocated locally; old leaders removed. Boundary dimensions use the editor outside command. No projected endpoints or witness lines. No numeric value derived from drawing scale.",
@@ -96,11 +99,17 @@ async function main() {
       reproduction:
         "A complete second generation without --write reproduced checked asset bytes exactly.",
       browser: proof,
+      glyphAndHalo: ink,
+      protectedInk:
+        "Every source stroke is checked against actual rasterized numeric glyph and halo paint. This exposed 20 raw and 10 typeset infringements in the first editor pack; all are corrected by supported editor placement. Candidate acceptance reserves one 4x raster pixel for fitted-viewport subpixel phase. The independent final check uses the actual painted pixels without that candidate margin. All open source/dimension paths must retain computed fill=none.",
+      sizing:
+        "All six final modes preserve the actual aspect ratio through arithmeticGeometryDisplaySize. Print uses figureSvgUrlPrintMm and figureWidthStyle rounded millimeter width, with proportional height. Earlier square-viewport measurements are retained only as prior evidence.",
       collisionMeasurement:
         "Raw text is rasterized at 4x to measure painted glyph bounds. SVG getBBox includes unused font ascender/descender space and produced 77 false collision flags across 34 variants; those initial results are retained in the durable evidence. Path-based typography uses actual path bounds. Both retain the same 1-unit clearance gate and all source-boundary/endpoint checks.",
-      renderCount: 1827 * 6,
+      layoutRenderCount: 1827 * 6,
+      paintedInkRenderCount: 1827 * 2,
       visualReview:
-        "All 50 type representatives inspected. Targeted external-bisector and trapezoid-parallel-section examples included in screen and print proof; full 280/320/print audits cover every numeric variant before and after typography.",
+        "All 50 type representatives inspected, plus all 20 prior halo-infringement variants before/after typography. Targeted external-bisector and trapezoid-parallel-section examples included in screen and print proof; full 280/320/print audits cover every numeric variant before and after typography.",
       boundary:
         "Standalone presentation/browser/print proof; combined application and other figure categories are reported separately.",
     },
@@ -115,6 +124,7 @@ async function main() {
     reproduction: [
       "tsx scripts/qa/arithmetic-segment-presentation-build.ts (compares checked bytes; --write deliberately republishes)",
       "tsx scripts/qa/arithmetic-segment-presentation-check.ts",
+      "tsx scripts/qa/arithmetic-segment-presentation-ink.ts",
       "tsx scripts/qa/arithmetic-segment-presentation-runtime.ts",
       "vitest run --config scripts/qa/arithmetic-segment-presentation-vitest.config.mts",
       "node scripts/qa/arithmetic-segment-presentation-typecheck.mjs",

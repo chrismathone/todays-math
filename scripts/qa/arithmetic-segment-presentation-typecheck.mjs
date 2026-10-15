@@ -8,9 +8,16 @@ const ts = createRequire(path.join(root, "package.json"))("typescript");
 const files = [
   "src/lib/arithmetic-v2/presentation/segments.ts",
   "src/__tests__/unit/arithmeticSegmentPresentation.test.ts",
-  ...["build", "check", "editor", "layout", "model", "runtime", "report"].map(
-    (s) => `scripts/qa/arithmetic-segment-presentation-${s}.ts`,
-  ),
+  ...[
+    "build",
+    "check",
+    "editor",
+    "ink",
+    "layout",
+    "model",
+    "runtime",
+    "report",
+  ].map((s) => `scripts/qa/arithmetic-segment-presentation-${s}.ts`),
 ];
 const program = ts.createProgram(
   files.map((f) => path.join(workspace, f)),

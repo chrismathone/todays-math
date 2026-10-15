@@ -125,6 +125,7 @@ export function place(
   ];
   let best: Layout | undefined;
   for (const dimension of candidates) {
+    if (dimension.sourceInkClear === false) continue;
     const numeric: Label = {
       key: `segment-${plan.given.key}`,
       text: plan.given.text,

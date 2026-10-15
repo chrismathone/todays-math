@@ -27,6 +27,8 @@ export interface EditorDimension {
   label: string;
   at: Point;
   fontSize: number;
+  sourceGeometry: string;
+  sourceInkClear?: boolean;
   box?: { x: number; y: number; width: number; height: number };
 }
 
@@ -177,5 +179,6 @@ export function editorDimension(
     label: label.outerHTML,
     at: [Number(label.getAttribute("x")), Number(label.getAttribute("y"))],
     fontSize: Number(label.getAttribute("font-size")),
+    sourceGeometry: plan.geometry,
   };
 }

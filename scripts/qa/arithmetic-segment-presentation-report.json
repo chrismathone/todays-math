@@ -11,7 +11,7 @@
   },
   "engine": {
     "curve": "Offline directly calls actual figure-editor addFigureMark(addDimension). When its default overlaps content, replays addFigureObject(curve), moveFigureHandle(CURVE_BEND_HANDLE), addMidLabel and, when needed, editFigureObject at sampleFigurePath positions. No separate curve construction or translated measured chord.",
-    "label": "Editor-returned horizontal label coordinates, font and attributes are retained. Existing editor label-position edits can move a number along its same curve to clear intersecting diagonals. Actual plain and typeset browser bounds jointly constrain layout.",
+    "label": "Editor-returned horizontal label coordinates, font and attributes are retained. Existing editor label-position edits can move a number along its same curve to clear intersecting diagonals. Actual plain and typeset browser bounds jointly constrain layout; rasterized glyph and halo paint must also clear the full source stroke width.",
     "gap": "Default editor gapped paths and label halo are retained. Manual curves retain raw labels with the exact mask and attachment extracted from actual typesetFigureSvg(). No copied gap geometry, width estimate or custom padding. Source geometry needs no masking because layout keeps the numeric label clear of it.",
     "geometry": "All frozen line/path/circle elements, equal/parallel/right/angle marks retained under a uniform 1.5 transform. Point/center labels relocated locally; old leaders removed. Boundary dimensions use the editor outside command. No projected endpoints or witness lines. No numeric value derived from drawing scale.",
     "givens": "Every source point and numeric label preserved exactly. Only the already published number is drawn; all other public givens and target remain in the unchanged prompt.",
@@ -20,22 +20,22 @@
   "bytes": {
     "figures": 1827,
     "families": 50,
-    "rawBytes": 8876480,
-    "deflateBytes": 476382,
-    "jsonBytes": 637364,
-    "gzipJsonBytes": 434647,
-    "maxFamilyRawBytes": 940214,
-    "sha256": "596f3188d8ec6da2c9d87259f02560b1027b16395bc48c574e9955cf6b8551ab",
+    "rawBytes": 8893606,
+    "deflateBytes": 477864,
+    "jsonBytes": 639336,
+    "gzipJsonBytes": 436090,
+    "maxFamilyRawBytes": 943566,
+    "sha256": "cc66117da482b346584df07bb9387dc0c0c21b168df106c0da366f26fddb780f",
     "stats": {
       "m2-circum-equal-radii": {
         "count": 19,
-        "rawBytes": 95178,
-        "deflateBytes": 2451
+        "rawBytes": 97290,
+        "deflateBytes": 2560
       },
       "m2-right-circumradius": {
         "count": 19,
-        "rawBytes": 82289,
-        "deflateBytes": 1929
+        "rawBytes": 87537,
+        "deflateBytes": 2257
       },
       "m2-right-circum-diameter": {
         "count": 19,
@@ -54,33 +54,33 @@
       },
       "m2-centroid-vertex-from-short": {
         "count": 19,
-        "rawBytes": 96071,
-        "deflateBytes": 2182
+        "rawBytes": 96062,
+        "deflateBytes": 2253
       },
       "m2-centroid-short-from-vertex": {
         "count": 19,
-        "rawBytes": 96315,
-        "deflateBytes": 2222
+        "rawBytes": 96314,
+        "deflateBytes": 2303
       },
       "m2-centroid-vertex-from-median": {
         "count": 19,
-        "rawBytes": 96147,
-        "deflateBytes": 2193
+        "rawBytes": 96146,
+        "deflateBytes": 2262
       },
       "m2-centroid-short-from-median": {
         "count": 19,
-        "rawBytes": 96147,
-        "deflateBytes": 2193
+        "rawBytes": 96146,
+        "deflateBytes": 2262
       },
       "m2-centroid-median-from-vertex": {
         "count": 19,
-        "rawBytes": 96315,
-        "deflateBytes": 2222
+        "rawBytes": 96314,
+        "deflateBytes": 2303
       },
       "m2-centroid-median-from-short": {
         "count": 19,
-        "rawBytes": 96071,
-        "deflateBytes": 2182
+        "rawBytes": 96062,
+        "deflateBytes": 2253
       },
       "m2-iso-bisector-base": {
         "count": 19,
@@ -144,8 +144,8 @@
       },
       "m2-triangle-bisector-segment": {
         "count": 27,
-        "rawBytes": 115130,
-        "deflateBytes": 6020
+        "rawBytes": 115814,
+        "deflateBytes": 6352
       },
       "m2-parallelogram-diagonal-half": {
         "count": 19,
@@ -184,8 +184,8 @@
       },
       "m2-pythagoras-isosceles-height-integer": {
         "count": 14,
-        "rawBytes": 70203,
-        "deflateBytes": 3964
+        "rawBytes": 70521,
+        "deflateBytes": 3891
       },
       "m2-pythagoras-rhombus-side-integer": {
         "count": 7,
@@ -214,8 +214,8 @@
       },
       "m3-pythagoras-isosceles-height-surd": {
         "count": 177,
-        "rawBytes": 940214,
-        "deflateBytes": 73892
+        "rawBytes": 943566,
+        "deflateBytes": 74061
       },
       "m3-pythagoras-rhombus-side-surd": {
         "count": 138,
@@ -269,19 +269,19 @@
       },
       "m2-external-bisector-part": {
         "count": 18,
-        "rawBytes": 92051,
-        "deflateBytes": 3589
+        "rawBytes": 95443,
+        "deflateBytes": 3848
       },
       "m2-external-bisector-base": {
         "count": 18,
-        "rawBytes": 94477,
-        "deflateBytes": 3766
+        "rawBytes": 96519,
+        "deflateBytes": 3682
       }
     }
   },
   "editorCommands": {
-    "exactDefaults": 1386,
-    "manualSequences": 441,
+    "exactDefaults": 1335,
+    "manualSequences": 492,
     "adjustedAlongCurve": 352,
     "maximumBend": 16,
     "projectedEndpoints": 0,
@@ -289,8 +289,8 @@
   },
   "runtime": {
     "figures": 1827,
-    "bundleBytes": 641771,
-    "gzipBundleBytes": 437570,
+    "bundleBytes": 643743,
+    "gzipBundleBytes": 439036,
     "errors": [],
     "nodeGlobals": {
       "require": "undefined",
@@ -298,7 +298,7 @@
       "process": "undefined"
     },
     "cache": "Static compressed JSON import; per-family lazy raw-deflate/base64 decode with fflate. Import performs no inflate. Four-family LRU.",
-    "maximumFourFamilyDecodedJsonBytes": 3192226,
+    "maximumFourFamilyDecodedJsonBytes": 3195578,
     "memoryQualification": "Decoded JSON UTF-8 byte bound, not a claim about total JavaScript heap; strings/objects and loaded compressed data add overhead.",
     "generation": "No runtime Python, MathJax, DOM, browser layout, network, or figure generation."
   },
@@ -311,58 +311,66 @@
       "modes": {
         "plain-screen-280": {
           "count": 1827,
-          "minFont": 15.846123157086641,
-          "minShape": 212.6393585205078,
-          "maxPointDistance": 21.705433073310587,
+          "minFont": 15.845113348528539,
+          "minShape": 212.63687133789062,
+          "maxPointDistance": 21.705425134695627,
           "labels": 9783,
           "dimensions": 1827
         },
         "plain-screen-320": {
           "count": 1827,
-          "minFont": 18.109855036670446,
-          "minShape": 243.01611328125,
-          "maxPointDistance": 24.80620922664067,
+          "minFont": 18.10821589793265,
+          "minShape": 243.0009765625,
+          "maxPointDistance": 24.806184629128484,
           "labels": 9783,
           "dimensions": 1827
         },
         "plain-print-280": {
           "count": 1827,
-          "minFont": 15.846123157086641,
-          "minShape": 212.63934326171875,
-          "maxPointDistance": 21.705433073310587,
+          "minFont": 15.845113348528539,
+          "minShape": 212.62301635742188,
+          "maxPointDistance": 21.70663940560744,
           "labels": 9783,
           "dimensions": 1827
         },
         "typeset-screen-280": {
           "count": 1827,
-          "minFont": 15.846123157086641,
-          "minShape": 212.6393585205078,
-          "maxPointDistance": 21.705433073310587,
+          "minFont": 15.845113348528539,
+          "minShape": 212.63687133789062,
+          "maxPointDistance": 21.705425134695627,
           "labels": 9783,
           "dimensions": 1827
         },
         "typeset-screen-320": {
           "count": 1827,
-          "minFont": 18.109855036670446,
-          "minShape": 243.01611328125,
-          "maxPointDistance": 24.80620922664067,
+          "minFont": 18.10821589793265,
+          "minShape": 243.0009765625,
+          "maxPointDistance": 24.806184629128484,
           "labels": 9783,
           "dimensions": 1827
         },
         "typeset-print-280": {
           "count": 1827,
-          "minFont": 15.846123157086641,
-          "minShape": 212.63934326171875,
-          "maxPointDistance": 21.705433073310587,
+          "minFont": 15.845113348528539,
+          "minShape": 212.62301635742188,
+          "maxPointDistance": 21.70663940560744,
           "labels": 9783,
           "dimensions": 1827
         }
       },
       "failures": []
     },
+    "glyphAndHalo": {
+      "figures": 1827,
+      "renders": 3654,
+      "failures": []
+    },
+    "protectedInk": "Every source stroke is checked against actual rasterized numeric glyph and halo paint. This exposed 20 raw and 10 typeset infringements in the first editor pack; all are corrected by supported editor placement. Candidate acceptance reserves one 4x raster pixel for fitted-viewport subpixel phase. The independent final check uses the actual painted pixels without that candidate margin. All open source/dimension paths must retain computed fill=none.",
+    "sizing": "All six final modes preserve the actual aspect ratio through arithmeticGeometryDisplaySize. Print uses figureSvgUrlPrintMm and figureWidthStyle rounded millimeter width, with proportional height. Earlier square-viewport measurements are retained only as prior evidence.",
     "collisionMeasurement": "Raw text is rasterized at 4x to measure painted glyph bounds. SVG getBBox includes unused font ascender/descender space and produced 77 false collision flags across 34 variants; those initial results are retained in the durable evidence. Path-based typography uses actual path bounds. Both retain the same 1-unit clearance gate and all source-boundary/endpoint checks.",
-    "renderCount": 10962,
-    "visualReview": "All 50 type representatives inspected. Targeted external-bisector and trapezoid-parallel-section examples included in screen and print proof; full 280/320/print audits cover every numeric variant before and after typography.",
+    "layoutRenderCount": 10962,
+    "paintedInkRenderCount": 3654,
+    "visualReview": "All 50 type representatives inspected, plus all 20 prior halo-infringement variants before/after typography. Targeted external-bisector and trapezoid-parallel-section examples included in screen and print proof; full 280/320/print audits cover every numeric variant before and after typography.",
     "boundary": "Standalone presentation/browser/print proof; combined application and other figure categories are reported separately."
   },
   "exactCanonicalSourcesSha256": "155fb461291e46303c7fe4464ed87a123ccc5f00f64b2c0e865fac8a3063a490",
@@ -2200,6 +2208,7 @@
   "reproduction": [
     "tsx scripts/qa/arithmetic-segment-presentation-build.ts (compares checked bytes; --write deliberately republishes)",
     "tsx scripts/qa/arithmetic-segment-presentation-check.ts",
+    "tsx scripts/qa/arithmetic-segment-presentation-ink.ts",
     "tsx scripts/qa/arithmetic-segment-presentation-runtime.ts",
     "vitest run --config scripts/qa/arithmetic-segment-presentation-vitest.config.mts",
     "node scripts/qa/arithmetic-segment-presentation-typecheck.mjs",
