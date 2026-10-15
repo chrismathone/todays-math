@@ -1,0 +1,210 @@
+Middle-school number, algebra and equation completion — 2026-10-15
+
+Integration
+-----------
+Export ALGEBRA_COMPLETE_DEFINITIONS from
+src/lib/arithmetic-v2/families/algebraComplete.ts. Root owns catalog/registry,
+save/reopen/regeneration and catalog-only UI integration. These are NEW families;
+no published family, ID, prompt, parameter order, source pack, contract, geometry
+asset or shared UI is changed. All definitions explicitly declare semester 1 and
+the specific school unit. The prior angle adapter commit is 35741a803; its separate
+report and 280/320px browser evidence remain in arithmetic-angle-presentation-*.
+
+Observed result: 56 definitions, 95,414 distinct prompt identities and parameter
+tuples. Domain sizes are actual Cartesian/filter counts, not capacity limits.
+Full ID/title/grade/unit/count manifest: arithmetic-algebra-complete-evidence.json.
+This report lists types and coverage only; it contains no example problems.
+
+Curriculum evidence and limits
+------------------------------
+Read the existing middle numeric, polynomial, radical and supplement sources and
+every middle number/algebra/equation section in prisma/seed-data/units.ts.
+Primary grade/topic cross-check:
+https://www.ebsmath.co.kr/siteMap
+https://www.ebsmath.co.kr/resource/rscList?cate=123200&cate2=123210&cate3=123212&grdCd=MGRD03
+https://www.ebsmath.co.kr/resource/rscList?cate=123200&cate2=123220&cate3=123221&grdCd=MGRD03
+The EBS middle map supports number theory/linear equations in middle 1, recurring
+decimals/exponent laws/inequalities/systems in middle 2, and roots/factorization/
+quadratic equations in middle 3. Its common-math-1 map places root-coefficient
+relations in high school, so that topic is not a student drill here.
+
+Official transition notice (2022 revised curriculum, notice 93458):
+https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&m=0404
+The implementation dates make 2026 middle 1/2 the 2022 curriculum cohorts and
+middle 3 the 2015 cohort. Semester 1 placement follows the local school-unit
+sequence and the approved root metadata; this is not a claim that the national
+notice itself prescribes textbook semester boundaries. EBS topic names are used
+where the local seed has a broader chapter heading.
+
+Local section audit (orderIndex is the stable seed row reference)
+---------------------------------------------------------------
+M1 361 소수와 거듭제곱: existing m1-integer-power covers powers; prime factorization
+  adds prime factors. Prime/composite recognition alone is conceptual, excluded.
+M1 362 소인수분해: new prime factorization and divisor count from factor powers.
+M1 363 공약수와 최대공약수, 364 공배수와 최소공배수: new GCD/LCM from factors.
+M1 365 최대공약수와 최소공배수의 활용: computational GCD/LCM/divisor-count covered;
+  packaging/repetition situation modeling is outside direct calculation.
+M1 366 정수와 유리수: new absolute value and additive opposite; signed arithmetic
+  and rational quotients already present. 367 수의 대소관계: ordering/classification
+  alone excluded, not reported as a covered numerical calculation type.
+M1 368 유리수 덧셈/뺄셈, 369 곱셈, 370 나눗셈: existing numeric and numericSupplement
+  cover all four operations, mixed integer/fraction and grouped expressions.
+M1 371 문자의 사용과 식의 값: new one/two-variable and fractional substitution.
+M1 372 일차식의 뜻 I, 373 II: existing like terms, linear add/subtract, scalar
+  multiply/divide and rational like terms. Identification of terms/degrees itself
+  is conceptual and is not duplicated as calculation.
+M1 374 방정식과 그 해, 375 등식의 성질, 376 일차방정식의 풀이: new integer,
+  both-sides, parentheses, fraction and decimal coefficient linear equations.
+  Equality-property naming and equation/identity classification are excluded.
+M1 377 일차방정식의 활용(해의 응용): new missing coefficient from a supplied solution.
+M1 378 수, 379 나이/과부족/예금, 380 증가/감소/원가/정가,
+  381 거리/속력/시간, 382 도형/농도/일, 383 비율/시계/규칙:
+  narrative equation construction excluded; their formed linear equations are
+  covered. This is not a claim of word-problem curriculum completion.
+
+M2 413 유리수와 소수: smallest terminating multiplier and decimal-place count.
+M2 414 순환소수, 415 순환소수의 분수 표현: pure one/two-digit periods and mixed
+  one-digit nonrepeating/one-digit repeating conversion to a reduced fraction.
+M2 416 순환소수를 포함한 식의 계산: recurring decimal with rational number, all
+  four operations. Arbitrarily long period parsing is outside the finite domain.
+M2 417 지수법칙: missing exponent for same-base product/quotient/power-of-power;
+  new two-variable product power, complementing existing m2-monomial-power.
+M2 418 단항식의 곱셈과 나눗셈: existing one-variable operations plus new mixed
+  two-variable multiply/divide with rational coefficient and cancellation.
+M2 419 다항식 덧셈/뺄셈, 420 다항식 곱셈/나눗셈: existing polynomial add/subtract
+  and polynomial-by-monomial multiply/divide retained. General polynomial long
+  division and negative/fractional exponent laws are high-school work, excluded.
+M2 421 부등식, 422 일차부등식의 풀이: new integer, both-sides, parentheses,
+  fraction cases, every strict/nonstrict direction and negative division.
+M2 423 일차부등식의 응용: new greatest/smallest integer solution boundary.
+M2 424 수/평균/정가, 425 개수/예금액/유리한 방법, 426 속력/도형/기타,
+  427 농도: narrative modeling excluded; formed inequalities are covered.
+M2 428 미지수 2개 연립일차방정식, 429 풀이: elimination and substitution systems.
+M2 430 여러 가지 풀이: new fraction and decimal coefficient systems as well.
+M2 431 풀이의 응용: missing coefficient from supplied x,y.
+M2 432 해가 특수한 연립방정식: inconsistent/dependent systems are explicitly
+  excluded (classification/infinite sets, not a unique numerical pair). Every
+  generated solve-system has nonzero determinant; coefficient recovery also
+  excludes the dependent case.
+M2 433 수/평균/나이, 434 가격/개수/증감/도형, 435 일/속력,
+  436 농도/비율/합금: narrative modeling excluded; formed systems covered.
+
+M3 469 제곱근의 뜻과 성질: existing principal square-root simplification plus
+  new root-of-square and square-of-root identities. Both real square roots are
+  covered by the square-root equation family, including zero as a single root.
+M3 470 무리수와 실수: classification/order/proof excluded. Exact radical values
+  retained; no floating approximation exercise is introduced.
+M3 471 근호 포함 식의 계산: existing simplification, add/subtract, multiply/divide,
+  rationalization, three-term radical expressions and radical distribution.
+M3 472 다항식의 곱셈: existing general linear-product expansion plus new linear
+  square, two-variable square/conjugate formulas and formula substitution values.
+M3 473 인수분해: new common factor (one/two variable), difference of squares and
+  perfect squares (one/two variable), monic/nonmonic quadratic forms.
+M3 474 인수분해의 응용: new common-binomial substitution and factored equation
+  solving. Cubic identities/general higher-degree factorization are excluded.
+M3 475 이차방정식의 풀이: integer-root and nonmonic rational-root factoring,
+  square-root method and perfect-square form; all distinct real roots required.
+M3 476 근의 공식과 응용: exact simplified irrational roots from the quadratic
+  formula, plus missing coefficient from a supplied root. Repeated roots are
+  covered by factoring/square methods. Negative-discriminant/complex-root tasks,
+  discriminant classification theory and root-coefficient relation drills are
+  excluded as beyond this middle-school direct-calculation scope.
+M3 477 이차방정식의 활용: formed quadratic equations covered; story modeling
+  and geometric feasibility filtering remain outside this worker's ownership.
+
+Functions, data/probability and geometry are other owners' scopes throughout.
+The audit covers the direct number/algebra calculations above, not every
+achievement standard, pedagogy, proof, word problem or arbitrary coefficient size.
+
+Finite domains and ordering
+--------------------------
+Domains use explicit small-integer Cartesian axes (rightmost varies fastest) or
+filtered tuple lists preserving that order. No random retry, random sampling,
+capacity clamp or arbitrary count cap. All indexes reject negatives, fractions,
+nonfinite values and domainSize. Tuple construction rejects duplicate parameters.
+Global visible-task identity uses the existing whitespace-normalized LaTeX plus
+instruction contract, which does not collapse commuted/equivalent written tasks.
+All new tasks are unique under that contract, and all 581,624 existing middle
+numeric/polynomial/radical/supplement tasks were checked for cross-family collision.
+
+Representative finite axes, with the exact full axes in the corresponding source:
+numbers: factor integers 2..300; powers of 2/3/5; reduced signed fractions; recurring
+  periods of length one/two; proper reduced denominator 2..100 fractions.
+expressions: signed bounded integer coefficients and substitutions; positive
+  integer exponent axes; no negative exponents or zero divisor variables.
+linear: nonzero coefficients with A!=C for both-sides equations; positive explicit
+  denominators; signed tenths handled as integer-scaled equations; 2-variable
+  coefficient axes -2,-1,1,2 with nonzero determinant; substitution A+C!=0.
+factorization: primitive linear factors; sorted factor pairs; perfect-square and
+  difference-square cases separated from ordinary monic/nonmonic factor forms.
+quadratic: finite ordered integer/fraction factor pairs, nonnegative square-method
+  right sides, bounded positive leading coefficients and positive nonsquare
+  discriminants for the formula family. No unknown infinite solution sets.
+The full manifest, source domains and exhaustive identity checks determine counts.
+
+Exact tuple contracts (no shared schema/kind change)
+--------------------------------------------------
+All fields below are canonical decimal integer strings; zero is "0", not "-0".
+Production verifier bounds exact arrays to 30 fields and strings to 40 characters,
+parameters to 6 safe integers. Numerical rational denominators must be positive,
+and fractions reduced. Display text/LaTeX must be the exact canonical formatting.
+Unknown answer/prompt fields, extra/omitted fields, sparse arrays and malformed
+numbers fail. Property insertion order is irrelevant. No float tolerance is used.
+
+integer/rational: existing [value] / [numerator,positiveDenominator].
+Prime factorization (polynomial): [prime,exponent,...], ascending distinct primes,
+  positive exponents. Check primality and reconstruct the original integer.
+Expanded bivariate polynomial (polynomial): [xDegree,yDegree,coefficient,...],
+  descending lexicographic powers; zero terms omitted. Empty list is zero.
+Mixed monomial (polynomial): [xDegree,yDegree,numerator,denominator].
+Inequality (polynomial): [relation,numerator,denominator], relation codes
+  0=less, 1=less-or-equal, 2=greater, 3=greater-or-equal. Reader checks the endpoint
+  and original inequality on both sides and at equality; negative division cannot
+  retain the wrong relation. Displays use Unicode relations / LaTeX commands,
+  never schema-forbidden ASCII angle brackets.
+System (polynomial): [xNumerator,xDenominator,yNumerator,yDenominator], x first.
+  Both original equations must hold and domain determinant is nonzero. Swapping
+  distinct coordinates or scaling a rational pair is rejected.
+Factored polynomial (polynomial):
+  [content,xPower,yPower,factorCount,...factorCount*[a,b,c,multiplicity]]
+  means content*x^xPower*y^yPower*product((a*x+b*y+c)^multiplicity).
+  Content is nonzero, factor leading sign positive (x before y), factors primitive,
+  strict lexicographic (a,b,c) order, repeated factors merged. Standalone x/y
+  factors belong only to xPower/yPower. All factors are linear, thus irreducible;
+  their product is checked with an independent coefficient convolution against
+  the given expanded polynomial. An expanded answer or nonprimitive factorization
+  with the same value is not a canonical answer.
+Full quadratic real-root set (surd):
+  [count,...count*[p,q,r,s]], each root (p+q*sqrt(r))/s, s positive.
+  Rational roots use q=r=0 and gcd(p,s)=1. Irrational roots require squarefree r>1,
+  q nonzero and gcd(p,q,s)=1. Distinct roots ascend; a repeated root appears once.
+  A quadratic's irrational pair must be ordered conjugates. The verifier checks
+  each root in the original equation over exact rational/radical coefficients.
+  A singleton must also have zero derivative (double root); pairs must satisfy
+  degree-two sum/product completeness identities. These are internal verification
+  identities, not student-facing high-school relation exercises. Missing, repeated,
+  reversed, unsimplified or unreduced equivalent root sets are rejected.
+
+Verification evidence
+---------------------
+Focused Vitest: 5 tests pass. Exhaustive independent oracles cover all 95,414 tasks,
+  exact schemas, unique parameters/prompts, reconstruction/expansion and full root
+  sets. Oracles import no production arithmetic helper/solver/checker.
+305,155 exact-field mutations rejected, with coherent regenerated displays for
+  numeric mutations. Additional self-consistent root-set/system/inequality/factor
+  mutations cover incomplete/reordered/duplicated/unreduced/nonprimitive forms.
+Hostile inputs cover zero/negative denominators, oversized strings/arrays, extra
+  fields, altered prompts/displays, negative zero, NaN, Infinity and sparse arrays.
+Focused TypeScript passes the entry, test and QA script and their imported modules.
+336 representative prompt/answer LaTeX strings typeset successfully through the
+  existing MathJax helper (first/middle/last index of every family).
+Scoped ESLint passes. The commit runs normal Husky lint-staged/prettier; no bypass.
+The root's installed tooling is reused through process-only module resolution;
+no dependencies, junctions, DB access, env-file edits, push or deployment.
+
+Reproduction (workspace cwd except Vitest)
+----------------------------------------
+node scripts/qa/arithmetic-algebra-complete-typecheck.mjs C:/Creative/testautocreator
+node --import file:///C:/Creative/testautocreator/node_modules/tsx/dist/loader.mjs --import ./scripts/qa/arithmetic-angle-presentation-deps.mjs scripts/qa/arithmetic-algebra-complete-verify.ts C:/Creative/testautocreator --write-evidence
+From C:/Creative/testautocreator:
+node node_modules/vitest/vitest.mjs run --config C:/Users/user/orca/workspaces/testautocreator/arithmetic-angle-layout/scripts/qa/arithmetic-algebra-complete-vitest.config.mts --reporter=verbose --silent=false
