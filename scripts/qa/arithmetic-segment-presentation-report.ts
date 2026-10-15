@@ -4,6 +4,7 @@ import { createHash } from "node:crypto";
 import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { SegmentPlan } from "./arithmetic-segment-presentation-model";
+import type { Layout } from "./arithmetic-segment-presentation-layout";
 
 async function main() {
   const out = path.resolve("tmp/arithmetic-segment-presentation");
@@ -13,6 +14,7 @@ async function main() {
     proof = await read("proof.json"),
     runtime = await read("runtime.json");
   const plans = (await read("plans.json")) as SegmentPlan[];
+  const layouts = (await read("layouts.json")) as Layout[];
   assert.equal(build.figures, 1827);
   assert.equal(runtime.figures, 1827);
   assert.deepEqual(proof.failures, []);
@@ -29,9 +31,11 @@ async function main() {
     .reduce((a, b) => a + b, 0);
   const report = {
     date: "2026-10-15",
-    base: "33727df61",
+    base: "c6401393d",
     scope:
-      "50 middle-triangle families / 1827 canonical source SVGs carrying one numeric segment label each. Cylinder nets remain root-owned.",
+      "50 middle geometry types / 1827 finite numeric-condition variants carrying one numeric segment label each. These are variants, not 1827 distinct types. Elementary and remaining geometry have separate exhaustive reports.",
+    problem:
+      "The prior compact-layout optimizer could translate measured chords, add angled witnesses for external bisectors, and place trapezoid top-base dimensions inside. The replacement preserves actual editor endpoints and uses the outside command for boundary segments.",
     api: {
       path: "src/lib/arithmetic-v2/presentation/segments.ts",
       export:
@@ -43,18 +47,36 @@ async function main() {
     },
     engine: {
       curve:
-        "Offline calls existing arithmetic-dimension-presentation-engine.py bridge to vendor/figure-engine/core/figure_svg.py meas() itself.",
+        "Offline directly calls actual figure-editor addFigureMark(addDimension). When its default overlaps content, replays addFigureObject(curve), moveFigureHandle(CURVE_BEND_HANDLE), addMidLabel and, when needed, editFigureObject at sampleFigurePath positions. No separate curve construction or translated measured chord.",
       label:
-        "Actual editor curveMidpoint() positions 16-unit labels on engine curves. Actual browser bounds before and after typography jointly constrain layout.",
-      gap: "Actual editor gapPolygon()/applyLineGaps() masks only dimension curves with union glyph bounds. Source geometry is never masked; no white label halo.",
+        "Editor-returned horizontal label coordinates, font and attributes are retained. Existing editor label-position edits can move a number along its same curve to clear intersecting diagonals. Actual plain and typeset browser bounds jointly constrain layout.",
+      gap: "Default editor gapped paths and label halo are retained. Manual curves retain raw labels with the exact mask and attachment extracted from actual typesetFigureSvg(). No copied gap geometry, width estimate or custom padding. Source geometry needs no masking because layout keeps the numeric label clear of it.",
       geometry:
-        "All frozen line/path/circle elements, equal/parallel/right/angle marks retained under a uniform 1.5 transform. Point/center labels relocated locally; old leaders removed. Exterior projected dimensions have witnesses tied to exact endpoints. No numeric value derived from drawing scale.",
+        "All frozen line/path/circle elements, equal/parallel/right/angle marks retained under a uniform 1.5 transform. Point/center labels relocated locally; old leaders removed. Boundary dimensions use the editor outside command. No projected endpoints or witness lines. No numeric value derived from drawing scale.",
       givens:
         "Every source point and numeric label preserved exactly. Only the already published number is drawn; all other public givens and target remain in the unchanged prompt.",
       endpointTolerance:
-        "Engine meas() intentionally offsets endpoints 1.5 virtual units in the normal direction; browser audit allows 0.13 for its one-decimal path serialization.",
+        "Default editor inset is 3 * 16 / 16.8 along the actual measured segment; manual curves keep both actual endpoints. Independent all-variant tests and browser checks allow only 0.02 serialization tolerance.",
     },
     bytes: build,
+    editorCommands: {
+      exactDefaults: layouts.filter(
+        (layout) => layout.dimension.bend === undefined,
+      ).length,
+      manualSequences: layouts.filter(
+        (layout) => layout.dimension.bend !== undefined,
+      ).length,
+      adjustedAlongCurve: layouts.filter(
+        (layout) =>
+          layout.dimension.labelFraction !== undefined &&
+          layout.dimension.labelFraction !== 0.5,
+      ).length,
+      maximumBend: Math.max(
+        ...layouts.map((layout) => layout.dimension.bend ?? 0),
+      ),
+      projectedEndpoints: 0,
+      inventedWitnesses: 0,
+    },
     runtime: {
       ...runtime,
       cache:
@@ -67,18 +89,20 @@ async function main() {
     },
     validation: {
       vitest:
-        "5 focused tests passed, including every ID, exact byte acceptance, all marks/givens, typed idempotence, decoded rows and lazy four-family LRU eviction.",
+        "7 focused tests passed, including every ID, exact byte acceptance, all marks/givens, typed idempotence, all-variant measured endpoints and outside placement, all 1827 editor-command replays including exact manual-curve typeset masks, decoded rows and lazy four-family LRU eviction.",
       typescript:
         "Strict ES2017 targeted check passed using existing root dependencies.",
       lint: "Scoped ESLint passed; normal Husky lint-staged ESLint/Prettier are required at commit.",
       reproduction:
         "A complete second generation without --write reproduced checked asset bytes exactly.",
       browser: proof,
+      collisionMeasurement:
+        "Raw text is rasterized at 4x to measure painted glyph bounds. SVG getBBox includes unused font ascender/descender space and produced 77 false collision flags across 34 variants; those initial results are retained in the durable evidence. Path-based typography uses actual path bounds. Both retain the same 1-unit clearance gate and all source-boundary/endpoint checks.",
       renderCount: 1827 * 6,
       visualReview:
-        "Circumcenter, incenter, centroid, midsegment, similarity, Pythagoras, external bisector and three-parallel cases inspected at screen 280 and print; full 320 audit also passed.",
+        "All 50 type representatives inspected. Targeted external-bisector and trapezoid-parallel-section examples included in screen and print proof; full 280/320/print audits cover every numeric variant before and after typography.",
       boundary:
-        "Standalone presentation/browser/print proof. Root owns application route integration and the four net families.",
+        "Standalone presentation/browser/print proof; combined application and other figure categories are reported separately.",
     },
     exactCanonicalSourcesSha256: createHash("sha256")
       .update(JSON.stringify(plans.map((p) => [p.id, p.source])))
@@ -97,7 +121,7 @@ async function main() {
       "tsx scripts/qa/arithmetic-segment-presentation-report.ts",
     ],
     evidence:
-      "scripts/qa/arithmetic-segment-presentation-evidence/ contains reviewed screen/print images. Full generated HTML/PDF/plans/displays retained at C:/Creative/testautocreator/.qa-artifacts/arithmetic-segment-presentation-worker-20261015/.",
+      "scripts/qa/arithmetic-segment-presentation-evidence/ contains reviewed screen/print images. Full generated HTML/PDF/plans/displays retained at C:/Creative/testautocreator/.qa-artifacts/arithmetic-segment-editor-20261015/.",
   };
   await writeFile(
     "scripts/qa/arithmetic-segment-presentation-report.json",

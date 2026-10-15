@@ -1,5 +1,9 @@
 /** Offline bounded layout search; output contains no layout code. */
-import { curveMidpoint } from "../../src/components/unified/figure-editor/figureHandles";
+import { sampleFigurePath } from "../../src/components/unified/figure-editor/figureFlip";
+import {
+  editorDimension,
+  type EditorDimension,
+} from "./arithmetic-segment-presentation-editor";
 import { lineHitsBox } from "../../src/lib/arithmetic-v2/families/geometryTriangles/core";
 import {
   escapeXml,
@@ -22,11 +26,7 @@ export interface Label {
   angle: number;
   box: Metric;
 }
-export interface Dimension {
-  projected: Segment;
-  offset: number;
-  curve?: string;
-}
+export type Dimension = EditorDimension;
 export interface Layout {
   dimension: Dimension;
   labels: Label[];
@@ -78,50 +78,30 @@ function overlap(a: Label, b: Label) {
   );
 }
 export function curveSegments(curve: string): Segment[] {
-  const m = /d="M ([^Q]+) Q ([^"]+)"/.exec(curve)!;
-  const n = (m[1] + " " + m[2]).trim().split(/\s+/).map(Number);
-  const points = Array.from({ length: 41 }, (_, i) => {
-    const t = i / 40,
-      u = 1 - t;
-    return [
-      u * u * n[0] + 2 * u * t * n[2] + t * t * n[4],
-      u * u * n[1] + 2 * u * t * n[3] + t * t * n[5],
-    ] as Point;
-  });
-  return points.slice(1).map((p, i) => [points[i], p]);
+  return sampleFigurePath(/\bd="([^"]+)"/.exec(curve)![1], 40)!.flatMap(
+    (points) => points.slice(1).map((p, i) => [points[i], p] as Segment),
+  );
 }
-export function dimensions(plan: SegmentPlan): Dimension[] {
+export function dimensions(
+  plan: SegmentPlan,
+  bend?: number,
+  labelFraction = 0.5,
+): Dimension[] {
   const [a, b] = plan.given.endpoints,
     L = Math.hypot(b[0] - a[0], b[1] - a[1]),
     normal: Point = [-(b[1] - a[1]) / L, (b[0] - a[0]) / L];
-  const result: Dimension[] = [];
   const projections = Object.values(plan.points).map(
     (p) =>
       (p[0] - (a[0] + b[0]) / 2) * normal[0] +
       (p[1] - (a[1] + b[1]) / 2) * normal[1],
   );
-  for (const shift of [
-    0,
-    24,
-    -24,
-    40,
-    -40,
-    60,
-    -60,
-    Math.max(...projections) + 20,
-    Math.min(...projections) - 20,
-  ])
-    for (const off of shift === 0
-      ? [14, -14, 20, -20, 28, -28, 38, -38, 50, -50]
-      : [Math.sign(shift) * 12])
-      result.push({
-        projected: [a, b].map((p) => [
-          rounded(p[0] + normal[0] * shift),
-          rounded(p[1] + normal[1] * shift),
-        ]) as Segment,
-        offset: off,
-      });
-  return result;
+  // A boundary dimension always uses the editor's outside command. Internal
+  // segments may use its other supported side if outside collides with ink.
+  const boundary =
+    Math.min(...projections) >= -0.001 || Math.max(...projections) <= 0.001;
+  return (["out", ...(boundary ? [] : ["in"])] as const).map((side) =>
+    editorDimension(plan, side as "out" | "in", bend, labelFraction),
+  );
 }
 function crosses([a, b]: Segment, [c, d]: Segment) {
   const cross = (p: Point, q: Point, r: Point) =>
@@ -137,10 +117,6 @@ export function place(
   metrics: Record<string, Metric>,
   candidates: Dimension[],
 ): Layout {
-  const [a, b] = plan.given.endpoints;
-  let angle = (Math.atan2(b[1] - a[1], b[0] - a[0]) * 180) / Math.PI;
-  if (angle > 90) angle -= 180;
-  if (angle <= -90) angle += 180;
   const centroid: Point = [
     Object.values(plan.points).reduce((n, p) => n + p[0], 0) /
       Object.keys(plan.points).length,
@@ -149,26 +125,16 @@ export function place(
   ];
   let best: Layout | undefined;
   for (const dimension of candidates) {
-    const mid = curveMidpoint(/d="([^"]+)"/.exec(dimension.curve!)![1])!;
     const numeric: Label = {
       key: `segment-${plan.given.key}`,
       text: plan.given.text,
-      at: [mid.x, mid.y],
-      angle,
-      box: metrics[plan.given.text],
+      at: dimension.at,
+      angle: 0,
+      box: dimension.box!,
     };
-    if (geometry.some((s) => hit(s, numeric, 2.5))) continue;
+    if (geometry.some((s) => hit(s, numeric, 1))) continue;
     const strokes = curveSegments(dimension.curve!);
-    const witness: Segment[] = [];
-    for (let i = 0; i < 2; i++)
-      if (
-        Math.hypot(
-          dimension.projected[i][0] - plan.given.endpoints[i][0],
-          dimension.projected[i][1] - plan.given.endpoints[i][1],
-        ) > 0.01
-      )
-        witness.push([plan.given.endpoints[i], dimension.projected[i]]);
-    const obstacles = [...geometry, ...strokes, ...witness];
+    const obstacles = [...geometry, ...strokes];
     const labels: Label[] = [numeric];
     let displacement = 0,
       failed = false;
@@ -243,10 +209,6 @@ export function place(
       Math.max(...xs) - Math.min(...xs),
       Math.max(...ys) - Math.min(...ys),
     );
-    const shifted = Math.hypot(
-      dimension.projected[0][0] - a[0],
-      dimension.projected[0][1] - a[1],
-    );
     const crossing = strokes.filter(
       (s) =>
         geometry.some((g) => crosses(s, g)) &&
@@ -257,8 +219,8 @@ export function place(
     const score =
       extent +
       displacement * 0.16 +
-      shifted * 0.15 +
-      Math.abs(dimension.offset) * 0.06 +
+      (dimension.bend === undefined ? 0 : 10000 + dimension.bend * 100) +
+      (dimension.side === "in" ? 1000000 : 0) +
       crossing * (/[OIG]/.test(plan.given.key) ? 0 : 35);
     if (!best || score < best.score) best = { dimension, labels, score };
   }
@@ -267,19 +229,16 @@ export function place(
 }
 export function assemble(plan: SegmentPlan, layout: Layout) {
   const d = layout.dimension;
-  const witness = d.projected
-    .map((p, i) => {
-      const a = plan.given.endpoints[i];
-      return Math.hypot(a[0] - p[0], a[1] - p[1]) < 0.01
-        ? ""
-        : `<path data-segment-witness="${i}" d="M${a.join(" ")} L${p.join(" ")}" fill="none" stroke="#555" stroke-width=".7" stroke-dasharray="3 3"/>`;
-    })
-    .join("");
+  const numeric = d.label.replace(
+    "<text ",
+    `<text data-drill-label="segment-${plan.given.key}" data-segment-number="true" `,
+  );
   const labels = layout.labels
+    .slice(1)
     .map(
       (l) =>
         `<text data-drill-label="${l.key}"${l.key.startsWith("segment-") ? ' data-segment-number="true" data-line-gap="1"' : ` data-segment-point="${plan.points[l.key].join(" ")}"`} x="${rounded(l.at[0])}" y="${rounded(l.at[1])}"${l.angle ? ` transform="rotate(${rounded(l.angle)} ${rounded(l.at[0])} ${rounded(l.at[1])})"` : ""} text-anchor="middle" dominant-baseline="central" font-family="Arial, sans-serif" font-size="16" fill="black" stroke="none">${escapeXml(l.text)}</text>`,
     )
     .join("");
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-180 -180 360 360" width="280" height="280"><desc>arithmetic-geometry-drill-segments-v1</desc><g data-segment-content="true">${plan.geometry}<g data-segment-dimension="${plan.given.key}" data-endpoints="${plan.given.endpoints.flat().join(" ")}" data-projected="${d.projected.flat().join(" ")}">${witness}${d.curve!.replace("<path ", '<path data-segment-curve="true" ')}</g>${labels}</g></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-180 -180 360 360" width="280" height="280"><desc>arithmetic-geometry-drill-segments-v1</desc><g data-segment-content="true">${plan.geometry}<g data-segment-dimension="${plan.given.key}" data-editor-side="${d.side}"${d.bend === undefined ? "" : ` data-editor-bend="${d.bend}" data-editor-label-fraction="${d.labelFraction}"`} data-endpoints="${plan.given.endpoints.flat().join(" ")}">${d.curve.replace("<path ", '<path data-segment-curve="true" ')}</g>${numeric}${labels}</g></svg>`;
 }

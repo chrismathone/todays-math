@@ -8,7 +8,7 @@ const ts = createRequire(path.join(root, "package.json"))("typescript");
 const files = [
   "src/lib/arithmetic-v2/presentation/segments.ts",
   "src/__tests__/unit/arithmeticSegmentPresentation.test.ts",
-  ...["build", "check", "layout", "model", "runtime", "report"].map(
+  ...["build", "check", "editor", "layout", "model", "runtime", "report"].map(
     (s) => `scripts/qa/arithmetic-segment-presentation-${s}.ts`,
   ),
 ];
@@ -23,12 +23,15 @@ const program = ts.createProgram(
     target: ts.ScriptTarget.ES2017,
     module: ts.ModuleKind.ESNext,
     moduleResolution: ts.ModuleResolutionKind.Bundler,
+    jsx: ts.JsxEmit.ReactJSX,
     lib: ["lib.esnext.d.ts", "lib.dom.d.ts", "lib.dom.iterable.d.ts"],
     types: ["node"],
     typeRoots: [path.join(root, "node_modules/@types")],
     paths: {
       "@/*": [path.join(workspace, "src/*")],
       chai: [path.join(root, "node_modules/@types/chai/index.d.ts")],
+      react: [path.join(root, "node_modules/@types/react/index.d.ts")],
+      "react/*": [path.join(root, "node_modules/@types/react/*")],
       vite: [path.join(root, "node_modules/vite/dist/node/index.d.ts")],
       "*": [path.join(root, "node_modules/*")],
     },

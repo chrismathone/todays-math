@@ -1,6 +1,5 @@
 /** Offline engine/editor prebuild. Runtime imports only the generated family packs. */
 import assert from "node:assert/strict";
-import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { createRequire } from "node:module";
@@ -8,10 +7,7 @@ import path from "node:path";
 import { gzipSync } from "node:zlib";
 import { deflateSync, strToU8 } from "fflate";
 import { chromium } from "playwright";
-import {
-  applyLineGaps,
-  gapPolygon,
-} from "../../src/components/unified/figure-editor/figureMidLabel";
+import { applyEditorDimensionGap } from "./arithmetic-segment-presentation-editor";
 import { typesetArithmeticGeometrySvg as typeset } from "../../src/lib/arithmetic-v2/presentation/typography";
 import {
   segmentPlans,
@@ -29,7 +25,11 @@ const out = path.resolve("tmp/arithmetic-segment-presentation");
 const assetPath = "src/lib/arithmetic-v2/presentation/segments-assets-v1.json";
 const { JSDOM } = createRequire(import.meta.url)("jsdom") as {
   JSDOM: new (html: string) => {
-    window: { DOMParser: typeof DOMParser; close(): void };
+    window: {
+      DOMParser: typeof DOMParser;
+      XMLSerializer: typeof XMLSerializer;
+      close(): void;
+    };
   };
 };
 const round = (n: number) => Number(n.toFixed(4));
@@ -39,8 +39,14 @@ async function main() {
     plans = process.argv.includes("--pilot")
       ? all.filter((p, i) => all.findIndex((q) => q.family === p.family) === i)
       : all;
-  const browser = await chromium.launch({ headless: true }),
-    dom = new JSDOM("");
+  const browser = await chromium.launch({ headless: true });
+  let dom = new JSDOM("");
+  const bindDom = () =>
+    Object.assign(globalThis, {
+      DOMParser: dom.window.DOMParser,
+      XMLSerializer: dom.window.XMLSerializer,
+    });
+  bindDom();
   const stats: Record<
     string,
     { count: number; rawBytes: number; deflateBytes: number }
@@ -140,43 +146,119 @@ async function main() {
         geometry.set(uniqueGeometry[i + j], s as Segment[]),
       );
     }
-    const options = plans.map(dimensions),
-      keys = new Map<string, number>(),
-      requests: number[][] = [];
-    const requestKey = (d: ReturnType<typeof dimensions>[number]) =>
-      JSON.stringify([...d.projected.flat(), d.offset]);
-    for (const ds of options)
-      for (const d of ds) {
-        const key = requestKey(d);
-        if (!keys.has(key)) {
-          keys.set(key, requests.length);
-          requests.push([...d.projected.flat(), d.offset]);
+    async function editorOptions(
+      rows: typeof plans,
+      bend?: number,
+      labelFraction = 0.5,
+    ) {
+      const result: ReturnType<typeof dimensions>[] = [];
+      for (let i = 0; i < rows.length; i++) {
+        result.push(dimensions(rows[i], bend, labelFraction));
+        // JSDOM queues mutation cleanup until the next event-loop turn. Yield
+        // between batches so full finite-domain generation has bounded live DOM.
+        if ((i + 1) % 20 === 0) {
+          await new Promise<void>((resolve) => setImmediate(resolve));
+          dom.window.close();
+          dom = new JSDOM("");
+          bindDom();
+          if ((i + 1) % 200 === 0)
+            console.log(
+              JSON.stringify({
+                phase: "editor-commands",
+                count: i + 1,
+                total: rows.length,
+                bend,
+                labelFraction,
+              }),
+            );
         }
       }
-    const generated = spawnSync(
-      "python",
-      ["scripts/qa/arithmetic-dimension-presentation-engine.py"],
-      {
-        input: JSON.stringify(requests),
-        encoding: "utf8",
-        maxBuffer: 64 * 1024 * 1024,
-        windowsHide: true,
-      },
+      return result;
+    }
+    const options = await editorOptions(plans);
+    await writeFile(
+      path.join(out, "editor-default-options.json"),
+      JSON.stringify(options),
     );
-    assert.equal(generated.status, 0, generated.stderr);
-    const curves = JSON.parse(generated.stdout) as string[];
-    assert.equal(curves.length, requests.length);
-    for (const ds of options)
-      for (const d of ds) d.curve = curves[keys.get(requestKey(d))!];
-    const failures: string[] = [];
+    let commandCount = options.flat().length;
+    async function measure(editorDimensions: ReturnType<typeof dimensions>) {
+      for (let i = 0; i < editorDimensions.length; i += 80) {
+        const batch = editorDimensions.slice(i, i + 80);
+        await page.setContent(
+          `<html><body>${batch
+            .flatMap((d) => {
+              const svg = `<svg xmlns="http://www.w3.org/2000/svg">${d.label}</svg>`;
+              return [svg, typeset(svg)];
+            })
+            .join("")}</body></html>`,
+        );
+        const boxes = await page
+          .locator("svg > text, svg > g")
+          .evaluateAll((nodes) =>
+            nodes.map((n) => {
+              const b = (n as SVGGraphicsElement).getBBox();
+              return { x: b.x, y: b.y, width: b.width, height: b.height };
+            }),
+          );
+        assert.equal(boxes.length, batch.length * 2);
+        batch.forEach((d, j) => {
+          const a = boxes[j * 2],
+            b = boxes[j * 2 + 1];
+          const x = Math.min(a.x, b.x),
+            y = Math.min(a.y, b.y);
+          d.box = {
+            x: x - d.at[0],
+            y: y - d.at[1],
+            width: Math.max(a.x + a.width, b.x + b.width) - x,
+            height: Math.max(a.y + a.height, b.y + b.height) - y,
+          };
+        });
+      }
+    }
+    await measure(options.flat());
     const layouts = plans.map((p, i) => {
       try {
         return place(p, geometry.get(p.geometry)!, metrics, options[i]);
-      } catch (error) {
-        failures.push(String(error));
+      } catch {
         return undefined;
       }
     });
+    console.log(
+      JSON.stringify({
+        phase: "editor-default",
+        figures: plans.length,
+        needsBend: layouts.filter((l) => !l).length,
+      }),
+    );
+    for (const [bend, labelFraction] of [16, 20, 24, 28, 36, 48, 60].flatMap(
+      (b) => [0.5, 0.35, 0.65].map((t) => [b, t]),
+    )) {
+      const missing = plans.flatMap((p, i) => (layouts[i] ? [] : [{ p, i }]));
+      if (!missing.length) break;
+      const next = await editorOptions(
+        missing.map(({ p }) => p),
+        bend,
+        labelFraction,
+      );
+      commandCount += next.flat().length;
+      await measure(next.flat());
+      missing.forEach(({ p, i }, j) => {
+        try {
+          layouts[i] = place(p, geometry.get(p.geometry)!, metrics, next[j]);
+        } catch {
+          /* try next editor bend */
+        }
+      });
+      console.log(
+        JSON.stringify({
+          phase: "editor-bend",
+          bend,
+          labelFraction,
+          remaining: layouts.filter((l) => !l).length,
+        }),
+      );
+    }
+    const failures = plans.flatMap((p, i) => (layouts[i] ? [] : [p.id]));
     await writeFile(
       path.join(out, "layout-failures.json"),
       JSON.stringify(failures, null, 2),
@@ -188,7 +270,7 @@ async function main() {
         phase: "layout",
         count: plans.length,
         uniqueGeometry: uniqueGeometry.length,
-        engineCurves: requests.length,
+        editorCommands: commandCount,
       }),
     );
     // Fit to the union of actual plain and typeset ink, not estimated font widths.
@@ -222,30 +304,9 @@ async function main() {
         root.setAttribute("viewBox", [x, y, w, h].map(round).join(" "));
         root.setAttribute("width", String(round((280 * w) / Math.max(w, h))));
         root.setAttribute("height", String(round((280 * h) / Math.max(w, h))));
-        const label = layouts[i + j]!.labels[0],
-          r = (label.angle * Math.PI) / 180,
-          cos = Math.cos(r),
-          sin = Math.sin(r),
-          [cx, cy] = label.at;
-        const box = {
-          x: cx + label.box.x - 2,
-          y: cy + label.box.y - 2,
-          width: label.box.width + 4,
-          height: label.box.height + 4,
-        };
-        const polygon = gapPolygon(box, [
-          cos,
-          sin,
-          -sin,
-          cos,
-          cx - cos * cx + sin * cy,
-          cy - sin * cx - cos * cy,
-        ]);
-        applyLineGaps(
-          doc,
-          [...doc.querySelectorAll("[data-segment-curve]")],
-          [polygon],
-        );
+        if (layouts[i + j]!.dimension.bend !== undefined) {
+          await applyEditorDimensionGap(doc);
+        }
         svgs[i + j] = root.outerHTML;
       }
     }
