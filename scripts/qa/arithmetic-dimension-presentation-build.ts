@@ -60,10 +60,11 @@ function assemble(plan: Plan, curves: string[]) {
     })
     .join("");
   const top = Math.min(...plan.shape.map((p) => p[1]));
+  const noteOffset = plan.family.includes("cylinder-net") ? 75 : 45;
   const notes = plan.notes
     .map(
       (n, i) =>
-        `<text data-dimension-note="true" x="0" y="${round(top - 45 - 21 * (plan.notes.length - 1 - i))}" font-family="Arial,Malgun Gothic,sans-serif" font-size="15" text-anchor="middle" dominant-baseline="central" fill="#111">${escapeXml(n)}</text>`,
+        `<text data-dimension-note="true" x="0" y="${round(top - noteOffset - 21 * (plan.notes.length - 1 - i))}" font-family="Arial,Malgun Gothic,sans-serif" font-size="15" text-anchor="middle" dominant-baseline="central" fill="#111">${escapeXml(n)}</text>`,
     )
     .join("");
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-200 -200 400 400" width="300" height="300"><desc>arithmetic-geometry-drill-dimensions-v1</desc><g data-dimension-content="true">${plan.geometry}${dimensions}${notes}</g></svg>`;

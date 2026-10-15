@@ -5,11 +5,13 @@ import { presentArithmeticDimensionSvg } from "../../lib/arithmetic-v2/presentat
 import { planeSpecs } from "../../lib/arithmetic-v2/families/geometryElementary/plane";
 import { measurementSpecs } from "../../lib/arithmetic-v2/families/geometryElementary/measurement";
 import { solidCircleSpecs } from "../../lib/arithmetic-v2/families/geometryElementary/solidsCircle";
+import { netSpecs } from "../../lib/arithmetic-v2/families/geometryElementary/net";
 
 const specs = [
   ...planeSpecs,
   ...measurementSpecs.filter((s) => s.id.startsWith("e3-circle-")),
   ...solidCircleSpecs,
+  ...netSpecs,
 ];
 const svgFor = (family: string, p: number[]) => {
   const spec = specs.find((s) => s.id === family)!;
@@ -123,5 +125,44 @@ describe("trusted arithmetic dimension presentation", () => {
     expect(solid).toContain(">밑넓이 12 cm²</text>");
     expect(solid.match(/data-dimension-curve=/g)).toHaveLength(1);
     expect(solid).toContain('data-dimension="height"');
+  });
+
+  it("anchors net dimensions to the circular radius or diameter and to the rectangle height", () => {
+    for (const spec of netSpecs)
+      for (const p of spec.domain) {
+        const original = spec.present(p).svg();
+        const shown = svgFor(spec.id, p);
+        const base =
+          /<circle data-drill-net-base="true" cx="120" cy="([^"]+)" r="([^"]+)"/.exec(
+            original,
+          )!;
+        const radius = Number(base[2]);
+        // Derive the meaning from the published task, never from the display adapter.
+        const type =
+          spec.id.endsWith("-diameter") ||
+          (!spec.id.endsWith("-radius") && p[3] === 1)
+            ? "diameter"
+            : "radius";
+        const dimensions = [
+          ...shown.matchAll(
+            /<g data-dimension="([^"]+)" data-endpoints="([^"]+)"/g,
+          ),
+        ];
+        expect(dimensions.map((m) => m[1]).sort()).toEqual(
+          [type, "height"].sort(),
+        );
+        const endpoints = dimensions
+          .find((m) => m[1] === type)![2]
+          .split(" ")
+          .map(Number);
+        expect(endpoints[1]).toBeCloseTo((Number(base[1]) - 125) * 1.6, 4);
+        expect(endpoints[3]).toBe(endpoints[1]);
+        expect(endpoints[2] - endpoints[0]).toBeCloseTo(
+          radius * 1.6 * (type === "diameter" ? 2 : 1),
+          4,
+        );
+        expect(shown.match(/data-drill-net-base="true"/g)).toHaveLength(2);
+        expect(shown).not.toContain('data-dimension="width"');
+      }
   });
 });

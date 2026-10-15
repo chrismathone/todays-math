@@ -5,6 +5,7 @@ import assert from "node:assert/strict";
 import { planeSpecs } from "../../src/lib/arithmetic-v2/families/geometryElementary/plane";
 import { solidCircleSpecs } from "../../src/lib/arithmetic-v2/families/geometryElementary/solidsCircle";
 import { measurementSpecs } from "../../src/lib/arithmetic-v2/families/geometryElementary/measurement";
+import { netSpecs } from "../../src/lib/arithmetic-v2/families/geometryElementary/net";
 import { angleMarkPath } from "../../src/components/unified/figure-editor/figureAngleMark";
 
 export type Point = [number, number];
@@ -29,6 +30,7 @@ export const dimensionSpecs = [
   ...planeSpecs,
   ...measurementSpecs.filter((s) => s.id.startsWith("e3-circle-")),
   ...solidCircleSpecs,
+  ...netSpecs,
 ];
 export const escapeXml = (s: string) =>
   s.replace(
@@ -111,7 +113,56 @@ export function dimensionPlans(): Plan[] {
       };
       const head = at(120, 25) || at(120, 22);
       if (head) notes.push(head);
-      if (spec.id.includes("circle")) {
+      if (spec.id.includes("cylinder-net")) {
+        const [A, B, C] = shape;
+        const circles = [
+          ...source.matchAll(
+            /<circle\b[^>]*data-drill-net-base="true"[^>]*\/>/g,
+          ),
+        ];
+        assert.equal(
+          circles.length,
+          2,
+          `${spec.id}: both circular bases remain visible`,
+        );
+        const radius = Number(/\br="([^"]+)"/.exec(circles[0][0])![1]);
+        const cy = Number(/\bcy="([^"]+)"/.exec(circles[0][0])![1]);
+        const baseLabel = at(120, 215);
+        const diameter = baseLabel.startsWith("밑면 지름");
+        const a: Point = [diameter ? 120 - radius : 120, cy];
+        const b: Point = [120 + radius, cy];
+        geometry =
+          paths[0].svg +
+          circles.map((c) => c[0]).join("") +
+          `<path d="M${a.join(",")} L${b.join(",")}"/><circle cx="120" cy="${cy}" r="1.6" fill="#111"/>`;
+        marks = mark(A, B, shape[3]);
+        add("height", B, C, at(220, 125).replace(/^높이 (?=\d)/, ""), -20, [
+          [B[0] + 12, B[1]],
+          [C[0] + 12, C[1]],
+        ]);
+        add(
+          diameter ? "diameter" : "radius",
+          a,
+          b,
+          baseLabel
+            .replace(/^밑면 (반지름|지름) (?=\d)/, "")
+            .replace(/^밑면 /, ""),
+          -20,
+          [
+            [a[0], cy - radius - 12],
+            [b[0], cy - radius - 12],
+          ],
+        );
+        for (const circle of circles) {
+          const centerY = Number(/\bcy="([^"]+)"/.exec(circle[0])![1]);
+          shape.push(
+            [120 - radius, centerY],
+            [120 + radius, centerY],
+            [120, centerY - radius],
+            [120, centerY + radius],
+          );
+        }
+      } else if (spec.id.includes("circle")) {
         geometry = [...source.matchAll(/<circle\b[^>]*\/>/g)]
           .map((m) => m[0])
           .join("");
