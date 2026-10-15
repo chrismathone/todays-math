@@ -1,0 +1,220 @@
+Functions/data prose browser audit - 2026-10-15
+
+Result: PASS for the audited screen and print columns. No actionable rendering,
+clipping, missing-given or missing-target defects found. No product source edits.
+
+Root source: C:/Creative/testautocreator
+Root HEAD at capture: 46367f48559e41750756b29443123d4f23726579
+Authored prose commit already merged by root: 7e8bb048c5c0853d7448ebf8544e87ac584c74c9
+Capture began: 2026-10-15T03:04:51.395Z
+Audit source: current root arithmeticToStudioProblems, root NativeProblem,
+MarkdownRenderer, root shared print ProblemBody/UnifiedProblem, actual CSS modules,
+global CSS and KaTeX CSS. All 118 root entries explicitly declare prose metadata.
+The reviewed source-file SHA-256 manifest was unchanged at completion.
+
+Coverage
+- 118 families; all 62,491 domain candidates scanned to select longest prompts.
+- First, floor(domainSize / 2), and last index of every family: 354 samples.
+- Each family's maximum authored prose length and maximum individual TeX span
+  length added; duplicates removed: 48 additional samples, 402 distinct tasks.
+- 804 actual browser problem renders: all 402 in each of the two modes.
+- Root reopenArithmeticV2Sheet validated 118 small family snapshots. Re-running
+  root arithmeticToStudioProblems on these validated snapshots produces deeply
+  identical StudioProblem objects to the 402 browser inputs.
+- No dependency on current catalog total, sidebar, allocation UI or sheet limits.
+
+Screen mode
+- Real reviewCard, questionNumber, selectionLabel and reviewAnswer CSS classes;
+  real NativeProblem plus shared MathText for answers. The QA outer grid only
+  arranges independent cards; each card is exactly 320 CSS px with root padding.
+- Measured problem width: 286 px (16 px padding and 1 px border on each side).
+- App-local Pretendard font file; normal inherited document body 16 px and actual
+  shared paragraph line-height 26 px. KaTeX fonts loaded locally, no network.
+- 402/402 passed; 1,535 body math spans rendered and checked, including answer
+  blanks. Zero column-overflow, clipped text, missing prose or math, KaTeX errors.
+- Largest measured body height: 156 px.
+
+Print mode
+- Real ProblemBody -> UnifiedProblem -> NativeProblem, under the root print
+  document class; actual print/global/editor CSS. Browser print media enabled.
+- Column width exactly 85 mm, measured 321.25 CSS px. Shared jeongtong body size
+  13.5 px, default system font pack (Batang/BatangChe/Noto Serif KR/serif).
+- 402/402 passed; 1,535 body math spans checked. Zero column-overflow, clipped
+  text, missing prose or math, KaTeX errors.
+- Largest measured body height: 131.625 px.
+
+Content/coordinate checks
+- Every authored text and instruction remains in the adapter content.
+- Browser plain-prose fragments match tokenizeMath text segments in source order;
+  actual KaTeX annotations match authored formula segments in source order.
+- Comparison ignores only whitespace, the renderer's added displaystyle,
+  dfrac versus frac, and mathrm around Latin point names. All numbers, signs,
+  exponents, fraction arguments, coordinates and requested variables stay exact.
+- Visible text Range rectangles were tested against the column and every clipping
+  ancestor. MathML accessibility duplicates and zero-sized struts are excluded.
+- No page errors or failed font/resource requests; browser external networking
+  blocked. Data tables in these authored families are complete prose lists:
+  score/frequency pairs, relative frequencies, intervals and stem/leaf values.
+
+Visual review
+- Inspected 24 representative samples in screen and print contact sheets: axes,
+  two-point equations, fractions, simultaneous lines, quadratics, signed radical
+  answers, frequency lists, stem/leaf data, missing deviations, transformed data,
+  digit cards, dice, overlapping events and replacement/nonreplacement conditions.
+- Requested targets and givens are readable; superscripts/subscripts, fractions
+  and negative root signs render; all long conditions wrap within the columns.
+- Default Korean character wrapping occasionally leaves a final syllable on the
+  next line (for example m2-fd-two-points-equation@0). This is existing shared
+  wrapping, with no clipping, overlap or loss of meaning; no fix required here.
+- Also visually inspected all 3 pages of the 24-sample A4/85 mm proof PDF after
+  rendering it with the already-installed PyMuPDF. No clipped problem blocks.
+
+Scope limits
+- Local read-only gallery with synthetic validated snapshots; no DB, auth, save,
+  app server, install, junction, deployment, root mutation or catalog-count claim.
+- This checks shared problem composition and column layout. The gallery's A4
+  pagination is not an end-to-end test of WorksheetPrint page allocation, exports,
+  other font packs, other browsers or every one of the 62,491 numeric candidates.
+- Browser: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36
+
+Evidence archive (outside this worktree, so it survives later worktree cleanup)
+C:/Users/user/AppData/Local/Temp/arithmetic-functions-data-layout-20261015
+- evidence/screen-proof-1.png and screen-proof-2.png: 24 review-card samples.
+- evidence/print-proof-1.png and print-proof-2.png: same 24 print-column samples.
+- evidence/print-85mm-proof.pdf and pdf-page-1.png through pdf-page-3.png.
+- evidence/screen-measurements.json and print-measurements.json: all 804 checks.
+- evidence/summary.json, validated-snapshots.json and pdf-pages.json.
+- samples.json: all selected canonical prompts, answers, adapter output and reasons.
+- manifest.json: audited root revision and reviewed source-file SHA-256 hashes.
+- artifact-hashes.json: 88 archived files, total 10416865 bytes before the hash index.
+- Temporary gallery source/build and local fonts retained for repeat inspection.
+
+Reproduction from this worktree (root's existing packages only)
+node C:/Creative/testautocreator/node_modules/tsx/dist/cli.mjs --tsconfig .tmp-dimension-tools/prose-audit/tsconfig.json .tmp-dimension-tools/prose-audit/generate.ts
+node .tmp-dimension-tools/prose-audit/build.mjs
+node .tmp-dimension-tools/prose-audit/browser.mjs
+node C:/Creative/testautocreator/node_modules/tsx/dist/cli.mjs --tsconfig .tmp-dimension-tools/prose-audit/tsconfig.json .tmp-dimension-tools/prose-audit/validate.ts
+The temporary browser server binds 127.0.0.1 and closes with Chromium after checks.
+The report-only commit uses root's normal .husky/_ -> npx lint-staged hook with
+the existing process-only dependency wrapper; no hook bypass/install/config edit.
+
+Sample matrix (zero-based domain indices; F=first, M=middle, L=last,
+P=maximum prompt+instruction character length, T=maximum single TeX span length)
+m1-fd-reflect-x-x | 0(FPT), 128(M), 255(L)
+m1-fd-reflect-x-y | 0(FPT), 128(M), 255(L)
+m1-fd-reflect-y-x | 0(FPT), 128(M), 255(L)
+m1-fd-reflect-y-y | 0(FPT), 128(M), 255(L)
+m1-fd-reflect-origin-x | 0(FPT), 128(M), 255(L)
+m1-fd-reflect-origin-y | 0(FPT), 128(M), 255(L)
+m1-fd-distance-x-axis | 0(FPT), 128(M), 255(L)
+m1-fd-distance-y-axis | 0(FPT), 128(M), 255(L)
+m1-fd-horizontal-distance | 0(FPT), 526(M), 1052(L)
+m1-fd-vertical-distance | 0(FPT), 526(M), 1052(L)
+m1-fd-direct-value | 0(F), 156(M), 311(L), 24(PT)
+m1-fd-direct-constant | 0(F), 156(M), 311(L), 205(P), 32(T)
+m1-fd-direct-input | 0(F), 156(M), 311(L), 32(P), 24(T)
+m1-fd-inverse-value | 0(F), 156(M), 311(L), 24(PT)
+m1-fd-inverse-constant | 0(F), 156(M), 311(L), 168(P), 35(T)
+m1-fd-inverse-input | 0(F), 156(M), 311(L), 35(P), 24(T)
+m2-fd-linear-value | 0(FPT), 572(M), 1143(L)
+m2-fd-linear-input | 0(FT), 572(M), 1143(L), 6(P)
+m2-fd-linear-coefficient | 0(F), 520(MPT), 1039(L)
+m2-fd-linear-constant | 0(FP), 572(MT), 1143(L)
+m2-fd-two-points-slope | 0(FPT), 1575(M), 3149(L)
+m2-fd-two-points-equation | 0(FPT), 1575(M), 3149(L)
+m2-fd-change-slope | 0(F), 60(M), 119(L), 72(P), 7(T)
+m2-fd-change-y-change | 0(FPT), 60(M), 119(L)
+m2-fd-change-x-change | 0(F), 60(M), 119(L), 7(PT)
+m2-fd-x-intercept | 0(FPT), 114(M), 227(L)
+m2-fd-y-intercept | 0(FPT), 114(M), 227(L)
+m2-fd-slope-point-equation | 0(FP), 572(MT), 1143(L)
+m2-fd-intercepts-equation | 0(FPT), 128(M), 255(L)
+m2-fd-parallel-coefficient | 0(FPT), 660(M), 1319(L)
+m2-fd-linear-translation | 0(FPT), 1296(M), 2591(L)
+m2-fd-implicit-slope | 0(FPT), 299(M), 597(L)
+m2-fd-implicit-x-intercept | 0(FPT), 299(M), 597(L)
+m2-fd-implicit-y-intercept | 0(FPT), 299(M), 597(L)
+m2-fd-intersection-x | 0(FPT), 607(M), 1214(L)
+m2-fd-intersection-y | 0(FPT), 607(M), 1214(L)
+m3-fd-quadratic-vertex-x | 0(FPT), 429(M), 857(L)
+m3-fd-quadratic-vertex-y | 0(FPT), 429(M), 857(L)
+m3-fd-quadratic-axis | 0(FPT), 429(M), 857(L)
+m3-fd-quadratic-vertex-form-p | 0(FPT), 429(M), 857(L)
+m3-fd-quadratic-vertex-form-q | 0(FPT), 429(M), 857(L)
+m3-fd-quadratic-extreme | 0(FPT), 429(M), 857(L)
+m3-fd-quadratic-y-intercept | 0(FPT), 429(M), 857(L)
+m3-fd-quadratic-value | 0(FPT), 1323(M), 2645(L)
+m3-fd-quadratic-coefficient | 0(FPT), 1134(M), 2267(L)
+m3-fd-quadratic-vertex-value | 0(FPT), 1134(M), 2267(L)
+m3-fd-quadratic-expand-b | 0(FPT), 297(M), 593(L)
+m3-fd-quadratic-expand-c | 0(FPT), 297(M), 593(L)
+m3-fd-quadratic-expand-equation | 0(FPT), 297(M), 593(L)
+m3-fd-quadratic-translation | 0(FPT), 1200(M), 2399(L)
+m3-fd-quadratic-integer-root-smaller | 0(FPT), 165(M), 329(L)
+m3-fd-quadratic-radical-root-negative | 0(F), 33(M), 65(L), 2(PT)
+m3-fd-quadratic-integer-root-larger | 0(FPT), 165(M), 329(L)
+m3-fd-quadratic-radical-root-positive | 0(F), 33(M), 65(L), 2(PT)
+m3-fd-quadratic-tangent-root | 0(FPT), 39(M), 77(L)
+m1-fd-data-mean | 0(F), 120(M), 239(L), 162(PT)
+m1-fd-data-median | 0(F), 120(M), 239(L), 162(PT)
+m1-fd-data-even-median | 0(F), 165(M), 329(L), 300(PT)
+m1-fd-data-mode | 0(F), 45(M), 90(L), 70(PT)
+m1-fd-data-missing-mean | 0(F), 126(M), 251(L), 190(P), 189(T)
+m3-fd-data-mean | 0(F), 120(M), 239(L), 162(PT)
+m3-fd-data-median | 0(F), 120(M), 239(L), 162(PT)
+m3-fd-data-range | 0(F), 120(M), 239(L), 162(PT)
+m3-fd-data-even-median | 0(F), 165(M), 329(L), 300(PT)
+m3-fd-data-mode | 0(F), 45(M), 90(L), 70(PT)
+m3-fd-data-missing-mean | 0(F), 126(M), 251(L), 190(P), 189(T)
+m1-fd-frequency-total | 0(FPT), 62(M), 124(L)
+m1-fd-frequency-relative | 0(FPT), 62(M), 124(L)
+m1-fd-frequency-percent | 0(FPT), 62(M), 124(L)
+m1-fd-frequency-combined | 0(FPT), 62(M), 124(L)
+m1-fd-frequency-missing | 0(FT), 62(M), 124(L), 19(P)
+m1-fd-relative-inverse-count | 0(F), 214(M), 428(L), 48(PT)
+m1-fd-relative-inverse-total | 0(F), 214(M), 428(L), 48(PT)
+m1-fd-class-midpoint | 0(F), 25(M), 50(LPT)
+m1-fd-discrete-frequency-mean | 0(F), 576(M), 1151(L), 896(PT)
+m1-fd-stem-leaf-median | 0(FPT), 144(M), 287(L)
+m3-fd-data-deviation | 0(F), 120(M), 239(L), 162(PT)
+m3-fd-data-variance | 0(F), 120(M), 239(L), 162(PT)
+m3-fd-data-standard-deviation | 0(F), 120(M), 239(L), 162(PT)
+m3-fd-deviation | 0(F), 135(M), 269(L), 180(PT)
+m3-fd-missing-deviation | 0(F), 15(M), 29(L), 7(PT)
+m3-fd-variance | 0(F), 135(M), 269(L), 180(PT)
+m3-fd-standard-deviation | 0(F), 135(M), 269(L), 180(PT)
+m3-fd-transformed-mean | 0(FPT), 1458(M), 2915(L)
+m3-fd-transformed-variance | 0(FPT), 1458(M), 2915(L)
+m3-fd-transformed-standard-deviation | 0(FPT), 1458(M), 2915(L)
+m2-fd-count-addition | 0(FPT), 24(M), 48(L)
+m2-fd-count-product | 0(FPT), 18(M), 35(L)
+m2-fd-count-seating | 0(FPT), 7(M), 13(L)
+m2-fd-count-pair | 0(F), 6(M), 12(L), 7(PT)
+m2-fd-count-digits-nonzero | 0(FPT), 4(M), 7(L)
+m2-fd-count-digits-with-zero | 0(FPT), 4(M), 7(L)
+m2-fd-coin-exact-probability | 0(FPT), 12(M), 24(L)
+m2-fd-coin-exact-count | 0(FPT), 12(M), 24(L)
+m2-fd-coin-complement | 0(FPT), 3(M), 6(L)
+m2-fd-single-die-above | 0(FPT), 2(M), 4(L)
+m2-fd-single-die-multiple | 0(FPT), 2(M), 4(L)
+m2-fd-two-dice-sum-probability | 0(F), 5(M), 10(L), 8(PT)
+m2-fd-two-dice-sum-count | 0(F), 5(M), 10(L), 8(PT)
+m2-fd-two-dice-difference-probability | 0(FPT), 3(M), 5(L)
+m2-fd-two-dice-difference-count | 0(FPT), 3(M), 5(L)
+m2-fd-two-dice-product-multiple-probability | 0(FPT), 2(M), 4(L)
+m2-fd-two-dice-product-multiple-count | 0(FPT), 2(M), 4(L)
+m2-fd-two-dice-at-least-one-face-probability | 0(FPT), 3(M), 5(L)
+m2-fd-two-dice-at-least-one-face-count | 0(FPT), 3(M), 5(L)
+m2-fd-two-dice-sum-at-least-probability | 0(F), 5(M), 9(L), 7(PT)
+m2-fd-two-dice-sum-at-least-count | 0(F), 5(M), 9(L), 7(PT)
+m2-fd-card-multiple-probability | 0(F), 48(M), 95(L), 30(PT)
+m2-fd-card-multiple-count | 0(F), 48(M), 95(L), 30(PT)
+m2-fd-card-union | 0(F), 119(M), 237(L), 28(PT)
+m2-fd-balls-no-replace-both-red | 0(FPT), 18(M), 35(L)
+m2-fd-balls-no-replace-different | 0(FPT), 18(M), 35(L)
+m2-fd-balls-no-replace-at-least-one-red | 0(FPT), 18(M), 35(L)
+m2-fd-balls-replace-both-red | 0(FPT), 18(M), 35(L)
+m2-fd-balls-replace-different | 0(FPT), 18(M), 35(L)
+m2-fd-balls-replace-at-least-one-red | 0(FPT), 18(M), 35(L)
+m2-fd-balls-three-exact | 0(FPT), 50(M), 99(L)
+m2-fd-independent-different-bags | 0(FPT), 128(M), 255(L)
