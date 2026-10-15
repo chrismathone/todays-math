@@ -26,6 +26,8 @@ describe("trusted arithmetic dimension presentation", () => {
     expect(Object.keys(asset.families).sort()).toEqual(
       specs.map((s) => s.id).sort(),
     );
+    expect(specs).toHaveLength(56);
+    expect(specs.reduce((n, s) => n + s.domain.length, 0)).toBe(7754);
     for (const spec of specs) {
       const pack = asset.families[spec.id as keyof typeof asset.families];
       const rows = JSON.parse(
@@ -47,7 +49,10 @@ describe("trusted arithmetic dimension presentation", () => {
           "arithmetic-geometry-drill-dimensions-v1",
         );
         expect(display, id).toContain("data-dimension-curve");
-        expect(display, id).toContain("line-gap-");
+        expect(display, id).toContain("data-editor-command");
+        expect(display, id).not.toMatch(
+          /data-projected|data-dimension-witness|addDimension-unresolved/,
+        );
         expect(display, id).not.toMatch(/<script|foreignObject|NaN|Infinity/);
         const numbers = (svg: string) =>
           [...svg.matchAll(/<text\b[^>]*>(.*?)<\/text>/g)]
@@ -56,6 +61,15 @@ describe("trusted arithmetic dimension presentation", () => {
         expect(numbers(display!), `${id}: exact numerical givens`).toEqual(
           numbers(original),
         );
+        for (const text of [
+          ...original.matchAll(/<text\b[^>]*>(.*?)<\/text>/g),
+        ].map((m) => m[1])) {
+          if (!/\d/.test(text))
+            expect(
+              display,
+              `${id}: full canonical target/name ${text}`,
+            ).toContain(`>${text}</text>`);
+        }
         const shape = /<path data-drill-shape="polygon" d="([^"]+)"/.exec(
           original,
         )?.[1];
@@ -66,6 +80,65 @@ describe("trusted arithmetic dimension presentation", () => {
         expect(JSON.stringify(spec.present(p)), id).toBe(before);
       }
     }
+  });
+
+  it("every measured endpoint belongs to the canonical segment or circle, without projection", () => {
+    const near = (a: number[], b: number[]) =>
+      Math.hypot(a[0] - b[0], a[1] - b[1]) < 0.004;
+    let measured = 0;
+    for (const spec of specs)
+      for (const p of spec.domain) {
+        const source = spec.present(p).svg(),
+          shown = svgFor(spec.id, p);
+        const segments: number[][][] = [];
+        for (const match of source.matchAll(/<path\b[^>]*\bd="([^"]+)"/g)) {
+          const values = (match[1].match(/-?\d+(?:\.\d+)?/g) ?? []).map(Number);
+          const points = Array.from({ length: values.length / 2 }, (_, i) => [
+            values[i * 2],
+            values[i * 2 + 1],
+          ]);
+          for (let i = 1; i < points.length; i++)
+            segments.push([points[i - 1], points[i]]);
+          if (/Z/i.test(match[1])) segments.push([points.at(-1)!, points[0]]);
+        }
+        for (const match of shown.matchAll(
+          /<g data-dimension="([^"]+)" data-endpoints="([^"]+)"/g,
+        )) {
+          const v = match[2].split(" ").map(Number);
+          const endpoints = [
+            [v[0] / 1.6 + 120, v[1] / 1.6 + 125],
+            [v[2] / 1.6 + 120, v[3] / 1.6 + 125],
+          ];
+          if (match[1] === "radius" || match[1] === "diameter") {
+            const circle = [
+              ...source.matchAll(
+                /<circle\b[^>]*cx="([^"]+)" cy="([^"]+)" r="([^"]+)"/g,
+              ),
+            ].find(
+              (c) =>
+                Number(c[3]) > 5 &&
+                Math.abs(Number(c[2]) - endpoints[0][1]) < 0.004,
+            )!;
+            expect(circle, `${spec.id}: circular base`).toBeDefined();
+            const [cx, cy, r] = circle.slice(1).map(Number);
+            expect(near(endpoints[1], [cx + r, cy])).toBe(true);
+            expect(
+              near(endpoints[0], [match[1] === "radius" ? cx : cx - r, cy]),
+            ).toBe(true);
+          } else {
+            expect(
+              segments.some(
+                ([a, b]) =>
+                  (near(a, endpoints[0]) && near(b, endpoints[1])) ||
+                  (near(b, endpoints[0]) && near(a, endpoints[1])),
+              ),
+              `${spec.id}/${p.join("-")}/${match[1]} canonical segment`,
+            ).toBe(true);
+          }
+          measured++;
+        }
+      }
+    expect(measured).toBe(17330);
   });
 
   it("fails closed for modified source, unknown IDs, unsupported families and prototypes", () => {
@@ -107,7 +180,7 @@ describe("trusted arithmetic dimension presentation", () => {
     expect(rhombus).toContain('data-endpoints="-104 0 104 0"');
     expect(rhombus).toContain('data-endpoints="0 -78 0 78"');
     expect(rhombus).toContain(">가로 대각선</text>");
-    expect(rhombus.match(/data-dimension-witness=/g)).toHaveLength(4);
+    expect(rhombus).not.toContain("data-dimension-witness");
     expect(rhombus).not.toContain(">8 cm</text>");
   });
 
@@ -162,6 +235,10 @@ describe("trusted arithmetic dimension presentation", () => {
           4,
         );
         expect(shown.match(/data-drill-net-base="true"/g)).toHaveLength(2);
+        if (spec.id.endsWith("-radius"))
+          expect(shown).toContain(">밑면 반지름</text>");
+        if (spec.id.endsWith("-diameter"))
+          expect(shown).toContain(">밑면 지름</text>");
         expect(shown).not.toContain('data-dimension="width"');
       }
   });
