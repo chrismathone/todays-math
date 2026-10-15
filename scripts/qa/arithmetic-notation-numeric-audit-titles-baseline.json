@@ -1,0 +1,6456 @@
+{
+  "build": {
+    "sourceRoot": "C:\\Users\\user\\orca\\workspaces\\testautocreator\\arithmetic-notation-numeric-audit",
+    "built": "2026-10-15T09:08:47.541Z",
+    "sha256": {
+      "src/lib/arithmeticOutput.ts": "d6b73ef4d1d01b38df0270f3f1f786d90396b7edc8133ef7ba2255fd7d3d5607",
+      "src/components/math/MarkdownRenderer.tsx": "141546e9fa47ba01356856e8837bd8ff5a98f48769f4774e0086a7b59841551f",
+      "src/lib/arithmetic-v2/presentation/notation.ts": null,
+      "src/lib/arithmetic-v2/presentation/text.ts": "541f228f142b974256fbf78556d2d8158069dfa8ffaed7674d84d23d58419ca2",
+      "src/components/arithmetic/GradeArithmeticPaper.tsx": "4cc9804761c411da896673a5fa8df1b2c99678150c0b98206b98d3cf6bf41bb1",
+      "src/components/arithmetic/ArithmeticPaper.tsx": "1e8c781ebe25e893db82f80a7ab5b499873983cf2bb7aa6676cd154df6c563a3",
+      "src/components/admin/AdminDocumentPreview.tsx": "25f2987ccd172e623a67631d21a62af3ba53524463871992b959d07969883555"
+    }
+  },
+  "titles": 649,
+  "findings": [
+    {
+      "family": "elem-g3-mul-3x1",
+      "title": "세 자리 수 × 한 자리 수",
+      "formatted": "세 자리 수 × 한 자리 수",
+      "outside": "세 자리 수 × 한 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g3-mul-2x2",
+      "title": "두 자리 수 × 두 자리 수",
+      "formatted": "두 자리 수 × 두 자리 수",
+      "outside": "두 자리 수 × 두 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g3-div-2x1-remainder",
+      "title": "두 자리 수 ÷ 한 자리 수",
+      "formatted": "두 자리 수 ÷ 한 자리 수",
+      "outside": "두 자리 수 ÷ 한 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g3-div-3x1-remainder",
+      "title": "세 자리 수 ÷ 한 자리 수",
+      "formatted": "세 자리 수 ÷ 한 자리 수",
+      "outside": "세 자리 수 ÷ 한 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g4-mul-3x2",
+      "title": "세 자리 수 × 두 자리 수",
+      "formatted": "세 자리 수 × 두 자리 수",
+      "outside": "세 자리 수 × 두 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g4-div-2x2-remainder",
+      "title": "두 자리 수 ÷ 두 자리 수",
+      "formatted": "두 자리 수 ÷ 두 자리 수",
+      "outside": "두 자리 수 ÷ 두 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g4-div-3x2-remainder",
+      "title": "세 자리 수 ÷ 두 자리 수",
+      "formatted": "세 자리 수 ÷ 두 자리 수",
+      "outside": "세 자리 수 ÷ 두 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g5-fraction-mul-natural",
+      "title": "분수 × 자연수",
+      "formatted": "분수 × 자연수",
+      "outside": "분수 × 자연수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g6-fraction-div-natural",
+      "title": "분수 ÷ 자연수",
+      "formatted": "분수 ÷ 자연수",
+      "outside": "분수 ÷ 자연수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g6-decimal-div",
+      "title": "소수 ÷ 소수",
+      "formatted": "소수 ÷ 소수",
+      "outside": "소수 ÷ 소수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g6-decimal-div-natural",
+      "title": "소수 ÷ 자연수",
+      "formatted": "소수 ÷ 자연수",
+      "outside": "소수 ÷ 자연수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g2-add-2x1",
+      "title": "두 자리 수 + 한 자리 수",
+      "formatted": "두 자리 수 + 한 자리 수",
+      "outside": "두 자리 수 + 한 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g2-sub-2x1",
+      "title": "두 자리 수 - 한 자리 수",
+      "formatted": "두 자리 수 - 한 자리 수",
+      "outside": "두 자리 수 - 한 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g3-add-3x-short",
+      "title": "세 자리 수 + 한두 자리 수",
+      "formatted": "세 자리 수 + 한두 자리 수",
+      "outside": "세 자리 수 + 한두 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g3-sub-3x-short",
+      "title": "세 자리 수 - 한두 자리 수",
+      "formatted": "세 자리 수 - 한두 자리 수",
+      "outside": "세 자리 수 - 한두 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g5-decimal-mul-natural",
+      "title": "소수 × 자연수",
+      "formatted": "소수 × 자연수",
+      "outside": "소수 × 자연수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g4-natural-sub-decimal",
+      "title": "자연수 - 소수",
+      "formatted": "자연수 - 소수",
+      "outside": "자연수 - 소수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g6-natural-div-decimal",
+      "title": "자연수 ÷ 소수",
+      "formatted": "자연수 ÷ 소수",
+      "outside": "자연수 ÷ 소수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g4-natural-add-decimal",
+      "title": "자연수 + 소수",
+      "formatted": "자연수 + 소수",
+      "outside": "자연수 + 소수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g4-decimal-sub-natural",
+      "title": "소수 - 자연수",
+      "formatted": "소수 - 자연수",
+      "outside": "소수 - 자연수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g6-natural-div-fraction",
+      "title": "자연수 ÷ 분수",
+      "formatted": "자연수 ÷ 분수",
+      "outside": "자연수 ÷ 분수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g5-natural-sub-fraction",
+      "title": "자연수 - 분수",
+      "formatted": "자연수 - 분수",
+      "outside": "자연수 - 분수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g5-mixed-add-proper",
+      "title": "대분수 + 진분수",
+      "formatted": "대분수 + 진분수",
+      "outside": "대분수 + 진분수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g5-natural-add-fraction",
+      "title": "자연수 + 분수",
+      "formatted": "자연수 + 분수",
+      "outside": "자연수 + 분수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g5-mixed-sub-proper",
+      "title": "대분수 - 진분수",
+      "formatted": "대분수 - 진분수",
+      "outside": "대분수 - 진분수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "ec-g3-multiply-two-by-one-v1",
+      "title": "두 자리 수 × 한 자리 수",
+      "formatted": "두 자리 수 × 한 자리 수",
+      "outside": "두 자리 수 × 한 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "ec-g4-large-scale-down-v1",
+      "title": "큰 수의 1/10·1/100·1/1000배",
+      "formatted": "큰 수의 1/10·1/100·1/1000배",
+      "outside": "큰 수의 1/10·1/100·1/1000배",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render",
+        "scale-fraction-list-semantics"
+      ]
+    },
+    {
+      "family": "ec-g4-decimal-scale-down-v1",
+      "title": "소수의 1/10·1/100배",
+      "formatted": "소수의 1/10·1/100배",
+      "outside": "소수의 1/10·1/100배",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render",
+        "scale-fraction-list-semantics"
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "family": "elem-g3-add-3digit",
+      "title": "세 자리 수의 덧셈",
+      "formatted": "세 자리 수의 덧셈",
+      "outside": "세 자리 수의 덧셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "elem-g3-sub-3digit",
+      "title": "세 자리 수의 뺄셈",
+      "formatted": "세 자리 수의 뺄셈",
+      "outside": "세 자리 수의 뺄셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "elem-g3-mul-3x1",
+      "title": "세 자리 수 × 한 자리 수",
+      "formatted": "세 자리 수 × 한 자리 수",
+      "outside": "세 자리 수 × 한 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g3-mul-2x2",
+      "title": "두 자리 수 × 두 자리 수",
+      "formatted": "두 자리 수 × 두 자리 수",
+      "outside": "두 자리 수 × 두 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g3-div-2x1-remainder",
+      "title": "두 자리 수 ÷ 한 자리 수",
+      "formatted": "두 자리 수 ÷ 한 자리 수",
+      "outside": "두 자리 수 ÷ 한 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g3-div-3x1-remainder",
+      "title": "세 자리 수 ÷ 한 자리 수",
+      "formatted": "세 자리 수 ÷ 한 자리 수",
+      "outside": "세 자리 수 ÷ 한 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g4-mul-3x2",
+      "title": "세 자리 수 × 두 자리 수",
+      "formatted": "세 자리 수 × 두 자리 수",
+      "outside": "세 자리 수 × 두 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g4-div-2x2-remainder",
+      "title": "두 자리 수 ÷ 두 자리 수",
+      "formatted": "두 자리 수 ÷ 두 자리 수",
+      "outside": "두 자리 수 ÷ 두 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g4-div-3x2-remainder",
+      "title": "세 자리 수 ÷ 두 자리 수",
+      "formatted": "세 자리 수 ÷ 두 자리 수",
+      "outside": "세 자리 수 ÷ 두 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g5-natural-mixed",
+      "title": "자연수의 짧은 혼합 계산",
+      "formatted": "자연수의 짧은 혼합 계산",
+      "outside": "자연수의 짧은 혼합 계산",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "elem-g4-fraction-same-add",
+      "title": "같은 분모 진분수의 덧셈",
+      "formatted": "같은 분모 진분수의 덧셈",
+      "outside": "같은 분모 진분수의 덧셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "elem-g4-fraction-same-sub",
+      "title": "같은 분모 진분수의 뺄셈",
+      "formatted": "같은 분모 진분수의 뺄셈",
+      "outside": "같은 분모 진분수의 뺄셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "elem-g4-mixed-same-add",
+      "title": "같은 분모 대분수의 덧셈",
+      "formatted": "같은 분모 대분수의 덧셈",
+      "outside": "같은 분모 대분수의 덧셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "elem-g4-mixed-same-sub",
+      "title": "같은 분모 대분수의 뺄셈",
+      "formatted": "같은 분모 대분수의 뺄셈",
+      "outside": "같은 분모 대분수의 뺄셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "elem-g5-fraction-unlike-add",
+      "title": "다른 분모 진분수의 덧셈",
+      "formatted": "다른 분모 진분수의 덧셈",
+      "outside": "다른 분모 진분수의 덧셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "elem-g5-fraction-unlike-sub",
+      "title": "다른 분모 진분수의 뺄셈",
+      "formatted": "다른 분모 진분수의 뺄셈",
+      "outside": "다른 분모 진분수의 뺄셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "elem-g5-mixed-unlike-add",
+      "title": "다른 분모 대분수의 덧셈",
+      "formatted": "다른 분모 대분수의 덧셈",
+      "outside": "다른 분모 대분수의 덧셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "elem-g5-mixed-unlike-sub",
+      "title": "다른 분모 대분수의 뺄셈",
+      "formatted": "다른 분모 대분수의 뺄셈",
+      "outside": "다른 분모 대분수의 뺄셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "elem-g5-fraction-mul",
+      "title": "분수의 곱셈 (대분수 포함)",
+      "formatted": "분수의 곱셈 (대분수 포함)",
+      "outside": "분수의 곱셈 (대분수 포함)",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "elem-g5-fraction-mul-natural",
+      "title": "분수 × 자연수",
+      "formatted": "분수 × 자연수",
+      "outside": "분수 × 자연수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g6-fraction-div",
+      "title": "분수의 나눗셈 (대분수 포함)",
+      "formatted": "분수의 나눗셈 (대분수 포함)",
+      "outside": "분수의 나눗셈 (대분수 포함)",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "elem-g6-fraction-div-natural",
+      "title": "분수 ÷ 자연수",
+      "formatted": "분수 ÷ 자연수",
+      "outside": "분수 ÷ 자연수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g4-decimal-add",
+      "title": "소수의 덧셈",
+      "formatted": "소수의 덧셈",
+      "outside": "소수의 덧셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "elem-g4-decimal-sub",
+      "title": "소수의 뺄셈",
+      "formatted": "소수의 뺄셈",
+      "outside": "소수의 뺄셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "elem-g5-decimal-mul",
+      "title": "소수의 곱셈",
+      "formatted": "소수의 곱셈",
+      "outside": "소수의 곱셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "elem-g6-decimal-div",
+      "title": "소수 ÷ 소수",
+      "formatted": "소수 ÷ 소수",
+      "outside": "소수 ÷ 소수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g6-decimal-div-natural",
+      "title": "소수 ÷ 자연수",
+      "formatted": "소수 ÷ 자연수",
+      "outside": "소수 ÷ 자연수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "m1-integer-add",
+      "title": "정수 덧셈",
+      "formatted": "정수 덧셈",
+      "outside": "정수 덧셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-integer-subtract",
+      "title": "정수 뺄셈",
+      "formatted": "정수 뺄셈",
+      "outside": "정수 뺄셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-integer-multiply",
+      "title": "정수 곱셈",
+      "formatted": "정수 곱셈",
+      "outside": "정수 곱셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-integer-divide",
+      "title": "정수 나눗셈",
+      "formatted": "정수 나눗셈",
+      "outside": "정수 나눗셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-rational-add",
+      "title": "유리수 덧셈",
+      "formatted": "유리수 덧셈",
+      "outside": "유리수 덧셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-rational-subtract",
+      "title": "유리수 뺄셈",
+      "formatted": "유리수 뺄셈",
+      "outside": "유리수 뺄셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-rational-multiply",
+      "title": "유리수 곱셈",
+      "formatted": "유리수 곱셈",
+      "outside": "유리수 곱셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-rational-divide",
+      "title": "유리수 나눗셈",
+      "formatted": "유리수 나눗셈",
+      "outside": "유리수 나눗셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-integer-power",
+      "title": "부호 있는 정수의 거듭제곱",
+      "formatted": "부호 있는 정수의 거듭제곱",
+      "outside": "부호 있는 정수의 거듭제곱",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-numeric-expression",
+      "title": "괄호가 있는 정수 혼합 계산",
+      "formatted": "괄호가 있는 정수 혼합 계산",
+      "outside": "괄호가 있는 정수 혼합 계산",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-like-terms",
+      "title": "동류항의 덧셈",
+      "formatted": "동류항의 덧셈",
+      "outside": "동류항의 덧셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-linear-add",
+      "title": "일차식의 덧셈",
+      "formatted": "일차식의 덧셈",
+      "outside": "일차식의 덧셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-linear-subtract",
+      "title": "일차식의 뺄셈",
+      "formatted": "일차식의 뺄셈",
+      "outside": "일차식의 뺄셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-monomial-multiply",
+      "title": "단항식의 곱셈",
+      "formatted": "단항식의 곱셈",
+      "outside": "단항식의 곱셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-monomial-divide",
+      "title": "단항식의 나눗셈",
+      "formatted": "단항식의 나눗셈",
+      "outside": "단항식의 나눗셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-polynomial-add",
+      "title": "다항식의 덧셈",
+      "formatted": "다항식의 덧셈",
+      "outside": "다항식의 덧셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-polynomial-subtract",
+      "title": "다항식의 뺄셈",
+      "formatted": "다항식의 뺄셈",
+      "outside": "다항식의 뺄셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-polynomial-monomial-multiply",
+      "title": "다항식과 단항식의 곱셈",
+      "formatted": "다항식과 단항식의 곱셈",
+      "outside": "다항식과 단항식의 곱셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-polynomial-monomial-divide",
+      "title": "다항식을 단항식으로 나누기",
+      "formatted": "다항식을 단항식으로 나누기",
+      "outside": "다항식을 단항식으로 나누기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-polynomial-multiply",
+      "title": "두 일차식의 곱셈",
+      "formatted": "두 일차식의 곱셈",
+      "outside": "두 일차식의 곱셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-radical-simplify",
+      "title": "근호 안의 제곱인수 꺼내기",
+      "formatted": "근호 안의 제곱인수 꺼내기",
+      "outside": "근호 안의 제곱인수 꺼내기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-radical-add",
+      "title": "동류 근호의 덧셈",
+      "formatted": "동류 근호의 덧셈",
+      "outside": "동류 근호의 덧셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-radical-subtract",
+      "title": "동류 근호의 뺄셈",
+      "formatted": "동류 근호의 뺄셈",
+      "outside": "동류 근호의 뺄셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-radical-multiply",
+      "title": "근호의 곱셈",
+      "formatted": "근호의 곱셈",
+      "outside": "근호의 곱셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-radical-divide",
+      "title": "근호의 나눗셈",
+      "formatted": "근호의 나눗셈",
+      "outside": "근호의 나눗셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-radical-rationalize",
+      "title": "단일 근호 분모의 유리화",
+      "formatted": "단일 근호 분모의 유리화",
+      "outside": "단일 근호 분모의 유리화",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "elem-g2-add-2x1",
+      "title": "두 자리 수 + 한 자리 수",
+      "formatted": "두 자리 수 + 한 자리 수",
+      "outside": "두 자리 수 + 한 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g2-sub-2x1",
+      "title": "두 자리 수 - 한 자리 수",
+      "formatted": "두 자리 수 - 한 자리 수",
+      "outside": "두 자리 수 - 한 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g3-add-3x-short",
+      "title": "세 자리 수 + 한두 자리 수",
+      "formatted": "세 자리 수 + 한두 자리 수",
+      "outside": "세 자리 수 + 한두 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g3-sub-3x-short",
+      "title": "세 자리 수 - 한두 자리 수",
+      "formatted": "세 자리 수 - 한두 자리 수",
+      "outside": "세 자리 수 - 한두 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g2-mul-zero",
+      "title": "0을 곱하는 계산",
+      "formatted": "0을 곱하는 계산",
+      "outside": "0을 곱하는 계산",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "elem-g3-div-small-remainder",
+      "title": "한 자리 수와 0의 나눗셈",
+      "formatted": "한 자리 수와 0의 나눗셈",
+      "outside": "한 자리 수와 0의 나눗셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "elem-g5-decimal-mul-natural",
+      "title": "소수 × 자연수",
+      "formatted": "소수 × 자연수",
+      "outside": "소수 × 자연수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g4-natural-sub-decimal",
+      "title": "자연수 - 소수",
+      "formatted": "자연수 - 소수",
+      "outside": "자연수 - 소수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g6-natural-div-decimal",
+      "title": "자연수 ÷ 소수",
+      "formatted": "자연수 ÷ 소수",
+      "outside": "자연수 ÷ 소수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g4-natural-add-decimal",
+      "title": "자연수 + 소수",
+      "formatted": "자연수 + 소수",
+      "outside": "자연수 + 소수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g4-decimal-sub-natural",
+      "title": "소수 - 자연수",
+      "formatted": "소수 - 자연수",
+      "outside": "소수 - 자연수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g6-natural-div-fraction",
+      "title": "자연수 ÷ 분수",
+      "formatted": "자연수 ÷ 분수",
+      "outside": "자연수 ÷ 분수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g5-natural-sub-fraction",
+      "title": "자연수 - 분수",
+      "formatted": "자연수 - 분수",
+      "outside": "자연수 - 분수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g5-mixed-add-proper",
+      "title": "대분수 + 진분수",
+      "formatted": "대분수 + 진분수",
+      "outside": "대분수 + 진분수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g5-natural-add-fraction",
+      "title": "자연수 + 분수",
+      "formatted": "자연수 + 분수",
+      "outside": "자연수 + 분수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g5-mixed-sub-proper",
+      "title": "대분수 - 진분수",
+      "formatted": "대분수 - 진분수",
+      "outside": "대분수 - 진분수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "elem-g6-natural-div-fraction-quotient",
+      "title": "자연수 나눗셈의 몫을 분수로 나타내기",
+      "formatted": "자연수 나눗셈의 몫을 분수로 나타내기",
+      "outside": "자연수 나눗셈의 몫을 분수로 나타내기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "elem-g5-natural-mixed-order",
+      "title": "자연수 혼합 계산: 뺄셈·나눗셈의 순서",
+      "formatted": "자연수 혼합 계산: 뺄셈·나눗셈의 순서",
+      "outside": "자연수 혼합 계산: 뺄셈·나눗셈의 순서",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-integer-rational-quotient",
+      "title": "정수 나눗셈의 분수 몫",
+      "formatted": "정수 나눗셈의 분수 몫",
+      "outside": "정수 나눗셈의 분수 몫",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-integer-fraction-add",
+      "title": "정수와 분수의 덧셈",
+      "formatted": "정수와 분수의 덧셈",
+      "outside": "정수와 분수의 덧셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-integer-fraction-subtract",
+      "title": "정수와 분수의 뺄셈",
+      "formatted": "정수와 분수의 뺄셈",
+      "outside": "정수와 분수의 뺄셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-integer-fraction-multiply",
+      "title": "정수와 분수의 곱셈",
+      "formatted": "정수와 분수의 곱셈",
+      "outside": "정수와 분수의 곱셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-integer-fraction-divide",
+      "title": "정수와 분수의 나눗셈",
+      "formatted": "정수와 분수의 나눗셈",
+      "outside": "정수와 분수의 나눗셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-numeric-precedence",
+      "title": "곱셈·나눗셈을 먼저 하는 혼합 계산",
+      "formatted": "곱셈·나눗셈을 먼저 하는 혼합 계산",
+      "outside": "곱셈·나눗셈을 먼저 하는 혼합 계산",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-rational-grouped-expression",
+      "title": "괄호가 있는 유리수 혼합 계산",
+      "formatted": "괄호가 있는 유리수 혼합 계산",
+      "outside": "괄호가 있는 유리수 혼합 계산",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-linear-scalar-multiply",
+      "title": "일차식과 수의 곱셈",
+      "formatted": "일차식과 수의 곱셈",
+      "outside": "일차식과 수의 곱셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-linear-scalar-divide",
+      "title": "일차식과 수의 나눗셈",
+      "formatted": "일차식과 수의 나눗셈",
+      "outside": "일차식과 수의 나눗셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-rational-like-terms",
+      "title": "분수 계수 동류항의 덧셈",
+      "formatted": "분수 계수 동류항의 덧셈",
+      "outside": "분수 계수 동류항의 덧셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-monomial-power",
+      "title": "단항식의 거듭제곱",
+      "formatted": "단항식의 거듭제곱",
+      "outside": "단항식의 거듭제곱",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-radical-three-terms",
+      "title": "세 근호 항의 덧셈과 뺄셈",
+      "formatted": "세 근호 항의 덧셈과 뺄셈",
+      "outside": "세 근호 항의 덧셈과 뺄셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-radical-distribute",
+      "title": "근호가 있는 식의 분배법칙",
+      "formatted": "근호가 있는 식의 분배법칙",
+      "outside": "근호가 있는 식의 분배법칙",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e4-triangle-missing-angle",
+      "title": "삼각형의 빈 각",
+      "formatted": "삼각형의 빈 각",
+      "outside": "삼각형의 빈 각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e4-right-triangle-missing-angle",
+      "title": "직각삼각형의 빈 예각",
+      "formatted": "직각삼각형의 빈 예각",
+      "outside": "직각삼각형의 빈 예각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e2-length-m-cm",
+      "title": "m와 cm 단위 바꾸기",
+      "formatted": "$\\mathrm{m}$와 $\\mathrm{cm}$ 단위 바꾸기",
+      "outside": "와  단위 바꾸기",
+      "annotations": [
+        "\\displaystyle \\mathrm{m}",
+        "\\displaystyle \\mathrm{cm}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e3-length-cm-mm",
+      "title": "cm와 mm 단위 바꾸기",
+      "formatted": "$\\mathrm{cm}$와 $\\mathrm{mm}$ 단위 바꾸기",
+      "outside": "와  단위 바꾸기",
+      "annotations": [
+        "\\displaystyle \\mathrm{cm}",
+        "\\displaystyle \\mathrm{mm}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e3-length-km-m",
+      "title": "km와 m 단위 바꾸기",
+      "formatted": "$\\mathrm{km}$와 $\\mathrm{m}$ 단위 바꾸기",
+      "outside": "와  단위 바꾸기",
+      "annotations": [
+        "\\displaystyle \\mathrm{km}",
+        "\\displaystyle \\mathrm{m}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e3-capacity-l-ml",
+      "title": "L와 mL 단위 바꾸기",
+      "formatted": "$\\mathrm{L}$와 $\\mathrm{mL}$ 단위 바꾸기",
+      "outside": "와  단위 바꾸기",
+      "annotations": [
+        "\\displaystyle \\mathrm{L}",
+        "\\displaystyle \\mathrm{mL}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-area-m2-cm2",
+      "title": "m²와 cm² 단위 바꾸기",
+      "formatted": "$\\mathrm{m}^{2}$와 $\\mathrm{cm}^{2}$ 단위 바꾸기",
+      "outside": "와  단위 바꾸기",
+      "annotations": [
+        "\\displaystyle \\mathrm{m}^{2}",
+        "\\displaystyle \\mathrm{cm}^{2}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-area-km2-m2",
+      "title": "km²와 m² 단위 바꾸기",
+      "formatted": "$\\mathrm{km}^{2}$와 $\\mathrm{m}^{2}$ 단위 바꾸기",
+      "outside": "와  단위 바꾸기",
+      "annotations": [
+        "\\displaystyle \\mathrm{km}^{2}",
+        "\\displaystyle \\mathrm{m}^{2}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-volume-m3-cm3",
+      "title": "m³와 cm³ 단위 바꾸기",
+      "formatted": "$\\mathrm{m}^{3}$와 $\\mathrm{cm}^{3}$ 단위 바꾸기",
+      "outside": "와  단위 바꾸기",
+      "annotations": [
+        "\\displaystyle \\mathrm{m}^{3}",
+        "\\displaystyle \\mathrm{cm}^{3}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e2-length-mixed-cm",
+      "title": "복합 단위를 cm로 바꾸기",
+      "formatted": "복합 단위를 $\\mathrm{cm}$로 바꾸기",
+      "outside": "복합 단위를 로 바꾸기",
+      "annotations": [
+        "\\displaystyle \\mathrm{cm}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e3-length-mixed-mm",
+      "title": "복합 단위를 mm로 바꾸기",
+      "formatted": "복합 단위를 $\\mathrm{mm}$로 바꾸기",
+      "outside": "복합 단위를 로 바꾸기",
+      "annotations": [
+        "\\displaystyle \\mathrm{mm}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e3-length-mixed-m",
+      "title": "복합 단위를 m로 바꾸기",
+      "formatted": "복합 단위를 $\\mathrm{m}$로 바꾸기",
+      "outside": "복합 단위를 로 바꾸기",
+      "annotations": [
+        "\\displaystyle \\mathrm{m}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e3-capacity-mixed-ml",
+      "title": "복합 단위를 mL로 바꾸기",
+      "formatted": "복합 단위를 $\\mathrm{mL}$로 바꾸기",
+      "outside": "복합 단위를 로 바꾸기",
+      "annotations": [
+        "\\displaystyle \\mathrm{mL}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-volume-decimal-units",
+      "title": "소수인 부피 단위 바꾸기",
+      "formatted": "소수인 부피 단위 바꾸기",
+      "outside": "소수인 부피 단위 바꾸기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e2-length-sum",
+      "title": "두 길이의 합",
+      "formatted": "두 길이의 합",
+      "outside": "두 길이의 합",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e2-length-difference",
+      "title": "두 길이의 차",
+      "formatted": "두 길이의 차",
+      "outside": "두 길이의 차",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e2-length-broken",
+      "title": "꺾인 선의 길이",
+      "formatted": "꺾인 선의 길이",
+      "outside": "꺾인 선의 길이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e2-polygon-sides-total",
+      "title": "여러 도형의 변 수",
+      "formatted": "여러 도형의 변 수",
+      "outside": "여러 도형의 변 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e2-polygon-vertices-total",
+      "title": "여러 도형의 꼭짓점 수",
+      "formatted": "여러 도형의 꼭짓점 수",
+      "outside": "여러 도형의 꼭짓점 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e3-circle-radius",
+      "title": "지름에서 반지름",
+      "formatted": "지름에서 반지름",
+      "outside": "지름에서 반지름",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e3-circle-diameter",
+      "title": "반지름에서 지름",
+      "formatted": "반지름에서 지름",
+      "outside": "반지름에서 지름",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-unit-square-area",
+      "title": "단위 정사각형으로 넓이 구하기",
+      "formatted": "단위 정사각형으로 넓이 구하기",
+      "outside": "단위 정사각형으로 넓이 구하기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e4-angle-sum",
+      "title": "각도의 합",
+      "formatted": "각도의 합",
+      "outside": "각도의 합",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e4-angle-difference",
+      "title": "각도의 차",
+      "formatted": "각도의 차",
+      "outside": "각도의 차",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e4-angle-right-remainder",
+      "title": "직각에서 남은 각",
+      "formatted": "직각에서 남은 각",
+      "outside": "직각에서 남은 각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e4-angle-straight-remainder",
+      "title": "평각에서 남은 각",
+      "formatted": "평각에서 남은 각",
+      "outside": "평각에서 남은 각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e4-angle-turn-remainder",
+      "title": "한 바퀴에서 남은 각",
+      "formatted": "한 바퀴에서 남은 각",
+      "outside": "한 바퀴에서 남은 각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e4-quadrilateral-missing-angle",
+      "title": "사각형의 빈 각",
+      "formatted": "사각형의 빈 각",
+      "outside": "사각형의 빈 각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e4-isosceles-base-angle",
+      "title": "이등변삼각형의 밑각",
+      "formatted": "이등변삼각형의 밑각",
+      "outside": "이등변삼각형의 밑각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e4-isosceles-apex-angle",
+      "title": "이등변삼각형의 꼭지각",
+      "formatted": "이등변삼각형의 꼭지각",
+      "outside": "이등변삼각형의 꼭지각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-rectangle-perimeter",
+      "title": "직사각형의 둘레",
+      "formatted": "직사각형의 둘레",
+      "outside": "직사각형의 둘레",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-rectangle-perimeter-side",
+      "title": "직사각형의 둘레에서 한 변",
+      "formatted": "직사각형의 둘레에서 한 변",
+      "outside": "직사각형의 둘레에서 한 변",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-parallelogram-perimeter",
+      "title": "평행사변형의 둘레",
+      "formatted": "평행사변형의 둘레",
+      "outside": "평행사변형의 둘레",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-parallelogram-perimeter-side",
+      "title": "평행사변형의 둘레에서 한 변",
+      "formatted": "평행사변형의 둘레에서 한 변",
+      "outside": "평행사변형의 둘레에서 한 변",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-square-perimeter",
+      "title": "정사각형의 둘레",
+      "formatted": "정사각형의 둘레",
+      "outside": "정사각형의 둘레",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-square-perimeter-side",
+      "title": "정사각형의 둘레에서 한 변",
+      "formatted": "정사각형의 둘레에서 한 변",
+      "outside": "정사각형의 둘레에서 한 변",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-rhombus-perimeter",
+      "title": "마름모의 둘레",
+      "formatted": "마름모의 둘레",
+      "outside": "마름모의 둘레",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-rhombus-perimeter-side",
+      "title": "마름모의 둘레에서 한 변",
+      "formatted": "마름모의 둘레에서 한 변",
+      "outside": "마름모의 둘레에서 한 변",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-regular-polygon-perimeter",
+      "title": "정다각형의 둘레",
+      "formatted": "정다각형의 둘레",
+      "outside": "정다각형의 둘레",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-regular-polygon-perimeter-side",
+      "title": "정다각형의 둘레에서 한 변",
+      "formatted": "정다각형의 둘레에서 한 변",
+      "outside": "정다각형의 둘레에서 한 변",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-triangle-perimeter",
+      "title": "삼각형의 둘레",
+      "formatted": "삼각형의 둘레",
+      "outside": "삼각형의 둘레",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-triangle-perimeter-side",
+      "title": "삼각형의 둘레에서 한 변",
+      "formatted": "삼각형의 둘레에서 한 변",
+      "outside": "삼각형의 둘레에서 한 변",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-rectangle-area",
+      "title": "직사각형의 넓이",
+      "formatted": "직사각형의 넓이",
+      "outside": "직사각형의 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-rectangle-area-side",
+      "title": "직사각형의 넓이에서 가로",
+      "formatted": "직사각형의 넓이에서 가로",
+      "outside": "직사각형의 넓이에서 가로",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-square-area",
+      "title": "정사각형의 넓이",
+      "formatted": "정사각형의 넓이",
+      "outside": "정사각형의 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-square-area-side",
+      "title": "정사각형의 넓이에서 한 변",
+      "formatted": "정사각형의 넓이에서 한 변",
+      "outside": "정사각형의 넓이에서 한 변",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-triangle-area",
+      "title": "삼각형의 넓이",
+      "formatted": "삼각형의 넓이",
+      "outside": "삼각형의 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-triangle-area-base",
+      "title": "삼각형의 넓이에서 밑변",
+      "formatted": "삼각형의 넓이에서 밑변",
+      "outside": "삼각형의 넓이에서 밑변",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-triangle-area-height",
+      "title": "삼각형의 넓이에서 높이",
+      "formatted": "삼각형의 넓이에서 높이",
+      "outside": "삼각형의 넓이에서 높이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-parallelogram-area",
+      "title": "평행사변형의 넓이",
+      "formatted": "평행사변형의 넓이",
+      "outside": "평행사변형의 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-parallelogram-area-base",
+      "title": "평행사변형의 넓이에서 밑변",
+      "formatted": "평행사변형의 넓이에서 밑변",
+      "outside": "평행사변형의 넓이에서 밑변",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-parallelogram-area-height",
+      "title": "평행사변형의 넓이에서 높이",
+      "formatted": "평행사변형의 넓이에서 높이",
+      "outside": "평행사변형의 넓이에서 높이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-rhombus-area",
+      "title": "마름모의 넓이",
+      "formatted": "마름모의 넓이",
+      "outside": "마름모의 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-rhombus-area-diagonal",
+      "title": "마름모의 넓이에서 대각선",
+      "formatted": "마름모의 넓이에서 대각선",
+      "outside": "마름모의 넓이에서 대각선",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-trapezoid-area",
+      "title": "사다리꼴의 넓이",
+      "formatted": "사다리꼴의 넓이",
+      "outside": "사다리꼴의 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-trapezoid-area-height",
+      "title": "사다리꼴의 넓이에서 높이",
+      "formatted": "사다리꼴의 넓이에서 높이",
+      "outside": "사다리꼴의 넓이에서 높이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-trapezoid-area-top",
+      "title": "사다리꼴의 넓이에서 윗변",
+      "formatted": "사다리꼴의 넓이에서 윗변",
+      "outside": "사다리꼴의 넓이에서 윗변",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-trapezoid-area-bottom",
+      "title": "사다리꼴의 넓이에서 아랫변",
+      "formatted": "사다리꼴의 넓이에서 아랫변",
+      "outside": "사다리꼴의 넓이에서 아랫변",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-cuboid-edges",
+      "title": "직육면체의 모든 모서리 길이의 합",
+      "formatted": "직육면체의 모든 모서리 길이의 합",
+      "outside": "직육면체의 모든 모서리 길이의 합",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-cube-edges",
+      "title": "정육면체의 모든 모서리 길이의 합",
+      "formatted": "정육면체의 모든 모서리 길이의 합",
+      "outside": "정육면체의 모든 모서리 길이의 합",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-cuboid-edges-height",
+      "title": "직육면체의 모든 모서리 길이의 합에서 높이",
+      "formatted": "직육면체의 모든 모서리 길이의 합에서 높이",
+      "outside": "직육면체의 모든 모서리 길이의 합에서 높이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e5-cube-edges-side",
+      "title": "정육면체의 모든 모서리 길이의 합에서 모서리",
+      "formatted": "정육면체의 모든 모서리 길이의 합에서 모서리",
+      "outside": "정육면체의 모든 모서리 길이의 합에서 모서리",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-cuboid-surface",
+      "title": "직육면체의 겉넓이",
+      "formatted": "직육면체의 겉넓이",
+      "outside": "직육면체의 겉넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-cube-surface",
+      "title": "정육면체의 겉넓이",
+      "formatted": "정육면체의 겉넓이",
+      "outside": "정육면체의 겉넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-cuboid-surface-height",
+      "title": "직육면체의 겉넓이에서 높이",
+      "formatted": "직육면체의 겉넓이에서 높이",
+      "outside": "직육면체의 겉넓이에서 높이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-cube-surface-side",
+      "title": "정육면체의 겉넓이에서 모서리",
+      "formatted": "정육면체의 겉넓이에서 모서리",
+      "outside": "정육면체의 겉넓이에서 모서리",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-cuboid-volume",
+      "title": "직육면체의 부피",
+      "formatted": "직육면체의 부피",
+      "outside": "직육면체의 부피",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-cube-volume",
+      "title": "정육면체의 부피",
+      "formatted": "정육면체의 부피",
+      "outside": "정육면체의 부피",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-cuboid-volume-height",
+      "title": "직육면체의 부피에서 높이",
+      "formatted": "직육면체의 부피에서 높이",
+      "outside": "직육면체의 부피에서 높이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-cube-volume-side",
+      "title": "정육면체의 부피에서 모서리",
+      "formatted": "정육면체의 부피에서 모서리",
+      "outside": "정육면체의 부피에서 모서리",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-cuboid-base-volume",
+      "title": "밑넓이와 높이로 직육면체의 부피",
+      "formatted": "밑넓이와 높이로 직육면체의 부피",
+      "outside": "밑넓이와 높이로 직육면체의 부피",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-cuboid-base-height",
+      "title": "직육면체의 부피와 밑넓이에서 높이",
+      "formatted": "직육면체의 부피와 밑넓이에서 높이",
+      "outside": "직육면체의 부피와 밑넓이에서 높이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-circle-circumference-radius",
+      "title": "원의 반지름에서 원주",
+      "formatted": "원의 반지름에서 원주",
+      "outside": "원의 반지름에서 원주",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-circle-circumference-diameter",
+      "title": "원의 지름에서 원주",
+      "formatted": "원의 지름에서 원주",
+      "outside": "원의 지름에서 원주",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-circle-area-radius",
+      "title": "원의 반지름에서 넓이",
+      "formatted": "원의 반지름에서 넓이",
+      "outside": "원의 반지름에서 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-circle-area-diameter",
+      "title": "원의 지름에서 넓이",
+      "formatted": "원의 지름에서 넓이",
+      "outside": "원의 지름에서 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-circle-radius-circumference",
+      "title": "원의 원주에서 반지름",
+      "formatted": "원의 원주에서 반지름",
+      "outside": "원의 원주에서 반지름",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-circle-diameter-circumference",
+      "title": "원의 원주에서 지름",
+      "formatted": "원의 원주에서 지름",
+      "outside": "원의 원주에서 지름",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-circle-radius-area",
+      "title": "원의 넓이에서 반지름",
+      "formatted": "원의 넓이에서 반지름",
+      "outside": "원의 넓이에서 반지름",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-circle-diameter-area",
+      "title": "원의 넓이에서 지름",
+      "formatted": "원의 넓이에서 지름",
+      "outside": "원의 넓이에서 지름",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-cylinder-net-area",
+      "title": "원기둥의 옆면을 펼친 직사각형의 넓이",
+      "formatted": "원기둥의 옆면을 펼친 직사각형의 넓이",
+      "outside": "원기둥의 옆면을 펼친 직사각형의 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-cylinder-net-area-height",
+      "title": "원기둥의 옆면 넓이에서 높이",
+      "formatted": "원기둥의 옆면 넓이에서 높이",
+      "outside": "원기둥의 옆면 넓이에서 높이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-cylinder-net-area-radius",
+      "title": "원기둥의 옆면 넓이에서 밑면의 반지름",
+      "formatted": "원기둥의 옆면 넓이에서 밑면의 반지름",
+      "outside": "원기둥의 옆면 넓이에서 밑면의 반지름",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "e6-cylinder-net-area-diameter",
+      "title": "원기둥의 옆면 넓이에서 밑면의 지름",
+      "formatted": "원기둥의 옆면 넓이에서 밑면의 지름",
+      "outside": "원기둥의 옆면 넓이에서 밑면의 지름",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-polygon-vertex-diagonals",
+      "title": "한 꼭짓점에서 그을 수 있는 대각선 수",
+      "formatted": "한 꼭짓점에서 그을 수 있는 대각선 수",
+      "outside": "한 꼭짓점에서 그을 수 있는 대각선 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-polygon-fan-triangles",
+      "title": "한 꼭짓점의 대각선으로 나눈 삼각형 수",
+      "formatted": "한 꼭짓점의 대각선으로 나눈 삼각형 수",
+      "outside": "한 꼭짓점의 대각선으로 나눈 삼각형 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-polygon-sides-vertex-diagonals",
+      "title": "한 꼭짓점의 대각선 수에서 변의 수",
+      "formatted": "한 꼭짓점의 대각선 수에서 변의 수",
+      "outside": "한 꼭짓점의 대각선 수에서 변의 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-polygon-sides-fan-triangles",
+      "title": "나누어진 삼각형 수에서 변의 수",
+      "formatted": "나누어진 삼각형 수에서 변의 수",
+      "outside": "나누어진 삼각형 수에서 변의 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-polygon-sides-sum",
+      "title": "내각의 합에서 다각형의 변의 수",
+      "formatted": "내각의 합에서 다각형의 변의 수",
+      "outside": "내각의 합에서 다각형의 변의 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-prism-faces-count",
+      "title": "각기둥의 면 수",
+      "formatted": "각기둥의 면 수",
+      "outside": "각기둥의 면 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-prism-base-from-faces",
+      "title": "각기둥의 면 수에서 밑면의 변 수",
+      "formatted": "각기둥의 면 수에서 밑면의 변 수",
+      "outside": "각기둥의 면 수에서 밑면의 변 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-prism-edges-count",
+      "title": "각기둥의 모서리 수",
+      "formatted": "각기둥의 모서리 수",
+      "outside": "각기둥의 모서리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-prism-base-from-edges",
+      "title": "각기둥의 모서리 수에서 밑면의 변 수",
+      "formatted": "각기둥의 모서리 수에서 밑면의 변 수",
+      "outside": "각기둥의 모서리 수에서 밑면의 변 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-prism-vertices-count",
+      "title": "각기둥의 꼭짓점 수",
+      "formatted": "각기둥의 꼭짓점 수",
+      "outside": "각기둥의 꼭짓점 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-prism-base-from-vertices",
+      "title": "각기둥의 꼭짓점 수에서 밑면의 변 수",
+      "formatted": "각기둥의 꼭짓점 수에서 밑면의 변 수",
+      "outside": "각기둥의 꼭짓점 수에서 밑면의 변 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-pyramid-faces-count",
+      "title": "각뿔의 면 수",
+      "formatted": "각뿔의 면 수",
+      "outside": "각뿔의 면 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-pyramid-base-from-faces",
+      "title": "각뿔의 면 수에서 밑면의 변 수",
+      "formatted": "각뿔의 면 수에서 밑면의 변 수",
+      "outside": "각뿔의 면 수에서 밑면의 변 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-pyramid-edges-count",
+      "title": "각뿔의 모서리 수",
+      "formatted": "각뿔의 모서리 수",
+      "outside": "각뿔의 모서리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-pyramid-base-from-edges",
+      "title": "각뿔의 모서리 수에서 밑면의 변 수",
+      "formatted": "각뿔의 모서리 수에서 밑면의 변 수",
+      "outside": "각뿔의 모서리 수에서 밑면의 변 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-pyramid-vertices-count",
+      "title": "각뿔의 꼭짓점 수",
+      "formatted": "각뿔의 꼭짓점 수",
+      "outside": "각뿔의 꼭짓점 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-pyramid-base-from-vertices",
+      "title": "각뿔의 꼭짓점 수에서 밑면의 변 수",
+      "formatted": "각뿔의 꼭짓점 수에서 밑면의 변 수",
+      "outside": "각뿔의 꼭짓점 수에서 밑면의 변 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-frustum-faces-count",
+      "title": "각뿔대의 면 수",
+      "formatted": "각뿔대의 면 수",
+      "outside": "각뿔대의 면 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-frustum-base-from-faces",
+      "title": "각뿔대의 면 수에서 밑면의 변 수",
+      "formatted": "각뿔대의 면 수에서 밑면의 변 수",
+      "outside": "각뿔대의 면 수에서 밑면의 변 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-frustum-edges-count",
+      "title": "각뿔대의 모서리 수",
+      "formatted": "각뿔대의 모서리 수",
+      "outside": "각뿔대의 모서리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-frustum-base-from-edges",
+      "title": "각뿔대의 모서리 수에서 밑면의 변 수",
+      "formatted": "각뿔대의 모서리 수에서 밑면의 변 수",
+      "outside": "각뿔대의 모서리 수에서 밑면의 변 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-frustum-vertices-count",
+      "title": "각뿔대의 꼭짓점 수",
+      "formatted": "각뿔대의 꼭짓점 수",
+      "outside": "각뿔대의 꼭짓점 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-frustum-base-from-vertices",
+      "title": "각뿔대의 꼭짓점 수에서 밑면의 변 수",
+      "formatted": "각뿔대의 꼭짓점 수에서 밑면의 변 수",
+      "outside": "각뿔대의 꼭짓점 수에서 밑면의 변 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-obtuse-circum-central-angle",
+      "title": "둔각삼각형 외심의 작은 중심각",
+      "formatted": "둔각삼각형 외심의 작은 중심각",
+      "outside": "둔각삼각형 외심의 작은 중심각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-obtuse-circum-vertex-angle",
+      "title": "둔각삼각형의 작은 중심각에서 꼭짓각",
+      "formatted": "둔각삼각형의 작은 중심각에서 꼭짓각",
+      "outside": "둔각삼각형의 작은 중심각에서 꼭짓각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-obtuse-circum-base-angle",
+      "title": "둔각삼각형 외심과 두 반지름의 밑각",
+      "formatted": "둔각삼각형 외심과 두 반지름의 밑각",
+      "outside": "둔각삼각형 외심과 두 반지름의 밑각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-circum-central-angle",
+      "title": "외심의 중심각",
+      "formatted": "외심의 중심각",
+      "outside": "외심의 중심각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-circum-vertex-angle",
+      "title": "외심의 중심각에서 꼭짓각",
+      "formatted": "외심의 중심각에서 꼭짓각",
+      "outside": "외심의 중심각에서 꼭짓각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-circum-radius-base-angle",
+      "title": "두 반지름이 만든 삼각형의 밑각",
+      "formatted": "두 반지름이 만든 삼각형의 밑각",
+      "outside": "두 반지름이 만든 삼각형의 밑각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-circum-base-central-angle",
+      "title": "두 반지름의 밑각에서 중심각",
+      "formatted": "두 반지름의 밑각에서 중심각",
+      "outside": "두 반지름의 밑각에서 중심각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-circum-three-base-angles",
+      "title": "외심에서 나뉜 세 밑각",
+      "formatted": "외심에서 나뉜 세 밑각",
+      "outside": "외심에서 나뉜 세 밑각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-circum-equal-radii",
+      "title": "외심에서 꼭짓점까지의 거리",
+      "formatted": "외심에서 꼭짓점까지의 거리",
+      "outside": "외심에서 꼭짓점까지의 거리",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-right-circumradius",
+      "title": "빗변에서 외접원 반지름",
+      "formatted": "빗변에서 외접원 반지름",
+      "outside": "빗변에서 외접원 반지름",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-right-circum-diameter",
+      "title": "외접원 반지름에서 빗변",
+      "formatted": "외접원 반지름에서 빗변",
+      "outside": "외접원 반지름에서 빗변",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-incenter-half-angle",
+      "title": "내심의 각 이등분",
+      "formatted": "내심의 각 이등분",
+      "outside": "내심의 각 이등분",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-incenter-whole-angle",
+      "title": "내심의 반각에서 전체 각",
+      "formatted": "내심의 반각에서 전체 각",
+      "outside": "내심의 반각에서 전체 각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-incenter-central-angle",
+      "title": "내심에서 두 꼭짓점을 잇는 각",
+      "formatted": "내심에서 두 꼭짓점을 잇는 각",
+      "outside": "내심에서 두 꼭짓점을 잇는 각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-incenter-inverse-angle",
+      "title": "내심의 각에서 꼭짓각",
+      "formatted": "내심의 각에서 꼭짓각",
+      "outside": "내심의 각에서 꼭짓각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-incenter-three-half-angles",
+      "title": "내심에서 나뉜 세 반각",
+      "formatted": "내심에서 나뉜 세 반각",
+      "outside": "내심에서 나뉜 세 반각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-iso-incenter-base-half",
+      "title": "이등변삼각형의 내심과 밑각",
+      "formatted": "이등변삼각형의 내심과 밑각",
+      "outside": "이등변삼각형의 내심과 밑각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-incenter-area",
+      "title": "내접원 반지름과 둘레에서 넓이",
+      "formatted": "내접원 반지름과 둘레에서 넓이",
+      "outside": "내접원 반지름과 둘레에서 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-incenter-radius",
+      "title": "넓이와 둘레에서 내접원 반지름",
+      "formatted": "넓이와 둘레에서 내접원 반지름",
+      "outside": "넓이와 둘레에서 내접원 반지름",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-incenter-perimeter",
+      "title": "넓이와 내접원 반지름에서 둘레",
+      "formatted": "넓이와 내접원 반지름에서 둘레",
+      "outside": "넓이와 내접원 반지름에서 둘레",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-incenter-part-area",
+      "title": "내심으로 나뉜 삼각형의 넓이",
+      "formatted": "내심으로 나뉜 삼각형의 넓이",
+      "outside": "내심으로 나뉜 삼각형의 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-incenter-right-radius",
+      "title": "직각삼각형의 내접원 반지름",
+      "formatted": "직각삼각형의 내접원 반지름",
+      "outside": "직각삼각형의 내접원 반지름",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-centroid-vertex-from-short",
+      "title": "무게중심에서 꼭짓점 쪽 선분",
+      "formatted": "무게중심에서 꼭짓점 쪽 선분",
+      "outside": "무게중심에서 꼭짓점 쪽 선분",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-centroid-short-from-vertex",
+      "title": "무게중심에서 중점 쪽 선분",
+      "formatted": "무게중심에서 중점 쪽 선분",
+      "outside": "무게중심에서 중점 쪽 선분",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-centroid-vertex-from-median",
+      "title": "중선에서 꼭짓점 쪽 선분",
+      "formatted": "중선에서 꼭짓점 쪽 선분",
+      "outside": "중선에서 꼭짓점 쪽 선분",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-centroid-short-from-median",
+      "title": "중선에서 중점 쪽 선분",
+      "formatted": "중선에서 중점 쪽 선분",
+      "outside": "중선에서 중점 쪽 선분",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-centroid-median-from-vertex",
+      "title": "꼭짓점 쪽 선분에서 중선",
+      "formatted": "꼭짓점 쪽 선분에서 중선",
+      "outside": "꼭짓점 쪽 선분에서 중선",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-centroid-median-from-short",
+      "title": "중점 쪽 선분에서 중선",
+      "formatted": "중점 쪽 선분에서 중선",
+      "outside": "중점 쪽 선분에서 중선",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-centroid-area-3",
+      "title": "무게중심과 한 변이 만드는 넓이",
+      "formatted": "무게중심과 한 변이 만드는 넓이",
+      "outside": "무게중심과 한 변이 만드는 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-centroid-area-6",
+      "title": "무게중심과 반 밑변이 만드는 넓이",
+      "formatted": "무게중심과 반 밑변이 만드는 넓이",
+      "outside": "무게중심과 반 밑변이 만드는 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-iso-bisector-angle",
+      "title": "이등변삼각형의 이등분선과 밑각",
+      "formatted": "이등변삼각형의 이등분선과 밑각",
+      "outside": "이등변삼각형의 이등분선과 밑각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-iso-bisector-base",
+      "title": "꼭지각 이등분선과 밑변",
+      "formatted": "꼭지각 이등분선과 밑변",
+      "outside": "꼭지각 이등분선과 밑변",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-iso-bisector-half-base",
+      "title": "꼭지각 이등분선과 반 밑변",
+      "formatted": "꼭지각 이등분선과 반 밑변",
+      "outside": "꼭지각 이등분선과 반 밑변",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-triangle-midsegment",
+      "title": "삼각형의 중점 연결 선분",
+      "formatted": "삼각형의 중점 연결 선분",
+      "outside": "삼각형의 중점 연결 선분",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-midsegment-to-base",
+      "title": "중점 연결 선분에서 밑변",
+      "formatted": "중점 연결 선분에서 밑변",
+      "outside": "중점 연결 선분에서 밑변",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-midsegment-area-small",
+      "title": "중점 연결로 생긴 작은 삼각형의 넓이",
+      "formatted": "중점 연결로 생긴 작은 삼각형의 넓이",
+      "outside": "중점 연결로 생긴 작은 삼각형의 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-midsegment-area-remainder",
+      "title": "중점 연결로 남은 사다리꼴의 넓이",
+      "formatted": "중점 연결로 남은 사다리꼴의 넓이",
+      "outside": "중점 연결로 남은 사다리꼴의 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-trapezoid-midline",
+      "title": "사다리꼴의 중점 연결 선분",
+      "formatted": "사다리꼴의 중점 연결 선분",
+      "outside": "사다리꼴의 중점 연결 선분",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-trapezoid-base",
+      "title": "중점 연결 선분에서 사다리꼴 밑변",
+      "formatted": "중점 연결 선분에서 사다리꼴 밑변",
+      "outside": "중점 연결 선분에서 사다리꼴 밑변",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-trapezoid-diagonal-midpoints",
+      "title": "사다리꼴의 대각선 중점 사이",
+      "formatted": "사다리꼴의 대각선 중점 사이",
+      "outside": "사다리꼴의 대각선 중점 사이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-similarity-ratio-power-1",
+      "title": "닮음비에서 길이비",
+      "formatted": "닮음비에서 길이비",
+      "outside": "닮음비에서 길이비",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-similarity-length-enlarge",
+      "title": "닮은 도형의 길이 확대",
+      "formatted": "닮은 도형의 길이 확대",
+      "outside": "닮은 도형의 길이 확대",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-similarity-length-reduce",
+      "title": "닮은 도형의 길이 축소",
+      "formatted": "닮은 도형의 길이 축소",
+      "outside": "닮은 도형의 길이 축소",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-similarity-ratio-power-2",
+      "title": "닮음비에서 넓이비",
+      "formatted": "닮음비에서 넓이비",
+      "outside": "닮음비에서 넓이비",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-similarity-length-from-power-2",
+      "title": "넓이비에서 대응변의 비",
+      "formatted": "넓이비에서 대응변의 비",
+      "outside": "넓이비에서 대응변의 비",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-similarity-area-enlarge",
+      "title": "닮은 도형의 넓이 확대",
+      "formatted": "닮은 도형의 넓이 확대",
+      "outside": "닮은 도형의 넓이 확대",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-similarity-area-reduce",
+      "title": "닮은 도형의 넓이 축소",
+      "formatted": "닮은 도형의 넓이 축소",
+      "outside": "닮은 도형의 넓이 축소",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-similarity-ratio-power-3",
+      "title": "닮음비에서 부피비",
+      "formatted": "닮음비에서 부피비",
+      "outside": "닮음비에서 부피비",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-similarity-length-from-power-3",
+      "title": "부피비에서 대응변의 비",
+      "formatted": "부피비에서 대응변의 비",
+      "outside": "부피비에서 대응변의 비",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-similarity-volume-enlarge",
+      "title": "닮은 도형의 부피 확대",
+      "formatted": "닮은 도형의 부피 확대",
+      "outside": "닮은 도형의 부피 확대",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-similarity-volume-reduce",
+      "title": "닮은 도형의 부피 축소",
+      "formatted": "닮은 도형의 부피 축소",
+      "outside": "닮은 도형의 부피 축소",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-similarity-perimeter",
+      "title": "닮은 삼각형의 둘레",
+      "formatted": "닮은 삼각형의 둘레",
+      "outside": "닮은 삼각형의 둘레",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-parallel-triangle-side-part",
+      "title": "삼각형 평행선의 나머지 선분",
+      "formatted": "삼각형 평행선의 나머지 선분",
+      "outside": "삼각형 평행선의 나머지 선분",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-parallel-triangle-base",
+      "title": "삼각형 평행선의 밑변",
+      "formatted": "삼각형 평행선의 밑변",
+      "outside": "삼각형 평행선의 밑변",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-parallel-triangle-whole-side",
+      "title": "삼각형 평행선의 전체 변",
+      "formatted": "삼각형 평행선의 전체 변",
+      "outside": "삼각형 평행선의 전체 변",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-triangle-bisector-segment",
+      "title": "내각 이등분선의 선분비",
+      "formatted": "내각 이등분선의 선분비",
+      "outside": "내각 이등분선의 선분비",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-parallelogram-adjacent",
+      "title": "평행사변형의 이웃한 각",
+      "formatted": "평행사변형의 이웃한 각",
+      "outside": "평행사변형의 이웃한 각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-parallelogram-diagonal-half",
+      "title": "평행사변형의 반 대각선",
+      "formatted": "평행사변형의 반 대각선",
+      "outside": "평행사변형의 반 대각선",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-parallelogram-diagonal-whole",
+      "title": "평행사변형의 전체 대각선",
+      "formatted": "평행사변형의 전체 대각선",
+      "outside": "평행사변형의 전체 대각선",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-parallelogram-area-quarter",
+      "title": "평행사변형의 대각선과 넓이",
+      "formatted": "평행사변형의 대각선과 넓이",
+      "outside": "평행사변형의 대각선과 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-rectangle-diagonal-half",
+      "title": "직사각형의 두 대각선",
+      "formatted": "직사각형의 두 대각선",
+      "outside": "직사각형의 두 대각선",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-rhombus-diagonal-angle",
+      "title": "마름모의 대각선과 반각",
+      "formatted": "마름모의 대각선과 반각",
+      "outside": "마름모의 대각선과 반각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-isosceles-trapezoid-angle",
+      "title": "등변사다리꼴의 이웃한 각",
+      "formatted": "등변사다리꼴의 이웃한 각",
+      "outside": "등변사다리꼴의 이웃한 각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-pythagoras-hypotenuse-integer",
+      "title": "직각삼각형의 빗변 (정수)",
+      "formatted": "직각삼각형의 빗변 (정수)",
+      "outside": "직각삼각형의 빗변 (정수)",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-pythagoras-leg-integer",
+      "title": "직각삼각형의 나머지 직각변 (정수)",
+      "formatted": "직각삼각형의 나머지 직각변 (정수)",
+      "outside": "직각삼각형의 나머지 직각변 (정수)",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-pythagoras-rectangle-diagonal-integer",
+      "title": "직사각형의 대각선 (정수)",
+      "formatted": "직사각형의 대각선 (정수)",
+      "outside": "직사각형의 대각선 (정수)",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-pythagoras-rectangle-side-integer",
+      "title": "대각선에서 직사각형의 한 변 (정수)",
+      "formatted": "대각선에서 직사각형의 한 변 (정수)",
+      "outside": "대각선에서 직사각형의 한 변 (정수)",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-pythagoras-isosceles-height-integer",
+      "title": "이등변삼각형의 높이 (정수)",
+      "formatted": "이등변삼각형의 높이 (정수)",
+      "outside": "이등변삼각형의 높이 (정수)",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-pythagoras-rhombus-side-integer",
+      "title": "두 대각선에서 마름모의 한 변 (정수)",
+      "formatted": "두 대각선에서 마름모의 한 변 (정수)",
+      "outside": "두 대각선에서 마름모의 한 변 (정수)",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-pythagoras-hypotenuse-surd",
+      "title": "직각삼각형의 빗변 (근호)",
+      "formatted": "직각삼각형의 빗변 (근호)",
+      "outside": "직각삼각형의 빗변 (근호)",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-pythagoras-leg-surd",
+      "title": "직각삼각형의 나머지 직각변 (근호)",
+      "formatted": "직각삼각형의 나머지 직각변 (근호)",
+      "outside": "직각삼각형의 나머지 직각변 (근호)",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-pythagoras-rectangle-diagonal-surd",
+      "title": "직사각형의 대각선 (근호)",
+      "formatted": "직사각형의 대각선 (근호)",
+      "outside": "직사각형의 대각선 (근호)",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-pythagoras-rectangle-side-surd",
+      "title": "대각선에서 직사각형의 한 변 (근호)",
+      "formatted": "대각선에서 직사각형의 한 변 (근호)",
+      "outside": "대각선에서 직사각형의 한 변 (근호)",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-pythagoras-isosceles-height-surd",
+      "title": "이등변삼각형의 높이 (근호)",
+      "formatted": "이등변삼각형의 높이 (근호)",
+      "outside": "이등변삼각형의 높이 (근호)",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-pythagoras-rhombus-side-surd",
+      "title": "두 대각선에서 마름모의 한 변 (근호)",
+      "formatted": "두 대각선에서 마름모의 한 변 (근호)",
+      "outside": "두 대각선에서 마름모의 한 변 (근호)",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-right-radius-from-legs",
+      "title": "두 직각변에서 외접원 반지름",
+      "formatted": "두 직각변에서 외접원 반지름",
+      "outside": "두 직각변에서 외접원 반지름",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-right-triangle-height",
+      "title": "직각삼각형의 빗변에 내린 높이",
+      "formatted": "직각삼각형의 빗변에 내린 높이",
+      "outside": "직각삼각형의 빗변에 내린 높이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-right-triangle-projection",
+      "title": "직각삼각형의 빗변 위 선분",
+      "formatted": "직각삼각형의 빗변 위 선분",
+      "outside": "직각삼각형의 빗변 위 선분",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-right-triangle-area",
+      "title": "빗변과 직각변에서 삼각형 넓이",
+      "formatted": "빗변과 직각변에서 삼각형 넓이",
+      "outside": "빗변과 직각변에서 삼각형 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-right-altitude-product",
+      "title": "빗변의 두 부분에서 높이",
+      "formatted": "빗변의 두 부분에서 높이",
+      "outside": "빗변의 두 부분에서 높이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-right-leg-product",
+      "title": "빗변과 정사영에서 직각변",
+      "formatted": "빗변과 정사영에서 직각변",
+      "outside": "빗변과 정사영에서 직각변",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-centroid-median-sum",
+      "title": "세 중선과 꼭짓점 쪽 선분의 합",
+      "formatted": "세 중선과 꼭짓점 쪽 선분의 합",
+      "outside": "세 중선과 꼭짓점 쪽 선분의 합",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-triangle-median-area",
+      "title": "중선으로 나뉜 삼각형의 넓이",
+      "formatted": "중선으로 나뉜 삼각형의 넓이",
+      "outside": "중선으로 나뉜 삼각형의 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-same-height-area-ratio",
+      "title": "같은 높이를 가진 삼각형의 넓이",
+      "formatted": "같은 높이를 가진 삼각형의 넓이",
+      "outside": "같은 높이를 가진 삼각형의 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-three-parallel-segments",
+      "title": "세 평행선 사이의 선분비",
+      "formatted": "세 평행선 사이의 선분비",
+      "outside": "세 평행선 사이의 선분비",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-trapezoid-parallel-section",
+      "title": "사다리꼴의 평행한 단면 선분",
+      "formatted": "사다리꼴의 평행한 단면 선분",
+      "outside": "사다리꼴의 평행한 단면 선분",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-external-bisector-part",
+      "title": "외각 이등분선의 바깥 선분",
+      "formatted": "외각 이등분선의 바깥 선분",
+      "outside": "외각 이등분선의 바깥 선분",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-external-bisector-base",
+      "title": "외각 이등분선에서 밑변",
+      "formatted": "외각 이등분선에서 밑변",
+      "outside": "외각 이등분선에서 밑변",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-midpoint-triangle-perimeter-part",
+      "title": "세 중점으로 만든 삼각형의 둘레",
+      "formatted": "세 중점으로 만든 삼각형의 둘레",
+      "outside": "세 중점으로 만든 삼각형의 둘레",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-midpoint-triangle-perimeter-whole",
+      "title": "중점 삼각형에서 원래 둘레",
+      "formatted": "중점 삼각형에서 원래 둘레",
+      "outside": "중점 삼각형에서 원래 둘레",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-parallel-angle",
+      "title": "평행선과 엇갈린 각의 계산",
+      "formatted": "평행선과 엇갈린 각의 계산",
+      "outside": "평행선과 엇갈린 각의 계산",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-triangle-exterior",
+      "title": "삼각형의 외각",
+      "formatted": "삼각형의 외각",
+      "outside": "삼각형의 외각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-triangle-interior-exterior",
+      "title": "외각에서 삼각형의 내각",
+      "formatted": "외각에서 삼각형의 내각",
+      "outside": "외각에서 삼각형의 내각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-polygon-sum",
+      "title": "다각형의 내각의 합",
+      "formatted": "다각형의 내각의 합",
+      "outside": "다각형의 내각의 합",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-polygon-interior",
+      "title": "정다각형의 한 내각",
+      "formatted": "정다각형의 한 내각",
+      "outside": "정다각형의 한 내각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-polygon-exterior",
+      "title": "정다각형의 한 외각",
+      "formatted": "정다각형의 한 외각",
+      "outside": "정다각형의 한 외각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-polygon-sides-interior",
+      "title": "한 내각에서 정다각형의 변의 수",
+      "formatted": "한 내각에서 정다각형의 변의 수",
+      "outside": "한 내각에서 정다각형의 변의 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-polygon-sides-exterior",
+      "title": "한 외각에서 정다각형의 변의 수",
+      "formatted": "한 외각에서 정다각형의 변의 수",
+      "outside": "한 외각에서 정다각형의 변의 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-polygon-diagonals",
+      "title": "다각형의 대각선 수",
+      "formatted": "다각형의 대각선 수",
+      "outside": "다각형의 대각선 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-polygon-sides-diagonals",
+      "title": "대각선 수에서 다각형의 변의 수",
+      "formatted": "대각선 수에서 다각형의 변의 수",
+      "outside": "대각선 수에서 다각형의 변의 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-circle-circumference",
+      "title": "원의 둘레",
+      "formatted": "원의 둘레",
+      "outside": "원의 둘레",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-circle-area",
+      "title": "원의 넓이",
+      "formatted": "원의 넓이",
+      "outside": "원의 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-circle-radius-circumference",
+      "title": "원주에서 반지름",
+      "formatted": "원주에서 반지름",
+      "outside": "원주에서 반지름",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-circle-radius-area",
+      "title": "원의 넓이에서 반지름",
+      "formatted": "원의 넓이에서 반지름",
+      "outside": "원의 넓이에서 반지름",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-sector-arc",
+      "title": "부채꼴의 호의 길이",
+      "formatted": "부채꼴의 호의 길이",
+      "outside": "부채꼴의 호의 길이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-sector-area",
+      "title": "부채꼴의 넓이",
+      "formatted": "부채꼴의 넓이",
+      "outside": "부채꼴의 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-sector-perimeter",
+      "title": "부채꼴의 둘레",
+      "formatted": "부채꼴의 둘레",
+      "outside": "부채꼴의 둘레",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-sector-angle-arc",
+      "title": "호의 길이에서 중심각",
+      "formatted": "호의 길이에서 중심각",
+      "outside": "호의 길이에서 중심각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-sector-angle-area",
+      "title": "부채꼴의 넓이에서 중심각",
+      "formatted": "부채꼴의 넓이에서 중심각",
+      "outside": "부채꼴의 넓이에서 중심각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-sector-radius-arc",
+      "title": "호의 길이에서 반지름",
+      "formatted": "호의 길이에서 반지름",
+      "outside": "호의 길이에서 반지름",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-sector-radius-area",
+      "title": "부채꼴의 넓이에서 반지름",
+      "formatted": "부채꼴의 넓이에서 반지름",
+      "outside": "부채꼴의 넓이에서 반지름",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-sector-area-arc",
+      "title": "호와 반지름에서 부채꼴 넓이",
+      "formatted": "호와 반지름에서 부채꼴 넓이",
+      "outside": "호와 반지름에서 부채꼴 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-prism-volume",
+      "title": "각기둥의 부피",
+      "formatted": "각기둥의 부피",
+      "outside": "각기둥의 부피",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-prism-surface",
+      "title": "직각기둥의 겉넓이",
+      "formatted": "직각기둥의 겉넓이",
+      "outside": "직각기둥의 겉넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-cylinder-volume",
+      "title": "원기둥의 부피",
+      "formatted": "원기둥의 부피",
+      "outside": "원기둥의 부피",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-cylinder-surface",
+      "title": "원기둥의 겉넓이",
+      "formatted": "원기둥의 겉넓이",
+      "outside": "원기둥의 겉넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-cylinder-lateral",
+      "title": "원기둥의 옆넓이",
+      "formatted": "원기둥의 옆넓이",
+      "outside": "원기둥의 옆넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-pyramid-volume",
+      "title": "각뿔의 부피",
+      "formatted": "각뿔의 부피",
+      "outside": "각뿔의 부피",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-pyramid-surface",
+      "title": "정사각뿔의 겉넓이",
+      "formatted": "정사각뿔의 겉넓이",
+      "outside": "정사각뿔의 겉넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-cone-volume",
+      "title": "원뿔의 부피",
+      "formatted": "원뿔의 부피",
+      "outside": "원뿔의 부피",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-cone-surface",
+      "title": "원뿔의 겉넓이",
+      "formatted": "원뿔의 겉넓이",
+      "outside": "원뿔의 겉넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-cone-lateral",
+      "title": "원뿔의 옆넓이",
+      "formatted": "원뿔의 옆넓이",
+      "outside": "원뿔의 옆넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-sphere-surface",
+      "title": "구의 겉넓이",
+      "formatted": "구의 겉넓이",
+      "outside": "구의 겉넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-sphere-volume",
+      "title": "구의 부피",
+      "formatted": "구의 부피",
+      "outside": "구의 부피",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-circle-inscribed",
+      "title": "중심각에서 원주각",
+      "formatted": "중심각에서 원주각",
+      "outside": "중심각에서 원주각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-circle-central",
+      "title": "원주각에서 중심각",
+      "formatted": "원주각에서 중심각",
+      "outside": "원주각에서 중심각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-circle-same-arc",
+      "title": "같은 호의 원주각",
+      "formatted": "같은 호의 원주각",
+      "outside": "같은 호의 원주각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-circle-cyclic-opposite",
+      "title": "원에 내접하는 사각형의 대각",
+      "formatted": "원에 내접하는 사각형의 대각",
+      "outside": "원에 내접하는 사각형의 대각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-circle-chord-length",
+      "title": "중심에서의 거리로 현의 길이",
+      "formatted": "중심에서의 거리로 현의 길이",
+      "outside": "중심에서의 거리로 현의 길이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-circle-chord-distance",
+      "title": "현과 중심 사이의 거리",
+      "formatted": "현과 중심 사이의 거리",
+      "outside": "현과 중심 사이의 거리",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-circle-tangent-angle",
+      "title": "접선과 반지름의 직각에서 빈 각",
+      "formatted": "접선과 반지름의 직각에서 빈 각",
+      "outside": "접선과 반지름의 직각에서 빈 각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-trig-ratio",
+      "title": "직각삼각형의 삼각비",
+      "formatted": "직각삼각형의 삼각비",
+      "outside": "직각삼각형의 삼각비",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-trig-special-value",
+      "title": "특수각의 삼각비",
+      "formatted": "특수각의 삼각비",
+      "outside": "특수각의 삼각비",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-trig-special-length",
+      "title": "특수각의 삼각비로 변의 길이",
+      "formatted": "특수각의 삼각비로 변의 길이",
+      "outside": "특수각의 삼각비로 변의 길이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-trig-triangle-area",
+      "title": "두 변과 끼인각으로 삼각형 넓이",
+      "formatted": "두 변과 끼인각으로 삼각형 넓이",
+      "outside": "두 변과 끼인각으로 삼각형 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-prism-base-area-volume",
+      "title": "각기둥의 부피에서 밑넓이",
+      "formatted": "각기둥의 부피에서 밑넓이",
+      "outside": "각기둥의 부피에서 밑넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-prism-height-volume",
+      "title": "각기둥의 부피에서 높이",
+      "formatted": "각기둥의 부피에서 높이",
+      "outside": "각기둥의 부피에서 높이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-pyramid-base-area-volume",
+      "title": "각뿔의 부피에서 밑넓이",
+      "formatted": "각뿔의 부피에서 밑넓이",
+      "outside": "각뿔의 부피에서 밑넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-pyramid-height-volume",
+      "title": "각뿔의 부피에서 높이",
+      "formatted": "각뿔의 부피에서 높이",
+      "outside": "각뿔의 부피에서 높이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-prism-base-area-surface",
+      "title": "직각기둥의 겉넓이에서 밑넓이",
+      "formatted": "직각기둥의 겉넓이에서 밑넓이",
+      "outside": "직각기둥의 겉넓이에서 밑넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-prism-height-surface",
+      "title": "직각기둥의 겉넓이에서 높이",
+      "formatted": "직각기둥의 겉넓이에서 높이",
+      "outside": "직각기둥의 겉넓이에서 높이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-pyramid-slant-surface",
+      "title": "정사각뿔의 겉넓이에서 옆면 높이",
+      "formatted": "정사각뿔의 겉넓이에서 옆면 높이",
+      "outside": "정사각뿔의 겉넓이에서 옆면 높이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-cylinder-height-volume",
+      "title": "원기둥의 부피에서 높이",
+      "formatted": "원기둥의 부피에서 높이",
+      "outside": "원기둥의 부피에서 높이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-cylinder-radius-volume",
+      "title": "원기둥의 부피에서 반지름",
+      "formatted": "원기둥의 부피에서 반지름",
+      "outside": "원기둥의 부피에서 반지름",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-cone-height-volume",
+      "title": "원뿔의 부피에서 높이",
+      "formatted": "원뿔의 부피에서 높이",
+      "outside": "원뿔의 부피에서 높이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-cone-radius-volume",
+      "title": "원뿔의 부피에서 반지름",
+      "formatted": "원뿔의 부피에서 반지름",
+      "outside": "원뿔의 부피에서 반지름",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-cylinder-height-lateral",
+      "title": "원기둥의 옆넓이에서 높이",
+      "formatted": "원기둥의 옆넓이에서 높이",
+      "outside": "원기둥의 옆넓이에서 높이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-cylinder-radius-lateral",
+      "title": "원기둥의 옆넓이에서 반지름",
+      "formatted": "원기둥의 옆넓이에서 반지름",
+      "outside": "원기둥의 옆넓이에서 반지름",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-cylinder-height-surface",
+      "title": "원기둥의 겉넓이에서 높이",
+      "formatted": "원기둥의 겉넓이에서 높이",
+      "outside": "원기둥의 겉넓이에서 높이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-cone-radius-lateral",
+      "title": "원뿔의 옆넓이에서 반지름",
+      "formatted": "원뿔의 옆넓이에서 반지름",
+      "outside": "원뿔의 옆넓이에서 반지름",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-cone-generator-lateral",
+      "title": "원뿔의 옆넓이에서 모선",
+      "formatted": "원뿔의 옆넓이에서 모선",
+      "outside": "원뿔의 옆넓이에서 모선",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-cone-generator-surface",
+      "title": "원뿔의 겉넓이에서 모선",
+      "formatted": "원뿔의 겉넓이에서 모선",
+      "outside": "원뿔의 겉넓이에서 모선",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-sphere-radius-surface",
+      "title": "구의 겉넓이에서 반지름",
+      "formatted": "구의 겉넓이에서 반지름",
+      "outside": "구의 겉넓이에서 반지름",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-sphere-radius-volume",
+      "title": "구의 부피에서 반지름",
+      "formatted": "구의 부피에서 반지름",
+      "outside": "구의 부피에서 반지름",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-circle-tangent-chord",
+      "title": "접선과 현이 이루는 각",
+      "formatted": "접선과 현이 이루는 각",
+      "outside": "접선과 현이 이루는 각",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-circle-equal-tangents",
+      "title": "한 점에서 그은 두 접선의 길이",
+      "formatted": "한 점에서 그은 두 접선의 길이",
+      "outside": "한 점에서 그은 두 접선의 길이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-multiply-two-by-one-v1",
+      "title": "두 자리 수 × 한 자리 수",
+      "formatted": "두 자리 수 × 한 자리 수",
+      "outside": "두 자리 수 × 한 자리 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render"
+      ]
+    },
+    {
+      "family": "ec-g3-fraction-amount-v1",
+      "title": "전체의 분수만큼 구하기",
+      "formatted": "전체의 분수만큼 구하기",
+      "outside": "전체의 분수만큼 구하기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-fraction-whole-v1",
+      "title": "분수만큼의 양에서 전체 구하기",
+      "formatted": "분수만큼의 양에서 전체 구하기",
+      "outside": "분수만큼의 양에서 전체 구하기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-fraction-part-representation-v1",
+      "title": "전체와 부분을 분수로 나타내기",
+      "formatted": "전체와 부분을 분수로 나타내기",
+      "outside": "전체와 부분을 분수로 나타내기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-unit-fraction-amount-v1",
+      "title": "단위분수 여러 개의 크기",
+      "formatted": "단위분수 여러 개의 크기",
+      "outside": "단위분수 여러 개의 크기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-unit-fraction-count-v1",
+      "title": "자연수에 들어 있는 단위분수의 개수",
+      "formatted": "자연수에 들어 있는 단위분수의 개수",
+      "outside": "자연수에 들어 있는 단위분수의 개수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-mixed-to-improper-v1",
+      "title": "대분수를 가분수로 바꾸기",
+      "formatted": "대분수를 가분수로 바꾸기",
+      "outside": "대분수를 가분수로 바꾸기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-improper-to-mixed-v1",
+      "title": "가분수를 대분수로 바꾸기",
+      "formatted": "가분수를 대분수로 바꾸기",
+      "outside": "가분수를 대분수로 바꾸기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-tenths-fraction-v1",
+      "title": "소수 한 자리 수를 분수로",
+      "formatted": "소수 한 자리 수를 분수로",
+      "outside": "소수 한 자리 수를 분수로",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-tenths-decimal-v1",
+      "title": "분모가 10인 분수를 소수로",
+      "formatted": "분모가 10인 분수를 소수로",
+      "outside": "분모가 10인 분수를 소수로",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-unit-hour-minute-small-v1",
+      "title": "시간·분: 분 단위로 바꾸기",
+      "formatted": "시간·분: 분 단위로 바꾸기",
+      "outside": "시간·분: 분 단위로 바꾸기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-unit-hour-minute-large-v1",
+      "title": "시간·분: 시간 단위로 바꾸기",
+      "formatted": "시간·분: 시간 단위로 바꾸기",
+      "outside": "시간·분: 시간 단위로 바꾸기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-unit-minute-second-small-v1",
+      "title": "분·초: 초 단위로 바꾸기",
+      "formatted": "분·초: 초 단위로 바꾸기",
+      "outside": "분·초: 초 단위로 바꾸기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-unit-minute-second-large-v1",
+      "title": "분·초: 분 단위로 바꾸기",
+      "formatted": "분·초: 분 단위로 바꾸기",
+      "outside": "분·초: 분 단위로 바꾸기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-unit-hour-second-small-v1",
+      "title": "시간·초: 초 단위로 바꾸기",
+      "formatted": "시간·초: 초 단위로 바꾸기",
+      "outside": "시간·초: 초 단위로 바꾸기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-unit-hour-second-large-v1",
+      "title": "시간·초: 시간 단위로 바꾸기",
+      "formatted": "시간·초: 시간 단위로 바꾸기",
+      "outside": "시간·초: 시간 단위로 바꾸기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-unit-kg-g-small-v1",
+      "title": "kg·g: g 단위로 바꾸기",
+      "formatted": "$\\mathrm{kg}$·$\\mathrm{g}$: $\\mathrm{g}$ 단위로 바꾸기",
+      "outside": "·:  단위로 바꾸기",
+      "annotations": [
+        "\\displaystyle \\mathrm{kg}",
+        "\\displaystyle \\mathrm{g}",
+        "\\displaystyle \\mathrm{g}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-unit-kg-g-large-v1",
+      "title": "kg·g: kg 단위로 바꾸기",
+      "formatted": "$\\mathrm{kg}$·$\\mathrm{g}$: $\\mathrm{kg}$ 단위로 바꾸기",
+      "outside": "·:  단위로 바꾸기",
+      "annotations": [
+        "\\displaystyle \\mathrm{kg}",
+        "\\displaystyle \\mathrm{g}",
+        "\\displaystyle \\mathrm{kg}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-unit-t-kg-small-v1",
+      "title": "t·kg: kg 단위로 바꾸기",
+      "formatted": "$\\mathrm{t}$·$\\mathrm{kg}$: $\\mathrm{kg}$ 단위로 바꾸기",
+      "outside": "·:  단위로 바꾸기",
+      "annotations": [
+        "\\displaystyle \\mathrm{t}",
+        "\\displaystyle \\mathrm{kg}",
+        "\\displaystyle \\mathrm{kg}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-unit-t-kg-large-v1",
+      "title": "t·kg: t 단위로 바꾸기",
+      "formatted": "$\\mathrm{t}$·$\\mathrm{kg}$: $\\mathrm{t}$ 단위로 바꾸기",
+      "outside": "·:  단위로 바꾸기",
+      "annotations": [
+        "\\displaystyle \\mathrm{t}",
+        "\\displaystyle \\mathrm{kg}",
+        "\\displaystyle \\mathrm{t}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-compound-hour-minute-to-small-v1",
+      "title": "시간·분 복합 단위: 합친 양 구하기",
+      "formatted": "시간·분 복합 단위: 합친 양 구하기",
+      "outside": "시간·분 복합 단위: 합친 양 구하기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-compound-hour-minute-large-blank-v1",
+      "title": "시간·분 복합 단위: 시간 구하기",
+      "formatted": "시간·분 복합 단위: 시간 구하기",
+      "outside": "시간·분 복합 단위: 시간 구하기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-compound-hour-minute-small-blank-v1",
+      "title": "시간·분 복합 단위: 분 구하기",
+      "formatted": "시간·분 복합 단위: 분 구하기",
+      "outside": "시간·분 복합 단위: 분 구하기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-compound-minute-second-to-small-v1",
+      "title": "분·초 복합 단위: 합친 양 구하기",
+      "formatted": "분·초 복합 단위: 합친 양 구하기",
+      "outside": "분·초 복합 단위: 합친 양 구하기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-compound-minute-second-large-blank-v1",
+      "title": "분·초 복합 단위: 분 구하기",
+      "formatted": "분·초 복합 단위: 분 구하기",
+      "outside": "분·초 복합 단위: 분 구하기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-compound-minute-second-small-blank-v1",
+      "title": "분·초 복합 단위: 초 구하기",
+      "formatted": "분·초 복합 단위: 초 구하기",
+      "outside": "분·초 복합 단위: 초 구하기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-compound-kg-g-to-small-v1",
+      "title": "kg·g 복합 단위: 합친 양 구하기",
+      "formatted": "$\\mathrm{kg}$·$\\mathrm{g}$ 복합 단위: 합친 양 구하기",
+      "outside": "· 복합 단위: 합친 양 구하기",
+      "annotations": [
+        "\\displaystyle \\mathrm{kg}",
+        "\\displaystyle \\mathrm{g}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-compound-kg-g-large-blank-v1",
+      "title": "kg·g 복합 단위: kg 구하기",
+      "formatted": "$\\mathrm{kg}$·$\\mathrm{g}$ 복합 단위: $\\mathrm{kg}$ 구하기",
+      "outside": "· 복합 단위:  구하기",
+      "annotations": [
+        "\\displaystyle \\mathrm{kg}",
+        "\\displaystyle \\mathrm{g}",
+        "\\displaystyle \\mathrm{kg}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-compound-kg-g-small-blank-v1",
+      "title": "kg·g 복합 단위: g 구하기",
+      "formatted": "$\\mathrm{kg}$·$\\mathrm{g}$ 복합 단위: $\\mathrm{g}$ 구하기",
+      "outside": "· 복합 단위:  구하기",
+      "annotations": [
+        "\\displaystyle \\mathrm{kg}",
+        "\\displaystyle \\mathrm{g}",
+        "\\displaystyle \\mathrm{g}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-compound-t-kg-to-small-v1",
+      "title": "t·kg 복합 단위: 합친 양 구하기",
+      "formatted": "$\\mathrm{t}$·$\\mathrm{kg}$ 복합 단위: 합친 양 구하기",
+      "outside": "· 복합 단위: 합친 양 구하기",
+      "annotations": [
+        "\\displaystyle \\mathrm{t}",
+        "\\displaystyle \\mathrm{kg}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-compound-t-kg-large-blank-v1",
+      "title": "t·kg 복합 단위: t 구하기",
+      "formatted": "$\\mathrm{t}$·$\\mathrm{kg}$ 복합 단위: $\\mathrm{t}$ 구하기",
+      "outside": "· 복합 단위:  구하기",
+      "annotations": [
+        "\\displaystyle \\mathrm{t}",
+        "\\displaystyle \\mathrm{kg}",
+        "\\displaystyle \\mathrm{t}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-compound-t-kg-small-blank-v1",
+      "title": "t·kg 복합 단위: kg 구하기",
+      "formatted": "$\\mathrm{t}$·$\\mathrm{kg}$ 복합 단위: $\\mathrm{kg}$ 구하기",
+      "outside": "· 복합 단위:  구하기",
+      "annotations": [
+        "\\displaystyle \\mathrm{t}",
+        "\\displaystyle \\mathrm{kg}",
+        "\\displaystyle \\mathrm{kg}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-compound-capacity-large-blank-v1",
+      "title": "L·mL 복합 단위: L 구하기",
+      "formatted": "$\\mathrm{L}$·$\\mathrm{mL}$ 복합 단위: $\\mathrm{L}$ 구하기",
+      "outside": "· 복합 단위:  구하기",
+      "annotations": [
+        "\\displaystyle \\mathrm{L}",
+        "\\displaystyle \\mathrm{mL}",
+        "\\displaystyle \\mathrm{L}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-compound-capacity-small-blank-v1",
+      "title": "L·mL 복합 단위: mL 구하기",
+      "formatted": "$\\mathrm{L}$·$\\mathrm{mL}$ 복합 단위: $\\mathrm{mL}$ 구하기",
+      "outside": "· 복합 단위:  구하기",
+      "annotations": [
+        "\\displaystyle \\mathrm{L}",
+        "\\displaystyle \\mathrm{mL}",
+        "\\displaystyle \\mathrm{mL}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-hour-minute-sum-v1",
+      "title": "시간·분의 합",
+      "formatted": "시간·분의 합",
+      "outside": "시간·분의 합",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-hour-minute-difference-v1",
+      "title": "시간·분의 차",
+      "formatted": "시간·분의 차",
+      "outside": "시간·분의 차",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-minute-second-sum-v1",
+      "title": "분·초의 합",
+      "formatted": "분·초의 합",
+      "outside": "분·초의 합",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-minute-second-difference-v1",
+      "title": "분·초의 차",
+      "formatted": "분·초의 차",
+      "outside": "분·초의 차",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-capacity-sum-v1",
+      "title": "L·mL의 합",
+      "formatted": "$\\mathrm{L}$·$\\mathrm{mL}$의 합",
+      "outside": "·의 합",
+      "annotations": [
+        "\\displaystyle \\mathrm{L}",
+        "\\displaystyle \\mathrm{mL}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-capacity-difference-v1",
+      "title": "L·mL의 차",
+      "formatted": "$\\mathrm{L}$·$\\mathrm{mL}$의 차",
+      "outside": "·의 차",
+      "annotations": [
+        "\\displaystyle \\mathrm{L}",
+        "\\displaystyle \\mathrm{mL}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-mass-sum-v1",
+      "title": "kg·g의 합",
+      "formatted": "$\\mathrm{kg}$·$\\mathrm{g}$의 합",
+      "outside": "·의 합",
+      "annotations": [
+        "\\displaystyle \\mathrm{kg}",
+        "\\displaystyle \\mathrm{g}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-mass-difference-v1",
+      "title": "kg·g의 차",
+      "formatted": "$\\mathrm{kg}$·$\\mathrm{g}$의 차",
+      "outside": "·의 차",
+      "annotations": [
+        "\\displaystyle \\mathrm{kg}",
+        "\\displaystyle \\mathrm{g}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-elapsed-time-v1",
+      "title": "시작·끝 시각 사이의 시간",
+      "formatted": "시작·끝 시각 사이의 시간",
+      "outside": "시작·끝 시각 사이의 시간",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-unit-fraction-count-in-fraction-v1",
+      "title": "분수에 들어 있는 단위분수의 개수",
+      "formatted": "분수에 들어 있는 단위분수의 개수",
+      "outside": "분수에 들어 있는 단위분수의 개수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g4-large-place-value-v1",
+      "title": "큰 수의 자리값",
+      "formatted": "큰 수의 자리값",
+      "outside": "큰 수의 자리값",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g4-large-unit-value-v1",
+      "title": "만·억·조 묶음의 수",
+      "formatted": "만·억·조 묶음의 수",
+      "outside": "만·억·조 묶음의 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g4-large-unit-count-v1",
+      "title": "큰 수는 만·억·조의 몇 배인지",
+      "formatted": "큰 수는 만·억·조의 몇 배인지",
+      "outside": "큰 수는 만·억·조의 몇 배인지",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g4-large-scale-up-v1",
+      "title": "큰 수의 10·100·1000배",
+      "formatted": "큰 수의 10·100·1000배",
+      "outside": "큰 수의 10·100·1000배",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g4-large-scale-down-v1",
+      "title": "큰 수의 1/10·1/100·1/1000배",
+      "formatted": "큰 수의 1/10·1/100·1/1000배",
+      "outside": "큰 수의 1/10·1/100·1/1000배",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render",
+        "scale-fraction-list-semantics"
+      ]
+    },
+    {
+      "family": "ec-g4-large-skip-count-v1",
+      "title": "큰 수 뛰어 세기",
+      "formatted": "큰 수 뛰어 세기",
+      "outside": "큰 수 뛰어 세기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g4-decimal-place-value-v1",
+      "title": "소수의 자리 숫자가 나타내는 값",
+      "formatted": "소수의 자리 숫자가 나타내는 값",
+      "outside": "소수의 자리 숫자가 나타내는 값",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g4-decimal-place-count-v1",
+      "title": "소수에 들어 있는 단위소수의 개수",
+      "formatted": "소수에 들어 있는 단위소수의 개수",
+      "outside": "소수에 들어 있는 단위소수의 개수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g4-decimal-scale-up-v1",
+      "title": "소수의 10·100배",
+      "formatted": "소수의 10·100배",
+      "outside": "소수의 10·100배",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g4-decimal-scale-down-v1",
+      "title": "소수의 1/10·1/100배",
+      "formatted": "소수의 1/10·1/100배",
+      "outside": "소수의 1/10·1/100배",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": [
+        "not-explicit-before-heuristics",
+        "raw-math-after-render",
+        "scale-fraction-list-semantics"
+      ]
+    },
+    {
+      "family": "ec-g4-pattern-add-next-v1",
+      "title": "일정한 수를 더하는 규칙: 다음 수",
+      "formatted": "일정한 수를 더하는 규칙: 다음 수",
+      "outside": "일정한 수를 더하는 규칙: 다음 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g4-pattern-add-missing-v1",
+      "title": "일정한 수를 더하는 규칙: 가운데 수",
+      "formatted": "일정한 수를 더하는 규칙: 가운데 수",
+      "outside": "일정한 수를 더하는 규칙: 가운데 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g4-pattern-multiply-next-v1",
+      "title": "일정한 수를 곱하는 규칙: 다음 수",
+      "formatted": "일정한 수를 곱하는 규칙: 다음 수",
+      "outside": "일정한 수를 곱하는 규칙: 다음 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g4-pattern-multiply-missing-v1",
+      "title": "일정한 수를 곱하는 규칙: 가운데 수",
+      "formatted": "일정한 수를 곱하는 규칙: 가운데 수",
+      "outside": "일정한 수를 곱하는 규칙: 가운데 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g4-pattern-subtract-next-v1",
+      "title": "일정한 수를 빼는 규칙: 다음 수",
+      "formatted": "일정한 수를 빼는 규칙: 다음 수",
+      "outside": "일정한 수를 빼는 규칙: 다음 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g4-pattern-subtract-missing-v1",
+      "title": "일정한 수를 빼는 규칙: 가운데 수",
+      "formatted": "일정한 수를 빼는 규칙: 가운데 수",
+      "outside": "일정한 수를 빼는 규칙: 가운데 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g4-pattern-divide-next-v1",
+      "title": "일정한 수로 나누는 규칙: 다음 수",
+      "formatted": "일정한 수로 나누는 규칙: 다음 수",
+      "outside": "일정한 수로 나누는 규칙: 다음 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g4-pattern-divide-missing-v1",
+      "title": "일정한 수로 나누는 규칙: 가운데 수",
+      "formatted": "일정한 수로 나누는 규칙: 가운데 수",
+      "outside": "일정한 수로 나누는 규칙: 가운데 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-divisor-count-v1",
+      "title": "약수의 개수",
+      "formatted": "약수의 개수",
+      "outside": "약수의 개수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-divisor-sum-v1",
+      "title": "약수의 합",
+      "formatted": "약수의 합",
+      "outside": "약수의 합",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-gcd-v1",
+      "title": "최대공약수",
+      "formatted": "최대공약수",
+      "outside": "최대공약수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-lcm-v1",
+      "title": "최소공배수",
+      "formatted": "최소공배수",
+      "outside": "최소공배수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-multiple-nth-v1",
+      "title": "몇 번째 배수",
+      "formatted": "몇 번째 배수",
+      "outside": "몇 번째 배수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-multiple-count-v1",
+      "title": "범위 안의 배수 개수",
+      "formatted": "범위 안의 배수 개수",
+      "outside": "범위 안의 배수 개수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-reduce-fraction-v1",
+      "title": "기약분수로 약분",
+      "formatted": "기약분수로 약분",
+      "outside": "기약분수로 약분",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-equivalent-fraction-numerator-v1",
+      "title": "크기가 같은 분수의 분자",
+      "formatted": "크기가 같은 분수의 분자",
+      "outside": "크기가 같은 분수의 분자",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-equivalent-fraction-denominator-v1",
+      "title": "크기가 같은 분수의 분모",
+      "formatted": "크기가 같은 분수의 분모",
+      "outside": "크기가 같은 분수의 분모",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-common-denominator-v1",
+      "title": "가장 작은 공통분모",
+      "formatted": "가장 작은 공통분모",
+      "outside": "가장 작은 공통분모",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-common-numerator-v1",
+      "title": "통분한 분자의 값",
+      "formatted": "통분한 분자의 값",
+      "outside": "통분한 분자의 값",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-fraction-to-decimal-v1",
+      "title": "분수를 소수로 나타내기",
+      "formatted": "분수를 소수로 나타내기",
+      "outside": "분수를 소수로 나타내기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-decimal-to-fraction-v1",
+      "title": "소수를 기약분수로 나타내기",
+      "formatted": "소수를 기약분수로 나타내기",
+      "outside": "소수를 기약분수로 나타내기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-range-integer-count-v1",
+      "title": "수의 범위에 속하는 자연수 개수",
+      "formatted": "수의 범위에 속하는 자연수 개수",
+      "outside": "수의 범위에 속하는 자연수 개수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-round-up-v1",
+      "title": "올림하여 나타내기",
+      "formatted": "올림하여 나타내기",
+      "outside": "올림하여 나타내기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-round-down-v1",
+      "title": "버림하여 나타내기",
+      "formatted": "버림하여 나타내기",
+      "outside": "버림하여 나타내기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-round-nearest-v1",
+      "title": "반올림하여 나타내기",
+      "formatted": "반올림하여 나타내기",
+      "outside": "반올림하여 나타내기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-correspondence-output-v1",
+      "title": "대응 관계의 결과 구하기",
+      "formatted": "대응 관계의 결과 구하기",
+      "outside": "대응 관계의 결과 구하기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-correspondence-input-v1",
+      "title": "대응 관계의 입력 구하기",
+      "formatted": "대응 관계의 입력 구하기",
+      "outside": "대응 관계의 입력 구하기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-round-decimal-up-v1",
+      "title": "소수를 올림하여 나타내기",
+      "formatted": "소수를 올림하여 나타내기",
+      "outside": "소수를 올림하여 나타내기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-round-decimal-down-v1",
+      "title": "소수를 버림하여 나타내기",
+      "formatted": "소수를 버림하여 나타내기",
+      "outside": "소수를 버림하여 나타내기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-round-decimal-nearest-v1",
+      "title": "소수를 반올림하여 나타내기",
+      "formatted": "소수를 반올림하여 나타내기",
+      "outside": "소수를 반올림하여 나타내기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-four-operations-precedence-v1",
+      "title": "네 연산의 혼합 계산: 연산 순서",
+      "formatted": "네 연산의 혼합 계산: 연산 순서",
+      "outside": "네 연산의 혼합 계산: 연산 순서",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-four-operations-parentheses-v1",
+      "title": "네 연산의 혼합 계산: 소괄호",
+      "formatted": "네 연산의 혼합 계산: 소괄호",
+      "outside": "네 연산의 혼합 계산: 소괄호",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-four-operations-brackets-v1",
+      "title": "네 연산의 혼합 계산: 중괄호와 소괄호",
+      "formatted": "네 연산의 혼합 계산: 중괄호와 소괄호",
+      "outside": "네 연산의 혼합 계산: 중괄호와 소괄호",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g6-ratio-value-v1",
+      "title": "비의 비율을 분수로",
+      "formatted": "비의 비율을 분수로",
+      "outside": "비의 비율을 분수로",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g6-percent-to-fraction-v1",
+      "title": "백분율을 분수로",
+      "formatted": "백분율을 분수로",
+      "outside": "백분율을 분수로",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g6-percent-to-decimal-v1",
+      "title": "백분율을 소수로",
+      "formatted": "백분율을 소수로",
+      "outside": "백분율을 소수로",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g6-fraction-to-percent-v1",
+      "title": "분수를 백분율로",
+      "formatted": "분수를 백분율로",
+      "outside": "분수를 백분율로",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g6-decimal-to-percent-v1",
+      "title": "소수를 백분율로",
+      "formatted": "소수를 백분율로",
+      "outside": "소수를 백분율로",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g6-percent-part-v1",
+      "title": "기준량과 백분율에서 비교하는 양",
+      "formatted": "기준량과 백분율에서 비교하는 양",
+      "outside": "기준량과 백분율에서 비교하는 양",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g6-percent-whole-v1",
+      "title": "비교하는 양과 백분율에서 기준량",
+      "formatted": "비교하는 양과 백분율에서 기준량",
+      "outside": "비교하는 양과 백분율에서 기준량",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g6-percent-rate-v1",
+      "title": "비교하는 양과 기준량에서 백분율",
+      "formatted": "비교하는 양과 기준량에서 백분율",
+      "outside": "비교하는 양과 기준량에서 백분율",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g6-simplest-ratio-integer-v1",
+      "title": "자연수의 비를 간단한 자연수의 비로",
+      "formatted": "자연수의 비를 간단한 자연수의 비로",
+      "outside": "자연수의 비를 간단한 자연수의 비로",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g6-simplest-ratio-decimal-v1",
+      "title": "소수의 비를 간단한 자연수의 비로",
+      "formatted": "소수의 비를 간단한 자연수의 비로",
+      "outside": "소수의 비를 간단한 자연수의 비로",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g6-simplest-ratio-fraction-v1",
+      "title": "분수의 비를 간단한 자연수의 비로",
+      "formatted": "분수의 비를 간단한 자연수의 비로",
+      "outside": "분수의 비를 간단한 자연수의 비로",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g6-proportion-blank-v1",
+      "title": "비례식의 빈칸",
+      "formatted": "비례식의 빈칸",
+      "outside": "비례식의 빈칸",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g6-distribution-part-v1",
+      "title": "비례배분한 한 부분 구하기",
+      "formatted": "비례배분한 한 부분 구하기",
+      "outside": "비례배분한 한 부분 구하기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g6-distribution-whole-v1",
+      "title": "비례배분한 양에서 전체 구하기",
+      "formatted": "비례배분한 양에서 전체 구하기",
+      "outside": "비례배분한 양에서 전체 구하기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g6-rounded-quotient-v1",
+      "title": "나눗셈의 몫을 반올림",
+      "formatted": "나눗셈의 몫을 반올림",
+      "outside": "나눗셈의 몫을 반올림",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g6-decimal-sharing-count-v1",
+      "title": "소수인 양으로 가득 채울 수 있는 개수",
+      "formatted": "소수인 양으로 가득 채울 수 있는 개수",
+      "outside": "소수인 양으로 가득 채울 수 있는 개수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g6-decimal-sharing-remainder-v1",
+      "title": "소수인 양을 나누고 남는 양",
+      "formatted": "소수인 양을 나누고 남는 양",
+      "outside": "소수인 양을 나누고 남는 양",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-data-total-v1",
+      "title": "자료의 정리: 자료의 합계",
+      "formatted": "자료의 정리: 자료의 합계",
+      "outside": "자료의 정리: 자료의 합계",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-data-difference-v1",
+      "title": "자료의 정리: 자료의 차",
+      "formatted": "자료의 정리: 자료의 차",
+      "outside": "자료의 정리: 자료의 차",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-data-missing-v1",
+      "title": "자료의 정리: 자료의 빠진 값",
+      "formatted": "자료의 정리: 자료의 빠진 값",
+      "outside": "자료의 정리: 자료의 빠진 값",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g4-bar-data-total-v1",
+      "title": "막대그래프: 자료의 합계",
+      "formatted": "막대그래프: 자료의 합계",
+      "outside": "막대그래프: 자료의 합계",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g4-bar-data-difference-v1",
+      "title": "막대그래프: 자료의 차",
+      "formatted": "막대그래프: 자료의 차",
+      "outside": "막대그래프: 자료의 차",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g4-bar-data-missing-v1",
+      "title": "막대그래프: 자료의 빠진 값",
+      "formatted": "막대그래프: 자료의 빠진 값",
+      "outside": "막대그래프: 자료의 빠진 값",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g3-pictogram-quantity-v1",
+      "title": "그림그래프의 단위로 수량 계산",
+      "formatted": "그림그래프의 단위로 수량 계산",
+      "outside": "그림그래프의 단위로 수량 계산",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g4-line-data-increase-v1",
+      "title": "시간에 따른 수량의 증가량",
+      "formatted": "시간에 따른 수량의 증가량",
+      "outside": "시간에 따른 수량의 증가량",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g4-line-data-decrease-v1",
+      "title": "시간에 따른 수량의 감소량",
+      "formatted": "시간에 따른 수량의 감소량",
+      "outside": "시간에 따른 수량의 감소량",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-average-v1",
+      "title": "세 자료의 평균",
+      "formatted": "세 자료의 평균",
+      "outside": "세 자료의 평균",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-average-total-v1",
+      "title": "평균과 개수에서 합계",
+      "formatted": "평균과 개수에서 합계",
+      "outside": "평균과 개수에서 합계",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g5-average-missing-v1",
+      "title": "평균에서 빠진 자료",
+      "formatted": "평균에서 빠진 자료",
+      "outside": "평균에서 빠진 자료",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g6-chart-count-v1",
+      "title": "띠·원그래프 자료: 항목의 수량",
+      "formatted": "띠·원그래프 자료: 항목의 수량",
+      "outside": "띠·원그래프 자료: 항목의 수량",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g6-chart-percent-v1",
+      "title": "띠·원그래프 자료: 항목의 백분율",
+      "formatted": "띠·원그래프 자료: 항목의 백분율",
+      "outside": "띠·원그래프 자료: 항목의 백분율",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "ec-g6-chart-missing-percent-v1",
+      "title": "띠·원그래프 자료: 남은 백분율",
+      "formatted": "띠·원그래프 자료: 남은 백분율",
+      "outside": "띠·원그래프 자료: 남은 백분율",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-prime-factorization",
+      "title": "소인수분해",
+      "formatted": "소인수분해",
+      "outside": "소인수분해",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-divisor-count-factors",
+      "title": "소인수분해로 약수의 개수",
+      "formatted": "소인수분해로 약수의 개수",
+      "outside": "소인수분해로 약수의 개수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-factor-gcd",
+      "title": "소인수분해로 최대공약수",
+      "formatted": "소인수분해로 최대공약수",
+      "outside": "소인수분해로 최대공약수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-factor-lcm",
+      "title": "소인수분해로 최소공배수",
+      "formatted": "소인수분해로 최소공배수",
+      "outside": "소인수분해로 최소공배수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-absolute-value",
+      "title": "절댓값",
+      "formatted": "절댓값",
+      "outside": "절댓값",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-additive-opposite",
+      "title": "부호가 반대인 수",
+      "formatted": "부호가 반대인 수",
+      "outside": "부호가 반대인 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-recurring-pure-fraction",
+      "title": "순순환소수를 분수로",
+      "formatted": "순순환소수를 분수로",
+      "outside": "순순환소수를 분수로",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-recurring-mixed-fraction",
+      "title": "혼순환소수를 분수로",
+      "formatted": "혼순환소수를 분수로",
+      "outside": "혼순환소수를 분수로",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-terminating-minimum-multiplier",
+      "title": "유한소수가 되는 최소 자연수",
+      "formatted": "유한소수가 되는 최소 자연수",
+      "outside": "유한소수가 되는 최소 자연수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-terminating-decimal-places",
+      "title": "유한소수의 소수 자릿수",
+      "formatted": "유한소수의 소수 자릿수",
+      "outside": "유한소수의 소수 자릿수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-recurring-rational-operations",
+      "title": "순환소수를 포함한 사칙계산",
+      "formatted": "순환소수를 포함한 사칙계산",
+      "outside": "순환소수를 포함한 사칙계산",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-linear-substitution-value",
+      "title": "일차식에 수 대입",
+      "formatted": "일차식에 수 대입",
+      "outside": "일차식에 수 대입",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-two-variable-substitution",
+      "title": "두 문자에 수 대입",
+      "formatted": "두 문자에 수 대입",
+      "outside": "두 문자에 수 대입",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-rational-substitution",
+      "title": "분수인 수 대입",
+      "formatted": "분수인 수 대입",
+      "outside": "분수인 수 대입",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-exponent-product-missing",
+      "title": "같은 밑의 곱 지수",
+      "formatted": "같은 밑의 곱 지수",
+      "outside": "같은 밑의 곱 지수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-exponent-quotient-missing",
+      "title": "같은 밑의 나눗셈 지수",
+      "formatted": "같은 밑의 나눗셈 지수",
+      "outside": "같은 밑의 나눗셈 지수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-exponent-power-missing",
+      "title": "거듭제곱의 거듭제곱 지수",
+      "formatted": "거듭제곱의 거듭제곱 지수",
+      "outside": "거듭제곱의 거듭제곱 지수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-product-power-two-variable",
+      "title": "두 문자 단항식의 거듭제곱",
+      "formatted": "두 문자 단항식의 거듭제곱",
+      "outside": "두 문자 단항식의 거듭제곱",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-monomial-mixed-two-variable",
+      "title": "두 문자 단항식의 곱셈과 나눗셈",
+      "formatted": "두 문자 단항식의 곱셈과 나눗셈",
+      "outside": "두 문자 단항식의 곱셈과 나눗셈",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-root-of-square-identity",
+      "title": "제곱의 제곱근",
+      "formatted": "제곱의 제곱근",
+      "outside": "제곱의 제곱근",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-square-of-root-identity",
+      "title": "제곱근의 제곱",
+      "formatted": "제곱근의 제곱",
+      "outside": "제곱근의 제곱",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-multiplication-linear-square",
+      "title": "일차식의 제곱 전개",
+      "formatted": "일차식의 제곱 전개",
+      "outside": "일차식의 제곱 전개",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-multiplication-bivariate-square",
+      "title": "두 문자 완전제곱 전개",
+      "formatted": "두 문자 완전제곱 전개",
+      "outside": "두 문자 완전제곱 전개",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-multiplication-bivariate-conjugate",
+      "title": "합과 차의 곱 공식",
+      "formatted": "합과 차의 곱 공식",
+      "outside": "합과 차의 곱 공식",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-square-formula-substitution",
+      "title": "곱셈 공식으로 식의 값",
+      "formatted": "곱셈 공식으로 식의 값",
+      "outside": "곱셈 공식으로 식의 값",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-linear-equation-integer",
+      "title": "정수 계수 일차방정식",
+      "formatted": "정수 계수 일차방정식",
+      "outside": "정수 계수 일차방정식",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-linear-equation-both-sides",
+      "title": "양변에 문자가 있는 일차방정식",
+      "formatted": "양변에 문자가 있는 일차방정식",
+      "outside": "양변에 문자가 있는 일차방정식",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-linear-equation-parentheses",
+      "title": "괄호가 있는 일차방정식",
+      "formatted": "괄호가 있는 일차방정식",
+      "outside": "괄호가 있는 일차방정식",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-linear-equation-fraction",
+      "title": "분수 계수 일차방정식",
+      "formatted": "분수 계수 일차방정식",
+      "outside": "분수 계수 일차방정식",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-linear-equation-decimal",
+      "title": "소수 계수 일차방정식",
+      "formatted": "소수 계수 일차방정식",
+      "outside": "소수 계수 일차방정식",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-linear-equation-missing-coefficient",
+      "title": "주어진 해로 일차방정식 계수 구하기",
+      "formatted": "주어진 해로 일차방정식 계수 구하기",
+      "outside": "주어진 해로 일차방정식 계수 구하기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-linear-inequality-integer",
+      "title": "정수 계수 일차부등식",
+      "formatted": "정수 계수 일차부등식",
+      "outside": "정수 계수 일차부등식",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-linear-inequality-both-sides",
+      "title": "양변에 문자가 있는 일차부등식",
+      "formatted": "양변에 문자가 있는 일차부등식",
+      "outside": "양변에 문자가 있는 일차부등식",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-linear-inequality-parentheses",
+      "title": "괄호가 있는 일차부등식",
+      "formatted": "괄호가 있는 일차부등식",
+      "outside": "괄호가 있는 일차부등식",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-linear-inequality-fraction",
+      "title": "분수 계수 일차부등식",
+      "formatted": "분수 계수 일차부등식",
+      "outside": "분수 계수 일차부등식",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-inequality-integer-bound",
+      "title": "일차부등식의 정수 해 경계",
+      "formatted": "일차부등식의 정수 해 경계",
+      "outside": "일차부등식의 정수 해 경계",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-simultaneous-equations-elimination",
+      "title": "연립일차방정식 가감법",
+      "formatted": "연립일차방정식 가감법",
+      "outside": "연립일차방정식 가감법",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-simultaneous-equations-fraction",
+      "title": "분수 계수 연립일차방정식",
+      "formatted": "분수 계수 연립일차방정식",
+      "outside": "분수 계수 연립일차방정식",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-simultaneous-equations-decimal",
+      "title": "소수 계수 연립일차방정식",
+      "formatted": "소수 계수 연립일차방정식",
+      "outside": "소수 계수 연립일차방정식",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-simultaneous-equations-substitution",
+      "title": "연립일차방정식 대입법",
+      "formatted": "연립일차방정식 대입법",
+      "outside": "연립일차방정식 대입법",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-system-missing-coefficient",
+      "title": "연립방정식의 해로 계수 구하기",
+      "formatted": "연립방정식의 해로 계수 구하기",
+      "outside": "연립방정식의 해로 계수 구하기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-factor-common",
+      "title": "공통인수로 인수분해",
+      "formatted": "공통인수로 인수분해",
+      "outside": "공통인수로 인수분해",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-factor-common-two-variable",
+      "title": "두 문자 공통인수로 인수분해",
+      "formatted": "두 문자 공통인수로 인수분해",
+      "outside": "두 문자 공통인수로 인수분해",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-factor-difference-squares",
+      "title": "제곱의 차 인수분해",
+      "formatted": "제곱의 차 인수분해",
+      "outside": "제곱의 차 인수분해",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-factor-bivariate-difference-squares",
+      "title": "두 문자 제곱의 차 인수분해",
+      "formatted": "두 문자 제곱의 차 인수분해",
+      "outside": "두 문자 제곱의 차 인수분해",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-factor-perfect-square",
+      "title": "완전제곱식 인수분해",
+      "formatted": "완전제곱식 인수분해",
+      "outside": "완전제곱식 인수분해",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-factor-bivariate-perfect-square",
+      "title": "두 문자 완전제곱식 인수분해",
+      "formatted": "두 문자 완전제곱식 인수분해",
+      "outside": "두 문자 완전제곱식 인수분해",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-factor-monic-quadratic",
+      "title": "x²의 계수가 1인 이차식 인수분해",
+      "formatted": "$x^{2}$의 계수가 1인 이차식 인수분해",
+      "outside": "의 계수가 1인 이차식 인수분해",
+      "annotations": [
+        "\\displaystyle x^{2}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-factor-nonmonic-quadratic",
+      "title": "x²의 계수가 1이 아닌 이차식 인수분해",
+      "formatted": "$x^{2}$의 계수가 1이 아닌 이차식 인수분해",
+      "outside": "의 계수가 1이 아닌 이차식 인수분해",
+      "annotations": [
+        "\\displaystyle x^{2}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-factor-common-binomial",
+      "title": "공통인 식을 이용한 인수분해",
+      "formatted": "공통인 식을 이용한 인수분해",
+      "outside": "공통인 식을 이용한 인수분해",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-quadratic-equation-factoring",
+      "title": "인수분해로 이차방정식 풀기",
+      "formatted": "인수분해로 이차방정식 풀기",
+      "outside": "인수분해로 이차방정식 풀기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-quadratic-equation-nonmonic-factoring",
+      "title": "분수인 근을 갖는 이차방정식 인수분해",
+      "formatted": "분수인 근을 갖는 이차방정식 인수분해",
+      "outside": "분수인 근을 갖는 이차방정식 인수분해",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-quadratic-equation-square-root",
+      "title": "제곱근을 이용한 이차방정식",
+      "formatted": "제곱근을 이용한 이차방정식",
+      "outside": "제곱근을 이용한 이차방정식",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-quadratic-equation-perfect-square",
+      "title": "완전제곱 꼴 이차방정식",
+      "formatted": "완전제곱 꼴 이차방정식",
+      "outside": "완전제곱 꼴 이차방정식",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-quadratic-equation-formula",
+      "title": "근의 공식으로 이차방정식 풀기",
+      "formatted": "근의 공식으로 이차방정식 풀기",
+      "outside": "근의 공식으로 이차방정식 풀기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-quadratic-missing-coefficient",
+      "title": "주어진 근으로 이차방정식 계수 구하기",
+      "formatted": "주어진 근으로 이차방정식 계수 구하기",
+      "outside": "주어진 근으로 이차방정식 계수 구하기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-trig-endpoint-values",
+      "title": "0°와 90°의 삼각비",
+      "formatted": "$0^{\\circ}$와 $90^{\\circ}$의 삼각비",
+      "outside": "와 의 삼각비",
+      "annotations": [
+        "\\displaystyle 0^{\\circ}",
+        "\\displaystyle 90^{\\circ}"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-trig-inverse-special-angle",
+      "title": "특수각의 삼각비에서 예각 구하기",
+      "formatted": "특수각의 삼각비에서 예각 구하기",
+      "outside": "특수각의 삼각비에서 예각 구하기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-trig-complementary-ratio",
+      "title": "서로 여각인 두 예각의 삼각비",
+      "formatted": "서로 여각인 두 예각의 삼각비",
+      "outside": "서로 여각인 두 예각의 삼각비",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-trig-ratio-from-another",
+      "title": "한 삼각비에서 다른 삼각비 구하기",
+      "formatted": "한 삼각비에서 다른 삼각비 구하기",
+      "outside": "한 삼각비에서 다른 삼각비 구하기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-trig-length-given-ratio",
+      "title": "주어진 삼각비로 변의 길이",
+      "formatted": "주어진 삼각비로 변의 길이",
+      "outside": "주어진 삼각비로 변의 길이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-trig-area-given-sine",
+      "title": "주어진 사인값으로 삼각형 넓이",
+      "formatted": "주어진 사인값으로 삼각형 넓이",
+      "outside": "주어진 사인값으로 삼각형 넓이",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-trig-side-from-area-sine",
+      "title": "넓이와 사인값에서 한 변 구하기",
+      "formatted": "넓이와 사인값에서 한 변 구하기",
+      "outside": "넓이와 사인값에서 한 변 구하기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-trig-sine-from-area",
+      "title": "두 변과 넓이에서 사인값 구하기",
+      "formatted": "두 변과 넓이에서 사인값 구하기",
+      "outside": "두 변과 넓이에서 사인값 구하기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-trig-special-squared-arithmetic",
+      "title": "특수각 삼각비 제곱의 계산",
+      "formatted": "특수각 삼각비 제곱의 계산",
+      "outside": "특수각 삼각비 제곱의 계산",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-reflect-x-x",
+      "title": "x축 대칭점의 x좌표",
+      "formatted": "$x$축 대칭점의 $x$좌표",
+      "outside": "축 대칭점의 좌표",
+      "annotations": [
+        "\\displaystyle x",
+        "\\displaystyle x"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-reflect-x-y",
+      "title": "x축 대칭점의 y좌표",
+      "formatted": "$x$축 대칭점의 $y$좌표",
+      "outside": "축 대칭점의 좌표",
+      "annotations": [
+        "\\displaystyle x",
+        "\\displaystyle y"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-reflect-y-x",
+      "title": "y축 대칭점의 x좌표",
+      "formatted": "$y$축 대칭점의 $x$좌표",
+      "outside": "축 대칭점의 좌표",
+      "annotations": [
+        "\\displaystyle y",
+        "\\displaystyle x"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-reflect-y-y",
+      "title": "y축 대칭점의 y좌표",
+      "formatted": "$y$축 대칭점의 $y$좌표",
+      "outside": "축 대칭점의 좌표",
+      "annotations": [
+        "\\displaystyle y",
+        "\\displaystyle y"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-reflect-origin-x",
+      "title": "원점 대칭점의 x좌표",
+      "formatted": "원점 대칭점의 $x$좌표",
+      "outside": "원점 대칭점의 좌표",
+      "annotations": [
+        "\\displaystyle x"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-reflect-origin-y",
+      "title": "원점 대칭점의 y좌표",
+      "formatted": "원점 대칭점의 $y$좌표",
+      "outside": "원점 대칭점의 좌표",
+      "annotations": [
+        "\\displaystyle y"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-distance-x-axis",
+      "title": "점과 x축 사이의 거리",
+      "formatted": "점과 $x$축 사이의 거리",
+      "outside": "점과 축 사이의 거리",
+      "annotations": [
+        "\\displaystyle x"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-distance-y-axis",
+      "title": "점과 y축 사이의 거리",
+      "formatted": "점과 $y$축 사이의 거리",
+      "outside": "점과 축 사이의 거리",
+      "annotations": [
+        "\\displaystyle y"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-horizontal-distance",
+      "title": "수평선 위 두 점 사이의 거리",
+      "formatted": "수평선 위 두 점 사이의 거리",
+      "outside": "수평선 위 두 점 사이의 거리",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-vertical-distance",
+      "title": "수직선 위 두 점 사이의 거리",
+      "formatted": "수직선 위 두 점 사이의 거리",
+      "outside": "수직선 위 두 점 사이의 거리",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-direct-value",
+      "title": "정비례의 함숫값",
+      "formatted": "정비례의 함숫값",
+      "outside": "정비례의 함숫값",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-direct-constant",
+      "title": "정비례의 비례상수",
+      "formatted": "정비례의 비례상수",
+      "outside": "정비례의 비례상수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-direct-input",
+      "title": "정비례의 x의 값",
+      "formatted": "정비례의 $x$의 값",
+      "outside": "정비례의 의 값",
+      "annotations": [
+        "\\displaystyle x"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-inverse-value",
+      "title": "반비례의 함숫값",
+      "formatted": "반비례의 함숫값",
+      "outside": "반비례의 함숫값",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-inverse-constant",
+      "title": "반비례의 비례상수",
+      "formatted": "반비례의 비례상수",
+      "outside": "반비례의 비례상수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-inverse-input",
+      "title": "반비례의 x의 값",
+      "formatted": "반비례의 $x$의 값",
+      "outside": "반비례의 의 값",
+      "annotations": [
+        "\\displaystyle x"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-linear-value",
+      "title": "일차함수의 함숫값",
+      "formatted": "일차함수의 함숫값",
+      "outside": "일차함수의 함숫값",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-linear-input",
+      "title": "함숫값에서 x",
+      "formatted": "함숫값에서 $x$",
+      "outside": "함숫값에서 ",
+      "annotations": [
+        "\\displaystyle x"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-linear-coefficient",
+      "title": "한 점에서 x의 계수",
+      "formatted": "한 점에서 $x$의 계수",
+      "outside": "한 점에서 의 계수",
+      "annotations": [
+        "\\displaystyle x"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-linear-constant",
+      "title": "한 점에서 상수항",
+      "formatted": "한 점에서 상수항",
+      "outside": "한 점에서 상수항",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-two-points-slope",
+      "title": "두 점에서 기울기",
+      "formatted": "두 점에서 기울기",
+      "outside": "두 점에서 기울기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-two-points-equation",
+      "title": "두 점에서 일차함수의 식",
+      "formatted": "두 점에서 일차함수의 식",
+      "outside": "두 점에서 일차함수의 식",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-change-slope",
+      "title": "변화량에서 기울기",
+      "formatted": "변화량에서 기울기",
+      "outside": "변화량에서 기울기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-change-y-change",
+      "title": "x의 변화량에서 y의 변화량",
+      "formatted": "$x$의 변화량에서 $y$의 변화량",
+      "outside": "의 변화량에서 의 변화량",
+      "annotations": [
+        "\\displaystyle x",
+        "\\displaystyle y"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-change-x-change",
+      "title": "y의 변화량에서 x의 변화량",
+      "formatted": "$y$의 변화량에서 $x$의 변화량",
+      "outside": "의 변화량에서 의 변화량",
+      "annotations": [
+        "\\displaystyle y",
+        "\\displaystyle x"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-x-intercept",
+      "title": "일차함수의 x절편",
+      "formatted": "일차함수의 $x$절편",
+      "outside": "일차함수의 절편",
+      "annotations": [
+        "\\displaystyle x"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-y-intercept",
+      "title": "일차함수의 y절편",
+      "formatted": "일차함수의 $y$절편",
+      "outside": "일차함수의 절편",
+      "annotations": [
+        "\\displaystyle y"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-slope-point-equation",
+      "title": "기울기와 한 점에서 일차함수의 식",
+      "formatted": "기울기와 한 점에서 일차함수의 식",
+      "outside": "기울기와 한 점에서 일차함수의 식",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-intercepts-equation",
+      "title": "두 절편에서 일차함수의 식",
+      "formatted": "두 절편에서 일차함수의 식",
+      "outside": "두 절편에서 일차함수의 식",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-parallel-coefficient",
+      "title": "평행한 두 그래프의 계수",
+      "formatted": "평행한 두 그래프의 계수",
+      "outside": "평행한 두 그래프의 계수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-linear-translation",
+      "title": "일차함수 그래프를 평행이동한 식",
+      "formatted": "일차함수 그래프를 평행이동한 식",
+      "outside": "일차함수 그래프를 평행이동한 식",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-implicit-slope",
+      "title": "일차방정식의 그래프에서 기울기",
+      "formatted": "일차방정식의 그래프에서 기울기",
+      "outside": "일차방정식의 그래프에서 기울기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-implicit-x-intercept",
+      "title": "일차방정식의 그래프에서 x절편",
+      "formatted": "일차방정식의 그래프에서 $x$절편",
+      "outside": "일차방정식의 그래프에서 절편",
+      "annotations": [
+        "\\displaystyle x"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-implicit-y-intercept",
+      "title": "일차방정식의 그래프에서 y절편",
+      "formatted": "일차방정식의 그래프에서 $y$절편",
+      "outside": "일차방정식의 그래프에서 절편",
+      "annotations": [
+        "\\displaystyle y"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-intersection-x",
+      "title": "두 일차함수 그래프의 교점의 x좌표",
+      "formatted": "두 일차함수 그래프의 교점의 $x$좌표",
+      "outside": "두 일차함수 그래프의 교점의 좌표",
+      "annotations": [
+        "\\displaystyle x"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-intersection-y",
+      "title": "두 일차함수 그래프의 교점의 y좌표",
+      "formatted": "두 일차함수 그래프의 교점의 $y$좌표",
+      "outside": "두 일차함수 그래프의 교점의 좌표",
+      "annotations": [
+        "\\displaystyle y"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-quadratic-vertex-x",
+      "title": "꼭짓점의 x좌표",
+      "formatted": "꼭짓점의 $x$좌표",
+      "outside": "꼭짓점의 좌표",
+      "annotations": [
+        "\\displaystyle x"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-quadratic-vertex-y",
+      "title": "꼭짓점의 y좌표",
+      "formatted": "꼭짓점의 $y$좌표",
+      "outside": "꼭짓점의 좌표",
+      "annotations": [
+        "\\displaystyle y"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-quadratic-axis",
+      "title": "대칭축의 x좌표",
+      "formatted": "대칭축의 $x$좌표",
+      "outside": "대칭축의 좌표",
+      "annotations": [
+        "\\displaystyle x"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-quadratic-vertex-form-p",
+      "title": "꼭짓점 꼴의 p",
+      "formatted": "꼭짓점 꼴의 $p$",
+      "outside": "꼭짓점 꼴의 ",
+      "annotations": [
+        "\\displaystyle p"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-quadratic-vertex-form-q",
+      "title": "꼭짓점 꼴의 q",
+      "formatted": "꼭짓점 꼴의 $q$",
+      "outside": "꼭짓점 꼴의 ",
+      "annotations": [
+        "\\displaystyle q"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-quadratic-extreme",
+      "title": "꼭짓점에서 최댓값·최솟값",
+      "formatted": "꼭짓점에서 최댓값·최솟값",
+      "outside": "꼭짓점에서 최댓값·최솟값",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-quadratic-y-intercept",
+      "title": "이차함수의 y절편",
+      "formatted": "이차함수의 $y$절편",
+      "outside": "이차함수의 절편",
+      "annotations": [
+        "\\displaystyle y"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-quadratic-value",
+      "title": "이차함수의 함숫값",
+      "formatted": "이차함수의 함숫값",
+      "outside": "이차함수의 함숫값",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-quadratic-coefficient",
+      "title": "꼭짓점과 한 점에서 이차항의 계수",
+      "formatted": "꼭짓점과 한 점에서 이차항의 계수",
+      "outside": "꼭짓점과 한 점에서 이차항의 계수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-quadratic-vertex-value",
+      "title": "꼭짓점 꼴의 함숫값",
+      "formatted": "꼭짓점 꼴의 함숫값",
+      "outside": "꼭짓점 꼴의 함숫값",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-quadratic-expand-b",
+      "title": "일반형의 b 계수",
+      "formatted": "일반형의 $b$ 계수",
+      "outside": "일반형의  계수",
+      "annotations": [
+        "\\displaystyle b"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-quadratic-expand-c",
+      "title": "일반형의 c 계수",
+      "formatted": "일반형의 $c$ 계수",
+      "outside": "일반형의  계수",
+      "annotations": [
+        "\\displaystyle c"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-quadratic-expand-equation",
+      "title": "꼭짓점 꼴을 일반형으로 전개",
+      "formatted": "꼭짓점 꼴을 일반형으로 전개",
+      "outside": "꼭짓점 꼴을 일반형으로 전개",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-quadratic-translation",
+      "title": "이차함수 그래프를 평행이동한 식",
+      "formatted": "이차함수 그래프를 평행이동한 식",
+      "outside": "이차함수 그래프를 평행이동한 식",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-quadratic-integer-root-smaller",
+      "title": "x축 교점 중 작은 x좌표",
+      "formatted": "$x$축 교점 중 작은 $x$좌표",
+      "outside": "축 교점 중 작은 좌표",
+      "annotations": [
+        "\\displaystyle x",
+        "\\displaystyle x"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-quadratic-radical-root-negative",
+      "title": "x축 교점의 음의 x좌표",
+      "formatted": "$x$축 교점의 음의 $x$좌표",
+      "outside": "축 교점의 음의 좌표",
+      "annotations": [
+        "\\displaystyle x",
+        "\\displaystyle x"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-quadratic-integer-root-larger",
+      "title": "x축 교점 중 큰 x좌표",
+      "formatted": "$x$축 교점 중 큰 $x$좌표",
+      "outside": "축 교점 중 큰 좌표",
+      "annotations": [
+        "\\displaystyle x",
+        "\\displaystyle x"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-quadratic-radical-root-positive",
+      "title": "x축 교점의 양의 x좌표",
+      "formatted": "$x$축 교점의 양의 $x$좌표",
+      "outside": "축 교점의 양의 좌표",
+      "annotations": [
+        "\\displaystyle x",
+        "\\displaystyle x"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-quadratic-tangent-root",
+      "title": "x축과 한 점에서 만나는 x좌표",
+      "formatted": "$x$축과 한 점에서 만나는 $x$좌표",
+      "outside": "축과 한 점에서 만나는 좌표",
+      "annotations": [
+        "\\displaystyle x",
+        "\\displaystyle x"
+      ],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-data-mean",
+      "title": "자료의 평균",
+      "formatted": "자료의 평균",
+      "outside": "자료의 평균",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-data-median",
+      "title": "홀수 개 자료의 중앙값",
+      "formatted": "홀수 개 자료의 중앙값",
+      "outside": "홀수 개 자료의 중앙값",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-data-even-median",
+      "title": "짝수 개 자료의 중앙값",
+      "formatted": "짝수 개 자료의 중앙값",
+      "outside": "짝수 개 자료의 중앙값",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-data-mode",
+      "title": "자료의 최빈값",
+      "formatted": "자료의 최빈값",
+      "outside": "자료의 최빈값",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-data-missing-mean",
+      "title": "평균으로 빠진 자료 구하기",
+      "formatted": "평균으로 빠진 자료 구하기",
+      "outside": "평균으로 빠진 자료 구하기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-data-mean",
+      "title": "자료의 평균",
+      "formatted": "자료의 평균",
+      "outside": "자료의 평균",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-data-median",
+      "title": "홀수 개 자료의 중앙값",
+      "formatted": "홀수 개 자료의 중앙값",
+      "outside": "홀수 개 자료의 중앙값",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-data-range",
+      "title": "자료의 범위",
+      "formatted": "자료의 범위",
+      "outside": "자료의 범위",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-data-even-median",
+      "title": "짝수 개 자료의 중앙값",
+      "formatted": "짝수 개 자료의 중앙값",
+      "outside": "짝수 개 자료의 중앙값",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-data-mode",
+      "title": "자료의 최빈값",
+      "formatted": "자료의 최빈값",
+      "outside": "자료의 최빈값",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-data-missing-mean",
+      "title": "평균으로 빠진 자료 구하기",
+      "formatted": "평균으로 빠진 자료 구하기",
+      "outside": "평균으로 빠진 자료 구하기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-frequency-total",
+      "title": "도수의 합",
+      "formatted": "도수의 합",
+      "outside": "도수의 합",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-frequency-relative",
+      "title": "상대도수",
+      "formatted": "상대도수",
+      "outside": "상대도수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-frequency-percent",
+      "title": "상대도수의 백분율",
+      "formatted": "상대도수의 백분율",
+      "outside": "상대도수의 백분율",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-frequency-combined",
+      "title": "두 범주의 도수 합",
+      "formatted": "두 범주의 도수 합",
+      "outside": "두 범주의 도수 합",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-frequency-missing",
+      "title": "전체 도수로 빠진 도수",
+      "formatted": "전체 도수로 빠진 도수",
+      "outside": "전체 도수로 빠진 도수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-relative-inverse-count",
+      "title": "상대도수에서 도수",
+      "formatted": "상대도수에서 도수",
+      "outside": "상대도수에서 도수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-relative-inverse-total",
+      "title": "상대도수에서 전체 도수",
+      "formatted": "상대도수에서 전체 도수",
+      "outside": "상대도수에서 전체 도수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-class-midpoint",
+      "title": "계급값",
+      "formatted": "계급값",
+      "outside": "계급값",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-discrete-frequency-mean",
+      "title": "도수표로 이산 자료의 평균",
+      "formatted": "도수표로 이산 자료의 평균",
+      "outside": "도수표로 이산 자료의 평균",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m1-fd-stem-leaf-median",
+      "title": "줄기와 잎 자료의 중앙값",
+      "formatted": "줄기와 잎 자료의 중앙값",
+      "outside": "줄기와 잎 자료의 중앙값",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-data-deviation",
+      "title": "일반 자료의 편차",
+      "formatted": "일반 자료의 편차",
+      "outside": "일반 자료의 편차",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-data-variance",
+      "title": "일반 자료의 분산",
+      "formatted": "일반 자료의 분산",
+      "outside": "일반 자료의 분산",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-data-standard-deviation",
+      "title": "일반 자료의 표준편차",
+      "formatted": "일반 자료의 표준편차",
+      "outside": "일반 자료의 표준편차",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-deviation",
+      "title": "자료의 편차",
+      "formatted": "자료의 편차",
+      "outside": "자료의 편차",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-missing-deviation",
+      "title": "편차의 합으로 빠진 편차",
+      "formatted": "편차의 합으로 빠진 편차",
+      "outside": "편차의 합으로 빠진 편차",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-variance",
+      "title": "자료의 분산",
+      "formatted": "자료의 분산",
+      "outside": "자료의 분산",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-standard-deviation",
+      "title": "자료의 표준편차",
+      "formatted": "자료의 표준편차",
+      "outside": "자료의 표준편차",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-transformed-mean",
+      "title": "변환한 자료의 평균",
+      "formatted": "변환한 자료의 평균",
+      "outside": "변환한 자료의 평균",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-transformed-variance",
+      "title": "변환한 자료의 분산",
+      "formatted": "변환한 자료의 분산",
+      "outside": "변환한 자료의 분산",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m3-fd-transformed-standard-deviation",
+      "title": "변환한 자료의 표준편차",
+      "formatted": "변환한 자료의 표준편차",
+      "outside": "변환한 자료의 표준편차",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-count-addition",
+      "title": "서로 겹치지 않는 선택의 경우의 수",
+      "formatted": "서로 겹치지 않는 선택의 경우의 수",
+      "outside": "서로 겹치지 않는 선택의 경우의 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-count-product",
+      "title": "두 단계 선택의 경우의 수",
+      "formatted": "두 단계 선택의 경우의 수",
+      "outside": "두 단계 선택의 경우의 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-count-seating",
+      "title": "서로 다른 자리에 순서 있게 앉히기",
+      "formatted": "서로 다른 자리에 순서 있게 앉히기",
+      "outside": "서로 다른 자리에 순서 있게 앉히기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-count-pair",
+      "title": "순서 없이 두 명 고르기",
+      "formatted": "순서 없이 두 명 고르기",
+      "outside": "순서 없이 두 명 고르기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-count-digits-nonzero",
+      "title": "0이 없는 숫자 카드로 자연수 만들기",
+      "formatted": "0이 없는 숫자 카드로 자연수 만들기",
+      "outside": "0이 없는 숫자 카드로 자연수 만들기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-count-digits-with-zero",
+      "title": "0을 포함한 숫자 카드로 자연수 만들기",
+      "formatted": "0을 포함한 숫자 카드로 자연수 만들기",
+      "outside": "0을 포함한 숫자 카드로 자연수 만들기",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-coin-exact-probability",
+      "title": "동전에서 앞면 횟수의 확률",
+      "formatted": "동전에서 앞면 횟수의 확률",
+      "outside": "동전에서 앞면 횟수의 확률",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-coin-exact-count",
+      "title": "동전에서 앞면 횟수의 경우의 수",
+      "formatted": "동전에서 앞면 횟수의 경우의 수",
+      "outside": "동전에서 앞면 횟수의 경우의 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-coin-complement",
+      "title": "여사건으로 적어도 한 번 앞면의 확률",
+      "formatted": "여사건으로 적어도 한 번 앞면의 확률",
+      "outside": "여사건으로 적어도 한 번 앞면의 확률",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-single-die-above",
+      "title": "주사위에서 정해진 수보다 큰 눈의 확률",
+      "formatted": "주사위에서 정해진 수보다 큰 눈의 확률",
+      "outside": "주사위에서 정해진 수보다 큰 눈의 확률",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-single-die-multiple",
+      "title": "주사위에서 배수인 눈의 확률",
+      "formatted": "주사위에서 배수인 눈의 확률",
+      "outside": "주사위에서 배수인 눈의 확률",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-two-dice-sum-probability",
+      "title": "두 주사위 합의 확률",
+      "formatted": "두 주사위 합의 확률",
+      "outside": "두 주사위 합의 확률",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-two-dice-sum-count",
+      "title": "두 주사위 합의 경우의 수",
+      "formatted": "두 주사위 합의 경우의 수",
+      "outside": "두 주사위 합의 경우의 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-two-dice-difference-probability",
+      "title": "두 주사위 차의 절댓값의 확률",
+      "formatted": "두 주사위 차의 절댓값의 확률",
+      "outside": "두 주사위 차의 절댓값의 확률",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-two-dice-difference-count",
+      "title": "두 주사위 차의 절댓값의 경우의 수",
+      "formatted": "두 주사위 차의 절댓값의 경우의 수",
+      "outside": "두 주사위 차의 절댓값의 경우의 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-two-dice-product-multiple-probability",
+      "title": "두 주사위 곱의 배수의 확률",
+      "formatted": "두 주사위 곱의 배수의 확률",
+      "outside": "두 주사위 곱의 배수의 확률",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-two-dice-product-multiple-count",
+      "title": "두 주사위 곱의 배수의 경우의 수",
+      "formatted": "두 주사위 곱의 배수의 경우의 수",
+      "outside": "두 주사위 곱의 배수의 경우의 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-two-dice-at-least-one-face-probability",
+      "title": "두 주사위 특정 눈이 적어도 하나의 확률",
+      "formatted": "두 주사위 특정 눈이 적어도 하나의 확률",
+      "outside": "두 주사위 특정 눈이 적어도 하나의 확률",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-two-dice-at-least-one-face-count",
+      "title": "두 주사위 특정 눈이 적어도 하나의 경우의 수",
+      "formatted": "두 주사위 특정 눈이 적어도 하나의 경우의 수",
+      "outside": "두 주사위 특정 눈이 적어도 하나의 경우의 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-two-dice-sum-at-least-probability",
+      "title": "두 주사위 합의 범위의 확률",
+      "formatted": "두 주사위 합의 범위의 확률",
+      "outside": "두 주사위 합의 범위의 확률",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-two-dice-sum-at-least-count",
+      "title": "두 주사위 합의 범위의 경우의 수",
+      "formatted": "두 주사위 합의 범위의 경우의 수",
+      "outside": "두 주사위 합의 범위의 경우의 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-card-multiple-probability",
+      "title": "숫자 카드의 배수 확률",
+      "formatted": "숫자 카드의 배수 확률",
+      "outside": "숫자 카드의 배수 확률",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-card-multiple-count",
+      "title": "숫자 카드의 배수 경우의 수",
+      "formatted": "숫자 카드의 배수 경우의 수",
+      "outside": "숫자 카드의 배수 경우의 수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-card-union",
+      "title": "겹치는 카드 사건의 합의 확률",
+      "formatted": "겹치는 카드 사건의 합의 확률",
+      "outside": "겹치는 카드 사건의 합의 확률",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-balls-no-replace-both-red",
+      "title": "비복원 추출에서 둘 다 빨강 확률",
+      "formatted": "비복원 추출에서 둘 다 빨강 확률",
+      "outside": "비복원 추출에서 둘 다 빨강 확률",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-balls-no-replace-different",
+      "title": "비복원 추출에서 서로 다른 색 확률",
+      "formatted": "비복원 추출에서 서로 다른 색 확률",
+      "outside": "비복원 추출에서 서로 다른 색 확률",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-balls-no-replace-at-least-one-red",
+      "title": "비복원 추출에서 적어도 하나 빨강 확률",
+      "formatted": "비복원 추출에서 적어도 하나 빨강 확률",
+      "outside": "비복원 추출에서 적어도 하나 빨강 확률",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-balls-replace-both-red",
+      "title": "복원 추출에서 둘 다 빨강 확률",
+      "formatted": "복원 추출에서 둘 다 빨강 확률",
+      "outside": "복원 추출에서 둘 다 빨강 확률",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-balls-replace-different",
+      "title": "복원 추출에서 서로 다른 색 확률",
+      "formatted": "복원 추출에서 서로 다른 색 확률",
+      "outside": "복원 추출에서 서로 다른 색 확률",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-balls-replace-at-least-one-red",
+      "title": "복원 추출에서 적어도 하나 빨강 확률",
+      "formatted": "복원 추출에서 적어도 하나 빨강 확률",
+      "outside": "복원 추출에서 적어도 하나 빨강 확률",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-balls-three-exact",
+      "title": "세 번 복원 추출에서 빨간 공의 횟수",
+      "formatted": "세 번 복원 추출에서 빨간 공의 횟수",
+      "outside": "세 번 복원 추출에서 빨간 공의 횟수",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    },
+    {
+      "family": "m2-fd-independent-different-bags",
+      "title": "서로 다른 주머니에서 독립 추출",
+      "formatted": "서로 다른 주머니에서 독립 추출",
+      "outside": "서로 다른 주머니에서 독립 추출",
+      "annotations": [],
+      "fractionCount": 0,
+      "findings": []
+    }
+  ]
+}
