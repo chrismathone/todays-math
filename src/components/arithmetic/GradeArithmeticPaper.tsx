@@ -8,6 +8,9 @@ import type {
 import type { ArithmeticPaperMode } from "./ArithmeticPaper";
 import s from "./ArithmeticPaper.module.css";
 import g from "./GradeArithmeticPaper.module.css";
+import { arithmeticProseNotation } from "@/lib/arithmetic-v2/presentation/notation";
+import NativeProblem from "@/components/unified/NativeProblem";
+import type { StudioProblem } from "@/components/unified/types";
 
 export function GradeArithmeticExpression({
   prompt,
@@ -17,17 +20,25 @@ export function GradeArithmeticExpression({
   return (
     <span className={g.expression}>
       {prompt.instruction && (
-        <span className={g.instruction}>{prompt.instruction}</span>
+        <span className={g.instruction}>
+          <MathText text={arithmeticProseNotation(prompt.instruction)} />
+        </span>
       )}
       {prompt.layout === "vertical" ? (
         <span
           className={`${s.vertical} ${g.vertical}`}
           aria-label={`${prompt.left} ${prompt.operator} ${prompt.right}`}
         >
-          <span>{prompt.left}</span>
           <span>
-            <i>{prompt.operator === "-" ? "−" : prompt.operator}</i>
-            {prompt.right}
+            <MathText text={`$${prompt.left}$`} />
+          </span>
+          <span>
+            <i>
+              <MathText
+                text={`$${prompt.operator === "×" ? "\\times" : prompt.operator}$`}
+              />
+            </i>
+            <MathText text={`$${prompt.right}$`} />
           </span>
           <span className={s.verticalBlank} aria-label="답란" />
         </span>
@@ -75,19 +86,30 @@ export function gradeArithmeticPaperPages({
   academyName = "오늘 수학",
   mode,
   density,
+  problems,
 }: {
   rounds: GradeArithmeticPaperRound[];
   title: string;
   academyName?: string;
   mode: ArithmeticPaperMode;
   density: 12 | 24;
+  /** Projected from the validated saved sheet by arithmeticToStudioProblems. */
+  problems?: readonly StudioProblem[];
 }) {
   density = gradeArithmeticDensity(rounds, density);
+  const byNumber = new Map(
+    problems?.map((problem) => [problem.arithmetic?.number, problem]),
+  );
+  const questionCapacity = problems?.some((problem) => problem.figureSvg)
+    ? 4
+    : problems?.some((problem) => !problem.content.includes("$$"))
+      ? 6
+      : density;
   const parts = (
     mode === "both" ? (["questions", "answers"] as const) : [mode]
   ).flatMap((kind) =>
     rounds.flatMap((round) => {
-      const perPage = kind === "questions" ? density : 48;
+      const perPage = kind === "questions" ? questionCapacity : 48;
       return Array.from(
         { length: Math.ceil(round.items.length / perPage) },
         (_, i) => ({
@@ -125,13 +147,25 @@ export function gradeArithmeticPaperPages({
                 className={`${s.questions} ${g.questions}`}
                 data-density={density}
                 style={
-                  { "--columns": 2, "--rows": density / 2 } as CSSProperties
+                  {
+                    "--columns": 2,
+                    "--rows": questionCapacity / 2,
+                  } as CSSProperties
                 }
               >
                 {part.items.map((item) => (
                   <div className={s.item} key={item.number}>
                     <b>{item.number}</b>
-                    <GradeArithmeticExpression prompt={item.prompt} />
+                    {byNumber.has(item.number) ? (
+                      <div className={g.projected}>
+                        <NativeProblem
+                          problem={byNumber.get(item.number)!}
+                          print
+                        />
+                      </div>
+                    ) : (
+                      <GradeArithmeticExpression prompt={item.prompt} />
+                    )}
                   </div>
                 ))}
               </div>

@@ -5,6 +5,13 @@
   min-width: 0;
   max-width: 100%;
 }
+.projected {
+  flex: 1;
+  min-width: 0;
+  font-size: 13.5px;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
 .instruction {
   font: 9pt/1.4 var(--paper-font-sans, sans-serif);
   white-space: normal;

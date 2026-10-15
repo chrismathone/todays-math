@@ -1,6 +1,11 @@
 import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import {
+  buildArithmeticV2Sheet,
+  listArithmeticV2PrintItems,
+} from "@/lib/arithmetic-v2";
+import { arithmeticToStudioProblems } from "@/lib/arithmeticOutput";
+import {
   gradeArithmeticPaperPages,
   type GradeArithmeticPaperRound,
 } from "@/components/arithmetic/GradeArithmeticPaper";
@@ -37,6 +42,37 @@ const rounds: GradeArithmeticPaperRound[] = [
   },
 ];
 describe("grade arithmetic paper separation", () => {
+  it("uses the saved-sheet projection for administrator geometry pages, including segment marks and figures", () => {
+    const sheet = buildArithmeticV2Sheet({
+      engineVersion: "arithmetic-engine-v2",
+      catalogVersion: "arithmetic-catalog-v2",
+      seed: "admin-notation",
+      rounds: [
+        {
+          allocations: [
+            { typeId: "m3-pythagoras-isosceles-height-surd", count: 1 },
+          ],
+        },
+      ],
+    });
+    const pages = gradeArithmeticPaperPages({
+      rounds: [{ round: 1, items: listArithmeticV2PrintItems(sheet) }],
+      problems: arithmeticToStudioProblems(sheet),
+      title: "선분 표기",
+      mode: "questions",
+      density: 24,
+    });
+    const { container } = render(<>{pages.map((page) => page.node)}</>);
+    const body = container.querySelector("[data-native-problem]")!;
+    expect(
+      body.querySelectorAll(".overline-line").length,
+    ).toBeGreaterThanOrEqual(6);
+    expect(body.querySelector("img")).not.toBeNull();
+    expect(body.querySelector(".katex-error")).toBeNull();
+    expect(body.querySelector("annotation")?.textContent).toContain(
+      "\\overline{\\mathrm{AB}}",
+    );
+  });
   it("renders question expressions and blanks without putting answer-only values in the question DOM", () => {
     const pages = gradeArithmeticPaperPages({
       rounds,

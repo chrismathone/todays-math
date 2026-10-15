@@ -59,22 +59,35 @@ export function arithmeticTypeTitle(text: string): string {
         const delimiter = part.type === "inline" ? "$" : "$$";
         return `${delimiter}${part.value}${delimiter}`;
       }
-      return part.value.replace(
-        /(?<![A-Za-z])([a-z])([²³]|\^\d+)?(?![A-Za-z\d])/g,
-        (_match, variable: string, power: string | undefined) =>
-          `$${variable}${power ? `^{${power === "²" ? "2" : power === "³" ? "3" : power.slice(1)}}` : ""}$`,
-      );
+      return part.value
+        .replace(
+          /(?<!\d)(\d+)\/(\d+)(?!\d)/g,
+          (_match, n: string, d: string) => `$\\frac{${n}}{${d}}$`,
+        )
+        .replace(
+          /[+×÷−]/g,
+          (operator) =>
+            `$${operator === "×" ? "\\times" : operator === "÷" ? "\\div" : operator === "−" ? "-" : "+"}$`,
+        )
+        .replace(
+          /(?<![A-Za-z\\])([a-z])([²³]|\^\d+)?(?![A-Za-z\d])/g,
+          (_match, variable: string, power: string | undefined) =>
+            `$${variable}${power ? `^{${power === "²" ? "2" : power === "³" ? "3" : power.slice(1)}}` : ""}$`,
+        )
+        .replace(/(?<=\s)-(?=\s)/g, "$-$");
     })
     .join("");
 }
 
 export function arithmeticGeometryUnitText(unit: string): string {
-  return unit === "°" ? "$^{\\circ}$" : arithmeticGeometryText(unit);
+  return unit === "°"
+    ? "$^{\\circ}$"
+    : unit === "%"
+      ? "$\\%$"
+      : arithmeticGeometryText(unit);
 }
 
 export function arithmeticGeometryAnswerBlank(unit: string): string {
   const blank = "\\underline{\\hspace{2em}}";
-  return unit === "°"
-    ? `$${blank}^{\\circ}$`
-    : `$${blank}$${unit ? ` ${arithmeticGeometryUnitText(unit)}` : ""}`;
+  return `$${blank}${arithmeticAnswerUnitLatex(unit)}$`;
 }

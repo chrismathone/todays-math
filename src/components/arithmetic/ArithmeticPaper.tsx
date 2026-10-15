@@ -7,16 +7,23 @@ import {
 } from "@/lib/arithmetic/sheet";
 import type { ArithmeticSheetPayload } from "@/contracts/arithmeticSheet.contract";
 import s from "./ArithmeticPaper.module.css";
+import { MathText } from "@/components/math/MathText";
+import { arithmeticProseNotation } from "@/lib/arithmetic-v2/presentation/notation";
 
 export type ArithmeticPaperMode = "questions" | "answers" | "both";
 export type ArithmeticDensity = 12 | 24 | 40;
+
+const operatorLatex = (operator: string) =>
+  operator === "×" ? "\\times" : operator === "÷" ? "\\div" : operator;
 
 export function ArithmeticExpression({ prompt }: { prompt: ArithmeticPrompt }) {
   if (prompt.notation === "horizontal")
     return (
       <span className={s.horizontal}>
-        {prompt.operands[0]} {prompt.operator === "-" ? "−" : prompt.operator}{" "}
-        {prompt.operands[1]} = <span className={s.blank} aria-label="답란" />
+        <MathText
+          text={`$${prompt.operands[0]} ${operatorLatex(prompt.operator)} ${prompt.operands[1]} =$`}
+        />
+        <span className={s.blank} aria-label="답란" />
       </span>
     );
   return (
@@ -24,10 +31,14 @@ export function ArithmeticExpression({ prompt }: { prompt: ArithmeticPrompt }) {
       className={s.vertical}
       aria-label={`${prompt.operands[0]} ${prompt.operator} ${prompt.operands[1]}`}
     >
-      <span>{prompt.operands[0]}</span>
       <span>
-        <i>{prompt.operator === "-" ? "−" : prompt.operator}</i>
-        {prompt.operands[1]}
+        <MathText text={`$${prompt.operands[0]}$`} />
+      </span>
+      <span>
+        <i>
+          <MathText text={`$${operatorLatex(prompt.operator)}$`} />
+        </i>
+        <MathText text={`$${prompt.operands[1]}$`} />
       </span>
       <span className={s.verticalBlank} aria-label="답란" />
     </span>
@@ -127,7 +138,7 @@ export function arithmeticPaperPages({
                 {part.items.map((item) => (
                   <div key={item.number}>
                     <b>{item.number}</b>
-                    <span>{item.answer}</span>
+                    <MathText text={arithmeticProseNotation(item.answer)} />
                   </div>
                 ))}
               </div>

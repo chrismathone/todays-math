@@ -12,6 +12,7 @@ import {
   ARITHMETIC_V2_CATALOG_VERSION,
 } from "@/contracts/arithmeticV2.contract";
 import { gradeArithmeticPaperPages } from "@/components/arithmetic/GradeArithmeticPaper";
+import { arithmeticToStudioProblems } from "@/lib/arithmeticOutput";
 
 /** Every implemented family on actual A4; deterministic, development only, no DB. */
 export default async function GradeArithmeticPrintFixture({
@@ -80,6 +81,7 @@ export default async function GradeArithmeticPrintFixture({
   return (
     <main style={{ margin: 0, padding: 0 }}>
       {gradeArithmeticPaperPages({
+        problems: arithmeticToStudioProblems(sheet),
         rounds: sheet.rounds.map((round) => ({
           round: round.round,
           items: items.filter((item) => item.round === round.round),

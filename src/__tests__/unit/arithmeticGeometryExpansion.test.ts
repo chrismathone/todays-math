@@ -20,10 +20,11 @@ import {
 import { ARITHMETIC_GEOMETRY_PACK_MAX_LENGTH } from "@/lib/arithmetic-v2/geometryPack";
 import { arithmeticToStudioProblems } from "@/lib/arithmeticOutput";
 import { presentArithmeticGeometrySvg } from "@/lib/arithmetic-v2/presentation";
+import { arithmeticAnswerUnitLatex } from "@/lib/arithmetic-v2/presentation/text";
 import {
-  arithmeticGeometryText,
-  arithmeticGeometryUnitText,
-} from "@/lib/arithmetic-v2/presentation/text";
+  arithmeticGeometryNotation,
+  arithmeticProseNotation,
+} from "@/lib/arithmetic-v2/presentation/notation";
 import { figureSvgAngleDrillWidthMm } from "@/lib/figure/figureSvgFrame";
 import { regenerateArithmeticV2Items } from "@/lib/arithmeticRegeneration";
 import { parseStrictJson } from "@/lib/textbook/strictJson";
@@ -140,11 +141,14 @@ describe("integrated elementary and middle-school geometry", () => {
         if (item.prompt.layout !== "math")
           throw new Error("Geometry must have a math prompt");
         expect(output[index].content).toContain(
-          arithmeticGeometryText(item.prompt.text),
+          (definitions.find((definition) => definition.id === item.typeId)
+            ?.strand === "도형" || item.prompt.figureId
+            ? arithmeticGeometryNotation
+            : arithmeticProseNotation)(item.prompt.text),
         );
         if (item.prompt.answerUnit && item.prompt.answerUnit !== "°")
           expect(output[index].content).toContain(
-            arithmeticGeometryUnitText(item.prompt.answerUnit),
+            arithmeticAnswerUnitLatex(item.prompt.answerUnit),
           );
         expect(output[index].answer).toBe(`$${item.answer.latex}$`);
         if (item.prompt.figureId) {

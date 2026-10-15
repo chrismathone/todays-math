@@ -25,6 +25,13 @@ describe("geometry display text", () => {
     expect(arithmeticGeometryText(after)).toBe(after);
   });
   it("typesets variables in titles while preserving roman measurement units", () => {
+    expect(arithmeticTypeTitle("자연수 - 분수")).toBe("자연수 $-$ 분수");
+    expect(arithmeticTypeTitle("큰 수의 1/10·1/100·1/1000배")).toBe(
+      "큰 수의 $\\frac{1}{10}$·$\\frac{1}{100}$·$\\frac{1}{1000}$배",
+    );
+    expect(arithmeticTypeTitle("두 자리 수 × 한 자리 수")).toBe(
+      "두 자리 수 $\\times$ 한 자리 수",
+    );
     expect(arithmeticTypeTitle("x²의 계수가 1인 이차식 인수분해")).toBe(
       "$x^{2}$의 계수가 1인 이차식 인수분해",
     );

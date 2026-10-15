@@ -23,7 +23,10 @@ import {
 } from "@/contracts/arithmetic.contract";
 import { listArithmeticPresets } from "@/lib/arithmeticPresets";
 import { arithmeticOutputGroups } from "@/lib/arithmeticOutputLayout";
-import { arithmeticGeometryText } from "@/lib/arithmetic-v2/presentation/text";
+import {
+  arithmeticGeometryNotation,
+  arithmeticProseNotation,
+} from "@/lib/arithmetic-v2/presentation/notation";
 
 describe("arithmetic shared output adapter", () => {
   it("preserves every supported grade prompt, exact answer and snapshot with valid math markup", () => {
@@ -68,7 +71,9 @@ describe("arithmetic shared output adapter", () => {
           item.prompt.latex === `\\text{${item.prompt.text}}`)
       ) {
         expect(problem.content).toContain(
-          arithmeticGeometryText(item.prompt.text),
+          (type.strand === "도형"
+            ? arithmeticGeometryNotation
+            : arithmeticProseNotation)(item.prompt.text),
         );
         expect(problem.content).not.toContain("[그림1]");
       } else if (item.prompt.layout === "math")
@@ -119,7 +124,9 @@ describe("arithmetic shared output adapter", () => {
     expect(problems[0].section).toContain(problems[0].chapter);
     expect(problems[0].section).toContain("세로셈");
     expect(problems.map((item) => item.answer)).toEqual(
-      sheet.rounds.flatMap((round) => round.items.map((item) => item.answer)),
+      sheet.rounds.flatMap((round) =>
+        round.items.map((item) => arithmeticProseNotation(item.answer)),
+      ),
     );
     expect(problems[0].content).toContain("\\begin{array}{r}");
     expect(problems[2].content).toContain("\\div");

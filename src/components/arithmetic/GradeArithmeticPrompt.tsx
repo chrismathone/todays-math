@@ -13,9 +13,9 @@ import {
 } from "@/lib/arithmetic-v2/presentation";
 import {
   arithmeticGeometryNames,
-  arithmeticGeometryText,
   arithmeticGeometryUnitText,
 } from "@/lib/arithmetic-v2/presentation/text";
+import { arithmeticGeometryNotation } from "@/lib/arithmetic-v2/presentation/notation";
 import s from "./GradeArithmeticPrompt.module.css";
 
 /** Catalog examples only. Review/output must use arithmeticToStudioProblems,
@@ -42,7 +42,7 @@ export function GradeArithmeticExpression({
     <span className={s.prompt}>
       {arithmeticGeometryPromptLines(prompt).map((line) => (
         <span className={s.givens} key={line}>
-          <MathText text={arithmeticGeometryText(line)} />
+          <MathText text={arithmeticGeometryNotation(line)} />
         </span>
       ))}
       {svg && (

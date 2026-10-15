@@ -14,9 +14,12 @@ import {
 import { presentArithmeticGeometrySvg } from "@/lib/arithmetic-v2/presentation";
 import {
   arithmeticGeometryAnswerBlank,
-  arithmeticGeometryText,
   arithmeticAnswerUnitLatex,
 } from "@/lib/arithmetic-v2/presentation/text";
+import {
+  arithmeticGeometryNotation,
+  arithmeticProseNotation,
+} from "@/lib/arithmetic-v2/presentation/notation";
 
 export type ArithmeticOutputSheet =
   ArithmeticSheetPayload | ArithmeticV2SheetPayload;
@@ -66,11 +69,10 @@ export function arithmeticToStudioProblems(
           ? /viewBox="([^"]+)"/.exec(svg)![1].split(/\s+/).map(Number).slice(2)
           : undefined;
         const answerUnit = arithmeticGeometryAnswerUnit(item.prompt);
-        const geometryPrompt =
-          Boolean(svg) ||
-          (type?.strand === "도형" &&
-            item.prompt.layout === "math" &&
-            item.prompt.answerUnit !== undefined);
+        const geometryPrompt = Boolean(svg) || type?.strand === "도형";
+        const proseNotation = geometryPrompt
+          ? arithmeticGeometryNotation
+          : arithmeticProseNotation;
         // textMath families explicitly authored the entire expression as prose.
         // Exact equality avoids guessing from arbitrary TeX commands or contents.
         const prosePrompt =
@@ -91,8 +93,8 @@ export function arithmeticToStudioProblems(
           ...base,
           id: `arithmetic-v2:${sheet.seed}:${round.round}:${item.order}`,
           content: prosePrompt
-            ? `${arithmeticGeometryPromptLines(item.prompt).map(arithmeticGeometryText).join("\n\n")}${svg ? "\n\n[그림1]" : ""}\n\n답: ${answerBlank}`
-            : `${item.prompt.instruction ? `${arithmeticGeometryText(item.prompt.instruction)}\n\n` : ""}$$${formula}$$`,
+            ? `${arithmeticGeometryPromptLines(item.prompt).map(proseNotation).join("\n\n")}${svg ? "\n\n[그림1]" : ""}\n\n답: ${answerBlank}`
+            : `${item.prompt.instruction ? `${arithmeticProseNotation(item.prompt.instruction)}\n\n` : ""}$$${formula}$$`,
           ...(svg
             ? {
                 figureSvg: svg,
@@ -143,7 +145,7 @@ export function arithmeticToStudioProblems(
         ...base,
         id: `arithmetic-v1:${sheet.seed}:${round.round}:${item.order}`,
         content: `$$${formula}$$`,
-        answer: item.answer,
+        answer: arithmeticProseNotation(item.answer),
         grade: "",
         chapter: skill?.label ?? item.spec.skillId,
         section: groupTitle,

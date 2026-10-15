@@ -1,0 +1,102 @@
+Arithmetic notation integration — 2026-10-15
+
+The user-reported missing segment bars and partially typeset givens were real.
+The previous geometry review checked diagram layout; it did not establish correct
+notation in the prose. The old prose formatter only recognized units/degrees.
+It left AB=AC and AD perpendicular BC outside authored math, and existing TeX
+such as mathrm{AB} was preserved even when it denoted a segment.
+
+Implementation
+src/lib/arithmetic-v2/presentation/notation.ts is a display-only projection for
+arithmetic prose. Geometry has a separate entry point from numerical/algebraic
+prose. It reads complete formula chains, units, exact fractions and pi quantities.
+The geometry projection distinguishes each occurrence of a segment, line, ray,
+arc, angle, triangle, point and scalar variable. It also processes existing TeX
+groups while preserving already decorated objects and text commands.
+It uses the existing shared tokenizer, MarkdownRenderer and KaTeX. Arc widehat
+notation goes through the existing geom-arc-wrap rendering, not a hat substitute.
+
+Examples independently checked:
+  AB=AC=22 cm and BC=34 cm: endpoint names carry segment bars; units upright.
+  AD perpendicular BC: both segments barred and the perpendicular symbol in math.
+  Three parallel lines AD, BE, CF: double arrows; later AB/BC lengths: bars.
+  Chord TP and arc TP in one sentence: separate bar and arc roles.
+  Tangent PB length: a segment, not an infinite line.
+  Line ell parallel m: m remains a line variable, not a metre unit.
+  A specified ray: one arrow; no ray is invented for finite bisector connectors.
+  Scalar B for base area stays a variable; ABC polygon names are not segments.
+  x!=0, negative numbers, percent blanks and variable conditions: explicit math.
+  8*pi/3 cubic centimetres: one fraction followed by an upright cubed unit.
+  Scale lists 1/10, 1/100, 1/1000 in titles: fractions; list dots unchanged.
+  Arithmetic operators in titles and legacy expressions: actual KaTeX.
+
+Projection and compatibility
+arithmeticToStudioProblems now uses this projection for geometry and prose, and
+explicit math for legacy answers. Review, output and restored sheets therefore
+use the same result. Administrator and development grade-paper callers pass that
+saved-sheet projection to NativeProblem; they no longer display alternate prose
+as one unwrappable formula or omit saved figures. Projected paper bodies use the
+shared print-scale 13.5 px and reserve four slots for figures, six for prose;
+formula-only density remains the existing setting. Compatibility expression and
+answer helpers also render through MathText. The percent-unit helper is explicit.
+Canonical family definitions, IDs, givens, answers, SVG assets, saved packs and
+contracts have no changes. No migration, regeneration, DB write or env change.
+
+Independent full catalog audits
+All 649 registered types are accounted for: 272 geometry and 377 other types.
+The geometry audit enumerates every one of 42,749 finite candidates, including
+17,552 figure-backed variants and 25,197 text-only variants. It inventories 1,019
+source patterns, checks 128,247 display fields, 252 independent object-role
+fixtures, 10,556 distinct strict KaTeX expressions and 42,749 answer values from
+KaTeX MathML against exact answers. Actual MarkdownRenderer DOM covers 580 syntax
+patterns plus seven role contrasts. No unresolved failures.
+See docs/reports/arithmetic-notation-geometry-20261015.txt for complete domains,
+the exact reported isosceles-height variant and the independent negative controls.
+
+The numeric audit exhaustively enumerates 152,884,093 finite candidate variants
+across 377 families, then checks the 16,473 distinct syntax grammars using 28,203
+first/last prompt witnesses and 53,979 strict KaTeX validations. This is a finite
+domain census plus grammar-based rendering verification, not 152 million browser
+screenshots. All 13,495 legacy v1 candidate projections, 649 catalog titles, the
+1,124-pattern helper scan, 17 independent fixtures and 379 singleton print checks
+pass. Baseline defects in 53 instruction families and 28 title families are
+recorded in docs/reports/arithmetic-notation-numeric-20261015.txt.
+
+Root integration verification
+291 tests in six focused suites pass: notation semantic regressions, existing
+text formatting, all-type output/snapshot preservation, all geometry integration,
+catalog/shared geometry rendering and grade paper separation/admin projection.
+Whole-project TypeScript and scoped ESLint pass. Normal commit hooks are required.
+
+Actual Next route /dev/workspace-alignment#arithmetic was exercised at 1440 px
+and touch 390 px. Eight representative types cover the reported isosceles height,
+parallel lines, line/segment ratios, same-arc angles, tangent/chord dual roles,
+text-only trigonometry, pi fractions and nonzero algebra conditions.
+Both flows generate, review, show answers, open the real WorksheetEditor and
+print a native three-page PDF (two question pages and one answer page).
+Actual review/output TeX annotations match; outside-math symbol scanning, column
+bounds, KaTeX errors, page errors and real API request guards all pass.
+All three desktop PDF pages were rendered and inspected. Both PDFs contain exactly
+the measured number of paper pages. The shared admin paper component was also
+exercised through /dev/arithmetic/grade-print for geometry, prose and algebra;
+all 12 bodies fit their cells/pages and their actual math/figure ink fits columns.
+An inherited 25.33 px admin-body font overflow was found and corrected to 13.5 px.
+
+Reproduction:
+  node scripts/qa/arithmetic-notation-integrated.mjs
+  node scripts/qa/arithmetic-notation-paper.mjs
+Durable local evidence:
+  .qa-artifacts/arithmetic-notation-20261015/integrated.json
+  .qa-artifacts/arithmetic-notation-20261015/{1440,390}-review-*.png
+  .qa-artifacts/arithmetic-notation-20261015/{1440,390}-print.pdf
+  .qa-artifacts/arithmetic-notation-20261015/pdf-page-{1,2,3}.png
+  .qa-artifacts/arithmetic-notation-20261015/paper/proof.json and three page PNGs
+No page source/CSSOM mutation or response fixture replacement was used by these
+browser runners. Every real /api request was blocked and asserted absent.
+
+Scope limits
+These checks establish notation for the present finite arithmetic catalog and
+its existing authored syntax. They are not a general Korean geometry parser or
+a claim of complete curriculum coverage. The full-domain semantic/KaTeX checks
+are distinguished from the representative actual-browser/PDF layout checks.
+The preceding SVG/editor audit remains separate; no diagram was redrawn here.

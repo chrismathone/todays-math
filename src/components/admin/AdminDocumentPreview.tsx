@@ -15,6 +15,7 @@ import { reopenAnyArithmeticSheet } from "@/lib/arithmeticDocument";
 import { listArithmeticV2PrintItems } from "@/lib/arithmetic-v2";
 import { gradeArithmeticPaperPages } from "@/components/arithmetic/GradeArithmeticPaper";
 import { arithmeticPaperPages } from "@/components/arithmetic/ArithmeticPaper";
+import { arithmeticToStudioProblems } from "@/lib/arithmeticOutput";
 import { PaperStrip } from "@/components/paper-strip/PaperStrip";
 import {
   ADMIN_KIND_LABEL,
@@ -259,6 +260,7 @@ function ArithmeticPreview({ document }: { document: DocumentDetail }) {
     pages =
       sheet.payloadVersion === 2
         ? gradeArithmeticPaperPages({
+            problems: arithmeticToStudioProblems(sheet),
             rounds: sheet.rounds.map((round) => ({
               round: round.round,
               items: items.filter((item) => item.round === round.round),
