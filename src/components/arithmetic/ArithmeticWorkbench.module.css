@@ -242,7 +242,7 @@
 }
 .allocation {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 64px 58px;
+  grid-template-columns: 44px minmax(0, 1fr) 58px;
   gap: 6px;
   margin: 8px 0;
   align-items: center;
@@ -251,7 +251,8 @@
   font-size: 12px;
   padding: 6px;
 }
-.allocation button:first-child {
+.allocation .selectionTitle {
+  grid-column: 2 / -1;
   text-align: left;
 }
 .allocation button[aria-pressed="true"] {
@@ -259,6 +260,38 @@
 }
 .allocation input {
   padding: 6px;
+}
+.allocation > input[type="number"] {
+  grid-column: 2;
+  width: 64px;
+}
+.allocation > .basketCheck {
+  grid-row: 1 / span 2;
+  align-self: start;
+}
+.basketActions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+.basketCheck {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 44px;
+  min-height: 44px;
+}
+.basketCheck input {
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  accent-color: var(--learn-accent);
 }
 .constraints {
   border: 1px solid var(--learn-track);
@@ -478,7 +511,7 @@
     grid-template-columns: minmax(0, 1fr);
   }
   .allocation {
-    grid-template-columns: minmax(0, 1fr) 58px 52px;
+    grid-template-columns: 44px minmax(0, 1fr) 52px;
   }
 }
 @media print {

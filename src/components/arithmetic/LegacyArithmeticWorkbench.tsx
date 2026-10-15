@@ -43,6 +43,10 @@ import {
   randomArithmeticTypes,
 } from "./typeSelection";
 import { useArithmeticTypeSelection } from "./useArithmeticTypeSelection";
+import {
+  ArithmeticBasketSelection,
+  useArithmeticBasketSelection,
+} from "./ArithmeticBasketSelection";
 import { arithmeticReviewRounds } from "@/lib/arithmeticOutput";
 import type {
   ArithmeticRegenerationResult,
@@ -98,6 +102,9 @@ export default function LegacyArithmeticWorkbench({
   const [allocations, setAllocations] = useState<WorkbenchAllocation[]>(() => [
     presetAllocation("add-two-carry-0", "initial"),
   ]);
+  const basketSelection = useArithmeticBasketSelection(
+    allocations.map((item) => item.id),
+  );
   const [active, setActive] = useState("initial");
   const [group, setGroup] = useState<string>("전체");
   const [query, setQuery] = useState("");
@@ -680,6 +687,18 @@ export default function LegacyArithmeticWorkbench({
               <h2>
                 담은 유형 <small>{allocations.length}개</small>
               </h2>
+              <ArithmeticBasketSelection
+                selection={basketSelection}
+                total={allocations.length}
+                disabled={busy}
+                onRemove={() =>
+                  setAllocations((current) =>
+                    current.filter(
+                      (item) => !basketSelection.checked.has(item.id),
+                    ),
+                  )
+                }
+              />
               <div
                 className={s.selectedTypes}
                 role="region"
@@ -688,8 +707,20 @@ export default function LegacyArithmeticWorkbench({
               >
                 {allocations.map((item) => (
                   <div className={s.allocation} key={item.id}>
+                    <label className={s.basketCheck}>
+                      <input
+                        type="checkbox"
+                        aria-label={`${item.title} 선택`}
+                        checked={basketSelection.checked.has(item.id)}
+                        disabled={busy}
+                        onChange={(event) =>
+                          basketSelection.toggle(item.id, event.target.checked)
+                        }
+                      />
+                    </label>
                     <button
                       type="button"
+                      className={s.selectionTitle}
                       aria-pressed={active === item.id}
                       disabled={busy}
                       onClick={() => setActive(item.id)}

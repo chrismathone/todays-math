@@ -18,6 +18,7 @@ import {
   buildArithmeticV2Sheet,
 } from "@/lib/arithmetic-v2";
 import type { PrivateDocument } from "@/contracts/privateWorkspace.contract";
+import { previewFetch } from "@/app/dev/workspace-alignment/previewData";
 
 vi.mock("@/components/unified/WorksheetEditor", () => ({
   default: (
@@ -99,6 +100,46 @@ const ready = () =>
   );
 
 describe("grade arithmetic user flow", () => {
+  it("generates the reported ten origin-reflection questions through the actual workspace preview adapter", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn<typeof fetch>((input, init) =>
+        previewFetch(new URL(String(input), "http://localhost"), init),
+      ),
+    );
+    render(
+      <GradeArithmeticWorkbench canOutput storageScope="workspace-preview" />,
+    );
+    await ready();
+    fireEvent.click(
+      screen.getByRole("button", { name: types[0].title + " 빼기" }),
+    );
+    fireEvent.change(screen.getByLabelText("연산 영역"), {
+      target: { value: "함수" },
+    });
+    fireEvent.change(screen.getByLabelText("유형 찾기"), {
+      target: { value: "원점 대칭점의 y좌표" },
+    });
+    fireEvent.click(
+      within(screen.getByLabelText("학년별 연산 유형")).getByRole("button"),
+    );
+    expect(screen.getByLabelText("학년")).toHaveValue("전체");
+    expect(screen.getByLabelText("원점 대칭점의 y좌표 문항 수")).toHaveValue(
+      10,
+    );
+    expect(screen.getByLabelText("회차")).toHaveValue(1);
+    expect(screen.getByRole("button", { name: "연습지 만들기" })).toBeEnabled();
+    make();
+    await screen.findByText(/10문항을 생성하고/);
+    expect(
+      within(
+        screen.getByRole("region", { name: "생성한 문항 검토" }),
+      ).getAllByRole("listitem"),
+    ).toHaveLength(10);
+    expect(
+      screen.queryByRole("button", { name: "내 시험지에 저장" }),
+    ).toBeNull();
+  });
   it("shows type cards with school placement and filters the trigonometry unit without problem previews", () => {
     render(<GradeArithmeticWorkbench canOutput preview />);
     fireEvent.change(screen.getByRole("combobox", { name: "학년" }), {

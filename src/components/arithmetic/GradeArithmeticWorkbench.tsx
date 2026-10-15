@@ -32,6 +32,10 @@ import {
   randomArithmeticTypes,
 } from "./typeSelection";
 import { useArithmeticTypeSelection } from "./useArithmeticTypeSelection";
+import {
+  ArithmeticBasketSelection,
+  useArithmeticBasketSelection,
+} from "./ArithmeticBasketSelection";
 import { arithmeticV2ReviewRounds } from "@/lib/arithmeticOutput";
 import type {
   ArithmeticRegenerationResult,
@@ -78,6 +82,9 @@ export default function GradeArithmeticWorkbench({
 }: ArithmeticWorkbenchProps & { gradeControl?: ArithmeticGradeControl }) {
   const [title, setTitle] = useState("연산 실력 다지기");
   const [allocations, setAllocations] = useState<Allocation[]>(initial);
+  const basketSelection = useArithmeticBasketSelection(
+    allocations.map((item) => item.typeId),
+  );
   const [localGrade, setGrade] = useState("전체");
   const grade = gradeControl?.value ?? localGrade;
   const [strand, setStrand] = useState("전체");
@@ -675,6 +682,18 @@ export default function GradeArithmeticWorkbench({
               <h2>
                 담은 유형 <small>{allocations.length}개</small>
               </h2>
+              <ArithmeticBasketSelection
+                selection={basketSelection}
+                total={allocations.length}
+                disabled={busy}
+                onRemove={() =>
+                  setAllocations((current) =>
+                    current.filter(
+                      (item) => !basketSelection.checked.has(item.typeId),
+                    ),
+                  )
+                }
+              />
               <div
                 className={s.selectedTypes}
                 role="region"
@@ -691,6 +710,20 @@ export default function GradeArithmeticWorkbench({
                   return (
                     <div key={item.typeId}>
                       <div className={s.allocation}>
+                        <label className={s.basketCheck}>
+                          <input
+                            type="checkbox"
+                            aria-label={`${type.grade} · ${type.title} 선택`}
+                            checked={basketSelection.checked.has(item.typeId)}
+                            disabled={busy}
+                            onChange={(event) =>
+                              basketSelection.toggle(
+                                item.typeId,
+                                event.target.checked,
+                              )
+                            }
+                          />
+                        </label>
                         <span className={s.selectionTitle}>
                           {type.grade} ·{" "}
                           <MathText text={arithmeticTypeTitle(type.title)} />
