@@ -107,7 +107,9 @@
 :where(.root) button {
   cursor: pointer;
 }
-:where(.root) button:hover {
+/* Keep default hover below component-owned backgrounds, including PaperStrip's
+   transparent page enlargement button. */
+:where(.root) button:where(:hover) {
   background: var(--learn-soft);
 }
 :where(.root) button:disabled {
