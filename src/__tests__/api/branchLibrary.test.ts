@@ -896,7 +896,7 @@ describe("arithmetic document persistence", () => {
           skills: [
             {
               skillId: "two-digit-vertical-add",
-              count: 100,
+              count: 200,
               constraints: {
                 carryCount: 0,
                 left: { min: 10, max: 99 },
@@ -907,11 +907,13 @@ describe("arithmetic document persistence", () => {
         },
       ],
     });
-    const extra = structuredClone(oversized.rounds[0].items[0]);
-    extra.order = 1;
-    extra.spec.order = 1;
-    extra.spec.round = 2;
-    oversized.rounds.push({ round: 2, items: [extra] });
+    oversized.rounds = Array.from({ length: 11 }, (_, i) => ({
+      round: i + 1,
+      items: oversized.rounds[0].items.map((item) => ({
+        ...structuredClone(item),
+        spec: { ...structuredClone(item.spec), round: i + 1 },
+      })),
+    }));
     docs[1].payload = oversized;
     expect(
       (
@@ -927,7 +929,7 @@ describe("arithmetic document persistence", () => {
     expect(mocks.document.create).not.toHaveBeenCalled();
   });
 
-  it("accepts the maximum valid sheet and rejects ambiguous duplicate JSON keys", async () => {
+  it("accepts a historical-size valid sheet and rejects ambiguous duplicate JSON keys", async () => {
     const maximum = buildArithmeticSheet({
       engineVersion: ARITHMETIC_ENGINE_VERSION,
       catalogVersion: ARITHMETIC_CATALOG_VERSION,
@@ -1129,6 +1131,29 @@ describe("v2 arithmetic snapshot persistence alongside v1", () => {
       });
   });
   afterEach(() => vi.unstubAllEnvs());
+
+  it("saves and reads 2000 items beyond 256KiB with bounded response bytes", async () => {
+    const request = fixtureRequest(200, "test-large");
+    request.rounds = Array.from({ length: 10 }, () => request.rounds[0]);
+    const payload = buildArithmeticV2Sheet(request);
+    const body = save(payload);
+    expect(
+      new TextEncoder().encode(JSON.stringify(body)).length,
+    ).toBeGreaterThan(256 * 1024);
+    const response = await saveDocument(req("PUT", "", body), "large-v2");
+    expect(response.status).toBe(200);
+    const text = await response.text();
+    expect(new TextEncoder().encode(text).length).toBeLessThan(3_500_000);
+    expect(JSON.parse(text).data).toMatchObject({
+      payload,
+      problemCount: 2000,
+    });
+    const read = await readDocument(req(), "large-v2");
+    expect(read.status).toBe(200);
+    const reopened = await read.text();
+    expect(new TextEncoder().encode(reopened).length).toBeLessThan(3_500_000);
+    expect(JSON.parse(reopened).data.payload).toEqual(payload);
+  });
 
   it("saves, reopens and copies exact v2 snapshots with recomputed counts", async () => {
     const payload = sheet();

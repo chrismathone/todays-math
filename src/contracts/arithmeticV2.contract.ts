@@ -11,6 +11,7 @@ import {
   ARITHMETIC_MAX_ITEMS_PER_ROUND,
   ARITHMETIC_MAX_ITEMS_TOTAL,
   ARITHMETIC_MAX_ROUNDS,
+  ARITHMETIC_MAX_SAVED_ROUNDS,
   ARITHMETIC_SHEET_KIND,
   arithmeticSeedSchema,
 } from "@/contracts/arithmetic.contract";
@@ -213,7 +214,7 @@ export const arithmeticV2SheetPayloadSchema = z
     rounds: z
       .array(
         z.strictObject({
-          round: integer.min(1).max(ARITHMETIC_MAX_ROUNDS),
+          round: integer.min(1).max(ARITHMETIC_MAX_SAVED_ROUNDS),
           items: z
             .array(arithmeticV2SheetItemSchema)
             .min(1)
@@ -221,7 +222,7 @@ export const arithmeticV2SheetPayloadSchema = z
         }),
       )
       .min(1)
-      .max(ARITHMETIC_MAX_ROUNDS),
+      .max(ARITHMETIC_MAX_SAVED_ROUNDS),
   })
   .superRefine((sheet, ctx) => {
     let total = 0;

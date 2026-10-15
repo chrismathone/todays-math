@@ -1,4 +1,5 @@
 import { deflateSync, strToU8 } from "fflate";
+import { ArithmeticEngineError } from "@/lib/arithmetic/errors";
 
 /** A self-contained snapshot of only the figures actually used in a worksheet. */
 export type ArithmeticGeometrySubsetSnapshot = {
@@ -7,9 +8,10 @@ export type ArithmeticGeometrySubsetSnapshot = {
   svgPack: string;
 };
 
-export const ARITHMETIC_GEOMETRY_PACK_MAX_LENGTH = 128 * 1024;
-const MAX_FIGURES = 200;
-const MAX_CACHED_PACKS = 8;
+export const ARITHMETIC_GEOMETRY_PACK_MAX_LENGTH = 1_000_000;
+const MAX_FIGURES = 2000;
+// Large sheets retain fewer packs. Submitted SVG is still never inflated.
+const MAX_CACHED_PACKS = 2;
 
 function base64(bytes: Uint8Array): string {
   const parts: string[] = [];
@@ -60,7 +62,7 @@ export function createArithmeticGeometryPackStore(
       deflateSync(strToU8(JSON.stringify(figures)), { level: 6 }),
     );
     if (svgPack.length > ARITHMETIC_GEOMETRY_PACK_MAX_LENGTH)
-      throw new Error("도형 저장 크기를 초과했습니다");
+      throw new ArithmeticEngineError("payload-size");
     const value = {
       snapshot: { version: 2 as const, ids: ordered, svgPack },
       figures: Object.freeze(figures),

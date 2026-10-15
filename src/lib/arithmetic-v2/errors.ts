@@ -22,6 +22,8 @@ export class ArithmeticV2EngineError extends Error {
       | "invalid-count"
       | "limit"
       | "capacity"
+      | "round-overlap"
+      | "payload-size"
       | "schema"
       | "answer-mismatch"
       | "prompt-mismatch"

@@ -1,3 +1,4 @@
+import { assertArithmeticSheetByteBudget } from "@/lib/arithmetic/byteBudget";
 import {
   ARITHMETIC_CATALOG_VERSION,
   ARITHMETIC_ENGINE_VERSION,
@@ -61,10 +62,13 @@ export function buildArithmeticSheet(input: unknown): ArithmeticSheetPayload {
         }),
     })),
   };
+  assertArithmeticSheetByteBudget(payload);
   return reopenArithmeticSheet(payload);
 }
 
-export function listArithmeticPrintItems(payload: unknown): ArithmeticPrintItem[] {
+export function listArithmeticPrintItems(
+  payload: unknown,
+): ArithmeticPrintItem[] {
   const sheet = reopenArithmeticSheet(payload);
   let number = 1;
   const items: ArithmeticPrintItem[] = [];
@@ -83,7 +87,9 @@ export function listArithmeticPrintItems(payload: unknown): ArithmeticPrintItem[
   return items;
 }
 
-export function listArithmeticProblemViews(payload: unknown): ArithmeticProblemView[] {
+export function listArithmeticProblemViews(
+  payload: unknown,
+): ArithmeticProblemView[] {
   return listArithmeticPrintItems(payload).map((item) => ({
     round: item.round,
     number: item.number,
@@ -92,7 +98,9 @@ export function listArithmeticProblemViews(payload: unknown): ArithmeticProblemV
   }));
 }
 
-export function listArithmeticAnswerViews(payload: unknown): ArithmeticAnswerView[] {
+export function listArithmeticAnswerViews(
+  payload: unknown,
+): ArithmeticAnswerView[] {
   return listArithmeticPrintItems(payload).map((item) => ({
     round: item.round,
     number: item.number,

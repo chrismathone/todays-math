@@ -13,6 +13,8 @@ export const ARITHMETIC_ENGINE_ERROR_CODES = [
   "invalid-count",
   "limit",
   "capacity",
+  "round-overlap",
+  "payload-size",
   "schema",
   "answer-mismatch",
   "prompt-mismatch",
@@ -53,7 +55,11 @@ const MESSAGES: Record<ArithmeticEngineErrorCode, string> = {
   "invalid-count": `문항 수는 1 이상 ${ARITHMETIC_MAX_ITEMS_PER_ROUND} 이하의 정수입니다.`,
   limit: "문항 수 또는 회차 수가 요청 한도를 넘습니다.",
   capacity:
-    "선택한 조건으로 한 회차 안에서 서로 다른 식을 요청한 수만큼 만들 수 없습니다. 문항 수를 줄이거나 조건을 넓혀 주세요. 회차 사이에는 같은 식을 다시 사용할 수 있습니다.",
+    "선택한 조건으로 한 회차 안에서 서로 다른 문제를 요청한 수만큼 만들 수 없습니다. 문항 수를 줄이거나 조건을 넓혀 주세요.",
+  "round-overlap":
+    "선택한 조건에서는 모든 회차 쌍의 같은 문제 비율을 20% 이하로 만들 수 없습니다. 짧은 회차 문항 수의 20%를 내림한 개수까지 허용됩니다. 회차나 문항 수를 줄이거나 유형과 조건을 넓혀 주세요.",
+  "payload-size":
+    "연산 학습지의 저장 용량을 넘었습니다. 도형이 많은 유형이나 문항 수를 줄여 주세요. 학습지는 저장되지 않았습니다.",
   schema: "연산 학습지 형식이 올바르지 않습니다.",
   "answer-mismatch": "저장된 정답이 명세와 맞지 않습니다.",
   "prompt-mismatch": "저장된 발문이 명세와 맞지 않습니다.",

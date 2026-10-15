@@ -95,7 +95,7 @@ describe("arithmetic catalog and preview API", () => {
     expect(body.data).toMatchObject({
       engineVersion: ARITHMETIC_ENGINE_VERSION,
       catalogVersion: ARITHMETIC_CATALOG_VERSION,
-      limits: { itemsPerRound: 100, itemsTotal: 200, rounds: 20 },
+      limits: { itemsPerRound: 200, itemsTotal: 2000, rounds: 10 },
       writerEnabled: false,
     });
     expect(
@@ -120,7 +120,7 @@ describe("arithmetic catalog and preview API", () => {
 
   it.each([
     [100, 2],
-    [10, 20],
+    [200, 10],
   ])(
     "generates and reopens %i x %i with no database access",
     async (count, rounds) => {
@@ -140,7 +140,7 @@ describe("arithmetic catalog and preview API", () => {
       expect(sheet.rounds).toHaveLength(rounds);
       expect(
         sheet.rounds.flatMap((round: { items: unknown[] }) => round.items),
-      ).toHaveLength(200);
+      ).toHaveLength(count * rounds);
       expect(reopenArithmeticSheet(sheet)).toEqual(sheet);
       expect(mocks.log).not.toHaveBeenCalled();
     },
@@ -206,7 +206,7 @@ describe("arithmetic catalog and preview API", () => {
 
   it("rejects aggregate item limits with the engine limit detail", async () => {
     const body = input();
-    body.rounds = Array.from({ length: 20 }, () => ({
+    body.rounds = Array.from({ length: 11 }, () => ({
       skills: [
         {
           skillId: "times-table",
@@ -219,7 +219,7 @@ describe("arithmetic catalog and preview API", () => {
     expect(response.status).toBe(400);
     expect((await response.json()).error).toMatchObject({
       code: "limit",
-      limit: { scope: "total", count: 220, max: 200 },
+      limit: { scope: "rounds", count: 11, max: 10 },
     });
   });
 
@@ -240,7 +240,7 @@ describe("arithmetic catalog and preview API", () => {
     '{"seed":"a","seed":"b"}',
     '{"bad":-0}',
     '{"bad":"\\u0000"}',
-    JSON.stringify({ padding: "x".repeat(64 * 1024) }),
+    JSON.stringify({ padding: "x".repeat(512 * 1024) }),
   ])("rejects malformed, duplicate-key or oversized JSON", async (body) => {
     const response = await POST(
       new Request("http://localhost/api/arithmetic/generate", {

@@ -1,0 +1,138 @@
+Arithmetic 200-per-round / cross-round policy handoff — 2026-10-15
+
+Integration contract
+New v1/v2 generation: max 10 rounds, 200 items in each round, 2,000 total.
+arithmeticPerRoundBudget(1..10) returns 200, independent of round count.
+Readers and regeneration targets retain ARITHMETIC_MAX_SAVED_ROUNDS=20.
+No overlap rule is added to reopen/verification. Historical overlapping sheets,
+source prompts, answers, SVG IDs, compressed canonical packs and versions remain
+unchanged. The original 53-family fixture reopens and reproduces exactly.
+
+Browser-safe preflight exported from src/lib/arithmetic/byteBudget.ts:
+  arithmeticSheetByteIssue(payload: unknown)
+  -> {code:"payload-size",message:string,bytes:number,max:number} | null
+The helper measures UTF-8 serialized JSON, not JS string length. Root consumes it
+before save. Builders and changed regeneration results enforce it server-side;
+the saved-library route also enforces it before writing. Payload-size engine
+errors use HTTP 413. Auth, menu access, writer flag, revisions and DB schema are
+unchanged. All DB interactions in the persistence test are in-memory mocks.
+
+Regeneration keeps the existing result shape with one optional addition:
+  unchangedReason?: "fixed-overlap" | "overlap-capacity"
+Use arithmeticRegenerationNotice(result), already consumed by both workbenches.
+On zero feasible changes, changedOrders=[], sheet is the original object, and
+unselected items/rounds are untouched. Root should preserve existing zero-change
+dirty-state behavior. Fixed-overlap means unselected positions already exceed a
+pair cap; overlap-capacity means selected domains cannot repair the target round.
+Pairs between unrelated historical rounds are deliberately not revalidated.
+
+Identity and selection
+For every pair of new rounds, shared task identities <= floor(min(lengths)/5).
+Within a round, no task repeats. v2 uses existing arithmeticV2PromptIdentity;
+v1 uses the existing regeneration identity (notation, operator, ordered operands).
+Operands themselves are not the overlap unit; commuted expressions stay distinct.
+Type sections remain in request order; selected items are seed-shuffled within
+each allocation section. Selection and regeneration are deterministic.
+
+The ordinary path matches domains to globally distinct tasks, with no graph per
+slot/candidate edge. Candidate iterators initially load each domain's total
+demand only. If matching fails, only deficient connected domain components expand
+to N distinct candidates per domain (N=total worksheet slots), or exhaust the
+finite domain. Unrelated large domains stay lazy. No candidate SVG is rendered
+while selecting; only selected figure IDs enter the trusted geometry pack.
+
+Completeness: an out-of-pool assignment can be replaced by a pool identity unused
+by the other N-1 slots, so N distinct candidates suffice and overlap cannot grow.
+Nondeficient components already have globally distinct assignments in disjoint
+current pools. The exact fallback uses domain-eligibility/round-membership symmetry,
+memoized failed states, and necessary pigeonhole bounds over all round subsets.
+No random retry count or timeout is reported as mathematical capacity failure.
+The exact fallback can be exponential for adversarial heterogeneous overlapping
+domains; measurements below are not a universal request-latency guarantee.
+
+Regeneration first tries N seeded alternatives per selected slot. A feasible
+all-changed result is globally optimal. Otherwise it expands to N alternatives
+per fixed-round membership class and uses minimum-cost matching with complete
+budget-exclusion branching. Each branch excludes one of b+1 identities exceeding
+budget b; every valid assignment must exclude at least one. This maximizes changed
+slots. v1 caches operand pairs per canonical skill/constraints and independently
+verified prompt/answer templates per pair; item order/round/seed stay item-specific.
+
+Feasibility examples
+Rounds of length 1-4 allow zero shared tasks. Two length-5 rounds allow one;
+the same domain therefore needs >=9 tasks. Three length-5 rounds over nine tasks
+are impossible despite each pair being feasible in isolation; twelve tasks suffice.
+For a shared universe D, two demands a,b force at least max(0,a+b-D) overlaps.
+Heterogeneous requests use actual admissible task identities and exact matching,
+including overlapping domains where greedy allocation would steal a singleton.
+
+Transport limits (decimal bytes unless KiB is specified)
+Generate request: 512 KiB, depth12, 100,000 tokens, string128.
+Sheet: 3,250,000 bytes, leaving 250,000 bytes for envelope/metadata.
+Regenerate/save wrapper: 3,500,000 bytes, depth16, 1,000,000 tokens,
+string1,000,000. The shared library's pre-existing 3.5MB body ceiling is now enforced
+while streaming, including chunked bodies without Content-Length.
+Geometry subset pack: <=2,000 distinct trusted IDs, <=1,000,000 base64 characters;
+cache bounded to two packs. Compression algorithm/order unchanged. Submitted packs
+are compared to canonical trusted bytes before acceptance; untrusted SVG is never
+inflated. Full sheet byte preflight additionally bounds prompt + pack combination.
+
+Platform audit (official sources checked during this task)
+https://vercel.com/docs/functions/limitations
+https://vercel.com/docs/errors/function_payload_too_large
+https://vercel.com/docs/errors/function_response_payload_too_large
+Both request and response bodies have a 4.5MB platform ceiling. Keeping application
+wrappers below 3.5MB avoids that boundary; no platform/env/DB changes are needed.
+PDF HTML transport is separate and owned by root (batching/merge/response guard).
+
+Serialized stress evidence (arithmetic-limit-sizing-evidence.json)
+2,000 unique heterogeneous tasks, 412 types, 1,240 figures:
+  sheet991,272; save wrapper992,034; generate response991,281;
+  saved DTO response992,948; regenerate response992,032 bytes.
+2,000 unique geometry tasks/figures, 248 types:
+  canonical pack156,996; uncompressed SVG JSON3,013,869;
+  sheet1,186,580; save wrapper1,187,342; generate response1,186,589;
+  saved DTO response1,188,256; regenerate response1,187,340 bytes.
+Every selected candidate independently verifies. Canonical store pack bytes match
+the measured pack exactly, and real strict parsing accepts both save wrappers.
+These stress samples establish measured capacity, not a claim that every future
+2,000-item family mix must fit; oversize future sheets fail explicitly before save.
+
+Performance evidence
+arithmetic-limit-performance-evidence.json records generation and 200-selected
+regeneration wall times, start/end heap/RSS and process peak RSS on Node24.13.0.
+Cases: ordinary v1 (carry1), tight v1 (carry0; domain1980), ordinary v2,
+20-type heterogeneous v2, and 20-type geometry v2. Every case changes all 200 selected
+slots, preserves unselected round references, and rechecks all 45 pair overlaps.
+The two 2,000-item synthetic finite fallback cases D1000 and D800 are feasible;
+D600 is rejected by a necessary bound. Run the script without simultaneous tests
+for comparable wall-time measurements. Full catalog/tooling memory is included.
+Final isolated run (generation ms / 200-selected regeneration ms):
+  v1 ordinary133 /467; v1 tight1980-task domain2987 /582;
+  v2 ordinary220 /2224; v2 heterogeneous231 /1527; v2 geometry291 /1595.
+Maximum process RSS across this run: 376,696KiB (about368MiB), including catalog,
+tooling, earlier scenarios and GC high-water behavior. Retained end-of-operation
+heap measurements are recorded separately; this is not a claimed per-request
+allocation maximum. The heaviest measured v1 save wrapper is1,292,779 bytes.
+
+Validation
+568 tests passed in 13 focused files, including:
+- 588 heterogeneous small-domain cases compared with independent exhaustive search;
+- 93 finite regeneration cases compared with independent minimum-retention oracle;
+- every currently integrated v2 finite family generates two feasible bounded rounds;
+- actual 2,000-item v1/v2 generation, fragment-heavy request >64KiB,
+  regeneration/save/read bodies >256KiB and serialized responses <3.5MB;
+- 20-round historical readers/round20 regeneration, 100% legacy overlaps,
+  fixed-overlap no-op, exhausted repair no-op, selected repair with unrelated
+  legacy pairs preserved, original source snapshot compatibility;
+- UTF-8 byte boundaries, exact-limit/chunked body handling, duplicate JSON keys,
+  compressed pack length/trust/ID bounds, auth/menu/write-flag/revision behavior.
+Focused TypeScript: 11 entry points including generate/regenerate/save routes pass.
+ESLint: no errors. Normal repository hooks are used for the handoff commit.
+
+Reproduce from this worktree (dependencies remain in the root checkout):
+node --expose-gc --import file:///C:/Creative/testautocreator/node_modules/tsx/dist/loader.mjs --import ./scripts/qa/arithmetic-angle-presentation-deps.mjs scripts/qa/arithmetic-limit-performance.ts
+node --import file:///C:/Creative/testautocreator/node_modules/tsx/dist/loader.mjs --import ./scripts/qa/arithmetic-angle-presentation-deps.mjs scripts/qa/arithmetic-limit-sizing.ts
+node scripts/qa/arithmetic-limit-typecheck.mjs
+Run root node_modules/vitest/vitest.mjs from C:/Creative/testautocreator with
+--config <this-worktree>/scripts/qa/arithmetic-limit-vitest.config.mts.

@@ -135,24 +135,24 @@ describe("v2 indexed snapshots", () => {
     ).toBe(true);
     expect(spy).toHaveBeenCalledTimes(200); // one generation and one correspondence read
   });
-  it("preserves allocation order, allows reuse in later rounds and globally numbers print rows", () => {
-    const request = fixtureRequest(7);
+  it("preserves type sections, bounded round overlap and global print numbers", () => {
+    const request = fixtureRequest(3);
     request.rounds.push({
       allocations: [
         { typeId: "test-other", count: 2 },
-        { typeId: "test-add", count: 7 },
+        { typeId: "test-peer", count: 5 },
       ],
     });
     const sheet = buildArithmeticV2Sheet(request);
     expect(sheet.rounds[1].items.map((item) => item.typeId)).toEqual([
       "test-other",
       "test-other",
-      ...Array(7).fill("test-add"),
+      ...Array(5).fill("test-peer"),
     ]);
     expect(
       listArithmeticV2PrintItems(sheet).map((item) => item.number),
-    ).toEqual(Array.from({ length: 16 }, (_, i) => i + 1));
-    expect(arithmeticV2SheetProblemCount(sheet)).toBe(16);
+    ).toEqual(Array.from({ length: 10 }, (_, i) => i + 1));
+    expect(arithmeticV2SheetProblemCount(sheet)).toBe(10);
   });
   it.each([
     ["payloadVersion", 3],
@@ -263,7 +263,7 @@ describe("v2 indexed snapshots", () => {
       },
       {
         ...fixtureRequest(100, "test-large"),
-        rounds: Array(3).fill(fixtureRequest(100, "test-large").rounds[0]),
+        rounds: Array(11).fill(fixtureRequest(100, "test-large").rounds[0]),
       },
     ])
       expect(() => buildArithmeticV2Sheet(request)).toThrow();

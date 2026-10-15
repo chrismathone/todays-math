@@ -33,7 +33,10 @@ export function arithmeticEngineErrorResponse(error: unknown): Response {
       ...(error.limit ? { limit: error.limit } : {}),
     },
   };
-  return Response.json(body, { status: 400, headers: privateHeaders });
+  return Response.json(body, {
+    status: error.code === "payload-size" ? 413 : 400,
+    headers: privateHeaders,
+  });
 }
 
 /** Reopen checks stored prompts and answers; it never generates replacements. */

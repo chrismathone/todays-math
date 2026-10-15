@@ -71,6 +71,27 @@ afterEach(async () => {
 });
 
 describe("v2 catalog and generation routes", () => {
+  it("accepts 2000 fragmented allocations beyond the former request byte cap", async () => {
+    const request = fixtureRequest(1, "test-large");
+    request.rounds = Array.from({ length: 10 }, () => ({
+      allocations: Array.from({ length: 200 }, () => ({
+        typeId: "test-large",
+        count: 1,
+      })),
+    }));
+    expect(
+      new TextEncoder().encode(JSON.stringify(request)).length,
+    ).toBeGreaterThan(64 * 1024);
+    const response = await POST(post(request));
+    expect(response.status).toBe(200);
+    const text = await response.text();
+    expect(new TextEncoder().encode(text).length).toBeLessThan(3_500_000);
+    expect(
+      JSON.parse(text).data.rounds.flatMap(
+        (r: { items: unknown[] }) => r.items,
+      ),
+    ).toHaveLength(2000);
+  });
   it("returns the frozen catalog, limits, no-store and existing writer flag", async () => {
     const response = await GET(catalog());
     expect(response.status).toBe(200);
@@ -78,7 +99,7 @@ describe("v2 catalog and generation routes", () => {
     expect((await response.json()).data).toMatchObject({
       engineVersion: "arithmetic-engine-v2",
       catalogVersion: "arithmetic-catalog-v2",
-      limits: { itemsPerRound: 100, itemsTotal: 200, rounds: 20 },
+      limits: { itemsPerRound: 200, itemsTotal: 2000, rounds: 10 },
       writerEnabled: false,
       types: [
         expect.objectContaining({ id: "test-add", domainSize: 7 }),
@@ -133,17 +154,17 @@ describe("v2 catalog and generation routes", () => {
       },
     });
     const request = fixtureRequest(67, "test-large");
-    request.rounds.push(request.rounds[0], request.rounds[0]);
+    request.rounds = Array.from({ length: 11 }, () => request.rounds[0]);
     const limit = await POST(post(request));
     expect(limit.status).toBe(400);
     expect(await limit.json()).toMatchObject({
-      error: { code: "limit", limit: { scope: "total", count: 201, max: 200 } },
+      error: { code: "limit", limit: { scope: "rounds", count: 11, max: 10 } },
     });
   });
   it.each([
     "{",
     '{"seed":"a","seed":"b"}',
-    JSON.stringify({ padding: "x".repeat(64 * 1024) }),
+    JSON.stringify({ padding: "x".repeat(512 * 1024) }),
   ])("rejects malformed or oversized bodies", async (body) => {
     expect(
       (

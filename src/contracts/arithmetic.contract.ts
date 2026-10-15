@@ -12,11 +12,12 @@ export const ARITHMETIC_CATALOG_VERSION = "arithmetic-catalog-v1" as const;
 export const ARITHMETIC_SHEET_PAYLOAD_VERSION = 1 as const;
 export const ARITHMETIC_SHEET_KIND = "arithmeticSheet" as const;
 
-export const ARITHMETIC_MAX_ITEMS_PER_ROUND = 100;
-// Keep generated snapshots within the existing 256 KiB arithmetic save guard.
-// 20 full rounds exceed it; two full rounds leave room for seed/presentation data.
-export const ARITHMETIC_MAX_ITEMS_TOTAL = 2 * ARITHMETIC_MAX_ITEMS_PER_ROUND;
-export const ARITHMETIC_MAX_ROUNDS = 20;
+export const ARITHMETIC_MAX_ITEMS_PER_ROUND = 200;
+export const ARITHMETIC_MAX_ROUNDS = 10;
+export const ARITHMETIC_MAX_ITEMS_TOTAL =
+  ARITHMETIC_MAX_ROUNDS * ARITHMETIC_MAX_ITEMS_PER_ROUND;
+/** Historical sheets may have 20 rounds. This is a reader floor, not a writer limit. */
+export const ARITHMETIC_MAX_SAVED_ROUNDS = 20;
 export const ARITHMETIC_MAX_SEED_LENGTH = 128;
 /** 조건 조합을 세거나 고를 때 이 횟수를 넘기면 생성을 멈춘다. */
 export const ARITHMETIC_MAX_DOMAIN_SCAN = 10_000;
@@ -314,7 +315,7 @@ export const arithmeticSpecSchema = z
     operator: z.enum(["+", "-", "×", "÷"]),
     operands: z.tuple([z.number().int(), z.number().int()]),
     seed: arithmeticSeedSchema,
-    round: z.number().int().min(1).max(ARITHMETIC_MAX_ROUNDS),
+    round: z.number().int().min(1).max(ARITHMETIC_MAX_SAVED_ROUNDS),
     order: z.number().int().min(1).max(ARITHMETIC_MAX_ITEMS_PER_ROUND),
   })
   .superRefine((spec, ctx) => {

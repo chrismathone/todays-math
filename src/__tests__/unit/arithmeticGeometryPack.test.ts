@@ -80,11 +80,11 @@ describe("checked arithmetic geometry subset snapshots", () => {
     const lookup = vi.fn(() => svgs["test-circle-1"]);
     const store = createArithmeticGeometryPackStore(lookup);
     expect(() =>
-      store.create(Array.from({ length: 201 }, (_, n) => `shape-${n}`)),
+      store.create(Array.from({ length: 2001 }, (_, n) => `shape-${n}`)),
     ).toThrow();
     expect(lookup).not.toHaveBeenCalled();
     expect(
-      store.create(Array.from({ length: 200 }, (_, n) => `shape-${n}`)).ids,
-    ).toHaveLength(200);
+      store.create(Array.from({ length: 2000 }, (_, n) => `shape-${n}`)).ids,
+    ).toHaveLength(2000);
   });
 });

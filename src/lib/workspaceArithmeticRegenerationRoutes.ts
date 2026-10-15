@@ -5,7 +5,7 @@ import { privateError, privateHeaders } from "@/lib/privateWorkspace";
 import { readStrictJson } from "@/lib/textbook/strictJson";
 import type { ArithmeticSheetPayload } from "@/contracts/arithmeticSheet.contract";
 import type { ArithmeticV2SheetPayload } from "@/contracts/arithmeticV2.contract";
-import { ARITHMETIC_GEOMETRY_PACK_MAX_LENGTH } from "@/lib/arithmetic-v2/geometryPack";
+import { ARITHMETIC_SHEET_JSON_LIMITS } from "@/lib/arithmetic/byteBudget";
 import {
   arithmeticRegenerationRequestSchema,
   regenerateArithmeticItems,
@@ -20,14 +20,7 @@ async function regenerate(request: Request, version: 1 | 2) {
     return privateError("시험지 만들기 메뉴를 사용할 권한이 없습니다.", 403);
   let input: unknown;
   try {
-    input = await readStrictJson(request, {
-      maxBytes: 256 * 1024,
-      maxDepth: 16,
-      maxTokens: 40_000,
-      // Geometry snapshots include one bounded, checked compressed SVG pack.
-      maxStringLength:
-        version === 2 ? ARITHMETIC_GEOMETRY_PACK_MAX_LENGTH : 4096,
-    });
+    input = await readStrictJson(request, ARITHMETIC_SHEET_JSON_LIMITS);
   } catch {
     return privateError("숫자 변경 요청의 형식과 크기를 확인해 주세요.", 400);
   }

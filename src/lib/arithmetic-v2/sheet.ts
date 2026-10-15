@@ -1,3 +1,4 @@
+import { assertArithmeticSheetByteBudget } from "@/lib/arithmetic/byteBudget";
 import {
   ARITHMETIC_V2_PAYLOAD_VERSION,
   ARITHMETIC_V2_ENGINE_VERSION,
@@ -20,7 +21,7 @@ export function buildArithmeticV2Sheet(
   const figures = arithmeticGeometrySnapshotForPrompts(
     items.flatMap((round) => round.map((item) => item.prompt)),
   );
-  return reopenArithmeticV2Sheet({
+  const payload = {
     payloadVersion: ARITHMETIC_V2_PAYLOAD_VERSION,
     kind: "arithmeticSheet",
     engineVersion: ARITHMETIC_V2_ENGINE_VERSION,
@@ -28,7 +29,9 @@ export function buildArithmeticV2Sheet(
     seed: request.seed,
     ...(figures ? { figures } : {}),
     rounds: items.map((items, index) => ({ round: index + 1, items })),
-  });
+  };
+  assertArithmeticSheetByteBudget(payload);
+  return reopenArithmeticV2Sheet(payload);
 }
 export type ArithmeticV2PrintItem = ArithmeticV2SheetItem & {
   round: number;
