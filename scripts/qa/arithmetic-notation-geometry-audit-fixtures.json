@@ -1,0 +1,3276 @@
+{
+  "note": "Source-only fixtures: object meanings reviewed independently from formatter output. Segment default is valid only for this frozen finite census; explicit line/arc cases are individually labeled. No explicit ray in registry; synthetic guards are separate.",
+  "patterns": [
+    {
+      "field": "text",
+      "pattern": "둔각삼각형 ABC의 외심은 O, ∠BAC=#°이다. O는 BC의 바깥쪽에 있고 ∠BOC는 #°보다 작은 각을 뜻한다.",
+      "families": ["m2-obtuse-circum-central-angle"],
+      "first": "m2-obtuse-circum-central-angle:0 (gt1-m2-obtuse-circum-central-angle-100)",
+      "example": "둔각삼각형 ABC의 외심은 O, ∠BAC=100°이다. O는 BC의 바깥쪽에 있고 ∠BOC는 180°보다 작은 각을 뜻한다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["O", "point"],
+        ["BAC", "angle"],
+        ["O", "point"],
+        ["BC", "segment"],
+        ["BOC", "angle"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "∠BOC의 크기를 구하세요.",
+      "families": [
+        "m2-obtuse-circum-central-angle",
+        "m2-circum-central-angle",
+        "m2-circum-base-central-angle"
+      ],
+      "first": "m2-obtuse-circum-central-angle:0 (gt1-m2-obtuse-circum-central-angle-100)",
+      "example": "∠BOC의 크기를 구하세요.",
+      "entities": [["BOC", "angle"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "∠BAC가 둔각인 삼각형 ABC의 외심은 O이다. O는 BC의 바깥쪽에 있고 #°보다 작은 ∠BOC=#°이다.",
+      "families": ["m2-obtuse-circum-vertex-angle"],
+      "first": "m2-obtuse-circum-vertex-angle:0 (gt1-m2-obtuse-circum-vertex-angle-100)",
+      "example": "∠BAC가 둔각인 삼각형 ABC의 외심은 O이다. O는 BC의 바깥쪽에 있고 180°보다 작은 ∠BOC=160°이다.",
+      "entities": [
+        ["BAC", "angle"],
+        ["ABC", "polygon"],
+        ["O", "point"],
+        ["O", "point"],
+        ["BC", "segment"],
+        ["BOC", "angle"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "∠BAC의 크기를 구하세요.",
+      "families": [
+        "m2-obtuse-circum-vertex-angle",
+        "m2-circum-vertex-angle",
+        "m2-incenter-whole-angle",
+        "m2-incenter-inverse-angle"
+      ],
+      "first": "m2-obtuse-circum-vertex-angle:0 (gt1-m2-obtuse-circum-vertex-angle-100)",
+      "example": "∠BAC의 크기를 구하세요.",
+      "entities": [["BAC", "angle"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "둔각삼각형 ABC의 외심은 O, ∠BAC=#°이다. O는 BC의 바깥쪽에 있다.",
+      "families": ["m2-obtuse-circum-base-angle"],
+      "first": "m2-obtuse-circum-base-angle:0 (gt1-m2-obtuse-circum-base-angle-100)",
+      "example": "둔각삼각형 ABC의 외심은 O, ∠BAC=100°이다. O는 BC의 바깥쪽에 있다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["O", "point"],
+        ["BAC", "angle"],
+        ["O", "point"],
+        ["BC", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "∠OBC의 크기를 구하세요.",
+      "families": [
+        "m2-obtuse-circum-base-angle",
+        "m2-circum-radius-base-angle"
+      ],
+      "first": "m2-obtuse-circum-base-angle:0 (gt1-m2-obtuse-circum-base-angle-100)",
+      "example": "∠OBC의 크기를 구하세요.",
+      "entities": [["OBC", "angle"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "예각삼각형 ABC의 외심은 O, ∠BAC=#°이다.",
+      "families": ["m2-circum-central-angle"],
+      "first": "m2-circum-central-angle:0 (gt1-m2-circum-central-angle-40)",
+      "example": "예각삼각형 ABC의 외심은 O, ∠BAC=40°이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["O", "point"],
+        ["BAC", "angle"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "예각삼각형 ABC의 외심은 O, ∠BOC=#°이다.",
+      "families": ["m2-circum-vertex-angle", "m2-circum-radius-base-angle"],
+      "first": "m2-circum-vertex-angle:0 (gt1-m2-circum-vertex-angle-40)",
+      "example": "예각삼각형 ABC의 외심은 O, ∠BOC=80°이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["O", "point"],
+        ["BOC", "angle"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "예각삼각형 ABC의 외심은 O, ∠OBC=#°이다.",
+      "families": ["m2-circum-base-central-angle"],
+      "first": "m2-circum-base-central-angle:0 (gt1-m2-circum-base-central-angle-40)",
+      "example": "예각삼각형 ABC의 외심은 O, ∠OBC=50°이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["O", "point"],
+        ["OBC", "angle"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "예각삼각형 ABC의 외심은 O, ∠OAB=#°, ∠OBC=#°이다.",
+      "families": ["m2-circum-three-base-angles"],
+      "first": "m2-circum-three-base-angles:0 (gt1-m2-circum-three-base-angles-45-55)",
+      "example": "예각삼각형 ABC의 외심은 O, ∠OAB=10°, ∠OBC=45°이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["O", "point"],
+        ["OAB", "angle"],
+        ["OBC", "angle"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "∠OCA의 크기를 구하세요.",
+      "families": ["m2-circum-three-base-angles"],
+      "first": "m2-circum-three-base-angles:0 (gt1-m2-circum-three-base-angles-45-55)",
+      "example": "∠OCA의 크기를 구하세요.",
+      "entities": [["OCA", "angle"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC의 외심은 O, OA=# cm이다.",
+      "families": ["m2-circum-equal-radii"],
+      "first": "m2-circum-equal-radii:0 (gt1-m2-circum-equal-radii-2)",
+      "example": "삼각형 ABC의 외심은 O, OA=2 cm이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["O", "point"],
+        ["OA", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "OB의 길이를 구하세요.",
+      "families": ["m2-circum-equal-radii", "m2-right-circumradius"],
+      "first": "m2-circum-equal-radii:0 (gt1-m2-circum-equal-radii-2)",
+      "example": "OB의 길이를 구하세요.",
+      "entities": [["OB", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "∠ABC=#°인 삼각형 ABC의 외심은 O, AC=# cm이다.",
+      "families": ["m2-right-circumradius"],
+      "first": "m2-right-circumradius:0 (gt1-m2-right-circumradius-2)",
+      "example": "∠ABC=90°인 삼각형 ABC의 외심은 O, AC=4 cm이다.",
+      "entities": [
+        ["ABC", "angle"],
+        ["ABC", "polygon"],
+        ["O", "point"],
+        ["AC", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "∠ABC=#°인 삼각형 ABC의 외심은 O, OB=# cm이다.",
+      "families": ["m2-right-circum-diameter"],
+      "first": "m2-right-circum-diameter:0 (gt1-m2-right-circum-diameter-2)",
+      "example": "∠ABC=90°인 삼각형 ABC의 외심은 O, OB=2 cm이다.",
+      "entities": [
+        ["ABC", "angle"],
+        ["ABC", "polygon"],
+        ["O", "point"],
+        ["OB", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "AC의 길이를 구하세요.",
+      "families": [
+        "m2-right-circum-diameter",
+        "m2-parallel-triangle-whole-side",
+        "m2-parallelogram-diagonal-whole",
+        "m2-pythagoras-hypotenuse-integer",
+        "m2-pythagoras-rectangle-diagonal-integer"
+      ],
+      "first": "m2-right-circum-diameter:0 (gt1-m2-right-circum-diameter-2)",
+      "example": "AC의 길이를 구하세요.",
+      "entities": [["AC", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC의 내심은 I, ∠BAC=#°이다.",
+      "families": ["m2-incenter-half-angle", "m2-incenter-central-angle"],
+      "first": "m2-incenter-half-angle:0 (gt1-m2-incenter-half-angle-40)",
+      "example": "삼각형 ABC의 내심은 I, ∠BAC=40°이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["I", "point"],
+        ["BAC", "angle"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "∠BAI의 크기를 구하세요.",
+      "families": ["m2-incenter-half-angle"],
+      "first": "m2-incenter-half-angle:0 (gt1-m2-incenter-half-angle-40)",
+      "example": "∠BAI의 크기를 구하세요.",
+      "entities": [["BAI", "angle"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC의 내심은 I, ∠BAI=#°이다.",
+      "families": ["m2-incenter-whole-angle"],
+      "first": "m2-incenter-whole-angle:0 (gt1-m2-incenter-whole-angle-40)",
+      "example": "삼각형 ABC의 내심은 I, ∠BAI=20°이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["I", "point"],
+        ["BAI", "angle"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "∠BIC의 크기를 구하세요.",
+      "families": ["m2-incenter-central-angle"],
+      "first": "m2-incenter-central-angle:0 (gt1-m2-incenter-central-angle-40)",
+      "example": "∠BIC의 크기를 구하세요.",
+      "entities": [["BIC", "angle"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC의 내심은 I, ∠BIC=#°이다.",
+      "families": ["m2-incenter-inverse-angle"],
+      "first": "m2-incenter-inverse-angle:0 (gt1-m2-incenter-inverse-angle-40)",
+      "example": "삼각형 ABC의 내심은 I, ∠BIC=110°이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["I", "point"],
+        ["BIC", "angle"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC의 내심은 I, ∠BAI=#°, ∠IBC=#°이다.",
+      "families": ["m2-incenter-three-half-angles"],
+      "first": "m2-incenter-three-half-angles:0 (gt1-m2-incenter-three-half-angles-20-30)",
+      "example": "삼각형 ABC의 내심은 I, ∠BAI=20°, ∠IBC=30°이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["I", "point"],
+        ["BAI", "angle"],
+        ["IBC", "angle"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "∠ICA의 크기를 구하세요.",
+      "families": ["m2-incenter-three-half-angles"],
+      "first": "m2-incenter-three-half-angles:0 (gt1-m2-incenter-three-half-angles-20-30)",
+      "example": "∠ICA의 크기를 구하세요.",
+      "entities": [["ICA", "angle"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "AB=AC인 삼각형 ABC의 내심은 I, ∠BAC=#°이다.",
+      "families": ["m2-iso-incenter-base-half"],
+      "first": "m2-iso-incenter-base-half:0 (gt1-m2-iso-incenter-base-half-40)",
+      "example": "AB=AC인 삼각형 ABC의 내심은 I, ∠BAC=40°이다.",
+      "entities": [
+        ["AB", "segment"],
+        ["AC", "segment"],
+        ["ABC", "polygon"],
+        ["I", "point"],
+        ["BAC", "angle"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "∠IBC의 크기를 구하세요.",
+      "families": ["m2-iso-incenter-base-half"],
+      "first": "m2-iso-incenter-base-half:0 (gt1-m2-iso-incenter-base-half-40)",
+      "example": "∠IBC의 크기를 구하세요.",
+      "entities": [["IBC", "angle"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC의 내심은 I, ID⊥BC이다. 내접원 반지름=# cm, 둘레=# cm이다.",
+      "families": ["m2-incenter-area"],
+      "first": "m2-incenter-area:0 (gt1-m2-incenter-area-0-1)",
+      "example": "삼각형 ABC의 내심은 I, ID⊥BC이다. 내접원 반지름=1 cm, 둘레=12 cm이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["I", "point"],
+        ["ID", "segment"],
+        ["BC", "segment"]
+      ],
+      "variables": [],
+      "operators": ["⊥"]
+    },
+    {
+      "field": "instruction",
+      "pattern": "삼각형 ABC의 넓이를 구하세요.",
+      "families": ["m2-incenter-area", "m2-right-triangle-area"],
+      "first": "m2-incenter-area:0 (gt1-m2-incenter-area-0-1)",
+      "example": "삼각형 ABC의 넓이를 구하세요.",
+      "entities": [["ABC", "polygon"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC의 내심은 I, ID⊥BC이다. 넓이=# cm², 둘레=# cm이다.",
+      "families": ["m2-incenter-radius"],
+      "first": "m2-incenter-radius:0 (gt1-m2-incenter-radius-0-1)",
+      "example": "삼각형 ABC의 내심은 I, ID⊥BC이다. 넓이=6 cm², 둘레=12 cm이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["I", "point"],
+        ["ID", "segment"],
+        ["BC", "segment"]
+      ],
+      "variables": [],
+      "operators": ["⊥"]
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC의 내심은 I, ID⊥BC이다. 넓이=# cm², 내접원 반지름=# cm이다.",
+      "families": ["m2-incenter-perimeter"],
+      "first": "m2-incenter-perimeter:0 (gt1-m2-incenter-perimeter-0-1)",
+      "example": "삼각형 ABC의 내심은 I, ID⊥BC이다. 넓이=6 cm², 내접원 반지름=1 cm이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["I", "point"],
+        ["ID", "segment"],
+        ["BC", "segment"]
+      ],
+      "variables": [],
+      "operators": ["⊥"]
+    },
+    {
+      "field": "instruction",
+      "pattern": "삼각형 ABC의 둘레를 구하세요.",
+      "families": [
+        "m2-incenter-perimeter",
+        "m2-midpoint-triangle-perimeter-whole"
+      ],
+      "first": "m2-incenter-perimeter:0 (gt1-m2-incenter-perimeter-0-1)",
+      "example": "삼각형 ABC의 둘레를 구하세요.",
+      "entities": [["ABC", "polygon"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC의 내심은 I, ID⊥BC이다. BC=# cm, ID=# cm이다.",
+      "families": ["m2-incenter-part-area"],
+      "first": "m2-incenter-part-area:0 (gt1-m2-incenter-part-area-0-1)",
+      "example": "삼각형 ABC의 내심은 I, ID⊥BC이다. BC=4 cm, ID=1 cm이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["I", "point"],
+        ["ID", "segment"],
+        ["BC", "segment"],
+        ["BC", "segment"],
+        ["ID", "segment"]
+      ],
+      "variables": [],
+      "operators": ["⊥"]
+    },
+    {
+      "field": "instruction",
+      "pattern": "삼각형 IBC의 넓이를 구하세요.",
+      "families": ["m2-incenter-part-area"],
+      "first": "m2-incenter-part-area:0 (gt1-m2-incenter-part-area-0-1)",
+      "example": "삼각형 IBC의 넓이를 구하세요.",
+      "entities": [["IBC", "polygon"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC의 내심은 I, ID⊥BC이다. ∠ACB=#°, AC=# cm, BC=# cm, AB=# cm이다.",
+      "families": ["m2-incenter-right-radius"],
+      "first": "m2-incenter-right-radius:0 (gt1-m2-incenter-right-radius-0-1)",
+      "example": "삼각형 ABC의 내심은 I, ID⊥BC이다. ∠ACB=90°, AC=3 cm, BC=4 cm, AB=5 cm이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["I", "point"],
+        ["ID", "segment"],
+        ["BC", "segment"],
+        ["ACB", "angle"],
+        ["AC", "segment"],
+        ["BC", "segment"],
+        ["AB", "segment"]
+      ],
+      "variables": [],
+      "operators": ["⊥"]
+    },
+    {
+      "field": "text",
+      "pattern": "G는 삼각형 ABC의 무게중심, D는 BC의 중점이다. GD=# cm이다.",
+      "families": [
+        "m2-centroid-vertex-from-short",
+        "m2-centroid-median-from-short"
+      ],
+      "first": "m2-centroid-vertex-from-short:0 (gt1-m2-centroid-vertex-from-short-2)",
+      "example": "G는 삼각형 ABC의 무게중심, D는 BC의 중점이다. GD=2 cm이다.",
+      "entities": [
+        ["G", "point"],
+        ["ABC", "polygon"],
+        ["D", "point"],
+        ["BC", "segment"],
+        ["GD", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "AG의 길이를 구하세요.",
+      "families": [
+        "m2-centroid-vertex-from-short",
+        "m2-centroid-vertex-from-median"
+      ],
+      "first": "m2-centroid-vertex-from-short:0 (gt1-m2-centroid-vertex-from-short-2)",
+      "example": "AG의 길이를 구하세요.",
+      "entities": [["AG", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "G는 삼각형 ABC의 무게중심, D는 BC의 중점이다. AG=# cm이다.",
+      "families": [
+        "m2-centroid-short-from-vertex",
+        "m2-centroid-median-from-vertex"
+      ],
+      "first": "m2-centroid-short-from-vertex:0 (gt1-m2-centroid-short-from-vertex-2)",
+      "example": "G는 삼각형 ABC의 무게중심, D는 BC의 중점이다. AG=2 cm이다.",
+      "entities": [
+        ["G", "point"],
+        ["ABC", "polygon"],
+        ["D", "point"],
+        ["BC", "segment"],
+        ["AG", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "GD의 길이를 구하세요.",
+      "families": [
+        "m2-centroid-short-from-vertex",
+        "m2-centroid-short-from-median"
+      ],
+      "first": "m2-centroid-short-from-vertex:0 (gt1-m2-centroid-short-from-vertex-2)",
+      "example": "GD의 길이를 구하세요.",
+      "entities": [["GD", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "G는 삼각형 ABC의 무게중심, D는 BC의 중점이다. AD=# cm이다.",
+      "families": [
+        "m2-centroid-vertex-from-median",
+        "m2-centroid-short-from-median"
+      ],
+      "first": "m2-centroid-vertex-from-median:0 (gt1-m2-centroid-vertex-from-median-2)",
+      "example": "G는 삼각형 ABC의 무게중심, D는 BC의 중점이다. AD=2 cm이다.",
+      "entities": [
+        ["G", "point"],
+        ["ABC", "polygon"],
+        ["D", "point"],
+        ["BC", "segment"],
+        ["AD", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "AD의 길이를 구하세요.",
+      "families": [
+        "m2-centroid-median-from-vertex",
+        "m2-centroid-median-from-short",
+        "m2-right-triangle-projection"
+      ],
+      "first": "m2-centroid-median-from-vertex:0 (gt1-m2-centroid-median-from-vertex-2)",
+      "example": "AD의 길이를 구하세요.",
+      "entities": [["AD", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "G는 삼각형 ABC의 무게중심, D는 BC의 중점이다. 삼각형 ABC의 넓이는 # cm²이다.",
+      "families": ["m2-centroid-area-3", "m2-centroid-area-6"],
+      "first": "m2-centroid-area-3:0 (gt1-m2-centroid-area-3-1)",
+      "example": "G는 삼각형 ABC의 무게중심, D는 BC의 중점이다. 삼각형 ABC의 넓이는 6 cm²이다.",
+      "entities": [
+        ["G", "point"],
+        ["ABC", "polygon"],
+        ["D", "point"],
+        ["BC", "segment"],
+        ["ABC", "polygon"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "삼각형 GBC의 넓이를 구하세요.",
+      "families": ["m2-centroid-area-3"],
+      "first": "m2-centroid-area-3:0 (gt1-m2-centroid-area-3-1)",
+      "example": "삼각형 GBC의 넓이를 구하세요.",
+      "entities": [["GBC", "polygon"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "삼각형 GBD의 넓이를 구하세요.",
+      "families": ["m2-centroid-area-6"],
+      "first": "m2-centroid-area-6:0 (gt1-m2-centroid-area-6-1)",
+      "example": "삼각형 GBD의 넓이를 구하세요.",
+      "entities": [["GBD", "polygon"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "AB=AC인 삼각형 ABC에서 AD는 꼭지각의 이등분선이다. ∠BAD=#°이다.",
+      "families": ["m2-iso-bisector-angle"],
+      "first": "m2-iso-bisector-angle:0 (gt1-m2-iso-bisector-angle-20)",
+      "example": "AB=AC인 삼각형 ABC에서 AD는 꼭지각의 이등분선이다. ∠BAD=20°이다.",
+      "entities": [
+        ["AB", "segment"],
+        ["AC", "segment"],
+        ["ABC", "polygon"],
+        ["AD", "segment"],
+        ["BAD", "angle"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "∠ABD의 크기를 구하세요.",
+      "families": ["m2-iso-bisector-angle"],
+      "first": "m2-iso-bisector-angle:0 (gt1-m2-iso-bisector-angle-20)",
+      "example": "∠ABD의 크기를 구하세요.",
+      "entities": [["ABD", "angle"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "AB=AC인 삼각형 ABC에서 AD는 꼭지각의 이등분선이다. BD=# cm이다.",
+      "families": ["m2-iso-bisector-base"],
+      "first": "m2-iso-bisector-base:0 (gt1-m2-iso-bisector-base-2)",
+      "example": "AB=AC인 삼각형 ABC에서 AD는 꼭지각의 이등분선이다. BD=2 cm이다.",
+      "entities": [
+        ["AB", "segment"],
+        ["AC", "segment"],
+        ["ABC", "polygon"],
+        ["AD", "segment"],
+        ["BD", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "BC의 길이를 구하세요.",
+      "families": [
+        "m2-iso-bisector-base",
+        "m2-midsegment-to-base",
+        "m2-trapezoid-base",
+        "m2-parallel-triangle-base",
+        "m2-pythagoras-rectangle-side-integer",
+        "m2-external-bisector-base"
+      ],
+      "first": "m2-iso-bisector-base:0 (gt1-m2-iso-bisector-base-2)",
+      "example": "BC의 길이를 구하세요.",
+      "entities": [["BC", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "AB=AC인 삼각형 ABC에서 AD는 꼭지각의 이등분선이다. BC=# cm이다.",
+      "families": ["m2-iso-bisector-half-base"],
+      "first": "m2-iso-bisector-half-base:0 (gt1-m2-iso-bisector-half-base-2)",
+      "example": "AB=AC인 삼각형 ABC에서 AD는 꼭지각의 이등분선이다. BC=4 cm이다.",
+      "entities": [
+        ["AB", "segment"],
+        ["AC", "segment"],
+        ["ABC", "polygon"],
+        ["AD", "segment"],
+        ["BC", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "BD의 길이를 구하세요.",
+      "families": [
+        "m2-iso-bisector-half-base",
+        "m2-triangle-bisector-segment",
+        "m2-right-triangle-height",
+        "m2-right-altitude-product"
+      ],
+      "first": "m2-iso-bisector-half-base:0 (gt1-m2-iso-bisector-half-base-2)",
+      "example": "BD의 길이를 구하세요.",
+      "entities": [["BD", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC에서 D, E는 각각 AB, AC의 중점이다. BC=# cm이다.",
+      "families": ["m2-triangle-midsegment"],
+      "first": "m2-triangle-midsegment:0 (gt1-m2-triangle-midsegment-2)",
+      "example": "삼각형 ABC에서 D, E는 각각 AB, AC의 중점이다. BC=2 cm이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["D", "point"],
+        ["E", "point"],
+        ["AB", "segment"],
+        ["AC", "segment"],
+        ["BC", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "DE의 길이를 구하세요.",
+      "families": ["m2-triangle-midsegment", "m2-similarity-length-enlarge"],
+      "first": "m2-triangle-midsegment:0 (gt1-m2-triangle-midsegment-2)",
+      "example": "DE의 길이를 구하세요.",
+      "entities": [["DE", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC에서 D, E는 각각 AB, AC의 중점이다. DE=# cm이다.",
+      "families": ["m2-midsegment-to-base"],
+      "first": "m2-midsegment-to-base:0 (gt1-m2-midsegment-to-base-2)",
+      "example": "삼각형 ABC에서 D, E는 각각 AB, AC의 중점이다. DE=2 cm이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["D", "point"],
+        ["E", "point"],
+        ["AB", "segment"],
+        ["AC", "segment"],
+        ["DE", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC에서 D, E는 각각 AB, AC의 중점이다. 삼각형 ABC의 넓이는 # cm²이다.",
+      "families": ["m2-midsegment-area-small", "m2-midsegment-area-remainder"],
+      "first": "m2-midsegment-area-small:0 (gt1-m2-midsegment-area-small-2)",
+      "example": "삼각형 ABC에서 D, E는 각각 AB, AC의 중점이다. 삼각형 ABC의 넓이는 8 cm²이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["D", "point"],
+        ["E", "point"],
+        ["AB", "segment"],
+        ["AC", "segment"],
+        ["ABC", "polygon"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "삼각형 ADE의 넓이를 구하세요.",
+      "families": ["m2-midsegment-area-small"],
+      "first": "m2-midsegment-area-small:0 (gt1-m2-midsegment-area-small-2)",
+      "example": "삼각형 ADE의 넓이를 구하세요.",
+      "entities": [["ADE", "polygon"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "사각형 DBCE의 넓이를 구하세요.",
+      "families": ["m2-midsegment-area-remainder"],
+      "first": "m2-midsegment-area-remainder:0 (gt1-m2-midsegment-area-remainder-2)",
+      "example": "사각형 DBCE의 넓이를 구하세요.",
+      "entities": [["DBCE", "polygon"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "AD∥BC인 사다리꼴 ABCD에서 E, F는 각각 AB, DC의 중점이다. AD=# cm, BC=# cm이다.",
+      "families": ["m2-trapezoid-midline"],
+      "first": "m2-trapezoid-midline:0 (gt1-m2-trapezoid-midline-2-2)",
+      "example": "AD∥BC인 사다리꼴 ABCD에서 E, F는 각각 AB, DC의 중점이다. AD=2 cm, BC=4 cm이다.",
+      "entities": [
+        ["AD", "segment"],
+        ["BC", "segment"],
+        ["ABCD", "polygon"],
+        ["E", "point"],
+        ["F", "point"],
+        ["AB", "segment"],
+        ["DC", "segment"],
+        ["AD", "segment"],
+        ["BC", "segment"]
+      ],
+      "variables": [],
+      "operators": ["∥"]
+    },
+    {
+      "field": "instruction",
+      "pattern": "EF의 길이를 구하세요.",
+      "families": [
+        "m2-trapezoid-midline",
+        "m2-three-parallel-segments",
+        "m2-trapezoid-parallel-section"
+      ],
+      "first": "m2-trapezoid-midline:0 (gt1-m2-trapezoid-midline-2-2)",
+      "example": "EF의 길이를 구하세요.",
+      "entities": [["EF", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "AD∥BC인 사다리꼴 ABCD에서 E, F는 각각 AB, DC의 중점이다. AD=# cm, EF=# cm이다.",
+      "families": ["m2-trapezoid-base"],
+      "first": "m2-trapezoid-base:0 (gt1-m2-trapezoid-base-2-2)",
+      "example": "AD∥BC인 사다리꼴 ABCD에서 E, F는 각각 AB, DC의 중점이다. AD=2 cm, EF=3 cm이다.",
+      "entities": [
+        ["AD", "segment"],
+        ["BC", "segment"],
+        ["ABCD", "polygon"],
+        ["E", "point"],
+        ["F", "point"],
+        ["AB", "segment"],
+        ["DC", "segment"],
+        ["AD", "segment"],
+        ["EF", "segment"]
+      ],
+      "variables": [],
+      "operators": ["∥"]
+    },
+    {
+      "field": "text",
+      "pattern": "AD∥BC인 사다리꼴 ABCD에서 P, Q는 각각 AC, BD의 중점이다. AD=# cm, BC=# cm이다.",
+      "families": ["m2-trapezoid-diagonal-midpoints"],
+      "first": "m2-trapezoid-diagonal-midpoints:0 (gt1-m2-trapezoid-diagonal-midpoints-2-2)",
+      "example": "AD∥BC인 사다리꼴 ABCD에서 P, Q는 각각 AC, BD의 중점이다. AD=2 cm, BC=4 cm이다.",
+      "entities": [
+        ["AD", "segment"],
+        ["BC", "segment"],
+        ["ABCD", "polygon"],
+        ["P", "point"],
+        ["Q", "point"],
+        ["AC", "segment"],
+        ["BD", "segment"],
+        ["AD", "segment"],
+        ["BC", "segment"]
+      ],
+      "variables": [],
+      "operators": ["∥"]
+    },
+    {
+      "field": "instruction",
+      "pattern": "PQ의 길이를 구하세요.",
+      "families": ["m2-trapezoid-diagonal-midpoints"],
+      "first": "m2-trapezoid-diagonal-midpoints:0 (gt1-m2-trapezoid-diagonal-midpoints-2-2)",
+      "example": "PQ의 길이를 구하세요.",
+      "entities": [["PQ", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC와 DEF는 이 순서로 서로 닮았다. 대응변의 비 AB:DE=#:#이다.",
+      "families": [
+        "m2-similarity-ratio-power-1",
+        "m2-similarity-ratio-power-2"
+      ],
+      "first": "m2-similarity-ratio-power-1:0 (gt1-m2-similarity-ratio-power-1-1-2)",
+      "example": "삼각형 ABC와 DEF는 이 순서로 서로 닮았다. 대응변의 비 AB:DE=1:2이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["DEF", "polygon"],
+        ["AB", "segment"],
+        ["DE", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "DE ÷ AB (분수 또는 정수)를 구하세요.",
+      "families": [
+        "m2-similarity-ratio-power-1",
+        "m2-similarity-length-from-power-2",
+        "m2-similarity-length-from-power-3"
+      ],
+      "first": "m2-similarity-ratio-power-1:0 (gt1-m2-similarity-ratio-power-1-1-2)",
+      "example": "DE ÷ AB (분수 또는 정수)를 구하세요.",
+      "entities": [
+        ["DE", "segment"],
+        ["AB", "segment"]
+      ],
+      "variables": [],
+      "operators": ["÷"]
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC와 DEF는 이 순서로 서로 닮았다. AB:DE=#:#, AB=# cm이다.",
+      "families": ["m2-similarity-length-enlarge"],
+      "first": "m2-similarity-length-enlarge:0 (gt1-m2-similarity-length-enlarge-1-2-1)",
+      "example": "삼각형 ABC와 DEF는 이 순서로 서로 닮았다. AB:DE=1:2, AB=1 cm이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["DEF", "polygon"],
+        ["AB", "segment"],
+        ["DE", "segment"],
+        ["AB", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC와 DEF는 이 순서로 서로 닮았다. AB:DE=#:#, DE=# cm이다.",
+      "families": ["m2-similarity-length-reduce"],
+      "first": "m2-similarity-length-reduce:0 (gt1-m2-similarity-length-reduce-1-2-1)",
+      "example": "삼각형 ABC와 DEF는 이 순서로 서로 닮았다. AB:DE=1:2, DE=2 cm이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["DEF", "polygon"],
+        ["AB", "segment"],
+        ["DE", "segment"],
+        ["DE", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "AB의 길이를 구하세요.",
+      "families": [
+        "m2-similarity-length-reduce",
+        "m2-pythagoras-leg-integer",
+        "m2-pythagoras-rhombus-side-integer"
+      ],
+      "first": "m2-similarity-length-reduce:0 (gt1-m2-similarity-length-reduce-1-2-1)",
+      "example": "AB의 길이를 구하세요.",
+      "entities": [["AB", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "삼각형 DEF 넓이 ÷ 삼각형 ABC 넓이 (분수 또는 정수)를 구하세요.",
+      "families": ["m2-similarity-ratio-power-2"],
+      "first": "m2-similarity-ratio-power-2:0 (gt1-m2-similarity-ratio-power-2-1-2)",
+      "example": "삼각형 DEF 넓이 ÷ 삼각형 ABC 넓이 (분수 또는 정수)를 구하세요.",
+      "entities": [
+        ["DEF", "polygon"],
+        ["ABC", "polygon"]
+      ],
+      "variables": [],
+      "operators": ["÷"]
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC와 DEF는 이 순서로 서로 닮았고 ABC:DEF 넓이의 비는 #:#이다.",
+      "families": ["m2-similarity-length-from-power-2"],
+      "first": "m2-similarity-length-from-power-2:0 (gt1-m2-similarity-length-from-power-2-1-2)",
+      "example": "삼각형 ABC와 DEF는 이 순서로 서로 닮았고 ABC:DEF 넓이의 비는 1:4이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["DEF", "polygon"],
+        ["ABC", "polygon"],
+        ["DEF", "polygon"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC와 DEF는 이 순서로 서로 닮았다. AB:DE=#:#, 첫째 도형의 넓이=# cm²이다.",
+      "families": ["m2-similarity-area-enlarge"],
+      "first": "m2-similarity-area-enlarge:0 (gt1-m2-similarity-area-enlarge-1-2-1)",
+      "example": "삼각형 ABC와 DEF는 이 순서로 서로 닮았다. AB:DE=1:2, 첫째 도형의 넓이=1 cm²이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["DEF", "polygon"],
+        ["AB", "segment"],
+        ["DE", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC와 DEF는 이 순서로 서로 닮았다. AB:DE=#:#, 둘째 도형의 넓이=# cm²이다.",
+      "families": ["m2-similarity-area-reduce"],
+      "first": "m2-similarity-area-reduce:0 (gt1-m2-similarity-area-reduce-1-2-1)",
+      "example": "삼각형 ABC와 DEF는 이 순서로 서로 닮았다. AB:DE=1:2, 둘째 도형의 넓이=4 cm²이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["DEF", "polygon"],
+        ["AB", "segment"],
+        ["DE", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "닮은 두 삼각기둥의 대응하는 밑면은 ABC, DEF이다. 대응변의 비 AB:DE=#:#이다.",
+      "families": ["m2-similarity-ratio-power-3"],
+      "first": "m2-similarity-ratio-power-3:0 (gt1-m2-similarity-ratio-power-3-1-2)",
+      "example": "닮은 두 삼각기둥의 대응하는 밑면은 ABC, DEF이다. 대응변의 비 AB:DE=1:2이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["DEF", "polygon"],
+        ["AB", "segment"],
+        ["DE", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "둘째 삼각기둥 부피 ÷ 첫째 삼각기둥 부피 (분수 또는 정수)를 구하세요.",
+      "families": ["m2-similarity-ratio-power-3"],
+      "first": "m2-similarity-ratio-power-3:0 (gt1-m2-similarity-ratio-power-3-1-2)",
+      "example": "둘째 삼각기둥 부피 ÷ 첫째 삼각기둥 부피 (분수 또는 정수)를 구하세요.",
+      "entities": [],
+      "variables": [],
+      "operators": ["÷"]
+    },
+    {
+      "field": "text",
+      "pattern": "닮은 두 삼각기둥의 대응하는 밑면은 ABC, DEF이고 첫째:둘째 부피의 비는 #:#이다.",
+      "families": ["m2-similarity-length-from-power-3"],
+      "first": "m2-similarity-length-from-power-3:0 (gt1-m2-similarity-length-from-power-3-1-2)",
+      "example": "닮은 두 삼각기둥의 대응하는 밑면은 ABC, DEF이고 첫째:둘째 부피의 비는 1:8이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["DEF", "polygon"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "닮은 두 삼각기둥의 대응하는 밑면은 ABC, DEF이다. AB:DE=#:#, 첫째 도형의 부피=# cm³이다.",
+      "families": ["m2-similarity-volume-enlarge"],
+      "first": "m2-similarity-volume-enlarge:0 (gt1-m2-similarity-volume-enlarge-1-2-1)",
+      "example": "닮은 두 삼각기둥의 대응하는 밑면은 ABC, DEF이다. AB:DE=1:2, 첫째 도형의 부피=1 cm³이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["DEF", "polygon"],
+        ["AB", "segment"],
+        ["DE", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "닮은 두 삼각기둥의 대응하는 밑면은 ABC, DEF이다. AB:DE=#:#, 둘째 도형의 부피=# cm³이다.",
+      "families": ["m2-similarity-volume-reduce"],
+      "first": "m2-similarity-volume-reduce:0 (gt1-m2-similarity-volume-reduce-1-2-1)",
+      "example": "닮은 두 삼각기둥의 대응하는 밑면은 ABC, DEF이다. AB:DE=1:2, 둘째 도형의 부피=8 cm³이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["DEF", "polygon"],
+        ["AB", "segment"],
+        ["DE", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC와 DEF는 이 순서로 닮았고 AB:DE=#:#이다. 삼각형 ABC의 둘레는 # cm이다.",
+      "families": ["m2-similarity-perimeter"],
+      "first": "m2-similarity-perimeter:0 (gt1-m2-similarity-perimeter-1-2-1)",
+      "example": "삼각형 ABC와 DEF는 이 순서로 닮았고 AB:DE=1:2이다. 삼각형 ABC의 둘레는 12 cm이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["DEF", "polygon"],
+        ["AB", "segment"],
+        ["DE", "segment"],
+        ["ABC", "polygon"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "삼각형 DEF의 둘레를 구하세요.",
+      "families": [
+        "m2-similarity-perimeter",
+        "m2-midpoint-triangle-perimeter-part"
+      ],
+      "first": "m2-similarity-perimeter:0 (gt1-m2-similarity-perimeter-1-2-1)",
+      "example": "삼각형 DEF의 둘레를 구하세요.",
+      "entities": [["DEF", "polygon"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC에서 D는 AB 위, E는 AC 위에 있고 DE∥BC이다. AD=# cm, DB=# cm, AE=# cm이다.",
+      "families": [
+        "m2-parallel-triangle-side-part",
+        "m2-parallel-triangle-whole-side"
+      ],
+      "first": "m2-parallel-triangle-side-part:0 (gt1-m2-parallel-triangle-side-part-3-4-1)",
+      "example": "삼각형 ABC에서 D는 AB 위, E는 AC 위에 있고 DE∥BC이다. AD=3 cm, DB=3 cm, AE=4 cm이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["D", "point"],
+        ["AB", "segment"],
+        ["E", "point"],
+        ["AC", "segment"],
+        ["DE", "segment"],
+        ["BC", "segment"],
+        ["AD", "segment"],
+        ["DB", "segment"],
+        ["AE", "segment"]
+      ],
+      "variables": [],
+      "operators": ["∥"]
+    },
+    {
+      "field": "instruction",
+      "pattern": "EC의 길이를 구하세요.",
+      "families": ["m2-parallel-triangle-side-part"],
+      "first": "m2-parallel-triangle-side-part:0 (gt1-m2-parallel-triangle-side-part-3-4-1)",
+      "example": "EC의 길이를 구하세요.",
+      "entities": [["EC", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC에서 D는 AB 위, E는 AC 위에 있고 DE∥BC이다. AD=# cm, DB=# cm, DE=# cm이다.",
+      "families": ["m2-parallel-triangle-base"],
+      "first": "m2-parallel-triangle-base:0 (gt1-m2-parallel-triangle-base-3-5-1)",
+      "example": "삼각형 ABC에서 D는 AB 위, E는 AC 위에 있고 DE∥BC이다. AD=3 cm, DB=3 cm, DE=4 cm이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["D", "point"],
+        ["AB", "segment"],
+        ["E", "point"],
+        ["AC", "segment"],
+        ["DE", "segment"],
+        ["BC", "segment"],
+        ["AD", "segment"],
+        ["DB", "segment"],
+        ["DE", "segment"]
+      ],
+      "variables": [],
+      "operators": ["∥"]
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC에서 AD는 ∠BAC의 이등분선이고 D는 BC 위에 있다. AB=# cm, AC=# cm, BC=# cm이다.",
+      "families": ["m2-triangle-bisector-segment"],
+      "first": "m2-triangle-bisector-segment:0 (gt1-m2-triangle-bisector-segment-4-5-1)",
+      "example": "삼각형 ABC에서 AD는 ∠BAC의 이등분선이고 D는 BC 위에 있다. AB=4 cm, AC=5 cm, BC=6 cm이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["AD", "segment"],
+        ["BAC", "angle"],
+        ["D", "point"],
+        ["BC", "segment"],
+        ["AB", "segment"],
+        ["AC", "segment"],
+        ["BC", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "평행사변형 ABCD에서 ∠DAB=#°이다.",
+      "families": ["m2-parallelogram-adjacent"],
+      "first": "m2-parallelogram-adjacent:0 (gt1-m2-parallelogram-adjacent-45)",
+      "example": "평행사변형 ABCD에서 ∠DAB=45°이다.",
+      "entities": [
+        ["ABCD", "polygon"],
+        ["DAB", "angle"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "∠ABC의 크기를 구하세요.",
+      "families": ["m2-parallelogram-adjacent"],
+      "first": "m2-parallelogram-adjacent:0 (gt1-m2-parallelogram-adjacent-45)",
+      "example": "∠ABC의 크기를 구하세요.",
+      "entities": [["ABC", "angle"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "평행사변형 ABCD의 두 대각선의 교점은 O이고, AC=# cm이다.",
+      "families": ["m2-parallelogram-diagonal-half"],
+      "first": "m2-parallelogram-diagonal-half:0 (gt1-m2-parallelogram-diagonal-half-2)",
+      "example": "평행사변형 ABCD의 두 대각선의 교점은 O이고, AC=2 cm이다.",
+      "entities": [
+        ["ABCD", "polygon"],
+        ["O", "point"],
+        ["AC", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "AO의 길이를 구하세요.",
+      "families": ["m2-parallelogram-diagonal-half"],
+      "first": "m2-parallelogram-diagonal-half:0 (gt1-m2-parallelogram-diagonal-half-2)",
+      "example": "AO의 길이를 구하세요.",
+      "entities": [["AO", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "평행사변형 ABCD의 두 대각선의 교점은 O이고, AO=# cm이다.",
+      "families": ["m2-parallelogram-diagonal-whole"],
+      "first": "m2-parallelogram-diagonal-whole:0 (gt1-m2-parallelogram-diagonal-whole-2)",
+      "example": "평행사변형 ABCD의 두 대각선의 교점은 O이고, AO=2 cm이다.",
+      "entities": [
+        ["ABCD", "polygon"],
+        ["O", "point"],
+        ["AO", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "평행사변형 ABCD의 두 대각선의 교점은 O이고, 넓이는 # cm²이다.",
+      "families": ["m2-parallelogram-area-quarter"],
+      "first": "m2-parallelogram-area-quarter:0 (gt1-m2-parallelogram-area-quarter-2)",
+      "example": "평행사변형 ABCD의 두 대각선의 교점은 O이고, 넓이는 8 cm²이다.",
+      "entities": [
+        ["ABCD", "polygon"],
+        ["O", "point"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "삼각형 AOB의 넓이를 구하세요.",
+      "families": ["m2-parallelogram-area-quarter"],
+      "first": "m2-parallelogram-area-quarter:0 (gt1-m2-parallelogram-area-quarter-2)",
+      "example": "삼각형 AOB의 넓이를 구하세요.",
+      "entities": [["AOB", "polygon"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "직사각형 ABCD의 대각선의 교점은 O, AC=# cm이다.",
+      "families": ["m2-rectangle-diagonal-half"],
+      "first": "m2-rectangle-diagonal-half:0 (gt1-m2-rectangle-diagonal-half-2)",
+      "example": "직사각형 ABCD의 대각선의 교점은 O, AC=2 cm이다.",
+      "entities": [
+        ["ABCD", "polygon"],
+        ["O", "point"],
+        ["AC", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "BO의 길이를 구하세요.",
+      "families": ["m2-rectangle-diagonal-half"],
+      "first": "m2-rectangle-diagonal-half:0 (gt1-m2-rectangle-diagonal-half-2)",
+      "example": "BO의 길이를 구하세요.",
+      "entities": [["BO", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "마름모 ABCD의 두 대각선의 교점은 O, ∠DAB=#°이다.",
+      "families": ["m2-rhombus-diagonal-angle"],
+      "first": "m2-rhombus-diagonal-angle:0 (gt1-m2-rhombus-diagonal-angle-40)",
+      "example": "마름모 ABCD의 두 대각선의 교점은 O, ∠DAB=40°이다.",
+      "entities": [
+        ["ABCD", "polygon"],
+        ["O", "point"],
+        ["DAB", "angle"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "∠CAB의 크기를 구하세요.",
+      "families": ["m2-rhombus-diagonal-angle"],
+      "first": "m2-rhombus-diagonal-angle:0 (gt1-m2-rhombus-diagonal-angle-40)",
+      "example": "∠CAB의 크기를 구하세요.",
+      "entities": [["CAB", "angle"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "AD∥BC, AB=CD인 등변사다리꼴 ABCD에서 ∠ABC=#°이다.",
+      "families": ["m2-isosceles-trapezoid-angle"],
+      "first": "m2-isosceles-trapezoid-angle:0 (gt1-m2-isosceles-trapezoid-angle-45)",
+      "example": "AD∥BC, AB=CD인 등변사다리꼴 ABCD에서 ∠ABC=45°이다.",
+      "entities": [
+        ["AD", "segment"],
+        ["BC", "segment"],
+        ["AB", "segment"],
+        ["CD", "segment"],
+        ["ABCD", "polygon"],
+        ["ABC", "angle"]
+      ],
+      "variables": [],
+      "operators": ["∥"]
+    },
+    {
+      "field": "instruction",
+      "pattern": "∠BAD의 크기를 구하세요.",
+      "families": ["m2-isosceles-trapezoid-angle"],
+      "first": "m2-isosceles-trapezoid-angle:0 (gt1-m2-isosceles-trapezoid-angle-45)",
+      "example": "∠BAD의 크기를 구하세요.",
+      "entities": [["BAD", "angle"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "∠ABC=#°인 삼각형 ABC에서 BC=# cm, AB=# cm이다.",
+      "families": [
+        "m2-pythagoras-hypotenuse-integer",
+        "m3-pythagoras-hypotenuse-surd"
+      ],
+      "first": "m2-pythagoras-hypotenuse-integer:0 (gt1-m2-pythagoras-hypotenuse-integer-3-4)",
+      "example": "∠ABC=90°인 삼각형 ABC에서 BC=3 cm, AB=4 cm이다.",
+      "entities": [
+        ["ABC", "angle"],
+        ["ABC", "polygon"],
+        ["BC", "segment"],
+        ["AB", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "∠ABC=#°인 삼각형 ABC에서 BC=# cm, AC=# cm이다.",
+      "families": ["m2-pythagoras-leg-integer", "m3-pythagoras-leg-surd"],
+      "first": "m2-pythagoras-leg-integer:0 (gt1-m2-pythagoras-leg-integer-3-5)",
+      "example": "∠ABC=90°인 삼각형 ABC에서 BC=3 cm, AC=5 cm이다.",
+      "entities": [
+        ["ABC", "angle"],
+        ["ABC", "polygon"],
+        ["BC", "segment"],
+        ["AC", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "직사각형 ABCD에서 AB=# cm, BC=# cm이다.",
+      "families": [
+        "m2-pythagoras-rectangle-diagonal-integer",
+        "m3-pythagoras-rectangle-diagonal-surd"
+      ],
+      "first": "m2-pythagoras-rectangle-diagonal-integer:0 (gt1-m2-pythagoras-rectangle-diagonal-integer-3-4)",
+      "example": "직사각형 ABCD에서 AB=3 cm, BC=4 cm이다.",
+      "entities": [
+        ["ABCD", "polygon"],
+        ["AB", "segment"],
+        ["BC", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "직사각형 ABCD에서 AB=# cm, AC=# cm이다.",
+      "families": [
+        "m2-pythagoras-rectangle-side-integer",
+        "m3-pythagoras-rectangle-side-surd"
+      ],
+      "first": "m2-pythagoras-rectangle-side-integer:0 (gt1-m2-pythagoras-rectangle-side-integer-3-5)",
+      "example": "직사각형 ABCD에서 AB=3 cm, AC=5 cm이다.",
+      "entities": [
+        ["ABCD", "polygon"],
+        ["AB", "segment"],
+        ["AC", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "AB=AC=# cm, BC=# cm인 이등변삼각형 ABC에서 AD⊥BC이다.",
+      "families": [
+        "m2-pythagoras-isosceles-height-integer",
+        "m3-pythagoras-isosceles-height-surd"
+      ],
+      "first": "m2-pythagoras-isosceles-height-integer:0 (gt1-m2-pythagoras-isosceles-height-integer-3-5)",
+      "example": "AB=AC=5 cm, BC=6 cm인 이등변삼각형 ABC에서 AD⊥BC이다.",
+      "entities": [
+        ["AB", "segment"],
+        ["AC", "segment"],
+        ["BC", "segment"],
+        ["ABC", "polygon"],
+        ["AD", "segment"],
+        ["BC", "segment"]
+      ],
+      "variables": [],
+      "operators": ["⊥"]
+    },
+    {
+      "field": "instruction",
+      "pattern": "높이 AD의 길이를 구하세요.",
+      "families": ["m2-pythagoras-isosceles-height-integer"],
+      "first": "m2-pythagoras-isosceles-height-integer:0 (gt1-m2-pythagoras-isosceles-height-integer-3-5)",
+      "example": "높이 AD의 길이를 구하세요.",
+      "entities": [["AD", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "마름모 ABCD에서 AC=# cm, BD=# cm이고 대각선의 교점은 O이다.",
+      "families": [
+        "m2-pythagoras-rhombus-side-integer",
+        "m3-pythagoras-rhombus-side-surd"
+      ],
+      "first": "m2-pythagoras-rhombus-side-integer:0 (gt1-m2-pythagoras-rhombus-side-integer-3-4)",
+      "example": "마름모 ABCD에서 AC=6 cm, BD=8 cm이고 대각선의 교점은 O이다.",
+      "entities": [
+        ["ABCD", "polygon"],
+        ["AC", "segment"],
+        ["BD", "segment"],
+        ["O", "point"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "AC의 길이를 구하세요. 근호는 가장 간단히 하세요.",
+      "families": [
+        "m3-pythagoras-hypotenuse-surd",
+        "m3-pythagoras-rectangle-diagonal-surd"
+      ],
+      "first": "m3-pythagoras-hypotenuse-surd:0 (gt1-m3-pythagoras-hypotenuse-surd-3-3)",
+      "example": "AC의 길이를 구하세요. 근호는 가장 간단히 하세요.",
+      "entities": [["AC", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "AB의 길이를 구하세요. 근호는 가장 간단히 하세요.",
+      "families": [
+        "m3-pythagoras-leg-surd",
+        "m3-pythagoras-rhombus-side-surd",
+        "m3-right-leg-product"
+      ],
+      "first": "m3-pythagoras-leg-surd:0 (gt1-m3-pythagoras-leg-surd-3-6)",
+      "example": "AB의 길이를 구하세요. 근호는 가장 간단히 하세요.",
+      "entities": [["AB", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "BC의 길이를 구하세요. 근호는 가장 간단히 하세요.",
+      "families": ["m3-pythagoras-rectangle-side-surd"],
+      "first": "m3-pythagoras-rectangle-side-surd:0 (gt1-m3-pythagoras-rectangle-side-surd-3-6)",
+      "example": "BC의 길이를 구하세요. 근호는 가장 간단히 하세요.",
+      "entities": [["BC", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "높이 AD의 길이를 구하세요. 근호는 가장 간단히 하세요.",
+      "families": ["m3-pythagoras-isosceles-height-surd"],
+      "first": "m3-pythagoras-isosceles-height-surd:0 (gt1-m3-pythagoras-isosceles-height-surd-3-6)",
+      "example": "높이 AD의 길이를 구하세요. 근호는 가장 간단히 하세요.",
+      "entities": [["AD", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "∠ABC=#°인 삼각형 ABC의 외심은 O, AB=# cm, BC=# cm이다.",
+      "families": ["m2-right-radius-from-legs"],
+      "first": "m2-right-radius-from-legs:0 (gt1-m2-right-radius-from-legs-3-4)",
+      "example": "∠ABC=90°인 삼각형 ABC의 외심은 O, AB=4 cm, BC=3 cm이다.",
+      "entities": [
+        ["ABC", "angle"],
+        ["ABC", "polygon"],
+        ["O", "point"],
+        ["AB", "segment"],
+        ["BC", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "∠ABC=#°인 삼각형 ABC에서 AB=# cm, BC=# cm, AC=# cm이고 BD⊥AC이다.",
+      "families": ["m2-right-triangle-height"],
+      "first": "m2-right-triangle-height:0 (gt1-m2-right-triangle-height-3-4)",
+      "example": "∠ABC=90°인 삼각형 ABC에서 AB=4 cm, BC=3 cm, AC=5 cm이고 BD⊥AC이다.",
+      "entities": [
+        ["ABC", "angle"],
+        ["ABC", "polygon"],
+        ["AB", "segment"],
+        ["BC", "segment"],
+        ["AC", "segment"],
+        ["BD", "segment"],
+        ["AC", "segment"]
+      ],
+      "variables": [],
+      "operators": ["⊥"]
+    },
+    {
+      "field": "text",
+      "pattern": "∠ABC=#°인 삼각형 ABC에서 AB=# cm, AC=# cm이고 BD⊥AC이다.",
+      "families": ["m2-right-triangle-projection", "m2-right-triangle-area"],
+      "first": "m2-right-triangle-projection:0 (gt1-m2-right-triangle-projection-3-4)",
+      "example": "∠ABC=90°인 삼각형 ABC에서 AB=4 cm, AC=5 cm이고 BD⊥AC이다.",
+      "entities": [
+        ["ABC", "angle"],
+        ["ABC", "polygon"],
+        ["AB", "segment"],
+        ["AC", "segment"],
+        ["BD", "segment"],
+        ["AC", "segment"]
+      ],
+      "variables": [],
+      "operators": ["⊥"]
+    },
+    {
+      "field": "text",
+      "pattern": "∠ABC=#°인 삼각형 ABC에서 BD⊥AC이고 AD=# cm, DC=# cm이다.",
+      "families": ["m2-right-altitude-product"],
+      "first": "m2-right-altitude-product:0 (gt1-m2-right-altitude-product-2-2)",
+      "example": "∠ABC=90°인 삼각형 ABC에서 BD⊥AC이고 AD=4 cm, DC=4 cm이다.",
+      "entities": [
+        ["ABC", "angle"],
+        ["ABC", "polygon"],
+        ["BD", "segment"],
+        ["AC", "segment"],
+        ["AD", "segment"],
+        ["DC", "segment"]
+      ],
+      "variables": [],
+      "operators": ["⊥"]
+    },
+    {
+      "field": "text",
+      "pattern": "∠ABC=#°인 삼각형 ABC에서 BD⊥AC이고 AD=# cm, AC=# cm이다.",
+      "families": ["m3-right-leg-product"],
+      "first": "m3-right-leg-product:0 (gt1-m3-right-leg-product-2-2)",
+      "example": "∠ABC=90°인 삼각형 ABC에서 BD⊥AC이고 AD=4 cm, AC=8 cm이다.",
+      "entities": [
+        ["ABC", "angle"],
+        ["ABC", "polygon"],
+        ["BD", "segment"],
+        ["AC", "segment"],
+        ["AD", "segment"],
+        ["AC", "segment"]
+      ],
+      "variables": [],
+      "operators": ["⊥"]
+    },
+    {
+      "field": "text",
+      "pattern": "G는 삼각형 ABC의 무게중심이다. D, E, F는 각각 BC, CA, AB의 중점이고 AD+BE+CF=# cm이다.",
+      "families": ["m2-centroid-median-sum"],
+      "first": "m2-centroid-median-sum:0 (gt1-m2-centroid-median-sum-4)",
+      "example": "G는 삼각형 ABC의 무게중심이다. D, E, F는 각각 BC, CA, AB의 중점이고 AD+BE+CF=12 cm이다.",
+      "entities": [
+        ["G", "point"],
+        ["ABC", "polygon"],
+        ["D", "point"],
+        ["E", "point"],
+        ["F", "point"],
+        ["BC", "segment"],
+        ["CA", "segment"],
+        ["AB", "segment"],
+        ["AD", "segment"],
+        ["BE", "segment"],
+        ["CF", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "AG+BG+CG를 구하세요.",
+      "families": ["m2-centroid-median-sum"],
+      "first": "m2-centroid-median-sum:0 (gt1-m2-centroid-median-sum-4)",
+      "example": "AG+BG+CG를 구하세요.",
+      "entities": [
+        ["AG", "segment"],
+        ["BG", "segment"],
+        ["CG", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC에서 D는 BC의 중점이다. 삼각형 ABC의 넓이는 # cm²이다.",
+      "families": ["m2-triangle-median-area"],
+      "first": "m2-triangle-median-area:0 (gt1-m2-triangle-median-area-2)",
+      "example": "삼각형 ABC에서 D는 BC의 중점이다. 삼각형 ABC의 넓이는 4 cm²이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["D", "point"],
+        ["BC", "segment"],
+        ["ABC", "polygon"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "삼각형 ABD의 넓이를 구하세요.",
+      "families": ["m2-triangle-median-area"],
+      "first": "m2-triangle-median-area:0 (gt1-m2-triangle-median-area-2)",
+      "example": "삼각형 ABD의 넓이를 구하세요.",
+      "entities": [["ABD", "polygon"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC에서 D는 BC 위에 있다. BD=# cm, DC=# cm이고 삼각형 ABD의 넓이는 # cm²이다.",
+      "families": ["m2-same-height-area-ratio"],
+      "first": "m2-same-height-area-ratio:0 (gt1-m2-same-height-area-ratio-2-3-2)",
+      "example": "삼각형 ABC에서 D는 BC 위에 있다. BD=2 cm, DC=3 cm이고 삼각형 ABD의 넓이는 4 cm²이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["D", "point"],
+        ["BC", "segment"],
+        ["BD", "segment"],
+        ["DC", "segment"],
+        ["ABD", "polygon"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "삼각형 ADC의 넓이를 구하세요.",
+      "families": ["m2-same-height-area-ratio"],
+      "first": "m2-same-height-area-ratio:0 (gt1-m2-same-height-area-ratio-2-3-2)",
+      "example": "삼각형 ADC의 넓이를 구하세요.",
+      "entities": [["ADC", "polygon"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "세 평행선 AD, BE, CF가 두 직선과 만난다. A, B, C와 D, E, F는 각각 이 순서로 한 직선 위에 있다. AB=# cm, BC=# cm, DE=# cm이다.",
+      "families": ["m2-three-parallel-segments"],
+      "first": "m2-three-parallel-segments:0 (gt1-m2-three-parallel-segments-3-3-2)",
+      "example": "세 평행선 AD, BE, CF가 두 직선과 만난다. A, B, C와 D, E, F는 각각 이 순서로 한 직선 위에 있다. AB=3 cm, BC=3 cm, DE=6 cm이다.",
+      "entities": [
+        ["AD", "line"],
+        ["BE", "line"],
+        ["CF", "line"],
+        ["A", "point"],
+        ["B", "point"],
+        ["C", "point"],
+        ["D", "point"],
+        ["E", "point"],
+        ["F", "point"],
+        ["AB", "segment"],
+        ["BC", "segment"],
+        ["DE", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "사다리꼴 ABCD에서 E는 AB 위, F는 DC 위에 있고 AD∥EF∥BC이다. AD=# cm, BC=# cm, AE:EB=#:#이다.",
+      "families": ["m2-trapezoid-parallel-section"],
+      "first": "m2-trapezoid-parallel-section:0 (gt1-m2-trapezoid-parallel-section-3-2-1-2)",
+      "example": "사다리꼴 ABCD에서 E는 AB 위, F는 DC 위에 있고 AD∥EF∥BC이다. AD=3 cm, BC=5 cm, AE:EB=1:2이다.",
+      "entities": [
+        ["ABCD", "polygon"],
+        ["E", "point"],
+        ["AB", "segment"],
+        ["F", "point"],
+        ["DC", "segment"],
+        ["AD", "segment"],
+        ["EF", "segment"],
+        ["BC", "segment"],
+        ["AD", "segment"],
+        ["BC", "segment"],
+        ["AE", "segment"],
+        ["EB", "segment"]
+      ],
+      "variables": [],
+      "operators": ["∥", "∥"]
+    },
+    {
+      "field": "text",
+      "pattern": "BC를 C 쪽으로 연장한 직선 위의 점 D에 대하여 AD는 외각 ∠XAC의 이등분선이다. X는 BA를 A 쪽으로 연장한 직선 위에 있다. AB=# cm, AC=# cm, BC=# cm이다.",
+      "families": ["m2-external-bisector-part"],
+      "first": "m2-external-bisector-part:0 (gt1-m2-external-bisector-part-0-1)",
+      "example": "BC를 C 쪽으로 연장한 직선 위의 점 D에 대하여 AD는 외각 ∠XAC의 이등분선이다. X는 BA를 A 쪽으로 연장한 직선 위에 있다. AB=8 cm, AC=5 cm, BC=7 cm이다.",
+      "entities": [
+        ["BC", "segment"],
+        ["C", "point"],
+        ["D", "point"],
+        ["AD", "segment"],
+        ["XAC", "angle"],
+        ["X", "point"],
+        ["BA", "segment"],
+        ["A", "point"],
+        ["AB", "segment"],
+        ["AC", "segment"],
+        ["BC", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "CD의 길이를 구하세요.",
+      "families": ["m2-external-bisector-part"],
+      "first": "m2-external-bisector-part:0 (gt1-m2-external-bisector-part-0-1)",
+      "example": "CD의 길이를 구하세요.",
+      "entities": [["CD", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "BC를 C 쪽으로 연장한 직선 위의 점 D에 대하여 AD는 외각 ∠XAC의 이등분선이다. X는 BA를 A 쪽으로 연장한 직선 위에 있다. AB=# cm, AC=# cm, BD=# cm이다.",
+      "families": ["m2-external-bisector-base"],
+      "first": "m2-external-bisector-base:0 (gt1-m2-external-bisector-base-0-3)",
+      "example": "BC를 C 쪽으로 연장한 직선 위의 점 D에 대하여 AD는 외각 ∠XAC의 이등분선이다. X는 BA를 A 쪽으로 연장한 직선 위에 있다. AB=24 cm, AC=15 cm, BD=56 cm이다.",
+      "entities": [
+        ["BC", "segment"],
+        ["C", "point"],
+        ["D", "point"],
+        ["AD", "segment"],
+        ["XAC", "angle"],
+        ["X", "point"],
+        ["BA", "segment"],
+        ["A", "point"],
+        ["AB", "segment"],
+        ["AC", "segment"],
+        ["BD", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC에서 D, E, F는 각각 AB, AC, BC의 중점이다. 삼각형 ABC의 둘레는 # cm이다.",
+      "families": ["m2-midpoint-triangle-perimeter-part"],
+      "first": "m2-midpoint-triangle-perimeter-part:0 (gt1-m2-midpoint-triangle-perimeter-part-3)",
+      "example": "삼각형 ABC에서 D, E, F는 각각 AB, AC, BC의 중점이다. 삼각형 ABC의 둘레는 3 cm이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["D", "point"],
+        ["E", "point"],
+        ["F", "point"],
+        ["AB", "segment"],
+        ["AC", "segment"],
+        ["BC", "segment"],
+        ["ABC", "polygon"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 ABC에서 D, E, F는 각각 AB, AC, BC의 중점이다. 삼각형 DEF의 둘레는 # cm이다.",
+      "families": ["m2-midpoint-triangle-perimeter-whole"],
+      "first": "m2-midpoint-triangle-perimeter-whole:0 (gt1-m2-midpoint-triangle-perimeter-whole-3)",
+      "example": "삼각형 ABC에서 D, E, F는 각각 AB, AC, BC의 중점이다. 삼각형 DEF의 둘레는 3 cm이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["D", "point"],
+        ["E", "point"],
+        ["F", "point"],
+        ["AB", "segment"],
+        ["AC", "segment"],
+        ["BC", "segment"],
+        ["DEF", "polygon"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "ℓ∥m이고 표시된 각은 #°이다. 아래 직선의 표시된 빈 각",
+      "families": ["m1-parallel-angle"],
+      "first": "m1-parallel-angle:0 (gm-m1-parallel-angle-0-45)",
+      "example": "ℓ∥m이고 표시된 각은 45°이다. 아래 직선의 표시된 빈 각",
+      "entities": [],
+      "variables": ["ℓ", "m"],
+      "operators": ["∥"]
+    },
+    {
+      "field": "text",
+      "pattern": "ℓ∥m이고 표시된 각은 #°이다. 위 직선의 표시된 빈 각",
+      "families": ["m1-parallel-angle"],
+      "first": "m1-parallel-angle:7 (gm-m1-parallel-angle-1-45)",
+      "example": "ℓ∥m이고 표시된 각은 45°이다. 위 직선의 표시된 빈 각",
+      "entities": [],
+      "variables": ["ℓ", "m"],
+      "operators": ["∥"]
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형의 외각이 #°, 떨어진 한 내각이 #°일 때 ∠C",
+      "families": ["m1-triangle-interior-exterior"],
+      "first": "m1-triangle-interior-exterior:0 (gm-m1-triangle-interior-exterior-30-50)",
+      "example": "삼각형의 외각이 80°, 떨어진 한 내각이 30°일 때 ∠C",
+      "entities": [["C", "angle"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "C로 표시된 내각의 크기를 구하세요.",
+      "families": ["m1-triangle-interior-exterior"],
+      "first": "m1-triangle-interior-exterior:0 (gm-m1-triangle-interior-exterior-30-50)",
+      "example": "C로 표시된 내각의 크기를 구하세요.",
+      "entities": [["C", "angle-variable"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "둘레를 구하세요. π는 기호 그대로 쓰세요.",
+      "families": ["m1-circle-circumference", "m1-sector-perimeter"],
+      "first": "m1-circle-circumference:0 (gm-m1-circle-circumference-2)",
+      "example": "둘레를 구하세요. π는 기호 그대로 쓰세요.",
+      "entities": [],
+      "variables": [],
+      "operators": ["π"]
+    },
+    {
+      "field": "instruction",
+      "pattern": "넓이를 구하세요. π는 기호 그대로 쓰세요.",
+      "families": ["m1-circle-area", "m1-sector-area", "m1-sector-area-arc"],
+      "first": "m1-circle-area:0 (gm-m1-circle-area-2)",
+      "example": "넓이를 구하세요. π는 기호 그대로 쓰세요.",
+      "entities": [],
+      "variables": [],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "원주 #π cm인 원",
+      "families": ["m1-circle-radius-circumference"],
+      "first": "m1-circle-radius-circumference:0 (gm-m1-circle-radius-circumference-2)",
+      "example": "원주 4π cm인 원",
+      "entities": [],
+      "variables": [],
+      "operators": ["π"]
+    },
+    {
+      "field": "instruction",
+      "pattern": "반지름를 구하세요. π는 기호 그대로 쓰세요.",
+      "families": [
+        "m1-circle-radius-circumference",
+        "m1-circle-radius-area",
+        "m1-sector-radius-arc",
+        "m1-sector-radius-area"
+      ],
+      "first": "m1-circle-radius-circumference:0 (gm-m1-circle-radius-circumference-2)",
+      "example": "반지름를 구하세요. π는 기호 그대로 쓰세요.",
+      "entities": [],
+      "variables": [],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "넓이 #π cm²인 원",
+      "families": ["m1-circle-radius-area"],
+      "first": "m1-circle-radius-area:0 (gm-m1-circle-radius-area-2)",
+      "example": "넓이 4π cm²인 원",
+      "entities": [],
+      "variables": [],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "부채꼴: 중심각 #°, r = # cm",
+      "families": ["m1-sector-arc", "m1-sector-area", "m1-sector-perimeter"],
+      "first": "m1-sector-arc:0 (gm-m1-sector-arc-2-30)",
+      "example": "부채꼴: 중심각 30°, r = 2 cm",
+      "entities": [],
+      "variables": ["r"],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "호의 길이를 구하세요. π는 기호 그대로 쓰세요.",
+      "families": ["m1-sector-arc"],
+      "first": "m1-sector-arc:0 (gm-m1-sector-arc-2-30)",
+      "example": "호의 길이를 구하세요. π는 기호 그대로 쓰세요.",
+      "entities": [],
+      "variables": [],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "부채꼴: 호 π/# cm, r = # cm",
+      "families": ["m1-sector-angle-arc", "m1-sector-area-arc"],
+      "first": "m1-sector-angle-arc:0 (gm-m1-sector-angle-arc-2-30)",
+      "example": "부채꼴: 호 π/3 cm, r = 2 cm",
+      "entities": [],
+      "variables": ["r"],
+      "operators": ["π"]
+    },
+    {
+      "field": "instruction",
+      "pattern": "중심각를 구하세요. π는 기호 그대로 쓰세요.",
+      "families": ["m1-sector-angle-arc", "m1-sector-angle-area"],
+      "first": "m1-sector-angle-arc:0 (gm-m1-sector-angle-arc-2-30)",
+      "example": "중심각를 구하세요. π는 기호 그대로 쓰세요.",
+      "entities": [],
+      "variables": [],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "부채꼴: 호 #π/# cm, r = # cm",
+      "families": ["m1-sector-angle-arc", "m1-sector-area-arc"],
+      "first": "m1-sector-angle-arc:2 (gm-m1-sector-angle-arc-2-60)",
+      "example": "부채꼴: 호 2π/3 cm, r = 2 cm",
+      "entities": [],
+      "variables": ["r"],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "부채꼴: 호 π cm, r = # cm",
+      "families": ["m1-sector-angle-arc", "m1-sector-area-arc"],
+      "first": "m1-sector-angle-arc:3 (gm-m1-sector-angle-arc-2-90)",
+      "example": "부채꼴: 호 π cm, r = 2 cm",
+      "entities": [],
+      "variables": ["r"],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "부채꼴: 호 #π cm, r = # cm",
+      "families": ["m1-sector-angle-arc", "m1-sector-area-arc"],
+      "first": "m1-sector-angle-arc:7 (gm-m1-sector-angle-arc-2-180)",
+      "example": "부채꼴: 호 2π cm, r = 2 cm",
+      "entities": [],
+      "variables": ["r"],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "부채꼴: 넓이 π/# cm², r = # cm",
+      "families": ["m1-sector-angle-area"],
+      "first": "m1-sector-angle-area:0 (gm-m1-sector-angle-area-2-30)",
+      "example": "부채꼴: 넓이 π/3 cm², r = 2 cm",
+      "entities": [],
+      "variables": ["r"],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "부채꼴: 넓이 #π/# cm², r = # cm",
+      "families": ["m1-sector-angle-area"],
+      "first": "m1-sector-angle-area:2 (gm-m1-sector-angle-area-2-60)",
+      "example": "부채꼴: 넓이 2π/3 cm², r = 2 cm",
+      "entities": [],
+      "variables": ["r"],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "부채꼴: 넓이 π cm², r = # cm",
+      "families": ["m1-sector-angle-area"],
+      "first": "m1-sector-angle-area:3 (gm-m1-sector-angle-area-2-90)",
+      "example": "부채꼴: 넓이 π cm², r = 2 cm",
+      "entities": [],
+      "variables": ["r"],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "부채꼴: 넓이 #π cm², r = # cm",
+      "families": ["m1-sector-angle-area"],
+      "first": "m1-sector-angle-area:7 (gm-m1-sector-angle-area-2-180)",
+      "example": "부채꼴: 넓이 2π cm², r = 2 cm",
+      "entities": [],
+      "variables": ["r"],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "부채꼴: 중심각 #°, 호 π/# cm",
+      "families": ["m1-sector-radius-arc"],
+      "first": "m1-sector-radius-arc:0 (gm-m1-sector-radius-arc-2-30)",
+      "example": "부채꼴: 중심각 30°, 호 π/3 cm",
+      "entities": [],
+      "variables": [],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "부채꼴: 중심각 #°, 호 #π/# cm",
+      "families": ["m1-sector-radius-arc"],
+      "first": "m1-sector-radius-arc:2 (gm-m1-sector-radius-arc-2-60)",
+      "example": "부채꼴: 중심각 60°, 호 2π/3 cm",
+      "entities": [],
+      "variables": [],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "부채꼴: 중심각 #°, 호 π cm",
+      "families": ["m1-sector-radius-arc"],
+      "first": "m1-sector-radius-arc:3 (gm-m1-sector-radius-arc-2-90)",
+      "example": "부채꼴: 중심각 90°, 호 π cm",
+      "entities": [],
+      "variables": [],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "부채꼴: 중심각 #°, 호 #π cm",
+      "families": ["m1-sector-radius-arc"],
+      "first": "m1-sector-radius-arc:7 (gm-m1-sector-radius-arc-2-180)",
+      "example": "부채꼴: 중심각 180°, 호 2π cm",
+      "entities": [],
+      "variables": [],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "부채꼴: 중심각 #°, 넓이 π/# cm²",
+      "families": ["m1-sector-radius-area"],
+      "first": "m1-sector-radius-area:0 (gm-m1-sector-radius-area-2-30)",
+      "example": "부채꼴: 중심각 30°, 넓이 π/3 cm²",
+      "entities": [],
+      "variables": [],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "부채꼴: 중심각 #°, 넓이 #π/# cm²",
+      "families": ["m1-sector-radius-area"],
+      "first": "m1-sector-radius-area:2 (gm-m1-sector-radius-area-2-60)",
+      "example": "부채꼴: 중심각 60°, 넓이 2π/3 cm²",
+      "entities": [],
+      "variables": [],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "부채꼴: 중심각 #°, 넓이 π cm²",
+      "families": ["m1-sector-radius-area"],
+      "first": "m1-sector-radius-area:3 (gm-m1-sector-radius-area-2-90)",
+      "example": "부채꼴: 중심각 90°, 넓이 π cm²",
+      "entities": [],
+      "variables": [],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "부채꼴: 중심각 #°, 넓이 #π cm²",
+      "families": ["m1-sector-radius-area"],
+      "first": "m1-sector-radius-area:7 (gm-m1-sector-radius-area-2-180)",
+      "example": "부채꼴: 중심각 180°, 넓이 2π cm²",
+      "entities": [],
+      "variables": [],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "각기둥의 밑넓이 B=# cm², 수직 높이 h=# cm",
+      "families": ["m1-prism-volume"],
+      "first": "m1-prism-volume:0 (gm-m1-prism-volume-6-2)",
+      "example": "각기둥의 밑넓이 B=6 cm², 수직 높이 h=2 cm",
+      "entities": [["B", "variable"]],
+      "variables": ["h"],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "직각기둥의 밑넓이 # cm², 밑면 둘레 # cm, 수직 높이 h=# cm",
+      "families": ["m1-prism-surface"],
+      "first": "m1-prism-surface:0 (gm-m1-prism-surface-2-2-3)",
+      "example": "직각기둥의 밑넓이 4 cm², 밑면 둘레 8 cm, 수직 높이 h=3 cm",
+      "entities": [],
+      "variables": ["h"],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "원기둥의 반지름 r=# cm, 수직 높이 h=# cm",
+      "families": [
+        "m1-cylinder-volume",
+        "m1-cylinder-surface",
+        "m1-cylinder-lateral"
+      ],
+      "first": "m1-cylinder-volume:0 (gm-m1-cylinder-volume-2-2)",
+      "example": "원기둥의 반지름 r=2 cm, 수직 높이 h=2 cm",
+      "entities": [],
+      "variables": ["r", "h"],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "부피를 구하세요. π는 그대로 쓰세요. 그림은 겨냥도입니다.",
+      "families": ["m1-cylinder-volume", "m1-cone-volume", "m1-sphere-volume"],
+      "first": "m1-cylinder-volume:0 (gm-m1-cylinder-volume-2-2)",
+      "example": "부피를 구하세요. π는 그대로 쓰세요. 그림은 겨냥도입니다.",
+      "entities": [],
+      "variables": [],
+      "operators": ["π"]
+    },
+    {
+      "field": "instruction",
+      "pattern": "겉넓이를 구하세요. π는 그대로 쓰세요. 그림은 겨냥도입니다.",
+      "families": [
+        "m1-cylinder-surface",
+        "m1-cone-surface",
+        "m1-sphere-surface"
+      ],
+      "first": "m1-cylinder-surface:0 (gm-m1-cylinder-surface-2-2)",
+      "example": "겉넓이를 구하세요. π는 그대로 쓰세요. 그림은 겨냥도입니다.",
+      "entities": [],
+      "variables": [],
+      "operators": ["π"]
+    },
+    {
+      "field": "instruction",
+      "pattern": "옆넓이를 구하세요. π는 그대로 쓰세요. 그림은 겨냥도입니다.",
+      "families": ["m1-cylinder-lateral", "m1-cone-lateral"],
+      "first": "m1-cylinder-lateral:0 (gm-m1-cylinder-lateral-2-2)",
+      "example": "옆넓이를 구하세요. π는 그대로 쓰세요. 그림은 겨냥도입니다.",
+      "entities": [],
+      "variables": [],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "각뿔의 밑넓이 B=# cm², 수직 높이 h=# cm",
+      "families": ["m1-pyramid-volume"],
+      "first": "m1-pyramid-volume:0 (gm-m1-pyramid-volume-5-2)",
+      "example": "각뿔의 밑넓이 B=5 cm², 수직 높이 h=2 cm",
+      "entities": [["B", "variable"]],
+      "variables": ["h"],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "정사각뿔의 밑면 한 변 a=# cm, 옆면 삼각형의 높이 s=# cm",
+      "families": ["m1-pyramid-surface"],
+      "first": "m1-pyramid-surface:0 (gm-m1-pyramid-surface-2-3)",
+      "example": "정사각뿔의 밑면 한 변 a=2 cm, 옆면 삼각형의 높이 s=3 cm",
+      "entities": [],
+      "variables": ["a", "s"],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "겉넓이를 구하세요. s는 옆면의 높이입니다. 그림은 겨냥도입니다.",
+      "families": ["m1-pyramid-surface"],
+      "first": "m1-pyramid-surface:0 (gm-m1-pyramid-surface-2-3)",
+      "example": "겉넓이를 구하세요. s는 옆면의 높이입니다. 그림은 겨냥도입니다.",
+      "entities": [],
+      "variables": ["s"],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "원뿔의 반지름 r=# cm, 수직 높이 h=# cm",
+      "families": ["m1-cone-volume"],
+      "first": "m1-cone-volume:0 (gm-m1-cone-volume-2-2)",
+      "example": "원뿔의 반지름 r=2 cm, 수직 높이 h=2 cm",
+      "entities": [],
+      "variables": ["r", "h"],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "원뿔의 반지름 r=# cm, 모선 l=# cm",
+      "families": ["m1-cone-surface", "m1-cone-lateral"],
+      "first": "m1-cone-surface:0 (gm-m1-cone-surface-2-3)",
+      "example": "원뿔의 반지름 r=2 cm, 모선 l=3 cm",
+      "entities": [],
+      "variables": ["r", "l"],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "반지름 r=# cm인 구",
+      "families": ["m1-sphere-surface", "m1-sphere-volume"],
+      "first": "m1-sphere-surface:0 (gm-m1-sphere-surface-1)",
+      "example": "반지름 r=1 cm인 구",
+      "entities": [],
+      "variables": ["r"],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "O는 원의 중심, 중심각 #°에 대한 원주각 ∠C",
+      "families": ["m3-circle-inscribed"],
+      "first": "m3-circle-inscribed:0 (gm-m3-circle-inscribed-30)",
+      "example": "O는 원의 중심, 중심각 60°에 대한 원주각 ∠C",
+      "entities": [
+        ["O", "point"],
+        ["C", "angle"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "표시된 ∠C의 크기를 구하세요.",
+      "families": ["m3-circle-inscribed"],
+      "first": "m3-circle-inscribed:0 (gm-m3-circle-inscribed-30)",
+      "example": "표시된 ∠C의 크기를 구하세요.",
+      "entities": [["C", "angle"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "O는 원의 중심, 원주각 ∠C=#°에 대한 중심각",
+      "families": ["m3-circle-central"],
+      "first": "m3-circle-central:0 (gm-m3-circle-central-30)",
+      "example": "O는 원의 중심, 원주각 ∠C=30°에 대한 중심각",
+      "entities": [
+        ["O", "point"],
+        ["C", "angle"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "같은 호 AB에 대한 원주각 ∠C=#°, ∠D",
+      "families": ["m3-circle-same-arc"],
+      "first": "m3-circle-same-arc:0 (gm-m3-circle-same-arc-30)",
+      "example": "같은 호 AB에 대한 원주각 ∠C=30°, ∠D",
+      "entities": [
+        ["AB", "arc"],
+        ["C", "angle"],
+        ["D", "angle"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "표시된 ∠D의 크기를 구하세요.",
+      "families": ["m3-circle-same-arc", "m3-circle-cyclic-opposite"],
+      "first": "m3-circle-same-arc:0 (gm-m3-circle-same-arc-30)",
+      "example": "표시된 ∠D의 크기를 구하세요.",
+      "entities": [["D", "angle"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "원에 내접하는 사각형에서 마주 보는 ∠C=#°, ∠D",
+      "families": ["m3-circle-cyclic-opposite"],
+      "first": "m3-circle-cyclic-opposite:0 (gm-m3-circle-cyclic-opposite-30)",
+      "example": "원에 내접하는 사각형에서 마주 보는 ∠C=30°, ∠D",
+      "entities": [
+        ["C", "angle"],
+        ["D", "angle"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "원 O의 반지름 # cm, OM⊥AB, OM=# cm",
+      "families": ["m3-circle-chord-length"],
+      "first": "m3-circle-chord-length:0 (gm-m3-circle-chord-length-5-2)",
+      "example": "원 O의 반지름 5 cm, OM⊥AB, OM=2 cm",
+      "entities": [
+        ["O", "point"],
+        ["OM", "segment"],
+        ["AB", "segment"],
+        ["OM", "segment"]
+      ],
+      "variables": [],
+      "operators": ["⊥"]
+    },
+    {
+      "field": "instruction",
+      "pattern": "현 AB의 길이을 구하세요. 근호는 간단히 하세요.",
+      "families": ["m3-circle-chord-length"],
+      "first": "m3-circle-chord-length:0 (gm-m3-circle-chord-length-5-2)",
+      "example": "현 AB의 길이을 구하세요. 근호는 간단히 하세요.",
+      "entities": [["AB", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "원 O의 반지름 # cm, OM⊥AB, AB=# cm",
+      "families": ["m3-circle-chord-distance"],
+      "first": "m3-circle-chord-distance:0 (gm-m3-circle-chord-distance-5-2)",
+      "example": "원 O의 반지름 5 cm, OM⊥AB, AB=4 cm",
+      "entities": [
+        ["O", "point"],
+        ["OM", "segment"],
+        ["AB", "segment"],
+        ["AB", "segment"]
+      ],
+      "variables": [],
+      "operators": ["⊥"]
+    },
+    {
+      "field": "instruction",
+      "pattern": "중심에서 현까지의 거리 OM을 구하세요. 근호는 간단히 하세요.",
+      "families": ["m3-circle-chord-distance"],
+      "first": "m3-circle-chord-distance:0 (gm-m3-circle-chord-distance-5-2)",
+      "example": "중심에서 현까지의 거리 OM을 구하세요. 근호는 간단히 하세요.",
+      "entities": [["OM", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "T는 접점, OT는 반지름이다. 접선 TP와 PO가 이루는 ∠TPO=#°일 때 ∠POT",
+      "families": ["m3-circle-tangent-angle"],
+      "first": "m3-circle-tangent-angle:0 (gm-m3-circle-tangent-angle-25)",
+      "example": "T는 접점, OT는 반지름이다. 접선 TP와 PO가 이루는 ∠TPO=25°일 때 ∠POT",
+      "entities": [
+        ["T", "point"],
+        ["OT", "segment"],
+        ["TP", "line"],
+        ["PO", "segment"],
+        ["TPO", "angle"],
+        ["POT", "angle"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "표시된 ∠POT의 크기를 구하세요.",
+      "families": ["m3-circle-tangent-angle"],
+      "first": "m3-circle-tangent-angle:0 (gm-m3-circle-tangent-angle-25)",
+      "example": "표시된 ∠POT의 크기를 구하세요.",
+      "entities": [["POT", "angle"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "직각삼각형에서 ∠A의 맞은편 변 a=#, 빗변 c=# (cm)",
+      "families": ["m3-trig-ratio"],
+      "first": "m3-trig-ratio:0 (gm-m3-trig-ratio-0-1-0)",
+      "example": "직각삼각형에서 ∠A의 맞은편 변 a=3, 빗변 c=5 (cm)",
+      "entities": [["A", "angle"]],
+      "variables": ["a", "c"],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "sin A의 값을 기약분수로 구하세요.",
+      "families": ["m3-trig-ratio"],
+      "first": "m3-trig-ratio:0 (gm-m3-trig-ratio-0-1-0)",
+      "example": "sin A의 값을 기약분수로 구하세요.",
+      "entities": [["A", "angle-variable"]],
+      "variables": [],
+      "operators": ["sin"]
+    },
+    {
+      "field": "text",
+      "pattern": "직각삼각형에서 ∠A의 이웃한 변 b=#, 빗변 c=# (cm)",
+      "families": ["m3-trig-ratio"],
+      "first": "m3-trig-ratio:1 (gm-m3-trig-ratio-0-1-1)",
+      "example": "직각삼각형에서 ∠A의 이웃한 변 b=4, 빗변 c=5 (cm)",
+      "entities": [["A", "angle"]],
+      "variables": ["b", "c"],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "cos A의 값을 기약분수로 구하세요.",
+      "families": ["m3-trig-ratio"],
+      "first": "m3-trig-ratio:1 (gm-m3-trig-ratio-0-1-1)",
+      "example": "cos A의 값을 기약분수로 구하세요.",
+      "entities": [["A", "angle-variable"]],
+      "variables": [],
+      "operators": ["cos"]
+    },
+    {
+      "field": "text",
+      "pattern": "직각삼각형에서 ∠A의 맞은편 변 a=#, 이웃한 변 b=# (cm)",
+      "families": ["m3-trig-ratio"],
+      "first": "m3-trig-ratio:2 (gm-m3-trig-ratio-0-1-2)",
+      "example": "직각삼각형에서 ∠A의 맞은편 변 a=3, 이웃한 변 b=4 (cm)",
+      "entities": [["A", "angle"]],
+      "variables": ["a", "b"],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "tan A의 값을 기약분수로 구하세요.",
+      "families": ["m3-trig-ratio"],
+      "first": "m3-trig-ratio:2 (gm-m3-trig-ratio-0-1-2)",
+      "example": "tan A의 값을 기약분수로 구하세요.",
+      "entities": [["A", "angle-variable"]],
+      "variables": [],
+      "operators": ["tan"]
+    },
+    {
+      "field": "text",
+      "pattern": "직각삼각형에서 ∠A=#°",
+      "families": ["m3-trig-special-value"],
+      "first": "m3-trig-special-value:0 (gm-m3-trig-special-value-30-0)",
+      "example": "직각삼각형에서 ∠A=30°",
+      "entities": [["A", "angle"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "sin A의 정확한 값을 구하세요.",
+      "families": ["m3-trig-special-value"],
+      "first": "m3-trig-special-value:0 (gm-m3-trig-special-value-30-0)",
+      "example": "sin A의 정확한 값을 구하세요.",
+      "entities": [["A", "angle-variable"]],
+      "variables": [],
+      "operators": ["sin"]
+    },
+    {
+      "field": "instruction",
+      "pattern": "cos A의 정확한 값을 구하세요.",
+      "families": ["m3-trig-special-value"],
+      "first": "m3-trig-special-value:1 (gm-m3-trig-special-value-30-1)",
+      "example": "cos A의 정확한 값을 구하세요.",
+      "entities": [["A", "angle-variable"]],
+      "variables": [],
+      "operators": ["cos"]
+    },
+    {
+      "field": "instruction",
+      "pattern": "tan A의 정확한 값을 구하세요.",
+      "families": ["m3-trig-special-value"],
+      "first": "m3-trig-special-value:2 (gm-m3-trig-special-value-30-2)",
+      "example": "tan A의 정확한 값을 구하세요.",
+      "entities": [["A", "angle-variable"]],
+      "variables": [],
+      "operators": ["tan"]
+    },
+    {
+      "field": "text",
+      "pattern": "직각삼각형에서 ∠A=#°, c=# cm (a: A의 맞은편, b: 이웃한 변, c: 빗변)",
+      "families": ["m3-trig-special-length"],
+      "first": "m3-trig-special-length:0 (gm-m3-trig-special-length-30-2-0)",
+      "example": "직각삼각형에서 ∠A=30°, c=2 cm (a: A의 맞은편, b: 이웃한 변, c: 빗변)",
+      "entities": [
+        ["A", "angle"],
+        ["A", "angle-variable"]
+      ],
+      "variables": ["c", "a", "b", "c"],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "a의 길이를 구하세요. 근호는 간단히 하세요.",
+      "families": ["m3-trig-special-length"],
+      "first": "m3-trig-special-length:0 (gm-m3-trig-special-length-30-2-0)",
+      "example": "a의 길이를 구하세요. 근호는 간단히 하세요.",
+      "entities": [],
+      "variables": ["a"],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "b의 길이를 구하세요. 근호는 간단히 하세요.",
+      "families": ["m3-trig-special-length"],
+      "first": "m3-trig-special-length:1 (gm-m3-trig-special-length-30-2-1)",
+      "example": "b의 길이를 구하세요. 근호는 간단히 하세요.",
+      "entities": [],
+      "variables": ["b"],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "직각삼각형에서 ∠A=#°, a=# cm (a: A의 맞은편, b: 이웃한 변, c: 빗변)",
+      "families": ["m3-trig-special-length"],
+      "first": "m3-trig-special-length:2 (gm-m3-trig-special-length-30-2-2)",
+      "example": "직각삼각형에서 ∠A=30°, a=2 cm (a: A의 맞은편, b: 이웃한 변, c: 빗변)",
+      "entities": [
+        ["A", "angle"],
+        ["A", "angle-variable"]
+      ],
+      "variables": ["a", "a", "b", "c"],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "c의 길이를 구하세요. 근호는 간단히 하세요.",
+      "families": ["m3-trig-special-length"],
+      "first": "m3-trig-special-length:2 (gm-m3-trig-special-length-30-2-2)",
+      "example": "c의 길이를 구하세요. 근호는 간단히 하세요.",
+      "entities": [],
+      "variables": ["c"],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "직각삼각형에서 ∠A=#°, b=# cm (a: A의 맞은편, b: 이웃한 변, c: 빗변)",
+      "families": ["m3-trig-special-length"],
+      "first": "m3-trig-special-length:3 (gm-m3-trig-special-length-30-2-3)",
+      "example": "직각삼각형에서 ∠A=30°, b=2 cm (a: A의 맞은편, b: 이웃한 변, c: 빗변)",
+      "entities": [
+        ["A", "angle"],
+        ["A", "angle-variable"]
+      ],
+      "variables": ["b", "a", "b", "c"],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "각기둥의 부피 # cm³, 높이 h=# cm",
+      "families": ["m1-prism-base-area-volume"],
+      "first": "m1-prism-base-area-volume:0 (gm-m1-prism-base-area-volume-6-2)",
+      "example": "각기둥의 부피 12 cm³, 높이 h=2 cm",
+      "entities": [],
+      "variables": ["h"],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "수직 높이 h를 구하세요. 그림은 겨냥도입니다.",
+      "families": [
+        "m1-prism-height-volume",
+        "m1-pyramid-height-volume",
+        "m1-cylinder-height-volume",
+        "m1-cone-height-volume",
+        "m1-cylinder-height-lateral",
+        "m1-cylinder-height-surface"
+      ],
+      "first": "m1-prism-height-volume:0 (gm-m1-prism-height-volume-6-2)",
+      "example": "수직 높이 h를 구하세요. 그림은 겨냥도입니다.",
+      "entities": [],
+      "variables": ["h"],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "각뿔의 부피 #/# cm³, 높이 h=# cm",
+      "families": ["m1-pyramid-base-area-volume"],
+      "first": "m1-pyramid-base-area-volume:0 (gm-m1-pyramid-base-area-volume-5-2)",
+      "example": "각뿔의 부피 10/3 cm³, 높이 h=2 cm",
+      "entities": [],
+      "variables": ["h"],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "직각기둥의 겉넓이 # cm², 밑면 둘레 # cm, 높이 h=# cm",
+      "families": ["m1-prism-base-area-surface"],
+      "first": "m1-prism-base-area-surface:0 (gm-m1-prism-base-area-surface-2-2-3)",
+      "example": "직각기둥의 겉넓이 32 cm², 밑면 둘레 8 cm, 높이 h=3 cm",
+      "entities": [],
+      "variables": ["h"],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "수직 높이 h를 구하세요. 옆면은 모두 직사각형이며 그림은 겨냥도입니다.",
+      "families": ["m1-prism-height-surface"],
+      "first": "m1-prism-height-surface:0 (gm-m1-prism-height-surface-2-2-3)",
+      "example": "수직 높이 h를 구하세요. 옆면은 모두 직사각형이며 그림은 겨냥도입니다.",
+      "entities": [],
+      "variables": ["h"],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "정사각뿔의 겉넓이 # cm², 밑면 한 변 a=# cm",
+      "families": ["m1-pyramid-slant-surface"],
+      "first": "m1-pyramid-slant-surface:0 (gm-m1-pyramid-slant-surface-2-3)",
+      "example": "정사각뿔의 겉넓이 16 cm², 밑면 한 변 a=2 cm",
+      "entities": [],
+      "variables": ["a"],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "옆면 삼각형의 높이 s를 구하세요. 그림은 겨냥도입니다.",
+      "families": ["m1-pyramid-slant-surface"],
+      "first": "m1-pyramid-slant-surface:0 (gm-m1-pyramid-slant-surface-2-3)",
+      "example": "옆면 삼각형의 높이 s를 구하세요. 그림은 겨냥도입니다.",
+      "entities": [],
+      "variables": ["s"],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "원기둥의 부피 #π cm³, 반지름 r=# cm",
+      "families": ["m1-cylinder-height-volume"],
+      "first": "m1-cylinder-height-volume:0 (gm-m1-cylinder-height-volume-2-2)",
+      "example": "원기둥의 부피 8π cm³, 반지름 r=2 cm",
+      "entities": [],
+      "variables": ["r"],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "원기둥의 부피 #π cm³, 수직 높이 h=# cm",
+      "families": ["m1-cylinder-radius-volume"],
+      "first": "m1-cylinder-radius-volume:0 (gm-m1-cylinder-radius-volume-2-2)",
+      "example": "원기둥의 부피 8π cm³, 수직 높이 h=2 cm",
+      "entities": [],
+      "variables": ["h"],
+      "operators": ["π"]
+    },
+    {
+      "field": "instruction",
+      "pattern": "반지름 r를 구하세요. 그림은 겨냥도입니다.",
+      "families": [
+        "m1-cylinder-radius-volume",
+        "m1-cone-radius-volume",
+        "m1-cylinder-radius-lateral"
+      ],
+      "first": "m1-cylinder-radius-volume:0 (gm-m1-cylinder-radius-volume-2-2)",
+      "example": "반지름 r를 구하세요. 그림은 겨냥도입니다.",
+      "entities": [],
+      "variables": ["r"],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "원뿔의 부피 #π/# cm³, 반지름 r=# cm",
+      "families": ["m1-cone-height-volume"],
+      "first": "m1-cone-height-volume:0 (gm-m1-cone-height-volume-2-2)",
+      "example": "원뿔의 부피 8π/3 cm³, 반지름 r=2 cm",
+      "entities": [],
+      "variables": ["r"],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "원뿔의 부피 #π cm³, 반지름 r=# cm",
+      "families": ["m1-cone-height-volume"],
+      "first": "m1-cone-height-volume:2 (gm-m1-cone-height-volume-2-6)",
+      "example": "원뿔의 부피 8π cm³, 반지름 r=2 cm",
+      "entities": [],
+      "variables": ["r"],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "원뿔의 부피 #π/# cm³, 수직 높이 h=# cm",
+      "families": ["m1-cone-radius-volume"],
+      "first": "m1-cone-radius-volume:0 (gm-m1-cone-radius-volume-2-2)",
+      "example": "원뿔의 부피 8π/3 cm³, 수직 높이 h=2 cm",
+      "entities": [],
+      "variables": ["h"],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "원뿔의 부피 #π cm³, 수직 높이 h=# cm",
+      "families": ["m1-cone-radius-volume"],
+      "first": "m1-cone-radius-volume:2 (gm-m1-cone-radius-volume-2-6)",
+      "example": "원뿔의 부피 8π cm³, 수직 높이 h=6 cm",
+      "entities": [],
+      "variables": ["h"],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "원기둥의 옆넓이 #π cm², 반지름 r=# cm",
+      "families": ["m1-cylinder-height-lateral"],
+      "first": "m1-cylinder-height-lateral:0 (gm-m1-cylinder-height-lateral-2-2)",
+      "example": "원기둥의 옆넓이 8π cm², 반지름 r=2 cm",
+      "entities": [],
+      "variables": ["r"],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "원기둥의 옆넓이 #π cm², 수직 높이 h=# cm",
+      "families": ["m1-cylinder-radius-lateral"],
+      "first": "m1-cylinder-radius-lateral:0 (gm-m1-cylinder-radius-lateral-2-2)",
+      "example": "원기둥의 옆넓이 8π cm², 수직 높이 h=2 cm",
+      "entities": [],
+      "variables": ["h"],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "원기둥의 겉넓이 #π cm², 반지름 r=# cm",
+      "families": ["m1-cylinder-height-surface"],
+      "first": "m1-cylinder-height-surface:0 (gm-m1-cylinder-height-surface-2-2)",
+      "example": "원기둥의 겉넓이 16π cm², 반지름 r=2 cm",
+      "entities": [],
+      "variables": ["r"],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "원뿔의 옆넓이 #π cm², 모선 l=# cm",
+      "families": ["m1-cone-radius-lateral"],
+      "first": "m1-cone-radius-lateral:0 (gm-m1-cone-radius-lateral-2-3)",
+      "example": "원뿔의 옆넓이 6π cm², 모선 l=3 cm",
+      "entities": [],
+      "variables": ["l"],
+      "operators": ["π"]
+    },
+    {
+      "field": "instruction",
+      "pattern": "반지름 r의 길이를 구하세요. 그림은 겨냥도입니다.",
+      "families": [
+        "m1-cone-radius-lateral",
+        "m1-sphere-radius-surface",
+        "m1-sphere-radius-volume"
+      ],
+      "first": "m1-cone-radius-lateral:0 (gm-m1-cone-radius-lateral-2-3)",
+      "example": "반지름 r의 길이를 구하세요. 그림은 겨냥도입니다.",
+      "entities": [],
+      "variables": ["r"],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "원뿔의 옆넓이 #π cm², 반지름 r=# cm",
+      "families": ["m1-cone-generator-lateral"],
+      "first": "m1-cone-generator-lateral:0 (gm-m1-cone-generator-lateral-2-3)",
+      "example": "원뿔의 옆넓이 6π cm², 반지름 r=2 cm",
+      "entities": [],
+      "variables": ["r"],
+      "operators": ["π"]
+    },
+    {
+      "field": "instruction",
+      "pattern": "모선 l의 길이를 구하세요. 그림은 겨냥도입니다.",
+      "families": ["m1-cone-generator-lateral", "m1-cone-generator-surface"],
+      "first": "m1-cone-generator-lateral:0 (gm-m1-cone-generator-lateral-2-3)",
+      "example": "모선 l의 길이를 구하세요. 그림은 겨냥도입니다.",
+      "entities": [],
+      "variables": ["l"],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "원뿔의 겉넓이 #π cm², 반지름 r=# cm",
+      "families": ["m1-cone-generator-surface"],
+      "first": "m1-cone-generator-surface:0 (gm-m1-cone-generator-surface-2-3)",
+      "example": "원뿔의 겉넓이 10π cm², 반지름 r=2 cm",
+      "entities": [],
+      "variables": ["r"],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "구의 겉넓이 #π cm²",
+      "families": ["m1-sphere-radius-surface"],
+      "first": "m1-sphere-radius-surface:0 (gm-m1-sphere-radius-surface-1)",
+      "example": "구의 겉넓이 4π cm²",
+      "entities": [],
+      "variables": [],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "구의 부피 #π/# cm³",
+      "families": ["m1-sphere-radius-volume"],
+      "first": "m1-sphere-radius-volume:0 (gm-m1-sphere-radius-volume-1)",
+      "example": "구의 부피 4π/3 cm³",
+      "entities": [],
+      "variables": [],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "구의 부피 #π cm³",
+      "families": ["m1-sphere-radius-volume"],
+      "first": "m1-sphere-radius-volume:2 (gm-m1-sphere-radius-volume-3)",
+      "example": "구의 부피 36π cm³",
+      "entities": [],
+      "variables": [],
+      "operators": ["π"]
+    },
+    {
+      "field": "text",
+      "pattern": "O는 원의 중심, T에서 접하는 직선과 현 TP가 있다. 중심각 ∠TOP=#°",
+      "families": ["m3-circle-tangent-chord"],
+      "first": "m3-circle-tangent-chord:0 (gm-m3-circle-tangent-chord-0-30)",
+      "example": "O는 원의 중심, T에서 접하는 직선과 현 TP가 있다. 중심각 ∠TOP=60°",
+      "entities": [
+        ["O", "point"],
+        ["T", "point"],
+        ["TP", "segment"],
+        ["TOP", "angle"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "접선과 현 TP가 이루는 표시된 예각을 구하세요.",
+      "families": ["m3-circle-tangent-chord"],
+      "first": "m3-circle-tangent-chord:0 (gm-m3-circle-tangent-chord-0-30)",
+      "example": "접선과 현 TP가 이루는 표시된 예각을 구하세요.",
+      "entities": [["TP", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "T에서 접하는 직선과 현 TP가 있다. 같은 호 TP에 대한 원주각 ∠TCP=#°",
+      "families": ["m3-circle-tangent-chord"],
+      "first": "m3-circle-tangent-chord:8 (gm-m3-circle-tangent-chord-1-30)",
+      "example": "T에서 접하는 직선과 현 TP가 있다. 같은 호 TP에 대한 원주각 ∠TCP=30°",
+      "entities": [
+        ["T", "point"],
+        ["TP", "segment"],
+        ["TP", "arc"],
+        ["TCP", "angle"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "원 밖의 점 P에서 그은 두 접선의 접점이 A, B이다. PA=# cm",
+      "families": ["m3-circle-equal-tangents"],
+      "first": "m3-circle-equal-tangents:0 (gm-m3-circle-equal-tangents-2)",
+      "example": "원 밖의 점 P에서 그은 두 접선의 접점이 A, B이다. PA=2 cm",
+      "entities": [
+        ["P", "point"],
+        ["A", "point"],
+        ["B", "point"],
+        ["PA", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "접선 PB의 길이를 구하세요.",
+      "families": ["m3-circle-equal-tangents"],
+      "first": "m3-circle-equal-tangents:0 (gm-m3-circle-equal-tangents-2)",
+      "example": "접선 PB의 길이를 구하세요.",
+      "entities": [["PB", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "$A$가 예각이고 $\\sin A=\\frac{#}{#}$이다.",
+      "families": ["m3-trig-inverse-special-angle"],
+      "first": "m3-trig-inverse-special-angle:0",
+      "example": "$A$가 예각이고 $\\sin A=\\frac{1}{2}$이다.",
+      "entities": [
+        ["A", "angle-variable"],
+        ["A", "angle-variable"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "각 A의 크기를 구하시오.",
+      "families": ["m3-trig-inverse-special-angle"],
+      "first": "m3-trig-inverse-special-angle:0",
+      "example": "각 A의 크기를 구하시오.",
+      "entities": [["A", "angle-variable"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "$A$가 예각이고 $\\cos A=\\frac{\\sqrt{#}}{#}$이다.",
+      "families": ["m3-trig-inverse-special-angle"],
+      "first": "m3-trig-inverse-special-angle:1",
+      "example": "$A$가 예각이고 $\\cos A=\\frac{\\sqrt{3}}{2}$이다.",
+      "entities": [
+        ["A", "angle-variable"],
+        ["A", "angle-variable"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "$A$가 예각이고 $\\tan A=\\frac{\\sqrt{#}}{#}$이다.",
+      "families": ["m3-trig-inverse-special-angle"],
+      "first": "m3-trig-inverse-special-angle:2",
+      "example": "$A$가 예각이고 $\\tan A=\\frac{\\sqrt{3}}{3}$이다.",
+      "entities": [
+        ["A", "angle-variable"],
+        ["A", "angle-variable"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "$A$가 예각이고 $\\sin A=\\frac{\\sqrt{#}}{#}$이다.",
+      "families": ["m3-trig-inverse-special-angle"],
+      "first": "m3-trig-inverse-special-angle:3",
+      "example": "$A$가 예각이고 $\\sin A=\\frac{\\sqrt{2}}{2}$이다.",
+      "entities": [
+        ["A", "angle-variable"],
+        ["A", "angle-variable"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "$A$가 예각이고 $\\tan A=#$이다.",
+      "families": ["m3-trig-inverse-special-angle"],
+      "first": "m3-trig-inverse-special-angle:5",
+      "example": "$A$가 예각이고 $\\tan A=1$이다.",
+      "entities": [
+        ["A", "angle-variable"],
+        ["A", "angle-variable"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "$A$가 예각이고 $\\cos A=\\frac{#}{#}$이다.",
+      "families": ["m3-trig-inverse-special-angle"],
+      "first": "m3-trig-inverse-special-angle:7",
+      "example": "$A$가 예각이고 $\\cos A=\\frac{1}{2}$이다.",
+      "entities": [
+        ["A", "angle-variable"],
+        ["A", "angle-variable"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "$A$가 예각이고 $\\tan A=\\sqrt{#}$이다.",
+      "families": ["m3-trig-inverse-special-angle"],
+      "first": "m3-trig-inverse-special-angle:8",
+      "example": "$A$가 예각이고 $\\tan A=\\sqrt{3}$이다.",
+      "entities": [
+        ["A", "angle-variable"],
+        ["A", "angle-variable"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "직각삼각형 $ABC$에서 $\\angle C=#^{\\circ}$이고 $\\sin A=\\frac{#}{#}$이다.",
+      "families": ["m3-trig-complementary-ratio", "m3-trig-ratio-from-another"],
+      "first": "m3-trig-complementary-ratio:0",
+      "example": "직각삼각형 $ABC$에서 $\\angle C=90^{\\circ}$이고 $\\sin A=\\frac{1}{2}$이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["C", "angle"],
+        ["A", "angle-variable"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "$\\cos B$의 값을 구하시오.",
+      "families": ["m3-trig-complementary-ratio"],
+      "first": "m3-trig-complementary-ratio:0",
+      "example": "$\\cos B$의 값을 구하시오.",
+      "entities": [["B", "angle-variable"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "직각삼각형 $ABC$에서 $\\angle C=#^{\\circ}$이고 $\\cos A=\\frac{#}{#}$이다.",
+      "families": ["m3-trig-complementary-ratio", "m3-trig-ratio-from-another"],
+      "first": "m3-trig-complementary-ratio:1",
+      "example": "직각삼각형 $ABC$에서 $\\angle C=90^{\\circ}$이고 $\\cos A=\\frac{1}{2}$이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["C", "angle"],
+        ["A", "angle-variable"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "$\\sin B$의 값을 구하시오.",
+      "families": ["m3-trig-complementary-ratio"],
+      "first": "m3-trig-complementary-ratio:1",
+      "example": "$\\sin B$의 값을 구하시오.",
+      "entities": [["B", "angle-variable"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "직각삼각형 $ABC$에서 $\\angle C=#^{\\circ}$이고 $\\tan A=#$이다.",
+      "families": ["m3-trig-ratio-from-another"],
+      "first": "m3-trig-ratio-from-another:0",
+      "example": "직각삼각형 $ABC$에서 $\\angle C=90^{\\circ}$이고 $\\tan A=1$이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["C", "angle"],
+        ["A", "angle-variable"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "$\\sin A$의 값을 구하시오. 근호는 간단히 하시오.",
+      "families": ["m3-trig-ratio-from-another"],
+      "first": "m3-trig-ratio-from-another:0",
+      "example": "$\\sin A$의 값을 구하시오. 근호는 간단히 하시오.",
+      "entities": [["A", "angle-variable"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "$\\cos A$의 값을 구하시오. 근호는 간단히 하시오.",
+      "families": ["m3-trig-ratio-from-another"],
+      "first": "m3-trig-ratio-from-another:1",
+      "example": "$\\cos A$의 값을 구하시오. 근호는 간단히 하시오.",
+      "entities": [["A", "angle-variable"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "$\\tan A$의 값을 구하시오. 근호는 간단히 하시오.",
+      "families": ["m3-trig-ratio-from-another"],
+      "first": "m3-trig-ratio-from-another:25",
+      "example": "$\\tan A$의 값을 구하시오. 근호는 간단히 하시오.",
+      "entities": [["A", "angle-variable"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "직각삼각형 $ABC$에서 $\\angle C=#^{\\circ}$이고 $\\tan A=\\frac{#}{#}$이다.",
+      "families": ["m3-trig-ratio-from-another"],
+      "first": "m3-trig-ratio-from-another:28",
+      "example": "직각삼각형 $ABC$에서 $\\angle C=90^{\\circ}$이고 $\\tan A=\\frac{1}{2}$이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["C", "angle"],
+        ["A", "angle-variable"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "직각삼각형 $ABC$에서 $\\angle C=#^{\\circ}$, $\\tan A=#$, $\\mathrm{AC}=#\\,\\mathrm{cm}$이다.",
+      "families": ["m3-trig-length-given-ratio"],
+      "first": "m3-trig-length-given-ratio:0",
+      "example": "직각삼각형 $ABC$에서 $\\angle C=90^{\\circ}$, $\\tan A=1$, $\\mathrm{AC}=2\\,\\mathrm{cm}$이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["C", "angle"],
+        ["A", "angle-variable"],
+        ["AC", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "변 $\\mathrm{BC}$의 길이를 구하시오.",
+      "families": ["m3-trig-length-given-ratio"],
+      "first": "m3-trig-length-given-ratio:0",
+      "example": "변 $\\mathrm{BC}$의 길이를 구하시오.",
+      "entities": [["BC", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "직각삼각형 $ABC$에서 $\\angle C=#^{\\circ}$, $\\tan A=#$, $\\mathrm{BC}=#\\,\\mathrm{cm}$이다.",
+      "families": ["m3-trig-length-given-ratio"],
+      "first": "m3-trig-length-given-ratio:14",
+      "example": "직각삼각형 $ABC$에서 $\\angle C=90^{\\circ}$, $\\tan A=1$, $\\mathrm{BC}=2\\,\\mathrm{cm}$이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["C", "angle"],
+        ["A", "angle-variable"],
+        ["BC", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "변 $\\mathrm{AC}$의 길이를 구하시오.",
+      "families": ["m3-trig-length-given-ratio", "m3-trig-side-from-area-sine"],
+      "first": "m3-trig-length-given-ratio:14",
+      "example": "변 $\\mathrm{AC}$의 길이를 구하시오.",
+      "entities": [["AC", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "직각삼각형 $ABC$에서 $\\angle C=#^{\\circ}$, $\\sin A=\\frac{#}{#}$, $\\mathrm{AB}=#\\,\\mathrm{cm}$이다.",
+      "families": ["m3-trig-length-given-ratio"],
+      "first": "m3-trig-length-given-ratio:336",
+      "example": "직각삼각형 $ABC$에서 $\\angle C=90^{\\circ}$, $\\sin A=\\frac{1}{2}$, $\\mathrm{AB}=2\\,\\mathrm{cm}$이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["C", "angle"],
+        ["A", "angle-variable"],
+        ["AB", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "직각삼각형 $ABC$에서 $\\angle C=#^{\\circ}$, $\\cos A=\\frac{#}{#}$, $\\mathrm{AB}=#\\,\\mathrm{cm}$이다.",
+      "families": ["m3-trig-length-given-ratio"],
+      "first": "m3-trig-length-given-ratio:350",
+      "example": "직각삼각형 $ABC$에서 $\\angle C=90^{\\circ}$, $\\cos A=\\frac{1}{2}$, $\\mathrm{AB}=2\\,\\mathrm{cm}$이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["C", "angle"],
+        ["A", "angle-variable"],
+        ["AB", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "직각삼각형 $ABC$에서 $\\angle C=#^{\\circ}$, $\\sin A=\\frac{#}{#}$, $\\mathrm{BC}=#\\,\\mathrm{cm}$이다.",
+      "families": ["m3-trig-length-given-ratio"],
+      "first": "m3-trig-length-given-ratio:364",
+      "example": "직각삼각형 $ABC$에서 $\\angle C=90^{\\circ}$, $\\sin A=\\frac{1}{2}$, $\\mathrm{BC}=2\\,\\mathrm{cm}$이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["C", "angle"],
+        ["A", "angle-variable"],
+        ["BC", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "변 $\\mathrm{AB}$의 길이를 구하시오.",
+      "families": ["m3-trig-length-given-ratio"],
+      "first": "m3-trig-length-given-ratio:364",
+      "example": "변 $\\mathrm{AB}$의 길이를 구하시오.",
+      "entities": [["AB", "segment"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "직각삼각형 $ABC$에서 $\\angle C=#^{\\circ}$, $\\cos A=\\frac{#}{#}$, $\\mathrm{AC}=#\\,\\mathrm{cm}$이다.",
+      "families": ["m3-trig-length-given-ratio"],
+      "first": "m3-trig-length-given-ratio:378",
+      "example": "직각삼각형 $ABC$에서 $\\angle C=90^{\\circ}$, $\\cos A=\\frac{1}{2}$, $\\mathrm{AC}=2\\,\\mathrm{cm}$이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["C", "angle"],
+        ["A", "angle-variable"],
+        ["AC", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "직각삼각형 $ABC$에서 $\\angle C=#^{\\circ}$, $\\tan A=\\frac{#}{#}$, $\\mathrm{AC}=#\\,\\mathrm{cm}$이다.",
+      "families": ["m3-trig-length-given-ratio"],
+      "first": "m3-trig-length-given-ratio:392",
+      "example": "직각삼각형 $ABC$에서 $\\angle C=90^{\\circ}$, $\\tan A=\\frac{1}{2}$, $\\mathrm{AC}=2\\,\\mathrm{cm}$이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["C", "angle"],
+        ["A", "angle-variable"],
+        ["AC", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "직각삼각형 $ABC$에서 $\\angle C=#^{\\circ}$, $\\tan A=\\frac{#}{#}$, $\\mathrm{BC}=#\\,\\mathrm{cm}$이다.",
+      "families": ["m3-trig-length-given-ratio"],
+      "first": "m3-trig-length-given-ratio:406",
+      "example": "직각삼각형 $ABC$에서 $\\angle C=90^{\\circ}$, $\\tan A=\\frac{1}{2}$, $\\mathrm{BC}=2\\,\\mathrm{cm}$이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["C", "angle"],
+        ["A", "angle-variable"],
+        ["BC", "segment"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 $ABC$에서 $\\mathrm{AB}=#\\,\\mathrm{cm}$, $\\mathrm{AC}=#\\,\\mathrm{cm}$이고 끼인각 $A$는 예각이며 $\\sin A=\\frac{#}{#}$이다.",
+      "families": ["m3-trig-area-given-sine"],
+      "first": "m3-trig-area-given-sine:0",
+      "example": "삼각형 $ABC$에서 $\\mathrm{AB}=2\\,\\mathrm{cm}$, $\\mathrm{AC}=2\\,\\mathrm{cm}$이고 끼인각 $A$는 예각이며 $\\sin A=\\frac{1}{2}$이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["AB", "segment"],
+        ["AC", "segment"],
+        ["A", "angle-variable"],
+        ["A", "angle-variable"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "삼각형 ABC의 넓이를 구하시오.",
+      "families": ["m3-trig-area-given-sine"],
+      "first": "m3-trig-area-given-sine:0",
+      "example": "삼각형 ABC의 넓이를 구하시오.",
+      "entities": [["ABC", "polygon"]],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 $ABC$의 넓이는 $#\\,\\mathrm{cm}^{#}$이다. $\\mathrm{AB}=#\\,\\mathrm{cm}$이고 끼인각 $A$는 예각이며 $\\sin A=\\frac{#}{#}$이다.",
+      "families": ["m3-trig-side-from-area-sine"],
+      "first": "m3-trig-side-from-area-sine:0",
+      "example": "삼각형 $ABC$의 넓이는 $1\\,\\mathrm{cm}^{2}$이다. $\\mathrm{AB}=2\\,\\mathrm{cm}$이고 끼인각 $A$는 예각이며 $\\sin A=\\frac{1}{2}$이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["AB", "segment"],
+        ["A", "angle-variable"],
+        ["A", "angle-variable"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "text",
+      "pattern": "삼각형 $ABC$에서 $\\mathrm{AB}=#\\,\\mathrm{cm}$, $\\mathrm{AC}=#\\,\\mathrm{cm}$이고 넓이는 $#\\,\\mathrm{cm}^{#}$이다. 끼인각 $A$는 예각이다.",
+      "families": ["m3-trig-sine-from-area"],
+      "first": "m3-trig-sine-from-area:0",
+      "example": "삼각형 $ABC$에서 $\\mathrm{AB}=2\\,\\mathrm{cm}$, $\\mathrm{AC}=2\\,\\mathrm{cm}$이고 넓이는 $1\\,\\mathrm{cm}^{2}$이다. 끼인각 $A$는 예각이다.",
+      "entities": [
+        ["ABC", "polygon"],
+        ["AB", "segment"],
+        ["AC", "segment"],
+        ["A", "angle-variable"]
+      ],
+      "variables": [],
+      "operators": []
+    },
+    {
+      "field": "instruction",
+      "pattern": "$\\sin A$의 값을 구하시오.",
+      "families": ["m3-trig-sine-from-area"],
+      "first": "m3-trig-sine-from-area:0",
+      "example": "$\\sin A$의 값을 구하시오.",
+      "entities": [["A", "angle-variable"]],
+      "variables": [],
+      "operators": []
+    }
+  ]
+}
