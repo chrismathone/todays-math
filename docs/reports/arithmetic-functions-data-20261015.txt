@@ -1,0 +1,300 @@
+Arithmetic functions / data / probability worker — 2026-10-15
+
+Status and integration
+----------------------
+Export FUNCTIONS_DATA_DEFINITIONS from
+src/lib/arithmetic-v2/families/functionsData.ts. Root owns registry integration.
+All definitions are NEW; no published family, ID, snapshot, contract, registry,
+UI, database or environment file was modified. This work followed the dimension
+commit c5f83cc99 (already merged by root) and merge of shared metadata 7849117af.
+Remaining net/middle dimension presentation belongs to root, as agreed.
+
+Coverage is by school unit, not a target number of families. Current finite
+domains total 118 types / 62,491 indexed tasks in these seven placements:
+
+Grade  Semester  Unit                                  Types  Tasks
+중1    1         그래프와 비례관계                         16    6,026
+중1    2         자료의 정리와 해석                       15    4,127
+중2    1         일차함수의 그래프                       15   16,900
+중2    1         일차함수와 일차방정식의 관계              5    4,224
+중2    2         확률과 그 기본 성질                     32    1,273
+중3    1         이차함수와 그래프                       19   18,240
+중3    2         통계                                   16   11,701
+
+Each definition has explicit curriculum { semester, unit }. There is no inferred
+unit fallback. All prompts contain full equations, coordinates, data values or
+sampling rules. No figure is needed, no graph is inferred from pixels, and no
+diagram/graph pack integration or UI rendering change is claimed here.
+
+Authored-prose follow-up to 8a413b009: all mathematical givens and targets in
+prompt.text / instruction now use explicit inline $...$ TeX spans. Natural Korean
+prose remains outside math for wrapping. Root assigns definition-only
+promptPresentation: prose metadata during integration; no prompt/schema flag or
+ID-list export is needed here. Core uses the existing shared tokenizeMath to build
+the standalone latex fallback as escaped text segments plus the authored formulas.
+It adds no parser and never guesses which prose should be mathematical.
+
+Curriculum evidence and limits
+------------------------------
+Primary references reviewed 2026-10-15:
+https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&m=0404
+Ministry notice 2022-33 schedules middle 1 in 2025, middle 2 in 2026 and middle 3
+in 2027. Thus 2026 middle 1/2 use 2022, while middle 3 still uses 2015.
+https://www.ebsmath.co.kr/siteMap
+The primary EBS grade map includes middle 1 representatives / frequency data;
+middle 2 linear functions / probability; middle 3 quadratics / representatives
+and dispersion / correlation. Cross-checked prisma/seed-data/units.ts around
+the grade-specific function and statistics chapters (middle 1 2410–2555,
+middle 2 2690–2890, middle 3 2935–3010).
+
+Semesters follow the usual textbook sequence, not an assertion that national
+achievement standards assign semesters. The local seed also contains middle 3
+boxplots from another curriculum sequence; those are not added to 2026 middle 3.
+Representative-value exercises occur in both middle 1 (2022) and middle 3 (2015)
+for this transitional school year. Across-grade repetitions are intentional;
+every individual family's prompt and parameter domain is unique.
+
+Implemented calculations
+------------------------
+Middle 1 functions: individual coordinates after reflection in x/y axes or
+origin; point-to-axis / horizontal / vertical distances; direct and inverse
+proportion value, constant and inverse input, including rational constants.
+
+Middle 2 functions: function value/input and unknown coefficient/constant from
+a point; slope from two points or changes; x/y change; x/y intercept; equations
+from two points, slope+point and intercepts; parallel coefficient; translations;
+implicit-line slope/intercepts and either coordinate of a two-line intersection.
+Intersections are explicitly about function graphs, not generic system drills.
+
+Middle 3 functions: general/vertex-form values; coefficient from vertex+point;
+vertex coordinates and axis; general-to-vertex p/q; vertex-to-general b/c or full
+equation; translations; global vertex extrema with the requested maximum/minimum
+determined by opening direction; y-intercepts; smaller/larger integer x roots,
+negative/positive radical roots, and tangency. Fractional vertices are included.
+
+Middle 1 data: mean, odd/even median, uniquely determined mode and a missing value
+from mean; frequency totals, relative frequencies, percentages, combined counts,
+missing counts, inverse relative-frequency count/total; class midpoint; mean of
+discrete values with exact frequencies; explicitly encoded stem/leaf median.
+The frequency mean is for exact discrete scores, not a grouped-class estimate.
+
+Middle 2 counting/probability: disjoint addition, product choices, distinct seats,
+unordered pairs, digit cards with/without zero, exact coin heads and complement;
+single-die thresholds/multiples; two-die sums, absolute difference, product
+multiples, specific face and sum thresholds, each as counts and probabilities;
+card multiples/unions; red/blue draws with and without replacement; three repeated
+draws with exact red count; independent draws from different bags. All probability
+prompts explicitly state equal likelihood and independence/replacement as needed.
+No high-school nPr/nCr notation is presented to the student.
+
+Middle 3 data: representatives/range, missing data from mean, deviations and
+missing deviation; population variance / standard deviation of explicit lists,
+including fractional means, zero variance and radicals; effect of ax+b on mean,
+variance and standard deviation, including negative a and zero variance.
+
+Excluded intentionally: qualitative graph reading/sketching, qualitative
+correlation, numerical correlation coefficients, high-school interval extrema,
+calculus, formal permutation/combination notation, ambiguous tied modes, and
+probabilities with unspecified equally likely outcomes. Quadratic intersection
+domains use shifted integer roots or centered signed radicals; additive shifted
+irrational roots are not a generated form. This is broad direct-calculation unit
+coverage, not a claim to every possible numerical or algebraic subcase, official
+achievement-standard certification, or measured learning effects.
+
+Exact answers and verification
+------------------------------
+All exact fields are canonical integer strings; no floating approximations.
+integer: [n]
+rational: [n,d], gcd(|n|,d)=1, d>1 (integers use integer kind)
+polynomial line: [aN,aD,bN,bD] represents y=(aN/aD)x+(bN/bD)
+polynomial quadratic: [aN,aD,bN,bD,cN,cD], descending degrees 2,1,0
+Every coefficient is reduced with positive denominator; degree is exact.
+surd: [n,r,d] represents n*sqrt(r)/d, r>1 square-free, d>0, gcd(|n|,d)=1.
+Square radicands and zero normalize to integer/rational; n is signed. Standard
+deviations require the nonnegative value; quadratic roots explicitly select the
+negative/positive or smaller/larger value. Negative zero, nonreduced encodings,
+wrong signs, display mutations and noncanonical exact strings are rejected.
+
+problemAt uses finite enumerated domains and returns independent copies.
+verify checks domain membership, the full prompt and canonical answer, then an
+independent defining relation; it never calls problemAt or the solver. Probability
+solvers use closed arithmetic counts. Verifiers enumerate distinct labeled objects
+or ordered trials independently, keeping different balls of one color distinct.
+
+Answer distribution: integer 38,812; rational 11,488; polynomial 10,136; surd 2,055.
+
+Evidence
+--------
+src/__tests__/unit/arithmeticFunctionsData.test.ts: 4 tests PASS.
+src/__tests__/unit/arithmeticFunctionsDataProse.test.ts: 2 tests PASS.
+- All 62,491 tasks: canonical exact answer checked against an independent oracle;
+  full prompt/parameter uniqueness inside each family; verifier success;
+  property-order independence; canonical but numerically wrong answer rejected.
+- All 1,273 counting/probability tasks: separately enumerated labeled sample spaces
+  with independently implemented traversal. Includes impossible-event probability
+  0, certain-event probability 1 and explicit no-replacement checks.
+- Each family: first/middle/last prompt/parameter/answer mutation checks; sparse,
+  nonfinite and invalid parameters, invalid indexes, huge numbers, noncanonical
+  strings, altered answer display; returned-candidate mutation isolation.
+- Per applicable family: nonreduced rational/polynomial/radical and sign checks.
+- All seven explicit unit/semester placements asserted; negative transform factors
+  and zero variance remain valid domains.
+Scoped TypeScript noEmit: PASS. Scoped ESLint: PASS (root-installed dependencies).
+Prettier: PASS. No shared registry/browser integration test is claimed by worker;
+root owns those integrations. The earlier dimension browser evidence is in its
+separate committed report.
+
+The follow-up replaces the original 354-sample parse check and Unicode metric
+warning with exhaustive authored-prose verification over all 62,491 tasks:
+- Existing tokenizeMath round-trips every body and instruction. Every numeric
+  quantity, variable, coordinate, data list and equation is an explicit math span;
+  no raw equation Unicode superscript/subscript remains in prose.
+- Independent expected mathematical-given and requested-target arrays for every
+  family are compared against the actual tokenized body and instruction.
+- Fifteen independent full-text fixtures cover coordinates, fractions, equation
+  forms, negative roots, tables, transformed data and sampling/replacement rules.
+- Every distinct inline span, standalone fallback and answer parses under KaTeX
+  throwOnError / strict:error, with no character-metric warnings. The fallback
+  contains no inline dollar delimiters and preserves complete text + math.
+- Full numeric identity matches the pre-edit 8a413b009 SHA-256 fingerprint:
+  dd9dd0ba389b57f4dc92eb361405fe4f2eaf94960e57a98d6aed305592f93568
+  This covers ordered IDs, grades, strands, unit/semester metadata, domain sizes,
+  every parameter tuple and every exact/display answer. No numeric domain changed.
+Root owns shared wrapping prose composition and its browser/print verification.
+
+Reproduction in root with installed dependencies:
+  vitest run src/__tests__/unit/arithmeticFunctionsData.test.ts
+             src/__tests__/unit/arithmeticFunctionsDataProse.test.ts
+  eslint src/lib/arithmetic-v2/families/functionsData.ts
+         src/lib/arithmetic-v2/families/functionsData
+         src/__tests__/unit/arithmeticFunctionsData.test.ts
+         src/__tests__/unit/arithmeticFunctionsDataProse.test.ts
+Scoped tsc includes those paths, extends tsconfig.json and disables incremental.
+Worker used root tools via process-local resolution only; no dependency install,
+node_modules junction, config-file environment write or hook bypass.
+
+Normal-hook commit uses root .husky/_ and existing geometry-triangles-deps.mjs
+resolution wrapper with GEOMETRY_TRIANGLES_DEPS and NODE_OPTIONS set only in the
+commit process; .husky/pre-commit executes npx lint-staged. Root's existing
+temporary npx wrapper resolves the existing root lint-staged installation.
+
+Detailed finite domains (generated from exported definitions)
+----------------------------------------------------------
+m1-fd-reflect-x-x | 중1/1 | 그래프와 비례관계 | x축 대칭점의 x좌표 | 256
+m1-fd-reflect-x-y | 중1/1 | 그래프와 비례관계 | x축 대칭점의 y좌표 | 256
+m1-fd-reflect-y-x | 중1/1 | 그래프와 비례관계 | y축 대칭점의 x좌표 | 256
+m1-fd-reflect-y-y | 중1/1 | 그래프와 비례관계 | y축 대칭점의 y좌표 | 256
+m1-fd-reflect-origin-x | 중1/1 | 그래프와 비례관계 | 원점 대칭점의 x좌표 | 256
+m1-fd-reflect-origin-y | 중1/1 | 그래프와 비례관계 | 원점 대칭점의 y좌표 | 256
+m1-fd-distance-x-axis | 중1/1 | 그래프와 비례관계 | 점과 x축 사이의 거리 | 256
+m1-fd-distance-y-axis | 중1/1 | 그래프와 비례관계 | 점과 y축 사이의 거리 | 256
+m1-fd-horizontal-distance | 중1/1 | 그래프와 비례관계 | 수평선 위 두 점 사이의 거리 | 1053
+m1-fd-vertical-distance | 중1/1 | 그래프와 비례관계 | 수직선 위 두 점 사이의 거리 | 1053
+m1-fd-direct-value | 중1/1 | 그래프와 비례관계 | 정비례의 함숫값 | 312
+m1-fd-direct-constant | 중1/1 | 그래프와 비례관계 | 정비례의 비례상수 | 312
+m1-fd-direct-input | 중1/1 | 그래프와 비례관계 | 정비례의 x의 값 | 312
+m1-fd-inverse-value | 중1/1 | 그래프와 비례관계 | 반비례의 함숫값 | 312
+m1-fd-inverse-constant | 중1/1 | 그래프와 비례관계 | 반비례의 비례상수 | 312
+m1-fd-inverse-input | 중1/1 | 그래프와 비례관계 | 반비례의 x의 값 | 312
+m2-fd-linear-value | 중2/1 | 일차함수의 그래프 | 일차함수의 함숫값 | 1144
+m2-fd-linear-input | 중2/1 | 일차함수의 그래프 | 함숫값에서 x | 1144
+m2-fd-linear-coefficient | 중2/1 | 일차함수의 그래프 | 한 점에서 x의 계수 | 1040
+m2-fd-linear-constant | 중2/1 | 일차함수의 그래프 | 한 점에서 상수항 | 1144
+m2-fd-two-points-slope | 중2/1 | 일차함수의 그래프 | 두 점에서 기울기 | 3150
+m2-fd-two-points-equation | 중2/1 | 일차함수의 그래프 | 두 점에서 일차함수의 식 | 3150
+m2-fd-change-slope | 중2/1 | 일차함수의 그래프 | 변화량에서 기울기 | 120
+m2-fd-change-y-change | 중2/1 | 일차함수의 그래프 | x의 변화량에서 y의 변화량 | 120
+m2-fd-change-x-change | 중2/1 | 일차함수의 그래프 | y의 변화량에서 x의 변화량 | 120
+m2-fd-x-intercept | 중2/1 | 일차함수의 그래프 | 일차함수의 x절편 | 228
+m2-fd-y-intercept | 중2/1 | 일차함수의 그래프 | 일차함수의 y절편 | 228
+m2-fd-slope-point-equation | 중2/1 | 일차함수의 그래프 | 기울기와 한 점에서 일차함수의 식 | 1144
+m2-fd-intercepts-equation | 중2/1 | 일차함수의 그래프 | 두 절편에서 일차함수의 식 | 256
+m2-fd-parallel-coefficient | 중2/1 | 일차함수의 그래프 | 평행한 두 그래프의 계수 | 1320
+m2-fd-linear-translation | 중2/1 | 일차함수의 그래프 | 일차함수 그래프를 평행이동한 식 | 2592
+m2-fd-implicit-slope | 중2/1 | 일차함수와 일차방정식의 관계 | 일차방정식의 그래프에서 기울기 | 598
+m2-fd-implicit-x-intercept | 중2/1 | 일차함수와 일차방정식의 관계 | 일차방정식의 그래프에서 x절편 | 598
+m2-fd-implicit-y-intercept | 중2/1 | 일차함수와 일차방정식의 관계 | 일차방정식의 그래프에서 y절편 | 598
+m2-fd-intersection-x | 중2/1 | 일차함수와 일차방정식의 관계 | 두 일차함수 그래프의 교점의 x좌표 | 1215
+m2-fd-intersection-y | 중2/1 | 일차함수와 일차방정식의 관계 | 두 일차함수 그래프의 교점의 y좌표 | 1215
+m3-fd-quadratic-vertex-x | 중3/1 | 이차함수와 그래프 | 꼭짓점의 x좌표 | 858
+m3-fd-quadratic-vertex-y | 중3/1 | 이차함수와 그래프 | 꼭짓점의 y좌표 | 858
+m3-fd-quadratic-axis | 중3/1 | 이차함수와 그래프 | 대칭축의 x좌표 | 858
+m3-fd-quadratic-vertex-form-p | 중3/1 | 이차함수와 그래프 | 꼭짓점 꼴의 p | 858
+m3-fd-quadratic-vertex-form-q | 중3/1 | 이차함수와 그래프 | 꼭짓점 꼴의 q | 858
+m3-fd-quadratic-extreme | 중3/1 | 이차함수와 그래프 | 꼭짓점에서 최댓값·최솟값 | 858
+m3-fd-quadratic-y-intercept | 중3/1 | 이차함수와 그래프 | 이차함수의 y절편 | 858
+m3-fd-quadratic-value | 중3/1 | 이차함수와 그래프 | 이차함수의 함숫값 | 2646
+m3-fd-quadratic-coefficient | 중3/1 | 이차함수와 그래프 | 꼭짓점과 한 점에서 이차항의 계수 | 2268
+m3-fd-quadratic-vertex-value | 중3/1 | 이차함수와 그래프 | 꼭짓점 꼴의 함숫값 | 2268
+m3-fd-quadratic-expand-b | 중3/1 | 이차함수와 그래프 | 일반형의 b 계수 | 594
+m3-fd-quadratic-expand-c | 중3/1 | 이차함수와 그래프 | 일반형의 c 계수 | 594
+m3-fd-quadratic-expand-equation | 중3/1 | 이차함수와 그래프 | 꼭짓점 꼴을 일반형으로 전개 | 594
+m3-fd-quadratic-translation | 중3/1 | 이차함수와 그래프 | 이차함수 그래프를 평행이동한 식 | 2400
+m3-fd-quadratic-integer-root-smaller | 중3/1 | 이차함수와 그래프 | x축 교점 중 작은 x좌표 | 330
+m3-fd-quadratic-radical-root-negative | 중3/1 | 이차함수와 그래프 | x축 교점의 음의 x좌표 | 66
+m3-fd-quadratic-integer-root-larger | 중3/1 | 이차함수와 그래프 | x축 교점 중 큰 x좌표 | 330
+m3-fd-quadratic-radical-root-positive | 중3/1 | 이차함수와 그래프 | x축 교점의 양의 x좌표 | 66
+m3-fd-quadratic-tangent-root | 중3/1 | 이차함수와 그래프 | x축과 한 점에서 만나는 x좌표 | 78
+m1-fd-data-mean | 중1/2 | 자료의 정리와 해석 | 자료의 평균 | 240
+m1-fd-data-median | 중1/2 | 자료의 정리와 해석 | 홀수 개 자료의 중앙값 | 240
+m1-fd-data-even-median | 중1/2 | 자료의 정리와 해석 | 짝수 개 자료의 중앙값 | 330
+m1-fd-data-mode | 중1/2 | 자료의 정리와 해석 | 자료의 최빈값 | 91
+m1-fd-data-missing-mean | 중1/2 | 자료의 정리와 해석 | 평균으로 빠진 자료 구하기 | 252
+m3-fd-data-mean | 중3/2 | 통계 | 자료의 평균 | 240
+m3-fd-data-median | 중3/2 | 통계 | 홀수 개 자료의 중앙값 | 240
+m3-fd-data-range | 중3/2 | 통계 | 자료의 범위 | 240
+m3-fd-data-even-median | 중3/2 | 통계 | 짝수 개 자료의 중앙값 | 330
+m3-fd-data-mode | 중3/2 | 통계 | 자료의 최빈값 | 91
+m3-fd-data-missing-mean | 중3/2 | 통계 | 평균으로 빠진 자료 구하기 | 252
+m1-fd-frequency-total | 중1/2 | 자료의 정리와 해석 | 도수의 합 | 125
+m1-fd-frequency-relative | 중1/2 | 자료의 정리와 해석 | 상대도수 | 125
+m1-fd-frequency-percent | 중1/2 | 자료의 정리와 해석 | 상대도수의 백분율 | 125
+m1-fd-frequency-combined | 중1/2 | 자료의 정리와 해석 | 두 범주의 도수 합 | 125
+m1-fd-frequency-missing | 중1/2 | 자료의 정리와 해석 | 전체 도수로 빠진 도수 | 125
+m1-fd-relative-inverse-count | 중1/2 | 자료의 정리와 해석 | 상대도수에서 도수 | 429
+m1-fd-relative-inverse-total | 중1/2 | 자료의 정리와 해석 | 상대도수에서 전체 도수 | 429
+m1-fd-class-midpoint | 중1/2 | 자료의 정리와 해석 | 계급값 | 51
+m1-fd-discrete-frequency-mean | 중1/2 | 자료의 정리와 해석 | 도수표로 이산 자료의 평균 | 1152
+m1-fd-stem-leaf-median | 중1/2 | 자료의 정리와 해석 | 줄기와 잎 자료의 중앙값 | 288
+m3-fd-data-deviation | 중3/2 | 통계 | 일반 자료의 편차 | 240
+m3-fd-data-variance | 중3/2 | 통계 | 일반 자료의 분산 | 240
+m3-fd-data-standard-deviation | 중3/2 | 통계 | 일반 자료의 표준편차 | 240
+m3-fd-deviation | 중3/2 | 통계 | 자료의 편차 | 270
+m3-fd-missing-deviation | 중3/2 | 통계 | 편차의 합으로 빠진 편차 | 30
+m3-fd-variance | 중3/2 | 통계 | 자료의 분산 | 270
+m3-fd-standard-deviation | 중3/2 | 통계 | 자료의 표준편차 | 270
+m3-fd-transformed-mean | 중3/2 | 통계 | 변환한 자료의 평균 | 2916
+m3-fd-transformed-variance | 중3/2 | 통계 | 변환한 자료의 분산 | 2916
+m3-fd-transformed-standard-deviation | 중3/2 | 통계 | 변환한 자료의 표준편차 | 2916
+m2-fd-count-addition | 중2/2 | 확률과 그 기본 성질 | 서로 겹치지 않는 선택의 경우의 수 | 49
+m2-fd-count-product | 중2/2 | 확률과 그 기본 성질 | 두 단계 선택의 경우의 수 | 36
+m2-fd-count-seating | 중2/2 | 확률과 그 기본 성질 | 서로 다른 자리에 순서 있게 앉히기 | 14
+m2-fd-count-pair | 중2/2 | 확률과 그 기본 성질 | 순서 없이 두 명 고르기 | 13
+m2-fd-count-digits-nonzero | 중2/2 | 확률과 그 기본 성질 | 0이 없는 숫자 카드로 자연수 만들기 | 8
+m2-fd-count-digits-with-zero | 중2/2 | 확률과 그 기본 성질 | 0을 포함한 숫자 카드로 자연수 만들기 | 8
+m2-fd-coin-exact-probability | 중2/2 | 확률과 그 기본 성질 | 동전에서 앞면 횟수의 확률 | 25
+m2-fd-coin-exact-count | 중2/2 | 확률과 그 기본 성질 | 동전에서 앞면 횟수의 경우의 수 | 25
+m2-fd-coin-complement | 중2/2 | 확률과 그 기본 성질 | 여사건으로 적어도 한 번 앞면의 확률 | 7
+m2-fd-single-die-above | 중2/2 | 확률과 그 기본 성질 | 주사위에서 정해진 수보다 큰 눈의 확률 | 5
+m2-fd-single-die-multiple | 중2/2 | 확률과 그 기본 성질 | 주사위에서 배수인 눈의 확률 | 5
+m2-fd-two-dice-sum-probability | 중2/2 | 확률과 그 기본 성질 | 두 주사위 합의 확률 | 11
+m2-fd-two-dice-sum-count | 중2/2 | 확률과 그 기본 성질 | 두 주사위 합의 경우의 수 | 11
+m2-fd-two-dice-difference-probability | 중2/2 | 확률과 그 기본 성질 | 두 주사위 차의 절댓값의 확률 | 6
+m2-fd-two-dice-difference-count | 중2/2 | 확률과 그 기본 성질 | 두 주사위 차의 절댓값의 경우의 수 | 6
+m2-fd-two-dice-product-multiple-probability | 중2/2 | 확률과 그 기본 성질 | 두 주사위 곱의 배수의 확률 | 5
+m2-fd-two-dice-product-multiple-count | 중2/2 | 확률과 그 기본 성질 | 두 주사위 곱의 배수의 경우의 수 | 5
+m2-fd-two-dice-at-least-one-face-probability | 중2/2 | 확률과 그 기본 성질 | 두 주사위 특정 눈이 적어도 하나의 확률 | 6
+m2-fd-two-dice-at-least-one-face-count | 중2/2 | 확률과 그 기본 성질 | 두 주사위 특정 눈이 적어도 하나의 경우의 수 | 6
+m2-fd-two-dice-sum-at-least-probability | 중2/2 | 확률과 그 기본 성질 | 두 주사위 합의 범위의 확률 | 10
+m2-fd-two-dice-sum-at-least-count | 중2/2 | 확률과 그 기본 성질 | 두 주사위 합의 범위의 경우의 수 | 10
+m2-fd-card-multiple-probability | 중2/2 | 확률과 그 기본 성질 | 숫자 카드의 배수 확률 | 96
+m2-fd-card-multiple-count | 중2/2 | 확률과 그 기본 성질 | 숫자 카드의 배수 경우의 수 | 96
+m2-fd-card-union | 중2/2 | 확률과 그 기본 성질 | 겹치는 카드 사건의 합의 확률 | 238
+m2-fd-balls-no-replace-both-red | 중2/2 | 확률과 그 기본 성질 | 비복원 추출에서 둘 다 빨강 확률 | 36
+m2-fd-balls-no-replace-different | 중2/2 | 확률과 그 기본 성질 | 비복원 추출에서 서로 다른 색 확률 | 36
+m2-fd-balls-no-replace-at-least-one-red | 중2/2 | 확률과 그 기본 성질 | 비복원 추출에서 적어도 하나 빨강 확률 | 36
+m2-fd-balls-replace-both-red | 중2/2 | 확률과 그 기본 성질 | 복원 추출에서 둘 다 빨강 확률 | 36
+m2-fd-balls-replace-different | 중2/2 | 확률과 그 기본 성질 | 복원 추출에서 서로 다른 색 확률 | 36
+m2-fd-balls-replace-at-least-one-red | 중2/2 | 확률과 그 기본 성질 | 복원 추출에서 적어도 하나 빨강 확률 | 36
+m2-fd-balls-three-exact | 중2/2 | 확률과 그 기본 성질 | 세 번 복원 추출에서 빨간 공의 횟수 | 100
+m2-fd-independent-different-bags | 중2/2 | 확률과 그 기본 성질 | 서로 다른 주머니에서 독립 추출 | 256
