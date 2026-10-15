@@ -1,0 +1,1936 @@
+{
+  "status": "PASS",
+  "quick": false,
+  "formatterPath": "C:\\Creative\\testautocreator\\src\\lib\\arithmetic-v2\\presentation\\notation.ts",
+  "formatterSha256": "e804a43df1f0feb8489cf541f8ee508959cb3bb9c3bd7fe0047d65f256cd9d85",
+  "canonicalSha256": "af94ac0ea30cda57f3cdb0fcc19ebd93a1026d9a651397a35e4ee5388fdf7f9c",
+  "families": 272,
+  "candidates": 42749,
+  "figureCandidates": 17552,
+  "uniqueFigureIDs": 17552,
+  "textOnlyCandidates": 25197,
+  "sourceFieldsInventoried": 256494,
+  "sourcePatterns": 1019,
+  "semanticFixturePatterns": 252,
+  "fieldsChecked": 128247,
+  "uniqueFieldsChecked": 49700,
+  "semanticChecks": 128247,
+  "answerValueChecks": 42749,
+  "uniqueAnswerMathML": 7830,
+  "canonicalPromptLatexSyntaxChecks": 42597,
+  "uniqueKatexExpressions": 10556,
+  "katexOccurrences": 174382,
+  "rendererChecks": 587,
+  "rendererPatternAttempts": 580,
+  "syntheticChecks": 12,
+  "incidentIDs": [
+    "m3-pythagoras-isosceles-height-surd:158 (gt1-m3-pythagoras-isosceles-height-surd-17-22)"
+  ],
+  "failures": [],
+  "rows": [
+    {
+      "id": "e4-triangle-missing-angle",
+      "candidates": 70,
+      "figures": 70,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e4-right-triangle-missing-angle",
+      "candidates": 11,
+      "figures": 11,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e2-length-m-cm",
+      "candidates": 98,
+      "figures": 98,
+      "textOnly": 0,
+      "patterns": 12
+    },
+    {
+      "id": "e3-length-cm-mm",
+      "candidates": 98,
+      "figures": 98,
+      "textOnly": 0,
+      "patterns": 12
+    },
+    {
+      "id": "e3-length-km-m",
+      "candidates": 98,
+      "figures": 98,
+      "textOnly": 0,
+      "patterns": 12
+    },
+    {
+      "id": "e3-capacity-l-ml",
+      "candidates": 98,
+      "figures": 98,
+      "textOnly": 0,
+      "patterns": 12
+    },
+    {
+      "id": "e5-area-m2-cm2",
+      "candidates": 98,
+      "figures": 98,
+      "textOnly": 0,
+      "patterns": 12
+    },
+    {
+      "id": "e5-area-km2-m2",
+      "candidates": 98,
+      "figures": 98,
+      "textOnly": 0,
+      "patterns": 12
+    },
+    {
+      "id": "e6-volume-m3-cm3",
+      "candidates": 98,
+      "figures": 98,
+      "textOnly": 0,
+      "patterns": 12
+    },
+    {
+      "id": "e2-length-mixed-cm",
+      "candidates": 891,
+      "figures": 891,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e3-length-mixed-mm",
+      "candidates": 81,
+      "figures": 81,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e3-length-mixed-m",
+      "candidates": 171,
+      "figures": 171,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e3-capacity-mixed-ml",
+      "candidates": 171,
+      "figures": 171,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e6-volume-decimal-units",
+      "candidates": 180,
+      "figures": 180,
+      "textOnly": 0,
+      "patterns": 12
+    },
+    {
+      "id": "e2-length-sum",
+      "candidates": 253,
+      "figures": 253,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e2-length-difference",
+      "candidates": 231,
+      "figures": 231,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e2-length-broken",
+      "candidates": 253,
+      "figures": 253,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e2-polygon-sides-total",
+      "candidates": 65,
+      "figures": 65,
+      "textOnly": 0,
+      "patterns": 10
+    },
+    {
+      "id": "e2-polygon-vertices-total",
+      "candidates": 65,
+      "figures": 65,
+      "textOnly": 0,
+      "patterns": 10
+    },
+    {
+      "id": "e3-circle-radius",
+      "candidates": 49,
+      "figures": 49,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e3-circle-diameter",
+      "candidates": 49,
+      "figures": 49,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-unit-square-area",
+      "candidates": 28,
+      "figures": 28,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e4-angle-sum",
+      "candidates": 121,
+      "figures": 121,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e4-angle-difference",
+      "candidates": 181,
+      "figures": 181,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e4-angle-right-remainder",
+      "candidates": 51,
+      "figures": 51,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e4-angle-straight-remainder",
+      "candidates": 71,
+      "figures": 71,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e4-angle-turn-remainder",
+      "candidates": 57,
+      "figures": 57,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e4-quadrilateral-missing-angle",
+      "candidates": 331,
+      "figures": 331,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e4-isosceles-base-angle",
+      "candidates": 50,
+      "figures": 50,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e4-isosceles-apex-angle",
+      "candidates": 50,
+      "figures": 50,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-rectangle-perimeter",
+      "candidates": 89,
+      "figures": 89,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-rectangle-perimeter-side",
+      "candidates": 89,
+      "figures": 89,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-parallelogram-perimeter",
+      "candidates": 89,
+      "figures": 89,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-parallelogram-perimeter-side",
+      "candidates": 89,
+      "figures": 89,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-square-perimeter",
+      "candidates": 39,
+      "figures": 39,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-square-perimeter-side",
+      "candidates": 39,
+      "figures": 39,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-rhombus-perimeter",
+      "candidates": 39,
+      "figures": 39,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-rhombus-perimeter-side",
+      "candidates": 39,
+      "figures": 39,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-regular-polygon-perimeter",
+      "candidates": 120,
+      "figures": 120,
+      "textOnly": 0,
+      "patterns": 14
+    },
+    {
+      "id": "e5-regular-polygon-perimeter-side",
+      "candidates": 120,
+      "figures": 120,
+      "textOnly": 0,
+      "patterns": 14
+    },
+    {
+      "id": "e5-triangle-perimeter",
+      "candidates": 294,
+      "figures": 294,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-triangle-perimeter-side",
+      "candidates": 294,
+      "figures": 294,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-rectangle-area",
+      "candidates": 89,
+      "figures": 89,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-rectangle-area-side",
+      "candidates": 89,
+      "figures": 89,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-square-area",
+      "candidates": 24,
+      "figures": 24,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-square-area-side",
+      "candidates": 24,
+      "figures": 24,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-triangle-area",
+      "candidates": 166,
+      "figures": 166,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "e5-triangle-area-base",
+      "candidates": 166,
+      "figures": 166,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "e5-triangle-area-height",
+      "candidates": 166,
+      "figures": 166,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "e5-parallelogram-area",
+      "candidates": 166,
+      "figures": 166,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-parallelogram-area-base",
+      "candidates": 166,
+      "figures": 166,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-parallelogram-area-height",
+      "candidates": 166,
+      "figures": 166,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-rhombus-area",
+      "candidates": 89,
+      "figures": 89,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "e5-rhombus-area-diagonal",
+      "candidates": 89,
+      "figures": 89,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "e5-trapezoid-area",
+      "candidates": 265,
+      "figures": 265,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-trapezoid-area-height",
+      "candidates": 265,
+      "figures": 265,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-trapezoid-area-top",
+      "candidates": 265,
+      "figures": 265,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-trapezoid-area-bottom",
+      "candidates": 265,
+      "figures": 265,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-cuboid-edges",
+      "candidates": 264,
+      "figures": 264,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-cube-edges",
+      "candidates": 24,
+      "figures": 24,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-cuboid-edges-height",
+      "candidates": 264,
+      "figures": 264,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e5-cube-edges-side",
+      "candidates": 24,
+      "figures": 24,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e6-cuboid-surface",
+      "candidates": 264,
+      "figures": 264,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e6-cube-surface",
+      "candidates": 24,
+      "figures": 24,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e6-cuboid-surface-height",
+      "candidates": 264,
+      "figures": 264,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e6-cube-surface-side",
+      "candidates": 24,
+      "figures": 24,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e6-cuboid-volume",
+      "candidates": 264,
+      "figures": 264,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e6-cube-volume",
+      "candidates": 24,
+      "figures": 24,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e6-cuboid-volume-height",
+      "candidates": 264,
+      "figures": 264,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e6-cube-volume-side",
+      "candidates": 24,
+      "figures": 24,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e6-cuboid-base-volume",
+      "candidates": 130,
+      "figures": 130,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e6-cuboid-base-height",
+      "candidates": 130,
+      "figures": 130,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "e6-circle-circumference-radius",
+      "candidates": 58,
+      "figures": 58,
+      "textOnly": 0,
+      "patterns": 11
+    },
+    {
+      "id": "e6-circle-circumference-diameter",
+      "candidates": 58,
+      "figures": 58,
+      "textOnly": 0,
+      "patterns": 11
+    },
+    {
+      "id": "e6-circle-area-radius",
+      "candidates": 58,
+      "figures": 58,
+      "textOnly": 0,
+      "patterns": 11
+    },
+    {
+      "id": "e6-circle-area-diameter",
+      "candidates": 58,
+      "figures": 58,
+      "textOnly": 0,
+      "patterns": 11
+    },
+    {
+      "id": "e6-circle-radius-circumference",
+      "candidates": 58,
+      "figures": 58,
+      "textOnly": 0,
+      "patterns": 11
+    },
+    {
+      "id": "e6-circle-diameter-circumference",
+      "candidates": 58,
+      "figures": 58,
+      "textOnly": 0,
+      "patterns": 11
+    },
+    {
+      "id": "e6-circle-radius-area",
+      "candidates": 58,
+      "figures": 58,
+      "textOnly": 0,
+      "patterns": 11
+    },
+    {
+      "id": "e6-circle-diameter-area",
+      "candidates": 58,
+      "figures": 58,
+      "textOnly": 0,
+      "patterns": 11
+    },
+    {
+      "id": "e6-cylinder-net-area",
+      "candidates": 468,
+      "figures": 468,
+      "textOnly": 0,
+      "patterns": 15
+    },
+    {
+      "id": "e6-cylinder-net-area-height",
+      "candidates": 468,
+      "figures": 468,
+      "textOnly": 0,
+      "patterns": 17
+    },
+    {
+      "id": "e6-cylinder-net-area-radius",
+      "candidates": 234,
+      "figures": 234,
+      "textOnly": 0,
+      "patterns": 11
+    },
+    {
+      "id": "e6-cylinder-net-area-diameter",
+      "candidates": 234,
+      "figures": 234,
+      "textOnly": 0,
+      "patterns": 11
+    },
+    {
+      "id": "m1-polygon-vertex-diagonals",
+      "candidates": 12,
+      "figures": 12,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-polygon-fan-triangles",
+      "candidates": 12,
+      "figures": 12,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-polygon-sides-vertex-diagonals",
+      "candidates": 17,
+      "figures": 0,
+      "textOnly": 17,
+      "patterns": 6
+    },
+    {
+      "id": "m1-polygon-sides-fan-triangles",
+      "candidates": 17,
+      "figures": 0,
+      "textOnly": 17,
+      "patterns": 6
+    },
+    {
+      "id": "m1-polygon-sides-sum",
+      "candidates": 18,
+      "figures": 0,
+      "textOnly": 18,
+      "patterns": 6
+    },
+    {
+      "id": "m1-prism-faces-count",
+      "candidates": 10,
+      "figures": 10,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-prism-base-from-faces",
+      "candidates": 10,
+      "figures": 0,
+      "textOnly": 10,
+      "patterns": 6
+    },
+    {
+      "id": "m1-prism-edges-count",
+      "candidates": 10,
+      "figures": 10,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-prism-base-from-edges",
+      "candidates": 10,
+      "figures": 0,
+      "textOnly": 10,
+      "patterns": 6
+    },
+    {
+      "id": "m1-prism-vertices-count",
+      "candidates": 10,
+      "figures": 10,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-prism-base-from-vertices",
+      "candidates": 10,
+      "figures": 0,
+      "textOnly": 10,
+      "patterns": 6
+    },
+    {
+      "id": "m1-pyramid-faces-count",
+      "candidates": 10,
+      "figures": 10,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-pyramid-base-from-faces",
+      "candidates": 10,
+      "figures": 0,
+      "textOnly": 10,
+      "patterns": 6
+    },
+    {
+      "id": "m1-pyramid-edges-count",
+      "candidates": 10,
+      "figures": 10,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-pyramid-base-from-edges",
+      "candidates": 10,
+      "figures": 0,
+      "textOnly": 10,
+      "patterns": 6
+    },
+    {
+      "id": "m1-pyramid-vertices-count",
+      "candidates": 10,
+      "figures": 10,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-pyramid-base-from-vertices",
+      "candidates": 10,
+      "figures": 0,
+      "textOnly": 10,
+      "patterns": 6
+    },
+    {
+      "id": "m1-frustum-faces-count",
+      "candidates": 10,
+      "figures": 10,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-frustum-base-from-faces",
+      "candidates": 10,
+      "figures": 0,
+      "textOnly": 10,
+      "patterns": 6
+    },
+    {
+      "id": "m1-frustum-edges-count",
+      "candidates": 10,
+      "figures": 10,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-frustum-base-from-edges",
+      "candidates": 10,
+      "figures": 0,
+      "textOnly": 10,
+      "patterns": 6
+    },
+    {
+      "id": "m1-frustum-vertices-count",
+      "candidates": 10,
+      "figures": 10,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-frustum-base-from-vertices",
+      "candidates": 10,
+      "figures": 0,
+      "textOnly": 10,
+      "patterns": 6
+    },
+    {
+      "id": "m2-obtuse-circum-central-angle",
+      "candidates": 11,
+      "figures": 11,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-obtuse-circum-vertex-angle",
+      "candidates": 11,
+      "figures": 11,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-obtuse-circum-base-angle",
+      "candidates": 11,
+      "figures": 11,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-circum-central-angle",
+      "candidates": 11,
+      "figures": 11,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-circum-vertex-angle",
+      "candidates": 11,
+      "figures": 11,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-circum-radius-base-angle",
+      "candidates": 11,
+      "figures": 11,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-circum-base-central-angle",
+      "candidates": 11,
+      "figures": 11,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-circum-three-base-angles",
+      "candidates": 14,
+      "figures": 14,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-circum-equal-radii",
+      "candidates": 19,
+      "figures": 19,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-right-circumradius",
+      "candidates": 19,
+      "figures": 19,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-right-circum-diameter",
+      "candidates": 19,
+      "figures": 19,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-incenter-half-angle",
+      "candidates": 11,
+      "figures": 11,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-incenter-whole-angle",
+      "candidates": 11,
+      "figures": 11,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-incenter-central-angle",
+      "candidates": 11,
+      "figures": 11,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-incenter-inverse-angle",
+      "candidates": 11,
+      "figures": 11,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-incenter-three-half-angles",
+      "candidates": 13,
+      "figures": 13,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-iso-incenter-base-half",
+      "candidates": 11,
+      "figures": 11,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-incenter-area",
+      "candidates": 20,
+      "figures": 20,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-incenter-radius",
+      "candidates": 20,
+      "figures": 20,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-incenter-perimeter",
+      "candidates": 20,
+      "figures": 20,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-incenter-part-area",
+      "candidates": 20,
+      "figures": 20,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-incenter-right-radius",
+      "candidates": 20,
+      "figures": 20,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-centroid-vertex-from-short",
+      "candidates": 19,
+      "figures": 19,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-centroid-short-from-vertex",
+      "candidates": 19,
+      "figures": 19,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m2-centroid-vertex-from-median",
+      "candidates": 19,
+      "figures": 19,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m2-centroid-short-from-median",
+      "candidates": 19,
+      "figures": 19,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m2-centroid-median-from-vertex",
+      "candidates": 19,
+      "figures": 19,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m2-centroid-median-from-short",
+      "candidates": 19,
+      "figures": 19,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-centroid-area-3",
+      "candidates": 20,
+      "figures": 20,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-centroid-area-6",
+      "candidates": 20,
+      "figures": 20,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-iso-bisector-angle",
+      "candidates": 11,
+      "figures": 11,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-iso-bisector-base",
+      "candidates": 19,
+      "figures": 19,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-iso-bisector-half-base",
+      "candidates": 19,
+      "figures": 19,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-triangle-midsegment",
+      "candidates": 19,
+      "figures": 19,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m2-midsegment-to-base",
+      "candidates": 19,
+      "figures": 19,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-midsegment-area-small",
+      "candidates": 19,
+      "figures": 19,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-midsegment-area-remainder",
+      "candidates": 19,
+      "figures": 19,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-trapezoid-midline",
+      "candidates": 20,
+      "figures": 20,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-trapezoid-base",
+      "candidates": 20,
+      "figures": 20,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-trapezoid-diagonal-midpoints",
+      "candidates": 20,
+      "figures": 20,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-similarity-ratio-power-1",
+      "candidates": 7,
+      "figures": 7,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m2-similarity-length-enlarge",
+      "candidates": 35,
+      "figures": 35,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-similarity-length-reduce",
+      "candidates": 35,
+      "figures": 35,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-similarity-ratio-power-2",
+      "candidates": 7,
+      "figures": 7,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m2-similarity-length-from-power-2",
+      "candidates": 7,
+      "figures": 7,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m2-similarity-area-enlarge",
+      "candidates": 35,
+      "figures": 35,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-similarity-area-reduce",
+      "candidates": 35,
+      "figures": 35,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-similarity-ratio-power-3",
+      "candidates": 7,
+      "figures": 7,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m2-similarity-length-from-power-3",
+      "candidates": 7,
+      "figures": 7,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m2-similarity-volume-enlarge",
+      "candidates": 35,
+      "figures": 35,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-similarity-volume-reduce",
+      "candidates": 35,
+      "figures": 35,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-similarity-perimeter",
+      "candidates": 35,
+      "figures": 35,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-parallel-triangle-side-part",
+      "candidates": 45,
+      "figures": 45,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-parallel-triangle-base",
+      "candidates": 12,
+      "figures": 12,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-parallel-triangle-whole-side",
+      "candidates": 45,
+      "figures": 45,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-triangle-bisector-segment",
+      "candidates": 27,
+      "figures": 27,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m2-parallelogram-adjacent",
+      "candidates": 8,
+      "figures": 8,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-parallelogram-diagonal-half",
+      "candidates": 19,
+      "figures": 19,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m2-parallelogram-diagonal-whole",
+      "candidates": 19,
+      "figures": 19,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-parallelogram-area-quarter",
+      "candidates": 19,
+      "figures": 19,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-rectangle-diagonal-half",
+      "candidates": 19,
+      "figures": 19,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m2-rhombus-diagonal-angle",
+      "candidates": 11,
+      "figures": 11,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-isosceles-trapezoid-angle",
+      "candidates": 7,
+      "figures": 7,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-pythagoras-hypotenuse-integer",
+      "candidates": 7,
+      "figures": 7,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-pythagoras-leg-integer",
+      "candidates": 14,
+      "figures": 14,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-pythagoras-rectangle-diagonal-integer",
+      "candidates": 7,
+      "figures": 7,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-pythagoras-rectangle-side-integer",
+      "candidates": 14,
+      "figures": 14,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-pythagoras-isosceles-height-integer",
+      "candidates": 14,
+      "figures": 14,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-pythagoras-rhombus-side-integer",
+      "candidates": 7,
+      "figures": 7,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m3-pythagoras-hypotenuse-surd",
+      "candidates": 138,
+      "figures": 138,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m3-pythagoras-leg-surd",
+      "candidates": 177,
+      "figures": 177,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m3-pythagoras-rectangle-diagonal-surd",
+      "candidates": 138,
+      "figures": 138,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m3-pythagoras-rectangle-side-surd",
+      "candidates": 177,
+      "figures": 177,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m3-pythagoras-isosceles-height-surd",
+      "candidates": 177,
+      "figures": 177,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m3-pythagoras-rhombus-side-surd",
+      "candidates": 138,
+      "figures": 138,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m2-right-radius-from-legs",
+      "candidates": 7,
+      "figures": 7,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m2-right-triangle-height",
+      "candidates": 7,
+      "figures": 7,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m2-right-triangle-projection",
+      "candidates": 7,
+      "figures": 7,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m2-right-triangle-area",
+      "candidates": 7,
+      "figures": 7,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-right-altitude-product",
+      "candidates": 10,
+      "figures": 10,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m3-right-leg-product",
+      "candidates": 10,
+      "figures": 10,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m2-centroid-median-sum",
+      "candidates": 27,
+      "figures": 27,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-triangle-median-area",
+      "candidates": 29,
+      "figures": 29,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-same-height-area-ratio",
+      "candidates": 36,
+      "figures": 36,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-three-parallel-segments",
+      "candidates": 32,
+      "figures": 32,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-trapezoid-parallel-section",
+      "candidates": 64,
+      "figures": 64,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m2-external-bisector-part",
+      "candidates": 18,
+      "figures": 18,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m2-external-bisector-base",
+      "candidates": 18,
+      "figures": 18,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m2-midpoint-triangle-perimeter-part",
+      "candidates": 28,
+      "figures": 28,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m2-midpoint-triangle-perimeter-whole",
+      "candidates": 28,
+      "figures": 28,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-parallel-angle",
+      "candidates": 14,
+      "figures": 14,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m1-triangle-exterior",
+      "candidates": 27,
+      "figures": 27,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-triangle-interior-exterior",
+      "candidates": 27,
+      "figures": 27,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-polygon-sum",
+      "candidates": 10,
+      "figures": 10,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-polygon-interior",
+      "candidates": 10,
+      "figures": 10,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m1-polygon-exterior",
+      "candidates": 10,
+      "figures": 10,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m1-polygon-sides-interior",
+      "candidates": 8,
+      "figures": 0,
+      "textOnly": 8,
+      "patterns": 6
+    },
+    {
+      "id": "m1-polygon-sides-exterior",
+      "candidates": 8,
+      "figures": 0,
+      "textOnly": 8,
+      "patterns": 6
+    },
+    {
+      "id": "m1-polygon-diagonals",
+      "candidates": 10,
+      "figures": 10,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-polygon-sides-diagonals",
+      "candidates": 9,
+      "figures": 0,
+      "textOnly": 9,
+      "patterns": 6
+    },
+    {
+      "id": "m1-circle-circumference",
+      "candidates": 14,
+      "figures": 14,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-circle-area",
+      "candidates": 14,
+      "figures": 14,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-circle-radius-circumference",
+      "candidates": 14,
+      "figures": 14,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-circle-radius-area",
+      "candidates": 14,
+      "figures": 14,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-sector-arc",
+      "candidates": 50,
+      "figures": 50,
+      "textOnly": 0,
+      "patterns": 12
+    },
+    {
+      "id": "m1-sector-area",
+      "candidates": 50,
+      "figures": 50,
+      "textOnly": 0,
+      "patterns": 12
+    },
+    {
+      "id": "m1-sector-perimeter",
+      "candidates": 50,
+      "figures": 50,
+      "textOnly": 0,
+      "patterns": 12
+    },
+    {
+      "id": "m1-sector-angle-arc",
+      "candidates": 50,
+      "figures": 50,
+      "textOnly": 0,
+      "patterns": 12
+    },
+    {
+      "id": "m1-sector-angle-area",
+      "candidates": 50,
+      "figures": 50,
+      "textOnly": 0,
+      "patterns": 12
+    },
+    {
+      "id": "m1-sector-radius-arc",
+      "candidates": 50,
+      "figures": 50,
+      "textOnly": 0,
+      "patterns": 12
+    },
+    {
+      "id": "m1-sector-radius-area",
+      "candidates": 50,
+      "figures": 50,
+      "textOnly": 0,
+      "patterns": 12
+    },
+    {
+      "id": "m1-sector-area-arc",
+      "candidates": 50,
+      "figures": 50,
+      "textOnly": 0,
+      "patterns": 18
+    },
+    {
+      "id": "m1-prism-volume",
+      "candidates": 114,
+      "figures": 114,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-prism-surface",
+      "candidates": 75,
+      "figures": 75,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-cylinder-volume",
+      "candidates": 54,
+      "figures": 54,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-cylinder-surface",
+      "candidates": 54,
+      "figures": 54,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-cylinder-lateral",
+      "candidates": 54,
+      "figures": 54,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-pyramid-volume",
+      "candidates": 64,
+      "figures": 64,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-pyramid-surface",
+      "candidates": 50,
+      "figures": 50,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-cone-volume",
+      "candidates": 54,
+      "figures": 54,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m1-cone-surface",
+      "candidates": 72,
+      "figures": 72,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-cone-lateral",
+      "candidates": 72,
+      "figures": 72,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-sphere-surface",
+      "candidates": 15,
+      "figures": 15,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-sphere-volume",
+      "candidates": 15,
+      "figures": 15,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m3-circle-inscribed",
+      "candidates": 9,
+      "figures": 9,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m3-circle-central",
+      "candidates": 9,
+      "figures": 9,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m3-circle-same-arc",
+      "candidates": 9,
+      "figures": 9,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m3-circle-cyclic-opposite",
+      "candidates": 9,
+      "figures": 9,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m3-circle-chord-length",
+      "candidates": 33,
+      "figures": 33,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m3-circle-chord-distance",
+      "candidates": 33,
+      "figures": 33,
+      "textOnly": 0,
+      "patterns": 10
+    },
+    {
+      "id": "m3-circle-tangent-angle",
+      "candidates": 9,
+      "figures": 9,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m3-trig-ratio",
+      "candidates": 120,
+      "figures": 120,
+      "textOnly": 0,
+      "patterns": 12
+    },
+    {
+      "id": "m3-trig-special-value",
+      "candidates": 9,
+      "figures": 9,
+      "textOnly": 0,
+      "patterns": 16
+    },
+    {
+      "id": "m3-trig-special-length",
+      "candidates": 342,
+      "figures": 342,
+      "textOnly": 0,
+      "patterns": 23
+    },
+    {
+      "id": "m3-trig-triangle-area",
+      "candidates": 60,
+      "figures": 60,
+      "textOnly": 0,
+      "patterns": 10
+    },
+    {
+      "id": "m1-prism-base-area-volume",
+      "candidates": 114,
+      "figures": 114,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-prism-height-volume",
+      "candidates": 114,
+      "figures": 114,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-pyramid-base-area-volume",
+      "candidates": 64,
+      "figures": 64,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-pyramid-height-volume",
+      "candidates": 64,
+      "figures": 64,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-prism-base-area-surface",
+      "candidates": 75,
+      "figures": 75,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-prism-height-surface",
+      "candidates": 75,
+      "figures": 75,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-pyramid-slant-surface",
+      "candidates": 50,
+      "figures": 50,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-cylinder-height-volume",
+      "candidates": 54,
+      "figures": 54,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-cylinder-radius-volume",
+      "candidates": 54,
+      "figures": 54,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-cone-height-volume",
+      "candidates": 54,
+      "figures": 54,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m1-cone-radius-volume",
+      "candidates": 54,
+      "figures": 54,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m1-cylinder-height-lateral",
+      "candidates": 54,
+      "figures": 54,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-cylinder-radius-lateral",
+      "candidates": 54,
+      "figures": 54,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-cylinder-height-surface",
+      "candidates": 54,
+      "figures": 54,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-cone-radius-lateral",
+      "candidates": 72,
+      "figures": 72,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-cone-generator-lateral",
+      "candidates": 72,
+      "figures": 72,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-cone-generator-surface",
+      "candidates": 72,
+      "figures": 72,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-sphere-radius-surface",
+      "candidates": 15,
+      "figures": 15,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m1-sphere-radius-volume",
+      "candidates": 15,
+      "figures": 15,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m3-circle-tangent-chord",
+      "candidates": 16,
+      "figures": 16,
+      "textOnly": 0,
+      "patterns": 8
+    },
+    {
+      "id": "m3-circle-equal-tangents",
+      "candidates": 19,
+      "figures": 19,
+      "textOnly": 0,
+      "patterns": 6
+    },
+    {
+      "id": "m3-trig-endpoint-values",
+      "candidates": 5,
+      "figures": 0,
+      "textOnly": 5,
+      "patterns": 10
+    },
+    {
+      "id": "m3-trig-inverse-special-angle",
+      "candidates": 9,
+      "figures": 0,
+      "textOnly": 9,
+      "patterns": 18
+    },
+    {
+      "id": "m3-trig-complementary-ratio",
+      "candidates": 90,
+      "figures": 0,
+      "textOnly": 90,
+      "patterns": 9
+    },
+    {
+      "id": "m3-trig-ratio-from-another",
+      "candidates": 362,
+      "figures": 0,
+      "textOnly": 362,
+      "patterns": 26
+    },
+    {
+      "id": "m3-trig-length-given-ratio",
+      "candidates": 5068,
+      "figures": 0,
+      "textOnly": 5068,
+      "patterns": 24
+    },
+    {
+      "id": "m3-trig-area-given-sine",
+      "candidates": 2970,
+      "figures": 0,
+      "textOnly": 2970,
+      "patterns": 8
+    },
+    {
+      "id": "m3-trig-side-from-area-sine",
+      "candidates": 14850,
+      "figures": 0,
+      "textOnly": 14850,
+      "patterns": 8
+    },
+    {
+      "id": "m3-trig-sine-from-area",
+      "candidates": 1586,
+      "figures": 0,
+      "textOnly": 1586,
+      "patterns": 6
+    },
+    {
+      "id": "m3-trig-special-squared-arithmetic",
+      "candidates": 90,
+      "figures": 0,
+      "textOnly": 90,
+      "patterns": 46
+    }
+  ]
+}
