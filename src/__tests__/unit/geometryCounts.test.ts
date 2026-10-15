@@ -1,5 +1,6 @@
 // @vitest-environment node
 import { describe, expect, it } from "vitest";
+import { arithmeticGeometryText } from "@/lib/arithmetic-v2/presentation/text";
 import {
   COUNT_GEOMETRY_DEFINITIONS as definitions,
   COUNT_GEOMETRY_FIGURES as figures,
@@ -122,7 +123,9 @@ describe("direct polygon and polyhedron counts", () => {
     const problems = arithmeticToStudioProblems(sheet);
     for (const [index, item] of sheet.rounds[0].items.entries()) {
       if (item.prompt.layout !== "math") throw new Error("math expected");
-      expect(problems[index].content).toContain(item.prompt.text);
+      expect(problems[index].content).toContain(
+        arithmeticGeometryText(item.prompt.text),
+      );
       expect(problems[index].content).toContain("$ 개");
       expect(problems[index].content).not.toContain("[그림1]");
       expect(problems[index].figureSvg).toBeNull();

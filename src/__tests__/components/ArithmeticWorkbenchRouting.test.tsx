@@ -23,22 +23,37 @@ it("keeps generated drafts when switching between grade and basic arithmetic", a
   const gradeQuestion = screen.getByRole("region", {
     name: "생성한 문항 검토",
   })?.textContent;
-  fireEvent.click(
-    screen.getByRole("button", { name: "기초 연산 · 세부 조건" }),
-  );
+  fireEvent.click(screen.getByRole("button", { name: "1 범위 설정" }));
+  fireEvent.change(screen.getByRole("combobox", { name: "학년" }), {
+    target: { value: "기초 연산" },
+  });
   await screen.findByRole("button", { name: "연습지 만들기" });
   expect(screen.getByRole("textbox", { name: "학습지 제목" })).toHaveValue(
     "연산 기초 다지기",
   );
   expect(dirty).toHaveBeenLastCalledWith(true);
-  fireEvent.click(screen.getByRole("button", { name: "학년별 연산" }));
+  fireEvent.change(screen.getByRole("textbox", { name: "학습지 제목" }), {
+    target: { value: "기초 연산 복습" },
+  });
+  fireEvent.change(screen.getByRole("combobox", { name: "학년" }), {
+    target: { value: "초3" },
+  });
   expect(screen.getByRole("textbox", { name: "학습지 제목" })).toHaveValue(
     "분수 연산 복습",
   );
+  fireEvent.click(screen.getByRole("button", { name: "2 문항 검토" }));
   expect(
     screen.getByRole("region", { name: "생성한 문항 검토" })?.textContent,
   ).toBe(gradeQuestion);
   expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
+  fireEvent.click(screen.getByRole("button", { name: "1 범위 설정" }));
+  fireEvent.change(screen.getByRole("combobox", { name: "학년" }), {
+    target: { value: "기초 연산" },
+  });
+  expect(screen.getByRole("textbox", { name: "학습지 제목" })).toHaveValue(
+    "기초 연산 복습",
+  );
+  expect(screen.queryByRole("button", { name: "학년별 연산" })).toBeNull();
 });
 
 it("automatically opens a v1 saved document in the basic editor and allows switching without a parent callback", async () => {
@@ -76,22 +91,19 @@ it("automatically opens a v1 saved document in the basic editor and allows switc
       initialDocumentId="old-sheet"
     />,
   );
-  await waitFor(() =>
-    expect(
-      screen.getByRole("button", { name: "기초 연산 · 세부 조건" }),
-    ).toHaveAttribute("aria-pressed", "true"),
-  );
   await screen.findByText(/저장된 연산식과 정답을 그대로 열었습니다/);
   expect(screen.getByRole("textbox", { name: "학습지 제목" })).toHaveValue(
     "곱셈구구 복습",
   );
+  fireEvent.click(screen.getByRole("button", { name: "1 범위 설정" }));
   await waitFor(() =>
-    expect(screen.getByRole("button", { name: "학년별 연산" })).toBeEnabled(),
+    expect(screen.getByRole("combobox", { name: "학년" })).toBeEnabled(),
   );
-  fireEvent.click(screen.getByRole("button", { name: "학년별 연산" }));
-  await screen.findByRole("combobox", { name: "학년" });
-  expect(screen.getByRole("button", { name: "학년별 연산" })).toHaveAttribute(
-    "aria-pressed",
-    "true",
+  expect(screen.getByRole("combobox", { name: "학년" })).toHaveValue(
+    "기초 연산",
   );
+  fireEvent.change(screen.getByRole("combobox", { name: "학년" }), {
+    target: { value: "중3" },
+  });
+  expect(screen.getByRole("combobox", { name: "학년" })).toHaveValue("중3");
 });

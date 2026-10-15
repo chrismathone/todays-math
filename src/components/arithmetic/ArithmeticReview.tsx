@@ -192,7 +192,9 @@ function RoundReview({
                 이 유형 숫자 바꾸기
               </button>
             </div>
-            <ol className={s.reviewGrid}>
+            <ol
+              className={`${s.reviewGrid} ${group.problems.some((problem) => problem.figureSvg) ? s.geometryReviewGrid : ""}`}
+            >
               {group.problems.map((problem) => {
                 const order = itemOrder(problem);
                 return (

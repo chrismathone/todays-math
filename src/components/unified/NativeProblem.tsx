@@ -54,6 +54,7 @@ export default function NativeProblem({
     src,
     index,
     sourceMm: placements[index]?.sourceMm,
+    maxWidthMm: placements[index]?.maxWidthMm,
   }));
   const used = new Set<number>();
   // 대분수 결정은 문항 하나에 한 번 — 본문·보기·소문항이 같은 모양이다(정답지와도 같다).
@@ -238,7 +239,7 @@ export default function NativeProblem({
               src={figure.src}
               alt="문항 그림"
               className="mx-auto my-2 block h-auto max-w-full mix-blend-multiply"
-              style={figureWidthStyle(figure.sourceMm)}
+              style={figureWidthStyle(figure.sourceMm, figure.maxWidthMm)}
             />
           );
           return (

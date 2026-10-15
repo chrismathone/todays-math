@@ -1,0 +1,54 @@
+Arithmetic catalog and geometry presentation integration — 2026-10-15
+
+Catalog
+- Grade, strand, search, random type count and random add share one desktop toolbar.
+- The grade selector includes basic arithmetic; both editors retain their own draft,
+  saved-document routing and manual-save behavior. Removed the duplicate mode buttons.
+- Type cards show titles and school grade/semester/unit, without problem previews.
+- Composition sidebar is 300px and remains sticky. Narrow layouts stack it.
+- Browser checks at 1600, 1100, 900 and 390px: no page overflow, 96px type cards;
+  all five toolbar controls align at desktop widths. Grade/basic draft switching checked.
+
+Geometry display
+- Connected trusted angle and dimension display adapters and the editor typography
+  adapter only after canonical source lookup or saved-pack validation. Original
+  candidates, IDs and immutable saved SVG packs are preserved.
+- Numeric polygon names use Korean spelling in the display projection. Physical
+  units and degrees use the shared math renderer. Mathematical SVG labels use the
+  existing editor MathJax glyph output; no runtime MathJax library was added.
+- Review and common output use 280px longest extent. The generic 70mm figure cap
+  initially reduced them to 264.56px; the explicit arithmetic presentation marker
+  now carries its own cap through rendering and the pagination ruler. Ordinary
+  figure sizing and old 216px arithmetic markers retain their prior behavior.
+- Combined typography + dimensions: all 6350 delivered figures passed screen280,
+  screen320 and print280 glyph clipping, label overlap, geometry collision and
+  dimension endpoint/witness checks. 14522 dimensions, 20983 labels per mode;
+  minimum font 13.19px at 280px, minimum shape extent 168.88px.
+
+Actual local browser / PDF
+- 17 geometry types, 2 questions per type, 2 rounds (68 total). Single-question
+  and section regeneration changed only selected items and preserved the other round.
+- Six templates: all questions, round fields and type headings inside the paper;
+  no duplicate image or unresolved figure placeholder; no KaTeX/page errors.
+- Local Chromium PDF through the actual export payload/document renderer: 20 pages
+  including 2 answer pages. First/continuation pages rasterized and inspected.
+  This is local browser/PDF evidence, not a claim about the production export service.
+- Evidence: tmp/arithmetic-type-catalog-proof.json, arithmetic-type-catalog-*.png,
+  arithmetic-basic-unified.png, arithmetic-combined-dimensions/proof.json and gallery,
+  geometry-expansion-browser-proof.json, geometry-expansion.pdf,
+  arithmetic-combined-pdf-proof.json and arithmetic-combined-pdf-*.png.
+
+Checks
+- Full project tsc --noEmit passed before final formatting.
+- Scoped ESLint and Prettier passed.
+- 297 integrated UI/catalog/geometry cases passed after updating the count-output
+  assertion to check rendered KaTeX text rather than the unchanged raw source.
+- 47 figure sizing/shared renderer tests passed; ordinary caps remain unchanged.
+- The presentation artifacts are statically bundled (dimension asset 1.89MB JSON,
+  1.41MB gzip); inflation and expanded caches are bounded. No zero-cost bundle claim.
+
+Remaining independent work
+- Elementary/middle algebra/functions/data curriculum additions are still active.
+- This integration covers the delivered 52 dimension families. Cylinder nets and
+  middle segment dimensions are being handled separately; no universal repair claim.
+- No autosave, database or environment activation is part of this change.

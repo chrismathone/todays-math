@@ -18,7 +18,12 @@ import {
 } from "@/lib/arithmetic-v2";
 import { useUsageLabels } from "@/components/usage-labels/useUsageLabels";
 import UsageLabel from "@/components/usage-labels/UsageLabel";
-import { GradeArithmeticExpression } from "./GradeArithmeticPrompt";
+import { MathText } from "@/components/math/MathText";
+import { arithmeticGeometryText } from "@/lib/arithmetic-v2/presentation/text";
+import {
+  ArithmeticGradeSelect,
+  type ArithmeticGradeControl,
+} from "./ArithmeticGradeSelect";
 import type { ArithmeticWorkbenchProps } from "./ArithmeticWorkbench";
 import { ArithmeticWorkflow, type ArithmeticStep } from "./ArithmeticWorkflow";
 import { ArithmeticRandomSelection } from "./ArithmeticRandomSelection";
@@ -46,18 +51,7 @@ import s from "./ArithmeticWorkbench.module.css";
 
 const catalog = listArithmeticV2Types();
 const byId = new Map(catalog.map((type) => [type.id, type]));
-const grades = [
-  "초1",
-  "초2",
-  "초3",
-  "초4",
-  "초5",
-  "초6",
-  "중1",
-  "중2",
-  "중3",
-].filter((grade) => catalog.some((type) => type.grade === grade));
-const PAGE_SIZE = 12;
+const PAGE_SIZE = 24;
 type Allocation = { typeId: string; count: number };
 const message = (error: unknown) =>
   error instanceof Error ? error.message : "작업을 완료하지 못했습니다.";
@@ -80,10 +74,12 @@ export default function GradeArithmeticWorkbench({
   onDirtyChange,
   onDocumentChange,
   onBusyChange,
-}: ArithmeticWorkbenchProps) {
+  gradeControl,
+}: ArithmeticWorkbenchProps & { gradeControl?: ArithmeticGradeControl }) {
   const [title, setTitle] = useState("연산 실력 다지기");
   const [allocations, setAllocations] = useState<Allocation[]>(initial);
-  const [grade, setGrade] = useState("전체");
+  const [localGrade, setGrade] = useState("전체");
+  const grade = gradeControl?.value ?? localGrade;
   const [strand, setStrand] = useState("전체");
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
@@ -140,20 +136,29 @@ export default function GradeArithmeticWorkbench({
         .map((type) => type.strand),
     ),
   ];
+  const activeStrand = strands.includes(strand as (typeof strands)[number])
+    ? strand
+    : "전체";
   const filtered = catalog.filter(
     (type) =>
       (grade === "전체" || type.grade === grade) &&
-      (strand === "전체" || type.strand === strand) &&
+      (activeStrand === "전체" || type.strand === activeStrand) &&
       (
         type.title +
         " " +
         type.description +
         " " +
+        type.curriculum.unit +
+        " " +
         type.labels.join(" ")
       ).includes(query.trim()),
   );
   const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
-  const visible = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const currentPage = Math.min(page, pageCount);
+  const visible = filtered.slice(
+    (currentPage - 1) * PAGE_SIZE,
+    currentPage * PAGE_SIZE,
+  );
   const usage = useUsageLabels({
     arithmeticV2TypeIds: visible.map((type) => type.id),
     enabled: !preview,
@@ -526,54 +531,62 @@ export default function GradeArithmeticWorkbench({
       >
         <div className={s.layout}>
           <div>
-            <div className={s.catalogFilters + " " + s.gradeFilters}>
-              <label>
-                학년
-                <select
+            <div
+              className={s.catalogToolbar}
+              aria-label="유형 검색과 무작위 담기"
+            >
+              <div className={s.catalogFilters + " " + s.gradeFilters}>
+                <ArithmeticGradeSelect
                   value={grade}
-                  onChange={(event) => {
-                    setGrade(event.target.value);
+                  disabled={gradeControl?.disabled ?? busy}
+                  includeBasic={Boolean(gradeControl)}
+                  onChange={(value) => {
+                    setGrade(value);
                     setStrand("전체");
                     setPage(1);
-                  }}
-                >
-                  <option>전체</option>
-                  {grades.map((value) => (
-                    <option key={value}>{value}</option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                연산 영역
-                <select
-                  value={strand}
-                  onChange={(event) => {
-                    setStrand(event.target.value);
-                    setPage(1);
-                  }}
-                >
-                  <option>전체</option>
-                  {strands.map((value) => (
-                    <option key={value}>{value}</option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                유형 찾기
-                <input
-                  type="search"
-                  value={query}
-                  placeholder="예: 분수, 근호, 도형"
-                  onChange={(event) => {
-                    setQuery(event.target.value);
-                    setPage(1);
+                    gradeControl?.onChange(value);
                   }}
                 />
-              </label>
+                <label>
+                  연산 영역
+                  <select
+                    value={activeStrand}
+                    onChange={(event) => {
+                      setStrand(event.target.value);
+                      setPage(1);
+                    }}
+                  >
+                    <option>전체</option>
+                    {strands.map((value) => (
+                      <option key={value}>{value}</option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  유형 찾기
+                  <input
+                    type="search"
+                    value={query}
+                    placeholder="예: 분수, 근호, 도형"
+                    onChange={(event) => {
+                      setQuery(event.target.value);
+                      setPage(1);
+                    }}
+                  />
+                </label>
+              </div>
+              <ArithmeticRandomSelection
+                compact
+                available={available.length}
+                disabled={busy}
+                onSelect={randomSelect}
+              />
             </div>
+            <h2 className={s.catalogHeading}>
+              연산 유형 <small>{filtered.length}개</small>
+            </h2>
             <p className={s.catalogCount}>
-              {filtered.length}개 유형 · 학년은 권장 학습 시기이며, 해당 학년의
-              전체 수학 범위가 아닙니다.
+              {filtered.length}개 유형 · 학년·학기·단원별로 골라 담으세요.
             </p>
             <p className={s.catalogCount}>
               유형별 가능한 식 안에서 숫자를 바꿔 생성합니다. 같은 회차에는
@@ -588,12 +601,10 @@ export default function GradeArithmeticWorkbench({
                 원본 학습지 5장 이상·사용 유형 2개 이상일 때 순위를 표시합니다.
               </p>
             )}
-            <ArithmeticRandomSelection
-              available={available.length}
-              disabled={busy}
-              onSelect={randomSelect}
-            />
-            <div className={s.catalog} aria-label="학년별 연산 유형">
+            <div
+              className={`${s.catalog} ${s.typeCatalog}`}
+              aria-label="학년별 연산 유형"
+            >
               {visible.map((type) => {
                 const item = allocations.find(
                   (value) => value.typeId === type.id,
@@ -610,7 +621,9 @@ export default function GradeArithmeticWorkbench({
                     )}
                   >
                     <span className={s.cardTop}>
-                      <strong>{type.title}</strong>
+                      <strong>
+                        <MathText text={arithmeticGeometryText(type.title)} />
+                      </strong>
                       {item && <span>✓ {item.count}문항</span>}
                     </span>
                     <UsageLabel
@@ -620,14 +633,16 @@ export default function GradeArithmeticWorkbench({
                     />
                     <span className={s.labels}>
                       {[
-                        ...new Set([type.grade, type.strand, ...type.labels]),
+                        type.grade,
+                        `${type.curriculum.semester}학기`,
+                        type.curriculum.unit,
                       ].map((label) => (
                         <span key={label}>{label}</span>
                       ))}
                     </span>
-                    <span className={s.example}>
-                      <GradeArithmeticExpression prompt={type.example} />
-                    </span>
+                    {type.curriculum.prerequisite && (
+                      <small>{type.curriculum.prerequisite}</small>
+                    )}
                   </button>
                 );
               })}
@@ -637,17 +652,17 @@ export default function GradeArithmeticWorkbench({
             )}
             <div className={s.pagination} aria-label="연산 유형 페이지">
               <button
-                disabled={page === 1}
-                onClick={() => setPage((value) => value - 1)}
+                disabled={currentPage === 1}
+                onClick={() => setPage(currentPage - 1)}
               >
                 이전
               </button>
               <span>
-                {page} / {pageCount}
+                {currentPage} / {pageCount}
               </span>
               <button
-                disabled={page === pageCount}
-                onClick={() => setPage((value) => value + 1)}
+                disabled={currentPage === pageCount}
+                onClick={() => setPage(currentPage + 1)}
               >
                 다음
               </button>
@@ -683,7 +698,8 @@ export default function GradeArithmeticWorkbench({
                   <div key={item.typeId}>
                     <div className={s.allocation}>
                       <span className={s.selectionTitle}>
-                        {type.grade} · {type.title}
+                        {type.grade} ·{" "}
+                        <MathText text={arithmeticGeometryText(type.title)} />
                       </span>
                       <input
                         type="number"

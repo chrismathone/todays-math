@@ -19,6 +19,12 @@ import {
 } from "@/lib/arithmetic-v2/geometry";
 import { ARITHMETIC_GEOMETRY_PACK_MAX_LENGTH } from "@/lib/arithmetic-v2/geometryPack";
 import { arithmeticToStudioProblems } from "@/lib/arithmeticOutput";
+import { presentArithmeticGeometrySvg } from "@/lib/arithmetic-v2/presentation";
+import {
+  arithmeticGeometryText,
+  arithmeticGeometryUnitText,
+} from "@/lib/arithmetic-v2/presentation/text";
+import { figureSvgAngleDrillWidthMm } from "@/lib/figure/figureSvgFrame";
 import { regenerateArithmeticV2Items } from "@/lib/arithmeticRegeneration";
 import { parseStrictJson } from "@/lib/textbook/strictJson";
 
@@ -133,15 +139,23 @@ describe("integrated elementary and middle-school geometry", () => {
       items.forEach((item, index) => {
         if (item.prompt.layout !== "math")
           throw new Error("Geometry must have a math prompt");
-        expect(output[index].content).toContain(item.prompt.text);
+        expect(output[index].content).toContain(
+          arithmeticGeometryText(item.prompt.text),
+        );
         if (item.prompt.answerUnit && item.prompt.answerUnit !== "°")
-          expect(output[index].content).toContain(item.prompt.answerUnit);
+          expect(output[index].content).toContain(
+            arithmeticGeometryUnitText(item.prompt.answerUnit),
+          );
         expect(output[index].answer).toBe(`$${item.answer.latex}$`);
         if (item.prompt.figureId) {
-          expect(output[index].figureSourceMm).toEqual([57.15]);
-          expect(output[index].figureSvg).toBe(
+          const displayed = presentArithmeticGeometrySvg(
+            item.prompt.figureId,
             arithmeticGeometrySvg(item.prompt.figureId, sheet.figures!),
           );
+          expect(output[index].figureSourceMm).toEqual([
+            figureSvgAngleDrillWidthMm(displayed),
+          ]);
+          expect(output[index].figureSvg).toBe(displayed);
         } else {
           expect(output[index].figureSvg).toBeNull();
           expect(output[index].content).not.toContain("[그림1]");

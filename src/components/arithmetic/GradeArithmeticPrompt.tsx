@@ -6,6 +6,16 @@ import {
   arithmeticGeometryPromptLines,
 } from "@/lib/arithmetic-v2/geometry";
 import { GradeArithmeticExpression as NumericExpression } from "./GradeArithmeticPaper";
+import { MathText } from "@/components/math/MathText";
+import {
+  arithmeticGeometryDisplaySize,
+  presentArithmeticGeometrySvg,
+} from "@/lib/arithmetic-v2/presentation";
+import {
+  arithmeticGeometryNames,
+  arithmeticGeometryText,
+  arithmeticGeometryUnitText,
+} from "@/lib/arithmetic-v2/presentation/text";
 import s from "./GradeArithmeticPrompt.module.css";
 
 /** Catalog examples only. Review/output must use arithmeticToStudioProblems,
@@ -21,28 +31,36 @@ export function GradeArithmeticExpression({
     (!prompt.figureId && prompt.answerUnit === undefined)
   )
     return <NumericExpression prompt={prompt} />;
-  const svg = prompt.figureId
+  const originalSvg = prompt.figureId
     ? arithmeticGeometryCatalogSvg(prompt.figureId)
     : undefined;
+  const svg = originalSvg
+    ? presentArithmeticGeometrySvg(prompt.figureId!, originalSvg)
+    : undefined;
+  const size = svg ? arithmeticGeometryDisplaySize(svg) : undefined;
   return (
     <span className={s.prompt}>
       {arithmeticGeometryPromptLines(prompt).map((line) => (
         <span className={s.givens} key={line}>
-          {line}
+          <MathText text={arithmeticGeometryText(line)} />
         </span>
       ))}
       {svg && (
         <img
           className={s.figure}
-          width={216}
-          height={216}
+          width={size!.width}
+          height={size!.height}
           src={`data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`}
-          alt={prompt.text}
+          alt={arithmeticGeometryNames(prompt.text)}
         />
       )}
       <span>
         답: <span className={s.blank} aria-label="답란" />{" "}
-        {arithmeticGeometryAnswerUnit(prompt)}
+        <MathText
+          text={arithmeticGeometryUnitText(
+            arithmeticGeometryAnswerUnit(prompt),
+          )}
+        />
       </span>
     </span>
   );

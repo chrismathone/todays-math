@@ -36,6 +36,7 @@ function WorkbenchRouter({
   ...props
 }: ArithmeticWorkbenchProps) {
   const [mode, setMode] = useState<Mode>("grade");
+  const [gradeFilter, setGradeFilter] = useState("전체");
   const [visited, setVisited] = useState({ grade: true, basic: false });
   const [ids, setIds] = useState<{ grade?: string; basic?: string }>({});
   const [resolvedId, setResolvedId] = useState<string>();
@@ -127,26 +128,20 @@ function WorkbenchRouter({
       ),
     [],
   );
+  function selectGrade(value: string) {
+    const next = value === "기초 연산" ? "basic" : "grade";
+    if (next === "grade") setGradeFilter(value);
+    setMode(next);
+    setVisited((current) => ({ ...current, [next]: true }));
+    onDocumentChange?.(ids[next]);
+  }
+  const gradeControl = {
+    onChange: selectGrade,
+    disabled: pending || busy.grade || busy.basic,
+  };
 
   return (
     <section className={s.root} aria-label="연산대장">
-      <div className={s.modeSwitch} aria-label="연산 구성 방식">
-        {(["grade", "basic"] as const).map((value) => (
-          <button
-            key={value}
-            type="button"
-            aria-pressed={mode === value}
-            disabled={pending || busy.grade || busy.basic}
-            onClick={() => {
-              setMode(value);
-              setVisited((current) => ({ ...current, [value]: true }));
-              onDocumentChange?.(ids[value]);
-            }}
-          >
-            {value === "grade" ? "학년별 연산" : "기초 연산 · 세부 조건"}
-          </button>
-        ))}
-      </div>
       {initialDocumentId && !client ? (
         <p className={s.error} role="alert">
           저장된 연습지를 열려면 계정 정보를 확인해 주세요.
@@ -165,6 +160,7 @@ function WorkbenchRouter({
         {visited.grade && (
           <GradeWorkbench
             {...props}
+            gradeControl={{ ...gradeControl, value: gradeFilter }}
             initialDocumentId={ids.grade}
             onDirtyChange={gradeDirty}
             onDocumentChange={gradeDocument}
@@ -176,6 +172,7 @@ function WorkbenchRouter({
         {visited.basic && (
           <LegacyWorkbench
             {...props}
+            gradeControl={{ ...gradeControl, value: "기초 연산" }}
             hideHeader
             initialDocumentId={ids.basic}
             onDirtyChange={basicDirty}

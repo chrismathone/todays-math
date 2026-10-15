@@ -2,26 +2,45 @@
   color: var(--learn-ink);
   min-width: 0;
 }
-.modeSwitch {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-.modeSwitch button[aria-pressed="true"] {
-  color: var(--learn-accent);
-  background: var(--learn-soft);
-  border-color: var(--learn-accent);
-}
-.root:has(> div:not([hidden]) [data-arithmetic-step="output"]) > .modeSwitch,
 .root:has(> [data-arithmetic-step="output"]) > .notice {
   display: none;
 }
 .catalogFilters.gradeFilters {
-  grid-template-columns: 90px 120px minmax(0, 1fr);
+  grid-template-columns: 100px 120px minmax(150px, 1fr);
+}
+.catalogToolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: end;
+  padding: 16px;
+  background: var(--learn-surface);
+  border: 1px solid var(--learn-track);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.catalogToolbar .catalogFilters {
+  margin: 0;
+}
+.catalogHeading {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 16px;
+  margin: 0 0 10px;
+}
+.catalogToolbar .compactRandomSelection {
+  margin: 0;
+  padding-left: 16px;
+  border-left: 1px solid var(--learn-track);
+  flex-wrap: nowrap;
+}
+.compactRandomSelection button {
+  white-space: nowrap;
 }
 .selectionTitle {
   font-size: 13px;
+  word-break: keep-all;
   overflow-wrap: anywhere;
 }
 .actions {
@@ -31,7 +50,7 @@
 }
 .layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.8fr);
+  grid-template-columns: minmax(0, 1fr) 300px;
   gap: 20px;
   align-items: start;
 }
@@ -39,6 +58,10 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 244px), 1fr));
   gap: 8px;
+}
+.root .typeCatalog .card {
+  min-height: 96px;
+  justify-content: flex-start;
 }
 .catalogFilters {
   display: grid;
@@ -134,7 +157,7 @@
 }
 .example {
   display: block;
-  margin-top: auto;
+  margin-top: 6px;
   font-size: 19px;
   min-height: 48px;
 }
@@ -347,6 +370,9 @@
   border-radius: 8px;
   padding: 16px;
 }
+.geometryReviewGrid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+}
 .reviewCard :global(.katex-display) {
   overflow-x: auto;
   overflow-y: hidden;
@@ -390,6 +416,14 @@
   }
 }
 @media (max-width: 760px) {
+  .catalogToolbar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .catalogToolbar .compactRandomSelection {
+    padding: 12px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--learn-track);
+  }
   .root .card {
     padding: 12px;
   }

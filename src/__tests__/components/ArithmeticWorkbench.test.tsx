@@ -127,7 +127,7 @@ describe("arithmetic workbench", () => {
   });
   it("randomly adds distinct filtered presets and preserves their default constraints and selected count", () => {
     render(<ArithmeticWorkbench canOutput preview />);
-    fireEvent.change(screen.getByLabelText("연산 종류"), {
+    fireEvent.change(screen.getByLabelText("연산 영역"), {
       target: { value: "곱셈" },
     });
     fireEvent.change(screen.getByLabelText("유형 찾기"), {

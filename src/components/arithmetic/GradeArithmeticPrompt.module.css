@@ -2,15 +2,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  min-width: 216px;
+  gap: 8px;
+  min-width: 0;
+  width: 100%;
   color: var(--learn-ink);
   font-size: var(--text-body, 14px);
+  font-weight: 400;
 }
 .figure {
   display: block;
-  width: 216px;
-  height: 216px;
+  max-width: 100%;
+  height: auto;
   flex-shrink: 0;
   object-fit: contain;
 }

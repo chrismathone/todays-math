@@ -26,7 +26,10 @@ import { arithmeticFeatureLabels } from "@/lib/arithmeticPresentation";
 import { arithmeticUsageTypeKey } from "@/lib/usageLabels/typeKey";
 import { useUsageLabels } from "@/components/usage-labels/useUsageLabels";
 import UsageLabel from "@/components/usage-labels/UsageLabel";
-import { ArithmeticExpression } from "./ArithmeticPaper";
+import {
+  ArithmeticGradeSelect,
+  type ArithmeticGradeControl,
+} from "./ArithmeticGradeSelect";
 import { listArithmeticPresets } from "@/lib/arithmeticPresets";
 import {
   coreAllocation,
@@ -56,7 +59,7 @@ import s from "./ArithmeticWorkbench.module.css";
 const catalog = listArithmeticSkills();
 const presets = listArithmeticPresets();
 const groups = ["전체", "덧셈", "뺄셈", "곱셈", "나눗셈"] as const;
-const PAGE_SIZE = 12;
+const PAGE_SIZE = 24;
 const capacity = (item: ArithmeticAllocation) => {
   try {
     return arithmeticDomainSize(item.skillId, item.constraints);
@@ -77,6 +80,7 @@ export default function LegacyArithmeticWorkbench({
   onDirtyChange,
   onDocumentChange,
   onBusyChange,
+  gradeControl,
 }: {
   storageScope?: string;
   initialDocumentId?: string;
@@ -88,6 +92,7 @@ export default function LegacyArithmeticWorkbench({
   onDirtyChange?: (dirty: boolean) => void;
   onDocumentChange?: (id: string | undefined) => void;
   onBusyChange?: (busy: boolean) => void;
+  gradeControl?: ArithmeticGradeControl;
 }) {
   const [title, setTitle] = useState("연산 기초 다지기");
   const [allocations, setAllocations] = useState<WorkbenchAllocation[]>(() => [
@@ -526,34 +531,51 @@ export default function LegacyArithmeticWorkbench({
       >
         <div className={s.layout}>
           <div>
-            <div className={s.catalogFilters}>
-              <label>
-                연산 종류
-                <select
-                  value={group}
-                  onChange={(event) => {
-                    setGroup(event.target.value);
-                    setPage(1);
-                  }}
-                >
-                  {groups.map((value) => (
-                    <option key={value}>{value}</option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                유형 찾기
-                <input
-                  type="search"
-                  value={query}
-                  placeholder="예: 2단, 받아올림"
-                  onChange={(event) => {
-                    setQuery(event.target.value);
-                    setPage(1);
-                  }}
-                />
-              </label>
+            <div
+              className={s.catalogToolbar}
+              aria-label="유형 검색과 무작위 담기"
+            >
+              <div
+                className={`${s.catalogFilters} ${gradeControl ? s.gradeFilters : ""}`}
+              >
+                {gradeControl && <ArithmeticGradeSelect {...gradeControl} />}
+                <label>
+                  연산 영역
+                  <select
+                    value={group}
+                    onChange={(event) => {
+                      setGroup(event.target.value);
+                      setPage(1);
+                    }}
+                  >
+                    {groups.map((value) => (
+                      <option key={value}>{value}</option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  유형 찾기
+                  <input
+                    type="search"
+                    value={query}
+                    placeholder="예: 2단, 받아올림"
+                    onChange={(event) => {
+                      setQuery(event.target.value);
+                      setPage(1);
+                    }}
+                  />
+                </label>
+              </div>
+              <ArithmeticRandomSelection
+                compact
+                available={available.length}
+                disabled={busy}
+                onSelect={randomSelect}
+              />
             </div>
+            <h2 className={s.catalogHeading}>
+              연산 유형 <small>{filtered.length}개</small>
+            </h2>
             <p className={s.catalogCount}>
               {filtered.length}개 유형 · 자연수 기초 연산
             </p>
@@ -569,12 +591,10 @@ export default function LegacyArithmeticWorkbench({
                 원본 학습지 5장 이상·사용 유형 2개 이상일 때 순위를 표시합니다.
               </p>
             )}
-            <ArithmeticRandomSelection
-              available={available.length}
-              disabled={busy}
-              onSelect={randomSelect}
-            />
-            <div className={s.catalog} aria-label="연산 유형">
+            <div
+              className={`${s.catalog} ${s.typeCatalog}`}
+              aria-label="연산 유형"
+            >
               {visible.map((preset) => {
                 const item = allocations.find(
                   (value) => value.presetId === preset.id,
@@ -607,9 +627,6 @@ export default function LegacyArithmeticWorkbench({
                           <span key={label}>{label}</span>
                         ),
                       )}
-                    </span>
-                    <span className={s.example}>
-                      <ArithmeticExpression prompt={preset.example} />
                     </span>
                   </button>
                 );
