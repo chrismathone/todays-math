@@ -1,0 +1,92 @@
+FINAL INTEGRATED VERIFICATION — source of truth
+2026-10-15 14:01 KST
+
+This report supersedes the pre-merge limitations in logger-isolation.txt and
+thumbnail-hover.txt. Their baseline/candidate observations remain historical
+evidence; the results below are from the merged, unmodified running root route.
+
+Target
+http://127.0.0.1:3000/dev/workspace-alignment#arithmetic
+Root main observed at 9b00b0e87 (Merge arithmetic paper preview hover correction).
+Integrated changes: c1862b2a6 basket/local generation, a8ae04639 preview logger
+isolation (merged at a6dec965a), 7008df64b thumbnail hover correction.
+
+Method and isolation
+Shared Next server used as-is; no restart or root file changes. Fresh Playwright
+contexts at 1440x1000 desktop and 390x844 mobile/touch. Final runs made no CSSOM,
+page-source, fetch implementation or fixture-response modifications. Real local
+preview catalog/generation engines, review, WorksheetEditor and rendered question
+and answer pages ran. API routing was an abort-only guard, never a fulfillment:
+any attempted real /api/** request would be blocked and fail the strict assertion.
+
+Two complementary four-flow suites passed (8 fresh page contexts total).
+All 8: zero attempted real API requests, zero page errors, no API/DB writes.
+Preview suite also dispatched an error and pagehide, then waited beyond the
+logger flush interval; no fetch or beacon log request was attempted. Library
+save remained disabled. The final basket suite recorded zero document overflow.
+
+Matrix                              Basket/generation     Hover/touch/output
+Grade, desktop 1440x1000             PASS                  PASS
+Basic, desktop 1440x1000             PASS                  PASS
+Grade, mobile 390x844 touch          PASS                  PASS
+Basic, mobile 390x844 touch          PASS                  PASS
+
+Basket and actual generation
+- Empty basket disables generate/select-all/remove-selected.
+- Three rows: select-all checks all; unchecking one sets native indeterminate;
+  selecting partial checks all; selecting all again clears all.
+- First/third rows checked, middle retained; change catalog filter and remove.
+  Only checked rows disappear. Retained count stays 10 (grade) / 7 (basic).
+- Grade: grade 전체, strand 함수, only 중1 원점 대칭점의 y좌표, 10 items,
+  1 round. Basic: retained 3단, 7 items, 1 round. Actual review counts match.
+- Keyboard Space selection on desktop and touch controls on mobile work.
+- Answers start hidden and toggle correctly. Real output page renders; print
+  action becomes ready. Returning to review preserves exact questions/title.
+
+Thumbnail and output interaction
+- Actual overlay computed background remains rgba(0,0,0,0) while hovered on
+  desktop and after mobile 미리보기 보기 ↓ (including sticky touch hover).
+- Existing inset hover border remains. Keyboard focus is visible (3px ring),
+  Enter opens the actual page, and Escape restores the overlay button's focus.
+- Click/tap opens actual generated questions. Including answers renders and
+  opens the second real page. Screenshots were visually inspected.
+- No paper layout, print contract or geometry implementation was changed.
+
+Automated checks and limits
+Owned logger/preview tests: 37/37, including 11 new regression cases (7 observed
+failing before the fix); focused TypeScript diagnostics: 0. Normal logger commit
+Husky ESLint/prettier passed. Root separately reported 54/54 combined tests.
+Existing PaperStrip tests and scoped CSS affordance scan/hook passed. Broader
+PaperStrip+affordanceGuard run: 24 passed, 1 existing full-repository failure in
+SavedRetryPanel.module.css:53 (.primary/.secondary cursor:pointer). That file is
+unchanged by this work. No claim of unrelated whole-repository checks passing.
+Actual PDF/download/printer delivery and real account saving were not exercised.
+
+Final evidence (outside the worktree; retained through cleanup)
+C:/Users/user/orca/verification/arithmetic-ui-integrated-20261015-134243/
+
+integrated-fixed/evidence.json
+  integrated=true and candidateCssRules=0 in all four records.
+  {grade,basic}-{1440,390}-visible-preview.png
+  {grade,basic}-1440-keyboard-focus.png
+  {grade,basic}-{1440,390}-actual-questions.png
+  {grade,basic}-{1440,390}-actual-answers.png
+
+integrated-basket-final/evidence.json
+  passed=true, networkIsolationPassed=true, blockedApi=[], pageErrors=[].
+  {grade,basic}-{1440,390}-basket-partial.png
+  {grade,basic}-{1440,390}-basket-retained.png
+  {grade,basic}-{1440,390}-review-answers.png
+  {grade,basic}-{1440,390}-actual-output.png
+
+Reproduce final browser checks with installed root Playwright:
+node .../verify-preview-fixes.mjs --integrated
+node .../verify-integrated-basket.mjs
+The latter final run contains no fetch observer wrapper; both use only normal
+UI operations/read-only DOM inspection plus abort-only network protection.
+
+Handoff
+All owned test/browser processes have exited. Shared server remains running.
+No installs, junctions, DB/env changes, push or deployment. Report-only follow-up
+commit uses normal hooks. Ready for report merge and root-controlled worktree
+cleanup, preserving the branch after the complete root task is finished.
