@@ -1,0 +1,753 @@
+Middle-school arithmetic-v2 figure necessity audit — 2026-10-15
+Baseline: main 9356d1cb6556755021f9884dfdff909b5264871c
+Scope: 164 explicit figure-bearing families / 5,730 finite candidates.
+Decision: omit 153 families / 5,553 candidates; retain 11 families / 177 candidates.
+Canonical prompts, domain order, answers, verify logic and SVG assets remain unchanged.
+Root owns the display projection, wording cleanup and annotation deletion.
+The independent oracle reads only authored prose and effective target instructions.
+It does not use parameters, model coordinates, generator solve/relation, or policy reason as numeric input.
+Every omitted candidate is independently solved and compared to the canonical answer.
+Every candidate retains all prose numeric tokens and answer units; canonical verify still passes.
+Source census: registry + extraGeometry; figureId writes occur only in geometry, geometryElementary/core,
+geometryTriangles/core, geometryMeasure/core, geometryCounts. The first two are elementary-only.
+All template branches and full finite domains in centers, relationships, proportions, pythagoras,
+angles, round, solid, trig and geometryCounts were reviewed; policy prefixes are unique on every ID.
+
+Retained incidence is literal: perpendicular lines alone do not place D/M on the other line.
+By contrast the removable Pythagoras isosceles-height targets explicitly call AD a height,
+and circle-chord-distance explicitly calls OM the center-to-chord distance.
+An omitted triangle-area does not require its incidental D at all.
+
+Retained annotation cleanup:
+All duplicate numeric measurement dimensions are removable: prose names their values and segments.
+The 79 angle-value labels are also fully present in prose; the coordinator elects to keep them for visual angle association.
+Keep named points, all structural lines/circles and equal/parallel/right-angle/angle marks.
+No retained figure has an unnecessary unknown-name dimension.
+For seven gt1 families remove complete g[data-segment-dimension] groups (92 total) AND the separate text[data-segment-number] elements.
+For the three retained angle families preserve numeric g[data-label] trees and angle arcs; exact audited labels are still listed below.
+For parallel-angle also remove g[data-label='ℓ ∥ m']; keep individual ℓ and m labels.
+For chord-length remove the two numeric g[data-label] trees and the two dashed quadratic measurement paths
+(listed exact data-n IDs below), then remove mask attributes on structural lines using the resulting unused line-gap mask.
+The structural dashed straight OM segment is NOT a dimension curve and must remain.
+data-n on glyph outlines is not an independent geometry selector: remove the whole enclosing data-label tree.
+
+Explicit family census (all values covered, no sampling):
+m1-polygon-vertex-diagonals | OMIT | domain=12 | prefix=gc1-m1-polygon-vertex-diagonals-
+  문장에 다각형의 변 수와 정다각형 여부 또는 한 꼭짓점에서 대각선을 모두 긋는 조건, 구할 개수·각이 명시되어 있다.
+  first=gc1-m1-polygon-vertex-diagonals-4 ; last=gc1-m1-polygon-vertex-diagonals-15
+m1-polygon-fan-triangles | OMIT | domain=12 | prefix=gc1-m1-polygon-fan-triangles-
+  문장에 다각형의 변 수와 정다각형 여부 또는 한 꼭짓점에서 대각선을 모두 긋는 조건, 구할 개수·각이 명시되어 있다.
+  first=gc1-m1-polygon-fan-triangles-4 ; last=gc1-m1-polygon-fan-triangles-15
+m1-prism-faces-count | OMIT | domain=10 | prefix=gc1-m1-prism-faces-count-
+  문장에 밑면의 변 수와 각기둥·각뿔·각뿔대의 종류, 구할 면·모서리·꼭짓점 수가 명시되어 있어 그림 없이 개수 관계가 정해진다.
+  first=gc1-m1-prism-faces-count-3 ; last=gc1-m1-prism-faces-count-12
+m1-prism-edges-count | OMIT | domain=10 | prefix=gc1-m1-prism-edges-count-
+  문장에 밑면의 변 수와 각기둥·각뿔·각뿔대의 종류, 구할 면·모서리·꼭짓점 수가 명시되어 있어 그림 없이 개수 관계가 정해진다.
+  first=gc1-m1-prism-edges-count-3 ; last=gc1-m1-prism-edges-count-12
+m1-prism-vertices-count | OMIT | domain=10 | prefix=gc1-m1-prism-vertices-count-
+  문장에 밑면의 변 수와 각기둥·각뿔·각뿔대의 종류, 구할 면·모서리·꼭짓점 수가 명시되어 있어 그림 없이 개수 관계가 정해진다.
+  first=gc1-m1-prism-vertices-count-3 ; last=gc1-m1-prism-vertices-count-12
+m1-pyramid-faces-count | OMIT | domain=10 | prefix=gc1-m1-pyramid-faces-count-
+  문장에 밑면의 변 수와 각기둥·각뿔·각뿔대의 종류, 구할 면·모서리·꼭짓점 수가 명시되어 있어 그림 없이 개수 관계가 정해진다.
+  first=gc1-m1-pyramid-faces-count-3 ; last=gc1-m1-pyramid-faces-count-12
+m1-pyramid-edges-count | OMIT | domain=10 | prefix=gc1-m1-pyramid-edges-count-
+  문장에 밑면의 변 수와 각기둥·각뿔·각뿔대의 종류, 구할 면·모서리·꼭짓점 수가 명시되어 있어 그림 없이 개수 관계가 정해진다.
+  first=gc1-m1-pyramid-edges-count-3 ; last=gc1-m1-pyramid-edges-count-12
+m1-pyramid-vertices-count | OMIT | domain=10 | prefix=gc1-m1-pyramid-vertices-count-
+  문장에 밑면의 변 수와 각기둥·각뿔·각뿔대의 종류, 구할 면·모서리·꼭짓점 수가 명시되어 있어 그림 없이 개수 관계가 정해진다.
+  first=gc1-m1-pyramid-vertices-count-3 ; last=gc1-m1-pyramid-vertices-count-12
+m1-frustum-faces-count | OMIT | domain=10 | prefix=gc1-m1-frustum-faces-count-
+  문장에 밑면의 변 수와 각기둥·각뿔·각뿔대의 종류, 구할 면·모서리·꼭짓점 수가 명시되어 있어 그림 없이 개수 관계가 정해진다.
+  first=gc1-m1-frustum-faces-count-3 ; last=gc1-m1-frustum-faces-count-12
+m1-frustum-edges-count | OMIT | domain=10 | prefix=gc1-m1-frustum-edges-count-
+  문장에 밑면의 변 수와 각기둥·각뿔·각뿔대의 종류, 구할 면·모서리·꼭짓점 수가 명시되어 있어 그림 없이 개수 관계가 정해진다.
+  first=gc1-m1-frustum-edges-count-3 ; last=gc1-m1-frustum-edges-count-12
+m1-frustum-vertices-count | OMIT | domain=10 | prefix=gc1-m1-frustum-vertices-count-
+  문장에 밑면의 변 수와 각기둥·각뿔·각뿔대의 종류, 구할 면·모서리·꼭짓점 수가 명시되어 있어 그림 없이 개수 관계가 정해진다.
+  first=gc1-m1-frustum-vertices-count-3 ; last=gc1-m1-frustum-vertices-count-12
+m2-obtuse-circum-central-angle | OMIT | domain=11 | prefix=gt1-m2-obtuse-circum-central-angle-
+  문장에 외심, 필요한 예각·둔각·직각 구분, 주어진 각 또는 길이와 목표가 명시되어 외심의 성질만으로 계산된다.
+  first=gt1-m2-obtuse-circum-central-angle-100 ; last=gt1-m2-obtuse-circum-central-angle-150
+m2-obtuse-circum-vertex-angle | OMIT | domain=11 | prefix=gt1-m2-obtuse-circum-vertex-angle-
+  문장에 외심, 필요한 예각·둔각·직각 구분, 주어진 각 또는 길이와 목표가 명시되어 외심의 성질만으로 계산된다.
+  first=gt1-m2-obtuse-circum-vertex-angle-100 ; last=gt1-m2-obtuse-circum-vertex-angle-150
+m2-obtuse-circum-base-angle | OMIT | domain=11 | prefix=gt1-m2-obtuse-circum-base-angle-
+  문장에 외심, 필요한 예각·둔각·직각 구분, 주어진 각 또는 길이와 목표가 명시되어 외심의 성질만으로 계산된다.
+  first=gt1-m2-obtuse-circum-base-angle-100 ; last=gt1-m2-obtuse-circum-base-angle-150
+m2-circum-central-angle | OMIT | domain=11 | prefix=gt1-m2-circum-central-angle-
+  문장에 외심, 필요한 예각·둔각·직각 구분, 주어진 각 또는 길이와 목표가 명시되어 외심의 성질만으로 계산된다.
+  first=gt1-m2-circum-central-angle-40 ; last=gt1-m2-circum-central-angle-80
+m2-circum-vertex-angle | OMIT | domain=11 | prefix=gt1-m2-circum-vertex-angle-
+  문장에 외심, 필요한 예각·둔각·직각 구분, 주어진 각 또는 길이와 목표가 명시되어 외심의 성질만으로 계산된다.
+  first=gt1-m2-circum-vertex-angle-40 ; last=gt1-m2-circum-vertex-angle-80
+m2-circum-radius-base-angle | OMIT | domain=11 | prefix=gt1-m2-circum-radius-base-angle-
+  문장에 외심, 필요한 예각·둔각·직각 구분, 주어진 각 또는 길이와 목표가 명시되어 외심의 성질만으로 계산된다.
+  first=gt1-m2-circum-radius-base-angle-40 ; last=gt1-m2-circum-radius-base-angle-80
+m2-circum-base-central-angle | OMIT | domain=11 | prefix=gt1-m2-circum-base-central-angle-
+  문장에 외심, 필요한 예각·둔각·직각 구분, 주어진 각 또는 길이와 목표가 명시되어 외심의 성질만으로 계산된다.
+  first=gt1-m2-circum-base-central-angle-40 ; last=gt1-m2-circum-base-central-angle-80
+m2-circum-three-base-angles | OMIT | domain=14 | prefix=gt1-m2-circum-three-base-angles-
+  문장에 외심, 필요한 예각·둔각·직각 구분, 주어진 각 또는 길이와 목표가 명시되어 외심의 성질만으로 계산된다.
+  first=gt1-m2-circum-three-base-angles-45-55 ; last=gt1-m2-circum-three-base-angles-75-65
+m2-circum-equal-radii | OMIT | domain=19 | prefix=gt1-m2-circum-equal-radii-
+  문장에 외심, 필요한 예각·둔각·직각 구분, 주어진 각 또는 길이와 목표가 명시되어 외심의 성질만으로 계산된다.
+  first=gt1-m2-circum-equal-radii-2 ; last=gt1-m2-circum-equal-radii-20
+m2-right-circumradius | OMIT | domain=19 | prefix=gt1-m2-right-circumradius-
+  문장에 외심, 필요한 예각·둔각·직각 구분, 주어진 각 또는 길이와 목표가 명시되어 외심의 성질만으로 계산된다.
+  first=gt1-m2-right-circumradius-2 ; last=gt1-m2-right-circumradius-20
+m2-right-circum-diameter | OMIT | domain=19 | prefix=gt1-m2-right-circum-diameter-
+  문장에 외심, 필요한 예각·둔각·직각 구분, 주어진 각 또는 길이와 목표가 명시되어 외심의 성질만으로 계산된다.
+  first=gt1-m2-right-circum-diameter-2 ; last=gt1-m2-right-circum-diameter-20
+m2-incenter-half-angle | OMIT | domain=11 | prefix=gt1-m2-incenter-half-angle-
+  문장에 내심 및 필요한 각·반지름·넓이·둘레 또는 변의 길이와 목표가 모두 명시되어 내심의 성질로 계산된다.
+  first=gt1-m2-incenter-half-angle-40 ; last=gt1-m2-incenter-half-angle-80
+m2-incenter-whole-angle | OMIT | domain=11 | prefix=gt1-m2-incenter-whole-angle-
+  문장에 내심 및 필요한 각·반지름·넓이·둘레 또는 변의 길이와 목표가 모두 명시되어 내심의 성질로 계산된다.
+  first=gt1-m2-incenter-whole-angle-40 ; last=gt1-m2-incenter-whole-angle-80
+m2-incenter-central-angle | OMIT | domain=11 | prefix=gt1-m2-incenter-central-angle-
+  문장에 내심 및 필요한 각·반지름·넓이·둘레 또는 변의 길이와 목표가 모두 명시되어 내심의 성질로 계산된다.
+  first=gt1-m2-incenter-central-angle-40 ; last=gt1-m2-incenter-central-angle-80
+m2-incenter-inverse-angle | OMIT | domain=11 | prefix=gt1-m2-incenter-inverse-angle-
+  문장에 내심 및 필요한 각·반지름·넓이·둘레 또는 변의 길이와 목표가 모두 명시되어 내심의 성질로 계산된다.
+  first=gt1-m2-incenter-inverse-angle-40 ; last=gt1-m2-incenter-inverse-angle-80
+m2-incenter-three-half-angles | OMIT | domain=13 | prefix=gt1-m2-incenter-three-half-angles-
+  문장에 내심 및 필요한 각·반지름·넓이·둘레 또는 변의 길이와 목표가 모두 명시되어 내심의 성질로 계산된다.
+  first=gt1-m2-incenter-three-half-angles-20-30 ; last=gt1-m2-incenter-three-half-angles-35-35
+m2-iso-incenter-base-half | OMIT | domain=11 | prefix=gt1-m2-iso-incenter-base-half-
+  문장에 내심 및 필요한 각·반지름·넓이·둘레 또는 변의 길이와 목표가 모두 명시되어 내심의 성질로 계산된다.
+  first=gt1-m2-iso-incenter-base-half-40 ; last=gt1-m2-iso-incenter-base-half-80
+m2-incenter-area | OMIT | domain=20 | prefix=gt1-m2-incenter-area-
+  문장에 내심 및 필요한 각·반지름·넓이·둘레 또는 변의 길이와 목표가 모두 명시되어 내심의 성질로 계산된다.
+  first=gt1-m2-incenter-area-0-1 ; last=gt1-m2-incenter-area-1-10
+m2-incenter-radius | OMIT | domain=20 | prefix=gt1-m2-incenter-radius-
+  문장에 내심 및 필요한 각·반지름·넓이·둘레 또는 변의 길이와 목표가 모두 명시되어 내심의 성질로 계산된다.
+  first=gt1-m2-incenter-radius-0-1 ; last=gt1-m2-incenter-radius-1-10
+m2-incenter-perimeter | OMIT | domain=20 | prefix=gt1-m2-incenter-perimeter-
+  문장에 내심 및 필요한 각·반지름·넓이·둘레 또는 변의 길이와 목표가 모두 명시되어 내심의 성질로 계산된다.
+  first=gt1-m2-incenter-perimeter-0-1 ; last=gt1-m2-incenter-perimeter-1-10
+m2-incenter-part-area | KEEP | domain=20 | prefix=gt1-m2-incenter-part-area-
+  ID⊥BC만 있고 D가 BC 위라는 조건은 없다. 그림이 D를 수선의 발로 지정해야 ID가 삼각형 IBC의 높이가 된다.
+  first=gt1-m2-incenter-part-area-0-1 ; last=gt1-m2-incenter-part-area-1-10
+m2-incenter-right-radius | OMIT | domain=20 | prefix=gt1-m2-incenter-right-radius-
+  문장에 내심 및 필요한 각·반지름·넓이·둘레 또는 변의 길이와 목표가 모두 명시되어 내심의 성질로 계산된다.
+  first=gt1-m2-incenter-right-radius-0-1 ; last=gt1-m2-incenter-right-radius-1-10
+m2-centroid-vertex-from-short | OMIT | domain=19 | prefix=gt1-m2-centroid-vertex-from-short-
+  문장에 무게중심, 사용하는 중점·중선 또는 전체 넓이, 주어진 수와 목표가 명시되어 2:1 분할과 넓이 관계로 계산된다.
+  first=gt1-m2-centroid-vertex-from-short-2 ; last=gt1-m2-centroid-vertex-from-short-20
+m2-centroid-short-from-vertex | OMIT | domain=19 | prefix=gt1-m2-centroid-short-from-vertex-
+  문장에 무게중심, 사용하는 중점·중선 또는 전체 넓이, 주어진 수와 목표가 명시되어 2:1 분할과 넓이 관계로 계산된다.
+  first=gt1-m2-centroid-short-from-vertex-2 ; last=gt1-m2-centroid-short-from-vertex-20
+m2-centroid-vertex-from-median | OMIT | domain=19 | prefix=gt1-m2-centroid-vertex-from-median-
+  문장에 무게중심, 사용하는 중점·중선 또는 전체 넓이, 주어진 수와 목표가 명시되어 2:1 분할과 넓이 관계로 계산된다.
+  first=gt1-m2-centroid-vertex-from-median-2 ; last=gt1-m2-centroid-vertex-from-median-20
+m2-centroid-short-from-median | OMIT | domain=19 | prefix=gt1-m2-centroid-short-from-median-
+  문장에 무게중심, 사용하는 중점·중선 또는 전체 넓이, 주어진 수와 목표가 명시되어 2:1 분할과 넓이 관계로 계산된다.
+  first=gt1-m2-centroid-short-from-median-2 ; last=gt1-m2-centroid-short-from-median-20
+m2-centroid-median-from-vertex | OMIT | domain=19 | prefix=gt1-m2-centroid-median-from-vertex-
+  문장에 무게중심, 사용하는 중점·중선 또는 전체 넓이, 주어진 수와 목표가 명시되어 2:1 분할과 넓이 관계로 계산된다.
+  first=gt1-m2-centroid-median-from-vertex-2 ; last=gt1-m2-centroid-median-from-vertex-20
+m2-centroid-median-from-short | OMIT | domain=19 | prefix=gt1-m2-centroid-median-from-short-
+  문장에 무게중심, 사용하는 중점·중선 또는 전체 넓이, 주어진 수와 목표가 명시되어 2:1 분할과 넓이 관계로 계산된다.
+  first=gt1-m2-centroid-median-from-short-2 ; last=gt1-m2-centroid-median-from-short-20
+m2-centroid-area-3 | OMIT | domain=20 | prefix=gt1-m2-centroid-area-3-
+  문장에 무게중심, 사용하는 중점·중선 또는 전체 넓이, 주어진 수와 목표가 명시되어 2:1 분할과 넓이 관계로 계산된다.
+  first=gt1-m2-centroid-area-3-1 ; last=gt1-m2-centroid-area-3-20
+m2-centroid-area-6 | OMIT | domain=20 | prefix=gt1-m2-centroid-area-6-
+  문장에 무게중심, 사용하는 중점·중선 또는 전체 넓이, 주어진 수와 목표가 명시되어 2:1 분할과 넓이 관계로 계산된다.
+  first=gt1-m2-centroid-area-6-1 ; last=gt1-m2-centroid-area-6-20
+m2-iso-bisector-angle | KEEP | domain=11 | prefix=gt1-m2-iso-bisector-angle-
+  AD가 꼭지각 이등분선이라는 조건만으로 D의 위치는 정해지지 않는다. 그림이 D가 BC 위임을 지정해야 ∠ABD가 밑각이 된다.
+  first=gt1-m2-iso-bisector-angle-20 ; last=gt1-m2-iso-bisector-angle-40
+m2-iso-bisector-base | KEEP | domain=19 | prefix=gt1-m2-iso-bisector-base-
+  AD가 꼭지각 이등분선이라는 조건만으로 D가 BC의 중점은 아니다. 그림의 D∈BC가 있어야 BD의 두 배가 BC이다.
+  first=gt1-m2-iso-bisector-base-2 ; last=gt1-m2-iso-bisector-base-20
+m2-iso-bisector-half-base | KEEP | domain=19 | prefix=gt1-m2-iso-bisector-half-base-
+  AD가 꼭지각 이등분선이라는 조건만으로 D가 BC의 중점은 아니다. 그림의 D∈BC가 있어야 BD가 BC의 절반이다.
+  first=gt1-m2-iso-bisector-half-base-2 ; last=gt1-m2-iso-bisector-half-base-20
+m2-triangle-midsegment | OMIT | domain=19 | prefix=gt1-m2-triangle-midsegment-
+  문장이 각 중점이 놓인 변과 주어진 길이·넓이·둘레 및 목표를 지정하므로 중점·중선 관계만으로 계산된다.
+  first=gt1-m2-triangle-midsegment-2 ; last=gt1-m2-triangle-midsegment-20
+m2-midsegment-to-base | OMIT | domain=19 | prefix=gt1-m2-midsegment-to-base-
+  문장이 각 중점이 놓인 변과 주어진 길이·넓이·둘레 및 목표를 지정하므로 중점·중선 관계만으로 계산된다.
+  first=gt1-m2-midsegment-to-base-2 ; last=gt1-m2-midsegment-to-base-20
+m2-midsegment-area-small | OMIT | domain=19 | prefix=gt1-m2-midsegment-area-small-
+  문장이 각 중점이 놓인 변과 주어진 길이·넓이·둘레 및 목표를 지정하므로 중점·중선 관계만으로 계산된다.
+  first=gt1-m2-midsegment-area-small-2 ; last=gt1-m2-midsegment-area-small-20
+m2-midsegment-area-remainder | OMIT | domain=19 | prefix=gt1-m2-midsegment-area-remainder-
+  문장이 각 중점이 놓인 변과 주어진 길이·넓이·둘레 및 목표를 지정하므로 중점·중선 관계만으로 계산된다.
+  first=gt1-m2-midsegment-area-remainder-2 ; last=gt1-m2-midsegment-area-remainder-20
+m2-trapezoid-midline | OMIT | domain=20 | prefix=gt1-m2-trapezoid-midline-
+  문장에 사다리꼴의 평행한 변, 필요한 중점·분할비·같은 변 조건, 주어진 수와 목표가 명시되어 있다.
+  first=gt1-m2-trapezoid-midline-2-2 ; last=gt1-m2-trapezoid-midline-10-8
+m2-trapezoid-base | OMIT | domain=20 | prefix=gt1-m2-trapezoid-base-
+  문장에 사다리꼴의 평행한 변, 필요한 중점·분할비·같은 변 조건, 주어진 수와 목표가 명시되어 있다.
+  first=gt1-m2-trapezoid-base-2-2 ; last=gt1-m2-trapezoid-base-10-8
+m2-trapezoid-diagonal-midpoints | OMIT | domain=20 | prefix=gt1-m2-trapezoid-diagonal-midpoints-
+  문장에 사다리꼴의 평행한 변, 필요한 중점·분할비·같은 변 조건, 주어진 수와 목표가 명시되어 있다.
+  first=gt1-m2-trapezoid-diagonal-midpoints-2-2 ; last=gt1-m2-trapezoid-diagonal-midpoints-10-8
+m2-similarity-ratio-power-1 | OMIT | domain=7 | prefix=gt1-m2-similarity-ratio-power-1-
+  문장이 닮음의 대응 순서, 비의 방향, 주어진 길이·넓이·부피·둘레와 목표를 모두 지정한다.
+  first=gt1-m2-similarity-ratio-power-1-1-2 ; last=gt1-m2-similarity-ratio-power-1-4-5
+m2-similarity-length-enlarge | OMIT | domain=35 | prefix=gt1-m2-similarity-length-enlarge-
+  문장이 닮음의 대응 순서, 비의 방향, 주어진 길이·넓이·부피·둘레와 목표를 모두 지정한다.
+  first=gt1-m2-similarity-length-enlarge-1-2-1 ; last=gt1-m2-similarity-length-enlarge-4-5-5
+m2-similarity-length-reduce | OMIT | domain=35 | prefix=gt1-m2-similarity-length-reduce-
+  문장이 닮음의 대응 순서, 비의 방향, 주어진 길이·넓이·부피·둘레와 목표를 모두 지정한다.
+  first=gt1-m2-similarity-length-reduce-1-2-1 ; last=gt1-m2-similarity-length-reduce-4-5-5
+m2-similarity-ratio-power-2 | OMIT | domain=7 | prefix=gt1-m2-similarity-ratio-power-2-
+  문장이 닮음의 대응 순서, 비의 방향, 주어진 길이·넓이·부피·둘레와 목표를 모두 지정한다.
+  first=gt1-m2-similarity-ratio-power-2-1-2 ; last=gt1-m2-similarity-ratio-power-2-4-5
+m2-similarity-length-from-power-2 | OMIT | domain=7 | prefix=gt1-m2-similarity-length-from-power-2-
+  문장이 닮음의 대응 순서, 비의 방향, 주어진 길이·넓이·부피·둘레와 목표를 모두 지정한다.
+  first=gt1-m2-similarity-length-from-power-2-1-2 ; last=gt1-m2-similarity-length-from-power-2-4-5
+m2-similarity-area-enlarge | OMIT | domain=35 | prefix=gt1-m2-similarity-area-enlarge-
+  문장이 닮음의 대응 순서, 비의 방향, 주어진 길이·넓이·부피·둘레와 목표를 모두 지정한다.
+  first=gt1-m2-similarity-area-enlarge-1-2-1 ; last=gt1-m2-similarity-area-enlarge-4-5-5
+m2-similarity-area-reduce | OMIT | domain=35 | prefix=gt1-m2-similarity-area-reduce-
+  문장이 닮음의 대응 순서, 비의 방향, 주어진 길이·넓이·부피·둘레와 목표를 모두 지정한다.
+  first=gt1-m2-similarity-area-reduce-1-2-1 ; last=gt1-m2-similarity-area-reduce-4-5-5
+m2-similarity-ratio-power-3 | OMIT | domain=7 | prefix=gt1-m2-similarity-ratio-power-3-
+  문장이 닮음의 대응 순서, 비의 방향, 주어진 길이·넓이·부피·둘레와 목표를 모두 지정한다.
+  first=gt1-m2-similarity-ratio-power-3-1-2 ; last=gt1-m2-similarity-ratio-power-3-4-5
+m2-similarity-length-from-power-3 | OMIT | domain=7 | prefix=gt1-m2-similarity-length-from-power-3-
+  문장이 닮음의 대응 순서, 비의 방향, 주어진 길이·넓이·부피·둘레와 목표를 모두 지정한다.
+  first=gt1-m2-similarity-length-from-power-3-1-2 ; last=gt1-m2-similarity-length-from-power-3-4-5
+m2-similarity-volume-enlarge | OMIT | domain=35 | prefix=gt1-m2-similarity-volume-enlarge-
+  문장이 닮음의 대응 순서, 비의 방향, 주어진 길이·넓이·부피·둘레와 목표를 모두 지정한다.
+  first=gt1-m2-similarity-volume-enlarge-1-2-1 ; last=gt1-m2-similarity-volume-enlarge-4-5-5
+m2-similarity-volume-reduce | OMIT | domain=35 | prefix=gt1-m2-similarity-volume-reduce-
+  문장이 닮음의 대응 순서, 비의 방향, 주어진 길이·넓이·부피·둘레와 목표를 모두 지정한다.
+  first=gt1-m2-similarity-volume-reduce-1-2-1 ; last=gt1-m2-similarity-volume-reduce-4-5-5
+m2-similarity-perimeter | OMIT | domain=35 | prefix=gt1-m2-similarity-perimeter-
+  문장이 닮음의 대응 순서, 비의 방향, 주어진 길이·넓이·부피·둘레와 목표를 모두 지정한다.
+  first=gt1-m2-similarity-perimeter-1-2-1 ; last=gt1-m2-similarity-perimeter-4-5-5
+m2-parallel-triangle-side-part | OMIT | domain=45 | prefix=gt1-m2-parallel-triangle-side-part-
+  문장에 평행선, 각 점이 놓인 직선·변과 순서, 주어진 선분 및 목표가 모두 명시되어 비례 관계를 정할 수 있다.
+  first=gt1-m2-parallel-triangle-side-part-3-4-1 ; last=gt1-m2-parallel-triangle-side-part-6-7-3
+m2-parallel-triangle-base | OMIT | domain=12 | prefix=gt1-m2-parallel-triangle-base-
+  문장에 평행선, 각 점이 놓인 직선·변과 순서, 주어진 선분 및 목표가 모두 명시되어 비례 관계를 정할 수 있다.
+  first=gt1-m2-parallel-triangle-base-3-5-1 ; last=gt1-m2-parallel-triangle-base-6-5-3
+m2-parallel-triangle-whole-side | OMIT | domain=45 | prefix=gt1-m2-parallel-triangle-whole-side-
+  문장에 평행선, 각 점이 놓인 직선·변과 순서, 주어진 선분 및 목표가 모두 명시되어 비례 관계를 정할 수 있다.
+  first=gt1-m2-parallel-triangle-whole-side-3-4-1 ; last=gt1-m2-parallel-triangle-whole-side-6-7-3
+m2-triangle-bisector-segment | OMIT | domain=27 | prefix=gt1-m2-triangle-bisector-segment-
+  문장이 이등분하는 각, 점이 놓인 변 또는 연장 방향, 주어진 길이와 목표를 모두 지정한다.
+  first=gt1-m2-triangle-bisector-segment-4-5-1 ; last=gt1-m2-triangle-bisector-segment-7-8-3
+m2-parallelogram-adjacent | OMIT | domain=8 | prefix=gt1-m2-parallelogram-adjacent-
+  문장에 사각형의 종류, 필요한 대각선의 교점, 주어진 각·길이·넓이 및 목표가 명시되어 있다.
+  first=gt1-m2-parallelogram-adjacent-45 ; last=gt1-m2-parallelogram-adjacent-80
+m2-parallelogram-diagonal-half | OMIT | domain=19 | prefix=gt1-m2-parallelogram-diagonal-half-
+  문장에 사각형의 종류, 필요한 대각선의 교점, 주어진 각·길이·넓이 및 목표가 명시되어 있다.
+  first=gt1-m2-parallelogram-diagonal-half-2 ; last=gt1-m2-parallelogram-diagonal-half-20
+m2-parallelogram-diagonal-whole | OMIT | domain=19 | prefix=gt1-m2-parallelogram-diagonal-whole-
+  문장에 사각형의 종류, 필요한 대각선의 교점, 주어진 각·길이·넓이 및 목표가 명시되어 있다.
+  first=gt1-m2-parallelogram-diagonal-whole-2 ; last=gt1-m2-parallelogram-diagonal-whole-20
+m2-parallelogram-area-quarter | OMIT | domain=19 | prefix=gt1-m2-parallelogram-area-quarter-
+  문장에 사각형의 종류, 필요한 대각선의 교점, 주어진 각·길이·넓이 및 목표가 명시되어 있다.
+  first=gt1-m2-parallelogram-area-quarter-2 ; last=gt1-m2-parallelogram-area-quarter-20
+m2-rectangle-diagonal-half | OMIT | domain=19 | prefix=gt1-m2-rectangle-diagonal-half-
+  문장에 사각형의 종류, 필요한 대각선의 교점, 주어진 각·길이·넓이 및 목표가 명시되어 있다.
+  first=gt1-m2-rectangle-diagonal-half-2 ; last=gt1-m2-rectangle-diagonal-half-20
+m2-rhombus-diagonal-angle | OMIT | domain=11 | prefix=gt1-m2-rhombus-diagonal-angle-
+  문장에 사각형의 종류, 필요한 대각선의 교점, 주어진 각·길이·넓이 및 목표가 명시되어 있다.
+  first=gt1-m2-rhombus-diagonal-angle-40 ; last=gt1-m2-rhombus-diagonal-angle-80
+m2-isosceles-trapezoid-angle | OMIT | domain=7 | prefix=gt1-m2-isosceles-trapezoid-angle-
+  문장에 사다리꼴의 평행한 변, 필요한 중점·분할비·같은 변 조건, 주어진 수와 목표가 명시되어 있다.
+  first=gt1-m2-isosceles-trapezoid-angle-45 ; last=gt1-m2-isosceles-trapezoid-angle-75
+m2-pythagoras-hypotenuse-integer | OMIT | domain=7 | prefix=gt1-m2-pythagoras-hypotenuse-integer-
+  문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.
+  first=gt1-m2-pythagoras-hypotenuse-integer-3-4 ; last=gt1-m2-pythagoras-hypotenuse-integer-15-20
+m2-pythagoras-leg-integer | OMIT | domain=14 | prefix=gt1-m2-pythagoras-leg-integer-
+  문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.
+  first=gt1-m2-pythagoras-leg-integer-3-5 ; last=gt1-m2-pythagoras-leg-integer-20-25
+m2-pythagoras-rectangle-diagonal-integer | OMIT | domain=7 | prefix=gt1-m2-pythagoras-rectangle-diagonal-integer-
+  문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.
+  first=gt1-m2-pythagoras-rectangle-diagonal-integer-3-4 ; last=gt1-m2-pythagoras-rectangle-diagonal-integer-15-20
+m2-pythagoras-rectangle-side-integer | OMIT | domain=14 | prefix=gt1-m2-pythagoras-rectangle-side-integer-
+  문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.
+  first=gt1-m2-pythagoras-rectangle-side-integer-3-5 ; last=gt1-m2-pythagoras-rectangle-side-integer-20-25
+m2-pythagoras-isosceles-height-integer | OMIT | domain=14 | prefix=gt1-m2-pythagoras-isosceles-height-integer-
+  문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.
+  first=gt1-m2-pythagoras-isosceles-height-integer-3-5 ; last=gt1-m2-pythagoras-isosceles-height-integer-20-25
+m2-pythagoras-rhombus-side-integer | OMIT | domain=7 | prefix=gt1-m2-pythagoras-rhombus-side-integer-
+  문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.
+  first=gt1-m2-pythagoras-rhombus-side-integer-3-4 ; last=gt1-m2-pythagoras-rhombus-side-integer-15-20
+m3-pythagoras-hypotenuse-surd | OMIT | domain=138 | prefix=gt1-m3-pythagoras-hypotenuse-surd-
+  문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.
+  first=gt1-m3-pythagoras-hypotenuse-surd-3-3 ; last=gt1-m3-pythagoras-hypotenuse-surd-20-20
+m3-pythagoras-leg-surd | OMIT | domain=177 | prefix=gt1-m3-pythagoras-leg-surd-
+  문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.
+  first=gt1-m3-pythagoras-leg-surd-3-6 ; last=gt1-m3-pythagoras-leg-surd-20-24
+m3-pythagoras-rectangle-diagonal-surd | OMIT | domain=138 | prefix=gt1-m3-pythagoras-rectangle-diagonal-surd-
+  문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.
+  first=gt1-m3-pythagoras-rectangle-diagonal-surd-3-3 ; last=gt1-m3-pythagoras-rectangle-diagonal-surd-20-20
+m3-pythagoras-rectangle-side-surd | OMIT | domain=177 | prefix=gt1-m3-pythagoras-rectangle-side-surd-
+  문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.
+  first=gt1-m3-pythagoras-rectangle-side-surd-3-6 ; last=gt1-m3-pythagoras-rectangle-side-surd-20-24
+m3-pythagoras-isosceles-height-surd | OMIT | domain=177 | prefix=gt1-m3-pythagoras-isosceles-height-surd-
+  문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.
+  first=gt1-m3-pythagoras-isosceles-height-surd-3-6 ; last=gt1-m3-pythagoras-isosceles-height-surd-20-24
+m3-pythagoras-rhombus-side-surd | OMIT | domain=138 | prefix=gt1-m3-pythagoras-rhombus-side-surd-
+  문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.
+  first=gt1-m3-pythagoras-rhombus-side-surd-3-3 ; last=gt1-m3-pythagoras-rhombus-side-surd-20-20
+m2-right-radius-from-legs | OMIT | domain=7 | prefix=gt1-m2-right-radius-from-legs-
+  문장에 직각의 꼭짓점, 외심, 두 직각변과 외접원 반지름이라는 목표가 명시되어 있다.
+  first=gt1-m2-right-radius-from-legs-3-4 ; last=gt1-m2-right-radius-from-legs-15-20
+m2-right-triangle-height | KEEP | domain=7 | prefix=gt1-m2-right-triangle-height-
+  BD⊥AC만 있고 D∈AC는 명시되지 않는다. 그림이 D를 빗변 위 수선의 발로 지정한다.
+  first=gt1-m2-right-triangle-height-3-4 ; last=gt1-m2-right-triangle-height-15-20
+m2-right-triangle-projection | KEEP | domain=7 | prefix=gt1-m2-right-triangle-projection-
+  BD⊥AC만 있고 D∈AC는 명시되지 않는다. 그림이 D를 빗변 위 수선의 발로 지정해야 AD가 정사영 길이가 된다.
+  first=gt1-m2-right-triangle-projection-3-4 ; last=gt1-m2-right-triangle-projection-15-20
+m2-right-triangle-area | OMIT | domain=7 | prefix=gt1-m2-right-triangle-area-
+  문장에 직각의 꼭짓점, 한 직각변과 빗변, 전체 삼각형 넓이라는 목표가 있다. D의 위치는 이 계산에 필요하지 않다.
+  first=gt1-m2-right-triangle-area-3-4 ; last=gt1-m2-right-triangle-area-15-20
+m2-right-altitude-product | KEEP | domain=10 | prefix=gt1-m2-right-altitude-product-
+  BD⊥AC만 있고 D∈AC는 명시되지 않는다. 그림이 AD와 DC가 빗변을 나누는 두 부분임을 지정한다.
+  first=gt1-m2-right-altitude-product-2-2 ; last=gt1-m2-right-altitude-product-5-5
+m3-right-leg-product | KEEP | domain=10 | prefix=gt1-m3-right-leg-product-
+  BD⊥AC만 있고 D∈AC는 명시되지 않는다. 그림이 D를 빗변 위 수선의 발로 지정해야 AD가 정사영 길이가 된다.
+  first=gt1-m3-right-leg-product-2-2 ; last=gt1-m3-right-leg-product-5-5
+m2-centroid-median-sum | OMIT | domain=27 | prefix=gt1-m2-centroid-median-sum-
+  문장에 무게중심, 사용하는 중점·중선 또는 전체 넓이, 주어진 수와 목표가 명시되어 2:1 분할과 넓이 관계로 계산된다.
+  first=gt1-m2-centroid-median-sum-4 ; last=gt1-m2-centroid-median-sum-30
+m2-triangle-median-area | OMIT | domain=29 | prefix=gt1-m2-triangle-median-area-
+  문장이 각 중점이 놓인 변과 주어진 길이·넓이·둘레 및 목표를 지정하므로 중점·중선 관계만으로 계산된다.
+  first=gt1-m2-triangle-median-area-2 ; last=gt1-m2-triangle-median-area-30
+m2-same-height-area-ratio | OMIT | domain=36 | prefix=gt1-m2-same-height-area-ratio-
+  문장이 D∈BC, BD와 DC의 길이, 삼각형 ABD의 넓이와 목표 ADC를 지정하여 같은 높이를 보장한다.
+  first=gt1-m2-same-height-area-ratio-2-3-2 ; last=gt1-m2-same-height-area-ratio-5-4-4
+m2-three-parallel-segments | OMIT | domain=32 | prefix=gt1-m2-three-parallel-segments-
+  문장에 평행선, 각 점이 놓인 직선·변과 순서, 주어진 선분 및 목표가 모두 명시되어 비례 관계를 정할 수 있다.
+  first=gt1-m2-three-parallel-segments-3-3-2 ; last=gt1-m2-three-parallel-segments-6-6-3
+m2-trapezoid-parallel-section | OMIT | domain=64 | prefix=gt1-m2-trapezoid-parallel-section-
+  문장에 사다리꼴의 평행한 변, 필요한 중점·분할비·같은 변 조건, 주어진 수와 목표가 명시되어 있다.
+  first=gt1-m2-trapezoid-parallel-section-3-2-1-2 ; last=gt1-m2-trapezoid-parallel-section-6-5-2-3
+m2-external-bisector-part | OMIT | domain=18 | prefix=gt1-m2-external-bisector-part-
+  문장이 이등분하는 각, 점이 놓인 변 또는 연장 방향, 주어진 길이와 목표를 모두 지정한다.
+  first=gt1-m2-external-bisector-part-0-1 ; last=gt1-m2-external-bisector-part-2-6
+m2-external-bisector-base | OMIT | domain=18 | prefix=gt1-m2-external-bisector-base-
+  문장이 이등분하는 각, 점이 놓인 변 또는 연장 방향, 주어진 길이와 목표를 모두 지정한다.
+  first=gt1-m2-external-bisector-base-0-3 ; last=gt1-m2-external-bisector-base-2-24
+m2-midpoint-triangle-perimeter-part | OMIT | domain=28 | prefix=gt1-m2-midpoint-triangle-perimeter-part-
+  문장이 각 중점이 놓인 변과 주어진 길이·넓이·둘레 및 목표를 지정하므로 중점·중선 관계만으로 계산된다.
+  first=gt1-m2-midpoint-triangle-perimeter-part-3 ; last=gt1-m2-midpoint-triangle-perimeter-part-30
+m2-midpoint-triangle-perimeter-whole | OMIT | domain=28 | prefix=gt1-m2-midpoint-triangle-perimeter-whole-
+  문장이 각 중점이 놓인 변과 주어진 길이·넓이·둘레 및 목표를 지정하므로 중점·중선 관계만으로 계산된다.
+  first=gt1-m2-midpoint-triangle-perimeter-whole-3 ; last=gt1-m2-midpoint-triangle-perimeter-whole-30
+m1-parallel-angle | KEEP | domain=14 | prefix=gm-m1-parallel-angle-
+  평행 관계와 각도만으로는 두 표시각이 동위각인지 보각인지 정해지지 않는다. 그림이 횡단선의 두 반직선과 목표 각의 위치를 지정한다.
+  first=gm-m1-parallel-angle-0-45 ; last=gm-m1-parallel-angle-1-75
+m1-triangle-exterior | OMIT | domain=27 | prefix=gm-m1-triangle-exterior-
+  문장에 외각에서 떨어진 두 내각과 외각이라는 목표가 있어 외각의 크기가 유일하게 정해진다.
+  first=gm-m1-triangle-exterior-30-50 ; last=gm-m1-triangle-exterior-80-50
+  instruction=외각의 크기를 구하세요.
+m1-triangle-interior-exterior | KEEP | domain=27 | prefix=gm-m1-triangle-interior-exterior-
+  문장은 외각과 떨어진 한 내각만 주며 C가 나머지 떨어진 내각이라는 위치를 명시하지 않는다. 그림이 C의 위치를 지정한다.
+  first=gm-m1-triangle-interior-exterior-30-50 ; last=gm-m1-triangle-interior-exterior-80-50
+m1-polygon-sum | OMIT | domain=10 | prefix=gm-m1-polygon-sum-
+  문장에 다각형의 변 수와 정다각형 여부 또는 한 꼭짓점에서 대각선을 모두 긋는 조건, 구할 개수·각이 명시되어 있다.
+  first=gm-m1-polygon-sum-3 ; last=gm-m1-polygon-sum-12
+m1-polygon-interior | OMIT | domain=10 | prefix=gm-m1-polygon-interior-
+  문장에 다각형의 변 수와 정다각형 여부 또는 한 꼭짓점에서 대각선을 모두 긋는 조건, 구할 개수·각이 명시되어 있다.
+  first=gm-m1-polygon-interior-3 ; last=gm-m1-polygon-interior-12
+  instruction=한 내각의 크기를 구하세요.
+m1-polygon-exterior | OMIT | domain=10 | prefix=gm-m1-polygon-exterior-
+  문장에 다각형의 변 수와 정다각형 여부 또는 한 꼭짓점에서 대각선을 모두 긋는 조건, 구할 개수·각이 명시되어 있다.
+  first=gm-m1-polygon-exterior-3 ; last=gm-m1-polygon-exterior-12
+  instruction=한 외각의 크기를 구하세요.
+m1-polygon-diagonals | OMIT | domain=10 | prefix=gm-m1-polygon-diagonals-
+  문장에 다각형의 변 수와 정다각형 여부 또는 한 꼭짓점에서 대각선을 모두 긋는 조건, 구할 개수·각이 명시되어 있다.
+  first=gm-m1-polygon-diagonals-3 ; last=gm-m1-polygon-diagonals-12
+m1-circle-circumference | OMIT | domain=14 | prefix=gm-m1-circle-circumference-
+  문장에 원의 반지름 또는 원주와 구할 양이 모두 명시되어 있다.
+  first=gm-m1-circle-circumference-2 ; last=gm-m1-circle-circumference-15
+m1-circle-area | OMIT | domain=14 | prefix=gm-m1-circle-area-
+  문장에 원·부채꼴의 종류, 반지름·중심각·호·넓이 중 필요한 수와 구할 양이 모두 명시되어 있다.
+  first=gm-m1-circle-area-2 ; last=gm-m1-circle-area-15
+m1-circle-radius-circumference | OMIT | domain=14 | prefix=gm-m1-circle-radius-circumference-
+  문장에 원의 반지름 또는 원주와 구할 양이 모두 명시되어 있다.
+  first=gm-m1-circle-radius-circumference-2 ; last=gm-m1-circle-radius-circumference-15
+m1-circle-radius-area | OMIT | domain=14 | prefix=gm-m1-circle-radius-area-
+  문장에 원·부채꼴의 종류, 반지름·중심각·호·넓이 중 필요한 수와 구할 양이 모두 명시되어 있다.
+  first=gm-m1-circle-radius-area-2 ; last=gm-m1-circle-radius-area-15
+m1-sector-arc | OMIT | domain=50 | prefix=gm-m1-sector-arc-
+  문장에 원·부채꼴의 종류, 반지름·중심각·호·넓이 중 필요한 수와 구할 양이 모두 명시되어 있다.
+  first=gm-m1-sector-arc-2-30 ; last=gm-m1-sector-arc-10-270
+m1-sector-area | OMIT | domain=50 | prefix=gm-m1-sector-area-
+  문장에 원·부채꼴의 종류, 반지름·중심각·호·넓이 중 필요한 수와 구할 양이 모두 명시되어 있다.
+  first=gm-m1-sector-area-2-30 ; last=gm-m1-sector-area-10-270
+m1-sector-perimeter | OMIT | domain=50 | prefix=gm-m1-sector-perimeter-
+  문장에 원·부채꼴의 종류, 반지름·중심각·호·넓이 중 필요한 수와 구할 양이 모두 명시되어 있다.
+  first=gm-m1-sector-perimeter-2-30 ; last=gm-m1-sector-perimeter-10-270
+m1-sector-angle-arc | OMIT | domain=50 | prefix=gm-m1-sector-angle-arc-
+  문장에 원·부채꼴의 종류, 반지름·중심각·호·넓이 중 필요한 수와 구할 양이 모두 명시되어 있다.
+  first=gm-m1-sector-angle-arc-2-30 ; last=gm-m1-sector-angle-arc-10-270
+m1-sector-angle-area | OMIT | domain=50 | prefix=gm-m1-sector-angle-area-
+  문장에 원·부채꼴의 종류, 반지름·중심각·호·넓이 중 필요한 수와 구할 양이 모두 명시되어 있다.
+  first=gm-m1-sector-angle-area-2-30 ; last=gm-m1-sector-angle-area-10-270
+m1-sector-radius-arc | OMIT | domain=50 | prefix=gm-m1-sector-radius-arc-
+  문장에 원·부채꼴의 종류, 반지름·중심각·호·넓이 중 필요한 수와 구할 양이 모두 명시되어 있다.
+  first=gm-m1-sector-radius-arc-2-30 ; last=gm-m1-sector-radius-arc-10-270
+m1-sector-radius-area | OMIT | domain=50 | prefix=gm-m1-sector-radius-area-
+  문장에 원·부채꼴의 종류, 반지름·중심각·호·넓이 중 필요한 수와 구할 양이 모두 명시되어 있다.
+  first=gm-m1-sector-radius-area-2-30 ; last=gm-m1-sector-radius-area-10-270
+m1-sector-area-arc | OMIT | domain=50 | prefix=gm-m1-sector-area-arc-
+  문장에 원·부채꼴의 종류, 반지름·중심각·호·넓이 중 필요한 수와 구할 양이 모두 명시되어 있다.
+  first=gm-m1-sector-area-arc-2-30 ; last=gm-m1-sector-area-arc-10-270
+m1-prism-volume | OMIT | domain=114 | prefix=gm-m1-prism-volume-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-prism-volume-6-2 ; last=gm-m1-prism-volume-60-12
+  instruction=각기둥의 부피를 구하세요.
+m1-prism-surface | OMIT | domain=75 | prefix=gm-m1-prism-surface-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-prism-surface-2-2-3 ; last=gm-m1-prism-surface-6-8-7
+  instruction=모든 옆면이 직사각형인 기둥의 겉넓이를 구하세요.
+m1-cylinder-volume | OMIT | domain=54 | prefix=gm-m1-cylinder-volume-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-cylinder-volume-2-2 ; last=gm-m1-cylinder-volume-10-12
+  instruction=부피를 구하세요. π는 그대로 쓰세요.
+m1-cylinder-surface | OMIT | domain=54 | prefix=gm-m1-cylinder-surface-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-cylinder-surface-2-2 ; last=gm-m1-cylinder-surface-10-12
+  instruction=겉넓이를 구하세요. π는 그대로 쓰세요.
+m1-cylinder-lateral | OMIT | domain=54 | prefix=gm-m1-cylinder-lateral-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-cylinder-lateral-2-2 ; last=gm-m1-cylinder-lateral-10-12
+  instruction=옆넓이를 구하세요. π는 그대로 쓰세요.
+m1-pyramid-volume | OMIT | domain=64 | prefix=gm-m1-pyramid-volume-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-pyramid-volume-5-2 ; last=gm-m1-pyramid-volume-50-11
+  instruction=각뿔의 부피를 구하세요.
+m1-pyramid-surface | OMIT | domain=50 | prefix=gm-m1-pyramid-surface-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-pyramid-surface-2-3 ; last=gm-m1-pyramid-surface-12-12
+  instruction=겉넓이를 구하세요.
+m1-cone-volume | OMIT | domain=54 | prefix=gm-m1-cone-volume-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-cone-volume-2-2 ; last=gm-m1-cone-volume-10-12
+  instruction=부피를 구하세요. π는 그대로 쓰세요.
+m1-cone-surface | OMIT | domain=72 | prefix=gm-m1-cone-surface-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-cone-surface-2-3 ; last=gm-m1-cone-surface-10-14
+  instruction=겉넓이를 구하세요. π는 그대로 쓰세요.
+m1-cone-lateral | OMIT | domain=72 | prefix=gm-m1-cone-lateral-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-cone-lateral-2-3 ; last=gm-m1-cone-lateral-10-14
+  instruction=옆넓이를 구하세요. π는 그대로 쓰세요.
+m1-sphere-surface | OMIT | domain=15 | prefix=gm-m1-sphere-surface-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-sphere-surface-1 ; last=gm-m1-sphere-surface-15
+  instruction=겉넓이를 구하세요. π는 그대로 쓰세요.
+m1-sphere-volume | OMIT | domain=15 | prefix=gm-m1-sphere-volume-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-sphere-volume-1 ; last=gm-m1-sphere-volume-15
+  instruction=부피를 구하세요. π는 그대로 쓰세요.
+m3-circle-inscribed | OMIT | domain=9 | prefix=gm-m3-circle-inscribed-
+  문장에 같은 호·대응 중심각·마주 보는 각 또는 접점·접선·반지름의 관계, 주어진 각·길이와 목표가 명시되어 있다.
+  first=gm-m3-circle-inscribed-30 ; last=gm-m3-circle-inscribed-70
+  instruction=∠C의 크기를 구하세요.
+m3-circle-central | OMIT | domain=9 | prefix=gm-m3-circle-central-
+  문장에 같은 호·대응 중심각·마주 보는 각 또는 접점·접선·반지름의 관계, 주어진 각·길이와 목표가 명시되어 있다.
+  first=gm-m3-circle-central-30 ; last=gm-m3-circle-central-70
+  instruction=중심각의 크기를 구하세요.
+m3-circle-same-arc | OMIT | domain=9 | prefix=gm-m3-circle-same-arc-
+  문장에 같은 호·대응 중심각·마주 보는 각 또는 접점·접선·반지름의 관계, 주어진 각·길이와 목표가 명시되어 있다.
+  first=gm-m3-circle-same-arc-30 ; last=gm-m3-circle-same-arc-70
+  instruction=∠D의 크기를 구하세요.
+m3-circle-cyclic-opposite | OMIT | domain=9 | prefix=gm-m3-circle-cyclic-opposite-
+  문장에 같은 호·대응 중심각·마주 보는 각 또는 접점·접선·반지름의 관계, 주어진 각·길이와 목표가 명시되어 있다.
+  first=gm-m3-circle-cyclic-opposite-30 ; last=gm-m3-circle-cyclic-opposite-70
+  instruction=∠D의 크기를 구하세요.
+m3-circle-chord-length | KEEP | domain=33 | prefix=gm-m3-circle-chord-length-
+  OM⊥AB만 있고 M∈AB는 명시되지 않는다. 그림이 M을 현 위 수선의 발로 지정해야 OM이 중심과 현 사이 거리가 된다.
+  first=gm-m3-circle-chord-length-5-2 ; last=gm-m3-circle-chord-length-13-9
+m3-circle-chord-distance | OMIT | domain=33 | prefix=gm-m3-circle-chord-distance-
+  문장에 원의 반지름과 현의 길이가 있고 목표를 중심에서 현까지의 거리 OM으로 명명하여 수선의 발을 그림 없이 정한다.
+  first=gm-m3-circle-chord-distance-5-2 ; last=gm-m3-circle-chord-distance-13-9
+m3-circle-tangent-angle | OMIT | domain=9 | prefix=gm-m3-circle-tangent-angle-
+  문장에 같은 호·대응 중심각·마주 보는 각 또는 접점·접선·반지름의 관계, 주어진 각·길이와 목표가 명시되어 있다.
+  first=gm-m3-circle-tangent-angle-25 ; last=gm-m3-circle-tangent-angle-65
+  instruction=∠POT의 크기를 구하세요.
+m3-trig-ratio | OMIT | domain=120 | prefix=gm-m3-trig-ratio-
+  문장에 각, 맞은편·이웃한 변·빗변의 대응 또는 두 변의 끼인각과 목표가 명시되어 삼각비를 정할 수 있다.
+  first=gm-m3-trig-ratio-0-1-0 ; last=gm-m3-trig-ratio-7-5-2
+m3-trig-special-value | OMIT | domain=9 | prefix=gm-m3-trig-special-value-
+  문장에 각, 맞은편·이웃한 변·빗변의 대응 또는 두 변의 끼인각과 목표가 명시되어 삼각비를 정할 수 있다.
+  first=gm-m3-trig-special-value-30-0 ; last=gm-m3-trig-special-value-60-2
+m3-trig-special-length | OMIT | domain=342 | prefix=gm-m3-trig-special-length-
+  문장에 각, 맞은편·이웃한 변·빗변의 대응 또는 두 변의 끼인각과 목표가 명시되어 삼각비를 정할 수 있다.
+  first=gm-m3-trig-special-length-30-2-0 ; last=gm-m3-trig-special-length-60-20-5
+m3-trig-triangle-area | OMIT | domain=60 | prefix=gm-m3-trig-triangle-area-
+  문장에 각, 맞은편·이웃한 변·빗변의 대응 또는 두 변의 끼인각과 목표가 명시되어 삼각비를 정할 수 있다.
+  first=gm-m3-trig-triangle-area-2-2-30 ; last=gm-m3-trig-triangle-area-10-10-90
+m1-prism-base-area-volume | OMIT | domain=114 | prefix=gm-m1-prism-base-area-volume-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-prism-base-area-volume-6-2 ; last=gm-m1-prism-base-area-volume-60-12
+  instruction=밑넓이를 구하세요.
+m1-prism-height-volume | OMIT | domain=114 | prefix=gm-m1-prism-height-volume-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-prism-height-volume-6-2 ; last=gm-m1-prism-height-volume-60-12
+  instruction=수직 높이 h를 구하세요.
+m1-pyramid-base-area-volume | OMIT | domain=64 | prefix=gm-m1-pyramid-base-area-volume-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-pyramid-base-area-volume-5-2 ; last=gm-m1-pyramid-base-area-volume-50-11
+  instruction=밑넓이를 구하세요.
+m1-pyramid-height-volume | OMIT | domain=64 | prefix=gm-m1-pyramid-height-volume-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-pyramid-height-volume-5-2 ; last=gm-m1-pyramid-height-volume-50-11
+  instruction=수직 높이 h를 구하세요.
+m1-prism-base-area-surface | OMIT | domain=75 | prefix=gm-m1-prism-base-area-surface-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-prism-base-area-surface-2-2-3 ; last=gm-m1-prism-base-area-surface-6-8-7
+  instruction=밑넓이를 구하세요. 옆면은 모두 직사각형입니다.
+m1-prism-height-surface | OMIT | domain=75 | prefix=gm-m1-prism-height-surface-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-prism-height-surface-2-2-3 ; last=gm-m1-prism-height-surface-6-8-7
+  instruction=수직 높이 h를 구하세요. 옆면은 모두 직사각형입니다.
+m1-pyramid-slant-surface | OMIT | domain=50 | prefix=gm-m1-pyramid-slant-surface-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-pyramid-slant-surface-2-3 ; last=gm-m1-pyramid-slant-surface-12-12
+  instruction=옆면 삼각형의 높이 s를 구하세요.
+m1-cylinder-height-volume | OMIT | domain=54 | prefix=gm-m1-cylinder-height-volume-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-cylinder-height-volume-2-2 ; last=gm-m1-cylinder-height-volume-10-12
+  instruction=수직 높이 h를 구하세요.
+m1-cylinder-radius-volume | OMIT | domain=54 | prefix=gm-m1-cylinder-radius-volume-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-cylinder-radius-volume-2-2 ; last=gm-m1-cylinder-radius-volume-10-12
+  instruction=반지름 r를 구하세요.
+m1-cone-height-volume | OMIT | domain=54 | prefix=gm-m1-cone-height-volume-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-cone-height-volume-2-2 ; last=gm-m1-cone-height-volume-10-12
+  instruction=수직 높이 h를 구하세요.
+m1-cone-radius-volume | OMIT | domain=54 | prefix=gm-m1-cone-radius-volume-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-cone-radius-volume-2-2 ; last=gm-m1-cone-radius-volume-10-12
+  instruction=반지름 r를 구하세요.
+m1-cylinder-height-lateral | OMIT | domain=54 | prefix=gm-m1-cylinder-height-lateral-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-cylinder-height-lateral-2-2 ; last=gm-m1-cylinder-height-lateral-10-12
+  instruction=수직 높이 h를 구하세요.
+m1-cylinder-radius-lateral | OMIT | domain=54 | prefix=gm-m1-cylinder-radius-lateral-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-cylinder-radius-lateral-2-2 ; last=gm-m1-cylinder-radius-lateral-10-12
+  instruction=반지름 r를 구하세요.
+m1-cylinder-height-surface | OMIT | domain=54 | prefix=gm-m1-cylinder-height-surface-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-cylinder-height-surface-2-2 ; last=gm-m1-cylinder-height-surface-10-12
+  instruction=수직 높이 h를 구하세요.
+m1-cone-radius-lateral | OMIT | domain=72 | prefix=gm-m1-cone-radius-lateral-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-cone-radius-lateral-2-3 ; last=gm-m1-cone-radius-lateral-10-14
+  instruction=반지름 r의 길이를 구하세요.
+m1-cone-generator-lateral | OMIT | domain=72 | prefix=gm-m1-cone-generator-lateral-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-cone-generator-lateral-2-3 ; last=gm-m1-cone-generator-lateral-10-14
+  instruction=모선 l의 길이를 구하세요.
+m1-cone-generator-surface | OMIT | domain=72 | prefix=gm-m1-cone-generator-surface-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-cone-generator-surface-2-3 ; last=gm-m1-cone-generator-surface-10-14
+  instruction=모선 l의 길이를 구하세요.
+m1-sphere-radius-surface | OMIT | domain=15 | prefix=gm-m1-sphere-radius-surface-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-sphere-radius-surface-1 ; last=gm-m1-sphere-radius-surface-15
+  instruction=반지름 r의 길이를 구하세요.
+m1-sphere-radius-volume | OMIT | domain=15 | prefix=gm-m1-sphere-radius-volume-
+  문장에 입체의 종류, 필요한 밑넓이·밑둘레·반지름·수직 높이·옆면 높이·모선·겉넓이·부피와 목표가 명시되어 있다. 겨냥도는 추가 조건을 주지 않는다.
+  first=gm-m1-sphere-radius-volume-1 ; last=gm-m1-sphere-radius-volume-15
+  instruction=반지름 r의 길이를 구하세요.
+m3-circle-tangent-chord | OMIT | domain=16 | prefix=gm-m3-circle-tangent-chord-
+  문장에 같은 호·대응 중심각·마주 보는 각 또는 접점·접선·반지름의 관계, 주어진 각·길이와 목표가 명시되어 있다.
+  first=gm-m3-circle-tangent-chord-0-30 ; last=gm-m3-circle-tangent-chord-1-65
+  instruction=접선과 현 TP가 이루는 예각을 구하세요.
+m3-circle-equal-tangents | OMIT | domain=19 | prefix=gm-m3-circle-equal-tangents-
+  문장에 같은 호·대응 중심각·마주 보는 각 또는 접점·접선·반지름의 관계, 주어진 각·길이와 목표가 명시되어 있다.
+  first=gm-m3-circle-equal-tangents-2 ; last=gm-m3-circle-equal-tangents-20
+
+Checks passed: 5730 canonical candidates; 5553 independent prose solutions; 177 complete display audits.
+Remove: 92 numeric segment groups plus separate numeric texts; 66 chord numeric outline-label groups; 14 duplicate relation notes; 66 dashed quadratic dimension paths.
+Reviewed 145 numeric outline-label groups: 66 chord lengths removable, 79 angle values preserved for association.
+
+Exact retained figure IDs and removal metadata:
+gt1-m2-incenter-part-area-0-1 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-incenter-part-area-0-2 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-incenter-part-area-0-3 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-incenter-part-area-0-4 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-incenter-part-area-0-5 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-incenter-part-area-0-6 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-incenter-part-area-0-7 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-incenter-part-area-0-8 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-incenter-part-area-0-9 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-incenter-part-area-0-10 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-incenter-part-area-1-1 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-incenter-part-area-1-2 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-incenter-part-area-1-3 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-incenter-part-area-1-4 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-incenter-part-area-1-5 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-incenter-part-area-1-6 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-incenter-part-area-1-7 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-incenter-part-area-1-8 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-incenter-part-area-1-9 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-incenter-part-area-1-10 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-angle-20 | dimension=none | audited-numeric-labels=["20°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-angle-22 | dimension=none | audited-numeric-labels=["22°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-angle-24 | dimension=none | audited-numeric-labels=["24°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-angle-26 | dimension=none | audited-numeric-labels=["26°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-angle-28 | dimension=none | audited-numeric-labels=["28°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-angle-30 | dimension=none | audited-numeric-labels=["30°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-angle-32 | dimension=none | audited-numeric-labels=["32°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-angle-34 | dimension=none | audited-numeric-labels=["34°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-angle-36 | dimension=none | audited-numeric-labels=["36°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-angle-38 | dimension=none | audited-numeric-labels=["38°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-angle-40 | dimension=none | audited-numeric-labels=["40°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-base-2 | dimension=BD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-base-3 | dimension=BD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-base-4 | dimension=BD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-base-5 | dimension=BD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-base-6 | dimension=BD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-base-7 | dimension=BD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-base-8 | dimension=BD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-base-9 | dimension=BD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-base-10 | dimension=BD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-base-11 | dimension=BD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-base-12 | dimension=BD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-base-13 | dimension=BD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-base-14 | dimension=BD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-base-15 | dimension=BD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-base-16 | dimension=BD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-base-17 | dimension=BD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-base-18 | dimension=BD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-base-19 | dimension=BD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-base-20 | dimension=BD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-half-base-2 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-half-base-3 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-half-base-4 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-half-base-5 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-half-base-6 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-half-base-7 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-half-base-8 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-half-base-9 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-half-base-10 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-half-base-11 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-half-base-12 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-half-base-13 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-half-base-14 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-half-base-15 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-half-base-16 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-half-base-17 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-half-base-18 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-half-base-19 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-iso-bisector-half-base-20 | dimension=BC | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-triangle-height-3-4 | dimension=AB | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-triangle-height-5-12 | dimension=AB | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-triangle-height-6-8 | dimension=AB | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-triangle-height-8-15 | dimension=AB | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-triangle-height-9-12 | dimension=AB | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-triangle-height-12-16 | dimension=AB | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-triangle-height-15-20 | dimension=AB | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-triangle-projection-3-4 | dimension=AB | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-triangle-projection-5-12 | dimension=AB | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-triangle-projection-6-8 | dimension=AB | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-triangle-projection-8-15 | dimension=AB | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-triangle-projection-9-12 | dimension=AB | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-triangle-projection-12-16 | dimension=AB | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-triangle-projection-15-20 | dimension=AB | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-altitude-product-2-2 | dimension=AD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-altitude-product-2-3 | dimension=AD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-altitude-product-2-4 | dimension=AD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-altitude-product-2-5 | dimension=AD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-altitude-product-3-3 | dimension=AD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-altitude-product-3-4 | dimension=AD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-altitude-product-3-5 | dimension=AD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-altitude-product-4-4 | dimension=AD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-altitude-product-4-5 | dimension=AD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m2-right-altitude-product-5-5 | dimension=AD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m3-right-leg-product-2-2 | dimension=AD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m3-right-leg-product-2-3 | dimension=AD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m3-right-leg-product-2-4 | dimension=AD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m3-right-leg-product-2-5 | dimension=AD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m3-right-leg-product-3-3 | dimension=AD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m3-right-leg-product-3-4 | dimension=AD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m3-right-leg-product-3-5 | dimension=AD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m3-right-leg-product-4-4 | dimension=AD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m3-right-leg-product-4-5 | dimension=AD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gt1-m3-right-leg-product-5-5 | dimension=AD | audited-numeric-labels=[] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-parallel-angle-0-45 | dimension=none | audited-numeric-labels=["45°"] | notes=["ℓ ∥ m"] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-parallel-angle-0-50 | dimension=none | audited-numeric-labels=["50°"] | notes=["ℓ ∥ m"] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-parallel-angle-0-55 | dimension=none | audited-numeric-labels=["55°"] | notes=["ℓ ∥ m"] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-parallel-angle-0-60 | dimension=none | audited-numeric-labels=["60°"] | notes=["ℓ ∥ m"] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-parallel-angle-0-65 | dimension=none | audited-numeric-labels=["65°"] | notes=["ℓ ∥ m"] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-parallel-angle-0-70 | dimension=none | audited-numeric-labels=["70°"] | notes=["ℓ ∥ m"] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-parallel-angle-0-75 | dimension=none | audited-numeric-labels=["75°"] | notes=["ℓ ∥ m"] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-parallel-angle-1-45 | dimension=none | audited-numeric-labels=["45°"] | notes=["ℓ ∥ m"] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-parallel-angle-1-50 | dimension=none | audited-numeric-labels=["50°"] | notes=["ℓ ∥ m"] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-parallel-angle-1-55 | dimension=none | audited-numeric-labels=["55°"] | notes=["ℓ ∥ m"] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-parallel-angle-1-60 | dimension=none | audited-numeric-labels=["60°"] | notes=["ℓ ∥ m"] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-parallel-angle-1-65 | dimension=none | audited-numeric-labels=["65°"] | notes=["ℓ ∥ m"] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-parallel-angle-1-70 | dimension=none | audited-numeric-labels=["70°"] | notes=["ℓ ∥ m"] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-parallel-angle-1-75 | dimension=none | audited-numeric-labels=["75°"] | notes=["ℓ ∥ m"] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-30-50 | dimension=none | audited-numeric-labels=["30°","80°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-30-60 | dimension=none | audited-numeric-labels=["30°","90°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-30-70 | dimension=none | audited-numeric-labels=["30°","100°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-30-80 | dimension=none | audited-numeric-labels=["30°","110°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-40-40 | dimension=none | audited-numeric-labels=["40°","80°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-40-50 | dimension=none | audited-numeric-labels=["40°","90°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-40-60 | dimension=none | audited-numeric-labels=["40°","100°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-40-70 | dimension=none | audited-numeric-labels=["40°","110°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-40-80 | dimension=none | audited-numeric-labels=["40°","120°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-50-30 | dimension=none | audited-numeric-labels=["50°","80°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-50-40 | dimension=none | audited-numeric-labels=["50°","90°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-50-50 | dimension=none | audited-numeric-labels=["50°","100°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-50-60 | dimension=none | audited-numeric-labels=["50°","110°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-50-70 | dimension=none | audited-numeric-labels=["50°","120°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-50-80 | dimension=none | audited-numeric-labels=["50°","130°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-60-30 | dimension=none | audited-numeric-labels=["60°","90°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-60-40 | dimension=none | audited-numeric-labels=["60°","100°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-60-50 | dimension=none | audited-numeric-labels=["60°","110°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-60-60 | dimension=none | audited-numeric-labels=["60°","120°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-60-70 | dimension=none | audited-numeric-labels=["60°","130°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-70-30 | dimension=none | audited-numeric-labels=["70°","100°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-70-40 | dimension=none | audited-numeric-labels=["70°","110°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-70-50 | dimension=none | audited-numeric-labels=["70°","120°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-70-60 | dimension=none | audited-numeric-labels=["70°","130°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-80-30 | dimension=none | audited-numeric-labels=["80°","110°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-80-40 | dimension=none | audited-numeric-labels=["80°","120°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m1-triangle-interior-exterior-80-50 | dimension=none | audited-numeric-labels=["80°","130°"] | notes=[] | quadratic-path-data-n=none | mask=none | unmask-line-data-n=none
+gm-m3-circle-chord-length-5-2 | dimension=none | audited-numeric-labels=["$5\\,\\mathrm{cm}$","$2\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,10 | mask=line-gap-c7pkfj | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-5-3 | dimension=none | audited-numeric-labels=["$5\\,\\mathrm{cm}$","$3\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,10 | mask=line-gap-sky4df | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-6-3 | dimension=none | audited-numeric-labels=["$6\\,\\mathrm{cm}$","3 cm"] | notes=[] | quadratic-path-data-n=7,11 | mask=line-gap-l1k2er | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-6-4 | dimension=none | audited-numeric-labels=["$6\\,\\mathrm{cm}$","$4\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,10 | mask=line-gap-1t0ed6d | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-7-3 | dimension=none | audited-numeric-labels=["$7\\,\\mathrm{cm}$","3 cm"] | notes=[] | quadratic-path-data-n=7,11 | mask=line-gap-tr97al | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-7-4 | dimension=none | audited-numeric-labels=["$7\\,\\mathrm{cm}$","$4\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,10 | mask=line-gap-13pldu3 | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-7-5 | dimension=none | audited-numeric-labels=["$7\\,\\mathrm{cm}$","$5\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,10 | mask=line-gap-464tu7 | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-8-3 | dimension=none | audited-numeric-labels=["$8\\,\\mathrm{cm}$","$3\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,10 | mask=line-gap-4xzjnl | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-8-4 | dimension=none | audited-numeric-labels=["$8\\,\\mathrm{cm}$","4 cm"] | notes=[] | quadratic-path-data-n=6,10 | mask=line-gap-l1k2er | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-8-5 | dimension=none | audited-numeric-labels=["$8\\,\\mathrm{cm}$","$5\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,10 | mask=line-gap-vjb5yj | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-8-6 | dimension=none | audited-numeric-labels=["$8\\,\\mathrm{cm}$","$6\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,10 | mask=line-gap-1v5oc57 | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-9-4 | dimension=none | audited-numeric-labels=["$9\\,\\mathrm{cm}$","4 cm"] | notes=[] | quadratic-path-data-n=6,10 | mask=line-gap-xpm6jt | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-9-5 | dimension=none | audited-numeric-labels=["$9\\,\\mathrm{cm}$","$5\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,10 | mask=line-gap-1hco7vz | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-9-6 | dimension=none | audited-numeric-labels=["$9\\,\\mathrm{cm}$","$6\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,10 | mask=line-gap-1u0jliv | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-10-4 | dimension=none | audited-numeric-labels=["$10\\,\\mathrm{cm}$","$4\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,11 | mask=line-gap-ozm98p | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-10-5 | dimension=none | audited-numeric-labels=["$10\\,\\mathrm{cm}$","5 cm"] | notes=[] | quadratic-path-data-n=6,11 | mask=line-gap-2dpb9h | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-10-6 | dimension=none | audited-numeric-labels=["$10\\,\\mathrm{cm}$","$6\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,11 | mask=line-gap-jp38zp | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-10-7 | dimension=none | audited-numeric-labels=["$10\\,\\mathrm{cm}$","$7\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,11 | mask=line-gap-uxpaj7 | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-11-4 | dimension=none | audited-numeric-labels=["$11\\,\\mathrm{cm}$","$4\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,11 | mask=line-gap-1fs7ont | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-11-5 | dimension=none | audited-numeric-labels=["$11\\,\\mathrm{cm}$","5 cm"] | notes=[] | quadratic-path-data-n=6,11 | mask=line-gap-1njl1y3 | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-11-6 | dimension=none | audited-numeric-labels=["$11\\,\\mathrm{cm}$","$6\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,11 | mask=line-gap-5lk1sb | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-11-7 | dimension=none | audited-numeric-labels=["$11\\,\\mathrm{cm}$","$7\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,11 | mask=line-gap-12elpcl | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-11-8 | dimension=none | audited-numeric-labels=["$11\\,\\mathrm{cm}$","$8\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,11 | mask=line-gap-1dq0cmh | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-12-5 | dimension=none | audited-numeric-labels=["$12\\,\\mathrm{cm}$","$5\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,11 | mask=line-gap-ftmjo5 | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-12-6 | dimension=none | audited-numeric-labels=["$12\\,\\mathrm{cm}$","6 cm"] | notes=[] | quadratic-path-data-n=6,11 | mask=line-gap-o7th5z | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-12-7 | dimension=none | audited-numeric-labels=["$12\\,\\mathrm{cm}$","$7\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,11 | mask=line-gap-1qrx6q1 | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-12-8 | dimension=none | audited-numeric-labels=["$12\\,\\mathrm{cm}$","$8\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,11 | mask=line-gap-8i9baj | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-12-9 | dimension=none | audited-numeric-labels=["$12\\,\\mathrm{cm}$","$9\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,11 | mask=line-gap-1q40bvt | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-13-5 | dimension=none | audited-numeric-labels=["$13\\,\\mathrm{cm}$","5 cm"] | notes=[] | quadratic-path-data-n=6,11 | mask=line-gap-dkspwp | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-13-6 | dimension=none | audited-numeric-labels=["$13\\,\\mathrm{cm}$","$6\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,11 | mask=line-gap-1wvnek7 | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-13-7 | dimension=none | audited-numeric-labels=["$13\\,\\mathrm{cm}$","$7\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,11 | mask=line-gap-12rnfbf | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-13-8 | dimension=none | audited-numeric-labels=["$13\\,\\mathrm{cm}$","$8\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,11 | mask=line-gap-l4ixir | unmask-line-data-n=2,3,4
+gm-m3-circle-chord-length-13-9 | dimension=none | audited-numeric-labels=["$13\\,\\mathrm{cm}$","$9\\,\\mathrm{cm}$"] | notes=[] | quadratic-path-data-n=6,11 | mask=line-gap-rq1qm3 | unmask-line-data-n=2,3,4
+
+Validation commands:
+node scripts/qa/arithmetic-figure-necessity-middle-audit.cjs --write-report
+node scripts/qa/arithmetic-figure-necessity-middle-typecheck.mjs
