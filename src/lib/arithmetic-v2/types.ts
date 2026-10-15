@@ -1,11 +1,28 @@
 /** Frozen integration contract for the grade arithmetic expansion (2026-10-14).
  * V1 stays readable and unchanged. These definitions are deterministic, finite
- * domains of actual arithmetic practice, never word problems or equation solving.
+ * domains of direct calculation practice. Unit coverage includes equation solving
+ * and function calculations (owner direction, 2026-10-15).
  */
 export type ArithmeticGrade =
   "초1" | "초2" | "초3" | "초4" | "초5" | "초6" | "중1" | "중2" | "중3";
 export type ArithmeticStrand =
-  "자연수" | "분수" | "소수" | "정수·유리수" | "문자식" | "근호" | "도형";
+  | "자연수"
+  | "분수"
+  | "소수"
+  | "정수·유리수"
+  | "문자식"
+  | "근호"
+  | "도형"
+  | "측정"
+  | "비와 비율"
+  | "방정식·부등식"
+  | "함수"
+  | "자료·확률";
+export type ArithmeticCurriculum = {
+  semester: 1 | 2;
+  unit: string;
+  prerequisite?: string;
+};
 export type ArithmeticV2Prompt =
   | {
       layout: "vertical";
@@ -50,6 +67,8 @@ export type ArithmeticV2Definition = {
   title: string;
   description: string;
   labels: string[];
+  /** School unit placement; optional on immutable legacy family definitions. */
+  curriculum?: ArithmeticCurriculum;
   /** Rank only within this explicit arithmetic family. */
   rankGroup: string;
   /** Exact count of unique tasks. No arbitrary capacity or random retries. */
@@ -63,6 +82,7 @@ export type ArithmeticV2CatalogEntry = Omit<
   ArithmeticV2Definition,
   "problemAt" | "verify"
 > & {
+  curriculum: ArithmeticCurriculum;
   example: ArithmeticV2Prompt;
   defaultCount: number;
 };
