@@ -1,0 +1,190 @@
+Elementary arithmetic-v2 figure necessity audit — 2026-10-15
+
+Base: main 9356d1cb6. Decision: omit all 84 elementary figure families;
+retain none. The 11,822 finite candidates have complete public prose.
+Policy is display-only. Root owns integration, typography and wording.
+Canonical prompts, parameters, answers, IDs, schemas and assets are untouched.
+Each record includes an exact, mutually unambiguous canonical figureIdPrefix.
+For the two legacy angle families root MUST display prompt.text when omitting
+the figure; the old geometry helper suppresses those complete givens.
+
+Census and review scope
+All 649 registry definitions inspected for grade/figure coverage; 248 are
+elementary. The 84 figure families comprise 82 geometryElementary definitions
+plus e4-triangle-missing-angle and e4-right-triangle-missing-angle.
+Complete templates/domains read: families/geometry.ts and geometryElementary/
+core.ts, measurement.ts, angles.ts, plane.ts, solidsCircle.ts and net.ts.
+Figure-writer source search confirms elementary/ and elementaryComplete/ have
+no figureId writers; remaining geometry cores instantiate middle-school grades.
+QA checks first/middle/last registry candidates and every candidate of every
+elementary figure family. This does not enumerate huge nonfigure domains.
+
+Independent preservation proof
+An independently authored public-prose oracle parses shape/relationship,
+every named given and target/unit for every candidate. It receives no hidden
+parameters, SVG, solve/holds function or expected answer. Its result matches
+the stored exact answer for all 11,822 candidates (numeric tolerance 1e-8 for
+decimal parsing and square/cube roots); canonical verify also passes.
+Deleting each numeric given and deleting the target instruction is rejected.
+Polygon multiplicity, all conversion directions, both net radius/diameter
+modes, pi=3/3.14, inverse quantities and reflex turn remainders are covered.
+Static instruction changes remove visual references while retaining target;
+net inverse pi remains in unmodified prompt.text. Isosceles equality follows
+from the stated isosceles shape; no extra equality condition is invented.
+
+Dimension / annotation findings (retained families: none)
+No elementary retained-family dimension or annotation work remains.
+e5-trapezoid-area-bottom: the 아랫변 target dimension and repeated 넓이 note
+add nothing to the given area/top/height and explicit bottom target.
+e5-trapezoid-area-top and e5-trapezoid-area-height: target dimension labels
+and repeated area notes likewise add no conditions. e5-trapezoid-area already
+states all three measurements; its three figure dimensions are duplicates.
+Repeated plane-area notes occur in e5-rectangle-area-side, e5-square-area-side,
+e5-triangle-area-base, e5-triangle-area-height, e5-parallelogram-area-base,
+e5-parallelogram-area-height, e5-rhombus-area-diagonal and the three trapezoid
+inverse IDs above. Entire figures are omitted, so no canonical SVG edits.
+e5-unit-square-area repeats 한 칸 1 cm² in text, instruction and figure;
+the figure is omitted and instruction is shortened to 전체 넓이를 구하세요.
+e5-parallelogram-perimeter-side instruction corrects 밑변를 to 밑변의 길이를.
+e6-cuboid-surface-height, e6-cube-surface-side repeat given surface area;
+e6-cuboid-base-volume and e6-cuboid-base-height repeat given base area;
+e6-circle-radius-area and e6-circle-diameter-area repeat given circle area;
+e6-cylinder-net-area-height, e6-cylinder-net-area-radius and
+e6-cylinder-net-area-diameter repeat given lateral area. These figures all go.
+14 solid-family instructions contained 겨냥도; all have exact replacements.
+Additional replacements remove polygon 그림, angle arc/blank/tick references,
+triangle-perimeter marked-base references and the net's 가운데 직사각형.
+No general instruction override is used on bidirectional unit conversions.
+
+Reproduce from this checkout using the existing installation (Node 24):
+  node scripts/qa/arithmetic-figure-necessity-elementary-run.mjs C:/Creative/testautocreator --report
+  node scripts/qa/arithmetic-figure-necessity-elementary-run.mjs C:/Creative/testautocreator --typecheck
+Strict focused TypeScript passed for policy, QA and their imported dependencies.
+No browser test is claimed: this worker supplies data classification and proof;
+root owns rendering/projection integration and its screen/print verification.
+
+Verification summary
+{
+  "base": "9356d1cb6",
+  "registryFamilies": 649,
+  "elementaryFamilies": 248,
+  "figureFamilies": 84,
+  "omitted": 84,
+  "retained": 0,
+  "instructionOverrides": 32,
+  "candidates": 11822,
+  "deletedGivensRejected": 27167,
+  "deletedTargetsRejected": 11822,
+  "byGrade": {
+    "초1": {
+      "families": 0,
+      "candidates": 0
+    },
+    "초2": {
+      "families": 7,
+      "candidates": 1856
+    },
+    "초3": {
+      "families": 8,
+      "candidates": 815
+    },
+    "초4": {
+      "families": 10,
+      "candidates": 993
+    },
+    "초5": {
+      "families": 35,
+      "candidates": 4600
+    },
+    "초6": {
+      "families": 24,
+      "candidates": 3558
+    }
+  }
+}
+
+Explicit-ID census (all OMIT; count is the complete finite domain)
+e4-triangle-missing-angle | 초4 | 70 | OMIT | 주어진 각 25°, 35°인 삼각형의 빈 각 → 삼각형의 나머지 한 각의 크기를 구하세요.
+e4-right-triangle-missing-angle | 초4 | 11 | OMIT | 주어진 각 20°, 90°인 삼각형의 빈 각 → 직각삼각형의 나머지 예각의 크기를 구하세요.
+e2-length-m-cm | 초2 | 98 | OMIT | m와 cm 단위 바꾸기: 2 m → cm 단위로 나타내세요.
+e3-length-cm-mm | 초3 | 98 | OMIT | cm와 mm 단위 바꾸기: 2 cm → mm 단위로 나타내세요.
+e3-length-km-m | 초3 | 98 | OMIT | km와 m 단위 바꾸기: 2 km → m 단위로 나타내세요.
+e3-capacity-l-ml | 초3 | 98 | OMIT | L와 mL 단위 바꾸기: 2 L → mL 단위로 나타내세요.
+e5-area-m2-cm2 | 초5 | 98 | OMIT | m²와 cm² 단위 바꾸기: 2 m² → cm² 단위로 나타내세요.
+e5-area-km2-m2 | 초5 | 98 | OMIT | km²와 m² 단위 바꾸기: 2 km² → m² 단위로 나타내세요.
+e6-volume-m3-cm3 | 초6 | 98 | OMIT | m³와 cm³ 단위 바꾸기: 2 m³ → cm³ 단위로 나타내세요.
+e2-length-mixed-cm | 초2 | 891 | OMIT | 복합 단위를 cm로 바꾸기: 1 m 1 cm → cm 단위로 나타내세요.
+e3-length-mixed-mm | 초3 | 81 | OMIT | 복합 단위를 mm로 바꾸기: 1 cm 1 mm → mm 단위로 나타내세요.
+e3-length-mixed-m | 초3 | 171 | OMIT | 복합 단위를 m로 바꾸기: 1 km 50 m → m 단위로 나타내세요.
+e3-capacity-mixed-ml | 초3 | 171 | OMIT | 복합 단위를 mL로 바꾸기: 1 L 50 mL → mL 단위로 나타내세요.
+e6-volume-decimal-units | 초6 | 180 | OMIT | 소수인 부피 단위 바꾸기: 0.1 m³ → cm³ 단위로 나타내세요.
+e2-length-sum | 초2 | 253 | OMIT | 두 길이의 합: 3 cm, 3 cm → 두 길이의 합을 구하세요.
+e2-length-difference | 초2 | 231 | OMIT | 두 길이의 차: 4 cm, 3 cm → 두 길이의 차를 구하세요.
+e2-length-broken | 초2 | 253 | OMIT | 꺾인 선의 길이: 3 cm, 3 cm → 꺾인 선의 길이를 구하세요.
+e2-polygon-sides-total | 초2 | 65 | OMIT | 여러 도형의 변 수: 3각형, 3각형 → 주어진 모든 도형의 변의 수를 합하여 구하세요.
+e2-polygon-vertices-total | 초2 | 65 | OMIT | 여러 도형의 꼭짓점 수: 3각형, 3각형 → 주어진 모든 도형의 꼭짓점의 수를 합하여 구하세요.
+e3-circle-radius | 초3 | 49 | OMIT | 지름에서 반지름: 지름 4 cm → 원의 반지름을 구하세요.
+e3-circle-diameter | 초3 | 49 | OMIT | 반지름에서 지름: 반지름 2 cm → 원의 지름을 구하세요.
+e5-unit-square-area | 초5 | 28 | OMIT | 단위 정사각형으로 넓이 구하기: 가로 2칸, 세로 2칸, 한 칸 1 cm² → 전체 넓이를 구하세요.
+e4-angle-sum | 초4 | 121 | OMIT | 각도의 합: 이웃한 두 각 20°, 20° → 이웃한 두 각을 합한 전체 각의 크기를 구하세요.
+e4-angle-difference | 초4 | 181 | OMIT | 각도의 차: 전체 각 80°, 작은 각 20° → 전체 각에서 작은 각을 뺀 나머지 각의 크기를 구하세요.
+e4-angle-right-remainder | 초4 | 51 | OMIT | 직각에서 남은 각: 직각 90°, 주어진 각 20° → 직각에서 주어진 각을 뺀 나머지 각의 크기를 구하세요.
+e4-angle-straight-remainder | 초4 | 71 | OMIT | 평각에서 남은 각: 평각 180°, 주어진 각 20° → 평각에서 주어진 각을 뺀 나머지 각의 크기를 구하세요.
+e4-angle-turn-remainder | 초4 | 57 | OMIT | 한 바퀴에서 남은 각: 한 바퀴 360°, 주어진 각 40° → 한 바퀴에서 주어진 각을 뺀 나머지 각의 크기를 구하세요.
+e4-quadrilateral-missing-angle | 초4 | 331 | OMIT | 사각형의 빈 각: 세 각 80°, 100°, 100° → 사각형의 나머지 한 각의 크기를 구하세요.
+e4-isosceles-base-angle | 초4 | 50 | OMIT | 이등변삼각형의 밑각: 꼭지각 130° → 이등변삼각형의 한 밑각의 크기를 구하세요.
+e4-isosceles-apex-angle | 초4 | 50 | OMIT | 이등변삼각형의 꼭지각: 밑각 25° → 이등변삼각형의 꼭지각의 크기를 구하세요.
+e5-rectangle-perimeter | 초5 | 89 | OMIT | 직사각형의 둘레: 이웃한 두 변 4 cm, 3 cm → 직사각형의 둘레를 구하세요.
+e5-rectangle-perimeter-side | 초5 | 89 | OMIT | 직사각형의 둘레에서 한 변: 둘레 14 cm, 세로 3 cm → 직사각형의 가로를 구하세요.
+e5-parallelogram-perimeter | 초5 | 89 | OMIT | 평행사변형의 둘레: 이웃한 두 변 4 cm, 3 cm → 평행사변형의 둘레를 구하세요.
+e5-parallelogram-perimeter-side | 초5 | 89 | OMIT | 평행사변형의 둘레에서 한 변: 둘레 14 cm, 옆변 3 cm → 평행사변형의 밑변의 길이를 구하세요.
+e5-square-perimeter | 초5 | 39 | OMIT | 정사각형의 둘레: 한 변 2 cm → 정사각형의 둘레를 구하세요.
+e5-square-perimeter-side | 초5 | 39 | OMIT | 정사각형의 둘레에서 한 변: 둘레 8 cm → 정사각형의 한 변의 길이를 구하세요.
+e5-rhombus-perimeter | 초5 | 39 | OMIT | 마름모의 둘레: 한 변 2 cm → 마름모의 둘레를 구하세요.
+e5-rhombus-perimeter-side | 초5 | 39 | OMIT | 마름모의 둘레에서 한 변: 둘레 8 cm → 마름모의 한 변의 길이를 구하세요.
+e5-regular-polygon-perimeter | 초5 | 120 | OMIT | 정다각형의 둘레: 정삼각형, 한 변 2 cm → 정다각형의 둘레를 구하세요.
+e5-regular-polygon-perimeter-side | 초5 | 120 | OMIT | 정다각형의 둘레에서 한 변: 정삼각형, 둘레 6 cm → 정다각형의 한 변의 길이를 구하세요.
+e5-triangle-perimeter | 초5 | 294 | OMIT | 삼각형의 둘레: 세 변 4 cm, 4 cm, 4 cm → 삼각형의 둘레를 구하세요.
+e5-triangle-perimeter-side | 초5 | 294 | OMIT | 삼각형의 둘레에서 한 변: 둘레 12 cm, 두 변 4 cm, 4 cm → 삼각형의 나머지 한 변의 길이를 구하세요.
+e5-rectangle-area | 초5 | 89 | OMIT | 직사각형의 넓이: 가로 4 cm, 세로 3 cm → 직사각형의 넓이를 구하세요.
+e5-rectangle-area-side | 초5 | 89 | OMIT | 직사각형의 넓이에서 가로: 넓이 12 cm², 세로 3 cm → 직사각형의 가로를 구하세요.
+e5-square-area | 초5 | 24 | OMIT | 정사각형의 넓이: 한 변 2 cm → 정사각형의 넓이를 구하세요.
+e5-square-area-side | 초5 | 24 | OMIT | 정사각형의 넓이에서 한 변: 넓이 4 cm² → 정사각형의 한 변의 길이를 구하세요.
+e5-triangle-area | 초5 | 166 | OMIT | 삼각형의 넓이: 밑변 4 cm, 높이 4 cm → 삼각형의 넓이를 구하세요.
+e5-triangle-area-base | 초5 | 166 | OMIT | 삼각형의 넓이에서 밑변: 넓이 8 cm², 높이 4 cm → 삼각형의 밑변의 길이를 구하세요.
+e5-triangle-area-height | 초5 | 166 | OMIT | 삼각형의 넓이에서 높이: 넓이 8 cm², 밑변 4 cm → 삼각형의 높이를 구하세요.
+e5-parallelogram-area | 초5 | 166 | OMIT | 평행사변형의 넓이: 밑변 4 cm, 높이 4 cm → 평행사변형의 넓이를 구하세요.
+e5-parallelogram-area-base | 초5 | 166 | OMIT | 평행사변형의 넓이에서 밑변: 넓이 16 cm², 높이 4 cm → 평행사변형의 밑변의 길이를 구하세요.
+e5-parallelogram-area-height | 초5 | 166 | OMIT | 평행사변형의 넓이에서 높이: 넓이 16 cm², 밑변 4 cm → 평행사변형의 높이를 구하세요.
+e5-rhombus-area | 초5 | 89 | OMIT | 마름모의 넓이: 두 대각선 4 cm, 3 cm → 마름모의 넓이를 구하세요.
+e5-rhombus-area-diagonal | 초5 | 89 | OMIT | 마름모의 넓이에서 대각선: 넓이 6 cm², 세로 대각선 3 cm → 가로 대각선의 길이를 구하세요.
+e5-trapezoid-area | 초5 | 265 | OMIT | 사다리꼴의 넓이: 윗변 4 cm, 아랫변 10 cm, 높이 4 cm → 사다리꼴의 넓이를 구하세요.
+e5-trapezoid-area-height | 초5 | 265 | OMIT | 사다리꼴의 넓이에서 높이: 넓이 28 cm², 윗변 4 cm, 아랫변 10 cm → 사다리꼴의 높이를 구하세요.
+e5-trapezoid-area-top | 초5 | 265 | OMIT | 사다리꼴의 넓이에서 윗변: 넓이 28 cm², 아랫변 10 cm, 높이 4 cm → 사다리꼴의 윗변의 길이를 구하세요.
+e5-trapezoid-area-bottom | 초5 | 265 | OMIT | 사다리꼴의 넓이에서 아랫변: 넓이 28 cm², 윗변 4 cm, 높이 4 cm → 사다리꼴의 아랫변의 길이를 구하세요.
+e5-cuboid-edges | 초5 | 264 | OMIT | 직육면체의 모든 모서리 길이의 합: 가로 3 cm, 세로 3 cm, 높이 3 cm → 직육면체의 모든 모서리 길이의 합을 구하세요.
+e5-cube-edges | 초5 | 24 | OMIT | 정육면체의 모든 모서리 길이의 합: 한 모서리 2 cm → 정육면체의 모든 모서리 길이의 합을 구하세요.
+e5-cuboid-edges-height | 초5 | 264 | OMIT | 직육면체의 모든 모서리 길이의 합에서 높이: 가로 3 cm, 세로 3 cm, 모든 모서리 길이의 합 36 cm → 직육면체의 높이를 구하세요.
+e5-cube-edges-side | 초5 | 24 | OMIT | 정육면체의 모든 모서리 길이의 합에서 모서리: 모든 모서리 길이의 합 24 cm → 정육면체의 한 모서리의 길이를 구하세요.
+e6-cuboid-surface | 초6 | 264 | OMIT | 직육면체의 겉넓이: 가로 3 cm, 세로 3 cm, 높이 3 cm → 직육면체의 겉넓이를 구하세요.
+e6-cube-surface | 초6 | 24 | OMIT | 정육면체의 겉넓이: 한 모서리 2 cm → 정육면체의 겉넓이를 구하세요.
+e6-cuboid-surface-height | 초6 | 264 | OMIT | 직육면체의 겉넓이에서 높이: 가로 3 cm, 세로 3 cm, 겉넓이 54 cm² → 직육면체의 높이를 구하세요.
+e6-cube-surface-side | 초6 | 24 | OMIT | 정육면체의 겉넓이에서 모서리: 겉넓이 24 cm² → 정육면체의 한 모서리의 길이를 구하세요.
+e6-cuboid-volume | 초6 | 264 | OMIT | 직육면체의 부피: 가로 3 cm, 세로 3 cm, 높이 3 cm → 직육면체의 부피를 구하세요.
+e6-cube-volume | 초6 | 24 | OMIT | 정육면체의 부피: 한 모서리 2 cm → 정육면체의 부피를 구하세요.
+e6-cuboid-volume-height | 초6 | 264 | OMIT | 직육면체의 부피에서 높이: 가로 3 cm, 세로 3 cm, 부피 27 cm³ → 직육면체의 높이를 구하세요.
+e6-cube-volume-side | 초6 | 24 | OMIT | 정육면체의 부피에서 모서리: 부피 8 cm³ → 정육면체의 한 모서리의 길이를 구하세요.
+e6-cuboid-base-volume | 초6 | 130 | OMIT | 밑넓이와 높이로 직육면체의 부피: 밑넓이 12 cm², 높이 3 cm → 직육면체의 부피를 구하세요.
+e6-cuboid-base-height | 초6 | 130 | OMIT | 직육면체의 부피와 밑넓이에서 높이: 밑넓이 12 cm², 부피 36 cm³ → 직육면체의 높이를 구하세요.
+e6-circle-circumference-radius | 초6 | 58 | OMIT | 원의 반지름에서 원주: 반지름 2 cm, 원주율 3 → 원의 원주를 구하세요. (원주율: 3)
+e6-circle-circumference-diameter | 초6 | 58 | OMIT | 원의 지름에서 원주: 지름 4 cm, 원주율 3 → 원의 원주를 구하세요. (원주율: 3)
+e6-circle-area-radius | 초6 | 58 | OMIT | 원의 반지름에서 넓이: 반지름 2 cm, 원주율 3 → 원의 넓이를 구하세요. (원주율: 3)
+e6-circle-area-diameter | 초6 | 58 | OMIT | 원의 지름에서 넓이: 지름 4 cm, 원주율 3 → 원의 넓이를 구하세요. (원주율: 3)
+e6-circle-radius-circumference | 초6 | 58 | OMIT | 원의 원주에서 반지름: 원주 12 cm, 원주율 3 → 원의 반지름을 구하세요. (원주율: 3)
+e6-circle-diameter-circumference | 초6 | 58 | OMIT | 원의 원주에서 지름: 원주 12 cm, 원주율 3 → 원의 지름을 구하세요. (원주율: 3)
+e6-circle-radius-area | 초6 | 58 | OMIT | 원의 넓이에서 반지름: 넓이 12 cm², 원주율 3 → 원의 반지름을 구하세요. (원주율: 3)
+e6-circle-diameter-area | 초6 | 58 | OMIT | 원의 넓이에서 지름: 넓이 12 cm², 원주율 3 → 원의 지름을 구하세요. (원주율: 3)
+e6-cylinder-net-area | 초6 | 468 | OMIT | 원기둥의 옆면을 펼친 직사각형의 넓이: 밑면 반지름 2 cm, 높이 4 cm, 원주율 3 → 원기둥의 옆면을 펼친 직사각형의 넓이를 구하세요. (원주율: 3)
+e6-cylinder-net-area-height | 초6 | 468 | OMIT | 원기둥의 옆면 넓이에서 높이: 옆면 넓이 48 cm², 밑면 반지름 2 cm, 원주율 3 → 원기둥의 높이를 구하세요.
+e6-cylinder-net-area-radius | 초6 | 234 | OMIT | 원기둥의 옆면 넓이에서 밑면의 반지름: 옆면 넓이 48 cm², 높이 4 cm, 원주율 3 → 원기둥의 밑면의 반지름을 구하세요.
+e6-cylinder-net-area-diameter | 초6 | 234 | OMIT | 원기둥의 옆면 넓이에서 밑면의 지름: 옆면 넓이 48 cm², 높이 4 cm, 원주율 3 → 원기둥의 밑면의 지름을 구하세요.
