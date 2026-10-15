@@ -1,0 +1,1033 @@
+{
+  "figures": 7971,
+  "renders": 15942,
+  "scale": 4,
+  "alphaThreshold": 8,
+  "strokeSamples": "0.25 CSS px centerline spacing, full half-width in eight radial directions plus center",
+  "failures": [
+    {
+      "id": "gt1-m2-iso-bisector-angle-28",
+      "family": "m2-iso-bisector-angle",
+      "svgSha256": "4168708736a564318aa9fd71add2a72a9b82ad14e9193a25f5aad227a00fc8ef",
+      "media": "screen",
+      "renderedWidth": 280,
+      "renderedHeight": 280,
+      "labelCount": 5,
+      "labels": [
+        {
+          "text": "A",
+          "fontPx": 19.6,
+          "plain": false,
+          "rotation": 0,
+          "width": 13.42596435546875,
+          "height": 14.0335693359375
+        },
+        {
+          "text": "B",
+          "fontPx": 19.6,
+          "plain": false,
+          "rotation": 0,
+          "width": 12.2108154296875,
+          "height": 13.38677978515625
+        },
+        {
+          "text": "C",
+          "fontPx": 19.6,
+          "plain": false,
+          "rotation": 0,
+          "width": 11.9560546875,
+          "height": 14.2296142578125
+        },
+        {
+          "text": "D",
+          "fontPx": 19.6,
+          "plain": false,
+          "rotation": 0,
+          "width": 13.34765625,
+          "height": 13.3868408203125
+        },
+        {
+          "text": "28°",
+          "fontPx": 19.6,
+          "plain": false,
+          "rotation": 0,
+          "width": 25.41943359375,
+          "height": 14.28857421875
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 0,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 10,
+      "hits": [
+        "<line x1=\"120\" y1=\"50\" x2=\"49.81436\" y2=\"182\" data-n=\"1\"></line>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-volume-10-2",
+      "family": "m1-cone-volume",
+      "svgSha256": "7a72ed726ea1ad9a5fa0cd0130a1c31b770c823f4bdd38b7eea20bcbf61007ef",
+      "media": "screen",
+      "renderedWidth": 280,
+      "renderedHeight": 280,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.105666666666668,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.14698791503906,
+          "height": 11.76904296875
+        },
+        {
+          "text": "$2\\,\\mathrm{cm}$",
+          "fontPx": 19.6,
+          "plain": false,
+          "rotation": 0,
+          "width": 36.847991943359375,
+          "height": 13.27099609375
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 55,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 7,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-volume-10-4",
+      "family": "m1-cone-volume",
+      "svgSha256": "ebbb476eb0474329f73447fe09f377d0ae8678fe2a0f1ed28518415838d0b560",
+      "media": "screen",
+      "renderedWidth": 280,
+      "renderedHeight": 280,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.105666666666668,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.147003173828125,
+          "height": 11.76904296875
+        },
+        {
+          "text": "$4\\,\\mathrm{cm}$",
+          "fontPx": 19.6,
+          "plain": false,
+          "rotation": 0,
+          "width": 37.27923583984375,
+          "height": 13.486328125
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 56,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 7,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-volume-10-6",
+      "family": "m1-cone-volume",
+      "svgSha256": "f927bd316976f79e89a1ab9fb20db05081bbea5e1e483421da58e02714da2b14",
+      "media": "screen",
+      "renderedWidth": 280,
+      "renderedHeight": 280,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.105666666666668,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.14697265625,
+          "height": 11.76904296875
+        },
+        {
+          "text": "$6\\,\\mathrm{cm}$",
+          "fontPx": 19.6,
+          "plain": false,
+          "rotation": 0,
+          "width": 37.00604248046875,
+          "height": 13.48486328125
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 56,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 7,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-volume-10-8",
+      "family": "m1-cone-volume",
+      "svgSha256": "f8fcd454eb0b395703d7674c4a2727ad554ec143ab9a44385bd1193cea901fbe",
+      "media": "screen",
+      "renderedWidth": 280,
+      "renderedHeight": 280,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.105666666666668,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.14698791503906,
+          "height": 11.76904296875
+        },
+        {
+          "text": "$8\\,\\mathrm{cm}$",
+          "fontPx": 19.6,
+          "plain": false,
+          "rotation": 0,
+          "width": 36.985198974609375,
+          "height": 13.48486328125
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 56,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 7,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-surface-10-11",
+      "family": "m1-cone-surface",
+      "svgSha256": "87dea16639e9aaf82dd4ad6e21a2bf07c4941fbb81a1cfe0e86f1914757863aa",
+      "media": "screen",
+      "renderedWidth": 280,
+      "renderedHeight": 280,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.105666666666668,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.14697265625,
+          "height": 11.7686767578125
+        },
+        {
+          "text": "$11\\,\\mathrm{cm}$",
+          "fontPx": 19.6,
+          "plain": false,
+          "rotation": 0,
+          "width": 46.001220703125,
+          "height": 13.27056884765625
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 55,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 6,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-surface-10-12",
+      "family": "m1-cone-surface",
+      "svgSha256": "1d5b7a7303b2b4a906172e3e5fbc97c2a4bad937a45427117e165387f8ce413f",
+      "media": "screen",
+      "renderedWidth": 280,
+      "renderedHeight": 280,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.105666666666668,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.14698791503906,
+          "height": 11.7686767578125
+        },
+        {
+          "text": "$12\\,\\mathrm{cm}$",
+          "fontPx": 19.6,
+          "plain": false,
+          "rotation": 0,
+          "width": 46.001220703125,
+          "height": 13.2705078125
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 55,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 6,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-surface-10-13",
+      "family": "m1-cone-surface",
+      "svgSha256": "4f61bd8eeb22e332cd935bf4c426aac866a7548ba6395b37a150d3416260bfbf",
+      "media": "screen",
+      "renderedWidth": 280,
+      "renderedHeight": 280,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.105666666666668,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.147003173828125,
+          "height": 11.7686767578125
+        },
+        {
+          "text": "$13\\,\\mathrm{cm}$",
+          "fontPx": 19.6,
+          "plain": false,
+          "rotation": 0,
+          "width": 46.001251220703125,
+          "height": 13.4847412109375
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 55,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 6,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-surface-10-14",
+      "family": "m1-cone-surface",
+      "svgSha256": "9b55e7094289c65fd14e6c5881f09181a46a218b4c8fdb530c6331d1e98d8b82",
+      "media": "screen",
+      "renderedWidth": 280,
+      "renderedHeight": 280,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.105666666666668,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.14697265625,
+          "height": 11.7686767578125
+        },
+        {
+          "text": "$14\\,\\mathrm{cm}$",
+          "fontPx": 19.6,
+          "plain": false,
+          "rotation": 0,
+          "width": 46.001220703125,
+          "height": 13.4862060546875
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 56,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 6,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-lateral-10-11",
+      "family": "m1-cone-lateral",
+      "svgSha256": "87dea16639e9aaf82dd4ad6e21a2bf07c4941fbb81a1cfe0e86f1914757863aa",
+      "media": "screen",
+      "renderedWidth": 280,
+      "renderedHeight": 280,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.105666666666668,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.14697265625,
+          "height": 11.7685546875
+        },
+        {
+          "text": "$11\\,\\mathrm{cm}$",
+          "fontPx": 19.6,
+          "plain": false,
+          "rotation": 0,
+          "width": 46.001220703125,
+          "height": 13.2705078125
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 55,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 6,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-lateral-10-12",
+      "family": "m1-cone-lateral",
+      "svgSha256": "1d5b7a7303b2b4a906172e3e5fbc97c2a4bad937a45427117e165387f8ce413f",
+      "media": "screen",
+      "renderedWidth": 280,
+      "renderedHeight": 280,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.105666666666668,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.14698791503906,
+          "height": 11.7685546875
+        },
+        {
+          "text": "$12\\,\\mathrm{cm}$",
+          "fontPx": 19.6,
+          "plain": false,
+          "rotation": 0,
+          "width": 46.001220703125,
+          "height": 13.2705078125
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 55,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 6,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-lateral-10-13",
+      "family": "m1-cone-lateral",
+      "svgSha256": "4f61bd8eeb22e332cd935bf4c426aac866a7548ba6395b37a150d3416260bfbf",
+      "media": "screen",
+      "renderedWidth": 280,
+      "renderedHeight": 280,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.105666666666668,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.147003173828125,
+          "height": 11.7685546875
+        },
+        {
+          "text": "$13\\,\\mathrm{cm}$",
+          "fontPx": 19.6,
+          "plain": false,
+          "rotation": 0,
+          "width": 46.001251220703125,
+          "height": 13.48486328125
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 55,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 6,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-lateral-10-14",
+      "family": "m1-cone-lateral",
+      "svgSha256": "9b55e7094289c65fd14e6c5881f09181a46a218b4c8fdb530c6331d1e98d8b82",
+      "media": "screen",
+      "renderedWidth": 280,
+      "renderedHeight": 280,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.105666666666668,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.14697265625,
+          "height": 11.7685546875
+        },
+        {
+          "text": "$14\\,\\mathrm{cm}$",
+          "fontPx": 19.6,
+          "plain": false,
+          "rotation": 0,
+          "width": 46.001220703125,
+          "height": 13.486083984375
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 56,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 6,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-volume-10-2",
+      "family": "m1-cone-volume",
+      "svgSha256": "7a72ed726ea1ad9a5fa0cd0130a1c31b770c823f4bdd38b7eea20bcbf61007ef",
+      "media": "print",
+      "renderedWidth": 279.984375,
+      "renderedHeight": 279.984375,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.104712109375,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.14476013183594,
+          "height": 11.76806640625
+        },
+        {
+          "text": "$2\\,\\mathrm{cm}$",
+          "fontPx": 19.59890625,
+          "plain": false,
+          "rotation": 0,
+          "width": 36.845947265625,
+          "height": 13.26953125
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 55,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 7,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-volume-10-4",
+      "family": "m1-cone-volume",
+      "svgSha256": "ebbb476eb0474329f73447fe09f377d0ae8678fe2a0f1ed28518415838d0b560",
+      "media": "print",
+      "renderedWidth": 279.984375,
+      "renderedHeight": 279.984375,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.104712109375,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.144775390625,
+          "height": 11.76806640625
+        },
+        {
+          "text": "$4\\,\\mathrm{cm}$",
+          "fontPx": 19.59890625,
+          "plain": false,
+          "rotation": 0,
+          "width": 37.277099609375,
+          "height": 13.4853515625
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 56,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 7,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-volume-10-6",
+      "family": "m1-cone-volume",
+      "svgSha256": "f927bd316976f79e89a1ab9fb20db05081bbea5e1e483421da58e02714da2b14",
+      "media": "print",
+      "renderedWidth": 279.984375,
+      "renderedHeight": 279.984375,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.104712109375,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.144775390625,
+          "height": 11.76806640625
+        },
+        {
+          "text": "$6\\,\\mathrm{cm}$",
+          "fontPx": 19.59890625,
+          "plain": false,
+          "rotation": 0,
+          "width": 37.00396728515625,
+          "height": 13.48388671875
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 56,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 7,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-volume-10-8",
+      "family": "m1-cone-volume",
+      "svgSha256": "f8fcd454eb0b395703d7674c4a2727ad554ec143ab9a44385bd1193cea901fbe",
+      "media": "print",
+      "renderedWidth": 279.984375,
+      "renderedHeight": 279.984375,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.104712109375,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.14476013183594,
+          "height": 11.76806640625
+        },
+        {
+          "text": "$8\\,\\mathrm{cm}$",
+          "fontPx": 19.59890625,
+          "plain": false,
+          "rotation": 0,
+          "width": 36.98313903808594,
+          "height": 13.48388671875
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 56,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 7,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-surface-10-11",
+      "family": "m1-cone-surface",
+      "svgSha256": "87dea16639e9aaf82dd4ad6e21a2bf07c4941fbb81a1cfe0e86f1914757863aa",
+      "media": "print",
+      "renderedWidth": 279.984375,
+      "renderedHeight": 279.984375,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.104712109375,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.144775390625,
+          "height": 11.76806640625
+        },
+        {
+          "text": "$11\\,\\mathrm{cm}$",
+          "fontPx": 19.59890625,
+          "plain": false,
+          "rotation": 0,
+          "width": 45.9986572265625,
+          "height": 13.269775390625
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 55,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 6,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-surface-10-12",
+      "family": "m1-cone-surface",
+      "svgSha256": "1d5b7a7303b2b4a906172e3e5fbc97c2a4bad937a45427117e165387f8ce413f",
+      "media": "print",
+      "renderedWidth": 279.984375,
+      "renderedHeight": 279.984375,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.104712109375,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.14476013183594,
+          "height": 11.76806640625
+        },
+        {
+          "text": "$12\\,\\mathrm{cm}$",
+          "fontPx": 19.59890625,
+          "plain": false,
+          "rotation": 0,
+          "width": 45.9986572265625,
+          "height": 13.269775390625
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 55,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 6,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-surface-10-13",
+      "family": "m1-cone-surface",
+      "svgSha256": "4f61bd8eeb22e332cd935bf4c426aac866a7548ba6395b37a150d3416260bfbf",
+      "media": "print",
+      "renderedWidth": 279.984375,
+      "renderedHeight": 279.984375,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.104712109375,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.144775390625,
+          "height": 11.76806640625
+        },
+        {
+          "text": "$13\\,\\mathrm{cm}$",
+          "fontPx": 19.59890625,
+          "plain": false,
+          "rotation": 0,
+          "width": 45.9986572265625,
+          "height": 13.484130859375
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 55,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 6,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-surface-10-14",
+      "family": "m1-cone-surface",
+      "svgSha256": "9b55e7094289c65fd14e6c5881f09181a46a218b4c8fdb530c6331d1e98d8b82",
+      "media": "print",
+      "renderedWidth": 279.984375,
+      "renderedHeight": 279.984375,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.104712109375,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.144775390625,
+          "height": 11.76806640625
+        },
+        {
+          "text": "$14\\,\\mathrm{cm}$",
+          "fontPx": 19.59890625,
+          "plain": false,
+          "rotation": 0,
+          "width": 45.9986572265625,
+          "height": 13.4853515625
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 56,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 6,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-lateral-10-11",
+      "family": "m1-cone-lateral",
+      "svgSha256": "87dea16639e9aaf82dd4ad6e21a2bf07c4941fbb81a1cfe0e86f1914757863aa",
+      "media": "print",
+      "renderedWidth": 279.984375,
+      "renderedHeight": 279.984375,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.104712109375,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.144775390625,
+          "height": 11.767822265625
+        },
+        {
+          "text": "$11\\,\\mathrm{cm}$",
+          "fontPx": 19.59890625,
+          "plain": false,
+          "rotation": 0,
+          "width": 45.9986572265625,
+          "height": 13.269775390625
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 55,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 6,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-lateral-10-12",
+      "family": "m1-cone-lateral",
+      "svgSha256": "1d5b7a7303b2b4a906172e3e5fbc97c2a4bad937a45427117e165387f8ce413f",
+      "media": "print",
+      "renderedWidth": 279.984375,
+      "renderedHeight": 279.984375,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.104712109375,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.14476013183594,
+          "height": 11.767822265625
+        },
+        {
+          "text": "$12\\,\\mathrm{cm}$",
+          "fontPx": 19.59890625,
+          "plain": false,
+          "rotation": 0,
+          "width": 45.9986572265625,
+          "height": 13.269775390625
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 55,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 6,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-lateral-10-13",
+      "family": "m1-cone-lateral",
+      "svgSha256": "4f61bd8eeb22e332cd935bf4c426aac866a7548ba6395b37a150d3416260bfbf",
+      "media": "print",
+      "renderedWidth": 279.984375,
+      "renderedHeight": 279.984375,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.104712109375,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.144775390625,
+          "height": 11.767822265625
+        },
+        {
+          "text": "$13\\,\\mathrm{cm}$",
+          "fontPx": 19.59890625,
+          "plain": false,
+          "rotation": 0,
+          "width": 45.9986572265625,
+          "height": 13.48388671875
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 55,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 6,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    },
+    {
+      "id": "gm-m1-cone-lateral-10-14",
+      "family": "m1-cone-lateral",
+      "svgSha256": "9b55e7094289c65fd14e6c5881f09181a46a218b4c8fdb530c6331d1e98d8b82",
+      "media": "print",
+      "renderedWidth": 279.984375,
+      "renderedHeight": 279.984375,
+      "labelCount": 2,
+      "labels": [
+        {
+          "text": "10 cm",
+          "fontPx": 17.104712109375,
+          "plain": false,
+          "rotation": 0,
+          "width": 40.144775390625,
+          "height": 11.767822265625
+        },
+        {
+          "text": "$14\\,\\mathrm{cm}$",
+          "fontPx": 19.59890625,
+          "plain": false,
+          "rotation": 0,
+          "width": 45.9986572265625,
+          "height": 13.4853515625
+        }
+      ],
+      "labelClipped": [],
+      "labelHits": [],
+      "geometryHits": [],
+      "haloIntersections": [],
+      "maskedSamples": 56,
+      "maskedOutlineHits": [],
+      "haloOutlineHits": [],
+      "geometryClipped": [],
+      "semanticErrors": [],
+      "geometryCount": 6,
+      "hits": [
+        "<ellipse cx=\"99\" cy=\"164\" rx=\"61\" ry=\"18\" data-n=\"1\"></ellipse>"
+      ]
+    }
+  ]
+}
