@@ -28,13 +28,13 @@ function legacy(rights = [0, 1, 2]): ArithmeticSheetPayload {
     engineVersion: "arithmetic-engine-v1",
     catalogVersion: "arithmetic-catalog-v1",
     seed: "saved",
-    rounds: [1, 2].map(() => ({
+    rounds: [1, 2].map((round) => ({
       skills: rights.map((right) => ({
         skillId: "one-digit-add",
         count: 1,
         constraints: {
           carry: "none",
-          left: { min: 0, max: 0 },
+          left: { min: round - 1, max: round - 1 },
           right: { min: right, max: right },
         },
       })),
@@ -216,6 +216,24 @@ describe("targeted legacy regeneration", () => {
 });
 
 describe("targeted grade regeneration", () => {
+  it("keeps an exhausted historical overlap unchanged with a precise notice", () => {
+    const sheet = buildArithmeticV2Sheet(fixtureRequest(7));
+    sheet.rounds.push({
+      round: 2,
+      items: structuredClone(sheet.rounds[0].items),
+    });
+    const before = JSON.stringify(sheet);
+    const result = regenerateArithmeticV2Items(
+      sheet,
+      { round: 1, orders: [1, 2, 3, 4, 5, 6, 7] },
+      "repair",
+    );
+    expect(result.sheet).toBe(sheet);
+    expect(result.changedOrders).toEqual([]);
+    expect(result.unchangedReason).toBe("overlap-capacity");
+    expect(arithmeticRegenerationNotice(result)).toContain("20% 이하");
+    expect(JSON.stringify(sheet)).toBe(before);
+  });
   it("preserves other rounds and retained items while changing selected prompt identities", () => {
     const request = fixtureRequest(3);
     request.rounds.push(fixtureRequest(2, "test-other").rounds[0]);

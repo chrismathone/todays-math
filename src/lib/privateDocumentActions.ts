@@ -27,6 +27,11 @@ import {
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { z } from "zod";
 import { parseStrictJson } from "@/lib/textbook/strictJson";
+import {
+  ARITHMETIC_SHEET_JSON_LIMITS,
+  assertArithmeticSheetByteBudget,
+  readArithmeticLibraryBody,
+} from "@/lib/arithmetic/byteBudget";
 import { ARITHMETIC_SHEET_KIND } from "@/contracts/arithmetic.contract";
 import { anyArithmeticSheetProblemCount } from "@/lib/arithmeticDocument";
 import {
@@ -133,12 +138,15 @@ export async function saveDocument(request: Request, id: string) {
   if (ownerError) return ownerError;
   if (!documentIdSchema.safeParse(id).success)
     return privateError("자료 이름을 확인해 주세요.", 400);
-  const text = await request.text();
-  if (new TextEncoder().encode(text).byteLength > 3_500_000)
+  let text: string;
+  try {
+    text = await readArithmeticLibraryBody(request);
+  } catch {
     return privateError(
-      "자료가 너무 큽니다. 이미지를 먼저 저장해 주세요.",
+      "자료 크기는 3.5MB 이하여야 합니다. 문항 수나 이미지 크기를 줄여 주세요.",
       413,
     );
+  }
   const parsed = saveDocumentSchema.safeParse(
     (() => {
       try {
@@ -158,9 +166,14 @@ export async function saveDocument(request: Request, id: string) {
     const disabled = arithmeticSheetWriteError();
     if (disabled) return disabled;
     try {
-      parseStrictJson(text, { maxBytes: 256 * 1024, maxDepth: 16 });
+      parseStrictJson(text, ARITHMETIC_SHEET_JSON_LIMITS);
     } catch {
       return privateError("연산 학습지의 형식과 크기를 확인해 주세요.", 400);
+    }
+    try {
+      assertArithmeticSheetByteBudget(payload);
+    } catch (error) {
+      return arithmeticEngineErrorResponse(error);
     }
   }
   if (

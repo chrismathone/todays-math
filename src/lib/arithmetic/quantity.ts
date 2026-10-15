@@ -4,14 +4,11 @@ import {
   ARITHMETIC_MAX_ROUNDS,
 } from "@/contracts/arithmetic.contract";
 
-/** Request-size budget only. Distinct-expression capacity is checked per round. */
+/** Per-round writer budget. Distinct-task capacity is checked by selection. */
 export function arithmeticPerRoundBudget(rounds: number): number {
   if (!Number.isInteger(rounds) || rounds < 1 || rounds > ARITHMETIC_MAX_ROUNDS)
     return 0;
-  return Math.min(
-    ARITHMETIC_MAX_ITEMS_PER_ROUND,
-    Math.floor(ARITHMETIC_MAX_ITEMS_TOTAL / rounds),
-  );
+  return ARITHMETIC_MAX_ITEMS_PER_ROUND;
 }
 
 export type ArithmeticQuantityIssue = {

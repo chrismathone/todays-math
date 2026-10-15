@@ -1,0 +1,225 @@
+{
+  "recorded": "2026-10-15",
+  "node": "v24.13.0",
+  "results": [
+    {
+      "scenario": "v1-2000-fast",
+      "generationMs": 133,
+      "regenerationMs": 467,
+      "changed": 200,
+      "maximumOverlap": 16,
+      "uniqueFigures": 0,
+      "sheetBytes": 1292017,
+      "saveWrapperBytes": 1292779,
+      "generateResponseBytes": 1292030,
+      "regenerateResponseBytes": 1292777,
+      "memory": {
+        "start": {
+          "rss": 150151168,
+          "heapTotal": 100278272,
+          "heapUsed": 30542240,
+          "external": 3935459,
+          "arrayBuffers": 1274223
+        },
+        "afterGeneration": {
+          "rss": 180592640,
+          "heapTotal": 106045440,
+          "heapUsed": 45933328,
+          "external": 3818199,
+          "arrayBuffers": 1274223
+        },
+        "afterRegeneration": {
+          "rss": 292995072,
+          "heapTotal": 215080960,
+          "heapUsed": 132159400,
+          "external": 5110216,
+          "arrayBuffers": 2566240
+        }
+      },
+      "processMaxRssKiB": 298504
+    },
+    {
+      "scenario": "v1-2000",
+      "generationMs": 2987,
+      "regenerationMs": 582,
+      "changed": 200,
+      "maximumOverlap": 25,
+      "uniqueFigures": 0,
+      "sheetBytes": 1290663,
+      "saveWrapperBytes": 1291425,
+      "generateResponseBytes": 1290672,
+      "regenerateResponseBytes": 1291423,
+      "memory": {
+        "start": {
+          "rss": 294264832,
+          "heapTotal": 201695232,
+          "heapUsed": 36272288,
+          "external": 5119170,
+          "arrayBuffers": 1274223
+        },
+        "afterGeneration": {
+          "rss": 297353216,
+          "heapTotal": 202989568,
+          "heapUsed": 101614840,
+          "external": 5108862,
+          "arrayBuffers": 2564886
+        },
+        "afterRegeneration": {
+          "rss": 296648704,
+          "heapTotal": 217423872,
+          "heapUsed": 100711608,
+          "external": 5108862,
+          "arrayBuffers": 1274223
+        }
+      },
+      "processMaxRssKiB": 306372
+    },
+    {
+      "scenario": "v2-2000",
+      "generationMs": 220,
+      "regenerationMs": 2224,
+      "changed": 200,
+      "maximumOverlap": 2,
+      "uniqueFigures": 0,
+      "sheetBytes": 784491,
+      "saveWrapperBytes": 785253,
+      "generateResponseBytes": 784224,
+      "regenerateResponseBytes": 785251,
+      "memory": {
+        "start": {
+          "rss": 299773952,
+          "heapTotal": 214011904,
+          "heapUsed": 36384008,
+          "external": 5109624,
+          "arrayBuffers": 1274223
+        },
+        "afterGeneration": {
+          "rss": 298065920,
+          "heapTotal": 214011904,
+          "heapUsed": 62901208,
+          "external": 4602414,
+          "arrayBuffers": 1274223
+        },
+        "afterRegeneration": {
+          "rss": 326148096,
+          "heapTotal": 246927360,
+          "heapUsed": 135299824,
+          "external": 4602690,
+          "arrayBuffers": 1274223
+        }
+      },
+      "processMaxRssKiB": 376696
+    },
+    {
+      "scenario": "v2-heterogeneous-2000",
+      "generationMs": 231,
+      "regenerationMs": 1527,
+      "changed": 200,
+      "maximumOverlap": 8,
+      "uniqueFigures": 661,
+      "sheetBytes": 851925,
+      "saveWrapperBytes": 852687,
+      "generateResponseBytes": 856121,
+      "regenerateResponseBytes": 852685,
+      "memory": {
+        "start": {
+          "rss": 318480384,
+          "heapTotal": 219488256,
+          "heapUsed": 35722328,
+          "external": 5387943,
+          "arrayBuffers": 1274223
+        },
+        "afterGeneration": {
+          "rss": 325505024,
+          "heapTotal": 221286400,
+          "heapUsed": 100135864,
+          "external": 5592234,
+          "arrayBuffers": 3048258
+        },
+        "afterRegeneration": {
+          "rss": 325787648,
+          "heapTotal": 235421696,
+          "heapUsed": 150934824,
+          "external": 6409640,
+          "arrayBuffers": 3865664
+        }
+      },
+      "processMaxRssKiB": 376696
+    },
+    {
+      "scenario": "v2-geometry-2000",
+      "generationMs": 291,
+      "regenerationMs": 1595,
+      "changed": 200,
+      "maximumOverlap": 15,
+      "uniqueFigures": 1902,
+      "sheetBytes": 1218462,
+      "saveWrapperBytes": 1219224,
+      "generateResponseBytes": 1227389,
+      "regenerateResponseBytes": 1219222,
+      "memory": {
+        "start": {
+          "rss": 316690432,
+          "heapTotal": 223178752,
+          "heapUsed": 39699664,
+          "external": 5542266,
+          "arrayBuffers": 1274223
+        },
+        "afterGeneration": {
+          "rss": 318857216,
+          "heapTotal": 223313920,
+          "heapUsed": 53336848,
+          "external": 12086175,
+          "arrayBuffers": 1274223
+        },
+        "afterRegeneration": {
+          "rss": 319471616,
+          "heapTotal": 231936000,
+          "heapUsed": 135751872,
+          "external": 11845433,
+          "arrayBuffers": 1274223
+        }
+      },
+      "processMaxRssKiB": 376696
+    },
+    {
+      "scenario": "exact-fallback-domain-1000",
+      "feasible": true,
+      "milliseconds": 1278,
+      "memory": {
+        "rss": 322314240,
+        "heapTotal": 242348032,
+        "heapUsed": 172000960,
+        "external": 3818199,
+        "arrayBuffers": 1274223
+      },
+      "processMaxRssKiB": 376696
+    },
+    {
+      "scenario": "exact-fallback-domain-800",
+      "feasible": true,
+      "milliseconds": 1328,
+      "memory": {
+        "rss": 322011136,
+        "heapTotal": 244969472,
+        "heapUsed": 139796696,
+        "external": 3818199,
+        "arrayBuffers": 1274223
+      },
+      "processMaxRssKiB": 376696
+    },
+    {
+      "scenario": "exact-fallback-domain-600",
+      "feasible": false,
+      "milliseconds": 7,
+      "memory": {
+        "rss": 322011136,
+        "heapTotal": 244969472,
+        "heapUsed": 142142088,
+        "external": 3818199,
+        "arrayBuffers": 1274223
+      },
+      "processMaxRssKiB": 376696
+    }
+  ]
+}

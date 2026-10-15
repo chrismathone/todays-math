@@ -1,3 +1,4 @@
+import { ARITHMETIC_GENERATE_JSON_LIMITS } from "@/lib/arithmetic/byteBudget";
 import "server-only";
 import { authorizeAccount } from "@/lib/accountAccess";
 import {
@@ -52,12 +53,7 @@ export async function generateArithmetic(request: Request) {
   if (denied) return denied;
   let input: unknown;
   try {
-    input = await readStrictJson(request, {
-      maxBytes: 64 * 1024,
-      maxDepth: 12,
-      maxTokens: 20_000,
-      maxStringLength: 128,
-    });
+    input = await readStrictJson(request, ARITHMETIC_GENERATE_JSON_LIMITS);
   } catch {
     return privateError("연산 생성 요청의 형식과 크기를 확인해 주세요.", 400);
   }

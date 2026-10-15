@@ -141,7 +141,7 @@ describe.each(versions)("$name selective route", ({ post, path, build }) => {
   it.each([
     "{",
     '{"seed":"a","seed":"b"}',
-    JSON.stringify({ padding: "x".repeat(256 * 1024) }),
+    JSON.stringify({ padding: "x".repeat(3_500_000) }),
   ])("rejects malformed, duplicate-key or oversized input", async (input) => {
     expect((await post(request(input))).status).toBe(400);
   });
@@ -165,4 +165,27 @@ describe.each(versions)("$name selective route", ({ post, path, build }) => {
       accountRouteAllowed({ ...account, menus: ["library"] }, "POST", path),
     ).toBe(false);
   });
+});
+
+it("regenerates a 2000-item saved sheet above the former256KiB body cap", async () => {
+  const request = fixtureRequest(200, "test-large");
+  request.rounds = Array.from({ length: 10 }, () => request.rounds[0]);
+  const sheet = buildArithmeticV2Sheet(request);
+  const body = JSON.stringify({
+    sheet,
+    target: { round: 1, orders: [1] },
+    seed: "large",
+  });
+  expect(new TextEncoder().encode(body).length).toBeGreaterThan(256 * 1024);
+  const response = await gradePost(
+    new Request("http://localhost/api/arithmetic/v2/regenerate", {
+      method: "POST",
+      headers: { origin: "http://localhost" },
+      body,
+    }),
+  );
+  expect(response.status).toBe(200);
+  const text = await response.text();
+  expect(new TextEncoder().encode(text).length).toBeLessThan(3_500_000);
+  expect(JSON.parse(text).data.changedOrders).toEqual([1]);
 });

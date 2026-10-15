@@ -6,7 +6,7 @@ import {
   ARITHMETIC_ENGINE_VERSION,
   ARITHMETIC_MAX_ITEMS_PER_ROUND,
   ARITHMETIC_MAX_ITEMS_TOTAL,
-  ARITHMETIC_MAX_ROUNDS,
+  ARITHMETIC_MAX_SAVED_ROUNDS,
   ARITHMETIC_SHEET_KIND,
   ARITHMETIC_SHEET_PAYLOAD_VERSION,
   ARITHMETIC_SKILL_NOTATION,
@@ -47,7 +47,7 @@ export const arithmeticSheetPayloadSchema = z
     rounds: z
       .array(
         z.strictObject({
-          round: z.number().int().min(1).max(ARITHMETIC_MAX_ROUNDS),
+          round: z.number().int().min(1).max(ARITHMETIC_MAX_SAVED_ROUNDS),
           items: z
             .array(arithmeticSheetItemSchema)
             .min(1)
@@ -55,7 +55,7 @@ export const arithmeticSheetPayloadSchema = z
         }),
       )
       .min(1)
-      .max(ARITHMETIC_MAX_ROUNDS),
+      .max(ARITHMETIC_MAX_SAVED_ROUNDS),
   })
   .superRefine((sheet, ctx) => {
     let total = 0;

@@ -8,7 +8,6 @@ import {
   ARITHMETIC_ENGINE_VERSION,
   ARITHMETIC_MAX_DOMAIN_SCAN,
   ARITHMETIC_MAX_ITEMS_PER_ROUND,
-  ARITHMETIC_MAX_ITEMS_TOTAL,
   ARITHMETIC_MAX_ROUNDS,
   ARITHMETIC_MAX_SEED_LENGTH,
   ARITHMETIC_SKILL_IDS,
@@ -660,8 +659,8 @@ describe("결정적 생성과 거절", () => {
     const second = generateArithmeticSpecs(pinned);
     expect(second).toEqual(first);
     expect(first.map((spec) => spec.operands)).toEqual([
-      [2, 2],
-      [0, 3],
+      [2, 1],
+      [0, 0],
     ]);
     const longer = generateArithmeticSpecs(
       request("smoke-seed", [{ skills: [oneAdd(5, "none")] }]),
@@ -727,34 +726,19 @@ describe("결정적 생성과 거절", () => {
     expect(keys).not.toContain("one-digit-add:1:1");
   });
 
-  it("회차가 달라지면 같은 식을 다시 연습할 수 있다", () => {
-    const sheet = buildArithmeticSheet(
-      request("repeat-round", [
+  it("한 문항 회차끼리는 같은 식을 허용하지 않는다", () => {
+    const rounds = Array.from({ length: 2 }, () => ({
+      skills: [
         {
-          skills: [
-            {
-              skillId: "times-table",
-              count: 1,
-              constraints: { dans: [2], multiplier: { min: 5, max: 5 } },
-            },
-          ],
+          skillId: "times-table" as const,
+          count: 1,
+          constraints: { dans: [2], multiplier: { min: 5, max: 5 } },
         },
-        {
-          skills: [
-            {
-              skillId: "times-table",
-              count: 1,
-              constraints: { dans: [2], multiplier: { min: 5, max: 5 } },
-            },
-          ],
-        },
-      ]),
-    );
-    expect(sheet.rounds.map((round) => round.items[0]!.spec.operands)).toEqual([
-      [2, 5],
-      [2, 5],
-    ]);
-    expect(sheet.rounds[0]!.items[0]!.answer).toBe("10");
+      ],
+    }));
+    expect(
+      failure(() => buildArithmeticSheet(request("repeat-round", rounds))).code,
+    ).toBe("round-overlap");
   });
 
   it("한 기능이라도 가능 수를 넘으면 회차 전체를 거절한다", () => {
@@ -825,36 +809,21 @@ describe("결정적 생성과 거절", () => {
     ).toBe("invalid-count");
     expect(
       failure(() =>
-        validateCount(request("count", [{ skills: [oneAdd(101, "none")] }])),
+        validateCount(request("count", [{ skills: [oneAdd(201, "none")] }])),
       ).code,
     ).toBe("invalid-count");
     expect(
       failure(() =>
         buildArithmeticSheet(
           request("round-limit", [
-            { skills: [oneAdd(60, "none"), oneAdd(41, "some")] },
+            { skills: [oneAdd(160, "none"), oneAdd(41, "some")] },
           ]),
         ),
       ).limit,
     ).toMatchObject({
       scope: "round",
-      count: 101,
-      max: ARITHMETIC_MAX_ITEMS_PER_ROUND,
-    });
-    expect(
-      failure(() =>
-        buildArithmeticSheet(
-          request("total-limit", [
-            { skills: [oneAdd(60, "none")] },
-            { skills: [oneAdd(60, "some")] },
-            { skills: [oneAdd(81, "some")] },
-          ]),
-        ),
-      ).limit,
-    ).toMatchObject({
-      scope: "total",
       count: 201,
-      max: ARITHMETIC_MAX_ITEMS_TOTAL,
+      max: ARITHMETIC_MAX_ITEMS_PER_ROUND,
     });
     expect(
       failure(() =>

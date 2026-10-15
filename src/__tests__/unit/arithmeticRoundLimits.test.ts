@@ -1,18 +1,4 @@
-// @vitest-environment node
 import { describe, expect, it } from "vitest";
-import {
-  ARITHMETIC_ENGINE_VERSION,
-  ARITHMETIC_CATALOG_VERSION,
-  arithmeticGenerateRequestSchema,
-  arithmeticIdentityKey,
-} from "@/contracts/arithmetic.contract";
-import {
-  ARITHMETIC_V2_ENGINE_VERSION,
-  ARITHMETIC_V2_CATALOG_VERSION,
-  arithmeticV2GenerateRequestSchema,
-  arithmeticV2PromptIdentity,
-} from "@/contracts/arithmeticV2.contract";
-import { defaultArithmeticPresentation } from "@/contracts/arithmeticPresentation.contract";
 import {
   buildArithmeticSheet,
   defaultArithmeticConstraints,
@@ -20,194 +6,207 @@ import {
 } from "@/lib/arithmetic";
 import {
   buildArithmeticV2Sheet,
-  listArithmeticV2Types,
   reopenArithmeticV2Sheet,
 } from "@/lib/arithmetic-v2";
+import { arithmeticV2Definitions } from "@/lib/arithmetic-v2/registry";
+import { arithmeticV2PromptIdentity } from "@/contracts/arithmeticV2.contract";
+import {
+  regenerateArithmeticItems,
+  regenerateArithmeticV2Items,
+  arithmeticRegenerationNotice,
+} from "@/lib/arithmeticRegeneration";
 import { parseStrictJson } from "@/lib/textbook/strictJson";
+import {
+  ARITHMETIC_SHEET_JSON_LIMITS,
+  arithmeticSheetByteIssue,
+} from "@/lib/arithmetic/byteBudget";
 
-const legacy = (count: number, rounds: number) => ({
-  engineVersion: ARITHMETIC_ENGINE_VERSION,
-  catalogVersion: ARITHMETIC_CATALOG_VERSION,
-  // Escaped printable characters exercise the largest supported seed encoding.
+const v1 = (count: number, rounds: number) => ({
+  engineVersion: "arithmetic-engine-v1",
+  catalogVersion: "arithmetic-catalog-v1",
   seed: '"'.repeat(128),
   rounds: Array.from({ length: rounds }, () => ({
     skills: [
       {
-        skillId: "two-digit-times-one" as const,
+        skillId: "two-digit-vertical-add",
         count,
-        constraints: defaultArithmeticConstraints("two-digit-times-one"),
+        constraints: {
+          ...defaultArithmeticConstraints("two-digit-vertical-add"),
+          carryCount: 1,
+        },
       },
     ],
   })),
 });
-const grade = (typeId: string, count: number, rounds: number) => ({
-  engineVersion: ARITHMETIC_V2_ENGINE_VERSION,
-  catalogVersion: ARITHMETIC_V2_CATALOG_VERSION,
+const v2 = (count: number, rounds: number, typeId = "m2-polynomial-add") => ({
+  engineVersion: "arithmetic-engine-v2",
+  catalogVersion: "arithmetic-catalog-v2",
   seed: '"'.repeat(128),
   rounds: Array.from({ length: rounds }, () => ({
     allocations: [{ typeId, count }],
   })),
 });
-
-function saveBody(sheet: object) {
-  return JSON.stringify({
-    kind: "arithmeticSheet",
-    title: "가".repeat(100),
-    expectedRevision: null,
-    payload: { ...sheet, presentation: defaultArithmeticPresentation("학원") },
-  });
-}
-
-describe("multi-round arithmetic quantity and snapshot boundaries", () => {
-  it.each([
-    [100, 2],
-    [10, 20],
-  ])(
-    "v1 generates and reopens %i x %i without within-round duplicates",
-    (count, rounds) => {
-      const input = legacy(count, rounds);
-      expect(arithmeticGenerateRequestSchema.safeParse(input).success).toBe(
-        true,
-      );
-      const sheet = buildArithmeticSheet(input);
-      expect(sheet.rounds).toHaveLength(rounds);
-      expect(sheet.rounds.flatMap((round) => round.items)).toHaveLength(200);
-      for (const round of sheet.rounds) {
-        expect(
-          new Set(
-            round.items.map((item) =>
-              arithmeticIdentityKey(item.spec.skillId, item.spec.operands),
-            ),
-          ).size,
-        ).toBe(count);
-        expect(round.items.map((item) => item.order)).toEqual(
-          Array.from({ length: count }, (_, i) => i + 1),
-        );
-      }
-      expect(reopenArithmeticSheet(JSON.parse(JSON.stringify(sheet)))).toEqual(
-        sheet,
-      );
-      expect(() =>
-        parseStrictJson(saveBody(sheet), {
-          maxBytes: 256 * 1024,
-          maxDepth: 16,
-        }),
-      ).not.toThrow();
-    },
-  );
-
-  it.each(
-    listArithmeticV2Types().map((type) => [type.id, type.domainSize] as const),
-  )(
-    "v2 generates two full available rounds of %s within the existing save-body guard",
-    (typeId, domainSize) => {
-      const count = Math.min(100, domainSize);
-      const input = grade(typeId, count, 2);
-      expect(arithmeticV2GenerateRequestSchema.safeParse(input).success).toBe(
-        true,
-      );
-      const sheet = buildArithmeticV2Sheet(input);
-      expect(sheet.rounds).toHaveLength(2);
-      for (const round of sheet.rounds) {
-        expect(round.items).toHaveLength(count);
-        expect(
-          new Set(
-            round.items.map((item) => arithmeticV2PromptIdentity(item.prompt)),
-          ).size,
-        ).toBe(count);
-      }
+function check(rounds: string[][]) {
+  for (let i = 0; i < rounds.length; i++) {
+    expect(new Set(rounds[i]).size).toBe(rounds[i].length);
+    for (let j = 0; j < i; j++)
       expect(
-        reopenArithmeticV2Sheet(JSON.parse(JSON.stringify(sheet))),
-      ).toEqual(sheet);
+        rounds[i].filter((key) => rounds[j].includes(key)).length,
+      ).toBeLessThanOrEqual(
+        Math.floor(Math.min(rounds[i].length, rounds[j].length) / 5),
+      );
+  }
+}
+describe("10 rounds, 200 items each, historical reader compatibility", () => {
+  it("generates and serializes real 2000-item v1/v2 sheets with all pair limits", () => {
+    const first = buildArithmeticSheet(v1(200, 10));
+    const second = buildArithmeticV2Sheet(v2(200, 10));
+    for (const sheet of [first, second]) {
+      expect(sheet.rounds).toHaveLength(10);
+      expect(sheet.rounds.flatMap((r) => r.items)).toHaveLength(2000);
+      expect(arithmeticSheetByteIssue(sheet)).toBeNull();
       expect(() =>
-        parseStrictJson(saveBody(sheet), {
-          maxBytes: 256 * 1024,
-          maxDepth: 16,
-        }),
+        parseStrictJson(
+          JSON.stringify({
+            kind: "arithmeticSheet",
+            title: "가".repeat(200),
+            payload: sheet,
+            expectedRevision: null,
+          }),
+          ARITHMETIC_SHEET_JSON_LIMITS,
+        ),
       ).not.toThrow();
+    }
+    check(
+      first.rounds.map((r) =>
+        r.items.map((i) =>
+          JSON.stringify([
+            i.prompt.notation,
+            i.prompt.operator,
+            i.prompt.operands,
+          ]),
+        ),
+      ),
+    );
+    check(
+      second.rounds.map((r) =>
+        r.items.map((i) => arithmeticV2PromptIdentity(i.prompt)),
+      ),
+    );
+    expect(reopenArithmeticSheet(first)).toEqual(first);
+    expect(reopenArithmeticV2Sheet(second)).toEqual(second);
+  });
+  it.each(arithmeticV2Definitions().map((d) => [d.id, d.domainSize] as const))(
+    "checks actual finite domain %s across two rounds",
+    (id, size) => {
+      const count = Math.min(200, Math.floor(size / 2));
+      if (!count) {
+        expect(() => buildArithmeticV2Sheet(v2(1, 2, id))).toThrow();
+        return;
+      }
+      const sheet = buildArithmeticV2Sheet(v2(count, 2, id));
+      check(
+        sheet.rounds.map((r) =>
+          r.items.map((i) => arithmeticV2PromptIdentity(i.prompt)),
+        ),
+      );
+      expect(reopenArithmeticV2Sheet(sheet)).toEqual(sheet);
     },
   );
-
-  it("reuses the entire finite domain in later rounds, including beyond the old total cap", () => {
-    const type = listArithmeticV2Types().find(
-      (item) => item.id === "m1-integer-power",
-    )!;
-    expect(type).toBeDefined();
-    const sheet = buildArithmeticV2Sheet(grade(type.id, type.domainSize, 4));
-    const identities = (index: number) =>
-      sheet.rounds[index].items
-        .map((item) => arithmeticV2PromptIdentity(item.prompt))
-        .sort();
-    expect(identities(3)).toEqual(identities(0));
-    expect(reopenArithmeticV2Sheet(sheet)).toEqual(sheet);
-    expect(() =>
-      buildArithmeticV2Sheet(grade(type.id, type.domainSize + 1, 2)),
-    ).toThrow(
-      expect.objectContaining({
-        code: "capacity",
-        violations: [
-          expect.objectContaining({
-            reason: "domain",
-            available: type.domainSize,
-          }),
-          expect.anything(),
-        ],
-      }),
-    );
-  });
-
-  it("rejects request-size overflow before distinct-expression checks", () => {
-    for (const [count, rounds, scope] of [
-      [101, 1, "invalid-count"],
-      [67, 3, "total"],
-      [10, 21, "rounds"],
-    ] as const) {
-      for (const [build, input] of [
-        [buildArithmeticSheet, legacy(count, rounds)],
-        [buildArithmeticV2Sheet, grade("m2-polynomial-add", count, rounds)],
-      ] as const) {
-        expect(() => build(input)).toThrow(
-          expect.objectContaining(
-            scope === "invalid-count"
-              ? { code: scope }
-              : { code: "limit", limit: expect.objectContaining({ scope }) },
-          ),
-        );
-      }
-    }
-  });
-
-  it("reopen rejects an oversized snapshot and a duplicate even at the new boundary", () => {
-    const v1 = buildArithmeticSheet(legacy(100, 2));
-    const v2 = buildArithmeticV2Sheet(grade("m2-polynomial-add", 100, 2));
-    const thirdV1 = structuredClone(v1.rounds[0]);
-    thirdV1.round = 3;
-    thirdV1.items.forEach((item) => {
-      item.spec.round = 3;
+  it("rejects new 11th rounds and 201st items, including split allocations", () => {
+    for (const build of [
+      () => buildArithmeticSheet(v1(201, 1)),
+      () => buildArithmeticV2Sheet(v2(201, 1)),
+    ])
+      expect(build).toThrow(expect.objectContaining({ code: "invalid-count" }));
+    for (const build of [
+      () => buildArithmeticSheet(v1(1, 11)),
+      () => buildArithmeticV2Sheet(v2(1, 11)),
+    ])
+      expect(build).toThrow(
+        expect.objectContaining({
+          code: "limit",
+          limit: expect.objectContaining({ scope: "rounds", max: 10 }),
+        }),
+      );
+    const request = v2(150, 1);
+    request.rounds[0].allocations.push({
+      typeId: "m2-polynomial-add",
+      count: 51,
     });
-    expect(() =>
-      reopenArithmeticSheet({ ...v1, rounds: [...v1.rounds, thirdV1] }),
-    ).toThrow(expect.objectContaining({ code: "limit" }));
-    expect(() =>
-      reopenArithmeticV2Sheet({
-        ...v2,
-        rounds: [...v2.rounds, { ...v2.rounds[0], round: 3 }],
+    expect(() => buildArithmeticV2Sheet(request)).toThrow(
+      expect.objectContaining({
+        code: "limit",
+        limit: expect.objectContaining({
+          scope: "round",
+          count: 201,
+          max: 200,
+        }),
       }),
-    ).toThrow(expect.objectContaining({ code: "limit" }));
-    v1.rounds[1].items[1] = {
-      ...structuredClone(v1.rounds[1].items[0]),
-      order: 2,
-    };
-    v1.rounds[1].items[1].spec.order = 2;
-    v2.rounds[1].items[1] = {
-      ...structuredClone(v2.rounds[1].items[0]),
-      order: 2,
-    };
-    expect(() => reopenArithmeticSheet(v1)).toThrow(
-      expect.objectContaining({ code: "duplicate" }),
     );
-    expect(() => reopenArithmeticV2Sheet(v2)).toThrow(
-      expect.objectContaining({ code: "duplicate" }),
+  });
+  it("reads historical 20-round and 100% overlapping sheets unchanged, and targets round20", () => {
+    const first = buildArithmeticSheet(v1(1, 1));
+    first.rounds = Array.from({ length: 20 }, (_, n) => ({
+      round: n + 1,
+      items: first.rounds[0].items.map((item) => ({
+        ...structuredClone(item),
+        spec: { ...structuredClone(item.spec), round: n + 1 },
+      })),
+    }));
+    const second = buildArithmeticV2Sheet(v2(1, 1));
+    second.rounds = Array.from({ length: 20 }, (_, n) => ({
+      round: n + 1,
+      items: structuredClone(second.rounds[0].items),
+    }));
+    const before = [JSON.stringify(first), JSON.stringify(second)];
+    expect(reopenArithmeticSheet(first)).toEqual(first);
+    expect(reopenArithmeticV2Sheet(second)).toEqual(second);
+    const a = regenerateArithmeticItems(
+      first,
+      { round: 20, orders: [1] },
+      "repair",
+    );
+    const b = regenerateArithmeticV2Items(
+      second,
+      { round: 20, orders: [1] },
+      "repair",
+    );
+    expect(a.changedOrders).toEqual([1]);
+    expect(b.changedOrders).toEqual([1]);
+    expect(a.sheet.rounds[0]).toBe(first.rounds[0]);
+    expect(b.sheet.rounds[0]).toBe(second.rounds[0]);
+    expect([JSON.stringify(first), JSON.stringify(second)]).toEqual(before);
+  });
+  it("returns unchanged for fixed overlap, repairs selected positions, and preserves unrelated legacy pairs", () => {
+    const sheet = buildArithmeticV2Sheet(v2(5, 1));
+    sheet.rounds = Array.from({ length: 4 }, (_, i) => ({
+      round: i + 1,
+      items: structuredClone(sheet.rounds[0].items),
+    }));
+    const unchanged = regenerateArithmeticV2Items(
+      sheet,
+      { round: 1, orders: [1] },
+      "repair",
+    );
+    expect(unchanged.sheet).toBe(sheet);
+    expect(unchanged.changedOrders).toEqual([]);
+    expect(unchanged.unchangedReason).toBe("fixed-overlap");
+    expect(arithmeticRegenerationNotice(unchanged)).toContain(
+      "선택하지 않은 문항",
+    );
+    const repaired = regenerateArithmeticV2Items(
+      sheet,
+      { round: 1, orders: [1, 2, 3, 4, 5] },
+      "repair",
+    );
+    expect(repaired.changedOrders).toHaveLength(5);
+    for (let i = 1; i < 4; i++)
+      expect(repaired.sheet.rounds[i]).toBe(sheet.rounds[i]);
+    check(
+      [repaired.sheet.rounds[0], repaired.sheet.rounds[1]].map((r) =>
+        r.items.map((i) => arithmeticV2PromptIdentity(i.prompt)),
+      ),
     );
   });
 });

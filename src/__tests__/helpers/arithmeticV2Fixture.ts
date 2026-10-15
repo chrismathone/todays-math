@@ -15,6 +15,7 @@ function definition(
     rankGroup,
     domainSize,
     grade: "초3",
+    curriculum: { semester: 1, unit: "덧셈과 뺄셈" },
     strand: "자연수",
     title: id,
     description: "Test arithmetic domain",
