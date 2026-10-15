@@ -2,6 +2,7 @@ import { arithmeticV2CandidateSchema } from "@/contracts/arithmeticV2.contract";
 import { ArithmeticV2EngineError } from "./errors";
 import { arithmeticV2Definitions } from "./registry";
 import type { ArithmeticV2CatalogEntry } from "./types";
+import { arithmeticCurriculum } from "./curriculum";
 
 export function listArithmeticV2Types(): ArithmeticV2CatalogEntry[] {
   return arithmeticV2Definitions().map(({ problemAt, verify, ...entry }) => {
@@ -9,6 +10,7 @@ export function listArithmeticV2Types(): ArithmeticV2CatalogEntry[] {
     if (!verify(example)) throw new ArithmeticV2EngineError("verification");
     return {
       ...entry,
+      curriculum: arithmeticCurriculum(entry),
       labels: [...entry.labels],
       example: example.prompt,
       defaultCount: Math.min(10, entry.domainSize),
