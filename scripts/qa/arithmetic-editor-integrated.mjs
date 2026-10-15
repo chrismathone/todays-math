@@ -61,6 +61,22 @@ try {
         exact: true,
       });
       await expect(make).toBeEnabled();
+      const basketCheckboxes = await page
+        .getByRole("complementary", { name: "연습지 구성", exact: true })
+        .locator('input[type="checkbox"]')
+        .evaluateAll((nodes) =>
+          nodes.map((node) => ({
+            width: node.getBoundingClientRect().width,
+            height: node.getBoundingClientRect().height,
+          })),
+        );
+      assert(basketCheckboxes.length > 0);
+      assert(
+        basketCheckboxes.every(
+          ({ width, height }) => width === 18 && height === 18,
+        ),
+        "basket checkboxes must retain native 18 px sizing inside the workspace",
+      );
       await page
         .getByRole("checkbox", { name: "담은 유형 전체 선택", exact: true })
         .check();
