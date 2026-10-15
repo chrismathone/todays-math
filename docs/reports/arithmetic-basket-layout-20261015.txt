@@ -1,0 +1,24 @@
+Arithmetic basket layout correction — 2026-10-15
+
+The owner reported oversized checkboxes and unaligned basket controls. Generic
+arithmetic input styling now excludes native checkbox/radio inputs. Basket
+checkboxes explicitly retain 18 x 18 px dimensions, with surrounding labels as
+click targets. The toolbar aligns select-all and remove-selected on one row;
+each basket row aligns checkbox, wrapping type title, quantity and removal.
+Thin row separators preserve alignment without adding nested cards. Existing
+selection, count, constraint, generation and bounded-list scrolling behavior is
+unchanged. Grade and basic arithmetic share these styles.
+
+Actual /dev/workspace-alignment#arithmetic in local Chromium: grade/basic at
+1440, 390 and 320 px all passed measured 18 px checkbox bounds, nonoverlapping
+row columns, single-row selection tools and zero horizontal page overflow.
+Select-all, indeterminate partial selection, remove only selected rows and
+keyboard Space toggling passed in all six cases. Zero page errors and zero
+attempted real API requests; no CSSOM or response stubs were used. Root visually
+reviewed desktop grade/basic and mobile grade/basic screenshots. This is a CSS
+layout correction; no new mirrored unit tests were introduced.
+
+Evidence: C:/Creative/testautocreator/.qa-artifacts/arithmetic-basket-layout-20261015/
+proof.json plus six screenshots. Temporary reproduction runner:
+tmp/arithmetic-basket-layout-check.mjs. Scoped CSS affordance and Prettier checks
+passed. Normal repository commit hooks are required.
