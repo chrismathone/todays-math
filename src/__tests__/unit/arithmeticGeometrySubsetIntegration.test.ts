@@ -28,8 +28,9 @@ vi.mock("@/lib/arithmetic-v2/extraGeometry", () => {
         title: "넓이",
         description: "test",
         labels: [],
+        curriculum: { semester: 1, unit: "다각형의 둘레와 넓이" },
         rankGroup: "test-area",
-        domainSize: 6,
+        domainSize: 8,
         problemAt: candidate,
         verify: (value: ReturnType<typeof candidate>) =>
           Number(value.answer.exact[0]) ===
@@ -38,7 +39,7 @@ vi.mock("@/lib/arithmetic-v2/extraGeometry", () => {
     ],
     EXTRA_GEOMETRY_FIGURE_MAPS: [
       Object.fromEntries(
-        Array.from({ length: 6 }, (_, index) => [
+        Array.from({ length: 8 }, (_, index) => [
           `test-area-${index}`,
           `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240"><desc>arithmetic-geometry-drill-v1</desc><rect x="30" y="30" width="${(index + 2) * 20}" height="60" fill="none" stroke="black"/></svg>`,
         ]),
@@ -78,12 +79,14 @@ describe("saved geometry subsets across generation, regeneration and shared outp
     expect(problems).toHaveLength(6);
     expect(
       problems.every(
-        (p) => p.content.includes("cm²") && !p.content.includes("circ"),
+        (p) =>
+          p.content.includes("\\mathrm{cm}^{2}") && !p.content.includes("circ"),
       ),
     ).toBe(true);
-    expect(problems.every((p) => p.figureSourceMm[0] === 57.15)).toBe(true);
+    for (const p of problems)
+      expect(p.figureSourceMm[0]).toBeCloseTo((280 * 25.4) / 96);
     expect(problems[0].figureSvg).toContain("arithmetic-geometry-drill-v1");
-    expect(problems[0].content).toContain("세로 3 cm인 직사각형");
+    expect(problems[0].content).toContain("세로 $3\\,\\mathrm{cm}$인 직사각형");
   });
 
   it("replaces the selected question's packed figure and keeps other rounds/items byte-identical", () => {
@@ -129,7 +132,7 @@ describe("saved geometry subsets across generation, regeneration and shared outp
       engineVersion: "arithmetic-engine-v2",
       catalogVersion: "arithmetic-catalog-v2",
       seed: "full-area-domain",
-      rounds: [{ allocations: [{ typeId: "test-area", count: 6 }] }],
+      rounds: [{ allocations: [{ typeId: "test-area", count: 8 }] }],
     });
     const result = regenerateArithmeticV2Items(
       sheet,
@@ -158,7 +161,7 @@ describe("saved geometry subsets across generation, regeneration and shared outp
     });
     expect(sheet.figures?.version).toBe(2);
     const problems = arithmeticToStudioProblems(reopenArithmeticV2Sheet(sheet));
-    expect(problems[0].content).toContain("cm²");
+    expect(problems[0].content).toContain("\\mathrm{cm}^{2}");
     expect(problems[2].content).toContain("\\circ");
     expect(problems[2].figureSvg).toContain("arithmetic-angle-drill-v1");
   });

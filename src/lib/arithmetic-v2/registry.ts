@@ -1,5 +1,9 @@
 import { ELEMENTARY_ARITHMETIC_DEFINITIONS } from "./families/elementary";
 import { ELEMENTARY_SUPPLEMENT_DEFINITIONS } from "./families/elementary/supplement";
+import { ELEMENTARY_COMPLETE_DEFINITIONS } from "./families/elementaryComplete";
+import { ALGEBRA_COMPLETE_DEFINITIONS } from "./families/algebraComplete";
+import { TRIGONOMETRY_COMPLETE_DEFINITIONS } from "./families/trigonometryComplete";
+import { FUNCTIONS_DATA_DEFINITIONS } from "./families/functionsData";
 import { MIDDLE_ARITHMETIC_DEFINITIONS } from "./families/middle";
 import { ALGEBRA_RADICAL_SUPPLEMENT_DEFINITIONS } from "./families/middle/algebraRadicalSupplement";
 import { NUMERIC_SUPPLEMENT_DEFINITIONS } from "./families/middle/numericSupplement";
@@ -17,6 +21,13 @@ const definitions: readonly ArithmeticV2Definition[] = [
   ...ALGEBRA_RADICAL_SUPPLEMENT_DEFINITIONS,
   ...GEOMETRY_ARITHMETIC_DEFINITIONS,
   ...EXTRA_GEOMETRY_DEFINITIONS,
+  ...ELEMENTARY_COMPLETE_DEFINITIONS,
+  ...ALGEBRA_COMPLETE_DEFINITIONS,
+  ...TRIGONOMETRY_COMPLETE_DEFINITIONS,
+  ...FUNCTIONS_DATA_DEFINITIONS.map((definition) => ({
+    ...definition,
+    promptPresentation: "prose" as const,
+  })),
 ];
 const byId = new Map<string, ArithmeticV2Definition>();
 for (const definition of definitions) {

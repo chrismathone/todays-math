@@ -59,8 +59,13 @@
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 244px), 1fr));
   gap: 8px;
 }
+.typeCatalog {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 96px;
+}
 .root .typeCatalog .card {
   min-height: 96px;
+  min-width: 0;
   justify-content: flex-start;
 }
 .catalogFilters {
@@ -184,6 +189,34 @@
 }
 .settingsFooter {
   flex: none;
+}
+.settings.gradeSettings {
+  max-height: min(
+    560px,
+    calc(100dvh - var(--workspace-sticky-inset, 16px) - 16px)
+  );
+}
+.gradeSettings .settingsContent {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  scrollbar-gutter: auto;
+}
+.gradeSettings .settingsContent > :not(.selectedTypes) {
+  flex: none;
+}
+.selectedTypes {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-gutter: stable;
+  margin: 0 -6px 12px;
+  padding: 0 6px;
+}
+@media (min-width: 1051px) and (max-width: 1300px) {
+  .typeCatalog {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 .settingsContent > label,
 .constraints label {
@@ -416,6 +449,9 @@
   }
 }
 @media (max-width: 760px) {
+  .typeCatalog {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .catalogToolbar {
     grid-template-columns: minmax(0, 1fr);
   }

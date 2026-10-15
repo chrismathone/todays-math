@@ -17,6 +17,15 @@ function unitLatex(unit: string): string {
   return `\\mathrm{${unit.replace(/[²³]/g, "")}}${unit.endsWith("²") ? "^{2}" : unit.endsWith("³") ? "^{3}" : ""}`;
 }
 
+/** Unit suffix inside an already-open formula. Never insert raw TeX control characters. */
+export function arithmeticAnswerUnitLatex(unit: string): string {
+  if (!unit) return "";
+  if (unit === "°") return "^{\\circ}";
+  if (unit === "%") return "\\,\\%";
+  if (/^[A-Za-z]+[²³]?$/.test(unit)) return `\\,${unitLatex(unit)}`;
+  return `\\,\\text{${unit.replace(/[{}\\%_$#&]/g, (char) => `\\${char}`)}}`;
+}
+
 /** Apply physical-unit typography only outside already-authored math. */
 export function arithmeticGeometryText(text: string): string {
   return tokenizeMath(arithmeticGeometryNames(text))
@@ -26,7 +35,7 @@ export function arithmeticGeometryText(text: string): string {
         return `${delimiter}${part.value}${delimiter}`;
       }
       return part.value.replace(
-        /(?<![A-Za-z\d])(?:(\d+(?:\.\d+)?)\s*)?(km|cm|mm|mL|m|L)([²³])?(?![A-Za-z])|(\d+(?:\.\d+)?)\s*°/g,
+        /(?<![A-Za-z\d])(?:(\d+(?:\.\d+)?)\s*)?(km|cm|mm|mL|kg|m|L|g|t)([²³])?(?![A-Za-z])|(\d+(?:\.\d+)?)\s*°/g,
         (
           _match,
           number: string | undefined,
@@ -37,6 +46,23 @@ export function arithmeticGeometryText(text: string): string {
           angle !== undefined
             ? `$${angle}^{\\circ}$`
             : `$${number === undefined ? "" : `${number}\\,`}${unitLatex(`${unit}${power ?? ""}`)}$`,
+      );
+    })
+    .join("");
+}
+
+/** Short catalog titles may contain literal variable powers from immutable families. */
+export function arithmeticTypeTitle(text: string): string {
+  return tokenizeMath(arithmeticGeometryText(text))
+    .map((part) => {
+      if (part.type !== "text") {
+        const delimiter = part.type === "inline" ? "$" : "$$";
+        return `${delimiter}${part.value}${delimiter}`;
+      }
+      return part.value.replace(
+        /(?<![A-Za-z])([a-z])([²³]|\^\d+)?(?![A-Za-z\d])/g,
+        (_match, variable: string, power: string | undefined) =>
+          `$${variable}${power ? `^{${power === "²" ? "2" : power === "³" ? "3" : power.slice(1)}}` : ""}$`,
       );
     })
     .join("");

@@ -30,6 +30,8 @@ import {
 } from "./worksheetOrder";
 import s from "./WorksheetEditor.module.css";
 import { arithmeticOutputGroups } from "@/lib/arithmeticOutputLayout";
+import { MathText } from "@/components/math/MathText";
+import { arithmeticTypeTitle } from "@/lib/arithmetic-v2/presentation/text";
 interface Props {
   /** Arithmetic output has a key only, with no solution pages. */
   answersOnly?: boolean;
@@ -509,7 +511,11 @@ export default function WorksheetEditor({
                       <ul>
                         {round.groups.map((group) => (
                           <li key={group.problems[0].id}>
-                            <strong>{group.title}</strong>
+                            <strong>
+                              <MathText
+                                text={arithmeticTypeTitle(group.title)}
+                              />
+                            </strong>
                             <span>{group.problems.length}문항</span>
                             <small>
                               {group.problems[0].arithmetic?.number}

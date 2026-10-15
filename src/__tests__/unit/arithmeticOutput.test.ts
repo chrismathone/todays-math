@@ -23,6 +23,7 @@ import {
 } from "@/contracts/arithmetic.contract";
 import { listArithmeticPresets } from "@/lib/arithmeticPresets";
 import { arithmeticOutputGroups } from "@/lib/arithmeticOutputLayout";
+import { arithmeticGeometryText } from "@/lib/arithmetic-v2/presentation/text";
 
 describe("arithmetic shared output adapter", () => {
   it("preserves every supported grade prompt, exact answer and snapshot with valid math markup", () => {
@@ -62,9 +63,13 @@ describe("arithmetic shared output adapter", () => {
         expect(problem.figureSvg).toContain("<svg");
       else if (
         item.prompt.layout === "math" &&
-        item.prompt.answerUnit !== undefined
+        ((type.strand === "도형" && item.prompt.answerUnit !== undefined) ||
+          type.promptPresentation === "prose" ||
+          item.prompt.latex === `\\text{${item.prompt.text}}`)
       ) {
-        expect(problem.content).toContain(item.prompt.text);
+        expect(problem.content).toContain(
+          arithmeticGeometryText(item.prompt.text),
+        );
         expect(problem.content).not.toContain("[그림1]");
       } else if (item.prompt.layout === "math")
         expect(problem.content).toContain(item.prompt.latex);
@@ -89,7 +94,7 @@ describe("arithmetic shared output adapter", () => {
         "surd",
       ]),
     );
-  });
+  }, 60000);
   it("keeps legacy vertical/horizontal prompts and distinct round order IDs without regenerating", () => {
     const presets = listArithmeticPresets();
     const rounds = [

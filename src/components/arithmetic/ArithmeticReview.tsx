@@ -2,6 +2,7 @@
 
 import { useId, useRef, useState } from "react";
 import { MathText } from "@/components/math/MathText";
+import { arithmeticTypeTitle } from "@/lib/arithmetic-v2/presentation/text";
 import NativeProblem from "@/components/unified/NativeProblem";
 import { fractionViewFor } from "@/components/unified/fractionDisplay";
 import type { StudioProblem } from "@/components/unified/types";
@@ -178,7 +179,7 @@ function RoundReview({
                       toggle(groupOrders, event.target.checked)
                     }
                   />
-                  {group.title}
+                  <MathText text={arithmeticTypeTitle(group.title)} />
                 </label>
               </h3>
               <button

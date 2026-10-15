@@ -15,6 +15,7 @@ import { presentArithmeticGeometrySvg } from "@/lib/arithmetic-v2/presentation";
 import {
   arithmeticGeometryAnswerBlank,
   arithmeticGeometryText,
+  arithmeticAnswerUnitLatex,
 } from "@/lib/arithmetic-v2/presentation/text";
 
 export type ArithmeticOutputSheet =
@@ -67,8 +68,16 @@ export function arithmeticToStudioProblems(
         const answerUnit = arithmeticGeometryAnswerUnit(item.prompt);
         const geometryPrompt =
           Boolean(svg) ||
-          (item.prompt.layout === "math" &&
+          (type?.strand === "도형" &&
+            item.prompt.layout === "math" &&
             item.prompt.answerUnit !== undefined);
+        // textMath families explicitly authored the entire expression as prose.
+        // Exact equality avoids guessing from arbitrary TeX commands or contents.
+        const prosePrompt =
+          geometryPrompt ||
+          type?.promptPresentation === "prose" ||
+          (item.prompt.layout === "math" &&
+            item.prompt.latex === `\\text{${item.prompt.text}}`);
         const answerBlank = arithmeticGeometryAnswerBlank(answerUnit);
         const formula =
           item.prompt.layout === "vertical"
@@ -77,13 +86,13 @@ export function arithmeticToStudioProblems(
                 item.prompt.right,
                 item.prompt.operator,
               )
-            : `${item.prompt.latex} \\quad \\underline{\\hspace{2em}}`;
+            : `${item.prompt.latex} \\quad \\underline{\\hspace{2em}}${arithmeticAnswerUnitLatex(answerUnit)}`;
         return {
           ...base,
           id: `arithmetic-v2:${sheet.seed}:${round.round}:${item.order}`,
-          content: geometryPrompt
+          content: prosePrompt
             ? `${arithmeticGeometryPromptLines(item.prompt).map(arithmeticGeometryText).join("\n\n")}${svg ? "\n\n[그림1]" : ""}\n\n답: ${answerBlank}`
-            : `${item.prompt.instruction ? `${item.prompt.instruction}\n\n` : ""}$$${formula}$$`,
+            : `${item.prompt.instruction ? `${arithmeticGeometryText(item.prompt.instruction)}\n\n` : ""}$$${formula}$$`,
           ...(svg
             ? {
                 figureSvg: svg,

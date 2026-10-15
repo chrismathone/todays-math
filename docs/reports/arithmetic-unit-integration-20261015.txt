@@ -1,0 +1,70 @@
+Arithmetic unit and presentation integration — 2026-10-15
+
+Catalog
+-------
+Registered 302 new finite calculation types: elementary119 / middle algebra56 /
+functions-data118 / additional trigonometry9. Their combined domains contain
+412,287 tasks. Current catalog649 types: 초3 65, 초4 45, 초5 77, 초6 51, 중1 145,
+중2 162, 중3 94, plus the ten retained 초2 types. Thus the requested 초3–중3
+range contains639 types. Every catalog entry has a nonempty school-unit name and
+explicit semester. Existing identities/canonical family sources are unchanged.
+
+Coverage audits and primary curriculum references are in:
+scripts/qa/arithmetic-elementary-complete-report.json (48 elementary units)
+scripts/qa/arithmetic-algebra-complete-report.txt
+docs/reports/arithmetic-functions-data-20261015.txt
+scripts/qa/arithmetic-trigonometry-complete-report.txt
+docs/reports/arithmetic-curriculum-20261015.txt
+These distinguish direct calculations from proofs, construction, qualitative
+graph reading and narrative modeling; they do not claim every achievement
+standard is represented by a calculation drill. Pythagoras itself is 중2; the
+root-dependent applications retain their saved IDs and are listed under 중3
+제곱근과 실수. Prerequisite metadata remains internal; the extra card caption
+was removed at the user's request.
+
+Shared rendering
+----------------
+All functions/data definitions use explicit definition-only prose presentation.
+Authored prose/math spans wrap in the shared NativeProblem renderer. Exact
+textMath wrappers from elementary families also render as prose; other formulas
+and data arrays retain their authored LaTeX. An answerUnit no longer incorrectly
+routes an ordinary numerical formula through geometry prose. Korean units,
+physical powers and percent signs remain visible beside answer blanks.
+Variable powers in catalog titles, selection rows, review section headings and
+print headings use the common KaTeX renderer. Source titles and saved candidates
+remain unchanged.
+
+The segment adapter now runs after trusted canonical lookup and before typography,
+alongside the angle and elementary dimension adapters. It covers50 middle-school
+families /1,827 figures; exact original-string matching and LRU4 are retained.
+See scripts/qa/arithmetic-segment-presentation-report.json and the net report.
+
+Catalog layout
+--------------
+Only the type count remains above the cards. Cards show title/grade/semester/unit.
+Desktop uses four fixed grid columns and96px rows; a final two-card page fills
+the first two positions. Narrow viewports explicitly use three/two/one columns.
+The300px selection panel is sticky and capped at560px or the available viewport.
+Only its selected-types list scrolls; title, round and generation action remain
+visible. The basic-calculation mode follows the same panel behavior.
+
+Verification
+------------
+All649 catalog types passed shared output/KaTeX/snapshot checks. Original53-family
+snapshot compatibility and workspace catalog integration passed. New-family
+save/reopen/targeted-regeneration/unit tests include200-item multi-round sheets.
+The six-template round/form and grouped-output suites passed37 tests. Updated
+geometry subset tests retain original packs while checking presentation units and
+280px sizing; segment and sizing checks passed. Full TypeScript and scoped ESLint
+passed before the separate round-limit policy follow-up.
+
+Real browser evidence: tmp/arithmetic-catalog-final-proof.json and screenshots
+arithmetic-two-cards-final.png / arithmetic-basket-final.png. Widths1600/1100/900/
+700/390 have no page overflow. A two-card result keeps the configured column width.
+Ten selected types produced a560px panel with178px list viewport and543px scroll
+content; round and generation controls remained visible.
+The functions/data worker separately audited402 distinct shared-renderer samples
+at320px review and85mm print width with zero clipping or missing math/prose.
+
+The subsequent200-per-round /10-round /20%-overlap policy is separately owned and
+validated; this report does not claim that policy is completed by this commit.

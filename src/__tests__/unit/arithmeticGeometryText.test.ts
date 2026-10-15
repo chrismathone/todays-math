@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   arithmeticGeometryNames,
   arithmeticGeometryText,
+  arithmeticTypeTitle,
 } from "@/lib/arithmetic-v2/presentation/text";
 
 describe("geometry display text", () => {
@@ -22,5 +23,13 @@ describe("geometry display text", () => {
     const after = arithmeticGeometryText(before);
     expect(after).toBe("$m=2$와 $$h=3$$, $4\\,\\mathrm{cm}$, 삼각형");
     expect(arithmeticGeometryText(after)).toBe(after);
+  });
+  it("typesets variables in titles while preserving roman measurement units", () => {
+    expect(arithmeticTypeTitle("x²의 계수가 1인 이차식 인수분해")).toBe(
+      "$x^{2}$의 계수가 1인 이차식 인수분해",
+    );
+    expect(arithmeticTypeTitle("cm·m: x^3와 y")).toBe(
+      "$\\mathrm{cm}$·$\\mathrm{m}$: $x^{3}$와 $y$",
+    );
   });
 });

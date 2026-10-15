@@ -3,6 +3,7 @@ import { typesetArithmeticGeometrySvg } from "./typography";
 import { arithmeticGeometryNames } from "./text";
 import { presentArithmeticAngleSvg } from "./angles";
 import { presentArithmeticDimensionSvg } from "./dimensions";
+import { presentArithmeticSegmentSvg } from "./segments";
 
 export const ARITHMETIC_GEOMETRY_EXTENT = 280;
 const displayedFigures = new Map<
@@ -26,6 +27,7 @@ export function presentArithmeticGeometrySvg(
   const laidOut =
     presentArithmeticAngleSvg(id, originalSvg) ??
     presentArithmeticDimensionSvg(id, originalSvg) ??
+    presentArithmeticSegmentSvg(id, originalSvg) ??
     originalSvg;
   const display = typesetArithmeticGeometrySvg(laidOut, {
     normalizeLabel: arithmeticGeometryNames,

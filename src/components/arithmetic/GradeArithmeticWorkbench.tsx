@@ -19,7 +19,7 @@ import {
 import { useUsageLabels } from "@/components/usage-labels/useUsageLabels";
 import UsageLabel from "@/components/usage-labels/UsageLabel";
 import { MathText } from "@/components/math/MathText";
-import { arithmeticGeometryText } from "@/lib/arithmetic-v2/presentation/text";
+import { arithmeticTypeTitle } from "@/lib/arithmetic-v2/presentation/text";
 import {
   ArithmeticGradeSelect,
   type ArithmeticGradeControl,
@@ -40,7 +40,6 @@ import type {
 import { arithmeticQuantityIssue } from "@/lib/arithmetic/quantity";
 import {
   ARITHMETIC_MAX_ITEMS_PER_ROUND,
-  ARITHMETIC_MAX_ITEMS_TOTAL,
   ARITHMETIC_MAX_ROUNDS,
 } from "@/contracts/arithmetic.contract";
 import {
@@ -585,22 +584,6 @@ export default function GradeArithmeticWorkbench({
             <h2 className={s.catalogHeading}>
               연산 유형 <small>{filtered.length}개</small>
             </h2>
-            <p className={s.catalogCount}>
-              {filtered.length}개 유형 · 학년·학기·단원별로 골라 담으세요.
-            </p>
-            <p className={s.catalogCount}>
-              유형별 가능한 식 안에서 숫자를 바꿔 생성합니다. 같은 회차에는
-              중복을 넣지 않으며, 다시 만들거나 회차가 달라지면 이전 식이 나올
-              수 있습니다.
-            </p>
-            {!preview && (
-              <p className={s.catalogCount}>
-                {usage.unavailable
-                  ? "사용 기록을 불러오지 못했습니다."
-                  : "내 학습지 사용 · 최근 30일 · 같은 연산 묶음 안의 순위"}{" "}
-                원본 학습지 5장 이상·사용 유형 2개 이상일 때 순위를 표시합니다.
-              </p>
-            )}
             <div
               className={`${s.catalog} ${s.typeCatalog}`}
               aria-label="학년별 연산 유형"
@@ -622,9 +605,8 @@ export default function GradeArithmeticWorkbench({
                   >
                     <span className={s.cardTop}>
                       <strong>
-                        <MathText text={arithmeticGeometryText(type.title)} />
+                        <MathText text={arithmeticTypeTitle(type.title)} />
                       </strong>
-                      {item && <span>✓ {item.count}문항</span>}
                     </span>
                     <UsageLabel
                       item={usage.arithmeticV2Types.get(type.id)}
@@ -640,9 +622,6 @@ export default function GradeArithmeticWorkbench({
                         <span key={label}>{label}</span>
                       ))}
                     </span>
-                    {type.curriculum.prerequisite && (
-                      <small>{type.curriculum.prerequisite}</small>
-                    )}
                   </button>
                 );
               })}
@@ -668,7 +647,10 @@ export default function GradeArithmeticWorkbench({
               </button>
             </div>
           </div>
-          <aside className={s.settings} aria-label="연습지 구성">
+          <aside
+            className={`${s.settings} ${s.gradeSettings}`}
+            aria-label="연습지 구성"
+          >
             <div
               className={s.settingsContent}
               role="region"
@@ -687,67 +669,74 @@ export default function GradeArithmeticWorkbench({
               <h2>
                 담은 유형 <small>{allocations.length}개</small>
               </h2>
-              {!allocations.length && (
-                <p className={s.catalogCount}>
-                  왼쪽에서 연습할 유형을 담으세요.
-                </p>
-              )}
-              {allocations.map((item) => {
-                const type = byId.get(item.typeId)!;
-                return (
-                  <div key={item.typeId}>
-                    <div className={s.allocation}>
-                      <span className={s.selectionTitle}>
-                        {type.grade} ·{" "}
-                        <MathText text={arithmeticGeometryText(type.title)} />
-                      </span>
-                      <input
-                        type="number"
-                        min={1}
-                        max={Math.min(
-                          ARITHMETIC_MAX_ITEMS_PER_ROUND,
-                          type.domainSize,
-                        )}
-                        value={item.count}
-                        disabled={busy}
-                        aria-label={type.title + " 문항 수"}
-                        onChange={(event) =>
-                          setAllocations((current) =>
-                            current.map((value) =>
-                              value.typeId === item.typeId
-                                ? {
-                                    ...value,
-                                    count: Number(event.target.value),
-                                  }
-                                : value,
-                            ),
-                          )
-                        }
-                      />
-                      <button
-                        type="button"
-                        disabled={busy}
-                        aria-label={type.title + " 빼기"}
-                        onClick={() =>
-                          setAllocations((current) =>
-                            current.filter(
-                              (value) => value.typeId !== item.typeId,
-                            ),
-                          )
-                        }
-                      >
-                        빼기
-                      </button>
+              <div
+                className={s.selectedTypes}
+                role="region"
+                aria-label="담은 유형 목록"
+                tabIndex={0}
+              >
+                {!allocations.length && (
+                  <p className={s.catalogCount}>
+                    왼쪽에서 연습할 유형을 담으세요.
+                  </p>
+                )}
+                {allocations.map((item) => {
+                  const type = byId.get(item.typeId)!;
+                  return (
+                    <div key={item.typeId}>
+                      <div className={s.allocation}>
+                        <span className={s.selectionTitle}>
+                          {type.grade} ·{" "}
+                          <MathText text={arithmeticTypeTitle(type.title)} />
+                        </span>
+                        <input
+                          type="number"
+                          min={1}
+                          max={Math.min(
+                            ARITHMETIC_MAX_ITEMS_PER_ROUND,
+                            type.domainSize,
+                          )}
+                          value={item.count}
+                          disabled={busy}
+                          aria-label={type.title + " 문항 수"}
+                          onChange={(event) =>
+                            setAllocations((current) =>
+                              current.map((value) =>
+                                value.typeId === item.typeId
+                                  ? {
+                                      ...value,
+                                      count: Number(event.target.value),
+                                    }
+                                  : value,
+                              ),
+                            )
+                          }
+                        />
+                        <button
+                          type="button"
+                          disabled={busy}
+                          aria-label={type.title + " 빼기"}
+                          onClick={() =>
+                            setAllocations((current) =>
+                              current.filter(
+                                (value) => value.typeId !== item.typeId,
+                              ),
+                            )
+                          }
+                        >
+                          빼기
+                        </button>
+                      </div>
+                      {item.count > type.domainSize && (
+                        <p className={s.error}>
+                          같은 회차에서 중복 없이 만들 수 있는 식은{" "}
+                          {type.domainSize}개입니다.
+                        </p>
+                      )}
                     </div>
-                    {item.count > type.domainSize && (
-                      <p className={s.error}>
-                        같은 회차에서 중복 없이 만들 수 있는 식은{" "}
-                        {type.domainSize}개입니다.
-                      </p>
-                    )}
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
               <label>
                 회차
                 <input
@@ -765,8 +754,7 @@ export default function GradeArithmeticWorkbench({
                 회차당 {totalPerRound}문항 · 총 {total}문항{" "}
                 <small>
                   회차당 {ARITHMETIC_MAX_ITEMS_PER_ROUND}문항 · 최대{" "}
-                  {ARITHMETIC_MAX_ROUNDS}회차 · 한 번에 총{" "}
-                  {ARITHMETIC_MAX_ITEMS_TOTAL}문항까지
+                  {ARITHMETIC_MAX_ROUNDS}회차
                 </small>
               </p>
               {!valid && <p className={s.error}>{selectionError}</p>}

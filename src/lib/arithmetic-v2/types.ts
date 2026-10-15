@@ -69,6 +69,8 @@ export type ArithmeticV2Definition = {
   labels: string[];
   /** School unit placement; optional on immutable legacy family definitions. */
   curriculum?: ArithmeticCurriculum;
+  /** Authored mixed prose/math, rendered with wrapping; saved candidates stay unchanged. */
+  promptPresentation?: "prose";
   /** Rank only within this explicit arithmetic family. */
   rankGroup: string;
   /** Exact count of unique tasks. No arbitrary capacity or random retries. */

@@ -4,6 +4,8 @@
 // design_handoff/src/ProblemMeta.tsx 그대로 — import path 만 ../tokens / ../types.
 
 import React from "react";
+import { MathText } from "@/components/math/MathText";
+import { arithmeticTypeTitle } from "@/lib/arithmetic-v2/presentation/text";
 import { PAPER_COLORS } from "../tokens";
 import { inkOnColor, readablePaperColor } from "../readableColor";
 import type { PrintOptions, PrintTemplate, ProblemReview } from "../types";
@@ -43,7 +45,7 @@ export function ProblemHeader({
             overflowWrap: "anywhere",
           }}
         >
-          {sectionHeading}
+          <MathText text={arithmeticTypeTitle(sectionHeading)} />
         </h3>
       )}
       <div
