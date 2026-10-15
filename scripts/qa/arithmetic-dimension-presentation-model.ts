@@ -12,10 +12,8 @@ export type Point = [number, number];
 export type Dimension = {
   name: string;
   label: string;
-  /** Actual measured endpoints; projection endpoints only position the mark. */
+  /** Actual measured endpoints passed unchanged to the editor addDimension command. */
   endpoints: [Point, Point];
-  projected: [Point, Point];
-  offset: number;
 };
 export type Plan = {
   id: string;
@@ -94,21 +92,12 @@ export function dimensionPlans(): Plan[] {
       const notes: string[] = [];
       let geometry = "";
       let marks = "";
-      const add = (
-        name: string,
-        a: Point,
-        b: Point,
-        label: string,
-        offset = 23,
-        projection?: [Point, Point],
-      ) => {
+      const add = (name: string, a: Point, b: Point, label: string) => {
         assert.ok(label, `${spec.id}: missing ${name}`);
         dimensions.push({
           name,
           label,
           endpoints: [scalePoint(a), scalePoint(b)],
-          projected: (projection ?? [a, b]).map(scalePoint) as [Point, Point],
-          offset,
         });
       };
       const head = at(120, 25) || at(120, 22);
@@ -136,22 +125,12 @@ export function dimensionPlans(): Plan[] {
           circles.map((c) => c[0]).join("") +
           `<path d="M${a.join(",")} L${b.join(",")}"/><circle cx="120" cy="${cy}" r="1.6" fill="#111"/>`;
         marks = mark(A, B, shape[3]);
-        add("height", B, C, at(220, 125).replace(/^높이 (?=\d)/, ""), -20, [
-          [B[0] + 12, B[1]],
-          [C[0] + 12, C[1]],
-        ]);
+        add("height", B, C, at(220, 125).replace(/^높이 (?=\d)/, ""));
         add(
           diameter ? "diameter" : "radius",
           a,
           b,
-          baseLabel
-            .replace(/^밑면 (반지름|지름) (?=\d)/, "")
-            .replace(/^밑면 /, ""),
-          -20,
-          [
-            [a[0], cy - radius - 12],
-            [b[0], cy - radius - 12],
-          ],
+          baseLabel.replace(/^밑면 (반지름|지름) (?=\d)/, ""),
         );
         for (const circle of circles) {
           const centerY = Number(/\bcy="([^"]+)"/.exec(circle[0])![1]);
@@ -186,7 +165,6 @@ export function dimensionPlans(): Plan[] {
             : radius
               ? "반지름"
               : "지름",
-          25,
         );
         // Circle extrema are also used by the full-domain fit audit.
         shape.splice(
@@ -221,7 +199,7 @@ export function dimensionPlans(): Plan[] {
           .join("");
         marks = mark(A, B, D);
         add("base", D, C, at(120, 215));
-        if (at(220, 125)) add("side", B, C, at(220, 125), -23);
+        if (at(220, 125)) add("side", B, C, at(220, 125));
       } else if (spec.id.includes("rhombus-area")) {
         const [L, T, R, B] = shape;
         geometry = paths
@@ -229,14 +207,8 @@ export function dimensionPlans(): Plan[] {
           .map((x) => x.svg)
           .join("");
         marks = mark([120, 125], R, T);
-        add("horizontal-diagonal", L, R, at(120, 215), 13, [
-          [L[0], B[1] + 9],
-          [R[0], B[1] + 9],
-        ]);
-        add("vertical-diagonal", T, B, at(220, 125), -13, [
-          [R[0] + 9, T[1]],
-          [R[0] + 9, B[1]],
-        ]);
+        add("horizontal-diagonal", L, R, at(120, 215));
+        add("vertical-diagonal", T, B, at(220, 125));
       } else if (/-area/.test(spec.id)) {
         const [L, R] = shape;
         const [peak, foot] = paths[1].points;
@@ -246,14 +218,9 @@ export function dimensionPlans(): Plan[] {
           .join("");
         marks = mark(foot, peak, R);
         add("base", L, R, at(120, 215));
-        // A witness from each real endpoint makes height distinct from the side.
-        const x = Math.min(...shape.map((v) => v[0])) - 11;
-        add("height", peak, foot, at(23, 120), 13, [
-          [x, peak[1]],
-          [x, foot[1]],
-        ]);
+        add("height", peak, foot, at(23, 120));
         if (shape.length === 4 && spec.id.includes("trapezoid"))
-          add("top", shape[3], shape[2], at(120, 45), -23);
+          add("top", shape[3], shape[2], at(120, 45));
       } else if (spec.id.includes("triangle-perimeter")) {
         const [L, R, T] = shape;
         geometry = paths[0].svg;
@@ -273,17 +240,7 @@ export function dimensionPlans(): Plan[] {
         const [a, b] = edges.sort(
           (e, f) => f[0][1] + f[1][1] - (e[0][1] + e[1][1]),
         )[0];
-        const winding = shape.reduce((sum, v, i) => {
-          const q = shape[(i + 1) % shape.length];
-          return sum + v[0] * q[1] - q[0] * v[1];
-        }, 0);
-        add(
-          "side",
-          a,
-          b,
-          at(120, 215).replace(/^한 변 /, ""),
-          winding > 0 ? -23 : 23,
-        );
+        add("side", a, b, at(120, 215).replace(/^한 변 /, ""));
       }
       return {
         id: `age-${spec.id}-v1-${p.join("-")}`,

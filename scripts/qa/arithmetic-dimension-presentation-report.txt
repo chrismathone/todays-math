@@ -1,202 +1,176 @@
-Arithmetic dimension presentation repair — 2026-10-15
-Base: main 70b63ed0d. Worker branch arithmetic-dimension-layout.
-Commit hash is delivered to root separately.
+Arithmetic dimensions: exact editor pipeline audit — 2026-10-15
+Worker branch BIGSHOL/arithmetic-dimension-engine.
+Base c6401393de1b620ec097b3361ce30cc4d80f04db. Commit delivered to root separately.
 
-Result and integration contract
-- Export: presentArithmeticDimensionSvg(id: string, originalSvg: string): string | undefined
-  from src/lib/arithmetic-v2/presentation/dimensions.ts.
-- Root calls this trusted display facade only AFTER canonical snapshot validation.
-  It returns a prebuilt replacement only for an exact canonical SVG byte match.
-  Unknown identities, unsupported versions, absent tuples and changed SVG return undefined.
-- No existing families/svg.ts, IDs, parameters, answers, registry, contracts,
-  snapshot versions, canonical figure content or shared UI changed.
-- 52 families / 6,350 figures: 28 plane / 3,800; 10 circle / 562;
-  14 cuboid/cube / 1,988. 14,522 explicit dimension marks.
-- Original polygons, diagonals, heights and oblique projections are kept under
-  one uniform 1.6 transform. Existing givens and numerical values are preserved.
-  Inverse lengths retain their unknown word label; no numerical answer is added.
-- Display marker: arithmetic-geometry-drill-dimensions-v1.
+Scope and immutable-source contract
+56 elementary families / 7,754 figures / 17,330 dimensions. Exclusions: zero.
+28 plane families / 3,800; 10 circle families / 562;
+14 cuboid/cube families / 1,988; 4 cylinder net families / 1,404.
+All 468 inverse-net figures retain the complete canonical target:
+234 밑면 반지름 and 234 밑면 지름. No target labels are shortened.
+Canonical family SVGs, IDs, parameters, answers, saved packs and shared facade are unchanged.
+The runtime still requires an exact canonical SVG byte match and keeps its bounded
+four-family inflate cache. All numerical givens and all nonnumeric canonical text
+are checked across the entire domain. Unknown/source-tampered IDs fail closed.
+The model retains canonical geometry under its existing uniform 1.6 display transform.
+No projected endpoint or fabricated witness line remains.
 
-Actual engine and figure-editor reuse
-- Read docs/planning/09-figure-engine-guide.md, renderFigureSpec.ts,
-  mathjaxSubstitute.ts, editor README, figureMidLabel.ts, figureAngleMark.ts,
-  vendored figure_scene dimension compiler and figure_svg dimension primitives.
-- Offline Python calls vendor/figure-engine/core/figure_svg.py meas() itself,
-  not a TypeScript reimplementation. All dimensions have explicit measured endpoints.
-- Editor curveMidpoint() places modest 16-unit labels on the actual engine curve;
-  angleMarkPath() creates geometrically checked square right-angle marks.
-- Chromium measures the labels. Editor gapPolygon()/applyLineGaps() generates
-  real stroke gaps in dimension curves. No shape edge is erased to conceal overlap.
-- Height and rhombus diagonal dimensions use witness lines from the measured
-  endpoints to projected dimension lanes. No unrelated-side leaders remain.
-- Text stays plain SVG text; root's typography adapter remains the sole typography owner.
-- Cube/cuboid labels use numerical lengths without redundant direction prefixes;
-  this fixed 57 short-edge width/depth label collisions. Target names remain.
+Exact editor operations and renderer contract
+Read actual figureMarks.ts, figureSvgEditing.ts, figureHandles.ts, figureFlip.ts,
+figureMidLabel.ts, figureTextBackground.ts, figureTypeset.ts, figureFrame.ts,
+mathjaxLabel.ts and the figure spec renderer/engine route before selecting the adapter.
+The dimension-only offline adapter executes the real browser editor code.
+Preferred: addFigureMark(op=addDimension, actual endpoints). Its full returned Q,
+split gaps, text anchor, horizontal direction, font/halo and chosen side are unchanged.
+Internal diagonals, radii/diameters and interior heights may try supported side=in
+when side=out collides. Both are independently replayed.
+Necessary fallback: addFigureObject(curve, actual endpoints), moveFigureHandle(bend),
+addMidLabel, then editFigureObject for readable font and supported label placement.
+The position comes from actual sampleFigurePath, including near-end samples.
+Command family, side, bend, font and label sample are recorded in data-editor-*
+metadata; fixed curve-style edits and all returned attributes are independently replayed.
+No alternate curve renderer, Q construction, projected lane or manual mask is used.
+The source-geometry viewport is fitted using the editor policy (4%, minimum 10).
 
-Validation
-- Focused Vitest: 5 tests, every approved tuple. Exact asset/canonical equality,
-  numerical-given multiset, original polygon d preservation, no source mutations,
-  inverse answer withholding, unsupported IDs/source tampering and real endpoint examples.
-- Full Chromium changed-domain audit: all 6,350 figures at screen 280, screen 320,
-  print 280 longest extent (19,050 rendered figures); zero clipping, geometry/label
-  overlap, rotated label/label overlap, endpoint or witness failures.
-- All 14,522 engine curves have real editor gap masks. The engine intentionally
-  offsets curve tips 1.5 SVG units normal to the endpoint; audit verifies that tolerance.
-- {"screen-280":{"count":6350,"minFont":13.19373076911278,"minShape":168.879638671875,"labels":20983,"dimensions":14522},"screen-320":{"count":6350,"minFont":15.078549450414604,"minShape":193.00537109375,"labels":20983,"dimensions":14522},"print-280":{"count":6350,"minFont":13.192994511815396,"minShape":168.8701171875,"labels":20983,"dimensions":14522}}
-- Visually inspected 280px representatives: rectangle4x3, area inverses, square,
-  triangle/parallelogram height/base, trapezoid top inverse, rhombus diagonal,
-  triangle perimeter, regular polygon, radius and cuboid height. Print media image
-  and A4 PDF created; print gallery inspected. Integrated application routes remain root-owned.
-- Focused tsc and scoped ESLint pass. Normal Husky pre-commit runs lint-staged,
-  ESLint --fix and Prettier --write using the existing root dependency loader and
-  npx-prefix wrapper described in arithmetic-geometry-triangles-20261015.txt.
-  No hook bypass, package install, junction, env-file write, DB, push or deployment.
+Gap and halo behavior
+Actual gapCandidates checks each stroke's own fill and skips inherited fill=none.
+Equivalent fill=none is materialized through actual editFigureObject; original path
+coordinates and semantic markers are preserved and compared independently.
+Actual asynchronous typesetFigureSvg(raw,true) supplies every mask definition and
+attachment verbatim. Raw text remains for the existing typography facade contract.
+The renderer may gap auxiliary diagonals/heights under labels. Actual opaque default
+halos may also cover auxiliary/dimension ink. This ink is treated as non-visible.
+Polygon/circle boundaries, cuboid hidden edges, equality ticks and right-angle marks
+are protected: the full stroke width is checked against masks, and any halo/glyph
+coverage over protected ink fails. No selective mask expansion or reconstruction.
 
-Assets and runtime limits
-- SHA-256 over family packs: 27802857ae784e4290a2204078506a1456909c1354584072eab557ff8136c258
-- Canonical + display uncompressed: 25342990 bytes.
-- Sum deflate: 1419405 bytes; checked JSON/base64: 1894525 bytes;
-  gzip of checked JSON: 1412662 bytes.
-- Per-family lazy inflation, bounded LRU of four families. Packed JSON is a static
-  import (not network-lazy); synchronous runtime uses fflate only, no Python/DOM/network.
-  Exact canonical bytes are retained in each pack rather than relying on a hash match.
-- Offline reproduction: tsx scripts/qa/arithmetic-dimension-presentation-build.ts
-  (checks checked-in bytes), --write only when deliberately publishing reviewed assets;
-  then tsx scripts/qa/arithmetic-dimension-presentation-check.ts.
-  Browser font metrics use Arial/Malgun Gothic on Windows; other platforms can
-  generate different metrics and should not silently overwrite this checked asset.
-- Generation/tests used only C:/Creative/testautocreator existing tools; temporary
-  tsconfig resolves those dependencies without installing or linking node_modules.
+Completed validation
+Browser: Chromium 151.0.7922.34, Windows local fonts.
+Independent exact editor replay: 7754 figures,
+17330 dimensions; 7681 defaults,
+9649 recorded manual command sequences.
+Command/attribute/text/mask-definition/mask-attachment mismatches: zero.
+Unresolved dimensions, dropped IDs, projected endpoints and witnesses: zero.
+Raw + existing facade typography: all 7,754 figures at screen 280, screen 320,
+print-media 280; 46,524 browser layout/visibility checks, zero failures.
+Each mode checks 25,195 labels and 17,330 dimensions. Actual raw glyph ink is
+rasterized at 4x, so unused font-box ascent/descent is not treated as visible ink.
+Source geometry uses browser path sampling; Q curves use the real editor sampler
+at a conservative density based on browser arc length. Exact mask holes and actual
+raster halo opacity determine visible ink. Checks include clipping, label/label,
+source/label, dimension/label, readable fonts and shape extents.
+Additional read-only computed-fill check of the final pack, raw and facade:
+all 17,330 dimension paths explicitly fill=none and computed none; all 23,718
+source paths (16,526 open) and 4,120 right marks also compute to fill=none.
+Zero fill failures; no asset change or repeat of completed expensive gates.
+All curve tips are checked numerically against canonical measured endpoints:
+manual curves retain actual endpoints within editor 0.01 coordinate rounding;
+default dimensions retain the exact editor's symmetric along-segment inset.
+Focused Vitest: 7 tests passed, including all canonical bytes, numerical-given
+multisets, full canonical nonnumeric wording, 17,330 endpoint semantics and both net bases.
+Focused TypeScript (5 entries), scoped ESLint and git diff whitespace checks passed.
+Normal Husky/lint-staged hooks used; no hook bypass, installs, junctions, env-file
+writes, DB activity, push, deployment or shared editor/facade/UI modifications.
 
-Evidence retained outside the worktree for cleanup
-C:/Users/user/AppData/Local/Temp/arithmetic-dimension-presentation-20261015/
-  gallery.html, gallery-280.png, gallery-print.png, gallery-print.pdf,
-  proof.json, build.json, remaining.json, plans.json, displays.json.
+Mode measurements (font and shape in CSS px)
+raw-screen-280: {"count":7754,"minFontId":"age-e5-cuboid-edges-height-v1-3-3-7","minShapeId":"age-e5-cuboid-edges-height-v1-3-3-9","minFont":12.279949819699105,"minShape":159.658203125,"labels":25195,"dimensions":17330}
+raw-screen-320: {"count":7754,"minFontId":"age-e5-cuboid-edges-height-v1-3-3-7","minShapeId":"age-e6-cuboid-volume-height-v1-3-3-9","minFont":14.034228365370407,"minShape":182.46728515625,"labels":25195,"dimensions":17330}
+raw-print-280: {"count":7754,"minFontId":"age-e5-cuboid-edges-height-v1-3-3-7","minShapeId":"age-e6-cuboid-volume-height-v1-3-3-9","minFont":12.279264554642202,"minShape":159.64990234375,"labels":25195,"dimensions":17330}
+facade-screen-280: {"count":7754,"minFontId":"age-e5-cuboid-edges-height-v1-3-3-7","minShapeId":"age-e5-cuboid-edges-height-v1-3-3-9","minFont":12.279949819699105,"minShape":159.658203125,"labels":25195,"dimensions":17330}
+facade-screen-320: {"count":7754,"minFontId":"age-e5-cuboid-edges-height-v1-3-3-7","minShapeId":"age-e6-cuboid-volume-height-v1-3-3-9","minFont":14.034228365370407,"minShape":182.46728515625,"labels":25195,"dimensions":17330}
+facade-print-280: {"count":7754,"minFontId":"age-e5-cuboid-edges-height-v1-3-3-7","minShapeId":"age-e6-cuboid-volume-height-v1-3-3-9","minFont":12.279264554642202,"minShape":159.64990234375,"labels":25195,"dimensions":17330}
 
-Remaining scope — explicitly not claimed repaired
-Cylinder nets: 4 families / 1,404 figures.
-  e6-cylinder-net-area: 468
-  e6-cylinder-net-area-height: 468
-  e6-cylinder-net-area-radius: 234
-  e6-cylinder-net-area-diameter: 234
-Their tangent circle/rectangle geometry can be preserved, and rectangle height
-can reuse this witness/dimension path. The top-circle radius is short relative to
-its label at 280px; a separate outside radius/diameter lane and endpoint/witness
-layout is needed to avoid obscuring the circle or mistaking circumference for radius.
-Do not assign the rectangle width the radius label; width is the base circumference.
+Visual review and limits
+73 distinct final representatives: one per family plus 17 selected/extreme figures.
+Inspected family sheets, raw 280 gallery, facade 280/320 galleries and print-media
+gallery. The representative A4 PDF is retained. All 468 inverse-net cases are in the
+final exact replay and all six gates, including full-word target labels.
+This is a figure-level browser audit; it does not claim a screenshot of every tuple,
+physical paper testing, cross-platform font identity or workspace-route integration.
+Middle segments, angles, typography/UI and complete worksheet pagination are owned
+by root/other workers and are outside this worker's 56-family scope.
 
-Middle triangles: the following 50 families / 1,827 figures contain numeric segment
-givens matching the published renderer. Figure IDs are gt1-<family>-<parameters>.
-  m2-circum-equal-radii: 19
-  m2-right-circumradius: 19
-  m2-right-circum-diameter: 19
-  m2-incenter-part-area: 20
-  m2-incenter-right-radius: 20
-  m2-centroid-vertex-from-short: 19
-  m2-centroid-short-from-vertex: 19
-  m2-centroid-vertex-from-median: 19
-  m2-centroid-short-from-median: 19
-  m2-centroid-median-from-vertex: 19
-  m2-centroid-median-from-short: 19
-  m2-iso-bisector-base: 19
-  m2-iso-bisector-half-base: 19
-  m2-triangle-midsegment: 19
-  m2-midsegment-to-base: 19
-  m2-trapezoid-midline: 20
-  m2-trapezoid-base: 20
-  m2-trapezoid-diagonal-midpoints: 20
-  m2-similarity-length-enlarge: 35
-  m2-similarity-length-reduce: 35
-  m2-parallel-triangle-side-part: 45
-  m2-parallel-triangle-base: 12
-  m2-parallel-triangle-whole-side: 45
-  m2-triangle-bisector-segment: 27
-  m2-parallelogram-diagonal-half: 19
-  m2-parallelogram-diagonal-whole: 19
-  m2-rectangle-diagonal-half: 19
-  m2-pythagoras-hypotenuse-integer: 7
-  m2-pythagoras-leg-integer: 14
-  m2-pythagoras-rectangle-diagonal-integer: 7
-  m2-pythagoras-rectangle-side-integer: 14
-  m2-pythagoras-isosceles-height-integer: 14
-  m2-pythagoras-rhombus-side-integer: 7
-  m3-pythagoras-hypotenuse-surd: 138
-  m3-pythagoras-leg-surd: 177
-  m3-pythagoras-rectangle-diagonal-surd: 138
-  m3-pythagoras-rectangle-side-surd: 177
-  m3-pythagoras-isosceles-height-surd: 177
-  m3-pythagoras-rhombus-side-surd: 138
-  m2-right-radius-from-legs: 7
-  m2-right-triangle-height: 7
-  m2-right-triangle-projection: 7
-  m2-right-triangle-area: 7
-  m2-right-altitude-product: 10
-  m3-right-leg-product: 10
-  m2-same-height-area-ratio: 36
-  m2-three-parallel-segments: 32
-  m2-trapezoid-parallel-section: 64
-  m2-external-bisector-part: 18
-  m2-external-bisector-base: 18
-Reusable safely: model.points/model.edges plus SVG data-segment="AB" carry exact
-endpoints; the same engine dimensions and editor gaps can label those segments.
-The published renderer currently retains only the first parsed given and places
-vertex/center labels with leader collision avoidance. Adding all givens or moving
-existing labels requires a dedicated layout pass for center rays, short parts,
-external angle bisectors and angle labels (angle worker boundary). Do not infer
-public numerical givens from drawing scale or copy hidden answer parameters.
-The current task ends at the approved 52 families; middle, net and other geometry
-families continue through original display fallback. No universal coverage claim.
+Asset identity and size
+Family-pack SHA-256: c32443961801fa548299919851f87605758ccf46d38af1dac6222365689fb703
+Ordered canonical ID/SVG SHA-256: 8a298e5a36ca6a31a8a1c982747ab35a5a7cf2f3cdd7e4c64c15c0e060c2050f
+Canonical + display raw bytes: 36701381
+Sum deflate bytes: 2035542; JSON bytes: 2716208; gzip JSON: 2022908.
+Runtime needs no DOM, Python, editor bundle, MathJax loader or network.
 
-Per-family generated sizes
-e5-rectangle-perimeter: 89 figures, 16431 compressed bytes
-e5-rectangle-perimeter-side: 89 figures, 17453 compressed bytes
-e5-parallelogram-perimeter: 89 figures, 21629 compressed bytes
-e5-parallelogram-perimeter-side: 89 figures, 22538 compressed bytes
-e5-square-perimeter: 39 figures, 2117 compressed bytes
-e5-square-perimeter-side: 39 figures, 2074 compressed bytes
-e5-rhombus-perimeter: 39 figures, 2209 compressed bytes
-e5-rhombus-perimeter-side: 39 figures, 1997 compressed bytes
-e5-regular-polygon-perimeter: 120 figures, 7194 compressed bytes
-e5-regular-polygon-perimeter-side: 120 figures, 5984 compressed bytes
-e5-triangle-perimeter: 294 figures, 87163 compressed bytes
-e5-triangle-perimeter-side: 294 figures, 93422 compressed bytes
-e5-rectangle-area: 89 figures, 16431 compressed bytes
-e5-rectangle-area-side: 89 figures, 17725 compressed bytes
-e5-square-area: 24 figures, 1728 compressed bytes
-e5-square-area-side: 24 figures, 1708 compressed bytes
-e5-triangle-area: 166 figures, 32671 compressed bytes
-e5-triangle-area-base: 166 figures, 35298 compressed bytes
-e5-triangle-area-height: 166 figures, 34082 compressed bytes
-e5-parallelogram-area: 166 figures, 34220 compressed bytes
-e5-parallelogram-area-base: 166 figures, 37272 compressed bytes
-e5-parallelogram-area-height: 166 figures, 36111 compressed bytes
-e5-rhombus-area: 89 figures, 17922 compressed bytes
-e5-rhombus-area-diagonal: 89 figures, 19878 compressed bytes
-e5-trapezoid-area: 265 figures, 59870 compressed bytes
-e5-trapezoid-area-height: 265 figures, 65458 compressed bytes
-e5-trapezoid-area-top: 265 figures, 65429 compressed bytes
-e5-trapezoid-area-bottom: 265 figures, 64628 compressed bytes
-e3-circle-radius: 49 figures, 2160 compressed bytes
-e3-circle-diameter: 49 figures, 2241 compressed bytes
-e5-cuboid-edges: 264 figures, 82465 compressed bytes
-e5-cube-edges: 24 figures, 2031 compressed bytes
-e5-cuboid-edges-height: 264 figures, 84511 compressed bytes
-e5-cube-edges-side: 24 figures, 1869 compressed bytes
-e6-cuboid-surface: 264 figures, 82465 compressed bytes
-e6-cube-surface: 24 figures, 2031 compressed bytes
-e6-cuboid-surface-height: 264 figures, 84615 compressed bytes
-e6-cube-surface-side: 24 figures, 1908 compressed bytes
-e6-cuboid-volume: 264 figures, 82465 compressed bytes
-e6-cube-volume: 24 figures, 2031 compressed bytes
-e6-cuboid-volume-height: 264 figures, 84509 compressed bytes
-e6-cube-volume-side: 24 figures, 1929 compressed bytes
-e6-cuboid-base-volume: 130 figures, 30156 compressed bytes
-e6-cuboid-base-height: 130 figures, 31028 compressed bytes
-e6-circle-circumference-radius: 58 figures, 2497 compressed bytes
-e6-circle-circumference-diameter: 58 figures, 2440 compressed bytes
-e6-circle-area-radius: 58 figures, 2497 compressed bytes
-e6-circle-area-diameter: 58 figures, 2440 compressed bytes
-e6-circle-radius-circumference: 58 figures, 2587 compressed bytes
-e6-circle-diameter-circumference: 58 figures, 2570 compressed bytes
-e6-circle-radius-area: 58 figures, 2666 compressed bytes
-e6-circle-diameter-area: 58 figures, 2652 compressed bytes
+Evidence retained outside the clean worktree
+C:/Users/user/AppData/Local/Temp/arithmetic-dimension-editor-audit-20261015/
+  final/coverage.json: exact IDs per family (all 7,754)
+  final/build.json, proof.json: matching asset/canonical hashes and complete gates
+  final/fill-proof.json: raw/facade computed-fill evidence for every figure
+  final/plans.json, displays.json: canonical inputs and exact generated SVGs
+  final/gallery.html, gallery-raw-280.png, gallery-280.png, gallery-320.png,
+  final/gallery-print.png, gallery-print.pdf, families-1-280.png through families-4-280.png
+Earlier default/font-box and 17 full-stroke-boundary failures are retained as diagnostic
+artifacts, not passed off as final results. The latter were fixed using supported editor
+side/handle/label operations; exact editor masks were never altered.
+
+Reproduction (existing C:/Creative/testautocreator dependencies only)
+node --import ./scripts/qa/arithmetic-angle-presentation-deps.mjs --import file:///C:/Creative/testautocreator/node_modules/tsx/dist/loader.mjs scripts/qa/arithmetic-dimension-presentation-build.ts
+Append --write only to publish a reviewed full pack; --family=<id> is a nonpublishing pilot.
+node --import ./scripts/qa/arithmetic-angle-presentation-deps.mjs --import file:///C:/Creative/testautocreator/node_modules/tsx/dist/loader.mjs scripts/qa/arithmetic-dimension-presentation-check.ts
+node scripts/qa/arithmetic-dimension-presentation-typecheck.mjs
+node C:/Creative/testautocreator/node_modules/vitest/vitest.mjs run --config scripts/qa/arithmetic-dimension-presentation-vitest.config.mts --reporter=dot
+Browser/font differences on another platform must be reviewed before replacing assets.
+
+Exact family coverage (all current tuples, no exclusions)
+e5-rectangle-perimeter: 89 figures; 20038 deflate bytes
+e5-rectangle-perimeter-side: 89 figures; 21802 deflate bytes
+e5-parallelogram-perimeter: 89 figures; 27847 deflate bytes
+e5-parallelogram-perimeter-side: 89 figures; 29397 deflate bytes
+e5-square-perimeter: 39 figures; 3488 deflate bytes
+e5-square-perimeter-side: 39 figures; 2531 deflate bytes
+e5-rhombus-perimeter: 39 figures; 3224 deflate bytes
+e5-rhombus-perimeter-side: 39 figures; 2447 deflate bytes
+e5-regular-polygon-perimeter: 120 figures; 11710 deflate bytes
+e5-regular-polygon-perimeter-side: 120 figures; 7543 deflate bytes
+e5-triangle-perimeter: 294 figures; 106065 deflate bytes
+e5-triangle-perimeter-side: 294 figures; 111161 deflate bytes
+e5-rectangle-area: 89 figures; 20038 deflate bytes
+e5-rectangle-area-side: 89 figures; 22163 deflate bytes
+e5-square-area: 24 figures; 2652 deflate bytes
+e5-square-area-side: 24 figures; 2063 deflate bytes
+e5-triangle-area: 166 figures; 41919 deflate bytes
+e5-triangle-area-base: 166 figures; 45978 deflate bytes
+e5-triangle-area-height: 166 figures; 31363 deflate bytes
+e5-parallelogram-area: 166 figures; 44668 deflate bytes
+e5-parallelogram-area-base: 166 figures; 47853 deflate bytes
+e5-parallelogram-area-height: 166 figures; 29176 deflate bytes
+e5-rhombus-area: 89 figures; 21110 deflate bytes
+e5-rhombus-area-diagonal: 89 figures; 23052 deflate bytes
+e5-trapezoid-area: 265 figures; 75802 deflate bytes
+e5-trapezoid-area-height: 265 figures; 55713 deflate bytes
+e5-trapezoid-area-top: 265 figures; 82163 deflate bytes
+e5-trapezoid-area-bottom: 265 figures; 81267 deflate bytes
+e3-circle-radius: 49 figures; 2994 deflate bytes
+e3-circle-diameter: 49 figures; 2027 deflate bytes
+e5-cuboid-edges: 264 figures; 108043 deflate bytes
+e5-cube-edges: 24 figures; 1931 deflate bytes
+e5-cuboid-edges-height: 264 figures; 110989 deflate bytes
+e5-cube-edges-side: 24 figures; 1847 deflate bytes
+e6-cuboid-surface: 264 figures; 108043 deflate bytes
+e6-cube-surface: 24 figures; 1931 deflate bytes
+e6-cuboid-surface-height: 264 figures; 111199 deflate bytes
+e6-cube-surface-side: 24 figures; 1875 deflate bytes
+e6-cuboid-volume: 264 figures; 108043 deflate bytes
+e6-cube-volume: 24 figures; 1931 deflate bytes
+e6-cuboid-volume-height: 264 figures; 111186 deflate bytes
+e6-cube-volume-side: 24 figures; 1876 deflate bytes
+e6-cuboid-base-volume: 130 figures; 42794 deflate bytes
+e6-cuboid-base-height: 130 figures; 43603 deflate bytes
+e6-circle-circumference-radius: 58 figures; 2426 deflate bytes
+e6-circle-circumference-diameter: 58 figures; 3256 deflate bytes
+e6-circle-area-radius: 58 figures; 2426 deflate bytes
+e6-circle-area-diameter: 58 figures; 3256 deflate bytes
+e6-circle-radius-circumference: 58 figures; 2536 deflate bytes
+e6-circle-diameter-circumference: 58 figures; 3038 deflate bytes
+e6-circle-radius-area: 58 figures; 2634 deflate bytes
+e6-circle-diameter-area: 58 figures; 3134 deflate bytes
+e6-cylinder-net-area: 468 figures; 81510 deflate bytes
+e6-cylinder-net-area-height: 468 figures; 80882 deflate bytes
+e6-cylinder-net-area-radius: 234 figures; 58788 deflate bytes
+e6-cylinder-net-area-diameter: 234 figures; 57111 deflate bytes
