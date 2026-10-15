@@ -24,6 +24,14 @@ import assetFile from "@/lib/arithmetic-v2/families/geometry-angle-assets-v1.jso
 import { svgLabels } from "@/lib/figure/svgLabels";
 import { arithmeticToStudioProblems } from "@/lib/arithmeticOutput";
 import { parseStrictJson } from "@/lib/textbook/strictJson";
+import {
+  presentArithmeticGeometrySvg,
+  ARITHMETIC_GEOMETRY_EXTENT,
+} from "@/lib/arithmetic-v2/presentation";
+import {
+  ARITHMETIC_BODY_MAX_BYTES,
+  ARITHMETIC_SHEET_JSON_LIMITS,
+} from "@/lib/arithmetic/byteBudget";
 
 const ids = ["e4-triangle-missing-angle", "e4-right-triangle-missing-angle"];
 const request = (
@@ -206,13 +214,24 @@ describe("live geometry arithmetic", () => {
         const item = sheet.rounds[0].items[i];
         if (item.prompt.layout !== "math") throw new Error("Unexpected prompt");
         expect(problem.figureSvg).toBe(
-          arithmeticAngleSvg(item.prompt.figureId!, sheet.figures!),
+          presentArithmeticGeometrySvg(
+            item.prompt.figureId!,
+            arithmeticAngleSvg(item.prompt.figureId!, sheet.figures!),
+          ),
         );
+        expect(
+          problem.figureSvg?.replace(
+            "<desc>arithmetic-geometry-presentation-v1</desc>",
+            "",
+          ),
+        ).toBe(arithmeticAngleSvg(item.prompt.figureId!, sheet.figures!));
         expect(decodeURIComponent(problem.figureUrls[0].split(",")[1])).toBe(
           problem.figureSvg,
         );
         expect(problem.figureSourceMm[0]).toBeGreaterThan(0);
-        expect(problem.figureSourceMm[0]).toBeLessThanOrEqual(57.15);
+        expect(problem.figureSourceMm[0]).toBeLessThanOrEqual(
+          (ARITHMETIC_GEOMETRY_EXTENT * 25.4) / 96,
+        );
         expect(problem.content).toContain("[그림1]");
         expect(problem.content).not.toContain(item.answer.latex);
         expect(problem.content).not.toContain("?");
@@ -225,17 +244,28 @@ describe("live geometry arithmetic", () => {
     }
   });
 
-  it("fits 200 mixed/geometry items and presentation in the unchanged 256 KiB save guard", () => {
+  it("fits valid mixed geometry sheets through ten 200-item rounds in the save envelope", () => {
     for (const input of [
-      request(undefined, 10),
-      request([{ typeId: ids[0], count: 10 }], 20),
+      request([
+        { typeId: ids[0], count: 70 },
+        { typeId: ids[1], count: 11 },
+        { typeId: "m2-polynomial-add", count: 119 },
+      ]),
       request(
         [
-          { typeId: ids[0], count: 70 },
-          { typeId: ids[1], count: 11 },
-          { typeId: "m2-polynomial-add", count: 19 },
+          { typeId: ids[0], count: 35 },
+          { typeId: ids[1], count: 5 },
+          { typeId: "m2-polynomial-add", count: 60 },
         ],
         2,
+      ),
+      request(
+        [
+          { typeId: ids[0], count: 7 },
+          { typeId: ids[1], count: 1 },
+          { typeId: "m2-polynomial-add", count: 192 },
+        ],
+        10,
       ),
     ]) {
       const payload = {
@@ -248,9 +278,9 @@ describe("live geometry arithmetic", () => {
         expectedRevision: null,
         payload,
       });
-      expect(Buffer.byteLength(body)).toBeLessThan(256 * 1024);
+      expect(Buffer.byteLength(body)).toBeLessThan(ARITHMETIC_BODY_MAX_BYTES);
       expect(() =>
-        parseStrictJson(body, { maxBytes: 256 * 1024, maxDepth: 16 }),
+        parseStrictJson(body, ARITHMETIC_SHEET_JSON_LIMITS),
       ).not.toThrow();
       expect(reopenArithmeticV2Sheet(payload)).toEqual(payload);
     }
