@@ -1,5 +1,5 @@
 import { tokenizeMath } from "@/lib/math/segments";
-import { arithmeticGeometryNames } from "./text";
+import { arithmeticGeometryWording } from "./text";
 
 type GeometryKind =
   "segment" | "line" | "ray" | "arc" | "angle" | "triangle" | "label";
@@ -331,7 +331,7 @@ function authoredGeometry(latex: string, context: string): string {
 }
 
 function notation(text: string, geometry: boolean): string {
-  const source = arithmeticGeometryNames(text);
+  const source = arithmeticGeometryWording(text);
   let position = 0;
   return tokenizeMath(source)
     .map((part) => {

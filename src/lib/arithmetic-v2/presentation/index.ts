@@ -5,6 +5,7 @@ import { presentArithmeticAngleSvg } from "./angles";
 import { presentArithmeticDimensionSvg } from "./dimensions";
 import { presentArithmeticSegmentSvg } from "./segments";
 import { presentArithmeticRemainingSvg } from "./remaining";
+import { simplifyArithmeticFigureAnnotations } from "./figureAnnotations";
 
 export const ARITHMETIC_GEOMETRY_EXTENT = 280;
 const displayedFigures = new Map<
@@ -31,7 +32,11 @@ export function presentArithmeticGeometrySvg(
     presentArithmeticSegmentSvg(id, originalSvg) ??
     presentArithmeticRemainingSvg(id, originalSvg) ??
     originalSvg;
-  const display = typesetArithmeticGeometrySvg(laidOut, {
+  const withoutDrawingNote = simplifyArithmeticFigureAnnotations(
+    id,
+    laidOut,
+  ).replace(/<text\b[^>]*>\s*겨냥도\s*<\/text>/g, "");
+  const display = typesetArithmeticGeometrySvg(withoutDrawingNote, {
     normalizeLabel: arithmeticGeometryNames,
   }).replace(
     /(<svg\b[^>]*>)/,

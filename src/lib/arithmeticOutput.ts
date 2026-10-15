@@ -8,10 +8,10 @@ import { arithmeticFeatureLabels } from "@/lib/arithmeticPresentation";
 import {
   arithmeticGeometrySvg,
   arithmeticGeometryAnswerUnit,
-  arithmeticGeometryPromptLines,
   arithmeticAngleWidthMm,
 } from "@/lib/arithmetic-v2/geometry";
 import { presentArithmeticGeometrySvg } from "@/lib/arithmetic-v2/presentation";
+import { arithmeticFigurePresentation } from "@/lib/arithmetic-v2/presentation/figurePolicy";
 import {
   arithmeticGeometryAnswerBlank,
   arithmeticAnswerUnitLatex,
@@ -59,17 +59,22 @@ export function arithmeticToStudioProblems(
           item.prompt.layout === "math" ? item.prompt.figureId : undefined;
         if (figureId && !sheet.figures)
           throw new Error("저장된 연산 도형이 없습니다");
-        const svg = figureId
-          ? presentArithmeticGeometrySvg(
-              figureId,
-              arithmeticGeometrySvg(figureId, sheet.figures!),
-            )
+        const presentation = arithmeticFigurePresentation(
+          item.prompt,
+          item.typeId,
+        );
+        const originalSvg = figureId
+          ? arithmeticGeometrySvg(figureId, sheet.figures!)
           : undefined;
+        const svg =
+          figureId && originalSvg && presentation.showFigure
+            ? presentArithmeticGeometrySvg(figureId, originalSvg)
+            : undefined;
         const dimensions = svg
           ? /viewBox="([^"]+)"/.exec(svg)![1].split(/\s+/).map(Number).slice(2)
           : undefined;
         const answerUnit = arithmeticGeometryAnswerUnit(item.prompt);
-        const geometryPrompt = Boolean(svg) || type?.strand === "도형";
+        const geometryPrompt = Boolean(figureId) || type?.strand === "도형";
         const proseNotation = geometryPrompt
           ? arithmeticGeometryNotation
           : arithmeticProseNotation;
@@ -93,7 +98,7 @@ export function arithmeticToStudioProblems(
           ...base,
           id: `arithmetic-v2:${sheet.seed}:${round.round}:${item.order}`,
           content: prosePrompt
-            ? `${arithmeticGeometryPromptLines(item.prompt).map(proseNotation).join("\n\n")}${svg ? "\n\n[그림1]" : ""}\n\n답: ${answerBlank}`
+            ? `${presentation.lines.map(proseNotation).join("\n\n")}${svg ? "\n\n[그림1]" : ""}\n\n답: ${answerBlank}`
             : `${item.prompt.instruction ? `${arithmeticProseNotation(item.prompt.instruction)}\n\n` : ""}$$${formula}$$`,
           ...(svg
             ? {

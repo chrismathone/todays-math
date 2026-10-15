@@ -11,14 +11,6 @@ import {
   ARITHMETIC_V2_ENGINE_VERSION,
 } from "@/contracts/arithmeticV2.contract";
 import { arithmeticToStudioProblems } from "@/lib/arithmeticOutput";
-import {
-  presentArithmeticGeometrySvg,
-  arithmeticGeometryDisplaySize,
-} from "@/lib/arithmetic-v2/presentation";
-import {
-  arithmeticAngleSnapshot,
-  arithmeticAngleSvg,
-} from "@/lib/arithmetic-v2/geometry";
 
 describe("arithmetic geometry figures on catalog and shared review/output", () => {
   it("shows givens and the unit without a revealing polygon in inverse-count examples", () => {
@@ -35,34 +27,30 @@ describe("arithmetic geometry figures on catalog and shared review/output", () =
     expect(screen.getByLabelText("답란")).toBeInTheDocument();
   });
   it.each(["e4-triangle-missing-angle", "e4-right-triangle-missing-angle"])(
-    "renders the real catalog example at 280px longest extent with no question mark: %s",
+    "restores both public angle givens when omitting a redundant figure: %s",
     (id) => {
       const { prompt } = getArithmeticV2Definition(id).problemAt(0);
       if (prompt.layout !== "math") throw new Error("Unexpected prompt");
       const { container } = render(
         <GradeArithmeticExpression prompt={prompt} />,
       );
-      const figure = screen.getByRole("img", { name: prompt.text });
-      const shown = presentArithmeticGeometrySvg(
-        prompt.figureId!,
-        arithmeticAngleSvg(prompt.figureId!, arithmeticAngleSnapshot),
-      );
-      const size = arithmeticGeometryDisplaySize(shown);
-      expect(figure).toHaveAttribute("width", String(size.width));
-      expect(figure).toHaveAttribute("height", String(size.height));
-      expect(
-        decodeURIComponent(figure.getAttribute("src")!.split(",")[1]),
-      ).toBe(shown);
+      expect(screen.queryByRole("img")).toBeNull();
+      const math = [...container.querySelectorAll("annotation")]
+        .map((node) => node.textContent)
+        .join(" ");
+      for (const angle of prompt.text.matchAll(/(\d+)°/g))
+        expect(math).toContain(`${angle[1]}^{\\circ}`);
+      expect(container.textContent).not.toContain("숫자가 없는");
       expect(container.textContent).not.toContain("?");
       expect(screen.getByLabelText("답란")).toBeInTheDocument();
     },
   );
 
   it.each([
-    [false, "e4-right-triangle-missing-angle"],
-    [true, "e4-right-triangle-missing-angle"],
-    [false, "e4-angle-sum"],
-    [true, "e4-angle-sum"],
+    [false, "m1-parallel-angle"],
+    [true, "m1-parallel-angle"],
+    [false, "m2-right-triangle-height"],
+    [true, "m2-right-triangle-height"],
   ])(
     "shared renderer displays the full arithmetic frame and an empty answer line (print=%s, type=%s)",
     (print, typeId) => {
@@ -87,11 +75,35 @@ describe("arithmetic geometry figures on catalog and shared review/output", () =
         width: `${problem.figureSourceMm[0].toFixed(2)}mm`,
       });
       expect(container.textContent).toContain("답:");
-      expect(container.textContent).not.toContain(
-        sheet.rounds[0].items[0].answer.text,
-      );
+      expect(problem.content).toContain("\\underline{\\hspace{2em}}");
+      expect(container.textContent).not.toContain("정답:");
       expect(container.querySelector(".katex-error")).toBeNull();
       expect(container.textContent).not.toContain("[그림1]");
+    },
+  );
+
+  it.each(["e5-trapezoid-area-bottom", "e6-cuboid-base-volume"])(
+    "keeps given quantities and the target in prose while omitting duplicate dimensions: %s",
+    (typeId) => {
+      const sheet = buildArithmeticV2Sheet({
+        engineVersion: ARITHMETIC_V2_ENGINE_VERSION,
+        catalogVersion: ARITHMETIC_V2_CATALOG_VERSION,
+        seed: "no-redundant-figure",
+        rounds: [{ allocations: [{ typeId, count: 1 }] }],
+      });
+      const before = structuredClone(sheet);
+      const [problem] = arithmeticToStudioProblems(sheet);
+      const { container } = render(<UnifiedProblem problem={problem} print />);
+      expect(screen.queryByRole("img")).toBeNull();
+      expect(problem.content).not.toMatch(/겨냥도|\[그림/);
+      expect(problem.figureSvg).toBeNull();
+      expect(problem.figureUrls).toEqual([]);
+      expect(container.textContent).toContain(
+        typeId.includes("trapezoid") ? "아랫변" : "부피",
+      );
+      expect(container.querySelector(".katex-error")).toBeNull();
+      expect(sheet).toEqual(before);
+      expect(problem.source).toMatchObject({ item: before.rounds[0].items[0] });
     },
   );
 

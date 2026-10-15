@@ -20,6 +20,7 @@ import {
 import { ARITHMETIC_GEOMETRY_PACK_MAX_LENGTH } from "@/lib/arithmetic-v2/geometryPack";
 import { arithmeticToStudioProblems } from "@/lib/arithmeticOutput";
 import { presentArithmeticGeometrySvg } from "@/lib/arithmetic-v2/presentation";
+import { arithmeticFigurePresentation } from "@/lib/arithmetic-v2/presentation/figurePolicy";
 import { arithmeticAnswerUnitLatex } from "@/lib/arithmetic-v2/presentation/text";
 import {
   arithmeticGeometryNotation,
@@ -144,14 +145,21 @@ describe("integrated elementary and middle-school geometry", () => {
           (definitions.find((definition) => definition.id === item.typeId)
             ?.strand === "도형" || item.prompt.figureId
             ? arithmeticGeometryNotation
-            : arithmeticProseNotation)(item.prompt.text),
+            : arithmeticProseNotation)(
+            item.typeId === "m1-triangle-exterior"
+              ? item.prompt.text.replace("표시된 외각", "외각")
+              : item.prompt.text,
+          ),
         );
         if (item.prompt.answerUnit && item.prompt.answerUnit !== "°")
           expect(output[index].content).toContain(
             arithmeticAnswerUnitLatex(item.prompt.answerUnit),
           );
         expect(output[index].answer).toBe(`$${item.answer.latex}$`);
-        if (item.prompt.figureId) {
+        if (
+          item.prompt.figureId &&
+          arithmeticFigurePresentation(item.prompt, item.typeId).showFigure
+        ) {
           const displayed = presentArithmeticGeometrySvg(
             item.prompt.figureId,
             arithmeticGeometrySvg(item.prompt.figureId, sheet.figures!),

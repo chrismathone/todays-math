@@ -23,6 +23,7 @@ import {
 } from "@/contracts/arithmetic.contract";
 import { listArithmeticPresets } from "@/lib/arithmeticPresets";
 import { arithmeticOutputGroups } from "@/lib/arithmeticOutputLayout";
+import { arithmeticFigurePresentation } from "@/lib/arithmetic-v2/presentation/figurePolicy";
 import {
   arithmeticGeometryNotation,
   arithmeticProseNotation,
@@ -49,6 +50,7 @@ describe("arithmetic shared output adapter", () => {
         item,
       });
       expect(problem.solution).toBe("");
+      expect(problem.content).not.toContain("겨냥도");
       const markup = renderToStaticMarkup(
         createElement(NativeProblem, { problem, print: true }),
       );
@@ -62,18 +64,21 @@ describe("arithmetic shared output adapter", () => {
         groupTitle: type.title,
       });
       expect(problem.section).toBe(type.title);
-      if (item.prompt.layout === "math" && item.prompt.figureId)
+      if (arithmeticFigurePresentation(item.prompt, type.id).showFigure)
         expect(problem.figureSvg).toContain("<svg");
       else if (
         item.prompt.layout === "math" &&
-        ((type.strand === "도형" && item.prompt.answerUnit !== undefined) ||
+        (item.prompt.figureId ||
+          (type.strand === "도형" && item.prompt.answerUnit !== undefined) ||
           type.promptPresentation === "prose" ||
           item.prompt.latex === `\\text{${item.prompt.text}}`)
       ) {
         expect(problem.content).toContain(
-          (type.strand === "도형"
+          (item.prompt.figureId || type.strand === "도형"
             ? arithmeticGeometryNotation
-            : arithmeticProseNotation)(item.prompt.text),
+            : arithmeticProseNotation)(
+            arithmeticFigurePresentation(item.prompt, type.id).lines[0],
+          ),
         );
         expect(problem.content).not.toContain("[그림1]");
       } else if (item.prompt.layout === "math")

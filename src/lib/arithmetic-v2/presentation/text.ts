@@ -12,6 +12,18 @@ export function arithmeticGeometryNames(text: string): string {
   });
 }
 
+/** Remove drawing commentary from the display, including already-saved prompts. */
+export function arithmeticGeometryWording(text: string): string {
+  const named = arithmeticGeometryNames(text);
+  if (!named.includes("겨냥도")) return named;
+  return named
+    .replace(/\s*\(겨냥도\)/g, "")
+    .replace(/이며\s*그림은 겨냥도입니다\./g, "입니다.")
+    .replace(/\s*그림은 겨냥도입니다\./g, "")
+    .replace(/겨냥도/g, "")
+    .trim();
+}
+
 function unitLatex(unit: string): string {
   if (unit === "°") return "{}^{\\circ}";
   return `\\mathrm{${unit.replace(/[²³]/g, "")}}${unit.endsWith("²") ? "^{2}" : unit.endsWith("³") ? "^{3}" : ""}`;
@@ -28,7 +40,7 @@ export function arithmeticAnswerUnitLatex(unit: string): string {
 
 /** Apply physical-unit typography only outside already-authored math. */
 export function arithmeticGeometryText(text: string): string {
-  return tokenizeMath(arithmeticGeometryNames(text))
+  return tokenizeMath(arithmeticGeometryWording(text))
     .map((part) => {
       if (part.type !== "text") {
         const delimiter = part.type === "inline" ? "$" : "$$";

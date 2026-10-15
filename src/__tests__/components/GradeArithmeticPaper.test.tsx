@@ -42,7 +42,7 @@ const rounds: GradeArithmeticPaperRound[] = [
   },
 ];
 describe("grade arithmetic paper separation", () => {
-  it("uses the saved-sheet projection for administrator geometry pages, including segment marks and figures", () => {
+  it("uses the saved-sheet projection for administrator pages without a redundant figure", () => {
     const sheet = buildArithmeticV2Sheet({
       engineVersion: "arithmetic-engine-v2",
       catalogVersion: "arithmetic-catalog-v2",
@@ -67,7 +67,7 @@ describe("grade arithmetic paper separation", () => {
     expect(
       body.querySelectorAll(".overline-line").length,
     ).toBeGreaterThanOrEqual(6);
-    expect(body.querySelector("img")).not.toBeNull();
+    expect(body.querySelector("img")).toBeNull();
     expect(body.querySelector(".katex-error")).toBeNull();
     expect(body.querySelector("annotation")?.textContent).toContain(
       "\\overline{\\mathrm{AB}}",

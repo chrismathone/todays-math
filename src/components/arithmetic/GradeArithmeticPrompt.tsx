@@ -3,7 +3,6 @@ import type { ArithmeticV2Prompt } from "@/lib/arithmetic-v2/types";
 import {
   arithmeticGeometryAnswerUnit,
   arithmeticGeometryCatalogSvg,
-  arithmeticGeometryPromptLines,
 } from "@/lib/arithmetic-v2/geometry";
 import { GradeArithmeticExpression as NumericExpression } from "./GradeArithmeticPaper";
 import { MathText } from "@/components/math/MathText";
@@ -12,10 +11,11 @@ import {
   presentArithmeticGeometrySvg,
 } from "@/lib/arithmetic-v2/presentation";
 import {
-  arithmeticGeometryNames,
+  arithmeticGeometryWording,
   arithmeticGeometryUnitText,
 } from "@/lib/arithmetic-v2/presentation/text";
 import { arithmeticGeometryNotation } from "@/lib/arithmetic-v2/presentation/notation";
+import { arithmeticFigurePresentation } from "@/lib/arithmetic-v2/presentation/figurePolicy";
 import s from "./GradeArithmeticPrompt.module.css";
 
 /** Catalog examples only. Review/output must use arithmeticToStudioProblems,
@@ -23,8 +23,10 @@ import s from "./GradeArithmeticPrompt.module.css";
  */
 export function GradeArithmeticExpression({
   prompt,
+  typeId,
 }: {
   prompt: ArithmeticV2Prompt;
+  typeId?: string;
 }) {
   if (
     prompt.layout !== "math" ||
@@ -34,13 +36,15 @@ export function GradeArithmeticExpression({
   const originalSvg = prompt.figureId
     ? arithmeticGeometryCatalogSvg(prompt.figureId)
     : undefined;
-  const svg = originalSvg
-    ? presentArithmeticGeometrySvg(prompt.figureId!, originalSvg)
-    : undefined;
+  const presentation = arithmeticFigurePresentation(prompt, typeId);
+  const svg =
+    originalSvg && presentation.showFigure
+      ? presentArithmeticGeometrySvg(prompt.figureId!, originalSvg)
+      : undefined;
   const size = svg ? arithmeticGeometryDisplaySize(svg) : undefined;
   return (
     <span className={s.prompt}>
-      {arithmeticGeometryPromptLines(prompt).map((line) => (
+      {presentation.lines.map((line) => (
         <span className={s.givens} key={line}>
           <MathText text={arithmeticGeometryNotation(line)} />
         </span>
@@ -51,7 +55,7 @@ export function GradeArithmeticExpression({
           width={size!.width}
           height={size!.height}
           src={`data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`}
-          alt={arithmeticGeometryNames(prompt.text)}
+          alt={arithmeticGeometryWording(prompt.text)}
         />
       )}
       <span>
