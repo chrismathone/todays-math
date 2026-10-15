@@ -51,6 +51,8 @@ import { JASEUP_MEASURED_PX } from "@/lib/printGeometry";
 export interface FigureDimension {
   width: number;
   height: number;
+  /** Explicit arithmetic presentation frame; ordinary figures keep the 70mm cap. */
+  maxWidthMm?: number;
   /**
    * 원본 지면에서 그 그림이 차지하던 **물리 폭(mm)**. 모르면 없다.
    *
@@ -306,9 +308,12 @@ export function figureSvgFromUrl(
  *    닿지 않는 자리다 — 시험이 그 사실을 적어 둔다. 짝이 data URL 로 오게 되는 날에는
  *    상한을 등급표와 같이 봐야 한다.
  */
-export function figureSvgUrlPrintMm(
-  url: string | null | undefined,
-): { widthMm: number; width: number; height: number } | null {
+export function figureSvgUrlPrintMm(url: string | null | undefined): {
+  widthMm: number;
+  width: number;
+  height: number;
+  maxWidthMm?: number;
+} | null {
   const svg = figureSvgFromUrl(url);
   if (!svg) return null;
   const box = figureSvgViewBox(svg);
@@ -319,6 +324,9 @@ export function figureSvgUrlPrintMm(
       FIGURE_SVG_PRINT_MM[figureSvgSize(svg)],
     width: box.width,
     height: box.height,
+    ...(svg.includes("<desc>arithmetic-geometry-presentation-v1</desc>")
+      ? { maxWidthMm: cssPxToMm(280) }
+      : {}),
   };
 }
 
@@ -346,6 +354,7 @@ export function parseFigureDimensions(
         width: engine.width,
         height: engine.height,
         sourceMm: engine.widthMm,
+        ...(engine.maxWidthMm ? { maxWidthMm: engine.maxWidthMm } : {}),
       };
     if (!paired) return null;
     const width = flat![index * 2];
@@ -372,8 +381,11 @@ export function parseFigureDimensions(
  * 원본이 상한보다 넓으면 70mm 로 줄인다. 원본이 좁으면 **그 크기 그대로** 그린다 —
  * 이게 「얼마로 그린다」이고, 오늘 규칙에 없던 부분이다.
  */
-export function figurePrintWidthMm(sourceMm: number): number {
-  return Math.min(sourceMm, FIGURE_MAX_WIDTH_MM);
+export function figurePrintWidthMm(
+  sourceMm: number,
+  maxWidthMm = FIGURE_MAX_WIDTH_MM,
+): number {
+  return Math.min(sourceMm, maxWidthMm);
 }
 
 /**
@@ -386,7 +398,7 @@ export function figurePrintWidthMm(sourceMm: number): number {
 export function figurePrintWidthPx(figure: FigureDimension): number {
   if (figure.sourceMm == null)
     return Math.min(figure.width, JASEUP_MEASURED_PX.figureMaxWidth);
-  return mmToCssPx(figurePrintWidthMm(figure.sourceMm));
+  return mmToCssPx(figurePrintWidthMm(figure.sourceMm, figure.maxWidthMm));
 }
 
 /**
@@ -403,7 +415,8 @@ export function figurePrintWidthPx(figure: FigureDimension): number {
  */
 export function figureWidthStyle(
   sourceMm: number | null | undefined,
+  maxWidthMm?: number,
 ): { width: string } | undefined {
   if (sourceMm == null) return undefined;
-  return { width: `${figurePrintWidthMm(sourceMm).toFixed(2)}mm` };
+  return { width: `${figurePrintWidthMm(sourceMm, maxWidthMm).toFixed(2)}mm` };
 }

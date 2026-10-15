@@ -105,13 +105,18 @@ export function figureSvgViewBoxWidth(svg: string): number | null {
  * This opt-in marker does not change other engine figures' size classes.
  */
 export function figureSvgAngleDrillWidthMm(svg: string): number | null {
+  const presented = svg.includes(
+    "<desc>arithmetic-geometry-presentation-v1</desc>",
+  );
   if (
+    !presented &&
     !svg.includes("<desc>arithmetic-angle-drill-v1</desc>") &&
     !svg.includes("<desc>arithmetic-geometry-drill-v1</desc>")
   )
     return null;
   const box = figureSvgViewBox(svg);
-  return box ? (57.15 * box.width) / Math.max(box.width, box.height) : null;
+  const extentMm = presented ? (280 * 25.4) / 96 : 57.15;
+  return box ? (extentMm * box.width) / Math.max(box.width, box.height) : null;
 }
 
 export function figureSvgSize(svg: string): FigureSvgSize {

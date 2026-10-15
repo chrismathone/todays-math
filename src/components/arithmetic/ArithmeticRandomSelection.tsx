@@ -6,14 +6,18 @@ export function ArithmeticRandomSelection({
   available,
   disabled,
   onSelect,
+  compact = false,
 }: {
   available: number;
   disabled: boolean;
   onSelect: (count: number) => void;
+  compact?: boolean;
 }) {
   const [count, setCount] = useState(3);
   return (
-    <div className={s.randomSelection}>
+    <div
+      className={`${s.randomSelection} ${compact ? s.compactRandomSelection : ""}`}
+    >
       <label>
         무작위 유형 수
         <input
@@ -38,11 +42,15 @@ export function ArithmeticRandomSelection({
       >
         무작위로 담기
       </button>
-      <span>현재 검색 결과에서 담을 수 있는 {available}개 유형</span>
-      <small>
-        카드를 누른 채 드래그하면 여러 유형을 한 번에 선택하거나 해제할 수
-        있습니다.
-      </small>
+      {!compact && (
+        <>
+          <span>현재 검색 결과에서 담을 수 있는 {available}개 유형</span>
+          <small>
+            카드를 누른 채 드래그하면 여러 유형을 한 번에 선택하거나 해제할 수
+            있습니다.
+          </small>
+        </>
+      )}
     </div>
   );
 }

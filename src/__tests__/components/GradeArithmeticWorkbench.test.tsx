@@ -99,6 +99,21 @@ const ready = () =>
   );
 
 describe("grade arithmetic user flow", () => {
+  it("shows type cards with school placement and filters the trigonometry unit without problem previews", () => {
+    render(<GradeArithmeticWorkbench canOutput preview />);
+    fireEvent.change(screen.getByRole("combobox", { name: "학년" }), {
+      target: { value: "중3" },
+    });
+    fireEvent.change(screen.getByRole("searchbox", { name: "유형 찾기" }), {
+      target: { value: "삼각비" },
+    });
+    const cards = screen.getByLabelText("학년별 연산 유형");
+    expect(within(cards).getByText("직각삼각형의 삼각비")).toBeInTheDocument();
+    expect(within(cards).queryAllByRole("img")).toHaveLength(0);
+    expect(within(cards).queryByText("답:")).not.toBeInTheDocument();
+    expect(within(cards).getAllByText("2학기").length).toBeGreaterThan(0);
+    expect(within(cards).queryByText("원의 성질")).not.toBeInTheDocument();
+  });
   it("generates two full rounds and explains the per-round limit before generating", async () => {
     render(<GradeArithmeticWorkbench canOutput preview />);
     const quantity = screen.getByLabelText(types[0].title + " 문항 수");

@@ -11,6 +11,11 @@ import {
   arithmeticGeometryPromptLines,
   arithmeticAngleWidthMm,
 } from "@/lib/arithmetic-v2/geometry";
+import { presentArithmeticGeometrySvg } from "@/lib/arithmetic-v2/presentation";
+import {
+  arithmeticGeometryAnswerBlank,
+  arithmeticGeometryText,
+} from "@/lib/arithmetic-v2/presentation/text";
 
 export type ArithmeticOutputSheet =
   ArithmeticSheetPayload | ArithmeticV2SheetPayload;
@@ -51,7 +56,10 @@ export function arithmeticToStudioProblems(
         if (figureId && !sheet.figures)
           throw new Error("저장된 연산 도형이 없습니다");
         const svg = figureId
-          ? arithmeticGeometrySvg(figureId, sheet.figures!)
+          ? presentArithmeticGeometrySvg(
+              figureId,
+              arithmeticGeometrySvg(figureId, sheet.figures!),
+            )
           : undefined;
         const dimensions = svg
           ? /viewBox="([^"]+)"/.exec(svg)![1].split(/\s+/).map(Number).slice(2)
@@ -61,10 +69,7 @@ export function arithmeticToStudioProblems(
           Boolean(svg) ||
           (item.prompt.layout === "math" &&
             item.prompt.answerUnit !== undefined);
-        const answerBlank =
-          answerUnit === "°"
-            ? "$\\underline{\\hspace{2em}}^{\\circ}$"
-            : `$\\underline{\\hspace{2em}}$${answerUnit ? ` ${answerUnit}` : ""}`;
+        const answerBlank = arithmeticGeometryAnswerBlank(answerUnit);
         const formula =
           item.prompt.layout === "vertical"
             ? vertical(
@@ -77,7 +82,7 @@ export function arithmeticToStudioProblems(
           ...base,
           id: `arithmetic-v2:${sheet.seed}:${round.round}:${item.order}`,
           content: geometryPrompt
-            ? `${arithmeticGeometryPromptLines(item.prompt).join("\n\n")}${svg ? "\n\n[그림1]" : ""}\n\n답: ${answerBlank}`
+            ? `${arithmeticGeometryPromptLines(item.prompt).map(arithmeticGeometryText).join("\n\n")}${svg ? "\n\n[그림1]" : ""}\n\n답: ${answerBlank}`
             : `${item.prompt.instruction ? `${item.prompt.instruction}\n\n` : ""}$$${formula}$$`,
           ...(svg
             ? {

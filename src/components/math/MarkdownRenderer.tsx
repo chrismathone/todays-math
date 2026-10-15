@@ -60,7 +60,11 @@ export interface MarkdownRendererProps {
   /** 인라인 문맥이면 문단 대신 span 으로 렌더한다 (인쇄 정답란 등). */
   inline?: boolean;
   /** Numbered source figures are replaced in-place, including inside choices. */
-  nativeFigures?: ReadonlyArray<{ src: string; sourceMm?: number }>;
+  nativeFigures?: ReadonlyArray<{
+    src: string;
+    sourceMm?: number;
+    maxWidthMm?: number;
+  }>;
   /** Decorate a native anchor using its original zero-based source index. */
   renderNativeFigure?: (index: number, image: ReactNode) => ReactNode;
   emphasizeNegation?: boolean;
@@ -298,7 +302,7 @@ export const MarkdownRenderer = memo(function MarkdownRenderer({
               src={figure?.src ?? src}
               alt={alt ?? "문항 그림"}
               className="mx-auto block h-auto max-w-full mix-blend-multiply"
-              style={figureWidthStyle(figure?.sourceMm)}
+              style={figureWidthStyle(figure?.sourceMm, figure?.maxWidthMm)}
             />
           );
           return figure && renderNativeFigure
