@@ -1,0 +1,2723 @@
+{
+  "build": {
+    "sourceRoot": "C:\\Creative\\testautocreator",
+    "built": "2026-10-15T09:07:14.125Z",
+    "sha256": {
+      "src/lib/arithmeticOutput.ts": "6a3901548fcf1c712ae972fa33b2f64937844dcda184950ee27a4b070fd00949",
+      "src/components/math/MarkdownRenderer.tsx": "ea8776ebb1f706569e92664898f779421f673cf5892a14ff2aab8efeae9f38b3",
+      "src/lib/arithmetic-v2/presentation/notation.ts": "e804a43df1f0feb8489cf541f8ee508959cb3bb9c3bd7fe0047d65f256cd9d85",
+      "src/components/arithmetic/GradeArithmeticPaper.tsx": "21900e913b24d5f452a1cf46bbb2e720a7a4ad10c167c4041379f17adc54ab4a",
+      "src/components/arithmetic/ArithmeticPaper.tsx": "77c364ae8c5e99f0dc566f5cd1f59efe84e1ff172d43669bc509a83f8802e227",
+      "src/components/admin/AdminDocumentPreview.tsx": "8e26042cee6581f33277a6eca228f24c0f909f83bb2cc9c35af99c9d62c6cfcd"
+    }
+  },
+  "mode": "verification",
+  "compatibilityHelpersChecked": false,
+  "censusComplete": true,
+  "enumeratedCandidates": 152884093,
+  "selectedFamilies": 377,
+  "checkedPatterns": 16473,
+  "checkedWitnesses": 28203,
+  "markdownRenderCalls": 740,
+  "componentRenderCalls": 31841,
+  "strictKatexChecks": 53979,
+  "texErrors": [],
+  "routeCounts": {
+    "mixed-prose": 62491,
+    "display-formula": 151327052,
+    "display-array": 1494550
+  },
+  "familyRoutes": [
+    {
+      "family": "m2-fd-single-die-above",
+      "domainSize": 5,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-single-die-multiple",
+      "domainSize": 5,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-two-dice-product-multiple-probability",
+      "domainSize": 5,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-two-dice-product-multiple-count",
+      "domainSize": 5,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-two-dice-difference-probability",
+      "domainSize": 6,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-two-dice-difference-count",
+      "domainSize": 6,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-two-dice-at-least-one-face-probability",
+      "domainSize": 6,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-two-dice-at-least-one-face-count",
+      "domainSize": 6,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-coin-complement",
+      "domainSize": 7,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-count-digits-nonzero",
+      "domainSize": 8,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-count-digits-with-zero",
+      "domainSize": 8,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "ec-g3-tenths-fraction-v1",
+      "domainSize": 9,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-tenths-decimal-v1",
+      "domainSize": 9,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-fd-two-dice-sum-at-least-probability",
+      "domainSize": 10,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-two-dice-sum-at-least-count",
+      "domainSize": 10,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-two-dice-sum-probability",
+      "domainSize": 11,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-two-dice-sum-count",
+      "domainSize": 11,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-count-pair",
+      "domainSize": 13,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-count-seating",
+      "domainSize": 14,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-exponent-quotient-missing",
+      "domainSize": 20,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-unit-hour-minute-small-v1",
+      "domainSize": 24,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-unit-hour-minute-large-v1",
+      "domainSize": 24,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-unit-minute-second-small-v1",
+      "domainSize": 24,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-unit-minute-second-large-v1",
+      "domainSize": 24,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-unit-hour-second-small-v1",
+      "domainSize": 24,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-unit-hour-second-large-v1",
+      "domainSize": 24,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-unit-kg-g-small-v1",
+      "domainSize": 24,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-unit-kg-g-large-v1",
+      "domainSize": 24,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-unit-t-kg-small-v1",
+      "domainSize": 24,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-unit-t-kg-large-v1",
+      "domainSize": 24,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-fd-coin-exact-probability",
+      "domainSize": 25,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-coin-exact-count",
+      "domainSize": 25,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-missing-deviation",
+      "domainSize": 30,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-exponent-product-missing",
+      "domainSize": 35,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-exponent-power-missing",
+      "domainSize": 35,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-factor-difference-squares",
+      "domainSize": 36,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-factor-bivariate-difference-squares",
+      "domainSize": 36,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-fd-count-product",
+      "domainSize": 36,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-balls-no-replace-both-red",
+      "domainSize": 36,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-balls-no-replace-different",
+      "domainSize": 36,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-balls-no-replace-at-least-one-red",
+      "domainSize": 36,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-balls-replace-both-red",
+      "domainSize": 36,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-balls-replace-different",
+      "domainSize": 36,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-balls-replace-at-least-one-red",
+      "domainSize": 36,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "ec-g3-compound-kg-g-to-small-v1",
+      "domainSize": 40,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-compound-kg-g-large-blank-v1",
+      "domainSize": 40,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-compound-kg-g-small-blank-v1",
+      "domainSize": 40,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-compound-t-kg-to-small-v1",
+      "domainSize": 40,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-compound-t-kg-large-blank-v1",
+      "domainSize": 40,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-compound-t-kg-small-blank-v1",
+      "domainSize": 40,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-compound-capacity-large-blank-v1",
+      "domainSize": 40,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-compound-capacity-small-blank-v1",
+      "domainSize": 40,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-integer-power",
+      "domainSize": 48,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-compound-hour-minute-to-small-v1",
+      "domainSize": 48,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-compound-hour-minute-large-blank-v1",
+      "domainSize": 48,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-compound-hour-minute-small-blank-v1",
+      "domainSize": 48,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-compound-minute-second-to-small-v1",
+      "domainSize": 48,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-compound-minute-second-large-blank-v1",
+      "domainSize": 48,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-compound-minute-second-small-blank-v1",
+      "domainSize": 48,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-fd-count-addition",
+      "domainSize": 49,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-class-midpoint",
+      "domainSize": 51,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "ec-g5-common-denominator-v1",
+      "domainSize": 55,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-common-numerator-v1",
+      "domainSize": 55,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-divisor-count-factors",
+      "domainSize": 59,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-root-of-square-identity",
+      "domainSize": 61,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-factor-perfect-square",
+      "domainSize": 64,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-factor-bivariate-perfect-square",
+      "domainSize": 64,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-fraction-part-representation-v1",
+      "domainSize": 66,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-unit-fraction-amount-v1",
+      "domainSize": 66,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-fd-quadratic-radical-root-negative",
+      "domainSize": 66,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-quadratic-radical-root-positive",
+      "domainSize": 66,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-monomial-power",
+      "domainSize": 72,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-fd-quadratic-tangent-root",
+      "domainSize": 78,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "elem-g3-div-small-remainder",
+      "domainSize": 90,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-decimal-to-fraction-v1",
+      "domainSize": 90,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-recurring-pure-fraction",
+      "domainSize": 90,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-recurring-mixed-fraction",
+      "domainSize": 90,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-fd-data-mode",
+      "domainSize": 91,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-data-mode",
+      "domainSize": 91,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-multiplication-linear-square",
+      "domainSize": 96,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-multiplication-bivariate-square",
+      "domainSize": 96,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-multiplication-bivariate-conjugate",
+      "domainSize": 96,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-fd-card-multiple-probability",
+      "domainSize": 96,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-card-multiple-count",
+      "domainSize": 96,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "elem-g2-mul-zero",
+      "domainSize": 100,
+      "routes": [
+        "display-array"
+      ]
+    },
+    {
+      "family": "m2-fd-balls-three-exact",
+      "domainSize": 100,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-square-of-root-identity",
+      "domainSize": 101,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g4-pattern-add-next-v1",
+      "domainSize": 108,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g4-pattern-add-missing-v1",
+      "domainSize": 108,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g4-pattern-multiply-next-v1",
+      "domainSize": 108,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g4-pattern-multiply-missing-v1",
+      "domainSize": 108,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g4-pattern-subtract-next-v1",
+      "domainSize": 108,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g4-pattern-subtract-missing-v1",
+      "domainSize": 108,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g4-pattern-divide-next-v1",
+      "domainSize": 108,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g4-pattern-divide-missing-v1",
+      "domainSize": 108,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-product-power-two-variable",
+      "domainSize": 108,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-factor-monic-quadratic",
+      "domainSize": 112,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-divisor-count-v1",
+      "domainSize": 119,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-divisor-sum-v1",
+      "domainSize": 119,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-hour-minute-sum-v1",
+      "domainSize": 120,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-hour-minute-difference-v1",
+      "domainSize": 120,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-minute-second-sum-v1",
+      "domainSize": 120,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-minute-second-difference-v1",
+      "domainSize": 120,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-capacity-sum-v1",
+      "domainSize": 120,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-capacity-difference-v1",
+      "domainSize": 120,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-mass-sum-v1",
+      "domainSize": 120,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-mass-difference-v1",
+      "domainSize": 120,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-fd-change-slope",
+      "domainSize": 120,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-change-y-change",
+      "domainSize": 120,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-change-x-change",
+      "domainSize": 120,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "ec-g3-unit-fraction-count-v1",
+      "domainSize": 121,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-fd-frequency-total",
+      "domainSize": 125,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-frequency-relative",
+      "domainSize": 125,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-frequency-percent",
+      "domainSize": 125,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-frequency-combined",
+      "domainSize": 125,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-frequency-missing",
+      "domainSize": 125,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-absolute-value",
+      "domainSize": 140,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-additive-opposite",
+      "domainSize": 140,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-quadratic-equation-factoring",
+      "domainSize": 153,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-mixed-to-improper-v1",
+      "domainSize": 180,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-improper-to-mixed-v1",
+      "domainSize": 180,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g4-decimal-scale-up-v1",
+      "domainSize": 180,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g4-decimal-scale-down-v1",
+      "domainSize": 180,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-elapsed-time-v1",
+      "domainSize": 192,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-fraction-to-decimal-v1",
+      "domainSize": 198,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g6-fraction-to-percent-v1",
+      "domainSize": 198,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g6-percent-to-fraction-v1",
+      "domainSize": 200,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g6-percent-to-decimal-v1",
+      "domainSize": 200,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g6-decimal-to-percent-v1",
+      "domainSize": 200,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-radical-simplify",
+      "domainSize": 201,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-terminating-decimal-places",
+      "domainSize": 207,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g4-decimal-place-value-v1",
+      "domainSize": 216,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g4-decimal-place-count-v1",
+      "domainSize": 216,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-pictogram-quantity-v1",
+      "domainSize": 224,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-factor-common-two-variable",
+      "domainSize": 224,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-fd-x-intercept",
+      "domainSize": 228,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-y-intercept",
+      "domainSize": 228,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "ec-g3-unit-fraction-count-in-fraction-v1",
+      "domainSize": 231,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-fd-card-union",
+      "domainSize": 238,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-data-mean",
+      "domainSize": 240,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-data-median",
+      "domainSize": 240,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-data-mean",
+      "domainSize": 240,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-data-median",
+      "domainSize": 240,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-data-range",
+      "domainSize": 240,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-data-deviation",
+      "domainSize": 240,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-data-variance",
+      "domainSize": 240,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-data-standard-deviation",
+      "domainSize": 240,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "ec-g4-large-place-value-v1",
+      "domainSize": 243,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-fd-data-missing-mean",
+      "domainSize": 252,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-data-missing-mean",
+      "domainSize": 252,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-reflect-x-x",
+      "domainSize": 256,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-reflect-x-y",
+      "domainSize": 256,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-reflect-y-x",
+      "domainSize": 256,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-reflect-y-y",
+      "domainSize": 256,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-reflect-origin-x",
+      "domainSize": 256,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-reflect-origin-y",
+      "domainSize": 256,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-distance-x-axis",
+      "domainSize": 256,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-distance-y-axis",
+      "domainSize": 256,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-intercepts-equation",
+      "domainSize": 256,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-independent-different-bags",
+      "domainSize": 256,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "ec-g4-large-scale-up-v1",
+      "domainSize": 261,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g4-large-scale-down-v1",
+      "domainSize": 261,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g4-large-unit-value-v1",
+      "domainSize": 267,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g4-large-unit-count-v1",
+      "domainSize": 267,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-fd-deviation",
+      "domainSize": 270,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-variance",
+      "domainSize": 270,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-standard-deviation",
+      "domainSize": 270,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "elem-g4-fraction-same-sub",
+      "domainSize": 286,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-fd-stem-leaf-median",
+      "domainSize": 288,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-prime-factorization",
+      "domainSize": 299,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-quadratic-equation-square-root",
+      "domainSize": 305,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-fd-direct-value",
+      "domainSize": 312,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-direct-constant",
+      "domainSize": 312,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-direct-input",
+      "domainSize": 312,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-inverse-value",
+      "domainSize": 312,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-inverse-constant",
+      "domainSize": 312,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-inverse-input",
+      "domainSize": 312,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "ec-g5-multiple-nth-v1",
+      "domainSize": 319,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-multiple-count-v1",
+      "domainSize": 319,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-factor-common-binomial",
+      "domainSize": 320,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-like-terms",
+      "domainSize": 324,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-fd-quadratic-integer-root-smaller",
+      "domainSize": 330,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-quadratic-integer-root-larger",
+      "domainSize": 330,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-data-even-median",
+      "domainSize": 330,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-data-even-median",
+      "domainSize": 330,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "ec-g5-reduce-fraction-v1",
+      "domainSize": 360,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-equivalent-fraction-numerator-v1",
+      "domainSize": 360,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-equivalent-fraction-denominator-v1",
+      "domainSize": 360,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-square-formula-substitution",
+      "domainSize": 360,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g6-percent-part-v1",
+      "domainSize": 380,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g6-percent-whole-v1",
+      "domainSize": 380,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g6-percent-rate-v1",
+      "domainSize": 380,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-quadratic-equation-nonmonic-factoring",
+      "domainSize": 410,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-integer-divide",
+      "domainSize": 420,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-factor-nonmonic-quadratic",
+      "domainSize": 420,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-average-total-v1",
+      "domainSize": 429,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-fd-relative-inverse-count",
+      "domainSize": 429,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-relative-inverse-total",
+      "domainSize": 429,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-integer-rational-quotient",
+      "domainSize": 436,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-four-operations-brackets-v1",
+      "domainSize": 480,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-factor-common",
+      "domainSize": 480,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g4-fraction-same-add",
+      "domainSize": 506,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g4-large-skip-count-v1",
+      "domainSize": 532,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-radical-rationalize",
+      "domainSize": 576,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-fd-quadratic-expand-b",
+      "domainSize": 594,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-quadratic-expand-c",
+      "domainSize": 594,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-quadratic-expand-equation",
+      "domainSize": 594,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-implicit-slope",
+      "domainSize": 598,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-implicit-x-intercept",
+      "domainSize": 598,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-implicit-y-intercept",
+      "domainSize": 598,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-integer-multiply",
+      "domainSize": 625,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-integer-fraction-add",
+      "domainSize": 646,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-integer-fraction-multiply",
+      "domainSize": 646,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-factor-gcd",
+      "domainSize": 676,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-factor-lcm",
+      "domainSize": 676,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-average-v1",
+      "domainSize": 684,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-multiply-two-by-one-v1",
+      "domainSize": 720,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g6-decimal-sharing-count-v1",
+      "domainSize": 720,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g6-decimal-sharing-remainder-v1",
+      "domainSize": 720,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-quadratic-missing-coefficient",
+      "domainSize": 720,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g6-distribution-part-v1",
+      "domainSize": 770,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g6-distribution-whole-v1",
+      "domainSize": 770,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-fraction-amount-v1",
+      "domainSize": 792,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-fraction-whole-v1",
+      "domainSize": 792,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g3-div-2x1-remainder",
+      "domainSize": 810,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-fd-quadratic-vertex-x",
+      "domainSize": 858,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-quadratic-vertex-y",
+      "domainSize": 858,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-quadratic-axis",
+      "domainSize": 858,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-quadratic-vertex-form-p",
+      "domainSize": 858,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-quadratic-vertex-form-q",
+      "domainSize": 858,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-quadratic-extreme",
+      "domainSize": 858,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-quadratic-y-intercept",
+      "domainSize": 858,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-linear-inequality-parentheses",
+      "domainSize": 864,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g6-ratio-value-v1",
+      "domainSize": 870,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g6-natural-div-fraction-quotient",
+      "domainSize": 885,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g5-fraction-unlike-sub",
+      "domainSize": 888,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g2-add-2x1",
+      "domainSize": 900,
+      "routes": [
+        "display-array"
+      ]
+    },
+    {
+      "family": "elem-g2-sub-2x1",
+      "domainSize": 900,
+      "routes": [
+        "display-array"
+      ]
+    },
+    {
+      "family": "m3-quadratic-equation-perfect-square",
+      "domainSize": 930,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-fd-linear-coefficient",
+      "domainSize": 1040,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-horizontal-distance",
+      "domainSize": 1053,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-vertical-distance",
+      "domainSize": 1053,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-quadratic-equation-formula",
+      "domainSize": 1088,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-fd-linear-value",
+      "domainSize": 1144,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-linear-input",
+      "domainSize": 1144,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-linear-constant",
+      "domainSize": 1144,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-slope-point-equation",
+      "domainSize": 1144,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-fd-discrete-frequency-mean",
+      "domainSize": 1152,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-rational-like-terms",
+      "domainSize": 1156,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-average-missing-v1",
+      "domainSize": 1195,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-fd-intersection-x",
+      "domainSize": 1215,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-intersection-y",
+      "domainSize": 1215,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "ec-g6-proportion-blank-v1",
+      "domainSize": 1216,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-integer-fraction-divide",
+      "domainSize": 1224,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-recurring-rational-operations",
+      "domainSize": 1224,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-correspondence-output-v1",
+      "domainSize": 1260,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-correspondence-input-v1",
+      "domainSize": 1260,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-integer-fraction-subtract",
+      "domainSize": 1292,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-range-integer-count-v1",
+      "domainSize": 1320,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-fd-parallel-coefficient",
+      "domainSize": 1320,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "elem-g5-natural-sub-fraction",
+      "domainSize": 1350,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g6-chart-count-v1",
+      "domainSize": 1368,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g6-chart-percent-v1",
+      "domainSize": 1368,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g6-chart-missing-percent-v1",
+      "domainSize": 1368,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-linear-equation-missing-coefficient",
+      "domainSize": 1440,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g6-simplest-ratio-decimal-v1",
+      "domainSize": 1458,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g6-simplest-ratio-fraction-v1",
+      "domainSize": 1458,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-data-total-v1",
+      "domainSize": 1539,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-data-difference-v1",
+      "domainSize": 1539,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g3-data-missing-v1",
+      "domainSize": 1539,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g4-bar-data-total-v1",
+      "domainSize": 1539,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g4-bar-data-difference-v1",
+      "domainSize": 1539,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g4-bar-data-missing-v1",
+      "domainSize": 1539,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g5-fraction-mul-natural",
+      "domainSize": 1620,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g6-fraction-div-natural",
+      "domainSize": 1620,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g6-natural-div-fraction",
+      "domainSize": 1620,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g5-natural-add-fraction",
+      "domainSize": 1620,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-integer-add",
+      "domainSize": 1681,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-integer-subtract",
+      "domainSize": 1681,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-linear-scalar-multiply",
+      "domainSize": 1728,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-linear-scalar-divide",
+      "domainSize": 1728,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-system-missing-coefficient",
+      "domainSize": 1764,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-gcd-v1",
+      "domainSize": 1770,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-lcm-v1",
+      "domainSize": 1770,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g5-fraction-unlike-add",
+      "domainSize": 1776,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-rational-substitution",
+      "domainSize": 1792,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g6-simplest-ratio-integer-v1",
+      "domainSize": 1800,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-four-operations-precedence-v1",
+      "domainSize": 1920,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-four-operations-parentheses-v1",
+      "domainSize": 1920,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-linear-equation-both-sides",
+      "domainSize": 1920,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-linear-substitution-value",
+      "domainSize": 2040,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-linear-equation-integer",
+      "domainSize": 2040,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-monomial-mixed-two-variable",
+      "domainSize": 2160,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-fd-quadratic-coefficient",
+      "domainSize": 2268,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-quadratic-vertex-value",
+      "domainSize": 2268,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "elem-g4-mixed-same-sub",
+      "domainSize": 2376,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-fd-quadratic-translation",
+      "domainSize": 2400,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-linear-translation",
+      "domainSize": 2592,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-quadratic-value",
+      "domainSize": 2646,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "ec-g4-line-data-increase-v1",
+      "domainSize": 2700,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g4-line-data-decrease-v1",
+      "domainSize": 2700,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-linear-equation-fraction",
+      "domainSize": 2816,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-monomial-multiply",
+      "domainSize": 2916,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-two-variable-substitution",
+      "domainSize": 2916,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-fd-transformed-mean",
+      "domainSize": 2916,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-transformed-variance",
+      "domainSize": 2916,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m3-fd-transformed-standard-deviation",
+      "domainSize": 2916,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-linear-inequality-fraction",
+      "domainSize": 3024,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-terminating-minimum-multiplier",
+      "domainSize": 3043,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-fd-two-points-slope",
+      "domainSize": 3150,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m2-fd-two-points-equation",
+      "domainSize": 3150,
+      "routes": [
+        "mixed-prose"
+      ]
+    },
+    {
+      "family": "m1-linear-equation-parentheses",
+      "domainSize": 3276,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-radical-distribute",
+      "domainSize": 3456,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-linear-inequality-integer",
+      "domainSize": 3520,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g6-natural-div-decimal",
+      "domainSize": 3531,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g6-rounded-quotient-v1",
+      "domainSize": 3564,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-monomial-divide",
+      "domainSize": 3888,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-radical-add",
+      "domainSize": 4032,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-radical-subtract",
+      "domainSize": 4032,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g4-div-2x2-remainder",
+      "domainSize": 4095,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-inequality-integer-bound",
+      "domainSize": 4160,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-linear-inequality-both-sides",
+      "domainSize": 4320,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g4-mixed-same-add",
+      "domainSize": 4554,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g6-decimal-div-natural",
+      "domainSize": 4611,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-polynomial-monomial-multiply",
+      "domainSize": 5880,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-polynomial-monomial-divide",
+      "domainSize": 5880,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g5-mixed-add-proper",
+      "domainSize": 6075,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g5-mixed-sub-proper",
+      "domainSize": 6075,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-linear-equation-decimal",
+      "domainSize": 6156,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-numeric-expression",
+      "domainSize": 7500,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-simultaneous-equations-substitution",
+      "domainSize": 7616,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g5-mixed-unlike-sub",
+      "domainSize": 7992,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g3-mul-3x1",
+      "domainSize": 8100,
+      "routes": [
+        "display-array"
+      ]
+    },
+    {
+      "family": "elem-g3-mul-2x2",
+      "domainSize": 8100,
+      "routes": [
+        "display-array"
+      ]
+    },
+    {
+      "family": "elem-g3-div-3x1-remainder",
+      "domainSize": 8100,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g5-decimal-mul-natural",
+      "domainSize": 8910,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-simultaneous-equations-elimination",
+      "domainSize": 10192,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-simultaneous-equations-fraction",
+      "domainSize": 10192,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-simultaneous-equations-decimal",
+      "domainSize": 10192,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-linear-add",
+      "domainSize": 12100,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-linear-subtract",
+      "domainSize": 12100,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-polynomial-multiply",
+      "domainSize": 12100,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g5-mixed-unlike-add",
+      "domainSize": 15984,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-numeric-precedence",
+      "domainSize": 24624,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-rational-add",
+      "domainSize": 24964,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-rational-subtract",
+      "domainSize": 24964,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-rational-multiply",
+      "domainSize": 24964,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-rational-divide",
+      "domainSize": 24964,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-round-decimal-up-v1",
+      "domainSize": 27000,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-round-decimal-down-v1",
+      "domainSize": 27000,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-round-decimal-nearest-v1",
+      "domainSize": 27000,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-round-up-v1",
+      "domainSize": 29697,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-round-down-v1",
+      "domainSize": 29697,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "ec-g5-round-nearest-v1",
+      "domainSize": 29697,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g6-decimal-div",
+      "domainSize": 31312,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g5-fraction-mul",
+      "domainSize": 32400,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g6-fraction-div",
+      "domainSize": 32400,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-radical-three-terms",
+      "domainSize": 32768,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-radical-multiply",
+      "domainSize": 53824,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m3-radical-divide",
+      "domainSize": 53824,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m1-rational-grouped-expression",
+      "domainSize": 55488,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g5-natural-mixed",
+      "domainSize": 80550,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g4-mul-3x2",
+      "domainSize": 81000,
+      "routes": [
+        "display-array"
+      ]
+    },
+    {
+      "family": "elem-g4-div-3x2-remainder",
+      "domainSize": 81000,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-polynomial-add",
+      "domainSize": 86436,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "m2-polynomial-subtract",
+      "domainSize": 86436,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g3-add-3x-short",
+      "domainSize": 90000,
+      "routes": [
+        "display-array"
+      ]
+    },
+    {
+      "family": "elem-g3-sub-3x-short",
+      "domainSize": 90000,
+      "routes": [
+        "display-array"
+      ]
+    },
+    {
+      "family": "elem-g5-natural-mixed-order",
+      "domainSize": 117376,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g3-sub-3digit",
+      "domainSize": 405450,
+      "routes": [
+        "display-array"
+      ]
+    },
+    {
+      "family": "elem-g4-natural-sub-decimal",
+      "domainSize": 490050,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g4-decimal-sub-natural",
+      "domainSize": 490050,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g3-add-3digit",
+      "domainSize": 810000,
+      "routes": [
+        "display-array"
+      ]
+    },
+    {
+      "family": "elem-g5-decimal-mul",
+      "domainSize": 980100,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g4-natural-add-decimal",
+      "domainSize": 980100,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g4-decimal-sub",
+      "domainSize": 49009950,
+      "routes": [
+        "display-formula"
+      ]
+    },
+    {
+      "family": "elem-g4-decimal-add",
+      "domainSize": 98010000,
+      "routes": [
+        "display-formula"
+      ]
+    }
+  ],
+  "v1": [
+    {
+      "skill": "one-digit-add",
+      "candidates": 100,
+      "outputPromptRaw": 0,
+      "outputAnswerRaw": 0,
+      "legacyPromptRaw": 0
+    },
+    {
+      "skill": "one-digit-sub",
+      "candidates": 55,
+      "outputPromptRaw": 0,
+      "outputAnswerRaw": 0,
+      "legacyPromptRaw": 0
+    },
+    {
+      "skill": "two-digit-vertical-add",
+      "candidates": 8100,
+      "outputPromptRaw": 0,
+      "outputAnswerRaw": 0,
+      "legacyPromptRaw": 0
+    },
+    {
+      "skill": "two-digit-vertical-sub",
+      "candidates": 4095,
+      "outputPromptRaw": 0,
+      "outputAnswerRaw": 0,
+      "legacyPromptRaw": 0
+    },
+    {
+      "skill": "times-table",
+      "candidates": 81,
+      "outputPromptRaw": 0,
+      "outputAnswerRaw": 0,
+      "legacyPromptRaw": 0
+    },
+    {
+      "skill": "two-digit-times-one",
+      "candidates": 810,
+      "outputPromptRaw": 0,
+      "outputAnswerRaw": 0,
+      "legacyPromptRaw": 0
+    },
+    {
+      "skill": "two-digit-div-one",
+      "candidates": 254,
+      "outputPromptRaw": 0,
+      "outputAnswerRaw": 0,
+      "legacyPromptRaw": 0
+    }
+  ],
+  "findings": []
+}
