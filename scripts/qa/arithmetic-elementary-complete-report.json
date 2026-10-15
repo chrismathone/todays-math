@@ -1,0 +1,2477 @@
+{
+  "date": "2026-10-15",
+  "scope": "Elementary grades 3–6 missing non-geometry calculations; append-only independent definitions. Root owns registry/UI/output integration.",
+  "base": "70b63ed0d",
+  "typographyCommit": "07129e7c6",
+  "sharedMetadataCommit": "7849117af",
+  "curriculum": {
+    "sources": [
+      {
+        "url": "https://www.ebsmath.co.kr/",
+        "checked": "2026-10-15",
+        "evidence": "Current official elementary grade navigation; 48 units. 자료의 정리 and 규칙과 대응 are current names."
+      },
+      {
+        "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&m=0404",
+        "checked": "2026-10-15",
+        "evidence": "2022 revised curriculum phased in for grades 3–4 in 2025 and grades 5–6 in 2026."
+      },
+      {
+        "path": "prisma/seed-data/units.ts",
+        "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+        "evidence": "All 48 local unit groups and their sections inspected; old chapter aliases retained as source metadata, never edited."
+      }
+    ],
+    "limitation": "Unit/section-level calculation audit. Does not claim full official achievement-standard alignment, graph-reading/geometry mastery, or measured learning effects."
+  },
+  "totals": {
+    "types": 119,
+    "candidates": 229352,
+    "grades": {
+      "초3": {
+        "types": 48,
+        "candidates": 10007
+      },
+      "초4": {
+        "types": 23,
+        "candidates": 13504
+      },
+      "초5": {
+        "types": 28,
+        "candidates": 186453
+      },
+      "초6": {
+        "types": 20,
+        "candidates": 19388
+      }
+    }
+  },
+  "representation": [
+    "Exact rational values are canonical/reduced; public prompts explicitly request original-denominator, improper, mixed or reduced display, enforced by verify independently of calculation.",
+    "Compound quantities and simplest ratios use one numeric blank; the other component is explicitly given.",
+    "Rounded decimal display includes required trailing zeros, explicitly requested by public instruction.",
+    "Quantities use KaTeX math numbers, roman physical units and text Korean labels. No new SVG, HTML answer kind, or shared schema."
+  ],
+  "verification": {
+    "script": "scripts/qa/arithmetic-elementary-complete.test.ts",
+    "checks": [
+      "Exhaustive independent numeric oracle and schema validation for every candidate",
+      "Global prompt identity and per-family parameter uniqueness",
+      "Wrong exact/display, malformed parameters/objects, overflow, negative zero, sparse arrays, bad indices rejected",
+      "Property-order neutral; frozen input and regeneration unchanged",
+      "Verifier proven not to call domain.at, problemAt or calculate",
+      "KaTeX prompt/answer rendering samples across every family",
+      "ES2017 strict targeted TypeScript, ESLint and normal Git hooks"
+    ],
+    "integrationBoundary": "Standalone definitions checked here; root registry/UI/saved-payload integration checked by root."
+  },
+  "units": [
+    {
+      "grade": "초3",
+      "semester": 1,
+      "sourceChapter": "1-1 덧셈과 뺄셈",
+      "officialUnit": "덧셈과 뺄셈",
+      "sections": [
+        "1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+        "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+        "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+        "1-1-4 받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)"
+      ],
+      "addedIds": [],
+      "existingIds": [
+        "elem-g3-add-3digit",
+        "elem-g3-sub-3digit",
+        "elem-g3-add-3x-short",
+        "elem-g3-sub-3x-short"
+      ],
+      "exclusions": [
+        "기존 세 자리 수 덧셈·뺄셈 및 짧은 피연산자 유형을 재생성하지 않음."
+      ]
+    },
+    {
+      "grade": "초3",
+      "semester": 1,
+      "sourceChapter": "1-2 평면도형",
+      "officialUnit": "평면도형",
+      "sections": [
+        "1-2-1 선분, 반직선, 직선",
+        "1-2-2 각, 직각 알아보기",
+        "1-2-3 직각삼각형 알아보기",
+        "1-2-4 직사각형 알아보기",
+        "1-2-5 정사각형 알아보기"
+      ],
+      "addedIds": [],
+      "existingIds": [],
+      "exclusions": [
+        "선분·각·직각삼각형·사각형의 인식과 분류는 수치 직접 계산이 아님."
+      ]
+    },
+    {
+      "grade": "초3",
+      "semester": 1,
+      "sourceChapter": "1-3 나눗셈",
+      "officialUnit": "나눗셈",
+      "sections": [
+        "1-3-1 똑같이 나누기",
+        "1-3-2 곱셈과 나눗셈의 관계",
+        "1-3-3 나눗셈의 몫을 곱셈식으로 구하기",
+        "1-3-4 나눗셈의 몫을 곱셈구구로 구하기"
+      ],
+      "addedIds": [],
+      "existingIds": [
+        "elem-g3-div-2x1-remainder",
+        "elem-g3-div-small-remainder"
+      ],
+      "exclusions": [
+        "곱셈과 나눗셈 관계의 말·그림 설명은 제외. 몫과 나머지 계산은 기존 유형."
+      ]
+    },
+    {
+      "grade": "초3",
+      "semester": 1,
+      "sourceChapter": "1-4 곱셈",
+      "officialUnit": "곱셈",
+      "sections": [
+        "1-4-1 (몇십)×(몇)",
+        "1-4-2 올림이 없는 (몇십몇)×(몇)",
+        "1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+        "1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+        "1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)"
+      ],
+      "addedIds": ["ec-g3-multiply-two-by-one-v1"],
+      "existingIds": [],
+      "exclusions": [
+        "2자리×1자리의 여러 받아올림 경우는 별도 수치 목표가 아닌 하나의 완전 유한 영역에 포함."
+      ]
+    },
+    {
+      "grade": "초3",
+      "semester": 1,
+      "sourceChapter": "1-5 길이와 시간",
+      "officialUnit": "길이와 시간",
+      "sections": [
+        "1-5-1 1cm보다 작은 단위",
+        "1-5-2 1m보다 큰 단위",
+        "1-5-3 길이와 거리를 어림하고 재어 보기",
+        "1-5-4 1분보다 작은 단위",
+        "1-5-5 시간의 덧셈",
+        "1-5-6 시간의 뺄셈"
+      ],
+      "addedIds": [
+        "ec-g3-unit-hour-minute-small-v1",
+        "ec-g3-unit-hour-minute-large-v1",
+        "ec-g3-unit-minute-second-small-v1",
+        "ec-g3-unit-minute-second-large-v1",
+        "ec-g3-unit-hour-second-small-v1",
+        "ec-g3-unit-hour-second-large-v1",
+        "ec-g3-compound-hour-minute-to-small-v1",
+        "ec-g3-compound-hour-minute-large-blank-v1",
+        "ec-g3-compound-hour-minute-small-blank-v1",
+        "ec-g3-compound-minute-second-to-small-v1",
+        "ec-g3-compound-minute-second-large-blank-v1",
+        "ec-g3-compound-minute-second-small-blank-v1",
+        "ec-g3-hour-minute-sum-v1",
+        "ec-g3-hour-minute-difference-v1",
+        "ec-g3-minute-second-sum-v1",
+        "ec-g3-minute-second-difference-v1",
+        "ec-g3-elapsed-time-v1"
+      ],
+      "existingIds": [
+        "e3-length-cm-mm",
+        "e3-length-km-m",
+        "e3-length-mixed-mm",
+        "e3-length-mixed-m"
+      ],
+      "exclusions": [
+        "cm/mm/m/km 환산은 기존 geometryElementary 소유. 실제 자·시계 읽기와 어림 측정은 제외."
+      ]
+    },
+    {
+      "grade": "초3",
+      "semester": 1,
+      "sourceChapter": "1-6 분수와 소수",
+      "officialUnit": "분수와 소수",
+      "sections": [
+        "1-6-1 똑같이 나누기",
+        "1-6-2 분수 알아보기(1)",
+        "1-6-3 분수 알아보기(2)",
+        "1-6-4 분모가 같은 분수의 크기 비교",
+        "1-6-5 단위분수의 크기 비교",
+        "1-6-6 소수 알아보기",
+        "1-6-7 소수의 크기 비교"
+      ],
+      "addedIds": [
+        "ec-g3-unit-fraction-amount-v1",
+        "ec-g3-tenths-fraction-v1",
+        "ec-g3-tenths-decimal-v1"
+      ],
+      "existingIds": [],
+      "exclusions": [
+        "같은 크기 분할의 그림 제작 및 분수·소수 크기 비교는 제외. 이 학기 신규 분수·소수는 1 미만."
+      ]
+    },
+    {
+      "grade": "초3",
+      "semester": 2,
+      "sourceChapter": "2-1 곱셈",
+      "officialUnit": "곱셈",
+      "sections": [
+        "2-1-1 (세 자리 수)×(한 자리 수) (1)",
+        "2-1-2 (세 자리 수)×(한 자리 수) (2)",
+        "2-1-3 (몇십)×(몇십), (몇십몇)×(몇십), (몇)×(몇십몇)",
+        "2-1-4 (몇십몇)×(몇십몇)"
+      ],
+      "addedIds": [],
+      "existingIds": ["elem-g3-mul-3x1", "elem-g3-mul-2x2"],
+      "exclusions": [
+        "기존 3자리×1자리 및 2자리×2자리 곱셈을 중복하지 않음. 가환성에 의한 역순은 독립 개념으로 늘리지 않음."
+      ]
+    },
+    {
+      "grade": "초3",
+      "semester": 2,
+      "sourceChapter": "2-2 나눗셈",
+      "officialUnit": "나눗셈",
+      "sections": [
+        "2-2-1 내림이 없는 (몇십)÷(몇), (몇십몇)÷(몇)",
+        "2-2-2 내림이 있는 (몇십)÷(몇), (몇십몇)÷(몇)",
+        "2-2-3 나머지가 있는 (몇십몇)÷(몇)",
+        "2-2-4 (세 자리 수)÷(한 자리 수)"
+      ],
+      "addedIds": [],
+      "existingIds": ["elem-g3-div-3x1-remainder"],
+      "exclusions": ["기존 2자리/3자리÷1자리의 몫·나머지를 재생성하지 않음."]
+    },
+    {
+      "grade": "초3",
+      "semester": 2,
+      "sourceChapter": "2-3 원",
+      "officialUnit": "원",
+      "sections": [
+        "2-3-1 원의 중심, 지름, 반지름",
+        "2-3-2 원의 성질",
+        "2-3-3 원 그리기"
+      ],
+      "addedIds": [],
+      "existingIds": ["e3-circle-radius", "e3-circle-diameter"],
+      "exclusions": [
+        "원 도형과 반지름·지름 계산은 기존 도형 소유. 컴퍼스 작도·원 구성 요소 인식 제외."
+      ]
+    },
+    {
+      "grade": "초3",
+      "semester": 2,
+      "sourceChapter": "2-4 분수",
+      "officialUnit": "분수",
+      "sections": [
+        "2-4-1 분수로 나타내기",
+        "2-4-2 분수만큼은 얼마인지 알아보기 (1)",
+        "2-4-3 분수만큼은 얼마인지 알아보기 (2)",
+        "2-4-4 진분수와 가분수 알아보기",
+        "2-4-5 대분수 알아보기",
+        "2-4-6 분모가 같은 분수의 크기 비교"
+      ],
+      "addedIds": [
+        "ec-g3-fraction-amount-v1",
+        "ec-g3-fraction-whole-v1",
+        "ec-g3-fraction-part-representation-v1",
+        "ec-g3-unit-fraction-count-v1",
+        "ec-g3-mixed-to-improper-v1",
+        "ec-g3-improper-to-mixed-v1",
+        "ec-g3-unit-fraction-count-in-fraction-v1"
+      ],
+      "existingIds": [],
+      "exclusions": [
+        "진분수/가분수 분류와 크기 비교 제외. 지정 분모의 표현·가분수/대분수 전환·전체/부분 양 계산 포함."
+      ]
+    },
+    {
+      "grade": "초3",
+      "semester": 2,
+      "sourceChapter": "2-5 들이와 무게",
+      "officialUnit": "들이와 무게",
+      "sections": [
+        "2-5-1 들이 비교하기",
+        "2-5-2 들이의 단위",
+        "2-5-3 들이의 합과 차",
+        "2-5-4 무게 비교하기",
+        "2-5-5 무게의 단위",
+        "2-5-6 무게의 합과 차"
+      ],
+      "addedIds": [
+        "ec-g3-unit-kg-g-small-v1",
+        "ec-g3-unit-kg-g-large-v1",
+        "ec-g3-unit-t-kg-small-v1",
+        "ec-g3-unit-t-kg-large-v1",
+        "ec-g3-compound-kg-g-to-small-v1",
+        "ec-g3-compound-kg-g-large-blank-v1",
+        "ec-g3-compound-kg-g-small-blank-v1",
+        "ec-g3-compound-t-kg-to-small-v1",
+        "ec-g3-compound-t-kg-large-blank-v1",
+        "ec-g3-compound-t-kg-small-blank-v1",
+        "ec-g3-compound-capacity-large-blank-v1",
+        "ec-g3-compound-capacity-small-blank-v1",
+        "ec-g3-capacity-sum-v1",
+        "ec-g3-capacity-difference-v1",
+        "ec-g3-mass-sum-v1",
+        "ec-g3-mass-difference-v1"
+      ],
+      "existingIds": ["e3-capacity-l-ml", "e3-capacity-mixed-ml"],
+      "exclusions": [
+        "기존 L/mL 단일 환산·복합량→mL 중복 제외. 실제 용기·저울 측정, 양 비교 제외."
+      ]
+    },
+    {
+      "grade": "초3",
+      "semester": 2,
+      "sourceChapter": "2-6 그림그래프",
+      "officialUnit": "자료의 정리",
+      "sections": ["2-6-1 그림그래프 알아보기", "2-6-2 그림그래프로 나타내기"],
+      "addedIds": [
+        "ec-g3-data-total-v1",
+        "ec-g3-data-difference-v1",
+        "ec-g3-data-missing-v1",
+        "ec-g3-pictogram-quantity-v1"
+      ],
+      "existingIds": [],
+      "exclusions": [
+        "그림그래프를 그리거나 그림을 해독하는 평가 제외. 그림당 수량과 개수가 명시된 수치 표 계산 포함."
+      ]
+    },
+    {
+      "grade": "초4",
+      "semester": 1,
+      "sourceChapter": "1-1 큰 수",
+      "officialUnit": "큰 수",
+      "sections": [
+        "1-1-1 1000이 10개인 수 알아보기",
+        "1-1-2 다섯 자리 수 알아보기",
+        "1-1-3 10000이 몇십 개, 몇백 개, 몇천 개인 수 알아보기",
+        "1-1-4 억 알아보기",
+        "1-1-5 조 알아보기",
+        "1-1-6 수 뛰어서 세기",
+        "1-1-7 수의 크기 비교"
+      ],
+      "addedIds": [
+        "ec-g4-large-place-value-v1",
+        "ec-g4-large-unit-value-v1",
+        "ec-g4-large-unit-count-v1",
+        "ec-g4-large-scale-up-v1",
+        "ec-g4-large-scale-down-v1",
+        "ec-g4-large-skip-count-v1"
+      ],
+      "existingIds": [],
+      "exclusions": [
+        "큰 수 읽기·쓰기의 언어 변환, 크기 비교 제외. 자리값/만·억·조 묶음/배율/뛰어 세기는 수치 계산 포함."
+      ]
+    },
+    {
+      "grade": "초4",
+      "semester": 1,
+      "sourceChapter": "1-2 각도",
+      "officialUnit": "각도",
+      "sections": [
+        "1-2-1 각의 크기 비교하기",
+        "1-2-2 각의 크기 재기",
+        "1-2-3 각의 크기에 따라 분류하기",
+        "1-2-4 각의 크기를 어림하고 각도의 합과 차 계산하기",
+        "1-2-5 삼각형의 세 각의 크기의 합",
+        "1-2-6 사각형의 네 각의 크기의 합 알아보기"
+      ],
+      "addedIds": [],
+      "existingIds": [
+        "e4-triangle-missing-angle",
+        "e4-right-triangle-missing-angle",
+        "e4-angle-sum",
+        "e4-angle-difference",
+        "e4-angle-right-remainder",
+        "e4-angle-straight-remainder",
+        "e4-angle-turn-remainder",
+        "e4-quadrilateral-missing-angle"
+      ],
+      "exclusions": [
+        "각도 계산은 기존 도형·각도 담당. 각도기 읽기, 어림, 분류 제외."
+      ]
+    },
+    {
+      "grade": "초4",
+      "semester": 1,
+      "sourceChapter": "1-3 곱셈과 나눗셈",
+      "officialUnit": "곱셈과 나눗셈",
+      "sections": [
+        "1-3-1 (세 자리 수)×(몇십)의 계산",
+        "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+        "1-3-3 곱셈의 어림셈",
+        "1-3-4 몇십으로 나누기",
+        "1-3-5 몇십몇으로 나누기 (1)",
+        "1-3-6 몇십몇으로 나누기 (2)",
+        "1-3-7 나눗셈의 어림셈"
+      ],
+      "addedIds": [],
+      "existingIds": [
+        "elem-g4-mul-3x2",
+        "elem-g4-div-2x2-remainder",
+        "elem-g4-div-3x2-remainder"
+      ],
+      "exclusions": [
+        "기존 3자리×2자리, 2자리/3자리÷2자리 영역 재사용. 유일한 정답이 없는 자유 어림셈 제외."
+      ]
+    },
+    {
+      "grade": "초4",
+      "semester": 1,
+      "sourceChapter": "1-4 평면도형의 이동",
+      "officialUnit": "평면도형의 이동",
+      "sections": [
+        "1-4-1 점의 이동",
+        "1-4-2 평면도형 밀기",
+        "1-4-3 평면도형 뒤집기",
+        "1-4-4 평면도형 돌리기"
+      ],
+      "addedIds": [],
+      "existingIds": [],
+      "exclusions": [
+        "도형 밀기·뒤집기·돌리기·이동 구성/인식은 이 비도형 범위에서 제외."
+      ]
+    },
+    {
+      "grade": "초4",
+      "semester": 1,
+      "sourceChapter": "1-5 막대그래프",
+      "officialUnit": "막대그래프",
+      "sections": [
+        "1-5-1 막대그래프 알아보기",
+        "1-5-2 막대그래프 그리기",
+        "1-5-3 막대그래프의 활용"
+      ],
+      "addedIds": [
+        "ec-g4-bar-data-total-v1",
+        "ec-g4-bar-data-difference-v1",
+        "ec-g4-bar-data-missing-v1"
+      ],
+      "existingIds": [],
+      "exclusions": [
+        "막대그래프 그리기·눈금 읽기 평가 제외. 명시된 수량의 합계·차·빠진 값 계산 포함."
+      ]
+    },
+    {
+      "grade": "초4",
+      "semester": 1,
+      "sourceChapter": "1-6 규칙 찾기",
+      "officialUnit": "규칙 찾기",
+      "sections": [
+        "1-6-1 수의 배열에서 규칙 찾기",
+        "1-6-2 도형의 배열에서 규칙 찾기",
+        "1-6-3 계산식에서 규칙 찾기",
+        "1-6-4 규칙적인 계산식 찾기",
+        "1-6-5 등호(=)를 사용하여 나타내기"
+      ],
+      "addedIds": [
+        "ec-g4-pattern-add-next-v1",
+        "ec-g4-pattern-add-missing-v1",
+        "ec-g4-pattern-multiply-next-v1",
+        "ec-g4-pattern-multiply-missing-v1",
+        "ec-g4-pattern-subtract-next-v1",
+        "ec-g4-pattern-subtract-missing-v1",
+        "ec-g4-pattern-divide-next-v1",
+        "ec-g4-pattern-divide-missing-v1"
+      ],
+      "existingIds": [],
+      "exclusions": [
+        "규칙을 임의 추측하는 유한 수열과 도형 배열 제외. 덧셈·뺄셈·곱셈·나눗셈 규칙을 명시한 다음/중간 항 계산 포함."
+      ]
+    },
+    {
+      "grade": "초4",
+      "semester": 2,
+      "sourceChapter": "2-1 분수의 덧셈과 뺄셈",
+      "officialUnit": "분수의 덧셈과 뺄셈",
+      "sections": [
+        "2-1-1 진분수의 덧셈",
+        "2-1-2 진분수의 뺄셈",
+        "2-1-3 대분수의 덧셈",
+        "2-1-4 대분수의 뺄셈"
+      ],
+      "addedIds": [],
+      "existingIds": [
+        "elem-g4-fraction-same-add",
+        "elem-g4-fraction-same-sub",
+        "elem-g4-mixed-same-add",
+        "elem-g4-mixed-same-sub"
+      ],
+      "exclusions": [
+        "동분모 진분수·대분수 사칙 중 덧셈·뺄셈은 기존 유형. 분수 표현 전환은 초3-2의 선행 유형."
+      ]
+    },
+    {
+      "grade": "초4",
+      "semester": 2,
+      "sourceChapter": "2-2 삼각형",
+      "officialUnit": "삼각형",
+      "sections": [
+        "2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "2-2-2 이등변삼각형의 성질",
+        "2-2-3 정삼각형의 성질",
+        "2-2-4 삼각형을 각의 크기에 따라 분류하기",
+        "2-2-5 삼각형을 두 가지 기준으로 분류하기"
+      ],
+      "addedIds": [],
+      "existingIds": ["e4-isosceles-base-angle", "e4-isosceles-apex-angle"],
+      "exclusions": [
+        "삼각형 성질로 구하는 수치는 기존 도형 소유. 변/각 기준 분류 제외."
+      ]
+    },
+    {
+      "grade": "초4",
+      "semester": 2,
+      "sourceChapter": "2-3 소수의 덧셈과 뺄셈",
+      "officialUnit": "소수의 덧셈과 뺄셈",
+      "sections": [
+        "2-3-1 소수 두 자리 수, 세 자리 수 알아보기",
+        "2-3-2 소수의 크기 비교하기",
+        "2-3-3 소수 사이의 관계",
+        "2-3-4 소수 한 자리 수의 덧셈",
+        "2-3-5 소수 한 자리 수의 뺄셈",
+        "2-3-6 소수 두 자리 수의 덧셈",
+        "2-3-7 소수 두 자리 수의 뺄셈"
+      ],
+      "addedIds": [
+        "ec-g4-decimal-place-value-v1",
+        "ec-g4-decimal-place-count-v1",
+        "ec-g4-decimal-scale-up-v1",
+        "ec-g4-decimal-scale-down-v1"
+      ],
+      "existingIds": [
+        "elem-g4-decimal-add",
+        "elem-g4-decimal-sub",
+        "elem-g4-natural-sub-decimal",
+        "elem-g4-natural-add-decimal",
+        "elem-g4-decimal-sub-natural"
+      ],
+      "exclusions": [
+        "기존 소수 둘째 자리까지의 덧셈·뺄셈을 재생성하지 않음. 소수 크기 비교 제외."
+      ]
+    },
+    {
+      "grade": "초4",
+      "semester": 2,
+      "sourceChapter": "2-4 사각형",
+      "officialUnit": "사각형",
+      "sections": [
+        "2-4-1 수직과 수선",
+        "2-4-2 평행과 평행선",
+        "2-4-3 평행선 사이의 거리",
+        "2-4-4 사다리꼴",
+        "2-4-5 평행사변형",
+        "2-4-6 마름모",
+        "2-4-7 여러 가지 사각형"
+      ],
+      "addedIds": [],
+      "existingIds": [],
+      "exclusions": [
+        "사각형 성질과 길이 계산은 기존 도형 소유. 수직·평행 및 사각형 분류 제외."
+      ]
+    },
+    {
+      "grade": "초4",
+      "semester": 2,
+      "sourceChapter": "2-5 꺾은선그래프",
+      "officialUnit": "꺾은선그래프",
+      "sections": [
+        "2-5-1 꺾은선그래프 알아보기",
+        "2-5-2 꺾은선그래프 내용 알아보기",
+        "2-5-3 꺾은선그래프 그리기와 활용하기"
+      ],
+      "addedIds": [
+        "ec-g4-line-data-increase-v1",
+        "ec-g4-line-data-decrease-v1"
+      ],
+      "existingIds": [],
+      "exclusions": [
+        "그래프 작도/시각 눈금 해독/향후 변화 예측 제외. 명시된 오전·오후 수량의 증가·감소량 포함."
+      ]
+    },
+    {
+      "grade": "초4",
+      "semester": 2,
+      "sourceChapter": "2-6 다각형",
+      "officialUnit": "다각형",
+      "sections": [
+        "2-6-1 다각형",
+        "2-6-2 정다각형",
+        "2-6-3 대각선",
+        "2-6-4 모양 만들기와 채우기"
+      ],
+      "addedIds": [],
+      "existingIds": [],
+      "exclusions": [
+        "다각형·대각선 수치 계산은 기존 도형 소유. 모양 만들기·채우기 제외."
+      ]
+    },
+    {
+      "grade": "초5",
+      "semester": 1,
+      "sourceChapter": "1-1 자연수의 혼합 계산",
+      "officialUnit": "자연수의 혼합 계산",
+      "sections": [
+        "1-1-1 덧셈과 뺄셈 / 곱셈과 나눗셈이 섞여 있는 식",
+        "1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "1-1-3 덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식"
+      ],
+      "addedIds": [
+        "ec-g5-four-operations-precedence-v1",
+        "ec-g5-four-operations-parentheses-v1",
+        "ec-g5-four-operations-brackets-v1"
+      ],
+      "existingIds": ["elem-g5-natural-mixed", "elem-g5-natural-mixed-order"],
+      "exclusions": [
+        "기존 두 연산 순서 계산 유지. 이번에는 네 연산이 모두 있는 식과 소괄호·중괄호 조합 추가. 무한 길이 임의 식 생성은 아님."
+      ]
+    },
+    {
+      "grade": "초5",
+      "semester": 1,
+      "sourceChapter": "1-2 약수와 배수",
+      "officialUnit": "약수와 배수",
+      "sections": [
+        "1-2-1 약수와 배수",
+        "1-2-2 약수와 배수의 관계",
+        "1-2-3 공약수와 최대공약수",
+        "1-2-4 최대공약수 구하는 방법",
+        "1-2-5 공배수와 최소공배수",
+        "1-2-6 최소공배수 구하는 방법"
+      ],
+      "addedIds": [
+        "ec-g5-divisor-count-v1",
+        "ec-g5-divisor-sum-v1",
+        "ec-g5-gcd-v1",
+        "ec-g5-lcm-v1",
+        "ec-g5-multiple-nth-v1",
+        "ec-g5-multiple-count-v1"
+      ],
+      "existingIds": [],
+      "exclusions": [
+        "약수 목록을 열거하는 다중답·관계 서술은 제외. 개수·합·최대공약수·최소공배수·배수 순번/개수 포함."
+      ]
+    },
+    {
+      "grade": "초5",
+      "semester": 1,
+      "sourceChapter": "1-3 대응 관계",
+      "officialUnit": "규칙과 대응",
+      "sections": [
+        "1-3-1 두 양 사이의 대응 관계",
+        "1-3-2 대응 관계를 식으로 나타내기",
+        "1-3-3 생활 속에서 대응 관계를 찾아 식으로 나타내기"
+      ],
+      "addedIds": [
+        "ec-g5-correspondence-output-v1",
+        "ec-g5-correspondence-input-v1"
+      ],
+      "existingIds": [],
+      "exclusions": [
+        "생활 상황에서 관계를 발견하거나 식을 자유 작성하는 평가는 제외. 명시된 대응 규칙의 입력/결과 계산 포함."
+      ]
+    },
+    {
+      "grade": "초5",
+      "semester": 1,
+      "sourceChapter": "1-4 약분과 통분",
+      "officialUnit": "약분과 통분",
+      "sections": [
+        "1-4-1 크기가 같은 분수 알아보기",
+        "1-4-2 분수를 간단하게 나타내기",
+        "1-4-3 통분",
+        "1-4-4 분수의 크기 비교",
+        "1-4-5 분수와 소수의 크기 비교"
+      ],
+      "addedIds": [
+        "ec-g5-reduce-fraction-v1",
+        "ec-g5-equivalent-fraction-numerator-v1",
+        "ec-g5-equivalent-fraction-denominator-v1",
+        "ec-g5-common-denominator-v1",
+        "ec-g5-common-numerator-v1",
+        "ec-g5-fraction-to-decimal-v1",
+        "ec-g5-decimal-to-fraction-v1"
+      ],
+      "existingIds": [],
+      "exclusions": [
+        "분수·소수 크기 비교 제외. 통분 답은 두 분수 배열 대신 가장 작은 공통분모 또는 첫 분자 하나로 응답."
+      ]
+    },
+    {
+      "grade": "초5",
+      "semester": 1,
+      "sourceChapter": "1-5 분수의 덧셈과 뺄셈",
+      "officialUnit": "분수의 덧셈과 뺄셈",
+      "sections": [
+        "1-5-1 진분수의 덧셈",
+        "1-5-2 대분수의 덧셈",
+        "1-5-3 진분수의 뺄셈",
+        "1-5-4 대분수의 뺄셈"
+      ],
+      "addedIds": [],
+      "existingIds": [
+        "elem-g5-fraction-unlike-add",
+        "elem-g5-fraction-unlike-sub",
+        "elem-g5-mixed-unlike-add",
+        "elem-g5-mixed-unlike-sub",
+        "elem-g5-natural-sub-fraction",
+        "elem-g5-mixed-add-proper",
+        "elem-g5-natural-add-fraction",
+        "elem-g5-mixed-sub-proper"
+      ],
+      "exclusions": [
+        "기존 이분모 진분수·대분수 덧셈·뺄셈 및 자연수/진분수 혼합 재사용."
+      ]
+    },
+    {
+      "grade": "초5",
+      "semester": 1,
+      "sourceChapter": "1-6 다각형의 둘레와 넓이",
+      "officialUnit": "다각형의 둘레와 넓이",
+      "sections": [
+        "1-6-1 정다각형과 사각형의 둘레",
+        "1-6-2 1cm², 직사각형과 정사각형의 넓이",
+        "1-6-3 1cm²보다 더 큰 넓이의 단위",
+        "1-6-4 평행사변형과 삼각형의 넓이",
+        "1-6-5 마름모와 사다리꼴의 넓이"
+      ],
+      "addedIds": [],
+      "existingIds": [
+        "e5-area-m2-cm2",
+        "e5-area-km2-m2",
+        "e5-unit-square-area",
+        "e5-rectangle-perimeter",
+        "e5-rectangle-perimeter-side",
+        "e5-parallelogram-perimeter",
+        "e5-parallelogram-perimeter-side",
+        "e5-square-perimeter",
+        "e5-square-perimeter-side",
+        "e5-rhombus-perimeter",
+        "e5-rhombus-perimeter-side",
+        "e5-regular-polygon-perimeter",
+        "e5-regular-polygon-perimeter-side",
+        "e5-triangle-perimeter",
+        "e5-triangle-perimeter-side",
+        "e5-rectangle-area",
+        "e5-rectangle-area-side",
+        "e5-square-area",
+        "e5-square-area-side",
+        "e5-triangle-area",
+        "e5-triangle-area-base",
+        "e5-triangle-area-height",
+        "e5-parallelogram-area",
+        "e5-parallelogram-area-base",
+        "e5-parallelogram-area-height",
+        "e5-rhombus-area",
+        "e5-rhombus-area-diagonal",
+        "e5-trapezoid-area",
+        "e5-trapezoid-area-height",
+        "e5-trapezoid-area-top",
+        "e5-trapezoid-area-bottom"
+      ],
+      "exclusions": [
+        "둘레·넓이·넓이 단위는 기존 도형 및 측정 담당. 이 가족에서 중복 생성하지 않음."
+      ]
+    },
+    {
+      "grade": "초5",
+      "semester": 2,
+      "sourceChapter": "2-1 수의 범위와 어림하기",
+      "officialUnit": "수의 범위와 어림하기",
+      "sections": [
+        "2-1-1 이상과 이하 알아보기",
+        "2-1-2 초과와 미만 알아보기",
+        "2-1-3 수의 범위를 알고 문제 해결하기",
+        "2-1-4 올림 알아보기",
+        "2-1-5 버림 알아보기",
+        "2-1-6 반올림 알아보기와 어림의 활용"
+      ],
+      "addedIds": [
+        "ec-g5-range-integer-count-v1",
+        "ec-g5-round-up-v1",
+        "ec-g5-round-down-v1",
+        "ec-g5-round-nearest-v1",
+        "ec-g5-round-decimal-up-v1",
+        "ec-g5-round-decimal-down-v1",
+        "ec-g5-round-decimal-nearest-v1"
+      ],
+      "existingIds": [],
+      "exclusions": [
+        "수직선에 범위를 그리기·상황에 맞는 어림 방법 고르기 제외. 끝점 조건별 개수 및 지정 자리 올림/버림/반올림 포함."
+      ]
+    },
+    {
+      "grade": "초5",
+      "semester": 2,
+      "sourceChapter": "2-2 분수의 곱셈",
+      "officialUnit": "분수의 곱셈",
+      "sections": [
+        "2-2-1 (분수)×(자연수)의 계산",
+        "2-2-2 (자연수)×(분수)의 계산",
+        "2-2-3 진분수의 곱셈",
+        "2-2-4 여러 가지 분수의 곱셈"
+      ],
+      "addedIds": [],
+      "existingIds": ["elem-g5-fraction-mul", "elem-g5-fraction-mul-natural"],
+      "exclusions": [
+        "기존 분수×분수(대분수 포함), 분수×자연수 재사용. 가환성 역순을 새 유형으로 늘리지 않음."
+      ]
+    },
+    {
+      "grade": "초5",
+      "semester": 2,
+      "sourceChapter": "2-3 합동과 대칭",
+      "officialUnit": "합동과 대칭",
+      "sections": [
+        "2-3-1 도형의 합동 알아보기",
+        "2-3-2 합동인 도형의 성질 알아보기",
+        "2-3-3 선대칭도형과 그 성질 알아보기",
+        "2-3-4 점대칭도형과 그 성질 알아보기"
+      ],
+      "addedIds": [],
+      "existingIds": [],
+      "exclusions": [
+        "합동·대칭 도형과 대응 길이/각은 기존 도형 담당. 작도·인식 제외."
+      ]
+    },
+    {
+      "grade": "초5",
+      "semester": 2,
+      "sourceChapter": "2-4 소수의 곱셈",
+      "officialUnit": "소수의 곱셈",
+      "sections": [
+        "2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "2-4-2 (1보다 큰 소수)×(자연수)의 계산",
+        "2-4-3 (자연수)×(1보다 작은 소수)의 계산",
+        "2-4-4 (자연수)×(1보다 큰 소수)의 계산",
+        "2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+        "2-4-6 (1보다 큰 소수)×(1보다 큰 소수)의 계산",
+        "2-4-7 곱의 소수점의 위치"
+      ],
+      "addedIds": [],
+      "existingIds": ["elem-g5-decimal-mul", "elem-g5-decimal-mul-natural"],
+      "exclusions": [
+        "기존 소수×소수 및 소수×자연수 재사용. 정수가 아닌 소수 영역과 정확한 곱 유지."
+      ]
+    },
+    {
+      "grade": "초5",
+      "semester": 2,
+      "sourceChapter": "2-5 직육면체",
+      "officialUnit": "직육면체",
+      "sections": [
+        "2-5-1 직사각형 6개로 둘러싸인 도형",
+        "2-5-2 정사각형 6개로 둘러싸인 도형",
+        "2-5-3 직육면체의 성질",
+        "2-5-4 직육면체의 겨냥도",
+        "2-5-5 정육면체의 전개도",
+        "2-5-6 직육면체의 전개도"
+      ],
+      "addedIds": [],
+      "existingIds": [
+        "e5-cuboid-edges",
+        "e5-cube-edges",
+        "e5-cuboid-edges-height",
+        "e5-cube-edges-side"
+      ],
+      "exclusions": [
+        "직육면체 구성 수치와 길이는 기존 도형 담당. 겨냥도/전개도 인식·작도 제외."
+      ]
+    },
+    {
+      "grade": "초5",
+      "semester": 2,
+      "sourceChapter": "2-6 평균과 가능성",
+      "officialUnit": "평균과 가능성",
+      "sections": [
+        "2-6-1 평균 알아보기",
+        "2-6-2 평균을 이용하여 문제해결하기",
+        "2-6-3 일이 일어날 가능성"
+      ],
+      "addedIds": [
+        "ec-g5-average-v1",
+        "ec-g5-average-total-v1",
+        "ec-g5-average-missing-v1"
+      ],
+      "existingIds": [],
+      "exclusions": [
+        "평균·합계·빠진 자료는 자연수 평균 영역. 가능성의 말 표현/비교는 인식 활동이며 중학교 확률 공식으로 바꾸지 않음."
+      ]
+    },
+    {
+      "grade": "초6",
+      "semester": 1,
+      "sourceChapter": "1-1 분수의 나눗셈",
+      "officialUnit": "분수의 나눗셈",
+      "sections": [
+        "1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "1-1-2 (분수)÷(자연수) 알아보기",
+        "1-1-3 (대분수)÷(자연수) 알아보기"
+      ],
+      "addedIds": [],
+      "existingIds": [
+        "elem-g6-fraction-div-natural",
+        "elem-g6-natural-div-fraction-quotient"
+      ],
+      "exclusions": [
+        "기존 자연수 나눗셈→분수 및 분수÷자연수(대분수 포함) 재사용."
+      ]
+    },
+    {
+      "grade": "초6",
+      "semester": 1,
+      "sourceChapter": "1-2 각기둥과 각뿔",
+      "officialUnit": "각기둥과 각뿔",
+      "sections": [
+        "1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "1-2-2 각기둥의 이름과 구성 요소",
+        "1-2-3 각기둥의 전개도",
+        "1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "1-2-5 각뿔의 이름과 구성 요소"
+      ],
+      "addedIds": [],
+      "existingIds": [],
+      "exclusions": [
+        "각기둥·각뿔 수치와 구성 요소는 기존 도형 소유. 이름·전개도 인식 제외."
+      ]
+    },
+    {
+      "grade": "초6",
+      "semester": 1,
+      "sourceChapter": "1-3 소수의 나눗셈",
+      "officialUnit": "소수의 나눗셈",
+      "sections": [
+        "1-3-1 (소수)÷(자연수) 알아보기",
+        "1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+        "1-3-3 소수점 아래 0을 내려 계산하는 (소수)÷(자연수) 알아보기",
+        "1-3-4 몫의 소수 첫째 자리에 0이 있는 (소수)÷(자연수) 알아보기",
+        "1-3-5 (자연수)÷(자연수), 어림셈하여 몫의 소수점 위치 확인하기"
+      ],
+      "addedIds": [],
+      "existingIds": ["elem-g6-decimal-div-natural"],
+      "exclusions": [
+        "기존 소수÷자연수의 정확한 유한소수 몫 재사용. 나눗셈 원리 설명·자유 어림 제외."
+      ]
+    },
+    {
+      "grade": "초6",
+      "semester": 1,
+      "sourceChapter": "1-4 비와 비율",
+      "officialUnit": "비와 비율",
+      "sections": [
+        "1-4-1 두 수 비교하기",
+        "1-4-2 비",
+        "1-4-3 비율",
+        "1-4-4 비율이 사용되는 경우",
+        "1-4-5 백분율",
+        "1-4-6 백분율이 사용되는 경우"
+      ],
+      "addedIds": [
+        "ec-g6-ratio-value-v1",
+        "ec-g6-percent-to-fraction-v1",
+        "ec-g6-percent-to-decimal-v1",
+        "ec-g6-fraction-to-percent-v1",
+        "ec-g6-decimal-to-percent-v1",
+        "ec-g6-percent-part-v1",
+        "ec-g6-percent-whole-v1",
+        "ec-g6-percent-rate-v1"
+      ],
+      "existingIds": [],
+      "exclusions": [
+        "개념의 말 설명 및 크기 비교 제외. 비율·백분율·분수·소수 전환과 비교량/기준량/비율 계산 포함."
+      ]
+    },
+    {
+      "grade": "초6",
+      "semester": 1,
+      "sourceChapter": "1-5 여러 가지 그래프",
+      "officialUnit": "여러 가지 그래프",
+      "sections": [
+        "1-5-1 띠그래프",
+        "1-5-2 띠그래프로 나타내기",
+        "1-5-3 원그래프",
+        "1-5-4 원그래프로 나타내기",
+        "1-5-5 여러 가지 그래프 비교하기"
+      ],
+      "addedIds": [
+        "ec-g6-chart-count-v1",
+        "ec-g6-chart-percent-v1",
+        "ec-g6-chart-missing-percent-v1"
+      ],
+      "existingIds": [],
+      "exclusions": [
+        "띠·원그래프 작도/시각 해독/적절한 그래프 선택 제외. 명시된 수치 표의 백분율·개수·남은 비율 포함. 초등에 원그래프 중심각 공식 추가하지 않음."
+      ]
+    },
+    {
+      "grade": "초6",
+      "semester": 1,
+      "sourceChapter": "1-6 직육면체의 겉넓이와 부피",
+      "officialUnit": "직육면체의 겉넓이와 부피",
+      "sections": [
+        "1-6-1 직육면체의 겉넓이 구하는 방법",
+        "1-6-2 직육면체의 부피 비교와 직육면체의 부피 구하는 방법",
+        "1-6-3 ㎥ 알아보기"
+      ],
+      "addedIds": [],
+      "existingIds": [
+        "e6-volume-m3-cm3",
+        "e6-volume-decimal-units",
+        "e6-cuboid-surface",
+        "e6-cube-surface",
+        "e6-cuboid-surface-height",
+        "e6-cube-surface-side",
+        "e6-cuboid-volume",
+        "e6-cube-volume",
+        "e6-cuboid-volume-height",
+        "e6-cube-volume-side",
+        "e6-cuboid-base-volume",
+        "e6-cuboid-base-height"
+      ],
+      "exclusions": ["겉넓이·부피와 단위는 기존 도형/측정 소유. 중복 없음."]
+    },
+    {
+      "grade": "초6",
+      "semester": 2,
+      "sourceChapter": "2-1 분수의 나눗셈",
+      "officialUnit": "분수의 나눗셈",
+      "sections": [
+        "2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "2-1-2 분모가 다른 (분수)÷(분수) 알아보기",
+        "2-1-3 (자연수)÷(분수) 알아보기",
+        "2-1-4 (분수)÷(분수)를 (분수)×(분수)로 나타내기",
+        "2-1-5 (가분수)÷(분수), (대분수)÷(분수) 알아보기"
+      ],
+      "addedIds": [],
+      "existingIds": ["elem-g6-fraction-div", "elem-g6-natural-div-fraction"],
+      "exclusions": ["기존 분수÷분수(대분수 포함) 및 자연수÷분수 재사용."]
+    },
+    {
+      "grade": "초6",
+      "semester": 2,
+      "sourceChapter": "2-2 소수의 나눗셈",
+      "officialUnit": "소수의 나눗셈",
+      "sections": [
+        "2-2-1 자릿수가 같은 (소수)÷(소수) 알아보기",
+        "2-2-2 자릿수가 다른 (소수)÷(소수) 알아보기",
+        "2-2-3 (자연수)÷(소수) 알아보기",
+        "2-2-4 몫을 반올림하여 나타내기",
+        "2-2-5 나누어 주고 남는 양 알아보기"
+      ],
+      "addedIds": [
+        "ec-g6-rounded-quotient-v1",
+        "ec-g6-decimal-sharing-count-v1",
+        "ec-g6-decimal-sharing-remainder-v1"
+      ],
+      "existingIds": ["elem-g6-decimal-div", "elem-g6-natural-div-decimal"],
+      "exclusions": [
+        "기존 정확한 소수÷소수/자연수÷소수 재사용. 반올림 몫·가득 담는 개수·남는 양을 추가. 무한소수의 무제한 전개 제외."
+      ]
+    },
+    {
+      "grade": "초6",
+      "semester": 2,
+      "sourceChapter": "2-3 공간과 입체",
+      "officialUnit": "공간과 입체",
+      "sections": [
+        "2-3-1 어느 방향에서 보았는지 알아보기",
+        "2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)",
+        "2-3-3 쌓은 모양과 쌓기나무의 개수 알아보기 (2)",
+        "2-3-4 쌓은 모양과 쌓기나무의 개수 알아보기 (3)",
+        "2-3-5 쌓은 모양과 쌓기나무의 개수 알아보기 (4)",
+        "2-3-6 여러 가지 모양 만들기"
+      ],
+      "addedIds": [],
+      "existingIds": [],
+      "exclusions": [
+        "쌓기나무 개수와 수치 계산은 기존 도형 담당. 방향·모양 구성/인식 제외."
+      ]
+    },
+    {
+      "grade": "초6",
+      "semester": 2,
+      "sourceChapter": "2-4 비례식과 비례배분",
+      "officialUnit": "비례식과 비례배분",
+      "sections": [
+        "2-4-1 비의 성질 알아보기",
+        "2-4-2 간단한 자연수의 비로 나타내기",
+        "2-4-3 비례식 알아보기",
+        "2-4-4 비례식의 성질 알아보기",
+        "2-4-5 비례배분"
+      ],
+      "addedIds": [
+        "ec-g6-simplest-ratio-integer-v1",
+        "ec-g6-simplest-ratio-decimal-v1",
+        "ec-g6-simplest-ratio-fraction-v1",
+        "ec-g6-proportion-blank-v1",
+        "ec-g6-distribution-part-v1",
+        "ec-g6-distribution-whole-v1"
+      ],
+      "existingIds": [],
+      "exclusions": [
+        "비 두 항을 동시에 쓰는 새 답 스키마 대신 한 항이 주어진 단일 빈칸. 자연수·소수·분수의 간단한 비, 비례식 네 위치, 부분/전체 비례배분 포함."
+      ]
+    },
+    {
+      "grade": "초6",
+      "semester": 2,
+      "sourceChapter": "2-5 원의 둘레와 넓이",
+      "officialUnit": "원의 둘레와 넓이",
+      "sections": [
+        "2-5-1 원주와 원주율 알아보기",
+        "2-5-2 원주와 지름 구하기",
+        "2-5-3 원의 넓이 어림하기",
+        "2-5-4 원의 넓이 구하는 방법 알아보기"
+      ],
+      "addedIds": [],
+      "existingIds": [
+        "e6-circle-circumference-radius",
+        "e6-circle-circumference-diameter",
+        "e6-circle-area-radius",
+        "e6-circle-area-diameter",
+        "e6-circle-radius-circumference",
+        "e6-circle-diameter-circumference",
+        "e6-circle-radius-area",
+        "e6-circle-diameter-area"
+      ],
+      "exclusions": [
+        "원주·지름·원 넓이 수치 계산은 기존 도형 소유. 넓이 자유 어림 제외."
+      ]
+    },
+    {
+      "grade": "초6",
+      "semester": 2,
+      "sourceChapter": "2-6 원기둥, 원뿔, 구",
+      "officialUnit": "원기둥, 원뿔, 구",
+      "sections": [
+        "2-6-1 원기둥 알아보기",
+        "2-6-2 원기둥의 전개도 알아보기",
+        "2-6-3 원뿔 알아보기",
+        "2-6-4 구 알아보기와 여러 가지 모양 만들기"
+      ],
+      "addedIds": [],
+      "existingIds": [
+        "e6-cylinder-net-area",
+        "e6-cylinder-net-area-height",
+        "e6-cylinder-net-area-radius",
+        "e6-cylinder-net-area-diameter"
+      ],
+      "exclusions": [
+        "원기둥·원뿔·구 모양/전개도 인식 및 만들기 제외. 이 단원의 이름만 보고 중학교 부피 공식을 추가하지 않음."
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "id": "ec-g3-multiply-two-by-one-v1",
+      "title": "두 자리 수 × 한 자리 수",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "곱셈"
+      },
+      "domainSize": 720,
+      "domain": "10~99와 2~9의 곱. 받아올림이 없는 경우와 있는 경우를 포함합니다."
+    },
+    {
+      "id": "ec-g3-fraction-amount-v1",
+      "title": "전체의 분수만큼 구하기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "분수"
+      },
+      "domainSize": 792,
+      "domain": "분모 2~12, 진분수와 그 분모의 배수인 전체. 주어진 양은 자연수입니다."
+    },
+    {
+      "id": "ec-g3-fraction-whole-v1",
+      "title": "분수만큼의 양에서 전체 구하기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "분수"
+      },
+      "domainSize": 792,
+      "domain": "분모 2~12, 진분수와 그 분모의 배수인 전체. 주어진 양은 자연수입니다."
+    },
+    {
+      "id": "ec-g3-fraction-part-representation-v1",
+      "title": "전체와 부분을 분수로 나타내기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "분수"
+      },
+      "domainSize": 66,
+      "domain": "전체 2~12개 중 일부를 지정한 분모의 분수로 나타냅니다."
+    },
+    {
+      "id": "ec-g3-unit-fraction-amount-v1",
+      "title": "단위분수 여러 개의 크기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "분수와 소수"
+      },
+      "domainSize": 66,
+      "domain": "분모 2~12인 단위분수의 묶음. 답은 지정한 분모 또는 개수입니다."
+    },
+    {
+      "id": "ec-g3-unit-fraction-count-v1",
+      "title": "자연수에 들어 있는 단위분수의 개수",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "분수"
+      },
+      "domainSize": 121,
+      "domain": "분모 2~12인 단위분수의 묶음. 답은 지정한 분모 또는 개수입니다."
+    },
+    {
+      "id": "ec-g3-mixed-to-improper-v1",
+      "title": "대분수를 가분수로 바꾸기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "분수"
+      },
+      "domainSize": 180,
+      "domain": "자연수 부분 1~5, 분모 2~9. 원래 분모를 유지하며 약분하지 않습니다."
+    },
+    {
+      "id": "ec-g3-improper-to-mixed-v1",
+      "title": "가분수를 대분수로 바꾸기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "분수"
+      },
+      "domainSize": 180,
+      "domain": "자연수 부분 1~5, 분모 2~9. 원래 분모를 유지하며 약분하지 않습니다."
+    },
+    {
+      "id": "ec-g3-tenths-fraction-v1",
+      "title": "소수 한 자리 수를 분수로",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "분수와 소수"
+      },
+      "domainSize": 9,
+      "domain": "0.1~0.9의 소수 한 자리 수. 1학기 진분수 범위에서 분모 10을 유지합니다."
+    },
+    {
+      "id": "ec-g3-tenths-decimal-v1",
+      "title": "분모가 10인 분수를 소수로",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "분수와 소수"
+      },
+      "domainSize": 9,
+      "domain": "0.1~0.9의 소수 한 자리 수. 1학기 진분수 범위에서 분모 10을 유지합니다."
+    },
+    {
+      "id": "ec-g3-unit-hour-minute-small-v1",
+      "title": "시간·분: 분 단위로 바꾸기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "길이와 시간"
+      },
+      "domainSize": 24,
+      "domain": "1~24 시간 범위의 정확한 단위 환산."
+    },
+    {
+      "id": "ec-g3-unit-hour-minute-large-v1",
+      "title": "시간·분: 시간 단위로 바꾸기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "길이와 시간"
+      },
+      "domainSize": 24,
+      "domain": "1~24 시간 범위의 정확한 단위 환산."
+    },
+    {
+      "id": "ec-g3-unit-minute-second-small-v1",
+      "title": "분·초: 초 단위로 바꾸기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "길이와 시간"
+      },
+      "domainSize": 24,
+      "domain": "1~24 분 범위의 정확한 단위 환산."
+    },
+    {
+      "id": "ec-g3-unit-minute-second-large-v1",
+      "title": "분·초: 분 단위로 바꾸기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "길이와 시간"
+      },
+      "domainSize": 24,
+      "domain": "1~24 분 범위의 정확한 단위 환산."
+    },
+    {
+      "id": "ec-g3-unit-hour-second-small-v1",
+      "title": "시간·초: 초 단위로 바꾸기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "길이와 시간"
+      },
+      "domainSize": 24,
+      "domain": "1~24 시간 범위의 정확한 단위 환산."
+    },
+    {
+      "id": "ec-g3-unit-hour-second-large-v1",
+      "title": "시간·초: 시간 단위로 바꾸기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "길이와 시간"
+      },
+      "domainSize": 24,
+      "domain": "1~24 시간 범위의 정확한 단위 환산."
+    },
+    {
+      "id": "ec-g3-unit-kg-g-small-v1",
+      "title": "kg·g: g 단위로 바꾸기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "들이와 무게"
+      },
+      "domainSize": 24,
+      "domain": "1~24 kg 범위의 정확한 단위 환산."
+    },
+    {
+      "id": "ec-g3-unit-kg-g-large-v1",
+      "title": "kg·g: kg 단위로 바꾸기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "들이와 무게"
+      },
+      "domainSize": 24,
+      "domain": "1~24 kg 범위의 정확한 단위 환산."
+    },
+    {
+      "id": "ec-g3-unit-t-kg-small-v1",
+      "title": "t·kg: kg 단위로 바꾸기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "들이와 무게"
+      },
+      "domainSize": 24,
+      "domain": "1~24 t 범위의 정확한 단위 환산."
+    },
+    {
+      "id": "ec-g3-unit-t-kg-large-v1",
+      "title": "t·kg: t 단위로 바꾸기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "들이와 무게"
+      },
+      "domainSize": 24,
+      "domain": "1~24 t 범위의 정확한 단위 환산."
+    },
+    {
+      "id": "ec-g3-compound-hour-minute-to-small-v1",
+      "title": "시간·분 복합 단위: 합친 양 구하기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "길이와 시간"
+      },
+      "domainSize": 48,
+      "domain": "큰 단위 1~8, 작은 단위는 올림 전 범위. 빈칸은 하나입니다."
+    },
+    {
+      "id": "ec-g3-compound-hour-minute-large-blank-v1",
+      "title": "시간·분 복합 단위: 시간 구하기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "길이와 시간"
+      },
+      "domainSize": 48,
+      "domain": "큰 단위 1~8, 작은 단위는 올림 전 범위. 빈칸은 하나입니다."
+    },
+    {
+      "id": "ec-g3-compound-hour-minute-small-blank-v1",
+      "title": "시간·분 복합 단위: 분 구하기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "길이와 시간"
+      },
+      "domainSize": 48,
+      "domain": "큰 단위 1~8, 작은 단위는 올림 전 범위. 빈칸은 하나입니다."
+    },
+    {
+      "id": "ec-g3-compound-minute-second-to-small-v1",
+      "title": "분·초 복합 단위: 합친 양 구하기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "길이와 시간"
+      },
+      "domainSize": 48,
+      "domain": "큰 단위 1~8, 작은 단위는 올림 전 범위. 빈칸은 하나입니다."
+    },
+    {
+      "id": "ec-g3-compound-minute-second-large-blank-v1",
+      "title": "분·초 복합 단위: 분 구하기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "길이와 시간"
+      },
+      "domainSize": 48,
+      "domain": "큰 단위 1~8, 작은 단위는 올림 전 범위. 빈칸은 하나입니다."
+    },
+    {
+      "id": "ec-g3-compound-minute-second-small-blank-v1",
+      "title": "분·초 복합 단위: 초 구하기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "길이와 시간"
+      },
+      "domainSize": 48,
+      "domain": "큰 단위 1~8, 작은 단위는 올림 전 범위. 빈칸은 하나입니다."
+    },
+    {
+      "id": "ec-g3-compound-kg-g-to-small-v1",
+      "title": "kg·g 복합 단위: 합친 양 구하기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "들이와 무게"
+      },
+      "domainSize": 40,
+      "domain": "큰 단위 1~8, 작은 단위는 올림 전 범위. 빈칸은 하나입니다."
+    },
+    {
+      "id": "ec-g3-compound-kg-g-large-blank-v1",
+      "title": "kg·g 복합 단위: kg 구하기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "들이와 무게"
+      },
+      "domainSize": 40,
+      "domain": "큰 단위 1~8, 작은 단위는 올림 전 범위. 빈칸은 하나입니다."
+    },
+    {
+      "id": "ec-g3-compound-kg-g-small-blank-v1",
+      "title": "kg·g 복합 단위: g 구하기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "들이와 무게"
+      },
+      "domainSize": 40,
+      "domain": "큰 단위 1~8, 작은 단위는 올림 전 범위. 빈칸은 하나입니다."
+    },
+    {
+      "id": "ec-g3-compound-t-kg-to-small-v1",
+      "title": "t·kg 복합 단위: 합친 양 구하기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "들이와 무게"
+      },
+      "domainSize": 40,
+      "domain": "큰 단위 1~8, 작은 단위는 올림 전 범위. 빈칸은 하나입니다."
+    },
+    {
+      "id": "ec-g3-compound-t-kg-large-blank-v1",
+      "title": "t·kg 복합 단위: t 구하기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "들이와 무게"
+      },
+      "domainSize": 40,
+      "domain": "큰 단위 1~8, 작은 단위는 올림 전 범위. 빈칸은 하나입니다."
+    },
+    {
+      "id": "ec-g3-compound-t-kg-small-blank-v1",
+      "title": "t·kg 복합 단위: kg 구하기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "들이와 무게"
+      },
+      "domainSize": 40,
+      "domain": "큰 단위 1~8, 작은 단위는 올림 전 범위. 빈칸은 하나입니다."
+    },
+    {
+      "id": "ec-g3-compound-capacity-large-blank-v1",
+      "title": "L·mL 복합 단위: L 구하기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "들이와 무게"
+      },
+      "domainSize": 40,
+      "domain": "큰 단위 1~8, 작은 단위는 올림 전 범위. 빈칸은 하나입니다."
+    },
+    {
+      "id": "ec-g3-compound-capacity-small-blank-v1",
+      "title": "L·mL 복합 단위: mL 구하기",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "들이와 무게"
+      },
+      "domainSize": 40,
+      "domain": "큰 단위 1~8, 작은 단위는 올림 전 범위. 빈칸은 하나입니다."
+    },
+    {
+      "id": "ec-g3-hour-minute-sum-v1",
+      "title": "시간·분의 합",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "길이와 시간"
+      },
+      "domainSize": 120,
+      "domain": "복합 단위끼리 계산하며 받아올림·받아내림을 포함합니다. 답은 작은 단위 하나로 나타냅니다."
+    },
+    {
+      "id": "ec-g3-hour-minute-difference-v1",
+      "title": "시간·분의 차",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "길이와 시간"
+      },
+      "domainSize": 120,
+      "domain": "복합 단위끼리 계산하며 받아올림·받아내림을 포함합니다. 답은 작은 단위 하나로 나타냅니다."
+    },
+    {
+      "id": "ec-g3-minute-second-sum-v1",
+      "title": "분·초의 합",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "길이와 시간"
+      },
+      "domainSize": 120,
+      "domain": "복합 단위끼리 계산하며 받아올림·받아내림을 포함합니다. 답은 작은 단위 하나로 나타냅니다."
+    },
+    {
+      "id": "ec-g3-minute-second-difference-v1",
+      "title": "분·초의 차",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "길이와 시간"
+      },
+      "domainSize": 120,
+      "domain": "복합 단위끼리 계산하며 받아올림·받아내림을 포함합니다. 답은 작은 단위 하나로 나타냅니다."
+    },
+    {
+      "id": "ec-g3-capacity-sum-v1",
+      "title": "L·mL의 합",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "들이와 무게"
+      },
+      "domainSize": 120,
+      "domain": "복합 단위끼리 계산하며 받아올림·받아내림을 포함합니다. 답은 작은 단위 하나로 나타냅니다."
+    },
+    {
+      "id": "ec-g3-capacity-difference-v1",
+      "title": "L·mL의 차",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "들이와 무게"
+      },
+      "domainSize": 120,
+      "domain": "복합 단위끼리 계산하며 받아올림·받아내림을 포함합니다. 답은 작은 단위 하나로 나타냅니다."
+    },
+    {
+      "id": "ec-g3-mass-sum-v1",
+      "title": "kg·g의 합",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "들이와 무게"
+      },
+      "domainSize": 120,
+      "domain": "복합 단위끼리 계산하며 받아올림·받아내림을 포함합니다. 답은 작은 단위 하나로 나타냅니다."
+    },
+    {
+      "id": "ec-g3-mass-difference-v1",
+      "title": "kg·g의 차",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "들이와 무게"
+      },
+      "domainSize": 120,
+      "domain": "복합 단위끼리 계산하며 받아올림·받아내림을 포함합니다. 답은 작은 단위 하나로 나타냅니다."
+    },
+    {
+      "id": "ec-g3-elapsed-time-v1",
+      "title": "시작·끝 시각 사이의 시간",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "길이와 시간"
+      },
+      "domainSize": 192,
+      "domain": "같은 날 오전 시각, 시작 1~8시와 5~55분, 경과 5~115분. 시간 경계를 지나는 경우를 포함합니다."
+    },
+    {
+      "id": "ec-g3-unit-fraction-count-in-fraction-v1",
+      "title": "분수에 들어 있는 단위분수의 개수",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "분수"
+      },
+      "domainSize": 231,
+      "domain": "분모 2~12, 분자는 1~분모의 3배. 진분수·가분수에 들어 있는 같은 분모의 단위분수 개수를 구합니다."
+    },
+    {
+      "id": "ec-g4-large-place-value-v1",
+      "title": "큰 수의 자리값",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 1,
+        "unit": "큰 수"
+      },
+      "domainSize": 243,
+      "domain": "만~조 자리의 숫자가 나타내는 값. 선택한 자리 아래에도 숫자가 있습니다."
+    },
+    {
+      "id": "ec-g4-large-unit-value-v1",
+      "title": "만·억·조 묶음의 수",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 1,
+        "unit": "큰 수"
+      },
+      "domainSize": 267,
+      "domain": "만·억·조를 2~90개씩 모은 수와 묶음 수를 구합니다."
+    },
+    {
+      "id": "ec-g4-large-unit-count-v1",
+      "title": "큰 수는 만·억·조의 몇 배인지",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 1,
+        "unit": "큰 수"
+      },
+      "domainSize": 267,
+      "domain": "만·억·조를 2~90개씩 모은 수와 묶음 수를 구합니다."
+    },
+    {
+      "id": "ec-g4-large-scale-up-v1",
+      "title": "큰 수의 10·100·1000배",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 1,
+        "unit": "큰 수"
+      },
+      "domainSize": 261,
+      "domain": "만~억 단위 수의 자릿값 변화를 계산합니다. 결과는 안전한 정수 범위입니다."
+    },
+    {
+      "id": "ec-g4-large-scale-down-v1",
+      "title": "큰 수의 1/10·1/100·1/1000배",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 1,
+        "unit": "큰 수"
+      },
+      "domainSize": 261,
+      "domain": "만~억 단위 수의 자릿값 변화를 계산합니다. 결과는 안전한 정수 범위입니다."
+    },
+    {
+      "id": "ec-g4-large-skip-count-v1",
+      "title": "큰 수 뛰어 세기",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 1,
+        "unit": "큰 수"
+      },
+      "domainSize": 532,
+      "domain": "만·십만·억·십억 단위로 여러 번 뛰어 센 수를 구합니다."
+    },
+    {
+      "id": "ec-g4-decimal-place-value-v1",
+      "title": "소수의 자리 숫자가 나타내는 값",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 2,
+        "unit": "소수의 덧셈과 뺄셈"
+      },
+      "domainSize": 216,
+      "domain": "소수 첫째~셋째 자리와 0.1·0.01·0.001의 관계를 계산합니다."
+    },
+    {
+      "id": "ec-g4-decimal-place-count-v1",
+      "title": "소수에 들어 있는 단위소수의 개수",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 2,
+        "unit": "소수의 덧셈과 뺄셈"
+      },
+      "domainSize": 216,
+      "domain": "소수 첫째~셋째 자리와 0.1·0.01·0.001의 관계를 계산합니다."
+    },
+    {
+      "id": "ec-g4-decimal-scale-up-v1",
+      "title": "소수의 10·100배",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 2,
+        "unit": "소수의 덧셈과 뺄셈"
+      },
+      "domainSize": 180,
+      "domain": "0.1~9.9의 소수 한 자리 수에서 소수점 위치 관계를 계산합니다."
+    },
+    {
+      "id": "ec-g4-decimal-scale-down-v1",
+      "title": "소수의 1/10·1/100배",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 2,
+        "unit": "소수의 덧셈과 뺄셈"
+      },
+      "domainSize": 180,
+      "domain": "0.1~9.9의 소수 한 자리 수에서 소수점 위치 관계를 계산합니다."
+    },
+    {
+      "id": "ec-g4-pattern-add-next-v1",
+      "title": "일정한 수를 더하는 규칙: 다음 수",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 1,
+        "unit": "규칙 찾기"
+      },
+      "domainSize": 108,
+      "domain": "수 배열과 적용할 규칙이 명시됩니다. 유한 수열의 규칙을 임의로 추측하게 하지 않습니다."
+    },
+    {
+      "id": "ec-g4-pattern-add-missing-v1",
+      "title": "일정한 수를 더하는 규칙: 가운데 수",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 1,
+        "unit": "규칙 찾기"
+      },
+      "domainSize": 108,
+      "domain": "수 배열과 적용할 규칙이 명시됩니다. 유한 수열의 규칙을 임의로 추측하게 하지 않습니다."
+    },
+    {
+      "id": "ec-g4-pattern-multiply-next-v1",
+      "title": "일정한 수를 곱하는 규칙: 다음 수",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 1,
+        "unit": "규칙 찾기"
+      },
+      "domainSize": 108,
+      "domain": "수 배열과 적용할 규칙이 명시됩니다. 유한 수열의 규칙을 임의로 추측하게 하지 않습니다."
+    },
+    {
+      "id": "ec-g4-pattern-multiply-missing-v1",
+      "title": "일정한 수를 곱하는 규칙: 가운데 수",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 1,
+        "unit": "규칙 찾기"
+      },
+      "domainSize": 108,
+      "domain": "수 배열과 적용할 규칙이 명시됩니다. 유한 수열의 규칙을 임의로 추측하게 하지 않습니다."
+    },
+    {
+      "id": "ec-g4-pattern-subtract-next-v1",
+      "title": "일정한 수를 빼는 규칙: 다음 수",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 1,
+        "unit": "규칙 찾기"
+      },
+      "domainSize": 108,
+      "domain": "각 단계의 규칙이 명시됩니다. 나눗셈은 나누어떨어지고 모든 항은 양의 자연수입니다."
+    },
+    {
+      "id": "ec-g4-pattern-subtract-missing-v1",
+      "title": "일정한 수를 빼는 규칙: 가운데 수",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 1,
+        "unit": "규칙 찾기"
+      },
+      "domainSize": 108,
+      "domain": "각 단계의 규칙이 명시됩니다. 나눗셈은 나누어떨어지고 모든 항은 양의 자연수입니다."
+    },
+    {
+      "id": "ec-g4-pattern-divide-next-v1",
+      "title": "일정한 수로 나누는 규칙: 다음 수",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 1,
+        "unit": "규칙 찾기"
+      },
+      "domainSize": 108,
+      "domain": "각 단계의 규칙이 명시됩니다. 나눗셈은 나누어떨어지고 모든 항은 양의 자연수입니다."
+    },
+    {
+      "id": "ec-g4-pattern-divide-missing-v1",
+      "title": "일정한 수로 나누는 규칙: 가운데 수",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 1,
+        "unit": "규칙 찾기"
+      },
+      "domainSize": 108,
+      "domain": "각 단계의 규칙이 명시됩니다. 나눗셈은 나누어떨어지고 모든 항은 양의 자연수입니다."
+    },
+    {
+      "id": "ec-g5-divisor-count-v1",
+      "title": "약수의 개수",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 1,
+        "unit": "약수와 배수"
+      },
+      "domainSize": 119,
+      "domain": "2~120의 자연수의 약수를 찾아 합 또는 개수를 구합니다."
+    },
+    {
+      "id": "ec-g5-divisor-sum-v1",
+      "title": "약수의 합",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 1,
+        "unit": "약수와 배수"
+      },
+      "domainSize": 119,
+      "domain": "2~120의 자연수의 약수를 찾아 합 또는 개수를 구합니다."
+    },
+    {
+      "id": "ec-g5-gcd-v1",
+      "title": "최대공약수",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 1,
+        "unit": "약수와 배수"
+      },
+      "domainSize": 1770,
+      "domain": "2~60의 자연수 두 개. 같은 수와 서로소인 수를 포함합니다."
+    },
+    {
+      "id": "ec-g5-lcm-v1",
+      "title": "최소공배수",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 1,
+        "unit": "약수와 배수"
+      },
+      "domainSize": 1770,
+      "domain": "2~60의 자연수 두 개. 같은 수와 서로소인 수를 포함합니다."
+    },
+    {
+      "id": "ec-g5-multiple-nth-v1",
+      "title": "몇 번째 배수",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 1,
+        "unit": "약수와 배수"
+      },
+      "domainSize": 319,
+      "domain": "2~12의 배수. 양의 배수만 세며 상한 또는 순번이 명시됩니다."
+    },
+    {
+      "id": "ec-g5-multiple-count-v1",
+      "title": "범위 안의 배수 개수",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 1,
+        "unit": "약수와 배수"
+      },
+      "domainSize": 319,
+      "domain": "2~12의 배수. 양의 배수만 세며 상한 또는 순번이 명시됩니다."
+    },
+    {
+      "id": "ec-g5-reduce-fraction-v1",
+      "title": "기약분수로 약분",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 1,
+        "unit": "약분과 통분"
+      },
+      "domainSize": 360,
+      "domain": "분모 2~12의 기약분수에 2~9를 곱해 만든 분수입니다."
+    },
+    {
+      "id": "ec-g5-equivalent-fraction-numerator-v1",
+      "title": "크기가 같은 분수의 분자",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 1,
+        "unit": "약분과 통분"
+      },
+      "domainSize": 360,
+      "domain": "주어진 분수와 같은 크기의 분수에서 숫자 빈칸 하나를 구합니다."
+    },
+    {
+      "id": "ec-g5-equivalent-fraction-denominator-v1",
+      "title": "크기가 같은 분수의 분모",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 1,
+        "unit": "약분과 통분"
+      },
+      "domainSize": 360,
+      "domain": "주어진 분수와 같은 크기의 분수에서 숫자 빈칸 하나를 구합니다."
+    },
+    {
+      "id": "ec-g5-common-denominator-v1",
+      "title": "가장 작은 공통분모",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 1,
+        "unit": "약분과 통분"
+      },
+      "domainSize": 55,
+      "domain": "서로 다른 분모 2~12인 두 단위분수를 가장 작은 공통분모로 통분합니다."
+    },
+    {
+      "id": "ec-g5-common-numerator-v1",
+      "title": "통분한 분자의 값",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 1,
+        "unit": "약분과 통분"
+      },
+      "domainSize": 55,
+      "domain": "서로 다른 분모 2~12인 두 단위분수를 가장 작은 공통분모로 통분합니다."
+    },
+    {
+      "id": "ec-g5-fraction-to-decimal-v1",
+      "title": "분수를 소수로 나타내기",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 1,
+        "unit": "약분과 통분"
+      },
+      "domainSize": 198,
+      "domain": "분모 2·4·5·8·20·25·50·100. 소수 셋째 자리까지로 끝나는 분수입니다."
+    },
+    {
+      "id": "ec-g5-decimal-to-fraction-v1",
+      "title": "소수를 기약분수로 나타내기",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 1,
+        "unit": "약분과 통분"
+      },
+      "domainSize": 90,
+      "domain": "0.01~0.99의 소수 두 자리 수를 기약분수로 나타냅니다."
+    },
+    {
+      "id": "ec-g5-range-integer-count-v1",
+      "title": "수의 범위에 속하는 자연수 개수",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 2,
+        "unit": "수의 범위와 어림하기"
+      },
+      "domainSize": 1320,
+      "domain": "양 끝의 이상·초과 및 이하·미만을 모두 포함합니다."
+    },
+    {
+      "id": "ec-g5-round-up-v1",
+      "title": "올림하여 나타내기",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 2,
+        "unit": "수의 범위와 어림하기"
+      },
+      "domainSize": 29697,
+      "domain": "101~9999의 수를 십·백·천의 자리까지 나타냅니다. 경계와 자리 올림을 포함합니다."
+    },
+    {
+      "id": "ec-g5-round-down-v1",
+      "title": "버림하여 나타내기",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 2,
+        "unit": "수의 범위와 어림하기"
+      },
+      "domainSize": 29697,
+      "domain": "101~9999의 수를 십·백·천의 자리까지 나타냅니다. 경계와 자리 올림을 포함합니다."
+    },
+    {
+      "id": "ec-g5-round-nearest-v1",
+      "title": "반올림하여 나타내기",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 2,
+        "unit": "수의 범위와 어림하기"
+      },
+      "domainSize": 29697,
+      "domain": "101~9999의 수를 십·백·천의 자리까지 나타냅니다. 경계와 자리 올림을 포함합니다."
+    },
+    {
+      "id": "ec-g5-correspondence-output-v1",
+      "title": "대응 관계의 결과 구하기",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 1,
+        "unit": "규칙과 대응"
+      },
+      "domainSize": 1260,
+      "domain": "입력에 일정한 수를 곱하고 더하는 규칙이 명시됩니다. 표의 빈칸 하나를 계산합니다."
+    },
+    {
+      "id": "ec-g5-correspondence-input-v1",
+      "title": "대응 관계의 입력 구하기",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 1,
+        "unit": "규칙과 대응"
+      },
+      "domainSize": 1260,
+      "domain": "입력에 일정한 수를 곱하고 더하는 규칙이 명시됩니다. 표의 빈칸 하나를 계산합니다."
+    },
+    {
+      "id": "ec-g5-round-decimal-up-v1",
+      "title": "소수를 올림하여 나타내기",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 2,
+        "unit": "수의 범위와 어림하기"
+      },
+      "domainSize": 27000,
+      "domain": "소수 셋째 자리 수를 일의 자리, 소수 첫째 또는 둘째 자리까지 나타냅니다."
+    },
+    {
+      "id": "ec-g5-round-decimal-down-v1",
+      "title": "소수를 버림하여 나타내기",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 2,
+        "unit": "수의 범위와 어림하기"
+      },
+      "domainSize": 27000,
+      "domain": "소수 셋째 자리 수를 일의 자리, 소수 첫째 또는 둘째 자리까지 나타냅니다."
+    },
+    {
+      "id": "ec-g5-round-decimal-nearest-v1",
+      "title": "소수를 반올림하여 나타내기",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 2,
+        "unit": "수의 범위와 어림하기"
+      },
+      "domainSize": 27000,
+      "domain": "소수 셋째 자리 수를 일의 자리, 소수 첫째 또는 둘째 자리까지 나타냅니다."
+    },
+    {
+      "id": "ec-g5-four-operations-precedence-v1",
+      "title": "네 연산의 혼합 계산: 연산 순서",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 1,
+        "unit": "자연수의 혼합 계산"
+      },
+      "domainSize": 1920,
+      "domain": "덧셈·뺄셈·곱셈·나눗셈이 모두 있는 식. 나눗셈은 나누어떨어지고 중간값은 0 이상입니다."
+    },
+    {
+      "id": "ec-g5-four-operations-parentheses-v1",
+      "title": "네 연산의 혼합 계산: 소괄호",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 1,
+        "unit": "자연수의 혼합 계산"
+      },
+      "domainSize": 1920,
+      "domain": "덧셈·뺄셈·곱셈·나눗셈이 모두 있는 식. 나눗셈은 나누어떨어지고 중간값은 0 이상입니다."
+    },
+    {
+      "id": "ec-g5-four-operations-brackets-v1",
+      "title": "네 연산의 혼합 계산: 중괄호와 소괄호",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 1,
+        "unit": "자연수의 혼합 계산"
+      },
+      "domainSize": 480,
+      "domain": "덧셈·뺄셈·곱셈·나눗셈이 모두 있는 식. 나눗셈은 나누어떨어지고 중간값은 0 이상입니다."
+    },
+    {
+      "id": "ec-g6-ratio-value-v1",
+      "title": "비의 비율을 분수로",
+      "grade": "초6",
+      "curriculum": {
+        "semester": 1,
+        "unit": "비와 비율"
+      },
+      "domainSize": 870,
+      "domain": "비교하는 양 1~30, 기준량 2~30. 비율이 1보다 큰 경우도 포함합니다."
+    },
+    {
+      "id": "ec-g6-percent-to-fraction-v1",
+      "title": "백분율을 분수로",
+      "grade": "초6",
+      "curriculum": {
+        "semester": 1,
+        "unit": "비와 비율"
+      },
+      "domainSize": 200,
+      "domain": "1~200%를 정확한 소수 또는 기약분수로 나타냅니다."
+    },
+    {
+      "id": "ec-g6-percent-to-decimal-v1",
+      "title": "백분율을 소수로",
+      "grade": "초6",
+      "curriculum": {
+        "semester": 1,
+        "unit": "비와 비율"
+      },
+      "domainSize": 200,
+      "domain": "1~200%를 정확한 소수 또는 기약분수로 나타냅니다."
+    },
+    {
+      "id": "ec-g6-fraction-to-percent-v1",
+      "title": "분수를 백분율로",
+      "grade": "초6",
+      "curriculum": {
+        "semester": 1,
+        "unit": "비와 비율"
+      },
+      "domainSize": 198,
+      "domain": "분모가 100의 약수인 기약분수를 1~200% 범위에서 계산합니다."
+    },
+    {
+      "id": "ec-g6-decimal-to-percent-v1",
+      "title": "소수를 백분율로",
+      "grade": "초6",
+      "curriculum": {
+        "semester": 1,
+        "unit": "비와 비율"
+      },
+      "domainSize": 200,
+      "domain": "0.01~2.00의 소수를 백분율로 바꿉니다."
+    },
+    {
+      "id": "ec-g6-percent-part-v1",
+      "title": "기준량과 백분율에서 비교하는 양",
+      "grade": "초6",
+      "curriculum": {
+        "semester": 1,
+        "unit": "비와 비율"
+      },
+      "domainSize": 380,
+      "domain": "기준량 20~400, 백분율 5~95%. 모든 양은 자연수입니다."
+    },
+    {
+      "id": "ec-g6-percent-whole-v1",
+      "title": "비교하는 양과 백분율에서 기준량",
+      "grade": "초6",
+      "curriculum": {
+        "semester": 1,
+        "unit": "비와 비율"
+      },
+      "domainSize": 380,
+      "domain": "기준량 20~400, 백분율 5~95%. 모든 양은 자연수입니다."
+    },
+    {
+      "id": "ec-g6-percent-rate-v1",
+      "title": "비교하는 양과 기준량에서 백분율",
+      "grade": "초6",
+      "curriculum": {
+        "semester": 1,
+        "unit": "비와 비율"
+      },
+      "domainSize": 380,
+      "domain": "기준량 20~400, 백분율 5~95%. 모든 양은 자연수입니다."
+    },
+    {
+      "id": "ec-g6-simplest-ratio-integer-v1",
+      "title": "자연수의 비를 간단한 자연수의 비로",
+      "grade": "초6",
+      "curriculum": {
+        "semester": 2,
+        "unit": "비례식과 비례배분"
+      },
+      "domainSize": 1800,
+      "domain": "두 항이 서로소인 자연수의 비로 바꿉니다. 결과의 한 항은 주어지고 나머지 한 항을 구합니다."
+    },
+    {
+      "id": "ec-g6-simplest-ratio-decimal-v1",
+      "title": "소수의 비를 간단한 자연수의 비로",
+      "grade": "초6",
+      "curriculum": {
+        "semester": 2,
+        "unit": "비례식과 비례배분"
+      },
+      "domainSize": 1458,
+      "domain": "두 항이 서로소인 자연수의 비로 바꿉니다. 결과의 한 항은 주어지고 나머지 한 항을 구합니다."
+    },
+    {
+      "id": "ec-g6-simplest-ratio-fraction-v1",
+      "title": "분수의 비를 간단한 자연수의 비로",
+      "grade": "초6",
+      "curriculum": {
+        "semester": 2,
+        "unit": "비례식과 비례배분"
+      },
+      "domainSize": 1458,
+      "domain": "두 항이 서로소인 자연수의 비로 바꿉니다. 결과의 한 항은 주어지고 나머지 한 항을 구합니다."
+    },
+    {
+      "id": "ec-g6-proportion-blank-v1",
+      "title": "비례식의 빈칸",
+      "grade": "초6",
+      "curriculum": {
+        "semester": 2,
+        "unit": "비례식과 비례배분"
+      },
+      "domainSize": 1216,
+      "domain": "비례식의 네 항 중 한 항을 계산합니다. 모든 항은 양의 자연수입니다."
+    },
+    {
+      "id": "ec-g6-distribution-part-v1",
+      "title": "비례배분한 한 부분 구하기",
+      "grade": "초6",
+      "curriculum": {
+        "semester": 2,
+        "unit": "비례식과 비례배분"
+      },
+      "domainSize": 770,
+      "domain": "서로소인 1~9의 비, 전체는 비의 합의 2~15배입니다."
+    },
+    {
+      "id": "ec-g6-distribution-whole-v1",
+      "title": "비례배분한 양에서 전체 구하기",
+      "grade": "초6",
+      "curriculum": {
+        "semester": 2,
+        "unit": "비례식과 비례배분"
+      },
+      "domainSize": 770,
+      "domain": "서로소인 1~9의 비, 전체는 비의 합의 2~15배입니다."
+    },
+    {
+      "id": "ec-g6-rounded-quotient-v1",
+      "title": "나눗셈의 몫을 반올림",
+      "grade": "초6",
+      "curriculum": {
+        "semester": 2,
+        "unit": "소수의 나눗셈"
+      },
+      "domainSize": 3564,
+      "domain": "1~99를 2~19로 나눈 몫을 소수 첫째 또는 둘째 자리까지 반올림합니다."
+    },
+    {
+      "id": "ec-g6-decimal-sharing-count-v1",
+      "title": "소수인 양으로 가득 채울 수 있는 개수",
+      "grade": "초6",
+      "curriculum": {
+        "semester": 2,
+        "unit": "소수의 나눗셈"
+      },
+      "domainSize": 720,
+      "domain": "1.0~9.9 L를 0.2~0.9 L씩 가득 나누어 담습니다. 남는 양은 제수보다 작습니다."
+    },
+    {
+      "id": "ec-g6-decimal-sharing-remainder-v1",
+      "title": "소수인 양을 나누고 남는 양",
+      "grade": "초6",
+      "curriculum": {
+        "semester": 2,
+        "unit": "소수의 나눗셈"
+      },
+      "domainSize": 720,
+      "domain": "1.0~9.9 L를 0.2~0.9 L씩 가득 나누어 담습니다. 남는 양은 제수보다 작습니다."
+    },
+    {
+      "id": "ec-g3-data-total-v1",
+      "title": "자료의 정리: 자료의 합계",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "자료의 정리"
+      },
+      "domainSize": 1539,
+      "domain": "그래프로 나타낼 세 항목의 수치가 표로 주어집니다. 그래프를 읽거나 그리는 능력을 대신 평가하지 않습니다."
+    },
+    {
+      "id": "ec-g3-data-difference-v1",
+      "title": "자료의 정리: 자료의 차",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "자료의 정리"
+      },
+      "domainSize": 1539,
+      "domain": "그래프로 나타낼 세 항목의 수치가 표로 주어집니다. 그래프를 읽거나 그리는 능력을 대신 평가하지 않습니다."
+    },
+    {
+      "id": "ec-g3-data-missing-v1",
+      "title": "자료의 정리: 자료의 빠진 값",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "자료의 정리"
+      },
+      "domainSize": 1539,
+      "domain": "그래프로 나타낼 세 항목의 수치가 표로 주어집니다. 그래프를 읽거나 그리는 능력을 대신 평가하지 않습니다."
+    },
+    {
+      "id": "ec-g4-bar-data-total-v1",
+      "title": "막대그래프: 자료의 합계",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 1,
+        "unit": "막대그래프"
+      },
+      "domainSize": 1539,
+      "domain": "그래프로 나타낼 세 항목의 수치가 표로 주어집니다. 그래프를 읽거나 그리는 능력을 대신 평가하지 않습니다."
+    },
+    {
+      "id": "ec-g4-bar-data-difference-v1",
+      "title": "막대그래프: 자료의 차",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 1,
+        "unit": "막대그래프"
+      },
+      "domainSize": 1539,
+      "domain": "그래프로 나타낼 세 항목의 수치가 표로 주어집니다. 그래프를 읽거나 그리는 능력을 대신 평가하지 않습니다."
+    },
+    {
+      "id": "ec-g4-bar-data-missing-v1",
+      "title": "막대그래프: 자료의 빠진 값",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 1,
+        "unit": "막대그래프"
+      },
+      "domainSize": 1539,
+      "domain": "그래프로 나타낼 세 항목의 수치가 표로 주어집니다. 그래프를 읽거나 그리는 능력을 대신 평가하지 않습니다."
+    },
+    {
+      "id": "ec-g3-pictogram-quantity-v1",
+      "title": "그림그래프의 단위로 수량 계산",
+      "grade": "초3",
+      "curriculum": {
+        "semester": 2,
+        "unit": "자료의 정리"
+      },
+      "domainSize": 224,
+      "domain": "그림 한 개가 나타내는 수량과 그림 개수를 수치로 제시합니다. 임의 도형을 생성하지 않습니다."
+    },
+    {
+      "id": "ec-g4-line-data-increase-v1",
+      "title": "시간에 따른 수량의 증가량",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 2,
+        "unit": "꺾은선그래프"
+      },
+      "domainSize": 2700,
+      "domain": "오전과 오후의 수치를 표로 제시합니다. 변화량을 직접 계산합니다."
+    },
+    {
+      "id": "ec-g4-line-data-decrease-v1",
+      "title": "시간에 따른 수량의 감소량",
+      "grade": "초4",
+      "curriculum": {
+        "semester": 2,
+        "unit": "꺾은선그래프"
+      },
+      "domainSize": 2700,
+      "domain": "오전과 오후의 수치를 표로 제시합니다. 변화량을 직접 계산합니다."
+    },
+    {
+      "id": "ec-g5-average-v1",
+      "title": "세 자료의 평균",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 2,
+        "unit": "평균과 가능성"
+      },
+      "domainSize": 684,
+      "domain": "세 자연수 자료의 평균이 자연수가 되는 경우를 계산합니다."
+    },
+    {
+      "id": "ec-g5-average-total-v1",
+      "title": "평균과 개수에서 합계",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 2,
+        "unit": "평균과 가능성"
+      },
+      "domainSize": 429,
+      "domain": "자료 개수 2~12, 평균 2~40. 합계를 계산합니다."
+    },
+    {
+      "id": "ec-g5-average-missing-v1",
+      "title": "평균에서 빠진 자료",
+      "grade": "초5",
+      "curriculum": {
+        "semester": 2,
+        "unit": "평균과 가능성"
+      },
+      "domainSize": 1195,
+      "domain": "세 자료 중 두 값과 평균이 주어집니다. 빠진 값은 자연수입니다."
+    },
+    {
+      "id": "ec-g6-chart-count-v1",
+      "title": "띠·원그래프 자료: 항목의 수량",
+      "grade": "초6",
+      "curriculum": {
+        "semester": 1,
+        "unit": "여러 가지 그래프"
+      },
+      "domainSize": 1368,
+      "domain": "세 항목의 합계와 수치 표를 사용합니다. 원그래프 중심각이나 그래프 작도 문제는 포함하지 않습니다."
+    },
+    {
+      "id": "ec-g6-chart-percent-v1",
+      "title": "띠·원그래프 자료: 항목의 백분율",
+      "grade": "초6",
+      "curriculum": {
+        "semester": 1,
+        "unit": "여러 가지 그래프"
+      },
+      "domainSize": 1368,
+      "domain": "세 항목의 합계와 수치 표를 사용합니다. 원그래프 중심각이나 그래프 작도 문제는 포함하지 않습니다."
+    },
+    {
+      "id": "ec-g6-chart-missing-percent-v1",
+      "title": "띠·원그래프 자료: 남은 백분율",
+      "grade": "초6",
+      "curriculum": {
+        "semester": 1,
+        "unit": "여러 가지 그래프"
+      },
+      "domainSize": 1368,
+      "domain": "세 항목의 합계와 수치 표를 사용합니다. 원그래프 중심각이나 그래프 작도 문제는 포함하지 않습니다."
+    }
+  ]
+}
