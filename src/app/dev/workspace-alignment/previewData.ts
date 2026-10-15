@@ -6,6 +6,13 @@ import {
   englishExamCandidatesSchema,
   englishExamComposeSchema,
 } from "@/contracts/englishExamBuilder.contract";
+import {
+  ARITHMETIC_MAX_ITEMS_PER_ROUND,
+  ARITHMETIC_MAX_ITEMS_TOTAL,
+  ARITHMETIC_MAX_ROUNDS,
+} from "@/contracts/arithmetic.contract";
+import type { ArithmeticSheetPayload } from "@/contracts/arithmeticSheet.contract";
+import type { ArithmeticV2SheetPayload } from "@/contracts/arithmeticV2.contract";
 
 // Authored examples for visual review; never copied from an exam or user account.
 const stamp = "2026-10-08T00:00:00.000Z";
@@ -154,6 +161,84 @@ export async function previewFetch(
   const method = init?.method?.toUpperCase() ?? "GET";
   const json = (value: unknown, status = 200) =>
     Response.json(value, { status });
+  // The workspace has a fixture storage scope, so arithmetic uses its normal
+  // catalog gate. Run its deterministic engine locally, never an account API.
+  const arithmetic =
+    /^\/api\/arithmetic\/(v2\/)?(catalog|generate|regenerate)$/.exec(path);
+  if (arithmetic && method === (arithmetic[2] === "catalog" ? "GET" : "POST")) {
+    const v2 = Boolean(arithmetic[1]);
+    try {
+      if (arithmetic[2] === "regenerate") {
+        const {
+          arithmeticRegenerationRequestSchema,
+          regenerateArithmeticItems,
+          regenerateArithmeticV2Items,
+        } = await import("@/lib/arithmeticRegeneration");
+        const { sheet, target, seed } =
+          arithmeticRegenerationRequestSchema.parse(
+            JSON.parse(String(init?.body)),
+          );
+        return json({
+          data: v2
+            ? regenerateArithmeticV2Items(
+                sheet as ArithmeticV2SheetPayload,
+                target,
+                seed,
+              )
+            : regenerateArithmeticItems(
+                sheet as ArithmeticSheetPayload,
+                target,
+                seed,
+              ),
+        });
+      }
+      const limits = {
+        itemsPerRound: ARITHMETIC_MAX_ITEMS_PER_ROUND,
+        itemsTotal: ARITHMETIC_MAX_ITEMS_TOTAL,
+        rounds: ARITHMETIC_MAX_ROUNDS,
+      };
+      if (v2) {
+        const engine = await import("@/lib/arithmetic-v2");
+        return json({
+          data:
+            arithmetic[2] === "catalog"
+              ? {
+                  engineVersion: engine.ARITHMETIC_V2_ENGINE_VERSION,
+                  catalogVersion: engine.ARITHMETIC_V2_CATALOG_VERSION,
+                  types: engine.listArithmeticV2Types(),
+                  limits,
+                  writerEnabled: false,
+                }
+              : engine.buildArithmeticV2Sheet(JSON.parse(String(init?.body))),
+        });
+      }
+      const engine = await import("@/lib/arithmetic");
+      return json({
+        data:
+          arithmetic[2] === "catalog"
+            ? {
+                engineVersion: engine.ARITHMETIC_ENGINE_VERSION,
+                catalogVersion: engine.ARITHMETIC_CATALOG_VERSION,
+                skills: engine.listArithmeticSkills(),
+                limits,
+                writerEnabled: false,
+              }
+            : engine.buildArithmeticSheet(JSON.parse(String(init?.body))),
+      });
+    } catch (error) {
+      return json(
+        {
+          error: {
+            message:
+              error instanceof Error
+                ? error.message
+                : "연산 조건을 확인해 주세요.",
+          },
+        },
+        400,
+      );
+    }
+  }
   if (method === "GET" && path === "/api/library/documents") {
     const kind = url.searchParams.get("kind");
     const docs = libraryDocuments.filter((item) => !kind || item.kind === kind);
