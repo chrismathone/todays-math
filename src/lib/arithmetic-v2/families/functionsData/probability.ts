@@ -1,4 +1,4 @@
-import { gcd, q, range, rows, scalar, type Q, type Spec } from "./core";
+import { gcd, m, q, range, rows, scalar, type Q, type Spec } from "./core";
 
 export const PROBABILITY_SPECS: Spec[] = [];
 const put = (s: Omit<Spec, "grade" | "semester" | "unit" | "strand">) =>
@@ -58,7 +58,7 @@ event({
   domain: rows(range(2, 8), range(2, 8)),
   count: true,
   view: ([a, b]) => ({
-    text: `서로 다른 공책 ${a}종류와 서로 다른 연필 ${b}종류가 있다. 이 중 물건 한 종류를 고른다.`,
+    text: `서로 다른 공책 ${m(a)}종류와 서로 다른 연필 ${m(b)}종류가 있다. 이 중 물건 한 종류를 고른다.`,
     instruction: "고르는 경우의 수를 구하세요.",
   }),
   result: ([a, b]) => q(a + b),
@@ -73,7 +73,7 @@ event({
   domain: rows(range(2, 7), range(2, 7)),
   count: true,
   view: ([a, b]) => ({
-    text: `서로 다른 상의 ${a}벌과 서로 다른 하의 ${b}벌 중에서 상의 한 벌과 하의 한 벌을 고른다.`,
+    text: `서로 다른 상의 ${m(a)}벌과 서로 다른 하의 ${m(b)}벌 중에서 상의 한 벌과 하의 한 벌을 고른다.`,
     instruction: "고르는 경우의 수를 구하세요.",
   }),
   result: ([a, b]) => q(a * b),
@@ -85,7 +85,7 @@ event({
   domain: rows(range(3, 7), range(2, 4)).filter(([n, k]) => k <= n),
   count: true,
   view: ([n, k]) => ({
-    text: `서로 다른 학생 ${n}명 중 ${k}명을 골라 번호가 1부터 ${k}까지인 ${k}개의 자리에 한 명씩 앉힌다.`,
+    text: `서로 다른 학생 ${m(n)}명 중 ${m(k)}명을 골라 번호가 $1$부터 ${m(k)}까지인 ${m(k)}개의 자리에 한 명씩 앉힌다.`,
     instruction: "앉히는 경우의 수를 구하세요.",
   }),
   result: ([n, k]) => q(falling(n, k)),
@@ -97,7 +97,7 @@ event({
   domain: rows(range(3, 15)),
   count: true,
   view: ([n]) => ({
-    text: `서로 다른 학생 ${n}명 중 대표 두 명을 뽑는다. 두 대표의 역할은 같고 뽑은 순서는 구별하지 않는다.`,
+    text: `서로 다른 학생 ${m(n)}명 중 대표 두 명을 뽑는다. 두 대표의 역할은 같고 뽑은 순서는 구별하지 않는다.`,
     instruction: "뽑는 경우의 수를 구하세요.",
   }),
   result: ([n]) => q(n * (n - 1), 2),
@@ -115,7 +115,7 @@ for (const zero of [false, true])
     domain: rows(range(3, 6), [2, 3]),
     count: true,
     view: ([n, k]) => ({
-      text: `${zero ? 0 : 1}부터 ${zero ? n - 1 : n}까지의 숫자가 하나씩 적힌 서로 다른 카드 ${n}장 중 ${k}장을 골라 한 번씩 사용하여 ${k}자리 자연수를 만든다.`,
+      text: `${m(zero ? 0 : 1)}부터 ${m(zero ? n - 1 : n)}까지의 숫자가 하나씩 적힌 서로 다른 카드 ${m(n)}장 중 ${m(k)}장을 골라 한 번씩 사용하여 ${m(k)}자리 자연수를 만든다.`,
       instruction: "만들 수 있는 자연수의 개수를 구하세요.",
     }),
     result: ([n, k]) => q((zero ? n - 1 : n) * falling(n - 1, k - 1)),
@@ -129,8 +129,8 @@ for (const count of [false, true])
     domain: rows(range(2, 6), range(0, 6)).filter(([n, k]) => k <= n),
     count,
     view: ([n, k]) => ({
-      text: `앞면과 뒷면이 나올 가능성이 같은 동전 한 개를 서로 독립적으로 ${n}번 던진다. 각 시행의 순서를 구별한다.`,
-      instruction: `앞면이 정확히 ${k}번 나오는 ${count ? "경우의 수" : "확률"}를 구하세요.`,
+      text: `앞면과 뒷면이 나올 가능성이 같은 동전 한 개를 서로 독립적으로 ${m(n)}번 던진다. 각 시행의 순서를 구별한다.`,
+      instruction: `앞면이 정확히 ${m(k)}번 나오는 ${count ? "경우의 수를" : "확률을"} 구하세요.`,
     }),
     result: ([n, k]) => q(choose(n, k), count ? 1 : 2 ** n),
     outcomes: ([n, k]) =>
@@ -141,7 +141,7 @@ event({
   title: "여사건으로 적어도 한 번 앞면의 확률",
   domain: rows(range(2, 8)),
   view: ([n]) => ({
-    text: `앞면과 뒷면이 나올 가능성이 같은 동전을 서로 독립적으로 ${n}번 던진다.`,
+    text: `앞면과 뒷면이 나올 가능성이 같은 동전을 서로 독립적으로 ${m(n)}번 던진다.`,
     instruction: "앞면이 적어도 한 번 나올 확률을 구하세요.",
   }),
   result: ([n]) => q(2 ** n - 1, 2 ** n),
@@ -156,8 +156,8 @@ for (const target of ["above", "multiple"] as const)
         : "주사위에서 배수인 눈의 확률",
     domain: rows(range(target === "above" ? 1 : 2, target === "above" ? 5 : 6)),
     view: ([k]) => ({
-      text: "1부터 6까지의 눈이 나올 가능성이 같은 주사위 한 개를 한 번 던진다.",
-      instruction: `${k}${target === "above" ? "보다 큰 눈" : "의 배수인 눈"}이 나올 확률을 구하세요.`,
+      text: "$1$부터 $6$까지의 눈이 나올 가능성이 같은 주사위 한 개를 한 번 던진다.",
+      instruction: `${m(k)}${target === "above" ? "보다 큰 눈" : "의 배수인 눈"}이 나올 확률을 구하세요.`,
     }),
     result: ([k]) => q(target === "above" ? 6 - k : Math.floor(6 / k), 6),
     outcomes: ([k]) =>
@@ -187,8 +187,8 @@ for (const target of [
       domain: rows(range(bounds[0], bounds[1])),
       count,
       view: ([k]) => ({
-        text: "각 눈의 가능성이 같은 빨간 주사위와 파란 주사위를 서로 독립적으로 한 번씩 던진다.",
-        instruction: `${target === "sum" ? `두 눈의 합이 ${k}` : target === "difference" ? `두 눈의 차의 절댓값이 ${k}` : target === "product-multiple" ? `두 눈의 곱이 ${k}의 배수` : target === "at-least-one-face" ? `적어도 한 주사위의 눈이 ${k}` : `두 눈의 합이 ${k} 이상`}인 ${count ? "경우의 수" : "확률"}를 구하세요.`,
+        text: "$1$부터 $6$까지의 각 눈의 가능성이 같은 빨간 주사위와 파란 주사위를 서로 독립적으로 한 번씩 던진다.",
+        instruction: `${target === "sum" ? `두 눈의 합이 ${m(k)}` : target === "difference" ? `두 눈의 차의 절댓값이 ${m(k)}` : target === "product-multiple" ? `두 눈의 곱이 ${m(k)}의 배수` : target === "at-least-one-face" ? `적어도 한 주사위의 눈이 ${m(k)}` : `두 눈의 합이 ${m(k)} 이상`}인 ${count ? "경우의 수를" : "확률을"} 구하세요.`,
       }),
       result: ([k]) => {
         const success =
@@ -233,8 +233,8 @@ for (const count of [false, true])
     domain: rows(range(4, 20), range(2, 7)).filter(([n, k]) => k <= n),
     count,
     view: ([n, k]) => ({
-      text: `1부터 ${n}까지의 자연수가 하나씩 적힌 카드 ${n}장을 잘 섞어 같은 가능성으로 한 장을 뽑는다.`,
-      instruction: `${k}의 배수가 적힌 카드를 뽑는 ${count ? "경우의 수" : "확률"}를 구하세요.`,
+      text: `$1$부터 ${m(n)}까지의 자연수가 하나씩 적힌 카드 ${m(n)}장을 잘 섞어 같은 가능성으로 한 장을 뽑는다.`,
+      instruction: `${m(k)}의 배수가 적힌 카드를 뽑는 ${count ? "경우의 수를" : "확률을"} 구하세요.`,
     }),
     result: ([n, k]) => q(Math.floor(n / k), count ? 1 : n),
     outcomes: ([n, k]) => range(1, n).map((x) => x % k === 0),
@@ -246,8 +246,8 @@ event({
     ([, a, b]) => a < b,
   ),
   view: ([n, a, b]) => ({
-    text: `1부터 ${n}까지의 자연수가 하나씩 적힌 카드 ${n}장을 잘 섞어 같은 가능성으로 한 장을 뽑는다.`,
-    instruction: `적힌 수가 ${a}의 배수 또는 ${b}의 배수일 확률을 구하세요.`,
+    text: `$1$부터 ${m(n)}까지의 자연수가 하나씩 적힌 카드 ${m(n)}장을 잘 섞어 같은 가능성으로 한 장을 뽑는다.`,
+    instruction: `적힌 수가 ${m(a)}의 배수 또는 ${m(b)}의 배수일 확률을 구하세요.`,
   }),
   result: ([n, a, b]) =>
     q(
@@ -265,7 +265,7 @@ for (const replacement of [false, true])
       title: `${replacement ? "복원" : "비복원"} 추출에서 ${target === "both-red" ? "둘 다 빨강" : target === "different" ? "서로 다른 색" : "적어도 하나 빨강"} 확률`,
       domain: rows(range(1, 6), range(1, 6)),
       view: ([r, b]) => ({
-        text: `빨간 공 ${r}개와 파란 공 ${b}개가 있는 주머니에서 공 한 개를 같은 가능성으로 뽑고 ${replacement ? "다시 넣은 뒤 충분히 섞어" : "다시 넣지 않고"} 한 개를 더 뽑는다.`,
+        text: `빨간 공 ${m(r)}개와 파란 공 ${m(b)}개가 있는 주머니에서 공 한 개를 같은 가능성으로 뽑고 ${replacement ? "다시 넣은 뒤 충분히 섞어" : "다시 넣지 않고"} 한 개를 더 뽑는다.`,
         instruction: `뽑은 두 공이 ${target === "both-red" ? "모두 빨간색" : target === "different" ? "서로 다른 색" : "적어도 하나는 빨간색"}일 확률을 구하세요.`,
       }),
       result: ([r, b]) => {
@@ -296,8 +296,8 @@ event({
   title: "세 번 복원 추출에서 빨간 공의 횟수",
   domain: rows(range(1, 5), range(1, 5), range(0, 3)),
   view: ([r, b, k]) => ({
-    text: `빨간 공 ${r}개와 파란 공 ${b}개가 있는 주머니에서 같은 가능성으로 한 개를 뽑아 다시 넣고 충분히 섞는 시행을 독립적으로 세 번 반복한다.`,
-    instruction: `빨간 공을 정확히 ${k}번 뽑을 확률을 구하세요.`,
+    text: `빨간 공 ${m(r)}개와 파란 공 ${m(b)}개가 있는 주머니에서 같은 가능성으로 한 개를 뽑아 다시 넣고 충분히 섞는 시행을 독립적으로 세 번 반복한다.`,
+    instruction: `빨간 공을 정확히 ${m(k)}번 뽑을 확률을 구하세요.`,
   }),
   result: ([r, b, k]) => q(choose(3, k) * r ** k * b ** (3 - k), (r + b) ** 3),
   outcomes: ([r, b, k]) =>
@@ -308,7 +308,7 @@ event({
   title: "서로 다른 주머니에서 독립 추출",
   domain: rows(range(1, 4), range(1, 4), range(1, 4), range(1, 4)),
   view: ([r, b, R, B]) => ({
-    text: `A 주머니에는 빨간 공 ${r}개, 파란 공 ${b}개, B 주머니에는 빨간 공 ${R}개, 파란 공 ${B}개가 있다. 각 주머니에서 같은 가능성으로 공을 한 개씩 서로 독립적으로 뽑는다.`,
+    text: `$A$ 주머니에는 빨간 공 ${m(r)}개, 파란 공 ${m(b)}개, $B$ 주머니에는 빨간 공 ${m(R)}개, 파란 공 ${m(B)}개가 있다. 각 주머니에서 같은 가능성으로 공을 한 개씩 서로 독립적으로 뽑는다.`,
     instruction: "두 공이 모두 빨간색일 확률을 구하세요.",
   }),
   result: ([r, b, R, B]) => q(r * R, (r + b) * (R + B)),

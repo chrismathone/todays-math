@@ -4,6 +4,19 @@ import type {
   ArithmeticV2Definition,
   ArithmeticV2Prompt,
 } from "../../types";
+import { tokenizeMath } from "../../../math/segments";
+
+/** Only explicitly authored formula fragments receive inline delimiters. */
+export const m = (tex: string | number): string => `$${tex}$`;
+function fallbackLatex(text: string): string {
+  return tokenizeMath(text)
+    .map((part) =>
+      part.type === "text"
+        ? `\\text{${part.value.replace(/[\\{}%_$#&]/g, (c) => (c === "\\" ? "\\textbackslash{}" : `\\${c}`))}}`
+        : part.value,
+    )
+    .join("");
+}
 
 export type Q = [number, number];
 export type Root = { n: number; r: number; d: number };
@@ -170,7 +183,7 @@ export function compile(
       return {
         layout: "math",
         text: view.text,
-        latex: view.latex ?? `\\text{${view.text}}`,
+        latex: view.latex ?? fallbackLatex(view.text),
         instruction: view.instruction,
       };
     };

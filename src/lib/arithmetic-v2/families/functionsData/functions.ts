@@ -4,6 +4,7 @@ import {
   eq,
   fmt,
   gcd,
+  m,
   mul,
   nz,
   polynomial,
@@ -30,8 +31,8 @@ for (const axis of ["x", "y", "origin"] as const)
       title: `${axis === "origin" ? "원점" : `${axis}축`} 대칭점의 ${coordinate === 0 ? "x" : "y"}좌표`,
       domain: pointDomain,
       view: ([x, y]) => ({
-        text: `점 P(${x}, ${y})를 ${axis === "origin" ? "원점" : `${axis}축`}에 대하여 대칭이동한 점을 Q라 한다.`,
-        instruction: `점 Q의 ${coordinate === 0 ? "x" : "y"}좌표를 구하세요.`,
+        text: `점 ${m(`P(${x}, ${y})`)}를 ${axis === "origin" ? "원점" : `${m(axis)}축`}에 대하여 대칭이동한 점을 ${m("Q")}라 한다.`,
+        instruction: `점 ${m("Q")}의 ${m(coordinate === 0 ? "x" : "y")}좌표를 구하세요.`,
       }),
       solve: (p) => q((negative ? -1 : 1) * p[coordinate]),
       check: (p, v) => {
@@ -48,8 +49,8 @@ for (const axis of ["x", "y"] as const)
     title: `점과 ${axis}축 사이의 거리`,
     domain: pointDomain,
     view: ([x, y]) => ({
-      text: `점 P(${x}, ${y})`,
-      instruction: `점 P와 ${axis}축 사이의 거리를 구하세요.`,
+      text: `점 ${m(`P(${x}, ${y})`)}`,
+      instruction: `점 ${m("P")}와 ${m(axis)}축 사이의 거리를 구하세요.`,
     }),
     solve: (p) => q(Math.abs(p[axis === "x" ? 1 : 0])),
     check: (p, v) => {
@@ -69,8 +70,8 @@ for (const axis of ["horizontal", "vertical"] as const)
     view: ([a, d, k]) => ({
       text:
         axis === "horizontal"
-          ? `두 점 A(${a}, ${k}), B(${a + d}, ${k})`
-          : `두 점 A(${k}, ${a}), B(${k}, ${a + d})`,
+          ? `두 점 ${m(`A(${a}, ${k})`)}, ${m(`B(${a + d}, ${k})`)}`
+          : `두 점 ${m(`A(${k}, ${a})`)}, ${m(`B(${k}, ${a + d})`)}`,
       instruction: "두 점 사이의 거리를 구하세요.",
     }),
     solve: ([, d]) => q(d),
@@ -90,16 +91,19 @@ for (const inverse of [false, true])
       title: `${type}의 ${target === "value" ? "함숫값" : target === "constant" ? "비례상수" : "x의 값"}`,
       domain: proportionalDomain,
       view: ([a, d, x]) => {
-        const A = fmt(q(a, d)),
-          y = fmt(inverse ? q(a, d * x) : q(a * x, d));
+        const A = fmt(q(a, d), true),
+          y = fmt(inverse ? q(a, d * x) : q(a * x, d), true);
+        const formula = m(
+          inverse ? `y=\\frac{${a}}{${d === 1 ? "x" : `${d}x`}}` : `y=${A}x`,
+        );
         return {
           text:
             target === "constant"
-              ? `${type} 관계 ${inverse ? "y=a/x" : "y=ax"}에서 x=${x}일 때 y=${y}이다.`
+              ? `${type} 관계 ${m(inverse ? "y=\\frac{a}{x}" : "y=ax")}에서 ${m(`x=${x}`)}일 때 ${m(`y=${y}`)}이다.`
               : target === "value"
-                ? `${inverse ? `y=(${A})/x` : `y=(${A})x`}에서 x=${x}이다.`
-                : `${inverse ? `y=(${A})/x` : `y=(${A})x`}에서 y=${y}이다.`,
-          instruction: `${target === "constant" ? "비례상수 a" : target === "value" ? "y" : "x"}의 값을 구하세요.`,
+                ? `${formula}에서 ${m(`x=${x}`)}이다.`
+                : `${formula}에서 ${m(`y=${y}`)}이다.`,
+          instruction: `${target === "constant" ? `비례상수 ${m("a")}` : m(target === "value" ? "y" : "x")}의 값을 구하세요.`,
         };
       },
       solve: ([a, d, x]) =>
@@ -124,7 +128,8 @@ for (const inverse of [false, true])
   }
 
 const linear = rows(nz(-4, 4), range(-6, 6), range(-5, 5));
-const lineText = (a: number, b: number) => `y=${polynomial([q(a), q(b)])}`;
+const lineText = (a: number, b: number) =>
+  m(`y=${polynomial([q(a), q(b)], true)}`);
 const lineUnit = "일차함수의 그래프";
 for (const target of ["value", "input", "coefficient", "constant"] as const)
   put("중2", lineUnit, {
@@ -139,13 +144,13 @@ for (const target of ["value", "input", "coefficient", "constant"] as const)
     view: ([a, b, x]) => ({
       text:
         target === "value"
-          ? `${lineText(a, b)}에서 x=${x}이다.`
+          ? `${lineText(a, b)}에서 ${m(`x=${x}`)}이다.`
           : target === "input"
-            ? `${lineText(a, b)}에서 y=${a * x + b}이다.`
+            ? `${lineText(a, b)}에서 ${m(`y=${a * x + b}`)}이다.`
             : target === "coefficient"
-              ? `일차함수 y=kx${b < 0 ? b : `+${b}`}의 그래프가 점 (${x}, ${a * x + b})를 지난다.`
-              : `일차함수 y=${a}x+k의 그래프가 점 (${x}, ${a * x + b})를 지난다.`,
-      instruction: `${target === "value" ? "y" : target === "input" ? "x" : "k"}의 값을 구하세요.`,
+              ? `일차함수 ${m(`y=kx${b < 0 ? b : `+${b}`}`)}의 그래프가 점 ${m(`(${x}, ${a * x + b})`)}를 지난다.`
+              : `일차함수 ${m(`y=${a}x+k`)}의 그래프가 점 ${m(`(${x}, ${a * x + b})`)}를 지난다.`,
+      instruction: `${m(target === "value" ? "y" : target === "input" ? "x" : "k")}의 값을 구하세요.`,
     }),
     solve: ([a, b, x]) =>
       q(
@@ -176,11 +181,11 @@ for (const target of ["slope", "equation"] as const)
     domain: pairDomain,
     shape: target === "equation" ? "line" : "scalar",
     view: ([x, y, dx, dy]) => ({
-      text: `일차함수의 그래프가 두 점 (${x}, ${y}), (${x + dx}, ${y + dy})를 지난다.`,
+      text: `일차함수의 그래프가 두 점 ${m(`(${x}, ${y})`)}, ${m(`(${x + dx}, ${y + dy})`)}를 지난다.`,
       instruction:
         target === "slope"
           ? "기울기를 구하세요."
-          : "일차함수의 식을 y=ax+b 꼴로 나타내세요.",
+          : "일차함수의 식을 $y=ax+b$ 꼴로 나타내세요.",
     }),
     solve: ([x, y, dx, dy]) =>
       target === "slope" ? q(dy, dx) : [q(dy, dx), q(y * dx - dy * x, dx)],
@@ -205,12 +210,12 @@ for (const target of ["slope", "y-change", "x-change"] as const)
     view: ([a, dx]) => ({
       text:
         target === "slope"
-          ? `일차함수에서 x가 ${dx}만큼 변할 때 y는 ${a * dx}만큼 변한다.`
-          : `기울기가 ${a}인 일차함수에서 ${target === "y-change" ? `x가 ${dx}` : `y가 ${a * dx}`}만큼 변한다.`,
+          ? `일차함수에서 ${m("x")}가 ${m(dx)}만큼 변할 때 ${m("y")}는 ${m(a * dx)}만큼 변한다.`
+          : `기울기가 ${m(a)}인 일차함수에서 ${target === "y-change" ? `${m("x")}가 ${m(dx)}` : `${m("y")}가 ${m(a * dx)}`}만큼 변한다.`,
       instruction:
         target === "slope"
           ? "기울기를 구하세요."
-          : `${target === "y-change" ? "y" : "x"}의 변화량을 구하세요.`,
+          : `${m(target === "y-change" ? "y" : "x")}의 변화량을 구하세요.`,
     }),
     solve: ([a, dx]) =>
       q(target === "slope" ? a : target === "y-change" ? a * dx : dx),
@@ -230,7 +235,7 @@ for (const axis of ["x", "y"] as const)
     domain: rows(nz(-6, 6), range(-9, 9)),
     view: ([a, b]) => ({
       text: lineText(a, b),
-      instruction: `${axis}절편을 구하세요.`,
+      instruction: `${m(axis)}절편을 구하세요.`,
     }),
     solve: ([a, b]) => (axis === "x" ? q(-b, a) : q(b)),
     check: ([a, b], v) => {
@@ -244,8 +249,8 @@ put("중2", lineUnit, {
   domain: linear,
   shape: "line",
   view: ([a, b, x]) => ({
-    text: `기울기가 ${a}이고 점 (${x}, ${a * x + b})를 지나는 일차함수`,
-    instruction: "식을 y=ax+b 꼴로 나타내세요.",
+    text: `기울기가 ${m(a)}이고 점 ${m(`(${x}, ${a * x + b})`)}를 지나는 일차함수`,
+    instruction: "식을 $y=ax+b$ 꼴로 나타내세요.",
   }),
   solve: ([a, b]) => [q(a), q(b)],
   check: ([a, b, x], v) =>
@@ -258,8 +263,8 @@ put("중2", lineUnit, {
   domain: rows(nz(-8, 8), nz(-8, 8)),
   shape: "line",
   view: ([x, y]) => ({
-    text: `x절편이 ${x}, y절편이 ${y}인 일차함수`,
-    instruction: "식을 y=ax+b 꼴로 나타내세요.",
+    text: `${m("x")}절편이 ${m(x)}, ${m("y")}절편이 ${m(y)}인 일차함수`,
+    instruction: "식을 $y=ax+b$ 꼴로 나타내세요.",
   }),
   solve: ([x, y]) => [q(-y, x), q(y)],
   check: ([x, y], v) =>
@@ -273,8 +278,8 @@ put("중2", lineUnit, {
     ([, b, c]) => b !== c,
   ),
   view: ([a, b, c]) => ({
-    text: `${lineText(a, b)}와 y=kx${c < 0 ? c : `+${c}`}의 그래프가 평행하다.`,
-    instruction: "k의 값을 구하세요.",
+    text: `${lineText(a, b)}와 ${m(`y=kx${c < 0 ? c : `+${c}`}`)}의 그래프가 평행하다.`,
+    instruction: "$k$의 값을 구하세요.",
   }),
   solve: ([a]) => q(a),
   check: ([a], v) => {
@@ -290,8 +295,8 @@ put("중2", lineUnit, {
   ),
   shape: "line",
   view: ([a, b, h, k]) => ({
-    text: `${lineText(a, b)}의 그래프를 x축 방향으로 ${h}, y축 방향으로 ${k}만큼 평행이동한다.`,
-    instruction: "이동한 그래프의 식을 y=ax+b 꼴로 나타내세요.",
+    text: `${lineText(a, b)}의 그래프를 ${m("x")}축 방향으로 ${m(h)}, ${m("y")}축 방향으로 ${m(k)}만큼 평행이동한다.`,
+    instruction: "이동한 그래프의 식을 $y=ax+b$ 꼴로 나타내세요.",
   }),
   solve: ([a, b, h, k]) => [q(a), q(b - a * h + k)],
   check: ([a, b, h, k], v) =>
@@ -306,8 +311,8 @@ for (const target of ["slope", "x-intercept", "y-intercept"] as const)
       ([a, b, c]) => gcd(gcd(a, b), c) === 1,
     ),
     view: ([a, b, c]) => ({
-      text: `${a}x+${b}y=${c}`,
-      instruction: `그래프의 ${target === "slope" ? "기울기" : target === "x-intercept" ? "x절편" : "y절편"}을 구하세요.`,
+      text: m(`${a}x+${b}y=${c}`),
+      instruction: `그래프의 ${target === "slope" ? "기울기" : target === "x-intercept" ? `${m("x")}절편` : `${m("y")}절편`}을 구하세요.`,
     }),
     solve: ([a, b, c]) =>
       target === "slope"
@@ -333,7 +338,7 @@ for (const axis of ["x", "y"] as const)
     ),
     view: ([a, c, b, d]) => ({
       text: `두 일차함수 ${lineText(a, b)}, ${lineText(c, d)}`,
-      instruction: `두 그래프의 교점의 ${axis}좌표를 구하세요.`,
+      instruction: `두 그래프의 교점의 ${m(axis)}좌표를 구하세요.`,
     }),
     solve: ([a, c, b, d]) =>
       axis === "x" ? q(d - b, a - c) : q(a * d - b * c, a - c),

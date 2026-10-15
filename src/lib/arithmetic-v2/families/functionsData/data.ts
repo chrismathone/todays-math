@@ -1,5 +1,6 @@
 import {
   fmt,
+  m,
   nz,
   q,
   range,
@@ -50,8 +51,8 @@ for (const grade of ["중1", "중3"] as const) {
       }[target],
       domain: rows(range(0, 9), range(1, 4), range(0, 5)),
       view: (p) => ({
-        text: `자료: ${data(p).join(", ")}`,
-        instruction: `${{ mean: "평균", median: "중앙값", range: "범위" }[target]}를 구하세요.`,
+        text: `자료: ${m(data(p).join(", "))}`,
+        instruction: `${{ mean: "평균을", median: "중앙값을", range: "범위를" }[target]} 구하세요.`,
       }),
       solve: (p) => {
         const xs = data(p);
@@ -82,7 +83,7 @@ for (const grade of ["중1", "중3"] as const) {
     title: "짝수 개 자료의 중앙값",
     domain: rows(range(0, 10), range(1, 5), range(1, 6)),
     view: ([a, d, k]) => ({
-      text: `자료: ${[a + 2 * d + k, a, a + 3 * d + k, a + d].join(", ")}`,
+      text: `자료: ${m([a + 2 * d + k, a, a + 3 * d + k, a + d].join(", "))}`,
       instruction: "중앙값을 구하세요.",
     }),
     solve: ([a, d, k]) => q(2 * a + 3 * d + k, 2),
@@ -97,7 +98,7 @@ for (const grade of ["중1", "중3"] as const) {
     title: "자료의 최빈값",
     domain: rows(range(0, 12), range(1, 7)),
     view: ([a, d]) => ({
-      text: `자료: ${[a + d, a, a + 2 * d, a, a].join(", ")}`,
+      text: `자료: ${m([a + d, a, a + 2 * d, a, a].join(", "))}`,
       instruction: "최빈값을 구하세요.",
     }),
     solve: ([a]) => q(a),
@@ -118,8 +119,8 @@ for (const grade of ["중1", "중3"] as const) {
     title: "평균으로 빠진 자료 구하기",
     domain: rows(range(0, 8), range(1, 4), range(0, 6)),
     view: ([a, d, k]) => ({
-      text: `다섯 자료 ${a}, ${a + d}, x, ${a + 3 * d}, ${a + 4 * d}의 평균은 ${fmt(q(5 * a + 10 * d + k, 5))}이다.`,
-      instruction: "x의 값을 구하세요.",
+      text: `다섯 자료 ${m(`${a}, ${a + d}, x, ${a + 3 * d}, ${a + 4 * d}`)}의 평균은 ${m(fmt(q(5 * a + 10 * d + k, 5), true))}이다.`,
+      instruction: "$x$의 값을 구하세요.",
     }),
     solve: ([a, d, k]) => q(a + 2 * d + k),
     check: ([a, d, k], v) => {
@@ -147,15 +148,15 @@ for (const target of [
     }[target],
     domain: frequencies,
     view: ([a, b, c]) => ({
-      text: `점수(점): 0, 1, 2 / 도수(명): ${a}, ${target === "missing" ? "x" : b}, ${c}${target === "missing" ? ` / 전체 ${a + b + c}명` : ""}`,
+      text: `점수(점)는 ${m("0, 1, 2")}이고 각 점수의 도수(명)는 차례로 ${m(`${a}, ${target === "missing" ? "x" : b}, ${c}`)}이다.${target === "missing" ? ` 전체 학생 수는 ${m(a + b + c)}명이다.` : ""}`,
       instruction:
         target === "total"
           ? "전체 학생 수를 구하세요."
           : target === "combined"
-            ? "점수가 1점 이상인 학생 수를 구하세요."
+            ? "점수가 $1$점 이상인 학생 수를 구하세요."
             : target === "missing"
-              ? "x의 값을 구하세요."
-              : `1점의 ${target === "percent" ? "상대도수를 백분율로 나타낼 때 % 앞의 수" : "상대도수"}를 구하세요.`,
+              ? "$x$의 값을 구하세요."
+              : `$1$점의 ${target === "percent" ? "상대도수를 백분율로 나타낼 때 $\\%$ 앞의 수" : "상대도수"}를 구하세요.`,
     }),
     solve: ([a, b, c]) =>
       target === "total"
@@ -186,7 +187,7 @@ for (const target of ["count", "total"] as const)
     title: target === "count" ? "상대도수에서 도수" : "상대도수에서 전체 도수",
     domain: rows(range(5, 30), range(1, 29)).filter(([N, n]) => n < N),
     view: ([N, n]) => ({
-      text: `어떤 범주의 상대도수는 ${fmt(q(n, N))}이고, ${target === "count" ? `전체 도수는 ${N}` : `그 범주의 도수는 ${n}`}이다.`,
+      text: `어떤 범주의 상대도수는 ${m(fmt(q(n, N), true))}이고, ${target === "count" ? `전체 도수는 ${m(N)}` : `그 범주의 도수는 ${m(n)}`}이다.`,
       instruction:
         target === "count"
           ? "그 범주의 도수를 구하세요."
@@ -203,7 +204,7 @@ put("중1", {
   title: "계급값",
   domain: rows(range(0, 16), [5, 10, 20]),
   view: ([a, w]) => ({
-    text: `도수분포표의 한 계급: ${a * 5} 이상 ${a * 5 + w} 미만`,
+    text: `도수분포표의 한 계급: ${m(a * 5)} 이상 ${m(a * 5 + w)} 미만`,
     instruction: "이 계급의 계급값을 구하세요.",
   }),
   solve: ([a, w]) => q(10 * a + w, 2),
@@ -217,7 +218,7 @@ put("중1", {
   title: "도수표로 이산 자료의 평균",
   domain: rows(range(0, 5), range(1, 3), range(1, 4), range(1, 4), range(1, 4)),
   view: ([a, d, f, g, h]) => ({
-    text: `점수(점): ${a}, ${a + d}, ${a + 2 * d} / 도수(명): ${f}, ${g}, ${h}`,
+    text: `점수(점)는 ${m(`${a}, ${a + d}, ${a + 2 * d}`)}이고 각 점수의 도수(명)는 차례로 ${m(`${f}, ${g}, ${h}`)}이다.`,
     instruction: "전체 학생의 점수 평균을 구하세요.",
   }),
   solve: ([a, d, f, g, h]) =>
@@ -237,7 +238,7 @@ put("중1", {
   title: "줄기와 잎 자료의 중앙값",
   domain: rows(range(1, 8), range(0, 3), range(4, 6), range(7, 9)),
   view: ([stem, a, b, c]) => ({
-    text: `줄기와 잎 그림에서 줄기 ${stem}의 잎은 ${a}, ${b}, ${c}이고 다른 줄기는 없다. (자료의 값=10×줄기+잎)`,
+    text: `줄기와 잎 그림에서 줄기 ${m(stem)}의 잎은 ${m(`${a}, ${b}, ${c}`)}이고 다른 줄기는 없다. 자료의 값은 줄기에 ${m(10)}을 곱한 값에 잎을 더한 값이다.`,
     instruction: "자료의 중앙값을 구하세요.",
   }),
   solve: ([s, , b]) => q(10 * s + b),
@@ -256,11 +257,11 @@ for (const target of ["deviation", "variance", "standard-deviation"] as const)
     title: `일반 자료의 ${target === "deviation" ? "편차" : target === "variance" ? "분산" : "표준편차"}`,
     domain: rows(range(0, 9), range(1, 4), range(0, 5)),
     view: (p) => ({
-      text: `자료: ${data(p).join(", ")}`,
+      text: `자료: ${m(data(p).join(", "))}`,
       instruction:
         target === "deviation"
-          ? `값이 ${data(p)[0]}인 자료의 편차를 구하세요.`
-          : `${target === "variance" ? "분산" : "표준편차"}를 구하세요.`,
+          ? `값이 ${m(data(p)[0])}인 자료의 편차를 구하세요.`
+          : `${target === "variance" ? "분산을" : "표준편차를"} 구하세요.`,
     }),
     solve: (p) => {
       const xs = data(p),
@@ -312,14 +313,14 @@ for (const target of [
     view: ([a, d, k]) => ({
       text:
         target === "missing-deviation"
-          ? `네 자료의 편차가 차례로 ${-d}, ${-k}, ${d}, x이다.`
-          : `자료: ${[a - d, a - k, a + d, a + k].join(", ")}`,
+          ? `네 자료의 편차가 차례로 ${m(`${-d}, ${-k}, ${d}, x`)}이다.`
+          : `자료: ${m([a - d, a - k, a + d, a + k].join(", "))}`,
       instruction:
         target === "deviation"
-          ? `값이 ${a - d}인 자료의 편차를 구하세요.`
+          ? `값이 ${m(a - d)}인 자료의 편차를 구하세요.`
           : target === "missing-deviation"
-            ? "x의 값을 구하세요."
-            : `${target === "variance" ? "분산" : "표준편차"}를 구하세요.`,
+            ? "$x$의 값을 구하세요."
+            : `${target === "variance" ? "분산을" : "표준편차를"} 구하세요.`,
     }),
     solve: ([, d, k]) =>
       target === "deviation"
@@ -355,9 +356,9 @@ for (const target of ["mean", "variance", "standard-deviation"] as const)
     id: `m3-fd-transformed-${target}`,
     title: `변환한 자료의 ${target === "mean" ? "평균" : target === "variance" ? "분산" : "표준편차"}`,
     domain: rows(range(0, 8), range(0, 5), nz(-3, 3), range(-4, 4)),
-    view: ([m, v, a, b]) => ({
-      text: `자료 x₁, …, xₙ의 평균은 ${m}, 분산은 ${v}이다. 새 자료는 각 xᵢ를 ${a}xᵢ${b < 0 ? b : `+${b}`}로 바꾼 것이다.`,
-      instruction: `새 자료의 ${target === "mean" ? "평균" : target === "variance" ? "분산" : "표준편차"}를 구하세요.`,
+    view: ([mean, v, a, b]) => ({
+      text: `자료 ${m("x_1, \\ldots, x_n")}의 평균은 ${m(mean)}, 분산은 ${m(v)}이다. 새 자료는 각 ${m("x_i")}를 ${m(`${a}x_i${b < 0 ? b : `+${b}`}`)}로 바꾼 것이다.`,
+      instruction: `새 자료의 ${target === "mean" ? "평균을" : target === "variance" ? "분산을" : "표준편차를"} 구하세요.`,
     }),
     solve: ([m, v, a, b]) =>
       target === "mean"

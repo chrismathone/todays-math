@@ -2,6 +2,7 @@ import {
   add,
   coefficients,
   eq,
+  m,
   mul,
   nz,
   polynomial,
@@ -23,9 +24,9 @@ const put = (s: Omit<Spec, "grade" | "semester" | "unit" | "strand">) =>
     strand: "함수",
   });
 const expression = (a: number, b: number, c: number) =>
-  `y=${polynomial([q(a), q(b), q(c)])}`;
+  m(`y=${polynomial([q(a), q(b), q(c)], true)}`);
 const vertex = (a: number, h: number, k: number) =>
-  `y=${a}(x${h < 0 ? `+${-h}` : `−${h}`})²${k < 0 ? k : `+${k}`}`;
+  m(`y=${a}(x${h < 0 ? `+${-h}` : `-${h}`})^{2}${k < 0 ? k : `+${k}`}`);
 const general = rows(nz(-3, 3), range(-6, 6), range(-5, 5));
 for (const target of [
   "vertex-x",
@@ -49,17 +50,17 @@ for (const target of [
     }[target],
     domain: general,
     view: ([a, b, c]) => ({
-      text: `이차함수 ${expression(a, b, c)}${target.startsWith("vertex-form") ? "를 y=a(x−p)²+q 꼴로 나타낸다." : ""}`,
+      text: `이차함수 ${expression(a, b, c)}${target.startsWith("vertex-form") ? "를 $y=a(x-p)^{2}+q$ 꼴로 나타낸다." : ""}`,
       instruction:
         target === "extreme"
-          ? `x가 모든 실수일 때 ${a > 0 ? "최솟값" : "최댓값"}을 구하세요.`
+          ? `$x$가 모든 실수일 때 ${a > 0 ? "최솟값" : "최댓값"}을 구하세요.`
           : target === "axis"
-            ? "대칭축이 x=t일 때 t의 값을 구하세요."
+            ? "대칭축이 $x=t$일 때 $t$의 값을 구하세요."
             : target === "vertex-x" || target === "vertex-y"
-              ? `꼭짓점의 ${target.endsWith("x") ? "x" : "y"}좌표를 구하세요.`
+              ? `꼭짓점의 ${m(target.endsWith("x") ? "x" : "y")}좌표를 구하세요.`
               : target === "y-intercept"
-                ? "y절편을 구하세요."
-                : `${target.endsWith("p") ? "p" : "q"}의 값을 구하세요.`,
+                ? "$y$절편을 구하세요."
+                : `${m(target.endsWith("p") ? "p" : "q")}의 값을 구하세요.`,
     }),
     solve: ([a, b, c]) =>
       target === "vertex-x" || target === "axis" || target === "vertex-form-p"
@@ -83,8 +84,8 @@ put({
   title: "이차함수의 함숫값",
   domain: rows(nz(-3, 3), range(-3, 3), range(-4, 4), range(-3, 3)),
   view: ([a, b, c, x]) => ({
-    text: `${expression(a, b, c)}에서 x=${x}이다.`,
-    instruction: "y의 값을 구하세요.",
+    text: `${expression(a, b, c)}에서 ${m(`x=${x}`)}이다.`,
+    instruction: "$y$의 값을 구하세요.",
   }),
   solve: ([a, b, c, x]) => q(a * x * x + b * x + c),
   check: ([a, b, c, x], v) => {
@@ -103,10 +104,12 @@ for (const target of ["coefficient", "vertex-value"] as const)
     view: ([a, h, k, t]) => ({
       text:
         target === "coefficient"
-          ? `꼭짓점이 (${h}, ${k})이고 점 (${h + t}, ${a * t * t + k})를 지나는 이차함수의 이차항의 계수를 a라 한다.`
-          : `${vertex(a, h, k)}에서 x=${h + t}이다.`,
+          ? `꼭짓점이 ${m(`(${h}, ${k})`)}이고 점 ${m(`(${h + t}, ${a * t * t + k})`)}를 지나는 이차함수의 이차항의 계수를 ${m("a")}라 한다.`
+          : `${vertex(a, h, k)}에서 ${m(`x=${h + t}`)}이다.`,
       instruction:
-        target === "coefficient" ? "a의 값을 구하세요." : "y의 값을 구하세요.",
+        target === "coefficient"
+          ? "$a$의 값을 구하세요."
+          : "$y$의 값을 구하세요.",
     }),
     solve: ([a, , k, t]) => q(target === "coefficient" ? a : a * t * t + k),
     check: ([a, , k, t], v) => {
@@ -126,11 +129,11 @@ for (const target of ["b", "c", "equation"] as const)
     domain: rows(nz(-3, 3), range(-4, 4), range(-5, 5)),
     shape: target === "equation" ? "quadratic" : "scalar",
     view: ([a, h, k]) => ({
-      text: `${vertex(a, h, k)}를 y=ax²+bx+c 꼴로 나타낸다.`,
+      text: `${vertex(a, h, k)}를 $y=ax^{2}+bx+c$ 꼴로 나타낸다.`,
       instruction:
         target === "equation"
           ? "전개한 이차함수의 식을 구하세요."
-          : `${target}의 값을 구하세요.`,
+          : `${m(target)}의 값을 구하세요.`,
     }),
     solve: ([a, h, k]) =>
       target === "b"
@@ -166,8 +169,8 @@ put({
   ).filter(([, , , h, k]) => h !== 0 || k !== 0),
   shape: "quadratic",
   view: ([a, b, c, h, k]) => ({
-    text: `${expression(a, b, c)}의 그래프를 x축 방향으로 ${h}, y축 방향으로 ${k}만큼 평행이동한다.`,
-    instruction: "이동한 그래프의 식을 y=ax²+bx+c 꼴로 나타내세요.",
+    text: `${expression(a, b, c)}의 그래프를 ${m("x")}축 방향으로 ${m(h)}, ${m("y")}축 방향으로 ${m(k)}만큼 평행이동한다.`,
+    instruction: "이동한 그래프의 식을 $y=ax^{2}+bx+c$ 꼴로 나타내세요.",
   }),
   solve: ([a, b, c, h, k]) => [
     q(a),
@@ -192,8 +195,8 @@ for (const sign of [-1, 1]) {
       ([, u, v]) => u < v,
     ),
     view: ([a, u, v]) => ({
-      text: `이차함수 ${expression(a, -a * (u + v), a * u * v)}의 그래프와 x축의 두 교점`,
-      instruction: `두 교점의 x좌표 중 ${sign < 0 ? "작은" : "큰"} 값을 구하세요.`,
+      text: `이차함수 ${expression(a, -a * (u + v), a * u * v)}의 그래프와 $x$축의 두 교점`,
+      instruction: `두 교점의 $x$좌표 중 ${sign < 0 ? "작은" : "큰"} 값을 구하세요.`,
     }),
     solve: ([, u, v]) => q(sign < 0 ? u : v),
     check: ([a, u, v], value) => {
@@ -209,8 +212,8 @@ for (const sign of [-1, 1]) {
     title: `x축 교점의 ${sign < 0 ? "음" : "양"}의 x좌표`,
     domain: rows(nz(-3, 3), [2, 3, 5, 6, 7, 8, 10, 12, 18, 20, 27]),
     view: ([a, r]) => ({
-      text: `이차함수 ${expression(a, 0, -a * r)}의 그래프와 x축의 두 교점`,
-      instruction: `두 교점의 x좌표 중 ${sign < 0 ? "음수" : "양수"}인 값을 구하세요.`,
+      text: `이차함수 ${expression(a, 0, -a * r)}의 그래프와 $x$축의 두 교점`,
+      instruction: `두 교점의 $x$좌표 중 ${sign < 0 ? "음수" : "양수"}인 값을 구하세요.`,
     }),
     solve: ([, r]) => root(sign, r),
     check: ([, r], v) => {
@@ -224,8 +227,8 @@ put({
   title: "x축과 한 점에서 만나는 x좌표",
   domain: rows(nz(-3, 3), range(-6, 6)),
   view: ([a, h]) => ({
-    text: `이차함수 ${expression(a, -2 * a * h, a * h * h)}의 그래프가 x축과 한 점에서 만난다.`,
-    instruction: "그 점의 x좌표를 구하세요.",
+    text: `이차함수 ${expression(a, -2 * a * h, a * h * h)}의 그래프가 $x$축과 한 점에서 만난다.`,
+    instruction: "그 점의 $x$좌표를 구하세요.",
   }),
   solve: ([, h]) => q(h),
   check: ([a, h], v) => {

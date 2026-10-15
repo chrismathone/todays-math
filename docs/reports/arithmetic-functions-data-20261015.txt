@@ -26,6 +26,14 @@ unit fallback. All prompts contain full equations, coordinates, data values or
 sampling rules. No figure is needed, no graph is inferred from pixels, and no
 diagram/graph pack integration or UI rendering change is claimed here.
 
+Authored-prose follow-up to 8a413b009: all mathematical givens and targets in
+prompt.text / instruction now use explicit inline $...$ TeX spans. Natural Korean
+prose remains outside math for wrapping. Root assigns definition-only
+promptPresentation: prose metadata during integration; no prompt/schema flag or
+ID-list export is needed here. Core uses the existing shared tokenizeMath to build
+the standalone latex fallback as escaped text segments plus the authored formulas.
+It adds no parser and never guesses which prose should be mathematical.
+
 Curriculum evidence and limits
 ------------------------------
 Primary references reviewed 2026-10-15:
@@ -118,6 +126,7 @@ Answer distribution: integer 38,812; rational 11,488; polynomial 10,136; surd 2,
 Evidence
 --------
 src/__tests__/unit/arithmeticFunctionsData.test.ts: 4 tests PASS.
+src/__tests__/unit/arithmeticFunctionsDataProse.test.ts: 2 tests PASS.
 - All 62,491 tasks: canonical exact answer checked against an independent oracle;
   full prompt/parameter uniqueness inside each family; verifier success;
   property-order independence; canonical but numerically wrong answer rejected.
@@ -135,19 +144,31 @@ Prettier: PASS. No shared registry/browser integration test is claimed by worker
 root owns those integrations. The earlier dimension browser evidence is in its
 separate committed report.
 
-354 first/middle/last prompt + answer TeX parse checks passed with throwOnError.
-The complete prose is in prompt.text and the fallback latex wraps it in text.
-KaTeX reports character-metric warnings for Unicode superscript/subscript text.
-Root integration must use shared wrapping prose composition for these long word
-and table prompts: the current NumericExpression single-formula row is unsuitable.
-Root was notified before handoff. This worker intentionally supplies no competing
-prose parser/typesetter and claims no browser layout verification for this scope.
+The follow-up replaces the original 354-sample parse check and Unicode metric
+warning with exhaustive authored-prose verification over all 62,491 tasks:
+- Existing tokenizeMath round-trips every body and instruction. Every numeric
+  quantity, variable, coordinate, data list and equation is an explicit math span;
+  no raw equation Unicode superscript/subscript remains in prose.
+- Independent expected mathematical-given and requested-target arrays for every
+  family are compared against the actual tokenized body and instruction.
+- Fifteen independent full-text fixtures cover coordinates, fractions, equation
+  forms, negative roots, tables, transformed data and sampling/replacement rules.
+- Every distinct inline span, standalone fallback and answer parses under KaTeX
+  throwOnError / strict:error, with no character-metric warnings. The fallback
+  contains no inline dollar delimiters and preserves complete text + math.
+- Full numeric identity matches the pre-edit 8a413b009 SHA-256 fingerprint:
+  dd9dd0ba389b57f4dc92eb361405fe4f2eaf94960e57a98d6aed305592f93568
+  This covers ordered IDs, grades, strands, unit/semester metadata, domain sizes,
+  every parameter tuple and every exact/display answer. No numeric domain changed.
+Root owns shared wrapping prose composition and its browser/print verification.
 
 Reproduction in root with installed dependencies:
   vitest run src/__tests__/unit/arithmeticFunctionsData.test.ts
+             src/__tests__/unit/arithmeticFunctionsDataProse.test.ts
   eslint src/lib/arithmetic-v2/families/functionsData.ts
          src/lib/arithmetic-v2/families/functionsData
          src/__tests__/unit/arithmeticFunctionsData.test.ts
+         src/__tests__/unit/arithmeticFunctionsDataProse.test.ts
 Scoped tsc includes those paths, extends tsconfig.json and disables incremental.
 Worker used root tools via process-local resolution only; no dependency install,
 node_modules junction, config-file environment write or hook bypass.
