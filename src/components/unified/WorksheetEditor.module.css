@@ -654,6 +654,9 @@ label.checkField {
   .exportContent {
     container-type: normal;
   }
+  /* The document lives inside exportGrid; the other root children are controls
+     and caller-provided notices that must not create a separate printed page. */
+  .exportContent > :not(.exportGrid),
   .exportInspector,
   .exportNotification,
   .paperToolbar,
