@@ -96,32 +96,33 @@ async function ready() {
 }
 
 describe("arithmetic workbench", () => {
-  it("allows 100 questions in each of two rounds and explains the total size cap", async () => {
+  it("allows 200 questions per round and rejects more than ten rounds", async () => {
     render(<ArithmeticWorkbench canOutput preview />);
     fireEvent.change(
       screen.getByRole("spinbutton", {
         name: "두 자리 덧셈 · 받아올림 0회 문항 수",
       }),
-      { target: { value: "100" } },
+      { target: { value: "200" } },
     );
-    fireEvent.change(screen.getByLabelText("회차"), { target: { value: "3" } });
-    expect(
-      screen.getByText(/한 번에 총 200문항까지 만들 수 있습니다/),
-    ).toBeInTheDocument();
+    expect(screen.getByLabelText("회차")).toHaveAttribute("max", "10");
+    fireEvent.change(screen.getByLabelText("회차"), {
+      target: { value: "11" },
+    });
+    expect(screen.getByText(/회차는 1.*10/)).toBeInTheDocument();
     expect(
       screen.getByRole("button", { name: "연습지 만들기" }),
     ).toBeDisabled();
     fireEvent.change(screen.getByLabelText("회차"), { target: { value: "2" } });
     expect(screen.getByRole("button", { name: "연습지 만들기" })).toBeEnabled();
     make();
-    await screen.findByText(/200문항을 생성하고/);
+    await screen.findByText(/400문항을 생성하고/);
     expect(
       within(
         screen.getByRole("region", { name: "생성한 문항 검토" }),
       ).getAllByRole("listitem"),
-    ).toHaveLength(100);
+    ).toHaveLength(200);
     expect(
-      screen.getByRole("tab", { name: "2회차 100문항" }),
+      screen.getByRole("tab", { name: "2회차 200문항" }),
     ).toBeInTheDocument();
     expect(fetch).not.toHaveBeenCalled();
   });

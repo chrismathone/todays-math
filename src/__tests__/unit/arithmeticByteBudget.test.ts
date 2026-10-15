@@ -49,7 +49,7 @@ describe("arithmetic body and save preflight budgets", () => {
   it("cancels an oversized chunked request without trusting Content-Length", async () => {
     let cancelled = false;
     let n = 0;
-    const stream = new ReadableStream<Uint8Array>({
+    const stream = new ReadableStream<Uint8Array<ArrayBuffer>>({
       pull(controller) {
         controller.enqueue(new Uint8Array(1_000_000));
         n++;

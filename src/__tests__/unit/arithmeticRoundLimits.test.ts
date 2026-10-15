@@ -63,7 +63,9 @@ describe("10 rounds, 200 items each, historical reader compatibility", () => {
     const second = buildArithmeticV2Sheet(v2(200, 10));
     for (const sheet of [first, second]) {
       expect(sheet.rounds).toHaveLength(10);
-      expect(sheet.rounds.flatMap((r) => r.items)).toHaveLength(2000);
+      expect(sheet.rounds.reduce((sum, r) => sum + r.items.length, 0)).toBe(
+        2000,
+      );
       expect(arithmeticSheetByteIssue(sheet)).toBeNull();
       expect(() =>
         parseStrictJson(

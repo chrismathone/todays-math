@@ -14,7 +14,7 @@ scripts/qa/arithmetic-elementary-complete-report.json (48 elementary units)
 scripts/qa/arithmetic-algebra-complete-report.txt
 docs/reports/arithmetic-functions-data-20261015.txt
 scripts/qa/arithmetic-trigonometry-complete-report.txt
-docs/reports/arithmetic-curriculum-20261015.txt
+docs/reports/arithmetic-curriculum-audit-20261015.txt
 These distinguish direct calculations from proofs, construction, qualitative
 graph reading and narrative modeling; they do not claim every achievement
 standard is represented by a calculation drill. Pythagoras itself is 중2; the
@@ -66,5 +66,57 @@ content; round and generation controls remained visible.
 The functions/data worker separately audited402 distinct shared-renderer samples
 at320px review and85mm print width with zero clipping or missing math/prose.
 
-The subsequent200-per-round /10-round /20%-overlap policy is separately owned and
-validated; this report does not claim that policy is completed by this commit.
+Round policy integration
+------------------------
+Integrated98f39e8b6: new generation accepts200 questions per round, up to10 rounds
+(2,000 total). Each pair shares at most floor(min(lengths)/5) identical tasks;
+one round has no duplicates. Type sections retain their order and questions are
+shuffled within sections. Old20-round snapshots reopen without applying the new
+overlap rule. Selective regeneration preserves every unselected position; explicit
+no-op reasons retain the original object and dirty-state semantics.
+The two workbenches use the shared200/10 limits and preflight UTF-8 sheet bytes
+before manual save. Generation/regeneration and save routes also enforce budgets.
+See scripts/qa/arithmetic-limit-report.txt and its sizing/performance JSON files.
+
+After integration,762 tests in10 affected integration/UI/route/policy files passed.
+Another43 selective-regeneration, historical-snapshot and round-form tests passed.
+The new integration test builds ten200-item rounds across200 distinct unit types,
+checks all45 pair overlaps, save/reopen, continuous1..2000 output numbering and
+replacement of only three selected saved positions. API persistence tests use
+in-memory database mocks; no live DB or environment changes were made.
+
+Large PDF export
+----------------
+Physical pages are submitted in at most20-page /3,500,000-byte requests. PDF
+responses above4,000,000 bytes return413; the client halves that page batch and
+combines successful PDFs locally in their original order. Only already-measured
+pages are copied, preserving page numbering, round fields, CSS and source DOM.
+Small documents retain the exact one-request PDF bytes. A failed part produces
+no partial download. pdf-lib is loaded only for a multi-part result.
+This fits the4.5MB request/response platform ceiling documented at
+https://vercel.com/docs/functions/limitations (checked2026-10-15).
+Six client tests cover original bytes,41-page order, Korean UTF-8 request size,
+413 subdivision, authentication failure and oversized single-page rejection.
+Two route boundary tests and eight existing export checks also pass (16 total).
+Scoped TypeScript and ESLint passed for the PDF change.
+
+Final browser/PDF evidence
+-------------------------
+tmp/arithmetic-2000-browser-proof.json: actual dev workbench generated2,000
+three-digit addition questions, exposed ten200-item tabs and continuous1801..2000
+numbers in round10. Yuhyung output contains120 measured pages, all2,000 items and
+ten round fields, with zero measured page overflow, KaTeX errors or page errors.
+The actual PDF client sent six20-page requests (largest1,207,149 bytes). Each
+request was rendered by browser print using the actual server pdfDocument helper;
+the route was intercepted locally, so this is not a production-auth/Lambda claim.
+The combined120-page PDF is528,979 bytes. Extracted text confirms all ten rounds
+and final item2000; first/last pages were visually inspected. Four-digit numbers
+now grow the Yuhyung/Workbook number boxes rather than exceeding their border.
+Evidence: tmp/arithmetic-2000.pdf, arithmetic-2000-review.png,
+arithmetic-2000-pdf-{first,last}.png and arithmetic-2000-pdf-text-proof.json.
+Local development timings: generation1.238s; preparation of the full120-page
+output85.267s while the full project check also ran. Large-output preparation is
+still substantial; this report does not assert a production latency target.
+Full project TypeScript (8GiB tool heap), final scoped ESLint and normal hooks pass.
+The final byte/round/form rerun passed682 tests in three files. No code, test or
+source-asset changes were hidden behind a skipped hook.

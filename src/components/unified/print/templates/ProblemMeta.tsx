@@ -147,6 +147,8 @@ interface QuestionNumberProps {
 
 export function QuestionNumber({ template, num, accent }: QuestionNumberProps) {
   const textAccent = readablePaperColor(accent);
+  const boxWidth =
+    num >= 1000 ? { minWidth: 22, padding: "0 4px" } : { width: 22 };
   const printStyle: React.CSSProperties = {
     WebkitPrintColorAdjust: "exact" as const,
   };
@@ -211,7 +213,7 @@ export function QuestionNumber({ template, num, accent }: QuestionNumberProps) {
           style={{
             display: "inline-grid",
             placeItems: "center",
-            width: 22,
+            ...boxWidth,
             height: 22,
             background: accent,
             color: inkOnColor(accent),
@@ -251,7 +253,7 @@ export function QuestionNumber({ template, num, accent }: QuestionNumberProps) {
           style={{
             display: "inline-grid",
             placeItems: "center",
-            width: 22,
+            ...boxWidth,
             height: 22,
             border: `1.5px solid ${accent}`,
             fontWeight: 700,

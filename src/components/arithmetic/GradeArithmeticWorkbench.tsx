@@ -38,6 +38,7 @@ import type {
   ArithmeticRegenerationTarget,
 } from "@/lib/arithmeticRegeneration";
 import { arithmeticQuantityIssue } from "@/lib/arithmetic/quantity";
+import { arithmeticSheetByteIssue } from "@/lib/arithmetic/byteBudget";
 import {
   ARITHMETIC_MAX_ITEMS_PER_ROUND,
   ARITHMETIC_MAX_ROUNDS,
@@ -429,6 +430,11 @@ export default function GradeArithmeticWorkbench({
       inFlight.current
     )
       return;
+    const byteIssue = arithmeticSheetByteIssue(savePayload);
+    if (byteIssue) {
+      setError(byteIssue.message);
+      return;
+    }
     inFlight.current = true;
     setBusy(true);
     setError("");

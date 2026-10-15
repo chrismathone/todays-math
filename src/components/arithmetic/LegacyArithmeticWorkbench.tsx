@@ -49,6 +49,7 @@ import type {
   ArithmeticRegenerationTarget,
 } from "@/lib/arithmeticRegeneration";
 import { arithmeticQuantityIssue } from "@/lib/arithmetic/quantity";
+import { arithmeticSheetByteIssue } from "@/lib/arithmetic/byteBudget";
 import {
   defaultArithmeticPresentation,
   type ArithmeticPresentation,
@@ -429,6 +430,11 @@ export default function LegacyArithmeticWorkbench({
       inFlight.current
     )
       return;
+    const byteIssue = arithmeticSheetByteIssue(savePayload);
+    if (byteIssue) {
+      setError(byteIssue.message);
+      return;
+    }
     inFlight.current = true;
     setBusy(true);
     setError("");

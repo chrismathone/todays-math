@@ -15,6 +15,8 @@ import { FUNCTIONS_DATA_DEFINITIONS } from "@/lib/arithmetic-v2/families/functio
 import { arithmeticToStudioProblems } from "@/lib/arithmeticOutput";
 import { regenerateArithmeticV2Items } from "@/lib/arithmeticRegeneration";
 import { tokenizeMath } from "@/lib/math/segments";
+import { arithmeticV2PromptIdentity } from "@/contracts/arithmeticV2.contract";
+import { arithmeticSheetByteIssue } from "@/lib/arithmetic/byteBudget";
 
 const definitions = [
   ...ELEMENTARY_COMPLETE_DEFINITIONS,
@@ -67,29 +69,50 @@ describe("school-unit calculation integration", () => {
     }
   });
 
-  it("keeps 200 questions within the save limit and regenerates only selected saved positions", () => {
+  it("round-trips 200 questions in each of ten rounds and preserves unselected positions", () => {
     const allocations = definitions
-      .slice(0, 100)
+      .filter((d) => d.domainSize >= 40)
+      .slice(0, 200)
       .map((d) => ({ typeId: d.id, count: 1 }));
+    expect(allocations).toHaveLength(200);
     const sheet = buildArithmeticV2Sheet({
       ...versions,
-      seed: "unit-200-original",
-      rounds: [{ allocations }, { allocations }],
+      seed: "unit-2000-original",
+      rounds: Array.from({ length: 10 }, () => ({ allocations })),
     });
+    expect(arithmeticSheetByteIssue(sheet)).toBeNull();
     expect(
       Buffer.byteLength(JSON.stringify({ title: "단원별 계산 연습", sheet })),
-    ).toBeLessThan(256 * 1024);
+    ).toBeLessThan(3_500_000);
     const changed = regenerateArithmeticV2Items(
       sheet,
-      { round: 2, orders: [1, 50, 100] },
-      "unit-200-next",
+      { round: 10, orders: [1, 100, 200] },
+      "unit-2000-next",
     );
-    expect(changed.changedOrders).toEqual([1, 50, 100]);
-    expect(changed.sheet.rounds[0]).toBe(sheet.rounds[0]);
-    changed.sheet.rounds[1].items.forEach((item, i) => {
-      if ([0, 49, 99].includes(i))
-        expect(item.prompt).not.toEqual(sheet.rounds[1].items[i].prompt);
-      else expect(item).toBe(sheet.rounds[1].items[i]);
+    expect(changed.changedOrders).toEqual([1, 100, 200]);
+    sheet.rounds
+      .slice(0, 9)
+      .forEach((round, i) => expect(changed.sheet.rounds[i]).toBe(round));
+    changed.sheet.rounds[9].items.forEach((item, i) => {
+      if ([0, 99, 199].includes(i))
+        expect(item.prompt).not.toEqual(sheet.rounds[9].items[i].prompt);
+      else expect(item).toBe(sheet.rounds[9].items[i]);
+    });
+    const identities = changed.sheet.rounds.map(
+      (round) =>
+        new Set(
+          round.items.map((item) => arithmeticV2PromptIdentity(item.prompt)),
+        ),
+    );
+    identities.forEach((left, i) => {
+      expect(left.size).toBe(200);
+      identities
+        .slice(i + 1)
+        .forEach((right) =>
+          expect(
+            [...left].filter((key) => right.has(key)).length,
+          ).toBeLessThanOrEqual(40),
+        );
     });
     expect(
       reopenArithmeticV2Sheet(JSON.parse(JSON.stringify(changed.sheet))),
@@ -98,7 +121,7 @@ describe("school-unit calculation integration", () => {
       arithmeticToStudioProblems(changed.sheet).map(
         (p) => p.arithmetic?.number,
       ),
-    ).toEqual(Array.from({ length: 200 }, (_, i) => i + 1));
+    ).toEqual(Array.from({ length: 2000 }, (_, i) => i + 1));
   });
 
   it("retains formula/table markup and Korean or percent answer units in nongeometry tasks", () => {

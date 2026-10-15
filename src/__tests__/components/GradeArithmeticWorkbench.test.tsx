@@ -117,23 +117,25 @@ describe("grade arithmetic user flow", () => {
   it("generates two full rounds and explains the per-round limit before generating", async () => {
     render(<GradeArithmeticWorkbench canOutput preview />);
     const quantity = screen.getByLabelText(types[0].title + " 문항 수");
-    fireEvent.change(quantity, { target: { value: "101" } });
-    expect(screen.getByText(/한 회차에는 100문항까지/)).toBeInTheDocument();
+    expect(quantity).toHaveAttribute("max", "200");
+    expect(screen.getByLabelText("회차")).toHaveAttribute("max", "10");
+    fireEvent.change(quantity, { target: { value: "201" } });
+    expect(screen.getByText(/한 회차에는 200문항까지/)).toBeInTheDocument();
     expect(
       screen.getByRole("button", { name: "연습지 만들기" }),
     ).toBeDisabled();
-    fireEvent.change(quantity, { target: { value: "100" } });
+    fireEvent.change(quantity, { target: { value: "200" } });
     fireEvent.change(screen.getByLabelText("회차"), { target: { value: "2" } });
     expect(screen.getByRole("button", { name: "연습지 만들기" })).toBeEnabled();
     make();
-    await screen.findByText(/200문항을 생성하고/);
+    await screen.findByText(/400문항을 생성하고/);
     expect(
       within(
         screen.getByRole("region", { name: "생성한 문항 검토" }),
       ).getAllByRole("listitem"),
-    ).toHaveLength(100);
+    ).toHaveLength(200);
     expect(
-      screen.getByRole("tab", { name: "2회차 100문항" }),
+      screen.getByRole("tab", { name: "2회차 200문항" }),
     ).toBeInTheDocument();
     expect(fetch).not.toHaveBeenCalled();
   });
