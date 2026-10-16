@@ -4,8 +4,18 @@ import { A4_DIM } from "./tokens";
 import { printPagePadding, scaledItemStyle } from "./geometry";
 import { BodyContainer } from "./templates/BodyContainer";
 import type { PrintTemplateProps } from "./types";
-import { EnglishWorksheetAnswer } from "@/components/english/print/EnglishWorksheetQuestion";
+import { useEnglishPrintRenderer } from "./EnglishPrintRenderer";
 import { ArithmeticRoundLabel } from "./templates/ProblemMeta";
+
+function EnglishAnswer(props: {
+  content: NonNullable<
+    PrintTemplateProps["problems"][number]["variant"]["english"]
+  >;
+  quick?: boolean;
+}) {
+  const { Answer } = useEnglishPrintRenderer();
+  return <Answer {...props} />;
+}
 
 /** Answers share measured pagination; long solutions and quick keys never truncate. */
 export function AnswerPage({
@@ -38,10 +48,7 @@ export function AnswerPage({
         }}
       >
         {p.english ? (
-          <EnglishWorksheetAnswer
-            content={p.english}
-            quick={options.quickAnswerOnly}
-          />
+          <EnglishAnswer content={p.english} quick={options.quickAnswerOnly} />
         ) : (
           <>
             <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>

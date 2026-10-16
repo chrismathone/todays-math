@@ -1,6 +1,8 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { WorksheetPrint } from "@/components/unified/print/WorksheetPrint";
+import { EnglishPrintRendererProvider } from "@/components/unified/print/EnglishPrintRenderer";
+import { ENGLISH_PRINT_RENDERER } from "@/components/english/print/englishPrintRenderer";
 import {
   DEFAULT_PRINT_META,
   DEFAULT_PRINT_OPTIONS,
@@ -38,7 +40,13 @@ describe("English worksheet oversized block guard", () => {
       printMeta: DEFAULT_PRINT_META,
       onReady: ready,
     };
-    const { rerender } = render(<WorksheetPrint {...props} />);
+    const { rerender } = render(<WorksheetPrint {...props} />, {
+      wrapper: ({ children }) => (
+        <EnglishPrintRendererProvider value={ENGLISH_PRINT_RENDERER}>
+          {children}
+        </EnglishPrintRendererProvider>
+      ),
+    });
     expect(
       screen.getByText(/영어 지문 또는 문항이 있어 출력을 멈췄습니다/),
     ).toBeVisible();
