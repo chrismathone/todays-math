@@ -1,0 +1,1145 @@
+/*
+ * 시험지 만들기 3단계 «양식 구성·출력» 덧붙임 Wire (W6 내 양식 · W7 제목 추천 · W8 시험지 태그).
+ *
+ * Wire 라서 색을 쓰지 않는다 — 회색 몇 단계와 검정 하나. 색·서체·모서리는 Hi-fi 단계다.
+ * 단추처럼 보이는 것은 전부 그림이다(누를 수 없다) — 그래서 손가락 커서도 hover 도 없다(D-30).
+ * 바탕 틀은 `/dev/exam-builder-wire` 와 같은 집 모양이다(그 파일에서 옮겨 왔다).
+ */
+
+.shell {
+  --w-page: #f4f4f5;
+  --w-surface: #ffffff;
+  --w-fill: #e4e4e7;
+  --w-fill-2: #d4d4d8;
+  --w-line: #a1a1aa;
+  --w-strong: #27272a;
+  --w-muted: #52525b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  min-height: 100vh;
+  padding: 32px 16px 96px;
+  background: var(--w-page);
+  color: var(--w-strong);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.head,
+.topic {
+  width: 100%;
+  max-width: 1120px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.h1 {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.h2 {
+  font-size: 19px;
+  font-weight: 800;
+  padding-top: 8px;
+  border-top: 3px solid var(--w-strong);
+}
+
+.h3 {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.note {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--w-muted);
+  max-width: 900px;
+}
+
+.jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.jump a {
+  text-decoration: underline;
+}
+
+.must {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--w-muted);
+  max-width: 900px;
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 12px;
+}
+
+.caption {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 2px 8px;
+  max-width: 900px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--w-muted);
+}
+
+.caption dt {
+  font-weight: 700;
+  color: var(--w-strong);
+}
+
+.caption dd {
+  margin: 0;
+}
+
+/* 실제 폭의 틀 — 좁은 창에서도 문서 전체가 가로로 밀리지 않게 틀만 스크롤한다. */
+.scrollX {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.frameLabel {
+  font-size: 11px;
+  color: var(--w-muted);
+  margin-bottom: 4px;
+}
+
+.frame {
+  position: relative;
+  background: var(--w-page);
+  border: 1px solid var(--w-strong);
+  overflow: hidden;
+}
+
+.desktop {
+  width: 1040px;
+  min-height: 820px;
+}
+
+.phone {
+  width: 390px;
+  min-height: 760px;
+  border-radius: 18px;
+}
+
+.stepBar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 52px;
+  padding: 0 20px;
+  background: var(--w-surface);
+  border-bottom: 1px solid var(--w-line);
+  font-size: 12.5px;
+}
+
+.stepBar b {
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.stepOn {
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.grow {
+  flex: 1;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  padding: 12px 20px 20px;
+  align-items: start;
+}
+
+.wide {
+  padding: 12px 20px 20px;
+  display: grid;
+  gap: 12px;
+}
+
+.col {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  min-width: 0;
+}
+
+.panel {
+  background: var(--w-surface);
+  border: 1px solid var(--w-line);
+  padding: 12px 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.panelHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.panelHead strong {
+  font-size: 14px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.muted {
+  color: var(--w-muted);
+  font-size: 12px;
+}
+
+.small {
+  font-size: 11.5px;
+  color: var(--w-muted);
+}
+
+/* 그림 단추 — 누르지 않는다. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid var(--w-strong);
+  background: var(--w-surface);
+  font-size: 12.5px;
+  white-space: nowrap;
+}
+
+.btnPrimary {
+  composes: btn;
+  background: var(--w-strong);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.btnText {
+  composes: btn;
+  border-color: transparent;
+  background: transparent;
+  text-decoration: underline;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border: 1px solid var(--w-line);
+  background: var(--w-surface);
+  font-size: 12px;
+}
+
+.chipOn {
+  composes: chip;
+  border: 2px solid var(--w-strong);
+  font-weight: 800;
+}
+
+.field {
+  display: inline-flex;
+  white-space: nowrap;
+  align-items: center;
+  min-height: 30px;
+  min-width: 48px;
+  padding: 0 8px;
+  border: 1px solid var(--w-line);
+  background: var(--w-surface);
+  font-size: 12.5px;
+}
+
+.fieldGrow {
+  composes: field;
+  flex: 1;
+  color: var(--w-muted);
+}
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+}
+
+.check::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--w-strong);
+  background: var(--w-surface);
+}
+
+.checkOn {
+  composes: check;
+}
+
+.checkOn::before {
+  background: var(--w-strong);
+  box-shadow: inset 0 0 0 2px var(--w-surface);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 6px;
+  min-height: 20px;
+  border: 1px solid var(--w-strong);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.tagSoft {
+  composes: tag;
+  border-color: var(--w-line);
+  font-weight: 400;
+  color: var(--w-muted);
+}
+
+.rule {
+  border-left: 3px solid var(--w-strong);
+  padding: 4px 8px;
+  background: var(--w-fill);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.warn {
+  border: 1.5px dashed var(--w-strong);
+  padding: 6px 8px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* 문항 — 본문은 회색 막대로 대신한다. */
+.card {
+  background: var(--w-surface);
+  border: 1px solid var(--w-line);
+  padding: 10px 12px;
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.cardFocus {
+  composes: card;
+  border: 2px solid var(--w-strong);
+}
+
+.cardGhost {
+  composes: card;
+  border-style: dashed;
+  background: var(--w-fill);
+}
+
+.cardTop {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.no {
+  font-weight: 800;
+  font-size: 15px;
+}
+
+.bars {
+  display: grid;
+  gap: 5px;
+}
+
+.bar {
+  height: 8px;
+  background: var(--w-fill-2);
+}
+
+.cardActions {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.grid3 {
+  align-items: start;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.grid2 {
+  align-items: start;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.layerHead {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-top: 6px;
+  border-top: 1px solid var(--w-line);
+}
+
+.layerHead strong {
+  font-size: 13.5px;
+}
+
+/* 창 — 뒤 화면을 흐리게 덮고 가운데에 띄운다. */
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(39, 39, 42, 0.35);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 28px;
+}
+
+.dialog {
+  background: var(--w-surface);
+  border: 2px solid var(--w-strong);
+  display: grid;
+  gap: 10px;
+  padding: 0 0 12px;
+  max-height: calc(100% - 40px);
+  overflow: hidden;
+  align-content: start;
+}
+
+.dialog880 {
+  composes: dialog;
+  width: 880px;
+}
+
+.dialogFull {
+  composes: dialog;
+  position: absolute;
+  inset: 12px 0 0;
+  max-height: none;
+  border-radius: 12px 12px 0 0;
+}
+
+.dialogHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--w-line);
+}
+
+.dialogHead strong {
+  font-size: 15px;
+  flex: 1;
+}
+
+.dialogBody {
+  display: grid;
+  gap: 10px;
+  padding: 0 14px;
+  align-content: start;
+  min-width: 0;
+}
+
+.dialogFoot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px 0;
+  border-top: 1px solid var(--w-line);
+  flex-wrap: wrap;
+}
+
+.pinned {
+  background: var(--w-fill);
+  border: 1px solid var(--w-strong);
+  padding: 8px 10px;
+  display: grid;
+  gap: 6px;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+/* 표 */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+
+.table th,
+.table td {
+  border-bottom: 1px solid var(--w-fill-2);
+  padding: 6px 6px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table th {
+  font-size: 11.5px;
+  color: var(--w-muted);
+  font-weight: 700;
+}
+
+.table td small {
+  display: block;
+  font-size: 11px;
+  color: var(--w-muted);
+}
+
+.rowFixed td {
+  background: var(--w-fill);
+}
+
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.stepper {
+  display: inline-flex;
+  align-items: center;
+}
+
+.stepper > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 28px;
+  border: 1px solid var(--w-line);
+  background: var(--w-surface);
+  font-variant-numeric: tabular-nums;
+}
+
+.stepper > span:nth-child(2) {
+  width: 36px;
+  border-left: 0;
+  border-right: 0;
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid var(--w-line);
+  padding-top: 10px;
+  flex-wrap: wrap;
+}
+
+.summaryLine {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  font-size: 12.5px;
+}
+
+.stub {
+  background: var(--w-surface);
+  border: 1px dashed var(--w-line);
+  min-height: 200px;
+  display: grid;
+  place-items: center;
+  color: var(--w-muted);
+  font-size: 12px;
+  text-align: center;
+  padding: 12px;
+}
+
+.list {
+  display: grid;
+  gap: 0;
+}
+
+.listRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--w-fill-2);
+}
+
+.listRow > div {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.toast {
+  border: 1px solid var(--w-strong);
+  background: var(--w-surface);
+  padding: 6px 10px;
+  font-size: 12px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.phoneTop {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 14px;
+  background: var(--w-surface);
+  border-bottom: 1px solid var(--w-line);
+  font-size: 12px;
+}
+
+.phoneBody {
+  display: grid;
+  gap: 10px;
+  padding: 10px 12px 16px;
+}
+
+.ladder {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.ladder > span {
+  display: grid;
+  gap: 2px;
+  justify-items: center;
+  padding: 4px 0;
+  border: 1px solid var(--w-line);
+  background: var(--w-surface);
+  font-size: 11px;
+}
+
+.ladder > span b {
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.ladderOff {
+  color: var(--w-line);
+}
+
+.phoneLadder {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* 폰 폭에서는 폰 틀(390)이 화면에 꼭 맞게 — 바깥 여백은 글에만 둔다. */
+@media (max-width: 430px) {
+  .shell {
+    padding-inline: 0;
+  }
+  .head,
+  .h2,
+  .must,
+  .option {
+    padding-inline: 16px;
+  }
+  .must {
+    padding-left: 34px;
+  }
+}
+
+/* ───────────── 3단계 «양식 구성·출력»의 지금 틀 (WorksheetEditor 의 exportGrid · 340 + 미리보기) ───────────── */
+
+.exportGrid {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  gap: 12px;
+  padding: 12px 20px 20px;
+  align-items: start;
+}
+
+.inspector {
+  position: relative;
+  background: var(--w-surface);
+  border: 1px solid var(--w-line);
+  padding: 10px 12px 12px;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  min-width: 0;
+}
+
+/* 설정 칸은 화면 높이(1280×800 에서 680px)만큼만 처음 보인다 — 그 아래는 칸 안에서 스크롤. */
+.fold {
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  top: 680px;
+  border-top: 2px dashed var(--w-strong);
+  pointer-events: none;
+}
+
+.fold > span {
+  position: absolute;
+  right: 0;
+  top: -18px;
+  font-size: 10.5px;
+  background: var(--w-strong);
+  color: #ffffff;
+  padding: 0 6px;
+}
+
+.tabs {
+  display: flex;
+  gap: 6px;
+  border-bottom: 1px solid var(--w-fill-2);
+  padding-bottom: 8px;
+}
+
+.tab {
+  composes: chip;
+}
+
+.tabOn {
+  composes: chipOn;
+}
+
+.group {
+  display: grid;
+  gap: 6px;
+  padding-top: 8px;
+  border-top: 1px solid var(--w-fill-2);
+  min-width: 0;
+}
+
+.legend {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.tplGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.tplGrid > span {
+  display: grid;
+  gap: 0;
+  justify-items: center;
+  padding: 4px 0;
+  border: 1px solid var(--w-line);
+  background: var(--w-surface);
+  font-size: 12px;
+}
+
+.tplGrid > span small {
+  font-size: 10.5px;
+  color: var(--w-muted);
+}
+
+.tplGrid > span.tplOn {
+  border: 2px solid var(--w-strong);
+  font-weight: 800;
+}
+
+.metaGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.metaField {
+  display: grid;
+  gap: 2px;
+  font-size: 11px;
+  color: var(--w-muted);
+  min-width: 0;
+}
+
+.metaField > span {
+  display: flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 8px;
+  border: 1px solid var(--w-line);
+  background: var(--w-surface);
+  color: var(--w-strong);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.metaField > span.empty {
+  color: var(--w-line);
+}
+
+.titleRow {
+  display: flex;
+  gap: 6px;
+  align-items: stretch;
+}
+
+.titleRow > .metaValue {
+  flex: 1;
+}
+
+.metaValue {
+  display: flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 8px;
+  border: 1.5px solid var(--w-strong);
+  background: var(--w-surface);
+  font-size: 12.5px;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.metaValueSoft {
+  composes: metaValue;
+  border: 1px solid var(--w-line);
+  color: var(--w-muted);
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.chipRow > span {
+  min-height: 26px;
+  font-size: 11.5px;
+  padding: 0 8px;
+}
+
+.stubRows {
+  display: grid;
+  gap: 4px;
+  font-size: 11.5px;
+  color: var(--w-muted);
+}
+
+.stubRows > span {
+  border: 1px dashed var(--w-line);
+  padding: 4px 8px;
+}
+
+/* 이 갈래가 덧붙인 것 — 굵은 테두리로 «새로 생긴 자리»를 가른다. */
+.added {
+  border: 2px solid var(--w-strong);
+  background: var(--w-surface);
+  padding: 8px 10px;
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.addedFill {
+  composes: added;
+  background: var(--w-fill);
+}
+
+.addedLabel {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--w-muted);
+}
+
+.suggest {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2px 8px;
+  align-items: center;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--w-fill-2);
+}
+
+.suggest > div {
+  display: grid;
+  gap: 0;
+  min-width: 0;
+}
+
+.suggest > div > span {
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.confirm {
+  border: 1.5px dashed var(--w-strong);
+  padding: 6px 8px;
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+/* 미리보기 — A4 한 쪽 */
+.preview {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  min-width: 0;
+}
+
+.paper {
+  width: 440px;
+  aspect-ratio: 210 / 297;
+  background: var(--w-surface);
+  border: 1px solid var(--w-line);
+  padding: 26px 28px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 16px;
+}
+
+.paperHead {
+  display: grid;
+  gap: 4px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--w-strong);
+}
+
+.paperHead strong {
+  font-size: 15px;
+}
+
+.paperBody {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-content: start;
+}
+
+.paperBody > div {
+  display: grid;
+  gap: 5px;
+}
+
+/* 펼친 작은 목록 */
+.popover {
+  position: absolute;
+  z-index: 2;
+  background: var(--w-surface);
+  border: 2px solid var(--w-strong);
+  box-shadow: 4px 4px 0 var(--w-fill-2);
+  padding: 8px 10px;
+  display: grid;
+  gap: 6px;
+  width: 316px;
+}
+
+.relative {
+  position: relative;
+}
+
+.dialog640 {
+  composes: dialog;
+  width: 640px;
+}
+
+.dialog560 {
+  composes: dialog;
+  width: 560px;
+}
+
+.pickRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 10px;
+  align-items: start;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--w-fill-2);
+}
+
+.pickRow > div {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.pickRowOn {
+  composes: pickRow;
+  background: var(--w-fill);
+  padding-inline: 6px;
+}
+
+.pickActions {
+  display: flex;
+  gap: 4px;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 4px 10px;
+  font-size: 12px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.facts dt {
+  font-weight: 700;
+}
+
+.facts dd {
+  margin: 0;
+}
+
+.inset {
+  width: 594px;
+  min-height: 0;
+  background: var(--w-page);
+  padding: 16px;
+}
+
+.short {
+  min-height: 0;
+}
+
+/* 내 시험지 탭 (PrivateLibrary) */
+.lib {
+  padding: 16px 20px 20px;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.libHead {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.libHead > div {
+  display: grid;
+  gap: 2px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.libHead strong {
+  font-size: 17px;
+}
+
+.libTwo {
+  display: grid;
+  grid-template-columns: 184px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.rail {
+  background: var(--w-surface);
+  border: 1px solid var(--w-line);
+  padding: 8px 10px;
+  display: grid;
+  gap: 4px;
+}
+
+.rail > span {
+  font-size: 12px;
+}
+
+.titleCell {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filterOn {
+  composes: added;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+}
+
+.phoneRows {
+  display: grid;
+  gap: 0;
+  background: var(--w-surface);
+  border: 1px solid var(--w-line);
+  padding: 0 10px;
+}
+
+.phoneRows > div {
+  display: grid;
+  gap: 2px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--w-fill-2);
+}
+
+.saveTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  max-width: 900px;
+}
+
+.saveTable th,
+.saveTable td {
+  border: 1px solid var(--w-fill-2);
+  padding: 5px 8px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.saveTable th {
+  width: 160px;
+  background: var(--w-fill);
+}
+
+@media (max-width: 430px) {
+  .saveTable {
+    margin-inline: 16px;
+    width: calc(100% - 32px);
+  }
+  .saveTable th {
+    width: 96px;
+  }
+}
