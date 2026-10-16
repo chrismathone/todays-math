@@ -238,7 +238,8 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 113: arithmetic-paper-20261014 추가 (2026-10-14 연산대장 문제지 · 정답지 — 그 커밋 401e58fd0 이
     //      이 수를 안 올려 main 이 112 ≠ 113 으로 빨갰다 — 2026-10-16 맞춤).
     // 114: arithmetic-center-angles-20261016 추가 (내심·외심 각도 그림과 묶음 머리말).
-    expect(ITEMS.length).toBe(114);
+    // 115: arithmetic-figure-first-20261016 추가 (삼각비·피타고라스·닮음·원·중1 각 70유형 그림 우선).
+    expect(ITEMS.length).toBe(115);
   });
 
   /**

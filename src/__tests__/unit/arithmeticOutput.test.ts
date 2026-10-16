@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
-  centerAngleGroupInstruction,
-  isCenterAngleType,
-} from "@/lib/arithmetic-v2/presentation/centerAngles";
+  figureFirstGroupInstruction,
+  isFigureFirstType,
+} from "@/lib/arithmetic-v2/presentation/figureFirst";
 import katex from "katex";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -66,8 +66,9 @@ describe("arithmetic shared output adapter", () => {
         number: 1,
         groupKey: type.id,
         groupTitle: type.title,
-        ...(isCenterAngleType(type.id)
-          ? { groupInstruction: centerAngleGroupInstruction(type.id) }
+        // Figure-first families (2026-10-15/16) carry one group question.
+        ...(isFigureFirstType(type.id)
+          ? { groupInstruction: figureFirstGroupInstruction(type.id) }
           : {}),
       });
       expect(problem.section).toBe(type.title);

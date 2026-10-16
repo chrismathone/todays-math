@@ -21,10 +21,10 @@ import { ARITHMETIC_GEOMETRY_PACK_MAX_LENGTH } from "@/lib/arithmetic-v2/geometr
 import { arithmeticToStudioProblems } from "@/lib/arithmeticOutput";
 import { presentArithmeticGeometrySvg } from "@/lib/arithmetic-v2/presentation";
 import {
-  centerAngleFigureSvg,
-  centerAngleGroupInstruction,
-  isCenterAngleType,
-} from "@/lib/arithmetic-v2/presentation/centerAngles";
+  figureFirstGroupInstruction,
+  figureFirstSvg,
+  isFigureFirstType,
+} from "@/lib/arithmetic-v2/presentation/figureFirst";
 import { arithmeticFigurePresentation } from "@/lib/arithmetic-v2/presentation/figurePolicy";
 import { arithmeticAnswerUnitLatex } from "@/lib/arithmetic-v2/presentation/text";
 import {
@@ -146,14 +146,14 @@ describe("integrated elementary and middle-school geometry", () => {
       items.forEach((item, index) => {
         if (item.prompt.layout !== "math")
           throw new Error("Geometry must have a math prompt");
-        // Figure-first center angles carry their givens in the figure and
-        // their question in the group instruction instead of prose.
+        // Figure-first families carry their givens in the figure and their
+        // question in the group instruction instead of prose (2026-10-15/16).
         if (
-          isCenterAngleType(item.typeId) &&
+          isFigureFirstType(item.typeId) &&
           arithmeticFigurePresentation(item.prompt, item.typeId).showFigure
         )
           expect(output[index].arithmetic?.groupInstruction).toBe(
-            centerAngleGroupInstruction(item.typeId),
+            figureFirstGroupInstruction(item.typeId),
           );
         else
           expect(output[index].content).toContain(
@@ -175,11 +175,15 @@ describe("integrated elementary and middle-school geometry", () => {
           item.prompt.figureId &&
           arithmeticFigurePresentation(item.prompt, item.typeId).showFigure
         ) {
-          const displayed = presentArithmeticGeometrySvg(
+          const canonical = arithmeticGeometrySvg(
             item.prompt.figureId,
-            centerAngleFigureSvg(item.prompt.figureId) ??
-              arithmeticGeometrySvg(item.prompt.figureId, sheet.figures!),
+            sheet.figures!,
           );
+          const displayed =
+            (isFigureFirstType(item.typeId)
+              ? figureFirstSvg(item.typeId, item.prompt, canonical)
+              : undefined) ??
+            presentArithmeticGeometrySvg(item.prompt.figureId, canonical);
           expect(output[index].figureSourceMm).toEqual([
             figureSvgAngleDrillWidthMm(displayed),
           ]);

@@ -83,6 +83,25 @@ export const SPECIMEN_ITEM_IDS = [
 
 export const ITEMS: PrintCheckItem[] = [
   {
+    id: "arithmetic-figure-first-20261016",
+    title: "연산대장 — 그림 우선 도형 유형(삼각비·피타고라스·닮음·원·중1 각)",
+    changed:
+      "내심·외심에 이어 70유형을 그림 우선으로 바꿨다. gt1 49유형(1,718문항)은 주어진 값을 모두 적고 x를 표시한 그림으로 다시 그리고, gm 14유형(234문항)은 편집기 배치 그대로 빈 각·굵은 선분에 x를 더하며, 삼각비 4유형(24,474문항)은 문장의 값으로 직각삼각형을 새로 그린다. 문항 문장은 없애고 «[11~20] 다음 그림의 직각삼각형 ABC에서 x의 값을 구하세요.» 한 줄을 묶음 위에 둔다. 비·넓이·sin 값처럼 그림에 못 싣는 것만 문항 아래 한 줄로 남는다.",
+    look: "(제안) 여섯 템플릿과 연산 인쇄에서 x와 숫자가 자기 변·각 옆에 읽히는지(좁은 자리는 가는 지시선), 머리말 번호 범위가 문항 번호와 맞는지, 사인값·비 한 줄이 그림과 답란 사이에서 잘리지 않는지 본다. 라벨이 선에 겹치거나 x가 어느 변의 것인지 모호하면 불합격이다.",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/arithmetic-v2/presentation/figureFirst.ts",
+      "src/lib/arithmetic-v2/presentation/figureFirstTriangles.ts",
+      "src/lib/arithmetic-v2/presentation/figureFirstAnnotated.ts",
+      "src/lib/arithmetic-v2/presentation/figureFirstTrig.ts",
+    ],
+    scale: "70유형 · 26,948문항",
+    status: "대기",
+    needs:
+      "/dev/arithmetic/grade-print?type=m3-trig-special-length&count=8 · type=m3-pythagoras-leg-surd · type=m3-circle-chord-length · type=m3-trig-length-given-ratio · 연산대장에서 해당 유형을 담아 양식 구성·출력",
+    changedOn: "2026-10-16",
+  },
+  {
     id: "arithmetic-center-angles-20261016",
     title: "연산대장 — 내심·외심 각도 그림과 묶음 머리말",
     changed:

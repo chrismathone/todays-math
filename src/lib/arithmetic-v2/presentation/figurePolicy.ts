@@ -3,7 +3,11 @@ import { arithmeticGeometryPromptLines } from "../geometry";
 import { arithmeticGeometryWording } from "./text";
 import { ELEMENTARY_FIGURE_POLICY } from "./figurePolicyElementary";
 import { MIDDLE_FIGURE_POLICY } from "./figurePolicyMiddle";
-import { isCenterAngleType } from "./centerAngles";
+import {
+  figureFirstApplies,
+  figureFirstLines,
+  isFigureFirstType,
+} from "./figureFirst";
 
 type FigurePolicy = {
   typeId: string;
@@ -28,6 +32,9 @@ const byPrefix = [...policies].sort(
 export function arithmeticFigurePresentation(
   prompt: ArithmeticV2Prompt,
   typeId?: string,
+  /** `figureFirst: false` when the consumer could not draw the figure-first
+   * figure, so that the complete prose is printed instead. */
+  options: { figureFirst?: boolean } = {},
 ): { showFigure: boolean; lines: string[] } {
   if (prompt.layout !== "math") return { showFigure: false, lines: [] };
   const policy = typeId
@@ -37,6 +44,23 @@ export function arithmeticFigurePresentation(
           prompt.figureId!.startsWith(entry.figureIdPrefix),
         )
       : undefined;
+  // Figure-first drills: the figure carries every given and x, the group
+  // instruction carries the question, so the problem itself keeps at most a
+  // short line (a ratio or an area the figure cannot show).
+  const resolvedType = typeId ?? policy?.typeId;
+  if (
+    options.figureFirst !== false &&
+    resolvedType &&
+    isFigureFirstType(resolvedType) &&
+    (!prompt.figureId || policy?.showFigure !== false) &&
+    figureFirstApplies(resolvedType, prompt)
+  )
+    return {
+      showFigure: true,
+      lines: figureFirstLines(resolvedType, prompt)
+        .map(arithmeticGeometryWording)
+        .filter(Boolean),
+    };
   const showFigure = Boolean(prompt.figureId) && policy?.showFigure !== false;
   const displayed = {
     ...prompt,
@@ -49,10 +73,6 @@ export function arithmeticFigurePresentation(
       ? { text: prompt.text.replace("표시된 외각", "외각") }
       : {}),
   };
-  // Figure-first center angles: the figure carries every given and x, and the
-  // group instruction carries the question, so the problem itself has no prose.
-  if (showFigure && policy && isCenterAngleType(policy.typeId))
-    return { showFigure, lines: [] };
   // The original triangle-angle helper suppresses givens that are printed in
   // its diagram. Restore those public givens whenever that diagram is omitted.
   const lines = showFigure

@@ -73,23 +73,23 @@ export const MIDDLE_FIGURE_POLICY: readonly MiddleFigurePolicy[] = [
   {
     typeId: "m2-circum-equal-radii",
     figureIdPrefix: "gt1-m2-circum-equal-radii-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 외심, 필요한 예각·둔각·직각 구분, 주어진 각 또는 길이와 목표가 명시되어 외심의 성질만으로 계산된다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-right-circumradius",
     figureIdPrefix: "gt1-m2-right-circumradius-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 외심, 필요한 예각·둔각·직각 구분, 주어진 각 또는 길이와 목표가 명시되어 외심의 성질만으로 계산된다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-right-circum-diameter",
     figureIdPrefix: "gt1-m2-right-circum-diameter-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 외심, 필요한 예각·둔각·직각 구분, 주어진 각 또는 길이와 목표가 명시되어 외심의 성질만으로 계산된다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-incenter-half-angle",
@@ -171,44 +171,44 @@ export const MIDDLE_FIGURE_POLICY: readonly MiddleFigurePolicy[] = [
   {
     typeId: "m2-centroid-vertex-from-short",
     figureIdPrefix: "gt1-m2-centroid-vertex-from-short-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 무게중심, 사용하는 중점·중선 또는 전체 넓이, 주어진 수와 목표가 명시되어 2:1 분할과 넓이 관계로 계산된다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-centroid-short-from-vertex",
     figureIdPrefix: "gt1-m2-centroid-short-from-vertex-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 무게중심, 사용하는 중점·중선 또는 전체 넓이, 주어진 수와 목표가 명시되어 2:1 분할과 넓이 관계로 계산된다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-centroid-vertex-from-median",
     figureIdPrefix: "gt1-m2-centroid-vertex-from-median-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 무게중심, 사용하는 중점·중선 또는 전체 넓이, 주어진 수와 목표가 명시되어 2:1 분할과 넓이 관계로 계산된다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-centroid-short-from-median",
     figureIdPrefix: "gt1-m2-centroid-short-from-median-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 무게중심, 사용하는 중점·중선 또는 전체 넓이, 주어진 수와 목표가 명시되어 2:1 분할과 넓이 관계로 계산된다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-centroid-median-from-vertex",
     figureIdPrefix: "gt1-m2-centroid-median-from-vertex-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 무게중심, 사용하는 중점·중선 또는 전체 넓이, 주어진 수와 목표가 명시되어 2:1 분할과 넓이 관계로 계산된다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-centroid-median-from-short",
     figureIdPrefix: "gt1-m2-centroid-median-from-short-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 무게중심, 사용하는 중점·중선 또는 전체 넓이, 주어진 수와 목표가 명시되어 2:1 분할과 넓이 관계로 계산된다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-centroid-area-3",
@@ -229,35 +229,35 @@ export const MIDDLE_FIGURE_POLICY: readonly MiddleFigurePolicy[] = [
     figureIdPrefix: "gt1-m2-iso-bisector-angle-",
     showFigure: true,
     reason:
-      "AD가 꼭지각 이등분선이라는 조건만으로 D의 위치는 정해지지 않는다. 그림이 D가 BC 위임을 지정해야 ∠ABD가 밑각이 된다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-iso-bisector-base",
     figureIdPrefix: "gt1-m2-iso-bisector-base-",
     showFigure: true,
     reason:
-      "AD가 꼭지각 이등분선이라는 조건만으로 D가 BC의 중점은 아니다. 그림의 D∈BC가 있어야 BD의 두 배가 BC이다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-iso-bisector-half-base",
     figureIdPrefix: "gt1-m2-iso-bisector-half-base-",
     showFigure: true,
     reason:
-      "AD가 꼭지각 이등분선이라는 조건만으로 D가 BC의 중점은 아니다. 그림의 D∈BC가 있어야 BD가 BC의 절반이다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-triangle-midsegment",
     figureIdPrefix: "gt1-m2-triangle-midsegment-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장이 각 중점이 놓인 변과 주어진 길이·넓이·둘레 및 목표를 지정하므로 중점·중선 관계만으로 계산된다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-midsegment-to-base",
     figureIdPrefix: "gt1-m2-midsegment-to-base-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장이 각 중점이 놓인 변과 주어진 길이·넓이·둘레 및 목표를 지정하므로 중점·중선 관계만으로 계산된다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-midsegment-area-small",
@@ -276,23 +276,23 @@ export const MIDDLE_FIGURE_POLICY: readonly MiddleFigurePolicy[] = [
   {
     typeId: "m2-trapezoid-midline",
     figureIdPrefix: "gt1-m2-trapezoid-midline-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 사다리꼴의 평행한 변, 필요한 중점·분할비·같은 변 조건, 주어진 수와 목표가 명시되어 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-trapezoid-base",
     figureIdPrefix: "gt1-m2-trapezoid-base-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 사다리꼴의 평행한 변, 필요한 중점·분할비·같은 변 조건, 주어진 수와 목표가 명시되어 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-trapezoid-diagonal-midpoints",
     figureIdPrefix: "gt1-m2-trapezoid-diagonal-midpoints-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 사다리꼴의 평행한 변, 필요한 중점·분할비·같은 변 조건, 주어진 수와 목표가 명시되어 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-similarity-ratio-power-1",
@@ -381,51 +381,51 @@ export const MIDDLE_FIGURE_POLICY: readonly MiddleFigurePolicy[] = [
   {
     typeId: "m2-parallel-triangle-side-part",
     figureIdPrefix: "gt1-m2-parallel-triangle-side-part-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 평행선, 각 점이 놓인 직선·변과 순서, 주어진 선분 및 목표가 모두 명시되어 비례 관계를 정할 수 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-parallel-triangle-base",
     figureIdPrefix: "gt1-m2-parallel-triangle-base-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 평행선, 각 점이 놓인 직선·변과 순서, 주어진 선분 및 목표가 모두 명시되어 비례 관계를 정할 수 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-parallel-triangle-whole-side",
     figureIdPrefix: "gt1-m2-parallel-triangle-whole-side-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 평행선, 각 점이 놓인 직선·변과 순서, 주어진 선분 및 목표가 모두 명시되어 비례 관계를 정할 수 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-triangle-bisector-segment",
     figureIdPrefix: "gt1-m2-triangle-bisector-segment-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장이 이등분하는 각, 점이 놓인 변 또는 연장 방향, 주어진 길이와 목표를 모두 지정한다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-parallelogram-adjacent",
     figureIdPrefix: "gt1-m2-parallelogram-adjacent-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 사각형의 종류, 필요한 대각선의 교점, 주어진 각·길이·넓이 및 목표가 명시되어 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-parallelogram-diagonal-half",
     figureIdPrefix: "gt1-m2-parallelogram-diagonal-half-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 사각형의 종류, 필요한 대각선의 교점, 주어진 각·길이·넓이 및 목표가 명시되어 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-parallelogram-diagonal-whole",
     figureIdPrefix: "gt1-m2-parallelogram-diagonal-whole-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 사각형의 종류, 필요한 대각선의 교점, 주어진 각·길이·넓이 및 목표가 명시되어 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-parallelogram-area-quarter",
@@ -437,149 +437,149 @@ export const MIDDLE_FIGURE_POLICY: readonly MiddleFigurePolicy[] = [
   {
     typeId: "m2-rectangle-diagonal-half",
     figureIdPrefix: "gt1-m2-rectangle-diagonal-half-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 사각형의 종류, 필요한 대각선의 교점, 주어진 각·길이·넓이 및 목표가 명시되어 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-rhombus-diagonal-angle",
     figureIdPrefix: "gt1-m2-rhombus-diagonal-angle-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 사각형의 종류, 필요한 대각선의 교점, 주어진 각·길이·넓이 및 목표가 명시되어 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-isosceles-trapezoid-angle",
     figureIdPrefix: "gt1-m2-isosceles-trapezoid-angle-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 사다리꼴의 평행한 변, 필요한 중점·분할비·같은 변 조건, 주어진 수와 목표가 명시되어 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-pythagoras-hypotenuse-integer",
     figureIdPrefix: "gt1-m2-pythagoras-hypotenuse-integer-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-pythagoras-leg-integer",
     figureIdPrefix: "gt1-m2-pythagoras-leg-integer-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-pythagoras-rectangle-diagonal-integer",
     figureIdPrefix: "gt1-m2-pythagoras-rectangle-diagonal-integer-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-pythagoras-rectangle-side-integer",
     figureIdPrefix: "gt1-m2-pythagoras-rectangle-side-integer-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-pythagoras-isosceles-height-integer",
     figureIdPrefix: "gt1-m2-pythagoras-isosceles-height-integer-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-pythagoras-rhombus-side-integer",
     figureIdPrefix: "gt1-m2-pythagoras-rhombus-side-integer-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m3-pythagoras-hypotenuse-surd",
     figureIdPrefix: "gt1-m3-pythagoras-hypotenuse-surd-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m3-pythagoras-leg-surd",
     figureIdPrefix: "gt1-m3-pythagoras-leg-surd-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m3-pythagoras-rectangle-diagonal-surd",
     figureIdPrefix: "gt1-m3-pythagoras-rectangle-diagonal-surd-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m3-pythagoras-rectangle-side-surd",
     figureIdPrefix: "gt1-m3-pythagoras-rectangle-side-surd-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m3-pythagoras-isosceles-height-surd",
     figureIdPrefix: "gt1-m3-pythagoras-isosceles-height-surd-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m3-pythagoras-rhombus-side-surd",
     figureIdPrefix: "gt1-m3-pythagoras-rhombus-side-surd-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 직각·직사각형·이등변삼각형·마름모의 종류와 필요한 변, 대각선 또는 높이인 목표가 명시되어 피타고라스 관계를 정할 수 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-right-radius-from-legs",
     figureIdPrefix: "gt1-m2-right-radius-from-legs-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 직각의 꼭짓점, 외심, 두 직각변과 외접원 반지름이라는 목표가 명시되어 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-right-triangle-height",
     figureIdPrefix: "gt1-m2-right-triangle-height-",
     showFigure: true,
     reason:
-      "BD⊥AC만 있고 D∈AC는 명시되지 않는다. 그림이 D를 빗변 위 수선의 발로 지정한다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-right-triangle-projection",
     figureIdPrefix: "gt1-m2-right-triangle-projection-",
     showFigure: true,
     reason:
-      "BD⊥AC만 있고 D∈AC는 명시되지 않는다. 그림이 D를 빗변 위 수선의 발로 지정해야 AD가 정사영 길이가 된다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-right-triangle-area",
     figureIdPrefix: "gt1-m2-right-triangle-area-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 직각의 꼭짓점, 한 직각변과 빗변, 전체 삼각형 넓이라는 목표가 있다. D의 위치는 이 계산에 필요하지 않다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-right-altitude-product",
     figureIdPrefix: "gt1-m2-right-altitude-product-",
     showFigure: true,
     reason:
-      "BD⊥AC만 있고 D∈AC는 명시되지 않는다. 그림이 AD와 DC가 빗변을 나누는 두 부분임을 지정한다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m3-right-leg-product",
     figureIdPrefix: "gt1-m3-right-leg-product-",
     showFigure: true,
     reason:
-      "BD⊥AC만 있고 D∈AC는 명시되지 않는다. 그림이 D를 빗변 위 수선의 발로 지정해야 AD가 정사영 길이가 된다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-centroid-median-sum",
@@ -605,30 +605,30 @@ export const MIDDLE_FIGURE_POLICY: readonly MiddleFigurePolicy[] = [
   {
     typeId: "m2-three-parallel-segments",
     figureIdPrefix: "gt1-m2-three-parallel-segments-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 평행선, 각 점이 놓인 직선·변과 순서, 주어진 선분 및 목표가 모두 명시되어 비례 관계를 정할 수 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-trapezoid-parallel-section",
     figureIdPrefix: "gt1-m2-trapezoid-parallel-section-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 사다리꼴의 평행한 변, 필요한 중점·분할비·같은 변 조건, 주어진 수와 목표가 명시되어 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-external-bisector-part",
     figureIdPrefix: "gt1-m2-external-bisector-part-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장이 이등분하는 각, 점이 놓인 변 또는 연장 방향, 주어진 길이와 목표를 모두 지정한다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-external-bisector-base",
     figureIdPrefix: "gt1-m2-external-bisector-base-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장이 이등분하는 각, 점이 놓인 변 또는 연장 방향, 주어진 길이와 목표를 모두 지정한다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-midpoint-triangle-perimeter-part",
@@ -649,14 +649,14 @@ export const MIDDLE_FIGURE_POLICY: readonly MiddleFigurePolicy[] = [
     figureIdPrefix: "gm-m1-parallel-angle-",
     showFigure: true,
     reason:
-      "평행 관계와 각도만으로는 두 표시각이 동위각인지 보각인지 정해지지 않는다. 그림이 횡단선의 두 반직선과 목표 각의 위치를 지정한다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m1-triangle-exterior",
     figureIdPrefix: "gm-m1-triangle-exterior-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 외각에서 떨어진 두 내각과 외각이라는 목표가 있어 외각의 크기가 유일하게 정해진다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
     instruction: "외각의 크기를 구하세요.",
   },
   {
@@ -664,7 +664,7 @@ export const MIDDLE_FIGURE_POLICY: readonly MiddleFigurePolicy[] = [
     figureIdPrefix: "gm-m1-triangle-interior-exterior-",
     showFigure: true,
     reason:
-      "문장은 외각과 떨어진 한 내각만 주며 C가 나머지 떨어진 내각이라는 위치를 명시하지 않는다. 그림이 C의 위치를 지정한다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m1-polygon-sum",
@@ -676,17 +676,17 @@ export const MIDDLE_FIGURE_POLICY: readonly MiddleFigurePolicy[] = [
   {
     typeId: "m1-polygon-interior",
     figureIdPrefix: "gm-m1-polygon-interior-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 다각형의 변 수와 정다각형 여부 또는 한 꼭짓점에서 대각선을 모두 긋는 조건, 구할 개수·각이 명시되어 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
     instruction: "한 내각의 크기를 구하세요.",
   },
   {
     typeId: "m1-polygon-exterior",
     figureIdPrefix: "gm-m1-polygon-exterior-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 다각형의 변 수와 정다각형 여부 또는 한 꼭짓점에서 대각선을 모두 긋는 조건, 구할 개수·각이 명시되어 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
     instruction: "한 외각의 크기를 구하세요.",
   },
   {
@@ -877,33 +877,33 @@ export const MIDDLE_FIGURE_POLICY: readonly MiddleFigurePolicy[] = [
   {
     typeId: "m3-circle-inscribed",
     figureIdPrefix: "gm-m3-circle-inscribed-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 같은 호·대응 중심각·마주 보는 각 또는 접점·접선·반지름의 관계, 주어진 각·길이와 목표가 명시되어 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
     instruction: "∠C의 크기를 구하세요.",
   },
   {
     typeId: "m3-circle-central",
     figureIdPrefix: "gm-m3-circle-central-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 같은 호·대응 중심각·마주 보는 각 또는 접점·접선·반지름의 관계, 주어진 각·길이와 목표가 명시되어 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
     instruction: "중심각의 크기를 구하세요.",
   },
   {
     typeId: "m3-circle-same-arc",
     figureIdPrefix: "gm-m3-circle-same-arc-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 같은 호·대응 중심각·마주 보는 각 또는 접점·접선·반지름의 관계, 주어진 각·길이와 목표가 명시되어 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
     instruction: "∠D의 크기를 구하세요.",
   },
   {
     typeId: "m3-circle-cyclic-opposite",
     figureIdPrefix: "gm-m3-circle-cyclic-opposite-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 같은 호·대응 중심각·마주 보는 각 또는 접점·접선·반지름의 관계, 주어진 각·길이와 목표가 명시되어 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
     instruction: "∠D의 크기를 구하세요.",
   },
   {
@@ -911,29 +911,29 @@ export const MIDDLE_FIGURE_POLICY: readonly MiddleFigurePolicy[] = [
     figureIdPrefix: "gm-m3-circle-chord-length-",
     showFigure: true,
     reason:
-      "OM⊥AB만 있고 M∈AB는 명시되지 않는다. 그림이 M을 현 위 수선의 발로 지정해야 OM이 중심과 현 사이 거리가 된다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m3-circle-chord-distance",
     figureIdPrefix: "gm-m3-circle-chord-distance-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 원의 반지름과 현의 길이가 있고 목표를 중심에서 현까지의 거리 OM으로 명명하여 수선의 발을 그림 없이 정한다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m3-circle-tangent-angle",
     figureIdPrefix: "gm-m3-circle-tangent-angle-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 같은 호·대응 중심각·마주 보는 각 또는 접점·접선·반지름의 관계, 주어진 각·길이와 목표가 명시되어 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
     instruction: "∠POT의 크기를 구하세요.",
   },
   {
     typeId: "m3-trig-ratio",
     figureIdPrefix: "gm-m3-trig-ratio-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 각, 맞은편·이웃한 변·빗변의 대응 또는 두 변의 끼인각과 목표가 명시되어 삼각비를 정할 수 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m3-trig-special-value",
@@ -945,16 +945,16 @@ export const MIDDLE_FIGURE_POLICY: readonly MiddleFigurePolicy[] = [
   {
     typeId: "m3-trig-special-length",
     figureIdPrefix: "gm-m3-trig-special-length-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 각, 맞은편·이웃한 변·빗변의 대응 또는 두 변의 끼인각과 목표가 명시되어 삼각비를 정할 수 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m3-trig-triangle-area",
     figureIdPrefix: "gm-m3-trig-triangle-area-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 각, 맞은편·이웃한 변·빗변의 대응 또는 두 변의 끼인각과 목표가 명시되어 삼각비를 정할 수 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m1-prism-base-area-volume",
@@ -1111,17 +1111,17 @@ export const MIDDLE_FIGURE_POLICY: readonly MiddleFigurePolicy[] = [
   {
     typeId: "m3-circle-tangent-chord",
     figureIdPrefix: "gm-m3-circle-tangent-chord-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 같은 호·대응 중심각·마주 보는 각 또는 접점·접선·반지름의 관계, 주어진 각·길이와 목표가 명시되어 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
     instruction: "접선과 현 TP가 이루는 예각을 구하세요.",
   },
   {
     typeId: "m3-circle-equal-tangents",
     figureIdPrefix: "gm-m3-circle-equal-tangents-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 같은 호·대응 중심각·마주 보는 각 또는 접점·접선·반지름의 관계, 주어진 각·길이와 목표가 명시되어 있다.",
+      "그림 우선(2026-10-16 원장님): 주어진 값을 모두 그림에 적고 구할 것을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m1-polygon-vertex-diagonals",

@@ -18,9 +18,10 @@ import {
 import { arithmeticGeometryNotation } from "@/lib/arithmetic-v2/presentation/notation";
 import { arithmeticFigurePresentation } from "@/lib/arithmetic-v2/presentation/figurePolicy";
 import {
-  centerAngleFigureSvg,
-  centerAngleGroupInstruction,
-} from "@/lib/arithmetic-v2/presentation/centerAngles";
+  figureFirstGroupInstruction,
+  figureFirstSvg,
+  isFigureFirstType,
+} from "@/lib/arithmetic-v2/presentation/figureFirst";
 import s from "./GradeArithmeticPrompt.module.css";
 
 /** Catalog examples only. Review/output must use arithmeticToStudioProblems,
@@ -41,21 +42,24 @@ export function GradeArithmeticExpression({
   const originalSvg = prompt.figureId
     ? arithmeticGeometryCatalogSvg(prompt.figureId)
     : undefined;
-  const presentation = arithmeticFigurePresentation(prompt, typeId);
-  const svg =
-    originalSvg && presentation.showFigure
-      ? presentArithmeticGeometrySvg(
-          prompt.figureId!,
-          centerAngleFigureSvg(prompt.figureId!) ?? originalSvg,
-        )
+  const figureFirst =
+    typeId && isFigureFirstType(typeId)
+      ? figureFirstSvg(typeId, prompt, originalSvg)
       : undefined;
+  const presentation = arithmeticFigurePresentation(prompt, typeId, {
+    figureFirst: figureFirst !== undefined,
+  });
+  const svg =
+    figureFirst ??
+    (originalSvg && presentation.showFigure
+      ? presentArithmeticGeometrySvg(prompt.figureId!, originalSvg)
+      : undefined);
   // A catalog example has no group heading, so it shows the shared question.
   const instruction =
-    svg && typeId ? centerAngleGroupInstruction(typeId) : undefined;
-  const lines =
-    presentation.lines.length || !instruction
-      ? presentation.lines
-      : [instruction];
+    figureFirst && typeId ? figureFirstGroupInstruction(typeId) : undefined;
+  const lines = instruction
+    ? [instruction, ...presentation.lines]
+    : presentation.lines;
   const size = svg ? arithmeticGeometryDisplaySize(svg) : undefined;
   return (
     <span className={s.prompt}>

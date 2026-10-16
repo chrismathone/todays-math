@@ -14,9 +14,10 @@ import { presentArithmeticGeometrySvg } from "@/lib/arithmetic-v2/presentation";
 import { svgDataUrl } from "@/lib/svgDataUrl";
 import { arithmeticFigurePresentation } from "@/lib/arithmetic-v2/presentation/figurePolicy";
 import {
-  centerAngleFigureSvg,
-  centerAngleGroupInstruction,
-} from "@/lib/arithmetic-v2/presentation/centerAngles";
+  figureFirstGroupInstruction,
+  figureFirstSvg,
+  isFigureFirstType,
+} from "@/lib/arithmetic-v2/presentation/figureFirst";
 import {
   arithmeticGeometryAnswerBlank,
   arithmeticAnswerUnitLatex,
@@ -64,23 +65,28 @@ export function arithmeticToStudioProblems(
           item.prompt.layout === "math" ? item.prompt.figureId : undefined;
         if (figureId && !sheet.figures)
           throw new Error("저장된 연산 도형이 없습니다");
-        const presentation = arithmeticFigurePresentation(
-          item.prompt,
-          item.typeId,
-        );
         const originalSvg = figureId
           ? arithmeticGeometrySvg(figureId, sheet.figures!)
           : undefined;
         // The saved SVG is still required and validated above; figure-first
-        // center angles display a redrawn copy of the same identity.
+        // drills display a redrawn or annotated copy of the same identity
+        // (or, for text-only trigonometry, a figure drawn from the prompt).
+        const figureFirst = isFigureFirstType(item.typeId)
+          ? figureFirstSvg(item.typeId, item.prompt, originalSvg)
+          : undefined;
+        const presentation = arithmeticFigurePresentation(
+          item.prompt,
+          item.typeId,
+          { figureFirst: figureFirst !== undefined },
+        );
         const svg =
-          figureId && originalSvg && presentation.showFigure
-            ? presentArithmeticGeometrySvg(
-                figureId,
-                centerAngleFigureSvg(figureId) ?? originalSvg,
-              )
-            : undefined;
-        const groupInstruction = centerAngleGroupInstruction(item.typeId);
+          figureFirst ??
+          (figureId && originalSvg && presentation.showFigure
+            ? presentArithmeticGeometrySvg(figureId, originalSvg)
+            : undefined);
+        const groupInstruction = figureFirst
+          ? figureFirstGroupInstruction(item.typeId)
+          : undefined;
         const dimensions = svg
           ? /viewBox="([^"]+)"/.exec(svg)![1].split(/\s+/).map(Number).slice(2)
           : undefined;

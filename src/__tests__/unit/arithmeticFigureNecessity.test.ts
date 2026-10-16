@@ -11,6 +11,7 @@ import { arithmeticGeometryWording } from "@/lib/arithmetic-v2/presentation/text
 import { simplifyArithmeticFigureAnnotations } from "@/lib/arithmetic-v2/presentation/figureAnnotations";
 import { presentArithmeticSegmentSvg } from "@/lib/arithmetic-v2/presentation/segments";
 import { presentArithmeticRemainingSvg } from "@/lib/arithmetic-v2/presentation/remaining";
+import { isFigureFirstType } from "@/lib/arithmetic-v2/presentation/figureFirst";
 
 const policies = [...ELEMENTARY_FIGURE_POLICY, ...MIDDLE_FIGURE_POLICY];
 const parse = (svg: string) =>
@@ -58,8 +59,11 @@ describe("audited figure necessity and redundant annotations", () => {
       }
     }
     expect(seen).toEqual(arithmeticGeometryAssetIds);
-    // 159 circumcenter/incenter angle variants are figure-first (2026-10-15).
-    expect([policies.length, omitted, retained]).toEqual([248, 17216, 336]);
+    // 159 circumcenter/incenter angle variants are figure-first (2026-10-15);
+    // 2026-10-16 the owner extended figure-first to 피타고라스 · 닮음 · 평행선 ·
+    // 사각형 · 외심 · 무게중심 · 원의 성질 · 중1 각 · 삼각비 (gt1 1,718 + gm 756),
+    // so those variants moved from omitted to retained. See figureFirst*.test.ts.
+    expect([policies.length, omitted, retained]).toEqual([248, 14899, 2653]);
   });
 
   it("keeps every retained point and structural stroke while removing only repeated measurement annotations", () => {
@@ -67,8 +71,10 @@ describe("audited figure necessity and redundant annotations", () => {
       dimensions = 0,
       chordCurves = 0,
       parallelNotes = 0;
+    // Figure-first families bypass this annotation pass: their prose is gone,
+    // so every measurement stays on the figure (figureFirst*.test.ts).
     for (const policy of MIDDLE_FIGURE_POLICY.filter(
-      (entry) => entry.showFigure,
+      (entry) => entry.showFigure && !isFigureFirstType(entry.typeId),
     )) {
       const definition = getArithmeticV2Definition(policy.typeId);
       for (let index = 0; index < definition.domainSize; index++) {
@@ -155,8 +161,10 @@ describe("audited figure necessity and redundant annotations", () => {
         checked++;
       }
     }
+    // 2026-10-16: only 내심으로 나뉜 삼각형의 넓이 (20) still prints prose next to
+    // a retained figure; the other retained families are figure-first now.
     expect([checked, dimensions, chordCurves, parallelNotes]).toEqual([
-      336, 92, 66, 14,
+      20, 20, 0, 0,
     ]);
   });
 });

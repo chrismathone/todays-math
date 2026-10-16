@@ -13,6 +13,7 @@ import { ALGEBRA_COMPLETE_DEFINITIONS } from "@/lib/arithmetic-v2/families/algeb
 import { TRIGONOMETRY_COMPLETE_DEFINITIONS } from "@/lib/arithmetic-v2/families/trigonometryComplete";
 import { FUNCTIONS_DATA_DEFINITIONS } from "@/lib/arithmetic-v2/families/functionsData";
 import { arithmeticToStudioProblems } from "@/lib/arithmeticOutput";
+import { isFigureFirstType } from "@/lib/arithmetic-v2/presentation/figureFirst";
 import { regenerateArithmeticV2Items } from "@/lib/arithmeticRegeneration";
 import { tokenizeMath } from "@/lib/math/segments";
 import { arithmeticV2PromptIdentity } from "@/contracts/arithmeticV2.contract";
@@ -63,7 +64,11 @@ describe("school-unit calculation integration", () => {
                 strict: "ignore",
               }),
             ).not.toThrow();
-        expect(problem.content).not.toContain("[그림1]");
+        // Figure-first trigonometry (2026-10-16) draws a display-only
+        // triangle from the prompt; every other text family stays text.
+        if (isFigureFirstType(definition.id))
+          expect(problem.figureSvg).toContain("<svg");
+        else expect(problem.content).not.toContain("[그림1]");
       }
       expect(JSON.stringify(sheet)).toBe(original);
     }

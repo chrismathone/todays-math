@@ -248,8 +248,17 @@ export function lineHitsBox(a: Point, b: Point, box: Box): boolean {
 /** Deterministic, safe SVG; no network, font outlines, scripts or foreignObject. */
 export function render(
   model: Model,
-  /** Display-only variants; defaults reproduce the frozen gt1 SVG bytes. */
-  options: { angleLabelsInside?: boolean } = {},
+  /** Display-only variants; defaults reproduce the frozen gt1 SVG bytes.
+   * `givenLeaders: "far"` draws a given's leader line only when its label had
+   * to move away from the measured segment, as vertex names already do.
+   */
+  options: {
+    angleLabelsInside?: boolean;
+    givenLeaders?: "far";
+    /** Short given labels (a number, x) may sit as close as 13px to their
+     * segment, so a value stays beside the side it measures. */
+    tightGivens?: boolean;
+  } = {},
 ): string {
   const raw = Object.values(model.points),
     xs = raw.map((p) => p[0]),
@@ -513,7 +522,11 @@ export function render(
     if (selected) continue;
     const outward = Math.atan2(p[1] - 116, p[0] - 120);
     const directions = [outward, ...range(0, 15).map((i) => (i * Math.PI) / 8)];
-    for (const radius of [21, 27, 34, 43, 54, 66, 80, 100]) {
+    const radii =
+      options.tightGivens && name.includes("-") && text.length <= 2
+        ? [13, 17, 21, 27, 34, 43, 54, 66, 80, 100]
+        : [21, 27, 34, 43, 54, 66, 80, 100];
+    for (const radius of radii) {
       for (const angle of directions) {
         const x = p[0] + radius * Math.cos(angle),
           y = p[1] + radius * Math.sin(angle),
@@ -553,7 +566,10 @@ export function render(
           12 /
             Math.max(0.001, Math.abs((p[1] - labelCenter[1]) / labelDistance)),
         ) + 3;
-    if (labelDistance > 28 || name.includes("-"))
+    if (
+      labelDistance > 28 ||
+      (name.includes("-") && options.givenLeaders !== "far")
+    )
       body += line(
         lerp(p, labelCenter, 3 / labelDistance),
         lerp(labelCenter, p, stop / labelDistance),

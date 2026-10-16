@@ -49,9 +49,9 @@ describe("grade arithmetic paper separation", () => {
       seed: "admin-notation",
       rounds: [
         {
-          allocations: [
-            { typeId: "m3-pythagoras-isosceles-height-surd", count: 1 },
-          ],
+          // 2026-10-16: 피타고라스 is figure-first now, so a family whose
+          // figure is still omitted carries the segment-notation check.
+          allocations: [{ typeId: "m2-centroid-median-sum", count: 1 }],
         },
       ],
     });
@@ -69,9 +69,11 @@ describe("grade arithmetic paper separation", () => {
     ).toBeGreaterThanOrEqual(6);
     expect(body.querySelector("img")).toBeNull();
     expect(body.querySelector(".katex-error")).toBeNull();
-    expect(body.querySelector("annotation")?.textContent).toContain(
-      "\\overline{\\mathrm{AB}}",
-    );
+    expect(
+      [...body.querySelectorAll("annotation")]
+        .map((node) => node.textContent)
+        .join(" "),
+    ).toContain("\\overline{\\mathrm{AB}}");
   });
   it("renders question expressions and blanks without putting answer-only values in the question DOM", () => {
     const pages = gradeArithmeticPaperPages({
