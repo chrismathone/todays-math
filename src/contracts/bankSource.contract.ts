@@ -143,6 +143,11 @@ export const unifiedBankQuerySchema = problemFilterQuerySchema
      * 14일 전까지인 시험의 문항을 뺀다. 계정은 서버가 안다(`bankQueryContext.ts`) — id 목록을 싣지 않는다.
      */
     recent: z.literal("1").optional(),
+    /**
+     * 시험지 만들기 «문항 교체»(W3)의 첫 층 «같은 문항류» — 이 문항과 같은 `(unitId, familyKey)` 의 **다른** 문항.
+     * 키가 없는(NULL · 빈 값) 문항은 혼자라 형제가 없다(D-105 — NULL 끼리 묶지 않는다).
+     */
+    familyOf: uuidSchema.optional(),
     ids: idList(100).optional(),
     pageSize: z.coerce.number().int().min(1).max(100).default(12),
     semester: bankSemesterSchema.optional(),

@@ -23,6 +23,7 @@ import {
 import cc from "./ComposeConditions.module.css";
 import { canSelectScope } from "./scopeAvailability";
 import QuestionPicker from "./QuestionPicker";
+import ReplaceDialog from "./ReplaceDialog";
 import { moveQuestion, useQuestionReorder } from "./useQuestionReorder";
 import s from "./ExamBuilder.module.css";
 
@@ -35,6 +36,7 @@ export default function ExamBuilder<T>({
   difficulties,
   maxQuestions,
   renderQuestion,
+  renderCandidate,
   renderAnswer,
   renderOutput,
   initialScopeIds,
@@ -108,6 +110,14 @@ export default function ExamBuilder<T>({
     scopeId?: string;
   } | null>(null);
   const [pickerWidth, setPickerWidth] = useState<number>();
+  // W3 교체 창 — 연 [교체] 단추로 초점을 돌려보내고, 바꾼 자리를 잠시 표시한다.
+  const [replaceOpenerEl, setReplaceOpenerEl] =
+    useState<HTMLButtonElement | null>(null);
+  const replaceOpener = useMemo(
+    () => ({ current: replaceOpenerEl }),
+    [replaceOpenerEl],
+  );
+  const [swappedId, setSwappedId] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
@@ -227,6 +237,7 @@ export default function ExamBuilder<T>({
   });
   function change(next: T[]) {
     if (next === questions) return;
+    setSwappedId(null);
     setHistory((current) => [...current.slice(-9), questions]);
     onQuestionsChange(next);
   }
@@ -239,6 +250,40 @@ export default function ExamBuilder<T>({
     observer.observe(reviewRef.current);
     return () => observer.disconnect();
   }, [picker]);
+  /** 추가 · 교체 — 교체는 그 자리 · 차례 그대로(되돌리기 기록에 남는다). 바꿨으면 true. */
+  function choose(item: T): boolean {
+    if (!picker) return false;
+    const added = source.info(item);
+    const takenElsewhere = questions.some((current) => {
+      const existing = source.info(current);
+      return (
+        existing.id !== picker.replaceId &&
+        !!added.familyId &&
+        existing.familyId === added.familyId
+      );
+    });
+    let done = false;
+    if (picker.replaceId) {
+      // D-111 ⑷: never let one click put another slot's sibling on the sheet.
+      if (takenElsewhere) return false;
+      change(
+        questions.map((current) =>
+          source.info(current).id === picker.replaceId ? item : current,
+        ),
+      );
+      setPicker(null);
+      done = true;
+    } else if (
+      questions.length < maxQuestions &&
+      !takenElsewhere &&
+      !questions.some((current) => source.info(current).id === added.id)
+    ) {
+      change([...questions, item]);
+      done = true;
+    }
+    setStep("review");
+    return done;
+  }
   function go(next: "scope" | "review") {
     setStep(next);
     setFocusRequest((value) => value + 1);
@@ -817,7 +862,7 @@ export default function ExamBuilder<T>({
                     return (
                       <article
                         key={info.id}
-                        className={`${s.question} ${reorder.drag?.from === index ? s.dragging : ""}`}
+                        className={`${s.question} ${reorder.drag?.from === index ? s.dragging : ""} ${swappedId === info.id ? s.justSwapped : ""}`}
                         data-exam-question
                         data-question-id={info.id}
                       >
@@ -851,7 +896,8 @@ export default function ExamBuilder<T>({
                           <button
                             type="button"
                             disabled={actionsDisabled || !selectedScopes.length}
-                            onClick={() => {
+                            onClick={(event) => {
+                              setReplaceOpenerEl(event.currentTarget);
                               setPickerWidth(
                                 reviewRef.current?.getBoundingClientRect()
                                   .width,
@@ -1003,50 +1049,59 @@ export default function ExamBuilder<T>({
           }}
         />
       )}
-      {picker && (
-        <QuestionPicker
-          source={source}
-          scopes={selectedScopes}
-          questions={questions}
-          difficulties={difficulties}
-          replacing={!!picker.replaceId}
-          replaceId={picker.replaceId}
-          excludeRecent={excludeRecent}
-          initialScopeId={picker.scopeId}
-          width={picker.replaceId ? pickerWidth : undefined}
-          maxQuestions={maxQuestions}
-          renderQuestion={renderQuestion}
-          onClose={() => setPicker(null)}
-          onChoose={(item) => {
-            const added = source.info(item);
-            const takenElsewhere = questions.some((current) => {
-              const existing = source.info(current);
-              return (
-                existing.id !== picker.replaceId &&
-                !!added.familyId &&
-                existing.familyId === added.familyId
-              );
-            });
-            if (picker.replaceId) {
-              // D-111 ⑷: never let one click put another slot's sibling on the sheet.
-              if (takenElsewhere) return;
-              change(
-                questions.map((current) =>
-                  source.info(current).id === picker.replaceId ? item : current,
-                ),
-              );
-              setPicker(null);
-            } else if (
-              questions.length < maxQuestions &&
-              !takenElsewhere &&
-              !questions.some((current) => source.info(current).id === added.id)
-            ) {
-              change([...questions, item]);
-            }
-            setStep("review");
-          }}
-        />
-      )}
+      {picker?.replaceId && source.compareReplace
+        ? (() => {
+            const index = questions.findIndex(
+              (item) => source.info(item).id === picker.replaceId,
+            );
+            if (index < 0) return null;
+            const slot = String(index + 1).padStart(2, "0");
+            return (
+              <ReplaceDialog
+                source={source}
+                original={questions[index]}
+                slot={slot}
+                questions={questions}
+                scopeIds={
+                  picker.scopeId
+                    ? [picker.scopeId]
+                    : selectedScopes.map((scope) => scope.id)
+                }
+                sameScope={!!picker.scopeId}
+                difficulties={difficulties}
+                excludeRecent={excludeRecent}
+                recentDays={conditions?.recentDays}
+                renderQuestion={renderQuestion}
+                renderCandidate={renderCandidate}
+                returnFocus={replaceOpener}
+                onClose={() => setPicker(null)}
+                onChoose={(item) => {
+                  if (!choose(item)) return;
+                  setNotice(
+                    `${slot}번을 바꿨습니다 — 자리와 순서는 그대로입니다.`,
+                  );
+                  setSwappedId(source.info(item).id);
+                }}
+              />
+            );
+          })()
+        : picker && (
+            <QuestionPicker
+              source={source}
+              scopes={selectedScopes}
+              questions={questions}
+              difficulties={difficulties}
+              replacing={!!picker.replaceId}
+              replaceId={picker.replaceId}
+              excludeRecent={excludeRecent}
+              initialScopeId={picker.scopeId}
+              width={picker.replaceId ? pickerWidth : undefined}
+              maxQuestions={maxQuestions}
+              renderQuestion={renderQuestion}
+              onClose={() => setPicker(null)}
+              onChoose={(item) => void choose(item)}
+            />
+          )}
     </section>
   );
 }

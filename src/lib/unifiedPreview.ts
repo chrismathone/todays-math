@@ -50,6 +50,30 @@ async function excludeFamiliesClause(
 }
 
 /**
+ * W3 «같은 문항류» — 이 문항과 같은 `(unitId, familyKey)` 의 다른 문항. 키는 `familyIdOf` 처럼 앞뒤 공백을 걷어
+ * 견준다(그래서 그 단원의 키 있는 행을 읽어 가른다 — 단원 하나라 작다). 키가 없으면 혼자라 아무것도 안 걸린다.
+ */
+async function familyOfClause(id: string): Promise<Prisma.ProblemWhereInput> {
+  const row = await db.problem.findUnique({
+    where: { id },
+    select: { unitId: true, familyKey: true },
+  });
+  const key = row?.familyKey?.trim();
+  if (!row || !key) return { id: { in: [] } };
+  const keyed = await db.problem.findMany({
+    where: { unitId: row.unitId, NOT: { familyKey: null } },
+    select: { id: true, familyKey: true },
+  });
+  return {
+    id: {
+      in: keyed
+        .filter((other) => other.id !== id && other.familyKey?.trim() === key)
+        .map((other) => other.id),
+    },
+  };
+}
+
+/**
  * Shared filters keep manual browsing and random selection in the same pool.
  *
  * `context` — 요청 바깥에서 알아야 하는 것(지금은 최근 출제 빼기의 계정). `recent=1` 인데 없으면 거절한다:
@@ -92,6 +116,7 @@ export async function resolveUnifiedBankQuery(
     excludeIds,
     excludeFamiliesOf,
     recent,
+    familyOf,
     ids,
     semester,
     sourceGroup,
@@ -109,6 +134,7 @@ export async function resolveUnifiedBankQuery(
   if (excludeIds) clauses.push({ NOT: { id: { in: excludeIds } } });
   if (excludeFamiliesOf)
     clauses.push(await excludeFamiliesClause(excludeFamiliesOf));
+  if (familyOf) clauses.push(await familyOfClause(familyOf));
   if (recent) {
     if (!context)
       throw new UnifiedBankQueryError(

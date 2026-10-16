@@ -391,6 +391,9 @@ export default function MathExamBuilder({
           </>
         );
       }}
+      renderCandidate={(problem) => (
+        <UnifiedProblem problem={problem} hideScores />
+      )}
       renderAnswer={(problem) => <ExamAnswerPanel problem={problem} />}
       renderOutput={({
         questions,

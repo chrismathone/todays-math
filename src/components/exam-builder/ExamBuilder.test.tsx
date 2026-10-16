@@ -1036,3 +1036,153 @@ describe("구성 조건 (W4 · Hi-fi 2)", () => {
     );
   });
 });
+
+describe("문항 교체 (W3 · Hi-fi 1)", () => {
+  const sheet: Item[] = [
+    { id: "a", scope: "u1", difficulty: "기본", family: "u1 A" },
+    { id: "b", scope: "u1", difficulty: "심화", family: "u1 B" },
+    { id: "c", scope: "u2", difficulty: "기본" },
+  ];
+  type ListRequest = Parameters<ExamBuilderSource<Item>["list"]>[0];
+  const comparing = (
+    siblings: Item[] = [
+      { id: "a2", scope: "u1", difficulty: "기본", family: "u1 A" },
+      { id: "a3", scope: "u1", difficulty: "기본", family: "u1 A" },
+    ],
+  ) =>
+    source({
+      compareReplace: true,
+      conditions: { ladder: ["기본", "심화"], recentDays: 14 },
+      loadScopes: vi.fn().mockResolvedValue([
+        { ...scopes[0], count: 9 },
+        { ...scopes[1], count: 9 },
+      ]),
+      list: vi.fn(async (request: ListRequest) =>
+        request.familyOf
+          ? { items: siblings, total: siblings.length }
+          : {
+              items: [
+                {
+                  id: `o-${request.difficulty || "전체"}`,
+                  scope: "u1",
+                  difficulty: request.difficulty || "기본",
+                },
+              ],
+              total: 1,
+            },
+      ),
+    });
+  async function openReplace(adapter: ExamBuilderSource<Item>) {
+    render(<Harness adapter={adapter} initial={sheet} initialStep="review" />);
+    await waitFor(() =>
+      expect(screen.getAllByRole("button", { name: "교체" })[0]).toBeEnabled(),
+    );
+    fireEvent.click(screen.getAllByRole("button", { name: "교체" })[0]);
+    return screen.findByRole("dialog", { name: "문항 교체 · 01번" });
+  }
+
+  it("puts the original above the compared candidate and starts on the same problem family", async () => {
+    const adapter = comparing();
+    const dialog = await openReplace(adapter);
+    await waitFor(() =>
+      expect(adapter.list).toHaveBeenCalledWith(
+        expect.objectContaining({
+          familyOf: "a",
+          scopeIds: ["u1"],
+          excludeIds: ["a", "b", "c"],
+          excludeFamiliesOf: ["b", "c"],
+          excludeRecent: true,
+        }),
+        expect.any(AbortSignal),
+      ),
+    );
+    const original = within(dialog).getByRole("region", { name: "바꿀 문항" });
+    expect(original).toHaveTextContent("바꿀 문항 · 01번");
+    expect(original).toHaveTextContent("문항 내용 a");
+    const compare = within(dialog).getByRole("region", { name: "대조할 후보" });
+    expect(
+      await within(compare).findByText("문항 내용 a2"),
+    ).toBeInTheDocument();
+    expect(
+      within(dialog).getByRole("button", { name: /같은 문항류 2/ }),
+    ).toHaveAttribute("aria-pressed", "true");
+    // 대조는 단추로만 — 줄을 누르는 곳은 없다(D-30)
+    fireEvent.click(within(dialog).getByRole("button", { name: "대조" }));
+    expect(within(compare).getByText("문항 내용 a3")).toBeInTheDocument();
+    expect(within(dialog).getByText("대조 중")).toBeInTheDocument();
+  });
+
+  it("the second layer keeps the scope and starts at the replaced problem's difficulty", async () => {
+    const adapter = comparing();
+    const dialog = await openReplace(adapter);
+    await within(dialog).findByText("대조 중");
+    fireEvent.click(
+      within(dialog).getByRole("button", { name: /같은 차시의 다른 문항/ }),
+    );
+    await waitFor(() =>
+      expect(adapter.list).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          scopeIds: ["u1"],
+          difficulty: "기본",
+          excludeFamiliesOf: ["b", "c"],
+          excludeRecent: true,
+        }),
+        expect.any(AbortSignal),
+      ),
+    );
+    expect(
+      (vi.mocked(adapter.list).mock.lastCall![0] as ListRequest).familyOf,
+    ).toBeUndefined();
+    expect(
+      within(dialog).getByRole("button", { name: "기본" }),
+    ).toHaveAttribute("aria-pressed", "true");
+    const compare = within(dialog).getByRole("region", { name: "대조할 후보" });
+    expect(
+      await within(compare).findByText("문항 내용 o-기본"),
+    ).toBeInTheDocument();
+    fireEvent.click(within(dialog).getByRole("button", { name: "심화" }));
+    expect(
+      await within(compare).findByText("문항 내용 o-심화"),
+    ).toBeInTheDocument();
+  });
+
+  it("replaces in place after comparing, says so, and undo brings the original back", async () => {
+    const dialog = await openReplace(comparing());
+    const compare = within(dialog).getByRole("region", { name: "대조할 후보" });
+    await within(compare).findByText("문항 내용 a2");
+    fireEvent.click(
+      within(compare).getByRole("button", { name: "이 문항으로 교체" }),
+    );
+    expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a2,b,c");
+    expect(
+      screen.queryByRole("dialog", { name: "문항 교체 · 01번" }),
+    ).toBeNull();
+    expect(
+      screen.getByText("01번을 바꿨습니다 — 자리와 순서는 그대로입니다."),
+    ).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "↶ 되돌리기" }));
+    expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a,b,c");
+  });
+
+  it("a problem standing alone (no family) has no first layer — it opens on the second", async () => {
+    const adapter = comparing([]);
+    const dialog = await openReplace(adapter);
+    await waitFor(() =>
+      expect(
+        within(dialog).getByRole("button", { name: /같은 차시의 다른 문항/ }),
+      ).toHaveAttribute("aria-pressed", "true"),
+    );
+    expect(
+      within(dialog).getByRole("button", { name: /같은 문항류 0/ }),
+    ).toBeInTheDocument();
+  });
+
+  it("closing changes nothing", async () => {
+    const dialog = await openReplace(comparing());
+    fireEvent.click(within(dialog).getAllByRole("button", { name: "취소" })[0]);
+    expect(
+      screen.queryByRole("dialog", { name: "문항 교체 · 01번" }),
+    ).toBeNull();
+    expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a,b,c");
+  });
+});

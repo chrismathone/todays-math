@@ -50,12 +50,21 @@ export interface ExamQuestionInfo {
    * Omit when the subject has no family concept (every item stands alone).
    */
   familyId?: string;
+  /** 답안 형식(객관식 · 단답형 · 서술형 · 미분류) — 교체 창의 메타 줄(W3). */
+  format?: string;
+  /** 출처 이름(자작 · 교과서 · 기출 …) — 교체 창의 메타 줄(W3). */
+  origin?: string;
 }
 export interface ExamBuilderSource<T> {
   /** Math inventory must be confirmed before a scope can be selected. */
   requireScopeCounts?: boolean;
   /** Scopes already present with the selected content can be shown before effects run. */
   initialScopes?: ExamScope[];
+  /**
+   * W3 «원문과 대조한 뒤 교체» — 두 층(같은 문항류 · 같은 차시의 다른 문항)을 쓴다. `list` 가 `familyOf` 를
+   * 알아야 한다. 없으면 지금의 후보 창으로 바꾼다(영어).
+   */
+  compareReplace?: boolean;
   /** W4 «구성 조건» — 없으면 그 줄 · 창을 그리지 않는다(영어). */
   conditions?: ExamConditionsSupport;
   loadScopes: (
@@ -75,6 +84,8 @@ export interface ExamBuilderSource<T> {
        * whole sheet; replace sends the sheet minus the slot being replaced.
        */
       excludeFamiliesOf?: string[];
+      /** W3 «같은 문항류» — 이 문항과 같은 문항류의 다른 문항만(키가 없으면 형제가 없다). */
+      familyOf?: string;
     } & ExamExclusion,
     signal: AbortSignal,
   ) => Promise<{ items: T[]; total: number }>;
@@ -105,6 +116,8 @@ export interface ExamBuilderProps<T> {
   difficulties: readonly string[];
   maxQuestions: number;
   renderQuestion: (item: T) => ReactNode;
+  /** 교체 창(W3)의 후보 줄 두 줄 — 본문만. 없으면 `renderQuestion`. */
+  renderCandidate?: (item: T) => ReactNode;
   /** Answer and solution beside each reviewed question (math only). */
   renderAnswer?: (item: T) => ReactNode;
   renderOutput: (props: ExamBuilderOutputProps<T>) => ReactNode;

@@ -12,6 +12,7 @@ import type { BankData, StudioProblem } from "@/components/unified/types";
 import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
 import { familyIdOf } from "@/lib/generator/familyKey";
 import { DUPLICATE_EXCLUSION_DAYS } from "@/lib/tests/constants";
+import { SOURCE_LABEL } from "@/components/problem/labels";
 import type { ExamBuilderSource } from "./types";
 
 export const MATH_EXAM_DIFFICULTIES = DIFFICULTY_LADDER;
@@ -137,6 +138,7 @@ export function createMathExamBuilderSource(
       ladder: DIFFICULTY_LADDER,
       recentDays: DUPLICATE_EXCLUSION_DAYS,
     },
+    compareReplace: true,
     ...(initialScopes ? { initialScopes } : {}),
     async loadScopes(signal, scopeOptions) {
       const recent = scopeOptions?.excludeRecent === true;
@@ -213,6 +215,8 @@ export function createMathExamBuilderSource(
           [...new Set(input.excludeFamiliesOf)].join(","),
         );
       if (input.excludeRecent) params.set("recent", "1");
+      // 같은 문항류 층(W3) — 형제는 그 문항류 자체라 «1문항만»을 꺼도 물을 수 있다.
+      if (input.familyOf) params.set("familyOf", input.familyOf);
       const data =
         params.toString().length > 3000
           ? await request<BankData>(endpoint(), signal, {
@@ -276,6 +280,11 @@ export function createMathExamBuilderSource(
             }),
         scopeLabel: item.section,
         difficulty: item.difficulty,
+        format: formatOf(item),
+        origin:
+          typeof item.source === "string" && item.source in SOURCE_LABEL
+            ? SOURCE_LABEL[item.source as keyof typeof SOURCE_LABEL]
+            : undefined,
         detail: [
           item.grade,
           item.chapter,

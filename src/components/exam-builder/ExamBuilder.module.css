@@ -453,6 +453,13 @@
   color: var(--learn-danger);
   background: var(--learn-danger-bg);
 }
+/* 방금 바꾼 자리(W3) — 자리와 순서는 그대로라는 것을 눈으로. */
+.justSwapped {
+  background: var(--learn-soft);
+  box-shadow:
+    -20px 0 0 var(--learn-soft),
+    20px 0 0 var(--learn-soft);
+}
 .dragging {
   outline: 2px dashed var(--learn-accent);
   outline-offset: -2px;

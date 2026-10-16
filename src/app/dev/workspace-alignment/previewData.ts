@@ -401,6 +401,10 @@ function mathPreview(url: URL, method: string, init?: RequestInit) {
         .map(mathFamily),
     );
     const difficulty = query.get("difficulty");
+    // 교체 창(W3)의 «같은 문항류» — 같은 (단원, 키)의 다른 문항. 키가 없으면 형제가 없다.
+    const familyOf = mathProblems.find(
+      (row) => row.id === query.get("familyOf"),
+    );
     const rows = mathProblems.filter(
       (row) =>
         (!unitIds.length || unitIds.includes(row.unitId)) &&
@@ -408,6 +412,10 @@ function mathPreview(url: URL, method: string, init?: RequestInit) {
         !exclude.has(row.id) &&
         !families.has(mathFamily(row)) &&
         !(query.get("recent") === "1" && mathRecent.has(row.id)) &&
+        (!query.get("familyOf") ||
+          (!!familyOf?.familyKey &&
+            row.id !== familyOf.id &&
+            mathFamily(row) === mathFamily(familyOf))) &&
         (!difficulty || row.difficulty === difficulty),
     );
     const page = Number(query.get("page") ?? 1);

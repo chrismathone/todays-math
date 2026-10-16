@@ -626,4 +626,39 @@ describe("Math exam builder source", () => {
       });
     });
   });
+
+  describe("문항 교체(W3) — 같은 문항류 층", () => {
+    it("asks for the replaced problem's siblings by id, even when «같은 문항류는 1문항만» is off", async () => {
+      for (const distinctFamilies of [true, false]) {
+        const fetcher = vi
+          .fn<typeof fetch>()
+          .mockResolvedValue(reply({ problems: [], total: 0, page: 1 }));
+        const source = createMathExamBuilderSource({
+          fetch: fetcher,
+          problemsUrl: "/api/studio/problems",
+          distinctFamilies,
+        });
+        expect(source.compareReplace).toBe(true);
+        await source.list(
+          { ...listRequest, page: 1, difficulty: "", familyOf: "bank-1" },
+          signal,
+        );
+        const url = new URL(String(fetcher.mock.calls[0][0]), "https://m.test");
+        expect(url.searchParams.get("familyOf")).toBe("bank-1");
+      }
+    });
+
+    it("names the answer format and origin for the compare meta line", () => {
+      const source = createMathExamBuilderSource({ initialUnits: MOCK_UNITS });
+      expect(
+        source.info({ ...row(), source: "school_textbook" }),
+      ).toMatchObject({
+        format: "서술형",
+        origin: "교과서",
+      });
+      expect(
+        source.info({ ...row(), questionType: undefined, source: undefined }),
+      ).toMatchObject({ format: "미분류", origin: undefined });
+    });
+  });
 });
