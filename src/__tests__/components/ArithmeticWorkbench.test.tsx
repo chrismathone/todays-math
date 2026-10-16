@@ -133,6 +133,49 @@ describe("arithmetic workbench", () => {
     ).toBeInTheDocument();
     expect(fetch).not.toHaveBeenCalled();
   });
+  it("offers a 종류 filter whose choices follow the chosen 연산 영역", () => {
+    render(<ArithmeticWorkbench canOutput preview />);
+    const options = () =>
+      within(screen.getByLabelText("종류"))
+        .getAllByRole("option")
+        .map((option) => option.textContent);
+    expect(options()).toEqual([
+      "전체",
+      "한 자리 덧셈",
+      "한 자리 뺄셈",
+      "두 자리 세로 덧셈",
+      "두 자리 세로 뺄셈",
+      "곱셈구구",
+      "두 자리 수 곱하기 한 자리 수",
+      "두 자리 수 나누기 한 자리 수",
+    ]);
+    fireEvent.change(screen.getByLabelText("연산 영역"), {
+      target: { value: "곱셈" },
+    });
+    expect(options()).toEqual([
+      "전체",
+      "곱셈구구",
+      "두 자리 수 곱하기 한 자리 수",
+    ]);
+    fireEvent.change(screen.getByLabelText("종류"), {
+      target: { value: "times-table" },
+    });
+    const cards = within(screen.getByLabelText("연산 유형")).getAllByRole(
+      "button",
+    );
+    expect(cards).toHaveLength(9);
+    for (const card of cards)
+      expect(card.querySelector("strong")?.textContent).toMatch(/^\d단$/);
+    // Switching the area resets the kind to 전체 and swaps its choices.
+    fireEvent.change(screen.getByLabelText("연산 영역"), {
+      target: { value: "나눗셈" },
+    });
+    expect(screen.getByLabelText("종류")).toHaveValue("전체");
+    expect(options()).toEqual(["전체", "두 자리 수 나누기 한 자리 수"]);
+    expect(
+      within(screen.getByLabelText("연산 유형")).getAllByRole("button"),
+    ).toHaveLength(9);
+  });
   it("randomly adds distinct filtered presets and preserves their default constraints and selected count", () => {
     render(<ArithmeticWorkbench canOutput preview />);
     fireEvent.change(screen.getByLabelText("연산 영역"), {

@@ -64,6 +64,17 @@ import s from "./ArithmeticWorkbench.module.css";
 const catalog = listArithmeticSkills();
 const presets = listArithmeticPresets();
 const groups = ["전체", "덧셈", "뺄셈", "곱셈", "나눗셈"] as const;
+const skillLabel = new Map<string, string>(
+  catalog.map((skill) => [skill.skillId, skill.label]),
+);
+/** 종류 = the engine skill behind a preset; the list follows the chosen 연산 영역 (owner, 2026-10-16). */
+const kindsIn = (group: string): string[] => [
+  ...new Set<string>(
+    presets
+      .filter((preset) => group === "전체" || preset.group === group)
+      .map((preset) => preset.selection.skillId),
+  ),
+];
 const PAGE_SIZE = 24;
 const capacity = (item: ArithmeticAllocation) => {
   try {
@@ -108,11 +119,15 @@ export default function LegacyArithmeticWorkbench({
   );
   const [active, setActive] = useState("initial");
   const [group, setGroup] = useState<string>("전체");
+  const [kind, setKind] = useState<string>("전체");
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
+  const kinds = kindsIn(group);
+  const activeKind = kinds.includes(kind) ? kind : "전체";
   const filtered = presets.filter(
     (preset) =>
       (group === "전체" || preset.group === group) &&
+      (activeKind === "전체" || preset.selection.skillId === activeKind) &&
       `${preset.title} ${preset.description}`.includes(query.trim()),
   );
   const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
@@ -567,11 +582,29 @@ export default function LegacyArithmeticWorkbench({
                     value={group}
                     onChange={(event) => {
                       setGroup(event.target.value);
+                      setKind("전체");
                       setPage(1);
                     }}
                   >
                     {groups.map((value) => (
                       <option key={value}>{value}</option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  종류
+                  <select
+                    value={activeKind}
+                    onChange={(event) => {
+                      setKind(event.target.value);
+                      setPage(1);
+                    }}
+                  >
+                    <option value="전체">전체</option>
+                    {kinds.map((value) => (
+                      <option key={value} value={value}>
+                        {skillLabel.get(value) ?? value}
+                      </option>
                     ))}
                   </select>
                 </label>
