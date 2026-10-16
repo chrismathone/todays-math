@@ -3,6 +3,7 @@ import { arithmeticGeometryPromptLines } from "../geometry";
 import { arithmeticGeometryWording } from "./text";
 import { ELEMENTARY_FIGURE_POLICY } from "./figurePolicyElementary";
 import { MIDDLE_FIGURE_POLICY } from "./figurePolicyMiddle";
+import { isCenterAngleType } from "./centerAngles";
 
 type FigurePolicy = {
   typeId: string;
@@ -48,6 +49,10 @@ export function arithmeticFigurePresentation(
       ? { text: prompt.text.replace("표시된 외각", "외각") }
       : {}),
   };
+  // Figure-first center angles: the figure carries every given and x, and the
+  // group instruction carries the question, so the problem itself has no prose.
+  if (showFigure && policy && isCenterAngleType(policy.typeId))
+    return { showFigure, lines: [] };
   // The original triangle-angle helper suppresses givens that are printed in
   // its diagram. Restore those public givens whenever that diagram is omitted.
   const lines = showFigure

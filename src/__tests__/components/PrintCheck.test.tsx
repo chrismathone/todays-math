@@ -234,7 +234,11 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 110: english-four-choice-unmentioned · english-open-types-d158 둘을 더했다(D-158 — 오늘의 영어 유형 확장).
     // 111: math-block-tail-break 추가 (2026-10-08 — 연립식 · 행렬 줄 바로 다음 줄이 그 줄에 붙어 나가던 것을 고쳤다.
     //      교과서 문항 218행의 지면이 «줄이 갈리는 쪽»으로 움직인다).
-    expect(ITEMS.length).toBe(112);
+    // 112: product-display-name-20261014 추가 (2026-10-14 — 인쇄 제품명 «오늘 수학 · 오늘 영어»).
+    // 113: arithmetic-paper-20261014 추가 (2026-10-14 연산대장 문제지 · 정답지 — 그 커밋 401e58fd0 이
+    //      이 수를 안 올려 main 이 112 ≠ 113 으로 빨갰다 — 2026-10-16 맞춤).
+    // 114: arithmetic-center-angles-20261016 추가 (내심·외심 각도 그림과 묶음 머리말).
+    expect(ITEMS.length).toBe(114);
   });
 
   /**

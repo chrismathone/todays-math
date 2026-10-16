@@ -114,11 +114,21 @@ function atomAt(
     }
     return { end, latex };
   }
+  // The unknown angle of a figure-first drill is the variable x, not a point.
+  const unknownAngle = /^∠x(?![A-Za-z])/.exec(tail);
+  if (unknownAngle) return { end: at + 2, latex: "\\angle x" };
   const angle = /^∠\s*([A-Z]{1,3})(?![A-Za-z])/.exec(tail);
   if (angle)
     return {
       end: at + angle[0].length,
       latex: geometryLabel(angle[1], "angle"),
+    };
+  // An authored △ already names the triangle; do not add a second one.
+  const triangle = /^△\s*([A-Z]{3})(?![A-Za-z])/.exec(tail);
+  if (triangle)
+    return {
+      end: at + triangle[0].length,
+      latex: geometryLabel(triangle[1], "triangle"),
     };
   const trig = /^(sin|cos|tan)\s*([A-Z]|\d+(?:\.\d+)?°?)(?![A-Za-z\d])/.exec(
     tail,

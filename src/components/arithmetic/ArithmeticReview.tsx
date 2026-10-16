@@ -6,7 +6,11 @@ import { arithmeticTypeTitle } from "@/lib/arithmetic-v2/presentation/text";
 import NativeProblem from "@/components/unified/NativeProblem";
 import { fractionViewFor } from "@/components/unified/fractionDisplay";
 import type { StudioProblem } from "@/components/unified/types";
-import type { ArithmeticOutputRound } from "@/lib/arithmeticOutputLayout";
+import {
+  arithmeticGroupInstruction,
+  arithmeticGroupInstructionMarkup,
+  type ArithmeticOutputRound,
+} from "@/lib/arithmeticOutputLayout";
 import s from "./ArithmeticWorkbench.module.css";
 import layout from "./ArithmeticWorkflow.module.css";
 
@@ -193,6 +197,15 @@ function RoundReview({
                 이 유형 숫자 바꾸기
               </button>
             </div>
+            {arithmeticGroupInstruction(group.problems) && (
+              <div className={layout.groupInstruction}>
+                <MathText
+                  text={arithmeticGroupInstructionMarkup(
+                    arithmeticGroupInstruction(group.problems)!,
+                  )}
+                />
+              </div>
+            )}
             <ol
               className={`${s.reviewGrid} ${group.problems.some((problem) => problem.figureSvg) ? s.geometryReviewGrid : ""}`}
             >

@@ -83,6 +83,23 @@ export const SPECIMEN_ITEM_IDS = [
 
 export const ITEMS: PrintCheckItem[] = [
   {
+    id: "arithmetic-center-angles-20261016",
+    title: "연산대장 — 내심·외심 각도 그림과 묶음 머리말",
+    changed:
+      "내심·외심 각도 14유형(159문항)을 그림 위주로 바꿨다. 주어진 각을 모두 그림에 적고 구할 각을 x로 표시하며, 문장 대신 같은 유형 묶음 위에 «[1~4] 다음 그림에서 점 I가 △ABC의 내심일 때, ∠x의 크기를 구하세요.» 한 줄을 둔다.",
+    look: "(제안) 여섯 템플릿과 연산 인쇄에서 머리말 범위 번호가 실제 문항 번호와 맞고, 각도 숫자와 x가 자기 각 안(좁은 각은 지시선)에 읽히는지 본다. 머리말이 쪽 끝에 홀로 남거나 그림·답란이 잘리면 불합격이다.",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/arithmetic-v2/presentation/centerAngles.ts",
+      "src/components/unified/print/templates/ProblemMeta.tsx",
+      "src/components/arithmetic/GradeArithmeticPaper.tsx",
+    ],
+    status: "대기",
+    needs:
+      "/dev/arithmetic/grade-print?type=m2-incenter-three-half-angles&count=8 (외심은 m2-circum-central-angle) · 연산대장에서 내심·외심 유형을 담아 양식 구성·출력",
+    changedOn: "2026-10-16",
+  },
+  {
     id: "arithmetic-paper-20261014",
     title: "연산대장 — 문제지와 정답지",
     changed:

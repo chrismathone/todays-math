@@ -47,6 +47,7 @@ export function ModernTemplate({
       >
         <ProblemHeader
           sectionHeading={p.sectionHeading}
+          sectionInstruction={p.sectionInstruction}
           num={num}
           problem={p.variant}
           options={options}

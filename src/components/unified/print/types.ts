@@ -8,6 +8,8 @@ export interface ProblemReview {
   variant: StudioProblem & { topic: string };
   /** Measured with the first question, so a type heading cannot be orphaned. */
   sectionHeading?: string;
+  /** Shared group question under the heading, e.g. "[11~20] …". */
+  sectionInstruction?: string;
 }
 
 /** 6 신규 인쇄 템플릿. */

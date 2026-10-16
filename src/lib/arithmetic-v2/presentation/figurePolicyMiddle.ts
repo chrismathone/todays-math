@@ -17,58 +17,58 @@ export const MIDDLE_FIGURE_POLICY: readonly MiddleFigurePolicy[] = [
   {
     typeId: "m2-obtuse-circum-central-angle",
     figureIdPrefix: "gt1-m2-obtuse-circum-central-angle-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 외심, 필요한 예각·둔각·직각 구분, 주어진 각 또는 길이와 목표가 명시되어 외심의 성질만으로 계산된다.",
+      "그림 우선(2026-10-15 원장님): 주어진 각을 모두 그림에 적고 구할 각을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-obtuse-circum-vertex-angle",
     figureIdPrefix: "gt1-m2-obtuse-circum-vertex-angle-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 외심, 필요한 예각·둔각·직각 구분, 주어진 각 또는 길이와 목표가 명시되어 외심의 성질만으로 계산된다.",
+      "그림 우선(2026-10-15 원장님): 주어진 각을 모두 그림에 적고 구할 각을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-obtuse-circum-base-angle",
     figureIdPrefix: "gt1-m2-obtuse-circum-base-angle-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 외심, 필요한 예각·둔각·직각 구분, 주어진 각 또는 길이와 목표가 명시되어 외심의 성질만으로 계산된다.",
+      "그림 우선(2026-10-15 원장님): 주어진 각을 모두 그림에 적고 구할 각을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-circum-central-angle",
     figureIdPrefix: "gt1-m2-circum-central-angle-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 외심, 필요한 예각·둔각·직각 구분, 주어진 각 또는 길이와 목표가 명시되어 외심의 성질만으로 계산된다.",
+      "그림 우선(2026-10-15 원장님): 주어진 각을 모두 그림에 적고 구할 각을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-circum-vertex-angle",
     figureIdPrefix: "gt1-m2-circum-vertex-angle-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 외심, 필요한 예각·둔각·직각 구분, 주어진 각 또는 길이와 목표가 명시되어 외심의 성질만으로 계산된다.",
+      "그림 우선(2026-10-15 원장님): 주어진 각을 모두 그림에 적고 구할 각을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-circum-radius-base-angle",
     figureIdPrefix: "gt1-m2-circum-radius-base-angle-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 외심, 필요한 예각·둔각·직각 구분, 주어진 각 또는 길이와 목표가 명시되어 외심의 성질만으로 계산된다.",
+      "그림 우선(2026-10-15 원장님): 주어진 각을 모두 그림에 적고 구할 각을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-circum-base-central-angle",
     figureIdPrefix: "gt1-m2-circum-base-central-angle-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 외심, 필요한 예각·둔각·직각 구분, 주어진 각 또는 길이와 목표가 명시되어 외심의 성질만으로 계산된다.",
+      "그림 우선(2026-10-15 원장님): 주어진 각을 모두 그림에 적고 구할 각을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-circum-three-base-angles",
     figureIdPrefix: "gt1-m2-circum-three-base-angles-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 외심, 필요한 예각·둔각·직각 구분, 주어진 각 또는 길이와 목표가 명시되어 외심의 성질만으로 계산된다.",
+      "그림 우선(2026-10-15 원장님): 주어진 각을 모두 그림에 적고 구할 각을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-circum-equal-radii",
@@ -94,44 +94,44 @@ export const MIDDLE_FIGURE_POLICY: readonly MiddleFigurePolicy[] = [
   {
     typeId: "m2-incenter-half-angle",
     figureIdPrefix: "gt1-m2-incenter-half-angle-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 내심 및 필요한 각·반지름·넓이·둘레 또는 변의 길이와 목표가 모두 명시되어 내심의 성질로 계산된다.",
+      "그림 우선(2026-10-15 원장님): 주어진 각을 모두 그림에 적고 구할 각을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-incenter-whole-angle",
     figureIdPrefix: "gt1-m2-incenter-whole-angle-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 내심 및 필요한 각·반지름·넓이·둘레 또는 변의 길이와 목표가 모두 명시되어 내심의 성질로 계산된다.",
+      "그림 우선(2026-10-15 원장님): 주어진 각을 모두 그림에 적고 구할 각을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-incenter-central-angle",
     figureIdPrefix: "gt1-m2-incenter-central-angle-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 내심 및 필요한 각·반지름·넓이·둘레 또는 변의 길이와 목표가 모두 명시되어 내심의 성질로 계산된다.",
+      "그림 우선(2026-10-15 원장님): 주어진 각을 모두 그림에 적고 구할 각을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-incenter-inverse-angle",
     figureIdPrefix: "gt1-m2-incenter-inverse-angle-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 내심 및 필요한 각·반지름·넓이·둘레 또는 변의 길이와 목표가 모두 명시되어 내심의 성질로 계산된다.",
+      "그림 우선(2026-10-15 원장님): 주어진 각을 모두 그림에 적고 구할 각을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-incenter-three-half-angles",
     figureIdPrefix: "gt1-m2-incenter-three-half-angles-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 내심 및 필요한 각·반지름·넓이·둘레 또는 변의 길이와 목표가 모두 명시되어 내심의 성질로 계산된다.",
+      "그림 우선(2026-10-15 원장님): 주어진 각을 모두 그림에 적고 구할 각을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-iso-incenter-base-half",
     figureIdPrefix: "gt1-m2-iso-incenter-base-half-",
-    showFigure: false,
+    showFigure: true,
     reason:
-      "문장에 내심 및 필요한 각·반지름·넓이·둘레 또는 변의 길이와 목표가 모두 명시되어 내심의 성질로 계산된다.",
+      "그림 우선(2026-10-15 원장님): 주어진 각을 모두 그림에 적고 구할 각을 x로 표시한다. 문장은 묶음 머리말 한 줄로 대신한다.",
   },
   {
     typeId: "m2-incenter-area",

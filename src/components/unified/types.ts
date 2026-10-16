@@ -13,6 +13,8 @@ export interface StudioProblem {
     number: number;
     groupKey: string;
     groupTitle: string;
+    /** One shared question for the contiguous group, printed as "[11~20] …". */
+    groupInstruction?: string;
   };
   /** Lossless English output adapter. Never feed English prose through the math parser. */
   english?: {

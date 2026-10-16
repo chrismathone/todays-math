@@ -1,4 +1,8 @@
 import { describe, expect, it } from "vitest";
+import {
+  centerAngleGroupInstruction,
+  isCenterAngleType,
+} from "@/lib/arithmetic-v2/presentation/centerAngles";
 import katex from "katex";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -62,6 +66,9 @@ describe("arithmetic shared output adapter", () => {
         number: 1,
         groupKey: type.id,
         groupTitle: type.title,
+        ...(isCenterAngleType(type.id)
+          ? { groupInstruction: centerAngleGroupInstruction(type.id) }
+          : {}),
       });
       expect(problem.section).toBe(type.title);
       if (arithmeticFigurePresentation(item.prompt, type.id).showFigure)

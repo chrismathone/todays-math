@@ -44,6 +44,7 @@ export function PyeonggaTemplate({
         {/* 배점은 ProblemBody.repositionScore 가 발문 끝에 통일(§45) — 번호 행엔 표시 X. */}
         <ProblemHeader
           sectionHeading={p.sectionHeading}
+          sectionInstruction={p.sectionInstruction}
           num={num}
           problem={p.variant}
           options={options}

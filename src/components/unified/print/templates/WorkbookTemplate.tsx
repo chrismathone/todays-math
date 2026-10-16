@@ -55,6 +55,7 @@ export function WorkbookTemplate({
         <div>
           <ProblemHeader
             sectionHeading={p.sectionHeading}
+            sectionInstruction={p.sectionInstruction}
             num={num}
             problem={p.variant}
             options={options}

@@ -10,6 +10,8 @@ import s from "./WorksheetPrint.module.css";
 import { kstDateOf } from "@/lib/kstDate";
 import editor from "../WorksheetEditor.module.css";
 import {
+  arithmeticGroupFrom,
+  arithmeticGroupInstruction,
   arithmeticGroupStarts,
   arithmeticOutputGroups,
 } from "@/lib/arithmeticOutputLayout";
@@ -37,6 +39,9 @@ export function WorksheetPrint({
         variant: { ...p, topic: p.section || p.chapter },
         sectionHeading: arithmeticGroupStarts(p, selected[index - 1])
           ? p.arithmetic?.groupTitle
+          : undefined,
+        sectionInstruction: arithmeticGroupStarts(p, selected[index - 1])
+          ? arithmeticGroupInstruction(arithmeticGroupFrom(selected, index))
           : undefined,
       })),
     [selected],

@@ -246,7 +246,11 @@ export function lineHitsBox(a: Point, b: Point, box: Box): boolean {
   return true;
 }
 /** Deterministic, safe SVG; no network, font outlines, scripts or foreignObject. */
-export function render(model: Model): string {
+export function render(
+  model: Model,
+  /** Display-only variants; defaults reproduce the frozen gt1 SVG bytes. */
+  options: { angleLabelsInside?: boolean } = {},
+): string {
   const raw = Object.values(model.points),
     xs = raw.map((p) => p[0]),
     ys = raw.map((p) => p[1]);
@@ -364,14 +368,23 @@ export function render(model: Model): string {
       lines.push([samples[i - 1], samples[i]]);
   }
   const boxes: Box[] = [];
-  const labels = Object.entries(points).map(([name, p]) => ({
+  type Label = {
+    name: string;
+    p: Point;
+    text: string;
+    /** Bisector placement: unit direction into the angle from its vertex. */
+    inside?: { vertex: Point; dx: number; dy: number; from: number };
+  };
+  const labels: Label[] = Object.entries(points).map(([name, p]) => ({
     name,
     p,
     text: name,
   }));
+  const givenLabels: Label[] = [];
   for (const given of model.givens ?? []) {
     const key = given.key;
     let p: Point;
+    let inside: Label["inside"];
     if (given.kind === "segment") p = midpoint(points[key[0]], points[key[1]]);
     else {
       const a = points[key[0]],
@@ -384,13 +397,122 @@ export function render(model: Model): string {
         length = Math.hypot(dx, dy);
       const radius = angleRadius(key);
       p = [b[0] + (radius * dx) / length, b[1] + (radius * dy) / length];
+      if (options.angleLabelsInside)
+        inside = { vertex: b, dx: dx / length, dy: dy / length, from: radius };
     }
-    labels.push({ name: `${given.kind}-${key}`, p, text: given.text });
+    givenLabels.push({
+      name: `${given.kind}-${key}`,
+      p,
+      text: given.text,
+      inside,
+    });
   }
-  for (const { name, p, text } of labels) {
+  // Inside placement claims the angle openings before the center point's name;
+  // vertex names keep their original first claim on the outer corners.
+  const centerNames = new Set(["O", "I"]);
+  const ordered = options.angleLabelsInside
+    ? [
+        ...labels.filter((l) => !centerNames.has(l.name)),
+        ...givenLabels,
+        ...labels.filter((l) => centerNames.has(l.name)),
+      ]
+    : [...labels, ...givenLabels];
+  for (const { name, p, text, inside } of ordered) {
+    let selected: Box | undefined;
+    const width = Math.max(14, text.length * 10);
+    // A center ray along the bisector (AI, AO) may run under the value; the
+    // white halo keeps it legible. Any other crossing line still rejects.
+    const alongBisector = ([a, b]: [Point, Point]) => {
+      if (!inside) return false;
+      const far =
+        dist(a, inside.vertex) < 0.5
+          ? b
+          : dist(b, inside.vertex) < 0.5
+            ? a
+            : null;
+      if (!far) return false;
+      const d = dist(far, inside.vertex);
+      return (
+        ((far[0] - inside.vertex[0]) * inside.dx +
+          (far[1] - inside.vertex[1]) * inside.dy) /
+          d >
+        Math.cos(rad(4))
+      );
+    };
+    const offsets = [0, 0.18, -0.18, 0.36, -0.36];
+    for (let step = 0; inside && !selected && step < 16; step++)
+      for (const offset of offsets) {
+        const r = inside.from + 11 + step * 3,
+          ux = inside.dx * Math.cos(offset) - inside.dy * Math.sin(offset),
+          uy = inside.dx * Math.sin(offset) + inside.dy * Math.cos(offset),
+          x = inside.vertex[0] + ux * r,
+          y = inside.vertex[1] + uy * r,
+          box = { x: x - width / 2, y: y - 9, w: width, h: 18 };
+        if (
+          box.x < 7 ||
+          box.y < 7 ||
+          box.x + box.w > 233 ||
+          box.y + box.h > 233 ||
+          boxes.some((b) => overlaps(box, b)) ||
+          lines.some(
+            (l) => !alongBisector(l) && lineHitsBox(l[0], l[1], box),
+          ) ||
+          // Never closer to another point: a value must read as its own vertex's.
+          Object.values(points).some(
+            (q) => q !== inside.vertex && dist(q, [x, y]) < r,
+          )
+        )
+          continue;
+        selected = box;
+        boxes.push(box);
+        body += `<text data-drill-label="${escape(name)}" x="${num(x)}" y="${num(y + 6)}" text-anchor="middle" stroke="white" stroke-width="4" paint-order="stroke" fill="black" font-family="Arial, sans-serif" font-size="16">${escape(text)}</text>`;
+        break;
+      }
+    // The center's name stays inside the triangle, next to the center.
+    const corners = ["A", "B", "C"].map((k) => points[k]);
+    const insideTriangle = ([x, y]: Point) => {
+      const sides = corners.map((a, i) => {
+        const b = corners[(i + 1) % 3];
+        return (b[0] - a[0]) * (y - a[1]) - (b[1] - a[1]) * (x - a[0]);
+      });
+      return sides.every((s) => s > 0) || sides.every((s) => s < 0);
+    };
+    if (
+      options.angleLabelsInside &&
+      centerNames.has(name) &&
+      corners.every(Boolean) &&
+      insideTriangle(p)
+    )
+      for (const radius of [13, 16, 20, 24, 28, 33]) {
+        for (let i = 0; i < 16 && !selected; i++) {
+          const angle =
+              (-3 * Math.PI) / 4 +
+              (i % 2 ? 1 : -1) * Math.ceil(i / 2) * (Math.PI / 8),
+            x = p[0] + radius * Math.cos(angle),
+            y = p[1] + radius * Math.sin(angle),
+            box = { x: x - 8, y: y - 10, w: 16, h: 20 };
+          if (
+            !(
+              [
+                [box.x, box.y],
+                [box.x + box.w, box.y],
+                [box.x, box.y + box.h],
+                [box.x + box.w, box.y + box.h],
+              ] as Point[]
+            ).every(insideTriangle) ||
+            boxes.some((b) => overlaps(box, b)) ||
+            lines.some(([a, b]) => lineHitsBox(a, b, box))
+          )
+            continue;
+          selected = box;
+          boxes.push(box);
+          body += `<text data-drill-label="${escape(name)}" x="${num(x)}" y="${num(y + 7)}" text-anchor="middle" stroke="none" fill="black" font-family="Arial, sans-serif" font-size="20">${escape(text)}</text>`;
+        }
+        if (selected) break;
+      }
+    if (selected) continue;
     const outward = Math.atan2(p[1] - 116, p[0] - 120);
     const directions = [outward, ...range(0, 15).map((i) => (i * Math.PI) / 8)];
-    let selected: Box | undefined;
     for (const radius of [21, 27, 34, 43, 54, 66, 80, 100]) {
       for (const angle of directions) {
         const x = p[0] + radius * Math.cos(angle),

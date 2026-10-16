@@ -58,7 +58,8 @@ describe("audited figure necessity and redundant annotations", () => {
       }
     }
     expect(seen).toEqual(arithmeticGeometryAssetIds);
-    expect([policies.length, omitted, retained]).toEqual([248, 17375, 177]);
+    // 159 circumcenter/incenter angle variants are figure-first (2026-10-15).
+    expect([policies.length, omitted, retained]).toEqual([248, 17216, 336]);
   });
 
   it("keeps every retained point and structural stroke while removing only repeated measurement annotations", () => {
@@ -155,7 +156,7 @@ describe("audited figure necessity and redundant annotations", () => {
       }
     }
     expect([checked, dimensions, chordCurves, parallelNotes]).toEqual([
-      177, 92, 66, 14,
+      336, 92, 66, 14,
     ]);
   });
 });

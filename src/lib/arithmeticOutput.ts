@@ -11,7 +11,12 @@ import {
   arithmeticAngleWidthMm,
 } from "@/lib/arithmetic-v2/geometry";
 import { presentArithmeticGeometrySvg } from "@/lib/arithmetic-v2/presentation";
+import { svgDataUrl } from "@/lib/svgDataUrl";
 import { arithmeticFigurePresentation } from "@/lib/arithmetic-v2/presentation/figurePolicy";
+import {
+  centerAngleFigureSvg,
+  centerAngleGroupInstruction,
+} from "@/lib/arithmetic-v2/presentation/centerAngles";
 import {
   arithmeticGeometryAnswerBlank,
   arithmeticAnswerUnitLatex,
@@ -66,10 +71,16 @@ export function arithmeticToStudioProblems(
         const originalSvg = figureId
           ? arithmeticGeometrySvg(figureId, sheet.figures!)
           : undefined;
+        // The saved SVG is still required and validated above; figure-first
+        // center angles display a redrawn copy of the same identity.
         const svg =
           figureId && originalSvg && presentation.showFigure
-            ? presentArithmeticGeometrySvg(figureId, originalSvg)
+            ? presentArithmeticGeometrySvg(
+                figureId,
+                centerAngleFigureSvg(figureId) ?? originalSvg,
+              )
             : undefined;
+        const groupInstruction = centerAngleGroupInstruction(item.typeId);
         const dimensions = svg
           ? /viewBox="([^"]+)"/.exec(svg)![1].split(/\s+/).map(Number).slice(2)
           : undefined;
@@ -98,14 +109,12 @@ export function arithmeticToStudioProblems(
           ...base,
           id: `arithmetic-v2:${sheet.seed}:${round.round}:${item.order}`,
           content: prosePrompt
-            ? `${presentation.lines.map(proseNotation).join("\n\n")}${svg ? "\n\n[그림1]" : ""}\n\n답: ${answerBlank}`
+            ? `${[...presentation.lines.map(proseNotation), ...(svg ? ["[그림1]"] : [])].join("\n\n")}\n\n답: ${answerBlank}`
             : `${item.prompt.instruction ? `${arithmeticProseNotation(item.prompt.instruction)}\n\n` : ""}$$${formula}$$`,
           ...(svg
             ? {
                 figureSvg: svg,
-                figureUrls: [
-                  `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`,
-                ],
+                figureUrls: [svgDataUrl(svg)],
                 figureDims: dimensions!,
                 figureSourceMm: [arithmeticAngleWidthMm(svg)],
               }
@@ -121,6 +130,7 @@ export function arithmeticToStudioProblems(
             number: ++number,
             groupKey: item.typeId,
             groupTitle,
+            ...(groupInstruction && svg ? { groupInstruction } : {}),
           },
           source: {
             kind: "arithmeticSheet",

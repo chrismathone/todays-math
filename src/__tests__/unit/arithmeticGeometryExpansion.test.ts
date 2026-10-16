@@ -20,6 +20,11 @@ import {
 import { ARITHMETIC_GEOMETRY_PACK_MAX_LENGTH } from "@/lib/arithmetic-v2/geometryPack";
 import { arithmeticToStudioProblems } from "@/lib/arithmeticOutput";
 import { presentArithmeticGeometrySvg } from "@/lib/arithmetic-v2/presentation";
+import {
+  centerAngleFigureSvg,
+  centerAngleGroupInstruction,
+  isCenterAngleType,
+} from "@/lib/arithmetic-v2/presentation/centerAngles";
 import { arithmeticFigurePresentation } from "@/lib/arithmetic-v2/presentation/figurePolicy";
 import { arithmeticAnswerUnitLatex } from "@/lib/arithmetic-v2/presentation/text";
 import {
@@ -141,16 +146,26 @@ describe("integrated elementary and middle-school geometry", () => {
       items.forEach((item, index) => {
         if (item.prompt.layout !== "math")
           throw new Error("Geometry must have a math prompt");
-        expect(output[index].content).toContain(
-          (definitions.find((definition) => definition.id === item.typeId)
-            ?.strand === "도형" || item.prompt.figureId
-            ? arithmeticGeometryNotation
-            : arithmeticProseNotation)(
-            item.typeId === "m1-triangle-exterior"
-              ? item.prompt.text.replace("표시된 외각", "외각")
-              : item.prompt.text,
-          ),
-        );
+        // Figure-first center angles carry their givens in the figure and
+        // their question in the group instruction instead of prose.
+        if (
+          isCenterAngleType(item.typeId) &&
+          arithmeticFigurePresentation(item.prompt, item.typeId).showFigure
+        )
+          expect(output[index].arithmetic?.groupInstruction).toBe(
+            centerAngleGroupInstruction(item.typeId),
+          );
+        else
+          expect(output[index].content).toContain(
+            (definitions.find((definition) => definition.id === item.typeId)
+              ?.strand === "도형" || item.prompt.figureId
+              ? arithmeticGeometryNotation
+              : arithmeticProseNotation)(
+              item.typeId === "m1-triangle-exterior"
+                ? item.prompt.text.replace("표시된 외각", "외각")
+                : item.prompt.text,
+            ),
+          );
         if (item.prompt.answerUnit && item.prompt.answerUnit !== "°")
           expect(output[index].content).toContain(
             arithmeticAnswerUnitLatex(item.prompt.answerUnit),
@@ -162,7 +177,8 @@ describe("integrated elementary and middle-school geometry", () => {
         ) {
           const displayed = presentArithmeticGeometrySvg(
             item.prompt.figureId,
-            arithmeticGeometrySvg(item.prompt.figureId, sheet.figures!),
+            centerAngleFigureSvg(item.prompt.figureId) ??
+              arithmeticGeometrySvg(item.prompt.figureId, sheet.figures!),
           );
           expect(output[index].figureSourceMm).toEqual([
             figureSvgAngleDrillWidthMm(displayed),

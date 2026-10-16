@@ -11,6 +11,35 @@ import g from "./GradeArithmeticPaper.module.css";
 import { arithmeticProseNotation } from "@/lib/arithmetic-v2/presentation/notation";
 import NativeProblem from "@/components/unified/NativeProblem";
 import type { StudioProblem } from "@/components/unified/types";
+import {
+  arithmeticGroupInstruction,
+  arithmeticGroupInstructionMarkup,
+} from "@/lib/arithmeticOutputLayout";
+
+/** This paper has no type headings: each page states its groups' questions. */
+function pageInstructions(
+  items: readonly { number: number }[],
+  byNumber: ReadonlyMap<number | undefined, StudioProblem>,
+): string[] {
+  const lines: string[] = [];
+  let run: StudioProblem[] = [];
+  const flush = () => {
+    const line = arithmeticGroupInstruction(run);
+    if (line) lines.push(line);
+    run = [];
+  };
+  for (const item of items) {
+    const problem = byNumber.get(item.number);
+    if (
+      run.length &&
+      problem?.arithmetic?.groupKey !== run[0].arithmetic?.groupKey
+    )
+      flush();
+    if (problem) run.push(problem);
+  }
+  flush();
+  return lines;
+}
 
 export function GradeArithmeticExpression({
   prompt,
@@ -142,6 +171,12 @@ export function gradeArithmeticPaperPages({
                 <p>이름 ____________________　날짜 ______________</p>
               )}
             </header>
+            {part.kind === "questions" &&
+              pageInstructions(part.items, byNumber).map((line) => (
+                <div className={g.groupInstruction} key={line}>
+                  <MathText text={arithmeticGroupInstructionMarkup(line)} />
+                </div>
+              ))}
             {part.kind === "questions" ? (
               <div
                 className={`${s.questions} ${g.questions}`}

@@ -6,6 +6,7 @@
 import React from "react";
 import { MathText } from "@/components/math/MathText";
 import { arithmeticTypeTitle } from "@/lib/arithmetic-v2/presentation/text";
+import { arithmeticGroupInstructionMarkup } from "@/lib/arithmeticOutputLayout";
 import { PAPER_COLORS } from "../tokens";
 import { inkOnColor, readablePaperColor } from "../readableColor";
 import type { PrintOptions, PrintTemplate, ProblemReview } from "../types";
@@ -15,12 +16,14 @@ export function ProblemHeader({
   num,
   problem,
   sectionHeading,
+  sectionInstruction,
   options,
   accent = options.color,
 }: {
   num: number;
   problem: ProblemReview["variant"];
   sectionHeading?: string;
+  sectionInstruction?: string;
   options: PrintOptions;
   accent?: string;
 }) {
@@ -47,6 +50,23 @@ export function ProblemHeader({
         >
           <MathText text={arithmeticTypeTitle(sectionHeading)} />
         </h3>
+      )}
+      {sectionHeading && sectionInstruction && (
+        <div
+          data-arithmetic-group-instruction
+          style={{
+            margin: "0 0 10px",
+            fontSize: 13,
+            lineHeight: 1.6,
+            fontWeight: 600,
+            color: PAPER_COLORS.ink,
+            overflowWrap: "anywhere",
+          }}
+        >
+          <MathText
+            text={arithmeticGroupInstructionMarkup(sectionInstruction)}
+          />
+        </div>
       )}
       <div
         data-problem-header

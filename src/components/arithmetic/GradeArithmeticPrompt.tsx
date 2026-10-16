@@ -6,6 +6,7 @@ import {
 } from "@/lib/arithmetic-v2/geometry";
 import { GradeArithmeticExpression as NumericExpression } from "./GradeArithmeticPaper";
 import { MathText } from "@/components/math/MathText";
+import { svgDataUrl } from "@/lib/svgDataUrl";
 import {
   arithmeticGeometryDisplaySize,
   presentArithmeticGeometrySvg,
@@ -16,6 +17,10 @@ import {
 } from "@/lib/arithmetic-v2/presentation/text";
 import { arithmeticGeometryNotation } from "@/lib/arithmetic-v2/presentation/notation";
 import { arithmeticFigurePresentation } from "@/lib/arithmetic-v2/presentation/figurePolicy";
+import {
+  centerAngleFigureSvg,
+  centerAngleGroupInstruction,
+} from "@/lib/arithmetic-v2/presentation/centerAngles";
 import s from "./GradeArithmeticPrompt.module.css";
 
 /** Catalog examples only. Review/output must use arithmeticToStudioProblems,
@@ -39,12 +44,22 @@ export function GradeArithmeticExpression({
   const presentation = arithmeticFigurePresentation(prompt, typeId);
   const svg =
     originalSvg && presentation.showFigure
-      ? presentArithmeticGeometrySvg(prompt.figureId!, originalSvg)
+      ? presentArithmeticGeometrySvg(
+          prompt.figureId!,
+          centerAngleFigureSvg(prompt.figureId!) ?? originalSvg,
+        )
       : undefined;
+  // A catalog example has no group heading, so it shows the shared question.
+  const instruction =
+    svg && typeId ? centerAngleGroupInstruction(typeId) : undefined;
+  const lines =
+    presentation.lines.length || !instruction
+      ? presentation.lines
+      : [instruction];
   const size = svg ? arithmeticGeometryDisplaySize(svg) : undefined;
   return (
     <span className={s.prompt}>
-      {presentation.lines.map((line) => (
+      {lines.map((line) => (
         <span className={s.givens} key={line}>
           <MathText text={arithmeticGeometryNotation(line)} />
         </span>
@@ -54,7 +69,7 @@ export function GradeArithmeticExpression({
           className={s.figure}
           width={size!.width}
           height={size!.height}
-          src={`data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`}
+          src={svgDataUrl(svg)}
           alt={arithmeticGeometryWording(prompt.text)}
         />
       )}
