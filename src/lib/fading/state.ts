@@ -426,6 +426,10 @@ export function completeFadingStep(
       ...(unjudged.length ? { unjudged } : {}),
       // 이 4단계를 푼 내용 — 평가는 이 지문으로 적는다(그사이 문장이 고쳐져도 «고친 문장의 평가»로 적지 않는다).
       digest: fadingConceptDigest(concept),
+      // 4단계의 포기 여부(결정 1) — 풀이를 새로 짓는 자리라 빠뜨리지 않고 옮긴다.
+      ...(session.gaveUpAtFour !== undefined
+        ? { gaveUpAtFour: session.gaveUpAtFour }
+        : {}),
     },
   };
 }

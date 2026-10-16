@@ -164,6 +164,11 @@ const sessionViewSchema = z.strictObject({
    * 평가는 푼 내용의 지문으로 적힌다. 풀이 중의 옛 화면 요청은 이 칸이 아니라 풀이 토큰의 409 가 막는다(`contentKey.ts`).
    */
   stale: z.literal(true).optional(),
+  /**
+   * 이 풀이의 4단계에서 «아직 모르겠어요»를 고른 적이 있는가(저장 칸 그대로 · 결정 1). 화면은 부분 틀림의 «어려움» 판정에 서버와 같은 재료로 쓴다.
+   * 🔴 이 칸을 읽는 판(화면)이 싣는 판보다 먼저 나간다 — 1a 는 읽기만 한다.
+   */
+  gaveUpAtFour: z.boolean().optional(),
 });
 
 /** 통계 탭에 내려가는 날 수(여덟 주). */
