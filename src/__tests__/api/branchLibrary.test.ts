@@ -1437,3 +1437,108 @@ describe("exam conditions never surface through the library document routes", ()
     );
   });
 });
+
+// 2026-10-16 W6 «내 양식» — 출제 조건처럼 같은 표에 담지만 자료가 아니다. 자료 길은 어느 것도 이 행을 보이거나 바꾸지 않는다.
+describe("print presets never surface through the library document routes", () => {
+  const printPreset = (patch: Partial<Doc> = {}): Doc => ({
+    userId: viewer,
+    id: "preset-1",
+    kind: "printPreset",
+    title: "일일TEST 2단",
+    payload: { v: 1, name: "일일TEST 2단" },
+    revision: 1,
+    visibility: "private",
+    sharedBranchId: null,
+    createdAt: date,
+    updatedAt: date,
+    problemCount: 0,
+    ...patch,
+  });
+  beforeEach(() => {
+    docs.push(printPreset());
+    mocks.document.deleteMany.mockImplementation(
+      async ({ where }: { where: Row }) => {
+        const before = docs.length;
+        docs = docs.filter((doc) => !matches(doc, where));
+        return { count: before - docs.length };
+      },
+    );
+  });
+  const listed = async (query = "") =>
+    (await (await listDocuments(req("GET", query))).json()) as {
+      data: Row[];
+      meta: { total: number };
+    };
+
+  it("is left out of 내 시험지 · 우리학원 시험지 lists and their counts, with or without a kind filter", async () => {
+    for (const query of ["", "?mine=true"]) {
+      const body = await listed(query);
+      expect(body.data.map((doc) => doc.kind)).not.toContain("printPreset");
+      expect(body.meta.total).toBe(query ? 1 : 2);
+    }
+    const asKind = await listDocuments(req("GET", "?kind=printPreset"));
+    const body = await asKind.json();
+    expect(body.data ?? []).toEqual([]);
+    expect(body.meta?.total ?? 0).toBe(0);
+  });
+
+  it("is left out of the admin's per-user document list (owner view)", async () => {
+    account = { ...account, isAdmin: true };
+    const body = await (await listDocuments(req(), viewer)).json();
+    expect(body.data.map((doc: Row) => doc.kind)).not.toContain("printPreset");
+    expect(body.meta.total).toBe(1);
+  });
+
+  it("cannot be read, saved over, renamed, deleted or copied as a document", async () => {
+    const before = structuredClone(docs);
+    expect((await readDocument(req(), "preset-1")).status).toBe(404);
+    expect(
+      (
+        await saveDocument(
+          req("PUT", "", {
+            kind: "printPreset",
+            title: "x",
+            payload: {},
+            expectedRevision: 1,
+          }),
+          "preset-1",
+        )
+      ).status,
+    ).toBe(400);
+    // 같은 id 로 자료를 덮어쓰려 해도 종류가 달라 막힌다.
+    expect(
+      (await saveDocument(req("PUT", "", saveBody()), "preset-1")).status,
+    ).toBe(409);
+    expect(
+      (
+        await renameDocument(
+          req("PATCH", "", { title: "새 이름", expectedRevision: 1 }),
+          "preset-1",
+        )
+      ).status,
+    ).toBe(409);
+    expect(
+      (await deleteDocument(req("DELETE", "?revision=1"), "preset-1")).status,
+    ).toBe(409);
+    expect(docs).toEqual(before);
+  });
+
+  it("is never offered to a colleague even if a row were marked branch", async () => {
+    docs.push(
+      printPreset({
+        userId: colleague,
+        id: "preset-2",
+        visibility: "branch",
+        sharedBranchId: branch,
+      }),
+    );
+    const body = await listed();
+    expect(body.data.map((doc) => doc.kind)).not.toContain("printPreset");
+    expect(
+      (await readDocument(req("GET", shareQuery), "preset-2")).status,
+    ).toBe(404);
+    expect(
+      (await copyDocument(req("POST", shareQuery), "preset-2")).status,
+    ).toBe(404);
+  });
+});

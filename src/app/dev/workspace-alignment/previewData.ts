@@ -1,4 +1,5 @@
 import type { ExamCondition } from "@/contracts/examCondition.contract";
+import type { PrintPreset } from "@/contracts/printPreset.contract";
 import type { EnglishExam, EnglishSet } from "@/contracts/english.contract";
 import type { EnglishListeningDocument } from "@/contracts/englishListening.contract";
 import type { EnglishPassageDetail } from "@/contracts/englishBank.contract";
@@ -100,7 +101,7 @@ const libraryExtras = [
     payload: { version: 1 },
   },
 ];
-const libraryDocuments = [...libraryDrafts, ...libraryExtras];
+
 const exam: EnglishExam = {
   id: "30000000-0000-4000-8000-000000000002",
   school: "한빛중학교",
@@ -312,6 +313,48 @@ const mathFamily = (row: (typeof mathProblems)[number]) =>
   row.familyKey ? `${row.unitId} ${row.familyKey}` : `solo:${row.id}`;
 /** 미리보기의 «최근 14일 출제» — 실제 계정이 없어 두 문항을 그렇게 둔다(구성 조건 W4 의 수가 달라 보이게). */
 const mathRecent = new Set([mathProblems[4].id, mathProblems[7].id]);
+
+// 3단계 «양식 구성·출력»(W6 · W7 · W8) 시안을 실제 화면에서 보려고 — 위 예시 문항 다섯으로 만든 시험지.
+// 제목은 기본값이라 W7 의 [적용]이 묻지 않고 바꾼다. 이어서 작업하면 3단계로 바로 연다.
+const outputPreviewDraft = {
+  id: "preview-draft-output",
+  ownerId: "workspace-preview",
+  isOwner: true,
+  kind: "draft",
+  title: "오늘 수학 학습지",
+  problemCount: 5,
+  revision: 1,
+  createdAt: stamp,
+  updatedAt: "2026-10-16T07:12:00.000Z",
+  workflow: { source: "bank", step: "output" },
+  payload: {
+    version: 1,
+    title: "오늘 수학 학습지",
+    columns: 1,
+    answers: false,
+    problems: [0, 2, 3, 5, 6].map((at) => {
+      const { unitId, familyKey, originProblemId, questionTypeRaw, ...rest } =
+        mathProblems[at];
+      void unitId;
+      void familyKey;
+      void originProblemId;
+      void questionTypeRaw;
+      return rest;
+    }),
+    printOptions: DEFAULT_PRINT_OPTIONS,
+    printMeta: {
+      title: "오늘 수학 학습지",
+      subject: "수학",
+      examDate: "2026-10-16",
+    },
+    workflow: { source: "bank", step: "output" },
+  },
+};
+const libraryDocuments = [
+  outputPreviewDraft,
+  ...libraryDrafts,
+  ...libraryExtras,
+];
 
 function mathPreview(url: URL, method: string, init?: RequestInit) {
   const base = "/api/dev/unified/problems";
@@ -592,6 +635,169 @@ function conditionsPreview(url: URL, method: string, init?: RequestInit) {
   return Response.json({ data: next });
 }
 
+// W6 «내 양식» — Hi-fi 의 네 양식(`/dev/exam-output-hifi` fixtures). 처음 기본은 «일일TEST 2단».
+const presetHead = (patch: Partial<PrintPreset["preset"]["head"]> = {}) => ({
+  schoolName: "",
+  subject: "수학",
+  examDuration: "",
+  examiner: "",
+  totalScore: 100,
+  academyName: "",
+  instructorName: "",
+  ...patch,
+});
+const presetRow = (
+  id: string,
+  name: string,
+  lastUsedAt: string,
+  options: Partial<PrintPreset["preset"]["options"]>,
+  head: PrintPreset["preset"]["head"],
+  isDefault = false,
+): PrintPreset => ({
+  id,
+  revision: 1,
+  preset: {
+    v: 1,
+    name,
+    options: { ...DEFAULT_PRINT_OPTIONS, ...options },
+    head,
+    isDefault,
+    lastUsedAt,
+    savedAt: lastUsedAt,
+  },
+});
+let previewPresets: PrintPreset[] = [
+  presetRow(
+    "preset-l1",
+    "일일TEST 2단",
+    "2026-10-15T01:00:00.000Z",
+    {
+      columns: 2,
+      layoutMode: "count",
+      problemsPerColumn: 3,
+      showAnswers: true,
+      quickAnswerOnly: true,
+    },
+    presetHead({
+      schoolName: "인재원학원",
+      examDuration: "20분",
+      examiner: "박선생",
+    }),
+    true,
+  ),
+  presetRow(
+    "preset-l2",
+    "주간 확인 풀이칸",
+    "2026-10-11T01:00:00.000Z",
+    {
+      template: "workbook",
+      color: "#135bec",
+      solvingArea: "ruled",
+      spacing: 32,
+      showAnswers: true,
+    },
+    presetHead({
+      examDuration: "50분",
+      academyName: "인재원학원",
+      instructorName: "박선생",
+    }),
+  ),
+  presetRow(
+    "preset-l3",
+    "단원평가 학교식",
+    "2026-09-30T01:00:00.000Z",
+    {
+      columns: 2,
+      columnDivider: true,
+      hideScores: false,
+      choiceLayout: "3x2",
+      showAnswers: true,
+    },
+    presetHead({ schoolName: "인재원학원", examDuration: "45분" }),
+  ),
+  presetRow(
+    "preset-l4",
+    "오답 다시 풀기",
+    "2026-09-22T01:00:00.000Z",
+    {
+      template: "yuhyung",
+      color: "#64748b",
+      columns: 2,
+      marginPreset: "narrow",
+      showDifficulty: false,
+    },
+    presetHead({ schoolName: "인재원학원" }),
+  ),
+];
+function presetsPreview(url: URL, method: string, init?: RequestInit) {
+  const base = "/api/studio/print-presets";
+  if (url.pathname !== base && !url.pathname.startsWith(`${base}/`))
+    return null;
+  const now = new Date().toISOString();
+  const body = init?.body ? JSON.parse(String(init.body)) : {};
+  const id = decodeURIComponent(url.pathname.slice(base.length + 1));
+  const refuse = (message: string, code?: string, existing?: unknown) =>
+    Response.json({ error: { message, code, existing } }, { status: 409 });
+  const unsetOthers = (keep: string) =>
+    (previewPresets = previewPresets.map((row) =>
+      row.id !== keep && row.preset.isDefault
+        ? {
+            ...row,
+            revision: row.revision + 1,
+            preset: { ...row.preset, isDefault: false },
+          }
+        : row,
+    ));
+  if (method === "GET")
+    return Response.json({ data: previewPresets, meta: { limit: 50 } });
+  if (method === "POST") {
+    const same = previewPresets.find(
+      (row) =>
+        row.preset.name === body.preset.name && row.id !== body.replace?.id,
+    );
+    if (same)
+      return refuse("같은 이름의 양식이 있습니다.", "PRINT_PRESET_NAME_TAKEN", {
+        id: same.id,
+        revision: same.revision,
+      });
+    const previous = previewPresets.find((row) => row.id === body.replace?.id);
+    const row: PrintPreset = {
+      id: body.replace?.id ?? `preview-preset-${Date.now()}`,
+      revision: body.replace ? body.replace.expectedRevision + 1 : 1,
+      preset: {
+        ...body.preset,
+        isDefault: Boolean(previous?.preset.isDefault || body.makeDefault),
+        lastUsedAt: now,
+        savedAt: now,
+      },
+    };
+    previewPresets = [row, ...previewPresets.filter((r) => r.id !== row.id)];
+    if (row.preset.isDefault) unsetOthers(row.id);
+    return Response.json({ data: row }, { status: body.replace ? 200 : 201 });
+  }
+  const row = previewPresets.find((item) => item.id === id);
+  if (!row) return refuse("양식을 찾지 못했습니다.");
+  if (method === "DELETE") {
+    previewPresets = previewPresets.filter((item) => item.id !== id);
+    return Response.json({ data: { deleted: true } });
+  }
+  const next: PrintPreset = {
+    ...row,
+    revision: row.revision + 1,
+    preset: {
+      ...row.preset,
+      ...(body.action === "rename"
+        ? { name: body.name }
+        : body.action === "default"
+          ? { isDefault: body.isDefault }
+          : { lastUsedAt: now }),
+    },
+  };
+  previewPresets = previewPresets.map((item) => (item.id === id ? next : item));
+  if (body.action === "default" && body.isDefault) unsetOthers(id);
+  return Response.json({ data: next });
+}
+
 export async function previewFetch(
   url: URL,
   init?: RequestInit,
@@ -605,6 +811,8 @@ export async function previewFetch(
   if (math) return math;
   const conditions = conditionsPreview(url, method, init);
   if (conditions) return conditions;
+  const presets = presetsPreview(url, method, init);
+  if (presets) return presets;
   // The workspace has a fixture storage scope, so arithmetic uses its normal
   // catalog gate. Run its deterministic engine locally, never an account API.
   const arithmetic =

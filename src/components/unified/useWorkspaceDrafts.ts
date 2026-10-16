@@ -68,6 +68,7 @@ export function useWorkspaceDrafts(
     setAnswers: store.setAnswers,
     setPrintOptions: store.setPrintOptions,
     setPrintMeta: store.setPrintMeta,
+    seedNewSheet: store.seedNewSheet,
     saveNow: storageScope && !enabled ? () => false : store.saveNow,
     visibility:
       "getVisibility" in store && store.getSharedBranchId() === branchId

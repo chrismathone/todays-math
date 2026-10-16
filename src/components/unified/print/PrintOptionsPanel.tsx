@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { FONT_PACKS } from "./fontPacks";
 import { CHOICE_LAYOUTS, COLORS, SPACING_PRESETS, TEMPLATES } from "./settings";
 import {
@@ -19,6 +20,12 @@ const CHOICE_LAYOUT_NOTES: Partial<
 };
 import panel from "./PrintOptionsPanel.module.css";
 
+export interface PrintOptionsSlots {
+  top?: ReactNode;
+  metaTop?: ReactNode;
+  afterTitle?: ReactNode;
+}
+
 export function PrintOptionsPanel({
   answersOnly = false,
   groupedArithmetic = false,
@@ -28,7 +35,13 @@ export function PrintOptionsPanel({
   meta,
   onOptions,
   onMeta,
+  slots,
 }: {
+  /**
+   * 3단계 덧붙임의 꽂는 자리(2026-10-16 Hi-fi) — 설정 칸 맨 위(W6 내 양식) · 시험지 정보 맨 위(W8 태그) ·
+   * 제목 칸 바로 아래(W7 추천). 없으면 지금 그대로다.
+   */
+  slots?: PrintOptionsSlots;
   answersOnly?: boolean;
   groupedArithmetic?: boolean;
   title: string;
@@ -93,6 +106,7 @@ export function PrintOptionsPanel({
         event.target.scrollIntoView?.({ block: "nearest", inline: "nearest" })
       }
     >
+      {slots?.top}
       <p className={s.subtle}>
         설정은 미리보기와 인쇄 · PDF에 함께 적용됩니다.
       </p>
@@ -114,6 +128,7 @@ export function PrintOptionsPanel({
       </fieldset>
       <details open className={s.metaDetails}>
         <summary>시험지 정보</summary>
+        {slots?.metaTop}
         <label className={s.field}>
           제목
           <input
@@ -125,6 +140,7 @@ export function PrintOptionsPanel({
             maxLength={80}
           />
         </label>
+        {slots?.afterTitle}
         <div className={s.metaGrid}>
           {field("schoolName", "학교/기관명")}
           {field("grade", "학년")}

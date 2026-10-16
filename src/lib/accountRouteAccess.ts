@@ -254,6 +254,8 @@ export function accountRouteAllowed(
     ].some((base) => under(path, base))
   )
     return any("export");
+  // 시험지 만들기 3단계 «내 양식»(W6) — 3단계를 여는 출력 메뉴를 따른다(`canOutput={can("export")}`).
+  if (under(path, "/api/studio/print-presets")) return any("export");
   if (under(path, "/api/exports"))
     return (
       any("export") ||

@@ -24,12 +24,18 @@ export type DocumentKind = z.infer<typeof libraryDocumentKindSchema>;
  */
 export const EXAM_CONDITION_KIND = "examCondition" as const;
 /**
- * 표에 저장되는 종류 전부 — 자료 넷 + 출제 조건.
+ * 시험지 만들기 3단계의 «내 양식»(W6 · 원장님 2026-10-16) — 출제 조건과 같이 같은 표에 담지만 **자료가 아니다.**
+ * 늘 비공개 · 주인만 · 자료 목록 · 수 · 공유 · 사본에 나오지 않는다. 읽고 쓰는 곳은 `/api/studio/print-presets` 뿐이다.
+ */
+export const PRINT_PRESET_KIND = "printPreset" as const;
+/**
+ * 표에 저장되는 종류 전부 — 자료 넷 + 출제 조건 + 내 양식.
  * 🔴 종류를 더하면 DB CHECK `workspace_document_kind_check` 도 넓힌다 — `workspaceDocumentKindConstraint.test.ts` 가 막는다.
  */
 export const documentKindSchema = z.enum([
   ...LIBRARY_DOCUMENT_KINDS,
   EXAM_CONDITION_KIND,
+  PRINT_PRESET_KIND,
 ]);
 export type WorkspaceDocumentKind = z.infer<typeof documentKindSchema>;
 export const isLibraryDocumentKind = (kind: string): kind is DocumentKind =>

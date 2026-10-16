@@ -9,7 +9,10 @@ import {
 } from "react";
 import StudioStepBar, { type StudioStepNavigation } from "./StudioStepBar";
 import WorkProgress from "./WorkProgress";
-import { PrintOptionsPanel } from "./print/PrintOptionsPanel";
+import {
+  PrintOptionsPanel,
+  type PrintOptionsSlots,
+} from "./print/PrintOptionsPanel";
 import { WorksheetPrint } from "./print/WorksheetPrint";
 import {
   DEFAULT_PRINT_META,
@@ -33,6 +36,8 @@ import { arithmeticOutputGroups } from "@/lib/arithmeticOutputLayout";
 import { MathText } from "@/components/math/MathText";
 import { arithmeticTypeTitle } from "@/lib/arithmetic-v2/presentation/text";
 interface Props {
+  /** 서식 설정 탭의 덧붙임(W6 내 양식 · W7 제목 추천 · W8 태그) — 그 화면이 꽂는다. */
+  settingsSlots?: PrintOptionsSlots;
   /** Arithmetic output has a key only, with no solution pages. */
   answersOnly?: boolean;
   /** Saved retry plans preserve both designated slots and cannot add, remove, or reorder. */
@@ -79,6 +84,7 @@ interface Props {
   onEditSource?: (problem: StudioProblem) => void;
 }
 export default function WorksheetEditor({
+  settingsSlots,
   answersOnly = false,
   fixedComposition = false,
   draftActions = true,
@@ -472,6 +478,7 @@ export default function WorksheetEditor({
                 meta={meta}
                 onOptions={updateOptions}
                 onMeta={updateMeta}
+                slots={settingsSlots}
               />
             </div>
             <div

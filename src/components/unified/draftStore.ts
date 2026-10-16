@@ -54,6 +54,12 @@ interface DraftEnvelope {
   drafts: WorkspaceDraft[];
 }
 
+/** 새 시험지 기본 양식이 덮는 값 — 서식 전부와 머리 정보의 고정 값(W6). */
+export interface NewSheetSeed {
+  printOptions: PrintOptions;
+  printMeta: Partial<PrintMeta>;
+}
+
 export interface WorkspaceDraftSnapshot {
   draft: WorkspaceDraft;
   hydrated: boolean;
@@ -534,6 +540,29 @@ export function createWorkspaceDraftStore(
   let recoveryError: unknown;
   let timer: ReturnType<typeof setTimeout> | undefined;
   const listeners = new Set<() => void>();
+  /**
+   * 새 시험지 기본 양식(W6 · 2026-10-16) — 있으면 새 시험지가 그 서식 · 머리 정보로 열린다(없으면 처음 값).
+   * 만들어 둔 빈 시험지(아무것도 담지 않고 손대지 않은 것)에도 덮는다 — 저장할 내용이 아니라 더러워지지 않는다.
+   */
+  let newSheet: NewSheetSeed | null = null;
+  const freshDraft = (id: string): WorkspaceDraft => {
+    const draft = blankDraft(id);
+    if (!newSheet) return draft;
+    const printOptions = parsePrintOptions(newSheet.printOptions);
+    return {
+      ...draft,
+      printOptions,
+      columns: printOptions.columns,
+      answers: printOptions.showAnswers,
+      printMeta: parsePrintMeta({ ...draft.printMeta, ...newSheet.printMeta }),
+    };
+  };
+  const pristine = () =>
+    !dirty &&
+    !snapshot.draft.updatedAt &&
+    !snapshot.draft.problems.length &&
+    !snapshot.draft.removed.length &&
+    snapshot.draft.title === DEFAULT_DRAFT_TITLE;
 
   const publish = (patch: Partial<WorkspaceDraftSnapshot>) => {
     snapshot = { ...snapshot, ...patch };
@@ -625,7 +654,7 @@ export function createWorkspaceDraftStore(
         const index = drafts.findIndex((draft) => draft.id === mutation.id);
         if (mutation.remove) {
           drafts.splice(index, 1);
-          if (nextDraft.id === mutation.id) nextDraft = blankDraft(newId());
+          if (nextDraft.id === mutation.id) nextDraft = freshDraft(newId());
         } else {
           const renamed = {
             ...drafts[index],
@@ -675,7 +704,7 @@ export function createWorkspaceDraftStore(
 
   const hydrate = () => {
     if (snapshot.hydrated) return;
-    let recovered = blankDraft(newId());
+    let recovered = freshDraft(newId());
     try {
       const storage = storageAccess();
       const raw = storage.getItem(DRAFT_STORE_KEY);
@@ -707,7 +736,7 @@ export function createWorkspaceDraftStore(
           if (autoResume) dirty = true;
           else {
             known = { version: 1, activeId: null, drafts: [recovered] };
-            recovered = blankDraft(newId());
+            recovered = freshDraft(newId());
             storage.setItem(DRAFT_STORE_KEY, JSON.stringify(known));
           }
         }
@@ -723,7 +752,7 @@ export function createWorkspaceDraftStore(
       recoveryBlocked = true;
       recoveryError = error;
       publish({
-        draft: autoResume ? recovered : blankDraft(newId()),
+        draft: autoResume ? recovered : freshDraft(newId()),
         hydrated: true,
         recent: summaries(known),
       });
@@ -821,7 +850,22 @@ export function createWorkspaceDraftStore(
         ...draft,
         printMeta: parsePrintMeta({ ...draft.printMeta, ...patch }),
       })),
-    createDraft: () => commit(blankDraft(newId())),
+    createDraft: () => commit(freshDraft(newId())),
+    /** 새 시험지 기본 양식을 정한다(null 이면 처음 값) — 손대지 않은 빈 시험지에도 덮는다. */
+    seedNewSheet: (seed: NewSheetSeed | null) => {
+      newSheet = seed;
+      if (!snapshot.hydrated || !pristine()) return;
+      const seeded = freshDraft(snapshot.draft.id);
+      publish({
+        draft: {
+          ...snapshot.draft,
+          printOptions: seeded.printOptions,
+          printMeta: seeded.printMeta,
+          columns: seeded.columns,
+          answers: seeded.answers,
+        },
+      });
+    },
     openDraft: (id: string) => commit(id),
     renameDraft: (id: string, title: string) => {
       const trimmed = title.trim();

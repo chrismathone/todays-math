@@ -48,6 +48,8 @@ import {
   restoreToCart,
 } from "./studioCart";
 import { useWorkspaceDrafts } from "./useWorkspaceDrafts";
+import { createPrintPresetsClient } from "./print/printPresetsClient";
+import type { PrintPreset } from "@/contracts/printPreset.contract";
 import type { WorkspaceWorkflowStep } from "@/contracts/workspaceWorkflow.contract";
 import type { LibraryOpenOptions } from "./PrivateLibrary";
 import WorkroomHome, { formatDraftDate } from "./WorkroomHome";
@@ -473,6 +475,7 @@ function UnifiedWorkspaceContent({
     setAnswers,
     setPrintOptions,
     setPrintMeta,
+    seedNewSheet,
     setWorkflow,
     getCurrentDraft,
     saveNow,
@@ -490,6 +493,36 @@ function UnifiedWorkspaceContent({
       (worksheetView || (product === "math" && view === "home")),
     branchId,
   );
+  /**
+   * 3단계 «내 양식»(W6) — 새 시험지 기본 양식이 있으면 새 시험지가 그 서식 · 머리 정보로 열린다.
+   * 출력 메뉴(3단계를 여는 메뉴)가 있는 로그인 계정만 읽는다. 읽지 못하면 처음 값 그대로다.
+   */
+  const canPrintPresets = Boolean(storageScope) && can("export");
+  const printPresetClient = useMemo(() => createPrintPresetsClient(), []);
+  const seedFromDefault = useCallback(
+    (preset: PrintPreset | null) =>
+      seedNewSheet(
+        preset
+          ? {
+              printOptions: preset.preset.options,
+              printMeta: preset.preset.head,
+            }
+          : null,
+      ),
+    [seedNewSheet],
+  );
+  useEffect(() => {
+    if (!canPrintPresets) return;
+    const controller = new AbortController();
+    void printPresetClient
+      .list(controller.signal)
+      .then((items) => {
+        if (!controller.signal.aborted)
+          seedFromDefault(items.find((item) => item.preset.isDefault) ?? null);
+      })
+      .catch(() => {});
+    return () => controller.abort();
+  }, [canPrintPresets, printPresetClient, seedFromDefault]);
   // The editor still waits for a validated draft, but its code can load while
   // restoration is in flight (also covers direct #bank / #studio entry).
   useEffect(() => {
@@ -1735,6 +1768,14 @@ function UnifiedWorkspaceContent({
                   editor={editorProps}
                   onQuestionsChange={changeBankSelection}
                   canOutput={can("export")}
+                  printPresets={
+                    canPrintPresets
+                      ? {
+                          client: printPresetClient,
+                          onDefaultChange: seedFromDefault,
+                        }
+                      : undefined
+                  }
                 />
               </main>
             )}

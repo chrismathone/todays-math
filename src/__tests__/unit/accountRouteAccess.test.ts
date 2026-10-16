@@ -291,6 +291,26 @@ describe("account approval and menu route policy", () => {
         );
     }
   });
+  it("opens saved print layouts (W6) to the 출력 menu that gates step 3 only", () => {
+    for (const [method, path] of [
+      ["GET", "/api/studio/print-presets"],
+      ["POST", "/api/studio/print-presets"],
+      ["PATCH", "/api/studio/print-presets/p1"],
+      ["DELETE", "/api/studio/print-presets/p1"],
+    ]) {
+      expect(
+        accountRouteAllowed({ ...account, menus: ["export"] }, method!, path!),
+      ).toBe(true);
+      for (const menus of [
+        [],
+        ["library"],
+        ["bank", "studio"],
+      ] as AccountAccess["menus"][])
+        expect(accountRouteAllowed({ ...account, menus }, method!, path!)).toBe(
+          false,
+        );
+    }
+  });
   it("requires both bank and studio for AI problem transformations", () => {
     expect(
       accountRouteAllowed(

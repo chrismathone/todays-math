@@ -12,7 +12,7 @@ import {
 } from "@/lib/privateWorkspace";
 import { ARITHMETIC_SHEET_KIND } from "@/contracts/arithmetic.contract";
 import {
-  EXAM_CONDITION_KIND,
+  documentKindSchema,
   LIBRARY_DOCUMENT_KINDS,
   libraryDocumentKindSchema,
 } from "@/contracts/privateWorkspace.contract";
@@ -28,9 +28,10 @@ export async function listDocuments(request: Request, owner?: string) {
   const kind = libraryDocumentKindSchema.safeParse(
     url.searchParams.get("kind"),
   );
-  // 출제 조건(W5)은 같은 표에 있지만 자료가 아니다 — 목록 · 수 어디에도 싣지 않는다(종류를 콕 집어 물어도).
+  // 출제 조건(W5) · 내 양식(W6)은 같은 표에 있지만 자료가 아니다 — 목록 · 수 어디에도 싣지 않는다(종류를 콕 집어 물어도).
+  const requested = documentKindSchema.safeParse(url.searchParams.get("kind"));
   const libraryKinds =
-    url.searchParams.get("kind") === EXAM_CONDITION_KIND
+    requested.success && !kind.success
       ? { in: [] as string[] }
       : { in: [...LIBRARY_DOCUMENT_KINDS] as string[] };
   const arithmeticOnly = !owner && arithmeticDocumentsOnly(access.account!);

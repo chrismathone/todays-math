@@ -16,6 +16,7 @@ import { PGlite } from "@electric-sql/pglite";
 import {
   DOCUMENT_KINDS,
   EXAM_CONDITION_KIND,
+  PRINT_PRESET_KIND,
   documentKindLabel,
   documentKindSchema,
   libraryDocumentKindSchema,
@@ -93,6 +94,23 @@ describe("내 시험지 자료 종류 ↔ DB CHECK(workspace_document_kind_check
     ).toBe(false);
   });
 
+  // 2026-10-16 W6 «내 양식» — 출제 조건처럼 같은 표에 담지만 자료가 아니다.
+  it("내 양식은 표의 종류에는 있고 자료 종류 · 화면의 종류 · 자료 저장 형식에는 없다", () => {
+    expect(documentKindSchema.options).toContain(PRINT_PRESET_KIND);
+    expect(libraryDocumentKindSchema.options).not.toContain(PRINT_PRESET_KIND);
+    expect(DOCUMENT_KINDS.map((entry) => entry.id)).not.toContain(
+      PRINT_PRESET_KIND,
+    );
+    expect(
+      saveDocumentSchema.safeParse({
+        kind: PRINT_PRESET_KIND,
+        title: "양식",
+        payload: {},
+        expectedRevision: null,
+      }).success,
+    ).toBe(false);
+  });
+
   it("widens the real PostgreSQL CHECK without losing old rows or allowing unknown kinds", async () => {
     const memory = new PGlite();
     try {
@@ -121,6 +139,7 @@ describe("내 시험지 자료 종류 ↔ DB CHECK(workspace_document_kind_check
       for (const migration of [
         "20261014190000_workspace_document_arithmetic_sheet",
         "20261016180000_workspace_document_exam_condition",
+        "20261016210000_workspace_document_print_preset",
       ])
         await memory.exec(
           readFileSync(

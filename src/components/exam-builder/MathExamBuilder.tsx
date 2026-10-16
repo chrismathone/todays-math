@@ -43,6 +43,9 @@ import type {
   ExamSavedSelection,
 } from "./types";
 import { createExamConditionsClient } from "./examConditionsClient";
+import SavedLayouts from "@/components/unified/print/SavedLayouts";
+import type { PrintPresetsClient } from "@/components/unified/print/printPresetsClient";
+import type { PrintPreset } from "@/contracts/printPreset.contract";
 import MaterialPicker from "./MaterialPicker";
 import ExamAnswerPanel from "./ExamAnswerPanel";
 import {
@@ -64,7 +67,13 @@ export default function MathExamBuilder({
   canOutput,
   initialStep,
   onStepChange,
+  printPresets,
 }: {
+  /** 3단계 «내 양식»(W6) — 출력 메뉴가 있는 계정만. 없으면 그 줄을 그리지 않는다. */
+  printPresets?: {
+    client: PrintPresetsClient;
+    onDefaultChange: (preset: PrintPreset | null) => void;
+  };
   initialData: BankData;
   initialGroup?: string;
   editor: ComponentProps<typeof WorksheetEditorComponent>;
@@ -439,6 +448,25 @@ export default function MathExamBuilder({
       }) => (
         <WorksheetEditor
           {...editor}
+          settingsSlots={{
+            top:
+              printPresets &&
+              editor.printOptions &&
+              editor.printMeta &&
+              editor.setPrintOptions &&
+              editor.setPrintMeta ? (
+                <SavedLayouts
+                  client={printPresets.client}
+                  options={editor.printOptions}
+                  meta={editor.printMeta}
+                  onDefaultChange={printPresets.onDefaultChange}
+                  onApply={(next) => {
+                    editor.setPrintOptions?.(next.options);
+                    editor.setPrintMeta?.(next.meta);
+                  }}
+                />
+              ) : undefined,
+          }}
           selected={questions}
           title={title}
           setTitle={onTitleChange}
