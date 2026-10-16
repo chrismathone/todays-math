@@ -16,7 +16,7 @@ import type { ArithmeticV2SheetPayload } from "@/contracts/arithmeticV2.contract
 
 // Authored examples for visual review; never copied from an exam or user account.
 const stamp = "2026-10-08T00:00:00.000Z";
-const libraryDocuments = ["review", "output"].map((step, index) => ({
+const libraryDrafts = ["review", "output"].map((step, index) => ({
   id: `preview-draft-${index + 1}`,
   ownerId: "workspace-preview",
   isOwner: true,
@@ -59,6 +59,47 @@ const libraryDocuments = ["review", "output"].map((step, index) => ({
     workflow: { source: "bank", step },
   },
 }));
+// 종류 넷이 다 보이게 — 추출 자료 둘(작업 중 하나 · 기록 없음 하나)과 개념 백지 하나(2026-10-16 외부 검토 §3 의 5건).
+const libraryExtras = [
+  {
+    id: "preview-extraction-1",
+    ownerId: "workspace-preview",
+    isOwner: true,
+    kind: "extraction",
+    title: "2학기 기말 기출 추출",
+    problemCount: 6,
+    revision: 1,
+    createdAt: stamp,
+    updatedAt: "2026-10-07T00:00:00.000Z",
+    workflow: { source: "extraction", step: "crop" },
+    payload: { data: { step: "crop", sources: [], crops: [] }, assets: {} },
+  },
+  {
+    id: "preview-extraction-2",
+    ownerId: "workspace-preview",
+    isOwner: true,
+    kind: "extraction",
+    title: "단원 평가 스캔본",
+    problemCount: 10,
+    revision: 1,
+    createdAt: stamp,
+    updatedAt: "2026-10-06T00:00:00.000Z",
+    payload: { data: { step: "review", sources: [], crops: [] }, assets: {} },
+  },
+  {
+    id: "preview-blank-1",
+    ownerId: "workspace-preview",
+    isOwner: true,
+    kind: "conceptBlank",
+    title: "삼각형의 합동 개념 백지",
+    problemCount: 24,
+    revision: 1,
+    createdAt: stamp,
+    updatedAt: "2026-10-05T00:00:00.000Z",
+    payload: { version: 1 },
+  },
+];
+const libraryDocuments = [...libraryDrafts, ...libraryExtras];
 const exam: EnglishExam = {
   id: "30000000-0000-4000-8000-000000000002",
   school: "한빛중학교",

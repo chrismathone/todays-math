@@ -13,7 +13,11 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { PGlite } from "@electric-sql/pglite";
 
-import { documentKindSchema } from "@/contracts/privateWorkspace.contract";
+import {
+  DOCUMENT_KINDS,
+  documentKindLabel,
+  documentKindSchema,
+} from "@/contracts/privateWorkspace.contract";
 
 const MIGRATIONS = path.join(process.cwd(), "prisma", "migrations");
 
@@ -50,6 +54,21 @@ describe("내 시험지 자료 종류 ↔ DB CHECK(workspace_document_kind_check
 
   it("개념 백지가 종류에 있다(26 §9 ⑾)", () => {
     expect(documentKindSchema.options).toContain("conceptBlank");
+  });
+
+  // 2026-10-16 외부 검토 §3 — 표 배지 · 종류 고르기 · 정보 창 · 저장 창이 한 정의를 읽는다.
+  it("화면의 종류 정의(이름 · 차례)가 저장값 넷을 한 번씩 덮고, 이름이 비지 않는다", () => {
+    expect(DOCUMENT_KINDS.map((entry) => entry.id).sort()).toEqual(
+      [...documentKindSchema.options].sort(),
+    );
+    expect(DOCUMENT_KINDS.map((entry) => entry.label)).toEqual([
+      "시험지",
+      "연산 연습지",
+      "추출한 자료",
+      "개념 백지",
+    ]);
+    for (const option of documentKindSchema.options)
+      expect(documentKindLabel(option)).not.toBe(option);
   });
 
   it("widens the real PostgreSQL CHECK without losing old rows or allowing unknown kinds", async () => {

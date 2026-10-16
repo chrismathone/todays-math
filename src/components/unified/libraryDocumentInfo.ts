@@ -31,6 +31,9 @@ export function libraryDocumentInfo(
     ["semester", "학기"],
     ["examDate", "시험일"],
     ["examDuration", "시험 시간"],
+    // 워크북 양식의 두 칸 — 출력 설정에 있는 그대로(2026-10-16 외부 검토 «정보창의 표시 누락»).
+    ["academyName", "학원명"],
+    ["instructorName", "강사명"],
   ]) {
     if (typeof meta[key] === "string" && meta[key].trim())
       result.push([label, meta[key]]);

@@ -1186,6 +1186,7 @@ export default function StudioView({
   const { requestSave: saveLibrary, dialog: saveDialog } =
     useLibrarySaveConfirmation(
       branchId,
+      "extraction",
       async (sharing) => {
         if (!storageReady.current || restoring || importingBusy) return false;
         setSessionSave("저장 중");

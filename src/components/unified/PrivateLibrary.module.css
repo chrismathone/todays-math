@@ -17,7 +17,7 @@
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
-  margin: 24px 0 14px;
+  margin: 8px 0 14px;
 }
 .kindTabs {
   display: flex;
@@ -40,6 +40,55 @@
   font-size: 12px;
   font-variant-numeric: tabular-nums;
   color: var(--library-muted);
+}
+/* 상태 토글 둘 — 종류 줄과 따로 둔다. 종류 × 작업 중 × 내 자료는 교집합이다. */
+.toggles {
+  display: flex;
+  gap: 4px 20px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+label.toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: var(--library-muted);
+  font-size: 13px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.toggle span {
+  font-variant-numeric: tabular-nums;
+}
+.toggle input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  padding: 0;
+  accent-color: var(--library-accent);
+}
+.readOnlyNote {
+  margin: 0 0 8px;
+  color: var(--library-muted);
+  font-size: 13px;
+}
+.cleanupNotice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 0 0 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--learn-danger, #b42318);
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--learn-danger, #b42318);
+}
+.cleanupNotice p {
+  flex: 1 1 320px;
+  margin: 0;
+  line-height: 1.5;
 }
 .infoList {
   display: grid;
@@ -72,17 +121,6 @@
   color: var(--library-muted);
   font-size: 13px;
   white-space: nowrap;
-}
-.tools label.mineFilter {
-  min-height: 44px;
-  cursor: pointer;
-}
-.tools input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  min-height: 0;
-  padding: 0;
-  accent-color: var(--library-accent);
 }
 .library input,
 .library select {

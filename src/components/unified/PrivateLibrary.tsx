@@ -7,7 +7,11 @@ import type {
   PrivateDocument,
   PrivateDocumentSummary,
 } from "@/contracts/privateWorkspace.contract";
-import { documentKey } from "@/contracts/privateWorkspace.contract";
+import {
+  DOCUMENT_KINDS,
+  documentKey,
+  documentKindLabel,
+} from "@/contracts/privateWorkspace.contract";
 import type { DocumentWorkflow } from "@/contracts/workspaceWorkflow.contract";
 import { workspaceLibraryLabel } from "@/contracts/accountAccess.contract";
 import ConfirmDialog from "./ConfirmDialog";
@@ -18,14 +22,6 @@ import WorkProgress from "./WorkProgress";
 import Icon from "./WorkspaceIcon";
 import { libraryDocumentInfo } from "./libraryDocumentInfo";
 import s from "./PrivateLibrary.module.css";
-
-/** 자료 종류 이름 — 목록의 종류 칸 · 종류 고르기. 개념 백지는 26 §9 ⑾. */
-const KIND_LABEL: Readonly<Record<DocumentKind, string>> = {
-  draft: "시험지",
-  extraction: "추출한 자료",
-  conceptBlank: "개념 백지",
-  arithmeticSheet: "연산 연습지",
-};
 
 export type LibraryOpenOptions = {
   mode: "resume";
@@ -38,6 +34,18 @@ const STAGE_LABEL: Record<DocumentWorkflow["step"], string> = {
   review: "2 문항 검토",
   output: "3 양식 구성·출력",
 };
+/**
+ * 수정 아이콘이 실제로 닿는 자리 — 작업실의 열기 배선과 같아야 한다(2026-10-16 외부 검토 P2).
+ * 시험지 · 연산은 출력 설정, 추출 자료는 문항 검토 단계(`onOpenExtraction` 이 `step: "review"`), 개념 백지는 그 탭.
+ */
+const EDIT_TITLE: Readonly<Record<DocumentKind, string>> = {
+  draft: "수정 · 출력 설정 열기",
+  arithmeticSheet: "수정 · 출력 설정 열기",
+  extraction: "수정 · 문항 검토 열기",
+  conceptBlank: "수정 · 개념 백지 열기",
+};
+/** 연산 쓰기 문이 닫혀 있을 때 — 읽기는 되고 바꾸는 것만 막는다(`arithmeticDocumentPolicy`). */
+const ARITHMETIC_READ_ONLY = "연산 연습지 저장 준비 중 · 지금은 읽기만 됩니다";
 function isWorkingDocument(item: PrivateDocumentSummary) {
   return Boolean(
     item.workflow &&
@@ -49,6 +57,8 @@ type PrivateLibraryProps = {
   branchId?: string | null;
   canExport: boolean;
   canStudio: boolean;
+  /** 문제은행 메뉴 — 은행에서 만든 시험지의 범위 · 검토 단계는 이 메뉴가 있어야 되돌아간다. */
+  canBank?: boolean;
   onOpenDraft: (
     id: string,
     options?: LibraryOpenOptions,
@@ -64,6 +74,7 @@ type PrivateLibraryProps = {
   ) => void | Promise<void>;
   onImport?: () => void;
   onNew?: () => void;
+  /** 서버 삭제가 끝난 뒤 이 브라우저에 남은 복구 자료를 치운다 — 실패해도 삭제는 되돌아오지 않는다. */
   onDeleted?: (item: PrivateDocumentSummary) => void | Promise<void>;
 };
 
@@ -77,11 +88,19 @@ export default function PrivateLibrary(props: PrivateLibraryProps) {
   );
 }
 
+type CleanupFailure = {
+  key: string;
+  item: PrivateDocumentSummary;
+  message: string;
+  retrying: boolean;
+};
+
 function PrivateLibraryContent({
   storageScope,
   branchId,
   canExport,
   canStudio,
+  canBank = false,
   onOpenDraft,
   onOpenExtraction,
   canConceptBlank = false,
@@ -97,12 +116,15 @@ function PrivateLibraryContent({
     [storageScope],
   );
   const [items, setItems] = useState<PrivateDocumentSummary[]>([]);
+  const [arithmeticWritable, setArithmeticWritable] = useState(true);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
-  const [kind, setKind] = useState("all");
+  const [kind, setKind] = useState<DocumentKind | "all">("all");
+  const [workingOnly, setWorkingOnly] = useState(false);
   const [sort, setSort] = useState("newest");
   const [mineOnly, setMineOnly] = useState(false);
+  const [cleanupFailures, setCleanupFailures] = useState<CleanupFailure[]>([]);
   const requestId = useRef(0);
   const invalidateReads = useCallback(() => ++requestId.current, []);
   // Background refreshes preserve rows and dialogs. Only the latest read may
@@ -112,9 +134,10 @@ function PrivateLibraryContent({
       const request = invalidateReads();
       if (!quiet) setLoading(true);
       try {
-        const next = await client.list(undefined, !branchId || mineOnly);
+        const next = await client.library(undefined, !branchId || mineOnly);
         if (request !== requestId.current) return;
-        setItems(next);
+        setItems(next.items);
+        setArithmeticWritable(next.arithmeticWriteEnabled);
         setError("");
       } catch (cause) {
         if (request === requestId.current) setError(cloudError(cause));
@@ -126,7 +149,6 @@ function PrivateLibraryContent({
   );
   useEffect(() => {
     // This effect starts the account's remote library subscription.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     void refresh();
     const changed = (event: Event) => {
       if ((event as CustomEvent).detail === storageScope) void refresh(true);
@@ -142,39 +164,136 @@ function PrivateLibraryContent({
       window.removeEventListener("focus", focused);
     };
   }, [refresh, storageScope, invalidateReads]);
-  const filtered = useMemo(() => {
+  const owned = useCallback(
+    (item: PrivateDocumentSummary) =>
+      item.ownerId ? item.ownerId === storageScope : item.isOwner !== false,
+    [storageScope],
+  );
+  const isMyWork = useCallback(
+    (item: PrivateDocumentSummary) => isWorkingDocument(item) && owned(item),
+    [owned],
+  );
+  // 종류 × 내 작업 중 × 검색 × 내 자료는 교집합이다. 종류 수는 «그 종류를 고르면 몇 개가 남나»,
+  // 작업 중 수는 «그 토글을 켜면 몇 개가 남나» — 어느 단추의 수도 다른 단추의 수에 더해지지 않는다.
+  const searched = useMemo(() => {
     const search = query.trim().toLocaleLowerCase();
-    return items
-      .filter(
-        (item) =>
-          (kind === "all" ||
-            item.kind === kind ||
-            (kind === "working" &&
-              isWorkingDocument(item) &&
-              (item.ownerId
-                ? item.ownerId === storageScope
-                : item.isOwner !== false))) &&
-          item.title.toLocaleLowerCase().includes(search),
-      )
-      .sort((a, b) => {
-        if (sort === "name") return a.title.localeCompare(b.title, "ko");
-        if (sort === "count" && a.problemCount !== b.problemCount)
-          return b.problemCount - a.problemCount;
-        return (
-          b.updatedAt.localeCompare(a.updatedAt) || a.id.localeCompare(b.id)
-        );
-      });
-  }, [items, kind, query, sort, storageScope]);
-  const hasFilters = Boolean(query.trim()) || kind !== "all" || mineOnly;
+    return items.filter((item) =>
+      item.title.toLocaleLowerCase().includes(search),
+    );
+  }, [items, query]);
+  const base = useMemo(
+    () => (workingOnly ? searched.filter(isMyWork) : searched),
+    [searched, workingOnly, isMyWork],
+  );
+  const kindCounts = useMemo(() => {
+    const counts = Object.fromEntries(
+      DOCUMENT_KINDS.map((entry) => [entry.id, 0]),
+    ) as Record<DocumentKind, number>;
+    for (const item of base) counts[item.kind] += 1;
+    return counts;
+  }, [base]);
+  const workingCount = useMemo(
+    () =>
+      searched.filter(
+        (item) => (kind === "all" || item.kind === kind) && isMyWork(item),
+      ).length,
+    [searched, kind, isMyWork],
+  );
+  const filtered = useMemo(
+    () =>
+      base
+        .filter((item) => kind === "all" || item.kind === kind)
+        .sort((a, b) => {
+          if (sort === "name") return a.title.localeCompare(b.title, "ko");
+          if (sort === "count" && a.problemCount !== b.problemCount)
+            return b.problemCount - a.problemCount;
+          return (
+            b.updatedAt.localeCompare(a.updatedAt) || a.id.localeCompare(b.id)
+          );
+        }),
+    [base, kind, sort],
+  );
+  const hasFilters =
+    Boolean(query.trim()) || kind !== "all" || mineOnly || workingOnly;
   const openDocument = async (
     item: PrivateDocumentSummary,
     open: (id: string) => void | Promise<void>,
   ) => {
-    const owned = item.ownerId
-      ? item.ownerId === storageScope
-      : item.isOwner !== false;
-    const document = owned ? item : await client.copy(item.id, item.ownerId!);
+    const document = owned(item)
+      ? item
+      : await client.copy(item.id, item.ownerId!);
     await open(document.id);
+  };
+  /** 기록된 source · step 을 이 계정의 메뉴로 실제 되돌릴 수 있을 때만 «이어서 작업»을 건다. */
+  const resumeOpener = (
+    item: PrivateDocumentSummary,
+  ): (() => Promise<void>) | undefined => {
+    const workflow = item.workflow;
+    if (!workflow || !isWorkingDocument(item) || !owned(item)) return undefined;
+    if (item.kind === "draft") {
+      if (!canExport) return undefined;
+      const restorable =
+        workflow.step === "output" ||
+        (workflow.source === "extraction" ? canStudio : canBank);
+      return restorable
+        ? () =>
+            openDocument(item, (id) =>
+              onOpenDraft(id, { mode: "resume", workflow }),
+            )
+        : undefined;
+    }
+    if (item.kind === "arithmeticSheet")
+      return canArithmetic && onOpenArithmetic
+        ? () =>
+            openDocument(item, (id) =>
+              onOpenArithmetic(id, { mode: "resume", workflow }),
+            )
+        : undefined;
+    if (item.kind === "extraction")
+      return canStudio
+        ? () =>
+            openDocument(item, (id) =>
+              onOpenExtraction(id, { mode: "resume", workflow }),
+            )
+        : undefined;
+    return undefined;
+  };
+  const editOpener = (
+    item: PrivateDocumentSummary,
+  ): (() => Promise<void>) | undefined => {
+    // 동료 자료는 사본을 만들어 연다 — 연산 쓰기 문이 닫혀 있으면 사본도 못 만든다.
+    if (!owned(item) && item.kind === "arithmeticSheet" && !arithmeticWritable)
+      return undefined;
+    if (item.kind === "draft")
+      return canExport ? () => openDocument(item, onOpenDraft) : undefined;
+    if (item.kind === "conceptBlank")
+      return canConceptBlank && onOpenConceptBlank
+        ? () => openDocument(item, onOpenConceptBlank)
+        : undefined;
+    if (item.kind === "arithmeticSheet")
+      return canArithmetic && onOpenArithmetic
+        ? () => openDocument(item, onOpenArithmetic)
+        : undefined;
+    return canStudio ? () => openDocument(item, onOpenExtraction) : undefined;
+  };
+  const cleanupAfterDelete = async (item: PrivateDocumentSummary) => {
+    const key = documentKey(item);
+    setCleanupFailures((previous) =>
+      previous.map((failure) =>
+        failure.key === key ? { ...failure, retrying: true } : failure,
+      ),
+    );
+    try {
+      await onDeleted?.(item);
+      setCleanupFailures((previous) =>
+        previous.filter((failure) => failure.key !== key),
+      );
+    } catch (cause) {
+      setCleanupFailures((previous) => [
+        ...previous.filter((failure) => failure.key !== key),
+        { key, item, message: cloudError(cause), retrying: false },
+      ]);
+    }
   };
   return (
     <main className={s.library}>
@@ -191,54 +310,46 @@ function PrivateLibraryContent({
         )}
         {onNew && <button onClick={onNew}>새 시험지</button>}
       </WorkspacePageHeader>
-      <nav className={s.kindTabs} aria-label="자료 종류별 보기">
-        {(
-          [
-            "all",
-            "working",
-            "draft",
-            "arithmeticSheet",
-            "extraction",
-            "conceptBlank",
-          ] as const
-        ).map((value) => (
+      <div className={s.kindTabs} role="group" aria-label="자료 종류별 보기">
+        <button
+          type="button"
+          aria-pressed={kind === "all"}
+          onClick={() => setKind("all")}
+        >
+          전체 자료 <span>{base.length}</span>
+        </button>
+        {DOCUMENT_KINDS.map((entry) => (
           <button
-            key={value}
+            key={entry.id}
             type="button"
-            aria-pressed={kind === value}
-            onClick={() => setKind(value)}
+            aria-pressed={kind === entry.id}
+            onClick={() => setKind(entry.id)}
           >
-            {value === "all"
-              ? "전체"
-              : value === "working"
-                ? "작업 중"
-                : KIND_LABEL[value]}{" "}
-            <span>
-              {value === "all"
-                ? items.length
-                : items.filter((item) =>
-                    value === "working"
-                      ? isWorkingDocument(item) &&
-                        (item.ownerId
-                          ? item.ownerId === storageScope
-                          : item.isOwner !== false)
-                      : item.kind === value,
-                  ).length}
-            </span>
+            {entry.label} <span>{kindCounts[entry.id]}</span>
           </button>
         ))}
-      </nav>
-      <div className={s.tools}>
+      </div>
+      <div className={s.toggles}>
+        <label className={s.toggle}>
+          <input
+            type="checkbox"
+            checked={workingOnly}
+            onChange={(event) => setWorkingOnly(event.target.checked)}
+          />
+          내 작업 중만 <span>({workingCount})</span>
+        </label>
         {branchId && (
-          <label className={s.mineFilter}>
+          <label className={s.toggle}>
             <input
               type="checkbox"
               checked={mineOnly}
               onChange={(event) => setMineOnly(event.target.checked)}
             />
-            내 시험지만 보기
+            내 자료만 보기
           </label>
         )}
+      </div>
+      <div className={s.tools}>
         <input
           type="search"
           aria-label="저장한 자료 검색"
@@ -246,23 +357,6 @@ function PrivateLibraryContent({
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
-        <label>
-          종류
-          <select
-            aria-label="자료 종류"
-            value={kind}
-            onChange={(event) => setKind(event.target.value)}
-          >
-            <option value="all">전체 자료</option>
-            <option value="working">작업 중</option>
-            <option value="draft">{KIND_LABEL.draft}</option>
-            <option value="extraction">{KIND_LABEL.extraction}</option>
-            <option value="conceptBlank">{KIND_LABEL.conceptBlank}</option>
-            <option value="arithmeticSheet">
-              {KIND_LABEL.arithmeticSheet}
-            </option>
-          </select>
-        </label>
         <label>
           정렬
           <select
@@ -279,10 +373,10 @@ function PrivateLibraryContent({
           새로고침
         </button>
       </div>
-      {kind === "working" && (
+      {workingOnly && (
         <p className={s.note}>
-          자동저장한 작업입니다. ‘이어서 작업’은 저장한 단계로, 수정 아이콘은
-          출력 설정으로 이동합니다.
+          진행 단계가 기록된 내 자료입니다. ‘이어서 작업’은 기록된 단계로
+          엽니다.
         </p>
       )}
       <p className={s.resultCount} aria-live="polite">
@@ -299,6 +393,32 @@ function PrivateLibraryContent({
           {error}
         </p>
       )}
+      {cleanupFailures.map((failure) => (
+        <div key={failure.key} className={s.cleanupNotice} role="alert">
+          <p>
+            ‘{failure.item.title}’ 자료는 삭제됐습니다. 이 브라우저에 남은 복구
+            자료를 정리하지 못했습니다. {failure.message}
+          </p>
+          <button
+            type="button"
+            disabled={failure.retrying}
+            onClick={() => void cleanupAfterDelete(failure.item)}
+          >
+            다시 정리
+          </button>
+          <button
+            type="button"
+            disabled={failure.retrying}
+            onClick={() =>
+              setCleanupFailures((previous) =>
+                previous.filter((entry) => entry.key !== failure.key),
+              )
+            }
+          >
+            닫기
+          </button>
+        </div>
+      ))}
       <div className={s.board} aria-busy={loading}>
         {loading ? (
           <div className={s.loading}>
@@ -333,80 +453,35 @@ function PrivateLibraryContent({
                 <LibraryItem
                   key={documentKey(item)}
                   item={item}
-                  owned={
-                    item.ownerId
-                      ? item.ownerId === storageScope
-                      : item.isOwner !== false
-                  }
+                  owned={owned(item)}
                   showAuthor
                   showVisibility={Boolean(branchId)}
-                  number={index + 1}
-                  client={client}
-                  onResume={
-                    item.workflow && isWorkingDocument(item)
-                      ? item.kind === "draft" && canExport
-                        ? () =>
-                            openDocument(item, (id) =>
-                              onOpenDraft(id, {
-                                mode: "resume",
-                                workflow: item.workflow,
-                              }),
-                            )
-                        : item.kind === "arithmeticSheet" &&
-                            canArithmetic &&
-                            onOpenArithmetic
-                          ? () =>
-                              openDocument(item, (id) =>
-                                onOpenArithmetic(id, {
-                                  mode: "resume",
-                                  workflow: item.workflow,
-                                }),
-                              )
-                          : item.kind === "extraction" && canStudio
-                            ? () =>
-                                openDocument(item, (id) =>
-                                  onOpenExtraction(id, {
-                                    mode: "resume",
-                                    workflow: item.workflow,
-                                  }),
-                                )
-                            : undefined
+                  readOnlyReason={
+                    item.kind === "arithmeticSheet" && !arithmeticWritable
+                      ? ARITHMETIC_READ_ONLY
                       : undefined
                   }
-                  onDeleted={async () => {
-                    await onDeleted?.(item);
+                  number={index + 1}
+                  client={client}
+                  onResume={resumeOpener(item)}
+                  onDeleted={() => {
+                    invalidateReads();
+                    setItems((previous) =>
+                      previous.filter(
+                        (value) => documentKey(value) !== documentKey(item),
+                      ),
+                    );
+                    void cleanupAfterDelete(item);
                   }}
                   onChanged={(next) => {
                     invalidateReads();
                     setItems((previous) =>
-                      next
-                        ? previous.map((value) =>
-                            documentKey(value) === documentKey(next)
-                              ? next
-                              : value,
-                          )
-                        : previous.filter(
-                            (value) => documentKey(value) !== documentKey(item),
-                          ),
+                      previous.map((value) =>
+                        documentKey(value) === documentKey(next) ? next : value,
+                      ),
                     );
                   }}
-                  onOpen={
-                    item.kind === "draft"
-                      ? canExport
-                        ? () => openDocument(item, onOpenDraft)
-                        : undefined
-                      : item.kind === "conceptBlank"
-                        ? canConceptBlank && onOpenConceptBlank
-                          ? () => openDocument(item, onOpenConceptBlank)
-                          : undefined
-                        : item.kind === "arithmeticSheet"
-                          ? canArithmetic && onOpenArithmetic
-                            ? () => openDocument(item, onOpenArithmetic)
-                            : undefined
-                          : canStudio
-                            ? () => openDocument(item, onOpenExtraction)
-                            : undefined
-                  }
+                  onOpen={editOpener(item)}
                 />
               ))}
             </tbody>
@@ -437,6 +512,7 @@ function PrivateLibraryContent({
                 onClick={() => {
                   setQuery("");
                   setKind("all");
+                  setWorkingOnly(false);
                   setMineOnly(false);
                 }}
               >
@@ -465,6 +541,7 @@ function LibraryItem({
   owned,
   showAuthor,
   showVisibility,
+  readOnlyReason,
   number,
   client,
   onOpen,
@@ -477,12 +554,15 @@ function LibraryItem({
   showAuthor: boolean;
   /** 학원 소속일 때만 공개 범위를 붙인다 — 혼자 쓰는 계정에는 뜻이 없다. */
   showVisibility: boolean;
+  /** 있으면 이 행은 읽기만 된다 — 이름 변경 · 삭제 · 사본을 잠그고 까닭을 옆에 적는다. */
+  readOnlyReason?: string;
   number: number;
   client: PrivateCloudClient;
   onOpen?: () => void | Promise<void>;
   onResume?: () => void | Promise<void>;
-  onChanged: (next?: PrivateDocumentSummary) => void;
-  onDeleted: () => Promise<void>;
+  onChanged: (next: PrivateDocumentSummary) => void;
+  /** 서버 삭제가 성공한 직후 — 행을 걷고 뒷정리는 부모가 따로 한다. */
+  onDeleted: () => void;
 }) {
   const [action, setAction] = useState<{
     kind: "info" | "delete";
@@ -497,6 +577,7 @@ function LibraryItem({
   const detailsRequest = useRef(0);
   const renameButton = useRef<HTMLButtonElement>(null);
   const deleteButton = useRef<HTMLButtonElement>(null);
+  const canRename = owned && !readOnlyReason;
   // Keep the confirmed revision even if another device refreshes this row while
   // its dialog is open: the existing API conflict protects unseen changes.
   const dialogOpen = action !== null;
@@ -540,7 +621,7 @@ function LibraryItem({
       </td>
       <td className={s.kindCell} role="cell">
         <span className={s.kindBadge} data-kind={item.kind}>
-          {KIND_LABEL[item.kind]}
+          {documentKindLabel(item.kind)}
         </span>
       </td>
       <td className={s.titleCell} role="cell">
@@ -560,7 +641,11 @@ function LibraryItem({
         ) : (
           <span className={s.titleText}>{item.title}</span>
         )}
-        {!onOpen && <small>열기 권한 없음</small>}
+        {!onOpen && (
+          <small>
+            {!owned && readOnlyReason ? readOnlyReason : "열기 권한 없음"}
+          </small>
+        )}
         {item.workflow && (
           <div className={s.progressLine}>
             <span>{STAGE_LABEL[item.workflow.step]}</span>
@@ -587,9 +672,10 @@ function LibraryItem({
             {showVisibility
               ? ` · ${item.visibility === "branch" ? "학원에 공개" : "학원에 비공개"}`
               : ""}
-            {!owned ? " · 사본으로 열기" : ""}
+            {!owned && onOpen ? " · 사본으로 열기" : ""}
           </small>
         )}
+        {owned && readOnlyReason && <small>{readOnlyReason}</small>}
         {busy && !dialogOpen && <small role="status">처리 중…</small>}
         {error && !dialogOpen && (
           <p className={s.error} role="alert">
@@ -610,7 +696,7 @@ function LibraryItem({
           <button
             ref={renameButton}
             aria-label={`${item.title} 정보`}
-            title="정보 · 이름 수정"
+            title={canRename ? "정보 · 이름 수정" : "정보"}
             disabled={busy}
             onClick={() => void openInfo()}
           >
@@ -620,7 +706,7 @@ function LibraryItem({
             <button
               type="button"
               aria-label={`${item.title} 수정`}
-              title={owned ? "수정 · 출력 설정 열기" : "사본으로 수정"}
+              title={owned ? EDIT_TITLE[item.kind] : "사본으로 수정"}
               disabled={busy}
               onClick={() =>
                 void perform(async () => {
@@ -635,8 +721,8 @@ function LibraryItem({
             <button
               ref={deleteButton}
               aria-label={`${item.title} 삭제`}
-              title="삭제"
-              disabled={busy}
+              title={readOnlyReason ? `삭제 불가 · ${readOnlyReason}` : "삭제"}
+              disabled={busy || Boolean(readOnlyReason)}
               onClick={() => {
                 setError("");
                 setAction({
@@ -654,7 +740,7 @@ function LibraryItem({
           <ConfirmDialog
             title="시험지 정보"
             field={
-              owned
+              canRename
                 ? {
                     label: "자료 이름",
                     value: name,
@@ -668,13 +754,13 @@ function LibraryItem({
                   }
                 : undefined
             }
-            confirmLabel={owned ? "이름 저장" : "닫기"}
+            confirmLabel={canRename ? "이름 저장" : "닫기"}
             busy={busy}
             error={error}
             returnFocus={renameButton}
             onConfirm={() =>
               void perform(async () => {
-                if (!owned || name.trim() === action.title) return;
+                if (!canRename || name.trim() === action.title) return;
                 onChanged(
                   await client.rename(item.id, name.trim(), action.revision),
                 );
@@ -682,7 +768,10 @@ function LibraryItem({
             }
             onCancel={closeDialog}
           >
-            {!owned && <p>{item.title}</p>}
+            {!canRename && <p>{item.title}</p>}
+            {owned && readOnlyReason && (
+              <p className={s.readOnlyNote}>{readOnlyReason}</p>
+            )}
             <dl className={s.infoList}>
               <div>
                 <dt>진행 단계</dt>
@@ -694,7 +783,7 @@ function LibraryItem({
               </div>
               <div>
                 <dt>종류</dt>
-                <dd>{KIND_LABEL[item.kind]}</dd>
+                <dd>{documentKindLabel(item.kind)}</dd>
               </div>
               <div>
                 <dt>문항 수</dt>
@@ -730,9 +819,9 @@ function LibraryItem({
             returnFocus={deleteButton}
             onConfirm={() =>
               void perform(async () => {
+                // 서버 삭제가 서면 행은 바로 걷힌다 — 이 브라우저의 뒷정리가 실패해도 다시 삭제를 보내지 않는다(409).
                 await client.remove(item.id, action.revision);
-                await onDeleted();
-                onChanged();
+                onDeleted();
               })
             }
             onCancel={closeDialog}

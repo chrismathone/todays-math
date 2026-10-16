@@ -17,6 +17,19 @@ export const documentKindSchema = z.enum([
   "arithmeticSheet",
 ]);
 export type DocumentKind = z.infer<typeof documentKindSchema>;
+/**
+ * 종류의 이름과 화면 차례 — 목록의 종류 칸 · 종류 고르기 · 정보 창 · 저장 창이 전부 여기서 읽는다(2026-10-16 외부 검토 §3).
+ * 저장값은 위 enum 넷 그대로다. 종류를 더하면 여기에도 한 줄을 더한다 — `workspaceDocumentKindConstraint.test.ts` 가 막는다.
+ */
+export const DOCUMENT_KINDS = [
+  { id: "draft", label: "시험지" },
+  { id: "arithmeticSheet", label: "연산 연습지" },
+  { id: "extraction", label: "추출한 자료" },
+  { id: "conceptBlank", label: "개념 백지" },
+] as const satisfies readonly { id: DocumentKind; label: string }[];
+export function documentKindLabel(kind: DocumentKind): string {
+  return DOCUMENT_KINDS.find((entry) => entry.id === kind)?.label ?? kind;
+}
 export const documentVisibilitySchema = z.enum(["private", "branch"]);
 export type DocumentVisibility = z.infer<typeof documentVisibilitySchema>;
 export type DocumentSharing = {

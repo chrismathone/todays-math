@@ -1,5 +1,6 @@
 import { db } from "@/lib/db";
 import { pagination } from "@/lib/adminAccounts";
+import { arithmeticSheetWriterEnabled } from "@/lib/arithmeticDocumentPolicy";
 import {
   authorizePrivate,
   documentDto,
@@ -53,7 +54,13 @@ export async function listDocuments(request: Request, owner?: string) {
           ? { workflow: workflows.get(workflowDocumentKey(item)) }
           : {}),
       })),
-      meta: { page, pageSize, total },
+      // 목록이 연산 연습지의 변경 단추를 미리 잠글 수 있게 쓰기 문의 상태를 같이 보낸다 — 열기는 그대로다.
+      meta: {
+        page,
+        pageSize,
+        total,
+        arithmeticWriteEnabled: arithmeticSheetWriterEnabled(),
+      },
     },
     { headers: privateHeaders },
   );

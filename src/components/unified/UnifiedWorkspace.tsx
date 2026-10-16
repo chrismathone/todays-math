@@ -1067,6 +1067,7 @@ function UnifiedWorkspaceContent({
   }
   const { requestSave: save, dialog: saveDialog } = useLibrarySaveConfirmation(
     branchId,
+    "draft",
     persistWorksheet,
     visibility,
   );
@@ -1928,6 +1929,7 @@ function UnifiedWorkspaceContent({
               branchId={branchId}
               canExport={can("export")}
               canStudio={can("studio")}
+              canBank={can("bank")}
               canArithmetic={can("arithmetic")}
               onOpenArithmetic={(id, options) => {
                 if (!can("arithmetic")) return;

@@ -161,4 +161,26 @@ describe("bounded authorized workflow projection", () => {
       5,
     ]);
   });
+  // 2026-10-16 외부 검토 P3 — 목록이 연산 쓰기 문의 상태를 같이 보내야 화면이 변경 단추를 미리 잠근다.
+  it.each([
+    ["on", true],
+    ["off", false],
+    [undefined, false],
+  ])(
+    "reports the arithmetic write gate (%s) in the list meta",
+    async (gate, enabled) => {
+      vi.stubEnv("ARITHMETIC_SHEET_WRITE", gate);
+      try {
+        const response = await listDocuments(
+          new Request("https://example.test/api/library/documents"),
+        );
+        expect((await response.json()).meta).toMatchObject({
+          total: 2,
+          arithmeticWriteEnabled: enabled,
+        });
+      } finally {
+        vi.unstubAllEnvs();
+      }
+    },
+  );
 });
