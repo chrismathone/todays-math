@@ -6,7 +6,7 @@ import { typesetArithmeticGeometrySvg } from "./typography";
  * the frozen display layout of the canonical figure is kept exactly, and the
  * unknown is marked □ — not x, not ㉠ — in the place its number would take.
  *   · angle families (age-e4 pack, editor angle-v1/right-angle-v1): the one
- *     unmarked arc gets "□°" inside its opening, past the arc, like the
+ *     unmarked arc gets a bare "□" inside its opening, past the arc, like the
  *     pack's own given labels; a leader only when the opening is too narrow.
  *   · dimension families (age-e5/e6 pack): the target's word label (가로 ·
  *     밑변 · 한 변 · 높이 · 윗변 · 아랫변 · 가로 대각선) becomes "□ cm" at the
@@ -242,11 +242,16 @@ function measureUnit(unit: string): number {
   return unitWidthEm[unit];
 }
 
-type Mark = { unit: "°" | "cm" };
+/** Textbook notation for 초4: a bare □ for an angle (no ° on the mark). */
+type Mark = { unit: "°" | "cm" | "" };
 const markWidthEm = (mark: Mark) =>
   SQUARE.bearing * 2 +
   SQUARE.size +
-  (mark.unit === "°" ? DEGREE.advance : THIN_SPACE + measureUnit("cm"));
+  (mark.unit === "°"
+    ? DEGREE.advance
+    : mark.unit === "cm"
+      ? THIN_SPACE + measureUnit("cm")
+      : 0);
 /** Height of the mark above (ascent) and below (descent) its baseline, em. */
 const markAscentEm = (mark: Mark) =>
   mark.unit === "°"
@@ -273,7 +278,8 @@ function drawMark(
     `<rect x="${fixed(x)}" y="${fixed(y)}" width="${fixed(side)}" height="${fixed(side)}" fill="none" stroke="#111111" stroke-width="${fixed(sw)}" stroke-linejoin="round"/>`;
   const after = left + (SQUARE.bearing * 2 + SQUARE.size) * fs;
   let unit: string;
-  if (mark.unit === "°") {
+  if (mark.unit === "") unit = "";
+  else if (mark.unit === "°") {
     const cx = after + (DEGREE.advance / 2) * fs,
       cy = base - DEGREE.raise * fs,
       r = DEGREE.radius * fs,
@@ -287,7 +293,7 @@ function drawMark(
   return `<g data-drill-label="target" role="img" aria-label="${label}">${square}${unit}</g>`;
 }
 
-/* ---------- angles: "□°" past the unmarked arc ---------- */
+/* ---------- angles: "□" past the unmarked arc (교과서 표기) ---------- */
 
 function fits(layout: Layout, box: Box): boolean {
   const { view } = layout;
@@ -301,7 +307,7 @@ function fits(layout: Layout, box: Box): boolean {
   );
 }
 
-const DEGREE_MARK: Mark = { unit: "°" };
+const DEGREE_MARK: Mark = { unit: "" };
 function markBox(mark: Mark, centre: Point, fs: number): Box {
   const w = markWidthEm(mark) * fs,
     h = (markAscentEm(mark) + markDescentEm()) * fs;
@@ -463,7 +469,7 @@ function annotateAngle(laidOut: string, canonical: string): string | undefined {
   const placed = placeDegreeMark(layout, target);
   if (!placed) return undefined;
   const fs = layout.fontSize;
-  const mark = markAt(DEGREE_MARK, placed.centre, fs, "□°");
+  const mark = markAt(DEGREE_MARK, placed.centre, fs, "□");
   const leader = placed.leaderFrom
     ? leaderTo(
         markBox(DEGREE_MARK, placed.centre, fs),
@@ -610,7 +616,7 @@ const whole = (figure: string, quantity: string) =>
 export const ELEMENTARY_FIGURE_FIRST: Readonly<
   Record<string, FigureFirstFamily>
 > = {
-  // 초4 각도 · 삼각형 — frozen age-e4 pack, "□°" at the unmarked arc.
+  // 초4 각도 · 삼각형 — frozen age-e4 pack, bare "□" at the unmarked arc.
   "e4-angle-sum": angleFamily("age-e4-angle-sum-v1-", inFigure("그림")),
   "e4-angle-difference": angleFamily(
     "age-e4-angle-difference-v1-",

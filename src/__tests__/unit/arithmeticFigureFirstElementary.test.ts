@@ -153,7 +153,7 @@ describe("figure-first 초등 각도 · 둘레 · 넓이 with the unknown marked
           `${id} inside the view`,
         ).toBe(true);
         if (ANGLE_TYPES.includes(typeId)) {
-          expect(label, id).toBe("□°");
+          expect(label, id).toBe("□");
           const leaderMarks = [...svg!.matchAll(LEADER)];
           expect(leaderMarks.length, id).toBeLessThanOrEqual(1);
           leaders += leaderMarks.length;
@@ -216,8 +216,9 @@ describe("figure-first 초등 각도 · 둘레 · 넓이 with the unknown marked
       }
     }
     expect(variants).toBe(5025);
-    // Two 20°·25° apexes of 직각삼각형 take a leader; nothing else does.
-    expect(leaders).toBe(2);
+    // The bare □ (교과서 표기, no ° ring) is narrow enough to sit inside the
+    // 25° apex of 직각삼각형; only the 20° apex still takes a leader.
+    expect(leaders).toBe(1);
     // Only the in-figure 높이 marks move, by the few px that clear the
     // dashed height; every other mark keeps the word label's anchor.
     expect(shifted).toBeLessThanOrEqual(166 * 2 + 265);
@@ -246,8 +247,9 @@ describe("figure-first 초등 각도 · 둘레 · 넓이 with the unknown marked
       angle.prompt,
       arithmeticGeometryCatalogSvg(angle.prompt.figureId!),
     )!;
-    expect(angleDisplay).toContain('aria-label="□°"');
-    expect(angleDisplay).toMatch(
+    // 교과서 표기(원장님 2026-10-16): the angle mark is a bare □, no ° ring.
+    expect(angleDisplay).toContain('aria-label="□"');
+    expect(angleDisplay).not.toMatch(
       /<circle [^>]*r="1\.97" fill="none" stroke="#111111"/,
     );
   });
