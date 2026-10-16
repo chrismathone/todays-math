@@ -298,6 +298,56 @@ const missing = define({
     );
   },
 });
+// --- constants that force a double root (2026-10-16) ---
+const doubleRootConstant = define({
+  id: "m3-quadratic-double-root-constant",
+  grade: "중3",
+  strand: "방정식·부등식",
+  title: "중근을 갖게 하는 상수항",
+  unit: "이차방정식",
+  description:
+    "ax² + bx + k = 0이 중근을 가질 때 상수 k를 구합니다. b가 홀수이거나 a가 1이 아니면 k는 분수일 수 있습니다.",
+  // [a, b], 4 × 24 = 96.
+  domain: cartesian(range(1, 4), nonzero(12)),
+  prompt: ([a, b]) =>
+    math(
+      `${poly(a, b, 0)} + k = 0`,
+      `${poly(a, b, 0, true)} + k = 0`,
+      "이차방정식이 중근을 가질 때 상수 k의 값을 구하시오.",
+    ),
+  solve: ([a, b]) => numericAnswer(rational(b * b, 4 * a), "rational"),
+  // Zero discriminant b² − 4ak = 0, cross multiplied.
+  check: ([a, b], answer) => {
+    const q = readNumeric(answer, "rational");
+    return Boolean(q && BigInt(b * b) * q[1] === BigInt(4 * a) * q[0]);
+  },
+});
+const doubleRootCoefficient = define({
+  id: "m3-quadratic-double-root-coefficient",
+  grade: "중3",
+  strand: "방정식·부등식",
+  title: "중근을 갖게 하는 일차항의 계수",
+  unit: "이차방정식",
+  description:
+    "ax² + kx + c = 0이 중근을 가질 때 양수 k를 구합니다. a와 c는 모두 제곱수입니다.",
+  // [a, m] with c = m², 4 × 10 = 40.
+  domain: cartesian([1, 4, 9, 16], range(1, 10)),
+  prompt: ([a, m]) =>
+    math(
+      `${a === 1 ? "" : a}x^2 + kx + ${m * m} = 0`,
+      `${a === 1 ? "" : a}x^{2} + kx + ${m * m} = 0`,
+      "이차방정식이 중근을 가질 때 양수 k의 값을 구하시오.",
+    ),
+  solve: ([a, m]) =>
+    numericAnswer(rational(2 * Math.round(Math.sqrt(a)) * m), "integer"),
+  // k² = 4ac with k > 0.
+  check: ([a, m], answer) => {
+    const q = readNumeric(answer, "integer");
+    return Boolean(
+      q && q[0] > BigInt(0) && q[0] * q[0] === BigInt(4 * a * m * m),
+    );
+  },
+});
 export const QUADRATIC_DEFINITIONS = [
   factoring,
   nonmonicFactoring,
@@ -305,4 +355,6 @@ export const QUADRATIC_DEFINITIONS = [
   perfectSquare,
   formula,
   missing,
+  doubleRootConstant,
+  doubleRootCoefficient,
 ];

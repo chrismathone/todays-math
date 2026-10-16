@@ -34,9 +34,412 @@ function terms(items: Term[]): string[] {
     .sort((a, b) => b[0] - a[0])
     .flatMap(([e, n, d]) => [String(e), ...reduce(n, d).map(String)]);
 }
+// ---- 2026-10-16 중1 expansion (track D): nine ids with their own shapes.
+// Each helper is keyed by id and mirrors the published description, not the
+// family code: the "expected" value is recomputed from the parameters here.
+const EXPANSION_IDS = [
+  "m1-integer-add-chain",
+  "m1-integer-add-chain-four",
+  "m1-integer-mixed-chain",
+  "m1-integer-power-mixed",
+  "m1-negative-square",
+  "m1-reciprocal",
+  "m1-decimal-fraction-mixed",
+  "m1-linear-distribute-combine",
+  "m1-linear-fraction-combine",
+] as const;
+const isExpansion = (id: string) =>
+  (EXPANSION_IDS as readonly string[]).includes(id);
+/** Decimals the reciprocal / mixed drills may show, as [coefficient, scale]. */
+const DECIMAL_MAGNITUDES: readonly [number, number][] = [
+  [1, 1],
+  [2, 1],
+  [3, 1],
+  [4, 1],
+  [5, 1],
+  [6, 1],
+  [7, 1],
+  [8, 1],
+  [9, 1],
+  [25, 2],
+  [75, 2],
+  [12, 1],
+  [15, 1],
+  [25, 1],
+];
+const isDecimalInput = (c: number, s: number) =>
+  DECIMAL_MAGNITUDES.some(([m, scale]) => Math.abs(c) === m && s === scale) &&
+  c !== 0;
+const powerValue = (base: number, exponent: number) => {
+  let value = 1;
+  for (let i = 0; i < exponent; i++) value *= base;
+  return value;
+};
+function expansionOracle(id: string, p: number[]): string[] {
+  const [a, b, c, d, e] = p;
+  if (id === "m1-integer-add-chain") {
+    const ops = d;
+    const first = ops & 2 ? a - b : a + b;
+    return [String(ops & 1 ? first - c : first + c)];
+  }
+  if (id === "m1-integer-add-chain-four") {
+    const ops = e;
+    let n = a;
+    n += ops & 4 ? -b : b;
+    n += ops & 2 ? -c : c;
+    n += ops & 1 ? -d : d;
+    return [String(n)];
+  }
+  if (id === "m1-integer-mixed-chain") {
+    const [t, x, y, q] = p;
+    const product = x * y;
+    return [
+      String(
+        t === 0
+          ? product + q
+          : t === 1
+            ? product - q
+            : t === 2
+              ? q + product
+              : q - product,
+      ),
+    ];
+  }
+  if (id === "m1-integer-power-mixed") {
+    const [t, base, exponent, x, y] = p;
+    const power = powerValue(base, exponent),
+      product = x * y;
+    return [
+      String(
+        t === 0
+          ? power + product
+          : t === 1
+            ? power - product
+            : t === 2
+              ? product + power
+              : product - power,
+      ),
+    ];
+  }
+  if (id === "m1-negative-square") {
+    const [code, base, exponent, other, otherExponent] = p;
+    const left =
+      code & 1 ? powerValue(-base, exponent) : -powerValue(base, exponent);
+    const right =
+      code & 2
+        ? powerValue(-other, otherExponent)
+        : powerValue(other, otherExponent);
+    return [String(code & 4 ? left - right : left + right)];
+  }
+  if (id === "m1-reciprocal") {
+    const [form, n, k] = p;
+    if (form === 0) return reduce(1, n).map(String);
+    if (form === 1) return reduce(k, n).map(String);
+    return reduce(10 ** k, n).map(String);
+  }
+  if (id === "m1-decimal-fraction-mixed") {
+    const [op, coefficient, scale, n, den, order] = p;
+    const decimal: Q = [coefficient, 10 ** scale],
+      fraction: Q = [n, den];
+    const [[ln, ld], [rn, rd]] = order
+      ? [fraction, decimal]
+      : [decimal, fraction];
+    return (
+      op === 0
+        ? reduce(ln * rd + rn * ld, ld * rd)
+        : op === 1
+          ? reduce(ln * rd - rn * ld, ld * rd)
+          : op === 2
+            ? reduce(ln * rn, ld * rd)
+            : reduce(ln * rd, ld * rn)
+    ).map(String);
+  }
+  if (id === "m1-linear-distribute-combine") {
+    const [k, x, y, m, u, v] = p;
+    return terms([
+      [1, k * x + m * u, 1],
+      [0, k * y + m * v, 1],
+    ]);
+  }
+  // m1-linear-fraction-combine: (ax+b)/p ± (cx+d)/|q| with the sign in q.
+  const [x, y, pDen, u, v, q] = p;
+  const sign = q < 0 ? -1 : 1,
+    qAbs = Math.abs(q);
+  return terms([
+    [1, x * qAbs + sign * u * pDen, pDen * qAbs],
+    [0, y * qAbs + sign * v * pDen, pDen * qAbs],
+  ]);
+}
+function expansionMember(id: string, p: number[]): boolean {
+  const within = (n: number, limit: number) =>
+    Number.isInteger(n) && n !== 0 && Math.abs(n) <= limit;
+  const factor = (n: number) => within(n, 6) && n !== 1;
+  const [a, b, c, d, e, f] = p;
+  if (id === "m1-integer-add-chain")
+    return (
+      p.length === 4 && [a, b, c].every((n) => within(n, 9)) && d >= 0 && d <= 3
+    );
+  if (id === "m1-integer-add-chain-four")
+    return (
+      p.length === 5 &&
+      [a, b, c, d].every((n) => within(n, 5)) &&
+      e >= 0 &&
+      e <= 7
+    );
+  if (id === "m1-integer-mixed-chain")
+    return (
+      p.length === 5 &&
+      a >= 0 &&
+      a <= 3 &&
+      factor(b) &&
+      factor(c) &&
+      within(d, 6) &&
+      factor(e)
+    );
+  if (id === "m1-integer-power-mixed")
+    return (
+      p.length === 5 &&
+      a >= 0 &&
+      a <= 3 &&
+      within(b, 5) &&
+      b !== 1 &&
+      (c === 2 || c === 3) &&
+      factor(d) &&
+      factor(e)
+    );
+  if (id === "m1-negative-square")
+    return (
+      p.length === 5 &&
+      a >= 0 &&
+      a <= 7 &&
+      b >= 1 &&
+      b <= 5 &&
+      (c === 2 || c === 3) &&
+      d >= 1 &&
+      d <= 5 &&
+      (e === 2 || e === 3)
+    );
+  if (id === "m1-reciprocal") {
+    if (p.length !== 3) return false;
+    if (a === 0) return within(b, 12) && Math.abs(b) !== 1 && c === 1;
+    if (a === 1)
+      return within(b, 9) && c >= 2 && c <= 9 && reduce(b, c)[1] === c;
+    return a === 2 && isDecimalInput(b, c);
+  }
+  if (id === "m1-decimal-fraction-mixed")
+    return (
+      p.length === 6 &&
+      [
+        [0, 0],
+        [1, 0],
+        [1, 1],
+        [2, 0],
+        [3, 0],
+        [3, 1],
+      ].some(([op, order]) => op === a && order === f) &&
+      isDecimalInput(b, c) &&
+      within(d, 6) &&
+      e >= 2 &&
+      e <= 6 &&
+      reduce(d, e)[1] === e
+    );
+  if (id === "m1-linear-distribute-combine")
+    return (
+      p.length === 6 &&
+      within(a, 4) &&
+      within(d, 4) &&
+      !(a === 1 && Math.abs(d) === 1) &&
+      within(b, 3) &&
+      within(e, 3) &&
+      within(c, 5) &&
+      within(f, 5) &&
+      !(b === e && c === f)
+    );
+  return (
+    p.length === 6 &&
+    within(a, 3) &&
+    within(d, 3) &&
+    within(b, 5) &&
+    within(e, 5) &&
+    c >= 2 &&
+    c <= 6 &&
+    Math.abs(f) >= 2 &&
+    Math.abs(f) <= 6 &&
+    !(a === d && b === e && c === Math.abs(f))
+  );
+}
+/** Read the displayed expression back into parameters, token by token. */
+function readExpansionPrompt(id: string, text: string): number[] {
+  const int = (s: string) => {
+    const m = /^\(?(-?\d+)\)?$/.exec(s);
+    if (!m) throw new Error(`bad integer token: ${s}`);
+    if (s.startsWith("(") !== s.startsWith("(-"))
+      throw new Error(`stray parentheses: ${s}`);
+    return Number(m[1]);
+  };
+  const signBit = (s: string) => (s === "-" ? 1 : 0);
+  const linear = (s: string): [number, number] => {
+    const m = /^(-?\d*)x ([+-]) (\d+)$/.exec(s);
+    if (!m) throw new Error(`bad linear expression: ${s}`);
+    const slope = m[1] === "" ? 1 : m[1] === "-" ? -1 : Number(m[1]);
+    return [slope, (m[2] === "-" ? -1 : 1) * Number(m[3])];
+  };
+  const power = (s: string): [number, number, number] => {
+    // Returns [parenthesized?, base magnitude, exponent] for "-3^2" | "(-3)^2" | "3^2".
+    const m = /^(-?)(\(-\d+\)|\d+)\^(\d)$/.exec(s);
+    if (!m) throw new Error(`bad power token: ${s}`);
+    if (m[1] === "-" && m[2].startsWith("("))
+      throw new Error(`double sign: ${s}`);
+    const base = int(m[2]);
+    return [
+      m[2].startsWith("(") ? 1 : 0,
+      m[1] === "-" ? -base : base,
+      Number(m[3]),
+    ];
+  };
+  const token = "(?:\\(-\\d+\\)|\\d+)";
+  let m: RegExpExecArray | null;
+  if (id === "m1-integer-add-chain") {
+    m = new RegExp(`^(${token}) ([+-]) (${token}) ([+-]) (${token})$`).exec(
+      text,
+    );
+    if (!m) throw new Error(`bad chain: ${text}`);
+    return [int(m[1]), int(m[3]), int(m[5]), signBit(m[2]) * 2 + signBit(m[4])];
+  }
+  if (id === "m1-integer-add-chain-four") {
+    m = new RegExp(
+      `^(${token}) ([+-]) (${token}) ([+-]) (${token}) ([+-]) (${token})$`,
+    ).exec(text);
+    if (!m) throw new Error(`bad chain: ${text}`);
+    return [
+      int(m[1]),
+      int(m[3]),
+      int(m[5]),
+      int(m[7]),
+      signBit(m[2]) * 4 + signBit(m[4]) * 2 + signBit(m[6]),
+    ];
+  }
+  if (id === "m1-integer-mixed-chain") {
+    m = new RegExp(
+      `^(${token}) × (${token}) ([+-]) (${token}) ÷ (${token})$`,
+    ).exec(text);
+    if (m) {
+      const divisor = int(m[5]),
+        dividend = int(m[4]);
+      if (dividend % divisor !== 0) throw new Error("inexact division shown");
+      return [signBit(m[3]), int(m[1]), int(m[2]), dividend / divisor, divisor];
+    }
+    m = new RegExp(
+      `^(${token}) ÷ (${token}) ([+-]) (${token}) × (${token})$`,
+    ).exec(text);
+    if (!m) throw new Error(`bad mixed chain: ${text}`);
+    const divisor = int(m[2]),
+      dividend = int(m[1]);
+    if (dividend % divisor !== 0) throw new Error("inexact division shown");
+    return [
+      2 + signBit(m[3]),
+      int(m[4]),
+      int(m[5]),
+      dividend / divisor,
+      divisor,
+    ];
+  }
+  if (id === "m1-integer-power-mixed") {
+    const powerToken = `(?:\\(-\\d+\\)|\\d+)\\^\\d`;
+    m = new RegExp(`^(${powerToken}) ([+-]) (${token}) × (${token})$`).exec(
+      text,
+    );
+    if (m) {
+      const [, base, exponent] = power(m[1]);
+      return [signBit(m[2]), base, exponent, int(m[3]), int(m[4])];
+    }
+    m = new RegExp(`^(${token}) × (${token}) ([+-]) (${powerToken})$`).exec(
+      text,
+    );
+    if (!m) throw new Error(`bad power chain: ${text}`);
+    const [, base, exponent] = power(m[4]);
+    return [2 + signBit(m[3]), base, exponent, int(m[1]), int(m[2])];
+  }
+  if (id === "m1-negative-square") {
+    m = /^(-?(?:\(-\d+\)|\d+)\^\d) ([+-]) ((?:\(-\d+\)|\d+)\^\d)$/.exec(text);
+    if (!m) throw new Error(`bad negative square: ${text}`);
+    const [leftParen, leftBase, leftExponent] = power(m[1]);
+    const [rightParen, rightBase, rightExponent] = power(m[3]);
+    // Left is "-a^e" (bit 0 clear) or "(-a)^e" (bit 0 set); right is "b^f" or "(-b)^f".
+    if (leftBase >= 0)
+      throw new Error(`left term is not negative-based: ${text}`);
+    if (rightParen ? rightBase >= 0 : rightBase <= 0)
+      throw new Error(`right term sign/parentheses disagree: ${text}`);
+    return [
+      leftParen + rightParen * 2 + signBit(m[2]) * 4,
+      Math.abs(leftBase),
+      leftExponent,
+      Math.abs(rightBase),
+      rightExponent,
+    ];
+  }
+  const readDecimal = (s: string): [number, number] => {
+    const match = /^(-?)(\d+)\.(\d+)$/.exec(s);
+    if (!match) throw new Error(`bad decimal: ${s}`);
+    const coefficient = Number(match[2] + match[3]) * (match[1] ? -1 : 1);
+    return [coefficient, match[3].length];
+  };
+  if (id === "m1-reciprocal") {
+    if (text.includes("/")) {
+      m = /^(-?\d+)\/(\d+)$/.exec(text);
+      if (!m) throw new Error(`bad fraction: ${text}`);
+      return [1, Number(m[1]), Number(m[2])];
+    }
+    if (text.includes(".")) return [2, ...readDecimal(text)];
+    return [0, int(text), 1];
+  }
+  if (id === "m1-decimal-fraction-mixed") {
+    m = /^(\S+) ([+\-×÷]) (\S+)$/.exec(text);
+    if (!m) throw new Error(`bad mixed prompt: ${text}`);
+    const op = ["+", "-", "×", "÷"].indexOf(m[2]);
+    const strip = (s: string) =>
+      s.startsWith("(") && s.endsWith(")") ? s.slice(1, -1) : s;
+    const operands = [m[1], m[3]];
+    const order = operands[0].includes(".") ? 0 : 1;
+    const decimalText = strip(operands[order]),
+      fractionText = strip(operands[1 - order]);
+    // Negative operands and a fraction divisor are the only parenthesized ones.
+    if ((operands[order] !== decimalText) !== decimalText.startsWith("-"))
+      throw new Error(`decimal grouping: ${text}`);
+    const fm = /^(-?\d+)\/(\d+)$/.exec(fractionText);
+    if (!fm) throw new Error(`bad fraction operand: ${text}`);
+    const grouped = operands[1 - order] !== fractionText;
+    if (grouped !== (fm[1].startsWith("-") || (op === 3 && order === 0)))
+      throw new Error(`fraction grouping: ${text}`);
+    return [
+      op,
+      ...readDecimal(decimalText),
+      Number(fm[1]),
+      Number(fm[2]),
+      order,
+    ];
+  }
+  if (id === "m1-linear-distribute-combine") {
+    m = /^(-?\d*)\((.+?)\) ([+-]) (\d*)\((.+?)\)$/.exec(text);
+    if (!m) throw new Error(`bad distribution: ${text}`);
+    const k = m[1] === "" ? 1 : m[1] === "-" ? -1 : Number(m[1]);
+    const mm = (m[4] === "" ? 1 : Number(m[4])) * (m[3] === "-" ? -1 : 1);
+    return [k, ...linear(m[2]), mm, ...linear(m[5])];
+  }
+  m = /^\((.+?)\)\/(\d+) ([+-]) \((.+?)\)\/(\d+)$/.exec(text);
+  if (!m) throw new Error(`bad fraction-form sum: ${text}`);
+  return [
+    ...linear(m[1]),
+    Number(m[2]),
+    ...linear(m[4]),
+    Number(m[5]) * (m[3] === "-" ? -1 : 1),
+  ];
+}
+
 function oracle(id: string, p: number[]): string[] {
   const [a, b, c, d, e, f] = p;
   const op = id.split("-").at(-1);
+  if (isExpansion(id)) return expansionOracle(id, p);
   if (id === "m1-integer-power") return [String(a ** b)];
   if (id === "m1-numeric-expression") return [String((a + b) * c)];
   if (id.startsWith("m1-integer-"))
@@ -200,11 +603,26 @@ const countById: Record<string, number> = {
   "m3-radical-multiply": 8 ** 2 * 29 ** 2,
   "m3-radical-divide": 8 ** 2 * 29 ** 2,
   "m3-radical-rationalize": 12 * 6 * 8,
+  // 2026-10-16 track D. Sizes are products of the axes in each description.
+  "m1-integer-add-chain": 18 ** 3 * 4,
+  "m1-integer-add-chain-four": 10 ** 4 * 8,
+  "m1-integer-mixed-chain": 4 * 11 * 11 * 12 * 11,
+  "m1-integer-power-mixed": 4 * 9 * 2 * 11 * 11,
+  "m1-negative-square": 8 * 5 * 2 * 5 * 2,
+  // 22 integers (±2..±12) + 92 reduced fractions (|n| ≤ 9, d 2..9) + 28 decimals.
+  "m1-reciprocal": 22 + 92 + 28,
+  // 6 operation/order shapes × 28 decimals × 34 reduced fractions (|n| ≤ 6, d 2..6).
+  "m1-decimal-fraction-mixed": 6 * 28 * 34,
+  // 62 scalar pairs (8² minus k = 1 with |m| = 1) × 60 × 59 ordered distinct brackets.
+  "m1-linear-distribute-combine": 62 * 60 * 59,
+  // 300 (ax+b)/p triples, ordered distinct pairs, two operators.
+  "m1-linear-fraction-combine": 300 * 299 * 2,
 };
 function member(id: string, p: number[]): boolean {
   const within = (n: number, limit: number, nonzero = false) =>
     Math.abs(n) <= limit && (!nonzero || n !== 0);
   const [a, b, c, d, e, f] = p;
+  if (isExpansion(id)) return expansionMember(id, p);
   if (id === "m1-integer-divide")
     return (
       p.length === 2 && within(b, 10, true) && a % b === 0 && within(a / b, 10)
@@ -347,9 +765,19 @@ function assertPrompt(id: string, candidate: ArithmeticV2Candidate): void {
     .replace(/\\sqrt\{(\d+)\}/g, "√$1")
     .replace(/\^\{(\d+)\}/g, "^$1")
     .replace(/\\frac\{(-?\d+)\}\{(\d+)\}/g, "$1/$2")
-    .replace(/\\frac\{(-?\d+)\}\{([^}]+)\}/g, "$1/($2)");
+    .replace(/\\frac\{(-?\d+)\}\{([^}]+)\}/g, "$1/($2)")
+    // Fraction-form linear expressions: \frac{2x - 3}{4} is shown as (2x - 3)/4.
+    .replace(/\\frac\{([^{}]+)\}\{(\d+)\}/g, "($1)/$2");
   if (decodedLatex !== candidate.prompt.text)
     throw new Error("text/latex disagreement");
+  if (isExpansion(id)) {
+    const actual = readExpansionPrompt(id, candidate.prompt.text);
+    if (JSON.stringify(actual) !== JSON.stringify(candidate.parameters))
+      throw new Error(
+        `${id} prompt/parameter mismatch: ${candidate.prompt.text} → ${actual} vs ${candidate.parameters}`,
+      );
+    return;
+  }
   const operation = id.split("-").at(-1)!;
   const symbol = (
     {
@@ -409,10 +837,26 @@ describe("middle arithmetic v2 finite exact families", () => {
     expect(definitions.map((d) => d.id).sort()).toEqual(
       Object.keys(countById).sort(),
     );
-    expect(definitions.filter((d) => d.grade === "중1")).toHaveLength(13);
+    // 중1: 13 original + 9 (2026-10-16 track D).
+    expect(definitions.filter((d) => d.grade === "중1")).toHaveLength(22);
     expect(definitions.filter((d) => d.grade === "중2")).toHaveLength(6);
     expect(definitions.filter((d) => d.grade === "중3")).toHaveLength(7);
-    expect(new Set(definitions.map((d) => d.rankGroup)).size).toBe(8);
+    expect(new Set(definitions.map((d) => d.rankGroup))).toEqual(
+      new Set([
+        "m1-integer-four-ops",
+        "m1-rational-four-ops",
+        "m1-numeric-expression",
+        "m1-linear-expression",
+        "m2-monomial",
+        "m2-polynomial",
+        "m3-polynomial-multiply",
+        "m3-radical",
+        "m1-integer-chain",
+        "m1-rational-notation",
+      ]),
+    );
+    for (const id of EXPANSION_IDS)
+      expect(definitions.find((d) => d.id === id)?.grade).toBe("중1");
     let rationalInputs = 0;
     for (let n = -12; n <= 12; n++)
       for (let d = 2; d <= 12; d++)

@@ -18,10 +18,11 @@ const request = (typeId: string, count: number, seed = "integrated") => ({
   rounds: [{ allocations: [{ typeId, count }] }],
 });
 describe("real family integration with versioned core", () => {
-  it("registers distinct finite definitions across the eight implemented grade groups", () => {
+  it("registers distinct finite definitions across the nine implemented grade groups", () => {
     expect(new Set(catalog.map((type) => type.id)).size).toBe(catalog.length);
+    // 초1 joined on 2026-10-16 (track A, families/elementaryComplete/grade1.ts).
     expect(new Set(catalog.map((type) => type.grade))).toEqual(
-      new Set(["초2", "초3", "초4", "초5", "초6", "중1", "중2", "중3"]),
+      new Set(["초1", "초2", "초3", "초4", "초5", "초6", "중1", "중2", "중3"]),
     );
     for (const type of catalog)
       expect(type.domainSize).toBeGreaterThanOrEqual(type.defaultCount);

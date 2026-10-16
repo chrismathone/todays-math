@@ -16,6 +16,34 @@ const counts: Record<string, number> = {
   "m2-monomial-power": 72,
   "m3-radical-three-terms": 32768,
   "m3-radical-distribute": 3456,
+  // 2026-10-16 중3 square-root drills; the explicit "between" rows are
+  // re-enumerated in specification() and must agree with this literal.
+  "m3-sqrt-natural-multiplier": 2 * 110,
+  "m3-sqrt-integer-part": 110 * 4,
+  "m3-sqrt-decimal-part": 110 * 4,
+  "m3-sqrt-integers-between": 2332,
+  "m3-radical-mixed": 7 * 7 * 12 * 4,
+};
+const INTEGER_KIND_IDS = [
+  "m3-sqrt-natural-multiplier",
+  "m3-sqrt-integer-part",
+  "m3-sqrt-integers-between",
+];
+/** Non-square radicands 2..120, by direct squaring (no sqrt). */
+const nonSquares = (): number[] => {
+  const result: number[] = [];
+  for (let n = 2; n <= 120; n++) {
+    let square = false;
+    for (let k = 1; k * k <= n; k++) if (k * k === n) square = true;
+    if (!square) result.push(n);
+  }
+  return result;
+};
+/** Greatest k with k² < n, counting up (n is never a square here). */
+const floorRoot = (n: number): number => {
+  let k = 0;
+  while ((k + 1) * (k + 1) < n) k++;
+  return k;
 };
 function reduce(n: number, d: number): [number, number] {
   if (d === 0) throw new Error("invalid oracle denominator");
@@ -60,6 +88,59 @@ function oracle(id: string, p: number[]): string[] {
     return canonical("polynomial", [[1, a * d + c * b, b * d]]);
   if (id === "m2-monomial-power")
     return canonical("polynomial", [[b * c, a ** c, 1]]);
+  if (id === "m3-sqrt-natural-multiplier") {
+    // Smallest x with a·x (mode 0) or a/x (mode 1) a perfect square, by trial.
+    const [mode, radicand] = p;
+    const square = (v: number) => {
+      for (let k = 1; k * k <= v; k++) if (k * k === v) return true;
+      return false;
+    };
+    for (let x = 1; x <= radicand; x++)
+      if (
+        mode === 0
+          ? square(radicand * x)
+          : radicand % x === 0 && square(radicand / x)
+      )
+        return [String(x)];
+    throw new Error("no multiplier found");
+  }
+  if (id === "m3-sqrt-integer-part") return [String(floorRoot(a) + b)];
+  if (id === "m3-sqrt-decimal-part") {
+    // √n − ⌊√n⌋ as a surd sum: rational term first, then the simplified radical.
+    const [outside, inside] = squareParts(a);
+    return canonical("surd", [
+      [1, -floorRoot(a), 1],
+      [inside, outside, 1],
+    ]);
+  }
+  if (id === "m3-sqrt-integers-between") {
+    let count = 0;
+    for (let n = 1; n * n < b; n++) if (n * n > a) count++;
+    return [String(count)];
+  }
+  if (id === "m3-radical-mixed") {
+    // √n·√m + c/√d = √(nm) + (c/d)√d; combine like radicands with exact rationals.
+    const [n, m, c, den] = p;
+    const sums = new Map<number, [number, number]>();
+    const addTerm = (
+      radicand: number,
+      numerator: number,
+      denominator: number,
+    ) => {
+      const [outside, inside] = squareParts(radicand);
+      const [cn, cd] = sums.get(inside) ?? [0, 1];
+      sums.set(inside, [
+        cn * denominator + numerator * outside * cd,
+        cd * denominator,
+      ]);
+    };
+    addTerm(n * m, 1, 1);
+    addTerm(den, c, den);
+    return canonical(
+      "surd",
+      [...sums].map(([r, [cn, cd]]) => [r, cn, cd]),
+    );
+  }
   const raw =
     id === "m3-radical-three-terms"
       ? [
@@ -90,6 +171,8 @@ function display(
   const terms: string[] = [];
   const fraction = (n: number, d: number) =>
     d === 1 ? String(n) : latex ? `\\frac{${n}}{${d}}` : `${n}/${d}`;
+  // Integer answers (2026-10-16 square-root drills) show the number itself.
+  if (kind === "integer") return exact.join(",");
   for (let i = 0; i < exact.length; i += 3) {
     const [key, n, d] = exact.slice(i, i + 3).map(Number);
     const magnitude = Math.abs(n);
@@ -174,6 +257,31 @@ function readPrompt(id: string, candidate: ArithmeticV2Candidate): number[] {
       return [coefficient(a), Number(n)];
     });
   }
+  if (id === "m3-sqrt-natural-multiplier") {
+    const match = /^√\((\d+)(x|\/x)\)$/.exec(text);
+    if (!match) throw new Error(`invalid multiplier prompt: ${text}`);
+    return [match[2] === "x" ? 0 : 1, Number(match[1])];
+  }
+  if (id === "m3-sqrt-integer-part" || id === "m3-sqrt-decimal-part") {
+    const match = /^√(\d+)(?: \+ ([1-9]))?$/.exec(text);
+    if (!match) throw new Error(`invalid root prompt: ${text}`);
+    return [Number(match[1]), match[2] ? Number(match[2]) : 0];
+  }
+  if (id === "m3-sqrt-integers-between") {
+    const match = /^√(\d+) ＜ n ＜ √(\d+)$/.exec(text);
+    if (!match) throw new Error(`invalid between prompt: ${text}`);
+    return [Number(match[1]), Number(match[2])];
+  }
+  if (id === "m3-radical-mixed") {
+    const match = /^√(\d+) × √(\d+) ([+-]) (\d+)\/\(√(\d+)\)$/.exec(text);
+    if (!match) throw new Error(`invalid mixed radical prompt: ${text}`);
+    return [
+      Number(match[1]),
+      Number(match[2]),
+      Number(match[4]) * (match[3] === "-" ? -1 : 1),
+      Number(match[5]),
+    ];
+  }
   const match = /^(-?\d*)√(\d+)\((-?\d*)√(\d+) ([+-]) (\d+)\)$/.exec(text)!;
   return [
     coefficient(match[1]),
@@ -186,10 +294,16 @@ function readPrompt(id: string, candidate: ArithmeticV2Candidate): number[] {
 function decodeLatex(id: string, latex: string): string {
   let text = latex
     .replace(/\\left|\\right/g, "")
+    .replace(/\\sqrt\{(\d+)x\}/g, "√($1x)")
+    .replace(/\\sqrt\{\\frac\{(\d+)\}\{x\}\}/g, "√($1/x)")
     .replace(/\\sqrt\{(\d+)\}/g, "√$1")
-    .replace(/\^\{(\d+)\}/g, "^$1");
+    .replace(/\^\{(\d+)\}/g, "^$1")
+    .replace(/\\lt/g, "＜")
+    .replace(/\\times/g, "×");
   if (id === "m1-linear-scalar-divide")
     text = text.replace(/\\frac\{([^}]+)\}\{(-?\d+)\}/g, "($1)/($2)");
+  else if (id === "m3-radical-mixed")
+    text = text.replace(/\\frac\{(\d+)\}\{(√\d+)\}/g, "$1/($2)");
   else text = text.replace(/\\frac\{(\d+)\}\{(\d+)\}/g, "$1/$2");
   return text;
 }
@@ -210,6 +324,16 @@ function axesFor(id: string): number[][] {
       signed(2),
       [2, 3, 4, 5, 8, 12, 18, 20],
     ];
+  if (id === "m3-sqrt-natural-multiplier") return [[0, 1], nonSquares()];
+  if (id === "m3-sqrt-integer-part" || id === "m3-sqrt-decimal-part")
+    return [nonSquares(), [0, 1, 2, 3]];
+  if (id === "m3-radical-mixed")
+    return [
+      [2, 3, 5, 6, 8, 12, 18],
+      [2, 3, 5, 6, 8, 12, 18],
+      signed(6),
+      [2, 3, 5, 6],
+    ];
   return [
     signed(2),
     [2, 3, 5, 6, 8, 12],
@@ -226,6 +350,18 @@ function* specification(id: string): Generator<number[]> {
         if (n && reduce(n, d)[1] === d) fractions.push([n, d]);
     for (const left of fractions)
       for (const right of fractions) yield [...left, ...right];
+    return;
+  }
+  if (id === "m3-sqrt-integers-between") {
+    // √a < n < √b with 2 ≤ a ≤ 40 < … b ≤ 100, neither a square, at least one n.
+    const nonSquare = new Set(nonSquares());
+    for (let a = 2; a <= 40; a++)
+      for (let b = a + 1; b <= 100; b++) {
+        if (!nonSquare.has(a) || !nonSquare.has(b)) continue;
+        let any = false;
+        for (let n = 1; n * n < b; n++) if (n * n > a) any = true;
+        if (any) yield [a, b];
+      }
     return;
   }
   const axes = axesFor(id);
@@ -250,9 +386,10 @@ function example(id: string, parameters: number[]): ArithmeticV2Candidate {
 }
 
 describe("algebra/radical arithmetic gap supplement", () => {
-  it("exports six genuine operation families with exact finite capacities", () => {
+  it("exports eleven genuine operation families with exact finite capacities", () => {
     expect(definitions.map((d) => d.id)).toEqual(Object.keys(counts));
-    expect(definitions.reduce((sum, d) => sum + d.domainSize, 0)).toBe(40908);
+    // 40,908 (six original) + 220 + 440 + 440 + 2,332 + 2,352 (2026-10-16 중3 drills).
+    expect(definitions.reduce((sum, d) => sum + d.domainSize, 0)).toBe(46692);
     expect(definitions.map((d) => d.grade)).toEqual([
       "중1",
       "중1",
@@ -260,10 +397,28 @@ describe("algebra/radical arithmetic gap supplement", () => {
       "중2",
       "중3",
       "중3",
+      "중3",
+      "중3",
+      "중3",
+      "중3",
+      "중3",
     ]);
     expect(new Set(definitions.map((d) => d.rankGroup))).toEqual(
-      new Set(["m1-linear-expression", "m2-monomial", "m3-radical"]),
+      new Set([
+        "m1-linear-expression",
+        "m2-monomial",
+        "m3-radical",
+        "m3-square-root",
+      ]),
     );
+    for (const d of definitions)
+      expect(d.problemAt(0).answer.kind).toBe(
+        INTEGER_KIND_IDS.includes(d.id)
+          ? "integer"
+          : d.strand === "근호"
+            ? "surd"
+            : "polynomial",
+      );
   });
 
   for (const d of definitions) {
@@ -363,9 +518,12 @@ describe("algebra/radical arithmetic gap supplement", () => {
           prompt: { ...c.prompt, layout: "math", text: "0", latex: "0" },
         }),
       ).toBe(false);
-      expect(d.verify({ ...c, answer: { ...c.answer, kind: "integer" } })).toBe(
-        false,
-      );
+      const integerKind = c.answer.kind === "integer";
+      // A different kind with the same exact strings must not pass.
+      for (const kind of integerKind
+        ? (["rational", "surd", "polynomial", "decimal"] as const)
+        : (["integer"] as const))
+        expect(d.verify({ ...c, answer: { ...c.answer, kind } })).toBe(false);
       expect(
         d.verify({
           ...c,
@@ -378,13 +536,25 @@ describe("algebra/radical arithmetic gap supplement", () => {
           answer: { ...c.answer, latex: `${c.answer.latex} + 1` },
         }),
       ).toBe(false);
+      // Negate the coefficient (triple kinds) or the value itself (integer kinds):
+      // mathematically coherent, consistently displayed, and wrong.
       const exact = [...c.answer.exact];
-      exact[1] = String(-Number(exact[1]));
+      const negated = integerKind ? 0 : 1;
+      exact[negated] = String(-Number(exact[negated]));
       expect(d.verify(withExact(c, exact))).toBe(false);
+      if (integerKind) {
+        for (const value of [
+          Number(c.answer.exact[0]) + 1,
+          Number(c.answer.exact[0]) - 1,
+          Number(c.answer.exact[0]) * 2,
+        ])
+          expect(d.verify(withExact(c, [String(value)]))).toBe(false);
+      }
       expect(d.verify(withExact(c, []))).toBe(false);
       expect(d.verify(withExact(c, c.answer.exact.slice(3)))).toBe(false);
-      const extra =
-        d.strand === "근호"
+      const extra = integerKind
+        ? [...c.answer.exact, "1"]
+        : d.strand === "근호"
           ? [...c.answer.exact, "143", "1", "1"]
           : ["12", "1", "1", ...c.answer.exact];
       expect(d.verify(withExact(c, extra))).toBe(false);
@@ -428,9 +598,22 @@ describe("algebra/radical arithmetic gap supplement", () => {
       }
       const duplicate = [...c.answer.exact, ...c.answer.exact.slice(0, 3)];
       expect(d.verify(withExact(c, duplicate))).toBe(false);
-      expect(d.verify({ ...c, answer: { ...c.answer, exact: ["1"] } })).toBe(
-        false,
-      );
+      // A single field is malformed for triple kinds; for integer kinds the
+      // malformed shape is two fields (the answer at index 0 may itself be 1).
+      expect(
+        d.verify({
+          ...c,
+          answer: {
+            ...c.answer,
+            exact: c.answer.kind === "integer" ? ["1", "1"] : ["1"],
+          },
+        }),
+      ).toBe(false);
+      if (c.answer.kind === "integer")
+        for (const value of ["-0", "+1", "01", "1.0", "1e0", "", " 1", "NaN"])
+          expect(
+            d.verify({ ...c, answer: { ...c.answer, exact: [value] } }),
+          ).toBe(false);
       expect(
         d.verify({
           ...c,
@@ -543,6 +726,59 @@ describe("algebra/radical arithmetic gap supplement", () => {
       "-√8(2√2 - 3)",
       ["1", "-8", "1", "2", "6", "1"],
       "-8 + 6√2",
+    ],
+    // 2026-10-16 중3 square-root drills, worked by hand.
+    ["m3-sqrt-natural-multiplier", [0, 12], "√(12x)", ["3"], "3"],
+    ["m3-sqrt-natural-multiplier", [1, 12], "√(12/x)", ["3"], "3"],
+    ["m3-sqrt-natural-multiplier", [0, 2], "√(2x)", ["2"], "2"],
+    ["m3-sqrt-natural-multiplier", [1, 120], "√(120/x)", ["30"], "30"],
+    ["m3-sqrt-integer-part", [2, 0], "√2", ["1"], "1"],
+    ["m3-sqrt-integer-part", [99, 3], "√99 + 3", ["12"], "12"],
+    ["m3-sqrt-integer-part", [120, 0], "√120", ["10"], "10"],
+    [
+      "m3-sqrt-decimal-part",
+      [2, 0],
+      "√2",
+      ["1", "-1", "1", "2", "1", "1"],
+      "-1 + √2",
+    ],
+    [
+      "m3-sqrt-decimal-part",
+      [8, 2],
+      "√8 + 2",
+      ["1", "-2", "1", "2", "2", "1"],
+      "-2 + 2√2",
+    ],
+    [
+      "m3-sqrt-decimal-part",
+      [120, 1],
+      "√120 + 1",
+      ["1", "-10", "1", "30", "2", "1"],
+      "-10 + 2√30",
+    ],
+    ["m3-sqrt-integers-between", [2, 5], "√2 ＜ n ＜ √5", ["1"], "1"],
+    ["m3-sqrt-integers-between", [3, 26], "√3 ＜ n ＜ √26", ["4"], "4"],
+    ["m3-sqrt-integers-between", [40, 99], "√40 ＜ n ＜ √99", ["3"], "3"],
+    [
+      "m3-radical-mixed",
+      [2, 3, 1, 2],
+      "√2 × √3 + 1/(√2)",
+      ["2", "1", "2", "6", "1", "1"],
+      "√2/2 + √6",
+    ],
+    [
+      "m3-radical-mixed",
+      [2, 8, -3, 2],
+      "√2 × √8 - 3/(√2)",
+      ["1", "4", "1", "2", "-3", "2"],
+      "4 - 3√2/2",
+    ],
+    [
+      "m3-radical-mixed",
+      [3, 6, 6, 2],
+      "√3 × √6 + 6/(√2)",
+      ["2", "6", "1"],
+      "6√2",
     ],
   ] as [string, number[], string, string[], string][])(
     "hand-calculated gap: %s %j",

@@ -276,6 +276,128 @@ const squares = define({
     return eq(v, ln * rd + (op === 0 ? 1 : -1) * rn * ld, ld * rd);
   },
 });
+// --- figure-free special-angle drills (2026-10-16) ---
+// A term code t encodes [30°, 45°, 60°][t ÷ 3] and [sin, cos, tan][t mod 3].
+const termCodes = range(0, 8);
+const codeAngle = (t: number) => [30, 45, 60][Math.floor(t / 3)];
+const codeTerm = (t: number) => `${name(t % 3)}${codeAngle(t)}^{\\circ}`;
+const codeValue = (t: number) => special(codeAngle(t), t % 3);
+// Generator arithmetic on single-term values n√r/d; radical() renormalizes.
+const timesValue = (x: Value, y: Value) =>
+  radical(x.n * y.n, x.r * y.r, x.d * y.d);
+const overValue = (x: Value, y: Value) =>
+  radical(x.n * y.d, x.r * y.r, x.d * y.n * y.r);
+// t1 ± t2 × t3 or t1 ± t2 ÷ t3; null when the two parts have different radicands.
+function expressionValue([t1, t2, t3, plus, divide]: number[]): Value | null {
+  const part =
+    divide === 0
+      ? timesValue(codeValue(t2), codeValue(t3))
+      : overValue(codeValue(t2), codeValue(t3));
+  const first = codeValue(t1);
+  if (first.r !== part.r) return null;
+  const n = first.n * part.d + (plus === 0 ? 1 : -1) * part.n * first.d;
+  return n === 0 ? rational(0) : radical(n, first.r, first.d * part.d);
+}
+// Verifier side: ratios of triangle sides as unnormalized n√r/d triples.
+// 30°-60°-90° sides 1, √3, 2; 45° sides 1, 1, √2. No value table, no normalization.
+type Surd = readonly [bigint, bigint, bigint];
+const side = {
+  one: [BigInt(1), BigInt(1)],
+  root2: [BigInt(1), BigInt(2)],
+  root3: [BigInt(1), BigInt(3)],
+  two: [BigInt(2), BigInt(1)],
+} as const;
+function sideRatio(t: number): Surd {
+  const angle = codeAngle(t),
+    [opposite, adjacent, hypotenuse] =
+      angle === 30
+        ? [side.one, side.root3, side.two]
+        : angle === 60
+          ? [side.root3, side.one, side.two]
+          : [side.one, side.one, side.root2];
+  const mode = t % 3;
+  const [[n1, r1], [n2, r2]] =
+    mode === 0
+      ? [opposite, hypotenuse]
+      : mode === 1
+        ? [adjacent, hypotenuse]
+        : [opposite, adjacent];
+  // n1√r1 / (n2√r2) = n1√(r1 r2) / (n2 r2)
+  return [n1, r1 * r2, n2 * r2];
+}
+function isSquareBig(n: bigint): bigint | null {
+  let k = BigInt(0);
+  while (k * k < n) k++;
+  return k * k === n ? k : null;
+}
+const specialExpression = define({
+  id: "m3-trig-special-expression",
+  title: "특수각 삼각비가 섞인 식의 값",
+  domain: cross(termCodes, termCodes, termCodes, [0, 1], [0, 1]).filter(
+    ([t1, t2, t3, plus, divide]) => {
+      if (divide === 1 && t2 === t3) return false;
+      const v = expressionValue([t1, t2, t3, plus, divide]);
+      return v !== null && v.n >= 0;
+    },
+  ),
+  prompt: ([t1, t2, t3, plus, divide]) => {
+    const latex = `${codeTerm(t1)}${plus === 0 ? "+" : "-"}${codeTerm(t2)}${divide === 0 ? "\\times" : "\\div"}${codeTerm(t3)}`;
+    return prompt(`$${latex}$`, latex, "정확한 값을 계산하시오.");
+  },
+  solve: (p) => expressionValue(p)!,
+  // v = X ± Y (X first term, Y the product/quotient) is checked as
+  // (v ∓ Y)² = X² together with the sign of v ∓ Y, all in exact integers.
+  check: ([t1, t2, t3, plus, divide], v) => {
+    if (v.r < 1 || v.n < 0) return false;
+    const [n1, r1, d1] = sideRatio(t1),
+      [n2, r2, d2] = sideRatio(t2),
+      [n3, r3, d3] = sideRatio(t3);
+    const [ny, ry, dy]: Surd =
+      divide === 0
+        ? [n2 * n3, r2 * r3, d2 * d3]
+        : [n2 * d3, r2 * r3, d2 * n3 * r3];
+    const vn = BigInt(v.n),
+      vr = BigInt(v.r),
+      vd = BigInt(v.d);
+    // Cross term 2vY must be rational: v.r × ry is a perfect square (unless v = 0).
+    const s = vn === BigInt(0) ? BigInt(0) : isSquareBig(vr * ry);
+    if (s === null) return false;
+    const sigma = BigInt(plus === 0 ? 1 : -1);
+    const lhs =
+      vn * vn * vr * dy * dy * d1 * d1 +
+      ny * ny * ry * vd * vd * d1 * d1 -
+      sigma * BigInt(2) * vn * ny * s * vd * dy * d1 * d1;
+    const rhs = n1 * n1 * r1 * vd * vd * dy * dy;
+    if (lhs !== rhs) return false;
+    // v − Y = X > 0 requires v² > Y² when the expression adds the product.
+    return plus === 1 || vn * vn * vr * dy * dy > ny * ny * ry * vd * vd;
+  },
+});
+const parallelogram = define({
+  id: "m3-trig-parallelogram-area-special-angle",
+  title: "특수각을 낀 평행사변형의 넓이",
+  unit: "cm²",
+  // [AB, AD, ∠A] with AB ≤ AD, 66 × 3 = 198.
+  domain: cross(range(2, 12), range(2, 12))
+    .filter(([a, b]) => a <= b)
+    .flatMap(([a, b]) => [30, 45, 60].map((angle) => [a, b, angle])),
+  prompt: ([a, b, angle]) =>
+    prompt(
+      `평행사변형 $ABCD$에서 $\\mathrm{AB}=${cm(a)}$, $\\mathrm{AD}=${cm(b)}$이고 $\\angle A=${angle}^{\\circ}$이다.`,
+      `\\mathrm{AB}=${cm(a)},\\quad\\mathrm{AD}=${cm(b)},\\quad\\angle A=${angle}^{\\circ}`,
+      "평행사변형 ABCD의 넓이를 구하시오.",
+      "cm²",
+    ),
+  solve: ([a, b, angle]) =>
+    angle === 30 ? rational(a * b, 2) : radical(a * b, angle === 45 ? 2 : 3, 2),
+  // S² = (ab)² sin²A with sin²30° = 1/4, sin²45° = 1/2, sin²60° = 3/4.
+  check: ([a, b, angle], v) =>
+    positiveSquare(
+      v,
+      a * a * b * b * (angle === 60 ? 3 : 1),
+      angle === 45 ? 2 : 4,
+    ),
+});
 /** Text-only additions: all four original trig IDs and their SVG packs stay frozen. */
 export const TRIGONOMETRY_COMPLETE_DEFINITIONS = [
   endpoints,
@@ -287,4 +409,6 @@ export const TRIGONOMETRY_COMPLETE_DEFINITIONS = [
   sideFromArea,
   sineFromArea,
   squares,
+  specialExpression,
+  parallelogram,
 ];

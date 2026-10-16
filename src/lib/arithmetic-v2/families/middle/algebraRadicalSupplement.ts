@@ -8,10 +8,13 @@ import {
   fractionText,
   gcd,
   math,
+  multiply,
   nonzero,
+  numericAnswer,
   range,
   rational,
   readInteger,
+  readNumeric,
   readRational,
   type Domain,
   type Rational,
@@ -202,8 +205,10 @@ function signedTail(a: number, body: string): string {
 }
 
 // Generator removes square factors and then combines exact rational coefficients.
-function radicalAnswer(
-  raw: readonly (readonly [bigint, bigint])[],
+// Each raw term is coefficient × √radicand; a rational coefficient carries a
+// rationalized denominator (c/√d = (c/d)√d).
+function radicalSum(
+  raw: readonly (readonly [Rational, bigint])[],
 ): ArithmeticV2Answer {
   const terms = new Map<number, Rational>();
   for (const [coefficient, radicand] of raw) {
@@ -219,39 +224,105 @@ function radicalAnswer(
     const key = Number(n);
     terms.set(
       key,
-      add(terms.get(key) ?? rational(0), rational(coefficient * outside)),
+      add(
+        terms.get(key) ?? rational(0),
+        multiply(coefficient, rational(outside)),
+      ),
     );
   }
   return answerOf("surd", [...terms]);
 }
+const radicalAnswer = (raw: readonly (readonly [bigint, bigint])[]) =>
+  radicalSum(
+    raw.map(([coefficient, radicand]) => [rational(coefficient), radicand]),
+  );
 
 // Check every independent squarefree basis coefficient, including missing and
 // extra terms and exact cancellation. Prime valuations are independent of the
 // generating square extraction; no squaring of whole sums or float comparison.
-function checkRadicals(
-  raw: readonly (readonly [bigint, bigint])[],
+function checkRadicalSum(
+  raw: readonly (readonly [Rational, bigint])[],
   answer: ArithmeticV2Answer,
 ): boolean {
   const terms = readTerms(answer, "surd");
   if (!terms) return false;
   const contributions = raw.map(([coefficient, radicand]) => {
     const [outside, basis] = primeDecomposition(radicand);
-    return { basis, coefficient: coefficient * outside };
+    return { basis, coefficient: multiply(coefficient, rational(outside)) };
   });
   const bases = new Set([
     ...terms.map(([basis]) => basis),
     ...contributions.map(({ basis }) => basis),
   ]);
   for (const basis of bases) {
-    const [n, d] = valueAt(terms, basis);
-    let residual = n;
-    for (const contribution of contributions)
-      if (contribution.basis === basis)
-        residual -= contribution.coefficient * d;
-    if (residual !== ZERO) return false;
+    // Subtract each contribution from the proposed coefficient on a common
+    // denominator; the residual numerator must vanish exactly.
+    let [numerator, denominator] = valueAt(terms, basis);
+    for (const { basis: b, coefficient } of contributions)
+      if (b === basis) {
+        numerator = numerator * coefficient[1] - coefficient[0] * denominator;
+        denominator *= coefficient[1];
+      }
+    if (numerator !== ZERO) return false;
   }
   return true;
 }
+const checkRadicals = (
+  raw: readonly (readonly [bigint, bigint])[],
+  answer: ArithmeticV2Answer,
+) =>
+  checkRadicalSum(
+    raw.map(([coefficient, radicand]) => [rational(coefficient), radicand]),
+    answer,
+  );
+
+// --- 중3 square-root drills (2026-10-16 expansion) ---
+// Generator side: floating square root corrected to the exact integer floor.
+function integerSqrt(n: number): number {
+  let k = Math.floor(Math.sqrt(n));
+  while (k * k > n) k--;
+  while ((k + 1) * (k + 1) <= n) k++;
+  return k;
+}
+// Radicands 2..120 that are not perfect squares: 110 values.
+const nonSquareRadicands = range(2, 120).filter(
+  (n) => integerSqrt(n) ** 2 !== n,
+);
+// Verifier side: exact BigInt square test by counting up (inputs are bounded first).
+function isSquare(n: bigint): boolean {
+  if (n < ZERO) return false;
+  let k = ZERO;
+  while (k * k < n) k++;
+  return k * k === n;
+}
+function explicit(rows: readonly (readonly number[])[]): Domain {
+  const keys = new Set(rows.map((p) => p.join(",")));
+  if (keys.size !== rows.length) throw new Error("Duplicate domain tuple");
+  return {
+    size: rows.length,
+    at: (index) => [...rows[index]],
+    contains: (p) => keys.has(p.join(",")),
+  };
+}
+const radicalPlus = (n: number, c: number, latex = false) =>
+  `${latex ? `\\sqrt{${n}}` : `√${n}`}${c ? ` + ${c}` : ""}`;
+// √a < n < √b with 2 ≤ a ≤ 40, a < b ≤ 100, neither a square, at least one n.
+const betweenRows: number[][] = [];
+for (const a of range(2, 40))
+  for (const b of range(2, 100))
+    if (
+      b > a &&
+      integerSqrt(a) ** 2 !== a &&
+      integerSqrt(b) ** 2 !== b &&
+      integerSqrt(b - 1) - integerSqrt(a) >= 1
+    )
+      betweenRows.push([a, b]);
+const mixedRadicands = [2, 3, 5, 6, 8, 12, 18];
+const mixedDenominators = [2, 3, 5, 6];
+const mixedTerms = ([n, m, c, d]: number[]): [Rational, bigint][] => [
+  [rational(1), BigInt(n) * BigInt(m)],
+  [rational(c, d), BigInt(d)],
+];
 
 const sumRadicands = [2, 3, 4, 5, 8, 12, 18, 20];
 const distributionRadicands = [2, 3, 5, 6, 8, 12];
@@ -403,5 +474,162 @@ export const ALGEBRA_RADICAL_SUPPLEMENT_DEFINITIONS: readonly ArithmeticV2Defini
           ],
           answer,
         ),
+    }),
+    family({
+      id: "m3-sqrt-natural-multiplier",
+      grade: "중3",
+      strand: "근호",
+      title: "근호 안이 제곱수가 되게 하는 자연수",
+      description:
+        "√(ax) 또는 √(a/x)가 자연수가 되도록 하는 가장 작은 자연수 x를 구합니다. a는 제곱수가 아닌 2~120의 수입니다.",
+      labels: ["근호", "제곱수", "소인수분해"],
+      rankGroup: "m3-square-root",
+      // [mode, a]: 0 = √(ax), 1 = √(a/x); 2 × 110 = 220.
+      domain: cartesian([0, 1], nonSquareRadicands),
+      prompt: ([mode, a]) =>
+        math(
+          mode === 0 ? `√(${a}x)` : `√(${a}/x)`,
+          mode === 0 ? `\\sqrt{${a}x}` : `\\sqrt{\\frac{${a}}{x}}`,
+          "자연수가 되도록 하는 가장 작은 자연수 x의 값을 구하시오.",
+        ),
+      solve: ([, a]) =>
+        numericAnswer(rational(primeDecomposition(BigInt(a))[1]), "integer"),
+      check: ([mode, a], answer) => {
+        const q = readNumeric(answer, "integer");
+        if (!q) return false;
+        const x = q[0],
+          A = BigInt(a);
+        // The squarefree part never exceeds a, so larger proposals are wrong
+        // and the minimality search below stays bounded.
+        if (x < ONE || x > A) return false;
+        const works = (candidate: bigint) =>
+          mode === 0
+            ? isSquare(A * candidate)
+            : A % candidate === ZERO && isSquare(A / candidate);
+        if (!works(x)) return false;
+        for (let smaller = ONE; smaller < x; smaller++)
+          if (works(smaller)) return false;
+        return true;
+      },
+    }),
+    family({
+      id: "m3-sqrt-integer-part",
+      grade: "중3",
+      strand: "근호",
+      title: "제곱근의 정수 부분",
+      description:
+        "√n 또는 √n + c (c는 1~3)의 정수 부분을 구합니다. n은 제곱수가 아닌 2~120의 수입니다.",
+      labels: ["근호", "정수 부분", "제곱근의 크기"],
+      rankGroup: "m3-square-root",
+      // [n, c], 110 × 4 = 440.
+      domain: cartesian(nonSquareRadicands, range(0, 3)),
+      prompt: ([n, c]) =>
+        math(
+          radicalPlus(n, c),
+          radicalPlus(n, c, true),
+          "정수 부분을 구하시오.",
+        ),
+      solve: ([n, c]) => numericAnswer(rational(integerSqrt(n) + c), "integer"),
+      check: ([n, c], answer) => {
+        const q = readNumeric(answer, "integer");
+        if (!q) return false;
+        const k = q[0] - BigInt(c),
+          N = BigInt(n);
+        return k >= ONE && k * k < N && N < (k + ONE) * (k + ONE);
+      },
+    }),
+    family({
+      id: "m3-sqrt-decimal-part",
+      grade: "중3",
+      strand: "근호",
+      title: "제곱근의 소수 부분",
+      description:
+        "√n 또는 √n + c의 소수 부분을 근호를 간단히 한 꼴로 나타냅니다. 소수 부분은 c와 관계없이 √n에서 정수 부분을 뺀 값입니다.",
+      labels: ["근호", "소수 부분", "제곱근의 크기"],
+      rankGroup: "m3-square-root",
+      // [n, c], 110 × 4 = 440.
+      domain: cartesian(nonSquareRadicands, range(0, 3)),
+      prompt: ([n, c]) =>
+        math(
+          radicalPlus(n, c),
+          radicalPlus(n, c, true),
+          "소수 부분을 구하시오.",
+        ),
+      solve: ([n]) =>
+        radicalAnswer([
+          [ONE, BigInt(n)],
+          [BigInt(-integerSqrt(n)), ONE],
+        ]),
+      check: ([n], answer) => {
+        const terms = readTerms(answer, "surd");
+        // Exactly a negative integer term and one positive integer-coefficient radical.
+        if (!terms || terms.length !== 2 || terms[0][0] !== 1) return false;
+        const [[, [k, kd]], [basis, [m, md]]] = terms;
+        const N = BigInt(n);
+        return (
+          kd === ONE &&
+          md === ONE &&
+          k < ZERO &&
+          m > ZERO &&
+          m * m * BigInt(basis) === N &&
+          k * k < N &&
+          N < (ONE - k) * (ONE - k)
+        );
+      },
+    }),
+    family({
+      id: "m3-sqrt-integers-between",
+      grade: "중3",
+      strand: "근호",
+      title: "두 제곱근 사이의 자연수의 개수",
+      description:
+        "√a < n < √b를 만족시키는 자연수 n의 개수를 구합니다. a, b는 제곱수가 아니고 사이에 자연수가 하나 이상 있습니다.",
+      labels: ["근호", "제곱근의 크기", "부등식"],
+      rankGroup: "m3-square-root",
+      // [a, b] explicit rows in (a, b) order.
+      domain: explicit(betweenRows),
+      prompt: ([a, b]) =>
+        math(
+          `√${a} ＜ n ＜ √${b}`,
+          `\\sqrt{${a}} \\lt n \\lt \\sqrt{${b}}`,
+          "부등식을 만족시키는 자연수 n의 개수를 구하시오.",
+        ),
+      solve: ([a, b]) =>
+        numericAnswer(rational(integerSqrt(b - 1) - integerSqrt(a)), "integer"),
+      check: ([a, b], answer) => {
+        const q = readNumeric(answer, "integer");
+        if (!q) return false;
+        // Count by direct squaring, not by the generator's floor-root difference.
+        let count = ZERO;
+        const A = BigInt(a),
+          B = BigInt(b);
+        for (let m = ONE; m * m < B; m++) if (m * m > A) count++;
+        return q[0] === count;
+      },
+    }),
+    family({
+      id: "m3-radical-mixed",
+      grade: "중3",
+      strand: "근호",
+      title: "근호의 곱셈과 분모의 유리화가 섞인 계산",
+      description:
+        "두 근호의 곱에 근호가 분모인 분수를 더하거나 뺍니다. 분모를 유리화하고 근호를 가장 간단히 하여 동류항끼리 모읍니다.",
+      labels: ["근호", "유리화", "혼합 계산"],
+      rankGroup: "m3-radical",
+      // √n × √m ± c/√d: [n, m, c, d], 7 × 7 × 12 × 4 = 2,352.
+      domain: cartesian(
+        mixedRadicands,
+        mixedRadicands,
+        nonzero(6),
+        mixedDenominators,
+      ),
+      prompt: ([n, m, c, d]) =>
+        math(
+          `√${n} × √${m} ${c < 0 ? "-" : "+"} ${Math.abs(c)}/(√${d})`,
+          `\\sqrt{${n}} \\times \\sqrt{${m}} ${c < 0 ? "-" : "+"} \\frac{${Math.abs(c)}}{\\sqrt{${d}}}`,
+          "근호를 가장 간단히 하여 계산하시오.",
+        ),
+      solve: (p) => radicalSum(mixedTerms(p)),
+      check: (p, answer) => checkRadicalSum(mixedTerms(p), answer),
     }),
   ];

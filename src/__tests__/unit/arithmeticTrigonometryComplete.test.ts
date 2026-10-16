@@ -137,6 +137,53 @@ function oracle(id: string, p: number[], answer: ArithmeticV2Answer) {
     );
     return;
   }
+  if (id === "m3-trig-special-expression") {
+    // Term code t: angle [30, 45, 60][t ÷ 3], ratio [sin, cos, tan][t mod 3].
+    // Exact special values as n√r/d, written out rather than looked up in code.
+    const special: [number, number, number][] = [
+      [1, 1, 2], // sin 30°
+      [1, 3, 2], // cos 30°
+      [1, 3, 3], // tan 30° = 1/√3 = √3/3
+      [1, 2, 2], // sin 45°
+      [1, 2, 2], // cos 45°
+      [1, 1, 1], // tan 45°
+      [1, 3, 2], // sin 60°
+      [1, 1, 2], // cos 60°
+      [1, 3, 1], // tan 60°
+    ];
+    const [t1, t2, t3, plus, divide] = p;
+    const [n1, r1, d1] = special[t1],
+      [n2, r2, d2] = special[t2],
+      [n3, r3, d3] = special[t3];
+    // Product n2 n3 √(r2 r3) / (d2 d3); quotient n2 d3 √(r2 r3) / (d2 n3 r3).
+    const part =
+      divide === 0
+        ? [n2 * n3, r2 * r3, d2 * d3]
+        : [n2 * d3, r2 * r3, d2 * n3 * r3];
+    let np = part[0],
+      rp = part[1];
+    const dp = part[2];
+    for (let k = 2; k * k <= rp; k++)
+      while (rp % (k * k) === 0) {
+        np *= k;
+        rp /= k * k;
+      }
+    assert.equal(rp, r1, `${id}: unlike radicands are outside the domain`);
+    const n = n1 * dp + (plus === 0 ? 1 : -1) * np * d1;
+    compare(answer, BigInt(n), BigInt(d1 * dp), BigInt(r1));
+    return;
+  }
+  if (id === "m3-trig-parallelogram-area-special-angle") {
+    // S = AB·AD·sin A with sin 30° = 1/2, sin 45° = √2/2, sin 60° = √3/2.
+    const [a, b, angle] = p;
+    compare(
+      answer,
+      BigInt(a * b),
+      BigInt(2),
+      BigInt(angle === 30 ? 1 : angle === 45 ? 2 : 3),
+    );
+    return;
+  }
   throw Error(id);
 }
 function renderedAnswer(

@@ -142,6 +142,32 @@ function assertPromptParameters(
     return;
   }
   const operands = prompt.text.split(/ [+\-×÷] /);
+  // Three-term fraction drills (2026-10-16, track C): the only elementary
+  // prompts with three displayed operands. Everything else stays binary.
+  if (definition.id === "elem-g5-fraction-mul-three") {
+    expect(operands).toHaveLength(3);
+    expect(prompt.text.match(/ [+\-×÷] /g)).toEqual([" × ", " × "]);
+    expect(operands.flatMap((operand) => literal(operand).map(Number))).toEqual(
+      p,
+    );
+    return;
+  }
+  if (definition.id === "elem-g5-fraction-three-terms") {
+    const [mode, ...fractions] = p;
+    expect(operands).toHaveLength(3);
+    expect(prompt.text.match(/ [+\-×÷] /g)).toEqual(
+      [
+        [" + ", " + "],
+        [" + ", " - "],
+        [" - ", " + "],
+        [" - ", " - "],
+      ][mode],
+    );
+    expect(operands.flatMap((operand) => literal(operand).map(Number))).toEqual(
+      fractions,
+    );
+    return;
+  }
   expect(operands).toHaveLength(2);
   if (definition.strand === "분수") {
     const shown = operands.map((operand) => literal(operand).map(Number));
@@ -170,9 +196,59 @@ function indices(size: number): number[] {
 }
 
 describe("elementary arithmetic finite families", () => {
-  it("has 27 stable IDs and the audited Korean grade placements", () => {
-    expect(definitions).toHaveLength(27);
-    expect(new Set(definitions.map((d) => d.id)).size).toBe(27);
+  it("has 42 stable IDs and the audited Korean grade placements", () => {
+    // 27 original + 8 (2026-10-16 track B, natural) + 7 (track C, fraction/decimal).
+    expect(definitions).toHaveLength(42);
+    expect(new Set(definitions.map((d) => d.id)).size).toBe(42);
+    const original = new Set([
+      "g3-add-3digit",
+      "g3-sub-3digit",
+      "g3-mul-3x1",
+      "g3-mul-2x2",
+      "g3-div-2x1-remainder",
+      "g3-div-3x1-remainder",
+      "g4-mul-3x2",
+      "g4-div-2x2-remainder",
+      "g4-div-3x2-remainder",
+      "g5-natural-mixed",
+      "g4-fraction-same-add",
+      "g4-fraction-same-sub",
+      "g4-mixed-same-add",
+      "g4-mixed-same-sub",
+      "g5-fraction-unlike-add",
+      "g5-fraction-unlike-sub",
+      "g5-mixed-unlike-add",
+      "g5-mixed-unlike-sub",
+      "g5-fraction-mul",
+      "g5-fraction-mul-natural",
+      "g6-fraction-div",
+      "g6-fraction-div-natural",
+      "g4-decimal-add",
+      "g4-decimal-sub",
+      "g5-decimal-mul",
+      "g6-decimal-div",
+      "g6-decimal-div-natural",
+    ]);
+    expect(original.size).toBe(27);
+    expect(
+      definitions.map((d) => d.id.slice(5)).filter((id) => !original.has(id)),
+    ).toEqual([
+      "g3-div-times-table",
+      "g3-mul-tens-by-one",
+      "g3-mul-tens-by-tens",
+      "g3-mul-2digit-by-tens",
+      "g3-div-2x1-exact",
+      "g4-mul-hundreds-by-tens",
+      "g4-mul-3digit-by-tens",
+      "g4-div-by-tens-remainder",
+      "g5-fraction-mul-proper",
+      "g5-natural-mul-fraction",
+      "g5-fraction-mul-three",
+      "g5-fraction-three-terms",
+      "g5-natural-mul-decimal",
+      "g5-decimal-point-shift",
+      "g6-natural-div-natural-decimal",
+    ]);
     for (const definition of definitions) {
       expect(definition.grade).toBe(`초${definition.id.slice(6, 7)}`);
       expect(definition.rankGroup).toMatch(
@@ -413,6 +489,94 @@ describe("elementary arithmetic hand calculations and domain counts", () => {
     expect(def("g4-decimal-add").domainSize).toBe(9900 ** 2);
     expect(def("g4-decimal-sub").domainSize).toBe((9900 * 9901) / 2);
     expect(def("g5-decimal-mul").domainSize).toBe(990 ** 2);
+  });
+
+  it("counts the 2026-10-16 expansion domains by independent brute-force enumeration", () => {
+    const gcd = (a: number, b: number): number => (b ? gcd(b, a % b) : a);
+    const tens = [10, 20, 30, 40, 50, 60, 70, 80, 90];
+    const hundreds = tens.map((n) => n * 10);
+    // Track B (natural): screened pairs only — no 0, no ×1/÷1, no a÷a, quotient ≥ 2.
+    let timesTable = 0;
+    for (let a = 1; a <= 99; a++)
+      for (let b = 2; b <= 9; b++)
+        if (a % b === 0 && a / b >= 2 && a / b <= 9) timesTable++;
+    expect(def("g3-div-times-table").domainSize).toBe(timesTable);
+    expect(def("g3-mul-tens-by-one").domainSize).toBe(tens.length * 8);
+    expect(def("g3-mul-tens-by-tens").domainSize).toBe(tens.length ** 2);
+    let twoDigitNotTens = 0;
+    for (let a = 11; a <= 99; a++) if (a % 10 !== 0) twoDigitNotTens++;
+    expect(def("g3-mul-2digit-by-tens").domainSize).toBe(
+      twoDigitNotTens * tens.length,
+    );
+    let exactTwoDigit = 0;
+    for (let a = 10; a <= 99; a++)
+      for (let b = 2; b <= 9; b++)
+        if (a % b === 0 && a / b >= 10) exactTwoDigit++;
+    expect(def("g3-div-2x1-exact").domainSize).toBe(exactTwoDigit);
+    expect(def("g4-mul-hundreds-by-tens").domainSize).toBe(
+      hundreds.length * tens.length,
+    );
+    let threeDigitNotHundreds = 0;
+    for (let a = 101; a <= 999; a++) if (a % 100 !== 0) threeDigitNotHundreds++;
+    expect(def("g4-mul-3digit-by-tens").domainSize).toBe(
+      threeDigitNotHundreds * tens.length,
+    );
+    let byTens = 0;
+    for (const b of tens.slice(1)) for (let a = b + 1; a <= 999; a++) byTens++;
+    expect(def("g4-div-by-tens-remainder").domainSize).toBe(byTens);
+
+    // Track C (fraction): reduced proper fractions with denominators 2~12.
+    const proper: [number, number][] = [];
+    for (let d = 2; d <= 12; d++)
+      for (let n = 1; n < d; n++) if (gcd(n, d) === 1) proper.push([n, d]);
+    const mixedCount = proper.length * 3; // whole parts 1~3
+    expect(def("g5-fraction-mul-proper").domainSize).toBe(
+      proper.length * (proper.length - 1),
+    );
+    expect(def("g5-natural-mul-fraction").domainSize).toBe(
+      8 * (proper.length + mixedCount),
+    );
+    expect(def("g5-fraction-mul-three").domainSize).toBe(
+      proper.length * (proper.length - 1) * (proper.length - 2),
+    );
+    let threeTerms = 0;
+    const signs = [
+      [1, 1],
+      [1, -1],
+      [-1, 1],
+      [-1, -1],
+    ];
+    for (const [s1, s2] of signs)
+      for (const [n, d] of proper)
+        for (const [m, e] of proper)
+          for (const [o, f] of proper) {
+            if (d === e || e === f || d === f) continue;
+            const common = (d * e) / gcd(d, e);
+            const all = (common * f) / gcd(common, f);
+            if (all > 60) continue;
+            const partial = (n * all) / d + s1 * ((m * all) / e);
+            const total = partial + s2 * ((o * all) / f);
+            if (partial >= 0 && total >= 0) threeTerms++;
+          }
+    expect(def("g5-fraction-three-terms").domainSize).toBe(threeTerms);
+
+    // Track C (decimal): hundredths with a nonzero fractional part are 990 values.
+    let nonWhole = 0;
+    for (let h = 1; h <= 999; h++) if (h % 100 !== 0) nonWhole++;
+    expect(def("g5-natural-mul-decimal").domainSize).toBe(8 * nonWhole);
+    let shifts = 0;
+    for (let h = 1; h <= 999; h++) {
+      if (h % 100 === 0) continue;
+      for (const factor of [10, 1, 1000, 10000, 100000])
+        if (factor !== h) shifts++;
+    }
+    for (let a = 2; a <= 999; a++) shifts += 2;
+    expect(def("g5-decimal-point-shift").domainSize).toBe(shifts);
+    let quotients = 0;
+    for (let b = 2; b <= 99; b++)
+      for (let a = 1; a <= 99; a++)
+        if (a % b !== 0 && (1000 * a) % b === 0) quotients++;
+    expect(def("g6-natural-div-natural-decimal").domainSize).toBe(quotients);
   });
 
   it("checks every triangular row boundary without allocating the large domain", () => {

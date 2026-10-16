@@ -10,11 +10,15 @@ import {
   linear,
   math,
   nonzero,
+  numericAnswer,
   power,
   range,
+  rational,
+  readNumeric,
   sameCoefficients,
   sameDisplay,
   small,
+  tuples,
   type Term,
 } from "./shared";
 
@@ -326,6 +330,170 @@ const substitution = task(
   ([h, b, d], latex) =>
     `(${linear(1, h, latex)})${latex ? "^2" : "²"}${b + d < 0 ? "-" : "+"}${Math.abs(b + d) === 1 ? "" : Math.abs(b + d)}(${linear(1, h, latex)})${b * d < 0 ? "-" : "+"}${Math.abs(b * d)}`,
 );
+
+// --- numeric uses of the formulas and completing the square (2026-10-16) ---
+const ZERO = BigInt(0);
+const roundBases = [20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 500, 1000];
+// [mode, base, k, m]: 0 = (base+k)², 1 = (base+k)(base−k) with k > 0,
+// 2 = (base+k)(base+m) with k < m and k + m ≠ 0 (that case is mode 1).
+// A square such as 25² is shown once: as 30−5, not also as 20+5.
+const formulaRows: number[][] = [];
+for (const base of roundBases)
+  for (const k of nonzero(5))
+    if (k !== 5 || !roundBases.includes(base + 10))
+      formulaRows.push([0, base, k, 0]);
+for (const base of roundBases)
+  for (const k of range(1, 5)) formulaRows.push([1, base, k, 0]);
+for (const base of roundBases)
+  for (const k of nonzero(5))
+    for (const m of nonzero(5))
+      if (k < m && k + m !== 0) formulaRows.push([2, base, k, m]);
+const secondOffset = ([mode, , k, m]: number[]) =>
+  mode === 0 ? k : mode === 1 ? -k : m;
+const formulaNumeric = define({
+  id: "m3-formula-numeric",
+  grade: "중3",
+  strand: "문자식",
+  title: "곱셈 공식을 이용한 수의 계산",
+  unit: "다항식의 곱셈과 인수분해",
+  description:
+    "102², 103×97, 98×103과 같이 어림수에 가까운 수의 곱을 곱셈 공식으로 계산합니다.",
+  domain: tuples(formulaRows),
+  prompt: (p) => {
+    const [mode, base, k] = p;
+    const left = base + k,
+      right = base + secondOffset(p);
+    return math(
+      mode === 0 ? `${left}²` : `${left} × ${right}`,
+      mode === 0 ? `${left}^2` : `${left}\\times${right}`,
+      "곱셈 공식을 이용하여 계산하시오.",
+    );
+  },
+  solve: ([mode, base, k, m]) =>
+    numericAnswer(
+      rational(
+        mode === 0
+          ? base * base + 2 * base * k + k * k
+          : mode === 1
+            ? base * base - k * k
+            : base * base + (k + m) * base + k * m,
+      ),
+      "integer",
+    ),
+  // Direct product of the two displayed factors, not the expanded formula.
+  check: (p, a) => {
+    const q = readNumeric(a, "integer");
+    const [, base, k] = p;
+    return Boolean(
+      q && q[0] === BigInt(base + k) * BigInt(base + secondOffset(p)),
+    );
+  },
+});
+const roundSums = [20, 30, 40, 50, 60, 70, 80, 90, 100];
+// [mode, s, k]: 0 = a² − b² with a + b = s and a − b = 2k;
+// 1 = a² + 2ab + b² with a + b = s, b = k; 2 = a² − 2ab + b² with a − b = s, b = k.
+const factorRows: number[][] = [];
+for (const mode of [0, 1, 2])
+  for (const s of roundSums)
+    for (const k of range(1, 9)) factorRows.push([mode, s, k]);
+const factorSides = ([mode, s, k]: number[]): [number, number] =>
+  mode === 0 ? [s / 2 + k, s / 2 - k] : mode === 1 ? [s - k, k] : [s + k, k];
+const factorNumeric = define({
+  id: "m3-factor-numeric",
+  grade: "중3",
+  strand: "문자식",
+  title: "인수분해를 이용한 수의 계산",
+  unit: "다항식의 곱셈과 인수분해",
+  description:
+    "57² − 43², 97² + 2×97×3 + 3²과 같은 식을 인수분해 공식으로 계산합니다. 합이나 차가 어림수가 되도록 두 수를 고릅니다.",
+  domain: tuples(factorRows),
+  prompt: (p) => {
+    const [mode] = p,
+      [a, b] = factorSides(p);
+    if (mode === 0)
+      return math(
+        `${a}² - ${b}²`,
+        `${a}^2-${b}^2`,
+        "인수분해를 이용하여 계산하시오.",
+      );
+    const sign = mode === 1 ? "+" : "-";
+    return math(
+      `${a}² ${sign} 2 × ${a} × ${b} + ${b}²`,
+      `${a}^2${sign}2\\times${a}\\times${b}+${b}^2`,
+      "인수분해를 이용하여 계산하시오.",
+    );
+  },
+  solve: ([mode, s, k]) =>
+    numericAnswer(rational(mode === 0 ? s * 2 * k : s * s), "integer"),
+  // Evaluate the displayed expression term by term.
+  check: (p, answer) => {
+    const q = readNumeric(answer, "integer");
+    if (!q) return false;
+    const [mode] = p,
+      [a, b] = factorSides(p).map(BigInt);
+    const value =
+      mode === 0
+        ? a * a - b * b
+        : a * a + BigInt(mode === 1 ? 2 : -2) * a * b + b * b;
+    return q[0] === value;
+  },
+});
+const squareLeads = [1, 4, 9, 16];
+const squareRoot = (a: number) => Math.round(Math.sqrt(a));
+const quadraticHead = (a: number, b: number, latex = false) =>
+  expression(
+    [
+      [2, 0, a],
+      [1, 0, b],
+    ],
+    latex,
+  );
+const perfectSquareConstant = define({
+  id: "m3-perfect-square-constant",
+  grade: "중3",
+  strand: "문자식",
+  title: "완전제곱식이 되게 하는 상수항",
+  unit: "다항식의 곱셈과 인수분해",
+  description:
+    "ax² + bx + □가 완전제곱식이 되도록 하는 □를 구합니다. a는 1, 4, 9, 16이고 b가 홀수이면 □는 분수입니다.",
+  // [a, b], 4 × 24 = 96.
+  domain: cartesian(squareLeads, nonzero(12)),
+  prompt: ([a, b]) =>
+    math(
+      `${quadraticHead(a, b)} + □`,
+      `${quadraticHead(a, b, true)} + \\square`,
+      "완전제곱식이 되도록 하는 □의 값을 구하시오.",
+    ),
+  solve: ([a, b]) => numericAnswer(rational(b * b, 4 * a), "rational"),
+  // Zero discriminant: b² − 4a□ = 0, cross multiplied.
+  check: ([a, b], answer) => {
+    const q = readNumeric(answer, "rational");
+    return Boolean(q && BigInt(4 * a) * q[0] === BigInt(b * b) * q[1]);
+  },
+});
+const perfectSquareLinear = define({
+  id: "m3-perfect-square-linear-coefficient",
+  grade: "중3",
+  strand: "문자식",
+  title: "완전제곱식이 되게 하는 일차항의 계수",
+  unit: "다항식의 곱셈과 인수분해",
+  description:
+    "ax² + □x + c가 완전제곱식이 되도록 하는 양수 □를 구합니다. a와 c는 모두 제곱수입니다.",
+  // [a, m] with c = m², 4 × 10 = 40.
+  domain: cartesian(squareLeads, range(1, 10)),
+  prompt: ([a, m]) =>
+    math(
+      `${a === 1 ? "" : a}x^2 + □x + ${m * m}`,
+      `${a === 1 ? "" : a}x^{2} + \\square x + ${m * m}`,
+      "완전제곱식이 되도록 하는 양수 □의 값을 구하시오.",
+    ),
+  solve: ([a, m]) => numericAnswer(rational(2 * squareRoot(a) * m), "integer"),
+  // □² = 4ac with □ > 0.
+  check: ([a, m], answer) => {
+    const q = readNumeric(answer, "integer");
+    return Boolean(q && q[0] > ZERO && q[0] * q[0] === BigInt(4 * a * m * m));
+  },
+});
 export const FACTORIZATION_DEFINITIONS = [
   common,
   commonXY,
@@ -336,4 +504,8 @@ export const FACTORIZATION_DEFINITIONS = [
   monic,
   nonmonic,
   substitution,
+  formulaNumeric,
+  factorNumeric,
+  perfectSquareConstant,
+  perfectSquareLinear,
 ];

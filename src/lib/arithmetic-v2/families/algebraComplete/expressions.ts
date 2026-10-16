@@ -1,4 +1,5 @@
 import {
+  abs,
   cartesian,
   coefficients,
   convolution,
@@ -24,6 +25,7 @@ import {
   sameDisplay,
   small,
   tuples,
+  type Rational,
   type Term,
 } from "./shared";
 import type { ArithmeticV2Answer } from "../../types";
@@ -259,6 +261,366 @@ const mixed = define({
     );
   },
 });
+/* ---- Track E (2026-10-16): 중2 식의 계산 expansion ----------------------
+ * Polynomial answers use the file's bivariate normal form (`polynomial`):
+ * [x degree, y degree, integer coefficient] triples in descending
+ * lexicographic order, zero terms dropped. Every check below reads the
+ * candidate with `readPolynomial` and compares coefficient maps built from
+ * the prompt parameters, never from the solver.
+ */
+const twoVariableOperands = ([a, b, c, d, e, f]: number[]): [
+  Term[],
+  Term[],
+] => [
+  [
+    [1, 0, a],
+    [0, 1, b],
+    [0, 0, c],
+  ],
+  [
+    [1, 0, d],
+    [0, 1, e],
+    [0, 0, f],
+  ],
+];
+/** (ax+by+c) ± (dx+ey+f); every one of the x, y and constant terms survives. */
+function twoVariablePolynomial(operation: "add" | "subtract") {
+  const sign = operation === "add" ? 1 : -1;
+  return define({
+    id: `m2-polynomial-two-variable-${operation}`,
+    grade: "중2",
+    strand: "문자식",
+    title:
+      operation === "add" ? "두 문자 다항식의 덧셈" : "두 문자 다항식의 뺄셈",
+    unit: "식의 계산",
+    domain: filtered(
+      cartesian(
+        nonzero(3),
+        nonzero(3),
+        nonzero(2),
+        nonzero(3),
+        nonzero(3),
+        nonzero(2),
+      ),
+      ([a, b, c, d, e, f]) =>
+        (a !== d || b !== e || c !== f) &&
+        a + sign * d !== 0 &&
+        b + sign * e !== 0 &&
+        c + sign * f !== 0,
+    ),
+    prompt: (p) => {
+      const [first, second] = twoVariableOperands(p);
+      const operator = sign < 0 ? "-" : "+";
+      return math(
+        `(${expression(first)}) ${operator} (${expression(second)})`,
+        `(${expression(first, true)})${operator}(${expression(second, true)})`,
+        "식을 간단히 하시오.",
+      );
+    },
+    solve: ([a, b, c, d, e, f]) =>
+      polynomial([
+        [1, 0, a + sign * d],
+        [0, 1, b + sign * e],
+        [0, 0, c + sign * f],
+      ]),
+    check: (p, answer) => {
+      const terms = readPolynomial(answer);
+      if (!terms) return false;
+      const [first, second] = twoVariableOperands(p);
+      const expected = coefficients(first);
+      for (const [key, value] of coefficients(second))
+        expected.set(
+          key,
+          (expected.get(key) ?? BigInt(0)) + BigInt(sign) * value,
+        );
+      return sameCoefficients(coefficients(terms), expected);
+    },
+  });
+}
+/** ax ∓ {bx ∓ (cx + d)}: s1 is the sign before the braces, s2 the sign inside. */
+const nestedBraces = define({
+  id: "m2-polynomial-nested-braces",
+  grade: "중2",
+  strand: "문자식",
+  title: "중괄호가 있는 다항식의 계산",
+  unit: "식의 계산",
+  domain: filtered(
+    cartesian(
+      nonzero(3),
+      range(1, 3),
+      nonzero(3),
+      nonzero(4),
+      [-1, 1],
+      [-1, 1],
+    ),
+    ([a, b, c, , s1, s2]) => a + s1 * b + s1 * s2 * c !== 0,
+  ),
+  prompt: ([a, b, c, d, s1, s2]) => {
+    const operator = (s: number) => (s < 0 ? " - " : " + ");
+    const head = expression([[1, 0, a]]),
+      middle = expression([[1, 0, b]]);
+    return math(
+      `${head}${operator(s1)}{${middle}${operator(s2)}(${linear(c, d)})}`,
+      `${head}${operator(s1)}\\{${middle}${operator(s2)}(${linear(c, d, true)})\\}`,
+      "식을 간단히 하시오.",
+    );
+  },
+  solve: ([a, b, c, d, s1, s2]) =>
+    polynomial([
+      [1, 0, a + s1 * b + s1 * s2 * c],
+      [0, 0, s1 * s2 * d],
+    ]),
+  check: ([a, b, c, d, s1, s2], answer) => {
+    const terms = readPolynomial(answer);
+    if (!terms) return false;
+    // Peel the braces from the outside: a x + s1·(b x + s2·(c x + d)).
+    const inner = new Map<string, bigint>([
+      ["1,0", BigInt(c)],
+      ["0,0", BigInt(d)],
+    ]);
+    const braces = new Map<string, bigint>([["1,0", BigInt(b)]]);
+    for (const [key, value] of inner)
+      braces.set(key, (braces.get(key) ?? BigInt(0)) + BigInt(s2) * value);
+    const expected = new Map<string, bigint>([["1,0", BigInt(a)]]);
+    for (const [key, value] of braces)
+      expected.set(key, (expected.get(key) ?? BigInt(0)) + BigInt(s1) * value);
+    return sameCoefficients(coefficients(terms), expected);
+  },
+});
+/** A = ax + by, B = cx + dy; simplify pA + qB (q signed). */
+const substitute = define({
+  id: "m2-expression-substitute",
+  grade: "중2",
+  strand: "문자식",
+  title: "식의 대입",
+  unit: "식의 계산",
+  domain: filtered(
+    cartesian(
+      nonzero(3),
+      nonzero(3),
+      nonzero(3),
+      nonzero(3),
+      range(1, 3),
+      nonzero(3),
+    ),
+    ([a, b, c, d, p, q]) =>
+      (a !== c || b !== d) && p * a + q * c !== 0 && p * b + q * d !== 0,
+  ),
+  prompt: ([a, b, c, d, p, q]) => {
+    const first: Term[] = [
+        [1, 0, a],
+        [0, 1, b],
+      ],
+      second: Term[] = [
+        [1, 0, c],
+        [0, 1, d],
+      ];
+    const combination = `${p === 1 ? "" : p}A ${q < 0 ? "-" : "+"} ${Math.abs(q) === 1 ? "" : Math.abs(q)}B`;
+    return math(
+      `A = ${expression(first)}, B = ${expression(second)}, ${combination}`,
+      `A=${expression(first, true)},\\ B=${expression(second, true)},\\quad ${combination}`,
+      "A, B를 대입하여 식을 간단히 하시오.",
+    );
+  },
+  solve: ([a, b, c, d, p, q]) =>
+    polynomial([
+      [1, 0, p * a + q * c],
+      [0, 1, p * b + q * d],
+    ]),
+  check: ([a, b, c, d, p, q], answer) => {
+    const terms = readPolynomial(answer);
+    if (!terms) return false;
+    const expected = new Map<string, bigint>();
+    for (const [key, value] of coefficients([
+      [1, 0, a],
+      [0, 1, b],
+    ]))
+      expected.set(key, (expected.get(key) ?? BigInt(0)) + BigInt(p) * value);
+    for (const [key, value] of coefficients([
+      [1, 0, c],
+      [0, 1, d],
+    ]))
+      expected.set(key, (expected.get(key) ?? BigInt(0)) + BigInt(q) * value);
+    return sameCoefficients(coefficients(terms), expected);
+  },
+});
+/** Rearranged linear equation normal form: exact=[slope n, slope d, intercept n,
+ * intercept d], both reduced with positive denominators. Display
+ * `y = (-2/3)x + 2` / `y=-\frac{2}{3}x+2`; a ±1 slope shows no magnitude.
+ */
+function rearrangedDisplay(
+  variable: number,
+  slope: Rational,
+  intercept: Rational,
+  latex = false,
+) {
+  const [solved, other] = variable === 1 ? ["y", "x"] : ["x", "y"];
+  const coefficient =
+    slope[1] === BigInt(1)
+      ? abs(slope[0]) === BigInt(1)
+        ? slope[0] < BigInt(0)
+          ? "-"
+          : ""
+        : String(slope[0])
+      : latex
+        ? fractionText(slope, true)
+        : `(${fractionText(slope)})`;
+  const tail = `${intercept[0] < BigInt(0) ? " - " : " + "}${fractionText([abs(intercept[0]), intercept[1]], latex)}`;
+  return `${solved} = ${coefficient}${other}${tail}`;
+}
+function rearrangedAnswer(
+  variable: number,
+  slope: Rational,
+  intercept: Rational,
+): ArithmeticV2Answer {
+  return {
+    kind: "polynomial",
+    exact: [...slope, ...intercept].map(String),
+    text: rearrangedDisplay(variable, slope, intercept),
+    latex: rearrangedDisplay(variable, slope, intercept, true),
+  };
+}
+/** ax + by = c solved for x (v = 0) or y (v = 1). */
+const rearrange = define({
+  id: "m2-formula-rearrange",
+  grade: "중2",
+  strand: "문자식",
+  title: "등식의 변형",
+  unit: "식의 계산",
+  domain: cartesian(nonzero(4), nonzero(4), nonzero(6), [0, 1]),
+  prompt: ([a, b, c, v]) =>
+    math(
+      `${expression([
+        [1, 0, a],
+        [0, 1, b],
+      ])} = ${c}`,
+      `${expression(
+        [
+          [1, 0, a],
+          [0, 1, b],
+        ],
+        true,
+      )}=${c}`,
+      `등식을 ${v === 1 ? "y" : "x"}에 대하여 푸시오.`,
+    ),
+  solve: ([a, b, c, v]) =>
+    v === 1
+      ? rearrangedAnswer(v, rational(-a, b), rational(c, b))
+      : rearrangedAnswer(v, rational(-b, a), rational(c, a)),
+  check: ([a, b, c, v], answer) => {
+    if (answer.kind !== "polynomial" || answer.exact.length !== 4) return false;
+    const slope = readRational(answer.exact[0], answer.exact[1]),
+      intercept = readRational(answer.exact[2], answer.exact[3]);
+    if (!slope || !intercept) return false;
+    // solved·(s·other + t) + coefficient·other = c for every value of other.
+    const solvedCoefficient = BigInt(v === 1 ? b : a),
+      otherCoefficient = BigInt(v === 1 ? a : b);
+    return (
+      solvedCoefficient * slope[0] + otherCoefficient * slope[1] ===
+        BigInt(0) &&
+      solvedCoefficient * intercept[0] === BigInt(c) * intercept[1] &&
+      sameDisplay(
+        answer,
+        rearrangedDisplay(v, slope, intercept),
+        rearrangedDisplay(v, slope, intercept, true),
+      )
+    );
+  },
+});
+/** (b^p)^m × or ÷ (b^q)^n = b^□, written with the bases b^p and b^q as numbers. */
+const baseMatch = define({
+  id: "m2-exponent-base-match",
+  grade: "중2",
+  strand: "문자식",
+  title: "밑을 맞추는 지수 계산",
+  unit: "식의 계산",
+  domain: filtered(
+    cartesian(
+      [2, 3],
+      range(1, 3),
+      range(1, 3),
+      range(1, 5),
+      range(1, 4),
+      [0, 1],
+    ),
+    ([, p, q, m, n, op]) =>
+      (p !== 1 || q !== 1) &&
+      (m !== 1 || n !== 1) &&
+      (op === 0 || p * m > q * n),
+  ),
+  prompt: ([b, p, q, m, n, op]) =>
+    math(
+      `${power(String(b ** p), m)} ${op ? "÷" : "×"} ${power(String(b ** q), n)} = ${b}^□`,
+      `${power(String(b ** p), m, true)}${op ? "\\div" : "\\times"}${power(String(b ** q), n, true)}=${b}^{\\square}`,
+      "□에 알맞은 자연수를 구하시오.",
+    ),
+  solve: ([, p, q, m, n, op]) => integer(op ? p * m - q * n : p * m + q * n),
+  check: ([b, p, q, m, n, op], a) => {
+    const k = small(a.exact[0], 1, 60);
+    if (k === null || !readNumeric(a, "integer")) return false;
+    const left = BigInt(b ** p) ** BigInt(m),
+      right = BigInt(b ** q) ** BigInt(n),
+      result = BigInt(b) ** BigInt(k);
+    return op ? left === right * result : left * right === result;
+  },
+});
+/** b^(x+k) = b^n written as a number; x is a natural number. */
+const exponentEquation = define({
+  id: "m2-exponent-equation",
+  grade: "중2",
+  strand: "문자식",
+  title: "지수가 미지수인 등식",
+  unit: "식의 계산",
+  domain: filtered(
+    cartesian([2, 3, 5], range(-3, 3), range(1, 6)),
+    ([, k, n]) => n - k >= 1,
+  ),
+  prompt: ([b, k, n]) => {
+    const exponent = k === 0 ? "x" : `x ${k < 0 ? "-" : "+"} ${Math.abs(k)}`;
+    return math(
+      `${b}^${k === 0 ? "x" : `(${exponent})`} = ${b ** n}`,
+      `${b}^{${exponent}}=${b ** n}`,
+      "x의 값을 구하시오.",
+    );
+  },
+  solve: ([, k, n]) => integer(n - k),
+  check: ([b, k, n], a) => {
+    const x = small(a.exact[0], -20, 60);
+    return (
+      x !== null &&
+      Boolean(readNumeric(a, "integer")) &&
+      x + k >= 0 &&
+      BigInt(b) ** BigInt(x + k) === BigInt(b) ** BigInt(n)
+    );
+  },
+});
+/** Number of digits of 2^a × 5^b (× 1, 3 or 7). */
+const digitCount = define({
+  id: "m2-power-digit-count",
+  grade: "중2",
+  strand: "문자식",
+  title: "거듭제곱의 자릿수",
+  unit: "식의 계산",
+  domain: cartesian(range(2, 12), range(2, 12), [1, 3, 7]),
+  prompt: ([a, b, k]) =>
+    math(
+      `${power("2", a)} × ${power("5", b)}${k === 1 ? "" : ` × ${k}`}`,
+      `${power("2", a, true)}\\times ${power("5", b, true)}${k === 1 ? "" : `\\times ${k}`}`,
+      "몇 자리의 자연수인지 구하시오.",
+    ),
+  solve: ([a, b, k]) =>
+    integer(
+      String(BigInt(2) ** BigInt(a) * BigInt(5) ** BigInt(b) * BigInt(k))
+        .length,
+    ),
+  check: ([a, b, k], answer) => {
+    const digits = small(answer.exact[0], 1, 30);
+    if (digits === null || !readNumeric(answer, "integer")) return false;
+    const value = BigInt(2) ** BigInt(a) * BigInt(5) ** BigInt(b) * BigInt(k),
+      low = BigInt(10) ** BigInt(digits - 1);
+    return value >= low && value < low * BigInt(10);
+  },
+});
 function rootIdentity(squareInside: boolean) {
   return define({
     id: `m3-${squareInside ? "root-of-square" : "square-of-root"}-identity`,
@@ -381,6 +743,14 @@ export const EXPRESSION_DEFINITIONS = [
   exponentLaw("power"),
   productPower,
   mixed,
+  twoVariablePolynomial("add"),
+  twoVariablePolynomial("subtract"),
+  nestedBraces,
+  substitute,
+  rearrange,
+  baseMatch,
+  exponentEquation,
+  digitCount,
   rootIdentity(true),
   rootIdentity(false),
   formula(false, false),

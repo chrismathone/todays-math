@@ -130,9 +130,181 @@ function factoredValue(exact: string[], x: bigint, y: bigint): bigint {
       BigInt(exact[i + 3]);
   return v;
 }
+/** Bivariate integer polynomial normal form: [x deg, y deg, coefficient]
+ * triples in descending lexicographic order, zero terms dropped. */
+function bivariate(terms: [number, number, number][]): string[] {
+  return terms
+    .filter(([, , coefficient]) => coefficient !== 0)
+    .sort(([x1, y1], [x2, y2]) => x2 - x1 || y2 - y1)
+    .flatMap((term) => term.map(String));
+}
+/** Integer square root by counting up; throws unless n is a perfect square. */
+function exactRoot(n: number): number {
+  let k = 0;
+  while (k * k < n) k++;
+  if (k * k !== n) throw Error(`not a square: ${n}`);
+  return k;
+}
+/** 2026-10-16 tracks E (중2 식의 계산 · 중1/중2 수) and F (중3 공식·중근). */
+function expansionOracle(
+  id: string,
+  p: number[],
+  answer: ArithmeticV2Answer,
+): boolean {
+  const [a, b, c, d, e, f] = p,
+    [A, B, C] = p.map(BigInt);
+  if (
+    id === "m2-polynomial-two-variable-add" ||
+    id === "m2-polynomial-two-variable-subtract"
+  ) {
+    const sign = id.endsWith("add") ? 1 : -1;
+    assert.deepEqual(
+      answer.exact,
+      bivariate([
+        [1, 0, a + sign * d],
+        [0, 1, b + sign * e],
+        [0, 0, c + sign * f],
+      ]),
+    );
+    return true;
+  }
+  if (id === "m2-polynomial-nested-braces") {
+    // ax + s1{bx + s2(cx + d)}, peeled from the inside out.
+    const [s1, s2] = [e, f];
+    const innerX = c,
+      innerK = d;
+    const braceX = b + s2 * innerX,
+      braceK = s2 * innerK;
+    assert.deepEqual(
+      answer.exact,
+      bivariate([
+        [1, 0, a + s1 * braceX],
+        [0, 0, s1 * braceK],
+      ]),
+    );
+    return true;
+  }
+  if (id === "m2-expression-substitute") {
+    // A = ax + by, B = cx + dy; pA + qB with p = e, q = f.
+    assert.deepEqual(
+      answer.exact,
+      bivariate([
+        [1, 0, e * a + f * c],
+        [0, 1, e * b + f * d],
+      ]),
+    );
+    return true;
+  }
+  if (id === "m2-formula-rearrange") {
+    // ax + by = c solved for y (d = 1): y = (-a/b)x + c/b; for x: x = (-b/a)y + c/a.
+    const [solved, other] = d === 1 ? [B, A] : [A, B];
+    assert.deepEqual(
+      answer.exact,
+      [...reduced(-other, solved), ...reduced(C, solved)].map(String),
+    );
+    return true;
+  }
+  if (id === "m2-exponent-base-match") {
+    // (b^p)^m ∘ (b^q)^n = b^k: find k by repeated exact division by b.
+    const [base, pExp, qExp, m, n, op] = p;
+    const left = BigInt(base ** pExp) ** BigInt(m),
+      right = BigInt(base ** qExp) ** BigInt(n);
+    let value = op ? left / right : left * right;
+    assert.equal(op ? left % right : BigInt(0), BigInt(0));
+    let k = 0;
+    while (value % BigInt(base) === BigInt(0) && value > BigInt(1)) {
+      value /= BigInt(base);
+      k++;
+    }
+    assert.equal(value, BigInt(1));
+    numeric(answer, BigInt(k));
+    return true;
+  }
+  if (id === "m2-exponent-equation") {
+    // b^(x+k) = b^n: scan natural x until the powers agree.
+    const [base, k, n] = p;
+    const target = BigInt(base) ** BigInt(n);
+    let x = 0;
+    while (x + k < 0 || BigInt(base) ** BigInt(x + k) !== target) x++;
+    numeric(answer, BigInt(x));
+    return true;
+  }
+  if (id === "m2-power-digit-count") {
+    // Digits counted by repeated division by ten, not by string length.
+    let value = BigInt(2) ** A * BigInt(5) ** B * C,
+      digits = 0;
+    while (value > BigInt(0)) {
+      value /= BigInt(10);
+      digits++;
+    }
+    numeric(answer, BigInt(digits));
+    return true;
+  }
+  if (id === "m1-square-multiplier") {
+    // n × a or n ÷ a is a square iff a carries every odd-exponent prime once.
+    let k = 1;
+    for (const [prime, exponent] of primePowers(a))
+      if (exponent % 2) k *= prime;
+    numeric(answer, BigInt(k));
+    return true;
+  }
+  if (id === "m2-recurring-nth-digit") {
+    // Plain long division for exactly k steps; no cycle detection, no 10^k.
+    let remainder = a % b,
+      digit = 0;
+    for (let step = 0; step < c; step++) {
+      remainder *= 10;
+      digit = Math.floor(remainder / b);
+      remainder %= b;
+    }
+    numeric(answer, BigInt(digit));
+    return true;
+  }
+  if (id === "m3-formula-numeric") {
+    // Product of the two displayed factors: (base+k)(base+second).
+    const [mode, base, k, m] = p;
+    const second = mode === 0 ? k : mode === 1 ? -k : m;
+    numeric(answer, BigInt(base + k) * BigInt(base + second));
+    return true;
+  }
+  if (id === "m3-factor-numeric") {
+    // Evaluate the displayed expression term by term.
+    const [mode, s, k] = p;
+    const [x, y] = (
+      mode === 0 ? [s / 2 + k, s / 2 - k] : mode === 1 ? [s - k, k] : [s + k, k]
+    ).map(BigInt);
+    numeric(
+      answer,
+      mode === 0
+        ? x * x - y * y
+        : mode === 1
+          ? x * x + BigInt(2) * x * y + y * y
+          : x * x - BigInt(2) * x * y + y * y,
+    );
+    return true;
+  }
+  if (
+    id === "m3-perfect-square-constant" ||
+    id === "m3-quadratic-double-root-constant"
+  ) {
+    // ax² + bx + □ = a(x + b/2a)² ⇒ □ = (b/2a)²·a = b²/4a.
+    numeric(answer, B * B, BigInt(4) * A);
+    return true;
+  }
+  if (
+    id === "m3-perfect-square-linear-coefficient" ||
+    id === "m3-quadratic-double-root-coefficient"
+  ) {
+    // ax² + □x + m² = (√a·x + m)² ⇒ □ = 2·√a·m.
+    numeric(answer, BigInt(2 * exactRoot(a) * b));
+    return true;
+  }
+  return false;
+}
 function oracle(id: string, p: number[], answer: ArithmeticV2Answer) {
   const [a, b, c, d, e, f] = p,
     [A, B, C, D] = p.map(BigInt);
+  if (expansionOracle(id, p, answer)) return;
   if (id === "m1-prime-factorization") {
     assert.deepEqual(answer.exact, primePowers(a).flat().map(String));
     return;

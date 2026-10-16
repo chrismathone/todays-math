@@ -371,6 +371,104 @@ const recurringOperations = define({
           : u * BigInt(9 * n) === BigInt(r * d) * v;
   },
 });
+/* ---- Track E (2026-10-16) ---------------------------------------------- */
+const isSquare = (v: number) => {
+  const r = Math.round(Math.sqrt(v));
+  return r * r === v;
+};
+/** n × a (op 0) or n ÷ a (op 1) becomes a perfect square; smallest natural a. */
+const squareMultiplier = define({
+  id: "m1-square-multiplier",
+  grade: "중1",
+  strand: "자연수",
+  title: "제곱수가 되게 하는 가장 작은 자연수",
+  unit: "소인수분해",
+  domain: filtered(cartesian(range(2, 200), [0, 1]), ([n]) => !isSquare(n)),
+  prompt: ([n, op]) =>
+    math(
+      `${n} ${op ? "÷" : "×"} a`,
+      `${n}${op ? "\\div" : "\\times"} a`,
+      "값이 어떤 자연수의 제곱이 되도록 하는 가장 작은 자연수 a를 구하시오.",
+    ),
+  solve: ([n]) =>
+    integer(
+      factor(n)
+        .filter(([, e]) => e % 2)
+        .reduce((v, [p]) => v * p, 1),
+    ),
+  check: ([n, op], a) => {
+    const m = small(a.exact[0], 1, n);
+    if (m === null || !readNumeric(a, "integer")) return false;
+    // Direct square test and minimality, with no prime factorization.
+    const works = (v: number) =>
+      op ? n % v === 0 && isSquare(n / v) : isSquare(n * v);
+    if (!works(m)) return false;
+    for (let v = 1; v < m; v++) if (works(v)) return false;
+    return true;
+  },
+});
+const digitDenominators = [7, 11, 13, 14, 22, 27, 33, 37];
+const digitPositions = [20, 30, 50, 100];
+function period(n: number, d: number): number {
+  const seen = new Map<number, number>();
+  let r = n % d,
+    step = 0;
+  while (!seen.has(r)) {
+    seen.set(r, step);
+    r = (r * 10) % d;
+    step++;
+  }
+  return step - seen.get(r)!;
+}
+/** Digit at decimal position k of n/d; the repeating block has 2+ digits. */
+const nthDigit = define({
+  id: "m2-recurring-nth-digit",
+  grade: "중2",
+  strand: "정수·유리수",
+  title: "순환소수의 소수점 아래 n번째 자리 숫자",
+  unit: "유리수와 순환소수",
+  domain: filtered(
+    tuples(
+      digitDenominators.flatMap((d) =>
+        range(1, d - 1)
+          .filter((n) => gcd(BigInt(n), BigInt(d)) === BigInt(1))
+          .flatMap((n) => digitPositions.map((k) => [n, d, k])),
+      ),
+    ),
+    ([n, d]) => period(n, d) >= 2,
+  ),
+  prompt: ([n, d, k]) =>
+    math(
+      `${n}/${d}`,
+      `\\frac{${n}}{${d}}`,
+      `소수로 나타낼 때 소수점 아래 ${k}번째 자리의 숫자를 구하시오.`,
+    ),
+  solve: ([n, d, k]) => {
+    // Long division until a remainder repeats, then index into the block.
+    const digits: number[] = [];
+    const seen = new Map<number, number>();
+    let r = n % d;
+    while (!seen.has(r)) {
+      seen.set(r, digits.length);
+      r *= 10;
+      digits.push(Math.floor(r / d));
+      r %= d;
+    }
+    const start = seen.get(r)!,
+      length = digits.length - start;
+    const index = k - 1 < start ? k - 1 : start + ((k - 1 - start) % length);
+    return integer(digits[index]);
+  },
+  check: ([n, d, k], a) => {
+    const q = readNumeric(a, "integer");
+    return Boolean(
+      q &&
+      q[0] >= BigInt(0) &&
+      q[0] <= BigInt(9) &&
+      q[0] === ((BigInt(n) * BigInt(10) ** BigInt(k)) / BigInt(d)) % BigInt(10),
+    );
+  },
+});
 export const NUMBER_DEFINITIONS = [
   prime,
   divisorCount,
@@ -383,4 +481,6 @@ export const NUMBER_DEFINITIONS = [
   terminating,
   places,
   recurringOperations,
+  squareMultiplier,
+  nthDigit,
 ];

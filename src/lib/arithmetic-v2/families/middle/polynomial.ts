@@ -3,6 +3,7 @@ import {
   abs,
   add,
   cartesian,
+  decode,
   family,
   fractionText,
   math,
@@ -236,6 +237,182 @@ const monomialDivisionDomain: Domain = {
     monomialDivisionBase.contains([p[0], p[1] - p[3], p[2], p[3]]),
 };
 
+// ---- 중1 expansion (2026-10-16): distributing a coefficient over brackets and
+// fraction-form linear expressions. Answers use the same ordered normal form
+// (descending [degree, numerator, denominator] triples, zeros omitted).
+const scaleFactors = nonzero(4);
+// k(ax+b) ± |m|(cx+d): k = 1 with |m| = 1 is the plain shape of m1-linear-add/subtract.
+const distributePairs: number[][] = [];
+for (const k of scaleFactors)
+  for (const m of scaleFactors)
+    if (!(k === 1 && Math.abs(m) === 1)) distributePairs.push([k, m]);
+const slopes = nonzero(3),
+  constants = nonzero(5);
+const linearPairs: number[][] = [];
+for (const a of slopes) for (const b of constants) linearPairs.push([a, b]);
+// Two different brackets; the same bracket twice is not a distribution drill.
+const distributeBrackets: number[][] = [];
+for (const left of linearPairs)
+  for (const right of linearPairs)
+    if (left !== right) distributeBrackets.push([...left, ...right]);
+const distributeDomain: Domain = {
+  size: distributePairs.length * distributeBrackets.length,
+  at(index) {
+    const [pair, bracket] = decode(index, [
+      distributePairs.length,
+      distributeBrackets.length,
+    ]);
+    const [k, m] = distributePairs[pair],
+      [a, b, c, d] = distributeBrackets[bracket];
+    return [k, a, b, m, c, d];
+  },
+  contains: ([k, a, b, m, c, d, ...rest]) =>
+    rest.length === 0 &&
+    scaleFactors.includes(k) &&
+    scaleFactors.includes(m) &&
+    !(k === 1 && Math.abs(m) === 1) &&
+    slopes.includes(a) &&
+    slopes.includes(c) &&
+    constants.includes(b) &&
+    constants.includes(d) &&
+    !(a === c && b === d),
+};
+function scaledBracket(
+  k: number,
+  inner: string,
+  latex: boolean,
+  leading: boolean,
+): string {
+  const magnitude = Math.abs(k) === 1 ? "" : String(Math.abs(k));
+  const bracket = latex ? `\\left(${inner}\\right)` : `(${inner})`;
+  return leading
+    ? `${k < 0 ? "-" : ""}${magnitude}${bracket}`
+    : `${k < 0 ? "-" : "+"} ${magnitude}${bracket}`;
+}
+
+// (ax+b)/p ± (cx+d)/|q|: the sign of q is the operator; the two fractions differ.
+const denominators = range(2, 6);
+const fractionTriples: number[][] = [];
+for (const a of slopes)
+  for (const b of constants)
+    for (const p of denominators) fractionTriples.push([a, b, p]);
+const fractionCombineDomain: Domain = {
+  size: fractionTriples.length * (fractionTriples.length - 1) * 2,
+  at(index) {
+    const [i, skip, s] = decode(index, [
+      fractionTriples.length,
+      fractionTriples.length - 1,
+      2,
+    ]);
+    const j = skip < i ? skip : skip + 1;
+    const [a, b, p] = fractionTriples[i],
+      [c, d, q] = fractionTriples[j];
+    return [a, b, p, c, d, s ? -q : q];
+  },
+  contains: ([a, b, p, c, d, q, ...rest]) =>
+    rest.length === 0 &&
+    slopes.includes(a) &&
+    slopes.includes(c) &&
+    constants.includes(b) &&
+    constants.includes(d) &&
+    denominators.includes(p) &&
+    Number.isInteger(q) &&
+    denominators.includes(Math.abs(q)) &&
+    !(a === c && b === d && p === Math.abs(q)),
+};
+const scale = (p: Polynomial, factor: Rational): Polynomial =>
+  p.map((c) => multiply(c, factor));
+/** Every formal coefficient of the saved answer must equal left·u + right·v. */
+function checkCombination(
+  answer: ArithmeticV2Answer,
+  left: Polynomial,
+  right: Polynomial,
+  [un, ud]: Rational,
+  [vn, vd]: Rational,
+): boolean {
+  const result = readPolynomial(answer);
+  if (!result) return false;
+  for (let e = 0; e < Math.max(result.length, left.length, right.length); e++) {
+    const [n, d] = coefficient(result, e),
+      a = coefficient(left, e)[0],
+      c = coefficient(right, e)[0];
+    // n/d = a·un/ud + c·vn/vd, cross-multiplied.
+    if (n * ud * vd !== (a * un * vd + c * vn * ud) * d) return false;
+  }
+  return true;
+}
+const linearExpansion: readonly ArithmeticV2Definition[] = [
+  family({
+    id: "m1-linear-distribute-combine",
+    grade: "중1",
+    strand: "문자식",
+    title: "괄호 앞에 계수가 있는 일차식의 계산",
+    description:
+      "두 일차식에 각각 정수 계수를 곱한 뒤 더하거나 뺍니다. 분배법칙으로 괄호를 풀고 동류항을 모읍니다.",
+    labels: ["문자식", "식의 계산", "분배법칙"],
+    rankGroup: "m1-linear-expression",
+    domain: distributeDomain,
+    prompt: ([k, a, b, m, c, d]) => {
+      const left = poly([b, a]),
+        right = poly([d, c]);
+      const text = (latex: boolean) =>
+        `${scaledBracket(k, polynomialText(left, latex), latex, true)} ${scaledBracket(m, polynomialText(right, latex), latex, false)}`;
+      return math(text(false), text(true), "식을 간단히 하시오.");
+    },
+    solve: ([k, a, b, m, c, d]) =>
+      polynomialAnswer(
+        plus(
+          scale(poly([b, a]), rational(k)),
+          scale(poly([d, c]), rational(m)),
+        ),
+      ),
+    check: ([k, a, b, m, c, d], answer) =>
+      checkCombination(
+        answer,
+        poly([b, a]),
+        poly([d, c]),
+        rational(k),
+        rational(m),
+      ),
+  }),
+  family({
+    id: "m1-linear-fraction-combine",
+    grade: "중1",
+    strand: "문자식",
+    title: "분수 꼴 일차식의 계산",
+    description:
+      "분모가 2~6인 두 분수 꼴 일차식을 더하거나 뺍니다. 통분한 뒤 동류항을 모으고 계수는 기약분수로 씁니다.",
+    labels: ["문자식", "식의 계산", "분수 꼴"],
+    rankGroup: "m1-linear-expression",
+    domain: fractionCombineDomain,
+    prompt: ([a, b, p, c, d, q]) => {
+      const left = poly([b, a]),
+        right = poly([d, c]),
+        sign = q < 0 ? "-" : "+";
+      return math(
+        `(${polynomialText(left)})/${p} ${sign} (${polynomialText(right)})/${Math.abs(q)}`,
+        `\\frac{${polynomialText(left, true)}}{${p}} ${sign} \\frac{${polynomialText(right, true)}}{${Math.abs(q)}}`,
+        "식을 간단히 하시오.",
+      );
+    },
+    solve: ([a, b, p, c, d, q]) =>
+      polynomialAnswer(
+        plus(
+          scale(poly([b, a]), rational(1, p)),
+          scale(poly([d, c]), rational(q < 0 ? -1 : 1, Math.abs(q))),
+        ),
+      ),
+    check: ([a, b, p, c, d, q], answer) =>
+      checkCombination(
+        answer,
+        poly([b, a]),
+        poly([d, c]),
+        rational(1, p),
+        rational(q < 0 ? -1 : 1, Math.abs(q)),
+      ),
+  }),
+];
+
 export const POLYNOMIAL_DEFINITIONS: readonly ArithmeticV2Definition[] = [
   algebra({
     id: "m1-like-terms",
@@ -330,4 +507,5 @@ export const POLYNOMIAL_DEFINITIONS: readonly ArithmeticV2Definition[] = [
     domain: linearDomain,
     operands: ([a, b, c, d]) => [poly([b, a]), poly([d, c])],
   }),
+  ...linearExpansion,
 ];
