@@ -5,6 +5,7 @@ import {
   type FadingTeacherFlag,
   type FadingTeacherSummary,
 } from "@/contracts/fadingTeacher.contract";
+import { kstDateOf } from "@/lib/kstDate";
 import type { FadingConcept } from "./concepts";
 import type { FadingStep } from "./erasure";
 import {
@@ -35,6 +36,9 @@ export const FADING_IDLE_FLAG_DAYS = FADING_LONG_BREAK_DAYS;
 /** 시작 전 — 계정을 만든 날부터 이만큼(날) 뒤부터(만든 날을 모르면 바로). */
 export const FADING_NOT_STARTED_GRACE_DAYS = 3;
 
+/** 최근 며칠의 사실을 싣는가(오늘 포함) — 사실 표시의 창일 뿐이다. 판정에 쓰지 않으므로 정책 판과 무관하다. */
+export const FADING_TEACHER_RECENT_DAYS = 7;
+
 /** 학생 계정의 사실 — 꺼진 계정은 없는 것으로 친다. 만든 날은 한국 날짜. */
 export type FadingTeacherAccount = {
   hasAccount: boolean;
@@ -62,6 +66,16 @@ export function fadingTeacherSummary(
     if (stored.dueOn !== null) late.push(day - fadingDayOfDate(stored.dueOn));
   }
   const todayRow = fading?.days.find((d) => d.date === today);
+  // 추가 확인 대기열에 지금 남은 줄 — 저장된 줄의 since · fails · checks 만(판정이 아니다).
+  const rows = (fading?.relearn?.items ?? []).filter(
+    (item) => !known || known.has(item.conceptId),
+  );
+  const oldest = rows.length ? Math.min(...rows.map((r) => r.since)) : null;
+  // 최근 7일(오늘 포함) — 평가를 닫은 날 수 · 첫 평가 수.
+  const recentDays = (fading?.days ?? []).filter((d) => {
+    const ago = day - fadingDayOfDate(d.date);
+    return ago >= 0 && ago < FADING_TEACHER_RECENT_DAYS && d.reviews > 0;
+  });
   const lastOn = fading?.streak.lastOn ?? null;
   const idleDays = fadingIdleDays(
     lastOn === null ? null : fadingDayOfDate(lastOn),
@@ -105,6 +119,17 @@ export function fadingTeacherSummary(
       best: fading?.streak.best ?? 0,
     },
     lapses,
+    relearn: {
+      waiting: rows.length,
+      failing: rows.filter((r) => r.fails > 0).length,
+      fails: rows.reduce((n, r) => n + r.fails, 0),
+      checks: rows.reduce((n, r) => n + r.checks, 0),
+      sinceOn: oldest === null ? null : kstDateOf(new Date(oldest)),
+    },
+    recent: {
+      days: recentDays.length,
+      fresh: recentDays.reduce((n, d) => n + d.fresh, 0),
+    },
     // 계정이 없으면 그것 하나만 — 학생이 할 수 있는 일이 없으니 다른 까닭은 뜻이 없다.
     flags: reasons["no-account"]
       ? ["no-account"]

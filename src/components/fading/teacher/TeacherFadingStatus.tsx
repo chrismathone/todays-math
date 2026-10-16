@@ -281,8 +281,49 @@ function StudentDetailContent({
           <dt>‘다시’ 평가</dt>
           <dd>{summary.lapses}회</dd>
         </div>
+        {summary.relearn ? (
+          <>
+            <div>
+              <dt>추가 확인 남음</dt>
+              <dd>{summary.relearn.waiting}문장</dd>
+            </div>
+            <div>
+              <dt>추가 확인 틀림</dt>
+              <dd>
+                {summary.relearn.fails}회 · {summary.relearn.failing}문장
+              </dd>
+            </div>
+            <div>
+              <dt>추가 확인 횟수</dt>
+              <dd>{summary.relearn.checks}회</dd>
+            </div>
+            <div>
+              <dt>가장 오래 남은 추가 확인</dt>
+              <dd>
+                {summary.relearn.sinceOn
+                  ? `${summary.relearn.sinceOn}부터`
+                  : "없음"}
+              </dd>
+            </div>
+          </>
+        ) : null}
+        {summary.recent ? (
+          <div>
+            <dt>최근 7일</dt>
+            <dd>
+              평가한 날 {summary.recent.days}일 · 첫 평가 {summary.recent.fresh}
+              개
+            </dd>
+          </div>
+        ) : null}
       </dl>
       <p className={s.note}>배운 개념은 첫 평가를 마친 개념입니다.</p>
+      {summary.relearn ? (
+        <p className={s.note}>
+          추가 확인은 대기열에 남은 문장의 기록입니다. 살펴볼 까닭에는 넣지
+          않습니다.
+        </p>
+      ) : null}
       <dl className={s.steps} aria-label="단계별 개념 수">
         {([1, 2, 3, 4] as const).map((step) => (
           <div key={step}>

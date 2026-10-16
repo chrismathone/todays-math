@@ -306,6 +306,9 @@ describe("반 현황", () => {
       idleDays: 15,
       streak: { current: 0, best: 1 },
       lapses: 0,
+      // 추가 확인 대기열 · 최근 7일의 사실(2026-10-16) — 판정이 아니다. 이 학생은 대기열이 없고 9월 20일 뒤로 평가가 없다.
+      relearn: { waiting: 0, failing: 0, fails: 0, checks: 0, sinceOn: null },
+      recent: { days: 0, fresh: 0 },
       flags: ["overdue", "idle"],
     });
     expect(noAccount!.summary.flags).toEqual(["no-account"]);

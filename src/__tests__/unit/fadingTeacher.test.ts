@@ -113,6 +113,8 @@ describe("교사가 보는 숫자 — 세는 값뿐이다", () => {
       idleDays: null,
       streak: { current: 0, best: 0 },
       lapses: 0,
+      relearn: { waiting: 0, failing: 0, fails: 0, checks: 0, sinceOn: null },
+      recent: { days: 0, fresh: 0 },
       flags: [],
     });
   });
@@ -278,5 +280,78 @@ describe("살펴볼 까닭 — 문턱은 정책 판의 값이다", () => {
     expect(
       summary(record({ a: rated(9), b: rated(8), c: rated(7) }, 12)).flags,
     ).toEqual(["overdue", "idle"]);
+  });
+});
+
+describe("추가 확인(단기 재학습)과 최근 7일 — 사실만 싣는다(판정이 아니다 · 2026-10-16)", () => {
+  /** 한국 날짜 `date` 의 낮 12시(UTC 3시). */
+  const noon = (date: string) => Date.parse(`${date}T03:00:00Z`);
+  const row = (
+    conceptId: string,
+    propositionId: string,
+    extra: Partial<NonNullable<StoredFading["relearn"]>["items"][number]> = {},
+  ): NonNullable<StoredFading["relearn"]>["items"][number] => ({
+    conceptId,
+    propositionId,
+    digest: "0a0b0c0d",
+    stage: "retry",
+    dueAt: noon(TODAY),
+    origin: "missed",
+    since: noon(TODAY),
+    fails: 1,
+    checks: 0,
+    ...extra,
+  });
+
+  it("대기열에 남은 줄 · 틀린 적이 있는 줄 · 틀림의 합 · 판정 난 확인의 합 · 가장 오래 남은 줄이 든 날 — 은행에 없는 개념의 줄은 세지 않는다", () => {
+    const state: StoredFading = {
+      ...record({ a: rated(1), b: rated(2) }, 0),
+      relearn: {
+        version: 1,
+        items: [
+          row("a", "a1", { fails: 2, checks: 3, since: noon(ago(2)) }),
+          row("a", "a2", {
+            origin: "exposed",
+            stage: "confirm",
+            fails: 0,
+            checks: 0,
+          }),
+          row("b", "b1", { fails: 1, checks: 1, since: noon(ago(1)) }),
+          row("gone", "g1", { fails: 5, checks: 5, since: noon(ago(9)) }),
+        ],
+        seen: [],
+        graded: [],
+        day: null,
+      },
+    };
+    const known = new Set(["a", "b"]);
+    const got = summary(state, ACCOUNT, known);
+    expect(got.relearn).toEqual({
+      waiting: 3,
+      failing: 2,
+      fails: 3,
+      checks: 4,
+      sinceOn: ago(2),
+    });
+    // 판정이 아니다 — 까닭(flags)은 대기열과 상관없다.
+    expect(got.flags).toEqual(
+      summary({ ...state, relearn: undefined }, ACCOUNT, known).flags,
+    );
+  });
+
+  it("최근 7일(오늘 포함) — 평가를 닫은 날 수와 첫 평가 수. 여드레 전은 넣지 않는다", () => {
+    const days = [7, 6, 5, 4, 3, 2, 1, 0].map((n) => ({
+      date: ago(n),
+      reviews: 2,
+      passed: 1,
+      fresh: n === 7 ? 3 : 0,
+    }));
+    expect(summary(record({ a: rated(1) }, null, days)).recent).toEqual({
+      days: 7,
+      fresh: 0,
+    });
+    expect(
+      summary(record({ a: rated(1) }, null, days.slice(0, 3))).recent,
+    ).toEqual({ days: 2, fresh: 0 });
   });
 });

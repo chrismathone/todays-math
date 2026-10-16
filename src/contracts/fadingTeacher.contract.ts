@@ -51,6 +51,25 @@ export const fadingTeacherSummarySchema = z.strictObject({
   streak: z.strictObject({ current: count, best: count }),
   /** «다시»로 닫은 횟수의 합. */
   lapses: count,
+  /**
+   * 추가 확인(단기 재학습) 대기열에 **지금 남은** 줄의 사실 — 저장된 줄의 `since` · `fails` · `checks` 만 센다(2026-10-16).
+   * 🔴 판정이 아니다(«살펴볼 까닭»에 들지 않는다). 남은 줄 · 그중 틀린 적이 있는 줄 · 틀림의 합 · 판정 난 확인의 합 · 가장 오래 남은 줄이 든 날(한국 날짜).
+   * 선택 칸이다 — 이 칸이 없던 서버의 응답도 읽는다.
+   */
+  relearn: z
+    .strictObject({
+      waiting: count,
+      failing: count,
+      fails: count,
+      checks: count,
+      sinceOn: dateSchema.nullable(),
+    })
+    .optional(),
+  /**
+   * 최근 7일(오늘 포함)에 평가를 닫은 날 수와 그동안의 첫 평가 수 — 사실 표시다(«매일 하는데 새 개념이 없다»를 교사가 읽게).
+   * 🔴 7일은 검증된 학습 진단 문턱이 아니다 — 판정에 쓰지 않는다. 선택 칸이다.
+   */
+  recent: z.strictObject({ days: count, fresh: count }).optional(),
   flags: z.array(z.enum(FADING_TEACHER_FLAGS)),
 });
 export type FadingTeacherSummary = z.infer<typeof fadingTeacherSummarySchema>;
