@@ -313,8 +313,9 @@ describe("화면이 실어 보낸 학생과 로그인한 학생이 다르면 받
     for (const response of responses) {
       expect(response.status).toBe(409);
       expect(response.headers.get("Cache-Control")).toContain("no-store");
+      // 내용이 바뀐 409(`CONFLICT`)와 코드를 가른다 — 화면은 다시 읽지 않고 그 화면을 내린다(D1).
       expect((await response.json()).error).toMatchObject({
-        code: "CONFLICT",
+        code: "STUDENT_CHANGED",
         message: STUDENT_CHANGED_MESSAGE,
       });
     }
@@ -333,6 +334,19 @@ describe("화면이 실어 보낸 학생과 로그인한 학생이 다르면 받
     expect(stored().fading!.concepts[conceptId]).toBeDefined();
     expect((await postRaw({ action: "drop", conceptId })).status).toBe(200);
     expect(stored().fading!.concepts[conceptId]).toBeUndefined();
+  });
+
+  it("②(`MATH_FADING_STUDENT_HEADER=required`): «오늘 할 일»도 같은 문이라 머리 없는 읽기는 기록을 읽기 전에 `STUDENT_CHANGED` 다", async () => {
+    vi.stubEnv("MATH_FADING_STUDENT_HEADER", "required");
+    f.reads = 0;
+    const response = await daily();
+    expect(response.status).toBe(409);
+    expect((await response.json()).error).toMatchObject({
+      code: "STUDENT_CHANGED",
+      message: STUDENT_CHANGED_MESSAGE,
+    });
+    expect(f.reads).toBe(0);
+    await plan(await daily("", mine()));
   });
 
   it("로그인이 없으면 머리가 맞아도 401 이다 — 머리는 로그인을 대신하지 않는다", async () => {

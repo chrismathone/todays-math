@@ -206,11 +206,8 @@ function ExplorerGame({
   );
   const relearn = useFadingRelearn(relearnSource, (failure) => {
     if (failure.code === "UNAUTHORIZED") router.replace("/learn/login");
-    else if (
-      failure.code === "CONFLICT" &&
-      failure.message === STUDENT_CHANGED_MESSAGE
-    )
-      refresh();
+    // Another student signed in on this device (D1): the code, not the message, says so.
+    else if (failure.code === "STUDENT_CHANGED") refresh();
     else if (
       failure.code === "FORBIDDEN" &&
       failure.message === STUDENT_MUST_CHANGE_MESSAGE
@@ -1197,11 +1194,7 @@ function ExplorerGame({
                 onAccessFailure={(failure) => {
                   if (failure.code === "UNAUTHORIZED")
                     router.replace("/learn/login");
-                  else if (
-                    failure.code === "CONFLICT" &&
-                    failure.message === STUDENT_CHANGED_MESSAGE
-                  )
-                    refresh();
+                  else if (failure.code === "STUDENT_CHANGED") refresh();
                   else if (
                     failure.code === "FORBIDDEN" &&
                     failure.message === STUDENT_MUST_CHANGE_MESSAGE

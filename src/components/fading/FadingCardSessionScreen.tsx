@@ -37,6 +37,7 @@ import {
   newFadingId,
   type FadingConceptDetail,
   type FadingSource,
+  type FadingSourceError,
 } from "@/lib/fading/source";
 import {
   FadingAnkiCard,
@@ -69,6 +70,8 @@ export type FadingSessionScreenProps = {
   paused?: boolean;
   onEvidence?: (observation: FadingRelearnObservation) => void;
   onBoundary?: () => void;
+  /** A failed request that is about access (another student signed in — D1 · signed out) — the owner closes the screen. */
+  onAccessFailure?: (error: FadingSourceError) => void;
 };
 
 const cardStepNames = {
@@ -88,6 +91,7 @@ export function FadingCardSessionScreen({
   paused = false,
   onEvidence,
   onBoundary,
+  onAccessFailure,
 }: FadingSessionScreenProps) {
   const content = practice?.content ?? state.opened!;
   const concept = content.concept;
@@ -133,7 +137,12 @@ export function FadingCardSessionScreen({
   const nativeTab = useRef(false);
   const focusInput = useRef(false);
   const inputId = useId();
-  const actions = useFadingSessionActions({ source, onState, onReconcile });
+  const actions = useFadingSessionActions({
+    source,
+    onState,
+    onReconcile,
+    onAccessFailure,
+  });
   const stale = !!state.session?.stale && !practice;
   const disabled = paused || actions.busy || !!actions.failure || !!stageReady;
   const visibleStep = compare?.step ?? local.step;
@@ -357,11 +366,13 @@ export function FadingCardSessionScreen({
       const placed = placeAnswer(local, concept, placement, content.traps);
       setActive(placement.targetId);
       attempts.current.push(placement);
-      if (placed.outcome === "wrong" && !practice)
+      // A wrong answer before the step is sent is reported at once (minute check from this moment). At step 4 the
+      // `miss` action below carries it and the server registers it in the same save (D3) — no separate evidence.
+      if (placed.outcome === "wrong" && !practice && local.step !== 4)
         onEvidence?.({
           kind: "step",
           ...ref,
-          step: local.step as 2 | 3 | 4,
+          step: local.step as 2 | 3,
           placements: [...attempts.current],
         });
       const text = "text" in placement ? placement.text : placement.chipId;
@@ -444,34 +455,54 @@ export function FadingCardSessionScreen({
   }
 
   function skip() {
-    if (disabled || !filling || needsSure) return;
-    gaveUp.current = true;
-    if (!practice)
-      onEvidence?.({
-        kind: "step",
-        ...ref,
-        step: local.step as 2 | 3 | 4,
-        placements: [...attempts.current],
-        ...(inputKind === "typed"
-          ? { gaveUpCards: [proposition.id] }
-          : { gaveUp: true }),
-      });
+    if (disabled || actions.locked.current || !filling || needsSure) return;
     const next =
       inputKind === "typed"
         ? giveUpCard(local, concept, proposition.id)
         : giveUpStep(local, concept);
-    if (next.results.length > local.results.length) finish(next);
-    else {
-      setLocal(next);
-      position(
-        blanks.find(
-          (target) =>
-            !(target.id in next.filled) && !next.skipped?.includes(target.id),
-        )?.id ?? null,
-      );
-      setWrong(null);
-      if (!practice) onBoundary?.();
+    if (next === local) return;
+    const advance = () => {
+      gaveUp.current = true;
+      if (next.results.length > local.results.length) finish(next);
+      else {
+        setLocal(next);
+        position(
+          blanks.find(
+            (target) =>
+              !(target.id in next.filled) && !next.skipped?.includes(target.id),
+          )?.id ?? null,
+        );
+        setWrong(null);
+        if (!practice) onBoundary?.();
+      }
+    };
+    if (practice) {
+      advance();
+      return;
     }
+    if (inputKind === "typed") {
+      // A given-up card is saved the moment it happens (D2): the server replays the placements so far and records the
+      // card's open blanks as misses — a refresh cannot clear them. The local input stays; the next card opens only after
+      // the save succeeds (a lost save is retried with the same request). The server registers the minute check too (D3).
+      actions.send(
+        {
+          action: "give-up-card",
+          ...ref,
+          propositionId: proposition.id,
+          placements: [...attempts.current],
+        },
+        advance,
+      );
+      return;
+    }
+    onEvidence?.({
+      kind: "step",
+      ...ref,
+      step: local.step as 2 | 3 | 4,
+      placements: [...attempts.current],
+      gaveUp: true,
+    });
+    advance();
   }
 
   function nextStep() {

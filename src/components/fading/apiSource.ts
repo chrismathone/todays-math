@@ -62,6 +62,7 @@ export async function requestFading<T>(
       if (
         [
           "CONFLICT",
+          "STUDENT_CHANGED",
           "NOT_FOUND",
           "VALIDATION_ERROR",
           "UNAUTHORIZED",

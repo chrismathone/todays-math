@@ -10,7 +10,9 @@ import StudentMathExplorers from "@/components/math-explorers/StudentMathExplore
 import ExplorerConceptMemory from "@/components/math-explorers/ExplorerConceptMemory";
 import { createLocalFadingSource } from "@/lib/fading/local";
 import { createLocalFadingRelearnSource } from "@/lib/fading/relearnLocal";
+import { chipFits, chipTray } from "@/lib/fading/chips";
 import { fadingTargets, type FadingConcept } from "@/lib/fading/concepts";
+import { erasedTargets } from "@/lib/fading/erasure";
 import { FadingSourceError, type FadingSource } from "@/lib/fading/source";
 import { createExplorerState, explorerView } from "@/lib/math-explorers/engine";
 import type { ExplorerState } from "@/contracts/mathExplorers.contract";
@@ -50,11 +52,12 @@ const concept: FadingConcept = {
   })),
 };
 
-function local() {
+function local(now?: () => number) {
   const source = createLocalFadingSource({
     concepts: [concept],
     today,
     cards: true,
+    ...(now ? { now } : {}),
   });
   // Keep testing sources that provide only the original four methods.
   return { ...source, dailyPlan: undefined };
@@ -182,20 +185,26 @@ function isolated(source?: FadingSource) {
     />,
   );
 }
-async function atFour() {
-  const source = local();
+/** A card session at step 4 — steps 2 and 3 filled correctly, so nothing is registered for a minute check yet (D3). */
+async function atFour(now?: () => number) {
+  const source = local(now);
   await source.act({ action: "pick", conceptId: concept.id });
   const opened = await source.act({ action: "open", conceptId: concept.id });
   const ref = { conceptId: concept.id, sessionId: opened.session!.id };
   await source.act({ action: "read", ...ref, seen: "123" });
-  for (const step of [2, 3] as const)
-    await source.act({
-      action: "step",
-      ...ref,
-      step,
-      placements: [],
-      gaveUp: true,
+  for (const step of [2, 3] as const) {
+    const tray = chipTray(concept, step, { seed: opened.session!.seed });
+    const used = new Set<string>();
+    const placements = erasedTargets(concept, step).map((target) => {
+      const chip = tray.find(
+        (item) => !used.has(item.id) && chipFits(concept, target.id, item),
+      )!;
+      used.add(chip.id);
+      return { targetId: target.id, chipId: chip.id };
     });
+    await source.act({ action: "step", ...ref, step, placements });
+  }
+  expect(source.snapshot().relearn).toBeUndefined();
   return { source, ref };
 }
 async function exit() {
@@ -234,8 +243,8 @@ afterEach(() => {
 
 describe("Explorer concept memory inside the old shell", () => {
   it("queues cold checks via the first rating receipt and leaves long-term and explorer records unchanged by a minute check", async () => {
-    const { source } = await atFour();
     let now = Date.UTC(2026, 9, 7);
+    const { source } = await atFour(() => now);
     const relearn = createLocalFadingRelearnSource({
       main: source,
       concepts: [concept],
@@ -270,16 +279,21 @@ describe("Explorer concept memory inside the old shell", () => {
       );
     fireEvent.click(screen.getByRole("button", { name: /^알맞음/ }));
     await screen.findByRole("heading", { name: "풀이를 마쳤어요" });
-    expect(record).toHaveBeenCalledWith(
-      expect.objectContaining({ kind: "rated", conceptId: concept.id }),
-    );
+    // The rating registered the cold checks inside its own save (D3) — no separate evidence request.
+    expect(record).not.toHaveBeenCalled();
     expect((await relearn.queue()).items).toHaveLength(
       concept.propositions.length,
     );
     expect(
       (await relearn.queue()).items.every((row) => row.origin === "exposed"),
     ).toBe(true);
-    const longTerm = source.snapshot();
+    // The long-term record — everything but the minute queue, which lives in the same slot (D3).
+    const outsideQueue = () => {
+      const rest = source.snapshot();
+      delete rest.relearn;
+      return rest;
+    };
+    const longTerm = outsideQueue();
     fireEvent.click(screen.getByRole("button", { name: "오늘의 복습으로" }));
     now += 60000;
     fireEvent(window, new Event("focus"));
@@ -294,14 +308,14 @@ describe("Explorer concept memory inside the old shell", () => {
     });
     fireEvent.click(within(check).getByRole("button", { name: "답 제출" }));
     await within(check).findByRole("button", { name: "원래 학습으로" });
-    expect(source.snapshot()).toEqual(longTerm);
+    expect(outsideQueue()).toEqual(longTerm);
     expect(old).toEqual(before);
     expect((await relearn.queue()).today.checks).toBe(1);
     expect(fetch).not.toHaveBeenCalled();
   });
   it("records partial wrong/give-up evidence before the main step and keeps minute checks separate from explorer progress", async () => {
-    const { source, ref } = await atFour();
     let now = 1000;
+    const { source, ref } = await atFour(() => now);
     const relearn = createLocalFadingRelearnSource({
       main: source,
       concepts: [concept],
@@ -326,16 +340,17 @@ describe("Explorer concept memory inside the old shell", () => {
     const input = await screen.findByRole("textbox", { name: /빈칸 답 입력/ });
     fireEvent.change(input, { target: { value: "외심" } });
     fireEvent.click(screen.getByRole("button", { name: "입력" }));
+    // A wrong answer at step 4 goes out as `miss`; the server registers the minute check in that same save (D3).
     await waitFor(() =>
-      expect(record).toHaveBeenCalledWith(
+      expect(mainAction).toHaveBeenCalledWith(
         expect.objectContaining({
-          kind: "step",
+          action: "miss",
           ...ref,
-          step: 4,
-          placements: [{ targetId: "memory-p0#1", text: "외심" }],
+          placement: { targetId: "memory-p0#1", text: "외심" },
         }),
       ),
     );
+    expect(record).not.toHaveBeenCalled();
     expect((await source.state()).session?.step).toBe(4);
     expect(source.snapshot().session?.phase).toBe("steps");
     expect(
@@ -343,13 +358,23 @@ describe("Explorer concept memory inside the old shell", () => {
     ).toBe(false);
     const queued = await relearn.queue();
     expect(queued.items[0]?.dueAt).toBe(now + queued.intervals.retryMs);
+    // Giving the card up is saved at once (D2) — its open blank is a recorded miss and stays after a refresh.
     fireEvent.click(screen.getByRole("button", { name: "아직 모르겠어요" }));
     await waitFor(() =>
-      expect(record).toHaveBeenCalledWith(
-        expect.objectContaining({ gaveUpCards: ["memory-p0"] }),
+      expect(mainAction).toHaveBeenCalledWith(
+        expect.objectContaining({
+          action: "give-up-card",
+          ...ref,
+          propositionId: "memory-p0",
+          placements: [{ targetId: "memory-p0#1", text: "외심" }],
+        }),
       ),
     );
-    expect(source.snapshot().session?.phase).toBe("steps");
+    expect(record).not.toHaveBeenCalled();
+    expect(source.snapshot().session).toMatchObject({
+      phase: "steps",
+      missedAtFour: ["memory-p0#1"],
+    });
     expect(original).toEqual(unchanged);
     expect(fetch).not.toHaveBeenCalled();
     now += 60000;
@@ -363,8 +388,8 @@ describe("Explorer concept memory inside the old shell", () => {
   });
 
   it("offers a ready check at a completed sentence, preserves main drafts and pauses its keyboard while mounted", async () => {
-    const { source, ref } = await atFour();
     let now = 1000;
+    const { source, ref } = await atFour(() => now);
     const relearn = createLocalFadingRelearnSource({
       main: source,
       concepts: [concept],
@@ -444,7 +469,7 @@ describe("Explorer concept memory inside the old shell", () => {
               ...rejectedLocal,
               dailyPlan: vi.fn(async () => {
                 throw new FadingSourceError(
-                  "CONFLICT",
+                  "STUDENT_CHANGED",
                   STUDENT_CHANGED_MESSAGE,
                   409,
                 );
@@ -453,7 +478,11 @@ describe("Explorer concept memory inside the old shell", () => {
           : rejectedLocal;
       if (origin === "state")
         vi.spyOn(rejected, "state").mockRejectedValue(
-          new FadingSourceError("CONFLICT", STUDENT_CHANGED_MESSAGE, 409),
+          new FadingSourceError(
+            "STUDENT_CHANGED",
+            STUDENT_CHANGED_MESSAGE,
+            409,
+          ),
         );
       const current = local();
       const factory = vi
@@ -764,12 +793,17 @@ describe("Explorer concept memory inside the old shell", () => {
     ).not.toBeInTheDocument();
     fireEvent.change(input, { target: { value: "틀린 답" } });
     fireEvent.submit(input.closest("form")!);
-    for (let index = 0; index < concept.propositions.length; index++) {
-      const giveUp = screen.queryByRole("button", { name: "아직 모르겠어요" });
-      if (!giveUp) break;
-      fireEvent.click(giveUp);
-    }
+    // The first card holds the unrecognised answer; the other two are given up — each one saved before the next opens (D2).
+    const givenUp = () =>
+      actions.mock.calls.filter(([action]) => action.action === "give-up-card")
+        .length;
+    fireEvent.click(screen.getByRole("button", { name: "아직 모르겠어요" }));
+    await waitFor(() => expect(givenUp()).toBe(1));
+    const last = await screen.findByRole("button", { name: "아직 모르겠어요" });
+    await waitFor(() => expect(last).toBeEnabled());
+    fireEvent.click(last);
     await screen.findByText(/4단계를 마쳤어요/);
+    expect(givenUp()).toBe(2);
     for (let index = 0; index < concept.propositions.length; index++) {
       const different = screen.queryByRole("button", {
         name: "다름",

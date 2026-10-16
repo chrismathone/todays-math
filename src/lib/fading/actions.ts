@@ -8,6 +8,7 @@ import {
   completeFadingReading,
   completeFadingStep,
   dropFadingConcept,
+  giveUpFadingCard,
   openFadingSession,
   pickFadingConcept,
   rateFadingSession,
@@ -97,6 +98,15 @@ export function applyFadingAction(
         concept!,
         stored(action),
         action.placement,
+        traps,
+      );
+    case "give-up-card":
+      return giveUpFadingCard(
+        fading,
+        concept!,
+        stored(action),
+        action.propositionId,
+        action.placements,
         traps,
       );
     case "step":

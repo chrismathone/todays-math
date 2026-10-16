@@ -3,6 +3,7 @@ import type { ConceptEntry } from "@/contracts/conceptBlank.contract";
 import {
   FADING_RECEIPTS_MAX,
   FADING_STORED_DAYS_MAX,
+  FADING_TARGETS_MAX,
   storedFadingSchema,
   type FadingPlacement,
   type StoredFading,
@@ -26,6 +27,7 @@ import {
   fadingContentChanged,
   fadingRatingsFor,
   fadingSummary,
+  giveUpFadingCard,
   openFadingSession,
   pickFadingConcept,
   rateFadingSession,
@@ -433,6 +435,189 @@ describe("저장 칸 — 4단계의 틀림은 그 자리에서 적는다", () =>
     expect(() => reportFadingMiss(done, A, S.a1, wrong)).toThrow(
       FadingConflict,
     );
+  });
+});
+
+describe("저장 칸 — 4단계 카드의 «아직 모르겠어요»는 그 자리에서 적는다(D2)", () => {
+  /** 카드 풀이로 열어 4단계(자판)에 선 칸. */
+  const atFourTyped = () => {
+    let state = completeFadingReading(
+      openFadingSession(
+        emptyFading(),
+        A,
+        DAY1,
+        { sessionId: S.a1, seed: SEED },
+        { cards: true },
+      ),
+      A.id,
+      S.a1,
+    );
+    for (const step of [2, 3] as const)
+      state = completeFadingStep(
+        state,
+        A,
+        S.a1,
+        step,
+        placements(A, step, SEED),
+      );
+    return state;
+  };
+  const first = A.propositions[0]!;
+  const mine = erasedTargets(A, 4)
+    .filter((t) => t.id.startsWith(`${first.id}#`))
+    .map((t) => t.id);
+  const right = (id: string) => ({
+    targetId: id,
+    text: erasedTargets(A, 4).find((t) => t.id === id)!.text,
+  });
+  const other = (id: string) => ({
+    targetId: id,
+    text: erasedTargets(A, 4).find((t) => t.id !== id)!.text,
+  });
+
+  it("부분 입력 뒤 포기하면 그 카드의 아직 못 채운 빈칸만 틀림으로 적힌다 — 다른 카드는 그대로", () => {
+    expect(mine.length).toBeGreaterThan(1);
+    const given = valid(
+      giveUpFadingCard(atFourTyped(), A, S.a1, first.id, [right(mine[0]!)]),
+    );
+    expect(given.session).toMatchObject({
+      phase: "steps",
+      missedAtFour: mine.slice(1),
+    });
+    expect(given.concepts[A.id]!.step).toBe(4);
+  });
+
+  it("어느 답의 글도 아닌 입력은 채운 것으로 쳐서 포기해도 틀림이 아니다", () => {
+    const given = giveUpFadingCard(atFourTyped(), A, S.a1, first.id, [
+      { targetId: mine[0]!, text: "전혀 다른 설명" },
+    ]);
+    expect(given.session!.missedAtFour).toEqual(mine.slice(1));
+  });
+
+  it("그 자리에서 적어 둔 틀림은 남고, 틀리게 쓴 뒤 포기한 빈칸은 한 번만 적힌다", () => {
+    const wrong = other(mine[0]!);
+    const reported = reportFadingMiss(atFourTyped(), A, S.a1, wrong);
+    expect(reported.session!.missedAtFour).toEqual([mine[0]]);
+    const given = valid(giveUpFadingCard(reported, A, S.a1, first.id, [wrong]));
+    expect(given.session!.missedAtFour).toEqual(mine);
+  });
+
+  it("같은 요청이 다시 오면 그대로다 — 다 채운 카드의 포기도 그대로다", () => {
+    const given = giveUpFadingCard(atFourTyped(), A, S.a1, first.id, []);
+    expect(giveUpFadingCard(given, A, S.a1, first.id, [])).toBe(given);
+    const filled = atFourTyped();
+    expect(giveUpFadingCard(filled, A, S.a1, first.id, mine.map(right))).toBe(
+      filled,
+    );
+  });
+
+  it("마지막 카드까지 포기하고 단계를 마치면 틀림이 표적 차례로 합쳐지고 평가는 «다시»뿐이다", () => {
+    let state = atFourTyped();
+    for (const p of A.propositions)
+      state = giveUpFadingCard(state, A, S.a1, p.id, []);
+    const all = erasedTargets(A, 4).map((t) => t.id);
+    expect(state.session!.missedAtFour).toEqual(all);
+    const done = valid(
+      completeFadingStep(state, A, S.a1, 4, [], { gaveUp: true }),
+    );
+    expect(done.session).toMatchObject({ phase: "rating", missedAtFour: all });
+    expect(fadingRatingsFor(done.session!)).toEqual(["again"]);
+  });
+
+  it("복귀한 뒤 다 맞게 써서 마쳐도 적어 둔 포기는 남는다 — «알맞음»을 거절한다", () => {
+    const given = giveUpFadingCard(atFourTyped(), A, S.a1, first.id, []);
+    const done = valid(
+      completeFadingStep(
+        given,
+        A,
+        S.a1,
+        4,
+        erasedTargets(A, 4).map((t) => right(t.id)),
+      ),
+    );
+    expect(done.session!.missedAtFour).toEqual(mine);
+    expect(() => rateFadingSession(done, A, S.a1, "good", DAY1, R[0])).toThrow(
+      FadingConflict,
+    );
+    expect(
+      valid(rateFadingSession(done, A, S.a1, "again", DAY1, R[0])).concepts[
+        A.id
+      ],
+    ).toMatchObject({ lapses: 1, marks: { missed: mine } });
+  });
+
+  it("없는 카드 · 칩 풀이 · 4단계가 아닌 때 · 평가 차례 · 다른 번호 · 틀린 차례는 거절한다", () => {
+    const state = atFourTyped();
+    expect(() => giveUpFadingCard(state, A, S.a1, "nope", [])).toThrow(
+      FadingConflict,
+    );
+    expect(() => giveUpFadingCard(state, A, S.a2, first.id, [])).toThrow(
+      FadingConflict,
+    );
+    expect(() =>
+      giveUpFadingCard(state, A, S.a1, first.id, [
+        { targetId: mine[0]!, chipId: "c1" },
+      ]),
+    ).toThrow(FadingConflict);
+    let chips = completeFadingReading(
+      open(emptyFading(), A, DAY1, S.a1),
+      A.id,
+      S.a1,
+    );
+    for (const step of [2, 3] as const)
+      chips = completeFadingStep(
+        chips,
+        A,
+        S.a1,
+        step,
+        placements(A, step, SEED),
+      );
+    expect(() => giveUpFadingCard(chips, A, S.a1, first.id, [])).toThrow(
+      FadingConflict,
+    );
+    const early = completeFadingReading(
+      openFadingSession(
+        emptyFading(),
+        A,
+        DAY1,
+        { sessionId: S.a1, seed: SEED },
+        { cards: true },
+      ),
+      A.id,
+      S.a1,
+    );
+    expect(() => giveUpFadingCard(early, A, S.a1, first.id, [])).toThrow(
+      FadingConflict,
+    );
+    const done = completeFadingStep(
+      state,
+      A,
+      S.a1,
+      4,
+      erasedTargets(A, 4).map((t) => right(t.id)),
+    );
+    expect(() => giveUpFadingCard(done, A, S.a1, first.id, [])).toThrow(
+      FadingConflict,
+    );
+  });
+
+  it("상한에 닿아 있으면 옛 틀림을 버리지 않고 남은 자리만큼만 더한다", () => {
+    const state = atFourTyped();
+    const old = Array.from(
+      { length: FADING_TARGETS_MAX - 1 },
+      (_, i) => `old${i}#1`,
+    );
+    const nearly = {
+      ...state,
+      session: { ...state.session!, missedAtFour: old },
+    };
+    const given = valid(giveUpFadingCard(nearly, A, S.a1, first.id, []));
+    expect(given.session!.missedAtFour).toEqual([...old, mine[0]]);
+    const full = {
+      ...state,
+      session: { ...state.session!, missedAtFour: [...old, "old99#1"] },
+    };
+    expect(giveUpFadingCard(full, A, S.a1, first.id, [])).toBe(full);
   });
 });
 

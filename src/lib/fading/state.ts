@@ -14,7 +14,7 @@ import {
   fadingTargets,
   type FadingConcept,
 } from "./concepts";
-import type { FadingStep } from "./erasure";
+import { erasedTargets, type FadingStep } from "./erasure";
 import type { FsrsRating } from "./fsrs";
 import {
   FADING_DAILY_CAP,
@@ -295,6 +295,57 @@ export function reportFadingMiss(
           missedAtFour: [...session.missedAtFour, placement.targetId],
         },
       };
+}
+
+/**
+ * 4단계 카드 하나의 «아직 모르겠어요»를 **그 자리에서** 적는다(D2 — 새로고침으로 지우고 다시 풀 수 없게).
+ * 화면이 보낸 «이 단계에서 지금까지 넣은 차례»(`placements` — 틀린 것까지)를 같은 규칙으로 다시 돌려, 그 카드(명제)의
+ * 아직 못 채운 빈칸을 `missedAtFour` 에 더한다. 이미 적힌 빈칸은 다시 적지 않고, 옛 id 는 버리지 않으며, 남은 자리만큼만 더한다
+ * (`reportFadingMiss` 와 같은 규칙). 더할 것이 없으면(다 채운 카드 · 같은 요청의 되풀이) 받은 값 그대로다.
+ * 카드 풀이의 4단계를 푸는 중에만 받는다 — 칩 풀이 · 다른 단계 · 평가 차례 · 없는 카드 · 틀린 차례는 거절한다.
+ */
+export function giveUpFadingCard(
+  state: StoredFading,
+  concept: FadingConcept,
+  sessionId: string,
+  propositionId: string,
+  placements: readonly FadingPlacement[],
+  traps?: readonly FadingTrap[],
+): StoredFading {
+  const { session, stored } = openSession(state, concept.id, sessionId);
+  if (stored.step !== 4 || session.phase !== "steps")
+    throw conflict("4단계를 푸는 중이 아닙니다.");
+  if (fadingModeOf(session) !== "cards")
+    throw conflict("이 풀이의 4단계는 칩으로 채웁니다.");
+  if (!concept.propositions.some((p) => p.id === propositionId))
+    throw conflict("이 개념에 없는 카드입니다.");
+  let replay: FadingSession = {
+    ...startFadingSession(concept, 4, session.seed, "cards"),
+    startStep: session.startStep,
+  };
+  try {
+    for (const placement of placements) {
+      if (replay.results.length) throw conflict("단계를 마친 뒤의 입력입니다.");
+      replay = placeAnswer(replay, concept, placement, traps).session;
+    }
+  } catch (error) {
+    throw conflict(error instanceof Error ? error.message : "잘못된 입력");
+  }
+  if (replay.results.length) throw conflict("단계를 마친 뒤의 입력입니다.");
+  const open = erasedTargets(concept, 4)
+    .map((t) => t.id)
+    .filter((id) => id.startsWith(`${propositionId}#`))
+    .filter((id) => !(id in replay.filled))
+    .filter((id) => !session.missedAtFour.includes(id));
+  const room = FADING_TARGETS_MAX - session.missedAtFour.length;
+  if (!open.length || room <= 0) return state;
+  return {
+    ...state,
+    session: {
+      ...session,
+      missedAtFour: [...session.missedAtFour, ...open.slice(0, room)],
+    },
+  };
 }
 
 /**

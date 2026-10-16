@@ -163,6 +163,7 @@ export function FadingSessionScreen({
   paused = false,
   onEvidence,
   onBoundary,
+  onAccessFailure,
 }: FadingSessionScreenProps) {
   const content = practice?.content ?? state.opened!;
   const concept = content.concept;
@@ -343,15 +344,31 @@ export function FadingSessionScreen({
         error instanceof Error
           ? error.message
           : "처리하지 못했습니다. 다시 시도하세요.";
-      if (error instanceof FadingSourceError && error.code === "CONFLICT") {
+      if (
+        error instanceof FadingSourceError &&
+        error.code === "STUDENT_CHANGED"
+      ) {
+        // Another student owns this device now (D1): drop the pending action for good; the owner closes the screen.
+        pending.current = null;
+        setFailure(message);
+        onAccessFailure?.(error);
+      } else if (
+        error instanceof FadingSourceError &&
+        error.code === "CONFLICT"
+      ) {
         try {
           const next = await source.state();
           pending.current = null;
           onReconcile(next, message);
         } catch (readError) {
+          if (readError instanceof FadingSourceError)
+            onAccessFailure?.(readError);
           setFailure(readError instanceof Error ? readError.message : message);
         }
-      } else setFailure(message);
+      } else {
+        if (error instanceof FadingSourceError) onAccessFailure?.(error);
+        setFailure(message);
+      }
     } finally {
       locked.current = false;
       setSaving(false);
@@ -407,11 +424,13 @@ export function FadingSessionScreen({
     }
     const result = placeChip(local, concept, targetId, chipId, content.traps);
     placements.current.push({ targetId, chipId });
-    if (!result.correct && !practice)
+    // Before step 4 a wrong chip is reported at once; at step 4 the `miss` action below carries it and the server
+    // registers the minute check in the same save (D3).
+    if (!result.correct && !practice && local.step !== 4)
       onEvidence?.({
         kind: "step",
         ...ref,
-        step: local.step as 2 | 3 | 4,
+        step: local.step as 2 | 3,
         placements: [...placements.current],
       });
     setLastTarget(targetId);

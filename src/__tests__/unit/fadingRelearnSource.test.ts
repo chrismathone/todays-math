@@ -5,7 +5,6 @@ import type { FadingAction, FadingState } from "@/contracts/fadingApi.contract";
 import {
   FADING_RELEARN_CONFIRM_MS,
   FADING_RELEARN_RETRY_MS,
-  type FadingRelearnObservation,
   type FadingRelearnQueue,
 } from "@/contracts/fadingRelearn.contract";
 import { chipFits, chipTray } from "@/lib/fading/chips";
@@ -229,6 +228,21 @@ describe("풀이의 행동 → 증거", () => {
         placement: typed[0]!,
       }),
     ).toEqual({ kind: "step", ...ref, step: 4, placements: [typed[0]] });
+    // 4단계 카드 하나의 «아직 모르겠어요»(D2) — 그 단계의 지금까지의 차례와 넘긴 카드 하나(서버가 본 행동과 함께 등록한다).
+    expect(
+      fadingRelearnObservationOf({
+        action: "give-up-card",
+        ...ref,
+        propositionId: "a2",
+        placements: typed,
+      }),
+    ).toEqual({
+      kind: "step",
+      ...ref,
+      step: 4,
+      placements: typed,
+      gaveUpCards: ["a2"],
+    });
     expect(
       fadingRelearnObservationOf({
         action: "rate",
@@ -253,11 +267,12 @@ describe("풀이의 행동 → 증거", () => {
   });
 });
 
-describe("싸개 — 화면이 따로 챙기지 않아도 증거가 대기열에 닿는다", () => {
-  it("2단계에서 틀리면 그 명제가, 평가로 닫으면 나머지가 든다 — 풀이의 답은 싸개 없이 받은 것과 같다", async () => {
+describe("싸개 — 등록은 본 행동과 한 저장으로(D3), 싸개는 대기열을 다시 읽어 줄 뿐이다", () => {
+  it("2단계에서 틀리면 그 명제가, 평가로 닫으면 나머지가 든다 — 증거를 따로 보내지 않고, 풀이의 답은 싸개 없이 받은 것과 같다", async () => {
     const plain = world();
     const wrapped = world();
     const queues: FadingRelearnQueue[] = [];
+    const record = vi.spyOn(wrapped.relearn, "record");
     const source = withFadingRelearn(wrapped.main, wrapped.relearn, {
       onQueue: (queue) => queues.push(queue),
     });
@@ -272,11 +287,13 @@ describe("싸개 — 화면이 따로 챙기지 않아도 증거가 대기열에
       requestId: uuid(50),
     });
     const missed2 = erasedTargets(A, 2)[0]!.id.split("#")[0]!;
-    // 풀이의 답 · 풀이의 저장 칸은 싸개가 있든 없든 같다(대기열은 풀이의 칸을 건드리지 않는다).
+    // 풀이의 답 · 저장 칸(등록된 대기열까지)은 싸개가 있든 없든 같다 — 등록은 본 행동 안에서 됐다.
     expect(b.view).toEqual(a.view);
     expect(wrapped.main.snapshot()).toEqual(plain.main.snapshot());
+    expect(plain.main.snapshot().relearn?.items).toHaveLength(3);
+    expect(record).not.toHaveBeenCalled();
 
-    // 증거는 넷 — 2단계 · 3단계 · 4단계 · 평가. 3단계는 안 틀렸으니 대기열이 그대로이고,
+    // 대기열은 증거가 되는 행동 뒤마다 다시 읽힌다 — 2단계 · 3단계 · 4단계 · 평가. 3단계는 안 틀렸으니 그대로이고,
     // 4단계의 틀림(a2)은 평가를 기다리지 않고 그 차례에서 든다(2단계에서 틀린 명제와 같으면 줄 수는 그대로다).
     expect(queues.map((q) => q.items.length)).toEqual([
       1,
@@ -302,10 +319,56 @@ describe("싸개 — 화면이 따로 챙기지 않아도 증거가 대기열에
     expect(last.today).toEqual({ on: DAY1, checks: 0, cleared: 0, entered: 3 });
   });
 
-  it("풀이의 행동이 실패하면 증거를 알리지 않는다", async () => {
+  it("4단계 카드의 «아직 모르겠어요»(give-up-card)도 본 행동 안에서 등록된다 — 그 카드의 명제가 1분 뒤 확인으로", async () => {
+    const { clock, main, relearn } = world();
+    const queues: FadingRelearnQueue[] = [];
+    const source = withFadingRelearn(main, relearn, {
+      onQueue: (queue) => queues.push(queue),
+    });
+    const first = await solve(source, A, { stopAfter: 3, requestId: uuid(1) });
+    const ref = { conceptId: A.id, sessionId: first.view.session!.id };
+    await source.act({
+      action: "step",
+      ...ref,
+      step: 3,
+      placements: chips(A, 3, first.view.session!.seed),
+    });
+    clock.now = T0 + 7_000;
+    const view = await source.act({
+      action: "give-up-card",
+      ...ref,
+      propositionId: "a2",
+      placements: [],
+    });
+    expect(view.session).toMatchObject({
+      phase: "steps",
+      missedAtFour: ["a2#1", "a2#2"],
+    });
+    expect(queues.at(-1)!.items).toEqual([
+      expect.objectContaining({
+        propositionId: "a2",
+        origin: "missed",
+        dueAt: T0 + 7_000 + MIN,
+        fails: 1,
+      }),
+    ]);
+    // 같은 요청의 되풀이 — 본 전이가 그대로라 등록도 다시 세지 않는다.
+    await source.act({
+      action: "give-up-card",
+      ...ref,
+      propositionId: "a2",
+      placements: [],
+    });
+    expect((await relearn.queue()).items[0]).toMatchObject({
+      dueAt: T0 + 7_000 + MIN,
+      fails: 1,
+    });
+  });
+
+  it("풀이의 행동이 실패하면 대기열을 읽지 않는다", async () => {
     const { main } = world();
-    const record = vi.fn();
-    const source = withFadingRelearn(main, { record });
+    const queue = vi.fn();
+    const source = withFadingRelearn(main, { queue });
     const error = await failure(
       source.act({
         action: "rate",
@@ -316,70 +379,115 @@ describe("싸개 — 화면이 따로 챙기지 않아도 증거가 대기열에
       }),
     );
     expect(error.code).toBe("CONFLICT");
-    expect(record).not.toHaveBeenCalled();
+    expect(queue).not.toHaveBeenCalled();
   });
 
-  it("대기열 쪽의 거절은 풀이를 실패시키지 않는다 — `onError` 로만 알리고 다시 보내지 않는다", async () => {
+  it("대기열 읽기의 거절은 풀이를 실패시키지 않는다 — `onError` 로만 알리고, 등록은 이미 저장 칸에 있다", async () => {
     const { main } = world();
-    const record = vi
-      .fn<FadingRelearnSource["record"]>()
+    const queue = vi
+      .fn<FadingRelearnSource["queue"]>()
       .mockRejectedValue(new FadingSourceError("CONFLICT", "거절", 409));
     const errors: unknown[] = [];
     const source = withFadingRelearn(
       main,
-      { record },
+      { queue },
       { onError: (error) => errors.push(error) },
     );
     const done = await solve(source, A, { requestId: uuid(50) });
     expect(done.view.receipt).toMatchObject({ requestId: uuid(50) });
-    // 2단계 · 3단계 · 4단계 · 평가 — 거절된 것을 다시 보내지 않았다.
-    expect(record).toHaveBeenCalledTimes(4);
+    // 2단계 · 3단계 · 4단계 · 평가 — 네 번 읽으려 했고 네 번 알렸다.
+    expect(queue).toHaveBeenCalledTimes(4);
     expect(errors).toHaveLength(4);
+    expect(main.snapshot().relearn?.items).toHaveLength(3);
   });
 
-  it("연결이 끊겨 못 보낸 증거는 쌓아 두었다가 다음 행동 때 차례대로 먼저 보낸다", async () => {
+  it("🔴 본 행동 성공 + 대기열 읽기 실패(연결 끊김) → 본 행동을 다시 보내지 않고, 돌아와 읽으면 대기열이 회복돼 있다", async () => {
     const { main, relearn } = world();
-    const seen: FadingRelearnObservation[] = [];
+    const act = vi.spyOn(main, "act");
     let offline = true;
-    const record: FadingRelearnSource["record"] = async (observation) => {
+    const queue: FadingRelearnSource["queue"] = async () => {
       if (offline) throw new FadingSourceError("OFFLINE", "끊김", 0);
-      seen.push(observation);
-      return relearn.record(observation);
+      return relearn.queue();
     };
-    const source = withFadingRelearn(main, { record });
-    // 2단계(틀림)까지 끊긴 채로 — 풀이는 그대로 나아간다.
+    const errors: unknown[] = [];
+    const source = withFadingRelearn(
+      main,
+      { queue },
+      { onError: (error) => errors.push(error) },
+    );
     const first = await solve(source, A, {
       miss2: true,
       stopAfter: 2,
       requestId: uuid(50),
     });
     expect(first.view.session!.step).toBe(3);
-    expect(seen).toEqual([]);
-    offline = false;
-    const ref = { conceptId: A.id, sessionId: first.view.session!.id };
-    await source.act({
-      action: "step",
-      ...ref,
-      step: 3,
-      placements: chips(A, 3, first.view.session!.seed),
-    });
-    expect(seen.map((o) => [o.kind, "step" in o ? o.step : null])).toEqual([
-      ["step", 2],
-      ["step", 3],
+    expect(errors).toHaveLength(1);
+    expect(act.mock.calls.map(([a]) => a.action)).toEqual([
+      "open",
+      "read",
+      "step",
     ]);
-    expect((await relearn.queue()).items).toHaveLength(1);
+    // 새로고침을 흉내 낸다 — 저장 칸으로 새 원천을 짓는다. 등록은 그 칸에 이미 있다.
+    offline = false;
+    const reopened = createLocalFadingRelearnSource({
+      main: createLocalFadingSource({
+        concepts: [A, B],
+        today: DAY1,
+        cards: true,
+        fading: main.snapshot(),
+        now: () => T0,
+      }),
+      concepts: [A, B],
+    });
+    expect((await reopened.queue()).items).toEqual([
+      expect.objectContaining({ origin: "missed", dueAt: T0 + MIN }),
+    ]);
+    expect((await queue()).items).toHaveLength(1);
   });
 
-  it("쓰는 길이 닫혀 있으면(404) 그 뒤로는 알리지 않는다", async () => {
+  it("🔴 대기열 읽기가 «학생이 바뀜»이면 그 종료가 먼저다 — 본 행동의 결과를 돌려주지 않고 그 실패를 던진다", async () => {
     const { main } = world();
-    const record = vi
-      .fn<FadingRelearnSource["record"]>()
+    const changed = new FadingSourceError(
+      "STUDENT_CHANGED",
+      "로그인한 학생이 바뀌었어요. 다시 불러와 주세요.",
+      409,
+    );
+    const queue = vi
+      .fn<FadingRelearnSource["queue"]>()
+      .mockRejectedValue(changed);
+    const errors: unknown[] = [];
+    const source = withFadingRelearn(
+      main,
+      { queue },
+      { onError: (error) => errors.push(error) },
+    );
+    // 2단계까지는 싸개 없이 — 3단계를 마친 뒤의 대기열 읽기가 «학생이 바뀜»으로 실패한다.
+    const first = await solve(main, A, { stopAfter: 2, requestId: uuid(1) });
+    const ref = { conceptId: A.id, sessionId: first.view.session!.id };
+    const error = await failure(
+      source.act({
+        action: "step",
+        ...ref,
+        step: 3,
+        placements: chips(A, 3, first.view.session!.seed),
+      }),
+    );
+    expect(error).toBe(changed);
+    expect(errors).toEqual([]);
+    // 본 행동은 섰다(서버라면 저장됐다) — 화면이 그 결과를 쓰지 않을 뿐이다.
+    expect(main.snapshot().concepts[A.id]!.step).toBe(4);
+  });
+
+  it("쓰는 길이 닫혀 있으면(404) 그 뒤로는 읽지 않는다", async () => {
+    const { main } = world();
+    const queue = vi
+      .fn<FadingRelearnSource["queue"]>()
       .mockRejectedValue(
         new FadingSourceError("NOT_FOUND", "주소을(를) 찾을 수 없습니다.", 404),
       );
-    const source = withFadingRelearn(main, { record });
+    const source = withFadingRelearn(main, { queue });
     await solve(source, A, { requestId: uuid(50) });
-    expect(record).toHaveBeenCalledTimes(1);
+    expect(queue).toHaveBeenCalledTimes(1);
   });
 
   it("원천의 다른 길(그 원천에만 있는 길 포함)은 그대로 둔다", async () => {
@@ -475,11 +583,17 @@ describe("서버 없이 도는 대기열 — 넣어 준 시계 · 같은 규칙"
     clock.now = T0 + 60_000;
     const queue = await relearn.queue();
     expect(queue.counts).toEqual({ judging: 0, ready: 3, waiting: 0 });
-    const before = JSON.stringify(main.snapshot());
+    // 대기열 밖의 저장 칸 — 확인은 같은 칸의 `relearn` 만 바꾼다.
+    const outside = () => {
+      const rest = main.snapshot();
+      delete rest.relearn;
+      return JSON.stringify(rest);
+    };
+    const before = outside();
     const done = await relearn.grade(check(queue, "a2", 60));
     expect(done.result.verdict).toBe("passed");
     // 풀이의 저장 칸(열린 B 의 풀이 · A 의 장기 기록)은 글자 그대로다.
-    expect(JSON.stringify(main.snapshot())).toBe(before);
+    expect(outside()).toBe(before);
     expect(main.snapshot().session).toMatchObject({ conceptId: B.id });
     expect(main.snapshot().concepts[A.id]).toMatchObject({
       reviews: 1,
@@ -496,16 +610,23 @@ describe("서버 없이 도는 대기열 — 넣어 준 시계 · 같은 규칙"
     expect(next.session).toMatchObject({ conceptId: B.id, step: 4 });
   });
 
-  it("🔴 새로 고쳐도 대기열이 남는다 — 저장 칸을 받아 다시 열면 같은 대기열이고, 떠나 있던 사이에 때가 된다", async () => {
+  it("🔴 새로 고쳐도 대기열이 남는다 — 저장 칸(대기열까지 든 학생 칸)으로 다시 열면 같은 대기열이고, 떠나 있던 사이에 때가 된다", async () => {
     const { clock, main, relearn } = await seeded();
     clock.now = T0 + 10_000;
     const before = await relearn.queue();
-    const stored = JSON.parse(JSON.stringify(relearn.snapshot()));
+    // 대기열은 본 원천의 칸 안에 있다 — 따로 든 값이 아니다.
+    expect(main.snapshot().relearn).toEqual(relearn.snapshot());
+    const stored = JSON.parse(JSON.stringify(main.snapshot()));
+    const reopenedMain = createLocalFadingSource({
+      concepts: [A, B],
+      today: DAY1,
+      cards: true,
+      fading: stored,
+    });
     const reopened = createLocalFadingRelearnSource({
-      main,
+      main: reopenedMain,
       concepts: [A, B],
       now: () => clock.now,
-      relearn: stored,
     });
     expect(await reopened.queue()).toEqual(before);
     clock.now = T0 + 45 * MIN;
@@ -517,7 +638,10 @@ describe("서버 없이 도는 대기열 — 넣어 준 시계 · 같은 규칙"
       dueAt: T0 + 45 * MIN + FIVE,
     });
     // 처음 것은 그대로다 — 저장 칸은 사본이다.
-    expect((await relearn.queue()).items).toHaveLength(3);
+    expect(
+      (await relearn.queue()).items.find((i) => i.propositionId === "a1"),
+    ).toMatchObject({ stage: "retry", checks: 0 });
+    expect(reopenedMain.snapshot().relearn?.graded).toHaveLength(1);
   });
 
   it("못 알아본 글은 대조로 간다 — 판정 전에는 일정이 그대로이고, «같은 뜻»이면 맞힘이다", async () => {

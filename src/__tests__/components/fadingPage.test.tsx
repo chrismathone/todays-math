@@ -32,4 +32,15 @@ describe("오늘의 기억 페이지 문", () => {
     mocks.student.mockResolvedValue({ mustChangePassword: false });
     expect(await Page()).toBeTruthy();
   });
+  it("화면을 연 학생의 id 를 앱에 넘기고 key 로 삼는다 — 학생이 바뀌면 원천 · 상태가 새로 선다(D1)", async () => {
+    mocks.enabled.mockReturnValue(true);
+    mocks.student.mockResolvedValue({
+      studentId: "student-a",
+      mustChangePassword: false,
+    });
+    expect(await Page()).toMatchObject({
+      key: "student-a",
+      props: { studentId: "student-a" },
+    });
+  });
 });

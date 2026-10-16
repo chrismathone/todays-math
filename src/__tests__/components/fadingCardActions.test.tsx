@@ -135,4 +135,42 @@ describe("카드 풀이의 요청 차례와 재시도", () => {
     });
     expect(actSource).toHaveBeenCalledOnce();
   });
+
+  it("«학생이 바뀜»(STUDENT_CHANGED)이면 대기 행동을 버리고 다시 보내지 않으며 상태를 다시 읽지도 않는다 — 주인에게만 알린다", async () => {
+    const local = createLocalFadingSource({
+      concepts: [],
+      today: "2026-10-07",
+    });
+    const changed = new FadingSourceError(
+      "STUDENT_CHANGED",
+      "로그인한 학생이 바뀌었어요. 다시 불러와 주세요.",
+      409,
+    );
+    const actSource = vi.fn().mockRejectedValue(changed);
+    const read = vi.fn();
+    const reconcile = vi.fn();
+    const after = vi.fn();
+    const access = vi.fn();
+    const { result } = renderHook(() =>
+      useFadingSessionActions({
+        source: { ...local, state: read, act: actSource },
+        onState: vi.fn(),
+        onReconcile: reconcile,
+        onAccessFailure: access,
+      }),
+    );
+    act(() => result.current.send([miss, step], after));
+    await waitFor(() => expect(access).toHaveBeenCalledWith(changed));
+    expect(actSource).toHaveBeenCalledOnce();
+    expect(read).not.toHaveBeenCalled();
+    expect(reconcile).not.toHaveBeenCalled();
+    expect(after).not.toHaveBeenCalled();
+    // 다시 시도도 · 새 행동도 보내지 않는다 — 이 화면은 내려간다.
+    await act(async () => {
+      await result.current.retry();
+    });
+    act(() => result.current.send(rating, after));
+    await act(async () => {});
+    expect(actSource).toHaveBeenCalledOnce();
+  });
 });

@@ -17,6 +17,7 @@ import { erasedTargets } from "@/lib/fading/erasure";
 import { fadingCardBlanks } from "@/lib/fading/cards";
 import { chipTray } from "@/lib/fading/chips";
 import { FadingFillCard } from "@/components/fading/FadingFillCard";
+import { FadingSourceError } from "@/lib/fading/source";
 
 vi.mock("@/components/math-explorers/ExplorerMath", () => ({
   ExplorerMath: ({ text }: { text: string }) => <>{text}</>,
@@ -858,15 +859,28 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
     expect(local.snapshot().concepts[concept.id]!.reviews).toBe(2);
   });
 
-  it("한 카드의 포기는 다음 카드를 보여 주고 끝에 다시만 허용한다", async () => {
+  it("한 카드의 포기는 저장된 뒤 다음 카드를 보여 주고 끝에 다시만 허용한다", async () => {
     const { local, state } = await atFour();
     const send = vi.spyOn(local, "act");
     app(local, state);
     fireEvent.click(screen.getByRole("button", { name: "아직 모르겠어요" }));
-    expect(document.querySelector("[data-fading-sentence]")).toHaveAttribute(
-      "data-fading-sentence",
-      "p1",
+    // The card's give-up is saved first (D2); the next card opens after the save.
+    await waitFor(() =>
+      expect(send).toHaveBeenCalledWith(
+        expect.objectContaining({
+          action: "give-up-card",
+          propositionId: "p0",
+          placements: [],
+        }),
+      ),
     );
+    await waitFor(() =>
+      expect(document.querySelector("[data-fading-sentence]")).toHaveAttribute(
+        "data-fading-sentence",
+        "p1",
+      ),
+    );
+    expect(local.snapshot().session!.missedAtFour).toEqual(["p0#1", "p0#2"]);
     expect(
       screen.queryByRole("region", { name: "내 답과 기준안 대조" }),
     ).not.toBeInTheDocument();
@@ -885,6 +899,124 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
     expect(send).toHaveBeenCalledWith(
       expect.objectContaining({ action: "step", step: 4, gaveUp: true }),
     );
+  });
+
+  it("카드의 포기(D2)는 지금까지 넣은 차례와 함께 저장되고, 저장 뒤 로컬 입력을 지키며 다음 카드로 간다 · 틀리게 쓴 뒤 포기한 빈칸도 적힌다", async () => {
+    const { local, state } = await atFour();
+    const send = vi.spyOn(local, "act");
+    app(local, state);
+    // 첫 카드: 첫 빈칸을 맞게 쓰고 둘째 빈칸은 틀리게 쓴 뒤 포기한다.
+    answer("외심");
+    answer("반지름");
+    await waitFor(() =>
+      expect(send).toHaveBeenCalledWith(
+        expect.objectContaining({ action: "miss" }),
+      ),
+    );
+    await waitFor(() => expect(screen.getByRole("textbox")).toBeEnabled());
+    fireEvent.click(screen.getByRole("button", { name: "아직 모르겠어요" }));
+    await waitFor(() =>
+      expect(send).toHaveBeenCalledWith({
+        action: "give-up-card",
+        conceptId: concept.id,
+        sessionId: state.session!.id,
+        propositionId: "p0",
+        placements: [
+          { targetId: "p0#1", text: "외심" },
+          { targetId: "p0#2", text: "반지름" },
+        ],
+      }),
+    );
+    await waitFor(() =>
+      expect(document.querySelector("[data-fading-sentence]")).toHaveAttribute(
+        "data-fading-sentence",
+        "p1",
+      ),
+    );
+    expect(local.snapshot().session!.missedAtFour).toEqual(["p0#2"]);
+    answer("반지름");
+    answer("90deg");
+    await waitFor(() =>
+      expect(
+        screen.getByRole("region", { name: "내 답과 기준안 대조" }),
+      ).toBeInTheDocument(),
+    );
+    finishComparison();
+    expect(
+      screen.queryByRole("button", { name: /알맞음/ }),
+    ).not.toBeInTheDocument();
+    const sent = send.mock.calls.map(([action]) => action.action);
+    expect(sent).toEqual(["miss", "give-up-card", "step"]);
+    // 로컬 입력은 그대로다 — 저장 전의 차례와 뒤의 차례가 한 줄로 step 에 실린다(서버 응답으로 되돌리지 않는다).
+    expect(send.mock.calls.at(-1)![0]).toMatchObject({
+      action: "step",
+      step: 4,
+      gaveUp: true,
+      placements: [
+        { targetId: "p0#1", text: "외심" },
+        { targetId: "p0#2", text: "반지름" },
+        { targetId: "p1#1", text: "반지름" },
+        { targetId: "p2#1", text: "90deg" },
+      ],
+    });
+  });
+
+  it("포기 저장이 실패하면 다음 카드로 가지 않고 같은 요청을 다시 보낸다 · 마지막 카드의 포기는 저장 뒤 이어서 step 을 보내고, 그 step 이 실패하면 재시도 성공 뒤에만 기준안이 열린다", async () => {
+    const { local, state } = await atFour();
+    const real = local.act.bind(local);
+    let failNext: "give-up-card" | "step" | null = "give-up-card";
+    const send = vi.spyOn(local, "act").mockImplementation(async (action) => {
+      if (failNext === action.action) {
+        failNext = null;
+        throw new FadingSourceError("OFFLINE", "연결 실패", 0);
+      }
+      return real(action);
+    });
+    app(local, state);
+    answer("외심");
+    answer("수직이등분선");
+    answer("반지름");
+    fireEvent.click(screen.getByRole("button", { name: "아직 모르겠어요" }));
+    await screen.findByRole("alert");
+    expect(screen.getByRole("alert")).toHaveTextContent("연결 실패");
+    expect(local.snapshot().session!.missedAtFour).toEqual([]);
+    expect(
+      screen.queryByRole("region", { name: "내 답과 기준안 대조" }),
+    ).not.toBeInTheDocument();
+    // 다시 시도 — 같은 포기가 저장되고, 마지막 카드라 이어서 step 을 보낸다. 그 step 은 실패한다.
+    failNext = "step";
+    fireEvent.click(screen.getByRole("button", { name: "저장 다시 시도" }));
+    await waitFor(() =>
+      expect(local.snapshot().session!.missedAtFour).toEqual(["p2#1"]),
+    );
+    await waitFor(() => expect(screen.getByRole("alert")).toBeInTheDocument());
+    expect(local.snapshot().session!.phase).toBe("steps");
+    expect(
+      screen.queryByRole("region", { name: "내 답과 기준안 대조" }),
+    ).not.toBeInTheDocument();
+    expect(document.body.innerHTML).not.toContain("$90^{\\circ}$");
+    fireEvent.click(screen.getByRole("button", { name: "저장 다시 시도" }));
+    await waitFor(() =>
+      expect(
+        screen.getByRole("region", { name: "내 답과 기준안 대조" }),
+      ).toBeInTheDocument(),
+    );
+    expect(local.snapshot().session).toMatchObject({
+      phase: "rating",
+      missedAtFour: ["p2#1"],
+    });
+    expect(
+      send.mock.calls
+        .map(([action]) => action)
+        .filter((action) => action.action === "give-up-card"),
+    ).toHaveLength(2);
+    expect(
+      send.mock.calls.filter(([action]) => action.action === "step"),
+    ).toHaveLength(2);
+    finishComparison();
+    expect(
+      screen.queryByRole("button", { name: /알맞음/ }),
+    ).not.toBeInTheDocument();
   });
 
   it("Space는 공백이며 Enter 조합/229를 무시하고 Tab은 빈칸으로, Escape 뒤 Tab은 밖으로 간다", async () => {
@@ -1010,7 +1142,8 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
     answer("외심");
     answer("수직이등분선");
     confidence();
-    answer("반지름");
+    // 연습의 카드 포기는 보내지 않는다(D2) — 로컬에서만 넘어간다.
+    fireEvent.click(screen.getByRole("button", { name: "아직 모르겠어요" }));
     confidence();
     answer("90deg");
     expect(

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import type {
   FadingCatalog,
@@ -19,6 +19,8 @@ import { FadingSessionView } from "./FadingSessionView";
 import { FadingScrollFade } from "./FadingScrollFade";
 import { FadingIcon } from "./FadingIcon";
 import { FadingConceptReader } from "./FadingConceptReader";
+import { FadingRelearnModal, FadingRelearnStatus } from "./FadingRelearnCheck";
+import type { FadingRelearnController } from "./useFadingRelearn";
 import s from "./fading.module.css";
 
 export type FadingTab = "home" | "erase" | "catalog" | "stats";
@@ -29,13 +31,23 @@ const tabs = [
   { id: "stats", name: "학습 통계", short: "통계", icon: "stats" },
 ] as const;
 
+/**
+ * The student app shell. With a `relearn` controller (D5) the session screen pauses under a minute check, reports mid-step
+ * evidence, opens ready checks only at a sentence boundary, and the home shows the queue with «추가 확인 시작».
+ * Every read or action failure that is a `FadingSourceError` reaches `onAccessFailure`; when the owner sets
+ * `studentChanged` (another student signed in on this device — D1) the app shows one closing notice and nothing else:
+ * no session, no modal, no retry, and late replies of earlier requests change nothing visible.
+ */
 export function FadingApp({
-  source,
+  source: baseSource,
   initialState,
   initialTab = "home",
   initialSession = false,
   preview = false,
   initialFailure,
+  relearn,
+  onAccessFailure,
+  studentChanged = false,
 }: {
   source: FadingSource;
   initialState?: FadingState;
@@ -43,7 +55,22 @@ export function FadingApp({
   initialSession?: boolean;
   preview?: boolean;
   initialFailure?: string;
+  relearn?: FadingRelearnController;
+  onAccessFailure?: (error: FadingSourceError) => void;
+  studentChanged?: boolean;
 }) {
+  const wrapRelearn = relearn?.wrap;
+  const source = useMemo(
+    () => (wrapRelearn ? wrapRelearn(baseSource) : baseSource),
+    [baseSource, wrapRelearn],
+  );
+  const access = useRef(onAccessFailure);
+  useEffect(() => {
+    access.current = onAccessFailure;
+  }, [onAccessFailure]);
+  const report = (error: unknown) => {
+    if (error instanceof FadingSourceError) access.current?.(error);
+  };
   const [state, setState] = useState<FadingState | null>(initialState ?? null);
   const [tab, setTab] = useState<FadingTab>(initialTab);
   const [catalog, setCatalog] = useState<FadingCatalog | null>(null);
@@ -72,12 +99,13 @@ export function FadingApp({
           if (live) setState(next);
         })
         .catch((error) => {
-          if (live)
-            setFailure(
-              error instanceof Error
-                ? error.message
-                : "불러오지 못했습니다. 다시 시도하세요.",
-            );
+          if (!live) return;
+          setFailure(
+            error instanceof Error
+              ? error.message
+              : "불러오지 못했습니다. 다시 시도하세요.",
+          );
+          report(error);
         });
     return () => {
       live = false;
@@ -92,12 +120,13 @@ export function FadingApp({
         if (live) setCatalog(next);
       })
       .catch((error) => {
-        if (live)
-          setFailure(
-            error instanceof Error
-              ? error.message
-              : "불러오지 못했습니다. 다시 시도하세요.",
-          );
+        if (!live) return;
+        setFailure(
+          error instanceof Error
+            ? error.message
+            : "불러오지 못했습니다. 다시 시도하세요.",
+        );
+        report(error);
       });
     return () => {
       live = false;
@@ -119,12 +148,22 @@ export function FadingApp({
           ? error.message
           : "처리하지 못했습니다. 다시 시도하세요.";
       setFailure(message);
-      if (error instanceof FadingSourceError && error.code === "CONFLICT") {
+      report(error);
+      if (
+        error instanceof FadingSourceError &&
+        error.code === "STUDENT_CHANGED"
+      )
+        pending.current = null; // 다른 학생의 기기다 — 이 화면의 행동은 다시 보내지 않는다.
+      else if (
+        error instanceof FadingSourceError &&
+        error.code === "CONFLICT"
+      ) {
         try {
           setState(await source.state());
           setSessionKey((k) => k + 1);
           pending.current = null;
-        } catch {
+        } catch (readError) {
+          report(readError);
           /* 다시 읽기 단추로 이어 간다. */
         }
       }
@@ -169,6 +208,35 @@ export function FadingApp({
       setInSession(true);
     });
   }
+  if (studentChanged)
+    return (
+      <div className={s.viewport} data-fading-viewport="true">
+        <div
+          className={`${s.root} ${s.scrollRoot}`}
+          data-fading-root="true"
+          data-student-changed="true"
+        >
+          <main className={s.shell}>
+            <div className={`${s.card} ${s.stack}`} role="alert">
+              <h1 className={s.subheading}>
+                다른 학생으로 로그인되어 있습니다
+              </h1>
+              <p className={s.muted}>
+                이 화면의 학습은 더 보내지 않습니다. 새로고침하면 지금 로그인한
+                학생의 화면이 열립니다.
+              </p>
+              <button
+                type="button"
+                className={s.primary}
+                onClick={() => window.location.reload()}
+              >
+                새로고침
+              </button>
+            </div>
+          </main>
+        </div>
+      </div>
+    );
   return (
     <div className={s.viewport} data-fading-viewport="true">
       <div
@@ -282,11 +350,22 @@ export function FadingApp({
           ) : inSession &&
             (practising || (sessionState?.session && sessionState.opened)) ? (
             <main>
+              {relearn && !practising ? (
+                <FadingRelearnStatus controller={relearn} allowStart={false} />
+              ) : null}
               <FadingSessionView
                 key={sessionKey}
                 source={source}
                 state={sessionState ?? state}
                 practice={practising}
+                paused={!!relearn?.active}
+                onEvidence={
+                  relearn
+                    ? (observation) => void relearn.record(observation)
+                    : undefined
+                }
+                onBoundary={relearn?.boundary}
+                onAccessFailure={onAccessFailure}
                 onState={(next) => {
                   setState(next);
                   setSessionState((previous) =>
@@ -352,18 +431,23 @@ export function FadingApp({
                   }
                 />
               ) : tab === "home" ? (
-                <FadingHome
-                  source={source}
-                  state={state}
-                  busy={busy}
-                  onCatalog={() => navigate("catalog")}
-                  onOpen={open}
-                  onMode={(on) =>
-                    void run(async () => {
-                      setState(await source.act({ action: "all-today", on }));
-                    })
-                  }
-                />
+                <>
+                  {relearn ? (
+                    <FadingRelearnStatus controller={relearn} />
+                  ) : null}
+                  <FadingHome
+                    source={source}
+                    state={state}
+                    busy={busy}
+                    onCatalog={() => navigate("catalog")}
+                    onOpen={open}
+                    onMode={(on) =>
+                      void run(async () => {
+                        setState(await source.act({ action: "all-today", on }));
+                      })
+                    }
+                  />
+                </>
               ) : tab === "catalog" ? (
                 catalog ? (
                   <FadingCatalogScreen
@@ -398,6 +482,7 @@ export function FadingApp({
           )}
         </div>
         <FadingScrollFade scrollRef={appBody} />
+        {relearn ? <FadingRelearnModal controller={relearn} /> : null}
       </div>
     </div>
   );

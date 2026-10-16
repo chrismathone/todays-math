@@ -22,9 +22,13 @@ export type FadingConceptDetail = z.infer<
   typeof fadingConceptResponseSchema
 >["data"];
 
-/** 실패의 갈래 — 학생 API 의 오류 코드 그대로. `OFFLINE` 은 응답을 못 받은 것(연결 끊김)이다. */
+/**
+ * 실패의 갈래 — 학생 API 의 오류 코드 그대로. `OFFLINE` 은 응답을 못 받은 것(연결 끊김)이다.
+ * `STUDENT_CHANGED`(409)는 화면을 연 학생과 지금 로그인한 학생이 다른 것이다(D1) — 다시 읽어 맞출 것이 아니라 그 화면을 내린다.
+ */
 export type FadingSourceErrorCode =
   | "CONFLICT"
+  | "STUDENT_CHANGED"
   | "NOT_FOUND"
   | "VALIDATION_ERROR"
   | "UNAUTHORIZED"

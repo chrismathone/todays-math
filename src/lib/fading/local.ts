@@ -17,12 +17,9 @@ import {
   type FadingDailyOptions,
   type FadingDailyPlan,
 } from "@/contracts/fadingDaily.contract";
-import {
-  applyFadingAction,
-  fadingActionConceptId,
-  fadingActionNeedsConcept,
-} from "./actions";
+import { fadingActionConceptId, fadingActionNeedsConcept } from "./actions";
 import type { FadingTrap } from "./chips";
+import { applyFadingActionWithRelearn } from "./compose";
 import type { FadingConcept } from "./concepts";
 import {
   buildFadingDailyPlan,
@@ -70,8 +67,17 @@ export type LocalFadingSource = FadingSource & {
   today(): string;
   /** «오늘»을 옮긴다 — 미리 보기에서 며칠 뒤의 대기열 · 밀림 · 오래 쉰 상태를 본다. */
   setToday(date: string): void;
-  /** 지금의 저장 칸(사본). */
+  /** 지금의 저장 칸(사본) — 단기 재학습 대기열(`relearn`)까지 든 학생 칸 전체다. */
   snapshot(): StoredFading;
+  /**
+   * 저장 칸을 한 전이로 옮긴다 — 서버의 `changeFadingState` 와 같은 자리. 단기 재학습 대기열(`relearnLocal.ts`)이 **같은 메모리 칸**을
+   * 쓰려고 이 길을 쓴다(D3 — 대기열을 따로 들고 얹지 않는다). 받은 값 그대로면 쓰지 않는다(revision 그대로).
+   */
+  change(transition: (fading: StoredFading) => StoredFading): StoredFading;
+  /** 이 원천의 시계(밀리초 · UTC) — 본 행동에 얹는 재학습 등록과 대기열이 같은 시각을 본다. */
+  now(): number;
+  /** 시계를 바꾼다 — 시험 · 미리 보기가 시각을 옮긴다(대기열 원천이 제 시계를 넘긴다). */
+  setNow(clock: () => number): void;
 };
 
 export function createLocalFadingSource(input: {
@@ -98,8 +104,14 @@ export function createLocalFadingSource(input: {
    * 부르는 쪽이 읽어 내려준다(이 파일은 탐험의 기록을 모른다). 함수로 주면 부를 때마다 다시 읽는다.
    */
   daily?: LocalFadingDaily | (() => LocalFadingDaily);
+  /** 지금(밀리초 · UTC) — 본 행동에 얹는 단기 재학습 등록의 시각. 안 주면 기기의 시계다. */
+  now?: () => number;
+  /** 본 행동에 단기 재학습 등록을 얹는가(서버 문 `MATH_FADING_RELEARN` 과 같은 자리) — 안 주면 켜짐(서버의 기본값과 같다). */
+  relearn?: boolean;
 }): LocalFadingSource {
   const byId = new Map(input.concepts.map((c) => [c.id, c]));
+  let clock = input.now ?? (() => Date.now());
+  const relearnOn = input.relearn !== false;
   const fresh =
     input.fresh ??
     (() => ({
@@ -134,6 +146,18 @@ export function createLocalFadingSource(input: {
       today = date;
     },
     snapshot: () => structuredClone(fading),
+    change(transition) {
+      const next = transition(fading);
+      if (next !== fading) {
+        fading = next;
+        revision += 1;
+      }
+      return fading;
+    },
+    now: () => clock(),
+    setNow(next) {
+      clock = next;
+    },
 
     async state() {
       return view();
@@ -170,14 +194,15 @@ export function createLocalFadingSource(input: {
         throw new FadingSourceError("NOT_FOUND", NOT_FOUND, 404);
       let next: StoredFading;
       try {
-        next = applyFadingAction(
+        // 본 전이와 단기 재학습 등록을 한 전이로 — 서버의 라우트와 같은 함수(`compose.ts`). 시각은 이 원천의 시계다.
+        next = applyFadingActionWithRelearn(
           fading,
           action,
           concept,
           today,
           fresh(),
           concept ? trapsOf(concept) : [],
-          { cards: input.cards },
+          { cards: input.cards, relearn: { enabled: relearnOn, now: clock() } },
         );
       } catch (error) {
         if (error instanceof FadingConflict)

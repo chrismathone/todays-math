@@ -280,6 +280,18 @@ export const fadingActionSchema = z.discriminatedUnion("action", [
     sure: fadingMarksTextSchema.optional(),
   }),
   /**
+   * 카드 풀이의 4단계에서 카드(명제) 하나를 «아직 모르겠어요»로 넘겼다 — **그 자리에서** 보낸다(D2 · 2026-10-16).
+   * `placements` 는 이 단계에서 지금까지 넣은 차례 전부(틀린 것까지)다. 서버가 같은 규칙으로 다시 돌려 그 카드의 아직 못 채운 빈칸을
+   * 틀림으로 적는다(새로고침으로 지워지지 않는다). 마지막 카드였으면 화면은 이어서 `step`(`gaveUp`)을 보낸다.
+   * 🔴 이 행동을 모르는 서버(2026-10-16 이전)는 400 으로 답한다 — 새 화면이 열려 있는 동안 서버를 그 앞으로 되돌리지 않는다.
+   */
+  z.strictObject({
+    action: z.literal("give-up-card"),
+    ...sessionRef,
+    propositionId: z.string().min(1).max(80),
+    placements: z.array(fadingPlacementSchema).max(FADING_PLACEMENTS_MAX),
+  }),
+  /**
    * 평가로 닫는다 — 요청 번호는 화면이 짓는다(같은 번호로 다시 보내면 한 번만 적용된다).
    * `judged` 는 대조를 기다리던 글마다 학생이 고른 것 — 틀림이 없으면 전부 골라야 닫힌다. «다름»이 있으면 «다시»뿐이다.
    */

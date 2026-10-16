@@ -1,6 +1,5 @@
 import "server-only";
 import {
-  FADING_RELEARN_STUDENT_HEADER,
   fadingRelearnActionResponseSchema,
   fadingRelearnActionSchema,
   fadingRelearnQueueResponseSchema,
@@ -19,7 +18,6 @@ import { learnNow } from "@/lib/learn/testConsoleServer";
 import { loadCourseStudent } from "@/lib/math-srs/courseServer";
 import { srsFailureResponse } from "@/lib/math-srs/serverRoutes";
 import { changeFadingState, readSrsState } from "@/lib/math-srs/serverStore";
-import { STUDENT_CHANGED_MESSAGE } from "@/lib/studentRouteAccess";
 import { fadingConceptMap } from "./catalog";
 import { fadingEnabled } from "./enabled";
 import {
@@ -28,6 +26,7 @@ import {
   fadingRelearnQueueView,
 } from "./relearn";
 import { fadingRelearnEnabled } from "./relearnEnabled";
+import { fadingStudentHeaderResponse } from "./routes";
 import { FadingConflict, emptyFading } from "./state";
 import { fadingTrapsFor } from "./traps";
 
@@ -51,11 +50,9 @@ async function enter(request: Request, mutation: boolean) {
   if (gate.response) return { response: noStore(gate.response) } as const;
   if (mutation && !sameOriginMutation(request))
     return { response: noStore(crossSiteError()) } as const;
-  const expected = request.headers.get(FADING_RELEARN_STUDENT_HEADER);
-  if (expected !== null && expected !== gate.student.studentId)
-    return {
-      response: noStore(jsonError("CONFLICT", STUDENT_CHANGED_MESSAGE, 409)),
-    } as const;
+  // 학생이 바뀐 요청은 본 라우트와 같은 문(`STUDENT_CHANGED` · D1 ② 스위치까지)으로 돌려보낸다 — 머리의 이름도 같다.
+  const changed = fadingStudentHeaderResponse(request, gate.student.studentId);
+  if (changed) return { response: changed } as const;
   const student = await loadCourseStudent(gate.student.studentId);
   if (!student?.studentAccount || student.studentAccount.disabledAt)
     return { response: noStore(unauthorizedError()) } as const;

@@ -35,7 +35,6 @@ import {
 } from "@/components/fading/FadingRelearnCheck";
 import { curriculumName, dueLabel } from "@/components/fading/labels";
 import { ExplorerMath } from "./ExplorerMath";
-import { STUDENT_CHANGED_MESSAGE } from "@/lib/studentRouteAccess";
 import f from "@/components/fading/fading.module.css";
 import s from "./explorer-concept-memory.module.css";
 
@@ -401,10 +400,8 @@ export default function ExplorerConceptMemory({
       setFailure(failureText(error));
       if (error instanceof FadingSourceError) {
         accessFailure.current?.(error);
-        if (
-          error.code === "CONFLICT" &&
-          error.message !== STUDENT_CHANGED_MESSAGE
-        ) {
+        // Only a content conflict is reconciled by re-reading; `STUDENT_CHANGED` (D1) is the owner's to close.
+        if (error.code === "CONFLICT") {
           try {
             const next = await source.state();
             if (!alive.current) return;
