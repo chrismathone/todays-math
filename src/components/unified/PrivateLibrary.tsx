@@ -338,7 +338,8 @@ function PrivateLibraryContent({
                       ? item.ownerId === storageScope
                       : item.isOwner !== false
                   }
-                  showAuthor={Boolean(branchId)}
+                  showAuthor
+                  showVisibility={Boolean(branchId)}
                   number={index + 1}
                   client={client}
                   onResume={
@@ -463,6 +464,7 @@ function LibraryItem({
   item,
   owned,
   showAuthor,
+  showVisibility,
   number,
   client,
   onOpen,
@@ -473,6 +475,8 @@ function LibraryItem({
   item: PrivateDocumentSummary;
   owned: boolean;
   showAuthor: boolean;
+  /** 학원 소속일 때만 공개 범위를 붙인다 — 혼자 쓰는 계정에는 뜻이 없다. */
+  showVisibility: boolean;
   number: number;
   client: PrivateCloudClient;
   onOpen?: () => void | Promise<void>;
@@ -579,8 +583,10 @@ function LibraryItem({
         {showAuthor && (
           <small>
             작성자: {item.ownerName ?? "선생님"}
-            {owned ? " (나)" : ""} ·{" "}
-            {item.visibility === "branch" ? "학원에 공개" : "학원에 비공개"}
+            {owned ? " (나)" : ""}
+            {showVisibility
+              ? ` · ${item.visibility === "branch" ? "학원에 공개" : "학원에 비공개"}`
+              : ""}
             {!owned ? " · 사본으로 열기" : ""}
           </small>
         )}

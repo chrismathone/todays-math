@@ -68,10 +68,12 @@ function usePageScroll(
           el.querySelector("figcaption")?.getBoundingClientRect().height ?? 0;
         const remaining =
           window.innerHeight - Math.max(0, el.getBoundingClientRect().top) - 16;
-        // A stacked preview can start below the fold. Give it a useful overview
-        // height until the user scrolls to it, rather than collapsing its pages.
+        // The strip fills the viewport below its top edge (owner, 2026-10-16: a
+        // large monitor left most of the output step empty), capped so some
+        // page context stays visible. A stacked preview that starts below the
+        // fold keeps a useful overview height until the user scrolls to it.
         const overviewHeight = Math.min(
-          window.innerHeight * 0.68,
+          window.innerHeight * 0.85,
           remaining > 180 ? remaining : window.innerHeight * 0.68,
         );
         const height = horizontal
@@ -180,7 +182,8 @@ export function PaperStrip({
   id,
   busy = false,
   label = "지면 미리보기",
-  maxScale = 0.46,
+  // Thumbnails are bounded by the available height, not a fixed fraction.
+  maxScale = 1,
   scaleVars = [],
   scrollTo,
   onVisible,

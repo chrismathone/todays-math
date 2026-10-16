@@ -106,8 +106,10 @@ describe("지면 띠", () => {
       <PaperStrip pages={[page(1)]} hint="" scaleVars={["--cb-paper-scale"]} />,
     );
     const strip = screen.getByRole("region", { name: "지면 미리보기" });
-    expect(strip.style.getPropertyValue("--paper-strip-scale")).toBe("0.46");
-    expect(strip.style.getPropertyValue("--cb-paper-scale")).toBe("0.46");
+    // jsdom has no layout, so the strip keeps its ceiling: thumbnails are
+    // sized by the available viewport height (2026-10-16), not a fixed 0.46.
+    expect(strip.style.getPropertyValue("--paper-strip-scale")).toBe("1");
+    expect(strip.style.getPropertyValue("--cb-paper-scale")).toBe("1");
   });
 
   it("쪽을 누르면 크게 보는 창이 그 쪽에서 열리고, ← → 로 넘기고, 닫으면 누른 단추로 돌아온다", () => {
