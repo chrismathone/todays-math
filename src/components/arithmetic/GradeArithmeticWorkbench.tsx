@@ -21,6 +21,7 @@ import UsageLabel from "@/components/usage-labels/UsageLabel";
 import { MathText } from "@/components/math/MathText";
 import { arithmeticTypeTitle } from "@/lib/arithmetic-v2/presentation/text";
 import { sortArithmeticCatalog } from "@/lib/arithmetic-v2/presentation/catalogOrder";
+import type { ArithmeticV2CatalogEntry } from "@/lib/arithmetic-v2/types";
 import {
   ArithmeticGradeSelect,
   type ArithmeticGradeControl,
@@ -94,6 +95,7 @@ export default function GradeArithmeticWorkbench({
   );
   const [localGrade, setGrade] = useState("전체");
   const grade = gradeControl?.value ?? localGrade;
+  const [semester, setSemester] = useState<"전체" | 1 | 2>("전체");
   const [strand, setStrand] = useState("전체");
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
@@ -145,12 +147,13 @@ export default function GradeArithmeticWorkbench({
     ? JSON.stringify({ title: title.trim(), sheet: savePayload })
     : "";
   const dirty = Boolean(sheet && fingerprint !== saved?.fingerprint);
+  // Three independent filters (owner, 2026-10-16): 학년 / 학기 / 영역. The area
+  // list offers only what the chosen grade and semester contain.
+  const inGradeAndSemester = (type: ArithmeticV2CatalogEntry) =>
+    (grade === "전체" || type.grade === grade) &&
+    (semester === "전체" || type.curriculum.semester === semester);
   const strands = [
-    ...new Set(
-      catalog
-        .filter((type) => grade === "전체" || type.grade === grade)
-        .map((type) => type.strand),
-    ),
+    ...new Set(catalog.filter(inGradeAndSemester).map((type) => type.strand)),
   ];
   const activeStrand = strands.includes(strand as (typeof strands)[number])
     ? strand
@@ -158,7 +161,7 @@ export default function GradeArithmeticWorkbench({
   // Textbook unit order (owner, 2026-10-16); the catalog itself stays in registration order.
   const filtered = sortArithmeticCatalog(catalog).filter(
     (type) =>
-      (grade === "전체" || type.grade === grade) &&
+      inGradeAndSemester(type) &&
       (activeStrand === "전체" || type.strand === activeStrand) &&
       (
         type.title +
@@ -211,7 +214,10 @@ export default function GradeArithmeticWorkbench({
   const closePreview = typePreview.close;
   // Changing a filter or page swaps the cards under the pointer; the preview
   // must not outlive the card it described.
-  useEffect(() => closePreview(), [closePreview, grade, strand, query, page]);
+  useEffect(
+    () => closePreview(),
+    [closePreview, grade, semester, strand, query, page],
+  );
   const cardSelection = useArithmeticTypeSelection((id, selected) => {
     if (busy) return;
     setAllocations((current) => {
@@ -581,6 +587,23 @@ export default function GradeArithmeticWorkbench({
                     gradeControl?.onChange(value);
                   }}
                 />
+                <label>
+                  학기
+                  <select
+                    value={String(semester)}
+                    onChange={(event) => {
+                      const value = event.target.value;
+                      setSemester(
+                        value === "1" ? 1 : value === "2" ? 2 : "전체",
+                      );
+                      setPage(1);
+                    }}
+                  >
+                    <option value="전체">전체</option>
+                    <option value="1">1학기</option>
+                    <option value="2">2학기</option>
+                  </select>
+                </label>
                 <label>
                   연산 영역
                   <select

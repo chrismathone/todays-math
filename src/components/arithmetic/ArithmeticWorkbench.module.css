@@ -6,7 +6,7 @@
   display: none;
 }
 .catalogFilters.gradeFilters {
-  grid-template-columns: 100px 120px minmax(150px, 1fr);
+  grid-template-columns: 100px 96px 120px minmax(150px, 1fr);
 }
 .catalogToolbar {
   display: grid;
@@ -61,7 +61,8 @@
 }
 .typeCatalog {
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-auto-rows: 96px;
+  /* A long type name may need a third line; the row grows instead of clipping. */
+  grid-auto-rows: minmax(96px, auto);
 }
 .root .typeCatalog .card {
   min-height: 96px;
@@ -144,6 +145,9 @@
 }
 .cardTop strong {
   font-size: 14px;
+  min-width: 0;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 .cardTop > span {
   color: var(--learn-accent);

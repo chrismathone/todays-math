@@ -155,6 +155,50 @@ describe("grade arithmetic user flow", () => {
     expect(within(cards).getAllByText("2학기").length).toBeGreaterThan(0);
     expect(within(cards).queryByText("원의 성질")).not.toBeInTheDocument();
   });
+  it("filters by 학년 / 학기 / 영역 separately and lists units in textbook order", () => {
+    render(<GradeArithmeticWorkbench canOutput preview />);
+    fireEvent.change(screen.getByLabelText("학년"), {
+      target: { value: "중3" },
+    });
+    fireEvent.change(screen.getByLabelText("학기"), {
+      target: { value: "2" },
+    });
+    const cards = screen.getByLabelText("학년별 연산 유형");
+    expect(within(cards).queryByText("1학기")).not.toBeInTheDocument();
+    expect(within(cards).getAllByText("2학기").length).toBeGreaterThan(0);
+    // The area list only offers what the chosen grade and semester contain.
+    const areas = within(screen.getByLabelText("연산 영역"))
+      .getAllByRole("option")
+      .map((option) => option.textContent);
+    const secondSemester = types.filter(
+      (type) => type.grade === "중3" && type.curriculum.semester === 2,
+    );
+    expect(new Set(areas)).toEqual(
+      new Set(["전체", ...secondSemester.map((type) => type.strand)]),
+    );
+    // Units come in textbook order across pages: 삼각비 → 원의 성질 → 통계.
+    const seen: string[] = [];
+    for (;;) {
+      within(screen.getByLabelText("학년별 연산 유형"))
+        .getAllByRole("button")
+        .forEach((card) => {
+          const unit = within(card).getAllByText(/./).at(-1)?.textContent ?? "";
+          if (seen.at(-1) !== unit) seen.push(unit);
+        });
+      const next = screen.getByRole("button", { name: "다음" });
+      if ((next as HTMLButtonElement).disabled) break;
+      fireEvent.click(next);
+    }
+    const order = ["삼각비", "원의 성질", "통계"].filter((unit) =>
+      seen.includes(unit),
+    );
+    expect(seen).toEqual(order);
+    fireEvent.change(screen.getByLabelText("연산 영역"), {
+      target: { value: areas[1] },
+    });
+    expect(screen.getByLabelText("학기")).toHaveValue("2");
+    expect(screen.getByLabelText("학년")).toHaveValue("중3");
+  });
   it("generates two full rounds and explains the per-round limit before generating", async () => {
     render(<GradeArithmeticWorkbench canOutput preview />);
     const quantity = screen.getByLabelText(types[0].title + " 문항 수");
