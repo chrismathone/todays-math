@@ -42,9 +42,11 @@ describe("English menu compatibility", () => {
     expect(
       workspaceMenuSchema.options.filter((menu) => menu !== "english"),
     ).toEqual(ALL_WORKSPACE_MENUS);
-    // Ten since the textbook menu («교재 제작») joined the math product on 2026-10-03.
-    expect(workspaceMenusOf("math")).toHaveLength(10);
+    // Ten since the textbook menu («교재 제작») joined the math product on 2026-10-03;
+    // eleven since «연산대장»(arithmetic) became its own menu on 2026-10-16.
+    expect(workspaceMenusOf("math")).toHaveLength(11);
     expect(workspaceMenusOf("math")).toContain("textbook");
+    expect(workspaceMenusOf("math")).toContain("arithmetic");
     expect(workspaceMenusOf("english")).toEqual([
       ...englishMenus,
       "english-listening",

@@ -24,9 +24,9 @@ import type {
 async function authorizeArithmetic(request: Request) {
   const access = await authorizeAccount(request);
   if (access.response) return access.response;
-  return access.account!.menus.includes("bank")
+  return access.account!.menus.includes("arithmetic")
     ? null
-    : privateError("시험지 만들기 메뉴를 사용할 권한이 없습니다.", 403);
+    : privateError("연산대장 메뉴를 사용할 권한이 없습니다.", 403);
 }
 
 export async function arithmeticCatalog(request: Request) {

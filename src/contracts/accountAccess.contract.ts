@@ -13,6 +13,9 @@ export type WorkspaceProduct = (typeof WORKSPACE_PRODUCTS)[number]["id"];
 export const WORKSPACE_MENUS = [
   { id: "home", label: "오늘의 작업" },
   { id: "bank", label: "시험지 만들기" },
+  // 원장님 2026-10-16 — «시험지 만들기» 바로 아래. 그동안 bank 에 얹혀 관리 콘솔이 켜고 끌 수 없었다.
+  // 관문 `/api/arithmetic/**` · 연산 학습지 자료 경로가 이 메뉴를 본다(두 CHECK 는 `20261016120000_menu_arithmetic`).
+  { id: "arithmetic", label: "연산대장" },
   { id: "studio", label: "문제 추출" },
   { id: "export", label: "시험지 · 내보내기" },
   { id: "library", label: "내 시험지" },
@@ -33,6 +36,7 @@ export const WORKSPACE_MENUS = [
 export const workspaceMenuSchema = z.enum([
   "home",
   "bank",
+  "arithmetic",
   "studio",
   "export",
   "library",

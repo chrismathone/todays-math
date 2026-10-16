@@ -14,8 +14,11 @@ const account: AccountAccess = {
   menus: [...ALL_WORKSPACE_MENUS],
 };
 describe("account approval and menu route policy", () => {
-  it("declares only bank catalog/generation and document routes for arithmetic", () => {
-    const bank = { ...account, menus: ["bank"] as AccountAccess["menus"] };
+  it("declares only arithmetic-menu catalog/generation and document routes for arithmetic", () => {
+    const bank = {
+      ...account,
+      menus: ["arithmetic"] as AccountAccess["menus"],
+    };
     for (const [method, path] of [
       ["GET", "/api/arithmetic/catalog"],
       ["HEAD", "/api/arithmetic/catalog"],
@@ -43,6 +46,8 @@ describe("account approval and menu route policy", () => {
       ["library"],
       ["export"],
       ["studio"],
+      // 2026-10-16 — 연산대장은 더는 «시험지 만들기»에 딸리지 않는다.
+      ["bank"],
     ] as AccountAccess["menus"][])
       expect(
         accountRouteAllowed(

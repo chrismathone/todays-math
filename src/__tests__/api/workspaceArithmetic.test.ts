@@ -43,7 +43,7 @@ const account: AccountAccess = {
   role: "director",
   isAdmin: false,
   approvalStatus: "approved",
-  menus: ["bank"],
+  menus: ["arithmetic"],
 };
 const input = (): ArithmeticGenerateRequest => ({
   engineVersion: ARITHMETIC_ENGINE_VERSION,
@@ -150,12 +150,13 @@ describe("arithmetic catalog and preview API", () => {
     [null, 401],
     [{ user: { ...account, approvalStatus: "pending" } }, 403],
     [{ user: { ...account, menus: ["library", "export", "studio"] } }, 403],
+    [{ user: { ...account, menus: ["bank"] } }, 403],
     [
       { user: { ...account, menus: [], isAdmin: true, isSuperAdmin: true } },
       403,
     ],
   ])(
-    "requires an approved session with bank rights (%j)",
+    "requires an approved session with the arithmetic menu (%j)",
     async (session, status) => {
       mocks.auth.mockResolvedValue(session);
       expect((await GET(catalog())).status).toBe(status);

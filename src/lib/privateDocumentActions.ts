@@ -45,7 +45,8 @@ const EDITOR_MENU: Readonly<Record<DocumentKind, WorkspaceMenu>> = {
   draft: "export",
   extraction: "studio",
   conceptBlank: "conceptBlank",
-  arithmeticSheet: "bank",
+  // 2026-10-16 — 연산대장은 제 메뉴다(«시험지 만들기»가 아니다).
+  arithmeticSheet: "arithmetic",
 };
 
 /**
@@ -314,8 +315,11 @@ export async function deleteDocument(request: Request, id: string) {
     revision < 1
   )
     return privateError("자료 버전을 확인해 주세요.", 400);
+  // 보관함(library)이 모든 자료를, 연산대장(arithmetic)이 연산 학습지만 — 종류는 아래에서 다시 가른다.
   if (
-    !access.account!.menus.some((menu) => menu === "library" || menu === "bank")
+    !access.account!.menus.some(
+      (menu) => menu === "library" || menu === "arithmetic",
+    )
   )
     return privateError("내 시험지 메뉴를 사용할 권한이 없습니다.", 403);
   const userId = access.ownerId!;
@@ -358,8 +362,11 @@ export async function renameDocument(request: Request, id: string) {
   if (access.response) return access.response;
   const ownerError = mutationOwnerError(request, access.ownerId!);
   if (ownerError) return ownerError;
+  // 보관함(library)이 모든 자료를, 연산대장(arithmetic)이 연산 학습지만 — 종류는 아래에서 다시 가른다.
   if (
-    !access.account!.menus.some((menu) => menu === "library" || menu === "bank")
+    !access.account!.menus.some(
+      (menu) => menu === "library" || menu === "arithmetic",
+    )
   )
     return privateError("내 시험지 메뉴를 사용할 권한이 없습니다.", 403);
   const parsed = z

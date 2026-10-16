@@ -631,7 +631,7 @@ describe("arithmetic document persistence", () => {
 
   beforeEach(() => {
     vi.stubEnv("ARITHMETIC_SHEET_WRITE", "on");
-    account.menus = ["bank"];
+    account.menus = ["arithmetic"];
     sheet = buildArithmeticSheet({
       engineVersion: ARITHMETIC_ENGINE_VERSION,
       catalogVersion: ARITHMETIC_CATALOG_VERSION,
@@ -1044,7 +1044,7 @@ describe("arithmetic document persistence", () => {
     });
   });
 
-  it("keeps legacy storage inaccessible to bank-only accounts", async () => {
+  it("keeps legacy storage inaccessible to arithmetic-only accounts", async () => {
     docs[0].kind = "draft";
     docs[0].payload = { problems: [] };
     docs[1].kind = "draft";
@@ -1073,7 +1073,7 @@ describe("arithmetic document persistence", () => {
     expect(mocks.document.deleteMany).not.toHaveBeenCalled();
   });
 
-  it("retains library management but requires bank to save or copy arithmetic", async () => {
+  it("retains library management but requires the arithmetic menu to save or copy arithmetic", async () => {
     account.menus = ["library"];
     expect((await readDocument(req(), "same-id")).status).toBe(200);
     expect(
@@ -1098,8 +1098,36 @@ describe("arithmetic document persistence", () => {
     ).toBe(200);
   });
 
+  it("keeps arithmetic sheets closed to a bank-only account — 연산대장 no longer rides on 시험지 만들기 (2026-10-16)", async () => {
+    account.menus = ["bank"];
+    expect((await readDocument(req(), "same-id")).status).toBe(403);
+    expect(
+      (await listDocuments(req("GET", "?kind=arithmeticSheet"))).status,
+    ).toBe(403);
+    expect(
+      (await saveDocument(req("PUT", "", saveSheet()), "same-id")).status,
+    ).toBe(403);
+    expect(
+      (await copyDocument(req("POST", shareQuery), "same-id")).status,
+    ).toBe(403);
+    expect(
+      (
+        await renameDocument(
+          req("PATCH", "", { title: "이름", expectedRevision: 1 }),
+          "same-id",
+        )
+      ).status,
+    ).toBe(403);
+    expect(
+      (await deleteDocument(req("DELETE", "?revision=1"), "same-id")).status,
+    ).toBe(403);
+    expect(mocks.document.create).not.toHaveBeenCalled();
+    expect(mocks.document.updateMany).not.toHaveBeenCalled();
+    expect(mocks.document.deleteMany).not.toHaveBeenCalled();
+  });
+
   it("cannot convert an existing kind to bypass revision or writer rules", async () => {
-    account.menus = ["bank", "export"];
+    account.menus = ["arithmetic", "export"];
     vi.stubEnv("ARITHMETIC_SHEET_WRITE", "off");
     expect(
       (await saveDocument(req("PUT", "", saveBody()), "same-id")).status,
@@ -1121,7 +1149,7 @@ describe("v2 arithmetic snapshot persistence alongside v1", () => {
       expectedRevision,
     });
   beforeEach(() => {
-    account.menus = ["bank"];
+    account.menus = ["arithmetic"];
     vi.stubEnv("ARITHMETIC_SHEET_WRITE", "on");
     for (const doc of docs)
       Object.assign(doc, {

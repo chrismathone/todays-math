@@ -174,21 +174,22 @@ export function accountRouteAllowed(
     under(path, "/q")
   )
     return any("textbook");
+  // «연산대장»은 2026-10-16 부터 제 메뉴다 — «시험지 만들기»(bank)에 딸리지 않는다.
   if (
     path === "/api/arithmetic/catalog" ||
     path === "/api/arithmetic/v2/catalog"
   )
-    return any("bank") && (method === "GET" || method === "HEAD");
+    return any("arithmetic") && (method === "GET" || method === "HEAD");
   if (
     path === "/api/arithmetic/generate" ||
     path === "/api/arithmetic/v2/generate" ||
     path === "/api/arithmetic/regenerate" ||
     path === "/api/arithmetic/v2/regenerate"
   )
-    return any("bank") && method === "POST";
-  // Handlers restrict bank-only access to arithmeticSheet; assets stay separate.
+    return any("arithmetic") && method === "POST";
+  // Handlers restrict arithmetic-only access to arithmeticSheet; assets stay separate.
   if (
-    any("bank") &&
+    any("arithmetic") &&
     ((path === "/api/library/documents" && ["GET", "HEAD"].includes(method)) ||
       (/^\/api\/library\/documents\/[^/]+$/.test(path) &&
         ["GET", "HEAD", "PUT", "POST", "PATCH", "DELETE"].includes(method)))

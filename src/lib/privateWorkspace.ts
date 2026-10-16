@@ -104,7 +104,7 @@ export async function authorizePrivate(
   if (
     !ownerId &&
     arithmeticDocumentsOnly(access.account!) &&
-    !(allowArithmeticDocuments && access.account!.menus.includes("bank"))
+    !(allowArithmeticDocuments && access.account!.menus.includes("arithmetic"))
   )
     return {
       account: null,

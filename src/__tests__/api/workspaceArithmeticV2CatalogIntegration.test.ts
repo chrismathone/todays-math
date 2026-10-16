@@ -40,7 +40,7 @@ beforeEach(() => {
       role: "director",
       isAdmin: false,
       approvalStatus: "approved",
-      menus: ["bank"],
+      menus: ["arithmetic"],
     },
   });
 });

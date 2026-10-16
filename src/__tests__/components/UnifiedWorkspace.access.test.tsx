@@ -461,7 +461,7 @@ describe("per-account workspace menu access", () => {
     render(
       <UnifiedWorkspace
         initialData={initialData}
-        allowedMenus={["bank", "export"]}
+        allowedMenus={["bank", "arithmetic", "export"]}
       />,
     );
     expect(
@@ -488,20 +488,50 @@ describe("per-account workspace menu access", () => {
     expect(window.location.hash).toBe("#arithmetic");
   });
 
-  it("does not expose arithmetic when bank access is absent", async () => {
+  it("does not expose arithmetic when arithmetic access is absent — even with bank", async () => {
     window.history.replaceState(null, "", "/#arithmetic");
     render(
-      <UnifiedWorkspace initialData={initialData} allowedMenus={["home"]} />,
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["home", "bank"]}
+      />,
     );
     expect(
       await screen.findByRole("heading", { name: "오늘의 작업" }),
     ).toBeVisible();
+    const menu = screen.getByRole("navigation", { name: "작업실 메뉴" });
+    expect(
+      within(menu).getByRole("button", { name: "시험지 만들기" }),
+    ).toBeInTheDocument();
     expect(
       screen.queryByRole("button", { name: "연산대장" }),
     ).not.toBeInTheDocument();
     expect(
       screen.queryByRole("heading", { name: "연산 패널" }),
     ).not.toBeInTheDocument();
+    expect(window.location.hash).not.toBe("#arithmetic");
+  });
+
+  it("exposes arithmetic without bank and makes it the default view (2026-10-16)", async () => {
+    window.history.replaceState(null, "", "/");
+    render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["arithmetic"]}
+      />,
+    );
+    expect(
+      await screen.findByRole("heading", { name: "연산 패널" }),
+    ).toBeVisible();
+    const menu = screen.getByRole("navigation", { name: "작업실 메뉴" });
+    expect(
+      within(menu).getByRole("button", { name: "연산대장" }),
+    ).toHaveAttribute("aria-current", "page");
+    expect(
+      within(menu).queryByRole("button", { name: "시험지 만들기" }),
+    ).not.toBeInTheDocument();
+    expect(mocks.bankMount).not.toHaveBeenCalled();
+    await waitFor(() => expect(window.location.hash).toBe("#arithmetic"));
   });
   it("opens the standalone English bank without mounting exam-dependent screens", async () => {
     window.history.replaceState(null, "", "/#english-bank");
@@ -1393,6 +1423,7 @@ describe("per-account workspace menu access", () => {
 describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
   const ALL = WORKSPACE_MENUS.map((menu) => menu.id);
   const MATH_ONLY = ALL.filter((menu) => workspaceMenuProduct(menu) === "math");
+  const MATH_SIDEBAR = MATH_ONLY.filter((menu) => menu !== "export");
   const brand = () => screen.getByRole("button", { name: /제품 고르기/ });
   const ENGLISH_NAV = [
     "오늘의 작업",
@@ -1706,8 +1737,9 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
 
     fireEvent.click(brand());
     fireEvent.click(screen.getByRole("option", { name: "오늘 수학" }));
-    // «시험지 · 내보내기»는 옆 메뉴에 줄이 없다(원장님 2026-10-01)
-    expect(nav().getAllByRole("button")).toHaveLength(MATH_ONLY.length);
+    // «시험지 · 내보내기»는 옆 메뉴에 줄이 없다(원장님 2026-10-01) — 2026-10-16 전에는 메뉴가 아니던 «연산대장» 줄이
+    // 그 빈자리를 메워 수가 우연히 맞았다. 이제 연산대장도 메뉴라 내보내기 하나만 뺀다.
+    expect(nav().getAllByRole("button")).toHaveLength(MATH_SIDEBAR.length);
     expect(window.location.hash).toBe("");
     expect(brand()).toHaveAccessibleName("제품 고르기 — 오늘 수학");
     // 영어 뷰는 숨김으로 남는다(상태를 잃지 않는다) — 다시 마운트하지 않는다
@@ -1781,8 +1813,9 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     expect(dialog.getByRole("button", { name: "내 시험지" })).toBeVisible();
     fireEvent.click(dialog.getByRole("button", { name: "내 시험지" }));
     expect(window.location.hash).toBe("#library");
-    // «시험지 · 내보내기»는 옆 메뉴에 줄이 없다(원장님 2026-10-01)
-    expect(nav().getAllByRole("button")).toHaveLength(MATH_ONLY.length);
+    // «시험지 · 내보내기»는 옆 메뉴에 줄이 없다(원장님 2026-10-01) — 2026-10-16 전에는 메뉴가 아니던 «연산대장» 줄이
+    // 그 빈자리를 메워 수가 우연히 맞았다. 이제 연산대장도 메뉴라 내보내기 하나만 뺀다.
+    expect(nav().getAllByRole("button")).toHaveLength(MATH_SIDEBAR.length);
   });
 
   it("영어 메뉴가 없으면 #english 는 첫 허용 메뉴로 떨어지고 영어 뷰는 마운트되지 않는다", async () => {

@@ -38,7 +38,7 @@ const account: AccountAccess = {
   role: "director",
   isAdmin: false,
   approvalStatus: "approved",
-  menus: ["bank"],
+  menus: ["arithmetic"],
 };
 const versions = [
   {
@@ -124,6 +124,7 @@ describe.each(versions)("$name selective route", ({ post, path, build }) => {
     [null, 401],
     [{ user: { ...account, approvalStatus: "pending" } }, 403],
     [{ user: { ...account, menus: ["library"] } }, 403],
+    [{ user: { ...account, menus: ["bank"] } }, 403],
     [{ user: { ...account, menus: [], isAdmin: true } }, 403],
   ])(
     "enforces existing account/menu authorization",
@@ -157,7 +158,7 @@ describe.each(versions)("$name selective route", ({ post, path, build }) => {
     input.sheet.seed = "";
     expect((await post(request(input))).status).toBe(400);
   });
-  it("proxy policy opens only POST for bank users", () => {
+  it("proxy policy opens only POST for arithmetic-menu users", () => {
     expect(accountRouteAllowed(account, "POST", path)).toBe(true);
     expect(accountRouteAllowed(account, "GET", path)).toBe(false);
     expect(accountRouteAllowed(account, "PATCH", path)).toBe(false);

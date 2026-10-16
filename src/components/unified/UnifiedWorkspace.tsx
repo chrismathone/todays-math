@@ -173,8 +173,7 @@ const EnglishResourceBank = dynamic(
  * 영어 학교 메뉴는 기존 english 주소를 유지하고, 각 뷰는 개별 메뉴 권한을 본다.
  * 제품(수학 · 영어)은 뷰에서 파생하고 따로 저장하지 않는다(`productOf`).
  */
-type View =
-  Exclude<WorkspaceMenu, "english-school"> | EnglishView | "arithmetic";
+type View = Exclude<WorkspaceMenu, "english-school"> | EnglishView;
 /**
  * 옆 메뉴의 짜임은 두 제품이 한 벌이다(원장님 2026-10-08 «왼쪽에 많은 탭을 둬도 되지만 편의상 수학 · 영어로
  * 구분한 것 — 통일»). `common` 은 두 제품에 같은 자리 · 같은 일로 서는 메뉴(오늘의 작업 → 시험지 만들기 →
@@ -331,13 +330,9 @@ const menuValid = (value: string): value is WorkspaceMenu =>
   WORKSPACE_MENUS.some((item) => item.id === value);
 const viewValid = (value: string): value is View =>
   allNavItems.some((item) => item.id === value);
-/** 뷰가 딸린 메뉴 — 권한은 이것으로 본다 */
+/** 뷰가 딸린 메뉴 — 권한은 이것으로 본다. «연산대장»은 제 메뉴 `arithmetic` 을 본다(2026-10-16 — bank 에 딸리지 않는다). */
 const menuOf = (view: View): WorkspaceMenu =>
-  view === "arithmetic"
-    ? "bank"
-    : isEnglishView(view)
-      ? englishViewMenu(view)
-      : view;
+  isEnglishView(view) ? englishViewMenu(view) : view;
 const productOf = (view: View | null): WorkspaceProduct =>
   view &&
   (isEnglishView(view) ||
@@ -1933,9 +1928,9 @@ function UnifiedWorkspaceContent({
               branchId={branchId}
               canExport={can("export")}
               canStudio={can("studio")}
-              canArithmetic={can("bank")}
+              canArithmetic={can("arithmetic")}
               onOpenArithmetic={(id, options) => {
-                if (!can("bank")) return;
+                if (!can("arithmetic")) return;
                 if (
                   arithmeticDirty &&
                   !window.confirm(

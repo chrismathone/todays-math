@@ -39,7 +39,7 @@ const account = {
   role: "director",
   isAdmin: false,
   approvalStatus: "approved",
-  menus: ["bank"],
+  menus: ["arithmetic"],
 };
 const catalog = () => new Request("http://localhost/api/arithmetic/v2/catalog");
 const unsafeOriginHeaders: Record<string, string>[] = [
@@ -123,8 +123,9 @@ describe("v2 catalog and generation routes", () => {
     [null, 401],
     [{ user: { ...account, approvalStatus: "pending" } }, 403],
     [{ user: { ...account, menus: ["library"] } }, 403],
+    [{ user: { ...account, menus: ["bank"] } }, 403],
     [{ user: { ...account, menus: [], isAdmin: true } }, 403],
-  ])("requires approved bank access", async (session, status) => {
+  ])("requires approved arithmetic-menu access", async (session, status) => {
     mocks.auth.mockResolvedValue(session);
     expect((await GET(catalog())).status).toBe(status);
     expect((await POST(post())).status).toBe(status);
@@ -207,12 +208,12 @@ describe("v2 catalog and generation routes", () => {
       expect(mocks.log).not.toHaveBeenCalled();
     },
   );
-  it("adds only precise v2 proxy routes with the bank menu and expected method", () => {
+  it("adds only precise v2 proxy routes with the arithmetic menu and expected method", () => {
     const viewer = {
       ...account,
       role: "director" as const,
       approvalStatus: "approved" as const,
-      menus: ["bank" as const],
+      menus: ["arithmetic" as const],
     };
     expect(
       accountRouteAllowed(viewer, "GET", "/api/arithmetic/v2/catalog"),

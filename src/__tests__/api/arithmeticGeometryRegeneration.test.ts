@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { describe, expect, it, vi } from "vitest";
 vi.mock("@/lib/accountAccess", () => ({
-  authorizeAccount: vi.fn(async () => ({ account: { menus: ["bank"] } })),
+  authorizeAccount: vi.fn(async () => ({ account: { menus: ["arithmetic"] } })),
 }));
 import { regenerateArithmeticV2 } from "@/lib/workspaceArithmeticRegenerationRoutes";
 import { buildArithmeticV2Sheet } from "@/lib/arithmetic-v2/sheet";

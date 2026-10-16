@@ -16,8 +16,8 @@ async function regenerate(request: Request, version: 1 | 2) {
   // Identical authorization and same-origin protection to the generate routes.
   const access = await authorizeAccount(request);
   if (access.response) return access.response;
-  if (!access.account!.menus.includes("bank"))
-    return privateError("시험지 만들기 메뉴를 사용할 권한이 없습니다.", 403);
+  if (!access.account!.menus.includes("arithmetic"))
+    return privateError("연산대장 메뉴를 사용할 권한이 없습니다.", 403);
   let input: unknown;
   try {
     input = await readStrictJson(request, ARITHMETIC_SHEET_JSON_LIMITS);
