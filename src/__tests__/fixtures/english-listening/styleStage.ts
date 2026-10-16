@@ -1,6 +1,6 @@
 /** Reusable offline artifact fixture for receipt and adoption transaction tests. */
 import { createHash, randomUUID } from "node:crypto";
-import { mkdir, mkdtemp, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, realpath, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { listeningValueHash } from "@/lib/english/listening/publication";
@@ -38,7 +38,11 @@ export async function makeListeningStyleStageFixture(
       "structural-metadata-v1" | "structural-metadata-v2";
   } = {},
 ) {
-  const root = await mkdtemp(join(tmpdir(), "verified-listening-style-"));
+  // 검증기는 보관 뿌리를 realpath 로 푼다 — macOS 의 tmpdir(/var → /private/var) 같은
+  // 심볼릭 링크를 픽스처 쪽에서도 미리 풀어 둬야 «보관 밖» 판정이 링크 탓으로 나지 않는다.
+  const root = await realpath(
+    await mkdtemp(join(tmpdir(), "verified-listening-style-")),
+  );
   const id = "ebs-middle-3-2017-2",
     officialId = "ebs-middle-3-2018-1";
   const file = join(root, "style-revision-fixture", `${id}.json`),

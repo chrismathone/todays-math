@@ -390,6 +390,7 @@ async function main() {
             problemType: now.problemType,
             pool: "shared",
           };
+          // exam-wiring: 기출아님 — 잠긴 교과서 문항의 변형(source=transformed)만 넣는다.
           const created = await tx.problem.create({ data });
           return {
             problemCode: patch.problemCode,

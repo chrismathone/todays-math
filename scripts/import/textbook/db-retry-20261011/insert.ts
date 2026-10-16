@@ -122,6 +122,7 @@ export async function insertDbRetryPendingPair(
         if (reviewDigest(livePlanned) !== entry.rowPayloadDigest)
           throw new DbRetryGenerationError("insertion-payload-changed");
         // No skipDuplicates, upsert, UPDATE, partial completion or promotion.
+        // exam-wiring: 기출아님 — 교과서 문항의 변형(재시험용)만 넣는다. 시험지 편이 없다.
         const created = await tx.problem.createManyAndReturn({
           data: livePlanned,
           select: { id: true, externalId: true },

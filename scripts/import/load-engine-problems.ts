@@ -1126,6 +1126,8 @@ export async function applyEnginePlan(
     // Referencing an original does not make this synthetic row an exam/book item.
     const originProblemId = sourceReferences.get(r.externalId) ?? null;
     const review = engineSourceReviewState(originProblemId, figureless);
+    // exam-wiring: 기출아님 — 우리 엔진이 낸 **자작** 문항이다(`source=manual`).
+    // 원본 시험지가 아예 없으므로 `Exam` 을 세울 것도, 되돌릴 링크도 없다.
     const made = await client.problem.create({
       data: {
         unitId: r.unitId,

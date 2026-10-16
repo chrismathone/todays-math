@@ -45,12 +45,15 @@ describe("real family integration with versioned core", () => {
           ).size,
         ).toBe(sheet.rounds[0].items.length);
         for (const item of sheet.rounds[0].items) {
-          expect(definition.verify(item)).toBe(true);
-          expect(definition.problemAt(item.domainIndex)).toEqual({
+          // Verify the saved candidate exactly as reopen does: families may
+          // reject unknown top-level keys (order/typeId/domainIndex are sheet fields).
+          const candidate = {
             parameters: item.parameters,
             prompt: item.prompt,
             answer: item.answer,
-          });
+          };
+          expect(definition.verify(candidate)).toBe(true);
+          expect(definition.problemAt(item.domainIndex)).toEqual(candidate);
         }
       }
     },

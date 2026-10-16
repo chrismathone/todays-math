@@ -341,6 +341,7 @@ async function main() {
           });
           continue;
         }
+        // exam-wiring: 기출아님 — 교과서 문항(source=school_textbook, D-161)을 보충한다. 학교 시험지 편이 없다.
         const row = await tx.problem.create({ data });
         if (!matches(row, data))
           throw new Error(`${entry.id}: 저장 후 내용/출처 불일치`);

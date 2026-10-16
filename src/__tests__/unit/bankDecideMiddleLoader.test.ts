@@ -28,12 +28,29 @@ import {
   TRIG_KEY,
 } from "../helpers/bankDecideEngineEvidence";
 
-const BASELINE = "bankDecideMiddleLoader.before.json.gz";
+/**
+ * Captured from the pre-edit code (4ad8451e7) with `stable` below. The first baseline hashed
+ * raw figure coordinates: trigonometric points differ in the last bit between Windows and macOS
+ * (위치 관계 20 · 원주각의 활용 07 · 12), so it could only pass on the machine that captured it.
+ */
+const BASELINE = "bankDecideMiddleLoader.before.v2.json.gz";
 const SEEDS = [0, 15, 299];
 type Evidence = {
   templates: string[];
   rows: { id: string; family: string; format: string; hash: string }[];
 };
+
+/** Ten significant digits: far finer than a drawn figure, coarser than a platform's last bit. */
+const stable = (value: unknown): unknown =>
+  typeof value === "number" && !Number.isInteger(value)
+    ? Number(value.toPrecision(10))
+    : Array.isArray(value)
+      ? value.map(stable)
+      : value && typeof value === "object"
+        ? Object.fromEntries(
+            Object.entries(value).map(([key, item]) => [key, stable(item)]),
+          )
+        : value;
 
 function capture(): Evidence {
   const entries = registeredTypes();
@@ -56,7 +73,7 @@ function capture(): Evidence {
         id: row.externalId,
         family: row.familyKey,
         format: row.questionType,
-        hash: digest(row),
+        hash: digest(stable(row)),
       })),
     ),
   );

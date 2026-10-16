@@ -1,6 +1,7 @@
 // @vitest-environment node
 import { afterEach, describe, expect, it } from "vitest";
-import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
+import { mkdtempSync, mkdirSync, writeFileSync } from "node:fs";
+import { rm } from "node:fs/promises";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { createHash, randomUUID } from "node:crypto";
@@ -16,9 +17,9 @@ import {
 import type { CodexRetryBatchCommunication } from "@/lib/import/schoolTextbook/codexRetryBatch.types";
 import { reviewDigest } from "@/lib/import/schoolTextbook/qualification";
 const roots: string[] = [];
-afterEach(() => {
+afterEach(async () => {
   for (const root of roots.splice(0))
-    rmSync(root, { recursive: true, force: true });
+    await rm(root, { recursive: true, force: true });
 });
 const sha = (text: string) => createHash("sha256").update(text).digest("hex");
 function fixture(): CodexRetryBatchQualificationInput {

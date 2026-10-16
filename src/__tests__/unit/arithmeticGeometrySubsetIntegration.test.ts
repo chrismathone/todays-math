@@ -160,10 +160,20 @@ describe("saved geometry subsets across generation, regeneration and shared outp
       ],
     });
     expect(sheet.figures?.version).toBe(2);
-    const problems = arithmeticToStudioProblems(reopenArithmeticV2Sheet(sheet));
+    const reopened = reopenArithmeticV2Sheet(sheet);
+    const angle = reopened.rounds[0].items[2].prompt;
+    if (angle.layout !== "math" || !angle.figureId)
+      throw new Error("angle figure expected");
+    expect(arithmeticGeometrySvg(angle.figureId, reopened.figures!)).toContain(
+      "arithmetic-angle-drill-v1",
+    );
+    const problems = arithmeticToStudioProblems(reopened);
     expect(problems[0].content).toContain("\\mathrm{cm}^{2}");
+    expect(problems[0].figureSvg).toContain("<svg");
     expect(problems[2].content).toContain("\\circ");
-    expect(problems[2].figureSvg).toContain("arithmetic-angle-drill-v1");
+    // 4b0dd8435: the text gives both angles, so the saved angle figure is not printed.
+    expect(problems[2].figureSvg).toBeNull();
+    expect(problems[2].content).not.toContain("[그림1]");
   });
 
   it("accepts an explicit unitless answer without adding an angle suffix", () => {

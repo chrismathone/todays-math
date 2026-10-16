@@ -1,4 +1,11 @@
-import { lazy, Suspense, type ComponentType, type ReactNode } from "react";
+import {
+  lazy,
+  Suspense,
+  useEffect,
+  useRef,
+  type ComponentType,
+  type ReactNode,
+} from "react";
 import {
   fireEvent,
   render,
@@ -78,19 +85,33 @@ vi.mock("@/components/exam-builder/MathExamBuilder", () => ({
   ),
 }));
 vi.mock("@/components/unified/StudioView", () => ({
-  default: ({
+  default: function StudioDouble({
     stepRequest,
     importRequest,
+    exportRequest,
+    onExport,
   }: {
     stepRequest?: { id: number; step: string };
     importRequest?: { files: File[] };
-  }) => (
-    <p>
-      자료 작업실 열림: 단계{" "}
-      {stepRequest ? `${stepRequest.step} ${stepRequest.id}` : "없음"} · 파일{" "}
-      {importRequest?.files.length ?? 0}
-    </p>
-  ),
+    exportRequest?: { id: number };
+    onExport: () => void;
+  }) {
+    // 작업실에 있을 때 «편집 이어가기»는 작업실에 출력 요청을 보낸다 — 작업실이 담고 나서
+    // `onExport` 로 넘긴다(4842701cd, 2026-10-15). 대역은 요청마다 한 번 넘기기만 한다.
+    const handled = useRef<number | undefined>(undefined);
+    useEffect(() => {
+      if (!exportRequest || handled.current === exportRequest.id) return;
+      handled.current = exportRequest.id;
+      onExport();
+    }, [exportRequest, onExport]);
+    return (
+      <p>
+        자료 작업실 열림: 단계{" "}
+        {stepRequest ? `${stepRequest.step} ${stepRequest.id}` : "없음"} · 파일{" "}
+        {importRequest?.files.length ?? 0}
+      </p>
+    );
+  },
 }));
 vi.mock("@/components/unified/print/WorksheetPrint", () => ({
   WorksheetPrint: () => <p>시험지 미리보기</p>,
@@ -223,11 +244,18 @@ describe("workspace action wiring", () => {
     fireEvent.click(
       await screen.findByRole("button", { name: "저장한 작업 불러오기" }),
     );
+    // 불러온 수학 시험지는 시험지 만들기(문제은행)의 출력 단계로 열린다(4842701cd, 2026-10-15) —
+    // 편집 화면은 옆 «편집 이어가기»로 간다.
+    expect(
+      await screen.findByRole("heading", { name: "문제은행 열림" }),
+    ).toBeVisible();
+    fireEvent.click(screen.getByRole("button", { name: /편집 이어가기/ }));
     expect(await screen.findByDisplayValue("저장한 시험지")).toBeVisible();
+    // «OCR · 디지털화» 탭은 «2 문항 검토»가 됐다(4842701cd, 2026-10-15).
     const reviewTab = () =>
       within(
         screen.getByRole("navigation", { name: "제작 단계 이동" }),
-      ).getByRole("button", { name: /^OCR · 디지털화/ });
+      ).getByRole("button", { name: /^2 문항 검토/ });
     fireEvent.click(reviewTab());
     expect(
       await screen.findByText("자료 작업실 열림: 단계 review 1 · 파일 0"),
@@ -272,6 +300,11 @@ describe("workspace action wiring", () => {
     fireEvent.click(
       within(card).getByRole("button", { name: "이름 바꾼 시험지 편집" }),
     );
+    // 수학 시험지는 문제은행 출력 단계로 열린다(4842701cd, 2026-10-15).
+    expect(
+      await screen.findByRole("heading", { name: "문제은행 열림" }),
+    ).toBeVisible();
+    fireEvent.click(screen.getByRole("button", { name: /편집 이어가기/ }));
     expect(await screen.findByDisplayValue("이름 바꾼 시험지")).toBeVisible();
     fireEvent.click(screen.getByRole("button", { name: "내 시험지" }));
     fireEvent.click(

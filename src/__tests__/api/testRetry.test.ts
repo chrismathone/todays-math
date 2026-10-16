@@ -60,6 +60,7 @@ async function makeProblem(
     ...data
   } = base;
   void [_id, _code, _created, _updated];
+  // exam-wiring: 테스트 — 시험 대역에 픽스처를 심는다. 시드 행을 펼쳐 만든 것이고 기출이 아니다.
   return db.problem.create({
     data: {
       ...data,

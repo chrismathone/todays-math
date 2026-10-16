@@ -1258,10 +1258,24 @@ export interface CanonicalRow {
 }
 /** Not a bank section: two rows whose hidden key needs a line more than its blank does. */
 export const SYNTHETIC_TALL_SECTION = "synthetic::tall-canonical";
+/**
+ * The bank rows as an unreviewed section: the canonical definition rows of all three memory
+ * phases. Since c53681418 every bank entry carries reviewed questions, and the writer then
+ * replaces the sentences phase with questions and the keywords rows with the cloze questions.
+ * This proof measures the canonical definition rows, so it drops the question fields.
+ */
+const unreviewed = (sectionKey: string) =>
+  coreConceptsForSection(sectionKey).map((entry) => {
+    const rest = { ...entry };
+    delete rest.questionRevision;
+    delete rest.bQuestion;
+    delete rest.clozeQuestion;
+    delete rest.questionExclusions;
+    return rest;
+  });
 const entriesOf = (sectionKey: string) => {
-  if (sectionKey !== SYNTHETIC_TALL_SECTION)
-    return coreConceptsForSection(sectionKey);
-  const [base] = coreConceptsForSection(MEMORY_SECTION_KEY);
+  if (sectionKey !== SYNTHETIC_TALL_SECTION) return unreviewed(sectionKey);
+  const [base] = unreviewed(MEMORY_SECTION_KEY);
   // The line estimate counts a Latin capital as 0.56em; W and M are nearly 1em wide. The hidden
   // key therefore wraps to a second line in the canonical row, while its blank stays on one.
   const wide = (letters: string) => Array(10).fill(letters).join(" ");

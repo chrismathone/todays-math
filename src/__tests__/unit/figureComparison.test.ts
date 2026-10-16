@@ -1,4 +1,5 @@
 // @vitest-environment node
+import { existsSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { afterAll, describe, expect, it, vi } from "vitest";
@@ -9,6 +10,24 @@ import {
 import { launchExportBrowser } from "@/lib/export/pdfServer";
 
 vi.mock("server-only", () => ({}));
+
+// macOS 개발 기기에 Chrome · Edge 앱이 없으면 제품 탐지(launchExportBrowser)는 경로를 못 찾는다.
+// 그때만 시험에서 Playwright 가 받아 둔 Chromium 을 PDF_CHROMIUM_EXECUTABLE 로 넘긴다.
+// Windows · Linux 와 Chrome/Edge 가 있는 Mac 은 제품 탐지 그대로 돈다.
+const MAC_SYSTEM_BROWSERS = [
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+];
+if (
+  process.platform === "darwin" &&
+  !process.env.PDF_CHROMIUM_EXECUTABLE &&
+  !MAC_SYSTEM_BROWSERS.some((candidate) => existsSync(candidate))
+) {
+  const { chromium } = await import("@playwright/test");
+  const playwrightChromium = chromium.executablePath();
+  if (existsSync(playwrightChromium))
+    vi.stubEnv("PDF_CHROMIUM_EXECUTABLE", playwrightChromium);
+}
 
 describe("actual source/rendered comparison image", () => {
   // 결함 2: 비교 브라우저는 유휴 시간까지 살아 있으므로 시험이 끝나면 바로 닫는다.

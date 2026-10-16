@@ -1,6 +1,8 @@
 // @vitest-environment node
 import { describe, expect, it } from "vitest";
-import { arithmeticGeometryText } from "@/lib/arithmetic-v2/presentation/text";
+// bfd5f896e: geometry prose renders through the semantic notation, and the
+// count unit sits inside the answer-blank math (`…\,\text{개}$`).
+import { arithmeticGeometryNotation } from "@/lib/arithmetic-v2/presentation/notation";
 import {
   COUNT_GEOMETRY_DEFINITIONS as definitions,
   COUNT_GEOMETRY_FIGURES as figures,
@@ -124,9 +126,9 @@ describe("direct polygon and polyhedron counts", () => {
     for (const [index, item] of sheet.rounds[0].items.entries()) {
       if (item.prompt.layout !== "math") throw new Error("math expected");
       expect(problems[index].content).toContain(
-        arithmeticGeometryText(item.prompt.text),
+        arithmeticGeometryNotation(item.prompt.text),
       );
-      expect(problems[index].content).toContain("$ 개");
+      expect(problems[index].content).toContain("\\,\\text{개}$");
       expect(problems[index].content).not.toContain("[그림1]");
       expect(problems[index].figureSvg).toBeNull();
     }

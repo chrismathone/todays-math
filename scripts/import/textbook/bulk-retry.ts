@@ -233,6 +233,7 @@ async function main() {
                 (previous) => previous.externalId === row.externalId,
               ),
           );
+          // exam-wiring: 기출아님 — 교과서 문항의 변형(재시험용)만 넣는다. 시험지 편이 없다.
           const created = missing.length
             ? await tx.problem.createManyAndReturn({
                 data: missing,

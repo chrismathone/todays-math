@@ -50,9 +50,10 @@ afterEach(() => {
 });
 
 describe("web generation with the actual expanded catalog", () => {
+  // 98f39e8b6: at most 10 rounds (200 items each); 200 items in total here.
   it.each([
     [100, 2],
-    [10, 20],
+    [20, 10],
   ])(
     "generates and reopens %i x %i while saving is disabled",
     async (count, rounds) => {

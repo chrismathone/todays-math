@@ -17,6 +17,13 @@ import type { ArithmeticSheetPayload } from "@/contracts/arithmeticSheet.contrac
 import type { PrivateDocument } from "@/contracts/privateWorkspace.contract";
 import { buildArithmeticSheet } from "@/lib/arithmetic/sheet";
 
+/** Answers render through KaTeX; read the visible copy, not the hidden MathML track. */
+const visibleText = (element: Element) => {
+  const copy = element.cloneNode(true) as Element;
+  copy.querySelectorAll(".katex-mathml").forEach((node) => node.remove());
+  return copy.textContent ?? "";
+};
+
 vi.mock("@/components/unified/WorksheetEditor", () => ({
   default: (
     props: import("react").ComponentProps<
@@ -191,7 +198,7 @@ describe("arithmetic workbench", () => {
     expect(
       screen
         .getAllByLabelText("정답")
-        .map((item) => item.textContent?.replace("정답 ", "")),
+        .map((item) => visibleText(item).replace("정답 ", "")),
     ).toEqual(sheets[1].rounds[0].items.map((item) => item.answer));
   });
 

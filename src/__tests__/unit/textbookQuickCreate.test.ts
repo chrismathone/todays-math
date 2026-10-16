@@ -866,7 +866,9 @@ describe("quick create component composition", () => {
     expect(result.conceptCount).toBe(3);
     expect(blocks.filter((b) => b.kind === "dialogue")).toHaveLength(3);
     expect(blocks.filter((b) => b.kind === "concept")).toHaveLength(3);
-    expect(blocks.filter((b) => b.kind === "concept-recall")).toHaveLength(9);
+    // The bank carries reviewed questions for every 초3 entry (c53681418): per section, three
+    // questions two to a block for 개념 질문 and 책 없이 답 쓰기, and one 빈칸 문항 rows block.
+    expect(blocks.filter((b) => b.kind === "concept-recall")).toHaveLength(15);
     expect(
       sections.some((s) => s.section.templateKey === "auto-unit-intro"),
     ).toBe(true);
@@ -883,9 +885,13 @@ describe("quick create component composition", () => {
     ).toBe(true);
     expect(exchange.assets.some((a) => a.assetId === portraitId)).toBe(true);
   });
-  it.each(["termRecall", "clozeRecall", "sentenceRecall"] as const)(
+  it.each([
+    ["termRecall", 6],
+    ["clozeRecall", 3],
+    ["sentenceRecall", 6],
+  ] as const)(
     "honors independent %s without concept explanation or practice",
-    async (toggle) => {
+    async (toggle, recallBlocks) => {
       const result = await createQuickTextbook(
         db,
         actor,
@@ -896,7 +902,10 @@ describe("quick create component composition", () => {
       expect(result.problemCount).toBe(0);
       expect(result.conceptCount).toBe(3);
       expect(sections).toHaveLength(3);
-      expect(blocks.filter((b) => b.kind === "concept-recall")).toHaveLength(3);
+      // Reviewed questions go two to a block; the cloze rows fit one block per section.
+      expect(blocks.filter((b) => b.kind === "concept-recall")).toHaveLength(
+        recallBlocks,
+      );
       expect(
         blocks.some((b) => ["concept", "problem", "dialogue"].includes(b.kind)),
       ).toBe(false);
@@ -1088,11 +1097,15 @@ describe("quick create component composition", () => {
         .filter((b) => b.kind === "concept-recall")
         .every((b) => b.kind === "concept-recall" && Boolean(b.conceptKey)),
     ).toBe(true);
+    // Reviewed sections prepare with their own questions, two to a block (three per section).
     expect(
       blocks.filter(
-        (b) => b.kind === "text" && b.markdown.includes("준비 학습"),
+        (b) =>
+          b.kind === "concept-recall" &&
+          b.semantic?.activity === "preparation" &&
+          b.semantic.node?.kind === "conceptQuestions",
       ),
-    ).toHaveLength(3);
+    ).toHaveLength(6);
     expect(
       blocks.filter(
         (b) => b.kind === "concept-recall" && b.markdown.includes("{{"),
@@ -1195,6 +1208,18 @@ describe("quick create failure and idempotency", () => {
       const missingKey = seedKey(e3[1]);
       const missingEntries = conceptIndex.get(missingKey)!;
       conceptIndex.delete(missingKey);
+      // Every bank section is reviewed now (c53681418): turn the last one back into an
+      // unreviewed section so the range mixes two question revisions.
+      const legacyEntries = conceptIndex.get(seedKey(e3[2]))!;
+      const legacyBefore = legacyEntries.map((entry) => structuredClone(entry));
+      for (const entry of legacyEntries)
+        for (const field of [
+          "questionRevision",
+          "bQuestion",
+          "clozeQuestion",
+          "questionExclusions",
+        ] as const)
+          delete entry[field];
       try {
         const practice = await createQuickTextbook(
           db,
@@ -1218,6 +1243,9 @@ describe("quick create failure and idempotency", () => {
         ).rejects.toThrow("서로 다른 질문 판");
       } finally {
         conceptIndex.set(missingKey, missingEntries);
+        legacyEntries.forEach((entry, index) =>
+          Object.assign(entry, legacyBefore[index]),
+        );
       }
     } finally {
       for (const { entry, value } of before) {
@@ -1337,7 +1365,7 @@ describe("quick create adapts to real bank availability", () => {
     endUnitId: ids.get(seedKey(m2[end]))!,
   });
 
-  it("creates all 28 components across eight middle-2 sections with no written candidates", async () => {
+  it("creates all 28 components across seven middle-2 sections with no written candidates", async () => {
     // Per section, eight different standard questions: one recorded pair, one word problem and
     // five lone calculations. Nothing descriptive is eligible in the standard tier.
     for (const [index, unit] of m2.slice(0, 8).entries()) {
@@ -1380,19 +1408,22 @@ describe("quick create adapts to real bank availability", () => {
     const all = Object.fromEntries(
       Object.keys(DEFAULT_QUICK_CREATE_COMPONENTS).map((key) => [key, true]),
     ) as QuickCreateComponents;
+    // Seven sections, not eight: with the reviewed questions of c53681418 every lesson splits
+    // at its activity boundaries, and eight sections (152) pass the edition's 150-section cap.
+    // m2[7] stays in range: one of its entries is excluded from the B question.
     const body = input({
-      ...scope(0, 7),
+      ...scope(1, 7),
       components: all,
       problemCountPerUnit: 8,
     });
     const result = await createQuickTextbook(db, actor, body, visualDeps);
-    expect(result.problemCount).toBe(64);
-    expect(result.conceptCount).toBe(8);
+    expect(result.problemCount).toBe(56);
+    expect(result.conceptCount).toBe(7);
     expect(
       result.warnings.filter((warning) =>
         warning.includes("서술형 1문항 중 0문항을 넣었습니다."),
       ),
-    ).toHaveLength(8);
+    ).toHaveLength(7);
     expect(
       result.warnings.filter((warning) => warning.includes("요청한 최대")),
     ).toEqual([]);
@@ -1404,17 +1435,17 @@ describe("quick create adapts to real bank availability", () => {
     // the first selected group that still has a different question.
     expect(byStage("written")).toHaveLength(0);
     expect(byStage("basic")).toHaveLength(0);
-    expect(byStage("worked-example")).toHaveLength(8);
-    expect(byStage("concept-check")).toHaveLength(24);
-    expect(byStage("type-practice")).toHaveLength(8);
-    expect(byStage("application")).toHaveLength(8);
-    expect(byStage("cumulative-review")).toHaveLength(8);
-    expect(byStage("unit-assessment")).toHaveLength(8);
+    expect(byStage("worked-example")).toHaveLength(7);
+    expect(byStage("concept-check")).toHaveLength(21);
+    expect(byStage("type-practice")).toHaveLength(7);
+    expect(byStage("application")).toHaveLength(7);
+    expect(byStage("cumulative-review")).toHaveLength(7);
+    expect(byStage("unit-assessment")).toHaveLength(7);
     // A calculation is never relabelled as reasoning: only the recorded word problems qualify.
     expect(byStage("application").every((r) => r.problemType === "활용")).toBe(
       true,
     );
-    for (const unit of m2.slice(0, 8)) {
+    for (const unit of m2.slice(1, 8)) {
       const inUnit = rows.filter(
         (row) => row.unitId === ids.get(seedKey(unit)),
       );
@@ -1422,7 +1453,7 @@ describe("quick create adapts to real bank availability", () => {
       expect(new Set(inUnit.map((row) => row.content)).size).toBe(8);
     }
     const groups = exampleGroups(blocks);
-    expect(groups).toHaveLength(8);
+    expect(groups).toHaveLength(7);
     for (const group of groups) {
       const example = rows.find((row) => row.itemId === group.example)!;
       const confirm = rows.find((row) => row.itemId === group.confirms[0])!;

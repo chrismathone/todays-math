@@ -24,10 +24,8 @@ import assetFile from "@/lib/arithmetic-v2/families/geometry-angle-assets-v1.jso
 import { svgLabels } from "@/lib/figure/svgLabels";
 import { arithmeticToStudioProblems } from "@/lib/arithmeticOutput";
 import { parseStrictJson } from "@/lib/textbook/strictJson";
-import {
-  presentArithmeticGeometrySvg,
-  ARITHMETIC_GEOMETRY_EXTENT,
-} from "@/lib/arithmetic-v2/presentation";
+import { presentArithmeticGeometrySvg } from "@/lib/arithmetic-v2/presentation";
+import { arithmeticFigurePresentation } from "@/lib/arithmetic-v2/presentation/figurePolicy";
 import {
   ARITHMETIC_BODY_MAX_BYTES,
   ARITHMETIC_SHEET_JSON_LIMITS,
@@ -213,27 +211,27 @@ describe("live geometry arithmetic", () => {
       problems.forEach((problem, i) => {
         const item = sheet.rounds[0].items[i];
         if (item.prompt.layout !== "math") throw new Error("Unexpected prompt");
-        expect(problem.figureSvg).toBe(
+        // 4b0dd8435: both triangle-angle families state every given angle in
+        // the text, so the saved figure stays in the sheet but is not printed.
+        expect(
+          arithmeticFigurePresentation(item.prompt, item.typeId).showFigure,
+        ).toBe(false);
+        expect(
           presentArithmeticGeometrySvg(
             item.prompt.figureId!,
             arithmeticAngleSvg(item.prompt.figureId!, sheet.figures!),
           ),
+        ).toContain("<svg");
+        expect(problem.figureSvg).toBeNull();
+        expect(problem.figureUrls).toEqual([]);
+        expect(problem.figureSourceMm).toEqual([]);
+        expect(problem.content).not.toContain("[그림1]");
+        expect(problem.content).toContain("\\circ");
+        // Given angles are now in the text and may equal the answer (isosceles);
+        // the answer line itself stays blank.
+        expect(problem.content.split("답: ").at(-1)).not.toContain(
+          item.answer.latex,
         );
-        expect(
-          problem.figureSvg?.replace(
-            "<desc>arithmetic-geometry-presentation-v1</desc>",
-            "",
-          ),
-        ).toBe(arithmeticAngleSvg(item.prompt.figureId!, sheet.figures!));
-        expect(decodeURIComponent(problem.figureUrls[0].split(",")[1])).toBe(
-          problem.figureSvg,
-        );
-        expect(problem.figureSourceMm[0]).toBeGreaterThan(0);
-        expect(problem.figureSourceMm[0]).toBeLessThanOrEqual(
-          (ARITHMETIC_GEOMETRY_EXTENT * 25.4) / 96,
-        );
-        expect(problem.content).toContain("[그림1]");
-        expect(problem.content).not.toContain(item.answer.latex);
         expect(problem.content).not.toContain("?");
         expect(problem.answer).toBe(`$${item.answer.latex}$`);
         expect(problem.solution).toBe("");

@@ -53,8 +53,9 @@ describe("bounded arithmetic type selection", () => {
     ).toBeLessThanOrEqual(ARITHMETIC_MAX_ITEMS_TOTAL);
     expect(selected).toEqual([{ id: "selected", count: 12 }]);
   });
-  it("allows two full rounds and separates budget limits from domain exhaustion", () => {
-    const selected = [{ id: "selected", count: 91 }];
+  // 98f39e8b6: every round has its own 200-item budget (up to 10 rounds).
+  it("allows full rounds and separates budget limits from domain exhaustion", () => {
+    const selected = [{ id: "selected", count: 191 }];
     expect(availableArithmeticTypes([choice("a")], selected, 2)).toEqual([
       choice("a"),
     ]);
@@ -68,10 +69,10 @@ describe("bounded arithmetic type selection", () => {
       ),
     ).toHaveLength(1);
     expect(
-      arithmeticTypeSelectionIssue(choice("a"), [{ id: "b", count: 100 }], 2),
+      arithmeticTypeSelectionIssue(choice("a"), [{ id: "b", count: 200 }], 2),
     ).toBe("limit");
     expect(arithmeticTypeSelectionIssue(choice("a", 10), [], 2)).toBe("domain");
-    expect(arithmeticTypeSelectionIssue(choice("a"), [], 21)).toBe(
+    expect(arithmeticTypeSelectionIssue(choice("a"), [], 11)).toBe(
       "invalid-quantity",
     );
     expect(
@@ -81,17 +82,17 @@ describe("bounded arithmetic type selection", () => {
       arithmeticTypeSelectionIssue({ ...choice("a"), disabled: true }, [], 2),
     ).toBe("disabled");
     expect(
-      availableArithmeticTypes([choice("a")], [{ id: "b", count: 1 }], 20),
+      availableArithmeticTypes([choice("a")], [{ id: "b", count: 191 }], 10),
     ).toEqual([choice("a")]);
     expect(
-      availableArithmeticTypes([choice("a")], [{ id: "b", count: 2 }], 20),
+      availableArithmeticTypes([choice("a")], [{ id: "b", count: 192 }], 10),
     ).toEqual([]);
   });
   it("terminates for exhausted filters, invalid quantities and full selections", () => {
-    for (const rounds of [0, NaN, Infinity, 21, 1.5])
+    for (const rounds of [0, NaN, Infinity, 11, 1.5])
       expect(randomArithmeticTypes([choice("a")], [], rounds, 3)).toEqual([]);
     expect(
-      randomArithmeticTypes([choice("a")], [{ id: "b", count: 100 }], 1, 3),
+      randomArithmeticTypes([choice("a")], [{ id: "b", count: 200 }], 1, 3),
     ).toEqual([]);
     expect(randomArithmeticTypes([], [], 1, 100)).toEqual([]);
     expect(randomArithmeticTypes([choice("a")], [], 1, NaN)).toEqual([]);

@@ -1281,6 +1281,7 @@ async function main(): Promise<void> {
     let inserted = 0;
     for (let start = 0; start < fresh.length; start += 500) {
       const chunk = fresh.slice(start, start + 500);
+      // exam-wiring: 기출아님 — 출판사 교과서 평가 자료(source=school_textbook, D-161)다. 학교 시험지 편이 없다.
       const result = await prisma.problem.createMany({
         data: chunk.map((row) => ({
           unitId: row.unitId,

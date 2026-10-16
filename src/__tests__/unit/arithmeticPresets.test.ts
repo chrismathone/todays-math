@@ -9,6 +9,7 @@ import {
   ARITHMETIC_ENGINE_VERSION,
   ARITHMETIC_CATALOG_VERSION,
   arithmeticDomainSize,
+  ArithmeticEngineError,
   buildArithmeticSheet,
   reopenArithmeticSheet,
   validateArithmeticRequest,
@@ -55,6 +56,12 @@ function requestFor(
     })),
   };
 }
+
+// 98f39e8b6: any two rounds may share at most floor(n/5) items, so a preset's
+// default count fits two rounds only when its domain holds 2n - floor(n/5) pairs.
+const fitsTwoRounds = (preset: ArithmeticPreset) =>
+  preset.domainSize >=
+  2 * preset.defaultCount - Math.floor(preset.defaultCount / 5);
 
 const inside = (n: number, r: { min: number; max: number }) =>
   n >= r.min && n <= r.max;
@@ -357,14 +364,22 @@ describe("authored arithmetic presets", () => {
     "$id: eight seeds preserve conditions, independent answers and duplicate-free snapshots",
     (preset) => {
       const domain = domains.get(preset.id)!;
+      const rounds = fitsTwoRounds(preset) ? 2 : 1;
+      if (rounds === 1)
+        expect(() => buildArithmeticSheet(requestFor(preset, "alpha"))).toThrow(
+          expect.objectContaining({
+            constructor: ArithmeticEngineError,
+            code: "round-overlap",
+          }),
+        );
       for (const seed of seeds) {
-        const input = requestFor(preset, seed);
+        const input = requestFor(preset, seed, rounds);
         const sheet = buildArithmeticSheet(input);
         expect(buildArithmeticSheet(structuredClone(input))).toEqual(sheet);
         expect(
           reopenArithmeticSheet(JSON.parse(JSON.stringify(sheet))),
         ).toEqual(sheet);
-        expect(sheet.rounds).toHaveLength(2);
+        expect(sheet.rounds).toHaveLength(rounds);
         for (const round of sheet.rounds) {
           expect(round.items).toHaveLength(preset.defaultCount);
           const identities = new Set<string>();
