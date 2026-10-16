@@ -34,6 +34,11 @@ import {
 } from "./typeSelection";
 import { useArithmeticTypeSelection } from "./useArithmeticTypeSelection";
 import {
+  ArithmeticTypePreview,
+  composeHandlers,
+  useArithmeticTypePreview,
+} from "./ArithmeticTypePreview";
+import {
   ArithmeticBasketSelection,
   useArithmeticBasketSelection,
 } from "./ArithmeticBasketSelection";
@@ -199,6 +204,7 @@ export default function GradeArithmeticWorkbench({
   }));
   const available = availableArithmeticTypes(filtered, selectedTypes, rounds);
   const availableIds = new Set(available.map((item) => item.id));
+  const typePreview = useArithmeticTypePreview();
   const cardSelection = useArithmeticTypeSelection((id, selected) => {
     if (busy) return;
     setAllocations((current) => {
@@ -612,10 +618,13 @@ export default function GradeArithmeticWorkbench({
                     type="button"
                     className={s.card}
                     key={type.id}
-                    {...cardSelection(
-                      type.id,
-                      Boolean(item),
-                      busy || (!item && !availableIds.has(type.id)),
+                    {...composeHandlers(
+                      cardSelection(
+                        type.id,
+                        Boolean(item),
+                        busy || (!item && !availableIds.has(type.id)),
+                      ),
+                      typePreview.cardProps(type.id),
                     )}
                   >
                     <span className={s.cardTop}>
@@ -644,6 +653,7 @@ export default function GradeArithmeticWorkbench({
             {!filtered.length && (
               <p role="status">조건에 맞는 유형이 없습니다.</p>
             )}
+            <ArithmeticTypePreview state={typePreview.state} types={catalog} />
             <div className={s.pagination} aria-label="연산 유형 페이지">
               <button
                 disabled={currentPage === 1}
