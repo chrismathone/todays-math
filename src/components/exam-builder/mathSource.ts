@@ -10,6 +10,7 @@ import {
 import type { UnitEntity } from "@/contracts/unit.contract";
 import type { BankData, StudioProblem } from "@/components/unified/types";
 import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
+import { familyIdOf } from "@/lib/generator/familyKey";
 import type { ExamBuilderSource } from "./types";
 
 export const MATH_EXAM_DIFFICULTIES = DIFFICULTY_LADDER;
@@ -47,6 +48,7 @@ export function createMathExamBuilderSource(
   function toScopes(
     units: readonly UnitEntity[],
     counts?: Readonly<Record<string, number>>,
+    countUnit?: string,
   ) {
     scopeIds.clear();
     return units.map((unit) => {
@@ -56,7 +58,9 @@ export function createMathExamBuilderSource(
         label: unit.section,
         group: unit.grade,
         detail: unit.chapter,
-        ...(counts && unit.id in counts ? { count: counts[unit.id] } : {}),
+        ...(counts && unit.id in counts
+          ? { count: counts[unit.id], ...(countUnit ? { countUnit } : {}) }
+          : {}),
       };
     });
   }
@@ -99,6 +103,8 @@ export function createMathExamBuilderSource(
       if (options.refreshAvailability || options.filters) {
         const params = new URLSearchParams(options.filters);
         params.set("view", "available");
+        // D-111: a sheet takes one problem per family, so the gate is families.
+        params.set("families", "1");
         const [inventory, curriculum] = await Promise.all([
           request<unknown>(`${endpoint()}/sources`, signal, {
             method: "POST",
@@ -114,16 +120,19 @@ export function createMathExamBuilderSource(
           throw new Error("단원 목록을 불러오지 못했습니다.");
         if (signal.aborted) throw new DOMException("Aborted", "AbortError");
         options.onAvailability?.(available);
+        // Never fall back to row counts: rows overstate what one sheet can hold.
+        const families = available.facets?.unitFamilies;
         return toScopes(
           curriculum.units,
-          available.facets
+          families
             ? Object.fromEntries(
                 curriculum.units.map((unit) => [
                   unit.id,
-                  available.facets!.units[unit.id]?.available ?? 0,
+                  families[unit.id] ?? 0,
                 ]),
               )
             : undefined,
+          "갈래",
         );
       }
       if (options.initialUnits)
@@ -144,6 +153,11 @@ export function createMathExamBuilderSource(
       if (input.query.trim()) params.set("q", input.query.trim());
       if (input.excludeIds.length)
         params.set("excludeIds", [...new Set(input.excludeIds)].join(","));
+      if (input.excludeFamiliesOf?.length)
+        params.set(
+          "excludeFamiliesOf",
+          [...new Set(input.excludeFamiliesOf)].join(","),
+        );
       const data =
         params.toString().length > 3000
           ? await request<BankData>(endpoint(), signal, {
@@ -183,6 +197,12 @@ export function createMathExamBuilderSource(
       return {
         id: item.id,
         scopeId: scopeId(item),
+        familyId: familyIdOf({
+          id: item.id,
+          unitId: scopeId(item),
+          familyKey: (item as StudioProblem & { familyKey?: string | null })
+            .familyKey,
+        }),
         scopeLabel: item.section,
         difficulty: item.difficulty,
         detail: [item.grade, item.chapter, item.problemCode]

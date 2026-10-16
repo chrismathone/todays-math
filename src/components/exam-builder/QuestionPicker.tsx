@@ -12,6 +12,7 @@ export default function QuestionPicker<T>({
   questions,
   difficulties,
   replacing,
+  replaceId,
   initialScopeId,
   width,
   maxQuestions,
@@ -24,6 +25,8 @@ export default function QuestionPicker<T>({
   questions: T[];
   difficulties: readonly string[];
   replacing: boolean;
+  /** The slot being replaced — its own family stays available (D-111 ⑷). */
+  replaceId?: string;
   initialScopeId?: string;
   width?: number;
   maxQuestions: number;
@@ -47,6 +50,16 @@ export default function QuestionPicker<T>({
   // Keep visible candidates in place when repeatedly adding; a new filter uses current exclusions.
   const [excluded] = useState(() =>
     questions.map((item) => source.info(item).id),
+  );
+  // D-111: one problem family per sheet. Replacing frees only its own slot's family.
+  const [excludedFamilies] = useState(() =>
+    excluded.filter((id) => id !== replaceId),
+  );
+  const blockedFamilies = new Set(
+    questions.flatMap((item) => {
+      const info = source.info(item);
+      return info.familyId && info.id !== replaceId ? [info.familyId] : [];
+    }),
   );
   const scopeIds = scopeId ? [scopeId] : scopes.map((scope) => scope.id);
   const key = JSON.stringify([scopeIds, difficulty, query, page, retry]);
@@ -78,6 +91,7 @@ export default function QuestionPicker<T>({
           page: currentPage,
           pageSize: PAGE_SIZE,
           excludeIds: excluded,
+          excludeFamiliesOf: excludedFamilies,
         },
         controller.signal,
       )
@@ -97,7 +111,7 @@ export default function QuestionPicker<T>({
           });
       });
     return () => controller.abort();
-  }, [source, key, excluded]);
+  }, [source, key, excluded, excludedFamilies]);
   return (
     <BuilderDialog
       title={replacing ? "문항 교체" : "문항 추가"}
@@ -171,6 +185,10 @@ export default function QuestionPicker<T>({
               result.items.map((item) => {
                 const info = source.info(item);
                 const isSelected = selected.has(info.id);
+                const sameFamily =
+                  !isSelected &&
+                  !!info.familyId &&
+                  blockedFamilies.has(info.familyId);
                 return (
                   <article className={s.candidate} key={info.id}>
                     <small>
@@ -180,9 +198,17 @@ export default function QuestionPicker<T>({
                     <div className={s.actions}>
                       <button
                         type="button"
-                        className={isSelected ? undefined : s.primary}
+                        className={
+                          isSelected || sameFamily ? undefined : s.primary
+                        }
+                        title={
+                          sameFamily
+                            ? "같은 문항류는 한 시험지에 1문항만 담습니다."
+                            : undefined
+                        }
                         disabled={
                           isSelected ||
+                          sameFamily ||
                           (!replacing && questions.length >= maxQuestions)
                         }
                         onClick={() => {
@@ -192,9 +218,11 @@ export default function QuestionPicker<T>({
                       >
                         {isSelected
                           ? "추가됨"
-                          : replacing
-                            ? "이 문항으로 교체"
-                            : "문항 추가"}
+                          : sameFamily
+                            ? "같은 문항류 있음"
+                            : replacing
+                              ? "이 문항으로 교체"
+                              : "문항 추가"}
                       </button>
                     </div>
                   </article>

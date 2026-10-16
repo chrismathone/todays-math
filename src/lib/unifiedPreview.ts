@@ -25,6 +25,29 @@ import type {
 
 export class UnifiedBankQueryError extends Error {}
 
+/**
+ * D-111 — 주어진 문항들의 **문항류를 통째로** 빼는 조건. 정체는 `(unitId, familyKey)` 복합키다(D-111 ⑴) —
+ * 같은 키 문자열이라도 단원이 다르면 다른 류라 남는다. 키가 없는(NULL · 빈 값) 문항은 **자기 자신만** 뺀다
+ * (D-105 · D-111 ⑵ — NULL 을 한 무리로 묶으면 레거시 수만 행이 한 류가 된다).
+ */
+async function excludeFamiliesClause(
+  ids: readonly string[],
+): Promise<Prisma.ProblemWhereInput> {
+  const rows = await db.problem.findMany({
+    where: { id: { in: [...ids] } },
+    select: { unitId: true, familyKey: true },
+  });
+  const pairs = new Map<string, { unitId: string; familyKey: string }>();
+  for (const { unitId, familyKey } of rows)
+    if (familyKey?.trim())
+      pairs.set(JSON.stringify([unitId, familyKey]), { unitId, familyKey });
+  return {
+    NOT: {
+      OR: [{ id: { in: [...ids] } }, ...pairs.values()],
+    },
+  };
+}
+
 /** Shared filters keep manual browsing and random selection in the same pool. */
 export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
   const parsed = unifiedBankQuerySchema.safeParse(
@@ -58,6 +81,7 @@ export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
     pageSize,
     unitIds,
     excludeIds,
+    excludeFamiliesOf,
     ids,
     semester,
     sourceGroup,
@@ -73,6 +97,8 @@ export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
   const clauses: Prisma.ProblemWhereInput[] = [visibility];
   if (unitIds) clauses.push({ unitId: { in: unitIds } });
   if (excludeIds) clauses.push({ NOT: { id: { in: excludeIds } } });
+  if (excludeFamiliesOf)
+    clauses.push(await excludeFamiliesClause(excludeFamiliesOf));
   if (ids) clauses.push({ id: { in: ids } });
   if (grade || chapter || chapterPrefix)
     clauses.push({

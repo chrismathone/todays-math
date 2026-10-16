@@ -145,8 +145,8 @@ export default function BankRandomPanel({
           {shortages?.length ? (
             <>
               <p>
-                부족한 문항은 추가하지 않았습니다. 범위를 넓히거나 문항 수를
-                조정해 주세요.
+                부족한 문항은 추가하지 않았습니다. 같은 문항류는 한 시험지에
+                1문항만 담습니다. 범위를 넓히거나 문항 수를 조정해 주세요.
               </p>
               <ul>
                 {shortages.map((tier) => (
@@ -154,7 +154,7 @@ export default function BankRandomPanel({
                     {tier}: 요청 {result.requested[tier]} · 추가{" "}
                     {result.actual[tier]} · 부족{" "}
                     {result.requested[tier] - result.actual[tier]}문항 (선택 전
-                    가능 {result.available[tier]}문항)
+                    가능 {result.available[tier]}갈래)
                   </li>
                 ))}
               </ul>

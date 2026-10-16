@@ -81,6 +81,7 @@ describe("Math exam builder source", () => {
       ...tally,
       facets: {
         units: { [unit.id]: tally },
+        unitFamilies: { [unit.id]: 6 },
         difficulties: Object.fromEntries(
           DIFFICULTY_LADDER.map((level) => [level, tally]),
         ),
@@ -106,10 +107,12 @@ describe("Math exam builder source", () => {
     });
     expect(source.initialScopes).toBeUndefined();
     const scopes = await source.loadScopes(signal);
-    expect(scopes[0].count).toBe(24);
-    expect(scopes[1].count).toBe(0);
+    // D-111: the gate is the number of issuable problem families, not rows.
+    expect(scopes[0]).toMatchObject({ count: 6, countUnit: "갈래" });
+    expect(scopes[1]).toMatchObject({ count: 0, countUnit: "갈래" });
     expect(JSON.parse(fetcher.mock.calls[0][1]!.body as string)).toMatchObject({
       view: "available",
+      families: "1",
       sourceGroup: "school_textbook",
       materials: "40000000-0000-4000-8000-000000000001",
     });
@@ -131,6 +134,68 @@ describe("Math exam builder source", () => {
       filters,
       allocations: [{ unitId: unit.id, count: 24 }],
     });
+  });
+
+  it("keeps the family gate unknown when the server did not count families (never falls back to rows)", async () => {
+    const tally = { held: 30, available: 24 };
+    const fetcher = vi.fn<typeof fetch>().mockResolvedValueOnce(
+      reply({
+        view: "available",
+        version: 1,
+        ...tally,
+        facets: {
+          units: { [unit.id]: tally },
+          difficulties: Object.fromEntries(
+            DIFFICULTY_LADDER.map((level) => [level, tally]),
+          ),
+          sources: Object.fromEntries(
+            ["total", "engine", "school_textbook", "past_exam", "other"].map(
+              (key) => [key, tally],
+            ),
+          ),
+          textbook: { ...tally, books: [] },
+        },
+      }),
+    );
+    const source = createMathExamBuilderSource({
+      initialUnits: MOCK_UNITS,
+      refreshAvailability: true,
+      fetch: fetcher,
+    });
+    expect((await source.loadScopes(signal))[0].count).toBeUndefined();
+  });
+
+  it("asks candidates without the families already on the sheet and names each row's family by (unit, key)", async () => {
+    const fetcher = vi
+      .fn<typeof fetch>()
+      .mockResolvedValue(reply({ problems: [row()], total: 1, page: 2 }));
+    const source = createMathExamBuilderSource({
+      fetch: fetcher,
+      problemsUrl: "/api/studio/problems",
+    });
+    await source.list(
+      { ...listRequest, excludeFamiliesOf: ["sheet-1", "sheet-2"] },
+      signal,
+    );
+    const url = new URL(String(fetcher.mock.calls[0][0]), "https://math.test");
+    expect(url.searchParams.get("excludeFamiliesOf")).toBe("sheet-1,sheet-2");
+    const keyed = { ...row("k1"), familyKey: "mid:1|A|01" };
+    const sibling = { ...row("k2"), familyKey: "mid:1|A|01" };
+    const otherUnit = {
+      ...row("k3"),
+      unitId: MOCK_UNITS[1].id,
+      familyKey: "mid:1|A|01",
+    };
+    expect(source.info(keyed).familyId).toBe(source.info(sibling).familyId);
+    expect(source.info(keyed).familyId).not.toBe(
+      source.info(otherUnit).familyId,
+    );
+    // 키 없는 레거시는 각자 혼자
+    const legacyA = { ...row("n1"), familyKey: null };
+    const legacyB = { ...row("n2"), familyKey: null };
+    expect(source.info(legacyA).familyId).not.toBe(
+      source.info(legacyB).familyId,
+    );
   });
 
   it("keeps uncounted facets unknown and never falls back to stale inventory on failure", async () => {

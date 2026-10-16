@@ -13,7 +13,12 @@ import ExamBuilder from "./ExamBuilder";
 import ScopePicker from "./ScopePicker";
 import type { ExamBuilderSource, ExamBuilderStep } from "./types";
 
-type Item = { id: string; scope: string; difficulty: string };
+type Item = {
+  id: string;
+  scope: string;
+  difficulty: string;
+  family?: string;
+};
 const questions: Item[] = [
   { id: "a", scope: "u1", difficulty: "기본" },
   { id: "b", scope: "u1", difficulty: "심화" },
@@ -39,6 +44,7 @@ function source(
       scopeId: item.scope,
       scopeLabel: `범위 ${item.scope.slice(1)}`,
       difficulty: item.difficulty,
+      ...(item.family ? { familyId: item.family } : {}),
     }),
     prepareOutput: vi.fn(async (items) => items),
     ...overrides,
@@ -680,5 +686,92 @@ describe("shared exam builder workflow", () => {
     expect(screen.getByLabelText("문항 순서")).toHaveTextContent("b,c,a");
     fireEvent.click(screen.getByRole("button", { name: "↶ 되돌리기" }));
     expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a,b,c");
+  });
+  it("keeps one problem family per sheet when adding (D-111)", async () => {
+    const sheet: Item[] = [
+      { id: "a", scope: "u1", difficulty: "기본", family: "u1 A" },
+      { id: "b", scope: "u1", difficulty: "기본", family: "u1 B" },
+    ];
+    const adapter = source({
+      loadScopes: vi
+        .fn()
+        .mockResolvedValue([{ ...scopes[0], count: 4, countUnit: "갈래" }]),
+      list: vi.fn().mockResolvedValue({
+        items: [
+          { id: "a2", scope: "u1", difficulty: "기본", family: "u1 A" },
+          { id: "c1", scope: "u1", difficulty: "기본", family: "u1 C" },
+          { id: "c2", scope: "u1", difficulty: "기본", family: "u1 C" },
+        ],
+        total: 3,
+      }),
+    });
+    render(<Harness adapter={adapter} initial={sheet} />);
+    await waitFor(() =>
+      expect(
+        screen.getAllByRole("button", { name: "+ 문항 추가" })[0],
+      ).toBeEnabled(),
+    );
+    expect(screen.getByText(/출제 가능 4갈래/)).toBeInTheDocument();
+    fireEvent.click(screen.getAllByRole("button", { name: "+ 문항 추가" })[0]);
+    await waitFor(() =>
+      expect(adapter.list).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          excludeIds: ["a", "b"],
+          excludeFamiliesOf: ["a", "b"],
+        }),
+        expect.any(AbortSignal),
+      ),
+    );
+    const dialog = await screen.findByRole("dialog");
+    const buttons = await within(dialog).findAllByRole("button", {
+      name: /문항 추가|같은 문항류 있음/,
+    });
+    // a2 is a sibling of a — shown but not addable
+    expect(buttons[0]).toHaveTextContent("같은 문항류 있음");
+    expect(buttons[0]).toBeDisabled();
+    fireEvent.click(buttons[1]);
+    expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a,b,c1");
+    // c2 became a sibling of what was just added
+    expect(
+      within(dialog).getAllByRole("button", { name: "같은 문항류 있음" }),
+    ).toHaveLength(2);
+  });
+  it("lets a replacement come from the replaced slot's own family but not another slot's (D-111 ⑷)", async () => {
+    const sheet: Item[] = [
+      { id: "a", scope: "u1", difficulty: "기본", family: "u1 A" },
+      { id: "b", scope: "u1", difficulty: "기본", family: "u1 B" },
+    ];
+    const adapter = source({
+      loadScopes: vi.fn().mockResolvedValue([{ ...scopes[0], count: 4 }]),
+      list: vi.fn().mockResolvedValue({
+        items: [
+          { id: "b2", scope: "u1", difficulty: "기본", family: "u1 B" },
+          { id: "a2", scope: "u1", difficulty: "기본", family: "u1 A" },
+        ],
+        total: 2,
+      }),
+    });
+    render(<Harness adapter={adapter} initial={sheet} />);
+    await waitFor(() =>
+      expect(screen.getAllByRole("button", { name: "교체" })[0]).toBeEnabled(),
+    );
+    fireEvent.click(screen.getAllByRole("button", { name: "교체" })[0]);
+    await waitFor(() =>
+      expect(adapter.list).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          excludeIds: ["a", "b"],
+          excludeFamiliesOf: ["b"],
+        }),
+        expect.any(AbortSignal),
+      ),
+    );
+    const dialog = await screen.findByRole("dialog");
+    expect(
+      await within(dialog).findByRole("button", { name: "같은 문항류 있음" }),
+    ).toBeDisabled();
+    fireEvent.click(
+      within(dialog).getByRole("button", { name: "이 문항으로 교체" }),
+    );
+    expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a2,b");
   });
 });

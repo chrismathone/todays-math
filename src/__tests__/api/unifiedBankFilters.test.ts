@@ -209,7 +209,7 @@ describe("Math exam builder scoped bank access", () => {
     });
   });
 
-  it("composes all unit quotas in two problem reads and never borrows for shortages", async () => {
+  it("composes all unit quotas in bounded problem reads (sheet families, pool, chosen rows) and never borrows for shortages", async () => {
     const baseline = await db.problem.findMany({
       select: { id: true },
       where: { unitId: { in: [MOCK_UNITS[0].id, MOCK_UNITS[2].id] } },
@@ -233,7 +233,8 @@ describe("Math exam builder scoped bank access", () => {
       ],
       excludeIds: [...baseline.map((row) => row.id), excluded.id],
     });
-    expect(find).toHaveBeenCalledTimes(2);
+    // D-111: one extra read for the families already on the sheet (excludeIds).
+    expect(find).toHaveBeenCalledTimes(3);
     expect(result.problems.map((row) => row.id)).toEqual([first.id, second.id]);
     expect(result.allocations).toEqual([
       { unitId: MOCK_UNITS[0].id, requested: 3, available: 1, actual: 1 },

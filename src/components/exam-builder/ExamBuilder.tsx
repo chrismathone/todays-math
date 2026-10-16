@@ -464,7 +464,7 @@ export default function ExamBuilder<T>({
                                     .filter(Boolean)
                                     .join(" · ")}
                                   {scope?.count !== undefined
-                                    ? ` · 출제 가능 ${scope.count}문항`
+                                    ? ` · 출제 가능 ${scope.count}${scope.countUnit ?? "문항"}`
                                     : source.requireScopeCounts
                                       ? " · 출제 가능 수 확인 필요"
                                       : ""}
@@ -849,13 +849,25 @@ export default function ExamBuilder<T>({
           questions={questions}
           difficulties={difficulties}
           replacing={!!picker.replaceId}
+          replaceId={picker.replaceId}
           initialScopeId={picker.scopeId}
           width={picker.replaceId ? pickerWidth : undefined}
           maxQuestions={maxQuestions}
           renderQuestion={renderQuestion}
           onClose={() => setPicker(null)}
           onChoose={(item) => {
+            const added = source.info(item);
+            const takenElsewhere = questions.some((current) => {
+              const existing = source.info(current);
+              return (
+                existing.id !== picker.replaceId &&
+                !!added.familyId &&
+                existing.familyId === added.familyId
+              );
+            });
             if (picker.replaceId) {
+              // D-111 ⑷: never let one click put another slot's sibling on the sheet.
+              if (takenElsewhere) return;
               change(
                 questions.map((current) =>
                   source.info(current).id === picker.replaceId ? item : current,
@@ -864,9 +876,8 @@ export default function ExamBuilder<T>({
               setPicker(null);
             } else if (
               questions.length < maxQuestions &&
-              !questions.some(
-                (current) => source.info(current).id === source.info(item).id,
-              )
+              !takenElsewhere &&
+              !questions.some((current) => source.info(current).id === added.id)
             ) {
               change([...questions, item]);
             }

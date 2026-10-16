@@ -9,6 +9,8 @@ export interface ExamScope {
   group: string;
   detail?: string;
   count?: number;
+  /** What `count` counts. Defaults to 문항; math counts problem families (D-111 «갈래»). */
+  countUnit?: string;
 }
 export interface ExamAllocation {
   scopeId: string;
@@ -20,6 +22,11 @@ export interface ExamQuestionInfo {
   scopeLabel: string;
   difficulty: string;
   detail?: string;
+  /**
+   * Same value = same problem family; one sheet holds at most one (D-111).
+   * Omit when the subject has no family concept (every item stands alone).
+   */
+  familyId?: string;
 }
 export interface ExamBuilderSource<T> {
   /** Math inventory must be confirmed before a scope can be selected. */
@@ -35,6 +42,11 @@ export interface ExamBuilderSource<T> {
       page: number;
       pageSize: number;
       excludeIds: string[];
+      /**
+       * Exclude the whole family of each of these items (D-111). Add sends the
+       * whole sheet; replace sends the sheet minus the slot being replaced.
+       */
+      excludeFamiliesOf?: string[];
     },
     signal: AbortSignal,
   ) => Promise<{ items: T[]; total: number }>;

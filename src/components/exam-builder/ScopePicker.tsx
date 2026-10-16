@@ -248,7 +248,7 @@ export default function ScopePicker({
                   {scope.count !== undefined && (
                     <small>
                       {scope.count
-                        ? `${scope.count}문항`
+                        ? `${scope.count}${scope.countUnit ?? "문항"}`
                         : "출제 가능 문항 없음"}
                     </small>
                   )}

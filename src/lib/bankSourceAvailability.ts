@@ -37,7 +37,13 @@ import {
  */
 
 /** 보기 · 판 · 쪽 — 조건이 아니라 이 요청의 모양이다. 조회 조건 계약은 엄격해서 남겨 두면 400 이 된다. */
-const NOT_FILTERS = ["view", "version", "page", "pageSize"] as const;
+const NOT_FILTERS = [
+  "view",
+  "version",
+  "page",
+  "pageSize",
+  "families",
+] as const;
 
 function stripped(params: URLSearchParams, keys: readonly string[]) {
   const copy = new URLSearchParams(params);
@@ -76,6 +82,35 @@ async function countBy(
       ]),
     );
   return { held: toMap(held!), available: toMap(available!) };
+}
+
+/**
+ * D-111 — 차시별 **출제 가능한 문항류(갈래) 수**. 행을 읽지 않고 `(unitId, familyKey)` 로 묶어 센다.
+ * 키가 없는(NULL · 빈 값) 묶음은 행 하나하나가 각자 한 갈래다(D-105 — NULL 을 한 무리로 접지 않는다).
+ * 키는 `familyIdOf` 처럼 앞뒤 공백을 걷어 견준다.
+ */
+async function countFamiliesByUnit(selection: Prisma.ProblemWhereInput[]) {
+  const rows = await db.problem.groupBy({
+    by: ["unitId", "familyKey"],
+    where: { AND: [problemEligibleWhere(), ...selection] },
+    _count: { _all: true },
+  });
+  const keyed = new Map<string, Set<string>>();
+  const solo = new Map<string, number>();
+  for (const row of rows) {
+    const key = row.familyKey?.trim();
+    if (!key)
+      solo.set(row.unitId, (solo.get(row.unitId) ?? 0) + row._count._all);
+    else keyed.set(row.unitId, (keyed.get(row.unitId) ?? new Set()).add(key));
+  }
+  return Object.fromEntries(
+    [...new Set([...keyed.keys(), ...solo.keys()])]
+      .sort()
+      .map((unitId) => [
+        unitId,
+        (keyed.get(unitId)?.size ?? 0) + (solo.get(unitId) ?? 0),
+      ]),
+  );
 }
 
 const sum = (map: Map<string, number>) =>
@@ -132,7 +167,7 @@ export async function loadBankSourceAvailability(
     ...sourceQuery.selection,
     { source: "school_textbook" as const },
   ];
-  const [held, available, units, difficulties, sources, materials] =
+  const [held, available, units, difficulties, sources, materials, families] =
     await Promise.all([
       db.problem.count({ where: heldWhere }),
       db.problem.count({ where: availableWhere }),
@@ -140,6 +175,9 @@ export async function loadBankSourceAvailability(
       countBy(difficultyQuery.selection, "difficulty"),
       countBy(sourceQuery.selection, "source"),
       countBy(textbookSelection, "sourceMaterialId"),
+      params.get("families") === "1"
+        ? countFamiliesByUnit(unitsQuery.selection)
+        : Promise.resolve(undefined),
     ]);
 
   const groupTally = (group: BankSourceGroup): BankAvailabilityTally =>
@@ -203,6 +241,7 @@ export async function loadBankSourceAvailability(
             tally(units.held, units.available, unitId),
           ]),
       ),
+      ...(families ? { unitFamilies: families } : {}),
       difficulties: Object.fromEntries(
         DIFFICULTY_LADDER.map((tier) => [
           tier,

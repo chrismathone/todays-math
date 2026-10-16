@@ -133,6 +133,11 @@ export const unifiedBankQuerySchema = problemFilterQuerySchema
   .extend({
     unitIds: idList(1000).optional(),
     excludeIds: idList(100).optional(),
+    /**
+     * D-111 — 이 문항들의 **문항류**(`(unitId, familyKey)`)를 통째로 뺀다. 시험지 만들기의 추가 · 교체 후보가
+     * 쓴다(교체는 바꾸는 자리를 빼고 보낸다). 키가 없는 문항은 자기 자신만 갈래다(D-105) — 다른 행을 안 뺀다.
+     */
+    excludeFamiliesOf: idList(100).optional(),
     ids: idList(100).optional(),
     pageSize: z.coerce.number().int().min(1).max(100).default(12),
     semester: bankSemesterSchema.optional(),
@@ -258,6 +263,12 @@ export const bankSourceAvailabilitySchema = z.strictObject({
     .strictObject({
       /** F 에서 차시 고르기(`unitIds` · `unitFrom` · `unitTo`)만 뺀 차시별. 보유가 0 인 차시는 싣지 않는다(없는 키 = 0). */
       units: z.record(z.uuid(), bankAvailabilityTallySchema),
+      /**
+       * D-111 — 위 `units` 와 같은 조건 · 출제 자격으로 센 차시별 **출제 가능한 문항류(갈래) 수**.
+       * 한 시험지에 같은 문항류는 1개라 구성할 수 있는 문항 수의 상한이 이것이다(행 수가 아니다).
+       * 키가 없는 행은 각자 한 갈래. 요청에 `families=1` 이 있을 때만 싣는다(옛 화면의 엄격한 읽기를 안 깬다).
+       */
+      unitFamilies: z.record(z.uuid(), countSchema).optional(),
       /** F 에서 난이도만 뺀 난이도별 — 랜덤 고르기의 `available[난이도]` 와 같은 수. 사다리의 칸이 늘 다 있다. */
       difficulties: z.strictObject(
         Object.fromEntries(
