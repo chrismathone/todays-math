@@ -4,6 +4,8 @@
  *   npx tsx scripts/qa/fading-simulation/run.ts              # 카드 풀이(운영 기본 · `MATH_FADING_CARDS` 없음 = 켜짐)
  *   npx tsx scripts/qa/fading-simulation/run.ts --chips      # 칩 풀이(4단계도 칩)
  *   npx tsx scripts/qa/fading-simulation/run.ts --grade=중2 --persona=성실   # 하나만
+ *   npx tsx scripts/qa/fading-simulation/run.ts --rule=base,d2,d1,d1d2 --seeds=5   # 규칙 견주기 → results-compare.json · summary-compare.md
+ *   npx tsx scripts/qa/fading-simulation/run.ts --rule=base --seeds=5 --path=home    # 홈 대기열을 따라가는 학생 → *-compare-home.*
  *
  * 🔴 서버 · DB · `/api/**` 를 부르지 않는다. 은행(`CONCEPT_BLANK_BANK`)과 묶음 표로 개념을 짓고(`catalog.ts` 와 같은 함수 —
  *    그 파일은 `server-only` 라 여기서 못 부른다), 서버 없이 도는 원천(`createLocalFadingSource` · `createLocalFadingRelearnSource`)에
@@ -24,6 +26,7 @@ import {
   type FadingRelearnItem,
   type FadingRelearnQueue,
 } from "@/contracts/fadingRelearn.contract";
+import { CONCEPT_BLANK_LEVELS } from "@/contracts/conceptBlank.contract";
 import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
 import { encodeFadingMarks, type FadingMark } from "@/lib/fading/cards";
 import { chipFits, chipTray, type FadingTrap } from "@/lib/fading/chips";
@@ -39,6 +42,7 @@ import { FADING_GROUPS } from "@/lib/fading/groups";
 import { createLocalFadingSource } from "@/lib/fading/local";
 import { FADING_DAILY_CAP } from "@/lib/fading/numbers";
 import { createLocalFadingRelearnSource } from "@/lib/fading/relearnLocal";
+import { fadingSummary } from "@/lib/fading/state";
 import {
   allowedRatings,
   fadingAsksSure,
@@ -133,6 +137,39 @@ export const PERSONAS: readonly Persona[] = [
   },
 ];
 
+/* ───────── 견줄 규칙(원장님 승인 2026-10-16 · `srs-decisions-agreed.md`) ───────── */
+
+/**
+ * 규칙 넷 — 같은 씨앗 묶음으로 견준다. 🔴 제품 코드에 모의용 손잡이를 넣지 않는다. 대신:
+ * - **결정 2**(첫 평가의 `exposed` 는 5분 확인 한 번)는 평가 직후 **방금 든 `exposed` 줄**을 그 규칙이 쓰는 꼴로 맞춘다
+ *   (`stage` · `dueAt` 둘만 다르다 — 옛 규칙 `retry`·지금+1분, 새 규칙 `confirm`·지금+5분). 제품이 어느 쪽을 쓰든 같은 결과다.
+ * - **결정 1**(4단계 부분 틀림에 «어려움»)은 학생의 고르기다 — 제품이 «어려움»을 허용할 때 `d1` 학생은 «어려움», 아니면 «다시».
+ *   부분 틀림에 «다시»를 고르는 것은 옛 규칙(«다시»뿐)과 똑같은 전이다. 제품이 허용하지 않는 판에서는 `d1` 이 `base` 와 같다.
+ */
+type RuleName = "base" | "d1" | "d2" | "d1d2";
+type Rule = { name: RuleName; d1: boolean; d2: boolean };
+const RULES: Readonly<Record<RuleName, Rule>> = {
+  base: { name: "base", d1: false, d2: false },
+  d1: { name: "d1", d1: true, d2: false },
+  d2: { name: "d2", d1: false, d2: true },
+  d1d2: { name: "d1d2", d1: true, d2: true },
+};
+/** 규칙을 주지 않은 실행(옛 결과 파일) — 제품이 쓰는 그대로, 학생은 허용되면 «어려움». */
+const NATIVE: Rule & { native: true } = {
+  name: "d1d2",
+  d1: true,
+  d2: true,
+  native: true,
+};
+
+/**
+ * 학생이 걷는 길 — `plan` 은 탐험 화면의 «오늘의 학습»(명제 20칸 계획), `home` 은 `/learn/fading` 홈의 대기열(복습일 된 것 + 골라 둔 것)을 차례로 연다.
+ * 홈 목록이 비면 새 개념을 고른다 — 오늘 닫은 명제에 그 묶음을 더해도 분량(20)을 넘지 않을 때만(모형의 규칙 · 두 길이 같은 새 진도 속도를 갖게).
+ * `homeUnit` `concepts` 는 홈의 옛 단위(개념 20개 — `fadingSummary` 를 명제 비용 없이 부른다)를 강제한다. 주지 않으면 제품이 내는 그대로다.
+ */
+type SimPath = "plan" | "home";
+type HomeUnit = "product" | "concepts";
+
 /* ───────── 결정적 난수 · 번호 ───────── */
 
 function mulberry32(seed: number) {
@@ -212,6 +249,9 @@ export type DayRecord = {
   /** 하루를 마칠 때 복습일이 됐는데 못 한 개념 수(내일의 밀림) · 그 명제 수. */
   backlogCarried: number;
   backlogPromptsCarried: number;
+  /** 4단계에서 틀렸는데 제품이 «어려움»을 허용한 평가(결정 1) · 그중 «어려움»을 고른 수. */
+  partialOffered: number;
+  partialHard: number;
   minutes: number;
   /** 안전 상한에 걸렸거나 거절(409)을 받은 일 — 비어 있어야 한다. */
   notes: string[];
@@ -247,6 +287,11 @@ export type RunSummary = {
     daysUntilDrained: number | null;
   };
   spikes: { day: number; dueBefore: number; dueAfter: number }[];
+  /** 첫날(성실 · 모두 새 개념)의 분 · 35일의 평가 수(다시 · 어려움 · 알맞음) · 부분 틀림 «어려움»(결정 1). */
+  firstDayMinutes: number;
+  ratingsTotal: Record<FsrsRating, number>;
+  partialOffered: number;
+  partialHard: number;
   notes: string[];
 };
 
@@ -258,9 +303,23 @@ async function simulate(
   grade: string,
   concepts: readonly FadingConcept[],
   persona: Persona,
-  options: { cards: boolean },
+  options: {
+    cards: boolean;
+    rule?: Rule;
+    /** 씨앗 번호 — 0 은 옛 씨앗(«학년|유형|방식») 그대로, 1 부터는 뒤에 번호를 붙인다. 규칙은 씨앗에 안 든다(같은 씨앗 묶음으로 견준다). */
+    seed?: number;
+    path?: SimPath;
+    homeUnit?: HomeUnit;
+  },
 ): Promise<{ days: DayRecord[]; summary: RunSummary }> {
-  const rng = mulberry32(seedOf(`${grade}|${persona.name}|${options.cards}`));
+  const rule: Rule & { native?: true } = options.rule ?? NATIVE;
+  const path = options.path ?? "plan";
+  const homeUnit = options.homeUnit ?? "product";
+  const rng = mulberry32(
+    seedOf(
+      `${grade}|${persona.name}|${options.cards}${options.seed ? `|s${options.seed}` : ""}`,
+    ),
+  );
   const traps = fadingTrapMap(concepts);
   const byId = new Map(concepts.map((c) => [c.id, c]));
   const sections = [...new Set(concepts.map((c) => c.section))];
@@ -389,6 +448,36 @@ async function simulate(
       )
         return text;
     return null;
+  }
+
+  /**
+   * 결정 2 를 규칙대로 — 첫 평가에서 **방금 든** `exposed` 줄(그 시각에 들었고 확인 · 틀림이 0)만 그 규칙의 꼴로 맞춘다.
+   * 옛 규칙은 `retry`·+1분, 새 규칙은 `confirm`·+5분이다(`relearn.ts` 의 새 줄 — 다른 칸은 같다). 이미 있던 줄은 건드리지 않는다.
+   * 규칙을 주지 않은 실행은 제품 그대로 둔다.
+   */
+  function settleExposed(at: number) {
+    if (rule.native) return;
+    const want = rule.d2
+      ? { stage: "confirm" as const, dueAt: at + FADING_RELEARN_CONFIRM_MS }
+      : { stage: "retry" as const, dueAt: at + FADING_RELEARN_RETRY_MS };
+    source.change((fading) => {
+      const queue = fading.relearn;
+      if (!queue) return fading;
+      let changed = false;
+      const items = queue.items.map((item) => {
+        if (
+          item.origin !== "exposed" ||
+          item.since !== at ||
+          item.checks !== 0 ||
+          item.fails !== 0 ||
+          (item.stage === want.stage && item.dueAt === want.dueAt)
+        )
+          return item;
+        changed = true;
+        return { ...item, ...want };
+      });
+      return changed ? { ...fading, relearn: { ...queue, items } } : fading;
+    });
   }
 
   const act = async (action: FadingAction): Promise<FadingState | null> => {
@@ -561,14 +650,22 @@ async function simulate(
       tick(S.comparison * concept.propositions.length + S.stepTransition);
       await boundary();
     }
-    // 평가
+    // 평가 — 4단계에서 틀렸으면(포기 포함) 제품이 «어려움»을 허용할 때 `d1` 학생만 «어려움», 아니면 «다시».
+    // 4단계가 깨끗하면 2 · 3단계의 틀림으로 가른다. 허용되지 않는 평가는 고르지 않는다(고르면 409 다).
     const allowed = allowedRatings(local);
-    const rating: FsrsRating =
-      allowed.includes("again") && allowed.length === 1
-        ? "again"
-        : missedEarlier
-          ? MODEL.ratingWhenMissedEarlier
-          : MODEL.ratingWhenClean;
+    const missedAtFour = (local.results.at(-1)?.missed.length ?? 0) > 0;
+    const offered = missedAtFour && allowed.includes("hard");
+    let rating: FsrsRating = missedAtFour
+      ? offered && rule.d1
+        ? "hard"
+        : "again"
+      : missedEarlier
+        ? MODEL.ratingWhenMissedEarlier
+        : MODEL.ratingWhenClean;
+    if (!allowed.includes(rating)) {
+      day.notes.push(`허용되지 않는 평가를 고를 뻔했다 — ${rating}`);
+      rating = allowed.includes("again") ? "again" : allowed[0]!;
+    }
     tick(S.rating);
     const rated = await act({
       action: "rate",
@@ -578,12 +675,85 @@ async function simulate(
     });
     if (rated?.receipt) {
       day.ratings[rating] += 1;
-      if (firstRating) day.newRated += 1;
-      else day.reviewsDone += 1;
+      if (offered) day.partialOffered += 1;
+      if (offered && rating === "hard") day.partialHard += 1;
+      if (firstRating) {
+        day.newRated += 1;
+        settleExposed(clock.now);
+      } else day.reviewsDone += 1;
     }
     await boundary();
     inSession = false;
   }
+  /** 오늘 평가로 닫은 개념의 명제 수 — 계획이 «한 것»으로 세는 셈(`explorerDaily.ts` 의 `finished`). */
+  const closedPromptsToday = (date: string) =>
+    Object.entries(source.snapshot().concepts).reduce(
+      (n, [id, stored]) =>
+        stored.reviewedOn === date ? n + byId.get(id)!.propositions.length : n,
+      0,
+    );
+  /** 홈의 목록(`FadingHome.tsx` 의 `ids` — 복습일 된 것 + 골라 둔 것). 옛 단위를 강제하면 명제 비용 없이 같은 함수를 부른다. */
+  async function homeList(date: string): Promise<string[]> {
+    if (homeUnit === "concepts") {
+      const queue = fadingSummary(source.snapshot(), date, {
+        known: new Set(byId.keys()),
+      }).queue;
+      return [...queue.due, ...queue.unrated];
+    }
+    const state = await source.state();
+    return [...state.summary.queue.due, ...state.summary.queue.unrated];
+  }
+  /** 다음 새 개념 — 오늘 진도의 소단원(`daily()` 와 같은 소단원)에서 계획과 같은 차례(하 → 중 → 상 · 차례). */
+  function nextNewConcept(): FadingConcept | undefined {
+    const picked = source.snapshot().concepts;
+    const section = sections.find((s) =>
+      concepts.some((c) => c.section === s && !picked[c.id]),
+    );
+    return concepts
+      .filter((c) => c.section === section && !picked[c.id])
+      .sort(
+        (a, b) =>
+          CONCEPT_BLANK_LEVELS.indexOf(a.level) -
+            CONCEPT_BLANK_LEVELS.indexOf(b.level) ||
+          a.ordinal - b.ordinal ||
+          (a.id < b.id ? -1 : 1),
+      )[0];
+  }
+  /**
+   * 홈을 따라가는 하루 — 풀던 것 → 홈 목록의 첫 개념을 차례로 연다(홈의 «시작» 단추). 목록이 비면 새 개념을 연다 —
+   * 오늘 닫은 명제에 그 묶음을 더해도 분량을 넘지 않을 때만(모형의 규칙). 복습일 전의 개념은 목록에 안 든다(제품이 거른다).
+   */
+  async function homeDay(date: string) {
+    let guard = 0;
+    for (;;) {
+      if (++guard > MODEL.maxSessionsPerDay) {
+        day.notes.push("하루 풀이 수의 안전 상한에 닿았다");
+        return;
+      }
+      const now = await source.state();
+      let state: FadingState | null = now.session ? now : null;
+      if (!state) {
+        const next = (await homeList(date))[0];
+        if (next) state = await act({ action: "open", conceptId: next });
+        else {
+          const fresh = nextNewConcept();
+          if (
+            !fresh ||
+            closedPromptsToday(date) + fresh.propositions.length > MODEL.quota
+          )
+            return;
+          state = await act({ action: "open", conceptId: fresh.id });
+        }
+      }
+      if (!state?.session || !state.opened) {
+        day.notes.push("풀이를 못 열었다(홈)");
+        return;
+      }
+      await runSession(state);
+      await homeChecks();
+    }
+  }
+
   const dueCount = (state: FadingState) => {
     const ids = [...state.summary.queue.due, ...state.summary.queue.held];
     return {
@@ -628,6 +798,8 @@ async function simulate(
       },
       backlogCarried: 0,
       backlogPromptsCarried: 0,
+      partialOffered: 0,
+      partialHard: 0,
       minutes: 0,
       notes: [],
     };
@@ -640,7 +812,11 @@ async function simulate(
     day.planTotal = firstPlan.counts.total;
     day.planHeld = firstPlan.held.recalls;
 
-    if (day.studied) {
+    if (day.studied && path === "home") {
+      tick(S.appOpen);
+      await homeChecks();
+      await homeDay(date);
+    } else if (day.studied) {
       tick(S.appOpen);
       await homeChecks();
       let guard = 0;
@@ -665,6 +841,8 @@ async function simulate(
         await runSession(state);
         await homeChecks();
       }
+    }
+    if (day.studied) {
       // 계획을 마친 뒤 — 이 시각부터 `lingerAfterPlanMs` 안에 준비되는 확인은 기다렸다가 한다. 그 시각이 지나면 집에 간다.
       const deadline = clock.now + MODEL.lingerAfterPlanMs;
       while (clock.now < deadline) {
@@ -747,6 +925,17 @@ async function simulate(
     ),
     relearnCarriedMax: Math.max(0, ...days.map((d) => d.relearn.carried)),
     spikes,
+    firstDayMinutes: days[0]!.minutes,
+    ratingsTotal: days.reduce(
+      (total, d) => {
+        for (const r of Object.keys(total) as FsrsRating[])
+          total[r] += d.ratings[r];
+        return total;
+      },
+      { again: 0, hard: 0, good: 0, easy: 0 } as Record<FsrsRating, number>,
+    ),
+    partialOffered: days.reduce((n, d) => n + d.partialOffered, 0),
+    partialHard: days.reduce((n, d) => n + d.partialHard, 0),
     notes: [
       ...new Set(
         days.flatMap((d) => d.notes.map((n) => n.replace(/ — .*$/, ""))),
@@ -799,6 +988,31 @@ async function main() {
     (p) => !onlyPersona || p.name === onlyPersona,
   );
   const started = Date.now();
+  const value = (name: string) =>
+    args.find((a) => a.startsWith(`--${name}=`))?.slice(name.length + 3);
+  if (["rule", "seeds", "path", "home-unit", "tag"].some((n) => value(n))) {
+    await compare({
+      args: {
+        rules: (value("rule") ?? "base").split(",").map((name) => {
+          const rule = RULES[name as RuleName];
+          if (!rule)
+            throw new Error(`모르는 규칙: ${name} (base · d1 · d2 · d1d2)`);
+          return rule;
+        }),
+        seeds: Math.max(1, Number(value("seeds") ?? 1)),
+        path: value("path") === "home" ? "home" : "plan",
+        homeUnit: value("home-unit") === "concepts" ? "concepts" : "product",
+        tag: value("tag"),
+        write: !onlyGrade && !onlyPersona,
+      },
+      cards,
+      all,
+      grades,
+      personas,
+    });
+    console.log(`끝 — ${Date.now() - started}ms`);
+    return;
+  }
   const runs: { days: DayRecord[]; summary: RunSummary }[] = [];
   for (const grade of grades) {
     const concepts = all.filter((c) => gradeOf(c) === grade);
@@ -860,6 +1074,203 @@ async function main() {
     writeFileSync(join(dir, `summary${variant}.md`), renderSummary(output));
   }
   console.log(`끝 — ${Date.now() - started}ms`);
+}
+
+/* ───────── 규칙 견주기(여러 씨앗) ───────── */
+
+type CompareRun = { rule: RuleName; seed: number; summary: RunSummary };
+
+async function compare(input: {
+  args: {
+    rules: Rule[];
+    seeds: number;
+    path: SimPath;
+    homeUnit: HomeUnit;
+    tag?: string;
+    write: boolean;
+  };
+  cards: boolean;
+  all: readonly FadingConcept[];
+  grades: readonly string[];
+  personas: readonly Persona[];
+}) {
+  const { args } = input;
+  const runs: CompareRun[] = [];
+  for (const rule of args.rules)
+    for (const grade of input.grades) {
+      const concepts = input.all.filter((c) => gradeOf(c) === grade);
+      for (const persona of input.personas)
+        for (let seed = 0; seed < args.seeds; seed++) {
+          const { summary } = await simulate(grade, concepts, persona, {
+            cards: input.cards,
+            rule,
+            seed,
+            path: args.path,
+            homeUnit: args.homeUnit,
+          });
+          runs.push({ rule: rule.name, seed, summary });
+        }
+      console.log(
+        `${rule.name} · ${grade} — ${input.personas.length}유형 × 씨앗 ${args.seeds}`,
+      );
+    }
+  const notes = [...new Set(runs.flatMap((r) => r.summary.notes))];
+  if (notes.length) console.log(`주의: ${notes.join(" / ")}`);
+  const suffix = [
+    args.path === "home" ? "-home" : "",
+    args.homeUnit === "concepts" ? "-concepts" : "",
+    args.tag ? `-${args.tag}` : "",
+  ].join("");
+  const output = {
+    generatedAt: new Date().toISOString(),
+    mode: input.cards ? "cards" : "chips",
+    path: args.path,
+    homeUnit: args.homeUnit,
+    seeds: args.seeds,
+    rules: args.rules.map((r) => r.name),
+    model: MODEL,
+    personas: PERSONAS.map((p) => ({ name: p.name, accuracy: p.accuracy })),
+    grades: input.grades,
+    runs,
+  };
+  const text = renderCompare(output);
+  if (args.write) {
+    const dir = dirname(fileURLToPath(import.meta.url));
+    writeFileSync(
+      join(dir, `results-compare${suffix}.json`),
+      JSON.stringify(output, null, 2),
+    );
+    writeFileSync(join(dir, `summary-compare${suffix}.md`), text);
+  } else console.log(text);
+}
+
+function renderCompare(output: {
+  generatedAt: string;
+  mode: string;
+  path: SimPath;
+  homeUnit: HomeUnit;
+  seeds: number;
+  rules: RuleName[];
+  grades: readonly string[];
+  runs: CompareRun[];
+}) {
+  const round1 = (v: number) => Math.round(v * 10) / 10;
+  const mean = (list: number[]) =>
+    list.length ? list.reduce((a, b) => a + b, 0) / list.length : 0;
+  const personas = PERSONAS.map((p) => p.name);
+  const cell = (rule: RuleName, grade: string, persona: PersonaName) =>
+    output.runs
+      .filter(
+        (r) =>
+          r.rule === rule &&
+          r.summary.grade === grade &&
+          r.summary.persona === persona,
+      )
+      .map((r) => r.summary);
+  const present = output.grades.flatMap((grade) =>
+    personas
+      .filter((p) =>
+        output.runs.some(
+          (r) => r.summary.grade === grade && r.summary.persona === p,
+        ),
+      )
+      .map((persona) => ({ grade, persona })),
+  );
+  const table = (title: string, pick: (list: RunSummary[]) => string) =>
+    [
+      `### ${title}`,
+      "",
+      `| 학년 | 유형 | ${output.rules.join(" | ")} |`,
+      `| --- | --- | ${output.rules.map(() => "---").join(" | ")} |`,
+      ...present.map(
+        ({ grade, persona }) =>
+          `| ${grade} | ${persona} | ${output.rules.map((rule) => pick(cell(rule, grade, persona))).join(" | ")} |`,
+      ),
+      "",
+    ].join("\n");
+  const range = (values: number[]) =>
+    values.length > 1
+      ? ` (${round1(Math.min(...values))}–${round1(Math.max(...values))})`
+      : "";
+  const lines: string[] = [];
+  lines.push(
+    `# «오늘의 기억» 규칙 견주기 — ${output.path === "home" ? `홈 대기열을 따라가는 학생${output.homeUnit === "concepts" ? "(홈의 옛 단위 개념 20개를 강제)" : ""}` : "«오늘의 학습» 계획(명제 20칸)을 따라가는 학생"} · ${output.mode === "cards" ? "카드 풀이" : "칩 풀이"}`,
+  );
+  lines.push("");
+  lines.push(
+    `생성: ${output.generatedAt} · \`npx tsx scripts/qa/fading-simulation/run.ts --rule=${output.rules.join(",")} --seeds=${output.seeds}${output.path === "home" ? " --path=home" : ""}${output.homeUnit === "concepts" ? " --home-unit=concepts" : ""}\` · 씨앗 ${output.seeds}개(규칙마다 같은 씨앗 묶음).`,
+  );
+  lines.push("");
+  lines.push(
+    "🔴 서버 · DB · API 를 부르지 않았다. 시간은 **가정한 초 단위 상수의 합**이고(`summary.md` 의 시간 모형), 정답 확률은 유형마다 고정이다 — 이 표가 말하는 것은 **부담과 처리량**이지 기억 유지의 우열이 아니다(못 쟀다).",
+  );
+  lines.push("");
+  lines.push("## 규칙");
+  lines.push("");
+  lines.push(
+    "- `base` — 2026-10-16 의 규칙. 첫 평가의 틀리지 않은 명제는 1분 → 5분 확인 둘(`exposed`), 4단계에서 하나라도 틀리면 «다시»뿐.",
+  );
+  lines.push(
+    "- `d2` — 결정 2: 첫 평가의 `exposed` 줄은 5분 뒤 확인 한 번으로 든다(틀리면 1분 → 5분 그대로). 모의 도구는 평가 직후 방금 든 `exposed` 줄을 그 규칙의 꼴로 맞춰 견준다(제품 코드에 손잡이를 넣지 않는다).",
+  );
+  lines.push(
+    "- `d1` — 결정 1: 카드 풀이 4단계의 부분 틀림(포기 없음 · 대조 마침 · 틀린 빈칸 1 ≤ M ≤ ⌊N/4⌋)에 «어려움»이 허용되고(간격 2일 상한), 학생은 허용되면 «어려움»을 고른다. 고르지 않는 학생(«다시»)은 옛 규칙과 같은 전이라 `base` · `d2` 의 학생이 그렇게 한다. 제품이 허용하지 않는 판에서 `d1` 은 `base` 와 같다.",
+  );
+  lines.push("- `d1d2` — 둘 다.");
+  lines.push("");
+  lines.push(
+    "칸은 씨앗 평균이다. 괄호는 씨앗 사이의 범위(가장 작은 값 – 가장 큰 값). «최대»는 모든 씨앗의 공부한 날 가운데 가장 긴 날이다.",
+  );
+  lines.push("");
+  lines.push(
+    table("공부한 날의 분 — 평균 (씨앗 범위) / 최대", (list) => {
+      const means = list.map((s) => s.meanMinutesPerStudyDay);
+      return `${round1(mean(means))}${range(means)} / ${round1(Math.max(0, ...list.map((s) => s.maxMinutesPerStudyDay)))}`;
+    }),
+  );
+  lines.push(
+    table("35일에 배운 개념 (씨앗 범위)", (list) => {
+      const learned = list.map((s) => s.learned);
+      return `${round1(mean(learned))}${range(learned)}`;
+    }),
+  );
+  lines.push(
+    table(
+      "«다시» 비율 % (모든 평가 가운데 «다시»)",
+      (list) => `${round1(mean(list.map((s) => s.lapsesRatio)))}`,
+    ),
+  );
+  lines.push(
+    table(
+      "공부한 날 평균 추가 확인(재학습) 수",
+      (list) => `${round1(mean(list.map((s) => s.relearnChecksPerStudyDay)))}`,
+    ),
+  );
+  lines.push(
+    table(
+      "첫날의 분",
+      (list) => `${round1(mean(list.map((s) => s.firstDayMinutes)))}`,
+    ),
+  );
+  lines.push(
+    table(
+      "35일의 부분 틀림 «어려움»(결정 1) — 고른 수 / 허용된 수",
+      (list) =>
+        `${round1(mean(list.map((s) => s.partialHard)))} / ${round1(mean(list.map((s) => s.partialOffered)))}`,
+    ),
+  );
+  lines.push(
+    table(
+      "밀림 최대(복습일 된 개념)",
+      (list) => `${round1(mean(list.map((s) => s.backlogPeak)))}`,
+    ),
+  );
+  const notes = [...new Set(output.runs.flatMap((r) => r.summary.notes))];
+  lines.push("## 거절(409) · 안전 상한");
+  lines.push("");
+  lines.push(notes.length ? notes.map((n) => `- ${n}`).join("\n") : "없음");
+  lines.push("");
+  return lines.join("\n");
 }
 
 function renderSummary(output: {
