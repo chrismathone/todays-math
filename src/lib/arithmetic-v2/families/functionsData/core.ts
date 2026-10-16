@@ -54,6 +54,9 @@ export const fmt = ([n, d]: Q, tex = false): string =>
     : tex
       ? `${n < 0 ? "-" : ""}\\frac{${Math.abs(n)}}{${d}}`
       : `${n}/${d}`;
+/** Integer coefficient before a variable: 1 → "x", -1 → "-x" (owner found "y=1x", 2026-10-16). */
+export const coef = (n: number, variable: string): string =>
+  n === 1 ? variable : n === -1 ? `-${variable}` : `${n}${variable}`;
 export function polynomial(values: readonly Q[], tex = false): string {
   const terms = values.flatMap(([n, d], i) => {
     if (!n) return [];

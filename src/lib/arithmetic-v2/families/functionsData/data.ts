@@ -9,6 +9,7 @@ import {
   scalar,
   type Spec,
   type Value,
+  coef,
 } from "./core";
 
 export const DATA_SPECS: Spec[] = [];
@@ -357,7 +358,7 @@ for (const target of ["mean", "variance", "standard-deviation"] as const)
     title: `변환한 자료의 ${target === "mean" ? "평균" : target === "variance" ? "분산" : "표준편차"}`,
     domain: rows(range(0, 8), range(0, 5), nz(-3, 3), range(-4, 4)),
     view: ([mean, v, a, b]) => ({
-      text: `자료 ${m("x_1, \\ldots, x_n")}의 평균은 ${m(mean)}, 분산은 ${m(v)}이다. 새 자료는 각 ${m("x_i")}를 ${m(`${a}x_i${b < 0 ? b : `+${b}`}`)}로 바꾼 것이다.`,
+      text: `자료 ${m("x_1, \\ldots, x_n")}의 평균은 ${m(mean)}, 분산은 ${m(v)}이다. 새 자료는 각 ${m("x_i")}를 ${m(`${coef(a, "x_i")}${b < 0 ? b : `+${b}`}`)}로 바꾼 것이다.`,
       instruction: `새 자료의 ${target === "mean" ? "평균을" : target === "variance" ? "분산을" : "표준편차를"} 구하세요.`,
     }),
     solve: ([m, v, a, b]) =>

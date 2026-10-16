@@ -13,6 +13,7 @@ import {
   rows,
   scalar,
   type Spec,
+  coef,
 } from "./core";
 
 export const FUNCTION_SPECS: Spec[] = [];
@@ -94,7 +95,9 @@ for (const inverse of [false, true])
         const A = fmt(q(a, d), true),
           y = fmt(inverse ? q(a, d * x) : q(a * x, d), true);
         const formula = m(
-          inverse ? `y=\\frac{${a}}{${d === 1 ? "x" : `${d}x`}}` : `y=${A}x`,
+          inverse
+            ? `y=\\frac{${a}}{${d === 1 ? "x" : `${d}x`}}`
+            : `y=${A === "1" ? "" : A === "-1" ? "-" : A}x`,
         );
         return {
           text:
@@ -149,7 +152,7 @@ for (const target of ["value", "input", "coefficient", "constant"] as const)
             ? `${lineText(a, b)}에서 ${m(`y=${a * x + b}`)}이다.`
             : target === "coefficient"
               ? `일차함수 ${m(`y=kx${b < 0 ? b : `+${b}`}`)}의 그래프가 점 ${m(`(${x}, ${a * x + b})`)}를 지난다.`
-              : `일차함수 ${m(`y=${a}x+k`)}의 그래프가 점 ${m(`(${x}, ${a * x + b})`)}를 지난다.`,
+              : `일차함수 ${m(`y=${coef(a, "x")}+k`)}의 그래프가 점 ${m(`(${x}, ${a * x + b})`)}를 지난다.`,
       instruction: `${m(target === "value" ? "y" : target === "input" ? "x" : "k")}의 값을 구하세요.`,
     }),
     solve: ([a, b, x]) =>
@@ -311,7 +314,7 @@ for (const target of ["slope", "x-intercept", "y-intercept"] as const)
       ([a, b, c]) => gcd(gcd(a, b), c) === 1,
     ),
     view: ([a, b, c]) => ({
-      text: m(`${a}x+${b}y=${c}`),
+      text: m(`${coef(a, "x")}+${coef(b, "y")}=${c}`),
       instruction: `그래프의 ${target === "slope" ? "기울기" : target === "x-intercept" ? `${m("x")}절편` : `${m("y")}절편`}을 구하세요.`,
     }),
     solve: ([a, b, c]) =>

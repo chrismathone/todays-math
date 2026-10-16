@@ -440,8 +440,8 @@ const systemCoefficient = define({
   ),
   prompt: ([k, b, x, y]) =>
     math(
-      `kx ${b < 0 ? "-" : "+"} ${Math.abs(b)}y=${k * x + b * y}, x+y=${x + y}; x=${x}, y=${y}`,
-      `\\begin{cases}kx${b < 0 ? "-" : "+"}${Math.abs(b)}y=${k * x + b * y}\\\\x+y=${x + y}\\end{cases}\\quad x=${x},\\ y=${y}`,
+      `kx ${b < 0 ? "-" : "+"} ${Math.abs(b) === 1 ? "" : Math.abs(b)}y=${k * x + b * y}, x+y=${x + y}; x=${x}, y=${y}`,
+      `\\begin{cases}kx${b < 0 ? "-" : "+"}${Math.abs(b) === 1 ? "" : Math.abs(b)}y=${k * x + b * y}\\\\x+y=${x + y}\\end{cases}\\quad x=${x},\\ y=${y}`,
       "주어진 x, y가 연립방정식의 해일 때 k를 구하시오.",
     ),
   solve: ([k]) => numericAnswer(rational(k), "rational"),

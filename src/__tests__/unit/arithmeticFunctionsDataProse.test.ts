@@ -18,6 +18,9 @@ function fraction(n: number, d = 1): string {
     ? String(n || 0)
     : `${n < 0 ? "-" : ""}\\frac{${Math.abs(n)}}{${d}}`;
 }
+// A ±1 coefficient is never printed as a digit (owner, 2026-10-16: «y=1x»).
+const coef = (n: number, variable: string) =>
+  n === 1 ? variable : n === -1 ? `-${variable}` : `${n}${variable}`;
 function expression(...coefficients: number[]): string {
   let s = "";
   coefficients.forEach((c, i) => {
@@ -55,7 +58,7 @@ function expectedGivens(id: string, p: number[]): string[] {
     return [
       inverse
         ? `y=\\frac{${a}}{${b === 1 ? "x" : `${b}x`}}`
-        : `y=${fraction(a, b)}x`,
+        : `y=${{ "1": "", "-1": "-" }[fraction(a, b)] ?? fraction(a, b)}x`,
       id.endsWith("input") ? `y=${y}` : `x=${c}`,
     ];
   }
@@ -69,7 +72,7 @@ function expectedGivens(id: string, p: number[]): string[] {
         : [
             id.endsWith("coefficient")
               ? `y=kx${b < 0 ? b : `+${b}`}`
-              : `y=${a}x+k`,
+              : `y=${coef(a, "x")}+k`,
             pair(c, a * c + b),
           ];
   if (id.startsWith("m2-fd-two-points-"))
@@ -90,7 +93,8 @@ function expectedGivens(id: string, p: number[]): string[] {
     return ["x", String(a), "y", String(b)];
   if (id === "m2-fd-parallel-coefficient")
     return [expression(a, b), `y=kx${c < 0 ? c : `+${c}`}`];
-  if (id.startsWith("m2-fd-implicit-")) return [`${a}x+${b}y=${c}`];
+  if (id.startsWith("m2-fd-implicit-"))
+    return [`${coef(a, "x")}+${coef(b, "y")}=${c}`];
   if (id.startsWith("m2-fd-intersection-"))
     return [expression(a, c), expression(b, d)];
   if (id === "m3-fd-quadratic-coefficient")
@@ -150,7 +154,7 @@ function expectedGivens(id: string, p: number[]): string[] {
       String(a),
       String(b),
       "x_i",
-      `${c}x_i${d < 0 ? d : `+${d}`}`,
+      `${coef(c, "x_i")}${d < 0 ? d : `+${d}`}`,
     ];
   if (
     ["m3-fd-deviation", "m3-fd-variance", "m3-fd-standard-deviation"].includes(
