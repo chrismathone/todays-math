@@ -1542,3 +1542,81 @@ describe("print presets never surface through the library document routes", () =
     ).toBe(404);
   });
 });
+
+// 2026-10-16 W8 «시험지 태그» — 시험지는 payload.tag, 연산 연습지는 presentation.tag. 목록은 짧은 글 하나만 읽는다.
+describe("sheet tags travel with the document", () => {
+  it("saves a valid 시험지 tag and refuses unknown tags or tags on other kinds", async () => {
+    const ok = await saveDocument(
+      req("PUT", "", saveBody({ payload: { problems: [], tag: "일일TEST" } })),
+      "same-id",
+    );
+    expect(ok.status).toBe(200);
+    expect(find(viewer, "same-id")!.payload.tag).toBe("일일TEST");
+    for (const body of [
+      saveBody({ payload: { problems: [], tag: "기말" }, expectedRevision: 2 }),
+      saveBody({
+        payload: { problems: [], tag: ["숙제"] },
+        expectedRevision: 2,
+      }),
+      saveBody({
+        kind: "extraction",
+        payload: { data: { crops: [] }, tag: "숙제" },
+        expectedRevision: null,
+      }),
+    ])
+      expect(
+        (await saveDocument(req("PUT", "", body), "tag-check")).status,
+      ).toBe(400);
+  });
+
+  it("keeps the tag when a colleague's shared 시험지 is copied", async () => {
+    docs[1].payload = { problems: [], tag: "단원TEST" };
+    const response = await copyDocument(req("POST", shareQuery), "same-id");
+    expect(response.status).toBe(200);
+    const copy = (await response.json()).data;
+    expect(find(viewer, copy.id)!.payload.tag).toBe("단원TEST");
+  });
+
+  it("lists the tag from a bounded projection of authorized rows only", async () => {
+    docs[0].payload = { problems: [], tag: "숙제" };
+    docs[1].payload = { problems: [], tag: "복습" };
+    mocks.workflowQuery.mockImplementation((async (sql: { text: string }) =>
+      sql.text.includes("{tag}")
+        ? [
+            {
+              userId: viewer,
+              id: "same-id",
+              kind: "draft",
+              revision: 1,
+              tag: "숙제",
+            },
+            {
+              userId: colleague,
+              id: "same-id",
+              kind: "draft",
+              revision: 1,
+              tag: "기말",
+            },
+            {
+              userId: elsewhere,
+              id: "same-id",
+              kind: "draft",
+              revision: 1,
+              tag: "오답",
+            },
+          ]
+        : []) as never);
+    const body = await (await listDocuments(req())).json();
+    expect(body.data.map((doc: Row) => [doc.ownerId, doc.tag ?? null])).toEqual(
+      [
+        [viewer, "숙제"],
+        [colleague, null],
+      ],
+    );
+    const sql = mocks.workflowQuery.mock.calls.find((call) =>
+      (call as unknown as [{ text: string }])[0].text.includes("{tag}"),
+    ) as unknown as [{ text: string }];
+    expect(sql[0].text).toContain("left(payload #>> '{presentation,tag}', 16)");
+    expect(sql[0].text).not.toMatch(/SELECT\s+\*|SELECT\s+payload\b/i);
+  });
+});

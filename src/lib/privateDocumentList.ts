@@ -20,6 +20,7 @@ import {
   listDocumentWorkflows,
   workflowDocumentKey,
 } from "@/lib/privateDocumentWorkflow";
+import { listDocumentTags } from "@/lib/privateDocumentTags";
 export async function listDocuments(request: Request, owner?: string) {
   const access = await authorizePrivate(request, owner, true);
   if (access.response) return access.response;
@@ -58,12 +59,17 @@ export async function listDocuments(request: Request, owner?: string) {
     db.workspaceDocument.count({ where }),
   ]);
   const workflows = await listDocumentWorkflows(items);
+  // 시험지 태그(W8) — 진행 단계와 같은 방식(허락한 행의 짧은 글 하나).
+  const tags = await listDocumentTags(items);
   return Response.json(
     {
       data: items.map((item) => ({
         ...documentDto(item, access.account!.id),
         ...(workflows.has(workflowDocumentKey(item))
           ? { workflow: workflows.get(workflowDocumentKey(item)) }
+          : {}),
+        ...(tags.has(workflowDocumentKey(item))
+          ? { tag: tags.get(workflowDocumentKey(item)) }
           : {}),
       })),
       // 목록이 연산 연습지의 변경 단추를 미리 잠글 수 있게 쓰기 문의 상태를 같이 보낸다 — 열기는 그대로다.

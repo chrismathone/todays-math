@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { sheetTagSchema } from "./sheetTag.contract";
 import {
   parsePrintMeta,
   parsePrintOptions,
@@ -12,6 +13,8 @@ import {
 export const arithmeticPresentationSchema = z.strictObject({
   version: z.literal(1),
   step: z.enum(["scope", "review", "output"]),
+  /** 시험지 태그(W8) — 내 시험지에서 거를 때만 쓴다. 지면에 찍지 않는다. 없으면 «태그 없음». */
+  tag: sheetTagSchema.optional(),
   printOptions: z.record(z.string(), z.unknown()).transform((value, ctx) => {
     try {
       if (

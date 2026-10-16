@@ -14,6 +14,7 @@ import {
   parseWorkspaceWorkflow,
   type WorkspaceWorkflow,
 } from "@/contracts/workspaceWorkflow.contract";
+import { readSheetTag, type SheetTag } from "@/contracts/sheetTag.contract";
 
 export const DRAFT_STORE_KEY = "today-math-workspace-drafts-v1";
 export const LEGACY_DRAFT_KEY = "today-math-unified-draft-v1";
@@ -22,6 +23,8 @@ const AUTOSAVE_MS = 600;
 
 export interface WorkspaceDraft {
   workflow?: WorkspaceWorkflow;
+  /** 시험지 태그(W8) — 내 시험지에서 거를 때만 쓴다. 지면에 찍지 않는다. 없으면 «태그 없음». */
+  tag?: SheetTag;
   id: string;
   title: string;
   problems: StudioProblem[];
@@ -426,8 +429,10 @@ export function parseImport(
   });
   const problems = parseProblems(value.problems);
   const workflow = parseWorkspaceWorkflow(value.workflow);
+  const tag = readSheetTag(value.tag);
   return {
     ...(workflow ? { workflow } : {}),
+    ...(tag ? { tag } : {}),
     title: value.title,
     problems,
     removed: parseRemovals(value.removed, problems),
@@ -810,6 +815,15 @@ export function createWorkspaceDraftStore(
       }
       edit((draft) => ({ ...draft, workflow: next }));
     },
+    /** 시험지 태그(W8) — 하나만, 빼면 칸이 없다. */
+    setTag: (tag: SheetTag | null) =>
+      edit((draft) => {
+        if ((draft.tag ?? null) === tag) return draft;
+        const next = { ...draft };
+        if (tag) next.tag = tag;
+        else delete next.tag;
+        return next;
+      }),
     setColumns: (columns: number) => {
       if (columns === 1 || columns === 2)
         edit((draft) =>

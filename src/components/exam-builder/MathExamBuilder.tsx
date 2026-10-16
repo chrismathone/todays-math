@@ -45,6 +45,8 @@ import type {
 import { createExamConditionsClient } from "./examConditionsClient";
 import SavedLayouts from "@/components/unified/print/SavedLayouts";
 import TitleSuggestions from "@/components/unified/print/TitleSuggestions";
+import SheetTagPicker from "@/components/unified/print/SheetTagPicker";
+import type { SheetTag } from "@/contracts/sheetTag.contract";
 import { titleSuggestions } from "@/components/unified/print/suggestTitles";
 import type { PrintPresetsClient } from "@/components/unified/print/printPresetsClient";
 import type { PrintPreset } from "@/contracts/printPreset.contract";
@@ -70,7 +72,13 @@ export default function MathExamBuilder({
   initialStep,
   onStepChange,
   printPresets,
+  sheetTag,
 }: {
+  /** 3단계 «시험 종류» 태그(W8) — 이 시험지 초안의 태그. 지면에 찍지 않는다. */
+  sheetTag?: {
+    value: SheetTag | null;
+    onChange: (tag: SheetTag | null) => void;
+  };
   /** 3단계 «내 양식»(W6) — 출력 메뉴가 있는 계정만. 없으면 그 줄을 그리지 않는다. */
   printPresets?: {
     client: PrintPresetsClient;
@@ -468,12 +476,19 @@ export default function MathExamBuilder({
                   }}
                 />
               ) : undefined,
-            // W7 제목 추천 — 시험지에서 읽은 값만(학년 · 과정 · 대단원 · 범위 · 날짜).
+            metaTop: sheetTag ? (
+              <SheetTagPicker
+                value={sheetTag.value}
+                onChange={sheetTag.onChange}
+              />
+            ) : undefined,
+            // W7 제목 추천 — 시험지에서 읽은 값만(학년 · 과정 · 대단원 · 범위 · 날짜 · W8 태그).
             afterTitle: (
               <TitleSuggestions
                 suggestions={titleSuggestions({
                   problems: questions,
                   meta: editor.printMeta ?? {},
+                  tag: sheetTag?.value,
                 })}
                 title={title}
                 onApply={(text) => {

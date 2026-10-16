@@ -476,6 +476,7 @@ function UnifiedWorkspaceContent({
     setPrintOptions,
     setPrintMeta,
     seedNewSheet,
+    setTag: setSheetTag,
     setWorkflow,
     getCurrentDraft,
     saveNow,
@@ -1208,6 +1209,7 @@ function UnifiedWorkspaceContent({
               answers,
               printOptions,
               printMeta,
+              ...(draft.tag ? { tag: draft.tag } : {}),
             },
             null,
             2,
@@ -1768,6 +1770,10 @@ function UnifiedWorkspaceContent({
                   editor={editorProps}
                   onQuestionsChange={changeBankSelection}
                   canOutput={can("export")}
+                  sheetTag={{
+                    value: draft.tag ?? null,
+                    onChange: setSheetTag,
+                  }}
                   printPresets={
                     canPrintPresets
                       ? {

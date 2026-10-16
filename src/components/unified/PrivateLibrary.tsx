@@ -21,7 +21,13 @@ import { formatDraftDate } from "./WorkroomHome";
 import WorkProgress from "./WorkProgress";
 import Icon from "./WorkspaceIcon";
 import { libraryDocumentInfo } from "./libraryDocumentInfo";
+import {
+  SHEET_TAGS,
+  isTaggableKind,
+  type SheetTag,
+} from "@/contracts/sheetTag.contract";
 import s from "./PrivateLibrary.module.css";
+import o from "./print/OutputExtras.module.css";
 
 export type LibraryOpenOptions = {
   mode: "resume";
@@ -46,6 +52,17 @@ const EDIT_TITLE: Readonly<Record<DocumentKind, string>> = {
 };
 /** 연산 쓰기 문이 닫혀 있을 때 — 읽기는 되고 바꾸는 것만 막는다(`arithmeticDocumentPolicy`). */
 const ARITHMETIC_READ_ONLY = "연산 연습지 저장 준비 중 · 지금은 읽기만 됩니다";
+/** 태그 거름(W8) — null 은 «태그 전체», "none" 은 «태그 없음»(시험지 · 연산 연습지 가운데 태그가 없는 것). */
+type TagFilter = SheetTag | "none" | null;
+const tagMatches = (item: PrivateDocumentSummary, tag: TagFilter) =>
+  tag === null
+    ? true
+    : tag === "none"
+      ? isTaggableKind(item.kind) && !item.tag
+      : item.tag === tag;
+/** 태그가 없는 종류(추출한 자료 · 개념 백지)를 고르면 태그 거름은 잠시 쉰다 — 기억했다가 돌아오면 다시 걸린다. */
+const taggableView = (kind: DocumentKind | "all") =>
+  kind === "all" || isTaggableKind(kind);
 function isWorkingDocument(item: PrivateDocumentSummary) {
   return Boolean(
     item.workflow &&
@@ -121,6 +138,12 @@ function PrivateLibraryContent({
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
   const [kind, setKind] = useState<DocumentKind | "all">("all");
+  const [tag, setTag] = useState<TagFilter>(null);
+  const tagFor = useCallback(
+    (view: DocumentKind | "all") => (taggableView(view) ? tag : null),
+    [tag],
+  );
+  const activeTag = tagFor(kind);
   const [workingOnly, setWorkingOnly] = useState(false);
   const [sort, setSort] = useState("newest");
   const [mineOnly, setMineOnly] = useState(false);
@@ -185,24 +208,50 @@ function PrivateLibraryContent({
     () => (workingOnly ? searched.filter(isMyWork) : searched),
     [searched, workingOnly, isMyWork],
   );
+  // 태그(W8)도 같은 교집합이다 — 종류 수는 «그 종류를 고르면 몇 개 남나»(태그가 없는 종류는 태그 거름이 쉰다),
+  // 태그 수는 «종류 · 내 작업 중 · 검색을 건 채 그 태그를 고르면 몇 개 남나».
   const kindCounts = useMemo(() => {
     const counts = Object.fromEntries(
       DOCUMENT_KINDS.map((entry) => [entry.id, 0]),
     ) as Record<DocumentKind, number>;
-    for (const item of base) counts[item.kind] += 1;
+    for (const item of base)
+      if (tagMatches(item, tagFor(item.kind))) counts[item.kind] += 1;
     return counts;
-  }, [base]);
+  }, [base, tagFor]);
+  const allCount = useMemo(
+    () => base.filter((item) => tagMatches(item, tagFor("all"))).length,
+    [base, tagFor],
+  );
   const workingCount = useMemo(
     () =>
       searched.filter(
-        (item) => (kind === "all" || item.kind === kind) && isMyWork(item),
+        (item) =>
+          (kind === "all" || item.kind === kind) &&
+          tagMatches(item, activeTag) &&
+          isMyWork(item),
       ).length,
-    [searched, kind, isMyWork],
+    [searched, kind, activeTag, isMyWork],
+  );
+  const ofKind = useMemo(
+    () => base.filter((item) => kind === "all" || item.kind === kind),
+    [base, kind],
+  );
+  const tagCounts = useMemo(() => {
+    const counts = Object.fromEntries(SHEET_TAGS.map((t) => [t, 0])) as Record<
+      SheetTag,
+      number
+    >;
+    for (const item of ofKind) if (item.tag) counts[item.tag] += 1;
+    return counts;
+  }, [ofKind]);
+  const noneCount = useMemo(
+    () => ofKind.filter((item) => tagMatches(item, "none")).length,
+    [ofKind],
   );
   const filtered = useMemo(
     () =>
-      base
-        .filter((item) => kind === "all" || item.kind === kind)
+      ofKind
+        .filter((item) => tagMatches(item, activeTag))
         .sort((a, b) => {
           if (sort === "name") return a.title.localeCompare(b.title, "ko");
           if (sort === "count" && a.problemCount !== b.problemCount)
@@ -211,10 +260,14 @@ function PrivateLibraryContent({
             b.updatedAt.localeCompare(a.updatedAt) || a.id.localeCompare(b.id)
           );
         }),
-    [base, kind, sort],
+    [ofKind, activeTag, sort],
   );
   const hasFilters =
-    Boolean(query.trim()) || kind !== "all" || mineOnly || workingOnly;
+    Boolean(query.trim()) ||
+    kind !== "all" ||
+    mineOnly ||
+    workingOnly ||
+    activeTag !== null;
   const openDocument = async (
     item: PrivateDocumentSummary,
     open: (id: string) => void | Promise<void>,
@@ -316,7 +369,7 @@ function PrivateLibraryContent({
           aria-pressed={kind === "all"}
           onClick={() => setKind("all")}
         >
-          전체 자료 <span>{base.length}</span>
+          전체 자료 <span>{allCount}</span>
         </button>
         {DOCUMENT_KINDS.map((entry) => (
           <button
@@ -329,6 +382,45 @@ function PrivateLibraryContent({
           </button>
         ))}
       </div>
+      {taggableView(kind) ? (
+        <div
+          className={`${s.kindTabs} ${o.tagTabs}`}
+          role="group"
+          aria-label="태그별 보기"
+        >
+          <button
+            type="button"
+            aria-pressed={tag === null}
+            onClick={() => setTag(null)}
+          >
+            태그 전체
+          </button>
+          {SHEET_TAGS.map((entry) => (
+            <button
+              key={entry}
+              type="button"
+              aria-pressed={tag === entry}
+              onClick={() => setTag(tag === entry ? null : entry)}
+            >
+              {entry} <span>{tagCounts[entry]}</span>
+            </button>
+          ))}
+          <span className={o.vRule} aria-hidden />
+          <button
+            type="button"
+            aria-pressed={tag === "none"}
+            onClick={() => setTag(tag === "none" ? null : "none")}
+          >
+            태그 없음 <span>{noneCount}</span>
+          </button>
+        </div>
+      ) : (
+        <p className={o.tagFolded} data-tag-folded>
+          {tag
+            ? `태그 «${tag === "none" ? "태그 없음" : tag}» — 시험지 · 연산 연습지를 고르면 다시 걸립니다.`
+            : "태그는 시험지 · 연산 연습지에만 있습니다."}
+        </p>
+      )}
       <div className={s.toggles}>
         <label className={s.toggle}>
           <input
@@ -503,7 +595,7 @@ function PrivateLibraryContent({
             </h2>
             <p>
               {hasFilters
-                ? "자료 이름이나 종류를 바꿔 다시 찾아보세요."
+                ? "자료 이름이나 종류 · 태그를 바꿔 다시 찾아보세요."
                 : "시험지를 편집하거나 내 자료에서 문제를 추출하면 여기에 저장됩니다."}
             </p>
             {hasFilters && (
@@ -512,6 +604,7 @@ function PrivateLibraryContent({
                 onClick={() => {
                   setQuery("");
                   setKind("all");
+                  setTag(null);
                   setWorkingOnly(false);
                   setMineOnly(false);
                 }}
@@ -620,8 +713,15 @@ function LibraryItem({
         {number}
       </td>
       <td className={s.kindCell} role="cell">
-        <span className={s.kindBadge} data-kind={item.kind}>
-          {documentKindLabel(item.kind)}
+        <span className={o.kindStack}>
+          <span className={s.kindBadge} data-kind={item.kind}>
+            {documentKindLabel(item.kind)}
+          </span>
+          {item.tag && (
+            <span className={o.tagBadge} data-sheet-tag>
+              {item.tag}
+            </span>
+          )}
         </span>
       </td>
       <td className={s.titleCell} role="cell">

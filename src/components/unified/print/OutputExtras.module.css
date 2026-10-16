@@ -278,3 +278,54 @@
   overflow-wrap: anywhere;
 }
 
+/* ───────────── W8 시험지 태그 — 3단계 ───────────── */
+.tagPick {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.fieldCaption {
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--learn-muted);
+}
+
+/* ───────────── W8 — 내 시험지 탭 ───────────── */
+.tagTabs {
+  margin-top: 10px;
+  align-items: center;
+}
+.tagTabs button {
+  font-weight: 500;
+}
+.vRule {
+  align-self: stretch;
+  width: 1px;
+  margin-inline: 4px;
+  background: var(--learn-track);
+}
+.tagFolded {
+  margin: 12px 0 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--learn-neutral);
+  color: var(--learn-muted);
+  font-size: 13px;
+}
+.kindStack {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+.tagBadge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--learn-surface);
+  border: 1px solid var(--learn-accent);
+  color: var(--learn-accent);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}

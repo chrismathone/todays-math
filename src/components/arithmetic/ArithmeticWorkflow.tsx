@@ -19,6 +19,7 @@ import {
 } from "@/lib/arithmeticOutput";
 import s from "./ArithmeticWorkbench.module.css";
 import { arithmeticOutputGroups } from "@/lib/arithmeticOutputLayout";
+import SheetTagPicker from "@/components/unified/print/SheetTagPicker";
 
 const WorksheetEditor = dynamic(
   () => import("@/components/unified/WorksheetEditor"),
@@ -200,6 +201,23 @@ export function ArithmeticWorkflow({
         </section>
       ) : step === "output" && sheet ? (
         <WorksheetEditor
+          settingsSlots={{
+            // W8 «시험 종류» 태그 — 출력 설정과 같은 자리(presentation)에 담는다. 지면에 찍지 않는다.
+            metaTop: (
+              <SheetTagPicker
+                value={currentPresentation.tag ?? null}
+                onChange={(tag) => {
+                  const { tag: _previous, ...rest } = currentPresentation;
+                  void _previous;
+                  onPresentationChange({
+                    ...rest,
+                    step,
+                    ...(tag ? { tag } : {}),
+                  });
+                }}
+              />
+            ),
+          }}
           answersOnly
           headerTitle="연산대장"
           stepNavigation={navigation}

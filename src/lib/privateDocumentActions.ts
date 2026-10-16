@@ -27,6 +27,7 @@ import {
   conceptBlankDocumentSchema,
 } from "@/contracts/conceptBlank.contract";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
+import { sheetTagSchema } from "@/contracts/sheetTag.contract";
 import { z } from "zod";
 import { parseStrictJson } from "@/lib/textbook/strictJson";
 import {
@@ -172,6 +173,13 @@ export async function saveDocument(request: Request, id: string) {
     parsed.data;
   if (!access.account!.menus.includes(EDITOR_MENU[kind]))
     return privateError("이 자료를 편집할 권한이 없습니다.", 403);
+  // 시험지 태그(W8) — 시험지는 `payload.tag` 에 정해진 여덟 가운데 하나만. 연산 연습지는 `presentation.tag` 를
+  // 연산 본문 검사가 가린다(본문 맨 위 칸은 받지 않는다). 다른 종류에는 태그가 없다.
+  if (
+    "tag" in payload &&
+    (kind !== "draft" || !sheetTagSchema.safeParse(payload.tag).success)
+  )
+    return privateError("시험지 태그를 확인해 주세요.", 400);
   if (kind === ARITHMETIC_SHEET_KIND) {
     const disabled = arithmeticSheetWriteError();
     if (disabled) return disabled;

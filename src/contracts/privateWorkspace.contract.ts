@@ -1,5 +1,6 @@
 import { z } from "zod";
 import type { DocumentWorkflow } from "./workspaceWorkflow.contract";
+import type { SheetTag } from "./sheetTag.contract";
 
 export const documentIdSchema = z
   .string()
@@ -71,6 +72,8 @@ export const saveDocumentSchema = z.strictObject({
 });
 export type PrivateDocumentSummary = {
   workflow?: DocumentWorkflow;
+  /** 시험지 태그(W8) — 시험지 · 연산 연습지에만. 없으면 «태그 없음». */
+  tag?: SheetTag;
   ownerId?: string;
   ownerName?: string;
   isOwner?: boolean;

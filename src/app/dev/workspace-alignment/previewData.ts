@@ -327,8 +327,10 @@ const outputPreviewDraft = {
   createdAt: stamp,
   updatedAt: "2026-10-16T07:12:00.000Z",
   workflow: { source: "bank", step: "output" },
+  tag: "일일TEST",
   payload: {
     version: 1,
+    tag: "일일TEST",
     title: "오늘 수학 학습지",
     columns: 1,
     answers: false,
@@ -350,8 +352,37 @@ const outputPreviewDraft = {
     workflow: { source: "bank", step: "output" },
   },
 };
+// W8 태그 줄의 수가 보이게 — 태그가 붙은 시험지 · 연산 연습지 몇(지어낸 이름).
+const taggedExtras = (
+  [
+    ["preview-tag-1", "draft", "중2 일차부등식 일일TEST 10.15", "일일TEST", 8],
+    ["preview-tag-2", "draft", "중2-1 부등식 주간 확인", "주간TEST", 20],
+    [
+      "preview-tag-3",
+      "arithmeticSheet",
+      "중1 정수의 덧셈 연습 3회",
+      "숙제",
+      40,
+    ],
+    ["preview-tag-4", "draft", "중2 일차방정식 단원평가", "단원TEST", 25],
+    ["preview-tag-5", "arithmeticSheet", "중1 소인수분해 연습", null, 24],
+  ] as const
+).map(([id, kind, title, tag, problemCount], index) => ({
+  id,
+  ownerId: "workspace-preview",
+  isOwner: true,
+  kind,
+  title,
+  problemCount,
+  revision: 1,
+  createdAt: stamp,
+  updatedAt: `2026-10-${String(15 - index).padStart(2, "0")}T08:00:00.000Z`,
+  ...(tag ? { tag } : {}),
+  payload: {},
+}));
 const libraryDocuments = [
   outputPreviewDraft,
+  ...taggedExtras,
   ...libraryDrafts,
   ...libraryExtras,
 ];

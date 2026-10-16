@@ -1492,3 +1492,158 @@ describe("private library kinds · status · intersections (2026-10-16 review)",
     expect(screen.queryByText(/사본으로 열기/)).toBeNull();
   });
 });
+
+// 2026-10-16 W8 «시험지 태그»(Hi-fi 1안 + 3안의 접힌 한 줄) — 종류 줄 아래 같은 꼴의 태그 줄.
+describe("private library tag filter (W8)", () => {
+  const doc = (
+    id: string,
+    kind: PrivateDocumentSummary["kind"],
+    title: string,
+    patch: Partial<PrivateDocumentSummary> = {},
+  ): PrivateDocumentSummary => ({
+    id,
+    kind,
+    title,
+    problemCount: 5,
+    revision: 1,
+    createdAt: "2026-10-01T00:00:00Z",
+    updatedAt: `2026-10-${String(20 - Number(id.slice(1))).padStart(2, "0")}T00:00:00Z`,
+    ...patch,
+  });
+  const rows = [
+    doc("d1", "draft", "중2 일일 10.16", {
+      tag: "일일TEST",
+      workflow: { source: "bank", step: "output" },
+    }),
+    doc("d2", "draft", "중2 일일 10.15", { tag: "일일TEST" }),
+    doc("d3", "draft", "중2 주간 확인", { tag: "주간TEST" }),
+    doc("d4", "draft", "오늘 수학 학습지", {
+      workflow: { source: "bank", step: "review" },
+    }),
+    doc("d5", "arithmeticSheet", "중1 정수 덧셈", { tag: "숙제" }),
+    doc("d6", "arithmeticSheet", "중1 소인수분해 연습"),
+    doc("d7", "extraction", "쎈 중2 추출", {
+      workflow: { source: "extraction", step: "crop" },
+    }),
+    doc("d8", "conceptBlank", "중2 부등식 개념 백지"),
+  ];
+  const tagButtons = () =>
+    within(screen.getByRole("group", { name: "태그별 보기" }))
+      .getAllByRole("button")
+      .map((button) => button.textContent?.replace(/\s+/g, " ").trim());
+  const kinds = () =>
+    within(screen.getByRole("group", { name: "자료 종류별 보기" }))
+      .getAllByRole("button")
+      .map((button) => button.textContent?.replace(/\s+/g, " ").trim());
+  const show = async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => listResponse(rows)),
+    );
+    render(
+      <PrivateLibrary
+        {...boardProps()}
+        canArithmetic
+        onOpenArithmetic={vi.fn()}
+        canConceptBlank
+        onOpenConceptBlank={vi.fn()}
+      />,
+    );
+    await screen.findByRole("table");
+  };
+
+  it("shows a second row like the kind row — counts, «태그 없음» after a divider — and a tag badge under the kind", async () => {
+    await show();
+    expect(tagButtons()).toEqual([
+      "태그 전체",
+      "일일TEST 2",
+      "주간TEST 1",
+      "단원TEST 0",
+      "숙제 1",
+      "복습 0",
+      "오답 0",
+      "입학TEST 0",
+      "내신대비 0",
+      // 시험지 · 연산 연습지 가운데 태그가 없는 것만 — 추출한 자료 · 개념 백지는 세지 않는다.
+      "태그 없음 2",
+    ]);
+    expect(boardRow("중2 일일 10.16").getByText("일일TEST")).toBeVisible();
+    expect(boardRow("중1 정수 덧셈").getByText("숙제")).toBeVisible();
+    expect(boardRow("쎈 중2 추출").queryByText(/TEST|숙제/)).toBeNull();
+  });
+
+  it("intersects tag × kind × working × search; every count is «what remains if chosen»", async () => {
+    await show();
+    fireEvent.click(screen.getByRole("button", { name: "일일TEST 2" }));
+    expect(titles()).toEqual(["중2 일일 10.16", "중2 일일 10.15"]);
+    // 종류 수도 태그를 건 채 다시 센다 — 태그가 없는 종류는 태그 거름이 쉰다.
+    expect(kinds()).toEqual([
+      "전체 자료 2",
+      "시험지 2",
+      "연산 연습지 0",
+      "추출한 자료 1",
+      "개념 백지 1",
+    ]);
+    expect(workingToggle(1)).not.toBeChecked();
+    expect(screen.getByText(/저장한 자료/)).toHaveTextContent(
+      "저장한 자료 8개 · 검색 결과 2개",
+    );
+    // 종류를 고르면 태그 수는 그 종류 안에서 센다.
+    fireEvent.click(screen.getByRole("button", { name: "연산 연습지 0" }));
+    expect(tagButtons()).toContain("숙제 1");
+    expect(tagButtons()).toContain("일일TEST 0");
+    expect(tagButtons()).toContain("태그 없음 1");
+    fireEvent.click(screen.getByRole("button", { name: "태그 없음 1" }));
+    expect(titles()).toEqual(["중1 소인수분해 연습"]);
+    // 다시 누르면 푼다.
+    fireEvent.click(screen.getByRole("button", { name: "태그 없음 1" }));
+    expect(titles()).toEqual(["중1 정수 덧셈", "중1 소인수분해 연습"]);
+    // 내 작업 중 × 검색도 태그 수의 분모를 줄인다.
+    fireEvent.click(screen.getByRole("button", { name: "시험지 4" }));
+    fireEvent.click(workingToggle(2));
+    expect(tagButtons()).toContain("일일TEST 1");
+    expect(tagButtons()).toContain("태그 없음 1");
+    fireEvent.change(
+      screen.getByRole("searchbox", { name: "저장한 자료 검색" }),
+      { target: { value: "일일" } },
+    );
+    expect(tagButtons()).toContain("일일TEST 1");
+    expect(tagButtons()).toContain("태그 없음 0");
+  });
+
+  it("collapses to one line naming the paused tag on a kind without tags, and re-applies it on return", async () => {
+    await show();
+    fireEvent.click(screen.getByRole("button", { name: "일일TEST 2" }));
+    fireEvent.click(screen.getByRole("button", { name: "추출한 자료 1" }));
+    expect(screen.queryByRole("group", { name: "태그별 보기" })).toBeNull();
+    expect(
+      screen.getByText(
+        "태그 «일일TEST» — 시험지 · 연산 연습지를 고르면 다시 걸립니다.",
+      ),
+    ).toBeVisible();
+    // 쉬는 태그는 거르지 않는다.
+    expect(titles()).toEqual(["쎈 중2 추출"]);
+    fireEvent.click(screen.getByRole("button", { name: "시험지 2" }));
+    expect(titles()).toEqual(["중2 일일 10.16", "중2 일일 10.15"]);
+    fireEvent.click(screen.getByRole("button", { name: "태그 전체" }));
+    fireEvent.click(screen.getByRole("button", { name: "개념 백지 1" }));
+    expect(
+      screen.getByText("태그는 시험지 · 연산 연습지에만 있습니다."),
+    ).toBeVisible();
+  });
+
+  it("검색 조건 초기화 also clears the tag", async () => {
+    await show();
+    fireEvent.click(screen.getByRole("button", { name: "주간TEST 1" }));
+    fireEvent.change(
+      screen.getByRole("searchbox", { name: "저장한 자료 검색" }),
+      { target: { value: "없는 이름" } },
+    );
+    fireEvent.click(screen.getByRole("button", { name: "검색 조건 초기화" }));
+    expect(screen.getByRole("button", { name: "태그 전체" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+    expect(titles()).toHaveLength(8);
+  });
+});
