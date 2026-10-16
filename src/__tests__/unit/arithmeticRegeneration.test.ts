@@ -331,6 +331,96 @@ describe("targeted grade regeneration", () => {
       spy.mockRestore();
     }
   });
+  it("says so when a tiny preset can only reorder, or cannot change at all", () => {
+    // Owner (2026-10-16): «3 더하기 · 받아올림 있음» holds exactly 7+3, 8+3, 9+3.
+    // Every regeneration is a permutation; the notice must not call it new numbers.
+    const sheet = buildArithmeticSheet({
+      engineVersion: "arithmetic-engine-v1",
+      catalogVersion: "arithmetic-catalog-v1",
+      seed: "tiny",
+      rounds: [
+        {
+          skills: [
+            {
+              skillId: "one-digit-add",
+              count: 3,
+              constraints: {
+                carry: "some",
+                left: { min: 7, max: 9 },
+                right: { min: 3, max: 3 },
+              },
+            },
+            {
+              skillId: "one-digit-add",
+              count: 1,
+              constraints: {
+                carry: "none",
+                left: { min: 0, max: 0 },
+                right: { min: 9, max: 9 },
+              },
+            },
+            {
+              skillId: "one-digit-add",
+              count: 1,
+              constraints: {
+                carry: "none",
+                left: { min: 0, max: 5 },
+                right: { min: 1, max: 1 },
+              },
+            },
+          ],
+        },
+      ],
+    });
+    const reordered = regenerateArithmeticItems(
+      sheet,
+      { round: 1, orders: [1, 2, 3] },
+      "permute",
+    );
+    expect(reordered.changedOrders).toHaveLength(3);
+    expect(reordered.reorderedOrders).toEqual(reordered.changedOrders);
+    expect(reordered.exhausted).toBe(true);
+    expect(
+      new Set(
+        reordered.sheet.rounds[0].items
+          .slice(0, 3)
+          .map((item) => item.prompt.operands.join("+")),
+      ),
+    ).toEqual(new Set(["7+3", "8+3", "9+3"]));
+    const reorderNotice = arithmeticRegenerationNotice(reordered);
+    expect(reorderNotice).toContain(
+      "3문항은 선택한 문항끼리 자리만 바꿨습니다",
+    );
+    expect(reorderNotice).toContain("만들 수 있는 식을 모두 담고 있어");
+    expect(reorderNotice).not.toContain("숫자를 바꿨습니다");
+
+    const singleton = regenerateArithmeticItems(
+      sheet,
+      { round: 1, orders: [4] },
+      "singleton",
+    );
+    expect(singleton.sheet).toBe(sheet);
+    expect(singleton.changedOrders).toEqual([]);
+    expect(singleton.unchangedOrders).toEqual([4]);
+    expect(singleton.exhausted).toBe(true);
+    const singletonNotice = arithmeticRegenerationNotice(singleton);
+    expect(singletonNotice).toContain(
+      "만들 수 있는 식을 모두 담고 있어 바꿀 숫자가 없습니다",
+    );
+    expect(singletonNotice).toContain("기존 문항을 유지");
+    expect(singletonNotice).toContain("1회차 4번");
+    expect(singletonNotice).not.toContain("20% 제한");
+
+    // A slot with fresh alternatives is an ordinary change, even next to exhausted ones.
+    const fresh = regenerateArithmeticItems(
+      sheet,
+      { round: 1, orders: [1, 5] },
+      "fresh",
+    );
+    expect(fresh.changedOrders).toContain(5);
+    expect(fresh.exhausted).toBe(false);
+    expect(arithmeticRegenerationNotice(fresh)).toContain("숫자를 바꿨습니다");
+  });
   it("merge preserves opaque sheet and round metadata including shared figure packs", () => {
     const first = { order: 1, value: "a" };
     const second = { order: 2, value: "b" };

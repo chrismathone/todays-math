@@ -223,7 +223,7 @@ describe("live geometry arithmetic", () => {
             arithmeticAngleSvg(item.prompt.figureId!, sheet.figures!),
           ),
         ).toContain("<svg");
-        expect(problem.figureSvg).toContain('aria-label="□°"');
+        expect(problem.figureSvg).toContain('aria-label="□"');
         expect(problem.figureUrls).toHaveLength(1);
         expect(problem.figureSourceMm).toHaveLength(1);
         expect(problem.content).not.toContain("주어진 각");

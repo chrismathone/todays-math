@@ -83,6 +83,24 @@ export const SPECIMEN_ITEM_IDS = [
 
 export const ITEMS: PrintCheckItem[] = [
   {
+    id: "arithmetic-basic-preset-heading-20261016",
+    title: "연산대장 기초 연산 — 묶음 머리말이 고른 유형 이름으로",
+    changed:
+      "기초 연산 시험지의 묶음 머리말(검토 화면 · 지면 sectionHeading)이 «한 자리 덧셈 · 받아올림 있음 · 가로셈» 같은 기능 이름에서 원장님이 담은 카드 이름 «3 더하기 · 받아올림 있음 · 가로셈»으로 바뀌었다. 카드와 맞지 않는 직접 설정은 «한 자리 덧셈 · 받아올림 있음 · 더하는 수 4 · 가로셈»처럼 고정된 수를 적는다. 저장본은 그대로이고 머리말만 바뀐다(원장님 2026-10-16 «3 더하기로 추가했는데도 한자리 덧셈 받아올림있음 가로셈으로 나옴»).",
+    look: "(제안) 기초 연산 지면에서 묶음 머리말이 담은 카드 이름 그대로인지, 긴 이름(«두 자리 덧셈 · 받아올림 0회 · 세로셈» · «19 빼기 · 받아내림 1회 · 세로셈»)이 2단에서 한 줄에 들고 잘리지 않는지 본다. 머리말이 기능 이름(«두 자리 세로 덧셈 …»)으로 찍히거나 줄이 접혀 문항과 겹치면 불합격이다.",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/arithmeticPresentation.ts (arithmeticSelectionTitle)",
+      "src/lib/arithmeticOutput.ts (payloadVersion 1 groupTitle)",
+      "src/__tests__/unit/arithmeticOutput.test.ts",
+    ],
+    scale: "기초 연산 110유형 전부 — 머리말 글자만",
+    status: "대기",
+    needs:
+      "연산대장 → 학년 «기초 연산» → «3 더하기 · 받아올림 있음»과 «두 자리 덧셈 · 받아올림 0회»를 담아 양식 구성·출력 → 2단으로 인쇄",
+    changedOn: "2026-10-16",
+  },
+  {
     id: "arithmetic-figure-first-20261016",
     title: "연산대장 — 그림 우선 도형 유형(삼각비·피타고라스·닮음·원·중1 각)",
     changed:

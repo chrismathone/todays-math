@@ -37,6 +37,7 @@ import {
   type WorkbenchAllocation,
 } from "./workbenchState";
 import { ArithmeticWorkflow, type ArithmeticStep } from "./ArithmeticWorkflow";
+import type { ArithmeticRegenerationFeedback } from "./ArithmeticReview";
 import { ArithmeticRandomSelection } from "./ArithmeticRandomSelection";
 import {
   availableArithmeticTypes,
@@ -141,6 +142,8 @@ export default function LegacyArithmeticWorkbench({
   const [retry, setRetry] = useState(0);
   const [step, setStep] = useState<ArithmeticStep>("scope");
   const [presentation, setPresentation] = useState<ArithmeticPresentation>();
+  const [regeneration, setRegeneration] =
+    useState<ArithmeticRegenerationFeedback>();
   const mounted = useRef(true);
   useEffect(() => {
     mounted.current = true;
@@ -340,6 +343,7 @@ export default function LegacyArithmeticWorkbench({
     setBusy(true);
     setError("");
     setNotice("");
+    setRegeneration(undefined);
     try {
       const request: ArithmeticGenerateRequest = validateArithmeticRequest({
         engineVersion: ARITHMETIC_ENGINE_VERSION,
@@ -389,6 +393,7 @@ export default function LegacyArithmeticWorkbench({
     setBusy(true);
     setError("");
     setNotice("");
+    setRegeneration(undefined);
     try {
       const {
         regenerateArithmeticItems,
@@ -418,7 +423,9 @@ export default function LegacyArithmeticWorkbench({
         .find((round) => round.round === target.round)!
         .items.filter((item) => result.changedOrders.includes(item.order));
       setSheet(mergeArithmeticRegeneration(sheet, target.round, replacements));
-      setNotice(arithmeticRegenerationNotice(result));
+      const outcome = arithmeticRegenerationNotice(result);
+      setNotice(outcome);
+      setRegeneration({ target, notice: outcome });
     } catch (cause) {
       if (mounted.current) setError(message(cause));
     } finally {
@@ -458,6 +465,7 @@ export default function LegacyArithmeticWorkbench({
       setSaved({ id: document.id, revision: document.revision, fingerprint });
       loadedId.current = document.id;
       onDocumentChange?.(document.id);
+      setRegeneration(undefined);
       setNotice(
         "내 시험지에 저장했습니다. 다음에 같은 문항과 양식으로 열 수 있습니다.",
       );
@@ -514,6 +522,7 @@ export default function LegacyArithmeticWorkbench({
         onRegenerate={(target?: ArithmeticRegenerationTarget) =>
           void regenerate(target)
         }
+        regeneration={regeneration}
         actions={
           <button
             disabled={busy}
@@ -528,6 +537,7 @@ export default function LegacyArithmeticWorkbench({
               setSheet(undefined);
               setStep("scope");
               setPresentation(undefined);
+              setRegeneration(undefined);
               setSaved(undefined);
               pendingId.current = null;
               loadedId.current = undefined;
@@ -705,6 +715,11 @@ export default function LegacyArithmeticWorkbench({
                 aria-label="담은 유형 목록"
                 tabIndex={0}
               >
+                {!allocations.length && (
+                  <p className={s.catalogCount}>
+                    왼쪽에서 연습할 유형을 담으세요.
+                  </p>
+                )}
                 {allocations.map((item) => (
                   <div className={s.allocation} key={item.id}>
                     <label className={s.basketCheck}>

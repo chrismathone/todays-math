@@ -365,4 +365,145 @@ describe("arithmetic workbench", () => {
     expect(await screen.findByLabelText("공통 양식")).toHaveValue("modern");
     expect(fetch).not.toHaveBeenCalled();
   });
+
+  it("names a review group after the picked preset and reports a tiny preset's regeneration next to it", async () => {
+    render(<ArithmeticWorkbench canOutput preview />);
+    fireEvent.click(
+      screen.getByRole("button", { name: "두 자리 덧셈 · 받아올림 0회 빼기" }),
+    );
+    fireEvent.change(screen.getByLabelText("유형 찾기"), {
+      target: { value: "더하기" },
+    });
+    const catalog = screen.getByLabelText("연산 유형");
+    fireEvent.click(
+      within(catalog).getByRole("button", {
+        name: /^3 더하기 · 받아올림 있음/,
+      }),
+    );
+    fireEvent.click(
+      within(catalog).getByRole("button", {
+        name: /^9 더하기 · 받아올림 없음/,
+      }),
+    );
+    expect(
+      screen.getByRole("spinbutton", {
+        name: "3 더하기 · 받아올림 있음 문항 수",
+      }),
+    ).toHaveValue(3);
+    make();
+    await screen.findByText(/4문항을 생성하고/);
+    const review = screen.getByRole("region", { name: "생성한 문항 검토" });
+    expect(
+      within(review).queryByRole("region", { name: /한 자리 덧셈/ }),
+    ).toBeNull();
+    const group = within(review).getByRole("region", {
+      name: "3 더하기 · 받아올림 있음 · 가로셈",
+    });
+    const single = within(review).getByRole("region", {
+      name: "9 더하기 · 받아올림 없음 · 가로셈",
+    });
+    const operands = () =>
+      within(group)
+        .getAllByRole("listitem")
+        .map((item) =>
+          /(\d)\s*\+\s*(\d)/.exec(visibleText(item))!.slice(1).join("+"),
+        );
+    const before = operands();
+    expect(before.map((text) => text.slice(-1))).toEqual(["3", "3", "3"]);
+    fireEvent.click(
+      within(group).getByRole("button", {
+        name: "3 더하기 · 받아올림 있음 · 가로셈 숫자 바꾸기",
+      }),
+    );
+    await waitFor(() =>
+      expect(
+        within(group).getByText(/3문항은 선택한 문항끼리 자리만 바꿨습니다/),
+      ).toBeInTheDocument(),
+    );
+    expect(screen.getByRole("status")).toHaveTextContent(
+      /만들 수 있는 식을 모두 담고 있어/,
+    );
+    expect(operands()).not.toEqual(before);
+    expect(new Set(operands())).toEqual(new Set(before));
+    fireEvent.click(
+      within(single).getByRole("button", {
+        name: "9 더하기 · 받아올림 없음 · 가로셈 숫자 바꾸기",
+      }),
+    );
+    await waitFor(() =>
+      expect(
+        within(single).getByText(/바꿀 숫자가 없습니다/),
+      ).toBeInTheDocument(),
+    );
+    expect(within(group).queryByText(/자리만 바꿨습니다/)).toBeNull();
+    expect(within(single).getByText(/바꿀 숫자가 없습니다/)).toHaveTextContent(
+      /기존 문항을 유지/,
+    );
+    fireEvent.click(
+      screen.getByRole("button", { name: "모든 회차 숫자 바꾸기" }),
+    );
+    await screen.findByText(/4문항을 생성하고/);
+    expect(screen.queryByText(/바꿀 숫자가 없습니다/)).toBeNull();
+    expect(fetch).not.toHaveBeenCalled();
+  });
+
+  it("enables catalog and basket controls from state alone, like the grade workbench", () => {
+    render(<ArithmeticWorkbench canOutput preview />);
+    fireEvent.change(screen.getByLabelText("유형 찾기"), {
+      target: { value: "3 더하기" },
+    });
+    const catalog = screen.getByLabelText("연산 유형");
+    const cards = within(catalog).getAllByRole("button");
+    expect(cards).toHaveLength(2);
+    const random = screen.getByRole("button", { name: "무작위로 담기" });
+    const removeSelected = screen.getByRole("button", {
+      name: "선택한 유형 빼기",
+    });
+    const selectAll = screen.getByLabelText("담은 유형 전체 선택");
+    expect(random).toBeEnabled();
+    expect(removeSelected).toBeDisabled();
+    for (const card of cards) fireEvent.click(card);
+    for (const card of cards) {
+      expect(card).toHaveAttribute("aria-pressed", "true");
+      expect(card).toBeEnabled();
+    }
+    // Everything visible is in the basket: nothing is left to add.
+    expect(random).toBeDisabled();
+    fireEvent.click(cards[0]);
+    expect(cards[0]).toHaveAttribute("aria-pressed", "false");
+    expect(random).toBeEnabled();
+    fireEvent.click(cards[0]);
+    expect(removeSelected).toBeDisabled();
+    fireEvent.click(selectAll);
+    expect(removeSelected).toBeEnabled();
+    expect(removeSelected).toHaveTextContent("선택 빼기 (3)");
+    fireEvent.click(removeSelected);
+    expect(
+      screen.getByText("왼쪽에서 연습할 유형을 담으세요."),
+    ).toBeInTheDocument();
+    expect(selectAll).toBeDisabled();
+    expect(removeSelected).toBeDisabled();
+    for (const card of cards) {
+      expect(card).toHaveAttribute("aria-pressed", "false");
+      expect(card).toBeEnabled();
+    }
+    expect(random).toBeEnabled();
+    expect(
+      screen.getByRole("button", { name: "연습지 만들기" }),
+    ).toBeDisabled();
+    // A full round budget disables every add path but keeps removal open.
+    fireEvent.click(cards[0]);
+    fireEvent.change(
+      screen.getByRole("spinbutton", {
+        name: "3 더하기 · 받아올림 없음 문항 수",
+      }),
+      { target: { value: "200" } },
+    );
+    expect(cards[1]).toBeDisabled();
+    expect(random).toBeDisabled();
+    expect(cards[0]).toBeEnabled();
+    expect(
+      screen.getByRole("button", { name: "3 더하기 · 받아올림 없음 빼기" }),
+    ).toBeEnabled();
+  });
 });

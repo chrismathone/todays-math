@@ -21,6 +21,7 @@ import {
   ARITHMETIC_V2_CATALOG_VERSION,
 } from "@/contracts/arithmeticV2.contract";
 import { buildArithmeticSheet } from "@/lib/arithmetic/sheet";
+import { reopenArithmeticSheet } from "@/lib/arithmetic/reopen";
 import {
   ARITHMETIC_ENGINE_VERSION,
   ARITHMETIC_CATALOG_VERSION,
@@ -115,8 +116,11 @@ describe("arithmetic shared output adapter", () => {
   }, 60000);
   it("keeps legacy vertical/horizontal prompts and distinct round order IDs without regenerating", () => {
     const presets = listArithmeticPresets();
+    const vertical = presets.find(
+      (item) => item.example.notation === "vertical",
+    )!;
     const rounds = [
-      presets.find((item) => item.example.notation === "vertical")!,
+      vertical,
       presets.find((item) => item.group === "나눗셈")!,
     ].map((preset) => ({ skills: [{ ...preset.selection, count: 2 }] }));
     const sheet = buildArithmeticSheet({
@@ -134,8 +138,10 @@ describe("arithmetic shared output adapter", () => {
       1, 2, 3, 4,
     ]);
     expect(problems.every((item) => !item.content.includes("회차"))).toBe(true);
-    expect(problems[0].section).toContain(problems[0].chapter);
+    // The section names the picked card; the chapter stays the skill family.
+    expect(problems[0].section).toContain(vertical.title);
     expect(problems[0].section).toContain("세로셈");
+    expect(problems[0].chapter).not.toBe(problems[0].section);
     expect(problems.map((item) => item.answer)).toEqual(
       sheet.rounds.flatMap((round) =>
         round.items.map((item) => arithmeticProseNotation(item.answer)),
@@ -192,5 +198,63 @@ describe("arithmetic shared output adapter", () => {
     expect(round.groups.flatMap((group) => group.problems)).toEqual(problems);
     expect(round.count).toBe(problems.length);
     expect(sheet).toEqual(before);
+  });
+  it("titles a legacy group by the picked preset, or by its conditions including a fixed operand", () => {
+    // Owner (2026-10-16): «3 더하기» came out as «한 자리 덧셈 · 받아올림 있음 · 가로셈».
+    const fixedThree = listArithmeticPresets().find(
+      (preset) => preset.id === "add-one-fixed-3-carry",
+    )!;
+    const sheet = buildArithmeticSheet({
+      engineVersion: ARITHMETIC_ENGINE_VERSION,
+      catalogVersion: ARITHMETIC_CATALOG_VERSION,
+      seed: "preset-title",
+      rounds: [
+        {
+          skills: [
+            { ...fixedThree.selection, count: 3 },
+            {
+              skillId: "one-digit-add",
+              constraints: {
+                carry: "some",
+                left: { min: 5, max: 9 },
+                right: { min: 4, max: 4 },
+              },
+              count: 2,
+            },
+            {
+              skillId: "one-digit-sub",
+              constraints: {
+                minuend: { min: 5, max: 9 },
+                subtrahend: { min: 4, max: 4 },
+              },
+              count: 2,
+            },
+          ],
+        },
+      ],
+    });
+    const before = structuredClone(sheet);
+    const problems = arithmeticToStudioProblems(sheet);
+    // The preset is honoured by the engine: the right operand stays 3.
+    expect(problems.slice(0, 3).map((problem) => problem.source)).toSatisfy(
+      (sources: { item: { prompt: { operands: number[] } } }[]) =>
+        sources.every((source) => source.item.prompt.operands[1] === 3),
+    );
+    const [round] = arithmeticOutputGroups(problems);
+    expect(round.groups.map((group) => group.title)).toEqual([
+      "3 더하기 · 받아올림 있음 · 가로셈",
+      "한 자리 덧셈 · 받아올림 있음 · 더하는 수 4 · 가로셈",
+      "한 자리 뺄셈 · 음이 아닌 답 · 빼는 수 4 · 가로셈",
+    ]);
+    expect(problems[0].section).toBe("3 더하기 · 받아올림 있음 · 가로셈");
+    expect(problems[0].sourceLabel).toBe(problems[0].section);
+    expect(problems[0].chapter).toBe("한 자리 덧셈");
+    // The title is a projection: the snapshot, its reopen and the review
+    // allocations never see it.
+    expect(sheet).toEqual(before);
+    expect(reopenArithmeticSheet(sheet)).toEqual(before);
+    expect(arithmeticReviewRounds(sheet)[0].skills.map((s) => s.count)).toEqual(
+      [3, 2, 2],
+    );
   });
 });

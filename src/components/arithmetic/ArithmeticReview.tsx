@@ -15,6 +15,16 @@ import s from "./ArithmeticWorkbench.module.css";
 import layout from "./ArithmeticWorkflow.module.css";
 
 type Regenerate = (target: { round: number; orders: number[] }) => void;
+/** The last regeneration's outcome, repeated where it was asked for. */
+export type ArithmeticRegenerationFeedback = {
+  target: { round: number; orders: number[] };
+  notice: string;
+};
+
+const sameOrders = (left: readonly number[], right: readonly number[]) =>
+  left.length === right.length &&
+  new Set(left).size === left.length &&
+  right.every((order) => left.includes(order));
 
 function itemOrder(problem: StudioProblem) {
   const source = problem.source;
@@ -38,11 +48,13 @@ export default function ArithmeticReview({
   showAnswers,
   disabled,
   onRegenerate,
+  regeneration,
 }: {
   rounds: ArithmeticOutputRound[];
   showAnswers: boolean;
   disabled: boolean;
   onRegenerate: Regenerate;
+  regeneration?: ArithmeticRegenerationFeedback;
 }) {
   const id = useId();
   const tabs = useRef<HTMLDivElement>(null);
@@ -103,6 +115,11 @@ export default function ArithmeticReview({
           disabled={disabled}
           showAnswers={showAnswers}
           onRegenerate={onRegenerate}
+          regeneration={
+            regeneration?.target.round === active.round
+              ? regeneration
+              : undefined
+          }
         />
       </div>
     </div>
@@ -114,15 +131,28 @@ function RoundReview({
   disabled,
   showAnswers,
   onRegenerate,
+  regeneration,
 }: {
   round: ArithmeticOutputRound;
   disabled: boolean;
   showAnswers: boolean;
   onRegenerate: Regenerate;
+  regeneration?: ArithmeticRegenerationFeedback;
 }) {
   const [selection, setSelection] = useState<Set<number>>(() => new Set());
   const orders = round.groups.flatMap((group) => group.problems.map(itemOrder));
   const selected = orders.filter((order) => selection.has(order));
+  // The page-top notice sits above a long list; repeat it beside the control
+  // that was used — the section's button, or the round's selection button.
+  const sectionNotice = (groupOrders: number[]) =>
+    regeneration && sameOrders(groupOrders, regeneration.target.orders)
+      ? regeneration.notice
+      : undefined;
+  const roundNotice =
+    regeneration &&
+    !round.groups.some((group) => sectionNotice(group.problems.map(itemOrder)))
+      ? regeneration.notice
+      : undefined;
   function toggle(items: number[], checked: boolean) {
     setSelection((previous) => {
       const next = new Set(previous);
@@ -159,11 +189,17 @@ function RoundReview({
           선택한 문항 숫자 바꾸기
         </button>
       </div>
+      {roundNotice && (
+        <p className={s.notice} data-arithmetic-regeneration-notice>
+          {roundNotice}
+        </p>
+      )}
       {round.groups.map((group) => {
         const groupOrders = group.problems.map(itemOrder);
         const count = groupOrders.filter((order) =>
           selection.has(order),
         ).length;
+        const notice = sectionNotice(groupOrders);
         return (
           <section key={group.problems[0].id} aria-label={group.title}>
             <div className={layout.typeHeader}>
@@ -197,6 +233,11 @@ function RoundReview({
                 이 유형 숫자 바꾸기
               </button>
             </div>
+            {notice && (
+              <p className={s.notice} data-arithmetic-regeneration-notice>
+                {notice}
+              </p>
+            )}
             {arithmeticGroupInstruction(group.problems) && (
               <div className={layout.groupInstruction}>
                 <MathText

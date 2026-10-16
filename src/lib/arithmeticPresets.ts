@@ -7,6 +7,7 @@ import {
   type ArithmeticPrompt,
   type ArithmeticSkillSelection,
 } from "@/lib/arithmetic";
+import { parseArithmeticSelection } from "@/lib/arithmetic/constraints";
 
 export type ArithmeticPreset = {
   id: string;
@@ -318,4 +319,23 @@ export function listArithmeticPresets(): readonly ArithmeticPreset[] {
 
 export function findArithmeticPreset(id: string): ArithmeticPreset | undefined {
   return listArithmeticPresets().find((preset) => preset.id === id);
+}
+
+const selectionKey = (selection: ArithmeticSkillSelection) =>
+  JSON.stringify(
+    parseArithmeticSelection(selection.skillId, selection.constraints),
+  );
+let bySelection: Map<string, ArithmeticPreset> | undefined;
+
+/** Saved items keep only skill + constraints; this recovers the authored card they came from. */
+export function findArithmeticPresetBySelection(
+  selection: ArithmeticSkillSelection,
+): ArithmeticPreset | undefined {
+  bySelection ??= new Map(
+    listArithmeticPresets().map((preset) => [
+      selectionKey(preset.selection),
+      preset,
+    ]),
+  );
+  return bySelection.get(selectionKey(selection));
 }

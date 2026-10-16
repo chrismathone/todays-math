@@ -172,7 +172,7 @@ describe("saved geometry subsets across generation, regeneration and shared outp
     expect(problems[0].figureSvg).toContain("<svg");
     // 2026-10-16: 초등 각도 is figure-first — the saved angle figure prints with
     // the unknown marked □ and the given angles stay on the figure, not in prose.
-    expect(problems[2].figureSvg).toContain('aria-label="□°"');
+    expect(problems[2].figureSvg).toContain('aria-label="□"');
     expect(problems[2].figureSvg).toContain("arithmetic-angle-drill-v1");
     expect(problems[2].content).not.toContain("주어진 각");
   });

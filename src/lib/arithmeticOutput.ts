@@ -4,7 +4,7 @@ import type { ArithmeticV2SheetPayload } from "@/contracts/arithmeticV2.contract
 import type { ArithmeticSkillSelection } from "@/contracts/arithmetic.contract";
 import { listArithmeticSkills } from "@/lib/arithmetic/catalog";
 import { listArithmeticV2Types } from "@/lib/arithmetic-v2";
-import { arithmeticFeatureLabels } from "@/lib/arithmeticPresentation";
+import { arithmeticSelectionTitle } from "@/lib/arithmeticPresentation";
 import {
   arithmeticGeometrySvg,
   arithmeticGeometryAnswerUnit,
@@ -152,11 +152,11 @@ export function arithmeticToStudioProblems(
   return sheet.rounds.flatMap((round) =>
     round.items.map((item) => {
       const skill = skills.get(item.spec.skillId);
-      const groupTitle = [
-        skill?.label ?? item.spec.skillId,
-        // Saved specs have already validated the skill/constraint pairing.
-        ...arithmeticFeatureLabels(item.spec as ArithmeticSkillSelection),
-      ].join(" · ");
+      // Saved specs have already validated the skill/constraint pairing. The
+      // title names the picked preset («3 더하기 · 받아올림 있음»), not the skill.
+      const groupTitle = arithmeticSelectionTitle(
+        item.spec as ArithmeticSkillSelection,
+      );
       const [left, right] = item.prompt.operands;
       const formula =
         item.prompt.notation === "vertical"

@@ -10,7 +10,9 @@ import {
   type ArithmeticPresentation,
 } from "@/contracts/arithmeticPresentation.contract";
 import type { PrintMeta, PrintOptions } from "@/components/unified/print/types";
-import ArithmeticReview from "./ArithmeticReview";
+import ArithmeticReview, {
+  type ArithmeticRegenerationFeedback,
+} from "./ArithmeticReview";
 import {
   arithmeticToStudioProblems,
   type ArithmeticOutputSheet,
@@ -47,6 +49,7 @@ export function ArithmeticWorkflow({
   actions,
   presentation,
   onPresentationChange,
+  regeneration,
 }: {
   step: ArithmeticStep;
   setStep: (step: ArithmeticStep) => void;
@@ -65,6 +68,7 @@ export function ArithmeticWorkflow({
   actions?: ReactNode;
   presentation?: ArithmeticPresentation;
   onPresentationChange: (presentation: ArithmeticPresentation) => void;
+  regeneration?: ArithmeticRegenerationFeedback;
 }) {
   const root = useRef<HTMLDivElement>(null);
   const [showAnswers, setShowAnswers] = useState(false);
@@ -191,6 +195,7 @@ export function ArithmeticWorkflow({
             showAnswers={showAnswers}
             disabled={busy || !canRegenerate}
             onRegenerate={onRegenerate}
+            regeneration={regeneration}
           />
         </section>
       ) : step === "output" && sheet ? (

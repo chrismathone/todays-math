@@ -27,6 +27,7 @@ import {
 } from "./ArithmeticGradeSelect";
 import type { ArithmeticWorkbenchProps } from "./ArithmeticWorkbench";
 import { ArithmeticWorkflow, type ArithmeticStep } from "./ArithmeticWorkflow";
+import type { ArithmeticRegenerationFeedback } from "./ArithmeticReview";
 import { ArithmeticRandomSelection } from "./ArithmeticRandomSelection";
 import {
   availableArithmeticTypes,
@@ -116,6 +117,8 @@ export default function GradeArithmeticWorkbench({
   const [retry, setRetry] = useState(0);
   const [step, setStep] = useState<ArithmeticStep>("scope");
   const [presentation, setPresentation] = useState<ArithmeticPresentation>();
+  const [regeneration, setRegeneration] =
+    useState<ArithmeticRegenerationFeedback>();
   const mounted = useRef(true);
   useEffect(() => {
     mounted.current = true;
@@ -344,6 +347,7 @@ export default function GradeArithmeticWorkbench({
     setBusy(true);
     setError("");
     setNotice("");
+    setRegeneration(undefined);
     try {
       const request: ArithmeticV2GenerateRequest = {
         engineVersion: ARITHMETIC_V2_ENGINE_VERSION,
@@ -392,6 +396,7 @@ export default function GradeArithmeticWorkbench({
     setBusy(true);
     setError("");
     setNotice("");
+    setRegeneration(undefined);
     try {
       const {
         regenerateArithmeticV2Items,
@@ -430,7 +435,9 @@ export default function GradeArithmeticWorkbench({
       setSheet(
         merged === sheet ? sheet : { ...merged, figures: result.sheet.figures },
       );
-      setNotice(arithmeticRegenerationNotice(result));
+      const outcome = arithmeticRegenerationNotice(result);
+      setNotice(outcome);
+      setRegeneration({ target, notice: outcome });
     } catch (cause) {
       if (mounted.current) setError(message(cause));
     } finally {
@@ -470,6 +477,7 @@ export default function GradeArithmeticWorkbench({
       setSaved({ id: document.id, revision: document.revision, fingerprint });
       loadedId.current = document.id;
       onDocumentChange?.(document.id);
+      setRegeneration(undefined);
       setNotice(
         "내 시험지에 저장했습니다. 다음에 같은 문항과 양식으로 열 수 있습니다.",
       );
@@ -526,6 +534,7 @@ export default function GradeArithmeticWorkbench({
         onRegenerate={(target?: ArithmeticRegenerationTarget) =>
           void regenerate(target)
         }
+        regeneration={regeneration}
         actions={
           <button
             disabled={busy}
@@ -540,6 +549,7 @@ export default function GradeArithmeticWorkbench({
               setSheet(undefined);
               setStep("scope");
               setPresentation(undefined);
+              setRegeneration(undefined);
               setSaved(undefined);
               pendingId.current = null;
               loadedId.current = undefined;

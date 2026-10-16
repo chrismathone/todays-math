@@ -106,4 +106,64 @@ describe("arithmetic review round tabs and scoped controls", () => {
     rerender(<ArithmeticReview {...props} />);
     expect(screen.getByLabelText("5번 문항 선택")).toBeChecked();
   });
+
+  it("repeats the regeneration notice next to the section or round it was asked for", () => {
+    // The page-top notice sits above a long list; the owner acted at the
+    // section button and saw nothing (2026-10-16).
+    const { props, rerender } = setup();
+    expect(screen.queryByText(/자리만 바꿨습니다/)).toBeNull();
+    rerender(
+      <ArithmeticReview
+        {...props}
+        regeneration={{
+          target: { round: 1, orders: [3, 4] },
+          notice: "2문항은 선택한 문항끼리 자리만 바꿨습니다.",
+        }}
+      />,
+    );
+    const section = screen.getByRole("region", { name: types[1].title });
+    expect(
+      within(section).getByText("2문항은 선택한 문항끼리 자리만 바꿨습니다."),
+    ).toBeInTheDocument();
+    expect(
+      within(screen.getByRole("region", { name: types[0].title })).queryByText(
+        /자리만/,
+      ),
+    ).toBeNull();
+    rerender(
+      <ArithmeticReview
+        {...props}
+        regeneration={{
+          target: { round: 1, orders: [1, 3] },
+          notice: "2문항의 숫자를 바꿨습니다.",
+        }}
+      />,
+    );
+    const round = screen.getByRole("region", { name: "1회차 문항" });
+    expect(
+      within(round).getByText("2문항의 숫자를 바꿨습니다."),
+    ).toBeInTheDocument();
+    for (const type of types)
+      expect(
+        within(screen.getByRole("region", { name: type.title })).queryByText(
+          /숫자를 바꿨습니다/,
+        ),
+      ).toBeNull();
+    rerender(
+      <ArithmeticReview
+        {...props}
+        regeneration={{
+          target: { round: 2, orders: [1, 2] },
+          notice: "다른 회차",
+        }}
+      />,
+    );
+    expect(screen.queryByText("다른 회차")).toBeNull();
+    fireEvent.click(screen.getByRole("tab", { name: "2회차 4문항" }));
+    expect(
+      within(screen.getByRole("region", { name: types[0].title })).getByText(
+        "다른 회차",
+      ),
+    ).toBeInTheDocument();
+  });
 });

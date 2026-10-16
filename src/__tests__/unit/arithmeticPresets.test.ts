@@ -2,6 +2,7 @@
 import { afterAll, describe, expect, it } from "vitest";
 import {
   findArithmeticPreset,
+  findArithmeticPresetBySelection,
   listArithmeticPresets,
 } from "@/lib/arithmeticPresets";
 import {
@@ -451,6 +452,43 @@ describe("authored arithmetic presets", () => {
         ]),
       }),
     );
+  });
+
+  it("finds the authored preset behind a saved spec by its normalized selection only", () => {
+    // Saved items carry skillId + constraints, never the preset ID (owner, 2026-10-16:
+    // «3 더하기» printed as the generic skill title).
+    const fixedThree = findArithmeticPreset("add-one-fixed-3-carry")!;
+    expect(fixedThree.title).toBe("3 더하기 · 받아올림 있음");
+    expect(
+      findArithmeticPresetBySelection({
+        skillId: "one-digit-add",
+        constraints: {
+          right: { max: 3, min: 3 },
+          left: { max: 9, min: 7 },
+          carry: "some",
+        },
+      })?.id,
+    ).toBe("add-one-fixed-3-carry");
+    for (const preset of presets)
+      expect(findArithmeticPresetBySelection(preset.selection)?.id).toBe(
+        preset.id,
+      );
+    expect(
+      findArithmeticPresetBySelection({
+        skillId: "one-digit-add",
+        constraints: {
+          carry: "some",
+          left: { min: 8, max: 9 },
+          right: { min: 3, max: 3 },
+        },
+      }),
+    ).toBeUndefined();
+    expect(() =>
+      findArithmeticPresetBySelection({
+        skillId: "one-digit-add",
+        constraints: { carry: "some", left: { min: 7, max: 9 } },
+      } as unknown as ArithmeticSkillSelection),
+    ).toThrow(ArithmeticEngineError);
   });
 });
 

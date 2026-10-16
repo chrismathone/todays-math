@@ -43,6 +43,10 @@ export type ArithmeticRegenerationResult<T> = {
   changedOrders: number[];
   unchangedOrders: number[];
   unchangedReason?: "fixed-overlap" | "overlap-capacity";
+  /** Changed slots whose new task was already one of the selected slots' tasks. */
+  reorderedOrders?: number[];
+  /** No selected slot had any task outside this round: a tiny preset is fully used. */
+  exhausted?: boolean;
 };
 
 export const arithmeticRegenerationRequestSchema = z.strictObject({
@@ -140,12 +144,18 @@ function regenerate<T extends Item, S extends Sheet<T>>(
   });
   if (others.some((other) => other.allowance < 0))
     return unchanged("fixed-overlap");
+  const selectedKeys = new Set(selected.map(identity));
+  // Per selected slot: did its domain offer a task not already on this round?
+  // Any early break below has seen N distinct non-current candidates, and at
+  // most N-1 of them can belong to other selected slots, so the flag is exact.
+  const fresh: boolean[] = [];
   const choices = (complete: boolean) =>
-    selected.map((item) => {
+    selected.map((item, slot) => {
       const currentKey = identity(item);
       const candidates = new Map<string, ArithmeticRegenerationChoice<T>>();
       const values = domain(item);
       const counts = new Map<number, number>();
+      fresh[slot] = false;
       for (const index of arithmeticShuffledIndexes(
         values.size,
         `${seed}\n${target.round}\n${item.order}`,
@@ -154,6 +164,7 @@ function regenerate<T extends Item, S extends Sheet<T>>(
         const key = identity(candidate);
         if (key === currentKey || retained.has(key) || candidates.has(key))
           continue;
+        if (!selectedKeys.has(key)) fresh[slot] = true;
         let mask = 0;
         others.forEach((other, i) => {
           if (other.keys.has(key)) mask |= 1 << i;
@@ -201,6 +212,10 @@ function regenerate<T extends Item, S extends Sheet<T>>(
     unchangedOrders: selected
       .filter((item) => !changedOrders.includes(item.order))
       .map((item) => item.order),
+    reorderedOrders: changed
+      .filter((item) => selectedKeys.has(identity(item)))
+      .map((item) => item.order),
+    exhausted: selected.every((_, slot) => !fresh[slot]),
   };
 }
 
@@ -330,10 +345,24 @@ export function arithmeticRegenerationNotice(
   const offset = result.sheet.rounds
     .filter((round) => round.round < result.round)
     .reduce((sum, round) => sum + round.items.length, 0);
-  const changed = result.changedOrders.length
-    ? `${result.changedOrders.length}문항의 숫자를 바꿨습니다. 저장 전에는 현재 화면에만 보관됩니다.`
-    : "숫자를 바꿀 수 있는 문항이 없습니다. 기존 문항을 유지했습니다.";
-  return result.unchangedOrders.length
-    ? `${changed} ${result.round}회차 ${result.unchangedOrders.map((order) => offset + order).join(", ")}번은 현재 조건, 회차 안 중복 금지와 회차 사이 20% 제한을 지키면서 바꿀 수 없어 유지했습니다.`
-    : changed;
+  const count = result.changedOrders.length;
+  // A tiny preset («3 더하기 · 받아올림 있음» holds three expressions) can only
+  // permute itself; calling that «new numbers» is what the owner read as broken.
+  const reordered = count > 0 && result.reorderedOrders?.length === count;
+  const exhausted = result.exhausted === true;
+  const changed = count
+    ? reordered
+      ? `${count}문항은 선택한 문항끼리 자리만 바꿨습니다.${exhausted ? " 현재 조건에서 만들 수 있는 식을 모두 담고 있어 새 숫자는 없습니다." : ""} 저장 전에는 현재 화면에만 보관됩니다.`
+      : `${count}문항의 숫자를 바꿨습니다. 저장 전에는 현재 화면에만 보관됩니다.`
+    : exhausted
+      ? "현재 조건에서 만들 수 있는 식을 모두 담고 있어 바꿀 숫자가 없습니다. 기존 문항을 유지했습니다."
+      : "숫자를 바꿀 수 있는 문항이 없습니다. 기존 문항을 유지했습니다.";
+  const guidance = exhausted ? " 조건을 넓히거나 문항 수를 줄여 주세요." : "";
+  if (!result.unchangedOrders.length) return changed + guidance;
+  const numbers = result.unchangedOrders
+    .map((order) => offset + order)
+    .join(", ");
+  return exhausted
+    ? `${changed} ${result.round}회차 ${numbers}번은 그대로입니다.${guidance}`
+    : `${changed} ${result.round}회차 ${numbers}번은 현재 조건, 회차 안 중복 금지와 회차 사이 20% 제한을 지키면서 바꿀 수 없어 유지했습니다.`;
 }
