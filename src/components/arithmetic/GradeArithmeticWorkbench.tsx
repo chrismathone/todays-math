@@ -205,6 +205,10 @@ export default function GradeArithmeticWorkbench({
   const available = availableArithmeticTypes(filtered, selectedTypes, rounds);
   const availableIds = new Set(available.map((item) => item.id));
   const typePreview = useArithmeticTypePreview();
+  const closePreview = typePreview.close;
+  // Changing a filter or page swaps the cards under the pointer; the preview
+  // must not outlive the card it described.
+  useEffect(() => closePreview(), [closePreview, grade, strand, query, page]);
   const cardSelection = useArithmeticTypeSelection((id, selected) => {
     if (busy) return;
     setAllocations((current) => {

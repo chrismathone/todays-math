@@ -24,6 +24,8 @@ import s from "./ArithmeticTypePreview.module.css";
 export type ArithmeticTypePreviewState = {
   typeId: string;
   anchor: DOMRect;
+  /** The hovered card; the preview closes once it leaves the document. */
+  element: HTMLElement;
   tooltipId: string;
 } | null;
 
@@ -72,6 +74,7 @@ export function useArithmeticTypePreview() {
       setState({
         typeId,
         anchor: element.getBoundingClientRect(),
+        element,
         tooltipId,
       });
     }, OPEN_DELAY_MS);
@@ -102,13 +105,29 @@ export function useArithmeticTypePreview() {
     const dismiss = (event: KeyboardEvent) => {
       if (event.key === "Escape") close();
     };
+    // A filter change re-renders the grid under a still pointer, so the card
+    // never fires pointerleave: close as soon as the pointer is seen anywhere
+    // off the card, or the card itself has left the document.
+    const off = (event: Event) => {
+      const { element } = state;
+      if (
+        !element.isConnected ||
+        !(event.target instanceof Node) ||
+        !element.contains(event.target)
+      )
+        close();
+    };
     window.addEventListener("scroll", close, { capture: true, passive: true });
     window.addEventListener("resize", close);
     document.addEventListener("keydown", dismiss, true);
+    document.addEventListener("pointerover", off, true);
+    document.addEventListener("pointermove", off, true);
     return () => {
       window.removeEventListener("scroll", close, { capture: true });
       window.removeEventListener("resize", close);
       document.removeEventListener("keydown", dismiss, true);
+      document.removeEventListener("pointerover", off, true);
+      document.removeEventListener("pointermove", off, true);
     };
   }, [state, close]);
   const cardProps = (
@@ -183,7 +202,13 @@ export function ArithmeticTypePreview({
   types: readonly ArithmeticV2CatalogEntry[];
 }) {
   const type = state ? types.find((entry) => entry.id === state.typeId) : null;
-  if (!state || !type || typeof document === "undefined") return null;
+  if (
+    !state ||
+    !type ||
+    !state.element.isConnected ||
+    typeof document === "undefined"
+  )
+    return null;
   return createPortal(
     <div
       role="tooltip"
@@ -191,12 +216,13 @@ export function ArithmeticTypePreview({
       className={s.preview}
       style={placement(state.anchor)}
     >
-      <p className={s.title}>
+      {/* div, not p: MathText renders block elements (p > div is invalid HTML). */}
+      <div className={s.title}>
         <MathText text={arithmeticTypeTitle(type.title)} />
-      </p>
-      <p className={s.caption}>
+      </div>
+      <div className={s.caption}>
         예시 · {type.domainSize.toLocaleString("ko-KR")}문항 중 1
-      </p>
+      </div>
       <div className={s.body}>
         <GradeArithmeticExpression prompt={type.example} typeId={type.id} />
       </div>

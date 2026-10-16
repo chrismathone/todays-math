@@ -88,6 +88,38 @@ describe("arithmetic type preview on hover", () => {
     expect(screen.queryByRole("tooltip")).toBeNull();
   });
 
+  it("closes when the pointer is seen off the card or the card leaves the document", () => {
+    const { rerender } = render(<Catalog />);
+    const card = screen.getByRole("button", { name: numeric.title });
+    fireEvent.pointerEnter(card, { pointerType: "mouse" });
+    act(() => {
+      vi.advanceTimersByTime(300);
+    });
+    expect(screen.getByRole("tooltip")).toBeInTheDocument();
+    // A re-rendered grid under a still pointer: the next move lands elsewhere.
+    fireEvent.pointerMove(document.body, { pointerType: "mouse" });
+    expect(screen.queryByRole("tooltip")).toBeNull();
+
+    fireEvent.pointerEnter(card, { pointerType: "mouse" });
+    act(() => {
+      vi.advanceTimersByTime(300);
+    });
+    expect(screen.getByRole("tooltip")).toBeInTheDocument();
+    rerender(<div />);
+    expect(screen.queryByRole("tooltip")).toBeNull();
+  });
+
+  it("nests no block element inside a paragraph (hydration-safe markup)", () => {
+    render(<Catalog />);
+    fireEvent.pointerEnter(screen.getByRole("button", { name: figure.title }), {
+      pointerType: "mouse",
+    });
+    act(() => {
+      vi.advanceTimersByTime(300);
+    });
+    expect(screen.getByRole("tooltip").querySelector("p div, p p")).toBeNull();
+  });
+
   it("opens on keyboard focus and closes on blur", () => {
     render(<Catalog />);
     const card = screen.getByRole("button", { name: numeric.title });
