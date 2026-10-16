@@ -44,6 +44,8 @@ import type {
 } from "./types";
 import { createExamConditionsClient } from "./examConditionsClient";
 import SavedLayouts from "@/components/unified/print/SavedLayouts";
+import TitleSuggestions from "@/components/unified/print/TitleSuggestions";
+import { titleSuggestions } from "@/components/unified/print/suggestTitles";
 import type { PrintPresetsClient } from "@/components/unified/print/printPresetsClient";
 import type { PrintPreset } from "@/contracts/printPreset.contract";
 import MaterialPicker from "./MaterialPicker";
@@ -466,6 +468,20 @@ export default function MathExamBuilder({
                   }}
                 />
               ) : undefined,
+            // W7 제목 추천 — 시험지에서 읽은 값만(학년 · 과정 · 대단원 · 범위 · 날짜).
+            afterTitle: (
+              <TitleSuggestions
+                suggestions={titleSuggestions({
+                  problems: questions,
+                  meta: editor.printMeta ?? {},
+                })}
+                title={title}
+                onApply={(text) => {
+                  onTitleChange(text);
+                  editor.setPrintMeta?.({ title: text });
+                }}
+              />
+            ),
           }}
           selected={questions}
           title={title}
