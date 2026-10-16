@@ -20,6 +20,7 @@ import { useUsageLabels } from "@/components/usage-labels/useUsageLabels";
 import UsageLabel from "@/components/usage-labels/UsageLabel";
 import { MathText } from "@/components/math/MathText";
 import { arithmeticTypeTitle } from "@/lib/arithmetic-v2/presentation/text";
+import { sortArithmeticCatalog } from "@/lib/arithmetic-v2/presentation/catalogOrder";
 import {
   ArithmeticGradeSelect,
   type ArithmeticGradeControl,
@@ -146,7 +147,8 @@ export default function GradeArithmeticWorkbench({
   const activeStrand = strands.includes(strand as (typeof strands)[number])
     ? strand
     : "전체";
-  const filtered = catalog.filter(
+  // Textbook unit order (owner, 2026-10-16); the catalog itself stays in registration order.
+  const filtered = sortArithmeticCatalog(catalog).filter(
     (type) =>
       (grade === "전체" || type.grade === grade) &&
       (activeStrand === "전체" || type.strand === activeStrand) &&
