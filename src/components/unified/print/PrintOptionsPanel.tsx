@@ -298,34 +298,39 @@ export function PrintOptionsPanel({
           </>
         )}
       </fieldset>
-      <fieldset className={s.optionGroup}>
-        <legend>보기 번호 배치</legend>
-        <div
-          className={`${s.choiceWrap} ${s.equalChoices} ${s.spacingChoices}`}
-        >
-          {CHOICE_LAYOUTS.map(([value, label]) => (
-            <button
-              key={value}
-              aria-pressed={options.choiceLayout === value}
-              onClick={() => onOptions({ choiceLayout: value })}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-        {CHOICE_LAYOUT_NOTES[options.choiceLayout] && (
-          <p className={s.subtle}>
-            {CHOICE_LAYOUT_NOTES[options.choiceLayout]}
-          </p>
-        )}
-      </fieldset>
+      {/* 연산 연습지에는 보기(객관식)와 배점이 없다 — 그 설정은 보이지 않는다(원장님 2026-10-16). */}
+      {!groupedArithmetic && (
+        <fieldset className={s.optionGroup}>
+          <legend>보기 번호 배치</legend>
+          <div
+            className={`${s.choiceWrap} ${s.equalChoices} ${s.spacingChoices}`}
+          >
+            {CHOICE_LAYOUTS.map(([value, label]) => (
+              <button
+                key={value}
+                aria-pressed={options.choiceLayout === value}
+                onClick={() => onOptions({ choiceLayout: value })}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+          {CHOICE_LAYOUT_NOTES[options.choiceLayout] && (
+            <p className={s.subtle}>
+              {CHOICE_LAYOUT_NOTES[options.choiceLayout]}
+            </p>
+          )}
+        </fieldset>
+      )}
       <fieldset className={s.optionGroup}>
         <legend>표시 옵션</legend>
         {toggle("showDate", "날짜 표시")}
         {!groupedArithmetic && toggle("showChapter", "문항 단원명")}
         {!groupedArithmetic && toggle("showDifficulty", "난이도 라벨")}
-        {toggle("hideScores", "배점 숨기기")}
-        <p className={s.subtle}>이미지에 포함된 배점은 그대로 남습니다.</p>
+        {!groupedArithmetic && toggle("hideScores", "배점 숨기기")}
+        {!groupedArithmetic && (
+          <p className={s.subtle}>이미지에 포함된 배점은 그대로 남습니다.</p>
+        )}
       </fieldset>
       <fieldset className={s.optionGroup}>
         <legend>{answersOnly ? "정답지" : "정답 · 해설"}</legend>
