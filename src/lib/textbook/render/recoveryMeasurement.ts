@@ -16,6 +16,8 @@ export interface RecoveryMeasurePlan {
   }>;
   dialogueBodyTopMm: number;
   dialogueBottomMm: number;
+  /** Largest unit font already allowed by sibling lessons measured in earlier bounded passes. */
+  dialogueCeilingsPt?: Record<string, number>;
   sourceQuestionGroups?: Array<{ ids: string[]; alignPrompt: boolean }>;
 }
 export function recoveryMeasurePlan(
@@ -63,7 +65,11 @@ export function recoveryMeasurePlan(
     ),
   };
 }
-/** Semantic lessons share their unit's font even when publishing divides sections into steps. */
+/** Semantic lessons share their unit's font even when publishing divides sections into steps.
+ * Returns the whole measurement context: the selected sections plus the dialogue of every
+ * sibling section of the same unit. It is not bounded — `dialogueMeasurementPasses` divides it
+ * into bounded measurement DOMs.
+ */
 export function dialogueMeasurementModel(
   whole: TextbookRenderModel,
   selected: TextbookRenderModel,
@@ -95,16 +101,97 @@ export function dialogueMeasurementModel(
       ),
     }))
     .filter((section) => section.blocks.length > 0);
-  const result = { ...selected, sections: [...selected.sections, ...extra] };
+  return { ...selected, sections: [...selected.sections, ...extra] };
+}
+
+/** The bound of one measurement DOM (the renderer's chunk bound). */
+export const MEASUREMENT_MAX_SECTIONS = 8;
+export const MEASUREMENT_MAX_BLOCKS = 600;
+
+const countBlocks = (model?: TextbookRenderModel) =>
+  model?.sections.reduce((sum, section) => sum + section.blocks.length, 0) ?? 0;
+
+/**
+ * Bounded measurement passes for one render chunk or preview.
+ *
+ * The unit font is the largest size at which every dialogue page of the unit fits, and each
+ * page's fit depends only on its own blocks. So it equals the smallest of the sizes found for
+ * any partition of the pages: sibling dialogue sections that do not fit next to the selected
+ * sections are measured first in `batches` (each within 8 sections · 600 blocks), and their
+ * sizes become ceilings (`dialogueCeilingsPt`) for the final `sizing` pass.
+ * A unit that fits one DOM keeps the single pass it always had.
+ */
+export function dialogueMeasurementPasses(
+  context: TextbookRenderModel,
+  selected: TextbookRenderModel,
+  probes?: TextbookRenderModel,
+): { sizing: TextbookRenderModel; batches: TextbookRenderModel[] } {
   if (
-    result.sections.length > 8 ||
-    result.sections.reduce((sum, section) => sum + section.blocks.length, 0) >
-      600
+    context.sections.length <= MEASUREMENT_MAX_SECTIONS &&
+    countBlocks(context) + countBlocks(probes) <= MEASUREMENT_MAX_BLOCKS
   )
-    throw new Error(
-      "대화의 공통 글자 크기 측정 한도를 넘었습니다. 수업 구획을 줄여 주세요.",
-    );
-  return result;
+    return { sizing: context, batches: [] };
+  const selectedKeys = new Set(
+    selected.sections.map(
+      (section) => `${section.unitKey}:${section.sectionKey}`,
+    ),
+  );
+  const extra = context.sections.filter(
+    (section) => !selectedKeys.has(`${section.unitKey}:${section.sectionKey}`),
+  );
+  const batches: TextbookRenderModel[] = [];
+  let current: TextbookRenderModel["sections"] = [],
+    size = 0;
+  for (const section of extra) {
+    if (section.blocks.length > MEASUREMENT_MAX_BLOCKS)
+      throw new Error(
+        "대화의 공통 글자 크기 측정 한도를 넘었습니다. 수업 구획을 줄여 주세요.",
+      );
+    if (
+      current.length >= MEASUREMENT_MAX_SECTIONS ||
+      size + section.blocks.length > MEASUREMENT_MAX_BLOCKS
+    ) {
+      batches.push({ ...context, sections: current });
+      current = [];
+      size = 0;
+    }
+    current.push(section);
+    size += section.blocks.length;
+  }
+  if (current.length) batches.push({ ...context, sections: current });
+  return {
+    sizing: {
+      ...context,
+      sections: context.sections.filter((section) =>
+        selectedKeys.has(`${section.unitKey}:${section.sectionKey}`),
+      ),
+    },
+    batches,
+  };
+}
+
+/** Runs the sibling passes and returns the smallest unit font each unit allowed. */
+export async function measureDialogueCeilings(
+  batches: readonly TextbookRenderModel[],
+  measure: (
+    batch: TextbookRenderModel,
+    plan: RecoveryMeasurePlan,
+  ) => Promise<RecoveryMeasureResult>,
+): Promise<Record<string, number>> {
+  const ceilings: Record<string, number> = {};
+  for (const batch of batches) {
+    const plan = recoveryMeasurePlan(batch);
+    const result = await measure(batch, plan);
+    for (const block of plan.blocks) {
+      const size = result.dialogueSizesPt[block.id];
+      if (!block.dialogueGroup || size === undefined) continue;
+      ceilings[block.dialogueGroup] = Math.min(
+        ceilings[block.dialogueGroup] ?? size,
+        size,
+      );
+    }
+  }
+  return ceilings;
 }
 export interface RecoveryMeasureResult {
   sourceQuestionSizesMm?: Record<
@@ -369,7 +456,13 @@ export function measureRecoveryDom(
       throw new Error("Missing dialogue unit measurement");
     const pages = [...new Set(blocks.map((block) => block.dialoguePage!))];
     let chosen = 9.2;
-    for (let tenth = 105; tenth >= 92; tenth--) {
+    const ceiling = plan.dialogueCeilingsPt?.[group];
+    for (
+      let tenth =
+        ceiling === undefined ? 105 : Math.min(105, Math.round(ceiling * 10));
+      tenth >= 92;
+      tenth--
+    ) {
       const pt = tenth / 10;
       for (const block of blocks)
         for (const element of [

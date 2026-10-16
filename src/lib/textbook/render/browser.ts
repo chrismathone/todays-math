@@ -19,6 +19,8 @@ import {
   assertRecoveryMeasurementBudget,
   measureIntroGeometry,
   dialogueMeasurementModel as buildDialogueMeasurementModel,
+  dialogueMeasurementPasses,
+  measureDialogueCeilings,
 } from "./recoveryMeasurement";
 import type { TextbookRenderModel } from "./model";
 import { getTextbookCharacter } from "../characters";
@@ -49,10 +51,15 @@ export async function measureTextbookPreview(
   } = {},
 ): Promise<TextbookLayout> {
   resetSourceWriting(model);
-  const sizingModel = buildDialogueMeasurementModel(
-    options.dialogueMeasurementModel ?? model,
-    model,
-  );
+  const { sizing: sizingModel, batches: dialogueBatches } =
+    dialogueMeasurementPasses(
+      buildDialogueMeasurementModel(
+        options.dialogueMeasurementModel ?? model,
+        model,
+      ),
+      model,
+      options.recallMeasurementModel,
+    );
   assertRecoveryMeasurementBudget(sizingModel, options.recallMeasurementModel);
   if (model.sections.reduce((n, s) => n + s.blocks.length, 0) > 600)
     throw new Error(
@@ -69,23 +76,36 @@ export async function measureTextbookPreview(
     TEXTBOOK_CSS;
   host.append(style);
   const content = document.createElement("div");
-  content.innerHTML =
-    measurementHtml(sizingModel, resources) +
-    (options.recallMeasurementModel
-      ? recallMeasurementHtml(options.recallMeasurementModel, resources)
-      : "");
   host.append(content);
   document.body.append(host);
+  const rootSelector = `[data-recovery-measure-host="${host.dataset.recoveryMeasureHost}"]`;
+  const mount = async (html: string) => {
+    content.innerHTML = html;
+    await Promise.all(
+      Array.from(host.querySelectorAll("img")).map((i) => i.decode()),
+    );
+    if (options.signal?.aborted) throw new Error("Preview aborted");
+  };
   try {
     await Promise.all([
       document.fonts.load("400 13px TextbookPretendard", "가나다 수학"),
       document.fonts.load("700 13px TextbookPretendard", "가나다 수학"),
     ]);
     await document.fonts.ready;
-    await Promise.all(
-      Array.from(host.querySelectorAll("img")).map((i) => i.decode()),
+    // Sibling lessons that do not fit beside this section bound the unit font first.
+    const dialogueCeilingsPt = await measureDialogueCeilings(
+      dialogueBatches,
+      async (batch, plan) => {
+        await mount(measurementHtml(batch, resources));
+        return measureRecoveryDom({ ...plan, rootSelector });
+      },
     );
-    if (options.signal?.aborted) throw new Error("Preview aborted");
+    await mount(
+      measurementHtml(sizingModel, resources) +
+        (options.recallMeasurementModel
+          ? recallMeasurementHtml(options.recallMeasurementModel, resources)
+          : ""),
+    );
     applyRecoveryMeasurements(
       model,
       measureRecoveryDom({
@@ -93,7 +113,8 @@ export async function measureTextbookPreview(
           sizingModel,
           model.config.print.firstPhysicalPageIndex,
         ),
-        rootSelector: `[data-recovery-measure-host="${host.dataset.recoveryMeasureHost}"]`,
+        dialogueCeilingsPt,
+        rootSelector,
       }),
     );
     // Remove private canonical text before measuring or returning the student layout.
