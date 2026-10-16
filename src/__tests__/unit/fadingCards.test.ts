@@ -652,8 +652,13 @@ describe("저장 칸 — 새 개념을 카드 풀이로", () => {
     expect(view.session).toMatchObject({
       mode: "cards",
       unjudged: [{ targetId: T.mid, text: "가운데" }],
+      gaveUpAtFour: false,
     });
-    expect(view.session!.ratings.map((r) => r.rating)).toEqual(["again"]);
+    // 결정 1 — 빈칸 다섯 가운데 하나를 틀렸고 넘긴 것이 없다: 부분 틀림이라 «다시 · 어려움»(대조 전 값 — «가운데»를 «다름»으로 고르면 «다시»뿐).
+    expect(view.session!.ratings.map((r) => r.rating)).toEqual([
+      "again",
+      "hard",
+    ]);
   });
 
   it("단계 요청 안의 틀린 글도 «틀림»으로 적힌다 — 그 자리의 `miss` 를 빠뜨려도", () => {

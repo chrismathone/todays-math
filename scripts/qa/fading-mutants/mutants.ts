@@ -6,11 +6,72 @@
 export type Mutant = { file: string; from: string; to: string; note: string };
 
 export const MUTANTS: Mutant[] = [
+  // ───────── 결정 1(2026-10-16) — 4단계 부분 틀림 «어려움» ─────────
+  {
+    file: "fading/session.ts",
+    note: "부분 틀림의 문턱(⌊N/4⌋)을 넘겨도 «어려움»을 연다",
+    from: "    failed.size <= limit &&\n",
+    to: "",
+  },
+  {
+    file: "fading/session.ts",
+    note: "부분 틀림의 문턱을 올림으로 센다",
+    from: "Math.floor(context.blanks.length / 4)",
+    to: "Math.ceil(context.blanks.length / 4)",
+  },
+  {
+    file: "fading/session.ts",
+    note: "포기를 모르는 옛 풀이에도 «어려움»을 연다",
+    from: "context.gaveUp !== false",
+    to: "context.gaveUp === true",
+  },
+  {
+    file: "fading/session.ts",
+    note: "카드를 넘겨도 화면의 풀이에 포기를 안 적는다",
+    from: "      gaveUpAtFour: true,\n",
+    to: "",
+  },
+  {
+    file: "fading/schedule.ts",
+    note: "부분 틀림 «어려움»의 2일 상한을 안 쓴다",
+    from: "Math.min(computed, FADING_PARTIAL_HARD_MAX_DAYS)",
+    to: "computed",
+  },
+  {
+    file: "fading/state.ts",
+    note: "새 카드 풀이에 «포기 없음»을 안 적는다",
+    from: '{ mode: "cards" as const, gaveUpAtFour: false }',
+    to: '{ mode: "cards" as const }',
+  },
+  {
+    file: "fading/state.ts",
+    note: "카드를 넘겨도 저장 칸에 포기를 안 적는다",
+    from: "      gaveUpAtFour: true,\n",
+    to: "",
+  },
+  {
+    file: "fading/state.ts",
+    note: "«어려움»은 대조를 다 고르지 않아도 받는다",
+    from: '(!session.missedAtFour.length || rating !== "again") &&',
+    to: "!session.missedAtFour.length &&",
+  },
+  {
+    file: "fading/state.ts",
+    note: "평가의 적용에 부분 틀림 상한을 안 쓴다",
+    from: "{ partial: fadingStoredPartialMiss(session, judged, concept) },",
+    to: "{ partial: false },",
+  },
+  {
+    file: "fading/view.ts",
+    note: "단추의 «N일 뒤»에 부분 틀림 상한을 안 쓴다",
+    from: "partial: fadingStoredPartialMiss(session, undefined, opened!),",
+    to: "partial: false,",
+  },
   {
     file: "fading/session.ts",
     note: "4단계에서 틀려도 네 평가를 다 연다",
-    from: '  if (outcome.missedAtFour.length) return ["again"];\n',
-    to: "",
+    from: "  if (!failedAtFour(outcome, judged).size) return [...FSRS_RATINGS];\n",
+    to: "  return [...FSRS_RATINGS];\n",
   },
   {
     file: "fading/session.ts",
@@ -123,7 +184,7 @@ export const MUTANTS: Mutant[] = [
   {
     file: "fading/session.ts",
     note: "고를 수 없는 평가를 받는다",
-    from: "if (!allowedRatings(session, judged).includes(rating))",
+    from: "if (!allowedRatings(session, judged, concept).includes(rating))",
     to: "if (false)",
   },
   {
@@ -285,8 +346,8 @@ export const MUTANTS: Mutant[] = [
   {
     file: "fading/schedule.ts",
     note: "다시가 계산기 간격을 쓴다",
-    from: 'rating === "again" ? 1 : computed;',
-    to: "computed;",
+    from: '  rating === "again"\n    ? 1\n',
+    to: "  false\n    ? 1\n",
   },
   {
     file: "fading/schedule.ts",
@@ -561,7 +622,7 @@ export const MUTANTS: Mutant[] = [
   {
     file: "fading/state.ts",
     note: "모르겠어요를 못 받는다",
-    from: "    if (!replay.results.length && options.gaveUp)\n      replay = giveUpStep(replay, concept);\n",
+    from: "    if (!replay.results.length && options.gaveUp) {\n      replay = giveUpStep(replay, concept);\n      gaveUpNow = true;\n    }\n",
     to: "",
   },
   {
@@ -1812,8 +1873,8 @@ export const MUTANTS: Mutant[] = [
   {
     file: "fading/session.ts",
     note: "대조의 «다름»을 보지 않는다",
-    from: '(u) => judged[u.targetId] === "different",',
-    to: "() => false,",
+    from: '.filter((u) => judged[u.targetId] === "different")',
+    to: ".filter(() => false)",
   },
   {
     file: "fading/session.ts",

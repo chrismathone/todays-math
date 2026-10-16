@@ -55,8 +55,14 @@ const MUTANTS: Mutant[] = [
   {
     file: RULES,
     note: "맞힌 뒤의 다시 확인이 1분 뒤다",
-    from: "dueAt: now + FADING_RELEARN_CONFIRM_MS,",
-    to: "dueAt: now + FADING_RELEARN_RETRY_MS,",
+    from: '            stage: "confirm",\n            dueAt: now + FADING_RELEARN_CONFIRM_MS,',
+    to: '            stage: "confirm",\n            dueAt: now + FADING_RELEARN_RETRY_MS,',
+  },
+  {
+    file: RULES,
+    note: "첫 평가의 `exposed` 줄이 1분 뒤 `retry` 로 든다(결정 2 이전)",
+    from: '              stage: "confirm" as const,\n              dueAt: now + FADING_RELEARN_CONFIRM_MS,',
+    to: '              stage: "retry" as const,\n              dueAt: retryAt,',
   },
   {
     file: RULES,

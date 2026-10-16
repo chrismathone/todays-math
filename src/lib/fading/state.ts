@@ -41,11 +41,13 @@ import {
   fadingAsksSure,
   fadingJudgingComplete,
   fadingModeOf,
+  fadingPartialMiss,
   fadingRatingsAfterJudging,
   giveUpStep,
   placeAnswer,
   startFadingSession,
   type FadingJudged,
+  type FadingRatingContext,
   type FadingSession,
 } from "./session";
 import { fadingTypedOutcome } from "./typed";
@@ -196,7 +198,8 @@ export function openFadingSession(
       seed: fresh.seed,
       phase: "steps",
       missedAtFour: [],
-      ...(options.cards ? { mode: "cards" as const } : {}),
+      // 카드 풀이는 4단계의 포기 여부를 처음부터 적는다(결정 1 — `false` 가 적힌 풀이만 부분 틀림 «어려움»의 대상이다).
+      ...(options.cards ? { mode: "cards" as const, gaveUpAtFour: false } : {}),
     },
   };
 }
@@ -344,6 +347,8 @@ export function giveUpFadingCard(
     session: {
       ...session,
       missedAtFour: [...session.missedAtFour, ...open.slice(0, room)],
+      // 넘긴 순간 적는다(결정 1) — 새로고침 뒤에도 «포기 없음»으로 읽히지 않게.
+      gaveUpAtFour: true,
     },
   };
 }
@@ -375,14 +380,17 @@ export function completeFadingStep(
     ...startFadingSession(concept, step, session.seed, fadingModeOf(session)),
     startStep: session.startStep,
   };
+  let gaveUpNow = false;
   try {
     for (const placement of placements) {
       // 단계가 끝난 뒤의 넣기는 다음 단계의 것으로 읽히면 안 된다.
       if (replay.results.length) throw conflict("단계를 마친 뒤의 입력입니다.");
       replay = placeAnswer(replay, concept, placement, options.traps).session;
     }
-    if (!replay.results.length && options.gaveUp)
+    if (!replay.results.length && options.gaveUp) {
       replay = giveUpStep(replay, concept);
+      gaveUpNow = true;
+    }
   } catch (error) {
     throw conflict(error instanceof Error ? error.message : "잘못된 입력");
   }
@@ -426,10 +434,13 @@ export function completeFadingStep(
       ...(unjudged.length ? { unjudged } : {}),
       // 이 4단계를 푼 내용 — 평가는 이 지문으로 적는다(그사이 문장이 고쳐져도 «고친 문장의 평가»로 적지 않는다).
       digest: fadingConceptDigest(concept),
-      // 4단계의 포기 여부(결정 1) — 풀이를 새로 짓는 자리라 빠뜨리지 않고 옮긴다.
-      ...(session.gaveUpAtFour !== undefined
-        ? { gaveUpAtFour: session.gaveUpAtFour }
-        : {}),
+      // 4단계의 포기 여부(결정 1) — 풀이를 새로 짓는 자리라 빠뜨리지 않고 옮긴다. 이 단계를 «아직 모르겠어요»로 마쳤으면
+      // 카드 풀이에 `true` 를 적는다(칸이 없던 옛 풀이도 — «포기함»은 예외를 닫는 쪽이라 안전하다). 칩 풀이에는 쓰지 않는다.
+      ...(gaveUpNow && fadingModeOf(session) === "cards"
+        ? { gaveUpAtFour: true }
+        : session.gaveUpAtFour !== undefined
+          ? { gaveUpAtFour: session.gaveUpAtFour }
+          : {}),
     },
   };
 }
@@ -453,6 +464,7 @@ const toStreak = (streak: StoredFading["streak"]): FadingStreak => ({
  * 대조를 기다리는 글이 있는데 판정할 수 없으면 «다시»뿐이다 — 판정 없이 «같은 뜻»으로 읽지 않는다:
  * 카드 풀이가 아닌 풀이(쓰는 길이 없는 꼴)이거나, `current`(지금 내용)를 주었는데 4단계를 푼 뒤에 문장이 고쳐졌을 때
  * (그 글은 옛 답과 견줄 것이다 — 고친 답과 견주면 다른 답에 이름을 붙이게 된다).
+ * 결정 1 의 부분 틀림 «어려움»은 지금 내용(`current`)을 주었고 4단계를 푼 뒤에 문장이 바뀌지 않았을 때만 본다(`fadingStoredRatingContext`).
  */
 export function fadingRatingsFor(
   session: StoredFadingSession,
@@ -470,6 +482,40 @@ export function fadingRatingsFor(
   return fadingRatingsAfterJudging(
     { missedAtFour: session.missedAtFour, unjudged: waiting },
     judged,
+    fadingStoredRatingContext(session, current),
+  );
+}
+
+/**
+ * 저장된 풀이의 부분 틀림 판정 문맥(결정 1) — 지금 내용이 없거나, 4단계를 푼 뒤에 문장이 고쳐졌으면 없다(지금까지의 규칙).
+ * N 은 지금 내용의 4단계 빈칸 수, 포기 여부는 저장 칸 그대로다(칸이 없는 옛 풀이는 «모름» — 예외가 아니다).
+ */
+export function fadingStoredRatingContext(
+  session: StoredFadingSession,
+  current?: FadingConcept,
+): FadingRatingContext | undefined {
+  if (!current || fadingSolvedContentChanged(session, current))
+    return undefined;
+  return {
+    cards: fadingModeOf(session) === "cards",
+    gaveUp: session.gaveUpAtFour,
+    blanks: erasedTargets(current, 4).map((t) => t.id),
+  };
+}
+
+/** 저장된 풀이를 그 평가로 닫을 때 부분 틀림의 «어려움»인가 — 간격을 2일로 자른다(`schedule.ts`). */
+export function fadingStoredPartialMiss(
+  session: StoredFadingSession,
+  judged: FadingJudged | undefined,
+  current?: FadingConcept,
+): boolean {
+  return (
+    session.phase === "rating" &&
+    fadingPartialMiss(
+      { missedAtFour: session.missedAtFour, unjudged: session.unjudged ?? [] },
+      judged,
+      fadingStoredRatingContext(session, current),
+    )
   );
 }
 
@@ -492,11 +538,12 @@ export function rateFadingSession(
   const judged = options.judged ?? {};
   if (Object.keys(judged).some((id) => !waiting.some((u) => u.targetId === id)))
     throw conflict("대조를 기다리는 빈칸이 아닙니다.");
-  // 대조를 다 골라야 닫힌다 — 고른 것이 평가를 정할 때만(틀림이 있거나, 푼 뒤에 문장이 고쳐져 «다시»뿐이면 고르지 않아도 된다).
+  // 대조를 다 골라야 닫힌다 — 고른 것이 평가를 정할 때만(틀림이 있는 «다시»이거나, 푼 뒤에 문장이 고쳐져 «다시»뿐이면 고르지 않아도 된다).
+  // 결정 1: 틀림이 있어도 «어려움»은 대조를 다 골라야 받는다(«다름»이 M 에 든다).
   if (
     session.phase === "rating" &&
     waiting.length &&
-    !session.missedAtFour.length &&
+    (!session.missedAtFour.length || rating !== "again") &&
     !fadingSolvedContentChanged(session, concept) &&
     !fadingJudgingComplete(waiting, judged)
   )
@@ -513,6 +560,7 @@ export function rateFadingSession(
     session.startStep,
     rating,
     day,
+    { partial: fadingStoredPartialMiss(session, judged, concept) },
   );
   const dueOn = fadingDateOf(next.dueDay!);
   const days = recordFadingDay(toDays(state.days), day, {

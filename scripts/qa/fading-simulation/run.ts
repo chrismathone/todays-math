@@ -652,7 +652,7 @@ async function simulate(
     }
     // 평가 — 4단계에서 틀렸으면(포기 포함) 제품이 «어려움»을 허용할 때 `d1` 학생만 «어려움», 아니면 «다시».
     // 4단계가 깨끗하면 2 · 3단계의 틀림으로 가른다. 허용되지 않는 평가는 고르지 않는다(고르면 409 다).
-    const allowed = allowedRatings(local);
+    const allowed = allowedRatings(local, undefined, concept);
     const missedAtFour = (local.results.at(-1)?.missed.length ?? 0) > 0;
     const offered = missedAtFour && allowed.includes("hard");
     let rating: FsrsRating = missedAtFour

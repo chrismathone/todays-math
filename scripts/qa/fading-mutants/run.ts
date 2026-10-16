@@ -46,6 +46,8 @@ const TESTS = [
   "Typed",
   "Cards",
   "ContentGuard",
+  "GaveUpCompat",
+  "PartialHard",
 ]
   .map(TEST)
   .concat(ROUTES, TEACHER_ROUTES, CONSOLE);

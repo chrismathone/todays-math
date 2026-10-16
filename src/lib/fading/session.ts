@@ -22,6 +22,10 @@ import { fadingTypedOutcome, type FadingTypedOutcome } from "./typed";
  *   어느 답의 글도 아니면 받아 두었다가 단계를 다 마친 뒤 학생이 기준안과 대조한다(`unknown` — 그 자리에서 답을 보이지 않는다).
  *   «다름»으로 고른 것 · 틀림 · «아직 모르겠어요»가 하나라도 있으면 평가는 «다시»뿐이다. 2 · 3단계는 칩 그대로다.
  *
+ * **결정 1(원장님 승인 2026-10-16)** — 카드 풀이 4단계의 부분 틀림에는 «어려움»도 고를 수 있다(`fadingPartialMiss`).
+ * 포기가 없었다고 **적힌** 풀이에서만이고(`gaveUpAtFour === false`), 틀린 빈칸이 4단계 빈칸의 4분의 1(버림) 이하일 때만이다.
+ * 그 «어려움»의 간격은 2일을 넘지 않는다(`schedule.ts`). 정답 확률을 그렇게 읽는 것이 맞는지는 못 확인했다 — 운영 정책이다.
+ *
  * 모든 함수는 받은 풀이를 바꾸지 않고 새 값을 돌려준다. 화면과 서버가 같은 함수를 쓴다.
  */
 export type FadingPhase = "reading" | "filling" | "rating" | "done";
@@ -72,6 +76,11 @@ export type FadingSession = {
   pending?: string[];
   /** 자판으로 푸는 단계 — «아직 모르겠어요»로 넘긴 카드의 빈칸(틀림이고, 더 쓸 수 없다). */
   skipped?: string[];
+  /**
+   * 이 풀이의 4단계에서 «아직 모르겠어요»를 고른 적이 있는가(결정 1) — 서버의 칸에서 이어받고(`resumeFadingSession`),
+   * 4단계에서 넘기면 `true` 가 된다. 없으면 모른다 — 부분 틀림의 «어려움»을 열지 않는다.
+   */
+  gaveUpAtFour?: boolean;
 };
 
 export function startFadingSession(
@@ -135,6 +144,7 @@ export function resumeFadingSession(
     missedAtFour: readonly string[];
     mode?: FadingMode;
     unjudged?: readonly StoredFadingUnjudged[];
+    gaveUpAtFour?: boolean;
   },
 ): FadingSession {
   const local = {
@@ -145,6 +155,9 @@ export function resumeFadingSession(
       remote.mode ?? "chips",
     ),
     startStep: remote.startStep,
+    ...(remote.gaveUpAtFour !== undefined
+      ? { gaveUpAtFour: remote.gaveUpAtFour }
+      : {}),
   };
   if (remote.phase === "steps")
     return {
@@ -361,7 +374,7 @@ export function giveUpStep(
     throw new Error("빈칸을 채우는 단계가 아닙니다.");
   const erased = erasedTargets(concept, session.step);
   return finishStep(
-    session,
+    session.step === 4 ? { ...session, gaveUpAtFour: true } : session,
     concept,
     erased.length,
     erased
@@ -399,6 +412,7 @@ export function giveUpCard(
   return settled(
     {
       ...session,
+      gaveUpAtFour: true,
       missed: [
         ...session.missed,
         ...open.filter((id) => !session.missed.includes(id)),
@@ -424,58 +438,143 @@ export function fadingJudgingComplete(
   );
 }
 
+/** 부분 틀림 «어려움»의 간격 상한(날) — 결정 1 의 초기 운영 완충이다(자료로 맞춘 값이 아니다). */
+export const FADING_PARTIAL_HARD_MAX_DAYS = 2;
+
+/**
+ * 부분 틀림 «어려움»을 가르는 재료(결정 1) — 서버(`state.ts`)와 화면이 같은 값을 넘긴다.
+ * 주지 않으면 지금까지의 규칙이다(4단계에서 틀리면 «다시»뿐).
+ */
+export type FadingRatingContext = {
+  /** 카드 풀이인가 — 칩 풀이에는 예외가 없다. */
+  cards: boolean;
+  /** 이 풀이의 4단계에서 «아직 모르겠어요»를 고른 적이 있는가 — 모르면(`undefined` · 칸이 없는 옛 풀이) 예외가 없다. */
+  gaveUp: boolean | undefined;
+  /** 그 4단계를 푼 **지금 내용**의 빈칸 — N 은 그 수다. 틀린 빈칸이 여기 없으면(내용이 바뀌었다) 예외가 없다. */
+  blanks: readonly string[];
+};
+
+type FadingFourOutcome = {
+  missedAtFour: readonly string[];
+  unjudged?: readonly StoredFadingUnjudged[];
+};
+
+/** 4단계의 «다시»를 건 빈칸 — 틀린 빈칸(포기 포함) ∪ 대조에서 «다름»으로 고른 빈칸, 고유하게. */
+function failedAtFour(
+  outcome: FadingFourOutcome,
+  judged: FadingJudged,
+): Set<string> {
+  return new Set([
+    ...outcome.missedAtFour,
+    ...(outcome.unjudged ?? [])
+      .filter((u) => judged[u.targetId] === "different")
+      .map((u) => u.targetId),
+  ]);
+}
+
+/**
+ * 결정 1 — 4단계의 부분 틀림인가: 카드 풀이 · 포기 없음이 적힘 · N ≥ 4 · 1 ≤ M ≤ ⌊N/4⌋ · 틀린 빈칸이 전부 지금 내용에 있다.
+ * N 은 그 4단계 풀이의 빈칸 수, M 은 한 번이라도 틀린 빈칸 ∪ «다름» 빈칸의 고유 개수다(되풀이 횟수를 더하지 않는다).
+ * 대조를 아직 다 고르지 않았으면 고른 것까지만 본다 — «어려움»을 받는 쪽이 «다 골랐는가»를 따로 본다.
+ */
+export function fadingPartialMiss(
+  outcome: FadingFourOutcome,
+  judged: FadingJudged = {},
+  context?: FadingRatingContext,
+): boolean {
+  if (!context?.cards || context.gaveUp !== false) return false;
+  const failed = failedAtFour(outcome, judged);
+  const limit = Math.floor(context.blanks.length / 4);
+  return (
+    failed.size >= 1 &&
+    failed.size <= limit &&
+    [...failed].every((id) => context.blanks.includes(id))
+  );
+}
+
 /**
  * 4단계의 결과와 대조로 고를 수 있는 평가 — 틀림(«아직 모르겠어요» 포함)이 있거나 «다름»을 하나라도 골랐으면 «다시»뿐이다.
+ * 결정 1: 문맥(`context`)을 주었고 부분 틀림이면(`fadingPartialMiss`) «다시 · 어려움»이다.
  * 대조를 아직 다 고르지 않았으면 고른 것까지만 보고 낸다(평가를 받는 쪽이 «다 골랐는가»를 따로 본다).
  * 확신 · 사전 확인은 여기 들어오지 않는다 — 진단은 평가를 바꾸지 않는다.
  */
 export function fadingRatingsAfterJudging(
-  outcome: {
-    missedAtFour: readonly string[];
-    unjudged?: readonly StoredFadingUnjudged[];
-  },
+  outcome: FadingFourOutcome,
   judged: FadingJudged = {},
+  context?: FadingRatingContext,
 ): FsrsRating[] {
-  if (outcome.missedAtFour.length) return ["again"];
-  return (outcome.unjudged ?? []).some(
-    (u) => judged[u.targetId] === "different",
-  )
-    ? ["again"]
-    : [...FSRS_RATINGS];
+  if (!failedAtFour(outcome, judged).size) return [...FSRS_RATINGS];
+  return fadingPartialMiss(outcome, judged, context)
+    ? ["again", "hard"]
+    : ["again"];
 }
 
-/** 지금 고를 수 있는 평가 — 4단계를 마치기 전에는 없고, 4단계에서 틀렸거나 대조에서 «다름»을 골랐으면 «다시»뿐이다. */
+/** 화면의 풀이에서 부분 틀림 판정의 문맥 — 개념(지금 내용)을 주어야 선다. 주지 않으면 지금까지의 규칙이다. */
+export function fadingSessionRatingContext(
+  session: FadingSession,
+  concept?: FadingConcept,
+): FadingRatingContext | undefined {
+  if (!concept || concept.id !== session.conceptId) return undefined;
+  return {
+    cards: fadingModeOf(session) === "cards",
+    gaveUp: session.gaveUpAtFour,
+    blanks: erasedTargets(concept, 4).map((t) => t.id),
+  };
+}
+
+/**
+ * 지금 고를 수 있는 평가 — 4단계를 마치기 전에는 없고, 4단계에서 틀렸거나 대조에서 «다름»을 골랐으면 «다시»뿐이다.
+ * 개념(지금 내용)을 주면 결정 1 의 부분 틀림 «어려움»까지 본다.
+ */
 export function allowedRatings(
   session: FadingSession,
   judged?: FadingJudged,
+  concept?: FadingConcept,
 ): FsrsRating[] {
   if (session.phase !== "rating") return [];
   const last = session.results.at(-1);
   return fadingRatingsAfterJudging(
     { missedAtFour: last?.missed ?? [], unjudged: last?.unjudged },
     judged,
+    fadingSessionRatingContext(session, concept),
+  );
+}
+
+/** 지금 판정으로 부분 틀림인가 — 화면이 «어려움»에 적는 날 수를 2일로 자를 때 쓴다(서버의 미리 보기는 대조 전 값이다). */
+export function sessionPartialMiss(
+  session: FadingSession,
+  judged?: FadingJudged,
+  concept?: FadingConcept,
+): boolean {
+  if (session.phase !== "rating") return false;
+  const last = session.results.at(-1);
+  return fadingPartialMiss(
+    { missedAtFour: last?.missed ?? [], unjudged: last?.unjudged },
+    judged,
+    fadingSessionRatingContext(session, concept),
   );
 }
 
 /**
  * 풀이를 평가로 닫는다. 대조를 기다리는 것이 있고 틀림이 없으면 그것을 다 골라야 닫힌다(고른 것이 평가를 정한다).
- * 틀림이 있으면 대조는 진단일 뿐이라 고르지 않아도 된다(평가는 어차피 «다시»다).
+ * 틀림이 있으면 대조는 진단일 뿐이라 «다시»는 고르지 않아도 닫힌다. 결정 1 의 «어려움»은 대조를 다 골라야 닫힌다.
  */
 export function closeWithRating(
   session: FadingSession,
   rating: FsrsRating,
   judged?: FadingJudged,
+  concept?: FadingConcept,
 ): FadingSession {
   const last = session.results.at(-1);
   const waiting = last?.unjudged ?? [];
   if (
     session.phase === "rating" &&
-    !last?.missed.length &&
+    (!last?.missed.length || rating !== "again") &&
     waiting.length &&
     !fadingJudgingComplete(waiting, judged)
   )
     throw new Error("기준안과 대조할 답을 다 골라 주세요.");
-  if (!allowedRatings(session, judged).includes(rating))
+  if (!allowedRatings(session, judged, concept).includes(rating))
     throw new Error("지금은 고를 수 없는 평가입니다.");
   return { ...session, phase: "done", rating };
 }

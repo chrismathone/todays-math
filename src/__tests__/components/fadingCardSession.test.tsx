@@ -896,6 +896,11 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
     expect(
       screen.queryByRole("button", { name: /알맞음/ }),
     ).not.toBeInTheDocument();
+    // 넘긴 카드가 있으면 결정 1 의 «어려움»도 열리지 않는다.
+    expect(
+      screen.queryByRole("button", { name: /어려움/ }),
+    ).not.toBeInTheDocument();
+    expect(local.snapshot().session!.gaveUpAtFour).toBe(true);
     expect(send).toHaveBeenCalledWith(
       expect.objectContaining({ action: "step", step: 4, gaveUp: true }),
     );
@@ -1100,7 +1105,7 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
     ).not.toBeInTheDocument();
   });
 
-  it("자기 대조의 다름은 다시만 보여 준다", async () => {
+  it("자기 대조의 다름은 «다시»를 건다 — 빈칸 넷에 «다름» 하나는 부분 틀림이라 «다시 · 어려움»만(결정 1)", async () => {
     const { local, state } = await atFour();
     app(local, state);
     answer("내 다른 표현");
@@ -1115,10 +1120,57 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
     expect(
       screen.queryByRole("button", { name: /쉬움/ }),
     ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /알맞음/ }),
+    ).not.toBeInTheDocument();
+    // 서버의 미리 보기는 «다 같은 뜻»일 때의 값이다 — 화면이 고른 대조로 «어려움»을 2일 이하로 자른다.
+    expect(screen.getByRole("button", { name: /어려움/ })).toHaveTextContent(
+      /^어려움[12]일 뒤$/,
+    );
     fireEvent.click(screen.getByRole("button", { name: /다시/ }));
     await waitFor(() =>
       expect(local.snapshot().receipts[0]?.rating).toBe("again"),
     );
+  });
+
+  it("결정 1 — 빈칸 넷 가운데 하나를 틀리고 넘김이 없으면 «다시 · 어려움»(2일 이하)을 보여 주고, «어려움»으로 닫힌다", async () => {
+    const { local, state } = await atFour();
+    const send = vi.spyOn(local, "act");
+    app(local, state);
+    expect(local.snapshot().session!.gaveUpAtFour).toBe(false);
+    answer("반지름");
+    await waitFor(() =>
+      expect(send).toHaveBeenCalledWith(
+        expect.objectContaining({ action: "miss" }),
+      ),
+    );
+    await waitFor(() => expect(screen.getByRole("textbox")).toBeEnabled());
+    answer("외심");
+    answer("수직이등분선");
+    answer("반지름");
+    answer("90deg");
+    await waitFor(() =>
+      expect(
+        screen.getByRole("region", { name: "내 답과 기준안 대조" }),
+      ).toBeInTheDocument(),
+    );
+    finishComparison();
+    expect(
+      screen.getByText("틀린 빈칸이 적어 «어려움»도 고를 수 있습니다."),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText(/이번 평가는 «다시»입니다/),
+    ).not.toBeInTheDocument();
+    const shown = screen
+      .getAllByRole("button", { name: /^(다시|어려움|알맞음|쉬움)/ })
+      .map((button) => button.textContent);
+    expect(shown).toEqual(["다시1일 뒤", "어려움2일 뒤"]);
+    fireEvent.click(screen.getByRole("button", { name: /어려움/ }));
+    await waitFor(() =>
+      expect(local.snapshot().receipts[0]?.rating).toBe("hard"),
+    );
+    const stored = local.snapshot().concepts[concept.id]!;
+    expect(stored).toMatchObject({ step: 4, lapses: 0, dueOn: "2026-10-09" });
   });
 
   it("연습은 카드 모드를 따라도 API 요청과 기록 변경이 없다", async () => {

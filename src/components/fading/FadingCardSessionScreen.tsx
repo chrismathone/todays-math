@@ -10,6 +10,7 @@ import { erasedTargets, erasureRate } from "@/lib/fading/erasure";
 import { toPercent } from "@/lib/fading/numbers";
 import { typedKey } from "@/lib/fading/typed";
 import {
+  FADING_PARTIAL_HARD_MAX_DAYS,
   allowedRatings,
   closeWithRating,
   fadingAsksSure,
@@ -20,6 +21,7 @@ import {
   giveUpStep,
   placeAnswer,
   resumeFadingSession,
+  sessionPartialMiss,
   startFadingSession,
   type FadingAnswer,
   type FadingJudged,
@@ -551,7 +553,9 @@ export function FadingCardSessionScreen({
     }
   }
 
-  const permitted = allowedRatings(local, judged);
+  // 결정 1 — 개념(지금 내용)을 넘겨 서버와 같은 판정을 쓴다. 부분 틀림이면 «다시 · 어려움»이고 «어려움»은 2일 이하다.
+  const permitted = allowedRatings(local, judged, concept);
+  const partial = sessionPartialMiss(local, judged, concept);
   const result = compare ?? local.results.at(-1);
   // The source marks changed, pending solutions stale and excludes self-judgment.
   const unjudged = stale ? [] : (result?.unjudged ?? []);
@@ -620,7 +624,7 @@ export function FadingCardSessionScreen({
     )
       return;
     const after = () => {
-      if (!stale) setLocal(closeWithRating(local, rating, judged));
+      if (!stale) setLocal(closeWithRating(local, rating, judged, concept));
       setDone(true);
       setCompare(null);
       if (!practice) onBoundary?.();
@@ -836,6 +840,11 @@ export function FadingCardSessionScreen({
                   4단계에 틀림이나 넘긴 빈칸이 있어 이번 평가는 «다시»입니다.
                 </p>
               )}
+              {partial && (
+                <p className={s.notice}>
+                  틀린 빈칸이 적어 «어려움»도 고를 수 있습니다.
+                </p>
+              )}
               {comparisonFinished &&
                 (practice ? (
                   <button
@@ -860,7 +869,15 @@ export function FadingCardSessionScreen({
                           onClick={() => rate(choice.rating)}
                         >
                           <strong>{ratingNames[choice.rating]}</strong>
-                          <span>{choice.intervalDays}일 뒤</span>
+                          <span>
+                            {partial && choice.rating === "hard"
+                              ? Math.min(
+                                  choice.intervalDays,
+                                  FADING_PARTIAL_HARD_MAX_DAYS,
+                                )
+                              : choice.intervalDays}
+                            일 뒤
+                          </span>
                         </button>
                       ))}
                   </div>

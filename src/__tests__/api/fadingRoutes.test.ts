@@ -106,6 +106,8 @@ import { STUDENT_CHANGED_MESSAGE } from "@/lib/studentRouteAccess";
 import { createLocalFadingSource } from "@/lib/fading/local";
 import { FADING_TRAPS } from "@/lib/fading/trapTable";
 import { fadingTrapMap } from "@/lib/fading/traps";
+import { fadingTypedOutcome } from "@/lib/fading/typed";
+import type { FadingTrap } from "@/lib/fading/chips";
 import { FadingSourceError } from "@/lib/fading/source";
 import { emptyFading, pickFadingConcept } from "@/lib/fading/state";
 import { emptySrsState, parseSrsState } from "@/lib/math-srs/serverState";
@@ -165,6 +167,20 @@ function placements(
     moves.push({ targetId: target.id, chipId: chip.id });
   }
   return moves;
+}
+
+/** 그 빈칸에 «틀림»이 되는 글 — 같은 개념의 다른 답 · 함정의 글. 없으면 `null`. */
+function wrongTextOf(
+  c: FadingConcept,
+  targetId: string,
+  traps: readonly FadingTrap[],
+): string | null {
+  for (const text of [
+    ...erasedTargets(c, 4).map((t) => t.text),
+    ...traps.map((t) => t.text),
+  ])
+    if (fadingTypedOutcome(c, targetId, text, traps) === "wrong") return text;
+  return null;
 }
 
 /** 은행의 중2 첫 개념들. */
@@ -1311,6 +1327,173 @@ describe("카드 풀이의 하위 문(`MATH_FADING_CARDS`)", () => {
       await (await concept(first!)).json(),
     ).data;
     expect(detail.mode).toBe("cards");
+  });
+
+  it("결정 1 — 4단계 부분 틀림: 포기 없이 하나 틀리면 «다시 · 어려움»(2일 이하) · «어려움»으로 닫힌다 · 카드를 넘긴 풀이는 «어려움» 409 · 서버 없이 도는 길과 같다", async () => {
+    vi.stubEnv("MATH_FADING_CARDS", undefined);
+    // 빈칸이 넷 이상이고 «틀림» 글(같은 개념의 다른 답)이 있는 중2 개념 — 은행에서 찾는다.
+    const all = fadingCatalog();
+    const traps = fadingTrapMap(all);
+    const pick = all.find((c) => {
+      const targets = erasedTargets(c, 4);
+      return (
+        c.section.startsWith("중2::") &&
+        targets.length >= 4 &&
+        targets.length < 8 &&
+        targets.some((t) => wrongTextOf(c, t.id, traps[c.id] ?? []) !== null)
+      );
+    })!;
+    expect(pick).toBeDefined();
+    const fresh = { sessionId: uuid(0), seed: 0 };
+    const local = createLocalFadingSource({
+      concepts: all,
+      today: "2026-10-06",
+      defaultGrade: "중2",
+      traps,
+      figures: fadingFigureMap(all, CONCEPT_BLANK_BANK.figures),
+      fresh: () => fresh,
+      cards: true,
+      now: () => DAY1.getTime(),
+    });
+    const both = async (action: FadingAction) => {
+      const server = await act(action);
+      if (action.action === "open" && server.session)
+        Object.assign(fresh, {
+          sessionId: storedSession()!.id,
+          seed: server.session.seed,
+        });
+      expect(await local.act(action)).toStrictEqual(server);
+      return server;
+    };
+    const toFour = async () => {
+      let view = await both({ action: "open", conceptId: pick.id });
+      const ref = { conceptId: pick.id, sessionId: view.session!.id };
+      view = await both({ action: "read", ...ref });
+      for (const step of [2, 3] as const)
+        view = await both({
+          action: "step",
+          ...ref,
+          step,
+          placements: placements(
+            pick,
+            step,
+            view.session!.seed,
+            false,
+            view.opened!.traps,
+          ),
+        });
+      return { view, ref };
+    };
+    const targets = erasedTargets(pick, 4);
+    const slip = targets.find(
+      (t) => wrongTextOf(pick, t.id, traps[pick.id] ?? []) !== null,
+    )!;
+    const slipText = wrongTextOf(pick, slip.id, traps[pick.id] ?? [])!;
+    const correct = targets.map((t) => ({ targetId: t.id, text: t.text }));
+
+    // 하나 틀림 · 넘김 없음.
+    let { view, ref } = await toFour();
+    expect(storedSession()).toMatchObject({ gaveUpAtFour: false });
+    view = await both({
+      action: "step",
+      ...ref,
+      step: 4,
+      placements: [{ targetId: slip.id, text: slipText }, ...correct],
+    });
+    expect(view.session).toMatchObject({
+      phase: "rating",
+      missedAtFour: [slip.id],
+      gaveUpAtFour: false,
+    });
+    expect(view.session!.ratings.map((r) => r.rating)).toEqual([
+      "again",
+      "hard",
+    ]);
+    expect(
+      view.session!.ratings.find((r) => r.rating === "hard")!.intervalDays,
+    ).toBeLessThanOrEqual(2);
+    const rated = await both({
+      action: "rate",
+      ...ref,
+      rating: "hard",
+      requestId: uuid(51),
+    });
+    expect(rated.receipt).toMatchObject({
+      rating: "hard",
+      dueOn: "2026-10-08",
+    });
+    const stored = parseSrsState(f.rows.get(f.studentId)!.payload).fading!
+      .concepts[pick.id]!;
+    expect(stored).toMatchObject({ step: 4, lapses: 0, reviews: 1 });
+
+    // 다른 학생 기록에서 — 카드를 넘긴 풀이는 «어려움»을 받지 않는다(양쪽 같은 409 · 문구까지).
+    f.rows.clear();
+    const other = createLocalFadingSource({
+      concepts: all,
+      today: "2026-10-06",
+      defaultGrade: "중2",
+      traps,
+      figures: fadingFigureMap(all, CONCEPT_BLANK_BANK.figures),
+      fresh: () => fresh,
+      cards: true,
+      now: () => DAY1.getTime(),
+    });
+    const both2 = async (action: FadingAction) => {
+      const server = await act(action);
+      if (action.action === "open" && server.session)
+        Object.assign(fresh, {
+          sessionId: storedSession()!.id,
+          seed: server.session.seed,
+        });
+      expect(await other.act(action)).toStrictEqual(server);
+      return server;
+    };
+    view = await both2({ action: "open", conceptId: pick.id });
+    ref = { conceptId: pick.id, sessionId: view.session!.id };
+    view = await both2({ action: "read", ...ref });
+    for (const step of [2, 3] as const)
+      view = await both2({
+        action: "step",
+        ...ref,
+        step,
+        placements: placements(
+          pick,
+          step,
+          view.session!.seed,
+          false,
+          view.opened!.traps,
+        ),
+      });
+    const card = pick.propositions.at(-1)!;
+    view = await both2({
+      action: "give-up-card",
+      ...ref,
+      propositionId: card.id,
+      placements: [],
+    });
+    view = await both2({
+      action: "step",
+      ...ref,
+      step: 4,
+      placements: correct.filter((t) => !t.targetId.startsWith(`${card.id}#`)),
+      gaveUp: true,
+    });
+    expect(view.session).toMatchObject({ phase: "rating", gaveUpAtFour: true });
+    expect(view.session!.ratings.map((r) => r.rating)).toEqual(["again"]);
+    const hard = {
+      action: "rate",
+      ...ref,
+      rating: "hard",
+      requestId: uuid(52),
+    };
+    const response = await postRaw(hard);
+    const body = await response.json();
+    expect([response.status, body.error?.code]).toEqual([409, "CONFLICT"]);
+    await expect(other.act(hard as FadingAction)).rejects.toMatchObject({
+      status: 409,
+      code: "CONFLICT",
+      message: body.error.message,
+    });
   });
 
   it("4단계 카드의 «아직 모르겠어요»(give-up-card · D2) — 그 자리에서 적히고 · 되풀이는 쓰지 않고 · 내용 토큰이 아니면 409 · 칩 풀이는 409 · 서버 없이 도는 길과 같다", async () => {

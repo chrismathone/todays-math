@@ -31,9 +31,10 @@ import { updateDailyJourney } from "@/lib/math-srs/dailyJourney";
 import { emptySrsState, parseSrsState } from "@/lib/math-srs/serverState";
 
 /**
- * 결정 1 의 선택 칸 `session.gaveUpAtFour` — **읽기 판(1a)**.
- * 학생 기록의 꼴은 모르는 키를 거절한다. 그래서 이 칸을 읽고 보존하는 판이 쓰는 판(1b)보다 먼저 나간다.
- * 🔴 이 판은 이 칸을 **쓰지 않고** 평가 판정에도 **쓰지 않는다** — 읽고, 어느 쓰기 길을 지나도 글자 그대로 남길 뿐이다.
+ * 결정 1 의 선택 칸 `session.gaveUpAtFour` — 읽기 판(1a)이 먼저 나갔고, 쓰는 판(1b)이 그 뒤다.
+ * 학생 기록의 꼴은 모르는 키를 거절한다. 그래서 이 칸을 읽고 보존하는 판이 쓰는 판보다 먼저 나간다.
+ * 1a 에서 잠근 것 가운데 1b 에도 그대로인 것: 읽기 · 되쓰기 · 보존 · 칩 풀이에는 칸이 없음 · **칸이 없는 옛 풀이는 지금까지의 규칙**.
+ * 1b 에서 바뀐 것: 카드 풀이는 열 때 `false`, 넘긴 순간 `true` 를 쓰고, 판정이 이 칸을 읽고, 응답이 이 칸을 싣는다(`fadingPartialHard.test.ts`).
  */
 
 function concept(id: string): FadingConcept {
@@ -130,16 +131,25 @@ describe("결정 1a — `gaveUpAtFour` 를 읽는다", () => {
       ).toBe(false);
   });
 
-  it("이 판의 쓰기 길은 칸을 만들지 않는다 — 카드 포기 · 4단계 틀림 · 평가까지 다 지나도", () => {
-    let s = toFour();
+  it("칩 풀이의 쓰기 길은 칸을 만들지 않는다 — 4단계 틀림 · 단계째 넘김 · 평가까지 다 지나도", () => {
+    let s = openFadingSession(emptyFading(), A, DAY1, {
+      sessionId: uuid(1),
+      seed: 7,
+    });
     const seen: StoredFading[] = [s];
+    s = completeFadingReading(s, A.id, uuid(1));
+    for (const step of [2, 3] as const)
+      s = completeFadingStep(s, A, uuid(1), step, chips(A, step, 7));
+    seen.push(s);
     const first = fadingTargets(A)[0]!;
     s = reportFadingMiss(s, A, uuid(1), {
       targetId: first.id,
-      text: "빗변",
+      chipId: chipTray(A, 4, { seed: 7 }).find(
+        (chip) => !chipFits(A, first.id, chip),
+      )!.id,
     });
     seen.push(s);
-    s = stepFour(s, A.propositions[1]!.id);
+    s = completeFadingStep(s, A, uuid(1), 4, [], { gaveUp: true });
     seen.push(s);
     s = rateFadingSession(s, A, uuid(1), "again", DAY1, uuid(2));
     seen.push(s);
@@ -162,6 +172,7 @@ describe("결정 1a — `gaveUpAtFour` 를 보존한다", () => {
         text: "빗변",
       });
       expect(missed.session!.gaveUpAtFour).toBe(gaveUpAtFour);
+      // 카드를 넘기면 그 순간 `true` 가 적힌다(1b).
       const skipped = giveUpFadingCard(
         missed,
         A,
@@ -169,7 +180,7 @@ describe("결정 1a — `gaveUpAtFour` 를 보존한다", () => {
         A.propositions[2]!.id,
         [],
       );
-      expect(skipped.session!.gaveUpAtFour).toBe(gaveUpAtFour);
+      expect(skipped.session!.gaveUpAtFour).toBe(true);
       // 4단계를 마칠 때 풀이를 새로 짓는다 — 이 칸을 빠뜨리면 안 된다.
       const done = stepFour(missed);
       expect(done.session).toMatchObject({
@@ -197,49 +208,61 @@ describe("결정 1a — `gaveUpAtFour` 를 보존한다", () => {
     expect(json(written.fading)).toBe(json(record));
   });
 
-  it("평가 판정에 쓰지 않는다 — 칸이 참이든 거짓이든 없든 고를 수 있는 평가 · 닫힌 기록이 같다", () => {
+  it("칸이 없는 옛 풀이는 지금까지의 규칙 그대로다 — 고를 수 있는 평가 · 닫힌 기록이 «넘김(`true`)»과 같다", () => {
     const missed = reportFadingMiss(toFour(), A, uuid(1), {
       targetId: fadingTargets(A)[0]!.id,
       text: "빗변",
     });
-    const clean = stepFour(toFour());
-    const partial = stepFour(missed);
-    for (const base of [clean, partial]) {
-      const ratings = fadingRatingsFor(base.session!, undefined, A);
-      for (const gaveUpAtFour of [true, false]) {
-        const marked = storedFadingSchema.parse({
-          ...base,
-          session: { ...base.session!, gaveUpAtFour },
-        });
-        expect(fadingRatingsFor(marked.session!, undefined, A)).toEqual(
-          ratings,
-        );
-        const rating = ratings.includes("hard") ? "hard" : "again";
-        expect(
-          json(rateFadingSession(marked, A, uuid(1), rating, DAY1, uuid(3))),
-        ).toBe(
-          json(rateFadingSession(base, A, uuid(1), rating, DAY1, uuid(3))),
-        );
-      }
+    const without = (state: StoredFading): StoredFading => {
+      if (!state.session) return state;
+      const session = { ...state.session };
+      delete session.gaveUpAtFour;
+      return storedFadingSchema.parse({ ...state, session });
+    };
+    for (const base of [stepFour(toFour()), stepFour(missed)]) {
+      const old = without(base);
+      const gaveUp = storedFadingSchema.parse({
+        ...base,
+        session: { ...base.session!, gaveUpAtFour: true },
+      });
+      const ratings = fadingRatingsFor(old.session!, undefined, A);
+      expect(fadingRatingsFor(gaveUp.session!, undefined, A)).toEqual(ratings);
+      const rating = ratings.includes("hard") ? "hard" : "again";
+      expect(
+        json(rateFadingSession(old, A, uuid(1), rating, DAY1, uuid(3))),
+      ).toBe(
+        json(
+          without(rateFadingSession(gaveUp, A, uuid(1), rating, DAY1, uuid(3))),
+        ),
+      );
     }
-    expect(fadingRatingsFor(partial.session!, undefined, A)).toEqual(["again"]);
+    expect(
+      fadingRatingsFor(without(stepFour(missed)).session!, undefined, A),
+    ).toEqual(["again"]);
   });
 });
 
-describe("결정 1a — 화면이 받는 응답의 꼴", () => {
-  it("응답의 풀이는 이 칸을 읽을 수 있고(참 · 거짓), 이 판은 싣지 않는다", () => {
+describe("결정 1a · 1b — 화면이 받는 응답의 꼴", () => {
+  it("응답의 풀이는 이 칸을 읽을 수 있고(참 · 거짓), 카드 풀이에 적혀 있을 때만 실린다", () => {
     const record = storedFadingSchema.parse({
       ...stepFour(toFour()),
       session: { ...stepFour(toFour()).session!, gaveUpAtFour: false },
     });
-    const view = fadingStateView({
-      fading: record,
-      revision: 1,
-      today: DAY1,
-      concepts: new Map([[A.id, A]]),
-      cards: true,
-    });
-    expect(view.session).not.toHaveProperty("gaveUpAtFour");
+    const viewOf = (fading: StoredFading) =>
+      fadingStateView({
+        fading,
+        revision: 1,
+        today: DAY1,
+        concepts: new Map([[A.id, A]]),
+        cards: true,
+      });
+    const view = viewOf(record);
+    expect(view.session).toHaveProperty("gaveUpAtFour", false);
+    const session = { ...record.session! };
+    delete session.gaveUpAtFour;
+    expect(viewOf({ ...record, session }).session).not.toHaveProperty(
+      "gaveUpAtFour",
+    );
     expect(fadingStateSchema.parse(view)).toEqual(view);
     for (const gaveUpAtFour of [true, false]) {
       const arriving = {
