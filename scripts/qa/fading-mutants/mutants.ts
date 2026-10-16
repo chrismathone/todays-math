@@ -6,6 +6,25 @@
 export type Mutant = { file: string; from: string; to: string; note: string };
 
 export const MUTANTS: Mutant[] = [
+  // ───────── 결정 4(2026-10-16) — 홈의 기본 분량도 명제 20칸 ─────────
+  {
+    file: "fading/numbers.ts",
+    note: "홈이 평가 전 개념을 남은 칸과 상관없이 낸다",
+    from: "unrated: unrated.filter((u) => chosen.has(u.id)).map((u) => u.id),",
+    to: "unrated: unrated.map((u) => u.id),",
+  },
+  {
+    file: "fading/numbers.ts",
+    note: "명제 칸에서 «오늘 전부»가 복습을 다 내지 않는다",
+    from: 'owed: mode === "all" || r.id === options.open,',
+    to: "owed: r.id === options.open,",
+  },
+  {
+    file: "fading/state.ts",
+    note: "홈이 명제 칸을 안 쓴다(개념 20개)",
+    from: "          slots: promptsOf,\n",
+    to: "",
+  },
   // ───────── 결정 1(2026-10-16) — 4단계 부분 틀림 «어려움» ─────────
   {
     file: "fading/session.ts",

@@ -86,6 +86,17 @@ describe("로컬 상태로 그리는 홈", () => {
     });
     render(<FadingApp source={source} initialState={state} />);
     expect(state.summary.queue.held.length).toBeGreaterThan(0);
+    // 결정 4 — 홈의 분량도 계획과 같은 명제 칸이고, 처음 배우는 개념도 같이 센다.
+    expect(
+      screen.getByText(
+        `나눠서 하면 하루 분량은 문장 ${state.cap}개까지입니다. 처음 배우는 개념도 함께 셉니다.`,
+      ),
+    ).toBeInTheDocument();
+    const allowed = state.summary.queue.due.reduce(
+      (n, id) => n + state.concepts[id]!.terms.length,
+      0,
+    );
+    expect(allowed).toBeLessThanOrEqual(state.cap);
     expect(screen.getByRole("button", { name: "나눠서" })).toHaveAttribute(
       "aria-pressed",
       "true",

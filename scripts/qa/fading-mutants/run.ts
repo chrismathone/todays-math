@@ -48,6 +48,7 @@ const TESTS = [
   "ContentGuard",
   "GaveUpCompat",
   "PartialHard",
+  "HomeQueue",
 ]
   .map(TEST)
   .concat(ROUTES, TEACHER_ROUTES, CONSOLE);

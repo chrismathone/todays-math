@@ -663,12 +663,19 @@ export type FadingSummary = {
 
 /**
  * 홈과 통계가 읽는 요약. `known` 을 주면 그 안의 열쇠만 센다 — 은행에서 사라진 개념의 기록이 숫자에 섞이지 않게.
- * 하루 상한에서 빼는 «오늘 이미 한 복습»은 그날 닫은 풀이에서 처음 배운 것을 뺀 수다.
+ * `promptsOf`(개념의 명제 수)를 주면 홈의 대기열이 «오늘의 학습» 계획과 같은 **명제 20칸**이다(결정 4) — 오늘 평가로 닫은 개념의
+ * 명제(첫 평가 포함)를 칸에서 빼고, 풀던 개념은 빚진 것이다. 주지 않으면 지금까지의 개념 수 규칙이다
+ * (하루 상한에서 빼는 «오늘 이미 한 복습»은 그날 닫은 풀이에서 처음 배운 것을 뺀 수).
+ * «오늘의 복습»(`plan` — 한 것 · 목표)은 어느 쪽이든 **개념 수**다(처음 배운 것은 넣지 않는다).
  */
 export function fadingSummary(
   state: StoredFading,
   today: string,
-  options: { cap?: number; known?: ReadonlySet<string> } = {},
+  options: {
+    cap?: number;
+    known?: ReadonlySet<string>;
+    promptsOf?: (conceptId: string) => number;
+  } = {},
 ): FadingSummary {
   const day = fadingDayOfDate(today);
   const progress: Record<string, FadingProgress> = {};
@@ -686,10 +693,24 @@ export function fadingSummary(
   const mode: FadingQueueMode = state.allOn === today ? "all" : "split";
   const idleDays = fadingIdleDays(toStreak(state.streak).lastDay, day);
   const next = nextReviewDay(all, day);
+  const promptsOf = options.promptsOf;
   const queue = fadingQueue(progress, day, {
     mode,
     cap: options.cap ?? FADING_DAILY_CAP,
-    reviewedToday: done,
+    ...(promptsOf
+      ? {
+          // 오늘 평가로 닫은 기본 분량 — 계획이 «한 것»으로 세는 셈과 같다(첫 평가 포함 · 명제 수).
+          reviewedToday: Object.entries(state.concepts).reduce(
+            (n, [id, stored]) =>
+              id in progress && stored.reviewedOn === today
+                ? n + promptsOf(id)
+                : n,
+            0,
+          ),
+          slots: promptsOf,
+          open: state.session?.conceptId ?? null,
+        }
+      : { reviewedToday: done }),
   });
   return {
     today,

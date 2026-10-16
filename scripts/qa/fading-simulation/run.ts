@@ -1367,7 +1367,7 @@ function renderSummary(output: {
     "- 하루 분량의 대신 값 20 — `src/lib/fading/numbers.ts:14` (`FADING_DAILY_CAP`) · 계획의 분량 `src/lib/fading/explorerDaily.ts:180`. 칸은 **명제 수**(`explorerDaily.ts:210`) — 묶음(3 ~ 5명제)을 쪼개지 않고, 남은 칸에 안 들어가면 미룬다(`src/lib/fading/dailyPlan.ts:52`).",
   );
   lines.push(
-    "- 홈의 대기열은 다른 상한을 쓴다 — **개념 20개**(`numbers.ts:135` · `fadingQueue` · 오늘 한 복습을 뺀다). 계획(20명제 ≈ 4 ~ 5묶음)과 홈(20묶음)이 다른 수다.",
+    "- 홈의 대기열도 같은 **명제 20칸**이다(결정 4 · `numbers.ts` 의 `fadingQueue` 에 명제 칸 — 오늘 닫은 명제를 첫 평가까지 뺀다). 결정 4 이전에는 개념 20개였다(`--home-unit=concepts`).",
   );
   lines.push(
     "- «다시»의 간격은 하루 — `src/lib/fading/schedule.ts:67`. 그 밖은 FSRS-5 가 낸 날 수(`fsrs.ts` · 목표 기억률 0.9).",
@@ -1536,7 +1536,7 @@ function renderSummary(output: {
     "- **운영의 새 개념 속도** — 탐험의 학습 단원(`explorerDailyServer.ts`)과 선수 개념 안내 · 문제 덩이는 학생 기록(DB)에서 오는데, DB 를 부르지 않았다. 여기서는 소단원을 은행 차례로 학생 속도대로 나간다.",
   );
   lines.push(
-    "- **홈 화면의 대기열(개념 20개 상한)로 공부하는 학생** — 이 시뮬레이션은 탐험 화면의 «오늘의 학습»(명제 20칸)을 따랐다. `/learn/fading` 홈에서 대기열을 따라가면 하루 분량이 다르다(최대 20묶음).",
+    "- **홈 화면의 대기열로 공부하는 학생** — 이 표는 탐험 화면의 «오늘의 학습»(명제 20칸)을 따랐다. 홈을 따라가는 학생은 `--path=home` 으로 따로 돈다(결정 4 이후 홈도 명제 20칸).",
   );
   lines.push(
     "- **못 알아본 글(대조 «같은 뜻 / 다름»)** — 학생이 은행의 답을 그대로 쓰거나 다른 답을 쓴다고 두었다. 오타 · 다른 표현의 대조 흐름은 안 돌았다.",

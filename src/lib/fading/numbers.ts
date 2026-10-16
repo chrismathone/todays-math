@@ -1,3 +1,4 @@
+import { allocateDaily } from "./dailyPlan";
 import { FADING_STEPS, type FadingStep } from "./erasure";
 import { fsrsRetrievability } from "./fsrs";
 import type { FadingProgress } from "./schedule";
@@ -10,7 +11,10 @@ import type { FadingProgress } from "./schedule";
  * 화면은 여기서 낸 값을 그리기만 한다 — 같은 수를 다른 식으로 다시 세지 않는다.
  */
 
-/** 하루에 내는 복습의 상한(«나눠서»). */
+/**
+ * 하루 분량의 상한(«나눠서») — 칸은 **명제**다(결정 4 · 2026-10-16): 홈과 «오늘의 학습» 계획이 같은 20칸을 쓴다.
+ * 명제 비용을 모르는 부름(`fadingQueue` 에 `slots` 없음)은 지금까지처럼 개념 수로 센다.
+ */
 export const FADING_DAILY_CAP = 20;
 /** 날마다의 집계를 남기는 날 수. */
 export const FADING_DAYS_KEPT = 400;
@@ -106,9 +110,15 @@ export function standingStepCounts(
 
 /**
  * 오늘의 대기열.
- * - `due` — 복습일이 된 개념, 망각 위험이 큰 것부터(같으면 열쇠 차례). «나눠서»는 하루 상한에서 오늘 이미 한 복습을 뺀 만큼만 낸다.
- * - `held` — 상한 때문에 다음으로 미룬 것(«오늘 전부»면 비어 있다).
+ * - `due` — 복습일이 된 개념, 망각 위험이 큰 것부터(같으면 열쇠 차례). «나눠서»는 하루 상한에서 오늘 이미 한 것을 뺀 만큼만 낸다.
+ * - `held` — 상한 때문에 다음으로 미룬 것(«오늘 전부»면 비어 있다). 미룬 개념의 복습일은 그대로다.
  * - `unrated` — 골라 두었거나 풀다 만, 아직 평가 전인 개념. 풀다 만 것이 먼저다.
+ *
+ * **명제 칸(`slots` — 결정 4)** 을 주면 «오늘의 학습» 계획과 같은 셈이다(`dailyPlan.ts` 의 `allocateDaily`):
+ * 칸은 개념의 명제 수 · 묶음은 쪼개지 않고 남은 칸에 안 들어가면 건너뛰고 다음 것을 본다 · `reviewedToday` 는 오늘 닫은 **명제** 수다(첫 평가 포함) ·
+ * 복습 → 평가 전 개념의 차례로 넣고, 평가 전 개념도 남은 칸에 들어갈 때만 낸다 · 풀던 개념(`open`)은 빚진 것이라 넘어도 낸다 ·
+ * «오늘 전부»면 복습을 다 낸다(평가 전 개념은 그래도 남은 칸에서만 — 계획과 같다).
+ * 주지 않으면 지금까지의 개념 수 규칙이다(복습만 상한을 보고, 평가 전 개념은 다 낸다).
  */
 export function fadingQueue(
   progressById: Readonly<Record<string, FadingProgress>>,
@@ -117,6 +127,10 @@ export function fadingQueue(
     mode?: FadingQueueMode;
     cap?: number;
     reviewedToday?: number;
+    /** 개념의 칸(명제 수) — 주면 명제 칸으로 나눈다(결정 4). */
+    slots?: (id: string) => number;
+    /** 풀던 개념(열린 풀이) — 명제 칸으로 나눌 때 빚진 것이다. */
+    open?: string | null;
   } = {},
 ): { due: string[]; held: string[]; unrated: string[] } {
   const { mode = "split", cap = FADING_DAILY_CAP, reviewedToday = 0 } = options;
@@ -132,6 +146,31 @@ export function fadingQueue(
     a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
   ready.sort((a, b) => b.risk - a.risk || byId(a, b));
   unrated.sort((a, b) => b.step - a.step || byId(a, b));
+  if (options.slots) {
+    const slots = options.slots;
+    const allocation = allocateDaily({
+      quota: cap,
+      done: reviewedToday,
+      candidates: [
+        ...ready.map((r) => ({
+          key: r.id,
+          slots: slots(r.id),
+          owed: mode === "all" || r.id === options.open,
+        })),
+        ...unrated.map((u) => ({
+          key: u.id,
+          slots: slots(u.id),
+          owed: u.id === options.open,
+        })),
+      ],
+    });
+    const chosen = new Set(allocation.chosen);
+    return {
+      due: ready.filter((r) => chosen.has(r.id)).map((r) => r.id),
+      held: ready.filter((r) => !chosen.has(r.id)).map((r) => r.id),
+      unrated: unrated.filter((u) => chosen.has(u.id)).map((u) => u.id),
+    };
+  }
   const room = mode === "all" ? ready.length : Math.max(0, cap - reviewedToday);
   return {
     due: ready.slice(0, room).map((r) => r.id),

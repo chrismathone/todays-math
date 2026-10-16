@@ -107,9 +107,11 @@ export function fadingStateView(input: {
 }): FadingState {
   const { fading, today, concepts } = input;
   const cap = input.cap ?? FADING_DAILY_CAP;
+  // 홈의 기본 분량은 «오늘의 학습» 계획과 같은 명제 칸이다(결정 4) — 개념의 명제 수를 넘긴다.
   const counted = fadingSummary(fading, today, {
     cap,
     known: new Set(concepts.keys()),
+    promptsOf: (id) => concepts.get(id)?.propositions.length ?? 0,
   });
   // 날짜는 바깥에 한 번만 싣는다.
   const summary = {
