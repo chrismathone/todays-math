@@ -52,6 +52,8 @@ export interface ExamBuilderSource<T> {
   ) => Promise<{ items: T[]; total: number }>;
   compose: (allocations: ExamAllocation[], signal: AbortSignal) => Promise<T[]>;
   info: (item: T) => ExamQuestionInfo;
+  /** Plain composition counts shown by the review heading (math only). */
+  summarize?: (items: T[]) => string;
   /** Resolve revisions / eligibility before entering output. Never silently broaden scope. */
   prepareOutput?: (items: T[], signal: AbortSignal) => Promise<T[]>;
 }
@@ -71,6 +73,8 @@ export interface ExamBuilderProps<T> {
   difficulties: readonly string[];
   maxQuestions: number;
   renderQuestion: (item: T) => ReactNode;
+  /** Answer and solution beside each reviewed question (math only). */
+  renderAnswer?: (item: T) => ReactNode;
   renderOutput: (props: ExamBuilderOutputProps<T>) => ReactNode;
   /** Optional seed from the surrounding workspace; subject is already selected there. */
   initialScopeIds?: string[];

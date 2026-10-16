@@ -193,6 +193,228 @@ const questions = sets.flatMap((item) =>
   })),
 );
 
+// ── 시험지 만들기(수학) 예시 — 자체 작성 문항. 같은 문항류(familyKey) 형제 · 키 없는 레거시 · 형식 넷을 고루 둔다. ──
+const mathUnits = [
+  {
+    id: "50000000-0000-4000-8000-000000000001",
+    grade: "중1",
+    chapter: "1. 소인수분해",
+    section: "소인수분해",
+    orderIndex: 1,
+  },
+  {
+    id: "50000000-0000-4000-8000-000000000002",
+    grade: "중1",
+    chapter: "2. 정수와 유리수",
+    section: "정수와 유리수의 덧셈",
+    orderIndex: 2,
+  },
+];
+const mathProblem = (
+  index: number,
+  unit: number,
+  patch: Record<string, unknown>,
+) => ({
+  id: `50000000-0000-4000-8000-1000000000${String(index).padStart(2, "0")}`,
+  unitId: mathUnits[unit].id,
+  grade: mathUnits[unit].grade,
+  chapter: mathUnits[unit].chapter,
+  section: mathUnits[unit].section,
+  content: "",
+  answer: "",
+  solution: "",
+  difficulty: "기본",
+  problemCode: `P${String(index).padStart(3, "0")}`,
+  figureUrls: [],
+  figureSvg: null,
+  figureDims: [],
+  figureSourceMm: [],
+  source: "manual",
+  reviewStatus: "approved",
+  problemType: "계산",
+  familyKey: null,
+  originProblemId: null,
+  questionTypeRaw: null,
+  eligible: true,
+  ineligibleReason: null,
+  ...patch,
+});
+const mathProblems = [
+  mathProblem(1, 0, {
+    content: "$72$를 소인수분해하시오.",
+    answer: "$2^3 \\times 3^2$",
+    solution:
+      "1. $72 = 2 \\times 36$ 2. $36 = 2^2 \\times 3^2$ 3. 따라서 $72 = 2^3 \\times 3^2$ 이다.",
+    questionType: "short-answer",
+    familyKey: "preview:소인수분해|A",
+  }),
+  mathProblem(2, 0, {
+    content: "$90$을 소인수분해하시오.",
+    answer: "$2 \\times 3^2 \\times 5$",
+    solution: "$90 = 2 \\times 45 = 2 \\times 3^2 \\times 5$",
+    questionType: "short-answer",
+    familyKey: "preview:소인수분해|A",
+  }),
+  mathProblem(3, 0, {
+    content: "다음 중 $60$의 약수가 아닌 것은? ① $4$ ② $6$ ③ $8$ ④ $10$ ⑤ $12$",
+    answer: "③",
+    solution:
+      "$60 = 2^2 \\times 3 \\times 5$ 이므로 $8 = 2^3$ 은 약수가 아니다.",
+    difficulty: "응용",
+    problemType: "개념",
+    questionType: "multiple-choice",
+    familyKey: "preview:소인수분해|B",
+  }),
+  mathProblem(4, 0, {
+    content:
+      "어떤 자연수의 제곱이 되도록 $48$에 곱해야 할 가장 작은 자연수를 구하고, 그 까닭을 쓰시오.",
+    answer: "$3$",
+    solution:
+      "1. $48 = 2^4 \\times 3$ 2. 지수가 모두 짝수가 되려면 $3$을 곱해야 한다. 3. 따라서 가장 작은 수는 $3$ 이다.",
+    difficulty: "심화하",
+    problemType: "서술형",
+    questionType: "descriptive",
+  }),
+  mathProblem(5, 0, {
+    content: "$2^2 \\times 3 \\times 5$의 약수의 개수를 구하시오.",
+    answer: "$12$",
+    solution: "",
+    problemType: "계산",
+  }),
+  mathProblem(6, 1, {
+    content: "$(-3)+(+5)$를 계산하시오.",
+    answer: "$2$",
+    solution: "부호가 다른 두 수의 덧셈은 절댓값의 차에 큰 쪽의 부호를 붙인다.",
+    difficulty: "연산",
+    questionType: "short-answer",
+    familyKey: "preview:유리수덧셈|A",
+  }),
+  mathProblem(7, 1, {
+    content:
+      "$\\left(-\\frac{1}{2}\\right)+\\left(+\\frac{3}{4}\\right)$를 계산하시오.",
+    answer: "$\\frac{1}{4}$",
+    solution:
+      "1. 통분하면 $-\\frac{2}{4}+\\frac{3}{4}$ 2. 따라서 $\\frac{1}{4}$ 이다.",
+    questionType: "short-answer",
+    familyKey: "preview:유리수덧셈|B",
+  }),
+  mathProblem(8, 1, {
+    content: "$(-7)+(+7)$를 계산하시오.",
+    answer: "$0$",
+    solution: "절댓값이 같고 부호가 다른 두 수의 합은 $0$ 이다.",
+    difficulty: "연산",
+    questionType: "short-answer",
+    familyKey: "preview:유리수덧셈|A",
+  }),
+];
+const mathFamily = (row: (typeof mathProblems)[number]) =>
+  row.familyKey ? `${row.unitId} ${row.familyKey}` : `solo:${row.id}`;
+
+function mathPreview(url: URL, method: string, init?: RequestInit) {
+  const base = "/api/dev/unified/problems";
+  const path = url.pathname;
+  if (!path.startsWith(base)) return null;
+  const body =
+    method === "POST"
+      ? (JSON.parse(String(init?.body ?? "{}")) as Record<string, unknown>)
+      : {};
+  const query =
+    method === "POST" && path === base
+      ? new URLSearchParams(body as Record<string, string>)
+      : url.searchParams;
+  if (path === `${base}/sources` && body.view === "available") {
+    const tally = (rows: typeof mathProblems) => ({
+      held: rows.length,
+      available: rows.length,
+    });
+    const byUnit = (unitId: string) =>
+      mathProblems.filter((row) => row.unitId === unitId);
+    return Response.json({
+      view: "available",
+      version: 1,
+      ...tally(mathProblems),
+      facets: {
+        units: Object.fromEntries(
+          mathUnits.map((unit) => [unit.id, tally(byUnit(unit.id))]),
+        ),
+        unitFamilies: Object.fromEntries(
+          mathUnits.map((unit) => [
+            unit.id,
+            new Set(byUnit(unit.id).map(mathFamily)).size,
+          ]),
+        ),
+        difficulties: Object.fromEntries(
+          ["연산", "기본", "응용", "심화하", "심화중", "심화상"].map((tier) => [
+            tier,
+            tally(mathProblems.filter((row) => row.difficulty === tier)),
+          ]),
+        ),
+        sources: Object.fromEntries(
+          ["total", "engine", "school_textbook", "past_exam", "other"].map(
+            (key) => [
+              key,
+              key === "total" || key === "engine"
+                ? tally(mathProblems)
+                : { held: 0, available: 0 },
+            ],
+          ),
+        ),
+        textbook: { held: 0, available: 0, books: [] },
+      },
+    });
+  }
+  if (path === `${base}/random`) {
+    const allocations = (body.allocations ?? []) as {
+      unitId: string;
+      count: number;
+    }[];
+    const problems = allocations.flatMap(({ unitId, count }) => {
+      const seen = new Set<string>();
+      return mathProblems
+        .filter((row) => {
+          if (row.unitId !== unitId || seen.has(mathFamily(row))) return false;
+          seen.add(mathFamily(row));
+          return true;
+        })
+        .slice(0, count);
+    });
+    return Response.json({ problems });
+  }
+  if (path === base) {
+    const list = (key: string) =>
+      query.get(key)?.split(",").filter(Boolean) ?? [];
+    const unitIds = list("unitIds");
+    const ids = list("ids");
+    const exclude = new Set(list("excludeIds"));
+    const families = new Set(
+      mathProblems
+        .filter((row) => list("excludeFamiliesOf").includes(row.id))
+        .map(mathFamily),
+    );
+    const difficulty = query.get("difficulty");
+    const rows = mathProblems.filter(
+      (row) =>
+        (!unitIds.length || unitIds.includes(row.unitId)) &&
+        (!ids.length || ids.includes(row.id)) &&
+        !exclude.has(row.id) &&
+        !families.has(mathFamily(row)) &&
+        (!difficulty || row.difficulty === difficulty),
+    );
+    const page = Number(query.get("page") ?? 1);
+    const pageSize = Number(query.get("pageSize") ?? 12);
+    return Response.json({
+      problems: rows.slice((page - 1) * pageSize, page * pageSize),
+      total: rows.length,
+      page,
+      pageSize,
+      grades: [{ grade: "중1", count: mathProblems.length }],
+      chapters: mathUnits.map((unit) => unit.chapter),
+      units: mathUnits,
+    });
+  }
+  return null;
+}
+
 export async function previewFetch(
   url: URL,
   init?: RequestInit,
@@ -202,6 +424,8 @@ export async function previewFetch(
   const method = init?.method?.toUpperCase() ?? "GET";
   const json = (value: unknown, status = 200) =>
     Response.json(value, { status });
+  const math = mathPreview(url, method, init);
+  if (math) return math;
   // The workspace has a fixture storage scope, so arithmetic uses its normal
   // catalog gate. Run its deterministic engine locally, never an account API.
   const arithmetic =

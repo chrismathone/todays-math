@@ -28,6 +28,33 @@ interface MathSourceOptions {
   onAvailability?: (value: BankSourceAvailability) => void;
 }
 
+/**
+ * 답안 형식 — 서버가 `classifyFormat` 으로 판정해 실어 보낸 값(`questionType`)을 그대로 읽는다.
+ * 판정이 안 된 문항은 «미분류»로 둔다(주관식으로 접지 않는다).
+ */
+const FORMAT_LABEL: Record<
+  NonNullable<StudioProblem["questionType"]>,
+  string
+> = {
+  "multiple-choice": "객관식",
+  "short-answer": "단답형",
+  descriptive: "서술형",
+};
+const FORMAT_ORDER = ["객관식", "단답형", "서술형", "미분류"] as const;
+const formatOf = (item: StudioProblem) =>
+  (item.questionType && FORMAT_LABEL[item.questionType]) || "미분류";
+
+const tally = (values: readonly string[], order: readonly string[]) => {
+  const counts = new Map<string, number>();
+  for (const value of values) counts.set(value, (counts.get(value) ?? 0) + 1);
+  return [
+    ...order.filter((key) => counts.has(key)),
+    ...[...counts.keys()].filter((key) => !order.includes(key)),
+  ]
+    .map((key) => `${key} ${counts.get(key)}`)
+    .join(", ");
+};
+
 const unitKey = (unit: Pick<UnitEntity, "grade" | "chapter" | "section">) =>
   JSON.stringify([unit.grade, unit.chapter, unit.section]);
 
@@ -205,10 +232,29 @@ export function createMathExamBuilderSource(
         }),
         scopeLabel: item.section,
         difficulty: item.difficulty,
-        detail: [item.grade, item.chapter, item.problemCode]
-          .filter(Boolean)
+        detail: [
+          item.grade,
+          item.chapter,
+          item.problemCode,
+          item.problemType,
+          formatOf(item),
+        ]
+          .filter((value, index, all) => value && all.indexOf(value) === index)
           .join(" · "),
       };
+    },
+    summarize(items) {
+      if (!items.length) return "";
+      // Distinct scopes, not review groups (those split A → B → A into three).
+      const scopes = new Set(items.map(scopeId).filter(Boolean));
+      return [
+        `단원 ${scopes.size}개`,
+        `난이도 ${tally(
+          items.map((item) => item.difficulty || "미지정"),
+          DIFFICULTY_LADDER,
+        )}`,
+        `형식 ${tally(items.map(formatOf), FORMAT_ORDER)}`,
+      ].join(" · ");
     },
     async prepareOutput(items, signal) {
       if (!items.length) return [];

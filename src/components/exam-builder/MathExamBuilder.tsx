@@ -39,6 +39,7 @@ import s from "./MathExamBuilder.module.css";
 import ExamBuilder from "./ExamBuilder";
 import type { ExamBuilderStep } from "./types";
 import MaterialPicker from "./MaterialPicker";
+import ExamAnswerPanel from "./ExamAnswerPanel";
 import {
   createMathExamBuilderSource,
   MATH_EXAM_DIFFICULTIES,
@@ -376,6 +377,7 @@ export default function MathExamBuilder({
           </>
         );
       }}
+      renderAnswer={(problem) => <ExamAnswerPanel problem={problem} />}
       renderOutput={({
         questions,
         title,

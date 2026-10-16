@@ -127,6 +127,17 @@
 .toolbar > .actions {
   margin-left: auto;
 }
+.reviewHeading {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+.reviewHeading small {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--learn-muted);
+  overflow-wrap: anywhere;
+}
 .badge {
   display: inline-block;
   color: var(--learn-accent);
@@ -297,6 +308,7 @@
 }
 .questions {
   padding: 0 20px;
+  container: exam-questions / inline-size;
 }
 .question {
   min-width: 0;
@@ -307,8 +319,55 @@
 }
 .questionTop {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   gap: 12px;
+}
+/* Answer and solution: below the question when narrow, beside it when there is room. */
+.answerPanel {
+  flex: 1 1 100%;
+  min-width: 0;
+  margin-top: 4px;
+  padding-top: 12px;
+  border-top: 1px solid var(--builder-border);
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.answerPanel h4 {
+  margin: 0 0 2px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--learn-muted);
+}
+.answerPanel section + section {
+  margin-top: 10px;
+}
+.answerPanel img,
+.answerPanel svg {
+  max-width: 100%;
+  height: auto;
+}
+.answerPanel :global(.katex-display) {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.answerMissing {
+  margin: 0;
+  color: var(--learn-muted);
+}
+@container exam-questions (min-width: 640px) {
+  .questionTop {
+    flex-wrap: nowrap;
+  }
+  .answerPanel {
+    flex: 0 0 clamp(200px, 34%, 300px);
+    margin-top: 0;
+    padding-top: 0;
+    padding-left: 16px;
+    border-top: 0;
+    border-left: 1px solid var(--builder-border);
+  }
 }
 .handle {
   width: 44px;
@@ -695,7 +754,8 @@
   .questionMain > small {
     grid-column: 3;
   }
-  .questionBody {
+  .questionBody,
+  .answerPanel {
     grid-column: 1 / -1;
   }
   .handle {

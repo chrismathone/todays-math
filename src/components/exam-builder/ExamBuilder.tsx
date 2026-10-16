@@ -23,6 +23,7 @@ export default function ExamBuilder<T>({
   difficulties,
   maxQuestions,
   renderQuestion,
+  renderAnswer,
   renderOutput,
   initialScopeIds,
   initialGroup,
@@ -308,6 +309,7 @@ export default function ExamBuilder<T>({
       </section>
     );
   const pages = Math.max(1, Math.ceil(allocations.length / 8));
+  const summary = source.summarize?.(questions);
   const currentPage = Math.min(scopePage, pages);
   return (
     <section className={s.root} data-exam-builder aria-label="시험지 만들기">
@@ -629,9 +631,12 @@ export default function ExamBuilder<T>({
         </aside>
         <section className={s.review} ref={reviewRef} aria-label="문항 검토">
           <div className={s.toolbar}>
-            <h2 ref={headingRef} tabIndex={-1}>
-              구성한 문항 <span className={s.badge}>{questions.length}</span>
-            </h2>
+            <div className={s.reviewHeading}>
+              <h2 ref={headingRef} tabIndex={-1}>
+                구성한 문항 <span className={s.badge}>{questions.length}</span>
+              </h2>
+              {summary && <small data-exam-summary>{summary}</small>}
+            </div>
             <div className={s.actions}>
               <button
                 type="button"
@@ -724,6 +729,7 @@ export default function ExamBuilder<T>({
                               {renderQuestion(item)}
                             </div>
                           </div>
+                          {renderAnswer?.(item)}
                         </div>
                         <div className={s.actions}>
                           <button

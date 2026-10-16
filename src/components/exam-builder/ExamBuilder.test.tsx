@@ -56,12 +56,14 @@ function Harness({
   initialStep,
   onStepChange,
   canOutput = true,
+  renderAnswer,
 }: {
   adapter: ExamBuilderSource<Item>;
   initial?: Item[];
   initialStep?: ExamBuilderStep;
   onStepChange?: (step: ExamBuilderStep) => void;
   canOutput?: boolean;
+  renderAnswer?: (item: Item) => React.ReactNode;
 }) {
   const [items, setItems] = useState(initial);
   const [title, setTitle] = useState("단원 평가");
@@ -82,6 +84,7 @@ function Harness({
         difficulties={["기본", "심화"]}
         maxQuestions={80}
         renderQuestion={(item) => <p>문항 내용 {item.id}</p>}
+        renderAnswer={renderAnswer}
         renderOutput={({
           questions: current,
           title: heading,
@@ -773,5 +776,36 @@ describe("shared exam builder workflow", () => {
       within(dialog).getByRole("button", { name: "이 문항으로 교체" }),
     );
     expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a2,b");
+  });
+  it("shows the source's composition counts by the review heading and answers beside each question", async () => {
+    const summarize = vi.fn(
+      (items: Item[]) => `단원 1개 · ${items.length}문항 요약`,
+    );
+    render(
+      <Harness
+        adapter={source({ summarize })}
+        initial={questions}
+        initialStep="review"
+        renderAnswer={(item) => <p>정답 {item.id}</p>}
+      />,
+    );
+    const review = screen.getByRole("region", { name: "문항 검토" });
+    expect(
+      within(review).getByText("단원 1개 · 3문항 요약"),
+    ).toBeInTheDocument();
+    expect(summarize).toHaveBeenLastCalledWith(questions);
+    const cards = review.querySelectorAll("[data-exam-question]");
+    expect(cards).toHaveLength(3);
+    expect(
+      within(cards[0] as HTMLElement).getByText("정답 a"),
+    ).toBeInTheDocument();
+  });
+  it("adds no summary or answer column for a source without them (English path)", () => {
+    render(
+      <Harness adapter={source()} initial={questions} initialStep="review" />,
+    );
+    const review = screen.getByRole("region", { name: "문항 검토" });
+    expect(review.querySelector("[data-exam-summary]")).toBeNull();
+    expect(review.querySelector("[data-exam-answer]")).toBeNull();
   });
 });

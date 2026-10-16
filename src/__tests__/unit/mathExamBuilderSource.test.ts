@@ -445,4 +445,40 @@ describe("Math exam builder source", () => {
     });
     expect(fetcher).toHaveBeenCalledTimes(2);
   });
+  it("summarizes the composed sheet by scope, our difficulty ladder and server-derived answer format", () => {
+    const source = createMathExamBuilderSource({ initialUnits: MOCK_UNITS });
+    const other = MOCK_UNITS[1];
+    const items = [
+      { ...row("s1"), difficulty: "기본", questionType: "multiple-choice" },
+      {
+        ...row("s2"),
+        unitId: other.id,
+        section: other.section,
+        difficulty: "응용",
+        questionType: "short-answer",
+      },
+      // A → B → A: still two scopes, not three groups
+      { ...row("s3"), difficulty: "기본", questionType: "descriptive" },
+      { ...row("s4"), difficulty: "연산", questionType: undefined },
+    ] as StudioProblem[];
+    expect(source.summarize!(items)).toBe(
+      "단원 2개 · 난이도 연산 1, 기본 2, 응용 1 · 형식 객관식 1, 단답형 1, 서술형 1, 미분류 1",
+    );
+    expect(source.summarize!([])).toBe("");
+  });
+
+  it("adds the delivered content type and answer format to the item meta line", () => {
+    const source = createMathExamBuilderSource({ initialUnits: MOCK_UNITS });
+    expect(
+      source.info({ ...row(), problemType: "계산", questionType: undefined })
+        .detail,
+    ).toBe(`${unit.grade} · ${unit.chapter} · M-001 · 계산 · 미분류`);
+    expect(source.info(row()).detail).toBe(
+      `${unit.grade} · ${unit.chapter} · M-001 · 서술형`,
+    );
+    // content type and format with the same word are not repeated
+    expect(source.info({ ...row(), problemType: "서술형" }).detail).toBe(
+      `${unit.grade} · ${unit.chapter} · M-001 · 서술형`,
+    );
+  });
 });
