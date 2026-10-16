@@ -582,7 +582,8 @@ describe("서버 없이 도는 대기열 — 넣어 준 시계 · 같은 규칙"
     // B 의 3단계를 푸는 동안 A 의 확인이 때가 됐다.
     clock.now = T0 + 60_000;
     const queue = await relearn.queue();
-    expect(queue.counts).toEqual({ judging: 0, ready: 3, waiting: 0 });
+    // 틀린 a2 는 1분 뒤, 틀리지 않은 a1 · a3(`exposed`)은 5분 뒤 확인 한 번이다(결정 2).
+    expect(queue.counts).toEqual({ judging: 0, ready: 1, waiting: 2 });
     // 대기열 밖의 저장 칸 — 확인은 같은 칸의 `relearn` 만 바꾼다.
     const outside = () => {
       const rest = main.snapshot();
@@ -632,21 +633,22 @@ describe("서버 없이 도는 대기열 — 넣어 준 시계 · 같은 규칙"
     clock.now = T0 + 45 * MIN;
     const back = await reopened.queue();
     expect(back.counts).toEqual({ judging: 0, ready: 3, waiting: 0 });
-    const done = await reopened.grade(check(back, "a1", 60));
+    const done = await reopened.grade(check(back, "a2", 60));
     expect(done.result.next).toEqual({
       stage: "confirm",
       dueAt: T0 + 45 * MIN + FIVE,
     });
     // 처음 것은 그대로다 — 저장 칸은 사본이다.
     expect(
-      (await relearn.queue()).items.find((i) => i.propositionId === "a1"),
+      (await relearn.queue()).items.find((i) => i.propositionId === "a2"),
     ).toMatchObject({ stage: "retry", checks: 0 });
     expect(reopenedMain.snapshot().relearn?.graded).toHaveLength(1);
   });
 
   it("못 알아본 글은 대조로 간다 — 판정 전에는 일정이 그대로이고, «같은 뜻»이면 맞힘이다", async () => {
     const { clock, relearn } = await seeded();
-    clock.now = T0 + MIN;
+    // a3 은 처음 배운 풀이의 틀리지 않은 명제 — 5분 뒤 확인 한 번(결정 2).
+    clock.now = T0 + FIVE;
     const queue = await relearn.queue();
     const waiting = await relearn.grade({
       ...check(queue, "a3", 60),
@@ -667,17 +669,15 @@ describe("서버 없이 도는 대기열 — 넣어 준 시계 · 같은 규칙"
         ],
       },
     });
-    clock.now = T0 + MIN + 15_000;
+    clock.now = T0 + FIVE + 15_000;
     const done = await relearn.judge({
       conceptId: A.id,
       propositionId: "a3",
       attemptId: uuid(60),
       judged: { "a3#1": "same" },
     });
-    expect(done.result).toMatchObject({
-      verdict: "passed",
-      next: { stage: "confirm", dueAt: T0 + MIN + 15_000 + FIVE },
-    });
+    // 5분 확인에서 도움 없이 맞혔으니 나간다.
+    expect(done.result).toMatchObject({ verdict: "passed", next: null });
   });
 
   it("꼴이 어긋난 요청 · 없는 개념 · 지어낸 증거를 학생 API 와 같은 갈래로 거절한다", async () => {

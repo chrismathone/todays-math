@@ -45,10 +45,14 @@ import { fadingTypedOutcome, type FadingTypedOutcome } from "./typed";
  *
  * | 일어난 일                                   | 대기열의 줄                         |
  * | ------------------------------------------- | ----------------------------------- |
- * | 틀림 · 넘김 · «다름» · 도움 · 답을 본 직후 | `retry` — 1분 뒤부터 확인           |
+ * | 틀림 · 넘김 · «다름» · 도움                 | `retry` — 1분 뒤부터 확인           |
+ * | 처음 배운 풀이의 틀리지 않은 명제(`exposed`) | `confirm` — 5분 뒤 확인 한 번(결정 2) |
  * | 그 확인에서 도움 없이 맞힘                  | `confirm` — 5분 뒤부터 다시 확인    |
  * | 그 확인에서도 도움 없이 맞힘                | 대기열에서 나간다                   |
  * | 어느 확인에서든 다시 틀림                   | `retry` — 1분 뒤 · 틀림의 수는 남는다 |
+ *
+ * 🔴 결정 2(원장님 승인 2026-10-16): 새로 드는 `exposed` 줄만 `confirm`·5분 뒤로 든다 — 실패 없이 끝나면 확인이 둘에서 하나다.
+ *    1분 확인을 빼도 기억 유지가 같다는 것은 **못 확인**했다(운영 절충). `confirm`·확인 0 은 «이미 한 번 통과»가 아니다 — 화면도 그렇게 적지 않는다.
  *
  * 🔴 **1분 · 5분은 원장님이 주신 처음 값**이다. 재서 고른 값이 아니고, 학생마다 다르게 하지도 않는다 — 여기에 속도 배수나 곡선의 최적화를 넣지 않는다.
  * 🔴 **장기 일정과 따로 돈다.** 이 파일의 함수는 받은 학생 칸에서 `relearn` 만 바꾼 새 값을 돌려준다 — 개념의 안정도 · 난이도 · 복습일 · 횟수,
@@ -385,6 +389,7 @@ type Entry = {
  * - 평가의 증거: 4단계의 진단은 4단계의 열쇠로 센다(그 자리에서 이미 알린 틀림은 다시 세지 않는다 — «다름»으로 고른 것만 새 증거다).
  *   이 풀이에서 이미 증거를 센 명제는 `lapsed` · `exposed` 로 다시 넣지 않는다.
  * - `exposed`(처음 배운 풀이의 틀리지 않은 명제)는 **새 줄로만** 든다 — 이미 대기열에 있는 줄은 건드리지 않는다.
+ *   새 줄은 `confirm`·5분 뒤 확인 한 번이다(결정 2 — 틀리면 그 확인의 규칙대로 `retry`·1분). 다른 까닭의 줄은 `retry`·1분이다.
  * 자리가 없으면(상한) 틀림이 먼저다 — 틀린 적 없는 `exposed` 줄 가운데 가장 먼저 든 것을 내보내고 들고, 그런 줄이 없으면 들지 못한다(`skipped`).
  * 증거가 있었는데 전부 이미 센 것이면 아무것도 하지 않는다(`duplicate`).
  */
@@ -503,8 +508,12 @@ export function observeFadingRelearn(
         conceptId: concept.id,
         propositionId: entry.propositionId,
         digest,
-        stage: "retry",
-        dueAt: retryAt,
+        ...(failed
+          ? { stage: "retry" as const, dueAt: retryAt }
+          : {
+              stage: "confirm" as const,
+              dueAt: now + FADING_RELEARN_CONFIRM_MS,
+            }),
         origin: entry.origin,
         since: now,
         fails: failed ? 1 : 0,

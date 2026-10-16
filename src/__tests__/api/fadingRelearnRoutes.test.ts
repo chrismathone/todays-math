@@ -591,7 +591,12 @@ describe("대기열 한 벌 — 증거 → 1분 → 5분 → 나감", () => {
         c.propositions.map((p, i) => [p.id, i === 0 ? "missed" : "exposed"]),
       ),
     );
-    expect(recorded.queue.items.every((i) => i.dueAt === T0 + MIN)).toBe(true);
+    // 틀린 명제는 1분 뒤, 처음 배운 풀이의 틀리지 않은 명제(`exposed`)는 5분 뒤 확인 한 번(결정 2).
+    expect(recorded.queue.items.map((i) => [i.stage, i.dueAt])).toEqual(
+      c.propositions.map((_, i) =>
+        i === 0 ? ["retry", T0 + MIN] : ["confirm", T0 + FIVE],
+      ),
+    );
     expect(restOfRecord()).toBe(longTerm);
     // 같은 증거를 다시 알리면 쓰지 않는다.
     const writes = f.writes;
@@ -812,12 +817,12 @@ describe("대기열 한 벌 — 증거 → 1분 → 5분 → 나감", () => {
     f.raceOnce = true;
     const done = await act({
       action: "grade",
-      attempt: attempt(q, c, c.propositions[1]!.id, 10),
+      attempt: attempt(q, c, c.propositions[0]!.id, 10),
     });
     expect(done.result!.verdict).toBe("passed");
     expect(done.queue.today.checks).toBe(1);
     expect(
-      done.queue.items.find((i) => i.propositionId === c.propositions[1]!.id),
+      done.queue.items.find((i) => i.propositionId === c.propositions[0]!.id),
     ).toMatchObject({ stage: "confirm", checks: 1 });
   });
 
@@ -887,7 +892,9 @@ describe("대기열 한 벌 — 증거 → 1분 → 5분 → 나감", () => {
     });
 
     await both(T0 + 30_000);
-    const ready = await both(T0 + MIN);
+    await both(T0 + MIN);
+    // 처음 배운 풀이의 틀리지 않은 명제(`exposed`)는 5분 뒤에 준비된다(결정 2).
+    const ready = await both(T0 + FIVE);
     const [p1, p2, p3] = c.propositions.map((p) => p.id) as [
       string,
       string,
@@ -913,12 +920,12 @@ describe("대기열 한 벌 — 증거 → 1분 → 5분 → 나감", () => {
       expect(mine.result).toEqual(server.result);
       expect(mine.queue).toEqual(server.queue);
     }
-    const waiting = await both(T0 + MIN + 10_000);
-    // 틀린 것(1분 뒤) · 맞힌 것(5분 뒤)은 기다리고, 못 알아본 글은 대조를 기다리고, 아직 안 한 것은 준비돼 있다.
+    const waiting = await both(T0 + FIVE + 10_000);
+    // 틀린 것(1분 뒤)은 기다리고, 맞힌 `exposed`(5분 확인 한 번)는 나갔고, 못 알아본 글은 대조를 기다리고, 아직 안 한 것은 준비돼 있다.
     expect(waiting.counts).toEqual({
       judging: 1,
       ready: c.propositions.length - 3,
-      waiting: 2,
+      waiting: 1,
     });
     const judgement = {
       conceptId: c.id,
@@ -929,11 +936,9 @@ describe("대기열 한 벌 — 증거 → 1분 → 5분 → 나감", () => {
     const server = await act({ action: "judge", judgement });
     const mine = await local.judge(judgement);
     expect(mine.result).toEqual(server.result);
-    expect(server.result).toMatchObject({
-      verdict: "passed",
-      next: { stage: "confirm", dueAt: T0 + MIN + 10_000 + FIVE },
-    });
-    await both(T0 + 2 * MIN);
+    // 5분 확인(`confirm`)에서 «같은 뜻»이면 도움 없이 맞힌 것이라 나간다.
+    expect(server.result).toMatchObject({ verdict: "passed", next: null });
+    await both(T0 + FIVE + 2 * MIN);
     await both(T0 + 30 * MIN);
   });
 
@@ -949,8 +954,8 @@ describe("대기열 한 벌 — 증거 → 1분 → 5분 → 나감", () => {
     });
     const before = await queue(await get());
     expect(before.today).toMatchObject({ on: "2026-10-06" });
-    // 다음 날 00:00:30 — 새 요청(새로 고침)으로 읽는다.
-    at(night + MIN);
+    // 다음 날 00:04:30 — 새 요청(새로 고침)으로 읽는다(`exposed` 의 5분 확인까지 때가 됐다).
+    at(night + FIVE);
     const after = await queue(await get());
     expect(after.today).toEqual({
       on: "2026-10-07",
@@ -1114,9 +1119,9 @@ describe("🔴 본 행동과 한 저장으로 등록된다(D3) — 증거를 따
     for (const p of c.propositions.slice(2))
       expect(after[p.id]).toEqual({
         origin: "exposed",
-        dueAt: T0 + 30_000 + MIN,
+        dueAt: T0 + 30_000 + FIVE,
         fails: 0,
-        stage: "retry",
+        stage: "confirm",
       });
     expect((await queue(await get())).today.entered).toBe(
       c.propositions.length,

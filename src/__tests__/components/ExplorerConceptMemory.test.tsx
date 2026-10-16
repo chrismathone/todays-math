@@ -295,7 +295,8 @@ describe("Explorer concept memory inside the old shell", () => {
     };
     const longTerm = outsideQueue();
     fireEvent.click(screen.getByRole("button", { name: "오늘의 복습으로" }));
-    now += 60000;
+    // Cold checks of a first rating come once, five minutes later (decision 2, 2026-10-16).
+    now += 300000;
     fireEvent(window, new Event("focus"));
     fireEvent.click(
       await screen.findByRole("button", { name: "추가 확인 시작" }),

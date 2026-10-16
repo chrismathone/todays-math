@@ -408,7 +408,7 @@ function Host({
 }
 
 describe("독립 앱의 단기 재학습(D5) — 탐험 안과 같은 1분 · 5분", () => {
-  it("첫 평가 → 등록 → 1분 뒤 «추가 확인 시작» → 성공 → 5분 뒤 다시 → 종료 · 복귀해도 대기열이 남는다", async () => {
+  it("첫 평가 → 등록 → 1분 뒤에는 아직 · 5분 뒤 «추가 확인 시작» → 성공이면 종료(확인 한 번 · 결정 2) · 복귀해도 대기열이 남는다", async () => {
     const clock = { now: T0 };
     const { main, relearn } = world(() => clock.now);
     await toFour(main);
@@ -440,7 +440,14 @@ describe("독립 앱의 단기 재학습(D5) — 탐험 안과 같은 1분 · 5�
     expect(
       screen.queryByRole("button", { name: "추가 확인 시작" }),
     ).not.toBeInTheDocument();
+    // 처음 배운 풀이의 틀리지 않은 명제는 5분 뒤 확인 한 번이다 — 1분 뒤에는 아직이다(결정 2).
     clock.now = T0 + MIN;
+    fireEvent(window, new Event("focus"));
+    await act(async () => {});
+    expect(
+      screen.queryByRole("button", { name: "추가 확인 시작" }),
+    ).not.toBeInTheDocument();
+    clock.now = T0 + FIVE;
     fireEvent(window, new Event("focus"));
     fireEvent.click(
       await screen.findByRole("button", { name: "추가 확인 시작" }),
@@ -452,7 +459,7 @@ describe("독립 앱의 단기 재학습(D5) — 탐험 안과 같은 1분 · 5�
       target: { value: "수직이등분선" },
     });
     fireEvent.click(within(check).getByRole("button", { name: "답 제출" }));
-    await within(check).findByText(/5분 뒤 다시 확인해요/);
+    await within(check).findByText(/이 문장의 추가 확인을 마쳤어요/);
     fireEvent.click(
       within(check).getByRole("button", { name: "원래 학습으로" }),
     );
@@ -469,11 +476,12 @@ describe("독립 앱의 단기 재학습(D5) — 탐험 안과 같은 1분 · 5�
       main: reopened,
       concepts: [concept],
     });
-    clock.now = T0 + MIN + FIVE;
+    expect(reopened.snapshot().relearn!.items).toHaveLength(2);
+    clock.now = T0 + FIVE + MIN;
     render(<Host main={reopened} relearnSource={reopenedRelearn} />);
-    // 셋 다 때가 됐다 — 보이는 문장에 맞는 답을 쓴다. 5분 뒤의 확인(sa-p0)은 나가고, 나머지는 5분 뒤 다시다.
+    // 남은 둘 — 보이는 문장에 맞는 답을 쓴다. 5분 확인 한 번이라 맞히면 나간다.
     const outcomes: string[] = [];
-    for (let round = 0; round < concept.propositions.length; round += 1) {
+    for (let round = 0; round < concept.propositions.length - 1; round += 1) {
       fireEvent.click(
         await screen.findByRole("button", { name: "추가 확인 시작" }),
       );
@@ -495,17 +503,11 @@ describe("독립 앱의 단기 재학습(D5) — 탐험 안과 같은 1분 · 5�
         within(again).getByRole("button", { name: "원래 학습으로" }),
       );
     }
-    expect(outcomes.find((o) => o.startsWith("sa-p0:"))).toMatch(
-      /이 문장의 추가 확인을 마쳤어요/,
-    );
-    expect(outcomes.filter((o) => /5분 뒤 다시 확인해요/.test(o))).toHaveLength(
-      2,
-    );
+    expect(outcomes).toHaveLength(2);
     expect(
-      reopened
-        .snapshot()
-        .relearn!.items.some((item) => item.propositionId === "sa-p0"),
-    ).toBe(false);
+      outcomes.every((o) => /이 문장의 추가 확인을 마쳤어요/.test(o)),
+    ).toBe(true);
+    expect(reopened.snapshot().relearn!.items).toEqual([]);
     // 장기 일정은 그대로다 — 분 단위 확인이 복습 횟수를 더하지 않는다.
     expect(reopened.snapshot().concepts[concept.id]).toMatchObject({
       reviews: 1,
