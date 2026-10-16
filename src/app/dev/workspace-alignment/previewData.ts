@@ -1,3 +1,4 @@
+import type { ExamCondition } from "@/contracts/examCondition.contract";
 import type { EnglishExam, EnglishSet } from "@/contracts/english.contract";
 import type { EnglishListeningDocument } from "@/contracts/englishListening.contract";
 import type { EnglishPassageDetail } from "@/contracts/englishBank.contract";
@@ -433,6 +434,164 @@ function mathPreview(url: URL, method: string, init?: RequestInit) {
   return null;
 }
 
+// ── 시험지 만들기 «이름 붙인 출제 조건»(W5) 예시 — 이 탭 안에서만 산다(계정 API 로 나가지 않는다). ──
+const previewLadder = (
+  patch: Partial<ExamCondition["condition"]["ladder"]> = {},
+): ExamCondition["condition"]["ladder"] => ({
+  연산: null,
+  기본: null,
+  응용: null,
+  심화하: null,
+  심화중: null,
+  심화상: null,
+  ...patch,
+});
+const ALL_SOURCES: ExamCondition["condition"]["source"] = {
+  group: "",
+  books: [],
+  kinds: [],
+  materials: [],
+  label: "전체 출처",
+};
+let previewConditions: ExamCondition[] = [
+  {
+    id: "preview-cond-1",
+    revision: 1,
+    condition: {
+      v: 1,
+      name: "중1 확인 · 수와 연산 4",
+      source: ALL_SOURCES,
+      rows: [
+        { unitId: mathUnits[0].id, label: "소인수분해", count: 2, fixed: true },
+        {
+          unitId: mathUnits[1].id,
+          label: "정수와 유리수의 덧셈",
+          count: 2,
+          fixed: false,
+        },
+      ],
+      total: 4,
+      ladder: previewLadder({ 기본: 2 }),
+      recent: true,
+      familyRule: true,
+      lastUsedAt: "2026-10-14T01:00:00.000Z",
+    },
+  },
+  {
+    id: "preview-cond-2",
+    revision: 1,
+    condition: {
+      v: 1,
+      name: "단원 마무리 · 옛 범위",
+      source: ALL_SOURCES,
+      rows: [
+        {
+          unitId: mathUnits[0].id,
+          label: "소인수분해",
+          count: 2,
+          fixed: false,
+        },
+        {
+          unitId: mathUnits[1].id,
+          label: "정수와 유리수의 덧셈",
+          count: 5,
+          fixed: false,
+        },
+        {
+          unitId: "50000000-0000-4000-8000-000000000099",
+          label: "문자의 사용과 식의 값",
+          count: 4,
+          fixed: false,
+        },
+      ],
+      total: null,
+      ladder: previewLadder(),
+      recent: true,
+      familyRule: true,
+      lastUsedAt: "2026-09-30T01:00:00.000Z",
+    },
+  },
+  {
+    id: "preview-cond-3",
+    revision: 1,
+    condition: {
+      v: 1,
+      name: "일일 3문항 · 쉬운 쪽",
+      source: ALL_SOURCES,
+      rows: [
+        {
+          unitId: mathUnits[1].id,
+          label: "정수와 유리수의 덧셈",
+          count: 3,
+          fixed: false,
+        },
+      ],
+      total: null,
+      ladder: previewLadder({ 연산: 1, 기본: 2 }),
+      recent: false,
+      familyRule: false,
+      lastUsedAt: "2026-09-12T01:00:00.000Z",
+    },
+  },
+];
+function conditionsPreview(url: URL, method: string, init?: RequestInit) {
+  const base = "/api/studio/exam-conditions";
+  if (url.pathname !== base && !url.pathname.startsWith(`${base}/`))
+    return null;
+  const now = new Date().toISOString();
+  const body = init?.body ? JSON.parse(String(init.body)) : {};
+  const id = decodeURIComponent(url.pathname.slice(base.length + 1));
+  const at = previewConditions.findIndex((row) => row.id === id);
+  const refuse = (message: string, code?: string, existing?: unknown) =>
+    Response.json({ error: { message, code, existing } }, { status: 409 });
+  if (method === "GET")
+    return Response.json({ data: previewConditions, meta: { limit: 50 } });
+  if (method === "POST") {
+    const same = previewConditions.find(
+      (row) =>
+        row.condition.name === body.condition.name &&
+        row.id !== body.replace?.id,
+    );
+    if (same)
+      return refuse(
+        "같은 이름의 조건이 있습니다.",
+        "EXAM_CONDITION_NAME_TAKEN",
+        {
+          id: same.id,
+          revision: same.revision,
+        },
+      );
+    const row = {
+      id: body.replace?.id ?? `preview-cond-${Date.now()}`,
+      revision: body.replace ? body.replace.expectedRevision + 1 : 1,
+      condition: { ...body.condition, lastUsedAt: now },
+    };
+    previewConditions = [
+      row,
+      ...previewConditions.filter((item) => item.id !== row.id),
+    ];
+    return Response.json({ data: row }, { status: body.replace ? 200 : 201 });
+  }
+  if (at < 0) return refuse("조건을 찾지 못했습니다.");
+  const row = previewConditions[at];
+  if (method === "DELETE") {
+    previewConditions = previewConditions.filter((item) => item.id !== id);
+    return Response.json({ data: { deleted: true } });
+  }
+  const next = {
+    ...row,
+    revision: row.revision + 1,
+    condition: {
+      ...row.condition,
+      ...(body.action === "rename" ? { name: body.name } : { lastUsedAt: now }),
+    },
+  };
+  previewConditions = previewConditions.map((item) =>
+    item.id === id ? next : item,
+  );
+  return Response.json({ data: next });
+}
+
 export async function previewFetch(
   url: URL,
   init?: RequestInit,
@@ -444,6 +603,8 @@ export async function previewFetch(
     Response.json(value, { status });
   const math = mathPreview(url, method, init);
   if (math) return math;
+  const conditions = conditionsPreview(url, method, init);
+  if (conditions) return conditions;
   // The workspace has a fixture storage scope, so arithmetic uses its normal
   // catalog gate. Run its deterministic engine locally, never an account API.
   const arithmetic =

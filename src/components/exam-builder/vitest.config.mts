@@ -5,7 +5,10 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: "jsdom",
-    include: ["src/components/exam-builder/ExamBuilder.test.tsx"],
+    include: [
+      "src/components/exam-builder/ExamBuilder.test.tsx",
+      "src/components/exam-builder/SavedConditions.test.tsx",
+    ],
     testTimeout: 20000,
   },
 });

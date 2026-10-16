@@ -234,6 +234,8 @@ export function accountRouteAllowed(
   if (
     [
       "/api/studio/problems",
+      // 시험지 만들기의 «이름 붙인 출제 조건»(W5) — 그 화면의 메뉴를 따른다.
+      "/api/studio/exam-conditions",
       "/api/problems",
       "/problems",
       "/review",

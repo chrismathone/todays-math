@@ -15,8 +15,11 @@ import { PGlite } from "@electric-sql/pglite";
 
 import {
   DOCUMENT_KINDS,
+  EXAM_CONDITION_KIND,
   documentKindLabel,
   documentKindSchema,
+  libraryDocumentKindSchema,
+  saveDocumentSchema,
 } from "@/contracts/privateWorkspace.contract";
 
 const MIGRATIONS = path.join(process.cwd(), "prisma", "migrations");
@@ -57,9 +60,9 @@ describe("내 시험지 자료 종류 ↔ DB CHECK(workspace_document_kind_check
   });
 
   // 2026-10-16 외부 검토 §3 — 표 배지 · 종류 고르기 · 정보 창 · 저장 창이 한 정의를 읽는다.
-  it("화면의 종류 정의(이름 · 차례)가 저장값 넷을 한 번씩 덮고, 이름이 비지 않는다", () => {
+  it("화면의 종류 정의(이름 · 차례)가 자료 종류 넷을 한 번씩 덮고, 이름이 비지 않는다", () => {
     expect(DOCUMENT_KINDS.map((entry) => entry.id).sort()).toEqual(
-      [...documentKindSchema.options].sort(),
+      [...libraryDocumentKindSchema.options].sort(),
     );
     expect(DOCUMENT_KINDS.map((entry) => entry.label)).toEqual([
       "시험지",
@@ -67,8 +70,27 @@ describe("내 시험지 자료 종류 ↔ DB CHECK(workspace_document_kind_check
       "추출한 자료",
       "개념 백지",
     ]);
-    for (const option of documentKindSchema.options)
+    for (const option of libraryDocumentKindSchema.options)
       expect(documentKindLabel(option)).not.toBe(option);
+  });
+
+  // 2026-10-16 W5 «이름 붙인 출제 조건» — 같은 표에 담지만 자료가 아니다.
+  it("출제 조건은 표의 종류에는 있고 자료 종류 · 화면의 종류 · 자료 저장 형식에는 없다", () => {
+    expect(documentKindSchema.options).toContain(EXAM_CONDITION_KIND);
+    expect(libraryDocumentKindSchema.options).not.toContain(
+      EXAM_CONDITION_KIND,
+    );
+    expect(DOCUMENT_KINDS.map((entry) => entry.id)).not.toContain(
+      EXAM_CONDITION_KIND,
+    );
+    expect(
+      saveDocumentSchema.safeParse({
+        kind: EXAM_CONDITION_KIND,
+        title: "조건",
+        payload: {},
+        expectedRevision: null,
+      }).success,
+    ).toBe(false);
   });
 
   it("widens the real PostgreSQL CHECK without losing old rows or allowing unknown kinds", async () => {
@@ -96,16 +118,16 @@ describe("내 시험지 자료 종류 ↔ DB CHECK(workspace_document_kind_check
           "{}",
         ]),
       ).rejects.toMatchObject({ code: "23514" });
-      await memory.exec(
-        readFileSync(
-          path.join(
-            MIGRATIONS,
-            "20261014190000_workspace_document_arithmetic_sheet",
-            "migration.sql",
+      for (const migration of [
+        "20261014190000_workspace_document_arithmetic_sheet",
+        "20261016180000_workspace_document_exam_condition",
+      ])
+        await memory.exec(
+          readFileSync(
+            path.join(MIGRATIONS, migration, "migration.sql"),
+            "utf8",
           ),
-          "utf8",
-        ),
-      );
+        );
       expect(
         (await memory.query('SELECT * FROM "workspace_document" ORDER BY id'))
           .rows,

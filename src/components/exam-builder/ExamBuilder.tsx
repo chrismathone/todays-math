@@ -2,13 +2,27 @@
 
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import StudioStepBar from "@/components/unified/StudioStepBar";
+import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
+import type {
+  ExamCondition,
+  ExamConditionInput,
+} from "@/contracts/examCondition.contract";
 import type {
   ExamAllocation,
   ExamBuilderProps,
   ExamBuilderSource,
   ExamBuilderStep,
+  ExamSavedSelection,
   ExamScope,
 } from "./types";
+import {
+  ApplyReport,
+  ConditionLine,
+  SaveConditionBox,
+  SavedConditionsDialog,
+  type ApplyReportValue,
+} from "./SavedConditions";
+import sc from "./SavedConditions.module.css";
 import ScopePicker from "./ScopePicker";
 import {
   emptyLadder,
@@ -47,6 +61,7 @@ export default function ExamBuilder<T>({
   onOutputIntent,
   disabled = false,
   status,
+  namedConditions,
 }: ExamBuilderProps<T>) {
   const uid = useId();
   // A known saved stage is opt-in; legacy content alone never implies progress.
@@ -212,6 +227,181 @@ export default function ExamBuilder<T>({
         (scope?.count === undefined || row.count <= scope.count)
       );
     });
+  // W5 «이름 붙인 출제 조건» — 구성 조건(W4)이 있는 출처에서만(수학). 조건만 오간다 — 문항은 [문항 구성 →]으로 새로.
+  const named = conditions ? namedConditions : undefined;
+  const namedClient = named?.client;
+  const [saved, setSaved] = useState<{
+    items: ExamCondition[];
+    error?: string;
+  } | null>(null);
+  const [savedRetry, setSavedRetry] = useState(0);
+  const [savedOpen, setSavedOpen] = useState(false);
+  const savedOpener = useRef<HTMLButtonElement>(null);
+  const [saving, setSaving] = useState(false);
+  const [applyReport, setApplyReport] = useState<ApplyReportValue | null>(null);
+  // 적용한 조건 — 표 · 조건 · 출처가 적용한 그대로인 동안만 «○○ 적용함»(손대면 사라진다).
+  const [appliedMark, setAppliedMark] = useState<{
+    id: string;
+    name: string;
+    key: string;
+    allocations: string;
+    applied: string;
+  } | null>(null);
+  // 적용을 눌렀고, 되돌린 출처의 출제 가능 수가 아직 안 왔다 — 오면 표에 넣는다.
+  const [pendingApply, setPendingApply] = useState<{
+    item: ExamCondition;
+    key: string;
+    recent: boolean;
+    applied: AppliedConditions;
+  } | null>(null);
+  useEffect(() => {
+    if (!namedClient) return;
+    const controller = new AbortController();
+    void namedClient
+      .list(controller.signal)
+      .then((items) => {
+        if (!controller.signal.aborted) setSaved({ items: byLastUse(items) });
+      })
+      .catch((cause) => {
+        if (!controller.signal.aborted)
+          setSaved({
+            items: [],
+            error:
+              cause instanceof Error
+                ? cause.message
+                : "저장한 조건을 불러오지 못했습니다.",
+          });
+      });
+    return () => controller.abort();
+  }, [namedClient, savedRetry]);
+  const selectionKey = named ? selectionKeyOf(named.selection) : "";
+  if (
+    pendingApply &&
+    named &&
+    selectionKey === pendingApply.key &&
+    excludeRecent === pendingApply.recent &&
+    loaded
+  ) {
+    // 되돌린 출처로 다시 센 수가 왔다 — 범위가 사라졌거나 0 이면 빼고, 모자라면 그 수까지만(다른 범위로 채우지 않는다).
+    const c = pendingApply.item.condition;
+    setPendingApply(null);
+    if (loaded.error)
+      setError(`«${c.name}»의 범위를 확인하지 못했습니다. ${loaded.error}`);
+    else {
+      const available = new Map(
+        loaded.scopes.map((scope) => [scope.id, scope]),
+      );
+      const report: ApplyReportValue = { name: c.name, dropped: [], short: [] };
+      const next: ExamAllocation[] = [];
+      for (const row of c.rows) {
+        const scope = available.get(row.unitId);
+        if (!scope)
+          report.dropped.push({ label: row.label, reason: "차시를 찾지 못함" });
+        else if (!canSelectScope(scope, source.requireScopeCounts))
+          report.dropped.push({
+            label: scope.label,
+            reason:
+              scope.count === 0
+                ? "지금 출제 가능 문항이 없음"
+                : "출제 가능 수를 확인하지 못함",
+          });
+        else {
+          let count = Math.min(row.count, maxQuestions);
+          if (scope.count !== undefined && count > scope.count) {
+            report.short.push(
+              `${scope.label} — ${c.recent ? "최근 출제를 빼면 " : ""}${scope.count}${scope.countUnit ?? "문항"}뿐(${row.count} 필요)`,
+            );
+            count = scope.count;
+          }
+          next.push({ scopeId: row.unitId, count, fixed: row.fixed });
+        }
+      }
+      setAllocations(next);
+      setScopePage(1);
+      setApplyReport(report);
+      setAppliedMark({
+        id: pendingApply.item.id,
+        name: c.name,
+        key: pendingApply.key,
+        allocations: JSON.stringify(next),
+        applied: JSON.stringify(pendingApply.applied),
+      });
+    }
+  }
+  const markActive =
+    !!appliedMark &&
+    !pendingApply &&
+    appliedMark.key === selectionKey &&
+    appliedMark.allocations === JSON.stringify(configuredAllocations) &&
+    appliedMark.applied === JSON.stringify(applied);
+  function applySaved(item: ExamCondition) {
+    if (!named || !conditions) return;
+    const c = item.condition;
+    const tiers = c.ladder as Record<string, number | null>;
+    const nextApplied: AppliedConditions = {
+      total: c.total,
+      ladder: Object.fromEntries(
+        conditions.ladder.map((tier) => [tier, tiers[tier] ?? null]),
+      ),
+      recent: c.recent,
+    };
+    const selection = { source: c.source, familyRule: c.familyRule };
+    setApplied(nextApplied);
+    named.restore(selection);
+    setPendingApply({
+      item,
+      key: selectionKeyOf(selection),
+      recent: c.recent,
+      applied: nextApplied,
+    });
+    setAppliedMark(null);
+    setApplyReport(null);
+    setSavedOpen(false);
+    setSaving(false);
+    setError("");
+    setNotice("");
+    setStep("scope");
+    // 적용 = 쓴 것 — 마지막 사용을 오늘로(목록의 차례). 실패해도 적용은 그대로다.
+    void named.client
+      .touch(item.id)
+      .then((updated) =>
+        setSaved((current) =>
+          current
+            ? {
+                ...current,
+                items: byLastUse(
+                  current.items.map((entry) =>
+                    entry.id === updated.id ? updated : entry,
+                  ),
+                ),
+              }
+            : current,
+        ),
+      )
+      .catch(() => {});
+  }
+  function currentCondition(
+    name: string,
+    selection: ExamSavedSelection,
+  ): ExamConditionInput {
+    return {
+      v: 1,
+      name,
+      source: selection.source,
+      rows: allocations.map((row) => ({
+        unitId: row.scopeId,
+        label: scopeMap.get(row.scopeId)?.label ?? "선택 범위",
+        count: row.count,
+        fixed: !!row.fixed,
+      })),
+      total: applied.total,
+      ladder: Object.fromEntries(
+        DIFFICULTY_LADDER.map((tier) => [tier, applied.ladder[tier] ?? null]),
+      ) as ExamConditionInput["ladder"],
+      recent: applied.recent,
+      familyRule: selection.familyRule,
+    };
+  }
   const counts = new Map<string, number>();
   questions.forEach((item) => {
     const id = source.info(item).scopeId;
@@ -327,6 +517,7 @@ export default function ExamBuilder<T>({
         throw new Error("출력할 문항이 없습니다. 문항을 다시 확인해 주세요.");
       change(distinct);
       if (kind === "compose") {
+        setApplyReport(null);
         setNotice(
           [
             distinct.length < requested
@@ -506,6 +697,15 @@ export default function ExamBuilder<T>({
               onChange={(e) => onTitleChange(e.target.value)}
             />
           </div>
+          {named && (
+            <ConditionLine
+              appliedName={markActive ? appliedMark!.name : null}
+              count={saved && !saved.error ? saved.items.length : null}
+              disabled={actionsDisabled}
+              opener={savedOpener}
+              onOpen={() => setSavedOpen(true)}
+            />
+          )}
           <section
             className={s.panel}
             ref={scopeRef}
@@ -534,6 +734,12 @@ export default function ExamBuilder<T>({
                 {allocations.length ? "범위 변경" : "범위 선택"}
               </button>
             </header>
+            {named && markActive && applyReport && (
+              <ApplyReport
+                report={applyReport}
+                hasQuestions={!!questions.length}
+              />
+            )}
             {unavailableRestored > 0 && (
               <p className={s.empty} role="status">
                 출제 가능한 문항이 없는 {unavailableRestored}개 범위를 구성에서
@@ -779,15 +985,50 @@ export default function ExamBuilder<T>({
                         : `최대 ${maxQuestions}문항`}
                 </small>
               </div>
-              <button
-                type="button"
-                className={s.primary}
-                disabled={actionsDisabled || !valid}
-                onClick={() => void run("compose")}
-              >
-                {busy ? "준비 중…" : "문항 구성 →"}
-              </button>
+              <div className={sc.footActions}>
+                {named && (
+                  <button
+                    type="button"
+                    disabled={actionsDisabled || !allocations.length || saving}
+                    onClick={() => setSaving(true)}
+                  >
+                    조건 저장
+                  </button>
+                )}
+                <button
+                  type="button"
+                  className={s.primary}
+                  disabled={actionsDisabled || !valid}
+                  onClick={() => void run("compose")}
+                >
+                  {busy ? "준비 중…" : "문항 구성 →"}
+                </button>
+              </div>
             </footer>
+            {named && saving && allocations.length > 0 && (
+              <SaveConditionBox
+                defaultName={title.trim()}
+                contents={currentCondition("", named.selection)}
+                items={saved?.items ?? []}
+                tiers={conditions!.ladder}
+                onCancel={() => setSaving(false)}
+                onSave={async (name, replace) => {
+                  const result = await named.client.save(
+                    currentCondition(name, named.selection),
+                    replace,
+                  );
+                  setSaved((current) => ({
+                    items: byLastUse([
+                      result,
+                      ...(current?.items ?? []).filter(
+                        (entry) => entry.id !== result.id,
+                      ),
+                    ]),
+                  }));
+                  setSaving(false);
+                }}
+              />
+            )}
           </section>
         </aside>
         <section className={s.review} ref={reviewRef} aria-label="문항 검토">
@@ -1004,6 +1245,57 @@ export default function ExamBuilder<T>({
           }}
         />
       )}
+      {named && savedOpen && (
+        <SavedConditionsDialog
+          items={saved?.items ?? []}
+          loading={!saved}
+          error={saved?.error}
+          tiers={conditions!.ladder}
+          returnFocus={savedOpener}
+          onRetry={() => {
+            setSaved(null);
+            setSavedRetry((value) => value + 1);
+          }}
+          onClose={() => setSavedOpen(false)}
+          onApply={applySaved}
+          onRename={async (item, name) => {
+            const updated = await named.client.rename(
+              item.id,
+              name,
+              item.revision,
+            );
+            setSaved((current) =>
+              current
+                ? {
+                    ...current,
+                    items: current.items.map((entry) =>
+                      entry.id === updated.id ? updated : entry,
+                    ),
+                  }
+                : current,
+            );
+            setAppliedMark((mark) =>
+              mark?.id === updated.id
+                ? { ...mark, name: updated.condition.name }
+                : mark,
+            );
+          }}
+          onRemove={async (item) => {
+            await named.client.remove(item.id, item.revision);
+            setSaved((current) =>
+              current
+                ? {
+                    ...current,
+                    items: current.items.filter(
+                      (entry) => entry.id !== item.id,
+                    ),
+                  }
+                : current,
+            );
+            setAppliedMark((mark) => (mark?.id === item.id ? null : mark));
+          }}
+        />
+      )}
       {scopeOpen && (
         <ScopePicker
           scopes={scopes}
@@ -1104,6 +1396,19 @@ export default function ExamBuilder<T>({
           )}
     </section>
   );
+}
+
+/** 저장한 조건의 차례 — 마지막으로 쓴 것이 위. */
+function byLastUse(items: ExamCondition[]) {
+  return [...items].sort(
+    (a, b) =>
+      Date.parse(b.condition.lastUsedAt) - Date.parse(a.condition.lastUsedAt),
+  );
+}
+/** 출처 고르기의 열쇠 — 글(`label`)은 빼고 거는 것만. 적용한 출처가 화면에 걸렸는지 가른다. */
+function selectionKeyOf(selection: ExamSavedSelection) {
+  const { group, books, kinds, materials } = selection.source;
+  return JSON.stringify([group, books, kinds, materials, selection.familyRule]);
 }
 
 /** «오늘»(서울) — 최근 출제 규칙의 문장에 쓰는 «10/16». 서버도 서울 날짜로 14일을 센다. */

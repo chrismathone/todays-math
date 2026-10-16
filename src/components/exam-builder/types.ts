@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import type { WorkspaceWorkflowStep } from "@/contracts/workspaceWorkflow.contract";
+import type { ExamConditionSource } from "@/contracts/examCondition.contract";
+import type { ExamConditionsClient } from "./examConditionsClient";
 
 /** Subject data stays in its native contract; this UI only owns the common workflow. */
 export type ExamBuilderStep = WorkspaceWorkflowStep;
@@ -38,6 +40,22 @@ export interface ExamConditionsSupport {
   ladder: readonly string[];
   /** 최근 출제 빼기의 날 수(D-20 — 14). */
   recentDays: number;
+}
+/** 출처 칸 쪽이 가진 고르기 — 출처 · 자료 · 같은 문항류 규칙(W5 조건에 함께 담는다). */
+export interface ExamSavedSelection {
+  source: ExamConditionSource;
+  familyRule: boolean;
+}
+/**
+ * W5 «이름 붙인 출제 조건» — 없으면 그 줄 · 단추 · 창을 그리지 않는다(영어). 구성 조건(W4)이 있는 출처에서만 쓴다.
+ * 조건만 오간다 — 문항은 적용한 뒤 [문항 구성 →]으로 새로 고른다.
+ */
+export interface ExamNamedConditions {
+  /** 지금의 출처 고르기(저장할 때 담는다). */
+  selection: ExamSavedSelection;
+  /** 저장한 고르기로 되돌린다 — 출처가 바뀌면 범위의 출제 가능 수를 다시 센 뒤 표에 넣는다. */
+  restore: (selection: ExamSavedSelection) => void;
+  client: ExamConditionsClient;
 }
 export interface ExamQuestionInfo {
   id: string;
@@ -132,4 +150,6 @@ export interface ExamBuilderProps<T> {
   onOutputIntent?: () => void;
   disabled?: boolean;
   status?: ReactNode;
+  /** W5 «이름 붙인 출제 조건»(수학). */
+  namedConditions?: ExamNamedConditions;
 }

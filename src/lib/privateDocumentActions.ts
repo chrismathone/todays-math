@@ -16,6 +16,8 @@ import {
 } from "@/lib/privateWorkspace";
 import {
   documentIdSchema,
+  isLibraryDocumentKind,
+  LIBRARY_DOCUMENT_KINDS,
   saveDocumentSchema,
   type DocumentKind,
 } from "@/contracts/privateWorkspace.contract";
@@ -79,6 +81,12 @@ async function problemCountOf(
   return Array.isArray(list) && list.length <= 2000 ? list.length : null;
 }
 
+/**
+ * 자료 길이 다루는 종류 — 출제 조건(W5 `examCondition`)은 같은 표에 있지만 자료가 아니라, 읽기 · 이름 바꾸기 · 삭제 ·
+ * 사본 · 덮어쓰기 어느 것도 이 길로 닿지 않는다(제 길은 `/api/studio/exam-conditions`).
+ */
+const libraryKindWhere = { kind: { in: [...LIBRARY_DOCUMENT_KINDS] } };
+
 export async function readDocument(
   request: Request,
   id: string,
@@ -108,7 +116,8 @@ export async function readDocument(
         where: { userId_id: { userId: access.ownerId!, id } },
         include: { user: { select: { name: true } } },
       });
-  if (!document) return privateError("자료를 찾지 못했습니다.", 404);
+  if (!document || !isLibraryDocumentKind(document.kind))
+    return privateError("자료를 찾지 못했습니다.", 404);
   if (
     !owner &&
     arithmeticDocumentsOnly(access.account!) &&
@@ -325,7 +334,7 @@ export async function deleteDocument(request: Request, id: string) {
   const userId = access.ownerId!;
   const deleted = await db.$transaction(async (tx) => {
     const document = await tx.workspaceDocument.findFirst({
-      where: { userId, id, revision },
+      where: { userId, id, revision, ...libraryKindWhere },
     });
     if (!document) return false;
     if (document.kind === ARITHMETIC_SHEET_KIND) {
@@ -334,7 +343,7 @@ export async function deleteDocument(request: Request, id: string) {
     } else if (!access.account!.menus.includes("library"))
       return privateError("내 시험지 메뉴를 사용할 권한이 없습니다.", 403);
     const removed = await tx.workspaceDocument.deleteMany({
-      where: { userId, id, revision },
+      where: { userId, id, revision, ...libraryKindWhere },
     });
     if (removed.count !== 1) return false;
     await tx.accountAuditLog.create({
@@ -382,7 +391,7 @@ export async function renameDocument(request: Request, id: string) {
   const { title, expectedRevision } = parsed.data;
   const document = await db.$transaction(async (tx) => {
     const previous = await tx.workspaceDocument.findFirst({
-      where: { userId, id, revision: expectedRevision },
+      where: { userId, id, revision: expectedRevision, ...libraryKindWhere },
     });
     if (!previous) return null;
     if (previous.kind === ARITHMETIC_SHEET_KIND) {
@@ -397,6 +406,7 @@ export async function renameDocument(request: Request, id: string) {
     if (blank && title.length > CONCEPT_BLANK_TITLE_MAX) return "too-long";
     const payload = previous.payload as Prisma.JsonObject;
     const changed = await tx.workspaceDocument.updateMany({
+      // 종류는 위 findFirst 가 가렸다 — 버전이 같으면 같은 행이다.
       where: { userId, id, revision: expectedRevision },
       data: {
         title,
@@ -460,7 +470,12 @@ export async function copyDocument(request: Request, id: string) {
   const userId = access.ownerId!;
   const copied = await db.$transaction(async (tx) => {
     const source = await tx.workspaceDocument.findFirst({
-      where: { ...sharedDocumentWhere(access.account!), userId: ownerId!, id },
+      where: {
+        ...sharedDocumentWhere(access.account!),
+        ...libraryKindWhere,
+        userId: ownerId!,
+        id,
+      },
     });
     if (!source) return null;
     if (

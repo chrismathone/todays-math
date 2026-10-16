@@ -271,6 +271,26 @@ describe("account approval and menu route policy", () => {
       );
     });
   });
+  it("opens named exam conditions (W5) to the 시험지 만들기 menu only", () => {
+    for (const [method, path] of [
+      ["GET", "/api/studio/exam-conditions"],
+      ["POST", "/api/studio/exam-conditions"],
+      ["PATCH", "/api/studio/exam-conditions/c1"],
+      ["DELETE", "/api/studio/exam-conditions/c1"],
+    ]) {
+      expect(
+        accountRouteAllowed({ ...account, menus: ["bank"] }, method!, path!),
+      ).toBe(true);
+      for (const menus of [
+        [],
+        ["library"],
+        ["studio", "export"],
+      ] as AccountAccess["menus"][])
+        expect(accountRouteAllowed({ ...account, menus }, method!, path!)).toBe(
+          false,
+        );
+    }
+  });
   it("requires both bank and studio for AI problem transformations", () => {
     expect(
       accountRouteAllowed(

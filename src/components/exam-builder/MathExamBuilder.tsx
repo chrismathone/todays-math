@@ -37,7 +37,12 @@ import { useUsageLabels } from "@/components/usage-labels/useUsageLabels";
 import UsageLabel from "@/components/usage-labels/UsageLabel";
 import s from "./MathExamBuilder.module.css";
 import ExamBuilder from "./ExamBuilder";
-import type { ExamBuilderStep } from "./types";
+import type {
+  ExamBuilderStep,
+  ExamNamedConditions,
+  ExamSavedSelection,
+} from "./types";
+import { createExamConditionsClient } from "./examConditionsClient";
 import MaterialPicker from "./MaterialPicker";
 import ExamAnswerPanel from "./ExamAnswerPanel";
 import {
@@ -230,9 +235,39 @@ export default function MathExamBuilder({
       },
     };
   }, [initialData.units, initialData.unitCounts, filters, distinctFamilies]);
+  // W5 «이름 붙인 출제 조건» — 출처 고르기 · 자료 · 같은 문항류 규칙을 조건에 함께 담고, 적용하면 되돌린다.
+  const conditionsClient = useMemo(() => createExamConditionsClient(), []);
+  const sourceLabel = sourceFieldText(counts, pick);
+  const namedConditions = useMemo<ExamNamedConditions>(
+    () => ({
+      selection: {
+        source: {
+          group: pick.group,
+          books: pick.books,
+          kinds: pick.kinds,
+          materials: pick.group === "school_textbook" ? materialIds : [],
+          label: materialIds.length
+            ? `${sourceLabel} · 자료 ${materialIds.length}개`
+            : sourceLabel,
+        },
+        familyRule: distinctFamilies,
+      },
+      restore: ({ source: saved, familyRule }: ExamSavedSelection) => {
+        setPick({ group: saved.group, books: saved.books, kinds: saved.kinds });
+        setMaterialIds(
+          saved.group === "school_textbook" ? saved.materials : [],
+        );
+        setMaterialOpen(false);
+        setDistinctFamilies(familyRule);
+      },
+      client: conditionsClient,
+    }),
+    [pick, materialIds, sourceLabel, distinctFamilies, conditionsClient],
+  );
   return (
     <ExamBuilder
       source={source}
+      namedConditions={namedConditions}
       questions={editor.selected}
       onQuestionsChange={onQuestionsChange}
       title={editor.title}

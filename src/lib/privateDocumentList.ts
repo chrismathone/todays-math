@@ -11,7 +11,11 @@ import {
   privateError,
 } from "@/lib/privateWorkspace";
 import { ARITHMETIC_SHEET_KIND } from "@/contracts/arithmetic.contract";
-import { documentKindSchema } from "@/contracts/privateWorkspace.contract";
+import {
+  EXAM_CONDITION_KIND,
+  LIBRARY_DOCUMENT_KINDS,
+  libraryDocumentKindSchema,
+} from "@/contracts/privateWorkspace.contract";
 import {
   listDocumentWorkflows,
   workflowDocumentKey,
@@ -21,7 +25,14 @@ export async function listDocuments(request: Request, owner?: string) {
   if (access.response) return access.response;
   const url = new URL(request.url),
     { page, pageSize } = pagination(url, 20);
-  const kind = documentKindSchema.safeParse(url.searchParams.get("kind"));
+  const kind = libraryDocumentKindSchema.safeParse(
+    url.searchParams.get("kind"),
+  );
+  // 출제 조건(W5)은 같은 표에 있지만 자료가 아니다 — 목록 · 수 어디에도 싣지 않는다(종류를 콕 집어 물어도).
+  const libraryKinds =
+    url.searchParams.get("kind") === EXAM_CONDITION_KIND
+      ? { in: [] as string[] }
+      : { in: [...LIBRARY_DOCUMENT_KINDS] as string[] };
   const arithmeticOnly = !owner && arithmeticDocumentsOnly(access.account!);
   if (arithmeticOnly && kind.success && kind.data !== ARITHMETIC_SHEET_KIND)
     return privateError("이 자료 목록을 볼 권한이 없습니다.", 403);
@@ -33,7 +44,7 @@ export async function listDocuments(request: Request, owner?: string) {
       ? { kind: ARITHMETIC_SHEET_KIND }
       : kind.success
         ? { kind: kind.data }
-        : {}),
+        : { kind: libraryKinds }),
   };
   const [items, total] = await Promise.all([
     db.workspaceDocument.findMany({
