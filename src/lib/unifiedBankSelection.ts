@@ -56,6 +56,11 @@ const allocationSchema = z
      * 범위는 할당이 정한다 — 차시 고르기(`unitIds` · `unitFrom` · `unitTo`) · `ids` 를 실으면 400 이다.
      */
     filters: z.string().max(8000).default(""),
+    /**
+     * D-111 을 시험지 만들기에서 지킬지 — 기본 켜짐. 원장님이 끄면(2026-10-16 «기본 켜짐 · 끌 수 있음»)
+     * 문항 하나가 각자 한 갈래로 서 예전처럼 행 단위로 뽑는다. 일일테스트 경로는 이 칸이 없다(늘 켜짐).
+     */
+    distinctFamilies: z.boolean().default(true),
   })
   .refine(
     ({ allocations }) =>
@@ -111,7 +116,12 @@ export async function composeUnifiedBankProblems(input: unknown) {
     throw new UnifiedBankQueryError(
       "단원별 문항 수를 확인해 주세요. 한 번에 1~100문항을 구성할 수 있습니다.",
     );
-  const { allocations, excludeIds, filters } = parsed.data;
+  const { allocations, excludeIds, filters, distinctFamilies } = parsed.data;
+  const familyOf = (row: {
+    id: string;
+    unitId: string;
+    familyKey: string | null;
+  }) => (distinctFamilies ? familyIdOf(row) : `row:${row.id}`);
   const params = new URLSearchParams(filters);
   if (ALLOCATION_SCOPE_KEYS.some((key) => params.has(key)))
     throw new UnifiedBankQueryError(
@@ -137,7 +147,7 @@ export async function composeUnifiedBankProblems(input: unknown) {
       select: { id: true, unitId: true, familyKey: true },
     }),
     findProblemIdsByFormat(format, where, PROBLEM_BANK_ORDER_BY),
-    familiesOnSheet([...excluded]),
+    distinctFamilies ? familiesOnSheet([...excluded]) : new Set<string>(),
   ]);
   const allowedFormat = formatIds === null ? null : new Set(formatIds);
   // D-111: one row per problem family, never a family already on the sheet.
@@ -146,7 +156,7 @@ export async function composeUnifiedBankProblems(input: unknown) {
   );
   for (const row of candidates) {
     if (allowedFormat && !allowedFormat.has(row.id)) continue;
-    const family = familyIdOf(row);
+    const family = familyOf(row);
     const pool = pools.get(row.unitId);
     if (!pool || used.has(family)) continue;
     pool.set(family, [...(pool.get(family) ?? []), row.id]);

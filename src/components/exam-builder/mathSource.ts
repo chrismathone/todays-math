@@ -26,6 +26,11 @@ interface MathSourceOptions {
   filters?: string;
   refreshAvailability?: boolean;
   onAvailability?: (value: BankSourceAvailability) => void;
+  /**
+   * D-111 «같은 문항류는 1개만» — 기본 켜짐(원장님 2026-10-16 · 끌 수 있음). 끄면 출제 가능 수는 문항 수,
+   * 추가 · 교체 후보는 같은 문항류를 빼지 않고, 구성도 행 단위로 뽑는다.
+   */
+  distinctFamilies?: boolean;
 }
 
 /**
@@ -63,6 +68,7 @@ export function createMathExamBuilderSource(
   options: MathSourceOptions = {},
 ): ExamBuilderSource<StudioProblem> {
   const scopeIds = new Map<string, string>();
+  const distinct = options.distinctFamilies !== false;
   const endpoint = () => options.problemsUrl ?? getStudioEndpoints().problems;
   const scopeId = (item: StudioProblem) =>
     (item as StudioProblem & { unitId?: string }).unitId ??
@@ -131,7 +137,7 @@ export function createMathExamBuilderSource(
         const params = new URLSearchParams(options.filters);
         params.set("view", "available");
         // D-111: a sheet takes one problem per family, so the gate is families.
-        params.set("families", "1");
+        if (distinct) params.set("families", "1");
         const [inventory, curriculum] = await Promise.all([
           request<unknown>(`${endpoint()}/sources`, signal, {
             method: "POST",
@@ -147,6 +153,18 @@ export function createMathExamBuilderSource(
           throw new Error("단원 목록을 불러오지 못했습니다.");
         if (signal.aborted) throw new DOMException("Aborted", "AbortError");
         options.onAvailability?.(available);
+        if (!distinct)
+          return toScopes(
+            curriculum.units,
+            available.facets
+              ? Object.fromEntries(
+                  curriculum.units.map((unit) => [
+                    unit.id,
+                    available.facets!.units[unit.id]?.available ?? 0,
+                  ]),
+                )
+              : undefined,
+          );
         // Never fall back to row counts: rows overstate what one sheet can hold.
         const families = available.facets?.unitFamilies;
         return toScopes(
@@ -180,7 +198,7 @@ export function createMathExamBuilderSource(
       if (input.query.trim()) params.set("q", input.query.trim());
       if (input.excludeIds.length)
         params.set("excludeIds", [...new Set(input.excludeIds)].join(","));
-      if (input.excludeFamiliesOf?.length)
+      if (distinct && input.excludeFamiliesOf?.length)
         params.set(
           "excludeFamiliesOf",
           [...new Set(input.excludeFamiliesOf)].join(","),
@@ -211,6 +229,7 @@ export function createMathExamBuilderSource(
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
             ...(options.filters ? { filters: options.filters } : {}),
+            ...(distinct ? {} : { distinctFamilies: false }),
             allocations: positive.map(({ scopeId, count }) => ({
               unitId: scopeId,
               count,
@@ -224,12 +243,14 @@ export function createMathExamBuilderSource(
       return {
         id: item.id,
         scopeId: scopeId(item),
-        familyId: familyIdOf({
-          id: item.id,
-          unitId: scopeId(item),
-          familyKey: (item as StudioProblem & { familyKey?: string | null })
-            .familyKey,
-        }),
+        familyId: !distinct
+          ? undefined
+          : familyIdOf({
+              id: item.id,
+              unitId: scopeId(item),
+              familyKey: (item as StudioProblem & { familyKey?: string | null })
+                .familyKey,
+            }),
         scopeLabel: item.section,
         difficulty: item.difficulty,
         detail: [

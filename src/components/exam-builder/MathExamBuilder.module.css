@@ -6,6 +6,18 @@
   margin-bottom: 16px;
 }
 
+.familyRule {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.familyRule input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
 .sourceBar > div:first-of-type {
   flex: 0 1 420px;
   min-width: 0;

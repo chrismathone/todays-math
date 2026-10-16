@@ -198,6 +198,32 @@ describe("Math exam builder source", () => {
     );
   });
 
+  it("drops every family rule when the owner turns «같은 문항류는 1문항만» off", async () => {
+    const fetcher = vi
+      .fn<typeof fetch>()
+      .mockResolvedValue(reply({ problems: [row()], total: 1, page: 2 }));
+    const source = createMathExamBuilderSource({
+      fetch: fetcher,
+      problemsUrl: "/api/studio/problems",
+      distinctFamilies: false,
+    });
+    await source.list(
+      { ...listRequest, excludeFamiliesOf: ["sheet-1"] },
+      signal,
+    );
+    const url = new URL(String(fetcher.mock.calls[0][0]), "https://math.test");
+    expect(url.searchParams.has("excludeFamiliesOf")).toBe(false);
+    expect(
+      source.info({ ...row("k1"), familyKey: "mid:1|A|01" } as ReturnType<
+        typeof row
+      >).familyId,
+    ).toBeUndefined();
+    fetcher.mockResolvedValueOnce(reply({ problems: [] }));
+    await source.compose([{ scopeId: MOCK_UNITS[0].id, count: 2 }], signal);
+    const body = JSON.parse(String(fetcher.mock.calls[1][1]?.body));
+    expect(body.distinctFamilies).toBe(false);
+  });
+
   it("keeps uncounted facets unknown and never falls back to stale inventory on failure", async () => {
     const fetcher = vi
       .fn<typeof fetch>()

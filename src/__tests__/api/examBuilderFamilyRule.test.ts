@@ -181,6 +181,36 @@ describe("구성 — 한 차시 안에서 갈래당 1문항", () => {
   });
 });
 
+describe("구성 — 원장님이 끈 경우(distinctFamilies: false)", () => {
+  it("같은 갈래의 형제도 행 단위로 뽑고, 가능 수는 행 수다", async () => {
+    const { a } = await seedUnit();
+    const result = await composeUnifiedBankProblems({
+      allocations: [{ unitId: U0, count: 7 }],
+      filters: params().toString(),
+      distinctFamilies: false,
+    });
+    expect(result.allocations).toEqual([
+      { unitId: U0, requested: 7, available: 7, actual: 7 },
+    ]);
+    const picked = result.problems.map((p) => p.id);
+    for (const row of a) expect(picked).toContain(row.id);
+  });
+
+  it("시험지에 담긴 문항 자신만 빼고 그 형제는 남긴다", async () => {
+    const { a } = await seedUnit();
+    const result = await composeUnifiedBankProblems({
+      allocations: [{ unitId: U0, count: 6 }],
+      excludeIds: [a[0].id],
+      filters: params().toString(),
+      distinctFamilies: false,
+    });
+    const picked = result.problems.map((p) => p.id);
+    expect(picked).not.toContain(a[0].id);
+    expect(picked).toContain(a[1].id);
+    expect(picked).toContain(a[2].id);
+  });
+});
+
 describe("난이도별 랜덤 — 난이도를 가로질러 갈래당 1문항", () => {
   it("한 갈래가 두 난이도에 걸쳐 있어도 한 번만 · 난이도별 가능 수는 갈래 수", async () => {
     // 갈래 A: 기본 2 · 응용 1 / 갈래 B: 응용 2 / 레거시: 기본 2

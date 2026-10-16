@@ -74,6 +74,8 @@ export default function MathExamBuilder({
     kinds: [],
   });
   const [sourceOpen, setSourceOpen] = useState(false);
+  // D-111 — 기본 켜짐, 원장님이 끌 수 있다(2026-10-16). 일일테스트 경로는 늘 켜짐이다.
+  const [distinctFamilies, setDistinctFamilies] = useState(true);
   const [materialIds, setMaterialIds] = useState<string[]>([]);
   const [candidateIds, setCandidateIds] = useState<string[]>([]);
   const usage = useUsageLabels({
@@ -215,6 +217,7 @@ export default function MathExamBuilder({
       initialUnitCounts: initialData.unitCounts,
       filters,
       refreshAvailability: true,
+      distinctFamilies,
       onAvailability: (value) => setAvailability({ filters, value }),
     });
     return {
@@ -226,7 +229,7 @@ export default function MathExamBuilder({
         return result;
       },
     };
-  }, [initialData.units, initialData.unitCounts, filters]);
+  }, [initialData.units, initialData.unitCounts, filters, distinctFamilies]);
   return (
     <ExamBuilder
       source={source}
@@ -247,6 +250,17 @@ export default function MathExamBuilder({
               ? "출제 기록 확인 실패"
               : "내 출제 순위 · 최근 30일 · 같은 차시 기준"}
           </small>
+          <label
+            className={s.familyRule}
+            title="숫자만 다른 같은 문항류를 한 시험지에 한 문항만 담습니다. 끄면 같은 문항류도 여러 개 담깁니다."
+          >
+            <input
+              type="checkbox"
+              checked={distinctFamilies}
+              onChange={(event) => setDistinctFamilies(event.target.checked)}
+            />
+            같은 문항류는 1문항만
+          </label>
           <BankSourceField
             text={sourceFieldText(counts, pick)}
             opener={opener}
