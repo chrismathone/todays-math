@@ -6,6 +6,7 @@ import {
 import { loadBankSourceCounts } from "@/lib/bankSourceCounts";
 import { readUnifiedBankQueryBody } from "@/lib/unifiedBankQueryBody";
 import { UnifiedBankQueryError } from "@/lib/unifiedPreview";
+import type { BankQueryContext } from "@/lib/bankQueryContext";
 
 /**
  * `…/problems/sources` 의 응답 하나 — 운영(`/api/studio`)과 dev 미리보기(`/api/dev/unified`)가 같이 쓴다.
@@ -21,6 +22,8 @@ export async function bankSourcesResponse(
   /** 없으면 조건 없는 GET 이다(dev 짝을 함수로 부르는 옛 시험). */
   request: Request | undefined,
   headers: HeadersInit,
+  /** 최근 출제 빼기(`recent=1`)의 계정 — 라우트가 관문을 지난 뒤 넘긴다. */
+  context?: BankQueryContext,
 ): Promise<Response> {
   try {
     const post = request?.method === "POST";
@@ -36,8 +39,8 @@ export async function bankSourcesResponse(
       view === null
         ? await loadBankSourceCounts()
         : view === "materials"
-          ? await loadBankSourceMaterials(params)
-          : await loadBankSourceAvailability(params),
+          ? await loadBankSourceMaterials(params, context)
+          : await loadBankSourceAvailability(params, context),
       { headers },
     );
   } catch (error) {

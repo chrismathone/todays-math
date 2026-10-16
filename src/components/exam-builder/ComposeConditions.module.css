@@ -1,0 +1,335 @@
+/*
+ * «구성 조건»(W4 · Hi-fi 2 — 원장님 2026-10-16) — `src/app/dev/exam-builder-hifi/hifi.module.css` 의 W4 부분을
+ * 그대로 옮겼다. 단추 · 입력의 규격은 시험지 만들기(`ExamBuilder.module.css` 의 `.root`)가 준다.
+ */
+
+/* ───────────── 구성표 위 낱칸 넷 ───────────── */
+.sumLine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--learn-track);
+}
+.sumChips {
+  flex: 1 1 260px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-width: 0;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 26px;
+  padding: 2px 8px;
+  border: 1px solid var(--learn-track);
+  border-radius: 6px;
+  background: var(--learn-bg);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--learn-ink);
+  white-space: nowrap;
+}
+.chip em {
+  font-style: normal;
+  color: var(--learn-muted);
+  font-weight: 500;
+}
+.sumWarn {
+  flex-basis: 100%;
+  margin: 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--learn-warning-bg);
+  color: var(--learn-warning);
+  font-size: 13px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+
+/* ───────────── 창 — 왼쪽 조건 · 오른쪽 나뉠 모습 ───────────── */
+.two {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 100%;
+}
+.two > * {
+  min-width: 0;
+}
+.right {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--learn-bg);
+  border-left: 1px solid var(--learn-track);
+}
+.section {
+  display: grid;
+  gap: 10px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--learn-track);
+}
+.section:last-child {
+  border-bottom: 0;
+}
+.section h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+.sectionLabel {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--learn-muted);
+  letter-spacing: 0.02em;
+}
+.fieldRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+.root input.totalInput {
+  width: 88px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.rule {
+  font-size: 12px;
+  color: var(--learn-muted);
+  line-height: 1.55;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.root button {
+  white-space: nowrap;
+}
+.root button.text {
+  border-color: transparent;
+  background: transparent;
+  color: var(--learn-accent);
+}
+.root button.small {
+  min-height: 36px;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+/* 사다리 3칸 × 2줄 — 바탕이 수 · 0 · 지정 없음을 가른다 */
+.ladderGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.ladderCell {
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+  padding: 10px 6px;
+  border: 1px solid var(--learn-track);
+  border-radius: 10px;
+  background: var(--learn-surface);
+}
+.ladderCell > span:first-child {
+  font-size: 13px;
+  font-weight: 650;
+}
+.ladderCellNone {
+  composes: ladderCell;
+  background: var(--learn-neutral);
+}
+.ladderCellOn {
+  composes: ladderCell;
+  border-color: var(--learn-accent);
+  background: var(--learn-soft);
+}
+.stepper {
+  display: inline-flex;
+  border: 1px solid var(--learn-control);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--learn-surface);
+}
+.root .stepper button {
+  width: 34px;
+  min-width: 34px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+.root .stepper input {
+  width: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  appearance: textfield;
+}
+.stepper input::placeholder {
+  color: var(--learn-muted);
+}
+.root button.noneToggle {
+  min-height: 32px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  border-color: transparent;
+  background: transparent;
+  color: var(--learn-accent);
+}
+.meta {
+  display: block;
+  font-size: 12px;
+  color: var(--learn-muted);
+  line-height: 1.5;
+}
+.checkRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-size: 14px;
+}
+.root .checkRow input {
+  width: 18px;
+  min-height: 0;
+  height: 18px;
+  padding: 0;
+  flex-shrink: 0;
+  accent-color: var(--learn-accent);
+}
+.badgeMuted {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--learn-neutral);
+  color: var(--learn-muted);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* 상태 글 — 확인할 것은 이 한 상자에만 */
+.notice,
+.warn,
+.error {
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+.notice {
+  background: var(--learn-soft);
+  color: var(--learn-ink);
+}
+.warn {
+  background: var(--learn-warning-bg);
+  color: var(--learn-warning);
+}
+.error {
+  background: var(--learn-danger-bg);
+  color: var(--learn-danger);
+}
+.warn ul,
+.error ul {
+  margin: 4px 0 0;
+  padding-left: 18px;
+}
+
+/* 나뉠 모습 표 */
+.previewTable {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 13px;
+}
+.previewTable th {
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--learn-muted);
+  text-align: left;
+  background: var(--learn-bg);
+}
+.previewTable th:nth-child(2) {
+  width: 76px;
+}
+.previewTable th:nth-child(3) {
+  width: 52px;
+}
+.previewTable th:nth-child(4) {
+  width: 64px;
+}
+.previewTable th:nth-child(5) {
+  width: 84px;
+}
+.previewTable td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--learn-track);
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+}
+.previewTable td.n,
+.previewTable th.n {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.previewTable small {
+  display: block;
+  font-size: 12px;
+  color: var(--learn-muted);
+}
+.changed {
+  color: var(--learn-accent);
+  font-weight: 700;
+}
+.short {
+  color: var(--learn-warning);
+  font-weight: 700;
+}
+
+/* 구성표의 고정 행 */
+.fixedRow td {
+  background: var(--learn-neutral);
+}
+
+/* 폰 — 창이 화면을 덮으면 왼쪽 · 오른쪽이 위 · 아래가 된다 */
+@media (max-width: 520px) {
+  .two {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .right {
+    border-left: 0;
+    border-top: 1px solid var(--learn-track);
+    padding: 12px;
+  }
+  .section {
+    padding: 12px;
+  }
+  .previewTable th,
+  .previewTable td {
+    padding-inline: 6px;
+  }
+  .previewTable th:nth-child(2) {
+    width: 60px;
+  }
+  .previewTable th:nth-child(3) {
+    width: 36px;
+  }
+  .previewTable th:nth-child(4) {
+    width: 52px;
+  }
+  .previewTable th:nth-child(5) {
+    width: 76px;
+  }
+}

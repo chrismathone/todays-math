@@ -18,6 +18,7 @@ import { problemEligibleWhere } from "@/lib/problemEligibility";
 import { problemVisibleWhere } from "@/lib/problemPool";
 import { findProblemIdsByFormat } from "@/lib/problem/formatQuery";
 import { PROBLEM_BANK_ORDER_BY } from "@/lib/problem/problemOrder";
+import type { BankQueryContext } from "@/lib/bankQueryContext";
 import {
   resolveUnifiedBankQuery,
   UnifiedBankQueryError,
@@ -133,10 +134,12 @@ function checkView(params: URLSearchParams, view: "available" | "materials") {
 /** `view=available` 요청 → 가용량. 조건이 틀리면 `UnifiedBankQueryError`(라우트가 400 으로 낸다). */
 export async function loadBankSourceAvailability(
   params: URLSearchParams,
+  /** `recent=1`(최근 출제 빼기)이면 계정을 여기서 안다 — 갈래 넷이 모두 같은 조건으로 센다. */
+  context?: BankQueryContext,
 ): Promise<BankSourceAvailability> {
   checkView(params, "available");
   const filters = stripped(params, NOT_FILTERS);
-  const main = await resolveUnifiedBankQuery(filters);
+  const main = await resolveUnifiedBankQuery(filters, context);
   const heldWhere = { AND: [problemVisibleWhere(), ...main.selection] };
   const availableWhere = { AND: [problemEligibleWhere(), ...main.selection] };
 
@@ -157,11 +160,18 @@ export async function loadBankSourceAvailability(
   }
 
   const [unitsQuery, difficultyQuery, sourceQuery] = await Promise.all([
-    resolveUnifiedBankQuery(stripped(filters, BANK_AVAILABILITY_AXES.units)),
+    resolveUnifiedBankQuery(
+      stripped(filters, BANK_AVAILABILITY_AXES.units),
+      context,
+    ),
     resolveUnifiedBankQuery(
       stripped(filters, BANK_AVAILABILITY_AXES.difficulties),
+      context,
     ),
-    resolveUnifiedBankQuery(stripped(filters, BANK_AVAILABILITY_AXES.sources)),
+    resolveUnifiedBankQuery(
+      stripped(filters, BANK_AVAILABILITY_AXES.sources),
+      context,
+    ),
   ]);
   const textbookSelection = [
     ...sourceQuery.selection,
@@ -277,6 +287,7 @@ const nullsLast = (a: number | null, b: number | null) =>
  */
 export async function loadBankSourceMaterials(
   params: URLSearchParams,
+  context?: BankQueryContext,
 ): Promise<BankSourceMaterials> {
   checkView(params, "materials");
   const books = bankBookIdsParamSchema.safeParse(params.get("books") ?? "");
@@ -284,6 +295,7 @@ export async function loadBankSourceMaterials(
     throw new UnifiedBankQueryError("자료를 볼 책을 골라 주세요.");
   const query = await resolveUnifiedBankQuery(
     stripped(params, [...NOT_FILTERS, ...BANK_AVAILABILITY_AXES.sources]),
+    context,
   );
   const [materials, counts] = await Promise.all([
     db.sourceMaterial.findMany({

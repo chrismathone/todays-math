@@ -13,6 +13,7 @@ export default function QuestionPicker<T>({
   difficulties,
   replacing,
   replaceId,
+  excludeRecent = false,
   initialScopeId,
   width,
   maxQuestions,
@@ -27,6 +28,8 @@ export default function QuestionPicker<T>({
   replacing: boolean;
   /** The slot being replaced — its own family stays available (D-111 ⑷). */
   replaceId?: string;
+  /** 최근 출제 빼기(W4 · D-20) — 구성 · 가용량과 같은 조건으로 후보를 고른다. */
+  excludeRecent?: boolean;
   initialScopeId?: string;
   width?: number;
   maxQuestions: number;
@@ -92,6 +95,7 @@ export default function QuestionPicker<T>({
           pageSize: PAGE_SIZE,
           excludeIds: excluded,
           excludeFamiliesOf: excludedFamilies,
+          ...(excludeRecent ? { excludeRecent } : {}),
         },
         controller.signal,
       )
@@ -111,7 +115,7 @@ export default function QuestionPicker<T>({
           });
       });
     return () => controller.abort();
-  }, [source, key, excluded, excludedFamilies]);
+  }, [source, key, excluded, excludedFamilies, excludeRecent]);
   return (
     <BuilderDialog
       title={replacing ? "문항 교체" : "문항 추가"}

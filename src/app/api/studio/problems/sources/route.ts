@@ -4,6 +4,7 @@ import {
   STUDIO_HEADERS as headers,
 } from "@/lib/studio-ai/guard";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
+import { bankQueryContext } from "@/lib/bankQueryContext";
 
 /**
  * 문제은행 «출처 고르기» 창의 수(D-161 H1) — 관문은 이웃 목록 라우트(`../route.ts`)와 같다.
@@ -12,7 +13,11 @@ import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 async function handle(request: Request) {
   const access = await authorizeStudio(request);
   if (access.response) return access.response;
-  return bankSourcesResponse(request, headers);
+  return bankSourcesResponse(
+    request,
+    headers,
+    bankQueryContext(access.user.id),
+  );
 }
 
 export const GET = withErrorLog("/api/studio/problems/sources", handle);

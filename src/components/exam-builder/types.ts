@@ -15,6 +15,29 @@ export interface ExamScope {
 export interface ExamAllocation {
   scopeId: string;
   count: number;
+  /** 손으로 고친 행 — «구성 조건»의 총 문항이 다시 나누지 않는다(W4). */
+  fixed?: boolean;
+}
+/** 범위의 출제 가능 수를 셀 때 · 후보를 고를 때 · 구성할 때 같은 조건(W4). */
+export interface ExamExclusion {
+  /** 최근 출제 문항 빼기(D-20) — 서버가 지금 계정의 최근 14일 시험으로 뺀다. */
+  excludeRecent?: boolean;
+}
+export interface ExamComposeOptions extends ExamExclusion {
+  /** 난이도 의도 — 정한 칸만 싣는다. 없는 칸은 지정 없음, 0 은 내지 않음. */
+  difficulty?: Record<string, number>;
+}
+export interface ExamComposeResult<T> {
+  items: T[];
+  /** 모자란 난이도처럼 구성 뒤 알릴 것 — 다른 난이도 · 범위로 채우지 않았다는 말. */
+  notes?: string[];
+}
+/** 출처가 «구성 조건»(W4)을 지원하면 — 지금은 수학만. */
+export interface ExamConditionsSupport {
+  /** 난이도 의도의 사다리(차례 그대로). */
+  ladder: readonly string[];
+  /** 최근 출제 빼기의 날 수(D-20 — 14). */
+  recentDays: number;
 }
 export interface ExamQuestionInfo {
   id: string;
@@ -33,7 +56,12 @@ export interface ExamBuilderSource<T> {
   requireScopeCounts?: boolean;
   /** Scopes already present with the selected content can be shown before effects run. */
   initialScopes?: ExamScope[];
-  loadScopes: (signal: AbortSignal) => Promise<ExamScope[]>;
+  /** W4 «구성 조건» — 없으면 그 줄 · 창을 그리지 않는다(영어). */
+  conditions?: ExamConditionsSupport;
+  loadScopes: (
+    signal: AbortSignal,
+    options?: ExamExclusion,
+  ) => Promise<ExamScope[]>;
   list: (
     request: {
       scopeIds: string[];
@@ -47,10 +75,14 @@ export interface ExamBuilderSource<T> {
        * whole sheet; replace sends the sheet minus the slot being replaced.
        */
       excludeFamiliesOf?: string[];
-    },
+    } & ExamExclusion,
     signal: AbortSignal,
   ) => Promise<{ items: T[]; total: number }>;
-  compose: (allocations: ExamAllocation[], signal: AbortSignal) => Promise<T[]>;
+  compose: (
+    allocations: ExamAllocation[],
+    signal: AbortSignal,
+    options?: ExamComposeOptions,
+  ) => Promise<T[] | ExamComposeResult<T>>;
   info: (item: T) => ExamQuestionInfo;
   /** Plain composition counts shown by the review heading (math only). */
   summarize?: (items: T[]) => string;

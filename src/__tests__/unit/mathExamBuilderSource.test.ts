@@ -507,4 +507,123 @@ describe("Math exam builder source", () => {
       `${unit.grade} · ${unit.chapter} · M-001 · 서술형`,
     );
   });
+
+  describe("구성 조건(W4) — 최근 출제 빼기 · 난이도 의도", () => {
+    const availability = (count: number) => ({
+      view: "available",
+      version: 1,
+      held: count,
+      available: count,
+      facets: {
+        units: { [unit.id]: { held: count, available: count } },
+        unitFamilies: { [unit.id]: count },
+        difficulties: Object.fromEntries(
+          DIFFICULTY_LADDER.map((level) => [level, { held: 0, available: 0 }]),
+        ),
+        sources: Object.fromEntries(
+          ["total", "engine", "school_textbook", "past_exam", "other"].map(
+            (key) => [key, { held: 0, available: 0 }],
+          ),
+        ),
+        textbook: { held: 0, available: 0, books: [] },
+      },
+    });
+
+    it("declares the conditions it supports on our ladder with D-20's 14 days", () => {
+      const source = createMathExamBuilderSource({ initialUnits: MOCK_UNITS });
+      expect(source.conditions).toEqual({
+        ladder: DIFFICULTY_LADDER,
+        recentDays: 14,
+      });
+    });
+
+    it("asks the server to drop recent problems for counts, candidates and composition — never sends the history ids", async () => {
+      const fetcher = vi
+        .fn<typeof fetch>()
+        .mockResolvedValueOnce(reply(availability(3)))
+        .mockResolvedValueOnce(reply({ problems: [], total: 0, page: 1 }))
+        .mockResolvedValueOnce(reply({ problems: [row()] }));
+      const source = createMathExamBuilderSource({
+        initialUnits: MOCK_UNITS,
+        refreshAvailability: true,
+        fetch: fetcher,
+        problemsUrl: "/api/studio/problems",
+      });
+      const scopes = await source.loadScopes(signal, { excludeRecent: true });
+      expect(scopes[0]).toMatchObject({ count: 3 });
+      expect(
+        JSON.parse(fetcher.mock.calls[0][1]!.body as string),
+      ).toMatchObject({ view: "available", recent: "1" });
+      await source.list(
+        { ...listRequest, page: 1, excludeRecent: true },
+        signal,
+      );
+      const url = new URL(String(fetcher.mock.calls[1][0]), "https://m.test");
+      expect(url.searchParams.get("recent")).toBe("1");
+      expect(url.searchParams.get("excludeIds")).toBe("old");
+      await source.compose([{ scopeId: unit.id, count: 2 }], signal, {
+        excludeRecent: true,
+      });
+      expect(JSON.parse(fetcher.mock.calls[2][1]!.body as string)).toEqual({
+        recent: true,
+        allocations: [{ unitId: unit.id, count: 2 }],
+      });
+    });
+
+    it("leaves recent problems in when the owner turns it off", async () => {
+      const fetcher = vi
+        .fn<typeof fetch>()
+        .mockResolvedValueOnce(reply(availability(5)))
+        .mockResolvedValueOnce(reply({ problems: [], total: 0, page: 1 }));
+      const source = createMathExamBuilderSource({
+        initialUnits: MOCK_UNITS,
+        refreshAvailability: true,
+        fetch: fetcher,
+        problemsUrl: "/api/studio/problems",
+      });
+      await source.loadScopes(signal, { excludeRecent: false });
+      expect(
+        JSON.parse(fetcher.mock.calls[0][1]!.body as string),
+      ).not.toHaveProperty("recent");
+      await source.list({ ...listRequest, page: 1 }, signal);
+      expect(
+        new URL(
+          String(fetcher.mock.calls[1][0]),
+          "https://m.test",
+        ).searchParams.has("recent"),
+      ).toBe(false);
+    });
+
+    it("sends the difficulty intent and reports a short tier without widening", async () => {
+      const fetcher = vi.fn<typeof fetch>().mockResolvedValue(
+        reply({
+          problems: [row()],
+          difficulty: [
+            { tier: "기본", requested: 1, actual: 1 },
+            { tier: "심화하", requested: 2, actual: 0 },
+          ],
+        }),
+      );
+      const source = createMathExamBuilderSource({
+        fetch: fetcher,
+        problemsUrl: "/api/studio/problems",
+      });
+      const result = await source.compose(
+        [{ scopeId: unit.id, count: 3 }],
+        signal,
+        { excludeRecent: true, difficulty: { 기본: 1, 심화하: 2, 연산: 0 } },
+      );
+      expect(JSON.parse(fetcher.mock.calls[0][1]!.body as string)).toEqual({
+        recent: true,
+        difficulty: { 기본: 1, 심화하: 2, 연산: 0 },
+        allocations: [{ unitId: unit.id, count: 3 }],
+      });
+      expect(result).toEqual({
+        items: [row()],
+        notes: [
+          "심화하 2문항 중 0문항만 구성했습니다 — 다른 난이도로 채우지 않았습니다.",
+        ],
+      });
+    });
+  });
 });

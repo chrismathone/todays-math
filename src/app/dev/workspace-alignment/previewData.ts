@@ -309,6 +309,8 @@ const mathProblems = [
 ];
 const mathFamily = (row: (typeof mathProblems)[number]) =>
   row.familyKey ? `${row.unitId} ${row.familyKey}` : `solo:${row.id}`;
+/** 미리보기의 «최근 14일 출제» — 실제 계정이 없어 두 문항을 그렇게 둔다(구성 조건 W4 의 수가 달라 보이게). */
+const mathRecent = new Set([mathProblems[4].id, mathProblems[7].id]);
 
 function mathPreview(url: URL, method: string, init?: RequestInit) {
   const base = "/api/dev/unified/problems";
@@ -328,7 +330,11 @@ function mathPreview(url: URL, method: string, init?: RequestInit) {
       available: rows.length,
     });
     const byUnit = (unitId: string) =>
-      mathProblems.filter((row) => row.unitId === unitId);
+      mathProblems.filter(
+        (row) =>
+          row.unitId === unitId &&
+          !(body.recent === "1" && mathRecent.has(row.id)),
+      );
     return Response.json({
       view: "available",
       version: 1,
@@ -368,11 +374,14 @@ function mathPreview(url: URL, method: string, init?: RequestInit) {
       unitId: string;
       count: number;
     }[];
+    const intent = (body.difficulty ?? null) as Record<string, number> | null;
     const problems = allocations.flatMap(({ unitId, count }) => {
       const seen = new Set<string>();
       return mathProblems
         .filter((row) => {
           if (row.unitId !== unitId || seen.has(mathFamily(row))) return false;
+          if (body.recent === true && mathRecent.has(row.id)) return false;
+          if (intent && intent[row.difficulty] === 0) return false;
           seen.add(mathFamily(row));
           return true;
         })
@@ -398,6 +407,7 @@ function mathPreview(url: URL, method: string, init?: RequestInit) {
         (!ids.length || ids.includes(row.id)) &&
         !exclude.has(row.id) &&
         !families.has(mathFamily(row)) &&
+        !(query.get("recent") === "1" && mathRecent.has(row.id)) &&
         (!difficulty || row.difficulty === difficulty),
     );
     const page = Number(query.get("page") ?? 1);

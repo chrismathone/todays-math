@@ -138,6 +138,11 @@ export const unifiedBankQuerySchema = problemFilterQuerySchema
      * 쓴다(교체는 바꾸는 자리를 빼고 보낸다). 키가 없는 문항은 자기 자신만 갈래다(D-105) — 다른 행을 안 뺀다.
      */
     excludeFamiliesOf: idList(100).optional(),
+    /**
+     * 시험지 만들기 «최근 출제 문항 빼기»(D-20 그대로) — 지금 계정의 시험 가운데 시험 날짜가 오늘(KST)부터
+     * 14일 전까지인 시험의 문항을 뺀다. 계정은 서버가 안다(`bankQueryContext.ts`) — id 목록을 싣지 않는다.
+     */
+    recent: z.literal("1").optional(),
     ids: idList(100).optional(),
     pageSize: z.coerce.number().int().min(1).max(100).default(12),
     semester: bankSemesterSchema.optional(),

@@ -11,6 +11,7 @@ import type { UnitEntity } from "@/contracts/unit.contract";
 import type { BankData, StudioProblem } from "@/components/unified/types";
 import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
 import { familyIdOf } from "@/lib/generator/familyKey";
+import { DUPLICATE_EXCLUSION_DAYS } from "@/lib/tests/constants";
 import type { ExamBuilderSource } from "./types";
 
 export const MATH_EXAM_DIFFICULTIES = DIFFICULTY_LADDER;
@@ -131,11 +132,19 @@ export function createMathExamBuilderSource(
 
   return {
     requireScopeCounts: true,
+    // W4 «구성 조건» — 난이도 의도는 우리 사다리, 최근 출제 빼기는 D-20 의 14일 그대로.
+    conditions: {
+      ladder: DIFFICULTY_LADDER,
+      recentDays: DUPLICATE_EXCLUSION_DAYS,
+    },
     ...(initialScopes ? { initialScopes } : {}),
-    async loadScopes(signal) {
-      if (options.refreshAvailability || options.filters) {
+    async loadScopes(signal, scopeOptions) {
+      const recent = scopeOptions?.excludeRecent === true;
+      if (options.refreshAvailability || options.filters || recent) {
         const params = new URLSearchParams(options.filters);
         params.set("view", "available");
+        // 최근 출제 빼기 — 계정의 시험지는 서버가 찾는다(id 목록을 싣지 않는다).
+        if (recent) params.set("recent", "1");
         // D-111: a sheet takes one problem per family, so the gate is families.
         if (distinct) params.set("families", "1");
         const [inventory, curriculum] = await Promise.all([
@@ -203,6 +212,7 @@ export function createMathExamBuilderSource(
           "excludeFamiliesOf",
           [...new Set(input.excludeFamiliesOf)].join(","),
         );
+      if (input.excludeRecent) params.set("recent", "1");
       const data =
         params.toString().length > 3000
           ? await request<BankData>(endpoint(), signal, {
@@ -216,28 +226,41 @@ export function createMathExamBuilderSource(
         total: data.total,
       };
     },
-    async compose(allocations, signal) {
+    async compose(allocations, signal, composeOptions) {
       const positive = allocations.filter(
         (allocation) => allocation.count !== 0,
       );
       if (!positive.length) return [];
-      const data = await request<{ problems: StudioProblem[] }>(
-        `${endpoint()}/random`,
-        signal,
-        {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({
-            ...(options.filters ? { filters: options.filters } : {}),
-            ...(distinct ? {} : { distinctFamilies: false }),
-            allocations: positive.map(({ scopeId, count }) => ({
-              unitId: scopeId,
-              count,
-            })),
-          }),
-        },
-      );
-      return eligible(data.problems);
+      const data = await request<{
+        problems: StudioProblem[];
+        difficulty?: { tier: string; requested: number; actual: number }[];
+      }>(`${endpoint()}/random`, signal, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          ...(options.filters ? { filters: options.filters } : {}),
+          ...(distinct ? {} : { distinctFamilies: false }),
+          ...(composeOptions?.excludeRecent ? { recent: true } : {}),
+          ...(composeOptions?.difficulty
+            ? { difficulty: composeOptions.difficulty }
+            : {}),
+          allocations: positive.map(({ scopeId, count }) => ({
+            unitId: scopeId,
+            count,
+          })),
+        }),
+      });
+      const items = eligible(data.problems);
+      if (!data.difficulty) return items;
+      return {
+        items,
+        notes: data.difficulty
+          .filter((tier) => tier.actual < tier.requested)
+          .map(
+            (tier) =>
+              `${tier.tier} ${tier.requested}문항 중 ${tier.actual}문항만 구성했습니다 — 다른 난이도로 채우지 않았습니다.`,
+          ),
+      };
     },
     info(item) {
       return {

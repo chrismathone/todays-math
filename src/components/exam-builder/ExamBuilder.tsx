@@ -5,10 +5,22 @@ import StudioStepBar from "@/components/unified/StudioStepBar";
 import type {
   ExamAllocation,
   ExamBuilderProps,
+  ExamBuilderSource,
   ExamBuilderStep,
   ExamScope,
 } from "./types";
 import ScopePicker from "./ScopePicker";
+import {
+  emptyLadder,
+  ladderIntent,
+  ladderIssue,
+  type AppliedConditions,
+} from "./conditionsPlan";
+import {
+  ComposeConditionsDialog,
+  ConditionsSummary,
+} from "./ComposeConditions";
+import cc from "./ComposeConditions.module.css";
 import { canSelectScope } from "./scopeAvailability";
 import QuestionPicker from "./QuestionPicker";
 import { moveQuestion, useQuestionReorder } from "./useQuestionReorder";
@@ -44,18 +56,36 @@ export default function ExamBuilder<T>({
     updateStep(next);
     onStepChange?.(next);
   }
-  const [loaded, setLoaded] = useState<{
-    source: typeof source;
-    scopes: ExamScope[];
-    error?: string;
-  }>();
+  // W4 «구성 조건» — 출처가 지원할 때만(수학). 처음에는 총 문항 · 난이도 모두 지정 없음, 최근 출제 빼기는 켬.
+  const conditions = source.conditions;
+  const [applied, setApplied] = useState<AppliedConditions>(() => ({
+    total: null,
+    ladder: emptyLadder(conditions?.ladder ?? []),
+    recent: !!conditions,
+  }));
+  const excludeRecent = !!conditions && applied.recent;
+  const [conditionsOpen, setConditionsOpen] = useState(false);
+  const conditionsOpener = useRef<HTMLButtonElement>(null);
+  // 출제 가능 수는 최근 출제를 뺀 것 · 넣은 것을 따로 둔다 — 창이 둘을 견주고, 적용하면 깜빡이지 않고 바뀐다.
+  const [loadedList, setLoadedList] = useState<
+    {
+      source: ExamBuilderSource<T>;
+      recent: boolean;
+      scopes: ExamScope[];
+      error?: string;
+    }[]
+  >([]);
+  const loadedFor = (recent: boolean) =>
+    loadedList.find(
+      (entry) => entry.source === source && entry.recent === recent,
+    );
+  const loaded = loadedFor(excludeRecent);
   const [retry, setRetry] = useState(0);
   const scopes = useMemo(
-    () =>
-      loaded?.source === source ? loaded.scopes : (source.initialScopes ?? []),
+    () => loaded?.scopes ?? source.initialScopes ?? [],
     [loaded, source],
   );
-  const scopeLoading = loaded?.source !== source && !source.initialScopes;
+  const scopeLoading = !loaded && !source.initialScopes;
   const [configuredAllocations, setAllocations] = useState<ExamAllocation[]>(
     () => {
       const counts = new Map<string, number>();
@@ -97,15 +127,21 @@ export default function ExamBuilder<T>({
   useEffect(() => () => operation.current?.abort(), [source]);
   useEffect(() => {
     const controller = new AbortController();
+    const store = (entry: { scopes: ExamScope[]; error?: string }) =>
+      setLoadedList((current) => [
+        ...current.filter(
+          (item) => item.source === source && item.recent !== excludeRecent,
+        ),
+        { source, recent: excludeRecent, ...entry },
+      ]);
     void source
-      .loadScopes(controller.signal)
+      .loadScopes(controller.signal, conditions ? { excludeRecent } : undefined)
       .then((result) => {
-        if (!controller.signal.aborted) setLoaded({ source, scopes: result });
+        if (!controller.signal.aborted) store({ scopes: result });
       })
       .catch((cause) => {
         if (!controller.signal.aborted)
-          setLoaded({
-            source,
+          store({
             scopes: [],
             error:
               cause instanceof Error
@@ -114,7 +150,27 @@ export default function ExamBuilder<T>({
           });
       });
     return () => controller.abort();
-  }, [source, retry]);
+  }, [source, retry, excludeRecent, conditions]);
+  // 창이 열려 있으면 반대쪽(최근 출제를 넣은 · 뺀) 수도 센다 — «지금 해당» · 켜고 끈 나뉠 모습에 쓴다.
+  const otherLoaded = !!loadedFor(!excludeRecent);
+  useEffect(() => {
+    if (!conditionsOpen || !conditions || otherLoaded) return;
+    const controller = new AbortController();
+    const recent = !excludeRecent;
+    void source
+      .loadScopes(controller.signal, { excludeRecent: recent })
+      .then((result) => {
+        if (!controller.signal.aborted)
+          setLoadedList((current) => [
+            ...current.filter(
+              (item) => item.source === source && item.recent !== recent,
+            ),
+            { source, recent, scopes: result },
+          ]);
+      })
+      .catch(() => {});
+    return () => controller.abort();
+  }, [conditionsOpen, conditions, source, excludeRecent, otherLoaded]);
   const scopeMap = useMemo(
     () => new Map(scopes.map((scope) => [scope.id, scope])),
     [scopes],
@@ -130,7 +186,12 @@ export default function ExamBuilder<T>({
     return scope ? [scope] : [];
   });
   const requested = allocations.reduce((sum, row) => sum + row.count, 0);
+  // 표를 손으로 고쳐 난이도와 합이 어긋나면 구성 전에 막는다 — 창의 «확인할 것»과 같은 말.
+  const ladderWarning = conditions
+    ? ladderIssue(applied.ladder, requested, conditions.ladder)
+    : null;
   const valid =
+    !ladderWarning &&
     !!selectedScopes.length &&
     requested > 0 &&
     requested <= maxQuestions &&
@@ -196,13 +257,22 @@ export default function ExamBuilder<T>({
     setError("");
     setNotice("");
     try {
-      const next =
+      let notes: string[] = [];
+      const composed =
         kind === "compose"
-          ? await source.compose(allocations, controller.signal)
+          ? conditions
+            ? await source.compose(allocations, controller.signal, {
+                excludeRecent,
+                difficulty: ladderIntent(applied.ladder, conditions.ladder),
+              })
+            : await source.compose(allocations, controller.signal)
           : source.prepareOutput
             ? await source.prepareOutput(questions, controller.signal)
             : questions;
       if (controller.signal.aborted) return;
+      const next = Array.isArray(composed)
+        ? composed
+        : ((notes = composed.notes ?? []), composed.items);
       const distinct = [
         ...new Map(next.map((item) => [source.info(item).id, item])).values(),
       ];
@@ -213,9 +283,12 @@ export default function ExamBuilder<T>({
       change(distinct);
       if (kind === "compose") {
         setNotice(
-          distinct.length < requested
-            ? `요청한 ${requested}문항 중 ${distinct.length}문항을 구성했습니다. 부족한 범위는 다른 범위로 채우지 않았습니다.`
-            : `${distinct.length}문항을 구성했습니다.`,
+          [
+            distinct.length < requested
+              ? `요청한 ${requested}문항 중 ${distinct.length}문항을 구성했습니다. 부족한 범위는 다른 범위로 채우지 않았습니다.`
+              : `${distinct.length}문항을 구성했습니다.`,
+            ...notes,
+          ].join(" "),
         );
         go("review");
         onOutputIntent?.();
@@ -432,7 +505,7 @@ export default function ExamBuilder<T>({
                 <button
                   type="button"
                   onClick={() => {
-                    setLoaded(undefined);
+                    setLoadedList([]);
                     setRetry((value) => value + 1);
                   }}
                 >
@@ -441,13 +514,26 @@ export default function ExamBuilder<T>({
               </div>
             ) : allocations.length ? (
               <>
+                {conditions && (
+                  <ConditionsSummary
+                    applied={applied}
+                    requested={requested}
+                    fixedRows={allocations.filter((row) => row.fixed).length}
+                    recentDays={conditions.recentDays}
+                    ladder={conditions.ladder}
+                    warning={ladderWarning}
+                    disabled={actionsDisabled}
+                    opener={conditionsOpener}
+                    onOpen={() => setConditionsOpen(true)}
+                  />
+                )}
                 <div className={s.tableWrap}>
                   <table className={s.table}>
                     <thead>
                       <tr>
                         <th>선택한 출제 범위</th>
                         <th>구성 수</th>
-                        <th>구성됨</th>
+                        <th>{conditions ? "" : "구성됨"}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -455,8 +541,30 @@ export default function ExamBuilder<T>({
                         .slice((currentPage - 1) * 8, currentPage * 8)
                         .map((row) => {
                           const scope = scopeMap.get(row.scopeId);
+                          // 손으로 고친 행은 «고정» — 구성 조건의 총 문항이 다시 나누지 않는다(W4).
+                          const edit = (count: number) => {
+                            setStep("scope");
+                            setAllocations((current) =>
+                              current.map((item) =>
+                                item.scopeId === row.scopeId
+                                  ? {
+                                      ...item,
+                                      count,
+                                      ...(conditions ? { fixed: true } : {}),
+                                    }
+                                  : item,
+                              ),
+                            );
+                          };
                           return (
-                            <tr key={row.scopeId}>
+                            <tr
+                              key={row.scopeId}
+                              className={
+                                conditions && row.fixed
+                                  ? cc.fixedRow
+                                  : undefined
+                              }
+                            >
                               <td>
                                 <strong>
                                   {scope?.label ?? "선택 범위 확인 필요"}
@@ -466,10 +574,13 @@ export default function ExamBuilder<T>({
                                     .filter(Boolean)
                                     .join(" · ")}
                                   {scope?.count !== undefined
-                                    ? ` · 출제 가능 ${scope.count}${scope.countUnit ?? "문항"}`
+                                    ? ` · 출제 가능 ${scope.count}${scope.countUnit ?? "문항"}${excludeRecent ? "(최근 출제 뺀 뒤)" : ""}`
                                     : source.requireScopeCounts
                                       ? " · 출제 가능 수 확인 필요"
                                       : ""}
+                                  {conditions && counts.get(row.scopeId)
+                                    ? ` · 구성됨 ${counts.get(row.scopeId)}문항`
+                                    : ""}
                                 </small>
                               </td>
                               <td>
@@ -480,16 +591,7 @@ export default function ExamBuilder<T>({
                                       actionsDisabled || row.count === 0
                                     }
                                     aria-label={`${scope?.label ?? "범위"} 문항 수 줄이기`}
-                                    onClick={() => {
-                                      setStep("scope");
-                                      setAllocations((current) =>
-                                        current.map((item) =>
-                                          item.scopeId === row.scopeId
-                                            ? { ...item, count: item.count - 1 }
-                                            : item,
-                                        ),
-                                      );
-                                    }}
+                                    onClick={() => edit(row.count - 1)}
                                   >
                                     −
                                   </button>
@@ -503,26 +605,20 @@ export default function ExamBuilder<T>({
                                     disabled={actionsDisabled}
                                     aria-label={`${scope?.label ?? "범위"} 구성 수`}
                                     value={row.count}
-                                    onChange={(e) => {
-                                      const count = Math.max(
-                                        0,
-                                        Math.min(
-                                          maxQuestions,
-                                          scope?.count ?? maxQuestions,
-                                          Math.floor(
-                                            Number(e.target.value) || 0,
+                                    onChange={(e) =>
+                                      edit(
+                                        Math.max(
+                                          0,
+                                          Math.min(
+                                            maxQuestions,
+                                            scope?.count ?? maxQuestions,
+                                            Math.floor(
+                                              Number(e.target.value) || 0,
+                                            ),
                                           ),
                                         ),
-                                      );
-                                      setStep("scope");
-                                      setAllocations((current) =>
-                                        current.map((item) =>
-                                          item.scopeId === row.scopeId
-                                            ? { ...item, count }
-                                            : item,
-                                        ),
-                                      );
-                                    }}
+                                      )
+                                    }
                                   />
                                   <button
                                     type="button"
@@ -533,16 +629,7 @@ export default function ExamBuilder<T>({
                                         (scope?.count ?? maxQuestions)
                                     }
                                     aria-label={`${scope?.label ?? "범위"} 문항 수 늘리기`}
-                                    onClick={() => {
-                                      setStep("scope");
-                                      setAllocations((current) =>
-                                        current.map((item) =>
-                                          item.scopeId === row.scopeId
-                                            ? { ...item, count: item.count + 1 }
-                                            : item,
-                                        ),
-                                      );
-                                    }}
+                                    onClick={() => edit(row.count + 1)}
                                   >
                                     +
                                   </button>
@@ -550,9 +637,36 @@ export default function ExamBuilder<T>({
                               </td>
                               <td>
                                 <div className={s.scopeRowActions}>
-                                  <span>
-                                    {counts.get(row.scopeId) ?? 0}문항
-                                  </span>
+                                  {!conditions ? (
+                                    <span>
+                                      {counts.get(row.scopeId) ?? 0}문항
+                                    </span>
+                                  ) : row.fixed ? (
+                                    <>
+                                      <span className={cc.badgeMuted}>
+                                        고정
+                                      </span>
+                                      <button
+                                        type="button"
+                                        className={s.textButton}
+                                        disabled={actionsDisabled}
+                                        aria-label={`${scope?.label ?? "범위"} 고정 풀기`}
+                                        onClick={() =>
+                                          setAllocations((current) =>
+                                            current.map((item) =>
+                                              item.scopeId === row.scopeId
+                                                ? { ...item, fixed: false }
+                                                : item,
+                                            ),
+                                          )
+                                        }
+                                      >
+                                        풀기
+                                      </button>
+                                    </>
+                                  ) : (
+                                    <small>자동</small>
+                                  )}
                                   <button
                                     type="button"
                                     className={s.danger}
@@ -615,7 +729,9 @@ export default function ExamBuilder<T>({
                     ? `최대 ${maxQuestions}문항으로 맞춰 주세요.`
                     : questions.length
                       ? "다시 구성하면 현재 문항이 구성표대로 바뀝니다."
-                      : `최대 ${maxQuestions}문항`}
+                      : conditions
+                        ? "고정이 아닌 행은 총 문항에 맞춰 다시 나눕니다."
+                        : `최대 ${maxQuestions}문항`}
                 </small>
               </div>
               <button
@@ -803,6 +919,45 @@ export default function ExamBuilder<T>({
           여기로 문제 이동
         </div>
       )}
+      {conditionsOpen && conditions && (
+        <ComposeConditionsDialog
+          applied={applied}
+          ladder={conditions.ladder}
+          recentDays={conditions.recentDays}
+          today={todayLabel()}
+          unit={selectedScopes[0]?.countUnit ?? "문항"}
+          maxQuestions={maxQuestions}
+          returnFocus={conditionsOpener}
+          rows={allocations.map((row) => {
+            const usable = (recent: boolean) =>
+              loadedFor(recent)?.scopes.find(
+                (scope) => scope.id === row.scopeId,
+              )?.count;
+            return {
+              scopeId: row.scopeId,
+              label: scopeMap.get(row.scopeId)?.label ?? "선택 범위",
+              count: row.count,
+              fixed: !!row.fixed,
+              usable: { recent: usable(true), all: usable(false) },
+            };
+          })}
+          onCancel={() => setConditionsOpen(false)}
+          onApply={(next, rows) => {
+            const byId = new Map(rows.map((row) => [row.scopeId, row]));
+            setAllocations((current) =>
+              current.map((item) => {
+                const row = byId.get(item.scopeId);
+                return row
+                  ? { ...item, count: row.count, fixed: row.fixed }
+                  : item;
+              }),
+            );
+            setApplied(next);
+            setStep("scope");
+            setConditionsOpen(false);
+          }}
+        />
+      )}
       {scopeOpen && (
         <ScopePicker
           scopes={scopes}
@@ -856,6 +1011,7 @@ export default function ExamBuilder<T>({
           difficulties={difficulties}
           replacing={!!picker.replaceId}
           replaceId={picker.replaceId}
+          excludeRecent={excludeRecent}
           initialScopeId={picker.scopeId}
           width={picker.replaceId ? pickerWidth : undefined}
           maxQuestions={maxQuestions}
@@ -893,4 +1049,17 @@ export default function ExamBuilder<T>({
       )}
     </section>
   );
+}
+
+/** «오늘»(서울) — 최근 출제 규칙의 문장에 쓰는 «10/16». 서버도 서울 날짜로 14일을 센다. */
+function todayLabel(now = new Date()) {
+  const [, month, day] = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Seoul",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  })
+    .format(now)
+    .split("-");
+  return `${Number(month)}/${Number(day)}`;
 }

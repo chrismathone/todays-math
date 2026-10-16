@@ -31,8 +31,17 @@
 .dialog h2 {
   margin: 0;
   font-size: 17px;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
-.dialog header button {
+/* 내용만큼의 높이 — 넘치면 몸통만 스크롤한다(W4 구성 조건). */
+.dialog[data-size="fit"] {
+  /* 모달 <dialog> 는 위아래 inset 이 0 이라 height:auto 면 늘어난다 — 내용 높이로 묶는다. */
+  height: fit-content;
+  max-height: min(850px, calc(100dvh - 48px));
+  box-shadow: 0 18px 60px #14243d26;
+}
+.dialog > header button {
   min-height: 40px;
   padding: 8px 16px;
   border: 0;
@@ -42,6 +51,38 @@
   font: inherit;
   cursor: pointer;
 }
+.dialog > header button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.dialog > header button:focus-visible {
+  outline: 2px solid var(--learn-accent, #3159df);
+  outline-offset: 3px;
+}
+/* 머리 단추 둘(W4 [취소] [적용]) · 밝은 닫기(W3) — 창 안 조작과 같은 규격(44px · 14px/600). */
+.headActions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.headActions button,
+.dialog > header button[data-tone="plain"] {
+  min-height: 44px;
+  padding: 9px 14px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.dialog > header button[data-tone="plain"] {
+  border: 1px solid var(--learn-control, #c7d0dd);
+  background: var(--learn-surface, #fff);
+  color: var(--learn-ink, #172b4d);
+}
+.dialog > header button[data-tone="plain"]:hover:not(:disabled) {
+  background: var(--learn-soft, #eef3ff);
+}
+.dialog > header button[data-tone="primary"]:hover:not(:disabled) {
+  background: var(--learn-accent-hover, #2649c4);
+}
 .body {
   /* 창의 남은 높이를 다 쓴다 — 짧은 목록도 단의 줄이 창 끝까지 간다. */
   flex: 1;
@@ -50,13 +91,35 @@
   overscroll-behavior: contain;
   scrollbar-gutter: stable;
 }
+.dialog[data-size="fit"] .body {
+  scrollbar-gutter: auto;
+}
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  flex-shrink: 0;
+  padding: 12px 20px;
+  border-top: 1px solid var(--learn-track, #dde3ec);
+  font-size: 12px;
+  color: var(--learn-muted, #5e6c84);
+}
 .body > section {
   border: 0;
   border-radius: 0;
 }
 @media (max-width: 520px) {
-  .dialog {
+  .dialog,
+  .dialog[data-size="fit"] {
     width: calc(100vw - 12px);
     height: calc(100dvh - 12px);
+    max-height: none;
+  }
+  .dialog > header {
+    padding: 12px 16px;
+  }
+  .footer {
+    padding: 10px 16px;
   }
 }

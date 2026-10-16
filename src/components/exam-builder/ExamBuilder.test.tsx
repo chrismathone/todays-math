@@ -809,3 +809,230 @@ describe("shared exam builder workflow", () => {
     expect(review.querySelector("[data-exam-answer]")).toBeNull();
   });
 });
+
+describe("구성 조건 (W4 · Hi-fi 2)", () => {
+  // 최근 출제를 빼면 범위 1 은 3갈래 · 범위 2 는 10갈래, 넣으면 6 · 12.
+  const counted = (recent?: boolean) => [
+    { ...scopes[0], count: recent ? 3 : 6, countUnit: "갈래" },
+    { ...scopes[1], count: recent ? 10 : 12, countUnit: "갈래" },
+  ];
+  const conditioned = (overrides: Partial<ExamBuilderSource<Item>> = {}) =>
+    source({
+      conditions: { ladder: ["기본", "심화"], recentDays: 14 },
+      loadScopes: vi.fn(
+        async (_signal: AbortSignal, options?: { excludeRecent?: boolean }) =>
+          counted(options?.excludeRecent),
+      ),
+      ...overrides,
+    });
+  const summaryOf = () =>
+    within(document.querySelector("[data-compose-summary]") as HTMLElement);
+  async function ready() {
+    await waitFor(() =>
+      expect(
+        screen.getByText(/출제 가능 3갈래\(최근 출제 뺀 뒤\)/),
+      ).toBeInTheDocument(),
+    );
+  }
+  async function openDialog() {
+    fireEvent.click(screen.getByRole("button", { name: "구성 조건" }));
+    return screen.findByRole("dialog", { name: "구성 조건" });
+  }
+
+  it("starts from the current table with no counts of its own, recent exclusion on, and uses it for counts · candidates · composition", async () => {
+    const adapter = conditioned();
+    render(<Harness adapter={adapter} initial={questions} />);
+    await ready();
+    expect(adapter.loadScopes).toHaveBeenCalledWith(expect.any(AbortSignal), {
+      excludeRecent: true,
+    });
+    const chips = summaryOf();
+    expect(chips.getByText("행의 합 3문항")).toBeInTheDocument();
+    expect(chips.getByText("난이도 지정 없음")).toBeInTheDocument();
+    expect(chips.getByText("최근 14일 출제 뺌")).toBeInTheDocument();
+    expect(chips.getByText("0행")).toBeInTheDocument();
+    // 낱칸은 누르는 것이 아니다 — 단추는 [구성 조건] 하나
+    expect(chips.getAllByRole("button")).toHaveLength(1);
+    fireEvent.click(screen.getAllByRole("button", { name: "+ 문항 추가" })[0]);
+    await waitFor(() =>
+      expect(adapter.list).toHaveBeenLastCalledWith(
+        expect.objectContaining({ excludeRecent: true }),
+        expect.any(AbortSignal),
+      ),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "완료" }));
+    fireEvent.click(screen.getByRole("button", { name: "1 범위 설정" }));
+    fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
+    await waitFor(() =>
+      expect(adapter.compose).toHaveBeenCalledWith(
+        [
+          { scopeId: "u1", count: 2 },
+          { scopeId: "u2", count: 1 },
+        ],
+        expect.any(AbortSignal),
+        { excludeRecent: true, difficulty: undefined },
+      ),
+    );
+  });
+
+  it("marks a hand-edited row fixed and redistributes only the other rows on apply, capped by what is left", async () => {
+    render(<Harness adapter={conditioned()} initial={questions} />);
+    await ready();
+    fireEvent.click(
+      screen.getByRole("button", { name: "범위 1 문항 수 늘리기" }),
+    );
+    expect(
+      within(screen.getByRole("table")).getByText("고정"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "범위 1 고정 풀기" }),
+    ).toBeEnabled();
+    const dialog = await openDialog();
+    fireEvent.change(within(dialog).getByLabelText("총 문항"), {
+      target: { value: "15" },
+    });
+    // 범위 1 은 고정(3) — 범위 2 가 12 를 달라지만 10 뿐이다. 다른 범위에서 채우지 않는다.
+    expect(within(dialog).getByText("10 / 12")).toBeInTheDocument();
+    expect(within(dialog).getByRole("status")).toHaveTextContent(
+      "범위 2 — 최근 출제를 빼면 10갈래뿐이라 2문항 모자랍니다. 다른 범위에서 채우지 않습니다.",
+    );
+    fireEvent.click(within(dialog).getByRole("button", { name: "적용" }));
+    await waitFor(() =>
+      expect(screen.queryByRole("dialog", { name: "구성 조건" })).toBeNull(),
+    );
+    expect(screen.getByLabelText("범위 1 구성 수")).toHaveValue(3);
+    expect(screen.getByLabelText("범위 2 구성 수")).toHaveValue(10);
+    expect(summaryOf().getByText("행의 합 13문항")).toBeInTheDocument();
+    expect(summaryOf().getByText("1행")).toBeInTheDocument();
+  });
+
+  it("explains a blocking mismatch in one place and turns off [적용]", async () => {
+    render(<Harness adapter={conditioned()} initial={questions} />);
+    await ready();
+    fireEvent.click(
+      screen.getByRole("button", { name: "범위 1 문항 수 늘리기" }),
+    );
+    const dialog = await openDialog();
+    fireEvent.change(within(dialog).getByLabelText("총 문항"), {
+      target: { value: "2" },
+    });
+    expect(within(dialog).getByRole("button", { name: "적용" })).toBeDisabled();
+    expect(within(dialog).getByRole("status")).toHaveTextContent(
+      "고정한 행의 합(3)이 총 문항(2)보다 큽니다.",
+    );
+    fireEvent.click(
+      within(dialog).getByRole("button", { name: "지정 없음으로" }),
+    );
+    fireEvent.change(within(dialog).getByLabelText("기본 문항 수"), {
+      target: { value: "9" },
+    });
+    expect(within(dialog).getByRole("button", { name: "적용" })).toBeDisabled();
+    expect(within(dialog).getByRole("status")).toHaveTextContent(
+      "난이도 합(9)이 총 문항(4)보다 큽니다.",
+    );
+    // 취소는 아무것도 바꾸지 않는다
+    fireEvent.click(within(dialog).getByRole("button", { name: "취소" }));
+    expect(summaryOf().getByText("난이도 지정 없음")).toBeInTheDocument();
+  });
+
+  it("turning recent exclusion off shows both counts, reloads availability and stops asking the server to drop them", async () => {
+    const adapter = conditioned();
+    render(<Harness adapter={adapter} initial={questions} />);
+    await ready();
+    const dialog = await openDialog();
+    // 반대쪽 수도 센다 — «지금 해당»은 (6-3)+(12-10) = 5갈래
+    expect(
+      await within(dialog).findByText("지금 해당 5갈래"),
+    ).toBeInTheDocument();
+    expect(
+      within(dialog).getByText(/오늘\(\d+\/\d+\) 기준 최근 14일/),
+    ).toBeInTheDocument();
+    fireEvent.click(within(dialog).getByLabelText(/최근 출제 문항 빼기/));
+    fireEvent.click(within(dialog).getByRole("button", { name: "적용" }));
+    await waitFor(() =>
+      expect(
+        screen.getByText(/출제 가능 6갈래 ·|출제 가능 6갈래$/),
+      ).toBeInTheDocument(),
+    );
+    expect(adapter.loadScopes).toHaveBeenCalledWith(expect.any(AbortSignal), {
+      excludeRecent: false,
+    });
+    expect(summaryOf().getByText("최근 출제 포함")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
+    await waitFor(() =>
+      expect(adapter.compose).toHaveBeenCalledWith(
+        expect.any(Array),
+        expect.any(AbortSignal),
+        { excludeRecent: false, difficulty: undefined },
+      ),
+    );
+  });
+
+  it("sends the difficulty intent («–» left out, 0 kept) and reports a short tier after composing", async () => {
+    const adapter = conditioned({
+      compose: vi.fn().mockResolvedValue({
+        items: questions,
+        notes: [
+          "심화 1문항 중 0문항만 구성했습니다 — 다른 난이도로 채우지 않았습니다.",
+        ],
+      }),
+    });
+    render(<Harness adapter={adapter} initial={questions} />);
+    await ready();
+    const dialog = await openDialog();
+    fireEvent.change(within(dialog).getByLabelText("기본 문항 수"), {
+      target: { value: "2" },
+    });
+    fireEvent.click(
+      within(dialog).getByRole("button", { name: "심화 문항 수 하나 더하기" }),
+    );
+    expect(within(dialog).getByRole("status")).toHaveTextContent(
+      "총 문항 · 난이도 · 범위 행이 서로 맞습니다.",
+    );
+    fireEvent.click(within(dialog).getByRole("button", { name: "적용" }));
+    expect(summaryOf().getByText("기본 2 · 심화 1")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
+    await waitFor(() =>
+      expect(adapter.compose).toHaveBeenCalledWith(
+        expect.any(Array),
+        expect.any(AbortSignal),
+        { excludeRecent: true, difficulty: { 기본: 2, 심화: 1 } },
+      ),
+    );
+    expect(
+      await screen.findByText(/심화 1문항 중 0문항만 구성했습니다/),
+    ).toBeInTheDocument();
+  });
+
+  it("blocks composing when hand edits leave the difficulty out of step with the rows", async () => {
+    render(<Harness adapter={conditioned()} initial={questions} />);
+    await ready();
+    const dialog = await openDialog();
+    fireEvent.change(within(dialog).getByLabelText("기본 문항 수"), {
+      target: { value: "2" },
+    });
+    fireEvent.change(within(dialog).getByLabelText("심화 문항 수"), {
+      target: { value: "1" },
+    });
+    fireEvent.click(within(dialog).getByRole("button", { name: "적용" }));
+    fireEvent.click(
+      screen.getByRole("button", { name: "범위 2 문항 수 늘리기" }),
+    );
+    expect(summaryOf().getByRole("status")).toHaveTextContent(
+      "난이도 합(3)이 총 문항(4)과 다릅니다.",
+    );
+    expect(screen.getByRole("button", { name: "문항 구성 →" })).toBeDisabled();
+  });
+
+  it("leaves a source without conditions untouched (English path)", async () => {
+    const adapter = source();
+    render(<Harness adapter={adapter} initial={questions} />);
+    await screen.findByRole("button", { name: "범위 변경" });
+    expect(document.querySelector("[data-compose-summary]")).toBeNull();
+    expect(screen.queryByRole("button", { name: "구성 조건" })).toBeNull();
+    expect(adapter.loadScopes).toHaveBeenCalledWith(
+      expect.any(AbortSignal),
+      undefined,
+    );
+  });
+});

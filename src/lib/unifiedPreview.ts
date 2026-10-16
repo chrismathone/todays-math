@@ -17,6 +17,7 @@ import { classifyFormat } from "@/lib/problem/provenance";
 import { PROBLEM_BANK_ORDER_BY } from "@/lib/problem/problemOrder";
 import { withProblemSourceReferences } from "@/lib/problem/sourceReference";
 import type { ProblemSourceReference } from "@/contracts/problemSourceReference.contract";
+import type { BankQueryContext } from "@/lib/bankQueryContext";
 import type {
   BankData,
   BankProblem,
@@ -48,8 +49,16 @@ async function excludeFamiliesClause(
   };
 }
 
-/** Shared filters keep manual browsing and random selection in the same pool. */
-export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
+/**
+ * Shared filters keep manual browsing and random selection in the same pool.
+ *
+ * `context` — 요청 바깥에서 알아야 하는 것(지금은 최근 출제 빼기의 계정). `recent=1` 인데 없으면 거절한다:
+ * 조용히 넘기면 «뺐다»고 말한 화면이 빼지 않은 수를 보인다.
+ */
+export async function resolveUnifiedBankQuery(
+  params = new URLSearchParams(),
+  context?: BankQueryContext,
+) {
   const parsed = unifiedBankQuerySchema.safeParse(
     Object.fromEntries(
       Array.from(params).filter(
@@ -82,6 +91,7 @@ export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
     unitIds,
     excludeIds,
     excludeFamiliesOf,
+    recent,
     ids,
     semester,
     sourceGroup,
@@ -99,6 +109,14 @@ export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
   if (excludeIds) clauses.push({ NOT: { id: { in: excludeIds } } });
   if (excludeFamiliesOf)
     clauses.push(await excludeFamiliesClause(excludeFamiliesOf));
+  if (recent) {
+    if (!context)
+      throw new UnifiedBankQueryError(
+        "최근 출제 문항을 확인할 계정을 알 수 없습니다.",
+      );
+    const recentIds = await context.recentProblemIds();
+    if (recentIds.length) clauses.push({ NOT: { id: { in: [...recentIds] } } });
+  }
   if (ids) clauses.push({ id: { in: ids } });
   if (grade || chapter || chapterPrefix)
     clauses.push({
@@ -376,8 +394,9 @@ export async function loadUnifiedBankBootstrap(): Promise<UnifiedBankBootstrap> 
 /** Read-only shared-bank inspection. Issuance eligibility remains a separate rule. */
 export async function loadUnifiedBank(
   params = new URLSearchParams(),
+  context?: BankQueryContext,
 ): Promise<BankData> {
-  const resolved = await resolveUnifiedBankQuery(params);
+  const resolved = await resolveUnifiedBankQuery(params, context);
   const { where, format, requestedPage, pageSize, orderBy } = resolved;
   const formatIds = await findProblemIdsByFormat(format, where, orderBy);
   const metadata = await loadUnifiedBankMetadata(
