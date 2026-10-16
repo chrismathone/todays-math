@@ -112,10 +112,30 @@ export function generateArithmeticSpecs(input: unknown): ArithmeticSpec[] {
         ),
     );
   } catch (error) {
-    if (error instanceof ArithmeticRoundSelectionError)
+    if (error instanceof ArithmeticRoundSelectionError) {
+      // Same as arithmetic-v2: name the allocation a shared-item round starved.
+      const detail = error.allocation;
       throw new ArithmeticEngineError(
         error.reason === "within-round" ? "capacity" : "round-overlap",
+        detail
+          ? {
+              violations: [
+                {
+                  round: detail.round + 1,
+                  allocation:
+                    request.rounds[detail.round].skills.findIndex(
+                      (allocation) => id(allocation) === detail.domain,
+                    ) + 1,
+                  skillId: allocations.get(detail.domain)!.skillId,
+                  requested: detail.requested,
+                  available: detail.available,
+                  reason: "overlap",
+                },
+              ],
+            }
+          : undefined,
       );
+    }
     throw error;
   }
 }

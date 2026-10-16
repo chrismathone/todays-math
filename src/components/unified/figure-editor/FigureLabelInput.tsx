@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { hwpToLatex } from "@/lib/math/hwpEquation";
 import { FIGURE_SYMBOL_GROUPS, figureSymbolInput } from "./figureSymbols";
 
@@ -41,6 +41,14 @@ export function FigureLabelInput({
     isFigureMathLabel(value) ? "math" : "text",
   );
   const input = useRef<HTMLInputElement>(null);
+  /** 자판·도구로 넣은 뒤 둘 커서 자리 — 그 값이 그려진 같은 커밋에서 놓는다(한 프레임 늦으면 그새 친 글자가 갈라진다). */
+  const pendingCursor = useRef<number | null>(null);
+  useLayoutEffect(() => {
+    if (pendingCursor.current === null) return;
+    const cursor = pendingCursor.current;
+    pendingCursor.current = null;
+    input.current?.setSelectionRange(cursor, cursor);
+  }, [value]);
   const update = (next: string) =>
     onChange(mode === "math" ? `$${next}$` : next);
   /**
@@ -56,13 +64,10 @@ export function FigureLabelInput({
     const plain = unwrap(value),
       start = input.current?.selectionStart ?? plain.length,
       end = input.current?.selectionEnd ?? start;
+    pendingCursor.current =
+      start + (latex.includes("{}") ? latex.indexOf("{}") + 1 : latex.length);
     update(plain.slice(0, start) + latex + plain.slice(end));
     input.current?.focus();
-    requestAnimationFrame(() => {
-      const cursor =
-        start + (latex.includes("{}") ? latex.indexOf("{}") + 1 : latex.length);
-      input.current?.setSelectionRange(cursor, cursor);
-    });
   };
   return (
     <div className="space-y-2" onKeyDown={(event) => event.stopPropagation()}>

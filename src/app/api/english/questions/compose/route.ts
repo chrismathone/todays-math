@@ -10,7 +10,8 @@ import {
   readQuestionBankBody,
 } from "@/lib/english/questionBank";
 import { requireEnglishSession } from "@/lib/english/routeSupport";
-export async function POST(request: Request) {
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
+async function handlePost(request: Request) {
   const gate = await requireEnglishSession(request, { mutation: true });
   if (gate.response) return gate.response;
   try {
@@ -25,3 +26,5 @@ export async function POST(request: Request) {
     return questionBankErrorResponse(error);
   }
 }
+
+export const POST = withErrorLog("/api/english/questions/compose", handlePost);

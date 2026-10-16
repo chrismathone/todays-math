@@ -12,8 +12,9 @@ import {
   resolveEnglishBankQuestions,
 } from "@/lib/english/questionBank";
 import { requireEnglishSession } from "@/lib/english/routeSupport";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function POST(request: Request) {
+async function handlePost(request: Request) {
   // This POST does not mutate storage, but still requires the existing same-origin gate.
   const gate = await requireEnglishSession(request, { mutation: true });
   if (gate.response) return gate.response;
@@ -30,3 +31,5 @@ export async function POST(request: Request) {
     return questionBankErrorResponse(error);
   }
 }
+
+export const POST = withErrorLog("/api/english/questions/resolve", handlePost);
