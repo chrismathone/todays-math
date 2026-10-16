@@ -211,22 +211,22 @@ describe("live geometry arithmetic", () => {
       problems.forEach((problem, i) => {
         const item = sheet.rounds[0].items[i];
         if (item.prompt.layout !== "math") throw new Error("Unexpected prompt");
-        // 4b0dd8435: both triangle-angle families state every given angle in
-        // the text, so the saved figure stays in the sheet but is not printed.
-        expect(
-          arithmeticFigurePresentation(item.prompt, item.typeId).showFigure,
-        ).toBe(false);
+        // 2026-10-16: both triangle-angle families are figure-first — the
+        // saved figure prints with the unknown marked □ and no prose givens.
+        expect(arithmeticFigurePresentation(item.prompt, item.typeId)).toEqual({
+          showFigure: true,
+          lines: [],
+        });
         expect(
           presentArithmeticGeometrySvg(
             item.prompt.figureId!,
             arithmeticAngleSvg(item.prompt.figureId!, sheet.figures!),
           ),
         ).toContain("<svg");
-        expect(problem.figureSvg).toBeNull();
-        expect(problem.figureUrls).toEqual([]);
-        expect(problem.figureSourceMm).toEqual([]);
-        expect(problem.content).not.toContain("[그림1]");
-        expect(problem.content).toContain("\\circ");
+        expect(problem.figureSvg).toContain('aria-label="□°"');
+        expect(problem.figureUrls).toHaveLength(1);
+        expect(problem.figureSourceMm).toHaveLength(1);
+        expect(problem.content).not.toContain("주어진 각");
         // Given angles are now in the text and may equal the answer (isosceles);
         // the answer line itself stays blank.
         expect(problem.content.split("답: ").at(-1)).not.toContain(

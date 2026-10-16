@@ -63,7 +63,10 @@ describe("audited figure necessity and redundant annotations", () => {
     // 2026-10-16 the owner extended figure-first to 피타고라스 · 닮음 · 평행선 ·
     // 사각형 · 외심 · 무게중심 · 원의 성질 · 중1 각 · 삼각비 (gt1 1,718 + gm 756),
     // so those variants moved from omitted to retained. See figureFirst*.test.ts.
-    expect([policies.length, omitted, retained]).toEqual([248, 14899, 2653]);
+    // Later that day the owner extended it to 초등 각도 (993) · 둘레·넓이 (3,800)
+    // · 원의 둘레·넓이 (232) with the unknown marked □ — 5,025 more retained
+    // (arithmeticFigureFirstElementary.test.ts).
+    expect([policies.length, omitted, retained]).toEqual([248, 9874, 7678]);
   });
 
   it("keeps every retained point and structural stroke while removing only repeated measurement annotations", () => {

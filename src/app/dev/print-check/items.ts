@@ -102,6 +102,31 @@ export const ITEMS: PrintCheckItem[] = [
     changedOn: "2026-10-16",
   },
   {
+    id: "arithmetic-figure-first-elementary-20261016",
+    title: "연산대장 — 초등 각도·둘레·넓이 그림 우선, 미지수는 □",
+    changed:
+      "초4 각도·삼각형 10유형(993문항)과 초5 다각형의 둘레와 넓이 28유형(3,800문항), 초6 원의 둘레·넓이 4유형(232문항)을 그림 우선으로 바꿨다. " +
+      "얼린 표시 배치는 그대로 두고 구할 값만 □로 표시한다 — 각은 빈 호 안쪽에 «□°», 길이는 «가로·밑변·높이» 글자가 있던 자리에 «□ cm»(단위 자리는 숫자와 같다). " +
+      "둘레·넓이·원주를 구하는 유형은 □ 없이 머리말 «[1~4] 다음 직사각형의 둘레를 구하세요.»가 묻고, 나머지는 «다음 사각형에서 □의 값을 구하세요.»다. " +
+      "□는 글꼴 글자가 아니라 숫자 높이·굵기로 그린 네모라 어느 프린터에서나 같다. 원주·넓이에서 반지름·지름을 구하는 원 유형은 그림에 반지름이 없어 문장 그대로다.",
+    look:
+      "(제안) ① □가 숫자(«4 cm»)와 같은 높이·굵기로 찍히는지, «□°»의 ° 고리가 «45°»의 것과 같은 크기인지. " +
+      "② □가 각의 호·꼭짓점·같음 표시·직각 표시·점선 높이 위에 겹치지 않는지(높이 안쪽 «□ cm»는 점선에서 2 px 비켜 선다). " +
+      "③ 직각삼각형 20°·25° 꼭지각 둘만 가는 지시선으로 밖에 두는데, 지시선이 변을 가로지르지 않는지. " +
+      "④ 둘레·넓이 메모(«둘레 36 cm»)가 그림 위에 남아 있고 문항 문장이 사라졌는지, 머리말 번호 범위가 문항 번호와 맞는지.",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/arithmetic-v2/presentation/figureFirstElementary.ts",
+      "src/lib/arithmetic-v2/presentation/figurePolicyElementary.ts",
+      "src/__tests__/unit/arithmeticFigureFirstElementary.test.ts",
+    ],
+    scale: "42유형 · 5,025문항",
+    status: "대기",
+    needs:
+      "/dev/arithmetic/grade-print?type=e4-angle-sum&count=8 · type=e4-right-triangle-missing-angle · type=e5-rectangle-perimeter-side · type=e5-triangle-area-height · type=e5-trapezoid-area-top · type=e6-circle-area-radius · 연산대장에서 해당 유형을 담아 양식 구성·출력",
+    changedOn: "2026-10-16",
+  },
+  {
     id: "arithmetic-center-angles-20261016",
     title: "연산대장 — 내심·외심 각도 그림과 묶음 머리말",
     changed:

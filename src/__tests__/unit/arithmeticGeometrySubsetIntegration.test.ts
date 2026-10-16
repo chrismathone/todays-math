@@ -170,10 +170,11 @@ describe("saved geometry subsets across generation, regeneration and shared outp
     const problems = arithmeticToStudioProblems(reopened);
     expect(problems[0].content).toContain("\\mathrm{cm}^{2}");
     expect(problems[0].figureSvg).toContain("<svg");
-    expect(problems[2].content).toContain("\\circ");
-    // 4b0dd8435: the text gives both angles, so the saved angle figure is not printed.
-    expect(problems[2].figureSvg).toBeNull();
-    expect(problems[2].content).not.toContain("[그림1]");
+    // 2026-10-16: 초등 각도 is figure-first — the saved angle figure prints with
+    // the unknown marked □ and the given angles stay on the figure, not in prose.
+    expect(problems[2].figureSvg).toContain('aria-label="□°"');
+    expect(problems[2].figureSvg).toContain("arithmetic-angle-drill-v1");
+    expect(problems[2].content).not.toContain("주어진 각");
   });
 
   it("accepts an explicit unitless answer without adding an angle suffix", () => {

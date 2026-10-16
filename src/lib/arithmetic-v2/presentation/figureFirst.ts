@@ -17,6 +17,7 @@ import {
 import { TRIG_FIGURE_FIRST } from "./figureFirstTrig";
 import { TRIANGLE_FIGURE_FIRST } from "./figureFirstTriangles";
 import { ANNOTATED_FIGURE_FIRST } from "./figureFirstAnnotated";
+import { ELEMENTARY_FIGURE_FIRST } from "./figureFirstElementary";
 
 /** Figure-first drills (owner, 2026-10-15 for 내심·외심, 2026-10-16 for the
  * units where a figure is the natural statement): the figure carries every
@@ -45,6 +46,7 @@ const families: ReadonlyMap<string, FigureFirstFamily> = new Map(
     ...TRIANGLE_FIGURE_FIRST,
     ...TRIG_FIGURE_FIRST,
     ...ANNOTATED_FIGURE_FIRST,
+    ...ELEMENTARY_FIGURE_FIRST,
   }),
 );
 
