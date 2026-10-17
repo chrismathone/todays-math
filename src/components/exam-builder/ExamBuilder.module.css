@@ -94,11 +94,77 @@
   align-items: start;
 }
 .settings,
-.review {
+.review,
+.reviewStep {
   min-width: 0;
   display: grid;
   align-content: start;
   gap: 12px;
+}
+.settings,
+.reviewStep {
+  margin-top: 12px;
+}
+.settings > .layout {
+  margin-top: 0;
+}
+/* 2단계 맨 위 — 1단계 요약 한 줄과 «범위 설정 고치기»(Hi-fi H1). */
+.stepSummary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 16px;
+  background: var(--learn-surface);
+  border: 1px solid var(--builder-border);
+  border-radius: 12px;
+  font-size: 14px;
+}
+.stepSummary > span {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+.stepSummary small {
+  overflow-wrap: anywhere;
+}
+/* 1단계 «범위 고르기» — 창(.dialog) 안에서만 먹던 체크 칸 · 고르기 상자 값을 화면에서도 준다. */
+.picker select {
+  min-height: 44px;
+  min-width: 0;
+  border: 1px solid var(--learn-control);
+  border-radius: 8px;
+  padding: 9px 12px;
+  background: var(--learn-surface);
+  font: inherit;
+  font-size: 14px;
+  color: var(--learn-ink);
+}
+.picker select:focus-visible {
+  outline: 2px solid var(--learn-accent);
+  outline-offset: 3px;
+}
+.picker input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  padding: 0;
+  flex-shrink: 0;
+  accent-color: var(--learn-accent);
+}
+.picker .check {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--learn-ink);
+  min-height: 44px;
+}
+.picker .check:has(input:disabled) {
+  color: var(--learn-muted);
+  cursor: not-allowed;
 }
 .toolbar {
   min-height: 70px;

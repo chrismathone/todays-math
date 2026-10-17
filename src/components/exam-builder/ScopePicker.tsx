@@ -1,28 +1,34 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import BuilderDialog from "./BuilderDialog";
+import { useMemo, useState, type Ref } from "react";
 import type { ExamScope } from "./types";
 import { canSelectScope } from "./scopeAvailability";
 import s from "./ExamBuilder.module.css";
 
 const PAGE_SIZE = 20;
+/**
+ * 1단계 «범위 고르기» — 예전 «출제 범위 선택» 창의 속을 화면에 편 것(원장님 Hi-fi H1 · 2026-10-17).
+ * «적용» 단추가 없다: 체크하면 바로 `onChange` 로 구성표에 들어가고, 풀면 구성표에서 빠진다.
+ */
 export default function ScopePicker({
   scopes,
   selected,
   initialGroup,
   requireCounts = false,
-  onClose,
-  onApply,
+  disabled = false,
+  panelRef,
+  onChange,
 }: {
   scopes: ExamScope[];
   selected: string[];
   initialGroup?: string;
   requireCounts?: boolean;
-  onClose: () => void;
-  onApply: (ids: string[]) => void;
+  disabled?: boolean;
+  panelRef?: Ref<HTMLElement>;
+  /** 고른 범위 전체 — 이미 있던 것의 차례를 지키고 새 것은 뒤에 붙인다. */
+  onChange: (ids: string[]) => void;
 }) {
-  const [chosen, setChosen] = useState(
+  const chosen = useMemo(
     () =>
       new Set(
         selected.filter((id) =>
@@ -32,7 +38,10 @@ export default function ScopePicker({
           ),
         ),
       ),
+    [selected, scopes, requireCounts],
   );
+  const setChosen = (update: (current: Set<string>) => Set<string>) =>
+    onChange([...update(chosen)]);
   const [group, setGroup] = useState(initialGroup ?? "");
   const [detail, setDetail] = useState("");
   const [query, setQuery] = useState("");
@@ -84,15 +93,11 @@ export default function ScopePicker({
   const selectable = filtered.filter((row) =>
     canSelectScope(row, requireCounts),
   );
-  const applicable = [...chosen].filter((id) =>
-    canSelectScope(
-      scopes.find((scope) => scope.id === id),
-      requireCounts,
-    ),
-  );
+  const applicable = [...chosen];
   const allVisible =
     selectable.length > 0 && selectable.every((row) => chosen.has(row.id));
   const toggle = (id: string) => {
+    if (disabled) return;
     if (chosen.size === 1 && chosen.has(id)) setOnlyChosen(false);
     setChosen((current) => {
       const next = new Set(current);
@@ -108,7 +113,18 @@ export default function ScopePicker({
     });
   };
   return (
-    <BuilderDialog title="출제 범위 선택" onClose={onClose} width={880}>
+    <section
+      className={`${s.panel} ${s.picker}`}
+      ref={panelRef}
+      tabIndex={-1}
+      aria-label="범위 고르기"
+    >
+      <header className={s.panelHeader}>
+        <strong>범위 고르기</strong>
+        <span className={s.summary}>
+          체크하면 오른쪽 구성표에 바로 들어갑니다.
+        </span>
+      </header>
       <div className={s.dialogFilters}>
         <label>
           학년·과정
@@ -197,7 +213,7 @@ export default function ScopePicker({
           <input
             type="checkbox"
             checked={allVisible}
-            disabled={!selectable.length}
+            disabled={disabled || !selectable.length}
             onChange={() => {
               if (allVisible && chosen.size === selectable.length)
                 setOnlyChosen(false);
@@ -217,9 +233,9 @@ export default function ScopePicker({
         </span>
         <button
           type="button"
-          disabled={!chosen.size}
+          disabled={disabled || !chosen.size}
           onClick={() => {
-            setChosen(new Set());
+            setChosen(() => new Set());
             setOnlyChosen(false);
             setPage(1);
           }}
@@ -227,7 +243,7 @@ export default function ScopePicker({
           선택 비우기
         </button>
       </div>
-      <div className={s.dialogBody}>
+      <div>
         {rows.length ? (
           <ul className={s.scopeList}>
             {rows.map((scope) => (
@@ -236,7 +252,7 @@ export default function ScopePicker({
                   <input
                     type="checkbox"
                     checked={applicable.includes(scope.id)}
-                    disabled={!canSelectScope(scope, requireCounts)}
+                    disabled={disabled || !canSelectScope(scope, requireCounts)}
                     onChange={() => toggle(scope.id)}
                   />
                   <span>
@@ -265,34 +281,29 @@ export default function ScopePicker({
           </p>
         )}
       </div>
-      <footer className={s.dialogFooter}>
-        <div className={s.pagination}>
-          <button
-            type="button"
-            disabled={currentPage === 1}
-            onClick={() => setPage(currentPage - 1)}
-          >
-            이전
-          </button>
-          <span>
-            {currentPage} / {pages}
-          </span>
-          <button
-            type="button"
-            disabled={currentPage === pages}
-            onClick={() => setPage(currentPage + 1)}
-          >
-            다음
-          </button>
-        </div>
-        <button
-          type="button"
-          className={s.primary}
-          onClick={() => onApply(applicable)}
-        >
-          {applicable.length}개 범위 적용
-        </button>
-      </footer>
-    </BuilderDialog>
+      {pages > 1 && (
+        <footer className={s.dialogFooter}>
+          <div className={s.pagination}>
+            <button
+              type="button"
+              disabled={currentPage === 1}
+              onClick={() => setPage(currentPage - 1)}
+            >
+              이전
+            </button>
+            <span>
+              {currentPage} / {pages}
+            </span>
+            <button
+              type="button"
+              disabled={currentPage === pages}
+              onClick={() => setPage(currentPage + 1)}
+            >
+              다음
+            </button>
+          </div>
+        </footer>
+      )}
+    </section>
   );
 }

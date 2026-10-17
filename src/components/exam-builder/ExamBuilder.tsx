@@ -118,7 +118,6 @@ export default function ExamBuilder<T>({
         : Array.from(counts, ([scopeId, count]) => ({ scopeId, count }));
     },
   );
-  const [scopeOpen, setScopeOpen] = useState(false);
   const [scopePage, setScopePage] = useState(1);
   const [picker, setPicker] = useState<{
     replaceId?: string;
@@ -478,6 +477,80 @@ export default function ExamBuilder<T>({
     setStep(next);
     setFocusRequest((value) => value + 1);
   }
+  /** 1단계에서 범위를 체크 · 풀었을 때 — 남은 범위의 수는 그대로, 새 범위는 남은 자리를 나눠 5문항까지. */
+  function chooseScopes(ids: string[]) {
+    const selectedIds = ids.filter((id) =>
+      canSelectScope(scopeMap.get(id), source.requireScopeCounts),
+    );
+    const retained = new Map(
+      allocations
+        .filter((row) => selectedIds.includes(row.scopeId))
+        .map((row) => [row.scopeId, row]),
+    );
+    const remaining = Math.max(
+      0,
+      maxQuestions -
+        [...retained.values()].reduce((sum, row) => sum + row.count, 0),
+    );
+    const defaultCount = Math.min(
+      5,
+      Math.floor(remaining / Math.max(selectedIds.length - retained.size, 1)),
+    );
+    setAllocations(
+      selectedIds.map(
+        (scopeId) =>
+          retained.get(scopeId) ?? {
+            scopeId,
+            count: Math.min(
+              defaultCount,
+              scopeMap.get(scopeId)?.count ?? maxQuestions,
+            ),
+          },
+      ),
+    );
+    setScopePage(1);
+  }
+  /**
+   * 다시 «문항 구성 →» — 검토하던 문항 가운데 아직 범위 · 수 안에 있는 것은 차례 그대로 두고 모자란 자리만 새로 뽑는다
+   * (Wire B 의 기본값 · 원장님 «추천으로 진행» 2026-10-17). 난이도 조건이 남긴 문항과 안 맞으면 전부 새로 짠다.
+   */
+  function keepPlan(intent: Record<string, number> | undefined) {
+    const limit = new Map(allocations.map((row) => [row.scopeId, row.count]));
+    const keptCount = new Map<string, number>();
+    const kept: T[] = [];
+    for (const item of questions) {
+      const id = source.info(item).scopeId;
+      const used = keptCount.get(id) ?? 0;
+      if (used >= (limit.get(id) ?? 0)) continue;
+      keptCount.set(id, used + 1);
+      kept.push(item);
+    }
+    const fill = allocations
+      .map((row) => ({
+        scopeId: row.scopeId,
+        count: row.count - (keptCount.get(row.scopeId) ?? 0),
+      }))
+      .filter((row) => row.count > 0);
+    if (!intent || !kept.length) return { kept, fill, intent };
+    const left = { ...intent };
+    for (const item of kept) {
+      const tier = source.info(item).difficulty;
+      if (tier && tier in left) left[tier] -= 1;
+    }
+    const need = fill.reduce((sum, row) => sum + row.count, 0);
+    const specified = Object.values(left).reduce((sum, n) => sum + n, 0);
+    const fits =
+      Object.values(left).every((n) => n >= 0) &&
+      specified <= need &&
+      (Object.keys(left).length < (conditions?.ladder.length ?? 0) ||
+        specified === need);
+    if (!fits) return { kept: [], fill: allocations, intent, redrawn: true };
+    return {
+      kept,
+      fill,
+      intent: Object.keys(left).length ? left : undefined,
+    };
+  }
   async function run(kind: "compose" | "output") {
     if (
       work.current ||
@@ -493,21 +566,52 @@ export default function ExamBuilder<T>({
     setNotice("");
     try {
       let notes: string[] = [];
-      const composed =
+      const plan =
         kind === "compose"
-          ? conditions
-            ? await source.compose(allocations, controller.signal, {
+          ? keepPlan(
+              conditions
+                ? ladderIntent(applied.ladder, conditions.ladder)
+                : undefined,
+            )
+          : null;
+      const excludeIds = plan?.kept.map((item) => source.info(item).id) ?? [];
+      const composed = !plan
+        ? source.prepareOutput
+          ? await source.prepareOutput(questions, controller.signal)
+          : questions
+        : !plan.fill.length
+          ? []
+          : conditions
+            ? await source.compose(plan.fill, controller.signal, {
                 excludeRecent,
-                difficulty: ladderIntent(applied.ladder, conditions.ladder),
+                difficulty: plan.intent,
+                ...(excludeIds.length ? { excludeIds } : {}),
               })
-            : await source.compose(allocations, controller.signal)
-          : source.prepareOutput
-            ? await source.prepareOutput(questions, controller.signal)
-            : questions;
+            : excludeIds.length
+              ? await source.compose(plan.fill, controller.signal, {
+                  excludeIds,
+                })
+              : await source.compose(plan.fill, controller.signal);
       if (controller.signal.aborted) return;
-      const next = Array.isArray(composed)
+      const drawn = Array.isArray(composed)
         ? composed
         : ((notes = composed.notes ?? []), composed.items);
+      // 남긴 문항과 같은 문항 · 같은 문항류는 새로 뽑은 쪽에서 버린다(D-111 — 서버도 빼지만 출처마다 다르다).
+      const keptFamilies = new Set(
+        (plan?.kept ?? []).flatMap((item) => {
+          const family = source.info(item).familyId;
+          return family ? [family] : [];
+        }),
+      );
+      const next = plan
+        ? [
+            ...plan.kept,
+            ...drawn.filter((item) => {
+              const family = source.info(item).familyId;
+              return !family || !keptFamilies.has(family);
+            }),
+          ]
+        : drawn;
       const distinct = [
         ...new Map(next.map((item) => [source.info(item).id, item])).values(),
       ];
@@ -518,13 +622,21 @@ export default function ExamBuilder<T>({
       change(distinct);
       if (kind === "compose") {
         setApplyReport(null);
+        const keptCount = plan?.kept.length ?? 0;
         setNotice(
           [
             distinct.length < requested
               ? `요청한 ${requested}문항 중 ${distinct.length}문항을 구성했습니다. 부족한 범위는 다른 범위로 채우지 않았습니다.`
               : `${distinct.length}문항을 구성했습니다.`,
+            keptCount
+              ? `검토하던 ${keptCount}문항은 그대로 두고 ${distinct.length - keptCount}문항을 새로 채웠습니다.`
+              : plan?.redrawn
+                ? "난이도 조건에 맞추려고 문항을 모두 새로 뽑았습니다."
+                : "",
             ...notes,
-          ].join(" "),
+          ]
+            .filter(Boolean)
+            .join(" "),
         );
         go("review");
         onOutputIntent?.();
@@ -618,6 +730,20 @@ export default function ExamBuilder<T>({
       </section>
     );
   const pages = Math.max(1, Math.ceil(allocations.length / 8));
+  // 2단계 맨 위 요약 줄의 조건 — 구성 조건이 있는 출처(수학)만.
+  const conditionNote = conditions
+    ? [
+        ladderIntent(applied.ladder, conditions.ladder)
+          ? `난이도 ${conditions.ladder
+              .filter((tier) => applied.ladder[tier] != null)
+              .map((tier) => `${tier} ${applied.ladder[tier]}`)
+              .join(" · ")}`
+          : "난이도 지정 없음",
+        applied.recent ? `최근 ${conditions.recentDays}일 출제 뺌` : "",
+      ]
+        .filter(Boolean)
+        .join(" · ")
+    : "";
   const summary = source.summarize?.(questions);
   const currentPage = Math.min(scopePage, pages);
   return (
@@ -637,11 +763,7 @@ export default function ExamBuilder<T>({
               label: "1 범위 설정",
               current: step === "scope",
               disabled: actionsDisabled,
-              // 범위를 이미 골랐으면 범위 고르기 창을 바로 연다 — 단계만 바꾸면 화면이 문항 검토와 같아 누른 뜻이 없었다(원장님 2026-10-17).
-              onSelect: () => {
-                go("scope");
-                if (allocations.length) setScopeOpen(true);
-              },
+              onSelect: () => go("scope"),
             },
             {
               id: "review",
@@ -689,8 +811,8 @@ export default function ExamBuilder<T>({
           {notice}
         </p>
       )}
-      <div className={s.layout}>
-        <aside className={s.settings} aria-label="시험지 설정">
+      {step === "scope" ? (
+        <div className={s.settings} aria-label="시험지 설정" role="group">
           <div className={s.toolbar}>
             <label htmlFor={`${uid}-title`}>제목</label>
             <input
@@ -710,501 +832,544 @@ export default function ExamBuilder<T>({
               onOpen={() => setSavedOpen(true)}
             />
           )}
-          <section
-            className={s.panel}
-            ref={scopeRef}
-            tabIndex={-1}
-            aria-label="출제 구성표"
-          >
-            <header className={s.panelHeader}>
-              <strong>
-                출제 범위{" "}
-                <span className={s.badge}>{allocations.length}개 선택</span>
-              </strong>
-              <span className={s.summary}>
-                {selectedScopes
-                  .slice(0, 2)
-                  .map((scope) => scope.label)
-                  .join(" · ")}
-                {selectedScopes.length > 2
-                  ? ` 외 ${selectedScopes.length - 2}개`
-                  : ""}
-              </span>
-              <button
-                type="button"
-                disabled={actionsDisabled || scopeLoading || !!loaded?.error}
-                onClick={() => setScopeOpen(true)}
-              >
-                {allocations.length ? "범위 변경" : "범위 선택"}
-              </button>
-            </header>
-            {named && markActive && applyReport && (
-              <ApplyReport
-                report={applyReport}
-                hasQuestions={!!questions.length}
+          <div className={s.layout}>
+            {!scopeLoading && !loaded?.error && scopes.length > 0 && (
+              <ScopePicker
+                scopes={scopes}
+                selected={allocations.map((row) => row.scopeId)}
+                initialGroup={initialGroup}
+                requireCounts={source.requireScopeCounts}
+                disabled={actionsDisabled}
+                onChange={chooseScopes}
               />
             )}
-            {unavailableRestored > 0 && (
-              <p className={s.empty} role="status">
-                출제 가능한 문항이 없는 {unavailableRestored}개 범위를 구성에서
-                제외했습니다. 저장된 문항은 출력 전에 다시 확인합니다.
-              </p>
-            )}
-            {scopeLoading ? (
-              <p className={s.empty} role="status">
-                출제 범위를 불러오는 중입니다…
-              </p>
-            ) : loaded?.error ? (
-              <div className={s.empty} role="alert">
-                <p>{loaded.error}</p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setLoadedList([]);
-                    setRetry((value) => value + 1);
-                  }}
-                >
-                  다시 시도
-                </button>
-              </div>
-            ) : allocations.length ? (
-              <>
-                {conditions && (
-                  <ConditionsSummary
-                    applied={applied}
-                    requested={requested}
-                    fixedRows={allocations.filter((row) => row.fixed).length}
-                    recentDays={conditions.recentDays}
-                    ladder={conditions.ladder}
-                    warning={ladderWarning}
-                    disabled={actionsDisabled}
-                    opener={conditionsOpener}
-                    onOpen={() => setConditionsOpen(true)}
-                  />
-                )}
-                <div className={s.tableWrap}>
-                  <table className={s.table}>
-                    <thead>
-                      <tr>
-                        <th>선택한 출제 범위</th>
-                        <th>구성 수</th>
-                        <th>{conditions ? "" : "구성됨"}</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {allocations
-                        .slice((currentPage - 1) * 8, currentPage * 8)
-                        .map((row) => {
-                          const scope = scopeMap.get(row.scopeId);
-                          // 손으로 고친 행은 «고정» — 구성 조건의 총 문항이 다시 나누지 않는다(W4).
-                          const edit = (count: number) => {
-                            setStep("scope");
-                            setAllocations((current) =>
-                              current.map((item) =>
-                                item.scopeId === row.scopeId
-                                  ? {
-                                      ...item,
-                                      count,
-                                      ...(conditions ? { fixed: true } : {}),
-                                    }
-                                  : item,
-                              ),
-                            );
-                          };
-                          return (
-                            <tr
-                              key={row.scopeId}
-                              className={
-                                conditions && row.fixed
-                                  ? cc.fixedRow
-                                  : undefined
-                              }
-                            >
-                              <td>
-                                <strong>
-                                  {scope?.label ?? "선택 범위 확인 필요"}
-                                </strong>
-                                <small>
-                                  {[scope?.group, scope?.detail]
-                                    .filter(Boolean)
-                                    .join(" · ")}
-                                  {scope?.count !== undefined
-                                    ? ` · 출제 가능 ${scope.count}${scope.countUnit ?? "문항"}${excludeRecent ? "(최근 출제 뺀 뒤)" : ""}`
-                                    : source.requireScopeCounts
-                                      ? " · 출제 가능 수 확인 필요"
+            <section
+              className={s.panel}
+              ref={scopeRef}
+              tabIndex={-1}
+              aria-label="출제 구성표"
+            >
+              <header className={s.panelHeader}>
+                <strong>
+                  출제 범위{" "}
+                  <span className={s.badge}>{allocations.length}개 선택</span>
+                </strong>
+                <span className={s.summary}>
+                  {selectedScopes
+                    .slice(0, 2)
+                    .map((scope) => scope.label)
+                    .join(" · ")}
+                  {selectedScopes.length > 2
+                    ? ` 외 ${selectedScopes.length - 2}개`
+                    : ""}
+                </span>
+              </header>
+              {named && markActive && applyReport && (
+                <ApplyReport
+                  report={applyReport}
+                  hasQuestions={!!questions.length}
+                />
+              )}
+              {unavailableRestored > 0 && (
+                <p className={s.empty} role="status">
+                  출제 가능한 문항이 없는 {unavailableRestored}개 범위를
+                  구성에서 제외했습니다. 저장된 문항은 출력 전에 다시
+                  확인합니다.
+                </p>
+              )}
+              {scopeLoading ? (
+                <p className={s.empty} role="status">
+                  출제 범위를 불러오는 중입니다…
+                </p>
+              ) : loaded?.error ? (
+                <div className={s.empty} role="alert">
+                  <p>{loaded.error}</p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setLoadedList([]);
+                      setRetry((value) => value + 1);
+                    }}
+                  >
+                    다시 시도
+                  </button>
+                </div>
+              ) : allocations.length ? (
+                <>
+                  {conditions && (
+                    <ConditionsSummary
+                      applied={applied}
+                      requested={requested}
+                      fixedRows={allocations.filter((row) => row.fixed).length}
+                      recentDays={conditions.recentDays}
+                      ladder={conditions.ladder}
+                      warning={ladderWarning}
+                      disabled={actionsDisabled}
+                      opener={conditionsOpener}
+                      onOpen={() => setConditionsOpen(true)}
+                    />
+                  )}
+                  <div className={s.tableWrap}>
+                    <table className={s.table}>
+                      <thead>
+                        <tr>
+                          <th>선택한 출제 범위</th>
+                          <th>구성 수</th>
+                          <th>{conditions ? "" : "구성됨"}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {allocations
+                          .slice((currentPage - 1) * 8, currentPage * 8)
+                          .map((row) => {
+                            const scope = scopeMap.get(row.scopeId);
+                            // 손으로 고친 행은 «고정» — 구성 조건의 총 문항이 다시 나누지 않는다(W4).
+                            const edit = (count: number) => {
+                              setStep("scope");
+                              setAllocations((current) =>
+                                current.map((item) =>
+                                  item.scopeId === row.scopeId
+                                    ? {
+                                        ...item,
+                                        count,
+                                        ...(conditions ? { fixed: true } : {}),
+                                      }
+                                    : item,
+                                ),
+                              );
+                            };
+                            return (
+                              <tr
+                                key={row.scopeId}
+                                className={
+                                  conditions && row.fixed
+                                    ? cc.fixedRow
+                                    : undefined
+                                }
+                              >
+                                <td>
+                                  <strong>
+                                    {scope?.label ?? "선택 범위 확인 필요"}
+                                  </strong>
+                                  <small>
+                                    {[scope?.group, scope?.detail]
+                                      .filter(Boolean)
+                                      .join(" · ")}
+                                    {scope?.count !== undefined
+                                      ? ` · 출제 가능 ${scope.count}${scope.countUnit ?? "문항"}${excludeRecent ? "(최근 출제 뺀 뒤)" : ""}`
+                                      : source.requireScopeCounts
+                                        ? " · 출제 가능 수 확인 필요"
+                                        : ""}
+                                    {conditions && counts.get(row.scopeId)
+                                      ? ` · 구성됨 ${counts.get(row.scopeId)}문항`
                                       : ""}
-                                  {conditions && counts.get(row.scopeId)
-                                    ? ` · 구성됨 ${counts.get(row.scopeId)}문항`
-                                    : ""}
-                                </small>
-                              </td>
-                              <td>
-                                <div className={s.stepper}>
-                                  <button
-                                    type="button"
-                                    disabled={
-                                      actionsDisabled || row.count === 0
-                                    }
-                                    aria-label={`${scope?.label ?? "범위"} 문항 수 줄이기`}
-                                    onClick={() => edit(row.count - 1)}
-                                  >
-                                    −
-                                  </button>
-                                  <input
-                                    type="number"
-                                    min={0}
-                                    max={Math.min(
-                                      maxQuestions,
-                                      scope?.count ?? maxQuestions,
-                                    )}
-                                    disabled={actionsDisabled}
-                                    aria-label={`${scope?.label ?? "범위"} 구성 수`}
-                                    value={row.count}
-                                    onChange={(e) =>
-                                      edit(
-                                        Math.max(
-                                          0,
-                                          Math.min(
-                                            maxQuestions,
-                                            scope?.count ?? maxQuestions,
-                                            Math.floor(
-                                              Number(e.target.value) || 0,
+                                  </small>
+                                </td>
+                                <td>
+                                  <div className={s.stepper}>
+                                    <button
+                                      type="button"
+                                      disabled={
+                                        actionsDisabled || row.count === 0
+                                      }
+                                      aria-label={`${scope?.label ?? "범위"} 문항 수 줄이기`}
+                                      onClick={() => edit(row.count - 1)}
+                                    >
+                                      −
+                                    </button>
+                                    <input
+                                      type="number"
+                                      min={0}
+                                      max={Math.min(
+                                        maxQuestions,
+                                        scope?.count ?? maxQuestions,
+                                      )}
+                                      disabled={actionsDisabled}
+                                      aria-label={`${scope?.label ?? "범위"} 구성 수`}
+                                      value={row.count}
+                                      onChange={(e) =>
+                                        edit(
+                                          Math.max(
+                                            0,
+                                            Math.min(
+                                              maxQuestions,
+                                              scope?.count ?? maxQuestions,
+                                              Math.floor(
+                                                Number(e.target.value) || 0,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      )
-                                    }
-                                  />
-                                  <button
-                                    type="button"
-                                    disabled={
-                                      actionsDisabled ||
-                                      requested >= maxQuestions ||
-                                      row.count >=
-                                        (scope?.count ?? maxQuestions)
-                                    }
-                                    aria-label={`${scope?.label ?? "범위"} 문항 수 늘리기`}
-                                    onClick={() => edit(row.count + 1)}
-                                  >
-                                    +
-                                  </button>
-                                </div>
-                              </td>
-                              <td>
-                                <div className={s.scopeRowActions}>
-                                  {!conditions ? (
-                                    <span>
-                                      {counts.get(row.scopeId) ?? 0}문항
-                                    </span>
-                                  ) : row.fixed ? (
-                                    <>
-                                      <span className={cc.badgeMuted}>
-                                        고정
+                                        )
+                                      }
+                                    />
+                                    <button
+                                      type="button"
+                                      disabled={
+                                        actionsDisabled ||
+                                        requested >= maxQuestions ||
+                                        row.count >=
+                                          (scope?.count ?? maxQuestions)
+                                      }
+                                      aria-label={`${scope?.label ?? "범위"} 문항 수 늘리기`}
+                                      onClick={() => edit(row.count + 1)}
+                                    >
+                                      +
+                                    </button>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div className={s.scopeRowActions}>
+                                    {!conditions ? (
+                                      <span>
+                                        {counts.get(row.scopeId) ?? 0}문항
                                       </span>
-                                      <button
-                                        type="button"
-                                        className={s.textButton}
-                                        disabled={actionsDisabled}
-                                        aria-label={`${scope?.label ?? "범위"} 고정 풀기`}
-                                        onClick={() =>
-                                          setAllocations((current) =>
-                                            current.map((item) =>
-                                              item.scopeId === row.scopeId
-                                                ? { ...item, fixed: false }
-                                                : item,
-                                            ),
-                                          )
-                                        }
-                                      >
-                                        풀기
-                                      </button>
-                                    </>
-                                  ) : (
-                                    <small>자동</small>
-                                  )}
-                                  <button
-                                    type="button"
-                                    className={s.danger}
-                                    disabled={actionsDisabled}
-                                    aria-label={`${scope?.label ?? "선택 범위"} 범위 제거`}
-                                    onClick={() => {
-                                      setAllocations((current) =>
-                                        current.filter(
-                                          (item) =>
-                                            item.scopeId !== row.scopeId,
-                                        ),
-                                      );
-                                      setStep("scope");
-                                    }}
-                                  >
-                                    제거
-                                  </button>
-                                </div>
-                              </td>
-                            </tr>
-                          );
-                        })}
-                    </tbody>
-                  </table>
-                </div>
-                {pages > 1 && (
-                  <div className={s.pagination}>
-                    <button
-                      type="button"
-                      disabled={currentPage <= 1}
-                      onClick={() => setScopePage(currentPage - 1)}
-                    >
-                      이전 범위
-                    </button>
-                    <span>
-                      {currentPage} / {pages}
-                    </span>
-                    <button
-                      type="button"
-                      disabled={currentPage >= pages}
-                      onClick={() => setScopePage(currentPage + 1)}
-                    >
-                      다음 범위
-                    </button>
+                                    ) : row.fixed ? (
+                                      <>
+                                        <span className={cc.badgeMuted}>
+                                          고정
+                                        </span>
+                                        <button
+                                          type="button"
+                                          className={s.textButton}
+                                          disabled={actionsDisabled}
+                                          aria-label={`${scope?.label ?? "범위"} 고정 풀기`}
+                                          onClick={() =>
+                                            setAllocations((current) =>
+                                              current.map((item) =>
+                                                item.scopeId === row.scopeId
+                                                  ? { ...item, fixed: false }
+                                                  : item,
+                                              ),
+                                            )
+                                          }
+                                        >
+                                          풀기
+                                        </button>
+                                      </>
+                                    ) : (
+                                      <small>자동</small>
+                                    )}
+                                    <button
+                                      type="button"
+                                      className={s.danger}
+                                      disabled={actionsDisabled}
+                                      aria-label={`${scope?.label ?? "선택 범위"} 범위 제거`}
+                                      onClick={() => {
+                                        setAllocations((current) =>
+                                          current.filter(
+                                            (item) =>
+                                              item.scopeId !== row.scopeId,
+                                          ),
+                                        );
+                                        setStep("scope");
+                                      }}
+                                    >
+                                      제거
+                                    </button>
+                                  </div>
+                                </td>
+                              </tr>
+                            );
+                          })}
+                      </tbody>
+                    </table>
                   </div>
-                )}
-              </>
-            ) : (
-              <p className={s.empty}>
-                {scopes.length
-                  ? "출제할 범위를 선택하고 문항 수를 정해 주세요."
-                  : "선택할 출제 범위가 없습니다. 등록된 자료를 확인해 주세요."}
-              </p>
-            )}
-            <footer className={s.panelFooter}>
-              <div className={s.compositionTotal}>
-                <strong>합계 {requested}문항</strong>
-                <small>
-                  {requested > maxQuestions
-                    ? `최대 ${maxQuestions}문항으로 맞춰 주세요.`
-                    : questions.length
-                      ? "다시 구성하면 현재 문항이 구성표대로 바뀝니다."
-                      : conditions
-                        ? "고정이 아닌 행은 총 문항에 맞춰 다시 나눕니다."
-                        : `최대 ${maxQuestions}문항`}
-                </small>
-              </div>
-              <div className={sc.footActions}>
-                {named && (
+                  {pages > 1 && (
+                    <div className={s.pagination}>
+                      <button
+                        type="button"
+                        disabled={currentPage <= 1}
+                        onClick={() => setScopePage(currentPage - 1)}
+                      >
+                        이전 범위
+                      </button>
+                      <span>
+                        {currentPage} / {pages}
+                      </span>
+                      <button
+                        type="button"
+                        disabled={currentPage >= pages}
+                        onClick={() => setScopePage(currentPage + 1)}
+                      >
+                        다음 범위
+                      </button>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <p className={s.empty}>
+                  {scopes.length
+                    ? "왼쪽에서 출제할 범위를 체크하고 문항 수를 정해 주세요."
+                    : "선택할 출제 범위가 없습니다. 등록된 자료를 확인해 주세요."}
+                </p>
+              )}
+              <footer className={s.panelFooter}>
+                <div className={s.compositionTotal}>
+                  <strong>합계 {requested}문항</strong>
+                  <small>
+                    {requested > maxQuestions
+                      ? `최대 ${maxQuestions}문항으로 맞춰 주세요.`
+                      : questions.length
+                        ? "다시 구성하면 범위에 남은 문항은 그대로 두고 모자란 자리만 채웁니다."
+                        : conditions
+                          ? "고정이 아닌 행은 총 문항에 맞춰 다시 나눕니다."
+                          : `최대 ${maxQuestions}문항`}
+                  </small>
+                </div>
+                <div className={sc.footActions}>
+                  {named && (
+                    <button
+                      type="button"
+                      disabled={
+                        actionsDisabled || !allocations.length || saving
+                      }
+                      onClick={() => setSaving(true)}
+                    >
+                      조건 저장
+                    </button>
+                  )}
                   <button
                     type="button"
-                    disabled={actionsDisabled || !allocations.length || saving}
-                    onClick={() => setSaving(true)}
+                    className={s.primary}
+                    disabled={actionsDisabled || !valid}
+                    onClick={() => void run("compose")}
                   >
-                    조건 저장
+                    {busy ? "준비 중…" : "문항 구성 →"}
                   </button>
-                )}
+                </div>
+              </footer>
+              {named && saving && allocations.length > 0 && (
+                <SaveConditionBox
+                  defaultName={title.trim()}
+                  contents={currentCondition("", named.selection)}
+                  items={saved?.items ?? []}
+                  tiers={conditions!.ladder}
+                  onCancel={() => setSaving(false)}
+                  onSave={async (name, replace) => {
+                    const result = await named.client.save(
+                      currentCondition(name, named.selection),
+                      replace,
+                    );
+                    setSaved((current) => ({
+                      items: byLastUse([
+                        result,
+                        ...(current?.items ?? []).filter(
+                          (entry) => entry.id !== result.id,
+                        ),
+                      ]),
+                    }));
+                    setSaving(false);
+                  }}
+                />
+              )}
+            </section>
+          </div>
+        </div>
+      ) : (
+        <div className={s.reviewStep}>
+          <div className={s.stepSummary} data-exam-step-summary>
+            <span>
+              <span>
+                <b>{allocations.length}개 범위</b> · {questions.length}문항
+                {conditionNote ? ` · ${conditionNote}` : ""}
+              </span>
+              {selectedScopes.length > 0 && (
+                <small>
+                  {selectedScopes
+                    .slice(0, 2)
+                    .map((scope) => scope.label)
+                    .join(" · ")}
+                  {selectedScopes.length > 2
+                    ? ` 외 ${selectedScopes.length - 2}개`
+                    : ""}
+                </small>
+              )}
+            </span>
+            <button
+              type="button"
+              disabled={actionsDisabled}
+              onClick={() => go("scope")}
+            >
+              범위 설정 고치기
+            </button>
+          </div>
+          <section className={s.review} ref={reviewRef} aria-label="문항 검토">
+            <div className={s.toolbar}>
+              <div className={s.reviewHeading}>
+                <h2 ref={headingRef} tabIndex={-1}>
+                  구성한 문항{" "}
+                  <span className={s.badge}>{questions.length}</span>
+                </h2>
+                {summary && <small data-exam-summary>{summary}</small>}
+              </div>
+              <div className={s.actions}>
                 <button
                   type="button"
-                  className={s.primary}
-                  disabled={actionsDisabled || !valid}
-                  onClick={() => void run("compose")}
+                  className={s.textButton}
+                  disabled={actionsDisabled || !history.length}
+                  onClick={() => {
+                    const previous = history.at(-1);
+                    if (previous) {
+                      onQuestionsChange(previous);
+                      setHistory((current) => current.slice(0, -1));
+                    }
+                  }}
                 >
-                  {busy ? "준비 중…" : "문항 구성 →"}
+                  ↶ 되돌리기
+                </button>
+                <button
+                  type="button"
+                  disabled={
+                    actionsDisabled ||
+                    !selectedScopes.length ||
+                    questions.length >= maxQuestions
+                  }
+                  onClick={() => setPicker({})}
+                >
+                  + 문항 추가
                 </button>
               </div>
-            </footer>
-            {named && saving && allocations.length > 0 && (
-              <SaveConditionBox
-                defaultName={title.trim()}
-                contents={currentCondition("", named.selection)}
-                items={saved?.items ?? []}
-                tiers={conditions!.ladder}
-                onCancel={() => setSaving(false)}
-                onSave={async (name, replace) => {
-                  const result = await named.client.save(
-                    currentCondition(name, named.selection),
-                    replace,
-                  );
-                  setSaved((current) => ({
-                    items: byLastUse([
-                      result,
-                      ...(current?.items ?? []).filter(
-                        (entry) => entry.id !== result.id,
-                      ),
-                    ]),
-                  }));
-                  setSaving(false);
-                }}
-              />
+            </div>
+            {!questions.length ? (
+              <div className={`${s.panel} ${s.empty}`}>
+                <h2>검토할 문항이 없습니다.</h2>
+                <p>«범위 설정 고치기»로 1단계에 돌아가 문항을 구성하세요.</p>
+              </div>
+            ) : (
+              groups.map((group, groupIndex) => (
+                <section className={s.panel} key={`${group.id}:${groupIndex}`}>
+                  <header className={s.panelHeader}>
+                    <span className={s.groupNumber}>
+                      {String(groupIndex + 1).padStart(2, "0")}
+                    </span>
+                    <h3>{group.label}</h3>
+                    <small>{group.items.length}문항</small>
+                    <button
+                      type="button"
+                      disabled={
+                        actionsDisabled ||
+                        !scopeMap.has(group.id) ||
+                        !allocations.some((row) => row.scopeId === group.id) ||
+                        questions.length >= maxQuestions
+                      }
+                      onClick={() => setPicker({ scopeId: group.id })}
+                      aria-label={`${group.label} 범위에 문항 추가`}
+                    >
+                      + 이 범위에 추가
+                    </button>
+                  </header>
+                  <div className={s.questions}>
+                    {group.items.map(({ item, index }) => {
+                      const info = source.info(item);
+                      return (
+                        <article
+                          key={info.id}
+                          className={`${s.question} ${reorder.drag?.from === index ? s.dragging : ""} ${swappedId === info.id ? s.justSwapped : ""}`}
+                          data-exam-question
+                          data-question-id={info.id}
+                        >
+                          <div className={s.questionTop}>
+                            <button
+                              type="button"
+                              className={s.handle}
+                              aria-label={`${index + 1}번 문항 위치 이동`}
+                              title="끌어서 이동 · Space와 방향키로 이동"
+                              disabled={actionsDisabled}
+                              {...reorder.handleProps(index)}
+                            >
+                              ⠿
+                            </button>
+                            <strong className={s.number}>
+                              {String(index + 1).padStart(2, "0")}
+                            </strong>
+                            <div className={s.questionMain}>
+                              <small>
+                                {[info.scopeLabel, info.difficulty, info.detail]
+                                  .filter(Boolean)
+                                  .join(" · ")}
+                              </small>
+                              <div className={s.questionBody}>
+                                {renderQuestion(item)}
+                              </div>
+                            </div>
+                            {renderAnswer?.(item)}
+                          </div>
+                          <div className={s.actions}>
+                            <button
+                              type="button"
+                              disabled={
+                                actionsDisabled || !selectedScopes.length
+                              }
+                              onClick={(event) => {
+                                setReplaceOpenerEl(event.currentTarget);
+                                setPickerWidth(
+                                  reviewRef.current?.getBoundingClientRect()
+                                    .width,
+                                );
+                                setPicker({
+                                  replaceId: info.id,
+                                  scopeId: allocations.some(
+                                    (row) => row.scopeId === info.scopeId,
+                                  )
+                                    ? info.scopeId
+                                    : undefined,
+                                });
+                              }}
+                            >
+                              교체
+                            </button>
+                            <button
+                              type="button"
+                              className={s.danger}
+                              disabled={actionsDisabled}
+                              onClick={() =>
+                                change(
+                                  questions.filter(
+                                    (_, position) => position !== index,
+                                  ),
+                                )
+                              }
+                            >
+                              삭제
+                            </button>
+                            <button
+                              type="button"
+                              aria-label={`${index + 1}번 문항 위로`}
+                              disabled={actionsDisabled || index === 0}
+                              onClick={() =>
+                                change(
+                                  moveQuestion(questions, index, index - 1),
+                                )
+                              }
+                            >
+                              ↑
+                            </button>
+                            <button
+                              type="button"
+                              aria-label={`${index + 1}번 문항 아래로`}
+                              disabled={
+                                actionsDisabled ||
+                                index === questions.length - 1
+                              }
+                              onClick={() =>
+                                change(
+                                  moveQuestion(questions, index, index + 1),
+                                )
+                              }
+                            >
+                              ↓
+                            </button>
+                          </div>
+                        </article>
+                      );
+                    })}
+                  </div>
+                </section>
+              ))
             )}
           </section>
-        </aside>
-        <section className={s.review} ref={reviewRef} aria-label="문항 검토">
-          <div className={s.toolbar}>
-            <div className={s.reviewHeading}>
-              <h2 ref={headingRef} tabIndex={-1}>
-                구성한 문항 <span className={s.badge}>{questions.length}</span>
-              </h2>
-              {summary && <small data-exam-summary>{summary}</small>}
-            </div>
-            <div className={s.actions}>
-              <button
-                type="button"
-                className={s.textButton}
-                disabled={actionsDisabled || !history.length}
-                onClick={() => {
-                  const previous = history.at(-1);
-                  if (previous) {
-                    onQuestionsChange(previous);
-                    setHistory((current) => current.slice(0, -1));
-                  }
-                }}
-              >
-                ↶ 되돌리기
-              </button>
-              <button
-                type="button"
-                disabled={
-                  actionsDisabled ||
-                  !selectedScopes.length ||
-                  questions.length >= maxQuestions
-                }
-                onClick={() => setPicker({})}
-              >
-                + 문항 추가
-              </button>
-            </div>
-          </div>
-          {!questions.length ? (
-            <div className={`${s.panel} ${s.empty}`}>
-              <h2>범위를 정하고 문항을 구성하세요.</h2>
-              <p>
-                구성한 문항을 교체·추가·삭제한 뒤 양식 구성·출력으로 이어집니다.
-              </p>
-            </div>
-          ) : (
-            groups.map((group, groupIndex) => (
-              <section className={s.panel} key={`${group.id}:${groupIndex}`}>
-                <header className={s.panelHeader}>
-                  <span className={s.groupNumber}>
-                    {String(groupIndex + 1).padStart(2, "0")}
-                  </span>
-                  <h3>{group.label}</h3>
-                  <small>{group.items.length}문항</small>
-                  <button
-                    type="button"
-                    disabled={
-                      actionsDisabled ||
-                      !scopeMap.has(group.id) ||
-                      !allocations.some((row) => row.scopeId === group.id) ||
-                      questions.length >= maxQuestions
-                    }
-                    onClick={() => setPicker({ scopeId: group.id })}
-                    aria-label={`${group.label} 범위에 문항 추가`}
-                  >
-                    + 이 범위에 추가
-                  </button>
-                </header>
-                <div className={s.questions}>
-                  {group.items.map(({ item, index }) => {
-                    const info = source.info(item);
-                    return (
-                      <article
-                        key={info.id}
-                        className={`${s.question} ${reorder.drag?.from === index ? s.dragging : ""} ${swappedId === info.id ? s.justSwapped : ""}`}
-                        data-exam-question
-                        data-question-id={info.id}
-                      >
-                        <div className={s.questionTop}>
-                          <button
-                            type="button"
-                            className={s.handle}
-                            aria-label={`${index + 1}번 문항 위치 이동`}
-                            title="끌어서 이동 · Space와 방향키로 이동"
-                            disabled={actionsDisabled}
-                            {...reorder.handleProps(index)}
-                          >
-                            ⠿
-                          </button>
-                          <strong className={s.number}>
-                            {String(index + 1).padStart(2, "0")}
-                          </strong>
-                          <div className={s.questionMain}>
-                            <small>
-                              {[info.scopeLabel, info.difficulty, info.detail]
-                                .filter(Boolean)
-                                .join(" · ")}
-                            </small>
-                            <div className={s.questionBody}>
-                              {renderQuestion(item)}
-                            </div>
-                          </div>
-                          {renderAnswer?.(item)}
-                        </div>
-                        <div className={s.actions}>
-                          <button
-                            type="button"
-                            disabled={actionsDisabled || !selectedScopes.length}
-                            onClick={(event) => {
-                              setReplaceOpenerEl(event.currentTarget);
-                              setPickerWidth(
-                                reviewRef.current?.getBoundingClientRect()
-                                  .width,
-                              );
-                              setPicker({
-                                replaceId: info.id,
-                                scopeId: allocations.some(
-                                  (row) => row.scopeId === info.scopeId,
-                                )
-                                  ? info.scopeId
-                                  : undefined,
-                              });
-                            }}
-                          >
-                            교체
-                          </button>
-                          <button
-                            type="button"
-                            className={s.danger}
-                            disabled={actionsDisabled}
-                            onClick={() =>
-                              change(
-                                questions.filter(
-                                  (_, position) => position !== index,
-                                ),
-                              )
-                            }
-                          >
-                            삭제
-                          </button>
-                          <button
-                            type="button"
-                            aria-label={`${index + 1}번 문항 위로`}
-                            disabled={actionsDisabled || index === 0}
-                            onClick={() =>
-                              change(moveQuestion(questions, index, index - 1))
-                            }
-                          >
-                            ↑
-                          </button>
-                          <button
-                            type="button"
-                            aria-label={`${index + 1}번 문항 아래로`}
-                            disabled={
-                              actionsDisabled || index === questions.length - 1
-                            }
-                            onClick={() =>
-                              change(moveQuestion(questions, index, index + 1))
-                            }
-                          >
-                            ↓
-                          </button>
-                        </div>
-                      </article>
-                    );
-                  })}
-                </div>
-              </section>
-            ))
-          )}
-        </section>
-      </div>
+        </div>
+      )}
       {reorder.drag && reorder.line && (
         <div className={s.dropTarget} style={reorder.line} role="status">
           여기로 문제 이동
@@ -1297,51 +1462,6 @@ export default function ExamBuilder<T>({
                 : current,
             );
             setAppliedMark((mark) => (mark?.id === item.id ? null : mark));
-          }}
-        />
-      )}
-      {scopeOpen && (
-        <ScopePicker
-          scopes={scopes}
-          selected={allocations.map((row) => row.scopeId)}
-          initialGroup={initialGroup}
-          requireCounts={source.requireScopeCounts}
-          onClose={() => setScopeOpen(false)}
-          onApply={(ids) => {
-            const selectedIds = ids.filter((id) =>
-              canSelectScope(scopeMap.get(id), source.requireScopeCounts),
-            );
-            const retained = new Map(
-              allocations
-                .filter((row) => selectedIds.includes(row.scopeId))
-                .map((row) => [row.scopeId, row]),
-            );
-            const remaining = Math.max(
-              0,
-              maxQuestions -
-                [...retained.values()].reduce((sum, row) => sum + row.count, 0),
-            );
-            const defaultCount = Math.min(
-              5,
-              Math.floor(
-                remaining / Math.max(selectedIds.length - retained.size, 1),
-              ),
-            );
-            setAllocations(
-              selectedIds.map(
-                (scopeId) =>
-                  retained.get(scopeId) ?? {
-                    scopeId,
-                    count: Math.min(
-                      defaultCount,
-                      scopeMap.get(scopeId)?.count ?? maxQuestions,
-                    ),
-                  },
-              ),
-            );
-            setScopePage(1);
-            setStep("scope");
-            setScopeOpen(false);
           }}
         />
       )}

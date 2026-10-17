@@ -248,6 +248,9 @@ export function createMathExamBuilderSource(
           ...(composeOptions?.difficulty
             ? { difficulty: composeOptions.difficulty }
             : {}),
+          ...(composeOptions?.excludeIds?.length
+            ? { excludeIds: composeOptions.excludeIds }
+            : {}),
           allocations: positive.map(({ scopeId, count }) => ({
             unitId: scopeId,
             count,

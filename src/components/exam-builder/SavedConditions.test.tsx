@@ -225,19 +225,11 @@ afterEach(cleanup);
 const line = () =>
   within(document.querySelector("[data-condition-line]") as HTMLElement);
 async function pickAllScopes() {
-  await waitFor(() =>
-    expect(screen.getByRole("button", { name: "범위 선택" })).toBeEnabled(),
-  );
-  fireEvent.click(screen.getByRole("button", { name: "범위 선택" }));
-  const dialog = await screen.findByRole("dialog");
-  for (const box of dialog.querySelectorAll<HTMLInputElement>(
+  const panel = await screen.findByRole("region", { name: "범위 고르기" });
+  for (const box of panel.querySelectorAll<HTMLInputElement>(
     "li input[type=checkbox]",
   ))
     if (!box.checked && !box.disabled) fireEvent.click(box);
-  fireEvent.click(within(dialog).getByRole("button", { name: /개 범위 적용/ }));
-  await waitFor(() =>
-    expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
-  );
 }
 async function openList() {
   await waitFor(() =>
@@ -553,9 +545,7 @@ describe("이름 붙인 출제 조건 (W5 · Hi-fi 1)", () => {
 
   it("draws nothing of W5 without named conditions (English path)", async () => {
     render(<Harness />);
-    await waitFor(() =>
-      expect(screen.getByRole("button", { name: "범위 선택" })).toBeEnabled(),
-    );
+    await screen.findByRole("region", { name: "범위 고르기" });
     expect(document.querySelector("[data-condition-line]")).toBeNull();
     expect(
       screen.queryByRole("button", { name: /저장한 조건/ }),

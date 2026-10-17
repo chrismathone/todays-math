@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import { StrictMode, useState } from "react";
+import { StrictMode, useState, type ComponentProps } from "react";
 import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 import {
   cleanup,
@@ -126,10 +126,33 @@ beforeAll(() => {
   );
 });
 afterEach(cleanup);
+/** 1단계 «범위 고르기»는 제어 부품이다 — 시험에서는 고른 것을 들고 있는 껍데기로 띄운다. */
+function Picker({
+  selected = [],
+  onChange,
+  ...props
+}: Omit<ComponentProps<typeof ScopePicker>, "selected" | "onChange"> & {
+  selected?: string[];
+  onChange?: (ids: string[]) => void;
+}) {
+  const [ids, setIds] = useState(selected);
+  return (
+    <ScopePicker
+      {...props}
+      selected={ids}
+      onChange={(next) => {
+        setIds(next);
+        onChange?.(next);
+      }}
+    />
+  );
+}
+const pickerPanel = () =>
+  within(screen.getByRole("region", { name: "범위 고르기" }));
 describe("shared exam builder workflow", () => {
   it("disables empty and unconfirmed math grades without calling unknown inventory empty", () => {
     render(
-      <ScopePicker
+      <Picker
         scopes={[
           { id: "empty", label: "빈 차시", group: "초2", count: 0 },
           { id: "unknown", label: "미확인 차시", group: "초3" },
@@ -138,10 +161,7 @@ describe("shared exam builder workflow", () => {
           { id: "ready", label: "준비된 차시", group: "초5", count: 2 },
           { id: "ready-unknown", label: "미확인 차시", group: "초5" },
         ]}
-        selected={[]}
         requireCounts
-        onClose={() => {}}
-        onApply={() => {}}
       />,
     );
     const grades = within(screen.getByLabelText("학년·과정"));
@@ -158,9 +178,9 @@ describe("shared exam builder workflow", () => {
     expect(grades.getByRole("option", { name: "전체" })).toBeEnabled();
   });
   it("distinguishes repeated unit names by grade, semester and course without changing search or selections", () => {
-    const onApply = vi.fn();
+    const onChange = vi.fn();
     render(
-      <ScopePicker
+      <Picker
         scopes={[
           {
             id: "a",
@@ -192,8 +212,7 @@ describe("shared exam builder workflow", () => {
           },
         ]}
         selected={["a"]}
-        onClose={() => {}}
-        onApply={onApply}
+        onChange={onChange}
       />,
     );
     const units = screen.getByLabelText("단원·자료 묶음");
@@ -220,18 +239,11 @@ describe("shared exam builder workflow", () => {
     fireEvent.click(screen.getByRole("checkbox", { name: /수와 연산 B/ }));
     expect(screen.getByLabelText("학년·과정")).toHaveValue("");
     expect(screen.getByLabelText("범위 검색")).toHaveValue("수와 연산");
-    fireEvent.click(screen.getByRole("button", { name: "2개 범위 적용" }));
-    expect(onApply).toHaveBeenCalledWith(["a", "b"]);
+    // «적용» 단추가 없다 — 체크가 곧 고른 것이다.
+    expect(onChange).toHaveBeenLastCalledWith(["a", "b"]);
   });
   it("keeps uncounted non-math groups usable and resets the selected-only review when emptied", () => {
-    render(
-      <ScopePicker
-        scopes={scopes.slice(0, 2)}
-        selected={[]}
-        onClose={() => {}}
-        onApply={() => {}}
-      />,
-    );
+    render(<Picker scopes={scopes.slice(0, 2)} />);
     expect(screen.getByRole("option", { name: "중1" })).toBeEnabled();
     const review = screen.getByRole("checkbox", { name: "담은 범위만 보기" });
     expect(review).toBeDisabled();
@@ -274,22 +286,35 @@ describe("shared exam builder workflow", () => {
       table.getByRole("spinbutton", { name: "범위 2 구성 수" }),
       { target: { value: "7" } },
     );
-    fireEvent.click(screen.getByRole("button", { name: "1번 문항 아래로" }));
-    fireEvent.click(table.getByRole("button", { name: "범위 1 범위 제거" }));
+    // 1단계와 2단계는 다른 화면이다 — 문항은 2단계에서 옮기고, 범위는 1단계에서 뺀다.
     expect(
-      table.queryByRole("spinbutton", { name: "범위 1 구성 수" }),
+      screen.queryByRole("region", { name: "문항 검토" }),
+    ).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "2 문항 검토" }));
+    expect(
+      screen.queryByRole("region", { name: "출제 구성표" }),
+    ).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "1번 문항 아래로" }));
+    fireEvent.click(screen.getByRole("button", { name: "범위 설정 고치기" }));
+    const again = within(screen.getByRole("region", { name: "출제 구성표" }));
+    fireEvent.click(again.getByRole("button", { name: "범위 1 범위 제거" }));
+    expect(
+      again.queryByRole("spinbutton", { name: "범위 1 구성 수" }),
     ).not.toBeInTheDocument();
     expect(
-      table.getByRole("spinbutton", { name: "범위 2 구성 수" }),
+      again.getByRole("spinbutton", { name: "범위 2 구성 수" }),
     ).toHaveValue(7);
-    expect(table.getByText("합계 7문항")).toBeInTheDocument();
+    expect(again.getByText("합계 7문항")).toBeInTheDocument();
     expect(screen.getByLabelText("문항 순서")).toHaveTextContent("b,a,c");
+    fireEvent.click(screen.getByRole("button", { name: "2 문항 검토" }));
     fireEvent.click(screen.getByRole("button", { name: "↶ 되돌리기" }));
     expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a,b,c");
     expect(adapter.compose).not.toHaveBeenCalled();
-    fireEvent.click(table.getByRole("button", { name: "범위 2 범위 제거" }));
-    expect(table.getByRole("button", { name: "문항 구성 →" })).toBeDisabled();
-    expect(table.getByText("합계 0문항")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "1 범위 설정" }));
+    const last = within(screen.getByRole("region", { name: "출제 구성표" }));
+    fireEvent.click(last.getByRole("button", { name: "범위 2 범위 제거" }));
+    expect(last.getByRole("button", { name: "문항 구성 →" })).toBeDisabled();
+    expect(last.getByText("합계 0문항")).toBeInTheDocument();
   });
   it("preserves allocated counts when reviewing or adding scopes", async () => {
     render(<Harness adapter={source()} initial={questions} />);
@@ -298,15 +323,16 @@ describe("shared exam builder workflow", () => {
       screen.getByRole("spinbutton", { name: "범위 1 구성 수" }),
       { target: { value: "60" } },
     );
-    fireEvent.click(screen.getByRole("button", { name: "범위 변경" }));
-    fireEvent.click(screen.getByRole("checkbox", { name: "담은 범위만 보기" }));
-    fireEvent.click(screen.getByRole("button", { name: "2개 범위 적용" }));
+    const review = screen.getByRole("checkbox", { name: "담은 범위만 보기" });
+    fireEvent.click(review);
+    expect(
+      pickerPanel().getAllByRole("checkbox", { checked: true }),
+    ).toHaveLength(4);
     expect(
       screen.getByRole("spinbutton", { name: "범위 1 구성 수" }),
     ).toHaveValue(60);
-    fireEvent.click(screen.getByRole("button", { name: "범위 변경" }));
+    fireEvent.click(review);
     fireEvent.click(screen.getByRole("checkbox", { name: "범위 3 중1" }));
-    fireEvent.click(screen.getByRole("button", { name: "3개 범위 적용" }));
     expect(
       screen.getByRole("spinbutton", { name: "범위 1 구성 수" }),
     ).toHaveValue(60);
@@ -320,7 +346,9 @@ describe("shared exam builder workflow", () => {
   });
   it("has one global add action and explicitly scoped add actions", async () => {
     const adapter = source();
-    render(<Harness adapter={adapter} initial={questions} />);
+    render(
+      <Harness adapter={adapter} initial={questions} initialStep="review" />,
+    );
     await waitFor(() =>
       expect(screen.getByRole("button", { name: "+ 문항 추가" })).toBeEnabled(),
     );
@@ -458,17 +486,13 @@ describe("shared exam builder workflow", () => {
         ]),
     });
     render(<Harness adapter={adapter} />);
-    await waitFor(() =>
-      expect(screen.getByRole("button", { name: "범위 선택" })).toBeEnabled(),
-    );
-    fireEvent.click(screen.getByRole("button", { name: "범위 선택" }));
-    const dialog = within(screen.getByRole("dialog"));
-    expect(dialog.getByRole("checkbox", { name: /범위 2/ })).toBeDisabled();
-    expect(dialog.getByText("출제 가능 수 확인 필요")).toBeInTheDocument();
+    await screen.findByRole("region", { name: "범위 고르기" });
+    const panel = pickerPanel();
+    expect(panel.getByRole("checkbox", { name: /범위 2/ })).toBeDisabled();
+    expect(panel.getByText("출제 가능 수 확인 필요")).toBeInTheDocument();
     fireEvent.click(
-      dialog.getByRole("checkbox", { name: "현재 결과 전체 선택" }),
+      panel.getByRole("checkbox", { name: "현재 결과 전체 선택" }),
     );
-    fireEvent.click(dialog.getByRole("button", { name: "1개 범위 적용" }));
     fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
     await waitFor(() =>
       expect(adapter.compose).toHaveBeenCalledWith(
@@ -498,23 +522,17 @@ describe("shared exam builder workflow", () => {
       loadScopes: vi.fn().mockResolvedValue(available),
     });
     render(<Harness adapter={adapter} />);
-    await screen.findByRole("button", { name: "범위 선택" });
-    fireEvent.click(screen.getByRole("button", { name: "범위 선택" }));
-    const dialog = screen.getByRole("dialog");
-    expect(
-      within(dialog).getByRole("checkbox", { name: /범위 1/ }),
-    ).toBeDisabled();
-    expect(within(dialog).getByText("출제 가능 문항 없음")).toBeInTheDocument();
-    fireEvent.click(within(dialog).getByRole("checkbox", { name: /범위 2/ }));
-    fireEvent.click(
-      within(dialog).getByRole("button", { name: "1개 범위 적용" }),
-    );
+    await screen.findByRole("region", { name: "범위 고르기" });
+    const panel = pickerPanel();
+    expect(panel.getByRole("checkbox", { name: /범위 1/ })).toBeDisabled();
+    expect(panel.getByText("출제 가능 문항 없음")).toBeInTheDocument();
+    fireEvent.click(panel.getByRole("checkbox", { name: /범위 2/ }));
     expect(
       screen.getByRole("spinbutton", { name: "범위 2 구성 수" }),
     ).toHaveValue(2);
     expect(screen.getByText(/출제 가능 2문항/)).toBeInTheDocument();
   });
-  it("keeps a long scope catalog paged, cancels safely and composes only selected scopes", async () => {
+  it("keeps a long scope catalog paged, unchecking takes a scope back out, and composes only selected scopes", async () => {
     const adapter = source();
     render(<Harness adapter={adapter} />);
     expect(screen.getByRole("button", { name: "1 범위 설정" })).toHaveAttribute(
@@ -522,23 +540,24 @@ describe("shared exam builder workflow", () => {
       "step",
     );
     expect(screen.getByRole("button", { name: "2 문항 검토" })).toBeDisabled();
-    await waitFor(() =>
-      expect(screen.getByRole("button", { name: "범위 선택" })).toBeEnabled(),
-    );
-    fireEvent.click(screen.getByRole("button", { name: "범위 선택" }));
-    const dialog = screen.getByRole("dialog");
-    expect(within(dialog).getAllByRole("checkbox")).toHaveLength(22);
+    await screen.findByRole("region", { name: "범위 고르기" });
+    expect(pickerPanel().getAllByRole("checkbox")).toHaveLength(22);
     fireEvent.click(
-      within(dialog).getByRole("checkbox", { name: "범위 1 중1" }),
+      pickerPanel().getByRole("checkbox", { name: "범위 1 중1" }),
     );
-    fireEvent.click(within(dialog).getByRole("button", { name: "닫기" }));
+    expect(
+      screen.getByRole("spinbutton", { name: "범위 1 구성 수" }),
+    ).toHaveValue(5);
+    expect(screen.getByRole("button", { name: "문항 구성 →" })).toBeEnabled();
+    fireEvent.click(
+      pickerPanel().getByRole("checkbox", { name: "범위 1 중1" }),
+    );
+    expect(screen.queryByRole("spinbutton")).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "문항 구성 →" })).toBeDisabled();
-    fireEvent.click(screen.getByRole("button", { name: "범위 선택" }));
     fireEvent.change(screen.getByLabelText("범위 검색"), {
       target: { value: "범위 35" },
     });
     fireEvent.click(screen.getByRole("checkbox", { name: "범위 35 중2" }));
-    fireEvent.click(screen.getByRole("button", { name: "1개 범위 적용" }));
     fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
     await waitFor(() =>
       expect(
@@ -561,7 +580,7 @@ describe("shared exam builder workflow", () => {
     expect(
       screen.getByRole("button", { name: "2 문항 검토" }),
     ).not.toHaveAttribute("aria-current");
-    await screen.findByRole("button", { name: "범위 변경" });
+    await screen.findByRole("region", { name: "범위 고르기" });
     expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a,b,c");
     expect(adapter.compose).not.toHaveBeenCalled();
     fireEvent.click(screen.getByRole("button", { name: "2 문항 검토" }));
@@ -578,7 +597,9 @@ describe("shared exam builder workflow", () => {
     expect(
       screen.getByText("출제 범위를 불러오는 중입니다…"),
     ).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "범위 변경" })).toBeDisabled();
+    expect(
+      screen.queryByRole("region", { name: "범위 고르기" }),
+    ).not.toBeInTheDocument();
     before.unmount();
 
     const adapter = source({
@@ -590,15 +611,18 @@ describe("shared exam builder workflow", () => {
     expect(
       screen.queryByText("출제 범위를 불러오는 중입니다…"),
     ).not.toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "범위 변경" })).toBeEnabled();
+    expect(
+      pickerPanel().getByRole("checkbox", { name: "범위 1 중1" }),
+    ).toBeChecked();
     expect(screen.getAllByText("범위 1").length).toBeGreaterThan(0);
-    fireEvent.click(screen.getByRole("button", { name: "범위 변경" }));
-    expect(screen.getByRole("dialog")).toBeInTheDocument();
   });
   it("moves, deletes, undoes and keeps edits across output and scope navigation", async () => {
-    render(<Harness adapter={source()} initial={questions} />);
-    await screen.findByRole("button", { name: "범위 변경" });
-    fireEvent.click(screen.getByRole("button", { name: "1번 문항 아래로" }));
+    render(
+      <Harness adapter={source()} initial={questions} initialStep="review" />,
+    );
+    fireEvent.click(
+      await screen.findByRole("button", { name: "1번 문항 아래로" }),
+    );
     expect(screen.getByLabelText("문항 순서")).toHaveTextContent("b,a,c");
     fireEvent.click(screen.getByRole("button", { name: "↶ 되돌리기" }));
     expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a,b,c");
@@ -617,7 +641,9 @@ describe("shared exam builder workflow", () => {
   });
   it("adds matching difficulty candidates once and replaces in the original position", async () => {
     const adapter = source();
-    render(<Harness adapter={adapter} initial={questions} />);
+    render(
+      <Harness adapter={adapter} initial={questions} initialStep="review" />,
+    );
     await waitFor(() =>
       expect(
         screen.getAllByRole("button", { name: "+ 문항 추가" })[0],
@@ -676,7 +702,9 @@ describe("shared exam builder workflow", () => {
     ).not.toBeInTheDocument();
   });
   it("supports keyboard dragging, cancellation and undo", async () => {
-    render(<Harness adapter={source()} initial={questions} />);
+    render(
+      <Harness adapter={source()} initial={questions} initialStep="review" />,
+    );
     const handle = screen.getByRole("button", { name: "1번 문항 위치 이동" });
     fireEvent.keyDown(handle, { key: " " });
     fireEvent.keyDown(handle, { key: "ArrowDown" });
@@ -709,12 +737,13 @@ describe("shared exam builder workflow", () => {
       }),
     });
     render(<Harness adapter={adapter} initial={sheet} />);
+    expect(await screen.findByText(/출제 가능 4갈래/)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "2 문항 검토" }));
     await waitFor(() =>
       expect(
         screen.getAllByRole("button", { name: "+ 문항 추가" })[0],
       ).toBeEnabled(),
     );
-    expect(screen.getByText(/출제 가능 4갈래/)).toBeInTheDocument();
     fireEvent.click(screen.getAllByRole("button", { name: "+ 문항 추가" })[0]);
     await waitFor(() =>
       expect(adapter.list).toHaveBeenLastCalledWith(
@@ -754,7 +783,7 @@ describe("shared exam builder workflow", () => {
         total: 2,
       }),
     });
-    render(<Harness adapter={adapter} initial={sheet} />);
+    render(<Harness adapter={adapter} initial={sheet} initialStep="review" />);
     await waitFor(() =>
       expect(screen.getAllByRole("button", { name: "교체" })[0]).toBeEnabled(),
     );
@@ -853,6 +882,13 @@ describe("구성 조건 (W4 · Hi-fi 2)", () => {
     expect(chips.getByText("0행")).toBeInTheDocument();
     // 낱칸은 누르는 것이 아니다 — 단추는 [구성 조건] 하나
     expect(chips.getAllByRole("button")).toHaveLength(1);
+    fireEvent.click(screen.getByRole("button", { name: "2 문항 검토" }));
+    // 2단계 맨 위 요약 줄 — 1단계에서 정한 것을 글 한 줄로(Hi-fi H1).
+    expect(
+      document.querySelector("[data-exam-step-summary]"),
+    ).toHaveTextContent(
+      "2개 범위 · 3문항 · 난이도 지정 없음 · 최근 14일 출제 뺌",
+    );
     fireEvent.click(screen.getAllByRole("button", { name: "+ 문항 추가" })[0]);
     await waitFor(() =>
       expect(adapter.list).toHaveBeenLastCalledWith(
@@ -861,16 +897,15 @@ describe("구성 조건 (W4 · Hi-fi 2)", () => {
       ),
     );
     fireEvent.click(screen.getByRole("button", { name: "완료" }));
+    // 검토에서 c(범위 2)를 지우고 1단계로 — 다시 구성하면 남은 a · b 는 두고 범위 2 의 한 자리만 뽑는다.
+    fireEvent.click(screen.getAllByRole("button", { name: "삭제" })[2]);
     fireEvent.click(screen.getByRole("button", { name: "1 범위 설정" }));
     fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
     await waitFor(() =>
       expect(adapter.compose).toHaveBeenCalledWith(
-        [
-          { scopeId: "u1", count: 2 },
-          { scopeId: "u2", count: 1 },
-        ],
+        [{ scopeId: "u2", count: 1 }],
         expect.any(AbortSignal),
-        { excludeRecent: true, difficulty: undefined },
+        { excludeRecent: true, difficulty: undefined, excludeIds: ["a", "b"] },
       ),
     );
   });
@@ -958,17 +993,24 @@ describe("구성 조건 (W4 · Hi-fi 2)", () => {
       excludeRecent: false,
     });
     expect(summaryOf().getByText("최근 출제 포함")).toBeInTheDocument();
+    fireEvent.click(
+      screen.getByRole("button", { name: "범위 2 문항 수 늘리기" }),
+    );
     fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
     await waitFor(() =>
       expect(adapter.compose).toHaveBeenCalledWith(
-        expect.any(Array),
+        [{ scopeId: "u2", count: 1 }],
         expect.any(AbortSignal),
-        { excludeRecent: false, difficulty: undefined },
+        {
+          excludeRecent: false,
+          difficulty: undefined,
+          excludeIds: ["a", "b", "c"],
+        },
       ),
     );
   });
 
-  it("sends the difficulty intent («–» left out, 0 kept) and reports a short tier after composing", async () => {
+  it("sends the difficulty intent and redraws everything when the kept questions cannot meet it", async () => {
     const adapter = conditioned({
       compose: vi.fn().mockResolvedValue({
         items: questions,
@@ -980,27 +1022,68 @@ describe("구성 조건 (W4 · Hi-fi 2)", () => {
     render(<Harness adapter={adapter} initial={questions} />);
     await ready();
     const dialog = await openDialog();
+    // 검토하던 a · c 는 기본, b 는 심화 — «기본 1 · 심화 2»는 남긴 문항으로 맞출 수 없어 전부 새로 뽑는다.
     fireEvent.change(within(dialog).getByLabelText("기본 문항 수"), {
+      target: { value: "1" },
+    });
+    fireEvent.change(within(dialog).getByLabelText("심화 문항 수"), {
       target: { value: "2" },
     });
-    fireEvent.click(
-      within(dialog).getByRole("button", { name: "심화 문항 수 하나 더하기" }),
-    );
     expect(within(dialog).getByRole("status")).toHaveTextContent(
       "총 문항 · 난이도 · 범위 행이 서로 맞습니다.",
     );
     fireEvent.click(within(dialog).getByRole("button", { name: "적용" }));
-    expect(summaryOf().getByText("기본 2 · 심화 1")).toBeInTheDocument();
+    expect(summaryOf().getByText("기본 1 · 심화 2")).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
     await waitFor(() =>
       expect(adapter.compose).toHaveBeenCalledWith(
         expect.any(Array),
         expect.any(AbortSignal),
-        { excludeRecent: true, difficulty: { 기본: 2, 심화: 1 } },
+        { excludeRecent: true, difficulty: { 기본: 1, 심화: 2 } },
       ),
     );
     expect(
       await screen.findByText(/심화 1문항 중 0문항만 구성했습니다/),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/난이도 조건에 맞추려고 문항을 모두 새로 뽑았습니다/),
+    ).toBeInTheDocument();
+  });
+
+  it("keeps the reviewed questions that still fit and asks only for the missing slots, minus their difficulty", async () => {
+    const adapter = conditioned({
+      compose: vi
+        .fn()
+        .mockResolvedValue([{ id: "e", scope: "u2", difficulty: "심화" }]),
+    });
+    render(<Harness adapter={adapter} initial={questions} />);
+    await ready();
+    fireEvent.click(
+      screen.getByRole("button", { name: "범위 2 문항 수 늘리기" }),
+    );
+    const dialog = await openDialog();
+    fireEvent.change(within(dialog).getByLabelText("기본 문항 수"), {
+      target: { value: "2" },
+    });
+    fireEvent.change(within(dialog).getByLabelText("심화 문항 수"), {
+      target: { value: "2" },
+    });
+    fireEvent.click(within(dialog).getByRole("button", { name: "적용" }));
+    fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
+    await waitFor(() =>
+      expect(adapter.compose).toHaveBeenCalledWith(
+        [{ scopeId: "u2", count: 1 }],
+        expect.any(AbortSignal),
+        {
+          excludeRecent: true,
+          difficulty: { 기본: 0, 심화: 1 },
+          excludeIds: ["a", "b", "c"],
+        },
+      ),
+    );
+    expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a,b,c,e");
+    expect(
+      screen.getByText(/검토하던 3문항은 그대로 두고 1문항을 새로 채웠습니다/),
     ).toBeInTheDocument();
   });
 
@@ -1027,7 +1110,7 @@ describe("구성 조건 (W4 · Hi-fi 2)", () => {
   it("leaves a source without conditions untouched (English path)", async () => {
     const adapter = source();
     render(<Harness adapter={adapter} initial={questions} />);
-    await screen.findByRole("button", { name: "범위 변경" });
+    await screen.findByRole("region", { name: "범위 고르기" });
     expect(document.querySelector("[data-compose-summary]")).toBeNull();
     expect(screen.queryByRole("button", { name: "구성 조건" })).toBeNull();
     expect(adapter.loadScopes).toHaveBeenCalledWith(
