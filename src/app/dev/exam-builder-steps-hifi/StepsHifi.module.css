@@ -1,0 +1,179 @@
+/* 1 · 2단계 분리 Hi-fi — 시안 틀과 덧붙는 배치만. 제작기 · 구성표 · 검토 칸은 제품 모듈 그대로다. */
+.root {
+  padding: 32px 16px 64px;
+  background: var(--learn-bg, #f4f6fa);
+}
+.desktop {
+  height: auto !important;
+  min-height: 760px;
+}
+.heading,
+.option {
+  max-width: 1520px;
+  margin: 0 auto;
+}
+.heading h1 {
+  margin: 4px 0 8px;
+  font-size: 26px;
+  font-weight: 600;
+}
+.heading p {
+  max-width: 860px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.kicker {
+  color: var(--learn-muted, #596c86);
+  font-size: 12px;
+}
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0;
+}
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--learn-control, #b8c4d6);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--learn-accent, #3159df);
+  text-decoration: none;
+  font-size: 14px;
+}
+.nav a:hover {
+  background: var(--learn-soft-hover, #e4ebff);
+}
+.option {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--learn-track, #dde3ec);
+}
+.option h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+.muted {
+  color: var(--learn-muted, #596c86);
+  font-size: 13px;
+}
+
+/* 1단계 — 조건 줄 아래 두 칸 */
+.step1,
+.step2 {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+.two {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+.twoNarrow {
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+/* 창 밖으로 편 범위 고르기 — 지금 체크 칸 · «담은 범위만» 줄 스타일은 `.dialog` 안에서만 먹어 여기서 같은 값을 준다(구현도 같다). */
+.picker :global(input[type="checkbox"]) {
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  flex-shrink: 0;
+  accent-color: var(--learn-accent, #3159df);
+}
+.picker label:has(> input[type="checkbox"]) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-size: 14px;
+}
+.chipBlock {
+  display: grid;
+  gap: 8px;
+  padding: 12px 16px 0;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.chips button {
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--builder-control, #c9d3e3);
+  border-radius: 999px;
+  background: #fff;
+  font-size: 13px;
+  cursor: pointer;
+}
+.chips button[aria-pressed="true"] {
+  border-color: var(--learn-accent, #3159df);
+  background: var(--learn-soft, #edf2ff);
+  color: var(--learn-accent, #3159df);
+  font-weight: 600;
+}
+.chosen {
+  background: var(--learn-soft, #edf2ff);
+}
+.compact label {
+  padding-block: 6px;
+}
+
+/* 2단계 맨 위 요약 */
+.summaryBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--learn-track, #dde3ec);
+  border-radius: 10px;
+  background: #fff;
+  font-size: 14px;
+}
+.summaryBar button,
+.summaryCard button {
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--builder-control, #c9d3e3);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--learn-accent, #3159df);
+  font-weight: 600;
+  cursor: pointer;
+}
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.summaryCard {
+  padding: 10px 14px;
+  border: 1px solid var(--learn-track, #dde3ec);
+  border-radius: 10px;
+  background: #fff;
+  font-size: 14px;
+}
+.summaryCard summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 32px;
+  align-items: center;
+  cursor: pointer;
+}
+.summaryCard table {
+  margin: 8px 0;
+}

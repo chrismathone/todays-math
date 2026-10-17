@@ -297,7 +297,7 @@ function ScopeTable({
   );
 }
 
-function PanelHead() {
+function PanelHead({ change = true }: { change?: boolean }) {
   return (
     <header className={eb.panelHeader}>
       <strong>
@@ -306,7 +306,7 @@ function PanelHead() {
       <span className={eb.summary}>
         일차부등식의 해와 성질 · 일차부등식의 풀이 외 1개
       </span>
-      <button type="button">범위 변경</button>
+      {change && <button type="button">범위 변경</button>}
     </header>
   );
 }
@@ -333,14 +333,17 @@ export function ScopeTableStatic({
   top,
   footExtra,
   bottom,
+  change = true,
 }: {
   top?: ReactNode;
   footExtra?: ReactNode;
   bottom?: ReactNode;
+  /** «범위 변경» 단추 — 범위 고르기가 화면 안에 펴져 있으면(1 · 2단계 분리 시안) 없다. */
+  change?: boolean;
 }) {
   return (
     <section className={eb.panel} aria-label="출제 구성표(그림)">
-      <PanelHead />
+      <PanelHead change={change} />
       {top}
       <ScopeTable rows={SCOPES} />
       <PanelFoot total={18} extra={footExtra} />
