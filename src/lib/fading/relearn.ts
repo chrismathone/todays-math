@@ -175,14 +175,19 @@ function nextKstMidnight(now: number): number {
 /**
  * 오늘의 끝(원장님 결정 2026-10-17 · 계약의 `FADING_RELEARN_DAILY_CHECKS` · `FADING_RELEARN_STOP_FAILS`).
  * 🔴 새 저장 칸 없이 센다 — 판정이 난 확인은 그날의 집계(`day.checks`), «틀림»은 영수증(`graded`)을 그날 · 명제로 묶어서.
- * 하루 30회가 영수증 보관 수(32)보다 작아 그날의 영수증은 다 남는다(시험이 짝을 잠근다). 보관 수를 줄이면 이 근거를 다시 본다.
- * 대조를 기다리는 답은 판정이 나면 그날의 확인이 되므로 미리 한 자리를 잡는다(`reserved`) — 대조까지 넣어도 30을 넘지 않는다.
+ * 🔴 **판정은 그날의 수가 30 미만일 때만 난다**(답 · 대조 둘 다) — 그래서 어떤 차례로 와도 하루 30을 넘지 않고, 그날의 영수증은
+ *    보관 수(32) 안에 다 남는다(시험이 짝을 잠근다). 보관 수를 줄이면 이 근거를 다시 본다.
+ * 대조를 기다리는 답 가운데 **오늘 쓴 것**은 판정이 나면 오늘의 확인이 되므로 미리 자리를 잡는다(`reserved`) — 새 답이 그 자리를
+ * 먹지 않게. 지난날의 대조는 자리를 잡지 않는다(낡은 대기가 날마다 자리를 막지 않게) — 그날의 수가 남아 있으면 끝낼 수 있다.
  * 도움(`assisted`)은 틀림이 아니다 — 멈춤은 «틀림»만 센다.
+ * `ahead` — 저장된 집계가 이 시각보다 뒤의 날이다(자정을 넘긴 다른 요청이 먼저 적었다). 그 시각으로는 판정하지 않는다.
  */
 export function fadingRelearnLimits(relearn: StoredFadingRelearn, now: number) {
   const on = kstDateOf(new Date(now));
   const checks = relearn.day?.on === on ? relearn.day.checks : 0;
-  const reserved = relearn.items.filter((item) => item.pending).length;
+  const reserved = relearn.items.filter(
+    (item) => item.pending && kstDateOf(new Date(item.pending.at)) === on,
+  ).length;
   const fails = new Map<string, number>();
   for (const receipt of relearn.graded)
     if (
@@ -196,7 +201,11 @@ export function fadingRelearnLimits(relearn: StoredFadingRelearn, now: number) {
     on,
     checks,
     reserved,
+    /** 새 답을 받지 않는다(오늘 쓴 대조의 자리까지 찼다). */
     capped: checks + reserved >= FADING_RELEARN_DAILY_CHECKS,
+    /** 대조도 판정하지 않는다(그날의 수가 다 찼다). */
+    full: checks >= FADING_RELEARN_DAILY_CHECKS,
+    ahead: !!relearn.day && relearn.day.on > on,
     stopped: [...fails]
       .filter(([, n]) => n >= FADING_RELEARN_STOP_FAILS)
       .map(([key]) => key),
@@ -204,12 +213,14 @@ export function fadingRelearnLimits(relearn: StoredFadingRelearn, now: number) {
   };
 }
 
+/** 그날의 집계에 더한다 — 저장된 집계가 더 뒤의 날이면(자정을 넘긴 요청이 먼저 적었다) 거꾸로 돌리지 않고 그대로 둔다. */
 function tallied(
   relearn: StoredFadingRelearn,
   now: number,
   add: { checks?: number; cleared?: number; entered?: number },
 ): StoredFadingRelearn["day"] {
   const on = kstDateOf(new Date(now));
+  if (relearn.day && relearn.day.on > on) return relearn.day;
   const day =
     relearn.day?.on === on
       ? relearn.day
@@ -761,16 +772,19 @@ export function gradeFadingRelearn(
   if (live) throw conflict(FADING_RELEARN_JUDGING);
   // 오늘의 끝 — 저장 전이에서 막는다(화면이 아니라). 저장이 다시 시도되면 새 기록으로 다시 센다.
   const limits = fadingRelearnLimits(relearn, now);
+  if (limits.ahead) throw conflict(FADING_RELEARN_CHANGED);
   if (
     limits.stopped.includes(
       fadingRelearnKey(item.conceptId, item.propositionId),
     )
   )
     throw conflict(FADING_RELEARN_STOPPED);
-  // 이 줄이 잡아 둔 낡은 대조 자리는 이 답이 대신한다.
+  // 이 줄이 오늘 잡아 둔 낡은 대조 자리는 이 답이 대신한다.
+  const own =
+    item.pending && kstDateOf(new Date(item.pending.at)) === limits.on ? 1 : 0;
   if (
-    limits.checks + limits.reserved - (item.pending ? 1 : 0) >=
-    FADING_RELEARN_DAILY_CHECKS
+    limits.full ||
+    limits.checks + limits.reserved - own >= FADING_RELEARN_DAILY_CHECKS
   )
     throw conflict(FADING_RELEARN_CAPPED);
   if (attempt.token !== fadingRelearnToken(item, concept, traps))
@@ -879,6 +893,10 @@ export function judgeFadingRelearn(
     throw conflict("대조를 기다리는 확인이 아닙니다.");
   const digest = fadingPropositionDigest(proposition);
   if (pending.digest !== digest) throw conflict(FADING_RELEARN_CHANGED);
+  // 대조도 판정이다 — 그날의 수가 다 찼으면 다음 날 끝낸다(배포 전에 쌓인 대조가 30을 넘기지 않게).
+  const limits = fadingRelearnLimits(relearn, now);
+  if (limits.ahead) throw conflict(FADING_RELEARN_CHANGED);
+  if (limits.full) throw conflict(FADING_RELEARN_CAPPED);
   const targets = fadingPropositionTargets(proposition);
   const written = new Map(pending.answers.map((a) => [a.targetId, a.text]));
   const typed = targets.map((target) =>
@@ -1010,9 +1028,13 @@ export function fadingRelearnQueueView(input: {
     if (!concept || !proposition || !fading.concepts[item.conceptId]) continue;
     const traps = input.trapsOf?.(concept) ?? [];
     const digest = fadingPropositionDigest(proposition);
-    const pending = item.pending?.digest === digest ? item.pending : undefined;
     const key = fadingRelearnKey(item.conceptId, item.propositionId);
-    // 오늘 끝난 줄은 다음 날 0시까지 기다린다 — 대조를 기다리는 답은 이미 자리를 잡아 두어 끝낼 수 있다.
+    // 그날의 수가 다 찼으면 대조도 다음 날이다 — 그때까지는 기다리는 줄로 내려간다(대조할 답은 싣지 않는다).
+    const pending =
+      item.pending?.digest === digest && !limits.full
+        ? item.pending
+        : undefined;
+    // 오늘 끝난 줄은 다음 날 0시까지 기다린다 — 오늘 쓴 대조는 이미 자리를 잡아 두어 끝낼 수 있다.
     const dueAt =
       !pending && (limits.capped || stopped.has(key))
         ? Math.max(dueAtOf(item, digest), limits.resumeAt)
@@ -1062,6 +1084,8 @@ export function fadingRelearnQueueView(input: {
   );
   const waiting = items.filter((item) => item.state === "waiting");
   const today = zeroDay(now);
+  // 은행에서 사라진 줄은 세지 않는다 — 내려간 줄 가운데 멈춘 것.
+  const stoppedShown = items.filter((item) => stopped.has(item.key)).length;
   return {
     enabled,
     now,
@@ -1078,16 +1102,15 @@ export function fadingRelearnQueueView(input: {
     },
     nextDueAt: waiting.length ? waiting[0]!.dueAt : null,
     today: relearn.day?.on === today.on ? { ...relearn.day } : today,
-    // 닫혀 있으면 싣지 않는다 — 할 확인이 없다.
-    ...(enabled
+    // 그날이 끝났을 때만 싣는다 — 닫혀 있거나 끝나지 않은 날의 응답은 이 칸을 모르는 옛 화면도 그대로 읽는다(배포 직후 열린 화면).
+    ...(enabled && (limits.capped || stoppedShown > 0)
       ? {
           limit: {
             cap: FADING_RELEARN_DAILY_CHECKS,
             checks: limits.checks,
             reserved: limits.reserved,
             capped: limits.capped,
-            // 은행에서 사라진 줄은 세지 않는다 — 내려간 줄 가운데 멈춘 것.
-            stopped: items.filter((item) => stopped.has(item.key)).length,
+            stopped: stoppedShown,
             resumeAt: limits.resumeAt,
           },
         }

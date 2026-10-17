@@ -93,10 +93,10 @@ function buildRecord(
 
 /**
  * 하루 분량 손잡이(2026-10-17)의 표본 — 오늘 추가 확인 30회를 다 했고(상한), 한 문장은 «틀림» 3회로 멈췄고, 남은 문장이 있다.
- * 최근 7일 가운데 상한에 닿은 날(학생 기록 밖의 표)은 라우트가 넘기는 값이라 여기서 3으로 둔다.
+ * 최근 7일 가운데 오늘을 뺀 지난 날 상한에 닿은 날(학생 기록 밖의 표)은 라우트가 넘기는 값이라 여기서 2로 둔다 — 오늘을 더해 3일.
  */
 const NOON = Date.parse(`${TODAY}T12:00:00+09:00`);
-const FIXTURE_CAP_DAYS = 3;
+const FIXTURE_CAP_DAYS = 2;
 function withRelearnEnd(
   record: StoredFading,
   catalog: readonly FadingConcept[],

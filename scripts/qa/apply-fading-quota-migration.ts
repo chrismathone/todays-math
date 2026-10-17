@@ -6,8 +6,10 @@
  *
  * 새 표 둘을 만들 뿐 지금 있는 표 · 행은 만지지 않는다. 🔴 DB 먼저 · 코드 나중(이 표를 읽는 코드가 나가기 전에 적용한다).
  * 본뜬 것: `apply-print-preset-kind-migration.ts` — 이 마이그레이션 하나만 적용하고 `_prisma_migrations` 에 같은 방식으로 기록한다.
- * 확인(읽기만): ⑴ 앞 — 두 표가 없다 ⑵ 뒤 — 두 표 · 칸 · 제약이 있고 행은 0 ⑶ 제약이 실제로 막는다(고를 수 없는 분량 12 는 거절).
- * 되돌리기: `--revert`(드라이런) · `ALLOW_SHARED_IMPORT=1 … --revert --apply` — 🔴 행이 하나라도 있으면 되돌리지 않는다.
+ * 확인(읽기만): ⑴ 앞 — 두 표가 없고 이력도 없다 ⑵ 뒤 — 두 표 · CHECK 셋 · RLS 켜짐 · 브라우저 역할 권한 없음 · 행 0
+ *   ⑶ 제약이 실제로 막는다(고를 수 없는 분량 12 는 분량 CHECK 의 이름으로 거절).
+ * 되돌리기: `--revert`(드라이런) · `ALLOW_SHARED_IMPORT=1 … --revert --apply` — 🔴 두 표를 배타 잠금한 **같은 거래 안에서** 행을 세고,
+ *   하나라도 있으면 되돌리지 않는다(세고 지우는 사이에 첫 행이 들어오지 않게).
  */
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
@@ -23,11 +25,11 @@ const CHECKS = [
   "fading_student_policy_revision_check",
 ];
 
-const REVERT_SQL = `
-DROP TABLE "fading_relearn_cap_day";
-DROP TABLE "fading_student_policy";
-DELETE FROM "_prisma_migrations" WHERE migration_name = '${MIGRATION_NAME}';
-`;
+const REVERT_STATEMENTS = [
+  `DROP TABLE "fading_relearn_cap_day"`,
+  `DROP TABLE "fading_student_policy"`,
+  `DELETE FROM "_prisma_migrations" WHERE migration_name = '${MIGRATION_NAME}'`,
+];
 
 const APPLY = process.argv.includes("--apply");
 const REVERT = process.argv.includes("--revert");
@@ -46,13 +48,18 @@ class DryRun extends Error {}
 const checksumOf = (text: string) =>
   createHash("sha256").update(text.replaceAll("\r", "")).digest("hex");
 
+/** `-- statement` 줄로 가른다 — DO 블록 안의 «;» 를 자르지 않으려고. 주석 줄은 뺀다. */
 function splitStatements(sql: string): string[] {
   return sql
-    .split("\n")
-    .filter((line) => !line.trimStart().startsWith("--"))
-    .join("\n")
-    .split(";")
-    .map((s) => s.trim())
+    .split(/^-- statement$/m)
+    .map((part) =>
+      part
+        .split("\n")
+        .filter((line) => !line.trimStart().startsWith("--"))
+        .join("\n")
+        .trim()
+        .replace(/;$/, ""),
+    )
     .filter(Boolean);
 }
 
@@ -74,35 +81,68 @@ async function rowCount(tx: Tx, table: string): Promise<number> {
 
 async function main() {
   if (REVERT) {
-    const now = await present(prisma);
-    console.log(`  있는 표 [${now.join(", ")}]`);
-    for (const table of now) {
-      const n = await rowCount(prisma, table);
-      console.log(`  ${table} 행 ${n}개`);
-      if (n > 0)
-        throw new Error(`${table} 에 행이 있다 — 되돌리면 사라진다. 멈춘다.`);
-    }
-    if (!APPLY) return console.log("되돌리기 — 드라이런이다.");
-    await prisma.$transaction(async (tx) => {
-      await tx.$executeRawUnsafe(`SET LOCAL lock_timeout = '10s'`);
-      for (const stmt of splitStatements(REVERT_SQL))
-        await tx.$executeRawUnsafe(stmt);
-    });
-    return console.log("되돌렸다.");
+    await prisma
+      .$transaction(
+        async (tx) => {
+          await tx.$executeRawUnsafe(`SET LOCAL lock_timeout = '10s'`);
+          const now = await present(tx);
+          console.log(`  있는 표 [${now.join(", ")}]`);
+          if (now.length !== TABLES.length)
+            throw new Error("표가 둘 다 있지 않다 — 손대지 않고 멈춘다.");
+          // 세는 동안과 지우는 사이에 첫 행이 들어오지 않게 먼저 잠근다.
+          await tx.$executeRawUnsafe(
+            `LOCK TABLE "fading_student_policy", "fading_relearn_cap_day" IN ACCESS EXCLUSIVE MODE`,
+          );
+          for (const table of TABLES) {
+            const n = await rowCount(tx, table);
+            console.log(`  ${table} 행 ${n}개`);
+            if (n > 0)
+              throw new Error(
+                `${table} 에 행이 있다 — 되돌리면 사라진다. 멈춘다.`,
+              );
+          }
+          for (const stmt of REVERT_STATEMENTS)
+            await tx.$executeRawUnsafe(stmt);
+          if (!APPLY) throw new DryRun();
+        },
+        { timeout: 60_000, maxWait: 30_000 },
+      )
+      .catch((error: unknown) => {
+        if (error instanceof DryRun)
+          return console.log("되돌리기 — 드라이런이다. ROLLBACK 했다.");
+        throw error;
+      });
+    if (APPLY) console.log("되돌렸다.");
+    return;
   }
   const raw = readFileSync(MIGRATION_PATH, "utf8");
   const statements = splitStatements(raw);
   console.log(
     `${MIGRATION_PATH}\n  문장 ${statements.length}개 · 체크섬 ${checksumOf(raw)}`,
   );
-  if (statements.length !== 2)
-    throw new Error(`문장이 둘이 아니다: ${statements.length}`);
-  const already = (await prisma.$queryRawUnsafe(
-    `SELECT migration_name FROM "_prisma_migrations" WHERE migration_name = $1`,
+  if (statements.length !== 6)
+    throw new Error(`문장이 여섯이 아니다: ${statements.length}`);
+  // 이력은 «끝났고 · 되돌려지지 않았고 · 체크섬이 같고 · 표가 다 있을 때»만 «이미 적용»이다. 그 밖의 이력은 멈춘다.
+  const history = (await prisma.$queryRawUnsafe(
+    `SELECT checksum, finished_at, rolled_back_at FROM "_prisma_migrations" WHERE migration_name = $1`,
     MIGRATION_NAME,
-  )) as unknown[];
-  if (already.length)
-    return console.log("이미 적용돼 있다. 아무것도 하지 않는다.");
+  )) as Array<{
+    checksum: string;
+    finished_at: Date | null;
+    rolled_back_at: Date | null;
+  }>;
+  if (history.length) {
+    const ok =
+      history.length === 1 &&
+      history[0]!.finished_at !== null &&
+      history[0]!.rolled_back_at === null &&
+      history[0]!.checksum === checksumOf(raw) &&
+      (await present(prisma)).length === TABLES.length;
+    if (ok) return console.log("이미 적용돼 있다. 아무것도 하지 않는다.");
+    throw new Error(
+      "이 마이그레이션의 이력이 있는데 적용된 꼴과 다르다(미완 · 되돌림 · 체크섬 · 표). 손대지 않고 멈춘다.",
+    );
+  }
   const before = await present(prisma);
   console.log(`  ⑴ 앞 — 있는 표 [${before.join(", ") || "없음"}]`);
   if (before.length) throw new Error("표가 이미 있다 — 손대지 않고 멈춘다.");
@@ -130,6 +170,22 @@ async function main() {
         )) as Array<{ conname: string }>;
         if (checks.length !== CHECKS.length)
           throw new Error(`CHECK 가 ${checks.length}/${CHECKS.length} 개다`);
+        const rls = (await tx.$queryRawUnsafe(
+          `SELECT relname FROM pg_class WHERE relname = ANY($1::text[]) AND relrowsecurity`,
+          [...TABLES],
+        )) as Array<{ relname: string }>;
+        console.log(`     RLS 켜짐 ${rls.length}/${TABLES.length}`);
+        if (rls.length !== TABLES.length) throw new Error("RLS 가 꺼져 있다");
+        const grants = (await tx.$queryRawUnsafe(
+          `SELECT grantee, table_name FROM information_schema.role_table_grants
+            WHERE table_name = ANY($1::text[]) AND grantee IN ('anon', 'authenticated', 'PUBLIC')`,
+          [...TABLES],
+        )) as Array<{ grantee: string; table_name: string }>;
+        console.log(`     브라우저 역할 권한 ${grants.length}개`);
+        if (grants.length)
+          throw new Error(
+            `브라우저 역할에 권한이 남았다: ${grants.map((g) => `${g.grantee}/${g.table_name}`).join(", ")}`,
+          );
         // ⑶ 제약이 실제로 막는가 — 저장점 안에서 고를 수 없는 분량을 넣어 본다. 학생이 없는 id 라 외래 키로도 거절되므로
         //    «거절됐다»가 아니라 «분량 CHECK 의 이름으로 거절됐다»를 본다.
         await tx.$executeRawUnsafe(`SAVEPOINT probe`);

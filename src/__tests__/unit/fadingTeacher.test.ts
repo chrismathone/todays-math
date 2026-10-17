@@ -413,9 +413,10 @@ describe("오늘 추가 확인과 두 까닭 — 정책 2판", () => {
   });
 
   it("오늘 판정한 확인 · 상한 도달 · 멈춘 문장을 센다", () => {
+    // 오늘 상한에 닿았으면 오늘도 하루로 센다(표가 넘긴 지난 날 0 + 오늘 1).
     expect(summary(withRelearn(30, 3)).relearn).toMatchObject({
       today: { checks: 30, capped: true, stopped: 1 },
-      capDays: 0,
+      capDays: 1,
     });
     expect(summary(withRelearn(12, 2)).relearn!.today).toEqual({
       checks: 12,
@@ -447,5 +448,38 @@ describe("오늘 추가 확인과 두 까닭 — 정책 2판", () => {
       capped: false,
       stopped: 0,
     });
+  });
+});
+
+describe("codex 4차 — 오늘의 상한 도달은 학생 기록으로 센다", () => {
+  it("표가 넘긴 지난 날 둘 + 오늘 상한 도달 = 3일 → «분량 점검 필요»", () => {
+    const noon = Date.parse(`${TODAY}T12:00:00+09:00`);
+    const fading: StoredFading = {
+      ...record({ c1: rated(-3) }, 0),
+      relearn: {
+        version: 1,
+        items: [
+          {
+            conceptId: "c1",
+            propositionId: "p1",
+            digest: "0a0b0c0d",
+            stage: "retry",
+            dueAt: noon + 60_000,
+            origin: "missed",
+            since: noon,
+            fails: 1,
+            checks: 0,
+          },
+        ],
+        seen: [],
+        graded: [],
+        day: { on: TODAY, checks: 30, cleared: 0, entered: 1 },
+      },
+    };
+    const got = fadingTeacherSummary(fading, TODAY, ACCOUNT, undefined, {
+      capDays: 2,
+    });
+    expect(got.relearn!.capDays).toBe(3);
+    expect(got.flags).toContain("quota-check");
   });
 });

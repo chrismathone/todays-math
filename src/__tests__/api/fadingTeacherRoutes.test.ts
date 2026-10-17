@@ -578,9 +578,11 @@ describe("하루 분량 — PUT /api/students/{id}/math-srs/fading", () => {
         day: null,
       },
     });
+    // 오늘(10/5)의 행은 표에서 세지 않는다 — 오늘은 학생 기록의 그날 집계로 센다(여기서는 상한 전).
     world.capDays = [
       `${ids.studied}|2026-10-05`,
       `${ids.studied}|2026-10-03`,
+      `${ids.studied}|2026-10-01`,
       `${ids.studied}|2026-09-20`,
     ];
     const flagsOf = async () =>

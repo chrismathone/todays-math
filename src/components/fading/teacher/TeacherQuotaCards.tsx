@@ -90,7 +90,9 @@ type SaveState =
   | { kind: "saving" }
   | { kind: "saved" }
   | { kind: "failed" }
-  | { kind: "conflict" };
+  | { kind: "conflict" }
+  | { kind: "reloading" }
+  | { kind: "reloaded" };
 
 export function QuotaCard({
   quota: served,
@@ -102,25 +104,37 @@ export function QuotaCard({
   today: string;
   /** 없으면 보기만 한다(원천이 저장을 모른다). */
   onSave?: (input: FadingTeacherQuotaInput) => Promise<FadingTeacherQuota>;
-  onReload: () => void;
+  /** 최신 분량만 다시 읽는다 — 상세를 내리지 않아 내 변경안이 남는다. */
+  onReload: () => Promise<FadingTeacherQuota | undefined>;
 }) {
   const selectId = useId();
   const [base, setBase] = useState(served);
   const [seen, setSeen] = useState(served);
   const [state, setState] = useState<SaveState>({ kind: "idle" });
-  const planned = base.next?.quota ?? base.today.quota;
+  // 예약이 «서비스 기본»(null)일 수 있다 — 예약이 있는지로 가른다.
+  const planned = base.next ? base.next.quota : base.today.quota;
   const [draft, setDraft] = useState<Quota>(planned);
-  // 다시 읽은 최신 값이 오면 그것을 바탕으로 삼는다 — 내 변경안(`draft`)은 그대로 둔다(덮어쓰지 않는다).
+  // 상세를 다시 읽어 새 값이 오면 그것을 바탕으로 삼는다 — 내 변경안(`draft`)은 그대로 둔다(덮어쓰지 않는다).
   if (served !== seen) {
     setSeen(served);
     setBase(served);
-    if (state.kind === "conflict") setState({ kind: "idle" });
   }
   const name = (quota: Quota) => quotaName(quota, FADING_SERVICE_QUOTA);
   const tomorrow = nextDate(today);
   const editable = base.canEdit && !!onSave;
   const changed = draft !== planned;
-  const saving = state.kind === "saving";
+  const saving = state.kind === "saving" || state.kind === "reloading";
+
+  async function reload() {
+    setState({ kind: "reloading" });
+    try {
+      const latest = await onReload();
+      if (latest) setBase(latest);
+      setState({ kind: "reloaded" });
+    } catch {
+      setState({ kind: "conflict" });
+    }
+  }
 
   async function save() {
     if (!onSave || !changed || saving) return;
@@ -195,7 +209,12 @@ export function QuotaCard({
         ) : null}
         {saving ? (
           <p role="status" className={s.muted}>
-            저장 중
+            {state.kind === "saving" ? "저장 중" : "최신 설정을 불러오는 중"}
+          </p>
+        ) : null}
+        {state.kind === "reloaded" ? (
+          <p role="status" className={s.muted}>
+            최신 설정을 불러왔습니다. 변경안을 확인한 뒤 저장해 주세요.
           </p>
         ) : null}
         {state.kind === "saved" && base.next ? (
@@ -226,7 +245,11 @@ export function QuotaCard({
       <p className={s.note}>칸은 떠올릴 문장 · 문제 · 활동 하나씩입니다.</p>
       {editable ? (
         state.kind === "conflict" ? (
-          <button type="button" className={s.button} onClick={onReload}>
+          <button
+            type="button"
+            className={s.button}
+            onClick={() => void reload()}
+          >
             최신 설정 불러오기
           </button>
         ) : (

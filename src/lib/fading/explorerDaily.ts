@@ -458,11 +458,8 @@ export function buildFadingDailyPlan(input: {
       session && !fading.concepts[session.conceptId]!.reviews ? 1 : 0;
     room = Math.max(0, FADING_FIRST_DAY_NEW_BUNDLES - freshToday - openFresh);
   }
-  for (const activity of late) {
-    if (room <= 0) break;
-    offer(activity);
-    room -= 1;
-  }
+  const lateStart = candidates.length;
+  for (const activity of late) offer(activity);
 
   // 오늘 이미 한 칸 — 닫은 개념의 명제 수와, 풀던 탐험이 이미 푼 문제 수(남은 칸만 후보로 냈다).
   const doneBefore =
@@ -471,7 +468,21 @@ export function buildFadingDailyPlan(input: {
       (n, activity) => n + (activity.kind === "practice" ? activity.done : 0),
       0,
     );
-  const allocation = allocateDaily({ quota, done: doneBefore, candidates });
+  let allocation = allocateDaily({ quota, done: doneBefore, candidates });
+  // 첫날의 둘은 **실제로 배정된** 새 묶음으로 센다 — 앞의 후보가 칸에 안 들어가 빠지면 그 뒤의 들어가는 묶음이 자리를 얻는다.
+  // 배정된 것 가운데 앞의 `room` 개만 남기고 다시 나눈다(뒤의 후보를 빼도 앞의 배정은 그대로다 — 건너뛴 후보는 칸을 쓰지 않는다).
+  const lateChosen = candidates
+    .slice(lateStart)
+    .filter((candidate) => allocation.chosen.includes(candidate.key));
+  if (lateChosen.length > room) {
+    const keep = new Set(lateChosen.slice(0, room).map((c) => c.key));
+    const trimmed = candidates.filter(
+      (candidate, index) => index < lateStart || keep.has(candidate.key),
+    );
+    candidates.length = 0;
+    candidates.push(...trimmed);
+    allocation = allocateDaily({ quota, done: doneBefore, candidates });
+  }
   const chosen = new Set(allocation.chosen);
   // 남은 칸에 안 들어간 탐험의 한 덩이 — 오늘은 내지 않는다(줄여서 내지 않는다).
   if (block && !chosen.has(block.key))

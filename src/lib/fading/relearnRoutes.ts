@@ -61,6 +61,16 @@ async function enter(request: Request, mutation: boolean) {
   return { response: null, student, now: now.getTime() } as const;
 }
 
+/**
+ * 상한에 닿은 날 — «분량 점검 필요»(최근 7일 중 3일)의 근거. 학생 기록 JSON 밖의 표라 저장과 따로 적고,
+ * 적지 못해도 학생의 확인은 이미 저장됐으니 답을 막지 않는다. 오늘은 교사 쪽이 JSON 으로 세고, 놓친 지난 날은 다음 읽기가 메운다.
+ */
+async function capDay(studentId: string, on: string) {
+  await recordFadingCapDay(studentId, on).catch((error: unknown) =>
+    console.error("[fading] 상한에 닿은 날을 적지 못했다", error),
+  );
+}
+
 function failure(error: unknown): Response {
   if (error instanceof FadingConflict)
     return noStore(jsonError("CONFLICT", error.message, 409));
@@ -82,17 +92,16 @@ export async function handleFadingRelearnRequest(
       const fading = open
         ? ((await readSrsState(student.id)).state.fading ?? emptyFading())
         : emptyFading();
-      return noStore(
-        jsonOk(fadingRelearnQueueResponseSchema, {
-          data: fadingRelearnQueueView({
-            fading,
-            concepts: open ? fadingConceptMap() : new Map(),
-            now,
-            trapsOf: fadingTrapsFor,
-            enabled: open,
-          }),
-        }),
-      );
+      const queue = fadingRelearnQueueView({
+        fading,
+        concepts: open ? fadingConceptMap() : new Map(),
+        now,
+        trapsOf: fadingTrapsFor,
+        enabled: open,
+      });
+      // 상한에 닿은 날의 기록을 행동 때 놓쳤어도 읽을 때 메운다 — 같은 날은 한 행이다.
+      if (queue.limit?.capped) await capDay(student.id, queue.today.on);
+      return noStore(jsonOk(fadingRelearnQueueResponseSchema, { data: queue }));
     }
     if (!open) return noStore(notFoundError("주소"));
     const parsed = fadingRelearnActionSchema.safeParse(
@@ -116,13 +125,8 @@ export async function handleFadingRelearnRequest(
       now,
       trapsOf: fadingTrapsFor,
     });
-    // 상한에 닿은 날 — «분량 점검 필요»(최근 7일 중 3일)의 근거. 학생 기록 JSON 밖의 표라 저장과 따로 적고,
-    // 적지 못해도 학생의 확인은 이미 저장됐으니 답을 막지 않는다(신호가 하루 덜 셀 뿐이다).
     if (action.action !== "record" && queue.limit?.capped)
-      await recordFadingCapDay(student.id, queue.today.on).catch(
-        (error: unknown) =>
-          console.error("[fading] 상한에 닿은 날을 적지 못했다", error),
-      );
+      await capDay(student.id, queue.today.on);
     return noStore(
       jsonOk(fadingRelearnActionResponseSchema, {
         data: {

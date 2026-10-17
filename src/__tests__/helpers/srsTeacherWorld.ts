@@ -189,15 +189,15 @@ export const db = {
     findMany: async ({
       where,
     }: {
-      where: { studentId: { in: string[] }; on: { gte: Date; lte: Date } };
+      where: { studentId: { in: string[] }; on: { gte: Date; lt: Date } };
     }) => {
       const from = where.on.gte.toISOString().slice(0, 10);
-      const to = where.on.lte.toISOString().slice(0, 10);
+      const before = where.on.lt.toISOString().slice(0, 10);
       return world.capDays
         .map((key) => key.split("|") as [string, string])
         .filter(
           ([id, on]) =>
-            where.studentId.in.includes(id) && on >= from && on <= to,
+            where.studentId.in.includes(id) && on >= from && on < before,
         )
         .map(([studentId]) => ({ studentId }));
     },

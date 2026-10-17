@@ -58,7 +58,7 @@ export function fadingTeacherSummary(
   today: string,
   account: FadingTeacherAccount,
   known?: ReadonlySet<string>,
-  /** 학생 기록 밖의 사실 — 최근 7일 가운데 하루 상한에 닿은 날 수(`fading_relearn_cap_day`). */
+  /** 학생 기록 밖의 사실 — 최근 7일 가운데 **오늘을 뺀** 하루 상한에 닿은 날 수(`fading_relearn_cap_day`). 오늘은 여기서 센다. */
   extra: { capDays?: number } = {},
 ): FadingTeacherSummary {
   const day = fadingDayOfDate(today);
@@ -87,7 +87,7 @@ export function fadingTeacherSummary(
   const stoppedToday = (limits?.stopped ?? []).filter(
     (key) => !known || known.has(key.split("/")[0]!),
   ).length;
-  const capDays = extra.capDays ?? 0;
+  const capDays = (extra.capDays ?? 0) + (limits?.capped ? 1 : 0);
   // 최근 7일(오늘 포함) — 평가를 닫은 날 수 · 첫 평가 수.
   const recentDays = (fading?.days ?? []).filter((d) => {
     const ago = day - fadingDayOfDate(d.date);

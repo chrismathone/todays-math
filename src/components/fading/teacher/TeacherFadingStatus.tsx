@@ -221,7 +221,7 @@ function StudentDetailContent({
   detail: FadingTeacherStudent;
   memberships: string[];
   onSaveQuota?: (input: FadingTeacherQuotaInput) => Promise<FadingTeacherQuota>;
-  onReload: () => void;
+  onReload: () => Promise<FadingTeacherQuota | undefined>;
 }) {
   const { student, summary, concepts, days } = detail;
   return (
@@ -478,7 +478,11 @@ function StudentDetail({
                   (await setQuota(row.id, row.classId, input)).data
               : undefined
           }
-          onReload={() => setRetry((value) => value + 1)}
+          onReload={async () =>
+            fadingTeacherStudentResponseSchema.parse(
+              await getStudent(row.id, row.classId),
+            ).data.quota
+          }
         />
       )}
     </aside>

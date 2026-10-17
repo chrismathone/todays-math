@@ -21,6 +21,7 @@ import {
 import { erasedTargets, type FadingStep } from "@/lib/fading/erasure";
 import {
   FADING_RELEARN_CAPPED,
+  FADING_RELEARN_CHANGED,
   FADING_RELEARN_STOPPED,
   fadingRelearnLimits,
   fadingRelearnQueueView,
@@ -219,7 +220,8 @@ describe("같은 문장 «틀림» 3회 — 그 문장은 그날 멈춘다", () 
     expect(queue.items.find((i) => i.propositionId === id)!.state).toBe(
       "ready",
     );
-    expect(queue.limit).toMatchObject({ capped: false, stopped: 0 });
+    // 끝나지 않은 날에는 싣지 않는다 — 이 칸을 모르는 옛 화면이 그대로 읽는다.
+    expect(queue.limit).toBeUndefined();
   });
 
   it("세 번째 틀림 뒤에는 다음 날 0시까지 기다리고, 그 사이의 확인은 받지 않는다", () => {
@@ -244,7 +246,7 @@ describe("같은 문장 «틀림» 3회 — 그 문장은 그날 멈춘다", () 
     expect(itemOf(state, id).fails).toBe(1 + 3);
     const next = view(state, MIDNIGHT + 1);
     expect(next.items.find((i) => i.propositionId === id)!.state).toBe("ready");
-    expect(next.limit).toMatchObject({ capped: false, stopped: 0 });
+    expect(next.limit).toBeUndefined();
     const graded = gradeFadingRelearn(
       state,
       A,
@@ -375,7 +377,103 @@ describe("하루 30회 — 그날의 추가 확인은 거기까지다", () => {
   it("다음 날에는 그날의 수가 0 부터다", () => {
     const state = withChecks(seeded(), FADING_RELEARN_DAILY_CHECKS);
     const queue = view(state, MIDNIGHT + 1);
-    expect(queue.limit).toMatchObject({ capped: false, checks: 0 });
+    expect(queue.limit).toBeUndefined();
+    expect(fadingRelearnLimits(state.relearn!, MIDNIGHT + 1)).toMatchObject({
+      capped: false,
+      checks: 0,
+    });
     expect(queue.counts.ready).toBeGreaterThan(0);
+  });
+});
+
+describe("codex 4차 — 30을 넘기는 길을 막는다", () => {
+  it("자정을 넘긴 다른 요청이 오늘의 수를 적은 뒤, 어제 시각의 등록은 오늘의 수를 지우지 않고 어제 시각의 판정은 받지 않는다", () => {
+    const today = withChecks(seeded(), 12);
+    today.relearn!.day = {
+      on: "2026-10-07",
+      checks: 12,
+      cleared: 0,
+      entered: 0,
+    };
+    const late = observeFadingRelearn(
+      today,
+      A,
+      { kind: "rated", conceptId: A.id, requestId: uuid(2) },
+      MIDNIGHT - 1,
+    );
+    expect(late.fading.relearn!.day).toEqual(today.relearn!.day);
+    const id = propositionOfA2();
+    expect(
+      conflictOf(() =>
+        gradeFadingRelearn(today, A, attempt(today, id, 95), MIDNIGHT - 1),
+      ),
+    ).toBe(FADING_RELEARN_CHANGED);
+  });
+
+  it("그날의 수가 다 찼으면 지난날 쌓인 대조도 판정하지 않고, 다음 날 끝낸다", () => {
+    const base = withChecks(seeded(), FADING_RELEARN_DAILY_CHECKS - 1);
+    const id = propositionOfA2();
+    const proposition = A.propositions.find((p) => p.id === id)!;
+    const targets = fadingTargets({ ...A, propositions: [proposition] });
+    const waiting = gradeFadingRelearn(
+      base,
+      A,
+      {
+        ...attempt(base, id, 96),
+        answers: targets.map((t) => ({ targetId: t.id, text: "모르는 글" })),
+      },
+      T0 + 10 * MIN,
+    ).fading;
+    // 그날 다른 확인으로 30이 찼다고 맞춘다.
+    const full = withChecks(waiting, FADING_RELEARN_DAILY_CHECKS);
+    const judgement = {
+      conceptId: A.id,
+      propositionId: id,
+      attemptId: uuid(96),
+      judged: Object.fromEntries(targets.map((t) => [t.id, "same" as const])),
+    };
+    expect(
+      conflictOf(() => judgeFadingRelearn(full, A, judgement, T0 + 11 * MIN)),
+    ).toBe(FADING_RELEARN_CAPPED);
+    const row = view(full, T0 + 11 * MIN).items.find(
+      (i) => i.propositionId === id,
+    )!;
+    expect(row).toMatchObject({ state: "waiting", dueAt: MIDNIGHT });
+    expect(row.pending).toBeUndefined();
+    // 다음 날에는 대조로 다시 보이고 끝낼 수 있다.
+    expect(
+      view(full, MIDNIGHT + 1).items.find((i) => i.propositionId === id)!.state,
+    ).toBe("judging");
+    expect(
+      judgeFadingRelearn(full, A, judgement, MIDNIGHT + 1).result.verdict,
+    ).toBe("passed");
+  });
+
+  it("지난날의 대조는 오늘의 자리를 잡지 않는다 — 낡은 대기가 날마다 확인을 막지 않는다", () => {
+    const base = withChecks(seeded(), 0);
+    const id = propositionOfA2();
+    const stale: StoredFading = {
+      ...base,
+      relearn: {
+        ...base.relearn!,
+        items: base.relearn!.items.map((item) =>
+          item.propositionId === id
+            ? {
+                ...item,
+                pending: {
+                  attemptId: uuid(97),
+                  at: T0 - 86_400_000,
+                  digest: "00000000",
+                  answers: [],
+                },
+              }
+            : item,
+        ),
+      },
+    };
+    expect(fadingRelearnLimits(stale.relearn!, T0)).toMatchObject({
+      reserved: 0,
+      capped: false,
+    });
   });
 });

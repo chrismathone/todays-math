@@ -71,7 +71,10 @@ export async function recordFadingCapDay(
   });
 }
 
-/** 학생마다 최근 `days` 일(오늘 포함) 가운데 상한에 닿은 날 수. */
+/**
+ * 학생마다 최근 `days` 일(오늘 포함) 가운데 **오늘을 뺀 지난 날** 상한에 닿은 날 수. 오늘은 학생 기록(JSON)의 그날 집계로 센다 —
+ * 오늘의 기록 쓰기가 한 번 실패해도 오늘의 신호는 빠지지 않는다(`teacher.ts`).
+ */
 export async function fadingCapDayCounts(
   studentIds: readonly string[],
   today: string,
@@ -84,7 +87,7 @@ export async function fadingCapDayCounts(
   const rows = await client.fadingRelearnCapDay.findMany({
     where: {
       studentId: { in: [...new Set(studentIds)] },
-      on: { gte: dateValue(from), lte: dateValue(today) },
+      on: { gte: dateValue(from), lt: dateValue(today) },
     },
     select: { studentId: true },
   });

@@ -10,6 +10,7 @@ import {
   FADING_FIRST_DAY_NEW_BUNDLES,
   buildFadingDailyPlan,
 } from "@/lib/fading/explorerDaily";
+import type { FadingConcept } from "@/lib/fading/concepts";
 import { emptyFading } from "@/lib/fading/state";
 
 /**
@@ -80,5 +81,71 @@ describe("첫 학습일 — 새 개념 2묶음까지", () => {
       days: [{ date: TODAY, reviews: 1, passed: 1, fresh: 1 }],
     };
     expect(newBundles(today)).toHaveLength(1);
+  });
+});
+
+describe("codex 4차 — 둘은 실제로 배정된 묶음으로 센다", () => {
+  /** 명제 `n` 개짜리 새 개념 — 같은 소단원, `ordinal` 차례. */
+  const made = (id: string, n: number, ordinal: number): FadingConcept => ({
+    id,
+    section: "중2::도형::원",
+    level: "하",
+    ordinal,
+    siblings: 3,
+    propositions: Array.from({ length: n }, (_, i) => ({
+      id: `${id}-p${i}`,
+      term: `용어 ${i}`,
+      kind: "정의" as const,
+      pieces: [
+        { kind: "text" as const, text: "핵심은 " },
+        {
+          kind: "target" as const,
+          target: {
+            id: `${id}-p${i}#1`,
+            text: `답${i}`,
+            tier: "text" as const,
+          },
+        },
+      ],
+    })),
+  });
+
+  it("앞의 5칸 묶음 둘이 3칸에 안 들어가면 그 뒤의 2칸 묶음이 자리를 얻는다", () => {
+    const map = new Map(
+      [made("big1", 5, 1), made("big2", 5, 2), made("tiny", 2, 3)].map((c) => [
+        c.id,
+        c,
+      ]),
+    );
+    const plan = buildFadingDailyPlan({
+      today: TODAY,
+      fading: emptyFading(),
+      concepts: map,
+      quota: 3,
+      progressSections: ["중2::도형::원"],
+    });
+    expect(
+      plan.activities
+        .filter((a): a is FadingDailyRecall => a.kind === "recall")
+        .map((a) => a.conceptId),
+    ).toEqual(["tiny"]);
+  });
+
+  it("들어가는 새 묶음이 셋이어도 첫날은 앞의 둘만", () => {
+    const map = new Map(
+      [made("a", 2, 1), made("b", 2, 2), made("c", 2, 3)].map((c) => [c.id, c]),
+    );
+    const plan = buildFadingDailyPlan({
+      today: TODAY,
+      fading: emptyFading(),
+      concepts: map,
+      quota: 15,
+      progressSections: ["중2::도형::원"],
+    });
+    expect(
+      plan.activities
+        .filter((a): a is FadingDailyRecall => a.kind === "recall")
+        .map((a) => a.conceptId),
+    ).toEqual(["a", "b"]);
   });
 });

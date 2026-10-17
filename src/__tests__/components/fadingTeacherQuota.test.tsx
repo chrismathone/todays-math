@@ -144,3 +144,75 @@ describe("하루 분량", () => {
     );
   });
 });
+
+describe("codex 4차 — 카드의 상태", () => {
+  const withQuota = (
+    quota: NonNullable<FadingTeacherStudent["quota"]>,
+    calls: { n: number } = { n: 0 },
+    later?: NonNullable<FadingTeacherStudent["quota"]>,
+  ) => {
+    const base = createTeacherFixtureSource(fixture);
+    return {
+      ...base,
+      getStudent: async (studentId: string, cls: string) => {
+        const { data } = await base.getStudent(studentId, cls);
+        calls.n += 1;
+        return {
+          data: { ...data, quota: calls.n > 1 && later ? later : quota },
+        };
+      },
+    };
+  };
+
+  it("예약이 «서비스 기본»이면 고르기도 서비스 기본을 가리킨다 — 오늘의 학생 지정 값이 아니다", async () => {
+    const detail = await openJian(
+      withQuota({
+        today: { quota: 10, slots: 10 },
+        next: { quota: null, slots: 15, on: "2026-10-07" },
+        revision: 2,
+        canEdit: true,
+      }),
+    );
+    const card = within(detail).getByRole("region", { name: "하루 분량" });
+    expect(within(card).getByLabelText("10/7부터")).toHaveValue("default");
+    expect(card).toHaveTextContent("예약 10/7부터 서비스 기본(현재 15칸)");
+    expect(card).not.toHaveTextContent("저장 전");
+    expect(within(card).getByRole("button", { name: "저장" })).toBeDisabled();
+  });
+
+  it("«최신 설정 불러오기»는 내 변경안을 지우지 않는다 — 최신 예약과 내 변경안이 함께 보인다", async () => {
+    const start = {
+      today: { quota: null, slots: 15 },
+      next: null,
+      revision: 0,
+      canEdit: true,
+    } as const;
+    const latest = {
+      ...start,
+      next: { quota: 10, slots: 10, on: "2026-10-07" },
+      revision: 1,
+    } as const;
+    const source = {
+      ...withQuota(start, { n: 0 }, latest),
+      setQuota: vi.fn().mockRejectedValue(new TeacherFadingSourceError(409)),
+    };
+    const detail = await openJian(source);
+    const card = within(detail).getByRole("region", { name: "하루 분량" });
+    fireEvent.change(within(card).getByLabelText("10/7부터"), {
+      target: { value: "20" },
+    });
+    fireEvent.click(within(card).getByRole("button", { name: "저장" }));
+    fireEvent.click(
+      await within(card).findByRole("button", { name: "최신 설정 불러오기" }),
+    );
+    expect(
+      await within(card).findByText(
+        "최신 설정을 불러왔습니다. 변경안을 확인한 뒤 저장해 주세요.",
+      ),
+    ).toBeInTheDocument();
+    expect(within(card).getByLabelText("10/7부터")).toHaveValue("20");
+    expect(card).toHaveTextContent("예약 10/7부터 학생 지정 10칸");
+    expect(card).toHaveTextContent("변경안 10/7부터 학생 지정 20칸 · 저장 전");
+    expect(within(card).getByRole("button", { name: "저장" })).toBeEnabled();
+  });
+});
