@@ -36,6 +36,10 @@ const requestSchema = z
     return total >= 1 && total <= 100;
   });
 
+/** 형식 의도의 칸 — `problem.question_type` 의 값 그대로. */
+const QUESTION_FORMATS = ["객관식", "단답형", "서술형"] as const;
+type QuestionFormat = (typeof QUESTION_FORMATS)[number];
+
 const emptyCounts = () =>
   Object.fromEntries(
     DIFFICULTY_LADDER.map((tier) => [tier, 0]),
@@ -77,6 +81,14 @@ const allocationSchema = z
         z.enum(DIFFICULTY_LADDER),
         z.number().int().min(0).max(100),
       )
+      .optional(),
+    /**
+     * 형식 의도(M3 · 2026-10-17) — 객관식 · 단답형 · 서술형 수. 난이도 의도와 같은 뜻이다: 없는 칸은 지정 없음
+     * (남는 자리를 정하지 않은 형식이 받는다), 0 은 내지 않음. 문항류 하나 안에서 형식을 고른다(엔진 갈래는 같은
+     * 발문의 객관식 · 단답형 행을 함께 갖는다) — 모자라면 다른 형식으로 채우지 않고 알린다.
+     */
+    formats: z
+      .partialRecord(z.enum(QUESTION_FORMATS), z.number().int().min(0).max(100))
       .optional(),
   })
   .refine(
@@ -204,10 +216,15 @@ export async function composeUnifiedBankProblems(
   const { allocations, excludeIds, filters, distinctFamilies, recent } =
     parsed.data;
   const intent = parsed.data.difficulty;
+  const formatIntent = parsed.data.formats;
   const total = allocations.reduce((sum, row) => sum + row.count, 0);
   if (intent && !intentFits(intent, total))
     throw new UnifiedBankQueryError(
       "난이도별 문항 수의 합이 구성할 문항 수와 맞지 않습니다. 구성 조건을 다시 확인해 주세요.",
+    );
+  if (formatIntent && !formatsFit(formatIntent, total))
+    throw new UnifiedBankQueryError(
+      "형식별 문항 수의 합이 구성할 문항 수와 맞지 않습니다. 구성 조건을 다시 확인해 주세요.",
     );
   const familyOf = (row: {
     id: string;
@@ -240,7 +257,13 @@ export async function composeUnifiedBankProblems(
   const [candidates, formatIds, used] = await Promise.all([
     db.problem.findMany({
       where,
-      select: { id: true, unitId: true, familyKey: true, difficulty: true },
+      select: {
+        id: true,
+        unitId: true,
+        familyKey: true,
+        difficulty: true,
+        questionType: true,
+      },
     }),
     findProblemIdsByFormat(format, where, PROBLEM_BANK_ORDER_BY),
     distinctFamilies ? familiesOnSheet([...excluded]) : new Set<string>(),
@@ -268,7 +291,7 @@ export async function composeUnifiedBankProblems(
       tierPools.set(row.unitId, unit);
     }
   }
-  const drawn = intent
+  const drawnRows = intent
     ? drawByIntent(allocations, intent, tierPools, familyOfRow)
     : new Map(
         allocations.map(({ unitId, count }) => [
@@ -276,6 +299,9 @@ export async function composeUnifiedBankProblems(
           drawFamilies([...pools.get(unitId)!.values()], count),
         ]),
       );
+  const drawn = formatIntent
+    ? assignFormats(drawnRows, formatIntent, total, candidates, familyOfRow)
+    : drawnRows;
   const reservoirs = new Map(
     allocations.map(({ unitId, count }) => [
       unitId,
@@ -316,6 +342,22 @@ export async function composeUnifiedBankProblems(
       available: reservoirs.get(unitId)!.available,
       actual: reservoirs.get(unitId)!.ids.filter((id) => byId.has(id)).length,
     })),
+    /** 형식 의도의 정한 칸마다 — 모자라면 `actual < requested`(다른 형식으로 채우지 않았다). */
+    ...(formatIntent
+      ? {
+          formats: QUESTION_FORMATS.filter(
+            (format) => formatIntent[format] !== undefined,
+          ).map((format) => ({
+            format,
+            requested: formatIntent[format]!,
+            actual: problems.filter(
+              (row) =>
+                (row as { questionTypeRaw?: string | null }).questionTypeRaw ===
+                format,
+            ).length,
+          })),
+        }
+      : {}),
     /** 난이도 의도의 정한 칸마다 — 모자라면 `actual < requested`(다른 난이도로 채우지 않았다). */
     ...(intent
       ? {
@@ -329,6 +371,84 @@ export async function composeUnifiedBankProblems(
         }
       : {}),
   };
+}
+
+function formatsFit(
+  intent: Partial<Record<QuestionFormat, number>>,
+  total: number,
+) {
+  const set = QUESTION_FORMATS.filter((f) => intent[f] !== undefined);
+  const sum = set.reduce((acc, f) => acc + intent[f]!, 0);
+  return (
+    sum <= total && (set.length < QUESTION_FORMATS.length || sum === total)
+  );
+}
+
+/**
+ * 형식 의도(M3) — 뽑힌 문항류마다 **어느 형식의 행을 낼지** 고른다. 범위 · 난이도 · 문항류는 이미 정해졌고
+ * (그 행과 같은 범위 · 같은 난이도의 형제 행만 본다), 형식별 수를 가장 많이 맞추는 배정을 흐름으로 찾는다
+ * (`planTiers` 를 «문항류 하나 = 한 자리»로 그대로 쓴다). 「지정 없음」 자리는 정하지 않은 형식만 받는다.
+ * 배정을 못 받은 문항류는 **뺀다** — 다른 형식으로 채우지 않는다(난이도와 같은 규칙 · 응답의 `formats` 가 알린다).
+ */
+function assignFormats(
+  drawn: Map<string, string[]>,
+  intent: Partial<Record<QuestionFormat, number>>,
+  total: number,
+  candidates: readonly {
+    id: string;
+    unitId: string;
+    difficulty: string;
+    questionType: string | null;
+  }[],
+  familyOfRow: Map<string, string>,
+) {
+  const byId = new Map(candidates.map((row) => [row.id, row]));
+  const siblings = new Map<string, typeof candidates>();
+  for (const row of candidates) {
+    const family = familyOfRow.get(row.id);
+    if (!family) continue;
+    const key = `${family}|${row.unitId}|${row.difficulty}`;
+    siblings.set(key, [...(siblings.get(key) ?? []), row]);
+  }
+  const specified = QUESTION_FORMATS.filter((f) => intent[f] !== undefined);
+  const open = QUESTION_FORMATS.filter((f) => intent[f] === undefined);
+  const rest = total - specified.reduce((acc, f) => acc + intent[f]!, 0);
+  const ANY = "*";
+  const formatsOf = (key: string) =>
+    key === ANY ? (open as readonly string[]) : [key];
+  const picks = [...drawn.values()].flat().map((id) => {
+    const row = byId.get(id)!;
+    const key = `${familyOfRow.get(id)}|${row.unitId}|${row.difficulty}`;
+    return { id, rows: siblings.get(key) ?? [row] };
+  });
+  const plan = planTiers(
+    picks.map((pick) => ({ unitId: pick.id, count: 1 })),
+    [
+      ...specified.map((f) => ({ key: f as string, count: intent[f]! })),
+      ...(rest > 0 && open.length ? [{ key: ANY, count: rest }] : []),
+    ],
+    (pickId, key) =>
+      picks
+        .find((pick) => pick.id === pickId)!
+        .rows.some((row) => formatsOf(key).includes(row.questionType ?? ""))
+        ? 1
+        : 0,
+  );
+  const chosen = new Map<string, string>();
+  for (const pick of picks)
+    for (const key of [...specified, ANY]) {
+      if (!plan(pick.id, key)) continue;
+      const fits = pick.rows.filter((row) =>
+        formatsOf(key).includes(row.questionType ?? ""),
+      );
+      chosen.set(pick.id, fits[Math.floor(Math.random() * fits.length)].id);
+    }
+  return new Map(
+    [...drawn].map(([unitId, ids]) => [
+      unitId,
+      ids.flatMap((id) => (chosen.has(id) ? [chosen.get(id)!] : [])),
+    ]),
+  );
 }
 
 /**

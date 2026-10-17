@@ -25,7 +25,12 @@ import {
 import sc from "./SavedConditions.module.css";
 import ScopePicker from "./ScopePicker";
 import {
+  QUESTION_FORMATS,
+  emptyFormats,
   emptyLadder,
+  formatIntent,
+  formatIssue,
+  formatText,
   ladderIntent,
   ladderIssue,
   type AppliedConditions,
@@ -79,6 +84,8 @@ export default function ExamBuilder<T>({
     total: null,
     ladder: emptyLadder(conditions?.ladder ?? []),
     recent: !!conditions,
+    formats: emptyFormats(),
+    mcFirst: !!conditions,
   }));
   const excludeRecent = !!conditions && applied.recent;
   const [conditionsOpen, setConditionsOpen] = useState(false);
@@ -212,7 +219,8 @@ export default function ExamBuilder<T>({
   const requested = allocations.reduce((sum, row) => sum + row.count, 0);
   // 표를 손으로 고쳐 난이도와 합이 어긋나면 구성 전에 막는다 — 창의 «확인할 것»과 같은 말.
   const ladderWarning = conditions
-    ? ladderIssue(applied.ladder, requested, conditions.ladder)
+    ? (ladderIssue(applied.ladder, requested, conditions.ladder) ??
+      formatIssue(applied.formats, requested))
     : null;
   const valid =
     !ladderWarning &&
@@ -343,6 +351,9 @@ export default function ExamBuilder<T>({
         conditions.ladder.map((tier) => [tier, tiers[tier] ?? null]),
       ),
       recent: c.recent,
+      // 저장한 조건(W5 · 계약 v1)은 형식 · 차례를 담지 않는다 — 지금 고른 값을 그대로 둔다.
+      formats: applied.formats,
+      mcFirst: applied.mcFirst,
     };
     const selection = { source: c.source, familyRule: c.familyRule };
     setApplied(nextApplied);
@@ -514,7 +525,10 @@ export default function ExamBuilder<T>({
    * 다시 «문항 구성 →» — 검토하던 문항 가운데 아직 범위 · 수 안에 있는 것은 차례 그대로 두고 모자란 자리만 새로 뽑는다
    * (Wire B 의 기본값 · 원장님 «추천으로 진행» 2026-10-17). 난이도 조건이 남긴 문항과 안 맞으면 전부 새로 짠다.
    */
-  function keepPlan(intent: Record<string, number> | undefined) {
+  function keepPlan(
+    intent: Record<string, number> | undefined,
+    formats: Record<string, number> | undefined,
+  ) {
     const limit = new Map(allocations.map((row) => [row.scopeId, row.count]));
     const keptCount = new Map<string, number>();
     const kept: T[] = [];
@@ -531,25 +545,66 @@ export default function ExamBuilder<T>({
         count: row.count - (keptCount.get(row.scopeId) ?? 0),
       }))
       .filter((row) => row.count > 0);
-    if (!intent || !kept.length) return { kept, fill, intent };
-    const left = { ...intent };
-    for (const item of kept) {
-      const tier = source.info(item).difficulty;
-      if (tier && tier in left) left[tier] -= 1;
-    }
+    if (!kept.length || (!intent && !formats))
+      return { kept, fill, intent, formats };
     const need = fill.reduce((sum, row) => sum + row.count, 0);
-    const specified = Object.values(left).reduce((sum, n) => sum + n, 0);
-    const fits =
-      Object.values(left).every((n) => n >= 0) &&
-      specified <= need &&
-      (Object.keys(left).length < (conditions?.ladder.length ?? 0) ||
-        specified === need);
-    if (!fits) return { kept: [], fill: allocations, intent, redrawn: true };
-    return {
-      kept,
-      fill,
-      intent: Object.keys(left).length ? left : undefined,
+    // 남긴 문항이 차지한 몫을 빼고 남은 의도 — 음수가 되거나 합이 안 맞으면 null(전부 새로 짠다).
+    const leftOf = (
+      want: Record<string, number> | undefined,
+      valueOf: (item: T) => string | undefined,
+      slots: number,
+    ) => {
+      if (!want) return undefined;
+      const left = { ...want };
+      for (const item of kept) {
+        const value = valueOf(item);
+        if (value && value in left) left[value] -= 1;
+      }
+      const specified = Object.values(left).reduce((sum, n) => sum + n, 0);
+      const fits =
+        Object.values(left).every((n) => n >= 0) &&
+        specified <= need &&
+        (Object.keys(left).length < slots || specified === need);
+      return fits ? left : null;
     };
+    const leftTiers = leftOf(
+      intent,
+      (item) => source.info(item).difficulty,
+      conditions?.ladder.length ?? 0,
+    );
+    const leftFormats = leftOf(
+      formats,
+      (item) => source.info(item).format,
+      QUESTION_FORMATS.length,
+    );
+    if (leftTiers === null || leftFormats === null)
+      return {
+        kept: [],
+        fill: allocations,
+        intent,
+        formats,
+        redrawn: true,
+      };
+    return { kept, fill, intent: leftTiers, formats: leftFormats };
+  }
+  /** «객관식을 앞에»(M3) — 객관식 먼저 · 그다음 나머지, 무리 안에서는 지금 차례를 지킨다(안정 정렬). */
+  function mcFirstOrder(items: T[], byTier: boolean) {
+    const tierIndex = (item: T) =>
+      conditions?.ladder.indexOf(source.info(item).difficulty ?? "") ?? -1;
+    return items
+      .map((item, index) => ({ item, index }))
+      .sort((a, b) => {
+        const mc =
+          Number(source.info(b.item).format === "객관식") -
+          Number(source.info(a.item).format === "객관식");
+        if (mc) return mc;
+        if (byTier) {
+          const tier = tierIndex(a.item) - tierIndex(b.item);
+          if (tier) return tier;
+        }
+        return a.index - b.index;
+      })
+      .map(({ item }) => item);
   }
   async function run(kind: "compose" | "output") {
     if (
@@ -572,6 +627,7 @@ export default function ExamBuilder<T>({
               conditions
                 ? ladderIntent(applied.ladder, conditions.ladder)
                 : undefined,
+              conditions ? formatIntent(applied.formats) : undefined,
             )
           : null;
       const excludeIds = plan?.kept.map((item) => source.info(item).id) ?? [];
@@ -585,6 +641,7 @@ export default function ExamBuilder<T>({
             ? await source.compose(plan.fill, controller.signal, {
                 excludeRecent,
                 difficulty: plan.intent,
+                ...(plan.formats ? { formats: plan.formats } : {}),
                 ...(excludeIds.length ? { excludeIds } : {}),
               })
             : excludeIds.length
@@ -612,9 +669,14 @@ export default function ExamBuilder<T>({
             }),
           ]
         : drawn;
-      const distinct = [
+      const unique = [
         ...new Map(next.map((item) => [source.info(item).id, item])).values(),
       ];
+      // 남긴 문항이 없으면(새로 짠 시험지) 무리 안에서 쉬운 것부터, 남긴 문항이 있으면 원장님 차례를 지킨다.
+      const distinct =
+        plan && conditions && applied.mcFirst
+          ? mcFirstOrder(unique, !plan.kept.length)
+          : unique;
       if (distinct.length > maxQuestions)
         throw new Error(`최대 ${maxQuestions}문항까지 구성할 수 있습니다.`);
       if (kind === "output" && !distinct.length)
@@ -631,7 +693,7 @@ export default function ExamBuilder<T>({
             keptCount
               ? `검토하던 ${keptCount}문항은 그대로 두고 ${distinct.length - keptCount}문항을 새로 채웠습니다.`
               : plan?.redrawn
-                ? "난이도 조건에 맞추려고 문항을 모두 새로 뽑았습니다."
+                ? "난이도 · 형식 조건에 맞추려고 문항을 모두 새로 뽑았습니다."
                 : "",
             ...notes,
           ]
@@ -739,6 +801,7 @@ export default function ExamBuilder<T>({
               .map((tier) => `${tier} ${applied.ladder[tier]}`)
               .join(" · ")}`
           : "난이도 지정 없음",
+        formatText(applied),
         applied.recent ? `최근 ${conditions.recentDays}일 출제 뺌` : "",
       ]
         .filter(Boolean)

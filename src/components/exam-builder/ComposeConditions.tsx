@@ -3,7 +3,12 @@
 import { useState, type RefObject } from "react";
 import { PickerDialog } from "@/components/picker-dialog/PickerDialog";
 import {
+  DIFFICULTY_STEPS,
+  QUESTION_FORMATS,
+  matchingStep,
+  stepsSupported,
   planComposition,
+  stepLadder,
   summarizeConditions,
   type AppliedConditions,
   type ComposeDraft,
@@ -60,6 +65,7 @@ export function ConditionsSummary({
       <div className={c.sumChips} aria-label="구성 조건">
         <span className={c.chip}>{s.total}</span>
         <span className={c.chip}>{s.ladder}</span>
+        <span className={c.chip}>{s.formats}</span>
         <span className={c.chip}>{s.recent}</span>
         <span className={c.chip}>
           <em>고정</em> {s.fixed}
@@ -167,21 +173,32 @@ export function ComposeConditionsDialog({
   const [draft, setDraft] = useState<ComposeDraft>(() => ({
     ...applied,
     ladder: { ...applied.ladder },
+    formats: { ...applied.formats },
     fixed: Object.fromEntries(rows.map((row) => [row.scopeId, row.fixed])),
   }));
   const usableOf = (row: ConditionRow, recent: boolean) =>
     recent ? row.usable.recent : row.usable.all;
   const loading = rows.some((row) => usableOf(row, draft.recent) === undefined);
-  const plan = planComposition(
-    draft,
-    rows.map((row) => ({
-      scopeId: row.scopeId,
-      label: row.label,
-      count: row.count,
-      usable: usableOf(row, draft.recent),
-    })),
-    { ladder, max: maxQuestions, unit },
+  const planRows = rows.map((row) => ({
+    scopeId: row.scopeId,
+    label: row.label,
+    count: row.count,
+    usable: usableOf(row, draft.recent),
+  }));
+  const options = { ladder, max: maxQuestions, unit };
+  // «적용하면 구성할 수»는 난이도와 상관없다 — 단계의 칸을 그 수에 맞춰 채운다.
+  const planned = planComposition(draft, planRows, options).total;
+  // 고른 단계는 따로 든다 — 문항 수가 적으면 두 단계가 같은 칸으로 반올림돼 칸만 보고는 어느 단계인지 모른다.
+  // 단계를 고른 동안은 칸이 «그 단계 × 지금 구성할 수»다(총 문항 · 행이 바뀌면 따라 바뀐다).
+  const [step, setStep] = useState<number | null>(() =>
+    planned && stepsSupported(ladder)
+      ? matchingStep(applied.ladder, planned, ladder)
+      : null,
   );
+  const ladderNow =
+    step !== null && planned ? stepLadder(step, planned, ladder) : draft.ladder;
+  const shown = { ...draft, ladder: ladderNow };
+  const plan = planComposition(shown, planRows, options);
   const known = rows.every(
     (row) => row.usable.recent !== undefined && row.usable.all !== undefined,
   );
@@ -194,10 +211,18 @@ export function ComposeConditionsDialog({
   const blocked = plan.block.length > 0 || loading;
   const set = (patch: Partial<ComposeDraft>) =>
     setDraft((current) => ({ ...current, ...patch }));
-  const setTier = (tier: string, value: number | null) =>
+  const setTier = (tier: string, value: number | null) => {
+    // 단계에서 손으로 고치면 «직접» — 보이던 칸(단계의 칸)에서 그 칸만 바꾼다.
+    setStep(null);
     setDraft((current) => ({
       ...current,
-      ladder: { ...current.ladder, [tier]: value } as Ladder,
+      ladder: { ...ladderNow, [tier]: value } as Ladder,
+    }));
+  };
+  const setFormat = (format: string, value: number | null) =>
+    setDraft((current) => ({
+      ...current,
+      formats: { ...current.formats, [format]: value } as Ladder,
     }));
   return (
     <PickerDialog
@@ -211,7 +236,13 @@ export function ComposeConditionsDialog({
       onClose={() => {
         if (blocked) return;
         onApply(
-          { total: draft.total, ladder: draft.ladder, recent: draft.recent },
+          {
+            total: draft.total,
+            ladder: ladderNow,
+            recent: draft.recent,
+            formats: draft.formats,
+            mcFirst: draft.mcFirst,
+          },
           plan.rows.map((row) => ({
             scopeId: row.scopeId,
             count: row.next,
@@ -254,13 +285,32 @@ export function ComposeConditionsDialog({
           </section>
           <section className={c.section}>
             <h3>난이도</h3>
+            {stepsSupported(ladder) && (
+              <div className={c.steps} role="group" aria-label="난이도 단계">
+                {DIFFICULTY_STEPS.map((_, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    aria-pressed={step === index}
+                    disabled={!planned}
+                    onClick={() => {
+                      setStep(index);
+                      set({ ladder: stepLadder(index, planned, ladder) });
+                    }}
+                  >
+                    {index + 1}단계
+                  </button>
+                ))}
+                {step === null && <span className={c.stepDirect}>직접</span>}
+              </div>
+            )}
             <div
               className={c.ladderGrid}
               role="group"
               aria-label="난이도별 문항 수"
             >
               {ladder.map((tier) => {
-                const value = draft.ladder[tier] ?? null;
+                const value = ladderNow[tier] ?? null;
                 return (
                   <div
                     key={tier}
@@ -295,9 +345,68 @@ export function ComposeConditionsDialog({
               })}
             </div>
             <span className={c.rule}>
-              «–»는 지정 없음, 0 은 그 난이도를 한 문항도 내지 않는다는
-              뜻입니다.
+              단계를 고르면 칸이 채워집니다(1단계 쉬움 ~ 6단계 어려움). 칸을
+              손으로 고치면 «직접»입니다. «–»는 지정 없음, 0 은 그 난이도를 한
+              문항도 내지 않는다는 뜻입니다.
             </span>
+          </section>
+          <section className={c.section}>
+            <h3>형식</h3>
+            <div
+              className={c.formatGrid}
+              role="group"
+              aria-label="형식별 문항 수"
+            >
+              {QUESTION_FORMATS.map((format) => {
+                const value = draft.formats[format] ?? null;
+                return (
+                  <div
+                    key={format}
+                    className={
+                      value === null
+                        ? c.ladderCellNone
+                        : value > 0
+                          ? c.ladderCellOn
+                          : c.ladderCell
+                    }
+                  >
+                    <span>{format}</span>
+                    <TierStepper
+                      label={`${format} 문항 수`}
+                      value={value}
+                      onChange={(next) => setFormat(format, next)}
+                    />
+                    {value === null ? (
+                      <small className={c.meta}>지정 없음</small>
+                    ) : (
+                      <button
+                        type="button"
+                        className={c.noneToggle}
+                        aria-label={`${format} 지정 없음으로`}
+                        onClick={() => setFormat(format, null)}
+                      >
+                        비우기
+                      </button>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+            <span className={c.rule}>
+              «–»는 지정 없음(남는 자리를 정하지 않은 형식으로), 0 은 그 형식을
+              내지 않는다는 뜻입니다. 모자라면 다른 형식으로 채우지 않습니다.
+            </span>
+          </section>
+          <section className={c.section}>
+            <h3>차례</h3>
+            <label className={c.checkRow}>
+              <input
+                type="checkbox"
+                checked={draft.mcFirst}
+                onChange={(e) => set({ mcFirst: e.target.checked })}
+              />
+              객관식을 앞에 — 그 안에서는 쉬운 것부터
+            </label>
           </section>
           <section className={c.section}>
             <h3>최근 출제</h3>
