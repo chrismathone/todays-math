@@ -28,6 +28,8 @@ export interface ExamExclusion {
 export interface ExamComposeOptions extends ExamExclusion {
   /** 난이도 의도 — 정한 칸만 싣는다. 없는 칸은 지정 없음, 0 은 내지 않음. */
   difficulty?: Record<string, number>;
+  /** 형식 의도(M3) — 정한 칸만(객관식 · 단답형 · 서술형). */
+  formats?: Record<string, number>;
   /** 다시 구성할 때 남긴 문항 — 이 문항과 그 문항류는 새로 뽑지 않는다(D-111). */
   excludeIds?: string[];
 }

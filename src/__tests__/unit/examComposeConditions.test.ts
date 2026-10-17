@@ -6,8 +6,14 @@
  */
 import { describe, expect, it } from "vitest";
 import {
+  DIFFICULTY_STEPS,
+  emptyFormats,
   emptyLadder,
+  formatIssue,
   ladderIssue,
+  matchingStep,
+  stepLadder,
+  stepsSupported,
   planComposition,
   summarizeConditions,
   type ComposeDraft,
@@ -23,6 +29,8 @@ const draft = (patch: Partial<ComposeDraft> = {}): ComposeDraft => ({
   total: null,
   ladder: emptyLadder(LADDER),
   recent: true,
+  formats: emptyFormats(),
+  mcFirst: true,
   fixed: { s2: true },
   ...patch,
 });
@@ -157,12 +165,15 @@ describe("요약 낱칸 넷", () => {
         total: 18,
         ladder: ladder({ 기본: 6, 응용: 8, 심화하: 4, 심화중: 0 }),
         recent: true,
+        formats: { ...emptyFormats(), 객관식: 12, 단답형: 6 },
+        mcFirst: true,
       },
       { requested: 18, fixedRows: 1, recentDays: 14, ladder: LADDER },
     );
     expect(chips).toEqual({
       total: "18문항",
       ladder: "기본 6 · 응용 8 · 심화하 4 · 심화중 0",
+      formats: "객관식 12 · 단답형 6 · 객관식 먼저",
       recent: "최근 14일 출제 뺌",
       fixed: "1행",
     });
@@ -170,11 +181,82 @@ describe("요약 낱칸 넷", () => {
 
   it("총 문항을 안 정했거나 표가 달라졌으면 «행의 합»이라 적는다 · 난이도가 비면 «난이도 지정 없음»", () => {
     const chips = summarizeConditions(
-      { total: 18, ladder: emptyLadder(LADDER), recent: false },
+      {
+        total: 18,
+        ladder: emptyLadder(LADDER),
+        recent: false,
+        formats: emptyFormats(),
+        mcFirst: false,
+      },
       { requested: 19, fixedRows: 0, recentDays: 14, ladder: LADDER },
     );
     expect(chips.total).toBe("행의 합 19문항");
     expect(chips.ladder).toBe("난이도 지정 없음");
     expect(chips.recent).toBe("최근 출제 포함");
+    expect(chips.formats).toBe("형식 지정 없음");
+  });
+});
+
+describe("M3 — 난이도 단계 · 형식", () => {
+  it("단계는 고른 총 문항에 맞춰 칸을 채우고 합이 꼭 맞는다 · 4단계 25문항은 매쓰홀릭 10월 월말평가 꼴", () => {
+    for (let step = 0; step < DIFFICULTY_STEPS.length; step += 1)
+      for (const total of [5, 10, 18, 25, 30]) {
+        const l = stepLadder(step, total, LADDER);
+        expect(
+          LADDER.reduce((sum, tier) => sum + (l[tier] ?? 0), 0),
+          `${step + 1}단계 ${total}`,
+        ).toBe(total);
+        // 적은 수에서는 두 단계가 같은 칸으로 반올림될 수 있다 — 찾은 단계의 칸이 같기만 하면 된다.
+        const found = matchingStep(l, total, LADDER);
+        expect(found).not.toBeNull();
+        expect(stepLadder(found!, total, LADDER)).toEqual(l);
+      }
+    expect(stepLadder(3, 25, LADDER)).toEqual({
+      연산: 0,
+      기본: 4,
+      응용: 9,
+      심화하: 9,
+      심화중: 3,
+      심화상: 0,
+    });
+  });
+
+  it("단계는 쉬운 쪽에서 어려운 쪽으로 오른다(사다리의 평균 칸이 단계마다 커진다)", () => {
+    const mean = (w: readonly number[]) =>
+      w.reduce((sum, n, i) => sum + n * i, 0) / w.reduce((a, b) => a + b, 0);
+    const means = DIFFICULTY_STEPS.map(mean);
+    for (let i = 1; i < means.length; i += 1)
+      expect(means[i]).toBeGreaterThan(means[i - 1]);
+  });
+
+  it("단계는 칸 이름으로 맞댄다 — 우리 사다리가 아니면 쓰지 않는다", () => {
+    expect(stepsSupported(LADDER)).toBe(true);
+    expect(stepsSupported(["기본", "심화"])).toBe(false);
+    expect(stepLadder(3, 10, ["기본", "심화"])).toEqual({
+      기본: 2,
+      심화: null,
+    });
+  });
+
+  it("손으로 고친 사다리는 어느 단계도 아니다(«직접»)", () => {
+    const l = { ...stepLadder(2, 20, LADDER), 응용: 1 };
+    expect(matchingStep(l, 20, LADDER)).toBeNull();
+  });
+
+  it("형식 합이 넘거나 세 칸을 다 정했는데 다르면 막는다 — 비운 칸이 있으면 남는 자리를 받는다", () => {
+    const f = (v: Record<string, number>) => ({ ...emptyFormats(), ...v });
+    expect(formatIssue(f({ 객관식: 19 }), 18)).toMatch(
+      /형식 합\(19\)이 총 문항\(18\)보다/,
+    );
+    expect(formatIssue(f({ 객관식: 10, 단답형: 5, 서술형: 0 }), 18)).toMatch(
+      /형식 합\(15\)이 총 문항\(18\)과 다릅니다/,
+    );
+    expect(formatIssue(f({ 객관식: 10 }), 18)).toBeNull();
+    expect(formatIssue(emptyFormats(), 18)).toBeNull();
+    const plan = planComposition(draft({ formats: f({ 객관식: 30 }) }), rows, {
+      ladder: LADDER,
+      max: 80,
+    });
+    expect(plan.block.join(" ")).toMatch(/형식 합/);
   });
 });

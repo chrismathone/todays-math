@@ -313,3 +313,94 @@ describe("난이도 의도 — 범위마다 나눈 수 안에서", () => {
     ).rejects.toBeInstanceOf(UnifiedBankQueryError);
   });
 });
+
+describe("형식 의도(M3) — 객관식 · 단답형 · 서술형 수", () => {
+  const formatOf = (row: unknown) =>
+    (row as { questionTypeRaw?: string | null }).questionTypeRaw ?? "?";
+  const tally = (rows: readonly unknown[]) =>
+    rows.reduce<Record<string, number>>((acc, row) => {
+      acc[formatOf(row)] = (acc[formatOf(row)] ?? 0) + 1;
+      return acc;
+    }, {});
+  /** 한 문항류 = 같은 발문의 객관식 · 단답형 두 행(엔진 적재본과 같은 모양). */
+  async function families(n: number, patch: Record<string, unknown> = {}) {
+    for (let i = 0; i < n; i += 1) {
+      const familyKey = `mid:fmt|${String(patch.difficulty ?? "기본")}|${i}`;
+      await plant({ familyKey, questionType: "단답형", ...patch });
+      await plant({ familyKey, questionType: "객관식", ...patch });
+    }
+  }
+
+  it("형식별 수를 맞추고, 한 문항류는 한 번만 나온다", async () => {
+    await families(5);
+    const result = await composeUnifiedBankProblems({
+      allocations: [{ unitId: U0, count: 3 }],
+      formats: { 객관식: 2, 단답형: 1 },
+      filters: `q=${marker}`,
+    });
+    expect(tally(result.problems)).toEqual({ 객관식: 2, 단답형: 1 });
+    const keys = result.problems.map(
+      (row) => (row as { familyKey?: string | null }).familyKey,
+    );
+    expect(new Set(keys).size).toBe(3);
+    expect(result.formats).toEqual([
+      { format: "객관식", requested: 2, actual: 2 },
+      { format: "단답형", requested: 1, actual: 1 },
+    ]);
+  });
+
+  it("모자란 형식은 다른 형식으로 채우지 않고 그 수를 알린다", async () => {
+    await many(3, { questionType: "단답형" });
+    const result = await composeUnifiedBankProblems({
+      allocations: [{ unitId: U0, count: 3 }],
+      formats: { 객관식: 2, 단답형: 1 },
+      filters: `q=${marker}`,
+    });
+    expect(tally(result.problems)).toEqual({ 단답형: 1 });
+    expect(result.formats).toEqual([
+      { format: "객관식", requested: 2, actual: 0 },
+      { format: "단답형", requested: 1, actual: 1 },
+    ]);
+  });
+
+  it("지정 없음 자리는 정하지 않은 형식에서만 채운다", async () => {
+    await families(5);
+    const result = await composeUnifiedBankProblems({
+      allocations: [{ unitId: U0, count: 4 }],
+      formats: { 객관식: 1 },
+      filters: `q=${marker}`,
+    });
+    expect(tally(result.problems)).toEqual({ 객관식: 1, 단답형: 3 });
+  });
+
+  it("난이도 의도와 같이 맞춘다", async () => {
+    await families(3, { difficulty: "기본" });
+    await families(3, { difficulty: "응용" });
+    const result = await composeUnifiedBankProblems({
+      allocations: [{ unitId: U0, count: 4 }],
+      difficulty: { 기본: 2, 응용: 2 },
+      formats: { 객관식: 3, 단답형: 1 },
+      filters: `q=${marker}`,
+    });
+    expect(tally(result.problems)).toEqual({ 객관식: 3, 단답형: 1 });
+    expect(
+      result.problems.filter((row) => row.difficulty === "기본"),
+    ).toHaveLength(2);
+  });
+
+  it("형식 합이 문항 수를 넘거나, 세 칸을 다 정했는데 합이 다르면 거절한다", async () => {
+    await families(3);
+    await expect(
+      composeUnifiedBankProblems({
+        allocations: [{ unitId: U0, count: 2 }],
+        formats: { 객관식: 3 },
+      }),
+    ).rejects.toBeInstanceOf(UnifiedBankQueryError);
+    await expect(
+      composeUnifiedBankProblems({
+        allocations: [{ unitId: U0, count: 2 }],
+        formats: { 객관식: 1, 단답형: 0, 서술형: 0 },
+      }),
+    ).rejects.toBeInstanceOf(UnifiedBankQueryError);
+  });
+});

@@ -333,3 +333,31 @@
     width: 76px;
   }
 }
+
+/* M3 — 난이도 단계 칩 · 형식 칸(Hi-fi H1 · 2026-10-17) */
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.root .steps button {
+  min-height: 36px;
+  padding: 4px 12px;
+  font-size: 13px;
+}
+.root .steps button[aria-pressed="true"] {
+  border-color: var(--learn-accent);
+  background: var(--learn-soft);
+  color: var(--learn-accent);
+}
+.stepDirect {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--learn-accent);
+}
+.formatGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}

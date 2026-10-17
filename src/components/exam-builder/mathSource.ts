@@ -238,6 +238,7 @@ export function createMathExamBuilderSource(
       const data = await request<{
         problems: StudioProblem[];
         difficulty?: { tier: string; requested: number; actual: number }[];
+        formats?: { format: string; requested: number; actual: number }[];
       }>(`${endpoint()}/random`, signal, {
         method: "POST",
         headers: { "content-type": "application/json" },
@@ -247,6 +248,9 @@ export function createMathExamBuilderSource(
           ...(composeOptions?.excludeRecent ? { recent: true } : {}),
           ...(composeOptions?.difficulty
             ? { difficulty: composeOptions.difficulty }
+            : {}),
+          ...(composeOptions?.formats
+            ? { formats: composeOptions.formats }
             : {}),
           ...(composeOptions?.excludeIds?.length
             ? { excludeIds: composeOptions.excludeIds }
@@ -258,15 +262,23 @@ export function createMathExamBuilderSource(
         }),
       });
       const items = eligible(data.problems);
-      if (!data.difficulty) return items;
+      if (!data.difficulty && !data.formats) return items;
       return {
         items,
-        notes: data.difficulty
-          .filter((tier) => tier.actual < tier.requested)
-          .map(
-            (tier) =>
-              `${tier.tier} ${tier.requested}문항 중 ${tier.actual}문항만 구성했습니다 — 다른 난이도로 채우지 않았습니다.`,
-          ),
+        notes: [
+          ...(data.difficulty ?? [])
+            .filter((tier) => tier.actual < tier.requested)
+            .map(
+              (tier) =>
+                `${tier.tier} ${tier.requested}문항 중 ${tier.actual}문항만 구성했습니다 — 다른 난이도로 채우지 않았습니다.`,
+            ),
+          ...(data.formats ?? [])
+            .filter((row) => row.actual < row.requested)
+            .map(
+              (row) =>
+                `${row.format} ${row.requested}문항 중 ${row.actual}문항만 구성했습니다 — 다른 형식으로 채우지 않았습니다.`,
+            ),
+        ],
       };
     },
     info(item) {

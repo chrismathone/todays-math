@@ -18,6 +18,7 @@ type Item = {
   scope: string;
   difficulty: string;
   family?: string;
+  format?: string;
 };
 const questions: Item[] = [
   { id: "a", scope: "u1", difficulty: "기본" },
@@ -45,6 +46,7 @@ function source(
       scopeLabel: `범위 ${item.scope.slice(1)}`,
       difficulty: item.difficulty,
       ...(item.family ? { familyId: item.family } : {}),
+      ...(item.format ? { format: item.format } : {}),
     }),
     prepareOutput: vi.fn(async (items) => items),
     ...overrides,
@@ -887,7 +889,7 @@ describe("구성 조건 (W4 · Hi-fi 2)", () => {
     expect(
       document.querySelector("[data-exam-step-summary]"),
     ).toHaveTextContent(
-      "2개 범위 · 3문항 · 난이도 지정 없음 · 최근 14일 출제 뺌",
+      "2개 범위 · 3문항 · 난이도 지정 없음 · 형식 지정 없음 · 객관식 먼저 · 최근 14일 출제 뺌",
     );
     fireEvent.click(screen.getAllByRole("button", { name: "+ 문항 추가" })[0]);
     await waitFor(() =>
@@ -1046,7 +1048,9 @@ describe("구성 조건 (W4 · Hi-fi 2)", () => {
       await screen.findByText(/심화 1문항 중 0문항만 구성했습니다/),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/난이도 조건에 맞추려고 문항을 모두 새로 뽑았습니다/),
+      screen.getByText(
+        /난이도 · 형식 조건에 맞추려고 문항을 모두 새로 뽑았습니다/,
+      ),
     ).toBeInTheDocument();
   });
 
@@ -1105,6 +1109,113 @@ describe("구성 조건 (W4 · Hi-fi 2)", () => {
       "난이도 합(3)이 총 문항(4)과 다릅니다.",
     );
     expect(screen.getByRole("button", { name: "문항 구성 →" })).toBeDisabled();
+  });
+
+  it("M3 — a step fills the difficulty cells for the rows' total, counts by format go to the server, and multiple choice comes first", async () => {
+    const adapter = conditioned({
+      conditions: {
+        ladder: ["연산", "기본", "응용", "심화하", "심화중", "심화상"],
+        recentDays: 14,
+      },
+      compose: vi.fn().mockResolvedValue({
+        items: [
+          { id: "s1", scope: "u1", difficulty: "응용", format: "단답형" },
+          { id: "m1", scope: "u1", difficulty: "심화하", format: "객관식" },
+          { id: "s2", scope: "u2", difficulty: "기본", format: "단답형" },
+          { id: "m2", scope: "u2", difficulty: "기본", format: "객관식" },
+        ],
+        notes: [
+          "객관식 3문항 중 2문항만 구성했습니다 — 다른 형식으로 채우지 않았습니다.",
+        ],
+      }),
+    });
+    render(<Harness adapter={adapter} />);
+    await screen.findByRole("region", { name: "범위 고르기" });
+    fireEvent.click(screen.getByRole("checkbox", { name: /범위 1/ }));
+    fireEvent.click(screen.getByRole("checkbox", { name: /범위 2/ }));
+    const dialog = await openDialog();
+    // 행의 합 8(범위 1 은 출제 가능 3 · 범위 2 는 기본 5) — 4단계(0 · 5 · 11 · 10 · 4 · 0)는 기본 1 · 응용 3 · 심화하 3 · 심화중 1
+    fireEvent.click(within(dialog).getByRole("button", { name: "4단계" }));
+    expect(
+      within(dialog).getByRole("button", { name: "4단계" }),
+    ).toHaveAttribute("aria-pressed", "true");
+    expect(within(dialog).getByLabelText("응용 문항 수")).toHaveValue("3");
+    // 단계를 고른 채로 총 문항을 바꾸면 칸이 따라간다(6문항 4단계 = 기본 1 · 응용 2 · 심화하 2 · 심화중 1)
+    fireEvent.change(within(dialog).getByLabelText("총 문항"), {
+      target: { value: "6" },
+    });
+    expect(within(dialog).getByLabelText("응용 문항 수")).toHaveValue("2");
+    expect(within(dialog).getByLabelText("심화중 문항 수")).toHaveValue("1");
+    fireEvent.change(within(dialog).getByLabelText("총 문항"), {
+      target: { value: "" },
+    });
+    expect(within(dialog).getByLabelText("응용 문항 수")).toHaveValue("3");
+    expect(within(dialog).getByLabelText("연산 문항 수")).toHaveValue("0");
+    // 손으로 고치면 «직접»
+    fireEvent.click(
+      within(dialog).getByRole("button", { name: "응용 문항 수 하나 더하기" }),
+    );
+    expect(within(dialog).getByText("직접")).toBeInTheDocument();
+    fireEvent.click(within(dialog).getByRole("button", { name: "4단계" }));
+    fireEvent.change(within(dialog).getByLabelText("객관식 문항 수"), {
+      target: { value: "9" },
+    });
+    expect(within(dialog).getByRole("button", { name: "적용" })).toBeDisabled();
+    expect(within(dialog).getByRole("status")).toHaveTextContent(
+      "형식 합(9)이 총 문항(8)보다 큽니다.",
+    );
+    fireEvent.change(within(dialog).getByLabelText("객관식 문항 수"), {
+      target: { value: "3" },
+    });
+    expect(
+      within(dialog).getByRole("checkbox", { name: /객관식을 앞에/ }),
+    ).toBeChecked();
+    fireEvent.click(within(dialog).getByRole("button", { name: "적용" }));
+    expect(summaryOf().getByText("객관식 3 · 객관식 먼저")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
+    await waitFor(() =>
+      expect(adapter.compose).toHaveBeenCalledWith(
+        expect.any(Array),
+        expect.any(AbortSignal),
+        expect.objectContaining({
+          difficulty: {
+            연산: 0,
+            기본: 1,
+            응용: 3,
+            심화하: 3,
+            심화중: 1,
+            심화상: 0,
+          },
+          formats: { 객관식: 3 },
+        }),
+      ),
+    );
+    // 객관식 먼저 · 그 안에서는 쉬운 것부터(기본 → 심화하), 그다음 나머지도 쉬운 것부터
+    expect(screen.getByLabelText("문항 순서")).toHaveTextContent("m2,m1,s2,s1");
+    expect(
+      screen.getByText(/객관식 3문항 중 2문항만 구성했습니다/),
+    ).toBeInTheDocument();
+  });
+
+  it("M3 — with «객관식을 앞에» off the server order stays", async () => {
+    const adapter = conditioned({
+      compose: vi.fn().mockResolvedValue([
+        { id: "s1", scope: "u1", difficulty: "기본", format: "단답형" },
+        { id: "m1", scope: "u1", difficulty: "기본", format: "객관식" },
+      ]),
+    });
+    render(<Harness adapter={adapter} />);
+    await screen.findByRole("region", { name: "범위 고르기" });
+    fireEvent.click(screen.getByRole("checkbox", { name: /범위 1/ }));
+    const dialog = await openDialog();
+    fireEvent.click(
+      within(dialog).getByRole("checkbox", { name: /객관식을 앞에/ }),
+    );
+    fireEvent.click(within(dialog).getByRole("button", { name: "적용" }));
+    fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
+    await waitFor(() =>
+      expect(screen.getByLabelText("문항 순서")).toHaveTextContent("s1,m1"),
+    );
   });
 
   it("leaves a source without conditions untouched (English path)", async () => {
