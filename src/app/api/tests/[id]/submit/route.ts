@@ -14,6 +14,7 @@ import {
 import { getSessionUser } from "@/lib/session";
 import { submitTestResult } from "@/lib/testResults/submitTestResult";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
+import { wakeEywaResults } from "@/lib/eywa/resultsWake";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
@@ -30,7 +31,10 @@ async function handlePost(request: NextRequest, { params }: RouteContext) {
   if (!parsed.success) return validationError(parsed.error);
 
   try {
-    return await submitTestResult(session, id, parsed.data);
+    const response = await submitTestResult(session, id, parsed.data);
+    // 저장이 된 때만 에이와에 «가져가라» 신호(응답 뒤 · 실패 무시 — resultsWake.ts).
+    if (response.ok) wakeEywaResults(id);
+    return response;
   } catch {
     console.error("[POST /api/tests/{id}/submit] submission failed");
     return jsonError(
