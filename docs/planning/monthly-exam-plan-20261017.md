@@ -129,3 +129,63 @@
 - 매쓰플랫 기사: https://www.bloter.net/news/articleView.html?idxno=43389 · https://dhnews.co.kr/news/view/1065579794278291
 - 매쓰홀릭: https://www.matholic.com(스크립트의 FAQ · 요금 · 소식 문구) · https://lite.matholic.com/main · 소식지(stibee) · 앱 리뷰 https://apps.apple.com/kr/app/id1441272210
 - 블로그 후기: https://midium001.blogspot.com/ · 제3자 실측(추정 근거): https://github.com/snaker8/wp-math-science-project/pull/633
+
+## 9. M1 구현 설계 (2026-10-17 · 원장님 «진행» — Wire B · Hi-fi H3 · codex 설계 검토)
+
+정해진 것: 내는 자리 **«내 시험지» 표**(Hi-fi **H3** — 표 위 «채점이 남은 시험» 띠 · 줄마다 «반에 내기» 글자 단추 · «N개 반에 냄» 딱지) ·
+시험 종류 월말평가(기본) · 단원평가 · 내신 대비 · 기타 · 시험일 기본 오늘 · 반 여럿 한 번에 · 학생 개인 내기 없음 · 채점 시작 전에만 지울 수 있음 · 낸 시험지는 고정.
+
+### 9.1 모양 — 발행본 하나 + 반마다 반 시험(`test`) 한 행
+
+- 낼 때 **발행본**(`exam_publication`)을 하나 만들어 문항의 글 · 정답 · 해설 · 그림 참조 · 배점 · 차례 · 출력 설정을 **낸 그대로** JSON 으로 묶는다.
+- 반마다 지금의 반 시험(`test`) 한 행 + `test_problem` 을 만들고 `test.publication_id` 로 발행본에 잇는다 → 채점표 · 결과 · 분석 저장은 **지금 그대로**(`problem_answer` 가 은행 문항을 외래 키로 요구하므로 이 길이 가장 많이 재사용한다).
+- 🔴 `publication_id` 가 있는 반 시험은 **«일반 시험» 조회에서 뺀다** — 확인테스트 기본 범위 · 아침 자동 초안 · 메인 · 지표 · 최근 출제 빼기 · 사용 표시 · 관리 학생 상태(codex 전수 — 아래 9.4). 소유 · 채점 헬퍼에서는 빼지 않는다(빼면 발행 시험을 채점할 수 없다).
+- 범위 칸(`range_end_unit_id` 필수)은 **문항들의 단원 양끝**으로 채운다(바구니 경로와 같은 셈) — 칸을 nullable 로 바꾸지 않는다(읽는 곳의 형이 전부 흔들린다). 그 범위는 위의 «일반 시험» 조회에서 빠지므로 다음 확인테스트 범위를 바꾸지 않는다.
+- `test_type` enum 은 늘리지 않는다 — 종류(월말평가 등)는 발행본의 글자 칸(CHECK)이다. 반 시험 행은 호환용 `review` 로 둔다.
+
+### 9.2 M1 이 받지 않는 것 (명시)
+
+- **은행에 없는 문항**(직접 가져와 편집한 문항 — id 가 crop id)은 낼 때 **문항 번호를 모두 알려 주고 거절**한다(조용히 채점에서 빼지 않는다). 같은 은행 문항이 두 번 든 시험지도 거절한다(채점이 문항 id 로 가른다).
+- 은행 id 가 있는데 글을 고친 문항은 **고친 글 그대로 고정**한다 — 은행 원문으로 덮지 않는다. 그 문항의 지면 · 재시험 «그대로»는 고정본을 읽는다(지금 재시험은 은행을 다시 읽는다 — `planTestRetry.ts:76`).
+- 학생 명단은 고정하지 않는다 — 지금 반 시험처럼 **채점할 때의 반 명단**이다(반을 옮긴 학생은 지금 시험과 같게 처리된다).
+- 그림은 지금처럼 공개 그림 저장소의 참조로 고정한다(바이트를 따로 보관하지 않는다).
+- 판독기 예상 점수는 지금 채점 저장이 늘 적는다 — 발행 시험 화면에서 보이지 않게 할 뿐 저장 칸은 그대로다.
+
+### 9.3 DB 변경 (공유 DB — 원장님 승인 대상 · DB 먼저)
+
+```sql
+CREATE TABLE "exam_publication" (
+  "id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  "user_id" UUID NOT NULL REFERENCES "user"("id") ON DELETE CASCADE,
+  "branch_id" UUID REFERENCES "branch"("id") ON DELETE SET NULL,
+  "document_id" VARCHAR(100) NOT NULL,          -- 원본 «내 시험지»(지워져도 발행본은 남는다)
+  "source_revision" INTEGER NOT NULL,
+  "title" VARCHAR(200) NOT NULL,
+  "exam_type" VARCHAR(20) NOT NULL DEFAULT 'monthly' CHECK ("exam_type" IN ('monthly','unit','school','other')),
+  "test_date" DATE NOT NULL,
+  "payload" JSONB NOT NULL,                      -- 고정본: 문항 · 배점 · 차례 · 출력 설정 (스키마 판 포함)
+  "content_hash" CHAR(64) NOT NULL,
+  "request_id" UUID NOT NULL,                    -- 재전송 멱등
+  "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE ("user_id", "request_id")
+);
+CREATE INDEX ON "exam_publication" ("user_id", "document_id", "created_at" DESC);
+ALTER TABLE "test" ADD COLUMN "publication_id" UUID REFERENCES "exam_publication"("id") ON DELETE RESTRICT;
+CREATE UNIQUE INDEX "test_publication_class_key" ON "test" ("publication_id", "class_id") WHERE "publication_id" IS NOT NULL;
+-- 새 표는 RLS 켜고 브라우저 역할(anon · authenticated) 권한 회수 — 서버만 읽고 쓴다.
+```
+
+- 지금 코드는 새 칸 · 새 표를 모른다 — 넓히기만 해서 **먼저 적용해도 지금 배포가 깨지지 않는다.** 되돌림: 발행본이 하나라도 생기면 표를 지우지 않는다.
+
+### 9.4 배포 차례
+
+1. **DB**(위) — 승인 · 드라이런 · 적용.
+2. **읽는 곳 막기**(화면 변화 없음): «일반 시험» 조회에 `publication_id IS NULL` — 목록(`api/tests/route.ts`) · 메인(`loadMainDashboard.ts` · `pipeline.ts`) · 지표(`api/metrics`) · 기본 범위(`default-range`) · 확인테스트(`daily-review`) · 자동 초안(`runAutoDraft.ts`) · 최근 출제(`recentProblemIds.ts`) · 사용 표시(`usageLabels/load.ts`) · 관리 학생 상태(`managedStudentStatus.ts`) · 개발 화면 둘. 짝 시험: **발행 시험 행이 있어도 위 결과가 글자 그대로 같다.**
+3. **내기 · 고정본 읽기**: `POST /api/exam-publications`(문서 소유 · 반마다 `test:write` · 지점 · 등록을 거래 안에서 다시 보고 · 반 전부 성공 아니면 전부 되돌림 · 같은 요청 키는 같은 답 · 다른 본문 409) · `GET`(원본 문서별 낸 반 수 · 반별 채점 · 결시 · 남음) · `DELETE /api/exam-publications/{id}/classes/{classId}`(채점 시작 전만 — 결과 저장 · 결시 포함 첫 기록이 «시작», 채점 저장과 같은 행 잠금으로 경쟁 직렬화). 발행 시험의 문항 · 지면 · 재시험 «그대로»는 고정본을 읽는다. 교체 · 배점 수정 · 확정 · 교재 가져오기는 발행 시험에서 막는다.
+4. **화면**(H3): «내 시험지» 표의 띠 · 단추 · 딱지 · 창. 작업 칸 260px.
+
+### 9.5 짝 시험 (TDD)
+
+일반 시험 / 발행 시험의 같은 채점 · 배점 · 결시 결과 · 은행 문항을 고친 뒤에도 고정본 불변 · 은행에 없는 문항 거절(번호 목록) · 중복 문항 거절 ·
+같은 키 재전송 같은 답 / 다른 본문 409 · 여러 반 하나 실패면 전부 되돌림 · 같은 지점 허용 / 다른 지점 · 등록 만료 거절 ·
+채점 전 지우기 / 결시 포함 채점 뒤 거절 · 지우기와 채점의 경쟁 · **발행 전후 기본 범위 · 자동 초안 · 메인 · 판독기 입력이 같다.**
