@@ -1,0 +1,136 @@
+/* M3 Hi-fi — 시안 틀과 새로 더하는 부품만. 창 · 칸 · 표는 제품 모듈 그대로다. */
+.page {
+  padding: 32px 16px 80px;
+  background: var(--learn-bg, #f4f6fa);
+  color: var(--learn-ink, #1f2a3d);
+}
+.head,
+.option {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+.head h1 {
+  margin: 4px 0 8px;
+  font-size: 26px;
+  font-weight: 600;
+}
+.head p,
+.idea {
+  max-width: 900px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.muted {
+  color: var(--learn-muted, #596c86);
+  font-size: 13px;
+}
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--learn-control, #b8c4d6);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--learn-accent, #3159df);
+  text-decoration: none;
+  font-size: 14px;
+}
+.nav a:hover {
+  background: var(--learn-soft-hover, #e4ebff);
+}
+.option {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--learn-track, #dde3ec);
+}
+.option h2 {
+  margin: 0 0 4px;
+  font-size: 20px;
+  font-weight: 600;
+}
+/* 창을 화면에 펼쳐 둔다 — 모달이 아니라 그림이다. */
+.frame {
+  position: static !important;
+  inset: auto !important;
+  margin: 16px 0 0 !important;
+  max-height: none !important;
+  width: 1080px !important;
+  max-width: 100% !important;
+  transform: none !important;
+}
+
+/* ── 새로 더하는 것 ── */
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.steps button {
+  min-height: 36px !important;
+  padding: 4px 12px !important;
+  font-size: 13px !important;
+}
+.steps button[aria-pressed="true"] {
+  border-color: var(--learn-accent) !important;
+  background: var(--learn-soft) !important;
+  color: var(--learn-accent) !important;
+}
+.stepsMini button {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  min-height: 52px !important;
+}
+.stepsMini small {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--learn-muted);
+  font-variant-numeric: tabular-nums;
+}
+.segment {
+  display: grid;
+  grid-template-columns: auto repeat(6, minmax(0, 1fr)) auto auto;
+  align-items: center;
+  gap: 0;
+}
+.segment > span {
+  font-size: 12px;
+  color: var(--learn-muted);
+  padding: 0 8px;
+}
+.segment button {
+  min-height: 40px !important;
+  border-radius: 0 !important;
+  margin-left: -1px;
+  font-size: 13px !important;
+  padding: 4px 0 !important;
+}
+.segment button:nth-child(2) {
+  border-radius: 8px 0 0 8px !important;
+}
+.segment button:nth-child(7) {
+  border-radius: 0 8px 8px 0 !important;
+}
+.segment button[aria-pressed="true"] {
+  border-color: var(--learn-accent) !important;
+  background: var(--learn-accent) !important;
+  color: #fff !important;
+  position: relative;
+}
+.segment button.direct {
+  margin-left: 6px;
+  padding: 4px 12px !important;
+  border-radius: 8px !important;
+}
+.formatGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
