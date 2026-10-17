@@ -119,6 +119,7 @@ describe("Q-P01 소수 보기", () => {
         "decimal-last-two-down": { n: source.n - BigInt(2), d: source.d },
         "off-by-two-up": { n: n + BigInt(2) * d, d },
         "off-by-two-down": { n: n - BigInt(2) * d, d },
+        "off-by-three-up": { n: n + BigInt(3) * d, d },
       };
       const mistakes = numericMistakes(answer);
       expect(mistakes.length).toBeGreaterThanOrEqual(4);

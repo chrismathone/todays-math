@@ -93,7 +93,12 @@ export function expandFamily(
     }
     items.push(asShortAnswer(stem));
     try {
-      items.push(asMultipleChoice(stem, createRng(0x9e37 + i * 17)));
+      // 🔴 씨앗에 **갈래**를 넣는다 (2026-10-17). 종전 `0x9e37 + i * 17` 은 모든 갈래의 i 번째 변형이
+      //    같은 씨앗이라 정답 자리가 몰렸다 — 공유 DB 엔진 객관식 48,025건이 ① 33% · ② 9% · ⑤ 9%.
+      //    보기 섞기만 쓰는 rng 다 — 발문의 수(생성기 씨앗)는 그대로라 «같은 문제»는 안 바뀐다(D-155).
+      items.push(
+        asMultipleChoice(stem, createRng(choiceSeed(stem.familyKey, i))),
+      );
     } catch (err) {
       skippedMcq += 1;
       reasons.push(err instanceof Error ? err.message : String(err));
@@ -101,4 +106,14 @@ export function expandFamily(
   }
 
   return { items, skippedMcq, reasons, shortBy: got.shortBy };
+}
+
+/** 보기 섞기 씨앗 — 갈래 열쇠(FNV-1a 32비트)와 변형번호. 같은 갈래 · 같은 변형은 늘 같은 보기다. */
+export function choiceSeed(familyKey: string, variant: number): number {
+  let h = 0x811c9dc5;
+  for (let k = 0; k < familyKey.length; k += 1) {
+    h ^= familyKey.charCodeAt(k);
+    h = Math.imul(h, 0x01000193);
+  }
+  return (h ^ (0x9e37 + variant * 17)) >>> 0;
 }

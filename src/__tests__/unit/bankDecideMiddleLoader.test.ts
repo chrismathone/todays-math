@@ -108,16 +108,14 @@ describe("B5: 중등 적재 행의 실제 오답 배선", () => {
     const changed = after.rows.filter(
       (row, i) => row.hash !== before.rows[i].hash,
     );
+    // 2026-10-17 — 보기 섞기 씨앗에 갈래를 넣고(정답 자리 쏠림) 양수 정답의 0 보기를 막았다.
+    // 그 뒤로는 **객관식 행만** 바뀔 수 있다 — 행 · 번호는 그대로, 단답 · 서술은 한 글자도 안 바뀐다.
+    expect(changed.length).toBeGreaterThan(0);
     expect(
-      changed.map(({ id, family, format }) => ({ id, family, format })),
-    ).toEqual(
-      before.rows
-        .filter(
-          (row) => row.family === `mid:${TRIG_KEY}` && row.format === "객관식",
-        )
+      changed
+        .filter((row) => row.format !== "객관식")
         .map(({ id, family, format }) => ({ id, family, format })),
-    );
-    expect(changed).toHaveLength(SEEDS.length);
+    ).toEqual([]);
   }, 60000);
 
   it("buildMiddleRows가 삼각비 18의 발문에 나온 다른 값과 1.0000을 실제 보기로 전달한다", () => {
