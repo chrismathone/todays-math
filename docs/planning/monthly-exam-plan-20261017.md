@@ -253,3 +253,8 @@ CREATE UNIQUE INDEX "test_publication_class_key" ON "test" ("publication_id", "c
 **여쭐 것**: ① 월말평가 직후 «시험 1회 성적표»(학생 A4)를 따로 낼지, 그 달 종합 리포트의 시험 영역으로만 갈지 · ② 선생님 문장에 AI 초안을 둘지 · ③ 반 평균 옆에 «반 최고점»을 둘지(등수는 아니지만 비교다 — 추천은 넣지 않음).
 
 출처(조사자 원문의 목록): guide.mathflat.com(worksheet-oneclick-report · report-create · worksheet-grade · essay-report · kmm-competition · learning-stats · sms-send · student/parent-report · parent-learning-history) · teacher.matholic.com · report.matholic.com 공개 스크립트 · Star Math Parent Report PDF(stjohns.k12.fl.us) · nwea.org MAP Growth Family Report · i-Ready 안내(saranac.org) · IXL Analytics Guide for Parents · mathnasium.com · kumon.com · nciea.org «Lead with the reports» · Zenisky · O'Donnell · Hambleton(Educational Measurement 5판 13장) · Kannan 외 2021(ETS) · UBC 백분위 해석 논문 · UMN 소말리아계 학부모 연구 · Swan · Guskey · Jung 2014 · Hattie 외 2021 · Kluger & DeNisi 1996 · Wiliam 1999(Butler 요약) · Azmat 외 2016(IZA DP9853) · 비즈폼 학원 성적 양식 · 와이엠 수학 월말 보고서 공지 · 수학대왕 뉴스레터 · 서울교육청 2014 · 경기교육청 2023 기사.
+
+### 10.5 원장님 결정 (2026-10-17 «추천으로 진행»)
+
+① 시험 1회 성적표를 따로 내지 않는다 — 월말평가는 그 달 리포트의 «시험» 영역에 회차 하나로 · ② 선생님 의견에 AI 초안을 두지 않는다(원장님이 직접 · 인쇄 전까지 고침) · ③ 반 최고점을 두지 않는다(반 평균만).
+틀린 문항 번호 · 다음 달에 다시 볼 단원을 A4 어디에 두나는 Wire 4안 `/dev/report-exam-wire`(추천 B — 시험 영역 끝 «다시 볼 단원» 칸) · 교사 화면은 네 안 공통으로 반 시험 채점표 맨 아래 «정답률» 한 줄.
