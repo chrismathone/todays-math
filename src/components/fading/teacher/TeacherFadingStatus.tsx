@@ -338,8 +338,7 @@ function StudentDetailContent({
       <p className={s.note}>배운 개념은 첫 평가를 마친 개념입니다.</p>
       {summary.relearn ? (
         <p className={s.note}>
-          추가 확인은 대기열에 남은 문장의 기록입니다. 살펴볼 까닭에는 넣지
-          않습니다.
+          추가 확인 남음 · 틀림 · 횟수는 대기열에 남은 문장의 기록입니다.
         </p>
       ) : null}
       <dl className={s.steps} aria-label="단계별 개념 수">

@@ -148,7 +148,7 @@ describe("교사 Hi-fi B 구조", () => {
     expect(metric("추가 확인 횟수")).toBe("추가 확인 횟수4회");
     expect(
       within(detail).getByText(
-        "추가 확인은 대기열에 남은 문장의 기록입니다. 살펴볼 까닭에는 넣지 않습니다.",
+        "추가 확인 남음 · 틀림 · 횟수는 대기열에 남은 문장의 기록입니다.",
       ),
     ).toBeInTheDocument();
     expect(metric("가장 오래 남은 추가 확인")).toBe(
