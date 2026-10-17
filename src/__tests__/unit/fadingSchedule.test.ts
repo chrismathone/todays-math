@@ -231,8 +231,8 @@ describe("오늘의 대기열 — 망각 위험이 큰 것부터, 하루 상한�
     expect(fadingQueue({ b: same, a: same }, TODAY).due).toEqual(["a", "b"]);
   });
 
-  it("상한의 처음 값은 스무 개다", () => {
-    expect(FADING_DAILY_CAP).toBe(20);
+  it("상한의 처음 값은 열다섯 개다 — 서비스 기본(2026-10-17 · 전에는 20)", () => {
+    expect(FADING_DAILY_CAP).toBe(15);
     const many = Object.fromEntries(
       Array.from({ length: 25 }, (_, i) => [
         `c${String(i).padStart(2, "0")}`,
@@ -240,7 +240,7 @@ describe("오늘의 대기열 — 망각 위험이 큰 것부터, 하루 상한�
       ]),
     );
     const queue = fadingQueue(many, TODAY);
-    expect([queue.due.length, queue.held.length]).toEqual([20, 5]);
+    expect([queue.due.length, queue.held.length]).toEqual([15, 10]);
   });
 });
 

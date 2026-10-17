@@ -6,7 +6,9 @@ import type {
 } from "@/contracts/fading.contract";
 import {
   FADING_RELEARN_CONFIRM_MS,
+  FADING_RELEARN_DAILY_CHECKS,
   FADING_RELEARN_RETRY_MS,
+  FADING_RELEARN_STOP_FAILS,
   type FadingRelearnAction,
   type FadingRelearnApplied,
   type FadingRelearnAttempt,
@@ -18,7 +20,7 @@ import {
   type FadingRelearnResult,
   type FadingRelearnTargetOutcome,
 } from "@/contracts/fadingRelearn.contract";
-import { kstDateOf } from "@/lib/kstDate";
+import { KST_OFFSET_MS, kstDateOf } from "@/lib/kstDate";
 import { FADING_CONTENT_CHANGED } from "./actions";
 import type { FadingTrap } from "./chips";
 import {
@@ -78,6 +80,11 @@ export const FADING_RELEARN_JUDGING = "기준안과 대조할 답이 남아 있�
 export const FADING_RELEARN_INCOMPLETE = "빈칸을 다 채우지 않았습니다.";
 export const FADING_RELEARN_NO_EVIDENCE =
   "이 풀이의 기록을 찾을 수 없어 대기열에 넣지 않았습니다.";
+/** 하루의 끝(2026-10-17) — 학생에게 그대로 보이는 말이라 학생 화면의 말투다. */
+export const FADING_RELEARN_CAPPED =
+  "오늘 추가 확인은 여기까지예요. 남은 문장은 내일부터 이어서 확인해요.";
+export const FADING_RELEARN_STOPPED =
+  "이 문장은 오늘 여기까지예요. 내일부터 다시 확인해요.";
 
 const conflict = (message: string) => new FadingConflict(message);
 const DAY_MS = 86_400_000;
@@ -157,6 +164,45 @@ function dueAtOf(item: StoredFadingRelearnItem, digestNow: string): number {
 }
 
 /* ───────── 그날의 집계 · 걷기 ───────── */
+
+/** 그 시각 다음의 한국 날짜 0시(밀리초). */
+function nextKstMidnight(now: number): number {
+  return (
+    Math.floor((now + KST_OFFSET_MS) / DAY_MS + 1) * DAY_MS - KST_OFFSET_MS
+  );
+}
+
+/**
+ * 오늘의 끝(원장님 결정 2026-10-17 · 계약의 `FADING_RELEARN_DAILY_CHECKS` · `FADING_RELEARN_STOP_FAILS`).
+ * 🔴 새 저장 칸 없이 센다 — 판정이 난 확인은 그날의 집계(`day.checks`), «틀림»은 영수증(`graded`)을 그날 · 명제로 묶어서.
+ * 하루 30회가 영수증 보관 수(32)보다 작아 그날의 영수증은 다 남는다(시험이 짝을 잠근다). 보관 수를 줄이면 이 근거를 다시 본다.
+ * 대조를 기다리는 답은 판정이 나면 그날의 확인이 되므로 미리 한 자리를 잡는다(`reserved`) — 대조까지 넣어도 30을 넘지 않는다.
+ * 도움(`assisted`)은 틀림이 아니다 — 멈춤은 «틀림»만 센다.
+ */
+export function fadingRelearnLimits(relearn: StoredFadingRelearn, now: number) {
+  const on = kstDateOf(new Date(now));
+  const checks = relearn.day?.on === on ? relearn.day.checks : 0;
+  const reserved = relearn.items.filter((item) => item.pending).length;
+  const fails = new Map<string, number>();
+  for (const receipt of relearn.graded)
+    if (
+      receipt.verdict === "failed" &&
+      kstDateOf(new Date(receipt.at)) === on
+    ) {
+      const key = fadingRelearnKey(receipt.conceptId, receipt.propositionId);
+      fails.set(key, (fails.get(key) ?? 0) + 1);
+    }
+  return {
+    on,
+    checks,
+    reserved,
+    capped: checks + reserved >= FADING_RELEARN_DAILY_CHECKS,
+    stopped: [...fails]
+      .filter(([, n]) => n >= FADING_RELEARN_STOP_FAILS)
+      .map(([key]) => key),
+    resumeAt: nextKstMidnight(now),
+  };
+}
 
 function tallied(
   relearn: StoredFadingRelearn,
@@ -713,6 +759,20 @@ export function gradeFadingRelearn(
       result: judgingResult(item, live, concept, targets, traps, true),
     };
   if (live) throw conflict(FADING_RELEARN_JUDGING);
+  // 오늘의 끝 — 저장 전이에서 막는다(화면이 아니라). 저장이 다시 시도되면 새 기록으로 다시 센다.
+  const limits = fadingRelearnLimits(relearn, now);
+  if (
+    limits.stopped.includes(
+      fadingRelearnKey(item.conceptId, item.propositionId),
+    )
+  )
+    throw conflict(FADING_RELEARN_STOPPED);
+  // 이 줄이 잡아 둔 낡은 대조 자리는 이 답이 대신한다.
+  if (
+    limits.checks + limits.reserved - (item.pending ? 1 : 0) >=
+    FADING_RELEARN_DAILY_CHECKS
+  )
+    throw conflict(FADING_RELEARN_CAPPED);
   if (attempt.token !== fadingRelearnToken(item, concept, traps))
     throw conflict(FADING_RELEARN_CHANGED);
   if (now < dueAtOf(item, digest)) throw conflict(FADING_RELEARN_NOT_DUE);
@@ -938,6 +998,8 @@ export function fadingRelearnQueueView(input: {
   const { fading, concepts, now } = input;
   const enabled = input.enabled !== false;
   const relearn = enabled ? (fading.relearn ?? EMPTY) : EMPTY;
+  const limits = fadingRelearnLimits(relearn, now);
+  const stopped = new Set(limits.stopped);
   const items: FadingRelearnItem[] = [];
   const contents: FadingRelearnQueue["contents"] = {};
   for (const item of relearn.items) {
@@ -949,9 +1011,14 @@ export function fadingRelearnQueueView(input: {
     const traps = input.trapsOf?.(concept) ?? [];
     const digest = fadingPropositionDigest(proposition);
     const pending = item.pending?.digest === digest ? item.pending : undefined;
-    const dueAt = dueAtOf(item, digest);
+    const key = fadingRelearnKey(item.conceptId, item.propositionId);
+    // 오늘 끝난 줄은 다음 날 0시까지 기다린다 — 대조를 기다리는 답은 이미 자리를 잡아 두어 끝낼 수 있다.
+    const dueAt =
+      !pending && (limits.capped || stopped.has(key))
+        ? Math.max(dueAtOf(item, digest), limits.resumeAt)
+        : dueAtOf(item, digest);
     items.push({
-      key: fadingRelearnKey(item.conceptId, item.propositionId),
+      key,
       conceptId: item.conceptId,
       propositionId: item.propositionId,
       token: fadingRelearnToken(item, concept, traps),
@@ -1011,5 +1078,19 @@ export function fadingRelearnQueueView(input: {
     },
     nextDueAt: waiting.length ? waiting[0]!.dueAt : null,
     today: relearn.day?.on === today.on ? { ...relearn.day } : today,
+    // 닫혀 있으면 싣지 않는다 — 할 확인이 없다.
+    ...(enabled
+      ? {
+          limit: {
+            cap: FADING_RELEARN_DAILY_CHECKS,
+            checks: limits.checks,
+            reserved: limits.reserved,
+            capped: limits.capped,
+            // 은행에서 사라진 줄은 세지 않는다 — 내려간 줄 가운데 멈춘 것.
+            stopped: items.filter((item) => stopped.has(item.key)).length,
+            resumeAt: limits.resumeAt,
+          },
+        }
+      : {}),
   };
 }

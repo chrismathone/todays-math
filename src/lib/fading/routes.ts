@@ -28,6 +28,7 @@ import { fadingActionConceptId, fadingActionNeedsConcept } from "./actions";
 import { fadingCatalog, fadingConceptMap, fadingFigureOf } from "./catalog";
 import { applyFadingActionWithRelearn } from "./compose";
 import { fadingCardsEnabled, fadingEnabled } from "./enabled";
+import { fadingQuotaForStudent } from "./quotaServer";
 import { fadingRelearnEnabled } from "./relearnEnabled";
 import { FadingConflict, emptyFading } from "./state";
 import { fadingTrapsFor } from "./traps";
@@ -111,6 +112,8 @@ export async function handleFadingRequest(
   try {
     const concepts = fadingConceptMap();
     const cards = fadingCardsEnabled();
+    // 홈의 하루 분량 — 교사가 정한 값(그날 먹는 값 · `quota.ts`). 없으면 서비스 기본이다. «오늘의 학습» 계획과 같은 값이다.
+    const cap = await fadingQuotaForStudent(student.id, today);
     let saved: Awaited<ReturnType<typeof readSrsState>>;
     let requestId: string | undefined;
     if (operation === "read") saved = await readSrsState(student.id);
@@ -149,6 +152,7 @@ export async function handleFadingRequest(
           revision: saved.revision,
           today,
           concepts,
+          cap,
           requestId,
           trapsOf: fadingTrapsFor,
           figureOf: fadingFigureOf,

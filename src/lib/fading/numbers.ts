@@ -1,6 +1,7 @@
 import { allocateDaily } from "./dailyPlan";
 import { FADING_STEPS, type FadingStep } from "./erasure";
 import { fsrsRetrievability } from "./fsrs";
+import { FADING_SERVICE_QUOTA } from "./quota";
 import type { FadingProgress } from "./schedule";
 
 /**
@@ -12,10 +13,11 @@ import type { FadingProgress } from "./schedule";
  */
 
 /**
- * 하루 분량의 상한(«나눠서») — 칸은 **명제**다(결정 4 · 2026-10-16): 홈과 «오늘의 학습» 계획이 같은 20칸을 쓴다.
+ * 하루 분량의 상한(«나눠서») — 칸은 **명제**다(결정 4 · 2026-10-16): 홈과 «오늘의 학습» 계획이 같은 칸을 쓴다.
+ * 서비스 기본 15칸(원장님 결정 2026-10-17 — 전에는 20). 학생마다 다른 값은 교사가 정하고(`quota.ts`) 라우트가 넘긴다 — 이 값은 대신 값이다.
  * 명제 비용을 모르는 부름(`fadingQueue` 에 `slots` 없음)은 지금까지처럼 개념 수로 센다.
  */
-export const FADING_DAILY_CAP = 20;
+export const FADING_DAILY_CAP = FADING_SERVICE_QUOTA;
 /** 날마다의 집계를 남기는 날 수. */
 export const FADING_DAYS_KEPT = 400;
 

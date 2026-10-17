@@ -1825,8 +1825,9 @@ describe("🔴 같은 요청의 되풀이 — 한 번만 적용되고, 틀림이
 
   it("영수증은 쓰는 쪽의 상한까지만 남는다", () => {
     let state = seeded().fading;
+    // 하루 30회 상한(2026-10-17)이 있어 세 시간씩 띄워 여러 날에 나눈다.
     for (let n = 0; n < FADING_RELEARN_RECEIPTS_MAX + 3; n++) {
-      const now = T0 + (n + 1) * MIN;
+      const now = T0 + (n + 1) * 3 * 3_600_000;
       state = gradeFadingRelearn(
         state,
         A,

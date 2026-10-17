@@ -15,12 +15,14 @@ import { emptyFading, fadingSummary } from "@/lib/fading/state";
 import { fadingStateView } from "@/lib/fading/view";
 
 /**
- * 결정 4(원장님 승인 2026-10-16) — 홈의 기본 분량도 «오늘의 학습» 계획과 같은 **명제 20칸** 규칙이다
+ * 결정 4(원장님 승인 2026-10-16) — 홈의 기본 분량도 «오늘의 학습» 계획과 같은 **명제 칸** 규칙이다
  * (`explorerDaily.ts` · `dailyPlan.ts` 의 `allocateDaily`): 묶음은 쪼개지 않고, 남은 칸에 안 들어가면 건너뛰고 다음 것을 보며,
  * 오늘 평가로 닫은 기본 분량(첫 평가 포함)을 명제로 뺀다. 풀던 개념은 빚진 것이라 넘어도 낸다.
  * 개념 수의 통계(오늘의 복습 «한 것 / 목표» · 밀린 복습)는 그대로 개념 수다. 미룬 복습의 복습일은 그대로다.
- * 명제 비용(`slots` · `promptsOf`)을 주지 않으면 지금까지의 개념 20개 규칙이다(계획의 «오늘 전부»가 그 길을 쓴다).
+ * 명제 비용(`slots` · `promptsOf`)을 주지 않으면 지금까지의 개념 수 규칙이다(계획의 «오늘 전부»가 그 길을 쓴다).
+ * 아래는 나누는 셈을 보는 시험이라 20칸을 넘겨 준다(서비스 기본은 2026-10-17 부터 15칸 — `fadingQuota.test.ts`).
  */
+const CAP = 20;
 
 const TODAY = 20_732;
 
@@ -42,7 +44,7 @@ describe("결정 4 — `fadingQueue` 의 명제 칸", () => {
 
   it("묶음을 쪼개지 않고, 남은 칸에 안 들어가면 미루고 다음 것을 본다 — 20칸", () => {
     expect(fadingQueue(progress, TODAY).due).toHaveLength(5);
-    expect(fadingQueue(progress, TODAY, { slots })).toMatchObject({
+    expect(fadingQueue(progress, TODAY, { slots, cap: CAP })).toMatchObject({
       due: ["a", "b", "c", "d"],
       held: ["e"],
     });
@@ -50,16 +52,17 @@ describe("결정 4 — `fadingQueue` 의 명제 칸", () => {
     expect(
       fadingQueue(progress, TODAY, {
         slots: (id) => ({ ...sizes, d: 6 })[id]!,
+        cap: CAP,
       }),
     ).toMatchObject({ due: ["a", "b", "c", "e"], held: ["d"] });
   });
 
   it("오늘 이미 닫은 명제를 뺀다 — 남은 칸이 없으면 다 미룬다", () => {
     expect(
-      fadingQueue(progress, TODAY, { slots, reviewedToday: 12 }),
+      fadingQueue(progress, TODAY, { slots, cap: CAP, reviewedToday: 12 }),
     ).toMatchObject({ due: ["a", "e"], held: ["b", "c", "d"] });
     expect(
-      fadingQueue(progress, TODAY, { slots, reviewedToday: 20 }),
+      fadingQueue(progress, TODAY, { slots, cap: CAP, reviewedToday: 20 }),
     ).toMatchObject({ due: [], held: ["a", "b", "c", "d", "e"] });
   });
 
@@ -71,10 +74,13 @@ describe("결정 4 — `fadingQueue` 의 명제 칸", () => {
     };
     const more = (id: string) => ({ ...sizes, fresh: 3, started: 4 })[id]!;
     // 복습이 19칸 → 평가 전 둘 다 안 들어간다.
-    expect(fadingQueue(withNew, TODAY, { slots: more }).unrated).toEqual([]);
+    expect(
+      fadingQueue(withNew, TODAY, { slots: more, cap: CAP }).unrated,
+    ).toEqual([]);
     // 풀던 개념(열린 풀이)은 빚진 것이라 넘어도 낸다.
     expect(
-      fadingQueue(withNew, TODAY, { slots: more, open: "started" }).unrated,
+      fadingQueue(withNew, TODAY, { slots: more, cap: CAP, open: "started" })
+        .unrated,
     ).toEqual(["started"]);
     // 복습이 적으면 남은 칸에 든다 — 풀다 만 것 먼저.
     const light = {
@@ -82,7 +88,7 @@ describe("결정 4 — `fadingQueue` 의 명제 칸", () => {
       started: withNew.started,
       e: progress.e!,
     };
-    expect(fadingQueue(light, TODAY, { slots: more })).toMatchObject({
+    expect(fadingQueue(light, TODAY, { slots: more, cap: CAP })).toMatchObject({
       due: ["e"],
       unrated: ["started", "fresh"],
     });
@@ -98,7 +104,7 @@ describe("결정 4 — `fadingQueue` 의 명제 칸", () => {
     ).toMatchObject({ due: ["a", "b", "c", "d", "e"], held: [], unrated: [] });
   });
 
-  it("명제 비용을 주지 않으면 지금까지의 개념 20개 규칙이다", () => {
+  it("명제 비용을 주지 않으면 지금까지의 개념 수 규칙이다 — 서비스 기본 15", () => {
     const many = Object.fromEntries(
       Array.from({ length: 25 }, (_, i) => [
         `c${String(i).padStart(2, "0")}`,
@@ -106,9 +112,9 @@ describe("결정 4 — `fadingQueue` 의 명제 칸", () => {
       ]),
     );
     const queue = fadingQueue(many, TODAY);
-    expect([queue.due.length, queue.held.length]).toEqual([20, 5]);
+    expect([queue.due.length, queue.held.length]).toEqual([15, 10]);
     expect(fadingQueue(many, TODAY, { slots: () => 4 }).due.length).toBe(
-      FADING_DAILY_CAP / 4,
+      Math.floor(FADING_DAILY_CAP / 4),
     );
   });
 });
@@ -175,6 +181,7 @@ describe("결정 4 — 홈의 요약(`fadingSummary` · `fadingStateView`)", () 
       revision: 0,
       today: DAY,
       concepts,
+      cap: CAP,
     });
     expect(view.summary.queue.due).toEqual(["k1", "k2", "k3", "k4", "k5"]);
     expect(view.summary.queue.held).toEqual(["k6"]);
@@ -199,6 +206,7 @@ describe("결정 4 — 홈의 요약(`fadingSummary` · `fadingStateView`)", () 
     const summary = fadingSummary(learned, DAY, {
       known: new Set(concepts.keys()),
       promptsOf: (id) => concepts.get(id)!.propositions.length,
+      cap: CAP,
     });
     expect(summary.queue.due).toEqual(["k1", "k2", "k3"]);
     expect(summary.queue.held).toEqual(["k4", "k5", "k6"]);
@@ -236,6 +244,7 @@ describe("결정 4 — 홈의 요약(`fadingSummary` · `fadingStateView`)", () 
       revision: 0,
       today: DAY,
       concepts,
+      cap: CAP,
     });
     expect(view.summary.queue.unrated).toEqual(["n2"]);
     expect(view.summary.queue.due).toEqual(["k1", "k2", "k3", "k4"]);

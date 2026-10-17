@@ -4,6 +4,15 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const f = vi.hoisted(() => ({
+  /** 학생의 하루 분량 행(`fading_student_policy`) — 없으면 서비스 기본. */
+  policy: null as null | {
+    quota: number | null;
+    previousQuota: number | null;
+    effectiveOn: Date;
+    revision: number;
+  },
+  /** 상한에 닿은 날로 적힌 것(`fading_relearn_cap_day`). */
+  capDays: [] as string[],
   studentId: "017c1a9b-b28a-4a5b-80b6-f1a21ccfeee2",
   otherId: "5d3f0c1e-9a47-4f0b-8a55-0d7b6c1f2e33",
   classId: "7e7c388b-c264-4d39-809b-527723b8b74b",
@@ -54,6 +63,14 @@ vi.mock("@/lib/errorLog/withErrorLog", () => ({
 }));
 vi.mock("@/lib/db", () => ({
   db: {
+    fadingStudentPolicy: { findUnique: async () => f.policy },
+    fadingRelearnCapDay: {
+      upsert: async ({ create }: { create: { on: Date } }) => {
+        const on = create.on.toISOString().slice(0, 10);
+        if (!f.capDays.includes(on)) f.capDays.push(on);
+        return create;
+      },
+    },
     student: {
       findUnique: async ({ where }: { where: { id: string } }) => ({
         id: where.id,
@@ -297,6 +314,8 @@ const restOfRecord = () => {
 };
 
 beforeEach(() => {
+  f.policy = null;
+  f.capDays = [];
   f.rows.clear();
   f.writes = 0;
   f.reads = 0;

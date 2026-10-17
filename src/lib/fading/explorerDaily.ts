@@ -56,6 +56,12 @@ import { fadingProgressOf } from "./state";
  *   따로 선 길의 몫이라 여기에 더해 세지 않는다. 탐험의 덩이 안에서 어떤 문제가 나오는지도 탐험이 정한다.
  */
 
+/**
+ * 첫 학습일에 새로 여는 개념 묶음의 상한(원장님 결정 2026-10-17 · `fading-quota-consensus-20261017.md` §7 ⑥).
+ * 첫날 = 지난 날에 평가를 닫은 기록(날마다의 집계 · 개념의 평가)이 없는 날. 그날 처음 배운 묶음 · 풀던 새 묶음도 센다. 🔴 모의하지 않은 설계안이다.
+ */
+export const FADING_FIRST_DAY_NEW_BUNDLES = 2;
+
 /** 탐험의 오늘 한 덩이 — 탐험의 기록에서 읽은 그대로(분량은 탐험이 정한 값이다). */
 export type FadingDailyWorkload = Pick<
   ExpeditionPlan,
@@ -434,7 +440,29 @@ export function buildFadingDailyPlan(input: {
       };
   }
 
-  for (const activity of late) offer(activity);
+  // 첫 학습일에는 새 개념 묶음을 둘까지만 낸다 — 오늘 이미 처음 배운 것 · 풀던 새 묶음을 빼고 남은 만큼.
+  // 지난 날의 집계가 없어도, 오늘 전에 평가한 개념이 있으면 첫날이 아니다.
+  const firstDay =
+    !fading.days.some((d) => d.date < today && d.reviews > 0) &&
+    !Object.values(fading.concepts).some(
+      (stored) =>
+        stored.reviews > 1 ||
+        (stored.reviews === 1 && stored.reviewedOn !== today),
+    );
+  let room = Infinity;
+  if (firstDay) {
+    const freshToday = Object.values(fading.concepts).filter(
+      (stored) => stored.reviewedOn === today && stored.reviews === 1,
+    ).length;
+    const openFresh =
+      session && !fading.concepts[session.conceptId]!.reviews ? 1 : 0;
+    room = Math.max(0, FADING_FIRST_DAY_NEW_BUNDLES - freshToday - openFresh);
+  }
+  for (const activity of late) {
+    if (room <= 0) break;
+    offer(activity);
+    room -= 1;
+  }
 
   // 오늘 이미 한 칸 — 닫은 개념의 명제 수와, 풀던 탐험이 이미 푼 문제 수(남은 칸만 후보로 냈다).
   const doneBefore =

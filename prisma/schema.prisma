@@ -448,6 +448,10 @@ model Student {
   progressPlans       ProgressPlan[]
   /// Generated daily practice is independent of scored exams and private teacher worksheets.
   srsState            StudentSrsState?
+  /// «오늘의 기억» 하루 분량 — 행이 없으면 서비스 기본(2026-10-17)
+  fadingPolicy        FadingStudentPolicy?
+  /// «오늘의 기억» 추가 확인이 하루 상한에 닿은 날 — «분량 점검 필요» 신호의 근거
+  fadingCapDays       FadingRelearnCapDay[]
   /// 교재 배정 — 이 학생 하나에게 건 판본
   textbookAssignments     TextbookAssignment[]
   /// 교재 개념의 백지 활동 — 학생을 지우면 그 글도 같이 지워진다
@@ -468,6 +472,36 @@ model StudentSrsState {
   student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
 
   @@map("student_srs_state")
+}
+
+/// «오늘의 기억» 학생별 하루 분량 (원장님 결정 2026-10-17 · `src/lib/fading/quota.ts`).
+/// 학생 기록 JSON 밖에 둔다 — 학생이 풀 때마다 바뀌는 revision 과 부딪히지 않고, 엄격한 학생 기록 계약의 되돌림 하한을 옮기지 않는다.
+/// 바꾼 값은 다음 한국 날짜(`effective_on`)부터 먹는다 — 그 전날까지는 `previous_quota`. 둘 다 NULL 이면 서비스 기본.
+model FadingStudentPolicy {
+  studentId     String   @id @map("student_id") @db.Uuid
+  quota         Int?     @db.SmallInt
+  previousQuota Int?     @map("previous_quota") @db.SmallInt
+  effectiveOn   DateTime @map("effective_on") @db.Date
+  /// 교사 화면의 덮어쓰기 막기 — 저장할 때 견준다.
+  revision      Int      @default(1)
+  /// 바꾼 계정(감사 기록에도 남는다). 계정이 지워져도 행은 남도록 외래 키를 걸지 않는다.
+  updatedById   String?  @map("updated_by") @db.Uuid
+  updatedAt     DateTime @default(now()) @updatedAt @map("updated_at")
+  student       Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@map("fading_student_policy")
+}
+
+/// «오늘의 기억» 추가 확인이 하루 상한(30회)에 닿은 한국 날짜 — 학생 하나에 하루 한 행. 학생 라우트가 닿은 그때 적는다.
+/// 학생 기록 JSON 의 하루치 집계로는 지난 날을 되살릴 수 없어 따로 둔다(합의 §3).
+model FadingRelearnCapDay {
+  studentId String   @map("student_id") @db.Uuid
+  on        DateTime @db.Date
+  createdAt DateTime @default(now()) @map("created_at")
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@id([studentId, on])
+  @@map("fading_relearn_cap_day")
 }
 
 // ─────────────────────────────────────────────

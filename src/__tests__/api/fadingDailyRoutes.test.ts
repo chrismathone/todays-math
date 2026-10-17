@@ -3,6 +3,15 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const f = vi.hoisted(() => ({
+  /** 학생의 하루 분량 행(`fading_student_policy`) — 없으면 서비스 기본. */
+  policy: null as null | {
+    quota: number | null;
+    previousQuota: number | null;
+    effectiveOn: Date;
+    revision: number;
+  },
+  /** 상한에 닿은 날로 적힌 것(`fading_relearn_cap_day`). */
+  capDays: [] as string[],
   studentId: "017c1a9b-b28a-4a5b-80b6-f1a21ccfeee2",
   classId: "7e7c388b-c264-4d39-809b-527723b8b74b",
   session: null as unknown,
@@ -21,6 +30,14 @@ vi.mock("@/lib/errorLog/withErrorLog", () => ({
 }));
 vi.mock("@/lib/db", () => ({
   db: {
+    fadingStudentPolicy: { findUnique: async () => f.policy },
+    fadingRelearnCapDay: {
+      upsert: async ({ create }: { create: { on: Date } }) => {
+        const on = create.on.toISOString().slice(0, 10);
+        if (!f.capDays.includes(on)) f.capDays.push(on);
+        return create;
+      },
+    },
     student: {
       findUnique: async ({ where }: { where: { id: string } }) => ({
         id: where.id,
@@ -211,6 +228,8 @@ function fractionStudent(): StoredSrsState {
 }
 
 beforeEach(() => {
+  f.policy = null;
+  f.capDays = [];
   f.rows.clear();
   f.writes = 0;
   f.reads = 0;
@@ -258,33 +277,34 @@ describe("문지기", () => {
     expect(f.reads).toBe(0);
   });
 
-  it("분량은 1 ~ 60 의 숫자 글자만 받는다 — 아니면 400 이고 기록을 읽지 않는다", async () => {
-    for (const bad of [
-      "0",
-      "61",
-      "100",
-      "abc",
-      "2.5",
-      "1e1",
-      "-3",
-      "",
-      "+5",
-      "%2020",
-    ])
-      expect(await code(await daily(`?quota=${bad}`)), bad).toEqual([
-        400,
-        "VALIDATION_ERROR",
-      ]);
-    expect(f.reads).toBe(0);
-    expect((await plan(await daily("?quota=1"))).quota).toMatchObject({
-      total: 1,
-      source: "explicit",
-    });
-    expect((await plan(await daily("?quota=60"))).quota.total).toBe(60);
+  it("분량은 교사가 정한 값이다 — 주소의 ?quota= 는 읽지 않는다(2026-10-17)", async () => {
+    // 행이 없으면 서비스 기본 15칸.
     expect((await plan(await daily())).quota).toMatchObject({
-      total: 20,
+      total: 15,
       source: "default",
     });
+    // 학생 쪽 요청이 분량을 정하지 못한다 — 잘못된 값도 400 이 아니라 무시된다.
+    expect((await plan(await daily("?quota=60"))).quota.total).toBe(15);
+    expect((await plan(await daily("?quota=abc"))).quota.total).toBe(15);
+    // 오늘부터 먹는 학생 지정 값.
+    f.policy = {
+      quota: 10,
+      previousQuota: null,
+      effectiveOn: new Date(`${TODAY}T00:00:00.000Z`),
+      revision: 1,
+    };
+    expect((await plan(await daily())).quota).toMatchObject({
+      total: 10,
+      source: "explicit",
+    });
+    // 내일부터 먹는 값이면 오늘은 앞의 값이다.
+    f.policy = {
+      quota: 10,
+      previousQuota: 20,
+      effectiveOn: new Date("2026-10-08T00:00:00.000Z"),
+      revision: 2,
+    };
+    expect((await plan(await daily())).quota.total).toBe(20);
   });
 });
 
@@ -410,6 +430,13 @@ describe("탐험과 이어 짓는다 — 분량 · 추천은 탐험이 낸 그�
   });
 
   it("시범 목표 소단원의 문제은행 날: 선수 개념 확인 하나 → 문제 10 → 그 소단원의 새 개념, 합계는 분량을 넘지 않는다", async () => {
+    // 20칸을 고른 학생(교사가 정한 값) — 서비스 기본 15칸에서는 문제 10 뒤에 개념 묶음이 하나만 든다.
+    f.policy = {
+      quota: 20,
+      previousQuota: null,
+      effectiveOn: new Date(`${TODAY}T00:00:00.000Z`),
+      revision: 1,
+    };
     seed(fractionStudent());
     const got = await plan(await daily());
     const practice = got.activities.find((a) => a.kind === "practice")!;
@@ -483,8 +510,15 @@ describe("탐험과 이어 짓는다 — 분량 · 추천은 탐험이 낸 그�
   });
 
   it("분량이 탐험의 한 덩이보다 작으면 내지 않는다 — 줄여서 내지 않는다", async () => {
+    // 고를 수 있는 분량(10 · 15 · 20)으로는 이 경계에 닿지 않는다 — 학생 라우트와 같은 함수에 분량을 넘겨 본다.
     seed(fractionStudent());
-    const got = await plan(await daily("?quota=8"));
+    const got = serverFadingDailyPlan({
+      state: stored(),
+      studentId: f.studentId,
+      now: NOW,
+      concepts: fadingConceptMap(),
+      quota: 8,
+    });
     expect(got.activities.find((a) => a.kind === "practice")).toMatchObject({
       state: "blocked",
       count: 10,
@@ -500,7 +534,16 @@ describe("서버의 답과 서버 없이 도는 원천의 답이 같다", () => 
   it("같은 기록 · 같은 재료면 글자 그대로 같다 — 풀이를 연 뒤에도", async () => {
     seed(fractionStudent());
     const concepts = fadingConceptMap();
-    const same = async (query: string, quota?: number) => {
+    const same = async (quota?: 10 | 15 | 20) => {
+      f.policy =
+        quota === undefined
+          ? null
+          : {
+              quota,
+              previousQuota: null,
+              effectiveOn: new Date(`${TODAY}T00:00:00.000Z`),
+              revision: 1,
+            };
       const state = stored();
       const learning = fadingDailyLearning(state, f.studentId, NOW, concepts);
       const materials = {
@@ -508,7 +551,7 @@ describe("서버의 답과 서버 없이 도는 원천의 답이 같다", () => 
         prerequisite: learning.prerequisite,
         progressSections: learning.progressSections,
       };
-      const server = await plan(await daily(query));
+      const server = await plan(await daily());
       const local = createLocalFadingSource({
         concepts: fadingCatalog(),
         today: TODAY,
@@ -538,14 +581,14 @@ describe("서버의 답과 서버 없이 도는 원천의 답이 같다", () => 
       );
       return server;
     };
-    const first = await same("");
-    await same("?quota=35", 35);
+    const first = await same();
+    await same(20);
     // 계획이 낸 선수 개념을 지금 있는 길로 연다.
     const next = first.activities.find((a) => a.key === first.next)!;
     expect(next.kind).toBe("recall");
     const conceptId = (next as FadingDailyRecall).conceptId;
     await act({ action: "open", conceptId });
-    const opened = await same("");
+    const opened = await same();
     expect(opened.activities[0]).toMatchObject({
       key: `recall:${conceptId}`,
       state: "active",

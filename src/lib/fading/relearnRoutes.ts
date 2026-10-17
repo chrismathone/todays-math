@@ -25,6 +25,7 @@ import {
   fadingRelearnActionConceptId,
   fadingRelearnQueueView,
 } from "./relearn";
+import { recordFadingCapDay } from "./quotaServer";
 import { fadingRelearnEnabled } from "./relearnEnabled";
 import { fadingStudentHeaderResponse } from "./routes";
 import { FadingConflict, emptyFading } from "./state";
@@ -109,15 +110,23 @@ export async function handleFadingRelearnRequest(
       held.done = applyFadingRelearnAction(fading, action, concept, now, traps);
       return held.done.fading;
     });
+    const queue = fadingRelearnQueueView({
+      fading: saved.state.fading ?? emptyFading(),
+      concepts,
+      now,
+      trapsOf: fadingTrapsFor,
+    });
+    // 상한에 닿은 날 — «분량 점검 필요»(최근 7일 중 3일)의 근거. 학생 기록 JSON 밖의 표라 저장과 따로 적고,
+    // 적지 못해도 학생의 확인은 이미 저장됐으니 답을 막지 않는다(신호가 하루 덜 셀 뿐이다).
+    if (action.action !== "record" && queue.limit?.capped)
+      await recordFadingCapDay(student.id, queue.today.on).catch(
+        (error: unknown) =>
+          console.error("[fading] 상한에 닿은 날을 적지 못했다", error),
+      );
     return noStore(
       jsonOk(fadingRelearnActionResponseSchema, {
         data: {
-          queue: fadingRelearnQueueView({
-            fading: saved.state.fading ?? emptyFading(),
-            concepts,
-            now,
-            trapsOf: fadingTrapsFor,
-          }),
+          queue,
           applied: held.done!.applied,
           result: held.done!.result,
         },
