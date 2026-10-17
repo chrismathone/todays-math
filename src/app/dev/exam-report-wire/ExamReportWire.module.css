@@ -1,0 +1,339 @@
+/*
+ * 월말평가 성적표 Wire (`report-exam-wire` 의 회색 토큰).
+ * Wire 라서 색을 쓰지 않는다 — 회색 몇 단계와 검정 하나. 누를 수 있는 것이 없다(D-30).
+ */
+.shell {
+  --w-page: #f4f4f5;
+  --w-surface: #ffffff;
+  --w-fill: #e4e4e7;
+  --w-fill-2: #d4d4d8;
+  --w-line: #a1a1aa;
+  --w-strong: #27272a;
+  --w-muted: #52525b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  min-height: 100vh;
+  padding: 32px 16px 96px;
+  background: var(--w-page);
+  color: var(--w-strong);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.head,
+.topic {
+  width: 100%;
+  max-width: 1480px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.h1 {
+  font-size: 22px;
+  font-weight: 800;
+}
+.h2 {
+  font-size: 19px;
+  font-weight: 800;
+  padding-top: 8px;
+  border-top: 3px solid var(--w-strong);
+}
+.note {
+  max-width: 920px;
+  color: var(--w-muted);
+  line-height: 1.7;
+}
+.must {
+  margin: 0;
+  padding-left: 20px;
+  max-width: 920px;
+  line-height: 1.8;
+}
+.jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.jump a {
+  text-decoration: underline;
+}
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  align-items: flex-start;
+}
+.option {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 470px;
+  max-width: 100%;
+}
+.option h3 {
+  font-size: 15px;
+  font-weight: 800;
+}
+.small {
+  font-size: 11px;
+  color: var(--w-muted);
+}
+
+/* A4 — 595 × 842 의 축소(0.79). */
+.sheet {
+  width: 470px;
+  min-height: 665px;
+  max-width: 100%;
+  padding: 22px 24px;
+  background: var(--w-surface);
+  border: 1px solid var(--w-line);
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  font-size: 11px;
+}
+.sheetHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 2px solid var(--w-strong);
+  padding-bottom: 5px;
+  font-weight: 800;
+  font-size: 12px;
+}
+.label {
+  font-size: 10.5px;
+  font-weight: 800;
+  border-left: 3px solid var(--w-strong);
+  padding-left: 5px;
+}
+.ghost {
+  border: 1px dashed var(--w-line);
+  background: var(--w-fill);
+  color: var(--w-muted);
+  padding: 6px 8px;
+  font-size: 10.5px;
+}
+.bigRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--w-strong);
+}
+.bigRow > div {
+  padding: 6px;
+  text-align: center;
+  border-right: 1px solid var(--w-fill-2);
+}
+.bigRow > div:last-child {
+  border-right: 0;
+}
+.bigRow b {
+  display: block;
+  font-size: 18px;
+}
+.sentences {
+  border: 1px solid var(--w-strong);
+  padding: 7px 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 11.5px;
+}
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.board > div {
+  border: 1px solid var(--w-fill-2);
+  padding: 4px 6px;
+}
+.board b {
+  font-size: 13px;
+}
+.bar {
+  height: 6px;
+  border: 1px solid var(--w-line);
+  margin-top: 3px;
+}
+.bar > i {
+  display: block;
+  height: 100%;
+  background: var(--w-strong);
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10.5px;
+}
+.table th,
+.table td {
+  border: 1px solid var(--w-fill-2);
+  padding: 2px 4px;
+  text-align: center;
+}
+.table th {
+  background: var(--w-fill);
+  font-weight: 700;
+}
+.table td.left,
+.table th.left {
+  text-align: left;
+}
+.wrongCell {
+  font-weight: 800;
+  text-decoration: underline;
+}
+.ox {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  border: 1px solid var(--w-fill-2);
+  font-size: 10px;
+  text-align: center;
+}
+.ox > div {
+  border-right: 1px solid var(--w-fill-2);
+  border-bottom: 1px solid var(--w-fill-2);
+  padding: 2px 0;
+}
+.box {
+  border: 2px solid var(--w-strong);
+  padding: 6px 8px;
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.twoCol > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* 여러 장 — 쪽 썸네일 줄. */
+.strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.thumb {
+  width: 108px;
+  height: 152px;
+  background: var(--w-surface);
+  border: 1px solid var(--w-line);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 9.5px;
+  line-height: 1.35;
+}
+.thumb b {
+  font-size: 10px;
+}
+.thumb i {
+  display: block;
+  height: 5px;
+  background: var(--w-fill-2);
+}
+.thumbNo {
+  margin-top: auto;
+  color: var(--w-muted);
+  text-align: right;
+}
+.multi {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+.multi h3 {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+/* 원장 화면 — 켜고 끄기. */
+.settings {
+  width: 420px;
+  max-width: 100%;
+  background: var(--w-surface);
+  border: 1px solid var(--w-line);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--w-fill);
+}
+.switchOn,
+.switchOff {
+  width: 30px;
+  height: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--w-strong);
+  position: relative;
+  flex-shrink: 0;
+}
+.switchOn {
+  background: var(--w-strong);
+}
+.switchOn::after,
+.switchOff::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--w-surface);
+  border: 1px solid var(--w-strong);
+}
+.switchOn::after {
+  right: 2px;
+}
+.switchOff::after {
+  left: 2px;
+}
+.group {
+  font-weight: 800;
+  margin-top: 6px;
+}
+.fakeButton {
+  border: 1px solid var(--w-strong);
+  padding: 4px 10px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* 반 성적표 — 가로 A4 도 있다. */
+.landscape {
+  width: 640px;
+  min-height: 452px;
+}
+.ask {
+  border-collapse: collapse;
+  max-width: 920px;
+}
+.ask th,
+.ask td {
+  border: 1px solid var(--w-line);
+  padding: 6px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+.ask th {
+  background: var(--w-fill);
+  width: 300px;
+}
