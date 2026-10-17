@@ -6,6 +6,8 @@
  *   npx tsx scripts/qa/fading-simulation/run.ts --grade=중2 --persona=성실   # 하나만
  *   npx tsx scripts/qa/fading-simulation/run.ts --rule=base,d2,d1,d1d2 --seeds=5   # 규칙 견주기 → results-compare.json · summary-compare.md
  *   npx tsx scripts/qa/fading-simulation/run.ts --rule=base --seeds=5 --path=home    # 홈 대기열을 따라가는 학생 → *-compare-home.*
+ *   npx tsx scripts/qa/fading-simulation/run.ts --rule=d1d2 --seeds=5 --quota=15 --relearn-stop=3 --relearn-cap=30 --tag=q15-stop3-cap30
+ *        # 분량 손잡이 검토(2026-10-17) — 하루 분량 · 추가 확인 종료 규칙(제품에 없다 — 모의만)
  *
  * 🔴 서버 · DB · `/api/**` 를 부르지 않는다. 은행(`CONCEPT_BLANK_BANK`)과 묶음 표로 개념을 짓고(`catalog.ts` 와 같은 함수 —
  *    그 파일은 `server-only` 라 여기서 못 부른다), 서버 없이 도는 원천(`createLocalFadingSource` · `createLocalFadingRelearnSource`)에
@@ -98,6 +100,13 @@ export const MODEL = {
   maxSessionsPerDay: 60,
   /** 집(홈)에서 «추가 확인 시작»을 누르는 횟수의 안전 상한. */
   maxHomeChecks: 200,
+  /**
+   * 추가 확인의 하루 종료 규칙(검토용 · 제품에 없다 — 분량 손잡이 협의 2026-10-16). 0 은 끔.
+   * `relearnStopFails` — 같은 줄이 그날 이만큼 틀리면 그날은 다시 띄우지 않는다(줄은 남아 다음 날로 간다).
+   * `relearnDailyCap` — 그날 추가 확인을 이만큼 하면 더 하지 않는다.
+   */
+  relearnStopFails: 0,
+  relearnDailyCap: 0,
 };
 
 type PersonaName = "성실" | "불규칙" | "자주 틀림" | "쉬었다 복귀";
@@ -362,6 +371,22 @@ async function simulate(
     day.minutes += seconds / 60;
   };
 
+  /** 그날 줄마다 틀린 수 — 종료 규칙(`relearnStopFails`)을 켠 실행만 쓴다. */
+  const failsToday = new Map<string, number>();
+  const checksToday = () => day.relearn.retryChecks + day.relearn.confirmChecks;
+  /** 지금 띄울 수 있는 확인 — 준비된 줄 가운데 종료 규칙에 걸리지 않은 것. */
+  const nextCheck = (queue: FadingRelearnQueue) =>
+    MODEL.relearnDailyCap > 0 && checksToday() >= MODEL.relearnDailyCap
+      ? undefined
+      : queue.items.find(
+          (item) =>
+            (item.state === "judging" || item.state === "ready") &&
+            !(
+              MODEL.relearnStopFails > 0 &&
+              (failsToday.get(item.key) ?? 0) >= MODEL.relearnStopFails
+            ),
+        );
+
   /** 추가 확인 하나 — 준비된 줄에 답을 낸다(화면의 `FadingRelearnCheck`: 빈칸 전부를 쓰고 한 번에 제출). */
   async function check(item: FadingRelearnItem, queue: FadingRelearnQueue) {
     const concept = byId.get(item.conceptId)!;
@@ -396,6 +421,9 @@ async function simulate(
       });
       if (done.result.verdict === "passed") day.relearn.passed += 1;
       else day.relearn.failed += 1;
+      // 종료 규칙은 «틀림» 판정만 센다(도움 · 대조 대기는 아니다 — codex 2차 협의).
+      if (done.result.verdict === "failed")
+        failsToday.set(item.key, (failsToday.get(item.key) ?? 0) + 1);
       if (done.result.verdict === "judging")
         day.notes.push(`대조 대기(unknown)가 났다 — ${item.key}`);
       tick(S.relearnResult);
@@ -409,9 +437,7 @@ async function simulate(
   /** 풀이 중의 경계 — 준비된 확인이 있으면 하나만 뜬다(`useFadingRelearn.boundary`). */
   async function boundary() {
     const queue = await relearn.queue();
-    const next = queue.items.find(
-      (item) => item.state === "judging" || item.state === "ready",
-    );
+    const next = nextCheck(queue);
     if (next) await check(next, queue);
   }
   /**
@@ -424,9 +450,7 @@ async function simulate(
     const pass = first.counts.ready + first.counts.judging;
     for (let i = 0; i < pass && i < MODEL.maxHomeChecks; i++) {
       const queue = await relearn.queue();
-      const next = queue.items.find(
-        (item) => item.state === "judging" || item.state === "ready",
-      );
+      const next = nextCheck(queue);
       if (!next) return;
       await check(next, queue);
     }
@@ -766,6 +790,7 @@ async function simulate(
     const date = dateOf(index);
     source.setToday(date);
     clock.now = studyStartOf(date);
+    failsToday.clear();
     const weekday = weekdayOf(date);
     day = {
       day: index + 1,
@@ -847,11 +872,17 @@ async function simulate(
       const deadline = clock.now + MODEL.lingerAfterPlanMs;
       while (clock.now < deadline) {
         const queue = await relearn.queue();
-        if (queue.counts.ready + queue.counts.judging > 0) {
+        if (nextCheck(queue)) {
           await homeChecks();
           continue;
         }
-        if (queue.nextDueAt === null || queue.nextDueAt > deadline) break;
+        // 종료 규칙에 걸려 남은 줄만 있으면 이미 준비된 시각이 «다음»으로 온다 — 기다릴 것이 없다.
+        if (
+          queue.nextDueAt === null ||
+          queue.nextDueAt > deadline ||
+          queue.nextDueAt <= clock.now
+        )
+          break;
         const wait = queue.nextDueAt - clock.now;
         clock.now = queue.nextDueAt;
         day.relearn.waitMinutes += wait / 60_000;
@@ -980,6 +1011,25 @@ async function main() {
       : plus
         ? `-accuracy-plus-${plus}`
         : "";
+  // 하루 분량(명제 칸)을 바꿔 돈다 — 학생별 분량 손잡이의 효과를 보려고(제품 값은 그대로).
+  const quota = args.find((a) => a.startsWith("--quota="))?.slice(8);
+  if (quota !== undefined) {
+    const n = Number(quota);
+    if (!Number.isInteger(n) || n < 1 || n > 60)
+      throw new Error(`분량은 1 ~ 60 의 정수: ${quota}`);
+    MODEL.quota = n;
+  }
+  for (const [flag, field] of [
+    ["--relearn-stop=", "relearnStopFails"],
+    ["--relearn-cap=", "relearnDailyCap"],
+  ] as const) {
+    const raw = args.find((a) => a.startsWith(flag))?.slice(flag.length);
+    if (raw === undefined) continue;
+    const n = Number(raw);
+    if (!Number.isInteger(n) || n < 0)
+      throw new Error(`${flag} 는 0 이상의 정수: ${raw}`);
+    MODEL[field] = n;
+  }
   const onlyGrade = args.find((a) => a.startsWith("--grade="))?.slice(8);
   const onlyPersona = args.find((a) => a.startsWith("--persona="))?.slice(10);
   const all = buildFadingConcepts(CONCEPT_BLANK_BANK.concepts, FADING_GROUPS);
@@ -1151,6 +1201,7 @@ function renderCompare(output: {
   homeUnit: HomeUnit;
   seeds: number;
   rules: RuleName[];
+  model: typeof MODEL;
   grades: readonly string[];
   runs: CompareRun[];
 }) {
@@ -1198,7 +1249,7 @@ function renderCompare(output: {
   );
   lines.push("");
   lines.push(
-    `생성: ${output.generatedAt} · \`npx tsx scripts/qa/fading-simulation/run.ts --rule=${output.rules.join(",")} --seeds=${output.seeds}${output.path === "home" ? " --path=home" : ""}${output.homeUnit === "concepts" ? " --home-unit=concepts" : ""}\` · 씨앗 ${output.seeds}개(규칙마다 같은 씨앗 묶음).`,
+    `생성: ${output.generatedAt} · \`npx tsx scripts/qa/fading-simulation/run.ts --rule=${output.rules.join(",")} --seeds=${output.seeds}${output.path === "home" ? " --path=home" : ""}${output.homeUnit === "concepts" ? " --home-unit=concepts" : ""}${output.model.quota !== FADING_DAILY_CAP ? ` --quota=${output.model.quota}` : ""}${output.model.relearnStopFails ? ` --relearn-stop=${output.model.relearnStopFails}` : ""}${output.model.relearnDailyCap ? ` --relearn-cap=${output.model.relearnDailyCap}` : ""}\` · 씨앗 ${output.seeds}개(규칙마다 같은 씨앗 묶음).`,
   );
   lines.push("");
   lines.push(

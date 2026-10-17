@@ -13,6 +13,8 @@ npx tsx scripts/qa/fading-simulation/run.ts --grade=중2 --persona=성실   # �
 npx tsx scripts/qa/fading-simulation/run.ts --rule=base,d2,d1,d1d2 --seeds=5   # 규칙 견주기 → results-compare.json · summary-compare.md
 npx tsx scripts/qa/fading-simulation/run.ts --rule=base --seeds=5 --path=home  # 홈 대기열을 따라가는 학생 → *-compare-home.*
 npx tsx scripts/qa/fading-simulation/run.ts --path=home --home-unit=concepts    # 홈의 옛 단위(개념 20개)를 강제 → *-compare-home-concepts.*
+npx tsx scripts/qa/fading-simulation/run.ts --rule=d1d2 --seeds=5 --quota=15 --relearn-stop=3 --relearn-cap=30 --tag=q15-stop3-cap30
+                                                                                # 분량 손잡이 검토 → *-compare-q15-stop3-cap30.*
 ```
 
 ### 규칙 견주기(`--rule` · `--seeds` · `--path` · `--home-unit` · `--tag`)
@@ -55,3 +57,13 @@ npx tsx scripts/qa/fading-simulation/run.ts --path=home --home-unit=concepts    
 - 분(minutes)은 **가정한 상수의 합**이다. 상수를 바꾸면 비례해 움직인다 — 비교에는 쓰되 절대값으로 읽지 않는다.
 - «빈칸마다 독립 정확도»는 4단계(빈칸 전부)를 한 번도 안 틀릴 확률을 `정확도^빈칸 수`로 만든다. 중등은 묶음당 빈칸이 9 ~ 10개라
   85% 학생도 4단계를 깨끗이 마치는 날이 20%쯤이다 — «다시» 비율과 새 개념 진도의 대부분이 여기서 나온다. `--accuracy-plus` 로 민감도를 본다.
+
+## 분량 손잡이 검토 (2026-10-17)
+
+학생별 하루 분량 손잡이를 정하려고 넣은 옵션 셋이다. 기본값은 제품 그대로라, 셋 다 주지 않은 실행은 바꾸기 전과 글자 그대로 같다(대조함).
+
+- `--quota=N` — 하루 분량(칸 · 1 ~ 60). 제품 값은 `FADING_DAILY_CAP`.
+- `--relearn-stop=N` — 추가 확인에서 같은 줄이 그날 «틀림»을 N번 받으면 그날은 다시 띄우지 않는다(도움 · 대조 대기는 세지 않는다). 줄은 지우지 않고 다음 날로 간다. **제품에 없는 규칙이다.**
+- `--relearn-cap=N` — 그날 추가 확인을 N회 하면 더 띄우지 않는다. **제품에 없는 규칙이다.**
+
+결과와 codex 협의는 `docs/planning/tracks/reports/fading-quota-consensus-20261017.md`.

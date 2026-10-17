@@ -1,0 +1,432 @@
+/*
+ * «오늘의 기억» 학생별 하루 분량 Wire.
+ * Wire 라서 색을 쓰지 않는다 — 회색 몇 단계와 검정 하나. 색 · 서체 · 모서리는 Hi-fi 단계다.
+ * 단추처럼 보이는 것은 전부 그림이다(누를 수 없다) — 손가락 커서도 hover 도 없다(D-30).
+ * 바탕 토큰은 `/dev/exam-output-wire` 와 같다.
+ */
+
+.shell {
+  --w-page: #f4f4f5;
+  --w-surface: #ffffff;
+  --w-fill: #e4e4e7;
+  --w-fill-2: #d4d4d8;
+  --w-line: #a1a1aa;
+  --w-strong: #27272a;
+  --w-muted: #52525b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  min-height: 100vh;
+  padding: 32px 16px 96px;
+  background: var(--w-page);
+  color: var(--w-strong);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.head,
+.topic {
+  width: 100%;
+  max-width: 1480px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.h1 {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.h2 {
+  font-size: 19px;
+  font-weight: 800;
+  padding-top: 8px;
+  border-top: 3px solid var(--w-strong);
+}
+
+.h3 {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.note {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--w-muted);
+  max-width: 900px;
+}
+
+.jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.jump a {
+  text-decoration: underline;
+}
+
+.must {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 13px;
+  line-height: 1.8;
+  max-width: 900px;
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 16px;
+}
+
+.caption {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 2px 8px;
+  max-width: 900px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--w-muted);
+}
+
+.caption dt {
+  font-weight: 700;
+  color: var(--w-strong);
+}
+
+.caption dd {
+  margin: 0;
+}
+
+.pair {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.scrollX {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.frameLabel {
+  font-size: 11px;
+  color: var(--w-muted);
+  margin-bottom: 4px;
+}
+
+.teacher {
+  width: 1040px;
+  min-height: 420px;
+  background: var(--w-surface);
+  border: 1px solid var(--w-line);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tabs {
+  display: flex;
+  gap: 16px;
+  border-bottom: 1px solid var(--w-fill-2);
+  padding-bottom: 8px;
+  color: var(--w-muted);
+}
+
+.tabOn {
+  color: var(--w-strong);
+  font-weight: 700;
+  border-bottom: 2px solid var(--w-strong);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.scope {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--w-muted);
+}
+
+.input,
+.select {
+  display: inline-block;
+  min-width: 72px;
+  padding: 2px 8px;
+  border: 1px solid var(--w-line);
+  background: var(--w-surface);
+  color: var(--w-muted);
+}
+
+.select {
+  color: var(--w-strong);
+}
+
+.btn {
+  display: inline-block;
+  padding: 4px 12px;
+  border: 1px solid var(--w-strong);
+  background: var(--w-surface);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.btnStrong {
+  background: var(--w-strong);
+  color: var(--w-surface);
+}
+
+.btnSmall {
+  padding: 1px 8px;
+  font-size: 12px;
+}
+
+.radios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.radioOn,
+.radioOff {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid var(--w-strong);
+}
+
+.radioOn {
+  background: var(--w-strong);
+}
+
+.added {
+  position: relative;
+  border: 3px solid var(--w-strong);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--w-surface);
+}
+
+.addedLabel {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--w-muted);
+}
+
+.addedCol {
+  outline: 2px solid var(--w-strong);
+  outline-offset: -2px;
+}
+
+.table,
+.simTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table th,
+.table td,
+.simTable th,
+.simTable td {
+  border-bottom: 1px solid var(--w-fill-2);
+  padding: 6px 8px;
+  text-align: left;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.table thead th,
+.simTable thead th {
+  font-size: 12px;
+  color: var(--w-muted);
+  font-weight: 700;
+}
+
+.table tbody th,
+.simTable tbody th {
+  font-weight: 700;
+}
+
+.simTable {
+  max-width: 900px;
+  background: var(--w-surface);
+}
+
+.rowOn {
+  background: var(--w-fill);
+}
+
+.body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 16px;
+}
+
+.rosterPanel,
+.rosterOnly {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sectionHead {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.detail {
+  border-left: 1px solid var(--w-fill-2);
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detailHead h4 {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.eyebrow {
+  font-size: 11px;
+  color: var(--w-muted);
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 12px;
+}
+
+.metrics dt {
+  font-size: 11px;
+  color: var(--w-muted);
+}
+
+.metrics dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.muted {
+  color: var(--w-muted);
+  font-size: 12px;
+}
+
+.inlineQuota {
+  display: inline-block;
+}
+
+.dialog {
+  align-self: center;
+  width: 640px;
+  border: 1px solid var(--w-strong);
+  box-shadow: 0 0 0 9999px rgb(0 0 0 / 0.04);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--w-surface);
+}
+
+.dialogHead,
+.dialogFoot,
+.reviewHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.dialogFoot {
+  justify-content: flex-end;
+}
+
+.chips {
+  display: flex;
+  gap: 8px;
+}
+
+.review {
+  border: 1px solid var(--w-line);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 640px;
+}
+
+.phone {
+  width: 390px;
+  min-height: 560px;
+  background: var(--w-surface);
+  border: 1px solid var(--w-line);
+  border-radius: 24px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.phoneTop {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+}
+
+.daily,
+.relearnCard {
+  border: 1px solid var(--w-line);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.daily h4,
+.relearnCard h4 {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.dailyCounts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+.dailyCounts dt {
+  font-size: 11px;
+  color: var(--w-muted);
+}
+
+.dailyCounts dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.bar {
+  height: 8px;
+  background: linear-gradient(to right, var(--w-strong) 30%, var(--w-fill) 30%);
+}
+
+.alignStart {
+  align-self: flex-start;
+}
