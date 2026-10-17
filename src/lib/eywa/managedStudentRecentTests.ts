@@ -65,8 +65,18 @@ const PUBLICATION_KINDS = new Set<RecentTestKind>([
   "other",
 ]);
 
+/** 시험 종류 — 낸 시험지(발행본)면 발행본의 종류, 아니면 일일 · 확인. 결과 동기화(`managedTestResults.ts`)와 한 벌. */
+export function testKind(
+  test: Pick<RecentTestSource, "testType" | "publicationId">,
+  examType: string | undefined,
+): RecentTestKind {
+  if (examType && PUBLICATION_KINDS.has(examType as RecentTestKind))
+    return examType as RecentTestKind;
+  return test.publicationId ? "other" : test.testType;
+}
+
 /** 한 시험에 채점 기록이 여럿이면 마지막 것이 지금 결과다(재채점). */
-function latestByTest(results: readonly RecentTestResultSource[]) {
+export function latestByTest(results: readonly RecentTestResultSource[]) {
   const latest = new Map<string, RecentTestResultSource>();
   for (const r of results) {
     const prev = latest.get(r.testId);
@@ -143,13 +153,7 @@ export async function buildRecentTests(
     const publication = t.publicationId
       ? publicationById.get(t.publicationId)
       : undefined;
-    const examType = publication?.examType as RecentTestKind | undefined;
-    const kind: RecentTestKind =
-      examType && PUBLICATION_KINDS.has(examType)
-        ? examType
-        : t.publicationId
-          ? "other"
-          : t.testType;
+    const kind = testKind(t, publication?.examType);
     const cls = classById.get(t.classId);
     const r = latest.get(t.id);
     const c = r ? correct.get(r.id) : undefined;
