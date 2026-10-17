@@ -17,6 +17,9 @@ export function managedRelationDb() {
     "progress",
     "test",
     "testResult",
+    "testProblem",
+    "problemAnswer",
+    "examPublication",
     "user",
     "englishExam",
   ];

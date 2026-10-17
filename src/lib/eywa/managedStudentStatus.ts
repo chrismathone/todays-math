@@ -1,8 +1,9 @@
 import { refreshManagedBinding } from "./managedAccounts";
 import { db } from "@/lib/db";
 import { enrollmentActive } from "./relationPolicy";
+import { buildRecentTests, type RecentTest } from "./managedStudentRecentTests";
 
-/** Minimal existing learning summary, not a reverse results synchronization writer. */
+/** Minimal existing learning summary, not a reverse results synchronization writer. `recentTests` is read-only (2026-10-17). */
 export async function getEywaStudentStatus(
   bindingId: string,
   sourceStudentId: string,
@@ -24,6 +25,7 @@ export async function getEywaStudentStatus(
       binding?.mode === "active" ? ("active" as const) : ("shadow" as const),
     classes: [] as { sourceClassId: string; name: string; active: boolean }[],
     tests: { assigned: 0, completed: 0 },
+    recentTests: [] as RecentTest[],
     lastActivityAt: null as string | null,
   };
   if (
@@ -73,16 +75,21 @@ export async function getEywaStudentStatus(
         { studentId: null, classId: { in: classIds } },
       ],
     },
-    select: { id: true },
-  });
-  const results = await db.testResult.findMany({
-    where: {
-      studentId: student.id,
-      absent: false,
-      testId: { in: tests.map((t) => t.id) },
+    select: {
+      id: true,
+      classId: true,
+      testType: true,
+      testDate: true,
+      publicationId: true,
+      rangeEndUnitId: true,
     },
-    select: { testId: true, takenAt: true },
   });
+  const allResults = await db.testResult.findMany({
+    where: { studentId: student.id, testId: { in: tests.map((t) => t.id) } },
+    select: { id: true, testId: true, absent: true, score: true, takenAt: true },
+  });
+  const results = allResults.filter((r) => !r.absent);
+  const recentTests = await buildRecentTests(tests, allResults);
   const last = results.map((r) => r.takenAt.getTime()).sort((a, b) => b - a)[0];
   return {
     ...empty,
@@ -105,6 +112,7 @@ export async function getEywaStudentStatus(
       assigned: tests.length,
       completed: new Set(results.map((r) => r.testId)).size,
     },
+    recentTests,
     lastActivityAt: last === undefined ? null : new Date(last).toISOString(),
   };
 }
