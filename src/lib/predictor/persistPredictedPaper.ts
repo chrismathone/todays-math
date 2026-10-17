@@ -182,6 +182,13 @@ export async function saveManualScores(
   if (test.userId !== input.userId) {
     return refuse("권한_없음", "이 시험지를 고칠 권한이 없습니다.");
   }
+  // 월말평가 M1 — 반에 낸 시험지는 낸 그대로다(배점도). 고치려면 작업실에서 고친 뒤 다시 낸다.
+  if (test.publicationId) {
+    return refuse(
+      "배점_대상아님",
+      "반에 낸 시험지는 고칠 수 없습니다. 작업실에서 고친 뒤 다시 내십시오.",
+    );
+  }
 
   // 🔴 일일·확인테스트는 **배점을 표기하지 않는다**(D-28·D-40). `TestProblem.score` 는
   //    예측 문제지 전용이고 그 시험지들에선 NULL 이어야 한다. 소유권만 보고 통과시키면

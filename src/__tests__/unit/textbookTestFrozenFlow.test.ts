@@ -31,7 +31,8 @@ const m = vi.hoisted(() => {
 });
 vi.mock("@/lib/db", () => ({
   db: {
-    test: { findUnique: m.test },
+    // 월말평가 M1 — 로더가 반 시험의 발행본을 한 번 묻는다(이 시험의 반 시험은 발행본이 없다).
+    test: { findUnique: m.test, findMany: async () => [] },
     user: { findUnique: m.user },
     eywaManagedAccount: { findUnique: m.managedAccount },
     student: { findUnique: m.student, findMany: m.students },

@@ -252,6 +252,8 @@ export function accountRouteAllowed(
       "/api/tests",
       "/api/basket",
       "/api/exam",
+      // 월말평가 M1 «반에 내기»(2026-10-17) — «내 시험지»(출력 메뉴)에서 낸다.
+      "/api/exam-publications",
       "/api/predictions",
     ].some((base) => under(path, base))
   )
