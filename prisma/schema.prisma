@@ -165,6 +165,8 @@ model Branch {
   users     User[]
   sharedDocuments WorkspaceDocument[]
 
+  examPublications ExamPublication[]
+
   @@map("branch")
 }
 
@@ -238,6 +240,9 @@ model User {
   englishPassages        EnglishPassage[]
   englishPassageReceipts EnglishPassageReceipt[]
   listeningSets          EnglishListeningSet[]
+
+  /// 월말평가 M1 — 반에 낸 시험지의 고정본(2026-10-17)
+  examPublications ExamPublication[]
 
   @@map("user")
 }
@@ -1175,6 +1180,9 @@ model Test {
   ///    요청 계약(`TestGenerateRequest`)에는 칸이 없다(strict — 넣으면 400). 밖에서 채울 수 있으면 표지가 거짓말이 된다.
   ///    시각으로 짐작하지도 않는다 — 8시 무렵 «모두 출제»로 낸 시험지가 섞인다.
   autoDraftRunId  String?  @map("auto_draft_run_id") @db.Uuid
+  /// 월말평가 M1(2026-10-17) — «내 시험지»에서 반에 낸 시험이면 그 발행본. 🔴 있으면 «일반 시험» 조회(확인테스트 범위 · 자동 초안 ·
+  /// 메인 · 지표 · 최근 출제)에서 뺀다 — `docs/planning/monthly-exam-plan-20261017.md` §9.
+  publicationId   String?  @map("publication_id") @db.Uuid
   createdAt       DateTime @default(now()) @map("created_at")
 
   user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -1185,6 +1193,7 @@ model Test {
   predictionRun  PredictionRun? @relation(fields: [predictionRunId], references: [id], onDelete: SetNull)
   /// 회차 기록이 지워져도 시험지는 남긴다 — 칸만 빈다(표지가 사라질 뿐 시험지·문항은 그대로).
   autoDraftRun   AutoDraftRun?  @relation(fields: [autoDraftRunId], references: [id], onDelete: SetNull)
+  publication    ExamPublication? @relation(fields: [publicationId], references: [id], onDelete: Restrict)
   rangeEndUnit   Unit           @relation("TestRangeEndUnit", fields: [rangeEndUnitId], references: [id], onDelete: Restrict)
   testProblems   TestProblem[]
   testResults    TestResult[]
@@ -1195,6 +1204,32 @@ model Test {
   @@index([predictionRunId])
   @@index([autoDraftRunId])
   @@map("test")
+}
+
+/// 월말평가 M1 — 반에 낸 시험지의 **고정본**(2026-10-17 · 계획서 §9). 문항의 글 · 정답 · 해설 · 그림 참조 · 배점 · 차례 · 출력 설정을
+/// 낸 그대로 묶는다 — 원본 «내 시험지»를 고치거나 지워도, 은행 문항이 바뀌어도 낸 시험은 그대로다. 반마다 `test` 한 행이 이것을 가리킨다.
+/// 종류는 enum 을 늘리지 않고 글자 칸(CHECK)이다. 같은 요청 번호의 재전송은 같은 발행본이다(`user_id`, `request_id`).
+model ExamPublication {
+  id             String   @id @default(uuid()) @db.Uuid
+  userId         String   @map("user_id") @db.Uuid
+  branchId       String?  @map("branch_id") @db.Uuid
+  documentId     String   @map("document_id") @db.VarChar(100)
+  sourceRevision Int      @map("source_revision")
+  title          String   @db.VarChar(200)
+  examType       String   @default("monthly") @map("exam_type") @db.VarChar(20)
+  testDate       DateTime @map("test_date") @db.Date
+  payload        Json     @db.JsonB
+  contentHash    String   @map("content_hash") @db.Char(64)
+  requestId      String   @map("request_id") @db.Uuid
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  branch Branch? @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  tests  Test[]
+
+  @@unique([userId, requestId])
+  @@index([userId, documentId, createdAt(sort: Desc)])
+  @@map("exam_publication")
 }
 
 // ─────────────────────────────────────────────
