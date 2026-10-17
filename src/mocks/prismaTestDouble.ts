@@ -344,6 +344,8 @@ interface TestRow {
   predictionRunId: string | null;
   /** 아침 자동 초안 회차 연결(D-133). 손으로 낸 시험지는 null — FK SET NULL 은 `autoDraftRun.delete` 가 흉내 낸다. */
   autoDraftRunId: string | null;
+  /** 월말평가 M1 — «내 시험지»에서 반에 낸 시험의 발행본(2026-10-17). 일반 시험지는 null. */
+  publicationId: string | null;
 }
 
 interface TestProblemRow {
@@ -634,6 +636,7 @@ function toTestRow(entity: TestEntity): TestRow {
     createdAt: new Date(entity.createdAt),
     predictionRunId: null,
     autoDraftRunId: null,
+    publicationId: null,
   };
 }
 
@@ -668,6 +671,7 @@ function toFixtureTestRow(): TestRow {
     printedAt: new Date(fixture.printedAt),
     predictionRunId: null,
     autoDraftRunId: null,
+    publicationId: null,
     createdAt: new Date(fixture.createdAt),
   };
 }
@@ -764,6 +768,7 @@ export function resetPrismaTestDouble() {
     printedAt: new Date("2026-08-12T09:00:00.000Z"),
     predictionRunId: null,
     autoDraftRunId: null,
+    publicationId: null,
     createdAt: new Date("2026-08-12T08:00:00.000Z"),
   });
   testProblemRows.push({
@@ -2220,6 +2225,7 @@ const prismaModels = {
         printedAt?: Date | null;
         predictionRunId?: string | null;
         autoDraftRunId?: string | null;
+        publicationId?: string | null;
       };
     }) {
       // 🔴 FK `test_auto_draft_run_id_fkey` — 없는 회차 id 는 DB 처럼 P2003. 안 막으면 «아무 id 나 적힌 표지»가 시험에서만 산다.
@@ -2242,6 +2248,7 @@ const prismaModels = {
         printedAt: data.printedAt ?? null,
         predictionRunId: data.predictionRunId ?? null,
         autoDraftRunId: data.autoDraftRunId ?? null,
+        publicationId: data.publicationId ?? null,
         createdAt: new Date(),
       };
       testRows.push(row);
@@ -2950,6 +2957,30 @@ function assertConceptLectureChecks(row: ConceptLectureRow): void {
               ? "concept_lecture_sort_order_range"
               : null;
   if (broken) throw prismaKnownError("P2004", `CHECK ${broken} 위반`);
+}
+
+/**
+ * 월말평가 M1 — «내 시험지»에서 반에 낸 시험(발행본을 가리키는 반 시험) 한 행을 심는다(2026-10-17).
+ * «일반 시험» 조회가 이 행을 빼는지 짝 시험이 본다. 발행본 표 자체는 대역에 없다 — 가리키는 id 만 있으면 된다.
+ */
+export function seedPublicationTest(
+  row: Omit<
+    TestRow,
+    "id" | "createdAt" | "predictionRunId" | "autoDraftRunId"
+  > & {
+    id?: string;
+    createdAt?: Date;
+  },
+): string {
+  const id = row.id ?? randomUUID();
+  testRows.push({
+    ...row,
+    id,
+    createdAt: row.createdAt ?? new Date(),
+    predictionRunId: null,
+    autoDraftRunId: null,
+  });
+  return id;
 }
 
 /**

@@ -7,6 +7,7 @@ import { accessibleTestsWhere } from "@/lib/classAccess";
  * **다음** 소단원. 확인테스트를 한 번도 안 냈으면 그 반이 나간 진도의 첫 단원부터.
  * 판정 자체는 순수 함수 `resolveDefaultReviewRange` 한 곳에 있다 — 여기서는 조회만 한다.
  */
+import { GENERAL_TESTS } from "@/lib/tests/generalTests";
 import type { TestStatus } from "@prisma/client";
 import type { NextRequest } from "next/server";
 
@@ -35,6 +36,8 @@ import { withErrorLog } from "@/lib/errorLog/withErrorLog";
  */
 const GIVEN_TESTS = {
   status: { in: ["confirmed", "printed"] satisfies TestStatus[] },
+  // 반에 낸 월말평가의 범위(문항들의 단원 양끝)로 다음 확인테스트 범위를 정하지 않는다.
+  ...GENERAL_TESTS,
 };
 
 /** 「최신」 판정은 `getCurrentProgress` 와 **글자 그대로 같아야 한다**(진도 route 주석 참조). */
