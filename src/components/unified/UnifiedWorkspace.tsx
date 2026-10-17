@@ -58,7 +58,7 @@ import TodayMathMark from "@/components/brand/TodayMathMark";
 import { DevAiProvider } from "./useDevAi";
 import DevAiStatusPanel from "./DevAiStatusPanel";
 import s from "./Workroom.module.css";
-import WorkspaceAccount, { type WorkspaceIdentity } from "./WorkspaceAccount";
+import type { WorkspaceIdentity } from "./WorkspaceAccount";
 import type { FadingGate } from "@/lib/fading/enabled";
 import { SrsWorkspaceView } from "@/components/fading/teacher/SrsWorkspaceView";
 const loadMathBuilder = () =>
@@ -598,22 +598,6 @@ function UnifiedWorkspaceContent({
     setNoticeError(error);
   }, []);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  // 상단바는 두 제품이 한 벌이다 — «화면 최대화»도 제품을 보지 않는다(원장님 2026-10-08 «헤더는 영수 통일»)
-  const [maximized, setMaximized] = useState(false);
-  const workspaceMaximized = hasMenus && maximized;
-  useEffect(() => {
-    if (!workspaceMaximized) return;
-    const restore = (event: KeyboardEvent) => {
-      if (
-        event.key === "Escape" &&
-        !event.defaultPrevented &&
-        !document.querySelector('dialog[open], [aria-modal="true"]')
-      )
-        setMaximized(false);
-    };
-    window.addEventListener("keydown", restore);
-    return () => window.removeEventListener("keydown", restore);
-  }, [workspaceMaximized]);
   /**
    * 「되돌리기」 한 칸 — 뺀 문제를 다시 담거나(`remove`), 「순서 초기화」 직전의
    * 차례로 되돌린다(`order`). 알림 줄의 단추 하나가 둘을 다 맡는다.
@@ -651,11 +635,6 @@ function UnifiedWorkspaceContent({
   const newTitleRef = useRef<HTMLInputElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const draftFileRef = useRef<HTMLInputElement>(null);
-  const label =
-    view === "library"
-      ? libraryLabel
-      : (allNavItems.find((item) => item.id === view)?.label ??
-        "메뉴 이용 안내");
   const acceptedHref = useRef("");
   const performNavigation = useCallback(
     (next: View): boolean => {
@@ -1287,7 +1266,6 @@ function UnifiedWorkspaceContent({
     <div
       className={s.workspace}
       data-sidebar-collapsed={sidebarCollapsed}
-      data-maximized={workspaceMaximized}
       data-authenticated={Boolean(currentUser)}
       data-menu-count={availableNav.length}
       // 지금 제품의 표지. 셸의 배치는 이것을 보지 않는다 — 옆 메뉴 · 접힌 머리 · 상단바는 두 제품이 한 벌이다
@@ -1331,7 +1309,7 @@ function UnifiedWorkspaceContent({
           }}
         />
       )}
-      <aside className={s.sidebar} hidden={workspaceMaximized}>
+      <aside className={s.sidebar}>
         <div className={s.productMenu} ref={pickerRef}>
           <div className={s.sideHeader}>
             {products.length > 1 ? (
@@ -1475,7 +1453,11 @@ function UnifiedWorkspaceContent({
                 <span>새 시험 등록</span>
               </button>
             )
-          : canCreate && (
+          : // 수학의 «새 시험지 만들기» 단추는 걷었다(원장님 2026-10-17) — 새 시험지는 홈 · «내 시험지»의 «새 시험지»로 만든다.
+            // 🔴 둘 다 없는 계정(출력 · 자료 제작 메뉴만)에는 새 시험지를 여는 길이 이것뿐이라 그때만 남긴다.
+            canCreate &&
+            !can("library") &&
+            !can("home") && (
               <button
                 className={s.newButton}
                 aria-label="새 시험지 만들기"
@@ -1591,6 +1573,30 @@ function UnifiedWorkspaceContent({
                 {profileOpen && (
                   <div className={s.profilePanel}>
                     <p className={s.profileHeading}>내 계정</p>
+                    {/* 상단 줄을 걷으며 옮겨 온 계정 표시와 관리 링크(원장님 2026-10-17) — 조건은 `WorkspaceAccount` 와 같다. */}
+                    <p className={s.profileIdentity}>
+                      <strong>{currentUser.name || "선생님"}</strong>
+                      <span title={currentUser.email}>{currentUser.email}</span>
+                    </p>
+                    {currentUser.isSuperAdmin === true && (
+                      <Link href="/admin">
+                        관리
+                        <RouteLinkStatus />
+                      </Link>
+                    )}
+                    {currentUser.isAdmin === true &&
+                      !currentUser.isSuperAdmin && (
+                        <Link href="/branch">
+                          지점관리
+                          <RouteLinkStatus />
+                        </Link>
+                      )}
+                    {!currentUser.isAdmin && currentUser.canManageClasses && (
+                      <Link href="/classes/manage">
+                        반 관리
+                        <RouteLinkStatus />
+                      </Link>
+                    )}
                     <Link href="/account">
                       내정보 설정
                       <RouteLinkStatus />
@@ -1606,52 +1612,7 @@ function UnifiedWorkspaceContent({
         )}
       </aside>
       <div className={s.main}>
-        <header className={s.topbar}>
-          <div className={s.breadcrumb}>
-            <span>작업실</span>
-            <Icon name="chevron" size={14} />
-            <strong>{label}</strong>
-          </div>
-          {hasMenus && (
-            <button
-              className={s.searchTrigger}
-              onClick={() => setModal("search")}
-              aria-label="빠른 검색 열기"
-            >
-              <Icon name="search" size={18} />
-              <span>문제 · 작업 빠르게 찾기</span>
-              <kbd>Ctrl K</kbd>
-            </button>
-          )}
-          <div className={s.topbarActions}>
-            {currentUser && (
-              <div className={s.accountSlot}>
-                <WorkspaceAccount user={currentUser} />
-              </div>
-            )}
-            {hasMenus && (
-              <button
-                type="button"
-                className={s.maximizeButton}
-                aria-pressed={workspaceMaximized}
-                title={
-                  workspaceMaximized
-                    ? "화면 복원 (Esc)"
-                    : "메뉴를 숨기고 작업 화면 최대화"
-                }
-                onClick={() => setMaximized((value) => !value)}
-              >
-                <Icon
-                  name={workspaceMaximized ? "restore" : "maximize"}
-                  size={17}
-                />
-                <span className={s.maximizeLabel}>
-                  {workspaceMaximized ? "화면 복원" : "화면 최대화"}
-                </span>
-              </button>
-            )}
-          </div>
-        </header>
+        {/* 상단 줄(경로 · 빠른 찾기 · 계정 · 화면 최대화)은 걷었다(원장님 2026-10-17) — 계정은 옆 메뉴 아래에 있고, 빠른 찾기는 Ctrl/⌘ K 로 연다. */}
         <div className={s.notifications}>
           {hasMenus &&
             notice &&

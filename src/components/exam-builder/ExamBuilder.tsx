@@ -637,7 +637,11 @@ export default function ExamBuilder<T>({
               label: "1 범위 설정",
               current: step === "scope",
               disabled: actionsDisabled,
-              onSelect: () => go("scope"),
+              // 범위를 이미 골랐으면 범위 고르기 창을 바로 연다 — 단계만 바꾸면 화면이 문항 검토와 같아 누른 뜻이 없었다(원장님 2026-10-17).
+              onSelect: () => {
+                go("scope");
+                if (allocations.length) setScopeOpen(true);
+              },
             },
             {
               id: "review",

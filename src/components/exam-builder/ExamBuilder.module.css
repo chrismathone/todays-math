@@ -239,10 +239,12 @@
   margin-top: 2px;
 }
 .scopeRowActions {
+  /* 한 줄로 — 세로로 쌓으면 «고정 · 풀기 · 제거» 줄만 높아져 구성표의 줄 높이가 들쭉날쭉했다(원장님 2026-10-17). */
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 4px;
+  justify-content: flex-end;
+  gap: 6px;
+  white-space: nowrap;
 }
 .scopeRowActions button {
   min-width: 44px;

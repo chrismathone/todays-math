@@ -348,7 +348,16 @@ describe("담은 문항 장부 배선", () => {
     await toStudio();
     fireEvent.click(screen.getByRole("button", { name: "c 빼기" }));
     expect(studioRemoved()).toBe("c@2");
-    fireEvent.click(screen.getByRole("button", { name: "새 시험지 만들기" }));
+    // 옆 메뉴의 «새 시험지 만들기»를 걷어(2026-10-17) «내 시험지»의 «새 시험지»로 연다.
+    fireEvent.click(
+      within(screen.getByRole("navigation", { name: "작업실 메뉴" })).getByRole(
+        "button",
+        { name: "내 시험지" },
+      ),
+    );
+    fireEvent.click(
+      (await screen.findAllByRole("button", { name: "새 시험지" }))[0]!,
+    );
     fireEvent.click(
       await screen.findByRole("button", { name: /내 자료로 만들기/ }),
     );

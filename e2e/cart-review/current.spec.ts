@@ -526,7 +526,15 @@ test("③ 에서 담으면 카드마다 «담음» · 목록으로 보고 뺀다
   await cartToggle(page).click();
 
   // 새 시험지 → 옛 «담음»이 풀리고 다시 담을 수 있다(어긋남 2 가 사라졌다).
-  await page.getByRole("button", { name: "새 시험지 만들기" }).click();
+  // 옆 메뉴의 «새 시험지 만들기»는 걷었다(2026-10-17) — «내 시험지»의 «새 시험지»로 연다.
+  await page
+    .getByRole("navigation", { name: "작업실 메뉴" })
+    .getByRole("button", { name: "내 시험지" })
+    .click();
+  await page
+    .getByRole("button", { name: "새 시험지", exact: true })
+    .first()
+    .click();
   await page.getByRole("button", { name: /내 자료로 만들기/ }).click();
   await expect(topBadge(page)).toHaveAccessibleName("담은 문제 0");
   await expect(chips(page)).toHaveCount(0);

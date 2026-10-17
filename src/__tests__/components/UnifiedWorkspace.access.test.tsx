@@ -404,6 +404,19 @@ const response = (menus: WorkspaceMenu[], extra = {}) =>
     }),
     { status: 200 },
   );
+/**
+ * 새 시험지 창 — 옆 메뉴의 «새 시험지 만들기»는 홈 · «내 시험지»가 없는 계정에만 남는다(2026-10-17).
+ * 그런 계정이면 그 단추로, 아니면 «내 시험지»의 «새 시험지»로 연다.
+ */
+async function openNewSheet() {
+  const side = screen.queryByRole("button", { name: "새 시험지 만들기" });
+  if (side) return void fireEvent.click(side);
+  fireEvent.click(nav().getByRole("button", { name: "내 시험지" }));
+  fireEvent.click(
+    (await screen.findAllByRole("button", { name: "새 시험지" }))[0]!,
+  );
+}
+
 function nav() {
   return within(screen.getByRole("navigation", { name: "작업실 메뉴" }));
 }
@@ -788,9 +801,8 @@ describe("per-account workspace menu access", () => {
       await waitFor(() => expect(window.location.hash).toBe("#bank"));
       const title = await screen.findByDisplayValue("기존 시험지");
       expect(cloud.transport).toHaveBeenCalled();
-      expect(
-        within(screen.getByRole("banner")).queryByText(/저장|작업 준비/),
-      ).not.toBeInTheDocument();
+      // 상단 줄은 걷었다(2026-10-17) — 저장 상태를 띄울 머리가 없다.
+      expect(screen.queryByRole("banner")).toBeNull();
       fireEvent.change(title, { target: { value: "탭 이동 전 시험지" } });
       fireEvent.click(nav().getByRole("button", { name: "오늘의 개념" }));
       await waitFor(() =>
@@ -832,7 +844,7 @@ describe("per-account workspace menu access", () => {
       />,
     );
     await screen.findByRole("heading", { name: "SRS 패널" });
-    fireEvent.click(screen.getByRole("button", { name: "새 시험지 만들기" }));
+    await openNewSheet();
     const dialog = screen.getByRole("dialog", {
       name: "어디서부터 시작할까요?",
     });
@@ -1022,7 +1034,8 @@ describe("per-account workspace menu access", () => {
       "data-enabled",
       "false",
     );
-    fireEvent.click(screen.getByRole("button", { name: "빠른 검색 열기" }));
+    // 상단 줄을 걷어 빠른 검색은 단축키로 연다(2026-10-17).
+    fireEvent.keyDown(window, { key: "k", ctrlKey: true });
     const dialog = within(screen.getByRole("dialog"));
     expect(
       dialog.queryByRole("textbox", { name: "빠른 문제 검색" }),
@@ -1140,10 +1153,10 @@ describe("per-account workspace menu access", () => {
     expect(
       nav().getByRole("button", { name: "시험지 · 내보내기" }),
     ).toBeVisible();
+    // 상단 줄은 걷었다(2026-10-17) — 겹치는 머리 단추가 없다.
+    expect(screen.queryByRole("banner")).toBeNull();
     expect(
-      within(screen.getByRole("banner")).queryByRole("button", {
-        name: /시험지 편집 열기|담은 문제/,
-      }),
+      screen.queryByRole("button", { name: /시험지 편집 열기|담은 문제/ }),
     ).toBeNull();
   });
 
@@ -1155,6 +1168,8 @@ describe("per-account workspace menu access", () => {
         currentUser={user}
       />,
     );
+    // 관리 링크는 옆 메뉴 아래 «내정보» 메뉴 안이다(2026-10-17 — 상단 줄을 걷으며 옮겼다).
+    fireEvent.click(screen.getByLabelText("내정보 메뉴"));
     expect(
       screen.queryByRole("link", { name: "관리" }),
     ).not.toBeInTheDocument();
@@ -1169,6 +1184,26 @@ describe("per-account workspace menu access", () => {
       "href",
       "/admin",
     );
+  });
+
+  it("옆 메뉴의 «새 시험지 만들기»는 홈 · «내 시험지»가 없는 계정에만 남는다 — 상단 줄 · 화면 최대화는 없다(2026-10-17)", () => {
+    const sideButton = (container: HTMLElement) =>
+      within(container.querySelector("aside")!).queryByRole("button", {
+        name: "새 시험지 만들기",
+      });
+    const { container, rerender } = render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["home", "library", "export"]}
+      />,
+    );
+    expect(sideButton(container)).toBeNull();
+    expect(screen.queryByRole("banner")).toBeNull();
+    expect(screen.queryByRole("button", { name: /화면 최대화/ })).toBeNull();
+    rerender(
+      <UnifiedWorkspace initialData={initialData} allowedMenus={["export"]} />,
+    );
+    expect(sideButton(container)).toBeVisible();
   });
 
   it("filters new worksheet choices and editor links to permitted destinations", async () => {
@@ -1196,7 +1231,7 @@ describe("per-account workspace menu access", () => {
     expect(
       screen.queryByRole("button", { name: "이전 검토 단계" }),
     ).not.toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: "새 시험지 만들기" }));
+    await openNewSheet();
     const dialog = within(screen.getByRole("dialog"));
     expect(
       dialog.getByRole("button", { name: /빈 시험지로 시작하기/ }),
@@ -1320,6 +1355,7 @@ describe("per-account workspace menu access", () => {
     expect(
       screen.queryByRole("heading", { name: "자료 패널", hidden: true }),
     ).not.toBeInTheDocument();
+    fireEvent.click(screen.getByLabelText("내정보 메뉴"));
     expect(screen.getByRole("link", { name: "관리" })).toHaveAttribute(
       "href",
       "/admin",
@@ -1476,61 +1512,6 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     );
     expect(window.location.hash).toBe("#english-maker");
   });
-  it("maximizes English without remounting its work and restores navigation with Escape", async () => {
-    window.history.replaceState(null, "", "/#english-questions");
-    const { container } = render(
-      <UnifiedWorkspace
-        initialData={initialData}
-        allowedMenus={["english-library", "english-maker"]}
-      />,
-    );
-    const panel = await screen.findByTestId("english-view");
-    expect(panel).toHaveTextContent("english-questions");
-    fireEvent.click(screen.getByRole("button", { name: "화면 최대화" }));
-    expect(container.querySelector('[data-maximized="true"]')).not.toBeNull();
-    expect(
-      screen.queryByRole("navigation", { name: "작업실 메뉴" }),
-    ).toBeNull();
-    expect(screen.getByTestId("english-view")).toBe(panel);
-    expect(screen.getByRole("button", { name: "화면 복원" })).toHaveAttribute(
-      "aria-pressed",
-      "true",
-    );
-    fireEvent.keyDown(window, { key: "Escape" });
-    expect(
-      screen.getByRole("navigation", { name: "작업실 메뉴" }),
-    ).toBeVisible();
-    expect(screen.getByTestId("english-view")).toBe(panel);
-    expect(screen.getByRole("button", { name: "화면 최대화" })).toHaveAttribute(
-      "aria-pressed",
-      "false",
-    );
-  });
-
-  it("상단바의 «화면 최대화»는 수학에도 같은 자리에 선다 — 옆 메뉴를 숨기고 Esc 로 되돌린다", async () => {
-    const { container } = render(
-      <UnifiedWorkspace initialData={initialData} allowedMenus={MATH_ONLY} />,
-    );
-    await screen.findByRole("heading", { name: "오늘의 작업" });
-    fireEvent.click(screen.getByRole("button", { name: "화면 최대화" }));
-    expect(container.querySelector('[data-maximized="true"]')).not.toBeNull();
-    expect(
-      screen.queryByRole("navigation", { name: "작업실 메뉴" }),
-    ).toBeNull();
-    expect(screen.getByRole("button", { name: "화면 복원" })).toHaveAttribute(
-      "aria-pressed",
-      "true",
-    );
-    fireEvent.keyDown(window, { key: "Escape" });
-    expect(
-      screen.getByRole("navigation", { name: "작업실 메뉴" }),
-    ).toBeVisible();
-    expect(screen.getByRole("button", { name: "화면 최대화" })).toHaveAttribute(
-      "aria-pressed",
-      "false",
-    );
-  });
-
   it("옆 메뉴는 두 제품이 같은 짜임이다 — 위는 공통 메뉴, 금 아래는 그 제품만의 메뉴", async () => {
     const labels = () =>
       nav()
@@ -1719,9 +1700,7 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     ).toBeNull();
     expect(screen.queryByRole("listbox", { name: "제품" })).toBeNull();
     expect(brand()).toHaveAccessibleName("제품 고르기 — 오늘 영어");
-    expect(
-      within(screen.getByRole("banner")).getByText("오늘의 작업"),
-    ).toBeVisible();
+    expect(screen.queryByRole("banner")).toBeNull();
 
     // 옆 메뉴 파란 단추 → 셸 modal «english-exam» 이 영어 뷰에 전해진다(창은 영어 뷰가 그린다)
     fireEvent.click(screen.getByRole("button", { name: "새 시험 등록" }));
@@ -1802,12 +1781,10 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
       "aria-current",
       "page",
     );
-    expect(
-      within(screen.getByRole("banner")).getByText("AI 문제 제작"),
-    ).toBeVisible();
     expect(window.location.hash).toBe("#english-maker");
     // 빠른 검색에는 두 제품이 다 선다
-    fireEvent.click(screen.getByRole("button", { name: "빠른 검색 열기" }));
+    // 상단 줄을 걷어 빠른 검색은 단축키로 연다(2026-10-17).
+    fireEvent.keyDown(window, { key: "k", ctrlKey: true });
     const dialog = within(screen.getByRole("dialog"));
     expect(dialog.getByRole("button", { name: "내 문제 세트" })).toBeVisible();
     expect(dialog.getByRole("button", { name: "내 시험지" })).toBeVisible();
@@ -1947,9 +1924,9 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     // 목록 안에서 옮기는 것은 그대로
     fireEvent.focusOut(options[0], { relatedTarget: options[1] });
     expect(screen.getByRole("listbox", { name: "제품" })).toBeVisible();
-    // 목록 밖(윗줄 «빠른 검색 열기»)으로 나가면 닫힌다
+    // 목록 밖(옆 메뉴의 첫 메뉴)으로 나가면 닫힌다
     fireEvent.focusOut(options[1], {
-      relatedTarget: screen.getByRole("button", { name: "빠른 검색 열기" }),
+      relatedTarget: nav().getAllByRole("button")[0]!,
     });
     expect(screen.queryByRole("listbox", { name: "제품" })).toBeNull();
     expect(brand()).toHaveAttribute("aria-expanded", "false");
