@@ -291,7 +291,12 @@ describe("private library board", () => {
     ).toBeVisible();
     fireEvent.click(screen.getByRole("button", { name: "검색 조건 초기화" }));
     expect(titles()).toEqual(["Gamma 추출 자료", "Alpha 학습지", "beta 평가"]);
-    expect(transport).toHaveBeenCalledTimes(1);
+    // 목록 읽기는 한 번 — 낸 기록(월말평가 M1 · `/api/exam-publications`)은 따로 읽는다.
+    expect(
+      transport.mock.calls.filter(
+        ([url]) => !String(url).startsWith("/api/exam-publications"),
+      ),
+    ).toHaveLength(1);
     expect(
       transport.mock.calls.every(
         ([, init]) => !init?.method || init.method === "GET",
@@ -433,7 +438,12 @@ describe("private library board", () => {
     const replies: ((response: Response) => void)[] = [];
     vi.stubGlobal(
       "fetch",
-      vi.fn(() => new Promise<Response>((resolve) => replies.push(resolve))),
+      vi.fn((url: RequestInfo | URL) =>
+        // 낸 기록(월말평가 M1)은 이 시험의 대상이 아니다 — 바로 «없음»으로 답한다.
+        String(url).startsWith("/api/exam-publications")
+          ? Promise.resolve(new Response(null, { status: 404 }))
+          : new Promise<Response>((resolve) => replies.push(resolve)),
+      ),
     );
     render(<PrivateLibrary {...boardProps()} />);
     fireEvent(window, new Event("focus"));

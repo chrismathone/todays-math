@@ -26,6 +26,14 @@ import {
   isTaggableKind,
   type SheetTag,
 } from "@/contracts/sheetTag.contract";
+import {
+  PendingGradingStrip,
+  PublishDialog,
+  issuedClassCount,
+} from "./ExamPublicationParts";
+import { loadExamPublications } from "./examPublicationClient";
+import type { ExamPublicationList } from "@/contracts/examPublication.contract";
+import p from "./ExamPublication.module.css";
 import s from "./PrivateLibrary.module.css";
 import o from "./print/OutputExtras.module.css";
 
@@ -148,6 +156,18 @@ function PrivateLibraryContent({
   const [sort, setSort] = useState("newest");
   const [mineOnly, setMineOnly] = useState(false);
   const [cleanupFailures, setCleanupFailures] = useState<CleanupFailure[]>([]);
+  // 월말평가 M1 — 낸 기록 · 낼 수 있는 반(출력 메뉴가 있을 때만). 못 읽으면 띠 · 딱지 · 단추를 숨긴다(목록은 그대로).
+  const [publications, setPublications] = useState<ExamPublicationList | null>(
+    null,
+  );
+  const refreshPublications = useCallback(async () => {
+    if (!canExport) return;
+    try {
+      setPublications(await loadExamPublications());
+    } catch {
+      setPublications(null);
+    }
+  }, [canExport]);
   const requestId = useRef(0);
   const invalidateReads = useCallback(() => ++requestId.current, []);
   // Background refreshes preserve rows and dialogs. Only the latest read may
@@ -173,11 +193,13 @@ function PrivateLibraryContent({
   useEffect(() => {
     // This effect starts the account's remote library subscription.
     void refresh();
+    void refreshPublications();
     const changed = (event: Event) => {
       if ((event as CustomEvent).detail === storageScope) void refresh(true);
     };
     const focused = () => {
       void refresh(true);
+      void refreshPublications();
     };
     window.addEventListener("private-library-change", changed);
     window.addEventListener("focus", focused);
@@ -186,7 +208,7 @@ function PrivateLibraryContent({
       window.removeEventListener("private-library-change", changed);
       window.removeEventListener("focus", focused);
     };
-  }, [refresh, storageScope, invalidateReads]);
+  }, [refresh, refreshPublications, storageScope, invalidateReads]);
   const owned = useCallback(
     (item: PrivateDocumentSummary) =>
       item.ownerId ? item.ownerId === storageScope : item.isOwner !== false,
@@ -511,13 +533,21 @@ function PrivateLibraryContent({
           </button>
         </div>
       ))}
+      {publications && (
+        <PendingGradingStrip publications={publications.publications} />
+      )}
       <div className={s.board} aria-busy={loading}>
         {loading ? (
           <div className={s.loading}>
             <WorkProgress label="저장한 자료를 불러오는 중입니다…" />
           </div>
         ) : filtered.length ? (
-          <table className={s.table} aria-label="저장한 자료 목록" role="table">
+          <table
+            className={s.table}
+            aria-label="저장한 자료 목록"
+            role="table"
+            data-publish={publications ? "true" : undefined}
+          >
             <thead role="rowgroup">
               <tr role="row">
                 <th scope="col" className={s.numberCell}>
@@ -574,6 +604,18 @@ function PrivateLibraryContent({
                     );
                   }}
                   onOpen={editOpener(item)}
+                  publish={
+                    publications && item.kind === "draft" && owned(item)
+                      ? {
+                          issued: issuedClassCount(
+                            publications.publications,
+                            item.id,
+                          ),
+                          classes: publications.classes,
+                          onPublished: () => void refreshPublications(),
+                        }
+                      : undefined
+                  }
                 />
               ))}
             </tbody>
@@ -641,7 +683,14 @@ function LibraryItem({
   onResume,
   onChanged,
   onDeleted,
+  publish,
 }: {
+  /** 월말평가 M1 — 내 시험지(시험지 종류)일 때만: 낸 반 수 · 낼 수 있는 반 · 낸 뒤 다시 읽기. */
+  publish?: {
+    issued: number;
+    classes: ExamPublicationList["classes"];
+    onPublished: () => void;
+  };
   item: PrivateDocumentSummary;
   owned: boolean;
   showAuthor: boolean;
@@ -669,6 +718,8 @@ function LibraryItem({
   const [detailsLoading, setDetailsLoading] = useState(false);
   const detailsRequest = useRef(0);
   const renameButton = useRef<HTMLButtonElement>(null);
+  const publishButton = useRef<HTMLButtonElement>(null);
+  const [publishOpen, setPublishOpen] = useState(false);
   const deleteButton = useRef<HTMLButtonElement>(null);
   const canRename = owned && !readOnlyReason;
   // Keep the confirmed revision even if another device refreshes this row while
@@ -721,6 +772,9 @@ function LibraryItem({
             <span className={o.tagBadge} data-sheet-tag>
               {item.tag}
             </span>
+          )}
+          {publish && publish.issued > 0 && (
+            <span className={p.issuedBadge}>{publish.issued}개 반에 냄</span>
           )}
         </span>
       </td>
@@ -793,6 +847,17 @@ function LibraryItem({
       </td>
       <td className={s.actionsCell} role="cell">
         <div className={s.actions}>
+          {publish && (
+            <button
+              ref={publishButton}
+              type="button"
+              className={s.publishButton}
+              disabled={busy}
+              onClick={() => setPublishOpen(true)}
+            >
+              반에 내기
+            </button>
+          )}
           <button
             ref={renameButton}
             aria-label={`${item.title} 정보`}
@@ -836,6 +901,15 @@ function LibraryItem({
             </button>
           )}
         </div>
+        {publish && publishOpen && (
+          <PublishDialog
+            item={item}
+            classes={publish.classes}
+            returnFocus={publishButton}
+            onClose={() => setPublishOpen(false)}
+            onPublished={publish.onPublished}
+          />
+        )}
         {action?.kind === "info" && (
           <ConfirmDialog
             title="시험지 정보"

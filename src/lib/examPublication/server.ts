@@ -11,6 +11,7 @@ import {
 } from "@/contracts/examPublication.contract";
 import { jsonError, jsonOk, notFoundError } from "@/lib/apiResponse";
 import {
+  accessibleClassesWhere,
   assertClassWrite,
   ClassAccessDenied,
   studentsInClassWhere,
@@ -348,8 +349,21 @@ export async function listExamPublications(
       }),
     };
   });
+  // 낼 수 있는 반 — 내기와 같은 범위(내 반 · `test:write`). 학생 수는 채점표와 같은 명단이다.
+  const own = await db.class.findMany({
+    where: await accessibleClassesWhere(personalViewer(session), "test:write"),
+    select: { id: true, name: true },
+    orderBy: { name: "asc" },
+  });
+  const classes = await Promise.all(
+    own.map(async (cls) => ({
+      id: cls.id,
+      name: cls.name,
+      students: await db.student.count({ where: studentsInClassWhere(cls.id) }),
+    })),
+  );
   return jsonOk(examPublicationListResponseSchema, {
-    data: { publications: data },
+    data: { publications: data, classes },
   });
 }
 

@@ -93,8 +93,22 @@ export const examPublicationSummarySchema = z.strictObject({
 export type ExamPublicationSummary = z.infer<
   typeof examPublicationSummarySchema
 >;
+/** 내가 낼 수 있는 반(내기 API 가 받는 반과 같은 범위 — 내 반 · `test:write`)과 지금 학생 수. */
+export const examPublicationClassChoiceSchema = z.strictObject({
+  id: uuidSchema,
+  name: z.string(),
+  students: count,
+});
+export type ExamPublicationClassChoice = z.infer<
+  typeof examPublicationClassChoiceSchema
+>;
+export const examPublicationListSchema = z.strictObject({
+  publications: z.array(examPublicationSummarySchema),
+  classes: z.array(examPublicationClassChoiceSchema),
+});
+export type ExamPublicationList = z.infer<typeof examPublicationListSchema>;
 export const examPublicationListResponseSchema = dataResponseSchema(
-  z.strictObject({ publications: z.array(examPublicationSummarySchema) }),
+  examPublicationListSchema,
 );
 
 export const examPublicationDeletedResponseSchema = dataResponseSchema(

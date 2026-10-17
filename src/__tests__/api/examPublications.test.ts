@@ -72,6 +72,7 @@ vi.mock("@/lib/classAccess", async (original) => {
       if (classId === f.blockedInTx) throw new real.ClassAccessDenied();
     },
     studentsInClassWhere: (classId: string) => ({ classId }),
+    accessibleClassesWhere: async () => ({ mine: true }),
   };
 });
 /* eslint-disable @typescript-eslint/no-explicit-any -- 메모리 DB 대역: Prisma 인자의 꼴을 다시 적지 않고 이 길이 쓰는 칸만 읽는다. */
@@ -190,6 +191,15 @@ vi.mock("@/lib/db", () => {
     student: {
       findMany: async ({ where }: any) =>
         state().students.filter((s) => s.classId === where.classId),
+      count: async ({ where }: any) =>
+        state().students.filter((s) => s.classId === where.classId).length,
+    },
+    class: {
+      // 낼 수 있는 반 — 내 반 둘(남의 반은 범위 밖이라 오지 않는다).
+      findMany: async () => [
+        { id: f.CLASS_A, name: "중2 A반" },
+        { id: f.CLASS_B, name: "중2 B반" },
+      ],
     },
     $queryRaw: async () => [],
     async $transaction(work: (tx: unknown) => Promise<unknown>) {
@@ -420,6 +430,10 @@ describe("낸 기록 · 지우기", () => {
     const list = examPublicationListResponseSchema.parse(
       await (await GET()).json(),
     ).data;
+    expect(list.classes).toEqual([
+      { id: f.CLASS_A, name: "중2 A반", students: 3 },
+      { id: f.CLASS_B, name: "중2 B반", students: 1 },
+    ]);
     expect(list.publications).toHaveLength(1);
     expect(list.publications[0]!.classes).toEqual([
       expect.objectContaining({

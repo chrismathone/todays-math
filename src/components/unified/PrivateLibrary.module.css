@@ -299,6 +299,16 @@ label.toggle {
   justify-content: flex-end;
   gap: 6px;
 }
+.table[data-publish="true"] .actionsCell {
+  /* 월말평가 M1 — «반에 내기» 글자 단추가 더해져 넓힌다(Hi-fi H3 · 156 → 260). */
+  width: 260px;
+}
+.library .actions .publishButton {
+  width: auto;
+  padding: 0 12px;
+  color: var(--library-accent);
+  font-weight: 600;
+}
 .actions button {
   display: inline-grid;
   place-items: center;
