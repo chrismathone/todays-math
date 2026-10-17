@@ -97,17 +97,17 @@ describe("test result feed to aywa (2026-10-17)", () => {
     expect(day.rows).toEqual([
       {
         sourceTestId: "daily", sourceStudentId: "src-s1", sourceClassId: "src-a", kind: "daily", title: null,
-        unitName: "일차방정식", testDate: "2026-10-15", questionCount: 5, absent: false, score: 80, correctCount: 4,
+        unitName: "일차방정식", testDate: "2026-10-15", questionCount: 5, maxScore: 100, absent: false, score: 80, correctCount: 4,
         takenAt: now.toISOString(),
       },
       {
         sourceTestId: "daily", sourceStudentId: "src-s2", sourceClassId: "src-a", kind: "daily", title: null,
-        unitName: "일차방정식", testDate: "2026-10-15", questionCount: 5, absent: true, score: null, correctCount: null,
+        unitName: "일차방정식", testDate: "2026-10-15", questionCount: 5, maxScore: 100, absent: true, score: null, correctCount: null,
         takenAt: now.toISOString(),
       },
       {
         sourceTestId: "monthly", sourceStudentId: "src-s1", sourceClassId: "src-a", kind: "monthly", title: "10월 월말평가",
-        unitName: "일차방정식", testDate: "2026-10-15", questionCount: 0, absent: false, score: 92.5, correctCount: null,
+        unitName: "일차방정식", testDate: "2026-10-15", questionCount: 0, maxScore: null, absent: false, score: 92.5, correctCount: null,
         takenAt: now.toISOString(),
       },
     ]);
@@ -145,5 +145,16 @@ describe("test result feed to aywa (2026-10-17)", () => {
     await expect(resultDay("binding", "x")).rejects.toThrow("invalid_date");
     await expect(resultDays("binding", "2026-10-17", "2026-10-01")).rejects.toThrow("invalid_window");
     await expect(resultDays("binding", "2026-01-01", "2026-10-17")).rejects.toThrow("invalid_window");
+  });
+
+  it("max score follows the grading rule: adjusted points, then problem points, then an equal share", async () => {
+    fixture.tables.testProblem.splice(0, 5,
+      { testId: "daily", problemId: "p1", score: 30 },
+      { testId: "daily", problemId: "p2", score: null, problem: { score: 25 } },
+      { testId: "daily", problemId: "p3", score: null, problem: { score: null } },
+    );
+    const day = await resultDay("binding", "2026-10-15");
+    // 30 + 25 + (100 ÷ 3)
+    expect(day.rows[0].maxScore).toBe(88.33);
   });
 });

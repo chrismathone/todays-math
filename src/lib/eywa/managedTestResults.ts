@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { refreshManagedBinding } from "./managedAccounts";
 import { EywaAccessError } from "./managedPolicy";
 import { testKind, type RecentTestKind } from "./managedStudentRecentTests";
+import { maxPointsOf } from "@/lib/testResults/gradeAnswers";
 
 /**
  * 에이와로 보내는 **채점 결과 피드**(2026-10-17 · 역방향 2단계). 에이와가 10분마다 끌어간다(pull) — 이쪽은 쓰지 않는다.
@@ -26,6 +27,8 @@ export interface TestResultRow {
   unitName: string | null;
   testDate: string;
   questionCount: number;
+  /** 시험지 만점(배점 합) — 채점과 같은 배점 규칙(`maxPointsOf`). 에이와 성적 칸은 만점이 같을 때만 채운다(2026-10-17). */
+  maxScore: number | null;
   absent: boolean;
   score: number | null;
   correctCount: number | null;
@@ -130,8 +133,10 @@ function digest(entries: string[]): string {
   return createHash("sha256").update(entries.sort().join("\n")).digest("hex");
 }
 
+// 행 모양을 바꾸면 버전을 올린다 — 지문이 바뀌어야 에이와가 이미 받은 날을 새 모양으로 다시 받는다(v2 = maxScore).
+const DIGEST_VERSION = "v2";
 function digestEntry(r: LatestResult, eywaStudentId: string) {
-  return `${r.testId}:${eywaStudentId}:${r.id}`;
+  return `${DIGEST_VERSION}:${r.testId}:${eywaStudentId}:${r.id}`;
 }
 
 export async function resultDays(bindingId: string, fromText: string | null, toText: string | null) {
@@ -182,7 +187,10 @@ export async function resultDay(bindingId: string, dateText: string | null) {
       where: { id: { in: [...new Set(usedTests.map((t) => t.rangeEndUnitId))] } },
       select: { id: true, section: true },
     }),
-    db.testProblem.findMany({ where: { testId: { in: testIds } }, select: { testId: true } }),
+    db.testProblem.findMany({
+      where: { testId: { in: testIds } },
+      select: { testId: true, score: true, problem: { select: { score: true } } },
+    }),
     gradedIds.length
       ? db.problemAnswer.findMany({
           where: { testResultId: { in: gradedIds } },
@@ -196,6 +204,13 @@ export async function resultDay(bindingId: string, dateText: string | null) {
   const unitById = new Map(units.map((u) => [u.id, u.section]));
   const questionCount = new Map<string, number>();
   for (const p of problems) questionCount.set(p.testId, (questionCount.get(p.testId) ?? 0) + 1);
+  // 만점 = 문항 배점의 합 — 채점(gradeAnswers · gradeMarks)과 같은 규칙: 조정 배점 → 원본 배점 → 균등(100 ÷ 문항 수).
+  const maxPoints = new Map<string, number>();
+  for (const p of problems) {
+    const share = 100 / (questionCount.get(p.testId) ?? 1);
+    const pts = maxPointsOf({ adjustedScore: p.score ?? null, score: p.problem?.score ?? null }, share);
+    maxPoints.set(p.testId, (maxPoints.get(p.testId) ?? 0) + pts);
+  }
   const correct = new Map<string, number>();
   const answered = new Set<string>();
   for (const a of answers) {
@@ -214,6 +229,7 @@ export async function resultDay(bindingId: string, dateText: string | null) {
       unitName: unitById.get(t.rangeEndUnitId) ?? null,
       testDate: day(t.testDate),
       questionCount: questionCount.get(t.id) ?? 0,
+      maxScore: maxPoints.has(t.id) ? Math.round(maxPoints.get(t.id)! * 100) / 100 : null,
       absent: r.absent,
       // 🔴 결시는 점수 · 맞은 수가 없다(0 이 아니다). 응답이 없는 기록(옛 자료)은 맞은 수를 모른다.
       score: r.absent ? null : r.score,
