@@ -27,6 +27,15 @@ export const ids = {
 } as const;
 
 type Row = { studentId: string; revision: number; payload: unknown };
+/** «오늘의 기억» 하루 분량의 행(`fading_student_policy` · 2026-10-17). */
+type PolicyRow = {
+  studentId: string;
+  quota: number | null;
+  previousQuota: number | null;
+  effectiveOn: Date;
+  revision: number;
+  updatedById: string | null;
+};
 
 /** 계정의 지점 — `ownership.ts` 가 소유자의 지점을 `db.user` 에서 읽는다. */
 const users = new Map<string, { branchId: string | null }>([
@@ -89,6 +98,9 @@ const students = [
 export const world = {
   session: null as unknown,
   rows: new Map<string, Row>(),
+  policies: new Map<string, PolicyRow>(),
+  /** 상한에 닿은 날 — «학생|YYYY-MM-DD». */
+  capDays: [] as string[],
   missingTable: false,
   writes: 0,
   /** 마지막으로 받은 where — 시험이 «지점 조건이 실렸나»를 본다 */
@@ -97,6 +109,8 @@ export const world = {
   reset() {
     world.session = null;
     world.rows.clear();
+    world.policies.clear();
+    world.capDays = [];
     world.missingTable = false;
     world.writes = 0;
     world.studentWhere = null;
@@ -148,6 +162,46 @@ export const db = {
   unit: { findMany: async () => [], findFirst: async () => null },
   conceptLecture: { findMany: async () => [] },
   problem: { findMany: async () => [] },
+  fadingStudentPolicy: {
+    findUnique: async ({ where }: { where: { studentId: string } }) =>
+      structuredClone(world.policies.get(where.studentId) ?? null),
+    create: async ({ data }: { data: PolicyRow }) => {
+      if (world.policies.has(data.studentId)) throw { code: "P2002" };
+      world.policies.set(data.studentId, structuredClone(data));
+      world.writes++;
+      return data;
+    },
+    updateMany: async ({
+      where,
+      data,
+    }: {
+      where: { studentId: string; revision: number };
+      data: Omit<PolicyRow, "studentId">;
+    }) => {
+      const row = world.policies.get(where.studentId);
+      if (!row || row.revision !== where.revision) return { count: 0 };
+      world.policies.set(where.studentId, { ...row, ...structuredClone(data) });
+      world.writes++;
+      return { count: 1 };
+    },
+  },
+  fadingRelearnCapDay: {
+    findMany: async ({
+      where,
+    }: {
+      where: { studentId: { in: string[] }; on: { gte: Date; lte: Date } };
+    }) => {
+      const from = where.on.gte.toISOString().slice(0, 10);
+      const to = where.on.lte.toISOString().slice(0, 10);
+      return world.capDays
+        .map((key) => key.split("|") as [string, string])
+        .filter(
+          ([id, on]) =>
+            where.studentId.in.includes(id) && on >= from && on <= to,
+        )
+        .map(([studentId]) => ({ studentId }));
+    },
+  },
   studentSrsState: {
     findUnique: async ({ where }: { where: { studentId: string } }) => {
       if (world.missingTable) throw { code: "P2021" };

@@ -26,6 +26,8 @@ export const FADING_TEACHER_FLAGS = [
   "not-started", // 계정을 만들고도 한 번도 평가를 닫지 않았다
   "overdue", // 복습이 밀렸다
   "idle", // 오래 쉬었다
+  "relearn-stop", // 보충 필요 — 오늘 추가 확인에서 «틀림» 3회로 멈춘 문장이 있다(2026-10-17)
+  "quota-check", // 분량 점검 필요 — 최근 7일 중 3일 이상 추가 확인 하루 상한에 닿았고 남은 확인이 있다(2026-10-17)
 ] as const;
 export type FadingTeacherFlag = (typeof FADING_TEACHER_FLAGS)[number];
 
@@ -63,6 +65,15 @@ export const fadingTeacherSummarySchema = z.strictObject({
       fails: count,
       checks: count,
       sinceOn: dateSchema.nullable(),
+      /**
+       * 오늘(한국 날짜)의 끝 — 판정이 난 확인 수 · 하루 상한(대조 대기 포함)에 닿았는가 · 같은 문장 «틀림» 3회로 멈춘 문장 수(2026-10-17).
+       * `checks` 와 다르다 — 위의 `checks` 는 남은 줄들이 지금까지 받은 확인의 합이다. 선택 칸이다.
+       */
+      today: z
+        .strictObject({ checks: count, capped: z.boolean(), stopped: count })
+        .optional(),
+      /** 최근 7일(오늘 포함) 가운데 하루 상한에 닿은 날 수. 선택 칸이다. */
+      capDays: count.optional(),
     })
     .optional(),
   /**
@@ -100,6 +111,44 @@ export const fadingTeacherDashboardResponseSchema = dataResponseSchema(
   fadingTeacherDashboardSchema,
 );
 
+/* ───────── 하루 분량(2026-10-17 · `src/lib/fading/quota.ts`) ───────── */
+
+/** 학생 지정 분량 — 10 · 15 · 20칸. `null` 은 «서비스 기본»(지금 15칸 — 기본이 바뀌면 따라간다). */
+export const fadingTeacherQuotaValueSchema = z
+  .union([z.literal(10), z.literal(15), z.literal(20)])
+  .nullable();
+export const fadingTeacherQuotaSchema = z.strictObject({
+  /** 오늘 먹는 값과 그 칸 수. */
+  today: z.strictObject({
+    quota: fadingTeacherQuotaValueSchema,
+    slots: count,
+  }),
+  /** 바꿔 둔 값 — 다음 한국 날짜(`on`)부터 먹는다. 없으면 `null`. */
+  next: z
+    .strictObject({
+      quota: fadingTeacherQuotaValueSchema,
+      slots: count,
+      on: dateSchema,
+    })
+    .nullable(),
+  /** 덮어쓰기 막기 — 저장할 때 그대로 돌려보낸다. 행이 없으면 0. */
+  revision: count,
+  /** 이 계정이 바꿀 수 있는가 — 원장 · 지점 관리자. 강사는 보기만. */
+  canEdit: z.boolean(),
+});
+export type FadingTeacherQuota = z.infer<typeof fadingTeacherQuotaSchema>;
+/** PUT /api/students/{id}/math-srs/fading — 다음 한국 날짜부터의 하루 분량. */
+export const fadingTeacherQuotaInputSchema = z.strictObject({
+  quota: fadingTeacherQuotaValueSchema,
+  expectedRevision: count,
+});
+export type FadingTeacherQuotaInput = z.infer<
+  typeof fadingTeacherQuotaInputSchema
+>;
+export const fadingTeacherQuotaResponseSchema = dataResponseSchema(
+  fadingTeacherQuotaSchema,
+);
+
 export const fadingTeacherStudentSchema = z.strictObject({
   today: dateSchema,
   policy: z.number().int().min(1),
@@ -115,6 +164,20 @@ export const fadingTeacherStudentSchema = z.strictObject({
   concepts: z.array(fadingConceptStatusSchema),
   /** 최근 여덟 주의 집계. `passed` 는 정답률이 아니다 — «다시»가 아닌 평가의 수다. */
   days: z.array(storedFadingDaySchema).max(FADING_VIEW_DAYS),
+  /** 하루 분량(2026-10-17). 선택 칸이다 — 이 칸이 없던 서버의 응답도 읽는다. */
+  quota: fadingTeacherQuotaSchema.optional(),
+  /**
+   * 오늘 멈춘 문장 — 추가 확인에서 «틀림» 3회(2026-10-17). 🔴 이름(용어)뿐이다 — 문장과 답은 싣지 않는다. 선택 칸이다.
+   */
+  relearnStops: z
+    .array(
+      z.strictObject({
+        conceptId: z.string(),
+        propositionId: z.string(),
+        term: z.string(),
+      }),
+    )
+    .optional(),
 });
 export type FadingTeacherStudent = z.infer<typeof fadingTeacherStudentSchema>;
 export const fadingTeacherStudentResponseSchema = dataResponseSchema(

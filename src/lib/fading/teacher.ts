@@ -14,6 +14,7 @@ import {
   fadingIdleDays,
   fadingLongBreak,
 } from "./numbers";
+import { fadingRelearnLimits } from "./relearn";
 import { fadingDayOfDate } from "./schedule";
 import { fadingConceptStatus } from "./view";
 
@@ -24,7 +25,7 @@ import { fadingConceptStatus } from "./view";
  * 문턱은 **자료로 맞춘 값이 아니다.** 탐험 교사 보기에서 리드 · codex · grok 이 맞춘 값(27번 문서 §4.2 v1.1 — 복습 밀림 · 오래 쉼 · 시작 전)을
  * 뜻이 같은 자리에 그대로 가져왔다. **아래 값을 바꾸면 판 번호도 올린다**(시험이 둘을 함께 잠근다).
  */
-export const FADING_TEACHER_POLICY = 1;
+export const FADING_TEACHER_POLICY = 2;
 /** 복습이 밀림 — 복습일이 이만큼(날) 이상 지난 개념이 */
 export const FADING_OVERDUE_FLAG_DAYS = 3;
 /** … 이만큼(개) 이상이거나, */
@@ -38,6 +39,12 @@ export const FADING_NOT_STARTED_GRACE_DAYS = 3;
 
 /** 최근 며칠의 사실을 싣는가(오늘 포함) — 사실 표시의 창일 뿐이다. 판정에 쓰지 않으므로 정책 판과 무관하다. */
 export const FADING_TEACHER_RECENT_DAYS = 7;
+/**
+ * 분량 점검 필요(2판 · 원장님 결정 2026-10-17) — 최근 7일(오늘 포함) 가운데 추가 확인이 하루 상한에 닿은 날이 이만큼 이상이고
+ * 남은 확인이 있다. 날은 학생 기록 밖의 표(`fading_relearn_cap_day`)에서 라우트가 세어 넘긴다. 보충 필요(2판)는 오늘 멈춘 문장이 하나라도 있다.
+ */
+export const FADING_QUOTA_CHECK_DAYS = 3;
+export const FADING_QUOTA_CHECK_WINDOW_DAYS = 7;
 
 /** 학생 계정의 사실 — 꺼진 계정은 없는 것으로 친다. 만든 날은 한국 날짜. */
 export type FadingTeacherAccount = {
@@ -51,6 +58,8 @@ export function fadingTeacherSummary(
   today: string,
   account: FadingTeacherAccount,
   known?: ReadonlySet<string>,
+  /** 학생 기록 밖의 사실 — 최근 7일 가운데 하루 상한에 닿은 날 수(`fading_relearn_cap_day`). */
+  extra: { capDays?: number } = {},
 ): FadingTeacherSummary {
   const day = fadingDayOfDate(today);
   const stepCounts: Record<FadingStep, number> = { 1: 0, 2: 0, 3: 0, 4: 0 };
@@ -71,6 +80,14 @@ export function fadingTeacherSummary(
     (item) => !known || known.has(item.conceptId),
   );
   const oldest = rows.length ? Math.min(...rows.map((r) => r.since)) : null;
+  // 오늘의 끝 — 학생 라우트가 막는 셈과 같은 함수(`relearn.ts`)로 센다. 시각은 그날 한국 낮 12시면 충분하다(날짜만 본다).
+  const limits = fading?.relearn
+    ? fadingRelearnLimits(fading.relearn, Date.parse(`${today}T12:00:00+09:00`))
+    : null;
+  const stoppedToday = (limits?.stopped ?? []).filter(
+    (key) => !known || known.has(key.split("/")[0]!),
+  ).length;
+  const capDays = extra.capDays ?? 0;
   // 최근 7일(오늘 포함) — 평가를 닫은 날 수 · 첫 평가 수.
   const recentDays = (fading?.days ?? []).filter((d) => {
     const ago = day - fadingDayOfDate(d.date);
@@ -93,6 +110,8 @@ export function fadingTeacherSummary(
         FADING_OVERDUE_FLAG_CONCEPTS ||
       late.some((d) => d >= FADING_OVERDUE_LONG_FLAG_DAYS),
     idle: fadingLongBreak(idleDays),
+    "relearn-stop": stoppedToday > 0,
+    "quota-check": capDays >= FADING_QUOTA_CHECK_DAYS && rows.length > 0,
   };
   return {
     picked,
@@ -125,6 +144,12 @@ export function fadingTeacherSummary(
       fails: rows.reduce((n, r) => n + r.fails, 0),
       checks: rows.reduce((n, r) => n + r.checks, 0),
       sinceOn: oldest === null ? null : kstDateOf(new Date(oldest)),
+      today: {
+        checks: limits?.checks ?? 0,
+        capped: limits?.capped ?? false,
+        stopped: stoppedToday,
+      },
+      capDays,
     },
     recent: {
       days: recentDays.length,

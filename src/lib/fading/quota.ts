@@ -1,3 +1,4 @@
+import type { ScopeViewer } from "@/lib/ownerScope";
 import { fadingDateOf, fadingDayOfDate } from "./schedule";
 
 /**
@@ -68,4 +69,20 @@ export function fadingQuotaView(row: FadingQuotaRow | null, today: string) {
       : null,
     revision: row?.revision ?? 0,
   };
+}
+
+/**
+ * 누가 바꾸는가 — 원장 · 지점 관리자(원장님 결정 2026-10-17 ③). 강사는 보기만이다.
+ * 지점 없이 혼자 운영하는 원장은 제 학생을 바꾼다. 역할이 비었거나 모르는 값이면 지점 관리 표시(`isAdmin`)로만 연다.
+ * «그 학생에게 닿는가»(소유 · 지점 · 지금 반 등록)는 라우트가 저장 거래 안에서 따로 본다.
+ */
+export function canEditFadingQuota(viewer: ScopeViewer): boolean {
+  if (viewer.isSuperAdmin === true) return true;
+  if (viewer.branchRole === "teacher") return false;
+  if (!viewer.branchId) return true;
+  return (
+    viewer.isAdmin === true ||
+    viewer.branchRole === "owner" ||
+    viewer.branchRole === "manager"
+  );
 }

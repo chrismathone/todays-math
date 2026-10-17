@@ -22,6 +22,8 @@ const FLAG_LABELS: Record<FadingTeacherFlag, string> = {
   "not-started": "시작 전",
   overdue: "복습 밀림",
   idle: "오래 쉼",
+  "relearn-stop": "보충 필요",
+  "quota-check": "분량 점검 필요",
 };
 const PROPOSALS = {
   A: {

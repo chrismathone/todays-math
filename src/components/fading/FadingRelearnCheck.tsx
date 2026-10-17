@@ -12,6 +12,10 @@ import { FADING_TYPED_MAX } from "@/contracts/fading.contract";
 import type { FadingJudged } from "@/lib/fading/session";
 import { FadingSourceError, newFadingId } from "@/lib/fading/source";
 import { fadingSafeLabel } from "@/lib/fading/cards";
+import {
+  FADING_RELEARN_CAPPED,
+  FADING_RELEARN_STOPPED,
+} from "@/lib/fading/relearn";
 import type { FadingRelearnSource } from "@/lib/fading/relearnSource";
 import { FadingMath } from "./FadingMath";
 import type { FadingRelearnController } from "./useFadingRelearn";
@@ -36,6 +40,17 @@ export function FadingRelearnStatus({
             지금 {queue.counts.ready} · 대조 {queue.counts.judging} · 기다리는
             문장 {queue.counts.waiting}
           </span>
+          {/* 오늘의 끝(2026-10-17 · Hi-fi Q2) — 상한 수(30)는 보이지 않는다. 기본 분량은 따로 계속할 수 있다. */}
+          {queue.limit?.capped || queue.limit?.stopped ? (
+            <div className={s.limit}>
+              {queue.limit.capped ? <p>{FADING_RELEARN_CAPPED}</p> : null}
+              {queue.limit.stopped ? (
+                <p>
+                  오늘 멈춘 문장 {queue.limit.stopped} · 내일부터 다시 확인해요.
+                </p>
+              ) : null}
+            </div>
+          ) : null}
           {allowStart && queue.counts.ready + queue.counts.judging > 0 ? (
             <button type="button" onClick={boundary}>
               {queue.counts.judging
@@ -111,6 +126,8 @@ export function FadingRelearnCheck({
   );
   const [pending, setPending] = useState(item.pending);
   const [result, setResult] = useState<FadingRelearnResult | null>(null);
+  /** 이 확인 뒤에 그 문장(또는 그날의 추가 확인)이 끝났는가 — 다음 날 0시까지 기다린다. */
+  const [dayEnd, setDayEnd] = useState<"capped" | "stopped" | null>(null);
   const [judged, setJudged] = useState<FadingJudged>({});
   const [busy, setBusy] = useState(false);
   const [failure, setFailure] = useState<string | null>(null);
@@ -158,6 +175,15 @@ export function FadingRelearnCheck({
       setRetry(null);
       onQueue(response.queue);
       setResult(response.result);
+      const limit = response.queue.limit;
+      const row = response.queue.items.find((each) => each.key === item.key);
+      setDayEnd(
+        limit?.capped
+          ? "capped"
+          : limit && row?.state === "waiting" && row.dueAt >= limit.resumeAt
+            ? "stopped"
+            : null,
+      );
       setPending(
         response.result.verdict === "judging"
           ? response.queue.items.find((row) => row.key === item.key)?.pending
@@ -411,11 +437,16 @@ export function FadingRelearnCheck({
                 {result?.verdict === "passed"
                   ? "도움 없이 떠올렸어요."
                   : "다시 확인할 문장으로 남겼어요."}{" "}
-                {result?.next
-                  ? result.next.stage === "confirm"
-                    ? "5분 뒤 다시 확인해요."
-                    : "1분 뒤 다시 확인해요."
-                  : "이 문장의 추가 확인을 마쳤어요."}
+                {dayEnd === "stopped" && result?.next
+                  ? FADING_RELEARN_STOPPED
+                  : result?.next && dayEnd !== "capped"
+                    ? result.next.stage === "confirm"
+                      ? "5분 뒤 다시 확인해요."
+                      : "1분 뒤 다시 확인해요."
+                    : result?.next
+                      ? ""
+                      : "이 문장의 추가 확인을 마쳤어요."}
+                {dayEnd === "capped" ? ` ${FADING_RELEARN_CAPPED}` : null}
               </p>
               <button type="button" className={s.primary} onClick={onClose}>
                 원래 학습으로

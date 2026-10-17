@@ -556,3 +556,117 @@
     width: 20%;
   }
 }
+
+/* 하루 분량 손잡이 — Hi-fi Q2(2026-10-17): «오늘 추가 확인» · «하루 분량» 흰 묶음 둘. 딱지는 필요한 상태에만 붙는다. */
+.quotaCard {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid var(--learn-track);
+  border-radius: var(--learn-radius-sm);
+  background: var(--learn-surface);
+}
+.quotaCardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.quotaRows {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+.quotaRows > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+.quotaRows dt {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--learn-muted);
+}
+.quotaRows dd {
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.stopList {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  font-size: 13px;
+}
+.quotaFoot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 12px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--learn-track);
+  font-size: 13px;
+}
+.quotaSelect {
+  display: grid;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--learn-muted);
+}
+.quotaSelect select {
+  padding: 0 10px;
+  border: 1px solid var(--learn-control);
+  border-radius: var(--control-radius);
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+}
+.quotaLines {
+  display: grid;
+  gap: 4px;
+  margin: 10px 0;
+  font-size: 13px;
+}
+.quotaLines p {
+  margin: 0;
+}
+.quotaLines strong {
+  font-weight: 600;
+}
+.quotaSaved {
+  color: var(--learn-accent);
+  font-weight: 600;
+}
+.quotaAlert {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: var(--control-radius);
+  background: var(--learn-warning-bg);
+  color: var(--learn-warning);
+}
+.quotaAlert p {
+  margin: 0;
+}
+.quotaSave {
+  margin-top: 8px;
+  min-width: 88px;
+  padding: 8px 16px;
+  border: 1px solid var(--learn-accent);
+  border-radius: var(--control-radius);
+  background: var(--learn-accent);
+  color: #fff;
+  font-weight: 600;
+}
+.quotaSave:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.quotaCard .flag {
+  border-color: transparent;
+  background: var(--learn-warning-bg);
+  color: var(--learn-warning);
+}

@@ -15,8 +15,10 @@ export function srsTeacherManagementRoute(method: string, path: string) {
       /^\/api\/students\/[^/]+\/math-srs\/course$/.test(path)) ||
     (method === "GET" &&
       /^\/api\/students\/[^/]+\/math-srs\/explorers$/.test(path)) ||
-    // «오늘의 기억» 새 앱의 교사 현황(2026-10-06) — 읽기 둘뿐이다.
-    (method === "GET" && srsFadingTeacherPath(path))
+    // «오늘의 기억» 새 앱의 교사 현황(2026-10-06) — 읽기 둘, 그리고 학생 하나의 하루 분량 저장(2026-10-17 · PUT).
+    (method === "GET" && srsFadingTeacherPath(path)) ||
+    (method === "PUT" &&
+      /^\/api\/students\/[^/]+\/math-srs\/fading$/.test(path))
   );
 }
 

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   FADING_QUOTA_CHOICES,
   FADING_SERVICE_QUOTA,
+  canEditFadingQuota,
   fadingQuotaChange,
   fadingQuotaOn,
   fadingQuotaView,
@@ -101,5 +102,44 @@ describe("교사에게 내려가는 꼴", () => {
       next: null,
       revision: 0,
     });
+  });
+});
+
+describe("누가 바꾸는가 — 원장 · 지점 관리자", () => {
+  const base = { id: "u1" };
+  it("지점 원장 · 지점 관리자 · 혼자 운영하는 원장 · 최고관리자는 바꾼다", () => {
+    expect(
+      canEditFadingQuota({ ...base, branchId: "b", branchRole: "owner" }),
+    ).toBe(true);
+    expect(
+      canEditFadingQuota({ ...base, branchId: "b", branchRole: "manager" }),
+    ).toBe(true);
+    expect(canEditFadingQuota({ ...base, branchId: null })).toBe(true);
+    expect(
+      canEditFadingQuota({
+        ...base,
+        isSuperAdmin: true,
+        branchRole: "teacher",
+      }),
+    ).toBe(true);
+  });
+  it("강사는 보기만이다 — 지점 관리 표시가 남아 있어도", () => {
+    expect(
+      canEditFadingQuota({ ...base, branchId: "b", branchRole: "teacher" }),
+    ).toBe(false);
+    expect(
+      canEditFadingQuota({
+        ...base,
+        branchId: "b",
+        branchRole: "teacher",
+        isAdmin: true,
+      }),
+    ).toBe(false);
+  });
+  it("역할이 비면 지점 관리 표시로만 연다", () => {
+    expect(canEditFadingQuota({ ...base, branchId: "b" })).toBe(false);
+    expect(canEditFadingQuota({ ...base, branchId: "b", isAdmin: true })).toBe(
+      true,
+    );
   });
 });

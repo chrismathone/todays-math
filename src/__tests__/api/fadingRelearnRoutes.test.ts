@@ -150,6 +150,7 @@ import { erasedTargets, type FadingStep } from "@/lib/fading/erasure";
 import { createLocalFadingSource } from "@/lib/fading/local";
 import {
   FADING_RELEARN_NOT_DUE,
+  FADING_RELEARN_CAPPED,
   FADING_RELEARN_NO_EVIDENCE,
   fadingPropositionTargets,
 } from "@/lib/fading/relearn";
@@ -1409,5 +1410,43 @@ describe("🔴 본 행동과 한 저장으로 등록된다(D3) — 증거를 따
     const q = await both(T0 + 25_000);
     expect(q.items).toHaveLength(c.propositions.length);
     await both(T0 + 80_000);
+  });
+});
+
+describe("오늘의 끝 — 하루 30회에 닿은 날을 학생 기록 밖의 표에 적는다(2026-10-17)", () => {
+  it("30회째 확인이 저장되면 그날을 적고, 그 뒤의 확인은 409 로 막는다 — 학생 기록은 쓰지 않는다", async () => {
+    const c = pickConcept();
+    await learn(c, uuid(2));
+    // 그날 이미 29회를 판정했다고 맞춘다 — 30회를 하나씩 풀지 않고 경계를 본다.
+    const payload = row().payload as {
+      fading: { relearn: { day: unknown } };
+    };
+    payload.fading.relearn.day = {
+      on: "2026-10-06",
+      checks: 29,
+      cleared: 0,
+      entered: 3,
+    };
+    at(T0 + FIVE);
+    const before = await queue(await get());
+    const first = c.propositions[0]!.id;
+    const done = await act({
+      action: "grade",
+      attempt: attempt(before, c, first, 40),
+    });
+    expect(done.queue.limit).toMatchObject({ capped: true, checks: 30 });
+    expect(f.capDays).toEqual(["2026-10-06"]);
+    const writes = f.writes;
+    const other = c.propositions[1]!.id;
+    expect(
+      await code(
+        await postRaw({
+          action: "grade",
+          attempt: attempt(done.queue, c, other, 41),
+        }),
+      ),
+    ).toEqual([409, "CONFLICT", FADING_RELEARN_CAPPED]);
+    expect(f.writes).toBe(writes);
+    expect(f.capDays).toEqual(["2026-10-06"]);
   });
 });
