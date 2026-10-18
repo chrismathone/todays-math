@@ -78,6 +78,9 @@ const problem: BankProblem = {
   reviewStatus: "approved",
 };
 const initialData: BankData = {
+  countUnit: "question",
+  version: 2,
+  queryKey: "fixture",
   problems: [problem],
   total: 36,
   page: 1,
@@ -181,11 +184,21 @@ beforeEach(() => {
   vi.stubGlobal(
     "fetch",
     vi.fn(async (url: string, init?: RequestInit) => {
-      if (url === `/api/studio/problems/${BLOCKED_ID}`) {
+      if (url === `/api/studio/problems/${BLOCKED_ID}?identity=question`) {
         if (freshReadFails) return Response.json({}, { status: 503 });
         return Response.json({
           data: {
             id: BLOCKED_ID,
+            questionId: `row:${BLOCKED_ID}`,
+            questionFormats: [
+              {
+                problemId: BLOCKED_ID,
+                format: "short_answer",
+                revision: "current",
+                state: freshEligibility ? "available" : "blocked",
+                reasonCode: freshEligibility ? null : "locked",
+              },
+            ],
             eligible: freshEligibility,
             ineligibleReason: freshEligibility
               ? null
@@ -267,7 +280,9 @@ async function settled() {
   );
 }
 function lastQuery() {
-  return Object.fromEntries(requests.at(-1)!);
+  const query = requests.at(-1)!;
+  expect(query.get("identity")).toBe("question");
+  return Object.fromEntries([...query].filter(([key]) => key !== "identity"));
 }
 async function choose(label: string, value: string) {
   if (!screen.queryByRole("combobox", { name: label })) {
@@ -288,7 +303,7 @@ describe("unified bank uses real ProblemBank filters", () => {
       const [axis, filter] = value.split(":");
       expect(lastQuery()).toEqual({
         page: "1",
-        [axis === "type" ? "problemType" : "format"]: filter,
+        [axis === "type" ? "problemType" : "availableFormat"]: filter,
       });
       expect(problemFilterQuerySchema.safeParse(lastQuery()).success).toBe(
         true,
@@ -352,7 +367,7 @@ describe("unified bank uses real ProblemBank filters", () => {
     fireEvent.click(screen.getByRole("button", { name: "다음 페이지" }));
     await settled();
     expect(lastQuery()).toEqual({
-      format: "descriptive",
+      availableFormat: "descriptive",
       semester: "1",
       page: "2",
     });

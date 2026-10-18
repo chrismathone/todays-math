@@ -48,7 +48,7 @@ function visibleFormatBadges(): Record<string, number> {
 }
 
 describe("[형식 필터] 문제은행 「유형」 칸", () => {
-  it("계산·개념·활용에 **단답형·서술형**이 더해져 있다", async () => {
+  it("계산·개념·활용에 세 출제 형식이 더해져 있다", async () => {
     await renderBank();
     const select = screen.getByLabelText<HTMLSelectElement>("유형");
     expect([...select.options].map((option) => option.textContent)).toEqual([
@@ -56,6 +56,7 @@ describe("[형식 필터] 문제은행 「유형」 칸", () => {
       "계산",
       "개념",
       "활용",
+      "객관식",
       "단답형",
       "서술형",
     ]);

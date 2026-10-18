@@ -10,10 +10,12 @@
  *    실제 AI API를 호출하지 않는다(07-coding-convention §5, CLAUDE.md 절대 규칙 7).
  * ⚠️ 이 핸들러도 class.ts와 마찬가지로 stateless — POST/PATCH/DELETE는 고정 배열을 변형하지 않는다.
  */
-import { http, type HttpHandler } from "msw";
+import { http, HttpResponse, type HttpHandler } from "msw";
 
+import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 import { deleteResponseSchema } from "@/contracts/common.contract";
 import { verifiesOriginalReproduction } from "@/lib/ai/originalReproduction";
+import { problemIneligibleCode } from "@/lib/problemEligibility";
 import { classifyFormat } from "@/lib/problem/provenance";
 import {
   FIGURE_MISSING_REASON,
@@ -98,12 +100,45 @@ function findAccessibleProblem(id: string) {
 }
 
 /** AI_GENERATION_FAILED 실패 경로 재현 전용 sentinel — 실제 시드에 없는 임의의 유효 UUID. */
+export function mockQuestionViewRow<T extends (typeof ALL_PROBLEMS)[number]>(
+  row: T,
+) {
+  const classified = classifyFormat(row);
+  const format = classified === "unknown" ? null : classified;
+  const code = problemIneligibleCode(row);
+  return {
+    ...row,
+    questionId: `row:${row.id}`,
+    questionFormats: [
+      {
+        problemId: row.id,
+        format,
+        revision: `msw:${row.id}:${row.updatedAt}`,
+        state: code ? "blocked" : format ? "available" : "unverified",
+        reasonCode: code ?? (format ? null : "unknownFormat"),
+      },
+    ],
+  };
+}
+
 export const AI_GENERATION_FAILURE_UNIT_ID =
   "ffffffff-0000-4000-8000-000000000001";
 export const AI_TRANSFORM_FAILURE_ORIGIN_ID =
   "ffffffff-0000-4000-8000-000000000002";
 
 export const problemHandlers: HttpHandler[] = [
+  http.get("/api/basket", ({ request }) =>
+    HttpResponse.json({
+      data: {
+        items: [],
+        spread: Object.fromEntries(DIFFICULTY_LADDER.map((tier) => [tier, 0])),
+        total: 0,
+        ...(new URL(request.url).searchParams.get("identity") === "question"
+          ? { version: 2, countUnit: "question", conflictCount: 0 }
+          : {}),
+      },
+    }),
+  ),
   // POST /api/problems — 문제 등록(수동 자작/기출 직접 입력)
   http.post("/api/problems", async ({ request }) => {
     const parsed = problemCreateRequestSchema.safeParse(await request.json());
@@ -142,9 +177,10 @@ export const problemHandlers: HttpHandler[] = [
   // GET /api/problems — 필터 조회(unitId/difficulty/problemType/source/reviewStatus)
   http.get("/api/problems", ({ request }) => {
     const url = new URL(request.url);
-    const parsed = problemFilterQuerySchema.safeParse(
-      Object.fromEntries(url.searchParams),
-    );
+    const query = Object.fromEntries(url.searchParams);
+    const questionView = query.identity === "question";
+    delete query.identity;
+    const parsed = problemFilterQuerySchema.safeParse(query);
     if (!parsed.success) return validationError(parsed.error);
     const { page, pageSize, ...filters } = parsed.data;
 
@@ -189,7 +225,11 @@ export const problemHandlers: HttpHandler[] = [
       // 형식(`[단]`·`[서]`, 원장님 지시 2026-08-26) — 라우트·화면 라벨과 **같은 함수**다.
       // ⚠️ 여기를 안 붙이면 계약이 값을 받아 주므로 가짜는 **조용히 안 거르고**, 화면
       //    시험이 「필터가 듣는다」를 거짓으로 초록 낸다(2026-08-19 에 토글로 겪은 자리).
-      if (filters.format && classifyFormat(p) !== filters.format) return false;
+      if (
+        (filters.availableFormat ?? filters.format) &&
+        classifyFormat(p) !== (filters.availableFormat ?? filters.format)
+      )
+        return false;
       if (filters.source && p.source !== filters.source) return false;
       if (filters.reviewStatus && p.reviewStatus !== filters.reviewStatus)
         return false;
@@ -204,17 +244,25 @@ export const problemHandlers: HttpHandler[] = [
       }
       return true;
     });
-    return jsonOk(
-      problemListResponseSchema,
-      paginate(filtered, { page, pageSize }),
-    );
+    const pageData = paginate(filtered, { page, pageSize });
+    if (questionView)
+      return HttpResponse.json({
+        ...pageData,
+        data: pageData.data.map(mockQuestionViewRow),
+        version: 2,
+        countUnit: "question",
+        queryKey: url.searchParams.toString(),
+      });
+    return jsonOk(problemListResponseSchema, pageData);
   }),
 
   // GET /api/problems/:id — 단건 조회
-  http.get("/api/problems/:id", ({ params }) => {
+  http.get("/api/problems/:id", ({ params, request }) => {
     const found = findAccessibleProblem(String(params.id));
     if (!found.entity) return notFoundError("문제");
     if (!found.accessible) return forbiddenError();
+    if (new URL(request.url).searchParams.get("identity") === "question")
+      return HttpResponse.json({ data: mockQuestionViewRow(found.entity) });
     return jsonOk(problemResponseSchema, { data: found.entity });
   }),
 
@@ -256,12 +304,16 @@ export const problemHandlers: HttpHandler[] = [
     );
     if (!parsed.success) return validationError(parsed.error);
 
+    const updated = {
+      ...entity,
+      reviewStatus: parsed.data.reviewStatus,
+      updatedAt: new Date().toISOString(),
+    };
     return jsonOk(problemResponseSchema, {
-      data: {
-        ...entity,
-        reviewStatus: parsed.data.reviewStatus,
-        updatedAt: new Date().toISOString(),
-      },
+      data:
+        new URL(request.url).searchParams.get("identity") === "question"
+          ? mockQuestionViewRow(updated)
+          : updated,
     });
   }),
 

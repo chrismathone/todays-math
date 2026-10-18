@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
+import { FORMAT_LABEL } from "@/lib/problem/questionSelectionClient";
 import BuilderDialog from "./BuilderDialog";
 import type { ExamBuilderSource, ExamScope } from "./types";
 import s from "./ExamBuilder.module.css";
@@ -33,7 +34,7 @@ export default function QuestionPicker<T>({
   initialScopeId?: string;
   width?: number;
   maxQuestions: number;
-  onChoose: (item: T) => void;
+  onChoose: (item: T) => boolean | void;
   onClose: () => void;
   renderQuestion: (item: T) => ReactNode;
 }) {
@@ -67,7 +68,11 @@ export default function QuestionPicker<T>({
   const scopeIds = scopeId ? [scopeId] : scopes.map((scope) => scope.id);
   const key = JSON.stringify([scopeIds, difficulty, query, page, retry]);
   const loading = result?.key !== key;
-  const selected = new Set(questions.map((item) => source.info(item).id));
+  const selected = new Set(
+    questions.map(
+      (item) => source.info(item).questionId ?? source.info(item).id,
+    ),
+  );
   useEffect(() => {
     const timer = setTimeout(() => {
       setQuery(search.trim());
@@ -188,7 +193,7 @@ export default function QuestionPicker<T>({
             {result?.items.length ? (
               result.items.map((item) => {
                 const info = source.info(item);
-                const isSelected = selected.has(info.id);
+                const isSelected = selected.has(info.questionId ?? info.id);
                 const sameFamily =
                   !isSelected &&
                   !!info.familyId &&
@@ -198,6 +203,22 @@ export default function QuestionPicker<T>({
                     <small>
                       {info.scopeLabel} · {info.difficulty || "난이도 미지정"}
                     </small>
+                    {source.questionFormats && (
+                      <small className={s.candidateFormats}>
+                        가능 형식 ·{" "}
+                        {[
+                          ...new Set(
+                            source.questionFormats
+                              .options(item)
+                              .filter(
+                                (row) =>
+                                  row.state === "available" && row.format,
+                              )
+                              .map((row) => FORMAT_LABEL[row.format!]),
+                          ),
+                        ].join(" · ") || "확인 전"}
+                      </small>
+                    )}
                     <div className={s.questionBody}>{renderQuestion(item)}</div>
                     <div className={s.actions}>
                       <button
@@ -216,7 +237,7 @@ export default function QuestionPicker<T>({
                           (!replacing && questions.length >= maxQuestions)
                         }
                         onClick={() => {
-                          onChoose(item);
+                          if (onChoose(item) === false) return;
                           setAdded((current) => [...current, info.id]);
                         }}
                       >

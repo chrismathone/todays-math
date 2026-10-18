@@ -2,6 +2,14 @@
 
 import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
 
+import QuestionFormatPicker from "@/components/exam-builder/QuestionFormatPicker";
+import { createMathExamBuilderSource } from "@/components/exam-builder/mathSource";
+import {
+  possibleFormats,
+  questionConflicts,
+  questionIdentity,
+  requireQuestionRead,
+} from "@/lib/problem/questionSelectionClient";
 import WorkspacePageHeader from "./WorkspacePageHeader";
 import WorkProgress from "./WorkProgress";
 import {
@@ -148,7 +156,7 @@ const ASSET_FILTERS = [
 
 function queryFor(filters: Filters, random = false) {
   const { problemFilter, ...query } = filters;
-  const params = new URLSearchParams();
+  const params = new URLSearchParams({ identity: "question" });
   Object.entries({
     ...query,
     ...splitProblemFilterValue(problemFilter),
@@ -160,6 +168,10 @@ function queryFor(filters: Filters, random = false) {
     } else if (value !== "" && value !== false && value !== undefined)
       params.set(key, String(value));
   });
+  if (params.has("format")) {
+    params.set("availableFormat", params.get("format")!);
+    params.delete("format");
+  }
   if (random) {
     params.delete("difficulty");
     params.delete("page");
@@ -247,13 +259,17 @@ function ProblemRow({
   const addDisabled =
     busy ||
     (replacing && selected) ||
-    (problem.eligible === false && !selected);
+    ((problem.eligible === false ||
+      (problem.questionFormats && !possibleFormats(problem))) &&
+      !selected);
   const action =
     replacing && !selected ? "이 문제로 교체" : selected ? "담기 취소" : "담기";
   const ineligibleReason =
     problem.eligible === false
       ? problem.ineligibleReason || "출제할 수 없는 문항입니다."
-      : null;
+      : problem.questionFormats && !possibleFormats(problem)
+        ? "출제 형식 확인 전입니다."
+        : null;
 
   function toggle() {
     if (!addDisabled) onToggle(problem);
@@ -340,6 +356,11 @@ function ProblemRow({
           <p className={styles.sectionLabel}>{problem.section}</p>
         ) : null}
         <div className={styles.problemBody}>
+          {problem.questionFormats && (
+            <p className={styles.basketHint}>
+              가능 형식 · {possibleFormats(problem) || "확인 전"}
+            </p>
+          )}
           <UnifiedProblem problem={problem} />
         </div>
         {ineligibleReason ? (
@@ -436,7 +457,9 @@ function DetailModal({
   const addDisabled =
     selectionBusy ||
     (replacing && selected) ||
-    (problem.eligible === false && !selected);
+    ((problem.eligible === false ||
+      (problem.questionFormats && !possibleFormats(problem))) &&
+      !selected);
   // 정답·풀이는 본문(`UnifiedProblem`)과 같은 문항 단위 결정으로 대분수를 보인다.
   const shownFractions = fractionViewFor(problem);
   const [showTransform, setShowTransform] = useState(false);
@@ -710,6 +733,12 @@ export default function BankView({
   canExport = true,
   canUseAi = true,
 }: BankViewProps & { canExport?: boolean; canUseAi?: boolean }) {
+  const [formatPicker, setFormatPicker] = useState<{
+    item: StudioProblem;
+    changeId?: string;
+  } | null>(null);
+  const [formatQueue, setFormatQueue] = useState<StudioProblem[]>([]);
+  const formatSource = useMemo(() => createMathExamBuilderSource(), []);
   const [search, setSearch] = useState(initialFilters?.q ?? "");
   const [randomOpen, setRandomOpen] = useState(false);
   const [randomBusy, setRandomBusy] = useState(false);
@@ -753,7 +782,12 @@ export default function BankView({
             ? 1
             : initialData.page,
       },
-      version: initialFilters?.q?.trim() || initialFilters?.grade ? 1 : 0,
+      version:
+        initialFilters?.q?.trim() ||
+        initialFilters?.grade ||
+        initialData.countUnit !== "question"
+          ? 1
+          : 0,
     },
   );
   const [response, setResponse] = useState<{
@@ -770,7 +804,7 @@ export default function BankView({
   const loading = request.version !== response.version;
   const error = loading ? undefined : response.error;
   const selectedIds = useMemo(
-    () => new Set(selected.map((problem) => problem.id)),
+    () => new Set(selected.map(questionIdentity)),
     [selected],
   );
   const replaceIndex = selected.findIndex(
@@ -860,7 +894,7 @@ export default function BankView({
     (problem) => problem.eligible !== false,
   );
   const selectedOnPage = eligibleOnPage.filter((problem) =>
-    selectedIds.has(problem.id),
+    selectedIds.has(questionIdentity(problem)),
   ).length;
   const allOnPageSelected =
     eligibleOnPage.length > 0 && selectedOnPage === eligibleOnPage.length;
@@ -876,7 +910,7 @@ export default function BankView({
 
   const refreshReviewedRow = useCallback(async (id: string) => {
     const response = await fetch(
-      `/api/studio/problems/${encodeURIComponent(id)}`,
+      `${getStudioEndpoints().problems}/${encodeURIComponent(id)}?identity=question`,
       { cache: "no-store" },
     );
     if (!response.ok) throw new Error("최신 문항 조회에 실패했습니다.");
@@ -885,6 +919,8 @@ export default function BankView({
     if (
       !fresh ||
       fresh.id !== id ||
+      typeof fresh.questionId !== "string" ||
+      !Array.isArray(fresh.questionFormats) ||
       typeof fresh.eligible !== "boolean" ||
       !["pending", "approved", "rejected"].includes(fresh.reviewStatus) ||
       (fresh.ineligibleReason !== null &&
@@ -895,6 +931,12 @@ export default function BankView({
       row.id === id
         ? {
             ...row,
+            ...(fresh.questionId
+              ? {
+                  questionId: fresh.questionId,
+                  questionFormats: fresh.questionFormats,
+                }
+              : {}),
             reviewStatus: fresh.reviewStatus as BankProblem["reviewStatus"],
             eligible: fresh.eligible as boolean,
             ineligibleReason: fresh.ineligibleReason as string | null,
@@ -905,6 +947,8 @@ export default function BankView({
       data: { ...current.data, problems: current.data.problems.map(apply) },
     }));
     setDetail((current) => (current ? apply(current) : current));
+    if (fresh.questionFormats.length > 1)
+      setRequest((current) => ({ ...current, version: current.version + 1 }));
     setReviewReadError((current) => (current?.id === id ? null : current));
   }, []);
 
@@ -1012,6 +1056,7 @@ export default function BankView({
             payload.error || `문제를 불러오지 못했습니다. (${result.status})`,
           );
         if (
+          payload.countUnit !== "question" ||
           !Array.isArray(payload.problems) ||
           !Array.isArray(payload.grades) ||
           !Array.isArray(payload.chapters) ||
@@ -1084,9 +1129,12 @@ export default function BankView({
     sourceCountsLoading.current = true;
     setSourceCountsError(null);
     try {
-      const response = await fetch(`${getStudioEndpoints().problems}/sources`, {
-        cache: "no-store",
-      });
+      const response = await fetch(
+        `${getStudioEndpoints().problems}/sources?identity=question`,
+        {
+          cache: "no-store",
+        },
+      );
       const payload = await response.json();
       if (!response.ok)
         throw new Error(
@@ -1099,6 +1147,7 @@ export default function BankView({
         throw new Error(
           "출처별 문항 수를 확인할 수 없습니다. 다시 시도해 주세요.",
         );
+      requireQuestionRead(parsed.data);
       setSourceCounts(parsed.data);
     } catch (cause) {
       setSourceCountsError(
@@ -1151,21 +1200,37 @@ export default function BankView({
 
   function togglePage() {
     if (loading || error || randomBusy || replacing) return;
-    const ids = new Set(eligibleOnPage.map((problem) => problem.id));
-    changeSelection(
-      allOnPageSelected
-        ? selected.filter((problem) => !ids.has(problem.id))
-        : [
-            ...selected,
-            ...eligibleOnPage.filter((problem) => !selectedIds.has(problem.id)),
-          ],
-    );
+    const ids = new Set(eligibleOnPage.map(questionIdentity));
+    if (allOnPageSelected)
+      changeSelection(
+        selected.filter((problem) => !ids.has(questionIdentity(problem))),
+      );
+    else {
+      const additions = eligibleOnPage.filter(
+        (problem) => !selectedIds.has(questionIdentity(problem)),
+      );
+      const single = additions.filter(
+        (problem) => (problem.questionFormats?.length ?? 0) <= 1,
+      );
+      const choices = additions.filter(
+        (problem) => (problem.questionFormats?.length ?? 0) > 1,
+      );
+      if (single.length) changeSelection([...selected, ...single]);
+      if (choices.length) {
+        setFormatQueue(choices.slice(1));
+        setFormatPicker({ item: choices[0] });
+      }
+    }
   }
 
   function changeSelection(next: StudioProblem[]) {
-    const unique = [
-      ...new Map(next.map((problem) => [problem.id, problem])).values(),
-    ];
+    if (questionConflicts(next).length) {
+      setSelectionNotice(
+        "같은 문항은 한 번만 담을 수 있습니다. 형식을 바꾸려면 담은 목록에서 형식 변경을 선택하세요.",
+      );
+      return;
+    }
+    const unique = next;
     if (onSelectionChange) onSelectionChange(unique);
     else {
       const nextIds = new Set(unique.map((problem) => problem.id));
@@ -1181,10 +1246,22 @@ export default function BankView({
     }
   }
 
-  function toggleProblem(problem: StudioProblem) {
+  function toggleProblem(problem: StudioProblem, resolved = false) {
     if (randomBusy) return;
+    if (
+      !resolved &&
+      !selectedIds.has(questionIdentity(problem)) &&
+      (problem.questionFormats?.length ?? 0) > 1
+    ) {
+      setFormatPicker({ item: problem });
+      return;
+    }
     if (replacing) {
-      if (problem.eligible === false || selectedIds.has(problem.id)) return;
+      if (
+        problem.eligible === false ||
+        selectedIds.has(questionIdentity(problem))
+      )
+        return;
       const next = [...selected];
       next[replaceIndex] = problem;
       changeSelection(next);
@@ -1195,15 +1272,24 @@ export default function BankView({
       );
       return;
     }
-    if (problem.eligible === false && !selectedIds.has(problem.id)) return;
+    if (
+      problem.eligible === false &&
+      !selectedIds.has(questionIdentity(problem))
+    )
+      return;
     changeSelection(
-      selectedIds.has(problem.id)
-        ? selected.filter((item) => item.id !== problem.id)
+      selectedIds.has(questionIdentity(problem))
+        ? selected.filter(
+            (item) => questionIdentity(item) !== questionIdentity(problem),
+          )
         : [...selected, problem],
     );
   }
 
-  async function addRandom(counts: DifficultyRatio) {
+  async function addRandom(
+    counts: DifficultyRatio,
+    formats?: Record<string, number>,
+  ) {
     const total = DIFFICULTY_LADDER.reduce(
       (sum, tier) => sum + counts[tier],
       0,
@@ -1221,8 +1307,10 @@ export default function BankView({
         headers: { "Content-Type": "application/json" },
         signal: controller.signal,
         body: JSON.stringify({
+          identity: "question",
           filters: queryFor(filters, true).toString(),
           counts,
+          ...(formats ? { formats } : {}),
           excludeIds: selectedRef.current.map((problem) => problem.id),
         }),
       });
@@ -1234,6 +1322,7 @@ export default function BankView({
             : "문제를 추가하지 못했습니다. 다시 시도해 주세요.",
         );
       if (
+        payload.countUnit !== "question" ||
         !Array.isArray(payload.problems) ||
         !DIFFICULTY_LADDER.every(
           (tier) =>
@@ -1248,10 +1337,14 @@ export default function BankView({
         );
       }
       if (controller.signal.aborted) return;
+      if (payload.status === "search_limit")
+        throw new Error(
+          "조건에 맞는 구성을 끝까지 확인하지 못했습니다. 재고 부족이 확정된 결과는 아닙니다.",
+        );
       const actual = Object.fromEntries(
         DIFFICULTY_LADDER.map((tier) => [tier, 0]),
       ) as DifficultyRatio;
-      const seen = new Set(selectedRef.current.map((problem) => problem.id));
+      const seen = new Set(selectedRef.current.map(questionIdentity));
       const additions = (payload.problems as BankProblem[]).filter(
         (problem) => {
           if (
@@ -1259,14 +1352,14 @@ export default function BankView({
             typeof problem.id !== "string" ||
             typeof problem.content !== "string" ||
             problem.eligible === false ||
-            seen.has(problem.id)
+            seen.has(questionIdentity(problem))
           )
             return false;
           const tier = DIFFICULTY_LADDER.find(
             (tier) => tier === problem.difficulty,
           );
           if (!tier || actual[tier] >= counts[tier]) return false;
-          seen.add(problem.id);
+          seen.add(questionIdentity(problem));
           actual[tier] += 1;
           return true;
         },
@@ -1277,6 +1370,8 @@ export default function BankView({
         requested: counts,
         actual,
         available: payload.available,
+        formats: payload.formats,
+        selectionStatus: payload.status,
       });
     } catch (cause) {
       if (!controller.signal.aborted)
@@ -1599,11 +1694,36 @@ export default function BankView({
                       }
                     >
                       <option value="">{empty}</option>
-                      {options.map(({ value, label }) => (
-                        <option key={value} value={value}>
-                          {label}
-                        </option>
-                      ))}
+                      {key === "problemFilter" ? (
+                        <>
+                          <optgroup label="문항 유형">
+                            {PROBLEM_FILTER_OPTIONS.filter(
+                              ({ value }) =>
+                                splitProblemFilterValue(value).problemType,
+                            ).map(({ value, label }) => (
+                              <option key={value} value={value}>
+                                {label}
+                              </option>
+                            ))}
+                          </optgroup>
+                          <optgroup label="사용 가능한 형식">
+                            {PROBLEM_FILTER_OPTIONS.filter(
+                              ({ value }) =>
+                                splitProblemFilterValue(value).format,
+                            ).map(({ value, label }) => (
+                              <option key={value} value={value}>
+                                {label}
+                              </option>
+                            ))}
+                          </optgroup>
+                        </>
+                      ) : (
+                        options.map(({ value, label }) => (
+                          <option key={value} value={value}>
+                            {label}
+                          </option>
+                        ))
+                      )}
                     </select>
                     <span className={styles.chevronDown}>
                       <Icon name="chevron" />
@@ -1864,11 +1984,11 @@ export default function BankView({
             ) : (
               data.problems.map((problem, index) => (
                 <ProblemRow
-                  key={problem.id}
+                  key={`${questionIdentity(problem)}:${index}`}
                   problem={problem}
                   number={firstRow + index}
-                  selected={selectedIds.has(problem.id)}
-                  onToggle={toggleProblem}
+                  selected={selectedIds.has(questionIdentity(problem))}
+                  onToggle={(problem) => toggleProblem(problem)}
                   busy={randomBusy}
                   replacing={replacing}
                   onOpenDetail={setDetail}
@@ -1880,8 +2000,8 @@ export default function BankView({
             <DetailModal
               problem={detail}
               busy={reviewBusy}
-              selected={selectedIds.has(detail.id)}
-              onToggle={toggleProblem}
+              selected={selectedIds.has(questionIdentity(detail))}
+              onToggle={(problem) => toggleProblem(problem)}
               selectionBusy={randomBusy}
               replacing={replacing}
               onClose={() => setDetail(null)}
@@ -1943,6 +2063,9 @@ export default function BankView({
 
         <BankBasket
           selected={selected}
+          onFormatChange={(item) =>
+            setFormatPicker({ item, changeId: item.id })
+          }
           busy={randomBusy}
           canExport={canExport}
           onExport={onExport}
@@ -1955,6 +2078,38 @@ export default function BankView({
           }}
         />
       </div>
+      {formatPicker && (
+        <QuestionFormatPicker
+          item={formatPicker.item}
+          actualId={formatPicker.item.id}
+          options={formatPicker.item.questionFormats ?? []}
+          load={formatSource.questionFormats!.load}
+          renderQuestion={(item) => (
+            <UnifiedProblem problem={item} hideScores />
+          )}
+          changing={!!formatPicker.changeId}
+          onClose={() => {
+            setFormatPicker(null);
+            setFormatQueue([]);
+          }}
+          onChoose={(actual) => {
+            if (formatPicker.changeId) {
+              const at = selectedRef.current.findIndex(
+                (row) => row.id === formatPicker.changeId,
+              );
+              const next = selectedRef.current.filter(
+                (row) => questionIdentity(row) !== questionIdentity(actual),
+              );
+              next.splice(Math.max(0, at), 0, actual);
+              changeSelection(next);
+            } else toggleProblem(actual, true);
+            setFormatPicker(
+              formatQueue.length ? { item: formatQueue[0] } : null,
+            );
+            setFormatQueue((queue) => queue.slice(1));
+          }}
+        />
+      )}
     </section>
   );
 }

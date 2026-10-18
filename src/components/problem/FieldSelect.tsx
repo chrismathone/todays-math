@@ -47,7 +47,8 @@ function selectedOptionText(
     const props = child.props as { value?: string; children?: ReactNode };
     if (props.value === value && typeof props.children === "string") {
       found = props.children;
-    }
+    } else if (child.type === "optgroup")
+      found = selectedOptionText(props.children, value);
   });
   return found;
 }

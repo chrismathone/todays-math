@@ -28,7 +28,8 @@ import s from "./BankSourcePicker.module.css";
  *   ⑷ 고른 것은 창 안의 초안이다 — [적용]을 눌러야 걸리고, Esc 는 버린다. 창 안에서는 «걸리는 문항 n개»만 바뀐다.
  */
 
-const n = (value: number) => value.toLocaleString("ko-KR");
+const n = (value: number | null) =>
+  value === null ? "미확인" : value.toLocaleString("ko-KR");
 const toggle = (list: string[], value: string) =>
   list.includes(value)
     ? list.filter((item) => item !== value)
@@ -80,7 +81,7 @@ function CheckRow({
   onChange: () => void;
   label: ReactNode;
   sub?: string;
-  count: number;
+  count: number | null;
   zero?: boolean;
   disabled?: boolean;
   className?: string;
@@ -165,7 +166,7 @@ function TextbookPanes({
           <CheckRow
             className={s.allRow}
             label={`${grade} 교과서 전부`}
-            count={list.reduce((sum, book) => sum + book.count, 0)}
+            count={ids.length ? matchedCount(counts, ids, []) : 0}
             checked={all}
             onChange={() =>
               setBooks((books) =>
@@ -276,6 +277,7 @@ export function BankSourcePicker({
         })),
       ]
     : [];
+  const matched = counts ? matchedCount(counts, books, kinds) : null;
 
   return (
     <PickerDialog
@@ -337,11 +339,17 @@ export function BankSourcePicker({
             {textbook ? (
               <div className={s.footer}>
                 <span>
-                  걸리는 문항 <b>{n(matchedCount(counts, books, kinds))}</b>개
+                  걸리는 문항 <b>{n(matched)}</b>
+                  {matched === null ? "" : "개"}
                   <span className={s.count}>
                     {" "}
                     / 교과서 {n(counts.textbook.total)}
                   </span>
+                  {matched === null && (
+                    <small className={s.sub}>
+                      겹치는 문항 수는 적용 후 목록에서 확인합니다.
+                    </small>
+                  )}
                 </span>
                 <button
                   type="button"

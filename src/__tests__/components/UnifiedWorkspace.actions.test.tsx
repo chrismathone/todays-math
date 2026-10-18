@@ -46,12 +46,19 @@ vi.mock("@/components/exam-builder/MathExamBuilder", () => ({
   default: ({
     editor,
     onQuestionsChange,
+    onIntentIssueChange,
   }: {
     editor: { selected: StudioProblem[] };
     onQuestionsChange: (problems: StudioProblem[]) => void;
+    onIntentIssueChange?: (issue: string | null) => void;
   }) => (
     <>
       <h2>문제은행 열림</h2>
+      <button
+        onClick={() => onIntentIssueChange?.("객관식 4문항 지정 · 현재 2문항")}
+      >
+        형식 부족 검증
+      </button>
       <output aria-label="시험지 구성 문항">
         {editor.selected.map((item) => item.id).join(",")}
       </output>
@@ -163,6 +170,22 @@ function seed() {
 }
 
 describe("workspace action wiring", () => {
+  it("blocks the workspace save shortcut when the builder reports an explicit format shortage", async () => {
+    render(<UnifiedWorkspace initialData={initialData} />);
+    fireEvent.click(
+      await screen.findByRole("button", { name: /문제은행에서 담기/ }),
+    );
+    fireEvent.click(
+      await screen.findByRole("button", { name: "형식 부족 검증" }),
+    );
+    fireEvent.keyDown(window, { key: "s", ctrlKey: true });
+    expect(
+      await screen.findByText(/객관식 4문항 지정 · 현재 2문항.*조건을 수정/),
+    ).toBeVisible();
+    expect(
+      screen.queryByText("이 브라우저에 작업을 저장했습니다."),
+    ).not.toBeInTheDocument();
+  });
   it("rejects ineligible bank rows at the workspace selection boundary", async () => {
     render(<UnifiedWorkspace initialData={initialData} />);
     fireEvent.click(

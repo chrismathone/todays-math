@@ -41,6 +41,8 @@ import {
 } from "./ComposeConditions";
 import cc from "./ComposeConditions.module.css";
 import { canSelectScope } from "./scopeAvailability";
+import QuestionFormatPicker from "./QuestionFormatPicker";
+import { FORMAT_LABEL } from "@/lib/problem/questionSelectionClient";
 import QuestionPicker from "./QuestionPicker";
 import ReplaceDialog from "./ReplaceDialog";
 import { moveQuestion, useQuestionReorder } from "./useQuestionReorder";
@@ -61,7 +63,10 @@ export default function ExamBuilder<T>({
   initialScopeIds,
   initialGroup,
   initialStep,
+  preserveStoredOutput = false,
+  onBeginEdit,
   onStepChange,
+  onIntentIssueChange,
   canOutput = true,
   onOutputIntent,
   disabled = false,
@@ -73,7 +78,9 @@ export default function ExamBuilder<T>({
   const [step, updateStep] = useState<ExamBuilderStep>(() =>
     questions.length ? (initialStep ?? "scope") : "scope",
   );
-  const [outputReady, setOutputReady] = useState(false);
+  const [outputReady, setOutputReady] = useState(
+    () => preserveStoredOutput && initialStep === "output",
+  );
   function setStep(next: ExamBuilderStep) {
     updateStep(next);
     onStepChange?.(next);
@@ -89,6 +96,7 @@ export default function ExamBuilder<T>({
   }));
   const excludeRecent = !!conditions && applied.recent;
   const [conditionsOpen, setConditionsOpen] = useState(false);
+  const [hasComposed, setHasComposed] = useState(false);
   const conditionsOpener = useRef<HTMLButtonElement>(null);
   // 출제 가능 수는 최근 출제를 뺀 것 · 넣은 것을 따로 둔다 — 창이 둘을 견주고, 적용하면 깜빡이지 않고 바뀐다.
   const [loadedList, setLoadedList] = useState<
@@ -130,6 +138,22 @@ export default function ExamBuilder<T>({
     replaceId?: string;
     scopeId?: string;
   } | null>(null);
+  const [formatPicker, setFormatPicker] = useState<{
+    item: T;
+    changeId?: string;
+  } | null>(null);
+  const identity = (item: T) =>
+    source.info(item).questionId ?? source.info(item).id;
+  const duplicateQuestions = (items: T[]) =>
+    new Set(items.map(identity)).size !== items.length;
+  const conflicts = new Map<string, T[]>();
+  questions.forEach((item) => {
+    const key = identity(item);
+    conflicts.set(key, [...(conflicts.get(key) ?? []), item]);
+  });
+  const conflictGroups = [...conflicts.values()].filter(
+    (items) => items.length > 1,
+  );
   const [pickerWidth, setPickerWidth] = useState<number>();
   // W3 교체 창 — 연 [교체] 단추로 초점을 돌려보내고, 바꾼 자리를 잠시 표시한다.
   const [replaceOpenerEl, setReplaceOpenerEl] =
@@ -143,6 +167,35 @@ export default function ExamBuilder<T>({
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
   const [history, setHistory] = useState<T[][]>([]);
+  const unresolvedIds = source.resolveIdentity
+    ? questions
+        .filter((item) => !source.info(item).questionId)
+        .map((item) => source.info(item).id)
+        .join(",")
+    : "";
+  const [identityError, setIdentityError] = useState("");
+  useEffect(() => {
+    if (!unresolvedIds || step === "output" || !source.resolveIdentity) return;
+    const controller = new AbortController();
+    void source
+      .resolveIdentity(questions, controller.signal)
+      .then((next) => {
+        if (
+          !controller.signal.aborted &&
+          next.some((item, index) => item !== questions[index])
+        )
+          onQuestionsChange(next);
+      })
+      .catch((cause) => {
+        if (!controller.signal.aborted)
+          setIdentityError(
+            cause instanceof Error
+              ? cause.message
+              : "저장 문항의 현재 정체를 확인하지 못했습니다.",
+          );
+      });
+    return () => controller.abort();
+  }, [source, questions, unresolvedIds, step, onQuestionsChange]);
   const operation = useRef<AbortController | null>(null);
   const work = useRef(false);
   const reviewRef = useRef<HTMLElement>(null);
@@ -217,6 +270,37 @@ export default function ExamBuilder<T>({
     return scope ? [scope] : [];
   });
   const requested = allocations.reduce((sum, row) => sum + row.count, 0);
+  // New question-aware math sources retain the teacher's explicit intent.
+  // A partial read may be reviewed, but cannot silently become a smaller test.
+  const requiredTotal =
+    conditions && source.questionFormats
+      ? (applied.total ?? (hasComposed ? requested : null))
+      : null;
+  const formatMismatches =
+    conditions && source.questionFormats
+      ? Object.entries(formatIntent(applied.formats) ?? {}).flatMap(
+          ([format, count]) => {
+            const actual = questions.filter(
+              (item) => source.info(item).format === format,
+            ).length;
+            return actual === count
+              ? []
+              : [`${format} ${count}문항 지정 · 현재 ${actual}문항`];
+          },
+        )
+      : [];
+  const intentWarning = [
+    requiredTotal !== null && questions.length !== requiredTotal
+      ? `총 ${requiredTotal}문항 지정 · 현재 ${questions.length}문항`
+      : "",
+    ...formatMismatches,
+  ]
+    .filter(Boolean)
+    .join(". ");
+  const outputAllowed = canOutput && !intentWarning;
+  useEffect(() => {
+    onIntentIssueChange?.(intentWarning || null);
+  }, [intentWarning, onIntentIssueChange]);
   // 표를 손으로 고쳐 난이도와 합이 어긋나면 구성 전에 막는다 — 창의 «확인할 것»과 같은 말.
   const ladderWarning = conditions
     ? (ladderIssue(applied.ladder, requested, conditions.ladder) ??
@@ -437,6 +521,12 @@ export default function ExamBuilder<T>({
   });
   function change(next: T[]) {
     if (next === questions) return;
+    if (duplicateQuestions(next)) {
+      setError(
+        "같은 문항의 형식이 함께 있습니다. 유지할 표현을 먼저 선택해 주세요.",
+      );
+      return;
+    }
     setSwappedId(null);
     setHistory((current) => [...current.slice(-9), questions]);
     onQuestionsChange(next);
@@ -451,15 +541,23 @@ export default function ExamBuilder<T>({
     return () => observer.disconnect();
   }, [picker]);
   /** 추가 · 교체 — 교체는 그 자리 · 차례 그대로(되돌리기 기록에 남는다). 바꿨으면 true. */
-  function choose(item: T): boolean {
+  function choose(item: T, formatResolved = false): boolean {
     if (!picker) return false;
+    if (
+      !formatResolved &&
+      (source.questionFormats?.options(item).length ?? 0) > 1
+    ) {
+      setFormatPicker({ item });
+      return false;
+    }
     const added = source.info(item);
     const takenElsewhere = questions.some((current) => {
       const existing = source.info(current);
       return (
         existing.id !== picker.replaceId &&
-        !!added.familyId &&
-        existing.familyId === added.familyId
+        ((added.questionId && existing.questionId === added.questionId) ||
+          existing.id === added.id ||
+          (!!added.familyId && existing.familyId === added.familyId))
       );
     });
     let done = false;
@@ -476,7 +574,7 @@ export default function ExamBuilder<T>({
     } else if (
       questions.length < maxQuestions &&
       !takenElsewhere &&
-      !questions.some((current) => source.info(current).id === added.id)
+      !questions.some((current) => identity(current) === identity(item))
     ) {
       change([...questions, item]);
       done = true;
@@ -610,7 +708,7 @@ export default function ExamBuilder<T>({
     if (
       work.current ||
       disabled ||
-      (kind === "compose" ? !valid : !questions.length || !canOutput)
+      (kind === "compose" ? !valid : !questions.length || !outputAllowed)
     )
       return;
     const controller = new AbortController();
@@ -669,9 +767,11 @@ export default function ExamBuilder<T>({
             }),
           ]
         : drawn;
-      const unique = [
-        ...new Map(next.map((item) => [source.info(item).id, item])).values(),
-      ];
+      if (duplicateQuestions(next))
+        throw new Error(
+          "같은 문항의 형식이 함께 있습니다. 유지할 표현을 선택해 주세요. 기존 문항은 유지됩니다.",
+        );
+      const unique = next;
       // 남긴 문항이 없으면(새로 짠 시험지) 무리 안에서 쉬운 것부터, 남긴 문항이 있으면 원장님 차례를 지킨다.
       const distinct =
         plan && conditions && applied.mcFirst
@@ -683,6 +783,7 @@ export default function ExamBuilder<T>({
         throw new Error("출력할 문항이 없습니다. 문항을 다시 확인해 주세요.");
       change(distinct);
       if (kind === "compose") {
+        setHasComposed(true);
         setApplyReport(null);
         const keptCount = plan?.kept.length ?? 0;
         setNotice(
@@ -723,7 +824,7 @@ export default function ExamBuilder<T>({
   // Explicit resume of output must pass the same eligibility/revision gate as
   // the output button. Do not mount the printable editor before validation.
   useEffect(() => {
-    if (step !== "output" || outputReady || disabled || !canOutput) return;
+    if (step !== "output" || outputReady || disabled || !outputAllowed) return;
     const controller = new AbortController();
     void (async () => {
       try {
@@ -731,9 +832,7 @@ export default function ExamBuilder<T>({
           ? await source.prepareOutput(questions, controller.signal)
           : questions;
         if (controller.signal.aborted) return;
-        const distinct = [
-          ...new Map(next.map((item) => [source.info(item).id, item])).values(),
-        ];
+        const distinct = next;
         if (!distinct.length || distinct.length > maxQuestions)
           throw new Error("출력할 문항을 다시 확인해 주세요.");
         if (
@@ -758,7 +857,7 @@ export default function ExamBuilder<T>({
     step,
     outputReady,
     disabled,
-    canOutput,
+    outputAllowed,
     source,
     questions,
     maxQuestions,
@@ -766,11 +865,11 @@ export default function ExamBuilder<T>({
     onStepChange,
   ]);
   const actionsDisabled = disabled || busy;
-  if (step === "output" && (!outputReady || disabled || !canOutput))
+  if (step === "output" && (!outputReady || disabled || !outputAllowed))
     return (
       <section className={s.output} aria-label="출력 문항 확인">
         <p role="status">
-          {!canOutput
+          {!outputAllowed
             ? "출력 권한을 확인해 주세요."
             : "출력할 문항을 확인하는 중입니다…"}
         </p>
@@ -782,12 +881,36 @@ export default function ExamBuilder<T>({
   if (step === "output")
     return (
       <section className={s.output} data-exam-builder-output>
+        {error && (
+          <p className={s.error} role="alert">
+            {error}
+          </p>
+        )}
         {renderOutput({
           questions,
           onQuestionsChange: change,
           title,
           onTitleChange,
-          onStep: go,
+          onStep: (next) => {
+            if (!preserveStoredOutput || !onBeginEdit) {
+              go(next);
+              return;
+            }
+            void onBeginEdit()
+              .then((copied) => {
+                if (copied) {
+                  setOutputReady(false);
+                  go(next);
+                }
+              })
+              .catch((cause) =>
+                setError(
+                  cause instanceof Error
+                    ? cause.message
+                    : "편집 사본을 만들지 못했습니다.",
+                ),
+              );
+          },
         })}
       </section>
     );
@@ -839,7 +962,7 @@ export default function ExamBuilder<T>({
               id: "output",
               label: "3 양식 구성·출력",
               current: false,
-              disabled: actionsDisabled || !questions.length || !canOutput,
+              disabled: actionsDisabled || !questions.length || !outputAllowed,
               onSelect: () => void run("output"),
             },
           ],
@@ -849,7 +972,7 @@ export default function ExamBuilder<T>({
           <button
             type="button"
             className={s.primary}
-            disabled={actionsDisabled || !questions.length || !canOutput}
+            disabled={actionsDisabled || !questions.length || !outputAllowed}
             onClick={() => void run("output")}
           >
             {busy ? (
@@ -1273,6 +1396,12 @@ export default function ExamBuilder<T>({
                   onClick={() => {
                     const previous = history.at(-1);
                     if (previous) {
+                      if (duplicateQuestions(previous)) {
+                        setError(
+                          "되돌릴 목록에 같은 문항의 형식이 함께 있습니다. 현재 선택은 유지했습니다.",
+                        );
+                        return;
+                      }
                       onQuestionsChange(previous);
                       setHistory((current) => current.slice(0, -1));
                     }
@@ -1293,6 +1422,45 @@ export default function ExamBuilder<T>({
                 </button>
               </div>
             </div>
+            {intentWarning && (
+              <p className={s.error} role="alert">
+                {intentWarning}. 지정한 조건이 맞지 않아 저장·출력을 진행할 수
+                없습니다. 범위 설정에서 조건을 수정하거나 다시 구성해 주세요.
+              </p>
+            )}
+            {conflictGroups.length > 0 && (
+              <div className={s.error} role="alert">
+                <p>
+                  저장된 목록에 같은 문항의 형식이 함께 있습니다. 새로
+                  편집하려면 유지할 표현을 선택하세요. 저장된 원본은 자동으로
+                  줄이지 않습니다.
+                </p>
+                {conflictGroups.map((items) => (
+                  <div key={identity(items[0])}>
+                    {items.map((item) => (
+                      <button
+                        type="button"
+                        key={source.info(item).id}
+                        disabled={actionsDisabled}
+                        onClick={() => {
+                          const key = identity(item);
+                          setHistory([]);
+                          onQuestionsChange(
+                            questions.filter(
+                              (row) => identity(row) !== key || row === item,
+                            ),
+                          );
+                          setError("");
+                        }}
+                      >
+                        {source.info(item).format ?? "현재 표현"} ·{" "}
+                        {source.info(item).detail ?? source.info(item).id} 유지
+                      </button>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            )}
             {!questions.length ? (
               <div className={`${s.panel} ${s.empty}`}>
                 <h2>검토할 문항이 없습니다.</h2>
@@ -1326,7 +1494,7 @@ export default function ExamBuilder<T>({
                       const info = source.info(item);
                       return (
                         <article
-                          key={info.id}
+                          key={`${identity(item)}:${index}`}
                           className={`${s.question} ${reorder.drag?.from === index ? s.dragging : ""} ${swappedId === info.id ? s.justSwapped : ""}`}
                           data-exam-question
                           data-question-id={info.id}
@@ -1358,6 +1526,34 @@ export default function ExamBuilder<T>({
                             {renderAnswer?.(item)}
                           </div>
                           <div className={s.actions}>
+                            {(source.questionFormats?.options(item).length ??
+                              0) > 1 && (
+                              <button
+                                type="button"
+                                disabled={actionsDisabled}
+                                onClick={() =>
+                                  setFormatPicker({ item, changeId: info.id })
+                                }
+                              >
+                                형식 변경 · {info.format ?? "미분류"}
+                              </button>
+                            )}
+                            {source.questionFormats && (
+                              <small>
+                                {[
+                                  ...new Set(
+                                    source.questionFormats
+                                      .options(item)
+                                      .filter(
+                                        (row) =>
+                                          row.state === "available" &&
+                                          row.format,
+                                      )
+                                      .map((row) => FORMAT_LABEL[row.format!]),
+                                  ),
+                                ].join(" · ")}
+                              </small>
+                            )}
                             <button
                               type="button"
                               disabled={
@@ -1432,6 +1628,11 @@ export default function ExamBuilder<T>({
             )}
           </section>
         </div>
+      )}
+      {identityError && (
+        <p role="alert" className={s.error}>
+          {identityError} 현재 문항은 유지했습니다.
+        </p>
       )}
       {reorder.drag && reorder.line && (
         <div className={s.dropTarget} style={reorder.line} role="status">
@@ -1578,9 +1779,38 @@ export default function ExamBuilder<T>({
               maxQuestions={maxQuestions}
               renderQuestion={renderQuestion}
               onClose={() => setPicker(null)}
-              onChoose={(item) => void choose(item)}
+              onChoose={(item) => choose(item)}
             />
           )}
+      {formatPicker && source.questionFormats && (
+        <QuestionFormatPicker
+          item={formatPicker.item}
+          actualId={source.info(formatPicker.item).id}
+          options={source.questionFormats.options(formatPicker.item)}
+          load={source.questionFormats.load}
+          renderQuestion={renderQuestion}
+          changing={!!formatPicker.changeId}
+          onClose={() => setFormatPicker(null)}
+          onChoose={(actual) => {
+            if (formatPicker.changeId) {
+              const next = questions.map((row) =>
+                source.info(row).id === formatPicker.changeId ? actual : row,
+              );
+              if (duplicateQuestions(next))
+                throw new Error("같은 문항의 형식 충돌을 먼저 해소해 주세요.");
+              change(next);
+              setNotice(
+                "출제 형식을 바꿨습니다. 자리와 문항 수는 그대로입니다.",
+              );
+              setSwappedId(source.info(actual).id);
+            } else if (!choose(actual, true))
+              throw new Error(
+                "이미 담긴 문항이거나 같은 문항류가 있습니다. 현재 선택은 유지했습니다.",
+              );
+            setFormatPicker(null);
+          }}
+        />
+      )}
     </section>
   );
 }

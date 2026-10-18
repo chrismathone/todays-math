@@ -19,7 +19,7 @@ import sc from "./SavedConditions.module.css";
  */
 
 export const RESTORE_RULE =
-  "조건만 가져옵니다 — 출처 · 범위 행(수 · 고정) · 총 문항 · 난이도 · 최근 출제 빼기. 문항은 [문항 구성]으로 새로 고르고, 지면 양식은 담지 않습니다.";
+  "조건만 가져옵니다 — 출처 · 범위 행(수 · 고정) · 총 문항 · 난이도 · 최근 출제 빼기. 문항은 [문항 구성]으로 새로 고르고, 출제 형식·문항 차례·지면 양식은 저장하지 않습니다(v1).";
 
 type Contents = Pick<
   ExamConditionInput,
@@ -327,7 +327,10 @@ export function SavedConditionsDialog({
           차례
         </span>
         <span className={sc.grow} />
-        <span>조건만 담습니다 — 문항 · 지면 양식은 담지 않습니다.</span>
+        <span>
+          조건만 담습니다 — 문항 · 출제 형식·문항 차례·지면 양식은 저장하지
+          않습니다(v1).
+        </span>
       </div>
       {loading ? (
         <p className={sc.empty} role="status">

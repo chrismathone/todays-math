@@ -84,6 +84,7 @@ export const PROBLEM_FILTER_OPTIONS = [
   { value: "type:계산", label: "계산" },
   { value: "type:개념", label: "개념" },
   { value: "type:활용", label: "활용" },
+  { value: "format:multiple_choice", label: "객관식" },
   { value: "format:short_answer", label: "단답형" },
   { value: "format:descriptive", label: "서술형" },
 ] as const;
