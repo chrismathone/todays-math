@@ -1,0 +1,511 @@
+{
+  "originalBaseCommit": "eb5d6e285",
+  "originalLedgerSha256": "496853ad78afa249439b1a71d021dd64230e0402cb7aa375c6ac215eebe46bc0",
+  "originalOutputCount": 7428,
+  "originalOutputSha256": "7a90f427dda912d3cb4ac8037ae45dd6ed9c3aa7387e011a55ea9a52920b3554",
+  "approvedRepairManifestSha256": "d81ebc1a641c92703ddb9885558c5e31adf483097bf5e24e150e97ba80445355",
+  "approvedRepairSourceCommit": "cfbb07daff5b7416081413604d43815696d31c4e",
+  "approvedG4SourceSha256": "0a39056454b9efaa366d2d0b6847a23829ae2895bc012b755c6b1f3e670fd2bf",
+  "unchangedOutputs": 7413,
+  "purpose": "Restore only the 15 outputs of five explicitly approved repaired families to verify the immutable original 7428-output digest. Current repaired outputs must independently match their approved-source digests. No runtime Git dependency and no regeneration of the original ledger.",
+  "changes": [
+    {
+      "familyKey": "elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|09",
+      "beforeRow": [
+        "초4",
+        "2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "09",
+        "응용",
+        0,
+        {
+          "grade": "초4",
+          "chapter": "2-2 삼각형",
+          "section": "2-2-1 삼각형을 변의 길이에 따라 분류하기",
+          "orderIndex": 223,
+          "content": "그림에서 이등변삼각형의 기호를 쓰시오.",
+          "answer": "나",
+          "solution": "나는 두 변의 길이가 같습니다.",
+          "figureSpec": {
+            "version": "elem-1",
+            "kind": "namedShapes",
+            "items": [
+              {
+                "shape": "eqTri",
+                "label": "가"
+              },
+              {
+                "shape": "isoTri",
+                "label": "나"
+              },
+              {
+                "shape": "rightTri",
+                "label": "다"
+              }
+            ]
+          },
+          "formId": "09"
+        }
+      ],
+      "afterRowSha256": "deee6d6d0f1b22765fdf768c34eb51afab6e8282c41e590c0cd3d385e7ec542f"
+    },
+    {
+      "familyKey": "elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|09",
+      "beforeRow": [
+        "초4",
+        "2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "09",
+        "응용",
+        7,
+        {
+          "grade": "초4",
+          "chapter": "2-2 삼각형",
+          "section": "2-2-1 삼각형을 변의 길이에 따라 분류하기",
+          "orderIndex": 223,
+          "content": "그림에서 이등변삼각형의 기호를 쓰시오.",
+          "answer": "나",
+          "solution": "나는 두 변의 길이가 같습니다.",
+          "figureSpec": {
+            "version": "elem-1",
+            "kind": "namedShapes",
+            "items": [
+              {
+                "shape": "eqTri",
+                "label": "가"
+              },
+              {
+                "shape": "isoTri",
+                "label": "나"
+              },
+              {
+                "shape": "rightTri",
+                "label": "다"
+              }
+            ]
+          },
+          "formId": "09"
+        }
+      ],
+      "afterRowSha256": "e1a868977bbf0bc448413e11a2990dad146febde4de4b869e15d7355a1d25a85"
+    },
+    {
+      "familyKey": "elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|09",
+      "beforeRow": [
+        "초4",
+        "2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "09",
+        "응용",
+        20261018,
+        {
+          "grade": "초4",
+          "chapter": "2-2 삼각형",
+          "section": "2-2-1 삼각형을 변의 길이에 따라 분류하기",
+          "orderIndex": 223,
+          "content": "그림에서 이등변삼각형의 기호를 쓰시오.",
+          "answer": "나",
+          "solution": "나는 두 변의 길이가 같습니다.",
+          "figureSpec": {
+            "version": "elem-1",
+            "kind": "namedShapes",
+            "items": [
+              {
+                "shape": "eqTri",
+                "label": "가"
+              },
+              {
+                "shape": "isoTri",
+                "label": "나"
+              },
+              {
+                "shape": "rightTri",
+                "label": "다"
+              }
+            ]
+          },
+          "formId": "09"
+        }
+      ],
+      "afterRowSha256": "40c718bfda80dca2533595c89624d1ad7b4bb5232c40f229fc6d31f70ae9b7ae"
+    },
+    {
+      "familyKey": "elem:초4|2-2-2 이등변삼각형의 성질|09",
+      "beforeRow": [
+        "초4",
+        "2-2-2 이등변삼각형의 성질",
+        "09",
+        "응용",
+        0,
+        {
+          "grade": "초4",
+          "chapter": "2-2 삼각형",
+          "section": "2-2-2 이등변삼각형의 성질",
+          "orderIndex": 224,
+          "content": "그림에서 두 밑각의 크기가 같은 삼각형의 기호를 쓰시오.",
+          "answer": "다",
+          "solution": "이등변삼각형은 두 밑각의 크기가 같습니다. 다입니다.",
+          "figureSpec": {
+            "version": "elem-1",
+            "kind": "namedShapes",
+            "items": [
+              {
+                "shape": "wideTri",
+                "label": "가"
+              },
+              {
+                "shape": "rightTri",
+                "label": "나"
+              },
+              {
+                "shape": "isoTri",
+                "label": "다"
+              }
+            ]
+          },
+          "formId": "09"
+        }
+      ],
+      "afterRowSha256": "a66d61ecd4bd8cf2c26e1c5c1c24c5634f26419fb7bd2c5003517c0e436156f5"
+    },
+    {
+      "familyKey": "elem:초4|2-2-2 이등변삼각형의 성질|09",
+      "beforeRow": [
+        "초4",
+        "2-2-2 이등변삼각형의 성질",
+        "09",
+        "응용",
+        7,
+        {
+          "grade": "초4",
+          "chapter": "2-2 삼각형",
+          "section": "2-2-2 이등변삼각형의 성질",
+          "orderIndex": 224,
+          "content": "그림에서 두 밑각의 크기가 같은 삼각형의 기호를 쓰시오.",
+          "answer": "가",
+          "solution": "이등변삼각형은 두 밑각의 크기가 같습니다. 가입니다.",
+          "figureSpec": {
+            "version": "elem-1",
+            "kind": "namedShapes",
+            "items": [
+              {
+                "shape": "isoTri",
+                "label": "가"
+              },
+              {
+                "shape": "wideTri",
+                "label": "나"
+              },
+              {
+                "shape": "rightTri",
+                "label": "다"
+              }
+            ]
+          },
+          "formId": "09"
+        }
+      ],
+      "afterRowSha256": "446cccc222bb4ecc9cc9e59f427aee78e0c11a320a85fe5d78fbab3c410169d0"
+    },
+    {
+      "familyKey": "elem:초4|2-2-2 이등변삼각형의 성질|09",
+      "beforeRow": [
+        "초4",
+        "2-2-2 이등변삼각형의 성질",
+        "09",
+        "응용",
+        20261018,
+        {
+          "grade": "초4",
+          "chapter": "2-2 삼각형",
+          "section": "2-2-2 이등변삼각형의 성질",
+          "orderIndex": 224,
+          "content": "그림에서 두 밑각의 크기가 같은 삼각형의 기호를 쓰시오.",
+          "answer": "나",
+          "solution": "이등변삼각형은 두 밑각의 크기가 같습니다. 나입니다.",
+          "figureSpec": {
+            "version": "elem-1",
+            "kind": "namedShapes",
+            "items": [
+              {
+                "shape": "wideTri",
+                "label": "가"
+              },
+              {
+                "shape": "isoTri",
+                "label": "나"
+              },
+              {
+                "shape": "rightTri",
+                "label": "다"
+              }
+            ]
+          },
+          "formId": "09"
+        }
+      ],
+      "afterRowSha256": "e9bc772e861cf5670ff4723c0c6c5b39dc86e55e917774b7964d4a46a66d7799"
+    },
+    {
+      "familyKey": "elem:초4|2-4-2 평행과 평행선|09",
+      "beforeRow": [
+        "초4",
+        "2-4-2 평행과 평행선",
+        "09",
+        "응용",
+        0,
+        {
+          "grade": "초4",
+          "chapter": "2-4 사각형",
+          "section": "2-4-2 평행과 평행선",
+          "orderIndex": 236,
+          "content": "평행한 두 직선 사이에 수선을 $5$개 그었습니다. 수선은 몇 개인가?",
+          "answer": "$5$",
+          "solution": "그은 수선은 $5$개입니다.",
+          "figureSpec": {
+            "version": "elem-1",
+            "kind": "lineRelation",
+            "relation": "parallel",
+            "perpCount": 3
+          },
+          "formId": "09"
+        }
+      ],
+      "afterRowSha256": "7ced26fdba09d49cd30bf494005654d33f0b13bd2671f5011c128b6a50b6f482"
+    },
+    {
+      "familyKey": "elem:초4|2-4-2 평행과 평행선|09",
+      "beforeRow": [
+        "초4",
+        "2-4-2 평행과 평행선",
+        "09",
+        "응용",
+        7,
+        {
+          "grade": "초4",
+          "chapter": "2-4 사각형",
+          "section": "2-4-2 평행과 평행선",
+          "orderIndex": 236,
+          "content": "평행한 두 직선 사이에 수선을 $5$개 그었습니다. 수선은 몇 개인가?",
+          "answer": "$5$",
+          "solution": "그은 수선은 $5$개입니다.",
+          "figureSpec": {
+            "version": "elem-1",
+            "kind": "lineRelation",
+            "relation": "parallel",
+            "perpCount": 3
+          },
+          "formId": "09"
+        }
+      ],
+      "afterRowSha256": "114ae27e3ba708dbfbd9e7d5809f3d00a4a30b3be5da5c6747af79edf00b6ba8"
+    },
+    {
+      "familyKey": "elem:초4|2-4-2 평행과 평행선|09",
+      "beforeRow": [
+        "초4",
+        "2-4-2 평행과 평행선",
+        "09",
+        "응용",
+        20261018,
+        {
+          "grade": "초4",
+          "chapter": "2-4 사각형",
+          "section": "2-4-2 평행과 평행선",
+          "orderIndex": 236,
+          "content": "평행한 두 직선 사이에 수선을 $4$개 그었습니다. 수선은 몇 개인가?",
+          "answer": "$4$",
+          "solution": "그은 수선은 $4$개입니다.",
+          "figureSpec": {
+            "version": "elem-1",
+            "kind": "lineRelation",
+            "relation": "parallel",
+            "perpCount": 3
+          },
+          "formId": "09"
+        }
+      ],
+      "afterRowSha256": "cd6462834f0148a31ac6004615034abe86d2c2f0d82a3b32193f3b780eb7e0f1"
+    },
+    {
+      "familyKey": "elem:초4|2-4-4 사다리꼴|05",
+      "beforeRow": [
+        "초4",
+        "2-4-4 사다리꼴",
+        "05",
+        "기본",
+        0,
+        {
+          "grade": "초4",
+          "chapter": "2-4 사각형",
+          "section": "2-4-4 사다리꼴",
+          "orderIndex": 238,
+          "content": "그림에서 사다리꼴의 기호를 쓰시오.",
+          "answer": "다",
+          "solution": "다는 평행한 변이 한 쌍 있는 사각형입니다.",
+          "figureSpec": {
+            "version": "elem-1",
+            "kind": "namedShapes",
+            "items": [
+              {
+                "shape": "irregQuad",
+                "label": "가"
+              },
+              {
+                "shape": "rect",
+                "label": "나"
+              },
+              {
+                "shape": "trap",
+                "label": "다"
+              }
+            ]
+          },
+          "formId": "05"
+        }
+      ],
+      "afterRowSha256": "e8129b48a9a5bf5718055b09775cf5a80a5e69327861986aaa33ed4b0b93350e"
+    },
+    {
+      "familyKey": "elem:초4|2-4-4 사다리꼴|05",
+      "beforeRow": [
+        "초4",
+        "2-4-4 사다리꼴",
+        "05",
+        "기본",
+        7,
+        {
+          "grade": "초4",
+          "chapter": "2-4 사각형",
+          "section": "2-4-4 사다리꼴",
+          "orderIndex": 238,
+          "content": "그림에서 사다리꼴의 기호를 쓰시오.",
+          "answer": "가",
+          "solution": "가는 평행한 변이 한 쌍 있는 사각형입니다.",
+          "figureSpec": {
+            "version": "elem-1",
+            "kind": "namedShapes",
+            "items": [
+              {
+                "shape": "trap",
+                "label": "가"
+              },
+              {
+                "shape": "irregQuad",
+                "label": "나"
+              },
+              {
+                "shape": "rect",
+                "label": "다"
+              }
+            ]
+          },
+          "formId": "05"
+        }
+      ],
+      "afterRowSha256": "bc50ffb535b7148601323340eaee77a5bd0485fd0553b52af1f9a561031b7af4"
+    },
+    {
+      "familyKey": "elem:초4|2-4-4 사다리꼴|05",
+      "beforeRow": [
+        "초4",
+        "2-4-4 사다리꼴",
+        "05",
+        "기본",
+        20261018,
+        {
+          "grade": "초4",
+          "chapter": "2-4 사각형",
+          "section": "2-4-4 사다리꼴",
+          "orderIndex": 238,
+          "content": "그림에서 사다리꼴의 기호를 쓰시오.",
+          "answer": "나",
+          "solution": "나는 평행한 변이 한 쌍 있는 사각형입니다.",
+          "figureSpec": {
+            "version": "elem-1",
+            "kind": "namedShapes",
+            "items": [
+              {
+                "shape": "irregQuad",
+                "label": "가"
+              },
+              {
+                "shape": "trap",
+                "label": "나"
+              },
+              {
+                "shape": "rect",
+                "label": "다"
+              }
+            ]
+          },
+          "formId": "05"
+        }
+      ],
+      "afterRowSha256": "f0978c926873bbd777283781709cc7f8379ecc2c3510286d1d643693e9a0b3ac"
+    },
+    {
+      "familyKey": "elem:초4|2-6-3 대각선|10",
+      "beforeRow": [
+        "초4",
+        "2-6-3 대각선",
+        "10",
+        "응용",
+        0,
+        {
+          "grade": "초4",
+          "chapter": "2-6 다각형",
+          "section": "2-6-3 대각선",
+          "orderIndex": 247,
+          "content": "모든 변의 길이가 같고 변이 $6$개인 다각형을 무엇이라고 하는가?",
+          "answer": "정육각형",
+          "solution": "모든 변의 길이가 같은 육각형은 정육각형입니다.",
+          "figureSpec": null,
+          "formId": "10"
+        }
+      ],
+      "afterRowSha256": "c943b520d7f9e56327a236c9267e17fd66d3af876e4e1c022fbdca7c3f17a96d"
+    },
+    {
+      "familyKey": "elem:초4|2-6-3 대각선|10",
+      "beforeRow": [
+        "초4",
+        "2-6-3 대각선",
+        "10",
+        "응용",
+        7,
+        {
+          "grade": "초4",
+          "chapter": "2-6 다각형",
+          "section": "2-6-3 대각선",
+          "orderIndex": 247,
+          "content": "모든 변의 길이가 같고 변이 $7$개인 다각형을 무엇이라고 하는가?",
+          "answer": "정칠각형",
+          "solution": "모든 변의 길이가 같은 칠각형은 정칠각형입니다.",
+          "figureSpec": null,
+          "formId": "10"
+        }
+      ],
+      "afterRowSha256": "05a76bc85178be0836584bd5a8d2d7c1c442a9852e1773149e7d6266687d41d7"
+    },
+    {
+      "familyKey": "elem:초4|2-6-3 대각선|10",
+      "beforeRow": [
+        "초4",
+        "2-6-3 대각선",
+        "10",
+        "응용",
+        20261018,
+        {
+          "grade": "초4",
+          "chapter": "2-6 다각형",
+          "section": "2-6-3 대각선",
+          "orderIndex": 247,
+          "content": "모든 변의 길이가 같고 변이 $5$개인 다각형을 무엇이라고 하는가?",
+          "answer": "정오각형",
+          "solution": "모든 변의 길이가 같은 오각형은 정오각형입니다.",
+          "figureSpec": null,
+          "formId": "10"
+        }
+      ],
+      "afterRowSha256": "98195f12ed19f1187d6878e46e2e94f0fb9a9ccd426d3d644132e3103cce8d02"
+    }
+  ]
+}

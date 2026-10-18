@@ -17,6 +17,7 @@ import {
 } from "@/lib/elementary/generate";
 import { tierKey } from "@/lib/elementary/difficulty";
 import { REINFORCEMENT_FORMS_20261018 } from "@/lib/elementary/reinforcementForms20261018";
+import { statementForms } from "@/lib/elementary/statementForms";
 import type { ElemProblem } from "@/lib/elementary/types";
 import {
   collectDistinctVariantsResult,
@@ -44,6 +45,21 @@ const legacy = JSON.parse(
 const candidates = JSON.parse(
   readFileSync(`${REPORT}g4-candidates.json`, "utf8"),
 );
+const REPAIR_REPORT =
+  "docs/planning/tracks/reports/math-question-formats-20261018/";
+type LegacyOutputRow = [string, string, string, string, number, ElemProblem];
+const approvedRepairs = JSON.parse(
+  readFileSync(`${REPAIR_REPORT}g4-approved-repair-baseline.json`, "utf8"),
+) as {
+  originalLedgerSha256: string;
+  approvedRepairManifestSha256: string;
+  approvedG4SourceSha256: string;
+  changes: {
+    familyKey: string;
+    beforeRow: LegacyOutputRow;
+    afterRowSha256: string;
+  }[];
+};
 const sha = (text: string) => createHash("sha256").update(text).digest("hex");
 const UNITS = elementaryUnits();
 const FORMS = UNITS.flatMap((unit) =>
@@ -283,7 +299,7 @@ function assertRendered(html: string) {
 }
 
 describe("초4 2026-10-18 R2 보강 — 정체성 및 기존 출력", () => {
-  it("새 9개만 붙고 모든 등록 진입점·core10·기존 11/12·초5 21~가 일치한다", () => {
+  it("보강 9개와 별도 승인 진술 14개가 등록되고 core10·기존 11/12·초5 21~가 유지된다", () => {
     expect(FORMS).toHaveLength(9);
     expect(FORMS.map(({ form }) => form.id).sort()).toEqual([
       "31",
@@ -312,7 +328,8 @@ describe("초4 2026-10-18 R2 보강 — 정체성 및 기존 출력", () => {
     }
     expect(sha(JSON.stringify(entries))).toBe(legacy.registrySha256);
     expect(entries).toHaveLength(2476);
-    expect(UNITS.flatMap(listedForms)).toHaveLength(2485);
+    expect(UNITS.flatMap(statementForms)).toHaveLength(14);
+    expect(UNITS.flatMap(listedForms)).toHaveLength(2476 + 9 + 14);
     expect(
       candidates.targets.map(
         (t: { listedCountAfter: number }) => t.listedCountAfter,
@@ -320,25 +337,75 @@ describe("초4 2026-10-18 R2 보강 — 정체성 및 기존 출력", () => {
     ).toEqual([12, 12, 13, 13]);
   });
 
-  it("수정 전에 고정한 7428개 출력과 변경 금지 파일의 바이트가 같다", () => {
+  it("승인된 5문형의 수정만 허용하며 원래 7428개 기준과 나머지 소스 바이트를 보존한다", () => {
     const rows = UNITS.flatMap((u) =>
       listedForms(u)
         .filter((f) => Number(f.id) < 31)
         .flatMap((f) =>
-          legacy.seeds.map((seed: number) => [
-            u.grade,
-            u.section,
-            f.id,
-            f.tier,
-            seed,
-            generateElementaryForm(u, seed, f.id),
-          ]),
+          legacy.seeds.map(
+            (seed: number): LegacyOutputRow => [
+              u.grade,
+              u.section,
+              f.id,
+              f.tier,
+              seed,
+              generateElementaryForm(u, seed, f.id),
+            ],
+          ),
         ),
     );
     expect(rows).toHaveLength(7428);
-    expect(sha(JSON.stringify(rows))).toBe(legacy.outputSha256);
-    for (const [file, hash] of Object.entries(legacy.sourceSha256))
-      expect(sha(readFileSync(file, "utf8")), file).toBe(hash);
+    const manifestBytes = readFileSync(
+      `${REPAIR_REPORT}content-repair-r3/manifest.json`,
+      "utf8",
+    );
+    const manifest = JSON.parse(manifestBytes) as {
+      rows: { familyKey: string }[];
+      sourceDigests: Record<string, string>;
+    };
+    const approval = JSON.parse(
+      readFileSync(
+        `${REPAIR_REPORT}content-repair-r3/claude-content-approval.json`,
+        "utf8",
+      ),
+    ) as { verdict: string; manifestSha256: string };
+    expect(approval.verdict).toBe("approved");
+    expect(sha(manifestBytes)).toBe(approval.manifestSha256);
+    expect(sha(manifestBytes)).toBe(approvedRepairs.approvedRepairManifestSha256);
+    expect(sha(readFileSync(`${REPORT}g4-legacy-baseline.json`, "utf8"))).toBe(
+      approvedRepairs.originalLedgerSha256,
+    );
+    expect(approvedRepairs.approvedG4SourceSha256).toBe(
+      manifest.sourceDigests["src/lib/elementary/g4.ts"],
+    );
+    expect(new Set(approvedRepairs.changes.map((row) => row.familyKey))).toEqual(
+      new Set(manifest.rows.map((row) => row.familyKey)),
+    );
+    const key = (row: LegacyOutputRow) => JSON.stringify(row.slice(0, 5));
+    const changes = new Map(
+      approvedRepairs.changes.map((change) => [key(change.beforeRow), change]),
+    );
+    expect(changes.size).toBe(15);
+    let repaired = 0;
+    // Restore exactly the approved historical outputs for the original digest;
+    // the current corrected outputs must match independently pinned digests.
+    const originalRows = rows.map((row) => {
+      const change = changes.get(key(row));
+      if (!change) return row;
+      repaired += 1;
+      expect(sha(JSON.stringify(row)), key(row)).toBe(change.afterRowSha256);
+      return change.beforeRow;
+    });
+    expect(repaired).toBe(15);
+    expect(rows.length - repaired).toBe(7413);
+    expect(sha(JSON.stringify(originalRows))).toBe(legacy.outputSha256);
+    for (const [file, hash] of Object.entries(legacy.sourceSha256)) {
+      const expected =
+        file === "src/lib/elementary/g4.ts"
+          ? approvedRepairs.approvedG4SourceSha256
+          : hash;
+      expect(sha(readFileSync(file, "utf8")), file).toBe(expected);
+    }
   });
 });
 
