@@ -1,0 +1,24 @@
+{
+  "reviewer": "Claude",
+  "verdict": "approved",
+  "kind": "bounded-family-reinforcement",
+  "planSha256": "50c525785cae16825d23d7bd55de81f7a779fa54cd98e8933d470a126acccc61",
+  "sourceCommit": "6dcf1d97a4e7556ab57316d750c5c524b6645782",
+  "sourceDigestsSha256": "10af6b55d355705fdbf40047933ee1c5700fa164ba020252ddddd39641d27908",
+  "manifestSha256": "6a7c64a0a0c2d0555e2c1751c25068cce3f692521aac7ccde2551ecc02149513",
+  "beforeLedgerSha256": "1ba75eab9fc318265250555609e87bc09e32ef006ade53da9ca18d78409c5c04",
+  "prewriteSha256": "e724e69df3c977c065185a8a9a568364f11cb8a01460e19c09fad49a3c2f029a",
+  "reviewNotes": {
+    "artifacts": "Root HEAD aef5e5f04: the committed bytes of manifest, before-ledger, new-uuids, preparation and independent-verification equal the working files. Private before 27cc017f (4801 rows, 20 units, 4014 keyed after backfill) and candidates 8a88fac6 match preparation.json. baselineStage final-after-backfill. sourceCommit 6dcf1d97a is an ancestor of HEAD; all 252 sourceDigests equal the bytes at 6dcf1d97a and at HEAD; sourceDigestsSha256 was recomputed with the repository stableJson.",
+    "content": "The 146 final candidates have the same external ids as the preliminary set I hand-reviewed (claude-bounded-preliminary-review.json, f3c3b63bf). 144 are byte-identical. The 2 mid:2-2|경우의 수|11 s20261118 v0 rows changed only content/contentKey, from 자연수가 to 숫자가 (the requested fix); numbers, choices, answer and solution are unchanged. All 146 answers, MC positions, solutions, natives with their 6-point rubrics, 28 number-line SVGs and 2 counting figures were independently re-solved and decoded in the preliminary review; no wrong or non-unique answer was found.",
+    "contracts": "Own Python re-check of the 52 short+MC pairs: equal unit/family/difficulty/type/solution/figure, short stem + exactly five ①-⑤ lines, and the circled answer's choice equals the short answer. All 52 pass. Plus 4 short-only (f33/f39 keep allowMultipleChoice=false), 20 original-MC-only with original five choices (no fake conversion), 18 native descriptive: 94 contents, 146 rows, 19 units in 52 families with new rows.",
+    "census": "Across the 53 target families: physical/eligible rows 289 -> 435, questions 169 -> 263, proven pairs 120 -> 172, shortfall-to-five 96 -> 2. The only remaining shortfall is mid:1-2|다면체와 회전체|51 (needs 2). The task space is the five regular polyhedra, all already eligible in the unit, so the shortfall is honest; no clones were requested.",
+    "ledger": "146 unique canonical v4 UUIDs; no id or external-id collision with the 4801-row baseline; problem_outer_wall_quarantine had 0 rows at my last read.",
+    "operator": "Apply re-reads the whole 20-unit scope under the maintenance lock and requires every baseline row byte-equal (stableJson to_jsonb). New rows must be exactly the ledger's own. It inserts only owned UUIDs (source manual, shared, approved, direct_use true, solution_source none, figure_source engine iff SVG — the same profile as the 289 existing target rows). It keys only persisted pairs that pass proveQuestionPair; singletons stay NULL. It reads back the census against expectedAfterCensus and reruns as zero inserts. Revert deletes only owned rows under full-row CAS with zero references and must restore the exact baseline."
+  },
+  "limitations": [
+    "No physical printer output. The teacher quick-answer grid wraps long native answers over several lines, unclipped, with full solutions and rubrics after it; readability on paper is unverified.",
+    "The browser and A4 evidence (19 units, 107 pages) predates the two noun-only changes.",
+    "No claim of official curriculum alignment, learning effect, or mathematical verification of the whole bank."
+  ]
+}
