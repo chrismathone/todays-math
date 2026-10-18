@@ -6,13 +6,33 @@ import {
   type Difficulty,
   type DifficultyRatio,
 } from "@/contracts/difficulty";
+import {
+  OUTPUT_QUESTION_FORMATS,
+  formatIntentSchema,
+  formatIntentFits,
+  outputFormatOf,
+} from "@/contracts/formatIntent.contract";
 import { db } from "@/lib/db";
 import { problemEligibleWhere } from "@/lib/problemEligibility";
-import { findProblemIdsByFormat } from "@/lib/problem/formatQuery";
-import { PROBLEM_BANK_ORDER_BY } from "@/lib/problem/problemOrder";
 import { familyIdOf } from "@/lib/generator/familyKey";
-import { classifyFormat } from "@/lib/problem/provenance";
 import { withProblemSourceReferences } from "@/lib/problem/sourceReference";
+import {
+  loadQuestionCandidates,
+  questionReadMetadata,
+  type QuestionCandidate,
+} from "@/lib/problem/questionProjection";
+import {
+  excludeQuestionsWhere,
+  withQuestionMetadata,
+} from "@/lib/problem/questionQueries";
+import { questionIdOf } from "@/lib/problem/questionIdentity";
+import { classifyFormat } from "@/lib/problem/provenance";
+import { QuestionSelectionConflict } from "@/lib/problem/questionSelection";
+import {
+  solveQuestionSelection,
+  type QuestionSelectionCandidate,
+  type QuestionSelectionResult,
+} from "@/lib/problem/questionSelectionSolver";
 import type { BankQueryContext } from "@/lib/bankQueryContext";
 import {
   resolveUnifiedBankQuery,
@@ -21,32 +41,26 @@ import {
   UnifiedBankQueryError,
 } from "@/lib/unifiedPreview";
 
+const identitySchema = z.literal("question").optional();
 const requestSchema = z
-  .object({
+  .strictObject({
+    identity: identitySchema,
     filters: z.string().max(8000).default(""),
     counts: z.record(
       z.enum(DIFFICULTY_LADDER),
       z.number().int().min(0).max(100),
     ),
-    excludeIds: z.array(z.string().min(1).max(200)).max(5000).default([]),
+    excludeIds: z.array(uuidSchema).max(5000).default([]),
+    formats: formatIntentSchema.optional(),
   })
-  .strict()
-  .refine(({ counts }) => {
-    const total = Object.values(counts).reduce((sum, count) => sum + count, 0);
-    return total >= 1 && total <= 100;
-  });
-
-/** 형식 의도의 칸 — `problem.question_type` 의 값 그대로. */
-const QUESTION_FORMATS = ["객관식", "단답형", "서술형"] as const;
-type QuestionFormat = (typeof QUESTION_FORMATS)[number];
-
-const emptyCounts = () =>
-  Object.fromEntries(
-    DIFFICULTY_LADDER.map((tier) => [tier, 0]),
-  ) as DifficultyRatio;
-
+  .refine(
+    ({ counts }) =>
+      Object.values(counts).reduce((s, n) => s + n, 0) >= 1 &&
+      Object.values(counts).reduce((s, n) => s + n, 0) <= 100,
+  );
 const allocationSchema = z
   .strictObject({
+    identity: identitySchema,
     allocations: z
       .array(
         z.strictObject({
@@ -57,116 +71,36 @@ const allocationSchema = z
       .min(1)
       .max(100),
     excludeIds: z.array(uuidSchema).max(100).default([]),
-    /**
-     * 목록과 같은 조회 조건(주소 꼴 — `sourceGroup=…&books=…&difficulty=…`). 비면 조건 없음.
-     * 범위는 할당이 정한다 — 차시 고르기(`unitIds` · `unitFrom` · `unitTo`) · `ids` 를 실으면 400 이다.
-     */
     filters: z.string().max(8000).default(""),
-    /**
-     * D-111 을 시험지 만들기에서 지킬지 — 기본 켜짐. 원장님이 끄면(2026-10-16 «기본 켜짐 · 끌 수 있음»)
-     * 문항 하나가 각자 한 갈래로 서 예전처럼 행 단위로 뽑는다. 일일테스트 경로는 이 칸이 없다(늘 켜짐).
-     */
     distinctFamilies: z.boolean().default(true),
-    /**
-     * 최근 출제 빼기(D-20 그대로) — 지금 계정의 최근 14일 시험 문항을 뺀다. 계정은 `context` 가 안다.
-     * 시험지 만들기 «구성 조건»이 기본 켬으로 보낸다.
-     */
     recent: z.boolean().default(false),
-    /**
-     * 난이도 의도(시험지 전체에 한 번) — 실린 난이도만 정한 것이다. 없는 칸은 «지정 없음»(남는 자리를 채운다),
-     * 0 은 «내지 않음». 범위마다 나눈 수(`allocations`) 안에서 맞추고, 모자라면 다른 난이도로 채우지 않는다.
-     */
     difficulty: z
       .partialRecord(
         z.enum(DIFFICULTY_LADDER),
         z.number().int().min(0).max(100),
       )
       .optional(),
-    /**
-     * 형식 의도(M3 · 2026-10-17) — 객관식 · 단답형 · 서술형 수. 난이도 의도와 같은 뜻이다: 없는 칸은 지정 없음
-     * (남는 자리를 정하지 않은 형식이 받는다), 0 은 내지 않음. 문항류 하나 안에서 형식을 고른다(엔진 갈래는 같은
-     * 발문의 객관식 · 단답형 행을 함께 갖는다) — 모자라면 다른 형식으로 채우지 않고 알린다.
-     */
-    formats: z
-      .partialRecord(z.enum(QUESTION_FORMATS), z.number().int().min(0).max(100))
-      .optional(),
+    formats: formatIntentSchema.optional(),
   })
   .refine(
     ({ allocations }) =>
-      allocations.reduce((sum, allocation) => sum + allocation.count, 0) <=
-        100 &&
-      new Set(allocations.map((allocation) => allocation.unitId)).size ===
-        allocations.length,
+      allocations.reduce((s, a) => s + a.count, 0) <= 100 &&
+      new Set(allocations.map((a) => a.unitId)).size === allocations.length,
   );
-
-/** 난이도 의도가 문항 수와 맞는가 — 정한 칸의 합이 넘거나, 모든 칸을 정했는데 합이 다르면 안 된다. */
+const ALLOCATION_SCOPE_KEYS = ["unitIds", "unitFrom", "unitTo", "ids"] as const;
+const emptyCounts = () =>
+  Object.fromEntries(DIFFICULTY_LADDER.map((t) => [t, 0])) as DifficultyRatio;
 function intentFits(
   intent: Partial<Record<Difficulty, number>>,
   total: number,
 ) {
-  const tiers = DIFFICULTY_LADDER.filter((tier) => intent[tier] !== undefined);
-  const specified = tiers.reduce((sum, tier) => sum + intent[tier]!, 0);
+  const specified = DIFFICULTY_LADDER.filter((t) => intent[t] !== undefined);
+  const sum = specified.reduce((s, t) => s + intent[t]!, 0);
   return (
-    specified <= total &&
-    (tiers.length < DIFFICULTY_LADDER.length || specified === total)
+    sum <= total &&
+    (specified.length < DIFFICULTY_LADDER.length || sum === total)
   );
 }
-
-/**
- * 난이도 × 범위 나누기 — 난이도별 수(행)와 범위별 수(열)를 **둘 다** 맞추는 가장 많은 배정(최대 흐름).
- * 칸의 상한은 그 범위 · 그 난이도의 문항류 수다. 「지정 없음」 자리는 정하지 않은 난이도들이 함께 받는다.
- * 칸마다 고르게 나누면 한 범위에만 있는 난이도가 모자라 보인다 — 흐름은 그것을 그 범위로 몬다.
- * 총 문항이 100 이하라 한 칸씩 늘리는 증가 경로로 충분하다.
- */
-function planTiers(
-  rows: readonly { unitId: string; count: number }[],
-  demand: readonly { key: string; count: number }[],
-  capacity: (unitId: string, key: string) => number,
-) {
-  const S = 0;
-  const T = 1 + demand.length + rows.length;
-  const size = T + 1;
-  const cap = Array.from({ length: size }, () =>
-    new Array<number>(size).fill(0),
-  );
-  demand.forEach((d, i) => (cap[S][1 + i] = d.count));
-  rows.forEach((row, j) => {
-    const unit = 1 + demand.length + j;
-    cap[unit][T] = row.count;
-    demand.forEach((d, i) => (cap[1 + i][unit] = capacity(row.unitId, d.key)));
-  });
-  const flow = Array.from({ length: size }, () =>
-    new Array<number>(size).fill(0),
-  );
-  for (;;) {
-    const parent = new Array<number>(size).fill(-1);
-    parent[S] = S;
-    const queue = [S];
-    while (queue.length && parent[T] === -1) {
-      const at = queue.shift()!;
-      for (let next = 0; next < size; next++)
-        if (parent[next] === -1 && cap[at][next] - flow[at][next] > 0) {
-          parent[next] = at;
-          queue.push(next);
-        }
-    }
-    if (parent[T] === -1) break;
-    for (let at = T; at !== S; at = parent[at]) {
-      flow[parent[at]][at] += 1;
-      flow[at][parent[at]] -= 1;
-    }
-  }
-  return (unitId: string, key: string) => {
-    const j = rows.findIndex((row) => row.unitId === unitId);
-    const i = demand.findIndex((d) => d.key === key);
-    return j < 0 || i < 0 ? 0 : flow[1 + i][1 + demand.length + j];
-  };
-}
-
-/**
- * D-111 — 시험지에 이미 있는 문항들의 문항류(`familyIdOf`). 그 갈래는 다시 고르지 않는다.
- * 키가 없는 문항은 `solo:<id>` 라 자기 자신만 막는다.
- */
 async function familiesOnSheet(ids: readonly string[]) {
   if (!ids.length) return new Set<string>();
   const rows = await db.problem.findMany({
@@ -175,37 +109,74 @@ async function familiesOnSheet(ids: readonly string[]) {
   });
   return new Set(rows.map(familyIdOf));
 }
-
-/**
- * 갈래 `count` 개를 고르게 뽑고(저수지 표집 — 갈래마다 같은 확률), 뽑힌 갈래 안에서 한 행을 고르게 고른다.
- * 갈래가 모자라면 있는 만큼만 — 다른 범위 · 다른 난이도로 채우지 않는다.
- */
-function drawFamilies(families: readonly string[][], count: number) {
-  const picked: (readonly string[])[] = [];
-  families.forEach((family, seen) => {
-    if (picked.length < count) picked.push(family);
-    else if (count > 0) {
-      const index = Math.floor(Math.random() * (seen + 1));
-      if (index < count) picked[index] = family;
-    }
-  });
-  return picked.map(
-    (family) => family[Math.floor(Math.random() * family.length)],
+function solverCandidates(
+  rows: readonly QuestionCandidate[],
+  used: Set<string>,
+  format?: string,
+): QuestionSelectionCandidate[] {
+  return rows.flatMap((row) =>
+    row.available &&
+    row.actualFormat &&
+    (!format || row.actualFormat === format) &&
+    !used.has(familyIdOf(row))
+      ? [
+          {
+            id: row.id,
+            questionId: row.questionId,
+            familyId: familyIdOf(row),
+            unitId: row.unitId,
+            difficulty: row.difficulty,
+            format: row.actualFormat,
+          },
+        ]
+      : [],
   );
 }
 
-/** 할당이 정하는 범위 축 — 필터에 실려 오면 할당과 겹쳐 뜻이 갈린다. */
-const ALLOCATION_SCOPE_KEYS = ["unitIds", "unitFrom", "unitTo", "ids"] as const;
+/** Recheck actual IDs after sampling; metadata never substitutes another same-family seed. */
+async function selectedProblems(
+  result: QuestionSelectionResult<QuestionSelectionCandidate>,
+  where: Parameters<typeof loadQuestionCandidates>[0],
+  questionView: boolean,
+  metadataWhere: Parameters<typeof withQuestionMetadata>[2],
+) {
+  const ids = result.selected.map((r) => r.id);
+  const rows = ids.length
+    ? await db.problem.findMany({
+        where: { AND: [where, { id: { in: ids } }] },
+        select: UNIFIED_PROBLEM_SELECT,
+      })
+    : [];
+  const chosen = new Map(result.selected.map((r) => [r.id, r]));
+  if (
+    rows.length !== ids.length ||
+    rows.some((row) => {
+      const selected = chosen.get(row.id)!;
+      return (
+        questionIdOf(row) !== selected.questionId ||
+        row.unitId !== selected.unitId ||
+        row.difficulty !== selected.difficulty ||
+        familyIdOf(row) !== selected.familyId ||
+        classifyFormat(row) !== selected.format
+      );
+    })
+  )
+    throw new QuestionSelectionConflict();
+  const enriched = questionView
+    ? await withQuestionMetadata(rows, db, metadataWhere)
+    : rows;
+  const byId = new Map(
+    (await withProblemSourceReferences(enriched)).map((row) => [
+      row.id,
+      toBankProblem(row),
+    ]),
+  );
+  return ids.map((id) => byId.get(id)!);
+}
 
-/**
- * One metadata scan for every selected unit, followed by at most 100 native rows.
- *
- * 풀은 목록 · 랜덤 고르기 · 가용량(`bankSourceAvailability.ts`)과 **같은 조건 해석**(`resolveUnifiedBankQuery`)에
- * 출제 자격을 건 것이다 — 차시별 `available` 은 같은 필터의 가용량 보기 `facets.units[차시].available` 와 같다.
- */
+/** Jointly solve the complete eligible pool: unit, tier, format, question and family. */
 export async function composeUnifiedBankProblems(
   input: unknown,
-  /** 최근 출제 빼기(`recent: true`)의 계정 — 라우트가 관문을 지난 뒤 넘긴다. */
   context?: BankQueryContext,
 ) {
   const parsed = allocationSchema.safeParse(input);
@@ -213,397 +184,201 @@ export async function composeUnifiedBankProblems(
     throw new UnifiedBankQueryError(
       "단원별 문항 수를 확인해 주세요. 한 번에 1~100문항을 구성할 수 있습니다.",
     );
-  const { allocations, excludeIds, filters, distinctFamilies, recent } =
-    parsed.data;
-  const intent = parsed.data.difficulty;
-  const formatIntent = parsed.data.formats;
-  const total = allocations.reduce((sum, row) => sum + row.count, 0);
-  if (intent && !intentFits(intent, total))
+  const {
+    allocations,
+    excludeIds,
+    filters,
+    distinctFamilies,
+    recent,
+    difficulty,
+    formats,
+    identity,
+  } = parsed.data;
+  const total = allocations.reduce((s, a) => s + a.count, 0);
+  if (difficulty && !intentFits(difficulty, total))
     throw new UnifiedBankQueryError(
       "난이도별 문항 수의 합이 구성할 문항 수와 맞지 않습니다. 구성 조건을 다시 확인해 주세요.",
     );
-  if (formatIntent && !formatsFit(formatIntent, total))
+  if (formats && !formatIntentFits(formats, total))
     throw new UnifiedBankQueryError(
       "형식별 문항 수의 합이 구성할 문항 수와 맞지 않습니다. 구성 조건을 다시 확인해 주세요.",
     );
-  const familyOf = (row: {
-    id: string;
-    unitId: string;
-    familyKey: string | null;
-  }) => (distinctFamilies ? familyIdOf(row) : `row:${row.id}`);
   const params = new URLSearchParams(filters);
   if (ALLOCATION_SCOPE_KEYS.some((key) => params.has(key)))
     throw new UnifiedBankQueryError(
-      "구성 범위는 단원별 문항 수로 정합니다. 조건에 단원 범위를 함께 보내지 마십시오.",
+      "차시 범위는 단원별 할당에서만 정해 주세요.",
     );
+  if (identity) params.set("identity", identity);
   params.delete("page");
   params.delete("pageSize");
-  params.set(
-    "unitIds",
-    allocations.map((allocation) => allocation.unitId).join(","),
-  );
-  if (recent) params.set("recent", "1");
-  const excluded = new Set([
-    ...(params.get("excludeIds")?.split(",").filter(Boolean) ?? []),
+  params.set("unitIds", allocations.map((a) => a.unitId).join(","));
+  const query = await resolveUnifiedBankQuery(params, context);
+  const excluded = [
     ...excludeIds,
+    ...(recent ? await requireRecent(context) : []),
+  ];
+  const where = {
+    AND: [
+      query.where,
+      problemEligibleWhere(),
+      await excludeQuestionsWhere(excluded),
+    ],
+  };
+  const [rows, used] = await Promise.all([
+    loadQuestionCandidates(where),
+    distinctFamilies
+      ? familiesOnSheet(excluded)
+      : Promise.resolve(new Set<string>()),
   ]);
-  if (excluded.size) params.set("excludeIds", [...excluded].join(","));
-  const { where: filtersWhere, format } = await resolveUnifiedBankQuery(
-    params,
-    context,
+  const candidates = solverCandidates(rows, used, query.format);
+  const result = solveQuestionSelection({
+    candidates,
+    allocations,
+    difficulty,
+    formats,
+    distinctFamilies,
+  });
+  const unitOrder = new Map(allocations.map((a, i) => [a.unitId, i]));
+  result.selected.sort(
+    (a, b) =>
+      unitOrder.get(a.unitId)! - unitOrder.get(b.unitId)! ||
+      DIFFICULTY_LADDER.indexOf(a.difficulty as Difficulty) -
+        DIFFICULTY_LADDER.indexOf(b.difficulty as Difficulty),
   );
-  // Inspection filters can show pending/private-use-locked rows; composition never can.
-  const where = { AND: [filtersWhere, problemEligibleWhere()] };
-  const [candidates, formatIds, used] = await Promise.all([
-    db.problem.findMany({
-      where,
-      select: {
-        id: true,
-        unitId: true,
-        familyKey: true,
-        difficulty: true,
-        questionType: true,
-      },
-    }),
-    findProblemIdsByFormat(format, where, PROBLEM_BANK_ORDER_BY),
-    distinctFamilies ? familiesOnSheet([...excluded]) : new Set<string>(),
-  ]);
-  const allowedFormat = formatIds === null ? null : new Set(formatIds);
-  // D-111: one row per problem family, never a family already on the sheet.
-  const pools = new Map(
-    allocations.map(({ unitId }) => [unitId, new Map<string, string[]>()]),
-  );
-  /** 난이도 의도가 있을 때만 — 범위 → 난이도 → 문항류 → 행. */
-  const tierPools = new Map<string, Map<string, Map<string, string[]>>>();
-  const familyOfRow = new Map<string, string>();
-  for (const row of candidates) {
-    if (allowedFormat && !allowedFormat.has(row.id)) continue;
-    const family = familyOf(row);
-    const pool = pools.get(row.unitId);
-    if (!pool || used.has(family)) continue;
-    pool.set(family, [...(pool.get(family) ?? []), row.id]);
-    familyOfRow.set(row.id, family);
-    if (intent) {
-      const unit = tierPools.get(row.unitId) ?? new Map();
-      const tier = unit.get(row.difficulty) ?? new Map<string, string[]>();
-      tier.set(family, [...(tier.get(family) ?? []), row.id]);
-      unit.set(row.difficulty, tier);
-      tierPools.set(row.unitId, unit);
-    }
-  }
-  const drawnRows = intent
-    ? drawByIntent(allocations, intent, tierPools, familyOfRow)
-    : new Map(
-        allocations.map(({ unitId, count }) => [
-          unitId,
-          drawFamilies([...pools.get(unitId)!.values()], count),
-        ]),
-      );
-  const drawn = formatIntent
-    ? assignFormats(drawnRows, formatIntent, total, candidates, familyOfRow)
-    : drawnRows;
-  const reservoirs = new Map(
-    allocations.map(({ unitId, count }) => [
-      unitId,
-      {
-        requested: count,
-        available: pools.get(unitId)!.size,
-        ids: drawn.get(unitId)!,
-      },
-    ]),
-  );
-  const ids = [...reservoirs.values()].flatMap((reservoir) => reservoir.ids);
-  const rows = ids.length
-    ? await db.problem.findMany({
-        where: { AND: [where, { id: { in: ids } }] },
-        select: UNIFIED_PROBLEM_SELECT,
-      })
-    : [];
-  // A row moved to another unit between reads must not consume that unit's quota.
-  const byId = new Map(
-    (await withProblemSourceReferences(rows))
-      .filter(
-        (row) =>
-          reservoirs.get(row.unitId)?.ids.includes(row.id) &&
-          (!format || classifyFormat(row) === format),
-      )
-      .map((row) => [row.id, toBankProblem(row)]),
-  );
-  const problems = ids.flatMap((id) => {
-    const row = byId.get(id);
-    return row ? [row] : [];
+  const questionView = params.get("identity") === "question";
+  const problems = await selectedProblems(result, where, questionView, {
+    AND: query.selection,
   });
   return {
     problems,
-    allocations: allocations.map(({ unitId, count }) => ({
-      unitId,
-      requested: count,
-      /** D-111 ⑸ — 출제 가능한 **문항류 수**(행 수가 아니다). 다른 범위로 채우지 않는다. */
-      available: reservoirs.get(unitId)!.available,
-      actual: reservoirs.get(unitId)!.ids.filter((id) => byId.has(id)).length,
+    ...(questionView ? questionReadMetadata(params) : {}),
+    status: result.status,
+    witness: result.witness,
+    allocations: allocations.map((a) => ({
+      unitId: a.unitId,
+      requested: a.count,
+      available: new Set(
+        candidates
+          .filter((r) => r.unitId === a.unitId)
+          .map((r) => (distinctFamilies ? r.familyId : r.questionId)),
+      ).size,
+      actual: result.selected.filter((r) => r.unitId === a.unitId).length,
     })),
-    /** 형식 의도의 정한 칸마다 — 모자라면 `actual < requested`(다른 형식으로 채우지 않았다). */
-    ...(formatIntent
+    ...(formats
       ? {
-          formats: QUESTION_FORMATS.filter(
-            (format) => formatIntent[format] !== undefined,
+          formats: OUTPUT_QUESTION_FORMATS.filter(
+            (f) => formats[f] !== undefined,
           ).map((format) => ({
             format,
-            requested: formatIntent[format]!,
-            actual: problems.filter(
-              (row) =>
-                (row as { questionTypeRaw?: string | null }).questionTypeRaw ===
-                format,
+            requested: formats[format]!,
+            actual: result.selected.filter(
+              (r) => outputFormatOf(r.format) === format,
             ).length,
           })),
         }
       : {}),
-    /** 난이도 의도의 정한 칸마다 — 모자라면 `actual < requested`(다른 난이도로 채우지 않았다). */
-    ...(intent
+    ...(difficulty
       ? {
           difficulty: DIFFICULTY_LADDER.filter(
-            (tier) => intent[tier] !== undefined,
+            (t) => difficulty[t] !== undefined,
           ).map((tier) => ({
             tier,
-            requested: intent[tier]!,
-            actual: problems.filter((row) => row.difficulty === tier).length,
+            requested: difficulty[tier]!,
+            actual: result.selected.filter((r) => r.difficulty === tier).length,
           })),
         }
       : {}),
   };
 }
-
-function formatsFit(
-  intent: Partial<Record<QuestionFormat, number>>,
-  total: number,
-) {
-  const set = QUESTION_FORMATS.filter((f) => intent[f] !== undefined);
-  const sum = set.reduce((acc, f) => acc + intent[f]!, 0);
-  return (
-    sum <= total && (set.length < QUESTION_FORMATS.length || sum === total)
-  );
+async function requireRecent(context?: BankQueryContext) {
+  if (!context)
+    throw new UnifiedBankQueryError(
+      "최근 출제 문항을 확인할 계정을 알 수 없습니다.",
+    );
+  return context.recentProblemIds();
 }
 
-/**
- * 형식 의도(M3) — 뽑힌 문항류마다 **어느 형식의 행을 낼지** 고른다. 범위 · 난이도 · 문항류는 이미 정해졌고
- * (그 행과 같은 범위 · 같은 난이도의 형제 행만 본다), 형식별 수를 가장 많이 맞추는 배정을 흐름으로 찾는다
- * (`planTiers` 를 «문항류 하나 = 한 자리»로 그대로 쓴다). 「지정 없음」 자리는 정하지 않은 형식만 받는다.
- * 배정을 못 받은 문항류는 **뺀다** — 다른 형식으로 채우지 않는다(난이도와 같은 규칙 · 응답의 `formats` 가 알린다).
- */
-function assignFormats(
-  drawn: Map<string, string[]>,
-  intent: Partial<Record<QuestionFormat, number>>,
-  total: number,
-  candidates: readonly {
-    id: string;
-    unitId: string;
-    difficulty: string;
-    questionType: string | null;
-  }[],
-  familyOfRow: Map<string, string>,
+/** Same exact full-pool planner for the existing difficulty-only random action. */
+export async function selectUnifiedBankProblems(
+  input: unknown,
+  context?: BankQueryContext,
 ) {
-  const byId = new Map(candidates.map((row) => [row.id, row]));
-  const siblings = new Map<string, typeof candidates>();
-  for (const row of candidates) {
-    const family = familyOfRow.get(row.id);
-    if (!family) continue;
-    const key = `${family}|${row.unitId}|${row.difficulty}`;
-    siblings.set(key, [...(siblings.get(key) ?? []), row]);
-  }
-  const specified = QUESTION_FORMATS.filter((f) => intent[f] !== undefined);
-  const open = QUESTION_FORMATS.filter((f) => intent[f] === undefined);
-  const rest = total - specified.reduce((acc, f) => acc + intent[f]!, 0);
-  const ANY = "*";
-  const formatsOf = (key: string) =>
-    key === ANY ? (open as readonly string[]) : [key];
-  const picks = [...drawn.values()].flat().map((id) => {
-    const row = byId.get(id)!;
-    const key = `${familyOfRow.get(id)}|${row.unitId}|${row.difficulty}`;
-    return { id, rows: siblings.get(key) ?? [row] };
-  });
-  const plan = planTiers(
-    picks.map((pick) => ({ unitId: pick.id, count: 1 })),
-    [
-      ...specified.map((f) => ({ key: f as string, count: intent[f]! })),
-      ...(rest > 0 && open.length ? [{ key: ANY, count: rest }] : []),
-    ],
-    (pickId, key) =>
-      picks
-        .find((pick) => pick.id === pickId)!
-        .rows.some((row) => formatsOf(key).includes(row.questionType ?? ""))
-        ? 1
-        : 0,
-  );
-  const chosen = new Map<string, string>();
-  for (const pick of picks)
-    for (const key of [...specified, ANY]) {
-      if (!plan(pick.id, key)) continue;
-      const fits = pick.rows.filter((row) =>
-        formatsOf(key).includes(row.questionType ?? ""),
-      );
-      chosen.set(pick.id, fits[Math.floor(Math.random() * fits.length)].id);
-    }
-  return new Map(
-    [...drawn].map(([unitId, ids]) => [
-      unitId,
-      ids.flatMap((id) => (chosen.has(id) ? [chosen.get(id)!] : [])),
-    ]),
-  );
-}
-
-/**
- * 난이도 의도대로 범위마다 뽑는다. 정한 난이도는 그 난이도에서만, 「지정 없음」 자리는 정하지 않은 난이도에서만.
- * 한 번 쓴 문항류는 다른 난이도 · 다른 자리에서 다시 쓰지 않는다(D-111 ⑶ — 난이도를 건너 이어 간다).
- * 범위 안에서는 사다리 차례(쉬운 것 먼저)로 놓는다.
- */
-function drawByIntent(
-  allocations: readonly { unitId: string; count: number }[],
-  intent: Partial<Record<Difficulty, number>>,
-  tierPools: Map<string, Map<string, Map<string, string[]>>>,
-  familyOfRow: Map<string, string>,
-) {
-  const total = allocations.reduce((sum, row) => sum + row.count, 0);
-  const specified = DIFFICULTY_LADDER.filter(
-    (tier) => intent[tier] !== undefined,
-  );
-  const open = DIFFICULTY_LADDER.filter((tier) => intent[tier] === undefined);
-  const rest = total - specified.reduce((sum, tier) => sum + intent[tier]!, 0);
-  const ANY = "*";
-  const familiesIn = (unitId: string, tiers: readonly string[]) => {
-    const merged = new Map<string, string[]>();
-    for (const tier of tiers)
-      for (const [family, rowIds] of tierPools.get(unitId)?.get(tier) ?? [])
-        merged.set(family, [...(merged.get(family) ?? []), ...rowIds]);
-    return merged;
-  };
-  const plan = planTiers(
-    allocations,
-    [
-      ...specified.map((tier) => ({ key: tier, count: intent[tier]! })),
-      ...(rest > 0 && open.length ? [{ key: ANY, count: rest }] : []),
-    ],
-    (unitId, key) => familiesIn(unitId, key === ANY ? open : [key]).size,
-  );
-  const used = new Set<string>();
-  const order = new Map(DIFFICULTY_LADDER.map((tier, index) => [tier, index]));
-  const tierOfRow = new Map<string, string>();
-  for (const unit of tierPools.values())
-    for (const [tier, families] of unit)
-      for (const rowIds of families.values())
-        for (const id of rowIds) tierOfRow.set(id, tier);
-  return new Map(
-    allocations.map(({ unitId }) => {
-      const picked: string[] = [];
-      for (const key of [...specified, ANY]) {
-        const want = plan(unitId, key);
-        if (!want) continue;
-        const pool = [...familiesIn(unitId, key === ANY ? open : [key])]
-          .filter(([family]) => !used.has(family))
-          .map(([, rowIds]) => rowIds);
-        for (const id of drawFamilies(pool, want)) {
-          used.add(familyOfRow.get(id)!);
-          picked.push(id);
-        }
-      }
-      picked.sort(
-        (a, b) =>
-          (order.get(tierOfRow.get(a) as Difficulty) ?? 0) -
-          (order.get(tierOfRow.get(b) as Difficulty) ?? 0),
-      );
-      return [unitId, picked] as const;
-    }),
-  );
-}
-
-/** Read only IDs/tier across the filtered pool, then fetch at most 100 complete questions. */
-export async function selectUnifiedBankProblems(input: unknown) {
   const parsed = requestSchema.safeParse(input);
   if (!parsed.success)
     throw new UnifiedBankQueryError(
       "난이도별 문항 수를 확인해 주세요. 한 번에 1~100문항을 담을 수 있습니다.",
     );
-  const { filters, counts: requested, excludeIds } = parsed.data;
+  const {
+    filters,
+    counts: requested,
+    excludeIds,
+    identity,
+    formats,
+  } = parsed.data;
+  const count = Object.values(requested).reduce((s, n) => s + n, 0);
+  if (formats && !formatIntentFits(formats, count))
+    throw new UnifiedBankQueryError(
+      "형식별 문항 수의 합이 구성할 문항 수와 맞지 않습니다.",
+    );
   const params = new URLSearchParams(filters);
   params.delete("page");
   params.delete("difficulty");
-  const { where: filtersWhere, format } = await resolveUnifiedBankQuery(params);
-  // Inspection filters can show pending/private-use-locked rows; selection never can.
+  if (identity) params.set("identity", identity);
+  const query = await resolveUnifiedBankQuery(params, context);
   const where = {
     AND: [
-      filtersWhere,
+      query.where,
       problemEligibleWhere(),
-      { NOT: { id: { in: excludeIds } } },
+      await excludeQuestionsWhere(excludeIds),
     ],
   };
-  const [candidates, formatIds, used] = await Promise.all([
-    db.problem.findMany({
-      where,
-      select: { id: true, difficulty: true, unitId: true, familyKey: true },
-    }),
-    findProblemIdsByFormat(format, where, PROBLEM_BANK_ORDER_BY),
+  const [rows, used] = await Promise.all([
+    loadQuestionCandidates(where),
     familiesOnSheet(excludeIds),
   ]);
-  const allowedFormat = formatIds === null ? null : new Set(formatIds);
-  const pools = Object.fromEntries(
-    DIFFICULTY_LADDER.map((tier) => [tier, new Map<string, string[]>()]),
-  ) as Record<keyof DifficultyRatio, Map<string, string[]>>;
-  for (const row of candidates) {
-    if (allowedFormat && !allowedFormat.has(row.id)) continue;
-    const tier = row.difficulty;
-    if (!DIFFICULTY_LADDER.includes(tier)) continue;
-    const family = familyIdOf(row);
-    if (used.has(family)) continue;
-    pools[tier].set(family, [...(pools[tier].get(family) ?? []), row.id]);
-  }
-  // D-111 ⑸ — 난이도별 «선택 전 가능»은 그 난이도의 **문항류 수**다.
-  const available = emptyCounts();
-  for (const tier of DIFFICULTY_LADDER) available[tier] = pools[tier].size;
-  // Uniform within each tier and never substitutes another tier. A family used
-  // by one tier is gone for the next (D-111 ⑶ — across tiers, not per tier).
-  const chosen = Object.fromEntries(
-    DIFFICULTY_LADDER.map((tier) => [tier, [] as string[]]),
-  ) as Record<keyof DifficultyRatio, string[]>;
-  for (const tier of DIFFICULTY_LADDER) {
-    const open = [...pools[tier]].filter(([family]) => !used.has(family));
-    const picked = drawFamilies(
-      open.map(([, rowIds]) => rowIds),
-      requested[tier],
-    );
-    for (const id of picked) {
-      const family = open.find(([, rowIds]) => rowIds.includes(id))![0];
-      used.add(family);
-    }
-    chosen[tier] = picked;
-  }
-  const ids = DIFFICULTY_LADDER.flatMap((tier) => chosen[tier]);
-  const rows = ids.length
-    ? await db.problem.findMany({
-        // Recheck eligibility/filters in case a selected row changed during sampling.
-        where: { AND: [where, { id: { in: ids } }] },
-        select: UNIFIED_PROBLEM_SELECT,
-      })
-    : [];
-  const problems = (await withProblemSourceReferences(rows))
-    .filter(
-      (row) =>
-        chosen[row.difficulty]?.includes(row.id) &&
-        (!format || classifyFormat(row) === format),
-    )
-    .map(toBankProblem);
-  for (let index = problems.length - 1; index > 0; index--) {
-    const other = Math.floor(Math.random() * (index + 1));
-    [problems[index], problems[other]] = [problems[other], problems[index]];
-  }
+  const candidates = solverCandidates(rows, used, query.format);
+  const result = solveQuestionSelection({
+    candidates,
+    count,
+    difficulty: requested,
+    formats,
+  });
+  const questionView = params.get("identity") === "question";
+  const problems = await selectedProblems(result, where, questionView, {
+    AND: query.selection,
+  });
   const counts = emptyCounts();
-  for (const problem of problems)
-    counts[problem.difficulty as keyof DifficultyRatio] += 1;
-  return { problems, available, counts };
+  const available = emptyCounts();
+  for (const p of problems) counts[p.difficulty as Difficulty]++;
+  for (const tier of DIFFICULTY_LADDER)
+    available[tier] = new Set(
+      candidates.filter((r) => r.difficulty === tier).map((r) => r.familyId),
+    ).size;
+  return {
+    problems,
+    available,
+    counts,
+    status: result.status,
+    witness: result.witness,
+    ...(formats
+      ? {
+          formats: OUTPUT_QUESTION_FORMATS.filter(
+            (f) => formats[f] !== undefined,
+          ).map((format) => ({
+            format,
+            requested: formats[format]!,
+            actual: result.selected.filter(
+              (r) => outputFormatOf(r.format) === format,
+            ).length,
+          })),
+        }
+      : {}),
+    ...(questionView ? questionReadMetadata(params) : {}),
+  };
 }
-
 export async function randomBankResponse(
   request: Request,
   headers: HeadersInit,
-  /** 최근 출제 빼기의 계정 — 구성(`allocations`)만 쓴다. */
   context?: BankQueryContext,
 ) {
   try {
@@ -619,18 +394,24 @@ export async function randomBankResponse(
     const result =
       body && typeof body === "object" && "allocations" in body
         ? await composeUnifiedBankProblems(body, context)
-        : await selectUnifiedBankProblems(body);
+        : await selectUnifiedBankProblems(body, context);
     return Response.json(result, { headers });
   } catch (error) {
     return Response.json(
       {
         error:
-          error instanceof UnifiedBankQueryError
+          error instanceof UnifiedBankQueryError ||
+          error instanceof QuestionSelectionConflict
             ? error.message
             : "문제를 고르지 못했습니다. 잠시 후 다시 시도해 주세요.",
       },
       {
-        status: error instanceof UnifiedBankQueryError ? 400 : 503,
+        status:
+          error instanceof QuestionSelectionConflict
+            ? 409
+            : error instanceof UnifiedBankQueryError
+              ? 400
+              : 503,
         headers,
       },
     );

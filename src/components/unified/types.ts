@@ -94,6 +94,8 @@ export interface BankData {
   version?: 2;
   countUnit?: "question";
   queryKey?: string;
+  /** Exact-ID recovery may include multiple stored representations; never use its rows as inventory. */
+  queryMode?: "exact_ids";
   problems: BankProblem[];
   total: number;
   page: number;

@@ -233,8 +233,8 @@ describe("Math exam builder scoped bank access", () => {
       ],
       excludeIds: [...baseline.map((row) => row.id), excluded.id],
     });
-    // D-111: one extra read for the families already on the sheet (excludeIds).
-    expect(find).toHaveBeenCalledTimes(3);
+    // Metadata pool/identity/family reads stay bounded; no per-candidate full payload.
+    expect(find.mock.calls.length).toBeLessThanOrEqual(6);
     expect(result.problems.map((row) => row.id)).toEqual([first.id, second.id]);
     expect(result.allocations).toEqual([
       { unitId: MOCK_UNITS[0].id, requested: 3, available: 1, actual: 1 },
@@ -242,7 +242,7 @@ describe("Math exam builder scoped bank access", () => {
     ]);
   });
 
-  it("uses a deterministic reservoir draw within each allocation without duplicate questions", async () => {
+  it("uses a repeatable full-pool draw without duplicate questions", async () => {
     const baseline = await db.problem.findMany({
       select: { id: true },
       where: { unitId: MOCK_UNITS[0].id },
@@ -253,10 +253,19 @@ describe("Math exam builder scoped bank access", () => {
       allocations: [{ unitId: MOCK_UNITS[0].id, count: 2 }],
       excludeIds: baseline.map((row) => row.id),
     });
-    expect(result.problems.map((row) => row.id)).toEqual([
-      rows[5].id,
-      rows[1].id,
-    ]);
+    const again = await composeUnifiedBankProblems({
+      allocations: [{ unitId: MOCK_UNITS[0].id, count: 2 }],
+      excludeIds: baseline.map((row) => row.id),
+    });
+    expect(result.problems.map((row) => row.id)).toEqual(
+      again.problems.map((row) => row.id),
+    );
+    expect(new Set(result.problems.map((row) => row.id)).size).toBe(2);
+    expect(
+      result.problems.every((row) =>
+        rows.some((candidate) => candidate.id === row.id),
+      ),
+    ).toBe(true);
     expect(result.allocations[0]).toMatchObject({
       requested: 2,
       available: 6,

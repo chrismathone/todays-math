@@ -20,6 +20,7 @@ export function liveProblem(): Problem & {
 } {
   return {
     id: PROBLEM_ID,
+    questionGroupKey: null,
     userId: null,
     unitId: LIVE_UNIT_ID,
     source: "manual",

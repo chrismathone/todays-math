@@ -174,6 +174,24 @@ export function solveQuestionSelection<T extends QuestionSelectionCandidate>(
   const usedF = new Set<string>();
   const selected: T[] = [];
   let best: T[] = [];
+  // A useful partial witness never decides feasibility: exact search follows.
+  const prefixRemaining = [...remaining];
+  const prefixQ = new Set<string>();
+  const prefixF = new Set<string>();
+  for (const option of options) {
+    const row = option.row;
+    if (
+      prefixQ.has(row.questionId) ||
+      (distinct && prefixF.has(row.familyId)) ||
+      option.demands.some((i) => prefixRemaining[i] === 0)
+    )
+      continue;
+    best.push(row);
+    prefixQ.add(row.questionId);
+    prefixF.add(row.familyId);
+    for (const i of option.demands) prefixRemaining[i]--;
+    if (best.length === total) break;
+  }
   let limited = false;
   let lastReason = "full_pool_exhausted";
   const maxNodes = Math.max(0, input.maxNodes ?? 50000);

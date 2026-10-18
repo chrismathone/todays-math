@@ -26,6 +26,7 @@ import { z } from "zod";
 import {
   questionIdSchema,
   questionRepresentationSchema,
+  questionFormatSchema,
 } from "./questionFormats.contract";
 
 import type { Difficulty } from "./common.contract";
@@ -192,10 +193,18 @@ export const problemSchema = z.strictObject({
 export type ProblemEntity = z.infer<typeof problemSchema>;
 
 export const problemResponseSchema = dataResponseSchema(problemSchema);
-export const problemListResponseSchema = listResponseSchema(problemSchema);
+export const problemListResponseSchema = listResponseSchema(
+  problemSchema,
+).extend({
+  version: z.literal(2).optional(),
+  countUnit: z.literal("question").optional(),
+  queryKey: z.string().min(1).optional(),
+});
 
 // ── 조회 필터 ────────────────────────────────────────────
 export const problemFilterQuerySchema = z.strictObject({
+  identity: z.literal("question").optional(),
+  availableFormat: questionFormatSchema.optional(),
   unitId: uuidSchema.optional(),
   /**
    * 계단식 단원 필터(S-08) — Unit relation 기준으로 거른다.
