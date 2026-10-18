@@ -1,0 +1,48 @@
+{
+  "kind": "17-row-content-repair-r3-readonly",
+  "shapeSourceCommit": "be6b4d39ad535b8694ff5f2f57d14ccfd8220ce9",
+  "wordingSourceCommit": "cfbb07daff5b7416081413604d43815696d31c4e",
+  "manifestSourceCommit": "cfbb07daff5b7416081413604d43815696d31c4e",
+  "manifestSha256": "d81ebc1a641c92703ddb9885558c5e31adf483097bf5e24e150e97ba80445355",
+  "beforeLedgerSha256": "436f318361f46593f38813b51085aa9e069aef8564f593cb5be3865ab1ce7825",
+  "privateBefore": {
+    "path": ".qa-artifacts/math-question-formats-20261018/content-repair-r3/before-private.json",
+    "sha256": "34e291572646317a287e4603fa06a0b0feeef1e37bc666176d1684b3e4e2fc8c"
+  },
+  "privateCandidates": {
+    "path": ".qa-artifacts/math-question-formats-20261018/content-repair-r3/candidates-private.json",
+    "sha256": "22ecd5b9e6cd0234aa21e9d64f86212e55eb31640228e41a2ecac683d69f3955"
+  },
+  "privateDirectory": ".qa-artifacts/math-question-formats-20261018/content-repair-r3",
+  "referenceColumns": 11,
+  "rows": 17,
+  "references": 0,
+  "sharedDatabaseWrites": 0,
+  "actualSvgCoordinateProofs": 17,
+  "studentRows": 17,
+  "teacherSolutions": 17,
+  "a4Pages": 15,
+  "pdfs": 10,
+  "pdfPagesVisuallyReviewed": 15,
+  "physicalPrinterVerified": false,
+  "independentClaudeApproval": "pending",
+  "countingFollowup": {
+    "sourceFile": "src/lib/middle/m2Counting.ts",
+    "sourceSha256": "c44625a234cbcc2fc59f9deffa61bbc88eae43f6ade765517455794b181a53ce",
+    "sourceDigestCoveredBy": "scripts/qa/bank/math-question-reinforcement.ts git ls-files src/lib/middle",
+    "existingRowsWritten": 0,
+    "frozen94Content146RowEvidenceChanged": false
+  },
+  "pending": [
+    "Root merges preserving both source commits and copies the private directory.",
+    "Claude independently reviews exact R3 source/manifest/before/private SHA bindings.",
+    "Root alone executes approved all-or-nothing 17-row apply and fresh group-key backfill, with current references and full-row CAS rechecked.",
+    "Root separately handles saved family11 wording scope and regenerates final bounded evidence after prerequisite writes.",
+    "Physical printer review."
+  ],
+  "ownQaServer": {
+    "port": 4273,
+    "exitCode": 143,
+    "listenerPresentAfterStop": false
+  }
+}

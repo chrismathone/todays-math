@@ -1,0 +1,474 @@
+{
+  "checkedAt": "2026-10-18T07:27:38.274Z",
+  "privateFixtureSha256": "bef5abfaa8506218c59411998a6126adf528429b93ff2070c3fe2125590084e7",
+  "sourceDigests": {
+    "src/components/print/TestPrint.tsx": "968e01e2fc53ff8d31335c0ba97c9c2c208ad53687f0269b25f5dfda29752639",
+    "src/components/print/PrintAnswerKeyPage.tsx": "3420ebe3e85ff6eb89f1149e83c77a5e4d1985c96568f1b85fd7e0cab5089afc",
+    "src/components/print/templates/JaseupTemplate.tsx": "9157c65be4fa38153250714890495f89ddc8cd1b95dd488028432a7b8cfd49a1",
+    "src/components/print/PaperProblemView.tsx": "3765c009b2d30449dbef7f35a4efff7175d0f126a81fa4468b427dca9e9570de",
+    "src/components/print/TestPrint.module.css": "a3bae10413f08de167fc3e70fd42d99a2b505347a2f303e39d532606a386f45f",
+    "src/components/print/tokens.ts": "cc82db4c49854cd549d4535fa393285c0abd14c57035fe7e45eaf62f3ca6e27d",
+    "src/app/fonts.ts": "91ac62e201053c633c88b813cc5865a41ca2f996de43b2606d0dcb76e4cc432d",
+    "src/app/globals.css": "f2748025ff55b02e6d2312d0ef07663214e1e78b05d6793e49e66d0c9e2066d5",
+    "scripts/qa/bank/question-content-paper.tsx": "3182d5c150570c9aab2069f8e729029a7d12181a83ee0f7e3f018a0d4f78602d"
+  },
+  "summary": [
+    {
+      "status": "ready",
+      "group": "elem:초4|2-4-4 사다리꼴|05",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 3,
+      "ids": [
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f05|단답형|s20261836",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f05|단답형|s20260827",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f05|단답형|s20265872"
+      ],
+      "expectedSvgRows": 3,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 3,
+      "solutionItems": 0,
+      "figureSvgs": 3,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "elem:초4|2-4-4 사다리꼴|05",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 3,
+      "ids": [
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f05|단답형|s20261836",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f05|단답형|s20260827",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f05|단답형|s20265872"
+      ],
+      "expectedSvgRows": 3,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 3,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "elem:초4|2-4-4 사다리꼴|05",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "elem:초4|2-4-4 사다리꼴|05",
+      "mode": "answers",
+      "markers": 3
+    },
+    {
+      "status": "ready",
+      "group": "elem:초4|2-4-2 평행과 평행선|09",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 4,
+      "ids": [
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f09|단답형|s20261836",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f09|단답형|s20260827",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f09|객관식|s20261836",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f09|객관식|s20260827"
+      ],
+      "expectedSvgRows": 4,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 4,
+      "solutionItems": 0,
+      "figureSvgs": 4,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "elem:초4|2-4-2 평행과 평행선|09",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 4,
+      "ids": [
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f09|단답형|s20261836",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f09|단답형|s20260827",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f09|객관식|s20261836",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f09|객관식|s20260827"
+      ],
+      "expectedSvgRows": 4,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 4,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "elem:초4|2-4-2 평행과 평행선|09",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "elem:초4|2-4-2 평행과 평행선|09",
+      "mode": "answers",
+      "markers": 4
+    },
+    {
+      "status": "ready",
+      "group": "elem:초4|2-2-2 이등변삼각형의 성질|09",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 3,
+      "ids": [
+        "engine-elem:초4|2-2 삼각형|2-2-2 이등변삼각형의 성질|f09|단답형|s20260827",
+        "engine-elem:초4|2-2 삼각형|2-2-2 이등변삼각형의 성질|f09|단답형|s20263854",
+        "engine-elem:초4|2-2 삼각형|2-2-2 이등변삼각형의 성질|f09|단답형|s20261836"
+      ],
+      "expectedSvgRows": 3,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 3,
+      "solutionItems": 0,
+      "figureSvgs": 3,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "elem:초4|2-2-2 이등변삼각형의 성질|09",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 3,
+      "ids": [
+        "engine-elem:초4|2-2 삼각형|2-2-2 이등변삼각형의 성질|f09|단답형|s20260827",
+        "engine-elem:초4|2-2 삼각형|2-2-2 이등변삼각형의 성질|f09|단답형|s20263854",
+        "engine-elem:초4|2-2 삼각형|2-2-2 이등변삼각형의 성질|f09|단답형|s20261836"
+      ],
+      "expectedSvgRows": 3,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 3,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "elem:초4|2-2-2 이등변삼각형의 성질|09",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "elem:초4|2-2-2 이등변삼각형의 성질|09",
+      "mode": "answers",
+      "markers": 3
+    },
+    {
+      "status": "ready",
+      "group": "elem:초4|2-6-3 대각선|10",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 4,
+      "ids": [
+        "engine-elem:초4|2-6 다각형|2-6-3 대각선|f10|단답형|s20262845",
+        "engine-elem:초4|2-6 다각형|2-6-3 대각선|f10|단답형|s20266881",
+        "engine-elem:초4|2-6 다각형|2-6-3 대각선|f10|단답형|s20263854",
+        "engine-elem:초4|2-6 다각형|2-6-3 대각선|f10|단답형|s20260827"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 4,
+      "solutionItems": 0,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "elem:초4|2-6-3 대각선|10",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 4,
+      "ids": [
+        "engine-elem:초4|2-6 다각형|2-6-3 대각선|f10|단답형|s20262845",
+        "engine-elem:초4|2-6 다각형|2-6-3 대각선|f10|단답형|s20266881",
+        "engine-elem:초4|2-6 다각형|2-6-3 대각선|f10|단답형|s20263854",
+        "engine-elem:초4|2-6 다각형|2-6-3 대각선|f10|단답형|s20260827"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 4,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "elem:초4|2-6-3 대각선|10",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "elem:초4|2-6-3 대각선|10",
+      "mode": "answers",
+      "markers": 4
+    },
+    {
+      "status": "ready",
+      "group": "elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|09",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 3,
+      "ids": [
+        "engine-elem:초4|2-2 삼각형|2-2-1 삼각형을 변의 길이에 따라 분류하기|f09|단답형|s20262845",
+        "engine-elem:초4|2-2 삼각형|2-2-1 삼각형을 변의 길이에 따라 분류하기|f09|단답형|s20261836",
+        "engine-elem:초4|2-2 삼각형|2-2-1 삼각형을 변의 길이에 따라 분류하기|f09|단답형|s20260827"
+      ],
+      "expectedSvgRows": 3,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 3,
+      "solutionItems": 0,
+      "figureSvgs": 3,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|09",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 3,
+      "ids": [
+        "engine-elem:초4|2-2 삼각형|2-2-1 삼각형을 변의 길이에 따라 분류하기|f09|단답형|s20262845",
+        "engine-elem:초4|2-2 삼각형|2-2-1 삼각형을 변의 길이에 따라 분류하기|f09|단답형|s20261836",
+        "engine-elem:초4|2-2 삼각형|2-2-1 삼각형을 변의 길이에 따라 분류하기|f09|단답형|s20260827"
+      ],
+      "expectedSvgRows": 3,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 3,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|09",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|09",
+      "mode": "answers",
+      "markers": 3
+    }
+  ],
+  "errors": [],
+  "failedResponses": [],
+  "physicalPrinterVerified": false
+}

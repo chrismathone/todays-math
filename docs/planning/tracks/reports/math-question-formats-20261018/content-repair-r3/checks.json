@@ -1,0 +1,56 @@
+{
+  "at": "2026-10-18T07:32:19.684568+00:00",
+  "sourceCommit": "cfbb07daff5b7416081413604d43815696d31c4e",
+  "tests": {
+    "command": "npx vitest run --config scripts/qa/bank/question-content.vitest.config.mts",
+    "exitCode": 0,
+    "filesPassed": 3,
+    "testsPassed": 20,
+    "includes": [
+      "actual SVG unique-answer solution across 5 families and 3 original seeds",
+      "old near-isosceles SVG rejected at 15% side margin",
+      "angle-only ambiguous triangle rejected at 10 degree angle margin",
+      "old near-parallel irregQuad actual SVG rejected at 10 degree direction margin",
+      "accepted/shared figure coordinate regression",
+      "fresh post-DDL snapshot requires NULL group key",
+      "real local PGlite CAS, future FK, references, timestamps/codes and identity key invalidation",
+      "whole-row conflict, idempotent apply and scoped revert protections",
+      "committed exact Claude approval and source/manifest/before SHA gates",
+      "zero-inclusive family11 wording and independent enumeration of both variants for 33 seeds"
+    ]
+  },
+  "typescript": {
+    "command": "npx tsc --noEmit -p scripts/qa/bank/question-content.tsconfig.json",
+    "exitCode": 0
+  },
+  "eslint": {
+    "commands": [
+      "npx eslint src/lib/elementary/g4.ts scripts/import/question-content-repair.ts scripts/qa/bank/math-question-repair.ts scripts/qa/bank/math-question-repair.test.ts",
+      "npx eslint src/lib/middle/m2Counting.ts scripts/qa/bank/math-question-reinforcement.test.ts"
+    ],
+    "exitCodes": [
+      0,
+      0
+    ],
+    "errors": 0,
+    "warnings": [
+      {
+        "file": "src/lib/elementary/g4.ts",
+        "line": 7673,
+        "rule": "@typescript-eslint/no-unused-vars",
+        "message": "pre-existing unused p, outside changed slot"
+      }
+    ]
+  },
+  "pythonCompile": {
+    "command": "python3 -m py_compile scripts/qa/bank/verify-question-repairs.py scripts/figure/elementary.py",
+    "exitCode": 0
+  },
+  "diffCheck": {
+    "command": "git diff --check",
+    "exitCode": 0
+  },
+  "sharedDatabaseWrites": 0,
+  "physicalPrinterVerified": false,
+  "localPGliteIsNotProductionRoleOrLockProof": true
+}
