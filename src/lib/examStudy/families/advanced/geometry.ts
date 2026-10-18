@@ -11,7 +11,12 @@ import {
   draft,
   requireMatch,
 } from "./shared";
-import { type Point, graphFigure } from "./graph";
+import {
+  type Point,
+  type GraphFigure,
+  graphFigure,
+  placeGraphLabels,
+} from "./graph";
 
 const FIGURE_CHECKS = [...BASIC_CHECKS, "visual-information"] as const;
 const radians = (a: number) => (a * Math.PI) / 180;
@@ -165,13 +170,13 @@ function buildSplit(p: CanonicalParams): ExamStudyDraft {
   const positions = { A: a, B: b, C: c, D: d, I: i, J: j, E: e };
   // graph-1 uses independent x/y scales. Equal DATA units must also have
   // equal physical lengths for a geometry figure with angle labels.
-  const spanX = Math.max(c[0] + 0.8, ((a[1] + 0.8) * 464) / 404);
-  const spanY = (spanX * 404) / 464;
-  const figure = {
+  const spanX = Math.max(c[0] + 0.8, a[1] + 0.8);
+  const spanY = spanX;
+  const figure: GraphFigure = {
     version: "graph-1",
     axes: false,
-    width: 560,
-    height: 500,
+    width: 400,
+    height: 400,
     xRange: [-0.35, spanX - 0.35],
     yRange: [-0.3, spanY - 0.3],
     curves: [],
@@ -191,14 +196,24 @@ function buildSplit(p: CanonicalParams): ExamStudyDraft {
         dy: text === "I" ? 14 : ["B", "C", "D"].includes(text) ? 22 : -12,
         anchor: ["I", "E"].includes(text) ? "end" : "middle",
       })),
-      { at: [0.05, a[1] + 0.23], text: `α=${alpha}°`, anchor: "start" },
+      // Keep the two given angles in separate header positions. Their pixel
+      // separation must not collapse when a wide triangle needs a larger span.
       {
-        at: [Math.min(c[0] - 0.8, 1), a[1] + 0.23],
-        text: `β=${beta}°`,
+        at: [-0.35, spanY - 0.3],
+        text: `α=${alpha}°`,
+        dx: 0,
+        dy: -16,
         anchor: "start",
+      },
+      {
+        at: [spanX - 0.35, spanY - 0.3],
+        text: `β=${beta}°`,
+        dy: -16,
+        anchor: "end",
       },
     ],
   };
+  placeGraphLabels(figure);
   const answer = `${45 + alpha / 4 + beta / 2}°`;
   return draft(
     p,
@@ -214,7 +229,7 @@ function buildSplit(p: CanonicalParams): ExamStudyDraft {
       "서로 다른 내심의 두 이등분선",
       "연장선의 순서와 외각 가지",
     ],
-    { figureSpec: figure },
+    { figureSpec: figure as unknown as Record<string, unknown> },
   );
 }
 
@@ -382,14 +397,14 @@ function buildTwoCenters(p: CanonicalParams): ExamStudyDraft {
   // Author's angle-bisector/circumcircle formulas, checked independently below.
   const i: Point = [0, Math.tan(radians(45 - apex / 4))];
   const o: Point = [0, Math.tan(radians(90 - apex))];
-  const spanX = Math.max(3, ((height + 0.9) * 464) / 404),
-    spanY = (spanX * 404) / 464;
+  const spanX = Math.max(3, height + 0.9),
+    spanY = spanX;
   const positions = { A: a, B: b, C: c, O: o, I: i };
-  const figure = {
+  const figure: GraphFigure = {
     version: "graph-1",
     axes: false,
-    width: 560,
-    height: 500,
+    width: 400,
+    height: 400,
     xRange: [-spanX / 2, spanX / 2],
     yRange: [-0.3, spanY - 0.3],
     curves: [],
@@ -412,6 +427,7 @@ function buildTwoCenters(p: CanonicalParams): ExamStudyDraft {
       { at: [-1.15, height + 0.25], text: `θ=${theta}°`, anchor: "start" },
     ],
   };
+  placeGraphLabels(figure);
   const answer = `${90 + apex / 2}°`;
   return draft(
     p,
@@ -427,7 +443,7 @@ function buildTwoCenters(p: CanonicalParams): ExamStudyDraft {
       "그림의 중심 순서로 절댓값의 두 가지 구별",
       "복원한 꼭짓각을 다른 내심 각에 연결",
     ],
-    { figureSpec: figure },
+    { figureSpec: figure as unknown as Record<string, unknown> },
   );
 }
 

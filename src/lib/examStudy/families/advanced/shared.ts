@@ -9,6 +9,8 @@ import type {
 import type { NativeRubric } from "@/contracts/nativeDescriptive.contract";
 
 export const ADVANCED_VERSION = "1.0.0";
+// Only the four authored figure families change representation in this revision.
+export const ADVANCED_FIGURE_VERSION = "1.0.1";
 export const BASIC_CHECKS = [
   "independent-solution",
   "essential-conditions",
@@ -115,7 +117,7 @@ export interface AuthoredConfig {
 export function authoredFamily(config: AuthoredConfig): ExamStudyFamily {
   return {
     id: config.id,
-    version: ADVANCED_VERSION,
+    version: config.figure ? ADVANCED_FIGURE_VERSION : ADVANCED_VERSION,
     title: config.title,
     course: config.course ?? "공통수학2",
     unitIds: [config.unit],

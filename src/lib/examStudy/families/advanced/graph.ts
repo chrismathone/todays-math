@@ -2,6 +2,7 @@ import type {
   CanonicalParams,
   ExamStudyDraft,
 } from "@/contracts/examStudy.contract";
+import { typesetLabel } from "@/lib/figure/mathjaxLabel";
 import {
   BASIC_CHECKS,
   assert,
@@ -23,7 +24,7 @@ export interface GraphFigure {
   height: number;
   axes: boolean;
   curves: { coefficients: number[]; domain: [number, number] }[];
-  points: { at: Point }[];
+  points: { at: Point; radius?: number }[];
   labels: {
     at: Point;
     text: string;
@@ -121,7 +122,7 @@ for (const h of [-2, 0, 2])
  * Keep annotations off axes/curves and inside its viewBox without changing the
  * actual mathematical data or inventing an SVG path. Pixel tests are layout
  * only; independent mathematical verification remains entirely algebraic. */
-function placeGraphLabels(spec: GraphFigure): void {
+export function placeGraphLabels(spec: GraphFigure): void {
   type Box = readonly [number, number, number, number];
   const screen = ([x, y]: Point): Point => [
     48 +
@@ -134,25 +135,64 @@ function placeGraphLabels(spec: GraphFigure): void {
   ];
   const occupied: Box[] = [];
   const xAxis =
-    spec.yRange[0] <= 0 && spec.yRange[1] >= 0 ? screen([0, 0])[1] : null;
+    spec.axes && spec.yRange[0] <= 0 && spec.yRange[1] >= 0
+      ? screen([0, 0])[1]
+      : null;
   const yAxis =
-    spec.xRange[0] <= 0 && spec.xRange[1] >= 0 ? screen([0, 0])[0] : null;
+    spec.axes && spec.xRange[0] <= 0 && spec.xRange[1] >= 0
+      ? screen([0, 0])[0]
+      : null;
   if (xAxis !== null)
     occupied.push([spec.width - 61, xAxis + 2, spec.width - 28, xAxis + 29]);
   if (yAxis !== null) occupied.push([yAxis - 30, 13, yAxis + 5, 48]);
-  const probes = spec.curves.flatMap((curve) =>
-    Array.from({ length: 301 }, (_, n) => {
-      const x =
-        curve.domain[0] + ((curve.domain[1] - curve.domain[0]) * n) / 300;
-      return screen([x, curve.coefficients.reduce((y, c) => y * x + c, 0)]);
-    }),
-  );
-  probes.push(...spec.points.map((p) => screen(p.at)));
+  const strokes: (readonly [Point, Point])[] = [];
+  const addPolyline = (points: readonly Point[]) => {
+    for (let i = 1; i < points.length; i++)
+      strokes.push([points[i - 1]!, points[i]!]);
+  };
+  for (const curve of spec.curves)
+    addPolyline(
+      Array.from({ length: 401 }, (_, n) => {
+        const x =
+          curve.domain[0] + ((curve.domain[1] - curve.domain[0]) * n) / 400;
+        return screen([x, curve.coefficients.reduce((y, c) => y * x + c, 0)]);
+      }),
+    );
+  for (const segment of spec.segments ?? [])
+    strokes.push([screen(segment.from), screen(segment.to)]);
+  for (const polygon of spec.polygons ?? [])
+    addPolyline([...polygon.points, polygon.points[0]!].map(screen));
+  const dots = spec.points.map((point) => ({
+    at: screen(point.at),
+    radius: point.radius ?? 3,
+  }));
+  const crosses = ([a, b]: readonly [Point, Point], box: Box) => {
+    let low = 0,
+      high = 1;
+    for (let axis = 0; axis < 2; axis++) {
+      const delta = b[axis]! - a[axis]!;
+      if (Math.abs(delta) < 1e-10) {
+        if (a[axis]! <= box[axis]! || a[axis]! >= box[axis + 2]!) return false;
+      } else {
+        const enter = (box[axis]! - a[axis]!) / delta;
+        const leave = (box[axis + 2]! - a[axis]!) / delta;
+        low = Math.max(low, Math.min(enter, leave));
+        high = Math.min(high, Math.max(enter, leave));
+        if (low >= high) return false;
+      }
+    }
+    return true;
+  };
   const overlap = (a: Box, b: Box) =>
     a[0] < b[2] && a[2] > b[0] && a[1] < b[3] && a[3] > b[1];
   for (const label of spec.labels) {
-    const [px, py] = screen(label.at),
-      width = label.text.length * 10.5 + 8;
+    const [px, py] = screen(label.at);
+    // Reuse the renderer's glyph metrics: character-count estimates reject
+    // usable space on the 400-unit canvas and miss minus signs/descenders.
+    const metrics = typesetLabel(label.text);
+    assert(metrics, "그래프 좌표 라벨을 조판할 수 없습니다.");
+    const width = metrics.widthEm * 20;
+    const centerY = ((metrics.ascentEm - metrics.descentEm) * 20) / 2;
     const candidates: { dx: number; dy: number; anchor: string }[] = [
       {
         dx: label.dx ?? 0,
@@ -160,18 +200,15 @@ function placeGraphLabels(spec: GraphFigure): void {
         anchor: label.anchor ?? "middle",
       },
     ];
-    for (const distance of [24, 38, 54, 72, 96]) {
-      candidates.push(
-        { dx: 0, dy: -distance, anchor: "middle" },
-        { dx: 0, dy: distance, anchor: "middle" },
-      );
-      for (const dx of [12, 30, 50])
-        for (const dy of [-distance, distance])
-          candidates.push(
-            { dx, dy, anchor: "start" },
-            { dx: -dx, dy, anchor: "end" },
-          );
-    }
+    for (const distance of [18, 24, 32, 42, 56, 74, 96, 120])
+      for (let direction = 0; direction < 16; direction++) {
+        const angle = (direction * Math.PI) / 8;
+        candidates.push({
+          dx: distance * Math.cos(angle),
+          dy: centerY + distance * Math.sin(angle),
+          anchor: "middle",
+        });
+      }
     let chosen: (typeof candidates)[number] | undefined;
     for (const candidate of candidates) {
       const x = px + candidate.dx,
@@ -183,7 +220,12 @@ function placeGraphLabels(spec: GraphFigure): void {
           : candidate.anchor === "middle"
             ? width / 2
             : 0);
-      const box: Box = [left - 3, y - 25, left + width + 3, y + 5];
+      const box: Box = [
+        left - 3,
+        y - metrics.ascentEm * 20 - 3,
+        left + width + 3,
+        y + metrics.descentEm * 20 + 3,
+      ];
       if (
         box[0] < 5 ||
         box[2] > spec.width - 5 ||
@@ -192,6 +234,22 @@ function placeGraphLabels(spec: GraphFigure): void {
       )
         continue;
       if (occupied.some((other) => overlap(box, other))) continue;
+      // Point-name labels must remain closest to their own named point. In
+      // particular E/I and O/I may be close: clearing a stroke must not swap
+      // their visual roles. Coordinate labels already identify their owner.
+      if (/^[A-Z]$/.test(label.text)) {
+        const cx = left + width / 2,
+          cy = y - centerY;
+        const ownDistance = Math.hypot(cx - px, cy - py);
+        if (
+          dots.some(
+            ({ at: [x, y] }) =>
+              Math.hypot(x - px, y - py) > 1e-6 &&
+              Math.hypot(cx - x, cy - y) < ownDistance - 1e-6,
+          )
+        )
+          continue;
+      }
       if (
         xAxis !== null &&
         box[1] <= xAxis + 2 &&
@@ -208,9 +266,15 @@ function placeGraphLabels(spec: GraphFigure): void {
         box[1] <= spec.height - 48
       )
         continue;
+      if (strokes.some((stroke) => crosses(stroke, box))) continue;
       if (
-        probes.some(
-          ([x, y]) => x >= box[0] && x <= box[2] && y >= box[1] && y <= box[3],
+        dots.some(
+          ({ at: [x, y], radius }) =>
+            Math.hypot(
+              x - Math.max(box[0], Math.min(box[2], x)),
+              y - Math.max(box[1], Math.min(box[3], y)),
+            ) <
+            radius + 1,
         )
       )
         continue;
@@ -252,8 +316,10 @@ function buildParabola(p: CanonicalParams): ExamStudyDraft {
     version: "graph-1",
     xRange: [xlo, xhi + 1.3],
     yRange: [ylo, yhi],
-    width: 520,
-    height: 440,
+    // graph-1's 20-unit labels become 13.23px at the shared 70mm print width.
+    // A larger canvas silently shrinks both the givens and the axis names.
+    width: 400,
+    height: 400,
     axes: true,
     curves: [
       { coefficients: [a, -2 * a * h, a * h * h + k], domain: [xlo, xhi] },
