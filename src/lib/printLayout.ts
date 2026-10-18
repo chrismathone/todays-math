@@ -28,3 +28,34 @@ export function paginateAnswerKey(
 
   return pages;
 }
+
+/** Keep the existing eight-entry cap; split only pages proven to overflow in the
+ * actual two-column DOM. A first-page quick-answer box may need its own page.
+ */
+export function splitOverflowingAnswerPages(
+  pages: AnswerKeyPage[],
+  cuts: ReadonlyMap<number, number>,
+): AnswerKeyPage[] {
+  const result: AnswerKeyPage[] = [];
+  for (const [pageIndex, page] of pages.entries()) {
+    const cut = cuts.get(pageIndex);
+    if (
+      cut === undefined ||
+      cut < 0 ||
+      cut >= page.problems.length ||
+      (cut === 0 && pageIndex !== 0)
+    ) {
+      result.push(page);
+      continue;
+    }
+    result.push({
+      problems: page.problems.slice(0, cut),
+      startingNumber: page.startingNumber,
+    });
+    result.push({
+      problems: page.problems.slice(cut),
+      startingNumber: page.startingNumber + cut,
+    });
+  }
+  return result;
+}

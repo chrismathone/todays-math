@@ -17,7 +17,10 @@ import { describe, expect, it } from "vitest";
 
 import type { TestPrintProblem } from "@/components/print/types";
 import { JASEUP_GEOMETRY, JASEUP_MEASURED_PX } from "@/lib/printGeometry";
-import { paginateAnswerKey } from "@/lib/printLayout";
+import {
+  paginateAnswerKey,
+  splitOverflowingAnswerPages,
+} from "@/lib/printLayout";
 import {
   assessOverflowRisk,
   assessSeat,
@@ -277,5 +280,32 @@ describe("[paginateAnswerKey] 정답지 분할", () => {
   it("8항목 이하는 한 장", () => {
     expect(paginateAnswerKey(problems(8))).toHaveLength(1);
     expect(paginateAnswerKey([])).toEqual([]);
+  });
+
+  it("실측으로 밀린 해설을 다음 장으로 옮겨 순서와 번호를 보존한다", () => {
+    const original = problems(17);
+    const pages = splitOverflowingAnswerPages(
+      paginateAnswerKey(original),
+      new Map([
+        [0, 7],
+        [1, 5],
+      ]),
+    );
+    expect(pages.map((p) => p.problems.length)).toEqual([7, 1, 5, 3, 1]);
+    expect(pages.map((p) => p.startingNumber)).toEqual([1, 8, 9, 14, 17]);
+    expect(pages.flatMap((p) => p.problems)).toEqual(original);
+  });
+
+  it("빠른 정답 상자만 첫 장에 두어도 1번 해설부터 이어지며 다음 장의 첫 항목을 무한 분할하지 않는다", () => {
+    const initial = paginateAnswerKey(problems(8));
+    const split = splitOverflowingAnswerPages(initial, new Map([[0, 0]]));
+    expect(split.map((p) => [p.startingNumber, p.problems.length])).toEqual([
+      [1, 0],
+      [1, 8],
+    ]);
+    expect(splitOverflowingAnswerPages(split, new Map([[1, 0]]))).toEqual(
+      split,
+    );
+    expect(splitOverflowingAnswerPages(initial, new Map())).toEqual(initial);
   });
 });
