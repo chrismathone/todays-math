@@ -2,7 +2,7 @@
 
 2026-10-18 · 읽기 전용 조사 · 기준 `1d84a0a933e439acba941498472a420b184e9095`
 
-**권고:** 은행은 같은 수학 과제를 한 카드·한 문항으로 세고, 담기/구성 때 사용할 **실제 저장 표현**을 선택한다. `problemId`와 문항류(`familyKey`)를 유지하면서 형식 형제를 잇는 별도 `questionId` 읽기 계약을 둔다. 원문의 근거·설명·증명 요구가 달라진 서술형 과제는 독립 문항으로 남길 수 있다. **Root의 통합 계획과 Claude의 승인은 아직 없으며, 이 문서는 구현 승인이 아니다.**
+**권고:** 은행은 같은 수학 과제를 한 카드·한 문항으로 세고, 담기/구성 때 사용할 **실제 저장 표현**을 선택한다. `problemId`와 문항류(`familyKey`)를 유지하면서 형식 형제를 잇는 별도 `questionId` 읽기 계약을 둔다. 원문의 근거·설명·증명 요구가 달라진 서술형 과제는 독립 문항으로 남길 수 있다. **Root의 통합 방향은 후속 메시지로 수신했고 Claude 승인은 대기 중이며, 이 문서는 구현 승인이 아니다.**
 
 조사 중 제품 코드·DB·설정·은행 데이터를 변경하지 않았다. 이 문서와 짝 JSON만 작성한다. 실계정·실DB·브라우저 런타임·제품 테스트는 실행하지 않았다.
 
@@ -130,6 +130,8 @@
 
 아래 이름은 **제안**이다. Root/정체 담당자가 합의한 단일 계약 파일로 고정한 뒤 병렬 구현한다. 화면이 원문을 비교하거나 equivalence를 판단하지 않는다.
 
+**코디네이터 후속 결정(2026-10-18 15:15 KST):** 통합 계획은 nullable `questionGroupKey`와 연결 근거를 남기는 backfill, 편집 시 연결을 해제하는 trigger를 채택한다. UI는 전 경로에서 `identity=question`을 명시하고 row detail/저장본을 유지한다. 전달 메타는 `BankProblem`의 선택적 `questionId`/`questionFormats` 및 `countUnit=question`을 우선하며 core 담당자가 최종 타입을 고정한다. 아래 DTO는 요구 경계를 설명하는 예시이고 이 결정의 필드명을 덮어쓰지 않는다.
+
 ```ts
 type QuestionFormat = "multiple_choice" | "short_answer" | "descriptive";
 type QuestionRepresentation = {
@@ -169,7 +171,7 @@ type FormatQuotaResult = {
 
 한 형식에 여러 실제 행/출처가 있으면 서버가 현재 필터·권한에 맞는 선택 후보를 지정한다. `missing`은 해당 형식 항목이 없다는 뜻이고, `blocked`와 구분한다. “가능 형식”은 `state=available`인 실제 표현에서만 만든다. 카드 미리보기의 적격 상태를 형제에 복사하지 않는다. 미분류 행은 검토에서 보존하고 새 할당을 충족했다고 세지 않는다.
 
-선택 시 기존 `GET /…/problems/{problemId}`로 실제 본문을 읽고 응답의 정체/형식/개정과 비교한다. 출력/생성 서버가 다시 검사하므로 브라우저의 선택만 믿지 않는다. 기존 StudioProblem에는 선택적으로 `bankQuestion: QuestionSelection` 메타를 붙일 수 있으나 **`StudioProblem.id`는 계속 실제 problemId**다. 수입/잘라낸 로컬 문항과 영어는 이 메타 없이 현 계약을 유지한다.
+선택 시 기존 `GET /…/problems/{problemId}`로 실제 본문을 읽고 응답의 정체/형식/개정과 비교한다. 출력/생성 서버가 다시 검사하므로 브라우저의 선택만 믿지 않는다. 기존 `BankProblem`의 선택적 `questionId`/`questionFormats`를 UI adapter가 전달하되 **`StudioProblem.id`는 계속 실제 problemId**다. 선택 개정의 정확한 필드 위치는 core 계약에서 고정한다. 수입/잘라낸 로컬 문항과 영어는 이 메타 없이 현 계약을 유지한다.
 
 ### 수량의 공통 정의
 
@@ -221,7 +223,7 @@ type FormatQuotaResult = {
 
 ## 10. 구현 승인 전 합의와 인수 조건
 
-Root 계획과 Claude 검토에서 고정할 것은 (1) 안정적인 questionId 연결 근거/판단 보류 처리, (2) 새 보기/바구니 변경 계약, (3) 수동 경로의 recent 기본값, (4) 저장본 보존 모드다. 이 네 항목을 확정한 뒤 데이터 계약 작업과 fixture 기반 UI 작업을 병렬 진행할 수 있다. 전역 유형 통합이나 전면 재설계를 선행 조건으로 만들지 않는다.
+Root 계획과 Claude 검토에서 고정할 것은 (1) 안정적인 questionId 연결 근거/판단 보류 처리, (2) 새 보기/바구니 변경 계약, (3) 수동 경로의 recent 기본값, (4) 저장본 보존 모드다. 후속 Root 메시지는 (1)의 nullable key/근거 backfill/편집 무효화 방향, (3)의 **기존 기본 유지·새 설정에서만 명시**, (4)의 **원본 출력 유지·새 편집에서 형제 선택으로 해소**를 지정했다. core 최종 타입과 Claude 승인을 받은 뒤 데이터 계약 작업과 fixture 기반 UI 작업을 병렬 진행할 수 있다. 전역 유형 통합이나 전면 재설계를 선행 조건으로 만들지 않는다.
 
 인수 시나리오는 짝 JSON의 합성 사례를 사용한다. 원문/사적 로그를 이 보고서로 복사하지 않는다.
 
