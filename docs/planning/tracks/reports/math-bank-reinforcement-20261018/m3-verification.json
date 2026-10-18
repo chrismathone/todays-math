@@ -1,0 +1,263 @@
+{
+  "scope": "Implementation, original authoring, local memory verification only; no DB connection or write",
+  "approvalState": {
+    "planExecution": "approved",
+    "actualCandidates": "not yet approved",
+    "batchSha": "not yet approved",
+    "dbWrite": "closed"
+  },
+  "finalSeed": 20261020,
+  "newTypes": 12,
+  "distinctParsedQuestions": 36,
+  "stemCount": 36,
+  "proposedRows": 48,
+  "formats": {
+    "short": 12,
+    "mcq": 36,
+    "descriptive": 0
+  },
+  "source": "manual",
+  "independentChecks": [
+    {
+      "key": "manual-20261018|무리수와 실수|R01",
+      "seeds": {
+        "from": 0,
+        "to": 99,
+        "count": 100
+      },
+      "variants": [
+        0,
+        1,
+        2
+      ],
+      "checked": 300,
+      "boundaryStreams": 4,
+      "passed": true
+    },
+    {
+      "key": "manual-20261018|무리수와 실수|R02",
+      "seeds": {
+        "from": 0,
+        "to": 99,
+        "count": 100
+      },
+      "variants": [
+        0,
+        1,
+        2
+      ],
+      "checked": 300,
+      "boundaryStreams": 4,
+      "passed": true
+    },
+    {
+      "key": "manual-20261018|무리수와 실수|R03",
+      "seeds": {
+        "from": 0,
+        "to": 99,
+        "count": 100
+      },
+      "variants": [
+        0,
+        1,
+        2
+      ],
+      "checked": 300,
+      "boundaryStreams": 4,
+      "passed": true
+    },
+    {
+      "key": "manual-20261018|인수분해|F01",
+      "seeds": {
+        "from": 0,
+        "to": 99,
+        "count": 100
+      },
+      "variants": [
+        0,
+        1,
+        2
+      ],
+      "checked": 300,
+      "boundaryStreams": 4,
+      "passed": true
+    },
+    {
+      "key": "manual-20261018|인수분해|F02",
+      "seeds": {
+        "from": 0,
+        "to": 99,
+        "count": 100
+      },
+      "variants": [
+        0,
+        1,
+        2
+      ],
+      "checked": 300,
+      "boundaryStreams": 4,
+      "passed": true
+    },
+    {
+      "key": "manual-20261018|인수분해|F03",
+      "seeds": {
+        "from": 0,
+        "to": 99,
+        "count": 100
+      },
+      "variants": [
+        0,
+        1,
+        2
+      ],
+      "checked": 300,
+      "boundaryStreams": 4,
+      "passed": true
+    },
+    {
+      "key": "manual-20261018|이차방정식의 활용|Q01",
+      "seeds": {
+        "from": 0,
+        "to": 99,
+        "count": 100
+      },
+      "variants": [
+        0,
+        1,
+        2
+      ],
+      "checked": 300,
+      "boundaryStreams": 4,
+      "passed": true
+    },
+    {
+      "key": "manual-20261018|이차방정식의 활용|Q02",
+      "seeds": {
+        "from": 0,
+        "to": 99,
+        "count": 100
+      },
+      "variants": [
+        0,
+        1,
+        2
+      ],
+      "checked": 300,
+      "boundaryStreams": 4,
+      "passed": true
+    },
+    {
+      "key": "manual-20261018|이차방정식의 활용|Q03",
+      "seeds": {
+        "from": 0,
+        "to": 99,
+        "count": 100
+      },
+      "variants": [
+        0,
+        1,
+        2
+      ],
+      "checked": 300,
+      "boundaryStreams": 4,
+      "passed": true
+    },
+    {
+      "key": "manual-20261018|대푯값과 산포도|S01",
+      "seeds": {
+        "from": 0,
+        "to": 99,
+        "count": 100
+      },
+      "variants": [
+        0,
+        1,
+        2
+      ],
+      "checked": 300,
+      "boundaryStreams": 4,
+      "passed": true
+    },
+    {
+      "key": "manual-20261018|대푯값과 산포도|S02",
+      "seeds": {
+        "from": 0,
+        "to": 99,
+        "count": 100
+      },
+      "variants": [
+        0,
+        1,
+        2
+      ],
+      "checked": 300,
+      "boundaryStreams": 4,
+      "passed": true
+    },
+    {
+      "key": "manual-20261018|대푯값과 산포도|S03",
+      "seeds": {
+        "from": 0,
+        "to": 99,
+        "count": 100
+      },
+      "variants": [
+        0,
+        1,
+        2
+      ],
+      "checked": 300,
+      "boundaryStreams": 4,
+      "passed": true
+    }
+  ],
+  "totalBlindChecks": 3600,
+  "totalBoundaryChecks": 48,
+  "oldM3": {
+    "types": 299,
+    "seeds": 100,
+    "outputs": 29900,
+    "beforeSha256": "ec367b64d06941f760a4dac0f8047794f8be274f5df8c55af7e07cb1dcbffb99",
+    "afterSha256": "ec367b64d06941f760a4dac0f8047794f8be274f5df8c55af7e07cb1dcbffb99",
+    "unchanged": true
+  },
+  "sourceSha256": {
+    "src/lib/middle/generate.ts": "bd8bf15b0c98a6c2e337edfc10be39bc0fcdd851a5ffe9a8f0bfa2b848f5ccc4",
+    "src/lib/middle/m3Reinforcement20261018.ts": "b6b52267be90d6166005a859d03e9eca89bde5fd50a465a3714fb22348a2aa61",
+    "docs/planning/tracks/reports/math-bank-reinforcement-20261018/m3-independent.ts": "9750b189a039a516f1a4b989bd5e185a27db596c25727ae63301aa9c7eb2ca57"
+  },
+  "candidatesSha256": "f4dc60788f81ef5b8532e633b4bad509693f5d57760339624d0b4bc29406af83",
+  "proposedBManifestSha256": "ae7966cf9fe1b4f9a64148c9b8b82fa07eb1c0e06632c2bb9ed447a2a0329a4b",
+  "rendering": {
+    "baseStemsBothPaths": 36,
+    "allRowsBothPaths": 48,
+    "fieldsPerRow": [
+      "content",
+      "answer",
+      "solution"
+    ],
+    "markdownRenderer": true,
+    "renderMathHtml": true,
+    "studentProblemBody": true,
+    "raw": 0,
+    "red": 0,
+    "merror": 0,
+    "teacherSolutionLeak": 0
+  },
+  "fullBrowserAndA4Layout": "root owns the integrated Chromium/TestPrint check; not claimed by this worker",
+  "database": {
+    "connected": false,
+    "written": false,
+    "loadedRows": 0,
+    "reportedEligibleBaseline": 115425,
+    "beforeFamiliesPerUnit": 11,
+    "localRegistryTypesPerUnit": 14,
+    "actualAfterLoad": "root must verify"
+  },
+  "physicalPrintCheck": "not performed; no pass claim",
+  "remaining": [
+    "Root integration and exact-key loader gates",
+    "Claude review of actual candidates and final combined manifest SHA",
+    "DB baseline reread/write/idempotency/capacity verification by root only"
+  ]
+}

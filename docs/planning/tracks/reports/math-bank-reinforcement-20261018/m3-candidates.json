@@ -1,0 +1,4856 @@
+{
+  "scope": "R2 B only; proposed candidates, not final Claude/batch approval",
+  "finalSeed": 20261020,
+  "variants": [
+    0,
+    1,
+    2
+  ],
+  "source": "manual",
+  "stems": [
+    {
+      "key": "manual-20261018|무리수와 실수|R01",
+      "familyKey": "mid:manual-20261018|무리수와 실수|R01",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "seed": 20261020,
+      "variant": 0,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "R01",
+      "rpmTitle": "유한한 근삿값으로 무리수를 분류한 오류",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "계산기에 $\\sqrt{6}$의 값이 소수점 아래 $4$자리까지 반올림되어 $2.4495$로 표시되었다. 민수는 “화면의 값이 유한소수이므로 $\\sqrt{6}$도 유리수이다.”라고 말했다. 이 주장에 대한 설명으로 옳은 것을 고르시오.\n① 근호 안의 수가 완전제곱수가 아니므로 $\\sqrt{6}$는 무리수이며, 근삿값과 정확한 값은 다르다.\n② $\\sqrt{6}$는 무리수이므로 실수가 아니다.\n③ $\\sqrt{6}$의 근삿값이 유한소수이므로 정확한 값도 유리수이다.\n④ $\\sqrt{6}$는 소수로 나타낼 수 없으므로 무리수이다.\n⑤ $\\sqrt{6}$는 양수이므로 유리수이다.",
+      "answer": "①",
+      "solution": "완전제곱수가 아닌 자연수의 제곱근이므로 정확한 값은 무리수이다. 화면에 표시된 값은 유리수인 근삿값이며 정확한 값과 같지 않다. 무리수도 실수이고, 순환하지 않는 무한소수로 나타낼 수 있다.",
+      "blind": {
+        "expected": "①",
+        "evidence": {
+          "n": 6,
+          "digits": 4,
+          "approximation": "2.4495",
+          "squaredBounds": [
+            2399922121,
+            2400118081
+          ],
+          "truth": [
+            true,
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      "questionFingerprint": "5336a4b01c1fe3eb58ec557761002d08517297513ce90e92884bcc5122789773",
+      "render": {
+        "content": {
+          "markdownSha256": "9347e71872db1124c316175edcf84d08f5d3a4e23fea8802bf5f35dd84ce0f5f",
+          "mathHtmlSha256": "81b653e6467186c9b22846c5cfdb93a54826a314dabcf0f7565c60988a7f2782",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "ed18d9a3ef7ecf8c2553472d965cf53b0bfe5796204ac72289578692ee8aeda4",
+          "mathHtmlSha256": "9e96ca1ce18ffb97f67c1230d8282320058da75aa86fc44fb435d25c512a5423",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "0fbb839064a09a12a094adbad0f13005338a43a2b994cb02496c12d3c67353e2",
+          "mathHtmlSha256": "dcc1cd0e429326c897154a8cad0ec022c87c2bd531d629d587d7aab789806ed0",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|무리수와 실수|R01",
+      "familyKey": "mid:manual-20261018|무리수와 실수|R01",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "seed": 20261020,
+      "variant": 1,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "R01",
+      "rpmTitle": "유한한 근삿값으로 무리수를 분류한 오류",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "계산기에 $\\sqrt{5}$의 값이 소수점 아래 $2$자리까지 반올림되어 $2.24$로 표시되었다. 민수는 “화면의 값이 유한소수이므로 $\\sqrt{5}$도 유리수이다.”라고 말했다. 이 주장에 대한 설명으로 옳은 것을 고르시오.\n① $\\sqrt{5}$는 소수로 나타낼 수 없으므로 무리수이다.\n② 근호 안의 수가 완전제곱수가 아니므로 $\\sqrt{5}$는 무리수이며, 근삿값과 정확한 값은 다르다.\n③ $\\sqrt{5}$는 양수이므로 유리수이다.\n④ $\\sqrt{5}$의 근삿값이 유한소수이므로 정확한 값도 유리수이다.\n⑤ $\\sqrt{5}$는 무리수이므로 실수가 아니다.",
+      "answer": "②",
+      "solution": "완전제곱수가 아닌 자연수의 제곱근이므로 정확한 값은 무리수이다. 화면에 표시된 값은 유리수인 근삿값이며 정확한 값과 같지 않다. 무리수도 실수이고, 순환하지 않는 무한소수로 나타낼 수 있다.",
+      "blind": {
+        "expected": "②",
+        "evidence": {
+          "n": 5,
+          "digits": 2,
+          "approximation": "2.24",
+          "squaredBounds": [
+            199809,
+            201601
+          ],
+          "truth": [
+            false,
+            true,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      "questionFingerprint": "b3abfebd1ab30c55aca2e970c61c9a2b9ed847d88d63f5f47b654238fe32de2a",
+      "render": {
+        "content": {
+          "markdownSha256": "fc0a2b162a8abb5cecbb5b8d5d85e1e7964a6957ddbd84be54ff8b676667c8a7",
+          "mathHtmlSha256": "5dadf9868b6302103993b3b629ab41e8ae282a4499ab90c451a96794db9f1916",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "07e8d1d030b74826a0bcdbb6226c46fa038365531eee1872de952be497d9b0c6",
+          "mathHtmlSha256": "faab5aef76a0e31bef1dc423641a79e0b60938edcdf69194bc63e734ca7114f6",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "0fbb839064a09a12a094adbad0f13005338a43a2b994cb02496c12d3c67353e2",
+          "mathHtmlSha256": "dcc1cd0e429326c897154a8cad0ec022c87c2bd531d629d587d7aab789806ed0",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|무리수와 실수|R01",
+      "familyKey": "mid:manual-20261018|무리수와 실수|R01",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "seed": 20261020,
+      "variant": 2,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "R01",
+      "rpmTitle": "유한한 근삿값으로 무리수를 분류한 오류",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "계산기에 $\\sqrt{7}$의 값이 소수점 아래 $2$자리까지 반올림되어 $2.65$로 표시되었다. 민수는 “화면의 값이 유한소수이므로 $\\sqrt{7}$도 유리수이다.”라고 말했다. 이 주장에 대한 설명으로 옳은 것을 고르시오.\n① $\\sqrt{7}$는 소수로 나타낼 수 없으므로 무리수이다.\n② $\\sqrt{7}$는 무리수이므로 실수가 아니다.\n③ $\\sqrt{7}$는 양수이므로 유리수이다.\n④ 근호 안의 수가 완전제곱수가 아니므로 $\\sqrt{7}$는 무리수이며, 근삿값과 정확한 값은 다르다.\n⑤ $\\sqrt{7}$의 근삿값이 유한소수이므로 정확한 값도 유리수이다.",
+      "answer": "④",
+      "solution": "완전제곱수가 아닌 자연수의 제곱근이므로 정확한 값은 무리수이다. 화면에 표시된 값은 유리수인 근삿값이며 정확한 값과 같지 않다. 무리수도 실수이고, 순환하지 않는 무한소수로 나타낼 수 있다.",
+      "blind": {
+        "expected": "④",
+        "evidence": {
+          "n": 7,
+          "digits": 2,
+          "approximation": "2.65",
+          "squaredBounds": [
+            279841,
+            281961
+          ],
+          "truth": [
+            false,
+            false,
+            false,
+            true,
+            false
+          ]
+        }
+      },
+      "questionFingerprint": "a5bdb8297e22142e8206db7cdc731be9e69c62270036dc86e2ae9224faee58d6",
+      "render": {
+        "content": {
+          "markdownSha256": "97bb9f7c96fee295d45a2c20b15e39aaa0648aeefe276e5dc33af7ece29d3b66",
+          "mathHtmlSha256": "daa0e5cc93db7d857af0ab70bb77dfe0421f386be7aec84300a821643cbb64bf",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "b2c7a24e46a22b32f557298bbbb041f6a04ae287022693d1920cefd726628f1b",
+          "mathHtmlSha256": "6958a3e7105064751a96bf1e52cd5e9916d71e127193b12ffae234c0fddac50f",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "0fbb839064a09a12a094adbad0f13005338a43a2b994cb02496c12d3c67353e2",
+          "mathHtmlSha256": "dcc1cd0e429326c897154a8cad0ec022c87c2bd531d629d587d7aab789806ed0",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|무리수와 실수|R02",
+      "familyKey": "mid:manual-20261018|무리수와 실수|R02",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "seed": 20261020,
+      "variant": 0,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "R02",
+      "rpmTitle": "두 무리수의 합에 관한 주장의 반례",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "“두 무리수의 합은 언제나 무리수이다.”라는 주장이 틀렸음을 보이려 한다. 첫째 수가 $\\sqrt{7}$이고 두 수의 합이 유리수 $12$가 되는 반례를 만들 때, 조건에 맞는 두 무리수의 쌍을 고르시오.\n① $\\sqrt{7}$, $12-\\sqrt{7}$\n② $\\sqrt{7}$, $12+2\\sqrt{7}$\n③ $\\sqrt{7}$, $3\\sqrt{7}$\n④ $\\sqrt{7}$, $2\\sqrt{7}$\n⑤ $\\sqrt{7}$, $12+\\sqrt{7}$",
+      "answer": "①",
+      "solution": "첫 수 $\\sqrt{7}$와 둘째 수 $12-\\sqrt{7}$는 각각 무리수이지만 합은 $12$인 유리수이다. 나머지 쌍의 합에는 $\\sqrt{7}$의 계수가 $0$이 아닌 정수로 남으므로 무리수이다.",
+      "blind": {
+        "expected": "①",
+        "evidence": {
+          "target": 12,
+          "givenRadicand": 7,
+          "pairs": [
+            [
+              {
+                "rational": 0,
+                "irrational": 1,
+                "radicand": 7
+              },
+              {
+                "rational": 12,
+                "irrational": -1,
+                "radicand": 7
+              }
+            ],
+            [
+              {
+                "rational": 0,
+                "irrational": 1,
+                "radicand": 7
+              },
+              {
+                "rational": 12,
+                "irrational": 2,
+                "radicand": 7
+              }
+            ],
+            [
+              {
+                "rational": 0,
+                "irrational": 1,
+                "radicand": 7
+              },
+              {
+                "rational": 0,
+                "irrational": 3,
+                "radicand": 7
+              }
+            ],
+            [
+              {
+                "rational": 0,
+                "irrational": 1,
+                "radicand": 7
+              },
+              {
+                "rational": 0,
+                "irrational": 2,
+                "radicand": 7
+              }
+            ],
+            [
+              {
+                "rational": 0,
+                "irrational": 1,
+                "radicand": 7
+              },
+              {
+                "rational": 12,
+                "irrational": 1,
+                "radicand": 7
+              }
+            ]
+          ],
+          "truth": [
+            true,
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      "questionFingerprint": "b55e77ec2806745acc35afe4ad6b92a423d57c7e2485ac1673570988d3d4017d",
+      "render": {
+        "content": {
+          "markdownSha256": "92e055f5bcb78905e00f67049bfb766e0e0143047f8d8ca72d9f7d6fbcfffaa5",
+          "mathHtmlSha256": "864f223cf132d5aa7a28e700d0c1216177f39349f76bc61f327595212d04ab43",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "ed18d9a3ef7ecf8c2553472d965cf53b0bfe5796204ac72289578692ee8aeda4",
+          "mathHtmlSha256": "9e96ca1ce18ffb97f67c1230d8282320058da75aa86fc44fb435d25c512a5423",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "d31cdc2cc7ef6d0541f2bb96f05a1d0373bfcb812fe975aa132b1957b224e594",
+          "mathHtmlSha256": "fc056e813e652af38e913f7640f34610349dcdb302cd0284a7b59b433202caca",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|무리수와 실수|R02",
+      "familyKey": "mid:manual-20261018|무리수와 실수|R02",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "seed": 20261020,
+      "variant": 1,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "R02",
+      "rpmTitle": "두 무리수의 합에 관한 주장의 반례",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "“두 무리수의 합은 언제나 무리수이다.”라는 주장이 틀렸음을 보이려 한다. 첫째 수가 $\\sqrt{5}$이고 두 수의 합이 유리수 $4$가 되는 반례를 만들 때, 조건에 맞는 두 무리수의 쌍을 고르시오.\n① $\\sqrt{5}$, $4+\\sqrt{5}$\n② $\\sqrt{5}$, $4-\\sqrt{5}$\n③ $\\sqrt{5}$, $3\\sqrt{5}$\n④ $\\sqrt{5}$, $2\\sqrt{5}$\n⑤ $\\sqrt{5}$, $4+2\\sqrt{5}$",
+      "answer": "②",
+      "solution": "첫 수 $\\sqrt{5}$와 둘째 수 $4-\\sqrt{5}$는 각각 무리수이지만 합은 $4$인 유리수이다. 나머지 쌍의 합에는 $\\sqrt{5}$의 계수가 $0$이 아닌 정수로 남으므로 무리수이다.",
+      "blind": {
+        "expected": "②",
+        "evidence": {
+          "target": 4,
+          "givenRadicand": 5,
+          "pairs": [
+            [
+              {
+                "rational": 0,
+                "irrational": 1,
+                "radicand": 5
+              },
+              {
+                "rational": 4,
+                "irrational": 1,
+                "radicand": 5
+              }
+            ],
+            [
+              {
+                "rational": 0,
+                "irrational": 1,
+                "radicand": 5
+              },
+              {
+                "rational": 4,
+                "irrational": -1,
+                "radicand": 5
+              }
+            ],
+            [
+              {
+                "rational": 0,
+                "irrational": 1,
+                "radicand": 5
+              },
+              {
+                "rational": 0,
+                "irrational": 3,
+                "radicand": 5
+              }
+            ],
+            [
+              {
+                "rational": 0,
+                "irrational": 1,
+                "radicand": 5
+              },
+              {
+                "rational": 0,
+                "irrational": 2,
+                "radicand": 5
+              }
+            ],
+            [
+              {
+                "rational": 0,
+                "irrational": 1,
+                "radicand": 5
+              },
+              {
+                "rational": 4,
+                "irrational": 2,
+                "radicand": 5
+              }
+            ]
+          ],
+          "truth": [
+            false,
+            true,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      "questionFingerprint": "d3aebe9f38d5097139544654f0ccc819fe8a29484b568beadb6e8a1d4b5a5c61",
+      "render": {
+        "content": {
+          "markdownSha256": "15409d94b1ba0e63345522dc92231b093e82966ae0fa9f6654f7923c2f6b61e1",
+          "mathHtmlSha256": "7da27a391deac761b4db9dcb1c8cf8ad4ce0472005a52be24cc5e424e9967157",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "07e8d1d030b74826a0bcdbb6226c46fa038365531eee1872de952be497d9b0c6",
+          "mathHtmlSha256": "faab5aef76a0e31bef1dc423641a79e0b60938edcdf69194bc63e734ca7114f6",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "c8421bbac42934e8b07c1463b5cec5b6b98b72d3bf20f7663f0dfbec7df846fc",
+          "mathHtmlSha256": "e0ce98a3f1198f2453e0ac51e26a8a3dc3ef5f55e91a34e901595798666f56b0",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|무리수와 실수|R02",
+      "familyKey": "mid:manual-20261018|무리수와 실수|R02",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "seed": 20261020,
+      "variant": 2,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "R02",
+      "rpmTitle": "두 무리수의 합에 관한 주장의 반례",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "“두 무리수의 합은 언제나 무리수이다.”라는 주장이 틀렸음을 보이려 한다. 첫째 수가 $\\sqrt{13}$이고 두 수의 합이 유리수 $2$가 되는 반례를 만들 때, 조건에 맞는 두 무리수의 쌍을 고르시오.\n① $\\sqrt{13}$, $3\\sqrt{13}$\n② $\\sqrt{13}$, $2\\sqrt{13}$\n③ $\\sqrt{13}$, $2+\\sqrt{13}$\n④ $\\sqrt{13}$, $2+2\\sqrt{13}$\n⑤ $\\sqrt{13}$, $2-\\sqrt{13}$",
+      "answer": "⑤",
+      "solution": "첫 수 $\\sqrt{13}$와 둘째 수 $2-\\sqrt{13}$는 각각 무리수이지만 합은 $2$인 유리수이다. 나머지 쌍의 합에는 $\\sqrt{13}$의 계수가 $0$이 아닌 정수로 남으므로 무리수이다.",
+      "blind": {
+        "expected": "⑤",
+        "evidence": {
+          "target": 2,
+          "givenRadicand": 13,
+          "pairs": [
+            [
+              {
+                "rational": 0,
+                "irrational": 1,
+                "radicand": 13
+              },
+              {
+                "rational": 0,
+                "irrational": 3,
+                "radicand": 13
+              }
+            ],
+            [
+              {
+                "rational": 0,
+                "irrational": 1,
+                "radicand": 13
+              },
+              {
+                "rational": 0,
+                "irrational": 2,
+                "radicand": 13
+              }
+            ],
+            [
+              {
+                "rational": 0,
+                "irrational": 1,
+                "radicand": 13
+              },
+              {
+                "rational": 2,
+                "irrational": 1,
+                "radicand": 13
+              }
+            ],
+            [
+              {
+                "rational": 0,
+                "irrational": 1,
+                "radicand": 13
+              },
+              {
+                "rational": 2,
+                "irrational": 2,
+                "radicand": 13
+              }
+            ],
+            [
+              {
+                "rational": 0,
+                "irrational": 1,
+                "radicand": 13
+              },
+              {
+                "rational": 2,
+                "irrational": -1,
+                "radicand": 13
+              }
+            ]
+          ],
+          "truth": [
+            false,
+            false,
+            false,
+            false,
+            true
+          ]
+        }
+      },
+      "questionFingerprint": "2ba55a2ec61137439a703698a28d9fc8d30a2458f63d507e7f65bd9d806c33d7",
+      "render": {
+        "content": {
+          "markdownSha256": "9427638a9541c9726921e32e84755036ebc5262a6c7527c07f4b69d358a3c46e",
+          "mathHtmlSha256": "451ba38a0b3bcdc9f099b65b20c6e261fd17c163b4cec505de7177989037260a",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "db6a0c11e438109983adff6ab6ce46228d2a0f3a208d142655e31639e2b4a8b3",
+          "mathHtmlSha256": "f3eaa647e8a4604ea6bc01c74dfb365ace6754fb867e170b933cc24eb6a81e7b",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "e4010483c431a67b2c4f3a551f113e8762e3d9e55caa28fc998710a6b39dd42f",
+          "mathHtmlSha256": "32a3efcf94de9606fa99623f3c23a2e3b80a1dd8f768e76d8fc2a200f4326464",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|무리수와 실수|R03",
+      "familyKey": "mid:manual-20261018|무리수와 실수|R03",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "seed": 20261020,
+      "variant": 0,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "R03",
+      "rpmTitle": "유리수 변환의 결과에서 원래 실수 분류",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "실수 $x$가 $5x+4=\\sqrt{3}$를 만족한다. $x$에 대한 설명으로 옳은 것을 고르시오.\n① 우변이 무리수이므로 $x$는 실수가 아니다.\n② $x$가 유리수라면 좌변도 유리수가 되어 모순이다. 따라서 $x$는 무리수이다.\n③ $x$에 유리수를 곱했으므로 $x$도 유리수이다.\n④ 좌변에서 정수를 더했으므로 $x$는 정수이다.\n⑤ 좌변에 근호 기호가 없으므로 $x$는 유리수이다.",
+      "answer": "②",
+      "solution": "정수에 유리수를 곱하고 정수를 더한 값은 유리수이다. 만약 $x$가 유리수라면 $5x+4$도 유리수여야 하지만, 우변은 완전제곱수가 아닌 자연수의 제곱근으로 무리수이다. 이는 모순이므로 $x$는 무리수이다.",
+      "blind": {
+        "expected": "②",
+        "evidence": {
+          "affineScale": 5,
+          "affineConstant": 4,
+          "rhs": {
+            "rational": 0,
+            "irrational": 1,
+            "radicand": 3
+          },
+          "x": {
+            "rational": -0.8,
+            "irrational": 0.2
+          },
+          "truth": [
+            false,
+            true,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      "questionFingerprint": "c8b50e46e795bc7bcecbfc6c073779323618837d03d7a511e6316bedf9d56648",
+      "render": {
+        "content": {
+          "markdownSha256": "b9ca43c1768bd97759b250c7a7420758fb02c3167e9ff9bb27f7cdd5348d491a",
+          "mathHtmlSha256": "4bc0a6388392f9ab5e1d53474b4716e57ec57c19e2e0edeaf83a09721c9ee481",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "07e8d1d030b74826a0bcdbb6226c46fa038365531eee1872de952be497d9b0c6",
+          "mathHtmlSha256": "faab5aef76a0e31bef1dc423641a79e0b60938edcdf69194bc63e734ca7114f6",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "ac51bcfc2b0a2273c891e165bd3baddabe8c9d8ad03d43630432f59a7c14574d",
+          "mathHtmlSha256": "cdab87086c6c610b6b5efc85581febd22dab5ffbbb5c87d7e38d093cd11302f7",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|무리수와 실수|R03",
+      "familyKey": "mid:manual-20261018|무리수와 실수|R03",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "seed": 20261020,
+      "variant": 1,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "R03",
+      "rpmTitle": "유리수 변환의 결과에서 원래 실수 분류",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "실수 $x$가 $2x+6=\\sqrt{11}$를 만족한다. $x$에 대한 설명으로 옳은 것을 고르시오.\n① $x$에 유리수를 곱했으므로 $x$도 유리수이다.\n② $x$가 유리수라면 좌변도 유리수가 되어 모순이다. 따라서 $x$는 무리수이다.\n③ 우변이 무리수이므로 $x$는 실수가 아니다.\n④ 좌변에 근호 기호가 없으므로 $x$는 유리수이다.\n⑤ 좌변에서 정수를 더했으므로 $x$는 정수이다.",
+      "answer": "②",
+      "solution": "정수에 유리수를 곱하고 정수를 더한 값은 유리수이다. 만약 $x$가 유리수라면 $2x+6$도 유리수여야 하지만, 우변은 완전제곱수가 아닌 자연수의 제곱근으로 무리수이다. 이는 모순이므로 $x$는 무리수이다.",
+      "blind": {
+        "expected": "②",
+        "evidence": {
+          "affineScale": 2,
+          "affineConstant": 6,
+          "rhs": {
+            "rational": 0,
+            "irrational": 1,
+            "radicand": 11
+          },
+          "x": {
+            "rational": -3,
+            "irrational": 0.5
+          },
+          "truth": [
+            false,
+            true,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      "questionFingerprint": "913412a5baeb72f9dc26834e061e28db06d2e22e14bb7bba960ef74c1f3f6bff",
+      "render": {
+        "content": {
+          "markdownSha256": "db9995f71acab657a7f0c5f358bd9b9c5e9ed35c37f7b7042bcc54eb932672a8",
+          "mathHtmlSha256": "eec0be3fd8994511770b4a24bbbfc6ebc8df57880aaed3bd6a71fb7fed5bdef6",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "07e8d1d030b74826a0bcdbb6226c46fa038365531eee1872de952be497d9b0c6",
+          "mathHtmlSha256": "faab5aef76a0e31bef1dc423641a79e0b60938edcdf69194bc63e734ca7114f6",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "803c21ffa1a54137cddec84f487c880970779f767b42a4b7e59def3592efc754",
+          "mathHtmlSha256": "943467dc9a1edd27df536743f76df47a17f20e6d7364c579882062f87e452b35",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|무리수와 실수|R03",
+      "familyKey": "mid:manual-20261018|무리수와 실수|R03",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "seed": 20261020,
+      "variant": 2,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "R03",
+      "rpmTitle": "유리수 변환의 결과에서 원래 실수 분류",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "실수 $x$가 $4x+6=\\sqrt{6}$를 만족한다. $x$에 대한 설명으로 옳은 것을 고르시오.\n① 좌변에 근호 기호가 없으므로 $x$는 유리수이다.\n② 좌변에서 정수를 더했으므로 $x$는 정수이다.\n③ $x$에 유리수를 곱했으므로 $x$도 유리수이다.\n④ 우변이 무리수이므로 $x$는 실수가 아니다.\n⑤ $x$가 유리수라면 좌변도 유리수가 되어 모순이다. 따라서 $x$는 무리수이다.",
+      "answer": "⑤",
+      "solution": "정수에 유리수를 곱하고 정수를 더한 값은 유리수이다. 만약 $x$가 유리수라면 $4x+6$도 유리수여야 하지만, 우변은 완전제곱수가 아닌 자연수의 제곱근으로 무리수이다. 이는 모순이므로 $x$는 무리수이다.",
+      "blind": {
+        "expected": "⑤",
+        "evidence": {
+          "affineScale": 4,
+          "affineConstant": 6,
+          "rhs": {
+            "rational": 0,
+            "irrational": 1,
+            "radicand": 6
+          },
+          "x": {
+            "rational": -1.5,
+            "irrational": 0.25
+          },
+          "truth": [
+            false,
+            false,
+            false,
+            false,
+            true
+          ]
+        }
+      },
+      "questionFingerprint": "d670f77dbcc917971fe1465df785676c302b36b20ae8194b415c4df4465fb955",
+      "render": {
+        "content": {
+          "markdownSha256": "aaa34e454475a8eb9e9a5bca0f0f42c422cb6c1ee9a79de3e18accd394620612",
+          "mathHtmlSha256": "92f8b871b59071e9316804d1bc991b55b383ea1f55e898633e899db4dcf957d4",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "db6a0c11e438109983adff6ab6ce46228d2a0f3a208d142655e31639e2b4a8b3",
+          "mathHtmlSha256": "f3eaa647e8a4604ea6bc01c74dfb365ace6754fb867e170b933cc24eb6a81e7b",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "8cb11ffe6ba594262b2ef239efb0887386e98e4c59b7a8fb7bb644f7e5b5577d",
+          "mathHtmlSha256": "a5cac137123a09a7c1424edaf36e71d31cb1dd0a7b822d4b8996b3bc450732d8",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|인수분해|F01",
+      "familyKey": "mid:manual-20261018|인수분해|F01",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "seed": 20261020,
+      "variant": 0,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "인수분해",
+      "rpmType": "F01",
+      "rpmTitle": "한 값 대입 검산이 오류를 드러내지 못하는 경우",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "서연이는 $x^2-6x-27=(x-9)(x+7)$가 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $7$, $8$, $9$, $10$, $11$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.",
+      "answer": "$9$",
+      "distractors": [
+        "$7$",
+        "$8$",
+        "$10$",
+        "$11$"
+      ],
+      "solution": "좌변은 $(x-9)(x+3)$이다. 우변에서 좌변을 빼면 $4(x-9)$이므로 두 값이 같은 것은 $x=9$일 때뿐이다. 한 값에서 같다는 사실만으로 모든 실수에서 성립하는 인수분해라고 할 수 없다.",
+      "blind": {
+        "expected": "$9$",
+        "evidence": {
+          "candidates": [
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "residuals": [
+            -8,
+            -4,
+            0,
+            4,
+            8
+          ]
+        }
+      },
+      "questionFingerprint": "f304461069a08a081db984a361376b248a630b967539dbca71d2923de2b83791",
+      "render": {
+        "content": {
+          "markdownSha256": "16afb9fbed0f99b06fee5e7e50f59772602f1137b1878c4b20d2299f072f777d",
+          "mathHtmlSha256": "d6dd343fe3ddb125d2c14225f60b92f3eddbdbb6d6bdf6a1203391673d1aa1c8",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "fe408b88b787daf9dafe3fa66627f23a401a5b0f611207125f088c2c8217d7b5",
+          "mathHtmlSha256": "c11c7e2868f1034f0dfddd55ce1a1a8141a835bce11e1d24e7ae1763257dcd41",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "541edc2bc79d86a94587643a60a073949543ef8f5dfb4c7774d4485c7252c612",
+          "mathHtmlSha256": "bc7fdd107f2a7c0a04cce1a778d6355347ec780c924893010689cac5bdc6efa5",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|인수분해|F01",
+      "familyKey": "mid:manual-20261018|인수분해|F01",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "seed": 20261020,
+      "variant": 1,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "인수분해",
+      "rpmType": "F01",
+      "rpmTitle": "한 값 대입 검산이 오류를 드러내지 못하는 경우",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "서연이는 $x^2+3x-18=(x-3)(x+10)$가 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $1$, $2$, $3$, $4$, $5$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.",
+      "answer": "$3$",
+      "distractors": [
+        "$1$",
+        "$2$",
+        "$4$",
+        "$5$"
+      ],
+      "solution": "좌변은 $(x-3)(x+6)$이다. 우변에서 좌변을 빼면 $4(x-3)$이므로 두 값이 같은 것은 $x=3$일 때뿐이다. 한 값에서 같다는 사실만으로 모든 실수에서 성립하는 인수분해라고 할 수 없다.",
+      "blind": {
+        "expected": "$3$",
+        "evidence": {
+          "candidates": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "residuals": [
+            -8,
+            -4,
+            0,
+            4,
+            8
+          ]
+        }
+      },
+      "questionFingerprint": "5ace728beed25b884ed8edf96db362e16ad5282691a076de1317dea39f760a93",
+      "render": {
+        "content": {
+          "markdownSha256": "61ceccee683dcbbfb0f288647b43c6382c0e78a8a200834b8059c1402525ea31",
+          "mathHtmlSha256": "382f602b54b8ebc64234593507874b3e26e7492e146f1193aa57bdddc9c0b36c",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "34b318aad174335876bf994912beb08f19a36437733f296d41f50f0d3d93aed2",
+          "mathHtmlSha256": "1059d589025a95c04160ed72d3be248bd063c69fb3d704fa9cca2da2492653dd",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "c7d59c232e2aea2b7e4b1142612634eac718ea2d2e67dfaa1feb97e7c19b1646",
+          "mathHtmlSha256": "e817eff519655ce620719714b11c23115c04c3173cdb42b51afa1da498947a00",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|인수분해|F01",
+      "familyKey": "mid:manual-20261018|인수분해|F01",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "seed": 20261020,
+      "variant": 2,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "인수분해",
+      "rpmType": "F01",
+      "rpmTitle": "한 값 대입 검산이 오류를 드러내지 못하는 경우",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "서연이는 $x^2-x-12=(x-4)(x+5)$가 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $2$, $3$, $4$, $5$, $6$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.",
+      "answer": "$4$",
+      "distractors": [
+        "$2$",
+        "$3$",
+        "$5$",
+        "$6$"
+      ],
+      "solution": "좌변은 $(x-4)(x+3)$이다. 우변에서 좌변을 빼면 $2(x-4)$이므로 두 값이 같은 것은 $x=4$일 때뿐이다. 한 값에서 같다는 사실만으로 모든 실수에서 성립하는 인수분해라고 할 수 없다.",
+      "blind": {
+        "expected": "$4$",
+        "evidence": {
+          "candidates": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "residuals": [
+            -4,
+            -2,
+            0,
+            2,
+            4
+          ]
+        }
+      },
+      "questionFingerprint": "fa2c732c221ace4e13abffaad8ef3a4ac09638e14d8aa5cb071b5c0ccd6a3ba8",
+      "render": {
+        "content": {
+          "markdownSha256": "ed5202123e404a156bc68d96b3fcede94e1689ae4fdfc7c7eec81cbc8344c207",
+          "mathHtmlSha256": "3545a40590dbbf0e4fb426f5dd569f0ee63ddacd8cd86802dd82ccd15e8117fd",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "098ea79c22a47aecec6e1ec7ef50422ee5bb5959f805e459402ec1e0e760097a",
+          "mathHtmlSha256": "d65a301fe9c2be7504f28fce4275b921954061802b9a260f18b3078aa4e67669",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "b85fdfc40557a3c1220cf238099f66f80c7a2c4cf56650652a5ed3bb28cf5ab7",
+          "mathHtmlSha256": "878eb6fce3ca1eb503b1e6aeff8de52ade5e2e9e31a7e76f5aa1137fd433fe22",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|인수분해|F02",
+      "familyKey": "mid:manual-20261018|인수분해|F02",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "seed": 20261020,
+      "variant": 0,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "인수분해",
+      "rpmType": "F02",
+      "rpmTitle": "정수 계수 일차식의 곱으로 나타낼 수 있는 조건",
+      "difficulty": "응용",
+      "figureSpec": null,
+      "content": "두 정수 $p$, $q$의 합이 $-20$이다. 다음 중 $(x+p)(x+q)$ 꼴로 인수분해할 수 있는 식을 고르시오.\n① $x^2-20x+91$\n② $x^2-20x+95$\n③ $x^2-20x+98$\n④ $x^2-20x+97$\n⑤ $x^2-20x+94$",
+      "answer": "①",
+      "solution": "$x^2-20x+c=(x-10)^2-(100-c)$이다. 정수 $p$, $q$로 인수분해되려면 $100-c$가 정수의 제곱이어야 한다. $9$만 제곱수이므로 $x^2-20x+91=(x-7)(x-13)$이다. 나머지의 $100-c$는 각각 $2$, $3$, $5$, $6$으로 제곱수가 아니다.",
+      "blind": {
+        "expected": "①",
+        "evidence": {
+          "givenSum": -20,
+          "vectors": [
+            [
+              1,
+              -20,
+              91
+            ],
+            [
+              1,
+              -20,
+              95
+            ],
+            [
+              1,
+              -20,
+              98
+            ],
+            [
+              1,
+              -20,
+              97
+            ],
+            [
+              1,
+              -20,
+              94
+            ]
+          ],
+          "integerFactorPairs": [
+            [
+              [
+                -13,
+                -7
+              ],
+              [
+                -7,
+                -13
+              ]
+            ],
+            [],
+            [],
+            [],
+            []
+          ],
+          "truth": [
+            true,
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      "questionFingerprint": "22d00f1fafe178b7040618260b112702f86dc657d5c332debde97f161f526501",
+      "render": {
+        "content": {
+          "markdownSha256": "9b83ec315edfda9a0cc46aee1b48adf86d27bf86ec93ec82d0c76d7b049fcb1e",
+          "mathHtmlSha256": "2ef1cc3cd2ab413417a08a33dc5f2891f6eee512e9dd768b4888d7c493859753",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "ed18d9a3ef7ecf8c2553472d965cf53b0bfe5796204ac72289578692ee8aeda4",
+          "mathHtmlSha256": "9e96ca1ce18ffb97f67c1230d8282320058da75aa86fc44fb435d25c512a5423",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "2faeaf431ea1084220eb895c720015d91b78aa8629ce648f838c86ce8bbbed33",
+          "mathHtmlSha256": "398ddaff90795db282ab2d379a0833520aa772446e3fb0b54a45c4264e9c8dcc",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|인수분해|F02",
+      "familyKey": "mid:manual-20261018|인수분해|F02",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "seed": 20261020,
+      "variant": 1,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "인수분해",
+      "rpmType": "F02",
+      "rpmTitle": "정수 계수 일차식의 곱으로 나타낼 수 있는 조건",
+      "difficulty": "응용",
+      "figureSpec": null,
+      "content": "두 정수 $p$, $q$의 합이 $-12$이다. 다음 중 $(x+p)(x+q)$ 꼴로 인수분해할 수 있는 식을 고르시오.\n① $x^2-12x+33$\n② $x^2-12x+31$\n③ $x^2-12x+32$\n④ $x^2-12x+34$\n⑤ $x^2-12x+30$",
+      "answer": "③",
+      "solution": "$x^2-12x+c=(x-6)^2-(36-c)$이다. 정수 $p$, $q$로 인수분해되려면 $36-c$가 정수의 제곱이어야 한다. $4$만 제곱수이므로 $x^2-12x+32=(x-4)(x-8)$이다. 나머지의 $36-c$는 각각 $2$, $3$, $5$, $6$으로 제곱수가 아니다.",
+      "blind": {
+        "expected": "③",
+        "evidence": {
+          "givenSum": -12,
+          "vectors": [
+            [
+              1,
+              -12,
+              33
+            ],
+            [
+              1,
+              -12,
+              31
+            ],
+            [
+              1,
+              -12,
+              32
+            ],
+            [
+              1,
+              -12,
+              34
+            ],
+            [
+              1,
+              -12,
+              30
+            ]
+          ],
+          "integerFactorPairs": [
+            [],
+            [],
+            [
+              [
+                -8,
+                -4
+              ],
+              [
+                -4,
+                -8
+              ]
+            ],
+            [],
+            []
+          ],
+          "truth": [
+            false,
+            false,
+            true,
+            false,
+            false
+          ]
+        }
+      },
+      "questionFingerprint": "efecc3b7de9aa8026d9cc4c4b8f9f9927a24f806ac384e62edde1d4e3cf08e70",
+      "render": {
+        "content": {
+          "markdownSha256": "2a94446899835e04ce5cdc789d3f9faca736448175357803e897702b8a3e1f41",
+          "mathHtmlSha256": "77700af130ab20b561a90e3737439e92e1a791514debf8b98f0b7be08e5fe98c",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "0e9530bcb339f2b3ff77f5d035187a520e161047550e4b1f7b1f497b7f436005",
+          "mathHtmlSha256": "3d3bc389df58f47aef91bc1182122d181e2c628a2d5b93939c903507938814de",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "fc9c114af5129b8903742e1285a0415dde0d12e90254395d6a8404b3db364b85",
+          "mathHtmlSha256": "2c56f495d0815d2b5617b9f12df9fdc3d043ee209617070a43803342555b4a61",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|인수분해|F02",
+      "familyKey": "mid:manual-20261018|인수분해|F02",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "seed": 20261020,
+      "variant": 2,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "인수분해",
+      "rpmType": "F02",
+      "rpmTitle": "정수 계수 일차식의 곱으로 나타낼 수 있는 조건",
+      "difficulty": "응용",
+      "figureSpec": null,
+      "content": "두 정수 $p$, $q$의 합이 $-10$이다. 다음 중 $(x+p)(x+q)$ 꼴로 인수분해할 수 있는 식을 고르시오.\n① $x^2-10x+22$\n② $x^2-10x+19$\n③ $x^2-10x+24$\n④ $x^2-10x+20$\n⑤ $x^2-10x+23$",
+      "answer": "③",
+      "solution": "$x^2-10x+c=(x-5)^2-(25-c)$이다. 정수 $p$, $q$로 인수분해되려면 $25-c$가 정수의 제곱이어야 한다. $1$만 제곱수이므로 $x^2-10x+24=(x-4)(x-6)$이다. 나머지의 $25-c$는 각각 $2$, $3$, $5$, $6$으로 제곱수가 아니다.",
+      "blind": {
+        "expected": "③",
+        "evidence": {
+          "givenSum": -10,
+          "vectors": [
+            [
+              1,
+              -10,
+              22
+            ],
+            [
+              1,
+              -10,
+              19
+            ],
+            [
+              1,
+              -10,
+              24
+            ],
+            [
+              1,
+              -10,
+              20
+            ],
+            [
+              1,
+              -10,
+              23
+            ]
+          ],
+          "integerFactorPairs": [
+            [],
+            [],
+            [
+              [
+                -6,
+                -4
+              ],
+              [
+                -4,
+                -6
+              ]
+            ],
+            [],
+            []
+          ],
+          "truth": [
+            false,
+            false,
+            true,
+            false,
+            false
+          ]
+        }
+      },
+      "questionFingerprint": "fc4ff07a37aac980dd70ceac99840009365830ab3bf181846f962f3e0ce210ff",
+      "render": {
+        "content": {
+          "markdownSha256": "54565d4e558018339b6d53cb13e5381af41dbbc5b228aab189d0c59850dab9f4",
+          "mathHtmlSha256": "9893e8d60433c0f2f025acb9d288fb2429ec0d38ed782de01805f8f5a233041b",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "0e9530bcb339f2b3ff77f5d035187a520e161047550e4b1f7b1f497b7f436005",
+          "mathHtmlSha256": "3d3bc389df58f47aef91bc1182122d181e2c628a2d5b93939c903507938814de",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "075b979acc7350b742dd4775e90bd0a23d244e8c776ccd5b0ea115fb5a1109c1",
+          "mathHtmlSha256": "842b5ed767ae2c041a88dc840e330fdb14a20b44a5110442e2bba9a4326830e5",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|인수분해|F03",
+      "familyKey": "mid:manual-20261018|인수분해|F03",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "seed": 20261020,
+      "variant": 0,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "인수분해",
+      "rpmType": "F03",
+      "rpmTitle": "공통 일차인수 조건에서 누락된 계수 복원",
+      "difficulty": "응용",
+      "figureSpec": null,
+      "content": "두 다항식 $x^2+x-20$와 $x^2+4x+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.",
+      "answer": "$-32$",
+      "distractors": [
+        "$-34$",
+        "$-33$",
+        "$-31$",
+        "$-30$"
+      ],
+      "solution": "첫째 다항식은 $(x-4)(x+5)$이다. $r>0$이므로 공통인수는 $x-4$이다. 둘째 다항식을 $(x-4)(x+t)$로 놓으면 $t-4=4$에서 $t=8$이다. 따라서 상수항 $k=-4\\times 8=-32$이다.",
+      "blind": {
+        "expected": "$-32$",
+        "evidence": {
+          "first": "x^2+x-20",
+          "second": "x^2+4x+k",
+          "positiveRoots": [
+            4
+          ],
+          "substitutedConstant": 32
+        }
+      },
+      "questionFingerprint": "7098f5bd7e004d501cacb011c3de7a9d05da857b5975857c4197923c5fa44a2f",
+      "render": {
+        "content": {
+          "markdownSha256": "d0c9a2080a0b09e23a94ec167a3526c065c5f5f2a6acae35dad7e5ed8bd82c69",
+          "mathHtmlSha256": "851cdb962276b17ffec922c0b128a7e4b155ded11347693791b348ba643e4b37",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "ee1b77e3b353d87372442e1646acbf22765f03850cecf95b20481369f95f9c2b",
+          "mathHtmlSha256": "d62d51b8f76a92f1cf3f523de9f0ebd4d93e3b04497ec722738635e48c39ff16",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "e6f5633b8b0433985d16d9e01d08a0958d1f7737a36174e8d662b44cf4894395",
+          "mathHtmlSha256": "13539896a7aa248ff559f6f99a899d7467fc07ba6a5435f3086afe42ef7342a8",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|인수분해|F03",
+      "familyKey": "mid:manual-20261018|인수분해|F03",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "seed": 20261020,
+      "variant": 1,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "인수분해",
+      "rpmType": "F03",
+      "rpmTitle": "공통 일차인수 조건에서 누락된 계수 복원",
+      "difficulty": "응용",
+      "figureSpec": null,
+      "content": "두 다항식 $x^2-9$와 $x^2+4x+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.",
+      "answer": "$-21$",
+      "distractors": [
+        "$-23$",
+        "$-22$",
+        "$-20$",
+        "$-19$"
+      ],
+      "solution": "첫째 다항식은 $(x-3)(x+3)$이다. $r>0$이므로 공통인수는 $x-3$이다. 둘째 다항식을 $(x-3)(x+t)$로 놓으면 $t-3=4$에서 $t=7$이다. 따라서 상수항 $k=-3\\times 7=-21$이다.",
+      "blind": {
+        "expected": "$-21$",
+        "evidence": {
+          "first": "x^2-9",
+          "second": "x^2+4x+k",
+          "positiveRoots": [
+            3
+          ],
+          "substitutedConstant": 21
+        }
+      },
+      "questionFingerprint": "29c36832f78acf4412cc69b25db4a534d8a4a3541c9e267740d806d054a20be2",
+      "render": {
+        "content": {
+          "markdownSha256": "bf03a78da5777413a8d2f5567cfc147fde174e0a8218ab193a299dc1de145c05",
+          "mathHtmlSha256": "b3f26ca020b563a3ef2066c3279a037a932984415aaee6d0302e69e117b5f9bc",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "7ffc6aea46293b228a6aa9260b78d8fba65687bd6ccb4c0b54205f3de3c42c1b",
+          "mathHtmlSha256": "0ad727af22f2df00053eb5343370c290916345fc120bb92e271359f630de5bcd",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "4150971e5de1427dd9ce8f45e4cdec9183b703d883f62d35cb3448c13e349e79",
+          "mathHtmlSha256": "f1ffc5a48f4ec7b895a863320a62dbda173930741bf29cd9f822f6688e6bae83",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|인수분해|F03",
+      "familyKey": "mid:manual-20261018|인수분해|F03",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "seed": 20261020,
+      "variant": 2,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "인수분해",
+      "rpmType": "F03",
+      "rpmTitle": "공통 일차인수 조건에서 누락된 계수 복원",
+      "difficulty": "응용",
+      "figureSpec": null,
+      "content": "두 다항식 $x^2-x-20$와 $x^2+2x+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.",
+      "answer": "$-35$",
+      "distractors": [
+        "$-37$",
+        "$-36$",
+        "$-34$",
+        "$-33$"
+      ],
+      "solution": "첫째 다항식은 $(x-5)(x+4)$이다. $r>0$이므로 공통인수는 $x-5$이다. 둘째 다항식을 $(x-5)(x+t)$로 놓으면 $t-5=2$에서 $t=7$이다. 따라서 상수항 $k=-5\\times 7=-35$이다.",
+      "blind": {
+        "expected": "$-35$",
+        "evidence": {
+          "first": "x^2-x-20",
+          "second": "x^2+2x+k",
+          "positiveRoots": [
+            5
+          ],
+          "substitutedConstant": 35
+        }
+      },
+      "questionFingerprint": "fe0bce66bbfa9b60eb75519cab2ea5146881af51e3d156b9a33d4c58f29f75d9",
+      "render": {
+        "content": {
+          "markdownSha256": "384ca34fb845aeb6d50be006033ffe58cf781ea20d363df567ac19a68f7d170e",
+          "mathHtmlSha256": "0abee95d39e880284776fc7cae669c073cda79edf38b587d2bd8db87c911964d",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "8738fc2a13ae85961a160184b0d735eb085b23408e425ede28cc5148e7846f1a",
+          "mathHtmlSha256": "9be39fdee6d35fa3df60bf1a3d8f74c7e0bbb1a706cbb452c26c0df1c9ce23a4",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "1e5479290851efb7ed8969dc956f0d984742865d971c75c9e12a4a2b7251f26f",
+          "mathHtmlSha256": "f7381ec7140e881783ecaa654fc72e4022c0705f3c8e9e548b17a413885e1889",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|이차방정식의 활용|Q01",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q01",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "seed": 20261020,
+      "variant": 0,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "이차방정식의 활용",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "이차방정식의 활용",
+      "rpmType": "Q01",
+      "rpmTitle": "미지수의 뜻에 맞는 넓이 모델 선택",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "가로가 $4\\,\\mathrm{m}$, 세로가 $6\\,\\mathrm{m}$인 직사각형의 가로와 세로를 각각 같은 길이만큼 늘였다. 늘인 뒤의 넓이는 $80\\,\\mathrm{m^2}$이다. 늘인 길이를 $x\\,\\mathrm{m}$라고 할 때, 상황에 맞게 세운 방정식을 고르시오.\n① $x(x+2)=80$\n② $24+2x=80$\n③ $(x-4)(x-6)=80$\n④ $(x+4)(x+6)=104$\n⑤ $(x+4)(x+6)=80$",
+      "answer": "⑤",
+      "solution": "늘인 뒤의 가로와 세로는 각각 $(4+x)\\,\\mathrm{m}$, $(6+x)\\,\\mathrm{m}$이다. $80\\,\\mathrm{m^2}$는 증가한 넓이가 아니라 늘인 뒤의 전체 넓이이므로 $(x+4)(x+6)=80$이다.",
+      "blind": {
+        "expected": "⑤",
+        "evidence": {
+          "a": 4,
+          "b": 6,
+          "area": 80,
+          "vectors": [
+            [
+              1,
+              2,
+              -80
+            ],
+            [
+              0,
+              2,
+              -56
+            ],
+            [
+              1,
+              -10,
+              -56
+            ],
+            [
+              1,
+              10,
+              -80
+            ],
+            [
+              1,
+              10,
+              -56
+            ]
+          ],
+          "expected": [
+            1,
+            10,
+            -56
+          ],
+          "truth": [
+            false,
+            false,
+            false,
+            false,
+            true
+          ]
+        }
+      },
+      "questionFingerprint": "3134446439f3b33c4264816b0c872bdb0a0ff21a8f21bb20a40e0378422fd1ce",
+      "render": {
+        "content": {
+          "markdownSha256": "0b1d65d5b1646558112f3688b76f14f9dd1924c031ea7a42dac8a69d14ffa625",
+          "mathHtmlSha256": "e89d2ed06a5eb102633c8290ee828031a53d4c44c64f60faf53653b78de74e16",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "db6a0c11e438109983adff6ab6ce46228d2a0f3a208d142655e31639e2b4a8b3",
+          "mathHtmlSha256": "f3eaa647e8a4604ea6bc01c74dfb365ace6754fb867e170b933cc24eb6a81e7b",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "a6d5fb9c997aa768580732ccf7b8269c6d7319e97cb4f9bbfb167b0caf392514",
+          "mathHtmlSha256": "4506370270e2fcac7d3009c478ad4448896ddfef7d76553c35d0b25d921be52e",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|이차방정식의 활용|Q01",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q01",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "seed": 20261020,
+      "variant": 1,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "이차방정식의 활용",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "이차방정식의 활용",
+      "rpmType": "Q01",
+      "rpmTitle": "미지수의 뜻에 맞는 넓이 모델 선택",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "가로가 $8\\,\\mathrm{m}$, 세로가 $13\\,\\mathrm{m}$인 직사각형의 가로와 세로를 각각 같은 길이만큼 늘였다. 늘인 뒤의 넓이는 $176\\,\\mathrm{m^2}$이다. 늘인 길이를 $x\\,\\mathrm{m}$라고 할 때, 상황에 맞게 세운 방정식을 고르시오.\n① $x(x+5)=176$\n② $(x-8)(x-13)=176$\n③ $(x+8)(x+13)=280$\n④ $104+2x=176$\n⑤ $(x+8)(x+13)=176$",
+      "answer": "⑤",
+      "solution": "늘인 뒤의 가로와 세로는 각각 $(8+x)\\,\\mathrm{m}$, $(13+x)\\,\\mathrm{m}$이다. $176\\,\\mathrm{m^2}$는 증가한 넓이가 아니라 늘인 뒤의 전체 넓이이므로 $(x+8)(x+13)=176$이다.",
+      "blind": {
+        "expected": "⑤",
+        "evidence": {
+          "a": 8,
+          "b": 13,
+          "area": 176,
+          "vectors": [
+            [
+              1,
+              5,
+              -176
+            ],
+            [
+              1,
+              -21,
+              -72
+            ],
+            [
+              1,
+              21,
+              -176
+            ],
+            [
+              0,
+              2,
+              -72
+            ],
+            [
+              1,
+              21,
+              -72
+            ]
+          ],
+          "expected": [
+            1,
+            21,
+            -72
+          ],
+          "truth": [
+            false,
+            false,
+            false,
+            false,
+            true
+          ]
+        }
+      },
+      "questionFingerprint": "4fe4d2d2eee00df598b7cdeb05076602de701d0e202211b2ee46fe23e79ff126",
+      "render": {
+        "content": {
+          "markdownSha256": "cc4f842d779ed8bcbfa2e802f41cd15568e58a6bf15b9500b07193acc0969a34",
+          "mathHtmlSha256": "c1f8b9404bb82351b352a921e847ac745220e3d99cc723f940ae94272cd0e04b",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "db6a0c11e438109983adff6ab6ce46228d2a0f3a208d142655e31639e2b4a8b3",
+          "mathHtmlSha256": "f3eaa647e8a4604ea6bc01c74dfb365ace6754fb867e170b933cc24eb6a81e7b",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "910e70094ec9ac1f2f2bc955479717aba151976b02494be6371ac4af10c913db",
+          "mathHtmlSha256": "bb602ecc4003aed1e71ea817be8aaed5fd9d46a93c8598112dfa4e597452c2de",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|이차방정식의 활용|Q01",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q01",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "seed": 20261020,
+      "variant": 2,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "이차방정식의 활용",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "이차방정식의 활용",
+      "rpmType": "Q01",
+      "rpmTitle": "미지수의 뜻에 맞는 넓이 모델 선택",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "가로가 $3\\,\\mathrm{m}$, 세로가 $7\\,\\mathrm{m}$인 직사각형의 가로와 세로를 각각 같은 길이만큼 늘였다. 늘인 뒤의 넓이는 $60\\,\\mathrm{m^2}$이다. 늘인 길이를 $x\\,\\mathrm{m}$라고 할 때, 상황에 맞게 세운 방정식을 고르시오.\n① $(x-3)(x-7)=60$\n② $21+2x=60$\n③ $(x+3)(x+7)=81$\n④ $(x+3)(x+7)=60$\n⑤ $x(x+4)=60$",
+      "answer": "④",
+      "solution": "늘인 뒤의 가로와 세로는 각각 $(3+x)\\,\\mathrm{m}$, $(7+x)\\,\\mathrm{m}$이다. $60\\,\\mathrm{m^2}$는 증가한 넓이가 아니라 늘인 뒤의 전체 넓이이므로 $(x+3)(x+7)=60$이다.",
+      "blind": {
+        "expected": "④",
+        "evidence": {
+          "a": 3,
+          "b": 7,
+          "area": 60,
+          "vectors": [
+            [
+              1,
+              -10,
+              -39
+            ],
+            [
+              0,
+              2,
+              -39
+            ],
+            [
+              1,
+              10,
+              -60
+            ],
+            [
+              1,
+              10,
+              -39
+            ],
+            [
+              1,
+              4,
+              -60
+            ]
+          ],
+          "expected": [
+            1,
+            10,
+            -39
+          ],
+          "truth": [
+            false,
+            false,
+            false,
+            true,
+            false
+          ]
+        }
+      },
+      "questionFingerprint": "71a3b75f4bb1848860d81a08d1f62970640394a33ce3e9272630aeb193575966",
+      "render": {
+        "content": {
+          "markdownSha256": "5b5a995a1e2327a825e177b265c29aaf8dcdf09cb426ab94a3a8f38f8c4c2c50",
+          "mathHtmlSha256": "41b5a43b311da3e968bb8eed814f39e4e729d1d3e98e7b59a3dd64d574823f66",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "b2c7a24e46a22b32f557298bbbb041f6a04ae287022693d1920cefd726628f1b",
+          "mathHtmlSha256": "6958a3e7105064751a96bf1e52cd5e9916d71e127193b12ffae234c0fddac50f",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "3e7705ed7b1825d498e8e7be8ea2552d66b5908f90290ae238b928467a29dcf8",
+          "mathHtmlSha256": "f3ebdf716924c17cf7d4449a76f7e2ec88269503457c575333149be417d3d396",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|이차방정식의 활용|Q02",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q02",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "seed": 20261020,
+      "variant": 0,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "이차방정식의 활용",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "이차방정식의 활용",
+      "rpmType": "Q02",
+      "rpmTitle": "둘레와 넓이 조건이 양립할 수 없는 경우",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "가로와 세로의 길이가 양수이고 둘레가 $40\\,\\mathrm{cm}$인 직사각형을 만들려고 한다. 이 직사각형의 넓이가 될 수 없는 것을 고르시오.\n① $99\\,\\mathrm{cm^2}$\n② $91\\,\\mathrm{cm^2}$\n③ $96\\,\\mathrm{cm^2}$\n④ $103\\,\\mathrm{cm^2}$\n⑤ $84\\,\\mathrm{cm^2}$",
+      "answer": "④",
+      "solution": "한 변을 $x\\,\\mathrm{cm}$라 하면 다른 변은 $(20-x)\\,\\mathrm{cm}$이고 $0<x<20$이다. 넓이를 $S\\,\\mathrm{cm^2}$라 하면 $(x-10)^2=100-S$이다. 제곱은 음수가 될 수 없으므로 $S\\le 100$이다. 따라서 $103\\,\\mathrm{cm^2}$는 불가능하다. 다른 네 넓이는 양의 두 변 $10-d$, $10+d$ ($d=1,2,3,4$)로 만들 수 있다.",
+      "blind": {
+        "expected": "④",
+        "evidence": {
+          "perimeter": 40,
+          "areas": [
+            99,
+            91,
+            96,
+            103,
+            84
+          ],
+          "discriminants": [
+            4,
+            36,
+            16,
+            -12,
+            64
+          ],
+          "truth": [
+            false,
+            false,
+            false,
+            true,
+            false
+          ]
+        }
+      },
+      "questionFingerprint": "ae9c570c691d678305e048c49a24e83489fa3c79fdb487c3f99599291ff62cee",
+      "render": {
+        "content": {
+          "markdownSha256": "66dead7dfeecaa150448afee657532bc95e84fcc720e52604163aba7bb4ea465",
+          "mathHtmlSha256": "e52e86fa6f2c70161d0a9a028278f1819079123aac19104aa81933c6b2dc207b",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "b2c7a24e46a22b32f557298bbbb041f6a04ae287022693d1920cefd726628f1b",
+          "mathHtmlSha256": "6958a3e7105064751a96bf1e52cd5e9916d71e127193b12ffae234c0fddac50f",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "8a0ef84ff46ddc1ae058521e34628262d267d3004570703bfe746f2211f8e9b3",
+          "mathHtmlSha256": "699b5fabab31f70f86b89c7c44dc980478fc8c9a7834ed77c09185f46f18799d",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|이차방정식의 활용|Q02",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q02",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "seed": 20261020,
+      "variant": 1,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "이차방정식의 활용",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "이차방정식의 활용",
+      "rpmType": "Q02",
+      "rpmTitle": "둘레와 넓이 조건이 양립할 수 없는 경우",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "가로와 세로의 길이가 양수이고 둘레가 $32\\,\\mathrm{cm}$인 직사각형을 만들려고 한다. 이 직사각형의 넓이가 될 수 없는 것을 고르시오.\n① $60\\,\\mathrm{cm^2}$\n② $48\\,\\mathrm{cm^2}$\n③ $63\\,\\mathrm{cm^2}$\n④ $55\\,\\mathrm{cm^2}$\n⑤ $66\\,\\mathrm{cm^2}$",
+      "answer": "⑤",
+      "solution": "한 변을 $x\\,\\mathrm{cm}$라 하면 다른 변은 $(16-x)\\,\\mathrm{cm}$이고 $0<x<16$이다. 넓이를 $S\\,\\mathrm{cm^2}$라 하면 $(x-8)^2=64-S$이다. 제곱은 음수가 될 수 없으므로 $S\\le 64$이다. 따라서 $66\\,\\mathrm{cm^2}$는 불가능하다. 다른 네 넓이는 양의 두 변 $8-d$, $8+d$ ($d=1,2,3,4$)로 만들 수 있다.",
+      "blind": {
+        "expected": "⑤",
+        "evidence": {
+          "perimeter": 32,
+          "areas": [
+            60,
+            48,
+            63,
+            55,
+            66
+          ],
+          "discriminants": [
+            16,
+            64,
+            4,
+            36,
+            -8
+          ],
+          "truth": [
+            false,
+            false,
+            false,
+            false,
+            true
+          ]
+        }
+      },
+      "questionFingerprint": "a99bb93bafd0eec959180673e037e65edcf6d8b94500b5c2470ccaab6c97d868",
+      "render": {
+        "content": {
+          "markdownSha256": "7a9f96730b77826f0cc955da9b40ede88e8fcd71a2397799ae271eeb63c98023",
+          "mathHtmlSha256": "8f59309b2f38cbcfbc455e83c0c5825946da40c38808bffc0c0660992439deed",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "db6a0c11e438109983adff6ab6ce46228d2a0f3a208d142655e31639e2b4a8b3",
+          "mathHtmlSha256": "f3eaa647e8a4604ea6bc01c74dfb365ace6754fb867e170b933cc24eb6a81e7b",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "d65d78f218ab3f914a09a1875f879803d63f4b01e8f0eec52d683b07d5aaa044",
+          "mathHtmlSha256": "a26fe1893573d066d9d98c72dcf8ff5453b51304c72c2acce8c7d7afb03a35c1",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|이차방정식의 활용|Q02",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q02",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "seed": 20261020,
+      "variant": 2,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "이차방정식의 활용",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "이차방정식의 활용",
+      "rpmType": "Q02",
+      "rpmTitle": "둘레와 넓이 조건이 양립할 수 없는 경우",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "가로와 세로의 길이가 양수이고 둘레가 $36\\,\\mathrm{cm}$인 직사각형을 만들려고 한다. 이 직사각형의 넓이가 될 수 없는 것을 고르시오.\n① $65\\,\\mathrm{cm^2}$\n② $77\\,\\mathrm{cm^2}$\n③ $84\\,\\mathrm{cm^2}$\n④ $80\\,\\mathrm{cm^2}$\n⑤ $72\\,\\mathrm{cm^2}$",
+      "answer": "③",
+      "solution": "한 변을 $x\\,\\mathrm{cm}$라 하면 다른 변은 $(18-x)\\,\\mathrm{cm}$이고 $0<x<18$이다. 넓이를 $S\\,\\mathrm{cm^2}$라 하면 $(x-9)^2=81-S$이다. 제곱은 음수가 될 수 없으므로 $S\\le 81$이다. 따라서 $84\\,\\mathrm{cm^2}$는 불가능하다. 다른 네 넓이는 양의 두 변 $9-d$, $9+d$ ($d=1,2,3,4$)로 만들 수 있다.",
+      "blind": {
+        "expected": "③",
+        "evidence": {
+          "perimeter": 36,
+          "areas": [
+            65,
+            77,
+            84,
+            80,
+            72
+          ],
+          "discriminants": [
+            64,
+            16,
+            -12,
+            4,
+            36
+          ],
+          "truth": [
+            false,
+            false,
+            true,
+            false,
+            false
+          ]
+        }
+      },
+      "questionFingerprint": "b5a6d3e8f3e06fe2d509b80d45aa6dc139cf9914165c81eb33e2fc38fbf088df",
+      "render": {
+        "content": {
+          "markdownSha256": "f21ce1f2924f5ee86c56c776aa5b8b39312dae3bc10ec670b9add4f9a9314264",
+          "mathHtmlSha256": "233731d2c11f9b5c0a6e0831494c77b0e63c4c3fa55131379c55754fc526e337",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "0e9530bcb339f2b3ff77f5d035187a520e161047550e4b1f7b1f497b7f436005",
+          "mathHtmlSha256": "3d3bc389df58f47aef91bc1182122d181e2c628a2d5b93939c903507938814de",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "2dffaef978daddbfd7131fdaa366624d5faea042d87cb376d43927a119d401aa",
+          "mathHtmlSha256": "b9a7c7d6707c93500c26fbf6d98e1d218757b4f572badc9975f124b4f0a82364",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|이차방정식의 활용|Q03",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q03",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "seed": 20261020,
+      "variant": 0,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "이차방정식의 활용",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "이차방정식의 활용",
+      "rpmType": "Q03",
+      "rpmTitle": "정수 배분과 남는 수의 범위에서 나머지 복원",
+      "difficulty": "응용",
+      "figureSpec": null,
+      "content": "공책 $33$권을 몇 명의 학생에게 같은 수씩 나누어 주려고 한다. 한 학생이 받는 공책의 수는 학생 수보다 $4$ 많아야 한다. 나누어 주고 남는 공책이 $0$권 이상 $4$권 이하가 되도록 할 때, 남는 공책의 수를 구하시오.",
+      "answer": "$1$",
+      "distractors": [
+        "$0$",
+        "$2$",
+        "$3$",
+        "$4$"
+      ],
+      "solution": "학생 수를 자연수 $n$, 남는 수를 $r$이라 하면 $n(n+4)+r=33$이고 $0\\le r\\le 4$이다. $n=4$일 때 나누어 주는 총수는 $32$이고 $r=1$이다. $n$이 한 명만 작아져도 총수는 $21$ 이하가 되어 $4$권보다 많이 남으며, 한 명만 커져도 필요한 총수는 $45$ 이상이 되어 공책이 부족하다. 따라서 남는 수는 $1$이다.",
+      "blind": {
+        "expected": "$1$",
+        "evidence": {
+          "extra": 4,
+          "stock": 33,
+          "low": 0,
+          "high": 4,
+          "studentCountWitnesses": [
+            {
+              "n": 4,
+              "r": 1
+            }
+          ]
+        }
+      },
+      "questionFingerprint": "f184d1d0f81ecd3da3c3e568052b24777fd7a058babe5b180d8ba2737b41bf02",
+      "render": {
+        "content": {
+          "markdownSha256": "37e409e7b6ab330a4d27b7a2cab7c7014dd1366875033ad8c17a4e12989b1661",
+          "mathHtmlSha256": "254438cfd0faa22f0d6ee0057408c0da317363da9d3d6a0094a4ef6819195ffe",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "d5ac9a4198f8f67e3ecee2379329faff4522f7e7935ae0b70714c395cea285e2",
+          "mathHtmlSha256": "b89a37a7ed7a7876191cc0228c9340788fc91b2a75274b025779248cdc596aee",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "0c2f5602678aa5b3bc3cfff64f91793f698bad92e00809f8b3a3a5e067fef8e9",
+          "mathHtmlSha256": "f93cd0c64ce37e1e675a8fbb3eea5daeb91c1535a770a778fab849f3049ba4ed",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|이차방정식의 활용|Q03",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q03",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "seed": 20261020,
+      "variant": 1,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "이차방정식의 활용",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "이차방정식의 활용",
+      "rpmType": "Q03",
+      "rpmTitle": "정수 배분과 남는 수의 범위에서 나머지 복원",
+      "difficulty": "응용",
+      "figureSpec": null,
+      "content": "공책 $108$권을 몇 명의 학생에게 같은 수씩 나누어 주려고 한다. 한 학생이 받는 공책의 수는 학생 수보다 $3$ 많아야 한다. 나누어 주고 남는 공책이 $0$권 이상 $4$권 이하가 되도록 할 때, 남는 공책의 수를 구하시오.",
+      "answer": "$0$",
+      "distractors": [
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$"
+      ],
+      "solution": "학생 수를 자연수 $n$, 남는 수를 $r$이라 하면 $n(n+3)+r=108$이고 $0\\le r\\le 4$이다. $n=9$일 때 나누어 주는 총수는 $108$이고 $r=0$이다. $n$이 한 명만 작아져도 총수는 $88$ 이하가 되어 $4$권보다 많이 남으며, 한 명만 커져도 필요한 총수는 $130$ 이상이 되어 공책이 부족하다. 따라서 남는 수는 $0$이다.",
+      "blind": {
+        "expected": "$0$",
+        "evidence": {
+          "extra": 3,
+          "stock": 108,
+          "low": 0,
+          "high": 4,
+          "studentCountWitnesses": [
+            {
+              "n": 9,
+              "r": 0
+            }
+          ]
+        }
+      },
+      "questionFingerprint": "078a2b5841caa9facc8841cc25f6cc057d951d5e0e92357a245bf64bf5dec11b",
+      "render": {
+        "content": {
+          "markdownSha256": "bba842a87e6368c98b76cec060ef59b0fd0e2cc668869f7573e7ba469c7fa961",
+          "mathHtmlSha256": "ab35b72ac196f3b3e395b2b02d27d07cdb1e0fee24c9cbbbc65a5435fdf79c66",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "780904f2c9870bcf9fdfc9af3e5dd1146e41538d3cc1d0ef960b11b9e23cb0e3",
+          "mathHtmlSha256": "42dd133a47ad2b030f73183aec760ce6442f05a55d427da392f94d9cf6c6570c",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "cac01614096f1585c449eb04883e42129db69731c9b55f09601c50cf7b98d7b1",
+          "mathHtmlSha256": "09226777ceec3079f444fc4a10c2856dff10b6f2bb0b7f0a7d9ddcff6b43d141",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|이차방정식의 활용|Q03",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q03",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "seed": 20261020,
+      "variant": 2,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "이차방정식의 활용",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "이차방정식의 활용",
+      "rpmType": "Q03",
+      "rpmTitle": "정수 배분과 남는 수의 범위에서 나머지 복원",
+      "difficulty": "응용",
+      "figureSpec": null,
+      "content": "공책 $36$권을 몇 명의 학생에게 같은 수씩 나누어 주려고 한다. 한 학생이 받는 공책의 수는 학생 수보다 $4$ 많아야 한다. 나누어 주고 남는 공책이 $0$권 이상 $4$권 이하가 되도록 할 때, 남는 공책의 수를 구하시오.",
+      "answer": "$4$",
+      "distractors": [
+        "$0$",
+        "$1$",
+        "$2$",
+        "$3$"
+      ],
+      "solution": "학생 수를 자연수 $n$, 남는 수를 $r$이라 하면 $n(n+4)+r=36$이고 $0\\le r\\le 4$이다. $n=4$일 때 나누어 주는 총수는 $32$이고 $r=4$이다. $n$이 한 명만 작아져도 총수는 $21$ 이하가 되어 $4$권보다 많이 남으며, 한 명만 커져도 필요한 총수는 $45$ 이상이 되어 공책이 부족하다. 따라서 남는 수는 $4$이다.",
+      "blind": {
+        "expected": "$4$",
+        "evidence": {
+          "extra": 4,
+          "stock": 36,
+          "low": 0,
+          "high": 4,
+          "studentCountWitnesses": [
+            {
+              "n": 4,
+              "r": 4
+            }
+          ]
+        }
+      },
+      "questionFingerprint": "3ac5595de3f009fe868272dcf0a52a9b62f5778ffaf48152c8c89a98da77acf6",
+      "render": {
+        "content": {
+          "markdownSha256": "2e55c610d406bde3e133452df5c0b7436fcbf0f98fb4e74c159342e88ffc9f00",
+          "mathHtmlSha256": "94ca57fab98ebf46777e4feadbe3b2e534ab30f7be2c968a061e6224d0d60914",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "098ea79c22a47aecec6e1ec7ef50422ee5bb5959f805e459402ec1e0e760097a",
+          "mathHtmlSha256": "d65a301fe9c2be7504f28fce4275b921954061802b9a260f18b3078aa4e67669",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "0daac7071f5029574eac2dc27c96e8ffc99c486823ac15cff05bfe28f251ed5d",
+          "mathHtmlSha256": "77550aab5a8cb4af53991f697df80aa93fedb901d313f70839471fc7238a27e9",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|대푯값과 산포도|S01",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S01",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "seed": 20261020,
+      "variant": 0,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "대푯값과 산포도",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "대푯값과 산포도",
+      "rpmType": "S01",
+      "rpmTitle": "한 변량을 수정했을 때 평균과 중앙값 비교",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "다섯 변량이 $44, 49, 54, 59, 64$이다. 이 중 가장 큰 변량 $64$ 하나만 $74$로 수정하였다. 수정 전후를 비교한 설명으로 옳은 것을 고르시오.\n① 평균은 변하지 않고, 중앙값은 $2$만큼 커진다.\n② 평균은 $10$만큼 커지고, 중앙값은 변하지 않는다.\n③ 평균은 $2$만큼 작아지고, 중앙값은 변하지 않는다.\n④ 평균은 $2$만큼 커지고, 중앙값은 변하지 않는다.\n⑤ 평균과 중앙값이 모두 변하지 않는다.",
+      "answer": "④",
+      "solution": "총합이 $10$만큼 증가하고 변량은 여전히 $5$개이므로 평균은 $2$만큼 커진다. 가장 큰 변량만 더 커져 가운데인 셋째 변량 $54$는 바뀌지 않으므로 중앙값은 그대로이다.",
+      "blind": {
+        "expected": "④",
+        "evidence": {
+          "original": [
+            44,
+            49,
+            54,
+            59,
+            64
+          ],
+          "revised": [
+            44,
+            49,
+            54,
+            59,
+            74
+          ],
+          "deltaMean": 2,
+          "deltaMedian": 0,
+          "truth": [
+            false,
+            false,
+            false,
+            true,
+            false
+          ]
+        }
+      },
+      "questionFingerprint": "f2c63faa326a45ae66186d458f25a9d558600c68fc5bea824c748fb720f83430",
+      "render": {
+        "content": {
+          "markdownSha256": "f7a8832dbd2e6fffd4e0c5eba2c8ef246189c713309fc125aab46d585ae818a0",
+          "mathHtmlSha256": "5c50bc2baa9dcae5675da8e621574bbce08fc1b7297f6a0df288a34f5b0109cf",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "b2c7a24e46a22b32f557298bbbb041f6a04ae287022693d1920cefd726628f1b",
+          "mathHtmlSha256": "6958a3e7105064751a96bf1e52cd5e9916d71e127193b12ffae234c0fddac50f",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "98c9db88465dcfc24fa6495c32e414bae9e6307b0228c338d1218654fd19ee37",
+          "mathHtmlSha256": "60999b9b139c59ab3f9916560720ca0e823c24162bd08b991deb9aa4acee1c03",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|대푯값과 산포도|S01",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S01",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "seed": 20261020,
+      "variant": 1,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "대푯값과 산포도",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "대푯값과 산포도",
+      "rpmType": "S01",
+      "rpmTitle": "한 변량을 수정했을 때 평균과 중앙값 비교",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "다섯 변량이 $49, 50, 51, 52, 53$이다. 이 중 가장 큰 변량 $53$ 하나만 $63$로 수정하였다. 수정 전후를 비교한 설명으로 옳은 것을 고르시오.\n① 평균은 $2$만큼 커지고, 중앙값은 변하지 않는다.\n② 평균은 변하지 않고, 중앙값은 $2$만큼 커진다.\n③ 평균은 $2$만큼 작아지고, 중앙값은 변하지 않는다.\n④ 평균은 $10$만큼 커지고, 중앙값은 변하지 않는다.\n⑤ 평균과 중앙값이 모두 변하지 않는다.",
+      "answer": "①",
+      "solution": "총합이 $10$만큼 증가하고 변량은 여전히 $5$개이므로 평균은 $2$만큼 커진다. 가장 큰 변량만 더 커져 가운데인 셋째 변량 $51$는 바뀌지 않으므로 중앙값은 그대로이다.",
+      "blind": {
+        "expected": "①",
+        "evidence": {
+          "original": [
+            49,
+            50,
+            51,
+            52,
+            53
+          ],
+          "revised": [
+            49,
+            50,
+            51,
+            52,
+            63
+          ],
+          "deltaMean": 2,
+          "deltaMedian": 0,
+          "truth": [
+            true,
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      "questionFingerprint": "37803822367279bee6e9f98709f5cd0e57ba8a89e2ec3dffd5b1595f5d9ae7e0",
+      "render": {
+        "content": {
+          "markdownSha256": "94071a090c61a775d7511745a1ba30c9d042df72657dab0c7624e7ffda0c4106",
+          "mathHtmlSha256": "7cf3449a3f8cefb5f8a94c872495d3dd815bb3c11ce9c304d80e1bb3624bba89",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "ed18d9a3ef7ecf8c2553472d965cf53b0bfe5796204ac72289578692ee8aeda4",
+          "mathHtmlSha256": "9e96ca1ce18ffb97f67c1230d8282320058da75aa86fc44fb435d25c512a5423",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "a563f3289fffdb0a331c814569c070e8c0780d4307c67fd506129bb69fdb55b0",
+          "mathHtmlSha256": "189537adfadd6ce1df0524d6328a2774430f3033d1c34327bc5adc767fbfadb2",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|대푯값과 산포도|S01",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S01",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "seed": 20261020,
+      "variant": 2,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "대푯값과 산포도",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "대푯값과 산포도",
+      "rpmType": "S01",
+      "rpmTitle": "한 변량을 수정했을 때 평균과 중앙값 비교",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "다섯 변량이 $52, 55, 58, 61, 64$이다. 이 중 가장 큰 변량 $64$ 하나만 $69$로 수정하였다. 수정 전후를 비교한 설명으로 옳은 것을 고르시오.\n① 평균은 $1$만큼 작아지고, 중앙값은 변하지 않는다.\n② 평균은 $1$만큼 커지고, 중앙값은 변하지 않는다.\n③ 평균과 중앙값이 모두 변하지 않는다.\n④ 평균은 $5$만큼 커지고, 중앙값은 변하지 않는다.\n⑤ 평균은 변하지 않고, 중앙값은 $1$만큼 커진다.",
+      "answer": "②",
+      "solution": "총합이 $5$만큼 증가하고 변량은 여전히 $5$개이므로 평균은 $1$만큼 커진다. 가장 큰 변량만 더 커져 가운데인 셋째 변량 $58$는 바뀌지 않으므로 중앙값은 그대로이다.",
+      "blind": {
+        "expected": "②",
+        "evidence": {
+          "original": [
+            52,
+            55,
+            58,
+            61,
+            64
+          ],
+          "revised": [
+            52,
+            55,
+            58,
+            61,
+            69
+          ],
+          "deltaMean": 1,
+          "deltaMedian": 0,
+          "truth": [
+            false,
+            true,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      "questionFingerprint": "f87acb6719abbafaec8cdfaa521a6a06455e341ded9d55fcc85f96b3f7b0ed6d",
+      "render": {
+        "content": {
+          "markdownSha256": "324f3e255669dc3e3c31276db9da64fad23f4d9c6d8943a75e63851839406c57",
+          "mathHtmlSha256": "7ec3f83ee1d3874bc9e906b86c97fc48af45359a26fb6ab3bcfb1d5dbde24bac",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "07e8d1d030b74826a0bcdbb6226c46fa038365531eee1872de952be497d9b0c6",
+          "mathHtmlSha256": "faab5aef76a0e31bef1dc423641a79e0b60938edcdf69194bc63e734ca7114f6",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "d0b61400c1f6b065b608b2b27266a4407f2717962b435cd73f41aa1df6d66c8a",
+          "mathHtmlSha256": "b6fe2ffcbc25ccf83ac87d796061f0f88d7b7ea2cba3dd423ca5c045c580bd06",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|대푯값과 산포도|S02",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S02",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "seed": 20261020,
+      "variant": 0,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "대푯값과 산포도",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "대푯값과 산포도",
+      "rpmType": "S02",
+      "rpmTitle": "평균과 표준편차 변화에서 이동량 복원",
+      "difficulty": "응용",
+      "figureSpec": null,
+      "content": "어떤 자료의 평균은 $29$, 표준편차는 $4$이다. 각 변량을 모두 $a$배 한 뒤 $b$를 더한 새로운 자료의 평균은 $118$이고, 표준편차는 $16$이다. $a>0$일 때, $b$의 값을 구하시오.",
+      "answer": "$2$",
+      "distractors": [
+        "$0$",
+        "$1$",
+        "$3$",
+        "$4$"
+      ],
+      "solution": "상수를 더해도 표준편차는 변하지 않고, 양수 $a$배 하면 표준편차는 $a$배가 된다. 따라서 $a=16\\div 4=4$이다. 평균도 $a$배 한 뒤 $b$를 더하므로 $4\\times 29+b=118$에서 $b=2$이다.",
+      "blind": {
+        "expected": "$2$",
+        "evidence": {
+          "original": [
+            25,
+            33
+          ],
+          "newM": 118,
+          "newSd": 16,
+          "match": {
+            "a": 4,
+            "b": 2,
+            "revised": [
+              102,
+              134
+            ]
+          }
+        }
+      },
+      "questionFingerprint": "3b39463b31a5028bce426df584102c2013e3761c8dba074f5c92a4f4945a125b",
+      "render": {
+        "content": {
+          "markdownSha256": "c64e41a9e52304d6691ee5859d6665f91a9f6f4c5f9d17db2c96cb51a7676063",
+          "mathHtmlSha256": "c9e223a6e5e175104e44573f63fa0052824e176eafffd769a660bfeb8c268a2c",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "38fcbbbb18ff9560dbfc991f85d9df0b05fe5a6ea43c813ef629d87ee0c4b251",
+          "mathHtmlSha256": "408778ce01d6003fce866e18d61ab11ea3f4f09d1802525b510fbd5f36a15889",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "49d0c34a4a60e19fbadf1a949a50dd9aa873c00669f08e823b7cd0150b4195c8",
+          "mathHtmlSha256": "0ec531c6f33bfb38243edeaea88afb6d9d5db779b956073bc64963e4e50e611b",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|대푯값과 산포도|S02",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S02",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "seed": 20261020,
+      "variant": 1,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "대푯값과 산포도",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "대푯값과 산포도",
+      "rpmType": "S02",
+      "rpmTitle": "평균과 표준편차 변화에서 이동량 복원",
+      "difficulty": "응용",
+      "figureSpec": null,
+      "content": "어떤 자료의 평균은 $19$, 표준편차는 $1$이다. 각 변량을 모두 $a$배 한 뒤 $b$를 더한 새로운 자료의 평균은 $65$이고, 표준편차는 $3$이다. $a>0$일 때, $b$의 값을 구하시오.",
+      "answer": "$8$",
+      "distractors": [
+        "$6$",
+        "$7$",
+        "$9$",
+        "$10$"
+      ],
+      "solution": "상수를 더해도 표준편차는 변하지 않고, 양수 $a$배 하면 표준편차는 $a$배가 된다. 따라서 $a=3\\div 1=3$이다. 평균도 $a$배 한 뒤 $b$를 더하므로 $3\\times 19+b=65$에서 $b=8$이다.",
+      "blind": {
+        "expected": "$8$",
+        "evidence": {
+          "original": [
+            18,
+            20
+          ],
+          "newM": 65,
+          "newSd": 3,
+          "match": {
+            "a": 3,
+            "b": 8,
+            "revised": [
+              62,
+              68
+            ]
+          }
+        }
+      },
+      "questionFingerprint": "613bc2cdc06a471c9637f2303069271d053f9b4b3d7c6e2cf4756d4957898627",
+      "render": {
+        "content": {
+          "markdownSha256": "23c1f58032d9d04b9997e240471110ecedafa3d3d0b1ffab5061aaf73f294f10",
+          "mathHtmlSha256": "d3772778d37b88ed138d29930a491fae00dafebb7ef5770daf3b5a12f45ec0c5",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "4ee6c7c614a6452c6df0679e964a814068100e304dea8062b73fc688fcf3096e",
+          "mathHtmlSha256": "c83bcc9bc91e24e04072ab3431244e7bc64b351eb6a84d31d3432d12dc70a629",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "5c313c716fca7cb86bee5b19b396e936df2adc31c94ced62e2ab6251c0222a83",
+          "mathHtmlSha256": "a4848c25a5c05bcc5280e2ac6313d6244e06040686f7b795b55bd37d38403446",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|대푯값과 산포도|S02",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S02",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "seed": 20261020,
+      "variant": 2,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "대푯값과 산포도",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "대푯값과 산포도",
+      "rpmType": "S02",
+      "rpmTitle": "평균과 표준편차 변화에서 이동량 복원",
+      "difficulty": "응용",
+      "figureSpec": null,
+      "content": "어떤 자료의 평균은 $22$, 표준편차는 $4$이다. 각 변량을 모두 $a$배 한 뒤 $b$를 더한 새로운 자료의 평균은 $94$이고, 표준편차는 $16$이다. $a>0$일 때, $b$의 값을 구하시오.",
+      "answer": "$6$",
+      "distractors": [
+        "$4$",
+        "$5$",
+        "$7$",
+        "$8$"
+      ],
+      "solution": "상수를 더해도 표준편차는 변하지 않고, 양수 $a$배 하면 표준편차는 $a$배가 된다. 따라서 $a=16\\div 4=4$이다. 평균도 $a$배 한 뒤 $b$를 더하므로 $4\\times 22+b=94$에서 $b=6$이다.",
+      "blind": {
+        "expected": "$6$",
+        "evidence": {
+          "original": [
+            18,
+            26
+          ],
+          "newM": 94,
+          "newSd": 16,
+          "match": {
+            "a": 4,
+            "b": 6,
+            "revised": [
+              78,
+              110
+            ]
+          }
+        }
+      },
+      "questionFingerprint": "363d3c9a8464f3f05579911a3add7f815058f18967a75a5fc126dda9ebb54667",
+      "render": {
+        "content": {
+          "markdownSha256": "0968ebd3e0322e1a7365abed2e6b95665eaafe73e404f743e382dddaf44cb44c",
+          "mathHtmlSha256": "5e1160fe70b0eaf4818cfc19775ae804b15ef0e7bbb49d5175c9a76afced4b49",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "48af447ceedd99e6153d36fcc897fd8521e059aac6e311e3a91ff60bd58d008e",
+          "mathHtmlSha256": "1e3cb567866e8fd555dae904bffaed80a9c1fa3d1a22efe3275917aa07743cda",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "587999c15a7aa56edbab8a4b65a251d62cf1adc5a64a1deb25efe3b170e82852",
+          "mathHtmlSha256": "bb2766dd87ca6b4c54f6306f6491977e56a1df00a4ca7d0b35e49ba4df525f64",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|대푯값과 산포도|S03",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S03",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "seed": 20261020,
+      "variant": 0,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "대푯값과 산포도",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "대푯값과 산포도",
+      "rpmType": "S03",
+      "rpmTitle": "평균과 최댓값 최솟값이 같아도 분산이 다른 자료",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "두 자료 A, B가 다음과 같다.\nA: $40, 43, 46, 49, 52$\nB: $40, 46, 46, 46, 52$\n이 두 자료를 비교한 설명으로 옳은 것을 고르시오.\n① 평균은 같고, 분산은 A가 B보다 크다.\n② 평균은 A가 B보다 크다.\n③ 평균은 A가 B보다 작다.\n④ 평균은 같고, 분산은 A가 B보다 작다.\n⑤ 평균과 분산이 모두 같다.",
+      "answer": "①",
+      "solution": "두 자료의 평균은 모두 $46$이고 최댓값과 최솟값도 같다. 편차 제곱의 합은 A가 $90$, B가 $72$이다. 변량의 수가 모두 $5$이므로 분산은 A가 B보다 크다. 최댓값과 최솟값이 같다는 것만으로 분산이 같다고 할 수 없다.",
+      "blind": {
+        "expected": "①",
+        "evidence": {
+          "a": [
+            40,
+            43,
+            46,
+            49,
+            52
+          ],
+          "b": [
+            40,
+            46,
+            46,
+            46,
+            52
+          ],
+          "means": [
+            46,
+            46
+          ],
+          "variances": [
+            18,
+            14.4
+          ],
+          "truth": [
+            true,
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      "questionFingerprint": "cff97385ab4eec92044c2fac7584c24318c6fe15df677fbfc209548bb096402b",
+      "render": {
+        "content": {
+          "markdownSha256": "480edaf8a3d63e8cade1c395a18438b60a87192025c6480f7876f7b5c5d3014e",
+          "mathHtmlSha256": "8d72ebe481b155d77a7466c0816756740e028038f7e3581705c1adc8f3aa4d18",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "ed18d9a3ef7ecf8c2553472d965cf53b0bfe5796204ac72289578692ee8aeda4",
+          "mathHtmlSha256": "9e96ca1ce18ffb97f67c1230d8282320058da75aa86fc44fb435d25c512a5423",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "a7fab8b512c0a9382861a76071a1e049f3a2b2854fd67dc96c9bc93e4c52f07f",
+          "mathHtmlSha256": "03aec626d7c1ee92a41f543be0a5e0265fa805ca7cc12dc825988d9da4d0b552",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|대푯값과 산포도|S03",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S03",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "seed": 20261020,
+      "variant": 1,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "대푯값과 산포도",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "대푯값과 산포도",
+      "rpmType": "S03",
+      "rpmTitle": "평균과 최댓값 최솟값이 같아도 분산이 다른 자료",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "두 자료 A, B가 다음과 같다.\nA: $55, 56, 57, 58, 59$\nB: $55, 57, 57, 57, 59$\n이 두 자료를 비교한 설명으로 옳은 것을 고르시오.\n① 평균은 같고, 분산은 A가 B보다 크다.\n② 평균은 같고, 분산은 A가 B보다 작다.\n③ 평균은 A가 B보다 작다.\n④ 평균과 분산이 모두 같다.\n⑤ 평균은 A가 B보다 크다.",
+      "answer": "①",
+      "solution": "두 자료의 평균은 모두 $57$이고 최댓값과 최솟값도 같다. 편차 제곱의 합은 A가 $10$, B가 $8$이다. 변량의 수가 모두 $5$이므로 분산은 A가 B보다 크다. 최댓값과 최솟값이 같다는 것만으로 분산이 같다고 할 수 없다.",
+      "blind": {
+        "expected": "①",
+        "evidence": {
+          "a": [
+            55,
+            56,
+            57,
+            58,
+            59
+          ],
+          "b": [
+            55,
+            57,
+            57,
+            57,
+            59
+          ],
+          "means": [
+            57,
+            57
+          ],
+          "variances": [
+            2,
+            1.6
+          ],
+          "truth": [
+            true,
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      "questionFingerprint": "4d409f42773bee71b67a44e7695b22a9aa6f207d29972f523fb534e76efe6531",
+      "render": {
+        "content": {
+          "markdownSha256": "8cb7ca4a4a9445f71cdd345b0cdc54b6b099d722866027fce449335bb5d5449b",
+          "mathHtmlSha256": "9e4866bef0ef37a1e731ce6bba489793c455c246f3f8d8d8846b5342b5824555",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "ed18d9a3ef7ecf8c2553472d965cf53b0bfe5796204ac72289578692ee8aeda4",
+          "mathHtmlSha256": "9e96ca1ce18ffb97f67c1230d8282320058da75aa86fc44fb435d25c512a5423",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "32319722609d4c045cf3f4ecd565a36abecb33f1a0ce37d56b8feccacfa9ee24",
+          "mathHtmlSha256": "f477d3e4c2d3bf326c7db32df33c4c7153c533c3693828a05ca89d786b084687",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    },
+    {
+      "key": "manual-20261018|대푯값과 산포도|S03",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S03",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "seed": 20261020,
+      "variant": 2,
+      "source": "manual",
+      "authoringProvenance": "original deterministic authoring engine; not an RPM transfer",
+      "grade": "중3",
+      "unitSection": "대푯값과 산포도",
+      "rpmBook": "manual-20261018",
+      "rpmMinor": "대푯값과 산포도",
+      "rpmType": "S03",
+      "rpmTitle": "평균과 최댓값 최솟값이 같아도 분산이 다른 자료",
+      "difficulty": "기본",
+      "figureSpec": null,
+      "content": "두 자료 A, B가 다음과 같다.\nA: $28, 30, 32, 34, 36$\nB: $28, 32, 32, 32, 36$\n이 두 자료를 비교한 설명으로 옳은 것을 고르시오.\n① 평균은 A가 B보다 크다.\n② 평균은 A가 B보다 작다.\n③ 평균은 같고, 분산은 A가 B보다 크다.\n④ 평균과 분산이 모두 같다.\n⑤ 평균은 같고, 분산은 A가 B보다 작다.",
+      "answer": "③",
+      "solution": "두 자료의 평균은 모두 $32$이고 최댓값과 최솟값도 같다. 편차 제곱의 합은 A가 $40$, B가 $32$이다. 변량의 수가 모두 $5$이므로 분산은 A가 B보다 크다. 최댓값과 최솟값이 같다는 것만으로 분산이 같다고 할 수 없다.",
+      "blind": {
+        "expected": "③",
+        "evidence": {
+          "a": [
+            28,
+            30,
+            32,
+            34,
+            36
+          ],
+          "b": [
+            28,
+            32,
+            32,
+            32,
+            36
+          ],
+          "means": [
+            32,
+            32
+          ],
+          "variances": [
+            8,
+            6.4
+          ],
+          "truth": [
+            false,
+            false,
+            true,
+            false,
+            false
+          ]
+        }
+      },
+      "questionFingerprint": "95cc45f438b618ff80964e9ec76f846521fba3bcb75a3003745fa9f7fac79569",
+      "render": {
+        "content": {
+          "markdownSha256": "b7e996e635e8702b0af4d1f0c163e5127362a69facbf536eac739b9167a59780",
+          "mathHtmlSha256": "414d4d07df3126b0717410b4e15eb855630c9de65dee430cab4df385018f4c5e",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "0e9530bcb339f2b3ff77f5d035187a520e161047550e4b1f7b1f497b7f436005",
+          "mathHtmlSha256": "3d3bc389df58f47aef91bc1182122d181e2c628a2d5b93939c903507938814de",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "96cc451bb16b7260d692cb270c922a695f5a5f7ef2adc5032427b374a612d196",
+          "mathHtmlSha256": "5521c6b00cc4301f9d202e231fd3b4fa7a7dcc4114829761b1a69babd26bcc63",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      }
+    }
+  ],
+  "rows": [
+    {
+      "externalId": "engine-mid:manual-20261018|무리수와 실수|R01|s20261020|v0|객관식",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "familyKey": "mid:manual-20261018|무리수와 실수|R01",
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 0,
+      "key": "manual-20261018|무리수와 실수|R01",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "계산기에 $\\sqrt{6}$의 값이 소수점 아래 $4$자리까지 반올림되어 $2.4495$로 표시되었다. 민수는 “화면의 값이 유한소수이므로 $\\sqrt{6}$도 유리수이다.”라고 말했다. 이 주장에 대한 설명으로 옳은 것을 고르시오.\n① 근호 안의 수가 완전제곱수가 아니므로 $\\sqrt{6}$는 무리수이며, 근삿값과 정확한 값은 다르다.\n② $\\sqrt{6}$는 무리수이므로 실수가 아니다.\n③ $\\sqrt{6}$의 근삿값이 유한소수이므로 정확한 값도 유리수이다.\n④ $\\sqrt{6}$는 소수로 나타낼 수 없으므로 무리수이다.\n⑤ $\\sqrt{6}$는 양수이므로 유리수이다.",
+      "answer": "①",
+      "solution": "완전제곱수가 아닌 자연수의 제곱근이므로 정확한 값은 무리수이다. 화면에 표시된 값은 유리수인 근삿값이며 정확한 값과 같지 않다. 무리수도 실수이고, 순환하지 않는 무한소수로 나타낼 수 있다.",
+      "figureSvg": null,
+      "payloadSha256": "9cd45d047424c3b517f323393041145bb8351a212683b49d6da92eeb2da5eb90",
+      "render": {
+        "content": {
+          "markdownSha256": "9347e71872db1124c316175edcf84d08f5d3a4e23fea8802bf5f35dd84ce0f5f",
+          "mathHtmlSha256": "81b653e6467186c9b22846c5cfdb93a54826a314dabcf0f7565c60988a7f2782",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "ed18d9a3ef7ecf8c2553472d965cf53b0bfe5796204ac72289578692ee8aeda4",
+          "mathHtmlSha256": "9e96ca1ce18ffb97f67c1230d8282320058da75aa86fc44fb435d25c512a5423",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "0fbb839064a09a12a094adbad0f13005338a43a2b994cb02496c12d3c67353e2",
+          "mathHtmlSha256": "dcc1cd0e429326c897154a8cad0ec022c87c2bd531d629d587d7aab789806ed0",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "00aca55388801d50a6ad9659784d87dd98af1e7753615672d884d94ea9bcae3c"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|무리수와 실수|R01|s20261020|v1|객관식",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "familyKey": "mid:manual-20261018|무리수와 실수|R01",
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 1,
+      "key": "manual-20261018|무리수와 실수|R01",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "계산기에 $\\sqrt{5}$의 값이 소수점 아래 $2$자리까지 반올림되어 $2.24$로 표시되었다. 민수는 “화면의 값이 유한소수이므로 $\\sqrt{5}$도 유리수이다.”라고 말했다. 이 주장에 대한 설명으로 옳은 것을 고르시오.\n① $\\sqrt{5}$는 소수로 나타낼 수 없으므로 무리수이다.\n② 근호 안의 수가 완전제곱수가 아니므로 $\\sqrt{5}$는 무리수이며, 근삿값과 정확한 값은 다르다.\n③ $\\sqrt{5}$는 양수이므로 유리수이다.\n④ $\\sqrt{5}$의 근삿값이 유한소수이므로 정확한 값도 유리수이다.\n⑤ $\\sqrt{5}$는 무리수이므로 실수가 아니다.",
+      "answer": "②",
+      "solution": "완전제곱수가 아닌 자연수의 제곱근이므로 정확한 값은 무리수이다. 화면에 표시된 값은 유리수인 근삿값이며 정확한 값과 같지 않다. 무리수도 실수이고, 순환하지 않는 무한소수로 나타낼 수 있다.",
+      "figureSvg": null,
+      "payloadSha256": "b2824e77ad34011eba6a7d6c26c54872765dba993ce69992602de82342e73671",
+      "render": {
+        "content": {
+          "markdownSha256": "fc0a2b162a8abb5cecbb5b8d5d85e1e7964a6957ddbd84be54ff8b676667c8a7",
+          "mathHtmlSha256": "5dadf9868b6302103993b3b629ab41e8ae282a4499ab90c451a96794db9f1916",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "07e8d1d030b74826a0bcdbb6226c46fa038365531eee1872de952be497d9b0c6",
+          "mathHtmlSha256": "faab5aef76a0e31bef1dc423641a79e0b60938edcdf69194bc63e734ca7114f6",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "0fbb839064a09a12a094adbad0f13005338a43a2b994cb02496c12d3c67353e2",
+          "mathHtmlSha256": "dcc1cd0e429326c897154a8cad0ec022c87c2bd531d629d587d7aab789806ed0",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "39e7d9410fe54428a71c0f2b0ed43ed33ca5db6a1d884bb5c737119ce7dde54d"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|무리수와 실수|R01|s20261020|v2|객관식",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "familyKey": "mid:manual-20261018|무리수와 실수|R01",
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 2,
+      "key": "manual-20261018|무리수와 실수|R01",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "계산기에 $\\sqrt{7}$의 값이 소수점 아래 $2$자리까지 반올림되어 $2.65$로 표시되었다. 민수는 “화면의 값이 유한소수이므로 $\\sqrt{7}$도 유리수이다.”라고 말했다. 이 주장에 대한 설명으로 옳은 것을 고르시오.\n① $\\sqrt{7}$는 소수로 나타낼 수 없으므로 무리수이다.\n② $\\sqrt{7}$는 무리수이므로 실수가 아니다.\n③ $\\sqrt{7}$는 양수이므로 유리수이다.\n④ 근호 안의 수가 완전제곱수가 아니므로 $\\sqrt{7}$는 무리수이며, 근삿값과 정확한 값은 다르다.\n⑤ $\\sqrt{7}$의 근삿값이 유한소수이므로 정확한 값도 유리수이다.",
+      "answer": "④",
+      "solution": "완전제곱수가 아닌 자연수의 제곱근이므로 정확한 값은 무리수이다. 화면에 표시된 값은 유리수인 근삿값이며 정확한 값과 같지 않다. 무리수도 실수이고, 순환하지 않는 무한소수로 나타낼 수 있다.",
+      "figureSvg": null,
+      "payloadSha256": "6a859235224f3a3703845cb3ecc815b94da1d5fd0de36f242a221e360e9905fd",
+      "render": {
+        "content": {
+          "markdownSha256": "97bb9f7c96fee295d45a2c20b15e39aaa0648aeefe276e5dc33af7ece29d3b66",
+          "mathHtmlSha256": "daa0e5cc93db7d857af0ab70bb77dfe0421f386be7aec84300a821643cbb64bf",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "b2c7a24e46a22b32f557298bbbb041f6a04ae287022693d1920cefd726628f1b",
+          "mathHtmlSha256": "6958a3e7105064751a96bf1e52cd5e9916d71e127193b12ffae234c0fddac50f",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "0fbb839064a09a12a094adbad0f13005338a43a2b994cb02496c12d3c67353e2",
+          "mathHtmlSha256": "dcc1cd0e429326c897154a8cad0ec022c87c2bd531d629d587d7aab789806ed0",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "981c675215556391ad2e3fbafb2b7ba4ed6b48bbbbd2c8c477ccd3effb2c05cc"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|무리수와 실수|R02|s20261020|v0|객관식",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "familyKey": "mid:manual-20261018|무리수와 실수|R02",
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 0,
+      "key": "manual-20261018|무리수와 실수|R02",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "“두 무리수의 합은 언제나 무리수이다.”라는 주장이 틀렸음을 보이려 한다. 첫째 수가 $\\sqrt{7}$이고 두 수의 합이 유리수 $12$가 되는 반례를 만들 때, 조건에 맞는 두 무리수의 쌍을 고르시오.\n① $\\sqrt{7}$, $12-\\sqrt{7}$\n② $\\sqrt{7}$, $12+2\\sqrt{7}$\n③ $\\sqrt{7}$, $3\\sqrt{7}$\n④ $\\sqrt{7}$, $2\\sqrt{7}$\n⑤ $\\sqrt{7}$, $12+\\sqrt{7}$",
+      "answer": "①",
+      "solution": "첫 수 $\\sqrt{7}$와 둘째 수 $12-\\sqrt{7}$는 각각 무리수이지만 합은 $12$인 유리수이다. 나머지 쌍의 합에는 $\\sqrt{7}$의 계수가 $0$이 아닌 정수로 남으므로 무리수이다.",
+      "figureSvg": null,
+      "payloadSha256": "61c01240e533879b36a9986ae74d9a44ea8adb82a58f45ac4ef56f11caec0c68",
+      "render": {
+        "content": {
+          "markdownSha256": "92e055f5bcb78905e00f67049bfb766e0e0143047f8d8ca72d9f7d6fbcfffaa5",
+          "mathHtmlSha256": "864f223cf132d5aa7a28e700d0c1216177f39349f76bc61f327595212d04ab43",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "ed18d9a3ef7ecf8c2553472d965cf53b0bfe5796204ac72289578692ee8aeda4",
+          "mathHtmlSha256": "9e96ca1ce18ffb97f67c1230d8282320058da75aa86fc44fb435d25c512a5423",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "d31cdc2cc7ef6d0541f2bb96f05a1d0373bfcb812fe975aa132b1957b224e594",
+          "mathHtmlSha256": "fc056e813e652af38e913f7640f34610349dcdb302cd0284a7b59b433202caca",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "7be1301cd62abe14d363093f68d6885aa6b4149bebe5254152f6f928213d5d8f"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|무리수와 실수|R02|s20261020|v1|객관식",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "familyKey": "mid:manual-20261018|무리수와 실수|R02",
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 1,
+      "key": "manual-20261018|무리수와 실수|R02",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "“두 무리수의 합은 언제나 무리수이다.”라는 주장이 틀렸음을 보이려 한다. 첫째 수가 $\\sqrt{5}$이고 두 수의 합이 유리수 $4$가 되는 반례를 만들 때, 조건에 맞는 두 무리수의 쌍을 고르시오.\n① $\\sqrt{5}$, $4+\\sqrt{5}$\n② $\\sqrt{5}$, $4-\\sqrt{5}$\n③ $\\sqrt{5}$, $3\\sqrt{5}$\n④ $\\sqrt{5}$, $2\\sqrt{5}$\n⑤ $\\sqrt{5}$, $4+2\\sqrt{5}$",
+      "answer": "②",
+      "solution": "첫 수 $\\sqrt{5}$와 둘째 수 $4-\\sqrt{5}$는 각각 무리수이지만 합은 $4$인 유리수이다. 나머지 쌍의 합에는 $\\sqrt{5}$의 계수가 $0$이 아닌 정수로 남으므로 무리수이다.",
+      "figureSvg": null,
+      "payloadSha256": "01726a35f7fab7783ced41767ebfcb528977028a6902f43d553a097eaa798b5f",
+      "render": {
+        "content": {
+          "markdownSha256": "15409d94b1ba0e63345522dc92231b093e82966ae0fa9f6654f7923c2f6b61e1",
+          "mathHtmlSha256": "7da27a391deac761b4db9dcb1c8cf8ad4ce0472005a52be24cc5e424e9967157",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "07e8d1d030b74826a0bcdbb6226c46fa038365531eee1872de952be497d9b0c6",
+          "mathHtmlSha256": "faab5aef76a0e31bef1dc423641a79e0b60938edcdf69194bc63e734ca7114f6",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "c8421bbac42934e8b07c1463b5cec5b6b98b72d3bf20f7663f0dfbec7df846fc",
+          "mathHtmlSha256": "e0ce98a3f1198f2453e0ac51e26a8a3dc3ef5f55e91a34e901595798666f56b0",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "b4a6800d5797382926f63d06d93c51c6e8999ad97c971380750de012ad21797c"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|무리수와 실수|R02|s20261020|v2|객관식",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "familyKey": "mid:manual-20261018|무리수와 실수|R02",
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 2,
+      "key": "manual-20261018|무리수와 실수|R02",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "“두 무리수의 합은 언제나 무리수이다.”라는 주장이 틀렸음을 보이려 한다. 첫째 수가 $\\sqrt{13}$이고 두 수의 합이 유리수 $2$가 되는 반례를 만들 때, 조건에 맞는 두 무리수의 쌍을 고르시오.\n① $\\sqrt{13}$, $3\\sqrt{13}$\n② $\\sqrt{13}$, $2\\sqrt{13}$\n③ $\\sqrt{13}$, $2+\\sqrt{13}$\n④ $\\sqrt{13}$, $2+2\\sqrt{13}$\n⑤ $\\sqrt{13}$, $2-\\sqrt{13}$",
+      "answer": "⑤",
+      "solution": "첫 수 $\\sqrt{13}$와 둘째 수 $2-\\sqrt{13}$는 각각 무리수이지만 합은 $2$인 유리수이다. 나머지 쌍의 합에는 $\\sqrt{13}$의 계수가 $0$이 아닌 정수로 남으므로 무리수이다.",
+      "figureSvg": null,
+      "payloadSha256": "f0293581a21ce88480200f95cfadb87ae422828a8c9947ce405513358f23e9ef",
+      "render": {
+        "content": {
+          "markdownSha256": "9427638a9541c9726921e32e84755036ebc5262a6c7527c07f4b69d358a3c46e",
+          "mathHtmlSha256": "451ba38a0b3bcdc9f099b65b20c6e261fd17c163b4cec505de7177989037260a",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "db6a0c11e438109983adff6ab6ce46228d2a0f3a208d142655e31639e2b4a8b3",
+          "mathHtmlSha256": "f3eaa647e8a4604ea6bc01c74dfb365ace6754fb867e170b933cc24eb6a81e7b",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "e4010483c431a67b2c4f3a551f113e8762e3d9e55caa28fc998710a6b39dd42f",
+          "mathHtmlSha256": "32a3efcf94de9606fa99623f3c23a2e3b80a1dd8f768e76d8fc2a200f4326464",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "405726b763a10f7e0e69d2be8042a836b6d812d450cb1b101d8ea875638da331"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|무리수와 실수|R03|s20261020|v0|객관식",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "familyKey": "mid:manual-20261018|무리수와 실수|R03",
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 0,
+      "key": "manual-20261018|무리수와 실수|R03",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "실수 $x$가 $5x+4=\\sqrt{3}$를 만족한다. $x$에 대한 설명으로 옳은 것을 고르시오.\n① 우변이 무리수이므로 $x$는 실수가 아니다.\n② $x$가 유리수라면 좌변도 유리수가 되어 모순이다. 따라서 $x$는 무리수이다.\n③ $x$에 유리수를 곱했으므로 $x$도 유리수이다.\n④ 좌변에서 정수를 더했으므로 $x$는 정수이다.\n⑤ 좌변에 근호 기호가 없으므로 $x$는 유리수이다.",
+      "answer": "②",
+      "solution": "정수에 유리수를 곱하고 정수를 더한 값은 유리수이다. 만약 $x$가 유리수라면 $5x+4$도 유리수여야 하지만, 우변은 완전제곱수가 아닌 자연수의 제곱근으로 무리수이다. 이는 모순이므로 $x$는 무리수이다.",
+      "figureSvg": null,
+      "payloadSha256": "0d14f94358af19708e0cf8582ea58b63b19f88e474052801685199421ee206e0",
+      "render": {
+        "content": {
+          "markdownSha256": "b9ca43c1768bd97759b250c7a7420758fb02c3167e9ff9bb27f7cdd5348d491a",
+          "mathHtmlSha256": "4bc0a6388392f9ab5e1d53474b4716e57ec57c19e2e0edeaf83a09721c9ee481",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "07e8d1d030b74826a0bcdbb6226c46fa038365531eee1872de952be497d9b0c6",
+          "mathHtmlSha256": "faab5aef76a0e31bef1dc423641a79e0b60938edcdf69194bc63e734ca7114f6",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "ac51bcfc2b0a2273c891e165bd3baddabe8c9d8ad03d43630432f59a7c14574d",
+          "mathHtmlSha256": "cdab87086c6c610b6b5efc85581febd22dab5ffbbb5c87d7e38d093cd11302f7",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "f2dce32f16d57e2964a06ddedfbe5458514a19075c1b529a9962ed79c2ea6739"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|무리수와 실수|R03|s20261020|v1|객관식",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "familyKey": "mid:manual-20261018|무리수와 실수|R03",
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 1,
+      "key": "manual-20261018|무리수와 실수|R03",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "실수 $x$가 $2x+6=\\sqrt{11}$를 만족한다. $x$에 대한 설명으로 옳은 것을 고르시오.\n① $x$에 유리수를 곱했으므로 $x$도 유리수이다.\n② $x$가 유리수라면 좌변도 유리수가 되어 모순이다. 따라서 $x$는 무리수이다.\n③ 우변이 무리수이므로 $x$는 실수가 아니다.\n④ 좌변에 근호 기호가 없으므로 $x$는 유리수이다.\n⑤ 좌변에서 정수를 더했으므로 $x$는 정수이다.",
+      "answer": "②",
+      "solution": "정수에 유리수를 곱하고 정수를 더한 값은 유리수이다. 만약 $x$가 유리수라면 $2x+6$도 유리수여야 하지만, 우변은 완전제곱수가 아닌 자연수의 제곱근으로 무리수이다. 이는 모순이므로 $x$는 무리수이다.",
+      "figureSvg": null,
+      "payloadSha256": "58ca09133e13168e6557a0c9b951af9a188d8e778c7979ade257827dfb4ee00e",
+      "render": {
+        "content": {
+          "markdownSha256": "db9995f71acab657a7f0c5f358bd9b9c5e9ed35c37f7b7042bcc54eb932672a8",
+          "mathHtmlSha256": "eec0be3fd8994511770b4a24bbbfc6ebc8df57880aaed3bd6a71fb7fed5bdef6",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "07e8d1d030b74826a0bcdbb6226c46fa038365531eee1872de952be497d9b0c6",
+          "mathHtmlSha256": "faab5aef76a0e31bef1dc423641a79e0b60938edcdf69194bc63e734ca7114f6",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "803c21ffa1a54137cddec84f487c880970779f767b42a4b7e59def3592efc754",
+          "mathHtmlSha256": "943467dc9a1edd27df536743f76df47a17f20e6d7364c579882062f87e452b35",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "7615775f5c28f2d86f60641cb702204c7c5d663ae9dc11a0d1a6d75cd3786e95"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|무리수와 실수|R03|s20261020|v2|객관식",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "familyKey": "mid:manual-20261018|무리수와 실수|R03",
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 2,
+      "key": "manual-20261018|무리수와 실수|R03",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "실수 $x$가 $4x+6=\\sqrt{6}$를 만족한다. $x$에 대한 설명으로 옳은 것을 고르시오.\n① 좌변에 근호 기호가 없으므로 $x$는 유리수이다.\n② 좌변에서 정수를 더했으므로 $x$는 정수이다.\n③ $x$에 유리수를 곱했으므로 $x$도 유리수이다.\n④ 우변이 무리수이므로 $x$는 실수가 아니다.\n⑤ $x$가 유리수라면 좌변도 유리수가 되어 모순이다. 따라서 $x$는 무리수이다.",
+      "answer": "⑤",
+      "solution": "정수에 유리수를 곱하고 정수를 더한 값은 유리수이다. 만약 $x$가 유리수라면 $4x+6$도 유리수여야 하지만, 우변은 완전제곱수가 아닌 자연수의 제곱근으로 무리수이다. 이는 모순이므로 $x$는 무리수이다.",
+      "figureSvg": null,
+      "payloadSha256": "29980eceaa80a3856cf2d3ae68913a7af2dd6fb3d9ea2b86044f480bb19d6ec2",
+      "render": {
+        "content": {
+          "markdownSha256": "aaa34e454475a8eb9e9a5bca0f0f42c422cb6c1ee9a79de3e18accd394620612",
+          "mathHtmlSha256": "92f8b871b59071e9316804d1bc991b55b383ea1f55e898633e899db4dcf957d4",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "db6a0c11e438109983adff6ab6ce46228d2a0f3a208d142655e31639e2b4a8b3",
+          "mathHtmlSha256": "f3eaa647e8a4604ea6bc01c74dfb365ace6754fb867e170b933cc24eb6a81e7b",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "8cb11ffe6ba594262b2ef239efb0887386e98e4c59b7a8fb7bb644f7e5b5577d",
+          "mathHtmlSha256": "a5cac137123a09a7c1424edaf36e71d31cb1dd0a7b822d4b8996b3bc450732d8",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "a2bee7dc5e0df88d20ac4ec67bdedb570a94dd8964ca1758089ac09e10e189e1"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|인수분해|F01|s20261020|v0|단답형",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "familyKey": "mid:manual-20261018|인수분해|F01",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 0,
+      "key": "manual-20261018|인수분해|F01",
+      "questionType": "단답형",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "서연이는 $x^2-6x-27=(x-9)(x+7)$가 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $7$, $8$, $9$, $10$, $11$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.",
+      "answer": "$9$",
+      "solution": "좌변은 $(x-9)(x+3)$이다. 우변에서 좌변을 빼면 $4(x-9)$이므로 두 값이 같은 것은 $x=9$일 때뿐이다. 한 값에서 같다는 사실만으로 모든 실수에서 성립하는 인수분해라고 할 수 없다.",
+      "figureSvg": null,
+      "payloadSha256": "b43a1dfd11470d1d2c2439fa436c983449ed6554db14a3e4d1fe61d2f1c5aa6a",
+      "render": {
+        "content": {
+          "markdownSha256": "16afb9fbed0f99b06fee5e7e50f59772602f1137b1878c4b20d2299f072f777d",
+          "mathHtmlSha256": "d6dd343fe3ddb125d2c14225f60b92f3eddbdbb6d6bdf6a1203391673d1aa1c8",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "fe408b88b787daf9dafe3fa66627f23a401a5b0f611207125f088c2c8217d7b5",
+          "mathHtmlSha256": "c11c7e2868f1034f0dfddd55ce1a1a8141a835bce11e1d24e7ae1763257dcd41",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "541edc2bc79d86a94587643a60a073949543ef8f5dfb4c7774d4485c7252c612",
+          "mathHtmlSha256": "bc7fdd107f2a7c0a04cce1a778d6355347ec780c924893010689cac5bdc6efa5",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "e8bde81c37618867b5109649a1e8a2a8fa22fec96e0e90bf649006e594ba7e96"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|인수분해|F01|s20261020|v0|객관식",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "familyKey": "mid:manual-20261018|인수분해|F01",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 0,
+      "key": "manual-20261018|인수분해|F01",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "서연이는 $x^2-6x-27=(x-9)(x+7)$가 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $7$, $8$, $9$, $10$, $11$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.\n① $9$\n② $11$\n③ $10$\n④ $8$\n⑤ $7$",
+      "answer": "①",
+      "solution": "좌변은 $(x-9)(x+3)$이다. 우변에서 좌변을 빼면 $4(x-9)$이므로 두 값이 같은 것은 $x=9$일 때뿐이다. 한 값에서 같다는 사실만으로 모든 실수에서 성립하는 인수분해라고 할 수 없다.",
+      "figureSvg": null,
+      "payloadSha256": "0dd0f9ab443ec4f4b4e7dfd5de18e69f01f78f37390bae883522eda85b0cd7c2",
+      "render": {
+        "content": {
+          "markdownSha256": "d68c15b21a77372c30a48423ab73c6711a75949e7d7ea07fb143d1e50e7d0d04",
+          "mathHtmlSha256": "819082b2942d471f07876d07bf0363946f7d1a9ef275126833a22f9b9404ce4f",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "ed18d9a3ef7ecf8c2553472d965cf53b0bfe5796204ac72289578692ee8aeda4",
+          "mathHtmlSha256": "9e96ca1ce18ffb97f67c1230d8282320058da75aa86fc44fb435d25c512a5423",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "541edc2bc79d86a94587643a60a073949543ef8f5dfb4c7774d4485c7252c612",
+          "mathHtmlSha256": "bc7fdd107f2a7c0a04cce1a778d6355347ec780c924893010689cac5bdc6efa5",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "e3f616c7bf246b3790ef64930bc526ab0cd1587b40f37db7b3a191c756020c15"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|인수분해|F01|s20261020|v1|단답형",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "familyKey": "mid:manual-20261018|인수분해|F01",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 1,
+      "key": "manual-20261018|인수분해|F01",
+      "questionType": "단답형",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "서연이는 $x^2+3x-18=(x-3)(x+10)$가 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $1$, $2$, $3$, $4$, $5$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.",
+      "answer": "$3$",
+      "solution": "좌변은 $(x-3)(x+6)$이다. 우변에서 좌변을 빼면 $4(x-3)$이므로 두 값이 같은 것은 $x=3$일 때뿐이다. 한 값에서 같다는 사실만으로 모든 실수에서 성립하는 인수분해라고 할 수 없다.",
+      "figureSvg": null,
+      "payloadSha256": "cf54697d800fd90ed1b19d0bad22e35159c518d1a94b76f9e88e42c068274ac6",
+      "render": {
+        "content": {
+          "markdownSha256": "61ceccee683dcbbfb0f288647b43c6382c0e78a8a200834b8059c1402525ea31",
+          "mathHtmlSha256": "382f602b54b8ebc64234593507874b3e26e7492e146f1193aa57bdddc9c0b36c",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "34b318aad174335876bf994912beb08f19a36437733f296d41f50f0d3d93aed2",
+          "mathHtmlSha256": "1059d589025a95c04160ed72d3be248bd063c69fb3d704fa9cca2da2492653dd",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "c7d59c232e2aea2b7e4b1142612634eac718ea2d2e67dfaa1feb97e7c19b1646",
+          "mathHtmlSha256": "e817eff519655ce620719714b11c23115c04c3173cdb42b51afa1da498947a00",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "bb5de242e30b94132c2637b8565d414f44a8bc5751e89acb24b50cf5305f17e1"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|인수분해|F01|s20261020|v1|객관식",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "familyKey": "mid:manual-20261018|인수분해|F01",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 1,
+      "key": "manual-20261018|인수분해|F01",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "서연이는 $x^2+3x-18=(x-3)(x+10)$가 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $1$, $2$, $3$, $4$, $5$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.\n① $1$\n② $4$\n③ $3$\n④ $2$\n⑤ $5$",
+      "answer": "③",
+      "solution": "좌변은 $(x-3)(x+6)$이다. 우변에서 좌변을 빼면 $4(x-3)$이므로 두 값이 같은 것은 $x=3$일 때뿐이다. 한 값에서 같다는 사실만으로 모든 실수에서 성립하는 인수분해라고 할 수 없다.",
+      "figureSvg": null,
+      "payloadSha256": "b329c24d9dc83cd1370e3d50f7d9d05fe53e763ec8851c7afeb80f061dac52cc",
+      "render": {
+        "content": {
+          "markdownSha256": "0fe8d0963ab571aec0430d51efb301a9cd8b66b3dc7cb3524ba378245b1128a3",
+          "mathHtmlSha256": "68a8a87ceec46d11282049403dee139d34147eedc3a682b4ca29d5facbcfe7e7",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "0e9530bcb339f2b3ff77f5d035187a520e161047550e4b1f7b1f497b7f436005",
+          "mathHtmlSha256": "3d3bc389df58f47aef91bc1182122d181e2c628a2d5b93939c903507938814de",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "c7d59c232e2aea2b7e4b1142612634eac718ea2d2e67dfaa1feb97e7c19b1646",
+          "mathHtmlSha256": "e817eff519655ce620719714b11c23115c04c3173cdb42b51afa1da498947a00",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "9f0fa410d153e9f85fee7d1e18891b5cc6556d945fc7466c69cb272526ab0fcf"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|인수분해|F01|s20261020|v2|단답형",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "familyKey": "mid:manual-20261018|인수분해|F01",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 2,
+      "key": "manual-20261018|인수분해|F01",
+      "questionType": "단답형",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "서연이는 $x^2-x-12=(x-4)(x+5)$가 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $2$, $3$, $4$, $5$, $6$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.",
+      "answer": "$4$",
+      "solution": "좌변은 $(x-4)(x+3)$이다. 우변에서 좌변을 빼면 $2(x-4)$이므로 두 값이 같은 것은 $x=4$일 때뿐이다. 한 값에서 같다는 사실만으로 모든 실수에서 성립하는 인수분해라고 할 수 없다.",
+      "figureSvg": null,
+      "payloadSha256": "f29d5e8d1a3680383e191ee53cdc174aa2b4a28426099501764d09e598d8d396",
+      "render": {
+        "content": {
+          "markdownSha256": "ed5202123e404a156bc68d96b3fcede94e1689ae4fdfc7c7eec81cbc8344c207",
+          "mathHtmlSha256": "3545a40590dbbf0e4fb426f5dd569f0ee63ddacd8cd86802dd82ccd15e8117fd",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "098ea79c22a47aecec6e1ec7ef50422ee5bb5959f805e459402ec1e0e760097a",
+          "mathHtmlSha256": "d65a301fe9c2be7504f28fce4275b921954061802b9a260f18b3078aa4e67669",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "b85fdfc40557a3c1220cf238099f66f80c7a2c4cf56650652a5ed3bb28cf5ab7",
+          "mathHtmlSha256": "878eb6fce3ca1eb503b1e6aeff8de52ade5e2e9e31a7e76f5aa1137fd433fe22",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "232cc3cfaa1e80b749cf6dc289408b58f5dd6ee83be5c8da02806f203149caf0"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|인수분해|F01|s20261020|v2|객관식",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "familyKey": "mid:manual-20261018|인수분해|F01",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 2,
+      "key": "manual-20261018|인수분해|F01",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "서연이는 $x^2-x-12=(x-4)(x+5)$가 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $2$, $3$, $4$, $5$, $6$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.\n① $6$\n② $3$\n③ $2$\n④ $4$\n⑤ $5$",
+      "answer": "④",
+      "solution": "좌변은 $(x-4)(x+3)$이다. 우변에서 좌변을 빼면 $2(x-4)$이므로 두 값이 같은 것은 $x=4$일 때뿐이다. 한 값에서 같다는 사실만으로 모든 실수에서 성립하는 인수분해라고 할 수 없다.",
+      "figureSvg": null,
+      "payloadSha256": "61137a48c9273ac4662306e3f806597b37716f5c841c9f82cf2da9dfb158c8d8",
+      "render": {
+        "content": {
+          "markdownSha256": "2d027c3a1884dccdc92e56f36d9e7fae8f1ba55d6b723e82c8672211afd9aa44",
+          "mathHtmlSha256": "a64f0b59a9edff2432a8e8e08f12d3d1aa275c035a331f9e552acefbdd087345",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "b2c7a24e46a22b32f557298bbbb041f6a04ae287022693d1920cefd726628f1b",
+          "mathHtmlSha256": "6958a3e7105064751a96bf1e52cd5e9916d71e127193b12ffae234c0fddac50f",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "b85fdfc40557a3c1220cf238099f66f80c7a2c4cf56650652a5ed3bb28cf5ab7",
+          "mathHtmlSha256": "878eb6fce3ca1eb503b1e6aeff8de52ade5e2e9e31a7e76f5aa1137fd433fe22",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "e7d8aa8d681ccdaef81793142c5dd90059d268381955a7b65d903d76c32997ba"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|인수분해|F02|s20261020|v0|객관식",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "familyKey": "mid:manual-20261018|인수분해|F02",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 0,
+      "key": "manual-20261018|인수분해|F02",
+      "questionType": "객관식",
+      "difficulty": "응용",
+      "problemType": "활용",
+      "content": "두 정수 $p$, $q$의 합이 $-20$이다. 다음 중 $(x+p)(x+q)$ 꼴로 인수분해할 수 있는 식을 고르시오.\n① $x^2-20x+91$\n② $x^2-20x+95$\n③ $x^2-20x+98$\n④ $x^2-20x+97$\n⑤ $x^2-20x+94$",
+      "answer": "①",
+      "solution": "$x^2-20x+c=(x-10)^2-(100-c)$이다. 정수 $p$, $q$로 인수분해되려면 $100-c$가 정수의 제곱이어야 한다. $9$만 제곱수이므로 $x^2-20x+91=(x-7)(x-13)$이다. 나머지의 $100-c$는 각각 $2$, $3$, $5$, $6$으로 제곱수가 아니다.",
+      "figureSvg": null,
+      "payloadSha256": "5ff8f6a03025abf051996bf1063cab1dd91994c836758712f706f017976246db",
+      "render": {
+        "content": {
+          "markdownSha256": "9b83ec315edfda9a0cc46aee1b48adf86d27bf86ec93ec82d0c76d7b049fcb1e",
+          "mathHtmlSha256": "2ef1cc3cd2ab413417a08a33dc5f2891f6eee512e9dd768b4888d7c493859753",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "ed18d9a3ef7ecf8c2553472d965cf53b0bfe5796204ac72289578692ee8aeda4",
+          "mathHtmlSha256": "9e96ca1ce18ffb97f67c1230d8282320058da75aa86fc44fb435d25c512a5423",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "2faeaf431ea1084220eb895c720015d91b78aa8629ce648f838c86ce8bbbed33",
+          "mathHtmlSha256": "398ddaff90795db282ab2d379a0833520aa772446e3fb0b54a45c4264e9c8dcc",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "0c181037212d0f34bb5d61a0c98394d6f0ae1ac6edf83a72de1cdc5c30291a8b"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|인수분해|F02|s20261020|v1|객관식",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "familyKey": "mid:manual-20261018|인수분해|F02",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 1,
+      "key": "manual-20261018|인수분해|F02",
+      "questionType": "객관식",
+      "difficulty": "응용",
+      "problemType": "활용",
+      "content": "두 정수 $p$, $q$의 합이 $-12$이다. 다음 중 $(x+p)(x+q)$ 꼴로 인수분해할 수 있는 식을 고르시오.\n① $x^2-12x+33$\n② $x^2-12x+31$\n③ $x^2-12x+32$\n④ $x^2-12x+34$\n⑤ $x^2-12x+30$",
+      "answer": "③",
+      "solution": "$x^2-12x+c=(x-6)^2-(36-c)$이다. 정수 $p$, $q$로 인수분해되려면 $36-c$가 정수의 제곱이어야 한다. $4$만 제곱수이므로 $x^2-12x+32=(x-4)(x-8)$이다. 나머지의 $36-c$는 각각 $2$, $3$, $5$, $6$으로 제곱수가 아니다.",
+      "figureSvg": null,
+      "payloadSha256": "886f65c498018632dac21bf8c485c6f6489e2970892838f4933097f97bac7b4a",
+      "render": {
+        "content": {
+          "markdownSha256": "2a94446899835e04ce5cdc789d3f9faca736448175357803e897702b8a3e1f41",
+          "mathHtmlSha256": "77700af130ab20b561a90e3737439e92e1a791514debf8b98f0b7be08e5fe98c",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "0e9530bcb339f2b3ff77f5d035187a520e161047550e4b1f7b1f497b7f436005",
+          "mathHtmlSha256": "3d3bc389df58f47aef91bc1182122d181e2c628a2d5b93939c903507938814de",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "fc9c114af5129b8903742e1285a0415dde0d12e90254395d6a8404b3db364b85",
+          "mathHtmlSha256": "2c56f495d0815d2b5617b9f12df9fdc3d043ee209617070a43803342555b4a61",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "d4be639267dfbfd787e6ac046a875cf37053f6085e73e6955f6a1e4ca7c38432"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|인수분해|F02|s20261020|v2|객관식",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "familyKey": "mid:manual-20261018|인수분해|F02",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 2,
+      "key": "manual-20261018|인수분해|F02",
+      "questionType": "객관식",
+      "difficulty": "응용",
+      "problemType": "활용",
+      "content": "두 정수 $p$, $q$의 합이 $-10$이다. 다음 중 $(x+p)(x+q)$ 꼴로 인수분해할 수 있는 식을 고르시오.\n① $x^2-10x+22$\n② $x^2-10x+19$\n③ $x^2-10x+24$\n④ $x^2-10x+20$\n⑤ $x^2-10x+23$",
+      "answer": "③",
+      "solution": "$x^2-10x+c=(x-5)^2-(25-c)$이다. 정수 $p$, $q$로 인수분해되려면 $25-c$가 정수의 제곱이어야 한다. $1$만 제곱수이므로 $x^2-10x+24=(x-4)(x-6)$이다. 나머지의 $25-c$는 각각 $2$, $3$, $5$, $6$으로 제곱수가 아니다.",
+      "figureSvg": null,
+      "payloadSha256": "bc3122e27839b2277682580e3ec9b0546b8048e76947c343de37c4aa15d7d47f",
+      "render": {
+        "content": {
+          "markdownSha256": "54565d4e558018339b6d53cb13e5381af41dbbc5b228aab189d0c59850dab9f4",
+          "mathHtmlSha256": "9893e8d60433c0f2f025acb9d288fb2429ec0d38ed782de01805f8f5a233041b",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "0e9530bcb339f2b3ff77f5d035187a520e161047550e4b1f7b1f497b7f436005",
+          "mathHtmlSha256": "3d3bc389df58f47aef91bc1182122d181e2c628a2d5b93939c903507938814de",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "075b979acc7350b742dd4775e90bd0a23d244e8c776ccd5b0ea115fb5a1109c1",
+          "mathHtmlSha256": "842b5ed767ae2c041a88dc840e330fdb14a20b44a5110442e2bba9a4326830e5",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "fbe256115983811ac5986eb5e6b02d1038f210cd6c17059366f99488a6cb77d3"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|인수분해|F03|s20261020|v0|단답형",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "familyKey": "mid:manual-20261018|인수분해|F03",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 0,
+      "key": "manual-20261018|인수분해|F03",
+      "questionType": "단답형",
+      "difficulty": "응용",
+      "problemType": "활용",
+      "content": "두 다항식 $x^2+x-20$와 $x^2+4x+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.",
+      "answer": "$-32$",
+      "solution": "첫째 다항식은 $(x-4)(x+5)$이다. $r>0$이므로 공통인수는 $x-4$이다. 둘째 다항식을 $(x-4)(x+t)$로 놓으면 $t-4=4$에서 $t=8$이다. 따라서 상수항 $k=-4\\times 8=-32$이다.",
+      "figureSvg": null,
+      "payloadSha256": "47b13682ee996a307438bc4ab40bc85a454537471fcacebdc04840859a8e7819",
+      "render": {
+        "content": {
+          "markdownSha256": "d0c9a2080a0b09e23a94ec167a3526c065c5f5f2a6acae35dad7e5ed8bd82c69",
+          "mathHtmlSha256": "851cdb962276b17ffec922c0b128a7e4b155ded11347693791b348ba643e4b37",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "ee1b77e3b353d87372442e1646acbf22765f03850cecf95b20481369f95f9c2b",
+          "mathHtmlSha256": "d62d51b8f76a92f1cf3f523de9f0ebd4d93e3b04497ec722738635e48c39ff16",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "e6f5633b8b0433985d16d9e01d08a0958d1f7737a36174e8d662b44cf4894395",
+          "mathHtmlSha256": "13539896a7aa248ff559f6f99a899d7467fc07ba6a5435f3086afe42ef7342a8",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "e9c1ccfc77ff5e5c2a848ebcf0bc058a706ec5ca55b099a1a90259f853f0bf48"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|인수분해|F03|s20261020|v0|객관식",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "familyKey": "mid:manual-20261018|인수분해|F03",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 0,
+      "key": "manual-20261018|인수분해|F03",
+      "questionType": "객관식",
+      "difficulty": "응용",
+      "problemType": "활용",
+      "content": "두 다항식 $x^2+x-20$와 $x^2+4x+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.\n① $-33$\n② $-34$\n③ $-32$\n④ $-30$\n⑤ $-31$",
+      "answer": "③",
+      "solution": "첫째 다항식은 $(x-4)(x+5)$이다. $r>0$이므로 공통인수는 $x-4$이다. 둘째 다항식을 $(x-4)(x+t)$로 놓으면 $t-4=4$에서 $t=8$이다. 따라서 상수항 $k=-4\\times 8=-32$이다.",
+      "figureSvg": null,
+      "payloadSha256": "981cd0f95d9cc2e044f9e6d4aa4117dfccbb0f32b9385df15335da4a3b2ad0ff",
+      "render": {
+        "content": {
+          "markdownSha256": "f82d908ab37c3fbf6849cbca286a63dfdd12cfbbd5e46d6af8f8a1101369021a",
+          "mathHtmlSha256": "e4545700921bd08dd6ce97d27b57b7d70d774bbb054e1a10e9ccc44005149afb",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "0e9530bcb339f2b3ff77f5d035187a520e161047550e4b1f7b1f497b7f436005",
+          "mathHtmlSha256": "3d3bc389df58f47aef91bc1182122d181e2c628a2d5b93939c903507938814de",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "e6f5633b8b0433985d16d9e01d08a0958d1f7737a36174e8d662b44cf4894395",
+          "mathHtmlSha256": "13539896a7aa248ff559f6f99a899d7467fc07ba6a5435f3086afe42ef7342a8",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "e7538fd65c3ec67c0187687a8d7c0bc73dadc5dc9790c08e42a31feb41cac7e3"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|인수분해|F03|s20261020|v1|단답형",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "familyKey": "mid:manual-20261018|인수분해|F03",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 1,
+      "key": "manual-20261018|인수분해|F03",
+      "questionType": "단답형",
+      "difficulty": "응용",
+      "problemType": "활용",
+      "content": "두 다항식 $x^2-9$와 $x^2+4x+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.",
+      "answer": "$-21$",
+      "solution": "첫째 다항식은 $(x-3)(x+3)$이다. $r>0$이므로 공통인수는 $x-3$이다. 둘째 다항식을 $(x-3)(x+t)$로 놓으면 $t-3=4$에서 $t=7$이다. 따라서 상수항 $k=-3\\times 7=-21$이다.",
+      "figureSvg": null,
+      "payloadSha256": "7e5f2a0486581ff8b3d0e9637cbf916dc6fc178eb83624c8cfef9d4e442e5d98",
+      "render": {
+        "content": {
+          "markdownSha256": "bf03a78da5777413a8d2f5567cfc147fde174e0a8218ab193a299dc1de145c05",
+          "mathHtmlSha256": "b3f26ca020b563a3ef2066c3279a037a932984415aaee6d0302e69e117b5f9bc",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "7ffc6aea46293b228a6aa9260b78d8fba65687bd6ccb4c0b54205f3de3c42c1b",
+          "mathHtmlSha256": "0ad727af22f2df00053eb5343370c290916345fc120bb92e271359f630de5bcd",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "4150971e5de1427dd9ce8f45e4cdec9183b703d883f62d35cb3448c13e349e79",
+          "mathHtmlSha256": "f1ffc5a48f4ec7b895a863320a62dbda173930741bf29cd9f822f6688e6bae83",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "09525563c9bebc7432eb9ccc103c4e9513f10e59fd04e8ab4e35cab71d6e1e1d"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|인수분해|F03|s20261020|v1|객관식",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "familyKey": "mid:manual-20261018|인수분해|F03",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 1,
+      "key": "manual-20261018|인수분해|F03",
+      "questionType": "객관식",
+      "difficulty": "응용",
+      "problemType": "활용",
+      "content": "두 다항식 $x^2-9$와 $x^2+4x+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.\n① $-23$\n② $-22$\n③ $-20$\n④ $-21$\n⑤ $-19$",
+      "answer": "④",
+      "solution": "첫째 다항식은 $(x-3)(x+3)$이다. $r>0$이므로 공통인수는 $x-3$이다. 둘째 다항식을 $(x-3)(x+t)$로 놓으면 $t-3=4$에서 $t=7$이다. 따라서 상수항 $k=-3\\times 7=-21$이다.",
+      "figureSvg": null,
+      "payloadSha256": "911cbbfa7c97fd9a5d46450acfac84a41a8e88e88f184909295a4c5ec83f70dd",
+      "render": {
+        "content": {
+          "markdownSha256": "2ed7bc31b6b5c09df6c7abd5c84f7bd712f10f7f7fb339fd2e6ccc8cb9d04480",
+          "mathHtmlSha256": "69a082fe0e7aca2fb5b8ae4c29eb9f6f68073f51f2ca37247fcca32622c337b9",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "b2c7a24e46a22b32f557298bbbb041f6a04ae287022693d1920cefd726628f1b",
+          "mathHtmlSha256": "6958a3e7105064751a96bf1e52cd5e9916d71e127193b12ffae234c0fddac50f",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "4150971e5de1427dd9ce8f45e4cdec9183b703d883f62d35cb3448c13e349e79",
+          "mathHtmlSha256": "f1ffc5a48f4ec7b895a863320a62dbda173930741bf29cd9f822f6688e6bae83",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "bce602ce99401e7b710633ea9649131ac2c8e8c60fbaea71b953b5caf9c4e505"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|인수분해|F03|s20261020|v2|단답형",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "familyKey": "mid:manual-20261018|인수분해|F03",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 2,
+      "key": "manual-20261018|인수분해|F03",
+      "questionType": "단답형",
+      "difficulty": "응용",
+      "problemType": "활용",
+      "content": "두 다항식 $x^2-x-20$와 $x^2+2x+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.",
+      "answer": "$-35$",
+      "solution": "첫째 다항식은 $(x-5)(x+4)$이다. $r>0$이므로 공통인수는 $x-5$이다. 둘째 다항식을 $(x-5)(x+t)$로 놓으면 $t-5=2$에서 $t=7$이다. 따라서 상수항 $k=-5\\times 7=-35$이다.",
+      "figureSvg": null,
+      "payloadSha256": "18f5b81c6cfaff889ae3869d139ee89d8c442a843bd383e3bbf9062bf28e11ec",
+      "render": {
+        "content": {
+          "markdownSha256": "384ca34fb845aeb6d50be006033ffe58cf781ea20d363df567ac19a68f7d170e",
+          "mathHtmlSha256": "0abee95d39e880284776fc7cae669c073cda79edf38b587d2bd8db87c911964d",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "8738fc2a13ae85961a160184b0d735eb085b23408e425ede28cc5148e7846f1a",
+          "mathHtmlSha256": "9be39fdee6d35fa3df60bf1a3d8f74c7e0bbb1a706cbb452c26c0df1c9ce23a4",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "1e5479290851efb7ed8969dc956f0d984742865d971c75c9e12a4a2b7251f26f",
+          "mathHtmlSha256": "f7381ec7140e881783ecaa654fc72e4022c0705f3c8e9e548b17a413885e1889",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "0dec55b4db9a33521f9bf5d6cef54369ce324fa596a47e19817a461482ac4336"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|인수분해|F03|s20261020|v2|객관식",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "familyKey": "mid:manual-20261018|인수분해|F03",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 2,
+      "key": "manual-20261018|인수분해|F03",
+      "questionType": "객관식",
+      "difficulty": "응용",
+      "problemType": "활용",
+      "content": "두 다항식 $x^2-x-20$와 $x^2+2x+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.\n① $-33$\n② $-34$\n③ $-36$\n④ $-35$\n⑤ $-37$",
+      "answer": "④",
+      "solution": "첫째 다항식은 $(x-5)(x+4)$이다. $r>0$이므로 공통인수는 $x-5$이다. 둘째 다항식을 $(x-5)(x+t)$로 놓으면 $t-5=2$에서 $t=7$이다. 따라서 상수항 $k=-5\\times 7=-35$이다.",
+      "figureSvg": null,
+      "payloadSha256": "37ed3a189adb18b5881af80692b09a6d508efed0d0babbc8fd3e87df40b55afb",
+      "render": {
+        "content": {
+          "markdownSha256": "7e285e0fcdfaccbfd286106b62a8a1ad41abee47bd45d780fca6ac5d58be3712",
+          "mathHtmlSha256": "c70679f795608010362fec49b1c09b62955c020ad39a2a89f7abb494dbf24183",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "b2c7a24e46a22b32f557298bbbb041f6a04ae287022693d1920cefd726628f1b",
+          "mathHtmlSha256": "6958a3e7105064751a96bf1e52cd5e9916d71e127193b12ffae234c0fddac50f",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "1e5479290851efb7ed8969dc956f0d984742865d971c75c9e12a4a2b7251f26f",
+          "mathHtmlSha256": "f7381ec7140e881783ecaa654fc72e4022c0705f3c8e9e548b17a413885e1889",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "78e93b69fc0a9bb5f6f51eb274d006f9a09c93c47a77437baade5d9571b4f055"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|이차방정식의 활용|Q01|s20261020|v0|객관식",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q01",
+      "grade": "중3",
+      "unitSection": "이차방정식의 활용",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 0,
+      "key": "manual-20261018|이차방정식의 활용|Q01",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "가로가 $4\\,\\mathrm{m}$, 세로가 $6\\,\\mathrm{m}$인 직사각형의 가로와 세로를 각각 같은 길이만큼 늘였다. 늘인 뒤의 넓이는 $80\\,\\mathrm{m^2}$이다. 늘인 길이를 $x\\,\\mathrm{m}$라고 할 때, 상황에 맞게 세운 방정식을 고르시오.\n① $x(x+2)=80$\n② $24+2x=80$\n③ $(x-4)(x-6)=80$\n④ $(x+4)(x+6)=104$\n⑤ $(x+4)(x+6)=80$",
+      "answer": "⑤",
+      "solution": "늘인 뒤의 가로와 세로는 각각 $(4+x)\\,\\mathrm{m}$, $(6+x)\\,\\mathrm{m}$이다. $80\\,\\mathrm{m^2}$는 증가한 넓이가 아니라 늘인 뒤의 전체 넓이이므로 $(x+4)(x+6)=80$이다.",
+      "figureSvg": null,
+      "payloadSha256": "586c6e9fdbd67c61c158f3f1056a8123a0051f6f0b53af1d11b6389987fb00f1",
+      "render": {
+        "content": {
+          "markdownSha256": "0b1d65d5b1646558112f3688b76f14f9dd1924c031ea7a42dac8a69d14ffa625",
+          "mathHtmlSha256": "e89d2ed06a5eb102633c8290ee828031a53d4c44c64f60faf53653b78de74e16",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "db6a0c11e438109983adff6ab6ce46228d2a0f3a208d142655e31639e2b4a8b3",
+          "mathHtmlSha256": "f3eaa647e8a4604ea6bc01c74dfb365ace6754fb867e170b933cc24eb6a81e7b",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "a6d5fb9c997aa768580732ccf7b8269c6d7319e97cb4f9bbfb167b0caf392514",
+          "mathHtmlSha256": "4506370270e2fcac7d3009c478ad4448896ddfef7d76553c35d0b25d921be52e",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "0032020747f1b2dfaed91ce8ae2c03670693b554c9e266031851c3bcffc016e3"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|이차방정식의 활용|Q01|s20261020|v1|객관식",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q01",
+      "grade": "중3",
+      "unitSection": "이차방정식의 활용",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 1,
+      "key": "manual-20261018|이차방정식의 활용|Q01",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "가로가 $8\\,\\mathrm{m}$, 세로가 $13\\,\\mathrm{m}$인 직사각형의 가로와 세로를 각각 같은 길이만큼 늘였다. 늘인 뒤의 넓이는 $176\\,\\mathrm{m^2}$이다. 늘인 길이를 $x\\,\\mathrm{m}$라고 할 때, 상황에 맞게 세운 방정식을 고르시오.\n① $x(x+5)=176$\n② $(x-8)(x-13)=176$\n③ $(x+8)(x+13)=280$\n④ $104+2x=176$\n⑤ $(x+8)(x+13)=176$",
+      "answer": "⑤",
+      "solution": "늘인 뒤의 가로와 세로는 각각 $(8+x)\\,\\mathrm{m}$, $(13+x)\\,\\mathrm{m}$이다. $176\\,\\mathrm{m^2}$는 증가한 넓이가 아니라 늘인 뒤의 전체 넓이이므로 $(x+8)(x+13)=176$이다.",
+      "figureSvg": null,
+      "payloadSha256": "6a8c8935f714a5fd94a323ee3ca44d0136e0afefc2a3f85b55f9816b44dbc50b",
+      "render": {
+        "content": {
+          "markdownSha256": "cc4f842d779ed8bcbfa2e802f41cd15568e58a6bf15b9500b07193acc0969a34",
+          "mathHtmlSha256": "c1f8b9404bb82351b352a921e847ac745220e3d99cc723f940ae94272cd0e04b",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "db6a0c11e438109983adff6ab6ce46228d2a0f3a208d142655e31639e2b4a8b3",
+          "mathHtmlSha256": "f3eaa647e8a4604ea6bc01c74dfb365ace6754fb867e170b933cc24eb6a81e7b",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "910e70094ec9ac1f2f2bc955479717aba151976b02494be6371ac4af10c913db",
+          "mathHtmlSha256": "bb602ecc4003aed1e71ea817be8aaed5fd9d46a93c8598112dfa4e597452c2de",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "fbc463731fa23f5484ed013c7d11e2053ce38ceca7035cfd124d9858d15ed75c"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|이차방정식의 활용|Q01|s20261020|v2|객관식",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q01",
+      "grade": "중3",
+      "unitSection": "이차방정식의 활용",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 2,
+      "key": "manual-20261018|이차방정식의 활용|Q01",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "가로가 $3\\,\\mathrm{m}$, 세로가 $7\\,\\mathrm{m}$인 직사각형의 가로와 세로를 각각 같은 길이만큼 늘였다. 늘인 뒤의 넓이는 $60\\,\\mathrm{m^2}$이다. 늘인 길이를 $x\\,\\mathrm{m}$라고 할 때, 상황에 맞게 세운 방정식을 고르시오.\n① $(x-3)(x-7)=60$\n② $21+2x=60$\n③ $(x+3)(x+7)=81$\n④ $(x+3)(x+7)=60$\n⑤ $x(x+4)=60$",
+      "answer": "④",
+      "solution": "늘인 뒤의 가로와 세로는 각각 $(3+x)\\,\\mathrm{m}$, $(7+x)\\,\\mathrm{m}$이다. $60\\,\\mathrm{m^2}$는 증가한 넓이가 아니라 늘인 뒤의 전체 넓이이므로 $(x+3)(x+7)=60$이다.",
+      "figureSvg": null,
+      "payloadSha256": "59d8b3fe9a8425b6fe778c6ed429b682e85ccd96bbdab9bfb5d4b17275212f7d",
+      "render": {
+        "content": {
+          "markdownSha256": "5b5a995a1e2327a825e177b265c29aaf8dcdf09cb426ab94a3a8f38f8c4c2c50",
+          "mathHtmlSha256": "41b5a43b311da3e968bb8eed814f39e4e729d1d3e98e7b59a3dd64d574823f66",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "b2c7a24e46a22b32f557298bbbb041f6a04ae287022693d1920cefd726628f1b",
+          "mathHtmlSha256": "6958a3e7105064751a96bf1e52cd5e9916d71e127193b12ffae234c0fddac50f",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "3e7705ed7b1825d498e8e7be8ea2552d66b5908f90290ae238b928467a29dcf8",
+          "mathHtmlSha256": "f3ebdf716924c17cf7d4449a76f7e2ec88269503457c575333149be417d3d396",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "175c50767529fca3664df3864e3c1454423be233db07f6876db1c7fa3c444c26"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|이차방정식의 활용|Q02|s20261020|v0|객관식",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q02",
+      "grade": "중3",
+      "unitSection": "이차방정식의 활용",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 0,
+      "key": "manual-20261018|이차방정식의 활용|Q02",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "가로와 세로의 길이가 양수이고 둘레가 $40\\,\\mathrm{cm}$인 직사각형을 만들려고 한다. 이 직사각형의 넓이가 될 수 없는 것을 고르시오.\n① $99\\,\\mathrm{cm^2}$\n② $91\\,\\mathrm{cm^2}$\n③ $96\\,\\mathrm{cm^2}$\n④ $103\\,\\mathrm{cm^2}$\n⑤ $84\\,\\mathrm{cm^2}$",
+      "answer": "④",
+      "solution": "한 변을 $x\\,\\mathrm{cm}$라 하면 다른 변은 $(20-x)\\,\\mathrm{cm}$이고 $0<x<20$이다. 넓이를 $S\\,\\mathrm{cm^2}$라 하면 $(x-10)^2=100-S$이다. 제곱은 음수가 될 수 없으므로 $S\\le 100$이다. 따라서 $103\\,\\mathrm{cm^2}$는 불가능하다. 다른 네 넓이는 양의 두 변 $10-d$, $10+d$ ($d=1,2,3,4$)로 만들 수 있다.",
+      "figureSvg": null,
+      "payloadSha256": "44764a0a03fb5d127f4316e825e6870558092e0294be9d32cc8c4f4a1931e0fd",
+      "render": {
+        "content": {
+          "markdownSha256": "66dead7dfeecaa150448afee657532bc95e84fcc720e52604163aba7bb4ea465",
+          "mathHtmlSha256": "e52e86fa6f2c70161d0a9a028278f1819079123aac19104aa81933c6b2dc207b",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "b2c7a24e46a22b32f557298bbbb041f6a04ae287022693d1920cefd726628f1b",
+          "mathHtmlSha256": "6958a3e7105064751a96bf1e52cd5e9916d71e127193b12ffae234c0fddac50f",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "8a0ef84ff46ddc1ae058521e34628262d267d3004570703bfe746f2211f8e9b3",
+          "mathHtmlSha256": "699b5fabab31f70f86b89c7c44dc980478fc8c9a7834ed77c09185f46f18799d",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "b8a2507f83bcec2521f198b0e87a1ab777ca6171ce887845b6c4913569b37709"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|이차방정식의 활용|Q02|s20261020|v1|객관식",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q02",
+      "grade": "중3",
+      "unitSection": "이차방정식의 활용",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 1,
+      "key": "manual-20261018|이차방정식의 활용|Q02",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "가로와 세로의 길이가 양수이고 둘레가 $32\\,\\mathrm{cm}$인 직사각형을 만들려고 한다. 이 직사각형의 넓이가 될 수 없는 것을 고르시오.\n① $60\\,\\mathrm{cm^2}$\n② $48\\,\\mathrm{cm^2}$\n③ $63\\,\\mathrm{cm^2}$\n④ $55\\,\\mathrm{cm^2}$\n⑤ $66\\,\\mathrm{cm^2}$",
+      "answer": "⑤",
+      "solution": "한 변을 $x\\,\\mathrm{cm}$라 하면 다른 변은 $(16-x)\\,\\mathrm{cm}$이고 $0<x<16$이다. 넓이를 $S\\,\\mathrm{cm^2}$라 하면 $(x-8)^2=64-S$이다. 제곱은 음수가 될 수 없으므로 $S\\le 64$이다. 따라서 $66\\,\\mathrm{cm^2}$는 불가능하다. 다른 네 넓이는 양의 두 변 $8-d$, $8+d$ ($d=1,2,3,4$)로 만들 수 있다.",
+      "figureSvg": null,
+      "payloadSha256": "23c9eaaaf3f88457f7f53f21dabddcf5f34dcf088a2bb1e7a5cb251b447ed9d3",
+      "render": {
+        "content": {
+          "markdownSha256": "7a9f96730b77826f0cc955da9b40ede88e8fcd71a2397799ae271eeb63c98023",
+          "mathHtmlSha256": "8f59309b2f38cbcfbc455e83c0c5825946da40c38808bffc0c0660992439deed",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "db6a0c11e438109983adff6ab6ce46228d2a0f3a208d142655e31639e2b4a8b3",
+          "mathHtmlSha256": "f3eaa647e8a4604ea6bc01c74dfb365ace6754fb867e170b933cc24eb6a81e7b",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "d65d78f218ab3f914a09a1875f879803d63f4b01e8f0eec52d683b07d5aaa044",
+          "mathHtmlSha256": "a26fe1893573d066d9d98c72dcf8ff5453b51304c72c2acce8c7d7afb03a35c1",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "37acfc3bc214d4b153d48e883e0db054f8523eb88e112624a02d93e15fed8a2d"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|이차방정식의 활용|Q02|s20261020|v2|객관식",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q02",
+      "grade": "중3",
+      "unitSection": "이차방정식의 활용",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 2,
+      "key": "manual-20261018|이차방정식의 활용|Q02",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "가로와 세로의 길이가 양수이고 둘레가 $36\\,\\mathrm{cm}$인 직사각형을 만들려고 한다. 이 직사각형의 넓이가 될 수 없는 것을 고르시오.\n① $65\\,\\mathrm{cm^2}$\n② $77\\,\\mathrm{cm^2}$\n③ $84\\,\\mathrm{cm^2}$\n④ $80\\,\\mathrm{cm^2}$\n⑤ $72\\,\\mathrm{cm^2}$",
+      "answer": "③",
+      "solution": "한 변을 $x\\,\\mathrm{cm}$라 하면 다른 변은 $(18-x)\\,\\mathrm{cm}$이고 $0<x<18$이다. 넓이를 $S\\,\\mathrm{cm^2}$라 하면 $(x-9)^2=81-S$이다. 제곱은 음수가 될 수 없으므로 $S\\le 81$이다. 따라서 $84\\,\\mathrm{cm^2}$는 불가능하다. 다른 네 넓이는 양의 두 변 $9-d$, $9+d$ ($d=1,2,3,4$)로 만들 수 있다.",
+      "figureSvg": null,
+      "payloadSha256": "04d23b308db886caed73ca1d23991ee78242d32ed6e5c5afed20fe47a652243f",
+      "render": {
+        "content": {
+          "markdownSha256": "f21ce1f2924f5ee86c56c776aa5b8b39312dae3bc10ec670b9add4f9a9314264",
+          "mathHtmlSha256": "233731d2c11f9b5c0a6e0831494c77b0e63c4c3fa55131379c55754fc526e337",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "0e9530bcb339f2b3ff77f5d035187a520e161047550e4b1f7b1f497b7f436005",
+          "mathHtmlSha256": "3d3bc389df58f47aef91bc1182122d181e2c628a2d5b93939c903507938814de",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "2dffaef978daddbfd7131fdaa366624d5faea042d87cb376d43927a119d401aa",
+          "mathHtmlSha256": "b9a7c7d6707c93500c26fbf6d98e1d218757b4f572badc9975f124b4f0a82364",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "3d32aba6573f035e3820a3b83533fe4f9e2844e3e5774dfeb30eee2019c9a5c2"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v0|단답형",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q03",
+      "grade": "중3",
+      "unitSection": "이차방정식의 활용",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 0,
+      "key": "manual-20261018|이차방정식의 활용|Q03",
+      "questionType": "단답형",
+      "difficulty": "응용",
+      "problemType": "활용",
+      "content": "공책 $33$권을 몇 명의 학생에게 같은 수씩 나누어 주려고 한다. 한 학생이 받는 공책의 수는 학생 수보다 $4$ 많아야 한다. 나누어 주고 남는 공책이 $0$권 이상 $4$권 이하가 되도록 할 때, 남는 공책의 수를 구하시오.",
+      "answer": "$1$",
+      "solution": "학생 수를 자연수 $n$, 남는 수를 $r$이라 하면 $n(n+4)+r=33$이고 $0\\le r\\le 4$이다. $n=4$일 때 나누어 주는 총수는 $32$이고 $r=1$이다. $n$이 한 명만 작아져도 총수는 $21$ 이하가 되어 $4$권보다 많이 남으며, 한 명만 커져도 필요한 총수는 $45$ 이상이 되어 공책이 부족하다. 따라서 남는 수는 $1$이다.",
+      "figureSvg": null,
+      "payloadSha256": "156b0e8725c30473975eac7655ff4249019d16797aa50baa6dd84ddf8e30a9c4",
+      "render": {
+        "content": {
+          "markdownSha256": "37e409e7b6ab330a4d27b7a2cab7c7014dd1366875033ad8c17a4e12989b1661",
+          "mathHtmlSha256": "254438cfd0faa22f0d6ee0057408c0da317363da9d3d6a0094a4ef6819195ffe",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "d5ac9a4198f8f67e3ecee2379329faff4522f7e7935ae0b70714c395cea285e2",
+          "mathHtmlSha256": "b89a37a7ed7a7876191cc0228c9340788fc91b2a75274b025779248cdc596aee",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "0c2f5602678aa5b3bc3cfff64f91793f698bad92e00809f8b3a3a5e067fef8e9",
+          "mathHtmlSha256": "f93cd0c64ce37e1e675a8fbb3eea5daeb91c1535a770a778fab849f3049ba4ed",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "feee6a50f24fe9525f87fb6517f323cbc002231f100d2ecc56db563f3aa420bc"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v0|객관식",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q03",
+      "grade": "중3",
+      "unitSection": "이차방정식의 활용",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 0,
+      "key": "manual-20261018|이차방정식의 활용|Q03",
+      "questionType": "객관식",
+      "difficulty": "응용",
+      "problemType": "활용",
+      "content": "공책 $33$권을 몇 명의 학생에게 같은 수씩 나누어 주려고 한다. 한 학생이 받는 공책의 수는 학생 수보다 $4$ 많아야 한다. 나누어 주고 남는 공책이 $0$권 이상 $4$권 이하가 되도록 할 때, 남는 공책의 수를 구하시오.\n① $0$\n② $3$\n③ $1$\n④ $2$\n⑤ $4$",
+      "answer": "③",
+      "solution": "학생 수를 자연수 $n$, 남는 수를 $r$이라 하면 $n(n+4)+r=33$이고 $0\\le r\\le 4$이다. $n=4$일 때 나누어 주는 총수는 $32$이고 $r=1$이다. $n$이 한 명만 작아져도 총수는 $21$ 이하가 되어 $4$권보다 많이 남으며, 한 명만 커져도 필요한 총수는 $45$ 이상이 되어 공책이 부족하다. 따라서 남는 수는 $1$이다.",
+      "figureSvg": null,
+      "payloadSha256": "310660cf3502dc92c48e927c228d6490f4c3e7693c248aa07f0c556c0ff1611f",
+      "render": {
+        "content": {
+          "markdownSha256": "59f84fc337dd0fd6c6bb78ec2f5a247c22e93f4c536cf8e411bbc4420a962f82",
+          "mathHtmlSha256": "85cd07adf84dae0ab9622516711f082a418a09a9fd1497792843eb8c628718e3",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "0e9530bcb339f2b3ff77f5d035187a520e161047550e4b1f7b1f497b7f436005",
+          "mathHtmlSha256": "3d3bc389df58f47aef91bc1182122d181e2c628a2d5b93939c903507938814de",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "0c2f5602678aa5b3bc3cfff64f91793f698bad92e00809f8b3a3a5e067fef8e9",
+          "mathHtmlSha256": "f93cd0c64ce37e1e675a8fbb3eea5daeb91c1535a770a778fab849f3049ba4ed",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "f1089864c38fecac2105fcdbd555f5a9f82b3d4f1475b324059d6a3184f79445"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v1|단답형",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q03",
+      "grade": "중3",
+      "unitSection": "이차방정식의 활용",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 1,
+      "key": "manual-20261018|이차방정식의 활용|Q03",
+      "questionType": "단답형",
+      "difficulty": "응용",
+      "problemType": "활용",
+      "content": "공책 $108$권을 몇 명의 학생에게 같은 수씩 나누어 주려고 한다. 한 학생이 받는 공책의 수는 학생 수보다 $3$ 많아야 한다. 나누어 주고 남는 공책이 $0$권 이상 $4$권 이하가 되도록 할 때, 남는 공책의 수를 구하시오.",
+      "answer": "$0$",
+      "solution": "학생 수를 자연수 $n$, 남는 수를 $r$이라 하면 $n(n+3)+r=108$이고 $0\\le r\\le 4$이다. $n=9$일 때 나누어 주는 총수는 $108$이고 $r=0$이다. $n$이 한 명만 작아져도 총수는 $88$ 이하가 되어 $4$권보다 많이 남으며, 한 명만 커져도 필요한 총수는 $130$ 이상이 되어 공책이 부족하다. 따라서 남는 수는 $0$이다.",
+      "figureSvg": null,
+      "payloadSha256": "f6680b20b03d78789e02fab3e6a339033166878ce8a69d02900f20d9f9c97434",
+      "render": {
+        "content": {
+          "markdownSha256": "bba842a87e6368c98b76cec060ef59b0fd0e2cc668869f7573e7ba469c7fa961",
+          "mathHtmlSha256": "ab35b72ac196f3b3e395b2b02d27d07cdb1e0fee24c9cbbbc65a5435fdf79c66",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "780904f2c9870bcf9fdfc9af3e5dd1146e41538d3cc1d0ef960b11b9e23cb0e3",
+          "mathHtmlSha256": "42dd133a47ad2b030f73183aec760ce6442f05a55d427da392f94d9cf6c6570c",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "cac01614096f1585c449eb04883e42129db69731c9b55f09601c50cf7b98d7b1",
+          "mathHtmlSha256": "09226777ceec3079f444fc4a10c2856dff10b6f2bb0b7f0a7d9ddcff6b43d141",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "7228edede504f0c83e069af8c7b95fc0ed886572d6686953337bb0b8ca822420"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v1|객관식",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q03",
+      "grade": "중3",
+      "unitSection": "이차방정식의 활용",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 1,
+      "key": "manual-20261018|이차방정식의 활용|Q03",
+      "questionType": "객관식",
+      "difficulty": "응용",
+      "problemType": "활용",
+      "content": "공책 $108$권을 몇 명의 학생에게 같은 수씩 나누어 주려고 한다. 한 학생이 받는 공책의 수는 학생 수보다 $3$ 많아야 한다. 나누어 주고 남는 공책이 $0$권 이상 $4$권 이하가 되도록 할 때, 남는 공책의 수를 구하시오.\n① $1$\n② $2$\n③ $4$\n④ $0$\n⑤ $3$",
+      "answer": "④",
+      "solution": "학생 수를 자연수 $n$, 남는 수를 $r$이라 하면 $n(n+3)+r=108$이고 $0\\le r\\le 4$이다. $n=9$일 때 나누어 주는 총수는 $108$이고 $r=0$이다. $n$이 한 명만 작아져도 총수는 $88$ 이하가 되어 $4$권보다 많이 남으며, 한 명만 커져도 필요한 총수는 $130$ 이상이 되어 공책이 부족하다. 따라서 남는 수는 $0$이다.",
+      "figureSvg": null,
+      "payloadSha256": "dd3802b7e12bc573a989e03b847d567f2ec862edf7e3e26843c12af33257ad72",
+      "render": {
+        "content": {
+          "markdownSha256": "7e6c026cc0da0753f35675cad15140ed5600f2b1012abeeec811c5d9a4d72c6a",
+          "mathHtmlSha256": "47452841bf3ee40b0d1839ecc0e19fb2d4ea941527a513ae1fc75dfd62f45423",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "b2c7a24e46a22b32f557298bbbb041f6a04ae287022693d1920cefd726628f1b",
+          "mathHtmlSha256": "6958a3e7105064751a96bf1e52cd5e9916d71e127193b12ffae234c0fddac50f",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "cac01614096f1585c449eb04883e42129db69731c9b55f09601c50cf7b98d7b1",
+          "mathHtmlSha256": "09226777ceec3079f444fc4a10c2856dff10b6f2bb0b7f0a7d9ddcff6b43d141",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "8ddcbf96ed60d47efd3b43d5a64241eb58eda06246024c828a8f346597959ad1"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v2|단답형",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q03",
+      "grade": "중3",
+      "unitSection": "이차방정식의 활용",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 2,
+      "key": "manual-20261018|이차방정식의 활용|Q03",
+      "questionType": "단답형",
+      "difficulty": "응용",
+      "problemType": "활용",
+      "content": "공책 $36$권을 몇 명의 학생에게 같은 수씩 나누어 주려고 한다. 한 학생이 받는 공책의 수는 학생 수보다 $4$ 많아야 한다. 나누어 주고 남는 공책이 $0$권 이상 $4$권 이하가 되도록 할 때, 남는 공책의 수를 구하시오.",
+      "answer": "$4$",
+      "solution": "학생 수를 자연수 $n$, 남는 수를 $r$이라 하면 $n(n+4)+r=36$이고 $0\\le r\\le 4$이다. $n=4$일 때 나누어 주는 총수는 $32$이고 $r=4$이다. $n$이 한 명만 작아져도 총수는 $21$ 이하가 되어 $4$권보다 많이 남으며, 한 명만 커져도 필요한 총수는 $45$ 이상이 되어 공책이 부족하다. 따라서 남는 수는 $4$이다.",
+      "figureSvg": null,
+      "payloadSha256": "364f4fb1b7f74d6b69cfc36ba809df552e5b09abbccf548e9f15246e89479e1b",
+      "render": {
+        "content": {
+          "markdownSha256": "2e55c610d406bde3e133452df5c0b7436fcbf0f98fb4e74c159342e88ffc9f00",
+          "mathHtmlSha256": "94ca57fab98ebf46777e4feadbe3b2e534ab30f7be2c968a061e6224d0d60914",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "098ea79c22a47aecec6e1ec7ef50422ee5bb5959f805e459402ec1e0e760097a",
+          "mathHtmlSha256": "d65a301fe9c2be7504f28fce4275b921954061802b9a260f18b3078aa4e67669",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "0daac7071f5029574eac2dc27c96e8ffc99c486823ac15cff05bfe28f251ed5d",
+          "mathHtmlSha256": "77550aab5a8cb4af53991f697df80aa93fedb901d313f70839471fc7238a27e9",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "c426347818395ae89ecc77a83fe683cb55bf78dfc31857253381e376791f2e9d"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v2|객관식",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q03",
+      "grade": "중3",
+      "unitSection": "이차방정식의 활용",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 2,
+      "key": "manual-20261018|이차방정식의 활용|Q03",
+      "questionType": "객관식",
+      "difficulty": "응용",
+      "problemType": "활용",
+      "content": "공책 $36$권을 몇 명의 학생에게 같은 수씩 나누어 주려고 한다. 한 학생이 받는 공책의 수는 학생 수보다 $4$ 많아야 한다. 나누어 주고 남는 공책이 $0$권 이상 $4$권 이하가 되도록 할 때, 남는 공책의 수를 구하시오.\n① $3$\n② $1$\n③ $4$\n④ $0$\n⑤ $2$",
+      "answer": "③",
+      "solution": "학생 수를 자연수 $n$, 남는 수를 $r$이라 하면 $n(n+4)+r=36$이고 $0\\le r\\le 4$이다. $n=4$일 때 나누어 주는 총수는 $32$이고 $r=4$이다. $n$이 한 명만 작아져도 총수는 $21$ 이하가 되어 $4$권보다 많이 남으며, 한 명만 커져도 필요한 총수는 $45$ 이상이 되어 공책이 부족하다. 따라서 남는 수는 $4$이다.",
+      "figureSvg": null,
+      "payloadSha256": "96450d4dfa927d251da56baa31c9a723158ab3808af136721a09d375fff8c0fc",
+      "render": {
+        "content": {
+          "markdownSha256": "e07d9db05930d8e579ea46e3ce6edcf9a129fd48a0c9eb86bc49229ba80f977e",
+          "mathHtmlSha256": "0a1e4aaf339aa96087eda5deb4bd422afb1f31ba1a8cd901d4edea8870828196",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "0e9530bcb339f2b3ff77f5d035187a520e161047550e4b1f7b1f497b7f436005",
+          "mathHtmlSha256": "3d3bc389df58f47aef91bc1182122d181e2c628a2d5b93939c903507938814de",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "0daac7071f5029574eac2dc27c96e8ffc99c486823ac15cff05bfe28f251ed5d",
+          "mathHtmlSha256": "77550aab5a8cb4af53991f697df80aa93fedb901d313f70839471fc7238a27e9",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "38aaa3ff9e52fb40e63dff89f7e6f4beb78d5e033fc757dd37e34e540b113a93"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|대푯값과 산포도|S01|s20261020|v0|객관식",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S01",
+      "grade": "중3",
+      "unitSection": "대푯값과 산포도",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 0,
+      "key": "manual-20261018|대푯값과 산포도|S01",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "다섯 변량이 $44, 49, 54, 59, 64$이다. 이 중 가장 큰 변량 $64$ 하나만 $74$로 수정하였다. 수정 전후를 비교한 설명으로 옳은 것을 고르시오.\n① 평균은 변하지 않고, 중앙값은 $2$만큼 커진다.\n② 평균은 $10$만큼 커지고, 중앙값은 변하지 않는다.\n③ 평균은 $2$만큼 작아지고, 중앙값은 변하지 않는다.\n④ 평균은 $2$만큼 커지고, 중앙값은 변하지 않는다.\n⑤ 평균과 중앙값이 모두 변하지 않는다.",
+      "answer": "④",
+      "solution": "총합이 $10$만큼 증가하고 변량은 여전히 $5$개이므로 평균은 $2$만큼 커진다. 가장 큰 변량만 더 커져 가운데인 셋째 변량 $54$는 바뀌지 않으므로 중앙값은 그대로이다.",
+      "figureSvg": null,
+      "payloadSha256": "21573332d88ddd8d61e6fdc70b9b83ba5a6bd985f40a3e8cf0e8c2f1eee8a8be",
+      "render": {
+        "content": {
+          "markdownSha256": "f7a8832dbd2e6fffd4e0c5eba2c8ef246189c713309fc125aab46d585ae818a0",
+          "mathHtmlSha256": "5c50bc2baa9dcae5675da8e621574bbce08fc1b7297f6a0df288a34f5b0109cf",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "b2c7a24e46a22b32f557298bbbb041f6a04ae287022693d1920cefd726628f1b",
+          "mathHtmlSha256": "6958a3e7105064751a96bf1e52cd5e9916d71e127193b12ffae234c0fddac50f",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "98c9db88465dcfc24fa6495c32e414bae9e6307b0228c338d1218654fd19ee37",
+          "mathHtmlSha256": "60999b9b139c59ab3f9916560720ca0e823c24162bd08b991deb9aa4acee1c03",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "1ddb6de46335779fb6581c9425c9d372f98fb3e89afd5adaefe3c64e1fabd3c3"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|대푯값과 산포도|S01|s20261020|v1|객관식",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S01",
+      "grade": "중3",
+      "unitSection": "대푯값과 산포도",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 1,
+      "key": "manual-20261018|대푯값과 산포도|S01",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "다섯 변량이 $49, 50, 51, 52, 53$이다. 이 중 가장 큰 변량 $53$ 하나만 $63$로 수정하였다. 수정 전후를 비교한 설명으로 옳은 것을 고르시오.\n① 평균은 $2$만큼 커지고, 중앙값은 변하지 않는다.\n② 평균은 변하지 않고, 중앙값은 $2$만큼 커진다.\n③ 평균은 $2$만큼 작아지고, 중앙값은 변하지 않는다.\n④ 평균은 $10$만큼 커지고, 중앙값은 변하지 않는다.\n⑤ 평균과 중앙값이 모두 변하지 않는다.",
+      "answer": "①",
+      "solution": "총합이 $10$만큼 증가하고 변량은 여전히 $5$개이므로 평균은 $2$만큼 커진다. 가장 큰 변량만 더 커져 가운데인 셋째 변량 $51$는 바뀌지 않으므로 중앙값은 그대로이다.",
+      "figureSvg": null,
+      "payloadSha256": "4e6faf05b8dc537abd04ed3415a3b885681c8e913fb7289763b13974c88cad01",
+      "render": {
+        "content": {
+          "markdownSha256": "94071a090c61a775d7511745a1ba30c9d042df72657dab0c7624e7ffda0c4106",
+          "mathHtmlSha256": "7cf3449a3f8cefb5f8a94c872495d3dd815bb3c11ce9c304d80e1bb3624bba89",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "ed18d9a3ef7ecf8c2553472d965cf53b0bfe5796204ac72289578692ee8aeda4",
+          "mathHtmlSha256": "9e96ca1ce18ffb97f67c1230d8282320058da75aa86fc44fb435d25c512a5423",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "a563f3289fffdb0a331c814569c070e8c0780d4307c67fd506129bb69fdb55b0",
+          "mathHtmlSha256": "189537adfadd6ce1df0524d6328a2774430f3033d1c34327bc5adc767fbfadb2",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "2e7b132991d69b717805828f67beedd3a71a4ab545f09f3e00b8fe7d832a3c02"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|대푯값과 산포도|S01|s20261020|v2|객관식",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S01",
+      "grade": "중3",
+      "unitSection": "대푯값과 산포도",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 2,
+      "key": "manual-20261018|대푯값과 산포도|S01",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "다섯 변량이 $52, 55, 58, 61, 64$이다. 이 중 가장 큰 변량 $64$ 하나만 $69$로 수정하였다. 수정 전후를 비교한 설명으로 옳은 것을 고르시오.\n① 평균은 $1$만큼 작아지고, 중앙값은 변하지 않는다.\n② 평균은 $1$만큼 커지고, 중앙값은 변하지 않는다.\n③ 평균과 중앙값이 모두 변하지 않는다.\n④ 평균은 $5$만큼 커지고, 중앙값은 변하지 않는다.\n⑤ 평균은 변하지 않고, 중앙값은 $1$만큼 커진다.",
+      "answer": "②",
+      "solution": "총합이 $5$만큼 증가하고 변량은 여전히 $5$개이므로 평균은 $1$만큼 커진다. 가장 큰 변량만 더 커져 가운데인 셋째 변량 $58$는 바뀌지 않으므로 중앙값은 그대로이다.",
+      "figureSvg": null,
+      "payloadSha256": "3c188c3a6bc42ecdeb26517e542f22fcf95f4dde68daf6e9e1a2aecad23d0e9a",
+      "render": {
+        "content": {
+          "markdownSha256": "324f3e255669dc3e3c31276db9da64fad23f4d9c6d8943a75e63851839406c57",
+          "mathHtmlSha256": "7ec3f83ee1d3874bc9e906b86c97fc48af45359a26fb6ab3bcfb1d5dbde24bac",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "07e8d1d030b74826a0bcdbb6226c46fa038365531eee1872de952be497d9b0c6",
+          "mathHtmlSha256": "faab5aef76a0e31bef1dc423641a79e0b60938edcdf69194bc63e734ca7114f6",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "d0b61400c1f6b065b608b2b27266a4407f2717962b435cd73f41aa1df6d66c8a",
+          "mathHtmlSha256": "b6fe2ffcbc25ccf83ac87d796061f0f88d7b7ea2cba3dd423ca5c045c580bd06",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "ca98c9f424039473dad0fe619ea78200d484374317a11b32f646bd5f69fdab55"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v0|단답형",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S02",
+      "grade": "중3",
+      "unitSection": "대푯값과 산포도",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 0,
+      "key": "manual-20261018|대푯값과 산포도|S02",
+      "questionType": "단답형",
+      "difficulty": "응용",
+      "problemType": "활용",
+      "content": "어떤 자료의 평균은 $29$, 표준편차는 $4$이다. 각 변량을 모두 $a$배 한 뒤 $b$를 더한 새로운 자료의 평균은 $118$이고, 표준편차는 $16$이다. $a>0$일 때, $b$의 값을 구하시오.",
+      "answer": "$2$",
+      "solution": "상수를 더해도 표준편차는 변하지 않고, 양수 $a$배 하면 표준편차는 $a$배가 된다. 따라서 $a=16\\div 4=4$이다. 평균도 $a$배 한 뒤 $b$를 더하므로 $4\\times 29+b=118$에서 $b=2$이다.",
+      "figureSvg": null,
+      "payloadSha256": "c807a1bacd7761a0109080f1d6b14e5c11a5db77ee0009aa1c1fd198663b02e0",
+      "render": {
+        "content": {
+          "markdownSha256": "c64e41a9e52304d6691ee5859d6665f91a9f6f4c5f9d17db2c96cb51a7676063",
+          "mathHtmlSha256": "c9e223a6e5e175104e44573f63fa0052824e176eafffd769a660bfeb8c268a2c",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "38fcbbbb18ff9560dbfc991f85d9df0b05fe5a6ea43c813ef629d87ee0c4b251",
+          "mathHtmlSha256": "408778ce01d6003fce866e18d61ab11ea3f4f09d1802525b510fbd5f36a15889",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "49d0c34a4a60e19fbadf1a949a50dd9aa873c00669f08e823b7cd0150b4195c8",
+          "mathHtmlSha256": "0ec531c6f33bfb38243edeaea88afb6d9d5db779b956073bc64963e4e50e611b",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "4f49ed3ee1d107d64beb8b8e7df0fe116aca47444324ea297c928081aea8b0c7"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v0|객관식",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S02",
+      "grade": "중3",
+      "unitSection": "대푯값과 산포도",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 0,
+      "key": "manual-20261018|대푯값과 산포도|S02",
+      "questionType": "객관식",
+      "difficulty": "응용",
+      "problemType": "활용",
+      "content": "어떤 자료의 평균은 $29$, 표준편차는 $4$이다. 각 변량을 모두 $a$배 한 뒤 $b$를 더한 새로운 자료의 평균은 $118$이고, 표준편차는 $16$이다. $a>0$일 때, $b$의 값을 구하시오.\n① $3$\n② $2$\n③ $4$\n④ $0$\n⑤ $1$",
+      "answer": "②",
+      "solution": "상수를 더해도 표준편차는 변하지 않고, 양수 $a$배 하면 표준편차는 $a$배가 된다. 따라서 $a=16\\div 4=4$이다. 평균도 $a$배 한 뒤 $b$를 더하므로 $4\\times 29+b=118$에서 $b=2$이다.",
+      "figureSvg": null,
+      "payloadSha256": "1bd67bfbe9933d4caee26af8bfe2156a5e06907afe2f8253e3cc90b9a8f9cab9",
+      "render": {
+        "content": {
+          "markdownSha256": "7b53213220a7d4db7aa8c451d8a4a012306939f27163f2d4194f853de101f375",
+          "mathHtmlSha256": "4397a0ec750ce3d52200d2940a360e6d91cdaa7116940d912151545ac58d9d54",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "07e8d1d030b74826a0bcdbb6226c46fa038365531eee1872de952be497d9b0c6",
+          "mathHtmlSha256": "faab5aef76a0e31bef1dc423641a79e0b60938edcdf69194bc63e734ca7114f6",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "49d0c34a4a60e19fbadf1a949a50dd9aa873c00669f08e823b7cd0150b4195c8",
+          "mathHtmlSha256": "0ec531c6f33bfb38243edeaea88afb6d9d5db779b956073bc64963e4e50e611b",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "d0c700effa4bacd53dc5770bb6deeea4387fd001d9e2b5518a3e5e93eb39c4cb"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v1|단답형",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S02",
+      "grade": "중3",
+      "unitSection": "대푯값과 산포도",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 1,
+      "key": "manual-20261018|대푯값과 산포도|S02",
+      "questionType": "단답형",
+      "difficulty": "응용",
+      "problemType": "활용",
+      "content": "어떤 자료의 평균은 $19$, 표준편차는 $1$이다. 각 변량을 모두 $a$배 한 뒤 $b$를 더한 새로운 자료의 평균은 $65$이고, 표준편차는 $3$이다. $a>0$일 때, $b$의 값을 구하시오.",
+      "answer": "$8$",
+      "solution": "상수를 더해도 표준편차는 변하지 않고, 양수 $a$배 하면 표준편차는 $a$배가 된다. 따라서 $a=3\\div 1=3$이다. 평균도 $a$배 한 뒤 $b$를 더하므로 $3\\times 19+b=65$에서 $b=8$이다.",
+      "figureSvg": null,
+      "payloadSha256": "c72d7e65ae96503bd93d881e3d5f2d208041b84b97bcb081e0c34523b285fc45",
+      "render": {
+        "content": {
+          "markdownSha256": "23c1f58032d9d04b9997e240471110ecedafa3d3d0b1ffab5061aaf73f294f10",
+          "mathHtmlSha256": "d3772778d37b88ed138d29930a491fae00dafebb7ef5770daf3b5a12f45ec0c5",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "4ee6c7c614a6452c6df0679e964a814068100e304dea8062b73fc688fcf3096e",
+          "mathHtmlSha256": "c83bcc9bc91e24e04072ab3431244e7bc64b351eb6a84d31d3432d12dc70a629",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "5c313c716fca7cb86bee5b19b396e936df2adc31c94ced62e2ab6251c0222a83",
+          "mathHtmlSha256": "a4848c25a5c05bcc5280e2ac6313d6244e06040686f7b795b55bd37d38403446",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "badaad34857928ca0b5a2169765a4e8ece3ef5fe5d2fff1459e5c3cc8e76c388"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v1|객관식",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S02",
+      "grade": "중3",
+      "unitSection": "대푯값과 산포도",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 1,
+      "key": "manual-20261018|대푯값과 산포도|S02",
+      "questionType": "객관식",
+      "difficulty": "응용",
+      "problemType": "활용",
+      "content": "어떤 자료의 평균은 $19$, 표준편차는 $1$이다. 각 변량을 모두 $a$배 한 뒤 $b$를 더한 새로운 자료의 평균은 $65$이고, 표준편차는 $3$이다. $a>0$일 때, $b$의 값을 구하시오.\n① $6$\n② $7$\n③ $8$\n④ $10$\n⑤ $9$",
+      "answer": "③",
+      "solution": "상수를 더해도 표준편차는 변하지 않고, 양수 $a$배 하면 표준편차는 $a$배가 된다. 따라서 $a=3\\div 1=3$이다. 평균도 $a$배 한 뒤 $b$를 더하므로 $3\\times 19+b=65$에서 $b=8$이다.",
+      "figureSvg": null,
+      "payloadSha256": "2ecebca091a2159ea242c4085e901447d2c57eacac794b01d66738dd7043f95e",
+      "render": {
+        "content": {
+          "markdownSha256": "e0d7e1fd3d6c81d406c23d8fecede7a2021bc801a87cc44a22ccf10962e0f86b",
+          "mathHtmlSha256": "5ea1aefbdca90185e8f4a1e7dc3fb5f22bd5ea6ddf158392f04dd9fd04ee5f24",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "0e9530bcb339f2b3ff77f5d035187a520e161047550e4b1f7b1f497b7f436005",
+          "mathHtmlSha256": "3d3bc389df58f47aef91bc1182122d181e2c628a2d5b93939c903507938814de",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "5c313c716fca7cb86bee5b19b396e936df2adc31c94ced62e2ab6251c0222a83",
+          "mathHtmlSha256": "a4848c25a5c05bcc5280e2ac6313d6244e06040686f7b795b55bd37d38403446",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "75c06042dafed866ff1252a64afbe14a1d25f51e049cef85992ceb301f4129c0"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v2|단답형",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S02",
+      "grade": "중3",
+      "unitSection": "대푯값과 산포도",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 2,
+      "key": "manual-20261018|대푯값과 산포도|S02",
+      "questionType": "단답형",
+      "difficulty": "응용",
+      "problemType": "활용",
+      "content": "어떤 자료의 평균은 $22$, 표준편차는 $4$이다. 각 변량을 모두 $a$배 한 뒤 $b$를 더한 새로운 자료의 평균은 $94$이고, 표준편차는 $16$이다. $a>0$일 때, $b$의 값을 구하시오.",
+      "answer": "$6$",
+      "solution": "상수를 더해도 표준편차는 변하지 않고, 양수 $a$배 하면 표준편차는 $a$배가 된다. 따라서 $a=16\\div 4=4$이다. 평균도 $a$배 한 뒤 $b$를 더하므로 $4\\times 22+b=94$에서 $b=6$이다.",
+      "figureSvg": null,
+      "payloadSha256": "ceae5190e3b28cba699183c48f552496def0bff1f9450caaaf26c3a1be8a41f2",
+      "render": {
+        "content": {
+          "markdownSha256": "0968ebd3e0322e1a7365abed2e6b95665eaafe73e404f743e382dddaf44cb44c",
+          "mathHtmlSha256": "5e1160fe70b0eaf4818cfc19775ae804b15ef0e7bbb49d5175c9a76afced4b49",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "48af447ceedd99e6153d36fcc897fd8521e059aac6e311e3a91ff60bd58d008e",
+          "mathHtmlSha256": "1e3cb567866e8fd555dae904bffaed80a9c1fa3d1a22efe3275917aa07743cda",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "587999c15a7aa56edbab8a4b65a251d62cf1adc5a64a1deb25efe3b170e82852",
+          "mathHtmlSha256": "bb2766dd87ca6b4c54f6306f6491977e56a1df00a4ca7d0b35e49ba4df525f64",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "ab8ee9b08b556ac7accb69b365343d198ced383831c3ff14dca426082adc3fcf"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v2|객관식",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S02",
+      "grade": "중3",
+      "unitSection": "대푯값과 산포도",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 2,
+      "key": "manual-20261018|대푯값과 산포도|S02",
+      "questionType": "객관식",
+      "difficulty": "응용",
+      "problemType": "활용",
+      "content": "어떤 자료의 평균은 $22$, 표준편차는 $4$이다. 각 변량을 모두 $a$배 한 뒤 $b$를 더한 새로운 자료의 평균은 $94$이고, 표준편차는 $16$이다. $a>0$일 때, $b$의 값을 구하시오.\n① $6$\n② $7$\n③ $8$\n④ $4$\n⑤ $5$",
+      "answer": "①",
+      "solution": "상수를 더해도 표준편차는 변하지 않고, 양수 $a$배 하면 표준편차는 $a$배가 된다. 따라서 $a=16\\div 4=4$이다. 평균도 $a$배 한 뒤 $b$를 더하므로 $4\\times 22+b=94$에서 $b=6$이다.",
+      "figureSvg": null,
+      "payloadSha256": "dae26fabfa97445c88c37abf380950a8241410df052b4e6ce48b4aae4ae82985",
+      "render": {
+        "content": {
+          "markdownSha256": "207f96469c70d71073d45f8e71b73349948641efd7a48c1dbbb69ff4b83d6df8",
+          "mathHtmlSha256": "18fef33df6d25ad51ffeb45de629c96d03666e445650c15a4a63cd7ced6bbd53",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "ed18d9a3ef7ecf8c2553472d965cf53b0bfe5796204ac72289578692ee8aeda4",
+          "mathHtmlSha256": "9e96ca1ce18ffb97f67c1230d8282320058da75aa86fc44fb435d25c512a5423",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "587999c15a7aa56edbab8a4b65a251d62cf1adc5a64a1deb25efe3b170e82852",
+          "mathHtmlSha256": "bb2766dd87ca6b4c54f6306f6491977e56a1df00a4ca7d0b35e49ba4df525f64",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "e7abb62b57c01c24d4a7431030f0a6560ca7e417f3396f02e7a6285e65767604"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|대푯값과 산포도|S03|s20261020|v0|객관식",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S03",
+      "grade": "중3",
+      "unitSection": "대푯값과 산포도",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 0,
+      "key": "manual-20261018|대푯값과 산포도|S03",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "두 자료 A, B가 다음과 같다.\nA: $40, 43, 46, 49, 52$\nB: $40, 46, 46, 46, 52$\n이 두 자료를 비교한 설명으로 옳은 것을 고르시오.\n① 평균은 같고, 분산은 A가 B보다 크다.\n② 평균은 A가 B보다 크다.\n③ 평균은 A가 B보다 작다.\n④ 평균은 같고, 분산은 A가 B보다 작다.\n⑤ 평균과 분산이 모두 같다.",
+      "answer": "①",
+      "solution": "두 자료의 평균은 모두 $46$이고 최댓값과 최솟값도 같다. 편차 제곱의 합은 A가 $90$, B가 $72$이다. 변량의 수가 모두 $5$이므로 분산은 A가 B보다 크다. 최댓값과 최솟값이 같다는 것만으로 분산이 같다고 할 수 없다.",
+      "figureSvg": null,
+      "payloadSha256": "7df07a847850be6b65e24c6c90af0d681f3f6721516b2b749b48163f822c31f2",
+      "render": {
+        "content": {
+          "markdownSha256": "480edaf8a3d63e8cade1c395a18438b60a87192025c6480f7876f7b5c5d3014e",
+          "mathHtmlSha256": "8d72ebe481b155d77a7466c0816756740e028038f7e3581705c1adc8f3aa4d18",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "ed18d9a3ef7ecf8c2553472d965cf53b0bfe5796204ac72289578692ee8aeda4",
+          "mathHtmlSha256": "9e96ca1ce18ffb97f67c1230d8282320058da75aa86fc44fb435d25c512a5423",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "a7fab8b512c0a9382861a76071a1e049f3a2b2854fd67dc96c9bc93e4c52f07f",
+          "mathHtmlSha256": "03aec626d7c1ee92a41f543be0a5e0265fa805ca7cc12dc825988d9da4d0b552",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "28026d30b57f66f098d37ecbe074111d7563ebd76837c3cb95ccb49e820a8eef"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|대푯값과 산포도|S03|s20261020|v1|객관식",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S03",
+      "grade": "중3",
+      "unitSection": "대푯값과 산포도",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 1,
+      "key": "manual-20261018|대푯값과 산포도|S03",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "두 자료 A, B가 다음과 같다.\nA: $55, 56, 57, 58, 59$\nB: $55, 57, 57, 57, 59$\n이 두 자료를 비교한 설명으로 옳은 것을 고르시오.\n① 평균은 같고, 분산은 A가 B보다 크다.\n② 평균은 같고, 분산은 A가 B보다 작다.\n③ 평균은 A가 B보다 작다.\n④ 평균과 분산이 모두 같다.\n⑤ 평균은 A가 B보다 크다.",
+      "answer": "①",
+      "solution": "두 자료의 평균은 모두 $57$이고 최댓값과 최솟값도 같다. 편차 제곱의 합은 A가 $10$, B가 $8$이다. 변량의 수가 모두 $5$이므로 분산은 A가 B보다 크다. 최댓값과 최솟값이 같다는 것만으로 분산이 같다고 할 수 없다.",
+      "figureSvg": null,
+      "payloadSha256": "45e7f01d551d29f403568a7c877db87645d265197291f05be0fa546c8f407e44",
+      "render": {
+        "content": {
+          "markdownSha256": "8cb7ca4a4a9445f71cdd345b0cdc54b6b099d722866027fce449335bb5d5449b",
+          "mathHtmlSha256": "9e4866bef0ef37a1e731ce6bba489793c455c246f3f8d8d8846b5342b5824555",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "ed18d9a3ef7ecf8c2553472d965cf53b0bfe5796204ac72289578692ee8aeda4",
+          "mathHtmlSha256": "9e96ca1ce18ffb97f67c1230d8282320058da75aa86fc44fb435d25c512a5423",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "32319722609d4c045cf3f4ecd565a36abecb33f1a0ce37d56b8feccacfa9ee24",
+          "mathHtmlSha256": "f477d3e4c2d3bf326c7db32df33c4c7153c533c3693828a05ca89d786b084687",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "9391cfecd57ede5483a3507bac08df1ce5b162e40963a514d3ef059d577f9d40"
+    },
+    {
+      "externalId": "engine-mid:manual-20261018|대푯값과 산포도|S03|s20261020|v2|객관식",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S03",
+      "grade": "중3",
+      "unitSection": "대푯값과 산포도",
+      "source": "manual",
+      "seed": 20261020,
+      "variant": 2,
+      "key": "manual-20261018|대푯값과 산포도|S03",
+      "questionType": "객관식",
+      "difficulty": "기본",
+      "problemType": "계산",
+      "content": "두 자료 A, B가 다음과 같다.\nA: $28, 30, 32, 34, 36$\nB: $28, 32, 32, 32, 36$\n이 두 자료를 비교한 설명으로 옳은 것을 고르시오.\n① 평균은 A가 B보다 크다.\n② 평균은 A가 B보다 작다.\n③ 평균은 같고, 분산은 A가 B보다 크다.\n④ 평균과 분산이 모두 같다.\n⑤ 평균은 같고, 분산은 A가 B보다 작다.",
+      "answer": "③",
+      "solution": "두 자료의 평균은 모두 $32$이고 최댓값과 최솟값도 같다. 편차 제곱의 합은 A가 $40$, B가 $32$이다. 변량의 수가 모두 $5$이므로 분산은 A가 B보다 크다. 최댓값과 최솟값이 같다는 것만으로 분산이 같다고 할 수 없다.",
+      "figureSvg": null,
+      "payloadSha256": "c57d6a42c7d1f89b3a34c34c62b18f555d4059639b7aed3c9fc24e0b0b74da11",
+      "render": {
+        "content": {
+          "markdownSha256": "b7e996e635e8702b0af4d1f0c163e5127362a69facbf536eac739b9167a59780",
+          "mathHtmlSha256": "414d4d07df3126b0717410b4e15eb855630c9de65dee430cab4df385018f4c5e",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "answer": {
+          "markdownSha256": "0e9530bcb339f2b3ff77f5d035187a520e161047550e4b1f7b1f497b7f436005",
+          "mathHtmlSha256": "3d3bc389df58f47aef91bc1182122d181e2c628a2d5b93939c903507938814de",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        },
+        "solution": {
+          "markdownSha256": "96cc451bb16b7260d692cb270c922a695f5a5f7ef2adc5032427b374a612d196",
+          "mathHtmlSha256": "5521c6b00cc4301f9d202e231fd3b4fa7a7dcc4114829761b1a69babd26bcc63",
+          "raw": 0,
+          "red": 0,
+          "merror": 0
+        }
+      },
+      "studentBodySha256": "9b7a17b9952a7263d44884755be29661bd8bf426d659beb3a5a534622bec765d"
+    }
+  ]
+}
