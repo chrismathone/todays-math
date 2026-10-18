@@ -1,0 +1,1607 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "d70137271e36e6f9c22209574e9ff224217f7296",
+  "snapshotAt": "2026-10-18T11:08:34.847Z",
+  "probeAt": "2026-10-18T11:18:17.231Z",
+  "scope": "current workspace configured database snapshot, offline actual-service execution; not production HTTP or UI proof",
+  "snapshot": {
+    "readOnlyTransactionVerified": true,
+    "isolation": "RepeatableRead",
+    "problemStudentExamDml": 0,
+    "exams": 5,
+    "examQuestions": 101,
+    "bankRows": 118166,
+    "units": 735,
+    "files": [
+      {
+        "name": "exams-private.json",
+        "rows": 5,
+        "bytes": 30018,
+        "sha256": "af8399e1645e44d78577c862c5ed02670e806656ae526e23d51ad0f764d8bb9b"
+      },
+      {
+        "name": "bank-private.json",
+        "rows": 118166,
+        "bytes": 73535166,
+        "sha256": "b2405d4aefd97e8deb0a481554fd96850da6bfc40ee4a905a71a20c08ddf7019"
+      },
+      {
+        "name": "units-private.json",
+        "rows": 735,
+        "bytes": 114397,
+        "sha256": "f6c38899e554553d646bccd54fb6d7eed912dee1c819b12202a2f3ebb6ed5d8a"
+      }
+    ]
+  },
+  "safety": {
+    "actualDatabaseConnection": false,
+    "actualDatabaseWrites": 0,
+    "realHttpMutationCalls": 0,
+    "syntheticClassOwnership": true,
+    "realGeneratorSource": true,
+    "realPersistenceGuards": true,
+    "boundary": "db.$transaction throws before callback; no Test/TestProblem/Problem/PredictionRun write"
+  },
+  "verdict": "Kyungmyung school-specific mathematical generation is not established; current school evidence absent and real service uses cohort-only selection",
+  "scenarioCount": 21,
+  "cases": [
+    {
+      "school": "경명여중",
+      "grade": 1,
+      "target": {
+        "year": 2026,
+        "semester": 1,
+        "round": "중간"
+      },
+      "range": "grade",
+      "requestedUnitCount": 52,
+      "outcome": {
+        "ok": false,
+        "refusal": "근거_없음",
+        "detail": "근거 없음 — 경명여중 중1 중1 2026-1-중간: 과거 회차도 코호트도 없다."
+      },
+      "saveBoundaryReached": false,
+      "ownHistoryCount": 0,
+      "cohortHistoryCount": 0,
+      "candidatePhysicalCount": null,
+      "selectedCount": 0,
+      "selectedDistinctQuestionCount": 0,
+      "duplicatedQuestionGroups": [],
+      "selectedIdSequenceHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "selectedSourceCounts": {},
+      "actualQuestionTypeCounts": {},
+      "plannedQuestionTypeCounts": {},
+      "relaxationCounts": {},
+      "exactSlotCount": 0,
+      "schoolReuseCount": 0,
+      "blueprintQuestionCount": null,
+      "blueprintTypeMix": null,
+      "ownEvidenceCount": null,
+      "confidence": null,
+      "unitMix": null,
+      "difficultyMix": null,
+      "totalScore": null,
+      "unfilledCount": null
+    },
+    {
+      "school": "경명여중",
+      "grade": 1,
+      "target": {
+        "year": 2026,
+        "semester": 1,
+        "round": "기말"
+      },
+      "range": "grade",
+      "requestedUnitCount": 52,
+      "outcome": {
+        "ok": false,
+        "refusal": "근거_없음",
+        "detail": "근거 없음 — 경명여중 중1 중1 2026-1-기말: 과거 회차도 코호트도 없다."
+      },
+      "saveBoundaryReached": false,
+      "ownHistoryCount": 0,
+      "cohortHistoryCount": 0,
+      "candidatePhysicalCount": null,
+      "selectedCount": 0,
+      "selectedDistinctQuestionCount": 0,
+      "duplicatedQuestionGroups": [],
+      "selectedIdSequenceHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "selectedSourceCounts": {},
+      "actualQuestionTypeCounts": {},
+      "plannedQuestionTypeCounts": {},
+      "relaxationCounts": {},
+      "exactSlotCount": 0,
+      "schoolReuseCount": 0,
+      "blueprintQuestionCount": null,
+      "blueprintTypeMix": null,
+      "ownEvidenceCount": null,
+      "confidence": null,
+      "unitMix": null,
+      "difficultyMix": null,
+      "totalScore": null,
+      "unfilledCount": null
+    },
+    {
+      "school": "경명여중",
+      "grade": 1,
+      "target": {
+        "year": 2026,
+        "semester": 2,
+        "round": "중간"
+      },
+      "range": "grade",
+      "requestedUnitCount": 52,
+      "outcome": {
+        "ok": false,
+        "refusal": "근거_없음",
+        "detail": "근거 없음 — 경명여중 중1 중1 2026-2-중간: 과거 회차도 코호트도 없다."
+      },
+      "saveBoundaryReached": false,
+      "ownHistoryCount": 0,
+      "cohortHistoryCount": 0,
+      "candidatePhysicalCount": null,
+      "selectedCount": 0,
+      "selectedDistinctQuestionCount": 0,
+      "duplicatedQuestionGroups": [],
+      "selectedIdSequenceHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "selectedSourceCounts": {},
+      "actualQuestionTypeCounts": {},
+      "plannedQuestionTypeCounts": {},
+      "relaxationCounts": {},
+      "exactSlotCount": 0,
+      "schoolReuseCount": 0,
+      "blueprintQuestionCount": null,
+      "blueprintTypeMix": null,
+      "ownEvidenceCount": null,
+      "confidence": null,
+      "unitMix": null,
+      "difficultyMix": null,
+      "totalScore": null,
+      "unfilledCount": null
+    },
+    {
+      "school": "경명여중",
+      "grade": 1,
+      "target": {
+        "year": 2026,
+        "semester": 2,
+        "round": "기말"
+      },
+      "range": "grade",
+      "requestedUnitCount": 52,
+      "outcome": {
+        "ok": false,
+        "refusal": "근거_없음",
+        "detail": "근거 없음 — 경명여중 중1 중1 2026-2-기말: 과거 회차도 코호트도 없다."
+      },
+      "saveBoundaryReached": false,
+      "ownHistoryCount": 0,
+      "cohortHistoryCount": 0,
+      "candidatePhysicalCount": null,
+      "selectedCount": 0,
+      "selectedDistinctQuestionCount": 0,
+      "duplicatedQuestionGroups": [],
+      "selectedIdSequenceHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "selectedSourceCounts": {},
+      "actualQuestionTypeCounts": {},
+      "plannedQuestionTypeCounts": {},
+      "relaxationCounts": {},
+      "exactSlotCount": 0,
+      "schoolReuseCount": 0,
+      "blueprintQuestionCount": null,
+      "blueprintTypeMix": null,
+      "ownEvidenceCount": null,
+      "confidence": null,
+      "unitMix": null,
+      "difficultyMix": null,
+      "totalScore": null,
+      "unfilledCount": null
+    },
+    {
+      "school": "경명여중",
+      "grade": 2,
+      "target": {
+        "year": 2026,
+        "semester": 1,
+        "round": "중간"
+      },
+      "range": "grade",
+      "requestedUnitCount": 56,
+      "outcome": {
+        "ok": false,
+        "refusal": "근거_없음",
+        "detail": "근거 없음 — 경명여중 중2 중2 2026-1-중간: 과거 회차도 코호트도 없다."
+      },
+      "saveBoundaryReached": false,
+      "ownHistoryCount": 0,
+      "cohortHistoryCount": 0,
+      "candidatePhysicalCount": null,
+      "selectedCount": 0,
+      "selectedDistinctQuestionCount": 0,
+      "duplicatedQuestionGroups": [],
+      "selectedIdSequenceHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "selectedSourceCounts": {},
+      "actualQuestionTypeCounts": {},
+      "plannedQuestionTypeCounts": {},
+      "relaxationCounts": {},
+      "exactSlotCount": 0,
+      "schoolReuseCount": 0,
+      "blueprintQuestionCount": null,
+      "blueprintTypeMix": null,
+      "ownEvidenceCount": null,
+      "confidence": null,
+      "unitMix": null,
+      "difficultyMix": null,
+      "totalScore": null,
+      "unfilledCount": null
+    },
+    {
+      "school": "경명여중",
+      "grade": 2,
+      "target": {
+        "year": 2026,
+        "semester": 1,
+        "round": "기말"
+      },
+      "range": "grade",
+      "requestedUnitCount": 56,
+      "outcome": {
+        "ok": false,
+        "refusal": "근거_없음",
+        "detail": "근거 없음 — 경명여중 중2 중2 2026-1-기말: 과거 회차도 코호트도 없다."
+      },
+      "saveBoundaryReached": false,
+      "ownHistoryCount": 0,
+      "cohortHistoryCount": 0,
+      "candidatePhysicalCount": null,
+      "selectedCount": 0,
+      "selectedDistinctQuestionCount": 0,
+      "duplicatedQuestionGroups": [],
+      "selectedIdSequenceHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "selectedSourceCounts": {},
+      "actualQuestionTypeCounts": {},
+      "plannedQuestionTypeCounts": {},
+      "relaxationCounts": {},
+      "exactSlotCount": 0,
+      "schoolReuseCount": 0,
+      "blueprintQuestionCount": null,
+      "blueprintTypeMix": null,
+      "ownEvidenceCount": null,
+      "confidence": null,
+      "unitMix": null,
+      "difficultyMix": null,
+      "totalScore": null,
+      "unfilledCount": null
+    },
+    {
+      "school": "경명여중",
+      "grade": 2,
+      "target": {
+        "year": 2026,
+        "semester": 2,
+        "round": "중간"
+      },
+      "range": "grade",
+      "requestedUnitCount": 56,
+      "outcome": {
+        "ok": false,
+        "refusal": "근거_없음",
+        "detail": "근거 없음 — 경명여중 중2 중2 2026-2-중간: 과거 회차도 코호트도 없다."
+      },
+      "saveBoundaryReached": false,
+      "ownHistoryCount": 0,
+      "cohortHistoryCount": 0,
+      "candidatePhysicalCount": null,
+      "selectedCount": 0,
+      "selectedDistinctQuestionCount": 0,
+      "duplicatedQuestionGroups": [],
+      "selectedIdSequenceHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "selectedSourceCounts": {},
+      "actualQuestionTypeCounts": {},
+      "plannedQuestionTypeCounts": {},
+      "relaxationCounts": {},
+      "exactSlotCount": 0,
+      "schoolReuseCount": 0,
+      "blueprintQuestionCount": null,
+      "blueprintTypeMix": null,
+      "ownEvidenceCount": null,
+      "confidence": null,
+      "unitMix": null,
+      "difficultyMix": null,
+      "totalScore": null,
+      "unfilledCount": null
+    },
+    {
+      "school": "경명여중",
+      "grade": 2,
+      "target": {
+        "year": 2026,
+        "semester": 2,
+        "round": "기말"
+      },
+      "range": "grade",
+      "requestedUnitCount": 56,
+      "outcome": {
+        "ok": false,
+        "refusal": "근거_없음",
+        "detail": "근거 없음 — 경명여중 중2 중2 2026-2-기말: 과거 회차도 코호트도 없다."
+      },
+      "saveBoundaryReached": false,
+      "ownHistoryCount": 0,
+      "cohortHistoryCount": 0,
+      "candidatePhysicalCount": null,
+      "selectedCount": 0,
+      "selectedDistinctQuestionCount": 0,
+      "duplicatedQuestionGroups": [],
+      "selectedIdSequenceHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "selectedSourceCounts": {},
+      "actualQuestionTypeCounts": {},
+      "plannedQuestionTypeCounts": {},
+      "relaxationCounts": {},
+      "exactSlotCount": 0,
+      "schoolReuseCount": 0,
+      "blueprintQuestionCount": null,
+      "blueprintTypeMix": null,
+      "ownEvidenceCount": null,
+      "confidence": null,
+      "unitMix": null,
+      "difficultyMix": null,
+      "totalScore": null,
+      "unfilledCount": null
+    },
+    {
+      "school": "경명여중",
+      "grade": 3,
+      "target": {
+        "year": 2026,
+        "semester": 1,
+        "round": "중간"
+      },
+      "range": "grade",
+      "requestedUnitCount": 22,
+      "outcome": {
+        "auditSaveBoundaryReached": true
+      },
+      "saveBoundaryReached": true,
+      "ownHistoryCount": 0,
+      "cohortHistoryCount": 5,
+      "candidatePhysicalCount": 7898,
+      "selectedCount": 20,
+      "selectedDistinctQuestionCount": 20,
+      "duplicatedQuestionGroups": [],
+      "selectedIdSequenceHash": "c90a74e7c07ed9aa99b042be9ea8093a38605f0fa415e7e446a93c3ad0ccbb78",
+      "selectedSourceCounts": {
+        "manual": 20
+      },
+      "actualQuestionTypeCounts": {
+        "객관식": 14,
+        "단답형": 1,
+        "서술형": 5
+      },
+      "plannedQuestionTypeCounts": {
+        "객관식": 14,
+        "단답형": 1,
+        "서술형": 5
+      },
+      "relaxationCounts": {},
+      "exactSlotCount": 20,
+      "schoolReuseCount": 0,
+      "blueprintQuestionCount": 20.2,
+      "blueprintTypeMix": {
+        "객관식": {
+          "count": 14.646265664160401,
+          "score": 72.5062656641604
+        },
+        "단답형": {
+          "count": 0.8505263157894737,
+          "score": 4.2105263157894735
+        },
+        "서술형": {
+          "count": 4.703208020050124,
+          "score": 23.28320802005012
+        }
+      },
+      "ownEvidenceCount": 0,
+      "confidence": 0,
+      "unitMix": [],
+      "difficultyMix": {
+        "하": {
+          "count": 0,
+          "score": 0
+        },
+        "중": {
+          "count": 0,
+          "score": 0
+        },
+        "상": {
+          "count": 0,
+          "score": 0
+        },
+        "미표기": {
+          "count": 0,
+          "score": 0
+        }
+      },
+      "totalScore": 100,
+      "unfilledCount": 0
+    },
+    {
+      "school": "경명여중",
+      "grade": 3,
+      "target": {
+        "year": 2026,
+        "semester": 1,
+        "round": "기말"
+      },
+      "range": "grade",
+      "requestedUnitCount": 22,
+      "outcome": {
+        "auditSaveBoundaryReached": true
+      },
+      "saveBoundaryReached": true,
+      "ownHistoryCount": 0,
+      "cohortHistoryCount": 5,
+      "candidatePhysicalCount": 7898,
+      "selectedCount": 20,
+      "selectedDistinctQuestionCount": 20,
+      "duplicatedQuestionGroups": [],
+      "selectedIdSequenceHash": "c90a74e7c07ed9aa99b042be9ea8093a38605f0fa415e7e446a93c3ad0ccbb78",
+      "selectedSourceCounts": {
+        "manual": 20
+      },
+      "actualQuestionTypeCounts": {
+        "객관식": 14,
+        "단답형": 1,
+        "서술형": 5
+      },
+      "plannedQuestionTypeCounts": {
+        "객관식": 14,
+        "단답형": 1,
+        "서술형": 5
+      },
+      "relaxationCounts": {},
+      "exactSlotCount": 20,
+      "schoolReuseCount": 0,
+      "blueprintQuestionCount": 20.2,
+      "blueprintTypeMix": {
+        "객관식": {
+          "count": 14.646265664160401,
+          "score": 72.5062656641604
+        },
+        "단답형": {
+          "count": 0.8505263157894737,
+          "score": 4.2105263157894735
+        },
+        "서술형": {
+          "count": 4.703208020050124,
+          "score": 23.28320802005012
+        }
+      },
+      "ownEvidenceCount": 0,
+      "confidence": 0,
+      "unitMix": [],
+      "difficultyMix": {
+        "하": {
+          "count": 0,
+          "score": 0
+        },
+        "중": {
+          "count": 0,
+          "score": 0
+        },
+        "상": {
+          "count": 0,
+          "score": 0
+        },
+        "미표기": {
+          "count": 0,
+          "score": 0
+        }
+      },
+      "totalScore": 100,
+      "unfilledCount": 0
+    },
+    {
+      "school": "경명여중",
+      "grade": 3,
+      "target": {
+        "year": 2026,
+        "semester": 2,
+        "round": "중간"
+      },
+      "range": "grade",
+      "requestedUnitCount": 22,
+      "outcome": {
+        "auditSaveBoundaryReached": true
+      },
+      "saveBoundaryReached": true,
+      "ownHistoryCount": 0,
+      "cohortHistoryCount": 5,
+      "candidatePhysicalCount": 7898,
+      "selectedCount": 20,
+      "selectedDistinctQuestionCount": 20,
+      "duplicatedQuestionGroups": [],
+      "selectedIdSequenceHash": "c90a74e7c07ed9aa99b042be9ea8093a38605f0fa415e7e446a93c3ad0ccbb78",
+      "selectedSourceCounts": {
+        "manual": 20
+      },
+      "actualQuestionTypeCounts": {
+        "객관식": 14,
+        "단답형": 1,
+        "서술형": 5
+      },
+      "plannedQuestionTypeCounts": {
+        "객관식": 14,
+        "단답형": 1,
+        "서술형": 5
+      },
+      "relaxationCounts": {},
+      "exactSlotCount": 20,
+      "schoolReuseCount": 0,
+      "blueprintQuestionCount": 20.2,
+      "blueprintTypeMix": {
+        "객관식": {
+          "count": 14.646265664160401,
+          "score": 72.5062656641604
+        },
+        "단답형": {
+          "count": 0.8505263157894737,
+          "score": 4.2105263157894735
+        },
+        "서술형": {
+          "count": 4.703208020050124,
+          "score": 23.28320802005012
+        }
+      },
+      "ownEvidenceCount": 0,
+      "confidence": 0,
+      "unitMix": [],
+      "difficultyMix": {
+        "하": {
+          "count": 0,
+          "score": 0
+        },
+        "중": {
+          "count": 0,
+          "score": 0
+        },
+        "상": {
+          "count": 0,
+          "score": 0
+        },
+        "미표기": {
+          "count": 0,
+          "score": 0
+        }
+      },
+      "totalScore": 100,
+      "unfilledCount": 0
+    },
+    {
+      "school": "경명여중",
+      "grade": 3,
+      "target": {
+        "year": 2026,
+        "semester": 2,
+        "round": "기말"
+      },
+      "range": "grade",
+      "requestedUnitCount": 22,
+      "outcome": {
+        "auditSaveBoundaryReached": true
+      },
+      "saveBoundaryReached": true,
+      "ownHistoryCount": 0,
+      "cohortHistoryCount": 5,
+      "candidatePhysicalCount": 7898,
+      "selectedCount": 20,
+      "selectedDistinctQuestionCount": 20,
+      "duplicatedQuestionGroups": [],
+      "selectedIdSequenceHash": "c90a74e7c07ed9aa99b042be9ea8093a38605f0fa415e7e446a93c3ad0ccbb78",
+      "selectedSourceCounts": {
+        "manual": 20
+      },
+      "actualQuestionTypeCounts": {
+        "객관식": 14,
+        "단답형": 1,
+        "서술형": 5
+      },
+      "plannedQuestionTypeCounts": {
+        "객관식": 14,
+        "단답형": 1,
+        "서술형": 5
+      },
+      "relaxationCounts": {},
+      "exactSlotCount": 20,
+      "schoolReuseCount": 0,
+      "blueprintQuestionCount": 20.2,
+      "blueprintTypeMix": {
+        "객관식": {
+          "count": 14.646265664160401,
+          "score": 72.5062656641604
+        },
+        "단답형": {
+          "count": 0.8505263157894737,
+          "score": 4.2105263157894735
+        },
+        "서술형": {
+          "count": 4.703208020050124,
+          "score": 23.28320802005012
+        }
+      },
+      "ownEvidenceCount": 0,
+      "confidence": 0,
+      "unitMix": [],
+      "difficultyMix": {
+        "하": {
+          "count": 0,
+          "score": 0
+        },
+        "중": {
+          "count": 0,
+          "score": 0
+        },
+        "상": {
+          "count": 0,
+          "score": 0
+        },
+        "미표기": {
+          "count": 0,
+          "score": 0
+        }
+      },
+      "totalScore": 100,
+      "unfilledCount": 0
+    },
+    {
+      "school": "경명여자중학교",
+      "grade": 3,
+      "target": {
+        "year": 2026,
+        "semester": 2,
+        "round": "중간"
+      },
+      "range": "grade",
+      "requestedUnitCount": 22,
+      "outcome": {
+        "auditSaveBoundaryReached": true
+      },
+      "saveBoundaryReached": true,
+      "ownHistoryCount": 0,
+      "cohortHistoryCount": 5,
+      "candidatePhysicalCount": 7898,
+      "selectedCount": 20,
+      "selectedDistinctQuestionCount": 20,
+      "duplicatedQuestionGroups": [],
+      "selectedIdSequenceHash": "c90a74e7c07ed9aa99b042be9ea8093a38605f0fa415e7e446a93c3ad0ccbb78",
+      "selectedSourceCounts": {
+        "manual": 20
+      },
+      "actualQuestionTypeCounts": {
+        "객관식": 14,
+        "단답형": 1,
+        "서술형": 5
+      },
+      "plannedQuestionTypeCounts": {
+        "객관식": 14,
+        "단답형": 1,
+        "서술형": 5
+      },
+      "relaxationCounts": {},
+      "exactSlotCount": 20,
+      "schoolReuseCount": 0,
+      "blueprintQuestionCount": 20.2,
+      "blueprintTypeMix": {
+        "객관식": {
+          "count": 14.646265664160401,
+          "score": 72.5062656641604
+        },
+        "단답형": {
+          "count": 0.8505263157894737,
+          "score": 4.2105263157894735
+        },
+        "서술형": {
+          "count": 4.703208020050124,
+          "score": 23.28320802005012
+        }
+      },
+      "ownEvidenceCount": 0,
+      "confidence": 0,
+      "unitMix": [],
+      "difficultyMix": {
+        "하": {
+          "count": 0,
+          "score": 0
+        },
+        "중": {
+          "count": 0,
+          "score": 0
+        },
+        "상": {
+          "count": 0,
+          "score": 0
+        },
+        "미표기": {
+          "count": 0,
+          "score": 0
+        }
+      },
+      "totalScore": 100,
+      "unfilledCount": 0
+    },
+    {
+      "school": "비교용미등록중",
+      "grade": 3,
+      "target": {
+        "year": 2026,
+        "semester": 2,
+        "round": "중간"
+      },
+      "range": "grade",
+      "requestedUnitCount": 22,
+      "outcome": {
+        "auditSaveBoundaryReached": true
+      },
+      "saveBoundaryReached": true,
+      "ownHistoryCount": 0,
+      "cohortHistoryCount": 5,
+      "candidatePhysicalCount": 7898,
+      "selectedCount": 20,
+      "selectedDistinctQuestionCount": 20,
+      "duplicatedQuestionGroups": [],
+      "selectedIdSequenceHash": "c90a74e7c07ed9aa99b042be9ea8093a38605f0fa415e7e446a93c3ad0ccbb78",
+      "selectedSourceCounts": {
+        "manual": 20
+      },
+      "actualQuestionTypeCounts": {
+        "객관식": 14,
+        "단답형": 1,
+        "서술형": 5
+      },
+      "plannedQuestionTypeCounts": {
+        "객관식": 14,
+        "단답형": 1,
+        "서술형": 5
+      },
+      "relaxationCounts": {},
+      "exactSlotCount": 20,
+      "schoolReuseCount": 0,
+      "blueprintQuestionCount": 20.2,
+      "blueprintTypeMix": {
+        "객관식": {
+          "count": 14.646265664160401,
+          "score": 72.5062656641604
+        },
+        "단답형": {
+          "count": 0.8505263157894737,
+          "score": 4.2105263157894735
+        },
+        "서술형": {
+          "count": 4.703208020050124,
+          "score": 23.28320802005012
+        }
+      },
+      "ownEvidenceCount": 0,
+      "confidence": 0,
+      "unitMix": [],
+      "difficultyMix": {
+        "하": {
+          "count": 0,
+          "score": 0
+        },
+        "중": {
+          "count": 0,
+          "score": 0
+        },
+        "상": {
+          "count": 0,
+          "score": 0
+        },
+        "미표기": {
+          "count": 0,
+          "score": 0
+        }
+      },
+      "totalScore": 100,
+      "unfilledCount": 0
+    },
+    {
+      "school": "경명여중",
+      "grade": 3,
+      "target": {
+        "year": 2025,
+        "semester": 2,
+        "round": "중간"
+      },
+      "range": "grade",
+      "requestedUnitCount": 22,
+      "outcome": {
+        "ok": false,
+        "refusal": "근거_없음",
+        "detail": "근거 없음 — 경명여중 중3 중3 2025-2-중간: 과거 회차도 코호트도 없다."
+      },
+      "saveBoundaryReached": false,
+      "ownHistoryCount": 0,
+      "cohortHistoryCount": 0,
+      "candidatePhysicalCount": null,
+      "selectedCount": 0,
+      "selectedDistinctQuestionCount": 0,
+      "duplicatedQuestionGroups": [],
+      "selectedIdSequenceHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "selectedSourceCounts": {},
+      "actualQuestionTypeCounts": {},
+      "plannedQuestionTypeCounts": {},
+      "relaxationCounts": {},
+      "exactSlotCount": 0,
+      "schoolReuseCount": 0,
+      "blueprintQuestionCount": null,
+      "blueprintTypeMix": null,
+      "ownEvidenceCount": null,
+      "confidence": null,
+      "unitMix": null,
+      "difficultyMix": null,
+      "totalScore": null,
+      "unfilledCount": null
+    },
+    {
+      "school": "경명여중",
+      "grade": 3,
+      "target": {
+        "year": 2026,
+        "semester": 2,
+        "round": "중간"
+      },
+      "range": "chapters5-6",
+      "requestedUnitCount": 7,
+      "outcome": {
+        "auditSaveBoundaryReached": true
+      },
+      "saveBoundaryReached": true,
+      "ownHistoryCount": 0,
+      "cohortHistoryCount": 5,
+      "candidatePhysicalCount": 2489,
+      "selectedCount": 20,
+      "selectedDistinctQuestionCount": 20,
+      "duplicatedQuestionGroups": [],
+      "selectedIdSequenceHash": "ee50a7b805c2e2c0d7e01ab0b3b4bfc7c0f1307b440f6f62991d65578e2827b2",
+      "selectedSourceCounts": {
+        "manual": 20
+      },
+      "actualQuestionTypeCounts": {
+        "객관식": 14,
+        "단답형": 6
+      },
+      "plannedQuestionTypeCounts": {
+        "객관식": 14,
+        "단답형": 6
+      },
+      "relaxationCounts": {
+        "유형": 5
+      },
+      "exactSlotCount": 15,
+      "schoolReuseCount": 0,
+      "blueprintQuestionCount": 20.2,
+      "blueprintTypeMix": {
+        "객관식": {
+          "count": 14.646265664160401,
+          "score": 72.5062656641604
+        },
+        "단답형": {
+          "count": 0.8505263157894737,
+          "score": 4.2105263157894735
+        },
+        "서술형": {
+          "count": 4.703208020050124,
+          "score": 23.28320802005012
+        }
+      },
+      "ownEvidenceCount": 0,
+      "confidence": 0,
+      "unitMix": [],
+      "difficultyMix": {
+        "하": {
+          "count": 0,
+          "score": 0
+        },
+        "중": {
+          "count": 0,
+          "score": 0
+        },
+        "상": {
+          "count": 0,
+          "score": 0
+        },
+        "미표기": {
+          "count": 0,
+          "score": 0
+        }
+      },
+      "totalScore": 100,
+      "unfilledCount": 0
+    },
+    {
+      "school": "경산여중",
+      "grade": 3,
+      "target": {
+        "year": 2026,
+        "semester": 2,
+        "round": "중간"
+      },
+      "range": "grade",
+      "requestedUnitCount": 22,
+      "outcome": {
+        "auditSaveBoundaryReached": true
+      },
+      "saveBoundaryReached": true,
+      "ownHistoryCount": 1,
+      "cohortHistoryCount": 4,
+      "candidatePhysicalCount": 7898,
+      "selectedCount": 26,
+      "selectedDistinctQuestionCount": 26,
+      "duplicatedQuestionGroups": [],
+      "selectedIdSequenceHash": "78f7e348365300b638571672a326584c671925888ca9983a98b1a0d48dbd3d32",
+      "selectedSourceCounts": {
+        "manual": 26
+      },
+      "actualQuestionTypeCounts": {
+        "객관식": 26
+      },
+      "plannedQuestionTypeCounts": {
+        "객관식": 26
+      },
+      "relaxationCounts": {},
+      "exactSlotCount": 26,
+      "schoolReuseCount": 0,
+      "blueprintQuestionCount": 26,
+      "blueprintTypeMix": {
+        "객관식": {
+          "count": 26,
+          "score": 99.99999999999999
+        },
+        "단답형": {
+          "count": 0,
+          "score": 0
+        },
+        "서술형": {
+          "count": 0,
+          "score": 0
+        }
+      },
+      "ownEvidenceCount": 1,
+      "confidence": 0.5107662012830155,
+      "unitMix": [],
+      "difficultyMix": {
+        "하": {
+          "count": 0,
+          "score": 0
+        },
+        "중": {
+          "count": 0,
+          "score": 0
+        },
+        "상": {
+          "count": 0,
+          "score": 0
+        },
+        "미표기": {
+          "count": 0,
+          "score": 0
+        }
+      },
+      "totalScore": 100,
+      "unfilledCount": 0
+    },
+    {
+      "school": "협성경복중",
+      "grade": 3,
+      "target": {
+        "year": 2026,
+        "semester": 2,
+        "round": "중간"
+      },
+      "range": "grade",
+      "requestedUnitCount": 22,
+      "outcome": {
+        "auditSaveBoundaryReached": true
+      },
+      "saveBoundaryReached": true,
+      "ownHistoryCount": 1,
+      "cohortHistoryCount": 4,
+      "candidatePhysicalCount": 7898,
+      "selectedCount": 19,
+      "selectedDistinctQuestionCount": 19,
+      "duplicatedQuestionGroups": [],
+      "selectedIdSequenceHash": "c5c214431cc0e790c74c9626be94a48140d5b180273e03c0d5f2316a96b66ef5",
+      "selectedSourceCounts": {
+        "manual": 19
+      },
+      "actualQuestionTypeCounts": {
+        "객관식": 14,
+        "서술형": 5
+      },
+      "plannedQuestionTypeCounts": {
+        "객관식": 14,
+        "서술형": 5
+      },
+      "relaxationCounts": {},
+      "exactSlotCount": 19,
+      "schoolReuseCount": 0,
+      "blueprintQuestionCount": 19,
+      "blueprintTypeMix": {
+        "객관식": {
+          "count": 14.000000000000002,
+          "score": 73.6842105263158
+        },
+        "단답형": {
+          "count": 0,
+          "score": 0
+        },
+        "서술형": {
+          "count": 5.000000000000001,
+          "score": 26.315789473684212
+        }
+      },
+      "ownEvidenceCount": 1,
+      "confidence": 0.5107662012830155,
+      "unitMix": [],
+      "difficultyMix": {
+        "하": {
+          "count": 0,
+          "score": 0
+        },
+        "중": {
+          "count": 0,
+          "score": 0
+        },
+        "상": {
+          "count": 0,
+          "score": 0
+        },
+        "미표기": {
+          "count": 0,
+          "score": 0
+        }
+      },
+      "totalScore": 100,
+      "unfilledCount": 0
+    },
+    {
+      "school": "동도중",
+      "grade": 3,
+      "target": {
+        "year": 2026,
+        "semester": 2,
+        "round": "중간"
+      },
+      "range": "grade",
+      "requestedUnitCount": 22,
+      "outcome": {
+        "auditSaveBoundaryReached": true
+      },
+      "saveBoundaryReached": true,
+      "ownHistoryCount": 1,
+      "cohortHistoryCount": 4,
+      "candidatePhysicalCount": 7898,
+      "selectedCount": 16,
+      "selectedDistinctQuestionCount": 16,
+      "duplicatedQuestionGroups": [],
+      "selectedIdSequenceHash": "982993e12f6d08eb624f50e6b36ad90ebd66ad0d6efc30556b9a1d6d3798701f",
+      "selectedSourceCounts": {
+        "manual": 16
+      },
+      "actualQuestionTypeCounts": {
+        "객관식": 8,
+        "서술형": 8
+      },
+      "plannedQuestionTypeCounts": {
+        "객관식": 8,
+        "서술형": 8
+      },
+      "relaxationCounts": {},
+      "exactSlotCount": 16,
+      "schoolReuseCount": 0,
+      "blueprintQuestionCount": 16,
+      "blueprintTypeMix": {
+        "객관식": {
+          "count": 8,
+          "score": 49.99999999999999
+        },
+        "단답형": {
+          "count": 0,
+          "score": 0
+        },
+        "서술형": {
+          "count": 8,
+          "score": 49.99999999999999
+        }
+      },
+      "ownEvidenceCount": 1,
+      "confidence": 0.5107662012830155,
+      "unitMix": [],
+      "difficultyMix": {
+        "하": {
+          "count": 0,
+          "score": 0
+        },
+        "중": {
+          "count": 0,
+          "score": 0
+        },
+        "상": {
+          "count": 0,
+          "score": 0
+        },
+        "미표기": {
+          "count": 0,
+          "score": 0
+        }
+      },
+      "totalScore": 100,
+      "unfilledCount": 0
+    },
+    {
+      "school": "강동중",
+      "grade": 3,
+      "target": {
+        "year": 2026,
+        "semester": 2,
+        "round": "중간"
+      },
+      "range": "grade",
+      "requestedUnitCount": 22,
+      "outcome": {
+        "auditSaveBoundaryReached": true
+      },
+      "saveBoundaryReached": true,
+      "ownHistoryCount": 1,
+      "cohortHistoryCount": 4,
+      "candidatePhysicalCount": 7898,
+      "selectedCount": 21,
+      "selectedDistinctQuestionCount": 21,
+      "duplicatedQuestionGroups": [],
+      "selectedIdSequenceHash": "b93e1afd5d46ac76ba7f8b975ede0d164d3bf0829c3c6a57ce72aea25c1c109e",
+      "selectedSourceCounts": {
+        "manual": 21
+      },
+      "actualQuestionTypeCounts": {
+        "객관식": 17,
+        "서술형": 4
+      },
+      "plannedQuestionTypeCounts": {
+        "객관식": 17,
+        "서술형": 4
+      },
+      "relaxationCounts": {},
+      "exactSlotCount": 21,
+      "schoolReuseCount": 0,
+      "blueprintQuestionCount": 21,
+      "blueprintTypeMix": {
+        "객관식": {
+          "count": 17,
+          "score": 80.95238095238093
+        },
+        "단답형": {
+          "count": 0,
+          "score": 0
+        },
+        "서술형": {
+          "count": 4,
+          "score": 19.047619047619044
+        }
+      },
+      "ownEvidenceCount": 1,
+      "confidence": 0.5107662012830155,
+      "unitMix": [],
+      "difficultyMix": {
+        "하": {
+          "count": 0,
+          "score": 0
+        },
+        "중": {
+          "count": 0,
+          "score": 0
+        },
+        "상": {
+          "count": 0,
+          "score": 0
+        },
+        "미표기": {
+          "count": 0,
+          "score": 0
+        }
+      },
+      "totalScore": 100,
+      "unfilledCount": 0
+    },
+    {
+      "school": "정화중",
+      "grade": 3,
+      "target": {
+        "year": 2026,
+        "semester": 2,
+        "round": "중간"
+      },
+      "range": "grade",
+      "requestedUnitCount": 22,
+      "outcome": {
+        "auditSaveBoundaryReached": true
+      },
+      "saveBoundaryReached": true,
+      "ownHistoryCount": 1,
+      "cohortHistoryCount": 4,
+      "candidatePhysicalCount": 7898,
+      "selectedCount": 19,
+      "selectedDistinctQuestionCount": 19,
+      "duplicatedQuestionGroups": [],
+      "selectedIdSequenceHash": "d7fafecae71b8b41a98a3fb15b506efa6a9b553af4b5e4644f6a541eed5e3a82",
+      "selectedSourceCounts": {
+        "manual": 19
+      },
+      "actualQuestionTypeCounts": {
+        "객관식": 11,
+        "단답형": 4,
+        "서술형": 4
+      },
+      "plannedQuestionTypeCounts": {
+        "객관식": 11,
+        "단답형": 4,
+        "서술형": 4
+      },
+      "relaxationCounts": {},
+      "exactSlotCount": 19,
+      "schoolReuseCount": 0,
+      "blueprintQuestionCount": 19,
+      "blueprintTypeMix": {
+        "객관식": {
+          "count": 11,
+          "score": 57.89473684210526
+        },
+        "단답형": {
+          "count": 4,
+          "score": 21.052631578947366
+        },
+        "서술형": {
+          "count": 4,
+          "score": 21.052631578947366
+        }
+      },
+      "ownEvidenceCount": 1,
+      "confidence": 0.5107662012830155,
+      "unitMix": [],
+      "difficultyMix": {
+        "하": {
+          "count": 0,
+          "score": 0
+        },
+        "중": {
+          "count": 0,
+          "score": 0
+        },
+        "상": {
+          "count": 0,
+          "score": 0
+        },
+        "미표기": {
+          "count": 0,
+          "score": 0
+        }
+      },
+      "totalScore": 100,
+      "unfilledCount": 0
+    }
+  ],
+  "primarySelectedQuestions": [
+    {
+      "orderIndex": 1,
+      "problemCode": "J30203-A06-008",
+      "unitId": "40a7b4e1-88d2-4cc6-8097-6d1b5f0bbbf9",
+      "familyKey": "mid:3-1|다항식의 인수분해|15",
+      "questionGroupKey": "q:v1:733dbc8720c49322669d3ec8aeaee8a01c3552856d6e97bc72c0fb0d132e4bec",
+      "source": "manual",
+      "actualQuestionType": "객관식",
+      "grade": "중3",
+      "chapter": "2. 다항식의 곱셈과 인수분해",
+      "section": "인수분해의 응용",
+      "score": 3.2,
+      "relaxed": [],
+      "schoolReuse": false
+    },
+    {
+      "orderIndex": 2,
+      "problemCode": "J30602-A03-008",
+      "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "familyKey": "mid:3-2|원과 직선|09",
+      "questionGroupKey": "q:v1:5932910e4df55b39a60d97cc35f2ebe896cbe3209c4fa3ebaf4fd8352128cd05",
+      "source": "manual",
+      "actualQuestionType": "객관식",
+      "grade": "중3",
+      "chapter": "6. 원의 성질",
+      "section": "원의 접선",
+      "score": 3.7,
+      "relaxed": [],
+      "schoolReuse": false
+    },
+    {
+      "orderIndex": 3,
+      "problemCode": "J30702-A05-024",
+      "unitId": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+      "familyKey": "mid:3-2|상자그림과 산점도|10",
+      "questionGroupKey": "q:v1:8ce108ba583c4046c758a882f0b446f800dafaf1ce3b804b0a8c9bf52362be0e",
+      "source": "manual",
+      "actualQuestionType": "객관식",
+      "grade": "중3",
+      "chapter": "7. 통계",
+      "section": "산점도와 상관관계",
+      "score": 3.7,
+      "relaxed": [],
+      "schoolReuse": false
+    },
+    {
+      "orderIndex": 4,
+      "problemCode": "J30703-A05-016",
+      "unitId": "81710710-e029-49d3-9e50-b3e23f882464",
+      "familyKey": "mid:3-2|상자그림과 산점도|05",
+      "questionGroupKey": "q:v1:6497857311a1b18867deecc2489c73cfb64b423cea6833a1681db09819a9b559",
+      "source": "manual",
+      "actualQuestionType": "객관식",
+      "grade": "중3",
+      "chapter": "7. 통계",
+      "section": "상자그림",
+      "score": 3.7,
+      "relaxed": [],
+      "schoolReuse": false
+    },
+    {
+      "orderIndex": 5,
+      "problemCode": "J30103-A09-002",
+      "unitId": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "familyKey": "mid:3-1|근호를 포함한 식의 계산|09",
+      "questionGroupKey": "q:v1:f5c390ca46461406b609cfb9a7e17a46abc1fea9e8b42f2712b500841c21ee63",
+      "source": "manual",
+      "actualQuestionType": "객관식",
+      "grade": "중3",
+      "chapter": "1. 실수와 그 계산",
+      "section": "근호를 포함한 식의 계산",
+      "score": 3.7,
+      "relaxed": [],
+      "schoolReuse": false
+    },
+    {
+      "orderIndex": 6,
+      "problemCode": "J30101-A19-025",
+      "unitId": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "familyKey": "mid:3-1|제곱근의 뜻과 성질|41U",
+      "questionGroupKey": "q:v1:6977e498b770f14544571f19056bc310b111d980e8c6da2f92459e966adef0b6",
+      "source": "manual",
+      "actualQuestionType": "객관식",
+      "grade": "중3",
+      "chapter": "1. 실수와 그 계산",
+      "section": "제곱근의 뜻과 성질",
+      "score": 3.7,
+      "relaxed": [],
+      "schoolReuse": false
+    },
+    {
+      "orderIndex": 7,
+      "problemCode": "J30604-A06-044",
+      "unitId": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+      "familyKey": "mid:3-2|원주각의 활용|06",
+      "questionGroupKey": "q:v1:ab6918ef26fe2de7bb6f4d274d152edd22e47078f1e591682eca2a3386c99e03",
+      "source": "manual",
+      "actualQuestionType": "객관식",
+      "grade": "중3",
+      "chapter": "6. 원의 성질",
+      "section": "원주각의 활용",
+      "score": 4.1,
+      "relaxed": [],
+      "schoolReuse": false
+    },
+    {
+      "orderIndex": 8,
+      "problemCode": "J30402-A12-006",
+      "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑵|12",
+      "questionGroupKey": "q:v1:8294d0eb4b43efea4cace20aa60a808fae6f2df59d071613bcdf8cbee65bddaf",
+      "source": "manual",
+      "actualQuestionType": "객관식",
+      "grade": "중3",
+      "chapter": "4. 이차함수",
+      "section": "이차함수 y=ax^2+bx+c의 그래프",
+      "score": 3.7,
+      "relaxed": [],
+      "schoolReuse": false
+    },
+    {
+      "orderIndex": 9,
+      "problemCode": "J30701-A05-014",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": "mid:3-2|산포도|05",
+      "questionGroupKey": "q:v1:93aca350c29695d17f51eadbd58fdda4953ddff9c3ad780f31f899cf1942b852",
+      "source": "manual",
+      "actualQuestionType": "객관식",
+      "grade": "중3",
+      "chapter": "7. 통계",
+      "section": "대푯값과 산포도",
+      "score": 3,
+      "relaxed": [],
+      "schoolReuse": false
+    },
+    {
+      "orderIndex": 10,
+      "problemCode": "J30403-A07-020",
+      "unitId": "e3645b9f-56bb-4548-9015-d86b32d89057",
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑵|20",
+      "questionGroupKey": "q:v1:77be15d38a7a94d2122413737bd2eeed9888306d5afd29a9d14146707f399783",
+      "source": "manual",
+      "actualQuestionType": "객관식",
+      "grade": "중3",
+      "chapter": "4. 이차함수",
+      "section": "이차함수의 최댓값과 최솟값",
+      "score": 4.1,
+      "relaxed": [],
+      "schoolReuse": false
+    },
+    {
+      "orderIndex": 11,
+      "problemCode": "J30101-A16-004",
+      "unitId": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "familyKey": "mid:3-1|제곱근의 뜻과 성질|16",
+      "questionGroupKey": "q:v1:68983783bc88dbab8cbfd60022f63a1e77c7f289a747ef59582cec2068394073",
+      "source": "manual",
+      "actualQuestionType": "객관식",
+      "grade": "중3",
+      "chapter": "1. 실수와 그 계산",
+      "section": "제곱근의 뜻과 성질",
+      "score": 5,
+      "relaxed": [],
+      "schoolReuse": false
+    },
+    {
+      "orderIndex": 12,
+      "problemCode": "J30401-A13-011",
+      "unitId": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑴|13",
+      "questionGroupKey": null,
+      "source": "manual",
+      "actualQuestionType": "객관식",
+      "grade": "중3",
+      "chapter": "4. 이차함수",
+      "section": "이차함수와 그래프",
+      "score": 3.7,
+      "relaxed": [],
+      "schoolReuse": false
+    },
+    {
+      "orderIndex": 13,
+      "problemCode": "J30201-A10-014",
+      "unitId": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "familyKey": "mid:3-1|다항식의 곱셈|10",
+      "questionGroupKey": "q:v1:5001669120a0bc13e642acc312234f353223c91f5e0e1bde72e2e15e239380c8",
+      "source": "manual",
+      "actualQuestionType": "객관식",
+      "grade": "중3",
+      "chapter": "2. 다항식의 곱셈과 인수분해",
+      "section": "다항식의 곱셈",
+      "score": 3.7,
+      "relaxed": [],
+      "schoolReuse": false
+    },
+    {
+      "orderIndex": 14,
+      "problemCode": "J30303-A12-003",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q01",
+      "questionGroupKey": null,
+      "source": "manual",
+      "actualQuestionType": "객관식",
+      "grade": "중3",
+      "chapter": "3. 이차방정식",
+      "section": "이차방정식의 활용",
+      "score": 3,
+      "relaxed": [],
+      "schoolReuse": false
+    },
+    {
+      "orderIndex": 15,
+      "problemCode": "J30503-A02-017",
+      "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "familyKey": "mid:3-2|삼각비의 활용|02",
+      "questionGroupKey": "q:v1:103925fb4b113fe4437cc84cd60c760c6dee2e69271635abcd4e51f187827b21",
+      "source": "manual",
+      "actualQuestionType": "단답형",
+      "grade": "중3",
+      "chapter": "5. 삼각비",
+      "section": "삼각비의 활용",
+      "score": 6,
+      "relaxed": [],
+      "schoolReuse": false
+    },
+    {
+      "orderIndex": 16,
+      "problemCode": "J30202-A15-002",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "familyKey": "native-desc:m3-factor-error-proof-r1",
+      "questionGroupKey": null,
+      "source": "manual",
+      "actualQuestionType": "서술형",
+      "grade": "중3",
+      "chapter": "2. 다항식의 곱셈과 인수분해",
+      "section": "인수분해",
+      "score": 8,
+      "relaxed": [],
+      "schoolReuse": false
+    },
+    {
+      "orderIndex": 17,
+      "problemCode": "J30202-A15-003",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "familyKey": "native-desc:m3-factor-error-proof-r1",
+      "questionGroupKey": null,
+      "source": "manual",
+      "actualQuestionType": "서술형",
+      "grade": "중3",
+      "chapter": "2. 다항식의 곱셈과 인수분해",
+      "section": "인수분해",
+      "score": 8,
+      "relaxed": [],
+      "schoolReuse": false
+    },
+    {
+      "orderIndex": 18,
+      "problemCode": "J30701-A17-001",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": "native-desc:m3-statistics-shift-spread-r1",
+      "questionGroupKey": null,
+      "source": "manual",
+      "actualQuestionType": "서술형",
+      "grade": "중3",
+      "chapter": "7. 통계",
+      "section": "대푯값과 산포도",
+      "score": 8,
+      "relaxed": [],
+      "schoolReuse": false
+    },
+    {
+      "orderIndex": 19,
+      "problemCode": "J30303-A15-004",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "familyKey": "native-desc:m3-quadratic-domain-r1",
+      "questionGroupKey": null,
+      "source": "manual",
+      "actualQuestionType": "서술형",
+      "grade": "중3",
+      "chapter": "3. 이차방정식",
+      "section": "이차방정식의 활용",
+      "score": 9,
+      "relaxed": [],
+      "schoolReuse": false
+    },
+    {
+      "orderIndex": 20,
+      "problemCode": "J30303-A15-005",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "familyKey": "native-desc:m3-quadratic-domain-r1",
+      "questionGroupKey": null,
+      "source": "manual",
+      "actualQuestionType": "서술형",
+      "grade": "중3",
+      "chapter": "3. 이차방정식",
+      "section": "이차방정식의 활용",
+      "score": 9,
+      "relaxed": [],
+      "schoolReuse": false
+    }
+  ],
+  "sameSelectionAcrossThreeSchoolLabels": true,
+  "rawProbeSha256": "0ff23f5cd9a54af076e121cc1e055df84f285a43bd6f0005aafe70c5d7ff92b5",
+  "probeSourceSha256": "5a8d2fcfbdec36d871a9d7e9bedecc1575f220f30e647e518c0f6097946c74de",
+  "configSha256": "20805a4b52ea08aeae836a9ebaa92932966d3041770744af0d0fdb71ed8de369",
+  "limitations": [
+    "Synthetic class ownership; no real student/class reads",
+    "IO adapter implements only observed read filters over immutable export",
+    "Real generator, composer, predictor and persistence guards; transaction callback blocked",
+    "No authenticated HTTP success, saved test, student distribution or print assertion",
+    "All-grade bank range is an upper-bound availability example, not an actual school exam range",
+    "No student learning effect or measured school-fidelity assertion"
+  ]
+}
