@@ -35,6 +35,7 @@ import {
   readBoundedScope,
   validateFrozenScope,
   assertNewContentUniqueness,
+  BOUNDED_INSERT_SQL,
   type BoundedManifest,
   type ScopeLedger,
 } from "../../import/bounded-question-reinforcement";
@@ -249,8 +250,22 @@ describe("local PostgreSQL bounded apply/idempotence/revert", () => {
     const dir = mkdtempSync(path.join(tmpdir(), "bounded-question-"));
     temps.push(dir);
     try {
-      await pg.exec(`CREATE TABLE problem(id uuid PRIMARY KEY,external_id text UNIQUE,unit_id uuid,family_key text,question_type text,difficulty text,problem_type text,content text,answer text,solution text,figure_svg text,figure_urls text[] DEFAULT '{}',figure_dims integer[] DEFAULT '{}',figure_source_mm double precision[] DEFAULT '{}',choice_figure_index integer[] DEFAULT '{}',figure_source text,source text,pool text,origin_problem_id uuid REFERENCES problem(id),source_material_id uuid,review_status text,direct_use_allowed boolean,solution_source text,updated_at timestamptz NOT NULL,problem_code text DEFAULT ('QA-'||substr(md5(random()::text),1,12)),question_group_key text);
+      await pg.exec(`CREATE TYPE difficulty AS ENUM ('연산','기본','응용','심화하','심화중','심화상');
+        CREATE TYPE problem_source AS ENUM ('manual','past_exam','transformed','ai_generated','school_textbook');
+        CREATE TYPE problem_pool AS ENUM ('shared','private');
+        CREATE TYPE review_status AS ENUM ('pending','approved','rejected');
+        CREATE TYPE solution_source AS ENUM ('none','original','ai');
+        CREATE TABLE problem(id uuid PRIMARY KEY,external_id text UNIQUE,unit_id uuid,family_key text,question_type text,difficulty difficulty,problem_type text,content text,answer text,solution text,figure_svg text,figure_urls text[] DEFAULT '{}',figure_dims integer[] DEFAULT '{}',figure_source_mm double precision[] DEFAULT '{}',choice_figure_index integer[] DEFAULT '{}',figure_source text,source problem_source,pool problem_pool,origin_problem_id uuid REFERENCES problem(id),source_material_id uuid,review_status review_status,direct_use_allowed boolean,solution_source solution_source,updated_at timestamptz NOT NULL,problem_code text DEFAULT ('QA-'||substr(md5(random()::text),1,12)),question_group_key text);
         CREATE TABLE basket_item(problem_id uuid REFERENCES problem(id));CREATE TABLE exam_question(problem_id uuid REFERENCES problem(id));CREATE TABLE problem_answer(problem_id uuid REFERENCES problem(id));CREATE TABLE problem_outer_wall_quarantine(problem_id uuid REFERENCES problem(id));CREATE TABLE problem_report(problem_id uuid REFERENCES problem(id));CREATE TABLE problem_review_log(problem_id uuid REFERENCES problem(id));CREATE TABLE test_problem(problem_id uuid REFERENCES problem(id));CREATE TABLE textbook_problem_snapshot(problem_id uuid REFERENCES problem(id),source_ref jsonb,source_key text);`);
+      await expect(
+        pg.exec(
+          "PREPARE uncast_prisma_text(text) AS INSERT INTO problem(difficulty) VALUES($1)",
+        ),
+      ).rejects.toThrow(/difficulty|text/);
+      await pg.exec(
+        `PREPARE typed_bounded_insert(uuid,text,uuid,text,text,text,text,text,text,text,text,text) AS ${BOUNDED_INSERT_SQL}`,
+      );
+      await pg.exec("DEALLOCATE typed_bounded_insert");
       const adapter = (db: Pick<PGlite, "query">) => ({
         $queryRawUnsafe: async (sql: string, ...params: unknown[]) =>
           (await db.query(sql, params)).rows,

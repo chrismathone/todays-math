@@ -735,6 +735,24 @@ export const newUuidLedger = (
   })),
 });
 
+/** Prisma binds string parameters as text; PostgreSQL requires the enum cast. */
+export const BOUNDED_INSERT_SQL = `INSERT INTO public.problem(id,external_id,unit_id,family_key,question_type,difficulty,problem_type,content,answer,solution,figure_svg,source,pool,origin_problem_id,review_status,direct_use_allowed,solution_source,figure_source,updated_at) VALUES($1::uuid,$2,$3::uuid,$4,$5,$6::public.difficulty,$7,$8,$9,$10,$11,'manual','shared',NULL,'approved',true,'none',$12,CURRENT_TIMESTAMP)`;
+
+export const boundedInsertParameters = (id: string, row: Candidate) => [
+  id,
+  row.externalId,
+  row.unitId,
+  row.familyKey,
+  row.questionType,
+  row.difficulty,
+  row.problemType,
+  row.content,
+  row.answer,
+  row.solution,
+  row.figureSvg,
+  row.figureSvg ? "engine" : null,
+];
+
 export async function executeBounded(
   options: {
     files: ApprovalFiles;
@@ -908,19 +926,8 @@ export async function executeBounded(
           }
           const row = rows.find((row) => row.externalId === owned.externalId)!;
           await tx.$executeRawUnsafe(
-            `INSERT INTO public.problem(id,external_id,unit_id,family_key,question_type,difficulty,problem_type,content,answer,solution,figure_svg,source,pool,origin_problem_id,review_status,direct_use_allowed,solution_source,figure_source,updated_at) VALUES($1::uuid,$2,$3::uuid,$4,$5,$6,$7,$8,$9,$10,$11,'manual','shared',NULL,'approved',true,'none',$12,CURRENT_TIMESTAMP)`,
-            owned.id,
-            row.externalId,
-            row.unitId,
-            row.familyKey,
-            row.questionType,
-            row.difficulty,
-            row.problemType,
-            row.content,
-            row.answer,
-            row.solution,
-            row.figureSvg,
-            row.figureSvg ? "engine" : null,
+            BOUNDED_INSERT_SQL,
+            ...boundedInsertParameters(owned.id, row),
           );
           changed.push(owned.id);
         }
