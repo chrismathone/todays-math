@@ -1,0 +1,36 @@
+{
+  "at": "2026-10-18T07:18:51.029Z",
+  "scope": "question-ddl-gate-2",
+  "status": "applied-and-catalog-verified",
+  "planSha256": "50c525785cae16825d23d7bd55de81f7a779fa54cd98e8933d470a126acccc61",
+  "ddlPath": "supabase/migrations/20261018063016_question_group_identity.sql",
+  "ddlSha256": "b36dae98a6e343a5207fc61e77e52fa050bde6dd8a8b75bfce57507baaa0b64c",
+  "claudeApprovalSha256": "b5bebe6da0e98e10b39869c646784da364d0f116c176144da8c3f87a7f18c786",
+  "freshReviewedCatalogMatched": true,
+  "execution": "psql -X --no-password -v ON_ERROR_STOP=1 --file (exact approved file; own BEGIN/COMMIT; one run)",
+  "executionOutput": [
+    "BEGIN",
+    "SET",
+    "SET",
+    "ALTER TABLE",
+    "DO",
+    "CREATE INDEX",
+    "CREATE INDEX",
+    "CREATE FUNCTION",
+    "REVOKE",
+    "REVOKE",
+    "CREATE TRIGGER",
+    "COMMIT"
+  ],
+  "postCatalogPath": "docs/planning/tracks/reports/math-question-formats-20261018/ddl-catalog-after.json",
+  "postCatalogSha256": "659fadbaff2ff4f435fb20327f05d94a304c4c54e107b71593cac1cb36a87230",
+  "allKeysNullBeforeBackfill": true,
+  "oldColumnsAndOtherPrivilegesPreserved": true,
+  "oldTriggersUnchanged": true,
+  "contentRepairRowsApplied": 0,
+  "backfillPairsApplied": 0,
+  "migrationHistory": {
+    "supabaseMigrationsNamespacePreviouslyPresent": false,
+    "tracking": "Repository migration file and this committed exact-file application receipt. No supabase_migrations schema was created or fabricated. Do not replay via blanket db push."
+  }
+}

@@ -25,7 +25,9 @@ export default async function UnifiedPreviewPage({
   ) as DesignId;
   let initialData: BankData;
   try {
-    initialData = await loadUnifiedBank();
+    initialData = await loadUnifiedBank(
+      new URLSearchParams({ identity: "question" }),
+    );
   } catch {
     initialData = {
       problems: [],

@@ -1,0 +1,233 @@
+{
+  "at": "2026-10-18T07:18:51.029Z",
+  "readOnly": true,
+  "roles": [
+    {
+      "rolname": "anon",
+      "new_insert": false,
+      "new_update": false,
+      "can_select": true,
+      "can_delete": true,
+      "old_columns_denied": 0
+    },
+    {
+      "rolname": "authenticated",
+      "new_insert": false,
+      "new_update": false,
+      "can_select": true,
+      "can_delete": true,
+      "old_columns_denied": 0
+    },
+    {
+      "rolname": "service_role",
+      "new_insert": true,
+      "new_update": true,
+      "can_select": true,
+      "can_delete": true,
+      "old_columns_denied": 0
+    }
+  ],
+  "fn": [
+    {
+      "prosecdef": false,
+      "proconfig": [
+        "search_path=pg_catalog, public"
+      ],
+      "anon_execute": false,
+      "authenticated_execute": false,
+      "public_execute": false,
+      "trigger_definition": "CREATE TRIGGER problem_question_group_invalidate BEFORE UPDATE ON public.problem FOR EACH ROW EXECUTE FUNCTION invalidate_problem_question_group_key()"
+    }
+  ],
+  "indexes": [
+    {
+      "name": "problem_question_group_key_idx",
+      "valid": true,
+      "definition": "CREATE INDEX problem_question_group_key_idx ON public.problem USING btree (question_group_key)"
+    },
+    {
+      "name": "problem_unit_id_question_group_key_idx",
+      "valid": true,
+      "definition": "CREATE INDEX problem_unit_id_question_group_key_idx ON public.problem USING btree (unit_id, question_group_key)"
+    }
+  ],
+  "security": [
+    {
+      "rls": false,
+      "forced_rls": false,
+      "owner": "postgres",
+      "policies": 0
+    }
+  ],
+  "keys": [
+    {
+      "rows": 118020,
+      "assigned": 0
+    }
+  ],
+  "acls": [
+    {
+      "grantee": "anon",
+      "privilege_type": "DELETE",
+      "is_grantable": false
+    },
+    {
+      "grantee": "anon",
+      "privilege_type": "MAINTAIN",
+      "is_grantable": false
+    },
+    {
+      "grantee": "anon",
+      "privilege_type": "REFERENCES",
+      "is_grantable": false
+    },
+    {
+      "grantee": "anon",
+      "privilege_type": "SELECT",
+      "is_grantable": false
+    },
+    {
+      "grantee": "anon",
+      "privilege_type": "TRIGGER",
+      "is_grantable": false
+    },
+    {
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": false
+    },
+    {
+      "grantee": "authenticated",
+      "privilege_type": "DELETE",
+      "is_grantable": false
+    },
+    {
+      "grantee": "authenticated",
+      "privilege_type": "MAINTAIN",
+      "is_grantable": false
+    },
+    {
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES",
+      "is_grantable": false
+    },
+    {
+      "grantee": "authenticated",
+      "privilege_type": "SELECT",
+      "is_grantable": false
+    },
+    {
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER",
+      "is_grantable": false
+    },
+    {
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": false
+    },
+    {
+      "grantee": "postgres",
+      "privilege_type": "DELETE",
+      "is_grantable": false
+    },
+    {
+      "grantee": "postgres",
+      "privilege_type": "INSERT",
+      "is_grantable": false
+    },
+    {
+      "grantee": "postgres",
+      "privilege_type": "MAINTAIN",
+      "is_grantable": false
+    },
+    {
+      "grantee": "postgres",
+      "privilege_type": "REFERENCES",
+      "is_grantable": false
+    },
+    {
+      "grantee": "postgres",
+      "privilege_type": "SELECT",
+      "is_grantable": false
+    },
+    {
+      "grantee": "postgres",
+      "privilege_type": "TRIGGER",
+      "is_grantable": false
+    },
+    {
+      "grantee": "postgres",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": false
+    },
+    {
+      "grantee": "postgres",
+      "privilege_type": "UPDATE",
+      "is_grantable": false
+    },
+    {
+      "grantee": "service_role",
+      "privilege_type": "DELETE",
+      "is_grantable": false
+    },
+    {
+      "grantee": "service_role",
+      "privilege_type": "INSERT",
+      "is_grantable": false
+    },
+    {
+      "grantee": "service_role",
+      "privilege_type": "MAINTAIN",
+      "is_grantable": false
+    },
+    {
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES",
+      "is_grantable": false
+    },
+    {
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "is_grantable": false
+    },
+    {
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER",
+      "is_grantable": false
+    },
+    {
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": false
+    },
+    {
+      "grantee": "service_role",
+      "privilege_type": "UPDATE",
+      "is_grantable": false
+    }
+  ],
+  "triggers": [
+    {
+      "name": "problem_code_assign",
+      "definition": "CREATE TRIGGER problem_code_assign BEFORE INSERT ON public.problem FOR EACH ROW EXECUTE FUNCTION problem_code_assign()",
+      "functionSha256": "9e2d22cd90bbaac8f2cb63c21a82430cc47317011e84b58bdd73e8ed838e7047"
+    },
+    {
+      "name": "problem_code_freeze",
+      "definition": "CREATE TRIGGER problem_code_freeze BEFORE UPDATE ON public.problem FOR EACH ROW WHEN (((old.problem_code)::text IS DISTINCT FROM (new.problem_code)::text)) EXECUTE FUNCTION problem_code_freeze()",
+      "functionSha256": "b7e834f304437d43907445040093e264f9e077c13867c23aae60089ed66acd9d"
+    },
+    {
+      "name": "problem_question_group_invalidate",
+      "definition": "CREATE TRIGGER problem_question_group_invalidate BEFORE UPDATE ON public.problem FOR EACH ROW EXECUTE FUNCTION invalidate_problem_question_group_key()",
+      "functionSha256": "451d65ab5f7f353aea85f27baad54667cfe2c362ded7d0c2277223dccba18247"
+    },
+    {
+      "name": "registered_problem_outer_wall",
+      "definition": "CREATE TRIGGER registered_problem_outer_wall BEFORE UPDATE ON public.problem FOR EACH ROW EXECUTE FUNCTION enforce_registered_problem_outer_wall()",
+      "functionSha256": "1d73a33f8c85576e140acad5ceb67a637ad40aa33114057fc45755e975147b82"
+    }
+  ],
+  "allAssertionsPassed": true
+}

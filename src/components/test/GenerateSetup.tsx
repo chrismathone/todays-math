@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo } from "react";
 
+import FormatQuotaFields from "@/components/exam-builder/FormatQuotaFields";
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 import { onlySupportedGrades } from "@/contracts/supportedGrades";
 
@@ -366,6 +367,14 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
             {ratioSum === form.problemCount ? "" : " — 맞지 않습니다"}
           </p>
 
+          <FormatQuotaFields
+            value={form.formats}
+            onChange={form.setFormats}
+            count={form.problemCount}
+            disabled={form.busy}
+            max={30}
+          />
+
           {form.testType === "review" ? (
             <RangeField
               units={form.units}
@@ -452,6 +461,7 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
             variant="primary"
             disabled={
               form.busy ||
+              Boolean(form.formatWarning) ||
               !form.classId ||
               form.studentsLoading ||
               form.studentsError ||

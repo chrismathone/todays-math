@@ -1,0 +1,32 @@
+{
+  "at": "2026-10-18T07:10:09.043Z",
+  "readOnly": true,
+  "families": 53,
+  "scopeRows": 4801,
+  "units": 20,
+  "newContents": 94,
+  "newRows": 146,
+  "byContract": {
+    "proven-short-mc-pair": 52,
+    "source-short-only": 4,
+    "native-multiple-choice": 20,
+    "native-descriptive": 18
+  },
+  "shortfalls": [
+    {
+      "familyKey": "mid:1-2|다면체와 회전체|51",
+      "shortBy": 2,
+      "reason": "No further unique valid tasks in bounded deterministic search; no fabricated format or definition added"
+    }
+  ],
+  "sharedDatabaseWrites": 0,
+  "manifestSha256": "68991f57d35983065158c37252f1795286fe4129ad77dad2ba2d2a2374161bf0",
+  "beforeLedgerSha256": "baca4b8100860c85ab68b1f66dca644ec228455ccc6e4cf0259dbeab714314ea",
+  "prewriteSha256": "ac920859423dd27fdfe8136a7e9d1c4179bf0e52418017903734d65221b7eb1d",
+  "privateBeforeSha256": "147a5be399a7e230d27874d06151b1c25d23c67f21b41aea12a59734e633703b",
+  "privateCandidatesSha256": "a69d8f1dcf6d40839a5cfa92fd9438c4808acf5e14689f6081af02f89eca4c21",
+  "sourceCommit": "26361a19a08da94dd77a594b02db27734d5cc9ef",
+  "sourceDigestsSha256": "579a710938416b75333709c17403b7a1de314138bf1384db40918927c218c4ba",
+  "finalBeforeLedgerMustBeRepreparedAfterBackfill": true,
+  "physicalPrinterVerified": false
+}

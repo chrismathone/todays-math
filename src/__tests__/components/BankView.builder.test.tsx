@@ -51,6 +51,9 @@ const third = problem("third");
 const candidate = problem("candidate");
 const remote = problem("remote");
 const data: BankData = {
+  countUnit: "question",
+  version: 2,
+  queryKey: "fixture",
   problems: [first, candidate],
   total: 30,
   page: 1,
@@ -197,7 +200,12 @@ describe("exam builder selection", () => {
     startRandom();
     await act(async () =>
       resolveRandom(
-        Response.json({ problems: [], available: ratio(), counts: ratio() }),
+        Response.json({
+          countUnit: "question",
+          problems: [],
+          available: ratio(),
+          counts: ratio(),
+        }),
       ),
     );
     expect(selectedIds()).toBe("first,second,third");
@@ -231,7 +239,9 @@ describe("exam builder selection", () => {
     expect(randomUrl).toBe("/api/studio/problems/random");
     expect(randomInit.method).toBe("POST");
     const body = JSON.parse(String(randomInit.body));
+    expect(body.identity).toBe("question");
     expect(Object.fromEntries(new URLSearchParams(body.filters))).toEqual({
+      identity: "question",
       grade: "중1",
     });
     expect(body.counts).toEqual(ratio({ 기본: 2, 응용: 2 }));
@@ -245,6 +255,7 @@ describe("exam builder selection", () => {
     await act(async () =>
       resolveRandom(
         Response.json({
+          countUnit: "question",
           problems: [
             first,
             remote,
@@ -283,6 +294,7 @@ describe("exam builder selection", () => {
     await act(async () =>
       resolveRandom(
         Response.json({
+          countUnit: "question",
           problems: [remote],
           available: ratio({ 기본: 1 }),
           counts: ratio({ 기본: 1 }),
@@ -300,6 +312,7 @@ describe("exam builder selection", () => {
     await act(async () =>
       resolveRandom(
         Response.json({
+          countUnit: "question",
           problems: [remote],
           available: ratio({ 기본: 1 }),
           counts: ratio({ 기본: 1 }),
@@ -318,6 +331,7 @@ describe("exam builder selection", () => {
     await act(async () =>
       resolveRandom(
         Response.json({
+          countUnit: "question",
           problems: [remote],
           available: ratio({ 기본: 1 }),
           counts: ratio({ 기본: 1 }),
@@ -456,7 +470,7 @@ describe("exam builder selection", () => {
     ).toBeEnabled();
   });
 
-  it("deduplicates page additions against selections carried across pages", async () => {
+  it("rejects duplicate page additions and preserves selections across pages", async () => {
     render(
       <Harness
         initial={[first]}
@@ -466,12 +480,15 @@ describe("exam builder selection", () => {
     fireEvent.click(
       screen.getByRole("checkbox", { name: "이 페이지 전체 담기" }),
     );
-    expect(selectedIds()).toBe("first,candidate");
-    expect(mutations).toHaveBeenCalledTimes(1);
+    expect(selectedIds()).toBe("first");
+    expect(mutations).not.toHaveBeenCalled();
+    expect(
+      screen.getByText(/같은 문항은 한 번만 담을 수 있습니다/),
+    ).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "다음 페이지" }));
     await waitFor(() =>
       expect(screen.queryByRole("progressbar")).not.toBeInTheDocument(),
     );
-    expect(selectedIds()).toBe("first,candidate");
+    expect(selectedIds()).toBe("first");
   });
 });

@@ -20,6 +20,7 @@ import { serializeProblem } from "@/lib/serializers";
 import { withProblemSourceReferences } from "@/lib/problem/sourceReference";
 import { getSessionUser } from "@/lib/session";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
+import { withQuestionMetadata } from "@/lib/problem/questionQueries";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
@@ -39,12 +40,30 @@ async function handlePatch(request: NextRequest, { params }: RouteContext) {
   const parsed = problemReviewStatusUpdateRequestSchema.safeParse(body);
   if (!parsed.success) return validationError(parsed.error);
 
-  const updated = await db.problem.update({
-    where: { id },
-    data: { reviewStatus: parsed.data.reviewStatus },
+  const grouped =
+    new URL(request.url).searchParams.get("identity") === "question";
+  const updated = await db.$transaction(async (tx) => {
+    const row = await tx.problem.update({
+      where: { id },
+      data: { reviewStatus: parsed.data.reviewStatus },
+    });
+    return {
+      row,
+      metadata: grouped ? (await withQuestionMetadata([row], tx))[0]! : null,
+    };
   });
   return jsonOk(problemResponseSchema, {
-    data: serializeProblem((await withProblemSourceReferences([updated]))[0]!),
+    data: {
+      ...serializeProblem(
+        (await withProblemSourceReferences([updated.row]))[0]!,
+      ),
+      ...(updated.metadata
+        ? {
+            questionId: updated.metadata.questionId,
+            questionFormats: updated.metadata.questionFormats,
+          }
+        : {}),
+    },
   });
 }
 

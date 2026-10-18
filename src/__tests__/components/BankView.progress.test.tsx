@@ -14,6 +14,9 @@ vi.mock("@/components/unified/UnifiedProblem", () => ({
 }));
 
 const initialData: BankData = {
+  countUnit: "question",
+  version: 2,
+  queryKey: "fixture",
   problems: [],
   total: 0,
   page: 1,

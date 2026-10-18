@@ -1,0 +1,53 @@
+{
+  "reviewer": "Claude",
+  "verdict": "rejected",
+  "kind": "17-row-content-repair",
+  "planSha256": "50c525785cae16825d23d7bd55de81f7a779fa54cd98e8933d470a126acccc61",
+  "sourceCommit": "141d2c638fe6c4bc88e193f6886698b107c3ecb0",
+  "manifestSha256": "704b43ce413bdf8d25338d7390415e8034d88b890a7ed4398d8808a8a16327e4",
+  "beforeLedgerSha256": "4b918b818466a5f96d7f6e78afdc5df042be4575b4303a9d36f64b46baf63caa",
+  "privateBeforeSha256": "c00f9698dee8167bc16769920735f980e55e4ec47063e6f8b7a2494fa6a344e9",
+  "privateCandidatesSha256": "5fc049a9737aa28c1175294ab5a01b8b5520e5cf1501e88476cd47a2a619c5c1",
+  "reviewedAt": "2026-10-18",
+  "verifiedOk": [
+    "manifest/before-ledger/private before/private candidates file SHAs match",
+    "17/17 before payload digests recomputed from before-private equal manifest and root read-only verify; 17/17 after digests recomputed from candidates equal manifest",
+    "ids, problem codes, external ids, family keys, question types, answers, MC choice order and answer positions unchanged; origin_problem_id null; root verify reports 0 references for all 17",
+    "quad242PerpCount x4: prompt no longer states the count; SVG has two horizontal parallel bases with arrow marks and 4/5 vertical segments with right-angle marks; count unique",
+    "poly263Name x4: stem now states equal sides AND equal angles; answer unique; no figure",
+    "isoTri slot (sides 45.81/45.81/25.52, base angles 73.83/73.83), choiceRightScaleneTri (35.2/44/56.35), trap (one exactly parallel pair), choiceNonparallelQuad (opposite-pair sines 0.29/0.45) are clear"
+  ],
+  "blockingDefects": [
+    {
+      "repair": "quad244Pick",
+      "rows": [
+        "1f5f7704-e3f2-473a-8560-fbbed550a27e",
+        "2ce9cb5b-5c47-4d40-a059-0d00acb2642c",
+        "4a16b2a4-3256-41d0-8e58-9b51038bc829"
+      ],
+      "shape": "irregQuad (shared vocabulary, kept from before)",
+      "evidence": "points (18.52,17.68)(55.48,8)(59,35.28)(22.92,52): sides (55.48,8)->(59,35.28) and (22.92,52)->(18.52,17.68) differ in direction by 0.046 deg (normalized cross -0.0008). coordinate-verification.json records oppositeCrossProduct -0.7744 against ~1000-magnitude edges and calls it parallelPairs 0 by exact-nonzero test. In questions-p1.png the two sides read as parallel.",
+      "consequence": "Under the inclusive definition (a quadrilateral with at least one pair of parallel sides) a student checking with a set square sees two trapezoids; the stored single answer is not unique."
+    },
+    {
+      "repair": "tri221PickIso / tri222Pick",
+      "rows": [
+        "b711aa94-ef28-45e3-a707-009857bf08f2",
+        "d910914a-afd6-437e-84ff-94c6aa147d7d",
+        "e96f1ca4-b9c3-4527-bec6-f33c8bb23723",
+        "44f268b3-cff7-46af-879e-6eeb874fbe0d",
+        "53135b6e-dafc-4424-8c9a-05abba72aa95",
+        "702fef05-8c79-4d4f-8703-61d5d8afee77"
+      ],
+      "shape": "choiceScaleneTri (new R1/R2 shape (0,1),(0.2,0),(1,1))",
+      "evidence": "sides 44.00 / 44.87 / 56.35 (two sides within 2.0%); angles 49.97 / 51.34 / 78.69 (two within 1.4 deg). On the A4 render the two sides are about 11.5 mm vs 11.7 mm.",
+      "consequence": "The unit is classifying triangles by measured side length / equal base angles; ruler and protractor readings make choiceScaleneTri look isosceles, so 'isosceles' and 'two equal base angles' have two plausible answers. The report's 'clearly scalene' claim does not hold for this shape."
+    }
+  ],
+  "requiredFixes": [
+    "Replace the irregQuad slot in quad244Pick with a new opt-in non-example (do not edit irregQuad itself: other stored rows render it) whose two opposite-side pairs each differ by >= 10 deg.",
+    "Change choiceScaleneTri so every pair of sides differs by >= 15% and every pair of angles by >= 10 deg; keep choiceRightScaleneTri as is.",
+    "Make coordinate-verification use perceptual tolerances (angle and length-ratio margins) in addition to exact arithmetic, regenerate R3 manifest/before-ledger from a fresh read, and resubmit. All-or-nothing: none of the 17 rows may be applied from R2."
+  ],
+  "notReviewed": "Physical printer output; mathematical correctness of the wider bank."
+}

@@ -25,8 +25,63 @@ const row = (id = "bank-1"): StudioProblem & { unitId: string } => ({
   questionType: "descriptive",
   eligible: true,
 });
-const reply = (value: unknown, status = 200) =>
-  Response.json(value, { status });
+const reply = (value: unknown, status = 200) => {
+  const data = value as Record<string, unknown>;
+  return Response.json(
+    data && ("problems" in data || data.view === "available")
+      ? { ...data, version: 2, countUnit: "question", queryKey: "fixture" }
+      : value,
+    { status },
+  );
+};
+const readyId = "10000000-0000-4000-8000-000000000001";
+const secondReadyId = "10000000-0000-4000-8000-000000000002";
+const ready = (ids: string[]) => ({
+  items: ids.map((id) => ({
+    id,
+    state: "eligible",
+    code: null,
+    reason: null,
+    reviewStatus: "approved",
+    unitId: unit.id,
+    source: "manual",
+  })),
+  counts: {
+    requested: ids.length,
+    eligible: ids.length,
+    ineligible: 0,
+    missing: 0,
+  },
+});
+const inventory = (counts: Record<string, number>) => {
+  const count = Object.values(counts).reduce((a, b) => a + b, 0);
+  const tally = { held: count, available: count };
+  return {
+    view: "available",
+    version: 2,
+    countUnit: "question",
+    queryKey: "fixture",
+    ...tally,
+    facets: {
+      units: Object.fromEntries(
+        Object.entries(counts).map(([id, value]) => [
+          id,
+          { held: value, available: value },
+        ]),
+      ),
+      unitFamilies: counts,
+      difficulties: Object.fromEntries(
+        DIFFICULTY_LADDER.map((tier) => [tier, tally]),
+      ),
+      sources: Object.fromEntries(
+        ["total", "engine", "school_textbook", "past_exam", "other"].map(
+          (key) => [key, tally],
+        ),
+      ),
+      textbook: { ...tally, books: [] },
+    },
+  };
+};
 const listRequest = {
   scopeIds: [unit.id],
   difficulty: "기본",
@@ -43,25 +98,22 @@ afterEach(() => {
 describe("Math exam builder source", () => {
   it("reports the recorded eligibility reason if a saved problem is no longer issuable", async () => {
     const id = "e4e83b15-0e42-4f77-9bd1-14892741964d";
-    const fetcher = vi
-      .fn<typeof fetch>()
-      .mockResolvedValueOnce(reply({ problems: [] }))
-      .mockResolvedValueOnce(
-        reply({
-          items: [
-            {
-              id,
-              state: "ineligible",
-              code: "locked",
-              reason: "잠금",
-              reviewStatus: "approved",
-              unitId: null,
-              source: "school_textbook",
-            },
-          ],
-          counts: { requested: 1, eligible: 0, ineligible: 1, missing: 0 },
-        }),
-      );
+    const fetcher = vi.fn<typeof fetch>().mockResolvedValueOnce(
+      reply({
+        items: [
+          {
+            id,
+            state: "ineligible",
+            code: "locked",
+            reason: "잠금",
+            reviewStatus: "approved",
+            unitId: null,
+            source: "school_textbook",
+          },
+        ],
+        counts: { requested: 1, eligible: 0, ineligible: 1, missing: 0 },
+      }),
+    );
     const source = createMathExamBuilderSource({
       fetch: fetcher,
       problemsUrl: "/api/studio/problems",
@@ -69,7 +121,7 @@ describe("Math exam builder source", () => {
     await expect(source.prepareOutput!([row(id)], signal)).rejects.toThrow(
       "M-001: 출제 잠금(사유 미기록)",
     );
-    expect(fetcher.mock.calls[1][0]).toBe("/api/studio/problems/check");
+    expect(fetcher.mock.calls[0][0]).toBe("/api/studio/problems/check");
   });
   it("uses the same source conditions for availability, candidate list and composition", async () => {
     const tally = { held: 30, available: 24 };
@@ -131,6 +183,7 @@ describe("Math exam builder source", () => {
     ).toBe("40000000-0000-4000-8000-000000000001");
     await source.compose([{ scopeId: unit.id, count: 24 }], signal);
     expect(JSON.parse(fetcher.mock.calls[2][1]!.body as string)).toEqual({
+      identity: "question",
       filters,
       allocations: [{ unitId: unit.id, count: 24 }],
     });
@@ -248,20 +301,22 @@ describe("Math exam builder source", () => {
     expect(source.initialScopes).toBeUndefined();
   });
 
-  it("uses the initial ordered curriculum without fetching and identifies legacy rows by unit metadata", async () => {
-    const fetcher = vi.fn<typeof fetch>();
+  it("reuses the ordered curriculum but confirms question capacity and maps legacy unit metadata", async () => {
+    const fetcher = vi
+      .fn<typeof fetch>()
+      .mockResolvedValue(
+        reply({ view: "available", held: 0, available: 0, facets: null }),
+      );
     const source = createMathExamBuilderSource({
       initialUnits: MOCK_UNITS,
       fetch: fetcher,
     });
-    expect(source.initialScopes?.[0]).toEqual({
-      id: unit.id,
-      group: unit.grade,
-      label: unit.section,
-      detail: unit.chapter,
-    });
+    expect(source.initialScopes).toBeUndefined();
     const scopes = await source.loadScopes(signal);
-    expect(fetcher).not.toHaveBeenCalled();
+    expect(fetcher).toHaveBeenCalledOnce();
+    expect(JSON.parse(String(fetcher.mock.calls[0][1]?.body)).identity).toBe(
+      "question",
+    );
     expect(scopes[0]).toEqual({
       id: unit.id,
       group: unit.grade,
@@ -282,13 +337,19 @@ describe("Math exam builder source", () => {
     const initial = createMathExamBuilderSource({
       initialUnits: MOCK_UNITS,
       initialUnitCounts: counts,
+      initialCountUnit: "question",
+      distinctFamilies: false,
     });
     expect(initial.initialScopes?.[0].count).toBe(3);
     expect(initial.initialScopes?.[1].count).toBe(0);
 
     const fetcher = vi
       .fn<typeof fetch>()
-      .mockResolvedValue(reply({ units: MOCK_UNITS, unitCounts: counts }));
+      .mockImplementation(async (url) =>
+        String(url).endsWith("/sources")
+          ? reply(inventory(counts))
+          : reply({ problems: [], units: MOCK_UNITS, unitCounts: counts }),
+      );
     const remote = createMathExamBuilderSource({ fetch: fetcher });
     expect((await remote.loadScopes(signal))[1].count).toBe(0);
   });
@@ -308,10 +369,15 @@ describe("Math exam builder source", () => {
       window.history.replaceState({}, "", path);
       const fetcher = vi
         .fn<typeof fetch>()
-        .mockResolvedValue(reply({ units: MOCK_UNITS }));
-      await createMathExamBuilderSource({ fetch: fetcher }).loadScopes(signal);
+        .mockImplementation(async () =>
+          reply({ view: "available", held: 0, available: 0, facets: null }),
+        );
+      await createMathExamBuilderSource({
+        initialUnits: MOCK_UNITS,
+        fetch: fetcher,
+      }).loadScopes(signal);
       expect(fetcher).toHaveBeenCalledWith(
-        `${base}/problems?pageSize=1`,
+        `${base}/problems/sources`,
         expect.objectContaining({
           signal,
           credentials: "same-origin",
@@ -321,15 +387,16 @@ describe("Math exam builder source", () => {
     },
   );
 
-  it("resolves old saved rows without an eligibility flag before output", async () => {
+  it("validates old saved rows while preserving their stored content and optional fields", async () => {
     const fetcher = vi
       .fn<typeof fetch>()
-      .mockResolvedValue(reply({ problems: [row()] }));
+      .mockResolvedValue(reply(ready([readyId])));
     const source = createMathExamBuilderSource({ fetch: fetcher });
-    const old = { ...row(), eligible: undefined };
+    const old = { ...row(readyId), eligible: undefined };
     const result = await source.prepareOutput!([old], signal);
     expect(fetcher).toHaveBeenCalledOnce();
-    expect(result[0].eligible).toBe(true);
+    expect(result[0]).toBe(old);
+    expect(result[0].eligible).toBeUndefined();
   });
 
   it("requests exact scopes and excluded IDs before pagination, passing native rows unchanged", async () => {
@@ -344,6 +411,7 @@ describe("Math exam builder source", () => {
     const result = await source.list(listRequest, signal);
     const url = new URL(String(fetcher.mock.calls[0][0]), "https://math.test");
     expect(Object.fromEntries(url.searchParams)).toEqual({
+      identity: "question",
       unitIds: unit.id,
       difficulty: "기본",
       q: "분수",
@@ -388,6 +456,7 @@ describe("Math exam builder source", () => {
     expect(fetcher).toHaveBeenCalledOnce();
     expect(fetcher.mock.calls[0][0]).toBe("/api/studio/problems/random");
     expect(JSON.parse(fetcher.mock.calls[0][1]!.body as string)).toEqual({
+      identity: "question",
       allocations: [
         { unitId: unit.id, count: 4 },
         { unitId: MOCK_UNITS[1].id, count: 2 },
@@ -416,44 +485,56 @@ describe("Math exam builder source", () => {
     );
   });
 
-  it("refreshes bank rows in one request while preserving selection order and local crop identity", async () => {
+  it("checks native rows once while preserving stored content, order and local crop identity", async () => {
+    const first = row(readyId);
+    const second = row(secondReadyId);
     const crop = {
       ...row("crop"),
       eligible: undefined,
       croppedImage: "blob:local",
     };
-    const latest = { ...row("first"), content: "갱신한 원문" };
     const fetcher = vi
       .fn<typeof fetch>()
-      .mockResolvedValue(reply({ problems: [row("second"), latest] }));
+      .mockResolvedValue(reply(ready([readyId, secondReadyId])));
     const source = createMathExamBuilderSource({ fetch: fetcher });
-    const result = await source.prepareOutput!(
-      [row("first"), crop, row("second")],
-      signal,
-    );
+    const result = await source.prepareOutput!([first, crop, second], signal);
     expect(fetcher).toHaveBeenCalledOnce();
-    const params = new URL(
-      String(fetcher.mock.calls[0][0]),
-      "https://math.test",
-    ).searchParams;
-    expect(params.get("ids")).toBe("first,second");
-    expect(result.map((item) => item.id)).toEqual(["first", "crop", "second"]);
-    expect(result[0].content).toBe("갱신한 원문");
+    expect(String(fetcher.mock.calls[0][0])).toContain("/check");
+    expect(JSON.parse(String(fetcher.mock.calls[0][1]?.body))).toEqual({
+      ids: [readyId, secondReadyId],
+    });
+    expect(result).toEqual([first, crop, second]);
+    expect(result[0]).toBe(first);
     expect(result[1]).toBe(crop);
   });
 
-  it.each([
-    [],
-    [{ ...row(), eligible: false }],
-    [{ ...row(), unitId: MOCK_UNITS[1].id }],
-  ])(
-    "rejects deleted, ineligible or moved rows at output",
-    async (...problems) => {
+  it.each(["missing", "ineligible", "moved"])(
+    "rejects a currently %s actual row before output",
+    async (state) => {
+      const body = ready([readyId]);
+      const current = {
+        ...body.items[0],
+        ...(state === "moved"
+          ? { unitId: MOCK_UNITS[1].id }
+          : {
+              state,
+              code: state === "ineligible" ? "locked" : null,
+              reason: state === "ineligible" ? "잠금" : null,
+            }),
+      };
       const fetcher = vi
         .fn<typeof fetch>()
-        .mockResolvedValue(reply({ problems }));
+        .mockResolvedValue(reply({ ...body, items: [current] }));
       const source = createMathExamBuilderSource({ fetch: fetcher });
-      await expect(source.prepareOutput!([row()], signal)).rejects.toThrow();
+      await expect(
+        source.prepareOutput!([row(readyId)], signal),
+      ).rejects.toThrow(
+        state === "moved"
+          ? "단원이나 출처"
+          : state === "ineligible"
+            ? "출제 잠금"
+            : "문항을 찾을 수 없음",
+      );
     },
   );
 
@@ -565,6 +646,7 @@ describe("Math exam builder source", () => {
         excludeRecent: true,
       });
       expect(JSON.parse(fetcher.mock.calls[2][1]!.body as string)).toEqual({
+        identity: "question",
         recent: true,
         allocations: [{ unitId: unit.id, count: 2 }],
       });
@@ -614,6 +696,7 @@ describe("Math exam builder source", () => {
         { excludeRecent: true, difficulty: { 기본: 1, 심화하: 2, 연산: 0 } },
       );
       expect(JSON.parse(fetcher.mock.calls[0][1]!.body as string)).toEqual({
+        identity: "question",
         recent: true,
         difficulty: { 기본: 1, 심화하: 2, 연산: 0 },
         allocations: [{ unitId: unit.id, count: 3 }],

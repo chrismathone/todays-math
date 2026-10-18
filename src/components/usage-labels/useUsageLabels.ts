@@ -12,12 +12,14 @@ import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
 
 /** One request per visible batch; refreshes never write usage events. */
 export function useUsageLabels({
+  identity,
   problemIds = [],
   arithmeticTypes = [],
   arithmeticV2TypeIds = [],
   enabled = true,
   refreshKey = "",
 }: {
+  identity?: "question";
   problemIds?: string[];
   arithmeticTypes?: UsageArithmeticTypeRequest[];
   arithmeticV2TypeIds?: string[];
@@ -35,6 +37,7 @@ export function useUsageLabels({
     .sort(([left], [right]) => left.localeCompare(right))
     .map(([, item]) => item);
   const body = JSON.stringify({
+    ...(identity ? { identity } : {}),
     problemIds: ids,
     arithmeticTypes: types,
     ...(arithmeticV2TypeIds.length
@@ -52,6 +55,7 @@ export function useUsageLabels({
   useEffect(() => {
     if (!enabled) return;
     const request = JSON.parse(body) as {
+      identity?: "question";
       problemIds: string[];
       arithmeticTypes: UsageArithmeticTypeRequest[];
       arithmeticV2TypeIds?: string[];
@@ -81,6 +85,7 @@ export function useUsageLabels({
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
             period: request.period,
+            ...(request.identity ? { identity: request.identity } : {}),
             problemIds: request.problemIds.slice(
               index * 100,
               (index + 1) * 100,

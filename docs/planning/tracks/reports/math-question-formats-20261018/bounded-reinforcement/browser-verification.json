@@ -1,0 +1,2112 @@
+{
+  "checkedAt": "2026-10-18T07:02:26.780Z",
+  "privateFixtureSha256": "4b4aca153fc4915cf6aef07e5214e2fd4ea69e034d8684bd45a3d0540f4a5104",
+  "sourceDigests": {
+    "src/components/print/TestPrint.tsx": "968e01e2fc53ff8d31335c0ba97c9c2c208ad53687f0269b25f5dfda29752639",
+    "src/components/print/PrintAnswerKeyPage.tsx": "3420ebe3e85ff6eb89f1149e83c77a5e4d1985c96568f1b85fd7e0cab5089afc",
+    "src/components/print/templates/JaseupTemplate.tsx": "9157c65be4fa38153250714890495f89ddc8cd1b95dd488028432a7b8cfd49a1",
+    "src/components/print/PaperProblemView.tsx": "3765c009b2d30449dbef7f35a4efff7175d0f126a81fa4468b427dca9e9570de",
+    "src/components/print/TestPrint.module.css": "a3bae10413f08de167fc3e70fd42d99a2b505347a2f303e39d532606a386f45f",
+    "src/components/print/tokens.ts": "cc82db4c49854cd549d4535fa393285c0abd14c57035fe7e45eaf62f3ca6e27d",
+    "src/app/fonts.ts": "91ac62e201053c633c88b813cc5865a41ca2f996de43b2606d0dcb76e4cc432d",
+    "src/app/globals.css": "f2748025ff55b02e6d2312d0ef07663214e1e78b05d6793e49e66d0c9e2066d5",
+    "scripts/qa/bank/question-content-paper.tsx": "3182d5c150570c9aab2069f8e729029a7d12181a83ee0f7e3f018a0d4f78602d"
+  },
+  "summary": [
+    {
+      "status": "ready",
+      "group": "c8d1b160-ffb6-4da1-9c54-a3522ffcf134",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 11,
+      "ids": [
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f31|객관식|s20262127",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f31|객관식|s20263136",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f31|단답형|s20262127",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f31|단답형|s20263136",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f32|객관식|s20261118",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f32|객관식|s20262127",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f32|단답형|s20261118",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f32|단답형|s20262127",
+        "engine-native-desc:e4-equilateral-audit-r1|s20261118|v0",
+        "engine-native-desc:e4-equilateral-audit-r1|s20261118|v1",
+        "engine-native-desc:e4-equilateral-audit-r1|s20261118|v2"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 11,
+      "solutionItems": 0,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "c8d1b160-ffb6-4da1-9c54-a3522ffcf134",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 11,
+      "ids": [
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f31|객관식|s20262127",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f31|객관식|s20263136",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f31|단답형|s20262127",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f31|단답형|s20263136",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f32|객관식|s20261118",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f32|객관식|s20262127",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f32|단답형|s20261118",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f32|단답형|s20262127",
+        "engine-native-desc:e4-equilateral-audit-r1|s20261118|v0",
+        "engine-native-desc:e4-equilateral-audit-r1|s20261118|v1",
+        "engine-native-desc:e4-equilateral-audit-r1|s20261118|v2"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 11,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "c8d1b160-ffb6-4da1-9c54-a3522ffcf134",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "c8d1b160-ffb6-4da1-9c54-a3522ffcf134",
+      "mode": "answers",
+      "markers": 11
+    },
+    {
+      "status": "ready",
+      "group": "0a069c2f-244d-4f9e-832f-3e0f8969ba21",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 9,
+      "ids": [
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f33|단답형|s20261118",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f33|단답형|s20262127",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f34|객관식|s20261118",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f34|객관식|s20262127",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f34|단답형|s20261118",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f34|단답형|s20262127",
+        "engine-native-desc:e4-triangle-dual-proof-r1|s20261118|v0",
+        "engine-native-desc:e4-triangle-dual-proof-r1|s20261118|v1",
+        "engine-native-desc:e4-triangle-dual-proof-r1|s20261118|v2"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 9,
+      "solutionItems": 0,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "0a069c2f-244d-4f9e-832f-3e0f8969ba21",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 9,
+      "ids": [
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f33|단답형|s20261118",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f33|단답형|s20262127",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f34|객관식|s20261118",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f34|객관식|s20262127",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f34|단답형|s20261118",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f34|단답형|s20262127",
+        "engine-native-desc:e4-triangle-dual-proof-r1|s20261118|v0",
+        "engine-native-desc:e4-triangle-dual-proof-r1|s20261118|v1",
+        "engine-native-desc:e4-triangle-dual-proof-r1|s20261118|v2"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 9,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "0a069c2f-244d-4f9e-832f-3e0f8969ba21",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "0a069c2f-244d-4f9e-832f-3e0f8969ba21",
+      "mode": "answers",
+      "markers": 9
+    },
+    {
+      "status": "ready",
+      "group": "abb7989e-15ae-4dec-9ac0-983dee08a700",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 8,
+      "ids": [
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f35|객관식|s20261118",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f35|객관식|s20262127",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f35|단답형|s20261118",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f35|단답형|s20262127",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f36|객관식|s20261118",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f36|객관식|s20262127",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f36|단답형|s20261118",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f36|단답형|s20262127"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 8,
+      "solutionItems": 0,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "abb7989e-15ae-4dec-9ac0-983dee08a700",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 8,
+      "ids": [
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f35|객관식|s20261118",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f35|객관식|s20262127",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f35|단답형|s20261118",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f35|단답형|s20262127",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f36|객관식|s20261118",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f36|객관식|s20262127",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f36|단답형|s20261118",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f36|단답형|s20262127"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 8,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "abb7989e-15ae-4dec-9ac0-983dee08a700",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "abb7989e-15ae-4dec-9ac0-983dee08a700",
+      "mode": "answers",
+      "markers": 8
+    },
+    {
+      "status": "ready",
+      "group": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 13,
+      "ids": [
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f37|객관식|s20261118",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f37|객관식|s20262127",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f37|단답형|s20261118",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f37|단답형|s20262127",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f38|객관식|s20261118",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f38|객관식|s20262127",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f38|단답형|s20261118",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f38|단답형|s20262127",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f39|단답형|s20261118",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f39|단답형|s20262127",
+        "engine-native-desc:e4-trapezoid-sufficiency-r1|s20261118|v0",
+        "engine-native-desc:e4-trapezoid-sufficiency-r1|s20261118|v1",
+        "engine-native-desc:e4-trapezoid-sufficiency-r1|s20261118|v2"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 13,
+      "solutionItems": 0,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 13,
+      "ids": [
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f37|객관식|s20261118",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f37|객관식|s20262127",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f37|단답형|s20261118",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f37|단답형|s20262127",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f38|객관식|s20261118",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f38|객관식|s20262127",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f38|단답형|s20261118",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f38|단답형|s20262127",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f39|단답형|s20261118",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f39|단답형|s20262127",
+        "engine-native-desc:e4-trapezoid-sufficiency-r1|s20261118|v0",
+        "engine-native-desc:e4-trapezoid-sufficiency-r1|s20261118|v1",
+        "engine-native-desc:e4-trapezoid-sufficiency-r1|s20261118|v2"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 13,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "mode": "answers",
+      "markers": 13
+    },
+    {
+      "status": "ready",
+      "group": "d32b3290-b45a-4945-ab3e-7797fba24935",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 6,
+      "ids": [
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-1 이상과 이하 알아보기|f21|객관식|s20261118",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-1 이상과 이하 알아보기|f21|객관식|s20262127",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-1 이상과 이하 알아보기|f22|객관식|s20261118",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-1 이상과 이하 알아보기|f22|객관식|s20262127",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-1 이상과 이하 알아보기|f22|단답형|s20261118",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-1 이상과 이하 알아보기|f22|단답형|s20262127"
+      ],
+      "expectedSvgRows": 6,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 6,
+      "solutionItems": 0,
+      "figureSvgs": 6,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "d32b3290-b45a-4945-ab3e-7797fba24935",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 6,
+      "ids": [
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-1 이상과 이하 알아보기|f21|객관식|s20261118",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-1 이상과 이하 알아보기|f21|객관식|s20262127",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-1 이상과 이하 알아보기|f22|객관식|s20261118",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-1 이상과 이하 알아보기|f22|객관식|s20262127",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-1 이상과 이하 알아보기|f22|단답형|s20261118",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-1 이상과 이하 알아보기|f22|단답형|s20262127"
+      ],
+      "expectedSvgRows": 6,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 6,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "d32b3290-b45a-4945-ab3e-7797fba24935",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "d32b3290-b45a-4945-ab3e-7797fba24935",
+      "mode": "answers",
+      "markers": 6
+    },
+    {
+      "status": "ready",
+      "group": "ca9bdd29-8cf2-4c5e-8b51-8870b0a7d9f2",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 6,
+      "ids": [
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-2 초과와 미만 알아보기|f21|객관식|s20261118",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-2 초과와 미만 알아보기|f21|객관식|s20262127",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-2 초과와 미만 알아보기|f22|객관식|s20261118",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-2 초과와 미만 알아보기|f22|객관식|s20262127",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-2 초과와 미만 알아보기|f22|단답형|s20261118",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-2 초과와 미만 알아보기|f22|단답형|s20262127"
+      ],
+      "expectedSvgRows": 6,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 6,
+      "solutionItems": 0,
+      "figureSvgs": 6,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "ca9bdd29-8cf2-4c5e-8b51-8870b0a7d9f2",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 6,
+      "ids": [
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-2 초과와 미만 알아보기|f21|객관식|s20261118",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-2 초과와 미만 알아보기|f21|객관식|s20262127",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-2 초과와 미만 알아보기|f22|객관식|s20261118",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-2 초과와 미만 알아보기|f22|객관식|s20262127",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-2 초과와 미만 알아보기|f22|단답형|s20261118",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-2 초과와 미만 알아보기|f22|단답형|s20262127"
+      ],
+      "expectedSvgRows": 6,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 6,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "ca9bdd29-8cf2-4c5e-8b51-8870b0a7d9f2",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "ca9bdd29-8cf2-4c5e-8b51-8870b0a7d9f2",
+      "mode": "answers",
+      "markers": 6
+    },
+    {
+      "status": "ready",
+      "group": "529d0cfe-db6c-418b-b9d5-bf5bc177f331",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 4,
+      "ids": [
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-3 수의 범위를 알고 문제 해결하기|f21|객관식|s20261118",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-3 수의 범위를 알고 문제 해결하기|f21|객관식|s20262127",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-3 수의 범위를 알고 문제 해결하기|f21|단답형|s20261118",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-3 수의 범위를 알고 문제 해결하기|f21|단답형|s20262127"
+      ],
+      "expectedSvgRows": 4,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 4,
+      "solutionItems": 0,
+      "figureSvgs": 4,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "529d0cfe-db6c-418b-b9d5-bf5bc177f331",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 4,
+      "ids": [
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-3 수의 범위를 알고 문제 해결하기|f21|객관식|s20261118",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-3 수의 범위를 알고 문제 해결하기|f21|객관식|s20262127",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-3 수의 범위를 알고 문제 해결하기|f21|단답형|s20261118",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-3 수의 범위를 알고 문제 해결하기|f21|단답형|s20262127"
+      ],
+      "expectedSvgRows": 4,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 4,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "529d0cfe-db6c-418b-b9d5-bf5bc177f331",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "529d0cfe-db6c-418b-b9d5-bf5bc177f331",
+      "mode": "answers",
+      "markers": 4
+    },
+    {
+      "status": "ready",
+      "group": "c8bfe071-2b49-44ec-9f0f-6085677a0c7e",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 4,
+      "ids": [
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-4 올림 알아보기|f21|객관식|s20264145",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-4 올림 알아보기|f21|객관식|s20265154",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-4 올림 알아보기|f21|단답형|s20264145",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-4 올림 알아보기|f21|단답형|s20265154"
+      ],
+      "expectedSvgRows": 4,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 4,
+      "solutionItems": 0,
+      "figureSvgs": 4,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "c8bfe071-2b49-44ec-9f0f-6085677a0c7e",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 4,
+      "ids": [
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-4 올림 알아보기|f21|객관식|s20264145",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-4 올림 알아보기|f21|객관식|s20265154",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-4 올림 알아보기|f21|단답형|s20264145",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-4 올림 알아보기|f21|단답형|s20265154"
+      ],
+      "expectedSvgRows": 4,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 4,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "c8bfe071-2b49-44ec-9f0f-6085677a0c7e",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "c8bfe071-2b49-44ec-9f0f-6085677a0c7e",
+      "mode": "answers",
+      "markers": 4
+    },
+    {
+      "status": "ready",
+      "group": "1f3c89f5-2b6e-4b4b-b437-db2119d152c4",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 4,
+      "ids": [
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-5 버림 알아보기|f21|객관식|s20261118",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-5 버림 알아보기|f21|객관식|s20262127",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-5 버림 알아보기|f21|단답형|s20261118",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-5 버림 알아보기|f21|단답형|s20262127"
+      ],
+      "expectedSvgRows": 4,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 4,
+      "solutionItems": 0,
+      "figureSvgs": 4,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "1f3c89f5-2b6e-4b4b-b437-db2119d152c4",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 4,
+      "ids": [
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-5 버림 알아보기|f21|객관식|s20261118",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-5 버림 알아보기|f21|객관식|s20262127",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-5 버림 알아보기|f21|단답형|s20261118",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-5 버림 알아보기|f21|단답형|s20262127"
+      ],
+      "expectedSvgRows": 4,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 4,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "1f3c89f5-2b6e-4b4b-b437-db2119d152c4",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "1f3c89f5-2b6e-4b4b-b437-db2119d152c4",
+      "mode": "answers",
+      "markers": 4
+    },
+    {
+      "status": "ready",
+      "group": "8f8aa797-4aae-4d9a-a893-842338f974c4",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 4,
+      "ids": [
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-6 반올림 알아보기와 어림의 활용|f21|객관식|s20263136",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-6 반올림 알아보기와 어림의 활용|f21|객관식|s20264145",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-6 반올림 알아보기와 어림의 활용|f21|단답형|s20263136",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-6 반올림 알아보기와 어림의 활용|f21|단답형|s20264145"
+      ],
+      "expectedSvgRows": 4,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 4,
+      "solutionItems": 0,
+      "figureSvgs": 4,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "8f8aa797-4aae-4d9a-a893-842338f974c4",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 4,
+      "ids": [
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-6 반올림 알아보기와 어림의 활용|f21|객관식|s20263136",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-6 반올림 알아보기와 어림의 활용|f21|객관식|s20264145",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-6 반올림 알아보기와 어림의 활용|f21|단답형|s20263136",
+        "engine-elem:초5|2-1 수의 범위와 어림하기|2-1-6 반올림 알아보기와 어림의 활용|f21|단답형|s20264145"
+      ],
+      "expectedSvgRows": 4,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 4,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "8f8aa797-4aae-4d9a-a893-842338f974c4",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "8f8aa797-4aae-4d9a-a893-842338f974c4",
+      "mode": "answers",
+      "markers": 4
+    },
+    {
+      "status": "ready",
+      "group": "9acad796-0f05-47a2-82a3-a8413500b19c",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 2,
+      "ids": [
+        "engine-mid:1-2|기본 도형|65X|s20261118|v0|객관식",
+        "engine-mid:1-2|기본 도형|65X|s20261118|v0|단답형"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 2,
+      "solutionItems": 0,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "9acad796-0f05-47a2-82a3-a8413500b19c",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 2,
+      "ids": [
+        "engine-mid:1-2|기본 도형|65X|s20261118|v0|객관식",
+        "engine-mid:1-2|기본 도형|65X|s20261118|v0|단답형"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 2,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "9acad796-0f05-47a2-82a3-a8413500b19c",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "9acad796-0f05-47a2-82a3-a8413500b19c",
+      "mode": "answers",
+      "markers": 2
+    },
+    {
+      "status": "ready",
+      "group": "bd419f09-50f5-4e63-a83b-9cbb445c766b",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 2,
+      "ids": [
+        "engine-mid:1-2|다각형|70|s20261118|v1|객관식",
+        "engine-mid:1-2|다각형|70|s20261118|v1|단답형"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 2,
+      "solutionItems": 0,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "bd419f09-50f5-4e63-a83b-9cbb445c766b",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 2,
+      "ids": [
+        "engine-mid:1-2|다각형|70|s20261118|v1|객관식",
+        "engine-mid:1-2|다각형|70|s20261118|v1|단답형"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 2,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "bd419f09-50f5-4e63-a83b-9cbb445c766b",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "bd419f09-50f5-4e63-a83b-9cbb445c766b",
+      "mode": "answers",
+      "markers": 2
+    },
+    {
+      "status": "ready",
+      "group": "8c976c58-49fe-4a11-acca-cc2e10eb9f2c",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 6,
+      "ids": [
+        "engine-mid:1-2|위치 관계|69X|s20261118|v0|객관식",
+        "engine-mid:1-2|위치 관계|69X|s20261118|v0|단답형",
+        "engine-mid:1-2|위치 관계|72|s20261118|v1|객관식",
+        "engine-mid:1-2|위치 관계|72|s20261118|v1|단답형",
+        "engine-mid:1-2|위치 관계|73|s20261118|v0|객관식",
+        "engine-mid:1-2|위치 관계|73|s20261118|v0|단답형"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 6,
+      "solutionItems": 0,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "8c976c58-49fe-4a11-acca-cc2e10eb9f2c",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 6,
+      "ids": [
+        "engine-mid:1-2|위치 관계|69X|s20261118|v0|객관식",
+        "engine-mid:1-2|위치 관계|69X|s20261118|v0|단답형",
+        "engine-mid:1-2|위치 관계|72|s20261118|v1|객관식",
+        "engine-mid:1-2|위치 관계|72|s20261118|v1|단답형",
+        "engine-mid:1-2|위치 관계|73|s20261118|v0|객관식",
+        "engine-mid:1-2|위치 관계|73|s20261118|v0|단답형"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 6,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "8c976c58-49fe-4a11-acca-cc2e10eb9f2c",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "8c976c58-49fe-4a11-acca-cc2e10eb9f2c",
+      "mode": "answers",
+      "markers": 6
+    },
+    {
+      "status": "ready",
+      "group": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 6,
+      "ids": [
+        "engine-mid:2-2|경우의 수|01|s20261118|v0|객관식",
+        "engine-mid:2-2|경우의 수|01|s20261118|v0|단답형",
+        "engine-mid:2-2|경우의 수|114X|s20261118|v0|객관식",
+        "engine-mid:2-2|경우의 수|114X|s20261118|v0|단답형",
+        "engine-mid:2-2|경우의 수|114X|s20261118|v1|객관식",
+        "engine-mid:2-2|경우의 수|114X|s20261118|v1|단답형"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 6,
+      "solutionItems": 0,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 6,
+      "ids": [
+        "engine-mid:2-2|경우의 수|01|s20261118|v0|객관식",
+        "engine-mid:2-2|경우의 수|01|s20261118|v0|단답형",
+        "engine-mid:2-2|경우의 수|114X|s20261118|v0|객관식",
+        "engine-mid:2-2|경우의 수|114X|s20261118|v0|단답형",
+        "engine-mid:2-2|경우의 수|114X|s20261118|v1|객관식",
+        "engine-mid:2-2|경우의 수|114X|s20261118|v1|단답형"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 6,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+      "mode": "answers",
+      "markers": 6
+    },
+    {
+      "status": "ready",
+      "group": "7d66ac49-0f88-4815-9bb2-abadd3ccb626",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 20,
+      "ids": [
+        "engine-mid:2-2|경우의 수|08|s20261118|v1|객관식",
+        "engine-mid:2-2|경우의 수|08|s20261118|v1|단답형",
+        "engine-mid:2-2|경우의 수|09|s20261118|v5|객관식",
+        "engine-mid:2-2|경우의 수|09|s20261118|v5|단답형",
+        "engine-mid:2-2|경우의 수|10|s20261118|v0|객관식",
+        "engine-mid:2-2|경우의 수|10|s20261118|v0|단답형",
+        "engine-mid:2-2|경우의 수|11|s20261118|v0|객관식",
+        "engine-mid:2-2|경우의 수|11|s20261118|v0|단답형",
+        "engine-mid:2-2|경우의 수|12|s20261118|v0|객관식",
+        "engine-mid:2-2|경우의 수|12|s20261118|v0|단답형",
+        "engine-mid:2-2|경우의 수|13|s20261118|v0|객관식",
+        "engine-mid:2-2|경우의 수|13|s20261118|v0|단답형",
+        "engine-mid:2-2|경우의 수|14|s20261118|v1|객관식",
+        "engine-mid:2-2|경우의 수|14|s20261118|v1|단답형",
+        "engine-mid:2-2|경우의 수|15|s20261118|v0|객관식",
+        "engine-mid:2-2|경우의 수|15|s20261118|v0|단답형",
+        "engine-mid:2-2|경우의 수|16|s20261118|v2|객관식",
+        "engine-mid:2-2|경우의 수|16|s20261118|v2|단답형",
+        "engine-mid:2-2|경우의 수|90|s20261118|v0|객관식",
+        "engine-mid:2-2|경우의 수|90|s20261118|v0|단답형"
+      ],
+      "expectedSvgRows": 4,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 20,
+      "solutionItems": 0,
+      "figureSvgs": 4,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "7d66ac49-0f88-4815-9bb2-abadd3ccb626",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 20,
+      "ids": [
+        "engine-mid:2-2|경우의 수|08|s20261118|v1|객관식",
+        "engine-mid:2-2|경우의 수|08|s20261118|v1|단답형",
+        "engine-mid:2-2|경우의 수|09|s20261118|v5|객관식",
+        "engine-mid:2-2|경우의 수|09|s20261118|v5|단답형",
+        "engine-mid:2-2|경우의 수|10|s20261118|v0|객관식",
+        "engine-mid:2-2|경우의 수|10|s20261118|v0|단답형",
+        "engine-mid:2-2|경우의 수|11|s20261118|v0|객관식",
+        "engine-mid:2-2|경우의 수|11|s20261118|v0|단답형",
+        "engine-mid:2-2|경우의 수|12|s20261118|v0|객관식",
+        "engine-mid:2-2|경우의 수|12|s20261118|v0|단답형",
+        "engine-mid:2-2|경우의 수|13|s20261118|v0|객관식",
+        "engine-mid:2-2|경우의 수|13|s20261118|v0|단답형",
+        "engine-mid:2-2|경우의 수|14|s20261118|v1|객관식",
+        "engine-mid:2-2|경우의 수|14|s20261118|v1|단답형",
+        "engine-mid:2-2|경우의 수|15|s20261118|v0|객관식",
+        "engine-mid:2-2|경우의 수|15|s20261118|v0|단답형",
+        "engine-mid:2-2|경우의 수|16|s20261118|v2|객관식",
+        "engine-mid:2-2|경우의 수|16|s20261118|v2|단답형",
+        "engine-mid:2-2|경우의 수|90|s20261118|v0|객관식",
+        "engine-mid:2-2|경우의 수|90|s20261118|v0|단답형"
+      ],
+      "expectedSvgRows": 4,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 20,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "7d66ac49-0f88-4815-9bb2-abadd3ccb626",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "7d66ac49-0f88-4815-9bb2-abadd3ccb626",
+      "mode": "answers",
+      "markers": 20
+    },
+    {
+      "status": "ready",
+      "group": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 11,
+      "ids": [
+        "engine-mid:manual-20261018|대푯값과 산포도|S01|s20261118|v0|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S01|s20261118|v1|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261118|v0|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261118|v0|단답형",
+        "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261118|v1|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261118|v1|단답형",
+        "engine-mid:manual-20261018|대푯값과 산포도|S03|s20261118|v0|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S03|s20261118|v1|객관식",
+        "engine-native-desc:m3-statistics-shift-spread-r1|s20261118|v0",
+        "engine-native-desc:m3-statistics-shift-spread-r1|s20261118|v1",
+        "engine-native-desc:m3-statistics-shift-spread-r1|s20261118|v2"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 11,
+      "solutionItems": 0,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 11,
+      "ids": [
+        "engine-mid:manual-20261018|대푯값과 산포도|S01|s20261118|v0|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S01|s20261118|v1|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261118|v0|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261118|v0|단답형",
+        "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261118|v1|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261118|v1|단답형",
+        "engine-mid:manual-20261018|대푯값과 산포도|S03|s20261118|v0|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S03|s20261118|v1|객관식",
+        "engine-native-desc:m3-statistics-shift-spread-r1|s20261118|v0",
+        "engine-native-desc:m3-statistics-shift-spread-r1|s20261118|v1",
+        "engine-native-desc:m3-statistics-shift-spread-r1|s20261118|v2"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 11,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "mode": "answers",
+      "markers": 11
+    },
+    {
+      "status": "ready",
+      "group": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 6,
+      "ids": [
+        "engine-mid:manual-20261018|무리수와 실수|R01|s20261118|v0|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R01|s20261118|v1|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R02|s20261118|v0|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R02|s20261118|v1|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R03|s20261118|v0|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R03|s20261118|v1|객관식"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 6,
+      "solutionItems": 0,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 6,
+      "ids": [
+        "engine-mid:manual-20261018|무리수와 실수|R01|s20261118|v0|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R01|s20261118|v1|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R02|s20261118|v0|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R02|s20261118|v1|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R03|s20261118|v0|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R03|s20261118|v1|객관식"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 6,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "mode": "answers",
+      "markers": 6
+    },
+    {
+      "status": "ready",
+      "group": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 11,
+      "ids": [
+        "engine-mid:manual-20261018|이차방정식의 활용|Q01|s20261118|v0|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q01|s20261118|v1|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q02|s20261118|v0|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q02|s20261118|v1|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261118|v0|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261118|v0|단답형",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261118|v1|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261118|v1|단답형",
+        "engine-native-desc:m3-quadratic-domain-r1|s20261118|v0",
+        "engine-native-desc:m3-quadratic-domain-r1|s20261118|v1",
+        "engine-native-desc:m3-quadratic-domain-r1|s20261118|v2"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 11,
+      "solutionItems": 0,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 11,
+      "ids": [
+        "engine-mid:manual-20261018|이차방정식의 활용|Q01|s20261118|v0|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q01|s20261118|v1|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q02|s20261118|v0|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q02|s20261118|v1|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261118|v0|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261118|v0|단답형",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261118|v1|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261118|v1|단답형",
+        "engine-native-desc:m3-quadratic-domain-r1|s20261118|v0",
+        "engine-native-desc:m3-quadratic-domain-r1|s20261118|v1",
+        "engine-native-desc:m3-quadratic-domain-r1|s20261118|v2"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 11,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "mode": "answers",
+      "markers": 11
+    },
+    {
+      "status": "ready",
+      "group": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 13,
+      "ids": [
+        "engine-mid:manual-20261018|인수분해|F01|s20261118|v0|객관식",
+        "engine-mid:manual-20261018|인수분해|F01|s20261118|v0|단답형",
+        "engine-mid:manual-20261018|인수분해|F01|s20261118|v1|객관식",
+        "engine-mid:manual-20261018|인수분해|F01|s20261118|v1|단답형",
+        "engine-mid:manual-20261018|인수분해|F02|s20261118|v0|객관식",
+        "engine-mid:manual-20261018|인수분해|F02|s20261118|v1|객관식",
+        "engine-mid:manual-20261018|인수분해|F03|s20261118|v1|객관식",
+        "engine-mid:manual-20261018|인수분해|F03|s20261118|v1|단답형",
+        "engine-mid:manual-20261018|인수분해|F03|s20261118|v2|객관식",
+        "engine-mid:manual-20261018|인수분해|F03|s20261118|v2|단답형",
+        "engine-native-desc:m3-factor-error-proof-r1|s20261118|v0",
+        "engine-native-desc:m3-factor-error-proof-r1|s20261118|v1",
+        "engine-native-desc:m3-factor-error-proof-r1|s20261118|v2"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 13,
+      "solutionItems": 0,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 13,
+      "ids": [
+        "engine-mid:manual-20261018|인수분해|F01|s20261118|v0|객관식",
+        "engine-mid:manual-20261018|인수분해|F01|s20261118|v0|단답형",
+        "engine-mid:manual-20261018|인수분해|F01|s20261118|v1|객관식",
+        "engine-mid:manual-20261018|인수분해|F01|s20261118|v1|단답형",
+        "engine-mid:manual-20261018|인수분해|F02|s20261118|v0|객관식",
+        "engine-mid:manual-20261018|인수분해|F02|s20261118|v1|객관식",
+        "engine-mid:manual-20261018|인수분해|F03|s20261118|v1|객관식",
+        "engine-mid:manual-20261018|인수분해|F03|s20261118|v1|단답형",
+        "engine-mid:manual-20261018|인수분해|F03|s20261118|v2|객관식",
+        "engine-mid:manual-20261018|인수분해|F03|s20261118|v2|단답형",
+        "engine-native-desc:m3-factor-error-proof-r1|s20261118|v0",
+        "engine-native-desc:m3-factor-error-proof-r1|s20261118|v1",
+        "engine-native-desc:m3-factor-error-proof-r1|s20261118|v2"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderedQuestions": 0,
+      "solutionItems": 13,
+      "figureSvgs": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "clippedSvgs": [],
+      "renderErrors": 0,
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "teacher-only-solution-marker",
+      "group": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "mode": "answers",
+      "markers": 13
+    }
+  ],
+  "errors": [],
+  "failedResponses": [],
+  "physicalPrinterVerified": false,
+  "manifestSha256": "68991f57d35983065158c37252f1795286fe4129ad77dad2ba2d2a2374161bf0",
+  "privateCandidatesSha256": "a69d8f1dcf6d40839a5cfa92fd9438c4808acf5e14689f6081af02f89eca4c21",
+  "allActualCandidateFieldsMatchFixture": true,
+  "actualCandidateRows": 146
+}

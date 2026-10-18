@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import type { WorkspaceWorkflowStep } from "@/contracts/workspaceWorkflow.contract";
 import type { ExamConditionSource } from "@/contracts/examCondition.contract";
 import type { ExamConditionsClient } from "./examConditionsClient";
+import type { QuestionRepresentation } from "@/contracts/questionFormats.contract";
 
 /** Subject data stays in its native contract; this UI only owns the common workflow. */
 export type ExamBuilderStep = WorkspaceWorkflowStep;
@@ -63,6 +64,8 @@ export interface ExamNamedConditions {
 }
 export interface ExamQuestionInfo {
   id: string;
+  /** Server-issued task identity. Actual `id` remains the stored representation. */
+  questionId?: string;
   scopeId: string;
   scopeLabel: string;
   difficulty: string;
@@ -78,6 +81,15 @@ export interface ExamQuestionInfo {
   origin?: string;
 }
 export interface ExamBuilderSource<T> {
+  /** Optional: English and local sources retain their existing selection flow. */
+  questionFormats?: {
+    options: (item: T) => readonly QuestionRepresentation[];
+    load: (
+      item: T,
+      option: QuestionRepresentation,
+      signal: AbortSignal,
+    ) => Promise<T>;
+  };
   /** Math inventory must be confirmed before a scope can be selected. */
   requireScopeCounts?: boolean;
   /** Scopes already present with the selected content can be shown before effects run. */
@@ -121,6 +133,8 @@ export interface ExamBuilderSource<T> {
   summarize?: (items: T[]) => string;
   /** Resolve revisions / eligibility before entering output. Never silently broaden scope. */
   prepareOutput?: (items: T[], signal: AbortSignal) => Promise<T[]>;
+  /** Annotate old saved items with current identity, without replacing saved content. */
+  resolveIdentity?: (items: T[], signal: AbortSignal) => Promise<T[]>;
 }
 export interface ExamBuilderOutputProps<T> {
   questions: T[];
@@ -148,8 +162,13 @@ export interface ExamBuilderProps<T> {
   initialGroup?: string;
   /** Restore only after the owner explicitly opens this document; key by draft id. */
   initialStep?: ExamBuilderStep;
+  /** Saved output is shown as stored; composition edits first create an explicit copy. */
+  preserveStoredOutput?: boolean;
+  onBeginEdit?: () => Promise<boolean>;
   /** User transitions and successful output validation; never called on blank mount. */
   onStepChange?: (step: ExamBuilderStep) => void;
+  /** Lets a host's save shortcut honor the same explicit composition intent. */
+  onIntentIssueChange?: (issue: string | null) => void;
   canOutput?: boolean;
   onOutputIntent?: () => void;
   disabled?: boolean;

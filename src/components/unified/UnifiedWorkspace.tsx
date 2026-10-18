@@ -16,6 +16,7 @@ import Link from "next/link";
 import {
   useCallback,
   useEffect,
+  useEffectEvent,
   useMemo,
   useRef,
   useState,
@@ -38,6 +39,11 @@ import {
   type EnglishView,
 } from "@/components/english/views";
 import { useWorkspaceAccess } from "./useWorkspaceAccess";
+import {
+  introducesQuestionConflict,
+  questionConflicts,
+  questionIdentity,
+} from "@/lib/problem/questionSelectionClient";
 import type { BankData, StudioProblem } from "./types";
 import type { StudioCrop } from "./studioHelpers";
 import type { EnglishBankMakerSeed } from "@/contracts/englishBank.contract";
@@ -565,6 +571,20 @@ function UnifiedWorkspaceContent({
     id?: string;
     version: number;
   }>({ version: 0 });
+  const [bankIntentIssue, setBankIntentIssue] = useState<{
+    draftId: string;
+    issue: string | null;
+  }>();
+  const receiveBankIntentIssue = useCallback(
+    (issue: string | null) => {
+      setBankIntentIssue((current) =>
+        current?.draftId === draft.id && current.issue === issue
+          ? current
+          : { draftId: draft.id, issue },
+      );
+    },
+    [draft.id],
+  );
   const [arithmeticDocument, setArithmeticDocument] = useState<{
     id?: string;
     version: number;
@@ -586,6 +606,7 @@ function UnifiedWorkspaceContent({
     grade?: string;
     version: number;
     initialStep?: WorkspaceWorkflowStep;
+    preserveStoredOutput?: boolean;
   }>({ version: 0 });
   const [notice, setNoticeMessage] = useState("");
   const [noticeError, setNoticeError] = useState(false);
@@ -912,46 +933,6 @@ function UnifiedWorkspaceContent({
     }
     if (!shellModal && dialog.open) dialog.close();
   }, [shellModal]);
-  useEffect(() => {
-    const keydown = (event: KeyboardEvent) => {
-      if (!(event.ctrlKey || event.metaKey)) return;
-      if (event.key === "\\") {
-        event.preventDefault();
-        toggleSidebar();
-      }
-      if (event.key.toLowerCase() === "k" && hasMenus) {
-        event.preventDefault();
-        setModal("search");
-      }
-      if (
-        event.key.toLowerCase() === "s" &&
-        canCreate &&
-        worksheetView &&
-        hydrated
-      ) {
-        event.preventDefault();
-        void Promise.resolve(saveNow()).then((saved) => {
-          if (saved)
-            setNotice(
-              storageScope
-                ? "내 계정에 작업을 저장했습니다."
-                : "이 브라우저에 작업을 저장했습니다.",
-            );
-        });
-      }
-    };
-    window.addEventListener("keydown", keydown);
-    return () => window.removeEventListener("keydown", keydown);
-  }, [
-    saveNow,
-    setNotice,
-    toggleSidebar,
-    hasMenus,
-    canCreate,
-    storageScope,
-    worksheetView,
-    hydrated,
-  ]);
   const openBank = (filters: { q?: string; grade?: string } = {}) => {
     if (!can("bank")) return;
     void loadMathBuilder().catch(() => {});
@@ -961,6 +942,16 @@ function UnifiedWorkspaceContent({
   };
   function toggle(problem: StudioProblem) {
     const index = selected.findIndex((p) => p.id === problem.id);
+    if (
+      index < 0 &&
+      selected.some((p) => questionIdentity(p) === questionIdentity(problem))
+    ) {
+      setNotice(
+        "같은 문항이 이미 담겨 있습니다. 문항 검토의 형식 변경을 사용해 주세요.",
+        true,
+      );
+      return;
+    }
     if (index < 0 && problem.eligible === false) {
       setNotice(problem.ineligibleReason || "출제할 수 없는 문항입니다.");
       return;
@@ -981,12 +972,27 @@ function UnifiedWorkspaceContent({
   function undoLast() {
     if (!undo || undo.draftId !== draft.id) return;
     if (undo.kind === "order") {
+      if (questionConflicts(undo.previous).length) {
+        setNotice(
+          "되돌릴 목록에 같은 문항의 형식이 함께 있습니다. 현재 선택은 유지했습니다.",
+          true,
+        );
+        return;
+      }
       setSelected(undo.previous);
       setUndo(null);
       setNotice("문제 차례를 되돌렸습니다.");
       return;
     }
     if (undo.problem.eligible === false) return;
+    if (
+      selected.some(
+        (item) => questionIdentity(item) === questionIdentity(undo.problem),
+      )
+    ) {
+      setNotice("같은 문항이 이미 담겨 있어 되돌릴 수 없습니다.", true);
+      return;
+    }
     setSelected((current) => restoreToCart(current, undo.problem, undo.index));
     updateRemovals((items) => forgetRemovals(items, [undo.problem.id]));
     setUndo(null);
@@ -994,6 +1000,16 @@ function UnifiedWorkspaceContent({
   }
   /** Bank composition changes keep replacement positions and recovery in one update. */
   function changeBankSelection(problems: StudioProblem[]) {
+    const sameActualRows =
+      problems.length === selected.length &&
+      problems.every((item, index) => item.id === selected[index].id);
+    if (!sameActualRows && introducesQuestionConflict(selected, problems)) {
+      setNotice(
+        "같은 문항의 형식 충돌을 먼저 해소해 주세요. 현재 선택은 유지했습니다.",
+        true,
+      );
+      return;
+    }
     setWorkflow({ source: "bank", step: "review" });
     const next = [
       ...new Map(
@@ -1043,6 +1059,14 @@ function UnifiedWorkspaceContent({
    */
   function restoreRemoved(problem: StudioProblem) {
     if (problem.eligible === false) return;
+    if (
+      selected.some(
+        (item) => questionIdentity(item) === questionIdentity(problem),
+      )
+    ) {
+      setNotice("같은 문항이 이미 담겨 있습니다.", true);
+      return;
+    }
     const index =
       removed.find((item) => item.problem.id === problem.id)?.index ??
       selected.length;
@@ -1087,6 +1111,39 @@ function UnifiedWorkspaceContent({
   async function persistWorksheet(sharing?: DocumentSharing) {
     setDismissedSaveError(null);
     setUndo(null);
+    if (
+      (view === "bank" || draft.workflow?.source === "bank") &&
+      !bankEntry.preserveStoredOutput &&
+      bankIntentIssue?.draftId === draft.id &&
+      bankIntentIssue.issue
+    ) {
+      setNotice(
+        `${bankIntentIssue.issue}. 범위 설정에서 조건을 수정하거나 다시 구성해 주세요.`,
+        true,
+      );
+      return false;
+    }
+    if (
+      !bankEntry.preserveStoredOutput &&
+      selected.some((item) => item.questionId)
+    ) {
+      try {
+        const { createMathExamBuilderSource } =
+          await import("@/components/exam-builder/mathSource");
+        await createMathExamBuilderSource().prepareOutput?.(
+          selected,
+          new AbortController().signal,
+        );
+      } catch (cause) {
+        setNotice(
+          cause instanceof Error
+            ? cause.message
+            : "저장할 실제 문항을 확인하지 못했습니다. 현재 작업은 유지했습니다.",
+          true,
+        );
+        return false;
+      }
+    }
     const saved = await saveNow(sharing);
     if (saved)
       setNotice(
@@ -1096,6 +1153,31 @@ function UnifiedWorkspaceContent({
       );
     return saved;
   }
+  const saveFromKeyboard = useEffectEvent(() => persistWorksheet());
+  useEffect(() => {
+    const keydown = (event: KeyboardEvent) => {
+      if (!(event.ctrlKey || event.metaKey)) return;
+      if (event.key === "\\") {
+        event.preventDefault();
+        toggleSidebar();
+      }
+      if (event.key.toLowerCase() === "k" && hasMenus) {
+        event.preventDefault();
+        setModal("search");
+      }
+      if (
+        event.key.toLowerCase() === "s" &&
+        canCreate &&
+        worksheetView &&
+        hydrated
+      ) {
+        event.preventDefault();
+        void saveFromKeyboard();
+      }
+    };
+    window.addEventListener("keydown", keydown);
+    return () => window.removeEventListener("keydown", keydown);
+  }, [toggleSidebar, hasMenus, canCreate, worksheetView, hydrated]);
   async function openSaved(id: string, options?: LibraryOpenOptions) {
     if (!can("export")) return;
     await prepareDrafts();
@@ -1125,6 +1207,7 @@ function UnifiedWorkspaceContent({
         setBankEntry((current) => ({
           version: current.version + 1,
           initialStep: step,
+          preserveStoredOutput: step === "output",
         }));
         navigate("bank");
       } else navigate("export");
@@ -1725,9 +1808,27 @@ function UnifiedWorkspaceContent({
                   initialData={initialData}
                   initialGroup={bankEntry.grade}
                   initialStep={bankEntry.initialStep}
+                  preserveStoredOutput={bankEntry.preserveStoredOutput}
+                  onBeginEdit={async () => {
+                    const stored = getCurrentDraft();
+                    const copied = await importDraft({
+                      ...stored,
+                      version: 1,
+                      title: `${stored.title.slice(0, 75)} 사본`,
+                    });
+                    if (!copied) return false;
+                    setBankEntry((current) => ({
+                      ...current,
+                      preserveStoredOutput: false,
+                      initialStep: "review",
+                    }));
+                    setNotice("저장본을 유지하고 편집할 사본을 만들었습니다.");
+                    return true;
+                  }}
                   onStepChange={(step) => {
                     if (view === "bank") setWorkflow({ source: "bank", step });
                   }}
+                  onIntentIssueChange={receiveBankIntentIssue}
                   editor={editorProps}
                   onQuestionsChange={changeBankSelection}
                   canOutput={can("export")}

@@ -7,11 +7,13 @@ export default function BuilderDialog({
   title,
   onClose,
   width,
+  focusSelectedRadio = false,
   children,
 }: {
   title: string;
   onClose: () => void;
   width?: number;
+  focusSelectedRadio?: boolean;
   children: ReactNode;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
@@ -24,13 +26,17 @@ export default function BuilderDialog({
         : null;
     const overflow = document.body.style.overflow;
     dialog?.showModal();
+    if (focusSelectedRadio)
+      dialog
+        ?.querySelector<HTMLInputElement>('input[type="radio"]:checked')
+        ?.focus();
     document.body.style.overflow = "hidden";
     return () => {
       dialog?.close();
       document.body.style.overflow = overflow;
       if (opener?.isConnected) opener.focus({ preventScroll: true });
     };
-  }, []);
+  }, [focusSelectedRadio]);
   return (
     <dialog
       ref={ref}

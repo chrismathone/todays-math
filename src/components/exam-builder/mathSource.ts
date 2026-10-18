@@ -1,3 +1,9 @@
+import {
+  assertQuestionFormat,
+  questionIdentity,
+  requireQuestionRead,
+  selectedQuestionFormat,
+} from "@/lib/problem/questionSelectionClient";
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 import {
   bankCheckResponseSchema,
@@ -21,6 +27,7 @@ export const MATH_EXAM_MAX_QUESTIONS = 100;
 interface MathSourceOptions {
   initialUnits?: readonly UnitEntity[];
   initialUnitCounts?: Readonly<Record<string, number>>;
+  initialCountUnit?: "question";
   /** Omit in the workspace to retain the existing production/development routing. */
   problemsUrl?: string;
   fetch?: typeof fetch;
@@ -100,7 +107,10 @@ export function createMathExamBuilderSource(
     });
   }
   const initialScopes =
-    options.initialUnits && !options.refreshAvailability && !options.filters
+    options.initialUnits &&
+    options.initialCountUnit === "question" &&
+    !options.refreshAvailability &&
+    !options.filters
       ? toScopes(options.initialUnits, options.initialUnitCounts)
       : undefined;
 
@@ -117,22 +127,49 @@ export function createMathExamBuilderSource(
     });
     const body = await response.json();
     if (!response.ok)
-      throw new Error(body.error || "문제은행을 불러오지 못했습니다.");
+      throw new Error(
+        (typeof body.error === "string" ? body.error : body.error?.message) ||
+          "문제은행을 불러오지 못했습니다.",
+      );
     return body as T;
   }
 
   function eligible(items: StudioProblem[]) {
-    if (items.some((item) => item.eligible !== true))
+    if (
+      items.some(
+        (item) =>
+          item.eligible !== true ||
+          (item.questionFormats && !selectedQuestionFormat(item)),
+      )
+    )
       throw new Error(
         "출제할 수 없는 문항이 있습니다. 문항을 다시 선택해 주세요.",
       );
-    if (new Set(items.map((item) => item.id)).size !== items.length)
+    if (new Set(items.map(questionIdentity)).size !== items.length)
       throw new Error("중복 문항이 있습니다. 문항을 다시 선택해 주세요.");
     return items;
   }
 
   return {
     requireScopeCounts: true,
+    questionFormats: {
+      options: (item) => item.questionFormats ?? [],
+      async load(item, option, signal) {
+        const params = new URLSearchParams({
+          identity: "question",
+          ids: option.problemId,
+          pageSize: "1",
+        });
+        const data = await request<BankData>(`${endpoint()}?${params}`, signal);
+        requireQuestionRead(data);
+        const actual = data.problems.find((row) => row.id === option.problemId);
+        if (!actual)
+          throw new Error(
+            "선택한 실제 표현을 찾지 못했습니다. 기존 선택은 유지됩니다.",
+          );
+        return assertQuestionFormat(item, option, eligible([actual])[0]);
+      },
+    },
     // W4 «구성 조건» — 난이도 의도는 우리 사다리, 최근 출제 빼기는 D-20 의 14일 그대로.
     conditions: {
       ladder: DIFFICULTY_LADDER,
@@ -142,66 +179,60 @@ export function createMathExamBuilderSource(
     ...(initialScopes ? { initialScopes } : {}),
     async loadScopes(signal, scopeOptions) {
       const recent = scopeOptions?.excludeRecent === true;
-      if (options.refreshAvailability || options.filters || recent) {
-        const params = new URLSearchParams(options.filters);
-        params.set("view", "available");
-        // 최근 출제 빼기 — 계정의 시험지는 서버가 찾는다(id 목록을 싣지 않는다).
-        if (recent) params.set("recent", "1");
-        // D-111: a sheet takes one problem per family, so the gate is families.
-        if (distinct) params.set("families", "1");
-        const [inventory, curriculum] = await Promise.all([
-          request<unknown>(`${endpoint()}/sources`, signal, {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify(Object.fromEntries(params)),
-          }),
-          options.initialUnits
-            ? Promise.resolve({ units: options.initialUnits })
-            : request<BankData>(`${endpoint()}?pageSize=1`, signal),
-        ]);
-        const available = bankSourceAvailabilitySchema.parse(inventory);
-        if (!curriculum.units)
-          throw new Error("단원 목록을 불러오지 못했습니다.");
-        if (signal.aborted) throw new DOMException("Aborted", "AbortError");
-        options.onAvailability?.(available);
-        if (!distinct)
-          return toScopes(
-            curriculum.units,
-            available.facets
-              ? Object.fromEntries(
-                  curriculum.units.map((unit) => [
-                    unit.id,
-                    available.facets!.units[unit.id]?.available ?? 0,
-                  ]),
-                )
-              : undefined,
-          );
-        // Never fall back to row counts: rows overstate what one sheet can hold.
-        const families = available.facets?.unitFamilies;
+      const params = new URLSearchParams(options.filters);
+      params.set("identity", "question");
+      params.set("view", "available");
+      // 최근 출제 빼기 — 계정의 시험지는 서버가 찾는다(id 목록을 싣지 않는다).
+      if (recent) params.set("recent", "1");
+      // D-111: a sheet takes one problem per family, so the gate is families.
+      if (distinct) params.set("families", "1");
+      const [inventory, curriculum] = await Promise.all([
+        request<unknown>(`${endpoint()}/sources`, signal, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(Object.fromEntries(params)),
+        }),
+        options.initialUnits
+          ? Promise.resolve({ units: options.initialUnits })
+          : request<BankData>(
+              `${endpoint()}?identity=question&pageSize=1`,
+              signal,
+            ),
+      ]);
+      const available = bankSourceAvailabilitySchema.parse(inventory);
+      requireQuestionRead(available);
+      if (!curriculum.units)
+        throw new Error("단원 목록을 불러오지 못했습니다.");
+      if (signal.aborted) throw new DOMException("Aborted", "AbortError");
+      options.onAvailability?.(available);
+      if (!distinct)
         return toScopes(
           curriculum.units,
-          families
+          available.facets
             ? Object.fromEntries(
                 curriculum.units.map((unit) => [
                   unit.id,
-                  families[unit.id] ?? 0,
+                  available.facets!.units[unit.id]?.available ?? 0,
                 ]),
               )
             : undefined,
-          "갈래",
         );
-      }
-      if (options.initialUnits)
-        return toScopes(options.initialUnits, options.initialUnitCounts);
-      // The bank already returns the full ordered curriculum. Only one question
-      // is fetched alongside it; no full-bank download or per-unit request.
-      const data = await request<BankData>(`${endpoint()}?pageSize=1`, signal);
-      if (!data.units) throw new Error("단원 목록을 불러오지 못했습니다.");
-      return toScopes(data.units, data.unitCounts);
+      // Never fall back to row counts: rows overstate what one sheet can hold.
+      const families = available.facets?.unitFamilies;
+      return toScopes(
+        curriculum.units,
+        families
+          ? Object.fromEntries(
+              curriculum.units.map((unit) => [unit.id, families[unit.id] ?? 0]),
+            )
+          : undefined,
+        "갈래",
+      );
     },
     async list(input, signal) {
       if (!input.scopeIds.length) return { items: [], total: 0 };
       const params = new URLSearchParams(options.filters);
+      params.set("identity", "question");
       params.set("unitIds", [...new Set(input.scopeIds)].join(","));
       params.set("page", String(input.page));
       params.set("pageSize", String(input.pageSize));
@@ -225,6 +256,7 @@ export function createMathExamBuilderSource(
               body: JSON.stringify(Object.fromEntries(params)),
             })
           : await request<BankData>(`${endpoint()}?${params}`, signal);
+      requireQuestionRead(data);
       return {
         items: data.page === input.page ? eligible(data.problems) : [],
         total: data.total,
@@ -236,6 +268,8 @@ export function createMathExamBuilderSource(
       );
       if (!positive.length) return [];
       const data = await request<{
+        countUnit?: "question";
+        status?: "complete" | "insufficient" | "search_limit";
         problems: StudioProblem[];
         difficulty?: { tier: string; requested: number; actual: number }[];
         formats?: { format: string; requested: number; actual: number }[];
@@ -243,6 +277,7 @@ export function createMathExamBuilderSource(
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
+          identity: "question",
           ...(options.filters ? { filters: options.filters } : {}),
           ...(distinct ? {} : { distinctFamilies: false }),
           ...(composeOptions?.excludeRecent ? { recent: true } : {}),
@@ -261,6 +296,11 @@ export function createMathExamBuilderSource(
           })),
         }),
       });
+      requireQuestionRead(data);
+      if (data.status === "search_limit")
+        throw new Error(
+          "조건에 맞는 구성을 끝까지 확인하지 못했습니다. 재고 부족이 확정된 결과는 아닙니다. 현재 문항과 입력은 유지했습니다.",
+        );
       const items = eligible(data.problems);
       if (!data.difficulty && !data.formats) return items;
       return {
@@ -284,6 +324,7 @@ export function createMathExamBuilderSource(
     info(item) {
       return {
         id: item.id,
+        questionId: item.questionId,
         scopeId: scopeId(item),
         familyId: !distinct
           ? undefined
@@ -324,63 +365,116 @@ export function createMathExamBuilderSource(
         `형식 ${tally(items.map(formatOf), FORMAT_ORDER)}`,
       ].join(" · ");
     },
+    async resolveIdentity(items, signal) {
+      const bankItems = items.filter((item) => !localCrop(item));
+      if (!bankItems.length) return items;
+      const params = new URLSearchParams({
+        identity: "question",
+        ids: bankItems.map((item) => item.id).join(","),
+        pageSize: String(bankItems.length),
+      });
+      const data = await request<BankData>(`${endpoint()}?${params}`, signal);
+      requireQuestionRead(data);
+      const byId = new Map(data.problems.map((item) => [item.id, item]));
+      if (bankItems.some((item) => !byId.get(item.id)?.questionId))
+        throw new Error(
+          "저장된 실제 문항의 현재 연결을 확인하지 못했습니다. 입력은 유지했습니다.",
+        );
+      return items.map((item) => {
+        const current = byId.get(item.id);
+        if (
+          current &&
+          !item.questionId &&
+          [
+            "content",
+            "answer",
+            "solution",
+            "figureSvg",
+            "figureUrls",
+            "figureDims",
+            "figureSourceMm",
+            "choiceFigureIndex",
+          ].some(
+            (key) =>
+              JSON.stringify(item[key as keyof StudioProblem] ?? null) !==
+              JSON.stringify(current[key as keyof StudioProblem] ?? null),
+          )
+        )
+          throw new Error(
+            "저장 당시와 현재 내용이 다른 문항이 있습니다. 저장본은 유지했습니다. 새 편집에서 문항을 다시 선택해 주세요.",
+          );
+        return !current || item.questionId
+          ? item
+          : {
+              ...item,
+              questionId: current.questionId,
+              questionFormats: current.questionFormats,
+            };
+      });
+    },
     async prepareOutput(items, signal) {
       if (!items.length) return [];
       if (items.length > MATH_EXAM_MAX_QUESTIONS)
         throw new Error("한 번에 100문항까지 출력할 수 있습니다.");
-      if (new Set(items.map((item) => item.id)).size !== items.length)
+      if (new Set(items.map(questionIdentity)).size !== items.length)
         throw new Error("중복 문항이 있습니다. 문항을 다시 선택해 주세요.");
       // Old saved drafts predate the eligibility field; the fresh server rows,
       // rather than a cached flag, decide whether they can still be printed.
       const bankItems = items.filter((item) => !localCrop(item));
       if (!bankItems.length) return items;
-      const params = new URLSearchParams({
-        ids: bankItems.map((item) => item.id).join(","),
-        pageSize: String(bankItems.length),
-      });
-      const data = await request<BankData>(`${endpoint()}?${params}`, signal);
-      const returned = new Set(
-        data.problems
-          .filter((item) => item.eligible === true)
-          .map((item) => item.id),
-      );
-      if (bankItems.some((item) => !returned.has(item.id))) {
-        const check = bankCheckResponseSchema.parse(
-          await request<unknown>(`${endpoint()}/check`, signal, {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify({ ids: bankItems.map((item) => item.id) }),
-          }),
-        );
-        const unavailable = check.items.filter(
-          (item) => item.state !== "eligible",
-        );
-        if (unavailable.length)
-          throw new Error(
-            unavailable
-              .map((item) => {
-                const original = bankItems.find((row) => row.id === item.id);
-                return `${original?.problemCode || "선택 문항"}: ${item.code ? BANK_INELIGIBLE_LABEL[item.code] : "문항을 찾을 수 없음"}`;
-              })
-              .join(" · "),
-          );
-      }
-      const byId = new Map(
-        eligible(data.problems).map((item) => [item.id, item]),
-      );
-      return items.map((item) => {
-        if (localCrop(item)) return item;
-        const current = byId.get(item.id);
-        if (
-          !current ||
-          scopeId(current) !== scopeId(item) ||
-          (typeof item.source === "string" && current.source !== item.source)
+      if (
+        bankItems.some(
+          (item) => item.questionFormats && !selectedQuestionFormat(item),
         )
-          throw new Error(
-            "삭제되었거나 출제 조건이 바뀐 문항이 있습니다. 문항을 다시 선택해 주세요.",
+      )
+        throw new Error(
+          "출제할 실제 형식을 확인하지 못했습니다. 문항을 다시 선택해 주세요.",
+        );
+      const check = bankCheckResponseSchema.parse(
+        await request<unknown>(`${endpoint()}/check`, signal, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            ids: bankItems.map((item) => item.id),
+            ...(bankItems.every((item) => selectedQuestionFormat(item))
+              ? {
+                  selections: bankItems.map((item) =>
+                    selectedQuestionFormat(item)!,
+                  ),
+                }
+              : {}),
+          }),
+        }),
+      );
+      const unavailable = check.items.filter(
+        (item) => item.state !== "eligible",
+      );
+      if (unavailable.length)
+        throw new Error(
+          unavailable
+            .map((item) => {
+              const original = bankItems.find((row) => row.id === item.id);
+              return `${original?.problemCode || "선택 문항"}: ${item.code ? BANK_INELIGIBLE_LABEL[item.code] : "문항을 찾을 수 없음"}`;
+            })
+            .join(" · "),
+        );
+      if (
+        bankItems.some((original) => {
+          const current = check.items.find((row) => row.id === original.id);
+          return (
+            !current ||
+            (scopeId(original) && current.unitId !== scopeId(original)) ||
+            (typeof original.source === "string" &&
+              current.source !== original.source)
           );
-        return current;
-      });
+        })
+      )
+        throw new Error(
+          "문항의 단원이나 출처가 바뀌었습니다. 현재 문항은 유지했습니다. 다시 선택해 주세요.",
+        );
+      // Validation never refreshes a saved payload into today's content. A chosen
+      // representation is kept whole; revision conflicts require an explicit choice.
+      return items;
     },
   };
 }

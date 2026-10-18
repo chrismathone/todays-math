@@ -8,7 +8,7 @@ export function basketTransaction<T>(
 ): Promise<T> {
   return db.$transaction(async (tx) => {
     await tx.$queryRaw(
-      Prisma.sql`SELECT pg_advisory_xact_lock(hashtextextended(${`question-basket:${userId}`},0))`,
+      Prisma.sql`SELECT pg_advisory_xact_lock(hashtextextended(${`question-basket:${userId}`},0))::text AS locked`,
     );
     return work(tx);
   });

@@ -3167,7 +3167,7 @@ function restoreRows(snapshot: ReturnType<typeof snapshotRows>) {
 async function testLockQuery(query: { sql: string }): Promise<unknown[]> {
   const sql = query.sql.replace(/\s+/g, " ").trim();
   if (
-    /^SELECT pg_advisory_xact_lock\(hashtextextended\(\?,0\)\)$/.test(sql) ||
+    /^SELECT pg_advisory_xact_lock\(hashtextextended\(\?,0\)\)::text AS locked$/.test(sql) ||
     /^SELECT id FROM public\.problem WHERE id IN \([?, ]+\) ORDER BY id FOR SHARE$/.test(
       sql,
     )
