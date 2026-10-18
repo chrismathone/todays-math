@@ -192,3 +192,97 @@ and index/lock/performance checks; and shared write/deployment authorization.
 The content worker owns the 17-row mathematical corrections, reinforcement's
 174-row upper bound and pending print-check items; no physical print completion
 or measured student-learning effect is claimed here.
+
+## Backfill scale protection follow-up — 2026-10-18
+
+This follow-up changes only the operator, local tests and scale evidence. It
+performs no shared database reads/writes/DDL, content repair, generation, push or deployment;
+the preview below remains stale pre-repair input and must never be applied.
+The coordinator reports the separately approved DDL is already applied with its
+role catalog verified; fresh post-repair manifest approval and execution remain
+the coordinator's work.
+
+The changed `scripts/import/question-group-backfill.ts` SHA-256 is
+`66194f3dcf0ca0b7d4d0069250e2648745efbe3ab3838e9a95e3f3b2f902421a`.
+The approved plan and DDL bytes retain their SHA-256 values above. Claude's
+execution review must bind this changed operator source as well as the new
+post-repair manifest; the scale input supplies no execution authority.
+
+The default is now **100 pairs / at most 200 locked rows per chunk**, with
+programmatic chunk sizes restricted to integers 1–100. Each chunk locks IDs in
+sorted order, checks current quarantine overlap is zero, and finishes every
+payload digest, actual pair proof and existing-key conflict check before its
+single parameterized `UPDATE … FROM (VALUES …)`. Every target has a unique row
+ID, an exact JSON preimage excluding only `question_group_key`, and a key CAS.
+Only that key appears in `SET`; the exact affected row count and full readback
+remain mandatory. The 3-second lock, 15-second statement and 20-second
+transaction bounds are unchanged. Unique target joins also follow the
+[PostgreSQL UPDATE contract](https://www.postgresql.org/docs/current/sql-update.html).
+The loader's two-row path is unchanged.
+
+Manifest/receipt pair membership, applied/reverted membership and readback
+lookup use maps/sets. Full pair canonical equality still rejects changed row
+IDs, digests, before-keys and foreign pairs. Duplicate applied pairs and foreign or
+duplicate reverted keys are refused before any checkpoint or transaction.
+The v1 receipt schema is unchanged: the CLI writes compact JSON whitespace,
+retaining the complete ownership arrays, pre-transaction `pendingChunk`, atomic
+rename, 0600 file / 0700 directory and both file and directory fsync. Manifests
+retain their exact pretty serialization and SHA gate. An unsettled journal
+still requires explicit reconciliation, including after SQL committed but its
+completion checkpoint failed.
+
+The reproducible aggregate is [question-backfill-scale.json](question-backfill-scale.json),
+created by `scripts/qa/bank/question-backfill-scale.ts --manifest
+.qa-artifacts/math-question-formats-20261018/question-backfill-preview-acl-r1.json
+--report <aggregate.json> --full-checkpoints` through the existing local `tsx`.
+It imports no connection configuration, creates no database client and refuses
+all row queries/transactions; only its two catalog answers are synthetic. The
+47,746-pair input bytes were independently checked against the protected SHA
+`c26c6dd3ed8519a16341aaaf6e861f4ba8bdc1ee060e835fa219931361e1cfe5`.
+
+| Full 47,746-pair local scale measurement | Result |
+| --- | ---: |
+| Protected manifest bytes / parse time | 24,262,301 / 27.19 ms |
+| Approval validation, five samples, median | 35.70 ms |
+| Worst-order complete receipt membership, five samples, median | 147.39 ms |
+| Full pretty / compact receipt bytes | 24,255,333 / 17,523,107 |
+| Full pretty / compact serialization median | 20.05 / 14.13 ms |
+| All compact apply checkpoints, with actual file + directory fsync | 957 in 18.12 s |
+| Cumulative serialized bytes actually written | 8,406,614,980 |
+| Slowest measured checkpoint | 77.91 ms |
+| Temporary receipt directories retained | 0 |
+| Derived key UPDATE calls, versus previous per-row calls | 478 / 95,492 |
+| Derived raw SQL calls including catalog checks, excluding BEGIN/COMMIT | 2,870 |
+| Derived receipt checkpoints, versus previous 20-pair default | 957 / 4,777 |
+
+Each checkpoint still rewrites the full growing receipt. The measured 8.41 GB
+is cumulative file data, not concurrent disk usage or hardware write-amplification
+measurement. There are 957 file fsyncs and 957 directory fsyncs, and an existing
+receipt can coexist with its new temporary file before rename. Apply reruns
+still prove/read back every chunk and retain both checkpoints per chunk; they
+issue zero key UPDATEs when keys already match. Such a full-receipt apply rerun
+would serialize about 16.8 GB cumulatively (derived, not a measured second disk
+run); it does not get the smaller growing-receipt profile of the first apply.
+Revert keeps this receipt's
+ownership only. No journal compaction, skipped ownership checkpoints or new
+recovery protocol was introduced.
+
+**Validation:** 2 relevant files / **92 tests passed**, including all prior
+32 DDL tests and 21 additional operator protections. A 201-pair real local
+PGlite apply produces exactly three UPDATEs (800, 800, 8 bound parameters),
+then rerun produces zero, and its own revert preserves every non-key field.
+Late proof/key conflicts and quarantine overlap attempt no UPDATE; one bound
+JSON preimage CAS miss updates only three of four candidates and causes the
+entire transaction to roll back. Tests also cover missing/disabled DDL and role-access
+refusal, foreign receipts, invalid chunk limits, durable compact JSON and
+post-commit checkpoint failure. Getter-count regressions at 256/1,024 pairs
+bound manifest membership visits to at most four per pair, without timing
+thresholds. Scoped ESLint, the committed
+`scripts/qa/bank/question-backfill-scale.tsconfig.json` TypeScript check and
+`git diff --check` pass. Existing cloned dependencies were used unchanged.
+
+These are local CPU/I/O and PGlite semantics, not shared-database latency,
+concurrent-lock behavior, production throughput or Supabase role evidence.
+Up to 200 full payload JSON preimages can still be large, and the unchanged
+timeouts can refuse a slow chunk. Final manifest regeneration, independent
+Claude Gate 2 review and real apply/readback/rerun remain with the coordinator.
