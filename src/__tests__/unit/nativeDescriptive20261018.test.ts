@@ -20,6 +20,8 @@ import {
   buildTargetRows,
   buildElemRows,
   buildMiddleRows,
+  assertLegacyEngineWriteAllowed,
+  applyEnginePlan,
 } from "../../../scripts/import/load-engine-problems";
 import {
   loadedNativeDefinitionIds,
@@ -164,7 +166,7 @@ function solveFromQuestion(id: string, content: string): string[] {
       // Test polynomial equality pointwise after an independently found factor pair, not source algebra.
       for (let x = -6; x <= 6; x++)
         expect((x + a) * (x + b) === x * x + linear * x + constant).toBe(true);
-      const proposed = /을 \(x([+-]\d+)\)\(x([+-]\d+)\)/.exec(q)!;
+      const proposed = /인수분해를 \(x([+-]\d+)\)\(x([+-]\d+)\)/.exec(q)!;
       expect(Number(proposed[1]) + Number(proposed[2])).not.toBe(linear);
       expect(Number(proposed[1]) * Number(proposed[2])).not.toBe(constant);
       const x = Number(/\(3\) x=(\d+)/.exec(q)![1]);
@@ -262,12 +264,13 @@ describe("native authored reasoning — 6 definitions, 100 seeds plus integer/sh
           if (d.definitionId === "m3-factor-error-proof-r1") {
             const q = plain(p.content),
               model = plain(p.modelAnswer);
-            const faulty = /을 \(x([+-]\d+)\)\(x([+-]\d+)\)/.exec(q)!;
+            const faulty = /인수분해를 \(x([+-]\d+)\)\(x([+-]\d+)\)/.exec(q)!;
             const linear = Number(faulty[1]) + Number(faulty[2]),
               constant = Number(faulty[1]) * Number(faulty[2]);
-            expect(model).toContain(
-              `전개하면 x^2${linear < 0 ? "" : "+"}${linear}x${constant < 0 ? "" : "+"}${constant}`,
-            );
+            const expanded = /전개하면 x\^2([+-])(\d*)x([+-]\d+)/.exec(model)!;
+            expect(Number(`${expanded[1]}${expanded[2] || "1"}`)).toBe(linear);
+            expect(Number(expanded[3])).toBe(constant);
+            expect(expanded[2]).not.toBe("1");
           }
           expect(p.solution).toBe(
             serializeNativeSolution(p.modelAnswer, p.rubric),
@@ -381,7 +384,7 @@ describe("native exact contract and three source consumers", () => {
     const plan = JSON.parse(readFileSync(base + "native-plan.json", "utf8"));
     expect(buildTargetRows(plan.targets[0], plan.seedBase)).toEqual(rows);
     const exported = JSON.parse(
-      readFileSync(base + "native-candidates-r2.json", "utf8"),
+      readFileSync(base + "native-candidates-r3.json", "utf8"),
     );
     expect(exported.candidateCount).toBe(12);
     for (const actual of exported.candidates) {
@@ -475,5 +478,68 @@ describe("loader optional exact selectors preserve historical output and fail cl
     expect(() =>
       buildMiddleRows({ ...middle, typeKeys: [key], maxTypes: 1 }, 1),
     ).toThrow();
+  });
+});
+
+describe("legacy bulk imports cannot bypass the final reinforcement gate", () => {
+  for (const name of [
+    "2026-09-02-대량확대-초4.json",
+    "2026-09-02-대량확대-중3.json",
+  ]) {
+    it(`blocks actual protected rows from ${name} before any DB lookup`, async () => {
+      const file = `scripts/import/plans/${name}`;
+      const plan = JSON.parse(readFileSync(file, "utf8"));
+      const rows = plan.targets.flatMap(
+        (target: Parameters<typeof buildTargetRows>[0]) =>
+          buildTargetRows(target, plan.seedBase),
+      );
+      expect(() => assertLegacyEngineWriteAllowed(rows, true)).toThrow(
+        /verified-engine-batch/,
+      );
+      expect(() => assertLegacyEngineWriteAllowed(rows, false)).not.toThrow();
+      const query = vi.fn();
+      const log = vi.spyOn(console, "log").mockImplementation(() => {});
+      try {
+        await expect(
+          applyEnginePlan(file, true, {
+            unit: { findMany: query },
+            problem: { findMany: query, create: query },
+          }),
+        ).rejects.toThrow(/verified-engine-batch/);
+        expect(query).not.toHaveBeenCalled();
+      } finally {
+        log.mockRestore();
+      }
+    });
+  }
+  it("preserves legacy non-reinforcement families and exact-key neighbors", () => {
+    const unit = elementaryUnits().find(
+      (u) => u.grade === "초4" && u.section === "2-2-3 정삼각형의 성질",
+    )!;
+    const old = buildElemRows(
+      {
+        engine: "elem",
+        grade: unit.grade,
+        chapter: unit.chapter,
+        sections: [unit.section],
+        formIds: ["01"],
+        perTier: 1,
+      },
+      7,
+    );
+    expect(old.length).toBeGreaterThan(0);
+    expect(() => assertLegacyEngineWriteAllowed(old, true)).not.toThrow();
+    expect(() =>
+      assertLegacyEngineWriteAllowed(
+        [{ familyKey: "mid:manual-202610180|인수분해|F01" }],
+        true,
+      ),
+    ).not.toThrow();
+    expect(() =>
+      assertLegacyEngineWriteAllowed(
+        [{ familyKey: "native-desc:new-reasoning-r1" }],
+        true,
+      ),
+    ).toThrow(/verified-engine-batch/);
   });
 });

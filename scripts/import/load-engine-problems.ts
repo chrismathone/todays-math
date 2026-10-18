@@ -48,6 +48,8 @@ import {
 } from "../../src/lib/engine/nativeDescriptive20261018";
 
 import { expandFamily } from "../../src/lib/engine/expandEngine";
+import { reinforcementForms20261018 } from "../../src/lib/elementary/reinforcementForms20261018";
+import { M3_REINFORCEMENT_20261018 } from "../../src/lib/middle/m3Reinforcement20261018";
 import {
   dedupeByVariant,
   distinctKey,
@@ -732,10 +734,36 @@ type EngineImportClient = {
   problem: Pick<PrismaClient["problem"], "findMany" | "create">;
 };
 
+/** New reviewed families must never acquire arbitrary seeds through historical bulk plans. */
+export function assertLegacyEngineWriteAllowed(
+  rows: readonly Pick<Row, "familyKey">[],
+  doApply: boolean,
+): void {
+  if (!doApply) return;
+  const protectedFamilies = new Set([
+    ...elementaryUnits().flatMap((unit) =>
+      reinforcementForms20261018(unit).map(
+        (form) => `elem:${unit.grade}|${unit.section}|${form.id}`,
+      ),
+    ),
+    ...M3_REINFORCEMENT_20261018.map((type) => `mid:${type.key}`),
+  ]);
+  if (
+    rows.some(
+      (row) =>
+        row.familyKey.startsWith("native-desc:") ||
+        protectedFamilies.has(row.familyKey),
+    )
+  )
+    throw new Error(
+      "2026-10-18 reinforcement writes require verified-engine-batch and final batch approval",
+    );
+}
+
 export async function applyEnginePlan(
   planFile: string,
   doApply: boolean,
-  client: EngineImportClient = engineImportPrisma(),
+  client?: EngineImportClient,
 ) {
   const plan = JSON.parse(readFileSync(planFile, "utf-8")) as Plan;
   if (doApply && plan.targets.some((t) => t.engine === "native-descriptive"))
@@ -771,6 +799,7 @@ export async function applyEnginePlan(
     rows.push(...made);
   }
   console.log(`\n생성 ${rows.length}문항`);
+  assertLegacyEngineWriteAllowed(rows, doApply);
   // Validate against the complete generation result, before either deduper.
   const sourceReferences = parseEngineSourceReferences(
     plan.sourceReferences,
@@ -869,7 +898,8 @@ export async function applyEnginePlan(
   }
 
   // 단원 연결 — 못 찾은 것은 **세어서 찍는다**. 조용히 빼면 「전부 넣었다」로 읽힌다.
-  const units = await client.unit.findMany({
+  const db = client ?? engineImportPrisma();
+  const units = await db.unit.findMany({
     select: { id: true, grade: true, chapter: true, section: true },
   });
   const byElem = new Map(
@@ -894,7 +924,7 @@ export async function applyEnginePlan(
   }
 
   // Existing IDs are immutable: a requested source must already match exactly.
-  const existingRows = await client.problem.findMany({
+  const existingRows = await db.problem.findMany({
     where: { externalId: { in: ready.map((r) => r.externalId) } },
     select: engineProvenanceSelect,
   });
@@ -903,7 +933,7 @@ export async function applyEnginePlan(
     ready,
     existingRows,
     (ids) =>
-      client.problem.findMany({
+      db.problem.findMany({
         where: { id: { in: ids } },
         select: {
           id: true,
@@ -1005,7 +1035,7 @@ export async function applyEnginePlan(
   //    세어 찍는다** — 뒤엣것이 이번 고침으로 되살아나는 몫이고, 조용하면
   //    다음 사람이 「원래 그만큼이었다」고 읽는다.
   const families = [...new Set(fresh.map((r) => r.familyKey))];
-  const already = await client.problem.findMany({
+  const already = await db.problem.findMany({
     where: { familyKey: { in: families } },
     select: {
       familyKey: true,
@@ -1225,7 +1255,7 @@ export async function applyEnginePlan(
     const review = engineSourceReviewState(originProblemId, figureless);
     // exam-wiring: 기출아님 — 우리 엔진이 낸 **자작** 문항이다(`source=manual`).
     // 원본 시험지가 아예 없으므로 `Exam` 을 세울 것도, 되돌릴 링크도 없다.
-    const made = await client.problem.create({
+    const made = await db.problem.create({
       data: {
         unitId: r.unitId,
         source: "manual", // 자작 — 우리 엔진이 낸 결정론적 문항이다 (AI 아님)
@@ -1269,7 +1299,7 @@ export async function applyEnginePlan(
   console.log(`적재 ${created.length}건 · 원장 ${ledgerFile}`);
 
   // 🔴 **믿지 않고 잰다** — 넣은 값 그대로인가. 트리거가 뒤집으면 여기서 잡힌다.
-  const back = await client.problem.findMany({
+  const back = await db.problem.findMany({
     where: { id: { in: created.map((c) => c.problemId) } },
     select: {
       ...engineProvenanceSelect,

@@ -301,7 +301,7 @@ export const M3_REINFORCEMENT_20261018: TypeEntry[] = [
           remainder,
           [0, 1, 2, 3, 4].filter((n) => n !== remainder),
         ),
-        solution: `학생 수를 자연수 $n$, 남는 수를 $r$이라 하면 $n^2+${extra}n-(${stock}-r)=0$이다. 남는 수 $r$은 정수이므로 $0,1,2,3,4$를 각각 대입하여 이차방정식 다섯 개를 살핀다. 판별식은 차례로 $${[0, 1, 2, 3, 4].map((r) => extra * extra + 4 * (stock - r)).join(", ")}$이다. 이 중 완전제곱수는 $r=${remainder}$일 때의 $${(2 * count + extra) ** 2}$뿐이므로 이때만 자연수 해가 가능하다. 그 방정식의 두 해는 $${count}$, $-${count + extra}$이고 학생 수는 $${count}$명이다. 나누어 준 총수 $${total}$권을 원래 수에서 빼면 $${stock}-${total}=${remainder}$이므로 남는 수는 $${remainder}$권이다.`,
+        solution: `학생 수를 자연수 $n$, 남는 수를 $r$이라 하면 $n^2+${extra}n-(${stock}-r)=0$이다. 남는 수 $r$은 정수이므로 $0,1,2,3,4$를 각각 대입하여 이차방정식 다섯 개를 살핀다. 근의 공식의 근호 안에 있는 수의 값을 차례로 계산하면 $${[0, 1, 2, 3, 4].map((r) => extra * extra + 4 * (stock - r)).join(", ")}$이다. 이 중 완전제곱수는 $r=${remainder}$일 때의 $${(2 * count + extra) ** 2}$뿐이므로 이때만 자연수 해가 가능하다. 그 방정식의 두 해는 $${count}$, $-${count + extra}$이고 학생 수는 $${count}$명이다. 나누어 준 총수 $${total}$권을 원래 수에서 빼면 $${stock}-${total}=${remainder}$이므로 남는 수는 $${remainder}$권이다.`,
         facts: { count, extra, stock },
       };
     },
@@ -331,7 +331,7 @@ export const M3_REINFORCEMENT_20261018: TypeEntry[] = [
       return {
         content: `다섯 변량이 $${values.join(", ")}$이다. 이 중 가장 큰 변량 $${values[4]}$ 하나만 $${values[4]! + 5 * rise}$로 수정하였다. 수정 전후를 비교한 설명으로 옳은 것을 고르시오.\n${options.content}`,
         answer: options.answer,
-        solution: `총합이 $${5 * rise}$만큼 증가하고 변량은 여전히 $5$개이므로 평균은 $${rise}$만큼 커진다. 가장 큰 변량만 더 커져 가운데인 셋째 변량 $${center}$는 바뀌지 않으므로 중앙값은 그대로이다.`,
+        solution: `총합이 $${5 * rise}$만큼 증가하고 변량은 여전히 $5$개이므로 평균은 $${rise}$만큼 커진다. 가장 큰 변량만 더 커지고 가운데인 셋째 변량이 그대로 남으므로 중앙값은 변하지 않는다.`,
         facts: { center, gap, rise },
       };
     },

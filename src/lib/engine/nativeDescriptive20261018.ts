@@ -152,8 +152,12 @@ export function generateNativeDescriptive(
           "length",
           2,
           `세 변이 같음을 근거로 각각 ${a} cm로 정정`,
-          "같은 길이 세 개를 더해 둘레 조건으로 역확인",
-          "둘레를 2로 나누거나 세 변이 다른 값을 제시",
+          variant % 2 === 0
+            ? "같은 길이 세 개를 더해 둘레 조건으로 역확인"
+            : "주어진 한 변과 세 변의 길이가 모두 같음을 확인",
+          variant % 2 === 0
+            ? "둘레를 2로 나누거나 세 변이 다른 값을 제시"
+            : "주어진 한 변을 다시 3으로 나누거나 세 변이 다른 값을 제시",
         ),
         criterion(
           "angle",
@@ -230,8 +234,8 @@ export function generateNativeDescriptive(
         criterion(
           "sufficient",
           2,
-          "마주 보는 변 한 쌍 평행을 구체적 변 이름으로 제시",
-          "AD와 BC가 평행함을 제시",
+          "마주 보는 변 한 쌍이 평행하다는 일반 조건 또는 구체적인 변 이름으로 제시",
+          "AB와 CD 또는 AD와 BC가 평행하다는 예시와 일반적인 마주 보는 변 한 쌍 평행을 모두 인정",
           "이웃한 변 평행 또는 두 변 길이 같음만 제시",
         ),
       ];
@@ -248,10 +252,10 @@ export function generateNativeDescriptive(
       const check = n(1, 4),
         value =
           check * check + (sign === "+" ? 1 : -1) * (a + b) * check + a * b;
-      content = `지우는 $${polynomial}$을 $${wrong}$로 인수분해했습니다.\n\n(1) 지우의 곱을 전개하여 원래 식과 어떤 항이 다른지 설명하세요. (2) 올바르게 인수분해하고 다시 전개해 모든 항을 확인하세요. (3) $x=${check}$를 원래 식과 고친 식에 대입해 값도 확인하고, 한 값의 일치만으로 모든 $x$에서 같은 식임을 증명할 수 있는지 설명하세요.`;
+      content = `지우는 다항식 $${polynomial}$의 인수분해를 $${wrong}$라고 썼습니다.\n\n(1) 지우의 곱을 전개하여 원래 식과 어떤 항이 다른지 설명하세요. (2) 올바르게 인수분해하고 다시 전개해 모든 항을 확인하세요. (3) $x=${check}$를 원래 식과 고친 식에 대입해 값도 확인하고, 한 값의 일치만으로 모든 $x$에서 같은 식임을 증명할 수 있는지 설명하세요.`;
       answer = `$${correct}$; 잘못된 곱의 일차항과 상수항이 다름. 대입값 $${value}$. 한 값의 일치만으로 항등식 증명은 불가.`;
       const wrongLinear = sign === "+" ? a - b : b - a;
-      modelAnswer = `잘못된 곱을 전개하면 $x^2${wrongLinear < 0 ? "-" : "+"}${Math.abs(wrongLinear)}x-${a * b}$이므로 일차항과 상수항이 원래 식과 다릅니다. 합이 $${sign === "+" ? a + b : -(a + b)}$, 곱이 $${a * b}$인 두 수를 쓰면 $${correct}$입니다. 전개하면 $${polynomial}$으로 모든 항이 같습니다. $x=${check}$에서 원래 식과 고친 곱은 모두 $${value}$입니다. 한 값에서만 일치하는 서로 다른 식도 있으므로 대입 한 번은 확인일 뿐이고, 여기서는 전개한 모든 계수가 같아 항등식임을 알 수 있습니다.`;
+      modelAnswer = `잘못된 곱을 전개하면 $x^2${wrongLinear < 0 ? "-" : "+"}${Math.abs(wrongLinear) === 1 ? "" : Math.abs(wrongLinear)}x-${a * b}$이므로 일차항과 상수항이 원래 식과 다릅니다. 합이 $${sign === "+" ? a + b : -(a + b)}$, 곱이 $${a * b}$인 두 수를 쓰면 $${correct}$입니다. 전개하면 $${polynomial}$으로 모든 항이 같습니다. $x=${check}$에서 원래 식과 고친 곱은 모두 $${value}$입니다. 한 값에서만 일치하는 서로 다른 식도 있으므로 대입 한 번은 확인일 뿐이고, 여기서는 전개한 모든 계수가 같아 항등식임을 알 수 있습니다.`;
       criteria = [
         criterion(
           "diagnose",

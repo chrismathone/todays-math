@@ -23,7 +23,7 @@ describe("실물 출력 검수 목록 — 데이터", () => {
    * 아무도 모른다. 항목을 늘리거나 줄이면 이 숫자도 같이 고쳐야 한다 — 그게 의도다.
    */
   it("항목 수가 바뀌면 알아차린다", () => {
-    // 119: math-bank-g4-repeat / native-descriptive 두 항목 추가(2026-10-18).
+    // 120: 수학 보강 두 항목과 정답지 실측 분할 항목 추가(2026-10-18).
     //     Claude 승인 보강 묶음의 파일 검증과 실물 출력 대기를 구분해 남긴다.
     // 117: arithmetic-basic-preset-heading-20261016 추가 (2026-10-16 — 기초 연산
     //     지면의 묶음 머리말이 기능 이름에서 **담은 카드 이름**(«3 더하기 · 받아올림
@@ -246,7 +246,7 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 114: arithmetic-center-angles-20261016 추가 (내심·외심 각도 그림과 묶음 머리말).
     // 115: arithmetic-figure-first-20261016 추가 (삼각비·피타고라스·닮음·원·중1 각 70유형 그림 우선).
     // 116: arithmetic-figure-first-elementary-20261016 추가 (초등 각도·둘레·넓이 42유형 · 미지수 □).
-    expect(ITEMS.length).toBe(119);
+    expect(ITEMS.length).toBe(120);
   });
 
   /**

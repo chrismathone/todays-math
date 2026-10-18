@@ -83,6 +83,23 @@ export const SPECIMEN_ITEM_IDS = [
 
 export const ITEMS: PrintCheckItem[] = [
   {
+    id: "answer-key-measured-pagination-20261018",
+    title: "정답지 — 긴 빠른 정답·서술형 해설의 다음 장 배치",
+    changed:
+      "실제 글꼴이 준비된 정답지에서 해설이 세 번째 단으로 밀리면 다음 장으로 분리한다. 두 단과 장당 최대 8항목은 유지하며 페이지 계산 중 인쇄 버튼을 비활성화한다.",
+    look: "빠른 정답이 긴 17문항 혼합 시험지와 서술형 12문항 시험지에서 빠른 정답·모든 해설·채점 기준이 빠짐없이 보이고 번호가 이어지는지 확인한다. 해설이 세 번째 단이나 A4 아래로 사라지거나 계산이 끝나기 전 인쇄되면 불합격이다.",
+    lookFromSource: true,
+    evidence: [
+      "src/components/print/TestPrint.tsx",
+      "src/lib/printLayout.ts",
+      "docs/planning/tracks/reports/math-bank-reinforcement-20261018/execution-addendum.md",
+    ],
+    scale: "긴 정답·해설이 있는 수학 정답지 전체",
+    needs: "새 사다리꼴 17문항 혼합과 서술형 12문항, A4 실제 크기 100%",
+    status: "대기",
+    changedOn: "2026-10-18",
+  },
+  {
     id: "math-bank-g4-repeat-20261018",
     title: "수학 문제은행 보강 — 초4 삼각형·평행·사다리꼴 새 문형",
     changed:
