@@ -1,0 +1,1039 @@
+{
+  "schemaVersion": 1,
+  "baselineHead": "70ed24137711172408134a15fa695183f31fb878",
+  "measuredAt": "2026-10-18T00:39:29.305Z",
+  "summary": {
+    "coreRouteFiles": 27,
+    "coreMethodActions": 34,
+    "adjacentRouteFiles": 6,
+    "adjacentMethodActions": 14,
+    "devRouteFiles": 6,
+    "devMethodActions": 8,
+    "existingSuiteFiles": 42,
+    "existingChecks": 732,
+    "directSyntheticChecks": 10,
+    "livePopulation": 117828,
+    "liveEligible": 115383,
+    "liveTargetedParserCases": 2,
+    "manualVisualCasesByThisWorker": 0,
+    "rootSuppliedManualConfirmedCases": 2,
+    "priorities": {
+      "P0": 0,
+      "P1": 4,
+      "P2": 3
+    }
+  },
+  "constraints": {
+    "reportOnly": true,
+    "productCodeEdited": false,
+    "sharedDatabaseWrites": false,
+    "pushed": false,
+    "deployed": false,
+    "subworkersCreated": 0,
+    "sourceTextStored": false,
+    "liveAuthenticatedBrowser": false,
+    "readOnlyTransactionsFirstStatement": "SET TRANSACTION READ ONLY",
+    "databaseReadOnlyConfirmed": "on",
+    "maxWorkers": 2
+  },
+  "coreRoutes": [
+    {
+      "path": "/api/problems",
+      "file": "src/app/api/problems/route.ts",
+      "methods": ["GET", "POST"],
+      "group": "legacy-bank",
+      "action": "조회·등록",
+      "evidence": ["problem", "problemFormatFilter"]
+    },
+    {
+      "path": "/api/problems/[id]",
+      "file": "src/app/api/problems/[id]/route.ts",
+      "methods": ["GET", "PATCH", "DELETE"],
+      "group": "legacy-bank",
+      "action": "상세·사람 수정·삭제",
+      "evidence": ["problem"]
+    },
+    {
+      "path": "/api/problems/[id]/review-status",
+      "file": "src/app/api/problems/[id]/review-status/route.ts",
+      "methods": ["PATCH"],
+      "group": "review",
+      "action": "승인·반려",
+      "evidence": ["problem"]
+    },
+    {
+      "path": "/api/problems/[id]/review",
+      "file": "src/app/api/problems/[id]/review/route.ts",
+      "methods": ["POST"],
+      "group": "review",
+      "action": "통과·보류·신고 기록",
+      "evidence": ["reviewSubmit"]
+    },
+    {
+      "path": "/api/problems/[id]/reports",
+      "file": "src/app/api/problems/[id]/reports/route.ts",
+      "methods": ["POST"],
+      "group": "review",
+      "action": "중복 방지 신고",
+      "evidence": ["problemReport"]
+    },
+    {
+      "path": "/api/problems/generate",
+      "file": "src/app/api/problems/generate/route.ts",
+      "methods": ["POST"],
+      "group": "transform",
+      "action": "AI 초안 생성·pending 적재",
+      "evidence": ["problemGenerate"]
+    },
+    {
+      "path": "/api/problems/transform",
+      "file": "src/app/api/problems/transform/route.ts",
+      "methods": ["POST"],
+      "group": "transform",
+      "action": "변형 후보 읽기",
+      "evidence": ["problemTransform"]
+    },
+    {
+      "path": "/api/problems/transform/adopt",
+      "file": "src/app/api/problems/transform/adopt/route.ts",
+      "methods": ["POST"],
+      "group": "transform",
+      "action": "후보 채택·pending 적재",
+      "evidence": ["problemTransform"]
+    },
+    {
+      "path": "/api/review/queue",
+      "file": "src/app/api/review/queue/route.ts",
+      "methods": ["GET"],
+      "group": "review",
+      "action": "검수 대기열",
+      "evidence": ["reviewQueue"]
+    },
+    {
+      "path": "/api/basket",
+      "file": "src/app/api/basket/route.ts",
+      "methods": ["GET", "POST", "DELETE"],
+      "group": "basket",
+      "action": "계정 담기 읽기·담기·빼기·비우기",
+      "evidence": ["basket"]
+    },
+    {
+      "path": "/api/basket/test",
+      "file": "src/app/api/basket/test/route.ts",
+      "methods": ["POST"],
+      "group": "basket",
+      "action": "담긴 문항 재검증·시험지 생성·바구니 소비",
+      "evidence": ["basket"]
+    },
+    {
+      "path": "/api/studio/problems",
+      "file": "src/app/api/studio/problems/route.ts",
+      "methods": ["GET", "POST"],
+      "group": "workspace-bank",
+      "action": "조건 조회·긴 조건 POST 읽기",
+      "evidence": ["unifiedBankFilters", "unifiedBankRow"]
+    },
+    {
+      "path": "/api/studio/problems/[id]",
+      "file": "src/app/api/studio/problems/[id]/route.ts",
+      "methods": ["GET"],
+      "group": "workspace-bank",
+      "action": "승인 뒤 최신 자격 읽기",
+      "evidence": ["unifiedBankRow"]
+    },
+    {
+      "path": "/api/studio/problems/sources",
+      "file": "src/app/api/studio/problems/sources/route.ts",
+      "methods": ["GET", "POST"],
+      "group": "workspace-bank",
+      "action": "전역 보유량·조건별 가용량·자료별 수",
+      "evidence": [
+        "unifiedBankSource",
+        "unifiedBankAvailability",
+        "studioBankReadinessRoutes"
+      ]
+    },
+    {
+      "path": "/api/studio/problems/random",
+      "file": "src/app/api/studio/problems/random/route.ts",
+      "methods": ["POST"],
+      "group": "workspace-bank",
+      "action": "난이도별 랜덤·차시 할당 구성·교체",
+      "evidence": [
+        "examBuilderFamilyRule",
+        "examBuilderConditions",
+        "examBuilderReplace"
+      ]
+    },
+    {
+      "path": "/api/studio/problems/check",
+      "file": "src/app/api/studio/problems/check/route.ts",
+      "methods": ["POST"],
+      "group": "readiness",
+      "action": "출제 자격 상태 읽기",
+      "evidence": ["bankReadiness", "studioBankReadinessRoutes"]
+    },
+    {
+      "path": "/api/studio/problems/textbook-slots",
+      "file": "src/app/api/studio/problems/textbook-slots/route.ts",
+      "methods": ["POST"],
+      "group": "readiness",
+      "action": "교과서 지정 슬롯 준비 상태 읽기",
+      "evidence": ["bankReadiness", "studioBankReadinessRoutes"]
+    },
+    {
+      "path": "/api/studio/problems/labels",
+      "file": "src/app/api/studio/problems/labels/route.ts",
+      "methods": ["POST"],
+      "group": "workspace-bank",
+      "action": "개인 사용 라벨",
+      "evidence": ["STATIC_ONLY"]
+    },
+    {
+      "path": "/api/tests/generate",
+      "file": "src/app/api/tests/generate/route.ts",
+      "methods": ["POST"],
+      "group": "issuance",
+      "action": "자동 출제",
+      "evidence": ["test"]
+    },
+    {
+      "path": "/api/tests",
+      "file": "src/app/api/tests/route.ts",
+      "methods": ["GET"],
+      "group": "issuance",
+      "action": "시험지 목록",
+      "evidence": ["test"]
+    },
+    {
+      "path": "/api/tests/[id]",
+      "file": "src/app/api/tests/[id]/route.ts",
+      "methods": ["GET"],
+      "group": "issuance",
+      "action": "소유·반 범위 안 시험지 읽기",
+      "evidence": ["test"]
+    },
+    {
+      "path": "/api/tests/[id]/problems/[seq]",
+      "file": "src/app/api/tests/[id]/problems/[seq]/route.ts",
+      "methods": ["PUT"],
+      "group": "issuance",
+      "action": "초안 문항 교체",
+      "evidence": ["test"]
+    },
+    {
+      "path": "/api/tests/[id]/retry",
+      "file": "src/app/api/tests/[id]/retry/route.ts",
+      "methods": ["POST"],
+      "group": "retry",
+      "action": "저장된 오답·지정 슬롯 복습",
+      "evidence": ["testRetry"]
+    },
+    {
+      "path": "/api/tests/[id]/confirm",
+      "file": "src/app/api/tests/[id]/confirm/route.ts",
+      "methods": ["POST"],
+      "group": "issuance",
+      "action": "draft → confirmed",
+      "evidence": ["test"]
+    },
+    {
+      "path": "/api/tests/[id]/print",
+      "file": "src/app/api/tests/[id]/print/route.ts",
+      "methods": ["POST"],
+      "group": "output",
+      "action": "confirmed → printed",
+      "evidence": ["test"]
+    },
+    {
+      "path": "/api/exports/pdf",
+      "file": "src/app/api/exports/pdf/route.ts",
+      "methods": ["POST"],
+      "group": "output",
+      "action": "문서 기반 PDF 생성",
+      "evidence": ["SHARED_GUARD_ONLY"]
+    },
+    {
+      "path": "/api/exports/hwpx",
+      "file": "src/app/api/exports/hwpx/route.ts",
+      "methods": ["POST"],
+      "group": "output",
+      "action": "문서 기반 HWPX 생성",
+      "evidence": ["worksheetExports"]
+    }
+  ],
+  "adjacentRoutes": [
+    {
+      "path": "/api/library/documents",
+      "file": "src/app/api/library/documents/route.ts",
+      "methods": ["GET"],
+      "group": "save",
+      "action": "내 시험지 목록",
+      "evidence": ["STATIC_ONLY"]
+    },
+    {
+      "path": "/api/library/documents/[documentId]",
+      "file": "src/app/api/library/documents/[documentId]/route.ts",
+      "methods": ["POST", "GET", "PUT", "DELETE", "PATCH"],
+      "group": "save",
+      "action": "자료 읽기·저장·이름·삭제·사본",
+      "evidence": ["STATIC_ONLY"]
+    },
+    {
+      "path": "/api/studio/exam-conditions",
+      "file": "src/app/api/studio/exam-conditions/route.ts",
+      "methods": ["GET", "POST"],
+      "group": "settings",
+      "action": "이름 붙인 조건 목록·저장",
+      "evidence": ["STATIC_AND_LOCAL_UI"]
+    },
+    {
+      "path": "/api/studio/exam-conditions/[conditionId]",
+      "file": "src/app/api/studio/exam-conditions/[conditionId]/route.ts",
+      "methods": ["PATCH", "DELETE"],
+      "group": "settings",
+      "action": "조건 이름·적용 시각·삭제",
+      "evidence": ["STATIC_AND_LOCAL_UI"]
+    },
+    {
+      "path": "/api/studio/print-presets",
+      "file": "src/app/api/studio/print-presets/route.ts",
+      "methods": ["GET", "POST"],
+      "group": "settings",
+      "action": "양식 목록·저장",
+      "evidence": ["STATIC_ONLY"]
+    },
+    {
+      "path": "/api/studio/print-presets/[presetId]",
+      "file": "src/app/api/studio/print-presets/[presetId]/route.ts",
+      "methods": ["PATCH", "DELETE"],
+      "group": "settings",
+      "action": "양식 이름·기본·적용 시각·삭제",
+      "evidence": ["STATIC_ONLY"]
+    }
+  ],
+  "devRoutes": [
+    {
+      "path": "/api/dev/unified/problems",
+      "file": "src/app/api/dev/unified/problems/route.ts",
+      "methods": ["GET", "POST"],
+      "group": "dev-mirror",
+      "action": "development 전용 읽기·구성; 운영 빌드 404",
+      "evidence": ["RELATED_SUITES"]
+    },
+    {
+      "path": "/api/dev/unified/problems/sources",
+      "file": "src/app/api/dev/unified/problems/sources/route.ts",
+      "methods": ["GET", "POST"],
+      "group": "dev-mirror",
+      "action": "development 전용 읽기·구성; 운영 빌드 404",
+      "evidence": ["RELATED_SUITES"]
+    },
+    {
+      "path": "/api/dev/unified/problems/random",
+      "file": "src/app/api/dev/unified/problems/random/route.ts",
+      "methods": ["POST"],
+      "group": "dev-mirror",
+      "action": "development 전용 읽기·구성; 운영 빌드 404",
+      "evidence": ["RELATED_SUITES"]
+    },
+    {
+      "path": "/api/dev/unified/problems/check",
+      "file": "src/app/api/dev/unified/problems/check/route.ts",
+      "methods": ["POST"],
+      "group": "dev-mirror",
+      "action": "development 전용 읽기·구성; 운영 빌드 404",
+      "evidence": ["RELATED_SUITES"]
+    },
+    {
+      "path": "/api/dev/unified/problems/textbook-slots",
+      "file": "src/app/api/dev/unified/problems/textbook-slots/route.ts",
+      "methods": ["POST"],
+      "group": "dev-mirror",
+      "action": "development 전용 읽기·구성; 운영 빌드 404",
+      "evidence": ["RELATED_SUITES"]
+    },
+    {
+      "path": "/api/dev/unified/problems/labels",
+      "file": "src/app/api/dev/unified/problems/labels/route.ts",
+      "methods": ["POST"],
+      "group": "dev-mirror",
+      "action": "development 전용 읽기·구성; 운영 빌드 404",
+      "evidence": ["STATIC_ONLY"]
+    }
+  ],
+  "pages": [
+    {
+      "path": "/",
+      "component": "UnifiedWorkspace → MathExamBuilder → ExamBuilder → WorksheetEditor",
+      "status": "current"
+    },
+    {
+      "path": "/problems",
+      "component": "ProblemBank → BasketPanel → Test",
+      "status": "legacy_reachable"
+    },
+    {
+      "path": "/tests/[id]/print",
+      "component": "TestPrintPage → TestPrint",
+      "status": "reachable"
+    },
+    {
+      "path": "/tests/[id]/grade",
+      "component": "SavedRetryPanel → WorksheetEditor",
+      "status": "retry_boundary_only"
+    },
+    {
+      "component": "BankView",
+      "entry": "LegacyUnifiedWorkspace",
+      "status": "retained_legacy_not_current_root_bank"
+    }
+  ],
+  "database": {
+    "run": "FLOW-DB-1",
+    "head": "70ed24137711172408134a15fa695183f31fb878",
+    "startedAt": "2026-10-18T00:39:29.305Z",
+    "endedAt": "2026-10-18T00:39:30.972Z",
+    "mode": "on",
+    "all": 117828,
+    "shared": 117828,
+    "eligibleTotal": 115383,
+    "heldGroups": [
+      {
+        "_count": {
+          "_all": 1790
+        },
+        "source": "manual",
+        "reviewStatus": "approved",
+        "directUseAllowed": false
+      },
+      {
+        "_count": {
+          "_all": 99184
+        },
+        "source": "manual",
+        "reviewStatus": "approved",
+        "directUseAllowed": true
+      },
+      {
+        "_count": {
+          "_all": 101
+        },
+        "source": "past_exam",
+        "reviewStatus": "approved",
+        "directUseAllowed": false
+      },
+      {
+        "_count": {
+          "_all": 79
+        },
+        "source": "transformed",
+        "reviewStatus": "pending",
+        "directUseAllowed": false
+      },
+      {
+        "_count": {
+          "_all": 4363
+        },
+        "source": "transformed",
+        "reviewStatus": "approved",
+        "directUseAllowed": true
+      },
+      {
+        "_count": {
+          "_all": 10
+        },
+        "source": "ai_generated",
+        "reviewStatus": "approved",
+        "directUseAllowed": true
+      },
+      {
+        "_count": {
+          "_all": 475
+        },
+        "source": "school_textbook",
+        "reviewStatus": "approved",
+        "directUseAllowed": false
+      },
+      {
+        "_count": {
+          "_all": 11826
+        },
+        "source": "school_textbook",
+        "reviewStatus": "approved",
+        "directUseAllowed": true
+      }
+    ],
+    "eligibleGroups": [
+      {
+        "_count": {
+          "_all": 99184
+        },
+        "source": "manual"
+      },
+      {
+        "_count": {
+          "_all": 4363
+        },
+        "source": "transformed"
+      },
+      {
+        "_count": {
+          "_all": 10
+        },
+        "source": "ai_generated"
+      },
+      {
+        "_count": {
+          "_all": 11826
+        },
+        "source": "school_textbook"
+      }
+    ],
+    "quality": [
+      {
+        "shared": 117828,
+        "empty_answer": 0,
+        "blank_answer": 0,
+        "eligible_blank_answer": 0,
+        "eligible_no_solution": 0,
+        "eligible_null_question_type": 0,
+        "has_solution_source_none": 100989
+      }
+    ],
+    "slots": [
+      {
+        "textbook_origins": 12301,
+        "eligible_origins": 11826,
+        "ready_0": 10122,
+        "ready_1": 0,
+        "ready_2": 2179,
+        "designated_rows": 4358,
+        "eligible_matching_slots": 4358,
+        "slot_unit_mismatch": 0,
+        "open_slots_ineligible_parent": 0,
+        "approved_locked_slots": 0
+      }
+    ],
+    "answerAnomalyIds": []
+  },
+  "parserCases": [
+    {
+      "id": "d533c98e-c85b-4530-8b0a-03d50291aefb",
+      "problemCode": "J20501-A70-001",
+      "eligible": true,
+      "contentSha256": "b289626af20d82f6206853902f42234007c8b24d2c01640686fb7445e770b275",
+      "rawChars": 508,
+      "stemChars": 230,
+      "choiceCount": 9,
+      "labels": [1, 2, 3, 4, 1, 2, 3, 4, 5],
+      "dropped": [5],
+      "deduped": false,
+      "tailLabels": [1, 2, 3, 4, 5]
+    },
+    {
+      "id": "ac37d08a-5f7b-49ee-950b-af34e002c8e9",
+      "problemCode": "J20506-A37-001",
+      "eligible": true,
+      "contentSha256": "91372681a21c05c7d289de1c5205b7d116825c4006298bcf8895f97a16947902",
+      "rawChars": 556,
+      "stemChars": 182,
+      "choiceCount": 10,
+      "labels": [1, 2, 3, 4, 5, 1, 2, 3, 4, 5],
+      "dropped": [],
+      "deduped": false,
+      "tailLabels": [1, 2, 3, 4, 5]
+    }
+  ],
+  "existingSuites": [
+    {
+      "run": "FLOW-SUITES-1",
+      "files": [
+        {
+          "file": "src/__tests__/api/bankReadiness.test.ts",
+          "status": "passed",
+          "tests": 9,
+          "passed": 9,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/api/basket.test.ts",
+          "status": "passed",
+          "tests": 33,
+          "passed": 33,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/api/examBuilderConditions.test.ts",
+          "status": "passed",
+          "tests": 16,
+          "passed": 16,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/api/examBuilderFamilyRule.test.ts",
+          "status": "passed",
+          "tests": 11,
+          "passed": 11,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/api/examBuilderReplace.test.ts",
+          "status": "passed",
+          "tests": 4,
+          "passed": 4,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/api/problem.test.ts",
+          "status": "passed",
+          "tests": 54,
+          "passed": 54,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/api/problemFormatFilter.test.ts",
+          "status": "passed",
+          "tests": 12,
+          "passed": 12,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/api/problemGenerate.test.ts",
+          "status": "passed",
+          "tests": 6,
+          "passed": 6,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/api/problemReport.test.ts",
+          "status": "passed",
+          "tests": 11,
+          "passed": 11,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/api/problemTransform.test.ts",
+          "status": "passed",
+          "tests": 28,
+          "passed": 28,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/api/reviewQueue.test.ts",
+          "status": "passed",
+          "tests": 9,
+          "passed": 9,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/api/reviewSubmit.test.ts",
+          "status": "passed",
+          "tests": 11,
+          "passed": 11,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/api/studioBankReadinessRoutes.test.ts",
+          "status": "passed",
+          "tests": 4,
+          "passed": 4,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/api/test.test.ts",
+          "status": "passed",
+          "tests": 22,
+          "passed": 22,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/api/testPrintPageScope.test.ts",
+          "status": "passed",
+          "tests": 4,
+          "passed": 4,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/api/testRetry.test.ts",
+          "status": "passed",
+          "tests": 23,
+          "passed": 23,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/api/unifiedBankAvailability.test.ts",
+          "status": "passed",
+          "tests": 16,
+          "passed": 16,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/api/unifiedBankFilters.test.ts",
+          "status": "passed",
+          "tests": 37,
+          "passed": 37,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/api/unifiedBankRow.test.ts",
+          "status": "passed",
+          "tests": 5,
+          "passed": 5,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/api/unifiedBankSource.test.ts",
+          "status": "passed",
+          "tests": 15,
+          "passed": 15,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/api/worksheetExports.test.ts",
+          "status": "passed",
+          "tests": 6,
+          "passed": 6,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/components/BankView.builder.test.tsx",
+          "status": "passed",
+          "tests": 11,
+          "passed": 11,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/components/BankView.filters.test.tsx",
+          "status": "passed",
+          "tests": 34,
+          "passed": 34,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/components/BankView.progress.test.tsx",
+          "status": "passed",
+          "tests": 2,
+          "passed": 2,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/components/BankView.source.test.tsx",
+          "status": "passed",
+          "tests": 17,
+          "passed": 17,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/components/ProblemBank.test.tsx",
+          "status": "passed",
+          "tests": 63,
+          "passed": 63,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/components/ProblemBankFormatFilter.test.tsx",
+          "status": "passed",
+          "tests": 5,
+          "passed": 5,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/components/WorksheetEditor.progress.test.tsx",
+          "status": "passed",
+          "tests": 8,
+          "passed": 8,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/unit/accountRouteAccess.test.ts",
+          "status": "passed",
+          "tests": 23,
+          "passed": 23,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/unit/bankSourcePick.test.ts",
+          "status": "passed",
+          "tests": 9,
+          "passed": 9,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/unit/mathExamBuilderSource.test.ts",
+          "status": "passed",
+          "tests": 29,
+          "passed": 29,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/unit/problemEligibility.test.ts",
+          "status": "passed",
+          "tests": 6,
+          "passed": 6,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/unit/problemFormatFilter.test.ts",
+          "status": "passed",
+          "tests": 34,
+          "passed": 34,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/unit/problemPool.test.ts",
+          "status": "passed",
+          "tests": 4,
+          "passed": 4,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/unit/routeAccess.test.ts",
+          "status": "passed",
+          "tests": 15,
+          "passed": 15,
+          "failed": [],
+          "pending": 0
+        },
+        {
+          "file": "src/__tests__/unit/textbookSlots.test.ts",
+          "status": "passed",
+          "tests": 16,
+          "passed": 16,
+          "failed": [],
+          "pending": 0
+        }
+      ],
+      "passed": 612,
+      "failed": 0,
+      "maxWorkers": 2
+    },
+    {
+      "run": "FLOW-SUPPLEMENT-1",
+      "files": [
+        {
+          "file": "src/components/exam-builder/ExamBuilder.test.tsx",
+          "tests": 39,
+          "passed": 39,
+          "status": "passed"
+        },
+        {
+          "file": "src/components/exam-builder/SavedConditions.test.tsx",
+          "tests": 10,
+          "passed": 10,
+          "status": "passed"
+        },
+        {
+          "file": "src/__tests__/unit/aiQuestionType.test.ts",
+          "tests": 12,
+          "passed": 12,
+          "status": "passed"
+        },
+        {
+          "file": "src/__tests__/unit/choiceCountRule.test.ts",
+          "tests": 18,
+          "passed": 18,
+          "status": "passed"
+        },
+        {
+          "file": "src/__tests__/unit/choiceLayoutRender.test.tsx",
+          "tests": 14,
+          "passed": 14,
+          "status": "passed"
+        },
+        {
+          "file": "src/__tests__/unit/parseProblemContent.test.ts",
+          "tests": 27,
+          "passed": 27,
+          "status": "passed"
+        }
+      ],
+      "passed": 120,
+      "failed": 0,
+      "maxWorkers": 2
+    }
+  ],
+  "directProbes": [
+    {
+      "id": "FLOW-P1",
+      "status": 200,
+      "digestChanged": true,
+      "originStillApproved": true,
+      "ready": 2
+    },
+    {
+      "id": "FLOW-P2",
+      "status": 200,
+      "readiness": 2,
+      "checkCounts": {
+        "requested": 3,
+        "eligible": 2,
+        "ineligible": 1,
+        "missing": 0
+      },
+      "picked": 2,
+      "shortfall": 0
+    },
+    {
+      "id": "FLOW-P3",
+      "status": 200,
+      "storedTypeIsDerived": false,
+      "classifiedShortAnswer": true,
+      "derivedDescriptive": true
+    },
+    {
+      "id": "FLOW-P4",
+      "createStatus": 201,
+      "reviewStatus": 200,
+      "blankAnswerEligible": 1
+    },
+    {
+      "id": "FLOW-P5",
+      "statuses": [200, 200],
+      "priorEditRetained": false,
+      "conflictReturned": false
+    },
+    {
+      "id": "FLOW-P6",
+      "status": 201,
+      "addedAfterSnapshot": 1,
+      "testRows": 1,
+      "lateInTest": false,
+      "basketRemaining": 0
+    },
+    {
+      "id": "FLOW-P7",
+      "renderedProblemCount": 1,
+      "printStatus": 200,
+      "recordMarkedPrinted": true
+    },
+    {
+      "id": "FLOW-P8-print",
+      "bankReadsBeforeLock": 1,
+      "bankReadsAfterClick": 1,
+      "remoteLocked": true,
+      "outputExecuted": 1
+    },
+    {
+      "id": "FLOW-P8-pdf",
+      "bankReadsBeforeLock": 1,
+      "bankReadsAfterClick": 1,
+      "remoteLocked": true,
+      "outputExecuted": 1
+    },
+    {
+      "id": "FLOW-P8-hwpx",
+      "bankReadsBeforeLock": 1,
+      "bankReadsAfterClick": 1,
+      "remoteLocked": true,
+      "outputExecuted": 1
+    }
+  ],
+  "probeHarnessFailures": {
+    "initialFailed": 2,
+    "causes": [
+      "Proxy has no own descriptor for transaction spy",
+      "in-memory test model does not implement findFirst"
+    ],
+    "correction": "QA harness only",
+    "rerunSelected": 2,
+    "rerunPassed": 2,
+    "rerunFailed": 0
+  },
+  "findings": [
+    {
+      "id": "FLOW-F01",
+      "priority": "P1",
+      "category": "issuance_error",
+      "verification": "live_readonly_parser_metrics_plus_root_manual_confirmation",
+      "problemCodes": ["J20501-A70-001", "J20506-A37-001"]
+    },
+    {
+      "id": "FLOW-F02",
+      "priority": "P1",
+      "category": "issuance_error",
+      "verification": "synthetic_component_and_route_reproduction",
+      "probes": ["FLOW-P8-print", "FLOW-P8-pdf", "FLOW-P8-hwpx", "FLOW-P7"]
+    },
+    {
+      "id": "FLOW-F03",
+      "priority": "P1",
+      "category": "state_transition_risk",
+      "verification": "synthetic_route_reproduction_and_existing_report",
+      "probes": ["FLOW-P1", "FLOW-P2"],
+      "liveOpenOrphanSlots": 0
+    },
+    {
+      "id": "FLOW-F04",
+      "priority": "P1",
+      "category": "basket_selection_loss",
+      "verification": "controlled_in_memory_interleaving",
+      "probes": ["FLOW-P6"],
+      "liveDatabaseConcurrencyTested": false
+    },
+    {
+      "id": "FLOW-F05",
+      "priority": "P2",
+      "category": "lost_content_edit_risk",
+      "verification": "synthetic_route_reproduction",
+      "probes": ["FLOW-P5"]
+    },
+    {
+      "id": "FLOW-F06",
+      "priority": "P2",
+      "category": "format_metadata_mismatch",
+      "verification": "synthetic_route_reproduction",
+      "probes": ["FLOW-P3"]
+    },
+    {
+      "id": "FLOW-F07",
+      "priority": "P2",
+      "category": "answer_validation_gap",
+      "verification": "synthetic_route_reproduction",
+      "probes": ["FLOW-P4"],
+      "liveEligibleBlankAnswers": 0
+    }
+  ],
+  "limitations": [
+    "Population pass covers stored eligibility and empty-field rules only; no full mathematical re-solving.",
+    "Two parser cases were selected after root manual confirmation, not a random sample or full renderer census by this worker.",
+    "PDF/HWPX/print execution spies verify wiring only; no real PDF/HWPX bytes or physical print visual review.",
+    "Database snapshot is measurement time, independent of repository HEAD.",
+    "Full production auth/session/proxy integration and real concurrent transactions were not exercised.",
+    "Adjacent saving/preset APIs were mapped by static source inspection without rerunning their dedicated suites."
+  ]
+}

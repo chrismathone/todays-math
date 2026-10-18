@@ -1,0 +1,248 @@
+{
+  "measuredAt": "2026-10-18T00:39:48.163Z",
+  "reviewedRules": {
+    "mathRenderFallback": {
+      "eligibleRows": 12,
+      "verdict": "confirmed_formula_render_fallback_in_solution",
+      "codes": [
+        "J30201-A02-023",
+        "J20301-A13-009",
+        "J20301-A13-018",
+        "J30201-A02-019",
+        "J20301-A13-010",
+        "J30201-A02-010",
+        "J20301-A13-017",
+        "J30201-A02-009",
+        "J30201-A02-020",
+        "J30201-A02-021",
+        "J30201-A02-022",
+        "J30201-A02-024"
+      ]
+    },
+    "choiceCountNotFive": {
+      "eligibleCandidates": 15,
+      "confirmedStemChoiceSplitErrors": [
+        "J20506-A37-001",
+        "J20501-A70-001"
+      ],
+      "remainingCandidates": 13,
+      "remainingVerdict": "subquestion_condition_or_matching_labels; not a five-choice violation"
+    },
+    "identicalChoiceTextCandidate": {
+      "eligibleCandidates": 64,
+      "verdict": "all duplicate text values are image placeholders with separate linked image assets; no duplicate textual choice established"
+    },
+    "choiceAnswerWithoutChoicesCandidate": {
+      "eligibleCandidates": 5,
+      "verdict": "numbered answer blanks or an incorrect-step task; no missing choices established"
+    },
+    "unclassifiedFormat": {
+      "eligibleCandidates": 43,
+      "verdict": "letter-labelled, named-person or image-contained choices; classification coverage gap, not 43 unsolvable items"
+    },
+    "conflictingAnswerGroups": {
+      "candidates": 28,
+      "reviewed": 28,
+      "verdict": "all mathematically equivalent; formatting, positive signs, fractional notation, count suffix or decimal/fraction difference",
+      "groups": [
+        {
+          "digest": "10fff21bf92322ec132e930a7c32cd71aaac108eb9eddff88bd611664d8df52b",
+          "codes": [
+            "J10203-C01-001",
+            "J10203-A97-001"
+          ]
+        },
+        {
+          "digest": "ed81de48c580c35d087cd91a1f1f7fb1d38badfdf1fcf66b7d37a1e46bd8feb1",
+          "codes": [
+            "J10203-A99-001",
+            "J10203-C03-001"
+          ]
+        },
+        {
+          "digest": "4f46dbd886e8f2a9d33ec43c0aec590461121a40f81461e561357eb5b58bfd2b",
+          "codes": [
+            "J10204-B25-001",
+            "J10204-A67-001"
+          ]
+        },
+        {
+          "digest": "07f29c36cf03c00150c9afd48e6e92928c4b4ee0be00c48a17cdabfc1153ab45",
+          "codes": [
+            "J10203-B08-001",
+            "J10203-C11-001"
+          ]
+        },
+        {
+          "digest": "e470daa4571783ad89ada1e657cb0053c793261e19704cc63fd487881d38594d",
+          "codes": [
+            "J10203-B96-001",
+            "J10203-A93-001"
+          ]
+        },
+        {
+          "digest": "6b2da3cd85d45f2559ec59731e13b5f5b34f44ecc27b30b273aa762492769148",
+          "codes": [
+            "J10203-C06-001",
+            "J10203-B03-001"
+          ]
+        },
+        {
+          "digest": "c9778e9e1f6e323d3d9c7e54d4fe1905247f1813f0affed639e97ef87b07e21d",
+          "codes": [
+            "J10205-A93-001",
+            "J10205-B48-001"
+          ]
+        },
+        {
+          "digest": "1733b79976adc81d44fdd25313616ef8b4561da579d17c135f5779494b39004c",
+          "codes": [
+            "J10203-C14-001",
+            "J10203-B11-001"
+          ]
+        },
+        {
+          "digest": "560e48c3ddeaa718283e7dc24204b88ee877d4cb16edb893b0e44b7cdb88512c",
+          "codes": [
+            "J10301-B42-001",
+            "J10301-C38-001"
+          ]
+        },
+        {
+          "digest": "15f5de11f051c41c5acb7a4b6e461847105fc0abbd07361c725b2d31f892ff2f",
+          "codes": [
+            "J10405-B40-001",
+            "J10405-B38-001"
+          ]
+        },
+        {
+          "digest": "ed86b76a1ffae8da92735587c170b422ec2ae804823484938c8843bf4b052533",
+          "codes": [
+            "J10203-B09-001",
+            "J10203-C12-001"
+          ]
+        },
+        {
+          "digest": "b349b5dedc0623bd9dd4d1d6a55c75a9474739c0aae37008f0879d647220e164",
+          "codes": [
+            "J10301-B40-001",
+            "J10301-C36-001"
+          ]
+        },
+        {
+          "digest": "d883ad6d4d7d5ab2b2fd2c56b7a3c5a3d546b7b005f337f5025f64ae08aa1b35",
+          "codes": [
+            "J10204-B17-001",
+            "J10204-A59-001"
+          ]
+        },
+        {
+          "digest": "1172d19f5c5a0f6b6941d20766a7aedb45e131cd7432853679bc59604aa3d6c6",
+          "codes": [
+            "J10203-B01-001",
+            "J10203-C04-001"
+          ]
+        },
+        {
+          "digest": "7417d69a64f8c10ad2a6d1993c607c1e07625a3a26e8976501c264e801f7d9fa",
+          "codes": [
+            "J10204-B18-001",
+            "J10204-A60-001"
+          ]
+        },
+        {
+          "digest": "6f654c8440d9519804a9a5016a9a8c1aa46f5a89032bb2e44ab2b09b486721c0",
+          "codes": [
+            "J10203-B93-001",
+            "J10203-A90-001"
+          ]
+        },
+        {
+          "digest": "1d75b95249bf04a32fa879eaa39c92a32e59ec45e528975b0851d47cfae2d75e",
+          "codes": [
+            "J10301-B45-001",
+            "J10301-C41-001"
+          ]
+        },
+        {
+          "digest": "5cdf9e7222fdb3495a15fe9001a950b59607b2d232ffa9978add160eea54c488",
+          "codes": [
+            "J10301-C46-001",
+            "J10301-B50-001"
+          ]
+        },
+        {
+          "digest": "67420ec6f731c934e51e24f4f412f32598a29c61b16fd6ac94d0b10dafd23ab7",
+          "codes": [
+            "J10205-B49-001",
+            "J10205-A94-001"
+          ]
+        },
+        {
+          "digest": "ab78ac8f35c2a92c2651b9a1b53216a7ee2cb0a1a0c34008132abbd6a76d33e8",
+          "codes": [
+            "J10203-C86-001",
+            "J10203-C92-001"
+          ]
+        },
+        {
+          "digest": "2091fa036bc88e2dc8020e8d91d45fe497766907666176dd511771c24a5bf987",
+          "codes": [
+            "J10301-B59-001",
+            "J10301-C55-001"
+          ]
+        },
+        {
+          "digest": "27a9b0123b2c32bc44fe14ac81ccf4f5ea88b224600d038c9bc2800288fec021",
+          "codes": [
+            "J10301-B39-001",
+            "J10301-C35-001"
+          ]
+        },
+        {
+          "digest": "fe6340d3801b8380e4f806df4823622a50ead0d7f0518f5e7e699ef77001a17e",
+          "codes": [
+            "J10301-B41-001",
+            "J10301-C37-001"
+          ]
+        },
+        {
+          "digest": "34b48c521d0c84b59427419e9343f7f0b8f22cef6168bf75e60b8d1b8c7416c6",
+          "codes": [
+            "J10203-A91-001",
+            "J10203-B94-001"
+          ]
+        },
+        {
+          "digest": "63b9c9784a2670f00e467316dd86a6bd50e17e079fdf8c7ef035a3ff21b01787",
+          "codes": [
+            "J10203-A96-001",
+            "J10203-B99-001"
+          ]
+        },
+        {
+          "digest": "d579dcc786f48da7252862cfc667ec4ae75598c5ac1e14237c3ac5925e169c00",
+          "codes": [
+            "J10102-B18-001",
+            "J10102-A86-001"
+          ]
+        },
+        {
+          "digest": "ecbf71331555203525f426195872d451545279532a4168c6978a261f1ff87c04",
+          "codes": [
+            "J10204-A62-001",
+            "J10204-B20-001"
+          ]
+        },
+        {
+          "digest": "75d635c2963cbd7e06bd8bc7cf2dc6f388d725a476e92c3542001ba68390ce90",
+          "codes": [
+            "J10203-B14-001",
+            "J10203-C17-001"
+          ]
+        }
+      ]
+    }
+  },
+  "scope": "Candidate rereads inspect stored content and parser outputs; no complete independent solution proof for all 117828 rows."
+}
