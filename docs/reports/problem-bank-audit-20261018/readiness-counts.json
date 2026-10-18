@@ -1,0 +1,530 @@
+{
+ "measuredAt": "2026-10-18T00:36:21.654Z",
+ "sources": {
+  "groups": {
+   "engine": {
+    "held": 100974,
+    "available": 99184
+   },
+   "school_textbook": {
+    "held": 12301,
+    "available": 11826
+   },
+   "past_exam": {
+    "held": 101,
+    "available": 0
+   },
+   "other": {
+    "held": 4452,
+    "available": 4373
+   }
+  },
+  "engineWithoutFamilyKey": {
+   "held": 0,
+   "available": 0
+  }
+ },
+ "textbook": {
+  "books": {
+   "total": 35,
+   "withProblems": 35,
+   "byCurriculum": {
+    "2022": 35
+   },
+   "withoutAuthor": 0
+  },
+  "materials": {
+   "total": 1992,
+   "withProblems": 1992,
+   "byKind": {
+    "기초 연산": 469,
+    "소단원 평가": 401,
+    "수준별 문제": 347,
+    "형성 평가": 234,
+    "대단원 평가": 175,
+    "쌍둥이 문제": 135,
+    "기타": 75,
+    "중단원 평가": 73,
+    "시험 대비": 48,
+    "진단 평가": 22,
+    "서술형 평가": 8,
+    "수행 과제": 3,
+    "수업 자료": 2
+   },
+   "missing": {
+    "chapterNo": 22,
+    "middleNo": 430,
+    "sectionNo": 1374,
+    "unitRaw": 1304,
+    "semester": 1987,
+    "round": 1984,
+    "levelRaw": 1903,
+    "sequence": 1563
+   },
+   "withDuplicateNumbers": 86,
+   "duplicateNumberRows": 1349,
+   "problemsOnUnknownMaterial": 0
+  },
+  "problems": {
+   "held": 12301,
+   "available": 11826,
+   "withoutMaterial": {
+    "held": 0,
+    "available": 0
+   },
+   "withoutQuestionNumber": {
+    "held": 0,
+    "available": 0
+   }
+  },
+  "designatedSlots": {
+   "origins": 12301,
+   "eligibleOrigins": 11826,
+   "readiness": {
+    "ready": 2179,
+    "partial": 0,
+    "none": 10122
+   },
+   "readinessOfEligible": {
+    "ready": 2179,
+    "partial": 0,
+    "none": 9647
+   },
+   "slots": {
+    "total": 4358,
+    "ready": 4358,
+    "unitMismatch": 0,
+    "ineligible": {}
+   },
+   "openSlotsOfIneligibleOrigin": 0
+  },
+  "otherTransformedChildren": {
+   "held": 79,
+   "available": 0
+  },
+  "perBook": [
+   {
+    "grade": "공통수학1",
+    "publisher": "미래엔",
+    "author": "황선욱",
+    "title": "공통수학1",
+    "curriculum": "2022",
+    "materials": 22,
+    "materialsWithProblems": 22,
+    "held": 258,
+    "available": 255
+   },
+   {
+    "grade": "공통수학1",
+    "publisher": "천재교육",
+    "author": "홍진곤",
+    "title": "공통수학1",
+    "curriculum": "2022",
+    "materials": 43,
+    "materialsWithProblems": 43,
+    "held": 216,
+    "available": 215
+   },
+   {
+    "grade": "공통수학1",
+    "publisher": "비상교육",
+    "author": "김원경",
+    "title": "공통수학1",
+    "curriculum": "2022",
+    "materials": 51,
+    "materialsWithProblems": 51,
+    "held": 181,
+    "available": 168
+   },
+   {
+    "grade": "공통수학1",
+    "publisher": "YBM",
+    "author": "류희찬",
+    "title": "공통수학1",
+    "curriculum": "2022",
+    "materials": 34,
+    "materialsWithProblems": 34,
+    "held": 165,
+    "available": 161
+   },
+   {
+    "grade": "공통수학1",
+    "publisher": "천재교육",
+    "author": "전인태",
+    "title": "공통수학1",
+    "curriculum": "2022",
+    "materials": 14,
+    "materialsWithProblems": 14,
+    "held": 140,
+    "available": 135
+   },
+   {
+    "grade": "공통수학2",
+    "publisher": "천재교육",
+    "author": "전인태",
+    "title": "공통수학2",
+    "curriculum": "2022",
+    "materials": 41,
+    "materialsWithProblems": 41,
+    "held": 287,
+    "available": 271
+   },
+   {
+    "grade": "공통수학2",
+    "publisher": "비상교육",
+    "author": "김원경",
+    "title": "공통수학2",
+    "curriculum": "2022",
+    "materials": 63,
+    "materialsWithProblems": 63,
+    "held": 168,
+    "available": 164
+   },
+   {
+    "grade": "공통수학2",
+    "publisher": "천재교육",
+    "author": "홍진곤",
+    "title": "공통수학2",
+    "curriculum": "2022",
+    "materials": 37,
+    "materialsWithProblems": 37,
+    "held": 144,
+    "available": 143
+   },
+   {
+    "grade": "공통수학2",
+    "publisher": "YBM",
+    "author": "류희찬",
+    "title": "공통수학2",
+    "curriculum": "2022",
+    "materials": 21,
+    "materialsWithProblems": 21,
+    "held": 106,
+    "available": 97
+   },
+   {
+    "grade": "기하",
+    "publisher": "YBM",
+    "author": "류희찬",
+    "title": "기하",
+    "curriculum": "2022",
+    "materials": 32,
+    "materialsWithProblems": 32,
+    "held": 213,
+    "available": 209
+   },
+   {
+    "grade": "기하",
+    "publisher": "천재교육",
+    "author": "전인태",
+    "title": "기하",
+    "curriculum": "2022",
+    "materials": 1,
+    "materialsWithProblems": 1,
+    "held": 12,
+    "available": 9
+   },
+   {
+    "grade": "대수",
+    "publisher": "천재교육",
+    "author": "전인태",
+    "title": "대수",
+    "curriculum": "2022",
+    "materials": 40,
+    "materialsWithProblems": 40,
+    "held": 278,
+    "available": 270
+   },
+   {
+    "grade": "대수",
+    "publisher": "미래엔",
+    "author": "황선욱",
+    "title": "대수",
+    "curriculum": "2022",
+    "materials": 20,
+    "materialsWithProblems": 20,
+    "held": 217,
+    "available": 216
+   },
+   {
+    "grade": "대수",
+    "publisher": "YBM",
+    "author": "류희찬",
+    "title": "대수",
+    "curriculum": "2022",
+    "materials": 31,
+    "materialsWithProblems": 31,
+    "held": 157,
+    "available": 154
+   },
+   {
+    "grade": "대수",
+    "publisher": "비상교육",
+    "author": "김원경",
+    "title": "대수",
+    "curriculum": "2022",
+    "materials": 25,
+    "materialsWithProblems": 25,
+    "held": 97,
+    "available": 96
+   },
+   {
+    "grade": "미적분1",
+    "publisher": "천재교육",
+    "author": "홍진곤",
+    "title": "미적분1",
+    "curriculum": "2022",
+    "materials": 65,
+    "materialsWithProblems": 65,
+    "held": 312,
+    "available": 306
+   },
+   {
+    "grade": "미적분1",
+    "publisher": "비상교육",
+    "author": "김원경",
+    "title": "미적분1",
+    "curriculum": "2022",
+    "materials": 51,
+    "materialsWithProblems": 51,
+    "held": 185,
+    "available": 180
+   },
+   {
+    "grade": "미적분1",
+    "publisher": "YBM",
+    "author": "류희찬",
+    "title": "미적분1",
+    "curriculum": "2022",
+    "materials": 20,
+    "materialsWithProblems": 20,
+    "held": 108,
+    "available": 100
+   },
+   {
+    "grade": "중1",
+    "publisher": "천재교육",
+    "author": "김동재",
+    "title": "중학 수학1",
+    "curriculum": "2022",
+    "materials": 216,
+    "materialsWithProblems": 216,
+    "held": 1278,
+    "available": 1219
+   },
+   {
+    "grade": "중1",
+    "publisher": "천재교육",
+    "author": "김화경",
+    "title": "중학 수학1",
+    "curriculum": "2022",
+    "materials": 188,
+    "materialsWithProblems": 188,
+    "held": 1079,
+    "available": 1049
+   },
+   {
+    "grade": "중1",
+    "publisher": "지학사",
+    "author": "장경윤",
+    "title": "중학 수학1",
+    "curriculum": "2022",
+    "materials": 106,
+    "materialsWithProblems": 106,
+    "held": 852,
+    "available": 825
+   },
+   {
+    "grade": "중1",
+    "publisher": "동아출판",
+    "author": "강옥기",
+    "title": "중학 수학1",
+    "curriculum": "2022",
+    "materials": 46,
+    "materialsWithProblems": 46,
+    "held": 806,
+    "available": 778
+   },
+   {
+    "grade": "중1",
+    "publisher": "YBM",
+    "author": "류희찬",
+    "title": "중학 수학1",
+    "curriculum": "2022",
+    "materials": 84,
+    "materialsWithProblems": 84,
+    "held": 409,
+    "available": 396
+   },
+   {
+    "grade": "중1",
+    "publisher": "미래엔",
+    "author": "황선욱",
+    "title": "중학 수학1",
+    "curriculum": "2022",
+    "materials": 72,
+    "materialsWithProblems": 72,
+    "held": 397,
+    "available": 390
+   },
+   {
+    "grade": "중1",
+    "publisher": "NE능률",
+    "author": "권오남",
+    "title": "중학 수학1",
+    "curriculum": "2022",
+    "materials": 31,
+    "materialsWithProblems": 31,
+    "held": 122,
+    "available": 117
+   },
+   {
+    "grade": "중2",
+    "publisher": "동아출판",
+    "author": "강옥기",
+    "title": "중학 수학2",
+    "curriculum": "2022",
+    "materials": 170,
+    "materialsWithProblems": 170,
+    "held": 1595,
+    "available": 1504
+   },
+   {
+    "grade": "중2",
+    "publisher": "천재교육",
+    "author": "김화경",
+    "title": "중학 수학2",
+    "curriculum": "2022",
+    "materials": 114,
+    "materialsWithProblems": 114,
+    "held": 493,
+    "available": 460
+   },
+   {
+    "grade": "중2",
+    "publisher": "YBM",
+    "author": "류희찬",
+    "title": "중학 수학2",
+    "curriculum": "2022",
+    "materials": 73,
+    "materialsWithProblems": 73,
+    "held": 454,
+    "available": 447
+   },
+   {
+    "grade": "중2",
+    "publisher": "천재교육",
+    "author": "김동재",
+    "title": "중학 수학2",
+    "curriculum": "2022",
+    "materials": 87,
+    "materialsWithProblems": 87,
+    "held": 407,
+    "available": 375
+   },
+   {
+    "grade": "중2",
+    "publisher": "미래엔",
+    "author": "황선욱",
+    "title": "중학 수학2",
+    "curriculum": "2022",
+    "materials": 66,
+    "materialsWithProblems": 66,
+    "held": 395,
+    "available": 385
+   },
+   {
+    "grade": "중2",
+    "publisher": "NE능률",
+    "author": "권오남",
+    "title": "중학 수학2",
+    "curriculum": "2022",
+    "materials": 24,
+    "materialsWithProblems": 24,
+    "held": 161,
+    "available": 150
+   },
+   {
+    "grade": "중2",
+    "publisher": "교학사",
+    "author": "김창동",
+    "title": "중학 수학2",
+    "curriculum": "2022",
+    "materials": 8,
+    "materialsWithProblems": 8,
+    "held": 54,
+    "available": 51
+   },
+   {
+    "grade": "확률과 통계",
+    "publisher": "천재교육",
+    "author": "전인태",
+    "title": "확률과 통계",
+    "curriculum": "2022",
+    "materials": 46,
+    "materialsWithProblems": 46,
+    "held": 274,
+    "available": 270
+   },
+   {
+    "grade": "확률과 통계",
+    "publisher": "YBM",
+    "author": "류희찬",
+    "title": "확률과 통계",
+    "curriculum": "2022",
+    "materials": 26,
+    "materialsWithProblems": 26,
+    "held": 153,
+    "available": 139
+   },
+   {
+    "grade": "확률과 통계",
+    "publisher": "비상교육",
+    "author": "김원경",
+    "title": "확률과 통계",
+    "curriculum": "2022",
+    "materials": 24,
+    "materialsWithProblems": 24,
+    "held": 128,
+    "available": 122
+   }
+  ]
+ },
+ "pastExam": {
+  "exams": {
+   "total": 5,
+   "schools": 5,
+   "bySubject": {
+    "중 중3": 5
+   },
+   "byYear": {
+    "2025": 5
+   }
+  },
+  "examQuestions": {
+   "total": 101,
+   "linkedToProblem": 101,
+   "mappedToUnit": 0
+  },
+  "problems": {
+   "held": 101,
+   "available": 0,
+   "withoutSchool": {
+    "held": 0,
+    "available": 0
+   },
+   "withoutExamId": {
+    "held": 0,
+    "available": 0
+   },
+   "withoutQuestionNumber": {
+    "held": 0,
+    "available": 0
+   }
+  },
+  "transformedFromPastExam": {
+   "held": 0,
+   "available": 0
+  }
+ }
+}
