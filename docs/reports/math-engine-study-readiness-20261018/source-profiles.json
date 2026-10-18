@@ -1,0 +1,519 @@
+{
+  "auditDate": "2026-10-18",
+  "sourceUrl": "https://kimbjmath-qbank.pages.dev/만들기",
+  "reviewMethod": "Authenticated user-authorized browser display; MathML reread rather than flattened fractions; original source figures for six selected tasks viewed transiently and discarded. Only abstract mathematical demands and bibliography/metadata retained.",
+  "newVisibleStemsRead": 67,
+  "newFullSchoolPaperVisibleStems": 57,
+  "newTextbookAndAutomaticallyAttachedPracticeStems": 10,
+  "profiledDemands": 33,
+  "priorEvidence": "Previous audit reviewed 44 displayed Kyungmyung M1/M3 stems; its 27-task structural mapping is reclassified in study-structures. No merged school-wide coverage percentage is inferred.",
+  "cautions": [
+    "Purposive representative samples, not a source-site census or complete curriculum alignment audit.",
+    "Daeryun M1 displayed only19 of22 questions; missing source demand unknown.",
+    "Source type/difficulty/format labels and disputed answer keys are not authoritative quality or difficulty evidence.",
+    "A demand profile is an audit comparison record, not an implemented production school profile or newly saved original question database."
+  ],
+  "profiles": [
+    {
+      "profileId": "daeryun-m1",
+      "evidence": {
+        "id": "daeryun-m1-2025-s1-final",
+        "sourceUrl": "https://kimbjmath-qbank.pages.dev/만들기",
+        "school": "대륜중",
+        "grade": "중1",
+        "year": 2025,
+        "semester": 1,
+        "round": "기말",
+        "sourceListedQuestionCount": 22,
+        "renderedQuestionCount": 19,
+        "sourceVisibleFormats": {
+          "객관식": 17,
+          "주관식": 2
+        },
+        "sourceVisibleDifficulty": {
+          "하": 5,
+          "중하": 4,
+          "중": 3,
+          "중상": 4,
+          "상": 3
+        },
+        "selectionBias": "Site hides three items from22;19 visible items are not a complete original exam. Labels and answers are source metadata, not independently calibrated. Math-demand descriptions are original abstract summaries without source numbers/wording/figures.",
+        "requiredDomain": [
+          "일차식",
+          "일차방정식",
+          "정비례/반비례",
+          "좌표",
+          "조건 판단",
+          "자료 해석",
+          "과정 서술"
+        ],
+        "demands": [
+          {
+            "sourceNo": 4,
+            "demand": "Use quadrant signs of a ratio and a sum to infer signs of two hidden quantities, then determine a transformed point quadrant",
+            "moves": [
+              "ratio sign",
+              "sum sign disambiguation",
+              "product sign",
+              "transformed-coordinate quadrant"
+            ],
+            "visual": false,
+            "depth": "conditional multi-step"
+          },
+          {
+            "sourceNo": 10,
+            "demand": "Read a piecewise distance-time graph and evaluate simultaneous claims about direction reversals, maximum distance, repeated level crossings, total path length, and first hitting time",
+            "moves": [
+              "graph reading",
+              "distinguish displacement and travel length",
+              "turning points",
+              "level crossings",
+              "interval accumulation"
+            ],
+            "visual": true,
+            "depth": "multiple related judgments"
+          },
+          {
+            "sourceNo": 11,
+            "demand": "Use an initial population ratio under repeated doubling to infer a time offset, then combine it with a symbolic time expressed in another time unit",
+            "moves": [
+              "repeated doubling offset",
+              "unit conversion",
+              "symbolic expression"
+            ],
+            "visual": false,
+            "depth": "model and unit reasoning"
+          },
+          {
+            "sourceNo": 14,
+            "demand": "A square has vertices constrained to two proportional graphs; solve a point coordinate from shared side length and graph incidences",
+            "moves": [
+              "graph geometry",
+              "axis-parallel square constraints",
+              "proportional equations",
+              "coordinate target"
+            ],
+            "visual": true,
+            "depth": "geometry/algebra combination"
+          },
+          {
+            "sourceNo": 16,
+            "demand": "Two points on a reciprocal graph and an axis point form auxiliary triangles with a prescribed area ratio; infer the unknown point and a larger triangle area",
+            "moves": [
+              "reciprocal incidence",
+              "axis projections",
+              "area-ratio equation",
+              "domain/integrality",
+              "composite area"
+            ],
+            "visual": true,
+            "depth": "high multi-step"
+          },
+          {
+            "sourceNo": 17,
+            "demand": "Two points on a reciprocal graph form a right triangle with equal axis-parallel legs and a known coordinate; recover the graph coefficient",
+            "moves": [
+              "coordinate differences",
+              "equal-leg constraints",
+              "reciprocal product",
+              "parameter recovery"
+            ],
+            "visual": false,
+            "depth": "combined constraints"
+          },
+          {
+            "sourceNo": 18,
+            "demand": "Two proportional rays partition an axis-intercept triangle into prescribed area proportions; recover both slopes and combine them",
+            "moves": [
+              "area ratios to division points",
+              "coordinate geometry",
+              "slope recovery",
+              "combine coefficients"
+            ],
+            "visual": true,
+            "depth": "high multi-step"
+          },
+          {
+            "sourceNo": 19,
+            "demand": "For a fixed travel distance, infer the relative revolution count after a circle diameter changes, then compute and round the percentage increase",
+            "moves": [
+              "radius vs diameter",
+              "circumference ratio",
+              "inverse proportionality",
+              "percentage base",
+              "rounding"
+            ],
+            "visual": false,
+            "depth": "model/unit/base combination"
+          },
+          {
+            "sourceNo": 20,
+            "demand": "Symbolically sum all reduced fractions with a fixed composite denominator between two integer bounds using coprime residue classes and a supplied summation identity",
+            "moves": [
+              "coprimality filtering",
+              "complete residue classes",
+              "pairing or arithmetic summation",
+              "symbolic bounds"
+            ],
+            "visual": false,
+            "depth": "high generalization"
+          },
+          {
+            "sourceNo": 21,
+            "demand": "Apply a set of supplied formulas in dependency order, compute intermediate quantities and a residual budget, then solve a rate/time question with consistent units and a minimum-time interpretation",
+            "moves": [
+              "dependency graph",
+              "multiple intermediate outputs",
+              "unit/rate conversion",
+              "minimum rounding",
+              "explain process"
+            ],
+            "visual": false,
+            "format": "written multi-output",
+            "depth": "high multi-step"
+          },
+          {
+            "sourceNo": 22,
+            "demand": "Use incidence on two reciprocal curves plus horizontal/vertical alignment to express four vertices in one parameter and derive a trapezoid area",
+            "moves": [
+              "signed reciprocal graphs",
+              "axis-parallel constraints",
+              "parameterized coordinates",
+              "trapezoid area",
+              "parameter cancellation"
+            ],
+            "visual": true,
+            "format": "written multi-output",
+            "depth": "high symbolic geometry"
+          }
+        ],
+        "sampleSelection": "Eleven purposively selected complex or higher-demand tasks among19 visible items; not a random frequency sample and not whole-school coverage",
+        "sourceTaxonomyCaution": "At least two displayed type labels do not describe the visible mathematical task (circumference/inverse change and symbolic reduced-fraction summation). Use actual abstract solving demands rather than label equality.",
+        "visualRelationshipsVerified": [
+          {
+            "sourceNo": 14,
+            "relationship": "Axis-parallel square vertices constrained to two proportional rays."
+          },
+          {
+            "sourceNo": 16,
+            "relationship": "Two reciprocal-curve points and an axis point with prescribed triangle/composite area relationships."
+          },
+          {
+            "sourceNo": 18,
+            "relationship": "Two proportional rays partition the far edge of an axis-intercept triangle."
+          },
+          {
+            "sourceNo": 22,
+            "relationship": "Shared horizontal and two vertical alignments create a trapezoid across two signed reciprocal curves."
+          }
+        ],
+        "transientSourceFiguresDiscarded": true
+      }
+    },
+    {
+      "profileId": "daeryun-m2",
+      "evidence": {
+        "source": "authenticated user-authorized comparison site; transient question review only",
+        "school": "대륜중",
+        "year": 2025,
+        "term": "1학기 기말",
+        "course": "중2-1",
+        "listedCount": 18,
+        "visibleCount": 18,
+        "format": {
+          "multipleChoice": 16,
+          "shortOrWritten": 2
+        },
+        "sourceDifficultyLabels": {
+          "하": 4,
+          "중하": 4,
+          "중": 4,
+          "중상": 4,
+          "상": 2
+        },
+        "allVisibleStemsRead": true,
+        "sourceLabelsNotIndependentDifficultyCalibration": true,
+        "selectionBias": "Nine purposively selected demands from the 18 visible cards; not a random sample or entire school/grade proof. All 18 visible stems were read. No original stem, coefficient or figure is retained in this profile.",
+        "sourceQualityCautions": [
+          "Source type tags for at least two system-equation cards describe solution-existence cases but the displayed demands are numeric/parameter solving; type tags require mathematical rereading.",
+          "One remainder-function card displays an unresolved source answer warning.",
+          "Written modeling cards are labeled highest difficulty; format/label alone does not establish structural difficulty."
+        ],
+        "demands": [
+          {
+            "sourceNo": 5,
+            "abstractDemand": "Translate a linear graph, recover its two intercepts, use those intercepts as coefficients of a second linear graph, then infer its quadrant exclusion.",
+            "skills": [
+              "transformations",
+              "representation-transfer",
+              "dependent-multistep"
+            ]
+          },
+          {
+            "sourceNo": 8,
+            "abstractDemand": "Judge multiple distinct properties of one linear relation: slope-parallelism, intercepts, incidence, increments and quadrants.",
+            "skills": [
+              "compound-properties",
+              "claim-truth"
+            ]
+          },
+          {
+            "sourceNo": 10,
+            "abstractDemand": "Judge whether several verbal and geometric correspondences define a single-valued function, including uniqueness versus many admissible outputs.",
+            "skills": [
+              "definition-application",
+              "non-numeric-claim-truth"
+            ]
+          },
+          {
+            "sourceNo": 11,
+            "abstractDemand": "Invert an inequality solution count over the natural numbers to find every admissible integer parameter, then aggregate that complete parameter set.",
+            "skills": [
+              "inverse-parameter",
+              "boundary-counting",
+              "complete-case-set"
+            ]
+          },
+          {
+            "sourceNo": 14,
+            "abstractDemand": "Recover axis intercepts and use a negative-integer lattice constraint on a line to determine a point, then compare two triangle areas.",
+            "skills": [
+              "integer-feasibility",
+              "graph-area",
+              "constraint-combination"
+            ]
+          },
+          {
+            "sourceNo": 15,
+            "abstractDemand": "Compare solutions of two related systems whose coordinates differ by known translations, then recover unknown coefficients.",
+            "skills": [
+              "coupled-systems",
+              "solution-shift",
+              "symbolic-elimination"
+            ]
+          },
+          {
+            "sourceNo": 16,
+            "abstractDemand": "Use two lines intercepting both axes and a quadrilateral trapezoid condition to enumerate every admissible signed parameter via alternative parallel-side cases.",
+            "skills": [
+              "geometric-parallel-cases",
+              "intercepts",
+              "complete-parameter-set"
+            ]
+          },
+          {
+            "sourceNo": 17,
+            "abstractDemand": "Model remaining fuel versus traveled distance from efficiency and total distance; provide both a function expression and an evaluated value with explicit reasoning.",
+            "skills": [
+              "model-building",
+              "unit-consistency",
+              "native-multi-output-written"
+            ]
+          },
+          {
+            "sourceNo": 18,
+            "abstractDemand": "One written card contains two distinct rate-model subproblems: piecewise travel with a stationary interval, and recovering individual fill rates from two schedules.",
+            "skills": [
+              "piecewise-time-accounting",
+              "two-rate-system",
+              "written-modeling"
+            ],
+            "note": "These are two separate subproblems, not evidence of a single integrated problem structure."
+          }
+        ]
+      }
+    },
+    {
+      "profileId": "kyungshin-common2",
+      "evidence": {
+        "school": "경신고",
+        "course": "공통수학2",
+        "year": 2025,
+        "term": "2학기 기말",
+        "listedCount": 20,
+        "visibleCount": 20,
+        "allVisibleStemsRead": true,
+        "format": {
+          "multipleChoice": 14,
+          "shortAnswer": 6,
+          "explicitProcessWritten": 0
+        },
+        "difficulty": "All 20 source labels unclassified; scores are not independent difficulty calibration.",
+        "sourceQualityCautions": [
+          "Three short-answer cards carry unresolved answer discrepancies. Their answer keys are not accepted as gold.",
+          "No images displayed; textual graph tasks still require mental reconstruction or rendering.",
+          "Conditions/transcription must be independently checked before using any source as a benchmark answer."
+        ],
+        "scope": "Selected 8 demands from 20 visible cards, purposive not random; no full-school/curriculum readiness percentage. No source wording or coefficients persisted.",
+        "demands": [
+          {
+            "sourceNo": 4,
+            "abstractDemand": "Convert an implication between an absolute-value interval and the complement of a quadratic inequality into interval containment, then optimize the shift parameter.",
+            "skills": [
+              "proposition-truth-set",
+              "interval-inclusion",
+              "parameter-boundaries"
+            ]
+          },
+          {
+            "sourceNo": 8,
+            "abstractDemand": "Count all possible intermediate truth sets constrained between an intersection and a union of two finite sets.",
+            "skills": [
+              "subset-lattice",
+              "logical-implications",
+              "combinatorial-count"
+            ]
+          },
+          {
+            "sourceNo": 10,
+            "abstractDemand": "Use bijectivity of a quadratic function between a restricted half-line domain and specified half-line range to constrain coefficients and optimize an evaluation.",
+            "skills": [
+              "restricted-domain",
+              "monotonicity-and-onto",
+              "parameter-optimization"
+            ]
+          },
+          {
+            "sourceNo": 12,
+            "abstractDemand": "Optimize polygon area with a moving point on a radical curve and fixed axis intercepts using a valid parameter substitution.",
+            "skills": [
+              "curve-geometry",
+              "area-model",
+              "constrained-optimization"
+            ]
+          },
+          {
+            "sourceNo": 13,
+            "abstractDemand": "Count intersections of an absolute rational-function graph with horizontal levels on a restricted, punctured domain, then find all integer levels with a specified count.",
+            "skills": [
+              "branch-partition",
+              "excluded-domain-points",
+              "intersection-count",
+              "integer-boundaries"
+            ]
+          },
+          {
+            "sourceNo": 14,
+            "abstractDemand": "Recover constrained bijections between three finite sets from combined direct, inverse and composition values.",
+            "skills": [
+              "finite-mapping-constraints",
+              "composition-inverse",
+              "complete-enumeration"
+            ]
+          },
+          {
+            "sourceNo": 17,
+            "abstractDemand": "Solve a finite self-map constrained by an inequality on the second iterate, an exact range and one fixed value, then combine outputs.",
+            "skills": [
+              "iterated-function",
+              "exact-range",
+              "constraint-enumeration"
+            ]
+          },
+          {
+            "sourceNo": 18,
+            "abstractDemand": "Relate points on a radical function and its inverse via an oblique line, then use a triangle circumcircle condition to recover a line parameter.",
+            "skills": [
+              "inverse-symmetry",
+              "coordinate-geometry",
+              "circumcircle",
+              "coupled-constraints"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "profileId": "textbook-m2",
+      "evidence": {
+        "source": "천재교육(김동재) 교과서; 실력UP문제 - 4-1-3, 중2-2; authenticated site display (source attribution as shown, not independently verified edition)",
+        "selectedTextbookCount": 5,
+        "displayedCountIncludingAddedExamPractice": 10,
+        "allTenVisibleStemsRead": true,
+        "selectedTextbookFormat": "All five numeric short-answer, not explicitly process-written.",
+        "pairedExamFormat": "Four MC and one explicitly process-written.",
+        "scope": "One purposively selected geometry bundle and its five automatically attached same-tag school examples; not complete textbook comparison. No original stem, coefficient or figure retained.",
+        "observedPairingCaution": "Step1 showed five selected textbook questions; Step2 included five extra school questions. The site describes attaching same-type school problems. Matching a tag is not proof that the learning action, dependency or response requirement matches.",
+        "demands": [
+          {
+            "textbookNo": "4-1-3-1",
+            "abstractDemand": "Convert a ratio of all three arcs of a circumcircle into an inscribed angle.",
+            "skills": [
+              "circle-partition",
+              "inscribed-angle"
+            ],
+            "visualStatus": "stem read; original figure not independently inspected"
+          },
+          {
+            "textbookNo": "4-1-3-2",
+            "abstractDemand": "Infer a central angle from angles of an obtuse triangle while resolving the correct circle angle branch.",
+            "skills": [
+              "circumcenter",
+              "obtuse-configuration",
+              "angle-branch"
+            ],
+            "visualStatus": "stem read; original figure not independently inspected"
+          },
+          {
+            "textbookNo": "4-1-3-3",
+            "abstractDemand": "In a triangle split by an isosceles subtriangle, combine angle bisectors of two different subtriangles and their extended intersection to recover a nonlocal angle.",
+            "skills": [
+              "nested-triangles",
+              "distinct-incenters",
+              "line-extension",
+              "angle-dependency"
+            ],
+            "visualStatus": "figure visually inspected; incidence and shaded target confirmed"
+          },
+          {
+            "textbookNo": "4-1-3-4",
+            "abstractDemand": "Use a right triangle and its inscribed circle with tangency/perpendicular construction to derive the inradius and subtract circular area from triangle area.",
+            "skills": [
+              "incircle-radius",
+              "tangent-lengths",
+              "composite-shaded-area"
+            ],
+            "visualStatus": "figure visually inspected; full triangle minus circle confirmed"
+          },
+          {
+            "textbookNo": "4-1-3-5",
+            "abstractDemand": "Combine circumcenter and incenter angle relationships within an isosceles triangle.",
+            "skills": [
+              "two-centers",
+              "isosceles-symmetry",
+              "angle-dependency"
+            ],
+            "visualStatus": "stem read; original figure not independently inspected"
+          }
+        ],
+        "pairedSchoolDemandNotes": [
+          {
+            "source": "매호중 2024 2학기 기말",
+            "abstractDemand": "Recover perimeter from circumcenter perpendicular-foot midpoint structure; numeric lengths partly carried by figure.",
+            "limitation": "not the same action as arc-ratio→inscribed-angle textbook partner"
+          },
+          {
+            "source": "경산여중 2024 2학기 중간",
+            "abstractDemand": "Use incenter/circumcenter rays and their extensions to a side to derive an intersection angle."
+          },
+          {
+            "source": "학남중 2025 2학기 중간",
+            "abstractDemand": "Combine ordinary incenter/circumcenter angles in one triangle.",
+            "limitation": "does not itself exercise two subtriangles with distinct incenters"
+          },
+          {
+            "source": "월촌중 2018 2학기 기말",
+            "abstractDemand": "Judge several area, congruence, distance, tangency and angle claims in an incircle diagram.",
+            "limitation": "same incircle unit; claim judgment differs from composite shaded area"
+          },
+          {
+            "source": "영신중 2025 2학기 중간",
+            "abstractDemand": "Give a process-written angle solution using both centers of an isosceles triangle.",
+            "limitation": "requires an explicit explanation beyond a numeric answer"
+          }
+        ],
+        "transientSourceFiguresDiscarded": true
+      }
+    }
+  ]
+}
