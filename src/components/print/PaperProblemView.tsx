@@ -19,6 +19,8 @@ export interface PaperProblemViewProps {
   figureSourceMm?: (number | null)[];
   /** false = 이미 지면(A4Page) 안이라 틀 없이 본문만 그린다 (인쇄 템플릿 전용). */
   framed?: boolean;
+  /** 성적표처럼 서버와 같은 고정 지면에서 DOM 측정 없이 그린다. */
+  staticLayout?: boolean;
 }
 
 /**
@@ -35,6 +37,7 @@ export function PaperProblemView({
   figureDims,
   figureSourceMm,
   framed = true,
+  staticLayout = false,
 }: PaperProblemViewProps) {
   const body = (
     <ProblemContent
@@ -49,6 +52,7 @@ export function PaperProblemView({
       // 아직 안 그려진 그림이 빠지면 학생이 못 푸는 시험지가 나간다(절대 규칙 6).
       // 화면 목록에서만 지연 로딩한다.
       deferFigures={framed}
+      staticLayout={staticLayout}
     />
   );
 

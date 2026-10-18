@@ -167,6 +167,7 @@ model Branch {
 
   examPublications ExamPublication[]
 
+  examReports ExamReportDraft[]
   @@map("branch")
 }
 
@@ -244,6 +245,8 @@ model User {
   /// 월말평가 M1 — 반에 낸 시험지의 고정본(2026-10-17)
   examPublications ExamPublication[]
 
+  examReports         ExamReportDraft[]
+  examReportConfirmed ExamReportArtifact[] @relation("ExamReportConfirmer")
   @@map("user")
 }
 
@@ -462,6 +465,7 @@ model Student {
   /// 교재 개념의 백지 활동 — 학생을 지우면 그 글도 같이 지워진다
   textbookConceptAttempts TextbookConceptAttempt[]
 
+  examReports ExamReportDraft[]
   @@index([classId])
   @@map("student")
 }
@@ -1202,6 +1206,7 @@ model Test {
   testProblems   TestProblem[]
   testResults    TestResult[]
 
+  examReports ExamReportDraft[]
   @@index([userId, testDate(sort: Desc)])
   @@index([classId, testDate(sort: Desc)])
   @@index([studentId])
@@ -1230,10 +1235,66 @@ model ExamPublication {
   user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   branch Branch? @relation(fields: [branchId], references: [id], onDelete: SetNull)
   tests  Test[]
+  examReports ExamReportDraft[]
 
   @@unique([userId, requestId])
   @@index([userId, documentId, createdAt(sort: Desc)])
   @@map("exam_publication")
+}
+
+/// 월말평가 성적표 — 낸 시험 한 회 × 학생 한 명의 편집 자리(원장님 문장 · 지면 설정 · 상태). 마이그레이션 `20261018150000_exam_report_confirmation`.
+/// 문장 · 지면 설정 · 원시험을 고치면 DB 트리거가 판을 올리고 확정을 푼다. 재채점은 읽을 때 지문으로 가린다.
+model ExamReportDraft {
+  id                  String   @id @default(uuid()) @db.Uuid
+  publicationId       String   @map("publication_id") @db.Uuid
+  testId              String   @map("test_id") @db.Uuid
+  studentId           String   @map("student_id") @db.Uuid
+  userId              String   @map("user_id") @db.Uuid
+  branchId            String?  @map("branch_id") @db.Uuid
+  teacherNote         String   @default("") @map("teacher_note")
+  options             Json     @default("{}") @db.JsonB
+  revision            Int      @default(1)
+  state               String   @default("draft") @db.VarChar(12)
+  confirmedArtifactId String?  @map("confirmed_artifact_id") @db.Uuid
+  createdAt           DateTime @default(now()) @map("created_at")
+  updatedAt           DateTime @default(now()) @map("updated_at")
+
+  publication       ExamPublication      @relation(fields: [publicationId], references: [id], onDelete: Restrict)
+  test              Test                 @relation(fields: [testId], references: [id], onDelete: Restrict)
+  student           Student              @relation(fields: [studentId], references: [id], onDelete: Restrict)
+  user              User                 @relation(fields: [userId], references: [id], onDelete: Restrict)
+  branch            Branch?              @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  artifacts         ExamReportArtifact[] @relation("ExamReportArtifacts")
+  confirmedArtifact ExamReportArtifact?  @relation("ExamReportConfirmed", fields: [confirmedArtifactId, id], references: [id, reportId], onDelete: Restrict, map: "exam_report_draft_confirmed_artifact_fkey")
+
+  @@unique([publicationId, studentId])
+  @@index([testId])
+  @@map("exam_report_draft")
+}
+
+/// 확정한 순간의 고정본 — 고치거나 지울 수 없다(DB 트리거). PDF 바이트는 비공개 버킷 `exam-report-private` 의 `pdfPath` 에 있다.
+model ExamReportArtifact {
+  id             String   @id @default(uuid()) @db.Uuid
+  reportId       String   @map("report_id") @db.Uuid
+  revision       Int
+  sourceResultId String   @map("source_result_id") @db.Uuid
+  confirmedBy    String   @map("confirmed_by") @db.Uuid
+  confirmedAt    DateTime @default(now()) @map("confirmed_at")
+  layoutVersion  String   @map("layout_version") @db.VarChar(100)
+  sourceDigest   String   @map("source_digest") @db.Char(64)
+  snapshot       Json     @db.JsonB
+  pdfPath        String   @unique @map("pdf_path") @db.VarChar(300)
+  pdfSha256      String   @map("pdf_sha256") @db.Char(64)
+  pdfSize        Int      @map("pdf_size")
+
+  report       ExamReportDraft   @relation("ExamReportArtifacts", fields: [reportId], references: [id], onDelete: Restrict)
+  sourceResult TestResult        @relation(fields: [sourceResultId], references: [id], onDelete: Restrict)
+  confirmer    User              @relation("ExamReportConfirmer", fields: [confirmedBy], references: [id], onDelete: Restrict)
+  confirmedOf  ExamReportDraft[] @relation("ExamReportConfirmed")
+
+  @@unique([reportId, revision])
+  @@unique([id, reportId])
+  @@map("exam_report_artifact")
 }
 
 // ─────────────────────────────────────────────
@@ -1352,6 +1413,7 @@ model TestResult {
   /// 1:1 — 실제 FK는 AnalysisReport.testResultId(unique)가 소유한다(순환 FK 회피).
   analysisReport AnalysisReport?
 
+  examReportArtifacts ExamReportArtifact[]
   @@index([testId, studentId, takenAt])
   @@map("test_result")
 }

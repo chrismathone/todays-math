@@ -4,6 +4,8 @@
  * 엔진에 넣을 때 이 함수가 정본이 아니다 — 고르신 값을 파이썬 쪽에 옮겨 적고 시험으로 잠근다.
  */
 
+import { svgDataUrl } from "@/lib/svgDataUrl";
+
 export type Range = {
   /** null 이면 왼쪽 끝까지(미만 · 이하). */
   from: number | null;
@@ -82,5 +84,5 @@ export function numberLineSvg({
 }
 
 export function svgDataUri(svg: string): string {
-  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+  return svgDataUrl(svg);
 }

@@ -21,6 +21,8 @@ export const PdfPayloadSchema = z.object({
   cssUrls: z.array(z.string().max(4000)).max(32).default([]),
   cssText: z.string().max(2_000_000).default(""),
   title: z.string().trim().max(200).default("시험지"),
+  /** 기존 시험지의 외부 글꼴 적재는 유지하고, 자체 글꼴 문서만 명시적으로 닫는다. */
+  fontPolicy: z.enum(["default", "self-hosted"]).default("default"),
 });
 export type PdfPayload = z.infer<typeof PdfPayloadSchema>;
 const escape = (text: string) =>
@@ -36,6 +38,7 @@ export function allowedPdfResource(
   raw: string,
   type: string,
   origin: string,
+  fontPolicy: PdfPayload["fontPolicy"] = "default",
 ): boolean {
   if (raw === "about:blank") return true;
   if (raw.startsWith("data:")) return ["image", "font"].includes(type);
@@ -55,6 +58,7 @@ export function allowedPdfResource(
       );
     return (
       url.protocol === "https:" &&
+      fontPolicy !== "self-hosted" &&
       FONT_HOSTS.has(url.hostname) &&
       ["stylesheet", "font"].includes(type)
     );
@@ -64,8 +68,13 @@ export function allowedPdfResource(
 }
 
 export function pdfDocument(input: PdfPayload, origin: string): string {
-  const styles = [...new Set([...input.cssUrls, ...FONT_CSS])].filter((url) =>
-    allowedPdfResource(url, "stylesheet", origin),
+  const styles = [
+    ...new Set([
+      ...input.cssUrls,
+      ...(input.fontPolicy === "self-hosted" ? [] : FONT_CSS),
+    ]),
+  ].filter((url) =>
+    allowedPdfResource(url, "stylesheet", origin, input.fontPolicy),
   );
   return `<!doctype html><html lang="ko"><head><meta charset="utf-8"><base href="${escape(origin)}/"><title>${escape(input.title)}</title>${styles.map((url) => `<link rel="stylesheet" href="${escape(url)}">`).join("")}<style>${input.cssText.replace(/<\/style/gi, "<\\/style")}</style><style>html,body{margin:0;padding:0}[data-mathgen-document]{display:block!important;--preview-scale:1!important;--preview-trailing-space:0px!important;width:210mm!important;min-width:0!important}[data-unified-paper]{zoom:1!important;margin:0!important;box-shadow:none!important;break-after:page}[data-unified-paper]:last-child{break-after:auto}@page{size:A4;margin:0}</style></head><body>${input.html}</body></html>`;
 }
@@ -74,7 +83,12 @@ async function preparePage(page: Page, input: PdfPayload, origin: string) {
   await page.setJavaScriptEnabled(false);
   await page.setRequestInterception(true);
   page.on("request", (request) => {
-    void (allowedPdfResource(request.url(), request.resourceType(), origin)
+    void (allowedPdfResource(
+      request.url(),
+      request.resourceType(),
+      origin,
+      input.fontPolicy,
+    )
       ? request.continue()
       : request.abort());
   });
@@ -83,23 +97,31 @@ async function preparePage(page: Page, input: PdfPayload, origin: string) {
     waitUntil: "load",
     timeout: 30000,
   });
-  await page.evaluate(async () => {
-    const families = [
-      "Noto Serif KR",
-      "Noto Sans KR",
-      "Nanum Myeongjo",
-      "Nanum Gothic",
-      "Gowun Batang",
-      "Gowun Dodum",
-      "Pretendard",
-    ];
+  await page.evaluate(async (selfHosted: boolean) => {
+    const families = selfHosted
+      ? ["Noto Serif KR", "Pretendard"]
+      : [
+          "Noto Serif KR",
+          "Noto Sans KR",
+          "Nanum Myeongjo",
+          "Nanum Gothic",
+          "Gowun Batang",
+          "Gowun Dodum",
+          "Pretendard",
+        ];
     await Promise.all(
       families.flatMap((family) =>
-        [400, 700].map((weight) =>
-          document.fonts
-            .load(`${weight} 16px "${family}"`, "가힣국문수학9A")
-            .catch(() => undefined),
-        ),
+        [400, 700].map(async (weight) => {
+          const loading = document.fonts.load(
+            `${weight} 16px "${family}"`,
+            "가힣국문수학9A",
+          );
+          if (selfHosted) {
+            const loaded = await loading;
+            if (loaded.length === 0)
+              throw new Error("성적표 글꼴을 불러오지 못했습니다.");
+          } else await loading.catch(() => undefined);
+        }),
       ),
     );
     await document.fonts.ready;
@@ -108,7 +130,7 @@ async function preparePage(page: Page, input: PdfPayload, origin: string) {
     );
     if (!document.querySelector("[data-unified-paper]"))
       throw new Error("내보낼 페이지가 없습니다.");
-  });
+  }, input.fontPolicy === "self-hosted");
 }
 
 /** Shared browser runtime for server PDF and bounded SVG comparison rendering. Callers must close it. */

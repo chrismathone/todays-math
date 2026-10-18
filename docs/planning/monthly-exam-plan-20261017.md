@@ -396,3 +396,61 @@ CREATE UNIQUE INDEX "test_publication_class_key" ON "test" ("publication_id", "c
 - 1차 일곱 소단원: 초3 2-4-4 진분수와 가분수 · 2-4-5 대분수 · 초5 2-1-1 · 2-1-2 · 2-1-6 · 초6 2-4-1 비의 성질 · 2-4-4 비례식의 성질.
 - 시험 `elemStatementForms.test.ts` — 정답을 **문장을 다시 읽어** 구한다(못 읽는 문장이 나오면 운다) · 〈보기〉 상자가 서는지 · 정답 자리 · 관문 비켜 감 · 객관식 그대로 셋. 변이 둘을 물었다. 실제 2단 지면에서 눈으로 봤다.
 - 남은 것: 발문 속 참조는 `<보기>` 글자 그대로 찍힌다(상자 머리만 〈보기〉) — 기존 은행 문항과 같은 모양이라 두었다. 다음 소단원 묶음은 단원별 «헷갈리는 자리» 목록이 먼저다(4번 오개념 오답과 같은 재료).
+
+### 14. M5 · 에이와 PDF — 진행 (codex)
+
+2026-10-18 · `phase/11-exam-report-eywa`. 지시서 차례 A → B → C → D로 진행했다.
+
+- **한 것**: `/dev/exam-report-hifi`에 H1~H4(S1·M1·C2, H1 추천) 시안만. 공용 A4·인쇄 토큰·PaperStrip·원장 접근 가드, 지어낸 자료와 상태/내용 토글. 실제 성적표 화면·지면은 미구현. 학생 한 명·발행본 한 회 뷰모델과 C2 집계 순수 함수, 기존 만점/점수 집계·낸 글 읽기 재사용. 확정본 계약·지문·동일 대상 판정을 쓰는 서명된 목록/PDF 통로와 오류 기록. DB 미적용 기본은 빈 목록과 PDF 404다.
+- **PDF 조사**: `buildPdf`는 HTML/CSS를 받아 서버에서 PDF를 만들 수 있다. 성적표 서버 지면과 확정 보관 경로는 아직 없어, Hi-fi 선택 뒤 연결할 [설계](tracks/reports/exam-report-pdf-design-20261018.md)만 남겼다. 현재 통로는 검수된 보관본을 읽는 구조이며 실제 생성기는 연결하지 않았다.
+- **시험**: 관련 Vitest **16파일·128건 통과**, 개발 페이지·오류 기록·학생 프록시 등 전수 가드 포함. `npm run type-check`·변경 파일 ESLint(오류/경고 0)·`lint:affordance`·`git diff --check` 통과. 세부는 [작업 보고](tracks/reports/exam-report-eywa-codex-20261018.md). 브라우저·Chromium 실행 권한이 없어 실제 화면/인쇄 PDF 실측은 미완료, `/dev/print-check`의 `exam-report-hifi`는 형태미확정이다.
+- **커밋**: 만들지 못함. git `index.lock` 생성 권한이 거절돼 시작 HEAD `581d9ab41` 그대로, 이 워크트리에 미커밋 변경을 남겼다. push·main 변경 없음.
+- **DB 초안**: `prisma/drafts/exam-report-confirmation/draft.sql`과 같은 폴더의 설명. DB 접속·스키마 수정·마이그레이션·클라이언트 생성 없음.
+- **남은 것**: Hi-fi 선택 → 지면의 서버/인쇄 공통 렌더 → 실물 검수 → DB 승인·드라이런·적용 → 확정 쓰기/보관 어댑터 → 에이와 실제 첨부. 현재 M1의 배점/유형 고정 공백과 재시험 성적 연결도 적용 전에 검토한다.
+- **원장님께 여쭐 것**: H1~H4 선택, 선택된 지면 검수, 확정/PDF 보관 DB 초안 승인과 보관/삭제 정책. 이 작업에서는 승인 대상 행동을 실행하지 않았다.
+
+- **2026-10-18 에이와 결정과 대조** — 에이와 `reports-ai.md`(커밋 `700a1511c`): 성적표 PDF 를 그 학생의 **안 보낸** 수업보고서에 첨부 · (학생, 반, 시험일)로 찾는다. 우리 항목에 반이 빠져 있어 `sourceClassId` 를 더했다(에이와 반 없는 시험은 내보내지 않음 · 반이 바뀌면 새 지문). 대조표: `docs/planning/tracks/reports/eywa-reports-ai-20261018.md`.
+- **2026-10-18 원장님 결정 — 성적표 Hi-fi H1 «시험지 얼굴»**(«추천으로 진행»). 다음은 H1 지면을 실제 부품으로 떼어 인쇄 · 서버 PDF 가 같은 부품을 쓰게 하는 일(지시서 `tracks/brief-exam-report-paper-codex.md`). 원장님이 성적표를 열고 문장을 쓰고 확정하는 화면은 따로 Wire 를 거친다.
+
+#### 14.1 H1 지면 부품 (codex)
+
+2026-10-18 · `phase/11-exam-report-eywa` · 지시서 2. 커밋·push·main 병합 없이 변경 파일을 남겼다. 작업 시작 전에 있던 이 문서의 H1 선택 기록과 미추적 지시서는 보존했다.
+
+- **한 것**: `src/components/exam-report/`에 H1 S1·M1·C2 공용 지면과 한 벌의 CSS를 분리했다. 입력은 학생/반 읽기 계약과 출력 선택이다. 기존 공용 문항·해설 경로에 `staticLayout` 옵션을 더해 훅·effect·DOM 측정 없이 같은 내용을 그린다. M1은 기존 본문/그림/해설 규칙으로 추정한 높이에 따라 최대 두 문항씩 나누며, 긴 문항은 한 쪽을 쓰고 한 쪽보다 크면 번호를 담은 오류로 멈춘다. 원문을 자르거나 글자를 축소하지 않는다.
+- **서버 HTML**: server-only `src/lib/examReport/paperHtml.ts`의 `buildExamReportPaperHtml`이 학생 한 명·한 회의 모든 쪽을 `PdfPayloadSchema`로 만든다. A4마다 PDF 엔진 경계와 A4Page 경계를 함께 둔다. 지면 띠·화면 단추·숨은 복제 지면은 없다. 자체 명조/고딕과 KaTeX data 글꼴을 명시하며, PDF 엔진의 선택 옵션 `fontPolicy: "self-hosted"`로 외부 글꼴 요청을 닫는다. 기존 시험지 기본 동작은 유지한다. [조사·연결 방법·한계](tracks/reports/exam-report-pdf-design-20261018.md#h1-선택-뒤-구현--2026-10-18)에 적었다.
+- **시안/검수 목록**: `/dev/exam-report-hifi`의 H1만 새 부품을 쓰며 H2~H4는 기존 시안 그대로다. `exam-report-hifi` 검수 항목을 «H1 선택 · 새 부품 / 대기»로 갱신했다. 추가 시험에서 발견한 기존 목록 가드의 항목 수 117→118과 화면 URL 대신 실제 파일을 가리키는 근거 경로도 맞췄다. 검수 통과로 표시하지 않았다.
+- **시험**: 관련 Vitest **17파일·159건 통과**(핵심·개발 페이지 가드·기존 문항 렌더/해설 배선·에이와 회귀 16파일·149건, 실물 검수 목록 1파일·10건). `npm run type-check`·변경 TS/TSX 파일 ESLint(오류/경고 0)·`npm run lint:affordance`·`git diff --check` 통과. 최초 일반 Vitest는 심볼릭 링크된 `node_modules/.vite-temp` 쓰기가 거절돼 실행 전 실패했다. 설정을 바꾸거나 공유 폴더를 수정하지 않고 모든 Vitest 명령에 `--configLoader runner --no-cache`를 붙여 실행했다. 새 기능의 최초 RED는 미구현 모듈/외부 글꼴 옵션 부재였고, 구현 뒤 GREEN을 확인했다.
+- **검증한 내용**: 오답 0·1·다수·큰 SVG·미상 크기 그림·한 쪽 초과, 오답 순서/원문/입력 불변, 0점/만점/결시/미채점/채점 중/무배점, 출력 선택, C2 정오/명단 순서, 모든 A4 경계, HTML 이스케이프, 수식/그림/정답/해설이 이미 들어 있는 HTML, 보기 상자의 서버/브라우저 DOM 일치(CSSOM 공백만 정규화), 자체 글꼴 경로·KaTeX data 글꼴·외부 글꼴 차단과 기본 모드 보존이다.
+- **확신 없는 곳**: 쪽 나누기는 조판 실측이 아닌 추정이다. Chromium·실제 PDF·브라우저 화면 캡처·프린터 출력은 수행하지 않았다. 아주 긴 이름/시험 제목/원장님 문장, S1의 많은 오답 행과 큰 C2 명단/문항 수의 실제 넘침·9pt 가독성, 운영 글꼴 로딩·PDF 용량은 아직 증명하지 않았다. 실제 생성 라우트 연결 시 KaTeX CSS/woff2의 output file tracing과 렌더 뒤 넘침 검사가 필요하다. 기존 발행 배점/유형 고정·재시험 연결의 공백도 이번 범위에서 바꾸지 않았다.
+- **원장님께 여쭐 것**: H1의 실물 검수 결과와 한 쪽보다 큰 문항·긴 요약이 있는 경우의 후속 출력 정책. H1 선택은 이미 확정되어 다시 묻지 않는다. 성적표 열기·문장 편집·확정 화면은 별도 Wire 대상이며 이번에 만들지 않았다. DB·확정 저장·실제 PDF 보관·에이와 실제 연결도 승인된 다음 단계에서 다룬다.
+
+**변경 파일 22개**(이번 작업에서 쓴 것만):
+
+- 지면: `src/components/exam-report/ExamReportPaper.tsx`, `src/components/exam-report/paperStyles.ts`.
+- 쪽 나누기/서버 HTML: `src/lib/examReport/paginate.ts`, `src/lib/examReport/paperHtml.ts`.
+- 공용 정적 렌더 옵션: `src/components/math/StaticBoxQuoteCard.tsx`, `src/components/math/MarkdownRenderer.tsx`, `src/components/math/MathText.tsx`, `src/components/math/ProblemContent.tsx`, `src/components/print/PaperProblemView.tsx`.
+- PDF 옵션: `src/lib/export/pdfServer.ts`.
+- 시안/목록: `src/app/dev/exam-report-hifi/ExamReportHifi.tsx`, `src/app/dev/exam-report-hifi/ExamReportHifi.module.css`, `src/app/dev/exam-report-hifi/fixtures.ts`, `src/app/dev/print-check/items.ts`.
+- 시험: `src/__tests__/unit/examReportPaper.test.tsx`, `src/__tests__/unit/examReportPaperHtml.test.ts`, `src/__tests__/unit/examReportStaticLayout.test.tsx`, `src/__tests__/unit/examReportHifi.test.tsx`, `src/__tests__/unit/pdfExport.test.ts`, `src/__tests__/components/PrintCheck.test.tsx`.
+- 문서: `docs/planning/monthly-exam-plan-20261017.md`, `docs/planning/tracks/reports/exam-report-pdf-design-20261018.md`.
+
+#### 14.2 리드 검수 — 실제 Chromium 으로 PDF 를 만들어 보니 글꼴이 둘 다 막혀 있었다 (2026-10-18)
+
+- codex 판(HTML 시험 초록)을 로컬 Chromium 으로 실제 `buildPdf` 에 넣자 자체 글꼴이 **두 겹으로** 막혔다. ① `src/proxy.ts` 가 로그인 안 한 요청의 `/fonts/…` 를 `/login` 으로 돌려보냈다 — 쿠키 없는 PDF 렌더러는 글꼴 대신 HTML 을 받았다(`invalid sfntVersion` · 3000 · 3007 둘 다). ② 그것을 풀어도 PDF 엔진은 빈 문서에 HTML 을 붓기 때문에 글꼴 요청이 **다른 출처**가 되고, CORS 허용 헤더가 없어 `net::ERR_FAILED` 였다. 기존 시험지 PDF 는 구글 글꼴(CORS 허용)을 같이 써서 드러나지 않았다.
+- 고침: 출입 규칙에 OFL 글꼴 두 파일 + 고지문만 **이름으로** 열고(`/fonts/` 접두로 열지 않는다) · `next.config.ts` `headers()` 로 같은 두 파일에만 `Access-Control-Allow-Origin: *`. 시험: `proxyRoleGate`(그 밖의 `/fonts` · POST 는 닫힘) · `reportFontCors`(헤더가 붙는 경로가 정확히 둘).
+- 확인: 실제 `buildPdf`(자체 글꼴 모드 — 못 실으면 멈춤)가 S1 1쪽 · M1 3쪽 PDF 를 냈다(427KB · 545KB). 글꼴 넷(명조 · 고딕 × 400 · 700) 실림 · 첫 쪽 육안 H1 그대로. 실물 프린터 검수는 여전히 «대기».
+- 남은 것: 운영(Vercel)에서는 아직 안 쟀다 — 생성 라우트를 붙일 때 운영 주소로 한 번 만들어 본다.
+
+#### 14.3 원장님 화면 Wire 4안 (2026-10-18 · 선택 대기)
+
+`/dev/exam-report-screen-wire` — 성적표를 열고 · 문장을 쓰고 · 확정하는 화면. A 목록 + 미리보기(추천) · B 문장 표 · C 지면 위에서 쓰기 · D 채점표에 이어서. 여쭐 것 셋: 문장 없이 확정 · 확정 전 인쇄 · 문장 길이 상한.
+- **원장님 결정 (2026-10-18 «추천으로 진행. 나머지는 코덱스와 협의»)** — 화면 짜임 **A 목록 + 미리보기**. 여쭐 것 셋은 추천대로: ① 문장 없이도 확정된다(지면의 «원장님 문장» 칸이 빠진다) ② 확정 전에도 인쇄된다 — 인쇄 단추의 기본은 «확정된 학생만» ③ 문장 길이는 H1 한 장에 드는 만큼으로 막고 남은 글자 수를 보인다. **이후 형태 결정(Hi-fi 선택 · 세부)은 리드와 codex 가 따로 고르고 맞춘다**(23 §7.2 방식 — 먼저 쓴 쪽의 입장을 상대에게 보이지 않는다). 🔴 위임 범위는 형태뿐이다 — 확정 표(공유 DB)는 따로 원장님 승인.
+- **Hi-fi 합의 (2026-10-18 · 리드 · codex)** — **H3 «문장 옆에서 쓰기»** + H1 목록 배지 · 위쪽 인쇄. 따로 고른 뒤 실측(본문 1200 에서 H3 만 확정까지 첫 화면)으로 codex 가 H1 → H3. 지킬 것 셋: [합의문](tracks/reports/exam-report-screen-hifi-consensus.md). 다음은 실제 화면 — 확정 표(공유 DB) 승인이 먼저다.
+
+#### 14.4 확정 표 · 비공개 버킷 — 공유 DB 적용 (2026-10-18 · 원장님 «승인»)
+
+- **적용**: `20261018150000_exam_report_confirmation` — `exam_report_draft`(편집 자리) · `exam_report_artifact`(보관본). 드라이런(16문장 · 표 둘 · CHECK 11 · 트리거 2 · RLS 2/2 · 브라우저 권한 0 · 상태 CHECK 가 실제로 거절) → `--apply` → 재실행 «이미 적용». 행 0.
+- **비공개 버킷** `exam-report-private`(앱 Supabase 프로젝트 · 비공개 · PDF 만 · 4MB) — 드라이런 → 만들기 → 재확인.
+- **초안과 다른 것**: PDF 는 DB 밖(경로 · 지문 · 크기만) · 기존 표(`test` · `test_result`)에 색인 · 트리거 없음(재채점은 읽을 때 지문) · 지점 칸 비어도 됨.
+- **시험**: PGlite 로 전체 마이그레이션 사슬 위에서 6건(문장 수정 → 새 판 · 확정 풀림 · 보관본 수정 · 삭제 거절 · 남의 보관본 · 보관본 없는 확정 거절 · 중복 · 경로 형식 · 1000자 · 성적표 있는 학생 삭제 = 23001 → 기존 «기록이 있어 못 지움» 409 · RLS). 트리거 둘을 하나씩 빼면 시험이 빨개진다(변이 확인).
+- `schema.prisma` 에 두 모델(DB 먼저 → 코드 나중). 다음: 확정 쓰기 어댑터 · 화면(H3 합의) · 에이와 통로의 실제 소스.

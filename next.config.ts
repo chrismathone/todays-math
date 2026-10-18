@@ -24,6 +24,21 @@ const nextConfig: NextConfig = {
       fallback: [],
     };
   },
+  /**
+   * 성적표 PDF 의 자체 글꼴(OFL) — PDF 엔진은 빈 문서(about:blank)에 HTML 을 붓고 글꼴을 읽어
+   * 다른 출처 요청이 된다. 허용 헤더가 없으면 Chromium 이 글꼴을 막는다(2026-10-18 실측).
+   * 쿠키 없는 공개 파일이라 `*` 로 연다. 출입 규칙은 `src/proxy.ts` 가 같은 두 이름으로 연다.
+   */
+  headers() {
+    return Promise.resolve(
+      ["/fonts/NotoSerifKR-subset.woff2", "/fonts/PretendardVariable.woff2"].map(
+        (source) => ({
+          source,
+          headers: [{ key: "Access-Control-Allow-Origin", value: "*" }],
+        }),
+      ),
+    );
+  },
   // Keep the development preview's mobile navigation clear of the Next.js badge.
   devIndicators: false,
   // 개발 서버(next dev)에서 LAN IP로 접속할 때 클라이언트 번들·HMR·폰트 등

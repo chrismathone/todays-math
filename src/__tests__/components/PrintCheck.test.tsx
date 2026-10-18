@@ -246,7 +246,8 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 114: arithmetic-center-angles-20261016 추가 (내심·외심 각도 그림과 묶음 머리말).
     // 115: arithmetic-figure-first-20261016 추가 (삼각비·피타고라스·닮음·원·중1 각 70유형 그림 우선).
     // 116: arithmetic-figure-first-elementary-20261016 추가 (초등 각도·둘레·넓이 42유형 · 미지수 □).
-    expect(ITEMS.length).toBe(120);
+    // 124: 수학 형식 통합·보강 검수 세 항목과 원격 성적표 H1을 함께 보존한 실제 등록 수.
+    expect(ITEMS.length).toBe(124);
   });
 
   /**

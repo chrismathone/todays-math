@@ -51,5 +51,34 @@ describe("server PDF document boundary", () => {
     expect(html).toContain("--preview-scale:1!important");
     expect(html).not.toContain("track.css");
     expect(html).toContain("수학");
+    expect(html).toContain("fonts.googleapis.com");
+  });
+  it("self-hosted mode omits and denies foreign font requests without changing the default", () => {
+    const input = PdfPayloadSchema.parse({
+      html: "<article data-unified-paper>성적표</article>",
+      fontPolicy: "self-hosted",
+      cssUrls: [
+        "https://fonts.googleapis.com/example.css",
+        `${origin}/paper.css`,
+      ],
+    });
+    expect(pdfDocument(input, origin)).not.toContain("fonts.googleapis.com");
+    expect(pdfDocument(input, origin)).toContain(`${origin}/paper.css`);
+    expect(
+      allowedPdfResource(
+        "https://fonts.gstatic.com/a.woff2",
+        "font",
+        origin,
+        "self-hosted",
+      ),
+    ).toBe(false);
+    expect(
+      allowedPdfResource(
+        `${origin}/fonts/local.woff2`,
+        "font",
+        origin,
+        "self-hosted",
+      ),
+    ).toBe(true);
   });
 });
