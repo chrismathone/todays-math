@@ -1,0 +1,2147 @@
+{
+  "schemaVersion": 1,
+  "auditDate": "2026-10-18",
+  "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+  "ownerOutcome": "A student selecting a school should receive original engine practice that exercises the actual types, condition interpretation, representations, solution dependencies and difficulty demands; no reproduction of school originals is required.",
+  "copyrightCorrection": "School originals were intentionally not stored. Missing originals or old DB linkage counts are not readiness failures; restoration/ingestion is not a recommendation.",
+  "verdict": "Selected existing generators provide study-ready concept, modeling, algebra, complete-parameter and genuine multi-case practice; complete multi-school, multi-grade exam preparation is not established. Visual/dependent-task integration and native written rubrics have concrete gaps; product delivery is separately owned by ROOT.",
+  "statusDefinitions": {
+    "study-ready": "A current generated original task exercises the stated abstract core demand at the stated scope; does not mean whole-school sufficiency or measured transfer.",
+    "component-only": "Existing tasks exercise ingredients, but the required shared conditional/visual/solution dependency or native written response is not established.",
+    "upgrade-needed": "A material demand structure or native explanation/rubric is missing in the inspected current path; not a claim that all possible repository content lacks it.",
+    "unverified": "Insufficient source quality or no verified matching content/product path; absence of proof is not global content absence."
+  },
+  "verification": {
+    "selectedEntryPoints": 48,
+    "freshProblems": 144,
+    "seeds": [
+      731,
+      1907,
+      4613
+    ],
+    "variant": 0,
+    "deterministicOutputs": 144,
+    "exceptions": 0,
+    "independentMathChecksPassed": 144,
+    "independentMathChecksFailed": 0,
+    "method": "Independent stdlib Fraction/AST printed-content solvers, explicit case enumeration, finite bounds and figure input checks; no generator facts used as oracle",
+    "figureRendersInspected": 7,
+    "figureRenderer": "current renderFigureSpec strict, local installed Python3.12.15; sharp rasterization; no browser",
+    "environment": "empty environment; .env reads blocked; DB/provider module loads blocked; HTTP/fetch/socket connections blocked",
+    "guardObservations": "Two tsx IPC connection attempts were blocked; stack traces identify tsx client setup. No DB/provider module or env-file access occurred. System Python3.9 initially failed on dataclass slots; installed3.12 rendered7/7, an audit environment limitation, not a production defect."
+  },
+  "priorCapacityReuse": {
+    "report": "../exam-engine-capacity-20261018/generator-capacity.json",
+    "originalPin": "d70137271e36e6f9c22209574e9ff224217f7296",
+    "generatorSourceDiffToAuditPin": "empty git diff for src/lib/{middle,high,elementary,engine} and familyAliases.ts",
+    "declaredCanonicalRegistryKeys": 4203,
+    "priorPromptVariantsObserved": 297016,
+    "interpretation": "Previously declared registry/template units and prompt-variant sample observations only. Neither number is a count of independent thinking types, whole mathematical capacity, passed-quality inventory or exam readiness. No campaign rerun."
+  },
+  "contentVsAccess": {
+    "elementaryMiddleJudgeComboNative": "Import code exists for elem/middle/combo/judge/native-descriptive; current eligible bank inventory and school selection delivery are not queried here.",
+    "commonMath1": "168 registered generation keys confirmed read-only; prior source census found CLI/preview path without engine-bank import target. Library content readiness does not prove web access.",
+    "commonMath2": "0 keys in this independent high registry; this does not establish absence of bank, textbook or other original content.",
+    "arithmetic": "Existing arithmetic engines train calculation components; source/type-audit evidence only, not newly solved here or added as new structural families. ROOT owns whole-engine access integration."
+  },
+  "capabilities": [
+    {
+      "id": "C1",
+      "name": "개념 판단·참인 진술집합",
+      "acceptanceTest": "A1",
+      "findings": [
+        {
+          "scope": "초3·초5·초6",
+          "status": "study-ready",
+          "evidence": [
+            "초3|2-4-4|32",
+            "초5|2-1-1|32",
+            "초6|2-4-4|32"
+          ],
+          "demandAndDifficulty": "공유 조건의 세 진술을 판정하고 참 집합과 다섯 조합 보기를 연결한다. 분수/경계/비례식의 오개념을 구별한다.",
+          "remainingGap": "현재 진술 등록은 7개 소단원이다. 전 초등 개념 범위로 확장하지 않는다.",
+          "nativeWrittenRubric": "없음"
+        },
+        {
+          "scope": "중1",
+          "status": "component-only",
+          "evidence": [
+            "1-1|일차방정식의 풀이|06",
+            "1-1|일차방정식의 풀이|09",
+            "1-1|좌표와 그래프|06"
+          ],
+          "demandAndDifficulty": "등식의 보편적 성질, 방정식 종류, 부호 추론은 현재 생성한다.",
+          "remainingGap": "여러 개념 또는 한 그래프의 여러 속성을 공유하는 모든 참/거짓 묶음은 확인하지 못했다. 개수→번호 차이만은 결손 family가 아니다.",
+          "nativeWrittenRubric": "없음"
+        },
+        {
+          "scope": "중2",
+          "status": "study-ready",
+          "evidence": [
+            "2-1|일차함수와 그 그래프  ⑴|01",
+            "2-1|일차함수와 그 그래프  ⑵|01"
+          ],
+          "demandAndDifficulty": "말·도형 대응의 출력 유일성/다가성뿐 아니라, 한 일차식의 방향·절편·증가량·입사·사분면 다섯 속성을 공유 조건에서 판단한다.",
+          "remainingGap": "함수01은 8개 소재 중5개, 그래프⑵01은 다섯 속성의 참거짓을 흔든다. 개수/참 보기 출력이나 평행성의 기울기 비교는 새 교수학 가족 부재로 세지 않는다. 시각 자료/더 긴 의존 사슬은 별도다.",
+          "nativeWrittenRubric": "없음"
+        },
+        {
+          "scope": "중3",
+          "status": "study-ready",
+          "evidence": [
+            "manual-20261018|무리수와 실수|R02",
+            "manual-20261018|이차방정식의 활용|Q02",
+            "manual-20261018|대푯값과 산포도|S03"
+          ],
+          "demandAndDifficulty": "반례 선택, 둘레/넓이의 양립성, 평균/분산 비교가 실제 판단 과제다.",
+          "remainingGap": "선택형 반례 인식은 자유 반례 저술·증명과 다르다.",
+          "nativeWrittenRubric": "없음"
+        },
+        {
+          "scope": "공통수학2 비교 요구",
+          "status": "unverified",
+          "evidence": [],
+          "demandAndDifficulty": "진리집합 포함·부분집합 수·명제 조건의 실제 요구를 ROOT 추상 프로필로 확인했다.",
+          "remainingGap": "독립 고등 레지스트리에 공통2 생성기가 없다. 은행·교과서·다른 엔진의 자작 대응은 이 작업에서 조회하지 않아 미검증이다.",
+          "nativeWrittenRubric": "없음"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "name": "그래프·표·도형 읽기",
+      "acceptanceTest": "A2",
+      "findings": [
+        {
+          "scope": "초4",
+          "status": "study-ready",
+          "evidence": [
+            "초4|1-5-3|01",
+            "초4|2-5-3|01"
+          ],
+          "demandAndDifficulty": "그림/표가 수치를 제공하며 본문만으로 답을 알 수 없다. 서로 다른 가격/수량 차트를 구별한다.",
+          "remainingGap": "이번 검산은 단일 조회 대표 문형이다. 변화·범위의 다중 주장 묶음 전체를 입증하지 않는다.",
+          "nativeWrittenRubric": "없음"
+        },
+        {
+          "scope": "중1",
+          "status": "component-only",
+          "evidence": [
+            "1-1|정비례와 반비례|21",
+            "1-1|정비례와 반비례|20",
+            "1-1|좌표와 그래프|84X"
+          ],
+          "demandAndDifficulty": "비례·반비례 그림은 있고 곱/기울기/넓이 계산도 있다. 84X는 네 선분의 모든 높이 교차를 계산한다.",
+          "remainingGap": "84X 및 그래프 해석08은 꼭짓점 목록을 텍스트로 주고 실제 그림이 없다. 시각 해독 및 여러 동시 주장 판단을 완전 지원한다고 할 수 없다.",
+          "nativeWrittenRubric": "없음"
+        },
+        {
+          "scope": "중2",
+          "status": "study-ready",
+          "evidence": [
+            "2-2|여러 가지 사각형|09",
+            "2-2|피타고라스 정리|06"
+          ],
+          "demandAndDifficulty": "자체 도형의 대응·동일 길이·영역 분해를 읽고 넓이를 계산한다.",
+          "remainingGap": "여러 가지 사각형 판별09의 실제 산출은 내접 사각형 넓이다. 이름만으로 개념 판별 과제라고 매핑하지 않는다.",
+          "nativeWrittenRubric": "없음"
+        },
+        {
+          "scope": "중3",
+          "status": "study-ready",
+          "evidence": [
+            "3-2|삼각비의 활용|07",
+            "3-2|원과 직선|03"
+          ],
+          "demandAndDifficulty": "둔각에서 외부 수선 선택 및 현/짧은 활 높이로 반지름 복원을 현재 도형으로 연습한다.",
+          "remainingGap": "수선 발이 발문에 주어지는 범위다. 학생이 보조선을 발명하는 모든 문제나 표본 학교의 복합 도형을 동등 난도로 보장하지 않는다.",
+          "nativeWrittenRubric": "없음"
+        },
+        {
+          "scope": "공통수학1 그래프 필수 보류형",
+          "status": "upgrade-needed",
+          "evidence": [],
+          "demandAndDifficulty": "기호식 기반 함수/부등식 생성과 시각 조건을 읽는 과제는 별개다.",
+          "remainingGap": "공통1 이차부등식01은 그래프 읽기, 순열08은 영역 인접 그림이 필요한 이유로 명시 보류다. 등록168을 그래프 독해 전체 지원으로 읽지 않는다.",
+          "nativeWrittenRubric": "없음"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "name": "매개변수 조건·모든 해",
+      "acceptanceTest": "A3",
+      "findings": [
+        {
+          "scope": "중1",
+          "status": "study-ready",
+          "evidence": [
+            "1-1|일차방정식의 풀이|17",
+            "1-1|정비례와 반비례|61W",
+            "1-1|최대공약수와 최소공배수|32T"
+          ],
+          "demandAndDifficulty": "자연수 해 조건, 반비례 정수 격자점, 최대공약수/최소공배수의 가능한 쌍을 완전히 찾는다.",
+          "remainingGap": "집합/합/개수/순위는 같은 핵심 요구다. 3 seed는 모든 경계·분기 전수 검증이 아니다.",
+          "nativeWrittenRubric": "없음"
+        },
+        {
+          "scope": "중2",
+          "status": "study-ready",
+          "evidence": [
+            "2-1|일차부등식|33U",
+            "2-1|일차부등식|118X"
+          ],
+          "demandAndDifficulty": "자연수인 해의 개수에서 상수 구간을 역산하고, 계수의 음·0·양 경우를 배제한 뒤 모든 정수 계수를 찾는다.",
+          "remainingGap": "33U 생성 발문은 닫힌 부등호만 낸다. 열린 부등호의 함수 보조 지원을 실제 생성 다양성으로 더하지 않는다.",
+          "nativeWrittenRubric": "없음"
+        },
+        {
+          "scope": "중3",
+          "status": "study-ready",
+          "evidence": [
+            "3-1|이차방정식의 활용|53V",
+            "3-1|제곱근의 뜻과 성질|41U"
+          ],
+          "demandAndDifficulty": "유리근 매개변수의 유한 범위/제곱수 조건 및 절댓값 세 구간의 생존 해를 모두 확인한다.",
+          "remainingGap": "현재 합 답도 실제 발문은 모두 찾기를 요구하고 해설은 살아남는 해를 설명한다. native 서술 채점 기준은 없다.",
+          "nativeWrittenRubric": "없음"
+        },
+        {
+          "scope": "공통수학1",
+          "status": "study-ready",
+          "evidence": [
+            "공통수학1|여러 가지 방정식|17",
+            "공통수학1|이차부등식과 연립이차부등식|10"
+          ],
+          "demandAndDifficulty": "자연수 순서쌍을 유한 인수쌍으로 바꾸고, 제한 구간에서 항상 성립할 조건을 끝점/볼록성으로 처리한다.",
+          "remainingGap": "내용 라이브러리의 준비도다. CLI 외 실제 학교 선택 출제 연결은 별도 미검증이다.",
+          "nativeWrittenRubric": "없음"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "name": "여러 단계 대수",
+      "acceptanceTest": "A4",
+      "findings": [
+        {
+          "scope": "중1",
+          "status": "study-ready",
+          "evidence": [
+            "1-1|문자의 사용과 식의 계산|13",
+            "1-1|일차방정식의 활용|01",
+            "1-1|일차방정식의 풀이|09"
+          ],
+          "demandAndDifficulty": "괄호·분배·동류항 정리와 미지수 모델링은 실제 문항이다.",
+          "remainingGap": "정리된 식에서 계수/상수항 합을 묻거나 두 해의 합을 차로 바꾸는 것은 표적 확장이다. 그 차이만으로 독립 유형 부재라고 하지 않는다.",
+          "nativeWrittenRubric": "없음"
+        },
+        {
+          "scope": "중2의 연결된 두 연립방정식",
+          "status": "component-only",
+          "evidence": [
+            "2-1|연립일차방정식|15",
+            "2-1|연립일차방정식|09"
+          ],
+          "demandAndDifficulty": "해를 대입해 계수를 구하기, 두 연립방정식의 같은 해를 이용하기는 등록되어 있다.",
+          "remainingGap": "해의 서로 다른 평행이동을 공유하는 두 시스템과 미지 계수의 전 의존 사슬은 이번 소스 검토에서 확인하지 못했다. 단순 출력 차이는 아니다.",
+          "nativeWrittenRubric": "없음"
+        },
+        {
+          "scope": "중3",
+          "status": "study-ready",
+          "evidence": [
+            "m3-factor-error-proof-r1",
+            "3-1|이차함수의 그래프 ⑵|10"
+          ],
+          "demandAndDifficulty": "오류 곱 전개→수정 인수분해→재전개→대입 검산, 또는 꼭짓점/한 점→계수→일반형 전개를 생성한다.",
+          "remainingGap": "계수 재배치 후 새 함수의 여러 속성을 구하는 복합 과제는 별도 미확인이다.",
+          "nativeWrittenRubric": "인수분해 native만 6점·3기준; 일반 함수형에는 없음"
+        },
+        {
+          "scope": "공통수학1",
+          "status": "study-ready",
+          "evidence": [
+            "공통수학1|이차방정식과 이차함수|02",
+            "공통수학1|이차방정식과 이차함수|06"
+          ],
+          "demandAndDifficulty": "켤레근/근과 계수에서 직선 계수 복원, 미지 계수의 점 조건 후 구간 최댓값/최솟값 계산을 생성한다.",
+          "remainingGap": "공통2 합성·역함수의 유한 대응 추론을 이차함수 계수 계산으로 대체하지 않는다.",
+          "nativeWrittenRubric": "없음"
+        }
+      ]
+    },
+    {
+      "id": "C5",
+      "name": "응용·모델링·단위·정의역",
+      "acceptanceTest": "A5",
+      "findings": [
+        {
+          "scope": "초4",
+          "status": "study-ready",
+          "evidence": [
+            "e4-equilateral-audit-r1",
+            "e4-trapezoid-sufficiency-r1"
+          ],
+          "demandAndDifficulty": "설계 주장과 정의를 조건에 대조하고 틀린 주장을 수정하거나 반례로 반박한다.",
+          "remainingGap": "실제 작도·자유로운 도형 탐색까지 검증한 것은 아니다.",
+          "nativeWrittenRubric": "각 6점·3기준·모범답/대안/오류"
+        },
+        {
+          "scope": "중1",
+          "status": "component-only",
+          "evidence": [
+            "1-1|일차방정식의 활용|01"
+          ],
+          "demandAndDifficulty": "문장→방정식, 정비례/반비례의 일상 모델은 현재 있다.",
+          "remainingGap": "다중 공식 의존·단위 변환·잔여 예산·최소 시간, 묶음/증정 문턱·연속 할인 비교의 전체 과제는 확인하지 못했다.",
+          "nativeWrittenRubric": "없음"
+        },
+        {
+          "scope": "중2",
+          "status": "study-ready",
+          "evidence": [
+            "2-1|일차함수와 그 그래프  ⑵|34U"
+          ],
+          "demandAndDifficulty": "같은 방향 추격의 앞/뒤 상태를 나눠 거리의 두 시각을 모두 구하고 원거리 조건에 대입한다.",
+          "remainingGap": "단위 변환·연료 함수·식과 값의 서술은 이 특정 chase 가족만으로 완전 지원이라 할 수 없다.",
+          "nativeWrittenRubric": "없음"
+        },
+        {
+          "scope": "중3",
+          "status": "study-ready",
+          "evidence": [
+            "m3-quadratic-domain-r1",
+            "manual-20261018|이차방정식의 활용|Q02"
+          ],
+          "demandAndDifficulty": "양의 길이 정의역, 두 이차해, 음의 해 제외, 원조건 차/곱 검산을 직접 요구한다.",
+          "remainingGap": "양 변이 반대로 변하는 시간 모델의 최초 시점 제외 등은 다른 모델 조건이다.",
+          "nativeWrittenRubric": "native domain: 6점·3기준"
+        }
+      ]
+    },
+    {
+      "id": "C6",
+      "name": "여러 개념의 필수 연결",
+      "acceptanceTest": "A6",
+      "findings": [
+        {
+          "scope": "중1 그래프/넓이 조건 결합",
+          "status": "component-only",
+          "evidence": [
+            "1-1|정비례와 반비례|22",
+            "1-1|정비례와 반비례|20",
+            "1-1|정비례와 반비례|21",
+            "1-1|정비례와 반비례|61W"
+          ],
+          "demandAndDifficulty": "넓이 이등분→직선, 반비례 곱→한 도형 넓이, 공통 교점에서 계수 하나 복원은 생성한다.",
+          "remainingGap": "정사각형 꼭짓점의 여러 그래프 입사, 반비례 두 점/같은 다리/넓이비의 동시 조건, 두 곡선의 사다리꼴 매개변수 소거의 전체를 입증하지 못했다.",
+          "nativeWrittenRubric": "없음"
+        },
+        {
+          "scope": "중2 승인 결합형",
+          "status": "study-ready",
+          "evidence": [
+            "중2|일차함수의 활용::중2|일차부등식의 풀이"
+          ],
+          "demandAndDifficulty": "두 좌표→함수식→음수로 나누는 부등식 또는 이동 점 넓이→함수→범위가 실제 연결된다.",
+          "remainingGap": "검산은 variant0의 water-graph-range 3개다. 그래프 그림은 없으며 직사각형 이동점의 다른 하위 문형까지 이번에 독립 검산한 것은 아니다.",
+          "nativeWrittenRubric": "없음"
+        },
+        {
+          "scope": "중3",
+          "status": "study-ready",
+          "evidence": [
+            "3-2|원과 직선|03",
+            "3-2|삼각비의 활용|07",
+            "m3-statistics-shift-spread-r1"
+          ],
+          "demandAndDifficulty": "피타고라스/현 관계, 두 삼각비의 외부 높이, 평균·편차·분산 변환과 반례는 연결을 실제 수행한다.",
+          "remainingGap": "같은 성질을 써도 다른 학교 복합 도형의 모든 보조선·조건·난도를 자동 포괄하지 않는다.",
+          "nativeWrittenRubric": "통계 native에만 6점·3기준"
+        },
+        {
+          "scope": "공통수학1",
+          "status": "study-ready",
+          "evidence": [
+            "공통수학1|이차방정식과 이차함수|06",
+            "공통수학1|이차부등식과 연립이차부등식|10"
+          ],
+          "demandAndDifficulty": "미지 계수→꼭짓점/구간→극값 또는 전구간 부등식 조건을 연결한다.",
+          "remainingGap": "공통2 역함수-근호곡선-외접원 등은 이 수치 최적화 가족의 지원으로 합산하지 않는다.",
+          "nativeWrittenRubric": "없음"
+        }
+      ]
+    },
+    {
+      "id": "C7",
+      "name": "증명·설명·서술 채점",
+      "acceptanceTest": "A7",
+      "findings": [
+        {
+          "scope": "초4",
+          "status": "study-ready",
+          "evidence": [
+            "e4-equilateral-audit-r1",
+            "e4-triangle-dual-proof-r1",
+            "e4-trapezoid-sufficiency-r1"
+          ],
+          "demandAndDifficulty": "정삼각형 두 주장 검토, 두 기준 분류/불가능 교집합, 사다리꼴 충분조건/반례를 이유와 함께 쓴다.",
+          "remainingGap": "등록3개 범위만이다. 문구 suffix를 바꾼 서술형은 산출하지 않는다.",
+          "nativeWrittenRubric": "3개 모두 6점·3기준·대안·오류"
+        },
+        {
+          "scope": "중1·중2 일반 서술/기하 증명",
+          "status": "upgrade-needed",
+          "evidence": [
+            "2-2|피타고라스 정리|05",
+            "2-2|피타고라스 정리|06"
+          ],
+          "demandAndDifficulty": "M2 피타고라스05/06의 실제 과제는 넓이 계산이다. 풀이가 증명을 언급해도 학생이 증명하는 과제는 아니다.",
+          "remainingGap": "이 레지스트리 native 정의에는 중1/중2가 없다. 의존 모델링·기하 논증에 별도 모델 답안과 부분점 기준이 필요하다.",
+          "nativeWrittenRubric": "없음"
+        },
+        {
+          "scope": "중3",
+          "status": "study-ready",
+          "evidence": [
+            "m3-factor-error-proof-r1",
+            "m3-quadratic-domain-r1",
+            "m3-statistics-shift-spread-r1"
+          ],
+          "demandAndDifficulty": "인수분해 오류 진단, 이차 길이의 정의역, 자료 이동/산포도 반례에서 설명을 직접 요구한다.",
+          "remainingGap": "모든 중3 증명·응용 유형에 rubric이 있다고 확대하지 않는다. 자동 학생 응답 채점/효과는 이번에 검사하지 않았다.",
+          "nativeWrittenRubric": "3개 모두 6점·3기준·대안·오류"
+        },
+        {
+          "scope": "공통수학1 조합 증명",
+          "status": "component-only",
+          "evidence": [
+            "공통수학1|조합|02"
+          ],
+          "demandAndDifficulty": "주어진 항등식 증명에서 계승 정리/통분의 빈칸 하나를 채운다.",
+          "remainingGap": "풀이 전체를 구성·정당화하는 독립 서술 과제와 rubric은 없다.",
+          "nativeWrittenRubric": "없음"
+        }
+      ]
+    },
+    {
+      "id": "C8",
+      "name": "고난도 상태·경우 선택",
+      "acceptanceTest": "A8",
+      "findings": [
+        {
+          "scope": "중1",
+          "status": "study-ready",
+          "evidence": [
+            "1-1|최대공약수와 최소공배수|32T",
+            "1-1|좌표와 그래프|84X"
+          ],
+          "demandAndDifficulty": "서로소 인수쌍 전체와 꺾은선 네 구간의 교차를 모두 고려한다. 조건이 후보 하나를 미리 알려 주지 않는다.",
+          "remainingGap": "84X의 이번 3 seed는 교차2개만 나왔다. 교차4개/꼭짓점 경계는 별도 최소 수용 검사 대상이다. 시각 그래프 읽기로도 세지 않는다.",
+          "nativeWrittenRubric": "없음"
+        },
+        {
+          "scope": "중2",
+          "status": "study-ready",
+          "evidence": [
+            "2-1|일차함수와 그 그래프  ⑵|34U",
+            "2-1|일차함수와 일차방정식의 관계|127X",
+            "2-2|피타고라스 정리|109X",
+            "2-1|일차부등식|118X"
+          ],
+          "demandAndDifficulty": "추월 전후, 평행 둘/공점 하나, 다섯 막대의 열 조합, 정수 계수의 부호 경우가 실제 요구된다.",
+          "remainingGap": "상 난도 라벨이나 장문 해설이 근거가 아니다. 이 구체적 선택/기각 과정이 근거다.",
+          "nativeWrittenRubric": "없음"
+        },
+        {
+          "scope": "중3",
+          "status": "study-ready",
+          "evidence": [
+            "3-1|제곱근의 뜻과 성질|41U",
+            "3-1|이차방정식의 활용|53V"
+          ],
+          "demandAndDifficulty": "미지 부호로 세 식을 만들고 구간에 되돌려 기각하거나, 모든 자연수 매개변수의 제곱수 판정을 수행한다.",
+          "remainingGap": "세 seed에서 무엇이 기각되는지 관측은 JSON에 있다. 내용 전체의 학교 난도 동등성이나 전이를 측정하지 않았다.",
+          "nativeWrittenRubric": "없음"
+        },
+        {
+          "scope": "공통수학1",
+          "status": "study-ready",
+          "evidence": [
+            "공통수학1|이차방정식과 이차함수|06",
+            "공통수학1|이차부등식과 연립이차부등식|10",
+            "공통수학1|경우의 수와 순열|11",
+            "공통수학1|여러 가지 방정식|17"
+          ],
+          "demandAndDifficulty": "극값 위치·조건을 찾아야 하는 중간 모델, 전구간 조건, 자리 제약, 자연수 인수쌍의 경우를 다룬다.",
+          "remainingGap": "공통수학1 168 등록은 각 유형의 난도별 층이 모두 갖춰졌다는 뜻이 아니다. 학교 최상 난도와의 교정은 미검증이다.",
+          "nativeWrittenRubric": "없음"
+        },
+        {
+          "scope": "공통수학2 표본",
+          "status": "unverified",
+          "evidence": [],
+          "demandAndDifficulty": "ROOT 프로필은 진리집합·합성역함수·반복함수·결손 정의역의 교점 수·곡선/도형 연결을 요구한다.",
+          "remainingGap": "독립 고등 생성기 공통2는 0. 타 콘텐츠 경로는 미검증이며 원문 DB 부재로 불합격이라고 하지 않는다.",
+          "nativeWrittenRubric": "없음"
+        }
+      ]
+    }
+  ],
+  "minimumAcceptanceTests": {
+    "A1": {
+      "capability": "concept judgement / truth-set",
+      "minimumAcceptance": "각 인쇄 진술을 별도 의미 판정기로 계산하고 참인 ID 집합 및 유일한 정답 보기를 비교한다. a=b의 항등성은 보편 명제로, 대입은 특정 후보로, 함수는 입력당 출력 유일성으로 각각 검산한다. 참 개수만 같고 참 ID가 다른 보기는 오답이어야 한다. 개수/번호/부분집합 표적은 같은 수학 family 안에서 다룬다."
+    },
+    "A2": {
+      "capability": "visual reading",
+      "minimumAcceptance": "자체 FigureSpec을 실제 SVG로 렌더하고 모든 관련 축·점·눈금·길이를 독립 수치와 대조한다. 시각 읽기가 목표면 필요한 자료를 그림에 두고 텍스트 좌표 전량 제공으로 대체하지 않는다. 꺾은선의 극값·총이동거리·반복 교차·정지구간을 따로 계산하고 교차점/꼭짓점 중복을 제거한다."
+    },
+    "A3": {
+      "capability": "complete constraints / all solutions",
+      "minimumAcceptance": "유한 검색 상한을 원조건에서 유도한 뒤 정수/자연수/실수 및 0 제외 조건으로 완전 집합을 대조한다. 매개변수 음수·0·양수, 열린/닫힌 경계, 무해·무한해·중근도 검산한다. 합·개수·최대·순위는 같은 집합의 표적 변형이며 새 family 수에 더하지 않는다."
+    },
+    "A4": {
+      "capability": "multi-step algebra",
+      "minimumAcceptance": "발문만으로 식을 세우고 독립 전개/소거로 각 중간값과 최종식을 재계산한다. 앞 단계 결과가 다음 단계의 실제 입력인지 확인한다. 연결된 두 관계를 개별 문제 두 개로 제공하는 것은 통합 과제의 통과가 아니다. 동치식·합/차·계수 위치만 다른 변형은 재등록하지 않는다."
+    },
+    "A5": {
+      "capability": "modeling",
+      "minimumAcceptance": "미지수 뜻·단위·정의역을 명시한 자체 모델에서 모든 해를 원상황에 대입한다. 거리와 이동거리, 지름/반지름, 백분율 기준량, 요금/증정 문턱, 최소 시간 올림을 각각 경계 전후로 검산한다. 두 별도 소문항은 하나의 새 결합 구조로 세지 않는다."
+    },
+    "A6": {
+      "capability": "multi-concept dependencies",
+      "minimumAcceptance": "자체 수치·문장·그림으로 의존 순서를 명시하고 필요한 각 조건을 바꾸거나 제거하면 결과가 바뀌거나 미결정이 되는지 확인한다. 그래프-정사각형, 반비례 두 점-넓이비, 절편 재배치-다른 함수 등에서 모든 관계·비퇴화·부호를 동시에 만족해야 한다. 이웃 family의 존재만으로 통과하지 않는다."
+    },
+    "A7": {
+      "capability": "proof / rubric",
+      "minimumAcceptance": "처음부터 이유·수정·반례·정당화가 필요한 다단계 과제를 저술하고 모범 답안 및 단계별 배점·허용 대안·오류 사례를 함께 둔다. 정답만 맞은 답안과 근거가 틀린 답안의 점수가 구별되어야 한다. 발문 끝만 서술형으로 바꾸거나 주어진 증명 한 빈칸을 완전 증명으로 판정하지 않는다."
+    },
+    "A8": {
+      "capability": "difficulty / case selection",
+      "minimumAcceptance": "어떤 경우를 적용할지 학생이 결정해야 하는지 명시한다. 유효·기각 후보를 모두 유지하고 한 경우를 생략하거나 조건을 오독하면 답이 달라지는 음성 대조를 포함한다. 대표 seed가 놓친 분기와 경계는 별도 강제 입력으로 확인한다. 숫자 크기·해설 줄 수·사이트 난도 라벨로 난도 동등성을 대신하지 않는다."
+    },
+    "A9": {
+      "capability": "product delivery (ROOT owned)",
+      "minimumAcceptance": "원문 저장 없이 학교/학년/범위의 검토된 추상 요구를 family·조건·시각/서술 요구로 전달하는 합성 데이터 검사를 둔다. 같은 단원·난도인 서로 다른 구조 후보에서 맞는 구조가 선택되고 부족하면 미충족을 알려야 한다. 실제 학교 선택에서 접근 가능한 새 연습과 해설/그림/서술 채점 기준까지 ROOT가 확인한다."
+    }
+  },
+  "evidenceIndex": {
+    "1-1|문자의 사용과 식의 계산|09": {
+      "file": "src/lib/middle/m1Book1.ts",
+      "line": 436
+    },
+    "1-1|문자의 사용과 식의 계산|13": {
+      "file": "src/lib/middle/m1Book1.ts",
+      "line": 551,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "1-1|문자의 사용과 식의 계산|02": {
+      "file": "src/lib/middle/m1Expr.ts",
+      "line": 614
+    },
+    "1-1|문자의 사용과 식의 계산|19": {
+      "file": "src/lib/middle/m1Expr.ts",
+      "line": 1222
+    },
+    "1-1|일차방정식의 풀이|06": {
+      "file": "src/lib/middle/m1Expr.ts",
+      "line": 1545,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "1-1|일차방정식의 풀이|09": {
+      "file": "src/lib/middle/m1Expr.ts",
+      "line": 1653,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "1-1|일차방정식의 풀이|11": {
+      "file": "src/lib/middle/m1Expr.ts",
+      "line": 1720
+    },
+    "1-1|일차방정식의 풀이|12": {
+      "file": "src/lib/middle/m1Expr.ts",
+      "line": 1746
+    },
+    "1-1|일차방정식의 풀이|13": {
+      "file": "src/lib/middle/m1Expr.ts",
+      "line": 1781
+    },
+    "1-1|일차방정식의 풀이|16": {
+      "file": "src/lib/middle/m1Expr.ts",
+      "line": 1877
+    },
+    "1-1|일차방정식의 풀이|17": {
+      "file": "src/lib/middle/m1Expr.ts",
+      "line": 1911,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "1-1|일차방정식의 풀이|33": {
+      "file": "src/lib/middle/m1Expr.ts",
+      "line": 354
+    },
+    "1-1|일차방정식의 풀이|92": {
+      "file": "src/lib/middle/m1Types10.ts",
+      "line": 246
+    },
+    "1-1|일차방정식의 활용|01": {
+      "file": "src/lib/middle/m1LinearApply.ts",
+      "line": 116,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "1-1|일차방정식의 활용|02": {
+      "file": "src/lib/middle/m1LinearApply.ts",
+      "line": 136
+    },
+    "1-1|일차방정식의 활용|03": {
+      "file": "src/lib/middle/m1LinearApply.ts",
+      "line": 147
+    },
+    "1-1|일차방정식의 활용|34": {
+      "file": "src/lib/middle/m1LinearApply.ts",
+      "line": 696
+    },
+    "1-1|일차방정식의 활용|35": {
+      "file": "src/lib/middle/m1LinearApply.ts",
+      "line": 708
+    },
+    "1-1|일차방정식의 활용|45": {
+      "file": "src/lib/middle/m1LinearApply.ts",
+      "line": 879
+    },
+    "1-1|일차방정식의 활용|50": {
+      "file": "src/lib/middle/m1LinearApply.ts",
+      "line": 959
+    },
+    "1-1|좌표와 그래프|01": {
+      "file": "src/lib/middle/m1Prop.ts",
+      "line": 272
+    },
+    "1-1|좌표와 그래프|03": {
+      "file": "src/lib/middle/m1Book1.ts",
+      "line": 581
+    },
+    "1-1|좌표와 그래프|04": {
+      "file": "src/lib/middle/m1Book1.ts",
+      "line": 611
+    },
+    "1-1|좌표와 그래프|06": {
+      "file": "src/lib/middle/m1Book1.ts",
+      "line": 656,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "1-1|좌표와 그래프|12": {
+      "file": "src/lib/middle/m1Extra.ts",
+      "line": 480
+    },
+    "1-1|좌표와 그래프|13": {
+      "file": "src/lib/middle/m1Extra.ts",
+      "line": 498
+    },
+    "1-1|좌표와 그래프|15": {
+      "file": "src/lib/middle/m1Extra.ts",
+      "line": 535
+    },
+    "1-1|좌표와 그래프|16": {
+      "file": "src/lib/middle/m1Extra.ts",
+      "line": 554
+    },
+    "1-1|좌표와 그래프|08": {
+      "file": "src/lib/middle/m1Prop.ts",
+      "line": 438
+    },
+    "1-1|정비례와 반비례|01": {
+      "file": "src/lib/middle/m1Prop.ts",
+      "line": 615
+    },
+    "1-1|정비례와 반비례|02": {
+      "file": "src/lib/middle/m1Prop.ts",
+      "line": 658
+    },
+    "1-1|정비례와 반비례|03": {
+      "file": "src/lib/middle/m1Prop.ts",
+      "line": 700
+    },
+    "1-1|정비례와 반비례|07": {
+      "file": "src/lib/middle/m1Prop.ts",
+      "line": 819
+    },
+    "1-1|정비례와 반비례|08": {
+      "file": "src/lib/middle/m1Prop.ts",
+      "line": 864
+    },
+    "1-1|정비례와 반비례|11": {
+      "file": "src/lib/middle/m1Prop.ts",
+      "line": 1133
+    },
+    "1-1|정비례와 반비례|13": {
+      "file": "src/lib/middle/m1Prop.ts",
+      "line": 1239
+    },
+    "1-1|정비례와 반비례|15": {
+      "file": "src/lib/middle/m1Prop.ts",
+      "line": 1294
+    },
+    "1-1|정비례와 반비례|17": {
+      "file": "src/lib/middle/m1Prop.ts",
+      "line": 1361
+    },
+    "1-1|정비례와 반비례|10": {
+      "file": "src/lib/middle/m1Prop.ts",
+      "line": 950
+    },
+    "1-1|정비례와 반비례|20": {
+      "file": "src/lib/middle/m1Prop.ts",
+      "line": 1496,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "1-1|정비례와 반비례|21": {
+      "file": "src/lib/middle/m1Prop.ts",
+      "line": 1541,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "3-1|이차방정식의 활용|53V": {
+      "file": "src/lib/middle/m3Top3.ts",
+      "line": 1203,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "3-1|이차함수의 그래프 ⑴|07": {
+      "file": "src/lib/middle/m3Func.ts",
+      "line": 789
+    },
+    "3-1|이차함수의 그래프 ⑴|21": {
+      "file": "src/lib/middle/m3Func.ts",
+      "line": 1402
+    },
+    "3-1|이차함수의 그래프 ⑴|19": {
+      "file": "src/lib/middle/m3Func.ts",
+      "line": 1274
+    },
+    "3-1|이차함수의 그래프 ⑵|07": {
+      "file": "src/lib/middle/m3Func.ts",
+      "line": 1623
+    },
+    "3-1|이차함수의 그래프 ⑵|02": {
+      "file": "src/lib/middle/m3Func.ts",
+      "line": 1457
+    },
+    "3-1|이차함수의 그래프 ⑵|10": {
+      "file": "src/lib/middle/m3Func.ts",
+      "line": 1779,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "공통수학1|여러 가지 방정식|17": {
+      "file": "src/lib/high/h1Equations.ts",
+      "line": 2103,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "공통수학1|이차방정식과 이차함수|02": {
+      "file": "src/lib/high/h1QuadFunc.ts",
+      "line": 1266,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "1-1|좌표와 그래프|84X": {
+      "file": "src/lib/middle/m1Top5e.ts",
+      "line": 650,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "1-1|정비례와 반비례|22": {
+      "file": "src/lib/middle/m1Prop.ts",
+      "line": 999,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "1-1|정비례와 반비례|61W": {
+      "file": "src/lib/middle/m1Top4.ts",
+      "line": 306,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "1-1|최대공약수와 최소공배수|32T": {
+      "file": "src/lib/middle/m1Top.ts",
+      "line": 255,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "2-1|일차부등식|33U": {
+      "file": "src/lib/middle/m2Top2.ts",
+      "line": 507,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "2-1|일차부등식|118X": {
+      "file": "src/lib/middle/m2Top5e.ts",
+      "line": 485,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "2-1|일차함수와 그 그래프  ⑴|01": {
+      "file": "src/lib/middle/m2Func.ts",
+      "line": 184,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "2-1|일차함수와 그 그래프  ⑵|01": {
+      "file": "src/lib/middle/m2Line.ts",
+      "line": 404,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "2-1|일차함수와 그 그래프  ⑵|34U": {
+      "file": "src/lib/middle/m2Top2.ts",
+      "line": 597,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "2-1|일차함수와 일차방정식의 관계|127X": {
+      "file": "src/lib/middle/m2Top5g.ts",
+      "line": 767,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "2-2|피타고라스 정리|05": {
+      "file": "src/lib/middle/m2Pytha.ts",
+      "line": 462,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "2-2|피타고라스 정리|06": {
+      "file": "src/lib/middle/m2Pytha.ts",
+      "line": 481,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "2-2|피타고라스 정리|109X": {
+      "file": "src/lib/middle/m2Top5c.ts",
+      "line": 517,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "2-2|여러 가지 사각형|09": {
+      "file": "src/lib/middle/m2GeoQuad.ts",
+      "line": 1231,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "3-1|제곱근의 뜻과 성질|41U": {
+      "file": "src/lib/middle/m3Top2.ts",
+      "line": 999,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "3-2|삼각비의 활용|07": {
+      "file": "src/lib/middle/m3Trig.ts",
+      "line": 2228,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "3-2|원과 직선|03": {
+      "file": "src/lib/middle/m3.ts",
+      "line": 162,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "공통수학1|이차방정식과 이차함수|06": {
+      "file": "src/lib/high/h1QuadFunc.ts",
+      "line": 634,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "공통수학1|이차부등식과 연립이차부등식|10": {
+      "file": "src/lib/high/h1QuadIneq.ts",
+      "line": 1204,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "공통수학1|경우의 수와 순열|11": {
+      "file": "src/lib/high/h1Perm.ts",
+      "line": 1543,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "공통수학1|조합|02": {
+      "file": "src/lib/high/h1Comb.ts",
+      "line": 334,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "manual-20261018|무리수와 실수|R02": {
+      "file": "src/lib/middle/m3Reinforcement20261018.ts",
+      "line": 117,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "manual-20261018|이차방정식의 활용|Q02": {
+      "file": "src/lib/middle/m3Reinforcement20261018.ts",
+      "line": 265,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "manual-20261018|대푯값과 산포도|S03": {
+      "file": "src/lib/middle/m3Reinforcement20261018.ts",
+      "line": 367,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "초3|2-4-4|32": {
+      "file": "src/lib/elementary/statementForms.ts",
+      "line": 394,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "초4|1-5-3|01": {
+      "file": "src/lib/elementary/g4.ts",
+      "line": 16424,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "초4|2-5-3|01": {
+      "file": "src/lib/elementary/g4.ts",
+      "line": 16424,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "초5|2-1-1|32": {
+      "file": "src/lib/elementary/statementForms.ts",
+      "line": 394,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "초6|2-4-4|32": {
+      "file": "src/lib/elementary/statementForms.ts",
+      "line": 394,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "중2|일차함수의 활용::중2|일차부등식의 풀이": {
+      "file": "src/lib/middle/combo.ts",
+      "line": 194,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": false
+    },
+    "e4-equilateral-audit-r1": {
+      "file": "src/lib/engine/nativeDescriptive20261018.ts",
+      "line": 13,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": true
+    },
+    "e4-triangle-dual-proof-r1": {
+      "file": "src/lib/engine/nativeDescriptive20261018.ts",
+      "line": 13,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": true
+    },
+    "e4-trapezoid-sufficiency-r1": {
+      "file": "src/lib/engine/nativeDescriptive20261018.ts",
+      "line": 13,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": true
+    },
+    "m3-factor-error-proof-r1": {
+      "file": "src/lib/engine/nativeDescriptive20261018.ts",
+      "line": 13,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": true
+    },
+    "m3-quadratic-domain-r1": {
+      "file": "src/lib/engine/nativeDescriptive20261018.ts",
+      "line": 13,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": true
+    },
+    "m3-statistics-shift-spread-r1": {
+      "file": "src/lib/engine/nativeDescriptive20261018.ts",
+      "line": 13,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "fresh three seeds, variant 0",
+      "generated": 3,
+      "mathChecked": 3,
+      "nativeRubric": true
+    },
+    "2-1|연립일차방정식|15": {
+      "file": "src/lib/middle/m2SystemApply.ts",
+      "line": 212,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "source review only; not part of 48-entry-point fresh run",
+      "generated": 0,
+      "mathChecked": 0,
+      "nativeRubric": false
+    },
+    "2-1|연립일차방정식|09": {
+      "file": "src/lib/middle/m2System.ts",
+      "line": 1043,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "source review only; not part of 48-entry-point fresh run",
+      "generated": 0,
+      "mathChecked": 0,
+      "nativeRubric": false
+    },
+    "2-1|연립일차방정식의 활용|09": {
+      "file": "src/lib/middle/m2SystemApply.ts",
+      "line": 381,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "source review only; not part of 48-entry-point fresh run",
+      "generated": 0,
+      "mathChecked": 0,
+      "nativeRubric": false
+    },
+    "2-1|일차함수와 그 그래프  ⑴|05": {
+      "file": "src/lib/middle/m2Func.ts",
+      "line": 271,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "source review only; not part of 48-entry-point fresh run",
+      "generated": 0,
+      "mathChecked": 0,
+      "nativeRubric": false
+    },
+    "2-1|일차함수와 그 그래프  ⑵|02": {
+      "file": "src/lib/middle/m2Line.ts",
+      "line": 462,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "source review only; not part of 48-entry-point fresh run",
+      "generated": 0,
+      "mathChecked": 0,
+      "nativeRubric": false
+    },
+    "2-1|일차함수와 그 그래프  ⑴|11": {
+      "file": "src/lib/middle/m2Func.ts",
+      "line": 405,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "source review only; not part of 48-entry-point fresh run",
+      "generated": 0,
+      "mathChecked": 0,
+      "nativeRubric": false
+    },
+    "1-1|일차방정식의 활용|30": {
+      "file": "src/lib/middle/m1LinearApply.ts",
+      "line": 642,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "source review only; not part of 48-entry-point fresh run",
+      "generated": 0,
+      "mathChecked": 0,
+      "nativeRubric": false
+    },
+    "1-1|일차방정식의 활용|25": {
+      "file": "src/lib/middle/m1LinearApply.ts",
+      "line": 580,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "source review only; not part of 48-entry-point fresh run",
+      "generated": 0,
+      "mathChecked": 0,
+      "nativeRubric": false
+    },
+    "2-2|삼각형의 외심과 내심|03": {
+      "file": "src/lib/middle/m2Center.ts",
+      "line": 838,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "source review only; not part of 48-entry-point fresh run",
+      "generated": 0,
+      "mathChecked": 0,
+      "nativeRubric": false
+    },
+    "2-2|삼각형의 외심과 내심|04": {
+      "file": "src/lib/middle/m2Center.ts",
+      "line": 856,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "source review only; not part of 48-entry-point fresh run",
+      "generated": 0,
+      "mathChecked": 0,
+      "nativeRubric": false
+    },
+    "2-2|삼각형의 외심과 내심|05": {
+      "file": "src/lib/middle/m2Center.ts",
+      "line": 882,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "source review only; not part of 48-entry-point fresh run",
+      "generated": 0,
+      "mathChecked": 0,
+      "nativeRubric": false
+    },
+    "2-2|삼각형의 외심과 내심|07": {
+      "file": "src/lib/middle/m2Center.ts",
+      "line": 928,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "source review only; not part of 48-entry-point fresh run",
+      "generated": 0,
+      "mathChecked": 0,
+      "nativeRubric": false
+    },
+    "2-2|삼각형의 외심과 내심|10": {
+      "file": "src/lib/middle/m2Center.ts",
+      "line": 994,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "source review only; not part of 48-entry-point fresh run",
+      "generated": 0,
+      "mathChecked": 0,
+      "nativeRubric": false
+    },
+    "2-2|삼각형의 외심과 내심|12": {
+      "file": "src/lib/middle/m2Center.ts",
+      "line": 1033,
+      "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+      "execution": "source review only; not part of 48-entry-point fresh run",
+      "generated": 0,
+      "mathChecked": 0,
+      "nativeRubric": false
+    }
+  },
+  "prior27Reclassified": [
+    {
+      "profile": "prior-middle1-22",
+      "sourceNo": 1,
+      "abstractDemand": "괄호가 있는 일차식을 정리한 뒤 계수와 상수항을 추출해 합산",
+      "status": "study-ready",
+      "reason": "괄호 정리·계수 읽기가 핵심이다. 계수/상수항 합이라는 표적만으로 별도 family 부재라고 하지 않는다.",
+      "evidenceRefs": [
+        "EX13",
+        "EX09"
+      ],
+      "sourceQualityFlags": []
+    },
+    {
+      "profile": "prior-middle1-22",
+      "sourceNo": 2,
+      "abstractDemand": "여러 등식 중 정리 후 일차방정식이 되지 않는 대상을 판별",
+      "status": "study-ready",
+      "reason": "여러 식을 정리해 일차방정식인지 판단한다. 개수/예외 번호는 표적 차이다.",
+      "evidenceRefs": [
+        "EQ09"
+      ],
+      "sourceQualityFlags": []
+    },
+    {
+      "profile": "prior-middle1-22",
+      "sourceNo": 3,
+      "abstractDemand": "주어진 비례 등식에서 등식 변형 진술들의 참인 부분집합을 선택",
+      "status": "component-only",
+      "reason": "등식 변형의 판단은 있으나 비단위 비례 관계의 공유 진술 전체는 미확인이다. 기존 진술 틀 확장으로 다룬다.",
+      "evidenceRefs": [
+        "EQ06",
+        "ELSTAT",
+        "JUDGE"
+      ],
+      "sourceQualityFlags": []
+    },
+    {
+      "profile": "prior-middle1-22",
+      "sourceNo": 4,
+      "abstractDemand": "각기 다른 식과 후보 해 쌍을 대입 검산하여 틀린 쌍 선택",
+      "status": "component-only",
+      "reason": "대입/해 검산은 있다. 서로 다른 후보해-방정식 쌍의 진리집합과 유일한 예외 묶음은 미확인이다. 단순 번호 답 때문에 새 family로 세지 않는다.",
+      "evidenceRefs": [
+        "EQ33",
+        "EQ11",
+        "EQ12",
+        "JUDGE"
+      ],
+      "sourceQualityFlags": []
+    },
+    {
+      "profile": "prior-middle1-22",
+      "sourceNo": 5,
+      "abstractDemand": "말로 주어진 두 선형 계산 결과가 같다는 조건을 식으로 세워 풀기",
+      "status": "study-ready",
+      "reason": "문장으로 준 두 선형 결과를 같게 두고 푸는 핵심은 이미 있다.",
+      "evidenceRefs": [
+        "L01"
+      ],
+      "sourceQualityFlags": []
+    },
+    {
+      "profile": "prior-middle1-22",
+      "sourceNo": 6,
+      "abstractDemand": "월별 자료 그래프에서 극값·증감 구간·두 값 합·범위를 함께 판단",
+      "status": "component-only",
+      "reason": "초4 실제 차트와 중1 텍스트 그래프/교차는 있으나 하나의 시각 자료의 극값·증감·합·범위 동시 판정은 미확인이다.",
+      "evidenceRefs": [
+        "C08",
+        "ELGRAPH",
+        "JUDGE"
+      ],
+      "sourceQualityFlags": []
+    },
+    {
+      "profile": "prior-middle1-22",
+      "sourceNo": 7,
+      "abstractDemand": "좌표·축·순서쌍·사분면의 서로 다른 개념 진술 중 오류 선택",
+      "status": "component-only",
+      "reason": "좌표/축/사분면 계산은 있으나 여러 개념의 진술 오류를 한 문항에서 판별하는 구조는 미확인이다.",
+      "evidenceRefs": [
+        "C01",
+        "C04",
+        "C12",
+        "C13",
+        "C15",
+        "C16",
+        "ELSTAT"
+      ],
+      "sourceQualityFlags": []
+    },
+    {
+      "profile": "prior-middle1-22",
+      "sourceNo": 8,
+      "abstractDemand": "여러 점이 표시된 좌표평면에서 사분면·최대 좌표·축 소속·좌표 순서를 함께 판단",
+      "status": "component-only",
+      "reason": "여러 점이 공유하는 그림과 주장 대응 전체가 필요하다. 점 하나 읽는 가족들을 더해 완전 지원이라 하지 않는다.",
+      "evidenceRefs": [
+        "C01",
+        "C04",
+        "C12",
+        "C13",
+        "C15",
+        "C16"
+      ],
+      "sourceQualityFlags": []
+    },
+    {
+      "profile": "prior-middle1-22",
+      "sourceNo": 9,
+      "abstractDemand": "연속하는 세 짝수의 합으로 가장 큰 수를 구하기",
+      "status": "study-ready",
+      "reason": "연속수·짝홀수 모델링은 현재 있다. 세 짝수로 항수/간격을 바꾸는 것은 기존 모델의 조건/계수 변형이다.",
+      "evidenceRefs": [
+        "L02",
+        "L45"
+      ],
+      "sourceQualityFlags": []
+    },
+    {
+      "profile": "prior-middle1-22",
+      "sourceNo": 10,
+      "abstractDemand": "오목한 직교 도형의 미표기 길이를 보완하여 둘레를 일차식으로 나타내기",
+      "status": "upgrade-needed",
+      "reason": "오목 직교도형의 가로·세로 닫힘과 미표기 길이 복원이 실제 추가 요구다.",
+      "evidenceRefs": [
+        "EX19",
+        "EX13"
+      ],
+      "sourceQualityFlags": []
+    },
+    {
+      "profile": "prior-middle1-22",
+      "sourceNo": 11,
+      "abstractDemand": "분수 계수와 소수/분수 혼합인 두 방정식을 풀어 해의 차를 구하기",
+      "status": "component-only",
+      "reason": "두 해를 묶는92와 분수/소수 풀이가 있다. 합→차는 새 가족이 아니며 혼합 표현을 같은 문항에 놓는 경로는 이번 재검산 밖이다.",
+      "evidenceRefs": [
+        "EQ11",
+        "EQ12",
+        "EQ13",
+        "EQ92"
+      ],
+      "sourceQualityFlags": [
+        "edited-item-note-present"
+      ]
+    },
+    {
+      "profile": "prior-middle1-22",
+      "sourceNo": 12,
+      "abstractDemand": "증정·단일 할인·연속 할인 정책을 문자 가격으로 모델링하여 진술과 최저가 비교",
+      "status": "upgrade-needed",
+      "reason": "증정 문턱·잔여 단품·연속 할인과 최저가/동률의 공유 조건이 추가로 필요하다.",
+      "evidenceRefs": [
+        "EX02",
+        "L34",
+        "L35",
+        "ELSTAT"
+      ],
+      "sourceQualityFlags": []
+    },
+    {
+      "profile": "prior-middle1-22",
+      "sourceNo": 13,
+      "abstractDemand": "분수 계수 정비례 식의 관계 종류·음수 대입·지나는 사분면에 대한 참인 진술집합",
+      "status": "component-only",
+      "reason": "계수 부호·음수 대입·사분면은 연습한다. 공유 식의 여러 진술을 동시에 판정하는 완성 문항은 미확인이다.",
+      "evidenceRefs": [
+        "P01",
+        "P07",
+        "P08",
+        "ELSTAT"
+      ],
+      "sourceQualityFlags": []
+    },
+    {
+      "profile": "prior-middle1-22",
+      "sourceNo": 14,
+      "abstractDemand": "여러 생활 상황을 식으로 바꾸어 반비례와 아핀 관계를 구별",
+      "status": "component-only",
+      "reason": "생활 역비례 식을 세우는 능력은 있다. 아핀 관계와 역비례를 함께 구별하는 비교 과제는 미확인이다.",
+      "evidenceRefs": [
+        "P13",
+        "EX02",
+        "P03"
+      ],
+      "sourceQualityFlags": []
+    },
+    {
+      "profile": "prior-middle1-22",
+      "sourceNo": 15,
+      "abstractDemand": "음의 반비례 그래프에 표시된 두 미지 좌표를 읽고 그 차를 구하기",
+      "status": "component-only",
+      "reason": "역비례 대응값과 두 미지값 합은 있다. 합→차는 새 가족이 아니나 두 기호/안내선을 읽는 시각 연결은 미확인이다.",
+      "evidenceRefs": [
+        "P11",
+        "P15",
+        "P17"
+      ],
+      "sourceQualityFlags": []
+    },
+    {
+      "profile": "prior-middle1-22",
+      "sourceNo": 16,
+      "abstractDemand": "곱의 부호와 두 수의 순서 조건에서 차·제곱이 포함된 점의 사분면 추론",
+      "status": "study-ready",
+      "reason": "조건에서 부호를 결정하고 변환점의 사분면을 찾는 핵심은 현재06이다. 제곱 부호 조합을 별도 교수학 가족으로 세지 않는다.",
+      "evidenceRefs": [
+        "C06"
+      ],
+      "sourceQualityFlags": []
+    },
+    {
+      "profile": "prior-middle1-22",
+      "sourceNo": 17,
+      "abstractDemand": "해가 자연수가 되도록 하는 자연수 매개변수의 가능 집합에서 순위 선택",
+      "status": "study-ready",
+      "reason": "자연수 매개변수 집합 자체가 EQ17에 있다. 두 번째 값은 정렬 표적 확장이다.",
+      "evidenceRefs": [
+        "EQ17"
+      ],
+      "sourceQualityFlags": []
+    },
+    {
+      "profile": "prior-middle1-22",
+      "sourceNo": 18,
+      "abstractDemand": "비례 맥락에서 변수의 방향을 정한 식과 특정 대응 값을 함께 선택",
+      "status": "study-ready",
+      "reason": "정비례 모델과 대입의 핵심은 현재 있다. 식/값 짝 출력만은 새 유형이 아니며 원사이트 형식 충돌은 보존한다.",
+      "evidenceRefs": [
+        "P02",
+        "P03",
+        "P01"
+      ],
+      "sourceQualityFlags": [
+        "subjective-tag-with-five-choice-pairs",
+        "flattened-fractions-ambiguous-use-mathml"
+      ]
+    },
+    {
+      "profile": "prior-middle1-22",
+      "sourceNo": 19,
+      "abstractDemand": "고정된 한 자리 숫자와 자리 합의 배수 조건으로 두 자리 수 모델링 후 설명",
+      "status": "component-only",
+      "reason": "자릿수 모델은 있다. 고정 자리/자리합 조건의 실제 결합 및 중1 설명 rubric은 미확인이다.",
+      "evidenceRefs": [
+        "L03",
+        "L50",
+        "NATIVE",
+        "EXPAND"
+      ],
+      "sourceQualityFlags": []
+    },
+    {
+      "profile": "prior-middle1-22",
+      "sourceNo": 20,
+      "abstractDemand": "정비례와 반비례의 공통 교점에서 두 계수를 각각 구하여 곱을 설명",
+      "status": "component-only",
+      "reason": "공통 교점에서 두 계수 계산은 같은 핵심의 결합 표적이다. P21은 한 계수만 쓰며 전체 중1 설명 rubric이 없다. 독립 새 개념 family라 부르지 않는다.",
+      "evidenceRefs": [
+        "P21",
+        "COMBO",
+        "NATIVE",
+        "EXPAND"
+      ],
+      "sourceQualityFlags": []
+    },
+    {
+      "profile": "prior-middle1-22",
+      "sourceNo": 21,
+      "abstractDemand": "두 방정식의 같은 해에서 공유 해와 상수를 함께 구하고 설명",
+      "status": "unverified",
+      "reason": "원자료 MathML 분자 손상/정답 경고로 정확 과제를 확정하지 않는다.",
+      "evidenceRefs": [
+        "EQ16",
+        "NATIVE",
+        "EXPAND"
+      ],
+      "sourceQualityFlags": [
+        "site-answer-unresolved",
+        "empty-mathml-fraction-numerator"
+      ]
+    },
+    {
+      "profile": "prior-middle1-22",
+      "sourceNo": 22,
+      "abstractDemand": "서로 반대 부호인 정비례 직선과 공통 높이에서 두 점을 구한 뒤 삼각형 넓이를 설명",
+      "status": "upgrade-needed",
+      "reason": "두 직선과 공통 높이의 좌표 의존→면적 및 원자료 경고를 구분한다. 설명 rubric도 없다.",
+      "evidenceRefs": [
+        "P10",
+        "C03",
+        "NATIVE",
+        "EXPAND"
+      ],
+      "sourceQualityFlags": [
+        "site-answer-disagreement-retained"
+      ]
+    },
+    {
+      "profile": "prior-middle3-focused5",
+      "sourceNo": 17,
+      "abstractDemand": "포물선 위 한 점으로 계수를 정한 뒤 그 점을 지나는 주어진 기울기의 직선과 다른 교점을 찾고 좌표를 결합",
+      "status": "upgrade-needed",
+      "reason": "중3 포물선 계수→기울기 직선→다른 교점의 완전 가족 미확인. 고등 가족 존재를 중3 등록으로 대체하지 않는다.",
+      "evidenceRefs": [
+        "G3POINT",
+        "G3RECT",
+        "HIGHSECANT"
+      ],
+      "sourceQualityFlags": []
+    },
+    {
+      "profile": "prior-middle3-focused5",
+      "sourceNo": 19,
+      "abstractDemand": "한 변은 늘고 다른 변은 줄어드는 시간 모델로 원래 넓이 회복 시점을 구하고 해의 시간/길이 정의역을 확인",
+      "status": "component-only",
+      "reason": "native 양의 길이/두 해 제외는 현재 있다. 반대 방향 변 변화 및 최초 시점 제외는 다른 모델 조건이다.",
+      "evidenceRefs": [
+        "NATIVE"
+      ],
+      "sourceQualityFlags": [
+        "wording-must-distinguish-initial-time-from-positive-return-time"
+      ]
+    },
+    {
+      "profile": "prior-middle3-focused5",
+      "sourceNo": 20,
+      "abstractDemand": "두 근이 모두 유리수가 되도록 하는 자연수 매개변수를 전부 찾고 설명",
+      "status": "study-ready",
+      "reason": "53V는 모든 자연수 매개변수→유리근 조건→완전 집합→합을 이미 요구한다. 합/집합/번호는 새 가족이 아니다. 자유 설명 rubric은 없음.",
+      "evidenceRefs": [
+        "G3RAT",
+        "NATIVE",
+        "EXPAND"
+      ],
+      "sourceQualityFlags": []
+    },
+    {
+      "profile": "prior-middle3-focused5",
+      "sourceNo": 21,
+      "abstractDemand": "그림에서 꼭짓점·절편으로 계수를 복원하고 그 계수를 다른 위치로 재배치한 이차함수의 꼭짓점·축·절편을 산출",
+      "status": "component-only",
+      "reason": "꼭짓점/점에서 계수 복원과 일반형 전개는 있다. 계수를 재배치한 다른 함수로의 의존과 시각 대응은 미확인이다.",
+      "evidenceRefs": [
+        "G3FIT",
+        "G3VERTEX",
+        "G3MOVE2"
+      ],
+      "sourceQualityFlags": []
+    },
+    {
+      "profile": "prior-middle3-focused5",
+      "sourceNo": 22,
+      "abstractDemand": "표에 제시된 시행 결과를 홀짝 규칙으로 이동 벡터로 바꾸고 누적 이동 후 식을 전개하며 이동 근거 설명",
+      "status": "component-only",
+      "reason": "평행이동 계산은 있다. 시행표/홀짝 규칙→누적 이동의 조건 사슬은 미확인이고 원자료 경고도 보존한다.",
+      "evidenceRefs": [
+        "G3MOVE",
+        "G3MOVE2",
+        "NATIVE"
+      ],
+      "sourceQualityFlags": [
+        "site-answer-unresolved"
+      ]
+    }
+  ],
+  "newAbstractProfileMappings": [
+    {
+      "profile": "daeryun-m1-abstract-profile.json",
+      "sourceNo": 4,
+      "abstractDemand": "Use quadrant signs of a ratio and a sum to infer signs of two hidden quantities, then determine a transformed point quadrant",
+      "status": "study-ready",
+      "evidence": [
+        "1-1|좌표와 그래프|06"
+      ],
+      "reason": "비/곱의 부호는 분모가0이 아닌 범위에서 같은 부호 판단이다. 합으로 부호 결정→변환점 사분면은 기존 핵심이다. 비 표현/좌표식 확장은 같은 family에서 다룬다."
+    },
+    {
+      "profile": "daeryun-m1-abstract-profile.json",
+      "sourceNo": 10,
+      "abstractDemand": "Read a piecewise distance-time graph and evaluate simultaneous claims about direction reversals, maximum distance, repeated level crossings, total path length, and first hitting time",
+      "status": "component-only",
+      "evidence": [
+        "1-1|좌표와 그래프|84X"
+      ],
+      "reason": "모든 높이 교차의 구간 판단은 존재한다. 실제 시각 거리 그래프의 방향·이동거리·여러 주장 진리집합 전체는 현재84X가 아니다."
+    },
+    {
+      "profile": "daeryun-m1-abstract-profile.json",
+      "sourceNo": 11,
+      "abstractDemand": "Use an initial population ratio under repeated doubling to infer a time offset, then combine it with a symbolic time expressed in another time unit",
+      "status": "component-only",
+      "evidence": [
+        "1-1|일차방정식의 활용|01"
+      ],
+      "reason": "문자식/단위와 반복 변화의 성분은 있으나 초기 비에서 반복 배증 시차를 역추론해 다른 시간 단위와 결합하는 완전 문형은 미확인이다."
+    },
+    {
+      "profile": "daeryun-m1-abstract-profile.json",
+      "sourceNo": 14,
+      "abstractDemand": "A square has vertices constrained to two proportional graphs; solve a point coordinate from shared side length and graph incidences",
+      "status": "upgrade-needed",
+      "evidence": [
+        "1-1|정비례와 반비례|21",
+        "1-1|정비례와 반비례|22"
+      ],
+      "reason": "그래프 입사와 정사각형의 공통 변을 공유하는 좌표 제약은 한 점 대입/넓이 이등분 과제와 다르다."
+    },
+    {
+      "profile": "daeryun-m1-abstract-profile.json",
+      "sourceNo": 16,
+      "abstractDemand": "Two points on a reciprocal graph and an axis point form auxiliary triangles with a prescribed area ratio; infer the unknown point and a larger triangle area",
+      "status": "upgrade-needed",
+      "evidence": [
+        "1-1|정비례와 반비례|20",
+        "1-1|정비례와 반비례|61W"
+      ],
+      "reason": "두 역비례 점·축의 점·넓이비가 서로를 정하는 의존 및 최종 넓이는 한 점의 곱/면적 불변식만으로 입증하지 못한다."
+    },
+    {
+      "profile": "daeryun-m1-abstract-profile.json",
+      "sourceNo": 17,
+      "abstractDemand": "Two points on a reciprocal graph form a right triangle with equal axis-parallel legs and a known coordinate; recover the graph coefficient",
+      "status": "component-only",
+      "evidence": [
+        "1-1|정비례와 반비례|20",
+        "1-1|정비례와 반비례|21"
+      ],
+      "reason": "좌표차의 두 다리 같음→두 역비례 입사→계수 복원이 추가 연결이다. 단순 b 값 출력이 부족한 이유가 아니다."
+    },
+    {
+      "profile": "daeryun-m1-abstract-profile.json",
+      "sourceNo": 18,
+      "abstractDemand": "Two proportional rays partition an axis-intercept triangle into prescribed area proportions; recover both slopes and combine them",
+      "status": "component-only",
+      "evidence": [
+        "1-1|정비례와 반비례|22"
+      ],
+      "reason": "같은 높이의 넓이비→분점→기울기는 이등분 가족의 관련 핵심이다. 두 광선과 지정된 여러 비를 한 조건으로 생성하는 부분은 미확인이다. 새 개념 family를 무조건 만들 사유는 아니다."
+    },
+    {
+      "profile": "daeryun-m1-abstract-profile.json",
+      "sourceNo": 19,
+      "abstractDemand": "For a fixed travel distance, infer the relative revolution count after a circle diameter changes, then compute and round the percentage increase",
+      "status": "component-only",
+      "evidence": [
+        "1-1|일차방정식의 활용|30",
+        "1-1|일차방정식의 활용|25"
+      ],
+      "reason": "회전수 역비례와 백분율 모델은 이웃 성분이다. 지름 변화→회전수의 퍼센트 증가 기준량→반올림까지 완전 생성 경로는 미확인이다."
+    },
+    {
+      "profile": "daeryun-m1-abstract-profile.json",
+      "sourceNo": 20,
+      "abstractDemand": "Symbolically sum all reduced fractions with a fixed composite denominator between two integer bounds using coprime residue classes and a supplied summation identity",
+      "status": "upgrade-needed",
+      "evidence": [
+        "1-1|최대공약수와 최소공배수|32T",
+        "1-1|정비례와 반비례|61W"
+      ],
+      "reason": "서로소 인수쌍/약수 열거와 기약 잔여류의 상징적 구간 합은 다른 요구다. 고정 분모 전체 잔여류와 합 공식의 일반화 문형은 미확인이다."
+    },
+    {
+      "profile": "daeryun-m1-abstract-profile.json",
+      "sourceNo": 21,
+      "abstractDemand": "Apply a set of supplied formulas in dependency order, compute intermediate quantities and a residual budget, then solve a rate/time question with consistent units and a minimum-time interpretation",
+      "status": "upgrade-needed",
+      "evidence": [
+        "1-1|일차방정식의 활용|01"
+      ],
+      "reason": "공식 의존순서·중간값·잔여 예산·단위/최소 시간·다중 출력 설명의 전체와 native M1 rubric이 필요하다."
+    },
+    {
+      "profile": "daeryun-m1-abstract-profile.json",
+      "sourceNo": 22,
+      "abstractDemand": "Use incidence on two reciprocal curves plus horizontal/vertical alignment to express four vertices in one parameter and derive a trapezoid area",
+      "status": "upgrade-needed",
+      "evidence": [
+        "1-1|정비례와 반비례|20"
+      ],
+      "reason": "서로 다른 부호의 두 역비례 곡선에서 네 좌표를 공통 매개변수로 묶고 사다리꼴 넓이에서 소거하는 구조와 rubric은 미확인이다."
+    },
+    {
+      "profile": "daeryun-m2-abstract-profile.json",
+      "sourceNo": 5,
+      "abstractDemand": "Translate a linear graph, recover its two intercepts, use those intercepts as coefficients of a second linear graph, then infer its quadrant exclusion.",
+      "status": "component-only",
+      "evidence": [
+        "2-1|일차함수와 그 그래프  ⑴|05",
+        "2-1|일차함수와 그 그래프  ⑵|02"
+      ],
+      "reason": "평행이동/절편/사분면은 개별 지원한다. 구한 절편을 다른 직선 계수로 재배치하는 공유 의존 문형은 미확인이다."
+    },
+    {
+      "profile": "daeryun-m2-abstract-profile.json",
+      "sourceNo": 8,
+      "abstractDemand": "Judge multiple distinct properties of one linear relation: slope-parallelism, intercepts, incidence, increments and quadrants.",
+      "status": "study-ready",
+      "evidence": [
+        "2-1|일차함수와 그 그래프  ⑵|01"
+      ],
+      "reason": "현행 그래프⑵01이 한 식의 방향·절편·증가량·입사·사분면 다섯 속성을 각각 판정한다. 기울기 평행 비교와 개수/옳지않은 보기 표적 차이는 새 교수학 가족 결손이 아니다. 정확 원문 재현이나 자유 설명 rubric을 주장하지 않는다."
+    },
+    {
+      "profile": "daeryun-m2-abstract-profile.json",
+      "sourceNo": 10,
+      "abstractDemand": "Judge whether several verbal and geometric correspondences define a single-valued function, including uniqueness versus many admissible outputs.",
+      "status": "study-ready",
+      "evidence": [
+        "2-1|일차함수와 그 그래프  ⑴|01"
+      ],
+      "reason": "함수01은 말/도형의 입력당 출력 유일성과 다가 대응을 이미 함께 판단한다. 개수/참 보기 출력은 새 교수학 가족 차이가 아니다."
+    },
+    {
+      "profile": "daeryun-m2-abstract-profile.json",
+      "sourceNo": 11,
+      "abstractDemand": "Invert an inequality solution count over the natural numbers to find every admissible integer parameter, then aggregate that complete parameter set.",
+      "status": "study-ready",
+      "evidence": [
+        "2-1|일차부등식|33U",
+        "2-1|일차부등식|118X"
+      ],
+      "reason": "118X가 음·0·양 계수 경우 후 모든 정수 매개변수를 찾고 합을 낸다.33U도 자연수 해 개수→구간 역산을 제공한다."
+    },
+    {
+      "profile": "daeryun-m2-abstract-profile.json",
+      "sourceNo": 14,
+      "abstractDemand": "Recover axis intercepts and use a negative-integer lattice constraint on a line to determine a point, then compare two triangle areas.",
+      "status": "component-only",
+      "evidence": [
+        "2-1|일차함수와 그 그래프  ⑴|11"
+      ],
+      "reason": "절편·정수 격자점·삼각형 면적은 있다. 음의 정수 격자 제약을 사용해 점을 먼저 결정하고 두 면적을 비교하는 의존 구조는 미확인이다."
+    },
+    {
+      "profile": "daeryun-m2-abstract-profile.json",
+      "sourceNo": 15,
+      "abstractDemand": "Compare solutions of two related systems whose coordinates differ by known translations, then recover unknown coefficients.",
+      "status": "component-only",
+      "evidence": [
+        "2-1|연립일차방정식|15",
+        "2-1|연립일차방정식|09"
+      ],
+      "reason": "연립식의 해/계수 및 동일 해 조건은 있다. 두 해의 번역된 좌표 차가 계수를 묶는 완성 문형은 미확인이다."
+    },
+    {
+      "profile": "daeryun-m2-abstract-profile.json",
+      "sourceNo": 16,
+      "abstractDemand": "Use two lines intercepting both axes and a quadrilateral trapezoid condition to enumerate every admissible signed parameter via alternative parallel-side cases.",
+      "status": "component-only",
+      "evidence": [
+        "2-1|일차함수와 일차방정식의 관계|127X"
+      ],
+      "reason": "127X는 대안 평행/공점 경우를 모두 찾는 능력의 실제 근거다. 네 축절편의 사다리꼴은 다른 기하 제약이라 그 가족이 직접 대응한다고 하지 않는다."
+    },
+    {
+      "profile": "daeryun-m2-abstract-profile.json",
+      "sourceNo": 17,
+      "abstractDemand": "Model remaining fuel versus traveled distance from efficiency and total distance; provide both a function expression and an evaluated value with explicit reasoning.",
+      "status": "component-only",
+      "evidence": [
+        "중2|일차함수의 활용::중2|일차부등식의 풀이"
+      ],
+      "reason": "선형 잔량/기울기·단위의 수학 성분은 있다. 연료 식과 대입값은 작은 표적 확장이지만 과정을 쓰는 native M2 rubric은 없다."
+    },
+    {
+      "profile": "daeryun-m2-abstract-profile.json",
+      "sourceNo": 18,
+      "abstractDemand": "One written card contains two distinct rate-model subproblems: piecewise travel with a stationary interval, and recovering individual fill rates from two schedules.",
+      "status": "component-only",
+      "evidence": [
+        "2-1|일차함수와 그 그래프  ⑵|34U",
+        "2-1|연립일차방정식의 활용|09"
+      ],
+      "reason": "시간 구간 처리와 두 작업률 연립은 이웃 가족에 있다. 정지 구간을 포함한 모델과 급수 일정별 설명 rubric은 이번에 확인하지 못했다. 별도 두 소문항을 하나의 새 연결 family로 세지 않는다."
+    },
+    {
+      "profile": "kyungshin-common2-abstract-profile.json",
+      "sourceNo": 4,
+      "abstractDemand": "Convert an implication between an absolute-value interval and the complement of a quadratic inequality into interval containment, then optimize the shift parameter.",
+      "status": "unverified",
+      "evidence": [],
+      "reason": "독립 고등 생성기 공통수학2 등록0. 다른 은행/교과서 자작 경로의 대응·제품 접근은 이번 감사 밖이라 미검증이며 원문 미저장을 실패로 세지 않는다."
+    },
+    {
+      "profile": "kyungshin-common2-abstract-profile.json",
+      "sourceNo": 8,
+      "abstractDemand": "Count all possible intermediate truth sets constrained between an intersection and a union of two finite sets.",
+      "status": "unverified",
+      "evidence": [],
+      "reason": "독립 고등 생성기 공통수학2 등록0. 다른 은행/교과서 자작 경로의 대응·제품 접근은 이번 감사 밖이라 미검증이며 원문 미저장을 실패로 세지 않는다."
+    },
+    {
+      "profile": "kyungshin-common2-abstract-profile.json",
+      "sourceNo": 10,
+      "abstractDemand": "Use bijectivity of a quadratic function between a restricted half-line domain and specified half-line range to constrain coefficients and optimize an evaluation.",
+      "status": "unverified",
+      "evidence": [],
+      "reason": "독립 고등 생성기 공통수학2 등록0. 다른 은행/교과서 자작 경로의 대응·제품 접근은 이번 감사 밖이라 미검증이며 원문 미저장을 실패로 세지 않는다."
+    },
+    {
+      "profile": "kyungshin-common2-abstract-profile.json",
+      "sourceNo": 12,
+      "abstractDemand": "Optimize polygon area with a moving point on a radical curve and fixed axis intercepts using a valid parameter substitution.",
+      "status": "unverified",
+      "evidence": [],
+      "reason": "독립 고등 생성기 공통수학2 등록0. 다른 은행/교과서 자작 경로의 대응·제품 접근은 이번 감사 밖이라 미검증이며 원문 미저장을 실패로 세지 않는다."
+    },
+    {
+      "profile": "kyungshin-common2-abstract-profile.json",
+      "sourceNo": 13,
+      "abstractDemand": "Count intersections of an absolute rational-function graph with horizontal levels on a restricted, punctured domain, then find all integer levels with a specified count.",
+      "status": "unverified",
+      "evidence": [],
+      "reason": "독립 고등 생성기 공통수학2 등록0. 다른 은행/교과서 자작 경로의 대응·제품 접근은 이번 감사 밖이라 미검증이며 원문 미저장을 실패로 세지 않는다."
+    },
+    {
+      "profile": "kyungshin-common2-abstract-profile.json",
+      "sourceNo": 14,
+      "abstractDemand": "Recover constrained bijections between three finite sets from combined direct, inverse and composition values.",
+      "status": "unverified",
+      "evidence": [],
+      "reason": "독립 고등 생성기 공통수학2 등록0. 다른 은행/교과서 자작 경로의 대응·제품 접근은 이번 감사 밖이라 미검증이며 원문 미저장을 실패로 세지 않는다."
+    },
+    {
+      "profile": "kyungshin-common2-abstract-profile.json",
+      "sourceNo": 17,
+      "abstractDemand": "Solve a finite self-map constrained by an inequality on the second iterate, an exact range and one fixed value, then combine outputs.",
+      "status": "unverified",
+      "evidence": [],
+      "reason": "독립 고등 생성기 공통수학2 등록0. 다른 은행/교과서 자작 경로의 대응·제품 접근은 이번 감사 밖이라 미검증이며 원문 미저장을 실패로 세지 않는다."
+    },
+    {
+      "profile": "kyungshin-common2-abstract-profile.json",
+      "sourceNo": 18,
+      "abstractDemand": "Relate points on a radical function and its inverse via an oblique line, then use a triangle circumcircle condition to recover a line parameter.",
+      "status": "unverified",
+      "evidence": [],
+      "reason": "독립 고등 생성기 공통수학2 등록0. 다른 은행/교과서 자작 경로의 대응·제품 접근은 이번 감사 밖이라 미검증이며 원문 미저장을 실패로 세지 않는다."
+    },
+    {
+      "profile": "textbook-m2-abstract-profile.json",
+      "sourceNo": "4-1-3-1",
+      "abstractDemand": "Convert a ratio of all three arcs of a circumcircle into an inscribed angle.",
+      "status": "unverified",
+      "evidence": [
+        "2-2|삼각형의 외심과 내심|04"
+      ],
+      "reason": "중심각/원주각의 기본 정리는 관련되나 세 호의 비를 공유하는 정확한 자작 과제를 이번에 확인하지 않았다. 제목/태그만으로 지원 판정하지 않는다.",
+      "verification": "source-only mapping; no additional generator probe or school figure use by this worker"
+    },
+    {
+      "profile": "textbook-m2-abstract-profile.json",
+      "sourceNo": "4-1-3-2",
+      "abstractDemand": "Infer a central angle from angles of an obtuse triangle while resolving the correct circle angle branch.",
+      "status": "component-only",
+      "evidence": [
+        "2-2|삼각형의 외심과 내심|03",
+        "2-2|삼각형의 외심과 내심|05"
+      ],
+      "reason": "둔각의 외부 외심과 중심각/내각 계산을 생성하는 소스는 있다. 원자료 그림의 정확한 각 분기와 같은 과제 사슬인지는 미검증이다.",
+      "verification": "source-only mapping; no additional generator probe or school figure use by this worker"
+    },
+    {
+      "profile": "textbook-m2-abstract-profile.json",
+      "sourceNo": "4-1-3-3",
+      "abstractDemand": "In a triangle split by an isosceles subtriangle, combine angle bisectors of two different subtriangles and their extended intersection to recover a nonlocal angle.",
+      "status": "component-only",
+      "evidence": [
+        "2-2|삼각형의 외심과 내심|07",
+        "2-2|삼각형의 외심과 내심|12"
+      ],
+      "reason": "한 삼각형 내심·외심 각과 서로 다른 두 하위 삼각형의 내심/연장선 교차각은 의존 구조가 다르다. 두 하위 삼각형의 구성 전체는 미확인이다.",
+      "verification": "source-only mapping; no additional generator probe or school figure use by this worker"
+    },
+    {
+      "profile": "textbook-m2-abstract-profile.json",
+      "sourceNo": "4-1-3-4",
+      "abstractDemand": "Use a right triangle and its inscribed circle with tangency/perpendicular construction to derive the inradius and subtract circular area from triangle area.",
+      "status": "component-only",
+      "evidence": [
+        "2-2|삼각형의 외심과 내심|10"
+      ],
+      "reason": "현행10은 직각변→빗변→넓이/반둘레→내접원 반지름을 이미 요구한다. 삼각형-원 넓이의 차는 이 핵심 뒤의 표적 확장으로 다룰 수 있으며 별도 새 수학 가족 부재라고 하지 않는다. 실제 음영/전체 영역 대응과 복합 출력은 미검증이다.",
+      "verification": "source-only mapping; no additional generator probe or school figure use by this worker"
+    },
+    {
+      "profile": "textbook-m2-abstract-profile.json",
+      "sourceNo": "4-1-3-5",
+      "abstractDemand": "Combine circumcenter and incenter angle relationships within an isosceles triangle.",
+      "status": "component-only",
+      "evidence": [
+        "2-2|삼각형의 외심과 내심|12"
+      ],
+      "reason": "일반 삼각형의 두 중심 관계는 현행12에 있다. 이등변 대칭과 원자료의 정확한 각/연장선 의존을 함께 쓰는 완전 과제는 미검증이다.",
+      "verification": "source-only mapping; no additional generator probe or school figure use by this worker"
+    }
+  ],
+  "profileMetadata": {
+    "daeryun-m1-abstract-profile.json": {
+      "id": "daeryun-m1-2025-s1-final",
+      "sourceUrl": "https://kimbjmath-qbank.pages.dev/만들기",
+      "school": "대륜중",
+      "grade": "중1",
+      "year": 2025,
+      "semester": 1,
+      "round": "기말",
+      "sourceListedQuestionCount": 22,
+      "renderedQuestionCount": 19,
+      "sourceVisibleFormats": {
+        "객관식": 17,
+        "주관식": 2
+      },
+      "sourceVisibleDifficulty": {
+        "하": 5,
+        "중하": 4,
+        "중": 3,
+        "중상": 4,
+        "상": 3
+      },
+      "selectionBias": "Site hides three items from22;19 visible items are not a complete original exam. Labels and answers are source metadata, not independently calibrated. Math-demand descriptions are original abstract summaries without source numbers/wording/figures.",
+      "requiredDomain": [
+        "일차식",
+        "일차방정식",
+        "정비례/반비례",
+        "좌표",
+        "조건 판단",
+        "자료 해석",
+        "과정 서술"
+      ],
+      "sampleSelection": "Eleven purposively selected complex or higher-demand tasks among19 visible items; not a random frequency sample and not whole-school coverage",
+      "sourceTaxonomyCaution": "At least two displayed type labels do not describe the visible mathematical task (circumference/inverse change and symbolic reduced-fraction summation). Use actual abstract solving demands rather than label equality.",
+      "visualRelationshipsVerified": [
+        {
+          "sourceNo": 14,
+          "relationship": "Axis-parallel square vertices constrained to two proportional rays."
+        },
+        {
+          "sourceNo": 16,
+          "relationship": "Two reciprocal-curve points and an axis point with prescribed triangle/composite area relationships."
+        },
+        {
+          "sourceNo": 18,
+          "relationship": "Two proportional rays partition the far edge of an axis-intercept triangle."
+        },
+        {
+          "sourceNo": 22,
+          "relationship": "Shared horizontal and two vertical alignments create a trapezoid across two signed reciprocal curves."
+        }
+      ],
+      "transientSourceFiguresDiscarded": true
+    },
+    "daeryun-m2-abstract-profile.json": {
+      "source": "authenticated user-authorized comparison site; transient question review only",
+      "school": "대륜중",
+      "year": 2025,
+      "term": "1학기 기말",
+      "course": "중2-1",
+      "listedCount": 18,
+      "visibleCount": 18,
+      "format": {
+        "multipleChoice": 16,
+        "shortOrWritten": 2
+      },
+      "sourceDifficultyLabels": {
+        "하": 4,
+        "중하": 4,
+        "중": 4,
+        "중상": 4,
+        "상": 2
+      },
+      "allVisibleStemsRead": true,
+      "sourceLabelsNotIndependentDifficultyCalibration": true,
+      "selectionBias": "Nine purposively selected demands from the 18 visible cards; not a random sample or entire school/grade proof. All 18 visible stems were read. No original stem, coefficient or figure is retained in this profile.",
+      "sourceQualityCautions": [
+        "Source type tags for at least two system-equation cards describe solution-existence cases but the displayed demands are numeric/parameter solving; type tags require mathematical rereading.",
+        "One remainder-function card displays an unresolved source answer warning.",
+        "Written modeling cards are labeled highest difficulty; format/label alone does not establish structural difficulty."
+      ]
+    },
+    "kyungshin-common2-abstract-profile.json": {
+      "school": "경신고",
+      "course": "공통수학2",
+      "year": 2025,
+      "term": "2학기 기말",
+      "listedCount": 20,
+      "visibleCount": 20,
+      "allVisibleStemsRead": true,
+      "format": {
+        "multipleChoice": 14,
+        "shortAnswer": 6,
+        "explicitProcessWritten": 0
+      },
+      "difficulty": "All 20 source labels unclassified; scores are not independent difficulty calibration.",
+      "sourceQualityCautions": [
+        "Three short-answer cards carry unresolved answer discrepancies. Their answer keys are not accepted as gold.",
+        "No images displayed; textual graph tasks still require mental reconstruction or rendering.",
+        "Conditions/transcription must be independently checked before using any source as a benchmark answer."
+      ],
+      "scope": "Selected 8 demands from 20 visible cards, purposive not random; no full-school/curriculum readiness percentage. No source wording or coefficients persisted."
+    },
+    "textbook-m2-abstract-profile.json": {
+      "source": "천재교육(김동재) 교과서; 실력UP문제 - 4-1-3, 중2-2; authenticated site display (source attribution as shown, not independently verified edition)",
+      "selectedTextbookCount": 5,
+      "displayedCountIncludingAddedExamPractice": 10,
+      "allTenVisibleStemsRead": true,
+      "selectedTextbookFormat": "All five numeric short-answer, not explicitly process-written.",
+      "pairedExamFormat": "Four MC and one explicitly process-written.",
+      "scope": "One purposively selected geometry bundle and its five automatically attached same-tag school examples; not complete textbook comparison. No original stem, coefficient or figure retained.",
+      "observedPairingCaution": "Step1 showed five selected textbook questions; Step2 included five extra school questions. The site describes attaching same-type school problems. Matching a tag is not proof that the learning action, dependency or response requirement matches.",
+      "pairedSchoolDemandNotes": [
+        {
+          "source": "매호중 2024 2학기 기말",
+          "abstractDemand": "Recover perimeter from circumcenter perpendicular-foot midpoint structure; numeric lengths partly carried by figure.",
+          "limitation": "not the same action as arc-ratio→inscribed-angle textbook partner"
+        },
+        {
+          "source": "경산여중 2024 2학기 중간",
+          "abstractDemand": "Use incenter/circumcenter rays and their extensions to a side to derive an intersection angle."
+        },
+        {
+          "source": "학남중 2025 2학기 중간",
+          "abstractDemand": "Combine ordinary incenter/circumcenter angles in one triangle.",
+          "limitation": "does not itself exercise two subtriangles with distinct incenters"
+        },
+        {
+          "source": "월촌중 2018 2학기 기말",
+          "abstractDemand": "Judge several area, congruence, distance, tangency and angle claims in an incircle diagram.",
+          "limitation": "same incircle unit; claim judgment differs from composite shaded area"
+        },
+        {
+          "source": "영신중 2025 2학기 중간",
+          "abstractDemand": "Give a process-written angle solution using both centers of an isosceles triangle.",
+          "limitation": "requires an explicit explanation beyond a numeric answer"
+        }
+      ],
+      "transientSourceFiguresDiscarded": true
+    }
+  },
+  "sourceFileSha256": {
+    "src/contracts/nativeDescriptive.contract.ts": "8741e73fa0e55aa2036f8808c0b249c6f414c2cb4d4ac7c2fa368aca43b0c694",
+    "src/lib/elementary/difficulty.ts": "0525113ce569b3ea4bd6dca7fcdc1aada995058a2c200bc193a8ce80b0ae15be",
+    "src/lib/elementary/g4.ts": "0a39056454b9efaa366d2d0b6847a23829ae2895bc012b755c6b1f3e670fd2bf",
+    "src/lib/elementary/generate.ts": "15fa748008e747676219a7847127bacb63ce977743749022b2e15c53ccf745e9",
+    "src/lib/elementary/statementForms.ts": "ded1cf53783d25a326b09f1576cf70caf5f47c5f3078a2a28a5dead2b3f422d6",
+    "src/lib/engine/expandEngine.ts": "86ee0b753645cdf0a7f42315a8614bbe82e17c17f7aefba7c5dd46bd8a13d164",
+    "src/lib/engine/nativeDescriptive20261018.ts": "ab312bcf46eaddc2b934feb88f370f6e83969b774e1e03e7dc48d98ba19d1483",
+    "src/lib/generator/familyAliases.ts": "a4046d181d9f0411b97c6f9b558e6bbe95cd080ad38a287e815bbec750297885",
+    "src/lib/high/generate.ts": "f54cf55d3f4f8034f51ba5c872ac4e7f3ed544dd8e50519b7bc82daccdd5fb5f",
+    "src/lib/high/h1Comb.ts": "f7702b5db9792eee505eed5bbcf6bb7380a229f1a09b1950c4aa969fb0603ba2",
+    "src/lib/high/h1Equations.ts": "91796cbf95dfeadf22b8b356f46760f63ba65e8a736e447d81fa552cc799b293",
+    "src/lib/high/h1Perm.ts": "d208e780ac0b77f77d67185efe1e3f4215f6937f783f75973fe977162d35f29e",
+    "src/lib/high/h1QuadFunc.ts": "7de7dc9a08863b261baf81cc90b6939e56c74b56dd511aba8c5bfff80b227e0a",
+    "src/lib/high/h1QuadIneq.ts": "d5a104a9f664b3d0994b9e183b012189d12a3d12bfcf55723ad6e9d30d4dc95a",
+    "src/lib/middle/combo.ts": "a1d9bff6cb13a098fb614d08a9c016d724f95c62258fee870baf8fa0d0603803",
+    "src/lib/middle/generate.ts": "bd8bf15b0c98a6c2e337edfc10be39bc0fcdd851a5ffe9a8f0bfa2b848f5ccc4",
+    "src/lib/middle/m1Book1.ts": "a2c8dd593e019e6f8ac04cc28ed6ec036885014f62b5bc946dbcec20fefd447c",
+    "src/lib/middle/m1Expr.ts": "cd488273f876fb83aecdfec88c351db831fdd3593d49e4801e0dda2536e34b47",
+    "src/lib/middle/m1Extra.ts": "5b55719fcbd3db1953e22edee02a74bd8a516f2cceab3768524bffa30efad90b",
+    "src/lib/middle/m1LinearApply.ts": "f7071cb8c6bfa47db9db23eaf5d1f8c54256701dbd47399b338c3d1694cd4cca",
+    "src/lib/middle/m1Prop.ts": "267e1f21dac4f63f3a98397936dc88f554ffa04fd15f1c0b9dd269aaa9f6a1e8",
+    "src/lib/middle/m1Top.ts": "b94d743f7bf1746b7941e4980cb80cee44f0f49bf4ad75d852399cbfb98be130",
+    "src/lib/middle/m1Top4.ts": "a0274a78deb521e64c567acda1e65c342c15970121a46e84c2b1b11a9e1401e4",
+    "src/lib/middle/m1Top5e.ts": "3a5864cdb2cd460de9d25db95efe07051b28a00d5bcb08ae623cb00a48e6b575",
+    "src/lib/middle/m1Types10.ts": "e900d1e38fd54c2bf11ca8d3e34e318f66cbcf1bdb4352c59cc708e737d9c6e7",
+    "src/lib/middle/m2Center.ts": "5695355b587463f9d23831f25e690b0965357eccfe431624919dfaa0c8a36a14",
+    "src/lib/middle/m2Func.ts": "3100f78bf8ae2e0bf60c4ff83e4d1f164e001a174367d7e3be3ae20cd0b6d4b7",
+    "src/lib/middle/m2GeoQuad.ts": "30cec27598968232e0642a4ffa5853b71f991b494fd7736308a071033aec1351",
+    "src/lib/middle/m2Line.ts": "d3e1df2cf37a51fb723a4a9a5be40c3ec37ee1e32ac3aba0a0594a5a43430ee9",
+    "src/lib/middle/m2Pytha.ts": "2c7c4cf103a93fbd9a278b32419e6765a78490d8be8152b01141f73383ef96b2",
+    "src/lib/middle/m2System.ts": "23c846f3860de2c02dcbc129821579e8cad5069529cf08321108d678d31cea01",
+    "src/lib/middle/m2SystemApply.ts": "fee7b999b3861d599b2a41a93c930760027b9bf79115a855606519805811d518",
+    "src/lib/middle/m2Top2.ts": "315644c043c072342d4aaec7cb5a4cc726c2d0ee24ef6717c456614e3cac6cd6",
+    "src/lib/middle/m2Top5c.ts": "eb922838016261b002607c571d846441d51dbdf84bd7167c6c72e21880d5f13a",
+    "src/lib/middle/m2Top5e.ts": "e72b2b3d5e3b7ed1fbcfe81299914b08d0c25a3a3929a9c5f185b9c70d26e787",
+    "src/lib/middle/m2Top5g.ts": "00acb9070d7dea9141817445d7dd3bfaeccd57bb71ac09d4e630cca91c9ffa14",
+    "src/lib/middle/m3.ts": "3a5339e4dffb4b6fc9ac2d3f2bd5356870a36c88ca7074ac22ad1eb87cda738c",
+    "src/lib/middle/m3Func.ts": "02cb0e9de68a42ca30f96f3979e5a0c4e9657b7e84f0890562867f074f60a553",
+    "src/lib/middle/m3Reinforcement20261018.ts": "d6c0a2f8cca05452226b9329397a2eded5d6a3ed3882dd03337ac7fbf2dfd830",
+    "src/lib/middle/m3Top2.ts": "520f84e22a7f3b9b8a96d170294878778d290b5fb8f8f1add7859226178b2c79",
+    "src/lib/middle/m3Top3.ts": "3c2fcffa0707892a196d962cb63dd20325f61873f2406b9d0d69b5bd416f9e6d",
+    "src/lib/middle/m3Trig.ts": "22fe67fa6c815d3e2791f8186ef5c5a606d438efe0baeeaa49be7ca8eff14f6a",
+    "src/lib/middle/tier.ts": "13195db3219be5cf530c994d3d322c891fd15fcef704900eba25ef3de7d39656"
+  },
+  "probeHashes": {
+    "guard.cjs": "a0963b5d1014583d72b6ae9d46758ee80811ab54cfa6c8dccf644596cacda214",
+    "catalog.ts": "8391a99fce1e90edd49be79748f2fe1c3b76de177aac09051d4c9d9dd8a0d518",
+    "generate.ts": "032d30348afc75d7372a633c9127456e3b29618d0b5c4bb9594dbc065bc1e52d",
+    "check_math.py": "d9cd615025c2c925081b59c6ac296782f2cd7d34f1d6c18cba2ca1af04ac2cf1",
+    "figures.ts": "8e708eddf97b48d506b46a443d8f3ccccf4090f8d36ba630be8fac59eab75ae9",
+    "samples.json": "81a4fb761587abf206572eb718f762f6e113dd22e582de1ef798353fb9580fab",
+    "math-checks.json": "10c640422d0a5e50cbfc1ffcd797b2a26d5e0707fc7947650cd0267d7118a9fb",
+    "figure-results.json": "046fc44389d3e58a01fe1e50eb510e879cfe1b00d6a0e08475db2b02bb89c3a6"
+  },
+  "rootEvidenceDirectory": ".qa-artifacts/math-engine-study-readiness-20261018/study-structures-evidence",
+  "limitations": [
+    "No DB reads/writes, env files, credentials, paid/provider calls, HTTP requests/mutations, browser/cookie use, production edits or new workers.",
+    "School demand profiles were supplied by ROOT as anonymous abstract descriptions; this worker did not inspect or persist school originals.",
+    "The48 selected entry points are a purposive audit sample, not independent pedagogical family count or full curriculum coverage.",
+    "Three seeds per entry point do not exhaust boundary cases or generator branches; exact sample-specific independent oracle details are retained privately.",
+    "Native rubric authorship/point arithmetic were checked, not automated grading of real student explanations.",
+    "No measured student learning, exam prediction accuracy or full-school/curriculum equivalence."
+  ]
+}
