@@ -31,6 +31,7 @@ import {
 } from "./common.contract";
 import { classOwnerSchema } from "./class.contract";
 import { problemSchema } from "./problem.contract";
+import { formatIntentFits, formatIntentSchema } from "./formatIntent.contract";
 
 // ─────────────────────────────────────────────
 // 출제 요청 (S-04 출제 설정)
@@ -52,6 +53,8 @@ export const testGenerateRequestSchema = z
       .optional(),
     /** 미지정 시 반의 difficultyRatio 사용. */
     difficultyRatio: difficultyRatioSchema.optional(),
+    /** 출제할 실제 형식의 수. 생략은 기존 미지정 정책, 0은 그 형식을 내지 않음. */
+    formats: formatIntentSchema.optional(),
     /** 확인테스트(review) 범위 시작 — 일일테스트(daily)는 사용하지 않는다. */
     rangeStartUnitId: uuidSchema.optional(),
     /** 확인테스트 범위 끝 — 일일테스트는 서버가 현재 진도 소단원으로 자동 결정하므로 생략 가능. */
@@ -78,6 +81,13 @@ export const testGenerateRequestSchema = z
       error: "난이도 배분의 합이 문항 수와 같아야 합니다.",
       path: ["difficultyRatio"],
     },
+  )
+  .refine(
+    (value) =>
+      value.formats === undefined ||
+      value.problemCount === undefined ||
+      formatIntentFits(value.formats, value.problemCount),
+    { error: "형식별 문항 수의 합을 확인해 주세요.", path: ["formats"] },
   );
 export type TestGenerateRequest = z.infer<typeof testGenerateRequestSchema>;
 
