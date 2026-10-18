@@ -1,0 +1,49 @@
+{
+  "reviewer": "Claude",
+  "decision": "approved",
+  "scope": "question-backfill-gate-2",
+  "planSha256": "50c525785cae16825d23d7bd55de81f7a779fa54cd98e8933d470a126acccc61",
+  "manifestSha256": "82c2eb7388467d09af7fd3904ac850a0594312d6364441b03ca1f0f308df62d6",
+  "manifestPath": ".qa-artifacts/math-question-formats-20261018/question-backfill-postrepairs-r1.json (root, private, 0600)",
+  "ddlSha256": "b36dae98a6e343a5207fc61e77e52fa050bde6dd8a8b75bfce57507baaa0b64c",
+  "operatorPath": "scripts/import/question-group-backfill.ts",
+  "operatorSha256": "66194f3dcf0ca0b7d4d0069250e2648745efbe3ab3838e9a95e3f3b2f902421a",
+  "operatorCommit": "2f625b5e3784f172e64262a9f54368461415b5b3",
+  "rootHeadReviewed": "778085181",
+  "independentRecount": {
+    "method": "Own Python re-implementation of the strict pair rules (external-id tuple grammars, stored format, 14 equal fields incl. solution and 6 figure fields, short stem + exactly five ①-⑤ lines, MC answer is a circled number whose choice equals the short answer after trim, short answer not a choice number). Input was a fresh client-side dump of all shared engine-elem/engine-mid/engine-mid-combo rows.",
+    "rowsScanned": 100974,
+    "candidateGroups": 51475,
+    "groupSizes": {
+      "2": 47748,
+      "1": 3727
+    },
+    "provedPairs": 47746,
+    "targetRows": 95492,
+    "rejected": {
+      "pairCardinality": 3727,
+      "mismatch:solution": 1,
+      "mismatch:figureSvg": 1
+    },
+    "matchesManifest": "identical key set and identical row-id set per key; 95492 unique ids; every beforeKey NULL",
+    "db": "118020 problem rows, 0 question_group_key assigned; problem_outer_wall_quarantine has 0 rows",
+    "repairsVisible": "All 17 R3 rows and all 8 zero-card rows are in their approved after state in the snapshot. The 4 perpendicular-count rows (2 SA+MC pairs) and all 8 wording rows are among the proved pairs, so the manifest was prepared after both repairs."
+  },
+  "manifestFile": "Bytes equal JSON.stringify(manifest,null,2)+newline (the operator's protected serialization); kind/version/plan/DDL fields match; quarantineOverlap 0; targetRows = 2 x pairs.",
+  "operatorReview": [
+    "question_group_key is the only SET column. Per chunk of at most 100 pairs: rows locked FOR UPDATE in id order with lock_timeout 3s, statement_timeout 15s and a 20s transaction. Quarantine is rechecked; every pair's full-row digest and proveQuestionPair are re-run before the single UPDATE. Bulk CAS on key IS NOT DISTINCT FROM before AND to_jsonb(row)-key = frozen payload must hit exactly n rows; readback checks digest and key for every row. Any failure rolls back the chunk.",
+    "Already-keyed pairs are skipped idempotently. A partial or foreign key aborts. The pending chunk is persisted (fsync, atomic rename, 0600) before each transaction, and an unsettled receipt refuses to continue rather than claim ownership. Revert only clears keys that this receipt applied and that still equal its key.",
+    "The identity trigger keeps the key on key-only updates. Content changes later null it, which is the intended invalidation. Mid-run states only leave unpaired rows standalone; they never merge rows wrongly.",
+    "Eligibility is not baked into the key: blocked or locked representations keep their own direct_use_allowed and review state and are re-judged per request, as the plan specifies."
+  ],
+  "executionConditions": [
+    "Run the committed operator 66194f3d with MATH_QUESTION_BACKFILL_WRITE equal to the manifest SHA and default chunk size 100, using this exact manifest file and a fresh receipt path.",
+    "If any chunk fails, stop and bring the receipt and the error for review; do not re-prepare over it.",
+    "After completion: rerun to show 0 changes, and read back the key count (expect 95492 rows / 47746 distinct keys) with all other columns unchanged."
+  ],
+  "notes": [
+    "My dump session ran SELECT and a client-side \\copy only. The pooler ignored PGOPTIONS default_transaction_read_only, so read-only was not enforced server-side for my session; no writes were issued. The dump was deleted after the comparison.",
+    "Payload digests were not recomputed independently; the runtime full-row jsonb CAS enforces them and fails closed on any drift."
+  ],
+  "limitations": "PGlite tests do not prove production locking under load. Not a mathematical verification of the 47,746 pairs' content; only their structural equivalence was checked."
+}
