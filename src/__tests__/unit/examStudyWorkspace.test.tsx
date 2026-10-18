@@ -130,6 +130,37 @@ describe("exam study generation, review and common output", () => {
     expect(body.profileId).toBeUndefined();
   });
 
+  it("does not present a repeated logical set as different conditions and bounds its retry", async () => {
+    fetcher.mockImplementation(async (url: string, init?: RequestInit) => {
+      if (init?.method !== "POST") return json({ data: studyCatalog });
+      const generated = studyGeneration(JSON.parse(String(init.body)));
+      return json({
+        data: {
+          ...generated,
+          questions: generated.questions.map((item) => ({
+            ...item,
+            logicalKey: "same-mathematical-conditions",
+          })),
+        },
+      });
+    });
+    const user = await open();
+    await user.click(screen.getByRole("button", { name: "연습 문제 만들기" }));
+    await screen.findByRole("heading", { name: "만든 연습 1문항" });
+    await user.click(
+      screen.getByRole("button", { name: "다른 조건으로 다시 만들기" }),
+    );
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "다른 문항 조합을 찾지 못했습니다",
+    );
+    expect(
+      fetcher.mock.calls.filter((call) => call[1]?.method === "POST"),
+    ).toHaveLength(4);
+    expect(
+      screen.getByRole("heading", { name: "만든 연습 1문항" }),
+    ).toBeVisible();
+  });
+
   it("uses the existing common editor without fake storage and rechecks the pinned recipe before output", async () => {
     const user = await open();
     await user.click(screen.getByRole("button", { name: "연습 문제 만들기" }));

@@ -234,10 +234,33 @@ export function ExamPracticeWorkspace({
     setMessage(null);
     setOutput(false);
     try {
-      const next = await generateStudy(recipe, controller.signal);
-      if (current !== sequence.current || controller.signal.aborted) return;
+      const previousKeys = result?.questions
+        .map((item) => item.logicalKey)
+        .sort()
+        .join("\n");
+      let next: ExamStudyGeneration | null = null;
+      for (let attempt = 0; attempt < 3; attempt += 1) {
+        const candidate = await generateStudy(
+          { ...recipe, seed: seed.current },
+          controller.signal,
+        );
+        if (current !== sequence.current || controller.signal.aborted) return;
+        seed.current = (seed.current + 1) % 2_147_483_648;
+        const candidateKeys = candidate.questions
+          .map((item) => item.logicalKey)
+          .sort()
+          .join("\n");
+        if (previousKeys && candidateKeys === previousKeys) continue;
+        next = candidate;
+        break;
+      }
+      if (!next) {
+        setMessage(
+          "현재 조건에서 다른 문항 조합을 찾지 못했습니다. 유형이나 문항 수를 바꾸면 다른 범위를 연습할 수 있습니다.",
+        );
+        return;
+      }
       setResult(next);
-      seed.current = (seed.current + 1) % 2_147_483_648;
       setTitle(
         `${conditions.mode === "profile" && profile ? `${profile.schoolName} · ` : ""}${conditions.course} 범위 연습`,
       );
