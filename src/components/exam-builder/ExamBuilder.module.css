@@ -289,6 +289,11 @@
   width: 76px;
   text-align: right;
 }
+/* 구성 조건 표 — 마지막 칸에 «고정 · 풀기 · 제거»가 한 줄로 든다. 76px 이면 그 줄이 왼쪽으로 넘쳐
+   구성 수 칸의 숫자를 덮었다(원장님 2026-10-18). */
+.table.withRowActions th:last-child {
+  width: 168px;
+}
 .table td {
   padding: 12px;
   border-bottom: 1px solid var(--builder-border);
@@ -808,6 +813,9 @@
   }
   .table th:last-child {
     width: 60px;
+  }
+  .table.withRowActions th:last-child {
+    width: 150px;
   }
   .table td {
     font-size: 12px;
