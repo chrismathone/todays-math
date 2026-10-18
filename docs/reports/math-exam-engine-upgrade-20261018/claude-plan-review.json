@@ -1,0 +1,27 @@
+{
+  "review": "claude-plan-review",
+  "date": "2026-10-18",
+  "plan": "docs/planning/math-exam-engine-upgrade-20261018.md",
+  "planCommit": "b7ece42a4",
+  "codeBase": "1954e63d1",
+  "decision": "APPROVE_WITH_REQUIRED_CHANGES",
+  "blockingBeforeWorkerDispatch": [
+    {"id": "B1", "title": "Freeze school-independent StudyRequirementId enum and ExamStudyFamily/ExamStudyItem contract in examStudy.contract.ts before workers 2/3", "owner": "root/core"},
+    {"id": "B2", "title": "New families live in src/lib/examStudy/families/{middle,advanced}/** and are NOT registered in registeredTypes/registeredHighTypes/nativeDescriptiveDefinitions; adapters import existing generators read-only", "owner": "root"},
+    {"id": "B3", "title": "Figure path: server renderFigureSpec strict:true via Python engine/transport; failure or droppedDimensions on figure-required item => drop/retry then requirement unavailable, set partial; existing figure kinds only, single owner for scripts/figure changes; transport mocked in tests plus one real-engine test per new kind", "evidence": "src/lib/figure/renderFigureSpec.ts:99-140,167"},
+    {"id": "B4", "title": "Coverage level computed from per-family evidence (independent solve, condition necessity, figure necessity, rubric integrity); hand-written full without evidence fails tests"},
+    {"id": "B5", "title": "logicalKey = familyId@version + canonicalParams (format excluded, reuse deriveThreeFormats/expandFamily); set has no duplicate logicalKey/contentDigest, per-family cap; capacity reported as distinct canonical params, never seeds x formats"}
+  ],
+  "requiredDuringIntegration": [
+    {"id": "R1", "title": "Handler-level authorizeAccount + accountRouteAllowed (export menu via /exam,/api/exam prefix); tests anon/student/reviewer/menu-off/branch-cap/ok in proxy and handler", "evidence": "src/lib/accountRouteAccess.ts:248-262; src/lib/math-srs/courseTeacherRoutes.ts:49-69; src/app/api/exam/rounds/route.ts:21-23"},
+    {"id": "R2", "title": "New files only under app/(main)/exam/practice and components/exam-practice; no exam-builder imports; DESIGN 5.4 layout, 9.2 checklist; ExamDashboard empty-state copy + link only; predictor routes untouched"},
+    {"id": "R3", "title": "WorksheetEditor with draftActions=false (+fixedComposition if no edits), beforeOutput re-POST digest check like SavedRetryPanel; opaque ids, no fake questionId; add print-check items as pending, no physical-print claim", "evidence": "src/components/test/SavedRetryPanel.tsx:199-240"},
+    {"id": "R4", "title": "Strict bounded request; seed excludes display name/account/time; catch per-item generator assertion throws; response carries versions and per-requirement status"},
+    {"id": "R5", "title": "Prefer fewer fully-evidenced families; leave unmet requirements unverified/unsupported"}
+  ],
+  "suggestions": ["S1 merge order contract->core->families->API/UI", "S2 generic range uses same planner keyed by unit full requirements", "S3 factual coverage line, not school-name claim", "S4 observation scope as profile data", "S5 generate coverage table from evidence records"],
+  "acceptance": ["A1 requirement-diff profiles differ or partial", "A2 display-name change byte-identical", "A3 every full has evidence", "A4 finite exhaustive / boundary sampling", "A5 no duplicate logicalKey/contentDigest; MC/SA counted once", "A6 figure failure => partial, no figureless substitute", "A7 missing written => partial, no suffix substitute", "A8 existing registry counts and bank/predictor/SRS tests unchanged", "A9 profile data enum-only, no numerals beyond grade/semester", "A10 auth matrix proxy+handler", "A11 authenticated e2e scope->generate->review->regenerate->WorksheetEditor->PDF payload", "A12 zero DB writes/paid/AI/prisma generate", "A13 type-check/lint/affordance/affected tests green, widths recorded", "A14 unmeasured items stated, no full-exam claim"],
+  "notBlocking": ["D-07 Wire/Hi-fi not required per DESIGN.md 9.1"],
+  "didNot": ["DB queries", "credentials", "paid API", "test runs", "prisma generate", "push", "production edits"],
+  "ignoredEvidenceCopied": false
+}
