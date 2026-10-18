@@ -418,6 +418,28 @@ export function toBankProblem({
   };
 }
 
+/** Body and revision are read in one snapshot on both authenticated/dev detail routes. */
+export async function loadUnifiedBankProblem(
+  id: string,
+  identity?: "question",
+): Promise<BankProblem | null> {
+  const read = async (client: Prisma.TransactionClient) => {
+    const row = await client.problem.findFirst({
+      where: { AND: [{ id }, problemVisibleWhere()] },
+      select: UNIFIED_PROBLEM_SELECT,
+    });
+    if (!row) return null;
+    const rows = identity ? await withQuestionMetadata([row], client) : [row];
+    return toBankProblem((await withProblemSourceReferences(rows))[0]!);
+  };
+  return identity
+    ? db.$transaction(read, {
+        isolationLevel: "RepeatableRead",
+        timeout: 10000,
+      })
+    : read(db);
+}
+
 export type UnifiedBankBootstrap = Pick<
   BankData,
   | "total"

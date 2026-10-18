@@ -43,6 +43,10 @@ import path from "node:path";
 
 import { PrismaClient } from "@prisma/client";
 import {
+  assignProvenEngineQuestionGroups,
+  type QuestionTransactionHost,
+} from "./question-group-backfill";
+import {
   generateNativeDescriptive,
   nativeDescriptiveDefinition,
 } from "../../src/lib/engine/nativeDescriptive20261018";
@@ -59,7 +63,6 @@ import {
   elemProblemType,
   elementaryUnits,
   generateElementaryForm,
-  generateElementaryProblem,
   listedForms,
   supportedTiers,
 } from "../../src/lib/elementary/generate";
@@ -237,17 +240,6 @@ export type Row = {
 //    어쩔 수 없었지만, 접고 나면 화면에서 「이건 연산인가 기본인가」를 되물을
 //    방법이 없다. 원장님이 문제은행에서 그것을 보시고 축을 하나로 하라고 하셨다.
 //    이제 엔진의 갈래가 곧 `difficulty` 다.
-
-const TIER_PROBLEM_TYPE: Record<Tier, string> = {
-  연산: "계산",
-  기본: "개념",
-  응용: "활용",
-  심화하: "활용",
-  // 심화 셋은 전부 「활용」이다 — 이 컬럼은 «무엇을 묻나»이지 «얼마나 어렵나»가
-  // 아니다. 어려움은 `difficulty` 가 이미 들고 있으므로 여기서 또 가르면 두 벌이 된다.
-  심화중: "활용",
-  심화상: "활용",
-};
 
 // ────────────────────────────── 생성 ──────────────────────────────
 
@@ -1323,6 +1315,15 @@ export async function applyEnginePlan(
     process.exitCode = 1;
     return;
   }
+  // Keys are assigned only AFTER persisted content, rendered figures and provenance
+  // have been read back. No family/seed-only identity, INSERT guess or format rewrite.
+  const questionGroups = await assignProvenEngineQuestionGroups(
+    db as unknown as QuestionTransactionHost,
+    created.map((row) => row.externalId),
+  );
+  console.log(
+    `문항 정체 — 증명 ${questionGroups.proved}쌍 · 기존 ${questionGroups.unchanged}쌍 · 미연결 ${questionGroups.unproved}그룹`,
+  );
   const allowed = back.filter((p) => p.directUseAllowed).length;
   const pending = back.filter((p) => p.reviewStatus === "pending").length;
   console.log(

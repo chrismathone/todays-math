@@ -4,7 +4,10 @@ import { db } from "@/lib/db";
 import { problemVisibleWhere } from "@/lib/problemPool";
 import { familyIdOf } from "@/lib/generator/familyKey";
 import { SOURCE_MATERIAL_KINDS } from "@/contracts/sourceMaterial.contract";
-import { QUESTION_FORMATS } from "@/contracts/questionFormats.contract";
+import {
+  QUESTION_FORMATS,
+  type QuestionFormat,
+} from "@/contracts/questionFormats.contract";
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 import {
   BANK_AVAILABILITY_AXES,
@@ -103,20 +106,32 @@ export async function loadQuestionSourceAvailability(
         string,
         ReturnType<typeof import("@/lib/problem/provenance").classifyFormat>
       >();
+      const scans = new Map<string, Promise<QuestionCandidate[]>>();
+      const intern = new Map<string, QuestionCandidate>();
       const load = async (
         selection: Prisma.ProblemWhereInput[],
-        format = main.format,
+        format: QuestionFormat | null | undefined = main.format,
       ) => {
-        const rows = await loadQuestionCandidates(
-          { AND: [problemVisibleWhere(), ...selection] },
-          undefined,
-          tx,
-          cache,
-        );
+        const key = JSON.stringify(selection);
+        let pending = scans.get(key);
+        if (!pending) {
+          pending = loadQuestionCandidates(
+            { AND: [problemVisibleWhere(), ...selection] },
+            undefined,
+            tx,
+            cache,
+            intern,
+          );
+          scans.set(key, pending);
+        }
+        const rows = await pending;
         return format ? rows.filter((r) => r.actualFormat === format) : rows;
       };
       // Sequential scans share classifications; the transaction protects their correspondence.
-      const mainRows = await load(main.selection);
+      const mainAll = await load(main.selection, null);
+      const mainRows = main.format
+        ? mainAll.filter((row) => row.actualFormat === main.format)
+        : mainAll;
       const unitRows = await load(units.selection, units.format);
       const difficultyRows = await load(
         difficulties.selection,
@@ -182,7 +197,7 @@ export async function loadQuestionSourceAvailability(
         formatAvailable: Object.fromEntries(
           QUESTION_FORMATS.map((f) => [
             f,
-            countProjectedQuestions(mainRows, true, f),
+            countProjectedQuestions(mainAll, true, f),
           ]),
         ) as Record<(typeof QUESTION_FORMATS)[number], number>,
         facets: {
@@ -194,7 +209,10 @@ export async function loadQuestionSourceAvailability(
                 unitFamilies: Object.fromEntries(
                   [...families.keys()].map((id) => [
                     id,
-                    familySets.get(id)?.size ?? 0,
+                    Math.min(
+                      familySets.get(id)?.size ?? 0,
+                      families.get(id)?.available.size ?? 0,
+                    ),
                   ]),
                 ),
               }

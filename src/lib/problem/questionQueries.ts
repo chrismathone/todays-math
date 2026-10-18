@@ -12,6 +12,7 @@ import {
   matchesQuestionSelection,
   questionFormatMetadataOf,
   QuestionSelectionConflict,
+  type QuestionRevisionRow,
 } from "./questionSelection";
 
 export type QuestionDb = Pick<Prisma.TransactionClient, "problem">;
@@ -159,12 +160,39 @@ export async function withQuestionMetadata<
     const meta = questionFormatMetadataOf(row);
     groups.set(key, [...(groups.get(key) ?? []), meta]);
   }
-  return rows.map((row) => ({
-    ...row,
-    questionId: questionIdOf(currentById.get(row.id) ?? row),
-    questionFormats:
-      groups.get(questionIdOf(currentById.get(row.id) ?? row)) ?? [],
-  }));
+  return rows.map((row) => {
+    const values = row as unknown as Record<string, unknown>;
+    const complete = Object.keys(QUESTION_REVISION_SELECT).every(
+      (key) => key in values,
+    );
+    const own = complete ? (row as unknown as QuestionRevisionRow) : null;
+    const currentRow = currentById.get(row.id);
+    // A native payload carries its OWN revision, even if a later sibling read
+    // observes an edit. Never attach a new revision to an older body/answer/SVG.
+    if (!own && "content" in values) {
+      if (!currentRow) throw new QuestionSelectionConflict();
+      const actual = currentRow as unknown as Record<string, unknown>;
+      const normalized = (value: unknown) =>
+        JSON.stringify(value instanceof Date ? value.toISOString() : value);
+      if (
+        Object.keys(QUESTION_REVISION_SELECT).some(
+          (key) =>
+            key in values &&
+            normalized(values[key]) !== normalized(actual[key]),
+        )
+      )
+        throw new QuestionSelectionConflict();
+    }
+    const questionId = questionIdOf(own ?? currentRow ?? row);
+    let formats = groups.get(questionId) ?? [];
+    if (own) {
+      const meta = questionFormatMetadataOf(own);
+      formats = [...formats.filter((f) => f.problemId !== row.id), meta].sort(
+        (a, b) => a.problemId.localeCompare(b.problemId),
+      );
+    }
+    return { ...row, questionId, questionFormats: formats };
+  });
 }
 
 /** Use the caller's transaction for issuance/basket writes. The caller retains input on 409. */

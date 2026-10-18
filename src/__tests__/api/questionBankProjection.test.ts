@@ -11,7 +11,15 @@ import {
   selectUnifiedBankProblems,
 } from "@/lib/unifiedBankSelection";
 import { bankReadinessResponse, checkBankProblems } from "@/lib/bankReadiness";
-import { expandQuestionProblemIds } from "@/lib/problem/questionQueries";
+import {
+  expandQuestionProblemIds,
+  withQuestionMetadata,
+  validateQuestionSelections,
+} from "@/lib/problem/questionQueries";
+import {
+  QUESTION_REVISION_SELECT,
+  questionSelectionOf,
+} from "@/lib/problem/questionSelection";
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 import {
   GET as devGet,
@@ -71,7 +79,7 @@ beforeEach(() => {
     });
   }) as typeof db.problem.findMany);
   vi.spyOn(db.problem, "findFirst").mockImplementation(
-    (async (args) =>
+    (async (args: object) =>
       (await db.problem.findMany({ ...args, take: 1 }))[0] ??
       null) as typeof db.problem.findFirst,
   );
@@ -108,6 +116,30 @@ async function pairs() {
   return { sa1, mc1, sa2, mc2 };
 }
 describe("question list/source/bootstrap/actual-format parity", () => {
+  it("never stamps an older native body with a later revision or silently refreshes a saved body", async () => {
+    const { sa1 } = await pairs();
+    const stored = await db.problem.findFirst({
+      where: { id: sa1.id },
+      select: QUESTION_REVISION_SELECT,
+    });
+    if (!stored) throw Error("fixture");
+    const before = { ...stored };
+    const selection = questionSelectionOf(before)!;
+    await db.problem.update({
+      where: { id: sa1.id },
+      data: { content: "later body", questionGroupKey: null },
+    });
+    const [annotated] = await withQuestionMetadata([before]);
+    expect(annotated.content).toBe(marker);
+    expect(annotated.questionId).toBe(selection.questionId);
+    expect(
+      annotated.questionFormats.find((f) => f.problemId === sa1.id)?.revision,
+    ).toBe(selection.revision);
+    await expect(validateQuestionSelections([selection])).rejects.toThrow();
+    await expect(
+      withQuestionMetadata([{ id: sa1.id, content: marker, answer: "7" }]),
+    ).rejects.toThrow();
+  });
   it("groups before pagination, exposes each actual state, and never counts unknown as descriptive", async () => {
     await pairs();
     const first = await loadUnifiedBank(q({ pageSize: "1" }));
@@ -270,5 +302,17 @@ describe("question list/source/bootstrap/actual-format parity", () => {
     expect(find.mock.calls.every(([args]) => !args?.select?.figureSvg)).toBe(
       true,
     );
+  });
+  it("reuses one request-local metadata scan for identical availability facet scopes", async () => {
+    await pairs();
+    const find = vi.mocked(db.problem.findMany);
+    find.mockClear();
+    const result = await loadBankSourceAvailability(
+      q({ view: "available", version: "2" }),
+    );
+    expect(result.available).toBe(2);
+    expect(
+      find.mock.calls.filter(([args]) => args?.select?.questionGroupKey),
+    ).toHaveLength(1);
   });
 });

@@ -174,7 +174,7 @@ export function solveQuestionSelection<T extends QuestionSelectionCandidate>(
   const usedF = new Set<string>();
   const selected: T[] = [];
   let best: T[] = [];
-  // A useful partial witness never decides feasibility: exact search follows.
+  // A complete quota-respecting prefix proves feasibility. Otherwise search the full pool.
   const prefixRemaining = [...remaining];
   const prefixQ = new Set<string>();
   const prefixF = new Set<string>();
@@ -192,6 +192,8 @@ export function solveQuestionSelection<T extends QuestionSelectionCandidate>(
     for (const i of option.demands) prefixRemaining[i]--;
     if (best.length === total) break;
   }
+  if (best.length === total)
+    return result("complete", best, "exact_assignment");
   let limited = false;
   let lastReason = "full_pool_exhausted";
   const maxNodes = Math.max(0, input.maxNodes ?? 50000);
