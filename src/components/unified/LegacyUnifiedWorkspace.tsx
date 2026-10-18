@@ -5,6 +5,8 @@ import { useState } from "react";
 import { MathText, SolutionText } from "@/components/math/MathText";
 import UnifiedProblem from "./UnifiedProblem";
 import { fractionViewFor } from "./fractionDisplay";
+import { addToCart } from "./studioCart";
+import { questionIdentity } from "@/lib/problem/questionSelectionClient";
 import type { BankData, StudioProblem } from "./types";
 import s from "./Workspace.module.css";
 import {
@@ -171,20 +173,14 @@ export default function LegacyUnifiedWorkspace({
   };
   const toggle = (problem: StudioProblem) =>
     setSelected((current) =>
-      current.some((p) => p.id === problem.id)
-        ? current.filter((p) => p.id !== problem.id)
+      current.some((p) => questionIdentity(p) === questionIdentity(problem))
+        ? current.filter(
+            (p) => questionIdentity(p) !== questionIdentity(problem),
+          )
         : [...current, problem],
     );
   const add = (problems: StudioProblem[]) =>
-    setSelected((current) => {
-      const updated = new Map(problems.map((problem) => [problem.id, problem]));
-      return [
-        ...current.map((problem) => updated.get(problem.id) ?? problem),
-        ...problems.filter(
-          (problem) => !current.some((old) => old.id === problem.id),
-        ),
-      ];
-    });
+    setSelected((current) => addToCart(current, problems));
   const count = initialData.grades.reduce((sum, item) => sum + item.count, 0);
   const date = new Intl.DateTimeFormat("ko-KR", {
     month: "long",
@@ -671,6 +667,7 @@ export default function LegacyUnifiedWorkspace({
                 initialFilters={bankEntry}
                 selected={selected}
                 onToggle={toggle}
+                onSelectionChange={setSelected}
                 onExport={() => navigate("export")}
               />
             </main>

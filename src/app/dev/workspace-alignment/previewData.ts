@@ -1,3 +1,9 @@
+import { solveQuestionSelection } from "@/lib/problem/questionSelectionSolver";
+import type {
+  QuestionFormat,
+  QuestionFormatIntent,
+} from "@/contracts/questionFormats.contract";
+import type { Difficulty } from "@/contracts/difficulty";
 import type { ExamCondition } from "@/contracts/examCondition.contract";
 import type { PrintPreset } from "@/contracts/printPreset.contract";
 import type { EnglishExam, EnglishSet } from "@/contracts/english.contract";
@@ -237,6 +243,8 @@ const mathProblem = (
   familyKey: null,
   originProblemId: null,
   questionTypeRaw: null,
+  questionType: null as
+    "multiple-choice" | "short-answer" | "descriptive" | null,
   eligible: true,
   ineligibleReason: null,
   ...patch,
@@ -309,6 +317,34 @@ const mathProblems = [
     familyKey: "preview:유리수덧셈|A",
   }),
 ];
+const mathViewMetadata = {
+  version: 2,
+  countUnit: "question",
+  queryKey: "workspace-authored-fixture",
+};
+const mathViewProblems = mathProblems.map((row) => {
+  const format =
+    row.questionType === "multiple-choice"
+      ? "multiple_choice"
+      : row.questionType === "short-answer"
+        ? "short_answer"
+        : row.questionType === "descriptive"
+          ? "descriptive"
+          : null;
+  return {
+    ...row,
+    questionId: `row:${row.id}`,
+    questionFormats: [
+      {
+        problemId: row.id,
+        format,
+        revision: `fixture:${row.id}:1`,
+        state: format ? "available" : "unverified",
+        reasonCode: format ? null : "unknownFormat",
+      },
+    ],
+  };
+});
 const mathFamily = (row: (typeof mathProblems)[number]) =>
   row.familyKey ? `${row.unitId} ${row.familyKey}` : `solo:${row.id}`;
 /** 미리보기의 «최근 14일 출제» — 실제 계정이 없어 두 문항을 그렇게 둔다(구성 조건 W4 의 수가 달라 보이게). */
@@ -399,21 +435,53 @@ function mathPreview(url: URL, method: string, init?: RequestInit) {
     method === "POST" && path === base
       ? new URLSearchParams(body as Record<string, string>)
       : url.searchParams;
+  if (path === `${base}/check`) {
+    const ids = (body.ids ?? []) as string[];
+    const items = ids.map((id) => {
+      const row = mathViewProblems.find((item) => item.id === id);
+      return {
+        id,
+        state: row
+          ? row.questionFormats[0].state === "available"
+            ? "eligible"
+            : "ineligible"
+          : "missing",
+        code: null,
+        reason: row ? null : "문항을 찾을 수 없음",
+        reviewStatus: row?.reviewStatus ?? null,
+        unitId: row?.unitId ?? null,
+        source: row?.source ?? null,
+      };
+    });
+    return Response.json({
+      items,
+      counts: {
+        requested: ids.length,
+        eligible: items.filter((item) => item.state === "eligible").length,
+        ineligible: items.filter((item) => item.state === "ineligible").length,
+        missing: items.filter((item) => item.state === "missing").length,
+      },
+    });
+  }
+  const actual = mathViewProblems.find((row) => path === `${base}/${row.id}`);
+  if (actual) return Response.json({ data: actual });
   if (path === `${base}/sources` && body.view === "available") {
-    const tally = (rows: typeof mathProblems) => ({
+    const tally = (rows: typeof mathViewProblems) => ({
       held: rows.length,
-      available: rows.length,
+      available: rows.filter(
+        (row) => row.questionFormats[0].state === "available",
+      ).length,
     });
     const byUnit = (unitId: string) =>
-      mathProblems.filter(
+      mathViewProblems.filter(
         (row) =>
           row.unitId === unitId &&
           !(body.recent === "1" && mathRecent.has(row.id)),
       );
     return Response.json({
       view: "available",
-      version: 1,
-      ...tally(mathProblems),
+      ...mathViewMetadata,
+      ...tally(mathViewProblems),
       facets: {
         units: Object.fromEntries(
           mathUnits.map((unit) => [unit.id, tally(byUnit(unit.id))]),
@@ -421,13 +489,17 @@ function mathPreview(url: URL, method: string, init?: RequestInit) {
         unitFamilies: Object.fromEntries(
           mathUnits.map((unit) => [
             unit.id,
-            new Set(byUnit(unit.id).map(mathFamily)).size,
+            new Set(
+              byUnit(unit.id)
+                .filter((row) => row.questionFormats[0].state === "available")
+                .map(mathFamily),
+            ).size,
           ]),
         ),
         difficulties: Object.fromEntries(
           ["연산", "기본", "응용", "심화하", "심화중", "심화상"].map((tier) => [
             tier,
-            tally(mathProblems.filter((row) => row.difficulty === tier)),
+            tally(mathViewProblems.filter((row) => row.difficulty === tier)),
           ]),
         ),
         sources: Object.fromEntries(
@@ -435,7 +507,7 @@ function mathPreview(url: URL, method: string, init?: RequestInit) {
             (key) => [
               key,
               key === "total" || key === "engine"
-                ? tally(mathProblems)
+                ? tally(mathViewProblems)
                 : { held: 0, available: 0 },
             ],
           ),
@@ -449,20 +521,53 @@ function mathPreview(url: URL, method: string, init?: RequestInit) {
       unitId: string;
       count: number;
     }[];
-    const intent = (body.difficulty ?? null) as Record<string, number> | null;
-    const problems = allocations.flatMap(({ unitId, count }) => {
-      const seen = new Set<string>();
-      return mathProblems
-        .filter((row) => {
-          if (row.unitId !== unitId || seen.has(mathFamily(row))) return false;
-          if (body.recent === true && mathRecent.has(row.id)) return false;
-          if (intent && intent[row.difficulty] === 0) return false;
-          seen.add(mathFamily(row));
-          return true;
-        })
-        .slice(0, count);
+    const excluded = (body.excludeIds ?? []) as string[];
+    const result = solveQuestionSelection({
+      candidates: mathViewProblems.flatMap((row) =>
+        row.questionFormats[0].state === "available" &&
+        !excluded.includes(row.id) &&
+        !(body.recent === true && mathRecent.has(row.id))
+          ? [
+              {
+                id: row.id,
+                questionId: row.questionId,
+                familyId: mathFamily(row),
+                unitId: row.unitId,
+                difficulty: row.difficulty,
+                format: row.questionFormats[0].format as QuestionFormat,
+              },
+            ]
+          : [],
+      ),
+      allocations,
+      formats: body.formats as QuestionFormatIntent | undefined,
+      difficulty: body.difficulty as
+        Partial<Record<Difficulty, number>> | undefined,
+      distinctFamilies: body.distinctFamilies !== false,
     });
-    return Response.json({ problems });
+    const problems = result.selected.map((row) =>
+      mathViewProblems.find((item) => item.id === row.id)!,
+    );
+    return Response.json({
+      ...mathViewMetadata,
+      problems,
+      status: result.status,
+      witness: result.witness,
+      formats: Object.entries(
+        (body.formats ?? {}) as Record<string, number>,
+      ).map(([format, requested]) => ({
+        format,
+        requested,
+        actual: problems.filter(
+          (row) =>
+            ({
+              multiple_choice: "객관식",
+              short_answer: "단답형",
+              descriptive: "서술형",
+            })[row.questionFormats[0].format ?? "short_answer"] === format,
+        ).length,
+      })),
+    });
   }
   if (path === base) {
     const list = (key: string) =>
@@ -480,8 +585,9 @@ function mathPreview(url: URL, method: string, init?: RequestInit) {
     const familyOf = mathProblems.find(
       (row) => row.id === query.get("familyOf"),
     );
-    const rows = mathProblems.filter(
+    const rows = mathViewProblems.filter(
       (row) =>
+        (ids.length || row.questionFormats[0].state === "available") &&
         (!unitIds.length || unitIds.includes(row.unitId)) &&
         (!ids.length || ids.includes(row.id)) &&
         !exclude.has(row.id) &&
@@ -496,6 +602,7 @@ function mathPreview(url: URL, method: string, init?: RequestInit) {
     const page = Number(query.get("page") ?? 1);
     const pageSize = Number(query.get("pageSize") ?? 12);
     return Response.json({
+      ...mathViewMetadata,
       problems: rows.slice((page - 1) * pageSize, page * pageSize),
       total: rows.length,
       page,

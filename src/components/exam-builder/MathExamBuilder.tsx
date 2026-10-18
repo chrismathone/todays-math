@@ -11,6 +11,10 @@ import dynamic from "next/dynamic";
 import type WorksheetEditorComponent from "@/components/unified/WorksheetEditor";
 import UnifiedProblem from "@/components/unified/UnifiedProblem";
 import type { BankData, StudioProblem } from "@/components/unified/types";
+import {
+  possibleFormats,
+  requireQuestionRead,
+} from "@/lib/problem/questionSelectionClient";
 import WorkProgress from "@/components/unified/WorkProgress";
 import {
   BankSourceField,
@@ -70,7 +74,10 @@ export default function MathExamBuilder({
   onQuestionsChange,
   canOutput,
   initialStep,
+  preserveStoredOutput = false,
+  onBeginEdit,
   onStepChange,
+  onIntentIssueChange,
   printPresets,
   sheetTag,
 }: {
@@ -90,7 +97,10 @@ export default function MathExamBuilder({
   onQuestionsChange: (items: StudioProblem[]) => void;
   canOutput: boolean;
   initialStep?: ExamBuilderStep;
+  preserveStoredOutput?: boolean;
+  onBeginEdit?: () => Promise<boolean>;
   onStepChange?: (step: ExamBuilderStep) => void;
+  onIntentIssueChange?: (issue: string | null) => void;
 }) {
   const [pick, setPick] = useState<SourcePick>({
     group: "",
@@ -103,6 +113,7 @@ export default function MathExamBuilder({
   const [materialIds, setMaterialIds] = useState<string[]>([]);
   const [candidateIds, setCandidateIds] = useState<string[]>([]);
   const usage = useUsageLabels({
+    identity: "question",
     problemIds: [...editor.selected.map((item) => item.id), ...candidateIds],
   });
   const [materialOpen, setMaterialOpen] = useState(false);
@@ -123,11 +134,17 @@ export default function MathExamBuilder({
       cache: "no-store",
       credentials: "same-origin",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ view: "materials", books: materialKey }),
+      body: JSON.stringify({
+        identity: "question",
+        view: "materials",
+        books: materialKey,
+      }),
     })
       .then(async (response) => {
         if (!response.ok) throw new Error("자료 목록을 불러오지 못했습니다.");
-        return bankSourceMaterialsSchema.parse(await response.json());
+        const value = bankSourceMaterialsSchema.parse(await response.json());
+        requireQuestionRead(value);
+        return value;
       })
       .then((value) => {
         if (!controller.signal.aborted)
@@ -169,14 +186,16 @@ export default function MathExamBuilder({
   useEffect(() => {
     if (!sourceOpen) return;
     const controller = new AbortController();
-    void fetch(`${getStudioEndpoints().problems}/sources`, {
+    void fetch(`${getStudioEndpoints().problems}/sources?identity=question`, {
       signal: controller.signal,
       cache: "no-store",
       credentials: "same-origin",
     })
       .then(async (response) => {
         if (!response.ok) throw new Error("전체 보유량을 불러오지 못했습니다.");
-        return bankSourceCountsSchema.parse(await response.json());
+        const value = bankSourceCountsSchema.parse(await response.json());
+        requireQuestionRead(value);
+        return value;
       })
       .then((value) => {
         if (!controller.signal.aborted) {
@@ -239,6 +258,7 @@ export default function MathExamBuilder({
     const base = createMathExamBuilderSource({
       initialUnits: initialData.units,
       initialUnitCounts: initialData.unitCounts,
+      initialCountUnit: initialData.countUnit,
       filters,
       refreshAvailability: true,
       distinctFamilies,
@@ -253,7 +273,13 @@ export default function MathExamBuilder({
         return result;
       },
     };
-  }, [initialData.units, initialData.unitCounts, filters, distinctFamilies]);
+  }, [
+    initialData.units,
+    initialData.unitCounts,
+    initialData.countUnit,
+    filters,
+    distinctFamilies,
+  ]);
   // W5 «이름 붙인 출제 조건» — 출처 고르기 · 자료 · 같은 문항류 규칙을 조건에 함께 담고, 적용하면 되돌린다.
   const conditionsClient = useMemo(() => createExamConditionsClient(), []);
   const sourceLabel = sourceFieldText(counts, pick);
@@ -293,7 +319,10 @@ export default function MathExamBuilder({
       onTitleChange={editor.setTitle}
       initialGroup={initialGroup}
       initialStep={initialStep}
+      preserveStoredOutput={preserveStoredOutput}
+      onBeginEdit={onBeginEdit}
       onStepChange={onStepChange}
+      onIntentIssueChange={onIntentIssueChange}
       difficulties={MATH_EXAM_DIFFICULTIES}
       maxQuestions={MATH_EXAM_MAX_QUESTIONS}
       canOutput={canOutput}
@@ -302,7 +331,7 @@ export default function MathExamBuilder({
           <small title="현재 남아 있는 내 확정·인쇄 시험의 생성일 기준입니다. 시험 5개 이상·사용 문항 2개 이상인 차시의 상위 10위만 표시합니다.">
             {usage.unavailable
               ? "출제 기록 확인 실패"
-              : "내 출제 순위 · 최근 30일 · 같은 차시 기준"}
+              : "내 문항 출제 순위 · 최근 30일 · 같은 차시 기준"}
           </small>
           <label
             className={s.familyRule}
@@ -427,6 +456,11 @@ export default function MathExamBuilder({
               kind="problem"
               note={usage.note}
             />
+            {problem.questionFormats && (
+              <p className={s.reference}>
+                가능 형식 · {possibleFormats(problem) || "확인 전"}
+              </p>
+            )}
             {reference && <p className={s.reference}>{reference}</p>}
             {problem.source === "school_textbook" && (
               <p className={s.readiness}>
@@ -458,6 +492,30 @@ export default function MathExamBuilder({
       }) => (
         <WorksheetEditor
           {...editor}
+          fixedComposition={preserveStoredOutput || editor.fixedComposition}
+          outputNotice={
+            preserveStoredOutput ? (
+              <p role="status">
+                저장 당시의 실제 문항·답·순서를 유지합니다.{" "}
+                <button type="button" onClick={() => onStep("review")}>
+                  사본으로 새 시험지 만들기
+                </button>
+              </p>
+            ) : (
+              editor.outputNotice
+            )
+          }
+          beforeOutput={
+            preserveStoredOutput
+              ? editor.beforeOutput
+              : async (kind) => {
+                  await source.prepareOutput?.(
+                    questions,
+                    new AbortController().signal,
+                  );
+                  await editor.beforeOutput?.(kind);
+                }
+          }
           settingsSlots={{
             top:
               printPresets &&

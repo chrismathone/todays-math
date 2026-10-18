@@ -2,6 +2,10 @@
 
 import { useEffect, useState } from "react";
 
+import {
+  FORMAT_LABEL,
+  selectedQuestionFormat,
+} from "@/lib/problem/questionSelectionClient";
 import type { BasketItem } from "@/contracts/basket.contract";
 import type { ClassEntity } from "@/contracts/class.contract";
 import { classOptionLabel, classOptionTitle } from "@/lib/class/ownerLabel";
@@ -23,7 +27,10 @@ import { kstDateOf } from "@/lib/kstDate";
  * D-30 — 행 표면은 누르는 것이 아니다. 손가락 커서는 실제 `<button>` 에만.
  */
 export type BasketPanelProps = {
-  items: BasketItem[];
+  items: (BasketItem & { conflictProblemIds?: string[] })[];
+  total?: number;
+  conflictCount?: number;
+  onChangeFormat?: (item: BasketItem) => void;
   busy: boolean;
   onRemove: (problemId: string) => void;
   onClear: () => void;
@@ -38,6 +45,9 @@ function today(): string {
 
 export function BasketPanel({
   items,
+  total = items.length,
+  conflictCount = 0,
+  onChangeFormat,
   busy,
   onRemove,
   onClear,
@@ -71,7 +81,7 @@ export function BasketPanel({
     <div className="mx-auto max-w-[1180px] px-6 pt-3">
       <div className="flex items-center gap-3">
         <span className="text-[12.5px] font-bold text-ink">
-          담은 문항 {items.length}개
+          담은 문항 {total}개
         </span>
         <button
           type="button"
@@ -90,11 +100,17 @@ export function BasketPanel({
         </button>
       </div>
 
+      {conflictCount > 0 && (
+        <p className="py-2 text-[14px] text-g-red-text" role="alert">
+          형식 선택 충돌 {conflictCount}문항 · 유지할 실제 표현을 선택해 주세요.
+          기존 바구니는 그대로 보존됩니다.
+        </p>
+      )}
       <ul className="mt-2 max-h-[38vh] overflow-y-auto border-t border-divider">
         {items.map((item, index) => (
           <li
             key={item.problem.id}
-            className="flex items-center gap-3 border-b border-divider py-1.5 text-[12.5px]"
+            className="flex flex-wrap items-center gap-3 border-b border-divider py-1.5 text-[12.5px]"
           >
             {/* 🔴 바구니에 적힌 차례가 아니라 **다시 센 번호**를 보여 준다 —
                 빼기가 구멍을 내므로 저장된 번호는 1..N 이 아니고, 시험지의 문항
@@ -109,6 +125,30 @@ export function BasketPanel({
             <span className="shrink-0 text-text-2">
               {item.problem.difficulty ?? "난이도 없음"}
             </span>
+            <span className="text-text-2">
+              {item.conflictProblemIds?.length
+                ? "형식 선택 충돌"
+                : (() => {
+                    const selected = selectedQuestionFormat(item.problem);
+                    return selected
+                      ? FORMAT_LABEL[selected.format]
+                      : "형식 확인 전";
+                  })()}
+            </span>
+            {onChangeFormat &&
+              ((item.problem.questionFormats?.length ?? 0) > 1 ||
+                !!item.conflictProblemIds?.length) && (
+                <button
+                  type="button"
+                  disabled={busy}
+                  onClick={() => onChangeFormat(item)}
+                  className="min-h-11 cursor-pointer px-2 font-bold text-ink"
+                >
+                  {item.conflictProblemIds?.length
+                    ? "유지할 형식 선택"
+                    : "형식 변경"}
+                </button>
+              )}
             <button
               type="button"
               disabled={busy}
@@ -153,7 +193,9 @@ export function BasketPanel({
           type="button"
           // 반을 안 고르면 만들 수 없다 — 그 사실을 «비활성»으로 보인다(D-30 규약대로
           // 비활성은 흐리지 않고 전용 색을 쓴다).
-          disabled={busy || classId === "" || items.length === 0}
+          disabled={
+            busy || conflictCount > 0 || classId === "" || items.length === 0
+          }
           onClick={() => onMakeTest(classId, testDate)}
           className="min-h-11 cursor-pointer bg-g-blue px-4 text-[12.5px] font-bold text-white transition-colors hover:enabled:bg-[#18497f] disabled:cursor-not-allowed disabled:bg-side disabled:text-text-3"
         >

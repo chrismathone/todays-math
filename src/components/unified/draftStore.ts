@@ -1,3 +1,7 @@
+import {
+  questionIdSchema,
+  questionRepresentationSchema,
+} from "@/contracts/questionFormats.contract";
 import type { Dispatch, SetStateAction } from "react";
 import type { StudioProblem } from "./types";
 import type { StudioCrop } from "./studioHelpers";
@@ -321,6 +325,20 @@ function parseProblems(value: unknown): StudioProblem[] {
       throw new DraftError(INVALID_IMPORT);
     ids.add(problem.id);
     const normalized: Record<string, unknown> = { ...problem };
+    if (
+      problem.questionId !== undefined &&
+      !questionIdSchema.safeParse(problem.questionId).success
+    )
+      throw new DraftError(INVALID_IMPORT);
+    if (
+      problem.questionFormats !== undefined &&
+      (!Array.isArray(problem.questionFormats) ||
+        !problem.questionFormats.every(
+          (option: unknown) =>
+            questionRepresentationSchema.safeParse(option).success,
+        ))
+    )
+      throw new DraftError(INVALID_IMPORT);
     if (
       problem.ocr !== undefined &&
       !MathgenProblemDataSchema.safeParse(problem.ocr).success

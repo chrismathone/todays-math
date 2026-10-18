@@ -82,6 +82,22 @@ const counts: BankSourceCounts = {
 };
 
 describe("걸리는 문항 · 고른 책에 맞춘 자료 종류별 수", () => {
+  it("does not add overlapping per-book or per-kind question counts", () => {
+    const grouped = {
+      ...counts,
+      version: 2 as const,
+      countUnit: "question" as const,
+    };
+    expect(matchedCount(grouped, [], [])).toBe(25);
+    expect(matchedCount(grouped, [KIM], [])).toBe(10);
+    expect(matchedCount(grouped, [KIM], ["대단원 평가"])).toBe(1);
+    expect(kindCount(grouped, [KIM], "기초 연산")).toBe(6);
+    expect(matchedCount(grouped, [KIM, JANG], [])).toBeNull();
+    expect(
+      matchedCount(grouped, [KIM], ["대단원 평가", "형성 평가"]),
+    ).toBeNull();
+    expect(kindCount(grouped, [KIM, JANG], "대단원 평가")).toBeNull();
+  });
   it("아무것도 안 고르면 교과서 전부 — 자료 없는 문항까지 든 수(textbook.total)", () => {
     expect(matchedCount(counts, [], [])).toBe(25);
   });

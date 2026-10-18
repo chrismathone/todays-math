@@ -874,3 +874,10 @@
     display: none;
   }
 }
+
+.candidateFormats {
+  display: block;
+  margin-top: 4px;
+  color: var(--learn-muted);
+  font-size: 12px;
+}

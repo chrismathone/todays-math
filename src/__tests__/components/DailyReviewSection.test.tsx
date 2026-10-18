@@ -788,3 +788,54 @@ describe("[D-133 후속] 자동 묶음 밖 학생의 오늘 시험지 — 검수
     expect(within(row).queryByRole("link", { name: "검수" })).toBeNull();
   });
 });
+
+describe("question format intent per paper size", () => {
+  it("uses each student's actual size instead of copying the group's maximum quota", async () => {
+    const user = userEvent.setup();
+    const body = richDaily(new Date().toISOString());
+    body.data.todayTests = [];
+    body.data.auto[0].neededCount = 12;
+    body.data.auto[0].students = body.data.auto[0].students.map(
+      (student, index) => ({ ...student, problemCount: index ? 12 : 8 }),
+    );
+    const generated: Record<string, unknown>[] = [];
+    server.use(
+      http.get("/api/tests/daily-review", () => HttpResponse.json(body)),
+      http.post("/api/tests/generate", async ({ request }) => {
+        generated.push((await request.json()) as Record<string, unknown>);
+        return HttpResponse.json(
+          { data: { test: { id: EXISTING_TEST_ID } } },
+          { status: 201 },
+        );
+      }),
+    );
+    render(<DailyReviewSection units={MOCK_UNITS} />);
+    const section = await findSection();
+    for (const count of [8, 12]) {
+      const summary = within(section).getByText(
+        new RegExp(`^${count}문항 시험지 형식 배분`),
+        { selector: "summary" },
+      );
+      await user.click(summary);
+      const fields = within(summary.closest("details")!);
+      await user.type(fields.getByRole("spinbutton", { name: "객관식" }), "0");
+      await user.type(
+        fields.getByRole("spinbutton", { name: "단답형" }),
+        String(count),
+      );
+      await user.type(fields.getByRole("spinbutton", { name: "서술형" }), "0");
+    }
+    await user.click(
+      within(section).getByRole("button", { name: "모두 출제 (2명)" }),
+    );
+    await waitFor(() => expect(generated).toHaveLength(2));
+    expect(
+      generated.find((request) => request.studentId === STUDENT_IDS[0])
+        ?.formats,
+    ).toEqual({ 객관식: 0, 단답형: 8, 서술형: 0 });
+    expect(
+      generated.find((request) => request.studentId === STUDENT_IDS[1])
+        ?.formats,
+    ).toEqual({ 객관식: 0, 단답형: 12, 서술형: 0 });
+  });
+});

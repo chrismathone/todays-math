@@ -1,6 +1,10 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, type RefObject } from "react";
+import {
+  questionConflicts,
+  questionIdentity,
+} from "@/lib/problem/questionSelectionClient";
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 import { PROBLEM_CARD_WIDTH } from "@/components/print/tokens";
 import UnifiedProblem from "./UnifiedProblem";
@@ -16,6 +20,7 @@ function SelectedPreview({
   onClose,
   onRemove,
   onReplace,
+  onFormatChange,
   onMove,
   fallbackFocus,
 }: {
@@ -27,6 +32,7 @@ function SelectedPreview({
   onClose: () => void;
   onRemove: () => void;
   onReplace: () => void;
+  onFormatChange?: () => void;
   onMove: (direction: -1 | 1) => void;
   fallbackFocus: RefObject<HTMLButtonElement | null>;
 }) {
@@ -123,6 +129,16 @@ function SelectedPreview({
           >
             담기 취소
           </button>
+          {onFormatChange && (problem.questionFormats?.length ?? 0) > 1 && (
+            <button
+              type="button"
+              className={styles.textButton}
+              disabled={busy}
+              onClick={onFormatChange}
+            >
+              출제 형식 변경
+            </button>
+          )}
           {canReorder ? (
             <button
               type="button"
@@ -146,6 +162,7 @@ export default function BankBasket({
   onExport,
   onChange,
   onReplace,
+  onFormatChange,
   canReorder,
 }: {
   selected: StudioProblem[];
@@ -154,20 +171,31 @@ export default function BankBasket({
   onExport: () => void;
   onChange: (problems: StudioProblem[]) => void;
   onReplace: (id: string) => void;
+  onFormatChange?: (item: StudioProblem) => void;
   canReorder: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const [previewId, setPreviewId] = useState<string | null>(null);
   const toggle = useRef<HTMLButtonElement>(null);
   const id = useId();
-  const index = selected.findIndex((problem) => problem.id === previewId);
-  const preview = selected[index];
+  const conflicts = questionConflicts(selected);
+  const questions = [
+    ...new Map(selected.map((item) => [questionIdentity(item), item])).values(),
+  ];
+  const index = questions.findIndex((problem) => problem.id === previewId);
+  const preview = questions[index];
   const summary = DIFFICULTY_LADDER.map((tier) => ({
     tier,
-    count: selected.filter((problem) => problem.difficulty === tier).length,
+    count: questions.filter(
+      (problem) =>
+        problem.difficulty === tier &&
+        !conflicts.some(
+          (group) => questionIdentity(group[0]) === questionIdentity(problem),
+        ),
+    ).length,
   }));
   const unspecified =
-    selected.length - summary.reduce((sum, { count }) => sum + count, 0);
+    questions.length - summary.reduce((sum, { count }) => sum + count, 0);
 
   return (
     <>
@@ -186,7 +214,7 @@ export default function BankBasket({
           <div className={styles.basketPanel} id={`${id}-content`}>
             <div className={styles.basketPanelHeading}>
               <h2>
-                담은 문제 <span>{selected.length}문항</span>
+                담은 문제 <span>{questions.length}문항</span>
               </h2>
               <button
                 type="button"
@@ -207,6 +235,12 @@ export default function BankBasket({
                   : "번호를 누르면 문제 미리보기"
                 : "목록에서 문제를 담거나 랜덤으로 추가하세요."}
             </p>
+            {conflicts.length > 0 && (
+              <p className={styles.randomError} role="alert">
+                형식 선택 충돌 {conflicts.length}문항 · 미리보기에서 유지할
+                형식을 선택하세요.
+              </p>
+            )}
             {selected.length ? (
               <>
                 <div
@@ -230,7 +264,7 @@ export default function BankBasket({
                   className={styles.basketNumberGrid}
                   aria-label="담은 문제 번호"
                 >
-                  {selected.map((problem, number) => (
+                  {questions.map((problem, number) => (
                     <li key={problem.id}>
                       <button
                         type="button"
@@ -248,7 +282,7 @@ export default function BankBasket({
               <button
                 type="button"
                 className={styles.basketExport}
-                disabled={busy || !selected.length}
+                disabled={busy || !selected.length || conflicts.length > 0}
                 onClick={onExport}
               >
                 시험지 편집 <span aria-hidden="true">→</span>
@@ -266,7 +300,7 @@ export default function BankBasket({
           onClick={() => setOpen((value) => !value)}
         >
           <span aria-hidden="true">{open ? "−" : "+"}</span> 담은 문제{" "}
-          <strong>{selected.length}</strong>
+          <strong aria-live="polite">{questions.length}</strong>
           <span className="sr-only">문항</span>
         </button>
       </aside>
@@ -274,15 +308,28 @@ export default function BankBasket({
         <SelectedPreview
           problem={preview}
           index={index}
-          count={selected.length}
+          count={questions.length}
           busy={busy}
-          canReorder={canReorder}
+          canReorder={canReorder && !conflicts.length}
           fallbackFocus={toggle}
           onClose={() => setPreviewId(null)}
           onRemove={() => {
-            onChange(selected.filter((problem) => problem.id !== preview.id));
+            onChange(
+              selected.filter(
+                (problem) =>
+                  questionIdentity(problem) !== questionIdentity(preview),
+              ),
+            );
             setPreviewId(null);
           }}
+          onFormatChange={
+            onFormatChange
+              ? () => {
+                  setPreviewId(null);
+                  onFormatChange(preview);
+                }
+              : undefined
+          }
           onReplace={() => {
             onReplace(preview.id);
             setPreviewId(null);

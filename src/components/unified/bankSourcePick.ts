@@ -8,9 +8,10 @@ import { BANK_SOURCE_GROUP_LABEL } from "@/components/problem/labels";
 /**
  * 문제은행 «출처 고르기»(D-161 · 05 S-08 H1 [확정 — 2026-10-08]) 창 안의 셈과 칸 · 칩의 글.
  *
- * 수는 서버가 책마다 실어 준 자료 종류별 수(`BankSourceBook.kinds`)로 **요청 없이** 센다 — 창 안에서 체크를
+ * v1 수는 서버가 책마다 실어 준 자료 종류별 수(`BankSourceBook.kinds`)로 **요청 없이** 센다 — 창 안에서 체크를
  * 바꿔도 «걸리는 문항 n개»만 바뀌고 목록 요청은 [적용]을 눌러야 나간다(⑷). 규칙은 시안(`/dev/bank-source-hifi`)과 같다:
  * 책을 안 고르면 교과서 전부, 자료 종류를 안 고르면 종류 전부.
+ * question 보기에서는 서로 겹칠 수 있는 집합의 합을 만들지 않는다.
  */
 
 /** 고른 것 — 출처 갈래(`""` = 전체) · 책(`source_book.id`) · 자료 종류. */
@@ -38,11 +39,10 @@ export function kindCount(
   counts: BankSourceCounts,
   books: string[],
   kind: string,
-): number {
-  return poolOf(counts, books).reduce(
-    (sum, book) => sum + (book.kinds[kind] ?? 0),
-    0,
-  );
+): number | null {
+  const pool = poolOf(counts, books);
+  if (counts.countUnit === "question" && pool.length > 1) return null;
+  return pool.reduce((sum, book) => sum + (book.kinds[kind] ?? 0), 0);
 }
 
 /**
@@ -53,9 +53,12 @@ export function matchedCount(
   counts: BankSourceCounts,
   books: string[],
   kinds: string[],
-): number {
+): number | null {
   if (!books.length && !kinds.length) return counts.textbook.total;
-  return poolOf(counts, books).reduce(
+  const pool = poolOf(counts, books);
+  if (counts.countUnit === "question" && (pool.length > 1 || kinds.length > 1))
+    return null;
+  return pool.reduce(
     (sum, book) =>
       sum +
       (kinds.length

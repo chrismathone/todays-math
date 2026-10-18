@@ -11,7 +11,7 @@ export default async function WorkspacePage({ user }: { user: SessionUser }) {
   let initialData: BankData;
   try {
     if (account?.menus.includes("bank")) {
-      const metadata = await loadUnifiedBankBootstrap();
+      const metadata = await loadUnifiedBankBootstrap("question");
       initialData = {
         ...metadata,
         problems: [],

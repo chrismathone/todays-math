@@ -1,3 +1,12 @@
+import {
+  assertQuestionFormat,
+  requireQuestionRead,
+  type QuestionMetadata,
+} from "./questionSelectionClient";
+import type {
+  QuestionFormat,
+  QuestionRepresentation,
+} from "@/contracts/questionFormats.contract";
 import type {
   Difficulty,
   ProblemSource,
@@ -52,6 +61,7 @@ export type ProblemListFilters = {
    * (원장님 지시 2026-08-26). 둘은 다른 축이라 둘 다 실릴 수 있다.
    */
   format?: ProblemFormatFilter;
+  availableFormat?: QuestionFormat;
   reviewStatus?: ReviewStatus;
   /** 출처(2026-08-19 원장님 지시) — AI 생성물만 골라 검수할 수 있어야 한다. */
   source?: ProblemSource;
@@ -62,6 +72,7 @@ export const PROBLEM_PAGE_SIZE = 20;
 
 function listQuery(filters: ProblemListFilters, page: number) {
   const params = new URLSearchParams({
+    identity: "question",
     page: String(page),
     pageSize: String(PROBLEM_PAGE_SIZE),
   });
@@ -83,7 +94,8 @@ function listQuery(filters: ProblemListFilters, page: number) {
   }
   if (filters.difficulty) params.set("difficulty", filters.difficulty);
   if (filters.problemType) params.set("problemType", filters.problemType);
-  if (filters.format) params.set("format", filters.format);
+  if (filters.availableFormat ?? filters.format)
+    params.set("availableFormat", (filters.availableFormat ?? filters.format)!);
   if (filters.reviewStatus) params.set("reviewStatus", filters.reviewStatus);
   if (filters.source) params.set("source", filters.source);
   return params.toString();
@@ -111,7 +123,25 @@ export async function loadProblems(filters: ProblemListFilters, page = 1) {
   const res = await fetch(`/api/problems?${listQuery(filters, page)}`);
   if (!res.ok) throw new Error("목록을 불러오지 못했습니다");
   const { problemListResponseSchema } = await problemContract();
-  return problemListResponseSchema.parse(await res.json());
+  const body = await res.json();
+  requireQuestionRead(body);
+  return problemListResponseSchema.parse(body);
+}
+
+export async function loadProblemFormat(
+  original: QuestionMetadata,
+  option: QuestionRepresentation,
+  signal: AbortSignal,
+) {
+  const res = await fetch(
+    `/api/problems/${encodeURIComponent(option.problemId)}?identity=question`,
+    { signal, cache: "no-store", credentials: "same-origin" },
+  );
+  if (!res.ok)
+    await failWithServerReason(res, "선택한 실제 표현을 불러오지 못했습니다.");
+  const { problemResponseSchema } = await problemContract();
+  const body = problemResponseSchema.parse(await res.json());
+  return assertQuestionFormat(original, option, body.data);
 }
 
 export async function createProblem(input: ProblemCreateRequest) {
@@ -137,15 +167,19 @@ export async function createProblem(input: ProblemCreateRequest) {
 export async function updateReviewStatus(
   id: string,
   reviewStatus: ReviewStatus,
+  identity?: "question",
 ) {
   const { problemReviewStatusUpdateRequestSchema, problemResponseSchema } =
     await problemContract();
   const body = problemReviewStatusUpdateRequestSchema.parse({ reviewStatus });
-  const res = await fetch(`/api/problems/${id}/review-status`, {
-    method: "PATCH",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify(body),
-  });
+  const res = await fetch(
+    `/api/problems/${id}/review-status${identity ? "?identity=question" : ""}`,
+    {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(body),
+    },
+  );
   if (!res.ok) await failWithServerReason(res, "검수 상태를 바꾸지 못했습니다");
   return problemResponseSchema.parse(await res.json());
 }

@@ -1,5 +1,13 @@
 "use client";
 
+import FormatQuotaFields from "@/components/exam-builder/FormatQuotaFields";
+import {
+  emptyFormats,
+  formatIntent,
+  formatIssue,
+  type Ladder,
+} from "@/components/exam-builder/conditionsPlan";
+import type { FormatIntent } from "@/contracts/formatIntent.contract";
 import Link from "next/link";
 import RouteLinkStatus from "@/components/ui/RouteLinkStatus";
 import { useEffect, useMemo, useState } from "react";
@@ -87,6 +95,7 @@ async function postGenerate(
   day: string,
   group: Group,
   student: Group["students"][number],
+  formats?: FormatIntent,
 ): Promise<{ ok: true; testId: string } | { ok: false; message: string }> {
   const res = await fetch("/api/tests/generate", {
     method: "POST",
@@ -95,6 +104,7 @@ async function postGenerate(
       classId: student.classId,
       studentId: student.id,
       testType: "review",
+      ...(formats ? { formats } : {}),
       testDate: day,
       rangeStartUnitId: group.rangeStartUnitId,
       rangeEndUnitId: group.rangeEndUnitId,
@@ -117,6 +127,9 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
   const [reloadKey, setReloadKey] = useState(0);
   const [syncing, setSyncing] = useState(false);
   const [syncError, setSyncError] = useState<string | null>(null);
+  const [formatsByCount, setFormatsByCount] = useState<Record<number, Ladder>>(
+    {},
+  );
   const [progress, setProgress] = useState<GenerateProgress>({
     done: 0,
     total: 0,
@@ -185,6 +198,16 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
       .filter((s) => !testByStudent.has(s.id) && !progress.created[s.id])
       .map((s) => ({ group: g, student: s })),
   );
+  // The group maximum is a capacity bound, not every student's paper size.
+  const sizes = new Map<number, number>();
+  targets.forEach(({ student }) => {
+    const count = student.problemCount;
+    if (count !== undefined) sizes.set(count, (sizes.get(count) ?? 0) + 1);
+  });
+  const formatWarnings = [...sizes.keys()].flatMap((count) => {
+    const issue = formatIssue(formatsByCount[count] ?? emptyFormats(), count);
+    return issue ? [`${count}문항 시험지: ${issue}`] : [];
+  });
   const autoStudents = d.auto.reduce((sum, g) => sum + g.students.length, 0);
   const lackingStudents = d.lacking.reduce(
     (sum, g) => sum + g.students.length,
@@ -264,7 +287,8 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
   ];
 
   async function generateAll() {
-    if (progress.running || targets.length === 0) return;
+    if (progress.running || targets.length === 0 || formatWarnings.length > 0)
+      return;
     setProgress({
       done: 0,
       total: targets.length,
@@ -279,7 +303,17 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
       const chunk = targets.slice(at, at + 3);
       await Promise.all(
         chunk.map(async ({ group, student }) => {
-          const result = await postGenerate(d.day, group, student);
+          const count = student.problemCount;
+          const requestedFormats =
+            count === undefined
+              ? undefined
+              : formatIntent(formatsByCount[count] ?? emptyFormats());
+          const result = await postGenerate(
+            d.day,
+            group,
+            student,
+            requestedFormats,
+          );
           if (result.ok) created[student.id] = result.testId;
           else failures.push({ name: student.name, message: result.message });
         }),
@@ -351,7 +385,11 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
               <button
                 type="button"
                 onClick={() => void generateAll()}
-                disabled={progress.running || targets.length === 0}
+                disabled={
+                  progress.running ||
+                  targets.length === 0 ||
+                  formatWarnings.length > 0
+                }
                 className="cursor-pointer bg-ink px-3 py-1.5 text-[12.5px] font-bold text-white disabled:cursor-not-allowed disabled:bg-side disabled:text-text-3"
               >
                 {targets.length === 0 && autoStudents > 0
@@ -361,6 +399,29 @@ export function DailyReviewSection({ units }: { units: UnitEntity[] }) {
             </div>
           </div>
 
+          {[...sizes.entries()]
+            .sort(([a], [b]) => a - b)
+            .map(([count, students]) => (
+              <FormatQuotaFields
+                key={count}
+                label={`${count}문항 시험지 형식 배분 · ${students}명`}
+                count={count}
+                max={30}
+                value={formatsByCount[count] ?? emptyFormats()}
+                disabled={progress.running}
+                onChange={(value) =>
+                  setFormatsByCount((current) => ({
+                    ...current,
+                    [count]: value,
+                  }))
+                }
+              />
+            ))}
+          {formatWarnings.length > 0 && (
+            <p role="alert" className="mt-2 text-sm text-g-red-text">
+              {formatWarnings.join(" · ")}
+            </p>
+          )}
           {/* 칩 — 손 갈 곳만. 누르는 것이 아니다(D-30: 손가락·hover 없음). 없는 갈래는 칩이 없다. */}
           {chips.length > 0 ? (
             <ul aria-label="손 갈 곳" className="mt-2 flex flex-wrap gap-1.5">

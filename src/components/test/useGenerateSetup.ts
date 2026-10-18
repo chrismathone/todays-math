@@ -19,6 +19,11 @@ import {
 } from "@/contracts/difficulty";
 import type { UnitEntity } from "@/contracts/unit.contract";
 import { fetchClasses, fetchStudents } from "@/lib/class/classApi";
+import {
+  emptyFormats,
+  formatIntent,
+  formatIssue,
+} from "@/components/exam-builder/conditionsPlan";
 import { kstDateOf } from "@/lib/kstDate";
 
 /**
@@ -82,6 +87,7 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
   const [testType, setTestType] = useState<TestType>("daily");
   const [testDate, setTestDate] = useState(todayIso);
   const [problemCount, setProblemCount] = useState(8);
+  const [formats, setFormats] = useState(emptyFormats);
   const [difficultyRatio, setDifficultyRatio] = useState<DifficultyRatio>(
     DEFAULT_DIFFICULTY_RATIO,
   );
@@ -344,6 +350,11 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
         return;
       }
       const count = countOverride ?? problemCount;
+      const issue = formatIssue(formats, count);
+      if (issue) {
+        setSubmitError(issue);
+        return;
+      }
       const nextRatio =
         countOverride === undefined
           ? difficultyRatio
@@ -395,6 +406,9 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
             testType,
             testDate,
             problemCount: count,
+            ...(formatIntent(formats)
+              ? { formats: formatIntent(formats) }
+              : {}),
             // 🔴 **`difficultyRatio` 가 아니라 `nextRatio`** (2026-09-07).
             //    「문항 수 줄이기」는 줄인 수에 맞춰 배분을 다시 계산해 놓고(위 `nextRatio`)
             //    요청에는 클로저의 **옛 배분**을 실어 보냈다 — 계약의 refine(「배분의 합 ==
@@ -449,6 +463,7 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
       testType,
       testDate,
       problemCount,
+      formats,
       difficultyRatio,
       rangeStartUnitId,
       rangeEndUnitId,
@@ -578,6 +593,9 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
     testDate,
     problemCount,
     difficultyRatio,
+    formats,
+    setFormats,
+    formatWarning: formatIssue(formats, problemCount),
     rangeStartUnitId,
     rangeEndUnitId,
     rangeEditing,

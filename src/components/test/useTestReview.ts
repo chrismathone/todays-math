@@ -146,7 +146,13 @@ export function useTestReview(testId: string) {
         const res = await fetch(`/api/tests/${scope.testId}/problems/${seq}`, {
           method: "PUT",
         });
-        if (!res.ok) throw new Error("fail");
+        if (!res.ok) {
+          const body = await res.json().catch(() => null);
+          throw new Error(
+            body?.error?.message ||
+              "문제를 교체하지 못했습니다. 기존 문항은 유지했습니다.",
+          );
+        }
         const { testProblemReplaceResponseSchema } = await testContract();
         const body = testProblemReplaceResponseSchema.parse(await res.json());
         if (
@@ -171,13 +177,16 @@ export function useTestReview(testId: string) {
             },
           };
         });
-      } catch {
+      } catch (cause) {
         if (activeLoad.current === load) {
           setSnapshot((prev) =>
             prev.scope === scope
               ? {
                   ...prev,
-                  actionError: "문제를 교체하지 못했습니다. 다시 교체해 주세요",
+                  actionError:
+                    cause instanceof Error
+                      ? `${cause.message} 기존 문항은 유지했습니다. 다시 교체해 주세요.`
+                      : "문제를 교체하지 못했습니다. 기존 문항은 유지했습니다.",
                 }
               : prev,
           );
