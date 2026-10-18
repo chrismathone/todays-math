@@ -1,0 +1,26 @@
+{
+  "reviewer": "Claude",
+  "verdict": "approved",
+  "kind": "final-engine-batch",
+  "planSha256": "15ecaf3edcea3e018f1e5b20e6e2108654122bb249b4e38e3a5713b7f84211a3",
+  "sourceCommit": "74b54939ea56d4fbeb3f84049565a118670de454",
+  "batchSha256": "fec26b0f6586e3fb383800d84b6ac7ec3cb897e436b648b35135393acbf8f8d1",
+  "prewriteSha256": "a3d0e70b722d29484002cc3f52d7d3f6e00f8135a9f4789efe0731762115691c",
+  "reviewedAt": "2026-10-18",
+  "reviewedHead": "e9fc3dc35",
+  "manifestPath": "docs/planning/tracks/reports/math-bank-reinforcement-20261018/wave1-r5-manifest.json",
+  "prewritePath": "docs/planning/tracks/reports/math-bank-reinforcement-20261018/wave1-r5-prewrite.json",
+  "scope": {
+    "rows": 108,
+    "families": 27,
+    "units": 8,
+    "distinctStems": 75,
+    "byGradeAndType": {"초4 단답형": 27, "초4 객관식": 21, "초4 서술형": 6, "중3 단답형": 12, "중3 객관식": 36, "중3 서술형": 6},
+    "ownership": "all 108 rows new; preallocated v4 UUIDs, none reused from wave1/r2/r3/r4 ledgers",
+    "figures": 0
+  },
+  "permits": "Root only, via scripts/qa/bank/math-reinforcement-wave1.ts apply --apply with ALLOW_SHARED_IMPORT=1, exactly these 108 frozen rows. Any byte difference in the manifest, prewrite, plan or regenerated rows must be refused by the loader.",
+  "notPermitted": ["any other rows or families", "legacy applyEnginePlan writes of the 2026-10-18 families", "refresh writes to existing rows", "marking print-check items 통과 without a physical print"],
+  "supersededUnwritten": ["wave1", "wave1-r2", "wave1-r3", "wave1-r4"],
+  "details": "claude-final-review.md"
+}
