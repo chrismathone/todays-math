@@ -68,7 +68,8 @@ describe("one question, actual representation selection", () => {
     expect(list.total).toBe(4);
     expect(list.items).toHaveLength(4);
     expect(list.items[0].questionId).not.toBe(list.items[1].questionId);
-    expect(list.items[0].familyKey).toBe(list.items[1].familyKey);
+    expect(list.items[0]).toHaveProperty("familyKey", actualRows[0].familyKey);
+    expect(list.items[1]).toHaveProperty("familyKey", actualRows[0].familyKey);
     await expect(
       adapter.prepareOutput!(
         [actualRows[0], actualRows[1]],
