@@ -11,6 +11,7 @@ export function managedRelationDb() {
     "eywaManagedAccount",
     "class",
     "student",
+    "studentAccount",
     "classMembership",
     "studentEnrollment",
     "unit",
