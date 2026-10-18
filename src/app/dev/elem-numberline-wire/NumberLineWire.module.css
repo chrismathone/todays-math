@@ -1,0 +1,168 @@
+/*
+ * 초등 수직선 Wire — 회색 토큰(다른 Wire 와 같은 값). 그림만 엔진의 색을 쓴다 — 고를 것이 그림 모양이라서.
+ * 누를 수 있는 것이 없다(D-30).
+ */
+.shell {
+  --w-page: #f4f4f5;
+  --w-surface: #ffffff;
+  --w-fill: #e4e4e7;
+  --w-line: #a1a1aa;
+  --w-strong: #27272a;
+  --w-muted: #52525b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  min-height: 100vh;
+  padding: 32px 16px 96px;
+  background: var(--w-page);
+  color: var(--w-strong);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.head,
+.topic {
+  width: 100%;
+  max-width: 1480px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.h1 {
+  font-size: 22px;
+  font-weight: 800;
+}
+.h2 {
+  font-size: 19px;
+  font-weight: 800;
+  padding-top: 8px;
+  border-top: 3px solid var(--w-strong);
+}
+.note {
+  max-width: 920px;
+  color: var(--w-muted);
+  line-height: 1.7;
+  margin: 0;
+}
+.must {
+  margin: 0;
+  padding-left: 20px;
+  max-width: 920px;
+  line-height: 1.8;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
+  gap: 20px;
+}
+.option {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  background: var(--w-surface);
+  border: 1px solid var(--w-line);
+  min-width: 0;
+}
+.option h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.rec {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border: 1px solid var(--w-strong);
+}
+.small {
+  margin: 0;
+  color: var(--w-muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+.svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.cases {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.case {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  align-items: center;
+  gap: 6px;
+}
+.caseName {
+  font-size: 12px;
+  color: var(--w-muted);
+}
+.column {
+  width: 338px;
+  max-width: 100%;
+  padding: 10px 0 12px;
+  border-top: 2px solid var(--w-strong);
+  font-family: Batang, serif;
+}
+.qHead {
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+.stem {
+  margin: 0 0 12px;
+  font-size: 12.5px;
+  line-height: 20px;
+}
+.mark {
+  font-size: 13px;
+  flex: none;
+  width: 16px;
+}
+.markGhost {
+  flex: none;
+  width: 16px;
+}
+.choiceGrid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 12px;
+}
+.choiceCell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.choiceList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.choiceRow,
+.choiceRowTight,
+.layerRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+.choiceRowTight {
+  margin-top: -14px;
+}
+.layered {
+  display: flex;
+  flex-direction: column;
+}
+.layerRow {
+  margin-top: -16px;
+}
+.layerRow:first-child {
+  margin-top: 0;
+}
