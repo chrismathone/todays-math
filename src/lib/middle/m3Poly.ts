@@ -298,12 +298,12 @@ const MUL: TypeEntry[] = [
         const body = which === 2 ? "x^2" : "x";
         const left =
           which === 2
-            ? `${wp(a, "x")}\\times${wp(d, "x")}`
-            : `${wp(a, "x")}\\times${wp(e, "")}`;
+            ? `${wp(a, "x")}\\times ${wp(d, "x")}`
+            : `${wp(a, "x")}\\times ${wp(e, "")}`;
         const right =
           which === 2
-            ? `${wp(b, "")}\\times${wp(c, "x^2")}`
-            : `${wp(b, "")}\\times${wp(d, "x")}`;
+            ? `${wp(b, "")}\\times ${wp(c, "x^2")}`
+            : `${wp(b, "")}\\times ${wp(d, "x")}`;
         return {
           content: `${M(src)} 의 전개식에서 ${M(body)} 의 계수를 구하시오.`,
           answer: M(String(coef)),

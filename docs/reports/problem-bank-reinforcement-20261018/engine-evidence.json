@@ -1,0 +1,167 @@
+{
+  "baselineCommit": "2ae266866",
+  "grid": {
+    "seedInclusive": [0, 99],
+    "variants": [0, 1, 2],
+    "samplesPerTarget": 300,
+    "totalSamples": 900
+  },
+  "targets": [
+    {
+      "key": "3-1|다항식의 곱셈|02",
+      "samples": 300,
+      "fields": 900,
+      "formulas": 2100,
+      "draws": 1824,
+      "mcqs": 300,
+      "stableHash": "851538f7b54b8fd1d70e37968a21f1ee720654f3b6e127ab0f7d447868113c85",
+      "solutionHash": "a52b9517b134c485b7371db854f13c5442e26a7f645b197fcf7370fa0d375b85",
+      "rngHash": "033d78671095e424545c043b35d3102e4effff12867d81677af0a03006833413",
+      "mcqHash": "23da1bacda92c2f1797a09b474008b167f1a4a3cda64583a6686bcf7558fcfaf",
+      "errors": {
+        "markdownFields": 0,
+        "markdownSolutions": 0,
+        "htmlFields": 0,
+        "htmlSolutions": 0
+      },
+      "beforeErrors": {
+        "markdownFields": 56,
+        "markdownSolutions": 56,
+        "htmlFields": 56,
+        "htmlSolutions": 56
+      },
+      "strictComparison": {
+        "samples": 300,
+        "changedSolutions": 300,
+        "insertedSpaces": 600
+      }
+    },
+    {
+      "key": "2-1|연립일차방정식|90",
+      "samples": 300,
+      "fields": 900,
+      "formulas": 9900,
+      "draws": 14769,
+      "mcqs": 300,
+      "stableHash": "e487fe153054f2d6f8c02643ee52c637b650cdfd40353ff67a49b4c4e05adcb8",
+      "solutionHash": "0d0b509f77dd48da0e4bd5cd3f23daf8ab96d00773ec266dc98d4ad57e31b808",
+      "rngHash": "5f7bf8528cb88f4237aeca29656b64c8828680c4fc867bc38da3558cda8afe7e",
+      "mcqHash": "2e258d0776b3e35caae758745afbd1059f8fb198ae1b042680513b2133da6216",
+      "errors": {
+        "markdownFields": 0,
+        "markdownSolutions": 0,
+        "htmlFields": 0,
+        "htmlSolutions": 0
+      },
+      "beforeErrors": {
+        "markdownFields": 53,
+        "markdownSolutions": 53,
+        "htmlFields": 53,
+        "htmlSolutions": 53
+      },
+      "strictComparison": {
+        "samples": 300,
+        "changedSolutions": 300,
+        "insertedSpaces": 493
+      }
+    },
+    {
+      "key": "공통수학1|여러 가지 방정식|03",
+      "samples": 300,
+      "fields": 1244,
+      "formulas": 4030,
+      "draws": 1440,
+      "mcqs": 300,
+      "stableHash": "c17d5a2fa22f756fcc6655c3e5e5862b05f6a72fc5f530a7e5840cc253b793f1",
+      "solutionHash": "0d1c057435a3ce4ee4cc35571e995ab2463b4078e7c1c691e688c34b496a83ba",
+      "rngHash": "164acdf1a846f7a0b9f1de25a47b719f600d5882d83c28395b3474e3828c3e83",
+      "mcqHash": "3070e76c5bafed8e926e5e9afffb1d6f7ef8bb4fbf1056db50a256a3d3dbbb22",
+      "errors": {
+        "markdownFields": 0,
+        "markdownSolutions": 0,
+        "htmlFields": 0,
+        "htmlSolutions": 0
+      },
+      "beforeErrors": {
+        "markdownFields": 2,
+        "markdownSolutions": 2,
+        "htmlFields": 2,
+        "htmlSolutions": 2
+      },
+      "strictComparison": {
+        "samples": 300,
+        "changedSolutions": 2,
+        "insertedSpaces": 2
+      }
+    }
+  ],
+  "sharedSurdPmTexCallers": {
+    "samples": 24000,
+    "registrations": 80,
+    "changedSolutions": 2,
+    "insertedSpaces": 2,
+    "changedSolutionKeys": {
+      "공통수학1|여러 가지 방정식|03": 2
+    },
+    "allNonSolutionFieldsIdentical": true,
+    "changesAreOnlyCommandBoundarySpaceInsertions": true
+  },
+  "totals": {
+    "fieldsPerRenderPath": 3044,
+    "formulasPerRenderPath": 16030,
+    "rngDraws": 18033,
+    "derivedMcqs": 900,
+    "beforeErrorSolutionsPerPath": 111,
+    "afterErrorFieldsPerPath": 0
+  },
+  "tests": {
+    "relatedFiles": 9,
+    "passed": 634,
+    "failed": 0,
+    "skipped": 0,
+    "newRegressionBeforeFix": {
+      "passed": 1,
+      "failed": 6
+    },
+    "measurementFiles": 1,
+    "measurementPassed": 4,
+    "maxWorkers": 2,
+    "globalSetupLoaded": false,
+    "databaseConnections": 0,
+    "relatedFilePaths": [
+      "src/__tests__/unit/bankTexCommandBoundary.test.tsx",
+      "src/__tests__/unit/middleM3Poly.test.ts",
+      "src/__tests__/unit/middleTopM2.test.ts",
+      "src/__tests__/unit/highNumbers.test.ts",
+      "src/__tests__/unit/highEquations.test.ts",
+      "src/__tests__/unit/highComplex.test.ts",
+      "src/__tests__/unit/highQuadEq.test.ts",
+      "src/__tests__/unit/highQuadFunc.test.ts",
+      "src/__tests__/unit/highQuadIneq.test.ts"
+    ],
+    "explicitEnvInjection": false,
+    "finalVerificationEnvDir": false,
+    "initialMeasurementsEnvDir": "Vite default; no test.env/loadEnv injection",
+    "finalVerificationPassed": 634
+  },
+  "artifactsSha256": {
+    "baseline-high-callers.json": "72aeadedc0a3b4319a35612ae1c517f6ad03082e954ce3dfb185fd37afffad6c",
+    "baseline-samples.json": "ebb7194b10ffbc402db801e54b1640c9a63c532c840312970030db66ba3921ef",
+    "baseline-summary.json": "73a6019a5d3651e9edd20bed48fcbd3641c7c11f08a0e83c4e524f19c5965d71",
+    "fixed-high-callers.json": "afdd59f39791ebb8573d09e074b64f7611da1ab6e38cd5b48f4b85d9faad41a2",
+    "fixed-samples.json": "722857836fe36937c3e80b7f851aa52f0add9c700cf3219be0d328445715b6fb",
+    "fixed-summary.json": "2c6354545c5afa3de4f9e302f846487a86c457b405b6e02c773c39f14691a5d2",
+    "baseline.log": "06275729fc5cef0d62a84908347f40f1ffb8fe6cca7ebaf3be5da81d2e6e7956",
+    "fixed.log": "aafde625f0143d0213f6d2516d54780411d84fc77d00c0e8a5fb7e3b69fb51bf",
+    "regression-before.log": "bfa31afd834d3978ed032b96fc759b9944898f19ee1adcadb2d251fa3bd54cf9",
+    "related-tests.log": "97f58b260c0514ef8bac39f8c0ac990fa5a7f24ed9ef6b84a1bbf794ad844ee8",
+    "final-related-tests.log": "fd61e37b8ad8f66f752be40d37c40c60aabb1aa1409e89d1f2d045fc90cf05f2"
+  },
+  "testConfigSha256": "b84b100c4e427e1d5a5165a1c3f40ae577606ca0171440403ffecba1d6cde17e",
+  "changedCodeSha256": {
+    "src/lib/middle/m3Poly.ts": "c3f353b1329470479540f46845699c3742adcace18523b161a36e0ba6a1449fb",
+    "src/lib/middle/m2Top.ts": "69983e5920e738117461249fdd0775994c514c41e1cabea971a135e1ecf46910",
+    "src/lib/high/numbers.ts": "0332b52e1dc3a942433945e45951f3e079b3511136ab4e5b8e3a8d85c14d2b4c",
+    "src/__tests__/unit/bankTexCommandBoundary.test.tsx": "1a637254f69791b90d713aec89c104832127578893f349b3d77cfdb57d28fbd2"
+  }
+}
