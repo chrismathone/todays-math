@@ -1,0 +1,1213 @@
+{
+  "checkedAt": "2026-10-18T03:07:27.180Z",
+  "fixtureSha256": "a07164e734ba3162fe22b0a0a30c0a70ab8e6fe15a25add3f9764ef603683669",
+  "sourceDigests": {
+    "src/components/print/TestPrint.tsx": "968e01e2fc53ff8d31335c0ba97c9c2c208ad53687f0269b25f5dfda29752639",
+    "src/components/print/PrintAnswerKeyPage.tsx": "3420ebe3e85ff6eb89f1149e83c77a5e4d1985c96568f1b85fd7e0cab5089afc",
+    "src/components/print/templates/JaseupTemplate.tsx": "9157c65be4fa38153250714890495f89ddc8cd1b95dd488028432a7b8cfd49a1",
+    "src/components/print/PaperProblemView.tsx": "3765c009b2d30449dbef7f35a4efff7175d0f126a81fa4468b427dca9e9570de",
+    "src/components/print/TestPrint.module.css": "a3bae10413f08de167fc3e70fd42d99a2b505347a2f303e39d532606a386f45f",
+    "src/components/print/tokens.ts": "cc82db4c49854cd549d4535fa393285c0abd14c57035fe7e45eaf62f3ca6e27d",
+    "src/app/fonts.ts": "91ac62e201053c633c88b813cc5865a41ca2f996de43b2606d0dcb76e4cc432d",
+    "src/app/globals.css": "f2748025ff55b02e6d2312d0ef07663214e1e78b05d6793e49e66d0c9e2066d5"
+  },
+  "summary": [
+    {
+      "status": "ready",
+      "group": "c8d1b160-ffb6-4da1-9c54-a3522ffcf134",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 14,
+      "ids": [
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f31|단답형|s20261043",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f31|객관식|s20261043",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f31|단답형|s20262052",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f31|객관식|s20262052",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f31|단답형|s20263061",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f31|객관식|s20263061",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f32|단답형|s20261043",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f32|객관식|s20261043",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f32|단답형|s20262052",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f32|객관식|s20262052",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f32|단답형|s20263061",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f32|객관식|s20263061",
+        "engine-native-desc:e4-equilateral-audit-r1|s20261018|v0",
+        "engine-native-desc:e4-equilateral-audit-r1|s20261018|v1"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderErrors": 0,
+      "renderedQuestions": 14,
+      "solutionItems": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "figureSvgs": 0,
+      "clippedSvgs": [],
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "weight": "45 920",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "weight": "100 900",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "c8d1b160-ffb6-4da1-9c54-a3522ffcf134",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 14,
+      "ids": [
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f31|단답형|s20261043",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f31|객관식|s20261043",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f31|단답형|s20262052",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f31|객관식|s20262052",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f31|단답형|s20263061",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f31|객관식|s20263061",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f32|단답형|s20261043",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f32|객관식|s20261043",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f32|단답형|s20262052",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f32|객관식|s20262052",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f32|단답형|s20263061",
+        "engine-elem:초4|2-2 삼각형|2-2-3 정삼각형의 성질|f32|객관식|s20263061",
+        "engine-native-desc:e4-equilateral-audit-r1|s20261018|v0",
+        "engine-native-desc:e4-equilateral-audit-r1|s20261018|v1"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderErrors": 0,
+      "renderedQuestions": 0,
+      "solutionItems": 14,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "figureSvgs": 0,
+      "clippedSvgs": [],
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "weight": "45 920",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "weight": "100 900",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "0a069c2f-244d-4f9e-832f-3e0f8969ba21",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 11,
+      "ids": [
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f33|단답형|s20261043",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f33|단답형|s20262052",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f33|단답형|s20263061",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f34|단답형|s20261043",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f34|객관식|s20261043",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f34|단답형|s20262052",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f34|객관식|s20262052",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f34|단답형|s20263061",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f34|객관식|s20263061",
+        "engine-native-desc:e4-triangle-dual-proof-r1|s20261018|v0",
+        "engine-native-desc:e4-triangle-dual-proof-r1|s20261018|v1"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderErrors": 0,
+      "renderedQuestions": 11,
+      "solutionItems": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "figureSvgs": 0,
+      "clippedSvgs": [],
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "weight": "45 920",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "weight": "100 900",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "0a069c2f-244d-4f9e-832f-3e0f8969ba21",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 11,
+      "ids": [
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f33|단답형|s20261043",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f33|단답형|s20262052",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f33|단답형|s20263061",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f34|단답형|s20261043",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f34|객관식|s20261043",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f34|단답형|s20262052",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f34|객관식|s20262052",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f34|단답형|s20263061",
+        "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f34|객관식|s20263061",
+        "engine-native-desc:e4-triangle-dual-proof-r1|s20261018|v0",
+        "engine-native-desc:e4-triangle-dual-proof-r1|s20261018|v1"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderErrors": 0,
+      "renderedQuestions": 0,
+      "solutionItems": 11,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "figureSvgs": 0,
+      "clippedSvgs": [],
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "weight": "45 920",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "weight": "100 900",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "abb7989e-15ae-4dec-9ac0-983dee08a700",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 12,
+      "ids": [
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f35|단답형|s20261043",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f35|객관식|s20261043",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f35|단답형|s20262052",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f35|객관식|s20262052",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f35|단답형|s20263061",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f35|객관식|s20263061",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f36|단답형|s20261043",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f36|객관식|s20261043",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f36|단답형|s20262052",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f36|객관식|s20262052",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f36|단답형|s20263061",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f36|객관식|s20263061"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderErrors": 0,
+      "renderedQuestions": 12,
+      "solutionItems": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "figureSvgs": 0,
+      "clippedSvgs": [],
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "weight": "45 920",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "weight": "100 900",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "abb7989e-15ae-4dec-9ac0-983dee08a700",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 12,
+      "ids": [
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f35|단답형|s20261043",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f35|객관식|s20261043",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f35|단답형|s20262052",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f35|객관식|s20262052",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f35|단답형|s20263061",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f35|객관식|s20263061",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f36|단답형|s20261043",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f36|객관식|s20261043",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f36|단답형|s20262052",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f36|객관식|s20262052",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f36|단답형|s20263061",
+        "engine-elem:초4|2-4 사각형|2-4-2 평행과 평행선|f36|객관식|s20263061"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderErrors": 0,
+      "renderedQuestions": 0,
+      "solutionItems": 12,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "figureSvgs": 0,
+      "clippedSvgs": [],
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "weight": "45 920",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "weight": "100 900",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 17,
+      "ids": [
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f37|단답형|s20261043",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f37|객관식|s20261043",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f37|단답형|s20262052",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f37|객관식|s20262052",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f37|단답형|s20263061",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f37|객관식|s20263061",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f38|단답형|s20261043",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f38|객관식|s20261043",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f38|단답형|s20262052",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f38|객관식|s20262052",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f38|단답형|s20263061",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f38|객관식|s20263061",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f39|단답형|s20261043",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f39|단답형|s20262052",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f39|단답형|s20263061",
+        "engine-native-desc:e4-trapezoid-sufficiency-r1|s20261018|v0",
+        "engine-native-desc:e4-trapezoid-sufficiency-r1|s20261018|v1"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderErrors": 0,
+      "renderedQuestions": 17,
+      "solutionItems": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "figureSvgs": 0,
+      "clippedSvgs": [],
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "weight": "45 920",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "weight": "100 900",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 17,
+      "ids": [
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f37|단답형|s20261043",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f37|객관식|s20261043",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f37|단답형|s20262052",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f37|객관식|s20262052",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f37|단답형|s20263061",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f37|객관식|s20263061",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f38|단답형|s20261043",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f38|객관식|s20261043",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f38|단답형|s20262052",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f38|객관식|s20262052",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f38|단답형|s20263061",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f38|객관식|s20263061",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f39|단답형|s20261043",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f39|단답형|s20262052",
+        "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f39|단답형|s20263061",
+        "engine-native-desc:e4-trapezoid-sufficiency-r1|s20261018|v0",
+        "engine-native-desc:e4-trapezoid-sufficiency-r1|s20261018|v1"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderErrors": 0,
+      "renderedQuestions": 0,
+      "solutionItems": 17,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "figureSvgs": 0,
+      "clippedSvgs": [],
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "weight": "45 920",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "weight": "100 900",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 9,
+      "ids": [
+        "engine-mid:manual-20261018|무리수와 실수|R01|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R01|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R01|s20261020|v2|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R02|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R02|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R02|s20261020|v2|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R03|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R03|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R03|s20261020|v2|객관식"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderErrors": 0,
+      "renderedQuestions": 9,
+      "solutionItems": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "figureSvgs": 0,
+      "clippedSvgs": [],
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "weight": "45 920",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "weight": "100 900",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 9,
+      "ids": [
+        "engine-mid:manual-20261018|무리수와 실수|R01|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R01|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R01|s20261020|v2|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R02|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R02|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R02|s20261020|v2|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R03|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R03|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|무리수와 실수|R03|s20261020|v2|객관식"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderErrors": 0,
+      "renderedQuestions": 0,
+      "solutionItems": 9,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "figureSvgs": 0,
+      "clippedSvgs": [],
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "weight": "45 920",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "weight": "100 900",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 17,
+      "ids": [
+        "engine-mid:manual-20261018|인수분해|F01|s20261020|v0|단답형",
+        "engine-mid:manual-20261018|인수분해|F01|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|인수분해|F01|s20261020|v1|단답형",
+        "engine-mid:manual-20261018|인수분해|F01|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|인수분해|F01|s20261020|v2|단답형",
+        "engine-mid:manual-20261018|인수분해|F01|s20261020|v2|객관식",
+        "engine-mid:manual-20261018|인수분해|F02|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|인수분해|F02|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|인수분해|F02|s20261020|v2|객관식",
+        "engine-mid:manual-20261018|인수분해|F03|s20261020|v0|단답형",
+        "engine-mid:manual-20261018|인수분해|F03|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|인수분해|F03|s20261020|v1|단답형",
+        "engine-mid:manual-20261018|인수분해|F03|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|인수분해|F03|s20261020|v2|단답형",
+        "engine-mid:manual-20261018|인수분해|F03|s20261020|v2|객관식",
+        "engine-native-desc:m3-factor-error-proof-r1|s20261018|v0",
+        "engine-native-desc:m3-factor-error-proof-r1|s20261018|v1"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderErrors": 0,
+      "renderedQuestions": 17,
+      "solutionItems": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "figureSvgs": 0,
+      "clippedSvgs": [],
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "weight": "45 920",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "weight": "100 900",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 17,
+      "ids": [
+        "engine-mid:manual-20261018|인수분해|F01|s20261020|v0|단답형",
+        "engine-mid:manual-20261018|인수분해|F01|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|인수분해|F01|s20261020|v1|단답형",
+        "engine-mid:manual-20261018|인수분해|F01|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|인수분해|F01|s20261020|v2|단답형",
+        "engine-mid:manual-20261018|인수분해|F01|s20261020|v2|객관식",
+        "engine-mid:manual-20261018|인수분해|F02|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|인수분해|F02|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|인수분해|F02|s20261020|v2|객관식",
+        "engine-mid:manual-20261018|인수분해|F03|s20261020|v0|단답형",
+        "engine-mid:manual-20261018|인수분해|F03|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|인수분해|F03|s20261020|v1|단답형",
+        "engine-mid:manual-20261018|인수분해|F03|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|인수분해|F03|s20261020|v2|단답형",
+        "engine-mid:manual-20261018|인수분해|F03|s20261020|v2|객관식",
+        "engine-native-desc:m3-factor-error-proof-r1|s20261018|v0",
+        "engine-native-desc:m3-factor-error-proof-r1|s20261018|v1"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderErrors": 0,
+      "renderedQuestions": 0,
+      "solutionItems": 17,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "figureSvgs": 0,
+      "clippedSvgs": [],
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "weight": "45 920",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "weight": "100 900",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 14,
+      "ids": [
+        "engine-mid:manual-20261018|이차방정식의 활용|Q01|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q01|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q01|s20261020|v2|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q02|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q02|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q02|s20261020|v2|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v0|단답형",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v1|단답형",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v2|단답형",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v2|객관식",
+        "engine-native-desc:m3-quadratic-domain-r1|s20261018|v0",
+        "engine-native-desc:m3-quadratic-domain-r1|s20261018|v1"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderErrors": 0,
+      "renderedQuestions": 14,
+      "solutionItems": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "figureSvgs": 0,
+      "clippedSvgs": [],
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "weight": "45 920",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "weight": "100 900",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 14,
+      "ids": [
+        "engine-mid:manual-20261018|이차방정식의 활용|Q01|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q01|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q01|s20261020|v2|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q02|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q02|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q02|s20261020|v2|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v0|단답형",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v1|단답형",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v2|단답형",
+        "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v2|객관식",
+        "engine-native-desc:m3-quadratic-domain-r1|s20261018|v0",
+        "engine-native-desc:m3-quadratic-domain-r1|s20261018|v1"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderErrors": 0,
+      "renderedQuestions": 0,
+      "solutionItems": 14,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "figureSvgs": 0,
+      "clippedSvgs": [],
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "weight": "45 920",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "weight": "100 900",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 14,
+      "ids": [
+        "engine-mid:manual-20261018|대푯값과 산포도|S01|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S01|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S01|s20261020|v2|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v0|단답형",
+        "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v1|단답형",
+        "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v2|단답형",
+        "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v2|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S03|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S03|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S03|s20261020|v2|객관식",
+        "engine-native-desc:m3-statistics-shift-spread-r1|s20261018|v0",
+        "engine-native-desc:m3-statistics-shift-spread-r1|s20261018|v1"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderErrors": 0,
+      "renderedQuestions": 14,
+      "solutionItems": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "figureSvgs": 0,
+      "clippedSvgs": [],
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "weight": "45 920",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "weight": "100 900",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 14,
+      "ids": [
+        "engine-mid:manual-20261018|대푯값과 산포도|S01|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S01|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S01|s20261020|v2|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v0|단답형",
+        "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v1|단답형",
+        "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v2|단답형",
+        "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v2|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S03|s20261020|v0|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S03|s20261020|v1|객관식",
+        "engine-mid:manual-20261018|대푯값과 산포도|S03|s20261020|v2|객관식",
+        "engine-native-desc:m3-statistics-shift-spread-r1|s20261018|v0",
+        "engine-native-desc:m3-statistics-shift-spread-r1|s20261018|v1"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderErrors": 0,
+      "renderedQuestions": 0,
+      "solutionItems": 14,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "figureSvgs": 0,
+      "clippedSvgs": [],
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "weight": "45 920",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "weight": "100 900",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "native",
+      "mode": "questions",
+      "sentinel": false,
+      "rows": 12,
+      "ids": [
+        "engine-native-desc:e4-equilateral-audit-r1|s20261018|v0",
+        "engine-native-desc:e4-equilateral-audit-r1|s20261018|v1",
+        "engine-native-desc:e4-triangle-dual-proof-r1|s20261018|v0",
+        "engine-native-desc:e4-triangle-dual-proof-r1|s20261018|v1",
+        "engine-native-desc:e4-trapezoid-sufficiency-r1|s20261018|v0",
+        "engine-native-desc:e4-trapezoid-sufficiency-r1|s20261018|v1",
+        "engine-native-desc:m3-factor-error-proof-r1|s20261018|v0",
+        "engine-native-desc:m3-factor-error-proof-r1|s20261018|v1",
+        "engine-native-desc:m3-quadratic-domain-r1|s20261018|v0",
+        "engine-native-desc:m3-quadratic-domain-r1|s20261018|v1",
+        "engine-native-desc:m3-statistics-shift-spread-r1|s20261018|v0",
+        "engine-native-desc:m3-statistics-shift-spread-r1|s20261018|v1"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderErrors": 0,
+      "renderedQuestions": 12,
+      "solutionItems": 0,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "figureSvgs": 0,
+      "clippedSvgs": [],
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "weight": "45 920",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "weight": "100 900",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "status": "ready",
+      "group": "native",
+      "mode": "answers",
+      "sentinel": false,
+      "rows": 12,
+      "ids": [
+        "engine-native-desc:e4-equilateral-audit-r1|s20261018|v0",
+        "engine-native-desc:e4-equilateral-audit-r1|s20261018|v1",
+        "engine-native-desc:e4-triangle-dual-proof-r1|s20261018|v0",
+        "engine-native-desc:e4-triangle-dual-proof-r1|s20261018|v1",
+        "engine-native-desc:e4-trapezoid-sufficiency-r1|s20261018|v0",
+        "engine-native-desc:e4-trapezoid-sufficiency-r1|s20261018|v1",
+        "engine-native-desc:m3-factor-error-proof-r1|s20261018|v0",
+        "engine-native-desc:m3-factor-error-proof-r1|s20261018|v1",
+        "engine-native-desc:m3-quadratic-domain-r1|s20261018|v0",
+        "engine-native-desc:m3-quadratic-domain-r1|s20261018|v1",
+        "engine-native-desc:m3-statistics-shift-spread-r1|s20261018|v0",
+        "engine-native-desc:m3-statistics-shift-spread-r1|s20261018|v1"
+      ],
+      "expectedSvgRows": 0,
+      "pages": [
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ],
+      "renderErrors": 0,
+      "renderedQuestions": 0,
+      "solutionItems": 12,
+      "clippedQuestions": [],
+      "clippedSolutions": [],
+      "figureSvgs": 0,
+      "clippedSvgs": [],
+      "studentRubricLeak": false,
+      "fonts": [
+        {
+          "family": "bank-qa-font-pretendard",
+          "weight": "45 920",
+          "status": "unloaded"
+        },
+        {
+          "family": "bank-qa-font-noto-serif-kr",
+          "weight": "100 900",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "test": "private-solution-marker",
+      "mode": "questions",
+      "markers": 0
+    },
+    {
+      "test": "private-solution-marker",
+      "mode": "answers",
+      "markers": 12
+    }
+  ],
+  "errors": [],
+  "failedResponses": [],
+  "physicalPrinterVerified": false,
+  "batchSha256": "fec26b0f6586e3fb383800d84b6ac7ec3cb897e436b648b35135393acbf8f8d1",
+  "browser": "installed Playwright Chromium",
+  "assertionsPassed": true,
+  "pagesCaptured": 86,
+  "scope": "actual TestPrint CSS + canonical local fonts; no authenticated route session; physical print pending",
+  "tests": {
+    "registryFiles": 94,
+    "registryPassed": 13102,
+    "registryExistingSkipped": 128,
+    "globalInvariantFiles": 11,
+    "globalInvariantPassed": 3176,
+    "nativePurePassed": 85,
+    "printPackingAndComponent": 40,
+    "printChecklist": 10,
+    "typecheck": "passed",
+    "ownedLint": "0 errors"
+  },
+  "particleScan": {
+    "batchRows": 108,
+    "fields": 324,
+    "faults": 0,
+    "nativeSeedCases": 1212,
+    "middleSeedCases": 10836
+  }
+}
