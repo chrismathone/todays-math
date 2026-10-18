@@ -9,6 +9,7 @@ vi.mock("@/lib/session", () => ({
 }));
 import { GET, POST, PATCH } from "@/app/api/basket/route";
 import { POST as issue } from "@/app/api/basket/test/route";
+import { PATCH as reviewStatus } from "@/app/api/problems/[id]/review-status/route";
 import { db } from "@/lib/db";
 import {
   QUESTION_REVISION_SELECT,
@@ -79,6 +80,36 @@ beforeEach(async () => {
 });
 
 describe("one question in the account basket", () => {
+  it("keeps per-expression review status when a grouped preview is approved", async () => {
+    for (const id of [sa, mc])
+      await db.problem.update({
+        where: { id },
+        data: { reviewStatus: "pending" },
+      });
+    const res = await reviewStatus(
+      req(`/api/problems/${sa}/review-status?identity=question`, "PATCH", {
+        reviewStatus: "approved",
+      }),
+      { params: Promise.resolve({ id: sa }) },
+    );
+    expect(res.status).toBe(200);
+    const body = await res.json();
+    expect(body.data.id).toBe(sa);
+    expect(body.data.questionId).toBe(group);
+    expect(
+      body.data.questionFormats.find(
+        (r: { problemId: string }) => r.problemId === sa,
+      ).state,
+    ).toBe("available");
+    expect(
+      body.data.questionFormats.find(
+        (r: { problemId: string }) => r.problemId === mc,
+      ).state,
+    ).toBe("blocked");
+    expect(
+      (await db.problem.findUnique({ where: { id: mc } }))?.reviewStatus,
+    ).toBe("pending");
+  });
   it("shows an old double-format basket as one unresolved question and does not clean it on GET", async () => {
     await seed(sa, 2);
     await seed(mc, 9);
