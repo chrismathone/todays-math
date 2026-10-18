@@ -1,0 +1,131 @@
+{
+  "at": "2026-10-18T07:24:48.939Z",
+  "readOnly": true,
+  "rows": [
+    {
+      "id": "49b910e1-9f6d-494d-9a46-a63f498f57ce",
+      "beforeSha256": "c47237c5077ef338656e311ffb2af5f402ea1304a2419a43c523dfe343abd763",
+      "afterSha256": "04c44b6626f9c817b44df9deca65325b90c1857b6f502c57240326cd895a967b"
+    },
+    {
+      "id": "55d0da31-fcbe-4668-aad8-ec5c4e2bde48",
+      "beforeSha256": "a8c8e8a195401f0467f48325f87f3364461c1807423c44229e6a8cb9443bfa7e",
+      "afterSha256": "d3b6d3cbc301795f0b7ab37b450ff3e973f9210ac2180679ea0602c31722c5a6"
+    },
+    {
+      "id": "5ab631e3-d3fe-45da-b9fe-9b8832000a02",
+      "beforeSha256": "d4c5700ac923e25ff9090561e0b26e65d761864c1dc170c48a8e1ceff4ab5e3b",
+      "afterSha256": "cc4bf36d0d02fba624e0841cfe2e32daa52d1add772a2b41fe887c761b39f6bb"
+    },
+    {
+      "id": "616b77a3-b2e7-41da-be47-34ed8ecbde62",
+      "beforeSha256": "32d638360a5f752d9f227f978e132f568e802ef7733e530e68e0d6832001945a",
+      "afterSha256": "0cb9a7bf66e506a038a76e68c8f32386913d2cfb1fe546f7bbb9d2bf50e1e873"
+    },
+    {
+      "id": "788b9d83-f095-4169-87a1-d8836f91929f",
+      "beforeSha256": "0007567f1327a9ce4500c78f8b1be58d93c52d0601839e97dda602039d2de795",
+      "afterSha256": "3c0c8f54b7071af7722e83f6d090f1667adacdd7857ba1c772eedaba1eee2a73"
+    },
+    {
+      "id": "93fc1651-f95f-483e-97fc-14ffb94c0e3f",
+      "beforeSha256": "3e406de4c6bddc97a2c27ca767a8b968519b7238366371e3a8acd416f3fe8bd1",
+      "afterSha256": "94309a8a5ec4407cf6fea1050d4aa1356543568277426b0e40b8eb9aaf2a3f3f"
+    },
+    {
+      "id": "9efe82a7-7422-490b-becc-b3fa16407509",
+      "beforeSha256": "76453b34f3c5c33d32a997975175061af639cc4f46ee53851b2a52e32d5ff114",
+      "afterSha256": "403e5438f857832d0c7ddb73c31774663b355fac11aab29a005115a12bebced0"
+    },
+    {
+      "id": "fbba7fec-8705-4054-9fe1-feb0fa52118d",
+      "beforeSha256": "73fa44bdf29680f4ced8e2449eb3842ecb4c601326672c599bfed55de62ba665",
+      "afterSha256": "99f156bb9159563f2bd4c086a45caf294b7156e4811e53539dd643a63666dbe9"
+    }
+  ],
+  "referenceColumns": [
+    {
+      "schema": "public",
+      "table": "basket_item",
+      "column": "problem_id",
+      "kind": "scalar"
+    },
+    {
+      "schema": "public",
+      "table": "exam_question",
+      "column": "problem_id",
+      "kind": "scalar"
+    },
+    {
+      "schema": "public",
+      "table": "problem_answer",
+      "column": "problem_id",
+      "kind": "scalar"
+    },
+    {
+      "schema": "public",
+      "table": "problem_outer_wall_quarantine",
+      "column": "problem_id",
+      "kind": "scalar"
+    },
+    {
+      "schema": "public",
+      "table": "problem_report",
+      "column": "problem_id",
+      "kind": "scalar"
+    },
+    {
+      "schema": "public",
+      "table": "problem_review_log",
+      "column": "problem_id",
+      "kind": "scalar"
+    },
+    {
+      "schema": "public",
+      "table": "problem",
+      "column": "origin_problem_id",
+      "kind": "scalar"
+    },
+    {
+      "schema": "public",
+      "table": "test_problem",
+      "column": "problem_id",
+      "kind": "scalar"
+    },
+    {
+      "schema": "public",
+      "table": "textbook_problem_snapshot",
+      "column": "problem_id",
+      "kind": "scalar"
+    },
+    {
+      "schema": "public",
+      "table": "textbook_problem_snapshot",
+      "column": "source_key",
+      "kind": "source-key"
+    },
+    {
+      "schema": "public",
+      "table": "textbook_problem_snapshot",
+      "column": "source_ref",
+      "kind": "source-ref"
+    }
+  ],
+  "referenceCounts": {
+    "49b910e1-9f6d-494d-9a46-a63f498f57ce": {},
+    "55d0da31-fcbe-4668-aad8-ec5c4e2bde48": {},
+    "5ab631e3-d3fe-45da-b9fe-9b8832000a02": {},
+    "616b77a3-b2e7-41da-be47-34ed8ecbde62": {},
+    "788b9d83-f095-4169-87a1-d8836f91929f": {},
+    "93fc1651-f95f-483e-97fc-14ffb94c0e3f": {},
+    "9efe82a7-7422-490b-becc-b3fa16407509": {},
+    "fbba7fec-8705-4054-9fe1-feb0fa52118d": {}
+  },
+  "allOtherFieldsPreserved": true,
+  "changedFields": [
+    "content"
+  ],
+  "newWord": "숫자가",
+  "oldWord": "자연수가",
+  "notes": "Only the zero-inclusive card labels change. The positive natural number being formed, choices, answers, solutions and all metadata are unchanged."
+}
