@@ -382,11 +382,32 @@ describe("recent tests (read-only, 2026-10-17)", () => {
     ).toBe("blocked");
   });
 
-  it("returns an empty list when unlinked", async () => {
-    fixture.tables.eywaBinding[0].enabled = false;
+  it("says when sync marked the student as gone from math", async () => {
     expect(
-      (await getEywaStudentStatus("binding", "source-student")).recentTests,
-    ).toEqual([]);
+      (await getEywaStudentStatus("binding", "source-student")).withdrawnAt,
+    ).toBeNull();
+    fixture.tables.student[0].eywaWithdrawnAt = new Date(
+      "2026-09-30T15:00:00Z",
+    );
+    const result = await getEywaStudentStatus("binding", "source-student");
+    expect(result.withdrawnAt).toBe("2026-09-30T15:00:00.000Z");
+    expect(result.classes).toEqual([
+      { sourceClassId: "source-a", name: "Math A", active: false },
+    ]);
+  });
+
+  it("returns an empty list when unlinked", async () => {
+    expect(
+      (await getEywaStudentStatus("binding", "source-student")).available,
+    ).toBe(true);
+    fixture.tables.eywaBinding[0].enabled = false;
+    const down = await getEywaStudentStatus("binding", "source-student");
+    expect(down.recentTests).toEqual([]);
+    expect(down.available).toBe(false);
+    fixture.tables.eywaBinding[0].mode = "shadow";
+    const setup = await getEywaStudentStatus("binding", "source-student");
+    expect(setup.available).toBe(true);
+    expect(setup.mode).toBe("shadow");
   });
 });
 

@@ -67,6 +67,10 @@ export async function getEywaStudentStatus(
     tests: { assigned: 0, completed: 0 },
     recentTests: [] as RecentTest[],
     account: null as StudentAccountSummary,
+    // When eywa sync marked the student as gone from math (withdrawal or leaving every math class).
+    withdrawnAt: null as string | null,
+    // False when an active binding is off/unhealthy/lease-expired — "not linked" would then be a lie.
+    available: true,
     lastActivityAt: null as string | null,
   };
   if (
@@ -78,7 +82,10 @@ export async function getEywaStudentStatus(
     !binding.leaseExpiresAt ||
     binding.leaseExpiresAt.getTime() <= Date.now()
   )
-    return empty;
+    // Shadow (setup) mode or no binding is a deliberate state, not an outage.
+    return binding && binding.mode === "active"
+      ? { ...empty, available: false }
+      : empty;
   const student = await db.student.findFirst({
     where: {
       eywaStudentId: sourceStudentId,
@@ -181,6 +188,7 @@ export async function getEywaStudentStatus(
         : (await managedStudentAccess(student.id, bindingId)).allowed,
       Date.now(),
     ),
+    withdrawnAt: student.eywaWithdrawnAt?.toISOString() ?? null,
     lastActivityAt: last === undefined ? null : new Date(last).toISOString(),
   };
 }
