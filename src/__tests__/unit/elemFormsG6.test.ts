@@ -1116,8 +1116,11 @@ describe("초6 전량 문형 — 기본 01–10, 확대 갈래는 11·12", () =>
         ).map(([, id]) => id),
       ];
       if (want.length > CORE_IDS.length) withExtending += 1;
+      // 그림 문형 21~ · 진술 문형 31 · 32 는 이 축 밖이라 뺀다(`figureForms.ts` · `statementForms.ts`).
       expect(
-        listedForms(u).map((f) => f.id),
+        listedForms(u)
+          .map((f) => f.id)
+          .filter((id) => Number(id) < 21),
         u.section,
       ).toEqual(want);
       // 갈래와 문형이 **같은 함수**를 가리키는지까지 본다 — id 만 맞고

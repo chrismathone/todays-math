@@ -55,9 +55,13 @@ describe("그림 문형 — 등록", () => {
       expect(coreForms(unit), key).toHaveLength(10);
       const ids = listedForms(unit).map((f) => f.id);
       expect(new Set(ids).size, key).toBe(ids.length);
-      expect(ids.slice(-FIGURE_FORMS[key]!.length), key).toEqual(
-        FIGURE_FORMS[key]!.map((f) => f.id),
-      );
+      // 그림 문형은 기본 · 확대 뒤 · 진술 문형(31 · 32) 앞에 선다.
+      const firstFigure = ids.indexOf(FIGURE_FORMS[key]![0]!.id);
+      expect(ids.slice(0, firstFigure).every((id) => Number(id) < 21), key).toBe(true);
+      expect(
+        ids.slice(firstFigure, firstFigure + FIGURE_FORMS[key]!.length),
+        key,
+      ).toEqual(FIGURE_FORMS[key]!.map((f) => f.id));
       expect(expectedFormCount(unit), key).toBe(ids.length);
     }
   });

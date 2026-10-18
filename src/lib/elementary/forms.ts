@@ -20,6 +20,7 @@ import {
 } from "./difficulty";
 import { figureForms } from "./figureForms";
 import { reinforcementForms20261018 } from "./reinforcementForms20261018";
+import { statementForms } from "./statementForms";
 import { createRng } from "./rng";
 import type { ElemForm, ElemProblem } from "./types";
 
@@ -94,13 +95,13 @@ export function coreForms(unit: UnitSeed): readonly ElemForm[] {
 }
 
 /**
- * 적재기가 도는 문형 전부 — 기본 열 + 확대 11 · 12 + 그림 문형 21~ + 보강 문형 31~39.
- * 추가 문형은 문형 등록이 있는 소단원에만 붙는다(빈 배열은 «등록 안 됨»이다 — 위 `withExtendingForms` 와 같은 까닭).
+ * 적재기가 도는 문형 전부 — 기본 열 + 확대 11 · 12 + 그림 21~ + 진술 31 · 32 + 보강 31~39.
+ * 추가 문형은 문형 등록이 있는 소단원에만 붙는다. 진술/보강은 서로 다른 소단원에 등록한다.
  */
 export function listedForms(unit: UnitSeed): readonly ElemForm[] {
   const forms = FORMS[tierKey(unit)] ?? [];
   if (forms.length === 0) return forms;
-  const extra = [...figureForms(unit), ...reinforcementForms20261018(unit)];
+  const extra = [...figureForms(unit), ...statementForms(unit), ...reinforcementForms20261018(unit)];
   return extra.length === 0 ? forms : [...forms, ...extra];
 }
 
@@ -123,6 +124,7 @@ export function expectedFormCount(unit: UnitSeed): number {
     base.length +
     extra +
     figureForms(unit).length +
+    statementForms(unit).length +
     reinforcementForms20261018(unit).length
   );
 }
