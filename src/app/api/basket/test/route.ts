@@ -1,31 +1,4 @@
-/**
- * POST /api/basket/test — **담은 것만으로 새 시험지**를 만든다 (원장님 확정 2026-09-04).
- * 대응 계약: `src/contracts/basket.contract.ts`
- *
- * 자동 출제(`/api/tests/generate`)는 **그대로 둔다.** 이것은 그 옆에 나는
- * «손으로 짜는 길» 하나다 — 진도·난이도 배분·D-20 최근 제외를 하나도 안 본다.
- * 원장이 눈으로 고른 것이 곧 시험지다.
- *
- * ## 🔴 범위를 화면에서 안 받는다
- *
- * `Test.rangeEndUnitId` 는 NOT NULL 이라 무언가는 적어야 한다. 그런데 손으로 고른
- * 시험지의 범위는 **담긴 문항이 정한다** — 화면이 보내게 두면 담긴 것과 어긋난
- * 범위가 지면에 찍힌다. 그래서 담긴 문항의 단원을 `Unit.orderIndex` 로 세워
- * 가장 앞과 가장 뒤를 서버가 고른다.
- *
- * ## 차례를 여기서 **다시 센다**
- *
- * 바구니의 `orderIndex` 는 빼기가 구멍을 내므로 1..N 이 아니다(그건 일부러 그렇다 —
- * 다시 매기면 「셋째로 담은 것」이 다른 문항을 가리킨다). 시험지의 문항 번호는
- * 1..N 이어야 하므로 **담은 차례대로 읽어 새로 붙인다.**
- *
- * ## 비운 뒤에 만든다
- *
- * 시험지가 만들어지면 바구니를 비운다. 안 비우면 다음 시험지에 같은 문항이 통째로
- * 다시 실리고, 원장이 그것을 알아채는 자리가 **인쇄물뿐**이다.
- */
 import type { NextRequest } from "next/server";
-
 import {
   basketTestRequestSchema,
   basketTestResponseSchema,
@@ -37,146 +10,150 @@ import {
   validationError,
 } from "@/lib/apiResponse";
 import { renumberForTest } from "@/lib/basket/readBasket";
-import { db } from "@/lib/db";
+import { basketTransaction, lockQuestionRows } from "@/lib/basket/transaction";
 import { assertClassWrite, assertStudentEnrollment } from "@/lib/classAccess";
 import { personalViewer } from "@/lib/ownerScope";
 import { requireOwnedClass, requireOwnedStudentInClass } from "@/lib/ownership";
 import { problemIneligibleReason } from "@/lib/problemEligibility";
 import { getSessionUser } from "@/lib/session";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
+import { questionIdOf } from "@/lib/problem/questionIdentity";
+import { validateQuestionSelections } from "@/lib/problem/questionQueries";
+import { QuestionSelectionConflict } from "@/lib/problem/questionSelection";
+import { loadRecentProblemIds } from "@/lib/tests/recentProblemIds";
 
 async function handlePost(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
-
-  const body = await request.json().catch(() => undefined);
-  const parsed = basketTestRequestSchema.safeParse(body);
+  const parsed = basketTestRequestSchema.safeParse(
+    await request.json().catch(() => undefined),
+  );
   if (!parsed.success) return validationError(parsed.error);
   const input = parsed.data;
-
-  // 🔴 장바구니는 개인 작업물이다(D-130 ⑶) — 관리자여도 **자기 반**에만 만든다. 넓히려면 리드 결정.
+  // A personal basket is issued only to an owned class, including for administrators.
   const viewer = personalViewer(session);
   const owned = await requireOwnedClass(input.classId, viewer, "test:write");
   if (!owned.ok) return owned.response;
   if (input.studentId) {
-    const studentOwned = await requireOwnedStudentInClass(
+    const student = await requireOwnedStudentInClass(
       input.studentId,
       input.classId,
       viewer,
     );
-    if (!studentOwned.ok) return studentOwned.response;
+    if (!student.ok) return student.response;
   }
-
-  const items = await db.basketItem.findMany({
-    where: { userId: session.id },
-    orderBy: { orderIndex: "asc" },
-    include: {
-      problem: {
-        select: {
-          id: true,
-          unitId: true,
-          problemCode: true,
-          pool: true,
-          reviewStatus: true,
-          directUseAllowed: true,
-          answer: true,
+  const recent = input.recent
+    ? new Set(await loadRecentProblemIds(session.id, input.testDate))
+    : null;
+  try {
+    const result = await basketTransaction(session.id, async (tx) => {
+      await assertClassWrite(tx, viewer, input.classId, "test:write");
+      if (input.studentId)
+        await assertStudentEnrollment(tx, input.studentId, input.classId);
+      const ids = await tx.basketItem.findMany({
+        where: { userId: session.id },
+        select: { problemId: true },
+      });
+      await lockQuestionRows(
+        tx,
+        ids.map((item) => item.problemId),
+      );
+      const items = await tx.basketItem.findMany({
+        where: { userId: session.id },
+        orderBy: { orderIndex: "asc" },
+        include: { problem: true },
+      });
+      if (!items.length)
+        return jsonError(
+          "VALIDATION_ERROR",
+          "담은 문항이 없습니다. 문제은행에서 먼저 담아 주세요.",
+          422,
+        );
+      if (
+        new Set(items.map((item) => questionIdOf(item.problem))).size !==
+        items.length
+      )
+        return jsonError(
+          "VALIDATION_ERROR",
+          "같은 문항의 여러 형식이 담겨 있습니다. 유지할 형식을 선택해 주세요.",
+          422,
+        );
+      if (input.identity === "question" || input.selections) {
+        if (
+          !input.selections ||
+          input.selections.length !== items.length ||
+          input.selections.some(
+            (selection, i) => selection.problemId !== items[i].problemId,
+          )
+        )
+          throw new QuestionSelectionConflict(
+            "다른 화면에서 바구니가 바뀌었습니다. 담긴 문항을 다시 확인해 주세요.",
+          );
+        await validateQuestionSelections(input.selections, tx);
+      }
+      const blocked = items.flatMap((item) => {
+        const reason = problemIneligibleReason(item.problem);
+        return reason ? [`${item.problem.problemCode}(${reason})`] : [];
+      });
+      if (blocked.length)
+        return jsonError(
+          "VALIDATION_ERROR",
+          `낼 수 없는 문항 ${blocked.length}건이 담겨 있습니다. ${blocked.slice(0, 3).join(" · ")}`,
+          422,
+        );
+      if (recent && items.some((item) => recent.has(item.problemId)))
+        return jsonError(
+          "VALIDATION_ERROR",
+          "최근 사용한 문항이 담겨 있습니다. 형식을 바꾸어도 같은 문항이므로 새 문항을 선택해 주세요.",
+          422,
+        );
+      const units = await tx.unit.findMany({
+        where: {
+          id: { in: [...new Set(items.map((item) => item.problem.unitId))] },
         },
-      },
-    },
-  });
-
-  // 🔴 빈 바구니로 시험지를 만들면 **문항 0개짜리 지면**이 나간다. 스키마가 그것을
-  //    안 막으므로(문항은 다른 표다) 여기서 막고, 화면이 읽을 수 있는 사유를 준다.
-  if (items.length === 0) {
-    return jsonError(
-      "VALIDATION_ERROR",
-      "담은 문항이 없습니다. 문제은행에서 먼저 담으십시오.",
-      422,
-    );
-  }
-
-  // 🔴 **담긴 것 중 낼 수 없는 것이 있으면 시험지를 만들지 않는다** (2026-09-07).
-  //    담기에도 같은 가드가 있지만 여기가 없으면 안 된다 — 가드가 생기기 **전에** 담긴
-  //    행과, 담은 뒤에 잠긴 문항이 그대로 지면으로 나간다. 자격은 담을 때가 아니라
-  //    **종이가 될 때** 참이어야 한다.
-  //
-  //    조용히 빼지 않는다: 원장이 고른 것과 다른 시험지가 나가면 그 사실을 인쇄물에서만
-  //    알게 된다. 무엇을 빼야 하는지 말해 주고 멈춘다(D-20 — 무엇을 잃는지 세라).
-  const blocked = items
-    .map((item) => ({
-      code: item.problem.problemCode,
-      reason: problemIneligibleReason(item.problem),
-    }))
-    .filter((x): x is { code: string; reason: string } => x.reason !== null);
-  if (blocked.length > 0) {
-    const head = blocked
-      .slice(0, 3)
-      .map((b) => `${b.code}(${b.reason})`)
-      .join(" · ");
-    return jsonError(
-      "VALIDATION_ERROR",
-      `낼 수 없는 문항 ${blocked.length}건이 담겨 있습니다. 빼고 다시 만드십시오 — ${head}${blocked.length > 3 ? " 외" : ""}`,
-      422,
-    );
-  }
-
-  // 범위 — 담긴 문항의 단원을 교육과정 차례로 세워 양끝을 고른다.
-  const units = await db.unit.findMany({
-    where: { id: { in: [...new Set(items.map((i) => i.problem.unitId))] } },
-    select: { id: true, orderIndex: true },
-    orderBy: { orderIndex: "asc" },
-  });
-  // 단원이 하나도 안 나오면 담긴 문항이 사라진 것이다 — 조용히 넘기지 않는다.
-  const first = units[0];
-  const last = units[units.length - 1];
-  if (!first || !last) {
-    return jsonError(
-      "VALIDATION_ERROR",
-      "담은 문항의 단원을 찾지 못했습니다.",
-      422,
-    );
-  }
-
-  const created = await db.$transaction(async (tx) => {
-    await assertClassWrite(tx, viewer, input.classId, "test:write");
-    if (input.studentId)
-      await assertStudentEnrollment(tx, input.studentId, input.classId);
-    const test = await tx.test.create({
-      data: {
-        userId: session.id,
-        classId: input.classId,
-        studentId: input.studentId ?? null,
-        // 손으로 고른 시험지는 진도에 매이지 않는다 — 범위가 있는 `review` 쪽이다.
-        testType: "review",
-        rangeStartUnitId: first.id,
-        rangeEndUnitId: last.id,
-        status: "draft",
-        modified: false,
-        testDate: new Date(`${input.testDate}T00:00:00.000Z`),
-      },
+        select: { id: true, orderIndex: true },
+        orderBy: { orderIndex: "asc" },
+      });
+      const first = units[0],
+        last = units[units.length - 1];
+      if (!first || !last)
+        return jsonError(
+          "VALIDATION_ERROR",
+          "담은 문항의 단원을 찾지 못했습니다.",
+          422,
+        );
+      const test = await tx.test.create({
+        data: {
+          userId: session.id,
+          classId: input.classId,
+          studentId: input.studentId ?? null,
+          testType: "review",
+          rangeStartUnitId: first.id,
+          rangeEndUnitId: last.id,
+          status: "draft",
+          modified: false,
+          testDate: new Date(`${input.testDate}T00:00:00.000Z`),
+        },
+      });
+      await tx.testProblem.createMany({
+        data: renumberForTest(items).map(({ item, orderIndex }) => ({
+          testId: test.id,
+          problemId: item.problemId,
+          orderIndex,
+          replaced: false,
+        })),
+      });
+      await tx.basketItem.deleteMany({ where: { userId: session.id } });
+      return { testId: test.id, problemCount: items.length };
     });
-
-    await tx.testProblem.createMany({
-      // 🔴 번호를 여기서 다시 세지 않는다 — `renumberForTest` **한 곳**이 그 규칙을
-      //    들고 있고 시험이 그것을 겨눈다. 옮겨 적으면 두 벌이 된다.
-      data: renumberForTest(items).map(({ item, orderIndex }) => ({
-        testId: test.id,
-        problemId: item.problem.id,
-        orderIndex,
-        replaced: false,
-      })),
-    });
-
-    // 시험지가 된 바구니는 비운다 — 안 비우면 다음 시험지에 통째로 다시 실린다.
-    await tx.basketItem.deleteMany({ where: { userId: session.id } });
-    return test;
-  });
-
-  return jsonOk(
-    basketTestResponseSchema,
-    { data: { testId: created.id, problemCount: items.length } },
-    { status: 201 },
-  );
+    return result instanceof Response
+      ? result
+      : jsonOk(basketTestResponseSchema, { data: result }, { status: 201 });
+  } catch (error) {
+    if (error instanceof QuestionSelectionConflict)
+      return jsonError("CONFLICT", error.message, 409);
+    throw error;
+  }
 }
 
 export const POST = withErrorLog("/api/basket/test", handlePost);

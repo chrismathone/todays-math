@@ -51,6 +51,8 @@ export interface SelectableProblem {
    *    넘기는 옛 호출부는 예전과 한 글자도 다르지 않다.
    */
   familyKey?: string | null;
+  /** A proven question identity shared only by representations of the same task. */
+  questionGroupKey?: string | null;
   /** 본문 — 지면에서 몇 줄을 먹는지 재는 근거(`estimateProblemPx`). */
   content?: string;
   /** 그림 경로들. 개수가 곧 `figureDims` 의 짝 수다. */

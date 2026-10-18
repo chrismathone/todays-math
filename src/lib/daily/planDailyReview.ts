@@ -95,6 +95,8 @@ export interface DailyGroupStudent {
   grade: string;
   className: string;
   classOwner?: ClassOwner;
+  /** Actual default used by this student's generation request, never the group's maximum. */
+  problemCount?: number;
 }
 
 export interface DailyGroup {
@@ -238,6 +240,7 @@ export function planDailyReview(args: {
       classId: st.classId,
       grade: gradeOf(st),
       className: st.className,
+      problemCount: st.defaultProblemCount,
       ...(st.classOwner ? { classOwner: st.classOwner } : {}),
     };
 

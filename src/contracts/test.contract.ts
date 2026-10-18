@@ -313,6 +313,7 @@ const dailyGroupStudentSchema = z.strictObject({
   classId: uuidSchema,
   grade: z.string(),
   className: z.string(),
+  problemCount: z.number().int().min(1).max(30).optional(),
   /** 담당(D-132) — **관리자에게만** 실린다. 관리자가 아니면 키째로 없다. */
   classOwner: classOwnerSchema.optional(),
 });

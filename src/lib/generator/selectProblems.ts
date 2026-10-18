@@ -18,6 +18,10 @@ import {
   type SubstitutionRecord,
 } from "./balanceDifficulty";
 import { seededShuffle } from "./seededRandom";
+import {
+  groupQuestionRows,
+  questionIdOf,
+} from "@/lib/problem/questionIdentity";
 
 export type { SelectableProblem };
 
@@ -118,10 +122,22 @@ export function selectProblems<T extends SelectableProblem>(
   const { pool, difficultyRatio, count, recentProblemIds, seed } = args;
 
   const excludedIds = new Set(recentProblemIds);
-  const candidates = pool.filter(
-    (p) => !excludedIds.has(p.id) && p.directUseAllowed !== false,
+  const excludedQuestions = new Set(
+    pool.filter((p) => excludedIds.has(p.id)).map(questionIdOf),
   );
-  const shuffled = seededShuffle(candidates, seed);
+  const candidates = pool.filter(
+    (p) =>
+      !excludedIds.has(p.id) &&
+      !excludedQuestions.has(questionIdOf(p)) &&
+      p.directUseAllowed !== false,
+  );
+  // Draw questions uniformly first, then an actual representation. Extra formats cannot weight a task.
+  const questions = [...groupQuestionRows(candidates)].map(([id, rows]) =>
+    rows.length === 1
+      ? rows[0]!
+      : seededShuffle(rows, `${seed}:format:${id}`)[0]!,
+  );
+  const shuffled = seededShuffle(questions, seed);
 
   /**
    * ⑷ — 「이어지는 장의 반 칸(484px)에 안 들어가는 문항」을 후순위로 돌린다.

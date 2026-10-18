@@ -42,6 +42,7 @@ export type UsageUnit = {
 
 export type UsageProblemRecord = {
   id: string;
+  questionId?: string;
   visible: boolean;
   eligible: boolean;
   ineligibleCode: ProblemIneligibleCode | null;
@@ -249,7 +250,11 @@ function problemLabels(
       continue;
     }
     const group = byUnit.get(record.unit.id) ?? [];
-    group.push({ key: problemId, count });
+    const key = record.questionId ?? problemId;
+    // The loader supplies a union count. Never sum format siblings or rank them twice.
+    const existing = group.find((item) => item.key === key);
+    if (existing) existing.count = Math.max(existing.count, count);
+    else group.push({ key, count });
     byUnit.set(record.unit.id, group);
   }
   return ids.map((problemId) => {
@@ -266,7 +271,10 @@ function problemLabels(
       };
     }
     const population = byUnit.get(record.unit.id) ?? [];
-    const decision = decideUsageRank(population, problemId);
+    const decision = decideUsageRank(
+      population,
+      record.questionId ?? problemId,
+    );
     const tooltip = `차시 ${record.unit.section} · ${periodLabel} · ${decision.count}회`;
     return {
       problemId,

@@ -3,6 +3,7 @@
  * 날짜 윈도우 판정은 여기서 끝내고, 엔진(selectProblems/excludeRecent)에는 id만 넘긴다.
  */
 import { db } from "@/lib/db";
+import { expandQuestionProblemIds } from "@/lib/problem/questionQueries";
 
 import { DUPLICATE_EXCLUSION_DAYS } from "./constants";
 
@@ -45,5 +46,5 @@ export async function loadRecentProblemIds(
     where: { testId: { in: recentTestIds } },
     select: { problemId: true },
   });
-  return items.map((item) => item.problemId);
+  return expandQuestionProblemIds(items.map((item) => item.problemId));
 }
