@@ -7,6 +7,7 @@ import {
 } from "../../../src/lib/elementary/generate";
 import { renderFigureSpec } from "../../../src/lib/figure/renderFigureSpec";
 import {
+  assertPostDdlRepairSnapshot,
   independentlyVerifyRepairs,
   planRepairChanges,
   type Repair,
@@ -38,6 +39,41 @@ const sourceCases = [
   ["2-4-4", "05", "quad244Pick"],
   ["2-6-3", "10", "poly263Name"],
 ] as const;
+
+async function choiceFixture(section: string, formId: string, repair: string) {
+  const unit = elementaryUnits().find(
+    (unit) => unit.grade === "초4" && unit.section.startsWith(section + " "),
+  )!;
+  const p = generateElementaryForm(unit, 20260827, formId);
+  const drawn = await renderFigureSpec(p.figureSpec!, { strict: true });
+  if (!drawn.ok) throw new Error(drawn.error);
+  return {
+    id: "actual-svg-regression",
+    repair,
+    questionType: "단답형",
+    payload: {
+      content: p.content,
+      answer: p.answer,
+      solution: p.solution,
+      figureSvg: drawn.svg,
+    },
+    figureSpec: p.figureSpec,
+  } as Repair;
+}
+
+function replaceActualPolygon(row: Repair, shape: string, points: string) {
+  const index = (row.figureSpec!.items as { shape: string }[]).findIndex(
+    (item) => item.shape === shape,
+  );
+  expect(index).toBeGreaterThanOrEqual(0);
+  let slot = 0;
+  row.payload.figureSvg = row.payload.figureSvg!.replace(
+    /(<polygon points=")[^"]+("[^>]*>)/g,
+    (full, prefix: string, suffix: string) =>
+      slot++ === index ? prefix + points + suffix : full,
+  );
+  return row;
+}
 
 describe("17-row source corrections", () => {
   it("independently solves actual SVG for three original seeds in all five families", async () => {
@@ -83,11 +119,42 @@ describe("17-row source corrections", () => {
       proof.independentActualSvgProofs.every((row) => row.uniqueAnswer),
     ).toBe(true);
   }, 60_000);
-  it("keeps equilateral, right-isosceles and wide-isosceles global coordinates", async () => {
+  it("rejects the old near-isosceles SVG independently of its opted-in shape name", async () => {
+    const row = await choiceFixture("2-2-1", "09", "tri221PickIso");
+    // R2 lengths 44 / 44.87 / 56.35: 1.98% separation, despite exact inequality.
+    replaceActualPolygon(row, "choiceScaleneTri", "0,44 8.8,0 44,44");
+    expect(() => independentlyVerifyRepairs([row], repo)).toThrow(
+      /Triangle side margin <15%/,
+    );
+  });
+  it("rejects close base angles even when every side difference exceeds 15%", async () => {
+    const row = await choiceFixture("2-2-2", "09", "tri222Pick");
+    // Length ratios differ by >40%, but the two small angles differ by only 8.13 degrees.
+    replaceActualPolygon(row, "choiceScaleneTri", "0,0 44,0 17.6,8.8");
+    expect(() => independentlyVerifyRepairs([row], repo)).toThrow(
+      /Triangle angle margin <10/,
+    );
+  });
+  it("rejects the old irregQuad's actual near-parallel sides despite a nonzero cross product", async () => {
+    const row = await choiceFixture("2-4-4", "05", "quad244Pick");
+    // R2 irregQuad, with one opposite pair only 0.046 degrees apart.
+    replaceActualPolygon(
+      row,
+      "choiceSkewQuad",
+      "18.52,17.68 55.48,8 59,35.28 22.92,52",
+    );
+    expect(() => independentlyVerifyRepairs([row], repo)).toThrow(
+      /Quadrilateral parallel margin <10/,
+    );
+  });
+  it("keeps all accepted and shared shape coordinates unchanged", async () => {
     for (const [shape, expected] of [
       ["eqTri", [1936, 1936, 1936]],
       ["rightTri", [1936, 1936, 3872]],
       ["wideTri", [1135.2384, 1135.2384, 1936]],
+      ["choiceRightScaleneTri", [1239.04, 1936, 3175.04]],
+      ["choiceNonparallelQuad", [861.52, 1055.12, 1316.48, 2013.44]],
+      ["irregQuad", [756.5888, 1197.2224, 1459.744, 1581.3248]],
     ] as const) {
       const drawn = await renderFigureSpec({
         version: "elem-1",
@@ -102,20 +169,27 @@ describe("17-row source corrections", () => {
       const squares = pts
         .map(
           ([x, y], i) =>
-            (pts[(i + 1) % 3]![0]! - x!) ** 2 +
-            (pts[(i + 1) % 3]![1]! - y!) ** 2,
+            (pts[(i + 1) % pts.length]![0]! - x!) ** 2 +
+            (pts[(i + 1) % pts.length]![1]! - y!) ** 2,
         )
         .sort((a, b) => a - b);
       expected.forEach((value, i) => expect(squares[i]).toBeCloseTo(value, 0));
     }
   }, 30_000);
-  it("rejects scoped choice shapes in the global markedShape vocabulary", async () => {
-    const result = await renderFigureSpec({
-      version: "elem-1",
-      kind: "markedShape",
-      shape: "choiceScaleneTri",
-    });
-    expect(result.ok).toBe(false);
+  it("rejects all scoped choice shapes in the global markedShape vocabulary", async () => {
+    for (const shape of [
+      "choiceScaleneTri",
+      "choiceRightScaleneTri",
+      "choiceNonparallelQuad",
+      "choiceSkewQuad",
+    ]) {
+      const result = await renderFigureSpec({
+        version: "elem-1",
+        kind: "markedShape",
+        shape,
+      });
+      expect(result.ok).toBe(false);
+    }
   });
 });
 
@@ -200,6 +274,19 @@ describe("separate repair protections", () => {
     id: row.id,
     payload: { ...payloadOf(row), content: "fixed" },
   })) as Repair[];
+  it("rejects pre-DDL whole-row snapshots and rows whose group key has since been assigned", () => {
+    expect(() => assertPostDdlRepairSnapshot(before)).not.toThrow();
+    const { question_group_key: omitted, ...preDdl } = before[0]!;
+    expect(omitted).toBeNull();
+    expect(() => assertPostDdlRepairSnapshot([preDdl as DatabaseRow])).toThrow(
+      /Fresh post-DDL/,
+    );
+    expect(() =>
+      assertPostDdlRepairSnapshot([
+        { ...before[0]!, question_group_key: "later-proof" },
+      ]),
+    ).toThrow(/Fresh post-DDL/);
+  });
   it("is read-only unless all coordinator gates are explicit", () => {
     expect(() => assertCoordinatorWrite(false, "1", "coordinator")).toThrow();
     expect(() =>

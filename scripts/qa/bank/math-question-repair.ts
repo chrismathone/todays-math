@@ -12,8 +12,10 @@ import {
   REPAIR_PREFLIGHT,
   REPAIR_SOURCE_FILES,
   buildRepairs,
+  checkRepairManifest,
   executeRepairs,
   independentlyVerifyRepairs,
+  planRepairChanges,
   repairEntries,
   type RepairBeforeLedger,
   type RepairManifest,
@@ -33,6 +35,7 @@ import {
   stableJson,
   valueDigest,
   type ApprovalFiles,
+  type DatabaseRow,
 } from "../../import/protected-question-maintenance";
 
 const repoDir = path.resolve(__dirname, "../../..");
@@ -44,7 +47,7 @@ const outIndex = args.indexOf("--out-dir");
 const folder =
   outIndex >= 0
     ? args[outIndex + 1]!
-    : "docs/planning/tracks/reports/math-question-formats-20261018/content-repair-r2";
+    : "docs/planning/tracks/reports/math-question-formats-20261018/content-repair-r3";
 if (!folder || path.isAbsolute(folder) || folder.startsWith(".."))
   throw new Error("Output directory must be repository-relative");
 const files: ApprovalFiles = {
@@ -56,7 +59,7 @@ const files: ApprovalFiles = {
 };
 const privateDir = path.resolve(
   repoDir,
-  ".qa-artifacts/math-question-formats-20261018/content-repair-r2",
+  ".qa-artifacts/math-question-formats-20261018/content-repair-r3",
 );
 const privateBefore = path.join(privateDir, "before-private.json");
 const privateCandidates = path.join(privateDir, "candidates-private.json");
@@ -157,6 +160,11 @@ async function main() {
         referencedRows: 0,
         allIdsCodesExternalIdsAndAnswerPositionsPreserved: true,
         actualSvgIndependentVerification: true,
+        postDdlQuestionGroupKeyPresentAndNull: before.rows.every(
+          (row) =>
+            Object.hasOwn(row, "question_group_key") &&
+            row.question_group_key === null,
+        ),
         sharedDatabaseWrites: 0,
         physicalPrinterVerified: false,
       });
@@ -174,10 +182,28 @@ async function main() {
     const manifest = read<RepairManifest>(files.manifest);
     const before = read<RepairBeforeLedger>(files.before);
     if (mode === "verify") {
-      const rows = await buildRepairs(read(privateBefore), repoDir);
-      if (stableJson(repairEntries(rows)) !== stableJson(manifest.rows))
+      const originals = read<DatabaseRow[]>(privateBefore);
+      const candidates =
+        read<Awaited<ReturnType<typeof buildRepairs>>>(privateCandidates);
+      if (
+        digest(readFileSync(privateBefore)) !== before.privateBeforeSha256 ||
+        digest(readFileSync(privateCandidates)) !==
+          manifest.privateCandidatesSha256 ||
+        digest(readFileSync(path.resolve(repoDir, files.manifest))) !==
+          before.manifestSha256 ||
+        stableJson(sourceDigests(repoDir, REPAIR_SOURCE_FILES)) !==
+          stableJson(manifest.sourceDigests)
+      )
+        throw new Error("Frozen repair file/source SHA mismatch");
+      checkRepairManifest(manifest, before, originals, candidates);
+      const rows = await buildRepairs(originals, repoDir);
+      if (stableJson(rows) !== stableJson(candidates))
         throw new Error("Frozen regeneration mismatch");
-      independentlyVerifyRepairs(rows, repoDir);
+      if (
+        digest(JSON.stringify(independentlyVerifyRepairs(rows, repoDir))) !==
+        manifest.independentProofSha256
+      )
+        throw new Error("Frozen coordinate proof mismatch");
       const result = await readonlyMaintenance(prisma, async (tx) => {
         const current = await readRows(
           tx,
@@ -189,10 +215,27 @@ async function main() {
           refs,
           rows.map((row) => row.id),
         );
+        assertNoReferences(references);
+        const changes = planRepairChanges(rows, originals, current, "apply");
         return {
           readOnly: true,
           rows: current.length,
+          pendingChanges: changes.work.length,
+          alreadyApplied: changes.matched.length,
+          fullRowCasVerified: true,
+          privateFileAndSourceShasVerified: true,
+          coordinateProofShaVerified: true,
+          postDdlQuestionGroupKeyPresentAndNull: current.every(
+            (row) =>
+              Object.hasOwn(row, "question_group_key") &&
+              row.question_group_key === null,
+          ),
+          sharedDatabaseWrites: 0,
           references,
+          currentFullRows: current.map((row) => ({
+            id: row.id,
+            sha256: valueDigest(row),
+          })),
           currentPayloads: current.map((row) => ({
             id: row.id,
             sha256: payloadDigest(payloadOf(row)),

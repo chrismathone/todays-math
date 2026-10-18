@@ -89,10 +89,23 @@ const handlers: Record<string, string> = {
   "elem:초4|2-4-4 사다리꼴|05": "quad244Pick",
   "elem:초4|2-6-3 대각선|10": "poly263Name",
 };
+export function assertPostDdlRepairSnapshot(
+  rows: readonly DatabaseRow[],
+): void {
+  for (const row of rows)
+    if (
+      !Object.hasOwn(row, "question_group_key") ||
+      row.question_group_key !== null
+    )
+      throw new Error(
+        `Fresh post-DDL repair snapshot requires NULL question_group_key: ${row.id}`,
+      );
+}
 export async function buildRepairs(
   before: readonly DatabaseRow[],
   repoDir: string,
 ): Promise<Repair[]> {
+  assertPostDdlRepairSnapshot(before);
   const baseline = JSON.parse(
     readFileSync(path.resolve(repoDir, REPAIR_PREFLIGHT), "utf8"),
   ) as {

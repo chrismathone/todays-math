@@ -1722,11 +1722,14 @@ _SHAPE_KINDS = frozenset(
 )
 # Exact non-example shapes for the three repaired choice families (2026-10-18).
 # They are opt-in namedShapes values, outside the shared markedShape vocabulary.
-# Existing eqTri/rightTri/wideTri coordinates and meanings remain unchanged.
+# Existing eqTri/rightTri/wideTri/irregQuad coordinates and meanings remain unchanged.
 _CHOICE_REPAIR_POINTS: dict[str, tuple[tuple[float, float], ...]] = {
-    "choiceScaleneTri": ((0.0, 1.0), (0.2, 0.0), (1.0, 1.0)),
+    # Shortest pairwise length gap >35%; smallest angle gap >16 degrees.
+    "choiceScaleneTri": ((0.0, 0.0), (1.0, 1.0), (0.0, 0.7)),
     "choiceRightScaleneTri": ((0.0, 1.0), (0.0, 0.2), (1.0, 1.0)),
     "choiceNonparallelQuad": ((0.0, 0.0), (1.0, 0.2), (0.8, 1.0), (0.15, 0.65)),
+    # Replaces only quad244Pick's old irregQuad slot: both deviations >21 degrees.
+    "choiceSkewQuad": ((0.1, 0.0), (1.0, 0.35), (0.55, 1.0), (0.0, 0.5)),
 }
 _NAMED_SHAPE_KINDS = _SHAPE_KINDS | frozenset(_CHOICE_REPAIR_POINTS)
 # **모든 변이 정의상 같은** 도형 — `sides` 를 줘도 비율이 이미 맞다.
