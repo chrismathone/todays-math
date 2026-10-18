@@ -26,6 +26,7 @@ export const QUESTION_PLAN_SHA =
   "50c525785cae16825d23d7bd55de81f7a779fa54cd98e8933d470a126acccc61";
 export const QUESTION_DDL_PATH =
   "supabase/migrations/20261018063016_question_group_identity.sql";
+export const QUESTION_BACKFILL_CHUNK_SIZE = 100;
 type Json = null | boolean | number | string | Json[] | { [key: string]: Json };
 export type RawQuestionRow = { id: string; payload: Record<string, Json> };
 type PairManifest = {
@@ -297,6 +298,26 @@ async function casKey(
   );
   if (n !== 1) throw new Error(`Row CAS failed: ${row.id}`);
 }
+async function casChunk(
+  tx: QuestionOperatorClient,
+  updates: { row: RawQuestionRow; key: string | null }[],
+) {
+  if (!updates.length) return;
+  const values = updates.map(({ row, key }) => {
+    const payload = { ...row.payload };
+    delete payload.question_group_key;
+    return Prisma.sql`(${row.id}::uuid,${keyOf(row)}::text,${key}::text,${JSON.stringify(payload)}::jsonb)`;
+  });
+  // All rows are already locked and every pair has passed proof. Unique manifest
+  // row IDs guarantee that each target joins exactly one VALUES preimage.
+  const n = await tx.$executeRaw(
+    Prisma.sql`UPDATE public.problem AS p SET question_group_key=v.after_key FROM (VALUES ${Prisma.join(values)}) AS v(id,before_key,after_key,payload) WHERE p.id=v.id AND p.question_group_key IS NOT DISTINCT FROM v.before_key AND (to_jsonb(p)-'question_group_key')=v.payload`,
+  );
+  if (n !== updates.length)
+    throw new Error(
+      `Chunk row CAS failed: expected ${updates.length}, got ${n}`,
+    );
+}
 /** Short, sorted row-lock transactions; key is the ONLY SET column. */
 export async function executeQuestionBackfill(
   client: QuestionTransactionHost,
@@ -320,18 +341,43 @@ export async function executeQuestionBackfill(
     throw new Error(
       "Unsettled prior chunk: preserve the receipt for explicit reconciliation",
     );
-  if (
-    receipt.applied.some(
-      (p) => !manifest.pairs.some((m) => canonical(m) === canonical(p)),
+  const manifestPairs = new Map<string, string>();
+  const manifestIds = new Set<string>();
+  for (const pair of manifest.pairs) {
+    if (manifestPairs.has(pair.key))
+      throw new Error("Manifest contains conflicting pairs");
+    manifestPairs.set(pair.key, canonical(pair));
+    for (const row of pair.rows) {
+      if (manifestIds.has(row.id))
+        throw new Error("Manifest contains conflicting pairs");
+      manifestIds.add(row.id);
+    }
+  }
+  const applied = new Set<string>();
+  for (const pair of receipt.applied) {
+    if (
+      applied.has(pair.key) ||
+      manifestPairs.get(pair.key) !== canonical(pair)
     )
-  )
-    throw new Error("Receipt contains foreign pairs");
+      throw new Error("Receipt contains foreign/duplicate pairs");
+    applied.add(pair.key);
+  }
+  const reverted = new Set<string>();
+  for (const key of receipt.reverted) {
+    if (!applied.has(key) || reverted.has(key))
+      throw new Error("Receipt contains foreign/duplicate reverted keys");
+    reverted.add(key);
+  }
   const pairs =
     options.mode === "revert"
-      ? receipt.applied.filter((p) => !receipt.reverted.includes(p.key))
+      ? receipt.applied.filter((p) => !reverted.has(p.key))
       : manifest.pairs;
-  const chunkSize = options.chunkSize ?? 20;
-  if (!Number.isInteger(chunkSize) || chunkSize < 1 || chunkSize > 100)
+  const chunkSize = options.chunkSize ?? QUESTION_BACKFILL_CHUNK_SIZE;
+  if (
+    !Number.isInteger(chunkSize) ||
+    chunkSize < 1 ||
+    chunkSize > QUESTION_BACKFILL_CHUNK_SIZE
+  )
     throw new Error("Invalid short transaction chunk size");
   for (let i = 0; i < pairs.length; i += chunkSize) {
     const chunk = pairs.slice(i, i + chunkSize);
@@ -349,6 +395,13 @@ export async function executeQuestionBackfill(
           throw new Error("Outer-wall overlap changed; refusing all writes");
         const byId = new Map(rows.map((r) => [r.id, r]));
         const changed: PairManifest[] = [];
+        const updates: { row: RawQuestionRow; key: string | null }[] = [];
+        const expected = new Map<
+          string,
+          { digest: string; key: string | null }
+        >();
+        // Finish every digest, proof and conflict check before the chunk's sole
+        // UPDATE. A late bad pair must not even attempt an earlier pair's write.
         for (const pair of chunk) {
           const actual = pair.rows.map((expected) => {
             const row = byId.get(expected.id);
@@ -359,6 +412,11 @@ export async function executeQuestionBackfill(
           const proof = proveQuestionPair(actual.map(rawQuestionPairRow));
           if (!proof.ok || proof.key !== pair.key)
             throw new Error(`Pair proof failed before write: ${pair.key}`);
+          for (const row of pair.rows)
+            expected.set(row.id, {
+              digest: row.digest,
+              key: options.mode === "apply" ? pair.key : null,
+            });
           if (options.mode === "apply") {
             if (actual.every((r) => keyOf(r) === pair.key)) continue;
             if (
@@ -368,31 +426,26 @@ export async function executeQuestionBackfill(
               )
             )
               throw new Error("Existing/partial key conflict");
-            for (const row of actual) await casKey(tx, row, pair.key);
+            for (const row of actual) updates.push({ row, key: pair.key });
             changed.push(pair);
           } else {
             if (actual.every((r) => keyOf(r) === null)) continue;
             if (actual.some((r) => keyOf(r) !== pair.key))
               throw new Error("Revert key CAS conflict");
-            for (const row of actual) await casKey(tx, row, null);
+            for (const row of actual) updates.push({ row, key: null });
             changed.push(pair);
           }
         }
+        await casChunk(tx, updates);
         const after = await tx.$queryRaw<RawQuestionRow[]>(
           Prisma.sql`SELECT p.id::text,to_jsonb(p) AS payload FROM public.problem p WHERE p.id IN (${Prisma.join(ids.map((id) => Prisma.sql`${id}::uuid`))}) ORDER BY p.id`,
-        );
-        const expected = new Map(
-          chunk.flatMap((p) => p.rows.map((r) => [r.id, r.digest] as const)),
         );
         if (
           after.length !== ids.length ||
           after.some(
             (r) =>
-              questionPayloadDigest(r.payload) !== expected.get(r.id) ||
-              keyOf(r) !==
-                (options.mode === "apply"
-                  ? chunk.find((p) => p.rows.some((x) => x.id === r.id))!.key
-                  : null),
+              questionPayloadDigest(r.payload) !== expected.get(r.id)?.digest ||
+              keyOf(r) !== expected.get(r.id)?.key,
           )
         )
           throw new Error(
@@ -404,10 +457,16 @@ export async function executeQuestionBackfill(
     );
     if (options.mode === "apply") {
       for (const pair of changed)
-        if (!receipt.applied.some((p) => p.key === pair.key))
+        if (!applied.has(pair.key)) {
           receipt.applied.push(pair);
+          applied.add(pair.key);
+        }
     } else {
-      for (const pair of changed) receipt.reverted.push(pair.key);
+      for (const pair of changed)
+        if (!reverted.has(pair.key)) {
+          receipt.reverted.push(pair.key);
+          reverted.add(pair.key);
+        }
     }
     receipt.pendingChunk = [];
     options.persist(receipt);
@@ -416,13 +475,21 @@ export async function executeQuestionBackfill(
   options.persist(receipt);
   return receipt;
 }
-export function protectedQuestionWrite(file: string, value: unknown): void {
+export function protectedQuestionWrite(
+  file: string,
+  value: unknown,
+  options: { compact?: boolean } = {},
+): void {
   mkdirSync(path.dirname(file), { recursive: true, mode: 0o700 });
   chmodSync(path.dirname(file), 0o700);
   const temporary = `${file}.${process.pid}.${randomUUID()}.tmp`;
-  writeFileSync(temporary, JSON.stringify(value, null, 2) + "\n", {
-    mode: 0o600,
-  });
+  writeFileSync(
+    temporary,
+    JSON.stringify(value, null, options.compact ? undefined : 2) + "\n",
+    {
+      mode: 0o600,
+    },
+  );
   const handle = openSync(temporary, "r");
   try {
     fsyncSync(handle);
@@ -601,7 +668,9 @@ async function main() {
     await executeQuestionBackfill(client, manifest, {
       mode,
       receipt,
-      persist: (r) => protectedQuestionWrite(receiptPath, r),
+      // Receipt whitespace is not hashed. Keep the exact v1 ownership document,
+      // atomic rename and both fsyncs, with fewer bytes per durable checkpoint.
+      persist: (r) => protectedQuestionWrite(receiptPath, r, { compact: true }),
     });
     console.log(
       JSON.stringify({
