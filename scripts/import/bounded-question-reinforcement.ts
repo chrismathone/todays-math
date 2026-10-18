@@ -801,7 +801,11 @@ export async function executeBounded(
     uuids.version !== 1 ||
     new Set(uuids.rows.map((row) => row.id)).size !== uuids.rows.length ||
     uuids.rows.some(
-      (row) => row.ownership !== "new" || !/^[a-f0-9-]{36}$/.test(row.id),
+      (row) =>
+        row.ownership !== "new" ||
+        !/^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(
+          row.id,
+        ),
     )
   )
     throw new Error("Invalid precommitted exact UUID ledger");

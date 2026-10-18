@@ -308,6 +308,23 @@ describe("local PostgreSQL bounded apply/idempotence/revert", () => {
         allowSharedImport: "1",
         writer: "coordinator",
       };
+      await expect(
+        executeBounded(
+          {
+            ...options,
+            manifest: { ...manifest, baselineStage: "review-before-backfill" },
+          },
+          prisma,
+        ),
+      ).rejects.toThrow(/manifest contract/);
+      const badUuids = structuredClone(uuids);
+      badUuids.rows[0]!.id = "-".repeat(36);
+      writeFileSync(path.join(dir, "uuids.json"), JSON.stringify(badUuids));
+      await expect(
+        executeBounded({ ...options, uuids: badUuids }, prisma),
+      ).rejects.toThrow(/UUID ledger/);
+      expect((await pg.query("SELECT * FROM problem")).rows).toHaveLength(1);
+      writeFileSync(path.join(dir, "uuids.json"), JSON.stringify(uuids));
       const applied = await executeBounded(options, prisma);
       expect("inserted" in applied && applied.inserted).toHaveLength(2);
       const after = (
