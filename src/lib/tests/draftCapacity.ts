@@ -26,9 +26,12 @@ import {
   countFamilies,
   type FamilyIdentifiable,
 } from "@/lib/generator/familyKey";
+import { questionIdOf } from "@/lib/problem/questionIdentity";
 
 /** 상한을 재는 데 필요한 열 — 본문·그림은 읽지 않는다. */
-export type CapacityRow = FamilyIdentifiable;
+export type CapacityRow = FamilyIdentifiable & {
+  questionGroupKey?: string | null;
+};
 
 /** 이 후보로 한 시험지에 넣을 수 있는 문항 수 — 갈래 수(최근 출제를 뺀 뒤). 순수 함수. */
 export function draftCapacityOf(
@@ -37,7 +40,14 @@ export function draftCapacityOf(
 ): number {
   if (recentProblemIds.length === 0) return countFamilies(rows);
   const recent = new Set(recentProblemIds);
-  return countFamilies(rows.filter((row) => !recent.has(row.id)));
+  const questions = new Set(
+    rows.filter((row) => recent.has(row.id)).map(questionIdOf),
+  );
+  return countFamilies(
+    rows.filter(
+      (row) => !recent.has(row.id) && !questions.has(questionIdOf(row)),
+    ),
+  );
 }
 
 /**
@@ -50,6 +60,6 @@ export async function loadCapacityRows(
   if (unitIds.length === 0) return [];
   return db.problem.findMany({
     where: eligibleProblemsWhere({ unitIds }),
-    select: { id: true, unitId: true, familyKey: true },
+    select: { id: true, unitId: true, familyKey: true, questionGroupKey: true },
   });
 }

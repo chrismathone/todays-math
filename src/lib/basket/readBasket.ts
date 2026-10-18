@@ -27,11 +27,22 @@
 import { DIFFICULTY_LADDER, type Difficulty } from "@/contracts/difficulty";
 import { db } from "@/lib/db";
 import { serializeProblem } from "@/lib/serializers";
+import type { Prisma } from "@prisma/client";
+import { questionIdOf } from "@/lib/problem/questionIdentity";
+import { withQuestionMetadata } from "@/lib/problem/questionQueries";
 
 export type BasketData = {
-  items: { orderIndex: number; problem: ReturnType<typeof serializeProblem> }[];
+  items: {
+    orderIndex: number;
+    problem: ReturnType<typeof serializeProblem>;
+    questionId?: string;
+    conflictProblemIds?: string[];
+  }[];
   spread: Record<Difficulty, number>;
   total: number;
+  countUnit?: "question";
+  version?: 2;
+  conflictCount?: number;
 };
 
 /**
@@ -84,12 +95,62 @@ export function renumberForTest<T>(
   }));
 }
 
-export async function readBasket(userId: string): Promise<BasketData> {
-  const rows = await db.basketItem.findMany({
+export async function readBasket(
+  userId: string,
+  questionView = false,
+  client: Pick<Prisma.TransactionClient, "basketItem" | "problem"> = db,
+): Promise<BasketData> {
+  const rows = await client.basketItem.findMany({
     where: { userId },
     orderBy: { orderIndex: "asc" },
     include: { problem: true },
   });
+
+  if (questionView) {
+    const annotated = await withQuestionMetadata(
+      rows.map((r) => r.problem),
+      client,
+    );
+    const groups = new Map<
+      string,
+      { orderIndex: number; problem: (typeof annotated)[number]; ids: string[] }
+    >();
+    for (let i = 0; i < rows.length; i++) {
+      const row = rows[i],
+        problem = annotated[i],
+        key = questionIdOf(problem);
+      const group = groups.get(key);
+      if (group) group.ids.push(problem.id);
+      else
+        groups.set(key, {
+          orderIndex: row.orderIndex,
+          problem,
+          ids: [problem.id],
+        });
+    }
+    const values = [...groups.entries()];
+    return {
+      items: values.map(([questionId, g]) => ({
+        orderIndex: g.orderIndex,
+        problem: {
+          ...serializeProblem(g.problem),
+          questionId,
+          questionFormats: g.problem.questionFormats,
+        },
+        questionId,
+        ...(g.ids.length > 1 ? { conflictProblemIds: g.ids } : {}),
+      })),
+      ...countSpread(
+        values
+          .filter(([, g]) => g.ids.length === 1)
+          .map(([, g]) => g.problem.difficulty as Difficulty),
+      ),
+      total: groups.size,
+      countUnit: "question",
+      version: 2,
+      conflictCount: values.filter(([, g]) => g.ids.length > 1).length,
+    };
+  }
 
   const { spread } = countSpread(
     rows.map((row) => row.problem.difficulty as Difficulty),

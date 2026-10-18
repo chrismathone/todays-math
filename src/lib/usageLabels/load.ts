@@ -15,6 +15,8 @@ import {
 import { reopenAnyArithmeticSheet } from "@/lib/arithmeticDocument";
 import { getArithmeticV2Definition } from "@/lib/arithmetic-v2/registry";
 import { db } from "@/lib/db";
+import { questionIdOf } from "@/lib/problem/questionIdentity";
+import { questionUses } from "./questionUses";
 import type { ScopeViewer } from "@/lib/ownerScope";
 import {
   problemIneligibleCode,
@@ -63,7 +65,13 @@ export async function loadUsageLabels(
   const arithmeticV2TypeIds = parsed.data.arithmeticV2TypeIds ?? [];
   const [problems, arithmetic] = await Promise.all([
     problemIds.length
-      ? loadProblemSide(viewer, problemIds, period, now)
+      ? loadProblemSide(
+          viewer,
+          problemIds,
+          period,
+          now,
+          parsed.data.identity === "question",
+        )
       : Promise.resolve(null),
     arithmeticTypes.length || arithmeticV2TypeIds.length
       ? loadArithmeticSide(viewer, period, now)
@@ -79,6 +87,10 @@ export async function loadUsageLabels(
     problems,
     arithmetic,
   });
+  if (parsed.data.identity === "question") {
+    response.metrics.problems.population =
+      "같은 차시에서 내가 확정·인쇄한 시험에 쓰인 자격 문항 · 형식 중복 제외";
+  }
   const checked = usageLabelsResponseSchema.safeParse(response);
   if (!checked.success) {
     throw new Error("순위 응답이 계약과 같지 않습니다.");
@@ -91,6 +103,7 @@ async function loadProblemSide(
   requested: readonly string[],
   period: UsageLabelPeriod,
   now: Date,
+  questionView = false,
 ): Promise<UsageProblemSide> {
   try {
     // «내 출제»는 이 계정이 만든 시험만 센다.
@@ -126,7 +139,7 @@ async function loadProblemSide(
       testsByProblem.set(link.problemId, ids);
     }
     const wanted = [...new Set([...requested, ...testsByProblem.keys()])];
-    const rows = await loadProblemRows(wanted);
+    const rows = await loadProblemRows(wanted, questionView);
     const found = new Set(rows.map((row) => row.id));
     for (const problemId of testsByProblem.keys()) {
       if (!found.has(problemId)) return incompleteProblems();
@@ -150,15 +163,17 @@ async function loadProblemSide(
         return incompleteProblems();
       }
     }
-    const uses = [...testsByProblem.entries()]
-      .filter(([problemId]) => {
-        const record = recordMap.get(problemId);
-        return record?.visible === true && record.eligible && record.unit;
-      })
-      .map(([problemId, ids]) => ({
-        problemId,
-        testCount: ids.size,
-      }));
+    const uses = questionView
+      ? questionUses(records, links)
+      : [...testsByProblem.entries()]
+          .filter(([problemId]) => {
+            const record = recordMap.get(problemId);
+            return record?.visible === true && record.eligible && record.unit;
+          })
+          .map(([problemId, ids]) => ({
+            problemId,
+            testCount: ids.size,
+          }));
     return { complete: true, records, uses };
   } catch {
     return incompleteProblems();
@@ -167,6 +182,7 @@ async function loadProblemSide(
 
 async function loadProblemRows(
   ids: readonly string[],
+  questionView = false,
 ): Promise<UsageProblemRecord[]> {
   const rows: UsageProblemRecord[] = [];
   for (let index = 0; index < ids.length; index += PROBLEM_CHUNK) {
@@ -175,6 +191,7 @@ async function loadProblemRows(
       where: { id: { in: [...slice] } },
       select: {
         id: true,
+        ...(questionView ? { questionGroupKey: true } : {}),
         pool: true,
         reviewStatus: true,
         directUseAllowed: true,
@@ -184,7 +201,12 @@ async function loadProblemRows(
         },
       },
     });
-    rows.push(...found.map(toProblemRecord));
+    rows.push(
+      ...found.map((row) => ({
+        ...toProblemRecord(row),
+        ...(questionView ? { questionId: questionIdOf(row) } : {}),
+      })),
+    );
   }
   return rows;
 }

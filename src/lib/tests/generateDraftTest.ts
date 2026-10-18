@@ -15,6 +15,8 @@ import { findEligibleProblems } from "@/lib/findEligibleProblems";
 import { countFamilies } from "@/lib/generator/familyKey";
 import { resolveRange } from "@/lib/generator/resolveRange";
 import { selectProblems } from "@/lib/generator/selectProblems";
+import { selectWithFormats } from "@/lib/generator/selectWithFormats";
+import { formatIntentFits } from "@/contracts/formatIntent.contract";
 import { requireOwnedClass, requireOwnedStudentInClass } from "@/lib/ownership";
 import { getCurrentProgress } from "@/lib/progressResolver";
 import {
@@ -27,6 +29,7 @@ import { assertClassWrite, assertStudentEnrollment } from "@/lib/classAccess";
 import { autoDraftBindingAllowed } from "./autoDraftScope";
 
 import { loadRecentProblemIds } from "./recentProblemIds";
+import { selectionStillCurrent } from "./selectionCurrent";
 
 /** 서버 안에서만 넘기는 인자 — 요청 계약(`TestGenerateRequest`)에 **없다**(D-133 ⑴). */
 export interface DraftTestOrigin {
@@ -139,6 +142,12 @@ export async function generateDraftTest(
   }
 
   const count = input.problemCount ?? owned.data.defaultProblemCount;
+  if (input.formats && !formatIntentFits(input.formats, count))
+    return jsonError(
+      "VALIDATION_ERROR",
+      "형식별 문항 수의 합을 확인해 주세요.",
+      400,
+    );
   const difficultyRatio =
     input.difficultyRatio ??
     normalizeStoredDifficultyRatio(owned.data.difficultyRatio);
@@ -152,13 +161,25 @@ export async function generateDraftTest(
     loadRecentProblemIds(owned.data.userId, input.testDate),
   ]);
 
-  const selected = selectProblems({
+  const selectionArgs = {
     pool: eligible,
     difficultyRatio,
     count,
     recentProblemIds,
     seed: `${input.classId}:${input.testDate}:${input.testType}`,
-  });
+  };
+  const formatted = input.formats
+    ? selectWithFormats({ ...selectionArgs, formats: input.formats })
+    : null;
+  if (formatted && formatted.status !== "complete")
+    return jsonError(
+      formatted.status === "search_limit" ? "CONFLICT" : "VALIDATION_ERROR",
+      formatted.status === "search_limit"
+        ? "형식과 범위 조건을 모두 확인하는 데 시간이 걸립니다. 조건을 줄여 다시 시도해 주세요. 문항 부족으로 판정한 것은 아닙니다."
+        : "최근 사용 제외와 유형 제한을 적용하면 요청한 형식으로 구성할 수 없습니다. 형식별 수나 범위를 조정해 주세요.",
+      formatted.status === "search_limit" ? 409 : 422,
+    );
+  const selected = formatted?.result ?? selectProblems(selectionArgs);
 
   if (selected.problems.length < count) {
     const recentSet = new Set(recentProblemIds);
@@ -225,6 +246,7 @@ export async function generateDraftTest(
     await assertClassWrite(tx, session, input.classId, "test:write");
     if (input.studentId)
       await assertStudentEnrollment(tx, input.studentId, input.classId);
+    if (!(await selectionStillCurrent(tx, selected.problems))) return null;
     if (
       origin.autoDraftRunId &&
       !(await autoDraftBindingAllowed(owned.data, tx))
@@ -267,6 +289,13 @@ export async function generateDraftTest(
     });
     return { test, items };
   });
+
+  if (!created)
+    return jsonError(
+      "CONFLICT",
+      "선택한 문항이 바뀌었습니다. 범위와 형식을 다시 확인해 주세요.",
+      409,
+    );
 
   return jsonOk(
     testGenerateResponseSchema,

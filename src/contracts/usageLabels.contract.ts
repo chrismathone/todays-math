@@ -133,6 +133,8 @@ export const usageLabelsRequestSchema = z
       .max(USAGE_LABEL_REQUEST_LIMIT)
       .optional(),
     period: usageLabelPeriodSchema.optional(),
+    /** Same question's formats share the union of distinct owned test IDs. */
+    identity: z.literal("question").optional(),
   })
   .superRefine((value, ctx) => {
     const problemIds = value.problemIds ?? [];
