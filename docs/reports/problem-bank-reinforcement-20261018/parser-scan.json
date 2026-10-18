@@ -1,0 +1,45 @@
+{
+  "measuredAt": "2026-10-18T01:08:04.954Z",
+  "completedAt": "2026-10-18T01:08:16.292Z",
+  "readOnly": true,
+  "beforeCode": "2ae266866",
+  "rows": 117828,
+  "compared": ["parseProblemContent", "parseProblemContentLabeled"],
+  "changed": [
+    {
+      "id": "ac37d08a-5f7b-49ee-950b-af34e002c8e9",
+      "code": "J20506-A37-001",
+      "before": {
+        "questionLength": 182,
+        "choices": 10,
+        "labels": [1, 2, 3, 4, 5, 1, 2, 3, 4, 5],
+        "dropped": []
+      },
+      "after": {
+        "questionLength": 494,
+        "choices": 5,
+        "labels": [1, 2, 3, 4, 5],
+        "dropped": []
+      },
+      "contentJsonSha256": "8628837cbd5d641346437cbd1c54514107f9f747a9e64e65ee2e8c175dd30eb8"
+    },
+    {
+      "id": "d533c98e-c85b-4530-8b0a-03d50291aefb",
+      "code": "J20501-A70-001",
+      "before": {
+        "questionLength": 230,
+        "choices": 9,
+        "labels": [1, 2, 3, 4, 1, 2, 3, 4, 5],
+        "dropped": [5]
+      },
+      "after": {
+        "questionLength": 425,
+        "choices": 5,
+        "labels": [1, 2, 3, 4, 5],
+        "dropped": []
+      },
+      "contentJsonSha256": "fc8559f30202d249dfe49c87cdbbca45cfbf17c2eea4af33233ea6fc0bbd76a8"
+    }
+  ],
+  "afterCode": "e6e75fbdcbcd792d40e2e1988695dd2ef28901c0"
+}

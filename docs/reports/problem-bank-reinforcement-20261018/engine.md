@@ -1,6 +1,6 @@
 # 생성기 TeX 명령 경계 보강 — 2026-10-18
 
-기준 커밋 `2ae266866`. [기존 감사 ENG-P1-01~03](../problem-bank-audit-20261018/engine.md)의 세 해설 오류를 수정했다. **세 유형 각각 seed 0~~99 × variant 0~~2, 합계 900판에서 실제 MarkdownRenderer SSR과 renderMathHtml의 raw/red 오류가 모두 0**이다. 상세 수치·수정 전 지문은 [engine-evidence.json](engine-evidence.json)에 있다.
+기준 커밋 `2ae266866`. [기존 감사 ENG-P1-01~03](../problem-bank-audit-20261018/engine.md)의 세 해설 오류를 수정했다. **세 유형 각각 seed 0부터 99 × variant 0부터 2, 합계 900판에서 실제 MarkdownRenderer SSR과 renderMathHtml의 raw/red 오류가 모두 0**이다. 상세 수치·수정 전 지문은 [engine-evidence.json](engine-evidence.json)에 있다.
 
 ## 변경과 완료 조건
 

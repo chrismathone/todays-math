@@ -1,0 +1,130 @@
+{
+  "appliedAt": "2026-10-18T01:07:29.928Z",
+  "updatedRows": 12,
+  "updatedFields": ["solution", "updatedAt"],
+  "stableOtherFields": true,
+  "transaction": "Serializable; compare original updatedAt and solution; all twelve or rollback",
+  "rereadMatched": true,
+  "rows": [
+    {
+      "id": "3bb1c9a9-85ec-4e29-9b61-a8a34e0afe95",
+      "code": "J20301-A13-009",
+      "solutionBeforeHash": "9925d0795f700829a89dcefc4d547b3ad28796a7da0dff5f5dfed87d1824dbb4",
+      "solutionAfterHash": "bd1090a86e08aa75a304d122a22f9b1f72eb915e42471748c22aadb2ad8c0fcb",
+      "stableHash": "f37e12c76f29179d9e26f80f884babc50fb3f8843ab83cf315e01bc370e85592",
+      "insertedSpaces": 1,
+      "mathSegmentsPerPath": 22,
+      "afterErrorPaths": 0
+    },
+    {
+      "id": "6ec4e8d0-cf41-4c50-86e6-0e89f7dce112",
+      "code": "J20301-A13-010",
+      "solutionBeforeHash": "9925d0795f700829a89dcefc4d547b3ad28796a7da0dff5f5dfed87d1824dbb4",
+      "solutionAfterHash": "bd1090a86e08aa75a304d122a22f9b1f72eb915e42471748c22aadb2ad8c0fcb",
+      "stableHash": "a1191d120c4d8372944abf53200120ba2f1db7365dd2c64c794ad583b7dbd1a3",
+      "insertedSpaces": 1,
+      "mathSegmentsPerPath": 22,
+      "afterErrorPaths": 0
+    },
+    {
+      "id": "7c049b0a-53ff-4370-9d96-7d6167594cf2",
+      "code": "J20301-A13-017",
+      "solutionBeforeHash": "2fd10076db0c2f17fd72f2e42d0e626ed9db7eeb782d5e293f4d7aee30777a06",
+      "solutionAfterHash": "a87b270a8e87732443ae578c7cc92dfbaaf82705edae40a7017c474664e6c0d1",
+      "stableHash": "76b2f6ea7253b378d1cc53429462f8aa5e022c019bef6f236b6989cd7de1be09",
+      "insertedSpaces": 1,
+      "mathSegmentsPerPath": 22,
+      "afterErrorPaths": 0
+    },
+    {
+      "id": "41d0db7c-dd1c-4d15-b691-862701598b83",
+      "code": "J20301-A13-018",
+      "solutionBeforeHash": "2fd10076db0c2f17fd72f2e42d0e626ed9db7eeb782d5e293f4d7aee30777a06",
+      "solutionAfterHash": "a87b270a8e87732443ae578c7cc92dfbaaf82705edae40a7017c474664e6c0d1",
+      "stableHash": "1d88e5776fb87b643c0636c16c5e5a64e449e8a67389dfff75f11d392cdaea95",
+      "insertedSpaces": 1,
+      "mathSegmentsPerPath": 22,
+      "afterErrorPaths": 0
+    },
+    {
+      "id": "c29117ce-4cfd-45c9-bd5f-8eb28d208f36",
+      "code": "J30201-A02-009",
+      "solutionBeforeHash": "a60278f36264cb068c337b729259fabf0cb3404e3a771015cad8945fb8e6a121",
+      "solutionAfterHash": "0696a78a22b118dd479fac235c1d1a2961a4f64a6ad804f010944c4c84d07ecc",
+      "stableHash": "754baef2515fedd9275b0281577ea2792aec56d5383b99c23ec472e197ae7856",
+      "insertedSpaces": 1,
+      "mathSegmentsPerPath": 4,
+      "afterErrorPaths": 0
+    },
+    {
+      "id": "784b6922-8c09-46b1-8aa9-8de7364c84e1",
+      "code": "J30201-A02-010",
+      "solutionBeforeHash": "a60278f36264cb068c337b729259fabf0cb3404e3a771015cad8945fb8e6a121",
+      "solutionAfterHash": "0696a78a22b118dd479fac235c1d1a2961a4f64a6ad804f010944c4c84d07ecc",
+      "stableHash": "a1fb04c6d5c1218b0361f5e293a78464261d36e9b618e59ca6fe8bf36f91019d",
+      "insertedSpaces": 1,
+      "mathSegmentsPerPath": 4,
+      "afterErrorPaths": 0
+    },
+    {
+      "id": "689a9872-0f86-4b30-89f2-1574348c78c6",
+      "code": "J30201-A02-019",
+      "solutionBeforeHash": "0df59375413b9a0a5881f9f697b81529a77e5501db828a7c4c9077a1d79009a9",
+      "solutionAfterHash": "d44a5e16c99ea1d3ea1b9c7956d8715258a20c20bd0ff16374269a96ad477e1e",
+      "stableHash": "facf4d3069febc924a22e035533ab7085300c143650bd85c0ca4fb15890039be",
+      "insertedSpaces": 1,
+      "mathSegmentsPerPath": 4,
+      "afterErrorPaths": 0
+    },
+    {
+      "id": "c5b397ef-50c3-46a8-96e2-291cd9d8c25e",
+      "code": "J30201-A02-020",
+      "solutionBeforeHash": "0df59375413b9a0a5881f9f697b81529a77e5501db828a7c4c9077a1d79009a9",
+      "solutionAfterHash": "d44a5e16c99ea1d3ea1b9c7956d8715258a20c20bd0ff16374269a96ad477e1e",
+      "stableHash": "51d9c0fa3c33d3bd0550042e0fa0e1ee46b0e7337b86fa5ebc5464cd220c9476",
+      "insertedSpaces": 1,
+      "mathSegmentsPerPath": 4,
+      "afterErrorPaths": 0
+    },
+    {
+      "id": "d06d21b0-0775-4ee2-9fd6-9d57573a979c",
+      "code": "J30201-A02-021",
+      "solutionBeforeHash": "4f1034f6df5d44463c9284b242f349129b9c8e6d6f9bfd17ee3a4c8f18c3d01f",
+      "solutionAfterHash": "59b987283bfe46f5d92e7889a736a96655b7b54e12797dcf5317d1f652fb71c0",
+      "stableHash": "6973f2e9f2271306a1f256f9d2b665a08c5bfcc066bb68e28a62689b440ab22c",
+      "insertedSpaces": 1,
+      "mathSegmentsPerPath": 4,
+      "afterErrorPaths": 0
+    },
+    {
+      "id": "dcb65b7a-bb6a-470d-9c9c-4de558e4f76b",
+      "code": "J30201-A02-022",
+      "solutionBeforeHash": "4f1034f6df5d44463c9284b242f349129b9c8e6d6f9bfd17ee3a4c8f18c3d01f",
+      "solutionAfterHash": "59b987283bfe46f5d92e7889a736a96655b7b54e12797dcf5317d1f652fb71c0",
+      "stableHash": "c7196af85625b2f3a5b17a77eabe1610bf55a1cfff6aba1b1ce55e859b282669",
+      "insertedSpaces": 1,
+      "mathSegmentsPerPath": 4,
+      "afterErrorPaths": 0
+    },
+    {
+      "id": "3370f893-7fe5-4306-ba35-30b56190d56f",
+      "code": "J30201-A02-023",
+      "solutionBeforeHash": "64b665ee81ecdce8498cd3db63723620f64980e99bcb5d0bbb580f9be1468eb0",
+      "solutionAfterHash": "fec9019daa4ec51104ec0f3ef0b7faedaf79372e7a2f9e5e5cb59ffc84ee4d1c",
+      "stableHash": "a2c75b5fc0b9a3c719b84a8bfd3d0edb53349cf690aac55baff68882bcb597aa",
+      "insertedSpaces": 1,
+      "mathSegmentsPerPath": 4,
+      "afterErrorPaths": 0
+    },
+    {
+      "id": "f53b4935-d7fb-4090-bee0-a817e2e04850",
+      "code": "J30201-A02-024",
+      "solutionBeforeHash": "64b665ee81ecdce8498cd3db63723620f64980e99bcb5d0bbb580f9be1468eb0",
+      "solutionAfterHash": "fec9019daa4ec51104ec0f3ef0b7faedaf79372e7a2f9e5e5cb59ffc84ee4d1c",
+      "stableHash": "36433c49d407412bf1112889fbef315eb8e8d038653f611b7fd2037cc5e8384a",
+      "insertedSpaces": 1,
+      "mathSegmentsPerPath": 4,
+      "afterErrorPaths": 0
+    }
+  ]
+}
