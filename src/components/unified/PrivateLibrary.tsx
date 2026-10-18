@@ -30,6 +30,7 @@ import {
   PendingGradingStrip,
   PublishDialog,
   issuedClassCount,
+  GradedExamReportLinks,
 } from "./ExamPublicationParts";
 import { loadExamPublications } from "./examPublicationClient";
 import type { ExamPublicationList } from "@/contracts/examPublication.contract";
@@ -612,6 +613,9 @@ function PrivateLibraryContent({
                             item.id,
                           ),
                           classes: publications.classes,
+                          reports: publications.publications.filter(
+                            (publication) => publication.documentId === item.id,
+                          ),
                           onPublished: () => void refreshPublications(),
                         }
                       : undefined
@@ -689,6 +693,7 @@ function LibraryItem({
   publish?: {
     issued: number;
     classes: ExamPublicationList["classes"];
+    reports: ExamPublicationList["publications"];
     onPublished: () => void;
   };
   item: PrivateDocumentSummary;
@@ -800,6 +805,7 @@ function LibraryItem({
             {!owned && readOnlyReason ? readOnlyReason : "열기 권한 없음"}
           </small>
         )}
+        {publish && <GradedExamReportLinks publications={publish.reports} />}
         {item.workflow && (
           <div className={s.progressLine}>
             <span>{STAGE_LABEL[item.workflow.step]}</span>

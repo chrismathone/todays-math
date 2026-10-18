@@ -63,14 +63,7 @@ async function post(request: Request) {
             "retry",
           ]),
           bindingId: z.uuid(),
-          archiveOwnerUserId: z.uuid().optional(),
           evidence: z.string().max(1000).optional(),
-        }),
-        z.object({
-          action: z.literal("assign-archive-owner"),
-          bindingId: z.uuid(),
-          archiveOwnerUserId: z.uuid(),
-          expectedArchiveOwnerUserId: z.uuid().nullable(),
         }),
       ])
       .parse(await request.json());

@@ -68,7 +68,7 @@ export const examReportSnapshotSchema = z
   });
 export type ExamReportSnapshot = z.input<typeof examReportSnapshotSchema>;
 
-/** 적용 전 SQL 초안의 보관본 계약. 실제 쓰기·확정 경로는 아직 없다. */
+/** 확정 보관본의 읽기 계약. 실제 쓰기는 examReport/server.ts, PDF는 비공개 버킷에 둔다. */
 export const confirmedExamReportArtifactSchema = z.strictObject({
   id: uuidSchema,
   state: z.enum(["draft", "confirmed"]),

@@ -14,6 +14,29 @@ const account: AccountAccess = {
   menus: [...ALL_WORKSPACE_MENUS],
 };
 describe("account approval and menu route policy", () => {
+  it("성적표 화면과 모든 읽기·쓰기·PDF는 출력 메뉴를 따른다", () => {
+    for (const [method, path] of [
+      ["GET", "/exam-reports/test-1"],
+      ["GET", "/api/exam-reports/test-1"],
+      ["GET", "/api/exam-reports/test-1/students/student-1"],
+      ["PUT", "/api/exam-reports/test-1/students/student-1"],
+      ["POST", "/api/exam-reports/test-1/students/student-1/confirm"],
+      ["GET", "/api/exam-reports/test-1/students/student-1/pdf"],
+      ["PATCH", "/api/exam-reports/test-1/settings"],
+      ["POST", "/api/exam-reports/test-1/print"],
+    ]) {
+      expect(
+        accountRouteAllowed({ ...account, menus: ["export"] }, method!, path!),
+      ).toBe(true);
+      expect(
+        accountRouteAllowed(
+          { ...account, menus: ["library", "teaching"] },
+          method!,
+          path!,
+        ),
+      ).toBe(false);
+    }
+  });
   it("declares only arithmetic-menu catalog/generation and document routes for arithmetic", () => {
     const bank = {
       ...account,

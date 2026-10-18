@@ -13,6 +13,7 @@ import cloudStyles from "./PrivateLibrary.module.css";
 import { forgetPrivateExtraction } from "./privateStudioSessionStore";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   useCallback,
   useEffect,
@@ -77,6 +78,13 @@ const MathExamBuilder = dynamic(loadMathBuilder, {
     />
   ),
 });
+const ExamReportWorkspace = dynamic(
+  () =>
+    import("@/components/exam-report/ExamReportWorkspace").then(
+      (module) => module.ExamReportWorkspace,
+    ),
+  { loading: () => <WorkProgress label="성적표를 여는 중입니다…" /> },
+);
 const ArithmeticWorkbench = dynamic(
   () => import("@/components/arithmetic/ArithmeticWorkbench"),
   { loading: () => <WorkProgress label="연산대장을 여는 중입니다…" /> },
@@ -366,12 +374,14 @@ export default function UnifiedWorkspace({
   currentUser,
   allowedMenus,
   fadingGate = "off",
+  examReportTestId,
 }: {
   initialData: BankData;
   storageScope?: string;
   currentUser?: WorkspaceIdentity;
   allowedMenus?: WorkspaceMenu[];
   fadingGate?: FadingGate;
+  examReportTestId?: string;
 }) {
   const access = useWorkspaceAccess(currentUser, allowedMenus, storageScope);
   return (
@@ -383,6 +393,7 @@ export default function UnifiedWorkspace({
         currentUser={access.currentUser}
         allowedMenus={access.allowedMenus}
         fadingGate={fadingGate}
+        examReportTestId={examReportTestId}
       />
     </DevAiProvider>
   );
@@ -393,13 +404,16 @@ function UnifiedWorkspaceContent({
   currentUser,
   allowedMenus,
   fadingGate,
+  examReportTestId,
 }: {
   initialData: BankData;
   storageScope?: string;
   currentUser?: WorkspaceIdentity;
   allowedMenus: WorkspaceMenu[];
   fadingGate: FadingGate;
+  examReportTestId?: string;
 }) {
+  const router = useRouter();
   const menuKey = allowedMenus.join(",");
   const branchId = currentUser?.branchId;
   const libraryLabel = workspaceLibraryLabel(branchId);
@@ -424,8 +438,11 @@ function UnifiedWorkspaceContent({
   const [requestedView, setView] = useState<View | null>(defaultView);
   const [navigationReady, setNavigationReady] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
-  const view =
-    requestedView && can(requestedView) ? requestedView : defaultView;
+  const reportView: View | null = examReportTestId && can("export")
+    ? (can("library") ? "library" : "export")
+    : null;
+  const view = reportView ??
+    (requestedView && can(requestedView) ? requestedView : defaultView);
   const product = productOf(view);
   const productLabel =
     WORKSPACE_PRODUCTS.find((item) => item.id === product)?.label ??
@@ -660,6 +677,14 @@ function UnifiedWorkspaceContent({
   const performNavigation = useCallback(
     (next: View): boolean => {
       if (!can(next)) return false;
+      if (examReportTestId) {
+        if (!window.dispatchEvent(
+          new Event("exam-report-before-leave", { cancelable: true }),
+        ))
+          return false;
+        router.push(`/${next === "home" ? "" : `#${next}`}`);
+        return true;
+      }
       if (
         next !== "english-listening" &&
         !window.dispatchEvent(
@@ -691,7 +716,7 @@ function UnifiedWorkspaceContent({
       window.scrollTo({ top: 0, behavior: "instant" });
       return true;
     },
-    [can, setNotice, setModal],
+    [can, setNotice, setModal, examReportTestId, router],
   );
   const navigate = useCallback(
     (next: View): boolean => {
@@ -1727,6 +1752,15 @@ function UnifiedWorkspaceContent({
             )}
         </div>
         <div id="workspace-content" className={s.content} tabIndex={-1}>
+          {examReportTestId ? (
+            can("export") ? (
+              <ExamReportWorkspace key={examReportTestId} testId={examReportTestId} />
+            ) : (
+              <main className={s.noMenus}>
+                <h1>성적표를 열 권한이 없습니다.</h1>
+              </main>
+            )
+          ) : <>
           {worksheetView && canCreate && saveError && (
             <div className={s.draftFeedback}>
               {dismissedSaveError === saveErrorKey ? (
@@ -2299,6 +2333,7 @@ function UnifiedWorkspaceContent({
               </p>
             </main>
           )}
+          </>}
         </div>
       </div>
       <dialog

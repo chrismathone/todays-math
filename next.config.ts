@@ -98,6 +98,10 @@ const nextConfig: NextConfig = {
   ],
   // Assets read by Node/Python at runtime must travel with production route bundles.
   outputFileTracingIncludes: {
+    "/api/exam-reports/**": [
+      "./node_modules/katex/dist/katex.min.css",
+      "./node_modules/katex/dist/fonts/**/*",
+    ],
     "/api/textbook/**": [
       "./src/config/shared-figures.manifest.json",
       "./public/fonts/PretendardVariable.woff2",

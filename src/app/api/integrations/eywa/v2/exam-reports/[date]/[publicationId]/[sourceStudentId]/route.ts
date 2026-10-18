@@ -4,11 +4,11 @@ import {
   examReportReceiverFailure,
   recheckExamReportBinding,
 } from "@/lib/eywa/examReportReceiver";
-import { unavailableExamReportSource } from "@/lib/examReport/confirmedSource";
+import { confirmedExamReportSource } from "@/lib/examReport/confirmedSource";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 export const runtime = "nodejs";
-/** 목록의 지문을 서명 질의에 넣어 보관된 PDF 한 파일을 받는다. 현재는 보관본이 없어 404다. */
+/** 목록 지문에 해당하는 보관 PDF. 통로가 닫혀 있으면 404다. */
 async function get(
   request: Request,
   context: {
@@ -23,7 +23,7 @@ async function get(
     const binding = await verifyExamReportReceiver(request);
     const { date, publicationId, sourceStudentId } = await context.params;
     const digest = new URL(request.url).searchParams.get("sha256") ?? "";
-    const bytes = await createExamReportFeed(unavailableExamReportSource).pdf(
+    const bytes = await createExamReportFeed(confirmedExamReportSource).pdf(
       binding,
       date,
       publicationId,

@@ -47,6 +47,9 @@ export const EXAM_REPORT_PAPER_CSS = `
 [data-exam-report-page] .er-sheet :is(p, h2, h3, dl, dd) {
   margin: 0;
 }
+[data-exam-report-page] .er-sheet > * {
+  flex-shrink: 0;
+}
 [data-exam-report-page] .er-paperHead {
   border-top: 2px solid var(--report-tone);
   padding-top: 4mm;
@@ -117,6 +120,14 @@ export const EXAM_REPORT_PAPER_CSS = `
   border-collapse: collapse;
   font-size: 9pt;
   font-family: var(--paper-font-sans);
+  table-layout: fixed;
+}
+[data-exam-report-page] .er-wrongTable caption {
+  text-align: left;
+  padding-bottom: 1mm;
+}
+[data-exam-report-page] .er-wrongTable tr {
+  break-inside: avoid;
 }
 [data-exam-report-page] .er-wrongTable th {
   text-align: left;
@@ -126,9 +137,12 @@ export const EXAM_REPORT_PAPER_CSS = `
 [data-exam-report-page] .er-wrongTable :is(th, td) {
   padding: 1.4mm 2mm;
   border-bottom: 1px solid var(--paper-ink15);
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  vertical-align: top;
 }
-[data-exam-report-page] .er-wrongTable :is(th, td):first-child {
-  width: 16mm;
+[data-exam-report-page] .er-wrongTable[data-er-wrong-columns="2"] :is(th, td):nth-child(4) {
+  border-left: 1px solid var(--paper-ink30);
 }
 [data-exam-report-page] .er-note {
   padding-top: 3mm;
@@ -248,6 +262,8 @@ export const EXAM_REPORT_PAPER_CSS = `
 }
 [data-exam-report-page] .er-note p {
   min-height: 1.65em;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 [data-exam-report-page] .er-stem [data-paper-view] > div {
   font: inherit;

@@ -167,6 +167,8 @@ export default function ExamBuilder<T>({
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
   const [history, setHistory] = useState<T[][]>([]);
+  // 문항 검토는 문제만 먼저 — 정답 · 해설은 눌러서 편다(원장님 2026-10-18 «해설은 처음에 숨기는 게 좋을 듯»).
+  const [answersShown, setAnswersShown] = useState(false);
   const unresolvedIds = source.resolveIdentity
     ? questions
         .filter((item) => !source.info(item).questionId)
@@ -1096,7 +1098,7 @@ export default function ExamBuilder<T>({
                     />
                   )}
                   <div className={s.tableWrap}>
-                    <table className={s.table}>
+                    <table className={conditions ? `${s.table} ${s.withRowActions}` : s.table}>
                       <thead>
                         <tr>
                           <th>선택한 출제 범위</th>
@@ -1389,6 +1391,16 @@ export default function ExamBuilder<T>({
                 {summary && <small data-exam-summary>{summary}</small>}
               </div>
               <div className={s.actions}>
+                {renderAnswer && (
+                  <button
+                    type="button"
+                    className={s.textButton}
+                    aria-pressed={answersShown}
+                    onClick={() => setAnswersShown((shown) => !shown)}
+                  >
+                    {answersShown ? "정답·해설 숨기기" : "정답·해설 보기"}
+                  </button>
+                )}
                 <button
                   type="button"
                   className={s.textButton}
@@ -1523,7 +1535,7 @@ export default function ExamBuilder<T>({
                                 {renderQuestion(item)}
                               </div>
                             </div>
-                            {renderAnswer?.(item)}
+                            {answersShown && renderAnswer?.(item)}
                           </div>
                           <div className={s.actions}>
                             {(source.questionFormats?.options(item).length ??

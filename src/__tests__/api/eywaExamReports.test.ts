@@ -15,7 +15,7 @@ vi.mock("@/lib/eywa/managedAccounts", () => ({
 }));
 vi.mock("@/lib/errorLog/record", () => ({ recordErrorLog: m.logs }));
 vi.mock("@/lib/examReport/confirmedSource", () => ({
-  unavailableExamReportSource: { readDay: m.readDay, readPdf: m.readPdf },
+  confirmedExamReportSource: { readDay: m.readDay, readPdf: m.readPdf },
 }));
 
 import { GET as list } from "@/app/api/integrations/eywa/v2/exam-reports/[date]/route";

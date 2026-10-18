@@ -5,11 +5,14 @@ import type {
 } from "@/contracts/examReport.contract";
 import { reportFixture } from "../exam-report-hifi/fixtures";
 
-// 실측 전 시안 비교값. 실행 제약과 공용 H1 실측 자는 같은 폴더의 README.md에 기록한다.
-export const NOTE_LIMIT = 180;
+// 실제 화면과 같은 DB 저장 상한. 지면의 남은 자리는 별도로 확인한다.
+import { EXAM_REPORT_NOTE_LIMIT as NOTE_LIMIT } from "@/lib/examReport/settings";
+export { NOTE_LIMIT };
 export const EXAMPLE_NOTE =
   "문장의 조건을 먼저 식으로 옮겨 보세요. 양변에 같은 수를 더하거나 빼는 과정을 적고, 구한 값을 처음 식에 넣어 확인합니다.";
-export const LIMIT_NOTE = EXAMPLE_NOTE.repeat(4).slice(0, NOTE_LIMIT);
+export const LIMIT_NOTE = EXAMPLE_NOTE.repeat(
+  Math.ceil(NOTE_LIMIT / EXAMPLE_NOTE.length),
+).slice(0, NOTE_LIMIT);
 
 export const VARIANTS = [
   {

@@ -14,7 +14,6 @@ import {
 } from "./syncPlan";
 import { deriveClassProgress } from "./deriveClassProgress";
 import { enrollmentActive, kstRelationshipDay } from "./relationPolicy";
-import { classOwnerForArchive } from "@/lib/admin/accountUsability";
 
 const date = (value: string | null) => (value ? new Date(value) : null);
 const day = (value: string) => new Date(`${value}T00:00:00Z`);
@@ -246,19 +245,13 @@ export async function applyEywaRelations(
       }
       continue;
     }
-    const owner = classOwnerForArchive(
-      existing?.userId,
-      row.teacherId ? (users.get(row.teacherId) ?? null) : null,
-      binding.archiveOwnerUserId,
-    );
-    if (!owner) {
-      conflicts.push({
-        entity: "class",
-        sourceId: row.id,
-        code: "archive_owner_required",
-      });
-      continue;
-    }
+    // 담당 교사가 없는(또는 계정이 연결되지 않은) 새 반은 넘기지 않는다 — 충돌이 아니라 «아직 대상 아님»
+    // (원장님 2026-10-18). 이미 넘어온 반은 그대로 둔다. 교사의 접근은 `userId`(처음 만든 사람)가 아니라
+    // 에이와 담당 배정(classMembership)이 정하므로, 에이와에서 담당을 바꾸면 다음 동기화에 접근이 옮겨 간다.
+    const teacherOwner = row.teacherId
+      ? (users.get(row.teacherId) ?? null)
+      : null;
+    if (!teacherOwner && !existing) continue;
     const grades = rows.enrollments
       .filter((e) => e.classId === row.id)
       .map((e) => sourceStudents.get(e.studentId)?.grade ?? null);
@@ -285,7 +278,7 @@ export async function applyEywaRelations(
             create: {
               ...data,
               eywaClassId: row.id,
-              userId: owner,
+              userId: teacherOwner!,
               difficultyRatio: DEFAULT_DIFFICULTY_RATIO,
             },
           });

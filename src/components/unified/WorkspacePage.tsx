@@ -6,11 +6,17 @@ import { getAccountAccess } from "@/lib/accountAccess";
 import { fadingGate } from "@/lib/fading/enabled";
 
 /** Shared authenticated entry for the main page and existing /studio links. */
-export default async function WorkspacePage({ user }: { user: SessionUser }) {
+export default async function WorkspacePage({
+  user,
+  examReportTestId,
+}: {
+  user: SessionUser;
+  examReportTestId?: string;
+}) {
   const account = await getAccountAccess();
   let initialData: BankData;
   try {
-    if (account?.menus.includes("bank")) {
+    if (!examReportTestId && account?.menus.includes("bank")) {
       const metadata = await loadUnifiedBankBootstrap("question");
       initialData = {
         ...metadata,
@@ -46,6 +52,7 @@ export default async function WorkspacePage({ user }: { user: SessionUser }) {
       initialData={initialData}
       storageScope={user.id}
       fadingGate={fadingGate()}
+      examReportTestId={examReportTestId}
       currentUser={{
         ...user,
         branchId: account?.branchId ?? null,

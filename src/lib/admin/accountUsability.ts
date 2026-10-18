@@ -38,28 +38,6 @@ export function restorableIntegrationUser(
   );
 }
 
-export function classOwnerForArchive(
-  existingOwnerId: string | null | undefined,
-  teacherOwnerId: string | null,
-  archiveOwnerId: string | null,
-) {
-  if (existingOwnerId) return existingOwnerId;
-  return teacherOwnerId ?? archiveOwnerId;
-}
-
-export function archiveOwnerWhere(branchId: string, userId: string) {
-  return {
-    id: userId,
-    branchId,
-    deletedAt: null,
-    suspendedAt: null,
-    manualSuspendedAt: null,
-    approvalStatus: "approved" as const,
-    isSuperAdmin: false,
-    branchRole: "teacher" as const,
-  };
-}
-
 export function passwordReissueDecision(
   subject: {
     deletedAt?: Date | string | null;

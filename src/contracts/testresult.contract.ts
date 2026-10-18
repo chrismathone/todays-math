@@ -233,6 +233,7 @@ export type GradeSheetStudent = z.infer<typeof gradeSheetStudentSchema>;
 export const gradeSheetResponseSchema = dataResponseSchema(
   z.strictObject({
     testId: uuidSchema,
+    publicationId: uuidSchema.nullable().optional(),
     className: z.string(),
     /** 학생별 출제면 그 학생 이름 — 반 전체 시험이면 null(검수 화면과 같은 규약). */
     studentName: z.string().nullable(),

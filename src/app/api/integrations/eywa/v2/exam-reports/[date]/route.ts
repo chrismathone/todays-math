@@ -3,11 +3,11 @@ import {
   verifyExamReportReceiver,
   examReportReceiverFailure,
 } from "@/lib/eywa/examReportReceiver";
-import { unavailableExamReportSource } from "@/lib/examReport/confirmedSource";
+import { confirmedExamReportSource } from "@/lib/examReport/confirmedSource";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 export const runtime = "nodejs";
-/** 시험일 기준 확정된 학생 성적표만. DB 미적용인 현재 기본은 빈 목록이다. */
+/** 시험일 기준 확정본. EXAM_REPORT_EYWA_FEED=on 전에는 not-installed다. */
 async function get(
   request: Request,
   context: { params: Promise<{ date: string }> },
@@ -16,10 +16,7 @@ async function get(
     const binding = await verifyExamReportReceiver(request);
     const { date } = await context.params;
     return Response.json(
-      await createExamReportFeed(unavailableExamReportSource).day(
-        binding,
-        date,
-      ),
+      await createExamReportFeed(confirmedExamReportSource).day(binding, date),
       { headers: { "Cache-Control": "no-store" } },
     );
   } catch (error) {
