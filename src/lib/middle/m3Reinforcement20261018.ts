@@ -301,7 +301,7 @@ export const M3_REINFORCEMENT_20261018: TypeEntry[] = [
           remainder,
           [0, 1, 2, 3, 4].filter((n) => n !== remainder),
         ),
-        solution: `학생 수를 자연수 $n$, 남는 수를 $r$이라 하면 $n(n+${extra})+r=${stock}$이고 $0\\le r\\le 4$이다. $n=${count}$일 때 나누어 주는 총수는 $${total}$이고 $r=${remainder}$이다. $n$이 한 명만 작아져도 총수는 $${(count - 1) * (count - 1 + extra)}$ 이하가 되어 $4$권보다 많이 남으며, 한 명만 커져도 필요한 총수는 $${(count + 1) * (count + 1 + extra)}$ 이상이 되어 공책이 부족하다. 따라서 남는 수는 $${remainder}$이다.`,
+        solution: `학생 수를 자연수 $n$, 남는 수를 $r$이라 하면 $n^2+${extra}n-(${stock}-r)=0$이다. 남는 수 $r$은 정수이므로 $0,1,2,3,4$를 각각 대입하여 이차방정식 다섯 개를 살핀다. 판별식은 차례로 $${[0, 1, 2, 3, 4].map((r) => extra * extra + 4 * (stock - r)).join(", ")}$이다. 이 중 완전제곱수는 $r=${remainder}$일 때의 $${(2 * count + extra) ** 2}$뿐이므로 이때만 자연수 해가 가능하다. 그 방정식의 두 해는 $${count}$, $-${count + extra}$이고 학생 수는 $${count}$명이다. 나누어 준 총수 $${total}$권을 원래 수에서 빼면 $${stock}-${total}=${remainder}$이므로 남는 수는 $${remainder}$권이다.`,
         facts: { count, extra, stock },
       };
     },

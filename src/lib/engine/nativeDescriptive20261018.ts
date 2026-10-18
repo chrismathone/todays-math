@@ -208,7 +208,7 @@ export function generateNativeDescriptive(
     case "e4-trapezoid-sufficiency-r1": {
       const side = n(3, 12);
       const parallel = variant % 2 === 0 ? "변 AB와 CD" : "변 AD와 BC";
-      content = `이 문제에서는 마주 보는 변이 적어도 한 쌍 평행한 사각형을 사다리꼴이라고 합니다. 사각형의 꼭짓점 A, B, C, D는 둘레를 따라 차례로 붙였습니다. 가는 ${parallel}가 평행합니다. 나는 이웃한 변 AB와 AD가 각각 $${side}\\,\\mathrm{cm}$이고, 마주 보는 변 두 쌍 모두 평행하지 않습니다.\n\n(1) 가와 나가 사다리꼴인지 각각 정의로 설명하세요. (2) "길이가 같은 두 변이 있으면 사다리꼴이다"라는 주장에 나가 반례가 되는 이유를 쓰세요. (3) 사각형이 사다리꼴임을 보이기에 충분한 평행 조건 하나를 쓰세요.`;
+      content = `이 문제에서는 마주 보는 변이 적어도 한 쌍 평행한 사각형을 사다리꼴이라고 합니다. 사각형의 꼭짓점 A, B, C, D는 둘레를 따라 차례로 붙였습니다. 사각형 가는 ${parallel}가 평행합니다. 사각형 나는 이웃한 변 AB와 AD가 각각 $${side}\\,\\mathrm{cm}$이고, 마주 보는 변 두 쌍 모두 평행하지 않습니다.\n\n(1) 가와 나가 사다리꼴인지 각각 정의로 설명하세요. (2) "길이가 같은 두 변이 있으면 사다리꼴이다"라는 주장에 나가 반례가 되는 이유를 쓰세요. (3) 사각형이 사다리꼴임을 보이기에 충분한 평행 조건 하나를 쓰세요.`;
       answer =
         "가는 사다리꼴, 나는 사다리꼴이 아님. 나는 같은 길이 두 변이 있어도 평행한 마주 보는 변이 없어 반례. 마주 보는 변 한 쌍이 평행하면 충분.";
       modelAnswer = `가는 마주 보는 ${parallel}가 평행하므로 정의를 만족합니다. 나는 마주 보는 변 중 평행한 쌍이 없어 사다리꼴이 아닙니다. 나에는 $${side}\\,\\mathrm{cm}$인 두 변이 있는데도 사다리꼴이 아니므로 주장을 반박하는 반례입니다. 마주 보는 변 AB와 CD가 평행하다는 조건만으로도 사다리꼴임을 보일 수 있습니다. 두 쌍이 모두 평행할 필요는 없습니다.`;
@@ -282,7 +282,7 @@ export function generateNativeDescriptive(
         delta = n(2, 6),
         length = width + delta,
         area = width * length;
-      const object = variant % 2 === 0 ? "화단" : "사진 판";
+      const object = variant % 2 === 0 ? "종이" : "사진 판";
       content = `직사각형 ${object}의 가로는 세로보다 $${delta}\\,\\mathrm{cm}$ 길고 넓이는 $${area}\\,\\mathrm{cm}^2$입니다.\n\n(1) 세로를 $x\\,\\mathrm{cm}$로 놓고 $x$의 조건과 넓이에 관한 이차방정식을 세우세요. (2) 방정식의 두 해를 모두 구하고 이 상황에 쓸 수 없는 해를 제외하는 이유를 설명하세요. (3) 가로와 세로를 정하고 길이 차와 넓이를 원래 조건에 대입해 확인하세요.`;
       answer = `세로 $${width}\\,\\mathrm{cm}$, 가로 $${length}\\,\\mathrm{cm}$; 두 해 $${width}$, $-${length}$ 중 음수 해 제외.`;
       modelAnswer = `길이이므로 $x>0$이고 가로는 $x+${delta}$입니다. $x(x+${delta})=${area}$, 즉 $x^2+${delta}x-${area}=0$입니다. $(x-${width})(x+${length})=0$이므로 $x=${width}$ 또는 $x=-${length}$입니다. 음수 해는 길이의 조건 $x>0$을 만족하지 않아 제외합니다. 세로 $${width}\\,\\mathrm{cm}$, 가로 $${length}\\,\\mathrm{cm}$이고 $${length}-${width}=${delta}$, $${width}\\times${length}=${area}$이므로 두 조건에 모두 맞습니다.`;

@@ -381,7 +381,7 @@ describe("native exact contract and three source consumers", () => {
     const plan = JSON.parse(readFileSync(base + "native-plan.json", "utf8"));
     expect(buildTargetRows(plan.targets[0], plan.seedBase)).toEqual(rows);
     const exported = JSON.parse(
-      readFileSync(base + "native-candidates.json", "utf8"),
+      readFileSync(base + "native-candidates-r2.json", "utf8"),
     );
     expect(exported.candidateCount).toBe(12);
     for (const actual of exported.candidates) {
