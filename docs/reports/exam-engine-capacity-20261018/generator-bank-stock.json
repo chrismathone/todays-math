@@ -1,0 +1,84 @@
+{
+  "scope": "key-based join to read-only current metadata; no semantic/new quality approval",
+  "snapshotAt": "2026-10-18T11:08:34.847Z",
+  "scopeSummary": {
+    "elementary-combo": {
+      "registered": 1,
+      "bankLoaderSupported": 0,
+      "loadedFamilies": 0,
+      "issuableFamilies": 0,
+      "issuablePhysicalRows": 0,
+      "issuableQuestions": 0,
+      "familiesUnder5IssuableQuestions": 0
+    },
+    "elementary-form": {
+      "registered": 2499,
+      "bankLoaderSupported": 2499,
+      "loadedFamilies": 2499,
+      "issuableFamilies": 2499,
+      "issuablePhysicalRows": 54223,
+      "issuableQuestions": 28539,
+      "familiesUnder5IssuableQuestions": 67
+    },
+    "high": {
+      "registered": 168,
+      "bankLoaderSupported": 0,
+      "loadedFamilies": 0,
+      "issuableFamilies": 0,
+      "issuablePhysicalRows": 0,
+      "issuableQuestions": 0,
+      "familiesUnder5IssuableQuestions": 0
+    },
+    "judge": {
+      "registered": 15,
+      "bankLoaderSupported": 15,
+      "loadedFamilies": 15,
+      "issuableFamilies": 14,
+      "issuablePhysicalRows": 168,
+      "issuableQuestions": 168,
+      "familiesUnder5IssuableQuestions": 1
+    },
+    "middle": {
+      "registered": 1511,
+      "bankLoaderSupported": 1511,
+      "loadedFamilies": 1511,
+      "issuableFamilies": 1511,
+      "issuablePhysicalRows": 45029,
+      "issuableQuestions": 22964,
+      "familiesUnder5IssuableQuestions": 5
+    },
+    "middle-combo": {
+      "registered": 3,
+      "bankLoaderSupported": 3,
+      "loadedFamilies": 3,
+      "issuableFamilies": 3,
+      "issuablePhysicalRows": 72,
+      "issuableQuestions": 36,
+      "familiesUnder5IssuableQuestions": 0
+    },
+    "native-descriptive": {
+      "registered": 6,
+      "bankLoaderSupported": 6,
+      "loadedFamilies": 6,
+      "issuableFamilies": 6,
+      "issuablePhysicalRows": 30,
+      "issuableQuestions": 30,
+      "familiesUnder5IssuableQuestions": 0
+    }
+  },
+  "bankLoaderSupportedFamiliesWithoutIssuableQuestions": [
+    "mid:judge:중1|유리수의 덧셈과 뺄셈|calc-mix4"
+  ],
+  "unmatchedBankPhysicalRows": 16771,
+  "availabilityRule": "approved, shared, directUseAllowed, nonempty non-sentinel answer, supported objective/short/written questionType",
+  "canonicalization": "Registered source keys, known 9 aliases/delegations from capacity report; elementary section display title reduced to stored section ID for join only. No DB rewrite or semantic family merge.",
+  "blockedRegisteredFamily": {
+    "family": "mid:judge:중1|유리수의 덧셈과 뺄셈|calc-mix4",
+    "heldRows": 12,
+    "supportedFormat": "객관식",
+    "reviewStatus": "approved",
+    "directUseAllowed": false,
+    "action": "preserve lock; this audit does not authorize unlocking"
+  },
+  "limitations": "Key-based inventory join, not proof that all legacy rows match current generator output or all stored answers independently correct. Unmatched rows remain independent; no entire-bank quality verdict."
+}
