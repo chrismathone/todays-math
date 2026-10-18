@@ -12202,7 +12202,10 @@ function tri221NameIso(unit: UnitSeed, rng: Rng): ElemProblem {
 }
 
 function tri221PickIso(unit: UnitSeed, rng: Rng): ElemProblem {
-  const put = labelledPick(rng, "isoTri", ["eqTri", "rightTri"]);
+  const put = labelledPick(rng, "isoTri", [
+    "choiceScaleneTri",
+    "choiceRightScaleneTri",
+  ]);
   return make(
     unit,
     "그림에서 이등변삼각형의 기호를 쓰시오.",
@@ -12272,7 +12275,10 @@ function tri222Biggest(unit: UnitSeed, rng: Rng): ElemProblem {
 }
 
 function tri222Pick(unit: UnitSeed, rng: Rng): ElemProblem {
-  const put = labelledPick(rng, "isoTri", ["wideTri", "rightTri"]);
+  const put = labelledPick(rng, "isoTri", [
+    "choiceScaleneTri",
+    "choiceRightScaleneTri",
+  ]);
   return make(
     unit,
     "그림에서 두 밑각의 크기가 같은 삼각형의 기호를 쓰시오.",
@@ -15443,7 +15449,7 @@ function quad242PerpCount(unit: UnitSeed, rng: Rng): ElemProblem {
     `평행한 두 직선 사이에 수선을 ${n(k)}개 그었습니다. 수선은 몇 개인가?`,
     n(k),
     `그은 수선은 ${n(k)}개입니다.`,
-    fig("lineRelation", { relation: "parallel", perpCount: Math.min(k, 3) }),
+    fig("lineRelation", { relation: "parallel", perpCount: k }),
   );
 }
 
@@ -15523,7 +15529,7 @@ function quad243Triple(unit: UnitSeed, rng: Rng): ElemProblem {
 }
 
 function quad244Pick(unit: UnitSeed, rng: Rng): ElemProblem {
-  const put = labelledPick(rng, "trap", ["irregQuad", "rect"]);
+  const put = labelledPick(rng, "trap", ["irregQuad", "choiceNonparallelQuad"]);
   return make(
     unit,
     "그림에서 사다리꼴의 기호를 쓰시오.",
@@ -17862,9 +17868,9 @@ function poly263Name(unit: UnitSeed, rng: Rng): ElemProblem {
   const sides = intBetween(rng, 5, 8);
   return make(
     unit,
-    `모든 변의 길이가 같고 변이 ${n(sides)}개인 다각형을 무엇이라고 하는가?`,
+    `모든 변의 길이가 같고 모든 각의 크기가 같은, 변이 ${n(sides)}개인 다각형을 무엇이라고 하는가?`,
     polyName(sides, true),
-    `모든 변의 길이가 같은 ${polyName(sides)}은 ${polyName(sides, true)}입니다.`,
+    `모든 변의 길이가 같고 모든 각의 크기가 같은 ${polyName(sides)}은 ${polyName(sides, true)}입니다.`,
   );
 }
 
