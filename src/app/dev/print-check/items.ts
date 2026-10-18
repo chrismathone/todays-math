@@ -83,6 +83,40 @@ export const SPECIMEN_ITEM_IDS = [
 
 export const ITEMS: PrintCheckItem[] = [
   {
+    id: "math-bank-g4-repeat-20261018",
+    title: "수학 문제은행 보강 — 초4 삼각형·평행·사다리꼴 새 문형",
+    changed:
+      "초4의 정삼각형의 성질, 삼각형의 두 기준 분류, 평행과 평행선, 사다리꼴에 새 문형 9개를 보강한다. 기존 인쇄 양식은 유지하며 새 조건·수치·그림이 있는 문항을 확인한다.",
+    look: "새 문형을 기존 A4 문제지에 넣어 조건·수식·그림과 답란이 잘리거나 겹치지 않는지 본다. 그림의 주어진 값과 물음이 일치해야 하며, 학생 문제지에 정답이나 교사용 해설이 보이면 불합격이다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/math-bank-reinforcement-20261018.md §2·§6",
+      "docs/planning/tracks/reports/math-bank-reinforcement-20261018/claude-plan-review-r2.md",
+    ],
+    scale: "초4 4차시 · 새 문형 9개 · 발문 27개 이상",
+    status: "대기",
+    needs:
+      "보강 결과 원장의 초4 신규 문항을 골라 문제지·정답지를 각각 실제 프린터로 출력한다. 브라우저·PDF 검사와 실물 확인을 구분해 기록한다.",
+    changedOn: "2026-10-18",
+  },
+  {
+    id: "math-bank-native-descriptive-20261018",
+    title: "수학 문제은행 보강 — 본래 서술형과 교사용 채점 기준",
+    changed:
+      "초4와 중3에 추론·근거 설명을 처음부터 요구하는 서술형 12문항을 보강한다. 교사용 해설에는 모범 풀이와 부분점수 기준을 함께 두며 학생용 문제지와 분리한다.",
+    look: "학생용 문제지의 조건·수식·풀이 공간이 잘리지 않고, 모범 답과 채점 기준이 노출되지 않는지 본다. 정답지에는 문항별 모범 풀이와 채점 기준이 빠짐없이 대응해야 하며, 해설이 다음 단이나 페이지 밖으로 사라지면 불합격이다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/math-bank-reinforcement-20261018.md §4·§6",
+      "docs/planning/tracks/reports/math-bank-reinforcement-20261018/claude-plan-review-r2.md",
+    ],
+    scale: "초4 6문항 · 중3 6문항 · 본래 서술형 6유형",
+    status: "대기",
+    needs:
+      "보강 결과 원장의 서술형 12문항을 포함해 학생용 문제지와 교사용 정답지를 실제 프린터로 출력하고, 번호·부분점수 합계·답안 비노출을 확인한다.",
+    changedOn: "2026-10-18",
+  },
+  {
     id: "arithmetic-basic-preset-heading-20261016",
     title: "연산대장 기초 연산 — 묶음 머리말이 고른 유형 이름으로",
     changed:
