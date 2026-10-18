@@ -1,0 +1,484 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-10-18",
+  "sourceCommit": "2ae2668668862500fcba9fbc686ad719cc4df069",
+  "scope": {
+    "staticPolicyOnly": true,
+    "dbConnected": false,
+    "productChanges": false,
+    "databaseWrites": false,
+    "pushOrDeploy": false,
+    "scopeNotes": "DB inventory, content duplicate census, account-specific remaining stock and repeated selection simulations belong to root"
+  },
+  "policy": {
+    "daily": {
+      "defaultQuestions": 8,
+      "defaultDifficultyCounts": [1, 3, 3, 1, 0, 0],
+      "unitScope": "current progress unit only; review uses an explicit range",
+      "sameSheetFamilyRule": "always on",
+      "difficultyFallback": "walk the entire ladder, nearest first, easier first on ties; report substitutions",
+      "sources": [
+        "src/contracts/difficulty.ts:79",
+        "src/contracts/class.contract.ts:66",
+        "src/lib/tests/generateDraftTest.ts:118",
+        "src/lib/generator/balanceDifficulty.ts:104"
+      ]
+    },
+    "family": {
+      "identity": "trimmed familyKey with unitId; null/empty key becomes solo:<problemId>",
+      "notEqualTo": "problemType or content-duplicate group",
+      "source": "src/lib/generator/familyKey.ts:46"
+    },
+    "recent": {
+      "windowDays": 14,
+      "inclusiveDateWindow": "[testDate-14 days, testDate]",
+      "identityExcluded": "problemId, not the entire family",
+      "ownerScope": "all tests of the class owner for daily/review; current account for exam builder; no class/student/status filter",
+      "caution": "14 days is not 14 sessions; daily scheduling on every date can cover 15 inclusive dates",
+      "source": "src/lib/tests/recentProblemIds.ts:19"
+    },
+    "examBuilder": {
+      "defaultQuestionCount": null,
+      "sameSheetFamilyRule": "on by default; teacher can turn it off",
+      "recentExclusion": "UI on by default; compose API omission defaults false",
+      "difficultyAndFormatIntent": "missing means unspecified; zero means excluded; never fill a requested shortage from other tiers/formats/units",
+      "formatCaution": "format intent is assigned inside already drawn families and same difficulty, so aggregate format counts do not guarantee actual fill",
+      "sources": [
+        "src/components/exam-builder/conditionsPlan.ts:5",
+        "src/lib/unifiedBankSelection.ts:66",
+        "src/lib/unifiedBankSelection.ts:294",
+        "src/lib/unifiedBankSelection.ts:387"
+      ]
+    },
+    "coverageSeparation": {
+      "regularPickerSupport": "elementary3-middle3: 360 static curriculum units; full lookup/exam-builder curriculum has 735 units; this is not a DB census",
+      "arithmeticV2": "737 definitions across elementary1-middle3 are a separate worksheet engine, not bank rows; do not add them to elementary1/2 bank inventory",
+      "arithmeticElementary1And2Definitions": [18, 33],
+      "highEngine": "common-math1: 170 catalogue types / 168 registered / 2 holds; common-math2: 177 catalogue types / 0 registered / 0 holds; the other five planned high-school courses have no type-catalogue denominator here",
+      "sources": [
+        "src/contracts/supportedGrades.ts:26",
+        "src/lib/arithmetic-v2/registry.ts:52",
+        "src/lib/high/generate.ts:78",
+        "docs/planning/tracks/high-engine-plan.md:3"
+      ]
+    },
+    "formatCountCaution": "bank filter uses classifyFormat; composition format intent uses raw questionType; retain both axes"
+  },
+  "registryObservation": {
+    "sourceCommit": "2ae266866",
+    "curriculumUnits": {
+      "total": 735,
+      "byGrade": {
+        "초1": 57,
+        "초2": 73,
+        "초3": 56,
+        "초4": 62,
+        "초5": 56,
+        "초6": 56,
+        "중1": 52,
+        "중2": 56,
+        "중3": 22,
+        "공통수학1": 53,
+        "공통수학2": 50,
+        "대수": 38,
+        "미적분1": 28,
+        "확률과 통계": 20,
+        "기하": 27,
+        "미적분2": 29
+      },
+      "supportedPickerGrades": [
+        "초3",
+        "초4",
+        "초5",
+        "초6",
+        "중1",
+        "중2",
+        "중3"
+      ],
+      "supportedPickerUnits": 360
+    },
+    "bankEngine": {
+      "elementaryUnits": 230,
+      "middleRegisteredTypes": 1505,
+      "middleTypesByGrade": {
+        "중1": 578,
+        "중2": 628,
+        "중3": 299
+      },
+      "highCatalogTypes": {
+        "공통수학1": 170,
+        "공통수학2": 177
+      },
+      "highRegisteredByGrade": {
+        "공통수학1": 168
+      },
+      "highHolds": [
+        {
+          "key": "공통수학1|이차부등식과 연립이차부등식|01",
+          "reason": "포물선·직선 그래프를 읽고 푸는 유형 — 그림이 있어야 성립한다. 물결 2 funcGraph 로 넘긴다(좌표로 때우지 않는다, 09 §4)"
+        },
+        {
+          "key": "공통수학1|경우의 수와 순열|08",
+          "reason": "영역 지도 그림 필요 — 어느 영역이 서로 인접하는지가 그림으로만 정해진다. 중등 `m2Shade.ts` 의 FigureSpec v2 채색 축을 고등 적재·미리보기가 싣는지 확인한 뒤(물결 2) 등록"
+        }
+      ]
+    },
+    "separateArithmeticV2": {
+      "definitions": 737,
+      "byGrade": {
+        "초3": 70,
+        "초4": 48,
+        "초5": 83,
+        "초6": 52,
+        "중1": 155,
+        "중2": 171,
+        "중3": 107,
+        "초2": 33,
+        "초1": 18
+      },
+      "declaredDomainSum": 154922259
+    }
+  },
+  "scenarios": {
+    "questionsPerSheet": [8, 10, 20],
+    "repeatCountsIncludingFirst": [3, 5, 10, 14],
+    "requiredDistinctProblemIds": [
+      {
+        "questions": 8,
+        "totalIdsByRepeatCount": {
+          "3": 24,
+          "5": 40,
+          "10": 80,
+          "14": 112
+        }
+      },
+      {
+        "questions": 10,
+        "totalIdsByRepeatCount": {
+          "3": 30,
+          "5": 50,
+          "10": 100,
+          "14": 140
+        }
+      },
+      {
+        "questions": 20,
+        "totalIdsByRepeatCount": {
+          "3": 60,
+          "5": 100,
+          "10": 200,
+          "14": 280
+        }
+      }
+    ],
+    "basis": "Only 8 questions is the factory daily/review default; 10, 20 and all repeat counts are explicit audit assumptions",
+    "scaledFactoryRatios": [
+      {
+        "count": 8,
+        "ratio": {
+          "연산": 1,
+          "기본": 3,
+          "응용": 3,
+          "심화하": 1,
+          "심화중": 0,
+          "심화상": 0
+        }
+      },
+      {
+        "count": 10,
+        "ratio": {
+          "연산": 1,
+          "기본": 4,
+          "응용": 4,
+          "심화하": 1,
+          "심화중": 0,
+          "심화상": 0
+        }
+      },
+      {
+        "count": 20,
+        "ratio": {
+          "연산": 3,
+          "기본": 8,
+          "응용": 7,
+          "심화하": 2,
+          "심화중": 0,
+          "심화상": 0
+        }
+      }
+    ],
+    "necessaryRelaxedRepeatCapacity": "sum_f min(remainingEligibleRows_f, repeats) >= questionsPerSheet * repeats",
+    "formulaLimit": "fixed pool, all sessions in the same exclusion window, no pre-existing history except removed rows, family rule on, difficulty/format unconstrained; does not prove actual random/greedy fill or fresh content"
+  },
+  "verification": {
+    "tests": {
+      "files": [
+        {
+          "path": "src/__tests__/api/examBuilderConditions.test.ts",
+          "passed": 16
+        },
+        {
+          "path": "src/__tests__/api/examBuilderFamilyRule.test.ts",
+          "passed": 11
+        },
+        {
+          "path": "src/__tests__/unit/balanceDifficultyLadder.test.ts",
+          "passed": 2
+        },
+        {
+          "path": "src/__tests__/unit/examComposeConditions.test.ts",
+          "passed": 17
+        },
+        {
+          "path": "src/__tests__/unit/familyDedupe.test.ts",
+          "passed": 14
+        },
+        {
+          "path": "src/__tests__/unit/generator.test.ts",
+          "passed": 12
+        },
+        {
+          "path": "src/__tests__/unit/supportedGrades.test.ts",
+          "passed": 6
+        }
+      ],
+      "fileCount": 7,
+      "passed": 78,
+      "failed": 0,
+      "skipped": 0,
+      "mockBoundary": "vitest.setup.ts:63-81 replaces @/lib/db with in-memory prismaTestDouble",
+      "command": "node_modules/.bin/vitest run src/__tests__/api/examBuilderConditions.test.ts src/__tests__/api/examBuilderFamilyRule.test.ts src/__tests__/unit/balanceDifficultyLadder.test.ts src/__tests__/unit/examComposeConditions.test.ts src/__tests__/unit/familyDedupe.test.ts src/__tests__/unit/generator.test.ts src/__tests__/unit/supportedGrades.test.ts --maxWorkers=2 --reporter=json --outputFile=.qa-artifacts/capacity-policy-tests.json",
+      "resultSha256": "ce06a18efbd16a88510a85fbfb335271187e02df1601c167c562c2a7244b501a"
+    },
+    "eslint": {
+      "files": [
+        "src/lib/generator/familyKey.ts",
+        "src/lib/generator/balanceDifficulty.ts",
+        "src/lib/generator/selectProblems.ts",
+        "src/lib/generator/excludeRecent.ts",
+        "src/contracts/difficulty.ts",
+        "src/contracts/supportedGrades.ts",
+        "src/lib/tests/recentProblemIds.ts",
+        "src/lib/unifiedBankSelection.ts",
+        "src/components/exam-builder/conditionsPlan.ts"
+      ],
+      "command": "node_modules/.bin/eslint <the nine files listed here> --max-warnings=0",
+      "exitCode": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    "artifactChecks": {
+      "status": "passed",
+      "sourceFilesVerified": 37,
+      "uniqueSourceLineAnchorsVerified": 57,
+      "sourceLinkOccurrencesVerified": 58,
+      "numericScenarioCellsVerified": 12,
+      "registryTotalsVerified": true,
+      "testResultSummaryVerified": true,
+      "formatCommand": "node_modules/.bin/prettier --check docs/reports/problem-bank-reinforcement-20261018/capacity-policy.md docs/reports/problem-bank-reinforcement-20261018/capacity-policy.json",
+      "whitespaceCommand": "git diff --check",
+      "note": "Python checked source hashes, all cited line anchors, registry totals, difficulty-ratio sums and 12 scenario products. Prettier and whitespace checks run after writing metadata."
+    }
+  },
+  "evidence": {
+    "sourceFiles": [
+      {
+        "path": "docs/planning/tracks/high-engine-plan.md",
+        "lines": [3, 38],
+        "sha256": "4083863cd2a4130302e42420ea3b971f7fbe1a054ad8aa51c765f6062851e3db"
+      },
+      {
+        "path": "prisma/seed-data/units.ts",
+        "lines": [44],
+        "sha256": "df50e488665d88ee7f75fb81be78fb26cf7c1b3d9c45df2cc4ade80a48861c02"
+      },
+      {
+        "path": "scripts/rpm/rpm-high-type-catalog.json",
+        "lines": [],
+        "sha256": "bf525bfedc6be84b5ec3230b6aa68241575b25173705e0f2e5f68565e06003a6"
+      },
+      {
+        "path": "src/app/(auth)/onboarding/page.tsx",
+        "lines": [17],
+        "sha256": "f8edf291fa2f3c1876835b37bf44c657a71998e2464a35044885063db0d15a1d"
+      },
+      {
+        "path": "src/app/(main)/classes/page.tsx",
+        "lines": [34],
+        "sha256": "b6e9e6ac011e3a7999dd41fc1f64c690bf73a9a909ed9c1404e51ecafa4deeb9"
+      },
+      {
+        "path": "src/components/exam-builder/ExamBuilder.tsx",
+        "lines": [81],
+        "sha256": "813508edbfedcaf6630c93b479040bcee04bbef98b18946e3256f5c5ae0acc9d"
+      },
+      {
+        "path": "src/components/exam-builder/conditionsPlan.ts",
+        "lines": [63],
+        "sha256": "e6b3e34f52f87d0bdfefed1246eaab8d2397f1b215626a9df08445fcd59d29f4"
+      },
+      {
+        "path": "src/components/exam-builder/mathSource.ts",
+        "lines": [83, 143],
+        "sha256": "2d35bf41a0b6e055af435f5e3d3b07c8c63dfaf27862f66562eed36a630e31ba"
+      },
+      {
+        "path": "src/components/test/GenerateSetup.tsx",
+        "lines": [66],
+        "sha256": "d6b9785ace43933f0efafd7a1bec3b2bd1ea2d34b872f79285eb7f3a7b2ce061"
+      },
+      {
+        "path": "src/components/test/useGenerateSetup.ts",
+        "lines": [346],
+        "sha256": "d1946118a34c0d9c3330af8e043ea76eeb273aaab3b0534d167f454bb92fa4c8"
+      },
+      {
+        "path": "src/contracts/class.contract.ts",
+        "lines": [57],
+        "sha256": "4e69cf0e11ffd2ba514eb5e665c8c68d99832e99b784e53ce58c50bb4f8a0514"
+      },
+      {
+        "path": "src/contracts/difficulty.ts",
+        "lines": [27, 46, 96, 129],
+        "sha256": "c3e658045d467fc07532ef0881bd06f1b052fdb21fb349010b0936189bd50a41"
+      },
+      {
+        "path": "src/contracts/supportedGrades.ts",
+        "lines": [26, 52],
+        "sha256": "6707b35869de5a97bef4d1894934c7ecb47686c8febf80d41bf63e8ba7ed70e3"
+      },
+      {
+        "path": "src/contracts/test.contract.ts",
+        "lines": [39],
+        "sha256": "e373d2c329b68efa77d34a27b78eca73bf490027adf53ee5a860beb3eac8feb6"
+      },
+      {
+        "path": "src/lib/arithmetic-v2/registry.ts",
+        "lines": [16, 52],
+        "sha256": "feb78288a1a380344f4470f6fef2e161a25cda563a6f25f20234049b8e0e8e5a"
+      },
+      {
+        "path": "src/lib/bankQueryContext.ts",
+        "lines": [7],
+        "sha256": "633d9fd40b1d2083ef3035b9740802bc3f869fe13f703912025c2bb48fba6079"
+      },
+      {
+        "path": "src/lib/bankSourceAvailability.ts",
+        "lines": [146],
+        "sha256": "d1cc053dff1675207778ec8b73af33aa92f7a5590352b24c5b4df7e17b9c7908"
+      },
+      {
+        "path": "src/lib/elementary/generate.ts",
+        "lines": [74],
+        "sha256": "15fa748008e747676219a7847127bacb63ce977743749022b2e15c53ccf745e9"
+      },
+      {
+        "path": "src/lib/elementary/types.ts",
+        "lines": [48],
+        "sha256": "49aa8d34df81921e160993e25c396d137df74dc044048b7ba73613ebff96091b"
+      },
+      {
+        "path": "src/lib/findEligibleProblems.ts",
+        "lines": [66],
+        "sha256": "249e83beb8b14fd43d4f74f10f4db4f681cd03ed4417592e3eaff5aaefcf44cd"
+      },
+      {
+        "path": "src/lib/generator/balanceDifficulty.ts",
+        "lines": [104, 194, 292],
+        "sha256": "d899ac26fdba414c661d2984900bbe972e65e7e211d067e4d765089cf4195ee4"
+      },
+      {
+        "path": "src/lib/generator/familyKey.ts",
+        "lines": [46, 60],
+        "sha256": "23543e192ba3da45844d78f0289e024f62d45257e29f18b32b798762eb3e1336"
+      },
+      {
+        "path": "src/lib/generator/planRetry.ts",
+        "lines": [16],
+        "sha256": "2fc8793599baf694c47e58d626dd570c5c81654b543f729b0cccae9cd9d49338"
+      },
+      {
+        "path": "src/lib/generator/resolveRange.ts",
+        "lines": [39],
+        "sha256": "23d390860aafc1fde197af89a69e7be19588a6c6aea5625c51cd0793033e0500"
+      },
+      {
+        "path": "src/lib/generator/selectProblems.ts",
+        "lines": [120, 135, 235],
+        "sha256": "7cee710d3f9e4c987166679e2d9f60ecb001476f56c54696b320b96d0e5841fa"
+      },
+      {
+        "path": "src/lib/high/generate.ts",
+        "lines": [40, 89],
+        "sha256": "f54cf55d3f4f8034f51ba5c872ac4e7f3ed544dd8e50519b7bc82daccdd5fb5f"
+      },
+      {
+        "path": "src/lib/problem/formatQuery.ts",
+        "lines": [15],
+        "sha256": "3572cd7516ff51c76c04ea95ec2369e1205bd1cf3b757b008305f6dd52a440ae"
+      },
+      {
+        "path": "src/lib/problem/provenance.ts",
+        "lines": [247],
+        "sha256": "c94ac0e0ee3520d5c78e97c42a49501443518d13d17dab3cc116cb68d5fe3a18"
+      },
+      {
+        "path": "src/lib/problemEligibility.ts",
+        "lines": [32],
+        "sha256": "35d73f30e80245cfb4b2001b706fca7984afd276242f01b9304d06a89fda9bbb"
+      },
+      {
+        "path": "src/lib/problemPool.ts",
+        "lines": [14],
+        "sha256": "7f2d9c10fd1896fa1d270a82b921a5aa7d405de9a89746e2356359814c3cf041"
+      },
+      {
+        "path": "src/lib/tests/constants.ts",
+        "lines": [2],
+        "sha256": "6ff123705e7bf6ae3f16aee50c54763b11e41d7364a224cbc12e8f3d711ebad7"
+      },
+      {
+        "path": "src/lib/tests/draftCapacity.ts",
+        "lines": [33],
+        "sha256": "2d288ba2ef9d317791b1a1cd05ede6bf28e5931de1331664295a81930f6ad4b8"
+      },
+      {
+        "path": "src/lib/tests/generateDraftTest.ts",
+        "lines": [141, 148, 163],
+        "sha256": "10827639adadd8728090df485a56debda0c4cc235e5822d1881721fce83f325e"
+      },
+      {
+        "path": "src/lib/tests/recentProblemIds.ts",
+        "lines": [19],
+        "sha256": "04405daea127bd273add7eb8945470741b91baedd859997d02ce9f59ed122c6c"
+      },
+      {
+        "path": "src/lib/unifiedBankSelection.ts",
+        "lines": [48, 255, 294, 405, 431, 479, 487],
+        "sha256": "9dbeba3bb558e49a1cacb8a32b294679ec98ba85d5c56abeac2f2c31cb2e4945"
+      },
+      {
+        "path": "src/lib/unifiedPreview.ts",
+        "lines": [138],
+        "sha256": "3c4197a7377f7dcb7356594105f49b62d382f58e1bb695a77c530306d64c4240"
+      },
+      {
+        "path": "vitest.setup.ts",
+        "lines": [63],
+        "sha256": "3a9ec50d673a6cdbbce0c64a5e3f1dd52a84bff62fe4df70b4c7358e3d51491c"
+      }
+    ],
+    "sourceFileCount": 37,
+    "sourceManifestSha256": "27f6399482b243e038b0b08e1aad0d156812a5433c15ed11761cb0e1962eb583",
+    "earlyBrief": ".qa-artifacts/capacity-policy-brief.json",
+    "earlyBriefSha256": "4298f61f26f5cae3bf4c6f82550d8a654c2cdcd4ec391e44fa9d84199f28df6d",
+    "registryCommand": "Read CURRICULUM_UNITS, SUPPORTED_GRADES, elementaryUnits(), registeredTypes(), registeredHighTypes(), registeredHighHolds(), arithmeticV2Definitions() and rpm-high-type-catalog.json via tsx; tally only, no database module imported"
+  },
+  "limitations": [
+    "Static curriculum/registry counts are not database row counts or official achievement-standard alignment.",
+    "No live account history, DB inventory or repeated product selection simulation was run in this domain.",
+    "ID reuse, family reuse and content duplication are separate measures.",
+    "Overall difficulty/format marginal counts are not a joint-selection guarantee.",
+    "Past comments with older counts are not current census evidence."
+  ]
+}
