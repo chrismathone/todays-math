@@ -440,3 +440,7 @@ CREATE UNIQUE INDEX "test_publication_class_key" ON "test" ("publication_id", "c
 - 고침: 출입 규칙에 OFL 글꼴 두 파일 + 고지문만 **이름으로** 열고(`/fonts/` 접두로 열지 않는다) · `next.config.ts` `headers()` 로 같은 두 파일에만 `Access-Control-Allow-Origin: *`. 시험: `proxyRoleGate`(그 밖의 `/fonts` · POST 는 닫힘) · `reportFontCors`(헤더가 붙는 경로가 정확히 둘).
 - 확인: 실제 `buildPdf`(자체 글꼴 모드 — 못 실으면 멈춤)가 S1 1쪽 · M1 3쪽 PDF 를 냈다(427KB · 545KB). 글꼴 넷(명조 · 고딕 × 400 · 700) 실림 · 첫 쪽 육안 H1 그대로. 실물 프린터 검수는 여전히 «대기».
 - 남은 것: 운영(Vercel)에서는 아직 안 쟀다 — 생성 라우트를 붙일 때 운영 주소로 한 번 만들어 본다.
+
+#### 14.3 원장님 화면 Wire 4안 (2026-10-18 · 선택 대기)
+
+`/dev/exam-report-screen-wire` — 성적표를 열고 · 문장을 쓰고 · 확정하는 화면. A 목록 + 미리보기(추천) · B 문장 표 · C 지면 위에서 쓰기 · D 채점표에 이어서. 여쭐 것 셋: 문장 없이 확정 · 확정 전 인쇄 · 문장 길이 상한.

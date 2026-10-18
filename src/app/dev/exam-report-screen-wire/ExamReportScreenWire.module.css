@@ -1,0 +1,295 @@
+/*
+ * 성적표 원장님 화면 Wire — `exam-report-wire` 의 회색 토큰.
+ * Wire 라서 색을 쓰지 않는다. 누를 수 있는 것이 없다(D-30) — 단추 모양은 그림이다.
+ */
+.shell {
+  --w-page: #f4f4f5;
+  --w-surface: #ffffff;
+  --w-fill: #e4e4e7;
+  --w-fill-2: #d4d4d8;
+  --w-line: #a1a1aa;
+  --w-strong: #27272a;
+  --w-muted: #52525b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 44px;
+  min-height: 100vh;
+  padding: 32px 16px 96px;
+  background: var(--w-page);
+  color: var(--w-strong);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.head,
+.topic {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.h1 {
+  font-size: 22px;
+  font-weight: 800;
+}
+.h2 {
+  font-size: 19px;
+  font-weight: 800;
+  padding-top: 8px;
+  border-top: 3px solid var(--w-strong);
+}
+.muted {
+  max-width: 920px;
+  color: var(--w-muted);
+  line-height: 1.7;
+}
+.must {
+  margin: 0;
+  padding-left: 20px;
+  max-width: 920px;
+  line-height: 1.8;
+}
+.pros {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 920px;
+  line-height: 1.7;
+}
+.small {
+  font-size: 11px;
+  color: var(--w-muted);
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.rowEnd {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-end;
+}
+.btn,
+.btnStrong {
+  display: inline-block;
+  padding: 5px 12px;
+  border: 1px solid var(--w-line);
+  border-radius: 4px;
+  background: var(--w-surface);
+  white-space: nowrap;
+}
+.btnStrong {
+  background: var(--w-strong);
+  border-color: var(--w-strong);
+  color: var(--w-surface);
+  font-weight: 700;
+}
+.badge {
+  display: inline-block;
+  padding: 1px 8px;
+  border: 1px solid var(--w-line);
+  border-radius: 10px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.b_none {
+  border-style: dashed;
+  color: var(--w-muted);
+}
+.b_draft {
+  background: var(--w-fill);
+}
+.b_confirmed {
+  background: var(--w-strong);
+  border-color: var(--w-strong);
+  color: var(--w-surface);
+}
+.b_stale {
+  border-width: 2px;
+  font-weight: 700;
+}
+.b_absent {
+  border-color: transparent;
+  color: var(--w-muted);
+}
+.screen {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--w-line);
+  border-radius: 6px;
+  background: var(--w-surface);
+}
+.crumb {
+  font-size: 11px;
+  color: var(--w-muted);
+}
+.screenHead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--w-fill-2);
+}
+.screenTitle {
+  font-size: 16px;
+}
+.split {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 16px;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--w-fill-2);
+}
+.listRow,
+.listRowOn {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 8px;
+  align-items: center;
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--w-fill);
+}
+.listRowOn {
+  background: var(--w-fill);
+  box-shadow: inset 3px 0 0 var(--w-strong);
+}
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.strip {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  background: var(--w-fill);
+}
+.fieldLabel {
+  font-weight: 700;
+}
+.note {
+  padding: 6px 8px;
+  border: 1px solid var(--w-line);
+  border-radius: 3px;
+  background: var(--w-surface);
+  line-height: 18px;
+}
+.placeholder {
+  color: var(--w-line);
+}
+.paper,
+.paperBig,
+.paperEdit {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 150px;
+  aspect-ratio: 210 / 297;
+  padding: 12px;
+  border: 1px solid var(--w-line);
+  background: var(--w-surface);
+}
+.paperEdit {
+  width: 380px;
+  padding: 26px;
+  gap: 14px;
+}
+.pLine {
+  height: 2px;
+  background: var(--w-strong);
+}
+.pName {
+  width: 45%;
+  height: 12px;
+  background: var(--w-fill-2);
+}
+.pNums {
+  display: flex;
+  gap: 12px;
+}
+.pNums span {
+  width: 30%;
+  height: 22px;
+  background: var(--w-fill-2);
+}
+.pTable {
+  height: 30%;
+  background: repeating-linear-gradient(
+    var(--w-fill) 0 1px,
+    transparent 1px 12px
+  );
+  border: 1px solid var(--w-fill-2);
+}
+.pNote {
+  font-size: 10px;
+  color: var(--w-muted);
+  border-top: 1px solid var(--w-fill-2);
+  padding-top: 4px;
+}
+.pEditNote {
+  padding: 8px;
+  border: 2px dashed var(--w-strong);
+  line-height: 1.6;
+}
+.table {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--w-fill-2);
+}
+.tHead,
+.tRow {
+  display: grid;
+  grid-template-columns: 70px 50px 44px 1fr 90px 80px;
+  gap: 10px;
+  align-items: center;
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--w-fill);
+}
+.tHead {
+  font-weight: 700;
+  background: var(--w-fill);
+}
+.tRowD {
+  display: grid;
+  grid-template-columns: 70px 50px 1fr 90px 70px;
+  gap: 10px;
+  align-items: center;
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--w-fill);
+}
+.picker {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 10px;
+  border: 1px solid var(--w-fill-2);
+}
+.center {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+  background: var(--w-fill);
+}
+.box {
+  padding: 28px;
+  text-align: center;
+  color: var(--w-muted);
+  background: var(--w-fill);
+}
+@media (max-width: 760px) {
+  .split,
+  .pros {
+    grid-template-columns: 1fr;
+  }
+}
