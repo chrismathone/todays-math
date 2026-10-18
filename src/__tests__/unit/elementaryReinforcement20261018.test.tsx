@@ -469,15 +469,19 @@ describe("실제 파서·형식 파생·두 렌더 경로", () => {
     const rows = [];
     const skipped = [];
     for (const { unit, form } of FORMS) {
-      const result = expandFamily((variant) => {
-        const seed = candidates.seedBase + variant * 1009;
-        return {
-          ...generateElementaryForm(unit, seed, form.id),
-          seed,
-          familyKey: `elem:${unit.grade}|${unit.section}|${form.id}`,
-          problemType: elemProblemType(form.tier),
-        };
-      }, 3);
+      const result = expandFamily(
+        (variant) => {
+          const seed = candidates.seedBase + variant * 1009;
+          return {
+            ...generateElementaryForm(unit, seed, form.id),
+            seed,
+            familyKey: `elem:${unit.grade}|${unit.section}|${form.id}`,
+            problemType: elemProblemType(form.tier),
+          };
+        },
+        3,
+        { allowMultipleChoice: form.allowMultipleChoice },
+      );
       expect(result.shortBy).toBe(0);
       skipped.push({
         formId: form.id,
@@ -552,6 +556,7 @@ describe("실제 파서·형식 파생·두 렌더 경로", () => {
       }
     }
     expect(shortCount).toBe(27);
+    expect(mcqCount).toBe(21);
     expect(shortCount + mcqCount).toBeLessThanOrEqual(54);
     const held = JSON.parse(
       readFileSync(`${REPORT}g4-hold-candidates.json`, "utf8"),

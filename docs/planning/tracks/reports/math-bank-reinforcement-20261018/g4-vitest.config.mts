@@ -14,7 +14,7 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: "node",
-    include: ["src/__tests__/unit/**/*.{test,spec}.{ts,tsx}"],
+    include: ["src/__tests__/unit/elementaryReinforcement20261018.test.tsx"],
     setupFiles: [],
     globals: false,
     css: false,
