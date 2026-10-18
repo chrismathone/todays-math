@@ -29,8 +29,8 @@ const repoDir = resolve(__dirname, "../../..");
 const folder = "docs/planning/tracks/reports/math-bank-reinforcement-20261018";
 const files: BatchFiles = {
   repoDir,
-  manifestPath: `${folder}/wave1-r3-manifest.json`,
-  prewritePath: `${folder}/wave1-r3-prewrite.json`,
+  manifestPath: `${folder}/wave1-r4-manifest.json`,
+  prewritePath: `${folder}/wave1-r4-prewrite.json`,
   approvalPath: `${folder}/claude-final-batch-approval.json`,
   planPath: "docs/planning/tracks/math-bank-reinforcement-20261018.md",
   resultJournalPath: `${folder}/wave1-results.jsonl`,
@@ -157,7 +157,7 @@ async function main() {
       rows,
       ledger,
     );
-    save("wave1-r3-candidates.json", {
+    save("wave1-r4-candidates.json", {
       ...evidence,
       batchSha256: sha256(serializeManifest(rows)),
       rows: rows
@@ -168,7 +168,7 @@ async function main() {
           return rest;
         }),
     });
-    save("wave1-r3-preparation.json", {
+    save("wave1-r4-preparation.json", {
       at: new Date().toISOString(),
       readOnly: true,
       rows: rows.length,

@@ -179,7 +179,7 @@ export const M3_REINFORCEMENT_20261018: TypeEntry[] = [
       return {
         content: `서연이는 $${polynomial(b - a, -a * b)}=(x-${a})(x+${c})$가 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $${a - 2}$, $${a - 1}$, $${a}$, $${a + 1}$, $${a + 2}$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.`,
         ...numeric(a, [a - 2, a - 1, a + 1, a + 2]),
-        solution: `좌변은 $(x-${a})(x+${b})$이다. 우변에서 좌변을 빼면 $${c - b}(x-${a})$이므로 두 값이 같은 것은 $x=${a}$일 때뿐이다. 한 값에서 같다는 사실만으로 모든 실수에서 성립하는 인수분해라고 할 수 없다.`,
+        solution: `좌변은 $(x-${a})(x+${b})$이다. 우변에서 좌변을 빼면 $${c - b === 1 ? "" : c - b}(x-${a})$이므로 두 값이 같은 것은 $x=${a}$일 때뿐이다. 한 값에서 같다는 사실만으로 모든 실수에서 성립하는 인수분해라고 할 수 없다.`,
         facts: { a, b, c },
       };
     },
@@ -301,7 +301,7 @@ export const M3_REINFORCEMENT_20261018: TypeEntry[] = [
           remainder,
           [0, 1, 2, 3, 4].filter((n) => n !== remainder),
         ),
-        solution: `학생 수를 자연수 $n$, 남는 수를 $r$이라 하면 $n^2+${extra}n-(${stock}-r)=0$이다. 남는 수 $r$은 정수이므로 $0,1,2,3,4$를 각각 대입하여 이차방정식 다섯 개를 살핀다. 근의 공식의 근호 안에 있는 수의 값을 차례로 계산하면 $${[0, 1, 2, 3, 4].map((r) => extra * extra + 4 * (stock - r)).join(", ")}$이다. 이 중 완전제곱수는 $r=${remainder}$일 때의 $${(2 * count + extra) ** 2}$뿐이므로 이때만 자연수 해가 가능하다. 그 방정식의 두 해는 $${count}$, $-${count + extra}$이고 학생 수는 $${count}$명이다. 나누어 준 총수 $${total}$권을 원래 수에서 빼면 $${stock}-${total}=${remainder}$이므로 남는 수는 $${remainder}$권이다.`,
+        solution: `학생 수를 자연수 $n$, 남는 수를 $r$이라 하면 $n^2+${extra === 1 ? "" : extra}n-(${stock}-r)=0$이다. 남는 수 $r$은 정수이므로 $0,1,2,3,4$를 각각 대입하여 이차방정식 다섯 개를 살핀다. 근의 공식의 근호 안에 있는 수의 값을 차례로 계산하면 $${[0, 1, 2, 3, 4].map((r) => extra * extra + 4 * (stock - r)).join(", ")}$이다. 이 중 완전제곱수는 $r=${remainder}$일 때의 $${(2 * count + extra) ** 2}$뿐이므로 이때만 자연수 해가 가능하다. 그 방정식의 두 해는 $${count}$, $-${count + extra}$이고 학생 수는 $${count}$명이다. 나누어 준 총수 $${total}$권을 원래 수에서 빼면 $${stock}-${total}=${remainder}$이므로 남는 수는 $${remainder}$권이다.`,
         facts: { count, extra, stock },
       };
     },
