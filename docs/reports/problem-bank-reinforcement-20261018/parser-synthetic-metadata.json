@@ -1,0 +1,57 @@
+{
+  "baseline": "2ae266866",
+  "rows": [
+    {
+      "code": "J20501-A70-001",
+      "synthetic": true,
+      "observed": {
+        "code": "J20501-A70-001",
+        "contentLength": 508,
+        "contentSha256": "b289626af20d82f6206853902f42234007c8b24d2c01640686fb7445e770b275",
+        "beforeChoiceCount": 9,
+        "beforeQuestionLength": 230,
+        "beforeLabels": [1, 2, 3, 4, 1, 2, 3, 4, 5],
+        "beforeDropped": [5],
+        "parentheticalLabel": 4
+      },
+      "syntheticContentLength": 246,
+      "before": {
+        "choiceCount": 9,
+        "labels": [1, 2, 3, 4, 1, 2, 3, 4, 5],
+        "dropped": [5]
+      },
+      "after": {
+        "choiceCount": 5,
+        "labels": [1, 2, 3, 4, 5],
+        "dropped": []
+      },
+      "shapeMatchesObserved": true
+    },
+    {
+      "code": "J20506-A37-001",
+      "synthetic": true,
+      "observed": {
+        "code": "J20506-A37-001",
+        "contentLength": 556,
+        "contentSha256": "91372681a21c05c7d289de1c5205b7d116825c4006298bcf8895f97a16947902",
+        "beforeChoiceCount": 10,
+        "beforeQuestionLength": 182,
+        "beforeLabels": [1, 2, 3, 4, 5, 1, 2, 3, 4, 5],
+        "beforeDropped": [],
+        "parentheticalLabel": 3
+      },
+      "syntheticContentLength": 264,
+      "before": {
+        "choiceCount": 10,
+        "labels": [1, 2, 3, 4, 5, 1, 2, 3, 4, 5],
+        "dropped": []
+      },
+      "after": {
+        "choiceCount": 5,
+        "labels": [1, 2, 3, 4, 5],
+        "dropped": []
+      },
+      "shapeMatchesObserved": true
+    }
+  ]
+}

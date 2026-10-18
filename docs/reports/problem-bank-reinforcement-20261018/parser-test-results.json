@@ -1,0 +1,71 @@
+{
+  "baseline": "2ae266866",
+  "fileCount": 12,
+  "tests": 236,
+  "passed": 236,
+  "failed": 0,
+  "pending": 0,
+  "success": true,
+  "files": [
+    {
+      "file": "__tests__/unit/answerChoiceRules.test.ts",
+      "status": "passed",
+      "tests": 51
+    },
+    {
+      "file": "__tests__/unit/boxRender.test.tsx",
+      "status": "passed",
+      "tests": 16
+    },
+    {
+      "file": "__tests__/unit/choiceLayoutRender.test.tsx",
+      "status": "passed",
+      "tests": 14
+    },
+    {
+      "file": "__tests__/unit/circledNumber.test.ts",
+      "status": "passed",
+      "tests": 12
+    },
+    {
+      "file": "__tests__/unit/inlineChoiceRepair.test.ts",
+      "status": "passed",
+      "tests": 9
+    },
+    {
+      "file": "__tests__/unit/mathSpans.test.ts",
+      "status": "passed",
+      "tests": 28
+    },
+    {
+      "file": "__tests__/unit/parseProblemContent.test.ts",
+      "status": "passed",
+      "tests": 27
+    },
+    {
+      "file": "__tests__/unit/problemFigures.test.tsx",
+      "status": "passed",
+      "tests": 31
+    },
+    {
+      "file": "__tests__/unit/proofChoiceBoundary.test.ts",
+      "status": "passed",
+      "tests": 21
+    },
+    {
+      "file": "__tests__/unit/proofChoiceBoundaryRender.test.tsx",
+      "status": "passed",
+      "tests": 10
+    },
+    {
+      "file": "__tests__/unit/renderParity.test.tsx",
+      "status": "passed",
+      "tests": 7
+    },
+    {
+      "file": "__tests__/unit/singleNewlineSurvives.test.ts",
+      "status": "passed",
+      "tests": 10
+    }
+  ]
+}
