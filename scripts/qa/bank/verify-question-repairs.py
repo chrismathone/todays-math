@@ -86,12 +86,13 @@ def verify(row):
         assert valid == [answer], "Inclusive trapezoid answer is not unique"
         return {"id": row["id"], "repair": kind, "shapes": evidence, "uniqueAnswer": True}
     assert kind == "quad242PerpCount"
-    k = int(re.search(r"수선을 \$(\d+)\$개", row["payload"]["content"])[1])
-    assert int(re.sub(r"[^0-9]", "", answer)) == k
+    assert row["payload"]["content"].split("\n① ")[0].strip() == "그림에서 평행한 두 직선 사이에 그은 수선은 모두 몇 개인가?"
     lines = [node.attrib for node in nodes if node.tag.endswith("}line") or node.tag == "line"]
     lines = [{key: float(value) for key, value in attrs.items() if key in ("x1", "x2", "y1", "y2")} for attrs in lines]
     bases = [line for line in lines if line["y1"] == line["y2"]]
     perpendiculars = [line for line in lines if line["x1"] == line["x2"] and line["y1"] != line["y2"]]
+    k = len(perpendiculars)
+    assert int(re.sub(r"[^0-9]", "", answer)) == k
     assert len(bases) == 2 and len(perpendiculars) == k and len(lines) == k + 2
     ys = sorted(base["y1"] for base in bases)
     for line in perpendiculars:

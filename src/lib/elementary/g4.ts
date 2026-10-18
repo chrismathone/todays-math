@@ -15446,7 +15446,7 @@ function quad242PerpCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const k = intBetween(rng, 2, 5);
   return make(
     unit,
-    `평행한 두 직선 사이에 수선을 ${n(k)}개 그었습니다. 수선은 몇 개인가?`,
+    "그림에서 평행한 두 직선 사이에 그은 수선은 모두 몇 개인가?",
     n(k),
     `그은 수선은 ${n(k)}개입니다.`,
     fig("lineRelation", { relation: "parallel", perpCount: k }),
