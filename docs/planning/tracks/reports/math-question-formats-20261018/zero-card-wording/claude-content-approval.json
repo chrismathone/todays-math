@@ -1,0 +1,21 @@
+{
+  "reviewer": "Claude",
+  "verdict": "approved",
+  "kind": "zero-inclusive-card-wording-repair",
+  "planSha256": "50c525785cae16825d23d7bd55de81f7a779fa54cd98e8933d470a126acccc61",
+  "supplementalPlanSha256": "46a6b3d2b261e110cae18297b2e23bb2991af9dc50f8d6dda9d0fa51954a48e2",
+  "operatorSha256": "eda929e75a38c5af47577d16f8d95a756ed2c57125ec0574af5a49597a747d1c",
+  "manifestSha256": "4dfaf86d531f2168054e4554307dd4772baf679c67e0c3e3fe635099c77ab5ff",
+  "beforeLedgerSha256": "47410c4efb270235c74aa3b62e88f07c2d43f44e8d7808ad0eb9080fb0b539d5",
+  "sourceCommit": "c3b9578797b6326c81c9ff459c4189d717442cd2",
+  "privateBeforeSha256": "f2ef936dbd156dae56af66058a0fa17b18957bff2eb337f075ab86ea09d30fb4",
+  "privateAfterSha256": "4154cc90d6bb6be48a8ecbc9afe3712c1c08f25bdcf8868af0bf639dcb7142f1",
+  "reviewNotes": [
+    "Diffed the private before/after files field by field. All 8 rows of mid:2-2|경우의 수|11 differ only in content, and only where the anchored prefix '$0$부터 $N$까지의 자연수가 각각 하나씩 적힌' becomes '숫자가'. The formed '세 자리/두 자리 자연수', choices, answer positions, solutions, figures, ids, codes, updated_at and the NULL question_group_key are unchanged.",
+    "Re-derived answers: digits 0-5, 3-digit 5x5x4=100; 2-digit 5x5=25; digits 0-3, 3-digit 3x3x2=18; 2-digit multiples of 5: 5+4=9. All match the stored answers.",
+    "MC and short-answer stems change identically, so later pair proof is unaffected. This must run before the backfill and the final baseline. The identity trigger would null any key, but all 8 keys are NULL now.",
+    "The operator re-discovers references under lock and requires 0, an exact family count of 8 and a full-row to_jsonb CAS per row with readback against the frozen after digests. It aborts all rows on any mismatch, reruns idempotently, and requires a committed approval, plan, operator, manifest and ledger SHAs, source-commit ancestry and the coordinator write gate.",
+    "Root reported a read-only preflight with 0 references across 11 columns; the before-ledger records the same."
+  ],
+  "limitations": "No physical print check. This approves only these 8 exact rows, not other wording in the bank."
+}
