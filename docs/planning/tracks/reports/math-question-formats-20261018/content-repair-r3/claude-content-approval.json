@@ -1,0 +1,21 @@
+{
+  "reviewer": "Claude",
+  "verdict": "approved",
+  "kind": "17-row-content-repair",
+  "planSha256": "50c525785cae16825d23d7bd55de81f7a779fa54cd98e8933d470a126acccc61",
+  "sourceCommit": "cfbb07daff5b7416081413604d43815696d31c4e",
+  "sourceDigestsSha256": "57543a7e8968499d7aa521ac3db3db51f78fc9322ac678556e12cf79b6333ee1",
+  "manifestSha256": "d81ebc1a641c92703ddb9885558c5e31adf483097bf5e24e150e97ba80445355",
+  "beforeLedgerSha256": "436f318361f46593f38813b51085aa9e069aef8564f593cb5be3865ab1ce7825",
+  "reviewNotes": {
+    "files": "Private before 34e29157 and candidates 22ecd5b9 match the ledger and manifest. The ledger binds the manifest SHA. All 11 manifest sourceDigests equal the bytes at cfbb07daf. sourceDigestsSha256 was computed with the repository stableJson (localeCompare en).",
+    "rows": "For 17/17 rows, before payload digests recomputed from before-private equal the manifest and after digests recomputed from candidates equal the manifest. ids, codes, external ids, family keys, question types, answers, MC choice order and answer positions are unchanged. Every before row equals the R2 frozen preimage except the new question_group_key, which is present and NULL. Read-only verify: 17 pending, 0 already applied, 0 references.",
+    "R2 defects closed": {
+      "quad244Pick x3": "choiceSkewQuad replaces irregQuad only in this generator slot (shared irregQuad untouched). Measured on the actual SVG, its opposite-side direction differences are 21.02 and 23.39 deg; choiceNonparallelQuad 16.99/27.03; trap has exactly one parallel pair (other pair 25.61 deg). Exactly one trapezoid under the inclusive definition; the A4 render reads that way.",
+      "tri221PickIso x3, tri222Pick x3": "New choiceScaleneTri sides 30.8/45.94/62.23 (min adjacent ratio 1.355), angles 28.3/45/106.7 (min gap 16.7 deg); choiceRightScaleneTri 35.2/44/56.35 (ratio 1.25), angles 38.66/51.34/90 (gap 12.68). The only isosceles / equal-base-angle figure is isoTri 45.81/45.81/25.52, 73.83/73.83. The A4 render is unambiguous."
+    },
+    "unchangedFromR2": "quad242PerpCount x4 (wording no longer gives the count; SVG has 4/5 marked perpendiculars between two arrow-marked parallels) and poly263Name x4 (equal sides AND equal angles) are byte-identical to the R2 candidates I had already accepted.",
+    "operator": "buildRepairs now refuses a snapshot without a present NULL question_group_key; verify re-checks private file, source and coordinate-proof SHAs and full-row CAS. Apply requires this committed approval, exact SHAs, cfbb07daf as an ancestor of HEAD, the coordinator write gate, references 0 under lock and all-or-nothing CAS."
+  },
+  "limitations": "Physical printer output not verified. The PDF raster previews show a soft scratch-pad grid; this is outside the repaired content. No claim about the wider bank."
+}
