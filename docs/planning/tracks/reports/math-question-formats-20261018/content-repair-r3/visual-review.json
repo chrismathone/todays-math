@@ -1,0 +1,77 @@
+{
+  "reviewer": "Codex",
+  "at": "2026-10-18T07:32:19.684770+00:00",
+  "scope": "All 17 actual R3 student questions and all 17 teacher answers, 15 PDF pages",
+  "pagesInspected": [
+    "paper-evidence/elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|09/answers-pdf-p1.png",
+    "paper-evidence/elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|09/questions-pdf-p1.png",
+    "paper-evidence/elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|09/questions-pdf-p2.png",
+    "paper-evidence/elem:초4|2-2-2 이등변삼각형의 성질|09/answers-pdf-p1.png",
+    "paper-evidence/elem:초4|2-2-2 이등변삼각형의 성질|09/questions-pdf-p1.png",
+    "paper-evidence/elem:초4|2-2-2 이등변삼각형의 성질|09/questions-pdf-p2.png",
+    "paper-evidence/elem:초4|2-4-2 평행과 평행선|09/answers-pdf-p1.png",
+    "paper-evidence/elem:초4|2-4-2 평행과 평행선|09/questions-pdf-p1.png",
+    "paper-evidence/elem:초4|2-4-2 평행과 평행선|09/questions-pdf-p2.png",
+    "paper-evidence/elem:초4|2-4-4 사다리꼴|05/answers-pdf-p1.png",
+    "paper-evidence/elem:초4|2-4-4 사다리꼴|05/questions-pdf-p1.png",
+    "paper-evidence/elem:초4|2-4-4 사다리꼴|05/questions-pdf-p2.png",
+    "paper-evidence/elem:초4|2-6-3 대각선|10/answers-pdf-p1.png",
+    "paper-evidence/elem:초4|2-6-3 대각선|10/questions-pdf-p1.png",
+    "paper-evidence/elem:초4|2-6-3 대각선|10/questions-pdf-p2.png"
+  ],
+  "pdfRenderer": "macOS PDFKit, 2 pixels per PDF point; Poppler unavailable",
+  "choiceScaleneTri": {
+    "lengths": [
+      62.22539674441618,
+      45.93734863920643,
+      30.799999999999997
+    ],
+    "anglesDegrees": [
+      45,
+      28.300755766006375,
+      106.69924423399362
+    ],
+    "minimumRelativeSideGap": 0.3545709229571925,
+    "relativeSideGapFormula": "abs(a-b)/min(a,b)",
+    "minimumAngleGapDegrees": 16.699244233993625,
+    "minimumActualPaperSideGapMm": 4.612807265734052,
+    "visualFinding": "Obtuse, with visibly different three sides and three angles; only isoTri has equal sides/base angles."
+  },
+  "choiceSkewQuad": {
+    "oppositeSidePairs": [
+      {
+        "sides": [
+          1,
+          3
+        ],
+        "crossProduct": -498.5199999999998,
+        "normalizedCrossProduct": -0.358745673342221,
+        "deviationDegrees": 21.023183498960492,
+        "exactlyParallel": false
+      },
+      {
+        "sides": [
+          2,
+          4
+        ],
+        "crossProduct": 309.75999999999976,
+        "normalizedCrossProduct": 0.3969111506854667,
+        "deviationDegrees": 23.385221057213734,
+        "exactlyParallel": false
+      }
+    ],
+    "visualFinding": "Both opposite-side pairs visibly diverge; only trap has a parallel pair."
+  },
+  "choiceNonparallelQuad": {
+    "minimumOppositeSideDeviationDegrees": 16.990823291986167,
+    "visualFinding": "Accepted shape unchanged; no parallel pair."
+  },
+  "otherFindings": [
+    "Seed labels and answer-key letters correspond in every printed triangle/quadrilateral row.",
+    "All four perpendicular prompts require reading the diagram, with 4/5 vertical segments and right-angle/parallel marks visible; MC options and answer positions are retained.",
+    "All four polygon prompts and solutions state equal sides AND equal angles.",
+    "No observed clipping, raw math, extra answer, or answer-key mismatch in reviewed PDFs."
+  ],
+  "physicalPrinterVerified": false,
+  "independentClaudeApproval": "pending; this is an author visual review"
+}

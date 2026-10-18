@@ -1,0 +1,286 @@
+{
+  "privateDirectory": ".qa-artifacts/math-question-formats-20261018/content-repair-r3",
+  "files": [
+    {
+      "path": "README.txt",
+      "bytes": 723,
+      "sha256": "91008cfd3ef7b3615e200b94547cbfe352044a5b9c3e012cbd7011cc05a0d356"
+    },
+    {
+      "path": "before-private.json",
+      "bytes": 33886,
+      "sha256": "34e291572646317a287e4603fa06a0b0feeef1e37bc666176d1684b3e4e2fc8c"
+    },
+    {
+      "path": "candidates-private.json",
+      "bytes": 31096,
+      "sha256": "22ecd5b9e6cd0234aa21e9d64f86212e55eb31640228e41a2ecac683d69f3955"
+    },
+    {
+      "path": "capture-paper.mjs",
+      "bytes": 9210,
+      "sha256": "8a9ab31927766dbad8abef312093da4407a6d7a6edc0b14193b6dc3d34a498db"
+    },
+    {
+      "path": "measure-paper-diagrams.mjs",
+      "bytes": 2544,
+      "sha256": "5535545a9f75f302d5a74b9c40e1e9256b25d99b90254e87d07160231138e6b5"
+    },
+    {
+      "path": "paper/index.html",
+      "bytes": 194,
+      "sha256": "6ebdc3c539882c58c19b08c0b0270c9e725197f4ef3739f3cf7b9cf2f939c435"
+    },
+    {
+      "path": "paper/paper.tsx",
+      "bytes": 65,
+      "sha256": "5bdadce80bfdfa3d13d5f70ee0559a96973b464e138b8ccfc7009e2a07898d53"
+    },
+    {
+      "path": "paper/public/candidate-batch.json",
+      "bytes": 24418,
+      "sha256": "bef5abfaa8506218c59411998a6126adf528429b93ff2070c3fe2125590084e7"
+    },
+    {
+      "path": "paper-diagram-measurements.json",
+      "bytes": 9882,
+      "sha256": "3ed800296dcbe53cbbdfa2e178b28b58d1bd9e1da8242158ebbc7f893bb14c49"
+    },
+    {
+      "path": "paper-evidence/capture-summary.json",
+      "bytes": 14278,
+      "sha256": "3bf6ca89ec4c17e1856b5a008f225a0f4bfc533e5364849e4c1d1cd8b725f13d"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|09/answers-p1.png",
+      "bytes": 58592,
+      "sha256": "f0e7fde4069578f4911a5ec9e73f91f101d58045bd9683b130172005ca5bbfb2"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|09/answers-pdf-p1.png",
+      "bytes": 98342,
+      "sha256": "32c6b1814bc04ae3725b10eed8c66b93e6c48fbc951c51372a3b2c4aa356da4e"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|09/answers.pdf",
+      "bytes": 201134,
+      "sha256": "87a9b99b1e0bb9f63ff2b6e7e39e7f45bd451ee4c5307a8fbccecf06f7dc80b4"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|09/questions-p1.png",
+      "bytes": 93132,
+      "sha256": "93e0503c79e942486f833eb72f643c6295b8a290ea577e91e9c0fe828db13720"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|09/questions-p2.png",
+      "bytes": 48145,
+      "sha256": "1efc233a06830b2f34538fd630d80a3abc6415b2a2f82cc3b55cb99cf83b33e3"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|09/questions-pdf-p1.png",
+      "bytes": 206625,
+      "sha256": "451c62ee5dbfb4d32b2cfa2662e2475fb683cfcfe87ac1a3d3aba04286517696"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|09/questions-pdf-p2.png",
+      "bytes": 168537,
+      "sha256": "4eef9ec7bbb3e6ac7fccef547beaec495fcf7dfddd6182a32c861e4f3c2b27fb"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|09/questions.pdf",
+      "bytes": 409677,
+      "sha256": "aede63e7f6b78cdc77571dd533811ae303b37d47d1846a2d02f75be2192242bf"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-2-2 이등변삼각형의 성질|09/answers-p1.png",
+      "bytes": 66579,
+      "sha256": "5edad200d0587f4dfb6b6c87e58b232aba6107b2c5313332c6fffd20a8b2951e"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-2-2 이등변삼각형의 성질|09/answers-pdf-p1.png",
+      "bytes": 108061,
+      "sha256": "5e5160c3502cd457ec2f0b73129ce12d2cbcf420e68d3aa61a752a7150c98ae2"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-2-2 이등변삼각형의 성질|09/answers.pdf",
+      "bytes": 200984,
+      "sha256": "2ad74333798ebcbdb3fa06b65a4ec40424028f5115d7cb0ab1a5270b18a53688"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-2-2 이등변삼각형의 성질|09/questions-p1.png",
+      "bytes": 93180,
+      "sha256": "a518672c3dfe67a386c98e3856398dbeec6b012b7d4e92fd8f996a647072c0b3"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-2-2 이등변삼각형의 성질|09/questions-p2.png",
+      "bytes": 48852,
+      "sha256": "9e8d718af392cbdc59747267f94be7455c4872bff7bcdc3b73dd4137d128cbf5"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-2-2 이등변삼각형의 성질|09/questions-pdf-p1.png",
+      "bytes": 207378,
+      "sha256": "595b6e8df97c14f81ecbe282d61ea4dd33e2087c5f30dc054ff94ffb72454f69"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-2-2 이등변삼각형의 성질|09/questions-pdf-p2.png",
+      "bytes": 170012,
+      "sha256": "05825f9dc74836bedc846baf448484fb14a35dc18efc81899d3d83ce1afd9417"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-2-2 이등변삼각형의 성질|09/questions.pdf",
+      "bytes": 394268,
+      "sha256": "c501b633911ad34b1596c77d14c92c7536c4685b944146e509a1d8558869939c"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-4-2 평행과 평행선|09/answers-p1.png",
+      "bytes": 60452,
+      "sha256": "f95a2823263b0f3aecf026f39d862dfe4800d536eec445e5a0b5c600924deac1"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-4-2 평행과 평행선|09/answers-pdf-p1.png",
+      "bytes": 101937,
+      "sha256": "ffa3038918c2ae70c61053a0e1b5a9d01eda33547512add24d63eca13082f606"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-4-2 평행과 평행선|09/answers.pdf",
+      "bytes": 146049,
+      "sha256": "958e6576d5e2bb905feee119fc499df25c3f8c206025a8d398500109be9afe5d"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-4-2 평행과 평행선|09/questions-p1.png",
+      "bytes": 79429,
+      "sha256": "6fb1d8e8d2387826ddd7f928ae00692689776cddb1f89e290dbc1943a24a1590"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-4-2 평행과 평행선|09/questions-p2.png",
+      "bytes": 74040,
+      "sha256": "b223fce6bff4739f0c49a46f28d0d3e718234517c79e0ceefbb517c43ee6f747"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-4-2 평행과 평행선|09/questions-pdf-p1.png",
+      "bytes": 195073,
+      "sha256": "41aeb60f286344f0a4a8c4184194a5db44acd2540b4e1592532049e150277fb6"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-4-2 평행과 평행선|09/questions-pdf-p2.png",
+      "bytes": 196968,
+      "sha256": "17d77b0730042373c7f0bf2d76e807518b33e527d3473a99c3ae4784a815d94b"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-4-2 평행과 평행선|09/questions.pdf",
+      "bytes": 406554,
+      "sha256": "3d067ca006bcd998257333c6518eb0429b2d67970bfdd51f84ab6abe945834af"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-4-4 사다리꼴|05/answers-p1.png",
+      "bytes": 57320,
+      "sha256": "a42c03442880e82d416f60d9b14d5d18c11bd56094a12ce0cc29a683e3291ecf"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-4-4 사다리꼴|05/answers-pdf-p1.png",
+      "bytes": 97363,
+      "sha256": "f82208737e4b83cd1dd21b76baca6948c6728400d2a5661917089c57112f1b74"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-4-4 사다리꼴|05/answers.pdf",
+      "bytes": 179172,
+      "sha256": "2deb4e92dbaaf70c0a5c90d63d3081bed115ef20dedbb73702dfac8f3571baef"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-4-4 사다리꼴|05/questions-p1.png",
+      "bytes": 85303,
+      "sha256": "9347f12839fab3439c50dc88ed3fdc457a5d37e8266ac5edd303a959a4bbb81c"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-4-4 사다리꼴|05/questions-p2.png",
+      "bytes": 45775,
+      "sha256": "d90953d3e7c258fee85ec8551ed617c47aa3930ad5a69f0a82dde59067abf550"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-4-4 사다리꼴|05/questions-pdf-p1.png",
+      "bytes": 200495,
+      "sha256": "8be7c9f3bdfb254e4ad6669ce01ace265ae675a8797b705c8a45305ceefc829b"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-4-4 사다리꼴|05/questions-pdf-p2.png",
+      "bytes": 166854,
+      "sha256": "e12ad851f83cc05b2dca704f23c0cb858b100f080fd3b705e256af25e75d638a"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-4-4 사다리꼴|05/questions.pdf",
+      "bytes": 357785,
+      "sha256": "802219d13ca149e4919b6afe47726a429fc57ebd0a25f14e4a2712803f8ce3b5"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-6-3 대각선|10/answers-p1.png",
+      "bytes": 93117,
+      "sha256": "833b6194b43118d62296601772ce613a14f5e3699c0d95c3279ea88d57e5cb75"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-6-3 대각선|10/answers-pdf-p1.png",
+      "bytes": 138035,
+      "sha256": "904593ee8cc043800b2a19ce45f704d31c002a6add7a2cd02adf50558a47eed9"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-6-3 대각선|10/answers.pdf",
+      "bytes": 219673,
+      "sha256": "12e15f6b3f118d3e0df452dcc0109759bbc0ec2ae1cff4619b59c2ae6d7365a0"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-6-3 대각선|10/questions-p1.png",
+      "bytes": 83193,
+      "sha256": "7368229a6d77183c8d0b4cea9085d8050f6bd2fd604795992e2a3638485698d6"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-6-3 대각선|10/questions-p2.png",
+      "bytes": 66905,
+      "sha256": "e6cdad962f85c6276df869da0b691e1b4782b93a0cd17d7f4df137ed2f799c25"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-6-3 대각선|10/questions-pdf-p1.png",
+      "bytes": 144960,
+      "sha256": "552ae9c56c5e591d59c7f82a96b84dd82bff7d478f967c8f1ef56bda1dac291c"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-6-3 대각선|10/questions-pdf-p2.png",
+      "bytes": 126208,
+      "sha256": "b037e539d6b8d8f86097d14d66899ada1b2427736f47d66896eadb435d58e8a9"
+    },
+    {
+      "path": "paper-evidence/elem:초4|2-6-3 대각선|10/questions.pdf",
+      "bytes": 307027,
+      "sha256": "17e1e96f5246371c8cf4c1c59f71e5e43d0a30d28fec56b32d534e9dfb7ee9ba"
+    },
+    {
+      "path": "paper-evidence-attempt1-missing-font/capture-summary.json",
+      "bytes": 2357,
+      "sha256": "ea0437a594f8e37851d3f2d23fb692065b4783c527a5b297954f2e73bb8bf9ff"
+    },
+    {
+      "path": "paper.vite.mts",
+      "bytes": 369,
+      "sha256": "ac0ce55bca737adf7fcc4b1b5ee74d0bd19a87bc36010b8f0727a915749120b6"
+    },
+    {
+      "path": "render-pdfs.swift",
+      "bytes": 962,
+      "sha256": "dd735de1a2c0619ab79c7658c98a2970771f45ad98d64d0840cc5427b63aa919"
+    },
+    {
+      "path": "verify-readonly-final.json",
+      "bytes": 5154,
+      "sha256": "5ac397402b3acec8e131a5da418e951110817214d934f4b8f16251deff4ec474"
+    },
+    {
+      "path": "verify-readonly.json",
+      "bytes": 5154,
+      "sha256": "5ac397402b3acec8e131a5da418e951110817214d934f4b8f16251deff4ec474"
+    }
+  ],
+  "fontSymlink": {
+    "path": "paper/public/fonts",
+    "target": "../../../../../public/fonts"
+  },
+  "privateBeforeSha256": "34e291572646317a287e4603fa06a0b0feeef1e37bc666176d1684b3e4e2fc8c",
+  "privateCandidatesSha256": "22ecd5b9e6cd0234aa21e9d64f86212e55eb31640228e41a2ecac683d69f3955"
+}
