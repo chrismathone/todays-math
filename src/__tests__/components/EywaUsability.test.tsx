@@ -36,7 +36,6 @@ function status(overrides: Partial<Status> = {}): Status {
         branchNameMismatch: false,
         configured: true,
         mode: "active",
-        archiveOwnerUserId: null,
         enabled: true,
         healthy: true,
         retiredAt: null,
