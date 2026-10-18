@@ -3,7 +3,6 @@ import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import path from "node:path";
 import { createElement } from "react";
-import { renderToStaticMarkup } from "react-dom/server";
 import {
   studentExamReportSchema,
   classExamReportSchema,
@@ -43,13 +42,23 @@ function selfHostedMathCss(): string {
  * 화면과 같은 요약/이어지는 표의 초기 HTML. buildPdf는 자체 글꼴 적재 뒤 행 높이를
  * 다시 재서 이어지는 쪽을 조정한다. 이 함수는 DB·로더·Chromium을 호출하지 않는다.
  */
-export function buildExamReportPaperHtml(
+// App Router 의 라우트 그래프는 `react-dom/server` 를 정적으로 들이면 빌드가 막힌다 — 부를 때 읽는다(2026-10-18 운영 빌드 실패).
+async function staticMarkup(
+  element: Parameters<
+    typeof import("react-dom/server").renderToStaticMarkup
+  >[0],
+) {
+  const { renderToStaticMarkup } = await import("react-dom/server");
+  return renderToStaticMarkup(element);
+}
+
+export async function buildExamReportPaperHtml(
   report: StudentExamReport,
   options: ExamReportOutputOptions = {},
-): PdfPayload {
+): Promise<PdfPayload> {
   const value = studentExamReportSchema.parse(report);
   return PdfPayloadSchema.parse({
-    html: renderToStaticMarkup(
+    html: await staticMarkup(
       createElement(StudentExamReportPaper, { report: value, options }),
     ),
     cssUrls: [],
@@ -63,12 +72,12 @@ export function buildExamReportPaperHtml(
   });
 }
 
-export function buildClassExamReportPaperHtml(
+export async function buildClassExamReportPaperHtml(
   report: ClassExamReport,
-): PdfPayload {
+): Promise<PdfPayload> {
   const value = classExamReportSchema.parse(report);
   return PdfPayloadSchema.parse({
-    html: renderToStaticMarkup(
+    html: await staticMarkup(
       createElement(ClassExamReportPaper, { report: value }),
     ),
     cssUrls: [],

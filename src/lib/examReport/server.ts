@@ -254,7 +254,7 @@ export async function confirmExamReport(
   const artifactId = randomUUID();
   const pdfPath = `${draft.id}/${artifactId}.pdf`;
   const bytes = await renderPdf(
-    buildExamReportPaperHtml(entry.report, paperOptions(snapshot)),
+    await buildExamReportPaperHtml(entry.report, paperOptions(snapshot)),
     origin,
   );
   if (
@@ -377,7 +377,7 @@ export async function printExamReports(
     });
   if (input.kind === "class") {
     const bytes = await renderPdf(
-      buildClassExamReportPaperHtml(context.classReport),
+      await buildClassExamReportPaperHtml(context.classReport),
       origin,
     );
     await authorizeExamReport(session, testId);
@@ -398,7 +398,7 @@ export async function printExamReports(
       target.summary.status === "confirmed"
         ? (await archivedPdf(target)).bytes
         : await renderPdf(
-            buildExamReportPaperHtml(
+            await buildExamReportPaperHtml(
               target.report,
               paperOptions(target.snapshot!),
             ),
