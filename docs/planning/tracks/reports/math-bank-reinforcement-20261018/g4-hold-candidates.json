@@ -1,0 +1,94 @@
+{
+  "status": "author recommendation only; NOT Claude final content approval or root batch manifest",
+  "coordinatorDirection": "4개 품질 보류, 우선 50행 권고 원장 전달; root/C가 f33/f39 단답 전용 최소 정책 연결을 검토하고 48행으로 줄여도 27발문·9문형 목표 유지",
+  "rawDerivedRows": 54,
+  "heldRows": 4,
+  "recommendedRows": 50,
+  "shortAnswerStems": 27,
+  "recommendedListPath": "g4-recommended-selection.json",
+  "recommendedListSha256": "10b1686594d73b67ac52178a6a59f52444ba02d82a76d0ccac37017b90a3418f",
+  "policyOwner": "root and C; A changed no derive/loader code",
+  "pendingStricterAlternative": {
+    "shortAnswerOnlyFormIds": [
+      "33",
+      "39"
+    ],
+    "excludedMultipleChoiceExternalIds": [
+      "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f33|객관식|s20261043",
+      "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f33|객관식|s20262052",
+      "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f33|객관식|s20263061",
+      "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f39|객관식|s20261043",
+      "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f39|객관식|s20262052",
+      "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f39|객관식|s20263061"
+    ],
+    "recommendedRowsIfApplied": 48,
+    "rationale": "f33은 목표 분류에 따라 값 목록의 길이가 달라지고 일반 숫자 오답 파생은 후보 집합/작은 순서 조건을 보존하지 않는다. f39는 항상 최솟값·최댓값 두 값을 함께 평가해야 하나 일반 파생은 최대값을 고정한다. 향후 다른 씨앗에서도 같은 품질 문제가 생길 수 있어 root/C가 문형 단위 단답 전용 정책을 검토한다."
+  },
+  "held": [
+    {
+      "externalId": "engine-elem:초4|2-2 삼각형|2-2-5 삼각형을 두 가지 기준으로 분류하기|f33|객관식|s20262052",
+      "unitId": "0a069c2f-244d-4f9e-832f-3e0f8969ba21",
+      "familyKey": "elem:초4|2-2-5 삼각형을 두 가지 기준으로 분류하기|33",
+      "formId": "33",
+      "seed": 20262052,
+      "questionType": "객관식",
+      "difficulty": "응용",
+      "payloadSha256": "8a2f15a2d0664da3b1aa79f359054e4ba0e7bd3f7c40d0462b85a2ce9ecd6f88",
+      "contentSha256": "9ced90d10ae40314715e44b84b510f66022b216603f9b87137b6e964e31b0c95",
+      "status": "quality_hold_do_not_load",
+      "mathematicalReason": "정답 두 값 중 81도는 모든 보기에 고정되어 있고, 오답의 첫 각 49·54·50·102도는 발문의 후보 81·51·60·45·32도 중에 없다. 따라서 삼각형의 두 분류 조건을 적용하지 않고 후보 집합에 속하는지만 확인해 정답을 고를 수 있으며, 102도·81도는 작은 순서 조건도 어긴다.",
+      "content": "두 변의 길이만 같은 이등변삼각형을 만들려고 합니다(정삼각형은 제외합니다). 각의 크기로 분류하면 예각삼각형이 되어야 합니다. 한 밑각의 후보가 $81^\\circ$, $51^\\circ$, $60^\\circ$, $45^\\circ$, $32^\\circ$일 때 가능한 밑각의 크기를 작은 것부터 모두 쓰시오.\n① $51^\\circ$, $81^\\circ$\n② $49^\\circ$, $81^\\circ$\n③ $54^\\circ$, $81^\\circ$\n④ $50^\\circ$, $81^\\circ$\n⑤ $102^\\circ$, $81^\\circ$",
+      "answer": "①"
+    },
+    {
+      "externalId": "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f39|객관식|s20261043",
+      "unitId": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "familyKey": "elem:초4|2-4-4 사다리꼴|39",
+      "formId": "39",
+      "seed": 20261043,
+      "questionType": "객관식",
+      "difficulty": "응용",
+      "payloadSha256": "d466da65529c391aa4ab052ee9d5235be11e6e2733663c0970093498a95e8e50",
+      "contentSha256": "07c75039a378d17f312a941375c5f8ff92aad663ab737d926c4841fb3a94a498",
+      "status": "quality_hold_do_not_load",
+      "mathematicalReason": "모든 보기의 최대 수가 정답의 최대 수로 고정되어 있다. 발문에 직접 주어진 확인 완료 카드 수만 읽어 최소 수를 고르면 되어, 미확인 쌍의 가능한 완성을 비교해 최대 수를 구하는 핵심 행동이 사라진다.",
+      "content": "여기서는 마주 보는 변 중 적어도 한 쌍이 평행한 사각형을 사다리꼴로 셉니다. 사각형 카드 $11$장을 검사했습니다. $4$장은 평행한 변이 한 쌍 이상 있음이 확인되었고, $2$장은 마주 보는 어느 쌍도 평행하지 않음이 확인되었습니다. 나머지 $5$장은 마주 보는 한 쌍이 평행하지 않음을 확인했지만 다른 한 쌍은 아직 검사하지 않았습니다. 전체에서 사다리꼴은 적어도 몇 장이고 많아야 몇 장입니까? 이 순서대로 쓰시오.\n① 적어도 $4$장, 많아야 $9$장\n② 적어도 $5$장, 많아야 $9$장\n③ 적어도 $2$장, 많아야 $9$장\n④ 적어도 $3$장, 많아야 $9$장\n⑤ 적어도 $7$장, 많아야 $9$장",
+      "answer": "①"
+    },
+    {
+      "externalId": "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f39|객관식|s20262052",
+      "unitId": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "familyKey": "elem:초4|2-4-4 사다리꼴|39",
+      "formId": "39",
+      "seed": 20262052,
+      "questionType": "객관식",
+      "difficulty": "응용",
+      "payloadSha256": "18258753b543fd3fea2da1a60382f53ea1d9bb21646f907dfb0f4b6b846fc6bd",
+      "contentSha256": "62c89b3063a58824600c7c9a2775a8c4368e877e072a56a214465b5b7e49e217",
+      "status": "quality_hold_do_not_load",
+      "mathematicalReason": "모든 보기의 최대 수가 정답의 최대 수로 고정되어 있다. 발문에 직접 주어진 확인 완료 카드 수만 읽어 최소 수를 고르면 되어, 미확인 쌍의 가능한 완성을 비교해 최대 수를 구하는 핵심 행동이 사라진다. 이 씨앗은 적어도 16장·많아야 10장이라는 보기까지 포함하여 최소≤최대 및 전체 14장 조건을 어긴다.",
+      "content": "여기서는 마주 보는 변 중 적어도 한 쌍이 평행한 사각형을 사다리꼴로 셉니다. 사각형 카드 $14$장을 검사했습니다. $8$장은 평행한 변이 한 쌍 이상 있음이 확인되었고, $4$장은 마주 보는 어느 쌍도 평행하지 않음이 확인되었습니다. 나머지 $2$장은 마주 보는 한 쌍이 평행하지 않음을 확인했지만 다른 한 쌍은 아직 검사하지 않았습니다. 전체에서 사다리꼴은 적어도 몇 장이고 많아야 몇 장입니까? 이 순서대로 쓰시오.\n① 적어도 $10$장, 많아야 $10$장\n② 적어도 $8$장, 많아야 $10$장\n③ 적어도 $9$장, 많아야 $10$장\n④ 적어도 $6$장, 많아야 $10$장\n⑤ 적어도 $16$장, 많아야 $10$장",
+      "answer": "②"
+    },
+    {
+      "externalId": "engine-elem:초4|2-4 사각형|2-4-4 사다리꼴|f39|객관식|s20263061",
+      "unitId": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "familyKey": "elem:초4|2-4-4 사다리꼴|39",
+      "formId": "39",
+      "seed": 20263061,
+      "questionType": "객관식",
+      "difficulty": "응용",
+      "payloadSha256": "04ceaa1c915bb2061974148d585f35fe7706239f2444980b2c05f9d6ba164dbd",
+      "contentSha256": "18ce2a1ac9fca32c88fdc0e7532a93c8e8242b5c0372fd9e949ca7eed52dc73a",
+      "status": "quality_hold_do_not_load",
+      "mathematicalReason": "모든 보기의 최대 수가 정답의 최대 수로 고정되어 있다. 발문에 직접 주어진 확인 완료 카드 수만 읽어 최소 수를 고르면 되어, 미확인 쌍의 가능한 완성을 비교해 최대 수를 구하는 핵심 행동이 사라진다.",
+      "content": "여기서는 마주 보는 변 중 적어도 한 쌍이 평행한 사각형을 사다리꼴로 셉니다. 사각형 카드 $12$장을 검사했습니다. $4$장은 평행한 변이 한 쌍 이상 있음이 확인되었고, $1$장은 마주 보는 어느 쌍도 평행하지 않음이 확인되었습니다. 나머지 $7$장은 마주 보는 한 쌍이 평행하지 않음을 확인했지만 다른 한 쌍은 아직 검사하지 않았습니다. 전체에서 사다리꼴은 적어도 몇 장이고 많아야 몇 장입니까? 이 순서대로 쓰시오.\n① 적어도 $6$장, 많아야 $11$장\n② 적어도 $4$장, 많아야 $11$장\n③ 적어도 $5$장, 많아야 $11$장\n④ 적어도 $7$장, 많아야 $11$장\n⑤ 적어도 $8$장, 많아야 $11$장",
+      "answer": "②"
+    }
+  ],
+  "remainingGates": [
+    "Root must enforce exclusions with exact frozen keys; author metadata alone is not a loader gate",
+    "Claude final actual-content/render and root batch SHA approval",
+    "Root current DB baseline reread/collision/digest/capacity verification before any write"
+  ]
+}

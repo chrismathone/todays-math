@@ -1,0 +1,269 @@
+{
+  "baseCommit": "eb5d6e285",
+  "seeds": [
+    0,
+    7,
+    20261018
+  ],
+  "unitCount": 230,
+  "formCount": 2476,
+  "outputCount": 7428,
+  "outputSha256": "7a90f427dda912d3cb4ac8037ae45dd6ed9c3aa7387e011a55ea9a52920b3554",
+  "sourceSha256": {
+    "src/lib/elementary/g3.ts": "572a1f01eed78b4f339768d93c3d879093a2a8d94674eb8a10e02ecdb89de2cd",
+    "src/lib/elementary/g4.ts": "7497159b4aa84c5361b0dd38300657ac99133e4767798c4b1f550e0b08ca9bbe",
+    "src/lib/elementary/g5.ts": "a70070d7b607e78239f773e536c7d9759032d0a431b6bb40b049d477c7c1ee22",
+    "src/lib/elementary/g6.ts": "fa6101e707093a7dd7e0fed29e6eb83d82efd5a885473ee7c579ec9d99b48c20",
+    "src/lib/elementary/rng.ts": "1b0bd504eec9443e2ad5a558d3581ebad8479c6f789712a6b44b91c049c3e2fb",
+    "src/lib/elementary/figureForms.ts": "e70143b7308508598bf7347f90c9e4d2459089208c670f8db6615dc0fa8c772d"
+  },
+  "registrySha256": "e36c627ec7e104a2f71d3d0a4c06b51d5488bcfef5b221e05714b2c9f1d3f985",
+  "targetExistingForms": [
+    {
+      "grade": "초4",
+      "section": "2-2-3 정삼각형의 성질",
+      "id": "01",
+      "tier": "연산"
+    },
+    {
+      "grade": "초4",
+      "section": "2-2-3 정삼각형의 성질",
+      "id": "02",
+      "tier": "기본"
+    },
+    {
+      "grade": "초4",
+      "section": "2-2-3 정삼각형의 성질",
+      "id": "03",
+      "tier": "응용"
+    },
+    {
+      "grade": "초4",
+      "section": "2-2-3 정삼각형의 성질",
+      "id": "04",
+      "tier": "심화하"
+    },
+    {
+      "grade": "초4",
+      "section": "2-2-3 정삼각형의 성질",
+      "id": "05",
+      "tier": "기본"
+    },
+    {
+      "grade": "초4",
+      "section": "2-2-3 정삼각형의 성질",
+      "id": "06",
+      "tier": "기본"
+    },
+    {
+      "grade": "초4",
+      "section": "2-2-3 정삼각형의 성질",
+      "id": "07",
+      "tier": "기본"
+    },
+    {
+      "grade": "초4",
+      "section": "2-2-3 정삼각형의 성질",
+      "id": "08",
+      "tier": "응용"
+    },
+    {
+      "grade": "초4",
+      "section": "2-2-3 정삼각형의 성질",
+      "id": "09",
+      "tier": "응용"
+    },
+    {
+      "grade": "초4",
+      "section": "2-2-3 정삼각형의 성질",
+      "id": "10",
+      "tier": "응용"
+    },
+    {
+      "grade": "초4",
+      "section": "2-2-5 삼각형을 두 가지 기준으로 분류하기",
+      "id": "01",
+      "tier": "연산"
+    },
+    {
+      "grade": "초4",
+      "section": "2-2-5 삼각형을 두 가지 기준으로 분류하기",
+      "id": "02",
+      "tier": "기본"
+    },
+    {
+      "grade": "초4",
+      "section": "2-2-5 삼각형을 두 가지 기준으로 분류하기",
+      "id": "03",
+      "tier": "응용"
+    },
+    {
+      "grade": "초4",
+      "section": "2-2-5 삼각형을 두 가지 기준으로 분류하기",
+      "id": "04",
+      "tier": "심화하"
+    },
+    {
+      "grade": "초4",
+      "section": "2-2-5 삼각형을 두 가지 기준으로 분류하기",
+      "id": "05",
+      "tier": "기본"
+    },
+    {
+      "grade": "초4",
+      "section": "2-2-5 삼각형을 두 가지 기준으로 분류하기",
+      "id": "06",
+      "tier": "기본"
+    },
+    {
+      "grade": "초4",
+      "section": "2-2-5 삼각형을 두 가지 기준으로 분류하기",
+      "id": "07",
+      "tier": "기본"
+    },
+    {
+      "grade": "초4",
+      "section": "2-2-5 삼각형을 두 가지 기준으로 분류하기",
+      "id": "08",
+      "tier": "응용"
+    },
+    {
+      "grade": "초4",
+      "section": "2-2-5 삼각형을 두 가지 기준으로 분류하기",
+      "id": "09",
+      "tier": "응용"
+    },
+    {
+      "grade": "초4",
+      "section": "2-2-5 삼각형을 두 가지 기준으로 분류하기",
+      "id": "10",
+      "tier": "응용"
+    },
+    {
+      "grade": "초4",
+      "section": "2-4-2 평행과 평행선",
+      "id": "01",
+      "tier": "연산"
+    },
+    {
+      "grade": "초4",
+      "section": "2-4-2 평행과 평행선",
+      "id": "02",
+      "tier": "기본"
+    },
+    {
+      "grade": "초4",
+      "section": "2-4-2 평행과 평행선",
+      "id": "03",
+      "tier": "응용"
+    },
+    {
+      "grade": "초4",
+      "section": "2-4-2 평행과 평행선",
+      "id": "04",
+      "tier": "심화하"
+    },
+    {
+      "grade": "초4",
+      "section": "2-4-2 평행과 평행선",
+      "id": "05",
+      "tier": "기본"
+    },
+    {
+      "grade": "초4",
+      "section": "2-4-2 평행과 평행선",
+      "id": "06",
+      "tier": "기본"
+    },
+    {
+      "grade": "초4",
+      "section": "2-4-2 평행과 평행선",
+      "id": "07",
+      "tier": "기본"
+    },
+    {
+      "grade": "초4",
+      "section": "2-4-2 평행과 평행선",
+      "id": "08",
+      "tier": "응용"
+    },
+    {
+      "grade": "초4",
+      "section": "2-4-2 평행과 평행선",
+      "id": "09",
+      "tier": "응용"
+    },
+    {
+      "grade": "초4",
+      "section": "2-4-2 평행과 평행선",
+      "id": "10",
+      "tier": "응용"
+    },
+    {
+      "grade": "초4",
+      "section": "2-4-2 평행과 평행선",
+      "id": "11",
+      "tier": "심화중"
+    },
+    {
+      "grade": "초4",
+      "section": "2-4-4 사다리꼴",
+      "id": "01",
+      "tier": "연산"
+    },
+    {
+      "grade": "초4",
+      "section": "2-4-4 사다리꼴",
+      "id": "02",
+      "tier": "기본"
+    },
+    {
+      "grade": "초4",
+      "section": "2-4-4 사다리꼴",
+      "id": "03",
+      "tier": "응용"
+    },
+    {
+      "grade": "초4",
+      "section": "2-4-4 사다리꼴",
+      "id": "04",
+      "tier": "심화하"
+    },
+    {
+      "grade": "초4",
+      "section": "2-4-4 사다리꼴",
+      "id": "05",
+      "tier": "기본"
+    },
+    {
+      "grade": "초4",
+      "section": "2-4-4 사다리꼴",
+      "id": "06",
+      "tier": "기본"
+    },
+    {
+      "grade": "초4",
+      "section": "2-4-4 사다리꼴",
+      "id": "07",
+      "tier": "기본"
+    },
+    {
+      "grade": "초4",
+      "section": "2-4-4 사다리꼴",
+      "id": "08",
+      "tier": "응용"
+    },
+    {
+      "grade": "초4",
+      "section": "2-4-4 사다리꼴",
+      "id": "09",
+      "tier": "응용"
+    },
+    {
+      "grade": "초4",
+      "section": "2-4-4 사다리꼴",
+      "id": "10",
+      "tier": "응용"
+    }
+  ]
+}
