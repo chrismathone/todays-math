@@ -1,0 +1,1935 @@
+{
+  "reportVersion": 1,
+  "baseHead": "70ed24137711172408134a15fa695183f31fb878",
+  "auditDate": "2026-10-18",
+  "timezone": "Asia/Seoul",
+  "dbReadOnlyFirstStatement": "SET TRANSACTION READ ONLY",
+  "dbIsolation": "read committed",
+  "databaseUrlMatchesProvidedFile": true,
+  "dbObservationTimesUtc": [
+    "2026-10-18T00:37:48.593Z",
+    "2026-10-18T00:40:23.376Z",
+    "2026-10-18T00:42:00.249Z",
+    "2026-10-18T00:43:25.024Z"
+  ],
+  "privacy": {
+    "originalQuestionTextStored": false,
+    "passageTextStored": false,
+    "transcriptTextStored": false,
+    "audioBytesStored": false,
+    "environmentValuesStored": false
+  },
+  "tableCounts": {
+    "english_exam": 1,
+    "english_listening_assignment": 0,
+    "english_listening_assignment_revision": 0,
+    "english_listening_attempt": 0,
+    "english_listening_audit": 12,
+    "english_listening_broadcast": 0,
+    "english_listening_media_asset": 3,
+    "english_listening_media_blob": 0,
+    "english_listening_media_storage_blob": 0,
+    "english_listening_publication": 0,
+    "english_listening_receipt": 0,
+    "english_listening_release": 0,
+    "english_listening_set": 3,
+    "english_listening_source_transcript": 0,
+    "english_listening_target": 0,
+    "english_material": 0,
+    "english_passage": 0,
+    "english_passage_receipt": 0,
+    "english_passage_revision": 0,
+    "english_passage_use": 0,
+    "english_question_set": 2
+  },
+  "englishStatusSourceGradeCounts": [
+    {
+      "status": "초안",
+      "source": "deepseek",
+      "grade": "중3",
+      "sets": 2,
+      "questions": 13
+    }
+  ],
+  "questionCounts": {
+    "exams": 1,
+    "sets": 2,
+    "questions": 13,
+    "passages": 0,
+    "passageRevisions": 0,
+    "passageUses": 0,
+    "listeningSets": 3,
+    "listeningGroups": 3,
+    "listeningQuestions": 9,
+    "mediaAssets": 3,
+    "publications": 0
+  },
+  "questionTypeCounts": {
+    "내용 일치": 4,
+    "문장 삽입": 1,
+    "빈칸 추론": 1,
+    "서술형": 2,
+    "어법": 3,
+    "주제": 2
+  },
+  "checks": {
+    "english_question_shape_valid": 13,
+    "english_sets_current_validator_passed": 2,
+    "english_blank_prompt": 0,
+    "english_blank_answer": 0,
+    "english_blank_explanation": 0,
+    "english_evidence_absent_or_not_in_passage": 0,
+    "english_invalid_choice_count": 0,
+    "english_objective_questions": 11,
+    "english_open_response_questions": 2,
+    "english_duplicate_choice_occurrences": 0,
+    "english_answer_out_of_range": 0,
+    "english_quality_flagged_questions": 3,
+    "english_quality_failed_checks": 5,
+    "english_quality_check_count": 109,
+    "english_detected_variant_leak_pairs": 0,
+    "english_duplicate_passage_hash_groups": 0,
+    "english_null_metadata_sets": 2,
+    "listening_strict_valid_documents": 3,
+    "listening_retired_documents_by_current_policy": 0,
+    "listening_retired_questions_by_current_policy": 0,
+    "listening_blank_prompt": 0,
+    "listening_blank_explanation": 0,
+    "listening_answer_missing_or_outside_choices": 0,
+    "listening_duplicate_choice_ids": 0,
+    "listening_duplicate_choice_texts": 0,
+    "listening_empty_choices": 0,
+    "listening_evidence_ranges": 19,
+    "listening_invalid_evidence_ranges": 0,
+    "listening_optional_audio_range_absent": 9,
+    "listening_groups_audio_ref_matched": 3,
+    "listening_media_ready": 3,
+    "listening_distribution_allowed_sets": 0,
+    "listening_content_audio_alignment_review_stamps_present": 0,
+    "listening_student_print_hidden_fields": 0,
+    "listening_teacher_draft_print_allowed": 3,
+    "listening_student_draft_print_denied": 3,
+    "audio_remote_full_reads": 3,
+    "audio_sha256_bytes_duration_matched": 3,
+    "audio_bytes_total": 6079506,
+    "audio_duration_ms_total": 126655,
+    "rls_enabled_tables": 21,
+    "current_item_visual_reviews": 0,
+    "current_audio_human_listens": 0,
+    "current_browser_or_print_visual_reviews": 0
+  },
+  "englishSets": [
+    {
+      "id": "15fad5d9-c85d-4657-9524-9d40ed7808a6",
+      "revision": 2,
+      "examId": "0d2a0c3d-1d5a-479d-ad05-d617139df81d",
+      "parentExists": true,
+      "grade": "중3",
+      "status": "초안",
+      "source": "deepseek",
+      "passageChars": 1709,
+      "passageSha256": "2bff74c286563687d9a72a013ddf4e2505033f3d6dbe33ae8b894d93fc18974d",
+      "questionCount": 8,
+      "setShapeValid": true,
+      "setSchemaIssues": [],
+      "metaValid": true,
+      "metaPresent": false,
+      "hasBankRef": false,
+      "currentValidationPassed": true,
+      "validationIssues": [],
+      "qualitySetChecks": [
+        {
+          "code": "set.answer-spread",
+          "kind": "set",
+          "ok": true
+        }
+      ],
+      "leakPairs": [],
+      "printBundles": {
+        "count": 2,
+        "cyclic": false,
+        "openPairs": 0,
+        "bundles": [
+          {
+            "no": 1,
+            "kind": "변형",
+            "questions": [
+              3,
+              4,
+              5
+            ],
+            "passage": false
+          },
+          {
+            "no": 2,
+            "kind": "독해",
+            "questions": [
+              0,
+              1,
+              2,
+              6,
+              7
+            ],
+            "passage": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "6c7cec12-cad0-4085-aa3d-50bc3501e870",
+      "revision": 2,
+      "examId": "0d2a0c3d-1d5a-479d-ad05-d617139df81d",
+      "parentExists": true,
+      "grade": "중3",
+      "status": "초안",
+      "source": "deepseek",
+      "passageChars": 1234,
+      "passageSha256": "ac416562c09ee30bd0c88b1915e01ecb9108c3e7fd2ae5325889e16af9b234bb",
+      "questionCount": 5,
+      "setShapeValid": true,
+      "setSchemaIssues": [],
+      "metaValid": true,
+      "metaPresent": false,
+      "hasBankRef": false,
+      "currentValidationPassed": true,
+      "validationIssues": [],
+      "qualitySetChecks": [
+        {
+          "code": "set.answer-spread",
+          "kind": "set",
+          "ok": true
+        }
+      ],
+      "leakPairs": [],
+      "printBundles": {
+        "count": 2,
+        "cyclic": false,
+        "openPairs": 0,
+        "bundles": [
+          {
+            "no": 1,
+            "kind": "변형",
+            "questions": [
+              2,
+              4
+            ],
+            "passage": false
+          },
+          {
+            "no": 2,
+            "kind": "독해",
+            "questions": [
+              0,
+              1,
+              3
+            ],
+            "passage": true
+          }
+        ]
+      }
+    }
+  ],
+  "englishQuestionChecks": [
+    {
+      "id": "15fad5d9-c85d-4657-9524-9d40ed7808a6:2:0",
+      "setId": "15fad5d9-c85d-4657-9524-9d40ed7808a6",
+      "index": 0,
+      "type": "주제",
+      "sha256": "9bf5a79087799596fb8aeca04d92a33c726335cc8c7e8785c9e5de4ad31c3bb6",
+      "shapeValid": true,
+      "schemaIssues": [],
+      "promptChars": 20,
+      "promptBlank": false,
+      "answerBlank": false,
+      "explanationChars": 207,
+      "explanationBlank": false,
+      "evidenceChars": 198,
+      "evidenceBlank": false,
+      "evidenceInPassage": true,
+      "openResponse": false,
+      "optionCount": 5,
+      "validOptionCount": true,
+      "emptyOptions": 0,
+      "duplicateOptions": 0,
+      "answerInRange": true,
+      "v2OnlyKeys": [],
+      "quality": {
+        "checked": 8,
+        "failed": []
+      }
+    },
+    {
+      "id": "15fad5d9-c85d-4657-9524-9d40ed7808a6:2:1",
+      "setId": "15fad5d9-c85d-4657-9524-9d40ed7808a6",
+      "index": 1,
+      "type": "내용 일치",
+      "sha256": "589cff4a2335c0bb43a0d831c7331666c1e0bb8fa9085b451b9c29ef4bdc066b",
+      "shapeValid": true,
+      "schemaIssues": [],
+      "promptChars": 18,
+      "promptBlank": false,
+      "answerBlank": false,
+      "explanationChars": 188,
+      "explanationBlank": false,
+      "evidenceChars": 153,
+      "evidenceBlank": false,
+      "evidenceInPassage": true,
+      "openResponse": false,
+      "optionCount": 5,
+      "validOptionCount": true,
+      "emptyOptions": 0,
+      "duplicateOptions": 0,
+      "answerInRange": true,
+      "v2OnlyKeys": [],
+      "quality": {
+        "checked": 9,
+        "failed": []
+      }
+    },
+    {
+      "id": "15fad5d9-c85d-4657-9524-9d40ed7808a6:2:2",
+      "setId": "15fad5d9-c85d-4657-9524-9d40ed7808a6",
+      "index": 2,
+      "type": "내용 일치",
+      "sha256": "bde92d586ddaf4aa2ccfd3d3f0cef21da7e9da8f855bd0e7b8456484e8b04aa4",
+      "shapeValid": true,
+      "schemaIssues": [],
+      "promptChars": 21,
+      "promptBlank": false,
+      "answerBlank": false,
+      "explanationChars": 198,
+      "explanationBlank": false,
+      "evidenceChars": 187,
+      "evidenceBlank": false,
+      "evidenceInPassage": true,
+      "openResponse": false,
+      "optionCount": 5,
+      "validOptionCount": true,
+      "emptyOptions": 0,
+      "duplicateOptions": 0,
+      "answerInRange": true,
+      "v2OnlyKeys": [],
+      "quality": {
+        "checked": 9,
+        "failed": []
+      }
+    },
+    {
+      "id": "15fad5d9-c85d-4657-9524-9d40ed7808a6:2:3",
+      "setId": "15fad5d9-c85d-4657-9524-9d40ed7808a6",
+      "index": 3,
+      "type": "어법",
+      "sha256": "92ea8ec550c7ad0e7ab796514f3b670885f6e48c2923ce317a82b5ee7a0b028a",
+      "shapeValid": true,
+      "schemaIssues": [],
+      "promptChars": 284,
+      "promptBlank": false,
+      "answerBlank": false,
+      "explanationChars": 127,
+      "explanationBlank": false,
+      "evidenceChars": 99,
+      "evidenceBlank": false,
+      "evidenceInPassage": true,
+      "openResponse": false,
+      "optionCount": 5,
+      "validOptionCount": true,
+      "emptyOptions": 0,
+      "duplicateOptions": 0,
+      "answerInRange": true,
+      "v2OnlyKeys": [],
+      "quality": {
+        "checked": 9,
+        "failed": [
+          {
+            "code": "variant.has-passage",
+            "kind": "structure"
+          },
+          {
+            "code": "variant.single-edit",
+            "kind": "structure"
+          }
+        ]
+      }
+    },
+    {
+      "id": "15fad5d9-c85d-4657-9524-9d40ed7808a6:2:4",
+      "setId": "15fad5d9-c85d-4657-9524-9d40ed7808a6",
+      "index": 4,
+      "type": "빈칸 추론",
+      "sha256": "bbd2fb73ab24cc13ac7567260b2203634a8d5071a6ffabbd3fc5f4d3ae2713c5",
+      "shapeValid": true,
+      "schemaIssues": [],
+      "promptChars": 66,
+      "promptBlank": false,
+      "answerBlank": false,
+      "explanationChars": 174,
+      "explanationBlank": false,
+      "evidenceChars": 198,
+      "evidenceBlank": false,
+      "evidenceInPassage": true,
+      "openResponse": false,
+      "optionCount": 5,
+      "validOptionCount": true,
+      "emptyOptions": 0,
+      "duplicateOptions": 0,
+      "answerInRange": true,
+      "v2OnlyKeys": [],
+      "quality": {
+        "checked": 10,
+        "failed": [
+          {
+            "code": "variant.has-passage",
+            "kind": "structure"
+          },
+          {
+            "code": "variant.single-edit",
+            "kind": "structure"
+          }
+        ]
+      }
+    },
+    {
+      "id": "15fad5d9-c85d-4657-9524-9d40ed7808a6:2:5",
+      "setId": "15fad5d9-c85d-4657-9524-9d40ed7808a6",
+      "index": 5,
+      "type": "문장 삽입",
+      "sha256": "1a49d7eecdf7a5f22daba68d1e7e72ee26df13b4af027a0503e3cfc696fd2f55",
+      "shapeValid": true,
+      "schemaIssues": [],
+      "promptChars": 513,
+      "promptBlank": false,
+      "answerBlank": false,
+      "explanationChars": 135,
+      "explanationBlank": false,
+      "evidenceChars": 224,
+      "evidenceBlank": false,
+      "evidenceInPassage": true,
+      "openResponse": false,
+      "optionCount": 5,
+      "validOptionCount": true,
+      "emptyOptions": 0,
+      "duplicateOptions": 0,
+      "answerInRange": true,
+      "v2OnlyKeys": [],
+      "quality": {
+        "checked": 10,
+        "failed": [
+          {
+            "code": "insert.answer-slot",
+            "kind": "structure"
+          }
+        ]
+      }
+    },
+    {
+      "id": "15fad5d9-c85d-4657-9524-9d40ed7808a6:2:6",
+      "setId": "15fad5d9-c85d-4657-9524-9d40ed7808a6",
+      "index": 6,
+      "type": "서술형",
+      "sha256": "f42847ffa0d3f0db18d80f597c455faa7451fd7f12bae3455a899f479527886e",
+      "shapeValid": true,
+      "schemaIssues": [],
+      "promptChars": 70,
+      "promptBlank": false,
+      "answerBlank": false,
+      "explanationChars": 137,
+      "explanationBlank": false,
+      "evidenceChars": 161,
+      "evidenceBlank": false,
+      "evidenceInPassage": true,
+      "openResponse": true,
+      "optionCount": 0,
+      "validOptionCount": true,
+      "emptyOptions": 0,
+      "duplicateOptions": 0,
+      "answerInRange": null,
+      "v2OnlyKeys": [],
+      "quality": {
+        "checked": 4,
+        "failed": []
+      }
+    },
+    {
+      "id": "15fad5d9-c85d-4657-9524-9d40ed7808a6:2:7",
+      "setId": "15fad5d9-c85d-4657-9524-9d40ed7808a6",
+      "index": 7,
+      "type": "서술형",
+      "sha256": "d3e9606a08b99e02288095ac5451e8efc34682bc8992003df0baefeb71818177",
+      "shapeValid": true,
+      "schemaIssues": [],
+      "promptChars": 73,
+      "promptBlank": false,
+      "answerBlank": false,
+      "explanationChars": 118,
+      "explanationBlank": false,
+      "evidenceChars": 217,
+      "evidenceBlank": false,
+      "evidenceInPassage": true,
+      "openResponse": true,
+      "optionCount": 0,
+      "validOptionCount": true,
+      "emptyOptions": 0,
+      "duplicateOptions": 0,
+      "answerInRange": null,
+      "v2OnlyKeys": [],
+      "quality": {
+        "checked": 4,
+        "failed": []
+      }
+    },
+    {
+      "id": "6c7cec12-cad0-4085-aa3d-50bc3501e870:2:0",
+      "setId": "6c7cec12-cad0-4085-aa3d-50bc3501e870",
+      "index": 0,
+      "type": "주제",
+      "sha256": "de79f57d60e378a141bc3bf23f75ba71c66991a39a68b95e06903b120121236d",
+      "shapeValid": true,
+      "schemaIssues": [],
+      "promptChars": 18,
+      "promptBlank": false,
+      "answerBlank": false,
+      "explanationChars": 181,
+      "explanationBlank": false,
+      "evidenceChars": 226,
+      "evidenceBlank": false,
+      "evidenceInPassage": true,
+      "openResponse": false,
+      "optionCount": 5,
+      "validOptionCount": true,
+      "emptyOptions": 0,
+      "duplicateOptions": 0,
+      "answerInRange": true,
+      "v2OnlyKeys": [],
+      "quality": {
+        "checked": 8,
+        "failed": []
+      }
+    },
+    {
+      "id": "6c7cec12-cad0-4085-aa3d-50bc3501e870:2:1",
+      "setId": "6c7cec12-cad0-4085-aa3d-50bc3501e870",
+      "index": 1,
+      "type": "내용 일치",
+      "sha256": "288d5b3b063818f44f3b5c8d8f3d5004eb95b9eeaac4c7058562fed05d300b4a",
+      "shapeValid": true,
+      "schemaIssues": [],
+      "promptChars": 16,
+      "promptBlank": false,
+      "answerBlank": false,
+      "explanationChars": 182,
+      "explanationBlank": false,
+      "evidenceChars": 65,
+      "evidenceBlank": false,
+      "evidenceInPassage": true,
+      "openResponse": false,
+      "optionCount": 5,
+      "validOptionCount": true,
+      "emptyOptions": 0,
+      "duplicateOptions": 0,
+      "answerInRange": true,
+      "v2OnlyKeys": [],
+      "quality": {
+        "checked": 9,
+        "failed": []
+      }
+    },
+    {
+      "id": "6c7cec12-cad0-4085-aa3d-50bc3501e870:2:2",
+      "setId": "6c7cec12-cad0-4085-aa3d-50bc3501e870",
+      "index": 2,
+      "type": "어법",
+      "sha256": "448827ca92aeb1001a9c0ef791f4f606fa012331152b6caa86921abb74816ac2",
+      "shapeValid": true,
+      "schemaIssues": [],
+      "promptChars": 466,
+      "promptBlank": false,
+      "answerBlank": false,
+      "explanationChars": 154,
+      "explanationBlank": false,
+      "evidenceChars": 95,
+      "evidenceBlank": false,
+      "evidenceInPassage": true,
+      "openResponse": false,
+      "optionCount": 5,
+      "validOptionCount": true,
+      "emptyOptions": 0,
+      "duplicateOptions": 0,
+      "answerInRange": true,
+      "v2OnlyKeys": [],
+      "quality": {
+        "checked": 9,
+        "failed": []
+      }
+    },
+    {
+      "id": "6c7cec12-cad0-4085-aa3d-50bc3501e870:2:3",
+      "setId": "6c7cec12-cad0-4085-aa3d-50bc3501e870",
+      "index": 3,
+      "type": "내용 일치",
+      "sha256": "c9e079ae5906fa3455bed0a5693d10499925019fd6a90110e255933392c20acf",
+      "shapeValid": true,
+      "schemaIssues": [],
+      "promptChars": 16,
+      "promptBlank": false,
+      "answerBlank": false,
+      "explanationChars": 203,
+      "explanationBlank": false,
+      "evidenceChars": 73,
+      "evidenceBlank": false,
+      "evidenceInPassage": true,
+      "openResponse": false,
+      "optionCount": 5,
+      "validOptionCount": true,
+      "emptyOptions": 0,
+      "duplicateOptions": 0,
+      "answerInRange": true,
+      "v2OnlyKeys": [],
+      "quality": {
+        "checked": 9,
+        "failed": []
+      }
+    },
+    {
+      "id": "6c7cec12-cad0-4085-aa3d-50bc3501e870:2:4",
+      "setId": "6c7cec12-cad0-4085-aa3d-50bc3501e870",
+      "index": 4,
+      "type": "어법",
+      "sha256": "857c9927dce14a5dad12a5a78928ac4a88334ade8900b47c7596caa4f4332fe4",
+      "shapeValid": true,
+      "schemaIssues": [],
+      "promptChars": 414,
+      "promptBlank": false,
+      "answerBlank": false,
+      "explanationChars": 175,
+      "explanationBlank": false,
+      "evidenceChars": 108,
+      "evidenceBlank": false,
+      "evidenceInPassage": true,
+      "openResponse": false,
+      "optionCount": 5,
+      "validOptionCount": true,
+      "emptyOptions": 0,
+      "duplicateOptions": 0,
+      "answerInRange": true,
+      "v2OnlyKeys": [],
+      "quality": {
+        "checked": 9,
+        "failed": []
+      }
+    }
+  ],
+  "listeningSets": [
+    {
+      "id": "3e8bdaa9-c3d7-46d4-b9fe-3f82d7425b01",
+      "revision": 4,
+      "documentRevision": 4,
+      "active": true,
+      "sha256": "6a737c1c874b2e227ea07bb93dd0ff53515f52036ea19511c16f6b4c75d888e8",
+      "rowIdentityMatched": true,
+      "schemaVersion": 1,
+      "provenanceKind": "teacher_authored",
+      "retired": false,
+      "draftShapeValid": true,
+      "draftSchemaIssues": [],
+      "strictDocumentValid": true,
+      "strictSchemaIssues": [],
+      "rightsStatus": "approved",
+      "distributionAllowed": false,
+      "rightsReviewPresent": true,
+      "groupCount": 1,
+      "questionCount": 3,
+      "groups": [
+        {
+          "id": "c3425ad3-03db-4a27-88cd-3356514336c8",
+          "audioAssetId": "96ce8798-a9cb-44ce-8ad5-8cf4f17ec281",
+          "audioSha256": "3c4a6d6cf5090f7fd0b6c18bc6c66cbda0d5afdc65eb00e9e446e59849556391",
+          "audioDurationMs": 41955,
+          "audioPresent": true,
+          "mediaRowExists": true,
+          "identityScopeMatched": true,
+          "audioMatched": true,
+          "transcriptChars": 578,
+          "spokenChars": 554,
+          "transcriptSha256": "5c073f2fc07da6d380e46bfcc791acd665e1d4ec03d80220776bfdfd6bfad125",
+          "spokenSha256": "7fc4283b853876507d7276836b260406a2840c473b820f78939871c22369b179",
+          "questionCount": 3,
+          "reviews": {
+            "content": {
+              "present": false,
+              "revisionMatched": false,
+              "hashMatched": false,
+              "audioMatched": null
+            },
+            "audio": {
+              "present": false,
+              "revisionMatched": false,
+              "hashMatched": false,
+              "audioMatched": false
+            },
+            "alignment": {
+              "present": false,
+              "revisionMatched": false,
+              "hashMatched": false,
+              "audioMatched": false
+            }
+          }
+        }
+      ],
+      "studentPrintHiddenFieldCount": 0
+    },
+    {
+      "id": "5208fc63-de72-4e06-ba40-2e528f68105e",
+      "revision": 4,
+      "documentRevision": 4,
+      "active": true,
+      "sha256": "bd38daf84e5a74585d3086a9ee8683995ef03ddd479435a323923c504d662bfe",
+      "rowIdentityMatched": true,
+      "schemaVersion": 1,
+      "provenanceKind": "teacher_authored",
+      "retired": false,
+      "draftShapeValid": true,
+      "draftSchemaIssues": [],
+      "strictDocumentValid": true,
+      "strictSchemaIssues": [],
+      "rightsStatus": "approved",
+      "distributionAllowed": false,
+      "rightsReviewPresent": true,
+      "groupCount": 1,
+      "questionCount": 3,
+      "groups": [
+        {
+          "id": "91e0a3b5-a148-46b7-8523-e4bceb32fdd5",
+          "audioAssetId": "ecc19690-074e-4189-81a3-a5116275b276",
+          "audioSha256": "803705f97ecc92b8f13f4ac950f7536106445b00b97e72b4f228ba89eb31c096",
+          "audioDurationMs": 44208,
+          "audioPresent": true,
+          "mediaRowExists": true,
+          "identityScopeMatched": true,
+          "audioMatched": true,
+          "transcriptChars": 727,
+          "spokenChars": 715,
+          "transcriptSha256": "69b5a55e43e2314e139e0340e92d8b67fee29f7ee10427ac866cd731700987d0",
+          "spokenSha256": "09f2821694727433cb3c739667fb8dab79c63eef7f33dd59c15df7b403f03ba4",
+          "questionCount": 3,
+          "reviews": {
+            "content": {
+              "present": false,
+              "revisionMatched": false,
+              "hashMatched": false,
+              "audioMatched": null
+            },
+            "audio": {
+              "present": false,
+              "revisionMatched": false,
+              "hashMatched": false,
+              "audioMatched": false
+            },
+            "alignment": {
+              "present": false,
+              "revisionMatched": false,
+              "hashMatched": false,
+              "audioMatched": false
+            }
+          }
+        }
+      ],
+      "studentPrintHiddenFieldCount": 0
+    },
+    {
+      "id": "a097511d-21ab-4f12-86ec-143b8d6da463",
+      "revision": 4,
+      "documentRevision": 4,
+      "active": true,
+      "sha256": "a25fe3759d1068bc94b1bedc19f4075202c7b94d9ccc9ff8e53230710329b552",
+      "rowIdentityMatched": true,
+      "schemaVersion": 1,
+      "provenanceKind": "teacher_authored",
+      "retired": false,
+      "draftShapeValid": true,
+      "draftSchemaIssues": [],
+      "strictDocumentValid": true,
+      "strictSchemaIssues": [],
+      "rightsStatus": "approved",
+      "distributionAllowed": false,
+      "rightsReviewPresent": true,
+      "groupCount": 1,
+      "questionCount": 3,
+      "groups": [
+        {
+          "id": "075e0c6c-76d8-4453-ac8a-1385fa78f7cd",
+          "audioAssetId": "79d2382e-4dd4-47fe-bf2d-5da031a55ee1",
+          "audioSha256": "5eef69d086bbc5257ae6a356e19f9c5f5ef4698123de9686af52971829ef29c1",
+          "audioDurationMs": 40492,
+          "audioPresent": true,
+          "mediaRowExists": true,
+          "identityScopeMatched": true,
+          "audioMatched": true,
+          "transcriptChars": 468,
+          "spokenChars": 441,
+          "transcriptSha256": "379435be6ec9261cd496527be484c19846bc84561be9cc8ff639f44ede7109ef",
+          "spokenSha256": "a35abbe9fd0af879aae70cf99d7ba39abc09bb029a4d8d7eddf51c18528476f5",
+          "questionCount": 3,
+          "reviews": {
+            "content": {
+              "present": false,
+              "revisionMatched": false,
+              "hashMatched": false,
+              "audioMatched": null
+            },
+            "audio": {
+              "present": false,
+              "revisionMatched": false,
+              "hashMatched": false,
+              "audioMatched": false
+            },
+            "alignment": {
+              "present": false,
+              "revisionMatched": false,
+              "hashMatched": false,
+              "audioMatched": false
+            }
+          }
+        }
+      ],
+      "studentPrintHiddenFieldCount": 0
+    }
+  ],
+  "listeningQuestionChecks": [
+    {
+      "id": "1c0b74bb-a1b3-4085-885c-b69402972ced",
+      "setId": "3e8bdaa9-c3d7-46d4-b9fe-3f82d7425b01",
+      "groupId": "c3425ad3-03db-4a27-88cd-3356514336c8",
+      "index": 0,
+      "sha256": "cf6bcfd7953b690a943a2150b85f12fcb3337cd48e3036a9bb150c12c0ca17e5",
+      "promptChars": 34,
+      "promptBlank": false,
+      "explanationChars": 84,
+      "explanationBlank": false,
+      "choiceCount": 5,
+      "emptyChoices": 0,
+      "duplicateChoiceIds": 0,
+      "duplicateChoiceTexts": 0,
+      "answerMissing": false,
+      "answerBelongsToChoices": true,
+      "evidenceCount": 3,
+      "invalidEvidenceRanges": 0,
+      "hasAudioRange": false,
+      "audioRangeInvalid": null,
+      "imagePresent": false,
+      "origin": "teacher_authored",
+      "retired": false
+    },
+    {
+      "id": "b8c526ff-75f5-49b6-9b98-f0bb8bfa5b75",
+      "setId": "3e8bdaa9-c3d7-46d4-b9fe-3f82d7425b01",
+      "groupId": "c3425ad3-03db-4a27-88cd-3356514336c8",
+      "index": 1,
+      "sha256": "ca055a897ecfd37b46344cb68105bc232042c906fa374163c8b1088d7df7e74f",
+      "promptChars": 32,
+      "promptBlank": false,
+      "explanationChars": 175,
+      "explanationBlank": false,
+      "choiceCount": 5,
+      "emptyChoices": 0,
+      "duplicateChoiceIds": 0,
+      "duplicateChoiceTexts": 0,
+      "answerMissing": false,
+      "answerBelongsToChoices": true,
+      "evidenceCount": 3,
+      "invalidEvidenceRanges": 0,
+      "hasAudioRange": false,
+      "audioRangeInvalid": null,
+      "imagePresent": false,
+      "origin": "teacher_authored",
+      "retired": false
+    },
+    {
+      "id": "64bff1e8-cf0a-428f-a1d5-855abc939bc9",
+      "setId": "3e8bdaa9-c3d7-46d4-b9fe-3f82d7425b01",
+      "groupId": "c3425ad3-03db-4a27-88cd-3356514336c8",
+      "index": 2,
+      "sha256": "01bd2375807b3c7731b8321daf7b344f99c20e3f7709347430c4434ee124fd00",
+      "promptChars": 29,
+      "promptBlank": false,
+      "explanationChars": 108,
+      "explanationBlank": false,
+      "choiceCount": 5,
+      "emptyChoices": 0,
+      "duplicateChoiceIds": 0,
+      "duplicateChoiceTexts": 0,
+      "answerMissing": false,
+      "answerBelongsToChoices": true,
+      "evidenceCount": 3,
+      "invalidEvidenceRanges": 0,
+      "hasAudioRange": false,
+      "audioRangeInvalid": null,
+      "imagePresent": false,
+      "origin": "teacher_authored",
+      "retired": false
+    },
+    {
+      "id": "cd5ba675-a041-4022-b1b9-c2d73427b334",
+      "setId": "5208fc63-de72-4e06-ba40-2e528f68105e",
+      "groupId": "91e0a3b5-a148-46b7-8523-e4bceb32fdd5",
+      "index": 0,
+      "sha256": "b08a8b58dc101d5d443198a48c06757e6e5a3c63bb5df9efa5029b1d719c58fa",
+      "promptChars": 21,
+      "promptBlank": false,
+      "explanationChars": 94,
+      "explanationBlank": false,
+      "choiceCount": 5,
+      "emptyChoices": 0,
+      "duplicateChoiceIds": 0,
+      "duplicateChoiceTexts": 0,
+      "answerMissing": false,
+      "answerBelongsToChoices": true,
+      "evidenceCount": 4,
+      "invalidEvidenceRanges": 0,
+      "hasAudioRange": false,
+      "audioRangeInvalid": null,
+      "imagePresent": false,
+      "origin": "teacher_authored",
+      "retired": false
+    },
+    {
+      "id": "4bd7cffe-5eaf-4f96-aaf8-1c3b019dd9b5",
+      "setId": "5208fc63-de72-4e06-ba40-2e528f68105e",
+      "groupId": "91e0a3b5-a148-46b7-8523-e4bceb32fdd5",
+      "index": 1,
+      "sha256": "ed04f4c3cfbe2338391f99c735c3e41c12909f168d63be92cff93d311194a906",
+      "promptChars": 28,
+      "promptBlank": false,
+      "explanationChars": 72,
+      "explanationBlank": false,
+      "choiceCount": 5,
+      "emptyChoices": 0,
+      "duplicateChoiceIds": 0,
+      "duplicateChoiceTexts": 0,
+      "answerMissing": false,
+      "answerBelongsToChoices": true,
+      "evidenceCount": 1,
+      "invalidEvidenceRanges": 0,
+      "hasAudioRange": false,
+      "audioRangeInvalid": null,
+      "imagePresent": false,
+      "origin": "teacher_authored",
+      "retired": false
+    },
+    {
+      "id": "4f17cb7e-bef2-42a0-8050-2d71f9ed8d56",
+      "setId": "5208fc63-de72-4e06-ba40-2e528f68105e",
+      "groupId": "91e0a3b5-a148-46b7-8523-e4bceb32fdd5",
+      "index": 2,
+      "sha256": "85bdd7e07e56e8240510474de0dabcb902b21859c6bbf3f62e721e8734ca8335",
+      "promptChars": 33,
+      "promptBlank": false,
+      "explanationChars": 90,
+      "explanationBlank": false,
+      "choiceCount": 5,
+      "emptyChoices": 0,
+      "duplicateChoiceIds": 0,
+      "duplicateChoiceTexts": 0,
+      "answerMissing": false,
+      "answerBelongsToChoices": true,
+      "evidenceCount": 1,
+      "invalidEvidenceRanges": 0,
+      "hasAudioRange": false,
+      "audioRangeInvalid": null,
+      "imagePresent": false,
+      "origin": "teacher_authored",
+      "retired": false
+    },
+    {
+      "id": "bc067038-bb80-40d5-904d-bb1b150d3c01",
+      "setId": "a097511d-21ab-4f12-86ec-143b8d6da463",
+      "groupId": "075e0c6c-76d8-4453-ac8a-1385fa78f7cd",
+      "index": 0,
+      "sha256": "6d0faa19029e2ee6fea0dcf8333fb245a952b1d02d087949daada27e958e73d8",
+      "promptChars": 21,
+      "promptBlank": false,
+      "explanationChars": 59,
+      "explanationBlank": false,
+      "choiceCount": 5,
+      "emptyChoices": 0,
+      "duplicateChoiceIds": 0,
+      "duplicateChoiceTexts": 0,
+      "answerMissing": false,
+      "answerBelongsToChoices": true,
+      "evidenceCount": 1,
+      "invalidEvidenceRanges": 0,
+      "hasAudioRange": false,
+      "audioRangeInvalid": null,
+      "imagePresent": false,
+      "origin": "teacher_authored",
+      "retired": false
+    },
+    {
+      "id": "24d36b6b-88c3-4df9-8e5f-f850fdefeeea",
+      "setId": "a097511d-21ab-4f12-86ec-143b8d6da463",
+      "groupId": "075e0c6c-76d8-4453-ac8a-1385fa78f7cd",
+      "index": 1,
+      "sha256": "75b8334fe31c7cbe1810ddbf464406fe304a92293697de657f1b4b02e88ac0c6",
+      "promptChars": 19,
+      "promptBlank": false,
+      "explanationChars": 41,
+      "explanationBlank": false,
+      "choiceCount": 5,
+      "emptyChoices": 0,
+      "duplicateChoiceIds": 0,
+      "duplicateChoiceTexts": 0,
+      "answerMissing": false,
+      "answerBelongsToChoices": true,
+      "evidenceCount": 1,
+      "invalidEvidenceRanges": 0,
+      "hasAudioRange": false,
+      "audioRangeInvalid": null,
+      "imagePresent": false,
+      "origin": "teacher_authored",
+      "retired": false
+    },
+    {
+      "id": "c8d615a7-f0cc-4cac-9768-f190552ab84a",
+      "setId": "a097511d-21ab-4f12-86ec-143b8d6da463",
+      "groupId": "075e0c6c-76d8-4453-ac8a-1385fa78f7cd",
+      "index": 2,
+      "sha256": "c5f9ab80123a45e3bc5c9e156762afba4a6147edcec9917c157cc0eec7b9a0b0",
+      "promptChars": 32,
+      "promptBlank": false,
+      "explanationChars": 70,
+      "explanationBlank": false,
+      "choiceCount": 5,
+      "emptyChoices": 0,
+      "duplicateChoiceIds": 0,
+      "duplicateChoiceTexts": 0,
+      "answerMissing": false,
+      "answerBelongsToChoices": true,
+      "evidenceCount": 2,
+      "invalidEvidenceRanges": 0,
+      "hasAudioRange": false,
+      "audioRangeInvalid": null,
+      "imagePresent": false,
+      "origin": "teacher_authored",
+      "retired": false
+    }
+  ],
+  "media": [
+    {
+      "assetId": "79d2382e-4dd4-47fe-bf2d-5da031a55ee1",
+      "setId": "a097511d-21ab-4f12-86ec-143b8d6da463",
+      "state": "ready",
+      "recordState": "ready",
+      "revision": 3,
+      "recordRevision": 3,
+      "recordSha256": "4860de59b15ea90f17ec7f750f3e10590a01e287d51f8ea7f4a843f1db9d2859",
+      "completionValid": true,
+      "completionIssues": [],
+      "completionState": "ready",
+      "publishable": true,
+      "expectedSha256": "5eef69d086bbc5257ae6a356e19f9c5f5ef4698123de9686af52971829ef29c1",
+      "playbackSha256": "5eef69d086bbc5257ae6a356e19f9c5f5ef4698123de9686af52971829ef29c1",
+      "storageSha256": "5eef69d086bbc5257ae6a356e19f9c5f5ef4698123de9686af52971829ef29c1",
+      "totalBytes": 1943654,
+      "receivedBytes": 1943654,
+      "playbackBytes": 1943654,
+      "durationMs": 40492,
+      "storageKind": "storage",
+      "originalChunkCount": 0,
+      "playbackChunkCount": 0,
+      "referencedByGroups": 1,
+      "storageBindingValid": true,
+      "playbackCompletionMatched": true
+    },
+    {
+      "assetId": "96ce8798-a9cb-44ce-8ad5-8cf4f17ec281",
+      "setId": "3e8bdaa9-c3d7-46d4-b9fe-3f82d7425b01",
+      "state": "ready",
+      "recordState": "ready",
+      "revision": 3,
+      "recordRevision": 3,
+      "recordSha256": "7d822c14eefe9213af9581a93bbf6216a1e55580211ef1a453ac4ae171303b43",
+      "completionValid": true,
+      "completionIssues": [],
+      "completionState": "ready",
+      "publishable": true,
+      "expectedSha256": "3c4a6d6cf5090f7fd0b6c18bc6c66cbda0d5afdc65eb00e9e446e59849556391",
+      "playbackSha256": "3c4a6d6cf5090f7fd0b6c18bc6c66cbda0d5afdc65eb00e9e446e59849556391",
+      "storageSha256": "3c4a6d6cf5090f7fd0b6c18bc6c66cbda0d5afdc65eb00e9e446e59849556391",
+      "totalBytes": 2013856,
+      "receivedBytes": 2013856,
+      "playbackBytes": 2013856,
+      "durationMs": 41955,
+      "storageKind": "storage",
+      "originalChunkCount": 0,
+      "playbackChunkCount": 0,
+      "referencedByGroups": 1,
+      "storageBindingValid": true,
+      "playbackCompletionMatched": true
+    },
+    {
+      "assetId": "ecc19690-074e-4189-81a3-a5116275b276",
+      "setId": "5208fc63-de72-4e06-ba40-2e528f68105e",
+      "state": "ready",
+      "recordState": "ready",
+      "revision": 4,
+      "recordRevision": 4,
+      "recordSha256": "484fe3dc1c152b76e0bf02e3393c44d848afe6dca3c767c3fb2face23cdc9ae5",
+      "completionValid": true,
+      "completionIssues": [],
+      "completionState": "ready",
+      "publishable": true,
+      "expectedSha256": "803705f97ecc92b8f13f4ac950f7536106445b00b97e72b4f228ba89eb31c096",
+      "playbackSha256": "803705f97ecc92b8f13f4ac950f7536106445b00b97e72b4f228ba89eb31c096",
+      "storageSha256": "803705f97ecc92b8f13f4ac950f7536106445b00b97e72b4f228ba89eb31c096",
+      "totalBytes": 2121996,
+      "receivedBytes": 2121996,
+      "playbackBytes": 2121996,
+      "durationMs": 44208,
+      "storageKind": "storage",
+      "originalChunkCount": 0,
+      "playbackChunkCount": 0,
+      "referencedByGroups": 1,
+      "storageBindingValid": true,
+      "playbackCompletionMatched": true
+    }
+  ],
+  "relationships": {
+    "orphan_sets": 0,
+    "orphan_materials": 0,
+    "orphan_media": 0,
+    "orphan_publications": 0,
+    "orphan_assignments": 0
+  },
+  "runtimeReads": {
+    "bankTotal": 13,
+    "bankReturned": 13,
+    "resolveReturned": 13,
+    "scopeTotal": 2,
+    "composeReturned": 13,
+    "storedHashesPreserved": true,
+    "availableListeningSqlCount": 3,
+    "availableListeningJsCount": 3
+  },
+  "runtimeReadRecheck": {
+    "run": "english-runtime-read-recheck-20261018",
+    "settings": {
+      "read_only": "on",
+      "observed_at": "2026-10-18T00:43:25.024Z"
+    },
+    "databaseUrlMatchesProvidedFile": true,
+    "passagesReturned": 0,
+    "listeningReturned": 3,
+    "listeningQuestionCount": 9,
+    "listeningIds": [
+      "3e8bdaa9-c3d7-46d4-b9fe-3f82d7425b01",
+      "5208fc63-de72-4e06-ba40-2e528f68105e",
+      "a097511d-21ab-4f12-86ec-143b8d6da463"
+    ],
+    "retiredReferencesReturned": 0,
+    "questionsUnchanged": true,
+    "listeningUnchanged": true
+  },
+  "independentQualityRecheck": [
+    {
+      "setId": "15fad5d9-c85d-4657-9524-9d40ed7808a6",
+      "underlineProblems": {
+        "blocking": [],
+        "warnings": []
+      },
+      "variants": [
+        {
+          "id": "15fad5d9-c85d-4657-9524-9d40ed7808a6:2:3",
+          "type": "어법",
+          "passageTokenCount": 265,
+          "promptTokenCount": 34,
+          "matchedTokens": 33,
+          "minimumQualityPassageTokens": 40,
+          "blankCount": 0,
+          "underlineMarkersPresent": 5
+        },
+        {
+          "id": "15fad5d9-c85d-4657-9524-9d40ed7808a6:2:4",
+          "type": "빈칸 추론",
+          "passageTokenCount": 265,
+          "promptTokenCount": 7,
+          "matchedTokens": 7,
+          "minimumQualityPassageTokens": 40,
+          "blankCount": 1,
+          "underlineMarkersPresent": 0
+        },
+        {
+          "id": "15fad5d9-c85d-4657-9524-9d40ed7808a6:2:5",
+          "type": "문장 삽입",
+          "passageTokenCount": 265,
+          "promptTokenCount": 66,
+          "matchedTokens": 56,
+          "minimumQualityPassageTokens": 40,
+          "blankCount": 0,
+          "underlineMarkersPresent": 5,
+          "independentInsertion": [
+            {
+              "givenTokens": 16,
+              "bodyTokens": 50,
+              "exactOriginalRestorationPositions": [
+                25
+              ],
+              "markerPositions": [
+                17,
+                25,
+                34,
+                46,
+                50
+              ],
+              "designatedAnswerPosition": 34,
+              "designatedAnswerRestoresExactOriginal": false,
+              "restoringMarkerNumbers": [
+                2
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "setId": "6c7cec12-cad0-4085-aa3d-50bc3501e870",
+      "underlineProblems": {
+        "blocking": [],
+        "warnings": []
+      },
+      "variants": [
+        {
+          "id": "6c7cec12-cad0-4085-aa3d-50bc3501e870:2:2",
+          "type": "어법",
+          "passageTokenCount": 203,
+          "promptTokenCount": 65,
+          "matchedTokens": 64,
+          "minimumQualityPassageTokens": 40,
+          "blankCount": 0,
+          "underlineMarkersPresent": 5
+        },
+        {
+          "id": "6c7cec12-cad0-4085-aa3d-50bc3501e870:2:4",
+          "type": "어법",
+          "passageTokenCount": 203,
+          "promptTokenCount": 57,
+          "matchedTokens": 56,
+          "minimumQualityPassageTokens": 40,
+          "blankCount": 0,
+          "underlineMarkersPresent": 5
+        }
+      ]
+    }
+  ],
+  "draftPrintAccess": [
+    {
+      "setId": "3e8bdaa9-c3d7-46d4-b9fe-3f82d7425b01",
+      "teacher": {
+        "allowed": true
+      },
+      "student": {
+        "allowed": false,
+        "status": 404,
+        "code": "NOT_FOUND"
+      }
+    },
+    {
+      "setId": "5208fc63-de72-4e06-ba40-2e528f68105e",
+      "teacher": {
+        "allowed": true
+      },
+      "student": {
+        "allowed": false,
+        "status": 404,
+        "code": "NOT_FOUND"
+      }
+    },
+    {
+      "setId": "a097511d-21ab-4f12-86ec-143b8d6da463",
+      "teacher": {
+        "allowed": true
+      },
+      "student": {
+        "allowed": false,
+        "status": 404,
+        "code": "NOT_FOUND"
+      }
+    }
+  ],
+  "audioVerification": [
+    {
+      "assetId": "79d2382e-4dd4-47fe-bf2d-5da031a55ee1",
+      "setId": "a097511d-21ab-4f12-86ec-143b8d6da463",
+      "readPassed": true,
+      "actualBytes": 1943654,
+      "sha256": "5eef69d086bbc5257ae6a356e19f9c5f5ef4698123de9686af52971829ef29c1",
+      "hashMatched": true,
+      "bytesMatched": true,
+      "inspection": {
+        "playable": true,
+        "durationMs": 40492
+      },
+      "durationMatched": true
+    },
+    {
+      "assetId": "96ce8798-a9cb-44ce-8ad5-8cf4f17ec281",
+      "setId": "3e8bdaa9-c3d7-46d4-b9fe-3f82d7425b01",
+      "readPassed": true,
+      "actualBytes": 2013856,
+      "sha256": "3c4a6d6cf5090f7fd0b6c18bc6c66cbda0d5afdc65eb00e9e446e59849556391",
+      "hashMatched": true,
+      "bytesMatched": true,
+      "inspection": {
+        "playable": true,
+        "durationMs": 41955
+      },
+      "durationMatched": true
+    },
+    {
+      "assetId": "ecc19690-074e-4189-81a3-a5116275b276",
+      "setId": "5208fc63-de72-4e06-ba40-2e528f68105e",
+      "readPassed": true,
+      "actualBytes": 2121996,
+      "sha256": "803705f97ecc92b8f13f4ac950f7536106445b00b97e72b4f228ba89eb31c096",
+      "hashMatched": true,
+      "bytesMatched": true,
+      "inspection": {
+        "playable": true,
+        "durationMs": 44208
+      },
+      "durationMatched": true
+    }
+  ],
+  "audioHttpMethodStatusCounts": {
+    "GET:200": 6,
+    "HEAD:200": 3,
+    "GET:206": 3
+  },
+  "listeningAuditKindCounts": [
+    {
+      "kind": "review_rights",
+      "n": 3
+    },
+    {
+      "kind": "set_created",
+      "n": 3
+    },
+    {
+      "kind": "set_updated",
+      "n": 6
+    }
+  ],
+  "dbSecurity": [
+    {
+      "table_name": "english_exam",
+      "rls": true,
+      "force_rls": false,
+      "anon_select": true,
+      "authenticated_select": true,
+      "policies": 0
+    },
+    {
+      "table_name": "english_listening_assignment",
+      "rls": true,
+      "force_rls": false,
+      "anon_select": false,
+      "authenticated_select": false,
+      "policies": 0
+    },
+    {
+      "table_name": "english_listening_assignment_revision",
+      "rls": true,
+      "force_rls": false,
+      "anon_select": false,
+      "authenticated_select": false,
+      "policies": 0
+    },
+    {
+      "table_name": "english_listening_attempt",
+      "rls": true,
+      "force_rls": false,
+      "anon_select": false,
+      "authenticated_select": false,
+      "policies": 0
+    },
+    {
+      "table_name": "english_listening_audit",
+      "rls": true,
+      "force_rls": false,
+      "anon_select": false,
+      "authenticated_select": false,
+      "policies": 0
+    },
+    {
+      "table_name": "english_listening_broadcast",
+      "rls": true,
+      "force_rls": false,
+      "anon_select": false,
+      "authenticated_select": false,
+      "policies": 0
+    },
+    {
+      "table_name": "english_listening_media_asset",
+      "rls": true,
+      "force_rls": false,
+      "anon_select": false,
+      "authenticated_select": false,
+      "policies": 0
+    },
+    {
+      "table_name": "english_listening_media_blob",
+      "rls": true,
+      "force_rls": false,
+      "anon_select": false,
+      "authenticated_select": false,
+      "policies": 0
+    },
+    {
+      "table_name": "english_listening_media_storage_blob",
+      "rls": true,
+      "force_rls": false,
+      "anon_select": false,
+      "authenticated_select": false,
+      "policies": 0
+    },
+    {
+      "table_name": "english_listening_publication",
+      "rls": true,
+      "force_rls": false,
+      "anon_select": false,
+      "authenticated_select": false,
+      "policies": 0
+    },
+    {
+      "table_name": "english_listening_receipt",
+      "rls": true,
+      "force_rls": false,
+      "anon_select": false,
+      "authenticated_select": false,
+      "policies": 0
+    },
+    {
+      "table_name": "english_listening_release",
+      "rls": true,
+      "force_rls": false,
+      "anon_select": false,
+      "authenticated_select": false,
+      "policies": 0
+    },
+    {
+      "table_name": "english_listening_set",
+      "rls": true,
+      "force_rls": false,
+      "anon_select": false,
+      "authenticated_select": false,
+      "policies": 0
+    },
+    {
+      "table_name": "english_listening_source_transcript",
+      "rls": true,
+      "force_rls": false,
+      "anon_select": false,
+      "authenticated_select": false,
+      "policies": 0
+    },
+    {
+      "table_name": "english_listening_target",
+      "rls": true,
+      "force_rls": false,
+      "anon_select": false,
+      "authenticated_select": false,
+      "policies": 0
+    },
+    {
+      "table_name": "english_material",
+      "rls": true,
+      "force_rls": false,
+      "anon_select": true,
+      "authenticated_select": true,
+      "policies": 0
+    },
+    {
+      "table_name": "english_passage",
+      "rls": true,
+      "force_rls": false,
+      "anon_select": false,
+      "authenticated_select": false,
+      "policies": 0
+    },
+    {
+      "table_name": "english_passage_receipt",
+      "rls": true,
+      "force_rls": false,
+      "anon_select": false,
+      "authenticated_select": false,
+      "policies": 0
+    },
+    {
+      "table_name": "english_passage_revision",
+      "rls": true,
+      "force_rls": false,
+      "anon_select": false,
+      "authenticated_select": false,
+      "policies": 0
+    },
+    {
+      "table_name": "english_passage_use",
+      "rls": true,
+      "force_rls": false,
+      "anon_select": false,
+      "authenticated_select": false,
+      "policies": 0
+    },
+    {
+      "table_name": "english_question_set",
+      "rls": true,
+      "force_rls": false,
+      "anon_select": true,
+      "authenticated_select": true,
+      "policies": 0
+    }
+  ],
+  "tests": {
+    "run": "english-focused-tests-20261018",
+    "maxWorkers": 2,
+    "selectedFiles": 52,
+    "executedFiles": 49,
+    "entirelySkippedFiles": 3,
+    "total": 727,
+    "passed": 674,
+    "failed": 0,
+    "skipped": 53,
+    "durationMs": 40546,
+    "realDatabaseEnvironmentRemoved": true,
+    "files": [
+      {
+        "file": "src/__tests__/api/englishExams.test.ts",
+        "passed": 22,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/api/englishMaterials.test.ts",
+        "passed": 35,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/api/englishMenuAccess.test.ts",
+        "passed": 11,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/api/englishPrintPage.test.ts",
+        "passed": 12,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/api/englishQuestions.test.ts",
+        "passed": 12,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/api/englishSchemaVersion.test.ts",
+        "passed": 15,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/api/englishSets.test.ts",
+        "passed": 27,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishBankJsonResponse.test.ts",
+        "passed": 3,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishBankPolicy.test.ts",
+        "passed": 8,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishBankReferences.test.ts",
+        "passed": 3,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishBundle.test.ts",
+        "passed": 21,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishExamBuilder.test.ts",
+        "passed": 4,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishLeak.test.ts",
+        "passed": 9,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningAccess.test.ts",
+        "passed": 34,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningAssessmentPatterns.test.ts",
+        "passed": 9,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningAssignment.test.ts",
+        "passed": 3,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningAttempt.test.ts",
+        "passed": 14,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningAudioBoundary.test.ts",
+        "passed": 12,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningComposeRuntime.test.ts",
+        "passed": 0,
+        "skipped": 28,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningContract.test.ts",
+        "passed": 15,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningExternalSourcePolicy.test.ts",
+        "passed": 23,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningHttp.test.ts",
+        "passed": 9,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningImageRole.test.ts",
+        "passed": 10,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningIntegration.test.ts",
+        "passed": 3,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningMedia.test.ts",
+        "passed": 20,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningMetadata.test.ts",
+        "passed": 4,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningPrint.test.tsx",
+        "passed": 1,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningPublication.test.ts",
+        "passed": 16,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningQuestionAudioPassage.test.ts",
+        "passed": 15,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningQuestionAudioProof.test.ts",
+        "passed": 19,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningQuestionAudioRuntime.test.ts",
+        "passed": 0,
+        "skipped": 14,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningQuestionPresentation.test.tsx",
+        "passed": 13,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningRelease.test.ts",
+        "passed": 5,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningRouteAccess.test.ts",
+        "passed": 4,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningRuntime.test.ts",
+        "passed": 0,
+        "skipped": 11,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningSourceTranscripts.test.ts",
+        "passed": 32,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningSourceTranscriptsHttp.test.ts",
+        "passed": 5,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningStorage.test.ts",
+        "passed": 7,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningStorageRead.test.ts",
+        "passed": 30,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningStudentView.test.tsx",
+        "passed": 20,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningTeacherClient.test.ts",
+        "passed": 3,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishListeningWholeSource.test.ts",
+        "passed": 10,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishOptions.test.ts",
+        "passed": 8,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishPrintLayout.test.ts",
+        "passed": 14,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishQuality.test.ts",
+        "passed": 30,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishQuestionBank.test.ts",
+        "passed": 7,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishQuestionSelection.test.ts",
+        "passed": 3,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishTypeExpansionGuards.test.ts",
+        "passed": 10,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishUnderline.test.ts",
+        "passed": 16,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishV1LossGuard.test.ts",
+        "passed": 16,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishV2VersionGate.test.ts",
+        "passed": 34,
+        "skipped": 0,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/unit/englishValidate.test.ts",
+        "passed": 18,
+        "skipped": 0,
+        "failed": 0
+      }
+    ]
+  },
+  "findings": [
+    {
+      "id": "EN-01",
+      "priority": "P1",
+      "classification": "confirmed_source_alignment_mismatch",
+      "questionId": "15fad5d9-c85d-4657-9524-9d40ed7808a6:2:5",
+      "qualityCode": "insert.answer-slot",
+      "exactRestorationTokenOffset": 25,
+      "designatedAnswerTokenOffset": 34,
+      "storedMarkerNumber": 3,
+      "exactRestorationMarkerNumber": 2
+    },
+    {
+      "id": "EN-02",
+      "priority": "P2",
+      "classification": "unconfirmed_context_sufficiency_warning",
+      "questionIds": [
+        "15fad5d9-c85d-4657-9524-9d40ed7808a6:2:3",
+        "15fad5d9-c85d-4657-9524-9d40ed7808a6:2:4"
+      ],
+      "matchedTokens": [
+        33,
+        7
+      ],
+      "heuristicThreshold": 40
+    },
+    {
+      "id": "EN-03",
+      "priority": "P2",
+      "classification": "confirmed_prepublication_work_remaining_not_runtime_error",
+      "setIds": [
+        "3e8bdaa9-c3d7-46d4-b9fe-3f82d7425b01",
+        "5208fc63-de72-4e06-ba40-2e528f68105e",
+        "a097511d-21ab-4f12-86ec-143b8d6da463"
+      ],
+      "missingDistributionGrants": 3,
+      "missingReviewStamps": 9
+    },
+    {
+      "id": "EN-04",
+      "priority": "P3",
+      "classification": "legacy_metadata_absence_not_data_corruption",
+      "setIds": [
+        "15fad5d9-c85d-4657-9524-9d40ed7808a6",
+        "6c7cec12-cad0-4085-aa3d-50bc3501e870"
+      ]
+    },
+    {
+      "id": "EN-05",
+      "priority": "P2",
+      "classification": "verification_gap_not_test_failure",
+      "skippedTests": 53
+    }
+  ],
+  "localRuntimeDataFiles": [
+    "src/lib/english/listening/creation/assessment-patterns.json"
+  ],
+  "historicalReferenceOnly": {
+    "externalSources": 193,
+    "externalQuestions": 3699,
+    "officialSources": 121,
+    "officialQuestions": 2417,
+    "reconstructedSources": 72,
+    "reconstructedQuestions": 1282,
+    "currentCorpusReproductionPerformed": false,
+    "historicalChecksumEquivalenceReverified": false
+  },
+  "runs": [
+    {
+      "run": "english-db-inventory-20261018",
+      "script": ".qa-artifacts/english-audit-20261018/inventory.mjs",
+      "scriptSha256": "fbf587816d21c36f1a77f6950fb77283d67f44f42898d6edd1922132a057ec35",
+      "result": ".qa-artifacts/english-audit-20261018/inventory.json",
+      "resultSha256": "3608f6da00b9fe3a919dcd8954416e5d79453b80cf6071466720c0caa7a1601a"
+    },
+    {
+      "run": "english-db-content-20261018",
+      "script": ".qa-artifacts/english-audit-20261018/content-audit.ts",
+      "scriptSha256": "200ab91b919dc7ca0c1c115b16721a6755b3a2ca0d74c7a594b0578ed002b264",
+      "result": ".qa-artifacts/english-audit-20261018/content-audit.json",
+      "resultSha256": "79dba04decaa6856e47ebd1ba5c851e28b0593d44bd6b1f5cec5e654675c6cda"
+    },
+    {
+      "run": "english-evidence-recheck-20261018",
+      "script": ".qa-artifacts/english-audit-20261018/recheck.ts",
+      "scriptSha256": "4528c959e2c2ea87cd8946899dccc070fd8011e655d769b9ee49934496b81cf9",
+      "result": ".qa-artifacts/english-audit-20261018/recheck.json",
+      "resultSha256": "232e9047290d4e91ebfad7122c24cb6b1cde99cf69b7db34415bf5afc2311452"
+    },
+    {
+      "run": "english-runtime-read-recheck-20261018",
+      "script": ".qa-artifacts/english-audit-20261018/runtime-read-recheck.ts",
+      "scriptSha256": "75c5edc700e6a6622edf0b4adb9912c920e19d138dd61dc294c4383eaf68a12b",
+      "result": ".qa-artifacts/english-audit-20261018/runtime-read-recheck.json",
+      "resultSha256": "6d0415455554b7e680c5f577f1dd0a839fe7af424ab45e6153d2b230787653f8"
+    },
+    {
+      "run": "english-focused-tests-20261018",
+      "script": ".qa-artifacts/english-audit-20261018/run-tests.mjs",
+      "scriptSha256": "159d2d1696a31486b941fd8741daecc38373efcb0dcfd0f3bb0914e3d17a2f8a",
+      "result": ".qa-artifacts/english-audit-20261018/tests.json",
+      "resultSha256": "e2eeef17d639ce4ef0afb53cc91f99cd282b3b0d162923e6a3ae829f99ffb9a6"
+    },
+    {
+      "run": "english-privacy-check-20261018",
+      "script": ".qa-artifacts/english-audit-20261018/privacy-check.mjs",
+      "scriptSha256": "05b9d83c7b2cf7f61bf10cf75075c799355e1a0bbd8a93ceb9d76639b6346e3c",
+      "result": ".qa-artifacts/english-audit-20261018/privacy-check.json",
+      "resultSha256": "0a29b2103a5ff18f86cdc2ac45f423b26a371b79863399983bf4dd9f484a896c"
+    }
+  ],
+  "privacyVerification": {
+    "run": "english-privacy-check-20261018",
+    "filesChecked": 15,
+    "sourceStringCandidates": 86,
+    "originalTextMatches": 0,
+    "environmentSecretMatches": 0
+  }
+}
