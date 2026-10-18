@@ -82,6 +82,8 @@ function resolveProfile(
   request: ExamStudyGenerateRequest,
   profiles: readonly ExamStudyProfile[],
 ): ExamStudyProfile | undefined {
+  // Explicit general types keep the school label display-only.
+  if (request.familyIds && !request.profileId) return undefined;
   let profile = request.profileId
     ? profiles.find((p) => p.id === request.profileId)
     : undefined;
@@ -206,9 +208,7 @@ export async function generateExamStudy(
   const quotas = allocateStudyQuotas(selectedRequirements, request.count);
   const warnings: string[] = [];
   if (request.schoolName && !profile)
-    warnings.push(
-      "입력한 학교의 검토 근거가 없어 일반 범위 연습으로 제공합니다.",
-    );
+    warnings.push("학교 프로필을 적용하지 않고 일반 범위 연습으로 제공합니다.");
   if (profile) {
     warnings.push(
       "선택 검토 범위의 연습입니다. 학교 시험 전체의 대응률·적중률과 실제 학습 효과는 측정하지 않았습니다.",
