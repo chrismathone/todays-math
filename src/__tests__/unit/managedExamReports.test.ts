@@ -23,6 +23,7 @@ describe("에이와 확정 성적표", () => {
       publicationId: reportId(3),
       sourceStudentId: "eywa-student-1",
       sourceTestId: reportId(4),
+      sourceClassId: "eywa-class-1",
       testDate: date,
     });
     expect(
@@ -41,6 +42,7 @@ describe("에이와 확정 성적표", () => {
     "absent",
     "ungraded",
     "unlinked",
+    "unlinked-class",
     "test-student",
     "prediction",
     "foreign-student",
@@ -62,6 +64,9 @@ describe("에이와 확정 성적표", () => {
         break;
       case "unlinked":
         candidate.student.eywaStudentId = null;
+        break;
+      case "unlinked-class":
+        candidate.test.sourceClassId = null;
         break;
       case "test-student":
         candidate.student.isTest = true;
@@ -111,6 +116,16 @@ describe("에이와 확정 성적표", () => {
     expect(
       eligibleExamReports(reportBinding, date, [candidate])[0].item.sha256,
     ).not.toBe(edited);
+  });
+
+  it("에이와 반이 바뀌면 붙일 보고서가 달라지므로 새 지문이다", () => {
+    const before = eligibleExamReports(reportBinding, date, [reportCandidate()])[0]
+      .item.sha256;
+    const moved = reportCandidate();
+    moved.test.sourceClassId = "eywa-class-2";
+    const after = eligibleExamReports(reportBinding, date, [moved])[0].item;
+    expect(after.sourceClassId).toBe("eywa-class-2");
+    expect(after.sha256).not.toBe(before);
   });
 
   it("같은 발행본·학생이 두 반 시험에 걸리면 임의로 고르지 않는다", () => {

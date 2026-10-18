@@ -408,3 +408,5 @@ CREATE UNIQUE INDEX "test_publication_class_key" ON "test" ("publication_id", "c
 - **DB 초안**: `prisma/drafts/exam-report-confirmation/draft.sql`과 같은 폴더의 설명. DB 접속·스키마 수정·마이그레이션·클라이언트 생성 없음.
 - **남은 것**: Hi-fi 선택 → 지면의 서버/인쇄 공통 렌더 → 실물 검수 → DB 승인·드라이런·적용 → 확정 쓰기/보관 어댑터 → 에이와 실제 첨부. 현재 M1의 배점/유형 고정 공백과 재시험 성적 연결도 적용 전에 검토한다.
 - **원장님께 여쭐 것**: H1~H4 선택, 선택된 지면 검수, 확정/PDF 보관 DB 초안 승인과 보관/삭제 정책. 이 작업에서는 승인 대상 행동을 실행하지 않았다.
+
+- **2026-10-18 에이와 결정과 대조** — 에이와 `reports-ai.md`(커밋 `700a1511c`): 성적표 PDF 를 그 학생의 **안 보낸** 수업보고서에 첨부 · (학생, 반, 시험일)로 찾는다. 우리 항목에 반이 빠져 있어 `sourceClassId` 를 더했다(에이와 반 없는 시험은 내보내지 않음 · 반이 바뀌면 새 지문). 대조표: `docs/planning/tracks/reports/eywa-reports-ai-20261018.md`.

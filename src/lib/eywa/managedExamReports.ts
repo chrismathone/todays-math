@@ -24,6 +24,8 @@ export interface ExamReportCandidate {
     predictionRunId: string | null;
     status: string;
     classId: string;
+    /** 그 반의 에이와 반 id. 에이와는 (학생, 반, 시험일)로 붙일 수업보고서를 찾는다. */
+    sourceClassId: string | null;
     eywaBindingId: string | null;
     branchId: string | null;
   };
@@ -96,7 +98,8 @@ export function eligibleExamReports(
       student.eywaBindingId !== binding.id ||
       student.branchId !== binding.targetBranchId ||
       student.isTest ||
-      !student.eywaStudentId
+      !student.eywaStudentId ||
+      !test.sourceClassId
     )
       continue;
     const parsed = confirmedExamReportArtifactSchema.safeParse(confirmation);
@@ -114,11 +117,13 @@ export function eligibleExamReports(
         publicationId: report.publication.id,
         sourceStudentId: student.eywaStudentId,
         sourceTestId: test.id,
+        sourceClassId: test.sourceClassId,
         testDate: date,
         sha256: canonicalHash({
           version: DIGEST_VERSION,
           bindingId: binding.id,
           sourceStudentId: student.eywaStudentId,
+          sourceClassId: test.sourceClassId,
           sourceDigest: archivedDigest,
           artifactId: artifact.id,
           pdfSha256: artifact.pdfSha256,

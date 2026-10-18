@@ -63,6 +63,7 @@ export function reportCandidate(): ExamReportCandidate {
       predictionRunId: null,
       status: "confirmed",
       classId: report.classId,
+      sourceClassId: "eywa-class-1",
       eywaBindingId: reportBinding.id,
       branchId: reportBinding.targetBranchId,
     },

@@ -86,6 +86,7 @@ export const examReportItemSchema = z.strictObject({
   publicationId: uuidSchema,
   sourceStudentId,
   sourceTestId: uuidSchema,
+  sourceClassId: z.string().min(1).max(200),
   testDate: isoDateSchema,
   sha256: examReportDigestSchema,
   pdfSha256: examReportDigestSchema,
