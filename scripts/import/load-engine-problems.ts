@@ -42,6 +42,10 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
 import { PrismaClient } from "@prisma/client";
+import {
+  generateNativeDescriptive,
+  nativeDescriptiveDefinition,
+} from "../../src/lib/engine/nativeDescriptive20261018";
 
 import { expandFamily } from "../../src/lib/engine/expandEngine";
 import {
@@ -95,7 +99,11 @@ import {
 // 관리용 스크립트는 **자기 클라이언트**를 쓴다 — `src/lib/db` 의 바깥벽 확장은
 // 읽기를 `pool='shared'` 로 좁혀서, 「내가 넣은 행이 정말 shared 인가」를 물을 때
 // 답이 언제나 «그렇다»가 되어 버린다(동어반복).
-const prisma = new PrismaClient();
+// Pure generation/verified planning must not construct an env-aware DB client on import.
+let prisma: PrismaClient | undefined;
+function engineImportPrisma(): PrismaClient {
+  return (prisma ??= new PrismaClient());
+}
 
 const REPO = path.resolve(__dirname, "..", "..");
 const LEDGER_DIR = path.join(REPO, "docs", "planning", "tracks", "reports");
@@ -108,6 +116,8 @@ type ElemTarget = {
   chapter: string;
   /** 비우면 그 단원의 소단원 전부 */
   sections?: string[];
+  /** Opt-in exact forms; omitted preserves historical plans. Empty/duplicate/unknown fails. */
+  formIds?: string[];
   /** 갈래별로 몇 개씩 (기본 2) */
   perTier?: number;
   /**
@@ -127,6 +137,8 @@ type MiddleTarget = {
   variants?: number;
   /** 이 소단원에서 쓸 유형 수 상한 (기본 전부) */
   maxTypes?: number;
+  /** Opt-in exact types; cannot be combined with maxTypes. */
+  typeKeys?: string[];
 };
 
 /**
@@ -165,9 +177,19 @@ type JudgeTarget = {
   variants?: number;
 };
 
-export type Target = ElemTarget | MiddleTarget | ComboTarget | JudgeTarget;
+export type NativeDescriptiveTarget = {
+  engine: "native-descriptive";
+  definitionIds: string[];
+  variants?: number;
+};
+export type Target =
+  | ElemTarget
+  | MiddleTarget
+  | ComboTarget
+  | JudgeTarget
+  | NativeDescriptiveTarget;
 
-type Plan = {
+export type Plan = {
   label: string;
   seedBase?: number;
   targets: Target[];
@@ -175,7 +197,7 @@ type Plan = {
   sourceReferences?: EngineSourceReference[];
 };
 
-type Row = {
+export type Row = {
   externalId: string;
   /**
    * **이 문항이 어느 문항류인가** (D-105). 같은 키 = 코드의 같은 `A01` 자리 =
@@ -227,6 +249,29 @@ const TIER_PROBLEM_TYPE: Record<Tier, string> = {
 
 // ────────────────────────────── 생성 ──────────────────────────────
 
+/** The opt-in selector must name every key exactly once. Never silently broaden a bad list. */
+export function exactSelection<T>(
+  items: readonly T[],
+  keys: unknown,
+  keyOf: (item: T) => string,
+): T[] {
+  if (
+    !Array.isArray(keys) ||
+    keys.length === 0 ||
+    keys.some((k) => typeof k !== "string" || !k.trim()) ||
+    new Set(keys).size !== keys.length
+  )
+    throw new Error(
+      "Exact selector must be a nonempty list without missing/duplicate keys",
+    );
+  const known = new Set(items.map(keyOf));
+  const unknown = keys.filter((k) => !known.has(k));
+  if (unknown.length)
+    throw new Error(`Unknown exact selector keys: ${unknown.join(", ")}`);
+  const want = new Set(keys);
+  return items.filter((item) => want.has(keyOf(item)));
+}
+
 export function buildElemRows(t: ElemTarget, seedBase: number): Row[] {
   const units = elementaryUnits().filter(
     (u) =>
@@ -249,7 +294,9 @@ export function buildElemRows(t: ElemTarget, seedBase: number): Row[] {
       );
       continue;
     }
-    const forms = listedForms(unit);
+    const forms = Object.prototype.hasOwnProperty.call(t, "formIds")
+      ? exactSelection(listedForms(unit), t.formIds, (f) => f.id)
+      : listedForms(unit);
     if (forms.length === 0) {
       // 🔴 문형 등록이 없으면 옛 4단으로 되돌아가지 않는다 — 그러면 갈래가 4로
       //    남아 「한 시험지에 같은 문항류 하나만」 아래서 4문항이 상한이 된다.
@@ -286,7 +333,7 @@ export function buildElemRows(t: ElemTarget, seedBase: number): Row[] {
           };
         },
         variants,
-        { allowShort: true },
+        { allowShort: true, allowMultipleChoice: form.allowMultipleChoice },
       );
       elemSkippedMcq += got.skippedMcq;
       if (got.shortBy > 0)
@@ -334,7 +381,11 @@ export function buildMiddleRows(t: MiddleTarget, seedBase: number): Row[] {
       `중등 유형을 못 찾았다: ${t.grade} / ${t.unitSection}` +
         ` — registeredTypes() 로 이름을 확인하라(중단원 이름에 얇은 공백 U+2009 이 들어 있을 수 있다)`,
     );
-  if (t.maxTypes) types = types.slice(0, t.maxTypes);
+  if (Object.prototype.hasOwnProperty.call(t, "typeKeys")) {
+    if (Object.prototype.hasOwnProperty.call(t, "maxTypes"))
+      throw new Error("Exact typeKeys and maxTypes cannot be combined");
+    types = exactSelection(types, t.typeKeys, (entry) => entry.key);
+  } else if (t.maxTypes) types = types.slice(0, t.maxTypes);
   const variants = t.variants ?? 3;
   const rows: Row[] = [];
   for (const entry of types) {
@@ -557,14 +608,54 @@ export function buildTargetRows(
       return buildComboRows(t, seedBase);
     case "judge":
       return buildJudgeRows(t, seedBase, deps.judges);
+    case "native-descriptive":
+      return buildNativeDescriptiveRows(t, seedBase);
     default: {
       const unknown: never = t;
       throw new Error(
         `모르는 적재 대상이다: ${JSON.stringify(unknown).slice(0, 120)}` +
-          ` — engine 은 elem · middle · combo · judge 넷뿐이다`,
+          ` — engine 은 elem · middle · combo · judge · native-descriptive 이다`,
       );
     }
   }
+}
+
+export function buildNativeDescriptiveRows(
+  t: NativeDescriptiveTarget,
+  seedBase: number,
+): Row[] {
+  // Required even for a single definition. Unknown/missing keys fail before any row is returned.
+  const ids = exactSelection(
+    t.definitionIds ?? [],
+    t.definitionIds,
+    (id) => id,
+  );
+  const defs = ids.map(nativeDescriptiveDefinition);
+  const variants = t.variants ?? 2;
+  if (!Number.isSafeInteger(variants) || variants < 1 || variants > 100)
+    throw new Error("Native variants must be an integer in 1..100");
+  return defs.flatMap((d) =>
+    Array.from({ length: variants }, (_, variant) => {
+      const p = generateNativeDescriptive(d.definitionId, seedBase, variant);
+      return {
+        externalId: p.externalId,
+        variantKey: p.externalId,
+        familyKey: p.familyKey,
+        unitKey: `${d.grade} / ${d.chapter} / ${d.unitSection}`,
+        grade: d.grade,
+        chapter: d.chapter,
+        section: d.unitSection,
+        content: p.content,
+        answer: p.answer,
+        solution: p.solution,
+        difficulty: d.difficulty,
+        problemType: p.problemType,
+        questionType: p.questionType,
+        figureSpec: null,
+        origin: `본래 서술형 ${d.definitionId}`,
+      };
+    }),
+  );
 }
 
 /** 중등에서 객관식을 못 만들어 건너뛴 수 — 계획 보고에 찍는다. */
@@ -644,9 +735,13 @@ type EngineImportClient = {
 export async function applyEnginePlan(
   planFile: string,
   doApply: boolean,
-  client: EngineImportClient = prisma,
+  client: EngineImportClient = engineImportPrisma(),
 ) {
   const plan = JSON.parse(readFileSync(planFile, "utf-8")) as Plan;
+  if (doApply && plan.targets.some((t) => t.engine === "native-descriptive"))
+    throw new Error(
+      "Native descriptive writes require verified-engine-batch and final batch approval",
+    );
   const seedBase = plan.seedBase ?? 20260825;
   const ledgerFile = path.join(
     LEDGER_DIR,
@@ -668,7 +763,9 @@ export async function applyEnginePlan(
             ? `결합형 ${(t.ids ?? middleComboDefinitions().map((d) => d.id)).length}개`
             : t.engine === "judge"
               ? `판정형 ${new Set(made.map((r) => r.familyKey)).size}개`
-              : `${t.grade} ${t.unitSection}`
+              : t.engine === "native-descriptive"
+                ? `본래 서술형 ${t.definitionIds.length}개`
+                : `${t.grade} ${t.unitSection}`
       } → ${made.length}문항`,
     );
     rows.push(...made);
@@ -756,7 +853,7 @@ export async function applyEnginePlan(
     );
   if (elemSkippedMcq > 0)
     console.log(
-      `   ⚠️ 객관식을 못 만든 변형 ${elemSkippedMcq}건 (정답이 수·분수·소수가 아니다) — 무작위 수로 안 채운다`,
+      `   ⚠️ 객관식을 만들지 않은 변형 ${elemSkippedMcq}건 (정답 형식 또는 문형의 객관식 파생 금지 정책) — 무작위 수로 안 채운다`,
     );
   // 🔴 **말없는 상한을 막는다.** `allowShort` 로 덜 낸 문형을 반드시 찍는다.
   //    안 찍으면 「전부 넣었다」로 읽히고, 변할 수 있던 문형이 못 변하게 된 회귀도
@@ -1234,6 +1331,7 @@ async function revert(ledgerFile: string) {
     throw new Error(
       `원장에 우리 것이 아닌 행이 ${led.rows.length - mine.length}건 있다 — 멈춘다`,
     );
+  const prisma = engineImportPrisma();
   const r = await prisma.problem.deleteMany({
     where: { id: { in: mine.map((m) => m.problemId) } },
   });
@@ -1282,4 +1380,4 @@ if (RUN_DIRECTLY)
       console.error(`\n🔴 ${e instanceof Error ? e.message : String(e)}`);
       process.exitCode = 1;
     })
-    .finally(() => prisma.$disconnect());
+    .finally(() => prisma?.$disconnect());

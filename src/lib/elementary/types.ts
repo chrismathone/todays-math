@@ -43,6 +43,8 @@ export type ElemForm = {
   id: string;
   tier: ElemTier;
   generate: ChapterHandler;
+  /** false: author-reviewed short answer only; omitted preserves existing MC derivation. */
+  allowMultipleChoice?: boolean;
 };
 
 export const ELEM_GRADES = ["초3", "초4", "초5", "초6"] as const;

@@ -49,6 +49,7 @@ import {
   type Target as PlanTarget,
 } from "../import/load-engine-problems";
 import type { JudgeRegistry } from "../../src/lib/middle/judge/registry";
+import { parseNativeExternalId } from "../../src/contracts/nativeDescriptive.contract";
 import { renderFigureSpec } from "../../src/lib/figure/renderFigureSpec";
 import { deadBackslashHits } from "./probe-middle-raw-latex";
 import {
@@ -169,8 +170,31 @@ export function rebuild(
         }
         // 같은 열쇠를 두 계획이 다르게 내면 어느 쪽이 적재본인지 알 수 없다.
         if (
-          norm(prev.content) !== norm(r.content) ||
-          norm(prev.answer) !== norm(r.answer)
+          parseNativeExternalId(r.externalId)
+            ? JSON.stringify([
+                prev.content,
+                prev.answer,
+                prev.solution,
+                prev.figureSpec,
+                prev.familyKey,
+                prev.questionType,
+                prev.difficulty,
+                prev.grade,
+                prev.section,
+              ]) !==
+              JSON.stringify([
+                r.content,
+                r.answer,
+                r.solution,
+                r.figureSpec,
+                r.familyKey,
+                r.questionType,
+                r.difficulty,
+                r.grade,
+                r.section,
+              ])
+            : norm(prev.content) !== norm(r.content) ||
+              norm(prev.answer) !== norm(r.answer)
         )
           conflicts.push(r.externalId);
       }
