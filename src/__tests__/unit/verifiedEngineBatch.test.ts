@@ -270,7 +270,7 @@ describe("R2-1/2/5 frozen identity and actual-byte digest", () => {
     ).toBe(true);
     expect(
       readFileSync(
-        "docs/planning/tracks/reports/math-bank-reinforcement-20261018/native-manifest-preview.json",
+        "docs/planning/tracks/reports/math-bank-reinforcement-20261018/native-manifest-preview-r2.json",
         "utf8",
       ),
     ).toBe(serializeManifest(candidates));
