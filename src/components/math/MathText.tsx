@@ -13,14 +13,21 @@ export interface MathTextProps {
   text: string;
   className?: string;
   as?: "span" | "div" | "p";
+  staticLayout?: boolean;
 }
 
-export function MathText({ text, className, as = "span" }: MathTextProps) {
+export function MathText({
+  text,
+  className,
+  as = "span",
+  staticLayout = false,
+}: MathTextProps) {
   return (
     <MarkdownRenderer
       content={normalizeOcrText(text)}
       className={className}
       inline={as === "span"}
+      staticLayout={staticLayout}
     />
   );
 }
@@ -31,6 +38,7 @@ export interface SolutionTextProps {
   className?: string;
   /** 해설이 비었을 때 보일 글(예: 「해설이 등록되지 않았습니다.」). 없으면 빈 칸. */
   fallback?: string;
+  staticLayout?: boolean;
 }
 
 /**
@@ -43,9 +51,19 @@ export interface SolutionTextProps {
  *    원장님 원칙 «같은 데이터는 모든 화면에서 같은 모양» — 해설은 이 함수 하나만 지난다.
  *    배선 검사: `solutionWiring.test.ts`.
  */
-export function SolutionText({ text, className, fallback }: SolutionTextProps) {
+export function SolutionText({
+  text,
+  className,
+  fallback,
+  staticLayout = false,
+}: SolutionTextProps) {
   const shown = solutionForDisplay(text);
   return (
-    <MathText as="div" className={className} text={shown || fallback || ""} />
+    <MathText
+      as="div"
+      className={className}
+      text={shown || fallback || ""}
+      staticLayout={staticLayout}
+    />
   );
 }

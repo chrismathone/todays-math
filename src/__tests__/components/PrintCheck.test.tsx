@@ -244,7 +244,8 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 114: arithmetic-center-angles-20261016 추가 (내심·외심 각도 그림과 묶음 머리말).
     // 115: arithmetic-figure-first-20261016 추가 (삼각비·피타고라스·닮음·원·중1 각 70유형 그림 우선).
     // 116: arithmetic-figure-first-elementary-20261016 추가 (초등 각도·둘레·넓이 42유형 · 미지수 □).
-    expect(ITEMS.length).toBe(117);
+    // 118: exam-report-hifi 추가 (2026-10-18 — 성적표 H1 선택 · 실물 검수 대기).
+    expect(ITEMS.length).toBe(118);
   });
 
   /**

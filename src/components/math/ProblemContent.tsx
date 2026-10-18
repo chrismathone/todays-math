@@ -104,6 +104,7 @@ export interface ProblemContentProps {
   choiceLayout?: PrintChoiceLayout;
   /** Readable formula lists in the student practice frame; source/print stay unchanged. */
   practiceLayout?: boolean;
+  staticLayout?: boolean;
 }
 
 export function ProblemContent({
@@ -117,6 +118,7 @@ export function ProblemContent({
   deferFigures = true,
   choiceLayout = "auto",
   practiceLayout = false,
+  staticLayout = false,
 }: ProblemContentProps) {
   const { question: rawQuestion, choices } = parseProblemContent(content);
   const figures = figureUrls ?? [];
@@ -214,7 +216,7 @@ export function ProblemContent({
       {practiceLayout ? (
         <PracticeProblemText content={question} />
       ) : (
-        <MarkdownRenderer content={question} />
+        <MarkdownRenderer content={question} staticLayout={staticLayout} />
       )}
       {figureSvg ? (
         // 발문 뒤 — 스캔 그림과 같은 자리다. 장식 없음(05 §0).
@@ -291,6 +293,13 @@ export function ProblemContent({
                 ? undefined
                 : choiceLayout
           }
+          style={
+            staticLayout
+              ? {
+                  gridTemplateColumns: `repeat(${choiceFigures ? 2 : choiceLayout === "auto" ? (choicesInTwoColumns ? 2 : 1) : chosenColumns}, minmax(0, 1fr))`,
+                }
+              : undefined
+          }
           // 글 칸은 기준선 맞춤, 그림 보기만 위쪽 — 분수 보기 옆 칸·번호가 분수의 기준선에 선다(트랙 51).
           className={
             choiceFigures
@@ -329,7 +338,11 @@ export function ProblemContent({
                   />
                 ) : (
                   <>
-                    <MarkdownRenderer content={choice} className="[&_p]:my-0" />
+                    <MarkdownRenderer
+                      content={choice}
+                      className="[&_p]:my-0"
+                      staticLayout={staticLayout}
+                    />
                     {/* ㉡ 글 보기에 딸린 그림 — 글 아래에 둔다. */}
                     {mapped
                       ? figures.map((url, i) =>

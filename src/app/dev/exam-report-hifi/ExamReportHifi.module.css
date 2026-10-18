@@ -98,6 +98,27 @@
   );
   flex: none;
 }
+.h1Slot {
+  --report-width: 210mm;
+  --report-height: 297mm;
+  --report-fit: 1;
+  width: calc(
+    var(--report-width) * var(--report-fit) * var(--paper-strip-scale, 1)
+  );
+  height: calc(
+    var(--report-height) * var(--report-fit) * var(--paper-strip-scale, 1)
+  );
+  flex: none;
+}
+.h1Slot[data-landscape="true"] {
+  --report-width: 297mm;
+  --report-height: 210mm;
+  --report-fit: calc(210 / 297);
+}
+.h1Slot > div {
+  transform: scale(calc(var(--report-fit) * var(--paper-strip-scale, 1)));
+  transform-origin: top left;
+}
 /* C2 is a real landscape A4; its overview fits the shared strip's portrait-width budget. */
 .pageSlot[data-landscape="true"] {
   --report-width: 297mm;
@@ -380,6 +401,17 @@
     width: var(--report-width);
     height: var(--report-height);
     break-after: page;
+  }
+  .h1Slot {
+    width: var(--report-width);
+    height: var(--report-height);
+    break-after: page;
+  }
+  .h1Slot:last-child {
+    break-after: auto;
+  }
+  .h1Slot > div {
+    transform: none;
   }
   .pageSlot:last-child {
     break-after: auto;

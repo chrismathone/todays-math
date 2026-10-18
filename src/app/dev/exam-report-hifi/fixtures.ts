@@ -1,4 +1,9 @@
 /** 전부 지어낸 예시. 실제 학생·은행 문항·DB를 참조하지 않는다. */
+import type {
+  ClassExamReport,
+  StudentExamReport,
+} from "@/contracts/examReport.contract";
+
 export const QUESTIONS = Array.from({ length: 20 }, (_, i) => ({
   no: i + 1,
   unit: i < 10 ? "일차방정식의 풀이" : "일차방정식의 활용",
@@ -66,5 +71,106 @@ export function fixture(scenario: Scenario) {
         ).toFixed(1)
       : null,
     note: scenario === "long" ? `${note}\n${note}\n${note}` : note,
+  };
+}
+
+/** H1도 H2~H4와 같은 지어낸 자료를 읽기 계약에 맞춰 쓴다. 로더가 아니다. */
+export function reportFixture(scenario: Scenario): {
+  student: StudentExamReport;
+  classroom: ClassExamReport;
+} {
+  const data = fixture(scenario);
+  const id = (n: number) =>
+    `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
+  const publication = {
+    id: id(1),
+    title: "10월 월말평가\n일차방정식",
+    testDate: "2026-10-24",
+  };
+  const students = data.pupils.map((pupil, i) => {
+    const marks = isMarks(pupil.marks) ? pupil.marks : null;
+    return {
+      student: { id: id(100 + i), name: pupil.name },
+      resultId: pupil.marks === "ungraded" ? null : id(200 + i),
+      takenAt: pupil.marks === "ungraded" ? null : "2026-10-24T06:00:00.000Z",
+      status: marks
+        ? ("graded" as const)
+        : pupil.marks === "absent"
+          ? ("absent" as const)
+          : ("ungraded" as const),
+      score: {
+        value: marks ? score(marks) : null,
+        maximum: 100,
+        unit: "points" as const,
+        storedValue: marks ? score(marks) : null,
+      },
+      correctCount: marks ? marks.filter(Boolean).length : null,
+      questionCount: QUESTIONS.length,
+      marks: marks ?? QUESTIONS.map(() => null),
+    };
+  });
+  const { marks, ...me } = students[0];
+  const questions = QUESTIONS.map((q, i) => ({
+    problemId: id(300 + i),
+    no: q.no,
+    unitName: q.unit,
+    typeLabel: q.type,
+    content: q.content,
+    answer: q.answer,
+    solution: q.solution,
+    questionType: null,
+    figureUrls: [],
+    figureSvg: null,
+    isCorrect: marks[i],
+  }));
+  return {
+    student: {
+      publication,
+      testId: id(2),
+      classId: id(3),
+      className: "중1 가람반",
+      ...me,
+      questions,
+      wrongQuestions: questions.filter((q) => q.isCorrect === false),
+      teacherNote: data.note,
+      retries:
+        me.status === "graded" && data.wrong.length > 0
+          ? [
+              {
+                testId: id(4),
+                testDate: "2026-10-26",
+                resultId: id(5),
+                takenAt: "2026-10-26T06:00:00.000Z",
+                status: "graded",
+                score: {
+                  value: 3,
+                  maximum: 4,
+                  unit: "questions",
+                  storedValue: 75,
+                },
+                correctCount: 3,
+                questionCount: 4,
+              },
+            ]
+          : [],
+    },
+    classroom: {
+      publication,
+      testId: id(2),
+      classId: id(3),
+      className: "중1 가람반",
+      students,
+      questions: questions.map((q, i) => ({
+        problemId: q.problemId,
+        no: q.no,
+        correctCount: data.taken.filter((p) => p.marks[i]).length,
+        answeredCount: data.taken.length,
+      })),
+      rollup: {
+        gradedCount: data.taken.length,
+        absentCount: students.filter((p) => p.status === "absent").length,
+        averageScore: data.average === null ? null : Number(data.average),
+      },
+    },
   };
 }

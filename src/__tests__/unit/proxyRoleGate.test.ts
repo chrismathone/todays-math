@@ -176,6 +176,21 @@ describe("역할 게이트 관문", () => {
     expect((await run("POST", "/brand/today-math-mark.svg")).status).toBe(307);
     expect((await run("GET", "/brand-admin")).status).toBe(307);
   });
+  it("성적표 PDF 가 쓰는 자체 글꼴 두 벌은 쿠키 없는 렌더러에도 열고, 그 밖의 /fonts 는 열지 않는다", async () => {
+    session.mockReturnValue(null);
+    for (const font of [
+      "/fonts/NotoSerifKR-subset.woff2",
+      "/fonts/PretendardVariable.woff2",
+      "/fonts/NotoSerifKR-OFL.txt",
+    ])
+      for (const method of ["GET", "HEAD"])
+        expect((await run(method, font)).status).toBe(200);
+    expect((await run("POST", "/fonts/PretendardVariable.woff2")).status).toBe(
+      307,
+    );
+    expect((await run("GET", "/fonts/other.woff2")).status).toBe(307);
+    expect((await run("GET", "/fonts-admin")).status).toBe(307);
+  });
   it("serves shared figure reads to PDF and restricted sessions, preserving private access", async () => {
     for (const identity of [
       null,

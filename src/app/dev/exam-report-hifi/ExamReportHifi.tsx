@@ -7,9 +7,15 @@ import {
 } from "@/components/paper-strip/PaperStrip";
 import { A4Page } from "@/components/print/A4Page";
 import { PAPER_COLORS } from "@/components/print/tokens";
+import {
+  classExamReportPages,
+  studentExamReportPages,
+} from "@/components/exam-report/ExamReportPaper";
+import { EXAM_REPORT_PAPER_CSS } from "@/components/exam-report/paperStyles";
 
 import {
   fixture,
+  reportFixture,
   isMarks,
   QUESTIONS,
   SCENARIOS,
@@ -71,51 +77,70 @@ export function ExamReportHifi() {
     average: false,
   });
   const data = fixture(scenario);
+  const reports = reportFixture(scenario);
   const nodes: ReactNode[] =
-    mode === "C2"
-      ? [<ClassSheet key="class" data={data} />]
-      : [
-          <Summary key="summary" data={data} options={options} />,
-          ...(mode === "M1" && options.wrong
-            ? Array.from(
-                { length: Math.ceil(data.wrong.length / 2) },
-                (_, i) => (
-                  <WrongSheet key={`wrong-${i}`} data={data} start={i * 2} />
-                ),
-              )
-            : []),
-        ];
-  const pageNode = (node: ReactNode, i: number) => (
-    <div
-      key={i}
-      className={s.pageSlot}
-      data-landscape={mode === "C2"}
-      data-look={variant.id}
-      style={
-        {
-          "--paper-ink15": PAPER_COLORS.ink15,
-          "--paper-ink30": PAPER_COLORS.ink30,
-          "--paper-ink70": PAPER_COLORS.ink70,
-          "--paper-ink08": PAPER_COLORS.ink08,
-        } as CSSProperties
-      }
-    >
-      <A4Page
-        kind="questions"
-        pageNumber={i + 1}
-        className={s.sheet}
-        ariaLabel={`${mode === "C2" ? "반 성적표" : "학생 성적표"} ${i + 1}쪽`}
+    variant.id === "H1"
+      ? mode === "C2"
+        ? classExamReportPages(reports.classroom)
+        : studentExamReportPages(reports.student, {
+            ...options,
+            mode,
+            average: options.average ? reports.classroom.rollup : null,
+          })
+      : mode === "C2"
+        ? [<ClassSheet key="class" data={data} />]
+        : [
+            <Summary key="summary" data={data} options={options} />,
+            ...(mode === "M1" && options.wrong
+              ? Array.from(
+                  { length: Math.ceil(data.wrong.length / 2) },
+                  (_, i) => (
+                    <WrongSheet key={`wrong-${i}`} data={data} start={i * 2} />
+                  ),
+                )
+              : []),
+          ];
+  const pageNode = (node: ReactNode, i: number) =>
+    variant.id === "H1" ? (
+      <div
+        key={i}
+        className={s.h1Slot}
+        data-landscape={mode === "C2"}
+        data-look="H1"
       >
         {node}
-        <footer className={s.footer}>
-          <span>오늘의수학 · 예시 자료</span>
-          <span>
-            {i + 1} / {nodes.length}쪽
-          </span>
-        </footer>
-      </A4Page>
-    </div>
-  );
+      </div>
+    ) : (
+      <div
+        key={i}
+        className={s.pageSlot}
+        data-landscape={mode === "C2"}
+        data-look={variant.id}
+        style={
+          {
+            "--paper-ink15": PAPER_COLORS.ink15,
+            "--paper-ink30": PAPER_COLORS.ink30,
+            "--paper-ink70": PAPER_COLORS.ink70,
+            "--paper-ink08": PAPER_COLORS.ink08,
+          } as CSSProperties
+        }
+      >
+        <A4Page
+          kind="questions"
+          pageNumber={i + 1}
+          className={s.sheet}
+          ariaLabel={`${mode === "C2" ? "반 성적표" : "학생 성적표"} ${i + 1}쪽`}
+        >
+          {node}
+          <footer className={s.footer}>
+            <span>오늘의수학 · 예시 자료</span>
+            <span>
+              {i + 1} / {nodes.length}쪽
+            </span>
+          </footer>
+        </A4Page>
+      </div>
+    );
   const pages: PaperStripPage[] = nodes.map((node, i) => ({
     key: `${variant.id}-${mode}-${scenario}-${i}`,
     node: pageNode(node, i),
@@ -203,16 +228,23 @@ export function ExamReportHifi() {
         </div>
         <p className={s.reason}>
           학생 성적표에는 점수·오답·재시험·원장님 문장을 담습니다. 반 성적표의
-          정답 수는 응시한 학생만 셉니다. Hi-fi 선택 뒤 실제 화면과 PDF 지면을
-          연결합니다.
+          정답 수는 응시한 학생만 셉니다.{" "}
+          {variant.id === "H1"
+            ? "H1 선택 · 새 부품을 사용합니다. 실물 검수는 대기 중입니다."
+            : "Hi-fi 선택 뒤 실제 화면과 PDF 지면을 연결합니다."}
         </p>
       </div>
+      {variant.id === "H1" && <style>{EXAM_REPORT_PAPER_CSS}</style>}
       <div className={s.preview}>
         <PaperStrip
           key={`${variant.id}-${mode}-${scenario}`}
           pages={pages}
           label={`${variant.id} · ${mode} 지면`}
-          hint="쪽을 누르면 크게 볼 수 있습니다. M1은 틀린 문항 두 개마다 한 쪽을 덧붙입니다."
+          hint={
+            variant.id === "H1"
+              ? "쪽을 누르면 크게 볼 수 있습니다. M1은 문항·그림 크기에 따라 쪽을 나눕니다."
+              : "쪽을 누르면 크게 볼 수 있습니다. M1은 틀린 문항 두 개마다 한 쪽을 덧붙입니다."
+          }
         />
       </div>
       <div className={s.printOnly}>{nodes.map(pageNode)}</div>

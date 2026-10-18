@@ -410,3 +410,33 @@ CREATE UNIQUE INDEX "test_publication_class_key" ON "test" ("publication_id", "c
 - **원장님께 여쭐 것**: H1~H4 선택, 선택된 지면 검수, 확정/PDF 보관 DB 초안 승인과 보관/삭제 정책. 이 작업에서는 승인 대상 행동을 실행하지 않았다.
 
 - **2026-10-18 에이와 결정과 대조** — 에이와 `reports-ai.md`(커밋 `700a1511c`): 성적표 PDF 를 그 학생의 **안 보낸** 수업보고서에 첨부 · (학생, 반, 시험일)로 찾는다. 우리 항목에 반이 빠져 있어 `sourceClassId` 를 더했다(에이와 반 없는 시험은 내보내지 않음 · 반이 바뀌면 새 지문). 대조표: `docs/planning/tracks/reports/eywa-reports-ai-20261018.md`.
+- **2026-10-18 원장님 결정 — 성적표 Hi-fi H1 «시험지 얼굴»**(«추천으로 진행»). 다음은 H1 지면을 실제 부품으로 떼어 인쇄 · 서버 PDF 가 같은 부품을 쓰게 하는 일(지시서 `tracks/brief-exam-report-paper-codex.md`). 원장님이 성적표를 열고 문장을 쓰고 확정하는 화면은 따로 Wire 를 거친다.
+
+#### 14.1 H1 지면 부품 (codex)
+
+2026-10-18 · `phase/11-exam-report-eywa` · 지시서 2. 커밋·push·main 병합 없이 변경 파일을 남겼다. 작업 시작 전에 있던 이 문서의 H1 선택 기록과 미추적 지시서는 보존했다.
+
+- **한 것**: `src/components/exam-report/`에 H1 S1·M1·C2 공용 지면과 한 벌의 CSS를 분리했다. 입력은 학생/반 읽기 계약과 출력 선택이다. 기존 공용 문항·해설 경로에 `staticLayout` 옵션을 더해 훅·effect·DOM 측정 없이 같은 내용을 그린다. M1은 기존 본문/그림/해설 규칙으로 추정한 높이에 따라 최대 두 문항씩 나누며, 긴 문항은 한 쪽을 쓰고 한 쪽보다 크면 번호를 담은 오류로 멈춘다. 원문을 자르거나 글자를 축소하지 않는다.
+- **서버 HTML**: server-only `src/lib/examReport/paperHtml.ts`의 `buildExamReportPaperHtml`이 학생 한 명·한 회의 모든 쪽을 `PdfPayloadSchema`로 만든다. A4마다 PDF 엔진 경계와 A4Page 경계를 함께 둔다. 지면 띠·화면 단추·숨은 복제 지면은 없다. 자체 명조/고딕과 KaTeX data 글꼴을 명시하며, PDF 엔진의 선택 옵션 `fontPolicy: "self-hosted"`로 외부 글꼴 요청을 닫는다. 기존 시험지 기본 동작은 유지한다. [조사·연결 방법·한계](tracks/reports/exam-report-pdf-design-20261018.md#h1-선택-뒤-구현--2026-10-18)에 적었다.
+- **시안/검수 목록**: `/dev/exam-report-hifi`의 H1만 새 부품을 쓰며 H2~H4는 기존 시안 그대로다. `exam-report-hifi` 검수 항목을 «H1 선택 · 새 부품 / 대기»로 갱신했다. 추가 시험에서 발견한 기존 목록 가드의 항목 수 117→118과 화면 URL 대신 실제 파일을 가리키는 근거 경로도 맞췄다. 검수 통과로 표시하지 않았다.
+- **시험**: 관련 Vitest **17파일·159건 통과**(핵심·개발 페이지 가드·기존 문항 렌더/해설 배선·에이와 회귀 16파일·149건, 실물 검수 목록 1파일·10건). `npm run type-check`·변경 TS/TSX 파일 ESLint(오류/경고 0)·`npm run lint:affordance`·`git diff --check` 통과. 최초 일반 Vitest는 심볼릭 링크된 `node_modules/.vite-temp` 쓰기가 거절돼 실행 전 실패했다. 설정을 바꾸거나 공유 폴더를 수정하지 않고 모든 Vitest 명령에 `--configLoader runner --no-cache`를 붙여 실행했다. 새 기능의 최초 RED는 미구현 모듈/외부 글꼴 옵션 부재였고, 구현 뒤 GREEN을 확인했다.
+- **검증한 내용**: 오답 0·1·다수·큰 SVG·미상 크기 그림·한 쪽 초과, 오답 순서/원문/입력 불변, 0점/만점/결시/미채점/채점 중/무배점, 출력 선택, C2 정오/명단 순서, 모든 A4 경계, HTML 이스케이프, 수식/그림/정답/해설이 이미 들어 있는 HTML, 보기 상자의 서버/브라우저 DOM 일치(CSSOM 공백만 정규화), 자체 글꼴 경로·KaTeX data 글꼴·외부 글꼴 차단과 기본 모드 보존이다.
+- **확신 없는 곳**: 쪽 나누기는 조판 실측이 아닌 추정이다. Chromium·실제 PDF·브라우저 화면 캡처·프린터 출력은 수행하지 않았다. 아주 긴 이름/시험 제목/원장님 문장, S1의 많은 오답 행과 큰 C2 명단/문항 수의 실제 넘침·9pt 가독성, 운영 글꼴 로딩·PDF 용량은 아직 증명하지 않았다. 실제 생성 라우트 연결 시 KaTeX CSS/woff2의 output file tracing과 렌더 뒤 넘침 검사가 필요하다. 기존 발행 배점/유형 고정·재시험 연결의 공백도 이번 범위에서 바꾸지 않았다.
+- **원장님께 여쭐 것**: H1의 실물 검수 결과와 한 쪽보다 큰 문항·긴 요약이 있는 경우의 후속 출력 정책. H1 선택은 이미 확정되어 다시 묻지 않는다. 성적표 열기·문장 편집·확정 화면은 별도 Wire 대상이며 이번에 만들지 않았다. DB·확정 저장·실제 PDF 보관·에이와 실제 연결도 승인된 다음 단계에서 다룬다.
+
+**변경 파일 22개**(이번 작업에서 쓴 것만):
+
+- 지면: `src/components/exam-report/ExamReportPaper.tsx`, `src/components/exam-report/paperStyles.ts`.
+- 쪽 나누기/서버 HTML: `src/lib/examReport/paginate.ts`, `src/lib/examReport/paperHtml.ts`.
+- 공용 정적 렌더 옵션: `src/components/math/StaticBoxQuoteCard.tsx`, `src/components/math/MarkdownRenderer.tsx`, `src/components/math/MathText.tsx`, `src/components/math/ProblemContent.tsx`, `src/components/print/PaperProblemView.tsx`.
+- PDF 옵션: `src/lib/export/pdfServer.ts`.
+- 시안/목록: `src/app/dev/exam-report-hifi/ExamReportHifi.tsx`, `src/app/dev/exam-report-hifi/ExamReportHifi.module.css`, `src/app/dev/exam-report-hifi/fixtures.ts`, `src/app/dev/print-check/items.ts`.
+- 시험: `src/__tests__/unit/examReportPaper.test.tsx`, `src/__tests__/unit/examReportPaperHtml.test.ts`, `src/__tests__/unit/examReportStaticLayout.test.tsx`, `src/__tests__/unit/examReportHifi.test.tsx`, `src/__tests__/unit/pdfExport.test.ts`, `src/__tests__/components/PrintCheck.test.tsx`.
+- 문서: `docs/planning/monthly-exam-plan-20261017.md`, `docs/planning/tracks/reports/exam-report-pdf-design-20261018.md`.
+
+#### 14.2 리드 검수 — 실제 Chromium 으로 PDF 를 만들어 보니 글꼴이 둘 다 막혀 있었다 (2026-10-18)
+
+- codex 판(HTML 시험 초록)을 로컬 Chromium 으로 실제 `buildPdf` 에 넣자 자체 글꼴이 **두 겹으로** 막혔다. ① `src/proxy.ts` 가 로그인 안 한 요청의 `/fonts/…` 를 `/login` 으로 돌려보냈다 — 쿠키 없는 PDF 렌더러는 글꼴 대신 HTML 을 받았다(`invalid sfntVersion` · 3000 · 3007 둘 다). ② 그것을 풀어도 PDF 엔진은 빈 문서에 HTML 을 붓기 때문에 글꼴 요청이 **다른 출처**가 되고, CORS 허용 헤더가 없어 `net::ERR_FAILED` 였다. 기존 시험지 PDF 는 구글 글꼴(CORS 허용)을 같이 써서 드러나지 않았다.
+- 고침: 출입 규칙에 OFL 글꼴 두 파일 + 고지문만 **이름으로** 열고(`/fonts/` 접두로 열지 않는다) · `next.config.ts` `headers()` 로 같은 두 파일에만 `Access-Control-Allow-Origin: *`. 시험: `proxyRoleGate`(그 밖의 `/fonts` · POST 는 닫힘) · `reportFontCors`(헤더가 붙는 경로가 정확히 둘).
+- 확인: 실제 `buildPdf`(자체 글꼴 모드 — 못 실으면 멈춤)가 S1 1쪽 · M1 3쪽 PDF 를 냈다(427KB · 545KB). 글꼴 넷(명조 · 고딕 × 400 · 700) 실림 · 첫 쪽 육안 H1 그대로. 실물 프린터 검수는 여전히 «대기».
+- 남은 것: 운영(Vercel)에서는 아직 안 쟀다 — 생성 라우트를 붙일 때 운영 주소로 한 번 만들어 본다.

@@ -4,6 +4,22 @@ import { describe, expect, it } from "vitest";
 import { ExamReportHifi } from "@/app/dev/exam-report-hifi/ExamReportHifi";
 
 describe("월말평가 성적표 Hi-fi 시안", () => {
+  it("선택된 H1만 실제 공용 지면을 사용하며 H2~H4는 시안을 유지한다", () => {
+    const { container } = render(<ExamReportHifi />);
+    expect(
+      container.querySelector("[data-exam-report-page='H1']"),
+    ).not.toBeNull();
+    for (const id of ["H2", "H3", "H4"]) {
+      fireEvent.click(
+        screen.getByRole("button", { name: new RegExp(`^${id} ·`) }),
+      );
+      expect(container.querySelector("[data-exam-report-page]")).toBeNull();
+    }
+    fireEvent.click(screen.getByRole("button", { name: /^H1 ·/ }));
+    expect(
+      container.querySelector("[data-exam-report-page='H1']"),
+    ).not.toBeNull();
+  });
   it("H1~H4마다 S1 · M1 · C2를 공용 지면 띠로 비교한다", () => {
     render(<ExamReportHifi />);
     expect(
