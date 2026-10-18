@@ -24,6 +24,11 @@ FAINT = "#f4f4f2"
 # 점격자 바탕선. 교재 모눈은 연한 청색 — #7aa0c4·1.05px 는 발문 대비 진했다.
 GRID = "#c8d7e4"
 GRID_SW = 0.7
+# 수직선의 수의 범위(초5 2-1) — 원장님 확정 2026-10-18 Wire R1 · Hi-fi H1(`/dev/elem-numberline-hifi`).
+# 축 위 진한 적갈색 3px · 포함 ● · 불포함 ○(속 흰색) · 점 반지름 3.6. 진한 색이라 흑백 인쇄에서도 검게 나온다.
+RANGE_INK = "#a8432f"
+RANGE_SW = 3.0
+RANGE_DOT = 3.6
 # 표 viewBox 를 이보다 키우면 화면에서 숫자가 본문보다 작아진다 (09 §4-8).
 TABLE_VIEWBOX_MAX = 240.0
 # 치수 점선이 도형에서 벌어지는 거리. 한 값만 쓴다 — 도형마다 다르면 같은 시험지에서
@@ -73,7 +78,9 @@ OPTIONAL: dict[str, frozenset[str]] = {
     "circleParts": frozenset({"radius", "diameter", "center", "show"}),
     "opBox": frozenset({"output"}),
     "columnOp": frozenset({"result", "highlight"}),
-    "numberLine": frozenset({"min", "step", "hops", "barTo", "tick", "blanks"}),
+    "numberLine": frozenset(
+        {"min", "step", "hops", "barTo", "tick", "blanks", "ranges"}
+    ),
     "tape": frozenset({"unit", "segments"}),
     "boxedList": frozenset({"marks"}),
     "pointGrid": frozenset({"lines", "square"}),
@@ -1040,7 +1047,73 @@ def _number_line(spec: Mapping[str, Any]) -> str:
     if bar_to is not None:
         x1 = xp(float(bar_to))
         parts.append(_rect(xp(lo), y - 28, x1 - xp(lo), 12, rx=2, fill="#e8d3a8", sw=1.1))
+    for rng in _number_line_ranges(spec.get("ranges"), lo, hi):
+        start, end, start_in, end_in = rng
+        # 끝이 없는 쪽(이상 · 초과의 오른쪽, 이하 · 미만의 왼쪽)은 축 끝까지 긋는다.
+        x1 = xp(lo) if start is None else xp(start)
+        x2 = xp(hi) if end is None else xp(end)
+        parts.append(
+            f'<line x1="{_n(x1)}" y1="{_n(y)}" x2="{_n(x2)}" y2="{_n(y)}" '
+            f'stroke="{RANGE_INK}" stroke-width="{_n(RANGE_SW)}"/>'
+        )
+        for v, inside in ((start, start_in), (end, end_in)):
+            if v is None:
+                continue
+            parts.append(
+                f'<circle cx="{_n(xp(v))}" cy="{_n(y)}" r="{_n(RANGE_DOT)}" '
+                f'fill="{RANGE_INK if inside else PAPER}" stroke="{RANGE_INK}" stroke-width="1.5"/>'
+            )
     return _svg(span + pad * 2 + 16, 78, "".join(parts))
+
+
+def _number_line_ranges(
+    raw: Any, lo: float, hi: float
+) -> list[tuple[float | None, float | None, bool, bool]]:
+    """`ranges` — [{from, to, fromIn, toIn}]. from/to 가 null 이면 그 쪽 끝이 없다(축 끝까지).
+
+    끝은 축 안에 있어야 하고(밖이면 점이 안 보인다) 적어도 한 끝은 있어야 한다.
+    포함 여부를 빠뜨리면 던진다 — ●/○ 가 곧 답이라 기본값으로 메우지 않는다.
+    """
+    if raw is None:
+        return []
+    if not isinstance(raw, list) or not raw:
+        raise ValueError("ranges 는 비어 있지 않은 배열이어야 합니다")
+    out: list[tuple[float | None, float | None, bool, bool]] = []
+    for item in raw:
+        if not isinstance(item, Mapping):
+            raise ValueError("ranges 항목은 객체여야 합니다")
+        extra = set(item) - {"from", "to", "fromIn", "toIn"}
+        if extra:
+            raise ValueError(f"ranges 에 모르는 키: {sorted(extra)}")
+        ends: list[float | None] = []
+        for key in ("from", "to"):
+            v = item.get(key)
+            if v is None:
+                ends.append(None)
+                continue
+            if isinstance(v, bool) or not isinstance(v, (int, float)):
+                raise ValueError(f"ranges.{key} 는 수이거나 null 이어야 합니다")
+            if v < lo - 1e-9 or v > hi + 1e-9:
+                raise ValueError(f"ranges.{key}={v} 가 수직선 밖입니다")
+            ends.append(float(v))
+        start, end = ends
+        if start is None and end is None:
+            raise ValueError("ranges 는 적어도 한 끝이 있어야 합니다")
+        if start is not None and end is not None and start >= end:
+            raise ValueError("ranges.from 은 to 보다 작아야 합니다")
+        flags: list[bool] = []
+        for key, v in (("fromIn", start), ("toIn", end)):
+            flag = item.get(key)
+            if v is None:
+                if flag is not None:
+                    raise ValueError(f"끝이 없는 쪽에 {key} 를 줄 수 없습니다")
+                flags.append(False)
+                continue
+            if not isinstance(flag, bool):
+                raise ValueError(f"ranges.{key} 는 true/false 여야 합니다")
+            flags.append(flag)
+        out.append((start, end, flags[0], flags[1]))
+    return out
 
 
 def _clock_face(cx: float, cy: float, r: float, hour: int, minute: int, second: int | None) -> str:

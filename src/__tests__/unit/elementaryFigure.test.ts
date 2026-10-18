@@ -894,6 +894,62 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
     expect(r.svg).toContain("<rect ");
   });
 
+  // 수의 범위(초5 2-1) — 원장님 확정 2026-10-18 Hi-fi H1: 축 위 적갈색 3px · 포함 ● · 불포함 ○.
+  describe("수직선 범위(ranges)", () => {
+    const base = {
+      version: "elem-1",
+      kind: "numberLine",
+      min: 24,
+      max: 30,
+      step: 1,
+      tick: 0.5,
+    } as const;
+    const dots = (svg: string) =>
+      [...svg.matchAll(/<circle [^>]*fill="(#[0-9a-f]+)"[^>]*>/g)].map(
+        (m) => m[1],
+      );
+
+    it("포함은 채운 점 · 불포함은 속이 흰 점이다", async () => {
+      const r = await renderFigureSpec({
+        ...base,
+        ranges: [{ from: 25, to: 28, fromIn: false, toIn: true }],
+      });
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      expect(dots(r.svg)).toEqual(["#ffffff", "#a8432f"]);
+      expect(r.svg).toMatch(/stroke="#a8432f" stroke-width="3"/);
+    });
+
+    it("끝이 없는 쪽은 점 없이 축 끝까지 긋는다(이상)", async () => {
+      const r = await renderFigureSpec({
+        ...base,
+        ranges: [{ from: 27, to: null, fromIn: true }],
+      });
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      expect(dots(r.svg)).toEqual(["#a8432f"]);
+      const axis = r.svg.match(
+        /<line x1="([\d.]+)" y1="([\d.]+)" x2="([\d.]+)"[^>]*stroke-width="1.4"/,
+      )!;
+      const bar = r.svg.match(
+        /<line x1="([\d.]+)"[^>]*x2="([\d.]+)"[^>]*stroke="#a8432f"/,
+      )!;
+      expect(Number(bar[2])).toBeCloseTo(Number(axis[3]), 1);
+    });
+
+    it("포함 여부를 빠뜨리거나 끝이 축 밖이면 던진다 — ●/○ 가 곧 답이다", async () => {
+      for (const ranges of [
+        [{ from: 25, to: 28, toIn: true }],
+        [{ from: 23, to: 28, fromIn: true, toIn: true }],
+        [{ from: null, to: null }],
+        [{ from: 28, to: 25, fromIn: true, toIn: true }],
+      ]) {
+        const r = await renderFigureSpec({ ...base, ranges });
+        expect(r.ok, JSON.stringify(ranges)).toBe(false);
+      }
+    });
+  });
+
   it("나누기 삼각형은 개수 상자와 점선이 있다", async () => {
     const r = await renderFigureSpec({
       version: "elem-1",
