@@ -1,0 +1,23 @@
+{
+  "reviewer": "Claude",
+  "verdict": "approved",
+  "kind": "bounded-family-reinforcement",
+  "planSha256": "50c525785cae16825d23d7bd55de81f7a779fa54cd98e8933d470a126acccc61",
+  "sourceCommit": "61816b89eea1b692186451ff0cf90d4633c30743",
+  "sourceDigestsSha256": "d08da71506fd92cd018fbcbaa339d8d41c59872bdcfd474bf4011fc879b05449",
+  "manifestSha256": "f36118351dbe017c97d79675b44087694de46d7b9d03445b12d48fcea7178eaa",
+  "beforeLedgerSha256": "e5466584abfc0997dafc18cdfdecb87097592824a8b8b24fa48d6842dcdd136b",
+  "prewriteSha256": "dc8f995de1ce37c732c26b5725a406aceea8e5cd62907ac4b45de6b6822f4f8d",
+  "reviewNotes": {
+    "failure": "The first apply of the R1 manifest 6a7c64a0 stopped in verifyApproval with spawnSync git ENOBUFS: committedBytes read the 2,264,584-byte scripts/figure/hwp-figure-index.json through git show with Node's default 1 MiB maxBuffer. verifyApproval runs before the started journal, the maintenance lock and any INSERT. Root's direct read-only lookup of all 292 UUIDs (146 R1 + 146 R2) found 0 rows (no-prior-inserts.json).",
+    "fix": "61816b89e adds only maxBuffer 16 MiB and a comment to the git show call in committedBytes. The exact actual-vs-HEAD byte comparison, the plan/manifest/before/prewrite/Claude/sourceCommit/sourceDigest checks, the ancestor check, the writer gates and the row CAS are unchanged. An output over 16 MiB still throws, so it fails closed. The largest of the 252 source files is the 2,264,584-byte figure index. The new test commits a 3 MiB file, reads it back, then rejects a one-byte change in the last byte. I ran the content/protection vitest config at 61816b89e: 3 files, 21 tests, all pass.",
+    "artifacts": "Root HEAD d1e329a28: for all 8 bounded-final-r2 files, the working bytes equal the bytes at HEAD. sourceCommit 61816b89e is an ancestor of HEAD. The R1 and R2 manifests differ only in sourceCommit and sourceDigests. The 252 digest keys are the same, and only scripts/import/protected-question-maintenance.ts changed. Its R1 digest equals its bytes at 6dcf1d97a, and git diff 6dcf1d97a..61816b89e over all 252 files shows only that 2-line change. All 252 R2 digests equal the bytes at HEAD, at 61816b89e and in the working tree. I recomputed sourceDigestsSha256 with the repository valueDigest.",
+    "scope": "The R2 before-ledger is bound to the R2 manifest. Its 4801 rows and 20 unitIds equal R1's. Private before-private.json (27cc017f) is byte-identical to R1's, and each of its 4801 rows hashes to the ledger fullRowSha256 for its id (4801 ok, 0 bad).",
+    "candidates": "candidates-private.json (8a88fac6) is byte-identical to the R1 file I approved. generation-private.json differs from R1 only in its top-level 'at'. The new-uuids rows equal R1's in every field except id: 146 unique v4 UUIDs, ownership new, 146 unique externalIds. There is no overlap with the 146 R1 UUIDs or with the 4801 baseline ids. independent-verification.json is identical to R1. Counts are unchanged: 53 families, 4801 scope rows, 20 units, 94 contents, 146 rows (52 proven pairs, 4 short-only, 20 native MC, 18 native descriptive). The only shortfall is mid:1-2|다면체와 회전체|51, 2 short. The content review in ../bounded-final/claude-candidate-approval.json still applies, and I did not re-derive any math. The R1 approval cannot authorize the current helper, by design."
+  },
+  "limitations": [
+    "No physical printer output. The teacher quick-answer grid wraps long native answers over several lines without clipping, with full solutions and rubrics after it; readability on paper is unverified.",
+    "The browser and A4 evidence (19 units, 107 pages) predates the two noun-only changes.",
+    "No claim of official curriculum alignment, learning effect, or mathematical verification of the whole bank."
+  ]
+}
