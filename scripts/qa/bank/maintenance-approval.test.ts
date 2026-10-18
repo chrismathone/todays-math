@@ -12,6 +12,7 @@ import path from "node:path";
 import {
   QUESTION_FORMAT_PLAN,
   QUESTION_FORMAT_PLAN_SHA,
+  committedBytes,
   digest,
   valueDigest,
   verifyApproval,
@@ -20,6 +21,38 @@ import {
 } from "../../import/protected-question-maintenance";
 
 describe("committed exact approval boundary", () => {
+  it("reads a committed artifact larger than the figure index and still rejects a local byte change", () => {
+    const dir = mkdtempSync(path.join(tmpdir(), "question-large-approval-"));
+    const git = (...args: string[]) =>
+      execFileSync(
+        "git",
+        [
+          "-c",
+          "commit.gpgsign=false",
+          "-c",
+          "user.name=QA",
+          "-c",
+          "user.email=qa@example.invalid",
+          ...args,
+        ],
+        { cwd: dir, stdio: ["ignore", "pipe", "pipe"] },
+      );
+    try {
+      git("init");
+      const bytes = Buffer.alloc(3 * 1024 * 1024, 120);
+      writeFileSync(path.join(dir, "figure-index.json"), bytes);
+      git("add", ".");
+      git("commit", "-m", "large source");
+      expect(committedBytes(dir, "figure-index.json")).toEqual(bytes);
+      bytes[bytes.length - 1] = 121;
+      writeFileSync(path.join(dir, "figure-index.json"), bytes);
+      expect(() => committedBytes(dir, "figure-index.json")).toThrow(
+        /not committed/,
+      );
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
   it("requires exact committed plan, source, manifest, before ledger and prewrite SHA with Claude approval", () => {
     const dir = mkdtempSync(path.join(tmpdir(), "question-approval-"));
     const git = (...args: string[]) =>

@@ -241,6 +241,8 @@ export function committedBytes(repoDir: string, file: string): Buffer {
   const committed = execFileSync("git", ["show", `HEAD:${relative}`], {
     cwd: repoDir,
     stdio: ["ignore", "pipe", "pipe"],
+    // The tracked figure index alone exceeds Node's default 1 MiB pipe limit.
+    maxBuffer: 16 * 1024 * 1024,
   });
   if (!actual.equals(committed))
     throw new Error(`Artifact is not committed at HEAD: ${relative}`);
