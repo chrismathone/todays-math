@@ -1,0 +1,1903 @@
+{
+  "sourceSha": "d70137271e36e6f9c22209574e9ff224217f7296",
+  "startedAt": "2026-10-18T11:26:16.006Z",
+  "campaignStartedAt": "2026-10-18T11:26:20.364Z",
+  "completedAt": "2026-10-18T11:26:30.017Z",
+  "identityChecks": {
+    "printedChoicePermutationInvariant": true,
+    "nativeChoiceChangeRetained": true,
+    "independentFigureChoicePermutationInvariant": true,
+    "actualFigureChoiceChangeRetained": true,
+    "unreviewedLabelledFigureMappingRetained": true
+  },
+  "smoke": {
+    "inputs": [
+      {
+        "seed": 0,
+        "variant": 0
+      },
+      {
+        "seed": 1,
+        "variant": 1
+      },
+      {
+        "seed": 20261018,
+        "variant": 2
+      }
+    ],
+    "pathCount": 5530,
+    "attempts": 16590,
+    "successes": 16590,
+    "determinismChecks": 5530,
+    "determinismPassed": 5530,
+    "exceptions": [],
+    "structuralIssues": [],
+    "byScope": {
+      "elementary-form": {
+        "paths": 2499,
+        "attempts": 7497,
+        "successes": 7497,
+        "exceptions": 0
+      },
+      "elementary-base": {
+        "paths": 230,
+        "attempts": 690,
+        "successes": 690,
+        "exceptions": 0
+      },
+      "elementary-tier": {
+        "paths": 1088,
+        "attempts": 3264,
+        "successes": 3264,
+        "exceptions": 0
+      },
+      "middle": {
+        "paths": 1517,
+        "attempts": 4551,
+        "successes": 4551,
+        "exceptions": 0
+      },
+      "high": {
+        "paths": 168,
+        "attempts": 504,
+        "successes": 504,
+        "exceptions": 0
+      },
+      "elementary-combo": {
+        "paths": 1,
+        "attempts": 3,
+        "successes": 3,
+        "exceptions": 0
+      },
+      "middle-combo": {
+        "paths": 6,
+        "attempts": 18,
+        "successes": 18,
+        "exceptions": 0
+      },
+      "judge": {
+        "paths": 15,
+        "attempts": 45,
+        "successes": 45,
+        "exceptions": 0
+      },
+      "native-descriptive": {
+        "paths": 6,
+        "attempts": 18,
+        "successes": 18,
+        "exceptions": 0
+      }
+    }
+  },
+  "primary": {
+    "families": 4203,
+    "observations": 420300,
+    "successfulObservations": 420300,
+    "failedObservations": 0,
+    "sumOfFamilyDistinctTaskPrompts": 297352,
+    "distribution": {
+      "100": 771,
+      "<5": 59,
+      "5-19": 440,
+      "20-99": 2933
+    },
+    "nativeFormats": {
+      "short-answer": 414500,
+      "multiple-choice": 5200,
+      "written": 600
+    },
+    "unionDistinctTaskPrompts": 297016,
+    "observationsPerFamily": 100,
+    "byGrade": {
+      "초3": {
+        "families": 589,
+        "observations": 58900,
+        "successfulObservations": 58900,
+        "failedObservations": 0,
+        "sumOfFamilyDistinctTaskPrompts": 44080,
+        "distribution": {
+          "100": 137,
+          "<5": 5,
+          "5-19": 52,
+          "20-99": 395
+        },
+        "nativeFormats": {
+          "short-answer": 58500,
+          "multiple-choice": 400
+        },
+        "unionDistinctTaskPrompts": 43925
+      },
+      "초4": {
+        "families": 673,
+        "observations": 67300,
+        "successfulObservations": 67300,
+        "failedObservations": 0,
+        "sumOfFamilyDistinctTaskPrompts": 43415,
+        "distribution": {
+          "100": 125,
+          "<5": 46,
+          "5-19": 89,
+          "20-99": 413
+        },
+        "nativeFormats": {
+          "short-answer": 67000,
+          "written": 300
+        },
+        "unionDistinctTaskPrompts": 43396
+      },
+      "초5": {
+        "families": 634,
+        "observations": 63400,
+        "successfulObservations": 63400,
+        "failedObservations": 0,
+        "sumOfFamilyDistinctTaskPrompts": 44115,
+        "distribution": {
+          "100": 84,
+          "<5": 1,
+          "5-19": 65,
+          "20-99": 484
+        },
+        "nativeFormats": {
+          "short-answer": 62600,
+          "multiple-choice": 800
+        },
+        "unionDistinctTaskPrompts": 44033
+      },
+      "초6": {
+        "families": 607,
+        "observations": 60700,
+        "successfulObservations": 60700,
+        "failedObservations": 0,
+        "sumOfFamilyDistinctTaskPrompts": 41070,
+        "distribution": {
+          "100": 62,
+          "<5": 1,
+          "5-19": 79,
+          "20-99": 465
+        },
+        "nativeFormats": {
+          "short-answer": 60300,
+          "multiple-choice": 400
+        },
+        "unionDistinctTaskPrompts": 41023
+      },
+      "중1": {
+        "families": 593,
+        "observations": 59300,
+        "successfulObservations": 59300,
+        "failedObservations": 0,
+        "sumOfFamilyDistinctTaskPrompts": 44396,
+        "distribution": {
+          "100": 185,
+          "<5": 3,
+          "5-19": 67,
+          "20-99": 338
+        },
+        "nativeFormats": {
+          "short-answer": 57700,
+          "multiple-choice": 1600
+        },
+        "unionDistinctTaskPrompts": 44375
+      },
+      "중2": {
+        "families": 623,
+        "observations": 62300,
+        "successfulObservations": 62300,
+        "failedObservations": 0,
+        "sumOfFamilyDistinctTaskPrompts": 43446,
+        "distribution": {
+          "100": 97,
+          "<5": 3,
+          "5-19": 68,
+          "20-99": 455
+        },
+        "nativeFormats": {
+          "short-answer": 61400,
+          "multiple-choice": 900
+        },
+        "unionDistinctTaskPrompts": 43442
+      },
+      "중3": {
+        "families": 316,
+        "observations": 31600,
+        "successfulObservations": 31600,
+        "failedObservations": 0,
+        "sumOfFamilyDistinctTaskPrompts": 22893,
+        "distribution": {
+          "100": 47,
+          "<5": 0,
+          "5-19": 18,
+          "20-99": 251
+        },
+        "nativeFormats": {
+          "short-answer": 30200,
+          "multiple-choice": 1100,
+          "written": 300
+        },
+        "unionDistinctTaskPrompts": 22886
+      },
+      "공통수학1": {
+        "families": 168,
+        "observations": 16800,
+        "successfulObservations": 16800,
+        "failedObservations": 0,
+        "sumOfFamilyDistinctTaskPrompts": 13937,
+        "distribution": {
+          "100": 34,
+          "<5": 0,
+          "5-19": 2,
+          "20-99": 132
+        },
+        "nativeFormats": {
+          "short-answer": 16800
+        },
+        "unionDistinctTaskPrompts": 13937
+      }
+    },
+    "byScope": {
+      "elementary-form": {
+        "families": 2499,
+        "observations": 249900,
+        "successfulObservations": 249900,
+        "failedObservations": 0,
+        "sumOfFamilyDistinctTaskPrompts": 172468,
+        "distribution": {
+          "100": 407,
+          "<5": 53,
+          "5-19": 284,
+          "20-99": 1755
+        },
+        "nativeFormats": {
+          "short-answer": 248300,
+          "multiple-choice": 1600
+        }
+      },
+      "middle": {
+        "families": 1511,
+        "observations": 151100,
+        "successfulObservations": 151100,
+        "failedObservations": 0,
+        "sumOfFamilyDistinctTaskPrompts": 108783,
+        "distribution": {
+          "100": 315,
+          "<5": 6,
+          "5-19": 153,
+          "20-99": 1037
+        },
+        "nativeFormats": {
+          "short-answer": 149000,
+          "multiple-choice": 2100
+        }
+      },
+      "high": {
+        "families": 168,
+        "observations": 16800,
+        "successfulObservations": 16800,
+        "failedObservations": 0,
+        "sumOfFamilyDistinctTaskPrompts": 13937,
+        "distribution": {
+          "100": 34,
+          "<5": 0,
+          "5-19": 2,
+          "20-99": 132
+        },
+        "nativeFormats": {
+          "short-answer": 16800
+        }
+      },
+      "elementary-combo": {
+        "families": 1,
+        "observations": 100,
+        "successfulObservations": 100,
+        "failedObservations": 0,
+        "sumOfFamilyDistinctTaskPrompts": 100,
+        "distribution": {
+          "100": 1,
+          "<5": 0,
+          "5-19": 0,
+          "20-99": 0
+        },
+        "nativeFormats": {
+          "short-answer": 100
+        }
+      },
+      "middle-combo": {
+        "families": 3,
+        "observations": 300,
+        "successfulObservations": 300,
+        "failedObservations": 0,
+        "sumOfFamilyDistinctTaskPrompts": 256,
+        "distribution": {
+          "100": 0,
+          "<5": 0,
+          "5-19": 0,
+          "20-99": 3
+        },
+        "nativeFormats": {
+          "short-answer": 300
+        }
+      },
+      "judge": {
+        "families": 15,
+        "observations": 1500,
+        "successfulObservations": 1500,
+        "failedObservations": 0,
+        "sumOfFamilyDistinctTaskPrompts": 1472,
+        "distribution": {
+          "100": 14,
+          "<5": 0,
+          "5-19": 0,
+          "20-99": 1
+        },
+        "nativeFormats": {
+          "multiple-choice": 1500
+        }
+      },
+      "native-descriptive": {
+        "families": 6,
+        "observations": 600,
+        "successfulObservations": 600,
+        "failedObservations": 0,
+        "sumOfFamilyDistinctTaskPrompts": 336,
+        "distribution": {
+          "100": 0,
+          "<5": 0,
+          "5-19": 1,
+          "20-99": 5
+        },
+        "nativeFormats": {
+          "written": 600
+        }
+      }
+    }
+  },
+  "formatProbe": {
+    "input": {
+      "seed": 0,
+      "variant": 0
+    },
+    "rawPrimarySourcePaths": 4212,
+    "counts": {
+      "derived-success": 3830,
+      "derivation-skipped": 322,
+      "native": 52,
+      "policy-short-only": 2,
+      "written-not-derived": 6
+    },
+    "byScope": {
+      "elementary-form": {
+        "derived-success": 2207,
+        "derivation-skipped": 274,
+        "native": 16,
+        "policy-short-only": 2
+      },
+      "middle": {
+        "derived-success": 1449,
+        "derivation-skipped": 47,
+        "native": 21
+      },
+      "middle-combo": {
+        "derived-success": 5,
+        "derivation-skipped": 1
+      },
+      "high": {
+        "derived-success": 168
+      },
+      "elementary-combo": {
+        "derived-success": 1
+      },
+      "judge": {
+        "native": 15
+      },
+      "native-descriptive": {
+        "written-not-derived": 6
+      }
+    }
+  },
+  "elementary": {
+    "units": 230,
+    "forms": 2499,
+    "statementForms": 14,
+    "reinforcementForms": 9,
+    "figureForms": 8,
+    "exactFormHandlerAliases": 0,
+    "tierPaths": 1088,
+    "tierPathsWithExactHandlerInForms": 1036,
+    "tierPathsWithoutExactHandlerInForms": [
+      {
+        "key": "초3|1-1-3|연산",
+        "formIds": []
+      },
+      {
+        "key": "초3|1-1-3|기본",
+        "formIds": []
+      },
+      {
+        "key": "초3|1-1-3|응용",
+        "formIds": []
+      },
+      {
+        "key": "초3|1-1-3|심화하",
+        "formIds": []
+      },
+      {
+        "key": "초3|1-1-4|연산",
+        "formIds": []
+      },
+      {
+        "key": "초3|1-1-4|기본",
+        "formIds": []
+      },
+      {
+        "key": "초3|1-1-4|응용",
+        "formIds": []
+      },
+      {
+        "key": "초3|1-1-4|심화하",
+        "formIds": []
+      },
+      {
+        "key": "초3|1-5-1|연산",
+        "formIds": []
+      },
+      {
+        "key": "초3|1-5-1|기본",
+        "formIds": []
+      },
+      {
+        "key": "초3|1-5-1|응용",
+        "formIds": []
+      },
+      {
+        "key": "초3|1-5-1|심화하",
+        "formIds": []
+      },
+      {
+        "key": "초3|1-5-2|연산",
+        "formIds": []
+      },
+      {
+        "key": "초3|1-5-2|기본",
+        "formIds": []
+      },
+      {
+        "key": "초3|1-5-2|응용",
+        "formIds": []
+      },
+      {
+        "key": "초3|1-5-2|심화하",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-3-1|연산",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-4-2|연산",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-4-2|기본",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-4-2|응용",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-4-2|심화하",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-4-3|연산",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-4-3|기본",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-4-3|응용",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-4-3|심화하",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-1|연산",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-1|기본",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-1|응용",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-1|심화하",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-2|연산",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-2|기본",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-2|응용",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-2|심화하",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-3|연산",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-3|기본",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-3|응용",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-3|심화하",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-4|연산",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-4|기본",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-4|응용",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-4|심화하",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-5|연산",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-5|기본",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-5|응용",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-5|심화하",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-6|연산",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-6|기본",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-6|응용",
+        "formIds": []
+      },
+      {
+        "key": "초3|2-5-6|심화하",
+        "formIds": []
+      },
+      {
+        "key": "초5|2-5-1|기본",
+        "formIds": []
+      },
+      {
+        "key": "초5|2-5-5|기본",
+        "formIds": []
+      },
+      {
+        "key": "초5|2-6-2|기본",
+        "formIds": []
+      }
+    ],
+    "coreForms": 2300,
+    "extendingForms": 168,
+    "formsByGrade": {
+      "초3": 589,
+      "초4": 670,
+      "초5": 633,
+      "초6": 607
+    },
+    "canonicalCountMeaning": "Choose listedForms as primary family layer; base 230 and tier 1088 routes are alternate adapters, never added to this family count. 1036 tiers share exact function references; 52 wrappers do not share a reference, so no unsupported exact-equality claim is made for those wrappers."
+  },
+  "catalogs": {
+    "middle": {
+      "1-1": 162,
+      "1-2": 161,
+      "2-1": 159,
+      "2-2": 141,
+      "3-1": 161,
+      "3-2": 89
+    },
+    "high": {
+      "공통수학1": 170,
+      "공통수학2": 177
+    },
+    "registeredOriginalMiddle": 873,
+    "registeredMiddleExtensions": 644,
+    "registeredMiddleAuthored20261018": 12,
+    "missingOriginalMiddle": [],
+    "registeredHigh": 168,
+    "highHolds": [
+      {
+        "key": "공통수학1|이차부등식과 연립이차부등식|01",
+        "reason": "포물선·직선 그래프를 읽고 푸는 유형 — 그림이 있어야 성립한다. 물결 2 funcGraph 로 넘긴다(좌표로 때우지 않는다, 09 §4)"
+      },
+      {
+        "key": "공통수학1|경우의 수와 순열|08",
+        "reason": "영역 지도 그림 필요 — 어느 영역이 서로 인접하는지가 그림으로만 정해진다. 중등 `m2Shade.ts` 의 FigureSpec v2 채색 축을 고등 적재·미리보기가 싣는지 확인한 뒤(물결 2) 등록"
+      }
+    ],
+    "missingHigh": [
+      "공통수학1|이차부등식과 연립이차부등식|01",
+      "공통수학1|경우의 수와 순열|08",
+      "공통수학2|평면좌표|01",
+      "공통수학2|평면좌표|02",
+      "공통수학2|평면좌표|03",
+      "공통수학2|평면좌표|04",
+      "공통수학2|평면좌표|05",
+      "공통수학2|평면좌표|06",
+      "공통수학2|평면좌표|07",
+      "공통수학2|평면좌표|08",
+      "공통수학2|평면좌표|09",
+      "공통수학2|평면좌표|10",
+      "공통수학2|평면좌표|11",
+      "공통수학2|평면좌표|12",
+      "공통수학2|평면좌표|13",
+      "공통수학2|직선의 방정식|01",
+      "공통수학2|직선의 방정식|02",
+      "공통수학2|직선의 방정식|03",
+      "공통수학2|직선의 방정식|04",
+      "공통수학2|직선의 방정식|05",
+      "공통수학2|직선의 방정식|06",
+      "공통수학2|직선의 방정식|07",
+      "공통수학2|직선의 방정식|08",
+      "공통수학2|직선의 방정식|09",
+      "공통수학2|직선의 방정식|10",
+      "공통수학2|직선의 방정식|11",
+      "공통수학2|직선의 방정식|12",
+      "공통수학2|직선의 방정식|13",
+      "공통수학2|직선의 방정식|14",
+      "공통수학2|직선의 방정식|15",
+      "공통수학2|직선의 방정식|16",
+      "공통수학2|직선의 방정식|17",
+      "공통수학2|원의 방정식|01",
+      "공통수학2|원의 방정식|02",
+      "공통수학2|원의 방정식|03",
+      "공통수학2|원의 방정식|04",
+      "공통수학2|원의 방정식|05",
+      "공통수학2|원의 방정식|06",
+      "공통수학2|원의 방정식|07",
+      "공통수학2|원의 방정식|08",
+      "공통수학2|원의 방정식|09",
+      "공통수학2|원의 방정식|10",
+      "공통수학2|원의 방정식|11",
+      "공통수학2|원의 방정식|12",
+      "공통수학2|원의 방정식|13",
+      "공통수학2|원의 방정식|14",
+      "공통수학2|원의 방정식|15",
+      "공통수학2|원의 방정식|16",
+      "공통수학2|원의 방정식|17",
+      "공통수학2|원의 방정식|18",
+      "공통수학2|원의 방정식|19",
+      "공통수학2|원의 방정식|20",
+      "공통수학2|도형의 이동|01",
+      "공통수학2|도형의 이동|02",
+      "공통수학2|도형의 이동|03",
+      "공통수학2|도형의 이동|04",
+      "공통수학2|도형의 이동|05",
+      "공통수학2|도형의 이동|06",
+      "공통수학2|도형의 이동|07",
+      "공통수학2|도형의 이동|08",
+      "공통수학2|도형의 이동|09",
+      "공통수학2|도형의 이동|10",
+      "공통수학2|도형의 이동|11",
+      "공통수학2|도형의 이동|12",
+      "공통수학2|도형의 이동|13",
+      "공통수학2|집합의 뜻과 포함 관계|01",
+      "공통수학2|집합의 뜻과 포함 관계|02",
+      "공통수학2|집합의 뜻과 포함 관계|03",
+      "공통수학2|집합의 뜻과 포함 관계|04",
+      "공통수학2|집합의 뜻과 포함 관계|05",
+      "공통수학2|집합의 뜻과 포함 관계|06",
+      "공통수학2|집합의 뜻과 포함 관계|07",
+      "공통수학2|집합의 뜻과 포함 관계|08",
+      "공통수학2|집합의 뜻과 포함 관계|09",
+      "공통수학2|집합의 뜻과 포함 관계|10",
+      "공통수학2|집합의 뜻과 포함 관계|11",
+      "공통수학2|집합의 뜻과 포함 관계|12",
+      "공통수학2|집합의 뜻과 포함 관계|13",
+      "공통수학2|집합의 뜻과 포함 관계|14",
+      "공통수학2|집합의 연산|01",
+      "공통수학2|집합의 연산|02",
+      "공통수학2|집합의 연산|03",
+      "공통수학2|집합의 연산|04",
+      "공통수학2|집합의 연산|05",
+      "공통수학2|집합의 연산|06",
+      "공통수학2|집합의 연산|07",
+      "공통수학2|집합의 연산|08",
+      "공통수학2|집합의 연산|09",
+      "공통수학2|집합의 연산|10",
+      "공통수학2|집합의 연산|11",
+      "공통수학2|집합의 연산|12",
+      "공통수학2|집합의 연산|13",
+      "공통수학2|집합의 연산|14",
+      "공통수학2|집합의 연산|15",
+      "공통수학2|집합의 연산|16",
+      "공통수학2|집합의 연산|17",
+      "공통수학2|집합의 연산|18",
+      "공통수학2|명제|01",
+      "공통수학2|명제|02",
+      "공통수학2|명제|03",
+      "공통수학2|명제|04",
+      "공통수학2|명제|05",
+      "공통수학2|명제|06",
+      "공통수학2|명제|07",
+      "공통수학2|명제|08",
+      "공통수학2|명제|09",
+      "공통수학2|명제|10",
+      "공통수학2|명제|11",
+      "공통수학2|명제|12",
+      "공통수학2|명제|13",
+      "공통수학2|명제|14",
+      "공통수학2|명제|15",
+      "공통수학2|명제|16",
+      "공통수학2|명제|17",
+      "공통수학2|명제|18",
+      "공통수학2|명제|19",
+      "공통수학2|명제|20",
+      "공통수학2|명제|21",
+      "공통수학2|명제|22",
+      "공통수학2|명제|23",
+      "공통수학2|명제|24",
+      "공통수학2|함수|01",
+      "공통수학2|함수|02",
+      "공통수학2|함수|03",
+      "공통수학2|함수|04",
+      "공통수학2|함수|05",
+      "공통수학2|함수|06",
+      "공통수학2|함수|07",
+      "공통수학2|함수|08",
+      "공통수학2|함수|09",
+      "공통수학2|함수|10",
+      "공통수학2|함수|11",
+      "공통수학2|함수|12",
+      "공통수학2|함수|13",
+      "공통수학2|함수|14",
+      "공통수학2|함수|15",
+      "공통수학2|함수|16",
+      "공통수학2|함수|17",
+      "공통수학2|함수|18",
+      "공통수학2|함수|19",
+      "공통수학2|함수|20",
+      "공통수학2|함수|21",
+      "공통수학2|함수|22",
+      "공통수학2|함수|23",
+      "공통수학2|함수|24",
+      "공통수학2|유리함수|01",
+      "공통수학2|유리함수|02",
+      "공통수학2|유리함수|03",
+      "공통수학2|유리함수|04",
+      "공통수학2|유리함수|05",
+      "공통수학2|유리함수|06",
+      "공통수학2|유리함수|07",
+      "공통수학2|유리함수|08",
+      "공통수학2|유리함수|09",
+      "공통수학2|유리함수|10",
+      "공통수학2|유리함수|11",
+      "공통수학2|유리함수|12",
+      "공통수학2|유리함수|13",
+      "공통수학2|유리함수|14",
+      "공통수학2|유리함수|15",
+      "공통수학2|유리함수|16",
+      "공통수학2|유리함수|17",
+      "공통수학2|유리함수|18",
+      "공통수학2|유리함수|19",
+      "공통수학2|유리함수|20",
+      "공통수학2|무리함수|01",
+      "공통수학2|무리함수|02",
+      "공통수학2|무리함수|03",
+      "공통수학2|무리함수|04",
+      "공통수학2|무리함수|05",
+      "공통수학2|무리함수|06",
+      "공통수학2|무리함수|07",
+      "공통수학2|무리함수|08",
+      "공통수학2|무리함수|09",
+      "공통수학2|무리함수|10",
+      "공통수학2|무리함수|11",
+      "공통수학2|무리함수|12",
+      "공통수학2|무리함수|13",
+      "공통수학2|무리함수|14"
+    ],
+    "highBySubject": {
+      "공통수학1": {
+        "catalogKeys": 170,
+        "registeredKeys": 168,
+        "heldKeys": 2
+      },
+      "공통수학2": {
+        "catalogKeys": 177,
+        "registeredKeys": 0,
+        "sampledObservations": 0
+      }
+    }
+  },
+  "aliases": [
+    {
+      "canonicalKey": "mid:2-1|연립일차방정식|19",
+      "sourceKeys": [
+        "mid:2-1|연립일차방정식|19",
+        "mid:중2|여러 가지 연립방정식의 풀이::중2|순환소수의 분수 표현"
+      ],
+      "perSourceObservations": {
+        "mid:2-1|연립일차방정식|19": 50,
+        "mid:중2|여러 가지 연립방정식의 풀이::중2|순환소수의 분수 표현": 50
+      },
+      "threeInputTaskHashEquality": true,
+      "sourceEvidence": [
+        "src/lib/middle/combo.ts:570",
+        "src/lib/generator/familyAliases.ts:5"
+      ]
+    },
+    {
+      "canonicalKey": "mid:2-1|연립일차방정식|20",
+      "sourceKeys": [
+        "mid:2-1|연립일차방정식|20",
+        "mid:중2|여러 가지 연립방정식의 풀이::중2|지수법칙"
+      ],
+      "perSourceObservations": {
+        "mid:2-1|연립일차방정식|20": 50,
+        "mid:중2|여러 가지 연립방정식의 풀이::중2|지수법칙": 50
+      },
+      "threeInputTaskHashEquality": true,
+      "sourceEvidence": [
+        "src/lib/middle/combo.ts:570",
+        "src/lib/generator/familyAliases.ts:5"
+      ]
+    },
+    {
+      "canonicalKey": "mid:2-1|연립일차방정식|19A",
+      "sourceKeys": [
+        "mid:2-1|연립일차방정식|19A",
+        "mid:2-1|연립일차방정식|21A",
+        "mid:2-1|연립일차방정식|23A",
+        "mid:2-1|연립일차방정식|25A"
+      ],
+      "perSourceObservations": {
+        "mid:2-1|연립일차방정식|19A": 25,
+        "mid:2-1|연립일차방정식|21A": 25,
+        "mid:2-1|연립일차방정식|23A": 25,
+        "mid:2-1|연립일차방정식|25A": 25
+      },
+      "sourceEvidence": [
+        "src/lib/middle/m2SystemApply.ts:101",
+        "src/lib/middle/m2SystemApply.ts:739",
+        "src/lib/generator/familyAliases.ts:25"
+      ],
+      "note": "A shared reasoning family; coefficient-position variants remain distinct literal task prompts within the same canonical family."
+    },
+    {
+      "canonicalKey": "mid:2-1|연립일차방정식|20A",
+      "sourceKeys": [
+        "mid:2-1|연립일차방정식|20A",
+        "mid:2-1|연립일차방정식|22A",
+        "mid:2-1|연립일차방정식|24A",
+        "mid:2-1|연립일차방정식|26A"
+      ],
+      "perSourceObservations": {
+        "mid:2-1|연립일차방정식|20A": 25,
+        "mid:2-1|연립일차방정식|22A": 25,
+        "mid:2-1|연립일차방정식|24A": 25,
+        "mid:2-1|연립일차방정식|26A": 25
+      },
+      "sourceEvidence": [
+        "src/lib/middle/m2SystemApply.ts:101",
+        "src/lib/middle/m2SystemApply.ts:739",
+        "src/lib/generator/familyAliases.ts:25"
+      ],
+      "note": "A shared reasoning family; coefficient-position variants remain distinct literal task prompts within the same canonical family."
+    },
+    {
+      "canonicalKey": "mid:3-1|이차방정식의 풀이|06",
+      "sourceKeys": [
+        "mid:3-1|이차방정식의 풀이|06",
+        "mid:중3|이차방정식의 풀이::중3|인수분해"
+      ],
+      "perSourceObservations": {
+        "mid:3-1|이차방정식의 풀이|06": 50,
+        "mid:중3|이차방정식의 풀이::중3|인수분해": 50
+      },
+      "threeInputTaskHashEquality": true,
+      "sourceEvidence": [
+        "src/lib/middle/combo.ts:570",
+        "src/lib/generator/familyAliases.ts:5"
+      ]
+    }
+  ],
+  "crossFamilyTaskOverlap": {
+    "groups": 336,
+    "familiesTouched": 58,
+    "sumMinusUnion": 336
+  },
+  "method": {
+    "primary": "elementary listed forms; middle canonicalFamilyKey aliases; high registered keys; authored combos; judge definitions; native written definitions. Base and tier adapters receive smoke tests only.",
+    "campaign": "100 total observations per canonical family, including 3 per source alias; remaining index i uses seed=i and variant=i, source aliases round robin. Elementary and elementary-combo add 1009*variant to seed.",
+    "taskKey": "SHA256 of [NFC/whitespace-normalized parsed question, sorted native printed choice bodies, stable figureSpec]. For current grade 초4 independent namedShapes selection/name prompts only, remove each item label and sort actual shape options when each item has only shape/label; all other figure data and labelled-geometry mappings stay exact. Answers, solutions, unprinted distractors and derived MC/SA formats are excluded.",
+    "limits": [
+      "Text/figure task identity only, not semantic/pedagogical type identity.",
+      "Printed MC choice ordering and the reviewed grade-4 independent figure-option ordering are removed. Other labelled-geometry mappings stay exact; no geometric/semantic isomorphism algorithm is claimed.",
+      "Other exact figures, labels, wording, contexts and numbers can remain superficially different.",
+      "100 distinct samples is a lower bound, not a complete domain or infinite capacity.",
+      "Campaign success is not independent solving, bank eligibility measurement or school-style validation; no external API calls were made."
+    ]
+  },
+  "schemaVersion": 1,
+  "scope": "Offline, read-only deterministic-generator audit of d70137271; no source edits, database queries/writes, provider/API calls, push or deploy.",
+  "schoolPipelineBoundary": {
+    "schoolNameInputAcceptedByGeneratorEntrypoints": false,
+    "generatorInputs": [
+      "unit/type/combo/definition key",
+      "seed",
+      "variant or elementary tier/form"
+    ],
+    "schoolConditionedPipeline": "owned by separate worker; this report does not audit its actual question selection or school-style fidelity",
+    "metadataIndexed": null,
+    "examQuestionsExtracted": null,
+    "examQuestionsTrusted": null,
+    "examQuestionsIssuable": null,
+    "loadedEngineRows": null,
+    "note": "Null means not measured here, not zero; registered generators or successful samples do not establish school-specific issuable stock."
+  },
+  "coverageByGrade": {
+    "중1": {
+      "registeredKeys": 578,
+      "originalRpmIndexKeys": 323,
+      "authoredExtensionKeys": 255,
+      "canonicalKeys": 578
+    },
+    "중2": {
+      "registeredKeys": 628,
+      "originalRpmIndexKeys": 300,
+      "authoredExtensionKeys": 328,
+      "canonicalKeys": 622
+    },
+    "중3": {
+      "registeredKeys": 311,
+      "originalRpmIndexKeys": 250,
+      "authoredExtensionKeys": 61,
+      "canonicalKeys": 311
+    }
+  },
+  "bankIntegration": {
+    "canonicalFamiliesWithExistingLoaderTarget": 4034,
+    "canonicalFamiliesWithoutExistingLoaderTarget": 169,
+    "supportedTargetDiscriminants": [
+      "elem",
+      "middle",
+      "combo (middle only)",
+      "judge",
+      "native-descriptive"
+    ],
+    "cliLibraryOnly": [
+      {
+        "scope": "high",
+        "families": 168,
+        "evidence": "scripts/high/gen-cli.ts:1; no high target in scripts/import/load-engine-problems.ts:190 and no non-test product caller found"
+      },
+      {
+        "scope": "elementary-combo",
+        "families": 1,
+        "evidence": "scripts/elem/gen-core.ts:266; buildComboRows at scripts/import/load-engine-problems.ts:447 enumerates only middleComboDefinitions"
+      }
+    ],
+    "currentDbLoadedAndIssuableCounts": "not measured; requires root-owned read-only export"
+  },
+  "finiteDomainReview": {
+    "familiesWithExactSmallDomainsBelowFive": 59,
+    "elementary": 53,
+    "middle": 6,
+    "elementaryDomainDistribution": {
+      "4": 11,
+      "3": 4,
+      "2": 1,
+      "1": 37
+    },
+    "additionalExactNativeWrittenDomains": 2,
+    "allExactDomainsReviewed": 61,
+    "basis": "Current source bounds plus this campaign reaching every member under the declared prompt/choice/figure normalization; not extrapolated merely from repeated sampling. Other families remain lower bounds.",
+    "families": [
+      {
+        "canonicalKey": "elem:초3|2-3-1|03",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 4,
+        "sourcePath": "src/lib/elementary/g3.ts",
+        "sourceLine": 9331,
+        "handler": "circ231Apply",
+        "sourceFunctionSha256": "c81082e747b889af5f1a01bffd63ec8ee2f67c64f1444bc1917b8d782eeac3e0",
+        "proof": "single bounded integer parameter; all prompt and figure variation follows this value",
+        "parameterBounds": [
+          {
+            "kind": "inclusive-integer",
+            "min": 2,
+            "max": 5
+          }
+        ]
+      },
+      {
+        "canonicalKey": "elem:초3|2-3-1|04",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 3,
+        "sourcePath": "src/lib/elementary/g3.ts",
+        "sourceLine": 9347,
+        "handler": "circ231Deep",
+        "sourceFunctionSha256": "a3ce5111a5d65a45fc7c10ce0d4da4d0f60724104b3e74cfeaec6bebb8b179c5",
+        "proof": "single bounded integer parameter; all prompt and figure variation follows this value",
+        "parameterBounds": [
+          {
+            "kind": "inclusive-integer",
+            "min": 2,
+            "max": 4
+          }
+        ]
+      },
+      {
+        "canonicalKey": "elem:초3|2-3-1|01",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 2,
+        "sourcePath": "src/lib/elementary/g3.ts",
+        "sourceLine": 9358,
+        "handler": "circ231NameVar",
+        "sourceFunctionSha256": "c0fc0b08c6400113a3cc9e518a61881694afe96557555445437c6979e0e89a8f",
+        "proof": "single bounded integer parameter; all prompt and figure variation follows this value",
+        "parameterBounds": [
+          {
+            "kind": "inclusive-integer",
+            "min": 0,
+            "max": 1
+          }
+        ]
+      },
+      {
+        "canonicalKey": "elem:초3|2-3-1|10",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 4,
+        "sourcePath": "src/lib/elementary/g3.ts",
+        "sourceLine": 9427,
+        "handler": "circ231FoldHalf",
+        "sourceFunctionSha256": "5c9663bca3435f546a9440e0c58ef64b440294c31767f0ba9687270f1b8b4eca",
+        "proof": "single bounded integer parameter; all prompt and figure variation follows this value",
+        "parameterBounds": [
+          {
+            "kind": "inclusive-integer",
+            "min": 2,
+            "max": 5
+          }
+        ]
+      },
+      {
+        "canonicalKey": "elem:초3|1-5-4|07",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 4,
+        "sourcePath": "src/lib/elementary/g3.ts",
+        "sourceLine": 10815,
+        "handler": "secHowManyMin",
+        "sourceFunctionSha256": "172bc70c875d85b48b922776082636a3b0ca5732faf37f8ed32c7658f636ed24",
+        "proof": "single bounded integer parameter; all prompt and figure variation follows this value",
+        "parameterBounds": [
+          {
+            "kind": "inclusive-integer",
+            "min": 2,
+            "max": 5
+          }
+        ]
+      },
+      {
+        "canonicalKey": "elem:초4|2-2-1|06",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 12169,
+        "handler": "tri221PickEq",
+        "sourceFunctionSha256": "36932c3245b0199dac05de476eaed2e6208ca136de80843f4f43fd4c058a4852",
+        "proof": "fixed shape-option set; reviewed independent option positions and labels removed",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-2-1|09",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 12204,
+        "handler": "tri221PickIso",
+        "sourceFunctionSha256": "37b1f8fee8423b7ef9c0871b33f31a77143d3f637b1669bb3ba207b2ba5b0750",
+        "proof": "fixed shape-option set; reviewed independent option positions and labels removed",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-2-1|10",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 3,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 12218,
+        "handler": "tri221Vertices",
+        "sourceFunctionSha256": "8b1113e3b3ec2067e580c5b9f5cd0d7bf7786551a2a614487c0596e42fc985d6",
+        "proof": "single literal parameter choice; all prompt and figure variation follows this value",
+        "parameterBounds": [
+          {
+            "kind": "literal-choice",
+            "values": [
+              "eqTri",
+              "isoTri",
+              "rightTri"
+            ]
+          }
+        ]
+      },
+      {
+        "canonicalKey": "elem:초4|2-2-2|05",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 12235,
+        "handler": "tri222Sum180",
+        "sourceFunctionSha256": "e84d55d2394a5528e7284006da69338e84b19d0597751f464ee6ed35bac2d94d",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-2-2|09",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 12277,
+        "handler": "tri222Pick",
+        "sourceFunctionSha256": "ccf870af31949339547d7ec400db6bf3e8054a77cd4ac0d29bce9fd057e322ad",
+        "proof": "fixed shape-option set; reviewed independent option positions and labels removed",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-2-2|10",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 12291,
+        "handler": "tri222EqualBase",
+        "sourceFunctionSha256": "40a8a40fc4262fc217a6db7581b522e82b00794f70275c40ef6dfd809d895640",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-2-3|06",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 12312,
+        "handler": "tri223Angle",
+        "sourceFunctionSha256": "79b7d0a2cc562577c9b56b7811dd69798013d093957447780e7a977845d494a8",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-2-3|07",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 12322,
+        "handler": "tri223AngleSum",
+        "sourceFunctionSha256": "5e493a5534c52be9459ee5ee4b544daaced10145996517a7630ae0061d169bf3",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-2-3|08",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 12332,
+        "handler": "tri223Pick",
+        "sourceFunctionSha256": "ae2488d00790a30a8302ab348e0707d1548868dc42481b94d296fcffa0d7c87a",
+        "proof": "fixed shape-option set; reviewed independent option positions and labels removed",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-2-3|10",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 12353,
+        "handler": "tri223Name",
+        "sourceFunctionSha256": "2ba20484e5762aeeb810598b3d60ab94654561679973631fe3d7cebd5b836112",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-2-4|07",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 12388,
+        "handler": "tri224PickRight",
+        "sourceFunctionSha256": "6cbf3db003db0d75a5a6cbc5deee524f5fd794f46e1c78ab3ff290a4db459774",
+        "proof": "fixed shape-option set; reviewed independent option positions and labels removed",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-2-5|06",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 12446,
+        "handler": "tri225PickRightIso",
+        "sourceFunctionSha256": "9ba705d4bbd3f9270e3e232b57f06baa4c4ded1f2e3bb414b89de3e73ba37186",
+        "proof": "fixed shape-option set; reviewed independent option positions and labels removed",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-2-5|07",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 12457,
+        "handler": "tri225EqIsAcute",
+        "sourceFunctionSha256": "e433c46788ec3d82fa6a0beddc9f8cd150ca3f188d61c0bfe0c2d7e457873ec6",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-2-5|09",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 12478,
+        "handler": "tri225AngleClass",
+        "sourceFunctionSha256": "d63e131a8d5dc48594e4713fe663d7bed87a8e4022c8068e0c6f99a9ec9f1d05",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-2-5|10",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 12488,
+        "handler": "tri225Vertices",
+        "sourceFunctionSha256": "6fc3c7bb41838f4075a8e941d8227d0cedac13015d64faae33ef1c433949206d",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-4-2|05",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 15404,
+        "handler": "quad242Name",
+        "sourceFunctionSha256": "42c8e5a8af4a16a1bd56a979a92e9e7f52c75087ed0cd4da469949dff06260a2",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-4-2|07",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 15425,
+        "handler": "quad242Same",
+        "sourceFunctionSha256": "fb4600c4aa0fbcccc0b88ac632cebe35c2a8e4a3ba0ee1b2256cd05b053e52ee",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-4-2|08",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 15435,
+        "handler": "quad242Meet",
+        "sourceFunctionSha256": "5c43e2e54ccb091c830b6a91e03d2fc627a18c2ff9d91099947675d6ee914124",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-4-2|09",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 4,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 15445,
+        "handler": "quad242PerpCount",
+        "sourceFunctionSha256": "a4553f7d243de7e72beb1736bf0f0fb34952e28b4acfd42a7730e210a36e21d0",
+        "proof": "single bounded integer parameter; all prompt and figure variation follows this value",
+        "parameterBounds": [
+          {
+            "kind": "inclusive-integer",
+            "min": 2,
+            "max": 5
+          }
+        ]
+      },
+      {
+        "canonicalKey": "elem:초4|2-4-2|10",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 15456,
+        "handler": "quad242Angle",
+        "sourceFunctionSha256": "4b073927ef267c5f91d3c2110656788b3c9c76d2c36fdd346e9fb1e7da51accc",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-4-3|09",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 15511,
+        "handler": "quad243Equal",
+        "sourceFunctionSha256": "3c5aae0934935c2fccd1fc967ca0d0a2b9c5743b530cc046636b38cf7efe3d2b",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-4-4|05",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 15531,
+        "handler": "quad244Pick",
+        "sourceFunctionSha256": "38cd61826d28415f946fefc1644effa75bcae90c80168eb4696517758366194b",
+        "proof": "fixed shape-option set; reviewed independent option positions and labels removed",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-4-4|06",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 15545,
+        "handler": "quad244Pairs",
+        "sourceFunctionSha256": "61d79e81eeb9a171dc708994bb971fa0bad43a550323a46e2a92a9a9b66e2a07",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-4-4|08",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 15565,
+        "handler": "quad244Name",
+        "sourceFunctionSha256": "29ebcd1c72142e0c5b57ae76c85bf4c41392e56bbd1097d4a6c4cbb0036e8f4a",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-4-4|09",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 15575,
+        "handler": "quad244Vertices",
+        "sourceFunctionSha256": "cb3bf1cd228cae6fa6c0380a7041533360339bdf52be31bb53a31dd20afe7682",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-4-4|10",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 15585,
+        "handler": "quad244Sides",
+        "sourceFunctionSha256": "1630430b1ed7b059c17428bee06d6f850cfb99e84093ba02eedeb37b95161bb8",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-4-5|09",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 15639,
+        "handler": "quad245Vertices",
+        "sourceFunctionSha256": "380655dbf82221fefe2442003fbc27722e5df315511cc31f962ae22b6a8c760c",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-4-5|10",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 15649,
+        "handler": "quad245Name",
+        "sourceFunctionSha256": "d77f3246e288e15fd9ff5d9b7413f561d67911fee64e8cc895a4e57be55f2715",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-4-6|07",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 15681,
+        "handler": "quad246Pick",
+        "sourceFunctionSha256": "083a9c06071c8217f79d18ea15c6967644df9a4eead341556c3c42502c880fec",
+        "proof": "fixed shape-option set; reviewed independent option positions and labels removed",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-4-6|09",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 15702,
+        "handler": "quad246AllEqual",
+        "sourceFunctionSha256": "e7dd8300c284ac921f7bd0e51eea27dfbc0939703a26452876df31ce7134b514",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-4-6|10",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 15712,
+        "handler": "quad246Vertices",
+        "sourceFunctionSha256": "525b14745688182fe867859f38d3c552f1ffebc8aefba3782d65689b59954421",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-4-7|05",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 15722,
+        "handler": "quad247SqIsRect",
+        "sourceFunctionSha256": "a14413ed6557568e2fb9c993d053c43c35cc5fcffe44e602c1aadd786137a804",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-4-7|06",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 15732,
+        "handler": "quad247NameRight",
+        "sourceFunctionSha256": "864767c6daf7517889b39256a8eb3c6ed7d08369ae19cb23e142f5339b4f0f2f",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-4-7|07",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 15742,
+        "handler": "quad247NameEq",
+        "sourceFunctionSha256": "90f157578e48a5d13a51f701679dfb8bf8c4c4cd729661a6d3573a2895f8839c",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-6-1|10",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 17747,
+        "handler": "poly261Pent",
+        "sourceFunctionSha256": "5524a080fc21bf006ea92e4952366ddd11301a492b97bf4d3f7f3b4599cf1477",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-6-2|05",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 4,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 17756,
+        "handler": "poly262AllDiag",
+        "sourceFunctionSha256": "d43a4f79e2a284aae830308a4463fa57ce2185f8832600d1e812de3dc4fbefce",
+        "proof": "single bounded integer parameter; all prompt and figure variation follows this value",
+        "parameterBounds": [
+          {
+            "kind": "inclusive-integer",
+            "min": 5,
+            "max": 8
+          }
+        ]
+      },
+      {
+        "canonicalKey": "elem:초4|2-6-2|07",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 17777,
+        "handler": "poly262TriDiag",
+        "sourceFunctionSha256": "b05c5adc73fe613677932fd67154d86b0de4263dadfd9c08efaabb05b49f43a8",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-6-2|08",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 17787,
+        "handler": "poly262QuadDiag",
+        "sourceFunctionSha256": "9275f445795613f2022213914420af3d5ea22b6541a86fe4652c753a01e68790",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-6-2|10",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 17807,
+        "handler": "poly262EqualDiag",
+        "sourceFunctionSha256": "80b210ef206a1c7d6ae80cf4ca4609d6ac17a7af2109d7a8eb8d4159588a4820",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-6-3|08",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 4,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 17850,
+        "handler": "poly263EqualSides",
+        "sourceFunctionSha256": "4f2a0d46b8bc00dbf6a9e5a36a31291049f792f335d1d00c63574a33e81316d1",
+        "proof": "single bounded integer parameter; all prompt and figure variation follows this value",
+        "parameterBounds": [
+          {
+            "kind": "inclusive-integer",
+            "min": 5,
+            "max": 8
+          }
+        ]
+      },
+      {
+        "canonicalKey": "elem:초4|2-6-3|09",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 4,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 17860,
+        "handler": "poly263EqualAngles",
+        "sourceFunctionSha256": "2c7c049bdb8b022963589376e436f90d4b7d9601ffac397cc537556f66048989",
+        "proof": "single bounded integer parameter; all prompt and figure variation follows this value",
+        "parameterBounds": [
+          {
+            "kind": "inclusive-integer",
+            "min": 5,
+            "max": 8
+          }
+        ]
+      },
+      {
+        "canonicalKey": "elem:초4|2-6-3|10",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 4,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 17870,
+        "handler": "poly263Name",
+        "sourceFunctionSha256": "42941a76a0e9e3faebcda760f142ce6e71e282c3bd301eec7d8b1b5487e28461",
+        "proof": "single bounded integer parameter; all prompt and figure variation follows this value",
+        "parameterBounds": [
+          {
+            "kind": "inclusive-integer",
+            "min": 5,
+            "max": 8
+          }
+        ]
+      },
+      {
+        "canonicalKey": "elem:초4|2-6-4|06",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 4,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 17896,
+        "handler": "poly264SqFill",
+        "sourceFunctionSha256": "1a44fed8bd98a168d0ef3fb4d9dbdbbea6e0070802c74169c74c48bd2619890e",
+        "proof": "single bounded integer parameter; all prompt and figure variation follows this value",
+        "parameterBounds": [
+          {
+            "kind": "inclusive-integer",
+            "min": 2,
+            "max": 5
+          }
+        ]
+      },
+      {
+        "canonicalKey": "elem:초4|2-6-4|07",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 1,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 17912,
+        "handler": "poly264Hex",
+        "sourceFunctionSha256": "15d889bcacd56c384fcf2a8669f92477453a9ca6de22eeb0ad6e168aff9f3960",
+        "proof": "fixed output with no RNG parameter",
+        "parameterBounds": []
+      },
+      {
+        "canonicalKey": "elem:초4|2-6-4|09",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 4,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 17932,
+        "handler": "poly264Trap",
+        "sourceFunctionSha256": "6c1698af637236918fd142a66283665b53c351c98845f730dad62baace778a75",
+        "proof": "single bounded integer parameter; all prompt and figure variation follows this value",
+        "parameterBounds": [
+          {
+            "kind": "inclusive-integer",
+            "min": 2,
+            "max": 5
+          }
+        ]
+      },
+      {
+        "canonicalKey": "elem:초4|2-6-4|10",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 4,
+        "sourcePath": "src/lib/elementary/g4.ts",
+        "sourceLine": 17942,
+        "handler": "poly264FromTris",
+        "sourceFunctionSha256": "31937f64afc8eaba0325f5896092a5358e11b9343fccb7b4018af436b944c0d3",
+        "proof": "single bounded integer parameter; all prompt and figure variation follows this value",
+        "parameterBounds": [
+          {
+            "kind": "inclusive-integer",
+            "min": 2,
+            "max": 5
+          }
+        ]
+      },
+      {
+        "canonicalKey": "elem:초5|2-6-3|10",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 3,
+        "sourcePath": "src/lib/elementary/g5.ts",
+        "sourceLine": 11442,
+        "handler": "pos263ImpossibleCount",
+        "sourceFunctionSha256": "32ddaf2306be6565d08e958fe955f6a7fa48cb5ead4fce2854c07b03f66ce7df",
+        "proof": "single literal parameter choice; all prompt and figure variation follows this value",
+        "parameterBounds": [
+          {
+            "kind": "literal-choice",
+            "values": [
+              "6",
+              "8",
+              "10"
+            ]
+          }
+        ]
+      },
+      {
+        "canonicalKey": "elem:초6|1-6-2|10",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 3,
+        "sourcePath": "src/lib/elementary/g6.ts",
+        "sourceLine": 13051,
+        "handler": "volFormDoubleOne",
+        "sourceFunctionSha256": "0e6409a40675ac952c8509342e55687866291782a1553baefe78f5efa651ae89",
+        "proof": "single bounded integer parameter; all prompt and figure variation follows this value",
+        "parameterBounds": [
+          {
+            "kind": "inclusive-integer",
+            "min": 2,
+            "max": 4
+          }
+        ]
+      },
+      {
+        "canonicalKey": "mid:1-2|기본 도형|08",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 4,
+        "sourcePath": "src/lib/middle/m1Geo1.ts",
+        "sourceLine": 784,
+        "sourceFileSha256": "1af9c5729eda8c41b0fb7b058aa23f8b2fe529b3567f722421b7f6a3271f4b81",
+        "proof": "k in {2,3,4}, p in 2..40; (k+2)*p in {90,180} leaves exactly (3,18),(3,36),(4,15),(4,30); fallback uses this same set"
+      },
+      {
+        "canonicalKey": "mid:1-2|위치 관계|74",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 4,
+        "sourcePath": "src/lib/middle/m1Geo1.ts",
+        "sourceLine": 1673,
+        "sourceFileSha256": "1af9c5729eda8c41b0fb7b058aa23f8b2fe529b3567f722421b7f6a3271f4b81",
+        "proof": "single parameter n in 4..7"
+      },
+      {
+        "canonicalKey": "mid:1-2|작도와 합동|10",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 3,
+        "sourcePath": "src/lib/middle/m1Geo2.ts",
+        "sourceLine": 585,
+        "sourceFileSha256": "5284e0a8cbfaa6731d28b53a6507de74ce5cbfa3c2c8e9c9c5a89f4bdbb8aac9",
+        "proof": "three configurations; all other RNG consumption shuffles the same native choices"
+      },
+      {
+        "canonicalKey": "mid:2-2|경우의 수|70",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 4,
+        "sourcePath": "src/lib/middle/m2Counting.ts",
+        "sourceLine": 814,
+        "sourceFileSha256": "c44625a234cbcc2fc59f9deffa61bbc88eae43f6ade765517455794b181a53ce",
+        "proof": "single parameter t in 1..4"
+      },
+      {
+        "canonicalKey": "mid:2-2|경우의 수|72",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 3,
+        "sourcePath": "src/lib/middle/m2Counting.ts",
+        "sourceLine": 850,
+        "sourceFileSha256": "c44625a234cbcc2fc59f9deffa61bbc88eae43f6ade765517455794b181a53ce",
+        "proof": "single parameter k in {3,4,5}"
+      },
+      {
+        "canonicalKey": "mid:2-2|경우의 수|73",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 4,
+        "sourcePath": "src/lib/middle/m2Counting.ts",
+        "sourceLine": 870,
+        "sourceFileSha256": "c44625a234cbcc2fc59f9deffa61bbc88eae43f6ade765517455794b181a53ce",
+        "proof": "single parameter n in 4..7"
+      },
+      {
+        "canonicalKey": "native-desc:e4-triangle-dual-proof-r1",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 7,
+        "sourcePath": "src/lib/engine/nativeDescriptive20261018.ts",
+        "sourceLine": 180,
+        "sourceFileSha256": "ab312bcf46eaddc2b934feb88f370f6e83969b774e1e03e7dc48d98ba19d1483",
+        "proof": "beta in {30,35,40,45} for even variant, {50,70,80} for odd variant; all other content follows beta"
+      },
+      {
+        "canonicalKey": "native-desc:e4-trapezoid-sufficiency-r1",
+        "classification": "exact-source-upper-bound-reached-in-sample",
+        "taskCount": 20,
+        "sourcePath": "src/lib/engine/nativeDescriptive20261018.ts",
+        "sourceLine": 213,
+        "sourceFileSha256": "ab312bcf46eaddc2b934feb88f370f6e83969b774e1e03e7dc48d98ba19d1483",
+        "proof": "side in 3..12 times two named opposite-side-pair settings from variant parity"
+      }
+    ]
+  },
+  "checks": {
+    "config": ".qa/generator-vitest.config.mts",
+    "envFileLoading": false,
+    "envDir": false,
+    "applicationSetupLoaded": false,
+    "databaseRuntime": "mocked before construction",
+    "network": "fetch throws in native-pure.setup.ts",
+    "passed": 88,
+    "failed": 0,
+    "pending": 0,
+    "files": [
+      {
+        "path": "src/__tests__/unit/elemStatementForms.test.ts",
+        "status": "passed",
+        "tests": 16
+      },
+      {
+        "path": "src/__tests__/unit/elementaryReinforcement20261018.test.tsx",
+        "status": "passed",
+        "tests": 26
+      },
+      {
+        "path": "src/__tests__/unit/familyAliases.test.ts",
+        "status": "passed",
+        "tests": 3
+      },
+      {
+        "path": "src/__tests__/unit/highRegistry.test.ts",
+        "status": "passed",
+        "tests": 10
+      },
+      {
+        "path": "src/__tests__/unit/middleTypeCoverage.test.ts",
+        "status": "passed",
+        "tests": 3
+      },
+      {
+        "path": "src/__tests__/unit/nativeDescriptive20261018.test.ts",
+        "status": "passed",
+        "tests": 30
+      }
+    ],
+    "limit": "Existing focused tests include particular independent calculations; they do not independently solve the 420300-observation campaign or certify school style."
+  },
+  "reproducibility": {
+    "privateProbe": ".qa/generator-capacity.ts",
+    "privateProbeSha256": "46ef6fa88bd96c8e862222268b6bae5d19ba40869c973339fb0395e5691bf214",
+    "privateProbeCommitted": false,
+    "privateCheckpointRoot": "/Users/pss/orca/workspaces/today_/problem_make/.qa-artifacts/exam-engine-capacity-20261018/capacity-recovery-evidence",
+    "commands": [
+      "env -i PATH=\"$PATH\" node_modules/.bin/tsx .qa/generator-capacity.ts",
+      "env -i PATH=\"$PATH\" node_modules/.bin/vitest run --config .qa/generator-vitest.config.mts --reporter=json --outputFile=.qa/generator-tests.json",
+      "node .qa/extract-finite.cjs",
+      "python3 .qa/build-generator-report.py"
+    ],
+    "existingPriorProbe": "scripts/qa/bank/type-audit-engine.ts",
+    "priorEvidenceUsed": [
+      "prior candidate handler names only from elementary-variation.json; bounds reread and cardinalities recomputed from current function source",
+      "unit IDs in type-inventory.json only to apply source-proven unit-scoped family aliases"
+    ],
+    "priorInventoryCountsImported": false,
+    "smokeInputs": [
+      {
+        "seed": 0,
+        "variant": 0
+      },
+      {
+        "seed": 1,
+        "variant": 1
+      },
+      {
+        "seed": 20261018,
+        "variant": 2
+      }
+    ],
+    "canonicalSamplingAlgorithm": "For each canonical group in registry order: append all three smoke inputs for each raw member in registry order; for index i from that length through 99, select raw member i modulo memberCount, seed=i, variant=i. Elementary and elementary-combo receive seed+1009*variant. Generate transiently and retain task hashes/counts only. Smoke and repeatability calls are separate and not additional distinct campaign inputs.",
+    "elapsedCampaignSeconds": 9.653,
+    "recomputedSameInputSet": "Current dispatch reran the existing finalized probe on the same 100-input schedule; prior provisional counts are not substituted for this run."
+  },
+  "artifacts": {
+    "byType": {
+      "path": "docs/reports/exam-engine-capacity-20261018/generator-capacity-by-type.jsonl",
+      "rows": 4203,
+      "sha256": "ba83525ff8c3cd8d7df5acb72e9b4c61c570d5f03cc125a4457b799cb67f06c6"
+    },
+    "privateOnly": [
+      ".qa/generator-smoke.json",
+      ".qa/generator-tests.json",
+      ".qa/finite-source-review.json",
+      ".qa/generator-capacity.ts"
+    ]
+  }
+}
