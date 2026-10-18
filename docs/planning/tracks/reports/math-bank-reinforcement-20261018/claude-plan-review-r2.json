@@ -1,0 +1,51 @@
+{
+  "reviewer": "Claude",
+  "reviewedAt": "2026-10-18",
+  "planPath": "docs/planning/tracks/math-bank-reinforcement-20261018.md",
+  "planRevision": "R2",
+  "planSha256": "15ecaf3edcea3e018f1e5b20e6e2108654122bb249b4e38e3a5713b7f84211a3",
+  "planShaVerified": true,
+  "baseCommit": "4a6e5530d",
+  "previousReview": {"path": "docs/planning/tracks/reports/math-bank-reinforcement-20261018/claude-plan-review-r1.md", "commit": "a78274dba", "verdict": "changes_requested"},
+  "verdict": "approved",
+  "approvalKind": "plan execution only — not approval of final candidate content or of the batch manifest",
+  "conditions": [
+    {"id": "R2-1", "incorporated": true, "evidence": "plan §6.1-1 L162-165"},
+    {"id": "R2-2", "incorporated": true, "evidence": "plan §4 L103-110; §6.1-2 L166-169"},
+    {"id": "R2-3", "incorporated": true, "evidence": "plan §6.1-3 L170-173"},
+    {"id": "R2-4", "incorporated": true, "evidence": "plan §6.1-4 L174-178; prisma/schema.prisma:810 (problem.id uuid default, pre-assignable)"},
+    {"id": "R2-5", "incorporated": true, "evidence": "plan §6.1-5 L179-185"},
+    {"id": "R2-6", "incorporated": true, "evidence": "plan §6.1-6 L186-191"}
+  ],
+  "recommendations": [
+    {"id": "K-1", "incorporated": true, "evidence": "L69-71"},
+    {"id": "K-2", "incorporated": true, "evidence": "L72-73"},
+    {"id": "K-3", "incorporated": true, "evidence": "L48-50"},
+    {"id": "K-4", "incorporated": true, "evidence": "L98-102"},
+    {"id": "K-5", "incorporated": true, "evidence": "L143-144"}
+  ],
+  "approvedScope": {
+    "A": "초4 4 units: >=9 new forms, >=27 distinct stems, <=54 rows (사다리꼴 spare candidates review-only, not loaded)",
+    "B": "중3 4 units: >=12 new types, >=36 distinct stems, <=72 rows",
+    "C": "native descriptive 6 types x 2 = 12 items, <=12 rows, identity native-desc:/engine-native-desc:",
+    "rowCap": 138,
+    "allowedWork": ["authoring of A/B/C", "minimal loader/check wiring and tests required by §6.1"],
+    "excluded": ["new DB tables", "UI or print layout changes", "automatic descriptive grading", "student scores", "in-place edits of existing rows", "§7 follow-up roadmap"]
+  },
+  "mandatoryConditions": [
+    "No shared-DB write until all six §6.1 gates are implemented and covered by tests",
+    "Re-read the DB baseline for the 8 target units right before loading; preserve ledger 559774350",
+    "Claude final review of every actual candidate (content, rubric, render) and of the batch manifest; record the batch SHA in the final approval JSON; --apply refuses on any mismatch",
+    "Load only from root with ALLOW_SHARED_IMPORT=1 and --apply; quarantine failures, never lower gates to hit counts",
+    "Keep print-check items as 대기 without a physical print check",
+    "Any relaxation of scope or gates after approval requires a new revision and re-review (plan §5 L106-107)"
+  ],
+  "notes": [
+    "R2-6 drops global empty-family cleanup, so problem_family.next_seq gaps may remain after a revert. Acceptable as the safer choice; report the empty families left behind.",
+    "138 rows fit in a single transaction; if that is not done, record why in the completion report."
+  ],
+  "unresolvedBlockers": [],
+  "notYetApproved": ["final candidate content", "batch manifest SHA", "actual DB write"],
+  "uncertainPastFacts": ["DB state after 559774350 not verified; no DB connection in this review"],
+  "actionsNotTaken": ["no DB connection or write", "no product code or item authoring", "no paid API", "no push", "no deploy", "no main merge", "plan not modified"]
+}
