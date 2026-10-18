@@ -1,0 +1,133 @@
+{
+  "reviewer": "Claude (claude-opus-5-5)",
+  "date": "2026-10-18",
+  "round": "R1",
+  "readOnly": true,
+  "target": {
+    "path": "docs/planning/tracks/math-question-formats-20261018.md",
+    "sha256": "50c525785cae16825d23d7bd55de81f7a779fa54cd98e8933d470a126acccc61",
+    "shaVerified": true
+  },
+  "verdict": "approved",
+  "scope": "Plan approval only. Gate 2 (actual DDL/trigger/backfill manifest), 17-row repair candidate contents, and reinforcement candidate manifest each still require separate Claude execution review.",
+  "materialBlockers": [],
+  "bindingConditions": [
+    {
+      "id": "C1",
+      "topic": "tri221PickIso eqTri distractor",
+      "detail": "Source distractors are [eqTri, rightTri] (plan cause column names rightTri/wideTri). eqTri (44,44,44) is isosceles under the grade-4 inclusive definition, so the repair must replace both distractors with coordinate-proved non-isosceles triangles; same for tri222Pick. Keep global shape meanings."
+    },
+    {
+      "id": "C2",
+      "topic": "outer wall overlap",
+      "detail": "registered_problem_outer_wall fires on ANY UPDATE incl. key-only SET and forces private/rejected/directUse=false. Gate 2 manifest must re-prove 0 overlap of target rows with problem_outer_wall_quarantine immediately before execution and refuse otherwise."
+    },
+    {
+      "id": "C3",
+      "topic": "174 is a ceiling",
+      "detail": "8 mid manual-20261018 families (shortage 16) are MC-only; without a verified SA derivation contract each new content is 1 row. Allowlist must state per-content expected row count and contract; never derive SA by deleting choices."
+    },
+    {
+      "id": "C4",
+      "topic": "privileges verified on real DB",
+      "detail": "PGlite proves trigger semantics/rollback but not SECURITY INVOKER/search_path/REVOKE/Supabase roles; read pg_proc catalog on shared DB at Gate 2."
+    },
+    {
+      "id": "C5",
+      "topic": "no unproved key SET",
+      "detail": "Trigger intentionally allows key-only updates; only the backfill tool and post-proof loaders may set keys; tool refuses changing an existing key. Pin with tests."
+    },
+    {
+      "id": "C6",
+      "topic": "print-check",
+      "detail": "Figure/choice changes from the 17-row repair and format-selection effects on print go into src/app/dev/print-check/items.ts as pending; do not claim physical print completion."
+    }
+  ],
+  "checksPerformed": {
+    "planSha": "match",
+    "snapshotSha": {
+      "value": "daf90c9a97e0630bb8be372e873187603f1fdbf5a201de18c009e266f7cfbac3",
+      "match": true
+    },
+    "independentIdentityProof": {
+      "rows": 118020,
+      "eligibleRows": 115575,
+      "externalKeyGroups": 51475,
+      "candidatePairs": 47748,
+      "provedPairs": 47746,
+      "provedBothEligible": 47733,
+      "provedMixedEligibility": 0,
+      "heldFigureOrSolutionMismatch": 2,
+      "heldProjection": 70274,
+      "availableProjection": 67842,
+      "matchesPlan": true
+    },
+    "schemaTrigger": {
+      "existingBeforeUpdateTriggers": [
+        "problem_code_freeze",
+        "registered_problem_outer_wall"
+      ],
+      "columnOverlapWithNewTrigger": false,
+      "updatedAtDbTrigger": false,
+      "outerWallRisk": "key-only UPDATE would lock registered rows -> C2"
+    },
+    "formatSelection": {
+      "file": "src/lib/unifiedBankSelection.ts",
+      "line": 393,
+      "finding": "siblings keyed by family|unitId|difficulty so different seed/variant rows become format substitutes; plan's three-layer split fixes it"
+    },
+    "historyCompatibility": "exact problem_id FKs preserved; no row delete/code reissue/snapshot rewrite; preflight 11 reference columns all 0 for 17 rows",
+    "repairs17": {
+      "tri222Pick": "confirmed both distractors isosceles",
+      "tri221PickIso": "confirmed; distractors are eqTri+rightTri -> C1",
+      "quad242PerpCount": "confirmed perpCount Math.min(k,3)",
+      "quad244Pick": "confirmed inclusive trapezoid",
+      "poly263Name": "confirmed missing equal-angle condition",
+      "rows": 17
+    },
+    "reinforcement": {
+      "families": 53,
+      "elementary": {
+        "families": 17,
+        "contents": 34,
+        "source": "audit README"
+      },
+      "middleAndDescriptive": {
+        "families": 36,
+        "contents": 62,
+        "recomputed": true
+      },
+      "nativeDescriptive": {
+        "families": 6,
+        "contents": 18
+      },
+      "mcOnlyFamilies": {
+        "families": 8,
+        "contents": 16
+      },
+      "maxContents": 96,
+      "maxRows": 174,
+      "rowFormula": "18 + 78*2 = 174 (ceiling)"
+    },
+    "commits": {
+      "e331f90c6": "not in HEAD; elementary engine/tests/plan only",
+      "550096afc": "not in HEAD; QA ledger only",
+      "eywaFilesTouched": false
+    },
+    "baseline": {
+      "1d84a0a933e439acba941498472a420b184e9095": "ancestor of HEAD"
+    }
+  },
+  "advisories": [
+    "format dialog follows DESIGN.md; extend shared components rather than new per-screen ones (rule 11)",
+    "attach projection EXPLAIN/p95/wire-bytes to Gate 2 bundle",
+    "keep the 2 held pairs solo"
+  ],
+  "noModifications": {
+    "product": true,
+    "source": true,
+    "db": true,
+    "env": true,
+    "rawBankDataCopied": false
+  }
+}
