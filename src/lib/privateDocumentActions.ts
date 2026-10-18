@@ -29,6 +29,8 @@ import {
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { sheetTagSchema } from "@/contracts/sheetTag.contract";
 import { z } from "zod";
+import { validateQuestionDraft } from "@/lib/problem/questionDraft";
+import { QuestionSelectionConflict } from "@/lib/problem/questionSelection";
 import { parseStrictJson } from "@/lib/textbook/strictJson";
 import {
   ARITHMETIC_SHEET_JSON_LIMITS,
@@ -240,6 +242,7 @@ export async function saveDocument(request: Request, id: string) {
       )
         return null;
       if (previous && previous.kind !== kind) return null;
+      if (kind === "draft") await validateQuestionDraft(tx, payload);
       // A stale autosave may not carry a share into a new branch.
       const branchId = access.account!.branchId;
       const nextVisibility =
@@ -315,6 +318,8 @@ export async function saveDocument(request: Request, id: string) {
           409,
         );
   } catch (error) {
+    if (error instanceof QuestionSelectionConflict)
+      return privateError(error.message, 409, "QUESTION_CHANGED");
     if (isPrismaErrorCode(error, "P2002"))
       return privateError("이미 저장된 자료입니다. 다시 불러와 주세요.", 409);
     throw error;

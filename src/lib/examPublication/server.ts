@@ -23,6 +23,10 @@ import { requireOwnedClass } from "@/lib/ownership";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { problemIneligibleReason } from "@/lib/problemEligibility";
 import type { SessionUser } from "@/lib/session";
+import { questionIdOf } from "@/lib/problem/questionIdentity";
+import { lockProblemRows } from "@/lib/problem/lockRows";
+import { validateQuestionDraft } from "@/lib/problem/questionDraft";
+import { QuestionSelectionConflict } from "@/lib/problem/questionSelection";
 import {
   examPublicationContentHash,
   freezeDraftPayload,
@@ -162,6 +166,7 @@ export async function publishExam(
       reviewStatus: true,
       directUseAllowed: true,
       answer: true,
+      questionGroupKey: true,
     },
   });
   const byId = new Map(rows.map((row) => [row.id, row]));
@@ -211,6 +216,30 @@ export async function publishExam(
     const created = await db.$transaction(async (tx) => {
       for (const classId of input.classIds)
         await assertClassWrite(tx, viewer, classId, "test:write");
+      await lockProblemRows(
+        tx,
+        problems.map((p) => p.problemId),
+      );
+      await validateQuestionDraft(tx, document.payload);
+      const current = await tx.problem.findMany({
+        where: { id: { in: problems.map((p) => p.problemId) } },
+        select: {
+          id: true,
+          questionGroupKey: true,
+          pool: true,
+          reviewStatus: true,
+          directUseAllowed: true,
+          answer: true,
+        },
+      });
+      if (
+        current.length !== problems.length ||
+        current.some((row) => problemIneligibleReason(row)) ||
+        new Set(current.map(questionIdOf)).size !== current.length
+      )
+        throw new QuestionSelectionConflict(
+          "낼 수 없는 문항이나 같은 문항의 여러 형식이 있습니다. 시험지를 다시 확인해 주세요.",
+        );
       const publication = await tx.examPublication.create({
         data: {
           userId: session.id,
@@ -256,6 +285,8 @@ export async function publishExam(
     });
     return createdResponse(created, 201);
   } catch (error) {
+    if (error instanceof QuestionSelectionConflict)
+      return jsonError("CONFLICT", error.message, 409);
     if (error instanceof ClassAccessDenied)
       return jsonError("FORBIDDEN", error.message, 403);
     // 같은 요청 번호가 동시에 두 번 왔다 — 먼저 끝난 것을 돌려준다.
