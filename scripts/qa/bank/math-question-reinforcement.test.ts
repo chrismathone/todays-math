@@ -55,6 +55,8 @@ import {
   type UnitIdentity,
 } from "../../import/verified-engine-batch";
 import { elementaryUnits } from "../../../src/lib/elementary/generate";
+import { createRng } from "../../../src/lib/elementary/rng";
+import { M2_COUNTING } from "../../../src/lib/middle/m2Counting";
 import { verifyCandidateTasks } from "./verify-question-reinforcement";
 
 const targets = boundedTargets(process.cwd());
@@ -77,6 +79,39 @@ afterEach(() => {
 });
 
 describe("bounded preparation contracts", () => {
+  it("calls zero-inclusive family11 cards digits while counting positive natural-number results", () => {
+    const family = M2_COUNTING.find(
+      (entry) => entry.key === "2-2|경우의 수|11",
+    )!;
+    const seen = new Set<number>();
+    for (const seed of [20261118, ...Array.from({ length: 32 }, (_, i) => i)]) {
+      const row = family.handler(createRng(seed));
+      const { k, r, kind } = row.facts as {
+        k: number;
+        r: number;
+        kind: number;
+      };
+      seen.add(kind);
+      expect(row.content).toContain(`$0$부터 $${k}$까지의 숫자가`);
+      expect(row.content).not.toContain("까지의 자연수가");
+      expect(row.content).toContain("자연수");
+      const numbers: number[] = [];
+      function enumerate(digits: number[]) {
+        if (digits.length === r) {
+          const number = Number(digits.join(""));
+          if (kind === 0 || number % 5 === 0) numbers.push(number);
+          return;
+        }
+        for (let digit = 0; digit <= k; digit++)
+          if (!digits.includes(digit) && (digits.length > 0 || digit !== 0))
+            enumerate([...digits, digit]);
+      }
+      enumerate([]);
+      expect(numbers.every((number) => number >= 10 ** (r - 1))).toBe(true);
+      expect(row.answer).toBe(`$${numbers.length}$`);
+    }
+    expect(seen).toEqual(new Set([0, 1]));
+  });
   it("has exactly the audited 17+36 allowlist, disjoint from repairs and whole-family aliases", () => {
     expect(targets).toHaveLength(53);
     expect(targets.filter((target) => target.engine === "elem")).toHaveLength(

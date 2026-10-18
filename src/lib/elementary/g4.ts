@@ -15529,7 +15529,10 @@ function quad243Triple(unit: UnitSeed, rng: Rng): ElemProblem {
 }
 
 function quad244Pick(unit: UnitSeed, rng: Rng): ElemProblem {
-  const put = labelledPick(rng, "trap", ["irregQuad", "choiceNonparallelQuad"]);
+  const put = labelledPick(rng, "trap", [
+    "choiceSkewQuad",
+    "choiceNonparallelQuad",
+  ]);
   return make(
     unit,
     "그림에서 사다리꼴의 기호를 쓰시오.",
