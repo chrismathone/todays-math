@@ -903,6 +903,32 @@ describe("verified manifest relation application", () => {
     expect(fixture.tables.class.every((c) => c.active === false)).toBe(true);
     expect(fixture.tables.student[0].id).toBe(old);
   });
+  it("does not import a new class without a linked teacher and records no conflict (원장님 2026-10-18)", async () => {
+    rows.classes[1].teacherId = null;
+    const unlinked = await apply();
+    expect(
+      fixture.tables.class.some((row) => row.eywaClassId === classB),
+    ).toBe(false);
+    expect(unlinked.conflicts).toEqual([]);
+    rows.classes[1].teacherId = id(77);
+    await apply();
+    expect(
+      fixture.tables.class.some((row) => row.eywaClassId === classB),
+    ).toBe(false);
+    rows.classes[1].teacherId = otherTeacher;
+    await apply();
+    expect(
+      fixture.tables.class.find((row) => row.eywaClassId === classB)?.userId,
+    ).toBe(`target-${otherTeacher}`);
+  });
+  it("keeps an imported class when its source teacher is cleared", async () => {
+    await apply();
+    rows.classes[0].teacherId = null;
+    await apply();
+    expect(
+      fixture.tables.class.find((row) => row.eywaClassId === classA)?.active,
+    ).toBe(true);
+  });
   it("applies a real handover without changing original author, while a pending candidate receives no membership", async () => {
     await apply();
     const creator = fixture.tables.class[0].userId;

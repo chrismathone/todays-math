@@ -140,6 +140,6 @@ describe("eywa management usability", () => {
       />,
     );
     expect(screen.getByRole("button", { name: "확인 후 연결 승인" })).toBeDisabled();
-    expect(screen.getAllByText(/보관 담당자/).length).toBeGreaterThan(0);
+    expect(screen.queryByText(/보관 담당자/)).toBeNull();
   });
 });

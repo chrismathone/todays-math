@@ -18,7 +18,6 @@ import {
 } from "./sync-contract";
 import {
   activationGate,
-  archiveOwnerWhere,
   pageWindow,
   restorableIntegrationUser,
   withoutBindingStop,
@@ -159,7 +158,6 @@ export async function managedStatus(
           normalizeName(sourceName) !== normalizeName(targetName),
         configured: bindingConfigs(b.id).length > 0,
         mode: b.mode,
-        archiveOwnerUserId: b.archiveOwnerUserId,
         enabled: b.enabled,
         healthy: b.healthy,
         retiredAt: b.retiredAt?.toISOString() ?? null,
@@ -273,10 +271,7 @@ export async function configureManagedBinding(
       | "shadow"
       | "retire"
       | "rebaseline"
-      | "retry"
-      | "assign-archive-owner";
-    archiveOwnerUserId?: string;
-    expectedArchiveOwnerUserId?: string | null;
+      | "retry";
     evidence?: string;
   },
 ) {
@@ -349,70 +344,16 @@ export async function configureManagedBinding(
       });
       return { changed: true, count: stoppedUserIds.length };
     });
-  if (input.action === "assign-archive-owner") {
-    if (!input.archiveOwnerUserId)
-      throw new EywaAccessError("invalid_archive_owner");
-    return db.$transaction(async (tx) => {
-      const binding = await lockBinding(tx, input.bindingId);
-      if (
-        binding.tenantId !== config.tenantId ||
-        binding.targetBranchId !== config.targetBranchId
-      )
-        throw new EywaAccessError("binding_mismatch");
-      if (
-        (binding.archiveOwnerUserId ?? null) !==
-        (input.expectedArchiveOwnerUserId ?? null)
-      )
-        throw new EywaAccessError("archive_owner_conflict");
-      const owner = await tx.user.findFirst({
-        where: archiveOwnerWhere(
-          binding.targetBranchId,
-          input.archiveOwnerUserId!,
-        ),
-      });
-      if (!owner) throw new EywaAccessError("invalid_archive_owner");
-      const beforeId = binding.archiveOwnerUserId;
-      await tx.eywaBinding.update({
-        where: { id: binding.id },
-        data: { archiveOwnerUserId: owner.id },
-      });
-      await tx.accountAuditLog.create({
-        data: {
-          actorId: actor.id,
-          action: "eywa.archive_owner_changed",
-          outcome: "success",
-          details: {
-            bindingId: binding.id,
-            reason: "assign-archive-owner",
-            beforeId,
-            afterId: owner.id,
-          },
-        },
-      });
-      return { changed: true, beforeId, afterId: owner.id };
-    });
-  }
   const fresh = await fetchControl(config);
   if (input.action === "register") {
     if (!(await db.branch.findUnique({ where: { id: config.targetBranchId } })))
       throw new EywaAccessError("target_branch_missing");
-    if (
-      input.archiveOwnerUserId &&
-      !(await db.user.findFirst({
-        where: archiveOwnerWhere(
-          config.targetBranchId,
-          input.archiveOwnerUserId,
-        ),
-      }))
-    )
-      throw new EywaAccessError("invalid_archive_owner");
     return db.$transaction(async (tx) => {
       const binding = await tx.eywaBinding.create({
         data: {
           id: config.bindingId,
           tenantId: config.tenantId,
           targetBranchId: config.targetBranchId,
-          archiveOwnerUserId: input.archiveOwnerUserId,
           mode: "shadow",
           sourceEpoch: fresh.control.sourceEpoch,
         },
