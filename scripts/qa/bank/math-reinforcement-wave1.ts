@@ -44,8 +44,8 @@ const save = (name: string, value: unknown) =>
     { flag: "wx" },
   );
 const plans = read<Plan[]>("wave1-inputs.json");
-const baseline = read<{ units: { id: string }[] }>("before.json");
-const ids = baseline.units.map((u) => u.id);
+const baseline = read<{ targetDetails: { id: string }[] }>("before.json");
+const ids = baseline.targetDetails.map((u) => u.id);
 if (ids.length !== 8 || plans.length !== 3)
   throw new Error("Unexpected wave1 scope");
 const command = process.argv[2] ?? "prepare";
