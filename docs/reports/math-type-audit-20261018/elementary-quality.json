@@ -1,0 +1,132 @@
+{
+  "snapshotSha256": "daf90c9a97e0630bb8be372e873187603f1fdbf5a201de18c009e266f7cfbac3",
+  "findings": [
+    {
+      "id": "Q-E01",
+      "familyKey": "elem:초4|2-6-3 대각선|10",
+      "handler": "poly263Name",
+      "reason": "All sides equal does not imply all angles equal. The prompt omits the second defining condition of a regular polygon.",
+      "expectedRows": 4,
+      "source": "src/lib/elementary/g4.ts",
+      "line": 17861,
+      "rows": [
+        {
+          "id": "7995fa62-a5cc-4830-ae21-56b6dacdb58f",
+          "problemCode": "E41203-A10-002",
+          "sha256": "5ae3e859b1773f5fe2d54e0792f6a1cad3787eb8cc7ae551d13d35c84cebf32b"
+        },
+        {
+          "id": "b753f348-80b7-4bd6-a237-7b9c19558821",
+          "problemCode": "E41203-A10-004",
+          "sha256": "d31e711cf1df45c000e65ad856954e7dbfd161176c8bd81a4526952937948cde"
+        },
+        {
+          "id": "dfc26b77-edb0-42e8-bc6d-c21f8736be3c",
+          "problemCode": "E41203-A10-003",
+          "sha256": "59ddd2caf09bb0fc17dbaa39552e5e8546bb89d59d89c55e5a7230431a42ae2d"
+        },
+        {
+          "id": "e92f7aa4-49e1-4062-bc20-afb04e7cc7f7",
+          "problemCode": "E41203-A10-001",
+          "sha256": "cf06ea035e2cc97b09ace88485f795875e345640452f3579d7e41dbe532e2cc3"
+        }
+      ]
+    },
+    {
+      "id": "Q-E02",
+      "familyKey": "elem:초4|2-4-4 사다리꼴|05",
+      "handler": "quad244Pick",
+      "reason": "The same generator explicitly includes rectangles in trapezoids; both the trapezoid and rectangle in these choices satisfy the requested class.",
+      "expectedRows": 3,
+      "source": "src/lib/elementary/g4.ts",
+      "line": 15525,
+      "rows": [
+        {
+          "id": "1f5f7704-e3f2-473a-8560-fbbed550a27e",
+          "problemCode": "E41004-A05-002",
+          "sha256": "6e0997f82697670cd383c9ede893554e3729b343d9b03c4a2bbe01aadb88467d"
+        },
+        {
+          "id": "2ce9cb5b-5c47-4d40-a059-0d00acb2642c",
+          "problemCode": "E41004-A05-001",
+          "sha256": "c27423f56d2ca9c1ca6780e2516175ea1ddc2d284a3775024d916156474832ae"
+        },
+        {
+          "id": "4a16b2a4-3256-41d0-8e58-9b51038bc829",
+          "problemCode": "E41004-A05-003",
+          "sha256": "574d1b67a064b859afbe0e93020e74926642ca51bfc4c035aef2cb4cd42d3d7d"
+        }
+      ]
+    },
+    {
+      "id": "Q-E03",
+      "familyKey": "elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|09",
+      "handler": "tri221PickIso",
+      "reason": "The chooser includes equilateral and right-isosceles shapes, supplies no exclusion or side marks, and stores just one isosceles label. This contradicts the source's explicit policy to avoid the inclusive/exclusive ambiguity.",
+      "expectedRows": 3,
+      "source": "src/lib/elementary/g4.ts",
+      "line": 12204,
+      "rows": [
+        {
+          "id": "b711aa94-ef28-45e3-a707-009857bf08f2",
+          "problemCode": "E40801-A09-003",
+          "sha256": "022f94c478eb62aeb5098d6eb6e9dec33164ef6d5b42ad92d0fd15bb51d01450"
+        },
+        {
+          "id": "d910914a-afd6-437e-84ff-94c6aa147d7d",
+          "problemCode": "E40801-A09-002",
+          "sha256": "6fb12bf87737396f0ad5d60ecbdc42a0a129bfe61ff8c83f372b4118dcd5fca8"
+        },
+        {
+          "id": "e96f1ca4-b9c3-4527-bec6-f33c8bb23723",
+          "problemCode": "E40801-A09-001",
+          "sha256": "cc6222696a3697c997c0344b0558e52cbb3b4caeaf0b042aec96157a0670c24b"
+        }
+      ]
+    },
+    {
+      "id": "Q-E04",
+      "familyKey": "elem:초4|2-4-2 평행과 평행선|09",
+      "handler": "quad242PerpCount",
+      "reason": "The prompt says 4 or 5 perpendiculars while the stored SVG contains exactly 3; the generator clamps the figure with Math.min(k,3).",
+      "expectedRows": 4,
+      "source": "src/lib/elementary/g4.ts",
+      "line": 15439,
+      "rows": [
+        {
+          "id": "3550a513-3957-4662-acab-8ba25498e55f",
+          "problemCode": "E41002-A09-003",
+          "sha256": "a5557ccd385031a91c0e08aab8ee531687b372fb0b876adbee4cbb9293e76bbe",
+          "perpendicularCount": 3
+        },
+        {
+          "id": "4b57ab5c-5cb6-450f-845c-d33846d72999",
+          "problemCode": "E41002-A09-001",
+          "sha256": "afc2022ed72e9dcf3186766a233a6ba7897b7e8cbd8d0f768320b5e6d9ce5cf4",
+          "perpendicularCount": 3
+        },
+        {
+          "id": "837e0291-9510-42ed-817e-f0a5a9b97462",
+          "problemCode": "E41002-A09-004",
+          "sha256": "1b4cf9201e3956a94e0a65eb3262e535eb93040fd715a3a0bcdf1d65280fb586",
+          "perpendicularCount": 3
+        },
+        {
+          "id": "ebfa6bac-4abb-4293-a089-43bfb389c2b1",
+          "problemCode": "E41002-A09-002",
+          "sha256": "f59dbec808fc27be6a2ca4064e5fb3beb33f727649ad3a47096218dacf2806e7",
+          "perpendicularCount": 3
+        }
+      ]
+    }
+  ],
+  "uniqueEligibleRows": 14,
+  "counterexample": {
+    "type": "convex equilateral hexagon, not regular",
+    "edgeDirectionsDegrees": [0, 90, 150, 180, 270, 330],
+    "edgeLengths": [1, 1, 1, 1, 1, 1],
+    "interiorAnglesDegrees": [90, 120, 150, 90, 120, 150],
+    "closure": [-5.551115123125783e-16, -2.220446049250313e-16]
+  },
+  "scope": "Source inspection of all 53 elementary finite-domain candidates, exact saved payload evidence for the four cited families; not a proof that no other error exists. No DB/product changes."
+}

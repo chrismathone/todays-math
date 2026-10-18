@@ -1,0 +1,3842 @@
+{
+  "seeds": "0..511 inclusive",
+  "note": "512 probes per registered type; observed variation is not a full-domain proof or independent mathematical verification. The stored metric excludes choices; generated figures use exact figureSpec rather than stored SVG.",
+  "targets": 84,
+  "registered": 70,
+  "results": [
+    {
+      "unitId": "3ff1f417-ed57-4732-a7cb-5e073cb82aac",
+      "familyKey": "elem:초3|1-5-4 1분보다 작은 단위|07",
+      "familyCode": "A07",
+      "grade": "초3",
+      "chapter": "1-5 길이와 시간",
+      "section": "1-5-4 1분보다 작은 단위",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 8,
+      "eligibleRows": 8,
+      "sources": {
+        "manual": 8
+      },
+      "difficulties": {
+        "기본": 8
+      },
+      "formats": {
+        "multiple_choice": 4,
+        "short_answer": 4
+      },
+      "problemTypes": {
+        "개념": 8
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "8b44b03f-1773-4a6b-afc1-8a682a37b96d",
+        "973ff93f-bc19-4fa6-9179-130a4adb81f3",
+        "98cbdfae-442d-468c-8352-9d163b213bbd"
+      ],
+      "distinctStems": 4,
+      "allDistinctStems": 4,
+      "distinctPayloads": 8,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 26,
+      "solutionLengthMin": 26,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "secHowManyMin",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 4,
+      "generatedDistinctPayloads": 4,
+      "generatedDistinctAnswers": 4
+    },
+    {
+      "unitId": "4c7baa74-282e-49b9-ad4a-1b6f48c2320c",
+      "familyKey": "elem:초3|2-4-5 대분수 알아보기|31",
+      "familyCode": "A13",
+      "grade": "초3",
+      "chapter": "2-4 분수",
+      "section": "2-4-5 대분수 알아보기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "기본": 3
+      },
+      "formats": {
+        "multiple_choice": 3
+      },
+      "problemTypes": {
+        "개념": 3
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "241e36e3-43ac-4d3e-834c-d603d4f3ad36",
+        "8cae4cc0-96a1-4071-a7d5-58b9e81ee5ea",
+        "c64d9d80-7a0f-45bb-8d6a-1bdc987a09d9"
+      ],
+      "distinctStems": 2,
+      "allDistinctStems": 2,
+      "distinctPayloads": 3,
+      "numericSkeletons": 2,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 294,
+      "solutionLengthMin": 291,
+      "status": "unregistered_at_audit_head",
+      "observations": 0
+    },
+    {
+      "unitId": "4c7baa74-282e-49b9-ad4a-1b6f48c2320c",
+      "familyKey": "elem:초3|2-4-5 대분수 알아보기|32",
+      "familyCode": "A14",
+      "grade": "초3",
+      "chapter": "2-4 분수",
+      "section": "2-4-5 대분수 알아보기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "응용": 3
+      },
+      "formats": {
+        "multiple_choice": 3
+      },
+      "problemTypes": {
+        "활용": 3
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "cbbf0869-5725-4c08-87a1-c02cfd416e78",
+        "e3880ab7-9186-4916-83ef-97a3febe9e95",
+        "f31c56bd-4238-48b2-b533-ff024c944ec3"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 3,
+      "numericSkeletons": 3,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 215,
+      "solutionLengthMin": 194,
+      "status": "unregistered_at_audit_head",
+      "observations": 0
+    },
+    {
+      "unitId": "a8ef3885-a036-4026-be76-c1020f2ddbc7",
+      "familyKey": "elem:초3|2-3-1 원의 중심, 지름, 반지름|01",
+      "familyCode": "A01",
+      "grade": "초3",
+      "chapter": "2-3 원",
+      "section": "2-3-1 원의 중심, 지름, 반지름",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 2,
+      "eligibleRows": 2,
+      "sources": {
+        "manual": 2
+      },
+      "difficulties": {
+        "연산": 2
+      },
+      "formats": {
+        "short_answer": 2
+      },
+      "problemTypes": {
+        "계산": 2
+      },
+      "missingSolutions": 0,
+      "figures": 2,
+      "examples": [
+        "350624ac-f9a0-4b62-9f9f-afdb91c9ae2e",
+        "7ee7aa7a-9082-4f4b-8424-c4e9cfe68ee0"
+      ],
+      "distinctStems": 2,
+      "allDistinctStems": 2,
+      "distinctPayloads": 2,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 33,
+      "solutionLengthMin": 31,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "circ231NameVar",
+      "tier": "연산",
+      "observations": 512,
+      "generatedDistinctStems": 2,
+      "generatedDistinctPayloads": 2,
+      "generatedDistinctAnswers": 2
+    },
+    {
+      "unitId": "a8ef3885-a036-4026-be76-c1020f2ddbc7",
+      "familyKey": "elem:초3|2-3-1 원의 중심, 지름, 반지름|03",
+      "familyCode": "A03",
+      "grade": "초3",
+      "chapter": "2-3 원",
+      "section": "2-3-1 원의 중심, 지름, 반지름",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 4,
+      "eligibleRows": 4,
+      "sources": {
+        "manual": 4
+      },
+      "difficulties": {
+        "응용": 4
+      },
+      "formats": {
+        "short_answer": 4
+      },
+      "problemTypes": {
+        "활용": 4
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "04cdcd91-c250-406b-9a5e-6c6831567c9a",
+        "084569c2-1355-4580-a8c2-3976930984e2",
+        "3a111cbe-de41-4873-a59c-1e26794bbeca"
+      ],
+      "distinctStems": 4,
+      "allDistinctStems": 4,
+      "distinctPayloads": 4,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 56,
+      "solutionLengthMin": 56,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "circ231Apply",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 4,
+      "generatedDistinctPayloads": 4,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "a8ef3885-a036-4026-be76-c1020f2ddbc7",
+      "familyKey": "elem:초3|2-3-1 원의 중심, 지름, 반지름|04",
+      "familyCode": "A04",
+      "grade": "초3",
+      "chapter": "2-3 원",
+      "section": "2-3-1 원의 중심, 지름, 반지름",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "심화하": 3
+      },
+      "formats": {
+        "short_answer": 3
+      },
+      "problemTypes": {
+        "활용": 3
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "1c0c9e8a-51f5-4197-95fe-393644edd675",
+        "e6b315ae-1797-457f-8527-c4eaf65a9052",
+        "fb78fec4-ab79-4c44-9be7-bdfdf98f1f19"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 3,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 77,
+      "solutionLengthMin": 77,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "circ231Deep",
+      "tier": "심화하",
+      "observations": 512,
+      "generatedDistinctStems": 3,
+      "generatedDistinctPayloads": 3,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "a8ef3885-a036-4026-be76-c1020f2ddbc7",
+      "familyKey": "elem:초3|2-3-1 원의 중심, 지름, 반지름|10",
+      "familyCode": "A10",
+      "grade": "초3",
+      "chapter": "2-3 원",
+      "section": "2-3-1 원의 중심, 지름, 반지름",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 4,
+      "eligibleRows": 4,
+      "sources": {
+        "manual": 4
+      },
+      "difficulties": {
+        "응용": 4
+      },
+      "formats": {
+        "short_answer": 4
+      },
+      "problemTypes": {
+        "활용": 4
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "30232866-d5f0-4d8e-85df-e4388140ad3d",
+        "422c91d6-29a7-4bb4-a325-a7a045725707",
+        "6ed5c5fa-4e5f-4296-9cb1-00c300522443"
+      ],
+      "distinctStems": 4,
+      "allDistinctStems": 4,
+      "distinctPayloads": 4,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 35,
+      "solutionLengthMin": 35,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "circ231FoldHalf",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 4,
+      "generatedDistinctPayloads": 4,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "ac9dd2b1-efb5-49cb-99a3-cafbadb7d9c9",
+      "familyKey": "elem:초3|2-4-4 진분수와 가분수 알아보기|31",
+      "familyCode": "A11",
+      "grade": "초3",
+      "chapter": "2-4 분수",
+      "section": "2-4-4 진분수와 가분수 알아보기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "기본": 3
+      },
+      "formats": {
+        "multiple_choice": 3
+      },
+      "problemTypes": {
+        "개념": 3
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "33d467f0-3121-4b66-a9c2-8dac530fe48d",
+        "653c8cff-ec2d-48aa-8d89-b9116de9fbb0",
+        "bebefc34-d25f-46fe-b33c-323489b12438"
+      ],
+      "distinctStems": 2,
+      "allDistinctStems": 2,
+      "distinctPayloads": 3,
+      "numericSkeletons": 2,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 160,
+      "solutionLengthMin": 160,
+      "status": "unregistered_at_audit_head",
+      "observations": 0
+    },
+    {
+      "unitId": "ac9dd2b1-efb5-49cb-99a3-cafbadb7d9c9",
+      "familyKey": "elem:초3|2-4-4 진분수와 가분수 알아보기|32",
+      "familyCode": "A12",
+      "grade": "초3",
+      "chapter": "2-4 분수",
+      "section": "2-4-4 진분수와 가분수 알아보기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "응용": 3
+      },
+      "formats": {
+        "multiple_choice": 3
+      },
+      "problemTypes": {
+        "활용": 3
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "2ed4ed25-807b-4b6c-ae8c-eb05d63a9fa5",
+        "a4e05c36-91cc-44b5-bb02-b67f3deace37",
+        "ce0f1df0-c9a8-4130-adf3-d29d7f62139d"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 3,
+      "numericSkeletons": 3,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 114,
+      "solutionLengthMin": 111,
+      "status": "unregistered_at_audit_head",
+      "observations": 0
+    },
+    {
+      "unitId": "0a069c2f-244d-4f9e-832f-3e0f8969ba21",
+      "familyKey": "elem:초4|2-2-5 삼각형을 두 가지 기준으로 분류하기|06",
+      "familyCode": "A06",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-5 삼각형을 두 가지 기준으로 분류하기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "기본": 3
+      },
+      "formats": {
+        "short_answer": 3
+      },
+      "problemTypes": {
+        "개념": 3
+      },
+      "missingSolutions": 0,
+      "figures": 3,
+      "examples": [
+        "1a7eaf5d-3ef2-4d2f-b0cc-795882caac01",
+        "6a8576ee-c69a-418b-8176-a47b758aef92",
+        "e3441e92-4515-48a4-a6a9-4c8e740ee085"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 3,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 33,
+      "solutionLengthMin": 33,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "tri225PickRightIso",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 3,
+      "generatedDistinctPayloads": 3,
+      "generatedDistinctAnswers": 3
+    },
+    {
+      "unitId": "0a069c2f-244d-4f9e-832f-3e0f8969ba21",
+      "familyKey": "elem:초4|2-2-5 삼각형을 두 가지 기준으로 분류하기|07",
+      "familyCode": "A07",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-5 삼각형을 두 가지 기준으로 분류하기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 1,
+      "eligibleRows": 1,
+      "sources": {
+        "manual": 1
+      },
+      "difficulties": {
+        "기본": 1
+      },
+      "formats": {
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "개념": 1
+      },
+      "missingSolutions": 0,
+      "figures": 1,
+      "examples": ["58f4e4dd-c9c8-4683-b1af-c16adb21bbe3"],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 1,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 37,
+      "solutionLengthMin": 37,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "tri225EqIsAcute",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "0a069c2f-244d-4f9e-832f-3e0f8969ba21",
+      "familyKey": "elem:초4|2-2-5 삼각형을 두 가지 기준으로 분류하기|09",
+      "familyCode": "A09",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-5 삼각형을 두 가지 기준으로 분류하기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 1,
+      "eligibleRows": 1,
+      "sources": {
+        "manual": 1
+      },
+      "difficulties": {
+        "응용": 1
+      },
+      "formats": {
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "활용": 1
+      },
+      "missingSolutions": 0,
+      "figures": 1,
+      "examples": ["83e672e5-5a85-44a7-8377-f1e888de0df7"],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 1,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 31,
+      "solutionLengthMin": 31,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "tri225AngleClass",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "0a069c2f-244d-4f9e-832f-3e0f8969ba21",
+      "familyKey": "elem:초4|2-2-5 삼각형을 두 가지 기준으로 분류하기|10",
+      "familyCode": "A10",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-5 삼각형을 두 가지 기준으로 분류하기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 2,
+      "eligibleRows": 2,
+      "sources": {
+        "manual": 2
+      },
+      "difficulties": {
+        "응용": 2
+      },
+      "formats": {
+        "multiple_choice": 1,
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "활용": 2
+      },
+      "missingSolutions": 0,
+      "figures": 2,
+      "examples": [
+        "05a8ecc3-3f42-4656-ae37-9479673673c6",
+        "8edd7a49-cdb1-4c29-af4f-bacc21ce570f"
+      ],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 2,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 19,
+      "solutionLengthMin": 19,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "tri225Vertices",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "0a069c2f-244d-4f9e-832f-3e0f8969ba21",
+      "familyKey": "elem:초4|2-2-5 삼각형을 두 가지 기준으로 분류하기|33",
+      "familyCode": "A11",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-5 삼각형을 두 가지 기준으로 분류하기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "응용": 3
+      },
+      "formats": {
+        "short_answer": 3
+      },
+      "problemTypes": {
+        "활용": 3
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "5f3cd7fd-ad89-467b-beb1-725f64d1bc3f",
+        "75951bed-0acc-4fe8-991d-3c0d2917a0cf",
+        "fe660964-3f7b-4e00-9089-dcec37159364"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 3,
+      "numericSkeletons": 3,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 173,
+      "solutionLengthMin": 173,
+      "status": "stored_variants_below_observed_generator_capacity",
+      "handler": "admissibleBaseAngles",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 512,
+      "generatedDistinctPayloads": 512,
+      "generatedDistinctAnswers": 155
+    },
+    {
+      "unitId": "0a069c2f-244d-4f9e-832f-3e0f8969ba21",
+      "familyKey": "elem:초4|2-2-5 삼각형을 두 가지 기준으로 분류하기|34",
+      "familyCode": "A12",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-5 삼각형을 두 가지 기준으로 분류하기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 6,
+      "eligibleRows": 6,
+      "sources": {
+        "manual": 6
+      },
+      "difficulties": {
+        "응용": 6
+      },
+      "formats": {
+        "short_answer": 3,
+        "multiple_choice": 3
+      },
+      "problemTypes": {
+        "활용": 6
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "20faa41a-6951-4a30-ab3f-cf4814371fd1",
+        "51e14e35-aabd-44c1-a0ec-7540c7e6957b",
+        "5b9afa23-1750-4aa0-8e66-65a2b02c354d"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 6,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 122,
+      "solutionLengthMin": 122,
+      "status": "stored_variants_below_observed_generator_capacity",
+      "handler": "classificationIntersection",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 353,
+      "generatedDistinctPayloads": 353,
+      "generatedDistinctAnswers": 9
+    },
+    {
+      "unitId": "142fa3ff-cee9-4022-8eb4-e6581c1632e0",
+      "familyKey": "elem:초4|2-2-2 이등변삼각형의 성질|05",
+      "familyCode": "A05",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-2 이등변삼각형의 성질",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 2,
+      "eligibleRows": 2,
+      "sources": {
+        "manual": 2
+      },
+      "difficulties": {
+        "기본": 2
+      },
+      "formats": {
+        "multiple_choice": 1,
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "개념": 2
+      },
+      "missingSolutions": 0,
+      "figures": 2,
+      "examples": [
+        "57369b10-ffda-4736-98db-62bc8227a846",
+        "61fcba4d-8e42-450a-9eb8-27cfaf3f4e5b"
+      ],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 2,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 32,
+      "solutionLengthMin": 32,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "tri222Sum180",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "142fa3ff-cee9-4022-8eb4-e6581c1632e0",
+      "familyKey": "elem:초4|2-2-2 이등변삼각형의 성질|09",
+      "familyCode": "A09",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-2 이등변삼각형의 성질",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "응용": 3
+      },
+      "formats": {
+        "short_answer": 3
+      },
+      "problemTypes": {
+        "활용": 3
+      },
+      "missingSolutions": 0,
+      "figures": 3,
+      "examples": [
+        "44f268b3-cff7-46af-879e-6eeb874fbe0d",
+        "53135b6e-dafc-4424-8c9a-05abba72aa95",
+        "702fef05-8c79-4d4f-8703-61d5d8afee77"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 3,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 29,
+      "solutionLengthMin": 29,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "tri222Pick",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 3,
+      "generatedDistinctPayloads": 3,
+      "generatedDistinctAnswers": 3
+    },
+    {
+      "unitId": "142fa3ff-cee9-4022-8eb4-e6581c1632e0",
+      "familyKey": "elem:초4|2-2-2 이등변삼각형의 성질|10",
+      "familyCode": "A10",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-2 이등변삼각형의 성질",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 1,
+      "eligibleRows": 1,
+      "sources": {
+        "manual": 1
+      },
+      "difficulties": {
+        "응용": 1
+      },
+      "formats": {
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "활용": 1
+      },
+      "missingSolutions": 0,
+      "figures": 1,
+      "examples": ["b22cfb44-e1bd-4db3-8091-2dea73957806"],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 1,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 23,
+      "solutionLengthMin": 23,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "tri222EqualBase",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "14ac8687-bb97-48e7-a5f6-a6f77003a768",
+      "familyKey": "elem:초4|2-6-2 정다각형|05",
+      "familyCode": "A05",
+      "grade": "초4",
+      "chapter": "2-6 다각형",
+      "section": "2-6-2 정다각형",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 8,
+      "eligibleRows": 8,
+      "sources": {
+        "manual": 8
+      },
+      "difficulties": {
+        "기본": 8
+      },
+      "formats": {
+        "multiple_choice": 4,
+        "short_answer": 4
+      },
+      "problemTypes": {
+        "개념": 8
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "2217722c-4afd-4c23-8d6d-a6ade3baf45b",
+        "40704ea6-9c81-47bc-9ba9-23bb579b127e",
+        "5c17d969-5436-45b1-8959-a5e2446c06b2"
+      ],
+      "distinctStems": 4,
+      "allDistinctStems": 4,
+      "distinctPayloads": 8,
+      "numericSkeletons": 4,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 24,
+      "solutionLengthMin": 23,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "poly262AllDiag",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 4,
+      "generatedDistinctPayloads": 4,
+      "generatedDistinctAnswers": 4
+    },
+    {
+      "unitId": "14ac8687-bb97-48e7-a5f6-a6f77003a768",
+      "familyKey": "elem:초4|2-6-2 정다각형|07",
+      "familyCode": "A07",
+      "grade": "초4",
+      "chapter": "2-6 다각형",
+      "section": "2-6-2 정다각형",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 1,
+      "eligibleRows": 1,
+      "sources": {
+        "manual": 1
+      },
+      "difficulties": {
+        "기본": 1
+      },
+      "formats": {
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "개념": 1
+      },
+      "missingSolutions": 0,
+      "figures": 1,
+      "examples": ["35ee4a34-569f-4014-9dae-ace35629f1a8"],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 1,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 21,
+      "solutionLengthMin": 21,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "poly262TriDiag",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "14ac8687-bb97-48e7-a5f6-a6f77003a768",
+      "familyKey": "elem:초4|2-6-2 정다각형|08",
+      "familyCode": "A08",
+      "grade": "초4",
+      "chapter": "2-6 다각형",
+      "section": "2-6-2 정다각형",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 2,
+      "eligibleRows": 2,
+      "sources": {
+        "manual": 2
+      },
+      "difficulties": {
+        "응용": 2
+      },
+      "formats": {
+        "multiple_choice": 1,
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "활용": 2
+      },
+      "missingSolutions": 0,
+      "figures": 2,
+      "examples": [
+        "5613618a-777f-48fe-b590-cc2fdcfb830c",
+        "db9cedf1-fccb-4c76-a2e8-de3383061a56"
+      ],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 2,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 18,
+      "solutionLengthMin": 18,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "poly262QuadDiag",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "14ac8687-bb97-48e7-a5f6-a6f77003a768",
+      "familyKey": "elem:초4|2-6-2 정다각형|10",
+      "familyCode": "A10",
+      "grade": "초4",
+      "chapter": "2-6 다각형",
+      "section": "2-6-2 정다각형",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 1,
+      "eligibleRows": 1,
+      "sources": {
+        "manual": 1
+      },
+      "difficulties": {
+        "응용": 1
+      },
+      "formats": {
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "활용": 1
+      },
+      "missingSolutions": 0,
+      "figures": 1,
+      "examples": ["6bfaa676-f01c-4437-8fd4-689a1ad5beb6"],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 1,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 22,
+      "solutionLengthMin": 22,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "poly262EqualDiag",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "2bbd8e4a-07fd-42db-85c8-e082cb85bff0",
+      "familyKey": "elem:초4|2-2-4 삼각형을 각의 크기에 따라 분류하기|07",
+      "familyCode": "A07",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-4 삼각형을 각의 크기에 따라 분류하기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "기본": 3
+      },
+      "formats": {
+        "short_answer": 3
+      },
+      "problemTypes": {
+        "개념": 3
+      },
+      "missingSolutions": 0,
+      "figures": 3,
+      "examples": [
+        "e86c7614-9a7e-4bbb-9ec1-138b29a01d61",
+        "fa545dfb-a48a-462d-93eb-2d287feae208",
+        "fff51c25-6eb6-4046-989f-8dc97a5231fa"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 3,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 17,
+      "solutionLengthMin": 17,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "tri224PickRight",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 3,
+      "generatedDistinctPayloads": 3,
+      "generatedDistinctAnswers": 3
+    },
+    {
+      "unitId": "52fd6639-29a8-43d4-aafb-5b7c91987c3b",
+      "familyKey": "elem:초4|2-4-3 평행선 사이의 거리|09",
+      "familyCode": "A09",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-3 평행선 사이의 거리",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 1,
+      "eligibleRows": 1,
+      "sources": {
+        "manual": 1
+      },
+      "difficulties": {
+        "응용": 1
+      },
+      "formats": {
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "활용": 1
+      },
+      "missingSolutions": 0,
+      "figures": 1,
+      "examples": ["00cfa45f-5463-480d-a3ff-fd061ff2d2b4"],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 1,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 25,
+      "solutionLengthMin": 25,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "quad243Equal",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "familyKey": "elem:초4|2-4-4 사다리꼴|05",
+      "familyCode": "A05",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-4 사다리꼴",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "기본": 3
+      },
+      "formats": {
+        "short_answer": 3
+      },
+      "problemTypes": {
+        "개념": 3
+      },
+      "missingSolutions": 0,
+      "figures": 3,
+      "examples": [
+        "1f5f7704-e3f2-473a-8560-fbbed550a27e",
+        "2ce9cb5b-5c47-4d40-a059-0d00acb2642c",
+        "4a16b2a4-3256-41d0-8e58-9b51038bc829"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 3,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 24,
+      "solutionLengthMin": 24,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "quad244Pick",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 3,
+      "generatedDistinctPayloads": 3,
+      "generatedDistinctAnswers": 3
+    },
+    {
+      "unitId": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "familyKey": "elem:초4|2-4-4 사다리꼴|06",
+      "familyCode": "A06",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-4 사다리꼴",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 2,
+      "eligibleRows": 2,
+      "sources": {
+        "manual": 2
+      },
+      "difficulties": {
+        "기본": 2
+      },
+      "formats": {
+        "multiple_choice": 1,
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "개념": 2
+      },
+      "missingSolutions": 0,
+      "figures": 2,
+      "examples": [
+        "4400aae1-784a-488b-85ae-71278929a791",
+        "b81362f5-6bc7-4e3e-9035-b5dec67461dd"
+      ],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 2,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 21,
+      "solutionLengthMin": 21,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "quad244Pairs",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "familyKey": "elem:초4|2-4-4 사다리꼴|08",
+      "familyCode": "A08",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-4 사다리꼴",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 1,
+      "eligibleRows": 1,
+      "sources": {
+        "manual": 1
+      },
+      "difficulties": {
+        "응용": 1
+      },
+      "formats": {
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "활용": 1
+      },
+      "missingSolutions": 0,
+      "figures": 1,
+      "examples": ["cbf46414-3ab3-4186-b328-8708a488125a"],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 1,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 25,
+      "solutionLengthMin": 25,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "quad244Name",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "familyKey": "elem:초4|2-4-4 사다리꼴|09",
+      "familyCode": "A09",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-4 사다리꼴",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 2,
+      "eligibleRows": 2,
+      "sources": {
+        "manual": 2
+      },
+      "difficulties": {
+        "응용": 2
+      },
+      "formats": {
+        "short_answer": 1,
+        "multiple_choice": 1
+      },
+      "problemTypes": {
+        "활용": 2
+      },
+      "missingSolutions": 0,
+      "figures": 2,
+      "examples": [
+        "ea11cdd3-8533-4caf-a187-7a22bca7b15b",
+        "f142dcc1-d247-4146-82cb-de914872fc73"
+      ],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 2,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 18,
+      "solutionLengthMin": 18,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "quad244Vertices",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "familyKey": "elem:초4|2-4-4 사다리꼴|10",
+      "familyCode": "A10",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-4 사다리꼴",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 2,
+      "eligibleRows": 2,
+      "sources": {
+        "manual": 2
+      },
+      "difficulties": {
+        "응용": 2
+      },
+      "formats": {
+        "short_answer": 1,
+        "multiple_choice": 1
+      },
+      "problemTypes": {
+        "활용": 2
+      },
+      "missingSolutions": 0,
+      "figures": 2,
+      "examples": [
+        "07b5ac1d-439c-4576-acfa-925811ccd45f",
+        "433feef3-26ec-49e3-a936-f98fe58469cd"
+      ],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 2,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 39,
+      "solutionLengthMin": 39,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "quad244Sides",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "familyKey": "elem:초4|2-4-4 사다리꼴|37",
+      "familyCode": "A11",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-4 사다리꼴",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 6,
+      "eligibleRows": 6,
+      "sources": {
+        "manual": 6
+      },
+      "difficulties": {
+        "응용": 6
+      },
+      "formats": {
+        "short_answer": 3,
+        "multiple_choice": 3
+      },
+      "problemTypes": {
+        "활용": 6
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "1b19069d-05c5-4873-84f1-c302f2fd3e83",
+        "38c51980-6b82-4880-a207-020cf5d39770",
+        "73792ef8-3be9-46be-bb5c-ab634fe8018c"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 6,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 92,
+      "solutionLengthMin": 91,
+      "status": "stored_variants_below_observed_generator_capacity",
+      "handler": "rightCornerTrapezoid",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 342,
+      "generatedDistinctPayloads": 342,
+      "generatedDistinctAnswers": 26
+    },
+    {
+      "unitId": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "familyKey": "elem:초4|2-4-4 사다리꼴|38",
+      "familyCode": "A12",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-4 사다리꼴",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 6,
+      "eligibleRows": 6,
+      "sources": {
+        "manual": 6
+      },
+      "difficulties": {
+        "응용": 6
+      },
+      "formats": {
+        "multiple_choice": 3,
+        "short_answer": 3
+      },
+      "problemTypes": {
+        "활용": 6
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "0abb1e08-ad76-4fdd-bba0-f0a12ca0237c",
+        "0d05a5f2-537f-4462-83f9-66ed2d49d827",
+        "1e9a7d3f-448b-4726-90fc-786e73e67aba"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 6,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 113,
+      "solutionLengthMin": 111,
+      "status": "stored_variants_below_observed_generator_capacity",
+      "handler": "exactlyOneParallelPair",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 388,
+      "generatedDistinctPayloads": 388,
+      "generatedDistinctAnswers": 14
+    },
+    {
+      "unitId": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "familyKey": "elem:초4|2-4-4 사다리꼴|39",
+      "familyCode": "A13",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-4 사다리꼴",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "응용": 3
+      },
+      "formats": {
+        "short_answer": 3
+      },
+      "problemTypes": {
+        "활용": 3
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "1142edb2-5333-4660-be73-b5b722384501",
+        "6a03ccc8-d1ff-4701-a002-462d3dfcad97",
+        "fa5d18db-7af7-415d-9bc9-5beeda765248"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 3,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 166,
+      "solutionLengthMin": 164,
+      "status": "stored_variants_below_observed_generator_capacity",
+      "handler": "incompleteTrapezoidInspection",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 325,
+      "generatedDistinctPayloads": 325,
+      "generatedDistinctAnswers": 72
+    },
+    {
+      "unitId": "5e9a78db-4eb0-4240-8714-52e311f5bd1f",
+      "familyKey": "elem:초4|2-4-6 마름모|07",
+      "familyCode": "A07",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-6 마름모",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "기본": 3
+      },
+      "formats": {
+        "short_answer": 3
+      },
+      "problemTypes": {
+        "개념": 3
+      },
+      "missingSolutions": 0,
+      "figures": 3,
+      "examples": [
+        "1b2ce4b8-44e5-4cbd-a178-f1e49629640d",
+        "c6670760-8521-439f-8a57-38fabed2b4e7",
+        "e604d878-edac-4b92-a590-6e5b505dfadc"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 3,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 20,
+      "solutionLengthMin": 20,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "quad246Pick",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 3,
+      "generatedDistinctPayloads": 3,
+      "generatedDistinctAnswers": 3
+    },
+    {
+      "unitId": "5e9a78db-4eb0-4240-8714-52e311f5bd1f",
+      "familyKey": "elem:초4|2-4-6 마름모|09",
+      "familyCode": "A09",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-6 마름모",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 1,
+      "eligibleRows": 1,
+      "sources": {
+        "manual": 1
+      },
+      "difficulties": {
+        "응용": 1
+      },
+      "formats": {
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "활용": 1
+      },
+      "missingSolutions": 0,
+      "figures": 1,
+      "examples": ["144e25ef-6c33-4fd9-bfd2-061ccd6c4011"],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 1,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 22,
+      "solutionLengthMin": 22,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "quad246AllEqual",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "5e9a78db-4eb0-4240-8714-52e311f5bd1f",
+      "familyKey": "elem:초4|2-4-6 마름모|10",
+      "familyCode": "A10",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-6 마름모",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 2,
+      "eligibleRows": 2,
+      "sources": {
+        "manual": 2
+      },
+      "difficulties": {
+        "응용": 2
+      },
+      "formats": {
+        "multiple_choice": 1,
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "활용": 2
+      },
+      "missingSolutions": 0,
+      "figures": 2,
+      "examples": [
+        "3759d60a-b744-40b3-b388-185269bd2a54",
+        "9f546fed-b671-4520-b76a-b28ab83f9d4d"
+      ],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 2,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 18,
+      "solutionLengthMin": 18,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "quad246Vertices",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "644e9161-1865-4194-b565-eb473606aa06",
+      "familyKey": "elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|06",
+      "familyCode": "A06",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-1 삼각형을 변의 길이에 따라 분류하기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "기본": 3
+      },
+      "formats": {
+        "short_answer": 3
+      },
+      "problemTypes": {
+        "개념": 3
+      },
+      "missingSolutions": 0,
+      "figures": 3,
+      "examples": [
+        "3228991f-6ca6-4a0d-aac7-a9bd4f1fed2d",
+        "5b426efc-ec4b-4022-a5d1-5df62db802e4",
+        "d4481368-dfc4-4c53-ada6-f48d4a2a11f0"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 3,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 20,
+      "solutionLengthMin": 20,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "tri221PickEq",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 3,
+      "generatedDistinctPayloads": 3,
+      "generatedDistinctAnswers": 3
+    },
+    {
+      "unitId": "644e9161-1865-4194-b565-eb473606aa06",
+      "familyKey": "elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|09",
+      "familyCode": "A09",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-1 삼각형을 변의 길이에 따라 분류하기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "응용": 3
+      },
+      "formats": {
+        "short_answer": 3
+      },
+      "problemTypes": {
+        "활용": 3
+      },
+      "missingSolutions": 0,
+      "figures": 3,
+      "examples": [
+        "b711aa94-ef28-45e3-a707-009857bf08f2",
+        "d910914a-afd6-437e-84ff-94c6aa147d7d",
+        "e96f1ca4-b9c3-4527-bec6-f33c8bb23723"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 3,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 17,
+      "solutionLengthMin": 17,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "tri221PickIso",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 3,
+      "generatedDistinctPayloads": 3,
+      "generatedDistinctAnswers": 3
+    },
+    {
+      "unitId": "644e9161-1865-4194-b565-eb473606aa06",
+      "familyKey": "elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|10",
+      "familyCode": "A10",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-1 삼각형을 변의 길이에 따라 분류하기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 6,
+      "eligibleRows": 6,
+      "sources": {
+        "manual": 6
+      },
+      "difficulties": {
+        "응용": 6
+      },
+      "formats": {
+        "multiple_choice": 3,
+        "short_answer": 3
+      },
+      "problemTypes": {
+        "활용": 6
+      },
+      "missingSolutions": 0,
+      "figures": 6,
+      "examples": [
+        "10f4fddb-087e-46e1-999b-66ebf6642404",
+        "4e9bf01f-d7c9-4dd0-a518-bb249af3e3fe",
+        "526e19ae-3a39-460b-812b-0b06e75b6d9c"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 6,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 18,
+      "solutionLengthMin": 18,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "tri221Vertices",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 3,
+      "generatedDistinctPayloads": 3,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "75f31459-8fc7-425e-91e0-ba60e2b88d59",
+      "familyKey": "elem:초4|2-4-7 여러 가지 사각형|05",
+      "familyCode": "A05",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-7 여러 가지 사각형",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 1,
+      "eligibleRows": 1,
+      "sources": {
+        "manual": 1
+      },
+      "difficulties": {
+        "기본": 1
+      },
+      "formats": {
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "개념": 1
+      },
+      "missingSolutions": 0,
+      "figures": 1,
+      "examples": ["1d3913f6-ed32-4ca8-a00f-894c3f1af566"],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 1,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 28,
+      "solutionLengthMin": 28,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "quad247SqIsRect",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "75f31459-8fc7-425e-91e0-ba60e2b88d59",
+      "familyKey": "elem:초4|2-4-7 여러 가지 사각형|06",
+      "familyCode": "A06",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-7 여러 가지 사각형",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 1,
+      "eligibleRows": 1,
+      "sources": {
+        "manual": 1
+      },
+      "difficulties": {
+        "기본": 1
+      },
+      "formats": {
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "개념": 1
+      },
+      "missingSolutions": 0,
+      "figures": 1,
+      "examples": ["83ac8237-3653-40c7-ae17-bcc9b38651a9"],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 1,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 25,
+      "solutionLengthMin": 25,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "quad247NameRight",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "75f31459-8fc7-425e-91e0-ba60e2b88d59",
+      "familyKey": "elem:초4|2-4-7 여러 가지 사각형|07",
+      "familyCode": "A07",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-7 여러 가지 사각형",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 1,
+      "eligibleRows": 1,
+      "sources": {
+        "manual": 1
+      },
+      "difficulties": {
+        "기본": 1
+      },
+      "formats": {
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "개념": 1
+      },
+      "missingSolutions": 0,
+      "figures": 1,
+      "examples": ["953f3f64-8f92-4f87-9b6b-b9cd7e4be042"],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 1,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 34,
+      "solutionLengthMin": 34,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "quad247NameEq",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "7b9afb97-3313-49f9-a4ae-46cb3321c2c0",
+      "familyKey": "elem:초4|2-6-1 다각형|10",
+      "familyCode": "A10",
+      "grade": "초4",
+      "chapter": "2-6 다각형",
+      "section": "2-6-1 다각형",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 2,
+      "eligibleRows": 2,
+      "sources": {
+        "manual": 2
+      },
+      "difficulties": {
+        "응용": 2
+      },
+      "formats": {
+        "short_answer": 1,
+        "multiple_choice": 1
+      },
+      "problemTypes": {
+        "활용": 2
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "ad603f30-54d4-46b2-ad2e-03a671a68a65",
+        "bb81ad4f-98d6-43ee-ae50-9b353d82bcee"
+      ],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 2,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 16,
+      "solutionLengthMin": 16,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "poly261Pent",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "7bfb66ce-bbb5-467a-9c57-06a97f00deb2",
+      "familyKey": "elem:초4|2-6-3 대각선|08",
+      "familyCode": "A08",
+      "grade": "초4",
+      "chapter": "2-6 다각형",
+      "section": "2-6-3 대각선",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 4,
+      "eligibleRows": 4,
+      "sources": {
+        "manual": 4
+      },
+      "difficulties": {
+        "응용": 4
+      },
+      "formats": {
+        "short_answer": 4
+      },
+      "problemTypes": {
+        "활용": 4
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "02693271-3050-4bde-86ff-13f5522aaadd",
+        "2e0b9128-b61c-47a7-bb6f-49a9b7377d47",
+        "4061a212-b152-468a-b724-ac70b2b16480"
+      ],
+      "distinctStems": 4,
+      "allDistinctStems": 4,
+      "distinctPayloads": 4,
+      "numericSkeletons": 4,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 21,
+      "solutionLengthMin": 21,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "poly263EqualSides",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 4,
+      "generatedDistinctPayloads": 4,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "7bfb66ce-bbb5-467a-9c57-06a97f00deb2",
+      "familyKey": "elem:초4|2-6-3 대각선|09",
+      "familyCode": "A09",
+      "grade": "초4",
+      "chapter": "2-6 다각형",
+      "section": "2-6-3 대각선",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 4,
+      "eligibleRows": 4,
+      "sources": {
+        "manual": 4
+      },
+      "difficulties": {
+        "응용": 4
+      },
+      "formats": {
+        "short_answer": 4
+      },
+      "problemTypes": {
+        "활용": 4
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "2b87e0bb-5907-426a-b91b-d46b3bac04dd",
+        "d64e7536-70fd-4e61-bd6a-03eec7089edd",
+        "f47afee6-fbcf-4050-8738-d5a37b7cfb7b"
+      ],
+      "distinctStems": 4,
+      "allDistinctStems": 4,
+      "distinctPayloads": 4,
+      "numericSkeletons": 4,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 21,
+      "solutionLengthMin": 21,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "poly263EqualAngles",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 4,
+      "generatedDistinctPayloads": 4,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "7bfb66ce-bbb5-467a-9c57-06a97f00deb2",
+      "familyKey": "elem:초4|2-6-3 대각선|10",
+      "familyCode": "A10",
+      "grade": "초4",
+      "chapter": "2-6 다각형",
+      "section": "2-6-3 대각선",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 4,
+      "eligibleRows": 4,
+      "sources": {
+        "manual": 4
+      },
+      "difficulties": {
+        "응용": 4
+      },
+      "formats": {
+        "short_answer": 4
+      },
+      "problemTypes": {
+        "활용": 4
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "7995fa62-a5cc-4830-ae21-56b6dacdb58f",
+        "b753f348-80b7-4bd6-a237-7b9c19558821",
+        "dfc26b77-edb0-42e8-bc6d-c21f8736be3c"
+      ],
+      "distinctStems": 4,
+      "allDistinctStems": 4,
+      "distinctPayloads": 4,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 26,
+      "solutionLengthMin": 26,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "poly263Name",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 4,
+      "generatedDistinctPayloads": 4,
+      "generatedDistinctAnswers": 4
+    },
+    {
+      "unitId": "9991c650-d24d-42ba-a4a7-fe2e9c3a6c0d",
+      "familyKey": "elem:초4|2-6-4 모양 만들기와 채우기|06",
+      "familyCode": "A06",
+      "grade": "초4",
+      "chapter": "2-6 다각형",
+      "section": "2-6-4 모양 만들기와 채우기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 8,
+      "eligibleRows": 8,
+      "sources": {
+        "manual": 8
+      },
+      "difficulties": {
+        "기본": 8
+      },
+      "formats": {
+        "multiple_choice": 4,
+        "short_answer": 4
+      },
+      "problemTypes": {
+        "개념": 8
+      },
+      "missingSolutions": 0,
+      "figures": 8,
+      "examples": [
+        "23497d5b-60d0-4a9f-8411-0cc5640c1c56",
+        "3083672b-c242-4059-bcdf-4fb6fc27ea0d",
+        "59562e96-dc90-4793-8145-f041efdfda81"
+      ],
+      "distinctStems": 4,
+      "allDistinctStems": 4,
+      "distinctPayloads": 8,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 22,
+      "solutionLengthMin": 22,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "poly264SqFill",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 4,
+      "generatedDistinctPayloads": 4,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "9991c650-d24d-42ba-a4a7-fe2e9c3a6c0d",
+      "familyKey": "elem:초4|2-6-4 모양 만들기와 채우기|07",
+      "familyCode": "A07",
+      "grade": "초4",
+      "chapter": "2-6 다각형",
+      "section": "2-6-4 모양 만들기와 채우기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 2,
+      "eligibleRows": 2,
+      "sources": {
+        "manual": 2
+      },
+      "difficulties": {
+        "기본": 2
+      },
+      "formats": {
+        "multiple_choice": 1,
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "개념": 2
+      },
+      "missingSolutions": 0,
+      "figures": 2,
+      "examples": [
+        "4095b1ab-aa1e-405f-9468-cc3593226c8d",
+        "6e89dd37-8bd3-47b1-a70d-26339b98776a"
+      ],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 2,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 27,
+      "solutionLengthMin": 27,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "poly264Hex",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "9991c650-d24d-42ba-a4a7-fe2e9c3a6c0d",
+      "familyKey": "elem:초4|2-6-4 모양 만들기와 채우기|09",
+      "familyCode": "A09",
+      "grade": "초4",
+      "chapter": "2-6 다각형",
+      "section": "2-6-4 모양 만들기와 채우기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 8,
+      "eligibleRows": 8,
+      "sources": {
+        "manual": 8
+      },
+      "difficulties": {
+        "응용": 8
+      },
+      "formats": {
+        "multiple_choice": 4,
+        "short_answer": 4
+      },
+      "problemTypes": {
+        "활용": 8
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "3b7c8f57-692b-4b43-8930-8dabf511ddd3",
+        "42562d59-a32c-4370-82a0-731d9e09b7d0",
+        "61e0b93d-f341-4642-b1be-9de4b7e8ed9f"
+      ],
+      "distinctStems": 4,
+      "allDistinctStems": 4,
+      "distinctPayloads": 8,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 19,
+      "solutionLengthMin": 18,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "poly264Trap",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 4,
+      "generatedDistinctPayloads": 4,
+      "generatedDistinctAnswers": 4
+    },
+    {
+      "unitId": "9991c650-d24d-42ba-a4a7-fe2e9c3a6c0d",
+      "familyKey": "elem:초4|2-6-4 모양 만들기와 채우기|10",
+      "familyCode": "A10",
+      "grade": "초4",
+      "chapter": "2-6 다각형",
+      "section": "2-6-4 모양 만들기와 채우기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 8,
+      "eligibleRows": 8,
+      "sources": {
+        "manual": 8
+      },
+      "difficulties": {
+        "응용": 8
+      },
+      "formats": {
+        "short_answer": 4,
+        "multiple_choice": 4
+      },
+      "problemTypes": {
+        "활용": 8
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "505681bb-7598-438e-ac6e-d26134fc2722",
+        "52707463-b323-42e5-a2e2-ba6606e06859",
+        "775b906a-4f1d-41df-a1df-a320804bddc5"
+      ],
+      "distinctStems": 4,
+      "allDistinctStems": 4,
+      "distinctPayloads": 8,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 16,
+      "solutionLengthMin": 16,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "poly264FromTris",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 4,
+      "generatedDistinctPayloads": 4,
+      "generatedDistinctAnswers": 4
+    },
+    {
+      "unitId": "abb7989e-15ae-4dec-9ac0-983dee08a700",
+      "familyKey": "elem:초4|2-4-2 평행과 평행선|05",
+      "familyCode": "A05",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-2 평행과 평행선",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 1,
+      "eligibleRows": 1,
+      "sources": {
+        "manual": 1
+      },
+      "difficulties": {
+        "기본": 1
+      },
+      "formats": {
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "개념": 1
+      },
+      "missingSolutions": 0,
+      "figures": 1,
+      "examples": ["c75cd67f-03a3-4958-b543-6f51ac6c0f6b"],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 1,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 22,
+      "solutionLengthMin": 22,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "quad242Name",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "abb7989e-15ae-4dec-9ac0-983dee08a700",
+      "familyKey": "elem:초4|2-4-2 평행과 평행선|07",
+      "familyCode": "A07",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-2 평행과 평행선",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 1,
+      "eligibleRows": 1,
+      "sources": {
+        "manual": 1
+      },
+      "difficulties": {
+        "기본": 1
+      },
+      "formats": {
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "개념": 1
+      },
+      "missingSolutions": 0,
+      "figures": 1,
+      "examples": ["7ee7ce5c-92e9-4221-aa07-5717ce7d7895"],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 1,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 24,
+      "solutionLengthMin": 24,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "quad242Same",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "abb7989e-15ae-4dec-9ac0-983dee08a700",
+      "familyKey": "elem:초4|2-4-2 평행과 평행선|08",
+      "familyCode": "A08",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-2 평행과 평행선",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 1,
+      "eligibleRows": 1,
+      "sources": {
+        "manual": 1
+      },
+      "difficulties": {
+        "응용": 1
+      },
+      "formats": {
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "활용": 1
+      },
+      "missingSolutions": 0,
+      "figures": 1,
+      "examples": ["f3050edc-223b-4c02-8595-1e8e4188d56b"],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 1,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 19,
+      "solutionLengthMin": 19,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "quad242Meet",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "abb7989e-15ae-4dec-9ac0-983dee08a700",
+      "familyKey": "elem:초4|2-4-2 평행과 평행선|09",
+      "familyCode": "A09",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-2 평행과 평행선",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 8,
+      "eligibleRows": 8,
+      "sources": {
+        "manual": 8
+      },
+      "difficulties": {
+        "응용": 8
+      },
+      "formats": {
+        "multiple_choice": 4,
+        "short_answer": 4
+      },
+      "problemTypes": {
+        "활용": 8
+      },
+      "missingSolutions": 0,
+      "figures": 8,
+      "examples": [
+        "34c64ec1-d403-4c68-a29c-4de077761e88",
+        "3550a513-3957-4662-acab-8ba25498e55f",
+        "48602352-9fd1-4040-8590-06213dc07b5d"
+      ],
+      "distinctStems": 4,
+      "allDistinctStems": 4,
+      "distinctPayloads": 8,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 15,
+      "solutionLengthMin": 15,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "quad242PerpCount",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 4,
+      "generatedDistinctPayloads": 4,
+      "generatedDistinctAnswers": 4
+    },
+    {
+      "unitId": "abb7989e-15ae-4dec-9ac0-983dee08a700",
+      "familyKey": "elem:초4|2-4-2 평행과 평행선|10",
+      "familyCode": "A10",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-2 평행과 평행선",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 2,
+      "eligibleRows": 2,
+      "sources": {
+        "manual": 2
+      },
+      "difficulties": {
+        "응용": 2
+      },
+      "formats": {
+        "multiple_choice": 1,
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "활용": 2
+      },
+      "missingSolutions": 0,
+      "figures": 2,
+      "examples": [
+        "13dafb95-2df3-4236-b7b0-75657f6bcfbc",
+        "d5200124-94f4-4f09-823b-f64c3a42fc94"
+      ],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 2,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 27,
+      "solutionLengthMin": 27,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "quad242Angle",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "abb7989e-15ae-4dec-9ac0-983dee08a700",
+      "familyKey": "elem:초4|2-4-2 평행과 평행선|35",
+      "familyCode": "A12",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-2 평행과 평행선",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 6,
+      "eligibleRows": 6,
+      "sources": {
+        "manual": 6
+      },
+      "difficulties": {
+        "응용": 6
+      },
+      "formats": {
+        "multiple_choice": 3,
+        "short_answer": 3
+      },
+      "problemTypes": {
+        "활용": 6
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "2d0e4767-b184-4ce2-8d9d-b4300856f898",
+        "778e8f0d-1abc-4827-a9bc-72293c40cd0e",
+        "980c46da-4818-4f24-afd6-7abef3362c74"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 6,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 121,
+      "solutionLengthMin": 117,
+      "status": "stored_variants_below_observed_generator_capacity",
+      "handler": "parallelPairs",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 16,
+      "generatedDistinctPayloads": 16,
+      "generatedDistinctAnswers": 10
+    },
+    {
+      "unitId": "abb7989e-15ae-4dec-9ac0-983dee08a700",
+      "familyKey": "elem:초4|2-4-2 평행과 평행선|36",
+      "familyCode": "A13",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-2 평행과 평행선",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 6,
+      "eligibleRows": 6,
+      "sources": {
+        "manual": 6
+      },
+      "difficulties": {
+        "응용": 6
+      },
+      "formats": {
+        "multiple_choice": 3,
+        "short_answer": 3
+      },
+      "problemTypes": {
+        "활용": 6
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "37c810cd-0bcc-4fbe-90fb-1d08785adcd7",
+        "5b553809-96b9-4ee8-9639-75e23376e354",
+        "849ef348-1697-4d30-8b18-68ff9af21220"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 6,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 129,
+      "solutionLengthMin": 129,
+      "status": "stored_variants_below_observed_generator_capacity",
+      "handler": "perpendicularGridIntersections",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 25,
+      "generatedDistinctPayloads": 25,
+      "generatedDistinctAnswers": 14
+    },
+    {
+      "unitId": "c8d1b160-ffb6-4da1-9c54-a3522ffcf134",
+      "familyKey": "elem:초4|2-2-3 정삼각형의 성질|06",
+      "familyCode": "A06",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-3 정삼각형의 성질",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 2,
+      "eligibleRows": 2,
+      "sources": {
+        "manual": 2
+      },
+      "difficulties": {
+        "기본": 2
+      },
+      "formats": {
+        "short_answer": 1,
+        "multiple_choice": 1
+      },
+      "problemTypes": {
+        "개념": 2
+      },
+      "missingSolutions": 0,
+      "figures": 2,
+      "examples": [
+        "abc316fd-aa2c-4b0b-b984-26242ed9ddf6",
+        "ecf037e2-5ea7-4fb8-8bf7-26ff18b924d6"
+      ],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 2,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 32,
+      "solutionLengthMin": 32,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "tri223Angle",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "c8d1b160-ffb6-4da1-9c54-a3522ffcf134",
+      "familyKey": "elem:초4|2-2-3 정삼각형의 성질|07",
+      "familyCode": "A07",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-3 정삼각형의 성질",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 2,
+      "eligibleRows": 2,
+      "sources": {
+        "manual": 2
+      },
+      "difficulties": {
+        "기본": 2
+      },
+      "formats": {
+        "short_answer": 1,
+        "multiple_choice": 1
+      },
+      "problemTypes": {
+        "개념": 2
+      },
+      "missingSolutions": 0,
+      "figures": 2,
+      "examples": [
+        "75ff820e-d3f7-4c1b-8696-ad3de8e70f5b",
+        "f57ed30d-8e53-41ee-ab49-080671d30398"
+      ],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 2,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 34,
+      "solutionLengthMin": 34,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "tri223AngleSum",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "c8d1b160-ffb6-4da1-9c54-a3522ffcf134",
+      "familyKey": "elem:초4|2-2-3 정삼각형의 성질|08",
+      "familyCode": "A08",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-3 정삼각형의 성질",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "응용": 3
+      },
+      "formats": {
+        "short_answer": 3
+      },
+      "problemTypes": {
+        "활용": 3
+      },
+      "missingSolutions": 0,
+      "figures": 3,
+      "examples": [
+        "47577c27-189a-4afb-b4bb-4b626e1bb6bb",
+        "72e6796b-b4e0-46ef-8597-bb4973291cc7",
+        "c6680a5d-0e94-4021-8fdb-258419a4e323"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 3,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 34,
+      "solutionLengthMin": 34,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "tri223Pick",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 3,
+      "generatedDistinctPayloads": 3,
+      "generatedDistinctAnswers": 3
+    },
+    {
+      "unitId": "c8d1b160-ffb6-4da1-9c54-a3522ffcf134",
+      "familyKey": "elem:초4|2-2-3 정삼각형의 성질|10",
+      "familyCode": "A10",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-3 정삼각형의 성질",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 1,
+      "eligibleRows": 1,
+      "sources": {
+        "manual": 1
+      },
+      "difficulties": {
+        "응용": 1
+      },
+      "formats": {
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "활용": 1
+      },
+      "missingSolutions": 0,
+      "figures": 1,
+      "examples": ["4240f414-a55b-43b2-a6c8-e8779bf7d89c"],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 1,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 28,
+      "solutionLengthMin": 28,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "tri223Name",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "c8d1b160-ffb6-4da1-9c54-a3522ffcf134",
+      "familyKey": "elem:초4|2-2-3 정삼각형의 성질|31",
+      "familyCode": "A11",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-3 정삼각형의 성질",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 6,
+      "eligibleRows": 6,
+      "sources": {
+        "manual": 6
+      },
+      "difficulties": {
+        "응용": 6
+      },
+      "formats": {
+        "short_answer": 3,
+        "multiple_choice": 3
+      },
+      "problemTypes": {
+        "활용": 6
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "1753e867-aae2-476d-9c47-fd2d9b00c36f",
+        "2e81f67e-e5d9-4b9e-8de4-0b608cbd8d68",
+        "34e59980-6d12-4fdc-a660-a3419ab42799"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 6,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 139,
+      "solutionLengthMin": 139,
+      "status": "stored_variants_below_observed_generator_capacity",
+      "handler": "joinedEquilateral",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 18,
+      "generatedDistinctPayloads": 18,
+      "generatedDistinctAnswers": 18
+    },
+    {
+      "unitId": "c8d1b160-ffb6-4da1-9c54-a3522ffcf134",
+      "familyKey": "elem:초4|2-2-3 정삼각형의 성질|32",
+      "familyCode": "A12",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-3 정삼각형의 성질",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 6,
+      "eligibleRows": 6,
+      "sources": {
+        "manual": 6
+      },
+      "difficulties": {
+        "기본": 6
+      },
+      "formats": {
+        "short_answer": 3,
+        "multiple_choice": 3
+      },
+      "problemTypes": {
+        "개념": 6
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "0ae8c20c-9870-4d01-b807-2fa43b9cc65d",
+        "0c79f103-8a76-484a-92a2-a12dc53179b0",
+        "81b86ce2-868c-4ef0-a7c2-90d94af7798d"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 6,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 87,
+      "solutionLengthMin": 86,
+      "status": "stored_variants_below_observed_generator_capacity",
+      "handler": "splitEquilateralAngle",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 59,
+      "generatedDistinctPayloads": 59,
+      "generatedDistinctAnswers": 59
+    },
+    {
+      "unitId": "f57a5c27-6591-467c-a6ca-f4bf63028530",
+      "familyKey": "elem:초4|2-4-5 평행사변형|09",
+      "familyCode": "A09",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-5 평행사변형",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 2,
+      "eligibleRows": 2,
+      "sources": {
+        "manual": 2
+      },
+      "difficulties": {
+        "응용": 2
+      },
+      "formats": {
+        "multiple_choice": 1,
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "활용": 2
+      },
+      "missingSolutions": 0,
+      "figures": 2,
+      "examples": [
+        "1f53d75f-3197-4c2d-9190-64bb2c4d90a9",
+        "b3ea4872-5e53-4f4b-b6ef-e9b580f898e6"
+      ],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 2,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 18,
+      "solutionLengthMin": 18,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "quad245Vertices",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "f57a5c27-6591-467c-a6ca-f4bf63028530",
+      "familyKey": "elem:초4|2-4-5 평행사변형|10",
+      "familyCode": "A10",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-5 평행사변형",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 1,
+      "eligibleRows": 1,
+      "sources": {
+        "manual": 1
+      },
+      "difficulties": {
+        "응용": 1
+      },
+      "formats": {
+        "short_answer": 1
+      },
+      "problemTypes": {
+        "활용": 1
+      },
+      "missingSolutions": 0,
+      "figures": 1,
+      "examples": ["9f7348ec-6bac-41ec-930d-1379e0a651d2"],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 1,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 32,
+      "solutionLengthMin": 32,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "quad245Name",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 1,
+      "generatedDistinctPayloads": 1,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "1f3c89f5-2b6e-4b4b-b437-db2119d152c4",
+      "familyKey": "elem:초5|2-1-5 버림 알아보기|21",
+      "familyCode": "A15",
+      "grade": "초5",
+      "chapter": "2-1 수의 범위와 어림하기",
+      "section": "2-1-5 버림 알아보기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 6,
+      "eligibleRows": 6,
+      "sources": {
+        "manual": 6
+      },
+      "difficulties": {
+        "응용": 6
+      },
+      "formats": {
+        "multiple_choice": 3,
+        "short_answer": 3
+      },
+      "problemTypes": {
+        "활용": 6
+      },
+      "missingSolutions": 0,
+      "figures": 6,
+      "examples": [
+        "19544b5e-c551-4bae-9557-d448a2620721",
+        "363cce1a-95fb-4d80-8480-aa8c7bcf2188",
+        "4f917d60-1bfd-4881-af63-16c644ca1f3a"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 6,
+      "numericSkeletons": 2,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 75,
+      "solutionLengthMin": 72,
+      "status": "stored_variants_below_observed_generator_capacity",
+      "handler": "",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 14,
+      "generatedDistinctPayloads": 14,
+      "generatedDistinctAnswers": 14
+    },
+    {
+      "unitId": "529d0cfe-db6c-418b-b9d5-bf5bc177f331",
+      "familyKey": "elem:초5|2-1-3 수의 범위를 알고 문제 해결하기|21",
+      "familyCode": "A15",
+      "grade": "초5",
+      "chapter": "2-1 수의 범위와 어림하기",
+      "section": "2-1-3 수의 범위를 알고 문제 해결하기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 6,
+      "eligibleRows": 6,
+      "sources": {
+        "manual": 6
+      },
+      "difficulties": {
+        "응용": 6
+      },
+      "formats": {
+        "multiple_choice": 3,
+        "short_answer": 3
+      },
+      "problemTypes": {
+        "활용": 6
+      },
+      "missingSolutions": 0,
+      "figures": 6,
+      "examples": [
+        "2d497fe8-fb3c-482b-af5a-0cb116dcccd5",
+        "74db4cad-9ade-4362-8061-585eea0b2981",
+        "80429b1e-8955-4421-ad38-44e8abcd504d"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 6,
+      "numericSkeletons": 2,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 104,
+      "solutionLengthMin": 104,
+      "status": "stored_variants_below_observed_generator_capacity",
+      "handler": "rideSpan",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 512,
+      "generatedDistinctPayloads": 512,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "8f8aa797-4aae-4d9a-a893-842338f974c4",
+      "familyKey": "elem:초5|2-1-6 반올림 알아보기와 어림의 활용|21",
+      "familyCode": "A17",
+      "grade": "초5",
+      "chapter": "2-1 수의 범위와 어림하기",
+      "section": "2-1-6 반올림 알아보기와 어림의 활용",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 6,
+      "eligibleRows": 6,
+      "sources": {
+        "manual": 6
+      },
+      "difficulties": {
+        "응용": 6
+      },
+      "formats": {
+        "short_answer": 3,
+        "multiple_choice": 3
+      },
+      "problemTypes": {
+        "활용": 6
+      },
+      "missingSolutions": 0,
+      "figures": 6,
+      "examples": [
+        "22920210-f42c-4446-842e-4f4628bb66df",
+        "2fbbf6c0-aa32-4526-b3ae-828cdc693fdd",
+        "840ae193-7736-474b-8f92-22014c090840"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 6,
+      "numericSkeletons": 2,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 76,
+      "solutionLengthMin": 73,
+      "status": "stored_variants_below_observed_generator_capacity",
+      "handler": "",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 14,
+      "generatedDistinctPayloads": 14,
+      "generatedDistinctAnswers": 14
+    },
+    {
+      "unitId": "8f8aa797-4aae-4d9a-a893-842338f974c4",
+      "familyKey": "elem:초5|2-1-6 반올림 알아보기와 어림의 활용|31",
+      "familyCode": "A18",
+      "grade": "초5",
+      "chapter": "2-1 수의 범위와 어림하기",
+      "section": "2-1-6 반올림 알아보기와 어림의 활용",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "기본": 3
+      },
+      "formats": {
+        "multiple_choice": 3
+      },
+      "problemTypes": {
+        "개념": 3
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "2dd0b91b-4f80-4840-b160-c169e66e3c74",
+        "77e790cf-49ce-474c-a25f-65faecab327e",
+        "92f33f26-8df3-4637-a75e-f44e9cc74857"
+      ],
+      "distinctStems": 2,
+      "allDistinctStems": 2,
+      "distinctPayloads": 3,
+      "numericSkeletons": 2,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 209,
+      "solutionLengthMin": 209,
+      "status": "unregistered_at_audit_head",
+      "observations": 0
+    },
+    {
+      "unitId": "8f8aa797-4aae-4d9a-a893-842338f974c4",
+      "familyKey": "elem:초5|2-1-6 반올림 알아보기와 어림의 활용|32",
+      "familyCode": "A19",
+      "grade": "초5",
+      "chapter": "2-1 수의 범위와 어림하기",
+      "section": "2-1-6 반올림 알아보기와 어림의 활용",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "응용": 3
+      },
+      "formats": {
+        "multiple_choice": 3
+      },
+      "problemTypes": {
+        "활용": 3
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "15ff5586-3929-4740-9a4e-7e2bfe66300e",
+        "295376d3-c9fb-4146-9cdd-2b42286aa1ed",
+        "c0f92d4a-cded-4705-aafa-0dcc3567b7ff"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 3,
+      "numericSkeletons": 3,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 132,
+      "solutionLengthMin": 132,
+      "status": "unregistered_at_audit_head",
+      "observations": 0
+    },
+    {
+      "unitId": "ac702ce2-a236-4fa0-94f8-7ef31421330e",
+      "familyKey": "elem:초5|2-6-3 일이 일어날 가능성|10",
+      "familyCode": "A14",
+      "grade": "초5",
+      "chapter": "2-6 평균과 가능성",
+      "section": "2-6-3 일이 일어날 가능성",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "응용": 3
+      },
+      "formats": {
+        "short_answer": 3
+      },
+      "problemTypes": {
+        "활용": 3
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "2959cbd2-ab02-48dd-8697-3990ed9b0e17",
+        "4fd8eb98-59f1-436a-aa7e-61f552adca9a",
+        "7bf0c4a6-5037-4c9e-bac1-2ff93a2921a1"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 3,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 25,
+      "solutionLengthMin": 25,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "pos263ImpossibleCount",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 3,
+      "generatedDistinctPayloads": 3,
+      "generatedDistinctAnswers": 1
+    },
+    {
+      "unitId": "c8bfe071-2b49-44ec-9f0f-6085677a0c7e",
+      "familyKey": "elem:초5|2-1-4 올림 알아보기|21",
+      "familyCode": "A17",
+      "grade": "초5",
+      "chapter": "2-1 수의 범위와 어림하기",
+      "section": "2-1-4 올림 알아보기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 6,
+      "eligibleRows": 6,
+      "sources": {
+        "manual": 6
+      },
+      "difficulties": {
+        "응용": 6
+      },
+      "formats": {
+        "multiple_choice": 3,
+        "short_answer": 3
+      },
+      "problemTypes": {
+        "활용": 6
+      },
+      "missingSolutions": 0,
+      "figures": 6,
+      "examples": [
+        "0ffbef60-c16d-4f55-af64-7a5ae3cb144d",
+        "3df3fecc-9a76-41ce-bdb2-3870a190fb01",
+        "b9fba0e9-5381-4575-8509-b606a8e26e3b"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 6,
+      "numericSkeletons": 2,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 75,
+      "solutionLengthMin": 72,
+      "status": "stored_variants_below_observed_generator_capacity",
+      "handler": "",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 14,
+      "generatedDistinctPayloads": 14,
+      "generatedDistinctAnswers": 14
+    },
+    {
+      "unitId": "ca9bdd29-8cf2-4c5e-8b51-8870b0a7d9f2",
+      "familyKey": "elem:초5|2-1-2 초과와 미만 알아보기|21",
+      "familyCode": "A15",
+      "grade": "초5",
+      "chapter": "2-1 수의 범위와 어림하기",
+      "section": "2-1-2 초과와 미만 알아보기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "기본": 3
+      },
+      "formats": {
+        "multiple_choice": 3
+      },
+      "problemTypes": {
+        "개념": 3
+      },
+      "missingSolutions": 0,
+      "figures": 3,
+      "examples": [
+        "371d3d09-5a0f-415d-8ee9-a3dd9bdfd276",
+        "50971921-1e03-4f54-ada7-4c05a2ea2b56",
+        "99088712-1f4f-44ec-abbe-39080d24eb3b"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 3,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 52,
+      "solutionLengthMin": 47,
+      "status": "stored_variants_below_observed_generator_capacity",
+      "handler": "",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 486,
+      "generatedDistinctPayloads": 512,
+      "generatedDistinctAnswers": 5
+    },
+    {
+      "unitId": "ca9bdd29-8cf2-4c5e-8b51-8870b0a7d9f2",
+      "familyKey": "elem:초5|2-1-2 초과와 미만 알아보기|22",
+      "familyCode": "A16",
+      "grade": "초5",
+      "chapter": "2-1 수의 범위와 어림하기",
+      "section": "2-1-2 초과와 미만 알아보기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 6,
+      "eligibleRows": 6,
+      "sources": {
+        "manual": 6
+      },
+      "difficulties": {
+        "응용": 6
+      },
+      "formats": {
+        "multiple_choice": 3,
+        "short_answer": 3
+      },
+      "problemTypes": {
+        "활용": 6
+      },
+      "missingSolutions": 0,
+      "figures": 6,
+      "examples": [
+        "005062c9-07e4-4b92-aab0-36c8bb9d1192",
+        "40d106c1-d97d-4355-bebd-b646fc569c53",
+        "41f25466-630d-4bf8-b6ae-d038530be657"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 6,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 86,
+      "solutionLengthMin": 81,
+      "status": "stored_variants_below_observed_generator_capacity",
+      "handler": "",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 456,
+      "generatedDistinctPayloads": 456,
+      "generatedDistinctAnswers": 5
+    },
+    {
+      "unitId": "ca9bdd29-8cf2-4c5e-8b51-8870b0a7d9f2",
+      "familyKey": "elem:초5|2-1-2 초과와 미만 알아보기|31",
+      "familyCode": "A17",
+      "grade": "초5",
+      "chapter": "2-1 수의 범위와 어림하기",
+      "section": "2-1-2 초과와 미만 알아보기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "기본": 3
+      },
+      "formats": {
+        "multiple_choice": 3
+      },
+      "problemTypes": {
+        "개념": 3
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "aff0069c-b720-4b08-bb6d-e935dbe4ee36",
+        "c9555344-5f52-4051-b674-958971c77fa8",
+        "d2426183-1d3f-4ca7-9f20-cec86f7c2d39"
+      ],
+      "distinctStems": 2,
+      "allDistinctStems": 2,
+      "distinctPayloads": 3,
+      "numericSkeletons": 2,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 206,
+      "solutionLengthMin": 206,
+      "status": "unregistered_at_audit_head",
+      "observations": 0
+    },
+    {
+      "unitId": "ca9bdd29-8cf2-4c5e-8b51-8870b0a7d9f2",
+      "familyKey": "elem:초5|2-1-2 초과와 미만 알아보기|32",
+      "familyCode": "A18",
+      "grade": "초5",
+      "chapter": "2-1 수의 범위와 어림하기",
+      "section": "2-1-2 초과와 미만 알아보기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "응용": 3
+      },
+      "formats": {
+        "multiple_choice": 3
+      },
+      "problemTypes": {
+        "활용": 3
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "1de207f0-6b68-4930-bdd5-a2335af17409",
+        "22891219-43bf-4084-968f-0d3d631d0a01",
+        "3c3f40bb-cf03-43e4-ae36-a9e7ec56a3b2"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 3,
+      "numericSkeletons": 3,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 136,
+      "solutionLengthMin": 136,
+      "status": "unregistered_at_audit_head",
+      "observations": 0
+    },
+    {
+      "unitId": "d32b3290-b45a-4945-ab3e-7797fba24935",
+      "familyKey": "elem:초5|2-1-1 이상과 이하 알아보기|21",
+      "familyCode": "A16",
+      "grade": "초5",
+      "chapter": "2-1 수의 범위와 어림하기",
+      "section": "2-1-1 이상과 이하 알아보기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "기본": 3
+      },
+      "formats": {
+        "multiple_choice": 3
+      },
+      "problemTypes": {
+        "개념": 3
+      },
+      "missingSolutions": 0,
+      "figures": 3,
+      "examples": [
+        "1a8bebfb-2373-4526-972c-86d72ed7d5ca",
+        "3c549539-54fa-4976-8e65-7f0e61380e1e",
+        "947d326d-9361-4d37-825f-16cb22cf6387"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 3,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 69,
+      "solutionLengthMin": 47,
+      "status": "stored_variants_below_observed_generator_capacity",
+      "handler": "",
+      "tier": "기본",
+      "observations": 512,
+      "generatedDistinctStems": 444,
+      "generatedDistinctPayloads": 512,
+      "generatedDistinctAnswers": 5
+    },
+    {
+      "unitId": "d32b3290-b45a-4945-ab3e-7797fba24935",
+      "familyKey": "elem:초5|2-1-1 이상과 이하 알아보기|22",
+      "familyCode": "A17",
+      "grade": "초5",
+      "chapter": "2-1 수의 범위와 어림하기",
+      "section": "2-1-1 이상과 이하 알아보기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 6,
+      "eligibleRows": 6,
+      "sources": {
+        "manual": 6
+      },
+      "difficulties": {
+        "응용": 6
+      },
+      "formats": {
+        "short_answer": 3,
+        "multiple_choice": 3
+      },
+      "problemTypes": {
+        "활용": 6
+      },
+      "missingSolutions": 0,
+      "figures": 6,
+      "examples": [
+        "2a67e24a-aa40-4987-8613-c31cf6eb1069",
+        "35e5ad54-3ff1-4138-9f4f-81ab382fee77",
+        "3e85b63a-b1e2-464c-9ee6-d1cf880a7bbd"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 6,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 96,
+      "solutionLengthMin": 81,
+      "status": "stored_variants_below_observed_generator_capacity",
+      "handler": "",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 398,
+      "generatedDistinctPayloads": 398,
+      "generatedDistinctAnswers": 5
+    },
+    {
+      "unitId": "d32b3290-b45a-4945-ab3e-7797fba24935",
+      "familyKey": "elem:초5|2-1-1 이상과 이하 알아보기|31",
+      "familyCode": "A18",
+      "grade": "초5",
+      "chapter": "2-1 수의 범위와 어림하기",
+      "section": "2-1-1 이상과 이하 알아보기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "기본": 3
+      },
+      "formats": {
+        "multiple_choice": 3
+      },
+      "problemTypes": {
+        "개념": 3
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "587300b4-2d51-4515-ae1b-c2af2bf0ab0c",
+        "932d6a74-c06a-48de-bba4-e5ed7de61f1b",
+        "c496e627-612b-42dd-b6e0-c87c939d64d8"
+      ],
+      "distinctStems": 2,
+      "allDistinctStems": 2,
+      "distinctPayloads": 3,
+      "numericSkeletons": 2,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 180,
+      "solutionLengthMin": 180,
+      "status": "unregistered_at_audit_head",
+      "observations": 0
+    },
+    {
+      "unitId": "d32b3290-b45a-4945-ab3e-7797fba24935",
+      "familyKey": "elem:초5|2-1-1 이상과 이하 알아보기|32",
+      "familyCode": "A19",
+      "grade": "초5",
+      "chapter": "2-1 수의 범위와 어림하기",
+      "section": "2-1-1 이상과 이하 알아보기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "응용": 3
+      },
+      "formats": {
+        "multiple_choice": 3
+      },
+      "problemTypes": {
+        "활용": 3
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "b812ff39-ae3e-46ac-b35e-7795f6bfa05b",
+        "bb648c89-b2c9-4605-83d7-1e1c821eed13",
+        "e221b6a5-2869-4d80-a1ab-44803ab3b791"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 3,
+      "numericSkeletons": 3,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 123,
+      "solutionLengthMin": 123,
+      "status": "unregistered_at_audit_head",
+      "observations": 0
+    },
+    {
+      "unitId": "32e86043-1f1d-4c06-8c0f-8b65fea61167",
+      "familyKey": "elem:초6|2-4-4 비례식의 성질 알아보기|31",
+      "familyCode": "A16",
+      "grade": "초6",
+      "chapter": "2-4 비례식과 비례배분",
+      "section": "2-4-4 비례식의 성질 알아보기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "기본": 3
+      },
+      "formats": {
+        "multiple_choice": 3
+      },
+      "problemTypes": {
+        "개념": 3
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "0ac844db-5174-4dae-9d02-ec3e8e66aabf",
+        "6e9810a6-13ea-442d-a53a-2f5129c9b6b0",
+        "a0bc69b8-520c-4704-964c-9175921546e2"
+      ],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 3,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 288,
+      "solutionLengthMin": 284,
+      "status": "unregistered_at_audit_head",
+      "observations": 0
+    },
+    {
+      "unitId": "32e86043-1f1d-4c06-8c0f-8b65fea61167",
+      "familyKey": "elem:초6|2-4-4 비례식의 성질 알아보기|32",
+      "familyCode": "A17",
+      "grade": "초6",
+      "chapter": "2-4 비례식과 비례배분",
+      "section": "2-4-4 비례식의 성질 알아보기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "응용": 3
+      },
+      "formats": {
+        "multiple_choice": 3
+      },
+      "problemTypes": {
+        "활용": 3
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "14758b7e-16b3-4eac-a641-adeb8c87b1bd",
+        "7a211328-4868-4da7-8058-ac49fe2e7d05",
+        "b3d540d6-1494-4fdd-b758-fcc891892d73"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 3,
+      "numericSkeletons": 3,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 178,
+      "solutionLengthMin": 170,
+      "status": "unregistered_at_audit_head",
+      "observations": 0
+    },
+    {
+      "unitId": "bec75cad-80be-4cab-b183-5958b1aa4c78",
+      "familyKey": "elem:초6|2-4-1 비의 성질 알아보기|31",
+      "familyCode": "A16",
+      "grade": "초6",
+      "chapter": "2-4 비례식과 비례배분",
+      "section": "2-4-1 비의 성질 알아보기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "기본": 3
+      },
+      "formats": {
+        "multiple_choice": 3
+      },
+      "problemTypes": {
+        "개념": 3
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "075101dd-6aeb-4e20-8e87-abc43c376b49",
+        "a2295194-8db6-4e59-9eba-305f1816fa88",
+        "cd2576ef-c476-4a4e-a538-e9c45d4faa4f"
+      ],
+      "distinctStems": 1,
+      "allDistinctStems": 1,
+      "distinctPayloads": 3,
+      "numericSkeletons": 1,
+      "stock3": false,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 211,
+      "solutionLengthMin": 211,
+      "status": "unregistered_at_audit_head",
+      "observations": 0
+    },
+    {
+      "unitId": "bec75cad-80be-4cab-b183-5958b1aa4c78",
+      "familyKey": "elem:초6|2-4-1 비의 성질 알아보기|32",
+      "familyCode": "A17",
+      "grade": "초6",
+      "chapter": "2-4 비례식과 비례배분",
+      "section": "2-4-1 비의 성질 알아보기",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 3,
+      "eligibleRows": 3,
+      "sources": {
+        "manual": 3
+      },
+      "difficulties": {
+        "응용": 3
+      },
+      "formats": {
+        "multiple_choice": 3
+      },
+      "problemTypes": {
+        "활용": 3
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "2fd40540-b9ef-42a3-bd07-45ff01899b52",
+        "3a2b8cb7-58fd-475a-8513-24472b285425",
+        "4d1743a6-f5d9-42a1-b3ae-62be32e74438"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 3,
+      "numericSkeletons": 3,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 140,
+      "solutionLengthMin": 128,
+      "status": "unregistered_at_audit_head",
+      "observations": 0
+    },
+    {
+      "unitId": "d959356d-e576-48f7-aff9-7f4414c4585f",
+      "familyKey": "elem:초6|1-6-2 직육면체의 부피 비교와 직육면체의 부피 구하는 방법|10",
+      "familyCode": "A14",
+      "grade": "초6",
+      "chapter": "1-6 직육면체의 겉넓이와 부피",
+      "section": "1-6-2 직육면체의 부피 비교와 직육면체의 부피 구하는 방법",
+      "namespace": "elem",
+      "engineLinked": true,
+      "totalRows": 6,
+      "eligibleRows": 6,
+      "sources": {
+        "manual": 6
+      },
+      "difficulties": {
+        "응용": 6
+      },
+      "formats": {
+        "multiple_choice": 3,
+        "short_answer": 3
+      },
+      "problemTypes": {
+        "활용": 6
+      },
+      "missingSolutions": 0,
+      "figures": 0,
+      "examples": [
+        "0a8077c8-e43e-4030-b33c-ecc1b2821dc3",
+        "1742b536-6c05-4d8e-86fc-77dd91edfeee",
+        "6451e047-e93d-44af-995e-7dc37ed087c3"
+      ],
+      "distinctStems": 3,
+      "allDistinctStems": 3,
+      "distinctPayloads": 6,
+      "numericSkeletons": 1,
+      "stock3": true,
+      "stock5": false,
+      "stock10": false,
+      "solutionLengthMedian": 44,
+      "solutionLengthMin": 43,
+      "status": "observed_small_domain_requires_semantic_review",
+      "handler": "volFormDoubleOne",
+      "tier": "응용",
+      "observations": 512,
+      "generatedDistinctStems": 3,
+      "generatedDistinctPayloads": 3,
+      "generatedDistinctAnswers": 3
+    }
+  ]
+}
