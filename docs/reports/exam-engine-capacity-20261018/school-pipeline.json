@@ -37,7 +37,10 @@
     "readOnlyTransactionVerified": true,
     "isolation": "RepeatableRead",
     "ownSchool": "경명여중",
-    "aliases": ["경명여중", "경명여자중학교"],
+    "aliases": [
+      "경명여중",
+      "경명여자중학교"
+    ],
     "normalizedKey": "경명여중",
     "scope": "all currently exported grades, subjects and periods",
     "currentExamRows": 5,
@@ -91,13 +94,20 @@
       "step": "predictBlueprint",
       "status": "pass",
       "behavior": "Deterministic marginal distribution prediction with school/cohort weights.",
-      "evidence": ["predictorDefaults", "predictor"]
+      "evidence": [
+        "predictorDefaults",
+        "predictor"
+      ]
     },
     {
       "step": "POST /api/tests/predicted",
       "status": "pass",
       "behavior": "Separate caller request invokes new calculation; saved run blueprint not reused.",
-      "evidence": ["generateRoute", "generateAuthRun", "generateEvidence"]
+      "evidence": [
+        "generateRoute",
+        "generateAuthRun",
+        "generateEvidence"
+      ]
     },
     {
       "step": "composePredictedPaper",
@@ -114,7 +124,9 @@
       "step": "persistPredictedPaper",
       "status": "pass",
       "behavior": "Save Test/TestProblem only after complete-slot/exact100/class-owner checks.",
-      "evidence": ["persist"]
+      "evidence": [
+        "persist"
+      ]
     }
   ],
   "schoolConditioning": {
@@ -152,7 +164,10 @@
         "generateCandidates",
         "candidateContract"
       ],
-      "probes": ["schoolConditioning", "cohortOnly"],
+      "probes": [
+        "schoolConditioning",
+        "cohortOnly"
+      ],
       "dataEvidence": "schoolEvidence"
     },
     {
@@ -160,8 +175,14 @@
       "status": "pass",
       "claim": "Different schools with different evidence can change the actual blueprint and row selection.",
       "observed": "Fixed synthetic corpus A gives10 MC/10-point-grid, B gives20 short/5-point-grid; selected IDs differ and repeats are deterministic.",
-      "evidence": ["predictor", "generateEvidence", "composeRanking"],
-      "probes": ["schoolConditioning"],
+      "evidence": [
+        "predictor",
+        "generateEvidence",
+        "composeRanking"
+      ],
+      "probes": [
+        "schoolConditioning"
+      ],
       "limitation": "Synthetic mechanism proof, not actual-school fidelity or total content capacity."
     },
     {
@@ -169,8 +190,13 @@
       "status": "fail",
       "claim": "School-name text itself determines the school’s problem style.",
       "observed": "Same evidence gives same numeric blueprint under renamed school; two absent schools share identical selected questions under the same cohort.",
-      "evidence": ["predictor", "candidateContract"],
-      "probes": ["cohortOnly"]
+      "evidence": [
+        "predictor",
+        "candidateContract"
+      ],
+      "probes": [
+        "cohortOnly"
+      ]
     },
     {
       "id": "school-name-normalization-integration",
@@ -183,7 +209,9 @@
         "predictionEvidence",
         "generateEvidence"
       ],
-      "probes": ["nameMatching"]
+      "probes": [
+        "nameMatching"
+      ]
     },
     {
       "id": "same-label-real-structure-guarantee",
@@ -196,7 +224,9 @@
         "composeSlots",
         "composeRanking"
       ],
-      "probes": ["questionIdentity"]
+      "probes": [
+        "questionIdentity"
+      ]
     },
     {
       "id": "on-demand-content-generation",
@@ -210,31 +240,50 @@
         "aiSeparateRoute",
         "transformSeparate"
       ],
-      "probes": ["tieReasons", "persistence"]
+      "probes": [
+        "tieReasons",
+        "persistence"
+      ]
     },
     {
       "id": "evidence-source-policy-consistency",
       "status": "fail",
       "claim": "Prediction and issuance use the same source/trust policy.",
       "observed": "Prediction excludes 대비 and unknown source paths; issuance uses partitionTrusted only. Synthetic own evidence0 in prediction becomes2 in issuance.",
-      "evidence": ["predictionEvidence", "generateEvidence", "source"],
-      "probes": ["sourceGateDivergence"]
+      "evidence": [
+        "predictionEvidence",
+        "generateEvidence",
+        "source"
+      ],
+      "probes": [
+        "sourceGateDivergence"
+      ]
     },
     {
       "id": "style-range-policy-consistency",
       "status": "fail",
       "claim": "Prediction and issuance use the same own-school style history.",
       "observed": "Prediction learns style across own-school subjects and restricts range history; issuance loads only requested subject. Cross-subject-only fixture predicts20 questions but issuance refuses no evidence.",
-      "evidence": ["predictionEvidence", "generateEvidence"],
-      "probes": ["styleRangeDivergence"]
+      "evidence": [
+        "predictionEvidence",
+        "generateEvidence"
+      ],
+      "probes": [
+        "styleRangeDivergence"
+      ]
     },
     {
       "id": "saved-run-replay-binding",
       "status": "fail",
       "claim": "An attached PredictionRun binds the issued paper to its stored blueprint and full exam identity.",
       "observed": "Only run user/school/level/grade compared; subject, target/cutoff, parameters and saved blueprint not bound; fresh calculation performed.",
-      "evidence": ["generateAuthRun", "generateEvidence"],
-      "probes": ["runBinding"]
+      "evidence": [
+        "generateAuthRun",
+        "generateEvidence"
+      ],
+      "probes": [
+        "runBinding"
+      ]
     },
     {
       "id": "logical-question-format-compatibility",
@@ -248,7 +297,9 @@
         "questionIdentity",
         "identitySchema"
       ],
-      "probes": ["questionIdentity"],
+      "probes": [
+        "questionIdentity"
+      ],
       "limitation": "Concrete fixture failure; not a measurement of existing production duplicate incidence."
     },
     {
@@ -256,8 +307,13 @@
       "status": "fail",
       "claim": "Current identity/content/eligibility is rechecked and locked immediately before predicted-paper persistence.",
       "observed": "Real persist function with transaction spies performs no Problem reread/lock or identity uniqueness check; general flow has selectionStillCurrent but this path does not use it.",
-      "evidence": ["persist", "safeGeneralSelection"],
-      "probes": ["persistence"]
+      "evidence": [
+        "persist",
+        "safeGeneralSelection"
+      ],
+      "probes": [
+        "persistence"
+      ]
     },
     {
       "id": "hard-school-slot-conformance",
@@ -270,7 +326,9 @@
         "composeOutput",
         "persist"
       ],
-      "probes": ["allAxesRelaxed"]
+      "probes": [
+        "allAxesRelaxed"
+      ]
     },
     {
       "id": "training-evidence-temporal-isolation",
@@ -289,8 +347,12 @@
       "status": "fail",
       "claim": "Final selected questions obey the same historical source-exam cutoff as training evidence.",
       "observed": "Candidate query has requested units/eligibility only, no school/source-exam-period predicate. Actual historical leakage incidence unmeasured.",
-      "evidence": ["generateCandidates"],
-      "probes": ["candidateQuery"]
+      "evidence": [
+        "generateCandidates"
+      ],
+      "probes": [
+        "candidateQuery"
+      ]
     },
     {
       "id": "cohort-fallback-machine-disclosure",
@@ -305,7 +367,9 @@
         "uiDisclosure",
         "uiDisclosurePanel"
       ],
-      "probes": ["cohortOnly"],
+      "probes": [
+        "cohortOnly"
+      ],
       "limitation": "Issuance API has no explicit cohort-only warning or separate generation UI confirmation flow."
     },
     {
@@ -313,48 +377,76 @@
       "status": "unknown",
       "claim": "Every student/branch relationship is validated in this predicted-paper path.",
       "observed": "Approved session/menu and literal class owner are checked; student membership and branch-specific action policy not verified here; live authorization integration tests out of scope.",
-      "evidence": ["session", "menu", "proxy", "generateAuthRun", "persist"]
+      "evidence": [
+        "session",
+        "menu",
+        "proxy",
+        "generateAuthRun",
+        "persist"
+      ]
     },
     {
       "id": "operational-output-completion",
       "status": "unknown",
       "claim": "A current real-school request works through production printing and student issuance.",
       "observed": "No HTTP mutation, real DB write or production rendering/dispatch was performed. Root separately owns immutable-export runtime probes.",
-      "evidence": ["uiDashboard", "generateRoute", "persist"]
+      "evidence": [
+        "uiDashboard",
+        "generateRoute",
+        "persist"
+      ]
     }
   ],
   "gates": [
     {
       "name": "approved-session-and-export-menu",
       "status": "pass",
-      "evidence": ["session", "menu", "proxy"]
+      "evidence": [
+        "session",
+        "menu",
+        "proxy"
+      ]
     },
     {
       "name": "literal-class-owner-check",
       "status": "pass",
-      "evidence": ["generateAuthRun", "persist"]
+      "evidence": [
+        "generateAuthRun",
+        "persist"
+      ]
     },
     {
       "name": "run-owner-school-level-grade-check",
       "status": "pass",
-      "evidence": ["generateAuthRun"],
+      "evidence": [
+        "generateAuthRun"
+      ],
       "probe": "runBinding"
     },
     {
       "name": "full-run-subject-period-cutoff-blueprint-binding",
       "status": "fail",
-      "evidence": ["generateAuthRun", "generateEvidence"],
+      "evidence": [
+        "generateAuthRun",
+        "generateEvidence"
+      ],
       "probe": "runBinding"
     },
     {
       "name": "training-evidence-before-target",
       "status": "pass",
-      "evidence": ["generateEvidence", "predictor", "pinnedEvidence"]
+      "evidence": [
+        "generateEvidence",
+        "predictor",
+        "pinnedEvidence"
+      ]
     },
     {
       "name": "declared-score-band-and-minimum-count",
       "status": "pass",
-      "evidence": ["trust"],
+      "evidence": [
+        "trust"
+      ],
       "probe": "trust",
       "accepted": {
         "minDeclaredTotal": 95,
@@ -370,13 +462,19 @@
     {
       "name": "consistent-genuine-source-filter",
       "status": "fail",
-      "evidence": ["predictionEvidence", "generateEvidence", "source"],
+      "evidence": [
+        "predictionEvidence",
+        "generateEvidence",
+        "source"
+      ],
       "probe": "sourceGateDivergence"
     },
     {
       "name": "bank-row-eligibility",
       "status": "pass",
-      "evidence": ["generateCandidates"],
+      "evidence": [
+        "generateCandidates"
+      ],
       "conditions": [
         "pool shared",
         "reviewStatus approved",
@@ -389,31 +487,47 @@
     {
       "name": "candidate-source-exam-cutoff",
       "status": "fail",
-      "evidence": ["generateCandidates"],
+      "evidence": [
+        "generateCandidates"
+      ],
       "probe": "candidateQuery"
     },
     {
       "name": "missing-slot-and-exact100-save-guard",
       "status": "pass",
-      "evidence": ["persist", "normalize"],
+      "evidence": [
+        "persist",
+        "normalize"
+      ],
       "probe": "persistence"
     },
     {
       "name": "hard-school-structure-slot-guard",
       "status": "fail",
-      "evidence": ["composeSlots", "composeRanking", "persist"],
+      "evidence": [
+        "composeSlots",
+        "composeRanking",
+        "persist"
+      ],
       "probe": "allAxesRelaxed"
     },
     {
       "name": "logical-question-uniqueness",
       "status": "fail",
-      "evidence": ["questionIdentity", "generateConvert", "composeRanking"],
+      "evidence": [
+        "questionIdentity",
+        "generateConvert",
+        "composeRanking"
+      ],
       "probe": "questionIdentity"
     },
     {
       "name": "prewrite-latest-identity-and-eligibility-recheck",
       "status": "fail",
-      "evidence": ["persist", "safeGeneralSelection"],
+      "evidence": [
+        "persist",
+        "safeGeneralSelection"
+      ],
       "probe": "persistence"
     }
   ],
@@ -1458,7 +1572,11 @@
           }
         ],
         "totalScore": 100,
-        "riskFlags": ["적은_과거회차", "시험범위_미확정", "학생응답_부족"],
+        "riskFlags": [
+          "적은_과거회차",
+          "시험범위_미확정",
+          "학생응답_부족"
+        ],
         "selectedIds": [
           "33333333-3333-4333-8333-000000000001",
           "33333333-3333-4333-8333-000000000002",
@@ -1550,7 +1668,10 @@
       "persistence": {
         "incompleteRefused": true,
         "total99Refused": true,
-        "writeKinds": ["Test", "TestProblem"],
+        "writeKinds": [
+          "Test",
+          "TestProblem"
+        ],
         "problemRevalidationQueries": 0
       }
     },
@@ -1590,5 +1711,12 @@
     "measured learning effect",
     "total generator content capacity",
     "actual production frequency of duplicate logical questions or temporal candidate leakage"
-  ]
+  ],
+  "ownerInterpretationUpdate20261018": {
+    "criterion": "Engine-authored practice must prepare for exam concepts, conditions, task structures, difficulty and response demands across schools; Daeryun is one example",
+    "originalDbAbsence": "intentional by owner; not a study-readiness failure",
+    "originalRestorationRecommendation": "withdrawn",
+    "priorEvidenceScope": "historical current database/service behavior, not a verdict of mathematical study capability",
+    "followup": "../math-engine-study-readiness-20261018/OWNER-CRITERIA.md"
+  }
 }
