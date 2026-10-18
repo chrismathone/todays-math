@@ -133,3 +133,12 @@
 ## 6. 이 검토가 한 일과 안 한 일
 
 계획 문서, AGENTS.md, 감사 보고서(README·OWNER-CRITERIA·upgrade-plan·source-comparison·school-study-flow)를 읽었다. 코드는 `accountRouteAccess.ts`, `routeAccess.ts`, `proxy.ts`, `courseTeacherRoutes.ts`, `api/exam/rounds/route.ts`, `ExamDashboard.tsx`, `WorksheetEditor.tsx`, `SavedRetryPanel.tsx`, `unified/types.ts`, `export/pdfServer.ts`, `figure/renderFigureSpec.ts`, `middle/generate.ts`, `high/generate.ts`, `engine/*`, `DESIGN.md` §5·§9 를 읽었다. DB 조회, 자격 증명 사용, 유료 API 호출, 시험 실행, Prisma generate, 푸시는 하지 않았다. 따로 남길 무시 파일 증거는 없다(모든 근거는 위 파일:줄로 적었다).
+
+## 7. 추가 — coordinator 구체화(2026-10-18 13:18Z)에 대한 최종 판단
+
+coordinator 가 추가로 정한 내용은 다음과 같다. 일반 범위 연습은 기존 초3~초6/중등/고등 등록 생성기를 재사용하고, 학교 `full` 은 검토된 manifest 와 요구에만 허용한다. 새 서술형은 `nativeRubric` 을 재사용하되 새 examStudy 계약에 두고, `NativeDefinition` 의 학년(초4|중3)은 넓히지 않는다. 권한은 `authorizeAccount`(승인·같은 출처) + 명시적 `export` 메뉴 검사를 server·proxy 양쪽에서 한다. 출력은 `WorksheetEditor` `draftActions=false`/`fixedComposition` + `beforeOutput` 의 서버 recipe/digest 재확인으로 한다. **이 구체화로 R1·R3 은 충족되고, B2 의 서술형 부분도 충족된다.** 판정은 그대로 **APPROVE_WITH_REQUIRED_CHANGES** 다. 남는 차단은 다음뿐이다.
+
+- **B1 · B4 · B5 는 그대로 차단 사항이다.** 작업자 2·3 이 같은 요구 어휘·증거 규칙·`logicalKey` 정의 위에서 짓지 않으면 병합 때 대응 수준과 개수가 어긋난다.
+- **B3(그림)은 일반 범위 연습 때문에 더 중요해졌다.** 기존 초등·중등 생성기를 재사용하면 그 `figureSpec` 도 모두 Python 엔진을 거친다. `strict: true` 와 «그림이 필요한데 실패하면 그 문항을 버림»을 일반 연습에도 똑같이 적용한다.
+- **일반 범위 연습의 정체 키:** 기존 생성기는 `canonicalParams` 를 내놓지 않는다. adapter 의 `logicalKey` 는 `typeKey + 정규화된 발문·정답 digest` 로 정하고, 같은 키는 한 세트에 한 번만 넣는다(`generateMiddleSet`/`generateHighSet` 의 «발문이 같으면 다시 뽑기»와 같은 기준). adapter 출력은 증거(B4)가 없는 한 `component`/`unverified` 로만 표시하고, 가능한 양을 «등록 유형 수 × 시드»로 보이지 않는다.
+- **B2 의 등록부 격리는 일반 범위에도 해당한다.** 일반 연습은 기존 등록부를 **읽기만** 하고, 새 가족을 그쪽에 쓰지 않는다.
