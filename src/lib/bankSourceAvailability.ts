@@ -20,6 +20,11 @@ import { findProblemIdsByFormat } from "@/lib/problem/formatQuery";
 import { PROBLEM_BANK_ORDER_BY } from "@/lib/problem/problemOrder";
 import type { BankQueryContext } from "@/lib/bankQueryContext";
 import {
+  loadQuestionSourceAvailability,
+  loadQuestionSourceMaterials,
+} from "./bankSourceQuestions";
+import { canonicalFamilyKey } from "@/lib/generator/familyAliases";
+import {
   resolveUnifiedBankQuery,
   UnifiedBankQueryError,
 } from "@/lib/unifiedPreview";
@@ -99,7 +104,9 @@ async function countFamiliesByUnit(selection: Prisma.ProblemWhereInput[]) {
   const keyed = new Map<string, Set<string>>();
   const solo = new Map<string, number>();
   for (const row of rows) {
-    const key = row.familyKey?.trim();
+    const key = row.familyKey?.trim()
+      ? canonicalFamilyKey(row.unitId, row.familyKey)
+      : null;
     if (!key)
       solo.set(row.unitId, (solo.get(row.unitId) ?? 0) + row._count._all);
     else keyed.set(row.unitId, (keyed.get(row.unitId) ?? new Set()).add(key));
@@ -137,6 +144,8 @@ export async function loadBankSourceAvailability(
   /** `recent=1`(최근 출제 빼기)이면 계정을 여기서 안다 — 갈래 넷이 모두 같은 조건으로 센다. */
   context?: BankQueryContext,
 ): Promise<BankSourceAvailability> {
+  if (params.get("identity") === "question")
+    return loadQuestionSourceAvailability(params, context);
   checkView(params, "available");
   const filters = stripped(params, NOT_FILTERS);
   const main = await resolveUnifiedBankQuery(filters, context);
@@ -144,10 +153,15 @@ export async function loadBankSourceAvailability(
   const availableWhere = { AND: [problemEligibleWhere(), ...main.selection] };
 
   if (main.format) {
+    if (main.format === "multiple_choice")
+      throw new UnifiedBankQueryError(
+        "객관식 필터에는 문항 보기가 필요합니다.",
+      );
     // 형식은 본문을 읽어 가른다 — 목록과 같은 함수로 두 수만 센다(목록 total 과 같은 수).
+    const format = main.format;
     const [held, available] = await Promise.all(
       [heldWhere, availableWhere].map((where) =>
-        findProblemIdsByFormat(main.format, where, PROBLEM_BANK_ORDER_BY),
+        findProblemIdsByFormat(format, where, PROBLEM_BANK_ORDER_BY),
       ),
     );
     return {
@@ -289,6 +303,8 @@ export async function loadBankSourceMaterials(
   params: URLSearchParams,
   context?: BankQueryContext,
 ): Promise<BankSourceMaterials> {
+  if (params.get("identity") === "question")
+    return loadQuestionSourceMaterials(params, context);
   checkView(params, "materials");
   const books = bankBookIdsParamSchema.safeParse(params.get("books") ?? "");
   if (!books.success)

@@ -9,6 +9,7 @@ import { SOURCE_MATERIAL_KINDS } from "@/contracts/sourceMaterial.contract";
 import { db } from "@/lib/db";
 import { problemEligibleWhere } from "@/lib/problemEligibility";
 import { problemVisibleWhere } from "@/lib/problemPool";
+import { loadQuestionSourceCounts } from "./bankSourceQuestions";
 
 /**
  * 문제은행 «출처 고르기» 창의 수 (D-161 · 05 S-08 H1 [확정 — 2026-10-08]).
@@ -19,7 +20,11 @@ import { problemVisibleWhere } from "@/lib/problemPool";
  *
  * 질의는 묶음 셈 셋 + 책 · 자료 · 차시 목록이다. 문항 행을 읽어 오지 않는다(교과서 8,370 · 전체 10만여).
  */
-export async function loadBankSourceCounts(): Promise<BankSourceCounts> {
+export async function loadBankSourceCounts(
+  params = new URLSearchParams(),
+): Promise<BankSourceCounts> {
+  if (params.get("identity") === "question")
+    return loadQuestionSourceCounts(params);
   const visible = problemVisibleWhere();
   const textbook = { source: "school_textbook" as const };
   const [bySource, perMaterial, perMaterialOpen, books, units] =

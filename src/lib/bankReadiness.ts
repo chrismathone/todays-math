@@ -20,6 +20,8 @@ import { problemVisibleWhere } from "@/lib/problemPool";
 import { RETRY_CANDIDATE_SELECT } from "@/lib/tests/retryCandidates";
 import { readStrictJson } from "@/lib/textbook/strictJson";
 import { UnifiedBankQueryError } from "@/lib/unifiedPreview";
+import { validateQuestionSelections } from "@/lib/problem/questionQueries";
+import { QuestionSelectionConflict } from "@/lib/problem/questionSelection";
 
 /**
  * 문제은행 P0 읽기 둘 — 출력 직전 재검증 · 교과서 지정 두 슬롯 (`bankReadiness.contract.ts`).
@@ -38,6 +40,8 @@ export async function checkBankProblems(
   if (!parsed.success)
     throw new UnifiedBankQueryError("확인할 문항을 1~100개로 보내 주세요.");
   const ids = unique(parsed.data.ids);
+  if (parsed.data.selections)
+    await validateQuestionSelections(parsed.data.selections);
   const rows = await db.problem.findMany({
     where: { AND: [problemVisibleWhere(), { id: { in: ids } }] },
     select: {
@@ -157,6 +161,8 @@ export async function bankReadinessResponse(
   try {
     return Response.json(await load(body), { headers });
   } catch (error) {
+    if (error instanceof QuestionSelectionConflict)
+      return Response.json({ error: error.message }, { status: 409, headers });
     if (error instanceof UnifiedBankQueryError)
       return Response.json({ error: error.message }, { status: 400, headers });
     return Response.json(

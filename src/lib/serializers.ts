@@ -75,8 +75,9 @@ export function serializeProgress(row: ProgressRow): ProgressEntity {
 export function serializeProblem(
   row: Omit<
     ProblemRow,
-    "choiceFigureIndex" | "figureDims" | "figureSourceMm"
+    "choiceFigureIndex" | "figureDims" | "figureSourceMm" | "questionGroupKey"
   > & {
+    questionGroupKey?: string | null;
     // 은행 행은 `number[]`, 교재 스냅샷 행은 원소에 `null` 이 섞인다. 없으면 «모른다»(빈 배열).
     choiceFigureIndex?: readonly (number | null)[] | null;
     sourceReference?:

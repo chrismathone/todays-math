@@ -7,7 +7,8 @@ import type {
 } from "@/contracts/questionFormats.contract";
 import { db } from "@/lib/db";
 import { problemIneligibleCode } from "@/lib/problemEligibility";
-import { classifyFormat, formatWithoutContent } from "./provenance";
+import { classifyFormat } from "./provenance";
+import { questionFormatWithoutContent } from "./questionFormat";
 import { questionIdOf, groupQuestionRows } from "./questionIdentity";
 import type { QuestionDb } from "./questionQueries";
 
@@ -26,8 +27,6 @@ export const QUESTION_CANDIDATE_SELECT = {
   pool: true,
   reviewStatus: true,
   directUseAllowed: true,
-  createdAt: true,
-  questionNumber: true,
 } as const satisfies Prisma.ProblemSelect;
 type CandidateRow = Prisma.ProblemGetPayload<{
   select: typeof QUESTION_CANDIDATE_SELECT;
@@ -64,7 +63,8 @@ export async function loadQuestionCandidates(
     select: QUESTION_CANDIDATE_SELECT,
   });
   const undecided = rows.filter(
-    (row) => formatWithoutContent(row) === null && !formatCache.has(row.id),
+    (row) =>
+      questionFormatWithoutContent(row) === null && !formatCache.has(row.id),
   );
   const formats = formatCache;
   for (let i = 0; i < undecided.length; i += 5000) {
@@ -86,7 +86,7 @@ export async function loadQuestionCandidates(
   }
   return rows.map((row) => {
     const classified =
-      formatWithoutContent(row) ?? formats.get(row.id) ?? "unknown";
+      questionFormatWithoutContent(row) ?? formats.get(row.id) ?? "unknown";
     const actualFormat = classified === "unknown" ? null : classified;
     return {
       ...row,
