@@ -3,10 +3,14 @@ import type { ProblemSourceReference } from "@/contracts/problemSourceReference.
 import type { MathgenProblemData } from "@/lib/mathgen/contracts";
 import type { StudioCrop } from "./studioHelpers";
 import type { EnglishBankQuestion } from "@/contracts/englishQuestionBank.contract";
+import type { QuestionRepresentation } from "@/contracts/questionFormats.contract";
 
 export type SchoolLevel = "elementary" | "secondary";
 
 export interface StudioProblem {
+  /** Optional for old saved payloads, local crops and English; id remains actual UUID. */
+  questionId?: string;
+  questionFormats?: QuestionRepresentation[];
   /** Display-only arithmetic grouping; the saved item remains untouched in source. */
   arithmetic?: {
     round: number;
@@ -87,6 +91,9 @@ export interface BankProblem extends StudioProblem {
 }
 
 export interface BankData {
+  version?: 2;
+  countUnit?: "question";
+  queryKey?: string;
   problems: BankProblem[];
   total: number;
   page: number;

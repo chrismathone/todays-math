@@ -16,6 +16,7 @@ import { DIFFICULTY_LADDER, type Difficulty } from "./difficulty";
 import { uuidSchema } from "./common.contract";
 import { problemFilterQuerySchema } from "./problem.contract";
 import { sourceMaterialKindSchema } from "./sourceMaterial.contract";
+import { questionFormatSchema } from "./questionFormats.contract";
 
 /**
  * 출처 줄의 갈래 — 출처 값 다섯을 넷으로 묶는다(리드 결정 2026-10-08).
@@ -131,6 +132,9 @@ export const unifiedBankQuerySchema = problemFilterQuerySchema
     page: true,
   })
   .extend({
+    identity: z.literal("question").optional(),
+    /** A classified actual representation, including multiple choice in v2. */
+    availableFormat: questionFormatSchema.optional(),
     unitIds: idList(1000).optional(),
     excludeIds: idList(100).optional(),
     /**
@@ -157,6 +161,11 @@ export const unifiedBankQuerySchema = problemFilterQuerySchema
     materials: bankMaterialIdsParamSchema.optional(),
   })
   .superRefine((query, ctx) => {
+    if (query.availableFormat && query.identity !== "question")
+      ctx.addIssue({
+        code: "custom",
+        message: "형식 가용 필터에는 문항 보기가 필요합니다.",
+      });
     const textbook =
       query.sourceGroup === "school_textbook" ||
       query.source === "school_textbook";
@@ -202,6 +211,9 @@ export type BankSourceBook = z.infer<typeof bankSourceBookSchema>;
  * `textbook.grades` 는 책이 있는 과목만, 교육과정 차례(`unit.orderIndex`)로 · `kinds` 는 계약의 차례로.
  */
 export const bankSourceCountsSchema = z.strictObject({
+  version: z.literal(2).optional(),
+  countUnit: z.literal("question").optional(),
+  queryKey: z.string().min(1).optional(),
   sources: z.strictObject({
     total: countSchema,
     engine: countSchema,
@@ -262,7 +274,10 @@ export const bankAvailabilityBookSchema = z.strictObject({
 
 export const bankSourceAvailabilitySchema = z.strictObject({
   view: z.literal("available"),
-  version: z.literal(BANK_SOURCE_AVAILABILITY_VERSION),
+  version: z.union([z.literal(BANK_SOURCE_AVAILABILITY_VERSION), z.literal(2)]),
+  countUnit: z.literal("question").optional(),
+  queryKey: z.string().min(1).optional(),
+  formatAvailable: z.record(questionFormatSchema, countSchema).optional(),
   held: countSchema,
   available: countSchema,
   /**
@@ -343,7 +358,9 @@ export type BankSourceMaterial = z.infer<typeof bankSourceMaterialSchema>;
 
 export const bankSourceMaterialsSchema = z.strictObject({
   view: z.literal("materials"),
-  version: z.literal(BANK_SOURCE_AVAILABILITY_VERSION),
+  version: z.union([z.literal(BANK_SOURCE_AVAILABILITY_VERSION), z.literal(2)]),
+  countUnit: z.literal("question").optional(),
+  queryKey: z.string().min(1).optional(),
   materials: z.array(bankSourceMaterialSchema),
 });
 export type BankSourceMaterials = z.infer<typeof bankSourceMaterialsSchema>;
