@@ -1,0 +1,90 @@
+{
+  "review": "independent-implementation-review",
+  "date": "2026-10-18",
+  "taskId": "task_881c86be0700",
+  "status": "accepted_with_documented_partial_scope",
+  "initialSource": "d35e937e0d643c81f53f0d9b7d050775d2cbd8fc",
+  "lastReviewedCoordinatorSource": "da78f6e4c69ac0ff2a3fc915da4b344e1c71aef1",
+  "unresolvedBlockingFindings": 0,
+  "regenerationFixReviewed": "ca194c253e96b2fc50284d0ced66f6dafa2e3479",
+  "productionFilesEdited": false,
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "P2",
+      "title": "General-mode school label silently applies a school profile",
+      "status": "fixed_and_independently_verified",
+      "fixCommit": "47a0915da",
+      "reproduction": "assembly.test.ts",
+      "baselineEvidence": "general-school-label-before-fix.json",
+      "verificationEvidence": "assembly-after-fix.log",
+      "source": ["src/lib/examStudy/generate.ts:86", "src/components/exam-practice/ExamPracticeWorkspace.tsx:220"]
+    },
+    {
+      "id": "F2",
+      "severity": "P2",
+      "title": "Essential advanced SVG labels shrink below the actual common-print text floor",
+      "status": "fixed_and_independently_verified",
+      "fixCommit": "e9c766407528f68de7635d47fb45d751c917b911",
+      "minimumPrintedCssPxBefore": {
+        "parabola": 10.175651120533013,
+        "splitIncenters": 9.448818897637798,
+        "twoCenters": 9.448818897637798,
+        "incircle": 11.205997432038332
+      },
+      "requiredMinimumCssPx": 12.5,
+      "minimumPrintedCssPxAfter": {
+        "parabola": 13.228346456692917,
+        "splitIncenters": 13.228346456692917,
+        "twoCenters": 13.228346456692917,
+        "incircle": 13.083253178938488
+      },
+      "reproduction": "print-labels.test.ts",
+      "baselineEvidence": "print-label-size-before-fix.json",
+      "verificationEvidence": ["print-label-size.json", "label-layout.json", "math-unchanged.json", "final-renders.log", "final-tests.log"],
+      "baselineSource": "01cf56721",
+      "source": ["src/lib/examStudy/families/advanced/graph.ts:321", "src/lib/examStudy/families/advanced/incircle.ts:107", "src/lib/figure/figureSvgFrame.ts:172", "src/components/math/ProblemContent.tsx:221"]
+    }
+  ],
+  "observed": {
+    "authoredFamilies": 23,
+    "independentlySolvedTuples": 1241,
+    "middleTuples": 120,
+    "advancedTuples": 1121,
+    "strictRenderedFigures": 173,
+    "middleFigures": 56,
+    "advancedFigures": 117,
+    "catalogRegistrations": 4213,
+    "legacyRegistrations": 4190,
+    "independentBrowserChecks": 14,
+    "browserPageErrors": 0,
+    "legacyRegressionFiles": 12,
+    "legacyRegressionTestsPassed": 253,
+    "generalLabelFixAssemblyTestsPassed": 5,
+    "finalUnitAndProbeFiles": 14,
+    "finalUnitAndProbeTestsPassed": 223,
+    "separateFinalStrictRenderTestsPassed": 10,
+    "checkedRenderedLabels": 1165,
+    "advancedLabels": 729,
+    "clippedOrOverlappingLabelBoxes": 0,
+    "unchangedMathematicalFigureDrafts": 173,
+    "isotropicGeometryCases": 21
+  },
+  "profiles": [
+    {"id": "daeryun-m1", "delivered": 11, "requested": 11, "fullDemands": 8, "selectedDemands": 11, "status": "partial"},
+    {"id": "daeryun-m2", "delivered": 10, "requested": 10, "fullDemands": 8, "selectedDemands": 10, "status": "partial"},
+    {"id": "kyungmyung-m1", "delivered": 7, "requested": 7, "fullDemands": 2, "selectedDemands": 7, "status": "partial"},
+    {"id": "kyungmyung-m3", "delivered": 3, "requested": 4, "fullDemands": 2, "selectedDemands": 4, "status": "partial"},
+    {"id": "kyungshin-common2", "delivered": 7, "requested": 8, "fullDemands": 7, "selectedDemands": 8, "status": "partial"}
+  ],
+  "limits": [
+    "Synthetic authentication/browser harness; no production login or deployment proof",
+    "No physical printer or live PDF/HWPX backend validation",
+    "Normal existing authentication/audit infrastructure is outside a zero-production-DB-activity claim",
+    "No full repository type/lint/build verification by this reviewer",
+    "Legacy full coverage is restricted to the six curated validators; registration alone proves no school coverage",
+    "No official curriculum completeness, measured difficulty, school hit rate or learning-effect claim"
+  ],
+  "evidencePath": "/Users/pss/orca/workspaces/today_/problem_make/.qa-artifacts/math-exam-engine-upgrade-20261018/independent-review-evidence",
+  "evidenceHashes": "SHA256SUMS"
+}
