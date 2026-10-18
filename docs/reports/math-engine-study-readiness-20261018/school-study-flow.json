@@ -1,0 +1,1484 @@
+{
+  "schemaVersion": 1,
+  "reportKind": "school-study-flow-readiness-audit",
+  "date": "2026-10-18",
+  "sourceCommit": "9b6dd60aeb5a0d7bc968aecd32d5163f35640997",
+  "ownedPublicFiles": [
+    "docs/reports/math-engine-study-readiness-20261018/school-study-flow.md",
+    "docs/reports/math-engine-study-readiness-20261018/school-study-flow.json"
+  ],
+  "ownerInterpretation": {
+    "targetJourney": "Select 대륜중학교 -> fresh authored engine practice for real mathematical types, difficulty, condition/diagram interpretation and solving/written steps; generalize across schools/grades/engines.",
+    "originalStorage": "Intentionally absent for copyright; absence is not a failure metric.",
+    "originalRecoveryOrIngestionPlan": false,
+    "generationInputs": "Reviewed abstract demand summaries and independently authored parameterized templates, not original wording/numbers/figures/answers.",
+    "noLearningEffectClaim": true
+  },
+  "verdict": {
+    "content": "Some core demands and genuine reasoning/native-written tasks are available; many observed compound demands have only component evidence or unverified coverage.",
+    "product": "No completed school-profile-to-authored-family journey found; current school prediction route composes statistical stock metadata rather than calling task generators.",
+    "sourceDataAbsenceUsedAsFailure": false,
+    "wholeEngineCapacityEstimated": false,
+    "measuredLearningEffect": "unknown",
+    "schoolDifficultyEquivalence": "unknown"
+  },
+  "entrypoints": [
+    {
+      "id": "workroom-builder",
+      "ui": [
+        "/",
+        "/studio"
+      ],
+      "module": "src/components/exam-builder/MathExamBuilder.tsx",
+      "api": [
+        "/api/studio/problems",
+        "/api/studio/problems/sources",
+        "/api/studio/problems/random"
+      ],
+      "behavior": "Select existing eligible authored bank tasks; engine source group is manual.",
+      "inputs": [
+        "sourceGroup/books/materialKinds/materials",
+        "units",
+        "difficulty",
+        "actual format",
+        "recent exclusion",
+        "question identity/revision",
+        "family rule"
+      ],
+      "schoolProfileAccepted": false,
+      "directGenerator": false,
+      "refs": [
+        "workroom",
+        "builder",
+        "math-source",
+        "source-group",
+        "bank-compose"
+      ]
+    },
+    {
+      "id": "bank-search",
+      "ui": [
+        "legacy /problems",
+        "BankView"
+      ],
+      "api": [
+        "/api/problems",
+        "/api/studio/problems"
+      ],
+      "behavior": "q is OR substring search including stored school metadata; not task-profile routing.",
+      "refs": [
+        "bank-query",
+        "bank-contract"
+      ]
+    },
+    {
+      "id": "daily-review",
+      "ui": [
+        "/tests/new",
+        "DailyReviewSection"
+      ],
+      "api": [
+        "/api/tests/generate"
+      ],
+      "behavior": "Class/student progress/range stock selection and draft creation.",
+      "schoolProfileAccepted": false,
+      "directGenerator": false,
+      "refs": [
+        "daily-contract",
+        "daily-service",
+        "current-selection"
+      ]
+    },
+    {
+      "id": "insufficient-ai",
+      "ui": [
+        "GenerateSetup insufficient-pool action"
+      ],
+      "api": [
+        "/api/problems/generate"
+      ],
+      "behavior": "Separate paid unit/difficulty/count generation -> pending approval. Current button uses fixed 응용.",
+      "schoolProfileAccepted": false,
+      "executed": false,
+      "refs": [
+        "ai-button",
+        "ai-generate",
+        "ai-contract"
+      ]
+    },
+    {
+      "id": "transform",
+      "api": [
+        "/api/problems/transform",
+        "/api/problems/transform/adopt"
+      ],
+      "behavior": "Existing selected-task transformation/adoption, not a deterministic school task-profile router.",
+      "executed": false
+    },
+    {
+      "id": "school-dashboard",
+      "ui": [
+        "/exam",
+        "/exam/{id}"
+      ],
+      "api": [
+        "/api/exam/rounds",
+        "/api/exam/rounds/{id}"
+      ],
+      "behavior": "Read existing rounds; no mathematical school-practice creation form found in current source.",
+      "outdatedCopy": "ingest originals first",
+      "refs": [
+        "exam-ui"
+      ]
+    },
+    {
+      "id": "school-prediction",
+      "api": [
+        "POST /api/predictions"
+      ],
+      "behavior": "Predict statistical metadata distributions and persist run.",
+      "uiCallerFound": false,
+      "directGenerator": false,
+      "refs": [
+        "prediction-run",
+        "prediction-contract"
+      ]
+    },
+    {
+      "id": "predicted-paper",
+      "api": [
+        "POST /api/tests/predicted"
+      ],
+      "behavior": "School series -> statistical marginal blueprint -> existing bank-row selection ->100-point normalization -> persistence.",
+      "uiCallerFound": false,
+      "directGenerator": false,
+      "schoolProfileAccepted": false,
+      "refs": [
+        "predicted-api",
+        "school-service",
+        "prediction-difficulty",
+        "compose"
+      ]
+    },
+    {
+      "id": "arithmetic",
+      "ui": [
+        "연산대장"
+      ],
+      "api": [
+        "/api/arithmetic/catalog",
+        "/api/arithmetic/generate",
+        "/api/arithmetic/regenerate",
+        "/api/arithmetic/v2/catalog",
+        "/api/arithmetic/v2/generate",
+        "/api/arithmetic/v2/regenerate"
+      ],
+      "behavior": "Direct deterministic worksheet engine product route; separate from bank stock and school-specific task matching.",
+      "refs": [
+        "arithmetic-product",
+        "access"
+      ]
+    },
+    {
+      "id": "student-srs",
+      "api": [
+        "/api/learn/math-srs/**",
+        "/api/learn/math-srs/course/**",
+        "/api/learn/math-explorers"
+      ],
+      "behavior": "Real direct elementary generation and a restricted M1 numeric-equation adapter; not a school-conditioned all-grade exam route.",
+      "refs": [
+        "srs-m1",
+        "srs-elem"
+      ]
+    },
+    {
+      "id": "engine-qa",
+      "ui": [
+        "/dev/elem-engine",
+        "/dev/mid-engine",
+        "/dev/tier-bench/**"
+      ],
+      "behavior": "Direct generator QA with production flag and account restrictions; not general school practice access.",
+      "refs": [
+        "dev-mid",
+        "access"
+      ]
+    },
+    {
+      "id": "high-generator",
+      "ui": [
+        "CLI only found for independent high registry"
+      ],
+      "module": "scripts/high/gen-cli.ts",
+      "behavior": "Independent Common Math1 generator capability; no product caller found; normal importer lacks high target.",
+      "refs": [
+        "high-cli",
+        "engine-import"
+      ],
+      "limitation": "Does not establish absence of high authored material across all other bank/textbook paths."
+    },
+    {
+      "id": "studio-and-python",
+      "behavior": "Studio actions are OCR/figures/solution; Python transport supports figure/hwpx. Do not count these engine names as school math task families.",
+      "refs": [
+        "studio-ai-actions",
+        "mathgen-transport"
+      ]
+    }
+  ],
+  "abstractProfiles": [
+    {
+      "id": "daeryun-m1-2025-s1-final",
+      "file": "daeryun-m1-abstract-profile.json",
+      "listed": 22,
+      "visible": 19,
+      "abstractDemands": 11,
+      "visibleFormats": {
+        "multipleChoice": 17,
+        "shortOrWritten": 2
+      },
+      "unknownHidden": 3,
+      "caution": "Purposeful comparison, source labels uncalibrated; not complete original exam or school-wide evidence.",
+      "sha256": "42cfb1184bcd80f46567d07453b0aeaac036289b94d74dac6fa955db78c3834d"
+    },
+    {
+      "id": "daeryun-m2-2025-s1-final",
+      "file": "daeryun-m2-abstract-profile.json",
+      "listed": 18,
+      "visible": 18,
+      "abstractDemands": 9,
+      "visibleFormats": {
+        "multipleChoice": 16,
+        "shortOrWritten": 2
+      },
+      "caution": "Purposeful demands; some type tags mismatch math, source answer warning; static candidate matches only.",
+      "sha256": "df2c02ce7495872eb60fe0b94a5f04131144140e69266aa662e86f136a9375b6"
+    },
+    {
+      "id": "kyungshin-common2-2025-s2-final",
+      "file": "kyungshin-common2-abstract-profile.json",
+      "listed": 20,
+      "visible": 20,
+      "abstractDemands": 8,
+      "visibleFormats": {
+        "multipleChoice": 14,
+        "shortAnswer": 6,
+        "explicitProcessWritten": 0
+      },
+      "caution": "Difficulty all unclassified;3 unresolved source-answer discrepancies are not gold; matching untested.",
+      "sha256": "49591929b7483a5a8fccaec4d28885b00dab86f5de706fc025f09a1abdf1cc80"
+    },
+    {
+      "id": "textbook-m2-geometry-bundle",
+      "file": "textbook-m2-abstract-profile.json",
+      "selectedTextbook": 5,
+      "visibleIncludingAutoAddedSchoolTasks": 10,
+      "abstractTextbookDemands": 5,
+      "caution": "One bundle only; same-tag paired tasks can exercise different dependencies/actions; local engine matching untested.",
+      "sha256": "013860426d1a30604691377528a2f89023c516414c36e38a413b0aac9421a24f"
+    }
+  ],
+  "demandMapping": [
+    {
+      "profile": "daeryun-m1-2025-s1-final",
+      "demandRefs": [
+        4
+      ],
+      "abstract": "Infer hidden-variable signs under coupled conditions, then transformed quadrant.",
+      "handlers": [
+        "1-1|좌표와 그래프|06"
+      ],
+      "verdict": "대비 연습 가능",
+      "scope": "Core abstract sign/quadrant demand; ratio/product sign equivalence assumes nonzero variables. No exact exam difficulty or learning-effect claim.",
+      "evidence": "9 independently checked M1 outputs include3 of this handler",
+      "refs": [
+        "m1-sign",
+        "m1-sign-handler"
+      ]
+    },
+    {
+      "profile": "daeryun-m1-2025-s1-final",
+      "demandRefs": [
+        10
+      ],
+      "abstract": "Piecewise graph mixed judgments, displacement versus travel, all/first level crossings.",
+      "handlers": [
+        "1-1|좌표와 그래프|08",
+        "1-1|좌표와 그래프|84X"
+      ],
+      "verdict": "기초 요소만 연습 가능",
+      "positive": "84X genuinely requires selecting all crossing intervals and interpolating times.",
+      "missingOrUnknown": [
+        "rendered graph reading",
+        "compound claims together",
+        "all source-required judgments in same task"
+      ],
+      "refs": [
+        "m1-graph",
+        "m1-crossings"
+      ]
+    },
+    {
+      "profile": "daeryun-m1-2025-s1-final",
+      "demandRefs": [
+        14
+      ],
+      "abstract": "Two proportional graph incidences plus square shared-side constraints.",
+      "handlers": [
+        "1-1|정비례와 반비례|10",
+        "1-1|정비례와 반비례|22"
+      ],
+      "verdict": "기초 요소만 연습 가능",
+      "missingOrUnknown": [
+        "complete two-graph square constraint reconstruction in inspected handlers"
+      ],
+      "refs": [
+        "m1-area"
+      ]
+    },
+    {
+      "profile": "daeryun-m1-2025-s1-final",
+      "demandRefs": [
+        16,
+        17,
+        22
+      ],
+      "abstract": "Two-point reciprocal graph constraints, area ratios/equal legs/parameterized trapezoid.",
+      "handlers": [
+        "1-1|정비례와 반비례|20",
+        "1-1|정비례와 반비례|21",
+        "1-1|정비례와 반비례|61W"
+      ],
+      "verdict": "보강 필요",
+      "positive": "One-point inverse area, coefficient recovery and divisor restriction are available components.",
+      "missingOrUnknown": [
+        "complete coupled geometry and admissibility",
+        "parameter cancellation and native multi-output rubric"
+      ],
+      "refs": [
+        "m1-inverse-area"
+      ]
+    },
+    {
+      "profile": "daeryun-m1-2025-s1-final",
+      "demandRefs": [
+        18
+      ],
+      "abstract": "Area-partition points to two ray slopes.",
+      "handlers": [
+        "1-1|정비례와 반비례|22"
+      ],
+      "verdict": "기초 요소만 연습 가능",
+      "missingOrUnknown": [
+        "two division points/general ratios/both coefficient combination"
+      ],
+      "refs": [
+        "m1-area"
+      ]
+    },
+    {
+      "profile": "daeryun-m1-2025-s1-final",
+      "demandRefs": [
+        20
+      ],
+      "abstract": "Coprime residues and symbolic bounded reduced-fraction sum.",
+      "handlers": [
+        "1-1|최대공약수와 최소공배수|32T"
+      ],
+      "verdict": "기초 요소만 연습 가능",
+      "positive": "Real exhaustive coprime-pair reasoning exists.",
+      "missingOrUnknown": [
+        "symbolic residue-class fraction-sum task"
+      ],
+      "refs": [
+        "m1-coprime"
+      ]
+    },
+    {
+      "profile": "daeryun-m1-2025-s1-final",
+      "demandRefs": [
+        21
+      ],
+      "abstract": "Formula dependency, residual budget, rate units, minimum-time process writing.",
+      "handlers": [
+        "native-desc:m3-quadratic-domain-r1"
+      ],
+      "verdict": "보강 필요",
+      "scope": "The native M3 task proves authored written/rubric capability but is not a valid M1 filler or same full demand.",
+      "missingOrUnknown": [
+        "grade-matched dependency/minimum-time native written task and criterion feedback"
+      ],
+      "refs": [
+        "native-definitions",
+        "native-domain",
+        "native-contract"
+      ]
+    },
+    {
+      "profile": "daeryun-m1-2025-s1-final",
+      "demandRefs": [
+        11,
+        19
+      ],
+      "abstract": "Doubling-time unit reasoning and circumference inverse-ratio percentage rounding.",
+      "handlers": [],
+      "verdict": "미검증",
+      "scope": "No focused whole-task generation/independent check; do not infer from shared unit names."
+    },
+    {
+      "profile": "daeryun-m2-2025-s1-final",
+      "demandRefs": [
+        11
+      ],
+      "abstract": "Inverse natural solution-count to every integer coefficient and aggregate.",
+      "handlers": [
+        "2-1|일차부등식|118X"
+      ],
+      "verdict": "미검증",
+      "positive": "Strong static correspondence: full coefficient set, zero/negative exclusion, aggregation.",
+      "scope": "Static source review only, outside11 focused test denominator.",
+      "refs": [
+        "m2-count"
+      ]
+    },
+    {
+      "profile": "daeryun-m2-2025-s1-final",
+      "demandRefs": [
+        8
+      ],
+      "abstract": "Judge multiple linear graph properties.",
+      "handlers": [
+        "2-1|일차함수와 그 그래프  ⑵|01"
+      ],
+      "verdict": "미검증",
+      "positive": "Static mixed property judgment implementation exists.",
+      "scope": "No added runtime or source difficulty equivalence test.",
+      "refs": [
+        "m2-properties"
+      ]
+    },
+    {
+      "profile": "daeryun-m2-2025-s1-final",
+      "demandRefs": [
+        5,
+        10,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "handlers": [],
+      "verdict": "미검증",
+      "scope": "Additional abstract evidence received; no scope expansion or unsupported absence claim."
+    },
+    {
+      "profile": "kyungshin-common2-2025-s2-final",
+      "demandRefs": [
+        4,
+        8,
+        10,
+        12,
+        13,
+        14,
+        17,
+        18
+      ],
+      "handlers": [],
+      "verdict": "미검증",
+      "scope": "No focused mapping executed. Missing independent Common Math2 registry is not absence of all high bank/textbook authored material."
+    },
+    {
+      "profile": "textbook-m2-geometry-bundle",
+      "demandRefs": [
+        "4-1-3-1",
+        "4-1-3-2",
+        "4-1-3-3",
+        "4-1-3-4",
+        "4-1-3-5"
+      ],
+      "handlers": [],
+      "verdict": "미검증",
+      "scope": "Coordinator abstract comparison shows same-tag task-action mismatch; no whole-textbook or local capability verdict."
+    }
+  ],
+  "focusedVerification": {
+    "passed": 11,
+    "total": 11,
+    "success": true,
+    "actualFunctions": [
+      "observeBlueprint",
+      "predictBlueprint",
+      "composePredictedPaper",
+      "generatePredictedPaper",
+      "resolveUnifiedBankQuery",
+      "solveQuestionSelection",
+      "generateMiddleProblem",
+      "generateNativeDescriptive"
+    ],
+    "safety": {
+      "envDir": false,
+      "defaultSetupLoaded": false,
+      "cleanEnvironment": true,
+      "networkDnsSocketChildProcessBlocked": true,
+      "envFileReadBlocked": true,
+      "dbModule": "memory-only fixed fixture; unknown operations blocked",
+      "persistence": "memory-only spy",
+      "actualDbConnections": 0,
+      "actualHttpRequests": 0,
+      "productionWrites": 0,
+      "providerCalls": 0,
+      "browserCookieUse": 0,
+      "prismaGenerate": 0
+    },
+    "observations": {
+      "difficultyCounterfactual": {
+        "ownLabels": [
+          "하",
+          "상"
+        ],
+        "commonCohort": "하",
+        "outputMixA": {
+          "하": {
+            "count": 20,
+            "score": 99.99999999999999
+          },
+          "중": {
+            "count": 0,
+            "score": 0
+          },
+          "상": {
+            "count": 0,
+            "score": 0
+          },
+          "미표기": {
+            "count": 0,
+            "score": 0
+          }
+        },
+        "outputMixB": {
+          "하": {
+            "count": 20,
+            "score": 99.99999999999999
+          },
+          "중": {
+            "count": 0,
+            "score": 0
+          },
+          "상": {
+            "count": 0,
+            "score": 0
+          },
+          "미표기": {
+            "count": 0,
+            "score": 0
+          }
+        }
+      },
+      "familyBoundary": {
+        "synthetic": true,
+        "predictedCount": 20,
+        "exactStatus": "insufficient",
+        "exactCount": 1,
+        "exactWitness": {
+          "requested": 20,
+          "selected": 1,
+          "visitedNodes": 1,
+          "reason": "capacity:total:1<20"
+        }
+      },
+      "relaxation": {
+        "totalScore": 100,
+        "questionCount": 20,
+        "difficultyRelaxed": 20
+      },
+      "contract": {
+        "dailyAcceptsSchool": false,
+        "predictedAcceptsSchoolSeries": true,
+        "predictedAcceptsTaskProfile": false
+      },
+      "bankSearch": {
+        "query": {
+          "AND": [
+            {
+              "AND": [
+                {
+                  "pool": "shared"
+                },
+                {
+                  "reviewStatus": "approved",
+                  "directUseAllowed": true,
+                  "answer": {
+                    "not": "(정답 없음)"
+                  }
+                }
+              ]
+            },
+            {
+              "source": {
+                "in": [
+                  "manual"
+                ]
+              }
+            },
+            {
+              "OR": [
+                {
+                  "content": {
+                    "contains": "대륜중학교",
+                    "mode": "insensitive"
+                  }
+                },
+                {
+                  "problemCode": {
+                    "contains": "대륜중학교",
+                    "mode": "insensitive"
+                  }
+                },
+                {
+                  "answer": {
+                    "contains": "대륜중학교",
+                    "mode": "insensitive"
+                  }
+                },
+                {
+                  "solution": {
+                    "contains": "대륜중학교",
+                    "mode": "insensitive"
+                  }
+                },
+                {
+                  "school": {
+                    "contains": "대륜중학교",
+                    "mode": "insensitive"
+                  }
+                },
+                {
+                  "unit": {
+                    "section": {
+                      "contains": "대륜중학교",
+                      "mode": "insensitive"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "actualDbCalls": 0,
+        "generationCalls": 0
+      }
+    },
+    "equal20Structure": {
+      "synthetic": true,
+      "inputProfiles": {
+        "A": {
+          "synthetic": true,
+          "school": "합성A중",
+          "actions": [
+            "explicit equation substitution"
+          ],
+          "diagrams": "none",
+          "reasoning": 1,
+          "intendedDifficulty": "basic"
+        },
+        "B": {
+          "synthetic": true,
+          "school": "합성B중",
+          "actions": [
+            "model conditions",
+            "consider two algebraic roots",
+            "reject infeasible root with reason",
+            "check original conditions"
+          ],
+          "diagrams": "derive constraints from diagram",
+          "reasoning": 4,
+          "intendedDifficulty": "advanced"
+        }
+      },
+      "sameNormalizedBlueprint": true,
+      "sameIdsOrderScore": true,
+      "count": 20,
+      "doesNotProveLearningEffect": true
+    },
+    "actualService": {
+      "synthetic": true,
+      "sameIdsOrderScore": true,
+      "questionCount": 20,
+      "memoryPersistenceCalls": 2,
+      "realSaves": 0,
+      "scope": "Actual generation service and pure pipeline; real DB, transport, persistence and whole product UI are not executed."
+    },
+    "authoredOutputChecks": {
+      "m1SelectedHandlers": 8,
+      "m1Outputs": 24,
+      "m1IndependentlyChecked": 9,
+      "m1IndependentBreakdown": {
+        "signQuadrant": 3,
+        "repeatedCrossings": 3,
+        "inverseArea": 3
+      },
+      "nativeDomainIndependentOutputs": 8,
+      "gradeBoundary": "M3 native task is not M1 quota coverage",
+      "visualRenderingExecuted": false
+    },
+    "testNames": [
+      "same20 same-range same labels but different mathematical and diagram demands collapse",
+      "common cohort overrides differing own-school difficulty labels",
+      "actual generation service reaches memory-only persistence with identical20 despite different demands",
+      "profile and reasoning demands have no accepted request field",
+      "engine search keyword is manual-stock text/school filtering without generation",
+      "predicted composition accepts20 of one family, normal exact solver exposes shortage",
+      "100-point paper can relax difficulty on all20 slots",
+      "current original native model/domain/check tasks are independently solvable and have criteria",
+      "model-recognition component and full written task are distinct authored capabilities",
+      "Daeryun abstract demands map to real M1 sign, crossing and graph-area components",
+      "new proposed deterministic examples solve independently, without being product implementations"
+    ]
+  },
+  "currentGaps": [
+    {
+      "id": "profile-routing",
+      "kind": "routing/metadata",
+      "finding": "School profile/abstract actions cannot be supplied to current creation contracts.",
+      "refs": [
+        "daily-contract",
+        "bank-contract",
+        "candidate-contract",
+        "school-service"
+      ]
+    },
+    {
+      "id": "joint-structure",
+      "kind": "selection",
+      "finding": "School blueprint uses separate unit/difficulty/format marginals; no essential action/condition/visual/rubric coverage constraints.",
+      "refs": [
+        "observed-blueprint",
+        "prediction-difficulty",
+        "compose"
+      ]
+    },
+    {
+      "id": "difficulty",
+      "kind": "selection/metadata",
+      "finding": "Cohort difficulty can replace differing own-school labels; source labels are not structural calibration.",
+      "refs": [
+        "prediction-difficulty"
+      ]
+    },
+    {
+      "id": "predictor-identity",
+      "kind": "routing/selection",
+      "finding": "Candidate mapping drops question/family identity and native metadata; predicted composer excludes row IDs only, unlike normal exact solver.",
+      "refs": [
+        "school-service",
+        "compose",
+        "bank-compose",
+        "current-selection"
+      ]
+    },
+    {
+      "id": "compound-tasks",
+      "kind": "content/verification",
+      "finding": "Observed M1 coupled graph-geometry/generalization/native written demands not established by selected component handlers. Not an exhaustive mathematical absence proof.",
+      "refs": [
+        "m1-area",
+        "m1-inverse-area",
+        "m1-crossings",
+        "m1-coprime",
+        "native-definitions"
+      ]
+    },
+    {
+      "id": "feedback",
+      "kind": "product/metadata",
+      "finding": "Native rubric survives in solution text; teacher essayScore supports partial score but not criterion-specific interpretation/feedback.",
+      "refs": [
+        "native-import",
+        "native-contract",
+        "grade-ui",
+        "essay-contract",
+        "grade-function"
+      ]
+    },
+    {
+      "id": "product-access",
+      "kind": "access",
+      "finding": "Direct arithmetic and restricted SRS access exist; independent high registry is CLI-only in searched callers. Do not equate no high registry/product route with absent authored bank/textbook content.",
+      "refs": [
+        "arithmetic-product",
+        "srs-m1",
+        "srs-elem",
+        "high-cli",
+        "engine-import"
+      ]
+    }
+  ],
+  "proposedRoute": {
+    "implementationStatus": "specification only, not implemented",
+    "stack": "Existing deterministic engine, manifest tables, joint solver, authored diagrams and teacher/deterministic feedback. No paid AI design/new TypeSafe integration.",
+    "dataFields": {
+      "schoolStudyProfile": [
+        "canonicalSchoolId and aliases",
+        "grade/course/curriculum/semester/round",
+        "profileVersion/reviewTime",
+        "observed/listed/hidden coverage and uncertainty",
+        "abstractDemandId",
+        "essential concepts/actions and condition dependency graph",
+        "essential representation/diagram reading",
+        "required native outputs and process criteria",
+        "reviewed structural difficulty basis distinct from source label",
+        "quota and mandatory-full-task status"
+      ],
+      "authoredFamilyManifest": [
+        "actual generator key/version and family aliases",
+        "units/prerequisites/grade allowance",
+        "required student actions and condition topology",
+        "unprovided information to infer",
+        "native formats/output list",
+        "visual demand and actual rendering support",
+        "parameter domain and deterministic seed",
+        "structural tier basis",
+        "step/rubric expected/alternatives/errors",
+        "independent checker/evidence status",
+        "logical question/representation/digest rules"
+      ],
+      "executionBinding": [
+        "canonicalSchoolId",
+        "grade/course/period/scope",
+        "profileVersion",
+        "manifestVersion",
+        "seed",
+        "hard/soft demand constraints",
+        "selected task and rubric/figure digests"
+      ],
+      "result": [
+        "coverageStatus complete/partial/unavailable",
+        "profile/manifest digests and observed scope",
+        "fullMatched/componentOnly/unverified/unmapped",
+        "requested versus actual tier/format/visual/count",
+        "selected family and logical question IDs",
+        "shortage/refusal/relaxation/exclusion reasons"
+      ]
+    },
+    "matchStatuses": [
+      "full",
+      "component",
+      "unverified",
+      "unsupported"
+    ],
+    "sequence": [
+      "resolve canonical school and reviewed grade/period profile",
+      "map each abstract demand to reviewed actual-family capabilities",
+      "reserve mandatory full-task coverage before component practice",
+      "jointly solve hard grade/action/tier/native-format/visual quotas",
+      "generate approved key/seed or select eligible authored stock",
+      "validate independent answer, necessary conditions, native rubric and authored figure",
+      "deduplicate logical tasks, representations and aliases",
+      "return explicit coverage and then revalidate currentness before any future save"
+    ],
+    "refusalPolicy": {
+      "absentOrUnreviewedProfile": "unavailable for school-specific claim; generic range practice may be offered with explicit label",
+      "missingMandatoryFullTask": "refuse complete school-prep set; partial component practice separately disclosed",
+      "hardGradeTierVisualFormatMismatch": "do not silently replace or mark complete",
+      "unknownDifficultyEquivalence": "disclose reviewed structural band only, preserve source label separately",
+      "narrowVariantOrSolverLimit": "report actual variation/insufficient/search_limit, no fabricated complete count"
+    },
+    "checks": [
+      "Same-unit equal20 same-format schools with different actions or difficulty must get different valid plans or explicit partial/unavailable, never a renamed identical complete paper.",
+      "Full matches require independently solved fresh outputs that preserve all essential conditions, actions, representation demand, native outputs and criteria; component matches never satisfy mandatory full-task quotas.",
+      "Changing/removing an essential condition must affect feasibility, solution path or answer; inspect shortcuts and distractor plausibility.",
+      "Hard grade/tier/format/visual/full-demand constraints cannot silently relax. Source difficulty labels and authored structural bands remain separate until independently calibrated.",
+      "Deduplicate logical questions/representations, family aliases, recent usage and fresh content identities; stock counts and seed counts are not thought-type counts.",
+      "Recheck current eligibility, revision, content, rubric and necessary diagram in the write transaction; bind run identity and profile versions.",
+      "Verify native criterion sums, alternate correct reasoning, error feedback, missing/contradictory figure information and final screen/print.",
+      "Fix fixtures across two structurally different schools, two grades, absent/stale profiles, partial coverage, finite variation domains and generation failure. Measure learning effects separately."
+    ],
+    "originalCorpusRequired": false
+  },
+  "newAuthoredSpecificationExamples": [
+    {
+      "shipped": false,
+      "seed": 17,
+      "domain": "k=2..5; u in {6,8,10,12,14,16}",
+      "rule": "k=seed%4+2; u=2*(floor(seed/4)%6+3); a=1/2; b=(k+1)/2; side=k*u/2; givenX=u+side",
+      "question": "좌표축에 평행한 정사각형 ABCD의 꼭짓점은 A(왼쪽 아래), B(오른쪽 아래), C(오른쪽 위), D(왼쪽 위)의 순서이다. A는 y=x/2 위, D는 y=2x 위에 있고 C의 x좌표는 35이다. A의 좌표와 정사각형의 넓이를 구하고 두 그래프 조건이 각각 필요한 이유를 설명하시오.",
+      "answer": {
+        "A": [
+          14,
+          7
+        ],
+        "side": 21,
+        "area": 441,
+        "C": [
+          35,
+          28
+        ]
+      },
+      "requirement": "derive shared-side constraints from an authored square diagram and two incidences; removing either line leaves nonunique solutions",
+      "futureChecks": [
+        "both graph constraints essential",
+        "unique positive side",
+        "fresh diagram mirrors coordinates",
+        "diagram needed for stated incidences",
+        "unit and grade admissibility"
+      ]
+    },
+    {
+      "shipped": false,
+      "seed": 17,
+      "domain": "v=3..6; w=2..4; positive remaining budget",
+      "rule": "v=seed%4+3; w=floor(seed/4)%3+2; S=3v+2w; E=4S+vw; H=2v+w; r=4w+2 units/hour",
+      "question": "어떤 장치는 준비량 S=3v+2w, 필요한 에너지 E=4S+vw, 처음 저장량 H=2v+w를 사용한다. v=4, w=3이고 충전 속도는 시간당 r=4w+2 에너지 단위로 일정하다. S,E,H와 부족한 에너지를 차례로 구하고, 정수 분에만 멈출 수 있을 때 필요한 에너지를 채우는 최소 시간을 분으로 구하시오. 바로 전 정수 분이 충분하지 않은 이유도 설명하시오.",
+      "answer": {
+        "S": 18,
+        "E": 84,
+        "H": 11,
+        "remaining": 73,
+        "hourlyRate": 14,
+        "minutes": 313,
+        "previousMinuteDelivered": 72.8,
+        "finalMinuteDelivered": 73.03333333333333
+      },
+      "requiredCriteria": [
+        "dependency order/intermediates",
+        "residual budget",
+        "hour/minute rate conversion",
+        "ceiling and n-1/n minimality check"
+      ],
+      "futureChecks": [
+        "not just one substitution",
+        "minimum interpretation required",
+        "written reasoning criteria",
+        "consistent units",
+        "new coefficients/context and no original wording"
+      ]
+    }
+  ],
+  "feedback": {
+    "current": "native model/rubric string is usable for teacher review; current overall marks and teacher-entered essay percentages do not prove every required reasoning step.",
+    "proposed": "Numeric/expression checks in deterministic code plus teacher criterion checks, alternate solutions and missed-condition feedback; no automatic AI grading added."
+  },
+  "priorEvidenceReuse": {
+    "runtimeReport": "docs/reports/exam-engine-capacity-20261018/runtime-verification.md",
+    "runtimeSourceCommit": "d70137271e36e6f9c22209574e9ff224217f7296",
+    "allowedUse": "Only unchanged-code cohort/missing-metadata/relaxation behavior; not missing-school-originals=>unready or restoration advice.",
+    "unchangedSourceChecks": [
+      {
+        "path": "src/lib/predictor/generatePredictedPaper.ts",
+        "unchanged": true,
+        "sha256": "d4ca290a244da2c0019c9ee70153106c4fe66c0faa2a45c0a4b5dc6774513526"
+      },
+      {
+        "path": "src/lib/predictor/composePredictedPaper.ts",
+        "unchanged": true,
+        "sha256": "9023d9232795c7a7749421b6f0ca2e055b93cf4c7b32596a4da85ec1e3179302"
+      },
+      {
+        "path": "src/lib/predictor/predictBlueprint.ts",
+        "unchanged": true,
+        "sha256": "b1e1fa1a43e446ca5c9d7c16ee8d76d70f49165346a94b674859d86b33d42410"
+      },
+      {
+        "path": "src/lib/predictor/blueprint.ts",
+        "unchanged": true,
+        "sha256": "b8e6b46bbcd5036f80b1bd9bd9b51502f06872d2e1d4de4378737294f787fed7"
+      },
+      {
+        "path": "src/lib/predictor/persistPredictedPaper.ts",
+        "unchanged": true,
+        "sha256": "d2ce10a42c775bb92feff25f513d07234b94aa39ad0ebfe352f6d988ed135514"
+      },
+      {
+        "path": "src/contracts/predictor.contract.ts",
+        "unchanged": true,
+        "sha256": "86ab9da735a89f42d1fa45e94c43a12665be814c6918074cb5ca734d69c6612b"
+      },
+      {
+        "path": "src/contracts/scoreNormalizer.contract.ts",
+        "unchanged": true,
+        "sha256": "e88c1bfdb0ae0ae2c7ee54591490b04c54d9a2fc332f341d102fda70188d259b"
+      }
+    ],
+    "engineComparisonCommit": "cd067a49a90283749ea9f525073a4a469eef54bd",
+    "counts": "Prior overlapping path/sample counts are pinned observations, not distinct thought types, whole capacity or current all-source verification.",
+    "oldDbSnapshotReread": false,
+    "campaign420kRerun": false
+  },
+  "reproduction": {
+    "privateEvidenceRoot": "/Users/pss/orca/workspaces/today_/problem_make/.qa-artifacts/math-engine-study-readiness-20261018/school-study-flow-evidence",
+    "files": [
+      "probe.test.ts",
+      "vitest.config.mts",
+      "io-guard.ts",
+      "observations.json",
+      "test-results.json",
+      "source-index.json",
+      "REPRODUCTION.txt",
+      "daeryun-m1-abstract-profile.json",
+      "daeryun-m2-abstract-profile.json",
+      "kyungshin-common2-abstract-profile.json",
+      "textbook-m2-abstract-profile.json"
+    ],
+    "command": "From pinned source checkout with node_modules linked: env -i PATH=/Users/pss/.nvm/versions/node/v24.22.0/bin:/usr/bin:/bin NODE_ENV=test /Users/pss/.nvm/versions/node/v24.22.0/bin/node node_modules/vitest/vitest.mjs run --config /absolute/evidence/vitest.config.mts --reporter=json --outputFile /absolute/evidence/test-results.json",
+    "installedDocsRead": [
+      "AGENTS.md",
+      "node_modules/next/dist/docs/01-app/01-getting-started/15-route-handlers.md",
+      "node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/route.md",
+      "node_modules/vite/dist/node/index.d.ts envDir:false contract"
+    ],
+    "skillsRead": [
+      "/Users/pss/.agents/skills/orca-cli/SKILL.md",
+      "/Users/pss/.agents/skills/orchestration/SKILL.md",
+      "orca skills get orca-cli --json",
+      "orca skills get orchestration --json"
+    ],
+    "sha256": {
+      "probe.test.ts": "59a9baac397c202197ff305ffa5b1b8316dfdce9e2be83818198ed4f3665299e",
+      "vitest.config.mts": "28e2337e4508c30201bae4c5e2cce691fb8bad7d3b7d4e991b6eeb5506829c2f",
+      "io-guard.ts": "09ab1d01aa7f1131623eb5542c214e3330038f2e83a48e60add8fe508bd50a1e",
+      "observations.json": "f8d2c28c90199adcb69baa6ad3809102d46f5187473a21f69db1eea62f242088",
+      "test-results.json": "d566587d5ba2193d5db147e746035b822613935e00f4f3877a6bcdc832699a11",
+      "source-index.json": "7db87a40665f48813f9ffe48b10c85d9e464539479877e4eae4038384c28377c",
+      "REPRODUCTION.txt": "94078d8fe02706c969d5ec0be90438884ac48d6101a14c7d0d351adb6c0b24d5",
+      "daeryun-m1-abstract-profile.json": "42cfb1184bcd80f46567d07453b0aeaac036289b94d74dac6fa955db78c3834d",
+      "daeryun-m2-abstract-profile.json": "df2c02ce7495872eb60fe0b94a5f04131144140e69266aa662e86f136a9375b6",
+      "kyungshin-common2-abstract-profile.json": "49591929b7483a5a8fccaec4d28885b00dab86f5de706fc025f09a1abdf1cc80",
+      "textbook-m2-abstract-profile.json": "013860426d1a30604691377528a2f89023c516414c36e38a413b0aac9421a24f"
+    }
+  },
+  "sourceReferences": [
+    {
+      "id": "workroom",
+      "path": "src/components/unified/UnifiedWorkspace.tsx",
+      "startLine": 216,
+      "endLine": 250,
+      "claim": "Math navigation and builder mount at1840",
+      "sha256": "111f6225453ea5a81ab542cab53171847f4330edecb460827634ec704b2ae315"
+    },
+    {
+      "id": "builder",
+      "path": "src/components/exam-builder/MathExamBuilder.tsx",
+      "startLine": 193,
+      "endLine": 350,
+      "claim": "source filters, family rule, bank-backed source",
+      "sha256": "33fe401640f277b31910f32bdb5c576eb83c28032f0e31da87efe32f653f9f18"
+    },
+    {
+      "id": "math-source",
+      "path": "src/components/exam-builder/mathSource.ts",
+      "startLine": 130,
+      "endLine": 320,
+      "claim": "scope/list/compose bank requests, exact formats and shortage messages",
+      "sha256": "564b1001dfee6d56dec3f93f40e51ab863999209281c6780eab3b113fe0d83b7"
+    },
+    {
+      "id": "source-group",
+      "path": "src/contracts/bankSource.contract.ts",
+      "startLine": 28,
+      "endLine": 47,
+      "claim": "engine maps manual; textbook and past-exam distinct",
+      "sha256": "04b32fd86a31cb001fcc004a634f3075e6a07fcd37c41dc4b365bcb362733746"
+    },
+    {
+      "id": "bank-contract",
+      "path": "src/contracts/bankSource.contract.ts",
+      "startLine": 116,
+      "endLine": 182,
+      "claim": "filter contract, no school task profile",
+      "sha256": "04b32fd86a31cb001fcc004a634f3075e6a07fcd37c41dc4b365bcb362733746"
+    },
+    {
+      "id": "bank-query",
+      "path": "src/lib/unifiedPreview.ts",
+      "startLine": 105,
+      "endLine": 266,
+      "claim": "stock filters and OR text/school search",
+      "sha256": "e2553a536f3cd91728c8793aae019a2162363c8fb7069a3f749cdcace797eb08"
+    },
+    {
+      "id": "bank-compose",
+      "path": "src/lib/unifiedBankSelection.ts",
+      "startLine": 112,
+      "endLine": 291,
+      "claim": "actual question and family-aware joint selection/recheck",
+      "sha256": "bd597380b7b3a61a4d2e5402c14e81e0b685216956cd9d34edb780e587927722"
+    },
+    {
+      "id": "question-solver",
+      "path": "src/lib/problem/questionSelectionSolver.ts",
+      "startLine": 9,
+      "endLine": 28,
+      "claim": "input accepts unit/tier/format/question/family, not mathematical structure",
+      "sha256": "19732e722069c6f39968222d6b5c8dc79991cf40542e5afe24cb0966815874f4"
+    },
+    {
+      "id": "daily-contract",
+      "path": "src/contracts/test.contract.ts",
+      "startLine": 40,
+      "endLine": 90,
+      "claim": "strict daily/review generation input",
+      "sha256": "2c71a9f0d66fbba26f1e95bd47dc9fe7ac935baf78d538346b7d06f773929062"
+    },
+    {
+      "id": "daily-service",
+      "path": "src/lib/tests/generateDraftTest.ts",
+      "startLine": 1,
+      "endLine": 380,
+      "claim": "select eligible stock; formats; currentness transaction",
+      "sha256": "e285511967820c1db55c447821cda8976efcefa8302b218229ac9953f8af83bc"
+    },
+    {
+      "id": "current-selection",
+      "path": "src/lib/tests/selectionCurrent.ts",
+      "startLine": 9,
+      "endLine": 66,
+      "claim": "lock and recheck eligibility, identity, family, content and answer",
+      "sha256": "7ea68f7cf6042c8aae767797f8c6e3ee744bfa614329433158abbccd680e4d21"
+    },
+    {
+      "id": "eligibility",
+      "path": "src/lib/problemEligibility.ts",
+      "startLine": 29,
+      "endLine": 43,
+      "claim": "approved/shared/direct-use/missing-answer conditions",
+      "sha256": "35d73f30e80245cfb4b2001b706fca7984afd276242f01b9304d06a89fda9bbb"
+    },
+    {
+      "id": "ai-button",
+      "path": "src/components/test/useGenerateSetup.ts",
+      "startLine": 478,
+      "endLine": 500,
+      "claim": "insufficient pool AI button uses fixed 응용",
+      "sha256": "859f5fcdd555374e9044822b8716a39c6ef2955e794bd7090169426e917ae29b"
+    },
+    {
+      "id": "ai-generate",
+      "path": "src/app/api/problems/generate/route.ts",
+      "startLine": 49,
+      "endLine": 95,
+      "claim": "unit/tier/count generation, pending storage path, not used in audit",
+      "sha256": "3a2a7ce20f3d6b19ee612508b2d5142ceaaafbc6d441a4eca0616b0c48a6da77"
+    },
+    {
+      "id": "ai-contract",
+      "path": "src/contracts/problem.contract.ts",
+      "startLine": 292,
+      "endLine": 314,
+      "claim": "unit/tier/count, no school requirement",
+      "sha256": "69e7e6cb2ce9ea86883dd3eb2798e84f9331094135f15955e4bcc21fc142b2b5"
+    },
+    {
+      "id": "exam-ui",
+      "path": "src/components/exam/ExamDashboard.tsx",
+      "startLine": 78,
+      "endLine": 108,
+      "claim": "read-only rounds, no creation form; outdated ingest-first copy",
+      "sha256": "51ec7c5e933e847fba2171881fad82487c3851683cc475182be2f71bbcaf5db0"
+    },
+    {
+      "id": "prediction-contract",
+      "path": "src/contracts/predictor.contract.ts",
+      "startLine": 50,
+      "endLine": 86,
+      "claim": "school series and format/label metadata",
+      "sha256": "86ab9da735a89f42d1fa45e94c43a12665be814c6918074cb5ca734d69c6612b"
+    },
+    {
+      "id": "prediction-run",
+      "path": "src/lib/predictor/predictionRunService.ts",
+      "startLine": 263,
+      "endLine": 306,
+      "claim": "statistical own/cohort input route",
+      "sha256": "b28bcafcf564ad6d2dc9f082279f918a212b03544f7106fdaf7689af443c5bd7"
+    },
+    {
+      "id": "predicted-api",
+      "path": "src/app/api/tests/predicted/route.ts",
+      "startLine": 36,
+      "endLine": 78,
+      "claim": "creates and persists paper; response evidence and confidence",
+      "sha256": "07d38af0fb4a325483c39d675b703472ea669526d44f445db8a19234dd53385d"
+    },
+    {
+      "id": "candidate-contract",
+      "path": "src/contracts/scoreNormalizer.contract.ts",
+      "startLine": 163,
+      "endLine": 180,
+      "claim": "paper candidate lacks question/family/rubric/structure",
+      "sha256": "e88c1bfdb0ae0ae2c7ee54591490b04c54d9a2fc332f341d102fda70188d259b"
+    },
+    {
+      "id": "school-service",
+      "path": "src/lib/predictor/generatePredictedPaper.ts",
+      "startLine": 200,
+      "endLine": 352,
+      "claim": "metadata conversion, prediction, stock selection, no generator",
+      "sha256": "d4ca290a244da2c0019c9ee70153106c4fe66c0faa2a45c0a4b5dc6774513526"
+    },
+    {
+      "id": "prediction-difficulty",
+      "path": "src/lib/predictor/predictBlueprint.ts",
+      "startLine": 305,
+      "endLine": 383,
+      "claim": "cohort difficulty and separate marginal distributions",
+      "sha256": "b1e1fa1a43e446ca5c9d7c16ee8d76d70f49165346a94b674859d86b33d42410"
+    },
+    {
+      "id": "observed-blueprint",
+      "path": "src/lib/predictor/blueprint.ts",
+      "startLine": 38,
+      "endLine": 123,
+      "claim": "observed marginal extraction ignores hasFigure and mathematical structure",
+      "sha256": "b8e6b46bbcd5036f80b1bd9bd9b51502f06872d2e1d4de4378737294f787fed7"
+    },
+    {
+      "id": "compose",
+      "path": "src/lib/predictor/composePredictedPaper.ts",
+      "startLine": 203,
+      "endLine": 419,
+      "claim": "independent marginal slots; row-ID-only dedupe, relaxations",
+      "sha256": "9023d9232795c7a7749421b6f0ca2e055b93cf4c7b32596a4da85ec1e3179302"
+    },
+    {
+      "id": "persist",
+      "path": "src/lib/predictor/persistPredictedPaper.ts",
+      "startLine": 86,
+      "endLine": 160,
+      "claim": "paper completeness/100 and class ownership; no normal currentness guard",
+      "sha256": "d2ce10a42c775bb92feff25f513d07234b94aa39ad0ebfe352f6d988ed135514"
+    },
+    {
+      "id": "engine-import",
+      "path": "scripts/import/load-engine-problems.ts",
+      "startLine": 185,
+      "endLine": 195,
+      "claim": "targets elem/middle/combo/judge/native-descriptive; high absent",
+      "sha256": "1e085dd475a8b77e67998c69d1bd806502b94539e3e589d196d504745d82d998"
+    },
+    {
+      "id": "native-import",
+      "path": "scripts/import/load-engine-problems.ts",
+      "startLine": 618,
+      "endLine": 654,
+      "claim": "native authored solution and rubric text stored",
+      "sha256": "1e085dd475a8b77e67998c69d1bd806502b94539e3e589d196d504745d82d998"
+    },
+    {
+      "id": "authored-source",
+      "path": "scripts/import/load-engine-problems.ts",
+      "startLine": 1238,
+      "endLine": 1280,
+      "claim": "source manual and optional origin; no originals required for authored generation",
+      "sha256": "1e085dd475a8b77e67998c69d1bd806502b94539e3e589d196d504745d82d998"
+    },
+    {
+      "id": "native-contract",
+      "path": "src/contracts/nativeDescriptive.contract.ts",
+      "startLine": 60,
+      "endLine": 118,
+      "claim": "criteria, alternatives, errors and serialized solution",
+      "sha256": "8741e73fa0e55aa2036f8808c0b249c6f414c2cb4d4ac7c2fa368aca43b0c694"
+    },
+    {
+      "id": "native-definitions",
+      "path": "src/lib/engine/nativeDescriptive20261018.ts",
+      "startLine": 14,
+      "endLine": 108,
+      "claim": "six definitions, grades 초4/중3",
+      "sha256": "ab312bcf46eaddc2b934feb88f370f6e83969b774e1e03e7dc48d98ba19d1483"
+    },
+    {
+      "id": "native-domain",
+      "path": "src/lib/engine/nativeDescriptive20261018.ts",
+      "startLine": 285,
+      "endLine": 317,
+      "claim": "native model, two roots, domain, original-condition check",
+      "sha256": "ab312bcf46eaddc2b934feb88f370f6e83969b774e1e03e7dc48d98ba19d1483"
+    },
+    {
+      "id": "component-model",
+      "path": "src/lib/middle/m3Reinforcement20261018.ts",
+      "startLine": 233,
+      "endLine": 263,
+      "claim": "Q01 selects model rather than completes written solution",
+      "sha256": "d6c0a2f8cca05452226b9329397a2eded5d6a3ed3882dd03337ac7fbf2dfd830"
+    },
+    {
+      "id": "format-expansion",
+      "path": "src/lib/engine/expandEngine.ts",
+      "startLine": 1,
+      "endLine": 43,
+      "claim": "derived short/MC only; no stem-suffix descriptive conversion",
+      "sha256": "86ee0b753645cdf0a7f42315a8614bbe82e17c17f7aefba7c5dd46bd8a13d164"
+    },
+    {
+      "id": "m1-sign",
+      "path": "src/lib/middle/m1Book1.ts",
+      "startLine": 69,
+      "endLine": 131,
+      "claim": "signs, transformations, necessary ambiguity controls; handler at650",
+      "sha256": "a2c8dd593e019e6f8ac04cc28ed6ec036885014f62b5bc946dbcec20fefd447c"
+    },
+    {
+      "id": "m1-sign-handler",
+      "path": "src/lib/middle/m1Book1.ts",
+      "startLine": 650,
+      "endLine": 680,
+      "claim": "sign constraints to transformed quadrant",
+      "sha256": "a2c8dd593e019e6f8ac04cc28ed6ec036885014f62b5bc946dbcec20fefd447c"
+    },
+    {
+      "id": "m1-graph",
+      "path": "src/lib/middle/m1Prop.ts",
+      "startLine": 21,
+      "endLine": 33,
+      "claim": "text coordinates instead of piecewise figure",
+      "sha256": "267e1f21dac4f63f3a98397936dc88f554ffa04fd15f1c0b9dd269aaa9f6a1e8"
+    },
+    {
+      "id": "m1-area",
+      "path": "src/lib/middle/m1Prop.ts",
+      "startLine": 947,
+      "endLine": 1079,
+      "claim": "single-point area or bisection line",
+      "sha256": "267e1f21dac4f63f3a98397936dc88f554ffa04fd15f1c0b9dd269aaa9f6a1e8"
+    },
+    {
+      "id": "m1-inverse-area",
+      "path": "src/lib/middle/m1Prop.ts",
+      "startLine": 1493,
+      "endLine": 1536,
+      "claim": "one point axis-projection area",
+      "sha256": "267e1f21dac4f63f3a98397936dc88f554ffa04fd15f1c0b9dd269aaa9f6a1e8"
+    },
+    {
+      "id": "m1-crossings",
+      "path": "src/lib/middle/m1Top5e.ts",
+      "startLine": 650,
+      "endLine": 789,
+      "claim": "multi-interval repeated crossings, text-defined graph",
+      "sha256": "3a5864cdb2cd460de9d25db95efe07051b28a00d5bcb08ae623cb00a48e6b575"
+    },
+    {
+      "id": "m1-coprime",
+      "path": "src/lib/middle/m1Top.ts",
+      "startLine": 261,
+      "endLine": 352,
+      "claim": "coprime factor-pair exhaustive reasoning, different from symbolic residue sum",
+      "sha256": "b94d743f7bf1746b7941e4980cb80cee44f0f49bf4ad75d852399cbfb98be130"
+    },
+    {
+      "id": "m2-count",
+      "path": "src/lib/middle/m2Top5e.ts",
+      "startLine": 484,
+      "endLine": 567,
+      "claim": "118X inverse natural-number solution count, static inspection only",
+      "sha256": "e72b2b3d5e3b7ed1fbcfe81299914b08d0c25a3a3929a9c5f185b9c70d26e787"
+    },
+    {
+      "id": "m2-properties",
+      "path": "src/lib/middle/m2Line.ts",
+      "startLine": 404,
+      "endLine": 450,
+      "claim": "mixed linear graph-property judgments, static inspection only",
+      "sha256": "d3e1df2cf37a51fb723a4a9a5be40c3ec37ee1e32ac3aba0a0594a5a43430ee9"
+    },
+    {
+      "id": "grade-ui",
+      "path": "src/components/test/GradeSheet.tsx",
+      "startLine": 14,
+      "endLine": 50,
+      "claim": "teacher right/wrong marks rather than criterion feedback",
+      "sha256": "144553907598a1219304f05ac068827dcea14ff86e4182d25223f1444da48280"
+    },
+    {
+      "id": "essay-contract",
+      "path": "src/contracts/testresult.contract.ts",
+      "startLine": 52,
+      "endLine": 74,
+      "claim": "teacher-supplied essayScore percentage",
+      "sha256": "2afd714b04279ced177e42280aba850547a1a714c381d380d70419df5a3cc2bb"
+    },
+    {
+      "id": "grade-function",
+      "path": "src/lib/testResults/gradeAnswers.ts",
+      "startLine": 107,
+      "endLine": 122,
+      "claim": "partial score accepted, no native criteria interpretation",
+      "sha256": "9d60d05107c2b0c7f0606bb13ea630c252498839b51dc9a72b228df996eaeba9"
+    },
+    {
+      "id": "srs-m1",
+      "path": "src/lib/math-srs/engineCatalog.ts",
+      "startLine": 1,
+      "endLine": 138,
+      "claim": "three M1 modules, excluded formats/figures; not all-grade registry",
+      "sha256": "0bac34efc394a39473672003df4e19ce067d80839009c69da54e655765d08cac"
+    },
+    {
+      "id": "srs-elem",
+      "path": "src/lib/math-srs/elementary/generator.ts",
+      "startLine": 19,
+      "endLine": 80,
+      "claim": "actual product direct elementary generation",
+      "sha256": "25fb50e77171062026ddb0de5d1cd7c11cc7a11c0f7a1fd23545b0c05131d4a6"
+    },
+    {
+      "id": "arithmetic-product",
+      "path": "src/lib/workspaceArithmeticV2Routes.ts",
+      "startLine": 29,
+      "endLine": 75,
+      "claim": "catalog and direct arithmetic generation behind menu access",
+      "sha256": "f8a7dcfea018617c0a6b2d6e24b9b9518cc2dbcb826129b4bc1155570152e062"
+    },
+    {
+      "id": "high-cli",
+      "path": "scripts/high/gen-cli.ts",
+      "startLine": 1,
+      "endLine": 23,
+      "claim": "CLI high generation access",
+      "sha256": "32e7d39d77ef28e4d2b8329cc1100fa1aac5614d327bc19654f8375387890bf4"
+    },
+    {
+      "id": "dev-mid",
+      "path": "src/app/dev/mid-engine/page.tsx",
+      "startLine": 26,
+      "endLine": 50,
+      "claim": "QA gate and direct generation",
+      "sha256": "094093827f0955236c09fcdcba0988f37e835ba9bc84a89c0b0f65a77c4f46d8"
+    },
+    {
+      "id": "access",
+      "path": "src/lib/accountRouteAccess.ts",
+      "startLine": 150,
+      "endLine": 264,
+      "claim": "account/menu gates and separate arithmetic, bank, export paths",
+      "sha256": "cbda91adabb474d6289e12b1ba5f7c6cb8f8dfc1cd5a58d588d6b03dec4b3c64"
+    },
+    {
+      "id": "mathgen-transport",
+      "path": "src/lib/mathgen-engine/transport.ts",
+      "startLine": 1,
+      "endLine": 11,
+      "claim": "figure/hwpx operation only",
+      "sha256": "bb922891aefe588929fa1ca9f64329cfa67abbee546ea2920f50714b5f458258"
+    },
+    {
+      "id": "studio-ai-actions",
+      "path": "src/lib/dev-ai/contracts.ts",
+      "startLine": 25,
+      "endLine": 27,
+      "claim": "OCR/figures/solution actions; not school authored-task generation",
+      "sha256": "ad148361d408f4cf5c41852c7348fad1c220906135d6df39b3bbccab1847de1b"
+    }
+  ],
+  "limitations": [
+    "No worker browser or source-original review; profiles supplied by coordinator only.",
+    "Focused M1/native checks, not all engines independently solved.",
+    "M2 counterparts static only; high/textbook profiles broaden design requirements without new local capability verdicts.",
+    "No final diagram rendering, HTTP creation, real persistence, print/student delivery or learning-effect experiment.",
+    "Original absence is intentional and irrelevant to the failure metric."
+  ]
+}
