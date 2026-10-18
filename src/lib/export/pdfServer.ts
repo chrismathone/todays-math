@@ -3,6 +3,8 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 import puppeteer, { type Page } from "puppeteer-core";
 import { z } from "zod";
+import { paginateWrongTableRows } from "@/lib/examReport/wrongTable";
+import { examReportTableDom } from "@/lib/examReport/wrongTableDom";
 
 const PACK =
   "https://github.com/Sparticuz/chromium/releases/download/v149.0.0/chromium-v149.0.0-pack.x64.tar";
@@ -23,6 +25,8 @@ export const PdfPayloadSchema = z.object({
   title: z.string().trim().max(200).default("시험지"),
   /** 기존 시험지의 외부 글꼴 적재는 유지하고, 자체 글꼴 문서만 명시적으로 닫는다. */
   fontPolicy: z.enum(["default", "self-hosted"]).default("default"),
+  /** 반 성적표 C2 가로 A4. 기존 시험지의 방향은 유지한다. */
+  landscape: z.boolean().optional(),
 });
 export type PdfPayload = z.infer<typeof PdfPayloadSchema>;
 const escape = (text: string) =>
@@ -131,6 +135,40 @@ async function preparePage(page: Page, input: PdfPayload, origin: string) {
     if (!document.querySelector("[data-unified-paper]"))
       throw new Error("내보낼 페이지가 없습니다.");
   }, input.fontPolicy === "self-hosted");
+  // 신뢰한 함수만 evaluate한다. 제출 HTML의 JavaScript는 계속 닫아 둔다.
+  const table = await page.evaluate(examReportTableDom);
+  if (table) {
+    const layout = paginateWrongTableRows(
+      table.heights,
+      table.first,
+      table.continuation,
+    );
+    await page.evaluate(examReportTableDom, null, layout);
+  }
+  await page.evaluate(() => {
+    // 정상적으로 이어지는 표는 먼저 옮긴 뒤 검사한다. 문장 자체의 넘침 등은 거절한다.
+    for (const [index, sheet] of [
+      ...document.querySelectorAll<HTMLElement>(
+        "[data-exam-report-page] .er-sheet",
+      ),
+    ].entries()) {
+      const children = [...sheet.children] as HTMLElement[];
+      if (
+        sheet.scrollHeight > sheet.clientHeight + 1 ||
+        sheet.scrollWidth > sheet.clientWidth + 1 ||
+        children.some(
+          (child, i) =>
+            child.scrollHeight > child.clientHeight + 2 ||
+            (children[i + 1] &&
+              child.getBoundingClientRect().bottom >
+                children[i + 1].getBoundingClientRect().top + 1),
+        )
+      )
+        throw new Error(
+          `성적표 ${index + 1}쪽이 지면을 벗어납니다. 문장·지면 설정을 확인해 주세요.`,
+        );
+    }
+  });
 }
 
 /** Shared browser runtime for server PDF and bounded SVG comparison rendering. Callers must close it. */
@@ -198,6 +236,7 @@ export async function buildPdf(
     await preparePage(page, input, origin);
     return await page.pdf({
       format: "A4",
+      ...(input.landscape ? { landscape: true } : {}),
       printBackground: true,
       preferCSSPageSize: false,
       margin: { top: "0mm", right: "0mm", bottom: "0mm", left: "0mm" },

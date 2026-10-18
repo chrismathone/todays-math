@@ -57,8 +57,9 @@ function checkedMetadata(
 /** The caller has authorized these Test rows. Only immutable assets referenced by their snapshots are read. */
 export async function hydrateTestSnapshots<T extends TestContentLink>(
   input: readonly T[],
+  client: Prisma.TransactionClient = db,
 ): Promise<T[]> {
-  const rows = await withPublicationProblems(input);
+  const rows = await withPublicationProblems(input, client);
   const wanted = new Map<string, Set<string>>();
   for (const row of rows) {
     const snapshot = snapshotOf(row);
@@ -84,12 +85,12 @@ export async function hydrateTestSnapshots<T extends TestContentLink>(
     ),
     " OR ",
   );
-  const metadata = await db.$queryRaw<AssetRow[]>(Prisma.sql`
+  const metadata = await client.$queryRaw<AssetRow[]>(Prisma.sql`
     SELECT a."user_id" AS "userId", a."id", a."mime_type" AS "mimeType",
            a."width_px" AS "widthPx", a."height_px" AS "heightPx", b."size"
       FROM "textbook_asset" a JOIN "textbook_blob" b ON b."sha256" = a."id" WHERE ${where}`);
   const expected = checkedMetadata(metadata, wanted, expectedCount);
-  const assets = await db.$queryRaw<AssetRow[]>(Prisma.sql`
+  const assets = await client.$queryRaw<AssetRow[]>(Prisma.sql`
     SELECT a."user_id" AS "userId", a."id", a."mime_type" AS "mimeType",
            a."width_px" AS "widthPx", a."height_px" AS "heightPx", b."size", b."bytes"
       FROM "textbook_asset" a JOIN "textbook_blob" b ON b."sha256" = a."id" WHERE ${where}`);
@@ -144,6 +145,7 @@ export async function hydrateTestSnapshots<T extends TestContentLink>(
  */
 async function withPublicationProblems<T extends TestContentLink>(
   rows: readonly T[],
+  client: Prisma.TransactionClient,
 ): Promise<T[]> {
   const testIds = [
     ...new Set(
@@ -154,13 +156,13 @@ async function withPublicationProblems<T extends TestContentLink>(
     ),
   ];
   if (!testIds.length) return [...rows];
-  const tests = await db.test.findMany({
+  const tests = await client.test.findMany({
     where: { id: { in: testIds } },
     select: { id: true, publicationId: true },
   });
   const published = tests.filter((t) => t.publicationId !== null);
   if (!published.length) return [...rows];
-  const publications = await db.examPublication.findMany({
+  const publications = await client.examPublication.findMany({
     where: { id: { in: [...new Set(published.map((t) => t.publicationId!))] } },
     select: { id: true, payload: true },
   });

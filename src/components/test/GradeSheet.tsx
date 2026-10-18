@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import BackLink from "@/components/ui/BackLink";
+import { examReportHref } from "@/lib/examReport/settings";
 import type { GradeSheetResponse } from "@/contracts/testresult.contract";
 import SavedRetryPanel from "./SavedRetryPanel";
 import s from "./SavedRetryPanel.module.css";
@@ -466,6 +467,16 @@ export function GradeSheet({ testId }: { testId: string }) {
             </div>
 
             {result ? <ScoreList lines={result} /> : null}
+            {result && state.sheet.publicationId && !savedReadError && (
+              <div className="mx-8 mt-3">
+                <Link
+                  href={examReportHref(testId)}
+                  className="inline-flex min-h-11 items-center px-3 text-[14px] font-semibold text-[var(--learn-accent)] underline underline-offset-4"
+                >
+                  성적표로
+                </Link>
+              </div>
+            )}
           </>
         )}
       </main>

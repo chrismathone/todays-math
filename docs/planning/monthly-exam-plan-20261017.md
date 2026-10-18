@@ -454,3 +454,27 @@ CREATE UNIQUE INDEX "test_publication_class_key" ON "test" ("publication_id", "c
 - **초안과 다른 것**: PDF 는 DB 밖(경로 · 지문 · 크기만) · 기존 표(`test` · `test_result`)에 색인 · 트리거 없음(재채점은 읽을 때 지문) · 지점 칸 비어도 됨.
 - **시험**: PGlite 로 전체 마이그레이션 사슬 위에서 6건(문장 수정 → 새 판 · 확정 풀림 · 보관본 수정 · 삭제 거절 · 남의 보관본 · 보관본 없는 확정 거절 · 중복 · 경로 형식 · 1000자 · 성적표 있는 학생 삭제 = 23001 → 기존 «기록이 있어 못 지움» 409 · RLS). 트리거 둘을 하나씩 빼면 시험이 빨개진다(변이 확인).
 - `schema.prisma` 에 두 모델(DB 먼저 → 코드 나중). 다음: 확정 쓰기 어댑터 · 화면(H3 합의) · 에이와 통로의 실제 소스.
+
+#### 14.5 실제 화면 · 확정 쓰기 (codex)
+
+2026-10-18 · `phase/11-exam-report-eywa` · 시작/종료 HEAD `f67fb786b`. 지시서 4를 구현하고 미커밋 파일로 남겼다. DB 접속·환경 파일 생성/복사·클라이언트 생성·스키마/마이그레이션 변경·push·다른 워크트리 변경은 하지 않았다. 시작 때 미추적이던 지시서는 그대로 보존했다.
+
+- **화면·진입**: `/exam-reports/{testId}`를 실제 `UnifiedWorkspace` 셸의 원장·출력 메뉴 관문으로 연다. 합의된 H3 + H1 목록 배지·위쪽 인쇄를 옮겼고, 오른쪽 칸 자체의 폭이 648px 이상일 때 썸네일 280px + 간격 16px + 편집 320px를 나란히 놓는다. `PaperStrip`·`PickerDialog`를 사용하며 문장 입력은 옆 H1에 바로 반영한다. 낸 시험의 채점을 마친 반별 링크, 채점 저장 후 점수 목록 아래 ‘성적표로’를 연결했다.
+- **읽기·쓰기**: 기존 `build.ts`·`problems.ts`·`hydrateTestSnapshots` 계산을 쓴다. 목록·학생·문장 저장·반 전체 지면 설정·확정·확정 PDF·반 인쇄 API와 Zod 계약을 추가했다. 편집 판과 옵션 지문을 검사하고 충돌 시 입력을 보존한다. 확정은 문장 저장 → 자체 글꼴 HTML/PDF → 비공개 업로드 → 잠금을 건 짧은 거래에서 최신 판·채점·내용 지문 재확인 → 보관본/확정 저장이다. 업로드 뒤 실패하면 경로를 오류 기록에 남기며 파일을 지우지 않는다. 재채점은 읽을 때 지문으로 감지하고, 같은 판을 다시 확정할 때 새 판을 배정하여 옛 보관본을 보존한다.
+- **PDF·에이와**: 영어 저장소를 import하지 않는 작은 전용 전송기로 private 버킷·서버 키·주소·경로·PDF 형식·4MB·원격 SHA를 검사한다. 반 인쇄는 기존 도구 `pdf-lib`로 합친다. 확정 학생은 보관 PDF, 확정 전 학생은 현재 저장 내용으로 만든다. C2는 가로 A4다. 렌더 뒤 실제 지면 넘침은 422로 중단하며, 문장이 비었으면 문장 칸을 뺀다. 실제 에이와 소스는 `EXAM_REPORT_EYWA_FEED=on`일 때만 읽으며 첫 연동은 이름 ‘학원이’로 제한했다. 기존 결시·미연결·`isTest` 제외는 유지한다. 운영 변수는 켜지 않았다.
+- **시험**: 최종 관련 Vitest **35파일·355건 통과**. `examReportMigration` PGlite·확정 실패/동시 변경·반 평균·PDF 합치기·에이와 off/on·화면 입력 보존·진입 링크·작업실·`devPageGuardCoverage`·`errorLogRouteCoverage`·`englishFence`·학생 프록시·인쇄 목록을 포함한다. `npm run type-check`, 변경 TS/TSX/MJS ESLint(오류/경고 0), `npm run lint:affordance`, `git diff --check` 통과. Vitest는 `--configLoader runner --no-cache`로 실행했다. 기존 시안의 영어 경로 import가 전수 울타리에 걸려 `AutoGrowTextarea`를 공용 UI로 옮기고 기존 영어 경로는 재수출로 유지했다.
+- **실측·확신 없는 곳**: `node scripts/qa/exam-report-screen-impl.mjs`로 실제 화면·자체 글꼴을 묶은 로컬 파일을 만들었다(398모듈). `--measure`는 Chromium 시작 실패(`Failed to launch the browser process: Code: null`)로 수행하지 못했다. 따라서 1040×760의 나란히 배치/확정 단추 위치, S1·M1 첫 쪽의 최종 문장 상한, 실제 PDF·운영 저장소·프린터 검수는 미확인이다. 상한은 정본 상수 `EXAM_REPORT_NOTE_LIMIT = 180`에 임시 주석을 남겼다. 많은 오답의 요약·큰 C2는 기존 한 쪽 구성 그대로이며 넘치면 거절한다. 새 요약/C2 자동 분할 정책은 만들지 않았다. 실제 DB의 잠금/저장 왕복은 더블 시험과 구분한다.
+- **리드가 실행할 것**: 샌드박스 밖에서 `node scripts/qa/exam-report-screen-impl.mjs --measure` → `.qa-artifacts/exam-report-screen-impl/measurements.json`과 폭별 캡처 확인. 60조합(S1/M1 × 오답 0/4/8/12/20 × 기본/긴 이름 × 한글/넓은 영문/줄바꿈)의 첫 쪽에서 안전한 상한을 정한다. `safeLimit:null`이면 문장 없는 기본 지면부터 넘친 조합이 있으므로 옵션/쪽 나눔을 먼저 검토한다. 실계정에서 S1·M1·C2 생성, 확정/재확정, PDF 업로드·받기·반 인쇄를 확인하고 `/dev/print-check`의 `exam-report-confirmed-print`를 실물로 검수한다. 에이와 첫 왕복과 변수 활성화는 리드가 한다.
+
+변경 파일 전체 목록·API·실행 범위는 [구현 보고](tracks/reports/exam-report-screen-impl-codex-20261018.md)에 적었다.
+
+**2026-10-18 · 틀린 문항 표 합의 후속(codex, 미커밋)** — [넘침 고침 합의](tracks/reports/exam-report-wrong-table-consensus.md)를 반영했다. 위의 임시 180자·요약 표 한 쪽 고정·`safeLimit` 지침은 이번 후속으로 대체한다. 10개 초과는 번호·단원·유형 두 단(왼쪽→오른쪽, 위→아래)이며, 요약·재시험·문장·쪽수의 실제 높이를 먼저 확보하고 넘치는 표 행만 «틀린 문항 (이어서)» 쪽으로 옮긴다. 화면과 서버 PDF가 같은 실제 행 높이 측정/분할을 쓰며 정상적인 이어지는 표는 확정을 막지 않는다. 저장 하드 상한은 DB와 같은 1000자, 화면은 현재 지면의 남은 세로 공간/넘침을 안내한다. 지면 버전은 `h1-v2`다.
+
+- **시험**: TDD 후 관련 Vitest **21파일·146건 통과**(틀린 0·10·11·16·20·40개, S1/M1 쪽수·두 단 경계·비정렬 원본 순서·긴 단원/유형 보존·첫 쪽 문장 우선·이어지는 머리·재배치 후 쪽수, 기존 마이그레이션 PGlite·원장/API·개발 페이지·오류 기록 관문 포함). 변경 파일 ESLint·`lint:affordance`·`git diff --check` 통과. `npm run type-check`는 이번 변경 밖 fixture 두 곳의 기존 `questionGroupKey` 누락으로 실패했다(`textbookTestProblem.ts:21`, `schoolTextbookRecovery.test.ts:12`); 생성기나 해당 파일은 수정하지 않았다.
+- **실측·리드 실행**: 로컬 묶음 400모듈 생성 성공. Chromium은 다시 `Failed to launch the browser process: Code: null`로 시작하지 못했다. 리드는 `node scripts/qa/exam-report-screen-impl.mjs --measure`로 **84조합**(S1/M1 × 틀린 수 `[0, 4, 8, 12, 16, 20, 40]` × 기본/긴 이름·단원·유형 × 한글/넓은 영문/줄바꿈)의 모든 쪽을 확인한다. 실제 40문항의 번호·ID를 만들며, 결과에 쪽수·표별 행 수·단 수·문장 없는 기본 지면·1000자 지면·조합별 최대 길이를 남긴다. `allBaselinesFit`이 거짓이면 실패하며 조합별 최대 길이를 공통 글자 상한으로 쓰지 않는다. 실제 PDF·1040×760·프린터 실측은 미확인이다. 상세 변경 파일과 검증 범위는 [후속 보고](tracks/reports/exam-report-wrong-table-impl-codex-20261018.md)에 적었다.
+
+#### 14.6 원장님 요청 (2026-10-18 오후)
+- **스타일 5가지 · 서로 완전히 다르게** — H1 은 두고, 짜임부터 다른 후보 6가지(편지형 · 증서형 · 신문형 · 정오 격자형 · 큰 숫자형 · 장부형) 중 넷을 고르신다. 지시서 `tracks/brief-exam-report-styles-codex.md`.
+- **모든 스타일에 «N점 / 100점 만점»** — 배점이 100 이 아니거나 없으면 100점 환산 + 원래 값 작게.
+- **월말평가 추세선** — 2회 이상일 때만 · 최근 6회 · 0~100 고정 · 흑백 · 켜고 끄기(기본 켬).
+- **사전 맞춤 = 블록 구성**(원장님 정정 «내부 콘텐츠를 원하는 종류만큼 선택해서 페이지 구성을 커스텀») — 블록 목록에서 고르고 순서를 정하면 자동으로 쪽을 채운다(자유 배치 없음 · 블록을 쪼개지 않음). 스타일은 같은 블록을 그리는 옷. «성적표 틀»로 저장해 매달 자동 적용 · 틀 화면은 Wire 부터. 한 회차 단원별 정답률 그래프는 23 §4 대로 뺀다.

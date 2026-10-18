@@ -9,6 +9,9 @@ vi.mock("next/navigation", () => ({
   redirect: (url: string) => {
     throw new Error(`redirect:${url}`);
   },
+  notFound: () => {
+    throw new Error("notFound");
+  },
 }));
 vi.mock("@/lib/unifiedPreview", () => ({
   loadUnifiedBankBootstrap: mocks.bootstrap,
@@ -22,6 +25,7 @@ vi.mock("@/components/unified/UnifiedWorkspace", () => ({
 
 import MainPage from "@/app/(main)/page";
 import WorkspacePage from "@/components/unified/WorkspacePage";
+import ExamReportPage from "@/app/(main)/exam-reports/[testId]/page";
 
 const user = {
   id: "teacher-one",
@@ -37,6 +41,33 @@ beforeEach(() => {
 });
 
 describe("public landing and authenticated main entry", () => {
+  it("성적표는 같은 작업실 셸로 열며 문제은행을 미리 읽지 않는다", async () => {
+    const testId = "00000004-0000-4000-8000-000000000000";
+    const page = await ExamReportPage({ params: Promise.resolve({ testId }) });
+    expect(page.type).toBe(WorkspacePage);
+    expect(page.props.examReportTestId).toBe(testId);
+    const workspace = await WorkspacePage({ user, examReportTestId: testId });
+    expect(workspace.props.examReportTestId).toBe(testId);
+    expect(mocks.bootstrap).not.toHaveBeenCalled();
+  });
+  it("성적표의 원장·출력 메뉴·id 관문은 페이지에서도 닫힌다", async () => {
+    const params = Promise.resolve({
+      testId: "00000004-0000-4000-8000-000000000000",
+    });
+    mocks.auth.mockResolvedValue(null);
+    await expect(ExamReportPage({ params })).rejects.toThrow("redirect:/login");
+    for (const account of [
+      { ...user, role: "reviewer" },
+      { ...user, role: "director", menus: [] },
+    ]) {
+      mocks.auth.mockResolvedValue({ user: account });
+      await expect(ExamReportPage({ params })).rejects.toThrow("notFound");
+    }
+    mocks.auth.mockResolvedValue({ user: { ...user, role: "director" } });
+    await expect(
+      ExamReportPage({ params: Promise.resolve({ testId: "bad" }) }),
+    ).rejects.toThrow("notFound");
+  });
   it("renders the landing without reading question or class data for anonymous visitors", async () => {
     mocks.auth.mockResolvedValue(null);
     const page = await MainPage();

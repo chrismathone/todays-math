@@ -125,6 +125,7 @@ export async function loadGradeSheet(session: SessionUser, testId: string) {
   return jsonOk(gradeSheetResponseSchema, {
     data: {
       testId,
+      publicationId: owned.data.publicationId,
       className: cls?.name ?? "",
       studentName: student?.name ?? null,
       testType: owned.data.testType,

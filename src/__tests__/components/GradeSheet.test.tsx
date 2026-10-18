@@ -64,10 +64,16 @@ function sheet(over: Record<string, unknown> = {}) {
 }
 
 /** 저장 요청 본문을 받아 두고, 응답은 그 본문으로 만든다. */
-function arm(options: { reject?: string } = {}) {
+function arm(options: { reject?: string; publicationId?: string } = {}) {
   const sent: unknown[] = [];
   server.use(
-    http.get(`/api/tests/${TEST_ID}/grade`, () => HttpResponse.json(sheet())),
+    http.get(`/api/tests/${TEST_ID}/grade`, () =>
+      HttpResponse.json(
+        sheet(
+          options.publicationId ? { publicationId: options.publicationId } : {},
+        ),
+      ),
+    ),
     http.post(`/api/tests/${TEST_ID}/grade`, async ({ request }) => {
       const body = (await request.json()) as {
         entries: {
@@ -133,6 +139,25 @@ async function renderSheet() {
 }
 
 describe("채점 입력 A안 — 표(학생 × 문항)", () => {
+  it("낸 시험은 채점 저장 뒤 점수 목록 아래 성적표로 연결한다", async () => {
+    arm({ publicationId: "80000000-0000-4000-8000-000000000001" });
+    await renderSheet();
+    expect(
+      screen.queryByRole("link", { name: "성적표로" }),
+    ).not.toBeInTheDocument();
+    for (const student of S) {
+      const row = await rowOf(student.name);
+      await userEvent.click(
+        within(row).getByRole("button", { name: /개 끝$/ }),
+      );
+    }
+    await userEvent.click(
+      screen.getByRole("button", { name: "채점 결과 저장" }),
+    );
+    expect(
+      await screen.findByRole("link", { name: "성적표로" }),
+    ).toHaveAttribute("href", `/exam-reports/${TEST_ID}`);
+  });
   it("채점표 조회 실패 뒤 같은 화면에서 다시 불러온다", async () => {
     let calls = 0;
     server.use(

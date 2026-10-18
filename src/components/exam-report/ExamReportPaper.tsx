@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from "react";
+import { Fragment, type CSSProperties, type ReactNode } from "react";
 import type {
   ClassExamReport,
   StudentExamReport,
@@ -11,12 +11,19 @@ import {
   paginateWrongQuestions,
   type ExamReportQuestion,
 } from "@/lib/examReport/paginate";
+import {
+  estimateWrongTableLayout,
+  wrongTableColumns,
+  type WrongTableLayout,
+} from "@/lib/examReport/wrongTable";
 
 export interface ExamReportOutputOptions {
   mode?: "S1" | "M1";
   wrong?: boolean;
   retry?: boolean;
   note?: boolean;
+  /** 글꼴 적재 후 실측한 표의 행 수. 문항/풀이 쪽과 독립적으로 배치한다. */
+  wrongTableLayout?: WrongTableLayout;
   /** 켜기로 선택한 경우에만, 반 집계에서 받은 값을 함께 넘긴다. */
   average?: Pick<
     ClassExamReport["rollup"],
@@ -63,7 +70,13 @@ function Head({
           <h2>{name}</h2>
           <p>
             {day(report.publication.testDate)} ·{" "}
-            {title === "반 성적표" ? title : `${report.className} · ${title}`}
+            {title === "반 성적표" ? (
+              title
+            ) : (
+              <>
+                {report.className} · <span data-er-head-kind>{title}</span>
+              </>
+            )}
           </p>
         </div>
         <p className="er-examName">{report.publication.title}</p>
@@ -75,9 +88,11 @@ function Head({
 function Summary({
   report,
   options,
+  questions,
 }: {
   report: StudentExamReport;
   options: ExamReportOutputOptions;
+  questions: readonly ExamReportQuestion[];
 }) {
   const { wrong = true, retry = true, note = true, average } = options;
   const graded = report.status === "graded";
@@ -113,7 +128,7 @@ function Summary({
         )}
       </div>
       {wrong && (
-        <section className="er-area">
+        <section className="er-area er-wrongArea">
           <h3>틀린 문항</h3>
           {!graded ? (
             <p>
@@ -124,24 +139,10 @@ function Summary({
           ) : report.wrongQuestions.length === 0 ? (
             <p>틀린 문항이 없습니다.</p>
           ) : (
-            <table className="er-wrongTable">
-              <thead>
-                <tr>
-                  <th scope="col">번호</th>
-                  <th scope="col">단원</th>
-                  <th scope="col">유형</th>
-                </tr>
-              </thead>
-              <tbody>
-                {report.wrongQuestions.map((q) => (
-                  <tr key={q.problemId}>
-                    <td>{q.no}번</td>
-                    <td>{q.unitName}</td>
-                    <td>{q.typeLabel ?? "—"}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <WrongTable
+              questions={questions}
+              columns={wrongTableColumns(report.wrongQuestions.length)}
+            />
           )}
         </section>
       )}
@@ -158,7 +159,7 @@ function Summary({
           ))}
         </section>
       )}
-      {note && (
+      {note && report.teacherNote.trim() && (
         <section className="er-area er-note">
           <h3>원장님 문장</h3>
           <p>{report.teacherNote}</p>
@@ -172,9 +173,60 @@ function Summary({
             ? "시험일 · 결시 1회"
             : `시험일(${statusLabels[report.status]})`}
         {retries.length ? ` · 재시험 ${retries.length}회` : ""}
-      {note && report.teacherNote.trim() ? " · 원장님 문장" : ""}.
+        {note && report.teacherNote.trim() ? " · 원장님 문장" : ""}.
       </p>
     </>
+  );
+}
+
+function WrongTable({
+  questions,
+  columns,
+}: {
+  questions: readonly ExamReportQuestion[];
+  columns: 1 | 2;
+}) {
+  const rows = [];
+  for (let i = 0; i < questions.length; i += columns)
+    rows.push(questions.slice(i, i + columns));
+  return (
+    <table className="er-wrongTable" data-er-wrong-columns={columns}>
+      {columns === 2 && <caption>왼쪽 → 오른쪽, 위 → 아래 순서</caption>}
+      <colgroup>
+        {Array.from({ length: columns }, (_, i) => (
+          <Fragment key={i}>
+            <col style={{ width: columns === 2 ? "12mm" : "16mm" }} />
+            <col style={{ width: columns === 2 ? "39mm" : "82mm" }} />
+            <col />
+          </Fragment>
+        ))}
+      </colgroup>
+      <thead>
+        <tr>
+          {Array.from({ length: columns }, (_, i) => (
+            <Fragment key={i}>
+              <th scope="col">번호</th>
+              <th scope="col">단원</th>
+              <th scope="col">유형</th>
+            </Fragment>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row) => (
+          <tr key={row[0].problemId} data-er-wrong-row>
+            {row.map((q) => (
+              <Fragment key={q.problemId}>
+                <td data-er-wrong-no={q.no}>{q.no}번</td>
+                <td>{q.unitName}</td>
+                <td>{q.typeLabel ?? "—"}</td>
+              </Fragment>
+            ))}
+            {row.length < columns && <td colSpan={3} aria-hidden="true" />}
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 }
 
@@ -236,17 +288,23 @@ function Page({
   index,
   total,
   landscape = false,
+  summary = false,
+  continuation = false,
 }: {
   children: ReactNode;
   index: number;
   total: number;
   landscape?: boolean;
+  summary?: boolean;
+  continuation?: boolean;
 }) {
   return (
     <div
       data-exam-report-page="H1"
       data-unified-paper="true"
       data-landscape={landscape}
+      data-er-summary={summary || undefined}
+      data-er-table-continuation={continuation || undefined}
       style={inkVariables}
     >
       <A4Page
@@ -272,19 +330,56 @@ export function studentExamReportPages(
   report: StudentExamReport,
   options: ExamReportOutputOptions = {},
 ) {
+  const columns = wrongTableColumns(report.wrongQuestions.length);
+  const measured = options.wrongTableLayout;
+  const rowCount = Math.ceil(report.wrongQuestions.length / columns);
+  const measuredValid =
+    measured?.length &&
+    measured.every((count) => Number.isInteger(count) && count >= 0) &&
+    measured.reduce((sum, count) => sum + count, 0) === rowCount;
+  const layout =
+    options.wrong !== false &&
+    report.status === "graded" &&
+    report.wrongQuestions.length
+      ? measuredValid
+        ? measured
+        : estimateWrongTableLayout(report, options)
+      : [0];
+  let offset = 0;
+  const tablePages = layout.map((count) => {
+    const questions = report.wrongQuestions.slice(
+      offset,
+      offset + count * columns,
+    );
+    offset += count * columns;
+    return questions;
+  });
   const wrongPages =
     options.mode === "M1" &&
     options.wrong !== false &&
     report.status === "graded"
       ? paginateWrongQuestions(report.wrongQuestions)
       : [];
-  const total = 1 + wrongPages.length;
+  const total = tablePages.length + wrongPages.length;
   return [
-    <Page key="summary" index={0} total={total}>
-      <Summary report={report} options={options} />
+    <Page key="summary" index={0} total={total} summary>
+      <Summary report={report} options={options} questions={tablePages[0]} />
     </Page>,
+    ...tablePages.slice(1).map((questions, i) => (
+      <Page key={`table-${i}`} index={i + 1} total={total} continuation>
+        <Head
+          report={report}
+          name={report.student.name}
+          title="틀린 문항 (이어서)"
+        />
+        <section className="er-area er-wrongArea">
+          <h3>틀린 문항 (이어서)</h3>
+          <WrongTable questions={questions} columns={columns} />
+        </section>
+      </Page>
+    )),
     ...wrongPages.map((questions, i) => (
-      <Page key={`wrong-${i}`} index={i + 1} total={total}>
+      <Page key={`wrong-${i}`} index={i + tablePages.length} total={total}>
         <WrongSheet report={report} questions={questions} />
       </Page>
     )),

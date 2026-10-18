@@ -11,6 +11,7 @@ import {
 } from "@/contracts/examPublication.contract";
 import type { PrivateDocumentSummary } from "@/contracts/privateWorkspace.contract";
 import { kstDateOf } from "@/lib/kstDate";
+import { examReportHref } from "@/lib/examReport/settings";
 import ConfirmDialog from "./ConfirmDialog";
 import { ExamPublicationError, publishExam } from "./examPublicationClient";
 import s from "./ExamPublication.module.css";
@@ -71,6 +72,29 @@ const monthDay = (date: string) => {
 };
 
 type Done = { tests: { classId: string; className: string; testId: string }[] };
+
+/** 낸 시험의 반별 성적표 입구. 결시를 포함해 명단의 채점을 마친 반만 연다. */
+export function GradedExamReportLinks({
+  publications,
+}: {
+  publications: readonly ExamPublicationSummary[];
+}) {
+  const ready = publications.flatMap((publication) =>
+    publication.classes
+      .filter((cls) => cls.students > 0 && cls.remaining === 0)
+      .map((cls) => ({ publication, cls })),
+  );
+  if (!ready.length) return null;
+  return (
+    <div className={s.doneLinks} aria-label="낸 시험의 반별 성적표">
+      {ready.map(({ publication, cls }) => (
+        <Link key={cls.testId} href={examReportHref(cls.testId)}>
+          {cls.className} 성적표 · {monthDay(publication.testDate)}
+        </Link>
+      ))}
+    </div>
+  );
+}
 
 /** «반에 내기» 창 — 종류 · 시험일 · 반. 낸 뒤에는 반마다 «채점하기». */
 export function PublishDialog({

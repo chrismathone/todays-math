@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ButtonHTMLAttributes } from "react";
-import AutoGrowTextarea from "@/components/english/AutoGrowTextarea";
+import AutoGrowTextarea from "@/components/ui/AutoGrowTextarea";
 import {
   classExamReportPages,
   studentExamReportPages,
@@ -624,7 +624,10 @@ export function ExamReportScreenHifi() {
             지어낸 자료 · 이 화면 안에서만 저장·확정합니다. 새로 열면
             초기화됩니다.
           </p>
-          <p>문장 상한 {NOTE_LIMIT}자는 실측 전 비교값입니다.</p>
+          <p>
+            문장 저장 상한은 {NOTE_LIMIT}자입니다. 실제 지면은 별도로
+            확인합니다.
+          </p>
         </div>
         <label>
           예시 상황

@@ -83,6 +83,17 @@ export const SPECIMEN_ITEM_IDS = [
 
 export const ITEMS: PrintCheckItem[] = [
   {
+    id: "exam-report-confirmed-print",
+    title: "실제 월말평가 성적표 — 확정 보관 PDF · 반 인쇄",
+    changed: "실제 작업실에서 문장·반 지면 설정을 저장하고 H1 S1·M1 PDF를 확정 보관한다. 확정된 학생은 보관 PDF, 확정 전 학생은 현재 저장 내용으로 반 인쇄 PDF를 합친다. C2는 가로 A4다.",
+    look: "문장 없음·상한 길이·긴 이름·많은 오답에서 요약 첫 쪽의 잘림·겹침이 없어야 한다. M1 쪽 나눔과 정답·해설, C2 가로 방향, 배경 인쇄를 꺼도 정오가 남는지 확인한다. 확정 후 반 인쇄의 해당 학생 쪽은 받은 확정 PDF와 같아야 한다.",
+    lookFromSource: true,
+    evidence: ["docs/planning/tracks/brief-exam-report-screen-impl-codex.md", "src/components/exam-report/ExamReportWorkspace.tsx", "src/lib/examReport/server.ts"],
+    needs: "낸 시험의 채점을 마친 반 → 성적표 → S1·M1 각각 확정 및 확정 전 포함 인쇄. 문장 상한 실측 뒤 프린터 100% 배율로 확인.",
+    status: "대기",
+    changedOn: "2026-10-18",
+  },
+  {
     id: "exam-report-hifi",
     title: "월말평가 성적표 — H1 선택 · 새 부품",
     changed:

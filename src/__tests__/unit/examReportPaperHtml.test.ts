@@ -3,6 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 import { reportFixture } from "@/app/dev/exam-report-hifi/fixtures";
 import { buildExamReportPaperHtml } from "@/lib/examReport/paperHtml";
 import { PdfPayloadSchema, pdfDocument } from "@/lib/export/pdfServer";
+import { wrongTableFixture } from "../helpers/examReportWrongTableFixture";
 
 vi.mock("puppeteer-core", () => ({
   default: {
@@ -13,6 +14,35 @@ vi.mock("puppeteer-core", () => ({
 }));
 
 describe("성적표 서버 HTML", () => {
+  it.each([
+    [0, 1, 1],
+    [10, 1, 1],
+    [11, 1, 2],
+    [16, 1, 2],
+    [20, 1, 2],
+    [40, 2, 2],
+  ])(
+    "틀린 %i개도 같은 H1 초기 %i쪽·%i단과 순서로 내보낸다",
+    (count, total, columns) => {
+      const report = wrongTableFixture(count);
+      const input = buildExamReportPaperHtml(report);
+      expect(input.html.match(/data-unified-paper=/g)).toHaveLength(total);
+      expect(
+        [...input.html.matchAll(/data-er-wrong-no="(\d+)"/g)].map((match) =>
+          Number(match[1]),
+        ),
+      ).toEqual(report.wrongQuestions.map((q) => q.no));
+      if (count)
+        expect(input.html).toContain(`data-er-wrong-columns="${columns}"`);
+      expect(
+        input.html.match(/data-er-table-continuation="true"/g) ?? [],
+      ).toHaveLength(total - 1);
+      if (total > 1) expect(input.html).toContain("틀린 문항 (이어서)");
+      expect(input.html).toContain(report.teacherNote);
+      expect(input.html).not.toContain("<script");
+    },
+  );
+
   it("한 학생·한 회의 모든 쪽과 자체 CSS를 PDF 계약으로 만든다", () => {
     const { student } = reportFixture("normal");
     const input = buildExamReportPaperHtml(student, { mode: "M1" });
