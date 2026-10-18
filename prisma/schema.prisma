@@ -913,6 +913,8 @@ model Problem {
   /// ⚠️ 비면 **자기 혼자 한 무리**를 차지한다(`solo:<uuid>`, 트리거가 채운다).
   ///    번호 형식이 한 가지로 유지되게 하려는 것이다 — 나중에 「이건 저 무리」로 옮길 수 있다.
   familyKey        String?      @map("family_key")
+  /// Proven same-task representations only; NULL preserves independent legacy rows.
+  questionGroupKey String?      @map("question_group_key")
   /// 문항 코드 — 원장님이 문항을 **지목**하는 값 (D-53 · D-105). 예: `J30103-A01-001`.
   /// 옛 형식(`J31402-K7M2`, 무작위 4자)을 단 행이 45,374건 남아 있다 — 격리 대상이고
   /// freeze 트리거가 UPDATE 를 막으므로 영영 그대로다. CHECK 는 둘 다 받는다.
@@ -965,6 +967,8 @@ model Problem {
   @@index([reviewStatus, createdAt(sort: Desc)])
   // 「이 문항과 같은 류가 몇 개인가」 — 아류 묶어 보기(D-105).
   @@index([unitId, familyKey])
+  @@index([questionGroupKey])
+  @@index([unitId, questionGroupKey])
   // 「이 자료의 문항」 — 출판사 · 자료 종류로 거르는 조회가 자료 → 문항으로 내려온다(D-161).
   @@index([sourceMaterialId])
   @@map("problem")
