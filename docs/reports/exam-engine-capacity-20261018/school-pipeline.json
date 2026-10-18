@@ -1,0 +1,1594 @@
+{
+  "schemaVersion": 1,
+  "reportKind": "school-conditioned-math-pipeline-audit",
+  "auditDate": "2026-10-18",
+  "sourceCommit": "d70137271e36e6f9c22209574e9ff224217f7296",
+  "engineVersion": "0.6.0",
+  "scope": {
+    "productionEdits": 0,
+    "sharedDbConnections": 0,
+    "sharedDbWrites": 0,
+    "httpMutations": 0,
+    "providerCalls": 0,
+    "pushes": 0,
+    "deployments": 0,
+    "credentialFilesRead": 0,
+    "subworkers": 0,
+    "ownedPublicFiles": [
+      "docs/reports/exam-engine-capacity-20261018/school-pipeline.md",
+      "docs/reports/exam-engine-capacity-20261018/school-pipeline.json"
+    ]
+  },
+  "verdict": {
+    "status": "fail",
+    "claim": "Entering 경명여중 yields newly written questions matching that school’s actual mathematical structure.",
+    "reasons": [
+      "no math prediction/issuance creation UI",
+      "current own-school evidence absent",
+      "statistical row selection has no semantic/family structure constraints",
+      "no content-generation hook in predictor issuance",
+      "logical same-question representations may be counted twice"
+    ]
+  },
+  "schoolEvidence": {
+    "source": "root-owned immutable read-only export; no DB connection in worker",
+    "sourceCommit": "d70137271e36e6f9c22209574e9ff224217f7296",
+    "capturedAt": "2026-10-18T11:08:34.847Z",
+    "readOnlyTransactionVerified": true,
+    "isolation": "RepeatableRead",
+    "ownSchool": "경명여중",
+    "aliases": ["경명여중", "경명여자중학교"],
+    "normalizedKey": "경명여중",
+    "scope": "all currently exported grades, subjects and periods",
+    "currentExamRows": 5,
+    "currentExamQuestionRows": 101,
+    "ownExamRows": 0,
+    "ownExtractedQuestionRows": 0,
+    "ownBankRows": 0,
+    "ownLinkedBankRows": 0,
+    "ownIssuableBankRows": 0,
+    "inputHashes": {
+      "exams": "af8399e1645e44d78577c862c5ed02670e806656ae526e23d51ad0f764d8bb9b",
+      "bank": "b2405d4aefd97e8deb0a481554fd96850da6bfc40ee4a905a71a20c08ddf7019"
+    },
+    "status": "fail",
+    "conclusion": "School-specific style is unsupported by the current exported data, not unknown merely because this worker avoided live DB reads.",
+    "publicDataReport": "school-data.md",
+    "runtimeReportOwner": "root, separately produced runtime-verification reports",
+    "historicalMetadataIndex": "Separate provenance layer; not treated as current extracted/trusted/issuable capacity."
+  },
+  "countingRules": {
+    "rowCountIsQuestionCapacity": false,
+    "provenMcShortRepresentationsCountAsOneQuestion": true,
+    "choiceShuffleIsNewContent": false,
+    "sampledDistinctCountIsTotalCapacity": false,
+    "sampleCountsMeaning": "Synthetic fixture outcomes or observed lower bounds only; no extrapolated total content space.",
+    "currentSchoolZeroCountsMeaning": "Exact absence in the immutable current export, all exported grades/subjects/periods."
+  },
+  "pipeline": [
+    {
+      "step": "teacher-math-ui",
+      "status": "fail",
+      "behavior": "Existing-round reads only; no school-conditioned creation UI caller.",
+      "evidence": [
+        "uiDashboard",
+        "uiApi",
+        "bankSchoolSearch",
+        "bankSearchWhere"
+      ]
+    },
+    {
+      "step": "POST /api/predictions",
+      "status": "pass",
+      "behavior": "Validate approved user and request, gather evidence, predict, persist a fresh PredictionRun.",
+      "evidence": [
+        "predictionRoute",
+        "predictionEvidence",
+        "predictionRiskAndWrite"
+      ]
+    },
+    {
+      "step": "predictBlueprint",
+      "status": "pass",
+      "behavior": "Deterministic marginal distribution prediction with school/cohort weights.",
+      "evidence": ["predictorDefaults", "predictor"]
+    },
+    {
+      "step": "POST /api/tests/predicted",
+      "status": "pass",
+      "behavior": "Separate caller request invokes new calculation; saved run blueprint not reused.",
+      "evidence": ["generateRoute", "generateAuthRun", "generateEvidence"]
+    },
+    {
+      "step": "composePredictedPaper",
+      "status": "pass",
+      "behavior": "Pick existing row IDs with exact/relaxed slot, reuse and source priorities; normalize scores.",
+      "evidence": [
+        "candidateContract",
+        "composeSlots",
+        "composeRanking",
+        "composeOutput"
+      ]
+    },
+    {
+      "step": "persistPredictedPaper",
+      "status": "pass",
+      "behavior": "Save Test/TestProblem only after complete-slot/exact100/class-owner checks.",
+      "evidence": ["persist"]
+    }
+  ],
+  "schoolConditioning": {
+    "questionCount": "own weighted style; cohort fallback",
+    "responseType": "own weighted format distribution; cohort fallback",
+    "difficulty": "cohort labeled distribution, own only if no cohort",
+    "units": "same-round own .25 + cohort .75 where available",
+    "scoreGrid": "recent own grid with gridDecay .4; cohort fallback",
+    "questionStructure": "absent",
+    "sameSchoolPreference": "exact Problem ID in trusted own reference, not same family or semantic similarity",
+    "positionStructure": "fixed marginal expansion rather than school learned joint/position pattern",
+    "sourceSelectionOrder": [
+      "past_exam",
+      "manual / transformed with null origin / school_textbook",
+      "transformed with origin",
+      "ai_generated"
+    ],
+    "selectionKey": [
+      "unit4+difficulty2+type1 relaxation penalty",
+      "same-school exact row",
+      "source rank",
+      "stable Problem ID"
+    ]
+  },
+  "findings": [
+    {
+      "id": "school-specific-end-to-end-requirement",
+      "status": "fail",
+      "claim": "Entering 경명여중 produces newly written problems with that school’s real problem structure.",
+      "observed": "No math creation UI, zero current own-school evidence, no semantic structure contract or generation call.",
+      "evidence": [
+        "uiDashboard",
+        "uiApi",
+        "predictionEvidence",
+        "generateCandidates",
+        "candidateContract"
+      ],
+      "probes": ["schoolConditioning", "cohortOnly"],
+      "dataEvidence": "schoolEvidence"
+    },
+    {
+      "id": "school-dependent-statistical-selection",
+      "status": "pass",
+      "claim": "Different schools with different evidence can change the actual blueprint and row selection.",
+      "observed": "Fixed synthetic corpus A gives10 MC/10-point-grid, B gives20 short/5-point-grid; selected IDs differ and repeats are deterministic.",
+      "evidence": ["predictor", "generateEvidence", "composeRanking"],
+      "probes": ["schoolConditioning"],
+      "limitation": "Synthetic mechanism proof, not actual-school fidelity or total content capacity."
+    },
+    {
+      "id": "school-name-semantic-inference",
+      "status": "fail",
+      "claim": "School-name text itself determines the school’s problem style.",
+      "observed": "Same evidence gives same numeric blueprint under renamed school; two absent schools share identical selected questions under the same cohort.",
+      "evidence": ["predictor", "candidateContract"],
+      "probes": ["cohortOnly"]
+    },
+    {
+      "id": "school-name-normalization-integration",
+      "status": "fail",
+      "claim": "Long/short school aliases resolve to own-school history at prediction endpoints.",
+      "observed": "Normalizer exists separately; endpoints and evidence split compare literal strings. Synthetic long spelling has own evidence1 while unmatched input has own evidence0.",
+      "evidence": [
+        "schoolNormalizer",
+        "schoolRequestContract",
+        "predictionEvidence",
+        "generateEvidence"
+      ],
+      "probes": ["nameMatching"]
+    },
+    {
+      "id": "same-label-real-structure-guarantee",
+      "status": "fail",
+      "claim": "Same-school unit/difficulty/type labels guarantee matching mathematical structure.",
+      "observed": "qtype is response format; familyKey/semantic/task structure absent from both prediction and candidate contracts. Slot exactness never proves a mathematical structure match.",
+      "evidence": [
+        "schoolRequestContract",
+        "candidateContract",
+        "composeSlots",
+        "composeRanking"
+      ],
+      "probes": ["questionIdentity"]
+    },
+    {
+      "id": "on-demand-content-generation",
+      "status": "fail",
+      "claim": "Predicted-paper issuance creates new question text or fills gaps by invoking a generator/AI.",
+      "observed": "Existing Problem rows are selected. No arithmetic/math generator, generateProblems, transformProblem, TypeSafe or Jev hook is called. Only Test and TestProblem are written.",
+      "evidence": [
+        "generateCandidates",
+        "persist",
+        "aiSeparate",
+        "aiSeparateRoute",
+        "transformSeparate"
+      ],
+      "probes": ["tieReasons", "persistence"]
+    },
+    {
+      "id": "evidence-source-policy-consistency",
+      "status": "fail",
+      "claim": "Prediction and issuance use the same source/trust policy.",
+      "observed": "Prediction excludes 대비 and unknown source paths; issuance uses partitionTrusted only. Synthetic own evidence0 in prediction becomes2 in issuance.",
+      "evidence": ["predictionEvidence", "generateEvidence", "source"],
+      "probes": ["sourceGateDivergence"]
+    },
+    {
+      "id": "style-range-policy-consistency",
+      "status": "fail",
+      "claim": "Prediction and issuance use the same own-school style history.",
+      "observed": "Prediction learns style across own-school subjects and restricts range history; issuance loads only requested subject. Cross-subject-only fixture predicts20 questions but issuance refuses no evidence.",
+      "evidence": ["predictionEvidence", "generateEvidence"],
+      "probes": ["styleRangeDivergence"]
+    },
+    {
+      "id": "saved-run-replay-binding",
+      "status": "fail",
+      "claim": "An attached PredictionRun binds the issued paper to its stored blueprint and full exam identity.",
+      "observed": "Only run user/school/level/grade compared; subject, target/cutoff, parameters and saved blueprint not bound; fresh calculation performed.",
+      "evidence": ["generateAuthRun", "generateEvidence"],
+      "probes": ["runBinding"]
+    },
+    {
+      "id": "logical-question-format-compatibility",
+      "status": "fail",
+      "claim": "MC and short representations of a proven same question occupy only one paper slot.",
+      "observed": "Candidate mapper drops questionGroupKey; composer uses Problem IDs only. Fixture selected10 rows but9 logical questions with no relaxation and no missing slots.",
+      "evidence": [
+        "generateConvert",
+        "candidateContract",
+        "composeRanking",
+        "questionIdentity",
+        "identitySchema"
+      ],
+      "probes": ["questionIdentity"],
+      "limitation": "Concrete fixture failure; not a measurement of existing production duplicate incidence."
+    },
+    {
+      "id": "latest-selection-revalidation",
+      "status": "fail",
+      "claim": "Current identity/content/eligibility is rechecked and locked immediately before predicted-paper persistence.",
+      "observed": "Real persist function with transaction spies performs no Problem reread/lock or identity uniqueness check; general flow has selectionStillCurrent but this path does not use it.",
+      "evidence": ["persist", "safeGeneralSelection"],
+      "probes": ["persistence"]
+    },
+    {
+      "id": "hard-school-slot-conformance",
+      "status": "fail",
+      "claim": "A completed100-point predicted paper guarantees all requested school unit/difficulty/format slots matched.",
+      "observed": "Every slot may relax all3 axes and reach persistence with100 points,10 rows and0 missing slots.",
+      "evidence": [
+        "composeSlots",
+        "composeRanking",
+        "composeOutput",
+        "persist"
+      ],
+      "probes": ["allAxesRelaxed"]
+    },
+    {
+      "id": "training-evidence-temporal-isolation",
+      "status": "pass",
+      "claim": "Training evidence is strictly earlier than cutoff/target; same/future periods are rejected.",
+      "observed": "Service filters plus pure predictor assertion; reversed cutoff refused before prediction writes.",
+      "evidence": [
+        "pinnedEvidence",
+        "predictionEvidence",
+        "generateEvidence",
+        "predictor"
+      ]
+    },
+    {
+      "id": "candidate-temporal-isolation",
+      "status": "fail",
+      "claim": "Final selected questions obey the same historical source-exam cutoff as training evidence.",
+      "observed": "Candidate query has requested units/eligibility only, no school/source-exam-period predicate. Actual historical leakage incidence unmeasured.",
+      "evidence": ["generateCandidates"],
+      "probes": ["candidateQuery"]
+    },
+    {
+      "id": "cohort-fallback-machine-disclosure",
+      "status": "pass",
+      "claim": "Cohort-only fallback is visible in machine metadata and existing prediction dashboard judgement.",
+      "observed": "Own evidence0/confidence0/reference0; run risk flags; dashboard blocks own evidence<2.",
+      "evidence": [
+        "predictor",
+        "predictionRiskAndWrite",
+        "paperResponseContract",
+        "generateRoute",
+        "uiDisclosure",
+        "uiDisclosurePanel"
+      ],
+      "probes": ["cohortOnly"],
+      "limitation": "Issuance API has no explicit cohort-only warning or separate generation UI confirmation flow."
+    },
+    {
+      "id": "full-student-branch-authorization",
+      "status": "unknown",
+      "claim": "Every student/branch relationship is validated in this predicted-paper path.",
+      "observed": "Approved session/menu and literal class owner are checked; student membership and branch-specific action policy not verified here; live authorization integration tests out of scope.",
+      "evidence": ["session", "menu", "proxy", "generateAuthRun", "persist"]
+    },
+    {
+      "id": "operational-output-completion",
+      "status": "unknown",
+      "claim": "A current real-school request works through production printing and student issuance.",
+      "observed": "No HTTP mutation, real DB write or production rendering/dispatch was performed. Root separately owns immutable-export runtime probes.",
+      "evidence": ["uiDashboard", "generateRoute", "persist"]
+    }
+  ],
+  "gates": [
+    {
+      "name": "approved-session-and-export-menu",
+      "status": "pass",
+      "evidence": ["session", "menu", "proxy"]
+    },
+    {
+      "name": "literal-class-owner-check",
+      "status": "pass",
+      "evidence": ["generateAuthRun", "persist"]
+    },
+    {
+      "name": "run-owner-school-level-grade-check",
+      "status": "pass",
+      "evidence": ["generateAuthRun"],
+      "probe": "runBinding"
+    },
+    {
+      "name": "full-run-subject-period-cutoff-blueprint-binding",
+      "status": "fail",
+      "evidence": ["generateAuthRun", "generateEvidence"],
+      "probe": "runBinding"
+    },
+    {
+      "name": "training-evidence-before-target",
+      "status": "pass",
+      "evidence": ["generateEvidence", "predictor", "pinnedEvidence"]
+    },
+    {
+      "name": "declared-score-band-and-minimum-count",
+      "status": "pass",
+      "evidence": ["trust"],
+      "probe": "trust",
+      "accepted": {
+        "minDeclaredTotal": 95,
+        "maxDeclaredTotal": 105,
+        "minQuestionCount": 10
+      },
+      "doesNotProve": [
+        "exact100 input",
+        "source authenticity",
+        "declared total equals extracted score sum"
+      ]
+    },
+    {
+      "name": "consistent-genuine-source-filter",
+      "status": "fail",
+      "evidence": ["predictionEvidence", "generateEvidence", "source"],
+      "probe": "sourceGateDivergence"
+    },
+    {
+      "name": "bank-row-eligibility",
+      "status": "pass",
+      "evidence": ["generateCandidates"],
+      "conditions": [
+        "pool shared",
+        "reviewStatus approved",
+        "directUseAllowed true",
+        "answer not MISSING_ANSWER",
+        "requested unit IDs"
+      ],
+      "limitation": "Sentinel exclusion alone does not validate answer correctness or reject every blank string."
+    },
+    {
+      "name": "candidate-source-exam-cutoff",
+      "status": "fail",
+      "evidence": ["generateCandidates"],
+      "probe": "candidateQuery"
+    },
+    {
+      "name": "missing-slot-and-exact100-save-guard",
+      "status": "pass",
+      "evidence": ["persist", "normalize"],
+      "probe": "persistence"
+    },
+    {
+      "name": "hard-school-structure-slot-guard",
+      "status": "fail",
+      "evidence": ["composeSlots", "composeRanking", "persist"],
+      "probe": "allAxesRelaxed"
+    },
+    {
+      "name": "logical-question-uniqueness",
+      "status": "fail",
+      "evidence": ["questionIdentity", "generateConvert", "composeRanking"],
+      "probe": "questionIdentity"
+    },
+    {
+      "name": "prewrite-latest-identity-and-eligibility-recheck",
+      "status": "fail",
+      "evidence": ["persist", "safeGeneralSelection"],
+      "probe": "persistence"
+    }
+  ],
+  "evidence": {
+    "uiDashboard": {
+      "path": "src/components/exam/ExamDashboard.tsx",
+      "lines": [
+        {
+          "start": 28,
+          "end": 42
+        },
+        {
+          "start": 78,
+          "end": 105
+        }
+      ],
+      "fact": "Reads existing rounds and explicitly states prediction execution UI is absent."
+    },
+    "uiApi": {
+      "path": "src/components/exam/examApi.ts",
+      "lines": [
+        {
+          "start": 17,
+          "end": 37
+        },
+        {
+          "start": 47,
+          "end": 56
+        }
+      ],
+      "fact": "Reads /api/exam/rounds; only prediction-related mutation is actual score saving."
+    },
+    "bankSchoolSearch": {
+      "path": "src/components/unified/BankView.tsx",
+      "lines": [
+        {
+          "start": 157,
+          "end": 179
+        },
+        {
+          "start": 1441,
+          "end": 1457
+        }
+      ],
+      "fact": "School text belongs to generic q search, not a predictor request."
+    },
+    "bankSearchWhere": {
+      "path": "src/app/api/problems/route.ts",
+      "lines": [
+        {
+          "start": 223,
+          "end": 240
+        }
+      ],
+      "fact": "q searches content/code/answer/solution/school and numeric questionNumber."
+    },
+    "predictionRoute": {
+      "path": "src/app/api/predictions/route.ts",
+      "lines": [
+        {
+          "start": 31,
+          "end": 59
+        }
+      ],
+      "fact": "Session and schema guard, then runPrediction and 201 response."
+    },
+    "predictionEvidence": {
+      "path": "src/lib/predictor/predictionRunService.ts",
+      "lines": [
+        {
+          "start": 230,
+          "end": 307
+        }
+      ],
+      "fact": "Exact school split; own cross-subject style, subject-specific range, strict pre-cutoff trust and source guards."
+    },
+    "pinnedEvidence": {
+      "path": "src/lib/predictor/predictionRunService.ts",
+      "lines": [
+        {
+          "start": 310,
+          "end": 405
+        },
+        {
+          "start": 467,
+          "end": 477
+        }
+      ],
+      "fact": "Pinned replays check existence/schema/series/time while intentionally bypassing trust/source filters."
+    },
+    "predictionRiskAndWrite": {
+      "path": "src/lib/predictor/predictionRunService.ts",
+      "lines": [
+        {
+          "start": 510,
+          "end": 580
+        }
+      ],
+      "fact": "No individual score predictions; risk/evidence metadata and fresh PredictionRun are persisted."
+    },
+    "schoolRequestContract": {
+      "path": "src/contracts/predictor.contract.ts",
+      "lines": [
+        {
+          "start": 57,
+          "end": 70
+        },
+        {
+          "start": 159,
+          "end": 199
+        }
+      ],
+      "fact": "School string length only; qtype is response format; blueprint has distributions, not problem-family/semantic requirements."
+    },
+    "schoolNormalizer": {
+      "path": "src/lib/schools/normalizeSchoolName.ts",
+      "lines": [
+        {
+          "start": 17,
+          "end": 30
+        },
+        {
+          "start": 61,
+          "end": 70
+        }
+      ],
+      "fact": "Separate normalizer maps long/short school spellings, including 경명여중."
+    },
+    "predictorDefaults": {
+      "path": "src/lib/predictor/predictBlueprint.ts",
+      "lines": [
+        {
+          "start": 96,
+          "end": 163
+        }
+      ],
+      "fact": "Engine v0.6.0; decay .85, same-round boost 4, style prior 0, total prior 2, grid prior 0/decay .4, own unit weight .25."
+    },
+    "predictor": {
+      "path": "src/lib/predictor/predictBlueprint.ts",
+      "lines": [
+        {
+          "start": 278,
+          "end": 453
+        }
+      ],
+      "fact": "Deterministic evidence-based marginal distributions; no evidence throws, no semantic school-name understanding."
+    },
+    "generateRoute": {
+      "path": "src/app/api/tests/predicted/route.ts",
+      "lines": [
+        {
+          "start": 30,
+          "end": 77
+        }
+      ],
+      "fact": "Separate issuance request; returns numeric evidence/confidence and per-question relaxations."
+    },
+    "generateConvert": {
+      "path": "src/lib/predictor/generatePredictedPaper.ts",
+      "lines": [
+        {
+          "start": 96,
+          "end": 170
+        },
+        {
+          "start": 200,
+          "end": 222
+        }
+      ],
+      "fact": "Exam conversion is not the same full-schema path; candidate mapping drops familyKey and questionGroupKey."
+    },
+    "generateEvidence": {
+      "path": "src/lib/predictor/generatePredictedPaper.ts",
+      "lines": [
+        {
+          "start": 173,
+          "end": 197
+        },
+        {
+          "start": 271,
+          "end": 306
+        }
+      ],
+      "fact": "Same-subject own/cohort papers strictly before target; trust only, with no isSchoolExam call."
+    },
+    "generateAuthRun": {
+      "path": "src/lib/predictor/generatePredictedPaper.ts",
+      "lines": [
+        {
+          "start": 243,
+          "end": 269
+        }
+      ],
+      "fact": "Class owner and optional run owner/school/level/grade; no run subject/target/cutoff/params/saved blueprint binding."
+    },
+    "generateCandidates": {
+      "path": "src/lib/predictor/generatePredictedPaper.ts",
+      "lines": [
+        {
+          "start": 314,
+          "end": 366
+        }
+      ],
+      "fact": "Eligible shared bank rows by requested units, compose, persist; no candidate school/source-period filter and no content-generation call."
+    },
+    "candidateContract": {
+      "path": "src/contracts/scoreNormalizer.contract.ts",
+      "lines": [
+        {
+          "start": 163,
+          "end": 180
+        }
+      ],
+      "fact": "ID/unit/difficulty/response type/source/origin/score only; no family, logical question identity, text or semantic constraints."
+    },
+    "paperResponseContract": {
+      "path": "src/contracts/scoreNormalizer.contract.ts",
+      "lines": [
+        {
+          "start": 250,
+          "end": 293
+        }
+      ],
+      "fact": "Caller supplies units/series/target; evidenceCount 0 means cohort-only. No typed cohort-only warning field."
+    },
+    "composeSlots": {
+      "path": "src/lib/predictor/composePredictedPaper.ts",
+      "lines": [
+        {
+          "start": 98,
+          "end": 119
+        },
+        {
+          "start": 203,
+          "end": 264
+        }
+      ],
+      "fact": "Independent marginal expansion; unit4/difficulty2/type1 relaxation costs; raw topics with no unitId provide no unit constraint."
+    },
+    "composeRanking": {
+      "path": "src/lib/predictor/composePredictedPaper.ts",
+      "lines": [
+        {
+          "start": 133,
+          "end": 156
+        },
+        {
+          "start": 299,
+          "end": 360
+        },
+        {
+          "start": 422,
+          "end": 432
+        }
+      ],
+      "fact": "Lexicographic relaxation penalty, exact same-school row ID, source rank, stable ID; used set contains row IDs."
+    },
+    "composeOutput": {
+      "path": "src/lib/predictor/composePredictedPaper.ts",
+      "lines": [
+        {
+          "start": 362,
+          "end": 419
+        }
+      ],
+      "fact": "Missing slots and relaxations returned; score normalization applies to selected existing rows."
+    },
+    "trust": {
+      "path": "src/lib/predictor/paperTrust.ts",
+      "lines": [
+        {
+          "start": 49,
+          "end": 53
+        },
+        {
+          "start": 76,
+          "end": 112
+        }
+      ],
+      "fact": "Declared score band95..105 and >=10 questions; not an authenticity, exact100 or declared-vs-question-sum proof."
+    },
+    "source": {
+      "path": "src/lib/predictor/paperSource.ts",
+      "lines": [
+        {
+          "start": 52,
+          "end": 66
+        }
+      ],
+      "fact": "Known nonblank path without 대비 is classified school exam; null/blank excluded as unknown."
+    },
+    "normalize": {
+      "path": "src/lib/predictor/scoreNormalizer.ts",
+      "lines": [
+        {
+          "start": 191,
+          "end": 244
+        },
+        {
+          "start": 304,
+          "end": 351
+        }
+      ],
+      "fact": "Centi-point school grid and exact100; impossible grid refused."
+    },
+    "persist": {
+      "path": "src/lib/predictor/persistPredictedPaper.ts",
+      "lines": [
+        {
+          "start": 86,
+          "end": 160
+        }
+      ],
+      "fact": "Reject unavailable/incomplete/non100; check class owner; write Test/TestProblem references and scores, no Problem creation or revalidation."
+    },
+    "questionIdentity": {
+      "path": "src/lib/problem/questionIdentity.ts",
+      "lines": [
+        {
+          "start": 1,
+          "end": 19
+        }
+      ],
+      "fact": "Logical question ID is questionGroupKey or independent legacy row ID."
+    },
+    "identitySchema": {
+      "path": "prisma/schema.prisma",
+      "lines": [
+        {
+          "start": 911,
+          "end": 921
+        },
+        {
+          "start": 1310,
+          "end": 1333
+        }
+      ],
+      "fact": "Family and logical question group differ; TestProblem continues to reference scalar Problem IDs."
+    },
+    "safeGeneralSelection": {
+      "path": "src/lib/tests/selectionCurrent.ts",
+      "lines": [
+        {
+          "start": 9,
+          "end": 53
+        }
+      ],
+      "fact": "General test flow locks/rechecks eligibility, logical identity, family and content; predicted persistence does not call it."
+    },
+    "session": {
+      "path": "src/lib/session.ts",
+      "lines": [
+        {
+          "start": 38,
+          "end": 55
+        }
+      ],
+      "fact": "Only approved authenticated user returned."
+    },
+    "menu": {
+      "path": "src/lib/accountRouteAccess.ts",
+      "lines": [
+        {
+          "start": 248,
+          "end": 260
+        }
+      ],
+      "fact": "Tests/predictions require export menu at proxy."
+    },
+    "proxy": {
+      "path": "src/proxy.ts",
+      "lines": [
+        {
+          "start": 224,
+          "end": 245
+        },
+        {
+          "start": 262,
+          "end": 308
+        }
+      ],
+      "fact": "Account menu and role checks before route handler."
+    },
+    "uiDisclosure": {
+      "path": "src/components/exam/viewModel.ts",
+      "lines": [
+        {
+          "start": 151,
+          "end": 166
+        }
+      ],
+      "fact": "UI blocks prediction numbers for own evidence<2, unknown confidence or low confidence."
+    },
+    "uiDisclosurePanel": {
+      "path": "src/components/exam/BlueprintPanel.tsx",
+      "lines": [
+        {
+          "start": 52,
+          "end": 72
+        }
+      ],
+      "fact": "Blocked judgement shows unavailable message and basis metadata instead of blueprint numbers."
+    },
+    "aiSeparate": {
+      "path": "src/lib/ai/generator.ts",
+      "lines": [
+        {
+          "start": 41,
+          "end": 48
+        },
+        {
+          "start": 84,
+          "end": 114
+        }
+      ],
+      "fact": "Separate AI problem generator calls callAi; input has unit/label/difficulty/count, no school."
+    },
+    "aiSeparateRoute": {
+      "path": "src/app/api/problems/generate/route.ts",
+      "lines": [
+        {
+          "start": 62,
+          "end": 89
+        }
+      ],
+      "fact": "Separate endpoint invokes generator and persists pending content; absent from predictor call chain."
+    },
+    "transformSeparate": {
+      "path": "src/lib/ai/transformer.ts",
+      "lines": [
+        {
+          "start": 59,
+          "end": 82
+        },
+        {
+          "start": 97,
+          "end": 105
+        },
+        {
+          "start": 136,
+          "end": 150
+        }
+      ],
+      "fact": "Separate origin-based AI transformation; absent from predictor call chain."
+    }
+  },
+  "verification": {
+    "status": "pass",
+    "totalTests": 71,
+    "passedTests": 71,
+    "failedTests": 0,
+    "customProbeCount": 15,
+    "existingPureTestCount": 56,
+    "command": "node node_modules/vitest/vitest.mjs run --config .qa-artifacts/school-pipeline/vitest.config.mts --reporter=json --outputFile .qa-artifacts/school-pipeline/test-results.json",
+    "configuration": {
+      "envDir": false,
+      "environment": "node",
+      "setupFiles": [],
+      "maxWorkers": 1,
+      "fileParallelism": false
+    },
+    "ioIsolation": "Hoisted db mock; service persistence mock; actual persistence function imported separately against in-memory transaction spies. No route handler/HTTP call or real DB/API write.",
+    "files": [
+      {
+        "path": ".qa-artifacts/school-pipeline/probe.test.ts",
+        "tests": 15,
+        "status": "passed",
+        "assertions": [
+          {
+            "name": "synthetic school-path audit, no real DB or HTTP school lookup changes actual service blueprint and selected IDs on a fixed corpus",
+            "status": "passed"
+          },
+          {
+            "name": "synthetic school-path audit, no real DB or HTTP school-name-only fallback produces identical content for two unknown schools",
+            "status": "passed"
+          },
+          {
+            "name": "synthetic school-path audit, no real DB or HTTP predictor uses supplied evidence, not semantics of school-name text",
+            "status": "passed"
+          },
+          {
+            "name": "synthetic school-path audit, no real DB or HTTP prediction source filtering differs from generation",
+            "status": "passed"
+          },
+          {
+            "name": "synthetic school-path audit, no real DB or HTTP prediction learns cross-subject style while generation finds no evidence",
+            "status": "passed"
+          },
+          {
+            "name": "synthetic school-path audit, no real DB or HTTP same-family semantic requirements cannot reach candidate contract; duplicate question representations are selected",
+            "status": "passed"
+          },
+          {
+            "name": "synthetic school-path audit, no real DB or HTTP source rank and exact school reuse determine ties, not number-changing or AI generation",
+            "status": "passed"
+          },
+          {
+            "name": "synthetic school-path audit, no real DB or HTTP issuance can succeed with every unit/difficulty/type slot relaxed",
+            "status": "passed"
+          },
+          {
+            "name": "synthetic school-path audit, no real DB or HTTP candidate query has eligibility and requested units but no source-exam cutoff or school filter",
+            "status": "passed"
+          },
+          {
+            "name": "synthetic school-path audit, no real DB or HTTP school full-name normalization exists but the request schema and service do not invoke it",
+            "status": "passed"
+          },
+          {
+            "name": "synthetic school-path audit, no real DB or HTTP same-period/future evidence and absent evidence are refused",
+            "status": "passed"
+          },
+          {
+            "name": "synthetic school-path audit, no real DB or HTTP trust accepts only the configured score/count band, not source authenticity or sum consistency",
+            "status": "passed"
+          },
+          {
+            "name": "synthetic school-path audit, no real DB or HTTP 100-point normalization refuses an impossible school grid",
+            "status": "passed"
+          },
+          {
+            "name": "synthetic school-path audit, no real DB or HTTP owner and run school/grade are checked, but run subject/target/cutoff are not bound",
+            "status": "passed"
+          },
+          {
+            "name": "synthetic school-path audit, no real DB or HTTP persistence refuses incomplete/99-point papers and stores only Test/TestProblem through IO spies",
+            "status": "passed"
+          }
+        ]
+      },
+      {
+        "path": "src/__tests__/unit/composePredictedPaper.test.ts",
+        "tests": 17,
+        "status": "passed",
+        "assertions": [
+          {
+            "name": "[T7.9] 예측 문제지 생성기 (11 §3 L6 + §10) 청사진대로 채운 시험지의 만점이 정확히 100 이다",
+            "status": "passed"
+          },
+          {
+            "name": "[T7.9] 예측 문제지 생성기 (11 §3 L6 + §10) 조정 배점이 전부 그 학교 눈금 집합에 속한다",
+            "status": "passed"
+          },
+          {
+            "name": "[T7.9] 예측 문제지 생성기 (11 §3 L6 + §10) `Problem.score` 원본을 건드리지 않고 사본으로만 들고 다닌다",
+            "status": "passed"
+          },
+          {
+            "name": "[T7.9] 예측 문제지 생성기 (11 §3 L6 + §10) 단원·난이도·유형이 맞는 후보를 고르면 완화 표시가 비어 있다",
+            "status": "passed"
+          },
+          {
+            "name": "[T7.9] 예측 문제지 생성기 (11 §3 L6 + §10) 그 학교가 과거에 낸 문항을 먼저 고른다 (11 §3 L6 우선순위 ①)",
+            "status": "passed"
+          },
+          {
+            "name": "[T7.9] 예측 문제지 생성기 (11 §3 L6 + §10) 만점 100 가드에 걸린 과거 시험지는 재료에서 뺀다 (11 §11, D-45)",
+            "status": "passed"
+          },
+          {
+            "name": "[T7.9] 예측 문제지 생성기 (11 §3 L6 + §10) 후보가 모자라면 지어내지 않고 못 채운 칸을 보고한다",
+            "status": "passed"
+          },
+          {
+            "name": "[T7.9] 예측 문제지 생성기 (11 §3 L6 + §10) 문항이 모자라 그 눈금으로 100 을 못 만들면 판단 불가",
+            "status": "passed"
+          },
+          {
+            "name": "[T7.9] 예측 문제지 생성기 (11 §3 L6 + §10) 칸이 안 맞으면 완화 축을 기록한다 — 맞은 척하지 않는다",
+            "status": "passed"
+          },
+          {
+            "name": "[T7.9] 예측 문제지 생성기 (11 §3 L6 + §10) 문제은행 후보가 없으면 판단 불가",
+            "status": "passed"
+          },
+          {
+            "name": "[T7.9] 예측 문제지 생성기 (11 §3 L6 + §10) 청사진에 배점 눈금 이력이 없으면 판단 불가",
+            "status": "passed"
+          },
+          {
+            "name": "[T7.9] 예측 문제지 생성기 (11 §3 L6 + §10) 청사진 문항 수가 0 이면 판단 불가 — 0문항 시험지를 내지 않는다",
+            "status": "passed"
+          },
+          {
+            "name": "[T7.9] 예측 문제지 생성기 (11 §3 L6 + §10) 계약(predictedPaperSchema)을 통과한다",
+            "status": "passed"
+          },
+          {
+            "name": "예측 문제지 — 재료 우선순위(11 §3 L6) RPM 교재본을 AI 변형본보다 먼저 쓴다 (③ before ④)",
+            "status": "passed"
+          },
+          {
+            "name": "예측 문제지 — 재료 우선순위(11 §3 L6) 기출이 RPM 보다 먼저다 (② before ③)",
+            "status": "passed"
+          },
+          {
+            "name": "예측 문제지 — 재료 우선순위(11 §3 L6) AI 생성물은 맨 뒤다 — AI 변형본보다도 뒤",
+            "status": "passed"
+          },
+          {
+            "name": "예측 문제지 — 재료 우선순위(11 §3 L6) 자작과 RPM 은 같은 등급이다 — 출처로 갈리지 않는다 (③)",
+            "status": "passed"
+          }
+        ]
+      },
+      {
+        "path": "src/__tests__/unit/paperSource.test.ts",
+        "tests": 5,
+        "status": "passed",
+        "assertions": [
+          {
+            "name": "[T7.16] 시험지 출처 판정 파일명에 '대비'가 있으면 학원 대비 자료로 본다",
+            "status": "passed"
+          },
+          {
+            "name": "[T7.16] 시험지 출처 판정 실제 기출은 학교 기출로 본다",
+            "status": "passed"
+          },
+          {
+            "name": "[T7.16] 시험지 출처 판정 🔴 출처를 모르면 기출이라고 우기지 않는다",
+            "status": "passed"
+          },
+          {
+            "name": "[T7.16] 시험지 출처 판정 학습에 쓰는 것은 **기출로 확인된 것뿐**이다 — 미상은 넣지 않는다",
+            "status": "passed"
+          },
+          {
+            "name": "[T7.16] 시험지 출처 판정 판정 근거를 문자열로 남긴다 — 나중에 사람이 되짚을 수 있어야 한다",
+            "status": "passed"
+          }
+        ]
+      },
+      {
+        "path": "src/__tests__/unit/paperTrust.test.ts",
+        "tests": 8,
+        "status": "passed",
+        "assertions": [
+          {
+            "name": "[T2] 만점 100 판정 100점 만점으로 볼 수 있는 편은 통과한다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 만점 100 판정 🔴 만점이 100 이 아니면 뺀다 — 학교가 52점제라서가 아니라 원본이 잘린 것이다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 만점 100 판정 🔴 문항수는 멀쩡한데 총점만 모자란 편도 뺀다 (황금중 66점/22문)",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 만점 100 판정 총점·문항수가 같이 무너지면 면 유실로 구분해 보고한다 (대륜중 24점/6문)",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 만점 100 판정 만점 초과는 중복 집계로 본다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 만점 100 판정 총점이 100 이어도 문항이 너무 적으면 시험지가 아니다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 만점 100 판정 제외 사유에 총점과 문항수가 둘 다 들어간다 — 원본을 되짚을 수 있게",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] partitionTrusted — 조용히 버리지 않는다 사유별로 세어 돌려준다",
+            "status": "passed"
+          }
+        ]
+      },
+      {
+        "path": "src/__tests__/unit/predictorEngine.test.ts",
+        "tests": 26,
+        "status": "passed",
+        "assertions": [
+          {
+            "name": "[T2] 거리 함수 normalizeMix — 합이 1이 되게 정규화한다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 거리 함수 normalizeMix — 전부 0이면 빈 분포를 준다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 거리 함수 totalVariationDistance — 같은 분포는 0",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 거리 함수 totalVariationDistance — 겹치지 않는 분포는 1",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 거리 함수 totalVariationDistance — 한쪽에만 있는 키도 센다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 시리즈 묶기 styleSeriesKey — 출제 스타일 단위는 과목을 뺀다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 시리즈 묶기 sortByPeriod — 연도 → 학기 → 중간<기말 순으로 세운다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 시리즈 묶기 historyBefore — 대상 시점과 그 이후는 절대 포함하지 않는다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 청사진 관측 observeBlueprint — 문항 수·총점·유형 배분을 집계한다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 청사진 관측 observeBlueprint — 배점 눈금을 빈도로 남긴다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 청사진 관측 observeBlueprint — 난이도 라벨이 없는 문항은 미표기로 모은다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 청사진 관측 observeBlueprint — 실측 청사진은 evidenceCount 1, confidence 1",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 청사진 예측 과거가 없으면 코호트(전국) 평균을 그대로 낸다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 청사진 예측 문항 수는 코호트로 당기지 않는다 — 학교 고유값을 그대로 쓴다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 청사진 예측 🔴 그 학교 과거가 하나도 없으면 코호트로 떨어진다 — 근거 없이 20을 지어내지 않는다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 청사진 예측 총점은 코호트로 당긴다 — 전국이 사실상 100점이라 그게 진짜 정보다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 청사진 예측 근거가 쌓이면 신뢰도가 올라간다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 청사진 예측 난이도는 학교별로 학습하지 않고 코호트 값을 쓴다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 청사진 예측 ⚠️ 대상 시점 이후 자료가 섞이면 즉시 던진다 (leakage 금지)",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 청사진 예측 ⚠️ 대상과 같은 시점의 자료도 던진다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 청사진 예측 작년 같은 회차를 직전 회차보다 무겁게 본다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] backtest 지표 blueprintDistances — 같은 청사진이면 모든 거리가 0",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] backtest 지표 blueprintDistances — 문항 수 차이를 절대오차로 낸다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 적대적 리뷰 회귀 🔴 근거가 하나도 없으면 청사진을 지어내지 않는다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 적대적 리뷰 회귀 🔴 내놓는 청사진은 항상 계약을 만족한다",
+            "status": "passed"
+          },
+          {
+            "name": "[T2] 적대적 리뷰 회귀 🔴 빈 예측은 '틀린 예측'보다 좋은 점수를 받지 못한다",
+            "status": "passed"
+          }
+        ]
+      }
+    ],
+    "privateArtifacts": [
+      {
+        "path": ".qa-artifacts/school-pipeline/vitest.config.mts",
+        "sha256": "61f3287798e136acadcb9f81deeabb687148f7cdd82c456e2eebcbbe213d2327",
+        "committed": false
+      },
+      {
+        "path": ".qa-artifacts/school-pipeline/probe.test.ts",
+        "sha256": "e4aee10ab1b366df97af4b94ac58cedfb6cd6657191a0755c025ed216d7514d0",
+        "committed": false
+      },
+      {
+        "path": ".qa-artifacts/school-pipeline/observations.json",
+        "sha256": "8f3bf1ed418acfffeb01efea5630cf65ee8ed414f124fcb5530e0422ee00ffe6",
+        "committed": false
+      },
+      {
+        "path": ".qa-artifacts/school-pipeline/test-results.json",
+        "sha256": "89adbe825a77cfe06c1168021ed0a319b6c247530b493419641f13a921b8ecd8",
+        "committed": false
+      },
+      {
+        "path": ".qa-artifacts/school-pipeline/data-summary.ts",
+        "sha256": "b91bb078e2b3a3734f4aa750056c4753490fe326095efa84edb01d64b0aaf72e",
+        "committed": false
+      },
+      {
+        "path": ".qa-artifacts/school-pipeline/data-summary.json",
+        "sha256": "7a7e36b225b06c1a2b6d94e712d97517699fddd53df97cd0d78358321e3aad65",
+        "committed": false
+      }
+    ],
+    "fixtureDefinition": {
+      "synthetic": true,
+      "notActualSchoolClaims": true,
+      "target": {
+        "year": 2026,
+        "semester": 2,
+        "round": "기말"
+      },
+      "historyPeriod": {
+        "year": 2025,
+        "semester": 2,
+        "round": "기말"
+      },
+      "schoolA": {
+        "name": "합성가중",
+        "count": 10,
+        "type": "객관식",
+        "unit": "U",
+        "scoreEach": 10,
+        "difficultyLabel": "하"
+      },
+      "schoolB": {
+        "name": "합성나중",
+        "count": 20,
+        "type": "단답형",
+        "unit": "V",
+        "scoreEach": 5,
+        "difficultyLabel": "하"
+      },
+      "candidates": {
+        "count": 80,
+        "layout": "U/V x MC/short x20",
+        "difficulty": "기본",
+        "source": "past_exam",
+        "idRule": "fixed UUID suffix1..80"
+      },
+      "defaults": "Actual DEFAULT_PARAMS, no overrides",
+      "fallback": "same10-question cohort supplied to two unknown school names",
+      "identityCounterexample": "9 MC +1 short rows, one MC/short pair shares a proven questionGroupKey =>9 logical questions",
+      "wrongLabelsCounterexample": "10 candidates all unitV/심화상/단답형 against unitU/기본/객관식 blueprint => all3 axes relaxed;100-point success"
+    },
+    "fixtureResults": {
+      "schoolConditioning": {
+        "a": {
+          "count": 10,
+          "evidenceCount": 1,
+          "confidence": 0.5107662012830155,
+          "typeMix": {
+            "객관식": {
+              "count": 10,
+              "score": 99.99999999999999
+            },
+            "단답형": {
+              "count": 0,
+              "score": 0
+            },
+            "서술형": {
+              "count": 0,
+              "score": 0
+            }
+          },
+          "unitMix": [
+            {
+              "unitId": "11111111-1111-4111-8111-111111111111",
+              "topicRaw": null,
+              "count": 2.5,
+              "score": 24.999999999999996
+            },
+            {
+              "unitId": "22222222-2222-4222-8222-222222222222",
+              "topicRaw": null,
+              "count": 7.5,
+              "score": 74.99999999999999
+            }
+          ],
+          "histogram": [
+            {
+              "score": 10,
+              "count": 10
+            }
+          ],
+          "totalScore": 100,
+          "selectedIds": [
+            "33333333-3333-4333-8333-000000000001",
+            "33333333-3333-4333-8333-000000000002",
+            "33333333-3333-4333-8333-000000000041",
+            "33333333-3333-4333-8333-000000000042",
+            "33333333-3333-4333-8333-000000000043",
+            "33333333-3333-4333-8333-000000000044",
+            "33333333-3333-4333-8333-000000000045",
+            "33333333-3333-4333-8333-000000000046",
+            "33333333-3333-4333-8333-000000000047",
+            "33333333-3333-4333-8333-000000000048"
+          ],
+          "selectionReasons": {
+            "sameSchoolExactIdCount": 1,
+            "relaxedRows": 0,
+            "sourceCounts": {
+              "past_exam": 10
+            },
+            "unitCounts": {
+              "11111111-1111-4111-8111-111111111111": 2,
+              "22222222-2222-4222-8222-222222222222": 8
+            },
+            "responseFormatCounts": {
+              "객관식": 10
+            }
+          }
+        },
+        "b": {
+          "count": 20,
+          "evidenceCount": 1,
+          "confidence": 0.5107662012830155,
+          "typeMix": {
+            "객관식": {
+              "count": 0,
+              "score": 0
+            },
+            "단답형": {
+              "count": 20,
+              "score": 99.99999999999999
+            },
+            "서술형": {
+              "count": 0,
+              "score": 0
+            }
+          },
+          "unitMix": [
+            {
+              "unitId": "22222222-2222-4222-8222-222222222222",
+              "topicRaw": null,
+              "count": 5,
+              "score": 24.999999999999996
+            },
+            {
+              "unitId": "11111111-1111-4111-8111-111111111111",
+              "topicRaw": null,
+              "count": 15,
+              "score": 74.99999999999999
+            }
+          ],
+          "histogram": [
+            {
+              "score": 5,
+              "count": 20
+            }
+          ],
+          "totalScore": 100,
+          "selectedIds": [
+            "33333333-3333-4333-8333-000000000061",
+            "33333333-3333-4333-8333-000000000062",
+            "33333333-3333-4333-8333-000000000063",
+            "33333333-3333-4333-8333-000000000064",
+            "33333333-3333-4333-8333-000000000065",
+            "33333333-3333-4333-8333-000000000021",
+            "33333333-3333-4333-8333-000000000022",
+            "33333333-3333-4333-8333-000000000023",
+            "33333333-3333-4333-8333-000000000024",
+            "33333333-3333-4333-8333-000000000025",
+            "33333333-3333-4333-8333-000000000026",
+            "33333333-3333-4333-8333-000000000027",
+            "33333333-3333-4333-8333-000000000028",
+            "33333333-3333-4333-8333-000000000029",
+            "33333333-3333-4333-8333-000000000030",
+            "33333333-3333-4333-8333-000000000031",
+            "33333333-3333-4333-8333-000000000032",
+            "33333333-3333-4333-8333-000000000033",
+            "33333333-3333-4333-8333-000000000034",
+            "33333333-3333-4333-8333-000000000035"
+          ],
+          "selectionReasons": {
+            "sameSchoolExactIdCount": 1,
+            "relaxedRows": 0,
+            "sourceCounts": {
+              "past_exam": 20
+            },
+            "unitCounts": {
+              "22222222-2222-4222-8222-222222222222": 5,
+              "11111111-1111-4111-8111-111111111111": 15
+            },
+            "responseFormatCounts": {
+              "단답형": 20
+            }
+          }
+        },
+        "candidateCount": 80,
+        "selectionKey": [
+          "relaxationCost",
+          "sameSchoolExactRow",
+          "sourceRank",
+          "problemId"
+        ]
+      },
+      "cohortOnly": {
+        "sameNumericBlueprint": true,
+        "sameSelectedContent": true,
+        "count": 10,
+        "evidenceCount": 0,
+        "confidence": 0,
+        "typeMix": {
+          "객관식": {
+            "count": 10,
+            "score": 100
+          },
+          "단답형": {
+            "count": 0,
+            "score": 0
+          },
+          "서술형": {
+            "count": 0,
+            "score": 0
+          }
+        },
+        "unitMix": [
+          {
+            "unitId": "11111111-1111-4111-8111-111111111111",
+            "topicRaw": null,
+            "count": 10,
+            "score": 100
+          }
+        ],
+        "histogram": [
+          {
+            "score": 10,
+            "count": 10
+          }
+        ],
+        "totalScore": 100,
+        "riskFlags": ["적은_과거회차", "시험범위_미확정", "학생응답_부족"],
+        "selectedIds": [
+          "33333333-3333-4333-8333-000000000001",
+          "33333333-3333-4333-8333-000000000002",
+          "33333333-3333-4333-8333-000000000003",
+          "33333333-3333-4333-8333-000000000004",
+          "33333333-3333-4333-8333-000000000005",
+          "33333333-3333-4333-8333-000000000006",
+          "33333333-3333-4333-8333-000000000007",
+          "33333333-3333-4333-8333-000000000008",
+          "33333333-3333-4333-8333-000000000009",
+          "33333333-3333-4333-8333-000000000010"
+        ],
+        "selectionReasons": {
+          "sameSchoolExactIdCount": 0,
+          "relaxedRows": 0,
+          "sourceCounts": {
+            "past_exam": 10
+          },
+          "unitCounts": {
+            "11111111-1111-4111-8111-111111111111": 10
+          },
+          "responseFormatCounts": {
+            "객관식": 10
+          }
+        }
+      },
+      "sourceGateDivergence": {
+        "prediction": {
+          "history": 0,
+          "cohort": 1,
+          "rangeHistory": 0,
+          "rangeCohort": 1,
+          "excludedByTrust": 0,
+          "excludedBySource": 2,
+          "pinned": false
+        },
+        "issuanceOwnEvidence": 2
+      },
+      "styleRangeDivergence": {
+        "predictionHistory": 1,
+        "rangeHistory": 0,
+        "issuance": {
+          "ok": false,
+          "refusal": "근거_없음",
+          "detail": "근거 없음 — 합성가중 중2 중2 2026-2-기말: 과거 회차도 코호트도 없다."
+        }
+      },
+      "questionIdentity": {
+        "selectedRows": 10,
+        "distinctQuestions": 9,
+        "unfilled": 0,
+        "allExactSlotLabels": true
+      },
+      "tieReasons": {
+        "first": "same-school exact Problem ID wins equal slot cost",
+        "second": "past_exam source rank then stable ID",
+        "noOnDemandGeneration": true
+      },
+      "allAxesRelaxed": {
+        "issuanceSucceeded": true,
+        "rows": 10,
+        "allThreeAxesRelaxed": true,
+        "unfilled": 0,
+        "totalScore": 100
+      },
+      "candidateQuery": {
+        "unitsAndEligibilityOnly": true,
+        "noSchoolFilter": true,
+        "noSourceExamCutoff": true,
+        "questionGroupKeyNotMapped": true
+      },
+      "nameMatching": {
+        "canonicalFunctionAvailable": true,
+        "serviceExactStringLookup": true,
+        "fullEvidence": 1,
+        "abbreviatedEvidence": 0
+      },
+      "trust": {
+        "minTotal": 95,
+        "maxTotal": 105,
+        "minQuestions": 10,
+        "doesNotReconcileDeclaredVersusQuestionSum": true
+      },
+      "runBinding": {
+        "schoolLevelGradeAndOwner": true,
+        "subjectAndPeriodNotCompared": true,
+        "savedBlueprintNotReused": true
+      },
+      "persistence": {
+        "incompleteRefused": true,
+        "total99Refused": true,
+        "writeKinds": ["Test", "TestProblem"],
+        "problemRevalidationQueries": 0
+      }
+    },
+    "initialProbeCorrection": "A newly added candidate-query assertion initially omitted parentheses in MISSING_ANSWER. Corrected the private assertion to import the production constant; final71 tests passed. No product code changed.",
+    "dataAggregationCommand": "node node_modules/tsx/dist/cli.mjs .qa-artifacts/school-pipeline/data-summary.ts"
+  },
+  "concreteBlockers": [
+    {
+      "id": "own-school-data-and-ui",
+      "needed": "Recover and distinguish actual-school extracted/trusted/linked/issuable evidence and connect a teacher execution flow."
+    },
+    {
+      "id": "real-problem-structure",
+      "needed": "Represent and verify actual mathematical task/family/semantic structure before claiming school-specific new-question generation."
+    },
+    {
+      "id": "one-reproducible-evidence-policy",
+      "needed": "Align source/style/range and bind issuance to stored run identity, blueprint, cutoff and parameters."
+    },
+    {
+      "id": "logical-question-identity",
+      "needed": "Carry proven logical identity through candidate mapping, deduplication, reuse and write-transaction revalidation."
+    },
+    {
+      "id": "fallback-and-relaxation-meaning",
+      "needed": "Expose cohort-only fallback and relaxed conditions explicitly in any eventual issuance UI;100 points alone is not school fidelity."
+    },
+    {
+      "id": "historical-candidate-cutoff",
+      "needed": "Verify candidate source-exam periods for historical replay/evaluation as well as training evidence."
+    }
+  ],
+  "unverified": [
+    "production print/student issuance end-to-end",
+    "live student/branch authorization matrix",
+    "school-specific forecasting accuracy",
+    "measured learning effect",
+    "total generator content capacity",
+    "actual production frequency of duplicate logical questions or temporal candidate leakage"
+  ]
+}
