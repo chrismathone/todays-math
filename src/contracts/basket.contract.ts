@@ -34,6 +34,10 @@ import {
   uuidSchema,
 } from "./common.contract";
 import { problemSchema } from "./problem.contract";
+import {
+  questionSelectionSchema,
+  questionIdSchema,
+} from "./questionFormats.contract";
 
 /** 바구니 한 칸 — 담은 차례와 그 문항. */
 export const basketItemSchema = z.strictObject({
@@ -46,6 +50,9 @@ export const basketItemSchema = z.strictObject({
    */
   orderIndex: z.number().int().min(1),
   problem: problemSchema,
+  questionId: questionIdSchema.optional(),
+  /** An old basket may contain both formats. GET never removes either. */
+  conflictProblemIds: z.array(uuidSchema).optional(),
 });
 export type BasketItem = z.infer<typeof basketItemSchema>;
 
@@ -70,15 +77,34 @@ export const basketResponseSchema = dataResponseSchema(
     spread: z.record(difficultySchema, z.number().int().min(0)),
     /** 담긴 문항 수 = `items.length`. 화면이 다시 세지 않게 서버가 준다. */
     total: z.number().int().min(0),
+    countUnit: z.literal("question").optional(),
+    version: z.literal(2).optional(),
+    /** Unresolved question groups are excluded from spread until a format is chosen. */
+    conflictCount: z.number().int().min(0).optional(),
   }),
 );
 export type BasketResponse = z.infer<typeof basketResponseSchema>;
 
 /** 담기 — 이미 담긴 문항이면 **아무 일도 안 하고 성공**이다(멱등). */
-export const basketAddRequestSchema = z.strictObject({
-  problemId: uuidSchema,
-});
+export const basketAddRequestSchema = z
+  .strictObject({
+    problemId: uuidSchema,
+    identity: z.literal("question").optional(),
+    selection: questionSelectionSchema.optional(),
+  })
+  .refine(
+    (v) =>
+      (v.identity !== "question" || v.selection !== undefined) &&
+      (!v.selection || v.selection.problemId === v.problemId),
+    { error: "출제할 문항 형식을 다시 선택해 주세요." },
+  );
 export type BasketAddRequest = z.infer<typeof basketAddRequestSchema>;
+
+export const basketChangeRequestSchema = z.strictObject({
+  fromProblemId: uuidSchema,
+  selection: questionSelectionSchema,
+  identity: z.literal("question").optional(),
+});
 
 /**
  * 담은 것으로 시험지 만들기.
@@ -93,6 +119,10 @@ export const basketTestRequestSchema = z.strictObject({
   /** 미지정 시 반 전체 대상 — 자동 출제와 같은 규약이다. */
   studentId: uuidSchema.optional(),
   testDate: isoDateSchema,
+  identity: z.literal("question").optional(),
+  selections: z.array(questionSelectionSchema).max(100).optional(),
+  /** Omission preserves the previous manual-issuance default. */
+  recent: z.boolean().optional(),
 });
 export type BasketTestRequest = z.infer<typeof basketTestRequestSchema>;
 

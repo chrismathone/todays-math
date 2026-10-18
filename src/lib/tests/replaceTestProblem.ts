@@ -10,7 +10,10 @@ import {
 } from "@/contracts/test.contract";
 import { jsonError, jsonOk, notFoundError } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
-import { findEligibleProblems } from "@/lib/findEligibleProblems";
+import {
+  findEligibleProblems,
+  type EligibleProblem,
+} from "@/lib/findEligibleProblems";
 import { familyIdOf } from "@/lib/generator/familyKey";
 import { selectProblems } from "@/lib/generator/selectProblems";
 import { requireOwnedTest } from "@/lib/ownership";
@@ -20,6 +23,11 @@ import { hydrateTestSnapshots } from "./loadSnapshotAssets";
 import type { SessionUser } from "@/lib/session";
 
 import { loadRecentProblemIds } from "./recentProblemIds";
+import { classifyFormat } from "@/lib/problem/provenance";
+import { expandQuestionProblemIds } from "@/lib/problem/questionQueries";
+import { questionIdOf } from "@/lib/problem/questionIdentity";
+import { QuestionSelectionConflict } from "@/lib/problem/questionSelection";
+import { selectionStillCurrent } from "./selectionCurrent";
 
 /** 그 갈래 하나만 1인 배분 — 사다리에서 만든다(갈래가 늘면 저절로 따라온다, D-106). */
 function ratioFor(difficulty: Difficulty): DifficultyRatio {
@@ -74,9 +82,10 @@ export async function replaceTestProblemAtSeq(
   if (!target?.problem) return notFoundError("문항");
 
   const usedOnThisTest = items.map((item) => item.problemId);
-  const recentProblemIds = [
+  const recentProblemIds = await expandQuestionProblemIds([
     ...new Set([...recentFromOtherTests, ...usedOnThisTest]),
-  ];
+  ]);
+  const requestedFormat = classifyFormat(target.problem);
 
   /**
    * 🔴 **교체가 규칙을 깨면 안 된다** (원장님 확정 2026-08-26 — 한 시험지에 같은 류는 1개).
@@ -102,6 +111,7 @@ export async function replaceTestProblemAtSeq(
   ];
 
   let replacementId: string | undefined;
+  let replacement: EligibleProblem | undefined;
   for (const difficulty of difficulties) {
     const pool = await findEligibleProblems({
       unitIds: [target.problem.unitId],
@@ -109,7 +119,12 @@ export async function replaceTestProblemAtSeq(
     });
 
     const picked = selectProblems({
-      pool: pool.filter((p) => !familiesOnOtherSeats.has(familyIdOf(p))),
+      pool: pool.filter(
+        (p) =>
+          !familiesOnOtherSeats.has(familyIdOf(p)) &&
+          (requestedFormat === "unknown" ||
+            classifyFormat(p) === requestedFormat),
+      ),
       difficultyRatio: ratioFor(difficulty),
       count: 1,
       recentProblemIds,
@@ -117,6 +132,7 @@ export async function replaceTestProblemAtSeq(
     });
     if (picked.problems[0]) {
       replacementId = picked.problems[0].id;
+      replacement = picked.problems[0];
       break;
     }
   }
@@ -139,27 +155,51 @@ export async function replaceTestProblemAtSeq(
     );
   }
 
-  const updated = await db.$transaction(async (tx) => {
-    if (!owned.data.predictionRunId)
-      await assertClassWrite(tx, session, owned.data.classId, "test:write");
-    const claimed = await tx.test.updateMany({
-      where: {
-        id: testId,
-        ...(await accessibleTestsWhere(session, "test:write")),
-        status: "draft",
-      },
-      data: { modified: true },
-    });
-    if (claimed.count === 0) return null;
+  const updated = await db
+    .$transaction(async (tx) => {
+      if (!owned.data.predictionRunId)
+        await assertClassWrite(tx, session, owned.data.classId, "test:write");
+      if (!replacement || !(await selectionStillCurrent(tx, [replacement])))
+        return null;
+      const claimed = await tx.test.updateMany({
+        where: {
+          id: testId,
+          ...(await accessibleTestsWhere(session, "test:write")),
+          status: "draft",
+        },
+        data: { modified: true },
+      });
+      if (claimed.count === 0) return null;
 
-    const item = await tx.testProblem.update({
-      where: { id: target.id },
-      data: { problemId: replacementId, snapshotId: null, replaced: true },
+      const others = await tx.testProblem.findMany({
+        where: { testId, NOT: { id: target.id } },
+        include: { problem: true },
+      });
+      if (
+        others.some(
+          (item) =>
+            questionIdOf(item.problem) === questionIdOf(replacement) ||
+            familyIdOf(item.problem) === familyIdOf(replacement),
+        )
+      )
+        throw new QuestionSelectionConflict();
+      const changed = await tx.testProblem.updateMany({
+        where: { id: target.id, problemId: target.problemId },
+        data: { problemId: replacementId, snapshotId: null, replaced: true },
+      });
+      if (changed.count !== 1) throw new QuestionSelectionConflict();
+      const item = (
+        await tx.testProblem.findMany({ where: { id: target.id } })
+      )[0];
+      if (!item) throw new QuestionSelectionConflict();
+      const test = await tx.test.findUnique({ where: { id: testId } });
+      if (!test) return null;
+      return [item, test] as const;
+    })
+    .catch((error) => {
+      if (error instanceof QuestionSelectionConflict) return null;
+      throw error;
     });
-    const test = await tx.test.findUnique({ where: { id: testId } });
-    if (!test) return null;
-    return [item, test] as const;
-  });
   if (!updated) {
     return jsonError(
       "CONFLICT",

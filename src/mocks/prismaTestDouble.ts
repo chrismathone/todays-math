@@ -175,6 +175,7 @@ interface ProblemRow {
    * 이 대역은 **그 자동 채움을 흉내 내지 않는다** — 넣은 값이 그대로 나와야 판정을 잰다.
    */
   familyKey: string | null;
+  questionGroupKey?: string | null;
   difficulty: Difficulty;
   problemType: string;
   /** 출제 형식(객관식|단답형|서술형) — T7.6 백필 전이라 실데이터도 대부분 NULL 이다. */
@@ -252,6 +253,9 @@ interface SourceMaterialRow {
 /** 역추적 컬럼의 DB 기본값(전부 NULL). 픽스처·create 가 안 주면 이 값이다. */
 const PROBLEM_SOURCE_META_DEFAULTS = {
   externalId: null,
+  questionGroupKey: null,
+  sourceMaterialId: null,
+  figureSource: null,
   sourceFile: null,
   school: null,
   subject: null,
@@ -2130,6 +2134,28 @@ const prismaModels = {
    *    내어 **시험이 통과한다.** 차례는 라우트가 준 `create.orderIndex` 를 그대로 쓴다.
    */
   basketItem: {
+    async update({
+      where,
+      data,
+    }: {
+      where: { id: string };
+      data: { problemId?: string; orderIndex?: number };
+    }) {
+      const row = basketItemRows.find((item) => item.id === where.id);
+      if (!row) throw new Error(`basketItem not found: ${where.id}`);
+      if (
+        data.problemId &&
+        basketItemRows.some(
+          (item) =>
+            item.id !== row.id &&
+            item.userId === row.userId &&
+            item.problemId === data.problemId,
+        )
+      )
+        throw new Error("basketItem userId/problemId unique violation");
+      Object.assign(row, data);
+      return row;
+    },
     async findMany({
       where,
       orderBy,
@@ -3135,24 +3161,44 @@ function restoreRows(snapshot: ReturnType<typeof snapshotRows>) {
   eywaSyncLedgerRows = snapshot.eywaSyncLedgerRows;
 }
 
+/** In-memory tests cannot prove PostgreSQL contention. Only the explicit lock statements are
+ * accepted here; unknown SQL fails. Runtime code always executes real database locks.
+ */
+async function testLockQuery(query: { sql: string }): Promise<unknown[]> {
+  const sql = query.sql.replace(/\s+/g, " ").trim();
+  if (
+    /^SELECT pg_advisory_xact_lock\(hashtextextended\(\?,0\)\)$/.test(sql) ||
+    /^SELECT id FROM public\.problem WHERE id IN \([?, ]+\) ORDER BY id FOR SHARE$/.test(
+      sql,
+    )
+  )
+    return [];
+  throw new Error(`Unsupported raw SQL in prismaTestDouble: ${sql}`);
+}
+
 export const prismaTestDouble = {
   ...prismaModels,
   // 오류 기록 표 — 따로 둔 대역(errorLogTestDouble.ts 머리말)
   ...errorLogModels,
   // 오늘의 영어 표 셋 — 따로 둔 대역(englishTestDouble.ts 머리말, D-148)
   ...englishModels,
+  $queryRaw: testLockQuery,
   /**
    * 🔴 **배열 형태도 트랜잭션이다.** 예전에는 `Promise.all` 만 하고 롤백을 안 걸었다.
    *    실제 Prisma 의 `$transaction([...])` 은 하나가 실패하면 전부 되돌린다 —
    *    가짜가 반쯤 쓰인 상태를 남기면 "원자성 유지"를 확인하는 테스트가 무의미해진다.
    */
   async $transaction<T>(
-    arg: ((tx: typeof prismaModels) => Promise<T>) | Promise<unknown>[],
+    arg:
+      | ((
+          tx: typeof prismaModels & { $queryRaw: typeof testLockQuery },
+        ) => Promise<T>)
+      | Promise<unknown>[],
   ): Promise<T | unknown[]> {
     const snapshot = snapshotRows();
     try {
       return typeof arg === "function"
-        ? await arg(prismaModels)
+        ? await arg({ ...prismaModels, $queryRaw: testLockQuery })
         : await Promise.all(arg);
     } catch (error) {
       restoreRows(snapshot);
