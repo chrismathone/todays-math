@@ -83,6 +83,23 @@ export const SPECIMEN_ITEM_IDS = [
 
 export const ITEMS: PrintCheckItem[] = [
   {
+    id: "exam-report-hifi",
+    title: "월말평가 성적표 — Hi-fi H1~H4",
+    changed:
+      "S1 요약 · M1 오답 풀이 · C2 반 정오 격자의 세부 시안. 실제 성적표에는 아직 적용하지 않았다.",
+    look: "Hi-fi 선택 뒤 실물에서 9pt 이상 글자 · 긴 이름과 원장님 문장의 잘림 · M1 쪽 나눔 · C2 가로 A4 · 배경 인쇄를 꺼도 정오와 수치가 남는지 확인한다.",
+    lookFromSource: true,
+    evidence: [
+      "/dev/exam-report-hifi",
+      "docs/planning/tracks/brief-exam-report-eywa-codex.md §A",
+      "docs/planning/23-achievement-report.md §7.2",
+    ],
+    scale:
+      "지어낸 20문항 · 8명. 기본·많은 오답·0점·만점·결시·미채점·긴 이름과 문장 예시.",
+    status: "형태미확정",
+    changedOn: "2026-10-18",
+  },
+  {
     id: "arithmetic-basic-preset-heading-20261016",
     title: "연산대장 기초 연산 — 묶음 머리말이 고른 유형 이름으로",
     changed:

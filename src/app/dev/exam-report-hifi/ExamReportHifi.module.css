@@ -1,0 +1,390 @@
+.shell {
+  padding: 24px;
+  background: var(--learn-bg);
+  color: var(--learn-ink);
+  min-height: 100vh;
+}
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 750;
+}
+.header p,
+.reason {
+  margin: 8px 0 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--learn-muted);
+}
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.controls button,
+.settings select {
+  min-height: 44px;
+  border: 1px solid var(--learn-control);
+  border-radius: 8px;
+  padding: 8px 14px;
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  font: inherit;
+  font-size: 14px;
+}
+.controls button {
+  cursor: pointer;
+}
+.controls button:hover {
+  background: var(--learn-soft-hover);
+}
+.controls button[aria-pressed="true"] {
+  background: var(--learn-soft);
+  border-color: var(--learn-accent);
+  color: var(--learn-accent);
+}
+.controls :is(button, input, select):focus-visible {
+  outline: 2px solid var(--learn-accent);
+  outline-offset: 3px;
+}
+.settings {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 16px;
+}
+.settings label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-size: 14px;
+}
+.settings fieldset {
+  border: 1px solid var(--learn-track);
+  border-radius: 8px;
+  padding: 4px 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.settings legend {
+  padding: 0 4px;
+  font-size: 12px;
+  color: var(--learn-muted);
+}
+.settings input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--learn-accent);
+}
+.pageSlot {
+  --report-width: 210mm;
+  --report-height: 297mm;
+  --report-fit: 1;
+  width: calc(
+    var(--report-width) * var(--report-fit) * var(--paper-strip-scale, 1)
+  );
+  height: calc(
+    var(--report-height) * var(--report-fit) * var(--paper-strip-scale, 1)
+  );
+  flex: none;
+}
+/* C2 is a real landscape A4; its overview fits the shared strip's portrait-width budget. */
+.pageSlot[data-landscape="true"] {
+  --report-width: 297mm;
+  --report-height: 210mm;
+  --report-fit: calc(210 / 297);
+}
+.pageSlot .sheet {
+  width: var(--report-width);
+  height: var(--report-height);
+  padding: 14mm 15mm 10mm;
+  display: flex;
+  flex-direction: column;
+  gap: 5mm;
+  background: var(--paper-color);
+  box-shadow: none;
+  transform: scale(calc(var(--report-fit) * var(--paper-strip-scale, 1)));
+  transform-origin: top left;
+  font-size: 10pt;
+  line-height: 1.65;
+  font-variant-numeric: tabular-nums;
+  --report-tone: var(--paper-ink);
+}
+.sheet :is(p, h2, h3, dl, dd) {
+  margin: 0;
+}
+.paperHead {
+  border-top: 2px solid var(--report-tone);
+  padding-top: 4mm;
+}
+.brand {
+  font-weight: 700;
+  font-size: 11pt;
+}
+.brand span {
+  padding-left: 4mm;
+  font-family: var(--paper-font-sans);
+  font-size: 9pt;
+  font-weight: 400;
+}
+.titleRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 6mm;
+  margin-top: 5mm;
+}
+.titleRow h2 {
+  font-size: 23pt;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.titleRow p {
+  font-size: 9pt;
+}
+.examName {
+  flex: none;
+  text-align: right;
+}
+.numbers {
+  display: flex;
+  gap: 4mm;
+  border-top: 1px solid var(--paper-ink15);
+  border-bottom: 1px solid var(--paper-ink15);
+  padding: 5mm 0;
+  font-family: var(--paper-font-sans);
+}
+.numbers > div {
+  flex: 1;
+}
+.numbers p {
+  font-size: 9pt;
+}
+.numbers strong {
+  font-size: 26pt;
+  line-height: 1.4;
+  font-weight: 750;
+  padding-right: 2mm;
+}
+.numbers span {
+  display: block;
+  font-size: 9pt;
+}
+.area h3,
+.problem h3 {
+  font-family: var(--paper-font-sans);
+  font-weight: 700;
+  font-size: 11pt;
+  margin-bottom: 2mm;
+}
+.wrongTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9pt;
+  font-family: var(--paper-font-sans);
+}
+.wrongTable th {
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 1px solid var(--paper-ink30);
+}
+.wrongTable :is(th, td) {
+  padding: 1.4mm 2mm;
+  border-bottom: 1px solid var(--paper-ink15);
+}
+.wrongTable :is(th, td):first-child {
+  width: 16mm;
+}
+.note {
+  padding-top: 3mm;
+  border-top: 1px solid var(--paper-ink30);
+}
+.note p {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+.method,
+.coverage {
+  font: 9pt/1.6 var(--paper-font-sans);
+  color: var(--paper-ink70, #3a3a40);
+}
+.coverage {
+  margin-top: auto !important;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--paper-ink15);
+  padding-top: 2mm;
+  margin-top: auto;
+  font: 9pt/1.5 var(--paper-font-sans);
+}
+.problemList {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  flex: 1;
+  gap: 8mm;
+}
+.problem {
+  border-bottom: 1px solid var(--paper-ink15);
+}
+.problem h3 span {
+  font-size: 9pt;
+  font-weight: 400;
+  padding-left: 3mm;
+}
+.stem {
+  padding: 6mm 0 12mm;
+  font-size: 11pt;
+}
+.problem dl {
+  display: grid;
+  grid-template-columns: 12mm 1fr;
+  gap: 3mm;
+  font-size: 10pt;
+}
+.problem dt {
+  font-family: var(--paper-font-sans);
+  font-size: 9pt;
+  font-weight: 600;
+}
+.classMeta {
+  font: 10pt/1.6 var(--paper-font-sans);
+}
+.matrix {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font: 9pt/1.5 var(--paper-font-sans);
+  text-align: center;
+}
+.matrix caption {
+  text-align: left;
+  margin-bottom: 3mm;
+  font-weight: 600;
+}
+.matrix :is(th, td) {
+  border: 1px solid var(--paper-ink15);
+  padding: 3mm 0.4mm;
+}
+.matrix th:first-child {
+  width: 31mm;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.matrix :is(th, td):last-child {
+  width: 17mm;
+}
+.matrix td[data-wrong="true"] {
+  font-weight: 700;
+}
+.matrix tfoot {
+  border-top: 2px solid var(--paper-ink);
+}
+.printOnly {
+  display: none;
+}
+[data-look="H2"] .sheet {
+  --report-tone: var(--learn-nav);
+  font-family: var(--paper-font-sans);
+}
+[data-look="H2"] .paperHead {
+  border-top-width: 6px;
+}
+[data-look="H2"] .numbers {
+  border: 1px solid var(--report-tone);
+  padding: 4mm;
+}
+[data-look="H2"] .numbers > div + div {
+  border-left: 1px solid var(--paper-ink15);
+  padding-left: 4mm;
+}
+[data-look="H2"] .wrongTable :is(th, td) {
+  border: 1px solid var(--paper-ink15);
+}
+[data-look="H2"] .note {
+  border-top: 0;
+  border-left: 3px solid var(--report-tone);
+  padding: 2mm 0 2mm 4mm;
+}
+[data-look="H3"] .paperHead {
+  border-top: 0;
+  border-bottom: 1px solid var(--paper-ink);
+  padding-bottom: 5mm;
+  text-align: center;
+}
+[data-look="H3"] .titleRow {
+  justify-content: center;
+}
+[data-look="H3"] .examName {
+  text-align: left;
+}
+[data-look="H3"] .wrongTable :is(th, td) {
+  border-bottom-style: dotted;
+  padding-top: 2mm;
+  padding-bottom: 2mm;
+}
+[data-look="H3"] .note {
+  padding: 4mm;
+  border: 0;
+}
+[data-look="H4"] .sheet {
+  --report-tone: var(--paper-gold);
+  background: var(--paper-warm);
+}
+[data-look="H4"] .area h3 {
+  font-size: 10pt;
+}
+[data-look="H4"] .wrongTable tbody tr:nth-child(odd),
+[data-look="H4"] .matrix td[data-wrong="true"] {
+  background: var(--paper-ink08, #e8e8eb);
+}
+[data-look="H4"] .note {
+  border: 1px solid var(--paper-ink30);
+  padding: 4mm;
+}
+@media (max-width: 760px) {
+  .shell {
+    padding: 16px;
+  }
+  .settings {
+    display: block;
+  }
+  .settings fieldset {
+    margin: 8px 0 0;
+  }
+}
+@media print {
+  .shell {
+    padding: 0;
+    background: white;
+  }
+  .controls,
+  .preview {
+    display: none;
+  }
+  .printOnly {
+    display: block;
+  }
+  .pageSlot {
+    width: var(--report-width);
+    height: var(--report-height);
+    break-after: page;
+  }
+  .pageSlot:last-child {
+    break-after: auto;
+  }
+  .pageSlot .sheet {
+    transform: none;
+  }
+}

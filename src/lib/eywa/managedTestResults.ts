@@ -45,7 +45,7 @@ function parseDate(value: string | null): Date {
 }
 
 /** 꺼짐 · 확인 실패는 던진다(빈 결과로 위장하지 않는다). */
-async function requireActiveBinding(bindingId: string) {
+export async function requireActiveBinding(bindingId: string) {
   let binding = await db.eywaBinding.findUnique({ where: { id: bindingId } });
   if (
     binding &&
