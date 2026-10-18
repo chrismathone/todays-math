@@ -1,0 +1,15 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": { "incremental": false, "plugins": [] },
+  "include": [
+    "../../../next-env.d.ts",
+    "./math-question-repair.ts",
+    "./math-question-repair.test.ts",
+    "./math-question-reinforcement.ts",
+    "./math-question-reinforcement.test.ts",
+    "../../import/protected-question-maintenance.ts",
+    "../../import/question-content-repair.ts",
+    "../../import/bounded-question-reinforcement.ts"
+  ],
+  "exclude": ["../../../node_modules"]
+}

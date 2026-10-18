@@ -83,6 +83,57 @@ export const SPECIMEN_ITEM_IDS = [
 
 export const ITEMS: PrintCheckItem[] = [
   {
+    id: "math-question-content-repair-20261018",
+    title: "수학 문항 오류 17행 — 선택 도형·수선·정다각형 조건",
+    changed:
+      "초4 다섯 문항류의 이등변삼각형 오답 2개씩, 사다리꼴 오답, 수선 4·5개 그림과 정다각형의 모든 각 조건을 바로잡는다.",
+    look: "① 두 삼각형 선택 문제는 실제 도형에서 정답이 하나뿐인가. ② 사다리꼴 선택의 두 오답에 평행한 변이 없는가. ③ 수선 4·5개가 본문과 그림에서 일치하고 직각 표시가 겹치지 않는가. ④ 정다각형의 모든 변·모든 각 조건이 빠지거나 잘리지 않는가. ⑤ 학생 문제지에 정답·해설이 노출되지 않고 교사용 답지의 기호·풀이가 같은 그림과 대응하는가.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/math-question-formats-20261018.md §5·7",
+      "docs/planning/tracks/reports/math-question-formats-20261018/claude-plan-review-r1.md C1·C6",
+      "scripts/qa/bank/math-question-repair.ts",
+    ],
+    scale: "수정 대상 17행 · 5문항류, 물리 출력 미검수",
+    needs: "17행 수정 후보를 담은 학생용 문제지와 교사용 정답·해설지",
+    status: "대기",
+    changedOn: "2026-10-18",
+  },
+  {
+    id: "math-question-format-picker-20261018",
+    title: "같은 수학 문항의 실제 형식 선택과 인쇄",
+    changed:
+      "교사가 같은 문항의 객관·단답 실제 표현을 선택하고 담기에서 형식을 바꾼다. 선택한 실제 행의 본문·보기·정답을 출력한다.",
+    look: "객관→단답·단답→객관을 각각 선택해 인쇄한다. 담긴 자리와 문항 수가 유지되고 선택한 실제 본문·보기가 나타나는가. 학생용에는 정답·해설·형식 선택창의 교사용 답이 보이지 않으며, 교사용 답지의 보기 번호가 선택한 실제 표현과 일치하는가. 과거 저장본의 형제 중복과 순서가 그대로 출력되는가.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/math-question-formats-20261018.md §3·4·7",
+      "docs/planning/tracks/reports/math-question-formats-20261018/claude-plan-review-r1.md C6",
+    ],
+    scale: "형식 선택 UI·담기·저장·인쇄 경로, 물리 출력 미검수",
+    needs: "실제 단답·객관 형제를 바꾼 시험지와 중복 형제를 가진 과거 저장본",
+    status: "대기",
+    changedOn: "2026-10-18",
+  },
+  {
+    id: "math-question-bounded-reinforcement-20261018",
+    title: "수학 재고 보강 후보 — 원래 객관식·서술형 포함",
+    changed:
+      "읽기 전용 재집계 후 승인된 53문항류 중 부족분만 기존 생성기로 준비한다. 새 내용 96개·표현 174행은 상한이며 객관 전용과 native 서술형은 단독 행이다.",
+    look: "최종 승인 manifest의 새 문항을 학생·교사 두 지면으로 출력한다. 보기 자체가 조건인 객관식의 모든 보기가 유지되고, 그림·수식·단위가 잘리지 않는가. 서술형의 풀이 공간이 충분하며 채점 기준·부분점수·해설은 교사용에서만 보이는가. 단답 전용 f33/f39에 객관식이 생기지 않았는가.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/math-question-formats-20261018.md §6·7",
+      "docs/planning/tracks/reports/math-question-formats-20261018/claude-plan-review-r1.md C3·C6",
+    ],
+    scale:
+      "최대 96새 내용 · 174표현, 최종 후보 수는 별도 원장, 물리 출력 미검수",
+    needs:
+      "별도 Claude 실행 검토를 받을 최종 보강 후보 manifest 전체의 학생·교사 출력",
+    status: "대기",
+    changedOn: "2026-10-18",
+  },
+  {
     id: "answer-key-measured-pagination-20261018",
     title: "정답지 — 긴 빠른 정답·서술형 해설의 다음 장 배치",
     changed:

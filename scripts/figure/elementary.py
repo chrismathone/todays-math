@@ -1720,6 +1720,15 @@ _SHAPE_KINDS = frozenset(
         "irregQuad",
     }
 )
+# Exact non-example shapes for the three repaired choice families (2026-10-18).
+# They are opt-in namedShapes values, outside the shared markedShape vocabulary.
+# Existing eqTri/rightTri/wideTri coordinates and meanings remain unchanged.
+_CHOICE_REPAIR_POINTS: dict[str, tuple[tuple[float, float], ...]] = {
+    "choiceScaleneTri": ((0.0, 1.0), (0.2, 0.0), (1.0, 1.0)),
+    "choiceRightScaleneTri": ((0.0, 1.0), (0.0, 0.2), (1.0, 1.0)),
+    "choiceNonparallelQuad": ((0.0, 0.0), (1.0, 0.2), (0.8, 1.0), (0.15, 0.65)),
+}
+_NAMED_SHAPE_KINDS = _SHAPE_KINDS | frozenset(_CHOICE_REPAIR_POINTS)
 # **모든 변이 정의상 같은** 도형 — `sides` 를 줘도 비율이 이미 맞다.
 # 실측(슬롯 100)으로 정했다: square 100×4 · diamond 71×4 · tallDiamond 55×4 ·
 # 정n각형 n개가 전부 같다. 「한 변이 5 cm 인 마름모의 네 변의 합은?」이 이 자리다.
@@ -1800,6 +1809,8 @@ def _shape_points(kind: str, ox: float, oy: float, s: float) -> list[tuple[float
     ⚠️ `square`·`rect` 는 지면에 여전히 `<rect>` 로 나간다(아래 `_draw_named_shape`).
     여기서 점을 내는 것은 **재기 위해서**이지 그리는 방식을 바꾸려는 게 아니다.
     """
+    if kind in _CHOICE_REPAIR_POINTS:
+        return [(ox + s * x, oy + s * y) for x, y in _CHOICE_REPAIR_POINTS[kind]]
     if kind in _NGON_SIDES:
         return _ngon_points(_NGON_SIDES[kind], ox, oy, s)
     if kind == "square":
@@ -1867,7 +1878,7 @@ def _draw_named_shape(kind: str, ox: float, oy: float, s: float, marks: bool = F
         x0 = min(p[0] for p in pts)
         y0 = min(p[1] for p in pts)
         return _rect(x0, y0, max(p[0] for p in pts) - x0, max(p[1] for p in pts) - y0, sw=1.5)
-    if kind == "rightTri":
+    if kind in ("rightTri", "choiceRightScaleneTri"):
         mark = _right_mark(pts[0], pts[1], pts[2]) if marks else ""
         return _poly_pts(pts) + mark
     if kind == "eqTri":
@@ -1897,7 +1908,7 @@ def _named_shapes(spec: Mapping[str, Any]) -> str:
         if extra:
             raise ValueError(f"허용되지 않은 도형 키: {', '.join(sorted(str(k) for k in extra))}")
         kind = str(item.get("shape", ""))
-        if kind not in _SHAPE_KINDS:
+        if kind not in _NAMED_SHAPE_KINDS:
             raise ValueError(f"모르는 도형입니다: {kind}")
         marks = item.get("marks", False)
         if not isinstance(marks, bool):
@@ -2319,10 +2330,14 @@ def _line_relation(spec: Mapping[str, Any]) -> str:
     y1 = pad + h * 0.72
     parts.append(_seg((pad, y0), (pad + w, y0), sw=1.4))
     parts.append(_seg((pad, y1), (pad + w, y1), sw=1.4))
+    npp = _side_index(spec.get("perpCount", 0), "perpCount", 9)
     # 평행 표시 — **두 직선에 같은 개수**. 그것이 「이 둘이 평행」을 말한다.
+    # Four/five perpendiculars approach the historical 0.62 arrow position.
+    # Reserve the left margin for both parallel marks in those dense diagrams.
+    mark_x = pad + w * (0.06 if npp >= 4 else 0.62)
     k = _side_index(spec.get("marks", 1), "marks", 4) or 1
-    parts.append(_para_mark(pad + w * 0.62, y0, 1.0, 0.0, k))
-    parts.append(_para_mark(pad + w * 0.62, y1, 1.0, 0.0, k))
+    parts.append(_para_mark(mark_x, y0, 1.0, 0.0, k))
+    parts.append(_para_mark(mark_x, y1, 1.0, 0.0, k))
     # 수선 여러 개 — 「수선을 5개 그었습니다. 길이는 서로 어떠한가?」(초4 2-4-3).
     # **길이가 같다는 것이 답**이므로 정말 같게 그린다(세로선이라 자동으로 같다).
     #
@@ -2333,7 +2348,6 @@ def _line_relation(spec: Mapping[str, Any]) -> str:
     #    그 발문에는 **붙이지 않는다**(2026-08-24). 붙일 수 있는 것은
     #    「수선을 그었더니 $10$ cm, 거리는?」쪽이고 그때도 **치수는 안 적는다**
     #    (답이 준 값과 같아서 적으면 곧 답이다).
-    npp = _side_index(spec.get("perpCount", 0), "perpCount", 9)
     for i in range(npp):
         x = pad + w * (0.18 + 0.64 * (i / max(npp - 1, 1)))
         parts.append(_seg((x, y0), (x, y1), sw=1.05))
