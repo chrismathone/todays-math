@@ -215,7 +215,7 @@
       "figureSpec": null,
       "content": "“두 무리수의 합은 언제나 무리수이다.”라는 주장이 틀렸음을 보이려 한다. 첫째 수가 $\\sqrt{7}$이고 두 수의 합이 유리수 $12$가 되는 반례를 만들 때, 조건에 맞는 두 무리수의 쌍을 고르시오.\n① $\\sqrt{7}$, $12-\\sqrt{7}$\n② $\\sqrt{7}$, $12+2\\sqrt{7}$\n③ $\\sqrt{7}$, $3\\sqrt{7}$\n④ $\\sqrt{7}$, $2\\sqrt{7}$\n⑤ $\\sqrt{7}$, $12+\\sqrt{7}$",
       "answer": "①",
-      "solution": "첫 수 $\\sqrt{7}$와 둘째 수 $12-\\sqrt{7}$는 각각 무리수이지만 합은 $12$인 유리수이다. 나머지 쌍의 합에는 $\\sqrt{7}$의 계수가 $0$이 아닌 정수로 남으므로 무리수이다.",
+      "solution": "첫 수 $\\sqrt{7}$과 둘째 수 $12-\\sqrt{7}$은 각각 무리수이지만 합은 $12$인 유리수이다. 나머지 쌍의 합에는 $\\sqrt{7}$의 계수가 $0$이 아닌 정수로 남으므로 무리수이다.",
       "blind": {
         "expected": "①",
         "evidence": {
@@ -309,8 +309,8 @@
           "merror": 0
         },
         "solution": {
-          "markdownSha256": "d31cdc2cc7ef6d0541f2bb96f05a1d0373bfcb812fe975aa132b1957b224e594",
-          "mathHtmlSha256": "fc056e813e652af38e913f7640f34610349dcdb302cd0284a7b59b433202caca",
+          "markdownSha256": "1471763962351f9bb9da53dbba403f67892d54b5c1c1534e4f938a06c1a9d9d1",
+          "mathHtmlSha256": "8643c3ba44d57e7802328ba973f22dec4b3d9d102ed470ec1f95e7307d94be1f",
           "raw": 0,
           "red": 0,
           "merror": 0
@@ -455,7 +455,7 @@
       "figureSpec": null,
       "content": "“두 무리수의 합은 언제나 무리수이다.”라는 주장이 틀렸음을 보이려 한다. 첫째 수가 $\\sqrt{13}$이고 두 수의 합이 유리수 $2$가 되는 반례를 만들 때, 조건에 맞는 두 무리수의 쌍을 고르시오.\n① $\\sqrt{13}$, $3\\sqrt{13}$\n② $\\sqrt{13}$, $2\\sqrt{13}$\n③ $\\sqrt{13}$, $2+\\sqrt{13}$\n④ $\\sqrt{13}$, $2+2\\sqrt{13}$\n⑤ $\\sqrt{13}$, $2-\\sqrt{13}$",
       "answer": "⑤",
-      "solution": "첫 수 $\\sqrt{13}$와 둘째 수 $2-\\sqrt{13}$는 각각 무리수이지만 합은 $2$인 유리수이다. 나머지 쌍의 합에는 $\\sqrt{13}$의 계수가 $0$이 아닌 정수로 남으므로 무리수이다.",
+      "solution": "첫 수 $\\sqrt{13}$과 둘째 수 $2-\\sqrt{13}$은 각각 무리수이지만 합은 $2$인 유리수이다. 나머지 쌍의 합에는 $\\sqrt{13}$의 계수가 $0$이 아닌 정수로 남으므로 무리수이다.",
       "blind": {
         "expected": "⑤",
         "evidence": {
@@ -549,8 +549,8 @@
           "merror": 0
         },
         "solution": {
-          "markdownSha256": "e4010483c431a67b2c4f3a551f113e8762e3d9e55caa28fc998710a6b39dd42f",
-          "mathHtmlSha256": "32a3efcf94de9606fa99623f3c23a2e3b80a1dd8f768e76d8fc2a200f4326464",
+          "markdownSha256": "df1b32d4d7787a0d09c38f5a1d994a462be669309bd9ed292bddbafc2d977145",
+          "mathHtmlSha256": "a210a9e5291a2bd1c20286aff0bb2607eecbb67b1be351ffb781971b206064f8",
           "raw": 0,
           "red": 0,
           "merror": 0
@@ -774,7 +774,7 @@
       "rpmTitle": "한 값 대입 검산이 오류를 드러내지 못하는 경우",
       "difficulty": "기본",
       "figureSpec": null,
-      "content": "서연이는 $x^2-6x-27=(x-9)(x+7)$가 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $7$, $8$, $9$, $10$, $11$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.",
+      "content": "서연이는 $x^2-6x-27=(x-9)(x+7)$이 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $7$, $8$, $9$, $10$, $11$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.",
       "answer": "$9$",
       "distractors": [
         "$7$",
@@ -802,11 +802,11 @@
           ]
         }
       },
-      "questionFingerprint": "f304461069a08a081db984a361376b248a630b967539dbca71d2923de2b83791",
+      "questionFingerprint": "f5e296225b32378c223bd68de8791c4138c92e0406a3790d9a6a817b718d4fa9",
       "render": {
         "content": {
-          "markdownSha256": "16afb9fbed0f99b06fee5e7e50f59772602f1137b1878c4b20d2299f072f777d",
-          "mathHtmlSha256": "d6dd343fe3ddb125d2c14225f60b92f3eddbdbb6d6bdf6a1203391673d1aa1c8",
+          "markdownSha256": "7522b51022e97e41e137b1c67e0b6aaeabe253939b1c3d512ed91f4fdd855852",
+          "mathHtmlSha256": "ab48084515cce12f9366efe478d284f09a24c4a285eb0bbe70aa0aad8ad29881",
           "raw": 0,
           "red": 0,
           "merror": 0
@@ -843,7 +843,7 @@
       "rpmTitle": "한 값 대입 검산이 오류를 드러내지 못하는 경우",
       "difficulty": "기본",
       "figureSpec": null,
-      "content": "서연이는 $x^2+3x-18=(x-3)(x+10)$가 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $1$, $2$, $3$, $4$, $5$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.",
+      "content": "서연이는 $x^2+3x-18=(x-3)(x+10)$이 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $1$, $2$, $3$, $4$, $5$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.",
       "answer": "$3$",
       "distractors": [
         "$1$",
@@ -871,11 +871,11 @@
           ]
         }
       },
-      "questionFingerprint": "5ace728beed25b884ed8edf96db362e16ad5282691a076de1317dea39f760a93",
+      "questionFingerprint": "d8b5f9afe37ea4391271cc0d4181130c19b16ced57758f9c6e3613f9e48e225e",
       "render": {
         "content": {
-          "markdownSha256": "61ceccee683dcbbfb0f288647b43c6382c0e78a8a200834b8059c1402525ea31",
-          "mathHtmlSha256": "382f602b54b8ebc64234593507874b3e26e7492e146f1193aa57bdddc9c0b36c",
+          "markdownSha256": "3220f9f8664e7bea0972c30f09d3984b291b9ad4eb449df49c7d3134a530a528",
+          "mathHtmlSha256": "73a6fe7f3b2901adaa69c0382d63b8f87dbb818b229fd0917252058a2431f457",
           "raw": 0,
           "red": 0,
           "merror": 0
@@ -1281,7 +1281,7 @@
       "rpmTitle": "공통 일차인수 조건에서 누락된 계수 복원",
       "difficulty": "응용",
       "figureSpec": null,
-      "content": "두 다항식 $x^2+x-20$와 $x^2+4x+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.",
+      "content": "두 다항식 $x^2+x-20$과 $x^2+4x+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.",
       "answer": "$-32$",
       "distractors": [
         "$-34$",
@@ -1301,11 +1301,11 @@
           "substitutedConstant": 32
         }
       },
-      "questionFingerprint": "7098f5bd7e004d501cacb011c3de7a9d05da857b5975857c4197923c5fa44a2f",
+      "questionFingerprint": "2d846ec637d643170401e40054c953e6c2303d2eae5b4acc29d13f24fca94814",
       "render": {
         "content": {
-          "markdownSha256": "d0c9a2080a0b09e23a94ec167a3526c065c5f5f2a6acae35dad7e5ed8bd82c69",
-          "mathHtmlSha256": "851cdb962276b17ffec922c0b128a7e4b155ded11347693791b348ba643e4b37",
+          "markdownSha256": "abce44b93daed5abafb4beb7e98e6623c9e25d93f7d8264bf0c65e9baf437a2e",
+          "mathHtmlSha256": "bc6acfd46c3dd9bdc3bd6c52009b9e3d5f2ebe290e9507dbb4a493490c6d255d",
           "raw": 0,
           "red": 0,
           "merror": 0
@@ -1403,7 +1403,7 @@
       "rpmTitle": "공통 일차인수 조건에서 누락된 계수 복원",
       "difficulty": "응용",
       "figureSpec": null,
-      "content": "두 다항식 $x^2-x-20$와 $x^2+2x+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.",
+      "content": "두 다항식 $x^2-x-20$과 $x^2+2x+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.",
       "answer": "$-35$",
       "distractors": [
         "$-37$",
@@ -1423,11 +1423,11 @@
           "substitutedConstant": 35
         }
       },
-      "questionFingerprint": "fe0bce66bbfa9b60eb75519cab2ea5146881af51e3d156b9a33d4c58f29f75d9",
+      "questionFingerprint": "0697607ad7de87f8f5d78bd7cd4776dd60b9449d7185935290ab57a8ea8aa280",
       "render": {
         "content": {
-          "markdownSha256": "384ca34fb845aeb6d50be006033ffe58cf781ea20d363df567ac19a68f7d170e",
-          "mathHtmlSha256": "0abee95d39e880284776fc7cae669c073cda79edf38b587d2bd8db87c911964d",
+          "markdownSha256": "381f886a4346fd1d64790b9c8a9afad0c6a8d5fb1cd157cbb046469289bc4d84",
+          "mathHtmlSha256": "2bada0a37114236c8743485fb843b8be81122b3ef84e4f51b391c7d75c4eb816",
           "raw": 0,
           "red": 0,
           "merror": 0
@@ -2217,7 +2217,7 @@
       "rpmTitle": "한 변량을 수정했을 때 평균과 중앙값 비교",
       "difficulty": "기본",
       "figureSpec": null,
-      "content": "다섯 변량이 $49, 50, 51, 52, 53$이다. 이 중 가장 큰 변량 $53$ 하나만 $63$로 수정하였다. 수정 전후를 비교한 설명으로 옳은 것을 고르시오.\n① 평균은 $2$만큼 커지고, 중앙값은 변하지 않는다.\n② 평균은 변하지 않고, 중앙값은 $2$만큼 커진다.\n③ 평균은 $2$만큼 작아지고, 중앙값은 변하지 않는다.\n④ 평균은 $10$만큼 커지고, 중앙값은 변하지 않는다.\n⑤ 평균과 중앙값이 모두 변하지 않는다.",
+      "content": "다섯 변량이 $49, 50, 51, 52, 53$이다. 이 중 가장 큰 변량 $53$ 하나만 $63$으로 수정하였다. 수정 전후를 비교한 설명으로 옳은 것을 고르시오.\n① 평균은 $2$만큼 커지고, 중앙값은 변하지 않는다.\n② 평균은 변하지 않고, 중앙값은 $2$만큼 커진다.\n③ 평균은 $2$만큼 작아지고, 중앙값은 변하지 않는다.\n④ 평균은 $10$만큼 커지고, 중앙값은 변하지 않는다.\n⑤ 평균과 중앙값이 모두 변하지 않는다.",
       "answer": "①",
       "solution": "총합이 $10$만큼 증가하고 변량은 여전히 $5$개이므로 평균은 $2$만큼 커진다. 가장 큰 변량만 더 커지고 가운데인 셋째 변량이 그대로 남으므로 중앙값은 변하지 않는다.",
       "blind": {
@@ -2248,11 +2248,11 @@
           ]
         }
       },
-      "questionFingerprint": "37803822367279bee6e9f98709f5cd0e57ba8a89e2ec3dffd5b1595f5d9ae7e0",
+      "questionFingerprint": "83a4e4f454c01df9acad15bead1e64fa938f3b03861590008674107ccd56a523",
       "render": {
         "content": {
-          "markdownSha256": "94071a090c61a775d7511745a1ba30c9d042df72657dab0c7624e7ffda0c4106",
-          "mathHtmlSha256": "7cf3449a3f8cefb5f8a94c872495d3dd815bb3c11ce9c304d80e1bb3624bba89",
+          "markdownSha256": "7dfbdf5177c923e38927615e04a8060ea622b8617c74dc4e05b717a7aa6eef75",
+          "mathHtmlSha256": "a349727ba458f0a8cf1138f2b3308c3c276a06c14a9db29fa86c0327b90ba4e2",
           "raw": 0,
           "red": 0,
           "merror": 0
@@ -2932,9 +2932,9 @@
       "problemType": "계산",
       "content": "“두 무리수의 합은 언제나 무리수이다.”라는 주장이 틀렸음을 보이려 한다. 첫째 수가 $\\sqrt{7}$이고 두 수의 합이 유리수 $12$가 되는 반례를 만들 때, 조건에 맞는 두 무리수의 쌍을 고르시오.\n① $\\sqrt{7}$, $12-\\sqrt{7}$\n② $\\sqrt{7}$, $12+2\\sqrt{7}$\n③ $\\sqrt{7}$, $3\\sqrt{7}$\n④ $\\sqrt{7}$, $2\\sqrt{7}$\n⑤ $\\sqrt{7}$, $12+\\sqrt{7}$",
       "answer": "①",
-      "solution": "첫 수 $\\sqrt{7}$와 둘째 수 $12-\\sqrt{7}$는 각각 무리수이지만 합은 $12$인 유리수이다. 나머지 쌍의 합에는 $\\sqrt{7}$의 계수가 $0$이 아닌 정수로 남으므로 무리수이다.",
+      "solution": "첫 수 $\\sqrt{7}$과 둘째 수 $12-\\sqrt{7}$은 각각 무리수이지만 합은 $12$인 유리수이다. 나머지 쌍의 합에는 $\\sqrt{7}$의 계수가 $0$이 아닌 정수로 남으므로 무리수이다.",
       "figureSvg": null,
-      "payloadSha256": "61c01240e533879b36a9986ae74d9a44ea8adb82a58f45ac4ef56f11caec0c68",
+      "payloadSha256": "4de5445d4c59a2c84880b18ec80c6094d2da44460562a04d8f7dd9de8d192d23",
       "render": {
         "content": {
           "markdownSha256": "92e055f5bcb78905e00f67049bfb766e0e0143047f8d8ca72d9f7d6fbcfffaa5",
@@ -2951,8 +2951,8 @@
           "merror": 0
         },
         "solution": {
-          "markdownSha256": "d31cdc2cc7ef6d0541f2bb96f05a1d0373bfcb812fe975aa132b1957b224e594",
-          "mathHtmlSha256": "fc056e813e652af38e913f7640f34610349dcdb302cd0284a7b59b433202caca",
+          "markdownSha256": "1471763962351f9bb9da53dbba403f67892d54b5c1c1534e4f938a06c1a9d9d1",
+          "mathHtmlSha256": "8643c3ba44d57e7802328ba973f22dec4b3d9d102ed470ec1f95e7307d94be1f",
           "raw": 0,
           "red": 0,
           "merror": 0
@@ -3018,9 +3018,9 @@
       "problemType": "계산",
       "content": "“두 무리수의 합은 언제나 무리수이다.”라는 주장이 틀렸음을 보이려 한다. 첫째 수가 $\\sqrt{13}$이고 두 수의 합이 유리수 $2$가 되는 반례를 만들 때, 조건에 맞는 두 무리수의 쌍을 고르시오.\n① $\\sqrt{13}$, $3\\sqrt{13}$\n② $\\sqrt{13}$, $2\\sqrt{13}$\n③ $\\sqrt{13}$, $2+\\sqrt{13}$\n④ $\\sqrt{13}$, $2+2\\sqrt{13}$\n⑤ $\\sqrt{13}$, $2-\\sqrt{13}$",
       "answer": "⑤",
-      "solution": "첫 수 $\\sqrt{13}$와 둘째 수 $2-\\sqrt{13}$는 각각 무리수이지만 합은 $2$인 유리수이다. 나머지 쌍의 합에는 $\\sqrt{13}$의 계수가 $0$이 아닌 정수로 남으므로 무리수이다.",
+      "solution": "첫 수 $\\sqrt{13}$과 둘째 수 $2-\\sqrt{13}$은 각각 무리수이지만 합은 $2$인 유리수이다. 나머지 쌍의 합에는 $\\sqrt{13}$의 계수가 $0$이 아닌 정수로 남으므로 무리수이다.",
       "figureSvg": null,
-      "payloadSha256": "f0293581a21ce88480200f95cfadb87ae422828a8c9947ce405513358f23e9ef",
+      "payloadSha256": "f591429d824be193f8fa4fb5ed5af75df8ed2747517ab859d4d41f3ab5202a31",
       "render": {
         "content": {
           "markdownSha256": "9427638a9541c9726921e32e84755036ebc5262a6c7527c07f4b69d358a3c46e",
@@ -3037,8 +3037,8 @@
           "merror": 0
         },
         "solution": {
-          "markdownSha256": "e4010483c431a67b2c4f3a551f113e8762e3d9e55caa28fc998710a6b39dd42f",
-          "mathHtmlSha256": "32a3efcf94de9606fa99623f3c23a2e3b80a1dd8f768e76d8fc2a200f4326464",
+          "markdownSha256": "df1b32d4d7787a0d09c38f5a1d994a462be669309bd9ed292bddbafc2d977145",
+          "mathHtmlSha256": "a210a9e5291a2bd1c20286aff0bb2607eecbb67b1be351ffb781971b206064f8",
           "raw": 0,
           "red": 0,
           "merror": 0
@@ -3188,15 +3188,15 @@
       "questionType": "단답형",
       "difficulty": "기본",
       "problemType": "계산",
-      "content": "서연이는 $x^2-6x-27=(x-9)(x+7)$가 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $7$, $8$, $9$, $10$, $11$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.",
+      "content": "서연이는 $x^2-6x-27=(x-9)(x+7)$이 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $7$, $8$, $9$, $10$, $11$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.",
       "answer": "$9$",
       "solution": "좌변은 $(x-9)(x+3)$이다. 우변에서 좌변을 빼면 $4(x-9)$이므로 두 값이 같은 것은 $x=9$일 때뿐이다. 한 값에서 같다는 사실만으로 모든 실수에서 성립하는 인수분해라고 할 수 없다.",
       "figureSvg": null,
-      "payloadSha256": "b43a1dfd11470d1d2c2439fa436c983449ed6554db14a3e4d1fe61d2f1c5aa6a",
+      "payloadSha256": "88a1cacaf20d4cd4b38ff94df8ffe9fc329c097c5407db65caeaebd1f15cf067",
       "render": {
         "content": {
-          "markdownSha256": "16afb9fbed0f99b06fee5e7e50f59772602f1137b1878c4b20d2299f072f777d",
-          "mathHtmlSha256": "d6dd343fe3ddb125d2c14225f60b92f3eddbdbb6d6bdf6a1203391673d1aa1c8",
+          "markdownSha256": "7522b51022e97e41e137b1c67e0b6aaeabe253939b1c3d512ed91f4fdd855852",
+          "mathHtmlSha256": "ab48084515cce12f9366efe478d284f09a24c4a285eb0bbe70aa0aad8ad29881",
           "raw": 0,
           "red": 0,
           "merror": 0
@@ -3216,7 +3216,7 @@
           "merror": 0
         }
       },
-      "studentBodySha256": "e8bde81c37618867b5109649a1e8a2a8fa22fec96e0e90bf649006e594ba7e96"
+      "studentBodySha256": "a5f84ebc3c9c172222c035bd655baa0d9971cddf1d7130ad9b99013afaaf76f1"
     },
     {
       "externalId": "engine-mid:manual-20261018|인수분해|F01|s20261020|v0|객관식",
@@ -3231,15 +3231,15 @@
       "questionType": "객관식",
       "difficulty": "기본",
       "problemType": "계산",
-      "content": "서연이는 $x^2-6x-27=(x-9)(x+7)$가 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $7$, $8$, $9$, $10$, $11$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.\n① $9$\n② $11$\n③ $10$\n④ $8$\n⑤ $7$",
+      "content": "서연이는 $x^2-6x-27=(x-9)(x+7)$이 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $7$, $8$, $9$, $10$, $11$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.\n① $9$\n② $11$\n③ $10$\n④ $8$\n⑤ $7$",
       "answer": "①",
       "solution": "좌변은 $(x-9)(x+3)$이다. 우변에서 좌변을 빼면 $4(x-9)$이므로 두 값이 같은 것은 $x=9$일 때뿐이다. 한 값에서 같다는 사실만으로 모든 실수에서 성립하는 인수분해라고 할 수 없다.",
       "figureSvg": null,
-      "payloadSha256": "0dd0f9ab443ec4f4b4e7dfd5de18e69f01f78f37390bae883522eda85b0cd7c2",
+      "payloadSha256": "f13b0bef2d962d13a90aaee6e6bbd99cffc2ccf725daea5321d1f8801236aaab",
       "render": {
         "content": {
-          "markdownSha256": "d68c15b21a77372c30a48423ab73c6711a75949e7d7ea07fb143d1e50e7d0d04",
-          "mathHtmlSha256": "819082b2942d471f07876d07bf0363946f7d1a9ef275126833a22f9b9404ce4f",
+          "markdownSha256": "121950ce2aef62583d83b237d987d01060cb6efef80f3a45ad33b7c107cb5311",
+          "mathHtmlSha256": "bd8fe84857ee5111f8d13c85522d7520f786b22945bd914446bf7cacdb709cf6",
           "raw": 0,
           "red": 0,
           "merror": 0
@@ -3259,7 +3259,7 @@
           "merror": 0
         }
       },
-      "studentBodySha256": "e3f616c7bf246b3790ef64930bc526ab0cd1587b40f37db7b3a191c756020c15"
+      "studentBodySha256": "1d7bd5d69c01d852accdfc39b76ef4686f628d53490c0d44d6fc55212e64d581"
     },
     {
       "externalId": "engine-mid:manual-20261018|인수분해|F01|s20261020|v1|단답형",
@@ -3274,15 +3274,15 @@
       "questionType": "단답형",
       "difficulty": "기본",
       "problemType": "계산",
-      "content": "서연이는 $x^2+3x-18=(x-3)(x+10)$가 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $1$, $2$, $3$, $4$, $5$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.",
+      "content": "서연이는 $x^2+3x-18=(x-3)(x+10)$이 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $1$, $2$, $3$, $4$, $5$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.",
       "answer": "$3$",
       "solution": "좌변은 $(x-3)(x+6)$이다. 우변에서 좌변을 빼면 $4(x-3)$이므로 두 값이 같은 것은 $x=3$일 때뿐이다. 한 값에서 같다는 사실만으로 모든 실수에서 성립하는 인수분해라고 할 수 없다.",
       "figureSvg": null,
-      "payloadSha256": "cf54697d800fd90ed1b19d0bad22e35159c518d1a94b76f9e88e42c068274ac6",
+      "payloadSha256": "05dc5c47129a82ee2e6d2c25a2b9c081b7486ed1ffbf0b455eb3c497c0f14365",
       "render": {
         "content": {
-          "markdownSha256": "61ceccee683dcbbfb0f288647b43c6382c0e78a8a200834b8059c1402525ea31",
-          "mathHtmlSha256": "382f602b54b8ebc64234593507874b3e26e7492e146f1193aa57bdddc9c0b36c",
+          "markdownSha256": "3220f9f8664e7bea0972c30f09d3984b291b9ad4eb449df49c7d3134a530a528",
+          "mathHtmlSha256": "73a6fe7f3b2901adaa69c0382d63b8f87dbb818b229fd0917252058a2431f457",
           "raw": 0,
           "red": 0,
           "merror": 0
@@ -3302,7 +3302,7 @@
           "merror": 0
         }
       },
-      "studentBodySha256": "bb5de242e30b94132c2637b8565d414f44a8bc5751e89acb24b50cf5305f17e1"
+      "studentBodySha256": "c16e39b16d1b6bd97d4e20ea4847e8a64bc05a8281b9598afcc40fcfb6782804"
     },
     {
       "externalId": "engine-mid:manual-20261018|인수분해|F01|s20261020|v1|객관식",
@@ -3317,15 +3317,15 @@
       "questionType": "객관식",
       "difficulty": "기본",
       "problemType": "계산",
-      "content": "서연이는 $x^2+3x-18=(x-3)(x+10)$가 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $1$, $2$, $3$, $4$, $5$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.\n① $1$\n② $4$\n③ $3$\n④ $2$\n⑤ $5$",
+      "content": "서연이는 $x^2+3x-18=(x-3)(x+10)$이 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $1$, $2$, $3$, $4$, $5$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.\n① $1$\n② $4$\n③ $3$\n④ $2$\n⑤ $5$",
       "answer": "③",
       "solution": "좌변은 $(x-3)(x+6)$이다. 우변에서 좌변을 빼면 $4(x-3)$이므로 두 값이 같은 것은 $x=3$일 때뿐이다. 한 값에서 같다는 사실만으로 모든 실수에서 성립하는 인수분해라고 할 수 없다.",
       "figureSvg": null,
-      "payloadSha256": "b329c24d9dc83cd1370e3d50f7d9d05fe53e763ec8851c7afeb80f061dac52cc",
+      "payloadSha256": "6127c961317ef43787911e4caf4a37aa0918c98006d219bb82b36e67e9d76675",
       "render": {
         "content": {
-          "markdownSha256": "0fe8d0963ab571aec0430d51efb301a9cd8b66b3dc7cb3524ba378245b1128a3",
-          "mathHtmlSha256": "68a8a87ceec46d11282049403dee139d34147eedc3a682b4ca29d5facbcfe7e7",
+          "markdownSha256": "d9c7b40df45cb84ca96051244a7624c726246b0929e607ccfd680d0a1220a60b",
+          "mathHtmlSha256": "cf65d4d6b7824f5257c3167775f43ae8fc3af2c5066ce67595ea494dd66cebf2",
           "raw": 0,
           "red": 0,
           "merror": 0
@@ -3345,7 +3345,7 @@
           "merror": 0
         }
       },
-      "studentBodySha256": "9f0fa410d153e9f85fee7d1e18891b5cc6556d945fc7466c69cb272526ab0fcf"
+      "studentBodySha256": "9fc7e238b24e19535ef30084447fefc69bec44b2c8a09bd8d21090354e4c20bd"
     },
     {
       "externalId": "engine-mid:manual-20261018|인수분해|F01|s20261020|v2|단답형",
@@ -3575,15 +3575,15 @@
       "questionType": "단답형",
       "difficulty": "응용",
       "problemType": "활용",
-      "content": "두 다항식 $x^2+x-20$와 $x^2+4x+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.",
+      "content": "두 다항식 $x^2+x-20$과 $x^2+4x+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.",
       "answer": "$-32$",
       "solution": "첫째 다항식은 $(x-4)(x+5)$이다. $r>0$이므로 공통인수는 $x-4$이다. 둘째 다항식을 $(x-4)(x+t)$로 놓으면 $t-4=4$에서 $t=8$이다. 따라서 상수항 $k=-4\\times 8=-32$이다.",
       "figureSvg": null,
-      "payloadSha256": "47b13682ee996a307438bc4ab40bc85a454537471fcacebdc04840859a8e7819",
+      "payloadSha256": "95f8f5b8daf1917f6695ad91a13011a2c57f5a546eb9a09b95cd84673ecd1ee3",
       "render": {
         "content": {
-          "markdownSha256": "d0c9a2080a0b09e23a94ec167a3526c065c5f5f2a6acae35dad7e5ed8bd82c69",
-          "mathHtmlSha256": "851cdb962276b17ffec922c0b128a7e4b155ded11347693791b348ba643e4b37",
+          "markdownSha256": "abce44b93daed5abafb4beb7e98e6623c9e25d93f7d8264bf0c65e9baf437a2e",
+          "mathHtmlSha256": "bc6acfd46c3dd9bdc3bd6c52009b9e3d5f2ebe290e9507dbb4a493490c6d255d",
           "raw": 0,
           "red": 0,
           "merror": 0
@@ -3603,7 +3603,7 @@
           "merror": 0
         }
       },
-      "studentBodySha256": "e9c1ccfc77ff5e5c2a848ebcf0bc058a706ec5ca55b099a1a90259f853f0bf48"
+      "studentBodySha256": "6d16e2bcb38ee2e036884a90898e91695ef742636096bc3954dbabfaa200aa32"
     },
     {
       "externalId": "engine-mid:manual-20261018|인수분해|F03|s20261020|v0|객관식",
@@ -3618,15 +3618,15 @@
       "questionType": "객관식",
       "difficulty": "응용",
       "problemType": "활용",
-      "content": "두 다항식 $x^2+x-20$와 $x^2+4x+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.\n① $-33$\n② $-34$\n③ $-32$\n④ $-30$\n⑤ $-31$",
+      "content": "두 다항식 $x^2+x-20$과 $x^2+4x+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.\n① $-33$\n② $-34$\n③ $-32$\n④ $-30$\n⑤ $-31$",
       "answer": "③",
       "solution": "첫째 다항식은 $(x-4)(x+5)$이다. $r>0$이므로 공통인수는 $x-4$이다. 둘째 다항식을 $(x-4)(x+t)$로 놓으면 $t-4=4$에서 $t=8$이다. 따라서 상수항 $k=-4\\times 8=-32$이다.",
       "figureSvg": null,
-      "payloadSha256": "981cd0f95d9cc2e044f9e6d4aa4117dfccbb0f32b9385df15335da4a3b2ad0ff",
+      "payloadSha256": "59d3255e4014c7d21213380bdddb23860e6b33d3a116660d27e8302676f1f02e",
       "render": {
         "content": {
-          "markdownSha256": "f82d908ab37c3fbf6849cbca286a63dfdd12cfbbd5e46d6af8f8a1101369021a",
-          "mathHtmlSha256": "e4545700921bd08dd6ce97d27b57b7d70d774bbb054e1a10e9ccc44005149afb",
+          "markdownSha256": "2e6e3df5be165d5bccec4819fe7cb0f636f8c00cb75ef82762409c01b99ee946",
+          "mathHtmlSha256": "f4dc140238a3324c62089539127cdc2d75d719389a6945781bfac01a28356ac0",
           "raw": 0,
           "red": 0,
           "merror": 0
@@ -3646,7 +3646,7 @@
           "merror": 0
         }
       },
-      "studentBodySha256": "e7538fd65c3ec67c0187687a8d7c0bc73dadc5dc9790c08e42a31feb41cac7e3"
+      "studentBodySha256": "47256aefcac053916e0fc0df831f26b87ee0b1acc380c73f2e0848c4e9522b65"
     },
     {
       "externalId": "engine-mid:manual-20261018|인수분해|F03|s20261020|v1|단답형",
@@ -3747,15 +3747,15 @@
       "questionType": "단답형",
       "difficulty": "응용",
       "problemType": "활용",
-      "content": "두 다항식 $x^2-x-20$와 $x^2+2x+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.",
+      "content": "두 다항식 $x^2-x-20$과 $x^2+2x+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.",
       "answer": "$-35$",
       "solution": "첫째 다항식은 $(x-5)(x+4)$이다. $r>0$이므로 공통인수는 $x-5$이다. 둘째 다항식을 $(x-5)(x+t)$로 놓으면 $t-5=2$에서 $t=7$이다. 따라서 상수항 $k=-5\\times 7=-35$이다.",
       "figureSvg": null,
-      "payloadSha256": "18f5b81c6cfaff889ae3869d139ee89d8c442a843bd383e3bbf9062bf28e11ec",
+      "payloadSha256": "7a0ba2823cfad17926a76030e3778427daefca583c65ef3fff1910b8a0c85e6b",
       "render": {
         "content": {
-          "markdownSha256": "384ca34fb845aeb6d50be006033ffe58cf781ea20d363df567ac19a68f7d170e",
-          "mathHtmlSha256": "0abee95d39e880284776fc7cae669c073cda79edf38b587d2bd8db87c911964d",
+          "markdownSha256": "381f886a4346fd1d64790b9c8a9afad0c6a8d5fb1cd157cbb046469289bc4d84",
+          "mathHtmlSha256": "2bada0a37114236c8743485fb843b8be81122b3ef84e4f51b391c7d75c4eb816",
           "raw": 0,
           "red": 0,
           "merror": 0
@@ -3775,7 +3775,7 @@
           "merror": 0
         }
       },
-      "studentBodySha256": "0dec55b4db9a33521f9bf5d6cef54369ce324fa596a47e19817a461482ac4336"
+      "studentBodySha256": "e84404cfeb9f9171b45a6ea1bbae20accefe0ff65790466dd6bd2c7c9d11d994"
     },
     {
       "externalId": "engine-mid:manual-20261018|인수분해|F03|s20261020|v2|객관식",
@@ -3790,15 +3790,15 @@
       "questionType": "객관식",
       "difficulty": "응용",
       "problemType": "활용",
-      "content": "두 다항식 $x^2-x-20$와 $x^2+2x+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.\n① $-33$\n② $-34$\n③ $-36$\n④ $-35$\n⑤ $-37$",
+      "content": "두 다항식 $x^2-x-20$과 $x^2+2x+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.\n① $-33$\n② $-34$\n③ $-36$\n④ $-35$\n⑤ $-37$",
       "answer": "④",
       "solution": "첫째 다항식은 $(x-5)(x+4)$이다. $r>0$이므로 공통인수는 $x-5$이다. 둘째 다항식을 $(x-5)(x+t)$로 놓으면 $t-5=2$에서 $t=7$이다. 따라서 상수항 $k=-5\\times 7=-35$이다.",
       "figureSvg": null,
-      "payloadSha256": "37ed3a189adb18b5881af80692b09a6d508efed0d0babbc8fd3e87df40b55afb",
+      "payloadSha256": "44fc1ae828c7fa5f532fccae4faa88692f340657d47f2d8021af7c69e2e17ccd",
       "render": {
         "content": {
-          "markdownSha256": "7e285e0fcdfaccbfd286106b62a8a1ad41abee47bd45d780fca6ac5d58be3712",
-          "mathHtmlSha256": "c70679f795608010362fec49b1c09b62955c020ad39a2a89f7abb494dbf24183",
+          "markdownSha256": "e91a9825314fdb25f4ef2bd4ea8b9831a7a72c2f9852a6c13a50e8421ea0c399",
+          "mathHtmlSha256": "53a808bb2ab82ad1373d0a08c26c57a9e6c3e5ff0dca0bf4ad64ddb2bdf24f55",
           "raw": 0,
           "red": 0,
           "merror": 0
@@ -3818,7 +3818,7 @@
           "merror": 0
         }
       },
-      "studentBodySha256": "78e93b69fc0a9bb5f6f51eb274d006f9a09c93c47a77437baade5d9571b4f055"
+      "studentBodySha256": "868fd9f3edd0dc3ffe5d9b4f11bd10968730b1a55cdb6113b7c1979ab113f389"
     },
     {
       "externalId": "engine-mid:manual-20261018|이차방정식의 활용|Q01|s20261020|v0|객관식",
@@ -4392,15 +4392,15 @@
       "questionType": "객관식",
       "difficulty": "기본",
       "problemType": "계산",
-      "content": "다섯 변량이 $49, 50, 51, 52, 53$이다. 이 중 가장 큰 변량 $53$ 하나만 $63$로 수정하였다. 수정 전후를 비교한 설명으로 옳은 것을 고르시오.\n① 평균은 $2$만큼 커지고, 중앙값은 변하지 않는다.\n② 평균은 변하지 않고, 중앙값은 $2$만큼 커진다.\n③ 평균은 $2$만큼 작아지고, 중앙값은 변하지 않는다.\n④ 평균은 $10$만큼 커지고, 중앙값은 변하지 않는다.\n⑤ 평균과 중앙값이 모두 변하지 않는다.",
+      "content": "다섯 변량이 $49, 50, 51, 52, 53$이다. 이 중 가장 큰 변량 $53$ 하나만 $63$으로 수정하였다. 수정 전후를 비교한 설명으로 옳은 것을 고르시오.\n① 평균은 $2$만큼 커지고, 중앙값은 변하지 않는다.\n② 평균은 변하지 않고, 중앙값은 $2$만큼 커진다.\n③ 평균은 $2$만큼 작아지고, 중앙값은 변하지 않는다.\n④ 평균은 $10$만큼 커지고, 중앙값은 변하지 않는다.\n⑤ 평균과 중앙값이 모두 변하지 않는다.",
       "answer": "①",
       "solution": "총합이 $10$만큼 증가하고 변량은 여전히 $5$개이므로 평균은 $2$만큼 커진다. 가장 큰 변량만 더 커지고 가운데인 셋째 변량이 그대로 남으므로 중앙값은 변하지 않는다.",
       "figureSvg": null,
-      "payloadSha256": "1f5564c5143cce9f56658d6817e816b9217dc869b82bbeb231a8313f01640ac6",
+      "payloadSha256": "74f8800c187f61b3885e6b5831675fd1e99c11b7bac3c3124e4d73651847becc",
       "render": {
         "content": {
-          "markdownSha256": "94071a090c61a775d7511745a1ba30c9d042df72657dab0c7624e7ffda0c4106",
-          "mathHtmlSha256": "7cf3449a3f8cefb5f8a94c872495d3dd815bb3c11ce9c304d80e1bb3624bba89",
+          "markdownSha256": "7dfbdf5177c923e38927615e04a8060ea622b8617c74dc4e05b717a7aa6eef75",
+          "mathHtmlSha256": "a349727ba458f0a8cf1138f2b3308c3c276a06c14a9db29fa86c0327b90ba4e2",
           "raw": 0,
           "red": 0,
           "merror": 0
@@ -4420,7 +4420,7 @@
           "merror": 0
         }
       },
-      "studentBodySha256": "2e7b132991d69b717805828f67beedd3a71a4ab545f09f3e00b8fe7d832a3c02"
+      "studentBodySha256": "da505dda2474926861ed4e65320ba820d79633f91fe92bf2f2db8d0d5885f09d"
     },
     {
       "externalId": "engine-mid:manual-20261018|대푯값과 산포도|S01|s20261020|v2|객관식",

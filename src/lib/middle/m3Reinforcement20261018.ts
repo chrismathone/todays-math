@@ -12,6 +12,7 @@ import { intBetween, pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 import { CHOICE_MARKS } from "../problem/choiceCountRule";
 import type { MidProblem, TypeEntry } from "./types";
+import { waGwa, iGa, euroRo, eunNeun } from "./m2Josa";
 
 const BOOK = "manual-20261018";
 const GRADE = "중3";
@@ -130,9 +131,9 @@ export const M3_REINFORCEMENT_20261018: TypeEntry[] = [
         0,
       );
       return {
-        content: `“두 무리수의 합은 언제나 무리수이다.”라는 주장이 틀렸음을 보이려 한다. 첫째 수가 $\\sqrt{${d}}$이고 두 수의 합이 유리수 $${c}$가 되는 반례를 만들 때, 조건에 맞는 두 무리수의 쌍을 고르시오.\n${options.content}`,
+        content: `“두 무리수의 합은 언제나 무리수이다.”라는 주장이 틀렸음을 보이려 한다. 첫째 수가 $\\sqrt{${d}}$이고 두 수의 합이 유리수 $${c}$${iGa(c)} 되는 반례를 만들 때, 조건에 맞는 두 무리수의 쌍을 고르시오.\n${options.content}`,
         answer: options.answer,
-        solution: `첫 수 $\\sqrt{${d}}$와 둘째 수 $${c}-\\sqrt{${d}}$는 각각 무리수이지만 합은 $${c}$인 유리수이다. 나머지 쌍의 합에는 $\\sqrt{${d}}$의 계수가 $0$이 아닌 정수로 남으므로 무리수이다.`,
+        solution: `첫 수 $\\sqrt{${d}}$${waGwa(d)} 둘째 수 $${c}-\\sqrt{${d}}$${eunNeun(d)} 각각 무리수이지만 합은 $${c}$인 유리수이다. 나머지 쌍의 합에는 $\\sqrt{${d}}$의 계수가 $0$이 아닌 정수로 남으므로 무리수이다.`,
         facts: { d, c },
       };
     },
@@ -177,7 +178,7 @@ export const M3_REINFORCEMENT_20261018: TypeEntry[] = [
       const b = intBetween(rng, 1, 6);
       const c = b + intBetween(rng, 1, 4);
       return {
-        content: `서연이는 $${polynomial(b - a, -a * b)}=(x-${a})(x+${c})$가 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $${a - 2}$, $${a - 1}$, $${a}$, $${a + 1}$, $${a + 2}$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.`,
+        content: `서연이는 $${polynomial(b - a, -a * b)}=(x-${a})(x+${c})$${iGa(c)} 모든 실수 $x$에 대해 성립한다고 잘못 주장했다. 다음 다섯 수 $${a - 2}$, $${a - 1}$, $${a}$, $${a + 1}$, $${a + 2}$ 중에서, 양변에 대입해도 값이 같아 이 오류를 드러내지 못하는 $x$의 값을 구하시오.`,
         ...numeric(a, [a - 2, a - 1, a + 1, a + 2]),
         solution: `좌변은 $(x-${a})(x+${b})$이다. 우변에서 좌변을 빼면 $${c - b === 1 ? "" : c - b}(x-${a})$이므로 두 값이 같은 것은 $x=${a}$일 때뿐이다. 한 값에서 같다는 사실만으로 모든 실수에서 성립하는 인수분해라고 할 수 없다.`,
         facts: { a, b, c },
@@ -220,7 +221,7 @@ export const M3_REINFORCEMENT_20261018: TypeEntry[] = [
       if (b === a + c) b += 7;
       const target = -a * a - c * a;
       return {
-        content: `두 다항식 $${polynomial(b - a, -a * b)}$와 $${polynomial(c, 0)}+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.`,
+        content: `두 다항식 $${polynomial(b - a, -a * b)}$${waGwa(-a * b)} $${polynomial(c, 0)}+k$가 공통으로 $x-r$을 인수로 가진다. $r$이 양수일 때, 상수 $k$의 값을 구하시오.`,
         ...numeric(target, [target - 2, target - 1, target + 1, target + 2]),
         solution: `첫째 다항식은 $(x-${a})(x+${b})$이다. $r>0$이므로 공통인수는 $x-${a}$이다. 둘째 다항식을 $(x-${a})(x+t)$로 놓으면 $t-${a}=${c}$에서 $t=${a + c}$이다. 따라서 상수항 $k=-${a}\\times ${a + c}=${target}$이다.`,
         facts: { a, b, c },
@@ -329,7 +330,7 @@ export const M3_REINFORCEMENT_20261018: TypeEntry[] = [
         0,
       );
       return {
-        content: `다섯 변량이 $${values.join(", ")}$이다. 이 중 가장 큰 변량 $${values[4]}$ 하나만 $${values[4]! + 5 * rise}$로 수정하였다. 수정 전후를 비교한 설명으로 옳은 것을 고르시오.\n${options.content}`,
+        content: `다섯 변량이 $${values.join(", ")}$이다. 이 중 가장 큰 변량 $${values[4]}$ 하나만 $${values[4]! + 5 * rise}$${euroRo(values[4]! + 5 * rise)} 수정하였다. 수정 전후를 비교한 설명으로 옳은 것을 고르시오.\n${options.content}`,
         answer: options.answer,
         solution: `총합이 $${5 * rise}$만큼 증가하고 변량은 여전히 $5$개이므로 평균은 $${rise}$만큼 커진다. 가장 큰 변량만 더 커지고 가운데인 셋째 변량이 그대로 남으므로 중앙값은 변하지 않는다.`,
         facts: { center, gap, rise },

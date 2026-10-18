@@ -8,6 +8,7 @@ import {
   type NativeDescriptiveProblem,
 } from "../../contracts/nativeDescriptive.contract";
 import { createRng, intBetween } from "../elementary/rng";
+import { eulReul, iGa, euroRo } from "../middle/m2Josa";
 
 const DEFINITIONS: readonly NativeDefinition[] = [
   {
@@ -252,10 +253,10 @@ export function generateNativeDescriptive(
       const check = n(1, 4),
         value =
           check * check + (sign === "+" ? 1 : -1) * (a + b) * check + a * b;
-      content = `지우는 다항식 $${polynomial}$의 인수분해를 $${wrong}$라고 썼습니다.\n\n(1) 지우의 곱을 전개하여 원래 식과 어떤 항이 다른지 설명하세요. (2) 올바르게 인수분해하고 다시 전개해 모든 항을 확인하세요. (3) $x=${check}$를 원래 식과 고친 식에 대입해 값도 확인하고, 한 값의 일치만으로 모든 $x$에서 같은 식임을 증명할 수 있는지 설명하세요.`;
+      content = `지우는 다항식 $${polynomial}$의 인수분해를 $${wrong}$${iGa(b) === "이" ? "이라고" : "라고"} 썼습니다.\n\n(1) 지우의 곱을 전개하여 원래 식과 어떤 항이 다른지 설명하세요. (2) 올바르게 인수분해하고 다시 전개해 모든 항을 확인하세요. (3) $x=${check}$${eulReul(check)} 원래 식과 고친 식에 대입해 값도 확인하고, 한 값의 일치만으로 모든 $x$에서 같은 식임을 증명할 수 있는지 설명하세요.`;
       answer = `$${correct}$; 잘못된 곱의 일차항과 상수항이 다름. 대입값 $${value}$. 한 값의 일치만으로 항등식 증명은 불가.`;
       const wrongLinear = sign === "+" ? a - b : b - a;
-      modelAnswer = `잘못된 곱을 전개하면 $x^2${wrongLinear < 0 ? "-" : "+"}${Math.abs(wrongLinear) === 1 ? "" : Math.abs(wrongLinear)}x-${a * b}$이므로 일차항과 상수항이 원래 식과 다릅니다. 합이 $${sign === "+" ? a + b : -(a + b)}$, 곱이 $${a * b}$인 두 수를 쓰면 $${correct}$입니다. 전개하면 $${polynomial}$으로 모든 항이 같습니다. $x=${check}$에서 원래 식과 고친 곱은 모두 $${value}$입니다. 한 값에서만 일치하는 서로 다른 식도 있으므로 대입 한 번은 확인일 뿐이고, 여기서는 전개한 모든 계수가 같아 항등식임을 알 수 있습니다.`;
+      modelAnswer = `잘못된 곱을 전개하면 $x^2${wrongLinear < 0 ? "-" : "+"}${Math.abs(wrongLinear) === 1 ? "" : Math.abs(wrongLinear)}x-${a * b}$이므로 일차항과 상수항이 원래 식과 다릅니다. 합이 $${sign === "+" ? a + b : -(a + b)}$, 곱이 $${a * b}$인 두 수를 쓰면 $${correct}$입니다. 전개하면 $${polynomial}$${euroRo(a * b)} 모든 항이 같습니다. $x=${check}$에서 원래 식과 고친 곱은 모두 $${value}$입니다. 한 값에서만 일치하는 서로 다른 식도 있으므로 대입 한 번은 확인일 뿐이고, 여기서는 전개한 모든 계수가 같아 항등식임을 알 수 있습니다.`;
       criteria = [
         criterion(
           "diagnose",
@@ -325,9 +326,9 @@ export function generateNativeDescriptive(
       const widened = ds.map((x) => center + x * step * 2);
       const variance =
         ds.reduce((s, x) => s + x * x * step * step, 0) / ds.length;
-      content = `원래 자료는 ${mathList(original)}입니다. 수정안 A는 각 값에 $${shift}$를 더한 ${mathList(moved)}, 수정안 B는 ${mathList(widened)}입니다. 분산은 편차의 제곱의 평균으로 계산합니다.\n\n(1) 원래 자료, A, B의 평균과 분산을 각각 구하고 편차의 변화를 설명하세요. (2) "분산이 작은 수정안을 택한다"면 A와 B 중 무엇을 택할지 근거를 쓰세요. (3) "평균이 커지면 분산도 반드시 커진다"는 주장을 원래 자료와 A를 이용해 판단하세요.`;
+      content = `원래 자료는 ${mathList(original)}입니다. 수정안 A는 각 값에 $${shift}$${eulReul(shift)} 더한 ${mathList(moved)}, 수정안 B는 ${mathList(widened)}입니다. 분산은 편차의 제곱의 평균으로 계산합니다.\n\n(1) 원래 자료, A, B의 평균과 분산을 각각 구하고 편차의 변화를 설명하세요. (2) "분산이 작은 수정안을 택한다"면 A와 B 중 무엇을 택할지 근거를 쓰세요. (3) "평균이 커지면 분산도 반드시 커진다"는 주장을 원래 자료와 A를 이용해 판단하세요.`;
       answer = `원래: 평균 $${center}$, 분산 $${variance}$; A: 평균 $${center + shift}$, 분산 $${variance}$; B: 평균 $${center}$, 분산 $${4 * variance}$. A 선택. 주장은 거짓.`;
-      modelAnswer = `원래 자료의 평균은 $${center}$, 편차는 ${mathList(ds.map((x) => x * step))}이므로 분산은 $${variance}$입니다. A는 평균도 $${shift}$만큼 커져 $${center + shift}$이므로 편차는 그대로이고 분산은 $${variance}$입니다. B는 평균이 $${center}$로 같지만 편차가 원래의 $2$배여서 분산은 $4\\times${variance}=${4 * variance}$입니다. 분산이 작은 A를 택합니다. 원래 자료에서 A로 평균은 커져도 분산은 같으므로 제시한 주장은 거짓입니다.`;
+      modelAnswer = `원래 자료의 평균은 $${center}$, 편차는 ${mathList(ds.map((x) => x * step))}이므로 분산은 $${variance}$입니다. A는 평균도 $${shift}$만큼 커져 $${center + shift}$이므로 편차는 그대로이고 분산은 $${variance}$입니다. B는 평균이 $${center}$${euroRo(center)} 같지만 편차가 원래의 $2$배여서 분산은 $4\\times${variance}=${4 * variance}$입니다. 분산이 작은 A를 택합니다. 원래 자료에서 A로 평균은 커져도 분산은 같으므로 제시한 주장은 거짓입니다.`;
       criteria = [
         criterion(
           "means",

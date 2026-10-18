@@ -28,6 +28,7 @@ import {
   unloadedNative,
 } from "../../../scripts/qa/checkUnloadedTypes";
 import { rebuild } from "../../../scripts/qa/refresh-engine-content";
+import { josaFaults } from "../helpers/midPage";
 import { elementaryUnits, listedForms } from "@/lib/elementary/generate";
 import { typesForSection } from "@/lib/middle/generate";
 
@@ -260,6 +261,8 @@ describe("native authored reasoning — 6 definitions, 100 seeds plus integer/sh
             } else expect(answer).toContain(value);
           }
           expect(p).toEqual(generateNativeDescriptive(d.definitionId, seed, v));
+          for (const text of [p.content, p.answer, p.solution])
+            expect(josaFaults(text)).toEqual([]);
           checkNumericEquations(p.modelAnswer);
           if (d.definitionId === "m3-factor-error-proof-r1") {
             const q = plain(p.content),
@@ -384,7 +387,7 @@ describe("native exact contract and three source consumers", () => {
     const plan = JSON.parse(readFileSync(base + "native-plan.json", "utf8"));
     expect(buildTargetRows(plan.targets[0], plan.seedBase)).toEqual(rows);
     const exported = JSON.parse(
-      readFileSync(base + "native-candidates-r3.json", "utf8"),
+      readFileSync(base + "native-candidates-r5.json", "utf8"),
     );
     expect(exported.candidateCount).toBe(12);
     for (const actual of exported.candidates) {
