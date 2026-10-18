@@ -3,6 +3,7 @@ import { ADVANCED_STUDY_FAMILIES } from "@/lib/examStudy/families/advanced";
 import {
   readParabola,
   solveParabola,
+  graphFigure,
   type Point,
 } from "@/lib/examStudy/families/advanced/graph";
 import {
@@ -20,6 +21,11 @@ import {
   readIncircle,
 } from "@/lib/examStudy/families/advanced/incircle";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
+import {
+  FIGURE_SVG_PRINT_MM,
+  figureSvgSize,
+} from "@/lib/figure/figureSvgFrame";
+import { stripLabels, svgLabels } from "@/lib/figure/svgLabels";
 import { writeFileSync, mkdirSync } from "node:fs";
 import path from "node:path";
 
@@ -41,6 +47,169 @@ const dist = (a: Point, b: Point) => Math.hypot(a[0] - b[0], a[1] - b[1]);
 const pointLineDistance = (p: Point, a: Point, b: Point) =>
   Math.abs((b[0] - a[0]) * (p[1] - a[1]) - (b[1] - a[1]) * (p[0] - a[0])) /
   dist(a, b);
+
+const artifacts =
+  process.env.ADVANCED_EVIDENCE_DIR ??
+  path.join(
+    process.cwd(),
+    ".qa-artifacts/math-exam-engine-upgrade-20261018/advanced-evidence",
+  );
+type Box = readonly [number, number, number, number];
+type Stroke = readonly [number, number, number, number];
+const attribute = (tag: string, name: string) =>
+  new RegExp(`\\b${name}="([^"]*)"`).exec(tag)?.[1];
+const overlaps = (a: Box, b: Box) =>
+  a[0] < b[2] && a[2] > b[0] && a[1] < b[3] && a[3] > b[1];
+
+function crosses(stroke: Stroke, box: Box): boolean {
+  let low = 0,
+    high = 1;
+  for (let axis = 0; axis < 2; axis++) {
+    const start = stroke[axis]!,
+      delta = stroke[axis + 2]! - start,
+      min = box[axis]!,
+      max = box[axis + 2]!;
+    if (Math.abs(delta) < 1e-10) {
+      if (start <= min || start >= max) return false;
+    } else {
+      const a = (min - start) / delta,
+        b = (max - start) / delta;
+      low = Math.max(low, Math.min(a, b));
+      high = Math.min(high, Math.max(a, b));
+      if (low >= high) return false;
+    }
+  }
+  return true;
+}
+
+/** Read printed primitives after removing MathJax's em-space glyph paths.
+ * The authored graphs use straight M/L paths; v2 adds circle strokes and the
+ * right-angle marker. Filled region paths are not obstacles to annotations. */
+function printedGeometry(svg: string) {
+  const strokes: Stroke[] = [],
+    dots: { x: number; y: number; radius: number }[] = [],
+    circles: { x: number; y: number; radius: number }[] = [];
+  for (const match of stripLabels(svg).matchAll(
+    /<(line|polygon|path|circle)\b[^>]*>/g,
+  )) {
+    const tag = match[0];
+    if (match[1] === "line") {
+      strokes.push(
+        ["x1", "y1", "x2", "y2"].map((key) =>
+          Number(attribute(tag, key)),
+        ) as unknown as Stroke,
+      );
+    } else if (match[1] === "circle") {
+      const x = Number(attribute(tag, "cx")),
+        y = Number(attribute(tag, "cy")),
+        radius = Number(attribute(tag, "r"));
+      if (attribute(tag, "fill") !== "none") dots.push({ x, y, radius });
+      else circles.push({ x, y, radius });
+    } else {
+      if (attribute(tag, "stroke") === "none") continue;
+      const data = attribute(tag, match[1] === "polygon" ? "points" : "d")!;
+      // Fail if a future emitter adds an unmeasured curve/transform.
+      expect(data.replace(/[MLZmlz\d.,\s+-]/g, "")).toBe("");
+      expect(attribute(tag, "transform")).toBeUndefined();
+      const values = (data.match(/-?\d+(?:\.\d+)?/g) ?? []).map(Number);
+      const points = Array.from(
+        { length: values.length / 2 },
+        (_, i) => [values[2 * i]!, values[2 * i + 1]!] as const,
+      );
+      for (let i = 1; i < points.length; i++)
+        strokes.push([...points[i - 1]!, ...points[i]!]);
+      if (match[1] === "polygon" || /[Zz]/.test(data))
+        strokes.push([...points.at(-1)!, ...points[0]!]);
+    }
+  }
+  return { strokes, dots, circles };
+}
+
+function measurePrintedLabels(svg: string, expected: readonly string[]) {
+  const frame = /viewBox="([\d.-]+) ([\d.-]+) ([\d.-]+) ([\d.-]+)"/.exec(svg)!;
+  expect(frame).not.toBeNull();
+  const [left, top, width, height] = frame.slice(1).map(Number) as [
+    number,
+    number,
+    number,
+    number,
+  ];
+  const size = figureSvgSize(svg),
+    scale = (FIGURE_SVG_PRINT_MM[size] * 96) / 25.4 / width,
+    labels = svgLabels(svg),
+    geometry = printedGeometry(svg),
+    issues: string[] = [];
+  expect(labels.map((label) => label.text).sort()).toEqual(
+    [...expected].sort(),
+  );
+  const boxes = labels.map((label) => {
+    expect(label.typeset, label.text).toBe(true);
+    expect(label.width, label.text).not.toBeNull();
+    expect(label.ascent, label.text).not.toBeNull();
+    expect(label.descent, label.text).not.toBeNull();
+    const x =
+      label.x -
+      label.width! *
+        (label.anchor === "middle" ? 0.5 : label.anchor === "end" ? 1 : 0);
+    const halo = label.halo / 2;
+    const box: Box = [
+      x - halo,
+      label.baseline - label.ascent! - halo,
+      x + label.width! + halo,
+      label.baseline + label.descent! + halo,
+    ];
+    if (
+      box[0] < left ||
+      box[1] < top ||
+      box[2] > left + width ||
+      box[3] > top + height
+    )
+      issues.push(`${label.text}: clipped`);
+    // One SVG unit covers the half-width of the largest 2-unit stroke.
+    const clear: Box = [box[0] - 1, box[1] - 1, box[2] + 1, box[3] + 1];
+    if (geometry.strokes.some((stroke) => crosses(stroke, clear)))
+      issues.push(`${label.text}: stroke overlap`);
+    if (
+      geometry.dots.some(
+        (dot) =>
+          Math.hypot(
+            dot.x - Math.max(clear[0], Math.min(clear[2], dot.x)),
+            dot.y - Math.max(clear[1], Math.min(clear[3], dot.y)),
+          ) < dot.radius,
+      )
+    )
+      issues.push(`${label.text}: point overlap`);
+    if (
+      geometry.circles.some(({ x, y, radius }) => {
+        const nearest = Math.hypot(
+          x - Math.max(clear[0], Math.min(clear[2], x)),
+          y - Math.max(clear[1], Math.min(clear[3], y)),
+        );
+        const farthest = Math.max(
+          ...[clear[0], clear[2]].flatMap((bx) =>
+            [clear[1], clear[3]].map((by) => Math.hypot(x - bx, y - by)),
+          ),
+        );
+        return nearest < radius && farthest > radius;
+      })
+    )
+      issues.push(`${label.text}: circle overlap`);
+    return { text: label.text, box, cssPx: label.fontSize * scale };
+  });
+  for (let i = 0; i < boxes.length; i++)
+    for (let j = 0; j < i; j++)
+      if (overlaps(boxes[i]!.box, boxes[j]!.box))
+        issues.push(`${boxes[i]!.text}: overlaps ${boxes[j]!.text}`);
+  const minimumCssPx = Math.min(...boxes.map((label) => label.cssPx));
+  if (minimumCssPx < 12.5)
+    issues.push(`font floor: ${minimumCssPx.toFixed(6)}px`);
+  return {
+    frame: { left, top, width, height, size },
+    minimumCssPx,
+    labels: boxes,
+    issues,
+  };
+}
 
 describe("figure-required mathematical information", () => {
   it("re-solves each printed parabola/line chain and checks every essential dependency", () => {
@@ -266,10 +435,6 @@ describe("figure-required mathematical information", () => {
   it("strictly renders graph-1/v2 combinations with their essential printed labels", async () => {
     // Set PYTHON_BIN to the installed 3.12 for this optional reproduction.
     // No transport/network variables or .env are loaded by the offline config.
-    const artifacts = path.join(
-      process.cwd(),
-      ".qa-artifacts/math-exam-engine-upgrade-20261018/advanced-evidence",
-    );
     mkdirSync(artifacts, { recursive: true });
     for (const [name, family, index] of [
       ["parabola-down-positive-line", parabola, 0],
@@ -316,12 +481,13 @@ describe("figure-required mathematical information", () => {
     }
   }, 30_000);
 
-  it("strictly renders every bounded figure tuple without dropping dimensions", async () => {
+  it("strictly renders every bounded figure tuple with readable, collision-free print labels", async () => {
     const records: {
       family: string;
       variant: number;
       valid: boolean;
       dropped: readonly string[];
+      print: ReturnType<typeof measurePrintedLabels>;
     }[] = [];
     for (const family of [parabola, split, centers, incircle])
       for (let index = 0; index < domainSize(family); index++) {
@@ -333,21 +499,90 @@ describe("figure-required mathematical information", () => {
         ).toBe(true);
         if (!rendered.ok) continue;
         expect(rendered.droppedDimensions ?? []).toEqual([]);
+        expect(family.verify(item).valid).toBe(true);
+        const labels = item.figureSpec!.labels as
+          { text: string }[] | Record<string, string | { text: string }>;
+        const expected = Object.values(labels).map((label) =>
+          typeof label === "string" ? label : label.text,
+        );
+        if (item.figureSpec!.axes) {
+          const [xlo, xhi] = item.figureSpec!.xRange as number[];
+          const [ylo, yhi] = item.figureSpec!.yRange as number[];
+          if (ylo! <= 0 && yhi! >= 0) expected.push("x");
+          if (xlo! <= 0 && xhi! >= 0) expected.push("y");
+        }
+        const print = measurePrintedLabels(rendered.svg, expected);
+        if (item.figureSpec!.version === "graph-1") {
+          const spec = graphFigure(item);
+          const scaleX =
+            (print.frame.width - 96) / (spec.xRange[1] - spec.xRange[0]);
+          const scaleY =
+            (print.frame.height - 96) / (spec.yRange[1] - spec.yRange[0]);
+          if (!spec.axes) expect(scaleX).toBeCloseTo(scaleY, 10);
+          const project = ([x, y]: Point): Point => [
+            48 + (x - spec.xRange[0]) * scaleX,
+            print.frame.height - 48 - (y - spec.yRange[0]) * scaleY,
+          ];
+          const dots = printedGeometry(rendered.svg).dots;
+          for (const label of spec.labels.filter((label) =>
+            /^[A-Z]$/.test(label.text),
+          )) {
+            const owner = project(label.at);
+            expect(
+              dots.some((dot) => dist([dot.x, dot.y], owner) < 0.08),
+              label.text,
+            ).toBe(true);
+            const box = print.labels.find(
+              (actual) => actual.text === label.text,
+            )!.box;
+            const center: Point = [
+              (box[0] + box[2]) / 2,
+              (box[1] + box[3]) / 2,
+            ];
+            // Actual glyph centers must still identify the correct point after
+            // Python/SVG rounding, especially the close E/I and O/I pairs.
+            for (const dot of dots)
+              expect(
+                dist(center, owner),
+                `${family.id}:${index} ${label.text}: wrong point role`,
+              ).toBeLessThanOrEqual(dist(center, [dot.x, dot.y]) + 0.08);
+          }
+        } else {
+          expect(rendered.svg).toMatch(
+            /<path\b[^>]*fill="white"[^>]*data-region="disk"/,
+          );
+        }
+        const directory = path.join(
+          artifacts,
+          "renders",
+          family.id.replaceAll(":", "-"),
+        );
+        mkdirSync(directory, { recursive: true });
+        writeFileSync(path.join(directory, `${index}.svg`), rendered.svg);
+        writeFileSync(
+          path.join(directory, `${index}.json`),
+          JSON.stringify(item, null, 2),
+        );
         records.push({
           family: family.id,
           variant: index,
           valid: true,
           dropped: rendered.droppedDimensions ?? [],
+          print,
         });
       }
     expect(records).toHaveLength(117);
-    const dir = path.join(
-      process.cwd(),
-      ".qa-artifacts/math-exam-engine-upgrade-20261018/advanced-evidence",
-    );
+    mkdirSync(artifacts, { recursive: true });
     writeFileSync(
-      path.join(dir, "all-strict-renders.json"),
+      path.join(artifacts, "all-strict-renders.json"),
       JSON.stringify(records, null, 2),
     );
+    expect(
+      records.flatMap((record) =>
+        record.print.issues.map(
+          (issue) => `${record.family}:${record.variant} ${issue}`,
+        ),
+      ),
+    ).toEqual([]);
   }, 30_000);
 });

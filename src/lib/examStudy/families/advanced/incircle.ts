@@ -18,6 +18,7 @@ export const incircleDrawingScale = (a: number, b: number) =>
   260 / Math.max(a, b);
 interface V2Incircle {
   version: 2;
+  style: { font_size: number };
   points: Record<
     string,
     Point | { type: "on_circle"; circle: string; angle: number }
@@ -101,6 +102,9 @@ function buildIncircle(params: CanonicalParams): ExamStudyDraft {
   const factor = (a * b - r * (a + b)) / (a * a + b * b);
   const figure: V2Incircle = {
     version: 2,
+    // v2 fits this scene to its measured labels; match graph-1's 20-unit text
+    // rather than shrinking the actual incircle and its narrow tangent gaps.
+    style: { font_size: 20 },
     points: {
       A: point(0, 0),
       B: point(a, 0),
