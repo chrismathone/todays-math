@@ -1,0 +1,281 @@
+{
+  "planSha256": "15ecaf3edcea3e018f1e5b20e6e2108654122bb249b4e38e3a5713b7f84211a3",
+  "approvalCommit": "eb5d6e285",
+  "authoredForms": 9,
+  "finalStems": 27,
+  "reviewOnlySpareStems": 3,
+  "deterministicSeeds": {
+    "countPerForm": 100,
+    "formula": "20261018 + i * 1009, i=0..99"
+  },
+  "integerBoundarySeeds": [
+    0,
+    1,
+    -1,
+    2147483647,
+    4294967295
+  ],
+  "rngBoundaryValues": [
+    0,
+    0.5,
+    0.9999999999999998
+  ],
+  "independentEvaluations": {
+    "ordinary": 900,
+    "integerBoundary": 45,
+    "rngBoundary": 27,
+    "total": 972
+  },
+  "answerMutationControls": {
+    "mutants": 9,
+    "rejected": 9
+  },
+  "sourceSha256": {
+    "src/lib/elementary/reinforcementForms20261018.ts": "cf50f252caca1570fc9cc9eaf534d0937748052c83fc65c0af37856590494d6e",
+    "src/lib/elementary/forms.ts": "202923e05bc7a7892c246e3b34ba82caa8824c7707d1a580599e745b76f4698e"
+  },
+  "registrationBefore": [
+    10,
+    10,
+    11,
+    10
+  ],
+  "registrationAfter": [
+    12,
+    12,
+    13,
+    13
+  ],
+  "existingRegression": {
+    "unchangedForms": 2476,
+    "unchangedSeedOutputs": 7428,
+    "newTotalForms": 2485,
+    "coreFormCountPerUnit": 10,
+    "finiteSpaces": "existing SHORT_FORMS list unchanged; elemFormVariantSpace passed"
+  },
+  "figures": {
+    "newSpecs": 0,
+    "newPrimitives": 0,
+    "reason": "All conditions are complete in text; no absent figure is referenced. Existing figure/style contracts were read, not changed."
+  },
+  "testResults": {
+    "newSuite": 26,
+    "regressionSuite": 128,
+    "total": 154,
+    "scopedTypecheck": "pass",
+    "focusedEslint": "pass"
+  },
+  "print": {
+    "component": "existing JaseupTemplate / A4Page / ProblemBody",
+    "finalStems": 27,
+    "pages": 14,
+    "screenClippingFailures": 0,
+    "physical": "대기",
+    "contactSheet": "g4-a4-contact.png"
+  },
+  "forms": [
+    {
+      "formId": "31",
+      "familyKey": "elem:초4|2-2-3 정삼각형의 성질|31",
+      "unitId": "c8d1b160-ffb6-4da1-9c54-a3522ffcf134",
+      "grade": "초4",
+      "section": "2-2-3 정삼각형의 성질",
+      "difficulty": "응용",
+      "title": "맞붙인 정삼각형의 바깥 테두리",
+      "existingActions": "01·05는 한 변에서 다른 변, 02는 각→변 성질, 03·04·09는 단일 둘레·끈의 합/역산, 06·07·08·10은 각·이름 판별",
+      "newSolvingAction": "두 정삼각형의 여섯 변에서 내부 공유 변 두 개를 제외하고 외곽을 측정한다",
+      "substantiveDifference": "한 삼각형의 둘레를 단순 반복하는 대신 공유 경계의 포함 여부를 먼저 결정한다",
+      "independentVerification": "발문의 한 변으로 두 삼각형의 좌표를 독립 구성하고 중복되는 무방향 변을 제거한 뒤 남은 변을 실측 합산",
+      "limitations": "같은 크기 두 장·한 변 전체 맞붙임·서로 반대쪽·겹침 없음에 한정한다. 일반 합성도형의 둘레 공식이나 모든 도형 성질의 검증은 아니다.",
+      "exactSeeds": [
+        20261043,
+        20262052,
+        20263061
+      ],
+      "reviewOnlySpareSeeds": [],
+      "finalContentApproval": "pending Claude final review"
+    },
+    {
+      "formId": "32",
+      "familyKey": "elem:초4|2-2-3 정삼각형의 성질|32",
+      "unitId": "c8d1b160-ffb6-4da1-9c54-a3522ffcf134",
+      "grade": "초4",
+      "section": "2-2-3 정삼각형의 성질",
+      "difficulty": "기본",
+      "title": "정삼각형의 한 각을 나눈 부분각 복원",
+      "existingActions": "06은 한 각 60도, 07은 세 각 합 180도, 08·10은 성질로 고르기/이름, 나머지는 길이 관련",
+      "newSolvingAction": "정삼각형 한 꼭짓점의 각을 두 부분으로 나눈 조건에서 누락된 부분각을 복원한다",
+      "substantiveDifference": "삼각형 전체 세 각 합과 꼭짓점 한 각을 구분하여 국소 각의 덧셈 관계를 세운다",
+      "independentVerification": "발문에서 부분각을 읽고 동등한 세 내각의 합 180도에서 한 꼭짓점 각을 구한 뒤 나머지 부분을 계산한다",
+      "limitations": "분할 각은 1~59도이며 두 부분이 모두 양수다. 외각이나 다른 삼각형의 각 추론으로 확장하지 않는다.",
+      "exactSeeds": [
+        20261043,
+        20262052,
+        20263061
+      ],
+      "reviewOnlySpareSeeds": [],
+      "finalContentApproval": "pending Claude final review"
+    },
+    {
+      "formId": "33",
+      "familyKey": "elem:초4|2-2-5 삼각형을 두 가지 기준으로 분류하기|33",
+      "unitId": "0a069c2f-244d-4f9e-832f-3e0f8969ba21",
+      "grade": "초4",
+      "section": "2-2-5 삼각형을 두 가지 기준으로 분류하기",
+      "difficulty": "응용",
+      "title": "목표 분류를 만족하는 밑각 후보 집합",
+      "existingActions": "01·03·05는 밑각/세 각에서 각 기준 이름, 02는 정삼각형 제외한 같은 두 각, 04는 꼭지각/밑각 경우 나누기, 06~10은 이름·그림·성질 판별",
+      "newSolvingAction": "변 기준 조건과 목표 각 기준을 함께 만족하는 밑각 후보를 역으로 모두 찾는다",
+      "substantiveDifference": "주어진 삼각형의 이름 하나를 출력하는 대신 목표에 맞는 입력 집합을 복원하며 45도 경계와 60도 정삼각형 제외를 함께 적용한다",
+      "independentVerification": "각 후보마다 세 번째 내각 1~179도를 완전탐색하여 두 밑각과 합이 180도이고 세 각이 같지 않은 완성만 남긴 뒤 목표 부류를 대조한다",
+      "limitations": "후보는 모두 양수이고 90도 미만이다. 45도·60도는 매 발문에 들어간다. 정삼각형을 별도로 제외하는 정의를 발문에 명시한다.",
+      "exactSeeds": [
+        20261043,
+        20262052,
+        20263061
+      ],
+      "reviewOnlySpareSeeds": [],
+      "finalContentApproval": "pending Claude final review"
+    },
+    {
+      "formId": "34",
+      "familyKey": "elem:초4|2-2-5 삼각형을 두 가지 기준으로 분류하기|34",
+      "unitId": "0a069c2f-244d-4f9e-832f-3e0f8969ba21",
+      "grade": "초4",
+      "section": "2-2-5 삼각형을 두 가지 기준으로 분류하기",
+      "difficulty": "응용",
+      "title": "두 분류 기준의 교집합 카드 수",
+      "existingActions": "기존 01~10은 개별 삼각형의 분류/가능성 또는 꼭짓점 같은 단일 성질",
+      "newSolvingAction": "변 기준 세 부류와 각 기준 예각 집합을 겹쳐 보고 미지의 교집합 개수를 복원한다",
+      "substantiveDifference": "한 카드의 분류 대신 정삼각형이 예각 집합에 모두 포함된다는 사실을 이용해 두 기준의 겹치는 재고를 정리한다",
+      "independentVerification": "발문의 예각 전체/정삼각형 전체/세 변이 다른 예각 수를 읽고 미지 수를 0부터 예각 전체 수까지 열거하여 합 조건을 만족하는 유일한 수를 찾는다",
+      "limitations": "정삼각형·두 변만 같은 삼각형·모든 변이 다른 삼각형을 서로 겹치지 않는 부류로 명시한다. 자료가 있는 예각 집합의 한 칸만 복원한다.",
+      "exactSeeds": [
+        20261043,
+        20262052,
+        20263061
+      ],
+      "reviewOnlySpareSeeds": [],
+      "finalContentApproval": "pending Claude final review"
+    },
+    {
+      "formId": "35",
+      "familyKey": "elem:초4|2-4-2 평행과 평행선|35",
+      "unitId": "abb7989e-15ae-4dec-9ac0-983dee08a700",
+      "grade": "초4",
+      "section": "2-4-2 평행과 평행선",
+      "difficulty": "응용",
+      "title": "두 평행선 묶음의 모든 무방향 평행 쌍",
+      "existingActions": "01·02는 관계 전이, 03은 기준 직선 하나에 대한 개수, 04·11은 역방향 관계/직선 수, 05~10은 정의·수선·거리·각",
+      "newSolvingAction": "각 묶음 내부의 모든 서로 다른 두 직선을 짝짓고 두 묶음의 결과를 합친다",
+      "substantiveDifference": "기준 직선 하나의 상대만 세던 행동에서 모든 기준의 중복 없는 쌍을 열거하는 행동으로 바뀐다",
+      "independentVerification": "발문의 묶음 크기로 수평/수직 방향 벡터 목록을 만들고 전체 i<j 쌍의 외적이 0인 경우만 센다",
+      "limitations": "같은 평면, 서로 다른 직선, 두 묶음 사이 모든 직선이 수직이라는 조건을 발문에 고정한다. 각 묶음은 2~5개이며 조합 공식 학습을 요구하지 않고 짝을 열거할 수 있다.",
+      "exactSeeds": [
+        20261043,
+        20262052,
+        20263061
+      ],
+      "reviewOnlySpareSeeds": [],
+      "finalContentApproval": "pending Claude final review"
+    },
+    {
+      "formId": "36",
+      "familyKey": "elem:초4|2-4-2 평행과 평행선|36",
+      "unitId": "abb7989e-15ae-4dec-9ac0-983dee08a700",
+      "grade": "초4",
+      "section": "2-4-2 평행과 평행선",
+      "difficulty": "응용",
+      "title": "수직으로 교차하는 평행선 격자의 교점",
+      "existingActions": "기존 01~04·11의 관계 사슬/기준 직선 개수 및 05~10의 정의·거리·수선·각",
+      "newSolvingAction": "묶음 안에서는 만나지 않고 서로 다른 묶음끼리 한 번씩 만나는 점을 빠짐없이 센다",
+      "substantiveDifference": "평행/수직 관계의 이름이나 직선 개수에서, 두 평행 묶음이 만드는 서로 다른 교점의 집합을 구성하는 행동으로 바뀐다",
+      "independentVerification": "발문에서 가로/세로 직선 수를 읽고 각 수평·수직 쌍의 좌표 교점을 Set에 넣어 중복 없이 센다",
+      "limitations": "가로·세로 두 방향의 직선 각 2~6개에 한정한다. 일반 기울기의 다중 교차나 3차원 직선 문제로 확장하지 않는다.",
+      "exactSeeds": [
+        20261043,
+        20262052,
+        20263061
+      ],
+      "reviewOnlySpareSeeds": [],
+      "finalContentApproval": "pending Claude final review"
+    },
+    {
+      "formId": "37",
+      "familyKey": "elem:초4|2-4-4 사다리꼴|37",
+      "unitId": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "grade": "초4",
+      "section": "2-4-4 사다리꼴",
+      "difficulty": "응용",
+      "title": "직각 조건으로 평행한 변을 찾아 길이 합산",
+      "existingActions": "01·03·04·07은 이미 지정한 변의 합·역산, 02·05·06·08은 직접 평행 조건에서 이름/그림, 09·10은 꼭짓점·변 개수",
+      "newSolvingAction": "이웃한 두 직각에서 같은 변에 수직인 두 변을 먼저 찾아 그 변의 길이만 합친다",
+      "substantiveDifference": "평행한 두 변을 발문이 직접 지정하던 기존 길이 문형과 달리 수직 조건이 어떤 변 쌍을 평행하게 만드는지 추론한다",
+      "independentVerification": "둘레 순서와 세 변 길이에서 직각 두 곳을 만족하는 사각형 좌표를 독립 구성하고 마주 보는 변 벡터의 외적을 대조하여 유일한 평행 쌍의 길이를 더한다",
+      "limitations": "평행한 변 한 쌍만 있는 사다리꼴이며 양쪽 평행 변의 길이가 서로 다르다. 다음 차시 평행사변형의 성질을 풀이나 발문에서 요구하지 않는다.",
+      "exactSeeds": [
+        20261043,
+        20262052,
+        20263061
+      ],
+      "reviewOnlySpareSeeds": [
+        20264070
+      ],
+      "finalContentApproval": "pending Claude final review"
+    },
+    {
+      "formId": "38",
+      "familyKey": "elem:초4|2-4-4 사다리꼴|38",
+      "unitId": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "grade": "초4",
+      "section": "2-4-4 사다리꼴",
+      "difficulty": "응용",
+      "title": "포함 정의의 사다리꼴 재고에서 정확히 한 쌍 추출",
+      "existingActions": "06·08은 한 쌍 조건의 이름/개수, 다른 기존 문형은 개별 도형의 길이·그림·기본 성질",
+      "newSolvingAction": "적어도 한 쌍이 평행한 전체 집합에서 두 쌍이 평행한 하위 집합을 빼 정확히 한 쌍인 집합을 복원한다",
+      "substantiveDifference": "개별 사다리꼴에 평행 변이 몇 쌍인지 묻는 기존 질문 대신 포함 정의 아래 서로 겹치는 분류 재고를 분리한다",
+      "independentVerification": "발문의 전체/사다리꼴/두 쌍 수를 읽고 평행 쌍 0·1·2인 재고 수의 가능한 조합을 열거하여 두 합 조건을 만족하는 유일한 1쌍 수를 찾는다",
+      "limitations": "기존 문형의 한 쌍 표현은 변경하지 않는다. 이 문형의 포함 정의를 발문에 명시한다. 카드의 길이·각은 묻지 않는다.",
+      "exactSeeds": [
+        20261043,
+        20262052,
+        20263061
+      ],
+      "reviewOnlySpareSeeds": [
+        20264070
+      ],
+      "finalContentApproval": "pending Claude final review"
+    },
+    {
+      "formId": "39",
+      "familyKey": "elem:초4|2-4-4 사다리꼴|39",
+      "unitId": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "grade": "초4",
+      "section": "2-4-4 사다리꼴",
+      "difficulty": "응용",
+      "title": "미확인 평행 조건이 남은 검사 재고의 가능 범위",
+      "existingActions": "기존은 관측한 조건이 완결된 개별 도형, 새 38은 모든 카드의 분류가 확정된 재고",
+      "newSolvingAction": "평행이 확인된 집단, 평행이 전혀 없는 집단, 다른 쌍이 미확인인 집단을 분리하여 사다리꼴 최소·최대 수를 구한다",
+      "substantiveDifference": "미검사를 거짓으로 취급하지 않고 가능한 완성들을 비교하여 반드시인 수와 가능할 수 있는 수를 구분한다. 38의 확정 재고 한 값 빼기와 풀이 행동이 다르다",
+      "independentVerification": "발문의 세 집단 수를 읽고 미확인 카드의 나머지 쌍이 평행/비평행인 모든 2^n 조합을 열거하여 전체 사다리꼴 수의 최소·최대를 취한다",
+      "limitations": "미확인 카드 1~8장, 최소/최대 두 값을 답한다. 긴 조건문이므로 실제 학생의 읽기 부담이나 수업 적합성은 아직 측정하지 않았다.",
+      "exactSeeds": [
+        20261043,
+        20262052,
+        20263061
+      ],
+      "reviewOnlySpareSeeds": [
+        20264070
+      ],
+      "finalContentApproval": "pending Claude final review"
+    }
+  ],
+  "notClaimed": [
+    "actual DB writes or approval",
+    "post-load capacity >=40",
+    "complete achievement-standard alignment",
+    "measured learning effects",
+    "physical print verification"
+  ],
+  "implementationCommit": "ee2be612999be4f430f92dfb20a70479db5156c3"
+}
