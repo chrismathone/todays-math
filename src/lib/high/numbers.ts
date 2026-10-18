@@ -143,10 +143,12 @@ export function surdTex(s: Surd): string {
 export function surdPmTex(s: Surd): string {
   if (s.b === 0) throw new Error("근호 항이 없어 ± 꼴로 쓸 수 없습니다");
   const body = radBody(Math.abs(s.b), s.r);
+  // A bare i must not extend the TeX command name to \pmi.
+  const pmBody = `\\pm${body === "i" ? " " : ""}${body}`;
   if (s.a === 0) {
-    return s.d === 1 ? `\\pm${body}` : `\\pm\\dfrac{${body}}{${s.d}}`;
+    return s.d === 1 ? pmBody : `\\pm\\dfrac{${body}}{${s.d}}`;
   }
-  const num = `${s.a}\\pm${body}`;
+  const num = `${s.a}${pmBody}`;
   return s.d === 1 ? num : `\\dfrac{${num}}{${s.d}}`;
 }
 

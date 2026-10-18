@@ -137,7 +137,7 @@ function coef(k: number, v: string): string {
 
 /** $k \times (m t)$ — 계수가 $1$ 이면 곱셈 기호를 안 쓴다(`1\times4t` 를 막는다). */
 function mulTex(k: number, m: number): string {
-  return k === 1 ? coef(m, "t") : `${k}\\times${coef(m, "t")}`;
+  return k === 1 ? coef(m, "t") : `${k}\\times ${coef(m, "t")}`;
 }
 
 // ── ⑴ 2-1 연립일차방정식 ─────────────────────────────────
