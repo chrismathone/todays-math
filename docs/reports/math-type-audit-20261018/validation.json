@@ -1,0 +1,137 @@
+{
+  "snapshotSha256": "daf90c9a97e0630bb8be372e873187603f1fdbf5a201de18c009e266f7cfbac3",
+  "sourceBaseline": "cd067a49a90283749ea9f525073a4a469eef54bd",
+  "workerCommits": {
+    "engine": "5216f6fe2d8c3e3ee783ed403f28963643d31184",
+    "textbook": "66ec11a7d330f76dae46c21288bd583a5fc6add6",
+    "taxonomy": "d730100c992530d1ad48acddfab94bfdc95c1b01"
+  },
+  "passed": true,
+  "crosschecks": {
+    "snapshotTotal": 118020,
+    "eligible": 115575,
+    "familyMetadataAndCounts": 16367,
+    "textbookOriginalMetadata": 12301,
+    "textbookVariantMetadata": 4437,
+    "semanticRowMetadataAndDigests": 93,
+    "semanticDecisions": {
+      "same": 27,
+      "different": 22,
+      "uncertain": 2
+    },
+    "confirmedElementaryEligibleRows": 14,
+    "csvFamilyRows": 16367,
+    "missingLocalReportLinks": [],
+    "productSourceChanged": false
+  },
+  "checks": {
+    "typeScript": {
+      "command": "npm run type-check",
+      "exitCode": 0
+    },
+    "eslint": {
+      "files": 8,
+      "errors": 0,
+      "warnings": 0
+    },
+    "pythonCompile": {
+      "files": 2,
+      "passed": true
+    },
+    "engineScopedTests": {
+      "files": 9,
+      "tests": 250,
+      "passed": 250
+    },
+    "textbookIndependentStoredVariantComputations": {
+      "checked": 1786,
+      "answerMismatches": 0
+    },
+    "capacityPreviousCensusCrosscheck": {
+      "previousMeasuredAt": "2026-10-18T03:14:44.206Z",
+      "previousRows": 115575,
+      "currentRows": 115575,
+      "unitsCompared": 735,
+      "unitAndRepeatedCapacityMismatches": []
+    }
+  },
+  "scope": "All-row inventory/structure and registrations; bounded semantic/source/figure inspections as documented. No product/DB writes, no publication or push. No all-row independent solve or official curriculum-completeness claim.",
+  "artifacts": {
+    "README.md": {
+      "sha256": "90a6aae9a3c67824545f5536b57b9c650cc554487a16ebe6308f65c189e568f8",
+      "bytes": 14051
+    },
+    "capacity-crosscheck.json": {
+      "sha256": "320ad06f1eef9ec42a26d6ac8128d34049f98ef3cfdc84d8943a82441e923056",
+      "bytes": 173
+    },
+    "capacity-summary.json": {
+      "sha256": "e0faeedfc49fcc34780ac348692e9a58445306466b9d0c6ca892e91b6523f6c1",
+      "bytes": 10143
+    },
+    "capacity.md": {
+      "sha256": "2359c5f912ff0c2a3314394fb9aec5285105709afd645b0ec89b82ee024021f1",
+      "bytes": 9065
+    },
+    "elementary-quality.json": {
+      "sha256": "900f30419ed9372cf531d4c283ad0ecd471543ff1036a6a3b4c398b257f76f15",
+      "bytes": 5353
+    },
+    "elementary-quality.md": {
+      "sha256": "fb5740011bd8f5826c1d178fe109abf469226b45e2c741b33eea9154e5501c73",
+      "bytes": 7088
+    },
+    "elementary-quality.png": {
+      "sha256": "4d1954a1f7002254756a8d4fdcc43b6fc9c1eb386ab8bf69a17f905360e0323d",
+      "bytes": 147819
+    },
+    "elementary-variation.json": {
+      "sha256": "28fa05e647d2754f25e5dfecdb0d425a959b9e25e7de6bd60a59a7dece734d73",
+      "bytes": 107080
+    },
+    "engine-comparison.json": {
+      "sha256": "19e34c5ebbac0f82ea0b2b1e5005265e48ed7eedea5e8a454c839674b2e06840",
+      "bytes": 3847162
+    },
+    "engine-comparison.md": {
+      "sha256": "2c3f3cc97ee94fd32833c16890c912c1c3cdf89444fad8731406efc4912114b2",
+      "bytes": 25918
+    },
+    "quality-flags.json": {
+      "sha256": "2441f4e5910cb77f848d93c5eccd6265f5ec977cdd7dc70ceee5106b234df4c3",
+      "bytes": 18257
+    },
+    "taxonomy-crosscheck.json": {
+      "sha256": "a00a5df2543b055e2173172041affd5ee5b3dab3e0e849dc048290d3739d21db",
+      "bytes": 183
+    },
+    "taxonomy.json": {
+      "sha256": "8566027d8ebafee1df1710ac14c885a8a3d3cf7848cc6fd6d7ae3683c1f4b590",
+      "bytes": 15758448
+    },
+    "taxonomy.md": {
+      "sha256": "42d7a1302883adb447ba331ef80033925d0f8e322c2c5c88975b9ea52ce490f0",
+      "bytes": 19416
+    },
+    "textbook-comparison.json": {
+      "sha256": "623e9f50e6c2dcf9603cc230db8f9f29f939caea7d6b412790ba8fcb9dc726e3",
+      "bytes": 15181460
+    },
+    "textbook-comparison.md": {
+      "sha256": "96cea888de21f311aeabc091e9e0760c75646c80fed08b76fb856be4f8f9beec",
+      "bytes": 15942
+    },
+    "type-inventory.csv": {
+      "sha256": "82583396d0e907c9707ccc851bbd8e112b9db1051ca9cb97eaa0b2bb61f03211",
+      "bytes": 3637009
+    },
+    "type-inventory.json": {
+      "sha256": "1a89dbe13d56a24d92689e1e8f912b45a68ef7dde33c213b47b2e44bce6dfb51",
+      "bytes": 15077023
+    },
+    "unit-inventory.json": {
+      "sha256": "40a5c9eef9f5ffb94839d9894ee134ba31c837813f549175d6212121b1d87419",
+      "bytes": 987538
+    }
+  }
+}
