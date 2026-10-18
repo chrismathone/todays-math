@@ -56,6 +56,7 @@ export async function loadQuestionCandidates(
   orderBy?: Prisma.ProblemOrderByWithRelationInput[],
   client: QuestionDb = db,
   formatCache: Map<string, ReturnType<typeof classifyFormat>> = new Map(),
+  intern: Map<string, QuestionCandidate> = new Map(),
 ): Promise<QuestionCandidate[]> {
   const rows = await client.problem.findMany({
     where,
@@ -85,15 +86,19 @@ export async function loadQuestionCandidates(
     }
   }
   return rows.map((row) => {
+    const cached = intern.get(row.id);
+    if (cached) return cached;
     const classified =
       questionFormatWithoutContent(row) ?? formats.get(row.id) ?? "unknown";
     const actualFormat = classified === "unknown" ? null : classified;
-    return {
+    const candidate: QuestionCandidate = {
       ...row,
       questionId: questionIdOf(row),
       actualFormat,
       available: actualFormat !== null && problemIneligibleCode(row) === null,
     };
+    intern.set(row.id, candidate);
+    return candidate;
   });
 }
 /** Format is an existence filter on an actual row, then grouping precedes slicing. */

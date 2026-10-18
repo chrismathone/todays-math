@@ -93,8 +93,14 @@ describe("full-pool actual question solver", () => {
   });
   it("distinguishes a bounded search from proven insufficiency", () => {
     const r = solveQuestionSelection({
-      candidates: [c("a", "a", "short_answer")],
-      count: 1,
+      candidates: [
+        c("a1", "a", "short_answer"),
+        c("a2", "a", "short_answer", "응용"),
+        c("b", "b", "short_answer"),
+      ],
+      count: 2,
+      difficulty: { 기본: 1, 응용: 1 },
+      random: () => 0.99,
       maxNodes: 0,
     });
     expect(r.status).toBe("search_limit");

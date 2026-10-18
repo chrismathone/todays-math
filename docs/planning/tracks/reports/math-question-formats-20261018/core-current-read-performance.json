@@ -1,0 +1,289 @@
+{
+  "currentReadOnly": {
+    "at": "2026-10-18T06:47:47.742Z",
+    "sharedWrites": 0,
+    "schemaPhase": "before question DDL; key grouping below uses protected preview manifest only",
+    "limitations": [
+      "Metadata timings are metadata-query timings, not endpoint p95.",
+      "First observed execution is not a database cold-cache measurement.",
+      "New key-index plans and actual post-DDL application p95 remain a Gate2 staging check."
+    ],
+    "sql": "SELECT p.id::text AS id,p.unit_id::text AS \"unitId\",p.family_key AS \"familyKey\",p.difficulty,p.source,p.source_material_id::text AS \"sourceMaterialId\",p.question_type AS \"questionType\",p.problem_type AS \"problemType\",p.answer,p.pool,p.review_status AS \"reviewStatus\",p.direct_use_allowed AS \"directUseAllowed\",p.created_at AS \"createdAt\",p.question_number AS \"questionNumber\" FROM public.problem p WHERE p.pool='shared' AND p.review_status='approved' AND p.direct_use_allowed=true AND p.answer <> '(정답 없음)'",
+    "metadataRuns": {
+      "1": {
+        "samples": [
+          {
+            "ms": 1231.8495410000005,
+            "rows": 115575,
+            "jsonBytes": 48503254
+          },
+          {
+            "ms": 1223.898959,
+            "rows": 115575,
+            "jsonBytes": 48503254
+          },
+          {
+            "ms": 1238.741500000001,
+            "rows": 115575,
+            "jsonBytes": 48503254
+          },
+          {
+            "ms": 1232.140207999999,
+            "rows": 115575,
+            "jsonBytes": 48503254
+          },
+          {
+            "ms": 1181.931458000001,
+            "rows": 115575,
+            "jsonBytes": 48503254
+          }
+        ],
+        "p50Ms": 1231.8495410000005,
+        "p95Ms": 1238.741500000001,
+        "scope": "Independent read-only transactions; full eligible metadata scan"
+      },
+      "5": {
+        "samples": [
+          {
+            "ms": 3112.42375,
+            "rows": 115575,
+            "jsonBytes": 48503254
+          },
+          {
+            "ms": 2962.9301250000008,
+            "rows": 115575,
+            "jsonBytes": 48503254
+          },
+          {
+            "ms": 5180.846625000002,
+            "rows": 115575,
+            "jsonBytes": 48503254
+          },
+          {
+            "ms": 4484.278208,
+            "rows": 115575,
+            "jsonBytes": 48503254
+          },
+          {
+            "ms": 2118.902084000001,
+            "rows": 115575,
+            "jsonBytes": 48503254
+          }
+        ],
+        "p50Ms": 3112.42375,
+        "p95Ms": 5180.846625000002,
+        "scope": "Independent read-only transactions; full eligible metadata scan"
+      }
+    },
+    "explain": {
+      "global": [
+        {
+          "Plan": {
+            "Node Type": "Seq Scan",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Relation Name": "problem",
+            "Alias": "p",
+            "Startup Cost": 0,
+            "Total Cost": 17564.59,
+            "Plan Rows": 115440,
+            "Plan Width": 195,
+            "Actual Startup Time": 0.019,
+            "Actual Total Time": 136.528,
+            "Actual Rows": 115575,
+            "Actual Loops": 1,
+            "Filter": "(direct_use_allowed AND (answer <> '(정답 없음)'::text) AND (pool = 'shared'::problem_pool) AND (review_status = 'approved'::review_status))",
+            "Rows Removed by Filter": 2445,
+            "Shared Hit Blocks": 13771,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning": {
+            "Shared Hit Blocks": 0,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.196,
+          "Triggers": [],
+          "Execution Time": 145.125
+        }
+      ],
+      "unit": [
+        {
+          "Plan": {
+            "Node Type": "Index Scan",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Scan Direction": "Forward",
+            "Index Name": "problem_pool_unit_id_review_status_direct_use_allowed_idx",
+            "Relation Name": "problem",
+            "Alias": "p",
+            "Startup Cost": 0.42,
+            "Total Cost": 423.15,
+            "Plan Rows": 727,
+            "Plan Width": 195,
+            "Actual Startup Time": 0.1,
+            "Actual Total Time": 1.341,
+            "Actual Rows": 773,
+            "Actual Loops": 1,
+            "Index Cond": "((pool = 'shared'::problem_pool) AND (unit_id = '172e11d6-b5c4-4f3f-8b4f-dacc43fb4110'::uuid) AND (review_status = 'approved'::review_status) AND (direct_use_allowed = true))",
+            "Rows Removed by Index Recheck": 0,
+            "Filter": "(answer <> '(정답 없음)'::text)",
+            "Rows Removed by Filter": 0,
+            "Shared Hit Blocks": 345,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning": {
+            "Shared Hit Blocks": 0,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.207,
+          "Triggers": [],
+          "Execution Time": 1.432
+        }
+      ],
+      "existingSourceCount": [
+        {
+          "Plan": {
+            "Node Type": "Aggregate",
+            "Strategy": "Hashed",
+            "Partial Mode": "Simple",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 15832.99,
+            "Total Cost": 15833.04,
+            "Plan Rows": 5,
+            "Plan Width": 12,
+            "Actual Startup Time": 101.572,
+            "Actual Total Time": 101.574,
+            "Actual Rows": 5,
+            "Actual Loops": 1,
+            "Group Key": ["source"],
+            "Planned Partitions": 0,
+            "HashAgg Batches": 1,
+            "Peak Memory Usage": 24,
+            "Disk Usage": 0,
+            "Shared Hit Blocks": 13771,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Seq Scan",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Relation Name": "problem",
+                "Alias": "problem",
+                "Startup Cost": 0,
+                "Total Cost": 15243.85,
+                "Plan Rows": 117828,
+                "Plan Width": 4,
+                "Actual Startup Time": 0.013,
+                "Actual Total Time": 73.544,
+                "Actual Rows": 118020,
+                "Actual Loops": 1,
+                "Filter": "(pool = 'shared'::problem_pool)",
+                "Rows Removed by Filter": 0,
+                "Shared Hit Blocks": 13771,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 3,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.163,
+          "Triggers": [],
+          "Execution Time": 101.62
+        }
+      ]
+    },
+    "pipeline": {
+      "physicalEligibleRows": 115575,
+      "classifiedQuestionPreview": 67799,
+      "undecidedContentRows": 53752,
+      "unverifiedEligibleRows": 43,
+      "metadataJsonBytes": 48503254,
+      "contentJsonBytes": 15351336,
+      "svgBytesInPoolScan": 0,
+      "scope": "Actual metadata+ambiguous-content read and exact classifier, preview manifest grouping in JS",
+      "elapsedMs": 4653.376
+    },
+    "processMaxRssBytes": 1810235392
+  },
+  "freshProjectionOnly": {
+    "at": "2026-10-18T06:57:33.803Z",
+    "mode": "Fresh projection-only process; actual current metadata/content reads, protected manifest keys simulated in memory; no DDL or shared writes",
+    "physicalHeldRows": 118020,
+    "heldQuestionPreview": 70274,
+    "availableClassifiedQuestionPreview": 67799,
+    "unverifiedEligibleRows": 43,
+    "metadataScans": 1,
+    "identicalDefaultFacetScopes": 4,
+    "undecidedContentRows": 6355,
+    "metadataJsonBytes": 42393853,
+    "contentJsonBytes": 2063004,
+    "svgBytesInPoolScan": 0,
+    "elapsedMs": 1795.9149590000002,
+    "processMaxRssBytes": 936869888,
+    "limitations": [
+      "Single observed projection, not endpoint p95.",
+      "Same-scope memo is covered by runtime tests; this fresh process measures its one-scan workload.",
+      "Production role ACL and post-DDL three-request endpoint p95 remain coordinator Gate2 checks."
+    ]
+  }
+}
