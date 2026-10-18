@@ -1,0 +1,34 @@
+{
+  "reviewer": "Claude",
+  "stage": "preliminary-not-approval",
+  "scope": "bounded-reinforcement review-before-backfill",
+  "input": ".qa-artifacts/math-question-formats-20261018/content-worker-evidence/bounded-preparation/candidates-private.json (root, private; 146 rows, 52 families)",
+  "method": "Hand re-solve of every stem/answer/solution/MC position; natives checked against answer, model solution and 6-point rubric; all 28 elem5 number-line SVGs decoded (data-label ticks, filled vs hollow endpoint circles, red segment extent); mid 2-2 f15 region figure and f16 grid figure decoded.",
+  "result": "No wrong answer, no non-unique MC answer, no figure/answer mismatch found.",
+  "findings": [
+    {
+      "severity": "should-fix",
+      "family": "mid:2-2|경우의 수|11",
+      "text": "$0$부터 $5$까지의 자연수가 각각 하나씩 적힌 $6$장의 카드",
+      "issue": "0 is not a natural number; the stem calls 0 a 자연수. Same template wording exists in 8 current rows of the family (before-private).",
+      "disposition": "Root: generator noun fixed to 숫자 by R3 worker; final candidates regenerated; existing 8 rows handled by a separate wording-only exact-ID artifact if safe."
+    },
+    {
+      "severity": "minor",
+      "family": "mid:manual-20261018|무리수와 실수|R01",
+      "text": "$\\sqrt{8}$는 / $\\sqrt{10}$는",
+      "issue": "Particle should be 은 (루트 팔/루트 십). Same pattern is common in the bank; cosmetic, not blocking."
+    },
+    {
+      "severity": "observation",
+      "family": "elem:초5 2-1-1|21, 2-1-2|21",
+      "issue": "One-sided ranges are drawn as a segment to the axis end without an arrow, as in the original generator; options keep the answer unique."
+    },
+    {
+      "severity": "observation",
+      "family": "elem:초4|2-2-3 정삼각형의 성질|31",
+      "issue": "Distractor 61 cm is an implausible value; harmless."
+    }
+  ],
+  "notClaimed": "Final approval, physical print, official curriculum fit, learning effect, correctness of the wider bank."
+}
