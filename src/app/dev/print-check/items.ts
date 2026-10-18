@@ -125,9 +125,10 @@ export const ITEMS: PrintCheckItem[] = [
     evidence: [
       "docs/planning/tracks/math-question-formats-20261018.md §6·7",
       "docs/planning/tracks/reports/math-question-formats-20261018/claude-plan-review-r1.md C3·C6",
+      "docs/planning/tracks/reports/math-question-formats-20261018/bounded-reinforcement/report.md",
     ],
     scale:
-      "최대 96새 내용 · 174표현, 최종 후보 수는 별도 원장, 물리 출력 미검수",
+      "현재 검토 후보 94새 내용 · 146표현(상한 96·174), 유한 영역 중복 2내용 보류, 물리 출력 미검수",
     needs:
       "별도 Claude 실행 검토를 받을 최종 보강 후보 manifest 전체의 학생·교사 출력",
     status: "대기",
