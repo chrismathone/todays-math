@@ -141,6 +141,8 @@ describe("exam study generation, review and common output", () => {
       draftActions: false,
       fixedComposition: true,
       answers: false,
+      printOptions: { template: "workbook", showAnswers: false },
+      printMeta: { grade: "중1", academyName: "기출 대비 자작 연습" },
     });
     expect(editor.props!.selected[0]!.questionId).toBeUndefined();
     await act(() => editor.props!.beforeOutput!("pdf"));

@@ -85,9 +85,11 @@ export function ExamPracticeWorkspace({
   const [title, setTitle] = useState("기출 대비 범위 연습");
   const [printOptions, setPrintOptions] = useState<PrintOptions>(() => ({
     ...DEFAULT_PRINT_OPTIONS,
+    template: "workbook",
   }));
   const [printMeta, setPrintMeta] = useState<PrintMeta>(() => ({
     ...DEFAULT_PRINT_META,
+    academyName: "기출 대비 자작 연습",
   }));
   const generation = useRef<AbortController | null>(null);
   const sequence = useRef(0);
@@ -240,6 +242,14 @@ export function ExamPracticeWorkspace({
         `${conditions.mode === "profile" && profile ? `${profile.schoolName} · ` : ""}${conditions.course} 범위 연습`,
       );
       setPrintOptions((previous) => ({ ...previous, showAnswers: false }));
+      setPrintMeta((previous) => ({
+        ...previous,
+        schoolName:
+          conditions.mode === "profile" && profile
+            ? profile.schoolName
+            : "자작 범위 연습",
+        grade: conditions.course,
+      }));
     } catch (cause: unknown) {
       if (current === sequence.current && !controller.signal.aborted)
         setMessage(
@@ -613,7 +623,9 @@ export function ExamPracticeWorkspace({
                 type="number"
                 min={1}
                 max={30}
-                value={Number.isFinite(conditions.count) ? conditions.count : ""}
+                value={
+                  Number.isFinite(conditions.count) ? conditions.count : ""
+                }
                 onChange={(event) =>
                   change({ count: event.target.valueAsNumber })
                 }
@@ -625,7 +637,11 @@ export function ExamPracticeWorkspace({
                 type="number"
                 min={1}
                 max={30}
-                value={Number.isFinite(conditions.maxPerFamily) ? conditions.maxPerFamily : ""}
+                value={
+                  Number.isFinite(conditions.maxPerFamily)
+                    ? conditions.maxPerFamily
+                    : ""
+                }
                 onChange={(event) =>
                   change({ maxPerFamily: event.target.valueAsNumber })
                 }
