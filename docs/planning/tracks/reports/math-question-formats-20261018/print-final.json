@@ -1,0 +1,292 @@
+{
+  "checkedAt": "2026-10-18T08:28:08.603Z",
+  "scope": "Actual newly stored rows rendered through TestPrint using assigned database problem codes; all representations deliberately rendered for QA, not a production selection sample.",
+  "units": 19,
+  "storedPhysicalRepresentations": 146,
+  "studentQuestionItems": 146,
+  "teacherSolutionItems": 146,
+  "pdfFiles": 38,
+  "a4Pages": 107,
+  "privateFixtureSha256": "0f7555ea121feac587a2d82e2c67ccc466efb9ff6b55048535215c74eebdb4aa",
+  "captureSummarySha256": "f84d19313594aad6f85172ecdc1b6a18f16700c75ad07a6661dcc1833b592051",
+  "popplerSummarySha256": "00294f9a7e59514137f187b1d23ac59de0baa9c9cef1b9b1bbb92d49143fdc33",
+  "renderer": "Poppler26.10.0",
+  "allPagesRendered": true,
+  "automatedLayoutAndTeacherMarkerChecks": {
+    "allPages": 107,
+    "clippedQuestionSolutionOrSvgItems": 0,
+    "renderErrors": 0,
+    "failedResponses": 0,
+    "studentTeacherOnlyMarkerLeaks": 0,
+    "teacherMarkerChecks": 38
+  },
+  "visualReviewScope": "Representative page PNGs only; not a claim of manual rereading of all 107 pages.",
+  "reviewedPages": [
+    {
+      "unitId": "c8d1b160-ffb6-4da1-9c54-a3522ffcf134",
+      "mode": "answers",
+      "page": 1,
+      "observed": "Native written answers wrap in the existing quick-answer grid without clipping; full solutions follow."
+    },
+    {
+      "unitId": "d32b3290-b45a-4945-ab3e-7797fba24935",
+      "mode": "questions",
+      "page": 1,
+      "observed": "Stored problem codes, number-line endpoints and answer choices are legible."
+    },
+    {
+      "unitId": "7d66ac49-0f88-4815-9bb2-abadd3ccb626",
+      "mode": "questions",
+      "page": 1,
+      "observed": "Multiple-choice and short-answer representations retain matching stored codes and their actual question bodies."
+    },
+    {
+      "unitId": "7d66ac49-0f88-4815-9bb2-abadd3ccb626",
+      "mode": "questions",
+      "page": 4,
+      "observed": "Zero-inclusive card labels say 숫자; positive formed three-digit natural numbers remain the requested task."
+    }
+  ],
+  "physicalPrinterVerified": false,
+  "sourceDigests": {
+    "src/components/print/TestPrint.tsx": "968e01e2fc53ff8d31335c0ba97c9c2c208ad53687f0269b25f5dfda29752639",
+    "src/components/print/PrintAnswerKeyPage.tsx": "3420ebe3e85ff6eb89f1149e83c77a5e4d1985c96568f1b85fd7e0cab5089afc",
+    "src/components/print/templates/JaseupTemplate.tsx": "9157c65be4fa38153250714890495f89ddc8cd1b95dd488028432a7b8cfd49a1",
+    "src/components/print/PaperProblemView.tsx": "3765c009b2d30449dbef7f35a4efff7175d0f126a81fa4468b427dca9e9570de",
+    "src/components/print/TestPrint.module.css": "a3bae10413f08de167fc3e70fd42d99a2b505347a2f303e39d532606a386f45f",
+    "src/components/print/tokens.ts": "cc82db4c49854cd549d4535fa393285c0abd14c57035fe7e45eaf62f3ca6e27d",
+    "src/app/fonts.ts": "91ac62e201053c633c88b813cc5865a41ca2f996de43b2606d0dcb76e4cc432d",
+    "src/app/globals.css": "f2748025ff55b02e6d2312d0ef07663214e1e78b05d6793e49e66d0c9e2066d5",
+    "scripts/qa/bank/question-content-paper.tsx": "3182d5c150570c9aab2069f8e729029a7d12181a83ee0f7e3f018a0d4f78602d"
+  },
+  "pdfs": [
+    {
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "mode": "answers",
+      "pages": 2,
+      "pdfSha256": "7cee81e8a97870ec34a2ebeb98def66491ab8fcec60e7328c3dc0bffe757d479"
+    },
+    {
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "mode": "questions",
+      "pages": 7,
+      "pdfSha256": "29315fe4c52036a8679302d2f03b113fcb4db6e09c50bb0581e8e4edd3b0a7d8"
+    },
+    {
+      "unitId": "0a069c2f-244d-4f9e-832f-3e0f8969ba21",
+      "mode": "answers",
+      "pages": 3,
+      "pdfSha256": "adfee88f5692732bf7a3416b563c5eeed7a9b9bc448b28fc4d6d5ebf6fbaf7d4"
+    },
+    {
+      "unitId": "0a069c2f-244d-4f9e-832f-3e0f8969ba21",
+      "mode": "questions",
+      "pages": 5,
+      "pdfSha256": "011a9b5215206589b8060d889ad5fbb305b63e25c2dca72b6d93886feb7448c0"
+    },
+    {
+      "unitId": "1f3c89f5-2b6e-4b4b-b437-db2119d152c4",
+      "mode": "answers",
+      "pages": 1,
+      "pdfSha256": "71ca4c4b0befadfdab19721ad80ffd25c09f6bc2d8e38a5a3ffc3caf4d753749"
+    },
+    {
+      "unitId": "1f3c89f5-2b6e-4b4b-b437-db2119d152c4",
+      "mode": "questions",
+      "pages": 2,
+      "pdfSha256": "e8a3755d058ce628c37ef81246dd41edaf0f88fe32d1b074e6a901b282372bb4"
+    },
+    {
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "mode": "answers",
+      "pages": 1,
+      "pdfSha256": "7495dbee3a799e0c0fc92123d48065618eeb6829e487958aadb8b19831b6103b"
+    },
+    {
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "mode": "questions",
+      "pages": 3,
+      "pdfSha256": "ece62c97fa7d45eb61153e8c694f6f2048826f6f820af9dcd596894f8e2448a5"
+    },
+    {
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "mode": "answers",
+      "pages": 2,
+      "pdfSha256": "452bf54b53f6482d96fcbea56e54055e01b4bd7962a7ce59dc718443870765ef"
+    },
+    {
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "mode": "questions",
+      "pages": 6,
+      "pdfSha256": "94a37b8aed5b5b02659a23aea6cc86c38a7614c34c0cbbe205c60c59b457bf41"
+    },
+    {
+      "unitId": "529d0cfe-db6c-418b-b9d5-bf5bc177f331",
+      "mode": "answers",
+      "pages": 1,
+      "pdfSha256": "bac7450b2e95cc2f96b83f304aa6b6181bf31ddb2f127059fd784ddae6de6f13"
+    },
+    {
+      "unitId": "529d0cfe-db6c-418b-b9d5-bf5bc177f331",
+      "mode": "questions",
+      "pages": 2,
+      "pdfSha256": "5867c0bb286b5d0436d69d244ba50fb22af510f53c78951d04eea6b463853f43"
+    },
+    {
+      "unitId": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "mode": "answers",
+      "pages": 3,
+      "pdfSha256": "6a5ecf6ecd543c46729530b0358541664891401df76a96d792d76e1f7efc5cf4"
+    },
+    {
+      "unitId": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "mode": "questions",
+      "pages": 7,
+      "pdfSha256": "6cd6afb104726804866052ad4edbfe2521bd8f66db942e49f798b35da334af19"
+    },
+    {
+      "unitId": "7d66ac49-0f88-4815-9bb2-abadd3ccb626",
+      "mode": "answers",
+      "pages": 3,
+      "pdfSha256": "c8c46e8f9e4e7a53523e5f86cea2b191ff1c41c92a4b0bddeb94a4d6b814df6a"
+    },
+    {
+      "unitId": "7d66ac49-0f88-4815-9bb2-abadd3ccb626",
+      "mode": "questions",
+      "pages": 11,
+      "pdfSha256": "756923d4a8f68e24449cd329de6850cd9f4f584e0780568891b46b9c29d344b8"
+    },
+    {
+      "unitId": "8c976c58-49fe-4a11-acca-cc2e10eb9f2c",
+      "mode": "answers",
+      "pages": 1,
+      "pdfSha256": "84bf2fa261d3d78db31fd37556a8136784b4b0c79958abdd5ac1af544ca5deb0"
+    },
+    {
+      "unitId": "8c976c58-49fe-4a11-acca-cc2e10eb9f2c",
+      "mode": "questions",
+      "pages": 3,
+      "pdfSha256": "2fd947475e1b6ca7666e05f644c5ce9e13719f13d3f195c7b19b1de504271a34"
+    },
+    {
+      "unitId": "8f8aa797-4aae-4d9a-a893-842338f974c4",
+      "mode": "answers",
+      "pages": 1,
+      "pdfSha256": "4d436eb951dbd92ecf460bca42a272e351d4278df924f8ccadfb136fcb2a2dcb"
+    },
+    {
+      "unitId": "8f8aa797-4aae-4d9a-a893-842338f974c4",
+      "mode": "questions",
+      "pages": 2,
+      "pdfSha256": "c34526ae4c677526c00c77cc833551ffa0879fdb4cd1cbb05bcd3195e91b1716"
+    },
+    {
+      "unitId": "9acad796-0f05-47a2-82a3-a8413500b19c",
+      "mode": "answers",
+      "pages": 1,
+      "pdfSha256": "dec509dd0c3d8cb88be5cd78e49bf4d9e2f7f35adfba883c18f899d3fc34ba50"
+    },
+    {
+      "unitId": "9acad796-0f05-47a2-82a3-a8413500b19c",
+      "mode": "questions",
+      "pages": 1,
+      "pdfSha256": "83b4bd3e3db7a4a64b4031767e0f453466573d06e28e19eb2d0aab8b55187627"
+    },
+    {
+      "unitId": "abb7989e-15ae-4dec-9ac0-983dee08a700",
+      "mode": "answers",
+      "pages": 1,
+      "pdfSha256": "11433a02c5a0d29377e537226b93b241aad261ef403cd98d78ca518bc53bd63a"
+    },
+    {
+      "unitId": "abb7989e-15ae-4dec-9ac0-983dee08a700",
+      "mode": "questions",
+      "pages": 4,
+      "pdfSha256": "2f335d7a00b5dfc50c9145198e6c5d888258de79c3b72d149069e1e3c3e130cb"
+    },
+    {
+      "unitId": "bd419f09-50f5-4e63-a83b-9cbb445c766b",
+      "mode": "answers",
+      "pages": 1,
+      "pdfSha256": "a13d24cc2beeade419918e1e28cc3c1f9f51538956ad2419fd6cf0723551a0d1"
+    },
+    {
+      "unitId": "bd419f09-50f5-4e63-a83b-9cbb445c766b",
+      "mode": "questions",
+      "pages": 1,
+      "pdfSha256": "7751895011dcef293754590e4df6ba0a0a64d3e29ba70653e9f7d17d45435abd"
+    },
+    {
+      "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+      "mode": "answers",
+      "pages": 1,
+      "pdfSha256": "9eb1f26e248bae71421694c6a9133b019f7cfa2683a3e601acfffd9b7ca3127e"
+    },
+    {
+      "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+      "mode": "questions",
+      "pages": 3,
+      "pdfSha256": "a67edc96ff4492e8a2ac179803d4fbfc0d8b482a6df78fbe74aaa6b445107935"
+    },
+    {
+      "unitId": "c8bfe071-2b49-44ec-9f0f-6085677a0c7e",
+      "mode": "answers",
+      "pages": 1,
+      "pdfSha256": "5170c10456bf89f447e807320540413df793b7351aefea0e4d94663286d2053f"
+    },
+    {
+      "unitId": "c8bfe071-2b49-44ec-9f0f-6085677a0c7e",
+      "mode": "questions",
+      "pages": 2,
+      "pdfSha256": "138405cfca6ae6eabcc02986798619ed660fee7bfb1a8afef225fc7a2b204ee3"
+    },
+    {
+      "unitId": "c8d1b160-ffb6-4da1-9c54-a3522ffcf134",
+      "mode": "answers",
+      "pages": 2,
+      "pdfSha256": "ff9b3cf00876e5f7116ce291595381a16ba5bcc379e2bad403cb2ef063e0daee"
+    },
+    {
+      "unitId": "c8d1b160-ffb6-4da1-9c54-a3522ffcf134",
+      "mode": "questions",
+      "pages": 6,
+      "pdfSha256": "bf35ae0beb78d705769b60b4ecffdc7c0b55b4a95b7363455d74b34efb134ceb"
+    },
+    {
+      "unitId": "ca9bdd29-8cf2-4c5e-8b51-8870b0a7d9f2",
+      "mode": "answers",
+      "pages": 1,
+      "pdfSha256": "1c7355619bbda101a3c97e9ef931277de71083b87f8e59b4fadbcd81fd986737"
+    },
+    {
+      "unitId": "ca9bdd29-8cf2-4c5e-8b51-8870b0a7d9f2",
+      "mode": "questions",
+      "pages": 3,
+      "pdfSha256": "46e224496d3d8ca884b0a8917d38b4a7dabe80699c4feab8021ad9acc25d8229"
+    },
+    {
+      "unitId": "d32b3290-b45a-4945-ab3e-7797fba24935",
+      "mode": "answers",
+      "pages": 1,
+      "pdfSha256": "6f1de32f3c553f124675e16fb974fd49738d3863c6b8075d06310428c959b212"
+    },
+    {
+      "unitId": "d32b3290-b45a-4945-ab3e-7797fba24935",
+      "mode": "questions",
+      "pages": 3,
+      "pdfSha256": "b42a07cd81f8a9db3054c9204b68b1f7c9d108c180844d1da82f73984e715fec"
+    },
+    {
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "mode": "answers",
+      "pages": 3,
+      "pdfSha256": "1232c870e333289c2e884ef9e975c1be08aa6f651fd3387a7040d857bc5e166a"
+    },
+    {
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "mode": "questions",
+      "pages": 6,
+      "pdfSha256": "399f9ce869e0d829b1efb68abc9eec98c5cd7deea591ffb56a564cb0df0a8daf"
+    }
+  ]
+}
