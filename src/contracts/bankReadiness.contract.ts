@@ -13,6 +13,7 @@
 import { z } from "zod";
 
 import { uuidSchema } from "./common.contract";
+import { questionSelectionSchema } from "./questionFormats.contract";
 
 /** 출제 못 하는 까닭의 열쇠 — `problemEligibility.ts` 의 `PROBLEM_INELIGIBLE_CODES` 와 같은 목록(시험이 지킨다). */
 export const BANK_INELIGIBLE_CODES = [
@@ -48,7 +49,28 @@ const idArray = (min: number) =>
 
 // ── 출력 직전 재검증 (`POST …/problems/check`) ─────────────────────────────
 
-export const bankCheckRequestSchema = z.strictObject({ ids: idArray(1) });
+export const bankCheckRequestSchema = z
+  .strictObject({
+    ids: idArray(1),
+    selections: z
+      .array(questionSelectionSchema)
+      .min(1)
+      .max(BANK_CHECK_LIMIT)
+      .optional(),
+  })
+  .superRefine(({ ids, selections }, ctx) => {
+    if (!selections) return;
+    const expected = new Set(ids);
+    if (
+      selections.length !== expected.size ||
+      new Set(selections.map((s) => s.problemId)).size !== selections.length ||
+      selections.some((s) => !expected.has(s.problemId))
+    )
+      ctx.addIssue({
+        code: "custom",
+        message: "선택한 실제 문항과 확인할 문항이 같아야 합니다.",
+      });
+  });
 export type BankCheckRequest = z.infer<typeof bankCheckRequestSchema>;
 
 export const BANK_CHECK_STATES = ["eligible", "ineligible", "missing"] as const;

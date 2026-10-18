@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { answerIsChoiceNumber } from "./provenance";
 
 export interface QuestionPairRow {
   id: string;
@@ -98,6 +99,9 @@ export function proveQuestionPair(
   const fail = (reason: string): QuestionPairProof => ({ ok: false, reason });
   if (rows.length !== 2 || rows[0].id === rows[1].id)
     return fail("pairCardinality");
+  for (const field of QUESTION_IDENTITY_FIELDS)
+    if (rows.some((row) => row[field] === undefined))
+      return fail(`missingEvidence:${field}`);
   const parsed = rows.map((row) => parseQuestionExternalId(row.externalId));
   if (parsed.some((p) => p === null)) return fail("unknownExternalId");
   if (JSON.stringify(parsed[0]!.tuple) !== JSON.stringify(parsed[1]!.tuple))
@@ -133,7 +137,7 @@ export function proveQuestionPair(
     /^\n① ([^\n]+)\n② ([^\n]+)\n③ ([^\n]+)\n④ ([^\n]+)\n⑤ ([^\n]+)$/.exec(tail);
   if (!choices) return fail("choiceContract");
   const answer = mc.answer.trim();
-  if (!/^[①②③④⑤]$/.test(answer) || /^[①②③④⑤]$/.test(short.answer.trim()))
+  if (!/^[①②③④⑤]$/.test(answer) || answerIsChoiceNumber(short.answer))
     return fail("answerContract");
   const index = "①②③④⑤".indexOf(answer) + 1;
   if (choices[index].trim() !== short.answer.trim())

@@ -32,6 +32,13 @@ import { PROBLEM_BANK_ORDER_BY } from "@/lib/problem/problemOrder";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { serializeProblem } from "@/lib/serializers";
 import { withProblemSourceReferences } from "@/lib/problem/sourceReference";
+import {
+  loadQuestionCandidates,
+  projectQuestionCandidates,
+  questionReadMetadata,
+} from "@/lib/problem/questionProjection";
+import { withQuestionMetadata } from "@/lib/problem/questionQueries";
+import { problemEligibleWhere } from "@/lib/problemEligibility";
 import { getSessionUser } from "@/lib/session";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
@@ -121,6 +128,8 @@ async function handleGet(request: NextRequest) {
     // 🔴 `format` 은 **컬럼이 아니다** — 아래에서 따로 푼다. 남은 `filters` 는 그대로
     //    Prisma 에 펼쳐지므로, 여기서 안 빼면 Prisma 가 모르는 필드로 던진다.
     format,
+    identity,
+    availableFormat,
     ...filters
   } = parsed.data;
   // 단원 범위(2026-08-19 원장님 지시) — 화면은 **id 만** 보내고 순서는 여기서 읽는다.
@@ -244,6 +253,59 @@ async function handleGet(request: NextRequest) {
     ...answerWhere,
     ...searchWhere,
   ];
+
+  if (availableFormat && identity !== "question")
+    return Response.json(
+      { error: "형식 가용 필터에는 문항 보기가 필요합니다." },
+      { status: 400 },
+    );
+  if (identity === "question") {
+    const payload = await db.$transaction(
+      async (tx) => {
+        const inspection = filters.reviewStatus !== undefined;
+        const base = {
+          AND: [...baseAnd, ...(!inspection ? [problemEligibleWhere()] : [])],
+        };
+        const candidates = await loadQuestionCandidates(
+          base,
+          PROBLEM_BANK_ORDER_BY,
+          tx,
+        );
+        const groups = projectQuestionCandidates(candidates, {
+          format: availableFormat ?? format,
+          availableOnly: !inspection,
+        });
+        const currentPage = Math.min(
+          page,
+          Math.max(1, Math.ceil(groups.length / pageSize)),
+        );
+        const ids = groups
+          .slice((currentPage - 1) * pageSize, currentPage * pageSize)
+          .map((g) => g.representative.id);
+        const rows = ids.length
+          ? await tx.problem.findMany({
+              where: { AND: [base, { id: { in: ids } }] },
+            })
+          : [];
+        const index = new Map(ids.map((id, i) => [id, i]));
+        rows.sort((a, b) => index.get(a.id)! - index.get(b.id)!);
+        const annotated = await withQuestionMetadata(rows, tx, {
+          AND: baseAnd,
+        });
+        return {
+          data: (await withProblemSourceReferences(annotated)).map((row) => ({
+            ...serializeProblem(row),
+            questionId: row.questionId,
+            questionFormats: row.questionFormats,
+          })),
+          meta: { page: currentPage, pageSize, total: groups.length },
+          ...questionReadMetadata(url.searchParams),
+        };
+      },
+      { isolationLevel: "RepeatableRead", timeout: 20000 },
+    );
+    return jsonOk(problemListResponseSchema, payload);
+  }
 
   const formatIds = await findProblemIdsByFormat(
     format,

@@ -35,9 +35,11 @@ export async function bankSourcesResponse(
     if (post && !params.has("view"))
       throw new UnifiedBankQueryError("보기를 정해 주세요.");
     const view = params.get("view");
+    if (params.has("identity") && params.get("identity") !== "question")
+      throw new UnifiedBankQueryError("알 수 없는 문항 보기입니다.");
     return Response.json(
       view === null
-        ? await loadBankSourceCounts()
+        ? await loadBankSourceCounts(params)
         : view === "materials"
           ? await loadBankSourceMaterials(params, context)
           : await loadBankSourceAvailability(params, context),

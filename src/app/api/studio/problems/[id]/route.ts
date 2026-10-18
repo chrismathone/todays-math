@@ -3,6 +3,7 @@ import { idParamSchema } from "@/contracts/common.contract";
 import { problemVisibleWhere } from "@/lib/problemPool";
 import { UNIFIED_PROBLEM_SELECT, toBankProblem } from "@/lib/unifiedPreview";
 import { withProblemSourceReferences } from "@/lib/problem/sourceReference";
+import { withQuestionMetadata } from "@/lib/problem/questionQueries";
 import {
   authorizeStudio,
   STUDIO_HEADERS as headers,
@@ -30,9 +31,17 @@ async function handleGet(
       { error: "조회 가능한 문항을 찾을 수 없습니다." },
       { status: 404, headers },
     );
+  const identity = new URL(request.url).searchParams.get("identity");
+  if (identity !== null && identity !== "question")
+    return Response.json(
+      { error: "알 수 없는 문항 보기입니다." },
+      { status: 400, headers },
+    );
+  const rows =
+    identity === "question" ? await withQuestionMetadata([row]) : [row];
   return Response.json(
     {
-      data: toBankProblem((await withProblemSourceReferences([row]))[0]!),
+      data: toBankProblem((await withProblemSourceReferences(rows))[0]!),
     },
     { headers },
   );

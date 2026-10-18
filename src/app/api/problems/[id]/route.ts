@@ -28,6 +28,7 @@ import { requireAccessibleProblem } from "@/lib/ownership";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { serializeProblem } from "@/lib/serializers";
 import { withProblemSourceReferences } from "@/lib/problem/sourceReference";
+import { withQuestionMetadata } from "@/lib/problem/questionQueries";
 import { getSessionUser } from "@/lib/session";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
@@ -52,6 +53,24 @@ async function handleGet(request: NextRequest, { params }: RouteContext) {
 
   const accessible = await requireAccessibleProblem(id, session.id);
   if (!accessible.ok) return accessible.response;
+
+  const identity = new URL(request.url).searchParams.get("identity");
+  if (identity !== null && identity !== "question")
+    return Response.json(
+      { error: "알 수 없는 문항 보기입니다." },
+      { status: 400 },
+    );
+  if (identity === "question") {
+    const rows = await withQuestionMetadata([accessible.data]);
+    const row = (await withProblemSourceReferences(rows))[0]!;
+    return jsonOk(problemResponseSchema, {
+      data: {
+        ...serializeProblem(row),
+        questionId: row.questionId,
+        questionFormats: row.questionFormats,
+      },
+    });
+  }
 
   return jsonOk(problemResponseSchema, {
     data: serializeProblem(
