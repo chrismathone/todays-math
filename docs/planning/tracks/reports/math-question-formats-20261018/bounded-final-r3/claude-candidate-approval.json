@@ -1,0 +1,25 @@
+{
+  "reviewer": "Claude",
+  "verdict": "approved",
+  "kind": "bounded-family-reinforcement",
+  "planSha256": "50c525785cae16825d23d7bd55de81f7a779fa54cd98e8933d470a126acccc61",
+  "sourceCommit": "f1a7e472300547f15fee20ab9ce046f1a3219604",
+  "sourceDigestsSha256": "f615adea52e71fbac29499880ffeb70a4a65fb199b77963b4a8a2853cf30d873",
+  "manifestSha256": "e2fb1422fbeb22f45aeeb5aeef66118a735c5cc878aa776cd63a56e004ea11da",
+  "beforeLedgerSha256": "465939368696460f5e9c82c100f43edb6984551cac1380c936bdab76207cf9cd",
+  "prewriteSha256": "a479c6fc3f002e9154c027703c7ef819bc530b3047b168d5cad408e886009b83",
+  "reviewNotes": {
+    "failure": "The R2 apply of manifest f3611835 passed verifyApproval and opened the maintenance transaction. Its first INSERT then failed with PostgreSQL 42804: column difficulty is of type difficulty, but Prisma bound $6 as text. The whole transaction rolled back. bounded-final-r2/results.jsonl records only started and failed. Root's read-only lookup of all 438 reserved UUIDs (R1 + R2 + R3) found 0 rows (no-prior-inserts.json at 5393ed680).",
+    "fix": "f1a7e4723 changes only scripts/import/bounded-question-reinforcement.ts. It moves the INSERT text into one BOUNDED_INSERT_SQL constant and the 12 parameters into boundedInsertParameters, keeping the same values in the same order. The only SQL change is $6 to $6::public.difficulty. In prisma/schema.prisma, Difficulty maps to the difficulty enum. problem_type, question_type and figure_source are varchar. source, pool, review_status and solution_source take the untyped SQL literals 'manual', 'shared', 'approved' and 'none', which PostgreSQL types from the column. The id and unit_id casts, the CAS, the reference stop, the journal and the approval gate are unchanged.",
+    "tests": "In my checkout at f1a7e4723, the three scripts/qa/bank tests pass (3 files, 21 tests). The PGlite fixture now declares the 5 real enum types. Its explicit PREPARE with $6 typed as text rejects an uncast INSERT, and a PREPARE of the real BOUNDED_INSERT_SQL with all-text parameters succeeds. Mutation: I removed ::public.difficulty and the apply/revert test failed with 'column \"difficulty\" is of type difficulty but expression is of type text', the same error as production. I then restored the file.",
+    "readonlyPlans": "plan-bounded-inserts.ts runs EXPLAIN (ANALYZE FALSE, FORMAT JSON) on the shared BOUNDED_INSERT_SQL with boundedInsertParameters. It does this inside a transaction set READ ONLY and asserts transaction_read_only = on. Result: 146 statements planned, 0 executed. Type errors such as 42804 are raised at parse/analysis time, so EXPLAIN catches them. Constraint, unique and FK checks run only at execution, and EXPLAIN does not cover them; the 0-current-UUID check and the CAS cover those. The plans used the R2 UUID ledger (the script defaults to bounded-final-r2). R3 differs from R2 only in id values, so the typing proof carries over.",
+    "artifacts": "At HEAD 5393ed680, the SHA-256 of manifest, before-ledger and new-uuids match the values above. The R2 and R3 manifests differ only in sourceCommit and sourceDigests. The 252 digest keys are the same, and only bounded-question-reinforcement.ts changed. git diff 61816b89e..f1a7e4723 over all 252 files touches only that file. All 252 R3 digests equal the bytes at f1a7e4723, at HEAD and in the working tree. I recomputed sourceDigestsSha256 with the repository valueDigest. The plan SHA equals QUESTION_FORMAT_PLAN_SHA.",
+    "scope": "The R3 before-ledger differs from R2 only in its manifestSha256 binding. It has 4801 rows and 20 unitIds. The private before-private.json (27cc017f) and candidates-private.json (8a88fac6) are byte-identical to R2. Each of the 4801 private rows hashes to the ledger fullRowSha256 for its id (4801 ok, 0 bad). generation-private.json differs from R2 only in 'at'. The new-uuids rows equal R2's in every field except id: 146 unique v4 UUIDs, ownership new, 146 unique externalIds. They do not overlap the R1 UUIDs, the R2 UUIDs or the 4801 baseline ids. independent-verification.json and finite-shortfall-evidence.json are identical to R2. The counts are unchanged: 53 families, 4801 scope rows, 20 units, 94 contents, 146 rows. The only shortfall is still mid:1-2|다면체와 회전체|51, short by 2, with no invented format. No other scope changed, and no earlier attempt inserted any row. The content review in ../bounded-final/claude-candidate-approval.json still applies, and I did not re-derive any math. The R2 approval cannot authorize the changed source, by design."
+  },
+  "limitations": [
+    "No physical printer output. The teacher quick-answer grid wraps long native answers over several lines without clipping, with full solutions and rubrics after it; readability on paper is unverified.",
+    "The browser and A4 evidence (19 units, 107 pages) predates the two noun-only changes.",
+    "The read-only EXPLAIN proves parameter typing only; constraint, unique and FK behavior is first exercised by the real apply.",
+    "No claim of official curriculum alignment, learning effect, or mathematical verification of the whole bank."
+  ]
+}
