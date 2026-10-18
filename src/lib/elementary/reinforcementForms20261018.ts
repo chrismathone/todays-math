@@ -207,7 +207,12 @@ export const REINFORCEMENT_FORMS_20261018: Record<string, readonly ElemForm[]> =
       { id: "32", tier: "기본", generate: splitEquilateralAngle },
     ],
     "초4|2-2-5": [
-      { id: "33", tier: "응용", generate: admissibleBaseAngles },
+      {
+        id: "33",
+        tier: "응용",
+        allowMultipleChoice: false,
+        generate: admissibleBaseAngles,
+      },
       { id: "34", tier: "응용", generate: classificationIntersection },
     ],
     "초4|2-4-2": [
@@ -217,7 +222,12 @@ export const REINFORCEMENT_FORMS_20261018: Record<string, readonly ElemForm[]> =
     "초4|2-4-4": [
       { id: "37", tier: "응용", generate: rightCornerTrapezoid },
       { id: "38", tier: "응용", generate: exactlyOneParallelPair },
-      { id: "39", tier: "응용", generate: incompleteTrapezoidInspection },
+      {
+        id: "39",
+        tier: "응용",
+        allowMultipleChoice: false,
+        generate: incompleteTrapezoidInspection,
+      },
     ],
   };
 
