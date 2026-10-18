@@ -1,0 +1,62 @@
+{
+  "recordedAt": "2026-10-18T08:42:23.514031+00:00",
+  "codeAndResultCommit": "a6d10bf358486df9af3dbc4590d0ff60924f0fd4",
+  "localMainMerged": true,
+  "mergeMode": "fast-forward",
+  "mainWorktree": "/Users/pss/Desktop/creative/today_",
+  "mainCleanAtVerification": true,
+  "remotePush": false,
+  "deployment": false,
+  "prismaClient": {
+    "version": "6.19.3",
+    "generatedInMain": true,
+    "questionGroupKeyPresent": true,
+    "rootDependenciesUseMain": true
+  },
+  "mainTypecheck": {
+    "command": "node --max-old-space-size=8192 node_modules/typescript/bin/tsc --noEmit --incremental false",
+    "exitCode": 0,
+    "diagnosticsBytes": 0
+  },
+  "orchestration": {
+    "run": "run_4187bd844822",
+    "tasksCompleted": 11,
+    "workersReleased": 11,
+    "reclaimableWorkers": 0
+  },
+  "qaServersStopped": [
+    4307,
+    4268
+  ],
+  "completedChildWorktreesRemoved": 6,
+  "branchesPreserved": [
+    {
+      "branch": "BIGSHOL/math-question-content-20261018",
+      "tip": "4a049615c3d6f535e90125474a25eec2103b9cac"
+    },
+    {
+      "branch": "BIGSHOL/math-question-core-20261018",
+      "tip": "2f625b5e3784f172e64262a9f54368461415b5b3"
+    },
+    {
+      "branch": "BIGSHOL/math-question-format-ui-20261018",
+      "tip": "7a02a516340a28a8ead5ebdb11eef0b009a4dfc7"
+    },
+    {
+      "branch": "BIGSHOL/math-question-format-ui-design-20261018",
+      "tip": "4bfca18e1720a12b2bd3dd812b7214bc23b349fc"
+    },
+    {
+      "branch": "BIGSHOL/math-question-identity-design-20261018",
+      "tip": "72a8b1565dc9761b4d9d62b8162556b6927d6cac"
+    },
+    {
+      "branch": "BIGSHOL/math-question-formats-plan-claude-20261018",
+      "tip": "51570d21ac2c29e6d45172559a6a268dbd6fb1f9"
+    }
+  ],
+  "privateWorkerEvidenceArchivedAndByteVerified": true,
+  "activeCoordinatorWorktreePreserved": true,
+  "unrelatedWorktreesPreserved": true,
+  "thisReceiptIsDocumentationOnly": true
+}
