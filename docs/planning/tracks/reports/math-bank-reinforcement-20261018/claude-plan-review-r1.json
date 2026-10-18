@@ -1,0 +1,64 @@
+{
+  "reviewer": "Claude",
+  "reviewedAt": "2026-10-18",
+  "planPath": "docs/planning/tracks/math-bank-reinforcement-20261018.md",
+  "planRevision": "R1",
+  "planSha256": "2dbbcc47d14d0647171f255c0349b1dfa92dbcebd1b140c435098ba7cf3c9c40",
+  "planShaVerified": true,
+  "baseCommit": "f47fd6d69",
+  "verdict": "changes_requested",
+  "summary": "Scope, numbers, completion boundary and the bans on fake descriptive items / key-only new types match current decisions and source. But R1 claims loader properties (ledger-before-write, halt on same externalId with different content, new-keys-only loading, a safe namespace for native descriptive items) that the existing loader does not have. These must be written into the plan as pre-write gates before any DB write.",
+  "approvedScope": {
+    "now": "none — no authoring, engine implementation, or DB write is authorized by this review",
+    "onR2IfMandatoryConditionsIncorporated": {
+      "A": "초4 4 units (c8d1b160…, 0a069c2f…, abb7989e…, 5599a8d2…): >=9 new forms, >=3 distinct stems each (>=27), short answer + valid MCQ derivative, <=54 rows",
+      "B": "중3 4 units (28032bdd…, 068bcc39…, f7cf8f63…, 468b8d96…): >=12 new types (3 per unit, distinct learning behaviours), >=3 distinct stems each (>=36), <=72 rows",
+      "C": "6 native descriptive types x 2 variants = 12 items (초4 6, 중3 6), rubric in authoring data + teacher solution, <=12 rows",
+      "rowCap": 138,
+      "excluded": ["new DB tables", "UI or print layout changes", "automatic descriptive grading", "student score updates", "in-place edits of existing problems", "making 20 items a product default", "follow-up roadmap stages (2차, 고등, 교과서 복습, 초1·초2·미적분2)"],
+      "reReviewScope": "On R2, check only that R2-1..R2-6 were incorporated; scope and numbers are not reopened"
+    }
+  },
+  "mandatoryConditions": [
+    {"id": "R2-1", "severity": "blocking", "text": "Restrict loading to an allowlist of new elem form ids / mid type keys. Dry-run must show inserts only for new keys, 0 inserts into existing families, total <=138, before --apply."},
+    {"id": "R2-2", "severity": "blocking", "text": "Fix a distinct externalId prefix and familyKey namespace for native descriptive items in the plan. Lock with tests that delete-derived-descriptive.ts does not target them, extend the revert prefix check, add a separate counter in checkUnloadedTypes.ts, and state how refresh-engine-content.ts treats them."},
+    {"id": "R2-3", "severity": "blocking", "text": "For rows whose externalId already exists, compare digests of content/answer/solution/figureSvg with regenerated rows and halt before any write on mismatch. Count a rerun's 'new 0' as idempotency evidence only after that comparison."},
+    {"id": "R2-4", "severity": "blocking", "text": "Ledger before write: commit the batch manifest (externalIds + digests) before --apply and document recovery by externalId; and/or flush the ledger per row for this batch (FLUSH_EVERY=200 > 138 means no ledger exists until the end)."},
+    {"id": "R2-5", "severity": "blocking", "text": "Define the batch SHA: dry-run emits per-row externalId, unitId, familyKey, questionType, difficulty, sha256(content||answer||solution||figureSvg). Claude's final review uses that manifest plus renders. --apply refuses if any regenerated digest differs. Record the manifest SHA-256 in the final approval."},
+    {"id": "R2-6", "severity": "blocking", "text": "Revert must not delete rows referenced by tests/answer sheets/reviews/reports. Lock them (directUseAllowed=false) and report, as delete-derived-descriptive.ts does."}
+  ],
+  "recommendations": [
+    {"id": "K-1", "text": "State why these 4 중3 units were chosen; 원과 현 and 이차함수의 최댓값과 최솟값 have 10 families (fewer than the chosen 11)."},
+    {"id": "K-2", "text": "Record each new 중3 type's real difficulty tier in the design table and report strict-default-tier fill before/after (currently 6,6,6,7 of 8) as an observation, not a target."},
+    {"id": "K-3", "text": "사다리꼴 has a margin of 1 (32+9=41 vs 40). Prepare >=4 stems per form or report the shortfall honestly."},
+    {"id": "K-4", "text": "Specify the rubric's shape inside solution, and how the display check proves student sheets never render solution/rubric."},
+    {"id": "K-5", "text": "Add /dev/print-check '대기' items for new figure forms and descriptive layouts (absolute rule 6)."}
+  ],
+  "findings": [
+    {"id": "F-1", "type": "confirmed", "text": "초4 target units' 5-sheet distinct-stem capacity 36/36/38/32, families 10/10/11/10; all other 초4 units >=40", "evidence": ["docs/reports/problem-bank-reinforcement-20261018/math-capacity.json (details[].repeated sheets=5)", "docs/reports/problem-bank-reinforcement-20261018/math-capacity.md:49", "docs/planning/tracks/math-bank-reinforcement-20261018.md:35-40"]},
+    {"id": "F-2", "type": "confirmed", "text": "중3 target units have 11 families, 0 descriptive, strict default tier 6/6/6/7 of 8; all registered middle types are loaded (unloaded ledger empty), so new types need new authoring", "evidence": ["math-capacity.json details", "docs/planning/tracks/reports/unloaded-types.json"]},
+    {"id": "F-3", "type": "confirmed", "text": "Derived-descriptive ban matches source", "evidence": ["src/lib/engine/expandEngine.ts:11-35", "docs/planning/tracks/math-bank-reinforcement-20261018.md:80-81,90"]},
+    {"id": "F-4", "type": "confirmed", "text": "Family id is not a certified math type; 20 items is a comparison scenario only", "evidence": ["math-capacity.md:11", "capacity-policy.md:51,75", "math-bank-reinforcement-20261018.md:65-67,106"]},
+    {"id": "F-5", "type": "gap", "condition": "R2-1", "text": "Elem loader selects by section and expands every form; mid loader slices first N types by maxTypes, with no key filter. The externalId embeds the seed, so a different seedBase adds rows to existing families.", "evidence": ["scripts/import/load-engine-problems.ts:230-300", "scripts/import/load-engine-problems.ts:302", "scripts/import/load-engine-problems.ts:330-337", "scripts/import/load-engine-problems.ts:371", "scripts/import/load-engine-problems.ts:650"]},
+    {"id": "F-6", "type": "gap", "condition": "R2-2", "text": "delete-derived-descriptive.ts deletes every 서술형 with family_key elem:/mid:. Revert rejects non-engine-(elem|mid|mid-combo|mid-judge) prefixes. checkUnloadedTypes counts only registeredTypes/combo/judge. The plan's list at L89 omits revert and the deleter.", "evidence": ["scripts/import/delete-derived-descriptive.ts:113-114,127-128", "scripts/import/load-engine-problems.ts:1230-1235", "scripts/qa/checkUnloadedTypes.ts:36-44", "docs/planning/tracks/math-bank-reinforcement-20261018.md:89"]},
+    {"id": "F-7", "type": "gap", "condition": "R2-3", "text": "Existing externalIds are filtered out without comparing content; the loader neither overwrites nor halts", "evidence": ["scripts/import/load-engine-problems.ts:800-821", "docs/planning/tracks/math-bank-reinforcement-20261018.md:125-126"]},
+    {"id": "F-8", "type": "gap", "condition": "R2-4", "text": "Rows are inserted one by one outside a transaction. The ledger is flushed every 200 rows and once at the end, so a 138-row batch has no ledger until it completes.", "evidence": ["scripts/import/load-engine-problems.ts:1076-1098", "scripts/import/load-engine-problems.ts:1168", "scripts/import/load-engine-problems.ts:1171", "docs/planning/tracks/math-bank-reinforcement-20261018.md:124"]},
+    {"id": "F-9", "type": "gap", "condition": "R2-5", "text": "The loader regenerates rows from code at --apply. The plan's 'batch SHA' has no defined object, so the reviewed candidates are not bound to the written rows.", "evidence": ["scripts/import/load-engine-problems.ts:644-665", "docs/planning/tracks/math-bank-reinforcement-20261018.md:100-102"]},
+    {"id": "F-10", "type": "gap", "condition": "R2-6", "text": "Revert deleteMany's ledger ids regardless of references. Engine rows are approved and directUseAllowed immediately, so they can be referenced before a revert.", "evidence": ["scripts/import/load-engine-problems.ts:1237-1239", "scripts/import/engine-source-references.ts:165-172", "scripts/import/delete-derived-descriptive.ts:28-29"]},
+    {"id": "F-11", "type": "confirmed", "text": "Shared DB write gate exists; loader re-reads inserted rows and checks requested state", "evidence": ["scripts/import/load-engine-problems.ts:1062-1065", "scripts/import/load-engine-problems.ts:1174-1196"]}
+  ],
+  "uncertainPastFacts": [
+    "DB figures are as of math-capacity.json measuredAt 2026-10-18T01:08:04Z / baselineHead e6e75fbd. This review did not connect to the DB, so later DB changes (e.g. another session's 초5 figure-form load) are unverified.",
+    "Whether the 초5 figure-form session is active was not verified. Target units are 초4/중3, so family keys do not collide. Revert's empty problem_family cleanup is a global DELETE limited to families with zero problems (load-engine-problems.ts:1247-1252).",
+    "node_modules is absent in this worktree, so registries were not executed. Conclusions come from reading source and committed ledgers."
+  ],
+  "unresolvedBlockers": [
+    "R2-1 new-keys-only loading is not specified",
+    "R2-2 native descriptive namespace collides with delete-derived-descriptive.ts and revert prefix check",
+    "R2-3 same-externalId content mismatch does not halt",
+    "R2-4 ledger is not written before or during a <200-row batch",
+    "R2-5 batch SHA binding is undefined",
+    "R2-6 revert can delete referenced rows"
+  ],
+  "actionsNotTaken": ["no DB connection", "no DB write", "no paid API call", "no push", "no deploy", "no main merge", "plan file and product code not modified"]
+}
