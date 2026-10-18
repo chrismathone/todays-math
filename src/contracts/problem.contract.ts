@@ -23,6 +23,10 @@
  *       docs/planning/07-coding-convention.md §2.3 (problemType: 계산/개념/활용/서술형)
  */
 import { z } from "zod";
+import {
+  questionIdSchema,
+  questionRepresentationSchema,
+} from "./questionFormats.contract";
 
 import type { Difficulty } from "./common.contract";
 // 타입만 가져온다 — 값으로 가져오면 지면 파서(`parseProblemContent`)가 계약 번들에
@@ -116,6 +120,8 @@ export type ProblemUpdateRequest = z.infer<typeof problemUpdateRequestSchema>;
 
 export const problemSchema = z.strictObject({
   id: uuidSchema,
+  questionId: questionIdSchema.optional(),
+  questionFormats: z.array(questionRepresentationSchema).optional(),
   /**
    * 문항 코드 — 원장님이 문항을 지목하는 값 (D-53). 예: `J31402-K7M2`.
    *

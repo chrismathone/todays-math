@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { uuidSchema } from "./common.contract";
+import { formatIntentSchema, type FormatIntent } from "./formatIntent.contract";
 
 /** A question is the task; problemId always names an actual stored representation. */
 export const QUESTION_FORMATS = [
@@ -14,13 +15,8 @@ export const QUESTION_FORMAT_LABELS = {
 } as const;
 export const questionFormatSchema = z.enum(QUESTION_FORMATS);
 export type QuestionFormat = z.infer<typeof questionFormatSchema>;
-export type QuestionFormatIntent = Partial<
-  Record<(typeof QUESTION_FORMAT_LABELS)[QuestionFormat], number>
->;
-export const questionFormatIntentSchema = z.partialRecord(
-  z.enum(["객관식", "단답형", "서술형"]),
-  z.number().int().min(0).max(100),
-);
+export type QuestionFormatIntent = FormatIntent;
+export const questionFormatIntentSchema = formatIntentSchema;
 export const questionIdSchema = z
   .string()
   .regex(/^(?:q:v1:[a-f0-9]{64}|row:[0-9a-f-]{36})$/);
