@@ -1,0 +1,351 @@
+{
+  "reviewedProductionCommit": "da78f6e4c69ac0ff2a3fc915da4b344e1c71aef1",
+  "date": "2026-10-18",
+  "scope": "first original exam-study upgrade; selected abstract demands, not full-school coverage",
+  "inventory": {
+    "newAuthoredFamilies": 23,
+    "newShortAnswerFamilies": 17,
+    "newNativeWrittenFamilies": 6,
+    "finiteCanonicalTuples": 1241,
+    "strictFigureTuples": 173,
+    "legacyRegistrations": 4190,
+    "registrationsAreNotCapacity": true
+  },
+  "rootChecks": {
+    "unit": {
+      "passed": 199,
+      "failed": 0,
+      "files": 8
+    },
+    "integration": {
+      "passed": 7,
+      "failed": 0,
+      "files": 1
+    },
+    "relatedRegression": {
+      "passed": 241,
+      "failed": 0,
+      "files": 14
+    },
+    "repositoryTypeCheck": "passed",
+    "ownedSourceEslint": "passed",
+    "affordance": "passed"
+  },
+  "actualApiProfiles": [
+    {
+      "profileId": "daeryun-m1",
+      "course": "중1",
+      "http": 200,
+      "status": "partial",
+      "delivered": 12,
+      "full": 8,
+      "selected": 11,
+      "remaining": [
+        {
+          "id": "model.circle-revolution-percentage",
+          "status": "unavailable"
+        },
+        {
+          "id": "model.doubling-time-offset",
+          "status": "unavailable"
+        },
+        {
+          "id": "number.coprime-symbolic-sum",
+          "status": "unavailable"
+        }
+      ],
+      "formats": {
+        "객관식": 0,
+        "단답형": 9,
+        "서술형": 3
+      },
+      "figures": 8,
+      "uniqueKeys": 12,
+      "ms": 492
+    },
+    {
+      "profileId": "daeryun-m2",
+      "course": "중2",
+      "http": 200,
+      "status": "partial",
+      "delivered": 12,
+      "full": 8,
+      "selected": 10,
+      "remaining": [
+        {
+          "id": "coord.intercept-integer-area",
+          "status": "unavailable"
+        },
+        {
+          "id": "graph.translated-coefficient-reuse",
+          "status": "unavailable"
+        }
+      ],
+      "formats": {
+        "객관식": 0,
+        "단답형": 8,
+        "서술형": 4
+      },
+      "figures": 2,
+      "uniqueKeys": 12,
+      "ms": 97
+    },
+    {
+      "profileId": "kyungmyung-m1",
+      "course": "중1",
+      "http": 200,
+      "status": "partial",
+      "delivered": 12,
+      "full": 2,
+      "selected": 7,
+      "remaining": [
+        {
+          "id": "algebra.candidate-verification",
+          "status": "unverified"
+        },
+        {
+          "id": "algebra.equality-truth",
+          "status": "unverified"
+        },
+        {
+          "id": "algebra.equation-classification",
+          "status": "unverified"
+        },
+        {
+          "id": "algebra.linear-model",
+          "status": "unverified"
+        },
+        {
+          "id": "algebra.linear-simplify",
+          "status": "unverified"
+        }
+      ],
+      "formats": {
+        "객관식": 0,
+        "단답형": 12,
+        "서술형": 0
+      },
+      "figures": 0,
+      "uniqueKeys": 12,
+      "ms": 20
+    },
+    {
+      "profileId": "kyungmyung-m3",
+      "course": "중3",
+      "http": 200,
+      "status": "partial",
+      "delivered": 9,
+      "full": 2,
+      "selected": 4,
+      "remaining": [
+        {
+          "id": "graph.translated-coefficient-reuse",
+          "status": "unavailable"
+        },
+        {
+          "id": "written.rectangle-domain",
+          "status": "unverified"
+        }
+      ],
+      "formats": {
+        "객관식": 0,
+        "단답형": 6,
+        "서술형": 3
+      },
+      "figures": 3,
+      "uniqueKeys": 9,
+      "ms": 130
+    },
+    {
+      "profileId": "kyungshin-common2",
+      "course": "공통수학2",
+      "http": 200,
+      "status": "partial",
+      "delivered": 12,
+      "full": 7,
+      "selected": 8,
+      "remaining": [
+        {
+          "id": "function.radical-inverse-circle",
+          "status": "unavailable"
+        }
+      ],
+      "formats": {
+        "객관식": 0,
+        "단답형": 11,
+        "서술형": 1
+      },
+      "figures": 0,
+      "uniqueKeys": 12,
+      "ms": 21
+    }
+  ],
+  "rootBrowserChecks": {
+    "main": {
+      "checks": [
+        {
+          "name": "Daeryun selected profile generates 10 real items with answers initially closed",
+          "pass": true,
+          "figures": 6
+        },
+        {
+          "name": "responsive",
+          "width": 1920,
+          "scroll": 1920,
+          "small": [],
+          "pass": true
+        },
+        {
+          "name": "responsive",
+          "width": 1280,
+          "scroll": 1280,
+          "small": [],
+          "pass": true
+        },
+        {
+          "name": "responsive",
+          "width": 768,
+          "scroll": 768,
+          "small": [],
+          "pass": true
+        },
+        {
+          "name": "responsive",
+          "width": 390,
+          "scroll": 390,
+          "small": [],
+          "pass": true
+        },
+        {
+          "name": "responsive",
+          "width": 320,
+          "scroll": 320,
+          "small": [],
+          "pass": true
+        },
+        {
+          "name": "regeneration changes mathematical conditions and digest",
+          "pass": true
+        },
+        {
+          "name": "common WorksheetEditor actual preview and server digest recheck before print",
+          "pass": true,
+          "pages": 6
+        }
+      ],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:4187/api/exam/practice?course=%EC%A4%911",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://127.0.0.1:4187/api/exam/practice",
+          "status": 200,
+          "method": "POST",
+          "profile": "daeryun-m1",
+          "digest": "1cf915d29320a3f19fd7b458ca4d63e297bc4737268456e8e75636eedeb23b24",
+          "count": 10,
+          "state": "partial",
+          "keys": [
+            "study-middle-piecewise-multi-claim@1:{\"h\":2,\"mask\":13,\"s\":6}",
+            "legacy:mid:1-1|좌표와 그래프|06@9cfbb8683-r1:{\"nativeTaskDigest\":\"76e202e5547f91bba07f96a5bb4451253374a966ceb3431b7306dc584a8055b2\"}",
+            "study-middle-inverse-equal-legs@1:{\"p\":2,\"q\":7}",
+            "study-middle-dependent-formula-min-time@1:{\"L\":3,\"cols\":4,\"q\":49,\"rate\":7,\"rows\":2}",
+            "study-middle-signed-inverse-trapezoid@1:{\"A\":6,\"B\":3}",
+            "study-middle-ray-area-partition@1:{\"H\":4,\"L\":12,\"r\":2,\"s\":1,\"t\":1}",
+            "study-middle-shared-side-square@1:{\"a\":1,\"gap\":1,\"u\":3}",
+            "study-middle-inverse-area-ratio@1:{\"a\":4,\"r\":1,\"s\":2,\"y\":6}",
+            "study-middle-piecewise-multi-claim@1:{\"h\":4,\"mask\":5,\"s\":6}",
+            "study-middle-inverse-equal-legs@1:{\"p\":3,\"q\":5}"
+          ],
+          "figures": 6
+        },
+        {
+          "url": "http://127.0.0.1:4187/api/exam/practice",
+          "status": 200,
+          "method": "POST",
+          "profile": "daeryun-m1",
+          "digest": "e0639f2d2e281ebef32d213060970645aab9efb418aa69f763af843cfad4e740",
+          "count": 10,
+          "state": "partial",
+          "keys": [
+            "study-middle-inverse-area-ratio@1:{\"a\":2,\"r\":2,\"s\":1,\"y\":6}",
+            "study-middle-inverse-equal-legs@1:{\"p\":3,\"q\":7}",
+            "legacy:mid:1-1|좌표와 그래프|06@9cfbb8683-r1:{\"nativeTaskDigest\":\"bfd30a3be460e1bdf7cdb48fb324ba381f8e590e16e68a641d0d170fca4161b2\"}",
+            "study-middle-ray-area-partition@1:{\"H\":4,\"L\":12,\"r\":2,\"s\":1,\"t\":1}",
+            "study-middle-signed-inverse-trapezoid@1:{\"A\":8,\"B\":12}",
+            "study-middle-dependent-formula-min-time@1:{\"L\":3,\"cols\":5,\"q\":47,\"rate\":7,\"rows\":2}",
+            "study-middle-shared-side-square@1:{\"a\":1,\"gap\":1,\"u\":2}",
+            "study-middle-piecewise-multi-claim@1:{\"h\":4,\"mask\":5,\"s\":3}",
+            "study-middle-inverse-area-ratio@1:{\"a\":2,\"r\":1,\"s\":2,\"y\":6}",
+            "study-middle-inverse-equal-legs@1:{\"p\":2,\"q\":5}"
+          ],
+          "figures": 6
+        },
+        {
+          "url": "http://127.0.0.1:4187/api/exam/practice/resolve",
+          "status": 200,
+          "method": "POST",
+          "digest": "e0639f2d2e281ebef32d213060970645aab9efb418aa69f763af843cfad4e740",
+          "count": 10
+        }
+      ],
+      "errors": []
+    },
+    "genericAndWritten": {
+      "checks": [
+        {
+          "name": "real general selection with known Daeryun label remains generic and complete",
+          "pass": true
+        },
+        {
+          "name": "real finite regeneration changes mathematical conditions or explicitly reports bounded exhaustion",
+          "pass": true,
+          "calls": 1,
+          "exhausted": false
+        },
+        {
+          "name": "real finite regeneration changes mathematical conditions or explicitly reports bounded exhaustion",
+          "pass": true,
+          "calls": 1,
+          "exhausted": false
+        },
+        {
+          "name": "real finite regeneration changes mathematical conditions or explicitly reports bounded exhaustion",
+          "pass": true,
+          "calls": 1,
+          "exhausted": false
+        },
+        {
+          "name": "unsupported native-written format provides no substitution and no empty output",
+          "pass": true
+        },
+        {
+          "name": "native written task retains point criteria in teacher output and hides it by default",
+          "pass": true
+        }
+      ],
+      "errors": []
+    }
+  },
+  "independentReview": {
+    "verdict": "accepted within documented partial scope",
+    "unresolvedBlockingFindings": 0,
+    "closedP2Findings": 2,
+    "reportCommit": "bb19778e096a0425340efc6cc03291221330cee4",
+    "tests": 223,
+    "strictRenderChecks": 10,
+    "relatedLegacyRegressions": 253,
+    "browserChecks": 14,
+    "evidenceFilesHashVerified": 1004
+  },
+  "operationScope": {
+    "syntheticApprovedAuthForLocalIntegration": true,
+    "deployed": false,
+    "pushed": false,
+    "physicalPrintApproved": false,
+    "schoolWideDifficultyCalibrated": false,
+    "studentLearningEffectMeasured": false
+  }
+}
