@@ -54,6 +54,8 @@ import {
   parseJudgeExternalId,
 } from "../../src/lib/middle/judge/contract";
 import { judgementDefinitions } from "../../src/lib/middle/judge/registry";
+import { parseNativeExternalId } from "../../src/contracts/nativeDescriptive.contract";
+import { nativeDescriptiveDefinitions } from "../../src/lib/engine/nativeDescriptive20261018";
 
 import { isDirectScript } from "../import/isDirectScript";
 
@@ -63,6 +65,27 @@ const LEDGER = "docs/planning/tracks/reports/unloaded-types.json";
 const MIN_ROWS = 5_000;
 
 export type Entry = { key: string; grade: string; where: string };
+
+export function loadedNativeDefinitionIds(ids: Iterable<string>): Set<string> {
+  const out = new Set<string>();
+  for (const id of ids) {
+    const p = parseNativeExternalId(id);
+    if (p) out.add(p.definitionId);
+  }
+  return out;
+}
+
+/** Separate class; no substring matches and no changes to the existing three-class API. */
+export function unloadedNative(ids: Iterable<string>): Entry[] {
+  const loaded = loadedNativeDefinitionIds(ids);
+  return nativeDescriptiveDefinitions()
+    .filter((d) => !loaded.has(d.definitionId))
+    .map((d) => ({
+      key: d.definitionId,
+      grade: d.grade,
+      where: `${d.unitSection} (본래 서술형)`,
+    }));
+}
 
 /** 적재본의 `externalId` 를 조각으로 편다 — 적재기가 `…|{문항유형}` 을 붙인다. */
 export function loadedFragments(ids: readonly string[]): Set<string> {
@@ -192,7 +215,15 @@ async function main(): Promise<void> {
       process.exit(2);
     }
 
-    const now = unloaded(frags);
+    const native = unloadedNative(
+      rows.map((r) => r.externalId!).filter(Boolean),
+    );
+    console.log(
+      `본래 서술형 ${nativeDescriptiveDefinitions().length}유형 중 미적재 ${native.length}유형`,
+    );
+    const now = [...unloaded(frags), ...native].sort((a, b) =>
+      a.key.localeCompare(b.key),
+    );
     const nowKeys = new Set(now.map((e) => e.key));
 
     if (process.argv.includes("--write")) {

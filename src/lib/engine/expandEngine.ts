@@ -66,7 +66,7 @@ export function expandFamily(
    * 문항인 것이 실측 30개 있고, 던지면 그 **단원이 통째로 적재 거부**가 된다
    * (실측 6개 단원). 중등은 기본(던진다)을 그대로 쓴다.
    */
-  opts: { allowShort?: boolean } = {},
+  opts: { allowShort?: boolean; allowMultipleChoice?: boolean } = {},
 ): ExpandResult {
   const got = collectDistinctVariantsResult(generateStem, nVariants, opts);
   const stems = got.items;
@@ -92,6 +92,11 @@ export function expandFamily(
       continue;
     }
     items.push(asShortAnswer(stem));
+    if (opts.allowMultipleChoice === false) {
+      skippedMcq += 1;
+      reasons.push("문형 정책: 객관식 파생을 허용하지 않는 단답 전용 문형");
+      continue;
+    }
     try {
       // 🔴 씨앗에 **갈래**를 넣는다 (2026-10-17). 종전 `0x9e37 + i * 17` 은 모든 갈래의 i 번째 변형이
       //    같은 씨앗이라 정답 자리가 몰렸다 — 공유 DB 엔진 객관식 48,025건이 ① 33% · ② 9% · ⑤ 9%.
