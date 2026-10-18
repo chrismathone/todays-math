@@ -44,7 +44,7 @@ const outIndex = args.indexOf("--out-dir");
 const folder =
   outIndex >= 0
     ? args[outIndex + 1]!
-    : "docs/planning/tracks/reports/math-question-formats-20261018/content-repair";
+    : "docs/planning/tracks/reports/math-question-formats-20261018/content-repair-r2";
 if (!folder || path.isAbsolute(folder) || folder.startsWith(".."))
   throw new Error("Output directory must be repository-relative");
 const files: ApprovalFiles = {
@@ -56,7 +56,7 @@ const files: ApprovalFiles = {
 };
 const privateDir = path.resolve(
   repoDir,
-  ".qa-artifacts/math-question-formats-20261018/content-repair",
+  ".qa-artifacts/math-question-formats-20261018/content-repair-r2",
 );
 const privateBefore = path.join(privateDir, "before-private.json");
 const privateCandidates = path.join(privateDir, "candidates-private.json");

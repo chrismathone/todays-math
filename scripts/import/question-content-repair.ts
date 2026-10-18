@@ -154,10 +154,11 @@ export async function buildRepairs(
     // Reuse original MC options and correct position. Only diagram changes in that family.
     if (repair !== "poly263Name") {
       const stem = original.content.split(/\n① /)[0]!.trimEnd();
-      if (
-        stem !== generated.content ||
-        original.solution !== generated.solution
-      )
+      const expectedOldStem =
+        repair === "quad242PerpCount"
+          ? `평행한 두 직선 사이에 수선을 ${generated.answer}개 그었습니다. 수선은 몇 개인가?`
+          : generated.content;
+      if (stem !== expectedOldStem || original.solution !== generated.solution)
         throw new Error(
           `Source/text/solution correspondence failed: ${old.id}`,
         );
@@ -208,7 +209,17 @@ export async function buildRepairs(
             solution: generated.solution,
             figureSvg,
           }
-        : { ...original, figureSvg };
+        : {
+            ...original,
+            content:
+              repair === "quad242PerpCount"
+                ? generated.content +
+                  original.content.slice(
+                    original.content.split(/\n① /)[0]!.trimEnd().length,
+                  )
+                : original.content,
+            figureSvg,
+          };
     if (payloadDigest(payload) === expected.payloadSha256)
       throw new Error("Repair must change the defective payload");
     repairs.push({
