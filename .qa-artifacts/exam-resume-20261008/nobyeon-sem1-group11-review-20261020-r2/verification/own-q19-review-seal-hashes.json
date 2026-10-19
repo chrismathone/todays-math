@@ -1,0 +1,29 @@
+{
+  "inputs": {
+    "VERIFY-BRIEF.md": "35f0141b096cf184d92c0fdb4f5da623e99cf1882faa33bff9b2cda745d835b5",
+    "verification-inputs.json": "b56e6f1df08a9892653bb330c106821a58e456628da50bbd70e1c2a285b20df5",
+    "verification-manifest.json": "c249336cf50fc2e9d6fb53762a76b3b1651b8231dde6ecc91214942d681e8ceb",
+    "sealed-raw-commit.json": "808a2c7d2f2fdd8a66ecc50c0cb89c21843193318beddc409c4761b139bbdf17"
+  },
+  "sourceQuestionSha256": "80f0e8cb39a29dd1b63098e9ce7e8f225ddebfbbbe3f548c3f58b2346f07c880",
+  "rawSha256": "63801031840a2f3ce65c607595449970b9d2f4024a69452aa2ec578d8e6bf301",
+  "providedInputsAndRawUnchanged": true,
+  "reportSha256": "6cff9d707bfd8290b5a362de4e69f3172ddc6b0a2f2780387bf72ce287fe392b",
+  "evidenceHashes": {
+    "own-q19-current-review-calculations.json": "a2832689aff14f793731a52d1ef33e5212d718f482b8e0d90e589b59e33354da",
+    "own-q19-student-identity-check.json": "31918d039326117ad20571d343fceca9c591692a281c04055186d59849bf139b",
+    "own-q19-primary-review-basis.json": "cc5dc7110f329667ffacd91d44681a37a7d7ed82c35c7f5f934a883df73382bb"
+  },
+  "counts": {
+    "checksPassed": 11,
+    "checksHeld": 1,
+    "studentSurfacesPassed": 7,
+    "studentMathPassed": true,
+    "gradePassed2015AfterPrerequisites": true,
+    "releaseHeld": true,
+    "newQuestionOrBlindIncrement": 0
+  },
+  "sourceAnswerKeysUsed": false,
+  "dbWrites": 0,
+  "nativeReaderParity": false
+}

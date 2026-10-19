@@ -1,0 +1,131 @@
+{
+  "status": "pending",
+  "studentDigest": "778a1ee31c0edaf265e5e0fd191228e94c7dfffa1250f408f41a41270b8b20da",
+  "candidateDigest": "4d3a18feb16f532d3fefe6f0e237751b004a549bde50e2a2e67bc4a4fbd8ce01",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-independent-helper-q21-current-stage2-20261020-r2",
+  "solveDigest": "4a917730edac78fe6d06084087540d5f89765f34679afaf96e3805970cc4daf1",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "reason": "유한한자연수제곱근목록의엄격경계와무리수개수에서k를찾는요구는2015중3수개념과기본정수세기로완결된다.",
+      "basis": "MOE9수01-07/08/09; 실제경기PDF38쪽중3제곱근/무리수/실수대소배치.",
+      "evidence": "현재75≤k≤85,√k무리수,√50보다크고√k보다작은목록원소29개라는조건을봉인학생파일해시와동일성검증. 허용11정수의전수검산및후보배제로범위를넘는정리없이풀이가능."
+    },
+    "choices": {
+      "status": "passed",
+      "reason": "서술형으로객관식보기는없고답은자연수와근거서술이다.",
+      "basis": "실제choices[]/natural-number-with-working형식.",
+      "evidence": "모든허용정수75..85를검토했고81은근이유리수라제외. 객관식보기또는추가선택기호를임의로만들지않음."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "reason": "현재제곱근의기호목록은대상을완전히명시하며그림축척이나숨은표정보를쓰지않는다.",
+      "basis": "실제중3양의제곱근/실수대소학습과기본목록읽기.",
+      "evidence": "현재content의√1,√2,√3,…,√k는실제근호와말줄임표기호로구성되어자연수1..k의목록임을읽을수있다. figureArtifacts/assets빈배열. failedr1파일은열지않았으며현재문자열의수학검토만했고nativeReaderParity는false."
+    },
+    "notation": {
+      "status": "passed",
+      "reason": "자연수k,≤와엄격한보다크다/작다,양의근호및목록표기는범위와일치한다.",
+      "basis": "MOE9수01-07/08/09및초등/중학교기본정수대소. 함수·가우스기호표기를요구하지않음.",
+      "evidence": "엄격경계를50<n<k로읽어51..k-1만세며50/k를모두제외. k82에서어느한끝을포함하면30개가되는독립경계control을봉인raw에기록. 현재LaTex문자열검토는렌더실기승인과분리."
+    },
+    "answer": {
+      "status": "passed",
+      "reason": "82는전체조건을만족하는유일한자연수답이다.",
+      "basis": "기본완전제곱수와정수개수/제곱근대소.",
+      "evidence": "현재answer$82$와raw82가동일. current-review-calculations의11정수검사에서선택82하나;√82는81과100사이에있어무리수. 무리수조건을빼면81,82둘이되어그조건의역할까지검증."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "reason": "현재해설은82의존재와작은값/81/큰값배제를모두설명해유일성을완성한다.",
+      "basis": "MOE9수01-07/08/09와실제중3배치. 학생절차는제곱수확인과단순정수세기이며reviewisqrt는학생에게제시하지않음.",
+      "evidence": "해설의51..81=31개,64/81제외29개; k≤80최대28개;81은count29이나√81유리수;k≥83에는√82추가로적어도30개를현재코드결과와하나씩대조. 함수단조정리/이차방정식/상위경우의수공식이없음."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "reason": "양의근대소/완전제곱수와무리수/양끝포함여부/연속정수개수학습후조건으로적합하다.",
+      "basis": "MOErecords3776/3780/3784; 경기실제중3PDF38쪽과수직선대소활동39쪽.",
+      "evidence": "현재placementConditions의세선수항목이전체방법과맞는다. 자연수의제곱근은완전제곱수일때만유리수라는중3수개념을사용하고그이상의대수적수정리를새로요구하지않음. source학교/학년키나기존문항승인으로대체하지않고2022중3는계속pending."
+    }
+  },
+  "evidence": {
+    "currentMathEvidence": "own-q21-current-review-calculations.json",
+    "studentIdentityEvidence": "own-q21-student-identity-check.json",
+    "primaryGradeEvidence": "own-q21-primary-review-basis.json",
+    "sourceQuestionSha256": "d6bd9a5c49f9b7bfdc6bc7099894ddf1cdc4512121b9d389d3b91001028bc62d",
+    "sourceQuestionPath": "../source-question-only.json",
+    "sourceComparison": "실제source는수직선에자연수양의제곱근을대응시키고고정된√110,√220사이의무리수개수를직접세는5점서술형이다. 현재후보도양의근대소로피제곱수정수범위를정하고완전제곱수를제외해세는같은핵심방법을쓴다. source의개수/정답은계산하지않았다.",
+    "actualTargetStructureChange": "고정두경계→개수라는직접결과목표를개수29→미지오른쪽경계의피제곱수k복원으로역전했다. finite기호목록/75..85범위와상단근무리수조건이실제추가되어81과82의같은개수후보를구분한다. 무한수직선의연속점전부를세는문항이아니라원래도자연수제곱근에대응하는점만대상이므로새본문은같은이산대상을유한하게조직한것이다.",
+    "sourceEvidenceBoundary": "source는수직선에서자연수제곱근에대응하는이산점만세는문항임을명시. 실제원본그림/전체지면이나source정답은열지않음. 그림유무/지면전체대응은현재작업에서확정하지않음.",
+    "sourceMetadataLimit": "provided source JSON grade field is literal ?3, not a clean grade string. Preserved unchanged; actual student method grade is based on official primary placement and explicit2015M3 scope, not this damaged field. Whole source identity remains false.",
+    "naturalKorean": "자연수의양의제곱근을1부터k까지차례대로제시하고양쪽열린경계를말로명시해자연스럽다. 정확히29개와상단근의무리수조건이양립하고불필요한중복조건이아니며유일성에필수이다.",
+    "rubricAndScore": "현재rubric은열린경계1/완전제곱수제외1/82에서29개확인1/다른값배제로유일성1/상단무리수조건과답1로합5점이다. 실제source총5점도확인했고새요구와점수단계를직접대조했다. 중복감점/오류이월운영은별도검토이나이5점의내용배분은편집상타당하다.",
+    "difficultyEditorial": "source label중을실제JSON에서확인. 새응용제안은경계역추론과유일성설명을추가하지만후보를11정수로제한하여고급개수공식을요구하지않는다. source직접count보다크게어렵다거나같은실측난도라는인증은하지않음.",
+    "rawSha256": "f3ba5dc14f202d2343ca3c9919bed81194d27e3d762539c3f3e15b930c5850ec",
+    "parentRawCommit": "c931450ede32ff540f82affe6dea8c3ee93c8d87",
+    "sealedRawAndDeclarationUnchanged": true,
+    "actualStudentFieldsUnchanged": true,
+    "digestBinding": "verification-inputs SHA matched manifest; canonical sorted-key rawsolveDigest and parent Git sealed raw bytes matched. Exact student JSON serialization reconstructed and matched prior blind inputSHA. candidateDigest is exact hash-bound envelope value, not an invented projection recomputation.",
+    "unitAndFamily": {
+      "providedPrimaryUnitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "providedCurrentUnit": {
+        "id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "무리수와 실수",
+        "semester": 1,
+        "orderIndex": 470,
+        "problemCodePrefix": "J30102"
+      },
+      "providedPrerequisiteUnits": [
+        {
+          "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+          "grade": "중3",
+          "chapter": "1. 실수와 그 계산",
+          "section": "제곱근의 뜻과 성질",
+          "semester": 1,
+          "orderIndex": 469,
+          "problemCodePrefix": "J30101"
+        }
+      ],
+      "conceptUnitObservation": "current section/course is mathematically relevant; q19requires polynomial prerequisite too, q21irrational-numbercountscope. Captured Unit metadata is not a current DB guarantee.",
+      "exactLiveFamilyCompatibility": "unknown; whole record diagnosis/correction or inverse unknown irrational boundary+uniqueness goal has not been matched to an actual exact live definition in this scope. No root code/DB reads; liveFamilyKey remainsnull.",
+      "familyKey": null
+    },
+    "studentMathCorrect": true,
+    "mathApproved": true,
+    "gradeApproved2015M3": true,
+    "gradeConditions": "2015M3 source2025/practice2026, after all listed actual prerequisites; q19after polynomial square/difference formulas, q21after roots/irrational/realorder. No schoolmidterm pacing certificate.",
+    "2022M3": "pending separate actual placement",
+    "nativeReaderParity": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "liveFamilyApproved": false,
+    "loadable": false,
+    "difficultyEqualityApproved": false,
+    "newQuestionOrBlindCount": 0,
+    "reportCreationDiagnostics": [
+      "First source read at verification/source-question-only.json failed: actual source is authorized review-root sibling, read only after explicit clarification.",
+      "Expected reports/qNN.json skeleton absent; verification directory contained quartet only. No skeleton or report-template.json provided, so new report created from actual VERIFY-BRIEF schema and prior own schema memory. No existing report overwritten."
+    ],
+    "sourcePathClarificationApplied": true
+  }
+}

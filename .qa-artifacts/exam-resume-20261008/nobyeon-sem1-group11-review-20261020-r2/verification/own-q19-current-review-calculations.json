@@ -1,0 +1,73 @@
+{
+  "inputHashes": {
+    "VERIFY-BRIEF.md": "35f0141b096cf184d92c0fdb4f5da623e99cf1882faa33bff9b2cda745d835b5",
+    "verification-inputs.json": "b56e6f1df08a9892653bb330c106821a58e456628da50bbd70e1c2a285b20df5",
+    "verification-manifest.json": "c249336cf50fc2e9d6fb53762a76b3b1651b8231dde6ecc91214942d681e8ceb",
+    "sealed-raw-commit.json": "808a2c7d2f2fdd8a66ecc50c0cb89c21843193318beddc409c4761b139bbdf17"
+  },
+  "rawSha256": "63801031840a2f3ce65c607595449970b9d2f4024a69452aa2ec578d8e6bf301",
+  "parentCommit": "28ef7f960b815760f8f9c4f9af8eed9d11b9761c",
+  "gitSealedRawBytesVerified": true,
+  "rawDeclarationUnchanged": true,
+  "currentDigests": {
+    "studentDigest": "a487017dbf90fdb24412937f4d8aef375bdf96874252a41b590e4e982769dfe4",
+    "candidateDigest": "7cde97dddc306625c1ed1a57aad886dfbe4e88138616c631b038add831fe27aa",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "solveDigest": "6a037e6da189240c0921831a83dcfd00f18742d1452c3b094d8f5708d9cc6dc4"
+  },
+  "currentMath": {
+    "method": "fresh exact rational pair p+q√2 on current printed conditions; not student field-theory requirement",
+    "recordTruth": [
+      true,
+      false,
+      true
+    ],
+    "a": 4,
+    "b": "3√2-4",
+    "strictBounds": "16<18<25 ->4<3√2<5 ->0<b<1",
+    "conjugateProduct": 2,
+    "correctQuotient": "6√2+8",
+    "printedWrongQuotient": "6√2-8",
+    "nonzeroDifference": 16,
+    "recordD": "19-6√2",
+    "sum": 27,
+    "allDivisorsNonzero": true,
+    "uniqueErrorAndValue": true,
+    "currentSolutionStepAudit": [
+      "positive square comparison determinesa/b decomposition",
+      "0<b<1 permitsdivision; positiveconjugate nonzero",
+      "difference-of-squares denominator2 correct",
+      "squareformula recordD correct",
+      "onlyㄴfalse, finalradicaltermscancel"
+    ],
+    "standardCorrection": "currentstandardCodes contains9수02-12, polynomiallocator3956;9수02-05 is not used as square expansion basis",
+    "rubric": {
+      "status": "author-proposed-independent-review-pending",
+      "total": 6,
+      "criteria": [
+        {
+          "point": 1,
+          "criterion": "제곱수비교와a=4,b=3sqrt2-4"
+        },
+        {
+          "point": 1,
+          "criterion": "잘못된기록ㄴ의유일한특정"
+        },
+        {
+          "point": 2,
+          "criterion": "분모유리화분모2와올바른6sqrt2+8의과정"
+        },
+        {
+          "point": 1,
+          "criterion": "ㄷ의제곱식전개확인"
+        },
+        {
+          "point": 1,
+          "criterion": "최종합27"
+        }
+      ]
+    }
+  },
+  "sourceAndSkeletonPathIssue": "Expected source-question-only.json and reports/qNN.json not present in verification at first read. Exact path clarification requested; no parent directory fallback/read performed.",
+  "newBlindOrQuestionCount": 0
+}
