@@ -62,7 +62,7 @@ const teacher = {
   role: "director",
   approvalStatus: "approved",
   isAdmin: false,
-  menus: ["export"],
+  menus: ["bank"],
   branchRole: "teacher",
   branchId: "fixture-branch",
 };
@@ -108,7 +108,7 @@ describe("exam study authenticated route boundary", () => {
     [null, 401],
     [{ student: { id: "student", mustChangePassword: false } }, 401],
     [{ user: { ...teacher, role: "reviewer" } }, 403],
-    [{ user: { ...teacher, menus: ["bank"] } }, 403],
+    [{ user: { ...teacher, menus: ["export"] } }, 403],
     [{ user: { ...teacher, menus: [], branchRole: "manager" } }, 403],
     [{ user: { ...teacher, approvalStatus: "pending" } }, 403],
   ])(
@@ -303,7 +303,7 @@ describe("figure preparation is strict and bounded", () => {
   });
 });
 
-describe("the real proxy keeps the new paths inside existing export policy", () => {
+describe("the real proxy keeps the new paths inside the per-menu output policy (84d58378f)", () => {
   const paths = ["/api/exam/practice", "/api/exam/practice/resolve"];
   async function run(path: string) {
     return await (
@@ -325,7 +325,7 @@ describe("the real proxy keeps the new paths inside existing export policy", () 
       for (const path of paths) expect((await run(path)).status).toBe(403);
     },
   );
-  it("allows the existing export-menu teacher through both paths", async () => {
+  it("allows an output-capable menu teacher through both paths", async () => {
     for (const path of paths) expect((await run(path)).status).toBe(200);
   });
 });

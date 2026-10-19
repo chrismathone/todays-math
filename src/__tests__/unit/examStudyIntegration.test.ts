@@ -12,7 +12,7 @@ vi.mock("@/lib/auth", () => ({
       name: "통합 검사",
       role: "director",
       approvalStatus: "approved",
-      menus: ["export"],
+      menus: ["bank"],
       branchRole: "teacher",
       branchId: "local-test",
     },
