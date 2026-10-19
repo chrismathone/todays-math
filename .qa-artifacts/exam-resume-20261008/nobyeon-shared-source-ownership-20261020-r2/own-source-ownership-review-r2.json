@@ -1,0 +1,412 @@
+{
+  "kind": "independent-source-ownership-review/v2",
+  "status": "ownership-and-current-shared-transcription-reviewed-with-specific-limits",
+  "inputManifestSha256": "f3631124eb0be7fbc2979f18aa6b0a963902ecef1265a70fd5dc17322123f1ad",
+  "inputBindings": {
+    "15": {
+      "stage": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\question-only-staged\\nobyeon\\q15.json",
+        "sha256": "1d64f4bfd366f7b944bc6034390ee502b6b622c1e3253faa8699118a9093b5e9"
+      },
+      "priorReport": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\items\\nobyeon\\q15.json",
+        "sha256": "66428b5e8693783a3a14fa78e544e296a76db1488d72097b0216e569e2f16875"
+      }
+    },
+    "16": {
+      "stage": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\question-only-staged\\nobyeon\\q16.json",
+        "sha256": "5f917af01f0e4e2963bd15e69e8ad9a7ff7dca272994ae456cfbf07997d42aaf"
+      },
+      "priorReport": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\items\\nobyeon\\q16.json",
+        "sha256": "1f7028b4c1a49fa0c5df6be179bb376105ebc4d20ccd2fc64ca681372b089355"
+      }
+    },
+    "17": {
+      "stage": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\question-only-staged\\nobyeon\\q17.json",
+        "sha256": "71dfa1fd221bedbe3b4b298661e50b8647f958ebfb4c5364507176c7fac962eb"
+      },
+      "priorReport": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\items\\nobyeon\\q17.json",
+        "sha256": "80daba47dd3a3dd549ff6d5fc9c32f02204ba705b7e135c6822708d20a902b3e"
+      }
+    }
+  },
+  "originalReferences": [
+    {
+      "copy": "original-01-page-03-r2.png",
+      "sha256": "4dc38cab6d66ff03f057d754ba21e5d1805c4911da15cf565b2cdaec40f50ebb",
+      "physicalSourcePageAsProvided": 3,
+      "printedFooter": "노변중(수학)-(3)학년-(6쪽중4쪽)",
+      "actuallyViewedFullPage": true,
+      "gridInspectionLocalOnly": true
+    },
+    {
+      "copy": "original-02-page-04-r2.png",
+      "sha256": "2492b5001b2dd631972acace37df109ce469d9cb72808d68576eb520891741c1",
+      "physicalSourcePageAsProvided": 4,
+      "printedFooter": "노변중(수학)-(3)학년-(6쪽중4쪽)",
+      "actuallyViewedFullPage": true,
+      "gridInspectionLocalOnly": true
+    }
+  ],
+  "printedRegions": {
+    "coordinateMeaning": "정규화된페이지영역은위치안내용만이며수치답계산용좌표아님",
+    "q15": "오른쪽칼럼상단:15번질문/소득-지출직원그림/보기; [16~17]표제이전",
+    "shared16to17": "오른쪽칼럼중단:[16~17]표제·20명설명과오른쪽국어격자산점도",
+    "q16": "공통설명아래~17번번호이전",
+    "q17": "오른쪽칼럼하단17번질문/보기",
+    "localGridInspectionBoxes": {
+      "ref01": [
+        1043,
+        604,
+        1323,
+        911
+      ],
+      "ref02": [
+        1043,
+        608,
+        1323,
+        918
+      ]
+    },
+    "localInspectionImagesStaged": false
+  },
+  "exposure": {
+    "bothReferencesActuallyViewed": true,
+    "incidentalHandwrittenMarksVisible": true,
+    "basis": "원문참조에손글씨선택표시/계산이보이는것은숨기지않는다.그표시와계산은데이터점/정답근거로사용하지않았다.두번째참조의인쇄검은점과명시격자라벨을중심으로첫참조와교차확인했다.별도정답표/답안지는열지않았다.",
+    "newTwinOrAnswerCreated": false
+  },
+  "perItem": {
+    "15": {
+      "observed": [
+        "두실제원문오른쪽위에15번소득·지출질문과직원A/B/C/D그림이있고 x축소득(원),y축지출(원)으로인쇄되어있다.",
+        "그아래별도[16~17]머리말과20명국어점수산점도가있다.15번보기⑤의인쇄문장은공통머리말전에끝난다.",
+        "현재canonical보기⑤에는공통머리말이없고sourceFigureReferences는1개이며sharedSourceContext=null이다.원시rawHwpChoices⑤끝에는공통머리말이여전히남아있다."
+      ],
+      "inferred": [
+        "초기15번의두그림/공통머리말소유는추출경계오류이다.직원그림만15번이고국어그림은16/17공통이다.",
+        "정제된현재canonical질문경계는해당원문구성에맞는다. raw필드는과거추출증거이므로삭제보다오염구간주석을별도버전으로두는것이적절하다."
+      ],
+      "unknown": [
+        "현재q15-part1 completedcrop 파일바이트는이번제공목록에없으므로실제로직원그림만포함하는지최종crop범위검증은하지못했다.",
+        "HWP/PDF실제바이너리재파싱및본문전체소유/원본답안쌍동일성은미실시."
+      ],
+      "priorSpecificHoldReevaluation": "공통16/17내용을15가소유한다는초기오류는두원문에서부정됨.현재canonical15의경계는정리되어있지만historicalraw꼬리와실제crop최종바인딩은구분해보류.제안copy는원시바이트를보존한주석추가만수행한다.",
+      "proposedCorrectionFile": "own-proposed-stage-q15.json"
+    },
+    "16": {
+      "observed": [
+        "두원문에서[16~17]표제와20명설명/국어점수격자는16앞에있고q16은그아래별도질문이다.",
+        "현재staged16에는명시적sharedSourceContext와20쌍,공통owner가있는참조가있다.20쌍이이번자체격자전사와모두같다."
+      ],
+      "inferred": [
+        "이전sharedSourceContext-null/공통그림누락이라는사유는현재stage해시에는더이상맞지않는다.그구체적결손은해결된것으로평가할수있다."
+      ],
+      "unknown": [
+        "q16-part1과q15-part2의실제completedcrop픽셀바이트를이번범위에서직접보지않아등록된cropSHA와원문지역의완전이미지대응까지인증하지않음.",
+        "whole-source/HWP-PDF완전동일성및학년·권리·운영릴리스는별개."
+      ],
+      "priorSpecificHoldReevaluation": "현재20쌍및축/공통헤더소유는확인됨.이전null-context사유는obsolete-for-current-staged-version이다.새stagedcopy나point수정은필요없으며릴리스승인은별도로보류."
+    },
+    "17": {
+      "observed": [
+        "두원문에서17번질문은16아래에있고별도새산점도없음. [16~17]공통그림을참조한다.",
+        "현재staged17도동일contextID/20쌍/축과공통owner참조를갖고있다.자체전사와모두같다."
+      ],
+      "inferred": [
+        "17번단독하단질문crop만으로는공통데이터가부족하지만현재명시적공통바인딩이그결손을해결한다."
+      ],
+      "unknown": [
+        "실제completed하단crop/공통crop의파일바이트대조와HWP/PDF전문서연결은이번범위에서인증하지않음.",
+        "원문17번의등수/평균답이나새문항방법/학년은이번소유검토의대상이아님."
+      ],
+      "priorSpecificHoldReevaluation": "이전17번에공통그림연결이없다는사유는현재stage에는obsolete.공통조건과전사는확인됐으나기타출처/권리/학년/native게이트는미승인."
+    }
+  },
+  "pointTranscriptionSha256": "3b1ce473920ac7c4d388a83e5ebb0b28935d2c8d9852bf69e0e8688bcfc9ac70",
+  "pointChecks": {
+    "count": 20,
+    "uniquePairs": 20,
+    "staged16Match": true,
+    "staged17Match": true,
+    "allTwentyCompared": true,
+    "answerComputation": "none; 퍼센트/순위/상위평균계산없음"
+  },
+  "componentPointersAndLimits": {
+    "fromPriorReportsOnly": true,
+    "q15OwnFigure": {
+      "hwp": [
+        {
+          "kind": "figure",
+          "binId": 10,
+          "source": {
+            "stream": "BodyText/Section1",
+            "recordIndex": 121,
+            "inflatedByteOffset": 4577,
+            "tag": 85,
+            "level": 3,
+            "payloadSha256": "c0655bb8f4863700cbbd6cb023cb161a58d95ba09a05ebe6152162bdeb484fa9"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section1",
+            "recordIndex": 119,
+            "inflatedByteOffset": 4177,
+            "tag": 71,
+            "level": 1,
+            "payloadSha256": "86eef00e0465660a5710b6f5cec338e6809e3c5467112d01611c92e5a66baf1f"
+          },
+          "binStream": "BinData/BIN000A.bmp",
+          "binReferenceExists": true
+        }
+      ],
+      "pdf": [
+        {
+          "pdfPage": 4,
+          "xref": 25,
+          "rectangles": [
+            [
+              137.54200744628906,
+              528.5700073242188,
+              271.60601806640625,
+              658.9140014648438
+            ]
+          ],
+          "pdfImageBytesSha256": "504cdc02454ccda377466b5499d8e2f0bf02cdc1573956d51c69ba5edf17677b",
+          "pdfPixelRgbSha256": "a0120bdcb385f46d1dba4f361be9cb5765dc4411b4f10682440d903804cd428c",
+          "pixelSize": [
+            340,
+            330
+          ],
+          "sameSizeHwpCandidates": [
+            {
+              "binId": 10,
+              "stream": "BinData/BIN000A.bmp",
+              "hwpPixelRgbSha256": "bcbba7660168194602a6ce9bed40d8852b00a778ac23d7d9c868d12f32114a2b",
+              "meanChannelAbsoluteDifference": 4.135662507427213,
+              "threshold200PixelEquality": false
+            }
+          ],
+          "certifiedByPixelsAlone": false
+        }
+      ]
+    },
+    "sharedPlot": {
+      "prior197AnchorCheckReported": true,
+      "priorPdfReference": [
+        {
+          "pdfPage": 4,
+          "xref": 26,
+          "rectangles": [
+            [
+              429.4129943847656,
+              126.0269775390625,
+              617.198974609375,
+              292.583984375
+            ]
+          ],
+          "pdfImageBytesSha256": "20b51be8eee92ce89bfe00bfbde5f8f203ad4831272cabb3922ddb3b30fc2d93",
+          "pdfPixelRgbSha256": "f323bddbf0ceba1e57e9bec8868902216acc129b0924d978829e46e7070f1463",
+          "pixelSize": [
+            782,
+            694
+          ],
+          "sameSizeHwpCandidates": [
+            {
+              "binId": 13,
+              "stream": "BinData/BIN000D.bmp",
+              "hwpPixelRgbSha256": "068d6c0d7b7de45d7e2c6f96ab0946ece16046ab6e7707623cf7613de4f20335",
+              "meanChannelAbsoluteDifference": 1.5423690087487196,
+              "threshold200PixelEquality": false
+            }
+          ],
+          "certifiedByPixelsAlone": false
+        }
+      ],
+      "canonicalOwner": "NB-original-printed-16-17"
+    },
+    "cropBindingMetadata": {
+      "15": {
+        "current": [
+          {
+            "role": "source-question-reference",
+            "crop": {
+              "path": "nobyeon\\quarantined-question-crops\\q15-part1.png",
+              "sha256": "523893afa9493efaa936b9555d38c77e9f1c69e93f8e36dd31d96e43f1da7bec",
+              "page": 4,
+              "column": 0,
+              "bbox": [
+                55,
+                470.6026306152344,
+                375,
+                943.0
+              ]
+            },
+            "quarantined": true,
+            "finalTwinAssetAllowed": false,
+            "rawOriginalScan": false
+          }
+        ],
+        "prior": [
+          {
+            "path": "nobyeon\\quarantined-question-crops\\q15-part1.png",
+            "sha256": "523893afa9493efaa936b9555d38c77e9f1c69e93f8e36dd31d96e43f1da7bec",
+            "page": 4,
+            "column": 0,
+            "bbox": [
+              55,
+              470.6026306152344,
+              375,
+              943.0
+            ]
+          },
+          {
+            "path": "nobyeon\\quarantined-question-crops\\q15-part2.png",
+            "sha256": "8cf8e837f7b325f2c6e97ec904f4c2c45240336aa0cc6284966c1ab7957b82ff",
+            "page": 4,
+            "column": 1,
+            "bbox": [
+              370,
+              83,
+              688.0,
+              295.76654052734375
+            ]
+          }
+        ]
+      },
+      "16": {
+        "current": [
+          {
+            "role": "source-question-reference",
+            "crop": {
+              "path": "nobyeon\\quarantined-question-crops\\q16-part1.png",
+              "sha256": "ae7b3dae1988f33b4d02b98b0c175d7ba56432dcf4240f4534a5bdfef75a940d",
+              "page": 4,
+              "column": 1,
+              "bbox": [
+                370,
+                83,
+                688.0,
+                579.7181396484375
+              ]
+            },
+            "quarantined": true,
+            "finalTwinAssetAllowed": false,
+            "rawOriginalScan": false
+          },
+          {
+            "role": "shared-stem16-17",
+            "crop": {
+              "path": "nobyeon\\quarantined-question-crops\\q15-part2.png",
+              "sha256": "8cf8e837f7b325f2c6e97ec904f4c2c45240336aa0cc6284966c1ab7957b82ff",
+              "page": 4,
+              "column": 1,
+              "bbox": [
+                370,
+                83,
+                688.0,
+                295.76654052734375
+              ]
+            },
+            "quarantined": true,
+            "finalTwinAssetAllowed": false,
+            "rawOriginalScan": false,
+            "owner": "NB-original-printed-16-17"
+          }
+        ],
+        "prior": [
+          {
+            "path": "nobyeon\\quarantined-question-crops\\q16-part1.png",
+            "sha256": "ae7b3dae1988f33b4d02b98b0c175d7ba56432dcf4240f4534a5bdfef75a940d",
+            "page": 4,
+            "column": 1,
+            "bbox": [
+              370,
+              83,
+              688.0,
+              579.7181396484375
+            ]
+          }
+        ]
+      },
+      "17": {
+        "current": [
+          {
+            "role": "shared-stem16-17",
+            "crop": {
+              "path": "nobyeon\\quarantined-question-crops\\q15-part2.png",
+              "sha256": "8cf8e837f7b325f2c6e97ec904f4c2c45240336aa0cc6284966c1ab7957b82ff",
+              "page": 4,
+              "column": 1,
+              "bbox": [
+                370,
+                83,
+                688.0,
+                295.76654052734375
+              ]
+            },
+            "quarantined": true,
+            "finalTwinAssetAllowed": false,
+            "rawOriginalScan": false,
+            "owner": "NB-original-printed-16-17"
+          }
+        ],
+        "prior": [
+          {
+            "path": "nobyeon\\quarantined-question-crops\\q17-part1.png",
+            "sha256": "6a27360f3e41e8da6ca34713772fcf2312a9abb698fba2a14b6501e0a56c1995",
+            "page": 4,
+            "column": 1,
+            "bbox": [
+              370,
+              585.7181396484375,
+              688.0,
+              943.0
+            ]
+          }
+        ]
+      }
+    },
+    "limit": "위record/xref/stream/hash는제공된과거보고서의포인터를인용한것이다.실제HWP/PDF바이너리나crop파일을재검증한증거로격상하지않는다.원본2개페이지의시각소유범위대응과전문서/원본답안쌍동일성은다르다."
+  },
+  "stagingFlagInterpretation": "generic authoringRelease=false는모든staged에있는비운영표시이다.그것만으로특정수학/소유검토를전역차단하지않고,소유결손이해결됐다고릴리스를자동허용하지도않는다.실제source-hold사유를각현재해시별로재평가했다.",
+  "checks": {
+    "inputFileHashes": true,
+    "bothOriginalReferencesHashes": true,
+    "q15OwnGraphSeparateFromSharedGraph": true,
+    "sharedHeaderPrinted16to17": true,
+    "axesTranscribed": true,
+    "ownGridTranscriptionCount20": true,
+    "ownUniquePairs20": true,
+    "allGridValuesExplicit10PointTicks": true,
+    "q16MatchesOwn20Pairs": true,
+    "q17MatchesOwn20Pairs": true,
+    "q16q17SharedContextExactEqual": true,
+    "q16q17ExplicitSharedFigureOwnerPresent": true,
+    "q15CanonicalChoicesExcludeSharedHeader": true,
+    "q15HistoricalRawChoiceStillContainsSharedTail": true,
+    "noOriginalAnswersCalculated": true
+  },
+  "gates": {
+    "wholePairApproved": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "gradeApproved": false,
+    "familyApproved": false,
+    "nativeApproved": false,
+    "authoringRelease": false,
+    "operationalRelease": false,
+    "loadable": false,
+    "directUseAllowed": false
+  },
+  "counts": {
+    "newTwins": 0,
+    "newAnswers": 0,
+    "newManualOrBlindApprovals": 0,
+    "DBWrites": 0
+  },
+  "oldInputsPreserved": true
+}
