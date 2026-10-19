@@ -1,0 +1,41 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ❯ src/__tests__/unit/examStudyAdvancedFigures.test.ts (6 tests | 1 failed) 39457ms
+     ✓ re-solves each printed parabola/line chain and checks every essential dependency  982ms
+     ✓ checks two distinct incenters, all side distances, ray incidence and angle branches 112ms
+     ✓ resolves the two circumcenter/incenter branches with equal given angles 32ms
+     ✓ reconstructs incircle radius and shaded area from printed leg labels, checking all tangencies 51ms
+     ✓ strictly renders graph-1/v2 combinations with their essential printed labels  8243ms
+     × strictly renders every bounded figure tuple with readable, collision-free print labels 30021ms
+ ✓ src/__tests__/unit/examStudyCoreLegacy.test.ts (15 tests) 15734ms
+     ✓ preserves original registry identities/counts and exposes actual supported courses only  14972ms
+ ✓ src/__tests__/unit/examStudyIntegration.test.ts (7 tests) 20917ms
+     ✓ keeps all nine courses available without multiplying authored families by response format  17951ms
+     ✓ runs authenticated API → actual math → strict Python SVG → reproducible output confirmation  2098ms
+ ✓ src/__tests__/unit/examStudyRoutes.test.ts (22 tests) 354ms
+ ✓ src/__tests__/unit/deriveFormatsCountDomain.test.ts (4 tests) 322ms
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  1 failed | 53 passed (54)
+   Start at  18:38:40
+   Duration  120.93s (transform 9.86s, setup 13.38s, import 15.07s, tests 76.78s, environment 13.46s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/vitest-integration-r5.json
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/unit/examStudyAdvancedFigures.test.ts > figure-required mathematical information > strictly renders every bounded figure tuple with readable, collision-free print labels
+Error: Test timed out in 30000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/__tests__/unit/examStudyAdvancedFigures.test.ts:484:3
+    482|   }, 30_000);
+    483|
+    484|   it("strictly renders every bounded figure tuple with readable, colli…
+       |   ^
+    485|     const records: {
+    486|       family: string;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

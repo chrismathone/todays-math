@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type {
   ExamStudyGenerateRequest,
   ExamStudyGeneration,
@@ -36,6 +36,13 @@ import {
   getExamStudyCatalog,
 } from "@/lib/examStudy";
 import { createExamStudy, resolveExamStudy } from "@/lib/examStudyRoutes";
+
+// Preserve the actual origin guard while keeping local environment files out of fixture behavior.
+beforeEach(() => {
+  vi.stubEnv("AUTH_URL", "http://localhost");
+  vi.stubEnv("NEXTAUTH_URL", "http://localhost");
+});
+afterEach(() => vi.unstubAllEnvs());
 
 const request = (body: unknown, resolve = false) =>
   new Request(

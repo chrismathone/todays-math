@@ -121,6 +121,27 @@ export function declaredUpperBound(content: string): number | null {
   return null;
 }
 
+/** Only a complete, explicitly printed collection bounds this classification count. */
+export function declaredClassificationCount(content: string): number | null {
+  const lines = content
+    .trim()
+    .split(/\r?\n/)
+    .map((s) => s.trim());
+  if (
+    lines.length !== 2 ||
+    !/^다음 중 (?:일차방정식인 것|방정식인 것)의 개수를 구하시오\.$/.test(
+      lines[0]!,
+    ) ||
+    !/^\$[^$\n]+\$(?:,\s*\$[^$\n]+\$)+$/.test(lines[1]!)
+  )
+    return null;
+  const items = [...lines[1]!.matchAll(/\$([^$]+)\$/g)].map((m) => m[1]!);
+  // Duplicate rows are ambiguous count inputs. Do not invent the missing rows.
+  return items.length <= 20 && new Set(items).size === items.length
+    ? items.length
+    : null;
+}
+
 export function asMultipleChoice(stem: StemProblem, rng: Rng): DerivedProblem {
   if (hasChoices(stem.content)) {
     throw new Error(
@@ -128,6 +149,38 @@ export function asMultipleChoice(stem: StemProblem, rng: Rng): DerivedProblem {
     );
   }
   const correct = stem.answer.trim();
+  const countBound = declaredClassificationCount(stem.content);
+  if (countBound !== null) {
+    const readCount = (s: string) => /^\$(0|[1-9]\d*)\$개$/.exec(s.trim());
+    const parsed = readCount(correct);
+    if (!parsed || Number(parsed[1]) > countBound)
+      throw new Error("목록의 개수 범위를 벗어난 정답입니다");
+    if (countBound < 4)
+      throw new Error(
+        "가능한 개수 값이 다섯 미만이라 5지선다를 만들지 않습니다",
+      );
+    const wrong =
+      stem.distractors?.map((s) => s.trim()) ??
+      Array.from({ length: countBound + 1 }, (_, n) => `${n}$개`).filter(
+        (s) => s !== correct,
+      );
+    if (
+      wrong.some(
+        (s) => !readCount(s) || Number(readCount(s)![1]) > countBound,
+      ) ||
+      new Set([correct, ...wrong]).size !== wrong.length + 1 ||
+      (stem.distractors !== undefined && wrong.length !== 4)
+    )
+      throw new Error("개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다");
+    const chosen: string[] = [];
+    const pool = [...wrong];
+    while (chosen.length < 4) {
+      const next = pick(rng, pool);
+      chosen.push(next);
+      pool.splice(pool.indexOf(next), 1);
+    }
+    return withChoices(stem, rng, correct, chosen);
+  }
   const parsedCorrect = parseNumericAnswer(correct);
   const decimalPlaces = parsedCorrect?.decimalPlaces;
   // 소수는 끝자리 0·약분 여부가 달라도 같은 유리수면 같은 보기다.

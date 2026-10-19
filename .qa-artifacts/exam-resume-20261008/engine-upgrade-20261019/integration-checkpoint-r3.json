@@ -1,0 +1,125 @@
+{
+  "kind": "post-main-integration-validation/v3",
+  "createdAt": "2026-10-19T09:44:37.341Z",
+  "integratedMain": "261a5e263e4e104949d7a21673c9c9ad5850a380",
+  "integrationMerge": "30c0c54ae",
+  "currentHead": "7a83cbc19ec3b0c3430150cf579dfa1d177dd419",
+  "latestFiles": 53,
+  "latestPassed": 785,
+  "latestFailed": 0,
+  "latestSkipped": 6,
+  "skippedMeaning": "Existing conditionally unavailable database/extension checks; not counted as passes",
+  "runs": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/vitest-integration-r4.json",
+      "sha256": "4dc368a66611ebce4da6de84a2aaa7e9b992afd8291b3bcfe3b812989a539bfa"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/vitest-integration-r5.json",
+      "sha256": "0c3ea6dd1352516fb6d3b8fc9bcf64b248ffae3d4dca6e1589b1962403f416cf"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/vitest-integration-r6.json",
+      "sha256": "edb31ae2e6c8a515a9159d37606df449b8d6f3636f76448cb8d753612e4157d2"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/count-choice-regressions-r1.json",
+      "sha256": "ef61329a3fc5ffeba7d821e1c31c6c27fc0cace74d3d09fc0aa3e5d7277520e6"
+    }
+  ],
+  "initialFailuresPreserved": true,
+  "resolutions": [
+    "Route fixtures explicitly set/restore local AUTH_URL and NEXTAUTH_URL; real origin authorization unchanged and configured-origin negative regression added",
+    "Re-run catalog test alone passed without timeout change",
+    "117 actual Python renders took44.489s on Windows; bounded exhaustive test timeout changed30s to120s, assertions unchanged"
+  ],
+  "nodeTests": {
+    "passed": 117,
+    "failed": 0,
+    "evidence": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/integration-node-r5.tap",
+      "sha256": "88cd6d491fa954f257a8aac9ecac6db68e08d3b3fcb4378e0be3d5139c504a60"
+    }
+  },
+  "pythonRegionTests": {
+    "passed": 4,
+    "evidence": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/integration-python-r4.log",
+      "sha256": "a840da23a14b630800f4789fecd2d2e117e24ec61b59ca1dc21cce0b8805ce67"
+    }
+  },
+  "ownedTypecheck": {
+    "passed": true,
+    "config": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/tsconfig-owned-isolated-r3.json",
+      "sha256": "c0275d534831308d344747d0f0c88b2707c324f1191d591f79672b6994bdfa05"
+    },
+    "output": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/typecheck-owned-r3.log",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "privateClientOnly": true,
+    "sharedClientChanged": false
+  },
+  "ownedEslint": "passed",
+  "code": [
+    {
+      "path": "src/lib/engine/deriveFormats.ts",
+      "sha256": "8c3e150c36b1ab1fbade17f4f6e31099b1f6948b206fe91e9dcff4b9cad6600f",
+      "normalizedLfSourceSha256": "8c3e150c36b1ab1fbade17f4f6e31099b1f6948b206fe91e9dcff4b9cad6600f"
+    },
+    {
+      "path": "src/lib/examStudy/adapters.ts",
+      "sha256": "e5d7621795f0b315ce7fd93f815795c1bf5a5854477b4d18f6ffc30d17863499",
+      "normalizedLfSourceSha256": "3f0d36d3d8bda2233eb9c8941af5d4d23580cf6ffad4a99f9feb11b415deeba5"
+    },
+    {
+      "path": "src/lib/examStudy/evidence.ts",
+      "sha256": "4992864db92cd9d60a885d50ad2eda29fd3b15219e6944dfc2757b10cd586636",
+      "normalizedLfSourceSha256": "0208e4d17853e282dccda015eef76b53eadee86e89094ac1f01a73489fa8708b"
+    },
+    {
+      "path": "src/lib/examStudyRoutes.ts",
+      "sha256": "22e94bf55c25d41455561681f4ee7f6c1a41187bbf1eaa877d6ff3960b3a085f",
+      "normalizedLfSourceSha256": "a3815a863656aafed1daa5c2d60de680a22a0cbc52ee15b7e8211fadb581fb20"
+    },
+    {
+      "path": "scripts/import/exam-twin/candidatePack.mjs",
+      "sha256": "1f5038bfa48d2e539ac5b85aea7ffb5aafc6472add2e50fca0df25d0992897b2",
+      "normalizedLfSourceSha256": "1f5038bfa48d2e539ac5b85aea7ffb5aafc6472add2e50fca0df25d0992897b2"
+    },
+    {
+      "path": "scripts/import/exam-twin/answerPresentation.mjs",
+      "sha256": "79eef8e50c857fa72ca1508d58550a3540983a5282af86b4b4f1915812fcb2c4",
+      "normalizedLfSourceSha256": "8bb5634ffba39f2d8d79c1635287d4ea8a05461a306d95f5b2d5aca036afea29"
+    },
+    {
+      "path": "scripts/import/exam-twin/rebind-identical-review.mjs",
+      "sha256": "17b2e3ae3c808c3acdfabfe357ca7ded6025e1c3cf6e7a1a6c6c74794543912e",
+      "normalizedLfSourceSha256": "5338e001e91c0a48c3b65beabfc337fa6c67620b668c5619f415d0a602a8cf28"
+    }
+  ],
+  "incomingEngine": {
+    "authoredFamilies": 23,
+    "profileCount": 5,
+    "actualRequirementsTotal": 50,
+    "formalCurriculumAllSurfacesCertified": false,
+    "remainingUniqueDemands": 12,
+    "remainingSchoolCourseDemands": 13,
+    "mainAudit": {
+      "path": "docs/reports/math-exam-engine-remaining-20261019/README.md",
+      "sha256": "3cc8d78dc649147c584932189b305d084ab247e9ac57960b2d6612ba0464a6fa"
+    }
+  },
+  "countDomainFix": {
+    "actualGeneratedSamples": 64,
+    "supported": "Only two explicit classification-count sentence forms with a fully delimited math collection; 0..N integers, no impossible choices",
+    "unknownWording": "preserve old path, no invented domain",
+    "semanticRequirementPromotion": false
+  },
+  "fullAppBuild": false,
+  "wholeExtractionComplete": false,
+  "wholeEngineComplete": false,
+  "dbWrites": 0,
+  "deployed": false
+}

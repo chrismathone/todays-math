@@ -1,0 +1,19 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/unit/deriveFormatsDecimal.test.ts (23 tests) 24835ms
+     ✓ 재현: 삼각비 18 씨앗 15에서 발문으로 계산되는 정답은 정확히 한 보기다  468ms
+     ✓ 단위 있는 소수·정수 값의 소수도 씨앗 0~299에서 서로 다른 다섯 보기를 낸다  4707ms
+     ✓ 초등·중등 등록부에서 발견한 소수 문항류는 씨앗 0~99에서도 정답이 하나다  19455ms
+ ✓ src/__tests__/unit/deriveFormats.test.ts (42 tests) 230ms
+ ✓ src/__tests__/unit/deriveFormatsExactDistractors.test.ts (14 tests) 172ms
+ ✓ src/__tests__/unit/deriveFormatsCountDomain.test.ts (4 tests) 208ms
+ ✓ src/__tests__/unit/expandEngineExactChoices.test.ts (3 tests) 120ms
+
+ Test Files  5 passed (5)
+      Tests  86 passed (86)
+   Start at  18:43:07
+   Duration  49.69s (transform 6.51s, setup 6.57s, import 7.01s, tests 25.57s, environment 9.06s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/count-choice-regressions-r1.json
+

@@ -1,0 +1,15 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/unit/examStudyAdvancedFigures.test.ts (6 tests) 50342ms
+     ✓ re-solves each printed parabola/line chain and checks every essential dependency  844ms
+     ✓ strictly renders graph-1/v2 combinations with their essential printed labels  4835ms
+     ✓ strictly renders every bounded figure tuple with readable, collision-free print labels  44489ms
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  18:41:06
+   Duration  57.21s (transform 1.82s, setup 2.67s, import 1.34s, tests 50.34s, environment 2.35s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/vitest-integration-r6.json
+

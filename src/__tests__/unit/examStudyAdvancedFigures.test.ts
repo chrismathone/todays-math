@@ -584,5 +584,7 @@ describe("figure-required mathematical information", () => {
         ),
       ),
     ).toEqual([]);
-  }, 30_000);
+    // This exhausts 117 real Python renders; allow process startup on Windows.
+    // All tuple, glyph, collision and point-role assertions still run unchanged.
+  }, 120_000);
 });

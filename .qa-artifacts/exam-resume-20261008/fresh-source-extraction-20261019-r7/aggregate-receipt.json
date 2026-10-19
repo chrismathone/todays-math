@@ -1,0 +1,270 @@
+{
+  "kind": "fresh-source-aggregate-receipt/v1",
+  "createdAt": "2026-10-19T09:39:21.453345+00:00",
+  "inventory": {
+    "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+    "sha256": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+    "bytes": 8404909
+  },
+  "tools": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\extract-fresh-sources-20261019.py",
+      "sha256": "866d9c41bc08f19ff65af611bd197fdf90325e5465dee3a87880c4ab3458b455",
+      "bytes": 12883
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\extract_source.py",
+      "sha256": "bf6ec9417e201756530a2d291b5092e4594856534313f80a990ec03a59f1f7fb",
+      "bytes": 29209
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\qa\\convert-hwp-spans.py",
+      "sha256": "326d343a18f4229fa5156b73271be8bc0035ff246cc2d2ad59338352da49fe00",
+      "bytes": 12470
+    },
+    {
+      "path": "D:\\시험지 한글화\\db\\textlayer.py",
+      "sha256": "bbb49d272fd7b79c3935253c7f1429def2c69f0d3ed5a014369b14e971cea743",
+      "bytes": 32795
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\source_region_ownership.py",
+      "sha256": "81b25cb662722df427766260849593d62090abb6dbb80a598a546f5642ac00f1",
+      "bytes": 3092
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\qa\\tc_paths.py",
+      "sha256": "74907f5e9592ab1d3a188e152c41e6e4067b9ce920777fe0a720be68bdc0476e",
+      "bytes": 1320
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\qa\\hwpeq_unglue.py",
+      "sha256": "ca9f880261368dc17e98c89805776b814ff415454f2cbd43465fec2b03356415",
+      "bytes": 12710
+    },
+    {
+      "path": "D:\\시험지 한글화\\core\\hwpeq_to_latex.py",
+      "sha256": "6cdb46b45470b66feac75f1372aa9defa3fcac213633865825e2908f03db4861",
+      "bytes": 9013
+    },
+    {
+      "path": "D:\\시험지 한글화\\db\\pua_table.json",
+      "sha256": "08ab989bcf1966eec3649f74fc5cd1738ab2462bd083280ec42529c8c7c8cd22",
+      "bytes": 2189
+    }
+  ],
+  "explicitJobIds": [
+    "personal-87311a760e702909b5a0fe1cd63004ca",
+    "personal-dc9efb798219b732ebd608105298f220",
+    "personal-1c6091af710ddaaa7e6671a2ef018a1c"
+  ],
+  "selectionPolicy": "unparsed 2025+ middle3 completed pair, protected schools/known parsed IDs excluded",
+  "previousParentObservations": 634,
+  "entries": [
+    {
+      "examId": "personal-87311a760e702909b5a0fe1cd63004ca",
+      "school": "대구동중",
+      "level": "중",
+      "year": 2025,
+      "grade": 3,
+      "semester": 1,
+      "round": "중간",
+      "componentsApproved": 0,
+      "twins": 0,
+      "identityApproved": false,
+      "wholePairCertified": false,
+      "gradeApprovals": 0,
+      "rightsApprovals": 0,
+      "status": "individual-source-hold",
+      "errorType": "FileNotFoundError",
+      "error": "[Errno 2] No such file or directory: 'N:\\\\개인\\\\기출\\\\2025 기출모음\\\\2025년 1학기 중간고사 모음\\\\워드\\\\중3\\\\[대구동중][3][25-1-중간][지학사] (완료).hwp'",
+      "doesNotBlockOtherSources": true
+    },
+    {
+      "examId": "personal-dc9efb798219b732ebd608105298f220",
+      "school": "대구북중",
+      "level": "중",
+      "year": 2025,
+      "grade": 3,
+      "semester": 1,
+      "round": "중간",
+      "componentsApproved": 0,
+      "twins": 0,
+      "identityApproved": false,
+      "wholePairCertified": false,
+      "gradeApprovals": 0,
+      "rightsApprovals": 0,
+      "status": "individual-source-hold",
+      "errorType": "FileNotFoundError",
+      "error": "[Errno 2] No such file or directory: 'N:\\\\개인\\\\기출\\\\2025 기출모음\\\\2025년 1학기 중간고사 모음\\\\워드\\\\중3\\\\[대구북중][3][25-1-중간][비상] (완료).hwp'",
+      "doesNotBlockOtherSources": true
+    },
+    {
+      "examId": "personal-1c6091af710ddaaa7e6671a2ef018a1c",
+      "school": "대구일중",
+      "level": "중",
+      "year": 2025,
+      "grade": 3,
+      "semester": 1,
+      "round": "중간",
+      "componentsApproved": 0,
+      "twins": 0,
+      "identityApproved": false,
+      "wholePairCertified": false,
+      "gradeApprovals": 0,
+      "rightsApprovals": 0,
+      "status": "individual-source-hold",
+      "errorType": "FileNotFoundError",
+      "error": "[Errno 2] No such file or directory: 'N:\\\\개인\\\\기출\\\\2025 기출모음\\\\2025년 1학기 중간고사 모음\\\\워드\\\\중3\\\\[대구일중][3][25-1-중간][천재류] (완료).hwp'",
+      "doesNotBlockOtherSources": true
+    }
+  ],
+  "actualNewParents": 0,
+  "componentsApproved": 0,
+  "twins": 0,
+  "dbWrites": 0,
+  "wholePairCertifications": 0,
+  "gradeApprovals": 0,
+  "rightsApprovals": 0,
+  "preservation": [
+    {
+      "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+      "beforeSha256": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "afterSha256": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\source-manifest.json",
+      "beforeSha256": "5a082d1c9da1eb72ff0f69e017ecc127fa90c65f54f0aca6a80c67272fb319ae",
+      "afterSha256": "5a082d1c9da1eb72ff0f69e017ecc127fa90c65f54f0aca6a80c67272fb319ae"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\source-manifest.json",
+      "beforeSha256": "87e05a69d85524fe20dc178e6da190414f36193984807f1673356f299fb53b4b",
+      "afterSha256": "87e05a69d85524fe20dc178e6da190414f36193984807f1673356f299fb53b4b"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongsan\\source-manifest.json",
+      "beforeSha256": "3429d54484b3676efe2a4ba3564e68f005ed431a899dab5fa979b91a57f66b6c",
+      "afterSha256": "3429d54484b3676efe2a4ba3564e68f005ed431a899dab5fa979b91a57f66b6c"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongsang\\source-manifest.json",
+      "beforeSha256": "eff360204432f6b0c39aa2468cc59fbdf34ec1bc213a58c33de72d023f905e5d",
+      "afterSha256": "eff360204432f6b0c39aa2468cc59fbdf34ec1bc213a58c33de72d023f905e5d"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongsin\\source-manifest.json",
+      "beforeSha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249",
+      "afterSha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\gyeongilyeo\\source-manifest.json",
+      "beforeSha256": "8e6fbce1c23eb03a0aa8fc56f347e5934712f47b9f462e222bcb7f42aff865d6",
+      "afterSha256": "8e6fbce1c23eb03a0aa8fc56f347e5934712f47b9f462e222bcb7f42aff865d6"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\gyeseong\\source-manifest.json",
+      "beforeSha256": "97ebf0fdf3ca4f6b3eab4b5737083410b94f57bf53863a4be568635618b4f4f9",
+      "afterSha256": "97ebf0fdf3ca4f6b3eab4b5737083410b94f57bf53863a4be568635618b4f4f9"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\nobyeon\\source-manifest.json",
+      "beforeSha256": "6f3efd989d305e65127eb4268db05d9e1c099b2aec55706ebb554d45e6782454",
+      "afterSha256": "6f3efd989d305e65127eb4268db05d9e1c099b2aec55706ebb554d45e6782454"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r2-attempt1\\daegok\\source-manifest.json",
+      "beforeSha256": "d3fd0fe0b3d3b47f74afe8780811b900b069c2b833b6a7bd26f516e7a843c8df",
+      "afterSha256": "d3fd0fe0b3d3b47f74afe8780811b900b069c2b833b6a7bd26f516e7a843c8df"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r2-attempt1\\daegudong\\source-manifest.json",
+      "beforeSha256": "f9fe06d8b846d264bf1982372677e2f6a6002ab196c1032dd410fcfbe5e68865",
+      "afterSha256": "f9fe06d8b846d264bf1982372677e2f6a6002ab196c1032dd410fcfbe5e68865"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r2-attempt1\\neungin\\source-manifest.json",
+      "beforeSha256": "9aba65d89cecaebcba70cea98040192ac70f73f26529c48275e3e602738a70c3",
+      "afterSha256": "9aba65d89cecaebcba70cea98040192ac70f73f26529c48275e3e602738a70c3"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r1\\aggregate-receipt.json",
+      "beforeSha256": "7b8cf0c4538b619f4d24fdbf3bfe74079f6da18eef457804c99079df0a9e2367",
+      "afterSha256": "7b8cf0c4538b619f4d24fdbf3bfe74079f6da18eef457804c99079df0a9e2367"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r2\\aggregate-receipt.json",
+      "beforeSha256": "553685f863cda90cdd94480763cb46a769e97c2daaee5234f32b0ee82193d07b",
+      "afterSha256": "553685f863cda90cdd94480763cb46a769e97c2daaee5234f32b0ee82193d07b"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r3\\aggregate-receipt.json",
+      "beforeSha256": "2507ed4923dcc8738cc2b35f95db6bb97db48dc69bc8e63a76758099c7b4fe12",
+      "afterSha256": "2507ed4923dcc8738cc2b35f95db6bb97db48dc69bc8e63a76758099c7b4fe12"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r4\\aggregate-receipt.json",
+      "beforeSha256": "a44cb9b9d871d6363aeea0decc8390e4af7065b33879cb36c2b37bf08f77572f",
+      "afterSha256": "a44cb9b9d871d6363aeea0decc8390e4af7065b33879cb36c2b37bf08f77572f"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\aggregate-receipt.json",
+      "beforeSha256": "7dfed92a5c2019e565a577910dc51baae6ad949535036950d969186b7e86fb9b",
+      "afterSha256": "7dfed92a5c2019e565a577910dc51baae6ad949535036950d969186b7e86fb9b"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r6\\aggregate-receipt.json",
+      "beforeSha256": "5918ee507fa9f3f23e7c5c182cbd1872a850f8101afeaf35fa1bb991a874c3c1",
+      "afterSha256": "5918ee507fa9f3f23e7c5c182cbd1872a850f8101afeaf35fa1bb991a874c3c1"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\extract-fresh-sources-20261019.py",
+      "beforeSha256": "866d9c41bc08f19ff65af611bd197fdf90325e5465dee3a87880c4ab3458b455",
+      "afterSha256": "866d9c41bc08f19ff65af611bd197fdf90325e5465dee3a87880c4ab3458b455"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\extract_source.py",
+      "beforeSha256": "bf6ec9417e201756530a2d291b5092e4594856534313f80a990ec03a59f1f7fb",
+      "afterSha256": "bf6ec9417e201756530a2d291b5092e4594856534313f80a990ec03a59f1f7fb"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\qa\\convert-hwp-spans.py",
+      "beforeSha256": "326d343a18f4229fa5156b73271be8bc0035ff246cc2d2ad59338352da49fe00",
+      "afterSha256": "326d343a18f4229fa5156b73271be8bc0035ff246cc2d2ad59338352da49fe00"
+    },
+    {
+      "path": "D:\\시험지 한글화\\db\\textlayer.py",
+      "beforeSha256": "bbb49d272fd7b79c3935253c7f1429def2c69f0d3ed5a014369b14e971cea743",
+      "afterSha256": "bbb49d272fd7b79c3935253c7f1429def2c69f0d3ed5a014369b14e971cea743"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\source_region_ownership.py",
+      "beforeSha256": "81b25cb662722df427766260849593d62090abb6dbb80a598a546f5642ac00f1",
+      "afterSha256": "81b25cb662722df427766260849593d62090abb6dbb80a598a546f5642ac00f1"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\qa\\tc_paths.py",
+      "beforeSha256": "74907f5e9592ab1d3a188e152c41e6e4067b9ce920777fe0a720be68bdc0476e",
+      "afterSha256": "74907f5e9592ab1d3a188e152c41e6e4067b9ce920777fe0a720be68bdc0476e"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\qa\\hwpeq_unglue.py",
+      "beforeSha256": "ca9f880261368dc17e98c89805776b814ff415454f2cbd43465fec2b03356415",
+      "afterSha256": "ca9f880261368dc17e98c89805776b814ff415454f2cbd43465fec2b03356415"
+    },
+    {
+      "path": "D:\\시험지 한글화\\core\\hwpeq_to_latex.py",
+      "beforeSha256": "6cdb46b45470b66feac75f1372aa9defa3fcac213633865825e2908f03db4861",
+      "afterSha256": "6cdb46b45470b66feac75f1372aa9defa3fcac213633865825e2908f03db4861"
+    },
+    {
+      "path": "D:\\시험지 한글화\\db\\pua_table.json",
+      "beforeSha256": "08ab989bcf1966eec3649f74fc5cd1738ab2462bd083280ec42529c8c7c8cd22",
+      "afterSha256": "08ab989bcf1966eec3649f74fc5cd1738ab2462bd083280ec42529c8c7c8cd22"
+    }
+  ],
+  "preserved": true,
+  "localCopyrightedOutputs": [],
+  "allSourcesExtracted": false,
+  "authorDistributionAllowed": false
+}

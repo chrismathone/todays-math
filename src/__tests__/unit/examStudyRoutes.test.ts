@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { studyCatalog, studyGeneration } from "./examStudyFixtures";
 import type {
   ExamStudyDraft,
@@ -88,6 +88,8 @@ const request = (
   });
 
 beforeEach(() => {
+  vi.stubEnv("AUTH_URL", "http://localhost");
+  vi.stubEnv("NEXTAUTH_URL", "http://localhost");
   fixture.session = { user: { ...teacher } };
   fixture.generate
     .mockReset()
@@ -95,13 +97,12 @@ beforeEach(() => {
       studyGeneration(input),
     );
   fixture.catalog.mockReset().mockReturnValue(studyCatalog);
-  fixture.render
-    .mockReset()
-    .mockResolvedValue({
-      ok: true,
-      svg: '<svg xmlns="http://www.w3.org/2000/svg"/>',
-    });
+  fixture.render.mockReset().mockResolvedValue({
+    ok: true,
+    svg: '<svg xmlns="http://www.w3.org/2000/svg"/>',
+  });
 });
+afterEach(() => vi.unstubAllEnvs());
 
 describe("exam study authenticated route boundary", () => {
   it.each([
@@ -140,6 +141,18 @@ describe("exam study authenticated route boundary", () => {
       ).status,
     ).toBe(403);
     expect(fixture.generate).not.toHaveBeenCalled();
+  });
+
+  it("uses the configured application origin rather than trusting the request URL", async () => {
+    vi.stubEnv("AUTH_URL", "https://configured.example");
+    expect((await createExamStudy(request("POST", recipe))).status).toBe(403);
+    expect(
+      (
+        await createExamStudy(
+          request("POST", recipe, undefined, "https://configured.example"),
+        )
+      ).status,
+    ).toBe(200);
   });
 
   it.each([
