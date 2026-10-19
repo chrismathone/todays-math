@@ -1,0 +1,65 @@
+{
+  "studentDigest": "1d08f7cb77a61502a4c8cab332828ce287b2619c99e9401ccbd736610079df52",
+  "solverId": "codex-gyeongsin-group3-clean-blind-20261019-r1-q04",
+  "status": "solved",
+  "answer": "(1) 18 cm; (2) 10 cm",
+  "solution": "(1) 접점에 그은 반지름은 접선과 수직이므로 OS⊥PS, OE⊥QR이다. 또 QS는 PQ의 연장선 위에 있고 QE는 QR 위에 있으므로 ∠SQE=90°이다. 따라서 사각형 QSOE는 직사각형이다. OS=OE=6cm이므로 이 직사각형은 한 변이 6cm인 정사각형이고, QS=QE=6cm이다.\n\n점의 순서가 P,Q,S이므로 PS=PQ+QS=6+6=12cm이다. 같은 점 P에서 원에 그은 두 접선의 길이는 같으므로 PT=PS=12cm이다. 같은 점 R에서 그은 두 접선의 길이도 같으므로 RT=RE이다. P,R,T의 순서와 E가 QR의 내부에 있다는 조건을 사용하면 PR=PT-RT, QR=QE+ER이다. 그러므로 PR+QR=(PT-RT)+(QE+ER)=PT+QE=12+6=18cm이다. 따라서 (1)의 답은 18cm이다.\n\n(2) PR=x cm라 하면 (1)에 의해 QR=(18-x)cm이다. ∠PQR=90°이므로 피타고라스 정리에 의해 x²=6²+(18-x)²이다. 이를 정리하면 x²=36+324-36x+x², 36x=360이므로 x=10이다. 따라서 (2)의 답은 PR=10cm이다. 이때 QR=8cm이고 RE=QR-QE=8-6=2cm, RT=2cm이다. QS=6cm, PS=PT=12cm이므로 주어진 순서와 내부 조건에 맞는 모든 짧은 선분의 길이도 양수이다.\n\n실제로 이러한 도형이 존재하는지도 좌표 없이 확인한다. PQ=6cm, QR=8cm이고 Q가 직각인 삼각형을 만들면 PR=10cm이다. 반직선 PQ에서 Q를 지나 QS=6cm인 점 S를 잡고, QR 위에 QE=6cm인 점 E를 잡는다. E는 0<6<8이므로 QR의 내부에 있다. QR의 P와 반대쪽에 정사각형 QSOE를 만들고 O를 중심으로 반지름 6cm인 원을 그린다. 이 원은 PS에 S에서, QR에 E에서 접하며, QR을 경계로 삼각형과 반대쪽에 놓이므로 삼각형의 내부와 겹치지 않는다. 이제 PR의 연장선에도 요구된 위치에서 접함을 확인하면 된다.\n\n직선 PO와 QR의 교점을 F라 하자. 직각삼각형 PQF와 PSO는 P의 각이 같으므로 닮음이다. PQ/PS=6/12=1/2이므로 QF=OS/2=3cm이고, RF=QR-QF=8-3=5cm이다. P와 O는 QR의 서로 반대쪽에 있으므로 F는 PO의 내부에 있다. 따라서 삼각형 POR의 넓이는 삼각형 PRF와 ORF의 넓이의 합이다. 이 두 삼각형의 공통 밑변은 RF이고 QR까지의 높이는 각각 PQ와 OE이므로 그 합은 (1/2)×5×6+(1/2)×5×6=30cm²이다. PR=10cm이므로 O에서 직선 PR까지의 거리는 2×30÷10=6cm이다.\n\nO에서 직선 PR에 내린 수선의 발을 H라 하면 OH=6cm이다. 직각삼각형 PSO에서 OP²=12²+6²=180이고, 직각삼각형 PHO에서 PH²=OP²-OH²=180-36=144이므로 PH=12cm이다. 만약 H가 P에서 R과 반대 방향에 있다면 RH=PR+PH=10+12=22cm이므로 RO²=RH²+OH²=22²+6²=520이어야 한다. 그런데 직각삼각형 REO에서는 RO²=RE²+OE²=2²+6²=40이므로 모순이다. 따라서 H는 반직선 PR 위에 있고, PH=12>PR=10이므로 R을 지난 쪽에 있다. H를 T라 하면 OT=6cm이고 OT⊥PT이므로 그 원은 반직선 PR에 T에서 접한다. P,R,T의 순서와 RT=2cm도 확인된다. 이로써 모든 접점·순서·내부 조건을 만족하는 도형의 존재가 확인된다.\n\n유일성은 필요한 길이의 값에 대한 것이다. 모든 허용 도형은 정사각형과 접선 길이의 같음으로 PR+QR=18cm를 만족하며, 피타고라스 식은 36x=360으로 정리되어 PR=10cm만 가능하다. 위의 구성으로 이 값이 실제 조건에도 맞으므로 불가능한 계산 결과를 정답으로 택한 것이 아니다. 삼각형과 원의 위치나 방향까지 하나라고 주장하지 않는다. 그림의 픽셀이나 SVG 좌표를 길이의 근거로 사용하지 않았다.",
+  "evidence": {
+    "numberedAnswers": [
+      {"part": 1, "quantity": "PR+QR", "value": 18, "unit": "cm"},
+      {"part": 2, "quantity": "PR", "value": 10, "unit": "cm"}
+    ],
+    "exactDerivedLengthsCm": {"radius": 6, "PQ": 6, "QS": 6, "QE": 6, "OS": 6, "OE": 6, "PS": 12, "PT": 12, "PR": 10, "QR": 8, "RE": 2, "RT": 2},
+    "conditionChecks": {
+      "rightTriangle": "PR²=100=PQ²+QR²=36+64",
+      "equalTangentsAtP": "PS=PT=12cm",
+      "equalTangentsAtQ": "QS=QE=6cm",
+      "equalTangentsAtR": "RE=RT=2cm",
+      "orderPQS": "PQ=6cm>0, QS=6cm>0, PS=12cm",
+      "orderPRT": "PR=10cm>0, RT=2cm>0, PT=12cm",
+      "EInterior": "QE=6cm>0, ER=2cm>0, QR=8cm",
+      "positiveRadiusAndNondegeneracy": "반지름은 6cm로 양수이고, 직각을 끼는 두 변은 각각 6cm와 8cm로 모두 양수이다.",
+      "outsideTriangle": "중심 O는 QR의 P와 반대쪽에 있고, 원은 QR에 E에서 접하므로 삼각형의 내부와 겹치지 않는다."
+    },
+    "existenceWitness": {
+      "method": "변의 길이가 6cm, 8cm, 10cm인 직각삼각형과 정사각형 QSOE를 만들고, 닮음·삼각형 넓이·피타고라스 정리로 직선 PR까지의 거리와 접점의 위치를 확인한다.",
+      "QFcm": 3,
+      "RFcm": 5,
+      "areaPORcm2": 30,
+      "distanceOToLinePRcm": 6,
+      "OPsquaredCm2": 180,
+      "PHcm": 12,
+      "ROsquaredCm2": 40,
+      "wrongSideROsquaredCm2": 520,
+      "footBeyondR": true
+    },
+    "methodScope": {
+      "target": "중3 / 2015",
+      "studentMethods": ["접점의 반지름과 접선의 수직 관계", "한 점에서 그은 두 접선의 길이의 같음", "직사각형·정사각형의 성질", "피타고라스 정리와 일차식 정리", "삼각형의 닮음과 넓이"],
+      "noOutsideGradeShortcut": "별도의 원 종류 명칭·반지름 공식, 상위 학년 정리 또는 좌표 배치를 강요하지 않았다. 존재 증명도 보조선·닮음·넓이·피타고라스로 구성했다.",
+      "approval": "1단계 독립 학생 풀이와 방법 기록이다. 최종 학년·내용·출처·권리 승인이나 사용 가능 판정이 아니다."
+    },
+    "figureAndReadingObservations": {
+      "svgPath": "../gyeongsin-group3-review-20261019-r2/blind/figures/q04-1.svg",
+      "sha256": "4241cf67ee7c9e03ff869dc0424f749136f51a14e7b5dde87ff0a8168a1dcbd9",
+      "renderedAndViewed": true,
+      "pixelOrCoordinateOracleUsed": false,
+      "observedRoles": "삼각형 PQR, 원 O와 접점 S,T,E, 중심에서 접점으로 가는 반지름, 직각 표지가 보인다. O는 QR의 P와 반대쪽에 있고 S는 Q를 지나, T는 R을 지난 쪽에 그려져 있다. E는 QR 중간에 표시된다. 이는 역할·가독성 관찰일 뿐 수치의 근거가 아니다.",
+      "laterReviewConcerns": ["반직선 PQ·PR과 점 순서 P,Q,S 및 P,R,T, E의 내부 조건을 한꺼번에 읽어야 하므로 공간 관계를 따라가는 부담이 있다. 다만 어느 쪽 연장인지 본문이 명시한다.", "R과 T의 간격이 짧고 R의 글자가 사선 PR에 가깝다. 70mm 인쇄에서는 꼭짓점 R과 접점 T를 혼동하지 않는지 추가 확인할 만하다.", "E의 글자는 QR 왼쪽에 떨어져 있고 접점 점은 QR 위에 있다. 점·글자 대응을 따라갈 수 있으나 여러 직각 표지와 일곱 점 이름이 있어 그림이 조밀하다.", "(1)은 삼각형 전체 둘레가 아니라 PR+QR이라는 두 길이의 합이다. 답에 cm 단위를 명시했다."],
+      "finalContentReadabilityApprovalClaimed": false
+    },
+    "exposureHistory": {
+      "stage": "STAGE 1 blind only; same conversation resumed after terminal restart",
+      "authorAnswerSeen": false,
+      "authorSolutionSeen": false,
+      "thisCandidateSeenBeforeAuthorizedBlindRead": false,
+      "originalQ04OrAnswerKnowinglyRead": false,
+      "actualEarlierExposure": "앞선 경신 q01·q02 독립 풀이와 허용된 2단계 검수, 일반 중3 접선·반지름 생성기 및 일부 삼각형·사각형 관련 코드/검색 문맥을 본 적이 있다. 다른 학교의 추출·검수와 집계 메타데이터에도 노출된 적이 있다. 이번 q04 학생판을 처음 허용받기 전에 이 새 후보의 답·해설이나 경신 원문 q04·정답을 의도적으로 열람한 적은 없고, 저자 답을 전달받지 않았다. 위의 일반 기하 관련 노출을 숨기지 않고 기록한다.",
+      "thisStageReadScope": ["사용자의 지시와 이미 제공된 AGENTS 지시", "허용된 group3 r2 blind/student-problems.json", "blind/blind-manifest.json", "그 안의 q04 SVG와 그것만 렌더링한 로컬 이미지", "이번 새 원시 증거 및 tool-ready-resume-r1.json"],
+      "authorPrivateSourceOriginalOrGenerationCodeOpenedThisStage": false,
+      "answerSearchOrModelCalls": false,
+      "rootMergedThisStage": false
+    },
+    "calculation": "봉인 전 Python Fraction의 정확한 유리수 산술로 두 답, 피타고라스 식, 세 외부점의 접선 길이, 점 순서·내부 부등식, 존재 구성의 닮음·넓이·수선 거리 수치를 계산하여 이 JSON과 대조했다."
+  }
+}

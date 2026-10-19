@@ -1,0 +1,32 @@
+{
+  "kind": "checkpoint-validation-correction/v1",
+  "utc": "2026-10-19T09:07:32.227Z",
+  "pushedSha": "5fd3dfdf224d0ad23ea2a99125153caa63ed1359",
+  "target": "origin/chrismathone/exam-extraction-resume-20261008",
+  "fetchedBeforePush": true,
+  "prePushGuardPassed": false,
+  "problem": "PowerShell continued to push after a native Node hash assertion exited nonzero. The command sequence was incorrectly gated.",
+  "failedComparison": {
+    "file": "scripts/import/exam-twin/rebind-identical-review.mjs",
+    "checkoutRawSha256": "17b2e3ae3c808c3acdfabfe357ca7ded6025e1c3cf6e7a1a6c6c74794543912e",
+    "gitBlobRawSha256": "5338e001e91c0a48c3b65beabfc337fa6c67620b668c5619f415d0a602a8cf28",
+    "normalizedLfBothSha256": "5338e001e91c0a48c3b65beabfc337fa6c67620b668c5619f415d0a602a8cf28",
+    "cause": "Git checkout CRLF versus canonical LF; code content matches. All other previous application code normalized hashes match."
+  },
+  "postPushNodeValidation": {
+    "tests": 68,
+    "passed": 68,
+    "failed": 0,
+    "exitCode": 0,
+    "output": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/post-push-validation-r1.tap",
+      "sha256": "71f00dbf02e760265fa02ca0455f75da963c7f9cbab54b048a654f59e9aa9fd5"
+    }
+  },
+  "evidenceByteRulesUnchanged": "Candidate, private payload, figure, proof and report bytes still use exact raw SHA; code newline normalization is not used to relax evidence checks.",
+  "futurePushControl": "Validation and push are separate sequential tool calls; inspect exit codes before issuing any push.",
+  "forcePush": false,
+  "remoteHistoryRewritten": false,
+  "dbWrites": 0,
+  "loadable": 0
+}
