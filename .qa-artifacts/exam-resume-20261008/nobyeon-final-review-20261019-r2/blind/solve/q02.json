@@ -1,0 +1,79 @@
+{
+  "studentDigest": "d7c3cf3497e682a8bef4ceb2a6cf5f64eb873e53fa31597237368ba824d9ffb4",
+  "solverId": "codex-nobyeon-independent-20261019-r2",
+  "answer": "④ 24",
+  "solution": "AB와 DE는 모두 BC에 수직이므로 평행하다. D,C,A가 한 직선 위에 있고 E,C,B가 한 직선 위에 있으므로 직각삼각형 DEC와 ABC는 두 각이 같아 닮음이다. 따라서 cos x=DE/DC=AB/AC=5/13이다. AC=26이므로 AB=10이다. 피타고라스 정리로 BC²=26²−10²=576, BC>0이므로 BC=24, 즉 ④이다. D의 특정 위치를 길이 측정으로 정할 필요는 없다.",
+  "evidence": {
+    "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q02",
+    "questionNumber": 2,
+    "blindInputOnly": true,
+    "actualFiguresViewed": [
+      {
+        "path": "figures/q02-1.svg",
+        "sha256": "804a082c61015361b7dd41ce229c1f5a2209712cb4a92d0850c6628a215e8b0b",
+        "renderedPng": "rendered/q02-1.png",
+        "pixelMeasurementUsed": false
+      }
+    ],
+    "figureObservation": "Rendered figure labels and incidences agree with the stated roles; no geometric length was inferred from pixels.",
+    "allFiveChoiceChecks": [
+      {
+        "choice": 1,
+        "BC": 10,
+        "ABSquaredPlusBCSquared": "200",
+        "equals676": false
+      },
+      {
+        "choice": 2,
+        "BC": 12,
+        "ABSquaredPlusBCSquared": "244",
+        "equals676": false
+      },
+      {
+        "choice": 3,
+        "BC": 20,
+        "ABSquaredPlusBCSquared": "500",
+        "equals676": false
+      },
+      {
+        "choice": 4,
+        "BC": 24,
+        "ABSquaredPlusBCSquared": "676",
+        "equals676": true
+      },
+      {
+        "choice": 5,
+        "BC": 25,
+        "ABSquaredPlusBCSquared": "725",
+        "equals676": false
+      }
+    ],
+    "domainExistenceUniquenessUnits": {
+      "domain": "Nondegenerate right triangle; x is defined and acute. D≠C, DE>0 and DC>0.",
+      "existence": "AB=10, BC=24, AC=26 is a positive right triangle; choose D at AC midpoint, giving DE=5, EC=12, DC=13.",
+      "uniqueness": "Similarity fixes AB=10; Pythagoras and BC>0 select only BC=24. Moving D does not change the result.",
+      "positiveLengths": "AB=10, BC=24, AC=26 and midpoint witness DE=5, EC=12, DC=13 are positive.",
+      "units": "24 in the same unspecified length unit as AC=26; do not invent cm."
+    },
+    "withinGradeMethodEvidence": {
+      "target": "middle3 / 2015",
+      "usedConcepts": [
+        "한 직선에 수직인 두 직선의 평행",
+        "AA 닮음과 대응변의 비",
+        "cos의 정의",
+        "피타고라스 정리"
+      ],
+      "scope": "Method-level evidence from the actual derivation, not full formal curriculum/classification approval.",
+      "advancedMethodsUsed": false,
+      "forbiddenMethods": [
+        "trigonometric identities/laws",
+        "Heron",
+        "vectors",
+        "pixel measurement"
+      ]
+    },
+    "codeCalculationReference": "calculation-results.json#q02",
+    "authorAnswersSeen": false
+  },
+  "status": "solved"
+}

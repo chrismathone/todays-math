@@ -1,0 +1,103 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "style": {
+    "font_size": 18,
+    "angle_font_size": 17,
+    "angle_radius": 16,
+    "padding": 22,
+    "show_points": false
+  },
+  "points": {
+    "A": [
+      36,
+      77.646
+    ],
+    "B": [
+      0,
+      140
+    ],
+    "C": [
+      192,
+      140
+    ],
+    "D": [
+      228,
+      77.646
+    ],
+    "O": [
+      114,
+      108.823
+    ]
+  },
+  "segments": {
+    "AB": [
+      "A",
+      "B"
+    ],
+    "BC": [
+      "B",
+      "C"
+    ],
+    "CD": [
+      "C",
+      "D"
+    ],
+    "DA": [
+      "D",
+      "A"
+    ],
+    "AC": [
+      "A",
+      "C"
+    ],
+    "BD": [
+      "B",
+      "D"
+    ]
+  },
+  "regions": {
+    "shadeOBC": {
+      "boundary": [
+        {
+          "seg": [
+            "O",
+            "B"
+          ]
+        },
+        {
+          "seg": [
+            "B",
+            "C"
+          ]
+        },
+        {
+          "seg": [
+            "C",
+            "O"
+          ]
+        }
+      ],
+      "fill": "#e8eef7"
+    }
+  },
+  "labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D",
+    "O": "O"
+  },
+  "angles": {
+    "angB60": {
+      "vertex": "B",
+      "points": [
+        "C",
+        "A"
+      ],
+      "label": "$60^\\circ$",
+      "radius": 20,
+      "label_distance": 50
+    }
+  }
+}

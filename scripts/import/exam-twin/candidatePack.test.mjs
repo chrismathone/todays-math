@@ -7,6 +7,7 @@ import {
   digest,
   evaluateReview,
   normalizeAnswer,
+  independentAnswerMatches,
   middle3CurriculumForExamYear,
   REVIEW_CHECKS,
   studentPayload,
@@ -15,6 +16,25 @@ import {
   readJson,
   sha256,
 } from "./candidatePack.mjs";
+
+test("sealed marked answers validate their annotated value and dimension against the actual option", () => {
+  const mc = { questionType: "객관식", choices: ["1", "2", "3", "$\\frac{9\\sqrt{10}}{10}$", "5"], answer: "④" };
+  assert.equal(independentAnswerMatches(mc, "④ 9√10/10"), true);
+  assert.equal(independentAnswerMatches(mc, "④ 9/√10"), true);
+  assert.equal(independentAnswerMatches(mc, "④ 9√10/100"), false);
+  assert.equal(independentAnswerMatches(mc, "③ 9√10/10"), false);
+  assert.equal(independentAnswerMatches(mc, "④ 9√10/10 cm"), false);
+  assert.equal(independentAnswerMatches(mc, "④ x"), false);
+  assert.equal(independentAnswerMatches({ ...mc, answer: "④ 99" }, "④ 99"), false);
+  assert.equal(independentAnswerMatches(mc, "④"), true);
+  const area = { ...mc, choices: ["1", "2", "3", "$18\\sqrt{3}\\,\\mathrm{cm}^2$", "5"] };
+  assert.equal(independentAnswerMatches(area, "④ 18√3 cm²"), true);
+  assert.equal(independentAnswerMatches(area, "④ 0.0018√3 m²"), true);
+  for (const raw of ["④ 18√3 cm", "④ 18√3", "④ 18√3 m²", "④ 1 8√3 cm²", "④ 18√3 cm² 설명", "④ 18√3 cm² ③"]) {
+    assert.equal(independentAnswerMatches(area, raw), false, raw);
+  }
+  assert.equal(independentAnswerMatches({ ...mc, questionType: "단답형" }, "④ 9√10/10"), false);
+});
 
 test("UTF-8 BOM parsing keeps raw-byte evidence distinct and rejects UTF-16 or corrupt UTF-8", () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "twin-json-encoding-"));
@@ -252,6 +272,16 @@ test("new math evidence never clears provenance, rights or production gates", ()
   assert(
     allCleared.reasons.includes("native-exam-twin-provenance-not-implemented"),
   );
+  c.solve.answer = "③ 3";
+  c.review.solveDigest = digest(c.solve);
+  const annotated = evaluateReview(c.binding, c.solve, c.review);
+  assert.equal(annotated.mathematicalVerified, true);
+  assert.equal(annotated.loadable, false);
+  c.solve.answer = "③ 4";
+  c.review.solveDigest = digest(c.solve);
+  const wrongAnnotation = evaluateReview(c.binding, c.solve, c.review);
+  assert.equal(wrongAnnotation.mathematicalVerified, false);
+  assert(wrongAnnotation.reasons.includes("independent-answer-mismatch"));
 });
 test("mathematics, grade and unresolved taxonomy are separate review dimensions", () => {
   const c = control();

@@ -1,0 +1,85 @@
+{
+  "kind": "execution-status-ledger/v13",
+  "version": 13,
+  "createdAt": "2026-10-19T06:15:31.221Z",
+  "previousLedger": {
+    "path": ".qa-artifacts/exam-resume-20261008/status-ledger-v12.json",
+    "sha256": "a798ddedb16d97cb2f6bbacd8946edce36d7d14e1f4ff0e642064626fb9a0966"
+  },
+  "counts": {
+    "authoredCurrentCandidates": 111,
+    "currentFigureInstances": 88,
+    "recreatedStatTables": 5,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 111,
+    "preExposureRawSolvesIncludingSupersededR1": 112,
+    "independentMathReviewed": 96,
+    "independentFullGradeReviewed": 96,
+    "contentReviewPassed": 15,
+    "contentReviewHeld": 81,
+    "awaitingCollectedIndependentReview": 15,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0,
+    "currentRawSolved": 110,
+    "currentRawPending": 1,
+    "awaitingFirstSealedBlindSolve": 0
+  },
+  "currentIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v13.json",
+    "sha256": "f68d388505591ef7e7e3f9ec602bf439dcb389afa16ed2631a5b2dd285b5bacf"
+  },
+  "countsBasis": "111 exact current candidates retained. Fresh NB5 independently solved and then reviewed against author/current assets. Formal math/grade +5; content held+5; full/loadable0.",
+  "engine": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrades-progress-r5.json",
+    "sha256": "b5195e1c756bbcfaca6822815b2af392facbf8bb0b2d76b5d3d9a9a105d5b2e1"
+  },
+  "sourceReconnection": {
+    "path": ".qa-artifacts/exam-resume-20261008/source-reconnection-20261019/run-receipt-r1.json",
+    "sha256": "3cc09f702758a702df7c9673c57b0ba8fecd3aafcafb611cfbafd0d4dba06df1"
+  },
+  "freshExtraction": {
+    "evidence": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r1/aggregate-receipt.json",
+      "sha256": "7b8cf0c4538b619f4d24fdbf3bfe74079f6da18eef457804c99079df0a9e2367"
+    },
+    "newParentObservations": 61,
+    "totalParentObservations": 314,
+    "componentsApproved": 0,
+    "newTwins": 0,
+    "wholePairsCertified": 0
+  },
+  "latestClosure": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/past-exam-closure-current.json",
+    "sha256": "b298c06ce5b93f9e7527e137962ba888849234e8f4e06339b8670ffbf9949264"
+  },
+  "unusedWorktreeCleanup": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unused-worktree-cleanup.json",
+    "sha256": "ab14a261bdaeca2ab258c1d8c3ae654da14ed3688ad9adf39c986aa992c0cc6d"
+  },
+  "original82AndPermanentExclusionPreserved": true,
+  "dbWrites": 0,
+  "loadable": 0,
+  "wholeGoalComplete": false,
+  "automaticContinuationControllerChanged": false,
+  "execution": "manual user-requested resume; one root and one independent Codex worker",
+  "independentNB5": {
+    "rawCommit": "c51c84ce57debd1287f5a1d7708f0c4d709ba01b",
+    "reviewCommit": "7bd67c0d0a710a394c4a5314207af73bc49a36f5",
+    "seal": {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/pre-exposure-seal-receipt-r2.json",
+      "sha256": "f96937cc6973a298fd0e768691d50389bfc572206a2b152c2de4fca54ac6ad0d"
+    },
+    "summary": {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/current-author-summary-parent-r1.json",
+      "sha256": "36f59e7384fdff5aea15e264adc484d40106d8639b84f735b2540f7d351ca240"
+    },
+    "newMathReviewed": 5,
+    "newGradeReviewed": 5,
+    "contentHeld": 5
+  },
+  "liveClassification": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+    "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+  }
+}

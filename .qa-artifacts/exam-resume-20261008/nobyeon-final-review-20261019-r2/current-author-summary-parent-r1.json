@@ -1,0 +1,1075 @@
+{
+  "kind": "current-authored-twin-review-summary/v1",
+  "createdAt": "2026-10-19T06:15:30.363Z",
+  "index": {
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/current-selection.json",
+    "sha256": "569bac2a567ec5927d659e06bc09663e79fba48a6a430afcbc3835b03e8b0664"
+  },
+  "selectionPolicy": "exact current author ID and raw author hash; prior versions retained, never reused",
+  "counts": {
+    "authored": 5,
+    "historicalCandidateVersions": 5,
+    "independentSolvesBound": 5,
+    "mathematicalVerified": 5,
+    "gradeReviewed": 5,
+    "contentReviewPassed": 0,
+    "contentReviewHeld": 5,
+    "figureInstances": 4,
+    "overallVerified": 0,
+    "loadable": 0,
+    "productionWrites": 0
+  },
+  "contentReviewPassedNumbers": [],
+  "contentReviewHeldNumbers": [
+    1,
+    2,
+    4,
+    6,
+    8
+  ],
+  "supersededReviews": [],
+  "questions": [
+    {
+      "n": 1,
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q01",
+      "studentDigest": "5ef72d6c9ca463f9ebb950b6a6e9c6cc69e7a5d035bef5f99fc99c9376700790",
+      "candidateDigest": "4f0f67e26fa6b83c718671ac5edcd21b3bd7a76a7bd85625f18a139d297e9165",
+      "assetDigest": "8ad545e55eb3e69b020bd3928e5a9063578d30d0ba73656a45fbdbb0c85994d4",
+      "solveDigest": "2b9b6f9a51e8a3c92f5d7c3275566e372e6c88cb3e8f0321026f489bb06d1c43",
+      "reportSha256": "8bc17885db5314ff3461b67b55d67c229c669232ec06f36a0ba41f65a3d1a84c",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "sourceReference": {
+        "externalId": "2025-nobyeon-3-2-mid-1",
+        "sourceContentSha256": "d706c715d925bb8f1a07e7501840e2cf579d687aa6c5add12c9f24f9dfb68a8c",
+        "sourceSchoolInternal": "노변중학교",
+        "sourceExamYear": 2025,
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/question-only-staged/nobyeon/q01.json",
+          "sha256": "d706c715d925bb8f1a07e7501840e2cf579d687aa6c5add12c9f24f9dfb68a8c"
+        },
+        "sourceReviewReport": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/items/nobyeon/q01.json",
+          "sha256": "5cd942425084b4b1fcb2e50c9d3dcbe45802d783939fb2ee1f8fc00a17e6d5fc"
+        },
+        "newSourceReferenceId": "source-ref-2025-nobyeon-3-2-mid-r1-q01",
+        "sourceIdentityAsProvided": "printed-identity-observed-not-whole-pair-certified",
+        "sourceManifestOrOriginalAnswerInput": false,
+        "originalAnswersOmittedInInput": true
+      },
+      "metadata": {
+        "grade": "중3",
+        "semester": 2,
+        "subject": "수학",
+        "source": "transformed",
+        "originProblemId": null,
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "2027Republication": "requires new 2022 review"
+        },
+        "sourceExamYear": 2025,
+        "sourceSchoolInternal": "노변중학교",
+        "fictionalVisibleSchool": null,
+        "schoolReplacementMap": {},
+        "fictionalSchoolUsedInStudentText": false,
+        "sourceSchoolNamesInStudentSurfaces": false,
+        "sourceQuestionId": "2025-nobyeon-3-2-mid-1",
+        "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q01",
+        "questionType": "객관식",
+        "score": 3,
+        "parentScoreCountedOnce": true,
+        "newSubpartRubric": [],
+        "sourcePrintedScore": {
+          "originalPrintedParentScore": 3,
+          "parentCountedOnce": true
+        },
+        "difficultyProposal": "기본",
+        "difficultyStatus": "author-proposed",
+        "difficultyEvidence": "Task operations: 비를 k배로 두고 피타고라스 정리로 빗변을 구한 뒤, 정의에 따라 서로 다른 두 각의 삼각비를 각각 구해 곱한다. Original printed points kept; not a measured difficulty.",
+        "problemTypeProposal": null,
+        "problemTypeStatus": "pending",
+        "problemTypeEvidence": "problemType is a separate bank axis; no rule maps this whole item yet.",
+        "assignment": {
+          "status": "proposed",
+          "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+          "unitSection": "삼각비의 뜻",
+          "familyKey": null,
+          "evidence": {
+            "actualCapturedUnit": {
+              "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 뜻",
+              "semester": 2,
+              "orderIndex": 481,
+              "problemCodePrefix": "J30501"
+            },
+            "bankSnapshot": {
+              "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r3-20261008.json",
+              "sha256": "31f6e3369f5d62072e6728566f8cd71f44f4d451c4ff2dd87a132a6ff6fa1a26",
+              "capturedAt": "2026-10-08 13:00:16.891043+00",
+              "snapshotOnly": true
+            },
+            "registry": {
+              "path": "src/lib/middle/m3Trig.ts",
+              "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a"
+            },
+            "comparedRegistryEntries": [
+              {
+                "registry": {
+                  "key": "mid:3-2|삼각비|01",
+                  "title": "삼각비의 값",
+                  "section": "뜻",
+                  "difficulty": "기본",
+                  "line1based": 949
+                },
+                "liveMatch": {
+                  "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+                  "family_key": "mid:3-2|삼각비|01",
+                  "live_count": 24
+                }
+              },
+              {
+                "registry": {
+                  "key": "mid:3-2|삼각비|03",
+                  "title": "한 삼각비의 값을 알 때 다른 삼각비의 값 구하기",
+                  "section": "뜻",
+                  "difficulty": "응용",
+                  "line1based": 1023
+                },
+                "liveMatch": {
+                  "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+                  "family_key": "mid:3-2|삼각비|03",
+                  "live_count": 24
+                }
+              },
+              {
+                "registry": {
+                  "key": "mid:3-2|삼각비|20",
+                  "title": "두 삼각비의 값을 이용한 식의 계산",
+                  "section": "뜻",
+                  "difficulty": "연산",
+                  "line1based": 1750
+                },
+                "liveMatch": {
+                  "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+                  "family_key": "mid:3-2|삼각비|20",
+                  "live_count": 24
+                }
+              }
+            ],
+            "comparison": "01(삼각비의 값)은 세 변이 주어진 직각삼각형, 03은 한 삼각비에서 다른 삼각비를 구하는 갈래, 20은 두 삼각비의 식 계산이다. 비가 주어진 직사각형의 대각선이라는 입력 전체와 맞는 갈래를 확인하지 못해 배정하지 않는다."
+          }
+        },
+        "authorMathEvidence": {
+          "file": "../../author-calculations.json",
+          "questionNumber": 1
+        },
+        "authorSevenSurfaceEvidence": {
+          "path": "author-checks/q01.json"
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "rightsApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "limits": [
+          "Independent solve and full seven-surface review pending.",
+          "Rights/native/custody/loading remain pending.",
+          "Historical taxonomy snapshot is not a currentDB assertion."
+        ]
+      },
+      "variantDelta": {
+        "modes": [
+          "context",
+          "representation"
+        ],
+        "before": "그림과 같이 $\\angle \\mathrm{C}=90°$인 직각삼각형 $\\mathrm{ABC}$에서 $\\overline{\\mathrm{A}C}\\,\\,:\\,\\,\\overline{\\mathrm{B}C}=1\\,\\,:\\,\\,2$일 때, $\\cos B\\times \\mathrm{\\tan }\\mathit{A}$의 값은? [$3$점]",
+        "after": "직각을 낀 두 변의 비를 삼각형에 직접 주던 것을, 가로와 세로의 비가 주어진 직사각형 현수막과 그 대각선으로 바꾸었다. 직각은 직사각형의 성질에서 나오고, 묻는 두 삼각비도 서로 다른 꼭짓점의 다른 짝(cos x, tan y)이다.",
+        "sharedConcept": "두 변의 길이의 비가 주어진 직각삼각형에서 빗변을 구하고 삼각비의 정의로 두 각의 삼각비를 구한다.",
+        "sharedProcedure": "비를 k배로 두고 피타고라스 정리로 빗변을 구한 뒤, 정의에 따라 서로 다른 두 각의 삼각비를 각각 구해 곱한다.",
+        "originalAnswerOrNumericalAgreementUsed": false
+      },
+      "packageDigest": "1d10751277a998b36ffd0cdda3a2c27b6b5759f53871e5256752c2e161795bd1",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-authoring-r1\\candidates\\q01\\q01.json",
+        "sha256": "45a250cf84e53a3afaed1e030b6244dc9a513006ffb5584baccad22ce8a18791"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "aa48128c7e50058c8fa28b4567de0cd4729d2e2f23b81780eb50f5278883872b",
+          "svgSha256": "67c0329b8f2e36bc17fd2b4c65af1616c53caeafbee1309272cd163edd640450",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q01-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\nobyeon-final-review-20261019-r2\\blind\\solve\\q01.json",
+        "sha256": "098e0f5ae3400203044463c82c0787e42b4b3bd6aaf6c700cf7bbce497a0b350"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/verification/reports/q01.json",
+        "sha256": "8bc17885db5314ff3461b67b55d67c229c669232ec06f36a0ba41f65a3d1a84c"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/verification/verification-manifest.json",
+        "sha256": "525b5f4050650124e9f923b6a835cdec1ff11347a98eca4003f89f14a1130674"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/blind/blind-manifest.json",
+        "sha256": "5a5ef0de22cd7db50400efdd8523a474573d42bd48ec137ba639c05c0da07347"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/package/private/q01/candidate.json",
+        "sha256": "fdc1f46f990be6017c7dbce15a2863602b62d910328dfebca02f43b02c2c9627"
+      },
+      "candidateContentWithoutRelocatedPaths": "205f2f00ca6248540550dadd25d57044093dceabb23365d60086da8ccbc40e11",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-authoring-r1/candidates/q01/q01.json",
+        "sha256": "45a250cf84e53a3afaed1e030b6244dc9a513006ffb5584baccad22ce8a18791"
+      },
+      "authorCandidateDigest": "86c2f50ec1bbe8caf9075145b34f782acc35b32aea8b8e46f41fdf4bc0410946"
+    },
+    {
+      "n": 2,
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q02",
+      "studentDigest": "d7c3cf3497e682a8bef4ceb2a6cf5f64eb873e53fa31597237368ba824d9ffb4",
+      "candidateDigest": "3cd0ef3139808017150a68a4bdf141dfb30f868893637cfa569dd98cbad580c4",
+      "assetDigest": "994f9c6ba3713c3d7e425c055d180090e778201542066639f7e1347c03c6df3b",
+      "solveDigest": "76300b73db11470e93aab3075334bfe0762d96e3a599b965ac5c1acf9d698080",
+      "reportSha256": "dc1c9e051d423134275e4110efaed128ecb7997abebeedf2cb8704973ca1478f",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "sourceReference": {
+        "externalId": "2025-nobyeon-3-2-mid-2",
+        "sourceContentSha256": "51349565096767f1b033b493d6a7ff43ea658a4eba7d34e2b5722f3f1d4f2b05",
+        "sourceSchoolInternal": "노변중학교",
+        "sourceExamYear": 2025,
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/question-only-staged/nobyeon/q02.json",
+          "sha256": "51349565096767f1b033b493d6a7ff43ea658a4eba7d34e2b5722f3f1d4f2b05"
+        },
+        "sourceReviewReport": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/items/nobyeon/q02.json",
+          "sha256": "6eb94deb7840d2c0d5eca227271b1b75e7a314d03e1404777927cced28c55adf"
+        },
+        "newSourceReferenceId": "source-ref-2025-nobyeon-3-2-mid-r1-q02",
+        "sourceIdentityAsProvided": "printed-identity-observed-not-whole-pair-certified",
+        "sourceManifestOrOriginalAnswerInput": false,
+        "originalAnswersOmittedInInput": true
+      },
+      "metadata": {
+        "grade": "중3",
+        "semester": 2,
+        "subject": "수학",
+        "source": "transformed",
+        "originProblemId": null,
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "2027Republication": "requires new 2022 review"
+        },
+        "sourceExamYear": 2025,
+        "sourceSchoolInternal": "노변중학교",
+        "fictionalVisibleSchool": null,
+        "schoolReplacementMap": {},
+        "fictionalSchoolUsedInStudentText": false,
+        "sourceSchoolNamesInStudentSurfaces": false,
+        "sourceQuestionId": "2025-nobyeon-3-2-mid-2",
+        "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q02",
+        "questionType": "객관식",
+        "score": 4,
+        "parentScoreCountedOnce": true,
+        "newSubpartRubric": [],
+        "sourcePrintedScore": {
+          "originalPrintedParentScore": 4,
+          "parentCountedOnce": true
+        },
+        "difficultyProposal": "응용",
+        "difficultyStatus": "author-proposed",
+        "difficultyEvidence": "Task operations: 평행선의 동위각(또는 공통인 각과 직각)으로 수선이 만든 각이 처음 삼각형의 한 예각과 같음을 보이고, 그 각의 삼각비 정의와 피타고라스 정리로 길이를 구한다. Original printed points kept; not a measured difficulty.",
+        "problemTypeProposal": null,
+        "problemTypeStatus": "pending",
+        "problemTypeEvidence": "problemType is a separate bank axis; no rule maps this whole item yet.",
+        "assignment": {
+          "status": "proposed",
+          "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+          "unitSection": "삼각비의 뜻",
+          "familyKey": null,
+          "evidence": {
+            "actualCapturedUnit": {
+              "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 뜻",
+              "semester": 2,
+              "orderIndex": 481,
+              "problemCodePrefix": "J30501"
+            },
+            "bankSnapshot": {
+              "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r3-20261008.json",
+              "sha256": "31f6e3369f5d62072e6728566f8cd71f44f4d451c4ff2dd87a132a6ff6fa1a26",
+              "capturedAt": "2026-10-08 13:00:16.891043+00",
+              "snapshotOnly": true
+            },
+            "registry": {
+              "path": "src/lib/middle/m3Trig.ts",
+              "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a"
+            },
+            "comparedRegistryEntries": [
+              {
+                "registry": {
+                  "key": "mid:3-2|삼각비|04",
+                  "title": "직각삼각형의 닮음과 삼각비⑴",
+                  "section": "뜻",
+                  "difficulty": "응용",
+                  "line1based": 1061
+                },
+                "liveMatch": {
+                  "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+                  "family_key": "mid:3-2|삼각비|04",
+                  "live_count": 24
+                }
+              },
+              {
+                "registry": {
+                  "key": "mid:3-2|삼각비|05",
+                  "title": "직각삼각형의 닮음과 삼각비⑵",
+                  "section": "뜻",
+                  "difficulty": "심화하",
+                  "line1based": 1101
+                },
+                "liveMatch": {
+                  "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+                  "family_key": "mid:3-2|삼각비|05",
+                  "live_count": 24
+                }
+              },
+              {
+                "registry": {
+                  "key": "mid:3-2|삼각비|02",
+                  "title": "삼각비를 이용하여 삼각형의 변의 길이 구하기",
+                  "section": "뜻",
+                  "difficulty": "기본",
+                  "line1based": 982
+                },
+                "liveMatch": {
+                  "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+                  "family_key": "mid:3-2|삼각비|02",
+                  "live_count": 24
+                }
+              }
+            ],
+            "comparison": "04·05(직각삼각형의 닮음과 삼각비)가 가장 가깝지만 주어진 것이 삼각비의 값이고 묻는 것이 변의 길이인 역방향 갈래인지 확인하지 못했다. 02(삼각비를 이용하여 변의 길이 구하기)는 수선·평행 구성이 없다. 배정하지 않는다."
+          }
+        },
+        "authorMathEvidence": {
+          "file": "../../author-calculations.json",
+          "questionNumber": 2
+        },
+        "authorSevenSurfaceEvidence": {
+          "path": "author-checks/q02.json"
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "rightsApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "limits": [
+          "Independent solve and full seven-surface review pending.",
+          "Rights/native/custody/loading remain pending.",
+          "Historical taxonomy snapshot is not a currentDB assertion."
+        ]
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure"
+        ],
+        "before": "그림과 같이 $\\angle \\mathrm{C}=90°$인 직각삼각형 $\\mathrm{ABC}$에서 $\\overline{\\mathrm{B}C}=12$, $\\overline{\\mathrm{A}C}=5$이다. 변 $\\mathrm{B}C$ 위의 점 $\\mathrm{D}$에서 변 $\\mathrm{A}B$에 내린 수선의 발을 $\\mathrm{E}$라 하고, $\\angle \\mathrm{BDE}=\\mathit{x}$라 할 때, $\\sin \\,x-2\\cos \\,x$의 값은? [$4$점]",
+        "after": "변의 길이 둘을 주고 수선이 만드는 각의 삼각비 식을 묻던 것을, 수선이 만드는 각의 코사인과 빗변을 주고 다른 변의 길이를 되찾게 바꾸었다. 점도 빗변 위에서 다른 변으로 수선을 내리는 배치로 바꾸었고, 묻는 대상이 삼각비의 값에서 변의 길이로 넘어갔다.",
+        "sharedConcept": "수선이 만드는 작은 직각삼각형과 처음 직각삼각형에서 같은 크기의 각을 찾아, 큰 삼각형의 변으로 그 각의 삼각비를 나타낸다.",
+        "sharedProcedure": "평행선의 동위각(또는 공통인 각과 직각)으로 수선이 만든 각이 처음 삼각형의 한 예각과 같음을 보이고, 그 각의 삼각비 정의와 피타고라스 정리로 길이를 구한다.",
+        "originalAnswerOrNumericalAgreementUsed": false
+      },
+      "packageDigest": "1d10751277a998b36ffd0cdda3a2c27b6b5759f53871e5256752c2e161795bd1",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-authoring-r1\\candidates\\q02\\q02.json",
+        "sha256": "dd925f035e3548bb7a08bc57a1ce3d69930a3b6ce3685066e1b71410c07fed9c"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "0dc83ca732db350f966510febb7bd9aa7445727417ca48d3bda0adc44d9ccbe8",
+          "svgSha256": "804a082c61015361b7dd41ce229c1f5a2209712cb4a92d0850c6628a215e8b0b",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q02-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\nobyeon-final-review-20261019-r2\\blind\\solve\\q02.json",
+        "sha256": "078bcdba7ea8b5ae7364e1801e85647e083c1c0b828e6649ae315ef5619372ba"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/verification/reports/q02.json",
+        "sha256": "dc1c9e051d423134275e4110efaed128ecb7997abebeedf2cb8704973ca1478f"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/verification/verification-manifest.json",
+        "sha256": "525b5f4050650124e9f923b6a835cdec1ff11347a98eca4003f89f14a1130674"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/blind/blind-manifest.json",
+        "sha256": "5a5ef0de22cd7db50400efdd8523a474573d42bd48ec137ba639c05c0da07347"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/package/private/q02/candidate.json",
+        "sha256": "5b678709fa0be08624dbded5f48578a7e879498d7839273d2accbe547377057b"
+      },
+      "candidateContentWithoutRelocatedPaths": "ad1fa83deb549ef0f1990fabf257e7550f220ba766ca0817fa891155827524d3",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-authoring-r1/candidates/q02/q02.json",
+        "sha256": "dd925f035e3548bb7a08bc57a1ce3d69930a3b6ce3685066e1b71410c07fed9c"
+      },
+      "authorCandidateDigest": "c89541daf3ee8daaa0fd9bd70f4b7a477afe09263fdc2a369b34f8ea2679cea7"
+    },
+    {
+      "n": 4,
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q04",
+      "studentDigest": "3bab64f7e8071bfce6043053aa19c709a2eb5be3e7fdea99f324d7e1e37db9b3",
+      "candidateDigest": "825f9d8ad2d06aeaf3e0a0b29efee776bda06ae5f410c788287213ad4753c828",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "2373e4667c4a3462676c1ccef9cd59510ad0c3698892e89bb08f6b4a79c20ed0",
+      "reportSha256": "61e3e2ec530265e61e185caa3e86644f44201d61c7bfe8e53003e3978d9b7e4d",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "sourceReference": {
+        "externalId": "2025-nobyeon-3-2-mid-4",
+        "sourceContentSha256": "0105c9a2ad4e393a10a02705ff6fd624abf6d913e7f5b6e0b5d9077c86710052",
+        "sourceSchoolInternal": "노변중학교",
+        "sourceExamYear": 2025,
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/question-only-staged/nobyeon/q04.json",
+          "sha256": "0105c9a2ad4e393a10a02705ff6fd624abf6d913e7f5b6e0b5d9077c86710052"
+        },
+        "sourceReviewReport": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/items/nobyeon/q04.json",
+          "sha256": "1c134f1ebcc41adc8c8aeac4aea267174f6fbccb2658439fb0316dc99d2e1246"
+        },
+        "newSourceReferenceId": "source-ref-2025-nobyeon-3-2-mid-r1-q04",
+        "sourceIdentityAsProvided": "printed-identity-observed-not-whole-pair-certified",
+        "sourceManifestOrOriginalAnswerInput": false,
+        "originalAnswersOmittedInInput": true
+      },
+      "metadata": {
+        "grade": "중3",
+        "semester": 2,
+        "subject": "수학",
+        "source": "transformed",
+        "originProblemId": null,
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "2027Republication": "requires new 2022 review"
+        },
+        "sourceExamYear": 2025,
+        "sourceSchoolInternal": "노변중학교",
+        "fictionalVisibleSchool": null,
+        "schoolReplacementMap": {},
+        "fictionalSchoolUsedInStudentText": false,
+        "sourceSchoolNamesInStudentSurfaces": false,
+        "sourceQuestionId": "2025-nobyeon-3-2-mid-4",
+        "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q04",
+        "questionType": "객관식",
+        "score": 5,
+        "parentScoreCountedOnce": true,
+        "newSubpartRubric": [],
+        "sourcePrintedScore": {
+          "originalPrintedParentScore": 5,
+          "parentCountedOnce": true
+        },
+        "difficultyProposal": "응용",
+        "difficultyStatus": "author-proposed",
+        "difficultyEvidence": "Task operations: x절편·y절편으로 원점과 함께 직각삼각형을 만들고, 예각의 삼각비 정의와 피타고라스 정리로 변의 길이를 구한다. Original printed points kept; not a measured difficulty.",
+        "problemTypeProposal": null,
+        "problemTypeStatus": "pending",
+        "problemTypeEvidence": "problemType is a separate bank axis; no rule maps this whole item yet.",
+        "assignment": {
+          "status": "proposed",
+          "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+          "unitSection": "삼각비의 뜻",
+          "familyKey": null,
+          "evidence": {
+            "actualCapturedUnit": {
+              "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 뜻",
+              "semester": 2,
+              "orderIndex": 481,
+              "problemCodePrefix": "J30501"
+            },
+            "bankSnapshot": {
+              "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r3-20261008.json",
+              "sha256": "31f6e3369f5d62072e6728566f8cd71f44f4d451c4ff2dd87a132a6ff6fa1a26",
+              "capturedAt": "2026-10-08 13:00:16.891043+00",
+              "snapshotOnly": true
+            },
+            "registry": {
+              "path": "src/lib/middle/m3Trig.ts",
+              "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a"
+            },
+            "comparedRegistryEntries": [
+              {
+                "registry": {
+                  "key": "mid:3-2|삼각비|06",
+                  "title": "직선의 방정식과 삼각비",
+                  "section": "뜻",
+                  "difficulty": "응용",
+                  "line1based": 1143
+                },
+                "liveMatch": {
+                  "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+                  "family_key": "mid:3-2|삼각비|06",
+                  "live_count": 24
+                }
+              },
+              {
+                "registry": {
+                  "key": "mid:3-2|삼각비|11",
+                  "title": "직선의 기울기와 삼각비",
+                  "section": "값",
+                  "difficulty": "응용",
+                  "line1based": 1318
+                },
+                "liveMatch": {
+                  "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+                  "family_key": "mid:3-2|삼각비|11",
+                  "live_count": 20
+                }
+              }
+            ],
+            "comparison": "06(직선의 방정식과 삼각비)·11(직선의 기울기와 삼각비)이 가깝지만, 삼각비의 값과 y절편에서 넓이를 되찾는 역방향 입력 전체와 맞는지 확인하지 못했다. 배정하지 않는다."
+          }
+        },
+        "authorMathEvidence": {
+          "file": "../../author-calculations.json",
+          "questionNumber": 4
+        },
+        "authorSevenSurfaceEvidence": {
+          "path": "author-checks/q04.json"
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "rightsApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "limits": [
+          "Independent solve and full seven-surface review pending.",
+          "Rights/native/custody/loading remain pending.",
+          "Historical taxonomy snapshot is not a currentDB assertion."
+        ]
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure"
+        ],
+        "before": "일차방정식 $3x-4y+12=0$의 그래프가 $x$축과 이루는 예각의 크기를 $a$라 할 때, $20\\left( \\sin \\,a+\\tan \\,a\\right)$의 값은? [$5$점]",
+        "after": "계수가 모두 주어진 직선에서 예각의 삼각비 식을 묻던 것을, 기울기를 모르는 직선의 y절편과 예각의 코사인을 주고 축과 만드는 삼각형의 넓이를 묻게 바꾸었다. 결과(삼각비)에서 입력(절편·넓이)으로 묻는 방향이 바뀌었다.",
+        "sharedConcept": "직선이 두 좌표축과 만드는 직각삼각형에서 직선과 x축이 이루는 예각의 삼각비를 변의 길이로 나타낸다.",
+        "sharedProcedure": "x절편·y절편으로 원점과 함께 직각삼각형을 만들고, 예각의 삼각비 정의와 피타고라스 정리로 변의 길이를 구한다.",
+        "originalAnswerOrNumericalAgreementUsed": false
+      },
+      "packageDigest": "1d10751277a998b36ffd0cdda3a2c27b6b5759f53871e5256752c2e161795bd1",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-authoring-r1\\candidates\\q04\\q04.json",
+        "sha256": "cc4ef6106aa1dc39fec05ce8f22ad12f1dd383ebf456d2c6903cc42748edd15e"
+      },
+      "figureBindings": [],
+      "independentSolveFile": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\nobyeon-final-review-20261019-r2\\blind\\solve\\q04.json",
+        "sha256": "bb4b919629fdd78c77e03c7ee8594a8d54fc6f0ef6156fe9dc35c56676c63a60"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/verification/reports/q04.json",
+        "sha256": "61e3e2ec530265e61e185caa3e86644f44201d61c7bfe8e53003e3978d9b7e4d"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/verification/verification-manifest.json",
+        "sha256": "525b5f4050650124e9f923b6a835cdec1ff11347a98eca4003f89f14a1130674"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/blind/blind-manifest.json",
+        "sha256": "5a5ef0de22cd7db50400efdd8523a474573d42bd48ec137ba639c05c0da07347"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/package/private/q04/candidate.json",
+        "sha256": "8ec6189648a7e6e117bf4d49582d4907527d72b5541f09e615fc82ce0e148af5"
+      },
+      "candidateContentWithoutRelocatedPaths": "c03f840282f3c5cd8b2d27dea53814bb513d4355aaacaa49175864e9bb42622e",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-authoring-r1/candidates/q04/q04.json",
+        "sha256": "cc4ef6106aa1dc39fec05ce8f22ad12f1dd383ebf456d2c6903cc42748edd15e"
+      },
+      "authorCandidateDigest": "825f9d8ad2d06aeaf3e0a0b29efee776bda06ae5f410c788287213ad4753c828"
+    },
+    {
+      "n": 6,
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q06",
+      "studentDigest": "d1383819440e4f13e5e93729749160d2315d5211de41749cd00fcab50a3b3c1e",
+      "candidateDigest": "de0c61d71202062c7cb157e0fb958b5df9e983ad66c369d5eb4aeaf87ca11f2e",
+      "assetDigest": "c478d0d5d4581bef41590e93667889521ce548945d65e22617a516d57d1f3d1d",
+      "solveDigest": "ccc29bb260d2f872dbde3b7075bc1d175055a86435bd434e04bbaafe23e35f3e",
+      "reportSha256": "bf8a05ab50bf637fa6cb39fcde0dc42411a96ed5e6f918ed5a6c285665f3a6f4",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "sourceReference": {
+        "externalId": "2025-nobyeon-3-2-mid-6",
+        "sourceContentSha256": "babbeb3d8d96839996ea4d107bee4238476f4d8bb523306fc07b7935f3f60f01",
+        "sourceSchoolInternal": "노변중학교",
+        "sourceExamYear": 2025,
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/question-only-staged/nobyeon/q06.json",
+          "sha256": "babbeb3d8d96839996ea4d107bee4238476f4d8bb523306fc07b7935f3f60f01"
+        },
+        "sourceReviewReport": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/items/nobyeon/q06.json",
+          "sha256": "bdf43f047230fb2a2283c59a03a59eafc40f83bfaec6791c843a8f7957b344ef"
+        },
+        "newSourceReferenceId": "source-ref-2025-nobyeon-3-2-mid-r1-q06",
+        "sourceIdentityAsProvided": "printed-identity-observed-not-whole-pair-certified",
+        "sourceManifestOrOriginalAnswerInput": false,
+        "originalAnswersOmittedInInput": true
+      },
+      "metadata": {
+        "grade": "중3",
+        "semester": 2,
+        "subject": "수학",
+        "source": "transformed",
+        "originProblemId": null,
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "2027Republication": "requires new 2022 review"
+        },
+        "sourceExamYear": 2025,
+        "sourceSchoolInternal": "노변중학교",
+        "fictionalVisibleSchool": null,
+        "schoolReplacementMap": {},
+        "fictionalSchoolUsedInStudentText": false,
+        "sourceSchoolNamesInStudentSurfaces": false,
+        "sourceQuestionId": "2025-nobyeon-3-2-mid-6",
+        "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q06",
+        "questionType": "객관식",
+        "score": 4,
+        "parentScoreCountedOnce": true,
+        "newSubpartRubric": [],
+        "sourcePrintedScore": {
+          "originalPrintedParentScore": 4,
+          "parentCountedOnce": true
+        },
+        "difficultyProposal": "응용",
+        "difficultyStatus": "author-proposed",
+        "difficultyEvidence": "Task operations: 주어진 삼각형에서 특수각의 삼각비로 공유 변을 구하고, 다른 삼각형에서 다시 특수각의 삼각비로 나머지 변을 구해 목표량을 계산한다. Original printed points kept; not a measured difficulty.",
+        "problemTypeProposal": null,
+        "problemTypeStatus": "pending",
+        "problemTypeEvidence": "problemType is a separate bank axis; no rule maps this whole item yet.",
+        "assignment": {
+          "status": "proposed",
+          "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+          "unitSection": "삼각비의 값",
+          "familyKey": null,
+          "evidence": {
+            "actualCapturedUnit": {
+              "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 값",
+              "semester": 2,
+              "orderIndex": 482,
+              "problemCodePrefix": "J30502"
+            },
+            "bankSnapshot": {
+              "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r3-20261008.json",
+              "sha256": "31f6e3369f5d62072e6728566f8cd71f44f4d451c4ff2dd87a132a6ff6fa1a26",
+              "capturedAt": "2026-10-08 13:00:16.891043+00",
+              "snapshotOnly": true
+            },
+            "registry": {
+              "path": "src/lib/middle/m3Trig.ts",
+              "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a"
+            },
+            "comparedRegistryEntries": [
+              {
+                "registry": {
+                  "key": "mid:3-2|삼각비|10",
+                  "title": "의 삼각비의 값을 이용하여 변의 길이 구하기",
+                  "section": "값",
+                  "difficulty": "응용",
+                  "line1based": 1259
+                },
+                "liveMatch": {
+                  "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+                  "family_key": "mid:3-2|삼각비|10",
+                  "live_count": 20
+                }
+              },
+              {
+                "registry": {
+                  "key": "mid:3-2|삼각비의 활용|01",
+                  "title": "직각삼각형의 변의 길이 구하기",
+                  "section": "활용",
+                  "difficulty": "기본",
+                  "line1based": 1867
+                },
+                "liveMatch": {
+                  "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+                  "family_key": "mid:3-2|삼각비의 활용|01",
+                  "live_count": 24
+                }
+              }
+            ],
+            "comparison": "10(특수각의 삼각비의 값을 이용하여 변의 길이 구하기)이 가깝지만 두 삼각형을 잇고 넓이를 묻는 구성 전체와 맞는지 확인하지 못했다. 배정하지 않는다."
+          }
+        },
+        "authorMathEvidence": {
+          "file": "../../author-calculations.json",
+          "questionNumber": 6
+        },
+        "authorSevenSurfaceEvidence": {
+          "path": "author-checks/q06.json"
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "rightsApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "limits": [
+          "Independent solve and full seven-surface review pending.",
+          "Rights/native/custody/loading remain pending.",
+          "Historical taxonomy snapshot is not a currentDB assertion."
+        ]
+      },
+      "variantDelta": {
+        "modes": [
+          "context",
+          "inverse-target",
+          "structure"
+        ],
+        "before": "그림에서 $\\angle \\mathrm{ABC}=\\angle \\mathrm{BCD}=90°$, $\\angle \\mathrm{BAC}=60°$, $\\angle \\mathrm{BDC}=45°$이고 $\\overline{\\mathrm{B}D}=3\\sqrt{6}\\,cm$일 때, $\\triangle \\mathrm{ABC}$의 둘레의 길이는 $a+b\\sqrt{3}\\,\\mathrm{c}m$이다. $a+b$의 값은? (단, $a$, $b$는 유리수이다.) [$4$점]",
+        "after": "한 변의 길이를 다른 삼각형에서 주고 반대쪽 삼각형의 둘레를 묻던 것을, 한 쌍의 삼각자라는 소재로 바꾸고 45° 삼각자의 빗변에서 30° 삼각자의 넓이를 묻게 했다. 두 삼각형의 역할(주는 쪽·묻는 쪽)과 특수각의 배치, 묻는 양(둘레→넓이)이 모두 바뀌었다.",
+        "sharedConcept": "변 하나를 공유하는 두 직각삼각형에서 특수각의 삼각비로 공유 변을 거쳐 다른 삼각형의 변을 구한다.",
+        "sharedProcedure": "주어진 삼각형에서 특수각의 삼각비로 공유 변을 구하고, 다른 삼각형에서 다시 특수각의 삼각비로 나머지 변을 구해 목표량을 계산한다.",
+        "originalAnswerOrNumericalAgreementUsed": false
+      },
+      "packageDigest": "1d10751277a998b36ffd0cdda3a2c27b6b5759f53871e5256752c2e161795bd1",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-authoring-r1\\candidates\\q06\\q06.json",
+        "sha256": "8b66bcc066b2222687be1fee2d3ba512cd305857b71119235a4c770582291307"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "0e089f4b2cc9363756284fea2e3ed2875125aa7e09a4a1c1fb69e54febb3ecb2",
+          "svgSha256": "f6f47ffb623aa37d38b18fd67147d64f2b2189a8ed4ba7e93b52928fc0563fd8",
+          "intendedWidthMm": 45,
+          "studentPath": "figures/q06-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\nobyeon-final-review-20261019-r2\\blind\\solve\\q06.json",
+        "sha256": "32cd6ee617b3dea5656ab75b148e8bc27134569109b84fdef75a43c3a8b320bd"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/verification/reports/q06.json",
+        "sha256": "bf8a05ab50bf637fa6cb39fcde0dc42411a96ed5e6f918ed5a6c285665f3a6f4"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/verification/verification-manifest.json",
+        "sha256": "525b5f4050650124e9f923b6a835cdec1ff11347a98eca4003f89f14a1130674"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/blind/blind-manifest.json",
+        "sha256": "5a5ef0de22cd7db50400efdd8523a474573d42bd48ec137ba639c05c0da07347"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/package/private/q06/candidate.json",
+        "sha256": "d98d60209e3fea192b303dc4b899bc095faea0c1a8d3483271c4331790a48f72"
+      },
+      "candidateContentWithoutRelocatedPaths": "ede37f2c149cf0f88b68db720b535a67482511da73fc940a100c2f81681f5589",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-authoring-r1/candidates/q06/q06.json",
+        "sha256": "8b66bcc066b2222687be1fee2d3ba512cd305857b71119235a4c770582291307"
+      },
+      "authorCandidateDigest": "777750ee9bb195676384abf18b7b6ad2501c634c8c5b72f54183ad35544c986c"
+    },
+    {
+      "n": 8,
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q08",
+      "studentDigest": "e8911402280f3ba8dc1f2d57d5597620dc14765a1aa760231797f107108cf0dc",
+      "candidateDigest": "a92cade0e42a2050921e86eb83e10a55265431c9e2d56a049c0e78acd53ae84f",
+      "assetDigest": "4e63b24f69c3a90794ba82f105f163cacc44f1245243e7f75b3f226737eed802",
+      "solveDigest": "740bdc8f65ed5b5a0364eeafc0878a6bcfe8a369219dca1ddd0e16d708575e94",
+      "reportSha256": "c48e873a9e35db62d466c81c0075ac4e66fc1dc14449c38f8af649c25245c53a",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "sourceReference": {
+        "externalId": "2025-nobyeon-3-2-mid-8",
+        "sourceContentSha256": "447e58bb3371aaf0165302fa147e73c12576b7c42be5606d8ce1fcc98e8e17c3",
+        "sourceSchoolInternal": "노변중학교",
+        "sourceExamYear": 2025,
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/question-only-staged/nobyeon/q08.json",
+          "sha256": "447e58bb3371aaf0165302fa147e73c12576b7c42be5606d8ce1fcc98e8e17c3"
+        },
+        "sourceReviewReport": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/items/nobyeon/q08.json",
+          "sha256": "252cb105ce5c122670a31483944ddeba0e2f3b1f53c9b4cdca7d9ab7c906582e"
+        },
+        "newSourceReferenceId": "source-ref-2025-nobyeon-3-2-mid-r1-q08",
+        "sourceIdentityAsProvided": "printed-identity-observed-not-whole-pair-certified",
+        "sourceManifestOrOriginalAnswerInput": false,
+        "originalAnswersOmittedInInput": true
+      },
+      "metadata": {
+        "grade": "중3",
+        "semester": 2,
+        "subject": "수학",
+        "source": "transformed",
+        "originProblemId": null,
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "2027Republication": "requires new 2022 review"
+        },
+        "sourceExamYear": 2025,
+        "sourceSchoolInternal": "노변중학교",
+        "fictionalVisibleSchool": null,
+        "schoolReplacementMap": {},
+        "fictionalSchoolUsedInStudentText": false,
+        "sourceSchoolNamesInStudentSurfaces": false,
+        "sourceQuestionId": "2025-nobyeon-3-2-mid-8",
+        "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q08",
+        "questionType": "객관식",
+        "score": 4,
+        "parentScoreCountedOnce": true,
+        "newSubpartRubric": [],
+        "sourcePrintedScore": {
+          "originalPrintedParentScore": 4,
+          "parentCountedOnce": true
+        },
+        "difficultyProposal": "응용",
+        "difficultyStatus": "author-proposed",
+        "difficultyEvidence": "Task operations: 수선의 실제 높이를 사인의 정의로 구하고, 대각선의 성질로 작은 삼각형과 평행사변형의 넓이 관계를 세운 뒤 (밑변)×(높이)로 길이를 구한다. Original printed points kept; not a measured difficulty.",
+        "problemTypeProposal": null,
+        "problemTypeStatus": "pending",
+        "problemTypeEvidence": "problemType is a separate bank axis; no rule maps this whole item yet.",
+        "assignment": {
+          "status": "proposed",
+          "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+          "unitSection": "삼각비의 활용",
+          "familyKey": null,
+          "evidence": {
+            "actualCapturedUnit": {
+              "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 활용",
+              "semester": 2,
+              "orderIndex": 483,
+              "problemCodePrefix": "J30503"
+            },
+            "bankSnapshot": {
+              "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r3-20261008.json",
+              "sha256": "31f6e3369f5d62072e6728566f8cd71f44f4d451c4ff2dd87a132a6ff6fa1a26",
+              "capturedAt": "2026-10-08 13:00:16.891043+00",
+              "snapshotOnly": true
+            },
+            "registry": {
+              "path": "src/lib/middle/m3Trig.ts",
+              "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a"
+            },
+            "comparedRegistryEntries": [
+              {
+                "registry": {
+                  "key": "mid:3-2|삼각비의 활용|11",
+                  "title": "평행사변형의 넓이",
+                  "section": "활용",
+                  "difficulty": "응용",
+                  "line1based": 2325
+                },
+                "liveMatch": {
+                  "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+                  "family_key": "mid:3-2|삼각비의 활용|11",
+                  "live_count": 24
+                }
+              },
+              {
+                "registry": {
+                  "key": "mid:3-2|삼각비의 활용|08",
+                  "title": "삼각형의 넓이 예각이 주어진 경우",
+                  "section": "활용",
+                  "difficulty": "응용",
+                  "line1based": 2266
+                },
+                "liveMatch": {
+                  "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+                  "family_key": "mid:3-2|삼각비의 활용|08",
+                  "live_count": 24
+                }
+              }
+            ],
+            "comparison": "활용11(평행사변형의 넓이)이 가깝지만 넓이에서 변을 되찾는 역방향과 대각선이 나눈 삼각형을 거치는 구성 전체와 맞는지 확인하지 못했다. 배정하지 않는다."
+          }
+        },
+        "authorMathEvidence": {
+          "file": "../../author-calculations.json",
+          "questionNumber": 8
+        },
+        "authorSevenSurfaceEvidence": {
+          "path": "author-checks/q08.json"
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "rightsApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "limits": [
+          "Independent solve and full seven-surface review pending.",
+          "Rights/native/custody/loading remain pending.",
+          "Historical taxonomy snapshot is not a currentDB assertion."
+        ]
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure"
+        ],
+        "before": "그림과 같은 평행사변형 $\\mathrm{ABCD}$에서 점 $\\mathrm{P}$는 두 대각선 $\\mathrm{A}C$와 $\\mathrm{B}D$의 교점이다. $\\angle \\mathrm{ABC}=45°$, $\\overline{\\mathrm{A}B}=16\\,cm$, $\\overline{\\mathrm{A}D}=18\\,cm$일 때, $\\triangle \\mathrm{APD}$의 넓이는? [$4$점]",
+        "after": "두 변과 끼인각을 주고 대각선이 나눈 삼각형의 넓이를 묻던 것을, 한 변·끼인각과 대각선이 나눈 다른 삼각형의 넓이를 주고 나머지 변의 길이를 되찾게 바꾸었다. 넓이(결과)에서 변(입력)으로 묻는 방향이 바뀌었다.",
+        "sharedConcept": "평행사변형의 높이를 한 변과 끼인각의 사인으로 구하고, 대각선이 만드는 네 삼각형의 넓이가 같음을 이용한다.",
+        "sharedProcedure": "수선의 실제 높이를 사인의 정의로 구하고, 대각선의 성질로 작은 삼각형과 평행사변형의 넓이 관계를 세운 뒤 (밑변)×(높이)로 길이를 구한다.",
+        "originalAnswerOrNumericalAgreementUsed": false
+      },
+      "packageDigest": "1d10751277a998b36ffd0cdda3a2c27b6b5759f53871e5256752c2e161795bd1",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-authoring-r1\\candidates\\q08\\q08.json",
+        "sha256": "9e28c5c513110150cca9bcb79e46141a223ed4da66eb4c801b3251f6fe9b0c28"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "70d173b1ac06588b7d941259b9bd7e581e039b49cac2db8647621f33668366a4",
+          "svgSha256": "a9b108595e538294c400c250ec6757b4d1d0a1b59cd4733630d108350d147172",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q08-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\nobyeon-final-review-20261019-r2\\blind\\solve\\q08.json",
+        "sha256": "ab7c55e334ae458f62ad0e75641db03467d2820e06dc4b65f695d1eb0715c3e1"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/verification/reports/q08.json",
+        "sha256": "c48e873a9e35db62d466c81c0075ac4e66fc1dc14449c38f8af649c25245c53a"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/verification/verification-manifest.json",
+        "sha256": "525b5f4050650124e9f923b6a835cdec1ff11347a98eca4003f89f14a1130674"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/blind/blind-manifest.json",
+        "sha256": "5a5ef0de22cd7db50400efdd8523a474573d42bd48ec137ba639c05c0da07347"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/package/private/q08/candidate.json",
+        "sha256": "674adc5416cb505fb3e0806832fc2199a1df3b5df1d7f18f9f21b1ee7459a886"
+      },
+      "candidateContentWithoutRelocatedPaths": "83057ee2a5aeb2ebec27682313e7ea30b7402090297ca268c56dc1acc275b59c",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-authoring-r1/candidates/q08/q08.json",
+        "sha256": "9e28c5c513110150cca9bcb79e46141a223ed4da66eb4c801b3251f6fe9b0c28"
+      },
+      "authorCandidateDigest": "48655cc4e132243d7c87213d00c8c85d5ae09bc62118d8e3eb979db2653fd37d"
+    }
+  ],
+  "reviewBindingDigest": "f6c7ef7d2c54d0203b838fc3f7c4466db26d44e8f4b90bd36d2ab77726042881",
+  "limits": [
+    "External review reports supply mathematical/curriculum evidence; hashes never calculate correctness",
+    "Source identity/custody, taxonomy, rights/similarity and native reader/provenance remain separate unresolved gates",
+    "No database, writer, operational approval or original-answer oracle"
+  ]
+}

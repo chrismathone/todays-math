@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
+import { compareConstantParts } from "./constantAnswers.mjs";
 
 export const REVIEW_CHECKS = [
   "answerCorrect",
@@ -400,6 +401,40 @@ export function normalizeAnswer(text) {
     .replace(/\\(?:mathrm|text)\{(cm|m)\}/g, "$1");
 }
 
+/** Compare sealed answer bytes without rewriting them. An optional value after
+ * a choice mark must equal that actual option, including its explicit unit.
+ * Unsupported notation remains a mismatch requiring review, never a guessed value.
+ */
+export function independentAnswerMatches(candidate, answer) {
+  if (!answer) return false;
+  const exact = normalizeAnswer(answer) === normalizeAnswer(candidate.answer);
+  if (candidate.questionType !== "객관식" || candidate.choices?.length !== 5)
+    return exact;
+  const marked = (x) => /^\s*([①-⑤])(?:\s+(.+?))?\s*$/u.exec(String(x));
+  const expected = marked(candidate.answer), actual = marked(answer);
+  if (!expected || !actual) return exact;
+  if (expected[1] !== actual[1]) return false;
+  const annotations = [expected[2], actual[2]].filter((x) => x !== undefined);
+  if (annotations.length === 0) return true;
+  const part = (value) => {
+    if (typeof value !== "string" || /\d\s+\d/u.test(value)) return null;
+    const normalized = normalizeAnswer(value.replace(/²/g, "^{2}").replace(/³/g, "^{3}"));
+    const unit = /^(.*?)(cm|m)(?:\^\{([23])\})?$/u.exec(normalized);
+    return {
+      role: "selected-option",
+      value: unit ? unit[1] : normalized,
+      unit: unit ? unit[2] + (unit[3] ? `^${unit[3]}` : "") : "none",
+    };
+  };
+  const selected = part(candidate.choices["①②③④⑤".indexOf(expected[1])]);
+  if (!selected) return false;
+  return annotations.every((value) => {
+    const supplied = part(value);
+    return supplied !== null &&
+      compareConstantParts([selected], [supplied]).status === "equivalent";
+  });
+}
+
 export function evaluateReview(binding, solve, review, gates = {}) {
   const reasons = [];
   let mathematicalVerified = false;
@@ -434,9 +469,7 @@ export function evaluateReview(binding, solve, review, gates = {}) {
       fail(`review-status-${review.status}`);
     if (solve.status !== "solved") fail("independent-solve-not-complete");
     if (
-      !solve.answer ||
-      normalizeAnswer(solve.answer) !==
-        normalizeAnswer(binding.candidate.answer)
+      !independentAnswerMatches(binding.candidate, solve.answer)
     )
       fail("independent-answer-mismatch");
     if (!solve.solution || !solve.evidence || !review.evidence)
