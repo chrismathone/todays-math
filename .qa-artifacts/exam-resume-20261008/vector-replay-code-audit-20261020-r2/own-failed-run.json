@@ -1,0 +1,280 @@
+{
+  "results": [
+    {
+      "name": "actual-parent-renderer-1",
+      "passed": true,
+      "evidence": {
+        "file": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.json",
+        "assetHashes": [
+          "69f53b0c707230d6a2c7e9554100ad1a7dfd293e986e8cb177971cc4cccf9160"
+        ]
+      }
+    },
+    {
+      "name": "actual-parent-renderer-2",
+      "passed": true,
+      "evidence": {
+        "file": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group5-r2\\q05.json",
+        "assetHashes": [
+          "4e86594dc6d43aa3764f4d4577ab28de75962440beb7e5b67aeddc6ff95f7a01"
+        ]
+      }
+    },
+    {
+      "name": "exact-strict-isolated-copy",
+      "passed": true,
+      "evidence": "reproduced"
+    },
+    {
+      "name": "saved-svg-radius-mismatch",
+      "passed": true,
+      "evidence": {
+        "index": 0,
+        "role": "stem",
+        "specSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "expectedSvgSha256": "a2157246935067df579e61b8fa5bfd8d23feca8d8580fe8134304408f16fd269",
+        "intendedWidthMm": 70,
+        "renderedSpecSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "replayedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "exactByteParity": false,
+        "status": "mismatch",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "name": "throws",
+      "passed": true,
+      "evidence": {
+        "index": 0,
+        "role": "stem",
+        "specSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "expectedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "intendedWidthMm": 70,
+        "status": "render-error",
+        "exactByteParity": false,
+        "reason": "independent-render-failure"
+      }
+    },
+    {
+      "name": "ok-false",
+      "passed": true,
+      "evidence": {
+        "index": 0,
+        "role": "stem",
+        "specSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "expectedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "intendedWidthMm": 70,
+        "status": "render-error",
+        "exactByteParity": false,
+        "reason": "controlled"
+      }
+    },
+    {
+      "name": "missing-svg",
+      "passed": true,
+      "evidence": {
+        "index": 0,
+        "role": "stem",
+        "specSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "expectedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "intendedWidthMm": 70,
+        "status": "render-error",
+        "exactByteParity": false,
+        "reason": "Strict replay returned no SVG or dropped a dimension"
+      }
+    },
+    {
+      "name": "empty-svg",
+      "passed": true,
+      "evidence": {
+        "index": 0,
+        "role": "stem",
+        "specSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "expectedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "intendedWidthMm": 70,
+        "status": "render-error",
+        "exactByteParity": false,
+        "reason": "Strict replay returned no SVG or dropped a dimension"
+      }
+    },
+    {
+      "name": "null-result",
+      "passed": true,
+      "evidence": {
+        "index": 0,
+        "role": "stem",
+        "specSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "expectedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "intendedWidthMm": 70,
+        "status": "render-error",
+        "exactByteParity": false,
+        "reason": "Strict replay returned no SVG or dropped a dimension"
+      }
+    },
+    {
+      "name": "dropped-dimension",
+      "passed": true,
+      "evidence": {
+        "index": 0,
+        "role": "stem",
+        "specSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "expectedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "intendedWidthMm": 70,
+        "status": "render-error",
+        "exactByteParity": false,
+        "reason": "Strict replay returned no SVG or dropped a dimension"
+      }
+    },
+    {
+      "name": "no-figures-no-render",
+      "passed": true,
+      "evidence": {
+        "calls": 0,
+        "status": "no-figures"
+      }
+    },
+    {
+      "name": "version1-unsupported-no-render",
+      "passed": true,
+      "evidence": {
+        "calls": 0,
+        "status": "held"
+      }
+    },
+    {
+      "name": "raster-v2-unsupported-no-render",
+      "passed": true,
+      "evidence": {
+        "calls": 0,
+        "status": "held"
+      }
+    },
+    {
+      "name": "unsafe-script",
+      "passed": true,
+      "evidence": {
+        "calls": 0
+      }
+    },
+    {
+      "name": "unsafe-event",
+      "passed": true,
+      "evidence": {
+        "calls": 0
+      }
+    },
+    {
+      "name": "external-href",
+      "passed": true,
+      "evidence": {
+        "calls": 0
+      }
+    },
+    {
+      "name": "asset-traversal",
+      "passed": true,
+      "evidence": {
+        "calls": 0
+      }
+    },
+    {
+      "name": "own-input-mutation-candidate.json",
+      "passed": true,
+      "evidence": {
+        "onlyOwnedFixtureMutated": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r2\\own-fixture-16\\own-candidate.json"
+      }
+    },
+    {
+      "name": "own-input-mutation-spec.json",
+      "passed": true,
+      "evidence": {
+        "onlyOwnedFixtureMutated": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r2\\own-fixture-17\\own-spec.json"
+      }
+    },
+    {
+      "name": "own-input-mutation-saved.svg",
+      "passed": true,
+      "evidence": {
+        "onlyOwnedFixtureMutated": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r2\\own-fixture-18\\own-saved.svg"
+      }
+    },
+    {
+      "name": "approval-flags-cannot-promote",
+      "passed": true,
+      "evidence": {
+        "status": "reproduced",
+        "fixedFalse": true
+      }
+    },
+    {
+      "name": "env-function-STUDIO_ENGINE_URL",
+      "passed": true,
+      "evidence": {
+        "rejected": true
+      }
+    },
+    {
+      "name": "env-function-VERCEL",
+      "passed": true,
+      "evidence": {
+        "rejected": true
+      }
+    },
+    {
+      "name": "env-function-FIGURE_ENGINE_PATH",
+      "passed": true,
+      "evidence": {
+        "rejected": true
+      }
+    },
+    {
+      "name": "actual-cli-outside-root-output",
+      "passed": true,
+      "evidence": {
+        "key": null,
+        "exitCode": 1,
+        "outputCreated": false,
+        "stdout": "",
+        "stderr": "AssertionError [ERR_ASSERTION]: Output must stay in this task worktree\n    at newOutputPath (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/candidatePack.mjs:113:3)\n    at main (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:25:18)\n    at <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:54:1)\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '=='\n}\n"
+      }
+    },
+    {
+      "name": "actual-cli-STUDIO_ENGINE_URL",
+      "passed": true,
+      "evidence": {
+        "key": "STUDIO_ENGINE_URL",
+        "exitCode": 1,
+        "outputCreated": false,
+        "stdout": "",
+        "stderr": "AssertionError [ERR_ASSERTION]: Offline vendored replay: STUDIO_ENGINE_URL must be unset\n    at assertLocalReplayEnvironment (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/vectorReplay.mjs:9:5)\n    at main (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:14:3)\n    at <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:54:1)\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '=='\n}\n"
+      }
+    },
+    {
+      "name": "actual-cli-VERCEL",
+      "passed": true,
+      "evidence": {
+        "key": "VERCEL",
+        "exitCode": 1,
+        "outputCreated": false,
+        "stdout": "",
+        "stderr": "AssertionError [ERR_ASSERTION]: Offline vendored replay: VERCEL must be unset\n    at assertLocalReplayEnvironment (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/vectorReplay.mjs:9:5)\n    at main (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:14:3)\n    at <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:54:1)\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '=='\n}\n"
+      }
+    },
+    {
+      "name": "actual-cli-FIGURE_ENGINE_PATH",
+      "passed": true,
+      "evidence": {
+        "key": "FIGURE_ENGINE_PATH",
+        "exitCode": 1,
+        "outputCreated": false,
+        "stdout": "",
+        "stderr": "AssertionError [ERR_ASSERTION]: Offline vendored replay: FIGURE_ENGINE_PATH must be unset\n    at assertLocalReplayEnvironment (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/vectorReplay.mjs:9:5)\n    at main (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:14:3)\n    at <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:54:1)\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '=='\n}\n"
+      }
+    },
+    {
+      "name": "pre-snapshot-replacement-candidate.json",
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: Missing expected rejection.\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r2\\own-audit.mjs:36:442)\n    at async test (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r2\\own-audit.mjs:17:49)\n    at async <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r2\\own-audit.mjs:36:62)"
+    }
+  ]
+}

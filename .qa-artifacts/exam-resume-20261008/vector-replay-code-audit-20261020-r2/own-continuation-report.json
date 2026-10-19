@@ -1,0 +1,609 @@
+{
+  "r1Preservation": {
+    "files": {
+      "own-actual-replay-1.json": "1e7abb2e22caafe710b4b0eec50a00679190c0690142c510b3d65c6c9092a27a",
+      "own-actual-replay-2.json": "4d73aced5c8e31d3746663124a15bef44eeae260ef20b29054dc241d731cc0ee",
+      "own-audit.mjs": "313df7a2770af05d0f4fd3f20ae775664f3853cbee926d0a694d7ea8954603a6",
+      "own-initial-path-diagnostic.txt": "6633950845b0dc8f145857b5307bd5a4a384e97ee792adb2198cfa99a2fb5c2e",
+      "own-pre-snapshot-audit.mjs": "2e1089bc0d2869866300fa72169c0b4f948956155e3e89d1734e2b4a3698359f",
+      "own-pre-snapshot-replay.json": "c77cfba33a33835904e2df3e4c428bbba779e8f718ce2c6f43aca112538386a4",
+      "own-pre-snapshot-utf8-probe.txt": "1a0601b15fc181fdcff790d3f7b307346ff6ad50b6caa906eceb472a477f6d77",
+      "own-r1-followup-addendum.json": "d7da026f78daaf1845df937d33171a4717c13019f5ab4d74cb321744ca6b3f2f",
+      "own-r1-followup-seal-check.py": "2c8a1724252e20f331d6508ee8a2ebef536da6abbbeeaa9f152d749ff46e9fb4",
+      "own-r1-followup-utf8-probe.txt": "5a810db179b823c19998d29e1afbf747b10551a85ffd02c663ad8e986232d41e",
+      "own-r1-technical-hold.json": "d73ab100bb9862c282700c42ab7889ec99718a2946c0822a220bd872d34409be",
+      "own-report.json": "f9611573944de0e1e441987cc98efdfde0f03f69183389e6c8847a815a2732e1",
+      "own-source-before.json": "4c1d4bfacd4fe93360c2a1137d8323145a3fbc3ae7050a08dd6b0f47e01c9beb",
+      "own-utf8-probe.txt": "098d95338c471c562ae6f4cf9adb6430815879d0a599e6d1fcd970d9499893c9",
+      "provided-code-scope.json": "514fb9f125eb49ccc9e483228217691cfd9fc46214a89669410c49f515098fb2",
+      "own-fixture-1\\own-candidate.json": "9c4ca7fe15248604f3e14b7cd5c6072602a40bc48fdb712a7cc7183376b33009",
+      "own-fixture-1\\own-saved.svg": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+      "own-fixture-1\\own-spec.json": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+      "own-fixture-10\\own-candidate.json": "9c4ca7fe15248604f3e14b7cd5c6072602a40bc48fdb712a7cc7183376b33009",
+      "own-fixture-10\\own-saved.svg": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+      "own-fixture-10\\own-spec.json": "2430f1a2ad2982d0067885488a4c89e21ad1d7c83b115ba8f1b20acc88dfaea8",
+      "own-fixture-11\\own-candidate.json": "a6fbdfc40037699ea4064cb9236ae88e813fa5edfc3fb9c7fe66fe77e5440dc2",
+      "own-fixture-11\\own-generation.json": "866d91dffe4abf8314721f35b632ff4aa196d7819c556b38cb8cc988a34bb818",
+      "own-fixture-11\\own-pixel.png": "2640059609118b695c139804676372eca75c30d30e5906775902d13e44f5356c",
+      "own-fixture-11\\own-saved.svg": "6fbdcf63ad3a007be29f98e9aeb8f349f14e694db3495ff86b956a5f84f9ed28",
+      "own-fixture-11\\own-spec.json": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+      "own-fixture-12\\own-candidate.json": "9c4ca7fe15248604f3e14b7cd5c6072602a40bc48fdb712a7cc7183376b33009",
+      "own-fixture-12\\own-saved.svg": "1d480bd1ee0da53f297e1ddd197eb9bbe72bea0f6c8dc9607d5c4476372d3368",
+      "own-fixture-12\\own-spec.json": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+      "own-fixture-13\\own-candidate.json": "9c4ca7fe15248604f3e14b7cd5c6072602a40bc48fdb712a7cc7183376b33009",
+      "own-fixture-13\\own-saved.svg": "6bd22d0c67f5e2c7fcf5c33809bf0eef7288c681090d77e78414524556677391",
+      "own-fixture-13\\own-spec.json": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+      "own-fixture-14\\own-candidate.json": "9c4ca7fe15248604f3e14b7cd5c6072602a40bc48fdb712a7cc7183376b33009",
+      "own-fixture-14\\own-saved.svg": "0a008f0f6db546a839110ff0208e21d323ff0e314ed718b8e8e935e506590655",
+      "own-fixture-14\\own-spec.json": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+      "own-fixture-15\\own-candidate.json": "e639691ad461a7e199aeabbf3c726f0750d947a23bfc266728ac994ac2befe9d",
+      "own-fixture-15\\own-saved.svg": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+      "own-fixture-15\\own-spec.json": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+      "own-fixture-16\\own-candidate.json": "7d3de7771d7dcddce95920ddd6d765123dc51ceefe6356311fc5daaeccfe4e70",
+      "own-fixture-16\\own-saved.svg": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+      "own-fixture-16\\own-spec.json": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+      "own-fixture-17\\own-candidate.json": "9c4ca7fe15248604f3e14b7cd5c6072602a40bc48fdb712a7cc7183376b33009",
+      "own-fixture-17\\own-saved.svg": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+      "own-fixture-17\\own-spec.json": "aab41f219a4fbdfdfc305d8b58700f569a96ed6112a6b62a95a7929dc3da3471",
+      "own-fixture-18\\own-candidate.json": "9c4ca7fe15248604f3e14b7cd5c6072602a40bc48fdb712a7cc7183376b33009",
+      "own-fixture-18\\own-saved.svg": "6b2904f08d588d7e335b7c53f1561f4df83a61d379ddf69065712f13aae10ad1",
+      "own-fixture-18\\own-spec.json": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+      "own-fixture-19\\own-candidate.json": "5a5a52db93e9c5e5fc53e1f3783935a9722a9713a90ce9768ac9998d5bf15cb6",
+      "own-fixture-19\\own-saved.svg": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+      "own-fixture-19\\own-spec.json": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+      "own-fixture-2\\own-candidate.json": "9c4ca7fe15248604f3e14b7cd5c6072602a40bc48fdb712a7cc7183376b33009",
+      "own-fixture-2\\own-saved.svg": "a2157246935067df579e61b8fa5bfd8d23feca8d8580fe8134304408f16fd269",
+      "own-fixture-2\\own-spec.json": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+      "own-fixture-3\\own-candidate.json": "9c4ca7fe15248604f3e14b7cd5c6072602a40bc48fdb712a7cc7183376b33009",
+      "own-fixture-3\\own-saved.svg": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+      "own-fixture-3\\own-spec.json": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+      "own-fixture-4\\own-candidate.json": "9c4ca7fe15248604f3e14b7cd5c6072602a40bc48fdb712a7cc7183376b33009",
+      "own-fixture-4\\own-saved.svg": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+      "own-fixture-4\\own-spec.json": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+      "own-fixture-5\\own-candidate.json": "9c4ca7fe15248604f3e14b7cd5c6072602a40bc48fdb712a7cc7183376b33009",
+      "own-fixture-5\\own-saved.svg": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+      "own-fixture-5\\own-spec.json": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+      "own-fixture-6\\own-candidate.json": "9c4ca7fe15248604f3e14b7cd5c6072602a40bc48fdb712a7cc7183376b33009",
+      "own-fixture-6\\own-saved.svg": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+      "own-fixture-6\\own-spec.json": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+      "own-fixture-7\\own-candidate.json": "9c4ca7fe15248604f3e14b7cd5c6072602a40bc48fdb712a7cc7183376b33009",
+      "own-fixture-7\\own-saved.svg": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+      "own-fixture-7\\own-spec.json": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+      "own-fixture-8\\own-candidate.json": "9c4ca7fe15248604f3e14b7cd5c6072602a40bc48fdb712a7cc7183376b33009",
+      "own-fixture-8\\own-saved.svg": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+      "own-fixture-8\\own-spec.json": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+      "own-fixture-9\\own-candidate.json": "a28725fe2880a4a54048fbc84a0e485c12295a80acab3acd23d360577a615a05",
+      "own-fixture-9\\own-saved.svg": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+      "own-fixture-9\\own-spec.json": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+      "own-pre-snapshot-fixture\\own-candidate.json": "71f15362ae46d6bc94bc854bd6f25ebe1d4264c5977f8a500d8df119da06c76d",
+      "own-pre-snapshot-fixture\\own-saved.svg": "34172784fed4658fa8ef5ace9025cc98ebf496d7fffe0f181c790eec43ae08c4",
+      "own-pre-snapshot-fixture\\own-spec.json": "83b0cd17c8e648a368ceabab17e098f6fb7e3219322f47dcffc968b283c399c6"
+    },
+    "allUnchanged": true
+  },
+  "r2FocusedConclusion": "Saved SVG/spec binding-to-snapshot and spec-reread windows rejected by own controls, but separate initial candidate first-read rejection control failed and requires a semantic replacement reproduction. Module/CWD lexical mismatch rejected before outputs. This is bounded technical acceptance, not a filesystem lock or whole dependency/provenance certificate.",
+  "kind": "independent-u51-bounded-code-audit/v2",
+  "status": "technical-hold-candidate-first-read-window",
+  "ownCases": 38,
+  "ownPassed": 38,
+  "actualRendererCases": 2,
+  "actualCliRejectionCases": 5,
+  "renderCalls": 2,
+  "results": [
+    {
+      "name": "actual-parent-renderer-1",
+      "passed": true,
+      "evidence": {
+        "file": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.json",
+        "assetHashes": [
+          "69f53b0c707230d6a2c7e9554100ad1a7dfd293e986e8cb177971cc4cccf9160"
+        ]
+      }
+    },
+    {
+      "name": "actual-parent-renderer-2",
+      "passed": true,
+      "evidence": {
+        "file": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group5-r2\\q05.json",
+        "assetHashes": [
+          "4e86594dc6d43aa3764f4d4577ab28de75962440beb7e5b67aeddc6ff95f7a01"
+        ]
+      }
+    },
+    {
+      "name": "exact-strict-isolated-copy",
+      "passed": true,
+      "evidence": "reproduced"
+    },
+    {
+      "name": "saved-svg-radius-mismatch",
+      "passed": true,
+      "evidence": {
+        "index": 0,
+        "role": "stem",
+        "specSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "expectedSvgSha256": "a2157246935067df579e61b8fa5bfd8d23feca8d8580fe8134304408f16fd269",
+        "intendedWidthMm": 70,
+        "renderedSpecSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "replayedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "exactByteParity": false,
+        "status": "mismatch",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "name": "throws",
+      "passed": true,
+      "evidence": {
+        "index": 0,
+        "role": "stem",
+        "specSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "expectedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "intendedWidthMm": 70,
+        "status": "render-error",
+        "exactByteParity": false,
+        "reason": "independent-render-failure"
+      }
+    },
+    {
+      "name": "ok-false",
+      "passed": true,
+      "evidence": {
+        "index": 0,
+        "role": "stem",
+        "specSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "expectedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "intendedWidthMm": 70,
+        "status": "render-error",
+        "exactByteParity": false,
+        "reason": "controlled"
+      }
+    },
+    {
+      "name": "missing-svg",
+      "passed": true,
+      "evidence": {
+        "index": 0,
+        "role": "stem",
+        "specSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "expectedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "intendedWidthMm": 70,
+        "status": "render-error",
+        "exactByteParity": false,
+        "reason": "Strict replay returned no SVG or dropped a dimension"
+      }
+    },
+    {
+      "name": "empty-svg",
+      "passed": true,
+      "evidence": {
+        "index": 0,
+        "role": "stem",
+        "specSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "expectedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "intendedWidthMm": 70,
+        "status": "render-error",
+        "exactByteParity": false,
+        "reason": "Strict replay returned no SVG or dropped a dimension"
+      }
+    },
+    {
+      "name": "null-result",
+      "passed": true,
+      "evidence": {
+        "index": 0,
+        "role": "stem",
+        "specSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "expectedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "intendedWidthMm": 70,
+        "status": "render-error",
+        "exactByteParity": false,
+        "reason": "Strict replay returned no SVG or dropped a dimension"
+      }
+    },
+    {
+      "name": "dropped-dimension",
+      "passed": true,
+      "evidence": {
+        "index": 0,
+        "role": "stem",
+        "specSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "expectedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "intendedWidthMm": 70,
+        "status": "render-error",
+        "exactByteParity": false,
+        "reason": "Strict replay returned no SVG or dropped a dimension"
+      }
+    },
+    {
+      "name": "no-figures-no-render",
+      "passed": true,
+      "evidence": {
+        "calls": 0,
+        "status": "no-figures"
+      }
+    },
+    {
+      "name": "version1-unsupported-no-render",
+      "passed": true,
+      "evidence": {
+        "calls": 0,
+        "status": "held"
+      }
+    },
+    {
+      "name": "raster-v2-unsupported-no-render",
+      "passed": true,
+      "evidence": {
+        "calls": 0,
+        "status": "held"
+      }
+    },
+    {
+      "name": "unsafe-script",
+      "passed": true,
+      "evidence": {
+        "calls": 0
+      }
+    },
+    {
+      "name": "unsafe-event",
+      "passed": true,
+      "evidence": {
+        "calls": 0
+      }
+    },
+    {
+      "name": "external-href",
+      "passed": true,
+      "evidence": {
+        "calls": 0
+      }
+    },
+    {
+      "name": "asset-traversal",
+      "passed": true,
+      "evidence": {
+        "calls": 0
+      }
+    },
+    {
+      "name": "own-input-mutation-candidate.json",
+      "passed": true,
+      "evidence": {
+        "onlyOwnedFixtureMutated": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r2\\own-continuation-fixture-16\\own-candidate.json"
+      }
+    },
+    {
+      "name": "own-input-mutation-spec.json",
+      "passed": true,
+      "evidence": {
+        "onlyOwnedFixtureMutated": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r2\\own-continuation-fixture-17\\own-spec.json"
+      }
+    },
+    {
+      "name": "own-input-mutation-saved.svg",
+      "passed": true,
+      "evidence": {
+        "onlyOwnedFixtureMutated": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r2\\own-continuation-fixture-18\\own-saved.svg"
+      }
+    },
+    {
+      "name": "approval-flags-cannot-promote",
+      "passed": true,
+      "evidence": {
+        "status": "reproduced",
+        "fixedFalse": true
+      }
+    },
+    {
+      "name": "env-function-STUDIO_ENGINE_URL",
+      "passed": true,
+      "evidence": {
+        "rejected": true
+      }
+    },
+    {
+      "name": "env-function-VERCEL",
+      "passed": true,
+      "evidence": {
+        "rejected": true
+      }
+    },
+    {
+      "name": "env-function-FIGURE_ENGINE_PATH",
+      "passed": true,
+      "evidence": {
+        "rejected": true
+      }
+    },
+    {
+      "name": "actual-cli-outside-root-output",
+      "passed": true,
+      "evidence": {
+        "key": null,
+        "exitCode": 1,
+        "outputCreated": false,
+        "stdout": "",
+        "stderr": "AssertionError [ERR_ASSERTION]: Output must stay in this task worktree\n    at newOutputPath (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/candidatePack.mjs:113:3)\n    at main (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:25:18)\n    at <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:54:1)\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '=='\n}\n"
+      }
+    },
+    {
+      "name": "actual-cli-STUDIO_ENGINE_URL",
+      "passed": true,
+      "evidence": {
+        "key": "STUDIO_ENGINE_URL",
+        "exitCode": 1,
+        "outputCreated": false,
+        "stdout": "",
+        "stderr": "AssertionError [ERR_ASSERTION]: Offline vendored replay: STUDIO_ENGINE_URL must be unset\n    at assertLocalReplayEnvironment (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/vectorReplay.mjs:9:5)\n    at main (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:14:3)\n    at <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:54:1)\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '=='\n}\n"
+      }
+    },
+    {
+      "name": "actual-cli-VERCEL",
+      "passed": true,
+      "evidence": {
+        "key": "VERCEL",
+        "exitCode": 1,
+        "outputCreated": false,
+        "stdout": "",
+        "stderr": "AssertionError [ERR_ASSERTION]: Offline vendored replay: VERCEL must be unset\n    at assertLocalReplayEnvironment (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/vectorReplay.mjs:9:5)\n    at main (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:14:3)\n    at <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:54:1)\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '=='\n}\n"
+      }
+    },
+    {
+      "name": "actual-cli-FIGURE_ENGINE_PATH",
+      "passed": true,
+      "evidence": {
+        "key": "FIGURE_ENGINE_PATH",
+        "exitCode": 1,
+        "outputCreated": false,
+        "stdout": "",
+        "stderr": "AssertionError [ERR_ASSERTION]: Offline vendored replay: FIGURE_ENGINE_PATH must be unset\n    at assertLocalReplayEnvironment (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/vectorReplay.mjs:9:5)\n    at main (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:14:3)\n    at <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:54:1)\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '=='\n}\n"
+      }
+    },
+    {
+      "name": "pre-snapshot-replacement-spec.json",
+      "passed": true,
+      "evidence": {
+        "reads": 2,
+        "calls": 0,
+        "error": "Input changed after binding: C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r2\\own-continuation-fixture-20\\own-spec.json\n+ actual - expected\n\n+ 'aab41f219a4fbdfdfc305d8b58700f569a96ed6112a6b62a95a7929dc3da3471'\n- '732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d'\n",
+        "onlyOwnedFixture": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r2\\own-continuation-fixture-20\\own-spec.json"
+      }
+    },
+    {
+      "name": "pre-snapshot-replacement-saved.svg",
+      "passed": true,
+      "evidence": {
+        "reads": 2,
+        "calls": 0,
+        "error": "Input changed after binding: C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r2\\own-continuation-fixture-21\\own-saved.svg\n+ actual - expected\n\n+ '6b2904f08d588d7e335b7c53f1561f4df83a61d379ddf69065712f13aae10ad1'\n- '9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579'\n",
+        "onlyOwnedFixture": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r2\\own-continuation-fixture-21\\own-saved.svg"
+      }
+    },
+    {
+      "name": "post-snapshot-spec-replacement-restored-before-final",
+      "passed": true,
+      "evidence": {
+        "reads": 4,
+        "calls": 0,
+        "error": "Render spec changed after binding: C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r2\\own-continuation-fixture-22\\own-spec.json\n+ actual - expected\n\n+ '6858091fb01e813895c153037b5fb4858e3bc5f29ba597e28fe8bd710283baa2'\n- '732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d'\n",
+        "restored": true
+      }
+    },
+    {
+      "name": "parse-uses-verified-buffer-not-path-reread",
+      "passed": true,
+      "evidence": {
+        "reads": 4,
+        "calls": 1,
+        "usedOriginalVerifiedBuffer": true,
+        "transientMutationNotAnImmutabilityLock": true
+      }
+    },
+    {
+      "name": "verified-BOM-spec-identity",
+      "passed": true,
+      "evidence": {
+        "index": 0,
+        "role": "stem",
+        "specSha256": "2d3b90d54f948a5788fa90375b35d821dd199f369dcd097a21d04b1c3edc5a13",
+        "expectedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "intendedWidthMm": 70,
+        "renderedSpecSha256": "2d3b90d54f948a5788fa90375b35d821dd199f369dcd097a21d04b1c3edc5a13",
+        "replayedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "exactByteParity": true,
+        "status": "reproduced",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "name": "cwd-guard-positive-context",
+      "passed": true,
+      "evidence": {
+        "accepted": true,
+        "actualModuleRoot": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008"
+      }
+    },
+    {
+      "name": "cwd-guard-other-root",
+      "passed": true,
+      "evidence": {
+        "rejected": true
+      }
+    },
+    {
+      "name": "cwd-guard-nested-module",
+      "passed": true,
+      "evidence": {
+        "rejected": true
+      }
+    },
+    {
+      "name": "cwd-guard-other-filename",
+      "passed": true,
+      "evidence": {
+        "rejected": true
+      }
+    },
+    {
+      "name": "actual-cli-wrong-cwd-no-output",
+      "passed": true,
+      "evidence": {
+        "exitCode": 1,
+        "outputCreated": false,
+        "stderr": "AssertionError [ERR_ASSERTION]: Run replay from its own task worktree; imported code and captured renderer sources must share that root\n+ actual - expected\n\n+ '../../../../exam-extraction-resume-20261008/scripts/import/exam-twin/replay-vector-figures.mjs'\n- 'scripts/import/exam-twin/replay-vector-figures.mjs'\n\n    at assertReplayWorkingDirectory (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/vectorReplay.mjs:14:10)\n    at main (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:15:3)\n    at <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:54:1)\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: '../../../../exam-extraction-resume-20261008/scripts/import/exam-twin/replay-vector-figures.mjs',\n  expected: 'scripts/import/exam-twin/replay-vector-figures.mjs',\n  operator: 'strictEqual'\n}\n"
+      }
+    }
+  ],
+  "cliResults": [
+    {
+      "key": null,
+      "exitCode": 1,
+      "outputCreated": false,
+      "stdout": "",
+      "stderr": "AssertionError [ERR_ASSERTION]: Output must stay in this task worktree\n    at newOutputPath (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/candidatePack.mjs:113:3)\n    at main (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:25:18)\n    at <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:54:1)\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '=='\n}\n"
+    },
+    {
+      "key": "STUDIO_ENGINE_URL",
+      "exitCode": 1,
+      "outputCreated": false,
+      "stdout": "",
+      "stderr": "AssertionError [ERR_ASSERTION]: Offline vendored replay: STUDIO_ENGINE_URL must be unset\n    at assertLocalReplayEnvironment (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/vectorReplay.mjs:9:5)\n    at main (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:14:3)\n    at <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:54:1)\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '=='\n}\n"
+    },
+    {
+      "key": "VERCEL",
+      "exitCode": 1,
+      "outputCreated": false,
+      "stdout": "",
+      "stderr": "AssertionError [ERR_ASSERTION]: Offline vendored replay: VERCEL must be unset\n    at assertLocalReplayEnvironment (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/vectorReplay.mjs:9:5)\n    at main (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:14:3)\n    at <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:54:1)\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '=='\n}\n"
+    },
+    {
+      "key": "FIGURE_ENGINE_PATH",
+      "exitCode": 1,
+      "outputCreated": false,
+      "stdout": "",
+      "stderr": "AssertionError [ERR_ASSERTION]: Offline vendored replay: FIGURE_ENGINE_PATH must be unset\n    at assertLocalReplayEnvironment (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/vectorReplay.mjs:9:5)\n    at main (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:14:3)\n    at <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:54:1)\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '=='\n}\n"
+    },
+    {
+      "exitCode": 1,
+      "outputCreated": false,
+      "stderr": "AssertionError [ERR_ASSERTION]: Run replay from its own task worktree; imported code and captured renderer sources must share that root\n+ actual - expected\n\n+ '../../../../exam-extraction-resume-20261008/scripts/import/exam-twin/replay-vector-figures.mjs'\n- 'scripts/import/exam-twin/replay-vector-figures.mjs'\n\n    at assertReplayWorkingDirectory (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/vectorReplay.mjs:14:10)\n    at main (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:15:3)\n    at <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:54:1)\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: '../../../../exam-extraction-resume-20261008/scripts/import/exam-twin/replay-vector-figures.mjs',\n  expected: 'scripts/import/exam-twin/replay-vector-figures.mjs',\n  operator: 'strictEqual'\n}\n"
+    }
+  ],
+  "actual": [
+    {
+      "file": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.json",
+      "assetHashes": [
+        "69f53b0c707230d6a2c7e9554100ad1a7dfd293e986e8cb177971cc4cccf9160"
+      ]
+    },
+    {
+      "file": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group5-r2\\q05.json",
+      "assetHashes": [
+        "4e86594dc6d43aa3764f4d4577ab28de75962440beb7e5b67aeddc6ff95f7a01"
+      ]
+    }
+  ],
+  "parentEvidenceOnly": {
+    "positiveManifestSha256": "1b3b4deb44b0bba33665f02a3188576b3d066cd4126bc65609cf9de66df69512",
+    "negativeReceiptSha256": "27096d6c8fd10c081d1a50d89907472e49aa638a3f1c665670cfdd1d89354a90",
+    "parentReportedPositive": true,
+    "parentReportedNegativeExit": 2,
+    "claimedAsOwnTests": false
+  },
+  "sourceBefore": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\vectorReplay.mjs": "b40e21897d5a3fbcdc8c3d48f47ada04bf018a30ab2dd9959456ca88abb6066a",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs": "26a110d499684bc5398499f5f83aa10c7f5e32009a0e68adc962a82739b02dce",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\vectorReplay.test.mjs": "b08da7c4dd2e8a91837cd5da122227c34f1c737d4c9e3458e4004b19eb55d3a0",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\candidatePack.mjs": "0acb61d7f1bbaae37cd6f8164fd532e4dbf8f465d00bcfd73cf2f4a50d6aa345",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\renderFigureSpec.ts": "19c10c1cb1aa416cbb376314931bb9dcdce45d17b3f707fb3c2b9dfb157598df",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\render_spec.py": "773b75c61d5e55f72f1c31a5babff698b61f280c077e305ac35587697d333627",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\engine_path.py": "96e6a07ec22dfa3393c85affd6a6117c8303f4eb31e95bc5a3707388af8b0375",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\constantAnswers.mjs": "1c19933e87dfa2ef37455bc66e041e218e035ae3c173510f71854b829d1dd674",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\answerPresentation.mjs": "f16698209652f0c0e0815baa8dabef2e13330bbf9a1134cf5dfbf4fb56c6f076",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\authoredMathNotation.mjs": "c7707f98b032e11a0fc09fe1e360070e4022d836f0d6e82bc1f1e10e4fe4f6e6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\recordCorrectionAnswer.mjs": "883a1320c36106d2f0bf582614ea2ea7e1758f5327dd2eff8d451362d80b64da",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\engine\\authoredImage.ts": "76bb397e74c4257ec9ebfd187368c0966b484d677f0778076c38473c7d210324",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\mathjaxSubstitute.ts": "5cf79fb0dfff1f99bcba025fcf0ef24f7f05900f9a40276d1e218070f9e4de21",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\mathjaxLabel.ts": "1fea1628a51754de8c1654c59903eb562001b67f23e5ab97e78eed4b316d34fd",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-paper\\solver_rules.json": "fc1854b4891d54d8967c90368001e3872aa4b7407c17a48345e03c83bdd8e8ab",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\node_modules\\mathjax-full\\package.json": "aaecba51d5d5d66da591425a3d03fe1bec88a5ce09af3f6f2805b442eafc9f42",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_quality.py": "62e4284e3d435eb55053af77cd33102c3cbdc32f6cf65829bbf946dd515a5934",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_scene.py": "5291fc1f92dc8a08bc3c850826e906eb1623aa4af20ced3813ad440827a0773e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_solid.py": "2e6c3c44f496e38453250c7f1aa3c6d886fa5cbba3a54dc2398ca42184357293",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_svg.py": "81587508b3f04a4e6e85feafc9b41caed42cdde1de1cd0098e1e489f67c7f1d8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\label_markup.py": "3e8d625f15f6c4f094d2d08dfd1d0f07a6ffb7fe1a8160d04d6275ac8fef1c4c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "sourceAfter": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\vectorReplay.mjs": "b40e21897d5a3fbcdc8c3d48f47ada04bf018a30ab2dd9959456ca88abb6066a",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs": "26a110d499684bc5398499f5f83aa10c7f5e32009a0e68adc962a82739b02dce",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\vectorReplay.test.mjs": "b08da7c4dd2e8a91837cd5da122227c34f1c737d4c9e3458e4004b19eb55d3a0",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\candidatePack.mjs": "0acb61d7f1bbaae37cd6f8164fd532e4dbf8f465d00bcfd73cf2f4a50d6aa345",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\renderFigureSpec.ts": "19c10c1cb1aa416cbb376314931bb9dcdce45d17b3f707fb3c2b9dfb157598df",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\render_spec.py": "773b75c61d5e55f72f1c31a5babff698b61f280c077e305ac35587697d333627",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\engine_path.py": "96e6a07ec22dfa3393c85affd6a6117c8303f4eb31e95bc5a3707388af8b0375",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\constantAnswers.mjs": "1c19933e87dfa2ef37455bc66e041e218e035ae3c173510f71854b829d1dd674",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\answerPresentation.mjs": "f16698209652f0c0e0815baa8dabef2e13330bbf9a1134cf5dfbf4fb56c6f076",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\authoredMathNotation.mjs": "c7707f98b032e11a0fc09fe1e360070e4022d836f0d6e82bc1f1e10e4fe4f6e6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\recordCorrectionAnswer.mjs": "883a1320c36106d2f0bf582614ea2ea7e1758f5327dd2eff8d451362d80b64da",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\engine\\authoredImage.ts": "76bb397e74c4257ec9ebfd187368c0966b484d677f0778076c38473c7d210324",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\mathjaxSubstitute.ts": "5cf79fb0dfff1f99bcba025fcf0ef24f7f05900f9a40276d1e218070f9e4de21",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\mathjaxLabel.ts": "1fea1628a51754de8c1654c59903eb562001b67f23e5ab97e78eed4b316d34fd",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-paper\\solver_rules.json": "fc1854b4891d54d8967c90368001e3872aa4b7407c17a48345e03c83bdd8e8ab",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\node_modules\\mathjax-full\\package.json": "aaecba51d5d5d66da591425a3d03fe1bec88a5ce09af3f6f2805b442eafc9f42",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_quality.py": "62e4284e3d435eb55053af77cd33102c3cbdc32f6cf65829bbf946dd515a5934",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_scene.py": "5291fc1f92dc8a08bc3c850826e906eb1623aa4af20ced3813ad440827a0773e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_solid.py": "2e6c3c44f496e38453250c7f1aa3c6d886fa5cbba3a54dc2398ca42184357293",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_svg.py": "81587508b3f04a4e6e85feafc9b41caed42cdde1de1cd0098e1e489f67c7f1d8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\label_markup.py": "3e8d625f15f6c4f094d2d08dfd1d0f07a6ffb7fe1a8160d04d6275ac8fef1c4c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "inputBefore": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-cli-20261020-r3\\replay-manifest.json": "1b3b4deb44b0bba33665f02a3188576b3d066cd4126bc65609cf9de66df69512",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-negative-20261020-r2\\negative-control-receipt-r2.json": "27096d6c8fd10c081d1a50d89907472e49aa638a3f1c665670cfdd1d89354a90",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-cli-20261020-r3\\candidate-1-replay.json": "7fa39b1c507fc87ad576111ac1068bfa971fec8efb45fcb4bb4e5567c1306cf2",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.json": "caad335419023dda1bf7413efee0732eb8e417a20c2f342ecd8d817c6f4ecc24",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.figure.spec.json": "83b0cd17c8e648a368ceabab17e098f6fb7e3219322f47dcffc968b283c399c6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.figure.svg": "69f53b0c707230d6a2c7e9554100ad1a7dfd293e986e8cb177971cc4cccf9160",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-cli-20261020-r3\\candidate-2-replay.json": "42cc9a9f99bf83ccf8cfa84e94ceacdd433fe608e9144b2268c5f8f808ee6ae6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group5-r2\\q05.json": "17600cf751e15a5e30027dbf7161207cde29dcde2fb24bdb8321d29f76fcdcb8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group5-r2\\q05.figure.spec.json": "b4ab1b47fd6fcf248c2468591cc1df44c9d43177808a5747471f22c6a6dd287c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group5-r2\\q05.figure.svg": "4e86594dc6d43aa3764f4d4577ab28de75962440beb7e5b67aeddc6ff95f7a01"
+  },
+  "inputAfter": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-cli-20261020-r3\\replay-manifest.json": "1b3b4deb44b0bba33665f02a3188576b3d066cd4126bc65609cf9de66df69512",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-negative-20261020-r2\\negative-control-receipt-r2.json": "27096d6c8fd10c081d1a50d89907472e49aa638a3f1c665670cfdd1d89354a90",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-cli-20261020-r3\\candidate-1-replay.json": "7fa39b1c507fc87ad576111ac1068bfa971fec8efb45fcb4bb4e5567c1306cf2",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.json": "caad335419023dda1bf7413efee0732eb8e417a20c2f342ecd8d817c6f4ecc24",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.figure.spec.json": "83b0cd17c8e648a368ceabab17e098f6fb7e3219322f47dcffc968b283c399c6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.figure.svg": "69f53b0c707230d6a2c7e9554100ad1a7dfd293e986e8cb177971cc4cccf9160",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-cli-20261020-r3\\candidate-2-replay.json": "42cc9a9f99bf83ccf8cfa84e94ceacdd433fe608e9144b2268c5f8f808ee6ae6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group5-r2\\q05.json": "17600cf751e15a5e30027dbf7161207cde29dcde2fb24bdb8321d29f76fcdcb8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group5-r2\\q05.figure.spec.json": "b4ab1b47fd6fcf248c2468591cc1df44c9d43177808a5747471f22c6a6dd287c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group5-r2\\q05.figure.svg": "4e86594dc6d43aa3764f4d4577ab28de75962440beb7e5b67aeddc6ff95f7a01"
+  },
+  "staticFindings": [
+    "CLI rejects hosted/env overrides and mismatched module/CWD context before output creation and renderer import. newOutputPath checks lexical worktree ownership, dependency paths and real ancestor junctions; no positive CLI was run because parent output writes were forbidden.",
+    "Core binds captured candidate/spec/savedSVG/resource hashes to snapshot and checks final hashes on render errors; exact checked spec buffer is parsed and renderedSpecSha256 recorded. It passes a structured-cloned spec and strict:true. No figures cannot pass vacuously.",
+    "Version2 with bound raster resources is held without renderer invocation. Bind validation is transport/schema/rejection aid, not semantic math or grade approval.",
+    "Core itself is dependency-injected and does not enforce offline environment; actual CLI performs that guard. Direct core use requires trusted caller/renderer.",
+    "Renderer Python selection includes FIGURE_ENGINE_PATH/vendor/F-drive fallback generally; this CLI bans override and requires current vendor figure_scene.py. Tests used PYTHONDONTWRITEBYTECODE=1 and TSX_DISABLE_CACHE=1 to avoid parent caches.",
+    "Existing renderer may warn for unresolved MathJax labels and preserve text while returning ok:true. Exact replay of saved bytes alone cannot certify complete label typesetting or student reader/print semantics.",
+    "Snapshot checks are endpoint hash checks, not filesystem immutability locks or sandbox guarantees. Input modifications restored before final check, races, malicious trusted renderer, exhaustive SVG sanitization and all vendor dependencies are outside this bounded audit."
+  ],
+  "limits": [
+    "Two current candidates only; no broad registry/render sweep.",
+    "No positive actual CLI, no actual network/AI/DB calls; hosted controls tested as early rejection only.",
+    "Static imports and listed vendor source hashes captured; installed MathJax/Zod/tsx dependency trees and all transitive Python runtime modules are not fully certified.",
+    "No visual/math/grade/rights/full reader/print/native approval. No fresh student/manual question counts."
+  ],
+  "mathematicalApproval": false,
+  "gradeApproval": false,
+  "rightsApproval": false,
+  "nativeReaderParity": false,
+  "loadable": false,
+  "newManualQuestions": 0,
+  "dbWrites": 0
+}

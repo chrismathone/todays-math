@@ -1,0 +1,49 @@
+{
+  "kind": "authored-vector-render-replay/v2",
+  "candidate": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r2\\own-semantic-race-fixture\\own-candidate.json",
+    "sha256": "01ec9e407133348dcd471e004c089d50a73be12e11a0b25e753e51f22c02ff6f"
+  },
+  "twinExternalId": "exam-twin-own-r2-old-parsed-candidate",
+  "candidateDigest": "4b7a06e5ecaccd952b9698380a58b6a25170fd0e406e9d7478773f50cc7f2b79",
+  "studentDigest": "a5a32a3256842032487f908b989ed12fe3244a4111c6a650391fe3df9aa09a4a",
+  "assetDigest": "20fa33c0d677aded936b0adc54e432970bc198e68f64c2c3046e752d68c0d100",
+  "status": "reproduced",
+  "assets": [
+    {
+      "index": 0,
+      "role": "stem",
+      "specSha256": "83b0cd17c8e648a368ceabab17e098f6fb7e3219322f47dcffc968b283c399c6",
+      "expectedSvgSha256": "69f53b0c707230d6a2c7e9554100ad1a7dfd293e986e8cb177971cc4cccf9160",
+      "intendedWidthMm": 70,
+      "renderedSpecSha256": "83b0cd17c8e648a368ceabab17e098f6fb7e3219322f47dcffc968b283c399c6",
+      "replayedSvgSha256": "69f53b0c707230d6a2c7e9554100ad1a7dfd293e986e8cb177971cc4cccf9160",
+      "exactByteParity": true,
+      "status": "reproduced",
+      "droppedDimensions": []
+    }
+  ],
+  "allVectorAssetsReproduced": true,
+  "inputHashes": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r2\\own-semantic-race-fixture\\own-candidate.json": "01ec9e407133348dcd471e004c089d50a73be12e11a0b25e753e51f22c02ff6f",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r2\\own-semantic-race-fixture\\own-spec.json": "83b0cd17c8e648a368ceabab17e098f6fb7e3219322f47dcffc968b283c399c6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r2\\own-semantic-race-fixture\\own-saved.svg": "69f53b0c707230d6a2c7e9554100ad1a7dfd293e986e8cb177971cc4cccf9160"
+  },
+  "inputsMatchCapturedBinding": true,
+  "inputsUnchanged": true,
+  "candidateValidation": {
+    "structurallyValid": true,
+    "surfaceKeywordViolations": [],
+    "studentMathNotationWarnings": [],
+    "semanticGradeReviewStillRequired": true,
+    "metadataAnswerFormatMismatch": false
+  },
+  "mathematicalApproval": false,
+  "gradeApproval": false,
+  "rightsApproval": false,
+  "nativeReaderParity": false,
+  "loadable": false,
+  "newManualQuestions": 0,
+  "newAuthoredFigures": 0,
+  "dbWrites": 0
+}
