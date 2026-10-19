@@ -1,0 +1,72 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+stderr | src/__tests__/components/StudentCourseSrs.test.tsx > persisted course practice > waits for the saved answer, prevents double submit, and supports Enter to advance
+A component suspended inside an `act` scope, but the `act` call was not awaited. When testing React components that depend on asynchronous data, you must await the result:
+
+await act(() => ...)
+
+ ✓ src/__tests__/components/StudentCourseSrs.test.tsx (48 tests) 7960ms
+     ✓ routes the second answer to follow-up and reconciles a 409 before continuing  789ms
+     ✓ moves focus into settings and returns it to the opener on Escape  350ms
+     ✓ requires each curriculum choice and does not silently select the first section  393ms
+     ✓ persists a setup plan before allowing automatic start  352ms
+     ✓ requests the next recommendation after five problems and stops at the daily goal  495ms
+stderr | src/__tests__/components/ExplorerConceptMemory.test.tsx > Explorer concept memory inside the old shell > fences the API source and remounts after a changed login reported by daily
+[MSW] Error: intercepted a request without a matching request handler:
+
+  • GET /api/learn/fading/relearn
+
+If you still wish to intercept this unhandled request, please create a request handler for it.
+Read more: https://mswjs.io/docs/http/intercepting-requests
+
+ ✓ src/__tests__/components/ExplorerConceptMemory.test.tsx (21 tests) 5583ms
+     ✓ shows only one student start and device settings, preserving the exact recall next  1360ms
+     ✓ queues cold checks via the first rating receipt and leaves long-term and explorer records unchanged by a minute check  664ms
+     ✓ runs the actual local daily planner from first activity to persisted resume inside the explorer  337ms
+     ✓ resumes typed recall without posting an open action and leaves old credits untouched after rating  389ms
+     ✓ offers a future concept as unrecorded practice and sends no pick/open or schedule write  302ms
+ ✓ src/__tests__/unit/courseFollowUpWriter.test.ts (7 tests) 6645ms
+     ✓ records a second answer without touching the first attempt or memory  342ms
+     ✓ follows only the latest wrong first answer, before anything else happens  3088ms
+     ✓ records an opened solution after «모르겠어요» or «다시 연습» only for clients that ask  3111ms
+ ✓ src/__tests__/api/mathExplorersRoutes.test.ts (33 tests) 5636ms
+     ✓ shows a new 초5 student the 2nd-semester unit, writes nothing on read and keeps the plan on start  452ms
+     ✓ awards the actual Korea completion day once and keeps historical replay read only  564ms
+     ✓ keeps an exhausted concept mission open across midnight until retry-unresolved solves the rest  925ms
+     ✓ stores selected grade and goal, then supports due-memory and prerequisite-repair sessions  469ms
+     ✓ collects wrong answers, awards one completed day, unlocks chests, and replays old days without rewards  339ms
+     ✓ reads the state row once and writes once  304ms
+ ✓ src/__tests__/unit/courseFollowUpReader.test.ts (7 tests) 3421ms
+     ✓ accepts an opened solution after giving up or a self-check «다시 연습»  3157ms
+ ✓ src/__tests__/unit/examStudyInverseMinimum.test.ts (9 tests) 16271ms
+     ✓ independently solves all24 printed data sets, including positive and negative fourth values  1430ms
+     ✓ retains a captured Unit proposal while the internal factory stays hidden in public catalogs  14599ms
+ ✓ src/__tests__/unit/examStudyInverseRootTable.test.ts (8 tests) 13397ms
+     ✓ independently checks all45 actual tables, integer rounding bounds and unique reverse mappings  349ms
+     ✓ keeps the internal factory hidden and the actual Unit proposal separate from live-family, rights and grade approval  12963ms
+ ✓ src/__tests__/unit/mathSrsCourseServer.test.ts (34 tests) 4071ms
+     ✓ bounds retained history while preserving exact lifetime and daily totals  3271ms
+ ✓ src/__tests__/unit/courseChoicePlausibility.test.ts (2 tests) 1881ms
+     ✓ keeps every 초5 engine choice set free of far values  1725ms
+ ✓ src/__tests__/components/ExplorerHomeAtelier.test.tsx (7 tests) 1442ms
+   ✓ shows one journey heading inside the book while retaining board controls and totals  517ms
+ ✓ src/__tests__/unit/srsStoredContractWalk.test.ts (5 tests) 1325ms
+     ✓ chooses 초5 and a unit in the settings, then studies every day without a teacher plan  594ms
+ ✓ src/__tests__/api/mathSrsCourseRoutes.test.ts (18 tests) 812ms
+ ✓ src/__tests__/components/StudentCourseFollowUp.test.tsx (7 tests) 1145ms
+     ✓ clears the first selected choice when its saved wrong answer opens the second try  482ms
+ ✓ src/__tests__/components/ExplorerStudyBook.test.tsx (6 tests) 533ms
+     ✓ shows the unit once in C order for todo  364ms
+ ✓ src/__tests__/unit/explorerFollowUpWriter.test.ts (6 tests) 319ms
+ ✓ src/__tests__/unit/explorerFollowUpReader.test.ts (3 tests) 199ms
+ ✓ src/__tests__/unit/courseFollowUpClientApi.test.ts (6 tests) 152ms
+ ✓ src/__tests__/unit/previewCards.test.ts (5 tests) 151ms
+ ✓ src/__tests__/unit/previewNumberLine.test.ts (4 tests) 125ms
+
+ Test Files  19 passed (19)
+      Tests  236 passed (236)
+   Start at  01:28:20
+   Duration  151.15s (transform 17.39s, setup 28.41s, import 27.71s, tests 71.07s, environment 17.95s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r25.json

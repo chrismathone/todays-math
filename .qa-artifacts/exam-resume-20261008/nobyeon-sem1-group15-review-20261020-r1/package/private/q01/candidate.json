@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 1,
+  "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group15-r1-q01",
+  "authorId": "codex-parent-engine-upgrade-20261019",
+  "questionType": "객관식",
+  "score": 3,
+  "content": "실수 $a,x$에 대하여 $a>0$이고 $x^2=a$이다. $x=\\sqrt a$라는 결론이 반드시 성립하도록 추가할 조건으로 알맞은 것은?",
+  "choices": [
+    "$x>0$",
+    "$x<0$",
+    "$x\\ne0$",
+    "$a>0$",
+    "$x^2>0$"
+  ],
+  "answer": "①",
+  "solution": "$x^2=a$이므로 $x$는 양수 $a$의 제곱근이다. 양수 $a$의 제곱근은 양의 수 $\\sqrt a$와 음의 수 $-\\sqrt a$이다. 따라서 $x>0$이라는 조건을 추가하면 $x=\\sqrt a$가 반드시 성립한다.\n\n다른 네 조건은 모두 $a=4$, $x=-2$일 때 성립하지만 $x=\\sqrt a$라는 결론은 성립하지 않는다. 실제로 $(-2)^2=4$이고 $\\sqrt4=2$이므로 $-2\\ne\\sqrt4$이다. 그러므로 조건 ②, ③, ④, ⑤는 각각 결론을 보장하지 못한다. 정답은 ① 하나뿐이다.",
+  "figureArtifacts": [],
+  "sourceReference": {
+    "sourceReferenceId": "source-ref-nobyeon-2025-1-mid-fresh-r6-q01",
+    "inventoryExamId": "personal-651da9aa806ce1c9d1c3ae5539e6038f",
+    "sourceSchoolInternal": "노변중학교",
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 1,
+    "sourceContentSha256": "c0f41446c7da453c9dd5db6d0189db25556ad36420488c775607d094346eb7a6",
+    "sourceManifest": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-651da9aa806ce1c9d1c3ae5539e6038f/source-manifest.local.json",
+      "sha256": "76749165acccb92c23dd167adfbe16377d0c60735ea5568780c328ee469b0cf9"
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[노변중][3][25-1-중간][동아강] (완료).hwp",
+        "sha256": "711bf0e161d5f83ee5261c40c48796ebc13f03b0f7f213f4973be00263190e44",
+        "bytes": 579072
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[노변중][3][25-1-중간][동아강] (완료).PDF",
+        "sha256": "b35bc2edff56bc9b92aaecb77f43a403017254cc48f817099badeb1743eca742",
+        "bytes": 154842
+      }
+    ],
+    "originalIdentitySource": {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[노변중][3][25-1-중간] (원본)  (흰닭).pdf",
+      "sha256": "0010d2a15529c79f3407d2b8c461787080247e126dc7e725bb8c7eda461ed643",
+      "bytes": 3313997
+    },
+    "hwpAnchor": {
+      "stream": "BodyText/Section0",
+      "recordIndex": 329,
+      "inflatedByteOffset": 12231,
+      "tag": 71,
+      "level": 1,
+      "payloadSha256": "3e15318e071f2ea979bea64185a63199568143375f9a3d51fc7ba843e59de7b8"
+    },
+    "originalHeaderObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/reviewer-observations-r1.json",
+      "sha256": "3eeaf1cc90a8677b850169154fc6ddc83c938d9213e63a9419f4636251267e02"
+    },
+    "actualReference": "Original header date2025-04-29 observed earlier;2026 preparation footer is separate. This component has not received original/body/whole-pair identity certification.",
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false,
+    "sourceCropViewed": false,
+    "sourceBodyVisualCorrespondence": "pending-N-original-access"
+  },
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "structure"
+    ],
+    "before": "양수a의제곱근x를나타내는관계식을고른다.",
+    "after": "제곱관계x²=a와양의제곱근이라는결론을주고결론을보장하는부호조건을선택한다.",
+    "sharedConcept": "제곱근의정의,양수의두제곱근과기호√a의의미",
+    "sharedProcedure": "x²=a를제곱근관계로해석→두부호구별→양의제곱근표기와일치하는경우선택",
+    "actualStructuralChange": "관계식의직접선택에서결론을보장하는추가조건의선택으로질문역할을뒤집었다. 오답은음수제곱근의구체예로각각검산한다. 단순숫자교체나동의어치환을완료근거로삼지않는다.",
+    "domainProof": "a>0은두실수제곱근±√a의존재와0아님을보장한다. ①은양의가지하나를선택한다. a=4,x=-2는나머지네조건을모두만족하면서결론을반박한다. a=4,x=2는정답조건의실제존재예다.",
+    "difficultyBasis": "원문하/3점의제곱근뜻·두부호판별을유지한다. 일반정리용어나고등논리표기를학생에게요구하지않고중3제곱근정의만으로판단한다. 기본/3점은독립검토전제안이다."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수01-07"
+    ],
+    "officialBasis": {
+      "document": "MOE2020-236 Book8,2015 revised curriculum",
+      "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "stream": "BodyText/Section0",
+      "primaryStandardCodes": [
+        "9수01-07"
+      ]
+    },
+    "legitimateMethodDraft": "제곱근의뜻과양수의두제곱근을사용한다. x의부호로양의제곱근을구별하고작은정수의제곱으로다른조건의오답예를확인한다. 고등집합·명제단원용어/필요충분조건표기/함수방법은사용하지않는다.",
+    "sevenSurfaces": {
+      "stem": "author-proposed",
+      "choices": "author-proposed",
+      "figureTable": "no-figure-or-table-required",
+      "notation": "author-proposed",
+      "answer": "author-definition-and-counterexamples-only",
+      "studentSolution": "author-proposed",
+      "prerequisites": "author-proposed"
+    },
+    "independentReviewPending": true,
+    "authorCannotApprove": true,
+    "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review"
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 1,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 1,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "answerFormat": "single-choice",
+    "score": 3,
+    "source": "transformed",
+    "originProblemId": null,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "author-proposed-independent-calibration-pending",
+    "problemTypeProposal": "제곱근 관계의 양의 가지를 정하는 부호 조건",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "제곱근의 뜻과 성질",
+        "semester": 1,
+        "orderIndex": 469,
+        "problemCodePrefix": "J30101"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+        "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+      },
+      "evidence": "실제제곱근뜻·성질UnitUUID를연결한다. 결론에서부호조건을선택하는전체평가목적과일치하는livefamily는확인전null."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "본문·보기·표·해설에 학교명이 없다. 실제 출처 학교는 내부 메타데이터에만 보존한다."
+    },
+    "figureAuthoring": {
+      "method": "pure-root-definition-no-figure-required",
+      "newTables": 0,
+      "newFigures": 0,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "sourceDifficultyLabelObserved": "하",
+    "prerequisiteUnits": [],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "제곱근의뜻",
+        "양수의두제곱근과양의제곱근기호",
+        "정수제곱과부호비교"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    }
+  }
+}

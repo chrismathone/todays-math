@@ -1,0 +1,40 @@
+{
+  "utc": "2026-10-19T16:29:10.465Z",
+  "candidate": {
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group15-r1/candidates/q01.json",
+    "sha256": "91122db6245e418ac93d4797c9c3363487be67f0ba6e0ff4c2c8870aaa0cc5d6"
+  },
+  "studentDigest": "7b1e42ae5d8934cd3c8f01c10d12b82707adfc605e48d480110717725e1a6ced",
+  "candidateDigest": "2d27c17abd566db6f8ba22c750582a902b707b1d6388ca53f86f19f0dabb346c",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "negativeWitness": {
+    "a": 4,
+    "x": -2
+  },
+  "positiveWitness": {
+    "a": 4,
+    "x": 2
+  },
+  "negativeWitnessConditions": [
+    false,
+    true,
+    true,
+    true,
+    true
+  ],
+  "positiveWitnessConditions": [
+    true,
+    false,
+    true,
+    true,
+    true
+  ],
+  "correctChoice": 1,
+  "proof": "Definition of square roots, positive principal root; all four incorrect conditions have the same actual counterexample.",
+  "authorOnly": true,
+  "independentReview": false,
+  "newFigures": 0,
+  "newTables": 0,
+  "loadable": 0,
+  "dbWrites": 0
+}

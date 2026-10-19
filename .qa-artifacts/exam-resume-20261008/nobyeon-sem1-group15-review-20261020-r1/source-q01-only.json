@@ -1,0 +1,1993 @@
+{
+  "number": 1,
+  "questionType": "multiple-choice",
+  "stem": "$x$가 양수 $a$의 제곱근일 때, $x$와 $a$ 사이의 관계식으로 옳은 것은? [$3$점]",
+  "choices": [
+    "$x=a$",
+    "$a^{2}=x$",
+    "$a=\\sqrt{x}$",
+    "$x=\\sqrt{a}$",
+    "$x=+-\\sqrt{a}$"
+  ],
+  "hwpScriptStem": "$x$가 양수 $a$의 제곱근일 때, $x$와 $a$ 사이의 관계식으로 옳은 것은? [$3$점]",
+  "hwpScriptChoices": [
+    "$x=a$",
+    "$a ^{2} =x$",
+    "$a= sqrt {x}$",
+    "$x= sqrt {a}$",
+    "$x=+- sqrt {a}$"
+  ],
+  "topicLabelFromSource": "제곱근과 실수",
+  "difficultyLabelFromSource": "하",
+  "printedScoreOccurrences": [
+    {
+      "printed": "[$3$점]",
+      "value": 3.0,
+      "parentTotalMarked": false,
+      "textOffset": 47
+    }
+  ],
+  "referenceRepairs": [],
+  "notationNormalizationEvidence": [],
+  "hwpAnchor": {
+    "stream": "BodyText/Section0",
+    "recordIndex": 329,
+    "inflatedByteOffset": 12231,
+    "tag": 71,
+    "level": 1,
+    "payloadSha256": "3e15318e071f2ea979bea64185a63199568143375f9a3d51fc7ba843e59de7b8"
+  },
+  "positionedSourceItems": [
+    {
+      "kind": "text",
+      "text": " ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1,
+        "inflatedByteOffset": 28,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "c115a6b995039c059855f97609c33aa8bf56c4a38f432e79e88dba1955f94397",
+        "utf16Range": [
+          72,
+          73
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "x",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 337,
+        "inflatedByteOffset": 12471,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "d71421cb27f5e74a1563e9630c388e2d6f2e6da5b0089cbd1ce4b86492cd06bb"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 336,
+        "inflatedByteOffset": 12409,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "f9fe0654999fa636bdb716f03b5cc9cb45d317010b6113675570d1c1c515abb4"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "가 양수 ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1,
+        "inflatedByteOffset": 28,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "c115a6b995039c059855f97609c33aa8bf56c4a38f432e79e88dba1955f94397",
+        "utf16Range": [
+          81,
+          86
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "a",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 339,
+        "inflatedByteOffset": 12613,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "0831e4cf3bf7efc226b966e1e73ecd984439f5fd97e4ebb3ce5d9174bf9c6571"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 338,
+        "inflatedByteOffset": 12551,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "97c904e181e8dbb9d98cb01e1353bfa71ea900c51abd1d8b05d46003fb7f6a3c"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "의 제곱근일 때, ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1,
+        "inflatedByteOffset": 28,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "c115a6b995039c059855f97609c33aa8bf56c4a38f432e79e88dba1955f94397",
+        "utf16Range": [
+          94,
+          104
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "x",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 341,
+        "inflatedByteOffset": 12755,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "d71421cb27f5e74a1563e9630c388e2d6f2e6da5b0089cbd1ce4b86492cd06bb"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 340,
+        "inflatedByteOffset": 12693,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "6589818aac87e4ecca2ef843146484089cd3de6950b59dfa7315271a1d9e0ef9"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "와 ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1,
+        "inflatedByteOffset": 28,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "c115a6b995039c059855f97609c33aa8bf56c4a38f432e79e88dba1955f94397",
+        "utf16Range": [
+          112,
+          114
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "a",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 343,
+        "inflatedByteOffset": 12897,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "0831e4cf3bf7efc226b966e1e73ecd984439f5fd97e4ebb3ce5d9174bf9c6571"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 342,
+        "inflatedByteOffset": 12835,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "81b53f6404e242a87acc5d6fb7739b8cc98bc513428bb8a65331a921a25532fa"
+      }
+    },
+    {
+      "kind": "text",
+      "text": " 사이의 관계식으로 옳은 것은? [",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1,
+        "inflatedByteOffset": 28,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "c115a6b995039c059855f97609c33aa8bf56c4a38f432e79e88dba1955f94397",
+        "utf16Range": [
+          122,
+          141
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "3",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 345,
+        "inflatedByteOffset": 13039,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "579ae632a72bdfd9da95cd35617b81eac7c52151463694a9e4ddf66b045a30c4"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 344,
+        "inflatedByteOffset": 12977,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "a08182abd98245866236e995eca5d1e8cfd8921d68a52445818ab9a0f1585fe6"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "점]",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1,
+        "inflatedByteOffset": 28,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "c115a6b995039c059855f97609c33aa8bf56c4a38f432e79e88dba1955f94397",
+        "utf16Range": [
+          149,
+          151
+        ]
+      }
+    },
+    {
+      "kind": "text",
+      "text": "\n",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1,
+        "inflatedByteOffset": 28,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "c115a6b995039c059855f97609c33aa8bf56c4a38f432e79e88dba1955f94397"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "① ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 347,
+        "inflatedByteOffset": 13147,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "ce2aaab9b6a0c97fca30b558353521f48d48df76fc31620ac44bf249faa4e324",
+        "utf16Range": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "x=a",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 351,
+        "inflatedByteOffset": 13323,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "43bfcf56e39bbfa441b4eeeca8ff8a4ee71c76dfae6f8541c5681a15063f97b1"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 350,
+        "inflatedByteOffset": 13261,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "9f8190e3713344bb3fef6b566a4eacd0371e68db21583f321f11e4b22b2e239f"
+      }
+    },
+    {
+      "kind": "text",
+      "text": " ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 347,
+        "inflatedByteOffset": 13147,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "ce2aaab9b6a0c97fca30b558353521f48d48df76fc31620ac44bf249faa4e324"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "② ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 347,
+        "inflatedByteOffset": 13147,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "ce2aaab9b6a0c97fca30b558353521f48d48df76fc31620ac44bf249faa4e324",
+        "utf16Range": [
+          18,
+          20
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "a ^{2} =x",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 353,
+        "inflatedByteOffset": 13469,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "50824536a7f0022cf529837ae5fb88ae1412a19951b475d81cfd6fe8fe7804d8"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 352,
+        "inflatedByteOffset": 13407,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "41bf455be699d7e974b4c904047c9621e91768bd4d15be9d79ea602b3e418d8d"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "\n",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 347,
+        "inflatedByteOffset": 13147,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "ce2aaab9b6a0c97fca30b558353521f48d48df76fc31620ac44bf249faa4e324"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "③ ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 355,
+        "inflatedByteOffset": 13593,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "7ad40dc406ad393c1f1042deefcd362e7075e65f137a58c9718fa0e42c88c73b",
+        "utf16Range": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "a= sqrt {x}",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 359,
+        "inflatedByteOffset": 13769,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "88f963a9a014e8491134c24c831c7c82ae61fe54da885954dd9731f4bb7a2afa"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 358,
+        "inflatedByteOffset": 13707,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "f4ae6b4c36856f02431b5bfcdc9a7cb4f629fa9d79a78b43498778cc4d0d523b"
+      }
+    },
+    {
+      "kind": "text",
+      "text": " ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 355,
+        "inflatedByteOffset": 13593,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "7ad40dc406ad393c1f1042deefcd362e7075e65f137a58c9718fa0e42c88c73b"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "④ ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 355,
+        "inflatedByteOffset": 13593,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "7ad40dc406ad393c1f1042deefcd362e7075e65f137a58c9718fa0e42c88c73b",
+        "utf16Range": [
+          18,
+          20
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "x= sqrt {a}",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 361,
+        "inflatedByteOffset": 13931,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "895a6f25b53d9606455e8de59f393b108b0fcdbce6a26d50504edbb8f70ef60d"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 360,
+        "inflatedByteOffset": 13869,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "0f09539aa3ba651037a20234ef0a32252d7ab7736ff4ab0e2dfd46a86bb22656"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "\n",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 355,
+        "inflatedByteOffset": 13593,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "7ad40dc406ad393c1f1042deefcd362e7075e65f137a58c9718fa0e42c88c73b"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "⑤ ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 363,
+        "inflatedByteOffset": 14059,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "e5d513d38b2c7868bfeb348c5566405e8231717caa8cf4aa02dc62b883b92048",
+        "utf16Range": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "x=+- sqrt {a}",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 367,
+        "inflatedByteOffset": 14199,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "d1889a092592f91714a78c0311c04f041bebf8968e96362d4eaaaff300b47981"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 366,
+        "inflatedByteOffset": 14137,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "7b52cb166d8e52091081413c1c1f07fabfcd1726720635c84f6feb64d00fb22e"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "\n",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 363,
+        "inflatedByteOffset": 14059,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "e5d513d38b2c7868bfeb348c5566405e8231717caa8cf4aa02dc62b883b92048"
+      }
+    },
+    {
+      "kind": "text",
+      "text": " [중단원] 제곱근과 실수 ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 369,
+        "inflatedByteOffset": 14331,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "7dd58c243854dea64bdc229cf43e5118b632b20b953105a1a5f3125371c639c0",
+        "utf16Range": [
+          0,
+          15
+        ]
+      }
+    },
+    {
+      "kind": "text",
+      "text": "\n",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 369,
+        "inflatedByteOffset": 14331,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "7dd58c243854dea64bdc229cf43e5118b632b20b953105a1a5f3125371c639c0"
+      }
+    },
+    {
+      "kind": "text",
+      "text": " [난이도] 하 ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 374,
+        "inflatedByteOffset": 14463,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "29703cadeb540691fb6e40d2c0215ad4d7f2726a1217c9f89ef73f259a68de0e",
+        "utf16Range": [
+          0,
+          9
+        ]
+      }
+    },
+    {
+      "kind": "text",
+      "text": "\n",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 374,
+        "inflatedByteOffset": 14463,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "29703cadeb540691fb6e40d2c0215ad4d7f2726a1217c9f89ef73f259a68de0e"
+      }
+    }
+  ],
+  "mathExpressions": [
+    {
+      "kind": "math",
+      "script": "x",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 337,
+        "inflatedByteOffset": 12471,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "d71421cb27f5e74a1563e9630c388e2d6f2e6da5b0089cbd1ce4b86492cd06bb"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 336,
+        "inflatedByteOffset": 12409,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "f9fe0654999fa636bdb716f03b5cc9cb45d317010b6113675570d1c1c515abb4"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "a",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 339,
+        "inflatedByteOffset": 12613,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "0831e4cf3bf7efc226b966e1e73ecd984439f5fd97e4ebb3ce5d9174bf9c6571"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 338,
+        "inflatedByteOffset": 12551,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "97c904e181e8dbb9d98cb01e1353bfa71ea900c51abd1d8b05d46003fb7f6a3c"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "x",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 341,
+        "inflatedByteOffset": 12755,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "d71421cb27f5e74a1563e9630c388e2d6f2e6da5b0089cbd1ce4b86492cd06bb"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 340,
+        "inflatedByteOffset": 12693,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "6589818aac87e4ecca2ef843146484089cd3de6950b59dfa7315271a1d9e0ef9"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "a",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 343,
+        "inflatedByteOffset": 12897,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "0831e4cf3bf7efc226b966e1e73ecd984439f5fd97e4ebb3ce5d9174bf9c6571"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 342,
+        "inflatedByteOffset": 12835,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "81b53f6404e242a87acc5d6fb7739b8cc98bc513428bb8a65331a921a25532fa"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "3",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 345,
+        "inflatedByteOffset": 13039,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "579ae632a72bdfd9da95cd35617b81eac7c52151463694a9e4ddf66b045a30c4"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 344,
+        "inflatedByteOffset": 12977,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "a08182abd98245866236e995eca5d1e8cfd8921d68a52445818ab9a0f1585fe6"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "x=a",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 351,
+        "inflatedByteOffset": 13323,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "43bfcf56e39bbfa441b4eeeca8ff8a4ee71c76dfae6f8541c5681a15063f97b1"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 350,
+        "inflatedByteOffset": 13261,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "9f8190e3713344bb3fef6b566a4eacd0371e68db21583f321f11e4b22b2e239f"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "a ^{2} =x",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 353,
+        "inflatedByteOffset": 13469,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "50824536a7f0022cf529837ae5fb88ae1412a19951b475d81cfd6fe8fe7804d8"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 352,
+        "inflatedByteOffset": 13407,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "41bf455be699d7e974b4c904047c9621e91768bd4d15be9d79ea602b3e418d8d"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "a= sqrt {x}",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 359,
+        "inflatedByteOffset": 13769,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "88f963a9a014e8491134c24c831c7c82ae61fe54da885954dd9731f4bb7a2afa"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 358,
+        "inflatedByteOffset": 13707,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "f4ae6b4c36856f02431b5bfcdc9a7cb4f629fa9d79a78b43498778cc4d0d523b"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "x= sqrt {a}",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 361,
+        "inflatedByteOffset": 13931,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "895a6f25b53d9606455e8de59f393b108b0fcdbce6a26d50504edbb8f70ef60d"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 360,
+        "inflatedByteOffset": 13869,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "0f09539aa3ba651037a20234ef0a32252d7ab7736ff4ab0e2dfd46a86bb22656"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "x=+- sqrt {a}",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 367,
+        "inflatedByteOffset": 14199,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "d1889a092592f91714a78c0311c04f041bebf8968e96362d4eaaaff300b47981"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 366,
+        "inflatedByteOffset": 14137,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "7b52cb166d8e52091081413c1c1f07fabfcd1726720635c84f6feb64d00fb22e"
+      }
+    }
+  ],
+  "hwpFigureRecords": [],
+  "sharedSourceContext": null,
+  "unmappedItems": [],
+  "sourceContentDigest": "c0f41446c7da453c9dd5db6d0189db25556ad36420488c775607d094346eb7a6",
+  "pdfReference": {
+    "number": 1,
+    "regions": [
+      {
+        "page": 1,
+        "column": 0,
+        "bbox": [
+          55,
+          99,
+          375,
+          356.20220947265625
+        ]
+      }
+    ],
+    "positionedCharacters": [
+      {
+        "page": 0,
+        "c": "1",
+        "eq": false,
+        "x0": 56.59941101074219,
+        "y0": 111.22857666015625,
+        "x1": 61.096187591552734,
+        "y1": 120.22205352783203,
+        "size": 8.993474960327148,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": ".",
+        "eq": false,
+        "x0": 61.15644073486328,
+        "y0": 111.22857666015625,
+        "x1": 65.65321350097656,
+        "y1": 120.22205352783203,
+        "size": 8.993474960327148,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 65.59295654296875,
+        "y0": 111.99592590332031,
+        "x1": 71.10900115966797,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 71.58866119384766,
+        "y0": 112.3966064453125,
+        "x1": 77.88798522949219,
+        "y1": 123.42859649658203,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "가",
+        "eq": false,
+        "x0": 78.18392944335938,
+        "y0": 111.99592590332031,
+        "x1": 89.21601867675781,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 89.21601867675781,
+        "y0": 111.99592590332031,
+        "x1": 94.73206329345703,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "양",
+        "eq": false,
+        "x0": 94.61214447021484,
+        "y0": 111.99592590332031,
+        "x1": 105.64423370361328,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "수",
+        "eq": false,
+        "x0": 105.64423370361328,
+        "y0": 111.99592590332031,
+        "x1": 116.67632293701172,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 116.67632293701172,
+        "y0": 111.99592590332031,
+        "x1": 122.19236755371094,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 122.67202758789062,
+        "y0": 112.3966064453125,
+        "x1": 128.49696350097656,
+        "y1": 123.42859649658203,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "의",
+        "eq": false,
+        "x0": 128.4279022216797,
+        "y0": 111.99592590332031,
+        "x1": 139.45999145507812,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 139.45999145507812,
+        "y0": 111.99592590332031,
+        "x1": 144.9760284423828,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "제",
+        "eq": false,
+        "x0": 144.9760284423828,
+        "y0": 111.99592590332031,
+        "x1": 156.00811767578125,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "곱",
+        "eq": false,
+        "x0": 155.8878631591797,
+        "y0": 111.99592590332031,
+        "x1": 166.91995239257812,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "근",
+        "eq": false,
+        "x0": 166.91995239257812,
+        "y0": 111.99592590332031,
+        "x1": 177.95204162597656,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "일",
+        "eq": false,
+        "x0": 177.95204162597656,
+        "y0": 111.99592590332031,
+        "x1": 188.984130859375,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 188.86387634277344,
+        "y0": 111.99592590332031,
+        "x1": 194.37991333007812,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "때",
+        "eq": false,
+        "x0": 194.38059997558594,
+        "y0": 111.99592590332031,
+        "x1": 205.41268920898438,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": ",",
+        "eq": false,
+        "x0": 205.41268920898438,
+        "y0": 111.99592590332031,
+        "x1": 210.92872619628906,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 210.92872619628906,
+        "y0": 111.99592590332031,
+        "x1": 216.44476318359375,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 216.9244384765625,
+        "y0": 112.3966064453125,
+        "x1": 223.2237548828125,
+        "y1": 123.42859649658203,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "와",
+        "eq": false,
+        "x0": 223.5196990966797,
+        "y0": 111.99592590332031,
+        "x1": 234.55178833007812,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 234.43153381347656,
+        "y0": 111.99592590332031,
+        "x1": 239.94757080078125,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 240.5474853515625,
+        "y0": 112.3966064453125,
+        "x1": 246.37242126464844,
+        "y1": 123.42859649658203,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 246.30335998535156,
+        "y0": 111.99592590332031,
+        "x1": 251.81939697265625,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "사",
+        "eq": false,
+        "x0": 251.8194122314453,
+        "y0": 111.99592590332031,
+        "x1": 262.85150146484375,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "이",
+        "eq": false,
+        "x0": 262.85150146484375,
+        "y0": 111.99592590332031,
+        "x1": 273.8835754394531,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "의",
+        "eq": false,
+        "x0": 273.7633361816406,
+        "y0": 111.99592590332031,
+        "x1": 284.79541015625,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 284.7954406738281,
+        "y0": 111.99592590332031,
+        "x1": 290.3114929199219,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "관",
+        "eq": false,
+        "x0": 290.3117980957031,
+        "y0": 111.99592590332031,
+        "x1": 301.3438720703125,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "계",
+        "eq": false,
+        "x0": 301.2236633300781,
+        "y0": 111.99592590332031,
+        "x1": 312.2557373046875,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "식",
+        "eq": false,
+        "x0": 312.2557373046875,
+        "y0": 111.99592590332031,
+        "x1": 323.2878112792969,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "으",
+        "eq": false,
+        "x0": 323.287841796875,
+        "y0": 111.99592590332031,
+        "x1": 334.3199157714844,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "로",
+        "eq": false,
+        "x0": 334.1996765136719,
+        "y0": 111.99592590332031,
+        "x1": 345.23175048828125,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 345.2317810058594,
+        "y0": 111.99592590332031,
+        "x1": 350.7478332519531,
+        "y1": 123.02792358398438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "옳",
+        "eq": false,
+        "x0": 56.59941101074219,
+        "y0": 130.46237182617188,
+        "x1": 67.63150024414062,
+        "y1": 141.49436950683594,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "은",
+        "eq": false,
+        "x0": 67.63150024414062,
+        "y0": 130.46237182617188,
+        "x1": 78.66358947753906,
+        "y1": 141.49436950683594,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 78.5433349609375,
+        "y0": 130.46237182617188,
+        "x1": 84.05937957763672,
+        "y1": 141.49436950683594,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "것",
+        "eq": false,
+        "x0": 84.0597152709961,
+        "y0": 130.46237182617188,
+        "x1": 95.09180450439453,
+        "y1": 141.49436950683594,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "은",
+        "eq": false,
+        "x0": 95.09180450439453,
+        "y0": 130.46237182617188,
+        "x1": 106.12389373779297,
+        "y1": 141.49436950683594,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "?",
+        "eq": false,
+        "x0": 106.00397491455078,
+        "y0": 130.46237182617188,
+        "x1": 111.52001953125,
+        "y1": 141.49436950683594,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 111.52001953125,
+        "y0": 130.46237182617188,
+        "x1": 117.03606414794922,
+        "y1": 141.49436950683594,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "[",
+        "eq": false,
+        "x0": 117.03606414794922,
+        "y0": 130.46237182617188,
+        "x1": 122.55210876464844,
+        "y1": 141.49436950683594,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 123.15167999267578,
+        "y0": 130.9829559326172,
+        "x1": 128.667724609375,
+        "y1": 142.01495361328125,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "점",
+        "eq": false,
+        "x0": 128.9075469970703,
+        "y0": 130.46237182617188,
+        "x1": 139.93963623046875,
+        "y1": 141.49436950683594,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "]",
+        "eq": false,
+        "x0": 139.93963623046875,
+        "y0": 130.46237182617188,
+        "x1": 145.45567321777344,
+        "y1": 141.49436950683594,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "①",
+        "eq": false,
+        "x0": 56.59941101074219,
+        "y0": 150.2478485107422,
+        "x1": 67.63150024414062,
+        "y1": 161.27984619140625,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 67.63150024414062,
+        "y0": 150.2478485107422,
+        "x1": 73.14754486083984,
+        "y1": 161.27984619140625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 73.627197265625,
+        "y0": 150.64852905273438,
+        "x1": 79.92652130126953,
+        "y1": 161.68052673339844,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 81.90126037597656,
+        "y0": 150.16888427734375,
+        "x1": 90.462158203125,
+        "y1": 161.2008819580078,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 92.45369720458984,
+        "y0": 150.64852905273438,
+        "x1": 98.27864074707031,
+        "y1": 161.68052673339844,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "②",
+        "eq": false,
+        "x0": 206.49191284179688,
+        "y0": 150.2478485107422,
+        "x1": 217.5240020751953,
+        "y1": 161.27984619140625,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 217.5240020751953,
+        "y0": 150.2478485107422,
+        "x1": 223.0400390625,
+        "y1": 161.27984619140625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 223.5196990966797,
+        "y0": 150.64852905273438,
+        "x1": 229.34463500976562,
+        "y1": 161.68052673339844,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 228.79591369628906,
+        "y0": 148.7328338623047,
+        "x1": 232.51324462890625,
+        "y1": 156.16744995117188,
+        "size": 7.434606075286865,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 235.870849609375,
+        "y0": 150.16888427734375,
+        "x1": 244.43174743652344,
+        "y1": 161.2008819580078,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 246.42327880859375,
+        "y0": 150.64852905273438,
+        "x1": 252.72259521484375,
+        "y1": 161.68052673339844,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "③",
+        "eq": false,
+        "x0": 56.59941101074219,
+        "y0": 169.67359924316406,
+        "x1": 67.63150024414062,
+        "y1": 180.70559692382812,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 67.63150024414062,
+        "y0": 169.67359924316406,
+        "x1": 73.14754486083984,
+        "y1": 180.70559692382812,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 73.627197265625,
+        "y0": 170.19418334960938,
+        "x1": 79.45214080810547,
+        "y1": 181.22618103027344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 81.18177795410156,
+        "y0": 169.71453857421875,
+        "x1": 89.74267578125,
+        "y1": 180.7465362548828,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 91.73421478271484,
+        "y0": 168.97869873046875,
+        "x1": 102.76630401611328,
+        "y1": 180.4803466796875,
+        "size": 11.5016508102417,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 102.04681396484375,
+        "y0": 164.8491668701172,
+        "x1": 109.96113586425781,
+        "y1": 178.0635528564453,
+        "size": 13.214390754699707,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 102.2866439819336,
+        "y0": 170.19418334960938,
+        "x1": 108.58596801757812,
+        "y1": 181.22618103027344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "④",
+        "eq": false,
+        "x0": 206.49191284179688,
+        "y0": 169.67359924316406,
+        "x1": 217.5240020751953,
+        "y1": 180.70559692382812,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 217.5240020751953,
+        "y0": 169.67359924316406,
+        "x1": 223.0400390625,
+        "y1": 180.70559692382812,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 223.5196990966797,
+        "y0": 170.19418334960938,
+        "x1": 229.8190155029297,
+        "y1": 181.22618103027344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 231.79376220703125,
+        "y0": 169.71453857421875,
+        "x1": 240.3546600341797,
+        "y1": 180.7465362548828,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 242.34620666503906,
+        "y0": 168.97869873046875,
+        "x1": 253.3782958984375,
+        "y1": 180.4803466796875,
+        "size": 11.5016508102417,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 252.65879821777344,
+        "y0": 165.42605590820312,
+        "x1": 259.7337341308594,
+        "y1": 177.92005920410156,
+        "size": 12.49399185180664,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 252.8986358642578,
+        "y0": 170.19418334960938,
+        "x1": 258.72357177734375,
+        "y1": 181.22618103027344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "⑤",
+        "eq": false,
+        "x0": 56.59941101074219,
+        "y0": 189.21925354003906,
+        "x1": 67.63150024414062,
+        "y1": 200.25125122070312,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 67.63150024414062,
+        "y0": 189.21925354003906,
+        "x1": 73.14754486083984,
+        "y1": 200.25125122070312,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 73.627197265625,
+        "y0": 189.61993408203125,
+        "x1": 79.92652130126953,
+        "y1": 200.6519317626953,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 81.90126037597656,
+        "y0": 189.14028930664062,
+        "x1": 90.462158203125,
+        "y1": 200.1722869873047,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "±",
+        "eq": true,
+        "x0": 90.17533111572266,
+        "y0": 189.61993408203125,
+        "x1": 99.12235260009766,
+        "y1": 200.6519317626953,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 100.0082778930664,
+        "y0": 188.40444946289062,
+        "x1": 111.04036712646484,
+        "y1": 199.90609741210938,
+        "size": 11.5016508102417,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 110.20096588134766,
+        "y0": 184.97171020507812,
+        "x1": 117.27589416503906,
+        "y1": 197.46571350097656,
+        "size": 12.49399185180664,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 110.4407958984375,
+        "y0": 189.61993408203125,
+        "x1": 116.26573944091797,
+        "y1": 200.6519317626953,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 56.59941101074219,
+        "y0": 206.8463134765625,
+        "x1": 62.115455627441406,
+        "y1": 217.87831115722656,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "[",
+        "eq": false,
+        "x0": 62.11545181274414,
+        "y0": 206.8463134765625,
+        "x1": 67.6314926147461,
+        "y1": 217.87831115722656,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "중",
+        "eq": false,
+        "x0": 67.63150024414062,
+        "y0": 206.8463134765625,
+        "x1": 78.66358947753906,
+        "y1": 217.87831115722656,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "단",
+        "eq": false,
+        "x0": 78.5433349609375,
+        "y0": 206.8463134765625,
+        "x1": 89.57542419433594,
+        "y1": 217.87831115722656,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "원",
+        "eq": false,
+        "x0": 89.57542419433594,
+        "y0": 206.8463134765625,
+        "x1": 100.60751342773438,
+        "y1": 217.87831115722656,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "]",
+        "eq": false,
+        "x0": 100.60784912109375,
+        "y0": 206.8463134765625,
+        "x1": 106.12389373779297,
+        "y1": 217.87831115722656,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 106.12389373779297,
+        "y0": 206.8463134765625,
+        "x1": 111.63993835449219,
+        "y1": 217.87831115722656,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "제",
+        "eq": false,
+        "x0": 111.52001953125,
+        "y0": 206.8463134765625,
+        "x1": 122.55210876464844,
+        "y1": 217.87831115722656,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "곱",
+        "eq": false,
+        "x0": 122.55210876464844,
+        "y0": 206.8463134765625,
+        "x1": 133.58419799804688,
+        "y1": 217.87831115722656,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "근",
+        "eq": false,
+        "x0": 133.58419799804688,
+        "y0": 206.8463134765625,
+        "x1": 144.6162872314453,
+        "y1": 217.87831115722656,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "과",
+        "eq": false,
+        "x0": 144.49603271484375,
+        "y0": 206.8463134765625,
+        "x1": 155.5281219482422,
+        "y1": 217.87831115722656,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 155.5281219482422,
+        "y0": 206.8463134765625,
+        "x1": 161.04415893554688,
+        "y1": 217.87831115722656,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "실",
+        "eq": false,
+        "x0": 161.0445098876953,
+        "y0": 206.8463134765625,
+        "x1": 172.07659912109375,
+        "y1": 217.87831115722656,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "수",
+        "eq": false,
+        "x0": 171.9563446044922,
+        "y0": 206.8463134765625,
+        "x1": 182.98843383789062,
+        "y1": 217.87831115722656,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 182.98843383789062,
+        "y0": 206.8463134765625,
+        "x1": 188.5044708251953,
+        "y1": 217.87831115722656,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 56.59941101074219,
+        "y0": 224.47337341308594,
+        "x1": 62.115455627441406,
+        "y1": 235.50537109375,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "[",
+        "eq": false,
+        "x0": 62.11545181274414,
+        "y0": 224.47337341308594,
+        "x1": 67.6314926147461,
+        "y1": 235.50537109375,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "난",
+        "eq": false,
+        "x0": 67.63150024414062,
+        "y0": 224.47337341308594,
+        "x1": 78.66358947753906,
+        "y1": 235.50537109375,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "이",
+        "eq": false,
+        "x0": 78.5433349609375,
+        "y0": 224.47337341308594,
+        "x1": 89.57542419433594,
+        "y1": 235.50537109375,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "도",
+        "eq": false,
+        "x0": 89.57542419433594,
+        "y0": 224.47337341308594,
+        "x1": 100.60751342773438,
+        "y1": 235.50537109375,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "]",
+        "eq": false,
+        "x0": 100.60784912109375,
+        "y0": 224.47337341308594,
+        "x1": 106.12389373779297,
+        "y1": 235.50537109375,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 106.12389373779297,
+        "y0": 224.47337341308594,
+        "x1": 111.63993835449219,
+        "y1": 235.50537109375,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "하",
+        "eq": false,
+        "x0": 111.52001953125,
+        "y0": 224.47337341308594,
+        "x1": 122.55210876464844,
+        "y1": 235.50537109375,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 122.55210876464844,
+        "y0": 224.47337341308594,
+        "x1": 128.06814575195312,
+        "y1": 235.50537109375,
+        "size": 11.03199577331543,
+        "bol": false
+      }
+    ],
+    "decodedText": "1. x가 양수 a의 제곱근일 때, x와 a 사이의 관계식으로 옳은 것은? [3점]① x=a② a2=x③ a=√⁄x④ x=√⁄a⑤ x=±√⁄a [중단원] 제곱근과 실수  [난이도] 하 ",
+    "freshParserQuestion": {
+      "number": 1,
+      "type": "객관식",
+      "score": 3.0,
+      "topic": "제곱근과 실수",
+      "difficulty": "하",
+      "contents": [
+        {
+          "type": "equation",
+          "value": "x"
+        },
+        {
+          "type": "text",
+          "value": "가 양수"
+        },
+        {
+          "type": "equation",
+          "value": "a"
+        },
+        {
+          "type": "text",
+          "value": "의 제곱근일 때,"
+        },
+        {
+          "type": "equation",
+          "value": "x"
+        },
+        {
+          "type": "text",
+          "value": "와"
+        },
+        {
+          "type": "equation",
+          "value": "a"
+        },
+        {
+          "type": "text",
+          "value": "사이의 관계식으로 옳은 것은?"
+        }
+      ],
+      "choices": [
+        {
+          "number": 1,
+          "contents": [
+            {
+              "type": "equation",
+              "value": "x=a"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "contents": [
+            {
+              "type": "equation",
+              "value": "a^{2}=x"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "contents": [
+            {
+              "type": "equation",
+              "value": "a=√x"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "contents": [
+            {
+              "type": "equation",
+              "value": "x=√a"
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "contents": [
+            {
+              "type": "equation",
+              "value": "x=±√a"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "figureCorrespondence": [],
+  "contentApproved": false
+}
