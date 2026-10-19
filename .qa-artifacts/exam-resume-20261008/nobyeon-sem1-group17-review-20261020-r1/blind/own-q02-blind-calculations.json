@@ -1,0 +1,108 @@
+{
+  "inputHashes": {
+    "SOLVE-BRIEF.md": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c",
+    "student-problems.json": "77d1cda01b0be5c831524a124c9244bcd991b8a9d4e21713868c2805b31ab7fc",
+    "blind-manifest.json": "a5d6c0814f374cb5bd779ebca3652772a2a7d9c26d4eb5cae0de176fa6765d71"
+  },
+  "studentDigestRecomputed": "c6028b4627faffb3396c3759885a744c79379139800cd23a29cb99696c2a8c31",
+  "oracle": "Own Fraction exact squares and principal-positive-root identities; no floating/pixel/author facts",
+  "derivedA": "54",
+  "derivedB": "108",
+  "secondEquation": {
+    "rightSquare": "108",
+    "leftRadicand2a": "108",
+    "bothSidesPositive": true,
+    "actualPositiveValue": "6sqrt3"
+  },
+  "firstEquation": {
+    "leftSquareAover4": "27/2",
+    "rightRadicandBover8": "27/2",
+    "bothSidesPositive": true,
+    "actualCommonPositiveValue": "3sqrt6/2"
+  },
+  "allFiveOptions": [
+    {
+      "mark": "①",
+      "candidateB": "27",
+      "domainPositive": true,
+      "leftSquareAtFixedA54": "27/2",
+      "rightSquare": "27/8",
+      "firstEquationWithA54": false,
+      "aImpliedByFirst": "27/2",
+      "secondSquareIfFirstIsMet": "27",
+      "secondRequiredSquare": "108",
+      "bothEquations": false
+    },
+    {
+      "mark": "②",
+      "candidateB": "54",
+      "domainPositive": true,
+      "leftSquareAtFixedA54": "27/2",
+      "rightSquare": "27/4",
+      "firstEquationWithA54": false,
+      "aImpliedByFirst": "27",
+      "secondSquareIfFirstIsMet": "54",
+      "secondRequiredSquare": "108",
+      "bothEquations": false
+    },
+    {
+      "mark": "③",
+      "candidateB": "72",
+      "domainPositive": true,
+      "leftSquareAtFixedA54": "27/2",
+      "rightSquare": "9",
+      "firstEquationWithA54": false,
+      "aImpliedByFirst": "36",
+      "secondSquareIfFirstIsMet": "72",
+      "secondRequiredSquare": "108",
+      "bothEquations": false
+    },
+    {
+      "mark": "④",
+      "candidateB": "108",
+      "domainPositive": true,
+      "leftSquareAtFixedA54": "27/2",
+      "rightSquare": "27/2",
+      "firstEquationWithA54": true,
+      "aImpliedByFirst": "54",
+      "secondSquareIfFirstIsMet": "108",
+      "secondRequiredSquare": "108",
+      "bothEquations": true
+    },
+    {
+      "mark": "⑤",
+      "candidateB": "216",
+      "domainPositive": true,
+      "leftSquareAtFixedA54": "27/2",
+      "rightSquare": "27",
+      "firstEquationWithA54": false,
+      "aImpliedByFirst": "108",
+      "secondSquareIfFirstIsMet": "216",
+      "secondRequiredSquare": "108",
+      "bothEquations": false
+    }
+  ],
+  "domain": {
+    "aPositive": true,
+    "bPositive": true,
+    "radicands": {
+      "a": "54",
+      "b/8": "27/2",
+      "2a": "108",
+      "3": "3"
+    },
+    "allRadicandsPositive": true,
+    "denominators": [
+      2,
+      8
+    ],
+    "denominatorsNonzero": true,
+    "rootSigns": "principal positive roots; no arbitrary +/- branch",
+    "units": "abstract scalar; no physical units or geometry"
+  },
+  "existenceUniqueness": "Second equality fixes2a=(6sqrt3)^2=108, so a54 uniquely. First equality fixesa/4=b/8 and b108 uniquely. Original sides are positive, so equality of their exact squares verifies both original equalities and introduces no extraneous sign branch. The pair(54,108) actually satisfies both, and only option4 gives b108.",
+  "studentMethod": "Square-root definition (sqrt t)^2=t for positive t, rational division and simple linear numerical relations. Not a general high-school radical-equation algorithm or quadratic formula.",
+  "utf8WriteReadPassed": true,
+  "authorAnswerExposure": false,
+  "newApprovalCounts": 0
+}
