@@ -237,10 +237,16 @@ it("matches the old readers on real local PostgreSQL across format evidence, fac
         await loadQuestionSourceAvailability(counts, context),
         JSON.stringify(patch),
       ).toEqual(await prior.loadQuestionSourceAvailability(counts, context));
+      const listing = await loadUnifiedBank(params, context);
+      expect(listing, JSON.stringify(patch)).toEqual(
+        await prior.loadUnifiedBank(params, context),
+      );
+      // The earlier baseline has a different object key order. Keep its semantic
+      // parity and also lock the current reader's cold/warm response bytes.
       expect(
-        await loadUnifiedBank(params, context),
+        JSON.stringify(await loadUnifiedBank(params, context)),
         JSON.stringify(patch),
-      ).toEqual(await prior.loadUnifiedBank(params, context));
+      ).toBe(JSON.stringify(listing));
     }
     const params = new URLSearchParams({ identity: "question" });
     expect(await loadQuestionSourceCounts(params)).toEqual(

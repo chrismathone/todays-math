@@ -6,7 +6,11 @@ import {
 } from "@/contracts/bankSource.contract";
 import { PROBLEM_CODE_PATTERN } from "@/contracts/problemCode.contract";
 import { db } from "@/lib/db";
-import { cachedBankRead } from "@/lib/bankReadCache";
+import {
+  cachedBankRead,
+  cachedBankQuestionList,
+  publicBankListQueryKey,
+} from "@/lib/bankReadCache";
 import {
   problemEligibleWhere,
   problemIneligibleReason,
@@ -660,27 +664,36 @@ async function loadQuestionBank(
           : [];
         ids = representatives.map((row) => row.id);
       } else {
-        const candidates = await loadQuestionCandidates(
-          listingWhere,
-          orderBy,
-          tx,
-          cache,
+        const listing = await cachedBankQuestionList(
+          publicBankListQueryKey(params),
+          async () => {
+            const candidates = await loadQuestionCandidates(
+              listingWhere,
+              orderBy,
+              tx,
+              cache,
+            );
+            const groups = projectQuestionCandidates(candidates, {
+              format,
+              availableOnly: !inspection && !exactIds,
+            });
+            const exact = exactIds
+              ? candidates.filter((r) => !format || r.actualFormat === format)
+              : null;
+            return {
+              total: groups.length,
+              ids: (exact ?? groups.map((g) => g.representative)).map(
+                (row) => row.id,
+              ),
+            };
+          },
         );
-        const groups = projectQuestionCandidates(candidates, {
-          format,
-          availableOnly: !inspection && !exactIds,
-        });
-        const exact = exactIds
-          ? candidates.filter((r) => !format || r.actualFormat === format)
-          : null;
-        total = groups.length;
+        total = listing.total;
         page = Math.min(
           requestedPage,
-          Math.max(1, Math.ceil((exact?.length ?? total) / pageSize)),
+          Math.max(1, Math.ceil(listing.ids.length / pageSize)),
         );
-        ids = (exact ?? groups.map((g) => g.representative))
-          .slice((page - 1) * pageSize, page * pageSize)
-          .map((r) => r.id);
+        ids = listing.ids.slice((page - 1) * pageSize, page * pageSize);
       }
       const rows = ids.length
         ? await tx.problem.findMany({
