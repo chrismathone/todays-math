@@ -1,0 +1,107 @@
+{
+  "representation": "r+s√5; exact Fraction arithmetic",
+  "u": {
+    "rational": "1/4",
+    "sqrt5Coefficient": "1/4"
+  },
+  "v": {
+    "rational": "-1/4",
+    "sqrt5Coefficient": "1/4"
+  },
+  "uPlusV": {
+    "rational": "0",
+    "sqrt5Coefficient": "1/2"
+  },
+  "uMinusV": {
+    "rational": "1/2",
+    "sqrt5Coefficient": "0"
+  },
+  "uv": {
+    "rational": "1/4",
+    "sqrt5Coefficient": "0"
+  },
+  "directQuartic": {
+    "rational": "0",
+    "sqrt5Coefficient": "1/16"
+  },
+  "factoredQuartic": {
+    "rational": "0",
+    "sqrt5Coefficient": "1/16"
+  },
+  "target": {
+    "rational": "0",
+    "sqrt5Coefficient": "13/16"
+  },
+  "t": {
+    "rational": "3/2",
+    "sqrt5Coefficient": "0"
+  },
+  "choices": [
+    {
+      "mark": "①",
+      "t": "-1/2",
+      "lhs": {
+        "rational": "0",
+        "sqrt5Coefficient": "-3/16"
+      },
+      "residual": {
+        "rational": "0",
+        "sqrt5Coefficient": "-1"
+      },
+      "satisfies": false
+    },
+    {
+      "mark": "②",
+      "t": "0",
+      "lhs": {
+        "rational": "0",
+        "sqrt5Coefficient": "1/16"
+      },
+      "residual": {
+        "rational": "0",
+        "sqrt5Coefficient": "-3/4"
+      },
+      "satisfies": false
+    },
+    {
+      "mark": "③",
+      "t": "1/2",
+      "lhs": {
+        "rational": "0",
+        "sqrt5Coefficient": "5/16"
+      },
+      "residual": {
+        "rational": "0",
+        "sqrt5Coefficient": "-1/2"
+      },
+      "satisfies": false
+    },
+    {
+      "mark": "④",
+      "t": "1",
+      "lhs": {
+        "rational": "0",
+        "sqrt5Coefficient": "9/16"
+      },
+      "residual": {
+        "rational": "0",
+        "sqrt5Coefficient": "-1/4"
+      },
+      "satisfies": false
+    },
+    {
+      "mark": "⑤",
+      "t": "3/2",
+      "lhs": {
+        "rational": "0",
+        "sqrt5Coefficient": "13/16"
+      },
+      "residual": {
+        "rational": "0",
+        "sqrt5Coefficient": "0"
+      },
+      "satisfies": true
+    }
+  ],
+  "denominatorAndDomain": "√5>1로 두 원래 분모는 양수·비영이다. 유리화의 공통분모4와 수치분모16은 비영, u+v=√5/2>0도 비영이다. t는 모든 실수 중에서 구하며 단위는 없다."
+}
