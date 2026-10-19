@@ -54,6 +54,7 @@ vi.mock("@/components/math-srs/courseApi", () => ({
   saveOwnCoursePlan: vi.fn(),
   startCourse: vi.fn(),
   answerCourse: vi.fn(),
+  followUpCourse: vi.fn(),
   hintCourse: vi.fn(),
 }));
 vi.mock("@/components/math/ProblemContent", () => ({
@@ -160,6 +161,81 @@ beforeEach(() => {
 });
 
 describe("embedded expedition bank activity", () => {
+  it("routes the second answer to follow-up and reconciles a 409 before continuing", async () => {
+    const run = session(1);
+    run.attempts[0].correct = false;
+    run.attempts[0].submittedAnswer = "3";
+    run.problems[0].followUp = { state: "awaiting", done: false };
+    run.problems[0].answerChoices = ["1", "2", "3", "4"];
+    vi.mocked(api.getCourseState).mockResolvedValue({
+      ok: true,
+      data: state(run),
+    });
+    vi.mocked(api.followUpCourse).mockResolvedValue({
+      ok: false,
+      status: 409,
+      message: "기록이 바뀌었어요. 다시 불러와 주세요.",
+    });
+    render(
+      <StudentCourseSrs
+        expedition={{ onExit: vi.fn(), onComplete: vi.fn() }}
+      />,
+    );
+    await screen.findByText("다시 해 볼까요");
+    fireEvent.keyDown(document, { key: "1" });
+    await waitFor(() =>
+      expect(api.followUpCourse).toHaveBeenCalledWith({
+        sessionId: run.id,
+        problemId: run.problems[0].id,
+        action: "answer",
+        submittedAnswer: "2",
+      }),
+    );
+    expect(api.answerCourse).not.toHaveBeenCalled();
+    await screen.findByText(
+      "다른 화면에서 학습 기록이 바뀌었어요. 최신 기록을 불러온 뒤 이어 가 주세요.",
+    );
+    fireEvent.click(screen.getByRole("button", { name: "다시 불러오기" }));
+    await waitFor(() => expect(api.getCourseState).toHaveBeenCalledTimes(2));
+    await screen.findByText("다시 해 볼까요");
+    expect(api.startCourse).not.toHaveBeenCalled();
+  });
+  it.each([false, true])(
+    "restores a pending solution in a completed session (embedded=%s) before starting another",
+    async (embedded) => {
+      const saved = session(5);
+      saved.problems[4].followUp = { state: "solution", done: false };
+      saved.problems[4].hint = { answer: "2", solution: "1에 1을 더해요." };
+      vi.mocked(api.getCourseState).mockResolvedValue({
+        ok: true,
+        data: state(saved),
+      });
+      const acknowledged = structuredClone(saved);
+      acknowledged.problems[4].followUp!.done = true;
+      vi.mocked(api.followUpCourse).mockResolvedValue({
+        ok: true,
+        data: state(acknowledged),
+      });
+      render(
+        <StudentCourseSrs
+          expedition={
+            embedded ? { onExit: vi.fn(), onComplete: vi.fn() } : undefined
+          }
+        />,
+      );
+      expect(await screen.findByText("정답과 풀이")).toBeInTheDocument();
+      expect(api.startCourse).not.toHaveBeenCalled();
+      fireEvent.click(screen.getByRole("button", { name: "알겠어요" }));
+      await waitFor(() =>
+        expect(api.followUpCourse).toHaveBeenCalledWith({
+          sessionId: saved.id,
+          problemId: saved.problems[4].id,
+          action: "done",
+        }),
+      );
+      await waitFor(() => expect(api.startCourse).toHaveBeenCalledOnce());
+    },
+  );
   const versions = {
     graphSchemaVersion: "1.1.0" as const,
     graphContentHash: "0".repeat(64),
@@ -197,29 +273,38 @@ describe("embedded expedition bank activity", () => {
     expect(api.startCourse).not.toHaveBeenCalled();
     expect(onComplete).not.toHaveBeenCalled();
   });
-  it("keeps supply shortage distinct from expedition completion after the last answer", async () => {
-    vi.mocked(api.getCourseState).mockResolvedValue({
-      ok: true,
-      data: state(session(4)),
-    });
-    vi.mocked(api.answerCourse).mockResolvedValue({
-      ok: true,
-      data: shortage(session(5)),
-    });
-    const onComplete = vi.fn();
-    render(<StudentCourseSrs expedition={{ onExit: vi.fn(), onComplete }} />);
-    await screen.findByText("문제 5: 1 + 1");
-    await userEvent.type(screen.getByRole("textbox", { name: "나의 답" }), "2");
-    fireEvent.submit(document.getElementById("course-answer-form")!);
-    await userEvent.click(
-      await screen.findByRole("button", { name: /이번 학습 마치기/ }),
-    );
-    expect(
-      await screen.findByText(shortage().prerequisiteContext!.reason),
-    ).toBeVisible();
-    expect(onComplete).not.toHaveBeenCalled();
-    expect(api.startCourse).not.toHaveBeenCalled();
-  });
+  it.each([false, true])(
+    "keeps supply shortage distinct from completion after the last answer (recommendation=%s)",
+    async (hasRecommendation) => {
+      vi.mocked(api.getCourseState).mockResolvedValue({
+        ok: true,
+        data: state(session(4)),
+      });
+      const blocked = shortage(session(5));
+      if (hasRecommendation)
+        blocked.summary.recommendation = state().summary.recommendation;
+      vi.mocked(api.answerCourse).mockResolvedValue({
+        ok: true,
+        data: blocked,
+      });
+      const onComplete = vi.fn();
+      render(<StudentCourseSrs expedition={{ onExit: vi.fn(), onComplete }} />);
+      await screen.findByText("문제 5: 1 + 1");
+      await userEvent.type(
+        screen.getByRole("textbox", { name: "나의 답" }),
+        "2",
+      );
+      fireEvent.submit(document.getElementById("course-answer-form")!);
+      await userEvent.click(
+        await screen.findByRole("button", { name: /이번 학습 마치기/ }),
+      );
+      expect(
+        await screen.findByText(shortage().prerequisiteContext!.reason),
+      ).toBeVisible();
+      expect(onComplete).not.toHaveBeenCalled();
+      expect(api.startCourse).not.toHaveBeenCalled();
+    },
+  );
   it("shows the actual P review and its reason while resuming", async () => {
     const result = state({
       ...session(),

@@ -2,6 +2,7 @@ import type { Submitted } from "@/components/learn/learnApi";
 import { LEARN_OFFLINE_MESSAGE } from "@/components/learn/learnApi";
 import type {
   CourseAttemptInput,
+  CourseFollowUpInput,
   CourseHintInput,
   CoursePlanInput,
 } from "@/contracts/mathSrsCourse.contract";
@@ -11,6 +12,7 @@ async function request<T>(
   url: string,
   parse: (value: unknown) => Promise<T>,
   body?: unknown,
+  headers?: Record<string, string>,
 ): Promise<Submitted<T> & { code?: string }> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 15_000);
@@ -18,11 +20,12 @@ async function request<T>(
     const response = await fetch(url, {
       cache: "no-store",
       signal: controller.signal,
+      ...(headers ? { headers } : {}),
       ...(body === undefined
         ? {}
         : {
             method: "POST",
-            headers: { "content-type": "application/json" },
+            headers: { "content-type": "application/json", ...headers },
             body: JSON.stringify(body),
           }),
     });
@@ -63,14 +66,20 @@ async function request<T>(
 const state = async (value: unknown) =>
   (await contract()).courseStudentResponseSchema.parse(value).data;
 const base = "/api/learn/math-srs/course";
-export const getCourseState = () => request(base, state);
-export const startCourse = () => request(base, state, {});
+const studentRequest = async (url: string, body?: unknown) =>
+  request(url, state, body, {
+    [(await contract()).COURSE_FOLLOW_UP_HEADER]: "1",
+  });
+export const getCourseState = () => studentRequest(base);
+export const startCourse = () => studentRequest(base, {});
 export const saveOwnCoursePlan = (input: CoursePlanInput) =>
-  request(`${base}/plan`, state, input);
+  studentRequest(`${base}/plan`, input);
 export const answerCourse = (input: CourseAttemptInput) =>
-  request(`${base}/attempts`, state, input);
+  studentRequest(`${base}/attempts`, input);
 export const hintCourse = (input: CourseHintInput) =>
-  request(`${base}/hint`, state, input);
+  studentRequest(`${base}/hint`, input);
+export const followUpCourse = (input: CourseFollowUpInput) =>
+  studentRequest(`${base}/follow-up`, input);
 export const getCourseDashboard = (branchId?: string) =>
   request(
     `/api/math-srs/course${branchId ? `?branchId=${encodeURIComponent(branchId)}` : ""}`,

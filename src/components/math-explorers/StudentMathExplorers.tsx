@@ -1038,6 +1038,7 @@ function ExplorerGame({
           aria-hidden={!!relearn.active || undefined}
         >
           <ExplorerBankActivity
+            journeyTheme={journeyTheme}
             kind={bankKind}
             paused={!!relearn.active}
             onExit={exitBank}
