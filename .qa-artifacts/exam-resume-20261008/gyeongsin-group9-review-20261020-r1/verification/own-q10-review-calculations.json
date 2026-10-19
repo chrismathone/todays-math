@@ -1,0 +1,118 @@
+{
+  "math": {
+    "authorMethod": {
+      "equalAngleCorrespondences": [
+        "XWY sees XY",
+        "YXZ sees YZ",
+        "ZXW sees ZW"
+      ],
+      "sameEqualArcsGive_u": "53",
+      "YXW_2u_degrees": "106",
+      "XYW_given_degrees": "21",
+      "XYW_triangleSum": "2u+21+u=180",
+      "YWZ_degrees": "53",
+      "PWY_supplement_degrees": "127",
+      "PYW_degrees": "21",
+      "YPW_XPW_degrees": "32",
+      "rayOrder": "P-X-Y and P-W-Z; WP opposite WZ; PX and PY same ray"
+    },
+    "rawIndependentArcMethod": "XW arc-central42; other3centralangles106; YWZ53; triangle exterior53=21+32. No guessed secant formula.",
+    "allChoices": [
+      {
+        "mark": "①",
+        "XPW_degrees": 30,
+        "implied_u_degrees": 51,
+        "XYW_triangleSum_degrees": 174,
+        "sumResidual_degrees": -6,
+        "valid": false
+      },
+      {
+        "mark": "②",
+        "XPW_degrees": 31,
+        "implied_u_degrees": 52,
+        "XYW_triangleSum_degrees": 177,
+        "sumResidual_degrees": -3,
+        "valid": false
+      },
+      {
+        "mark": "③",
+        "XPW_degrees": 32,
+        "implied_u_degrees": 53,
+        "XYW_triangleSum_degrees": 180,
+        "sumResidual_degrees": 0,
+        "valid": true
+      },
+      {
+        "mark": "④",
+        "XPW_degrees": 33,
+        "implied_u_degrees": 54,
+        "XYW_triangleSum_degrees": 183,
+        "sumResidual_degrees": 3,
+        "valid": false
+      },
+      {
+        "mark": "⑤",
+        "XPW_degrees": 34,
+        "implied_u_degrees": 55,
+        "XYW_triangleSum_degrees": 186,
+        "sumResidual_degrees": 6,
+        "valid": false
+      }
+    ],
+    "existenceUniqueness": "양의반지름인원둘레에 X,Y,Z,W를이순서로잡아연속한중심각을106°,106°,106°,42°로하면네점은서로다르고앞세호는모두작은호이다. 이때∠XYW=42°/2=21°이다. 원주각∠YXW와∠XWZ는각각두호합212°를보므로106°이다. X에서XY를X쪽뒤로늘인반직선과W에서WZ를W쪽뒤로늘인반직선은 XW를밑변으로각각74°를이루어,74°+74°<180°이므로외부쪽에서하나의점P로만난다. 두반직선은원의현을바깥으로연장한방향이라P는원밖이고 P-X-Y,P-W-Z의순서를만족한다. 꼭짓각은180−74−74=32°이다. 반대로모든허용배치에서중심각의합과삼각형외각관계가같아요구각32°가유일하다. 반지름이나회전·반사배치의유일성은주장하지않는다.",
+    "domainsAndUnits": "Radius anypositive, fourdistinctcirclepoints cyclicX-Y-Z-W, equalminorarc central106 in(0,180), residual42 in(0,180). ActualtriangleXYW angles106,21,53; trianglePYW32,21,127. Allnondegeneratepositiveangles. Divisors2,3 nonzero. Degrees forangles, arc equality islength relation inonecircle; no confusion assigning106cm toanarc. Scale/rotation/reflection neednotunique; requestedangle32unique."
+  },
+  "primary": {
+    "normative": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "previouslyActuallyViewed": "2015tab;9수04-20inscribedangle line540;generalcircleproportionality excludedline558;student-leveljustificationline560/565.",
+      "judgment": "Actualstudentmethoduses equal-arcinscribedangles, auxiliarychords,triangleangle-sumandsupplementaryrays. Noexternalsecantangleformulaisassumed. Author-onlytrigonometricdrawingprovenanceisnotstudentprerequisite."
+    },
+    "actualM3Placement": {
+      "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+      "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+      "viewedPageSha256": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12",
+      "pdfIndex0": 73,
+      "physicalPage": 74,
+      "printedPage": 72,
+      "observed": "Official2024plan M3mathsemester2 header and9수04-20inscribedanglesrow; earlierprovisionalprinted73notused.",
+      "limits": "ActualM3placement evidence, not source-schooltestpacing/yearidentity or2022certificate. Requires previous triangleangles andrays."
+    }
+  },
+  "digestsAllRecomputed": {
+    "student": "b9518eac6f1217f3504ea0e201666fa9625f807d11a875a9ac669dd615f1fcbc",
+    "candidate": "a1062c633a93fc8d4831737a1967d35eeacb5afd24ea714d40982ebcde94f4a4",
+    "asset": "632264c31cc043a96ede5e96f1f01172a138faf60b805d17784997b4f8510a97",
+    "solve": "6b973af762e460e9169c66befe8acb3b8e85c697c094cc587c196c1108fb1c49"
+  },
+  "inputSha256Before": {
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group9-review-20261020-r1\\blind\\solve\\q10.json": "58fe317cb5004add12d8a813200d1cc4c5e85cb9293ac1edaea2ba8b7a59e511",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group9-review-20261020-r1\\verification\\VERIFY-BRIEF.md": "35f0141b096cf184d92c0fdb4f5da623e99cf1882faa33bff9b2cda745d835b5",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group9-review-20261020-r1\\verification\\verification-inputs.json": "abe45af28da3b8358ca0d992d5ad97012eb42cdba37dc0888a5bab3a119fcc7b",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group9-review-20261020-r1\\verification\\verification-manifest.json": "243bc8813d60885a4a8df0be8395ee2a4a4775363b9e63de5c21ddcc558a4812",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group9-review-20261020-r1\\verification\\sealed-raw-commit.json": "d37041d0c791d33abf6c97f07fa7eaf2bf092fdac8698bb248dcb478bd58818d",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group9-review-20261020-r1\\blind\\student-problems.json": "a4b1c420f1c1ef1fd549be344ddd58043dc3d66b6bc0272edfb3f13a98d85c3a",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group9-review-20261020-r1\\blind\\figures\\q10-1.svg": "5f8d12c49156186685d86c330b6b1771711050a9ed74da931ed0d46f9d6655e7",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group9-review-20261020-r1\\package\\private\\q10\\figure-1.spec.json": "a5a12ea1fdd2f6c7307d9987804452832d7df4f65a5cf755d01b3a22292647cd",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group9-review-20261020-r1\\package\\private\\q10\\figure-1.svg": "5f8d12c49156186685d86c330b6b1771711050a9ed74da931ed0d46f9d6655e7",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group9-r1\\source-q10-component-observation-r1.json": "0581ac9c4d32e7880b00c8bf29440fb9ea467e9a3aa665b1bf306d3ec9fe5ecd",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongsin\\evidence\\additional-original-H-page-03.webp": "0663a680ec641aa045a9b81db40fbfa5c5a73e32e0b204f38dd68749a2ccf1fe",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-grade-reference-20261020-r1\\school-2024-plan.local.pdf": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-grade-reference-20261020-r1\\school-2024-m3-page74.local.png": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12"
+  },
+  "inputSha256After": {
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group9-review-20261020-r1\\blind\\solve\\q10.json": "58fe317cb5004add12d8a813200d1cc4c5e85cb9293ac1edaea2ba8b7a59e511",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group9-review-20261020-r1\\verification\\VERIFY-BRIEF.md": "35f0141b096cf184d92c0fdb4f5da623e99cf1882faa33bff9b2cda745d835b5",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group9-review-20261020-r1\\verification\\verification-inputs.json": "abe45af28da3b8358ca0d992d5ad97012eb42cdba37dc0888a5bab3a119fcc7b",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group9-review-20261020-r1\\verification\\verification-manifest.json": "243bc8813d60885a4a8df0be8395ee2a4a4775363b9e63de5c21ddcc558a4812",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group9-review-20261020-r1\\verification\\sealed-raw-commit.json": "d37041d0c791d33abf6c97f07fa7eaf2bf092fdac8698bb248dcb478bd58818d",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group9-review-20261020-r1\\blind\\student-problems.json": "a4b1c420f1c1ef1fd549be344ddd58043dc3d66b6bc0272edfb3f13a98d85c3a",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group9-review-20261020-r1\\blind\\figures\\q10-1.svg": "5f8d12c49156186685d86c330b6b1771711050a9ed74da931ed0d46f9d6655e7",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group9-review-20261020-r1\\package\\private\\q10\\figure-1.spec.json": "a5a12ea1fdd2f6c7307d9987804452832d7df4f65a5cf755d01b3a22292647cd",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group9-review-20261020-r1\\package\\private\\q10\\figure-1.svg": "5f8d12c49156186685d86c330b6b1771711050a9ed74da931ed0d46f9d6655e7",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group9-r1\\source-q10-component-observation-r1.json": "0581ac9c4d32e7880b00c8bf29440fb9ea467e9a3aa665b1bf306d3ec9fe5ecd",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongsin\\evidence\\additional-original-H-page-03.webp": "0663a680ec641aa045a9b81db40fbfa5c5a73e32e0b204f38dd68749a2ccf1fe",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-grade-reference-20261020-r1\\school-2024-plan.local.pdf": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-grade-reference-20261020-r1\\school-2024-m3-page74.local.png": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12"
+  }
+}
