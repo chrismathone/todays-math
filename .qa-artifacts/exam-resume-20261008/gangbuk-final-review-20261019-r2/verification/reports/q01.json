@@ -1,0 +1,85 @@
+{
+  "status": "pending",
+  "studentDigest": "3495bdf016028ee78b38c57f6d5afc1d160820896c91102b659bbea3d1983740",
+  "candidateDigest": "005d9179e12672d6ec72861ddafdf83026d0455eda30024e7c550bbff5bd0ee9",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-gangbuk-independent-20261019-r2",
+  "solveDigest": "c2ed36a6075b19dee8e412d7d9a3aa71877257d7de82a324ac2648af7130ccd9",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": null,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "states": {"math": "passed", "grade": "passed", "content": "passed", "taxonomy": "pending"},
+    "exposure": {
+      "rawCommit": "415c30466d60634bf000ba1ae5396f7d97be2e7a",
+      "rawFileSha256": "7e22c19d5664f456a10a2ad060c7a9170d1cd2b2e72dc1af05f6b577c51ac1aa",
+      "declaration": "I authored only the fresh r2 blind proof before seeing this NEW author answer. No old independent-r1 or old review/raw was opened. Stage2 author exposure began only after the user reported parent Git-blob/current/blind verification and authorized stage2. Parent seal explicitly does not certify person-level prior exposure; my declaration remains separate.",
+      "rawModified": false
+    },
+    "answerCorrect": "Author answer ④ equals my pre-exposure r2 answer ④ (U+2463), value 100; agreement follows the independent derivation, not a source answer key.",
+    "solutionCorrect": "sqrt(81)=9 by the nonnegative principal-root definition. a^2=9 gives a=-3 or 3; a<0 selects -3. Then a+b=7 forces b=10, and N=b^2=100. Every step of the author solution matches this derivation.",
+    "existenceUniqueness": "The forced triple (-3,10,100) satisfies a<0, a^2=sqrt(81), b>0, b^2=N, a+b=7 and N>0. Each variable is forced successively, so there is exactly one solution over the real domain. No length or unit is specified.",
+    "choicesCorrect": [
+      {"choice": "①", "N": 16, "positiveB": 4, "aPlusB": 1, "valid": false},
+      {"choice": "②", "N": 49, "positiveB": 7, "aPlusB": 4, "valid": false},
+      {"choice": "③", "N": 81, "positiveB": 9, "aPlusB": 6, "valid": false},
+      {"choice": "④", "N": 100, "positiveB": 10, "aPlusB": 7, "valid": true},
+      {"choice": "⑤", "N": 256, "positiveB": 16, "aPlusB": 13, "valid": false}
+    ],
+    "figureConsistent": "No authored figures or tables, and assets=[]; both rendered previews show exactly the algebraic stem and five choices without hidden diagram conditions.",
+    "sameCoreConceptAndProcedure": "Personally viewed only the cited source q1 crop. It specifies the negative square root of sqrt(16) and positive square root of 36, then asks a+b, with 3 points. Both items require evaluating an inner radical, selecting a root by sign, and relating two numbers. New item additionally squares the forced positive root, directly reversing the same definition; only integer arithmetic and earlier linear substitution are prerequisites.",
+    "distinctPresentation": "Actual target/condition reversal: source fixes both radicands and asks the sum; candidate fixes the sum 7, makes the second radicand N unknown, and organizes sign/square relations into (가)-(다). This is a structural inverse-target change beyond replacing numbers. It does not establish rights or a global similarity clearance.",
+    "naturalKorean": "양수 N과 두 수 a, b가 다음 조건을 모두 만족시킨다 and N의 값은 are natural, unambiguous Korean exam wording. Conditions and explanatory 이므로/따라서 steps read naturally. No visible school name appears in stem, options, answer, solution, or either preview; internal source metadata is separate.",
+    "curriculumAppropriate": {
+      "grade": "중3",
+      "edition": "2015",
+      "standardId": "9수01-07",
+      "officialText": "[9수01-07]제곱근의 뜻을 알고, 그 성질을 이해한다.",
+      "officialFile": ".qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+      "officialFileSha256": "c01d053fee29d98087c6366a9ccb2136a15a12e5c0f6c0c2ef27d9be8bc755dc",
+      "locator": "HWP BodyText/Section0 paragraph 768, record 3776; PDF physical page 33 / printed 29 in cited official extract",
+      "reason": "Nonnegative radical value, two square roots of a positive number, and sign selection directly instantiate this standard. Squaring 10 and solving -3+b=7 use prior integer powers and elementary linear arithmetic. No general quadratic-equation technique, higher-grade radical theory, or software is needed by the student. This standard is a middle-school-band provision; the cited Unit snapshot independently places this topic in M3 semester 1. No 2022 republication approval is implied."
+    },
+    "allStudentSurfacesInScope": "All seven surfaces independently classified below; actual student and solution previews inspected, including rendered radical bar, exponents, inequalities, option labels and full explanation.",
+    "unitFamilyFit": {
+      "status": "pending",
+      "unitStatus": "supported-proposal",
+      "unitId": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "unit": {"grade": "중3", "semester": 1, "chapter": "1. 실수와 그 계산", "section": "제곱근의 뜻과 성질", "problemCodePrefix": "J30101"},
+      "familyKey": null,
+      "snapshot": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+      "snapshotSha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0",
+      "snapshotCapturedAt": "2026-10-19 06:14:08.658144+00",
+      "reason": "The cited snapshot confirms the real Unit UUID/grade/semester and lists eligible family keys/counts, but contains no family question text or semantic definitions. Title/code/count cannot prove inverse-target family fit. Leave family null pending semantic family adjudication; do not auto-assign. This is a snapshot observation, not a new live DB check."
+    },
+    "scoreAppropriate": "Basic/low difficulty and 3 points are reasonable reviewer judgments: four short linked steps (evaluate radical, select negative root, rearrange sum, square) with small perfect squares. Compared with the actual source's direct sum, inverse targeting adds a small reasoning step but no new concept or lengthy computation. No empirical difficulty calibration is claimed.",
+    "visualEvidence": [
+      "parent gangbuk-authoring-r1/preview-student/q01.png: fully readable stem, all five choices, 3점; no visible school name",
+      "parent gangbuk-authoring-r1/preview-review/q01.solution.png: readable answer ④ and complete matching Korean solution; no clipping or missing radical/sign",
+      "parent candidate-cited fresh-source-extraction-20261019-r2/personal-ae2bb575dbaef34005e65cdeedba6860/reviewer-only/question-01-part1.png: source q1 only; SHA256 73680509f84c827219a8dd94d68ee89cc30c34800b0defab4d787528b23046c4 verified"
+    ],
+    "separateGates": {"sourceIdentity": "pending-not-adjudicated", "rights": "pending-not-adjudicated", "similarity": "pending-not-cleared-by-structural-review", "nativeProvenance": "pending-not-adjudicated", "loadable": false},
+    "scope": "One new q1 only. No old independent-r1/review/raw, full source exam, source answer key, parent author scripts, DB, installation, push, controller changes or other questions used. Copied review inputs retained byte-exact; candidate and raw proof unchanged."
+  },
+  "curriculumSurfaces": {
+    "stem": {"status": "passed", "evidence": "Root/sign/square conditions and one linear sum; 9수01-07 with prior arithmetic only."},
+    "choices": {"status": "passed", "evidence": "16,49,81,100,256 are positive perfect squares; each checked by its positive root, with only 100 valid."},
+    "figuresAndTables": {"status": "passed", "evidence": "None in candidate or previews; no extra spatial or table prerequisites."},
+    "notation": {"status": "passed", "evidence": "sqrt(81), a^2, b^2, <, > and a+b are ordinary M3/prior notation; radical means principal nonnegative value, sign restrictions select roots."},
+    "answer": {"status": "passed", "evidence": "④ (100), independently derived before exposure and valid in positive domain."},
+    "studentSolution": {"status": "passed", "evidence": "Author uses sqrt(81)=9, a=-3, b=10, N=100 and explicit b,N positivity; definition-based M3 method, no general quadratic solver."},
+    "prerequisites": {"status": "passed", "evidence": "Integer squares, signed arithmetic and elementary substitution/rearrangement already learned; only new target content is square-root meaning/properties under 9수01-07."}
+  }
+}
