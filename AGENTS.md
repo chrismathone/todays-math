@@ -66,6 +66,15 @@ gate `MATH_FADING_RELEARN` is open when unset or `on`, and closed otherwise.
 The reader floor was verified in production at `7c9e9a4b8` (2026-10-07,
 GitHub deployment 6900206486) before this default was enabled.
 
+**Unhinted self-check compatibility (2026-10-19):** a first-round answer to a
+`self-check` course problem given without opening the hint is a valid stored
+attempt (`storedCourseSchema` no longer requires `usedHint` for self-assessed
+attempts — before, the route answered 503 «저장된 학습 기록을 확인해야
+합니다»). Code older than the commit "fix(srs): save a self-check answered
+without a hint" rejects such a student's whole record: once a student has
+answered one, never run older code against the shared database or roll
+production back below that commit.
+
 On 2026-10-06 the user split this work: **Codex owns the design** (screens,
 components, CSS in the user's "v2" Stitch look) and **Claude owns the internals**
 (concept data contract, schedule, session rules, numbers, storage, tests).
