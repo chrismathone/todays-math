@@ -1,0 +1,2681 @@
+{
+  "kind": "fresh-source-aggregate-receipt/v1",
+  "createdAt": "2026-10-19T07:53:10.673720+00:00",
+  "inventory": {
+    "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+    "sha256": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+    "bytes": 8404909
+  },
+  "tools": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\scripts\\import\\exam-twin\\extract-fresh-sources-20261019.py",
+      "sha256": "866d9c41bc08f19ff65af611bd197fdf90325e5465dee3a87880c4ab3458b455",
+      "bytes": 12883
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\extract_source.py",
+      "sha256": "bf6ec9417e201756530a2d291b5092e4594856534313f80a990ec03a59f1f7fb",
+      "bytes": 29209
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\scripts\\qa\\convert-hwp-spans.py",
+      "sha256": "326d343a18f4229fa5156b73271be8bc0035ff246cc2d2ad59338352da49fe00",
+      "bytes": 12470
+    },
+    {
+      "path": "D:\\시험지 한글화\\db\\textlayer.py",
+      "sha256": "bbb49d272fd7b79c3935253c7f1429def2c69f0d3ed5a014369b14e971cea743",
+      "bytes": 32795
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\scripts\\import\\exam-twin\\source_region_ownership.py",
+      "sha256": "26242db625abde59c8574dd37a8fb4bdc951c6def22e028385ab4fb64754bb9c",
+      "bytes": 3143
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\scripts\\qa\\tc_paths.py",
+      "sha256": "74907f5e9592ab1d3a188e152c41e6e4067b9ce920777fe0a720be68bdc0476e",
+      "bytes": 1320
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\scripts\\qa\\hwpeq_unglue.py",
+      "sha256": "ca9f880261368dc17e98c89805776b814ff415454f2cbd43465fec2b03356415",
+      "bytes": 12710
+    },
+    {
+      "path": "D:\\시험지 한글화\\core\\hwpeq_to_latex.py",
+      "sha256": "6cdb46b45470b66feac75f1372aa9defa3fcac213633865825e2908f03db4861",
+      "bytes": 9013
+    },
+    {
+      "path": "D:\\시험지 한글화\\db\\pua_table.json",
+      "sha256": "08ab989bcf1966eec3649f74fc5cd1738ab2462bd083280ec42529c8c7c8cd22",
+      "bytes": 2189
+    }
+  ],
+  "explicitJobIds": [
+    "personal-88d4c2e60054c08b0ef79329b37b8b0f",
+    "personal-9e4b86577f80955351a792bd72b70775",
+    "personal-467deaaa710780b475bd4e50f6fa24bc"
+  ],
+  "selectionPolicy": "unparsed 2025+ middle3 completed pair, protected schools/known parsed IDs excluded",
+  "previousParentObservations": 506,
+  "entries": [
+    {
+      "examId": "personal-88d4c2e60054c08b0ef79329b37b8b0f",
+      "school": "구남중",
+      "level": "중",
+      "year": 2025,
+      "grade": 3,
+      "semester": 1,
+      "round": "중간",
+      "componentsApproved": 0,
+      "twins": 0,
+      "identityApproved": false,
+      "wholePairCertified": false,
+      "gradeApprovals": 0,
+      "rightsApprovals": 0,
+      "hwpParents": 22,
+      "pdfParents": 22,
+      "questionPages": 4,
+      "answerPageFirstOneBased": 5,
+      "endnotesWithheld": 22,
+      "unknownControls": 0,
+      "status": "parsed-quarantined",
+      "inputs": [
+        {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[구남중][3][25-1-중간][미래엔] (완료).hwp",
+          "sha256": "7c1e71973ecfe312e4086488ec5223d23a77f9399b39c9a59c5218da014b0e04",
+          "bytes": 166400
+        },
+        {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[구남중][3][25-1-중간][미래엔] (완료).PDF",
+          "sha256": "f7350fa7573ce223c04a76b5c0b01666d0a8412969eb83a8d752b8d987a3cd8c",
+          "bytes": 121684
+        }
+      ],
+      "originalIdentitySource": {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[구남중][3][25-1-중간](원본)(숙제).pdf",
+        "sha256": "b4d633135e0a90bb126086defe39ae11a49f860d74c077bd468c97bcab1d7085",
+        "bytes": 2732767
+      },
+      "regionOwnershipAudit": {
+        "kind": "source-region-ownership-audit/v1",
+        "questions": 22,
+        "overlaps": [
+          {
+            "questions": [
+              2,
+              3
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 1,
+            "column": 0,
+            "intersectionBbox": [
+              55,
+              660.2905883789062,
+              375,
+              669.6521606445312
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              5,
+              6
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 1,
+            "column": 1,
+            "intersectionBbox": [
+              370,
+              659.335205078125,
+              688.0,
+              660.6587524414062
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              19,
+              20
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 4,
+            "column": 0,
+            "intersectionBbox": [
+              55,
+              485.7320251464844,
+              375,
+              486.4266357421875
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          }
+        ],
+        "flaggedQuestionNumbers": [
+          2,
+          3,
+          5,
+          6,
+          19,
+          20
+        ],
+        "status": "review-required",
+        "mathPixelsUsed": false,
+        "questionContentCertified": false,
+        "authorDistributionAllowed": false,
+        "regionsModified": false,
+        "limitation": "Disjoint boxes do not prove correct ownership, complete figures or text equivalence"
+      },
+      "localManifest": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\source-manifest.local.json",
+        "sha256": "1a52328b562c98808f1331683fcfa69314e25d4fdd16f539b2a1633b5ceaa91f",
+        "bytes": 1478197
+      },
+      "questions": [
+        {
+          "number": 1,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 8,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "6f9e5baca3835d9b112415cd60981573e6be8233767ecb813a93bf403fc70196",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 2,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 7,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "9869be58eac9d8952e0736176a9fa079bc0631f9f162bd7b7adf10b0a51f12e3",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 3,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 7,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "1cec0b97c4dad313a089b05af01bd52343e46b33ea9ba9c43ae1bdb54c1150e2",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 4,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 7,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "97464121f3ca49b04231021ed52deca74bc8f39672c2a36234cdfc95d9873fae",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 5,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 6,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "8899dad42298ded2fdc563b172a0f85d8d65f1f1cda1fc67d31c4c457ff5cb06",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 6,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 15,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "8ffa30a0142608ea36360bfd2d48eade1b065527de3fdd9ee2c6a82186420398",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 7,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 9,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "53703af4f945569ad4fe908f057667fb873e6aceaf288642751f1809dbc30340",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 8,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 9,
+          "hwpFigureCount": 1,
+          "pdfFigureCorrespondenceCount": 1,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "5e1dd4cf1bcb46cf01003b3016fcb02bd03247cf7f55cd6e6a9e85f9f90f2d0b",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 9,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 6,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "4bc1c31149e0000dfe42c18a6fc48b5f68f6110672a1fd4ad689893e31f9a9c3",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 10,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 7,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "be5b3304141630931381c7c748e3b900ee16c161a44a32807c959022615eabec",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 11,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 6,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "927428f70bf9b0d54f068b9bb94dd4096e3ea483b00a5fef3afd6b1d3fab39ce",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 12,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 8,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "e1a5bff2d2dcb863f24ccfac3ef10476ee121214490cb0b687632d35ec02d4c5",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 13,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 9,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "9cfd284171b080d75b12f4f90b9542231964e0ca9a30e1b6d911d16717d89416",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 14,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 6,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "77d3c2267e278b03139078e68f25675a599af178dd077237b25336a1a65426c9",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 15,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 9,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "d17e710ca079e56aa379f315158a86558041f9c29444f26a81ec7ce6d95ea3cb",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 16,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 8,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "eee9e2bb24372976d3ff25879d7b4d6163bcd9adcb5246bdc89d5ff3c11a9f85",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 17,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 10,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "5eb8b28887b6482e3f07a58b8c55fe6ca56e2c37a1031435be27fa330b5e8ce3",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 18,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 7,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "0975912feb33da82bb9d6136292f2f07f9948176000365985858a53eafc6fe6e",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 19,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 12,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "533ef7f5c1d9da0bd49fe2f47014fc582d8495df33c21182991ba8ab89b2be4f",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 20,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 15,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 3,
+          "unmappedCount": 0,
+          "contentDigest": "ec81d44fcde06d240e36737500c0f15b97f93d6137888db8c9c02b6a467e772b",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 21,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 12,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 3,
+          "unmappedCount": 0,
+          "contentDigest": "1d43371b3d7564acde1578fd3bbcefdae580d1c8df08a38ecd585d88ae810c05",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 22,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 13,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 3,
+          "unmappedCount": 0,
+          "contentDigest": "ad6dd38bbdfb7e8288e3f9e0c98fe2fb98de3379a02524443f25dd751dc0392d",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        }
+      ],
+      "originalHeaderPreviews": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\reviewer-only\\header.png",
+          "sha256": "b775d8f8e39d3dd21e3064cc90442079309d2c99c3a38e6cbc07a71cb861bf8a",
+          "bytes": 146752,
+          "reviewerOnly": true,
+          "viewed": true
+        },
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\reviewer-only\\footer.png",
+          "sha256": "4e07ebf9d795f6fc0530717cbcccc31851b8f9d4d225d125c837208a084f8f23",
+          "bytes": 26164,
+          "reviewerOnly": true,
+          "viewed": true
+        }
+      ],
+      "headerObservations": {
+        "status": "rendered-observation-with-conflict-not-certified",
+        "originalHeader": {
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간고사",
+          "date": "2025-04-24"
+        },
+        "originalFooter": {
+          "school": "구남중학교",
+          "grade": 3,
+          "pageMark": "4 pages / first page"
+        },
+        "limitations": [
+          "Initial original crops were sideways because the source PDF rotation is 270 degrees. Additional memory-only rotated rendering shows the header/footer upright; original PDF bytes were not saved or altered."
+        ],
+        "selectedPdfHeader": {
+          "school": "구남중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간고사"
+        },
+        "selectedPdfFooter": {
+          "school": "구남중",
+          "printedYear": "26년",
+          "interpretation": "2026 exam-preparation label",
+          "semester": 1,
+          "round": "중간고사 대비"
+        },
+        "conflicts": [
+          "The selected completed PDF header says 2025 while its rendered footer says 26년 exam preparation. The unchanged HWP header/footer extraction records the same year-label conflict. Do not silently relabel or certify the pair."
+        ],
+        "additionalRenderedPreviews": [
+          {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\reviewer-only\\original-upright-footer.png",
+            "sha256": "4ce989e8da09191fdf013f0b5a46cc316c10dd2515dda413ed0235dbf6607148",
+            "bytes": 56676,
+            "reviewerOnly": true,
+            "viewed": true,
+            "purpose": "identity-header-footer-observation-only",
+            "limitation": "No source/content/grade/rights certification"
+          },
+          {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\reviewer-only\\original-upright-header.png",
+            "sha256": "e362cf4404e6b75a1a4616720caa2b1782656e3695feee12efaf70f447256a30",
+            "bytes": 131485,
+            "reviewerOnly": true,
+            "viewed": true,
+            "purpose": "identity-header-footer-observation-only",
+            "limitation": "No source/content/grade/rights certification"
+          },
+          {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\reviewer-only\\selected-footer-context.png",
+            "sha256": "b1090823575aa39026b896682f24ee0f128ea7df5ab2238341dd47573895ac0f",
+            "bytes": 5110,
+            "reviewerOnly": true,
+            "viewed": true,
+            "purpose": "identity-header-footer-observation-only",
+            "limitation": "No source/content/grade/rights certification"
+          },
+          {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\reviewer-only\\selected-footer.png",
+            "sha256": "7c31a39980129c4454f70e467b2f297f33508bd2e2a0fb8c91c554d53f758acf",
+            "bytes": 1036,
+            "reviewerOnly": true,
+            "viewed": true,
+            "purpose": "identity-header-footer-observation-only",
+            "limitation": "Initial selected-footer.png is vertically clipped; use selected-footer-context.png for readable footer."
+          },
+          {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\reviewer-only\\selected-header.png",
+            "sha256": "4796f8bbf8e2e7c294abcf69c5d05846afc38e44f3a6476f4ac3c36391ee1822",
+            "bytes": 18463,
+            "reviewerOnly": true,
+            "viewed": true,
+            "purpose": "identity-header-footer-observation-only",
+            "limitation": "No source/content/grade/rights certification"
+          }
+        ],
+        "wholePairIdentityApproved": false,
+        "gradeApproved": false
+      },
+      "parserObservationSummary": {
+        "unknownControls": 0,
+        "unmappedItems": 0,
+        "hwpFormulaRecords": 196,
+        "hwpFigureRecords": 1,
+        "pdfFigureCorrespondences": 1,
+        "printedScoreOccurrences": 28,
+        "choiceCountMismatches": [],
+        "certification": "none; zero counters and matching counts do not establish text/formula/figure/choice/score equivalence",
+        "regionOverlapAction": "hold all flagged question ownership for manual shared-material/misrouting review; no region edits"
+      }
+    },
+    {
+      "examId": "personal-9e4b86577f80955351a792bd72b70775",
+      "school": "구암중",
+      "level": "중",
+      "year": 2025,
+      "grade": 3,
+      "semester": 1,
+      "round": "중간",
+      "componentsApproved": 0,
+      "twins": 0,
+      "identityApproved": false,
+      "wholePairCertified": false,
+      "gradeApprovals": 0,
+      "rightsApprovals": 0,
+      "hwpParents": 20,
+      "pdfParents": 20,
+      "questionPages": 6,
+      "answerPageFirstOneBased": 7,
+      "endnotesWithheld": 20,
+      "unknownControls": 0,
+      "status": "parsed-quarantined",
+      "inputs": [
+        {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[구암중][3][25-1-중간][비상] (완료).hwp",
+          "sha256": "673e451f7954c605366d695366ab5cb6160626f6dc02999b1157552e80f22dec",
+          "bytes": 350208
+        },
+        {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[구암중][3][25-1-중간][비상] (완료).PDF",
+          "sha256": "37b75bca9bf97c609e87a4da0898814eec917861452a267a61c9e44cc37f52de",
+          "bytes": 138894
+        }
+      ],
+      "originalIdentitySource": {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[구암중][3][25-1-중간](원본)(멜로디).pdf",
+        "sha256": "c0dd6f0123cabb478b4dee85c94ea51f1cddd4081924d7ac8c7886286491ee17",
+        "bytes": 352303
+      },
+      "regionOwnershipAudit": {
+        "kind": "source-region-ownership-audit/v1",
+        "questions": 20,
+        "overlaps": [
+          {
+            "questions": [
+              6,
+              9
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 2,
+            "column": 0,
+            "intersectionBbox": [
+              55,
+              124.10484313964844,
+              375,
+              529.2352294921875
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              7,
+              9
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 2,
+            "column": 0,
+            "intersectionBbox": [
+              55,
+              531.6351318359375,
+              375,
+              943.0
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          }
+        ],
+        "flaggedQuestionNumbers": [
+          6,
+          7,
+          9
+        ],
+        "status": "review-required",
+        "mathPixelsUsed": false,
+        "questionContentCertified": false,
+        "authorDistributionAllowed": false,
+        "regionsModified": false,
+        "limitation": "Disjoint boxes do not prove correct ownership, complete figures or text equivalence"
+      },
+      "localManifest": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-9e4b86577f80955351a792bd72b70775\\source-manifest.local.json",
+        "sha256": "ba899f22aacfac867e384eb8a0d6e6368ea89d53efddf560ed41ac4251657f23",
+        "bytes": 1410778
+      },
+      "questions": [
+        {
+          "number": 1,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 7,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "015a48005a1e7a28ffd7bfa1037b48ebda488cf48f65bd292b884fbd5ae60082",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 2,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 6,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "0d13a1022ba71a2f997f3f152882dca84e1e9ae9e2894dad01bb761b6e709284",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 3,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 14,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "7e77e57203f45bca325aa8869dcc575727fbc36b9105293bc7da7d5783d2fb5c",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 4,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 10,
+          "hwpFigureCount": 1,
+          "pdfFigureCorrespondenceCount": 1,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "64d5ec8262181ae38710612e4b4062530fb41cb77ca7922c0222dcc5946e3b09",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 5,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 11,
+          "hwpFigureCount": 1,
+          "pdfFigureCorrespondenceCount": 1,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "173f5f49c5bf12bee25471df80de633b5bd382099151a1630ad5f13c5894b138",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 6,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 30,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "246af9cb24acb71abe75de0031716cfbdb892b4e7f13712f53ea32436c36966c",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 7,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 4,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "fab6264bd23664e4c333dcfffbcec42780b5efd8d415970f48f9fb00120d0234",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 8,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 8,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "30110b9dc8269d70b807e0c0374fa759a0c441f0c75ec51b0a30cbd746d6f95f",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 9,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 6,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "7f05bb2aa27adf37f1686e67972f006fc021c67db00dd43cd4684936cb2c94ae",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 10,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 9,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "ebe2d4d4fb71d1cda04ad5bdb70e68fb586371cf7e5bc6e421a7c1682714bdfa",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 11,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 9,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "c7c964d23acde254d7a8488e1770df4cdf7a050acd91a7c75a864c481faad077",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 12,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 6,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "11b99c0b796f8dc9677c15a9b64cfc04f12c507635557be19776a4f188aa4f7e",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 13,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 7,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "e4b830f7d4b3ec85b178e4f5769741e31fab5fb8bbad96f87ff60ad067a53900",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 14,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 9,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "2adfbadcc3de6f478ef31e82a6fd3ba88ed88e3d146525571b714f0a02bca925",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 15,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 7,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "4091dd80c36583b769e8f7815e7f62c11d2fa32ee41357ce9d25cf4725bd0089",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 16,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 5,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "24ba7a1517e55ac3eeb3bd48a37f905a1f50857a8b3596b484e4f8ee61056ed7",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 17,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 8,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 3,
+          "unmappedCount": 0,
+          "contentDigest": "4526e5f0f6fb265c2853a38dd7e27eae0cef301378c5f45f369c830529d49a3e",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 18,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 10,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 3,
+          "unmappedCount": 0,
+          "contentDigest": "08b29309f2f4d6af5fa21e003dccc161a0dda8c04660d26dbd8054e1fb199ae7",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 19,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 5,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "61a9fca3e8bed4fbc1af159dd7a345935cf5c68ce6ef8deaf5474c3e6d4d3a9e",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 20,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 4,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "5bdd78835ddb64b4a07a977f24dcd4013c438c741567946a3eb2b4782280caf8",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        }
+      ],
+      "originalHeaderPreviews": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-9e4b86577f80955351a792bd72b70775\\reviewer-only\\header.png",
+          "sha256": "a658ccc0138377631c50134109f780e006e56ed5734d038ba3989b72d4149325",
+          "bytes": 140603,
+          "reviewerOnly": true,
+          "viewed": true
+        },
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-9e4b86577f80955351a792bd72b70775\\reviewer-only\\footer.png",
+          "sha256": "ba27da271f3bdd6b5a61883c36a6d625c78003a1e258ecdeeb710e4785efdd50",
+          "bytes": 44578,
+          "reviewerOnly": true,
+          "viewed": true
+        }
+      ],
+      "headerObservations": {
+        "status": "rendered-observation-with-conflict-not-certified",
+        "originalHeader": {
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간평가",
+          "monthDay": "04-30"
+        },
+        "originalFooter": {
+          "grade": 3,
+          "schoolPrinted": false,
+          "handwrittenSchoolNote": "구암"
+        },
+        "limitations": [
+          "The original crop has no printed school name; handwritten 구암 is only a note, not certified school identity. The completed-pair wrapper supplies 구암중. Multiple inventory original scans exist; only the first selected by the unchanged extractor was rendered."
+        ],
+        "selectedPdfHeader": {
+          "school": "구암중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간고사"
+        },
+        "selectedPdfFooter": {
+          "school": "구암중",
+          "printedYear": "26년",
+          "interpretation": "2026 exam-preparation label",
+          "semester": 1,
+          "round": "중간고사 대비"
+        },
+        "conflicts": [
+          "The selected completed PDF header says 2025 while its rendered footer says 26년 exam preparation. The unchanged HWP header/footer extraction records the same year-label conflict. Do not silently relabel or certify the pair."
+        ],
+        "additionalRenderedPreviews": [
+          {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-9e4b86577f80955351a792bd72b70775\\reviewer-only\\selected-footer-context.png",
+            "sha256": "82938361c5f5ba2858246b875a9a0d9c64d44c7a5d54bdce536e5d36fef4b140",
+            "bytes": 5241,
+            "reviewerOnly": true,
+            "viewed": true,
+            "purpose": "identity-header-footer-observation-only",
+            "limitation": "No source/content/grade/rights certification"
+          },
+          {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-9e4b86577f80955351a792bd72b70775\\reviewer-only\\selected-footer.png",
+            "sha256": "70bd373493230a74e92255c4eaa4510a6e0ad4f6988d3d3fe869aebab6c652c9",
+            "bytes": 1042,
+            "reviewerOnly": true,
+            "viewed": true,
+            "purpose": "identity-header-footer-observation-only",
+            "limitation": "Initial selected-footer.png is vertically clipped; use selected-footer-context.png for readable footer."
+          },
+          {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-9e4b86577f80955351a792bd72b70775\\reviewer-only\\selected-header.png",
+            "sha256": "5e2a92fbcbc137d29613ba533eb2176a98e9651b9c2016aa01e06d9c9105c864",
+            "bytes": 18648,
+            "reviewerOnly": true,
+            "viewed": true,
+            "purpose": "identity-header-footer-observation-only",
+            "limitation": "No source/content/grade/rights certification"
+          }
+        ],
+        "wholePairIdentityApproved": false,
+        "gradeApproved": false
+      },
+      "parserObservationSummary": {
+        "unknownControls": 0,
+        "unmappedItems": 0,
+        "hwpFormulaRecords": 175,
+        "hwpFigureRecords": 2,
+        "pdfFigureCorrespondences": 2,
+        "printedScoreOccurrences": 24,
+        "choiceCountMismatches": [],
+        "certification": "none; zero counters and matching counts do not establish text/formula/figure/choice/score equivalence",
+        "regionOverlapAction": "hold all flagged question ownership for manual shared-material/misrouting review; no region edits"
+      }
+    },
+    {
+      "examId": "personal-467deaaa710780b475bd4e50f6fa24bc",
+      "school": "능인중",
+      "level": "중",
+      "year": 2025,
+      "grade": 3,
+      "semester": 1,
+      "round": "중간",
+      "componentsApproved": 0,
+      "twins": 0,
+      "identityApproved": false,
+      "wholePairCertified": false,
+      "gradeApprovals": 0,
+      "rightsApprovals": 0,
+      "hwpParents": 20,
+      "pdfParents": 20,
+      "questionPages": 4,
+      "answerPageFirstOneBased": 5,
+      "endnotesWithheld": 20,
+      "unknownControls": 0,
+      "status": "parsed-quarantined",
+      "inputs": [
+        {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[능인중][3][25-1-중간][신사고] (완료).hwp",
+          "sha256": "06163b82efb0154ba5569f5e81a9d551f0748ac553ac761feac669db03a7593d",
+          "bytes": 432128
+        },
+        {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[능인중][3][25-1-중간][신사고] (완료).PDF",
+          "sha256": "7df889e43dea66bb43ec9077053b752b3a9136f52cf3dc60dd9e3c2d68732790",
+          "bytes": 191778
+        }
+      ],
+      "originalIdentitySource": {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[능인중][3][25-1-중간] (원본) (뿌앵).pdf",
+        "sha256": "a7665235902075b52daed4e03a81ff494404fb90bbef58f417d712c7ea4e64e2",
+        "bytes": 1306574
+      },
+      "regionOwnershipAudit": {
+        "kind": "source-region-ownership-audit/v1",
+        "questions": 20,
+        "overlaps": [
+          {
+            "questions": [
+              4,
+              5
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 1,
+            "column": 1,
+            "intersectionBbox": [
+              370,
+              410.61553955078125,
+              688.0,
+              410.6422424316406
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              10,
+              11
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 2,
+            "column": 1,
+            "intersectionBbox": [
+              370,
+              676.2392578125,
+              688.0,
+              687.9987182617188
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              12,
+              13
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 3,
+            "column": 0,
+            "intersectionBbox": [
+              55,
+              327.5416259765625,
+              375,
+              333.29901123046875
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              19,
+              20
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 4,
+            "column": 1,
+            "intersectionBbox": [
+              370,
+              479.85369873046875,
+              688.0,
+              496.49920654296875
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          }
+        ],
+        "flaggedQuestionNumbers": [
+          4,
+          5,
+          10,
+          11,
+          12,
+          13,
+          19,
+          20
+        ],
+        "status": "review-required",
+        "mathPixelsUsed": false,
+        "questionContentCertified": false,
+        "authorDistributionAllowed": false,
+        "regionsModified": false,
+        "limitation": "Disjoint boxes do not prove correct ownership, complete figures or text equivalence"
+      },
+      "localManifest": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-467deaaa710780b475bd4e50f6fa24bc\\source-manifest.local.json",
+        "sha256": "d28f8d49c6ec3736ef661e4da65ed2741a83e05e296f8046ce0b31543cfdbb24",
+        "bytes": 1456624
+      },
+      "questions": [
+        {
+          "number": 1,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 6,
+          "hwpFigureCount": 2,
+          "pdfFigureCorrespondenceCount": 1,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "b7c40b864a6a8821fbf2c2413338edf43f6736b8c677a3efdd53da6e6021eeeb",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 2,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 17,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "f0407fa2fa4a38ff481d37299107530b9856976d4731d2d25d2cc1447621a1b7",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 3,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 6,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "5ba3ff3c4b4b750ee78a250ec12409ccac19b32387d4fc794a6b01d5aa6c34ab",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 4,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 9,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "ee6ca4be35cb0f77dad305ca22f575945a99a8d1cbc51906b2587e454cbcfa11",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 5,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 9,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "74427640f31a6eebb388ddb003f37b8c5941f759abcd421f4c8994b4206adc8e",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 6,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 10,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "a67e9dece07668cd5d7074108a36442cc151a11d3f1b1cf25cec601d5dc50a69",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 7,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 12,
+          "hwpFigureCount": 1,
+          "pdfFigureCorrespondenceCount": 1,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "3aa4dc1245a9662c2dc04d4717999c04f131a25dc80b386bcceb19673024d8eb",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 8,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 8,
+          "hwpFigureCount": 2,
+          "pdfFigureCorrespondenceCount": 2,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "cd8c0b13d1d3282a2c2a588cac71c60a10b0565b6aff27e248bdd12a89aa2358",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 9,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 7,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "caf82378997ed374a9fa65adbfe0f249e0c4c11ba3a8eab0f378ed135169cf4b",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 10,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 10,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "7eff6835eacf40434388b3f89fc7a841fd54fbd6e5bd19dfae0c3ec8ed7f22a4",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 11,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 8,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "8cbef87c3e8dd099393bed81c1e8a6b0a414ab9a6be9ac9449c41a2a03470270",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 12,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 10,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "4b4ec9be3aff126c90e63476a9a8ca4759914658fb7278e6b171c028fae82a94",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 13,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 15,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "7d2730af350664c5d70c55ef7e09df5f9ada23245a0a3706ba99db662e7e467d",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 14,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 12,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "865336db888907e67865371b49905c333fd552db178da2060ba8cda6998b43a8",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 15,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 8,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "e954b77455ee36d3ed4d59918db51371665a91b344c0f12b7e75d35814bf4a6c",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 16,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 11,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "02a64ad09d3dab185d63d02716fce75eda721d189e954a93b8a3042420d9b4f2",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 17,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 3,
+          "hwpFigureCount": 1,
+          "pdfFigureCorrespondenceCount": 1,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "b7c371fe2fe5aa1a6dcee6b73eab2a44ea44162dfb10df27b3abd4869d0f13a6",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 18,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 7,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "3981141d479ec5c1b2b0c2e1db6cb4ae9057ccf299f38c035036574fce76426f",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 19,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 11,
+          "hwpFigureCount": 1,
+          "pdfFigureCorrespondenceCount": 1,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "97843bd03502b88f4d8f8cdb8af28417f1d6bc8815325d348766140f8043d604",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 20,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 5,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "04bd2a18f3ff4fd760f8ad0424122fdf3be032c2f1bb89397d836fc940323fd1",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        }
+      ],
+      "originalHeaderPreviews": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-467deaaa710780b475bd4e50f6fa24bc\\reviewer-only\\header.png",
+          "sha256": "b39f5ddcf1328aeba763131cdabbcfa83f01bbd27e271cf77141ac1b521b9da0",
+          "bytes": 90572,
+          "reviewerOnly": true,
+          "viewed": true
+        },
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-467deaaa710780b475bd4e50f6fa24bc\\reviewer-only\\footer.png",
+          "sha256": "d6ed6cee429da46ebe275089700ee94bab20d23cbf8662ef51b6a514f22d0842",
+          "bytes": 26764,
+          "reviewerOnly": true,
+          "viewed": true
+        }
+      ],
+      "headerObservations": {
+        "status": "rendered-observation-with-conflict-not-certified",
+        "originalHeader": {
+          "grade": 3,
+          "yearVisible": false,
+          "semesterVisible": false,
+          "roundVisible": false
+        },
+        "originalFooter": {
+          "school": "능인중학교",
+          "pageMark": "1 / 4"
+        },
+        "limitations": [
+          "Original crops show school and grade, but no year/semester/round. The 2025 first-semester midterm classification is visible in the completed-pair wrapper, not independently certified from the original crop. Multiple inventory original scans exist; only the first selected by the unchanged extractor was rendered."
+        ],
+        "selectedPdfHeader": {
+          "school": "능인중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간고사"
+        },
+        "selectedPdfFooter": {
+          "school": "능인중",
+          "printedYear": "26년",
+          "interpretation": "2026 exam-preparation label",
+          "semester": 1,
+          "round": "중간고사 대비"
+        },
+        "conflicts": [
+          "The selected completed PDF header says 2025 while its rendered footer says 26년 exam preparation. The unchanged HWP header/footer extraction records the same year-label conflict. Do not silently relabel or certify the pair."
+        ],
+        "additionalRenderedPreviews": [
+          {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-467deaaa710780b475bd4e50f6fa24bc\\reviewer-only\\selected-footer-context.png",
+            "sha256": "9e90ab1539bd7d221bb3d58c6680e983734135771f606cda05c2ff384b1b105d",
+            "bytes": 5349,
+            "reviewerOnly": true,
+            "viewed": true,
+            "purpose": "identity-header-footer-observation-only",
+            "limitation": "No source/content/grade/rights certification"
+          },
+          {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-467deaaa710780b475bd4e50f6fa24bc\\reviewer-only\\selected-footer.png",
+            "sha256": "93538ffe85457e2f324c815d51f94fff6cad32d2ca3db2374383b17bd042e9dc",
+            "bytes": 1093,
+            "reviewerOnly": true,
+            "viewed": true,
+            "purpose": "identity-header-footer-observation-only",
+            "limitation": "Initial selected-footer.png is vertically clipped; use selected-footer-context.png for readable footer."
+          },
+          {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-467deaaa710780b475bd4e50f6fa24bc\\reviewer-only\\selected-header.png",
+            "sha256": "9fe76aaed42ef65f0adc4099655959b1f97aa47757f0d443a4f3c1c285bec700",
+            "bytes": 18677,
+            "reviewerOnly": true,
+            "viewed": true,
+            "purpose": "identity-header-footer-observation-only",
+            "limitation": "No source/content/grade/rights certification"
+          }
+        ],
+        "wholePairIdentityApproved": false,
+        "gradeApproved": false
+      },
+      "parserObservationSummary": {
+        "unknownControls": 0,
+        "unmappedItems": 0,
+        "hwpFormulaRecords": 184,
+        "hwpFigureRecords": 7,
+        "pdfFigureCorrespondences": 6,
+        "printedScoreOccurrences": 20,
+        "choiceCountMismatches": [],
+        "certification": "none; zero counters and matching counts do not establish text/formula/figure/choice/score equivalence",
+        "regionOverlapAction": "hold all flagged question ownership for manual shared-material/misrouting review; no region edits"
+      }
+    }
+  ],
+  "actualNewParents": 62,
+  "componentsApproved": 0,
+  "twins": 0,
+  "dbWrites": 0,
+  "wholePairCertifications": 0,
+  "gradeApprovals": 0,
+  "rightsApprovals": 0,
+  "preservation": [
+    {
+      "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+      "beforeSha256": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "afterSha256": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\source-manifest.json",
+      "beforeSha256": "5a082d1c9da1eb72ff0f69e017ecc127fa90c65f54f0aca6a80c67272fb319ae",
+      "afterSha256": "5a082d1c9da1eb72ff0f69e017ecc127fa90c65f54f0aca6a80c67272fb319ae"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\source-manifest.json",
+      "beforeSha256": "87e05a69d85524fe20dc178e6da190414f36193984807f1673356f299fb53b4b",
+      "afterSha256": "87e05a69d85524fe20dc178e6da190414f36193984807f1673356f299fb53b4b"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongsan\\source-manifest.json",
+      "beforeSha256": "3429d54484b3676efe2a4ba3564e68f005ed431a899dab5fa979b91a57f66b6c",
+      "afterSha256": "3429d54484b3676efe2a4ba3564e68f005ed431a899dab5fa979b91a57f66b6c"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongsang\\source-manifest.json",
+      "beforeSha256": "eff360204432f6b0c39aa2468cc59fbdf34ec1bc213a58c33de72d023f905e5d",
+      "afterSha256": "eff360204432f6b0c39aa2468cc59fbdf34ec1bc213a58c33de72d023f905e5d"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongsin\\source-manifest.json",
+      "beforeSha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249",
+      "afterSha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\gyeongilyeo\\source-manifest.json",
+      "beforeSha256": "8e6fbce1c23eb03a0aa8fc56f347e5934712f47b9f462e222bcb7f42aff865d6",
+      "afterSha256": "8e6fbce1c23eb03a0aa8fc56f347e5934712f47b9f462e222bcb7f42aff865d6"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\gyeseong\\source-manifest.json",
+      "beforeSha256": "97ebf0fdf3ca4f6b3eab4b5737083410b94f57bf53863a4be568635618b4f4f9",
+      "afterSha256": "97ebf0fdf3ca4f6b3eab4b5737083410b94f57bf53863a4be568635618b4f4f9"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\nobyeon\\source-manifest.json",
+      "beforeSha256": "6f3efd989d305e65127eb4268db05d9e1c099b2aec55706ebb554d45e6782454",
+      "afterSha256": "6f3efd989d305e65127eb4268db05d9e1c099b2aec55706ebb554d45e6782454"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r2-attempt1\\daegok\\source-manifest.json",
+      "beforeSha256": "d3fd0fe0b3d3b47f74afe8780811b900b069c2b833b6a7bd26f516e7a843c8df",
+      "afterSha256": "d3fd0fe0b3d3b47f74afe8780811b900b069c2b833b6a7bd26f516e7a843c8df"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r2-attempt1\\daegudong\\source-manifest.json",
+      "beforeSha256": "f9fe06d8b846d264bf1982372677e2f6a6002ab196c1032dd410fcfbe5e68865",
+      "afterSha256": "f9fe06d8b846d264bf1982372677e2f6a6002ab196c1032dd410fcfbe5e68865"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r2-attempt1\\neungin\\source-manifest.json",
+      "beforeSha256": "9aba65d89cecaebcba70cea98040192ac70f73f26529c48275e3e602738a70c3",
+      "afterSha256": "9aba65d89cecaebcba70cea98040192ac70f73f26529c48275e3e602738a70c3"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r1\\aggregate-receipt.json",
+      "beforeSha256": "7b8cf0c4538b619f4d24fdbf3bfe74079f6da18eef457804c99079df0a9e2367",
+      "afterSha256": "7b8cf0c4538b619f4d24fdbf3bfe74079f6da18eef457804c99079df0a9e2367"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r2\\aggregate-receipt.json",
+      "beforeSha256": "553685f863cda90cdd94480763cb46a769e97c2daaee5234f32b0ee82193d07b",
+      "afterSha256": "553685f863cda90cdd94480763cb46a769e97c2daaee5234f32b0ee82193d07b"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r3\\aggregate-receipt.json",
+      "beforeSha256": "2507ed4923dcc8738cc2b35f95db6bb97db48dc69bc8e63a76758099c7b4fe12",
+      "afterSha256": "2507ed4923dcc8738cc2b35f95db6bb97db48dc69bc8e63a76758099c7b4fe12"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r4\\aggregate-receipt.json",
+      "beforeSha256": "a44cb9b9d871d6363aeea0decc8390e4af7065b33879cb36c2b37bf08f77572f",
+      "afterSha256": "a44cb9b9d871d6363aeea0decc8390e4af7065b33879cb36c2b37bf08f77572f"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\scripts\\import\\exam-twin\\extract-fresh-sources-20261019.py",
+      "beforeSha256": "866d9c41bc08f19ff65af611bd197fdf90325e5465dee3a87880c4ab3458b455",
+      "afterSha256": "866d9c41bc08f19ff65af611bd197fdf90325e5465dee3a87880c4ab3458b455"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\extract_source.py",
+      "beforeSha256": "bf6ec9417e201756530a2d291b5092e4594856534313f80a990ec03a59f1f7fb",
+      "afterSha256": "bf6ec9417e201756530a2d291b5092e4594856534313f80a990ec03a59f1f7fb"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\scripts\\qa\\convert-hwp-spans.py",
+      "beforeSha256": "326d343a18f4229fa5156b73271be8bc0035ff246cc2d2ad59338352da49fe00",
+      "afterSha256": "326d343a18f4229fa5156b73271be8bc0035ff246cc2d2ad59338352da49fe00"
+    },
+    {
+      "path": "D:\\시험지 한글화\\db\\textlayer.py",
+      "beforeSha256": "bbb49d272fd7b79c3935253c7f1429def2c69f0d3ed5a014369b14e971cea743",
+      "afterSha256": "bbb49d272fd7b79c3935253c7f1429def2c69f0d3ed5a014369b14e971cea743"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\scripts\\import\\exam-twin\\source_region_ownership.py",
+      "beforeSha256": "26242db625abde59c8574dd37a8fb4bdc951c6def22e028385ab4fb64754bb9c",
+      "afterSha256": "26242db625abde59c8574dd37a8fb4bdc951c6def22e028385ab4fb64754bb9c"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\scripts\\qa\\tc_paths.py",
+      "beforeSha256": "74907f5e9592ab1d3a188e152c41e6e4067b9ce920777fe0a720be68bdc0476e",
+      "afterSha256": "74907f5e9592ab1d3a188e152c41e6e4067b9ce920777fe0a720be68bdc0476e"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\scripts\\qa\\hwpeq_unglue.py",
+      "beforeSha256": "ca9f880261368dc17e98c89805776b814ff415454f2cbd43465fec2b03356415",
+      "afterSha256": "ca9f880261368dc17e98c89805776b814ff415454f2cbd43465fec2b03356415"
+    },
+    {
+      "path": "D:\\시험지 한글화\\core\\hwpeq_to_latex.py",
+      "beforeSha256": "6cdb46b45470b66feac75f1372aa9defa3fcac213633865825e2908f03db4861",
+      "afterSha256": "6cdb46b45470b66feac75f1372aa9defa3fcac213633865825e2908f03db4861"
+    },
+    {
+      "path": "D:\\시험지 한글화\\db\\pua_table.json",
+      "beforeSha256": "08ab989bcf1966eec3649f74fc5cd1738ab2462bd083280ec42529c8c7c8cd22",
+      "afterSha256": "08ab989bcf1966eec3649f74fc5cd1738ab2462bd083280ec42529c8c7c8cd22"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[구남중][3][25-1-중간][미래엔] (완료).hwp",
+      "beforeSha256": "7c1e71973ecfe312e4086488ec5223d23a77f9399b39c9a59c5218da014b0e04",
+      "afterSha256": "7c1e71973ecfe312e4086488ec5223d23a77f9399b39c9a59c5218da014b0e04"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[구남중][3][25-1-중간][미래엔] (완료).PDF",
+      "beforeSha256": "f7350fa7573ce223c04a76b5c0b01666d0a8412969eb83a8d752b8d987a3cd8c",
+      "afterSha256": "f7350fa7573ce223c04a76b5c0b01666d0a8412969eb83a8d752b8d987a3cd8c"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[구남중][3][25-1-중간](원본)(숙제).pdf",
+      "beforeSha256": "b4d633135e0a90bb126086defe39ae11a49f860d74c077bd468c97bcab1d7085",
+      "afterSha256": "b4d633135e0a90bb126086defe39ae11a49f860d74c077bd468c97bcab1d7085"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[구암중][3][25-1-중간][비상] (완료).hwp",
+      "beforeSha256": "673e451f7954c605366d695366ab5cb6160626f6dc02999b1157552e80f22dec",
+      "afterSha256": "673e451f7954c605366d695366ab5cb6160626f6dc02999b1157552e80f22dec"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[구암중][3][25-1-중간][비상] (완료).PDF",
+      "beforeSha256": "37b75bca9bf97c609e87a4da0898814eec917861452a267a61c9e44cc37f52de",
+      "afterSha256": "37b75bca9bf97c609e87a4da0898814eec917861452a267a61c9e44cc37f52de"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[구암중][3][25-1-중간](원본)(멜로디).pdf",
+      "beforeSha256": "c0dd6f0123cabb478b4dee85c94ea51f1cddd4081924d7ac8c7886286491ee17",
+      "afterSha256": "c0dd6f0123cabb478b4dee85c94ea51f1cddd4081924d7ac8c7886286491ee17"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[능인중][3][25-1-중간][신사고] (완료).hwp",
+      "beforeSha256": "06163b82efb0154ba5569f5e81a9d551f0748ac553ac761feac669db03a7593d",
+      "afterSha256": "06163b82efb0154ba5569f5e81a9d551f0748ac553ac761feac669db03a7593d"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[능인중][3][25-1-중간][신사고] (완료).PDF",
+      "beforeSha256": "7df889e43dea66bb43ec9077053b752b3a9136f52cf3dc60dd9e3c2d68732790",
+      "afterSha256": "7df889e43dea66bb43ec9077053b752b3a9136f52cf3dc60dd9e3c2d68732790"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[능인중][3][25-1-중간] (원본) (뿌앵).pdf",
+      "beforeSha256": "a7665235902075b52daed4e03a81ff494404fb90bbef58f417d712c7ea4e64e2",
+      "afterSha256": "a7665235902075b52daed4e03a81ff494404fb90bbef58f417d712c7ea4e64e2"
+    }
+  ],
+  "preserved": true,
+  "localCopyrightedOutputs": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\reviewer-only\\header.png",
+      "sha256": "b775d8f8e39d3dd21e3064cc90442079309d2c99c3a38e6cbc07a71cb861bf8a",
+      "bytes": 146752
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\reviewer-only\\footer.png",
+      "sha256": "4e07ebf9d795f6fc0530717cbcccc31851b8f9d4d225d125c837208a084f8f23",
+      "bytes": 26164
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\source-manifest.local.json",
+      "sha256": "1a52328b562c98808f1331683fcfa69314e25d4fdd16f539b2a1633b5ceaa91f",
+      "bytes": 1478197
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-9e4b86577f80955351a792bd72b70775\\reviewer-only\\header.png",
+      "sha256": "a658ccc0138377631c50134109f780e006e56ed5734d038ba3989b72d4149325",
+      "bytes": 140603
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-9e4b86577f80955351a792bd72b70775\\reviewer-only\\footer.png",
+      "sha256": "ba27da271f3bdd6b5a61883c36a6d625c78003a1e258ecdeeb710e4785efdd50",
+      "bytes": 44578
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-9e4b86577f80955351a792bd72b70775\\source-manifest.local.json",
+      "sha256": "ba899f22aacfac867e384eb8a0d6e6368ea89d53efddf560ed41ac4251657f23",
+      "bytes": 1410778
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-467deaaa710780b475bd4e50f6fa24bc\\reviewer-only\\header.png",
+      "sha256": "b39f5ddcf1328aeba763131cdabbcfa83f01bbd27e271cf77141ac1b521b9da0",
+      "bytes": 90572
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-467deaaa710780b475bd4e50f6fa24bc\\reviewer-only\\footer.png",
+      "sha256": "d6ed6cee429da46ebe275089700ee94bab20d23cbf8662ef51b6a514f22d0842",
+      "bytes": 26764
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-467deaaa710780b475bd4e50f6fa24bc\\source-manifest.local.json",
+      "sha256": "d28f8d49c6ec3736ef661e4da65ed2741a83e05e296f8046ce0b31543cfdbb24",
+      "bytes": 1456624
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\reviewer-only\\original-upright-footer.png",
+      "sha256": "4ce989e8da09191fdf013f0b5a46cc316c10dd2515dda413ed0235dbf6607148",
+      "bytes": 56676,
+      "reviewerOnly": true,
+      "viewed": true,
+      "purpose": "identity-header-footer-observation-only",
+      "limitation": "No source/content/grade/rights certification"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\reviewer-only\\original-upright-header.png",
+      "sha256": "e362cf4404e6b75a1a4616720caa2b1782656e3695feee12efaf70f447256a30",
+      "bytes": 131485,
+      "reviewerOnly": true,
+      "viewed": true,
+      "purpose": "identity-header-footer-observation-only",
+      "limitation": "No source/content/grade/rights certification"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\reviewer-only\\selected-footer-context.png",
+      "sha256": "b1090823575aa39026b896682f24ee0f128ea7df5ab2238341dd47573895ac0f",
+      "bytes": 5110,
+      "reviewerOnly": true,
+      "viewed": true,
+      "purpose": "identity-header-footer-observation-only",
+      "limitation": "No source/content/grade/rights certification"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\reviewer-only\\selected-footer.png",
+      "sha256": "7c31a39980129c4454f70e467b2f297f33508bd2e2a0fb8c91c554d53f758acf",
+      "bytes": 1036,
+      "reviewerOnly": true,
+      "viewed": true,
+      "purpose": "identity-header-footer-observation-only",
+      "limitation": "Initial selected-footer.png is vertically clipped; use selected-footer-context.png for readable footer."
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\reviewer-only\\selected-header.png",
+      "sha256": "4796f8bbf8e2e7c294abcf69c5d05846afc38e44f3a6476f4ac3c36391ee1822",
+      "bytes": 18463,
+      "reviewerOnly": true,
+      "viewed": true,
+      "purpose": "identity-header-footer-observation-only",
+      "limitation": "No source/content/grade/rights certification"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-9e4b86577f80955351a792bd72b70775\\reviewer-only\\selected-footer-context.png",
+      "sha256": "82938361c5f5ba2858246b875a9a0d9c64d44c7a5d54bdce536e5d36fef4b140",
+      "bytes": 5241,
+      "reviewerOnly": true,
+      "viewed": true,
+      "purpose": "identity-header-footer-observation-only",
+      "limitation": "No source/content/grade/rights certification"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-9e4b86577f80955351a792bd72b70775\\reviewer-only\\selected-footer.png",
+      "sha256": "70bd373493230a74e92255c4eaa4510a6e0ad4f6988d3d3fe869aebab6c652c9",
+      "bytes": 1042,
+      "reviewerOnly": true,
+      "viewed": true,
+      "purpose": "identity-header-footer-observation-only",
+      "limitation": "Initial selected-footer.png is vertically clipped; use selected-footer-context.png for readable footer."
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-9e4b86577f80955351a792bd72b70775\\reviewer-only\\selected-header.png",
+      "sha256": "5e2a92fbcbc137d29613ba533eb2176a98e9651b9c2016aa01e06d9c9105c864",
+      "bytes": 18648,
+      "reviewerOnly": true,
+      "viewed": true,
+      "purpose": "identity-header-footer-observation-only",
+      "limitation": "No source/content/grade/rights certification"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-467deaaa710780b475bd4e50f6fa24bc\\reviewer-only\\selected-footer-context.png",
+      "sha256": "9e90ab1539bd7d221bb3d58c6680e983734135771f606cda05c2ff384b1b105d",
+      "bytes": 5349,
+      "reviewerOnly": true,
+      "viewed": true,
+      "purpose": "identity-header-footer-observation-only",
+      "limitation": "No source/content/grade/rights certification"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-467deaaa710780b475bd4e50f6fa24bc\\reviewer-only\\selected-footer.png",
+      "sha256": "93538ffe85457e2f324c815d51f94fff6cad32d2ca3db2374383b17bd042e9dc",
+      "bytes": 1093,
+      "reviewerOnly": true,
+      "viewed": true,
+      "purpose": "identity-header-footer-observation-only",
+      "limitation": "Initial selected-footer.png is vertically clipped; use selected-footer-context.png for readable footer."
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-467deaaa710780b475bd4e50f6fa24bc\\reviewer-only\\selected-header.png",
+      "sha256": "9fe76aaed42ef65f0adc4099655959b1f97aa47757f0d443a4f3c1c285bec700",
+      "bytes": 18677,
+      "reviewerOnly": true,
+      "viewed": true,
+      "purpose": "identity-header-footer-observation-only",
+      "limitation": "No source/content/grade/rights certification"
+    }
+  ],
+  "allSourcesExtracted": false,
+  "authorDistributionAllowed": false,
+  "reviewerMetadata": {
+    "actor": "codex-fresh-source-r5-20261019",
+    "scope": "Metadata-only fresh parsed observations; no candidate authoring or mathematical review",
+    "eligibleSelectionVerified": true,
+    "previousReceiptIdsExcluded": [
+      "personal-116d4c4efd5ee06a1fda3631a9273f54",
+      "personal-302b6b0d179d92356859f600256e917a",
+      "personal-57fc57dc583e9f120f45ebc6abedfee4",
+      "personal-5ac2088d148a02d086d0ce69d38aa646",
+      "personal-5eb35ea19488aaf195e724ed05fe8806",
+      "personal-90260ced2184cbdc851d5e0b62a4a772",
+      "personal-9290d8f6f107a5b9d6a1cdfbfefd98bf",
+      "personal-99648d70b15d5f2d2ecc836affd5b862",
+      "personal-9967cfbb759aa6d369883bac4c986aaa",
+      "personal-a31eb17660269c309fe99cbfce1665c3",
+      "personal-a8a023ad6060fb2937b8b09781b68857",
+      "personal-aa35a05fbaf41074c2ebcfcd6f16e876",
+      "personal-ab7ab7f22987f7593942d213b43575df",
+      "personal-ae2bb575dbaef34005e65cdeedba6860",
+      "personal-b274afd453928b273d1577afde49d96b",
+      "personal-b37b5f2a943efe63b8eed253a7747a1d",
+      "personal-c23232ac17dc2312fa751fc6a7edce86",
+      "personal-d41151b46473d01c83ddba87e3428f97",
+      "personal-e33ddb52b435f0c6660a4c056cec7a59",
+      "personal-e64b9f46720314668da43493b57611df",
+      "personal-e658d3c45979443f7be4d28aca8563c1",
+      "personal-f512082a417e154a4c142b47fae20515",
+      "personal-fd85be2f98234a9cf917e3c819f62464",
+      "personal-ff66f8d1a4f03871955f857a26829560"
+    ],
+    "protectedSchoolsExcluded": [
+      "동도중",
+      "강동중",
+      "경산여중",
+      "정화중"
+    ],
+    "priorFreshReceipts": [
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r1\\aggregate-receipt.json",
+        "sha256": "7b8cf0c4538b619f4d24fdbf3bfe74079f6da18eef457804c99079df0a9e2367",
+        "bytes": 67198
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r2\\aggregate-receipt.json",
+        "sha256": "553685f863cda90cdd94480763cb46a769e97c2daaee5234f32b0ee82193d07b",
+        "bytes": 72437
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r3\\aggregate-receipt.json",
+        "sha256": "2507ed4923dcc8738cc2b35f95db6bb97db48dc69bc8e63a76758099c7b4fe12",
+        "bytes": 78758
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r4\\aggregate-receipt.json",
+        "sha256": "a44cb9b9d871d6363aeea0decc8390e4af7065b33879cb36c2b37bf08f77572f",
+        "bytes": 81527
+      }
+    ],
+    "currentParsedObservationCount": 568,
+    "countMeaning": "568 current parsed parent observations, NOT a content-certified total, unique exam-content total, or release count",
+    "newParsedParentObservations": 62,
+    "newSources": 3,
+    "sourceRegionOverlaps": 9,
+    "flaggedQuestionObservations": 17,
+    "originalAnswersExported": false,
+    "questionCropsProduced": false,
+    "localSourceManifestsUnmodifiedAfterExtraction": true,
+    "localManifestNote": "Captured source manifests retain pre-observation viewed=false/pending fields; later visual observations are recorded only in this metadata receipt, preserving raw bytes.",
+    "oldEvidencePreservation": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\old-evidence-preservation.local.json",
+      "sha256": "3a1dd5a740b83dfd2ff0e0c6e902255c5bc74671297c505ce4dd80f9491901bf",
+      "bytes": 1858576,
+      "fileCount": 6026,
+      "allBeforeAfterHashesMatch": true
+    },
+    "localFilesForByteExactParentCopy": [
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\finalize-metadata.local.py",
+        "sha256": "404f2d8349a0cb7b79140b60150479a2af02192abaa98ac0b2d105db4f44010d",
+        "bytes": 9139
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\old-evidence-preservation.local.json",
+        "sha256": "3a1dd5a740b83dfd2ff0e0c6e902255c5bc74671297c505ce4dd80f9491901bf",
+        "bytes": 1858576
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-467deaaa710780b475bd4e50f6fa24bc\\reviewer-only\\footer.png",
+        "sha256": "d6ed6cee429da46ebe275089700ee94bab20d23cbf8662ef51b6a514f22d0842",
+        "bytes": 26764
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-467deaaa710780b475bd4e50f6fa24bc\\reviewer-only\\header.png",
+        "sha256": "b39f5ddcf1328aeba763131cdabbcfa83f01bbd27e271cf77141ac1b521b9da0",
+        "bytes": 90572
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-467deaaa710780b475bd4e50f6fa24bc\\reviewer-only\\selected-footer-context.png",
+        "sha256": "9e90ab1539bd7d221bb3d58c6680e983734135771f606cda05c2ff384b1b105d",
+        "bytes": 5349
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-467deaaa710780b475bd4e50f6fa24bc\\reviewer-only\\selected-footer.png",
+        "sha256": "93538ffe85457e2f324c815d51f94fff6cad32d2ca3db2374383b17bd042e9dc",
+        "bytes": 1093
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-467deaaa710780b475bd4e50f6fa24bc\\reviewer-only\\selected-header.png",
+        "sha256": "9fe76aaed42ef65f0adc4099655959b1f97aa47757f0d443a4f3c1c285bec700",
+        "bytes": 18677
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-467deaaa710780b475bd4e50f6fa24bc\\source-manifest.local.json",
+        "sha256": "d28f8d49c6ec3736ef661e4da65ed2741a83e05e296f8046ce0b31543cfdbb24",
+        "bytes": 1456624
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\reviewer-only\\footer.png",
+        "sha256": "4e07ebf9d795f6fc0530717cbcccc31851b8f9d4d225d125c837208a084f8f23",
+        "bytes": 26164
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\reviewer-only\\header.png",
+        "sha256": "b775d8f8e39d3dd21e3064cc90442079309d2c99c3a38e6cbc07a71cb861bf8a",
+        "bytes": 146752
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\reviewer-only\\original-upright-footer.png",
+        "sha256": "4ce989e8da09191fdf013f0b5a46cc316c10dd2515dda413ed0235dbf6607148",
+        "bytes": 56676
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\reviewer-only\\original-upright-header.png",
+        "sha256": "e362cf4404e6b75a1a4616720caa2b1782656e3695feee12efaf70f447256a30",
+        "bytes": 131485
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\reviewer-only\\selected-footer-context.png",
+        "sha256": "b1090823575aa39026b896682f24ee0f128ea7df5ab2238341dd47573895ac0f",
+        "bytes": 5110
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\reviewer-only\\selected-footer.png",
+        "sha256": "7c31a39980129c4454f70e467b2f297f33508bd2e2a0fb8c91c554d53f758acf",
+        "bytes": 1036
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\reviewer-only\\selected-header.png",
+        "sha256": "4796f8bbf8e2e7c294abcf69c5d05846afc38e44f3a6476f4ac3c36391ee1822",
+        "bytes": 18463
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-88d4c2e60054c08b0ef79329b37b8b0f\\source-manifest.local.json",
+        "sha256": "1a52328b562c98808f1331683fcfa69314e25d4fdd16f539b2a1633b5ceaa91f",
+        "bytes": 1478197
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-9e4b86577f80955351a792bd72b70775\\reviewer-only\\footer.png",
+        "sha256": "ba27da271f3bdd6b5a61883c36a6d625c78003a1e258ecdeeb710e4785efdd50",
+        "bytes": 44578
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-9e4b86577f80955351a792bd72b70775\\reviewer-only\\header.png",
+        "sha256": "a658ccc0138377631c50134109f780e006e56ed5734d038ba3989b72d4149325",
+        "bytes": 140603
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-9e4b86577f80955351a792bd72b70775\\reviewer-only\\selected-footer-context.png",
+        "sha256": "82938361c5f5ba2858246b875a9a0d9c64d44c7a5d54bdce536e5d36fef4b140",
+        "bytes": 5241
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-9e4b86577f80955351a792bd72b70775\\reviewer-only\\selected-footer.png",
+        "sha256": "70bd373493230a74e92255c4eaa4510a6e0ad4f6988d3d3fe869aebab6c652c9",
+        "bytes": 1042
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-9e4b86577f80955351a792bd72b70775\\reviewer-only\\selected-header.png",
+        "sha256": "5e2a92fbcbc137d29613ba533eb2176a98e9651b9c2016aa01e06d9c9105c864",
+        "bytes": 18648
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\personal-9e4b86577f80955351a792bd72b70775\\source-manifest.local.json",
+        "sha256": "ba899f22aacfac867e384eb8a0d6e6368ea89d53efddf560ed41ac4251657f23",
+        "bytes": 1410778
+      }
+    ],
+    "onlyCommit": [
+      "aggregate-receipt.json",
+      "FINDINGS.md"
+    ],
+    "contentCertifiedTotalClaimed": false,
+    "sourceIdentityApprovals": 0,
+    "mathApprovals": 0,
+    "gradeApprovals": 0,
+    "rightsApprovals": 0,
+    "wholePairApprovals": 0,
+    "loadable": 0
+  }
+}
