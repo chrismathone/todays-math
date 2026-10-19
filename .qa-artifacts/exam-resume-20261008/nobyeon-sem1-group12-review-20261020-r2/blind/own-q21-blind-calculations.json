@@ -1,0 +1,585 @@
+{
+  "oracle": "정수 isqrt의 제곱 일치 검사만으로 완전제곱수를 구분하고 허용k75..85를 전부 세었다. 부동소수 근호값/이미지/저자params를 사용하지 않음.",
+  "strictBoundaries": "양의 제곱근의 대소 관계로 √50<√n<√k는50<n<k와 같음. 따라서 n=51,...,k-1이며50과k둘다제외. 목록1..k와도양립.",
+  "allKInGivenClosedBounds": [
+    {
+      "k": 75,
+      "upperRootIrrational": true,
+      "strictRadicandRange": [
+        51,
+        74
+      ],
+      "totalInStrictRange": 24,
+      "excludedPerfectSquares": [
+        64
+      ],
+      "irrationalRadicands": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74
+      ],
+      "irrationalCount": 23,
+      "allConditions": false
+    },
+    {
+      "k": 76,
+      "upperRootIrrational": true,
+      "strictRadicandRange": [
+        51,
+        75
+      ],
+      "totalInStrictRange": 25,
+      "excludedPerfectSquares": [
+        64
+      ],
+      "irrationalRadicands": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75
+      ],
+      "irrationalCount": 24,
+      "allConditions": false
+    },
+    {
+      "k": 77,
+      "upperRootIrrational": true,
+      "strictRadicandRange": [
+        51,
+        76
+      ],
+      "totalInStrictRange": 26,
+      "excludedPerfectSquares": [
+        64
+      ],
+      "irrationalRadicands": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76
+      ],
+      "irrationalCount": 25,
+      "allConditions": false
+    },
+    {
+      "k": 78,
+      "upperRootIrrational": true,
+      "strictRadicandRange": [
+        51,
+        77
+      ],
+      "totalInStrictRange": 27,
+      "excludedPerfectSquares": [
+        64
+      ],
+      "irrationalRadicands": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77
+      ],
+      "irrationalCount": 26,
+      "allConditions": false
+    },
+    {
+      "k": 79,
+      "upperRootIrrational": true,
+      "strictRadicandRange": [
+        51,
+        78
+      ],
+      "totalInStrictRange": 28,
+      "excludedPerfectSquares": [
+        64
+      ],
+      "irrationalRadicands": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78
+      ],
+      "irrationalCount": 27,
+      "allConditions": false
+    },
+    {
+      "k": 80,
+      "upperRootIrrational": true,
+      "strictRadicandRange": [
+        51,
+        79
+      ],
+      "totalInStrictRange": 29,
+      "excludedPerfectSquares": [
+        64
+      ],
+      "irrationalRadicands": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79
+      ],
+      "irrationalCount": 28,
+      "allConditions": false
+    },
+    {
+      "k": 81,
+      "upperRootIrrational": false,
+      "strictRadicandRange": [
+        51,
+        80
+      ],
+      "totalInStrictRange": 30,
+      "excludedPerfectSquares": [
+        64
+      ],
+      "irrationalRadicands": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80
+      ],
+      "irrationalCount": 29,
+      "allConditions": false
+    },
+    {
+      "k": 82,
+      "upperRootIrrational": true,
+      "strictRadicandRange": [
+        51,
+        81
+      ],
+      "totalInStrictRange": 31,
+      "excludedPerfectSquares": [
+        64,
+        81
+      ],
+      "irrationalRadicands": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80
+      ],
+      "irrationalCount": 29,
+      "allConditions": true
+    },
+    {
+      "k": 83,
+      "upperRootIrrational": true,
+      "strictRadicandRange": [
+        51,
+        82
+      ],
+      "totalInStrictRange": 32,
+      "excludedPerfectSquares": [
+        64,
+        81
+      ],
+      "irrationalRadicands": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        82
+      ],
+      "irrationalCount": 30,
+      "allConditions": false
+    },
+    {
+      "k": 84,
+      "upperRootIrrational": true,
+      "strictRadicandRange": [
+        51,
+        83
+      ],
+      "totalInStrictRange": 33,
+      "excludedPerfectSquares": [
+        64,
+        81
+      ],
+      "irrationalRadicands": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        82,
+        83
+      ],
+      "irrationalCount": 31,
+      "allConditions": false
+    },
+    {
+      "k": 85,
+      "upperRootIrrational": true,
+      "strictRadicandRange": [
+        51,
+        84
+      ],
+      "totalInStrictRange": 34,
+      "excludedPerfectSquares": [
+        64,
+        81
+      ],
+      "irrationalRadicands": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        82,
+        83,
+        84
+      ],
+      "irrationalCount": 32,
+      "allConditions": false
+    }
+  ],
+  "allAllowedIntegers": [
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    82,
+    83,
+    84,
+    85
+  ],
+  "uniqueSolution": [
+    82
+  ],
+  "withoutUpperRootIrrationalCondition": {
+    "solutions": [
+      81,
+      82
+    ],
+    "why81Excluded": "√81=9는유리수. k81에서실제로29개이므로무리수조건이없다면해가2개가된다."
+  },
+  "studentCountCases": [
+    {
+      "range": "75≤k≤81",
+      "perfectSquaresInOpenRadicandInterval": [
+        64
+      ],
+      "countExpression": "(k-51)-1=k-52",
+      "count29WouldGive": 81,
+      "survivesIrrationalUpperCondition": false
+    },
+    {
+      "range": "82≤k≤85",
+      "perfectSquaresInOpenRadicandInterval": [
+        64,
+        81
+      ],
+      "countExpression": "(k-51)-2=k-53",
+      "count29WouldGive": 82,
+      "survivesIrrationalUpperCondition": true
+    }
+  ],
+  "solutionExistence": {
+    "k": 82,
+    "inGivenBounds": true,
+    "upperRootIrrational": true,
+    "all29Radicands": [
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80
+    ],
+    "groupCount": "51~63의13개와65~80의16개,합29개",
+    "squaresChecked": "주어진구간안제곱수는64와81뿐;49는아래,100은위."
+  },
+  "boundaryNegativeControlsAtK82": {
+    "strictCount": 29,
+    "ifLowerEndpoint50Included": 30,
+    "ifUpperEndpoint82Included": 30
+  },
+  "domainSignsUnits": {
+    "radicandsPositiveNatural": true,
+    "allRootsPositiveReal": true,
+    "denominators": "나눗셈이없어분모0검사는해당없음.",
+    "unit": "수의개수와자연수k;별도물리단위없음."
+  },
+  "methodAndApprovalBoundary": "2015중3의 양의 제곱근 대소/완전제곱수가아닌자연수의제곱근은무리수라는성질 및 자연수개수세기만사용. 함수의단조정리/고등공식/미적분/통계확률기법필요없음. 독립 raw풀이이며 정식수학·학년승인 건수는추가하지않음.",
+  "allRecordsOrChoices": "이문항은기록진단/객관식이아님. 실제choices=[]이고허용정수k75..85모두를검토했다.",
+  "visualBoundary": "figures=[]이고선택적preview는열지않음. 제공된학생JSON의인쇄조건만사용."
+}
