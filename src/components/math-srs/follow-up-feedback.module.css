@@ -1,0 +1,126 @@
+.warning {
+  color: var(--learn-warning);
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+/* Beat choice hover/result rules in both shells, regardless of stylesheet order. */
+:global(button[data-previous="true"][aria-pressed="false"]):has(
+  span.previous.previous.previous
+) {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  row-gap: 4px;
+  background: var(--learn-soft);
+  border-color: var(--learn-control);
+  color: var(--learn-ink);
+}
+.previous {
+  grid-column: 1 / -1;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--learn-muted);
+}
+.solution {
+  border-top: 2px solid var(--learn-accent);
+  padding-top: 26px;
+  color: var(--learn-ink);
+}
+.solution h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 18px 0 24px;
+}
+.tag {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: var(--learn-soft);
+  color: var(--learn-accent);
+  font-size: 13px;
+  font-weight: 700;
+}
+.columns {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+.columns > div {
+  flex: 1;
+  min-width: 0;
+}
+.figure svg {
+  display: block;
+  width: 100%;
+  max-height: 300px;
+}
+.solutionFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 24px;
+  margin-top: 26px;
+  border-top: 1px solid var(--learn-control);
+}
+.solutionFooter p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--learn-muted);
+}
+.solutionFooter button {
+  min-width: 150px;
+}
+/* Match the bank action while keeping the shared feedback independent of its shell. */
+.solution .understood {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 12px 22px;
+  border: 0;
+  border-radius: var(--learn-radius-sm);
+  background: var(--learn-accent);
+  color: var(--learn-on-accent);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+  word-break: keep-all;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+.solution .understood:hover:not(:disabled) {
+  background: var(--learn-accent-hover);
+}
+.solution .understood:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.solution .understood:focus-visible {
+  outline: 2px solid var(--learn-accent);
+  outline-offset: 3px;
+}
+@media (max-width: 600px) {
+  .columns {
+    display: block;
+  }
+  .figure {
+    margin-top: 24px;
+  }
+  .solutionFooter {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+  }
+  .solutionFooter button {
+    width: 100%;
+  }
+  .previous {
+    font-size: 11px;
+  }
+}
