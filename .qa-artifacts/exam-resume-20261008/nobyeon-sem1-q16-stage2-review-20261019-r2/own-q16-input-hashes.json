@@ -1,0 +1,30 @@
+{
+  "inputs": {
+    "verification-inputs.json": "b719d59d112570e7dc77fe3dbaa033ff2c09d2d847f01dee0d6e5631e0cc3ab7",
+    "verification-manifest.json": "f6321309fdb0685c98dfd8696232e1f51be1cd8eea6b7f2109cf30b75d002c10",
+    "VERIFY-BRIEF.md": "0ba3301b43b6101974345048a56594dd96d9c872aee6878ce65f907cda025ca3",
+    "sealed-raw-commit.json": "ae068caf1bae34e2a57712d124f4ba2da2f46ee68ee8faf875c84a2338a231cd",
+    "source-q16-only.json": "a0645241d374dafad63240e18d521f5d755747878c075524784dacbdc0fd4d8e",
+    "official-locators-reference.json": "efd0d3e4fe4b825bfe8ee8eca37d9da5ca3795ec89e1e7f8dbc57e5b93e105cf",
+    "candidate-figure.spec.json": "09a1f9ea5599d03118de7bedac7832d4b112a1a9bfd484ecb41fdd2cafb965ee",
+    "candidate-figure.svg": "5340655f8a589234dd79e7b6d2bce30f5541808de0d7cd465399a5e4c0544158"
+  },
+  "rawSha256": "0f914891fd7a5caa92c35b65ad1ac70286c72cb82361ee98e42f2b6c604eb1f4",
+  "inputsAndRawUnchanged": true,
+  "outputs": {
+    "own-q16-calculations.json": "5f8e4afc8d5ea255cd8dcd287b7b953b5e536cbc4c80489f4db3a8f348b76174",
+    "own-q16-figure-evidence.json": "4c67de0956055e860fc30623896b887d1473ad1defe2f60c3c0cac1126b710e4",
+    "own-q16-official-evidence.json": "ca2ad51249bfb6cfac5b7d09616ca2b31df2305232eeb4b9959d410dc58ebd1d",
+    "own-q16-review.py": "5c6d77ddd4425e2dbc80fc3042e1f1ed73088daec1b5f4968d3b74f261134895",
+    "reports\\q16.json": "9a0d6ab776b47f75aa47d9c7fa755bee4a7e5c63b0da301329981d8dcbbff5a2"
+  },
+  "counts": {
+    "mathApproved": 1,
+    "gradeApproved": 0,
+    "held": 1,
+    "checksTrue": 9,
+    "checksFalse": 3,
+    "surfacesPassed": 6,
+    "surfacesPending": 1
+  }
+}

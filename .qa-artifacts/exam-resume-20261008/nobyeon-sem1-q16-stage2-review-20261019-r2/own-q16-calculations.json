@@ -1,0 +1,95 @@
+{
+  "method": "인쇄식만으로 완전제곱식, 양의 변, 둘레 합, 제곱의 차, 소수의 양의 인수, 합과 차를 사용",
+  "steps": [
+    "y²+12y+36=(y+6)²; y+6>0",
+    "4x+4(y+6)=92 -> x+y=17",
+    "A>B -> x-y-6 is positive integer",
+    "area difference=23(x-y-6); 23 is prime -> x-y-6=1",
+    "x+y=17,x-y=7 -> x=12,y=5",
+    "144-121=23,48+44=92,xy=60 -> ④"
+  ],
+  "allFeasiblePairs": [
+    {
+      "x": 12,
+      "y": 5,
+      "sideB": 11,
+      "difference": 23,
+      "prime": true,
+      "xy": 60
+    },
+    {
+      "x": 13,
+      "y": 4,
+      "sideB": 10,
+      "difference": 69,
+      "prime": false,
+      "xy": 52
+    },
+    {
+      "x": 14,
+      "y": 3,
+      "sideB": 9,
+      "difference": 115,
+      "prime": false,
+      "xy": 42
+    },
+    {
+      "x": 15,
+      "y": 2,
+      "sideB": 8,
+      "difference": 161,
+      "prime": false,
+      "xy": 30
+    },
+    {
+      "x": 16,
+      "y": 1,
+      "sideB": 7,
+      "difference": 207,
+      "prime": false,
+      "xy": 16
+    }
+  ],
+  "allChoices": {
+    "40": [],
+    "48": [],
+    "54": [],
+    "60": [
+      {
+        "x": 5,
+        "y": 12,
+        "larger": false,
+        "difference": -299
+      },
+      {
+        "x": 12,
+        "y": 5,
+        "larger": true,
+        "difference": 23
+      }
+    ],
+    "66": [
+      {
+        "x": 6,
+        "y": 11,
+        "larger": false,
+        "difference": -253
+      },
+      {
+        "x": 11,
+        "y": 6,
+        "larger": false,
+        "difference": -23
+      }
+    ]
+  },
+  "zeroConventionExtra": {
+    "x": 17,
+    "y": 0,
+    "difference": 253,
+    "prime": false
+  },
+  "uniqueness": "양의 인수는 반드시 1; 합과 차가 고정되어 유일. 전수 정수 대입으로도 확인",
+  "units": "변·둘레 cm, 넓이 cm²; 넓이 차의 수가 소수, xy는 자연수의 곱",
+  "candidateAnswerMatches": true
+}
