@@ -6,6 +6,7 @@ import {
   StudentReviewStatus,
 } from "@/components/math-srs/StudentReviewHome";
 import s from "@/components/math-srs/student-course.module.css";
+import type { JourneyThemeId } from "@/lib/math-explorers/journeyThemes";
 
 export type ExpeditionActivityCallbacks = {
   onExit: () => void;
@@ -48,17 +49,23 @@ function ExpeditionLoading() {
 /** Existing question-bank engines enter directly into the expedition's activity frame. */
 export default function ExplorerBankActivity({
   kind,
+  journeyTheme,
   onExit,
   onComplete,
   onConfirmedAnswer,
   paused = false,
 }: ExpeditionActivityCallbacks & {
   kind: "elementary" | "middle";
+  journeyTheme?: JourneyThemeId;
   paused?: boolean;
 }) {
   const expedition = { onExit, onComplete, onConfirmedAnswer };
   return kind === "elementary" ? (
-    <ElementaryActivity expedition={expedition} paused={paused} />
+    <ElementaryActivity
+      expedition={expedition}
+      paused={paused}
+      journeyTheme={journeyTheme}
+    />
   ) : (
     <MiddleActivity expedition={expedition} paused={paused} />
   );
