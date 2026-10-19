@@ -1,0 +1,229 @@
+{
+  "inputSha256": "81e1a3ed6814ef5ab6d8b38c388d6eec885bbfa6f9985e0625a28b1a3665e267",
+  "rows": [
+    {
+      "caseId": "case01",
+      "studentDigest": "d906446e27a930acb0710fd9dcff18e414c6e71abecd0547a40d175c50d50964",
+      "figureSha256": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38",
+      "answer": "5 cm",
+      "calculations": {
+        "width": "4",
+        "AE": "3",
+        "radius": "2",
+        "EI_EF": "1",
+        "CF_CG": "4",
+        "height_AB_CD": "6",
+        "EB": "3",
+        "EC": "5",
+        "linearCoefficient": "4",
+        "EO_squared": "5",
+        "CO_squared": "20",
+        "distance_O_to_EC_squared": "4"
+      },
+      "existence": "가로4, 세로6인 직사각형의 위변과 양옆변으로부터 2만큼 떨어진 중심에 반지름2의 원을 그린다. 왼쪽 변 위에서 AE=3인 E를 잡을 수 있고 E는 위 접점I보다 아래다. EO²=5,CO²=20,EC²=25이므로 EO²+CO²=EC²이다. 따라서 EOC가 직각삼각형이고, 넓이를 두 방식으로 구한 O에서 빗변EC까지 거리의 제곱은 EO²·CO²/EC²=4=r²이다. 거리는 양수이므로 r이며 EC는 원에 접한다. 그 수선의 발 F는 빗변 내부이고 AA닮음의 길이 관계 EF=EO²/EC=1, CF=CO²/EC=4도 일치한다. 이는 구성 검산에서 직각삼각형 넓이/AA를 사용하는 것이며 원의 접선곱/할선곱 정리를 전제로 하지 않는다."
+    },
+    {
+      "caseId": "case02",
+      "studentDigest": "162d0e70072f858c0f0c07e86dc267b40742eeec2e2338b70ff1a1f1d598ba86",
+      "figureSha256": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38",
+      "answer": "10 cm",
+      "calculations": {
+        "width": "8",
+        "AE": "6",
+        "radius": "4",
+        "EI_EF": "2",
+        "CF_CG": "8",
+        "height_AB_CD": "12",
+        "EB": "6",
+        "EC": "10",
+        "linearCoefficient": "8",
+        "EO_squared": "20",
+        "CO_squared": "80",
+        "distance_O_to_EC_squared": "16"
+      },
+      "existence": "가로8, 세로12인 직사각형의 위변과 양옆변으로부터 4만큼 떨어진 중심에 반지름4의 원을 그린다. 왼쪽 변 위에서 AE=6인 E를 잡을 수 있고 E는 위 접점I보다 아래다. EO²=20,CO²=80,EC²=100이므로 EO²+CO²=EC²이다. 따라서 EOC가 직각삼각형이고, 넓이를 두 방식으로 구한 O에서 빗변EC까지 거리의 제곱은 EO²·CO²/EC²=16=r²이다. 거리는 양수이므로 r이며 EC는 원에 접한다. 그 수선의 발 F는 빗변 내부이고 AA닮음의 길이 관계 EF=EO²/EC=2, CF=CO²/EC=8도 일치한다. 이는 구성 검산에서 직각삼각형 넓이/AA를 사용하는 것이며 원의 접선곱/할선곱 정리를 전제로 하지 않는다."
+    },
+    {
+      "caseId": "case03",
+      "studentDigest": "86718eccb6610c2fdb058db4533292bc5bc53594e80e77da1e4550e90e33b9f2",
+      "figureSha256": "9467c9d93293fd519039e702007769c743c38e190f6d86f1b4378a837e9f4171",
+      "answer": "10 cm",
+      "calculations": {
+        "width": "6",
+        "AE": "4",
+        "radius": "3",
+        "EI_EF": "1",
+        "CF_CG": "9",
+        "height_AB_CD": "12",
+        "EB": "8",
+        "EC": "10",
+        "linearCoefficient": "4",
+        "EO_squared": "10",
+        "CO_squared": "90",
+        "distance_O_to_EC_squared": "9"
+      },
+      "existence": "가로6, 세로12인 직사각형의 위변과 양옆변으로부터 3만큼 떨어진 중심에 반지름3의 원을 그린다. 왼쪽 변 위에서 AE=4인 E를 잡을 수 있고 E는 위 접점I보다 아래다. EO²=10,CO²=90,EC²=100이므로 EO²+CO²=EC²이다. 따라서 EOC가 직각삼각형이고, 넓이를 두 방식으로 구한 O에서 빗변EC까지 거리의 제곱은 EO²·CO²/EC²=9=r²이다. 거리는 양수이므로 r이며 EC는 원에 접한다. 그 수선의 발 F는 빗변 내부이고 AA닮음의 길이 관계 EF=EO²/EC=1, CF=CO²/EC=9도 일치한다. 이는 구성 검산에서 직각삼각형 넓이/AA를 사용하는 것이며 원의 접선곱/할선곱 정리를 전제로 하지 않는다."
+    },
+    {
+      "caseId": "case04",
+      "studentDigest": "bea33f44cabad9303ff228f18c270b7cbcfa5684598049582a1da7438765454a",
+      "figureSha256": "4fe1c766f1050e542fc6e39e102a0f2825c62cf15eb5d34e45a3d1b9bcabe0c2",
+      "answer": "13 cm",
+      "calculations": {
+        "width": "12",
+        "AE": "10",
+        "radius": "6",
+        "EI_EF": "4",
+        "CF_CG": "9",
+        "height_AB_CD": "15",
+        "EB": "5",
+        "EC": "13",
+        "linearCoefficient": "16",
+        "EO_squared": "52",
+        "CO_squared": "117",
+        "distance_O_to_EC_squared": "36"
+      },
+      "existence": "가로12, 세로15인 직사각형의 위변과 양옆변으로부터 6만큼 떨어진 중심에 반지름6의 원을 그린다. 왼쪽 변 위에서 AE=10인 E를 잡을 수 있고 E는 위 접점I보다 아래다. EO²=52,CO²=117,EC²=169이므로 EO²+CO²=EC²이다. 따라서 EOC가 직각삼각형이고, 넓이를 두 방식으로 구한 O에서 빗변EC까지 거리의 제곱은 EO²·CO²/EC²=36=r²이다. 거리는 양수이므로 r이며 EC는 원에 접한다. 그 수선의 발 F는 빗변 내부이고 AA닮음의 길이 관계 EF=EO²/EC=4, CF=CO²/EC=9도 일치한다. 이는 구성 검산에서 직각삼각형 넓이/AA를 사용하는 것이며 원의 접선곱/할선곱 정리를 전제로 하지 않는다."
+    },
+    {
+      "caseId": "case05",
+      "studentDigest": "b40928e4f3742284e78b31da8439c80a6fd128e8a04a766fbc4524515d999e97",
+      "figureSha256": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38",
+      "answer": "15 cm",
+      "calculations": {
+        "width": "12",
+        "AE": "9",
+        "radius": "6",
+        "EI_EF": "3",
+        "CF_CG": "12",
+        "height_AB_CD": "18",
+        "EB": "9",
+        "EC": "15",
+        "linearCoefficient": "12",
+        "EO_squared": "45",
+        "CO_squared": "180",
+        "distance_O_to_EC_squared": "36"
+      },
+      "existence": "가로12, 세로18인 직사각형의 위변과 양옆변으로부터 6만큼 떨어진 중심에 반지름6의 원을 그린다. 왼쪽 변 위에서 AE=9인 E를 잡을 수 있고 E는 위 접점I보다 아래다. EO²=45,CO²=180,EC²=225이므로 EO²+CO²=EC²이다. 따라서 EOC가 직각삼각형이고, 넓이를 두 방식으로 구한 O에서 빗변EC까지 거리의 제곱은 EO²·CO²/EC²=36=r²이다. 거리는 양수이므로 r이며 EC는 원에 접한다. 그 수선의 발 F는 빗변 내부이고 AA닮음의 길이 관계 EF=EO²/EC=3, CF=CO²/EC=12도 일치한다. 이는 구성 검산에서 직각삼각형 넓이/AA를 사용하는 것이며 원의 접선곱/할선곱 정리를 전제로 하지 않는다."
+    },
+    {
+      "caseId": "case06",
+      "studentDigest": "a0b9d94d4a6fe6511f1a2b1b60edceaf90c69c58fff9fff681419e394db8fa1a",
+      "figureSha256": "c5dc793820a0bf77cc69647ea9573f3d108fe7604a91b97a5d223bf2bc54b78a",
+      "answer": "17 cm",
+      "calculations": {
+        "width": "8",
+        "AE": "5",
+        "radius": "4",
+        "EI_EF": "1",
+        "CF_CG": "16",
+        "height_AB_CD": "20",
+        "EB": "15",
+        "EC": "17",
+        "linearCoefficient": "4",
+        "EO_squared": "17",
+        "CO_squared": "272",
+        "distance_O_to_EC_squared": "16"
+      },
+      "existence": "가로8, 세로20인 직사각형의 위변과 양옆변으로부터 4만큼 떨어진 중심에 반지름4의 원을 그린다. 왼쪽 변 위에서 AE=5인 E를 잡을 수 있고 E는 위 접점I보다 아래다. EO²=17,CO²=272,EC²=289이므로 EO²+CO²=EC²이다. 따라서 EOC가 직각삼각형이고, 넓이를 두 방식으로 구한 O에서 빗변EC까지 거리의 제곱은 EO²·CO²/EC²=16=r²이다. 거리는 양수이므로 r이며 EC는 원에 접한다. 그 수선의 발 F는 빗변 내부이고 AA닮음의 길이 관계 EF=EO²/EC=1, CF=CO²/EC=16도 일치한다. 이는 구성 검산에서 직각삼각형 넓이/AA를 사용하는 것이며 원의 접선곱/할선곱 정리를 전제로 하지 않는다."
+    },
+    {
+      "caseId": "case07",
+      "studentDigest": "97332c255ebecb8d42fd44e88b80f7aa6ff87b7a0fbd8fca4f898b47c6b6edde",
+      "figureSha256": "9467c9d93293fd519039e702007769c743c38e190f6d86f1b4378a837e9f4171",
+      "answer": "20 cm",
+      "calculations": {
+        "width": "12",
+        "AE": "8",
+        "radius": "6",
+        "EI_EF": "2",
+        "CF_CG": "18",
+        "height_AB_CD": "24",
+        "EB": "16",
+        "EC": "20",
+        "linearCoefficient": "8",
+        "EO_squared": "40",
+        "CO_squared": "360",
+        "distance_O_to_EC_squared": "36"
+      },
+      "existence": "가로12, 세로24인 직사각형의 위변과 양옆변으로부터 6만큼 떨어진 중심에 반지름6의 원을 그린다. 왼쪽 변 위에서 AE=8인 E를 잡을 수 있고 E는 위 접점I보다 아래다. EO²=40,CO²=360,EC²=400이므로 EO²+CO²=EC²이다. 따라서 EOC가 직각삼각형이고, 넓이를 두 방식으로 구한 O에서 빗변EC까지 거리의 제곱은 EO²·CO²/EC²=36=r²이다. 거리는 양수이므로 r이며 EC는 원에 접한다. 그 수선의 발 F는 빗변 내부이고 AA닮음의 길이 관계 EF=EO²/EC=2, CF=CO²/EC=18도 일치한다. 이는 구성 검산에서 직각삼각형 넓이/AA를 사용하는 것이며 원의 접선곱/할선곱 정리를 전제로 하지 않는다."
+    },
+    {
+      "caseId": "case08",
+      "studentDigest": "a9ca2e42e8e786e934581a2f0b2447cfe332e6edbadfb86b47ef9d1006fb8ada",
+      "figureSha256": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38",
+      "answer": "20 cm",
+      "calculations": {
+        "width": "16",
+        "AE": "12",
+        "radius": "8",
+        "EI_EF": "4",
+        "CF_CG": "16",
+        "height_AB_CD": "24",
+        "EB": "12",
+        "EC": "20",
+        "linearCoefficient": "16",
+        "EO_squared": "80",
+        "CO_squared": "320",
+        "distance_O_to_EC_squared": "64"
+      },
+      "existence": "가로16, 세로24인 직사각형의 위변과 양옆변으로부터 8만큼 떨어진 중심에 반지름8의 원을 그린다. 왼쪽 변 위에서 AE=12인 E를 잡을 수 있고 E는 위 접점I보다 아래다. EO²=80,CO²=320,EC²=400이므로 EO²+CO²=EC²이다. 따라서 EOC가 직각삼각형이고, 넓이를 두 방식으로 구한 O에서 빗변EC까지 거리의 제곱은 EO²·CO²/EC²=64=r²이다. 거리는 양수이므로 r이며 EC는 원에 접한다. 그 수선의 발 F는 빗변 내부이고 AA닮음의 길이 관계 EF=EO²/EC=4, CF=CO²/EC=16도 일치한다. 이는 구성 검산에서 직각삼각형 넓이/AA를 사용하는 것이며 원의 접선곱/할선곱 정리를 전제로 하지 않는다."
+    },
+    {
+      "caseId": "case09",
+      "studentDigest": "d4b9c21ecf16c54c6fe6a9c006c647046b67994c0a4e55baba6031935ef87e5b",
+      "figureSha256": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38",
+      "answer": "25 cm",
+      "calculations": {
+        "width": "20",
+        "AE": "15",
+        "radius": "10",
+        "EI_EF": "5",
+        "CF_CG": "20",
+        "height_AB_CD": "30",
+        "EB": "15",
+        "EC": "25",
+        "linearCoefficient": "20",
+        "EO_squared": "125",
+        "CO_squared": "500",
+        "distance_O_to_EC_squared": "100"
+      },
+      "existence": "가로20, 세로30인 직사각형의 위변과 양옆변으로부터 10만큼 떨어진 중심에 반지름10의 원을 그린다. 왼쪽 변 위에서 AE=15인 E를 잡을 수 있고 E는 위 접점I보다 아래다. EO²=125,CO²=500,EC²=625이므로 EO²+CO²=EC²이다. 따라서 EOC가 직각삼각형이고, 넓이를 두 방식으로 구한 O에서 빗변EC까지 거리의 제곱은 EO²·CO²/EC²=100=r²이다. 거리는 양수이므로 r이며 EC는 원에 접한다. 그 수선의 발 F는 빗변 내부이고 AA닮음의 길이 관계 EF=EO²/EC=5, CF=CO²/EC=20도 일치한다. 이는 구성 검산에서 직각삼각형 넓이/AA를 사용하는 것이며 원의 접선곱/할선곱 정리를 전제로 하지 않는다."
+    },
+    {
+      "caseId": "case10",
+      "studentDigest": "e7cecdc9017170672b4df442c5f3b47aa59ba390a5efa431d094a290a1dbf44c",
+      "figureSha256": "d55dde524b6053d2f77b4165ff867651c3d60a1250fbe44a5ee79cf6541e7f53",
+      "answer": "25 cm",
+      "calculations": {
+        "width": "24",
+        "AE": "21",
+        "radius": "12",
+        "EI_EF": "9",
+        "CF_CG": "16",
+        "height_AB_CD": "28",
+        "EB": "7",
+        "EC": "25",
+        "linearCoefficient": "36",
+        "EO_squared": "225",
+        "CO_squared": "400",
+        "distance_O_to_EC_squared": "144"
+      },
+      "existence": "가로24, 세로28인 직사각형의 위변과 양옆변으로부터 12만큼 떨어진 중심에 반지름12의 원을 그린다. 왼쪽 변 위에서 AE=21인 E를 잡을 수 있고 E는 위 접점I보다 아래다. EO²=225,CO²=400,EC²=625이므로 EO²+CO²=EC²이다. 따라서 EOC가 직각삼각형이고, 넓이를 두 방식으로 구한 O에서 빗변EC까지 거리의 제곱은 EO²·CO²/EC²=144=r²이다. 거리는 양수이므로 r이며 EC는 원에 접한다. 그 수선의 발 F는 빗변 내부이고 AA닮음의 길이 관계 EF=EO²/EC=9, CF=CO²/EC=16도 일치한다. 이는 구성 검산에서 직각삼각형 넓이/AA를 사용하는 것이며 원의 접선곱/할선곱 정리를 전제로 하지 않는다."
+    }
+  ],
+  "exposureDeclaration": {
+    "relatedManualQ08RawAndAuthorReviewExposed": true,
+    "oldFamily16CodeAnd12ActualSamplesExposed": true,
+    "priorOriginalQ08PageExposed": true,
+    "newU52FactoryCodePrivateDraftAnswersFullSolutionsExposedBeforeSeal": false,
+    "declaration": "관련 GYEONGSIN q08 raw/저자 검토와 기존 family16 코드·실제12표본에 이미 노출되었다. 원본 H q08도 이전 허가된 페이지에서 보았다. 현재 U52 inverseTangentRectangle.ts, private-drafts10.json, 새 factory 답/해설은 읽지 않았다. 완전한 관련자료 비노출 주장이 아닌, 학생전용10페이로드에 대한 독립 정확계산이다."
+  },
+  "limits": {
+    "actualFactoryCodeUnseen": true,
+    "actualFactoryFullSolutionsUnseen": true,
+    "actualFactoryGradeCertificate": false,
+    "sourceRightsNativeLoadableApproved": false,
+    "curriculum2022": "pending"
+  }
+}
