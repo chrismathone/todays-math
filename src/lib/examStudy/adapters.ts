@@ -23,6 +23,12 @@ import { answerIsChoiceNumber } from "@/lib/problem/provenance";
 import { draftErrors } from "./evidence";
 import { legacyCanonicalParams } from "./identity";
 import { curatedLegacyCheck } from "./legacyVerification";
+import { legacyReinforcement } from "./legacyReinforcement";
+import {
+  boundedCountDistractors,
+  printedStatementCount,
+  selectedStudyAnswer,
+} from "./studyChoiceBounds";
 
 const LEGACY_VERSION = "9cfbb8683-r1";
 const courseIsSupported = (course: string): course is ExamStudyCourse =>
@@ -37,7 +43,7 @@ export function nativeQuestionFormat(item: {
     : "단답형";
 }
 
-/** Existing derivation is the only MC conversion path; never used for written. */
+/** Existing MC packaging, with examStudy-only finite statement-count alternatives. */
 export function deriveStudyMultipleChoice(
   item: ExamStudyDraft,
   familyId: string,
@@ -52,16 +58,23 @@ export function deriveStudyMultipleChoice(
       solution: item.solution,
       familyKey: familyId,
       problemType: "활용",
-      distractors: item.distractors,
+      distractors: boundedCountDistractors(item),
     },
     createRng(seed),
   );
-  return {
+  const result: ExamStudyDraft = {
     ...item,
     content: derived.content,
     answer: derived.answer,
     questionType: derived.questionType,
   };
+  // Read back the actual choices; do not trust explicit or generic distractors.
+  if (
+    /개$/.test(item.answer.trim()) &&
+    printedStatementCount(item.content) !== undefined
+  )
+    selectedStudyAnswer(result);
+  return result;
 }
 
 function supportedFormats(
@@ -92,9 +105,11 @@ type AdapterDefinition = Pick<
 };
 
 function adapter(definition: AdapterDefinition): ExamStudyFamily | undefined {
+  const reinforcement = legacyReinforcement(definition.id, definition.make);
+  const make = reinforcement?.make ?? definition.make;
   let sample: ExamStudyDraft | undefined;
   try {
-    sample = definition.make(20261018, 0);
+    sample = make(20261018, 0);
   } catch {
     /* Keep broken generators out of the selectable catalog. */
   }
@@ -110,18 +125,26 @@ function adapter(definition: AdapterDefinition): ExamStudyFamily | undefined {
   const firstFigure = sample.figureSpec;
   return {
     id: definition.id,
-    version: LEGACY_VERSION,
-    title: definition.title,
+    version: reinforcement?.version ?? LEGACY_VERSION,
+    title: reinforcement?.title ?? definition.title,
     course: definition.course,
     source: definition.source,
     unitIds: definition.unitIds,
     unitSections: definition.unitSections,
-    fulfills: curated
-      ? [{ requirement: curated.requirement, level: "full" }]
-      : (definition.components ?? []).map((requirement) => ({
-          requirement,
-          level: "component",
-        })),
+    fulfills: reinforcement
+      ? (definition.components ?? [reinforcement.requirement]).map(
+          (requirement) => ({
+            requirement,
+            level:
+              requirement === reinforcement.requirement ? "full" : "component",
+          }),
+        )
+      : curated
+        ? [{ requirement: curated.requirement, level: "full" }]
+        : (definition.components ?? []).map((requirement) => ({
+            requirement,
+            level: "component",
+          })),
     formats,
     difficulties: definition.difficulty ? [definition.difficulty] : [],
     // A sample with no figure does not assert that every variant lacks a figure.
@@ -130,24 +153,28 @@ function adapter(definition: AdapterDefinition): ExamStudyFamily | undefined {
       firstFigure && typeof firstFigure.kind === "string"
         ? [firstFigure.kind]
         : [],
-    paramDomain: {
+    paramDomain: reinforcement?.paramDomain ?? {
       kind: "sampled",
       description: "기존 등록 문형의 유한 시도 표본; 전체 변형 수 미측정",
       maxAttempts: 48,
     },
-    evidence: curated?.evidence,
+    evidence: reinforcement?.evidence ?? curated?.evidence,
     generate(seed, variant) {
-      const item = definition.make(seed, variant);
-      return { ...item, parameters: legacyCanonicalParams(item) };
+      const item = make(seed, variant);
+      return reinforcement
+        ? item
+        : { ...item, parameters: legacyCanonicalParams(item) };
     },
     canonicalParams: (item) => item.parameters,
-    verify: curated
-      ? curated.verify
-      : (item) => ({
-          valid: draftErrors(item).length === 0,
-          checks: [],
-          errors: draftErrors(item),
-        }),
+    verify: reinforcement
+      ? reinforcement.verify
+      : curated
+        ? curated.verify
+        : (item) => ({
+            valid: draftErrors(item).length === 0,
+            checks: [],
+            errors: draftErrors(item),
+          }),
   };
 }
 
