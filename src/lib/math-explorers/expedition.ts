@@ -230,6 +230,7 @@ export function conceptUnits(
       title: unit.title,
       cards: cards.length,
       collected: cards.filter((card) => record?.cards[card.id]?.level).length,
+      settled: cards.filter((card) => !!record?.cards[card.id]).length,
       ...(bankKindForExplorerUnit(unit.id) === "middle"
         ? { bankDays: middleBankDays }
         : {}),
@@ -293,9 +294,11 @@ export function expeditionLearning(
         ? summary.currentSectionId
         : bankSectionsForExplorerUnit(unitId)[0]
       : null;
+  // A concept day until every card was studied once — a card left at its solution
+  // comes back at a memory review, not as a replay of the whole unit (decision 6).
   if (
     definitionCards.some(
-      (card) => card.unit === unitId && !record?.cards[card.id]?.level,
+      (card) => card.unit === unitId && !record?.cards[card.id],
     )
   )
     return { unitId, sectionId, plan: unitPlan(unitId) };

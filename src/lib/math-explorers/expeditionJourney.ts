@@ -134,7 +134,7 @@ export function legacyExpeditionJourney(
     record?.goalUnitId ??
     units.find((unit) =>
       definitionCards.some(
-        (card) => card.unit === unit.id && !record?.cards[card.id]?.level,
+        (card) => card.unit === unit.id && !record?.cards[card.id],
       ),
     )?.id ??
     units[0]?.id;

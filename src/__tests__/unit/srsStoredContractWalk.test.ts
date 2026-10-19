@@ -13,6 +13,7 @@ import {
 } from "@/lib/math-explorers/engine";
 import {
   definitionCard,
+  definitionDue,
   definitionNeedsRead,
   definitionOptions,
   definitionQuestionId,
@@ -21,6 +22,7 @@ import {
   expeditionCourseRecommendation,
   expeditionCoursePrerequisiteDecision,
   expeditionDto,
+  expeditionToday,
   initialOwnedExplorer,
   updateExpedition,
 } from "@/lib/math-explorers/expedition";
@@ -401,5 +403,96 @@ describe("a 초5 student walking the expedition keeps a readable record", () => 
     expect(session().index).toBe(1);
     expect(session().followUp).toBeUndefined();
     expect(state.expedition!.mission!.answered).toBe(1);
+  });
+
+  it("moves on to the bank when a hard card ends at its solution again in review; that card waits for later reviews", () => {
+    /** One concept or review day; `missCard` (or the day's first «맞다/아니다») ends at its solution. */
+    function conceptDay(
+      start: StoredSrsState,
+      now: Date,
+      missCard: string | null,
+    ) {
+      let s = persist(
+        start,
+        startExpedition(
+          withDefaultCoursePlan(start, "초5", now),
+          studentId,
+          now,
+          randomUUID(),
+          11,
+          randomUUID,
+        ),
+        now,
+      );
+      const session = () => s.explorers!.profile.definitions!.session!;
+      let missed: string | null = null;
+      for (let guard = 0; guard < 80 && !session().done; guard++) {
+        if (definitionNeedsRead(s.explorers!.profile, session())) {
+          s = explorerAction(
+            s,
+            { type: "read", questionId: definitionQuestionId(session()) },
+            now,
+            true,
+          );
+          continue;
+        }
+        const task = session().queue[session().index];
+        if (
+          missed ||
+          task.kind !== 2 ||
+          (missCard !== null && task.cardId !== missCard)
+        ) {
+          s = solveDefinitionStep(s, now);
+          continue;
+        }
+        missed = task.cardId;
+        const questionId = definitionQuestionId(session());
+        const wrong = [
+          definitionOptions(session(), task).indexOf(
+            1 - Number(definitionCard(task.cardId).truth),
+          ),
+        ];
+        for (let i = 0; i < 2; i++)
+          s = explorerAction(
+            s,
+            { type: "answer", questionId, choiceIds: wrong },
+            now,
+            true,
+          );
+        s = explorerAction(s, { type: "understood", questionId }, now, true);
+      }
+      expect(session().done).toBe(true);
+      expect(s.expedition!.mission!.status).toBe("complete");
+      return { state: s, missed: missed!, route: session().route };
+    }
+    const today = (s: StoredSrsState, now: Date) =>
+      expeditionToday(withDefaultCoursePlan(s, "초5", now), studentId, now)
+        .plan;
+
+    const day1 = conceptDay(emptySrsState(), firstDay, null);
+    const hard = day1.missed;
+    expect(
+      day1.state.explorers!.profile.definitions!.cards[hard],
+    ).toMatchObject({ level: 0, missed: 1 });
+    // Day 2 is the planned review of the five new cards, the hard one included.
+    const day2Date = new Date(firstDay.getTime() + DAY);
+    expect(today(day1.state, day2Date)).toMatchObject({
+      kind: "explorers",
+      route: "memory",
+    });
+    expect(
+      definitionDue(day1.state.explorers!.profile, kstDateOf(day2Date)).map(
+        (card) => card.id,
+      ),
+    ).toContain(hard);
+    const day2 = conceptDay(day1.state, day2Date, hard);
+    expect(day2.route).toBe("memory");
+    expect(day2.missed).toBe(hard);
+    expect(day2.state.explorers!.profile.definitions!.cards[hard].level).toBe(
+      0,
+    );
+    // Day 3: the unit's concept day is not replayed — decision 6, the card waits for review.
+    const day3Date = new Date(firstDay.getTime() + 2 * DAY);
+    expect(today(day2.state, day3Date).kind).toBe("elementary");
   });
 });
