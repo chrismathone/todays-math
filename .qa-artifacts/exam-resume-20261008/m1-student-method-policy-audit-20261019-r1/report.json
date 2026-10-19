@@ -1,5 +1,5 @@
 {
-  "status": "passed-bounded-policy-and-contract; output-implementation-unavailable",
+  "status": "passed-bounded-policy-contract-and-mocked-actual-resolver",
   "rootCommit": "defb4d9ae65e5115f7d546daac99d77623703e9d",
   "policy": "20261019-m1-reviewed-student-methods-r2",
   "execution": {
@@ -35,14 +35,15 @@
     "currentNativeFormatsOnly": true,
     "strictClientInjectionRejected": true,
     "policyAndVersionInvalidateManifestAndOutputDigest": true,
-    "componentNullNotGradeCertification": true
+    "componentNullNotGradeCertification": true,
+    "actualResolverRejectsStaleOrUnavailableOutput": true
   },
   "limitations": [
-    "src/lib/examStudy/output.ts is absent at audited root commit. No actual HTTP/output handler executed; strict generate/resolve schemas and parseExamStudyRequest were exercised. Digest mismatch was checked, not HTTP409 behavior.",
     "identity/planner and transport boundaries mocked; no full-registry rendering or whole-engine certification.",
     "Current native formats are mixed/short-answer only; MC/written unsupported and never fabricated.",
     "Method/primary curriculum audit was not repeated. Exact policy r3 reference used only as recorded pointer.",
-    "Read of algebra.ts range incidentally displayed beginning of following shiftedSystem definition; it was neither evaluated nor used. AST execution selects only equalLegs/equalDomain and inverseArea/inverseAreaDomain/graphBasis."
+    "Read of algebra.ts range incidentally displayed beginning of following shiftedSystem definition; it was neither evaluated nor used. AST execution selects only equalLegs/equalDomain and inverseArea/inverseAreaDomain/graphBasis.",
+    "Corrected actual resolver executed with generation/authorization/JSON transport mocked. No live HTTP server, auth/database integration, strict JSON parser size/depth verification, or figure rendering was run. Earlier policy/version→digest changes and actual resolver digest→409 checks are composed evidence, not an end-to-end real-engine resolver run."
   ],
   "methodReference": {
     "path": ".qa-artifacts/exam-resume-20261008/m1-inverse-geometry-curriculum-audit-20261019-r3/report.json",
@@ -62,5 +63,29 @@
     "allReadFilesMatchRequestedCommitAfterCRLFNormalization": true,
     "ownRootMutations": 0,
     "priorSealedRawHashesUnchanged": true
+  },
+  "priorMissingFileRecord": {
+    "preserved": "report-before-resolver.json",
+    "sha256": "a3fc35728153014650c766f4b875f973f00e0215be3d4afc4307126a6488b9fe",
+    "reason": "User corrected output.ts filename; original failure/limitations retained byte-for-byte."
+  },
+  "resolverAddendum": {
+    "actualSource": "src/lib/examStudyRoutes.ts",
+    "evidence": "resolver-calculations.json",
+    "cases": 16,
+    "matchingDigest200": true,
+    "staleDigest409": true,
+    "changedRegeneration409": true,
+    "zeroDelivered409": true,
+    "unavailable409": true,
+    "generationException409": true,
+    "strictNestedAndEnvelopeInjection400BeforeGeneration": true,
+    "renderCalls": 0,
+    "dbCalls": 0,
+    "sourceHashes": {
+      "src/contracts/difficulty.ts": "9a26abf49ca126b06f98051c10b964b423018186b1f5a2011d94b787b853a2fc",
+      "src/contracts/examStudy.contract.ts": "5f5b38ad33b8c08c8d6e59fe1e59ec7af0805b0da7b25d006d81d09dfab283ec",
+      "src/lib/examStudyRoutes.ts": "22e94bf55c25d41455561681f4ee7f6c1a41187bbf1eaa877d6ff3960b3a085f"
+    }
   }
 }
