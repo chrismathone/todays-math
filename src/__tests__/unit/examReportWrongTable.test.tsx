@@ -2,7 +2,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import { StudentExamReportPaper } from "@/components/exam-report/ExamReportPaper";
 import { paginateWrongTableRows } from "@/lib/examReport/wrongTable";
-import { examReportTableDom } from "@/lib/examReport/wrongTableDom";
+import { styledReportTableDom as examReportTableDom } from "@/lib/examReport/styledReportDom";
 import { wrongTableFixture } from "../helpers/examReportWrongTableFixture";
 
 describe("합의한 H1 틀린 문항 표", () => {
@@ -31,7 +31,7 @@ describe("합의한 H1 틀린 문항 표", () => {
             Number(node.getAttribute("data-er-wrong-no")),
           ),
         ).toEqual(report.wrongQuestions.map((question) => question.no));
-        for (const table of root.querySelectorAll(".er-wrongTable")) {
+        for (const table of root.querySelectorAll("table.sc-wrongTable")) {
           expect(table.getAttribute("data-er-wrong-columns")).toBe(
             String(columns),
           );
@@ -42,15 +42,18 @@ describe("합의한 H1 틀린 문항 표", () => {
         );
         expect(continuation).toHaveLength(total - 1);
         for (const page of continuation) {
-          expect(page.querySelector(".er-area h3")?.textContent).toBe(
-            "틀린 문항 (이어서)",
-          );
-          expect(page.querySelector(".er-paperHead")?.textContent).toContain(
+          expect(
+            page.querySelector("[data-report-block=wrongTable] > h3")
+              ?.textContent,
+          ).toBe("틀린 문항 (이어서)");
+          expect(page.querySelector(".sc-running")?.textContent).toContain(
             report.student.name,
           );
-          expect(page.querySelector(".er-note, .er-numbers")).toBeNull();
+          expect(
+            page.querySelector(".sc-teacherNote, .sc-numberRow"),
+          ).toBeNull();
         }
-        expect(root.querySelector(".er-note p")?.textContent).toBe(
+        expect(root.querySelector(".sc-noteText")?.textContent).toBe(
           report.teacherNote,
         );
       }
@@ -84,7 +87,7 @@ describe("합의한 H1 틀린 문항 표", () => {
     expect(
       root.querySelectorAll('[data-er-summary="true"] [data-er-wrong-no]'),
     ).toHaveLength(0);
-    expect(root.querySelector(".er-note p")?.textContent).toBe(
+    expect(root.querySelector(".sc-noteText")?.textContent).toBe(
       report.teacherNote,
     );
     expect(
@@ -105,7 +108,7 @@ describe("합의한 H1 틀린 문항 표", () => {
     );
     for (let pass = 0; pass < 2; pass++) {
       examReportTableDom(root, [3, 4, 3]);
-      const sheets = root.querySelectorAll(".er-sheet");
+      const sheets = root.querySelectorAll(".sc-sheet");
       expect(sheets).toHaveLength(3);
       expect(
         [...root.querySelectorAll("[data-er-wrong-no]")].map((node) =>
@@ -114,15 +117,15 @@ describe("합의한 H1 틀린 문항 표", () => {
       ).toEqual(report.wrongQuestions.map((q) => q.no));
       expect(
         root.querySelectorAll(
-          '[data-er-table-continuation="true"] .er-area h3',
+          '[data-er-table-continuation="true"] [data-report-block=wrongTable] > h3',
         ),
       ).toHaveLength(2);
-      expect(sheets[0].querySelector(".er-note p")?.textContent).toBe(
+      expect(sheets[0].querySelector(".sc-noteText")?.textContent).toBe(
         report.teacherNote,
       );
       for (const [i, sheet] of [...sheets].entries()) {
         expect(sheet.getAttribute("aria-label")).toBe(`학생 성적표 ${i + 1}쪽`);
-        expect(sheet.querySelector(".er-footer")?.textContent).toContain(
+        expect(sheet.querySelector(".sc-running")?.textContent).toContain(
           `${i + 1} / 3쪽`,
         );
       }
@@ -139,12 +142,17 @@ describe("합의한 H1 틀린 문항 표", () => {
       <StudentExamReportPaper report={report} />,
     );
     const style = document.createElement("style");
-    style.textContent = ".er-sheet{height:1000px;padding:20px;gap:10px}";
+    style.textContent = ".sc-sheet{height:1000px;padding:20px;gap:10px}";
     document.head.append(style);
     document.body.append(root);
     let noteHeight = 120;
     const height = (node: HTMLElement): number => {
-      if (node.matches(".er-sheet")) return 1000;
+      if (node.matches(".sc-sheet")) return 1000;
+      if (node.matches(".sc-body"))
+        return [...node.children].reduce(
+          (sum, child) => sum + height(child as HTMLElement),
+          0,
+        );
       if (node.matches("[data-er-wrong-row]"))
         return node.querySelector('[data-er-wrong-no="1"]') ? 60 : 20;
       if (node.matches("tbody"))
@@ -152,11 +160,11 @@ describe("합의한 H1 틀린 문항 표", () => {
           (sum, row) => sum + height(row as HTMLElement),
           0,
         );
-      if (node.matches(".er-wrongArea"))
+      if (node.matches(".sc-wrongTable"))
         return 40 + height(node.querySelector("tbody")!);
-      if (node.matches(".er-note")) return noteHeight;
-      if (node.matches(".er-paperHead")) return 80;
-      if (node.matches(".er-numbers")) return 100;
+      if (node.matches(".sc-teacherNote")) return noteHeight;
+      if (node.matches(".sc-running")) return 80;
+      if (node.matches(".sc-numberRow")) return 100;
       return 20;
     };
     const rect = vi

@@ -1,6 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import {
+  paginateWrongTableRows,
+  type WrongTableLayout,
+} from "@/lib/examReport/wrongTable";
+import { styledReportTableDom } from "@/lib/examReport/styledReportDom";
 import {
   PaperStrip,
   type PaperStripPage,
@@ -29,6 +34,9 @@ const OPTION_LABELS = {
   average: "반 평균",
   trend: "월말평가 추이",
 } as const;
+const ACTIVE_CANDIDATES = STYLE_CANDIDATES.filter((candidate) =>
+  ["H1", "letter", "grid", "ledger"].includes(candidate.id),
+);
 
 /** 조작 상태는 미리보기에만 있다. 지면은 후보별 순수 함수로 그린다. */
 export function ExamReportStyles() {
@@ -42,7 +50,45 @@ export function ExamReportStyles() {
     trend: true,
   });
   const { report, average } = styleFixture(scenario);
-  const candidates = STYLE_CANDIDATES.map((candidate) => ({
+  const preview = useRef<HTMLDivElement>(null);
+  const fitKey = JSON.stringify([scenario, composition, options]);
+  const [fit, setFit] = useState<{
+    key: string;
+    layouts: Record<string, WrongTableLayout>;
+  }>({ key: "", layouts: {} });
+  const layouts = fit.key === fitKey ? fit.layouts : {};
+  const layoutKey = JSON.stringify(layouts);
+  useEffect(() => {
+    let active = true;
+    const measure = () => {
+      if (!active || !preview.current) return;
+      const next: Record<string, WrongTableLayout> = {};
+      for (const candidate of ACTIVE_CANDIDATES) {
+        const metrics = styledReportTableDom(
+          preview.current,
+          undefined,
+          candidate.id,
+        );
+        if (metrics)
+          next[candidate.id] = paginateWrongTableRows(
+            metrics.heights,
+            metrics.first,
+            metrics.continuation,
+          );
+      }
+      setFit((old) =>
+        old.key === fitKey &&
+        JSON.stringify(old.layouts) === JSON.stringify(next)
+          ? old
+          : { key: fitKey, layouts: next },
+      );
+    };
+    void (document.fonts?.ready ?? Promise.resolve()).then(measure);
+    return () => {
+      active = false;
+    };
+  }, [fitKey, layoutKey]);
+  const candidates = ACTIVE_CANDIDATES.map((candidate) => ({
     ...candidate,
     pages: styleCandidatePages(candidate.id, report, {
       ...options,
@@ -50,6 +96,7 @@ export function ExamReportStyles() {
       header: PREVIEW_HEADER,
       footer: PREVIEW_FOOTER,
       average: options.average ? average : null,
+      wrongTableLayout: layouts[candidate.id],
     }),
   }));
   const pageOf = (
@@ -83,9 +130,10 @@ export function ExamReportStyles() {
       <header className={s.header}>
         <h1>월말평가 성적표 · 지면 스타일</h1>
         <p>
-          H1과 후보 여섯 가지입니다. 같은 내용·블록 순서를 비교합니다.
+          합의한 네 양식입니다. 같은 내용·구성을 비교합니다.
           학생·시험·이력·연락처는 모두 지어낸 예시입니다.
         </p>
+        <p>제외: 증서형 · 신문형 · 큰 숫자형</p>
       </header>
       <div className={s.controls}>
         <fieldset className={s.compositions}>
@@ -162,16 +210,18 @@ export function ExamReportStyles() {
             .join(" → ")}
         </p>
         <p className={s.notice}>
-          자리가 모자라면 다음 쪽으로 이어집니다. «요약 한 장»에도 추가 쪽이
+          넘치는 오답 행만 다음 쪽으로 이어집니다. «요약 한 장»에도 추가 쪽이
           생길 수 있습니다. 이력이 한 회면 추이 칸을 뺍니다.
         </p>
       </div>
-      <PaperStrip
-        pages={pages}
-        label="성적표 스타일 일곱 가지 비교"
-        hint="첫 쪽 일곱 장 → 후보별 이어지는 쪽 · 쪽을 누르면 확대"
-        maxScale={0.72}
-      />
+      <div ref={preview}>
+        <PaperStrip
+          pages={pages}
+          label="성적표 스타일 네 가지 비교"
+          hint="첫 쪽 네 장 → 양식별 이어지는 오답 표 · 쪽을 누르면 확대"
+          maxScale={0.72}
+        />
+      </div>
     </main>
   );
 }

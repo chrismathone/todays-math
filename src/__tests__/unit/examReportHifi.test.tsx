@@ -26,7 +26,7 @@ describe("월말평가 성적표 Hi-fi 시안", () => {
       screen.queryByRole("button", { name: /^M1 ·/ }),
     ).not.toBeInTheDocument();
     expect(
-      screen.getAllByRole("region", { name: "학생 성적표 1쪽" }).length,
+      screen.getAllByRole("region", { name: "H1 · 1쪽" }).length,
     ).toBeGreaterThan(0);
     for (const id of ["H1", "H2", "H3", "H4"]) {
       fireEvent.click(

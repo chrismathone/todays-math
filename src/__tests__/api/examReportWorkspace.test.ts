@@ -36,6 +36,7 @@ import {
   settleErrorLogWrites,
 } from "@/lib/errorLog/withErrorLog";
 import { ExamReportError } from "@/lib/examReport/read";
+import { examReportOptionsSchema } from "@/contracts/examReportWorkspace.contract";
 import {
   reportCandidate,
   reportId,
@@ -75,6 +76,59 @@ beforeEach(() => {
   });
 });
 describe("실제 성적표 라우트 계약과 원장 관문", () => {
+  it.each(["H1", "letter", "grid", "ledger"] as const)(
+    "%s 양식을 설정 요청과 응답 JSON에 그대로 전달한다",
+    async (style) => {
+      const report = reportCandidate().current.report;
+      const options = examReportOptionsSchema.parse({ style });
+      m.settings.mockResolvedValueOnce({
+        classReport: {
+          publication: report.publication,
+          testId: report.testId,
+          classId: report.classId,
+          className: report.className,
+          students: [],
+          questions: [],
+          rollup: { gradedCount: 0, absentCount: 0, averageScore: null },
+        },
+        options,
+        optionsDigest: "b".repeat(64),
+        students: [],
+      });
+      const response = await settings(
+        request("PATCH", "/settings", {
+          expectedOptionsDigest: "a".repeat(64),
+          options: { style },
+        }),
+        context,
+      );
+      expect(response.status).toBe(200);
+      expect(response.headers.get("cache-control")).toBe("no-store");
+      expect((await response.json()).data.options).toEqual(options);
+      expect(m.settings).toHaveBeenCalledWith(
+        expect.anything(),
+        params.testId,
+        {
+          expectedOptionsDigest: "a".repeat(64),
+          options,
+        },
+      );
+    },
+  );
+  it.each(["certificate", "newspaper", "big", "h1", "", null])(
+    "허용하지 않은 양식 %s는 400으로 거절하고 저장하지 않는다",
+    async (style) => {
+      const response = await settings(
+        request("PATCH", "/settings", {
+          expectedOptionsDigest: "a".repeat(64),
+          options: { style },
+        }),
+        context,
+      );
+      expect(response.status).toBe(400);
+      expect(m.settings).not.toHaveBeenCalled();
+    },
+  );
   it("새 M1 설정 저장은 400으로 거절하고 저장 함수에 이르지 않는다", async () => {
     const response = await settings(
       request("PATCH", "/settings", {

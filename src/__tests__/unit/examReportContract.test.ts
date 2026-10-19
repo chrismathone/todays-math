@@ -55,4 +55,27 @@ describe("성적표 계약의 짝", () => {
     repeated.report.questionCount = 2;
     expect(examReportSnapshotSchema.safeParse(repeated).success).toBe(false);
   });
+  it("확정 snapshot도 네 양식만 읽고 H1 기본값은 기존 옵션 모양을 유지한다", () => {
+    const { current } = reportCandidate();
+    const legacy = examReportSnapshotSchema.parse(current);
+    expect(
+      examReportSnapshotSchema.parse({
+        ...current,
+        options: { ...current.options, style: "H1" },
+      }),
+    ).toEqual(legacy);
+    for (const style of ["letter", "grid", "ledger"] as const)
+      expect(
+        examReportSnapshotSchema.parse({
+          ...current,
+          options: { ...current.options, style },
+        }).options.style,
+      ).toBe(style);
+    expect(
+      examReportSnapshotSchema.safeParse({
+        ...current,
+        options: { ...current.options, style: "certificate" },
+      }).success,
+    ).toBe(false);
+  });
 });

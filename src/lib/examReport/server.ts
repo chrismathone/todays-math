@@ -9,6 +9,7 @@ import type {
   examReportPrintInputSchema,
   examReportSettingsInputSchema,
 } from "@/contracts/examReportWorkspace.contract";
+import { examReportOptionsForStorage } from "@/contracts/examReportWorkspace.contract";
 import { assertClassWrite } from "@/lib/classAccess";
 import { db } from "@/lib/db";
 import { noteErrorLog } from "@/lib/errorLog/scope";
@@ -22,7 +23,7 @@ import { personalViewer } from "@/lib/ownerScope";
 import { requireOwnedClass } from "@/lib/ownership";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import type { SessionUser } from "@/lib/session";
-import { sha256 } from "@/lib/textbook/hash.server";
+import { canonicalHash, sha256 } from "@/lib/textbook/hash.server";
 import {
   buildExamReportPaperHtml,
   buildClassExamReportPaperHtml,
@@ -211,6 +212,9 @@ export async function saveExamReportSettings(
     const context = await lockedContext(tx, session, testId, test.classId);
     if (context.optionsDigest !== input.expectedOptionsDigest)
       throw reportConflict();
+    const options = examReportOptionsForStorage(input.options);
+    if (canonicalHash(options) === context.optionsDigest)
+      return reportListData(context);
     // 문장을 쓰지 않은 학생·결시도 포함한다. 새 학생도 반의 같은 설정으로 연다.
     for (const entry of context.entries) {
       if (!entry.draft)
@@ -221,13 +225,13 @@ export async function saveExamReportSettings(
             studentId: entry.student.id,
             userId: session.id,
             branchId: test.publication!.branchId,
-            options: input.options,
+            options,
           },
         });
     }
     await tx.examReportDraft.updateMany({
       where: { testId },
-      data: { options: input.options },
+      data: { options },
     });
     return reportListData(await loadExamReportContext(testId, tx));
   });

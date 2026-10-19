@@ -7,6 +7,7 @@ import {
   studentExamReportPages,
 } from "@/components/exam-report/ExamReportPaper";
 import { EXAM_REPORT_PAPER_CSS } from "@/components/exam-report/paperStyles";
+import { styledReportOverflow } from "@/lib/examReport/styledReportDom";
 import { PaperStrip } from "@/components/paper-strip/PaperStrip";
 import { PickerDialog } from "@/components/picker-dialog/PickerDialog";
 import WorkspacePageHeader from "@/components/unified/WorkspacePageHeader";
@@ -131,31 +132,33 @@ function usePaperOverflow(key: string) {
       if (!active) return;
       const sheets =
         ref.current?.querySelectorAll<HTMLElement>(".er-sheet") ?? [];
-      const overflow = [...sheets].some((sheet) => {
-        if (!sheet.clientHeight) return false;
-        const footer = sheet.querySelector<HTMLElement>(".er-footer");
-        const rect = sheet.getBoundingClientRect();
-        const scale = rect.height / sheet.clientHeight;
-        const elements = [...sheet.children] as HTMLElement[];
-        return (
-          sheet.scrollHeight > sheet.clientHeight + 1 ||
-          sheet.scrollWidth > sheet.clientWidth + 1 ||
-          elements.some((element, i) => {
-            if (element.scrollHeight > element.clientHeight + 2) return true;
-            const next = elements[i + 1];
-            return (
-              next &&
-              element.getBoundingClientRect().bottom >
-                next.getBoundingClientRect().top + scale
-            );
-          }) ||
-          Boolean(
-            footer &&
-            footer.getBoundingClientRect().bottom >
-              rect.bottom - ((9 * 96) / 25.4) * scale,
-          )
-        );
-      });
+      const overflow =
+        (ref.current ? styledReportOverflow(ref.current) : false) ||
+        [...sheets].some((sheet) => {
+          if (!sheet.clientHeight) return false;
+          const footer = sheet.querySelector<HTMLElement>(".er-footer");
+          const rect = sheet.getBoundingClientRect();
+          const scale = rect.height / sheet.clientHeight;
+          const elements = [...sheet.children] as HTMLElement[];
+          return (
+            sheet.scrollHeight > sheet.clientHeight + 1 ||
+            sheet.scrollWidth > sheet.clientWidth + 1 ||
+            elements.some((element, i) => {
+              if (element.scrollHeight > element.clientHeight + 2) return true;
+              const next = elements[i + 1];
+              return (
+                next &&
+                element.getBoundingClientRect().bottom >
+                  next.getBoundingClientRect().top + scale
+              );
+            }) ||
+            Boolean(
+              footer &&
+              footer.getBoundingClientRect().bottom >
+                rect.bottom - ((9 * 96) / 25.4) * scale,
+            )
+          );
+        });
       setFit({
         key,
         overflow,
