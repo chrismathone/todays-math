@@ -1,0 +1,20 @@
+{
+  "kind": "controlled-in-memory-coupling-demonstration",
+  "productionSourceChanged": false,
+  "actualR1OutputsChanged": false,
+  "sourceSha256": "22677722aca4b36748cb330cb17fe0d36ae8936d1fc54836b785a4afafa834ed",
+  "sourceFault": "replace shared make answer expression with constant 0 in memory only",
+  "printedContentUnchanged": true,
+  "independentExpected": "\\sqrt{2}-\\sqrt{7}",
+  "faultySharedAnswer": "0",
+  "currentVerifierAgainstFaultySharedMake": {
+    "valid": true,
+    "checks": [
+      "independent-solution",
+      "essential-conditions"
+    ],
+    "errors": []
+  },
+  "finding": "Same faulty make answer is used by generate and verifier; canonical solution also incorporates this shared wrong answer, so exact template equality does not independently reject it.",
+  "limit": "Counterfactual fault injection, not a claim that current production answer is wrong. Actual unchanged24 remain independently correct."
+}

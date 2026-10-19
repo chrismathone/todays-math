@@ -91,6 +91,17 @@ const table = (start: number) =>
     root: rootThousandths(start + i),
   }));
 
+/** Verify rounding with squared midpoint inequalities, independently of the generator search. */
+function checkPrintedRoot(hundredths: number, rounded: number): boolean {
+  if (!Number.isSafeInteger(rounded) || rounded <= 0) return false;
+  const exact = BigInt(4) * BigInt(hundredths) * BigInt(10000),
+    twice = BigInt(2) * BigInt(rounded),
+    one = BigInt(1);
+  return (
+    (twice - one) ** BigInt(2) <= exact && exact < (twice + one) ** BigInt(2)
+  );
+}
+
 function make({ start, bRoot, index }: Parameters): ExamStudyDraft {
   const cells = table(start),
     root = cells[index].root;
@@ -130,7 +141,7 @@ const sameParams = (actual: CanonicalParams, expected: Parameters) =>
 /** Finite internal implementation; public selection is closed by studyReleaseHold. */
 export const inverseRootTable: ExamStudyFamily = {
   id: "study-middle-inverse-root-table",
-  version: "1",
+  version: "2",
   title: "제곱근표 결합 결과에서 입력 열 복원",
   course: "중3",
   unitIds: ["중3|무리수와 실수"],
@@ -179,10 +190,8 @@ export const inverseRootTable: ExamStudyFamily = {
         inputRow = lines.find((l) => l.startsWith("|$x$|")),
         rootRow = lines.find((l) => l.startsWith("|$\\sqrt{x}$의 근삿값|"));
       insist(inputRow && rootRow, "입력과 근삿값 표가 필요함");
-      const inputs = inputRow
-          .split("|")
-          .slice(2, -1)
-          .map((c) => parseCell(c, 2)),
+      const printedInputs = inputRow.split("|").slice(2, -1);
+      const inputs = printedInputs.map((c) => parseCell(c, 2)),
         roots = rootRow
           .split("|")
           .slice(2, -1)
@@ -198,7 +207,7 @@ export const inverseRootTable: ExamStudyFamily = {
         "인쇄된 표 입력 순서 불일치",
       );
       insist(
-        roots.every((v, i) => v === rootThousandths(inputs[i])),
+        roots.every((v, i) => checkPrintedRoot(inputs[i], v)),
         "실제 근호의 반올림값과 불일치",
       );
       const square = Number(match(item.content, /b\^\{2\}=(\d+)/u)[1]),
@@ -219,7 +228,7 @@ export const inverseRootTable: ExamStudyFamily = {
         "인쇄된 표·결과와 매개변수 불일치",
       );
       insist(
-        item.answer === expected.answer,
+        item.answer === printedInputs[matching[0]].slice(1, -1),
         "인쇄된 표에서 독립 복원한 입력과 불일치",
       );
       insist(

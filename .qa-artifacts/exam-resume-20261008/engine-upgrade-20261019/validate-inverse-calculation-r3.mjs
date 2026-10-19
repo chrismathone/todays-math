@@ -1,0 +1,20 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {spawn} from 'node:child_process';
+import {createHash} from 'node:crypto';
+const e='.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/',hash=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+const old=JSON.parse(fs.readFileSync(e+'inverse-minimum-validation-r1.json','utf8'));
+const changed=['src/lib/examStudy/families/middle/inverseMinimum.ts','src/lib/examStudy/families/middle/inverseRootTable.ts','src/__tests__/unit/examStudyInverseMinimum.test.ts'];
+const paths=[...new Set([...Object.keys(old.after),...changed])],before=Object.fromEntries(paths.map(p=>[p,hash(p)]));
+for(const[p,h]of Object.entries(old.after))if(!changed.some(x=>path.resolve(x).toLowerCase()===path.resolve(p).toLowerCase()))assert.equal(hash(p),h,p);
+fs.writeFileSync(e+'vitest-inverse-calculation-r2.mts',fs.readFileSync(e+'vitest-inverse-minimum-r1.mts','utf8').replaceAll('inverse-minimum-r1-evidence','inverse-calculation-r2-evidence'),{flag:'wx'});
+const env={...process.env,AUTH_URL:'http://localhost',NEXTAUTH_URL:'http://localhost',DATABASE_URL:'postgresql://test:test@127.0.0.1:1/test',DIRECT_URL:'postgresql://test:test@127.0.0.1:1/test'};for(const k of ['STUDIO_ENGINE_URL','VERCEL','VERCEL_ENV'])delete env[k];
+const tests=['src/__tests__/unit/examStudyInverseMinimum.test.ts','src/__tests__/unit/examStudyInverseRootTable.test.ts'];
+const jobs=[['inverse-calculation-tests-r2.log',['node_modules/vitest/vitest.mjs','run',...tests,'--config',e+'vitest-inverse-calculation-r2.mts','--maxWorkers=1','--reporter=json','--reporter=default','--outputFile.json='+e+'inverse-calculation-tests-r2.json']],['inverse-calculation-types-r2.log',['node_modules/typescript/bin/tsc','--noEmit','--project',e+'tsconfig-owned-isolated-r19.json']],['inverse-calculation-lint-r2.log',['node_modules/eslint/bin/eslint.js',...changed]]],outcomes=[];
+for(const[name,args]of jobs){const log=fs.createWriteStream(e+name,{flags:'wx'}),status=await new Promise((resolve,reject)=>{const p=spawn(process.execPath,args,{env,stdio:['ignore','pipe','pipe']});console.log(JSON.stringify({name,pid:p.pid}));p.stdout.pipe(log,{end:false});p.stderr.pipe(log,{end:false});p.on('error',reject);p.on('close',resolve);});await new Promise(r=>log.end(r));outcomes.push({name,status});for(const[p,h]of Object.entries(before))assert.equal(hash(p),h,p);assert.equal(status,0,fs.readFileSync(e+name,'utf8').slice(-10000));console.log(JSON.stringify({name,status}));}
+const rerun=JSON.parse(fs.readFileSync(e+'inverse-calculation-tests-r2.json','utf8')),baseline=JSON.parse(fs.readFileSync(e+'inverse-minimum-tests-r1.json','utf8')),latest=new Map(baseline.testResults.map(t=>[t.name,t]));for(const t of rerun.testResults)latest.set(t.name,t);assert([...latest.values()].every(t=>t.status==='passed'));
+const passed=[...latest.values()].reduce((s,t)=>s+t.assertionResults.filter(x=>x.status==='passed').length,0);assert.equal(passed,266);
+fs.writeFileSync(e+'inverse-calculation-validation-r2.json',JSON.stringify({utc:new Date().toISOString(),before,after:before,sourceUnchanged:true,changed,latestPerFile:{files:14,passed,failed:0,skipped:0,actualSingleRun:false},actualRerun:{files:rerun.testResults.length,passed:rerun.numPassedTests,failed:rerun.numFailedTests,skipped:rerun.numPendingTests},outcomes,
+  baselineEvidence:e+'inverse-minimum-validation-r1.json',newRerunEvidence:e+'inverse-calculation-tests-r2.json',all69DraftsUnchangedEvidence:e+'inverse-calculation-r2-actual-drafts.json',
+  actualCalculation:'Minimum answer from printed coefficient difference; root-table answer directly from matched printed cell; midpoint-squared rounding certificate independent of generator search.',newFamilyVersions:[2,2],newManualQuestions:0,newManualFigures:0,publicApproved:false,dbWrites:0,deploy:false},null,2)+'\n',{flag:'wx'});console.log(JSON.stringify({actualFiles:rerun.testResults.length,actualPassed:rerun.numPassedTests,latestFiles:14,latestPassed:passed,types:true,lint:true}));

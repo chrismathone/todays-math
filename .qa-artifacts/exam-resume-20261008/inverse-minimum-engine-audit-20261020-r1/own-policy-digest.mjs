@@ -1,0 +1,18 @@
+﻿import assert from 'node:assert/strict';import fs from 'node:fs';
+import {family,identity,registry,release,curriculum,requirements,generator,evaluate,setRouteFamilies} from './own-bounded-loader.mjs';
+const p='.qa-artifacts/exam-resume-20261008/inverse-minimum-engine-audit-20261020-r1/';
+const rows=Array.from({length:24},(_,i)=>family.generate(0,i));
+assert.equal(new Set(rows.map(x=>identity.logicalKey(family,family.canonicalParams(x)))).size,24);
+assert.equal(new Set(rows.map(identity.contentDigest)).size,24);
+for(const forbidden of ['seed','format','questionType'])assert.throws(()=>registry.assertCanonicalParams({[forbidden]:1}));
+let calls=0;const f={...family,generate:(...a)=>{calls++;return family.generate(...a);}};setRouteFamilies([f]);
+const request={course:'중3',familyIds:[f.id],requirementIds:['number.inverse-extreme-range'],count:1,seed:7,format:'단답형'};
+const current=await generator.generateExamStudy(request,{families:[f],profiles:[]});
+const material={engine:registry.EXAM_STUDY_ENGINE_VERSION,curriculumPolicy:curriculum.STUDY_CURRICULUM_POLICY_VERSION,releasePolicy:'20261019-source-informed-template-review-r2',requirements:requirements.STUDY_REQUIREMENTS,families:[{id:f.id,version:f.version,course:f.course,source:f.source,fulfills:f.fulfills,formats:f.formats,difficulties:f.difficulties,representation:f.representation,figureKinds:f.figureKinds,evidence:f.evidence,domain:{kind:'finite',size:f.paramDomain.size,parameters:f.paramDomain.enumerate()}}]};
+const oldManifest='exam-study-manifest-'+identity.sha256(material).slice(0,24);
+const digestMaterial={engineVersion:current.engineVersion,manifestVersion:current.manifestVersion,recipe:current.recipe,profile:null,status:current.status,questions:[],requirements:current.requirements.map(({id,status,requested,delivered})=>({id,status,requested,delivered}))};
+assert.equal(identity.sha256(digestMaterial),current.digest);
+const oldDigest=identity.sha256({...digestMaterial,manifestVersion:oldManifest});assert.notEqual(oldDigest,current.digest);
+const routes=await evaluate('examStudyRoutes.ts');const response=await routes.resolveExamStudy(new Request('http://audit.local/resolve',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({recipe:request,expectedDigest:oldDigest})}));assert.equal(response.status,409);assert.equal(calls,0);
+const output={logicalKeys:24,contentDigests:24,canonicalSeedFormatQuestionTypeRejected:3,currentManifest:current.manifestVersion,oldPolicyManifest:oldManifest,currentOutputDigest:current.digest,oldPolicyMaterialOutputDigest:oldDigest,oldOutputDigestRejectStatus:response.status,factoryCalls:calls,limit:'Old digest independently recomputed by replacing policy version in manifest material only; not an execution of historical source. Actual current resolver executed with pure mocks and current held generation.'};
+fs.writeFileSync(p+'own-policy-digest-results.json',JSON.stringify(output,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(output));

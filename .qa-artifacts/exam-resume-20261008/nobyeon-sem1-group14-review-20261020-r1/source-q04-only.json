@@ -1,0 +1,2178 @@
+{
+  "number": 4,
+  "questionType": "multiple-choice",
+  "stem": "$\\sqrt{27}+\\sqrt{3}=a\\sqrt{3}$, $\\sqrt{20}-\\sqrt{5}=\\sqrt{b}$일 때, 유리수 $a$, $b$에 대하여 $a^{2}+b$의 값은? [$4$점]",
+  "choices": [
+    "$21$",
+    "$22$",
+    "$23$",
+    "$24$",
+    "$25$"
+  ],
+  "hwpScriptStem": "$sqrt {27} + sqrt {3} =a sqrt {3}$, $sqrt {20} - sqrt {5} = sqrt {b}$일 때, 유리수 $a$, $b$에 대하여 $a ^{2} +b$의 값은? [$4$점]",
+  "hwpScriptChoices": [
+    "$21$",
+    "$22$",
+    "$23$",
+    "$24$",
+    "$25$"
+  ],
+  "topicLabelFromSource": "제곱근을 포함한 식의 계산",
+  "difficultyLabelFromSource": "하",
+  "printedScoreOccurrences": [
+    {
+      "printed": "[$4$점]",
+      "value": 4.0,
+      "parentTotalMarked": false,
+      "textOffset": 109
+    }
+  ],
+  "referenceRepairs": [],
+  "notationNormalizationEvidence": [],
+  "hwpAnchor": {
+    "stream": "BodyText/Section0",
+    "recordIndex": 561,
+    "inflatedByteOffset": 22554,
+    "tag": 71,
+    "level": 1,
+    "payloadSha256": "5e30eb8d8b7e914adc940228c46bf572478f409b44328919a69d7be41e3e10c8"
+  },
+  "positionedSourceItems": [
+    {
+      "kind": "text",
+      "text": " ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 558,
+        "inflatedByteOffset": 22282,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "0c4d704b1431800290838a4b9281ec4d33b4a82e131f4beec562e8ecf1650bff",
+        "utf16Range": [
+          8,
+          9
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "sqrt {27} + sqrt {3} =a sqrt {3}",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 569,
+        "inflatedByteOffset": 22794,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "541a327dd66708dbd56c62ed8be1992ff76d6d501e696d2b4bd29352d2e837a7"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 568,
+        "inflatedByteOffset": 22732,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "692c931ea23e8eafdfec36741d3d295df43cf94db0c50719f19c51bccb2c3389"
+      }
+    },
+    {
+      "kind": "text",
+      "text": ", ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 558,
+        "inflatedByteOffset": 22282,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "0c4d704b1431800290838a4b9281ec4d33b4a82e131f4beec562e8ecf1650bff",
+        "utf16Range": [
+          17,
+          19
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "sqrt {20} - sqrt {5} = sqrt {b}",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 571,
+        "inflatedByteOffset": 22998,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "721ecd765c593be57f842f06e7eaf0c2da16de4fd57b6906991fa6e3761a675b"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 570,
+        "inflatedByteOffset": 22936,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "557e9d59b6d0a031485405abb3a405ce140e9724fa02245eda367b943bd503c5"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "일 때, 유리수 ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 558,
+        "inflatedByteOffset": 22282,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "0c4d704b1431800290838a4b9281ec4d33b4a82e131f4beec562e8ecf1650bff",
+        "utf16Range": [
+          27,
+          36
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "a",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 573,
+        "inflatedByteOffset": 23200,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "0831e4cf3bf7efc226b966e1e73ecd984439f5fd97e4ebb3ce5d9174bf9c6571"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 572,
+        "inflatedByteOffset": 23138,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "c6f8f2ffe7b6c027df8a9b6fc50ff126e0d94bcacad1008825ff20d2afda0916"
+      }
+    },
+    {
+      "kind": "text",
+      "text": ", ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 558,
+        "inflatedByteOffset": 22282,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "0c4d704b1431800290838a4b9281ec4d33b4a82e131f4beec562e8ecf1650bff",
+        "utf16Range": [
+          44,
+          46
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "b",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 575,
+        "inflatedByteOffset": 23342,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "44a6414f1929aee86810dca0a825b028ffcd7d68678ae9d1fcdc7d9b30966ea6"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 574,
+        "inflatedByteOffset": 23280,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "aaf0179dfe6f333948fd42e2826060ca9a019a10e726503bc7969e936dc9eafd"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "에 대하여 ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 558,
+        "inflatedByteOffset": 22282,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "0c4d704b1431800290838a4b9281ec4d33b4a82e131f4beec562e8ecf1650bff",
+        "utf16Range": [
+          54,
+          60
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "a ^{2} +b",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 577,
+        "inflatedByteOffset": 23484,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "8ae5de93de937fe23f05d9c251f45dcee019025f4b0fc0adec7e7c66c2bf412b"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 576,
+        "inflatedByteOffset": 23422,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "180c711b1612d619277aadb85e0f5dca27d63d72ef463fb07fac6c1482667020"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "의 값은? [",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 558,
+        "inflatedByteOffset": 22282,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "0c4d704b1431800290838a4b9281ec4d33b4a82e131f4beec562e8ecf1650bff",
+        "utf16Range": [
+          68,
+          75
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "4",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 579,
+        "inflatedByteOffset": 23642,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "468980e2fb7fd64fc0d36c63257e1a770a28e9ceee5e00d27f2b46ee1792cb57"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 578,
+        "inflatedByteOffset": 23580,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "6a1fd1054c3769694c4f598f14736a0e5633c21c55e3834627f185a080693ece"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "점]",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 558,
+        "inflatedByteOffset": 22282,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "0c4d704b1431800290838a4b9281ec4d33b4a82e131f4beec562e8ecf1650bff",
+        "utf16Range": [
+          83,
+          85
+        ]
+      }
+    },
+    {
+      "kind": "text",
+      "text": "\n",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 558,
+        "inflatedByteOffset": 22282,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "0c4d704b1431800290838a4b9281ec4d33b4a82e131f4beec562e8ecf1650bff"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "① ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 581,
+        "inflatedByteOffset": 23750,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "9b3c40057473516c77d99652f92e97c069a30ef7061b1ad8a878bbaea5fb2a0f",
+        "utf16Range": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "21",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 585,
+        "inflatedByteOffset": 23926,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "88b7fb11af18beed56eb8645e719523649a67174df3ae4e9e56126155669a89d"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 584,
+        "inflatedByteOffset": 23864,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "23f2094c0bc7f8c333bf4b1614c35e5596bc6990ae70d09c2f38aa4e001ad1f6"
+      }
+    },
+    {
+      "kind": "text",
+      "text": " ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 581,
+        "inflatedByteOffset": 23750,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "9b3c40057473516c77d99652f92e97c069a30ef7061b1ad8a878bbaea5fb2a0f"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "② ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 581,
+        "inflatedByteOffset": 23750,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "9b3c40057473516c77d99652f92e97c069a30ef7061b1ad8a878bbaea5fb2a0f",
+        "utf16Range": [
+          18,
+          20
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "22",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 587,
+        "inflatedByteOffset": 24070,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "c1b943b53aa807bb1f705c872abde1c93a2120623a694afeadb418d21f0d40a2"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 586,
+        "inflatedByteOffset": 24008,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "bbebb111aeb3aff1a0c6cc5457f4e7629c55b1a9a0b919b311a9df14b9c22ba2"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "\n",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 581,
+        "inflatedByteOffset": 23750,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "9b3c40057473516c77d99652f92e97c069a30ef7061b1ad8a878bbaea5fb2a0f"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "③ ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 589,
+        "inflatedByteOffset": 24180,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "6b3a483437b045d361184be5045f65db07ea738adfc94d883cb5afc21f76ac89",
+        "utf16Range": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "23",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 593,
+        "inflatedByteOffset": 24356,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "a372af86c0e2efde9985718e9137f745d8281820265a9191c61f82a910501ed7"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 592,
+        "inflatedByteOffset": 24294,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "3c61018072264624a5cce73a777d8597b69421bee1f05305d97033118a6868c9"
+      }
+    },
+    {
+      "kind": "text",
+      "text": " ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 589,
+        "inflatedByteOffset": 24180,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "6b3a483437b045d361184be5045f65db07ea738adfc94d883cb5afc21f76ac89"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "④ ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 589,
+        "inflatedByteOffset": 24180,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "6b3a483437b045d361184be5045f65db07ea738adfc94d883cb5afc21f76ac89",
+        "utf16Range": [
+          18,
+          20
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "24",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 595,
+        "inflatedByteOffset": 24500,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "a3f945175c23e1ddd9011e14ff17ebeda4c9c77807d9d34c6f13187a4b3cd018"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 594,
+        "inflatedByteOffset": 24438,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "e878e1ea2e19d6298f9a58e6001d7a72f74f7c32396b431b0545d10d32b6ad31"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "\n",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 589,
+        "inflatedByteOffset": 24180,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "6b3a483437b045d361184be5045f65db07ea738adfc94d883cb5afc21f76ac89"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "⑤ ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 597,
+        "inflatedByteOffset": 24610,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "e5d513d38b2c7868bfeb348c5566405e8231717caa8cf4aa02dc62b883b92048",
+        "utf16Range": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "25",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 601,
+        "inflatedByteOffset": 24750,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "49bd3bdd2de6e9d58d44f5cc871a58178735f2b3e8451217c07224f4c9ea7ae8"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 600,
+        "inflatedByteOffset": 24688,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "12feb43259a843df72264e747e0596f079b5483fbcf7d998d64c38e0e9cf28b8"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "\n",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 597,
+        "inflatedByteOffset": 24610,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "e5d513d38b2c7868bfeb348c5566405e8231717caa8cf4aa02dc62b883b92048"
+      }
+    },
+    {
+      "kind": "text",
+      "text": " [중단원] 제곱근을 포함한 식의 계산 ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 603,
+        "inflatedByteOffset": 24860,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "c30580d6dd1f2de4afb11980ce0f02d6af9b18bb10a2fbfcd1e8bf73af3a33c9",
+        "utf16Range": [
+          0,
+          22
+        ]
+      }
+    },
+    {
+      "kind": "text",
+      "text": "\n",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 603,
+        "inflatedByteOffset": 24860,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "c30580d6dd1f2de4afb11980ce0f02d6af9b18bb10a2fbfcd1e8bf73af3a33c9"
+      }
+    },
+    {
+      "kind": "text",
+      "text": " [난이도] 하 ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 608,
+        "inflatedByteOffset": 25006,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "29703cadeb540691fb6e40d2c0215ad4d7f2726a1217c9f89ef73f259a68de0e",
+        "utf16Range": [
+          0,
+          9
+        ]
+      }
+    },
+    {
+      "kind": "text",
+      "text": "\n",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 608,
+        "inflatedByteOffset": 25006,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "29703cadeb540691fb6e40d2c0215ad4d7f2726a1217c9f89ef73f259a68de0e"
+      }
+    }
+  ],
+  "mathExpressions": [
+    {
+      "kind": "math",
+      "script": "sqrt {27} + sqrt {3} =a sqrt {3}",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 569,
+        "inflatedByteOffset": 22794,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "541a327dd66708dbd56c62ed8be1992ff76d6d501e696d2b4bd29352d2e837a7"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 568,
+        "inflatedByteOffset": 22732,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "692c931ea23e8eafdfec36741d3d295df43cf94db0c50719f19c51bccb2c3389"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "sqrt {20} - sqrt {5} = sqrt {b}",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 571,
+        "inflatedByteOffset": 22998,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "721ecd765c593be57f842f06e7eaf0c2da16de4fd57b6906991fa6e3761a675b"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 570,
+        "inflatedByteOffset": 22936,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "557e9d59b6d0a031485405abb3a405ce140e9724fa02245eda367b943bd503c5"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "a",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 573,
+        "inflatedByteOffset": 23200,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "0831e4cf3bf7efc226b966e1e73ecd984439f5fd97e4ebb3ce5d9174bf9c6571"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 572,
+        "inflatedByteOffset": 23138,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "c6f8f2ffe7b6c027df8a9b6fc50ff126e0d94bcacad1008825ff20d2afda0916"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "b",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 575,
+        "inflatedByteOffset": 23342,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "44a6414f1929aee86810dca0a825b028ffcd7d68678ae9d1fcdc7d9b30966ea6"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 574,
+        "inflatedByteOffset": 23280,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "aaf0179dfe6f333948fd42e2826060ca9a019a10e726503bc7969e936dc9eafd"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "a ^{2} +b",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 577,
+        "inflatedByteOffset": 23484,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "8ae5de93de937fe23f05d9c251f45dcee019025f4b0fc0adec7e7c66c2bf412b"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 576,
+        "inflatedByteOffset": 23422,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "180c711b1612d619277aadb85e0f5dca27d63d72ef463fb07fac6c1482667020"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "4",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 579,
+        "inflatedByteOffset": 23642,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "468980e2fb7fd64fc0d36c63257e1a770a28e9ceee5e00d27f2b46ee1792cb57"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 578,
+        "inflatedByteOffset": 23580,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "6a1fd1054c3769694c4f598f14736a0e5633c21c55e3834627f185a080693ece"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "21",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 585,
+        "inflatedByteOffset": 23926,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "88b7fb11af18beed56eb8645e719523649a67174df3ae4e9e56126155669a89d"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 584,
+        "inflatedByteOffset": 23864,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "23f2094c0bc7f8c333bf4b1614c35e5596bc6990ae70d09c2f38aa4e001ad1f6"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "22",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 587,
+        "inflatedByteOffset": 24070,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "c1b943b53aa807bb1f705c872abde1c93a2120623a694afeadb418d21f0d40a2"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 586,
+        "inflatedByteOffset": 24008,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "bbebb111aeb3aff1a0c6cc5457f4e7629c55b1a9a0b919b311a9df14b9c22ba2"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "23",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 593,
+        "inflatedByteOffset": 24356,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "a372af86c0e2efde9985718e9137f745d8281820265a9191c61f82a910501ed7"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 592,
+        "inflatedByteOffset": 24294,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "3c61018072264624a5cce73a777d8597b69421bee1f05305d97033118a6868c9"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "24",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 595,
+        "inflatedByteOffset": 24500,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "a3f945175c23e1ddd9011e14ff17ebeda4c9c77807d9d34c6f13187a4b3cd018"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 594,
+        "inflatedByteOffset": 24438,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "e878e1ea2e19d6298f9a58e6001d7a72f74f7c32396b431b0545d10d32b6ad31"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "25",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 601,
+        "inflatedByteOffset": 24750,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "49bd3bdd2de6e9d58d44f5cc871a58178735f2b3e8451217c07224f4c9ea7ae8"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 600,
+        "inflatedByteOffset": 24688,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "12feb43259a843df72264e747e0596f079b5483fbcf7d998d64c38e0e9cf28b8"
+      }
+    }
+  ],
+  "hwpFigureRecords": [],
+  "sharedSourceContext": null,
+  "unmappedItems": [],
+  "sourceContentDigest": "7fc5e9590c2a618a57c1b74b24f3370815186fd576dd9849c39312fcbf67b997",
+  "pdfReference": {
+    "number": 4,
+    "regions": [
+      {
+        "page": 1,
+        "column": 1,
+        "bbox": [
+          370,
+          99,
+          688.0,
+          353.803955078125
+        ]
+      }
+    ],
+    "positionedCharacters": [
+      {
+        "page": 0,
+        "c": "4",
+        "eq": false,
+        "x0": 375.2109069824219,
+        "y0": 112.1878662109375,
+        "x1": 379.7076721191406,
+        "y1": 121.18134307861328,
+        "size": 8.993474960327148,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": ".",
+        "eq": false,
+        "x0": 379.7679443359375,
+        "y0": 112.1878662109375,
+        "x1": 384.26470947265625,
+        "y1": 121.18134307861328,
+        "size": 8.993474960327148,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 384.2044677734375,
+        "y0": 112.9552230834961,
+        "x1": 389.72052001953125,
+        "y1": 123.98722076416016,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 390.320068359375,
+        "y0": 112.14041137695312,
+        "x1": 401.3521423339844,
+        "y1": 123.6420669555664,
+        "size": 11.5016508102417,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 400.51275634765625,
+        "y0": 105.49327850341797,
+        "x1": 412.8638916015625,
+        "y1": 122.00125122070312,
+        "size": 16.50797462463379,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 400.7525939941406,
+        "y0": 113.35589599609375,
+        "x1": 406.2686462402344,
+        "y1": 124.38788604736328,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 406.02880859375,
+        "y0": 113.35589599609375,
+        "x1": 411.54486083984375,
+        "y1": 124.38788604736328,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 413.1037292480469,
+        "y0": 112.99615478515625,
+        "x1": 421.6646423339844,
+        "y1": 124.02815246582031,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 422.9366760253906,
+        "y0": 112.14041137695312,
+        "x1": 433.96875,
+        "y1": 123.6420669555664,
+        "size": 11.5016508102417,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 433.2492980957031,
+        "y0": 108.70767974853516,
+        "x1": 440.32421875,
+        "y1": 121.20166778564453,
+        "size": 12.49399185180664,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 433.36920166015625,
+        "y0": 113.35589599609375,
+        "x1": 438.88525390625,
+        "y1": 124.38788604736328,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 440.5640563964844,
+        "y0": 112.99615478515625,
+        "x1": 449.1249694824219,
+        "y1": 124.02815246582031,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 451.1164855957031,
+        "y0": 113.35589599609375,
+        "x1": 456.9414367675781,
+        "y1": 124.38788604736328,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 456.27276611328125,
+        "y0": 112.14041137695312,
+        "x1": 467.3048400878906,
+        "y1": 123.6420669555664,
+        "size": 11.5016508102417,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 466.58538818359375,
+        "y0": 108.70767974853516,
+        "x1": 473.6603088378906,
+        "y1": 121.20166778564453,
+        "size": 12.49399185180664,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 466.8252258300781,
+        "y0": 113.35589599609375,
+        "x1": 472.3412780761719,
+        "y1": 124.38788604736328,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": ",",
+        "eq": false,
+        "x0": 474.49969482421875,
+        "y0": 112.9552230834961,
+        "x1": 480.0157470703125,
+        "y1": 123.98722076416016,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 480.0157470703125,
+        "y0": 112.9552230834961,
+        "x1": 485.53179931640625,
+        "y1": 123.98722076416016,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 486.0114440917969,
+        "y0": 112.14041137695312,
+        "x1": 497.04351806640625,
+        "y1": 123.6420669555664,
+        "size": 11.5016508102417,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 496.3240661621094,
+        "y0": 105.49327850341797,
+        "x1": 508.6752014160156,
+        "y1": 122.00125122070312,
+        "size": 16.50797462463379,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 496.5638732910156,
+        "y0": 113.35589599609375,
+        "x1": 502.0799255371094,
+        "y1": 124.38788604736328,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 501.840087890625,
+        "y0": 113.35589599609375,
+        "x1": 507.35614013671875,
+        "y1": 124.38788604736328,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 508.9150390625,
+        "y0": 112.99615478515625,
+        "x1": 517.2442626953125,
+        "y1": 124.02815246582031,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 518.6280517578125,
+        "y0": 112.14041137695312,
+        "x1": 529.66015625,
+        "y1": 123.6420669555664,
+        "size": 11.5016508102417,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 528.940673828125,
+        "y0": 108.70767974853516,
+        "x1": 536.015625,
+        "y1": 121.20166778564453,
+        "size": 12.49399185180664,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 529.1804809570312,
+        "y0": 113.35589599609375,
+        "x1": 534.696533203125,
+        "y1": 124.38788604736328,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 536.2554321289062,
+        "y0": 112.99615478515625,
+        "x1": 544.8163452148438,
+        "y1": 124.02815246582031,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 546.807861328125,
+        "y0": 112.14041137695312,
+        "x1": 557.8399658203125,
+        "y1": 123.6420669555664,
+        "size": 11.5016508102417,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 557.1204833984375,
+        "y0": 109.23005676269531,
+        "x1": 563.4759521484375,
+        "y1": 121.07172393798828,
+        "size": 11.841673851013184,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 557.3602905273438,
+        "y0": 113.35589599609375,
+        "x1": 562.08203125,
+        "y1": 124.38788604736328,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "일",
+        "eq": false,
+        "x0": 564.3153076171875,
+        "y0": 112.9552230834961,
+        "x1": 575.347412109375,
+        "y1": 123.98722076416016,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 575.2271118164062,
+        "y0": 112.9552230834961,
+        "x1": 580.7431640625,
+        "y1": 123.98722076416016,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "때",
+        "eq": false,
+        "x0": 580.7435302734375,
+        "y0": 112.9552230834961,
+        "x1": 591.775634765625,
+        "y1": 123.98722076416016,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": ",",
+        "eq": false,
+        "x0": 591.7755737304688,
+        "y0": 112.9552230834961,
+        "x1": 597.2916259765625,
+        "y1": 123.98722076416016,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 597.2916259765625,
+        "y0": 112.9552230834961,
+        "x1": 602.8076782226562,
+        "y1": 123.98722076416016,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "유",
+        "eq": false,
+        "x0": 602.6878051757812,
+        "y0": 112.9552230834961,
+        "x1": 613.7199096679688,
+        "y1": 123.98722076416016,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "리",
+        "eq": false,
+        "x0": 613.7198486328125,
+        "y0": 112.9552230834961,
+        "x1": 624.751953125,
+        "y1": 123.98722076416016,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "수",
+        "eq": false,
+        "x0": 624.751953125,
+        "y0": 112.9552230834961,
+        "x1": 635.7840576171875,
+        "y1": 123.98722076416016,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 635.6637573242188,
+        "y0": 112.9552230834961,
+        "x1": 641.1798095703125,
+        "y1": 123.98722076416016,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 641.7797241210938,
+        "y0": 113.47581481933594,
+        "x1": 647.6046752929688,
+        "y1": 124.50780487060547,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": ",",
+        "eq": false,
+        "x0": 647.53564453125,
+        "y0": 112.9552230834961,
+        "x1": 653.0516967773438,
+        "y1": 123.98722076416016,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 653.0516357421875,
+        "y0": 112.9552230834961,
+        "x1": 658.5676879882812,
+        "y1": 123.98722076416016,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 375.81048583984375,
+        "y0": 133.74093627929688,
+        "x1": 380.5322265625,
+        "y1": 144.77293395996094,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "에",
+        "eq": false,
+        "x0": 380.84686279296875,
+        "y0": 133.22035217285156,
+        "x1": 391.8789367675781,
+        "y1": 144.25234985351562,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 391.87896728515625,
+        "y0": 133.22035217285156,
+        "x1": 397.39501953125,
+        "y1": 144.25234985351562,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "대",
+        "eq": false,
+        "x0": 397.39501953125,
+        "y0": 133.22035217285156,
+        "x1": 408.4270935058594,
+        "y1": 144.25234985351562,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "하",
+        "eq": false,
+        "x0": 408.3068542480469,
+        "y0": 133.22035217285156,
+        "x1": 419.33892822265625,
+        "y1": 144.25234985351562,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "여",
+        "eq": false,
+        "x0": 419.3389587402344,
+        "y0": 133.22035217285156,
+        "x1": 430.37103271484375,
+        "y1": 144.25234985351562,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 430.37103271484375,
+        "y0": 133.22035217285156,
+        "x1": 435.8870849609375,
+        "y1": 144.25234985351562,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 436.3670654296875,
+        "y0": 133.74093627929688,
+        "x1": 442.1920166015625,
+        "y1": 144.77293395996094,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 441.6432800292969,
+        "y0": 131.70533752441406,
+        "x1": 445.3606262207031,
+        "y1": 139.13995361328125,
+        "size": 7.434606075286865,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 447.51904296875,
+        "y0": 133.26129150390625,
+        "x1": 456.0799560546875,
+        "y1": 144.2932891845703,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 457.3520202636719,
+        "y0": 133.74093627929688,
+        "x1": 462.0737609863281,
+        "y1": 144.77293395996094,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "의",
+        "eq": false,
+        "x0": 462.3883972167969,
+        "y0": 133.22035217285156,
+        "x1": 473.42047119140625,
+        "y1": 144.25234985351562,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 473.42047119140625,
+        "y0": 133.22035217285156,
+        "x1": 478.9365234375,
+        "y1": 144.25234985351562,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "값",
+        "eq": false,
+        "x0": 478.8166198730469,
+        "y0": 133.22035217285156,
+        "x1": 489.84869384765625,
+        "y1": 144.25234985351562,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "은",
+        "eq": false,
+        "x0": 489.84869384765625,
+        "y0": 133.22035217285156,
+        "x1": 500.8807678222656,
+        "y1": 144.25234985351562,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "?",
+        "eq": false,
+        "x0": 500.88079833984375,
+        "y0": 133.22035217285156,
+        "x1": 506.3968505859375,
+        "y1": 144.25234985351562,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 506.3968200683594,
+        "y0": 133.22035217285156,
+        "x1": 511.9128723144531,
+        "y1": 144.25234985351562,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "[",
+        "eq": false,
+        "x0": 511.79296875,
+        "y0": 133.22035217285156,
+        "x1": 517.3090209960938,
+        "y1": 144.25234985351562,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 517.9085693359375,
+        "y0": 133.74093627929688,
+        "x1": 523.4246215820312,
+        "y1": 144.77293395996094,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "점",
+        "eq": false,
+        "x0": 523.6644287109375,
+        "y0": 133.22035217285156,
+        "x1": 534.696533203125,
+        "y1": 144.25234985351562,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "]",
+        "eq": false,
+        "x0": 534.696533203125,
+        "y0": 133.22035217285156,
+        "x1": 540.2125854492188,
+        "y1": 144.25234985351562,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "①",
+        "eq": false,
+        "x0": 375.2109069824219,
+        "y0": 151.0872344970703,
+        "x1": 386.24298095703125,
+        "y1": 162.11923217773438,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 386.2430114746094,
+        "y0": 151.0872344970703,
+        "x1": 391.7590637207031,
+        "y1": 162.11923217773438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 392.23870849609375,
+        "y0": 151.6078338623047,
+        "x1": 397.7547607421875,
+        "y1": 162.63983154296875,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 397.5149230957031,
+        "y0": 151.6078338623047,
+        "x1": 403.0309753417969,
+        "y1": 162.63983154296875,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "②",
+        "eq": false,
+        "x0": 525.1033935546875,
+        "y0": 151.0872344970703,
+        "x1": 536.135498046875,
+        "y1": 162.11923217773438,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 536.135498046875,
+        "y0": 151.0872344970703,
+        "x1": 541.6515502929688,
+        "y1": 162.11923217773438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 542.1312255859375,
+        "y0": 151.6078338623047,
+        "x1": 547.6472778320312,
+        "y1": 162.63983154296875,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 547.4074096679688,
+        "y0": 151.6078338623047,
+        "x1": 552.9234619140625,
+        "y1": 162.63983154296875,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "③",
+        "eq": false,
+        "x0": 375.2109069824219,
+        "y0": 168.95411682128906,
+        "x1": 386.24298095703125,
+        "y1": 179.98611450195312,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 386.2430114746094,
+        "y0": 168.95411682128906,
+        "x1": 391.7590637207031,
+        "y1": 179.98611450195312,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 392.23870849609375,
+        "y0": 169.35479736328125,
+        "x1": 397.7547607421875,
+        "y1": 180.3867950439453,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 397.5149230957031,
+        "y0": 169.35479736328125,
+        "x1": 403.0309753417969,
+        "y1": 180.3867950439453,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "④",
+        "eq": false,
+        "x0": 525.1033935546875,
+        "y0": 168.95411682128906,
+        "x1": 536.135498046875,
+        "y1": 179.98611450195312,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 536.135498046875,
+        "y0": 168.95411682128906,
+        "x1": 541.6515502929688,
+        "y1": 179.98611450195312,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 542.1312255859375,
+        "y0": 169.35479736328125,
+        "x1": 547.6472778320312,
+        "y1": 180.3867950439453,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 547.4074096679688,
+        "y0": 169.35479736328125,
+        "x1": 552.9234619140625,
+        "y1": 180.3867950439453,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "⑤",
+        "eq": false,
+        "x0": 375.2109069824219,
+        "y0": 186.82101440429688,
+        "x1": 386.24298095703125,
+        "y1": 197.85301208496094,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 386.2430114746094,
+        "y0": 186.82101440429688,
+        "x1": 391.7590637207031,
+        "y1": 197.85301208496094,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 392.23870849609375,
+        "y0": 187.22169494628906,
+        "x1": 397.7547607421875,
+        "y1": 198.25369262695312,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 397.5149230957031,
+        "y0": 187.22169494628906,
+        "x1": 403.0309753417969,
+        "y1": 198.25369262695312,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 375.2109069824219,
+        "y0": 204.4480743408203,
+        "x1": 380.7269592285156,
+        "y1": 215.48007202148438,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "[",
+        "eq": false,
+        "x0": 380.7269592285156,
+        "y0": 204.4480743408203,
+        "x1": 386.2430114746094,
+        "y1": 215.48007202148438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "중",
+        "eq": false,
+        "x0": 386.2430114746094,
+        "y0": 204.4480743408203,
+        "x1": 397.27508544921875,
+        "y1": 215.48007202148438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "단",
+        "eq": false,
+        "x0": 397.27508544921875,
+        "y0": 204.4480743408203,
+        "x1": 408.3071594238281,
+        "y1": 215.48007202148438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "원",
+        "eq": false,
+        "x0": 408.18695068359375,
+        "y0": 204.4480743408203,
+        "x1": 419.2190246582031,
+        "y1": 215.48007202148438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "]",
+        "eq": false,
+        "x0": 419.2193603515625,
+        "y0": 204.4480743408203,
+        "x1": 424.73541259765625,
+        "y1": 215.48007202148438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 424.73541259765625,
+        "y0": 204.4480743408203,
+        "x1": 430.25146484375,
+        "y1": 215.48007202148438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "제",
+        "eq": false,
+        "x0": 430.2514343261719,
+        "y0": 204.4480743408203,
+        "x1": 441.28350830078125,
+        "y1": 215.48007202148438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "곱",
+        "eq": false,
+        "x0": 441.1632995605469,
+        "y0": 204.4480743408203,
+        "x1": 452.19537353515625,
+        "y1": 215.48007202148438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "근",
+        "eq": false,
+        "x0": 452.19537353515625,
+        "y0": 204.4480743408203,
+        "x1": 463.2274475097656,
+        "y1": 215.48007202148438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "을",
+        "eq": false,
+        "x0": 463.22747802734375,
+        "y0": 204.4480743408203,
+        "x1": 474.2595520019531,
+        "y1": 215.48007202148438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 474.1393127441406,
+        "y0": 204.4480743408203,
+        "x1": 479.6553649902344,
+        "y1": 215.48007202148438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "포",
+        "eq": false,
+        "x0": 479.656005859375,
+        "y0": 204.4480743408203,
+        "x1": 490.6880798339844,
+        "y1": 215.48007202148438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "함",
+        "eq": false,
+        "x0": 490.6881103515625,
+        "y0": 204.4480743408203,
+        "x1": 501.7201843261719,
+        "y1": 215.48007202148438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "한",
+        "eq": false,
+        "x0": 501.59991455078125,
+        "y0": 204.4480743408203,
+        "x1": 512.6320190429688,
+        "y1": 215.48007202148438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 512.6320190429688,
+        "y0": 204.4480743408203,
+        "x1": 518.1480712890625,
+        "y1": 215.48007202148438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "식",
+        "eq": false,
+        "x0": 518.1483764648438,
+        "y0": 204.4480743408203,
+        "x1": 529.1804809570312,
+        "y1": 215.48007202148438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "의",
+        "eq": false,
+        "x0": 529.0602416992188,
+        "y0": 204.4480743408203,
+        "x1": 540.0923461914062,
+        "y1": 215.48007202148438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 540.0923461914062,
+        "y0": 204.4480743408203,
+        "x1": 545.6083984375,
+        "y1": 215.48007202148438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "계",
+        "eq": false,
+        "x0": 545.6087036132812,
+        "y0": 204.4480743408203,
+        "x1": 556.6408081054688,
+        "y1": 215.48007202148438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "산",
+        "eq": false,
+        "x0": 556.5205078125,
+        "y0": 204.4480743408203,
+        "x1": 567.5526123046875,
+        "y1": 215.48007202148438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 567.5526123046875,
+        "y0": 204.4480743408203,
+        "x1": 573.0686645507812,
+        "y1": 215.48007202148438,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 375.2109069824219,
+        "y0": 222.07513427734375,
+        "x1": 380.7269592285156,
+        "y1": 233.1071319580078,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "[",
+        "eq": false,
+        "x0": 380.7269592285156,
+        "y0": 222.07513427734375,
+        "x1": 386.2430114746094,
+        "y1": 233.1071319580078,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "난",
+        "eq": false,
+        "x0": 386.2430114746094,
+        "y0": 222.07513427734375,
+        "x1": 397.27508544921875,
+        "y1": 233.1071319580078,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "이",
+        "eq": false,
+        "x0": 397.27508544921875,
+        "y0": 222.07513427734375,
+        "x1": 408.3071594238281,
+        "y1": 233.1071319580078,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "도",
+        "eq": false,
+        "x0": 408.18695068359375,
+        "y0": 222.07513427734375,
+        "x1": 419.2190246582031,
+        "y1": 233.1071319580078,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "]",
+        "eq": false,
+        "x0": 419.2193603515625,
+        "y0": 222.07513427734375,
+        "x1": 424.73541259765625,
+        "y1": 233.1071319580078,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 424.73541259765625,
+        "y0": 222.07513427734375,
+        "x1": 430.25146484375,
+        "y1": 233.1071319580078,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "하",
+        "eq": false,
+        "x0": 430.2514343261719,
+        "y0": 222.07513427734375,
+        "x1": 441.28350830078125,
+        "y1": 233.1071319580078,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 441.1632995605469,
+        "y0": 222.07513427734375,
+        "x1": 446.6793518066406,
+        "y1": 233.1071319580078,
+        "size": 11.03199577331543,
+        "bol": false
+      }
+    ],
+    "decodedText": "4. √⁄27+√⁄3=a√⁄3, √⁄20-√⁄5=√⁄b일 때, 유리수 a, b에 대하여 a2+b의 값은? [4점]① 21② 22③ 23④ 24⑤ 25 [중단원] 제곱근을 포함한 식의 계산  [난이도] 하 ",
+    "freshParserQuestion": {
+      "number": 4,
+      "type": "객관식",
+      "score": 4.0,
+      "topic": "제곱근을 포함한 식의 계산",
+      "difficulty": "하",
+      "contents": [
+        {
+          "type": "equation",
+          "value": "√27+√3=a√3"
+        },
+        {
+          "type": "text",
+          "value": ","
+        },
+        {
+          "type": "equation",
+          "value": "√20-√5=√b"
+        },
+        {
+          "type": "text",
+          "value": "일 때, 유리수"
+        },
+        {
+          "type": "equation",
+          "value": "a"
+        },
+        {
+          "type": "text",
+          "value": ","
+        },
+        {
+          "type": "equation",
+          "value": "b"
+        },
+        {
+          "type": "text",
+          "value": "에 대하여"
+        },
+        {
+          "type": "equation",
+          "value": "a^{2}+b"
+        },
+        {
+          "type": "text",
+          "value": "의 값은?"
+        }
+      ],
+      "choices": [
+        {
+          "number": 1,
+          "contents": [
+            {
+              "type": "equation",
+              "value": "21"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "contents": [
+            {
+              "type": "equation",
+              "value": "22"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "contents": [
+            {
+              "type": "equation",
+              "value": "23"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "contents": [
+            {
+              "type": "equation",
+              "value": "24"
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "contents": [
+            {
+              "type": "equation",
+              "value": "25"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "figureCorrespondence": [],
+  "contentApproved": false
+}

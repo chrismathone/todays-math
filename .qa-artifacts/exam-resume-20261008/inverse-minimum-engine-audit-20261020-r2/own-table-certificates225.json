@@ -1,0 +1,2800 @@
+{
+  "actualTableDraftsBoundBeforeOracleReuse": true,
+  "newIndependentDecimalRoundingAndFractionCells": 225,
+  "newExactMidpointCertificates": 225,
+  "counterfactualPlusOneThousandthFailures": 225,
+  "columnOutputs": 225,
+  "results": [
+    {
+      "ordinal": 0,
+      "cells": [
+        {
+          "input": "11/10",
+          "printedRoot": "1049/1000",
+          "squaredLower": "4397409/4000000",
+          "squaredUpper": "4405801/4000000",
+          "independentDecimalRounded": "1.049",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "111/100",
+          "printedRoot": "527/500",
+          "squaredLower": "4439449/4000000",
+          "squaredUpper": "4447881/4000000",
+          "independentDecimalRounded": "1.054",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "28/25",
+          "printedRoot": "529/500",
+          "squaredLower": "178929/160000",
+          "squaredUpper": "4481689/4000000",
+          "independentDecimalRounded": "1.058",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "113/100",
+          "printedRoot": "1063/1000",
+          "squaredLower": "289/256",
+          "squaredUpper": "4524129/4000000",
+          "independentDecimalRounded": "1.063",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "57/50",
+          "printedRoot": "267/250",
+          "squaredLower": "182329/160000",
+          "squaredUpper": "4566769/4000000",
+          "independentDecimalRounded": "1.068",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "1749/100",
+        "877/50",
+        "879/50",
+        "1763/100",
+        "442/25"
+      ],
+      "selectedColumn": 0,
+      "answer": "1.10",
+      "positiveBRoot": 7,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 1,
+      "cells": [
+        {
+          "input": "11/10",
+          "printedRoot": "1049/1000",
+          "squaredLower": "4397409/4000000",
+          "squaredUpper": "4405801/4000000",
+          "independentDecimalRounded": "1.049",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "111/100",
+          "printedRoot": "527/500",
+          "squaredLower": "4439449/4000000",
+          "squaredUpper": "4447881/4000000",
+          "independentDecimalRounded": "1.054",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "28/25",
+          "printedRoot": "529/500",
+          "squaredLower": "178929/160000",
+          "squaredUpper": "4481689/4000000",
+          "independentDecimalRounded": "1.058",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "113/100",
+          "printedRoot": "1063/1000",
+          "squaredLower": "289/256",
+          "squaredUpper": "4524129/4000000",
+          "independentDecimalRounded": "1.063",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "57/50",
+          "printedRoot": "267/250",
+          "squaredLower": "182329/160000",
+          "squaredUpper": "4566769/4000000",
+          "independentDecimalRounded": "1.068",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "1749/100",
+        "877/50",
+        "879/50",
+        "1763/100",
+        "442/25"
+      ],
+      "selectedColumn": 1,
+      "answer": "1.11",
+      "positiveBRoot": 7,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 2,
+      "cells": [
+        {
+          "input": "11/10",
+          "printedRoot": "1049/1000",
+          "squaredLower": "4397409/4000000",
+          "squaredUpper": "4405801/4000000",
+          "independentDecimalRounded": "1.049",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "111/100",
+          "printedRoot": "527/500",
+          "squaredLower": "4439449/4000000",
+          "squaredUpper": "4447881/4000000",
+          "independentDecimalRounded": "1.054",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "28/25",
+          "printedRoot": "529/500",
+          "squaredLower": "178929/160000",
+          "squaredUpper": "4481689/4000000",
+          "independentDecimalRounded": "1.058",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "113/100",
+          "printedRoot": "1063/1000",
+          "squaredLower": "289/256",
+          "squaredUpper": "4524129/4000000",
+          "independentDecimalRounded": "1.063",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "57/50",
+          "printedRoot": "267/250",
+          "squaredLower": "182329/160000",
+          "squaredUpper": "4566769/4000000",
+          "independentDecimalRounded": "1.068",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "1749/100",
+        "877/50",
+        "879/50",
+        "1763/100",
+        "442/25"
+      ],
+      "selectedColumn": 2,
+      "answer": "1.12",
+      "positiveBRoot": 7,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 3,
+      "cells": [
+        {
+          "input": "11/10",
+          "printedRoot": "1049/1000",
+          "squaredLower": "4397409/4000000",
+          "squaredUpper": "4405801/4000000",
+          "independentDecimalRounded": "1.049",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "111/100",
+          "printedRoot": "527/500",
+          "squaredLower": "4439449/4000000",
+          "squaredUpper": "4447881/4000000",
+          "independentDecimalRounded": "1.054",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "28/25",
+          "printedRoot": "529/500",
+          "squaredLower": "178929/160000",
+          "squaredUpper": "4481689/4000000",
+          "independentDecimalRounded": "1.058",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "113/100",
+          "printedRoot": "1063/1000",
+          "squaredLower": "289/256",
+          "squaredUpper": "4524129/4000000",
+          "independentDecimalRounded": "1.063",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "57/50",
+          "printedRoot": "267/250",
+          "squaredLower": "182329/160000",
+          "squaredUpper": "4566769/4000000",
+          "independentDecimalRounded": "1.068",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "1749/100",
+        "877/50",
+        "879/50",
+        "1763/100",
+        "442/25"
+      ],
+      "selectedColumn": 3,
+      "answer": "1.13",
+      "positiveBRoot": 7,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 4,
+      "cells": [
+        {
+          "input": "11/10",
+          "printedRoot": "1049/1000",
+          "squaredLower": "4397409/4000000",
+          "squaredUpper": "4405801/4000000",
+          "independentDecimalRounded": "1.049",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "111/100",
+          "printedRoot": "527/500",
+          "squaredLower": "4439449/4000000",
+          "squaredUpper": "4447881/4000000",
+          "independentDecimalRounded": "1.054",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "28/25",
+          "printedRoot": "529/500",
+          "squaredLower": "178929/160000",
+          "squaredUpper": "4481689/4000000",
+          "independentDecimalRounded": "1.058",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "113/100",
+          "printedRoot": "1063/1000",
+          "squaredLower": "289/256",
+          "squaredUpper": "4524129/4000000",
+          "independentDecimalRounded": "1.063",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "57/50",
+          "printedRoot": "267/250",
+          "squaredLower": "182329/160000",
+          "squaredUpper": "4566769/4000000",
+          "independentDecimalRounded": "1.068",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "1749/100",
+        "877/50",
+        "879/50",
+        "1763/100",
+        "442/25"
+      ],
+      "selectedColumn": 4,
+      "answer": "1.14",
+      "positiveBRoot": 7,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 5,
+      "cells": [
+        {
+          "input": "11/10",
+          "printedRoot": "1049/1000",
+          "squaredLower": "4397409/4000000",
+          "squaredUpper": "4405801/4000000",
+          "independentDecimalRounded": "1.049",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "111/100",
+          "printedRoot": "527/500",
+          "squaredLower": "4439449/4000000",
+          "squaredUpper": "4447881/4000000",
+          "independentDecimalRounded": "1.054",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "28/25",
+          "printedRoot": "529/500",
+          "squaredLower": "178929/160000",
+          "squaredUpper": "4481689/4000000",
+          "independentDecimalRounded": "1.058",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "113/100",
+          "printedRoot": "1063/1000",
+          "squaredLower": "289/256",
+          "squaredUpper": "4524129/4000000",
+          "independentDecimalRounded": "1.063",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "57/50",
+          "printedRoot": "267/250",
+          "squaredLower": "182329/160000",
+          "squaredUpper": "4566769/4000000",
+          "independentDecimalRounded": "1.068",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "2349/100",
+        "1177/50",
+        "1179/50",
+        "2363/100",
+        "592/25"
+      ],
+      "selectedColumn": 0,
+      "answer": "1.10",
+      "positiveBRoot": 13,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 6,
+      "cells": [
+        {
+          "input": "11/10",
+          "printedRoot": "1049/1000",
+          "squaredLower": "4397409/4000000",
+          "squaredUpper": "4405801/4000000",
+          "independentDecimalRounded": "1.049",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "111/100",
+          "printedRoot": "527/500",
+          "squaredLower": "4439449/4000000",
+          "squaredUpper": "4447881/4000000",
+          "independentDecimalRounded": "1.054",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "28/25",
+          "printedRoot": "529/500",
+          "squaredLower": "178929/160000",
+          "squaredUpper": "4481689/4000000",
+          "independentDecimalRounded": "1.058",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "113/100",
+          "printedRoot": "1063/1000",
+          "squaredLower": "289/256",
+          "squaredUpper": "4524129/4000000",
+          "independentDecimalRounded": "1.063",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "57/50",
+          "printedRoot": "267/250",
+          "squaredLower": "182329/160000",
+          "squaredUpper": "4566769/4000000",
+          "independentDecimalRounded": "1.068",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "2349/100",
+        "1177/50",
+        "1179/50",
+        "2363/100",
+        "592/25"
+      ],
+      "selectedColumn": 1,
+      "answer": "1.11",
+      "positiveBRoot": 13,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 7,
+      "cells": [
+        {
+          "input": "11/10",
+          "printedRoot": "1049/1000",
+          "squaredLower": "4397409/4000000",
+          "squaredUpper": "4405801/4000000",
+          "independentDecimalRounded": "1.049",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "111/100",
+          "printedRoot": "527/500",
+          "squaredLower": "4439449/4000000",
+          "squaredUpper": "4447881/4000000",
+          "independentDecimalRounded": "1.054",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "28/25",
+          "printedRoot": "529/500",
+          "squaredLower": "178929/160000",
+          "squaredUpper": "4481689/4000000",
+          "independentDecimalRounded": "1.058",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "113/100",
+          "printedRoot": "1063/1000",
+          "squaredLower": "289/256",
+          "squaredUpper": "4524129/4000000",
+          "independentDecimalRounded": "1.063",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "57/50",
+          "printedRoot": "267/250",
+          "squaredLower": "182329/160000",
+          "squaredUpper": "4566769/4000000",
+          "independentDecimalRounded": "1.068",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "2349/100",
+        "1177/50",
+        "1179/50",
+        "2363/100",
+        "592/25"
+      ],
+      "selectedColumn": 2,
+      "answer": "1.12",
+      "positiveBRoot": 13,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 8,
+      "cells": [
+        {
+          "input": "11/10",
+          "printedRoot": "1049/1000",
+          "squaredLower": "4397409/4000000",
+          "squaredUpper": "4405801/4000000",
+          "independentDecimalRounded": "1.049",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "111/100",
+          "printedRoot": "527/500",
+          "squaredLower": "4439449/4000000",
+          "squaredUpper": "4447881/4000000",
+          "independentDecimalRounded": "1.054",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "28/25",
+          "printedRoot": "529/500",
+          "squaredLower": "178929/160000",
+          "squaredUpper": "4481689/4000000",
+          "independentDecimalRounded": "1.058",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "113/100",
+          "printedRoot": "1063/1000",
+          "squaredLower": "289/256",
+          "squaredUpper": "4524129/4000000",
+          "independentDecimalRounded": "1.063",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "57/50",
+          "printedRoot": "267/250",
+          "squaredLower": "182329/160000",
+          "squaredUpper": "4566769/4000000",
+          "independentDecimalRounded": "1.068",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "2349/100",
+        "1177/50",
+        "1179/50",
+        "2363/100",
+        "592/25"
+      ],
+      "selectedColumn": 3,
+      "answer": "1.13",
+      "positiveBRoot": 13,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 9,
+      "cells": [
+        {
+          "input": "11/10",
+          "printedRoot": "1049/1000",
+          "squaredLower": "4397409/4000000",
+          "squaredUpper": "4405801/4000000",
+          "independentDecimalRounded": "1.049",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "111/100",
+          "printedRoot": "527/500",
+          "squaredLower": "4439449/4000000",
+          "squaredUpper": "4447881/4000000",
+          "independentDecimalRounded": "1.054",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "28/25",
+          "printedRoot": "529/500",
+          "squaredLower": "178929/160000",
+          "squaredUpper": "4481689/4000000",
+          "independentDecimalRounded": "1.058",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "113/100",
+          "printedRoot": "1063/1000",
+          "squaredLower": "289/256",
+          "squaredUpper": "4524129/4000000",
+          "independentDecimalRounded": "1.063",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "57/50",
+          "printedRoot": "267/250",
+          "squaredLower": "182329/160000",
+          "squaredUpper": "4566769/4000000",
+          "independentDecimalRounded": "1.068",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "2349/100",
+        "1177/50",
+        "1179/50",
+        "2363/100",
+        "592/25"
+      ],
+      "selectedColumn": 4,
+      "answer": "1.14",
+      "positiveBRoot": 13,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 10,
+      "cells": [
+        {
+          "input": "11/10",
+          "printedRoot": "1049/1000",
+          "squaredLower": "4397409/4000000",
+          "squaredUpper": "4405801/4000000",
+          "independentDecimalRounded": "1.049",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "111/100",
+          "printedRoot": "527/500",
+          "squaredLower": "4439449/4000000",
+          "squaredUpper": "4447881/4000000",
+          "independentDecimalRounded": "1.054",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "28/25",
+          "printedRoot": "529/500",
+          "squaredLower": "178929/160000",
+          "squaredUpper": "4481689/4000000",
+          "independentDecimalRounded": "1.058",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "113/100",
+          "printedRoot": "1063/1000",
+          "squaredLower": "289/256",
+          "squaredUpper": "4524129/4000000",
+          "independentDecimalRounded": "1.063",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "57/50",
+          "printedRoot": "267/250",
+          "squaredLower": "182329/160000",
+          "squaredUpper": "4566769/4000000",
+          "independentDecimalRounded": "1.068",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "3349/100",
+        "1677/50",
+        "1679/50",
+        "3363/100",
+        "842/25"
+      ],
+      "selectedColumn": 0,
+      "answer": "1.10",
+      "positiveBRoot": 23,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 11,
+      "cells": [
+        {
+          "input": "11/10",
+          "printedRoot": "1049/1000",
+          "squaredLower": "4397409/4000000",
+          "squaredUpper": "4405801/4000000",
+          "independentDecimalRounded": "1.049",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "111/100",
+          "printedRoot": "527/500",
+          "squaredLower": "4439449/4000000",
+          "squaredUpper": "4447881/4000000",
+          "independentDecimalRounded": "1.054",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "28/25",
+          "printedRoot": "529/500",
+          "squaredLower": "178929/160000",
+          "squaredUpper": "4481689/4000000",
+          "independentDecimalRounded": "1.058",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "113/100",
+          "printedRoot": "1063/1000",
+          "squaredLower": "289/256",
+          "squaredUpper": "4524129/4000000",
+          "independentDecimalRounded": "1.063",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "57/50",
+          "printedRoot": "267/250",
+          "squaredLower": "182329/160000",
+          "squaredUpper": "4566769/4000000",
+          "independentDecimalRounded": "1.068",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "3349/100",
+        "1677/50",
+        "1679/50",
+        "3363/100",
+        "842/25"
+      ],
+      "selectedColumn": 1,
+      "answer": "1.11",
+      "positiveBRoot": 23,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 12,
+      "cells": [
+        {
+          "input": "11/10",
+          "printedRoot": "1049/1000",
+          "squaredLower": "4397409/4000000",
+          "squaredUpper": "4405801/4000000",
+          "independentDecimalRounded": "1.049",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "111/100",
+          "printedRoot": "527/500",
+          "squaredLower": "4439449/4000000",
+          "squaredUpper": "4447881/4000000",
+          "independentDecimalRounded": "1.054",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "28/25",
+          "printedRoot": "529/500",
+          "squaredLower": "178929/160000",
+          "squaredUpper": "4481689/4000000",
+          "independentDecimalRounded": "1.058",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "113/100",
+          "printedRoot": "1063/1000",
+          "squaredLower": "289/256",
+          "squaredUpper": "4524129/4000000",
+          "independentDecimalRounded": "1.063",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "57/50",
+          "printedRoot": "267/250",
+          "squaredLower": "182329/160000",
+          "squaredUpper": "4566769/4000000",
+          "independentDecimalRounded": "1.068",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "3349/100",
+        "1677/50",
+        "1679/50",
+        "3363/100",
+        "842/25"
+      ],
+      "selectedColumn": 2,
+      "answer": "1.12",
+      "positiveBRoot": 23,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 13,
+      "cells": [
+        {
+          "input": "11/10",
+          "printedRoot": "1049/1000",
+          "squaredLower": "4397409/4000000",
+          "squaredUpper": "4405801/4000000",
+          "independentDecimalRounded": "1.049",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "111/100",
+          "printedRoot": "527/500",
+          "squaredLower": "4439449/4000000",
+          "squaredUpper": "4447881/4000000",
+          "independentDecimalRounded": "1.054",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "28/25",
+          "printedRoot": "529/500",
+          "squaredLower": "178929/160000",
+          "squaredUpper": "4481689/4000000",
+          "independentDecimalRounded": "1.058",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "113/100",
+          "printedRoot": "1063/1000",
+          "squaredLower": "289/256",
+          "squaredUpper": "4524129/4000000",
+          "independentDecimalRounded": "1.063",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "57/50",
+          "printedRoot": "267/250",
+          "squaredLower": "182329/160000",
+          "squaredUpper": "4566769/4000000",
+          "independentDecimalRounded": "1.068",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "3349/100",
+        "1677/50",
+        "1679/50",
+        "3363/100",
+        "842/25"
+      ],
+      "selectedColumn": 3,
+      "answer": "1.13",
+      "positiveBRoot": 23,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 14,
+      "cells": [
+        {
+          "input": "11/10",
+          "printedRoot": "1049/1000",
+          "squaredLower": "4397409/4000000",
+          "squaredUpper": "4405801/4000000",
+          "independentDecimalRounded": "1.049",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "111/100",
+          "printedRoot": "527/500",
+          "squaredLower": "4439449/4000000",
+          "squaredUpper": "4447881/4000000",
+          "independentDecimalRounded": "1.054",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "28/25",
+          "printedRoot": "529/500",
+          "squaredLower": "178929/160000",
+          "squaredUpper": "4481689/4000000",
+          "independentDecimalRounded": "1.058",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "113/100",
+          "printedRoot": "1063/1000",
+          "squaredLower": "289/256",
+          "squaredUpper": "4524129/4000000",
+          "independentDecimalRounded": "1.063",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "57/50",
+          "printedRoot": "267/250",
+          "squaredLower": "182329/160000",
+          "squaredUpper": "4566769/4000000",
+          "independentDecimalRounded": "1.068",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "3349/100",
+        "1677/50",
+        "1679/50",
+        "3363/100",
+        "842/25"
+      ],
+      "selectedColumn": 4,
+      "answer": "1.14",
+      "positiveBRoot": 23,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 15,
+      "cells": [
+        {
+          "input": "5/2",
+          "printedRoot": "1581/1000",
+          "squaredLower": "9991921/4000000",
+          "squaredUpper": "10004569/4000000",
+          "independentDecimalRounded": "1.581",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "251/100",
+          "printedRoot": "198/125",
+          "squaredLower": "10029889/4000000",
+          "squaredUpper": "10042561/4000000",
+          "independentDecimalRounded": "1.584",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "63/25",
+          "printedRoot": "1587/1000",
+          "squaredLower": "10067929/4000000",
+          "squaredUpper": "16129/6400",
+          "independentDecimalRounded": "1.587",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "253/100",
+          "printedRoot": "1591/1000",
+          "squaredLower": "10118761/4000000",
+          "squaredUpper": "10131489/4000000",
+          "independentDecimalRounded": "1.591",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "127/50",
+          "printedRoot": "797/500",
+          "squaredLower": "10156969/4000000",
+          "squaredUpper": "10169721/4000000",
+          "independentDecimalRounded": "1.594",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "2281/100",
+        "571/25",
+        "2287/100",
+        "2291/100",
+        "1147/50"
+      ],
+      "selectedColumn": 0,
+      "answer": "2.50",
+      "positiveBRoot": 7,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 16,
+      "cells": [
+        {
+          "input": "5/2",
+          "printedRoot": "1581/1000",
+          "squaredLower": "9991921/4000000",
+          "squaredUpper": "10004569/4000000",
+          "independentDecimalRounded": "1.581",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "251/100",
+          "printedRoot": "198/125",
+          "squaredLower": "10029889/4000000",
+          "squaredUpper": "10042561/4000000",
+          "independentDecimalRounded": "1.584",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "63/25",
+          "printedRoot": "1587/1000",
+          "squaredLower": "10067929/4000000",
+          "squaredUpper": "16129/6400",
+          "independentDecimalRounded": "1.587",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "253/100",
+          "printedRoot": "1591/1000",
+          "squaredLower": "10118761/4000000",
+          "squaredUpper": "10131489/4000000",
+          "independentDecimalRounded": "1.591",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "127/50",
+          "printedRoot": "797/500",
+          "squaredLower": "10156969/4000000",
+          "squaredUpper": "10169721/4000000",
+          "independentDecimalRounded": "1.594",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "2281/100",
+        "571/25",
+        "2287/100",
+        "2291/100",
+        "1147/50"
+      ],
+      "selectedColumn": 1,
+      "answer": "2.51",
+      "positiveBRoot": 7,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 17,
+      "cells": [
+        {
+          "input": "5/2",
+          "printedRoot": "1581/1000",
+          "squaredLower": "9991921/4000000",
+          "squaredUpper": "10004569/4000000",
+          "independentDecimalRounded": "1.581",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "251/100",
+          "printedRoot": "198/125",
+          "squaredLower": "10029889/4000000",
+          "squaredUpper": "10042561/4000000",
+          "independentDecimalRounded": "1.584",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "63/25",
+          "printedRoot": "1587/1000",
+          "squaredLower": "10067929/4000000",
+          "squaredUpper": "16129/6400",
+          "independentDecimalRounded": "1.587",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "253/100",
+          "printedRoot": "1591/1000",
+          "squaredLower": "10118761/4000000",
+          "squaredUpper": "10131489/4000000",
+          "independentDecimalRounded": "1.591",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "127/50",
+          "printedRoot": "797/500",
+          "squaredLower": "10156969/4000000",
+          "squaredUpper": "10169721/4000000",
+          "independentDecimalRounded": "1.594",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "2281/100",
+        "571/25",
+        "2287/100",
+        "2291/100",
+        "1147/50"
+      ],
+      "selectedColumn": 2,
+      "answer": "2.52",
+      "positiveBRoot": 7,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 18,
+      "cells": [
+        {
+          "input": "5/2",
+          "printedRoot": "1581/1000",
+          "squaredLower": "9991921/4000000",
+          "squaredUpper": "10004569/4000000",
+          "independentDecimalRounded": "1.581",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "251/100",
+          "printedRoot": "198/125",
+          "squaredLower": "10029889/4000000",
+          "squaredUpper": "10042561/4000000",
+          "independentDecimalRounded": "1.584",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "63/25",
+          "printedRoot": "1587/1000",
+          "squaredLower": "10067929/4000000",
+          "squaredUpper": "16129/6400",
+          "independentDecimalRounded": "1.587",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "253/100",
+          "printedRoot": "1591/1000",
+          "squaredLower": "10118761/4000000",
+          "squaredUpper": "10131489/4000000",
+          "independentDecimalRounded": "1.591",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "127/50",
+          "printedRoot": "797/500",
+          "squaredLower": "10156969/4000000",
+          "squaredUpper": "10169721/4000000",
+          "independentDecimalRounded": "1.594",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "2281/100",
+        "571/25",
+        "2287/100",
+        "2291/100",
+        "1147/50"
+      ],
+      "selectedColumn": 3,
+      "answer": "2.53",
+      "positiveBRoot": 7,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 19,
+      "cells": [
+        {
+          "input": "5/2",
+          "printedRoot": "1581/1000",
+          "squaredLower": "9991921/4000000",
+          "squaredUpper": "10004569/4000000",
+          "independentDecimalRounded": "1.581",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "251/100",
+          "printedRoot": "198/125",
+          "squaredLower": "10029889/4000000",
+          "squaredUpper": "10042561/4000000",
+          "independentDecimalRounded": "1.584",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "63/25",
+          "printedRoot": "1587/1000",
+          "squaredLower": "10067929/4000000",
+          "squaredUpper": "16129/6400",
+          "independentDecimalRounded": "1.587",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "253/100",
+          "printedRoot": "1591/1000",
+          "squaredLower": "10118761/4000000",
+          "squaredUpper": "10131489/4000000",
+          "independentDecimalRounded": "1.591",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "127/50",
+          "printedRoot": "797/500",
+          "squaredLower": "10156969/4000000",
+          "squaredUpper": "10169721/4000000",
+          "independentDecimalRounded": "1.594",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "2281/100",
+        "571/25",
+        "2287/100",
+        "2291/100",
+        "1147/50"
+      ],
+      "selectedColumn": 4,
+      "answer": "2.54",
+      "positiveBRoot": 7,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 20,
+      "cells": [
+        {
+          "input": "5/2",
+          "printedRoot": "1581/1000",
+          "squaredLower": "9991921/4000000",
+          "squaredUpper": "10004569/4000000",
+          "independentDecimalRounded": "1.581",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "251/100",
+          "printedRoot": "198/125",
+          "squaredLower": "10029889/4000000",
+          "squaredUpper": "10042561/4000000",
+          "independentDecimalRounded": "1.584",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "63/25",
+          "printedRoot": "1587/1000",
+          "squaredLower": "10067929/4000000",
+          "squaredUpper": "16129/6400",
+          "independentDecimalRounded": "1.587",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "253/100",
+          "printedRoot": "1591/1000",
+          "squaredLower": "10118761/4000000",
+          "squaredUpper": "10131489/4000000",
+          "independentDecimalRounded": "1.591",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "127/50",
+          "printedRoot": "797/500",
+          "squaredLower": "10156969/4000000",
+          "squaredUpper": "10169721/4000000",
+          "independentDecimalRounded": "1.594",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "2881/100",
+        "721/25",
+        "2887/100",
+        "2891/100",
+        "1447/50"
+      ],
+      "selectedColumn": 0,
+      "answer": "2.50",
+      "positiveBRoot": 13,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 21,
+      "cells": [
+        {
+          "input": "5/2",
+          "printedRoot": "1581/1000",
+          "squaredLower": "9991921/4000000",
+          "squaredUpper": "10004569/4000000",
+          "independentDecimalRounded": "1.581",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "251/100",
+          "printedRoot": "198/125",
+          "squaredLower": "10029889/4000000",
+          "squaredUpper": "10042561/4000000",
+          "independentDecimalRounded": "1.584",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "63/25",
+          "printedRoot": "1587/1000",
+          "squaredLower": "10067929/4000000",
+          "squaredUpper": "16129/6400",
+          "independentDecimalRounded": "1.587",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "253/100",
+          "printedRoot": "1591/1000",
+          "squaredLower": "10118761/4000000",
+          "squaredUpper": "10131489/4000000",
+          "independentDecimalRounded": "1.591",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "127/50",
+          "printedRoot": "797/500",
+          "squaredLower": "10156969/4000000",
+          "squaredUpper": "10169721/4000000",
+          "independentDecimalRounded": "1.594",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "2881/100",
+        "721/25",
+        "2887/100",
+        "2891/100",
+        "1447/50"
+      ],
+      "selectedColumn": 1,
+      "answer": "2.51",
+      "positiveBRoot": 13,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 22,
+      "cells": [
+        {
+          "input": "5/2",
+          "printedRoot": "1581/1000",
+          "squaredLower": "9991921/4000000",
+          "squaredUpper": "10004569/4000000",
+          "independentDecimalRounded": "1.581",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "251/100",
+          "printedRoot": "198/125",
+          "squaredLower": "10029889/4000000",
+          "squaredUpper": "10042561/4000000",
+          "independentDecimalRounded": "1.584",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "63/25",
+          "printedRoot": "1587/1000",
+          "squaredLower": "10067929/4000000",
+          "squaredUpper": "16129/6400",
+          "independentDecimalRounded": "1.587",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "253/100",
+          "printedRoot": "1591/1000",
+          "squaredLower": "10118761/4000000",
+          "squaredUpper": "10131489/4000000",
+          "independentDecimalRounded": "1.591",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "127/50",
+          "printedRoot": "797/500",
+          "squaredLower": "10156969/4000000",
+          "squaredUpper": "10169721/4000000",
+          "independentDecimalRounded": "1.594",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "2881/100",
+        "721/25",
+        "2887/100",
+        "2891/100",
+        "1447/50"
+      ],
+      "selectedColumn": 2,
+      "answer": "2.52",
+      "positiveBRoot": 13,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 23,
+      "cells": [
+        {
+          "input": "5/2",
+          "printedRoot": "1581/1000",
+          "squaredLower": "9991921/4000000",
+          "squaredUpper": "10004569/4000000",
+          "independentDecimalRounded": "1.581",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "251/100",
+          "printedRoot": "198/125",
+          "squaredLower": "10029889/4000000",
+          "squaredUpper": "10042561/4000000",
+          "independentDecimalRounded": "1.584",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "63/25",
+          "printedRoot": "1587/1000",
+          "squaredLower": "10067929/4000000",
+          "squaredUpper": "16129/6400",
+          "independentDecimalRounded": "1.587",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "253/100",
+          "printedRoot": "1591/1000",
+          "squaredLower": "10118761/4000000",
+          "squaredUpper": "10131489/4000000",
+          "independentDecimalRounded": "1.591",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "127/50",
+          "printedRoot": "797/500",
+          "squaredLower": "10156969/4000000",
+          "squaredUpper": "10169721/4000000",
+          "independentDecimalRounded": "1.594",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "2881/100",
+        "721/25",
+        "2887/100",
+        "2891/100",
+        "1447/50"
+      ],
+      "selectedColumn": 3,
+      "answer": "2.53",
+      "positiveBRoot": 13,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 24,
+      "cells": [
+        {
+          "input": "5/2",
+          "printedRoot": "1581/1000",
+          "squaredLower": "9991921/4000000",
+          "squaredUpper": "10004569/4000000",
+          "independentDecimalRounded": "1.581",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "251/100",
+          "printedRoot": "198/125",
+          "squaredLower": "10029889/4000000",
+          "squaredUpper": "10042561/4000000",
+          "independentDecimalRounded": "1.584",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "63/25",
+          "printedRoot": "1587/1000",
+          "squaredLower": "10067929/4000000",
+          "squaredUpper": "16129/6400",
+          "independentDecimalRounded": "1.587",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "253/100",
+          "printedRoot": "1591/1000",
+          "squaredLower": "10118761/4000000",
+          "squaredUpper": "10131489/4000000",
+          "independentDecimalRounded": "1.591",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "127/50",
+          "printedRoot": "797/500",
+          "squaredLower": "10156969/4000000",
+          "squaredUpper": "10169721/4000000",
+          "independentDecimalRounded": "1.594",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "2881/100",
+        "721/25",
+        "2887/100",
+        "2891/100",
+        "1447/50"
+      ],
+      "selectedColumn": 4,
+      "answer": "2.54",
+      "positiveBRoot": 13,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 25,
+      "cells": [
+        {
+          "input": "5/2",
+          "printedRoot": "1581/1000",
+          "squaredLower": "9991921/4000000",
+          "squaredUpper": "10004569/4000000",
+          "independentDecimalRounded": "1.581",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "251/100",
+          "printedRoot": "198/125",
+          "squaredLower": "10029889/4000000",
+          "squaredUpper": "10042561/4000000",
+          "independentDecimalRounded": "1.584",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "63/25",
+          "printedRoot": "1587/1000",
+          "squaredLower": "10067929/4000000",
+          "squaredUpper": "16129/6400",
+          "independentDecimalRounded": "1.587",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "253/100",
+          "printedRoot": "1591/1000",
+          "squaredLower": "10118761/4000000",
+          "squaredUpper": "10131489/4000000",
+          "independentDecimalRounded": "1.591",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "127/50",
+          "printedRoot": "797/500",
+          "squaredLower": "10156969/4000000",
+          "squaredUpper": "10169721/4000000",
+          "independentDecimalRounded": "1.594",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "3881/100",
+        "971/25",
+        "3887/100",
+        "3891/100",
+        "1947/50"
+      ],
+      "selectedColumn": 0,
+      "answer": "2.50",
+      "positiveBRoot": 23,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 26,
+      "cells": [
+        {
+          "input": "5/2",
+          "printedRoot": "1581/1000",
+          "squaredLower": "9991921/4000000",
+          "squaredUpper": "10004569/4000000",
+          "independentDecimalRounded": "1.581",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "251/100",
+          "printedRoot": "198/125",
+          "squaredLower": "10029889/4000000",
+          "squaredUpper": "10042561/4000000",
+          "independentDecimalRounded": "1.584",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "63/25",
+          "printedRoot": "1587/1000",
+          "squaredLower": "10067929/4000000",
+          "squaredUpper": "16129/6400",
+          "independentDecimalRounded": "1.587",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "253/100",
+          "printedRoot": "1591/1000",
+          "squaredLower": "10118761/4000000",
+          "squaredUpper": "10131489/4000000",
+          "independentDecimalRounded": "1.591",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "127/50",
+          "printedRoot": "797/500",
+          "squaredLower": "10156969/4000000",
+          "squaredUpper": "10169721/4000000",
+          "independentDecimalRounded": "1.594",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "3881/100",
+        "971/25",
+        "3887/100",
+        "3891/100",
+        "1947/50"
+      ],
+      "selectedColumn": 1,
+      "answer": "2.51",
+      "positiveBRoot": 23,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 27,
+      "cells": [
+        {
+          "input": "5/2",
+          "printedRoot": "1581/1000",
+          "squaredLower": "9991921/4000000",
+          "squaredUpper": "10004569/4000000",
+          "independentDecimalRounded": "1.581",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "251/100",
+          "printedRoot": "198/125",
+          "squaredLower": "10029889/4000000",
+          "squaredUpper": "10042561/4000000",
+          "independentDecimalRounded": "1.584",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "63/25",
+          "printedRoot": "1587/1000",
+          "squaredLower": "10067929/4000000",
+          "squaredUpper": "16129/6400",
+          "independentDecimalRounded": "1.587",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "253/100",
+          "printedRoot": "1591/1000",
+          "squaredLower": "10118761/4000000",
+          "squaredUpper": "10131489/4000000",
+          "independentDecimalRounded": "1.591",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "127/50",
+          "printedRoot": "797/500",
+          "squaredLower": "10156969/4000000",
+          "squaredUpper": "10169721/4000000",
+          "independentDecimalRounded": "1.594",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "3881/100",
+        "971/25",
+        "3887/100",
+        "3891/100",
+        "1947/50"
+      ],
+      "selectedColumn": 2,
+      "answer": "2.52",
+      "positiveBRoot": 23,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 28,
+      "cells": [
+        {
+          "input": "5/2",
+          "printedRoot": "1581/1000",
+          "squaredLower": "9991921/4000000",
+          "squaredUpper": "10004569/4000000",
+          "independentDecimalRounded": "1.581",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "251/100",
+          "printedRoot": "198/125",
+          "squaredLower": "10029889/4000000",
+          "squaredUpper": "10042561/4000000",
+          "independentDecimalRounded": "1.584",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "63/25",
+          "printedRoot": "1587/1000",
+          "squaredLower": "10067929/4000000",
+          "squaredUpper": "16129/6400",
+          "independentDecimalRounded": "1.587",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "253/100",
+          "printedRoot": "1591/1000",
+          "squaredLower": "10118761/4000000",
+          "squaredUpper": "10131489/4000000",
+          "independentDecimalRounded": "1.591",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "127/50",
+          "printedRoot": "797/500",
+          "squaredLower": "10156969/4000000",
+          "squaredUpper": "10169721/4000000",
+          "independentDecimalRounded": "1.594",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "3881/100",
+        "971/25",
+        "3887/100",
+        "3891/100",
+        "1947/50"
+      ],
+      "selectedColumn": 3,
+      "answer": "2.53",
+      "positiveBRoot": 23,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 29,
+      "cells": [
+        {
+          "input": "5/2",
+          "printedRoot": "1581/1000",
+          "squaredLower": "9991921/4000000",
+          "squaredUpper": "10004569/4000000",
+          "independentDecimalRounded": "1.581",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "251/100",
+          "printedRoot": "198/125",
+          "squaredLower": "10029889/4000000",
+          "squaredUpper": "10042561/4000000",
+          "independentDecimalRounded": "1.584",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "63/25",
+          "printedRoot": "1587/1000",
+          "squaredLower": "10067929/4000000",
+          "squaredUpper": "16129/6400",
+          "independentDecimalRounded": "1.587",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "253/100",
+          "printedRoot": "1591/1000",
+          "squaredLower": "10118761/4000000",
+          "squaredUpper": "10131489/4000000",
+          "independentDecimalRounded": "1.591",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "127/50",
+          "printedRoot": "797/500",
+          "squaredLower": "10156969/4000000",
+          "squaredUpper": "10169721/4000000",
+          "independentDecimalRounded": "1.594",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "3881/100",
+        "971/25",
+        "3887/100",
+        "3891/100",
+        "1947/50"
+      ],
+      "selectedColumn": 4,
+      "answer": "2.54",
+      "positiveBRoot": 23,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 30,
+      "cells": [
+        {
+          "input": "51/10",
+          "printedRoot": "1129/500",
+          "squaredLower": "815409/160000",
+          "squaredUpper": "20403289/4000000",
+          "independentDecimalRounded": "2.258",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "511/100",
+          "printedRoot": "2261/1000",
+          "squaredLower": "20439441/4000000",
+          "squaredUpper": "20457529/4000000",
+          "independentDecimalRounded": "2.261",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "128/25",
+          "printedRoot": "2263/1000",
+          "squaredLower": "32761/6400",
+          "squaredUpper": "20493729/4000000",
+          "independentDecimalRounded": "2.263",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "513/100",
+          "printedRoot": "453/200",
+          "squaredLower": "20511841/4000000",
+          "squaredUpper": "20529961/4000000",
+          "independentDecimalRounded": "2.265",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "257/50",
+          "printedRoot": "2267/1000",
+          "squaredLower": "20548089/4000000",
+          "squaredUpper": "822649/160000",
+          "independentDecimalRounded": "2.267",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "1479/50",
+        "2961/100",
+        "2963/100",
+        "593/20",
+        "2967/100"
+      ],
+      "selectedColumn": 0,
+      "answer": "5.10",
+      "positiveBRoot": 7,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 31,
+      "cells": [
+        {
+          "input": "51/10",
+          "printedRoot": "1129/500",
+          "squaredLower": "815409/160000",
+          "squaredUpper": "20403289/4000000",
+          "independentDecimalRounded": "2.258",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "511/100",
+          "printedRoot": "2261/1000",
+          "squaredLower": "20439441/4000000",
+          "squaredUpper": "20457529/4000000",
+          "independentDecimalRounded": "2.261",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "128/25",
+          "printedRoot": "2263/1000",
+          "squaredLower": "32761/6400",
+          "squaredUpper": "20493729/4000000",
+          "independentDecimalRounded": "2.263",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "513/100",
+          "printedRoot": "453/200",
+          "squaredLower": "20511841/4000000",
+          "squaredUpper": "20529961/4000000",
+          "independentDecimalRounded": "2.265",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "257/50",
+          "printedRoot": "2267/1000",
+          "squaredLower": "20548089/4000000",
+          "squaredUpper": "822649/160000",
+          "independentDecimalRounded": "2.267",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "1479/50",
+        "2961/100",
+        "2963/100",
+        "593/20",
+        "2967/100"
+      ],
+      "selectedColumn": 1,
+      "answer": "5.11",
+      "positiveBRoot": 7,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 32,
+      "cells": [
+        {
+          "input": "51/10",
+          "printedRoot": "1129/500",
+          "squaredLower": "815409/160000",
+          "squaredUpper": "20403289/4000000",
+          "independentDecimalRounded": "2.258",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "511/100",
+          "printedRoot": "2261/1000",
+          "squaredLower": "20439441/4000000",
+          "squaredUpper": "20457529/4000000",
+          "independentDecimalRounded": "2.261",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "128/25",
+          "printedRoot": "2263/1000",
+          "squaredLower": "32761/6400",
+          "squaredUpper": "20493729/4000000",
+          "independentDecimalRounded": "2.263",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "513/100",
+          "printedRoot": "453/200",
+          "squaredLower": "20511841/4000000",
+          "squaredUpper": "20529961/4000000",
+          "independentDecimalRounded": "2.265",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "257/50",
+          "printedRoot": "2267/1000",
+          "squaredLower": "20548089/4000000",
+          "squaredUpper": "822649/160000",
+          "independentDecimalRounded": "2.267",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "1479/50",
+        "2961/100",
+        "2963/100",
+        "593/20",
+        "2967/100"
+      ],
+      "selectedColumn": 2,
+      "answer": "5.12",
+      "positiveBRoot": 7,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 33,
+      "cells": [
+        {
+          "input": "51/10",
+          "printedRoot": "1129/500",
+          "squaredLower": "815409/160000",
+          "squaredUpper": "20403289/4000000",
+          "independentDecimalRounded": "2.258",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "511/100",
+          "printedRoot": "2261/1000",
+          "squaredLower": "20439441/4000000",
+          "squaredUpper": "20457529/4000000",
+          "independentDecimalRounded": "2.261",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "128/25",
+          "printedRoot": "2263/1000",
+          "squaredLower": "32761/6400",
+          "squaredUpper": "20493729/4000000",
+          "independentDecimalRounded": "2.263",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "513/100",
+          "printedRoot": "453/200",
+          "squaredLower": "20511841/4000000",
+          "squaredUpper": "20529961/4000000",
+          "independentDecimalRounded": "2.265",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "257/50",
+          "printedRoot": "2267/1000",
+          "squaredLower": "20548089/4000000",
+          "squaredUpper": "822649/160000",
+          "independentDecimalRounded": "2.267",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "1479/50",
+        "2961/100",
+        "2963/100",
+        "593/20",
+        "2967/100"
+      ],
+      "selectedColumn": 3,
+      "answer": "5.13",
+      "positiveBRoot": 7,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 34,
+      "cells": [
+        {
+          "input": "51/10",
+          "printedRoot": "1129/500",
+          "squaredLower": "815409/160000",
+          "squaredUpper": "20403289/4000000",
+          "independentDecimalRounded": "2.258",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "511/100",
+          "printedRoot": "2261/1000",
+          "squaredLower": "20439441/4000000",
+          "squaredUpper": "20457529/4000000",
+          "independentDecimalRounded": "2.261",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "128/25",
+          "printedRoot": "2263/1000",
+          "squaredLower": "32761/6400",
+          "squaredUpper": "20493729/4000000",
+          "independentDecimalRounded": "2.263",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "513/100",
+          "printedRoot": "453/200",
+          "squaredLower": "20511841/4000000",
+          "squaredUpper": "20529961/4000000",
+          "independentDecimalRounded": "2.265",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "257/50",
+          "printedRoot": "2267/1000",
+          "squaredLower": "20548089/4000000",
+          "squaredUpper": "822649/160000",
+          "independentDecimalRounded": "2.267",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "1479/50",
+        "2961/100",
+        "2963/100",
+        "593/20",
+        "2967/100"
+      ],
+      "selectedColumn": 4,
+      "answer": "5.14",
+      "positiveBRoot": 7,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 35,
+      "cells": [
+        {
+          "input": "51/10",
+          "printedRoot": "1129/500",
+          "squaredLower": "815409/160000",
+          "squaredUpper": "20403289/4000000",
+          "independentDecimalRounded": "2.258",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "511/100",
+          "printedRoot": "2261/1000",
+          "squaredLower": "20439441/4000000",
+          "squaredUpper": "20457529/4000000",
+          "independentDecimalRounded": "2.261",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "128/25",
+          "printedRoot": "2263/1000",
+          "squaredLower": "32761/6400",
+          "squaredUpper": "20493729/4000000",
+          "independentDecimalRounded": "2.263",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "513/100",
+          "printedRoot": "453/200",
+          "squaredLower": "20511841/4000000",
+          "squaredUpper": "20529961/4000000",
+          "independentDecimalRounded": "2.265",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "257/50",
+          "printedRoot": "2267/1000",
+          "squaredLower": "20548089/4000000",
+          "squaredUpper": "822649/160000",
+          "independentDecimalRounded": "2.267",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "1779/50",
+        "3561/100",
+        "3563/100",
+        "713/20",
+        "3567/100"
+      ],
+      "selectedColumn": 0,
+      "answer": "5.10",
+      "positiveBRoot": 13,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 36,
+      "cells": [
+        {
+          "input": "51/10",
+          "printedRoot": "1129/500",
+          "squaredLower": "815409/160000",
+          "squaredUpper": "20403289/4000000",
+          "independentDecimalRounded": "2.258",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "511/100",
+          "printedRoot": "2261/1000",
+          "squaredLower": "20439441/4000000",
+          "squaredUpper": "20457529/4000000",
+          "independentDecimalRounded": "2.261",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "128/25",
+          "printedRoot": "2263/1000",
+          "squaredLower": "32761/6400",
+          "squaredUpper": "20493729/4000000",
+          "independentDecimalRounded": "2.263",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "513/100",
+          "printedRoot": "453/200",
+          "squaredLower": "20511841/4000000",
+          "squaredUpper": "20529961/4000000",
+          "independentDecimalRounded": "2.265",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "257/50",
+          "printedRoot": "2267/1000",
+          "squaredLower": "20548089/4000000",
+          "squaredUpper": "822649/160000",
+          "independentDecimalRounded": "2.267",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "1779/50",
+        "3561/100",
+        "3563/100",
+        "713/20",
+        "3567/100"
+      ],
+      "selectedColumn": 1,
+      "answer": "5.11",
+      "positiveBRoot": 13,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 37,
+      "cells": [
+        {
+          "input": "51/10",
+          "printedRoot": "1129/500",
+          "squaredLower": "815409/160000",
+          "squaredUpper": "20403289/4000000",
+          "independentDecimalRounded": "2.258",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "511/100",
+          "printedRoot": "2261/1000",
+          "squaredLower": "20439441/4000000",
+          "squaredUpper": "20457529/4000000",
+          "independentDecimalRounded": "2.261",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "128/25",
+          "printedRoot": "2263/1000",
+          "squaredLower": "32761/6400",
+          "squaredUpper": "20493729/4000000",
+          "independentDecimalRounded": "2.263",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "513/100",
+          "printedRoot": "453/200",
+          "squaredLower": "20511841/4000000",
+          "squaredUpper": "20529961/4000000",
+          "independentDecimalRounded": "2.265",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "257/50",
+          "printedRoot": "2267/1000",
+          "squaredLower": "20548089/4000000",
+          "squaredUpper": "822649/160000",
+          "independentDecimalRounded": "2.267",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "1779/50",
+        "3561/100",
+        "3563/100",
+        "713/20",
+        "3567/100"
+      ],
+      "selectedColumn": 2,
+      "answer": "5.12",
+      "positiveBRoot": 13,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 38,
+      "cells": [
+        {
+          "input": "51/10",
+          "printedRoot": "1129/500",
+          "squaredLower": "815409/160000",
+          "squaredUpper": "20403289/4000000",
+          "independentDecimalRounded": "2.258",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "511/100",
+          "printedRoot": "2261/1000",
+          "squaredLower": "20439441/4000000",
+          "squaredUpper": "20457529/4000000",
+          "independentDecimalRounded": "2.261",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "128/25",
+          "printedRoot": "2263/1000",
+          "squaredLower": "32761/6400",
+          "squaredUpper": "20493729/4000000",
+          "independentDecimalRounded": "2.263",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "513/100",
+          "printedRoot": "453/200",
+          "squaredLower": "20511841/4000000",
+          "squaredUpper": "20529961/4000000",
+          "independentDecimalRounded": "2.265",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "257/50",
+          "printedRoot": "2267/1000",
+          "squaredLower": "20548089/4000000",
+          "squaredUpper": "822649/160000",
+          "independentDecimalRounded": "2.267",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "1779/50",
+        "3561/100",
+        "3563/100",
+        "713/20",
+        "3567/100"
+      ],
+      "selectedColumn": 3,
+      "answer": "5.13",
+      "positiveBRoot": 13,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 39,
+      "cells": [
+        {
+          "input": "51/10",
+          "printedRoot": "1129/500",
+          "squaredLower": "815409/160000",
+          "squaredUpper": "20403289/4000000",
+          "independentDecimalRounded": "2.258",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "511/100",
+          "printedRoot": "2261/1000",
+          "squaredLower": "20439441/4000000",
+          "squaredUpper": "20457529/4000000",
+          "independentDecimalRounded": "2.261",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "128/25",
+          "printedRoot": "2263/1000",
+          "squaredLower": "32761/6400",
+          "squaredUpper": "20493729/4000000",
+          "independentDecimalRounded": "2.263",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "513/100",
+          "printedRoot": "453/200",
+          "squaredLower": "20511841/4000000",
+          "squaredUpper": "20529961/4000000",
+          "independentDecimalRounded": "2.265",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "257/50",
+          "printedRoot": "2267/1000",
+          "squaredLower": "20548089/4000000",
+          "squaredUpper": "822649/160000",
+          "independentDecimalRounded": "2.267",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "1779/50",
+        "3561/100",
+        "3563/100",
+        "713/20",
+        "3567/100"
+      ],
+      "selectedColumn": 4,
+      "answer": "5.14",
+      "positiveBRoot": 13,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 40,
+      "cells": [
+        {
+          "input": "51/10",
+          "printedRoot": "1129/500",
+          "squaredLower": "815409/160000",
+          "squaredUpper": "20403289/4000000",
+          "independentDecimalRounded": "2.258",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "511/100",
+          "printedRoot": "2261/1000",
+          "squaredLower": "20439441/4000000",
+          "squaredUpper": "20457529/4000000",
+          "independentDecimalRounded": "2.261",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "128/25",
+          "printedRoot": "2263/1000",
+          "squaredLower": "32761/6400",
+          "squaredUpper": "20493729/4000000",
+          "independentDecimalRounded": "2.263",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "513/100",
+          "printedRoot": "453/200",
+          "squaredLower": "20511841/4000000",
+          "squaredUpper": "20529961/4000000",
+          "independentDecimalRounded": "2.265",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "257/50",
+          "printedRoot": "2267/1000",
+          "squaredLower": "20548089/4000000",
+          "squaredUpper": "822649/160000",
+          "independentDecimalRounded": "2.267",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "2279/50",
+        "4561/100",
+        "4563/100",
+        "913/20",
+        "4567/100"
+      ],
+      "selectedColumn": 0,
+      "answer": "5.10",
+      "positiveBRoot": 23,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 41,
+      "cells": [
+        {
+          "input": "51/10",
+          "printedRoot": "1129/500",
+          "squaredLower": "815409/160000",
+          "squaredUpper": "20403289/4000000",
+          "independentDecimalRounded": "2.258",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "511/100",
+          "printedRoot": "2261/1000",
+          "squaredLower": "20439441/4000000",
+          "squaredUpper": "20457529/4000000",
+          "independentDecimalRounded": "2.261",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "128/25",
+          "printedRoot": "2263/1000",
+          "squaredLower": "32761/6400",
+          "squaredUpper": "20493729/4000000",
+          "independentDecimalRounded": "2.263",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "513/100",
+          "printedRoot": "453/200",
+          "squaredLower": "20511841/4000000",
+          "squaredUpper": "20529961/4000000",
+          "independentDecimalRounded": "2.265",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "257/50",
+          "printedRoot": "2267/1000",
+          "squaredLower": "20548089/4000000",
+          "squaredUpper": "822649/160000",
+          "independentDecimalRounded": "2.267",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "2279/50",
+        "4561/100",
+        "4563/100",
+        "913/20",
+        "4567/100"
+      ],
+      "selectedColumn": 1,
+      "answer": "5.11",
+      "positiveBRoot": 23,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 42,
+      "cells": [
+        {
+          "input": "51/10",
+          "printedRoot": "1129/500",
+          "squaredLower": "815409/160000",
+          "squaredUpper": "20403289/4000000",
+          "independentDecimalRounded": "2.258",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "511/100",
+          "printedRoot": "2261/1000",
+          "squaredLower": "20439441/4000000",
+          "squaredUpper": "20457529/4000000",
+          "independentDecimalRounded": "2.261",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "128/25",
+          "printedRoot": "2263/1000",
+          "squaredLower": "32761/6400",
+          "squaredUpper": "20493729/4000000",
+          "independentDecimalRounded": "2.263",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "513/100",
+          "printedRoot": "453/200",
+          "squaredLower": "20511841/4000000",
+          "squaredUpper": "20529961/4000000",
+          "independentDecimalRounded": "2.265",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "257/50",
+          "printedRoot": "2267/1000",
+          "squaredLower": "20548089/4000000",
+          "squaredUpper": "822649/160000",
+          "independentDecimalRounded": "2.267",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "2279/50",
+        "4561/100",
+        "4563/100",
+        "913/20",
+        "4567/100"
+      ],
+      "selectedColumn": 2,
+      "answer": "5.12",
+      "positiveBRoot": 23,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 43,
+      "cells": [
+        {
+          "input": "51/10",
+          "printedRoot": "1129/500",
+          "squaredLower": "815409/160000",
+          "squaredUpper": "20403289/4000000",
+          "independentDecimalRounded": "2.258",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "511/100",
+          "printedRoot": "2261/1000",
+          "squaredLower": "20439441/4000000",
+          "squaredUpper": "20457529/4000000",
+          "independentDecimalRounded": "2.261",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "128/25",
+          "printedRoot": "2263/1000",
+          "squaredLower": "32761/6400",
+          "squaredUpper": "20493729/4000000",
+          "independentDecimalRounded": "2.263",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "513/100",
+          "printedRoot": "453/200",
+          "squaredLower": "20511841/4000000",
+          "squaredUpper": "20529961/4000000",
+          "independentDecimalRounded": "2.265",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "257/50",
+          "printedRoot": "2267/1000",
+          "squaredLower": "20548089/4000000",
+          "squaredUpper": "822649/160000",
+          "independentDecimalRounded": "2.267",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "2279/50",
+        "4561/100",
+        "4563/100",
+        "913/20",
+        "4567/100"
+      ],
+      "selectedColumn": 3,
+      "answer": "5.13",
+      "positiveBRoot": 23,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    },
+    {
+      "ordinal": 44,
+      "cells": [
+        {
+          "input": "51/10",
+          "printedRoot": "1129/500",
+          "squaredLower": "815409/160000",
+          "squaredUpper": "20403289/4000000",
+          "independentDecimalRounded": "2.258",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "511/100",
+          "printedRoot": "2261/1000",
+          "squaredLower": "20439441/4000000",
+          "squaredUpper": "20457529/4000000",
+          "independentDecimalRounded": "2.261",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "128/25",
+          "printedRoot": "2263/1000",
+          "squaredLower": "32761/6400",
+          "squaredUpper": "20493729/4000000",
+          "independentDecimalRounded": "2.263",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "513/100",
+          "printedRoot": "453/200",
+          "squaredLower": "20511841/4000000",
+          "squaredUpper": "20529961/4000000",
+          "independentDecimalRounded": "2.265",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        },
+        {
+          "input": "257/50",
+          "printedRoot": "2267/1000",
+          "squaredLower": "20548089/4000000",
+          "squaredUpper": "822649/160000",
+          "independentDecimalRounded": "2.267",
+          "midpointCertificatePassed": true,
+          "producerPlusOneThousandthRejected": true
+        }
+      ],
+      "allFiveOutputFractions": [
+        "2279/50",
+        "4561/100",
+        "4563/100",
+        "913/20",
+        "4567/100"
+      ],
+      "selectedColumn": 4,
+      "answer": "5.14",
+      "positiveBRoot": 23,
+      "scale": "a positive implies exact a=sqrt(x)/10; printed approximation s/10 only; output10*s+b",
+      "priorSolutionBytesUnchanged": true
+    }
+  ],
+  "notStudentMethods": "Decimal high precision and squared midpoint certificates are auditor computation; actual unchanged student solutions use printed table decimals, elementary positive-root scaling and one-variable rational arithmetic."
+}

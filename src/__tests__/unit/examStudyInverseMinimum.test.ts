@@ -156,6 +156,7 @@ describe("inverse minimum from an extreme difference", () => {
         },
         { ...item, content: item.content.replace("네 실수", "세 실수") },
         { ...item, content: item.content.replace("뺀 값", "더한 값") },
+        { ...item, content: item.content.replace("뺀 값이 $2", "뺀 값이 $3") },
         { ...item, answer: "0" },
         { ...item, answer: `-(${item.answer})` },
         { ...item, solution: item.solution + " 미분으로 검산한다." },

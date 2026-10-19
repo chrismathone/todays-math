@@ -1,0 +1,3558 @@
+{
+  "kind": "independent-r2-printed-calculation-verifier-audit/v1",
+  "status": "focused R1 calculation-coupling finding addressed for bounded69; releaseheld",
+  "baseline": {
+    "rootReceiptCommit": "181b4f418",
+    "baselineCopiesVerifiedByHashesAndPriorOwnEvidence": true,
+    "priorMinimumAudit": "b7944b8bc48c0b7380c3b0cbe16f9c94e0e9ea8d",
+    "priorCouplingFinding": "f2fe8b9a70852cf0ef7127d7fa5c25a223bab234",
+    "R1ReportsAddendumAndFailuresPreserved": true
+  },
+  "sourceAnalysis": [
+    {
+      "module": "inverseMinimum.ts",
+      "r1BaselineSha256": "22677722aca4b36748cb330cb17fe0d36ae8936d1fc54836b785a4afafa834ed",
+      "currentSha256": "b1fc51f29efa75f1c54ea02cba81bf29c29655f8a49a742350de2aabf664284e",
+      "makeProducerFunctionTextUnchanged": true,
+      "familyVersionFrom": "1",
+      "familyVersionTo": "2"
+    },
+    {
+      "module": "inverseRootTable.ts",
+      "r1BaselineSha256": "cac928c19fd494b76e31cbf06d125f49ae95bd07efdd53e47b9e0a6592547d86",
+      "currentSha256": "3de1646b7373c9528d86f3b01cb92e4fa8d95597fdf5b61d406e76090b580a51",
+      "makeProducerFunctionTextUnchanged": true,
+      "familyVersionFrom": "1",
+      "familyVersionTo": "2"
+    }
+  ],
+  "couplingRecheck": {
+    "minimum": "solvePrinted reads actual maximum/range roots and integer coefficients, proves finite-domain maximum/minimum conditions, explicitly subtracts range coefficient and constant; item.answer compared to this derived answer. make supplies canonical content/solution only, not numeric answer oracle.",
+    "table": "Verifier reads decimal inputs/roots/results, validates every printed rounded root by independent exact squared-midpoint certificate, recovers unique matching root then compares answer to the actual printed input cell. Generator rootThousandths search and make.answer are not verification oracles.",
+    "controlledInMemoryFaultResults": {
+      "r1MakeAnswerPoisonAccepted": 69,
+      "r2MakeAnswerPoisonRejected": 69,
+      "r1RootSearchPlus1Accepted": 45,
+      "r2RootSearchPlus1Rejected": 45
+    },
+    "noRootFaultEdits": true,
+    "remainingLimits": [
+      "Canonical content/solution equality still uses make, intentionally preserving reviewed finite text; that equality is not independent semantic proof of arbitrary future solution changes.",
+      "Generator and verifier still share bounded domain/presentation helpers; this finding concerns answer and table-rounding calculation paths, not total implementation independence.",
+      "Exact canonical answer spelling is required; no general symbolic-equivalence claim.",
+      "Both families remain internally executable review-only templates; this audit does not revise release policy."
+    ]
+  },
+  "payloadAndOracleBinding": {
+    "all69DraftObjectsExactlyEqualPriorOwnR1": true,
+    "boundFields": "full draft object: content, answer, solution, parameters, questionType, difficulty, difficultyBasis, figureSpec and any optional fields",
+    "minimum24": {
+      "priorCommit": "b7944b8bc48c0b7380c3b0cbe16f9c94e0e9ea8d",
+      "priorDraftsSha256": "4c84fca6543facd805a88a460e08dc2dbf195e8c9b3297c441a3c47ab3e9f168",
+      "priorMathSha256": "20d483ee8d1bf14d8d1692ee74e63dcd1ca6ca53e275a6dc044230f5f24edfe9",
+      "priorReportSha256": "58417e0dfbca3a2ea59e46a5501b483b9b4c615a94d1ce31530a8a0d7eaf1a2e",
+      "answersAgainstPrintedOracle": 24
+    },
+    "table45": {
+      "priorCommit": "76069c1b63358b841f9048bf04504f099cdb6877",
+      "priorDraftsSha256": "97a343d4a56c594cf2ec7c4341a319e2bcff1101b392106c0a50b1d46fa483fe",
+      "priorOracleSha256": "2ba8c672254a046c781c2bc50436f6f81c8bca5cb9974709f5031986bf623c38",
+      "priorSolutionChecksSha256": "74ef10ab4594cca497b2cd6a5d8fdccfbc6376b394dee6a01c10470d601a48b0",
+      "priorPrimaryEvidenceSha256": "f2bc22e657ad9815229f9d9a4f2951598fc3a3879406c951628ee1eac570b985",
+      "answersAgainstPrintedOracle": 45,
+      "rootCellsBound": 225,
+      "allFiveColumnOutputsBound": 225
+    },
+    "inputPacketSha256": "94c2a0583411f5cd3b88c3d925bf7cfb5e2079a5483c066ccd732ab96d4ebe7f",
+    "oracleReuseAfterExactBinding": true,
+    "newMathOrGradeQuestionCounts": 0
+  },
+  "actualOwnRuns": {
+    "positiveCases": 69,
+    "kernelMutationsRejected": 1332,
+    "safeSeedReproduction": 18,
+    "unsafeSeedVariantRejections": 16,
+    "domainAndDraftCopiesIsolated": true,
+    "releaseCasesAcrossBothFamilies4Formats": 56,
+    "factoryCalls": 0,
+    "M1HardPriorityBoth": true,
+    "coverageUnavailable": true,
+    "catalogHiddenUnderBoundedList": true,
+    "staleVersionResolverMocks": [
+      {
+        "family": "minimum",
+        "currentManifest": "exam-study-manifest-01f69ba9515ddc3fc3618277",
+        "oldVersion1Manifest": "exam-study-manifest-5467c537a0da5e5631cfa60a",
+        "currentDigest": "1457140f5ed6a2216a01703114139640cd1db9ad374d635eab654a590b2bd497",
+        "oldVersionMaterialDigest": "49dc4ae544047eed53d999c67fa3b08aa6fc8022b1829e779f82876b32707074",
+        "resolverStatus": 409,
+        "injectionStatus": 400,
+        "limit": "v1 digest material reconstructed with current policy and unchanged metadata; not historical full-runtime execution."
+      },
+      {
+        "family": "table",
+        "currentManifest": "exam-study-manifest-671ad388d5167e2712f4ca25",
+        "oldVersion1Manifest": "exam-study-manifest-efe59958b1b00111d2ed4f97",
+        "currentDigest": "7667dfaba94ca4e49bc85f16a298d054a852fae68c9195f05fc45cbe01c75641",
+        "oldVersionMaterialDigest": "f87895c4c091e4630bfebc8ab2301dca23dc39a3f2ccd0c24d4850332614c065",
+        "resolverStatus": 409,
+        "injectionStatus": 400,
+        "limit": "v1 digest material reconstructed with current policy and unchanged metadata; not historical full-runtime execution."
+      }
+    ],
+    "strictRequestInjectionRejected": 4,
+    "tableIndependentDecimalRoundingAndFractionCells": 225,
+    "tableIndependentSquaredMidpointCertificates": 225,
+    "tableShiftedRoundingCellsRejected": 225,
+    "parentTestsClaimedAsOwn": 0
+  },
+  "actualStudentGradeSurfaces": [
+    {
+      "family": "minimum",
+      "index": 0,
+      "currentFamilyVersion": "2",
+      "contentSha256": "82277018d3ac9eb86e3b9ec21e42073e37363db4a5a16de1396da36915ee70d6",
+      "solutionSha256": "00b3fd83ae2ef9214faa88cc7067fca98012f3793dcfabbc9a2d72737d0a7acd",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{2}-\\sqrt{7}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재0의 첫 수√7−0>1, 둘째수0<√3−√2<1, 제4수2−√7<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√7,√2의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{2}-\\sqrt{7}=M−R; √2<2≤2이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=00b3fd83ae2ef9214faa88cc7067fca98012f3793dcfabbc9a2d72737d0a7acd가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 1,
+      "currentFamilyVersion": "2",
+      "contentSha256": "678775a31da0a0c2f2bcffea610712d4e198a4c4ebb40e057337b3d0524ce617",
+      "solutionSha256": "addb90d739e06c75b2f7c0d813a9c569c761c16300e1916384d75e9add41f9a6",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{2}-\\sqrt{7}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재1의 첫 수√7−0>1, 둘째수0<√3−√2<1, 제4수3−√7<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√7,√2의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{2}-\\sqrt{7}=M−R; √2<2≤3이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=addb90d739e06c75b2f7c0d813a9c569c761c16300e1916384d75e9add41f9a6가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 2,
+      "currentFamilyVersion": "2",
+      "contentSha256": "b177278655785dfe4865d781bd4d7f39041b07c69bfd96835ddd933b8fdb1113",
+      "solutionSha256": "fab08aad1c96856117c5cfc697711aa8a276d6d546860458ed11020d4a976475",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{2}-\\sqrt{7}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재2의 첫 수√7−1>1, 둘째수0<√3−√2<1, 제4수2−√7<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√7,√2의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{2}-\\sqrt{7}=M−R; √2<2≤2이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=fab08aad1c96856117c5cfc697711aa8a276d6d546860458ed11020d4a976475가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 3,
+      "currentFamilyVersion": "2",
+      "contentSha256": "d598de8e7f10d160605953e85e10be86a762b6d3addd908a0eded97d89951292",
+      "solutionSha256": "467eb382d3f274e1f0ab5d2749b062358053ef44369168fc4c3d93b1b5ad243c",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{2}-\\sqrt{7}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재3의 첫 수√7−1>1, 둘째수0<√3−√2<1, 제4수3−√7<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√7,√2의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{2}-\\sqrt{7}=M−R; √2<2≤3이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=467eb382d3f274e1f0ab5d2749b062358053ef44369168fc4c3d93b1b5ad243c가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 4,
+      "currentFamilyVersion": "2",
+      "contentSha256": "531f6575e382b203e9aba99773862471ffdbc1de08028f0969cb1c78e3a39199",
+      "solutionSha256": "4fbf02807ebf258b688637c6a639b8148d69902af69aa9090f729ce9a8673158",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{3}-\\sqrt{7}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재4의 첫 수√7−0>1, 둘째수0<√3−√2<1, 제4수2−√7<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√7,√3의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{3}-\\sqrt{7}=M−R; √3<2≤2이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=4fbf02807ebf258b688637c6a639b8148d69902af69aa9090f729ce9a8673158가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 5,
+      "currentFamilyVersion": "2",
+      "contentSha256": "ab679ea77ed5e20ab8af86cccfc116afa2191a6e041750c4e48135db4fe5bf94",
+      "solutionSha256": "c571692a44077c02963ddbf1431d82950915b0fdfb494c68fb05eb70d2116e15",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{3}-\\sqrt{7}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재5의 첫 수√7−0>1, 둘째수0<√3−√2<1, 제4수3−√7<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√7,√3의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{3}-\\sqrt{7}=M−R; √3<2≤3이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=c571692a44077c02963ddbf1431d82950915b0fdfb494c68fb05eb70d2116e15가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 6,
+      "currentFamilyVersion": "2",
+      "contentSha256": "2b288e2faf7bed0ffbc543a1055b5bffcb78595e0b17c71553e53f7a6afac9f5",
+      "solutionSha256": "e0683fb186392e680c4f8093f2ba84a58424c1341d7365bef429b02c44ccbb90",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{3}-\\sqrt{7}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재6의 첫 수√7−1>1, 둘째수0<√3−√2<1, 제4수2−√7<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√7,√3의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{3}-\\sqrt{7}=M−R; √3<2≤2이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=e0683fb186392e680c4f8093f2ba84a58424c1341d7365bef429b02c44ccbb90가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 7,
+      "currentFamilyVersion": "2",
+      "contentSha256": "18bf0783fe6a38c3f4c9bdff8326c83a558b4ac43b67a9e7cd223322e9855f82",
+      "solutionSha256": "a603b056d9b60b14642cd947f917ad59043d6491e8e9c4a65ce0364328f4ede5",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{3}-\\sqrt{7}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재7의 첫 수√7−1>1, 둘째수0<√3−√2<1, 제4수3−√7<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√7,√3의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{3}-\\sqrt{7}=M−R; √3<2≤3이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=a603b056d9b60b14642cd947f917ad59043d6491e8e9c4a65ce0364328f4ede5가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 8,
+      "currentFamilyVersion": "2",
+      "contentSha256": "84257430ad18b3d5d980cc9743d9531beeb19eac5335bf72b541403a27a488af",
+      "solutionSha256": "b7f991fbd41f7609b2dfed77be270ef635fbdcde565c1cf0b8ffe4447d28fb6a",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{2}-\\sqrt{11}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재8의 첫 수√11−0>1, 둘째수0<√3−√2<1, 제4수2−√11<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√11,√2의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{2}-\\sqrt{11}=M−R; √2<2≤2이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=b7f991fbd41f7609b2dfed77be270ef635fbdcde565c1cf0b8ffe4447d28fb6a가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 9,
+      "currentFamilyVersion": "2",
+      "contentSha256": "e22c6b93818fd0702934cf7da411691ea99f3bcaefd7909fc988da68376a2e8c",
+      "solutionSha256": "1a2595e57889e1832dcd82c52e51fc168e913d0e2ece8307f4b3c72b36c02fe7",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{2}-\\sqrt{11}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재9의 첫 수√11−0>1, 둘째수0<√3−√2<1, 제4수3−√11<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√11,√2의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{2}-\\sqrt{11}=M−R; √2<2≤3이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=1a2595e57889e1832dcd82c52e51fc168e913d0e2ece8307f4b3c72b36c02fe7가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 10,
+      "currentFamilyVersion": "2",
+      "contentSha256": "f901ca6590121c46ad95c66620ecf958fa23162094a9ce60c5a68a4c02b76d87",
+      "solutionSha256": "d31a89a076f2128f38d847204a2a3c3c09b19095bbf55c781c8438dc4294a35a",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{2}-\\sqrt{11}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재10의 첫 수√11−1>1, 둘째수0<√3−√2<1, 제4수2−√11<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√11,√2의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{2}-\\sqrt{11}=M−R; √2<2≤2이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=d31a89a076f2128f38d847204a2a3c3c09b19095bbf55c781c8438dc4294a35a가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 11,
+      "currentFamilyVersion": "2",
+      "contentSha256": "d1b1e32bca6ca415edbf022113e42d7ed9f35f1dbc4f75d1d94f88ebb1584f4e",
+      "solutionSha256": "c8bb46c605665e98462c3c93531a0a398c41e0b95e51c85895845f385bac56fb",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{2}-\\sqrt{11}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재11의 첫 수√11−1>1, 둘째수0<√3−√2<1, 제4수3−√11<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√11,√2의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{2}-\\sqrt{11}=M−R; √2<2≤3이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=c8bb46c605665e98462c3c93531a0a398c41e0b95e51c85895845f385bac56fb가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 12,
+      "currentFamilyVersion": "2",
+      "contentSha256": "cb1f84b317e113db05de227eb2b382f65ed2da2435769f5a8c82cb8942a26aa9",
+      "solutionSha256": "cabd9a4342f7963c727aa1d3adac0d805dbbbf8de6f793adbd1a3589780d6425",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{3}-\\sqrt{11}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재12의 첫 수√11−0>1, 둘째수0<√3−√2<1, 제4수2−√11<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√11,√3의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{3}-\\sqrt{11}=M−R; √3<2≤2이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=cabd9a4342f7963c727aa1d3adac0d805dbbbf8de6f793adbd1a3589780d6425가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 13,
+      "currentFamilyVersion": "2",
+      "contentSha256": "30ef73393dc602c35d3a3c06f9ab9d212d41c0351479679b2234021b40663ebf",
+      "solutionSha256": "f76ff11364e1688020031404ec80ca2c09bf62f8d17f52e02da12eea03fcba59",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{3}-\\sqrt{11}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재13의 첫 수√11−0>1, 둘째수0<√3−√2<1, 제4수3−√11<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√11,√3의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{3}-\\sqrt{11}=M−R; √3<2≤3이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=f76ff11364e1688020031404ec80ca2c09bf62f8d17f52e02da12eea03fcba59가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 14,
+      "currentFamilyVersion": "2",
+      "contentSha256": "37c73198ffb58d7f9bce7dd5898a827c24b1b71797e24fd318261d7677d77ffe",
+      "solutionSha256": "d5e4fd469a204118899623a02c1fed6311780cd17c95a9c94b85cd68c017c1bb",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{3}-\\sqrt{11}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재14의 첫 수√11−1>1, 둘째수0<√3−√2<1, 제4수2−√11<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√11,√3의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{3}-\\sqrt{11}=M−R; √3<2≤2이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=d5e4fd469a204118899623a02c1fed6311780cd17c95a9c94b85cd68c017c1bb가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 15,
+      "currentFamilyVersion": "2",
+      "contentSha256": "6edec2773573e1a76b1f2486937afbfc75ae0329048cc0e9e6c1b65fc179ebd4",
+      "solutionSha256": "80e425507ac748ddc4bc7405e8fa2adf0a516aa77869037951b44f29d0bbfeb2",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{3}-\\sqrt{11}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재15의 첫 수√11−1>1, 둘째수0<√3−√2<1, 제4수3−√11<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√11,√3의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{3}-\\sqrt{11}=M−R; √3<2≤3이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=80e425507ac748ddc4bc7405e8fa2adf0a516aa77869037951b44f29d0bbfeb2가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 16,
+      "currentFamilyVersion": "2",
+      "contentSha256": "6d26a585d8798759d979480eaee633ad61202c627142bfd56f1d752a99192cca",
+      "solutionSha256": "acfcdee8c500306474e9dbac7f018af8563c937baef15c3f3bedbb4f733867c2",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{2}-\\sqrt{14}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재16의 첫 수√14−0>1, 둘째수0<√3−√2<1, 제4수2−√14<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√14,√2의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{2}-\\sqrt{14}=M−R; √2<2≤2이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=acfcdee8c500306474e9dbac7f018af8563c937baef15c3f3bedbb4f733867c2가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 17,
+      "currentFamilyVersion": "2",
+      "contentSha256": "62dc572edb23b3dbc6daa2d671e2ed085503c7d371e39446910bd76c32db482b",
+      "solutionSha256": "89b7d656883c332fac8726a25c3123550d9e800c686101cc0aedbfa525812afc",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{2}-\\sqrt{14}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재17의 첫 수√14−0>1, 둘째수0<√3−√2<1, 제4수3−√14<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√14,√2의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{2}-\\sqrt{14}=M−R; √2<2≤3이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=89b7d656883c332fac8726a25c3123550d9e800c686101cc0aedbfa525812afc가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 18,
+      "currentFamilyVersion": "2",
+      "contentSha256": "9c92db3a8b4e4a385fe56d628ddb9e477b09ec080a43e3283ea926295b903e14",
+      "solutionSha256": "c9d3611dd643b111df551c52253b4faa1be129ccdc5d8c164adb0f1b016a153a",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{2}-\\sqrt{14}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재18의 첫 수√14−1>1, 둘째수0<√3−√2<1, 제4수2−√14<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√14,√2의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{2}-\\sqrt{14}=M−R; √2<2≤2이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=c9d3611dd643b111df551c52253b4faa1be129ccdc5d8c164adb0f1b016a153a가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 19,
+      "currentFamilyVersion": "2",
+      "contentSha256": "27f0c2d291e1585b406835c9ed89007b2d2028b8ddee20cc0c546009184c6c21",
+      "solutionSha256": "3510832d25d667ad8d75ccd4ebcb35d0075d144545f760b7d74fa6f951042d9a",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{2}-\\sqrt{14}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재19의 첫 수√14−1>1, 둘째수0<√3−√2<1, 제4수3−√14<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√14,√2의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{2}-\\sqrt{14}=M−R; √2<2≤3이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=3510832d25d667ad8d75ccd4ebcb35d0075d144545f760b7d74fa6f951042d9a가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 20,
+      "currentFamilyVersion": "2",
+      "contentSha256": "56226616121c8cf9427ee6cdc8ff26a77dfdc93b34d971a20ed99eb468185c4f",
+      "solutionSha256": "293164df482dc2f4496bd425aa4a4318fb4673323107f07dc8ec617d7fd7034d",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{3}-\\sqrt{14}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재20의 첫 수√14−0>1, 둘째수0<√3−√2<1, 제4수2−√14<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√14,√3의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{3}-\\sqrt{14}=M−R; √3<2≤2이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=293164df482dc2f4496bd425aa4a4318fb4673323107f07dc8ec617d7fd7034d가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 21,
+      "currentFamilyVersion": "2",
+      "contentSha256": "1f72b0345cbc472e792326c879c1b23dac045021199e12673a2bfd4cca25f624",
+      "solutionSha256": "fbcf0833926e7ae4fe5c33ea38a75eb745ab2497d183894a854140c60ad5453c",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{3}-\\sqrt{14}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재21의 첫 수√14−0>1, 둘째수0<√3−√2<1, 제4수3−√14<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√14,√3의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{3}-\\sqrt{14}=M−R; √3<2≤3이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=fbcf0833926e7ae4fe5c33ea38a75eb745ab2497d183894a854140c60ad5453c가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 22,
+      "currentFamilyVersion": "2",
+      "contentSha256": "4feae0ed8be3397efda0e3f6a920f25fab97eb457c1ce66daddeb85311c8e464",
+      "solutionSha256": "b071574732ac25fc9c01a218d46672171aa7f8503ca181ebfc123d78c70f01f8",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{3}-\\sqrt{14}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재22의 첫 수√14−1>1, 둘째수0<√3−√2<1, 제4수2−√14<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√14,√3의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{3}-\\sqrt{14}=M−R; √3<2≤2이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=b071574732ac25fc9c01a218d46672171aa7f8503ca181ebfc123d78c70f01f8가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "minimum",
+      "index": 23,
+      "currentFamilyVersion": "2",
+      "contentSha256": "d2ff8f4c00a7b6764714c398da710fc525e1be1b6e4aa2f10d828193404dbb87",
+      "solutionSha256": "f2d64d02b02dd435137e139ef8ec53f2617eb92b3cfe5e03ec2f0cd5c03c50bf",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "\\sqrt{3}-\\sqrt{14}",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 제곱근 대소·실수 순서·근호 계산 학습 이후의 유한 자료 역산이다.",
+          "evidence": "현재23의 첫 수√14−1>1, 둘째수0<√3−√2<1, 제4수3−√14<1. 이전 인쇄식 오라클과 정확히 바인딩된 동일문장이다. 함수 극값정리 불필요."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형이고 선택지는 없어서 별도 보기 학년 요구는 없다.",
+          "evidence": "actual questionType=단답형, distractors 없음. MC/서술형 변조 거부, public4형식 요청은 모두 고정hold에 막힌다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "텍스트 네 수의 목록이며 도형·표·기하 선수는 없다.",
+          "evidence": "actual figureSpec=null; 동일 R1자료와 바인딩되며 그림 변조 거부. native 렌더 검증 아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수의 주제곱근·덧셈·뺄셈·순서 부호는2015중3 실제 범위이다.",
+          "evidence": "√14,√3의 피제곱수 양수. 실제 해설은 원래456수식/360관계 검사의 동일바이트 문자열이다. 분모·물리단위 없음."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "현재 정답은 기존 인쇄식 전용 정확 Fraction 계수/유리수 경계 오라클과 다시 바인딩됐다.",
+          "evidence": "\\sqrt{3}-\\sqrt{14}=M−R; √3<2≤3이므로 제4수보다 작고, s<n에서 음수로 나머지 셋 양수보다 작다. 유일 최대와 주어진 차이로 존재·유일하다. R2actual계수차 검증은 make답0오류를 거부한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "현재 해설은 정수 경계 비교→차이의 역산→최소성·재대입·유일성의 완결2015중3 방법이다.",
+          "evidence": "R1실제 해설SHA와 이번 solutionSHA=f2d64d02b02dd435137e139ef8ec53f2617eb92b3cfe5e03ec2f0cd5c03c50bf가 일치해 이미 독립 검사한 모든 수식과 절차가 유지된다. sqrt3>sqrt2 하한은3>2를 암묵 사용한다. 고등 정리는 필요 없다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "제곱근의 뜻·양수제곱 비교·실수 대소·근호항 사칙을 배운 뒤에만 배정한다.",
+          "evidence": "MOE records3776/3784/3788(9수01-07/09/10), 실제 중3 root표 pageIndex38/printed38. 학교/기존q03승인/함수극값 표기가 근거가 아니다.2022 별도pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 0,
+      "currentFamilyVersion": "2",
+      "contentSha256": "21e1a5ba05b7e6e832c52747c434e1addeea026b5a061538324f3959842e8208",
+      "solutionSha256": "29587c8b34a36a80218592b05926e99b93482d4b9cfb90bfdc9c51ea68a04d63",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "1.10",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['1.10', '1.11', '1.12', '1.13', '1.14'], 근삿값['1.049', '1.054', '1.058', '1.063', '1.068']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=1.10; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=29587c8b34a36a80218592b05926e99b93482d4b9cfb90bfdc9c51ea68a04d63가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 1,
+      "currentFamilyVersion": "2",
+      "contentSha256": "ef6ae7c47dfea385aa4dfaecfa9ef95459137aa175e334c1a03a2c0ad8e2a8e9",
+      "solutionSha256": "182a74b4e8f89aff2113bafd736bb59896338d2a9a4e402a3fb79cad015236ae",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "1.11",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['1.10', '1.11', '1.12', '1.13', '1.14'], 근삿값['1.049', '1.054', '1.058', '1.063', '1.068']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=1.11; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=182a74b4e8f89aff2113bafd736bb59896338d2a9a4e402a3fb79cad015236ae가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 2,
+      "currentFamilyVersion": "2",
+      "contentSha256": "25ae496dd49cf922a17b3bac50d86ee81d017c199a3de360a14361538e010f6e",
+      "solutionSha256": "30f96efd7b473b2d17eb52c1013b98e5111ae5e4e791dc8f80b6dcb3155cbaea",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "1.12",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['1.10', '1.11', '1.12', '1.13', '1.14'], 근삿값['1.049', '1.054', '1.058', '1.063', '1.068']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=1.12; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=30f96efd7b473b2d17eb52c1013b98e5111ae5e4e791dc8f80b6dcb3155cbaea가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 3,
+      "currentFamilyVersion": "2",
+      "contentSha256": "2a007a3d6fc04688106b589e099741b3927885ada921c7de0624d46a4228654c",
+      "solutionSha256": "be19643652a8b2753e28e89f0728c0dca9725ad6d35afd119f21ef261ba6803a",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "1.13",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['1.10', '1.11', '1.12', '1.13', '1.14'], 근삿값['1.049', '1.054', '1.058', '1.063', '1.068']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=1.13; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=be19643652a8b2753e28e89f0728c0dca9725ad6d35afd119f21ef261ba6803a가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 4,
+      "currentFamilyVersion": "2",
+      "contentSha256": "9e55f417378b854d46739b72bc0318e0cce4022fb3170ff900161f158a37f2d1",
+      "solutionSha256": "11344e02b23e73326d204ad15606356985c2ad581c68fd34ab83135e66426d5b",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "1.14",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['1.10', '1.11', '1.12', '1.13', '1.14'], 근삿값['1.049', '1.054', '1.058', '1.063', '1.068']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=1.14; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=11344e02b23e73326d204ad15606356985c2ad581c68fd34ab83135e66426d5b가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 5,
+      "currentFamilyVersion": "2",
+      "contentSha256": "56b9fb79e14ca16475295f6a8db5c0554d18773d3d34b8ed8b3d062568a01ef2",
+      "solutionSha256": "4f139753171db7b5c9e33cd2b4bb3f79f02d77bc4f360a46b6ec2e5bab201f0a",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "1.10",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['1.10', '1.11', '1.12', '1.13', '1.14'], 근삿값['1.049', '1.054', '1.058', '1.063', '1.068']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=1.10; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=4f139753171db7b5c9e33cd2b4bb3f79f02d77bc4f360a46b6ec2e5bab201f0a가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 6,
+      "currentFamilyVersion": "2",
+      "contentSha256": "451f0a9b4d198aa5e85f531d09d695174cdb912a78d159640888f1457bd509e7",
+      "solutionSha256": "d2adec0ee56c8363c9e57951127e34e3c57547c0b3b4f8ec1a5870594c56dcfd",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "1.11",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['1.10', '1.11', '1.12', '1.13', '1.14'], 근삿값['1.049', '1.054', '1.058', '1.063', '1.068']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=1.11; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=d2adec0ee56c8363c9e57951127e34e3c57547c0b3b4f8ec1a5870594c56dcfd가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 7,
+      "currentFamilyVersion": "2",
+      "contentSha256": "8d9ed37c02d220115a4318105a183ab931ebafa16519853c9bf78f36b5df8dee",
+      "solutionSha256": "6b873350a9a4313f63856dc08ed84315e94d454f13fe4c44b163a7ea5f3e294c",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "1.12",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['1.10', '1.11', '1.12', '1.13', '1.14'], 근삿값['1.049', '1.054', '1.058', '1.063', '1.068']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=1.12; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=6b873350a9a4313f63856dc08ed84315e94d454f13fe4c44b163a7ea5f3e294c가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 8,
+      "currentFamilyVersion": "2",
+      "contentSha256": "526ed0f1801b8936719ae36033b513f5e469bc515ab5c414e71f032ae4241b9e",
+      "solutionSha256": "e0057022a5f375835c37a345b784360f86e8151e0f178d36a500a4f82104af97",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "1.13",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['1.10', '1.11', '1.12', '1.13', '1.14'], 근삿값['1.049', '1.054', '1.058', '1.063', '1.068']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=1.13; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=e0057022a5f375835c37a345b784360f86e8151e0f178d36a500a4f82104af97가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 9,
+      "currentFamilyVersion": "2",
+      "contentSha256": "8deb0fa0e5921226626cce48ff4dc8348a75ef964f1987a6fa822625633c6843",
+      "solutionSha256": "c48617c99273b6f6f2cc82cb1583724d2b5a5bc714d4155661e4cc66b595547e",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "1.14",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['1.10', '1.11', '1.12', '1.13', '1.14'], 근삿값['1.049', '1.054', '1.058', '1.063', '1.068']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=1.14; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=c48617c99273b6f6f2cc82cb1583724d2b5a5bc714d4155661e4cc66b595547e가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 10,
+      "currentFamilyVersion": "2",
+      "contentSha256": "cdd74940b84ac07c4a387dfddcfcfbe1ad5eb71abc78e814e1d81d3cb3476e37",
+      "solutionSha256": "60e81c25a1ace8b3a6a1fde9c2274ac776c8e1317f9119efe3d2f17f03ce66cd",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "1.10",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['1.10', '1.11', '1.12', '1.13', '1.14'], 근삿값['1.049', '1.054', '1.058', '1.063', '1.068']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=1.10; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=60e81c25a1ace8b3a6a1fde9c2274ac776c8e1317f9119efe3d2f17f03ce66cd가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 11,
+      "currentFamilyVersion": "2",
+      "contentSha256": "c872b88c06e6982d381ca03210ffa7f950f9ab74ff607e46f3a41e335b4ef141",
+      "solutionSha256": "65c2a878b8fc447b936a5e67fd1fd7c156f9deda6d98202a2de8a2a08d4bb683",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "1.11",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['1.10', '1.11', '1.12', '1.13', '1.14'], 근삿값['1.049', '1.054', '1.058', '1.063', '1.068']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=1.11; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=65c2a878b8fc447b936a5e67fd1fd7c156f9deda6d98202a2de8a2a08d4bb683가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 12,
+      "currentFamilyVersion": "2",
+      "contentSha256": "497a132e82da3a6c385f45f4e67abb813fa2d0ab8529a7106c95b1b144eeaccc",
+      "solutionSha256": "2fa34e80652ae425f24b8692e4d64d76df945d689f00d0ec3f79f1eba25baa3c",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "1.12",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['1.10', '1.11', '1.12', '1.13', '1.14'], 근삿값['1.049', '1.054', '1.058', '1.063', '1.068']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=1.12; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=2fa34e80652ae425f24b8692e4d64d76df945d689f00d0ec3f79f1eba25baa3c가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 13,
+      "currentFamilyVersion": "2",
+      "contentSha256": "4090938f929f8ca37f7020a0b3c7608999b3ac0ade433c298747cc9a376ecb7f",
+      "solutionSha256": "1e816c5ce51e3b6f3f3e4850de7f3e31048f44023c480c9c5a53b6b867946c20",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "1.13",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['1.10', '1.11', '1.12', '1.13', '1.14'], 근삿값['1.049', '1.054', '1.058', '1.063', '1.068']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=1.13; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=1e816c5ce51e3b6f3f3e4850de7f3e31048f44023c480c9c5a53b6b867946c20가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 14,
+      "currentFamilyVersion": "2",
+      "contentSha256": "04733f485b892f13f91296c2cc0b99c90043f7c091b77043d5b12b0092067924",
+      "solutionSha256": "7bbb682c0b1036f87497496507a3d3270cda986eb1c5dedb95e0fc17ef7d3596",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "1.14",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['1.10', '1.11', '1.12', '1.13', '1.14'], 근삿값['1.049', '1.054', '1.058', '1.063', '1.068']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=1.14; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=7bbb682c0b1036f87497496507a3d3270cda986eb1c5dedb95e0fc17ef7d3596가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 15,
+      "currentFamilyVersion": "2",
+      "contentSha256": "cec494ed797ef17ea7794b01eb4424af9fb1ab50502e841b4361e060463b0193",
+      "solutionSha256": "140befe5f37d7431f0c97e6e8701585629d441236fca5ff164ebc03e26401500",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "2.50",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['2.50', '2.51', '2.52', '2.53', '2.54'], 근삿값['1.581', '1.584', '1.587', '1.591', '1.594']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=2.50; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=140befe5f37d7431f0c97e6e8701585629d441236fca5ff164ebc03e26401500가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 16,
+      "currentFamilyVersion": "2",
+      "contentSha256": "431ce320d381ce2756771d20572a6dd3fbaad1d76cc5ef6a2e9b1882eddd2310",
+      "solutionSha256": "8b30be5aa36573fdd8ec89bbac1d755797cf8fcf7fb1fe0ad12a97f97468c487",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "2.51",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['2.50', '2.51', '2.52', '2.53', '2.54'], 근삿값['1.581', '1.584', '1.587', '1.591', '1.594']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=2.51; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=8b30be5aa36573fdd8ec89bbac1d755797cf8fcf7fb1fe0ad12a97f97468c487가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 17,
+      "currentFamilyVersion": "2",
+      "contentSha256": "087cce7a5cd29ff5713aa34f9b901bcbcb0e75b9d7494e6c92b8c5ae6c856d07",
+      "solutionSha256": "388397aee02ff137054cc9a8bd9eefe1083867202b54acc283005ba0668fb97c",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "2.52",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['2.50', '2.51', '2.52', '2.53', '2.54'], 근삿값['1.581', '1.584', '1.587', '1.591', '1.594']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=2.52; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=388397aee02ff137054cc9a8bd9eefe1083867202b54acc283005ba0668fb97c가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 18,
+      "currentFamilyVersion": "2",
+      "contentSha256": "87144bf142d761ca44f556a05a7507e2de3edd8fbdbf8cd18d288cd10bc1c263",
+      "solutionSha256": "66e580ef50deef8ecebf16bde306d5b864e4f931fe36f5912f16f9655ec04742",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "2.53",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['2.50', '2.51', '2.52', '2.53', '2.54'], 근삿값['1.581', '1.584', '1.587', '1.591', '1.594']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=2.53; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=66e580ef50deef8ecebf16bde306d5b864e4f931fe36f5912f16f9655ec04742가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 19,
+      "currentFamilyVersion": "2",
+      "contentSha256": "9a3fe175446736aa0edd48599405206633e27a2aae78b193bd9ee12b7710a1ee",
+      "solutionSha256": "fe64a29f09ae7422716140c81eed2fde94ca359b1eb7811208f53a4adf2c97ca",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "2.54",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['2.50', '2.51', '2.52', '2.53', '2.54'], 근삿값['1.581', '1.584', '1.587', '1.591', '1.594']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=2.54; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=fe64a29f09ae7422716140c81eed2fde94ca359b1eb7811208f53a4adf2c97ca가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 20,
+      "currentFamilyVersion": "2",
+      "contentSha256": "484a0b19fb110ed45b2033fe39c4f9fa04052ba317a206633686eb6b8a0fc81b",
+      "solutionSha256": "16b5af07916ca09973b40d07baa0e2f2027fc9fee1908f6521beaca627d1116d",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "2.50",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['2.50', '2.51', '2.52', '2.53', '2.54'], 근삿값['1.581', '1.584', '1.587', '1.591', '1.594']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=2.50; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=16b5af07916ca09973b40d07baa0e2f2027fc9fee1908f6521beaca627d1116d가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 21,
+      "currentFamilyVersion": "2",
+      "contentSha256": "169290cfd8a059fa3cae755f1c391170d61940f3d43ca3835df60a7be24023e1",
+      "solutionSha256": "27f2c88b4718deeff90c383bae98dfca102c77040ed995257ec4eeedc8145591",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "2.51",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['2.50', '2.51', '2.52', '2.53', '2.54'], 근삿값['1.581', '1.584', '1.587', '1.591', '1.594']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=2.51; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=27f2c88b4718deeff90c383bae98dfca102c77040ed995257ec4eeedc8145591가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 22,
+      "currentFamilyVersion": "2",
+      "contentSha256": "7657a9383ffbeefbb14731adae6aa02ec341ece66114be22ae7ba9d4c4c49a0f",
+      "solutionSha256": "fd90d80d109487bb4622e06830a8038c6f910cffd2fac43745526385c42035f6",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "2.52",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['2.50', '2.51', '2.52', '2.53', '2.54'], 근삿값['1.581', '1.584', '1.587', '1.591', '1.594']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=2.52; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=fd90d80d109487bb4622e06830a8038c6f910cffd2fac43745526385c42035f6가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 23,
+      "currentFamilyVersion": "2",
+      "contentSha256": "e2298358cccb226642650810a2008b9e6aa01021db81e9fb1da7ad9e281aaec4",
+      "solutionSha256": "c0da81faa18c9b8f204e2cf62b37f20f6ad27f16a1de853ab5ac77d0818e575e",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "2.53",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['2.50', '2.51', '2.52', '2.53', '2.54'], 근삿값['1.581', '1.584', '1.587', '1.591', '1.594']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=2.53; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=c0da81faa18c9b8f204e2cf62b37f20f6ad27f16a1de853ab5ac77d0818e575e가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 24,
+      "currentFamilyVersion": "2",
+      "contentSha256": "8eada8a830578175ce436cd7987a127f69a24ec7b7616ecbf99cfbe1187e6f84",
+      "solutionSha256": "7ca481d3761eac17f1790db8e28440ba272077d6cff60b347bb65d8e4ac4240d",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "2.54",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['2.50', '2.51', '2.52', '2.53', '2.54'], 근삿값['1.581', '1.584', '1.587', '1.591', '1.594']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=2.54; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=7ca481d3761eac17f1790db8e28440ba272077d6cff60b347bb65d8e4ac4240d가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 25,
+      "currentFamilyVersion": "2",
+      "contentSha256": "089f9fe900e80a89ec181ab6003298ef540b3445675656d63ef615ec0e098083",
+      "solutionSha256": "c7ae583c7833d0b639fab9fb1bbe37a8a8d51a8eb19667828034f9d4c7c50a7d",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "2.50",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['2.50', '2.51', '2.52', '2.53', '2.54'], 근삿값['1.581', '1.584', '1.587', '1.591', '1.594']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=2.50; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=c7ae583c7833d0b639fab9fb1bbe37a8a8d51a8eb19667828034f9d4c7c50a7d가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 26,
+      "currentFamilyVersion": "2",
+      "contentSha256": "afa4f9b924519fceb6dad72db68598d9b9beda79c3eb11b8ccc2b3a03e536592",
+      "solutionSha256": "b57fe267bdb3b054cdc42e351d03eb081c38d076f8553b39ecef8003743fd4e6",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "2.51",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['2.50', '2.51', '2.52', '2.53', '2.54'], 근삿값['1.581', '1.584', '1.587', '1.591', '1.594']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=2.51; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=b57fe267bdb3b054cdc42e351d03eb081c38d076f8553b39ecef8003743fd4e6가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 27,
+      "currentFamilyVersion": "2",
+      "contentSha256": "bb1645a8118c589ec797ba5d7ff00abe65cd11bff7ef7253a22c7d3c4b702f38",
+      "solutionSha256": "0f60a69fcb4b714aac4efd699dd745d1e8e695ff0609e30e6b990aaf76657548",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "2.52",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['2.50', '2.51', '2.52', '2.53', '2.54'], 근삿값['1.581', '1.584', '1.587', '1.591', '1.594']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=2.52; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=0f60a69fcb4b714aac4efd699dd745d1e8e695ff0609e30e6b990aaf76657548가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 28,
+      "currentFamilyVersion": "2",
+      "contentSha256": "0f19ca48120c2944c55a5db3fe7981c51535e128b9b8dadc73d5e74d979d5e3e",
+      "solutionSha256": "a6a143bb63e05d1d7b96983624fc3d7daa2688a71e62281157eed6239b432d1d",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "2.53",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['2.50', '2.51', '2.52', '2.53', '2.54'], 근삿값['1.581', '1.584', '1.587', '1.591', '1.594']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=2.53; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=a6a143bb63e05d1d7b96983624fc3d7daa2688a71e62281157eed6239b432d1d가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 29,
+      "currentFamilyVersion": "2",
+      "contentSha256": "74504ecd376e79d64d1cf8279ba6a7d2d2146540d42b42fd03a48ae2d30959bd",
+      "solutionSha256": "ec94fdef8a24e5b2a8ecf783660eb6d6a131ed82b0c355994e8c3a07817399e7",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "2.54",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['2.50', '2.51', '2.52', '2.53', '2.54'], 근삿값['1.581', '1.584', '1.587', '1.591', '1.594']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=2.54; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=ec94fdef8a24e5b2a8ecf783660eb6d6a131ed82b0c355994e8c3a07817399e7가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 30,
+      "currentFamilyVersion": "2",
+      "contentSha256": "0f20bc426006d6f03fade18a1234abddf3bf04d6d34d618749363b8de0a550bc",
+      "solutionSha256": "20d6ffdac20095b1c399e46e6bf4f9fb85753bc0f8e30964c49897796611019d",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "5.10",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['5.10', '5.11', '5.12', '5.13', '5.14'], 근삿값['2.258', '2.261', '2.263', '2.265', '2.267']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=5.10; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=20d6ffdac20095b1c399e46e6bf4f9fb85753bc0f8e30964c49897796611019d가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 31,
+      "currentFamilyVersion": "2",
+      "contentSha256": "571198d179c11fbe9baad1250c255cd51e565dab8f39d1fc658a16bc75864c30",
+      "solutionSha256": "bb5c7f58aac5011afc9fbdd16fa051e0ac274918bd0682208bcbd2d2e0e3ee35",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "5.11",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['5.10', '5.11', '5.12', '5.13', '5.14'], 근삿값['2.258', '2.261', '2.263', '2.265', '2.267']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=5.11; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=bb5c7f58aac5011afc9fbdd16fa051e0ac274918bd0682208bcbd2d2e0e3ee35가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 32,
+      "currentFamilyVersion": "2",
+      "contentSha256": "7d8c22b51d4e30879817c187bd220e4ba7e991dbdae32ac67b22dd85716caaaa",
+      "solutionSha256": "c0fbe29f31a4cc83b228848274c30fbb67dc901926b8ca8650136eaf432135c4",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "5.12",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['5.10', '5.11', '5.12', '5.13', '5.14'], 근삿값['2.258', '2.261', '2.263', '2.265', '2.267']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=5.12; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=c0fbe29f31a4cc83b228848274c30fbb67dc901926b8ca8650136eaf432135c4가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 33,
+      "currentFamilyVersion": "2",
+      "contentSha256": "fb8e44230ac1870f756d7ec4dcb9c2f113956144a173232b99688a4a7a44561f",
+      "solutionSha256": "049c1ce1332b1ceea9bdbc592d144c95fcd81bd91e09a9be66fa02987613210c",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "5.13",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['5.10', '5.11', '5.12', '5.13', '5.14'], 근삿값['2.258', '2.261', '2.263', '2.265', '2.267']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=5.13; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=049c1ce1332b1ceea9bdbc592d144c95fcd81bd91e09a9be66fa02987613210c가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 34,
+      "currentFamilyVersion": "2",
+      "contentSha256": "07a2bdeab2405f544384d569aff5bac29d113784e67c4b8045d9c9b451099e5c",
+      "solutionSha256": "a53c751292ee82ce88cad81a4b3efc21597a9ec81fcc248ce70e95d3611b9207",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "5.14",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['5.10', '5.11', '5.12', '5.13', '5.14'], 근삿값['2.258', '2.261', '2.263', '2.265', '2.267']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=5.14; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=a53c751292ee82ce88cad81a4b3efc21597a9ec81fcc248ce70e95d3611b9207가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 35,
+      "currentFamilyVersion": "2",
+      "contentSha256": "66b2056cc0485b23e76394a8aba928a07936299d348046dc11155d21fa16629e",
+      "solutionSha256": "14aab9a006a44bc3333a7ecdcddda63a44df8e0b6f3e3c3d582f9105b2a06de7",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "5.10",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['5.10', '5.11', '5.12', '5.13', '5.14'], 근삿값['2.258', '2.261', '2.263', '2.265', '2.267']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=5.10; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=14aab9a006a44bc3333a7ecdcddda63a44df8e0b6f3e3c3d582f9105b2a06de7가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 36,
+      "currentFamilyVersion": "2",
+      "contentSha256": "a7dab78b788e557f04203c04ce9498e36605c7448539a29ac03fef29a587297b",
+      "solutionSha256": "0207112882ac1af758b2f67ae191213e4ad9592634d780df9220005f091fd36b",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "5.11",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['5.10', '5.11', '5.12', '5.13', '5.14'], 근삿값['2.258', '2.261', '2.263', '2.265', '2.267']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=5.11; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=0207112882ac1af758b2f67ae191213e4ad9592634d780df9220005f091fd36b가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 37,
+      "currentFamilyVersion": "2",
+      "contentSha256": "a39d3134379532a0398b4381c829823f652fde6e8b8951dc4d887a887463111e",
+      "solutionSha256": "666f18326395e10412175ff15a454836ea54b80be31b5cee3c2a8c5ae4efeafd",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "5.12",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['5.10', '5.11', '5.12', '5.13', '5.14'], 근삿값['2.258', '2.261', '2.263', '2.265', '2.267']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=5.12; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=666f18326395e10412175ff15a454836ea54b80be31b5cee3c2a8c5ae4efeafd가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 38,
+      "currentFamilyVersion": "2",
+      "contentSha256": "027c436752a57a92b583febe62c38d946bd4c09a00fde1b2ef1d5ac1e772c826",
+      "solutionSha256": "60b319c524246b4002bd96ef1834cbbf2717a92a0a356709308fa2de4abfe6dd",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "5.13",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['5.10', '5.11', '5.12', '5.13', '5.14'], 근삿값['2.258', '2.261', '2.263', '2.265', '2.267']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=5.13; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=60b319c524246b4002bd96ef1834cbbf2717a92a0a356709308fa2de4abfe6dd가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 39,
+      "currentFamilyVersion": "2",
+      "contentSha256": "a2370e75fee198bfdf2407ef2e28f049c749e4a3e12ee1aab872ca202d5d067d",
+      "solutionSha256": "77a23d5b21ff235a62ed24017ca25fc66f02f5d303a5195f0bbe6564ebd71563",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "5.14",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['5.10', '5.11', '5.12', '5.13', '5.14'], 근삿값['2.258', '2.261', '2.263', '2.265', '2.267']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=5.14; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=77a23d5b21ff235a62ed24017ca25fc66f02f5d303a5195f0bbe6564ebd71563가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 40,
+      "currentFamilyVersion": "2",
+      "contentSha256": "e6355294b25b80ea1b4586f72ef6f5ed8f7934914e86b4c983cd67054bda2784",
+      "solutionSha256": "71d429b3c96fc3330a84f68005d7f377363b6fcd4511a5f64b965fbe16669e7a",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "5.10",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['5.10', '5.11', '5.12', '5.13', '5.14'], 근삿값['2.258', '2.261', '2.263', '2.265', '2.267']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=5.10; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=71d429b3c96fc3330a84f68005d7f377363b6fcd4511a5f64b965fbe16669e7a가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 41,
+      "currentFamilyVersion": "2",
+      "contentSha256": "2326c57e42227d737434117f4f8e627cc7cecd19c348aa7aac603e08d1909913",
+      "solutionSha256": "9d43d5fd0306c68e7873b4c1ae41c02a8761fb4dfc5c7d3bbcf27b059721fe64",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "5.11",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['5.10', '5.11', '5.12', '5.13', '5.14'], 근삿값['2.258', '2.261', '2.263', '2.265', '2.267']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=5.11; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=9d43d5fd0306c68e7873b4c1ae41c02a8761fb4dfc5c7d3bbcf27b059721fe64가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 42,
+      "currentFamilyVersion": "2",
+      "contentSha256": "55ad74c5f395e1e7c7e958fffd4595c9f3f7fd2674e8f5d838781541249e0365",
+      "solutionSha256": "ca779d764f2dccf97f19de7616865def8b6689e21d89aec8a75538cf2a0b28c1",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "5.12",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['5.10', '5.11', '5.12', '5.13', '5.14'], 근삿값['2.258', '2.261', '2.263', '2.265', '2.267']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=5.12; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=ca779d764f2dccf97f19de7616865def8b6689e21d89aec8a75538cf2a0b28c1가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 43,
+      "currentFamilyVersion": "2",
+      "contentSha256": "d3a8aa91553c01e5c884f2f57a25e4a0dc93872c753df396f46fafff8ff800c1",
+      "solutionSha256": "22b5d89371eac4b7d665db176d599f6bf6cb4f57d3229df152efe5b9d512a924",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "5.13",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['5.10', '5.11', '5.12', '5.13', '5.14'], 근삿값['2.258', '2.261', '2.263', '2.265', '2.267']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=5.13; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=22b5d89371eac4b7d665db176d599f6bf6cb4f57d3229df152efe5b9d512a924가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    },
+    {
+      "family": "table",
+      "index": 44,
+      "currentFamilyVersion": "2",
+      "contentSha256": "7388214b26c8d43269ca34577bab7369e68fc877921dc7dc3ce81cae179207c1",
+      "solutionSha256": "b03869253ad94f89086e85fa761104a10294dba3514a69183ac4837c8f06db95",
+      "fullDraftExactlyEqualsBoundR1": true,
+      "answer": "5.14",
+      "grade2015M3AfterPrerequisites": "passed for exact unchanged student payload only",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "실제2015중3 양의 제곱근 성질·100분의1 배율과 이전 소수/유리수 계산을 배운 뒤 표결과에서 입력을 역산한다.",
+          "evidence": "인쇄입력['5.10', '5.11', '5.12', '5.13', '5.14'], 근삿값['2.258', '2.261', '2.263', '2.265', '2.267']. 양수 a,b와 a²=x/100,b² 조건을 현재동일문장에서 확인. 각 다섯 열 계산 결과를 정확 Fraction으로 비교해 하나만 부합한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "단답형으로 다섯 표 열은 주어진 자료이지 객관식 보기나 새 고등 조건이 아니다.",
+          "evidence": "actual questionType=단답형이며 모형은 다섯 입력 중 정확한 소수 하나를 답한다. 모든 열을 대입하는 학생 방법으로 충분하다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "입력과 제곱근 근삿값의 실제 2행5열 표를 읽는 방법은2015중3 제곱근표·근삿값 범위이다.",
+          "evidence": "current225cells 모두 Decimal ROUND_HALF_UP와 Fraction/중간점 제곱 인증을 재계산했다. 표 셀은 정확 근호가 아닌 반올림 소수이며 figureSpec=null. 실제 native renderer는 별도보류."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "양수 a,b,제곱 a²,b²,√x,소수 세 자리와 근삿값s는2015중3 및 이전 반올림/유리수 표기이다.",
+          "evidence": "현재해설은 exact a=√x/10과 approximation s/10을 분리하고, 실제 근호와 정확히 같다고 놓지 않았다는 문장을 유지한다. Decimal/BigInt/제곱중간점은 감사/구현 알고리즘이며 학생에게 요구하지 않는다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "실제 입력 셀 답은 이전 인쇄자료만으로 만든 Decimal+Fraction 오라클과 재대조됐다.",
+          "evidence": "actual answer=5.14; 5개 근삿값과5개10s+b 결과가 서로 달라 정답 유일. 양수제곱 조건의 양의 b와 x>0으로 도메인/부호 성립. R2는 make답이 아닌 실제 matching입력셀로 답을 검산한다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "실제해설은 b의 양의 제곱근, a=√x/10, 표의s를 대입한 10s+b와 일차수치 역산으로 완결되는2015중3 방법이다.",
+          "evidence": "현재 solutionSHA=b03869253ad94f89086e85fa761104a10294dba3514a69183ac4837c8f06db95가 이전45개 수치/근삿값구분 검사 문자열과 일치. 새계산225표셀·225열결과로 수치 근거도 현재 바인딩. 함수 단조정리/고등근호정리 없이 유한대입 가능."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양의 제곱근 성질·제곱근표 및 소수의 반올림·유리수 사칙·한 미지수 수치 역산을 학습한 뒤에만 배정한다.",
+          "evidence": "실제 MOE3776/3788(9수01-07/10),3413(6수03-02반올림),3760(9수01-05유리수사칙),3865계산복잡도제한 및 실제 중3/이전학년 배치 근거를 이전 own-primary-grade-evidence에 확인했다. 중학교군 코드/학교명만으로 승인하지 않으며2022pending."
+        }
+      }
+    }
+  ],
+  "gradeEvidence": {
+    "reuseOnlyAfterExact69FullDraftBinding": true,
+    "minimumPrimary": {
+      "status": "reused actual primary inspection in this same session, not q03 item-grade inheritance",
+      "moe": {
+        "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84",
+        "sha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "stream": "BodyText/Section0",
+        "records1based": [
+          {
+            "record": 3776,
+            "code": "9수01-07",
+            "scope": "제곱근의 뜻과 성질"
+          },
+          {
+            "record": 3780,
+            "code": "9수01-08",
+            "scope": "무리수의 개념"
+          },
+          {
+            "record": 3784,
+            "code": "9수01-09",
+            "scope": "실수의 대소 관계"
+          },
+          {
+            "record": 3788,
+            "code": "9수01-10",
+            "scope": "근호를 포함한 식의 사칙계산"
+          }
+        ]
+      },
+      "actualM3Placement": {
+        "url": "https://www.goe.go.kr/resource/old/BBSMSTR_000000030136/BBS_202202101132253081.pdf",
+        "pageIndex0": 38,
+        "printedPage": 38,
+        "observed": "실제 중3 표에 9수01-07/08/09/10이 배치됨; 발행연도2022를 2022개정으로 혼동하지 않음"
+      },
+      "yearScope": "2025 source/2026 practice 중3=2015, 2027부터 중3/2022는 별도 pending",
+      "limits": "표의 중3 배치와 아래 실제24개 방법을 대조했다. 코드/학교/기존q03승인만으로 전체 방법을 인증하지 않는다."
+    },
+    "tablePrimary": {
+      "moe2015": {
+        "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84",
+        "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "stream": "BodyText/Section0",
+        "actualRecords": {
+          "3413": {
+            "tag": 67,
+            "code": "6수03-02",
+            "ownParaphrase": "올림·버림·반올림의 의미와 활용",
+            "payloadSha256": "0bfcbc7f6a4d9d81e2698178ae7d394111e2650ee5531f08116681acb84224b6"
+          },
+          "3752": {
+            "tag": 67,
+            "code": "9수01-03",
+            "ownParaphrase": "양수·음수와 유리수",
+            "payloadSha256": "8b61eb09a1f50060d5c7939932dc3c94b020dbbb580ddb0ec141be8a3071a870"
+          },
+          "3760": {
+            "tag": 67,
+            "code": "9수01-05",
+            "ownParaphrase": "유리수 사칙계산",
+            "payloadSha256": "023cea4b41f27e63252aedb01e8ef821710536931afaf60664b8f403b3f12791"
+          },
+          "3776": {
+            "tag": 67,
+            "code": "9수01-07",
+            "ownParaphrase": "제곱근 뜻과 성질",
+            "payloadSha256": "76606082f0d0b1b7142205010d77a1cf32cd80e03e9bde82848411b936985411"
+          },
+          "3780": {
+            "tag": 67,
+            "code": "9수01-08",
+            "ownParaphrase": "무리수 개념",
+            "payloadSha256": "34e696ac5f0eaeda84acaab420b11951da9c6eab8238323b5ede97fe2b12a1b8"
+          },
+          "3784": {
+            "tag": 67,
+            "code": "9수01-09",
+            "ownParaphrase": "실수 대소관계",
+            "payloadSha256": "3cc0aea3661b616f6bf23993bf11e9d3fe569f1f2841d42a375a084982cd2079"
+          },
+          "3788": {
+            "tag": 67,
+            "code": "9수01-10",
+            "ownParaphrase": "근호식 사칙계산",
+            "payloadSha256": "0d2e86203b029fa1f45bfa3eb094ce23123d490f69a17d9d6800cc4a0ddafc97"
+          },
+          "3833": {
+            "tag": 67,
+            "code": "교수학습 유의사항",
+            "ownParaphrase": "소수와 분수 표현의 유용성",
+            "payloadSha256": "2ca3db966d312ad3c38e0dbe775b4b8f2915760646cd247ed094464eb3413868"
+          },
+          "3865": {
+            "tag": 67,
+            "code": "평가 유의사항",
+            "ownParaphrase": "정수·유리수 계산이 지나치게 복잡한 문제 제외",
+            "payloadSha256": "40103b4a6d960b8217eaa10d781579e08fc9bc5c35fca4dea1c00e765f4652d9"
+          },
+          "3916": {
+            "tag": 67,
+            "code": "9수02-05",
+            "ownParaphrase": "일차방정식 풀이와 활용",
+            "payloadSha256": "b442e470799d988762c6fbe169b566b77cba1009839522eb06e28b3f3b4f56cb"
+          }
+        },
+        "method": "Actual official HWP read in memory; sequential records/UTF16 tag67; not inherited standard approval."
+      },
+      "actualM3Placement": {
+        "url": "https://www.goe.go.kr/resource/old/BBSMSTR_000000030136/BBS_202202101132253081.pdf",
+        "documentSha256": "55940c49ff61b01a38f3304fe7d67c56d4a5d73e42a1d0949a767afb830fbffa",
+        "bytes": 5019101,
+        "zeroBasedPdfPages": [
+          38,
+          39,
+          40
+        ],
+        "printedPages": [
+          "38",
+          "39",
+          "40"
+        ],
+        "actualReadLocators": "web lines1079-1124 middle3 target and root/real/arithmetic standards;1151-1153 approximate value using calculator;1193-1200 middle3 design and explicitly rounded calculator output",
+        "ownObservation": "실제 중3 대상 차시 표가 제곱근 뜻/성질, 실수 대소, 근호 사칙을 배치한다. 다음 쪽은 무리수 어림값과 계산기를, 다음 쪽은 반올림한 계산값을 실제 문항 조건으로 구분한다.",
+        "scopeMapping": "이 템플릿 학생은 제곱근의 새 수치 알고리즘이나 저자 BigInt 검산을 수행하지 않는다. 주어진 반올림 표를 읽고 양의 제곱근의100배율 관계, 이미 배운 유리수 연산으로 유한5열을 검토한다. 실제 학생 단계만 심사함.",
+        "limitation": "직접 읽은 해당 문서의 표는 제곱근표 역산 템플릿 그 자체의 인증서가 아니다. 실제 배치된 각 필수 학생 단계에 현재45개 문항을 대응시킨 판단이다. 문서의2022 발행연도를2022개정 중3 배치로 오인하지 않음."
+      },
+      "roundingPrerequisite": {
+        "basis": "MOE2015 Section0 record3413 [6수03-02]; KOSAC공식교육과정 현재페이지 line404 교차확인",
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "observation": "반올림 자체는 초등 어림하기 선수개념. 인쇄문은 넷째자리에서 반올림하여 셋째자리까지 표기한다고 명시. 학생에게 근삿값 생성 알고리즘을 요구하지 않음."
+      },
+      "studentMethod": [
+        "b>0,b² known square -> positive integer b",
+        "a>0,a²=x/100 -> exact a=sqrt(x)/10",
+        "printed root approximation s -> approximation for a=s/10",
+        "use printed s exactly for decimal arithmetic100(s/10)+b",
+        "recover s=(printed result-b)/10 and find unique matching input among5columns, or evaluate all5outputs",
+        "do not replace exact sqrt(x) with s in an equality about true radical values"
+      ],
+      "era": {
+        "sourceStudy2025": "2015 M3",
+        "practice2026": "2015 M3",
+        "m3From2027": "pending actual2022 placement",
+        "basis": "already directly read MOE2022-33 application dates: middle1 2025,middle2 2026,middle3 2027; current audit does not certify2022 content"
+      },
+      "notInherited": "manual q06/earlier question approvals not read or used as a certificate for new45-case template. sourceStudyEvidence path in metadata treated only as a pointer.",
+      "externalDocumentsCommitted": false
+    },
+    "current2015M3": "same exact reviewed student methods after explicit prerequisites; no manualq03inheritance or new question counts",
+    "2022M3From2027": "pending separate actual placement evidence"
+  },
+  "releaseMetadataHolds": {
+    "policyVersion": "20261020-source-informed-template-review-r3",
+    "familyVersions": "both2",
+    "liveFamilyKey": null,
+    "registration": "held",
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "nativeReaderParity": false,
+    "publicApproval": false,
+    "loadable": false
+  },
+  "scopeAndLimits": {
+    "readRootSources": 16,
+    "allBeforeAfterFinalSourceHashesMatchProvided": true,
+    "onlyLocalBaselinesAndOwnPriorEvidenceAdditionalReads": true,
+    "boundedRuntimeMocks": "same explicit bounded mocks as own-bounded-loader.mjs; no outside registered families, real auth/strictJson, DB/HTTP/native rendering",
+    "notRun": [
+      "full registry/family rendering",
+      "real DB/HTTP/auth/body-parser",
+      "actual native/print renderer",
+      "parent test suite/type/lint"
+    ],
+    "nodeTypeTranspilation": "in-memory Node built-in stripTypeScriptTypes; zod runtime resolved read-only; no root writes",
+    "staleDigestLimit": "current-policy digest with family version1 material reconstructed, then current real resolver body under mocks returns409; not historical whole-runtime execution"
+  },
+  "inputHashes": {
+    "scope-input.json": "700b9733843736dfa7a1ad4ec996ec1344c0c12abc3d1febce8a92dd3f151574",
+    "actual-drafts.json": "94c2a0583411f5cd3b88c3d925bf7cfb5e2079a5483c066ccd732ab96d4ebe7f",
+    "baseline-source-receipt.json": "b5dbad149c27344152653b12c0ea1ce7994dc22c936ab62bc5d68892e24e8c07",
+    "baseline-inverse-minimum-v1.ts": "22677722aca4b36748cb330cb17fe0d36ae8936d1fc54836b785a4afafa834ed",
+    "baseline-inverse-root-table-v1.ts": "cac928c19fd494b76e31cbf06d125f49ae95bd07efdd53e47b9e0a6592547d86"
+  },
+  "evidenceHashes": {
+    "own-r1-payload-oracle-binding.json": "47c59ea21d3f4c08fe42e0917521d2c5a7c76458cf49847fc73b9b3dc41558ff",
+    "own-runtime-results.json": "fdab290bb853b034784f796bdea0fa1d012af51cecfab173f425ce7a1c0779f6",
+    "own-current69-drafts.json": "40ce5ef2d71fe6c3efebf8ea9209d9d4932c7f126be08b0dde80a378b1c6b0a1",
+    "own-table-certificates225.json": "d482f1da59d80813ab55378d0b110d9578cbefaf94e2feaab9181d2018234a4d",
+    "own-source-hashes-before.json": "c4739d1f0d2bb1044ddb39ff6d14f129659b747cc3ae6d45da08420e99005c9a",
+    "own-source-hashes-after.json": "e0ec5346a2689840b1192f4e07fec11d946ef6f0068d3f3d543f74e8b3669569",
+    "own-source-hashes-final.json": "c4739d1f0d2bb1044ddb39ff6d14f129659b747cc3ae6d45da08420e99005c9a",
+    "own-utf8-probe.txt": "1d6658a8ef03847a4dee6b916655c7146d019c87edcbf1c15013e36bf16ecb62"
+  },
+  "utf8WriteReadPassed": true,
+  "newManualQuestions": 0,
+  "newBlindQuestions": 0,
+  "dbWrites": 0,
+  "rootEdits": 0,
+  "paidApiCalls": 0,
+  "newWorkers": 0
+}

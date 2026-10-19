@@ -1,0 +1,226 @@
+[
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 4,
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group14-r1-q04",
+      "authorId": "codex-parent-engine-upgrade-20261019",
+      "questionType": "객관식",
+      "score": 4,
+      "content": "유리수 $a,b$가 $\\sqrt{48}-\\sqrt3=a\\sqrt3$, $a^2+b=16$을 만족하고 $b>0$이다. 다음 중 $\\sqrt b$와 같은 수는?",
+      "choices": [
+        "$\\sqrt{28}-\\sqrt7$",
+        "$\\sqrt{48}-\\sqrt{12}$",
+        "$\\sqrt{52}-\\sqrt{13}$",
+        "$\\sqrt{100}-\\sqrt{25}$",
+        "$\\sqrt{12}-\\sqrt3$"
+      ],
+      "answer": "①",
+      "solution": "$\\sqrt{48}=4\\sqrt3$이므로 $\\sqrt{48}-\\sqrt3=3\\sqrt3$이다. $\\sqrt3$은 $0$이 아니므로 $a=3$이다. 따라서 $a^2=9$이고 $9+b=16$에서 $b=7>0$이다. 그러므로 구하는 수는 $\\sqrt7$이다.\n\n① $\\sqrt{28}-\\sqrt7=2\\sqrt7-\\sqrt7=\\sqrt7$\n\n② $\\sqrt{48}-\\sqrt{12}=4\\sqrt3-2\\sqrt3=2\\sqrt3$\n\n③ $\\sqrt{52}-\\sqrt{13}=2\\sqrt{13}-\\sqrt{13}=\\sqrt{13}$\n\n④ $\\sqrt{100}-\\sqrt{25}=10-5=5$\n\n⑤ $\\sqrt{12}-\\sqrt3=2\\sqrt3-\\sqrt3=\\sqrt3$\n\n다섯 값은 모두 양수이며 제곱하면 차례로 $7,12,13,25,3$으로 서로 다르다. 따라서 $\\sqrt7$과 같은 값은 ① 하나뿐이다. 두 조건에서 $a=3$, $b=7$이 유일하게 정해지고 모두 유리수이므로 주어진 조건에도 맞는다.",
+      "figureArtifacts": [],
+      "sourceReference": {
+        "sourceReferenceId": "source-ref-nobyeon-2025-1-mid-fresh-r6-q04",
+        "inventoryExamId": "personal-651da9aa806ce1c9d1c3ae5539e6038f",
+        "sourceSchoolInternal": "노변중학교",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceContentSha256": "7fc5e9590c2a618a57c1b74b24f3370815186fd576dd9849c39312fcbf67b997",
+        "sourceManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-651da9aa806ce1c9d1c3ae5539e6038f/source-manifest.local.json",
+          "sha256": "76749165acccb92c23dd167adfbe16377d0c60735ea5568780c328ee469b0cf9"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[노변중][3][25-1-중간][동아강] (완료).hwp",
+            "sha256": "711bf0e161d5f83ee5261c40c48796ebc13f03b0f7f213f4973be00263190e44",
+            "bytes": 579072
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[노변중][3][25-1-중간][동아강] (완료).PDF",
+            "sha256": "b35bc2edff56bc9b92aaecb77f43a403017254cc48f817099badeb1743eca742",
+            "bytes": 154842
+          }
+        ],
+        "originalIdentitySource": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[노변중][3][25-1-중간] (원본)  (흰닭).pdf",
+          "sha256": "0010d2a15529c79f3407d2b8c461787080247e126dc7e725bb8c7eda461ed643",
+          "bytes": 3313997
+        },
+        "hwpAnchor": {
+          "stream": "BodyText/Section0",
+          "recordIndex": 561,
+          "inflatedByteOffset": 22554,
+          "tag": 71,
+          "level": 1,
+          "payloadSha256": "5e30eb8d8b7e914adc940228c46bf572478f409b44328919a69d7be41e3e10c8"
+        },
+        "originalHeaderObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/reviewer-observations-r1.json",
+          "sha256": "3eeaf1cc90a8677b850169154fc6ddc83c938d9213e63a9419f4636251267e02"
+        },
+        "actualReference": "Original header date2025-04-29 observed earlier;2026 preparation footer is separate. This component has not received original/body/whole-pair identity certification.",
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "sourceCropViewed": false,
+        "sourceBodyVisualCorrespondence": "pending-N-original-access"
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure"
+        ],
+        "before": "두근호식에서a,b를구한뒤a²+b의값을계산한다.",
+        "after": "한근호식과a²+b의결과를조건으로주고b를역으로복원한뒤√b와동치인새근호식을선택한다.",
+        "sharedConcept": "근호의성질과동류근호항의계산,유리수계수의식별,제곱과덧셈의관계",
+        "sharedProcedure": "근호를간단히정리→계수a식별→a²계산→b와합의관계확인→다른근호식을같은형태로정리",
+        "actualStructuralChange": "원문의최종계산값a²+b를새조건으로옮겨b복원의입력으로쓰고,원문의b관계식은고르는질문대상으로바꾼다. 단순숫자교체나문장순서치환만을완료근거로삼지않는다.",
+        "domainProof": "모든선택지의피제곱수는양수이고a=3,b=7이유일하다. b>0과a,b유리수조건을만족한다. 선택지값도모두양수이고그제곱7,12,13,25,3이서로달라동치중복이없으며정답은하나이다.",
+        "difficultyBasis": "원문 하/4점의근호간단화·계수식별·제곱·합관계를유지한다. 합의결과를조건으로옮겨덧셈의역연산을쓰고다섯근호식중동치값을고르게했다. 기본/4점은독립난도검토전제안이다."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "status": "author-proposed",
+        "standardCodes": [
+          "9수01-07",
+          "9수01-10"
+        ],
+        "officialBasis": {
+          "document": "MOE2020-236 Book8,2015 revised curriculum",
+          "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+          "stream": "BodyText/Section0",
+          "primaryStandardCodes": [
+            "9수01-07",
+            "9수01-10"
+          ]
+        },
+        "legitimateMethodDraft": "근호의양수성·제곱근성질로간단히정리하고같은근호의계수를비교한다. 정수제곱과덧셈의역연산으로b를구한다. 근호항의덧셈·뺄셈과양수제곱을이용해보기정오를판정하며고등항등식·무리방정식이나함수도구는필요하지않다.",
+        "sevenSurfaces": {
+          "stem": "author-proposed",
+          "choices": "author-proposed",
+          "figureTable": "no-figure-or-table-required",
+          "notation": "author-proposed",
+          "answer": "author-exact-calculated-only",
+          "studentSolution": "author-proposed",
+          "prerequisites": "author-proposed"
+        },
+        "independentReviewPending": true,
+        "authorCannotApprove": true,
+        "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review"
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 4,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "기본",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "근호 계수와 주어진 합에서 미지 관계식 복원",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "근호를 포함한 식의 계산",
+            "semester": 1,
+            "orderIndex": 471,
+            "problemCodePrefix": "J30103"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+            "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+          },
+          "evidence": "실제근호계산UnitUUID와제곱근뜻·성질선수UUID를연결한다. 알려진합에서b를복원하고동치근호식을고르는전체목표와일치하는livefamily는확인전null."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "본문·보기·표·해설에 학교명이 없다. 실제 출처 학교는 내부 메타데이터에만 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "pure-algebra-no-figure-required",
+          "newTables": 0,
+          "newFigures": 0,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "sourceDifficultyLabelObserved": "하",
+        "prerequisiteUnits": [
+          {
+            "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "제곱근의 뜻과 성질",
+            "semester": 1,
+            "orderIndex": 469,
+            "problemCodePrefix": "J30101"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "제곱근의성질과양수성",
+            "근호의사칙계산과동류근호항",
+            "정수제곱과덧셈의역연산"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        }
+      }
+    },
+    "assets": [],
+    "studentDigest": "a16cc78ef5d329c852b045664c79f9d1076588a6b2eeb05bbfc260a2bfa609bd",
+    "candidateDigest": "9c305436d0c8e3d4732bd98bf313035cbdfb3dc00bd919c07ce33f89ed57eb71",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "independentSolve": {
+      "studentDigest": "a16cc78ef5d329c852b045664c79f9d1076588a6b2eeb05bbfc260a2bfa609bd",
+      "solverId": "independent-helper-q04-blind-20261020-r1",
+      "answer": "①",
+      "solution": "√48=√(16×3)=4√3이므로 첫 조건은 3√3=a√3이다. √3>0이어서 양변을 0이 아닌 √3으로 나누면 a=3으로 유일하게 정해진다. 둘째 조건에 대입하면 3²+b=16이므로 b=7이다. a=3과 b=7은 모두 유리수이고 b>0을 만족한다. 또한 두 원래 조건에 대입하면 각각 3√3=3√3, 9+7=16이 되어 해가 실제로 존재한다. 첫 조건이 a를, 둘째 조건이 b를 각각 하나로 정하므로 해 (a,b)=(3,7)은 유일하며, 구하는 양의 제곱근은 √b=√7이다.\n\n보기 ①: √28−√7=2√7−√7=√7.\n보기 ②: √48−√12=4√3−2√3=2√3.\n보기 ③: √52−√13=2√13−√13=√13.\n보기 ④: √100−√25=10−5=5.\n보기 ⑤: √12−√3=2√3−√3=√3.\n다섯 보기의 값은 모두 양수이며 제곱하면 차례로 7,12,13,25,3이다. 따라서 √7과 같은 것은 ① 하나뿐이다. 모든 인쇄된 수치 피제곱수는 양수이고, 변수 피제곱수도 b=7>0이므로 모든 제곱근이 실수로 정의된다. 주제곱근의 양수 부호를 사용했으며 물리 단위나 도형 조건은 없다.",
+      "evidence": {
+        "noAuthorAnswerExposureDeclaration": "새 q04의 정확한 문항이나 정답을 사전에 본 적이 없다고 학생 파일을 읽기 전에 선언했다. 허용된 학생용 세 파일만 읽었으며 부모·저자·private·원문q04·다른 문항·저자 계산이나 정답 검색에 노출되지 않고 독립적으로 풀었다.",
+        "ownCalculationsFile": "../own-q04-blind-calculations.json",
+        "a": "3",
+        "b": "7",
+        "requestedValue": "sqrt7",
+        "allFiveChoicesChecked": true,
+        "existenceAndUniquenessChecked": true,
+        "allRootDomainsChecked": true,
+        "studentMethod": "2015 중3 제곱근의 성질·근호항 계산과 이전의 일차방정식 대입. 고등 계수비교법이나 함수정리 불필요. blind 단계는 정식 학년/수학 승인 집계가 아니다.",
+        "utf8WriteReadPassed": true,
+        "noPixelsOrAuthorOracle": true,
+        "newApprovalCounts": 0
+      },
+      "status": "solved"
+    },
+    "solveDigest": "00b44e08db802b3a66d99a38e808589cff3e8b25774e6753e3cee1d1f192974d"
+  }
+]

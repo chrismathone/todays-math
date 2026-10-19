@@ -92,10 +92,70 @@ const sameParams = (actual: CanonicalParams, expected: Parameters) =>
   Object.keys(actual).length === 4 &&
   Object.entries(expected).every(([k, v]) => actual[k] === v);
 
+/** Solve from printed coefficients; generator answer/parameter facts are not inputs. */
+function solvePrinted(content: string): {
+  parameters: Parameters;
+  answer: string;
+} {
+  const visible = match(
+    content,
+    /네 실수 \$\\sqrt\{(\d+)\}(-1)?, \\sqrt3-\\sqrt2, 1, (\d+)-\\sqrt\{(\d+)\}\$/u,
+  );
+  const difference = match(
+    content,
+    /뺀 값이 \$(\d+)\\sqrt\{(\d+)\}-\\sqrt\{(\d+)\}(-1)?\$일/u,
+  );
+  const radicand = Number(visible[1]),
+    offset = visible[2] ? 1 : 0,
+    visibleOffset = Number(visible[3]),
+    small = Number(difference[3]),
+    rangeCoefficient = Number(difference[1]),
+    rangeConstant = difference[4] ? -1 : 0;
+  insist(
+    Number(visible[4]) === radicand &&
+      Number(difference[2]) === radicand &&
+      rangeCoefficient === 2 &&
+      rangeConstant === -offset,
+    "인쇄된 최대항·제4자료·최대·최소 차이의 관계 불일치",
+  );
+  const parameters = { radicand, small, offset, visibleOffset };
+  insist(
+    domain.some((p) => sameParams(p, parameters)),
+    "검토한 유한 영역 밖",
+  );
+  // These printed integer premises prove that the first value exceeds1,
+  // the remaining visible values are below1, and the result is a strict minimum.
+  insist(
+    radicand > (offset + 1) ** 2 &&
+      radicand > 4 &&
+      small > 0 &&
+      small < 4 &&
+      visibleOffset >= 2 &&
+      visibleOffset <= 3,
+    "인쇄 조건의 최대·최소성 증명 실패",
+  );
+  const coefficients = new Map<number, number>([[radicand, 1]]);
+  coefficients.set(
+    Number(difference[2]),
+    (coefficients.get(Number(difference[2])) ?? 0) - rangeCoefficient,
+  );
+  coefficients.set(small, (coefficients.get(small) ?? 0) + 1);
+  insist(-offset - rangeConstant === 0, "인쇄 상수항의 차이 불일치");
+  const answer = [...coefficients]
+    .filter(([, c]) => c !== 0)
+    .sort(([a], [b]) => a - b)
+    .map(
+      ([n, c], i) =>
+        `${c < 0 ? "-" : i ? "+" : ""}${Math.abs(c) === 1 ? "" : Math.abs(c)}\\sqrt{${n}}`,
+    )
+    .join("");
+  return { parameters, answer };
+}
+
 /** Internal finite factory. Public release stays held regardless of caller labels. */
 export const inverseMinimum: ExamStudyFamily = {
   id: "study-middle-inverse-extreme-minimum",
-  version: "1",
+  version: "2",
   title: "최대·최소 차이에서 지워진 최솟값 복원",
   course: "중3",
   unitIds: ["중3|무리수와 실수"],
@@ -140,36 +200,14 @@ export const inverseMinimum: ExamStudyFamily = {
   canonicalParams: (item) => ({ ...item.parameters }),
   verify(item) {
     try {
-      const visible = match(
-        item.content,
-        /네 실수 \$\\sqrt\{(\d+)\}(-1)?, \\sqrt3-\\sqrt2, 1, (\d+)-\\sqrt\{(\d+)\}\$/u,
-      );
-      const difference = match(
-        item.content,
-        /뺀 값이 \$2\\sqrt\{(\d+)\}-\\sqrt\{(\d+)\}(-1)?\$일/u,
-      );
-      const radicand = Number(visible[1]),
-        offset = visible[2] ? 1 : 0,
-        visibleOffset = Number(visible[3]),
-        small = Number(difference[2]);
-      insist(
-        Number(visible[4]) === radicand &&
-          Number(difference[1]) === radicand &&
-          Number(Boolean(difference[3])) === offset,
-        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치",
-      );
-      const parameters = { radicand, small, offset, visibleOffset };
-      insist(
-        domain.some((p) => sameParams(p, parameters)),
-        "검토한 유한 영역 밖",
-      );
+      const { parameters, answer } = solvePrinted(item.content);
       insist(
         sameParams(item.parameters, parameters),
         "인쇄 자료와 매개변수 불일치",
       );
       const expected = make(parameters);
       insist(
-        item.answer === expected.answer,
+        item.answer === answer,
         "인쇄된 최대항과 차이로 복원한 최솟값 불일치",
       );
       insist(

@@ -1,0 +1,6 @@
+{
+  "initialScript": "own-write-report.py",
+  "failure": "unmatched closing brace line22; report not created",
+  "correction": "new own-write-report-r2.py removes duplicate closing brace only; failed original preserved",
+  "mathOrRootSourceChanged": false
+}

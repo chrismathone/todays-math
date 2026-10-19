@@ -1,0 +1,9 @@
+{
+  "failedDriver": "validate-inverse-calculation-r2.mjs",
+  "failedBeforeAnyTest": true,
+  "reason": "Prior source map contains absolute and relative keys for the same changed root-table file. Relative-only changed.includes check treated the absolute alias as unchanged.",
+  "correction": "Compare resolved case-insensitive Windows absolute paths for exactly three declared changed files; all other old source hashes still required identical.",
+  "failedDriverPreserved": true,
+  "productionSourceChangedByHarnessFix": false,
+  "checksSkipped": false
+}
