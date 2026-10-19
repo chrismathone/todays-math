@@ -1,0 +1,131 @@
+{
+  "currentDigestsIndependentlyRecomputed": {
+    "studentDigest": "225b5e64ceb422692469fc64ee3406b4e535decdb3510afa871c6f164dbb6856",
+    "candidateDigest": "899e7ea6b8ad3eb4f22c56ca311400ed4cf5a2481d24d7550a04e8e3623330ba",
+    "assetDigest": "20fa33c0d677aded936b0adc54e432970bc198e68f64c2c3046e752d68c0d100",
+    "solveDigest": "b4372de1f5f4d7e0d9c581124c0d83833da00299cda747dec7bf74e711801653"
+  },
+  "rawSha256": "048bf55787249386b418f882d4d6af680d5d68553809a478782343577d9ba101",
+  "rawAndOriginalDeclarationPreserved": true,
+  "actualAuthorSolution": {
+    "cyclicQuadPRST": "valid after auxiliary PR",
+    "RPT": "72",
+    "QPR": "23",
+    "smallQOR": "46",
+    "reflexQOR": "314",
+    "fullProcedure": "opposite cyclic angles sum180; subtract72from95; double23for sameQRarc;46<180",
+    "matchesOwnSealedMethod": true,
+    "allStepsLegitimateStudentGeometry": true
+  },
+  "allFiveOptions": [
+    {
+      "mark": "①",
+      "centralDegrees": "42",
+      "impliedQPR": "21",
+      "impliedQPT": "93",
+      "matches95": false
+    },
+    {
+      "mark": "②",
+      "centralDegrees": "44",
+      "impliedQPR": "22",
+      "impliedQPT": "94",
+      "matches95": false
+    },
+    {
+      "mark": "③",
+      "centralDegrees": "46",
+      "impliedQPR": "23",
+      "impliedQPT": "95",
+      "matches95": true
+    },
+    {
+      "mark": "④",
+      "centralDegrees": "48",
+      "impliedQPR": "24",
+      "impliedQPT": "96",
+      "matches95": false
+    },
+    {
+      "mark": "⑤",
+      "centralDegrees": "50",
+      "impliedQPR": "25",
+      "impliedQPT": "97",
+      "matches95": false
+    }
+  ],
+  "independentExistenceAndAuthorClaimChecks": [
+    {
+      "origin": "own pre-exposure independent witness",
+      "consecutiveArcsPQ_QR_RS_ST_TP": [
+        "85",
+        "46",
+        "72",
+        "72",
+        "85"
+      ],
+      "sum360": true,
+      "positiveAndOrdered": true,
+      "QPT95andRST108": true,
+      "targetQR46": true
+    },
+    {
+      "origin": "author stated angular-gap claim checked after rawseal",
+      "consecutiveArcsPQ_QR_RS_ST_TP": [
+        "80",
+        "46",
+        "68",
+        "76",
+        "90"
+      ],
+      "sum360": true,
+      "positiveAndOrdered": true,
+      "QPT95andRST108": true,
+      "targetQR46": true
+    }
+  ],
+  "uniqueness": "angle46andoption3forced;radiusandotherarcpartitionsare notunique",
+  "figureBinding": {
+    "boundAssetDigest": "20fa33c0d677aded936b0adc54e432970bc198e68f64c2c3046e752d68c0d100",
+    "actualStudentSvgSha256": "69f53b0c707230d6a2c7e9554100ad1a7dfd293e986e8cb177971cc4cccf9160",
+    "declaredSpecSha256": "83b0cd17c8e648a368ceabab17e098f6fb7e3219322f47dcffc968b283c399c6",
+    "intendedWidthMm": 70,
+    "labels": [
+      "95°",
+      "108°",
+      "x",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T"
+    ],
+    "studentOrderPreviouslyVisuallyConfirmed": "P-Q-R-S-T cyclic order, Ocenter, OQ/ORradii, angle95atP/108atS/xatO",
+    "specPhysicalBytesNotRead": true,
+    "limitation": "Private sourceSpecPath not opened; supplied spec hash is included in recomputed binding, not independently verified specbytes or coordinate geometry. Actual SVG bytes/labels/student preview checked. No coordinate/pixel numeric oracle or native release claim."
+  },
+  "primaryPageCorrection": {
+    "physical74index73printed72": true,
+    "printed72AlsoFirstExtractedLine": true,
+    "initialTailOnlyTextAssertionFailurePreserved": "own-q06-review-primary-diagnostic.json",
+    "provisionalPrinted73InputPreserved": true
+  },
+  "sourceComparison": {
+    "sourceArtifactSha256": "0512b57b019e601a11b79fa4abfe180846277c4453304003f97f4b2a2cbc2cce",
+    "componentImagesViewed": true,
+    "observed": "originalHq6andcompletedq6 show cyclicABCDE,centerBOC42,inscribedD102,targetBAE,score5; source difficulty unknown",
+    "sameCore": "auxiliary diagonal forms cyclic quadrilateral; opposite supplementary angles andsamearc inscribed/center2:1relation with anglepartition",
+    "actualInverseChange": "Original center-angleinput is converted to an inscribed-angle part and combined to obtain another inscribedangle. New task gives twoinscribedangles and asks for the center-angle instead; oppositeangle→subtraction→doubling reverses the dependency/target. New numbers/names alone are not the substantive-change basis.",
+    "sourceAnswerOrKeyComputed": false,
+    "sourcePairOrRightsApproved": false,
+    "footerRestrictionObserved": true
+  },
+  "inputHashes": {
+    "VERIFY-BRIEF.md": "35f0141b096cf184d92c0fdb4f5da623e99cf1882faa33bff9b2cda745d835b5",
+    "verification-inputs.json": "9f18df82bed96cefba52b8d8e817a03d1a380ce7a43c1f6081a120d300e8c73f",
+    "verification-manifest.json": "cbc58fdf2530eeaa59e9c81ab3ce684f992d53604215d5d492e4fa5e95cf520e",
+    "sealed-raw-commit.json": "70c6ccd6782c194732f4602d51adadbeeac2e6404e60bf792adb08a595286a10"
+  },
+  "utf8WriteReadPassed": true
+}

@@ -1,0 +1,274 @@
+{
+  "status": "pending",
+  "studentDigest": "225b5e64ceb422692469fc64ee3406b4e535decdb3510afa871c6f164dbb6856",
+  "candidateDigest": "899e7ea6b8ad3eb4f22c56ca311400ed4cf5a2481d24d7550a04e8e3623330ba",
+  "assetDigest": "20fa33c0d677aded936b0adc54e432970bc198e68f64c2c3046e752d68c0d100",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-gyeongsin-q06-stage2-20261020-r1",
+  "solveDigest": "b4372de1f5f4d7e0d9c581124c0d83833da00299cda747dec7bf74e711801653",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "실제조건은 볼록한 원내접오각형의 두 원주각과 작은중심각을 연결하는2015중3 원주각학습후 과제이다.",
+      "evidence": "학교2024공식계획 실제중3·수학·2학기머리글과9수04-20의원주각/중심각계산내용을직접확인했다. current95/108조건은보조선하나와기본각계산으로완결되며원과비례를쓰지않는다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "42/44/46/48/50도는 모두양수인작은각이며 추가학년밖표현은없다.",
+      "evidence": "RST108에서RPT72가고정된다.각보기중심각절반을더한QPT는93/94/95/96/97도이므로③만일치한다.각단위도이고보기중복없다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "실제학생SVG의원O와순서PQRST,오각형변및OQ/OR,각표시는 원주각학습후중3에게필요한유한도형자료이다.",
+      "evidence": "SVGsha69f53b0c707230d6a2c7e9554100ad1a7dfd293e986e8cb177971cc4cccf9160이currentasset/studentbinding과일치한다.95는P,108은S,x는O에있고순서를직접보았다.보조선PR은그려쓸수있다. spec실물/좌표정밀도/native는미검증이며좌표·픽셀은수치오라클이아니다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "∠QPT,∠RST,∠QOR,원O,도(°),작은중심각은2015중3원주각/중심각기호범위이다.",
+      "evidence": "고정된정점순서로PR이∠QPT안에있어서각빼기가정당하다.46<180으로작은중심각과반대314도를구별한다. 삼각함수·좌표·원의방정식기호없다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "③46도는 같은호QR의원주각23도와2:1관계로강제되며실제주어진각조건과양의호로실현된다.",
+      "evidence": "자체호85/46/72/72/85는합360으로95와108을재현한다. 저자주장80/46/68/76/90도별도로검산했다. 도형전체/반지름은유일하지않지만목표각및보기정답은유일하다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "실제저자해설은PR보조선→내접사각형대각합180→각빼기→같은호중심각2배만쓰는2015중3방법이다.",
+      "evidence": "내접사각형의대각합은원주각2:1과상보적인두호의중심각합360에서얻는기본따름성질이다. 따라서9수04-20의정당화범위이며제외된원과비례/현분할길이비·접현각·삼각비좌표가필요없다. 실제72,23,46각계산이raw와일치한다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "원주각-중심각관계와내접사각형대각합,볼록다각형보조선의각분할을학습한2015중3이후배정한다.",
+      "evidence": "규범9수04-20및제외사항을직접확인하고 실제학교공식2024계획 physical74/index73/printed72에서중3 2학기배치를확인했다. 성곡중계획은실제학년배치의근거일뿐경신중2025중간고사진도/학교원문허가나2022배치인증이아니다."
+    }
+  },
+  "evidence": {
+    "ownCalculationFile": "own-q06-review-calculations.json",
+    "ownCalculationSha256": "6beb0bab917823429c5a2194af51156e73479ac0a711ae44777736d9adf107e0",
+    "actualFullAuthorSolutionComparison": {
+      "cyclicQuadPRST": "valid after auxiliary PR",
+      "RPT": "72",
+      "QPR": "23",
+      "smallQOR": "46",
+      "reflexQOR": "314",
+      "fullProcedure": "opposite cyclic angles sum180; subtract72from95; double23for sameQRarc;46<180",
+      "matchesOwnSealedMethod": true,
+      "allStepsLegitimateStudentGeometry": true
+    },
+    "allFiveOptions": [
+      {
+        "mark": "①",
+        "centralDegrees": "42",
+        "impliedQPR": "21",
+        "impliedQPT": "93",
+        "matches95": false
+      },
+      {
+        "mark": "②",
+        "centralDegrees": "44",
+        "impliedQPR": "22",
+        "impliedQPT": "94",
+        "matches95": false
+      },
+      {
+        "mark": "③",
+        "centralDegrees": "46",
+        "impliedQPR": "23",
+        "impliedQPT": "95",
+        "matches95": true
+      },
+      {
+        "mark": "④",
+        "centralDegrees": "48",
+        "impliedQPR": "24",
+        "impliedQPT": "96",
+        "matches95": false
+      },
+      {
+        "mark": "⑤",
+        "centralDegrees": "50",
+        "impliedQPR": "25",
+        "impliedQPT": "97",
+        "matches95": false
+      }
+    ],
+    "existenceAndFigureBinding": {
+      "witnesses": [
+        {
+          "origin": "own pre-exposure independent witness",
+          "consecutiveArcsPQ_QR_RS_ST_TP": [
+            "85",
+            "46",
+            "72",
+            "72",
+            "85"
+          ],
+          "sum360": true,
+          "positiveAndOrdered": true,
+          "QPT95andRST108": true,
+          "targetQR46": true
+        },
+        {
+          "origin": "author stated angular-gap claim checked after rawseal",
+          "consecutiveArcsPQ_QR_RS_ST_TP": [
+            "80",
+            "46",
+            "68",
+            "76",
+            "90"
+          ],
+          "sum360": true,
+          "positiveAndOrdered": true,
+          "QPT95andRST108": true,
+          "targetQR46": true
+        }
+      ],
+      "binding": {
+        "boundAssetDigest": "20fa33c0d677aded936b0adc54e432970bc198e68f64c2c3046e752d68c0d100",
+        "actualStudentSvgSha256": "69f53b0c707230d6a2c7e9554100ad1a7dfd293e986e8cb177971cc4cccf9160",
+        "declaredSpecSha256": "83b0cd17c8e648a368ceabab17e098f6fb7e3219322f47dcffc968b283c399c6",
+        "intendedWidthMm": 70,
+        "labels": [
+          "95°",
+          "108°",
+          "x",
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T"
+        ],
+        "studentOrderPreviouslyVisuallyConfirmed": "P-Q-R-S-T cyclic order, Ocenter, OQ/ORradii, angle95atP/108atS/xatO",
+        "specPhysicalBytesNotRead": true,
+        "limitation": "Private sourceSpecPath not opened; supplied spec hash is included in recomputed binding, not independently verified specbytes or coordinate geometry. Actual SVG bytes/labels/student preview checked. No coordinate/pixel numeric oracle or native release claim."
+      }
+    },
+    "sourceCoreAndNewInverseTarget": {
+      "sourceArtifactSha256": "0512b57b019e601a11b79fa4abfe180846277c4453304003f97f4b2a2cbc2cce",
+      "componentImagesViewed": true,
+      "observed": "originalHq6andcompletedq6 show cyclicABCDE,centerBOC42,inscribedD102,targetBAE,score5; source difficulty unknown",
+      "sameCore": "auxiliary diagonal forms cyclic quadrilateral; opposite supplementary angles andsamearc inscribed/center2:1relation with anglepartition",
+      "actualInverseChange": "Original center-angleinput is converted to an inscribed-angle part and combined to obtain another inscribedangle. New task gives twoinscribedangles and asks for the center-angle instead; oppositeangle→subtraction→doubling reverses the dependency/target. New numbers/names alone are not the substantive-change basis.",
+      "sourceAnswerOrKeyComputed": false,
+      "sourcePairOrRightsApproved": false,
+      "footerRestrictionObserved": true
+    },
+    "naturalKorean": "원O에내접하는오각형PQRST,두원주각,작은중심각이라는조건/대상이명확하다. 그림의정점순서와OQ/OR및각표시가문장에맞는다. 작은이라는말이46과314의모호성을없앤다.",
+    "scoreDifficulty": {
+      "sourceObservedScore": 5,
+      "sourceDifficultyObserved": null,
+      "currentProposal": "표준/5점",
+      "decision": "reasonable editorial proposal; source difficulty and empirical same-difficulty remain unknown",
+      "basis": "보조선선택과내접사각형/원주각-중심각두성질을연결하는세단계각추론이다. 원문도같은성질연결을쓰지만출력방향이바뀐다. 5점은합리적제안이나원문난도라벨은이미지/요약에없어추정하지않는다. 기존엔진난도키/실측난도인증도아니다."
+    },
+    "unitFamily": {
+      "capturedUnitUuid": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+      "capturedSection": "원주각의 활용",
+      "snapshotSha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0",
+      "prerequisiteUnitUuid": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+      "familyKey": null,
+      "unitFamilyFit": false,
+      "basis": "원주각활용Unitb6d4dc2e-0db8-44fe-a763-7214284d9bea와원주각선수bd2f6e4b-2822-421c-a67d-855ab4a60103는실제수학핵심과관련된다. 그러나두원주각→중심각역산전체목표의실제livefamily정의를이범위에서검토하지못했으므로호환승인하지않는다.",
+      "notCurrentDbPromise": true
+    },
+    "primaryEvidence": {
+      "officialSchoolPlan": {
+        "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+        "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+        "pageImageSha256": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12",
+        "physicalPdfPage": 74,
+        "pageIndex0": 73,
+        "actualPrintedPage": 72,
+        "oldProvisionalPrintedPage": 73,
+        "oldAndCorrectedProvidedReceiptsPreserved": true,
+        "footerTextExtractionLiteral72InTail": false,
+        "printedPageBasis": "independent visual footer72; extraction tail ordering not a page locator",
+        "pageTextSha256": "cd24c6e329cec8955d1a1d7dcf2e3aaa4dbd3b67dfb5f6e36251fee7e73d35db",
+        "observedByOwnVisualAndPdfText": [
+          "3학년",
+          "수학",
+          "2학기",
+          "9수04-20",
+          "원주각·중심각 계산"
+        ],
+        "notExamPacingOrPermission": true
+      },
+      "normativePrimary": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "directCurrentRead": true,
+        "observedStandard": "9수04-20",
+        "scopeParaphrase": "원주각의 성질을 이해하는 범위;원과비례의성질은제외. 볼록다각형과학생수준의기본정당화만사용.",
+        "webPageLineLocators": {
+          "standard": 540,
+          "convexOnly": 549,
+          "excludedCircleProportionality": 558,
+          "noComplexFormalLogicDemand": 565
+        },
+        "searchDiagnostics": {
+          "literal2015TextFind": "no match in parsed page; edition attribution uses provided2015source provenance and known2015MOEstandard,not claim visible2015label",
+          "literalCircleProportionFind": "exact text search no match due spacing; actual open line558 visibly contains the exclusion"
+        }
+      },
+      "studentMethodReasoning": "Opposite cyclic angles subtend complementary arcs whose center angles sum360; the2:1inscribed relation gives opposite angles sum180. Then one auxiliary chord, angle subtraction and doubling only. No chord/secant/tangent length ratios or coordinate/trigonometric theorem.",
+      "sourceImagesObserved": {
+        "originalHPage2Sha256": "69c01d1bbcbf7ed5906adaf1961cb5b9f0a377e84b9493901b0712828675a5e0",
+        "completedQ06Sha256": "6e691dad0a26f43976149e8bcf2d2a9e48a3ddcfe5ccf37de4d400275d526d08",
+        "q06ComponentObservation": "Both display cyclicABCDE,centerBOC42,angleD102,targetBAE,score5. No source answer/key calculated.",
+        "footerRestriction": "originalH footer displays copyright/copying restriction notice; rights not cleared.",
+        "incidentalExposureHistory": "Provided full original page also contains adjacent originalq05/q07/q08, incidentally visible; not solved or used. Record this for future exposure declarations."
+      },
+      "limits": "Full PDF/page images and original source images remain provided local inputs only, never stage. Source component correspondence does not certify whole pair,year,custody,rights/native.",
+      "utf8WriteReadPassed": true
+    },
+    "primaryEvidenceSha256": "2640fc1cc13ba34cb6cb829a988d06aea35daf007debcce5a72bfd32466f0925",
+    "additionalPrimaryExtractionCheck": "PDFpage73textfirstlineis-72-; initialtail-onlyassertionfailurepreserved. Header3학년/수학/2학기and9수04-20alsoverified.",
+    "rawBinding": {
+      "ownCommit": "b5d99b3e5ebc9010f34c12ab4532cc63000b0ee1",
+      "parentSeal": "9f8b826507f80af86681a1178e2050e5e35c18f4",
+      "rawSha256": "048bf55787249386b418f882d4d6af680d5d68553809a478782343577d9ba101",
+      "originalNoCurrentAuthorExposureDeclarationPreserved": true
+    },
+    "separateHolds": {
+      "sourceComponentCorrespondence": "observed onlyq06 images/text,notwholepair/year/custody",
+      "sourcePairIdentityApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "liveFamilyApproved": false,
+      "2025Source2026PracticeCurriculum": "2015M3 aftercircleprerequisites",
+      "2027M3/2022": "pending actual separateplacement",
+      "loadable": false
+    },
+    "counts": {
+      "independentMathDecision": 1,
+      "independentGradeDecision2015AfterPrerequisites": 1,
+      "checksPassed": 11,
+      "checksHeld": 1,
+      "studentSurfacesPassed": 7,
+      "contentHeld": 1,
+      "newManualOrBlindIncrement": 0
+    },
+    "limits": "No private figureSpecbytes/parentcode/actualcollector/DB/native reader audit. FigurebindingconfirmsstudentSVGanddeclaredspecdigestonly. No fullprimaryPDF/pageimages/sourceimagesstaged. SourceHfooterrestrictionisobserved;no permissioninferred.",
+    "utf8WriteReadPassed": true,
+    "dbWrites": 0,
+    "paidApiCalls": 0,
+    "newWorkers": 0
+  }
+}
