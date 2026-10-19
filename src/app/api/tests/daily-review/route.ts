@@ -28,6 +28,7 @@ import {
  * 만들 수 있으므로 여기서 안 좁히면 남의 반이 섞인다. eywa 갈래는 관리자라도 그대로다(D-130 ⑸).
  * 출제(POST /api/tests/generate)는 기존 소유권 규칙 그대로다.
  */
+import { GENERAL_TESTS } from "@/lib/tests/generalTests";
 import type { NextRequest } from "next/server";
 
 import { dailyReviewResponseSchema } from "@/contracts/test.contract";
@@ -155,6 +156,7 @@ async function handleGet(request: NextRequest) {
         where: {
           classId: { in: ownClassIds },
           predictionRunId: null,
+          ...GENERAL_TESTS,
           studentId: { in: studentIds },
           testType: "review",
           status: { in: ["confirmed", "printed"] },
@@ -170,6 +172,7 @@ async function handleGet(request: NextRequest) {
     where: {
       classId: { in: ownClassIds },
       predictionRunId: null,
+      ...GENERAL_TESTS,
       studentId: { in: studentIds },
       testType: "review",
       testDate: new Date(`${day}T00:00:00Z`),

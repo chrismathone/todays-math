@@ -1,0 +1,65 @@
+{
+  "checkedAt": "2026-10-18",
+  "mergedCodeHead": "e6e75fbdcbcd792d40e2e1988695dd2ef28901c0",
+  "capacity": {
+    "rows": 115383,
+    "units": 735,
+    "supportedUnitsWithDefaultEight": 360,
+    "fullPostMergeCapacityMatchedPreMerge": true,
+    "flowControls": 6,
+    "numericAssertions": 13230
+  },
+  "parserFullBeforeAfter": {
+    "rows": 117828,
+    "changed": 2,
+    "unchanged": 117826,
+    "readOnly": true
+  },
+  "storedSolutionRepair": {
+    "rows": 12,
+    "renderPaths": 2,
+    "otherFieldsPreserved": true,
+    "rereadMatched": true,
+    "sharedImportGate": true,
+    "backupPreparedBeforeWrites": true,
+    "studentRecordsWritten": 0
+  },
+  "regression": {
+    "files": 21,
+    "passed": 870,
+    "failed": 0,
+    "skipped": 0,
+    "logSha256": "b9b537b19cf5f70467cb8d9e94e38a165f30a1306025a1ab4da94b147b3f415d"
+  },
+  "typecheck": {
+    "command": "npm run type-check",
+    "exitCode": 0
+  },
+  "eslint": {
+    "files": 9,
+    "exitCode": 0
+  },
+  "localLinksVerified": 106,
+  "sourceSha256": {
+    "scripts/qa/bank/math-capacity-census.ts": "30fdaa432906c683065380a3787ca45d5f536cf7691df5c5e30e6029452e41fc",
+    "src/lib/middle/m3Poly.ts": "c3f353b1329470479540f46845699c3742adcace18523b161a36e0ba6a1449fb",
+    "src/lib/middle/m2Top.ts": "69983e5920e738117461249fdd0775994c514c41e1cabea971a135e1ecf46910",
+    "src/lib/high/numbers.ts": "0332b52e1dc3a942433945e45951f3e079b3511136ab4e5b8e3a8d85c14d2b4c",
+    "src/lib/problem/parseProblemContent.ts": "62febb8802129de8a1deeb8af548595a3b968e0a967c90abd269036bdcf1a3ab",
+    "src/__tests__/unit/bankTexCommandBoundary.test.tsx": "1a637254f69791b90d713aec89c104832127578893f349b3d77cfdb57d28fbd2",
+    "src/__tests__/unit/proofChoiceBoundary.test.ts": "e72bbea35da5b983c87058d049ed4b7c6ca180e4135d58145fcea0f662ccc592",
+    "src/__tests__/unit/proofChoiceBoundaryRender.test.tsx": "99f15a1fe9b1ae6e55e98a81f47419c21ca284fdb7027c9d17c721a5cc403ccf",
+    "src/__tests__/unit/__fixtures__/proofChoiceBoundary.ts": "2ddec69a92cdab94d04094e861c05659c9458e5aa2bfe1ef514e79f2d5f01a6d"
+  },
+  "executionEvidenceSha256": {
+    ".qa-artifacts/problem-bank-reinforcement-20261018/solution-repair/live.test.tsx": "c9d78e84c8dd2c046535bc70cdd5285d638d59bf22724fdcf82ec77a628d270a",
+    ".qa-artifacts/problem-bank-reinforcement-20261018/solution-repair/vitest.config.mts": "e3b71be5e3db23ced1420b65e6af4c04a5624938e15cdf86e2c51a5c159e965e",
+    ".qa-artifacts/problem-bank-reinforcement-20261018/parser-scan.ts": "6e13f46c1fa916de5123356f6a52ac4d49f02927c8a1ddc3daf1eaaeb104d914"
+  },
+  "scope": {
+    "newProblemRows": 0,
+    "publicationOrDeployment": false,
+    "allMathIndependentlySolved": false,
+    "contentOrStudentRecordsCopiedToTrackedReport": false
+  }
+}

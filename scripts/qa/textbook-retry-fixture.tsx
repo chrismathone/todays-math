@@ -9,7 +9,7 @@ import chrome from "../../src/components/chrome/AppChrome.module.css";
 createRoot(document.getElementById("root")!).render(
   <div className={chrome.shell}>
     <aside className={chrome.sidebar}>
-      <p className={chrome.brand}>오늘의수학</p>
+      <p className={chrome.brand}>오늘 수학</p>
       <nav className={chrome.nav}>
         <a href="#">시험지 만들기</a>
       </nav>

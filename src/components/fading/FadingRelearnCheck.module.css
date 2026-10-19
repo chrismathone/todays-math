@@ -14,6 +14,20 @@
 .status span {
   color: #567363;
 }
+/* 오늘의 끝 — 구분선 아래 두 줄(Hi-fi Q2). */
+.status .limit {
+  flex-basis: 100%;
+  display: grid;
+  gap: 4px;
+  padding-top: 10px;
+  border-top: 1px solid #c4d3c9;
+}
+.status .limit p {
+  margin: 0;
+}
+.status .limit p:first-child {
+  font-weight: 600;
+}
 .status button,
 .dialog button {
   min-height: 44px;

@@ -1,0 +1,44 @@
+{
+  "reviewer": "Claude",
+  "decision": "approved",
+  "scope": "question-ddl-gate-2",
+  "planSha256": "50c525785cae16825d23d7bd55de81f7a779fa54cd98e8933d470a126acccc61",
+  "ddlPath": "supabase/migrations/20261018063016_question_group_identity.sql",
+  "ddlSha256": "b36dae98a6e343a5207fc61e77e52fa050bde6dd8a8b75bfce57507baaa0b64c",
+  "catalogBefore": {
+    "path": ".qa-artifacts/math-question-formats-20261018/db-catalog-before.json (root, private)",
+    "at": "2026-10-18T06:51:41.257Z",
+    "owner": "postgres",
+    "rls": false,
+    "policies": 0,
+    "publicGrant": false,
+    "questionKeyPresent": false
+  },
+  "reviewedExecution": {
+    "approvedForm": "Run the exact committed file once, unmodified, as a single explicit BEGIN..COMMIT transaction, e.g. psql \"$DB\" -X -v ON_ERROR_STOP=1 -f supabase/migrations/20261018063016_question_group_identity.sql (no -1, the file has its own BEGIN/COMMIT). Verify the file SHA immediately before running.",
+    "notApproved": [
+      "supabase db push or any blanket schema push",
+      "editing, splitting or re-running parts of the SQL",
+      "running when a fresh pre-run catalog read differs from db-catalog-before (re-review)"
+    ],
+    "ifAborted": "Any RAISE aborts the whole transaction; nothing is applied. Do not retry with altered SQL; bring the new catalog for review."
+  },
+  "reviewNotes": [
+    "Additive: one nullable text column, two plain indexes, one trigger function, one BEFORE UPDATE trigger. No data rewrite.",
+    "ACL step requires exactly the two owner-issued non-grantable INSERT/UPDATE grants per browser role, revokes only those and regrants them as column grants over every pre-existing column; then asserts via has_column_privilege (covers PUBLIC and inherited membership) that the new key is not writable and every old column still is. SELECT/DELETE/TRUNCATE/REFERENCES/TRIGGER/MAINTAIN, service_role, owner, RLS and policies are untouched.",
+    "Trigger compares the 18 identity fields named in plan section on identity (7 metadata, content/answer/solution, 6 figure fields, external_id, question_type) and nulls the key even when the same UPDATE supplies one. Key-only/eligibility/timestamp updates keep it. SECURITY INVOKER, search_path fixed to pg_catalog, public. Revoking EXECUTE does not affect firing (PostgreSQL checks trigger-function EXECUTE only at CREATE TRIGGER).",
+    "Trigger name sorts between problem_code_freeze and registered_problem_outer_wall; it only clears NEW.question_group_key so it does not interfere with code freeze or the outer wall.",
+    "Locking: ADD COLUMN takes ACCESS EXCLUSIVE held to COMMIT, including two non-concurrent index builds over an all-NULL column; lock_timeout 3s and statement_timeout 30s bound the stall. Brief read blocking on public.problem is expected.",
+    "Independently ran src/__tests__/unit/questionIdentityDdl.test.ts against this exact file (PGlite): 32/32 passed. PGlite does not prove production role membership or concurrent locking."
+  ],
+  "requiredAfterRun": [
+    "Post-DDL read-only role catalog: column present and NULL everywhere; anon/authenticated have no table-level INSERT/UPDATE, have column INSERT/UPDATE on every old column, none on question_group_key; SELECT/DELETE etc. unchanged; service_role unchanged; RLS still false, policies 0; trigger and function present with EXECUTE not granted to PUBLIC/anon/authenticated; index list.",
+    "Applying via psql does not record the version in supabase_migrations.schema_migrations; record or reconcile it explicitly so a later supabase db push does not try to re-run it (it would fail on ADD COLUMN, not silently double-apply)."
+  ],
+  "knownLimitationsOutsideScope": [
+    "Future columns added to public.problem will not be writable by anon/authenticated unless granted explicitly, because the table-level write grant is now column-scoped.",
+    "Pre-existing: RLS is disabled and browser roles keep DELETE/TRUNCATE on public.problem. Not widened or narrowed here; worth a separate review.",
+    "Privileged direct SQL can still set a key without proof (by design, plan); only the protected operator/loader may do so."
+  ],
+  "dependency": "Independent of the 17-row repair outcome. The Gate 2 backfill manifest must be prepared after the DDL and after whatever repair state is actually in the DB."
+}

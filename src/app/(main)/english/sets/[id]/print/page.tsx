@@ -26,10 +26,10 @@ import { requireOwnedEnglishExam } from "@/lib/ownership";
 import { getSessionUser } from "@/lib/session";
 import { englishRouteAllowed } from "@/lib/accountRouteAccess";
 
-export const metadata = { title: "오늘의 영어 · 인쇄" };
+export const metadata = { title: "오늘 영어 · 인쇄" };
 
 /** 지점이 없는 계정(독립 운영)의 지면 머리 학원 이름 — 수학 지면(`TestPrint.tsx`)과 같은 글자 */
-export const ENGLISH_PRINT_DEFAULT_ACADEMY = "오늘의수학";
+export const ENGLISH_PRINT_DEFAULT_ACADEMY = "오늘 수학";
 
 type EnglishSetPrintPageProps = {
   params: Promise<{ id: string }>;

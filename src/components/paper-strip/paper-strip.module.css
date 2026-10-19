@@ -155,6 +155,8 @@
 }
 .toolbar {
   display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 0;
   align-items: center;
   gap: 12px;
   padding: 12px 16px;
@@ -178,7 +180,7 @@
 }
 .toolbar button {
   min-width: 44px;
-  min-height: 40px;
+  min-height: 44px;
   padding: 6px 12px;
   border: 1px solid #cdd8e7;
   border-radius: 7px;
@@ -187,12 +189,31 @@
   font: inherit;
   cursor: pointer;
 }
+.zoomControl {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+.zoomControl select {
+  min-height: 44px;
+  padding: 0 8px;
+  border: 1px solid var(--learn-control, #b8c4d6);
+  border-radius: 8px;
+  background: var(--learn-surface, #fff);
+  color: var(--learn-ink, #172b4d);
+  font: inherit;
+}
 .toolbar button:disabled {
   color: #a5b0c0;
   cursor: default;
 }
 .toolbar button:focus-visible {
   outline: 2px solid #496bfb;
+  outline-offset: 2px;
+}
+.zoomControl select:focus-visible {
+  outline: 2px solid var(--learn-focus, #82a1ff);
   outline-offset: 2px;
 }
 .expandedFrame {
@@ -206,11 +227,23 @@
   min-width: 0;
   max-height: none;
 }
+.expandedDesk > .pages {
+  width: max-content;
+  min-width: 100%;
+}
 .dialogHint {
+  flex-shrink: 0;
   margin: 0;
   padding: 9px 16px;
   font-size: 12px;
   color: #61738c;
+}
+@media print {
+  .hint,
+  .frame,
+  .dialog {
+    display: none !important;
+  }
 }
 @media (max-width: 520px) {
   .dialog {

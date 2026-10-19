@@ -143,7 +143,7 @@ export function ParentSheet({
         <header className={styles.head}>
           <div>
             <p className={styles.brand}>
-              오늘의수학{" "}
+              오늘 수학{" "}
               <span className={styles.docTitle}>월간 학습 리포트</span>
             </p>
             <h1 className={styles.studentName}>{factors.student.name}</h1>

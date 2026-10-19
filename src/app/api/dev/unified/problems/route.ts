@@ -1,6 +1,7 @@
 import { loadUnifiedBank, UnifiedBankQueryError } from "@/lib/unifiedPreview";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 import { readUnifiedBankQueryBody } from "@/lib/unifiedBankQueryBody";
+import { devBankQueryContext } from "@/lib/devBankQueryContext";
 
 async function handleGet(request: Request) {
   if (process.env.NODE_ENV !== "development")
@@ -11,6 +12,7 @@ async function handleGet(request: Request) {
         request.method === "POST"
           ? await readUnifiedBankQueryBody(request)
           : new URL(request.url).searchParams,
+        devBankQueryContext(),
       ),
       { headers: { "Cache-Control": "no-store" } },
     );

@@ -1,4 +1,5 @@
 .exportContent {
+  container: worksheet-editor / inline-size;
   --editor-ink: var(--learn-ink, #172b4d);
   --editor-muted: var(--learn-muted, #596c86);
   --editor-accent: var(--learn-accent, #3159df);
@@ -82,31 +83,24 @@
 .exportGrid {
   display: grid;
   grid-template-columns: 340px minmax(0, 1fr);
-  gap: 16px;
+  gap: 12px;
   align-items: start;
 }
 .exportInspector {
-  padding: 16px;
+  padding: 12px;
   min-width: 0;
   border: 1px solid var(--editor-line);
   border-radius: 12px;
   background: #fff;
   position: sticky;
-  top: 68px;
-  height: calc(100dvh - 160px);
-  min-height: 420px;
+  top: var(--workspace-sticky-inset, 68px);
+  height: min(680px, calc(100dvh - var(--workspace-sticky-inset, 68px) - 24px));
+  min-height: 0;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   scrollbar-width: thin;
   scrollbar-color: #ced9e9 transparent;
-}
-.exportInspector > h2 {
-  font-size: var(--text-section, 18px);
-  font-weight: 750;
-  padding-bottom: 12px;
-  margin: 0 0 12px;
-  border-bottom: 1px solid #e7ecf4;
 }
 .field {
   display: block;
@@ -220,6 +214,53 @@ label.checkField {
   background: #f8faff;
   border: 1px solid #e2e8f3;
   border-radius: 7px;
+}
+.composition {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+.composition header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--learn-muted);
+  font-size: var(--text-caption, 12px);
+}
+.composition h4 {
+  margin: 0;
+  color: var(--learn-ink);
+  font-size: var(--text-body, 14px);
+}
+.composition ul {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+.composition li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--learn-track);
+  font-size: var(--text-body, 14px);
+  color: var(--learn-ink);
+}
+.composition strong {
+  min-width: 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.composition li > span {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.composition small {
+  grid-column: 1 / -1;
+  color: var(--learn-muted);
+  font-size: var(--text-caption, 12px);
 }
 .orderNumber {
   align-self: start;
@@ -377,10 +418,7 @@ label.checkField {
 }
 .paperCanvas {
   container-type: inline-size;
-  padding: 16px;
-  border: 1px solid #d8e1ef;
-  border-radius: 12px;
-  background: #e9eef6;
+  padding: 0;
   min-width: 0;
 }
 .printProgress {
@@ -393,7 +431,7 @@ label.checkField {
   gap: 10px;
   font-size: var(--text-caption, 12px);
   color: #526581;
-  margin-bottom: 17px;
+  min-height: 24px;
 }
 .paperToolbar > span:first-child {
   display: flex;
@@ -402,59 +440,7 @@ label.checkField {
   font-weight: 600;
   color: #476385;
 }
-.paperViewport {
-  overflow-x: auto;
-  scrollbar-color: #8a9dbb #dce4f0;
-  padding-bottom: 4px;
-}
-.pageNavigation {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #243d62;
-}
-.pageNavigation > span {
-  white-space: nowrap;
-  min-width: 64px;
-  text-align: center;
-  font-variant-numeric: tabular-nums;
-}
-.pageNavigation button {
-  min-height: 44px;
-  padding: 0 12px;
-  border: 1px solid #c4d1e4;
-  border-radius: 8px;
-  background: white;
-  color: #3159df;
-  white-space: nowrap;
-}
-.pageNavigation button:disabled {
-  opacity: 0.45;
-  cursor: default;
-}
-@media screen {
-  .paperViewport {
-    max-height: max(320px, calc(100dvh - 260px));
-    overflow: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x proximity;
-  }
-}
-.previewScrollHint {
-  display: none;
-  font-weight: 400;
-}
-@container (max-width: 639px) {
-  .previewScrollHint {
-    display: inline;
-  }
-}
-.paperViewport:focus-visible {
-  outline: 3px solid #82a1ff;
-  outline-offset: 3px;
-}
 
-.exportInspector > h2,
 .inspectorTabs,
 .exportInspector > button,
 .exportInspector > p {
@@ -573,6 +559,15 @@ label.checkField {
   padding: 0 2px;
   font-size: 12px;
 }
+/* 시험 종류 · 폰트 — 템플릿 · 강조 색과 같은 세 칸 격자(원장님 2026-10-19 «보기 좋게 정렬») */
+.choiceWrap.choiceGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.choiceGrid button {
+  min-width: 0;
+  padding: 0 4px;
+}
 .choiceWrap.colorGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -623,14 +618,6 @@ label.checkField {
 .paperToolbar {
   flex-wrap: wrap;
 }
-.paperToolbar select {
-  min-height: 44px;
-  padding: 0 8px;
-  border: 1px solid var(--editor-control);
-  border-radius: 8px;
-  background: #fff;
-  font-size: 14px;
-}
 .exportContent button:focus-visible,
 .exportContent summary:focus-visible,
 .exportContent input:focus-visible,
@@ -639,7 +626,7 @@ label.checkField {
   outline: 3px solid var(--learn-focus, #82a1ff);
   outline-offset: 2px;
 }
-@media (max-width: 1050px) {
+@container worksheet-editor (max-width: 860px) {
   .exportGrid {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -659,24 +646,10 @@ label.checkField {
     margin-bottom: 12px;
   }
 }
-@media (max-width: 760px) {
-  .exportGrid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .exportInspector {
-    position: static;
-    height: calc(100dvh - 160px);
-    min-height: 420px;
-  }
-  .paperCanvas {
-    padding: 12px;
-  }
-}
 @media print {
   .exportContent,
   .exportGrid,
-  .paperCanvas,
-  .paperViewport {
+  .paperCanvas {
     display: block;
     padding: 0;
     margin: 0;
@@ -684,12 +657,15 @@ label.checkField {
     background: #fff;
     border: 0;
   }
-  .paperViewport {
-    overflow: visible;
-  }
   .paperCanvas {
     container-type: normal;
   }
+  .exportContent {
+    container-type: normal;
+  }
+  /* The document lives inside exportGrid; the other root children are controls
+     and caller-provided notices that must not create a separate printed page. */
+  .exportContent > :not(.exportGrid),
   .exportInspector,
   .exportNotification,
   .paperToolbar,

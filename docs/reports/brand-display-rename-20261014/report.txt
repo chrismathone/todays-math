@@ -1,0 +1,47 @@
+오늘 수학 / 오늘 영어 표시명 변경 — 2026-10-14
+
+기준: main 0acfc51e576c7ea02519dbac995731bba1664ecc
+작업 가지: BIGSHOL/today-brand-20261014
+승인 범위: docs/planning/goal-bank-arithmetic-brand-20261014.md 개정안 4의 브랜드 항목.
+
+변경
+- 검색 결과를 문구/주석/소유권으로 분류한 뒤 139개 파일의 306개 표시·테스트 줄을 변경했다.
+- WORKSPACE_PRODUCTS의 label, 메타데이터, 교사·학생 로그인과 헤더, 작업실과 관리자 표시, 로딩·오류·접근성 이름, 에이와 연동 안내, 새 초안 기본 제목, 인쇄 머리·꼬리말, 교사가 복사하는 영어 ChatGPT 요청문 두 머리가 대상이다.
+- 실제로 실행 가능한 개발 미리보기와 인쇄 측정 fixture, 기존 관련 테스트 기대값도 같은 이름으로 맞췄다.
+- 세 SVG 워드마크는 ‘의’ 경로만 제거하고 ‘수학’ 두 글자를 24 단위 당겼다. 나머지 글자 경로와 색상, 책 심벌은 유지했다. 폭/viewBox는 261에서 237로 맞추고 브랜드 보드의 이미지 크기도 변경했다.
+- /dev/print-check에 product-display-name-20261014를 실물 확인 ‘대기’로 등록하고 기존 목록 개수 테스트를 111에서 112로 맞췄다.
+- files-changed.txt는 이 보고서/증거를 제외한 140개 변경 파일 목록이다.
+
+보존 확인
+- API/DB/schema/product id/storage key/package/domain 식별자 변경 없음. 새 연산·문서 계약, 문제은행 서버·엔진 기능 변경 없음.
+- draftStore.ts는 DEFAULT_DRAFT_TITLE 한 줄만 변경했다. 저장된 제목을 치환하거나 저장 레코드를 마이그레이션하지 않는다. 사용자 학원명도 그대로 출력된다.
+- 변경 파일들의 독립 기능명 출현 횟수는 전후 동일: 오늘의 기억 14, 오늘의 작업 29, 오늘의 개념 22, 오늘의 시험 4, 오늘의 확인테스트 1.
+- 지정된 root 소유 UnifiedWorkspace.tsx, PrivateLibrary.tsx, exam-builder/**는 수정하지 않았다.
+- 전체 변경을 사전 감사한 각 줄과 대조했다. 문구 변경 이외의 차이는 세 워드마크 경로/크기, 브랜드 보드 이미지 크기, 인쇄 검수 항목 및 목록 개수와 해당 줄의 포맷 정리뿐이다.
+
+검증 결과
+- Vitest 주 검사: 28개 파일 모두 결과 있음, 600/601 통과, 건너뜀 0, 미처리 오류 0.
+  변경된 인쇄·로그인·학생·관리자·초안·프롬프트·접근성 테스트와 draftStore.actions, draftStoreRemoved, englishChatgpt, englishListeningPrint, EnglishStudio 세 파일 포함.
+- Vitest 셸 검사: 6개 파일 모두 결과 있음, 95/96 통과, 건너뜀 0, 미처리 오류 0.
+  UnifiedWorkspace.access, AuthPages, LoginLanding, LoadingSkeletons, ApprovalPending, RouteRecovery.
+- 합계: 34개 파일, 695/697 통과. 파일별 결과와 실패 원문 요약은 test-results.json.
+- 실패 1: ProblemBank.test.tsx:1142의 출처 목록 기대값이 이미 존재하는 ‘교과서’를 누락했다. 이 작업에서 해당 테스트의 변경은 AppChrome 브랜드 기대값 한 줄뿐이다. HEAD 원본 테스트를 임시 복사해 해당 사례만 실행해도 같은 실패(1 실패 / 나머지 62 건너뜀)를 재현했고 임시 파일은 제거했다. 기능/출처 기대값은 소유 범위 밖이므로 변경하지 않았다. 이 파일은 GET /api/basket의 기존 MSW 미등록 안내도 출력했다.
+- 실패 2: UnifiedWorkspace.access.test.tsx의 수학 전용 홈 버튼 이름은 ‘오늘 수학 홈’을 기대하지만 이 작업트리의 root 소유 UnifiedWorkspace.tsx:1288은 아직 ‘오늘의수학 홈’이다. root는 해당 6개 문구를 직접 수정한다고 회신했다. 통합 후 이 테스트 파일 재실행 필요.
+- ESLint: 변경 JS/TS 131개 파일, 오류 0, 경고 1. 기존 StudioView.tsx:55의 미사용 StudioAiProvider이며 해당 import는 이번에 수정하지 않았다.
+- 변경 src TSX의 check-affordance.mjs 검사 통과. Prettier는 Windows CRLF를 정규화해 확인했으며 변경 줄의 포맷만 정리했다. AdminAccounts/ConceptBlankPaper/EywaLinkScreens 테스트의 기존 무관한 포맷 차이는 HEAD 원본에서도 재현되므로 그대로 보존했다.
+- git diff --check 통과.
+- Orca 브라우저에서 로컬 public/brand/brand-board.html의 기본/반전 로고와 접근성 이름을 확인했다. 1718×931 캡처는 brand-board.png. workroom-hero.webp와 math-motion-poster.webp도 확인했으며 제품명 글자가 없는 기존 그림이어서 변경하지 않았다.
+- 실제 서비스 로그인/API/DB, 전체 빌드/typecheck, 전체 화면의 반응형, PDF 및 종이 출력은 이번 검증 범위가 아니다. DB 쓰기, 외부 유료 호출, 푸시/병합/배포는 하지 않았다.
+
+남은 출현과 이유
+- src/public/e2e 재검색: 100개 파일에 116개 기존 제품명 줄. 110개는 보존한 역사적 주석이고 6개만 root 소유 화면 문구다. 전체 위치/내용/사유는 remaining-source-occurrences.json.
+- root 소유 UnifiedWorkspace.tsx의 6개 화면 문구: 146 영어 로딩 안내, 414 기본 학원명, 1099 JSON 가져오기 오류, 1288 수학 홈 접근성 이름, 2079 작업실 이름, 2101 새 학습지 제목 placeholder. 코디네이터에게 모두 전달했다. 같은 파일 262/1746의 역사적 주석은 유지 대상이다.
+- PrivateLibrary.tsx와 exam-builder/**에는 이전 제품명 직접 문자열이 없다. PrivateLibrary의 새 초안은 변경된 DEFAULT_DRAFT_TITLE을 사용하고, 그 기대값 테스트는 이 커밋에 포함했다.
+- DESIGN/계획/이전 검증 보고/스크린샷/이전 시안 생성 스크립트/벤치마크/Prisma 이력의 이름은 당시 기록 또는 내부 검증 문맥이므로 바꾸지 않았다. 앱이 제공하는 현재 표시 문자열과 교사용 복사 프롬프트는 변경했다.
+- 저장된 초안·사용자 자료·학원명에 기존 이름이 있어도 사용자 데이터로 보존한다.
+- 저장소 밖 에이와 연결 앱 표시명, OAuth 제공자 콘솔, 서비스/배포 설정은 조회·변경하지 않았다. 외부 설정의 실제 현재 이름과 적용 여부는 미확인이다.
+
+인수 항목
+- 이 커밋과 root 소유 문구 변경을 통합한 뒤 UnifiedWorkspace.access.test.tsx 재실행.
+- ProblemBank의 기존 ‘교과서’ 출처 기대값은 은행 담당 범위에서 정리.
+- 배포 후 실제 로그인·교사·학생·인쇄 화면 확인 및 product-display-name-20261014 실물 인쇄 검수.

@@ -1,0 +1,283 @@
+{
+  "planningOnly": true,
+  "sharedDbAuthorized": false,
+  "requiresRootFrozenTypeKeySelector": true,
+  "planSha256": "15ecaf3edcea3e018f1e5b20e6e2108654122bb249b4e38e3a5713b7f84211a3",
+  "planApprovalCommit": "eb5d6e285",
+  "seedBase": 20261020,
+  "variants": 3,
+  "typeKeys": [
+    "manual-20261018|무리수와 실수|R01",
+    "manual-20261018|무리수와 실수|R02",
+    "manual-20261018|무리수와 실수|R03",
+    "manual-20261018|인수분해|F01",
+    "manual-20261018|인수분해|F02",
+    "manual-20261018|인수분해|F03",
+    "manual-20261018|이차방정식의 활용|Q01",
+    "manual-20261018|이차방정식의 활용|Q02",
+    "manual-20261018|이차방정식의 활용|Q03",
+    "manual-20261018|대푯값과 산포도|S01",
+    "manual-20261018|대푯값과 산포도|S02",
+    "manual-20261018|대푯값과 산포도|S03"
+  ],
+  "families": [
+    {
+      "typeKey": "manual-20261018|무리수와 실수|R01",
+      "familyKey": "mid:manual-20261018|무리수와 실수|R01",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "finalSeed": 20261020,
+      "exactVariants": [
+        0,
+        1,
+        2
+      ],
+      "source": "manual",
+      "formatPolicy": "native objective MCQ only"
+    },
+    {
+      "typeKey": "manual-20261018|무리수와 실수|R02",
+      "familyKey": "mid:manual-20261018|무리수와 실수|R02",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "finalSeed": 20261020,
+      "exactVariants": [
+        0,
+        1,
+        2
+      ],
+      "source": "manual",
+      "formatPolicy": "native objective MCQ only"
+    },
+    {
+      "typeKey": "manual-20261018|무리수와 실수|R03",
+      "familyKey": "mid:manual-20261018|무리수와 실수|R03",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "finalSeed": 20261020,
+      "exactVariants": [
+        0,
+        1,
+        2
+      ],
+      "source": "manual",
+      "formatPolicy": "native objective MCQ only"
+    },
+    {
+      "typeKey": "manual-20261018|인수분해|F01",
+      "familyKey": "mid:manual-20261018|인수분해|F01",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "finalSeed": 20261020,
+      "exactVariants": [
+        0,
+        1,
+        2
+      ],
+      "source": "manual",
+      "formatPolicy": "short plus validated numeric MCQ"
+    },
+    {
+      "typeKey": "manual-20261018|인수분해|F02",
+      "familyKey": "mid:manual-20261018|인수분해|F02",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "finalSeed": 20261020,
+      "exactVariants": [
+        0,
+        1,
+        2
+      ],
+      "source": "manual",
+      "formatPolicy": "native objective MCQ only"
+    },
+    {
+      "typeKey": "manual-20261018|인수분해|F03",
+      "familyKey": "mid:manual-20261018|인수분해|F03",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "finalSeed": 20261020,
+      "exactVariants": [
+        0,
+        1,
+        2
+      ],
+      "source": "manual",
+      "formatPolicy": "short plus validated numeric MCQ"
+    },
+    {
+      "typeKey": "manual-20261018|이차방정식의 활용|Q01",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q01",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "finalSeed": 20261020,
+      "exactVariants": [
+        0,
+        1,
+        2
+      ],
+      "source": "manual",
+      "formatPolicy": "native objective MCQ only"
+    },
+    {
+      "typeKey": "manual-20261018|이차방정식의 활용|Q02",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q02",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "finalSeed": 20261020,
+      "exactVariants": [
+        0,
+        1,
+        2
+      ],
+      "source": "manual",
+      "formatPolicy": "native objective MCQ only"
+    },
+    {
+      "typeKey": "manual-20261018|이차방정식의 활용|Q03",
+      "familyKey": "mid:manual-20261018|이차방정식의 활용|Q03",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "finalSeed": 20261020,
+      "exactVariants": [
+        0,
+        1,
+        2
+      ],
+      "source": "manual",
+      "formatPolicy": "short plus validated numeric MCQ"
+    },
+    {
+      "typeKey": "manual-20261018|대푯값과 산포도|S01",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S01",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "finalSeed": 20261020,
+      "exactVariants": [
+        0,
+        1,
+        2
+      ],
+      "source": "manual",
+      "formatPolicy": "native objective MCQ only"
+    },
+    {
+      "typeKey": "manual-20261018|대푯값과 산포도|S02",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S02",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "finalSeed": 20261020,
+      "exactVariants": [
+        0,
+        1,
+        2
+      ],
+      "source": "manual",
+      "formatPolicy": "short plus validated numeric MCQ"
+    },
+    {
+      "typeKey": "manual-20261018|대푯값과 산포도|S03",
+      "familyKey": "mid:manual-20261018|대푯값과 산포도|S03",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "finalSeed": 20261020,
+      "exactVariants": [
+        0,
+        1,
+        2
+      ],
+      "source": "manual",
+      "formatPolicy": "native objective MCQ only"
+    }
+  ],
+  "targets": [
+    {
+      "engine": "middle",
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "variants": 3,
+      "typeKeys": [
+        "manual-20261018|무리수와 실수|R01",
+        "manual-20261018|무리수와 실수|R02",
+        "manual-20261018|무리수와 실수|R03"
+      ]
+    },
+    {
+      "engine": "middle",
+      "grade": "중3",
+      "unitSection": "인수분해",
+      "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "variants": 3,
+      "typeKeys": [
+        "manual-20261018|인수분해|F01",
+        "manual-20261018|인수분해|F02",
+        "manual-20261018|인수분해|F03"
+      ]
+    },
+    {
+      "engine": "middle",
+      "grade": "중3",
+      "unitSection": "이차방정식의 활용",
+      "unitId": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "variants": 3,
+      "typeKeys": [
+        "manual-20261018|이차방정식의 활용|Q01",
+        "manual-20261018|이차방정식의 활용|Q02",
+        "manual-20261018|이차방정식의 활용|Q03"
+      ]
+    },
+    {
+      "engine": "middle",
+      "grade": "중3",
+      "unitSection": "대푯값과 산포도",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "variants": 3,
+      "typeKeys": [
+        "manual-20261018|대푯값과 산포도|S01",
+        "manual-20261018|대푯값과 산포도|S02",
+        "manual-20261018|대푯값과 산포도|S03"
+      ]
+    }
+  ],
+  "externalIds": [
+    "engine-mid:manual-20261018|대푯값과 산포도|S01|s20261020|v0|객관식",
+    "engine-mid:manual-20261018|대푯값과 산포도|S01|s20261020|v1|객관식",
+    "engine-mid:manual-20261018|대푯값과 산포도|S01|s20261020|v2|객관식",
+    "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v0|객관식",
+    "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v0|단답형",
+    "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v1|객관식",
+    "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v1|단답형",
+    "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v2|객관식",
+    "engine-mid:manual-20261018|대푯값과 산포도|S02|s20261020|v2|단답형",
+    "engine-mid:manual-20261018|대푯값과 산포도|S03|s20261020|v0|객관식",
+    "engine-mid:manual-20261018|대푯값과 산포도|S03|s20261020|v1|객관식",
+    "engine-mid:manual-20261018|대푯값과 산포도|S03|s20261020|v2|객관식",
+    "engine-mid:manual-20261018|무리수와 실수|R01|s20261020|v0|객관식",
+    "engine-mid:manual-20261018|무리수와 실수|R01|s20261020|v1|객관식",
+    "engine-mid:manual-20261018|무리수와 실수|R01|s20261020|v2|객관식",
+    "engine-mid:manual-20261018|무리수와 실수|R02|s20261020|v0|객관식",
+    "engine-mid:manual-20261018|무리수와 실수|R02|s20261020|v1|객관식",
+    "engine-mid:manual-20261018|무리수와 실수|R02|s20261020|v2|객관식",
+    "engine-mid:manual-20261018|무리수와 실수|R03|s20261020|v0|객관식",
+    "engine-mid:manual-20261018|무리수와 실수|R03|s20261020|v1|객관식",
+    "engine-mid:manual-20261018|무리수와 실수|R03|s20261020|v2|객관식",
+    "engine-mid:manual-20261018|이차방정식의 활용|Q01|s20261020|v0|객관식",
+    "engine-mid:manual-20261018|이차방정식의 활용|Q01|s20261020|v1|객관식",
+    "engine-mid:manual-20261018|이차방정식의 활용|Q01|s20261020|v2|객관식",
+    "engine-mid:manual-20261018|이차방정식의 활용|Q02|s20261020|v0|객관식",
+    "engine-mid:manual-20261018|이차방정식의 활용|Q02|s20261020|v1|객관식",
+    "engine-mid:manual-20261018|이차방정식의 활용|Q02|s20261020|v2|객관식",
+    "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v0|객관식",
+    "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v0|단답형",
+    "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v1|객관식",
+    "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v1|단답형",
+    "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v2|객관식",
+    "engine-mid:manual-20261018|이차방정식의 활용|Q03|s20261020|v2|단답형",
+    "engine-mid:manual-20261018|인수분해|F01|s20261020|v0|객관식",
+    "engine-mid:manual-20261018|인수분해|F01|s20261020|v0|단답형",
+    "engine-mid:manual-20261018|인수분해|F01|s20261020|v1|객관식",
+    "engine-mid:manual-20261018|인수분해|F01|s20261020|v1|단답형",
+    "engine-mid:manual-20261018|인수분해|F01|s20261020|v2|객관식",
+    "engine-mid:manual-20261018|인수분해|F01|s20261020|v2|단답형",
+    "engine-mid:manual-20261018|인수분해|F02|s20261020|v0|객관식",
+    "engine-mid:manual-20261018|인수분해|F02|s20261020|v1|객관식",
+    "engine-mid:manual-20261018|인수분해|F02|s20261020|v2|객관식",
+    "engine-mid:manual-20261018|인수분해|F03|s20261020|v0|객관식",
+    "engine-mid:manual-20261018|인수분해|F03|s20261020|v0|단답형",
+    "engine-mid:manual-20261018|인수분해|F03|s20261020|v1|객관식",
+    "engine-mid:manual-20261018|인수분해|F03|s20261020|v1|단답형",
+    "engine-mid:manual-20261018|인수분해|F03|s20261020|v2|객관식",
+    "engine-mid:manual-20261018|인수분해|F03|s20261020|v2|단답형"
+  ],
+  "proposedBManifestSha256": "961962dceabfab65513ffcb214881259d0396f390a78060a42a6cd8ee2875a0a",
+  "note": "No UUIDs or apply authorization. Root must integrate, bind the final A/B/C manifest and obtain final candidate/batch approval."
+}

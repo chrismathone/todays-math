@@ -80,8 +80,8 @@ function ReviewHarness({ initial = owner }: { initial?: ManagedAccount }) {
     />
   );
 }
-function EditorHarness() {
-  const [current, setCurrent] = useState(branch);
+function EditorHarness({ initial = branch }: { initial?: BranchSummary }) {
+  const [current, setCurrent] = useState(initial);
   return (
     <BranchMenuEditor
       branch={current}
@@ -112,7 +112,7 @@ describe("branch-capped personal account menus", () => {
         : json(branchList()),
     );
     render(<ReviewHarness initial={account} />);
-    fireEvent.click(screen.getByRole("tab", { name: "오늘의 영어" }));
+    fireEvent.click(screen.getByRole("tab", { name: "오늘 영어" }));
     const listening = screen.getByRole("checkbox", { name: "영어듣기" });
     expect(listening).toBeEnabled();
     expect(listening).not.toBeChecked();
@@ -141,7 +141,7 @@ describe("branch-capped personal account menus", () => {
         : json(branchList()),
     );
     render(<ReviewHarness initial={account} />);
-    fireEvent.click(screen.getByRole("tab", { name: "오늘의 영어" }));
+    fireEvent.click(screen.getByRole("tab", { name: "오늘 영어" }));
     const listening = screen.getByRole("checkbox", { name: /^영어듣기/ });
     expect(listening).not.toBeChecked();
     expect(listening).toBeDisabled();
@@ -184,7 +184,7 @@ describe("branch-capped personal account menus", () => {
     fireEvent.change(screen.getByRole("combobox", { name: "지점" }), {
       target: { value: nextBranchId },
     });
-    fireEvent.click(screen.getByRole("tab", { name: "오늘의 영어" }));
+    fireEvent.click(screen.getByRole("tab", { name: "오늘 영어" }));
     const listening = screen.getByRole("checkbox", { name: /^영어듣기/ });
     expect(listening).not.toBeChecked();
     expect(listening).toBeDisabled();
@@ -210,7 +210,7 @@ describe("branch-capped personal account menus", () => {
         }}
       />,
     );
-    fireEvent.click(screen.getByRole("tab", { name: "오늘의 영어" }));
+    fireEvent.click(screen.getByRole("tab", { name: "오늘 영어" }));
     const listening = screen.getByRole("checkbox", { name: /^영어듣기/ });
     expect(listening).not.toBeChecked();
     expect(listening).toBeDisabled();
@@ -275,24 +275,31 @@ describe("branch-capped personal account menus", () => {
       expectedBranchId: branchId,
     });
   });
-  it("personal edits send the preserved personal draft including branch-disabled choices", async () => {
+  it("personal edits preserve legacy export and branch-disabled choices in the submitted draft", async () => {
+    const account: ManagedAccount = {
+      ...owner,
+      configuredMenus: ["home", "bank", "export"],
+    };
     fetchMock.mockImplementation(async (_url, init) =>
       init?.method === "PATCH"
         ? json({
             data: {
-              ...owner,
-              configuredMenus: ["home", "bank", "studio"],
+              ...account,
+              configuredMenus: ["home", "bank", "export", "studio"],
               menus: ["home", "studio"],
             },
           })
         : json(branchList()),
     );
-    render(<ReviewHarness />);
+    render(<ReviewHarness initial={account} />);
+    expect(
+      screen.queryByLabelText("시험지 · 내보내기"),
+    ).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("checkbox", { name: "문제 추출" }));
     expect(patches()).toHaveLength(0);
     fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
     await screen.findByText("계정 변경을 저장했습니다.");
-    expect(payload().menus).toEqual(["home", "bank", "studio"]);
+    expect(payload().menus).toEqual(["home", "bank", "export", "studio"]);
     expect(payload()).not.toHaveProperty("isAdmin");
   });
   it("destination preview uses its menus and preserves the current personal draft", async () => {
@@ -359,7 +366,7 @@ describe("branch-capped personal account menus", () => {
         }}
       />,
     );
-    fireEvent.click(screen.getByRole("tab", { name: "오늘의 영어" }));
+    fireEvent.click(screen.getByRole("tab", { name: "오늘 영어" }));
     fireEvent.click(screen.getByRole("checkbox", { name: "자료은행" }));
     expect(screen.getByRole("alert")).toHaveTextContent(
       "중 하나 이상도 선택해 주세요",
@@ -398,6 +405,72 @@ describe("branch-capped personal account menus", () => {
 });
 
 describe("branch management scope and explicit saves", () => {
+  it.each([true, false])(
+    "branch selectors hide export and save its existing value unchanged (legacy grant: %s)",
+    async (hasExport) => {
+      const initial: BranchSummary = {
+        ...branch,
+        menus: hasExport ? ["home", "export"] : ["home"],
+      };
+      fetchMock.mockImplementation(async (_url, init) =>
+        json({
+          data: {
+            ...initial,
+            menuRevision: initial.menuRevision + 1,
+            menus: JSON.parse(String(init?.body)).menus,
+          },
+        }),
+      );
+      render(<EditorHarness initial={initial} />);
+      const summary = screen.getByLabelText("지점 메뉴 변경 요약");
+      expect(summary).toHaveTextContent("사용 메뉴 1개");
+      expect(
+        screen.queryByLabelText("시험지 · 내보내기"),
+      ).not.toBeInTheDocument();
+      expect(screen.queryByText("추가 기능 권한")).not.toBeInTheDocument();
+      fireEvent.click(screen.getByRole("checkbox", { name: "시험지 만들기" }));
+      expect(summary).toHaveTextContent("사용 메뉴 2개");
+      fireEvent.click(screen.getByRole("tab", { name: "오늘 영어" }));
+      expect(
+        screen.queryByLabelText("시험지 · 내보내기"),
+      ).not.toBeInTheDocument();
+      fireEvent.click(screen.getByRole("checkbox", { name: "문제 보관함" }));
+      expect(summary).toHaveTextContent("사용 메뉴 3개");
+      fireEvent.click(screen.getByRole("button", { name: "변경 취소" }));
+      expect(summary).toHaveTextContent("사용 메뉴 1개");
+      expect(patches()).toHaveLength(0);
+      expect(
+        screen.getByRole("button", { name: "사용 메뉴 저장" }),
+      ).toBeDisabled();
+      fireEvent.click(screen.getByRole("tab", { name: "오늘 수학" }));
+      fireEvent.click(screen.getByRole("checkbox", { name: "시험지 만들기" }));
+      fireEvent.click(screen.getByRole("button", { name: "사용 메뉴 저장" }));
+      await screen.findByText(/지점 사용 메뉴를 저장했습니다/);
+      expect(payload()).toEqual({
+        menus: [...initial.menus, "bank"],
+        expectedMenuRevision: initial.menuRevision,
+      });
+      expect(summary).toHaveTextContent("사용 메뉴 2개");
+      expect(
+        screen.getByRole("button", { name: "사용 메뉴 저장" }),
+      ).toBeDisabled();
+    },
+  );
+  it("a branch with only legacy export displays zero selectable menus", () => {
+    render(<EditorHarness initial={{ ...branch, menus: ["export"] }} />);
+    expect(screen.getByLabelText("지점 메뉴 변경 요약")).toHaveTextContent(
+      "사용 메뉴 0개",
+    );
+    expect(
+      screen.getByText(/사용할 수 있는 메뉴가 없습니다/),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByLabelText("시험지 · 내보내기"),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "사용 메뉴 저장" }),
+    ).toBeDisabled();
+  });
   it("preserves branch creation and the one-time initial password flow", async () => {
     fetchMock.mockImplementation(async (_url, init) =>
       init?.method === "POST"
@@ -472,12 +545,21 @@ describe("branch management scope and explicit saves", () => {
     expect(patches()).toHaveLength(2);
   });
   it("branch cards use management links, current counts, and a counted unassigned entry", async () => {
+    fetchMock.mockResolvedValue(
+      json(
+        branchList([
+          { ...branch, menus: [...branch.menus, "export"] },
+          { ...destination, menus: ["export"] },
+        ]),
+      ),
+    );
     render(<AdminBranches identity={adminIdentity} />);
     const links = await screen.findAllByRole("link", { name: "지점 관리 →" });
     expect(links[0]).toHaveAttribute("href", `/admin/branches/${branchId}`);
     expect(links[0].parentElement).toHaveTextContent(
       "계정 2명 · 승인 대기 1명 · 사용 메뉴 2개",
     );
+    expect(links[1].parentElement).toHaveTextContent("사용 메뉴 0개");
     const unassigned = screen.getByRole("link", { name: "미소속 계정 관리 →" });
     expect(unassigned).toHaveAttribute("href", "/admin/branches/unassigned");
     expect(unassigned.parentElement).toHaveTextContent(
@@ -661,7 +743,7 @@ describe("branch management scope and explicit saves", () => {
         onLockChange={() => {}}
       />,
     );
-    fireEvent.click(screen.getByRole("tab", { name: "오늘의 영어" }));
+    fireEvent.click(screen.getByRole("tab", { name: "오늘 영어" }));
     fireEvent.click(screen.getByRole("checkbox", { name: "자료은행" }));
     fireEvent.click(screen.getByRole("button", { name: "사용 메뉴 저장" }));
     await waitFor(() => expect(onUpdate).toHaveBeenCalled());
@@ -671,7 +753,9 @@ describe("branch management scope and explicit saves", () => {
     fetchMock.mockImplementation(async (url) =>
       String(url).startsWith("/api/admin/users?")
         ? json(accountsResponse([owner]))
-        : json({ data: branch }),
+        : String(url) === "/api/admin/branches"
+          ? json(branchList())
+          : json({ data: { ...branch, menus: [...branch.menus, "export"] } }),
     );
     render(
       <AdminBranchDetail
@@ -681,7 +765,11 @@ describe("branch management scope and explicit saves", () => {
       />,
     );
     await screen.findByRole("link", { name: owner.name });
+    await screen.findByText(/계정 2명 · 승인 대기 1명 · 사용 메뉴 2개/);
     fireEvent.click(screen.getByRole("button", { name: "사용 메뉴" }));
+    expect(screen.getByLabelText("지점 메뉴 변경 요약")).toHaveTextContent(
+      "사용 메뉴 2개",
+    );
     fireEvent.click(await screen.findByRole("checkbox", { name: "문제 추출" }));
     // The areas are «교직원 계정 · 학생 계정 · 반 관리 · 사용 메뉴» since 2026-10-05 (was «계정 · 사용 메뉴»).
     const otherAreas = ["교직원 계정", "학생 계정", "반 관리"];

@@ -1,6 +1,5 @@
 import "server-only";
 import {
-  FADING_RELEARN_STUDENT_HEADER,
   fadingRelearnActionResponseSchema,
   fadingRelearnActionSchema,
   fadingRelearnQueueResponseSchema,
@@ -19,7 +18,6 @@ import { learnNow } from "@/lib/learn/testConsoleServer";
 import { loadCourseStudent } from "@/lib/math-srs/courseServer";
 import { srsFailureResponse } from "@/lib/math-srs/serverRoutes";
 import { changeFadingState, readSrsState } from "@/lib/math-srs/serverStore";
-import { STUDENT_CHANGED_MESSAGE } from "@/lib/studentRouteAccess";
 import { fadingConceptMap } from "./catalog";
 import { fadingEnabled } from "./enabled";
 import {
@@ -27,7 +25,9 @@ import {
   fadingRelearnActionConceptId,
   fadingRelearnQueueView,
 } from "./relearn";
+import { recordFadingCapDay } from "./quotaServer";
 import { fadingRelearnEnabled } from "./relearnEnabled";
+import { fadingStudentHeaderResponse } from "./routes";
 import { FadingConflict, emptyFading } from "./state";
 import { fadingTrapsFor } from "./traps";
 
@@ -51,16 +51,24 @@ async function enter(request: Request, mutation: boolean) {
   if (gate.response) return { response: noStore(gate.response) } as const;
   if (mutation && !sameOriginMutation(request))
     return { response: noStore(crossSiteError()) } as const;
-  const expected = request.headers.get(FADING_RELEARN_STUDENT_HEADER);
-  if (expected !== null && expected !== gate.student.studentId)
-    return {
-      response: noStore(jsonError("CONFLICT", STUDENT_CHANGED_MESSAGE, 409)),
-    } as const;
+  // 학생이 바뀐 요청은 본 라우트와 같은 문(`STUDENT_CHANGED` · D1 ② 스위치까지)으로 돌려보낸다 — 머리의 이름도 같다.
+  const changed = fadingStudentHeaderResponse(request, gate.student.studentId);
+  if (changed) return { response: changed } as const;
   const student = await loadCourseStudent(gate.student.studentId);
   if (!student?.studentAccount || student.studentAccount.disabledAt)
     return { response: noStore(unauthorizedError()) } as const;
   const now = await learnNow(student.id, request);
   return { response: null, student, now: now.getTime() } as const;
+}
+
+/**
+ * 상한에 닿은 날 — «분량 점검 필요»(최근 7일 중 3일)의 근거. 학생 기록 JSON 밖의 표라 저장과 따로 적고,
+ * 적지 못해도 학생의 확인은 이미 저장됐으니 답을 막지 않는다. 오늘은 교사 쪽이 JSON 으로 세고, 놓친 지난 날은 다음 읽기가 메운다.
+ */
+async function capDay(studentId: string, on: string) {
+  await recordFadingCapDay(studentId, on).catch((error: unknown) =>
+    console.error("[fading] 상한에 닿은 날을 적지 못했다", error),
+  );
 }
 
 function failure(error: unknown): Response {
@@ -84,17 +92,16 @@ export async function handleFadingRelearnRequest(
       const fading = open
         ? ((await readSrsState(student.id)).state.fading ?? emptyFading())
         : emptyFading();
-      return noStore(
-        jsonOk(fadingRelearnQueueResponseSchema, {
-          data: fadingRelearnQueueView({
-            fading,
-            concepts: open ? fadingConceptMap() : new Map(),
-            now,
-            trapsOf: fadingTrapsFor,
-            enabled: open,
-          }),
-        }),
-      );
+      const queue = fadingRelearnQueueView({
+        fading,
+        concepts: open ? fadingConceptMap() : new Map(),
+        now,
+        trapsOf: fadingTrapsFor,
+        enabled: open,
+      });
+      // 상한에 닿은 날의 기록을 행동 때 놓쳤어도 읽을 때 메운다 — 같은 날은 한 행이다.
+      if (queue.limit?.capped) await capDay(student.id, queue.today.on);
+      return noStore(jsonOk(fadingRelearnQueueResponseSchema, { data: queue }));
     }
     if (!open) return noStore(notFoundError("주소"));
     const parsed = fadingRelearnActionSchema.safeParse(
@@ -112,15 +119,18 @@ export async function handleFadingRelearnRequest(
       held.done = applyFadingRelearnAction(fading, action, concept, now, traps);
       return held.done.fading;
     });
+    const queue = fadingRelearnQueueView({
+      fading: saved.state.fading ?? emptyFading(),
+      concepts,
+      now,
+      trapsOf: fadingTrapsFor,
+    });
+    if (action.action !== "record" && queue.limit?.capped)
+      await capDay(student.id, queue.today.on);
     return noStore(
       jsonOk(fadingRelearnActionResponseSchema, {
         data: {
-          queue: fadingRelearnQueueView({
-            fading: saved.state.fading ?? emptyFading(),
-            concepts,
-            now,
-            trapsOf: fadingTrapsFor,
-          }),
+          queue,
           applied: held.done!.applied,
           result: held.done!.result,
         },

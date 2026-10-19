@@ -1,0 +1,13 @@
+{
+  "readOnly": true,
+  "priorCandidateInserts": 0,
+  "priorFailure": "spawnSync git ENOBUFS while verifying the 2264584-byte committed figure index; before the started journal and lockedMaintenance/INSERT",
+  "all4801BaselineRowsByteIdentical": true,
+  "all146CandidatePayloadsByteIdentical": true,
+  "changedSourceFiles": [
+    "scripts/import/protected-question-maintenance.ts"
+  ],
+  "transportFix": "Explicit16MiB gitshow stdout cap; exact HEAD bytes/source/plan/manifest/prewrite checks retained",
+  "oldApprovalAndManifestPreserved": true,
+  "freshUuidLedger": true
+}

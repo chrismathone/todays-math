@@ -19,6 +19,7 @@ import {
   fadingProgressOf,
   fadingRatingsFor,
   fadingSolvedContentChanged,
+  fadingStoredPartialMiss,
   fadingSummary,
 } from "./state";
 
@@ -106,9 +107,11 @@ export function fadingStateView(input: {
 }): FadingState {
   const { fading, today, concepts } = input;
   const cap = input.cap ?? FADING_DAILY_CAP;
+  // 홈의 기본 분량은 «오늘의 학습» 계획과 같은 명제 칸이다(결정 4) — 개념의 명제 수를 넘긴다.
   const counted = fadingSummary(fading, today, {
     cap,
     known: new Set(concepts.keys()),
+    promptsOf: (id) => concepts.get(id)?.propositions.length ?? 0,
   });
   // 날짜는 바깥에 한 번만 싣는다.
   const summary = {
@@ -138,8 +141,15 @@ export function fadingStateView(input: {
     ...summary.queue.unrated,
     ...(session ? [session.conceptId] : []),
   ]);
+  // 부분 틀림(결정 1)이면 «어려움»의 날 수는 2일 이하다 — 대조 전 값(«다 같은 뜻»일 때)이다. 화면은 고른 대조로 다시 자른다.
   const intervals = session
-    ? previewFadingIntervals(fadingProgressOf(stored!), fadingDayOfDate(today))
+    ? previewFadingIntervals(
+        fadingProgressOf(stored!),
+        fadingDayOfDate(today),
+        {
+          partial: fadingStoredPartialMiss(session, undefined, opened!),
+        },
+      )
     : null;
   const traps = session ? (input.trapsOf?.(opened!) ?? []) : [];
   // 카드 풀이에서 4단계를 푼 뒤에 문장이 고쳐졌다 — 대조를 기다리는 글은 판정하지 않고(«다시»뿐) 평가는 푼 내용의 지문으로 적힌다.
@@ -179,6 +189,10 @@ export function fadingStateView(input: {
             ? { unjudged: session.unjudged.map((u) => ({ ...u })) }
             : {}),
           ...(stale ? { stale: true as const } : {}),
+          // 4단계의 포기 여부(결정 1) — 카드 풀이에 적혀 있을 때만 싣는다(칩 풀이 · 옛 풀이는 키가 없다).
+          ...(session.mode === "cards" && session.gaveUpAtFour !== undefined
+            ? { gaveUpAtFour: session.gaveUpAtFour }
+            : {}),
         }
       : null,
     opened: session

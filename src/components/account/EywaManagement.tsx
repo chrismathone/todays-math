@@ -29,10 +29,6 @@ const labels: Record<string, string> = {
     "원본 상태 또는 기준 시점이 맞지 않아 복구를 시작하지 않습니다",
   snapshot_not_applied:
     "스냅샷을 적용하지 못했습니다. 계정은 바꾸지 않았습니다",
-  archive_owner_conflict:
-    "보관 담당자가 이미 바뀌었습니다. 최신 연결을 다시 읽으세요",
-  invalid_archive_owner:
-    "같은 지점의 승인된 교사만 보관 담당자로 지정할 수 있습니다",
 };
 const applicationLabel: Record<string, string> = {
   received: "수신 완료",
@@ -194,9 +190,6 @@ export function EywaManagement({
             const outcome = await mutate({
               action: "register",
               bindingId: data.get("bindingId"),
-              ...(data.get("archiveOwnerUserId")
-                ? { archiveOwnerUserId: data.get("archiveOwnerUserId") }
-                : {}),
             });
             if (outcome.ok) {
               form.reset();
@@ -208,7 +201,7 @@ export function EywaManagement({
           <h2>새 연결 등록</h2>
           {status.automaticProvisioningEnabled ? (
             <p>
-              에이와에서 오늘의수학을 켜면 지점과 직원·반·학생 연결이 자동으로
+              에이와에서 오늘 수학을 켜면 지점과 직원·반·학생 연결이 자동으로
               생성됩니다.
             </p>
           ) : null}
@@ -222,9 +215,6 @@ export function EywaManagement({
               ))}
             </select>
           </label>{" "}
-          <label>
-            기록 보관 담당 계정 ID <input name="archiveOwnerUserId" />
-          </label>{" "}
           <button disabled={busy}>미리보기 연결 등록</button>
         </form>
       ) : null}
@@ -235,8 +225,8 @@ export function EywaManagement({
           </h2>
           {binding.branchNameMismatch ? (
             <p>
-              지점 이름 확인 필요: 에이와는 “{binding.sourceTenantName}”,
-              오늘의수학은 “{binding.targetBranchName}”입니다. 기존 이름을
+              지점 이름 확인 필요: 에이와는 “{binding.sourceTenantName}”, 오늘
+              수학은 “{binding.targetBranchName}”입니다. 기존 이름을
               유지했습니다.
             </p>
           ) : null}
@@ -268,8 +258,6 @@ export function EywaManagement({
                 ? (labels[binding.lastError] ?? binding.lastError)
                 : "오류 없음"}
             </dd>
-            <dt>보관 담당자</dt>
-            <dd>{binding.archiveOwnerUserId ?? "미지정"}</dd>
           </dl>
           {platform ? (
             <>
@@ -447,40 +435,6 @@ export function EywaManagement({
                   연결 종료
                 </button>
               </form>
-              <form
-                onSubmit={async (event) => {
-                  event.preventDefault();
-                  const form = event.currentTarget;
-                  const data = new FormData(form);
-                  const outcome = await mutate({
-                    action: "assign-archive-owner",
-                    bindingId: binding.id,
-                    archiveOwnerUserId: data.get("archiveOwnerUserId"),
-                    expectedArchiveOwnerUserId: binding.archiveOwnerUserId,
-                  });
-                  if (!outcome.ok) return;
-                  form.reset();
-                  setMessage(
-                    "보관 담당자를 바꿨습니다. 담당자가 없는 반만 접근 권한이 생기고, 이미 담당자가 있는 반은 그대로입니다.",
-                  );
-                  await load();
-                }}
-              >
-                <h3>보관 담당자 지정</h3>
-                <p>
-                  담당자가 없는 반은 이 교사에게 접근 권한이 생깁니다. 이미
-                  담당자가 있는 반은 옮기지 않습니다. 승인되지 않았거나
-                  정지·삭제된 계정은 지정되지 않으며, 원인을 고치기 전에 다시
-                  지정하면 같은 이유로 실패합니다.
-                </p>
-                <label>
-                  같은 지점의 교사 계정 ID
-                  <input name="archiveOwnerUserId" required />
-                </label>
-                <button type="submit" disabled={busy}>
-                  보관 담당자 지정
-                </button>
-              </form>
             </>
           ) : null}
         </section>
@@ -569,8 +523,7 @@ export function EywaManagement({
       </p>
       {operator && status.bindings.length === 0 ? (
         <p>
-          연결이 없습니다. 계정 승인 전에 지점 연결과 보관 담당자를 먼저
-          지정하세요.
+          연결이 없습니다. 계정 승인 전에 지점 연결을 먼저 지정하세요.
         </p>
       ) : null}
       {operator ? (
@@ -594,7 +547,7 @@ export function EywaManagement({
               <p>
                 에이와: {account.sourceEmail}
                 <br />
-                오늘의수학: {account.localName ?? "연결 계정 없음"} ·{" "}
+                오늘 수학: {account.localName ?? "연결 계정 없음"} ·{" "}
                 {account.localEmail ?? "—"}
               </p>
               {account.localEmail &&
@@ -664,7 +617,7 @@ export function EywaManagement({
                     </label>
                   ) : (
                     <label>
-                      현재 오늘의수학 비밀번호{" "}
+                      현재 오늘 수학 비밀번호{" "}
                       <input
                         required
                         type="password"
@@ -680,8 +633,7 @@ export function EywaManagement({
                   </p>
                   {approvalBlocked ? (
                     <p>
-                      연결이 없습니다. 계정 승인 전에 지점 연결과 보관 담당자를
-                      먼저 지정하세요.
+                      연결이 없습니다. 계정 승인 전에 지점 연결을 먼저 지정하세요.
                     </p>
                   ) : null}
                   <label>

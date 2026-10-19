@@ -1,0 +1,222 @@
+/*
+ * 월말평가 → 학부모 리포트 Wire (`exam-publish-wire` 의 회색 토큰).
+ * Wire 라서 색을 쓰지 않는다 — 회색 몇 단계와 검정 하나. 누를 수 있는 것이 없다(D-30).
+ */
+.shell {
+  --w-page: #f4f4f5;
+  --w-surface: #ffffff;
+  --w-fill: #e4e4e7;
+  --w-fill-2: #d4d4d8;
+  --w-line: #a1a1aa;
+  --w-strong: #27272a;
+  --w-muted: #52525b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  min-height: 100vh;
+  padding: 32px 16px 96px;
+  background: var(--w-page);
+  color: var(--w-strong);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.head,
+.topic {
+  width: 100%;
+  max-width: 1480px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.h1 {
+  font-size: 22px;
+  font-weight: 800;
+}
+.h2 {
+  font-size: 19px;
+  font-weight: 800;
+  padding-top: 8px;
+  border-top: 3px solid var(--w-strong);
+}
+.note {
+  max-width: 900px;
+  color: var(--w-muted);
+  line-height: 1.7;
+}
+.must {
+  margin: 0;
+  padding-left: 20px;
+  max-width: 900px;
+  line-height: 1.8;
+}
+.jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.jump a {
+  text-decoration: underline;
+}
+.option {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 16px;
+}
+.option h3 {
+  font-size: 16px;
+  font-weight: 800;
+}
+.proCon {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 8px 24px;
+  max-width: 900px;
+  color: var(--w-muted);
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+}
+.caption {
+  font-size: 12px;
+  color: var(--w-muted);
+  margin-bottom: 6px;
+}
+
+/* A4 — 595 × 842 의 축소(0.9). */
+.sheet {
+  width: 536px;
+  min-height: 758px;
+  max-width: 100%;
+  padding: 28px 30px;
+  background: var(--w-surface);
+  border: 1px solid var(--w-line);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.sheetHead {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--w-strong);
+  padding-bottom: 6px;
+  font-weight: 800;
+}
+.ghost {
+  border: 1px dashed var(--w-line);
+  background: var(--w-fill);
+  color: var(--w-muted);
+  padding: 8px 10px;
+  font-size: 12px;
+}
+.area {
+  border: 1px solid var(--w-strong);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.areaTitle {
+  font-weight: 800;
+}
+.summary {
+  font-size: 12.5px;
+}
+.label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--w-muted);
+  margin-top: 4px;
+}
+.rounds {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11.5px;
+}
+.rounds th,
+.rounds td {
+  border-bottom: 1px solid var(--w-fill-2);
+  padding: 3px 4px;
+  text-align: left;
+  vertical-align: top;
+}
+.rounds th {
+  color: var(--w-muted);
+  font-weight: 600;
+}
+.monthly td {
+  font-weight: 700;
+}
+.box {
+  border: 2px solid var(--w-strong);
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+}
+.box b {
+  font-size: 12.5px;
+}
+.small {
+  font-size: 11px;
+  color: var(--w-muted);
+}
+.new {
+  outline: 2px dashed var(--w-strong);
+  outline-offset: 2px;
+}
+
+/* 교사 화면 — 채점표 조각. */
+.screen {
+  width: 560px;
+  max-width: 100%;
+  background: var(--w-surface);
+  border: 1px solid var(--w-line);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.grid {
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.grid th,
+.grid td {
+  border: 1px solid var(--w-fill-2);
+  padding: 4px 6px;
+  text-align: center;
+  min-width: 34px;
+}
+.grid th:first-child,
+.grid td:first-child {
+  text-align: left;
+  min-width: 72px;
+}
+.rate td {
+  font-weight: 700;
+  background: var(--w-fill);
+}
+.low {
+  text-decoration: underline;
+}
+.ask {
+  border-collapse: collapse;
+  max-width: 900px;
+}
+.ask th,
+.ask td {
+  border: 1px solid var(--w-line);
+  padding: 6px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+.ask th {
+  background: var(--w-fill);
+  width: 280px;
+}

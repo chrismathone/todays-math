@@ -188,11 +188,56 @@ describe("useWorkspaceDrafts browser lifecycle", () => {
     await act(async () => {
       await vi.advanceTimersByTimeAsync(0);
     });
+    expect(restored.result.current.draft.problems).toEqual([]);
+    expect(restored.result.current.recent).toHaveLength(1);
+    await act(async () => {
+      expect(
+        await restored.result.current.openDraft(
+          restored.result.current.recent[0].id,
+        ),
+      ).toBe(true);
+    });
     expect(restored.result.current.draft.title).toBe("첫 계정 작업");
     expect(
       restored.result.current.draft.problems.map((item) => item.id),
     ).toEqual(["a"]);
     expect(localStorage.getItem(DRAFT_STORE_KEY)).toBeNull();
+  });
+
+  it("retains this session through revoked access but starts blank on a new visit", async () => {
+    const server = privateServer();
+    vi.stubGlobal("fetch", server.transport);
+    const { result, rerender, unmount } = renderHook(
+      ({ enabled }) => useWorkspaceDrafts("owner-a", enabled),
+      { initialProps: { enabled: true } },
+    );
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(0);
+    });
+    act(() => result.current.setProblems([problem("a")]));
+    act(() => result.current.setTitle("이어서 쓸 작업"));
+    const id = result.current.draft.id;
+    rerender({ enabled: false });
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(0);
+    });
+    expect(result.current.draft.problems).toEqual([]);
+    expect(result.current.saveNow()).toBe(false);
+    server.transport.mockClear();
+    act(() => result.current.setTitle("권한 없는 변경"));
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(2000);
+    });
+    expect(server.transport).not.toHaveBeenCalled();
+    rerender({ enabled: true });
+    expect(result.current.draft).toMatchObject({ id, title: "이어서 쓸 작업" });
+    unmount();
+    const nextVisit = renderHook(() => useWorkspaceDrafts("owner-a"));
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(0);
+    });
+    expect(nextVisit.result.current.draft.problems).toEqual([]);
+    expect(nextVisit.result.current.recent).toHaveLength(1);
   });
 
   it("does not access cloud documents or account caches when private menus are disabled", () => {
@@ -219,13 +264,13 @@ describe("useWorkspaceDrafts browser lifecycle", () => {
       );
     }
     expect(renderToString(<ServerSnapshot />)).toBe(
-      "<span>false:loading:오늘의 수학 학습지::</span>",
+      "<span>false:loading:오늘 수학 학습지::</span>",
     );
     expect(get).not.toHaveBeenCalled();
     expect(set).not.toHaveBeenCalled();
   });
 
-  it("recovers once under StrictMode and never overwrites recovery with the initial empty state", () => {
+  it("lists legacy recovery under StrictMode and waits for explicit resume", () => {
     const legacy = JSON.stringify({
       version: 1,
       title: "복원할 작업",
@@ -241,17 +286,21 @@ describe("useWorkspaceDrafts browser lifecycle", () => {
     expect(result.current).toMatchObject({
       hydrated: true,
       saveStatus: "saved",
-      draft: {
-        title: "복원할 작업",
-        columns: 1,
-        answers: true,
-        problems: [problem("a")],
-      },
+      draft: { problems: [] },
     });
     act(() => vi.advanceTimersByTime(2000));
     expect(set).toHaveBeenCalledTimes(1);
     expect(localStorage.getItem(LEGACY_DRAFT_KEY)).toBe(legacy);
     expect(result.current.recent).toHaveLength(1);
+    act(() => {
+      expect(result.current.openDraft(result.current.recent[0].id)).toBe(true);
+    });
+    expect(result.current.draft).toMatchObject({
+      title: "복원할 작업",
+      columns: 1,
+      answers: true,
+      problems: [problem("a")],
+    });
   });
 
   it("debounces edits for 600ms and persists the latest composed functional updates", () => {
@@ -345,12 +394,17 @@ describe("useWorkspaceDrafts browser lifecycle", () => {
     expect(result.current.recent).toHaveLength(2);
   });
 
-  it("flushes on unmount and restores the active draft on remount", () => {
+  it("flushes on unmount and starts blank until explicit resume on remount", () => {
     const first = renderHook(() => useWorkspaceDrafts());
     act(() => first.result.current.setProblems([problem("a")]));
     const id = first.result.current.draft.id;
     first.unmount();
     const second = renderHook(() => useWorkspaceDrafts());
+    expect(second.result.current.draft.problems).toEqual([]);
+    expect(second.result.current.recent).toHaveLength(1);
+    act(() => {
+      expect(second.result.current.openDraft(id)).toBe(true);
+    });
     expect(second.result.current.draft).toMatchObject({
       id,
       problems: [problem("a")],

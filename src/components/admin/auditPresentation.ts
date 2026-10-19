@@ -13,6 +13,7 @@ export type AuditDetailRow = {
 
 const ACTION_LABELS: Record<string, string> = {
   "account.settings_changed": "계정 설정 변경",
+  "branch.owner_menus_changed": "지점 사용 메뉴 변경",
   "admin.private_material_view": "관리자 자료 열람 요청",
   "admin.account_view": "관리자 계정 열람",
   "admin.bootstrap": "관리자 계정 설정",
@@ -89,7 +90,7 @@ function labelFrom(labels: Readonly<Record<string, string>>, value: unknown) {
 
 function menuLabel(value: unknown, branchId: unknown) {
   // This historical permission covered all English menus before they split.
-  if (value === "english") return "오늘의 영어 전체";
+  if (value === "english") return "오늘 영어 전체";
   if (value === "library")
     return typeof branchId === "string" || branchId === null
       ? workspaceLibraryLabel(branchId)
@@ -121,7 +122,7 @@ function locationLabel(value: unknown, branchId: unknown) {
   if (path === "/") return "작업실";
   if (path === "/admin" || path === "/api/admin/users") return "계정 관리";
   if (/^\/(?:api\/)?concept-blank(?:\/|$)/.test(path)) return "개념 백지";
-  if (/^\/(?:api\/)?english(?:\/|$)/.test(path)) return "오늘의 영어";
+  if (/^\/(?:api\/)?english(?:\/|$)/.test(path)) return "오늘 영어";
   if (/^\/(?:api\/)?test\/[^/]+\/print\/?$/.test(path))
     return "시험지 인쇄 화면";
   if (/^\/api\/library(?:\/|$)/.test(path))
@@ -237,6 +238,14 @@ export function auditDetailRows(details: AuditEntry["details"]) {
       ) ?? "기록 확인 필요",
     "previousBranchRole",
   );
+  // 지점 사용 메뉴(2026-10-19) — 오늘 수학 지점관리 또는 에이와에서 바꾼다.
+  add(
+    "source",
+    "변경한 곳",
+    (value) =>
+      labelFrom({ today: "오늘 수학", eywa: "에이와" }, value) ??
+      "기록 확인 필요",
+  );
   add(
     "kind",
     "자료 유형",
@@ -250,6 +259,7 @@ export function auditDetailRows(details: AuditEntry["details"]) {
       : "기록 확인 필요",
   );
   for (const [key, label] of Object.entries({
+    actorName: "변경한 사람",
     title: "자료 제목",
     revision: "자료 버전",
     page: "페이지",

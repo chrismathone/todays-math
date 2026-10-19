@@ -25,13 +25,17 @@ vi.mock("@/lib/errorLog/record", () => ({
 import { GET as courseDashboard } from "@/app/api/math-srs/course/route";
 import { GET as fadingDashboard } from "@/app/api/math-srs/fading/route";
 import { GET as courseDetail } from "@/app/api/students/[id]/math-srs/course/route";
-import { GET as fadingDetail } from "@/app/api/students/[id]/math-srs/fading/route";
+import {
+  GET as fadingDetail,
+  PUT as fadingQuota,
+} from "@/app/api/students/[id]/math-srs/fading/route";
 import type {
   FadingPlacement,
   StoredFading,
 } from "@/contracts/fading.contract";
 import {
   fadingTeacherDashboardResponseSchema,
+  fadingTeacherQuotaResponseSchema,
   fadingTeacherStudentResponseSchema,
 } from "@/contracts/fadingTeacher.contract";
 import { fadingCatalog } from "@/lib/fading/catalog";
@@ -235,7 +239,7 @@ describe("문지기 — 옛 «SRS 현황» 끝점과 같다", () => {
     expect(world.writes).toBe(0);
   });
 
-  it("경로 규칙 — 두 길은 SRS 메뉴의 읽기다(수업 메뉴로는 안 열리고 쓰기는 없다)", () => {
+  it("경로 규칙 — 두 길은 SRS 메뉴의 읽기다(수업 메뉴로는 안 열리고 쓰기는 학생 하나의 분량 저장 PUT 뿐이다)", () => {
     const teacher: AccountAccess = {
       id: "teacher",
       name: "교사",
@@ -267,7 +271,7 @@ describe("문지기 — 옛 «SRS 현황» 끝점과 같다", () => {
         expect(
           accountRouteAllowed(teacher, method, path),
           `${method} ${path}`,
-        ).toBe(false);
+        ).toBe(method === "PUT" && path.startsWith("/api/students/"));
       expect(studentGateFor(false, "GET", path).kind).toBe("forbidden");
     }
     for (const path of [
@@ -306,6 +310,17 @@ describe("반 현황", () => {
       idleDays: 15,
       streak: { current: 0, best: 1 },
       lapses: 0,
+      // 추가 확인 대기열 · 최근 7일의 사실(2026-10-16) — 판정이 아니다. 이 학생은 대기열이 없고 9월 20일 뒤로 평가가 없다.
+      relearn: {
+        waiting: 0,
+        failing: 0,
+        fails: 0,
+        checks: 0,
+        sinceOn: null,
+        today: { checks: 0, capped: false, stopped: 0 },
+        capDays: 0,
+      },
+      recent: { days: 0, fresh: 0 },
       flags: ["overdue", "idle"],
     });
     expect(noAccount!.summary.flags).toEqual(["no-account"]);
@@ -458,5 +473,126 @@ describe("학생 하나", () => {
     expect((await readStudent(ids.studied, "?branchId=branch-1")).status).toBe(
       400,
     );
+  });
+});
+
+/* ───────── 하루 분량 손잡이(2026-10-17) ───────── */
+
+describe("하루 분량 — PUT /api/students/{id}/math-srs/fading", () => {
+  const put = (body: unknown, id: string = ids.studied, query = "") =>
+    fadingQuota(
+      req(`/api/students/${id}/math-srs/fading${query}`, "PUT", body),
+      params(id),
+    );
+
+  it("강사는 보기만이다 — 상세에 «바꿀 수 없음»이 실리고, 저장은 403 이다", async () => {
+    world.session = teacherSession();
+    const detail = await studentData(await readStudent());
+    expect(detail.quota).toEqual({
+      today: { quota: null, slots: 15 },
+      next: null,
+      revision: 0,
+      canEdit: false,
+    });
+    const response = await put({ quota: 10, expectedRevision: 0 });
+    expect(response.status).toBe(403);
+    expect(world.policies.size).toBe(0);
+  });
+
+  it("지점 원장은 바꾼다 — 다음 한국 날짜부터이고, 오늘 값은 그대로다", async () => {
+    world.session = sameBranchAdmin();
+    const response = await put({ quota: 10, expectedRevision: 0 });
+    expect(response.status).toBe(200);
+    expect(
+      fadingTeacherQuotaResponseSchema.parse(await response.json()).data,
+    ).toEqual({
+      today: { quota: null, slots: 15 },
+      next: { quota: 10, slots: 10, on: "2026-10-06" },
+      revision: 1,
+      canEdit: true,
+    });
+    expect(world.policies.get(ids.studied)).toMatchObject({
+      quota: 10,
+      previousQuota: null,
+      revision: 1,
+      updatedById: ids.sameBranchAdmin,
+    });
+    expect((await studentData(await readStudent())).quota!.next).toEqual({
+      quota: 10,
+      slots: 10,
+      on: "2026-10-06",
+    });
+  });
+
+  it("revision 이 다르면 409 이고 덮어쓰지 않는다", async () => {
+    world.session = sameBranchAdmin();
+    expect((await put({ quota: 10, expectedRevision: 0 })).status).toBe(200);
+    const stale = await put({ quota: 20, expectedRevision: 0 });
+    expect(stale.status).toBe(409);
+    expect(
+      ((await stale.json()) as { error: { code: string } }).error.code,
+    ).toBe("CONFLICT");
+    expect(world.policies.get(ids.studied)!.quota).toBe(10);
+    expect((await put({ quota: 20, expectedRevision: 1 })).status).toBe(200);
+    expect(world.policies.get(ids.studied)).toMatchObject({
+      quota: 20,
+      revision: 2,
+    });
+  });
+
+  it("고를 수 없는 값은 400 · 다른 지점의 관리자는 닿지 않는다 · 읽기만 열린 문에서는 404", async () => {
+    world.session = sameBranchAdmin();
+    expect((await put({ quota: 12, expectedRevision: 0 })).status).toBe(400);
+    world.session = otherBranchAdmin();
+    expect((await put({ quota: 10, expectedRevision: 0 })).status).not.toBe(
+      200,
+    );
+    world.session = sameBranchAdmin();
+    vi.stubEnv("MATH_FADING", "read");
+    expect((await put({ quota: 10, expectedRevision: 0 })).status).toBe(404);
+    expect(world.policies.size).toBe(0);
+  });
+
+  it("최근 7일 중 3일 상한에 닿았고 남은 확인이 있으면 명단에 «분량 점검 필요»", async () => {
+    const { fading, learned } = studiedRecord();
+    const at = Date.parse("2026-10-05T03:00:00.000Z");
+    save(ids.studied, {
+      ...fading,
+      relearn: {
+        version: 1,
+        items: [
+          {
+            conceptId: learned[0]!.id,
+            propositionId: learned[0]!.propositions[0]!.id,
+            digest: "0a0b0c0d",
+            stage: "retry",
+            dueAt: at + 60_000,
+            origin: "missed",
+            since: at,
+            fails: 1,
+            checks: 0,
+          },
+        ],
+        seen: [],
+        graded: [],
+        day: null,
+      },
+    });
+    // 오늘(10/5)의 행은 표에서 세지 않는다 — 오늘은 학생 기록의 그날 집계로 센다(여기서는 상한 전).
+    world.capDays = [
+      `${ids.studied}|2026-10-05`,
+      `${ids.studied}|2026-10-03`,
+      `${ids.studied}|2026-10-01`,
+      `${ids.studied}|2026-09-20`,
+    ];
+    const flagsOf = async () =>
+      (await dashboardData(await readDashboard())).students.find(
+        (row) => row.id === ids.studied,
+      )!.summary;
+    expect((await flagsOf()).flags).not.toContain("quota-check");
+    world.capDays.push(`${ids.studied}|2026-09-29`);
+    const summary = await flagsOf();
+    expect(summary.relearn!.capDays).toBe(3);
+    expect(summary.flags).toContain("quota-check");
   });
 });

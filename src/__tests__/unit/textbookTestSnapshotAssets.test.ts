@@ -2,7 +2,10 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 vi.mock("server-only", () => ({}));
 const queries = vi.hoisted(() => ({ raw: vi.fn() }));
-vi.mock("@/lib/db", () => ({ db: { $queryRaw: queries.raw } }));
+vi.mock("@/lib/db", () => ({
+  // 월말평가 M1 — 로더가 반 시험의 발행본을 한 번 묻는다(이 시험의 반 시험은 발행본이 없다).
+  db: { $queryRaw: queries.raw, test: { findMany: async () => [] } },
+}));
 
 import { hydrateTestSnapshots } from "@/lib/tests/loadSnapshotAssets";
 import {

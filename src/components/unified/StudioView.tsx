@@ -52,7 +52,6 @@ import {
   studioImageCanvas,
   studioRotateCanvas,
 } from "./studioAiHelpers";
-import type { StudioAiProvider } from "@/lib/dev-ai/contracts";
 import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
 import type { SchoolLevel, StudioProblem, StudioViewProps } from "./types";
 import {
@@ -312,6 +311,7 @@ export default function StudioView({
   onRestore,
   pickedCount,
   stepRequest,
+  exportRequest,
 }: StudioViewProps & {
   canExport?: boolean;
   active?: boolean;
@@ -334,6 +334,8 @@ export default function StudioView({
   pickedCount?: number;
   /** 시험지 화면의 단계 탭이 보내는 요청 — 그 단계로 간다. */
   stepRequest?: { id: number; step: "upload" | "crop" | "review" };
+  /** Shell composition uses the local handoff; clear this request on completion or source change. */
+  exportRequest?: { id: number };
   /** 자른 문제 수를 밖에 알린다 — 시험지 화면의 탭 배지가 쓴다(안 A). */
   onCropCountChange?: (count: number) => void;
   restoreRequest?: { id: number; crops: StudioCrop[] };
@@ -343,6 +345,7 @@ export default function StudioView({
   onDocumentChange?: (id?: string) => void;
 }) {
   const handledStep = useRef<number | null>(null);
+  const handledExport = useRef<number | null>(null);
   const handledRestore = useRef<number | null>(null);
   const handledImport = useRef<number | null>(null);
   const [sources, setSources] = useState<StudioSource[]>([]);
@@ -366,11 +369,6 @@ export default function StudioView({
    * 어느 단계로든 갈 수 있어야 해 단계까지 실어 나른다.
    * 검수 패널은 건드리지 않는다 — 원장님이 접어 둔 것을 펴지 않는다.
    */
-  useEffect(() => {
-    if (!stepRequest || handledStep.current === stepRequest.id) return;
-    handledStep.current = stepRequest.id;
-    setStep(stepRequest.step);
-  }, [stepRequest]);
   const [level, setLevel] = useState<SchoolLevel>("secondary");
   const [grade, setGrade] = useState("미지정");
   const [zoom, setZoom] = useState(100);
@@ -378,9 +376,16 @@ export default function StudioView({
   const [restoring, setRestoring] = useState(
     () => Boolean(storageScope) || typeof indexedDB !== "undefined",
   );
+  useEffect(() => {
+    if (restoring || !stepRequest || handledStep.current === stepRequest.id)
+      return;
+    handledStep.current = stepRequest.id;
+    setStep(stepRequest.step);
+  }, [stepRequest, restoring]);
   const busy = importingBusy || restoring;
   const [sessionStore] = useState(
-    () => new StudioSessionStore(storageScope, documentId),
+    () =>
+      new StudioSessionStore(storageScope, documentId, { autoResume: false }),
   );
   const reportDocument = useEffectEvent(() =>
     onDocumentChange?.(sessionStore.documentId),
@@ -564,6 +569,8 @@ export default function StudioView({
   // «N문항 담기»·«담고 내보내기»가 담을 것 — 뺀 것·고친 뒤 반영 전인 것은 없다(`studioCartPending`).
   const pendingCrops = studioCartPending(crops, cart.picked, cart.removed);
   const pendingCount = pendingCrops.length;
+  const compositionBlocked =
+    busy || studioAi.running || sessionSave === "복원 실패";
   // 바닥 «M문항 담음» — 작업실 문항 가운데 시험지에 있는 것(고친 뒤 반영 전 포함).
   const pickedHereCount = crops.filter((crop) =>
     cart.picked.some((problem) => problem.id === crop.id),
@@ -1179,6 +1186,7 @@ export default function StudioView({
   const { requestSave: saveLibrary, dialog: saveDialog } =
     useLibrarySaveConfirmation(
       branchId,
+      "extraction",
       async (sharing) => {
         if (!storageReady.current || restoring || importingBusy) return false;
         setSessionSave("저장 중");
@@ -1437,7 +1445,7 @@ export default function StudioView({
     try {
       const sample: StudioSource = {
         id: crypto.randomUUID(),
-        name: "오늘의 수학 · 연습용 예제",
+        name: "오늘 수학 · 연습용 예제",
         kind: "sample",
         pages: 1,
         image: drawStudioSample(),
@@ -1955,19 +1963,34 @@ export default function StudioView({
     });
   }
 
+  /** Every composition entry appends pending crops without replacing the existing worksheet. */
   function addProblems(exportAfter = false) {
     if (exportAfter && !canExport) return;
-    if (!crops.length || studioAi.running) return;
+    if (compositionBlocked) return;
+    if (!crops.length && !exportAfter) return;
     // 뺀 것은 건너뛴다 — 원장님 2026-09-21 확정 «안 넣는다». 뺀 것은 목록의 «다시 담기»로만.
     if (pendingCrops.length) {
       cart.add(pendingCrops.map(studioProblem));
       setNotice(`${pendingCrops.length}문항을 내 시험지에 담았습니다.`);
     }
-    if (exportAfter) {
+    if (exportAfter && (cart.picked.length || pendingCrops.length)) {
       setFocusMode(false);
       onExport();
     }
   }
+
+  const handleExportRequest = useEffectEvent(() => addProblems(true));
+  useEffect(() => {
+    if (
+      !exportRequest ||
+      handledExport.current === exportRequest.id ||
+      !active ||
+      compositionBlocked
+    )
+      return;
+    handledExport.current = exportRequest.id;
+    handleExportRequest();
+  }, [exportRequest, active, compositionBlocked]);
 
   /** 카드의 «반영» — 담은 뒤 고친 문항의 새 판을 시험지의 같은 자리에 갈아 넣는다. */
   function reflectCrop(id: string) {
@@ -2575,10 +2598,11 @@ export default function StudioView({
           }
           canCrop={Boolean(currentSource)}
           canReview={crops.length > 0}
-          canExport={canExport}
+          canExport={canExport && !compositionBlocked}
+          canCompose={cart.picked.length + pendingCount > 0}
           onStep={(next) => {
             if (next === "export") {
-              onExport();
+              addProblems(true);
               return;
             }
             setStep(next);
@@ -3291,9 +3315,9 @@ export default function StudioView({
               if (returnFocus) cartToggle.current?.focus();
             }}
             onExport={() => {
+              if (compositionBlocked) return;
               setCartOpen(false);
-              setFocusMode(false);
-              onExport();
+              addProblems(true);
             }}
           />
         )}
@@ -3516,7 +3540,7 @@ export default function StudioView({
               <strong>자른 문제 {crops.length}문항</strong>
               <span>
                 {crops.length
-                  ? `${reviewedCount}문항 검수 완료 · ${pickedHereCount}문항 담음`
+                  ? `${reviewedCount}문항 검수 완료 · 이 원본 ${pickedHereCount}문항 담음 · ${pendingCount}문항 추가 예정`
                   : "원본을 가져와 첫 문제를 선택하세요"}
               </span>
             </div>
@@ -3560,7 +3584,7 @@ export default function StudioView({
               <button
                 type="button"
                 className={styles.secondaryButton}
-                disabled={!pendingCount || studioAi.running}
+                disabled={!pendingCount || compositionBlocked}
                 onClick={() => addProblems()}
               >
                 <Icon name="plus" />
@@ -3571,7 +3595,14 @@ export default function StudioView({
                 <button
                   type="button"
                   className={styles.primaryButton}
-                  disabled={!crops.length || studioAi.running}
+                  disabled={
+                    !(cart.picked.length + pendingCount) || compositionBlocked
+                  }
+                  title={
+                    pendingCount
+                      ? `추출 ${pendingCount}문항을 추가합니다. 현재 시험지 ${cart.picked.length}문항은 유지됩니다.`
+                      : `현재 시험지 ${cart.picked.length}문항을 구성합니다.`
+                  }
                   onClick={() => addProblems(true)}
                 >
                   {pendingCount ? "담고 내보내기" : "내보내기"}{" "}

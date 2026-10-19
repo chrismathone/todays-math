@@ -1,0 +1,37 @@
+Arithmetic cylinder-net dimension integration — 2026-10-15
+
+Extends the existing trusted presentation adapter with all four elementary
+cylinder-net families: 1,404 immutable source figures, two measured dimensions
+each. The canonical family definitions, source SVG bytes, saved IDs and snapshot
+packs are unchanged. Both circular bases, the real lateral rectangle and its
+right-angle marker remain visible. Radius/diameter endpoints belong to the upper
+circle, and height endpoints belong to the rectangle's right edge. There is no
+rectangle-width label that could confuse circumference with radius.
+
+Numeric dimension labels use the existing engine meas() primitive and editor
+midpoint/gap pipeline. The inverse targets retain their Korean names. The note
+lane is separated from the top dimension lane. Radius-versus-diameter meaning is
+checked against the original family target and parameters; a visual review found
+and corrected a substring error where 반지름 also matched 지름.
+
+Combined adapter corpus: 56 families / 7,754 figures / 17,330 dimensions.
+All figures passed actual browser bounds, label/geometry, label/label and endpoint
+checks at screen 280, screen 320 and print 280, both before and after the shared
+MathJax typography adapter. Minimum font at 280: 12.844 px. Minimum actual shape
+extent: 168.880 px. Six focused unit tests passed, including every net's radius or
+diameter endpoints, rectangle height and preservation of both circular bases.
+Eight net representatives were personally inspected on screen and exported to PDF.
+
+Final asset: 2,198,344 JSON bytes; 1,647,151 deflate bytes; 1,637,598 gzip bytes;
+31,834,758 decoded JSON bytes across lazily loaded family chunks (LRU4).
+SHA256 d38a21d0bcc364cba529ec4c57c2f028d8c0955320ba2f1c2554be1422b169a3.
+The previous 52 family assets are retained unchanged.
+
+Evidence (local, not source inputs):
+tmp/arithmetic-net-representatives.png and .pdf
+tmp/arithmetic-net-check-final.log
+tmp/arithmetic-combined-dimensions-final.log
+tmp/arithmetic-net-tests-final.log
+tmp/arithmetic-dimension-presentation/{plans,displays,build,proof}.json
+Reproduce: tsx scripts/qa/arithmetic-dimension-presentation-build.ts (no --write).
+Audit: tsx scripts/qa/arithmetic-dimension-presentation-check.ts.

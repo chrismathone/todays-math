@@ -88,7 +88,7 @@ describe("⑵ 감사 기록에 줄을 쌓지 않는다", () => {
 
 describe("⑶ 관문의 API 거절도 오류 기록에", () => {
   it("메뉴가 없는 원장의 API — 403 문구·상태는 그대로, 한 줄이 남고 머리에 번호", async () => {
-    session.mockReturnValue(account({ menus: ["bank"] }));
+    session.mockReturnValue(account());
     const res = await run("POST", "/api/tests/generate");
     expect(res.status).toBe(403);
     expect(await res.json()).toEqual({
@@ -109,6 +109,26 @@ describe("⑶ 관문의 API 거절도 오류 기록에", () => {
       context: expect.objectContaining({ stage: "proxy" }),
     });
   });
+
+  it.each([
+    "bank",
+    "arithmetic",
+    "studio",
+    "library",
+    "textbook",
+    "conceptBlank",
+  ])(
+    "%s의 공용 출력은 proxy를 지나며 거절 오류를 남기지 않는다",
+    async (source) => {
+      session.mockReturnValue(account({ menus: [source] }));
+      expect(passed(await run("POST", "/api/exports/pdf"))).toBe(true);
+      expect(passed(await run("GET", "/api/studio/print-presets"))).toBe(true);
+      expect(await logged()).toEqual([]);
+      expect(recordAudit).toHaveBeenCalledWith(
+        expect.objectContaining({ outcome: "requested" }),
+      );
+    },
+  );
 
   it("승인 대기 계정 · 검수 계정의 막힌 API · 학생 세션의 API 도", async () => {
     session.mockReturnValue(account({ approvalStatus: "pending" }));

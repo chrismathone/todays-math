@@ -1,12 +1,7 @@
 // @vitest-environment node
 import { createHash, randomUUID } from "node:crypto";
-import {
-  mkdirSync,
-  mkdtempSync,
-  readFileSync,
-  rmSync,
-  writeFileSync,
-} from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -84,9 +79,9 @@ const temp = () => {
   roots.push(root);
   return root;
 };
-afterEach(() => {
+afterEach(async () => {
   for (const root of roots.splice(0))
-    rmSync(root, { recursive: true, force: true });
+    await rm(root, { recursive: true, force: true });
   vi.restoreAllMocks();
   vi.unstubAllGlobals();
 });

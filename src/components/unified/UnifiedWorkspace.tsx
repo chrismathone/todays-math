@@ -13,9 +13,11 @@ import cloudStyles from "./PrivateLibrary.module.css";
 import { forgetPrivateExtraction } from "./privateStudioSessionStore";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   useCallback,
   useEffect,
+  useEffectEvent,
   useMemo,
   useRef,
   useState,
@@ -28,6 +30,8 @@ import RouteLinkStatus from "@/components/ui/RouteLinkStatus";
 import {
   WORKSPACE_MENUS,
   WORKSPACE_PRODUCTS,
+  canOutputFrom,
+  workspaceMenuInSidebar,
   workspaceMenusOf,
   type WorkspaceMenu,
   type WorkspaceProduct,
@@ -38,6 +42,11 @@ import {
   type EnglishView,
 } from "@/components/english/views";
 import { useWorkspaceAccess } from "./useWorkspaceAccess";
+import {
+  introducesQuestionConflict,
+  questionConflicts,
+  questionIdentity,
+} from "@/lib/problem/questionSelectionClient";
 import type { BankData, StudioProblem } from "./types";
 import type { StudioCrop } from "./studioHelpers";
 import type { EnglishBankMakerSeed } from "@/contracts/englishBank.contract";
@@ -48,13 +57,17 @@ import {
   restoreToCart,
 } from "./studioCart";
 import { useWorkspaceDrafts } from "./useWorkspaceDrafts";
+import { createPrintPresetsClient } from "./print/printPresetsClient";
+import type { PrintPreset } from "@/contracts/printPreset.contract";
+import type { WorkspaceWorkflowStep } from "@/contracts/workspaceWorkflow.contract";
+import type { LibraryOpenOptions } from "./PrivateLibrary";
 import WorkroomHome, { formatDraftDate } from "./WorkroomHome";
 import Icon, { type WorkspaceIconName } from "./WorkspaceIcon";
 import TodayMathMark from "@/components/brand/TodayMathMark";
 import { DevAiProvider } from "./useDevAi";
 import DevAiStatusPanel from "./DevAiStatusPanel";
 import s from "./Workroom.module.css";
-import WorkspaceAccount, { type WorkspaceIdentity } from "./WorkspaceAccount";
+import type { WorkspaceIdentity } from "./WorkspaceAccount";
 import type { FadingGate } from "@/lib/fading/enabled";
 import { SrsWorkspaceView } from "@/components/fading/teacher/SrsWorkspaceView";
 const loadMathBuilder = () =>
@@ -67,6 +80,17 @@ const MathExamBuilder = dynamic(loadMathBuilder, {
     />
   ),
 });
+const ExamReportWorkspace = dynamic(
+  () =>
+    import("@/components/exam-report/ExamReportWorkspace").then(
+      (module) => module.ExamReportWorkspace,
+    ),
+  { loading: () => <WorkProgress label="성적표를 여는 중입니다…" /> },
+);
+const ArithmeticWorkbench = dynamic(
+  () => import("@/components/arithmetic/ArithmeticWorkbench"),
+  { loading: () => <WorkProgress label="연산대장을 여는 중입니다…" /> },
+);
 const loadStudioView = () => import("./StudioView");
 const StudioView = dynamic(loadStudioView, {
   ssr: false,
@@ -141,10 +165,7 @@ const EnglishStudio = dynamic(
   {
     ssr: false,
     loading: () => (
-      <WorkProgress
-        className={s.loading}
-        label="오늘의 영어를 여는 중입니다…"
-      />
+      <WorkProgress className={s.loading} label="오늘 영어를 여는 중입니다…" />
     ),
   },
 );
@@ -197,6 +218,13 @@ const mathNav: NavItem[] = [
     label: "시험지 만들기",
     short: "만들기",
     icon: "bank",
+    group: "common",
+  },
+  {
+    id: "arithmetic",
+    label: "연산대장",
+    short: "연산대장",
+    icon: "calculator",
     group: "common",
   },
   {
@@ -320,7 +348,7 @@ const menuValid = (value: string): value is WorkspaceMenu =>
   WORKSPACE_MENUS.some((item) => item.id === value);
 const viewValid = (value: string): value is View =>
   allNavItems.some((item) => item.id === value);
-/** 뷰가 딸린 메뉴 — 권한은 이것으로 본다 */
+/** 뷰가 딸린 메뉴 — 권한은 이것으로 본다. «연산대장»은 제 메뉴 `arithmetic` 을 본다(2026-10-16 — bank 에 딸리지 않는다). */
 const menuOf = (view: View): WorkspaceMenu =>
   isEnglishView(view) ? englishViewMenu(view) : view;
 const productOf = (view: View | null): WorkspaceProduct =>
@@ -332,6 +360,7 @@ const productOf = (view: View | null): WorkspaceProduct =>
     : "math";
 /** 세트 딥링크 `/?set=<uuid>#english` 의 id 모양 */
 const SET_LINK = /^[0-9a-f-]{36}$/i;
+const WORKSHEET_DRAFT_MENUS = ["bank", "studio", "library"] as const;
 
 function SidebarSignOutButton() {
   const { pending } = useFormStatus();
@@ -344,16 +373,20 @@ function SidebarSignOutButton() {
 
 export default function UnifiedWorkspace({
   initialData,
+  deferBankMetadata = false,
   storageScope,
   currentUser,
   allowedMenus,
   fadingGate = "off",
+  examReportTestId,
 }: {
   initialData: BankData;
+  deferBankMetadata?: boolean;
   storageScope?: string;
   currentUser?: WorkspaceIdentity;
   allowedMenus?: WorkspaceMenu[];
   fadingGate?: FadingGate;
+  examReportTestId?: string;
 }) {
   const access = useWorkspaceAccess(currentUser, allowedMenus, storageScope);
   return (
@@ -361,27 +394,34 @@ export default function UnifiedWorkspace({
       <UnifiedWorkspaceContent
         key={storageScope ?? "development"}
         initialData={initialData}
+        deferBankMetadata={deferBankMetadata}
         storageScope={storageScope}
         currentUser={access.currentUser}
         allowedMenus={access.allowedMenus}
         fadingGate={fadingGate}
+        examReportTestId={examReportTestId}
       />
     </DevAiProvider>
   );
 }
 function UnifiedWorkspaceContent({
   initialData,
+  deferBankMetadata,
   storageScope,
   currentUser,
   allowedMenus,
   fadingGate,
+  examReportTestId,
 }: {
   initialData: BankData;
+  deferBankMetadata: boolean;
   storageScope?: string;
   currentUser?: WorkspaceIdentity;
   allowedMenus: WorkspaceMenu[];
   fadingGate: FadingGate;
+  examReportTestId?: string;
 }) {
+  const router = useRouter();
   const menuKey = allowedMenus.join(",");
   const branchId = currentUser?.branchId;
   const libraryLabel = workspaceLibraryLabel(branchId);
@@ -389,15 +429,20 @@ function UnifiedWorkspaceContent({
     () => new Set(menuKey.split(",").filter(menuValid)),
     [menuKey],
   );
-  const can = useCallback(
-    (view: View) => enabledMenus.has(menuOf(view)),
-    [enabledMenus],
+  const canOutput = canOutputFrom([...enabledMenus]);
+  const canUseWorksheetDrafts = WORKSHEET_DRAFT_MENUS.some((menu) =>
+    enabledMenus.has(menu),
   );
-  const firstMenu = [...enabledMenus][0];
+  const can = useCallback(
+    (view: View) =>
+      view === "export" ? canOutput : enabledMenus.has(menuOf(view)),
+    [canOutput, enabledMenus],
+  );
+  const firstMenu = [...enabledMenus].find((menu) => menu !== "export");
   const defaultView: View | null =
     firstMenu === "english-school" ? "english" : (firstMenu ?? null);
-  const hasMenus = enabledMenus.size > 0;
-  const canCreate = can("bank") || can("studio") || can("export");
+  const hasMenus = defaultView !== null;
+  const canCreate = canUseWorksheetDrafts;
   const canEnglish = englishNav.some(
     (item) => isEnglishView(item.id) && can(item.id),
   );
@@ -406,24 +451,27 @@ function UnifiedWorkspaceContent({
   const [requestedView, setView] = useState<View | null>(defaultView);
   const [navigationReady, setNavigationReady] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
-  const view =
-    requestedView && can(requestedView) ? requestedView : defaultView;
+  const reportView: View | null = examReportTestId && canOutput
+    ? (can("library") ? "library" : "export")
+    : null;
+  const view = reportView ??
+    (requestedView && can(requestedView) ? requestedView : defaultView);
   const product = productOf(view);
   const productLabel =
     WORKSPACE_PRODUCTS.find((item) => item.id === product)?.label ??
-    "오늘의수학";
+    "오늘 수학";
   /** 권한 있는 제품만(25 §1.1) — 하나뿐이면 고르기 단추 없이 지금 모습 그대로 */
   const products = WORKSPACE_PRODUCTS.filter((item) =>
-    workspaceMenusOf(item.id).some((menu) => enabledMenus.has(menu)),
+    workspaceMenusOf(item.id).some(
+      (menu) => menu !== "export" && enabledMenus.has(menu),
+    ),
   );
-  // 원장님 2026-10-01 «메뉴가 두 개가 필요한가 — 내보내기는 문제 추출 가장 마지막 단계»: «시험지 · 내보내기»는
-  // 문제 추출(넷째 단계) · 시험지 만들기(담기) · 내 시험지(열기)의 끝 단계라 옆 메뉴에 줄을 따로 두지 않는다.
-  // 화면 · 권한 · 관문은 그대로다(옆 «현재 시험지 · 편집 이어가기» 칸 · 빠른 검색으로도 연다). 그 입구가 하나도 없는
-  // 계정(내보내기만 켠 계정)에만 줄을 남긴다.
-  const hiddenInSidebar = (id: View) =>
-    id === "export" && (can("studio") || can("bank") || can("library"));
+  // 출력은 각 출처 메뉴의 마지막 단계이며, 공용 export 뷰는 빠른 검색과 현재 시험지에서 연다.
   const availableNav = navItemsOf[product]
-    .filter((item) => can(item.id) && !hiddenInSidebar(item.id))
+    .filter(
+      (item) =>
+        can(item.id) && workspaceMenuInSidebar(menuOf(item.id)),
+    )
     .map((item) =>
       item.id === "library" ? { ...item, label: libraryLabel } : item,
     );
@@ -463,6 +511,10 @@ function UnifiedWorkspaceContent({
     setAnswers,
     setPrintOptions,
     setPrintMeta,
+    seedNewSheet,
+    setTag: setSheetTag,
+    setWorkflow,
+    getCurrentDraft,
     saveNow,
     visibility,
     createDraft,
@@ -473,11 +525,41 @@ function UnifiedWorkspaceContent({
     forgetPrivateDraft,
   } = useWorkspaceDrafts(
     storageScope,
-    can("library") || can("studio") || can("export"),
+    canUseWorksheetDrafts,
     navigationReady &&
       (worksheetView || (product === "math" && view === "home")),
     branchId,
   );
+  /**
+   * 3단계 «내 양식»(W6) — 새 시험지 기본 양식이 있으면 새 시험지가 그 서식 · 머리 정보로 열린다.
+   * 출력 메뉴(3단계를 여는 메뉴)가 있는 로그인 계정만 읽는다. 읽지 못하면 처음 값 그대로다.
+   */
+  const canPrintPresets = Boolean(storageScope) && canOutput;
+  const printPresetClient = useMemo(() => createPrintPresetsClient(), []);
+  const seedFromDefault = useCallback(
+    (preset: PrintPreset | null) =>
+      seedNewSheet(
+        preset
+          ? {
+              printOptions: preset.preset.options,
+              printMeta: preset.preset.head,
+            }
+          : null,
+      ),
+    [seedNewSheet],
+  );
+  useEffect(() => {
+    if (!canPrintPresets) return;
+    const controller = new AbortController();
+    void printPresetClient
+      .list(controller.signal)
+      .then((items) => {
+        if (!controller.signal.aborted)
+          seedFromDefault(items.find((item) => item.preset.isDefault) ?? null);
+      })
+      .catch(() => {});
+    return () => controller.abort();
+  }, [canPrintPresets, printPresetClient, seedFromDefault]);
   // The editor still waits for a validated draft, but its code can load while
   // restoration is in flight (also covers direct #bank / #studio entry).
   useEffect(() => {
@@ -511,10 +593,34 @@ function UnifiedWorkspaceContent({
     id: number;
     step: "upload" | "crop" | "review";
   }>();
+  const [studioExportRequest, setStudioExportRequest] = useState<{
+    id: number;
+  }>();
+  const studioExportSequence = useRef(0);
   const [extraction, setExtraction] = useState<{
     id?: string;
     version: number;
   }>({ version: 0 });
+  const [bankIntentIssue, setBankIntentIssue] = useState<{
+    draftId: string;
+    issue: string | null;
+  }>();
+  const receiveBankIntentIssue = useCallback(
+    (issue: string | null) => {
+      setBankIntentIssue((current) =>
+        current?.draftId === draft.id && current.issue === issue
+          ? current
+          : { draftId: draft.id, issue },
+      );
+    },
+    [draft.id],
+  );
+  const [arithmeticDocument, setArithmeticDocument] = useState<{
+    id?: string;
+    version: number;
+    initialStep?: WorkspaceWorkflowStep;
+  }>({ version: 0 });
+  const [arithmeticDirty, setArithmeticDirty] = useState(false);
   /** 내 시험지에서 연 개념 백지(26 §9 ⑾) — 판을 올려 같은 자료를 다시 열어도 개념 백지가 다시 읽는다. */
   const [blankDocument, setBlankDocument] = useState<{
     id: string;
@@ -529,6 +635,8 @@ function UnifiedWorkspaceContent({
     q?: string;
     grade?: string;
     version: number;
+    initialStep?: WorkspaceWorkflowStep;
+    preserveStoredOutput?: boolean;
   }>({ version: 0 });
   const [notice, setNoticeMessage] = useState("");
   const [noticeError, setNoticeError] = useState(false);
@@ -541,22 +649,6 @@ function UnifiedWorkspaceContent({
     setNoticeError(error);
   }, []);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  // 상단바는 두 제품이 한 벌이다 — «화면 최대화»도 제품을 보지 않는다(원장님 2026-10-08 «헤더는 영수 통일»)
-  const [maximized, setMaximized] = useState(false);
-  const workspaceMaximized = hasMenus && maximized;
-  useEffect(() => {
-    if (!workspaceMaximized) return;
-    const restore = (event: KeyboardEvent) => {
-      if (
-        event.key === "Escape" &&
-        !event.defaultPrevented &&
-        !document.querySelector('dialog[open], [aria-modal="true"]')
-      )
-        setMaximized(false);
-    };
-    window.addEventListener("keydown", restore);
-    return () => window.removeEventListener("keydown", restore);
-  }, [workspaceMaximized]);
   /**
    * 「되돌리기」 한 칸 — 뺀 문제를 다시 담거나(`remove`), 「순서 초기화」 직전의
    * 차례로 되돌린다(`order`). 알림 줄의 단추 하나가 둘을 다 맡는다.
@@ -594,15 +686,18 @@ function UnifiedWorkspaceContent({
   const newTitleRef = useRef<HTMLInputElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const draftFileRef = useRef<HTMLInputElement>(null);
-  const label =
-    view === "library"
-      ? libraryLabel
-      : (allNavItems.find((item) => item.id === view)?.label ??
-        "메뉴 이용 안내");
   const acceptedHref = useRef("");
   const performNavigation = useCallback(
     (next: View): boolean => {
       if (!can(next)) return false;
+      if (examReportTestId) {
+        if (!window.dispatchEvent(
+          new Event("exam-report-before-leave", { cancelable: true }),
+        ))
+          return false;
+        router.push(`/${next === "home" ? "" : `#${next}`}`);
+        return true;
+      }
       if (
         next !== "english-listening" &&
         !window.dispatchEvent(
@@ -618,6 +713,7 @@ function UnifiedWorkspaceContent({
       )
         return false;
       setView(next);
+      if (next !== "studio") setStudioExportRequest(undefined);
       setOpened((current) =>
         current.has(next) ? current : new Set([...current, next]),
       );
@@ -633,11 +729,15 @@ function UnifiedWorkspaceContent({
       window.scrollTo({ top: 0, behavior: "instant" });
       return true;
     },
-    [can, setNotice, setModal],
+    [can, setNotice, setModal, examReportTestId, router],
   );
   const navigate = useCallback(
     (next: View): boolean => {
       if (!can(next)) return false;
+      if (next === "export" && view === "studio") {
+        setStudioExportRequest({ id: ++studioExportSequence.current });
+        return true;
+      }
       if (
         can("textbook") &&
         next !== "textbook" &&
@@ -656,7 +756,7 @@ function UnifiedWorkspaceContent({
         return false;
       return performNavigation(next);
     },
-    [can, performNavigation],
+    [can, performNavigation, view],
   );
   useEffect(() => {
     try {
@@ -871,46 +971,6 @@ function UnifiedWorkspaceContent({
     }
     if (!shellModal && dialog.open) dialog.close();
   }, [shellModal]);
-  useEffect(() => {
-    const keydown = (event: KeyboardEvent) => {
-      if (!(event.ctrlKey || event.metaKey)) return;
-      if (event.key === "\\") {
-        event.preventDefault();
-        toggleSidebar();
-      }
-      if (event.key.toLowerCase() === "k" && hasMenus) {
-        event.preventDefault();
-        setModal("search");
-      }
-      if (
-        event.key.toLowerCase() === "s" &&
-        canCreate &&
-        worksheetView &&
-        hydrated
-      ) {
-        event.preventDefault();
-        void Promise.resolve(saveNow()).then((saved) => {
-          if (saved)
-            setNotice(
-              storageScope
-                ? "내 계정에 작업을 저장했습니다."
-                : "이 브라우저에 작업을 저장했습니다.",
-            );
-        });
-      }
-    };
-    window.addEventListener("keydown", keydown);
-    return () => window.removeEventListener("keydown", keydown);
-  }, [
-    saveNow,
-    setNotice,
-    toggleSidebar,
-    hasMenus,
-    canCreate,
-    storageScope,
-    worksheetView,
-    hydrated,
-  ]);
   const openBank = (filters: { q?: string; grade?: string } = {}) => {
     if (!can("bank")) return;
     void loadMathBuilder().catch(() => {});
@@ -920,6 +980,16 @@ function UnifiedWorkspaceContent({
   };
   function toggle(problem: StudioProblem) {
     const index = selected.findIndex((p) => p.id === problem.id);
+    if (
+      index < 0 &&
+      selected.some((p) => questionIdentity(p) === questionIdentity(problem))
+    ) {
+      setNotice(
+        "같은 문항이 이미 담겨 있습니다. 문항 검토의 형식 변경을 사용해 주세요.",
+        true,
+      );
+      return;
+    }
     if (index < 0 && problem.eligible === false) {
       setNotice(problem.ineligibleReason || "출제할 수 없는 문항입니다.");
       return;
@@ -940,12 +1010,27 @@ function UnifiedWorkspaceContent({
   function undoLast() {
     if (!undo || undo.draftId !== draft.id) return;
     if (undo.kind === "order") {
+      if (questionConflicts(undo.previous).length) {
+        setNotice(
+          "되돌릴 목록에 같은 문항의 형식이 함께 있습니다. 현재 선택은 유지했습니다.",
+          true,
+        );
+        return;
+      }
       setSelected(undo.previous);
       setUndo(null);
       setNotice("문제 차례를 되돌렸습니다.");
       return;
     }
     if (undo.problem.eligible === false) return;
+    if (
+      selected.some(
+        (item) => questionIdentity(item) === questionIdentity(undo.problem),
+      )
+    ) {
+      setNotice("같은 문항이 이미 담겨 있어 되돌릴 수 없습니다.", true);
+      return;
+    }
     setSelected((current) => restoreToCart(current, undo.problem, undo.index));
     updateRemovals((items) => forgetRemovals(items, [undo.problem.id]));
     setUndo(null);
@@ -953,6 +1038,17 @@ function UnifiedWorkspaceContent({
   }
   /** Bank composition changes keep replacement positions and recovery in one update. */
   function changeBankSelection(problems: StudioProblem[]) {
+    const sameActualRows =
+      problems.length === selected.length &&
+      problems.every((item, index) => item.id === selected[index].id);
+    if (!sameActualRows && introducesQuestionConflict(selected, problems)) {
+      setNotice(
+        "같은 문항의 형식 충돌을 먼저 해소해 주세요. 현재 선택은 유지했습니다.",
+        true,
+      );
+      return;
+    }
+    setWorkflow({ source: "bank", step: "review" });
     const next = [
       ...new Map(
         problems
@@ -978,6 +1074,11 @@ function UnifiedWorkspaceContent({
   }
   /** 작업실의 담기·반영 — 같은 id 는 제자리에서 갈고 새것은 뒤에(`addToCart`). */
   const add = (problems: StudioProblem[]) => {
+    setWorkflow({
+      source: "extraction",
+      step: "review",
+      sourceDocumentId: extraction.id,
+    });
     setSelected((current) => addToCart(current, problems));
     updateRemovals((items) =>
       forgetRemovals(
@@ -996,6 +1097,14 @@ function UnifiedWorkspaceContent({
    */
   function restoreRemoved(problem: StudioProblem) {
     if (problem.eligible === false) return;
+    if (
+      selected.some(
+        (item) => questionIdentity(item) === questionIdentity(problem),
+      )
+    ) {
+      setNotice("같은 문항이 이미 담겨 있습니다.", true);
+      return;
+    }
     const index =
       removed.find((item) => item.problem.id === problem.id)?.index ??
       selected.length;
@@ -1033,12 +1142,47 @@ function UnifiedWorkspaceContent({
   }
   const { requestSave: save, dialog: saveDialog } = useLibrarySaveConfirmation(
     branchId,
+    "draft",
     persistWorksheet,
     visibility,
   );
   async function persistWorksheet(sharing?: DocumentSharing) {
+    if (!canUseWorksheetDrafts) return false;
     setDismissedSaveError(null);
     setUndo(null);
+    if (
+      (view === "bank" || draft.workflow?.source === "bank") &&
+      !bankEntry.preserveStoredOutput &&
+      bankIntentIssue?.draftId === draft.id &&
+      bankIntentIssue.issue
+    ) {
+      setNotice(
+        `${bankIntentIssue.issue}. 범위 설정에서 조건을 수정하거나 다시 구성해 주세요.`,
+        true,
+      );
+      return false;
+    }
+    if (
+      !bankEntry.preserveStoredOutput &&
+      selected.some((item) => item.questionId)
+    ) {
+      try {
+        const { createMathExamBuilderSource } =
+          await import("@/components/exam-builder/mathSource");
+        await createMathExamBuilderSource().prepareOutput?.(
+          selected,
+          new AbortController().signal,
+        );
+      } catch (cause) {
+        setNotice(
+          cause instanceof Error
+            ? cause.message
+            : "저장할 실제 문항을 확인하지 못했습니다. 현재 작업은 유지했습니다.",
+          true,
+        );
+        return false;
+      }
+    }
     const saved = await saveNow(sharing);
     if (saved)
       setNotice(
@@ -1048,26 +1192,86 @@ function UnifiedWorkspaceContent({
       );
     return saved;
   }
-  async function openSaved(id: string) {
-    if (!can("export")) return;
+  const saveFromKeyboard = useEffectEvent(() => persistWorksheet());
+  useEffect(() => {
+    const keydown = (event: KeyboardEvent) => {
+      if (!(event.ctrlKey || event.metaKey)) return;
+      if (event.key === "\\") {
+        event.preventDefault();
+        toggleSidebar();
+      }
+      if (event.key.toLowerCase() === "k" && hasMenus) {
+        event.preventDefault();
+        setModal("search");
+      }
+      if (
+        event.key.toLowerCase() === "s" &&
+        canCreate &&
+        worksheetView &&
+        hydrated
+      ) {
+        event.preventDefault();
+        void saveFromKeyboard();
+      }
+    };
+    window.addEventListener("keydown", keydown);
+    return () => window.removeEventListener("keydown", keydown);
+  }, [toggleSidebar, hasMenus, canCreate, worksheetView, hydrated]);
+  async function openSaved(id: string, options?: LibraryOpenOptions) {
+    if (!canUseWorksheetDrafts) return;
     await prepareDrafts();
-    if (!permissionsRef.current.has("export")) return;
+    if (!WORKSHEET_DRAFT_MENUS.some((menu) => permissionsRef.current.has(menu)))
+      return;
     if (await openDraft(id)) {
+      if (!WORKSHEET_DRAFT_MENUS.some((menu) => permissionsRef.current.has(menu)))
+        return;
       setUndo(null);
-      navigate("export");
+      const openedDraft = getCurrentDraft();
+      const workflow = openedDraft.workflow;
+      const step =
+        options?.mode === "resume" ? (workflow?.step ?? "output") : "output";
+      if (
+        workflow?.source === "extraction" &&
+        step !== "output" &&
+        can("studio")
+      ) {
+        setStudioExportRequest(undefined);
+        setExtraction((current) => ({
+          id: workflow.sourceDocumentId,
+          version: current.version + 1,
+        }));
+        setStudioStepRequest((current) => ({
+          id: (current?.id ?? 0) + 1,
+          step: step === "review" ? "review" : "upload",
+        }));
+        navigate("studio");
+      } else if (workflow?.source !== "extraction" && can("bank")) {
+        setBankEntry((current) => ({
+          version: current.version + 1,
+          initialStep: step,
+          preserveStoredOutput: step === "output",
+        }));
+        navigate("bank");
+      } else navigate("export");
       setNotice("저장한 시험지를 불러왔습니다.");
     }
   }
   function restore() {
+    if (!canUseWorksheetDrafts) return;
     if (recent.length) openSaved(recent[0].id);
     else draftFileRef.current?.click();
   }
   async function startNew(next: "bank" | "studio" | "export") {
-    if (!can(next)) return;
+    if (!canUseWorksheetDrafts || !can(next)) return;
     if (next === "bank") void loadMathBuilder().catch(() => {});
     if (next === "studio") void loadStudioView().catch(() => {});
     await prepareDrafts();
-    if (!permissionsRef.current.has(next)) return;
+    if (
+      next === "export"
+        ? !WORKSHEET_DRAFT_MENUS.some((menu) => permissionsRef.current.has(menu))
+        : !permissionsRef.current.has(next)
+    )
+      return;
     if (!(await createDraft())) return;
     setUndo(null);
     if (newTitle.trim()) setTitle(newTitle.trim());
@@ -1081,28 +1285,32 @@ function UnifiedWorkspaceContent({
     navigate("studio");
   }
   async function receiveDraft(file: File | undefined) {
-    if (!can("export") || !file) return;
+    if (!canUseWorksheetDrafts || !file) return;
     try {
       if (file.size > 20 * 1024 * 1024)
         return setNotice("20 MB 이하의 작업 파일을 선택해 주세요.", true);
       const value = JSON.parse(await file.text());
-      if (!permissionsRef.current.has("export")) return;
+      if (!WORKSHEET_DRAFT_MENUS.some((menu) => permissionsRef.current.has(menu)))
+        return;
       await prepareDrafts();
-      if (!permissionsRef.current.has("export")) return;
+      if (!WORKSHEET_DRAFT_MENUS.some((menu) => permissionsRef.current.has(menu)))
+        return;
       if (await importDraft(value)) {
+        if (!WORKSHEET_DRAFT_MENUS.some((menu) => permissionsRef.current.has(menu)))
+          return;
         setUndo(null);
         navigate("export");
         setNotice("작업 파일을 불러왔습니다.");
       }
     } catch {
       setNotice(
-        "작업 파일을 읽지 못했습니다. 오늘의수학에서 내보낸 JSON 파일인지 확인해 주세요.",
+        "작업 파일을 읽지 못했습니다. 오늘 수학에서 내보낸 JSON 파일인지 확인해 주세요.",
         true,
       );
     }
   }
   function download() {
-    if (!can("export")) return;
+    if (!canOutput) return;
     const url = URL.createObjectURL(
       new Blob(
         [
@@ -1115,6 +1323,7 @@ function UnifiedWorkspaceContent({
               answers,
               printOptions,
               printMeta,
+              ...(draft.tag ? { tag: draft.tag } : {}),
             },
             null,
             2,
@@ -1134,6 +1343,8 @@ function UnifiedWorkspaceContent({
     item.title.toLocaleLowerCase().includes(libraryQuery.toLocaleLowerCase()),
   );
   const editorProps: ComponentProps<typeof WorksheetEditorComponent> = {
+    draftActions: canUseWorksheetDrafts,
+    sheetTag: draft.tag ?? null,
     selected,
     title,
     columns,
@@ -1155,7 +1366,7 @@ function UnifiedWorkspaceContent({
     reorder,
     navigate,
     allowedMenus,
-    cloudSaveStatus: storageScope
+    cloudSaveStatus: storageScope && canUseWorksheetDrafts
       ? saveStatus === "saved"
         ? savedAt
           ? "계정에 저장됨"
@@ -1192,7 +1403,6 @@ function UnifiedWorkspaceContent({
     <div
       className={s.workspace}
       data-sidebar-collapsed={sidebarCollapsed}
-      data-maximized={workspaceMaximized}
       data-authenticated={Boolean(currentUser)}
       data-menu-count={availableNav.length}
       // 지금 제품의 표지. 셸의 배치는 이것을 보지 않는다 — 옆 메뉴 · 접힌 머리 · 상단바는 두 제품이 한 벌이다
@@ -1223,7 +1433,7 @@ function UnifiedWorkspaceContent({
           }}
         />
       )}
-      {can("export") && (
+      {canUseWorksheetDrafts && (
         <input
           ref={draftFileRef}
           hidden
@@ -1236,7 +1446,7 @@ function UnifiedWorkspaceContent({
           }}
         />
       )}
-      <aside className={s.sidebar} hidden={workspaceMaximized}>
+      <aside className={s.sidebar}>
         <div className={s.productMenu} ref={pickerRef}>
           <div className={s.sideHeader}>
             {products.length > 1 ? (
@@ -1285,7 +1495,7 @@ function UnifiedWorkspaceContent({
                 onClick={() => defaultView && navigate(defaultView)}
                 aria-label={
                   defaultView === "home"
-                    ? "오늘의수학 홈"
+                    ? "오늘 수학 홈"
                     : `${productLabel} 작업실`
                 }
                 disabled={!hasMenus}
@@ -1380,7 +1590,11 @@ function UnifiedWorkspaceContent({
                 <span>새 시험 등록</span>
               </button>
             )
-          : canCreate && (
+          : // 수학의 «새 시험지 만들기» 단추는 걷었다(원장님 2026-10-17) — 새 시험지는 홈 · «내 시험지»의 «새 시험지»로 만든다.
+            // 🔴 둘 다 없는 계정(출력 · 자료 제작 메뉴만)에는 새 시험지를 여는 길이 이것뿐이라 그때만 남긴다.
+            canCreate &&
+            !can("library") &&
+            !can("home") && (
               <button
                 className={s.newButton}
                 aria-label="새 시험지 만들기"
@@ -1439,7 +1653,7 @@ function UnifiedWorkspaceContent({
             </div>
           ))}
         </nav>
-        {worksheetView && hydrated && can("export") && (
+        {worksheetView && hydrated && canUseWorksheetDrafts && (
           <div className={s.sideDraft}>
             <div>
               <span className={s.sideDraftIcon}>
@@ -1496,6 +1710,30 @@ function UnifiedWorkspaceContent({
                 {profileOpen && (
                   <div className={s.profilePanel}>
                     <p className={s.profileHeading}>내 계정</p>
+                    {/* 상단 줄을 걷으며 옮겨 온 계정 표시와 관리 링크(원장님 2026-10-17) — 조건은 `WorkspaceAccount` 와 같다. */}
+                    <p className={s.profileIdentity}>
+                      <strong>{currentUser.name || "선생님"}</strong>
+                      <span title={currentUser.email}>{currentUser.email}</span>
+                    </p>
+                    {currentUser.isSuperAdmin === true && (
+                      <Link href="/admin">
+                        관리
+                        <RouteLinkStatus />
+                      </Link>
+                    )}
+                    {currentUser.isAdmin === true &&
+                      !currentUser.isSuperAdmin && (
+                        <Link href="/branch">
+                          지점관리
+                          <RouteLinkStatus />
+                        </Link>
+                      )}
+                    {!currentUser.isAdmin && currentUser.canManageClasses && (
+                      <Link href="/classes/manage">
+                        반 관리
+                        <RouteLinkStatus />
+                      </Link>
+                    )}
                     <Link href="/account">
                       내정보 설정
                       <RouteLinkStatus />
@@ -1511,52 +1749,7 @@ function UnifiedWorkspaceContent({
         )}
       </aside>
       <div className={s.main}>
-        <header className={s.topbar}>
-          <div className={s.breadcrumb}>
-            <span>작업실</span>
-            <Icon name="chevron" size={14} />
-            <strong>{label}</strong>
-          </div>
-          {hasMenus && (
-            <button
-              className={s.searchTrigger}
-              onClick={() => setModal("search")}
-              aria-label="빠른 검색 열기"
-            >
-              <Icon name="search" size={18} />
-              <span>문제 · 작업 빠르게 찾기</span>
-              <kbd>Ctrl K</kbd>
-            </button>
-          )}
-          <div className={s.topbarActions}>
-            {currentUser && (
-              <div className={s.accountSlot}>
-                <WorkspaceAccount user={currentUser} />
-              </div>
-            )}
-            {hasMenus && (
-              <button
-                type="button"
-                className={s.maximizeButton}
-                aria-pressed={workspaceMaximized}
-                title={
-                  workspaceMaximized
-                    ? "화면 복원 (Esc)"
-                    : "메뉴를 숨기고 작업 화면 최대화"
-                }
-                onClick={() => setMaximized((value) => !value)}
-              >
-                <Icon
-                  name={workspaceMaximized ? "restore" : "maximize"}
-                  size={17}
-                />
-                <span className={s.maximizeLabel}>
-                  {workspaceMaximized ? "화면 복원" : "화면 최대화"}
-                </span>
-              </button>
-            )}
-          </div>
-        </header>
+        {/* 상단 줄(경로 · 빠른 찾기 · 계정 · 화면 최대화)은 걷었다(원장님 2026-10-17) — 계정은 옆 메뉴 아래에 있고, 빠른 찾기는 Ctrl/⌘ K 로 연다. */}
         <div className={s.notifications}>
           {hasMenus &&
             notice &&
@@ -1588,6 +1781,15 @@ function UnifiedWorkspaceContent({
             )}
         </div>
         <div id="workspace-content" className={s.content} tabIndex={-1}>
+          {examReportTestId ? (
+            canOutput ? (
+              <ExamReportWorkspace key={examReportTestId} testId={examReportTestId} />
+            ) : (
+              <main className={s.noMenus}>
+                <h1>성적표를 열 권한이 없습니다.</h1>
+              </main>
+            )
+          ) : <>
           {worksheetView && canCreate && saveError && (
             <div className={s.draftFeedback}>
               {dismissedSaveError === saveErrorKey ? (
@@ -1609,7 +1811,7 @@ function UnifiedWorkspaceContent({
                 >
                   <Icon name="warning" size={19} />
                   <p>{saveError}</p>
-                  {can("export") && (
+                  {canOutput && (
                     <button onClick={download}>작업 파일 내려받기</button>
                   )}
                   <button onClick={save}>다시 저장</button>
@@ -1638,6 +1840,8 @@ function UnifiedWorkspaceContent({
           {view === "home" && (
             <WorkroomHome
               data={initialData}
+              deferBankMetadata={deferBankMetadata}
+              navigationReady={navigationReady}
               draft={draft}
               recent={recent}
               hydrated={hydrated}
@@ -1668,9 +1872,62 @@ function UnifiedWorkspaceContent({
                   key={`${draft.id}:${bankEntry.version}`}
                   initialData={initialData}
                   initialGroup={bankEntry.grade}
+                  initialStep={bankEntry.initialStep}
+                  preserveStoredOutput={bankEntry.preserveStoredOutput}
+                  onBeginEdit={async () => {
+                    const stored = getCurrentDraft();
+                    const copied = await importDraft({
+                      ...stored,
+                      version: 1,
+                      title: `${stored.title.slice(0, 75)} 사본`,
+                    });
+                    if (!copied) return false;
+                    setBankEntry((current) => ({
+                      ...current,
+                      preserveStoredOutput: false,
+                      initialStep: "review",
+                    }));
+                    setNotice("저장본을 유지하고 편집할 사본을 만들었습니다.");
+                    return true;
+                  }}
+                  onStepChange={(step) => {
+                    if (view === "bank") setWorkflow({ source: "bank", step });
+                  }}
+                  onIntentIssueChange={receiveBankIntentIssue}
                   editor={editorProps}
                   onQuestionsChange={changeBankSelection}
-                  canOutput={can("export")}
+                  canOutput={canOutputFrom(allowedMenus, "bank")}
+                  sheetTag={{
+                    value: draft.tag ?? null,
+                    onChange: setSheetTag,
+                  }}
+                  printPresets={
+                    canPrintPresets
+                      ? {
+                          client: printPresetClient,
+                          onDefaultChange: seedFromDefault,
+                        }
+                      : undefined
+                  }
+                />
+              </main>
+            )}
+          {navigationReady &&
+            can("arithmetic") &&
+            (opened.has("arithmetic") || view === "arithmetic") && (
+              <main hidden={view !== "arithmetic"} className={s.viewContent}>
+                <ArithmeticWorkbench
+                  key={`${storageScope ?? "preview"}:${arithmeticDocument.version}`}
+                  storageScope={storageScope}
+                  initialDocumentId={arithmeticDocument.id}
+                  initialStep={arithmeticDocument.initialStep}
+                  canOutput={canOutputFrom(allowedMenus, "arithmetic")}
+                  academyName={printMeta.academyName || "오늘 수학"}
+                  preview={!storageScope}
+                  onDirtyChange={setArithmeticDirty}
+                  onDocumentChange={(id) =>
+                    setArithmeticDocument((current) => ({ ...current, id }))
+                  }
                 />
               </main>
             )}
@@ -1686,8 +1943,16 @@ function UnifiedWorkspaceContent({
                   onAdd={add}
                   onRemove={remove}
                   onRestore={restoreRemoved}
-                  onExport={() => navigate("export")}
-                  canExport={can("export")}
+                  onExport={() => {
+                    setWorkflow({
+                      source: "extraction",
+                      step: "output",
+                      sourceDocumentId: extraction.id,
+                    });
+                    performNavigation("export");
+                  }}
+                  exportRequest={studioExportRequest}
+                  canExport={canOutputFrom(allowedMenus, "studio")}
                   importRequest={importRequest}
                   stepRequest={studioStepRequest}
                   onCropCountChange={setStudioCropCount}
@@ -1697,6 +1962,9 @@ function UnifiedWorkspaceContent({
                   branchId={branchId}
                   onDocumentChange={(id) => {
                     if (!storageScope) return;
+                    setExtraction((current) =>
+                      current.id === id ? current : { ...current, id },
+                    );
                     const url = new URL(window.location.href);
                     if (id) url.searchParams.set("extraction", id);
                     else url.searchParams.delete("extraction");
@@ -1833,11 +2101,37 @@ function UnifiedWorkspaceContent({
             <PrivateLibrary
               storageScope={storageScope}
               branchId={branchId}
-              canExport={can("export")}
+              canExport={canOutputFrom(allowedMenus, "library")}
               canStudio={can("studio")}
+              canBank={can("bank")}
+              canArithmetic={can("arithmetic")}
+              onOpenArithmetic={(id, options) => {
+                if (!can("arithmetic")) return;
+                if (
+                  arithmeticDirty &&
+                  !window.confirm(
+                    "저장하지 않은 연산 연습지를 닫고 선택한 자료를 여시겠습니까?",
+                  )
+                )
+                  return;
+                setArithmeticDocument((current) => ({
+                  id,
+                  version: current.version + 1,
+                  initialStep:
+                    options?.mode === "resume" ? undefined : "output",
+                }));
+                setArithmeticDirty(false);
+                navigate("arithmetic");
+              }}
               onOpenDraft={openSaved}
-              onOpenExtraction={(id) => {
+              onOpenExtraction={(id, options) => {
                 if (!can("studio")) return;
+                setStudioExportRequest(undefined);
+                setStudioStepRequest(
+                  options?.mode === "resume"
+                    ? undefined
+                    : { id: Date.now(), step: "review" },
+                );
                 setExtraction((current) => ({
                   id,
                   version: current.version + 1,
@@ -1857,7 +2151,9 @@ function UnifiedWorkspaceContent({
                 navigate("conceptBlank");
               }}
               onImport={
-                can("export") ? () => draftFileRef.current?.click() : undefined
+                canOutputFrom(allowedMenus, "library")
+                  ? () => draftFileRef.current?.click()
+                  : undefined
               }
               onNew={canCreate ? () => setModal("new") : undefined}
               onDeleted={async (item) => {
@@ -1867,6 +2163,15 @@ function UnifiedWorkspaceContent({
                 }
                 // 개념 백지는 고르기만 담는다 — 지울 것이 화면에 없다. 열어 둔 것이었으면 개념 백지 탭이 돌아올 때 다시 읽어 «저장됨»을 풀고, 다음 저장은 새 자료로 간다.
                 if (item.kind === "conceptBlank") return;
+                if (item.kind === "arithmeticSheet") {
+                  if (arithmeticDocument.id === item.id) {
+                    setArithmeticDocument((current) => ({
+                      version: current.version + 1,
+                    }));
+                    setArithmeticDirty(false);
+                  }
+                  return;
+                }
                 await forgetPrivateExtraction(storageScope, item.id);
                 const url = new URL(window.location.href);
                 if (
@@ -1888,7 +2193,7 @@ function UnifiedWorkspaceContent({
                 title="내 시험지"
                 description="저장한 작업을 이어가거나 다른 기기의 작업 파일을 불러오세요."
               >
-                {can("export") && (
+                {canOutputFrom(allowedMenus, "library") && (
                   <button
                     className={s.outlineButton}
                     onClick={() => draftFileRef.current?.click()}
@@ -1975,7 +2280,7 @@ function UnifiedWorkspaceContent({
                             </span>
                           </td>
                           <td className={cloudStyles.titleCell}>
-                            {can("export") ? (
+                            {canOutputFrom(allowedMenus, "library") ? (
                               <button
                                 type="button"
                                 className={cloudStyles.titleButton}
@@ -2061,6 +2366,7 @@ function UnifiedWorkspaceContent({
               </p>
             </main>
           )}
+          </>}
         </div>
       </div>
       <dialog
@@ -2076,7 +2382,7 @@ function UnifiedWorkspaceContent({
                 ? "빠른 실행"
                 : modal === "new"
                   ? "새로운 수업 자료"
-                  : "오늘의수학 작업실"}
+                  : "오늘 수학 작업실"}
             </span>
             <h2 id="workspace-dialog-title">
               {modal === "search"
@@ -2098,7 +2404,7 @@ function UnifiedWorkspaceContent({
                 ref={newTitleRef}
                 value={newTitle}
                 onChange={(event) => setNewTitle(event.target.value)}
-                placeholder="오늘의 수학 학습지"
+                placeholder="오늘 수학 학습지"
                 maxLength={80}
               />
             </label>

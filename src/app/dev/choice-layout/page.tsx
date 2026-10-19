@@ -5,7 +5,7 @@ import type { PrintChoiceLayout } from "@/lib/math/choiceLayout";
 import ChoiceLayoutClient from "./ChoiceLayoutClient";
 
 export const metadata = {
-  title: "보기 번호 배치 확인 · 오늘의수학",
+  title: "보기 번호 배치 확인 · 오늘 수학",
   robots: { index: false, follow: false },
 };
 

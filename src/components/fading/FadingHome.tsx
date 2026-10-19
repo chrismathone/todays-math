@@ -33,6 +33,7 @@ export function FadingHome({
   );
   const { summary } = state;
   const firstDay = !summary.learned && !summary.queue.unrated.length;
+  // 홈의 목록 — 속(`fadingQueue` 의 명제 칸 · 결정 4)이 오늘 분량에 든 것만 낸다(평가 전 개념도 남은 칸에서만).
   const ids = [...summary.queue.due, ...summary.queue.unrated];
   const done = !firstDay && !ids.length && !summary.queue.held.length;
   const showDailyDetails = !firstDay && !done;
@@ -516,8 +517,8 @@ export function FadingHome({
               <section className={`${s.card} ${s.stack}`}>
                 <h2 className={s.subheading}>복습 분량을 정해요</h2>
                 <p className={s.muted}>
-                  나눠서 하면 하루 복습은 {state.cap}개까지입니다. 처음 배우는
-                  개념은 따로 셉니다.
+                  나눠서 하면 하루 분량은 문장 {state.cap}개까지입니다. 처음
+                  배우는 개념도 함께 셉니다.
                 </p>
                 <div className={s.left}>
                   <button

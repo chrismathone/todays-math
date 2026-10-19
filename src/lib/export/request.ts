@@ -1,3 +1,5 @@
+import { canOutputFrom } from "@/contracts/accountAccess.contract";
+
 export const exportHeaders = { "Cache-Control": "private, no-store" };
 const fail = (status: number, error: string) =>
   Response.json({ error }, { status, headers: exportHeaders });
@@ -19,12 +21,12 @@ export async function authorizeExport(
   const { getSessionUser } = await import("@/lib/session");
   const session = await getSessionUser();
   if (session)
-    return session.menus?.includes("export") ||
-      (request.method === "POST" &&
-        ["/api/exports/pdf", "/api/exports/hwpx"].includes(url.pathname) &&
+    return request.method === "POST" &&
+      ["/api/exports/pdf", "/api/exports/hwpx"].includes(url.pathname) &&
+      (canOutputFrom(session.menus ?? []) ||
         session.menus?.includes("english-library"))
       ? null
-      : fail(403, "시험지 · 내보내기 메뉴를 사용할 권한이 없습니다.");
+      : fail(403, "이 자료를 내보낼 권한이 없습니다.");
   if (process.env.NODE_ENV === "development") {
     const local = (hostname: string) =>
       ["localhost", "127.0.0.1", "[::1]"].includes(hostname);

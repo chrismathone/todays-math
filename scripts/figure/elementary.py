@@ -24,6 +24,11 @@ FAINT = "#f4f4f2"
 # 점격자 바탕선. 교재 모눈은 연한 청색 — #7aa0c4·1.05px 는 발문 대비 진했다.
 GRID = "#c8d7e4"
 GRID_SW = 0.7
+# 수직선의 수의 범위(초5 2-1) — 원장님 확정 2026-10-18 Wire R1 · Hi-fi H1(`/dev/elem-numberline-hifi`).
+# 축 위 진한 적갈색 3px · 포함 ● · 불포함 ○(속 흰색) · 점 반지름 3.6. 진한 색이라 흑백 인쇄에서도 검게 나온다.
+RANGE_INK = "#a8432f"
+RANGE_SW = 3.0
+RANGE_DOT = 3.6
 # 표 viewBox 를 이보다 키우면 화면에서 숫자가 본문보다 작아진다 (09 §4-8).
 TABLE_VIEWBOX_MAX = 240.0
 # 치수 점선이 도형에서 벌어지는 거리. 한 값만 쓴다 — 도형마다 다르면 같은 시험지에서
@@ -73,7 +78,9 @@ OPTIONAL: dict[str, frozenset[str]] = {
     "circleParts": frozenset({"radius", "diameter", "center", "show"}),
     "opBox": frozenset({"output"}),
     "columnOp": frozenset({"result", "highlight"}),
-    "numberLine": frozenset({"min", "step", "hops", "barTo", "tick", "blanks"}),
+    "numberLine": frozenset(
+        {"min", "step", "hops", "barTo", "tick", "blanks", "ranges"}
+    ),
     "tape": frozenset({"unit", "segments"}),
     "boxedList": frozenset({"marks"}),
     "pointGrid": frozenset({"lines", "square"}),
@@ -1040,7 +1047,73 @@ def _number_line(spec: Mapping[str, Any]) -> str:
     if bar_to is not None:
         x1 = xp(float(bar_to))
         parts.append(_rect(xp(lo), y - 28, x1 - xp(lo), 12, rx=2, fill="#e8d3a8", sw=1.1))
+    for rng in _number_line_ranges(spec.get("ranges"), lo, hi):
+        start, end, start_in, end_in = rng
+        # 끝이 없는 쪽(이상 · 초과의 오른쪽, 이하 · 미만의 왼쪽)은 축 끝까지 긋는다.
+        x1 = xp(lo) if start is None else xp(start)
+        x2 = xp(hi) if end is None else xp(end)
+        parts.append(
+            f'<line x1="{_n(x1)}" y1="{_n(y)}" x2="{_n(x2)}" y2="{_n(y)}" '
+            f'stroke="{RANGE_INK}" stroke-width="{_n(RANGE_SW)}"/>'
+        )
+        for v, inside in ((start, start_in), (end, end_in)):
+            if v is None:
+                continue
+            parts.append(
+                f'<circle cx="{_n(xp(v))}" cy="{_n(y)}" r="{_n(RANGE_DOT)}" '
+                f'fill="{RANGE_INK if inside else PAPER}" stroke="{RANGE_INK}" stroke-width="1.5"/>'
+            )
     return _svg(span + pad * 2 + 16, 78, "".join(parts))
+
+
+def _number_line_ranges(
+    raw: Any, lo: float, hi: float
+) -> list[tuple[float | None, float | None, bool, bool]]:
+    """`ranges` — [{from, to, fromIn, toIn}]. from/to 가 null 이면 그 쪽 끝이 없다(축 끝까지).
+
+    끝은 축 안에 있어야 하고(밖이면 점이 안 보인다) 적어도 한 끝은 있어야 한다.
+    포함 여부를 빠뜨리면 던진다 — ●/○ 가 곧 답이라 기본값으로 메우지 않는다.
+    """
+    if raw is None:
+        return []
+    if not isinstance(raw, list) or not raw:
+        raise ValueError("ranges 는 비어 있지 않은 배열이어야 합니다")
+    out: list[tuple[float | None, float | None, bool, bool]] = []
+    for item in raw:
+        if not isinstance(item, Mapping):
+            raise ValueError("ranges 항목은 객체여야 합니다")
+        extra = set(item) - {"from", "to", "fromIn", "toIn"}
+        if extra:
+            raise ValueError(f"ranges 에 모르는 키: {sorted(extra)}")
+        ends: list[float | None] = []
+        for key in ("from", "to"):
+            v = item.get(key)
+            if v is None:
+                ends.append(None)
+                continue
+            if isinstance(v, bool) or not isinstance(v, (int, float)):
+                raise ValueError(f"ranges.{key} 는 수이거나 null 이어야 합니다")
+            if v < lo - 1e-9 or v > hi + 1e-9:
+                raise ValueError(f"ranges.{key}={v} 가 수직선 밖입니다")
+            ends.append(float(v))
+        start, end = ends
+        if start is None and end is None:
+            raise ValueError("ranges 는 적어도 한 끝이 있어야 합니다")
+        if start is not None and end is not None and start >= end:
+            raise ValueError("ranges.from 은 to 보다 작아야 합니다")
+        flags: list[bool] = []
+        for key, v in (("fromIn", start), ("toIn", end)):
+            flag = item.get(key)
+            if v is None:
+                if flag is not None:
+                    raise ValueError(f"끝이 없는 쪽에 {key} 를 줄 수 없습니다")
+                flags.append(False)
+                continue
+            if not isinstance(flag, bool):
+                raise ValueError(f"ranges.{key} 는 true/false 여야 합니다")
+            flags.append(flag)
+        out.append((start, end, flags[0], flags[1]))
+    return out
 
 
 def _clock_face(cx: float, cy: float, r: float, hour: int, minute: int, second: int | None) -> str:
@@ -1647,6 +1720,18 @@ _SHAPE_KINDS = frozenset(
         "irregQuad",
     }
 )
+# Exact non-example shapes for the three repaired choice families (2026-10-18).
+# They are opt-in namedShapes values, outside the shared markedShape vocabulary.
+# Existing eqTri/rightTri/wideTri/irregQuad coordinates and meanings remain unchanged.
+_CHOICE_REPAIR_POINTS: dict[str, tuple[tuple[float, float], ...]] = {
+    # Shortest pairwise length gap >35%; smallest angle gap >16 degrees.
+    "choiceScaleneTri": ((0.0, 0.0), (1.0, 1.0), (0.0, 0.7)),
+    "choiceRightScaleneTri": ((0.0, 1.0), (0.0, 0.2), (1.0, 1.0)),
+    "choiceNonparallelQuad": ((0.0, 0.0), (1.0, 0.2), (0.8, 1.0), (0.15, 0.65)),
+    # Replaces only quad244Pick's old irregQuad slot: both deviations >21 degrees.
+    "choiceSkewQuad": ((0.1, 0.0), (1.0, 0.35), (0.55, 1.0), (0.0, 0.5)),
+}
+_NAMED_SHAPE_KINDS = _SHAPE_KINDS | frozenset(_CHOICE_REPAIR_POINTS)
 # **모든 변이 정의상 같은** 도형 — `sides` 를 줘도 비율이 이미 맞다.
 # 실측(슬롯 100)으로 정했다: square 100×4 · diamond 71×4 · tallDiamond 55×4 ·
 # 정n각형 n개가 전부 같다. 「한 변이 5 cm 인 마름모의 네 변의 합은?」이 이 자리다.
@@ -1727,6 +1812,8 @@ def _shape_points(kind: str, ox: float, oy: float, s: float) -> list[tuple[float
     ⚠️ `square`·`rect` 는 지면에 여전히 `<rect>` 로 나간다(아래 `_draw_named_shape`).
     여기서 점을 내는 것은 **재기 위해서**이지 그리는 방식을 바꾸려는 게 아니다.
     """
+    if kind in _CHOICE_REPAIR_POINTS:
+        return [(ox + s * x, oy + s * y) for x, y in _CHOICE_REPAIR_POINTS[kind]]
     if kind in _NGON_SIDES:
         return _ngon_points(_NGON_SIDES[kind], ox, oy, s)
     if kind == "square":
@@ -1794,7 +1881,7 @@ def _draw_named_shape(kind: str, ox: float, oy: float, s: float, marks: bool = F
         x0 = min(p[0] for p in pts)
         y0 = min(p[1] for p in pts)
         return _rect(x0, y0, max(p[0] for p in pts) - x0, max(p[1] for p in pts) - y0, sw=1.5)
-    if kind == "rightTri":
+    if kind in ("rightTri", "choiceRightScaleneTri"):
         mark = _right_mark(pts[0], pts[1], pts[2]) if marks else ""
         return _poly_pts(pts) + mark
     if kind == "eqTri":
@@ -1824,7 +1911,7 @@ def _named_shapes(spec: Mapping[str, Any]) -> str:
         if extra:
             raise ValueError(f"허용되지 않은 도형 키: {', '.join(sorted(str(k) for k in extra))}")
         kind = str(item.get("shape", ""))
-        if kind not in _SHAPE_KINDS:
+        if kind not in _NAMED_SHAPE_KINDS:
             raise ValueError(f"모르는 도형입니다: {kind}")
         marks = item.get("marks", False)
         if not isinstance(marks, bool):
@@ -2246,10 +2333,14 @@ def _line_relation(spec: Mapping[str, Any]) -> str:
     y1 = pad + h * 0.72
     parts.append(_seg((pad, y0), (pad + w, y0), sw=1.4))
     parts.append(_seg((pad, y1), (pad + w, y1), sw=1.4))
+    npp = _side_index(spec.get("perpCount", 0), "perpCount", 9)
     # 평행 표시 — **두 직선에 같은 개수**. 그것이 「이 둘이 평행」을 말한다.
+    # Four/five perpendiculars approach the historical 0.62 arrow position.
+    # Reserve the left margin for both parallel marks in those dense diagrams.
+    mark_x = pad + w * (0.06 if npp >= 4 else 0.62)
     k = _side_index(spec.get("marks", 1), "marks", 4) or 1
-    parts.append(_para_mark(pad + w * 0.62, y0, 1.0, 0.0, k))
-    parts.append(_para_mark(pad + w * 0.62, y1, 1.0, 0.0, k))
+    parts.append(_para_mark(mark_x, y0, 1.0, 0.0, k))
+    parts.append(_para_mark(mark_x, y1, 1.0, 0.0, k))
     # 수선 여러 개 — 「수선을 5개 그었습니다. 길이는 서로 어떠한가?」(초4 2-4-3).
     # **길이가 같다는 것이 답**이므로 정말 같게 그린다(세로선이라 자동으로 같다).
     #
@@ -2260,7 +2351,6 @@ def _line_relation(spec: Mapping[str, Any]) -> str:
     #    그 발문에는 **붙이지 않는다**(2026-08-24). 붙일 수 있는 것은
     #    「수선을 그었더니 $10$ cm, 거리는?」쪽이고 그때도 **치수는 안 적는다**
     #    (답이 준 값과 같아서 적으면 곧 답이다).
-    npp = _side_index(spec.get("perpCount", 0), "perpCount", 9)
     for i in range(npp):
         x = pad + w * (0.18 + 0.64 * (i / max(npp - 1, 1)))
         parts.append(_seg((x, y0), (x, y1), sw=1.05))

@@ -1,5 +1,11 @@
 "use client";
 
+import type { QuestionFormat } from "@/contracts/questionFormats.contract";
+import QuestionFormatPicker from "@/components/exam-builder/QuestionFormatPicker";
+import {
+  questionIdentity,
+  selectedQuestionFormat,
+} from "@/lib/problem/questionSelectionClient";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
@@ -12,15 +18,12 @@ import type {
   ProblemSource,
   ReviewStatus,
 } from "@/contracts/common.contract";
-import type {
-  ProblemEntity,
-  ProblemFormatFilter,
-  ProblemType,
-} from "@/contracts/problem.contract";
+import type { ProblemEntity, ProblemType } from "@/contracts/problem.contract";
 import { classifyFormat } from "@/lib/problem/provenance";
 import {
   addToBasket,
   clearBasket,
+  changeBasketFormat,
   EMPTY_BASKET,
   loadBasket,
   makeTestFromBasket,
@@ -33,14 +36,11 @@ import { BasketPanel } from "./BasketPanel";
 import type { UnitEntity } from "@/contracts/unit.contract";
 import {
   loadProblems,
+  loadProblemFormat,
   PROBLEM_PAGE_SIZE,
   updateReviewStatus,
   type ProblemListFilters,
 } from "@/lib/problem/problemApi";
-import {
-  compareProblemsForBank,
-  problemOrderFields,
-} from "@/lib/problem/problemOrder";
 import { loadUnits } from "@/lib/units/unitApi";
 
 import { useDebounced } from "@/hooks/useDebounced";
@@ -145,7 +145,9 @@ function matchesFilters(
     // 형식(`[단]`·`[서]`) — 서버가 거른 것과 **같은 함수**를 부른다. 카드의 라벨도
     // 이 함수가 그린다(`provenanceBadges`) — 셋이 갈리면 「등록하자마자 목록에 있는데
     // 새로고침하면 사라지는」 카드가 생긴다.
-    (!filters.format || classifyFormat(problem) === filters.format) &&
+    (!(filters.availableFormat ?? filters.format) ||
+      classifyFormat(problem) ===
+        (filters.availableFormat ?? filters.format)) &&
     (!filters.reviewStatus || problem.reviewStatus === filters.reviewStatus) &&
     (!filters.source || problem.source === filters.source)
   );
@@ -212,6 +214,10 @@ export function ProblemBank() {
    */
   const [basketError, setBasketError] = useState<string | null>(null);
   const [basketBusy, setBasketBusy] = useState(false);
+  const [formatPicker, setFormatPicker] = useState<{
+    item: ProblemEntity;
+    fromProblemId?: string;
+  } | null>(null);
   const [basketOpen, setBasketOpen] = useState(false);
   const basketPending = useRef(false);
 
@@ -223,8 +229,8 @@ export function ProblemBank() {
       difficulty: (difficulty || undefined) as Difficulty | undefined,
       problemType: splitProblemFilterValue(problemFilter).problemType as
         ProblemType | undefined,
-      format: splitProblemFilterValue(problemFilter).format as
-        ProblemFormatFilter | undefined,
+      availableFormat: splitProblemFilterValue(problemFilter).format as
+        QuestionFormat | undefined,
       reviewStatus: (reviewStatus || undefined) as ReviewStatus | undefined,
       source: (source || undefined) as ProblemSource | undefined,
       q: q.trim() || undefined,
@@ -288,7 +294,7 @@ export function ProblemBank() {
   // 바구니는 **계정에 저장**된다 — 다른 기기에서 담은 것이 여기 그대로 있어야 한다.
   useEffect(() => {
     let cancelled = false;
-    loadBasket()
+    loadBasket("question")
       .then((next) => {
         if (!cancelled) setBasket(next);
       })
@@ -315,10 +321,12 @@ export function ProblemBank() {
       setBasketError(null);
       try {
         setBasket(await op());
+        return true;
       } catch (e) {
         setBasketError(
           e instanceof Error ? e.message : `${label}에 실패했습니다`,
         );
+        return false;
       } finally {
         basketPending.current = false;
         setBasketBusy(false);
@@ -330,17 +338,53 @@ export function ProblemBank() {
   // ⚠️ 카드는 `memo` 다 — 인라인 화살표로 넘기면 20장이 매번 다시 그려진다.
   const toggleBasket = useCallback(
     (id: string, picked: boolean) => {
+      const row = problems.find((item) => item.id === id);
+      const existing =
+        row &&
+        basket?.items.find(
+          (item) => questionIdentity(item.problem) === questionIdentity(row),
+        );
+      if (!picked && row && (row.questionFormats?.length ?? 0) > 1) {
+        setFormatPicker({ item: row });
+        return;
+      }
+      if (!picked && (!row || !selectedQuestionFormat(row))) {
+        setBasketError(
+          "출제 형식을 확인하지 못했습니다. 문항 목록을 다시 확인해 주세요.",
+        );
+        return;
+      }
       void runBasket(
-        () => (picked ? removeFromBasket(id) : addToBasket(id)),
+        () =>
+          picked
+            ? removeFromBasket(existing?.problem.id ?? id, "question")
+            : addToBasket(id, row ? selectedQuestionFormat(row) : undefined),
         picked ? "빼기" : "담기",
       );
     },
-    [runBasket],
+    [runBasket, problems, basket],
   );
-
-  /** 담긴 문항 id — 카드마다 `includes` 로 훑으면 20장 × 담긴 수가 된다. */
+  const changeFormat = useCallback(
+    (id: string) => {
+      const row = problems.find((item) => item.id === id);
+      const existing =
+        row &&
+        basket?.items.find(
+          (item) => questionIdentity(item.problem) === questionIdentity(row),
+        );
+      if (existing)
+        setFormatPicker({
+          item: existing.problem,
+          fromProblemId: existing.problem.id,
+        });
+    },
+    [problems, basket],
+  );
   const pickedIds = useMemo(
-    () => new Set((basket?.items ?? []).map((i) => i.problem.id)),
+    () =>
+      new Set(
+        (basket?.items ?? []).map((item) => questionIdentity(item.problem)),
+      ),
     [basket],
   );
 
@@ -420,27 +464,13 @@ export function ProblemBank() {
     (created: ProblemEntity[], label: string) => {
       const matching = created.filter((problem) =>
         matchesFilters(problem, filters, unitById),
-      );
-      // 목록 순서는 서버가 정한다(`PROBLEM_BANK_ORDER_BY`). 새로 만든 문항을 **맨 위에**
-      // 얹으면 그 순간 화면이 서버와 다른 순서를 갖는다 — 옛 정렬(`createdAt desc`)에서는
-      // 맨 위가 곧 제자리였지만, 이제는 코드가 자리를 정한다(원장님 지시 2026-08-26).
-      // 그래서 **같은 규칙**으로 제자리에 끼운다.
-      setProblems((current) =>
-        [...matching, ...current].sort((a, b) =>
-          compareProblemsForBank(
-            problemOrderFields(a, unitById.get(a.unitId)),
-            problemOrderFields(b, unitById.get(b.unitId)),
-          ),
-        ),
-      );
-      setTotal((current) => current + matching.length);
+      ).length;
       setNotice(
-        matching.length === created.length
-          ? `${created.length}건 ${label}`
-          : `${created.length}건 ${label} — 현재 필터에 ${matching.length}건만 보입니다`,
+        `${created.length}개 표현 ${label} — 현재 필터에 ${matching}개 표현이 맞습니다. 문항 목록을 다시 확인합니다.`,
       );
       setPanel(null);
-      setError(null);
+      setLoading(true);
+      setListAttempt((value) => value + 1);
     },
     [filters, unitById],
   );
@@ -474,14 +504,20 @@ export function ProblemBank() {
     async (id: string, next: ReviewStatus) => {
       const label = next === "approved" ? "승인" : "반려";
       try {
-        const { data } = await updateReviewStatus(id, next);
+        const { data } = await updateReviewStatus(id, next, "question");
         const stays = matchesFilters(data, filters, unitById);
         setProblems((current) =>
           stays
             ? current.map((p) => (p.id === id ? data : p))
             : current.filter((p) => p.id !== id),
         );
-        if (!stays) setTotal((current) => Math.max(0, current - 1));
+        const grouped =
+          (problems.find((row) => row.id === id)?.questionFormats?.length ??
+            0) > 1 || (data.questionFormats?.length ?? 0) > 1;
+        if (grouped) {
+          setLoading(true);
+          setListAttempt((value) => value + 1);
+        } else if (!stays) setTotal((current) => Math.max(0, current - 1));
         setNotice(
           stays
             ? `${data.problemCode} ${label}`
@@ -496,7 +532,7 @@ export function ProblemBank() {
         );
       }
     },
-    [filters, unitById],
+    [filters, unitById, problems],
   );
 
   return (
@@ -584,11 +620,24 @@ export function ProblemBank() {
           }}
         >
           <option value="">전체</option>
-          {PROBLEM_FILTER_OPTIONS.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
+          <optgroup label="문항 유형">
+            {PROBLEM_FILTER_OPTIONS.filter(
+              (option) => splitProblemFilterValue(option.value).problemType,
+            ).map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </optgroup>
+          <optgroup label="사용 가능한 형식">
+            {PROBLEM_FILTER_OPTIONS.filter(
+              (option) => splitProblemFilterValue(option.value).format,
+            ).map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </optgroup>
         </FieldSelect>
         <FieldSelect
           label="상태"
@@ -789,7 +838,9 @@ export function ProblemBank() {
           <Button
             variant="secondary"
             disabled={basketBusy}
-            onClick={() => void runBasket(loadBasket, "바구니 불러오기")}
+            onClick={() =>
+              void runBasket(() => loadBasket("question"), "바구니 불러오기")
+            }
           >
             담은 문제 다시 불러오기
           </Button>
@@ -844,7 +895,8 @@ export function ProblemBank() {
               onTransformAdopted={handleTransformAdopted}
               onReviewStatusChange={handleReviewStatusChange}
               basket={{
-                picked: pickedIds.has(problem.id),
+                picked: pickedIds.has(questionIdentity(problem)),
+                onChangeFormat: changeFormat,
                 busy: basketBusy,
                 onToggle: toggleBasket,
               }}
@@ -869,15 +921,32 @@ export function ProblemBank() {
             {basketOpen ? (
               <BasketPanel
                 items={basket.items}
+                total={basket.total}
+                conflictCount={basket.conflictCount}
+                onChangeFormat={(item) =>
+                  setFormatPicker({
+                    item: item.problem,
+                    fromProblemId: item.problem.id,
+                  })
+                }
                 busy={basketBusy}
                 onRemove={(id) =>
-                  void runBasket(() => removeFromBasket(id), "빼기")
+                  void runBasket(() => removeFromBasket(id, "question"), "빼기")
                 }
-                onClear={() => void runBasket(() => clearBasket(), "비우기")}
+                onClear={() =>
+                  void runBasket(() => clearBasket("question"), "비우기")
+                }
                 onClose={() => setBasketOpen(false)}
                 onMakeTest={(classId, testDate) => {
                   setBasketBusy(true);
-                  void makeTestFromBasket({ classId, testDate })
+                  void makeTestFromBasket({
+                    classId,
+                    testDate,
+                    selections: basket.items.flatMap((item) => {
+                      const value = selectedQuestionFormat(item.problem);
+                      return value ? [value] : [];
+                    }),
+                  })
                     .then((made) => {
                       // 시험지가 되면 바구니는 서버에서 비워진다 — 화면도 그렇게 만든다.
                       setBasket(EMPTY_BASKET);
@@ -917,6 +986,41 @@ export function ProblemBank() {
           onMove={goToPage}
         />
       ) : null}
+      {formatPicker && (
+        <QuestionFormatPicker
+          item={formatPicker.item}
+          actualId={formatPicker.item.id}
+          options={formatPicker.item.questionFormats ?? []}
+          load={loadProblemFormat}
+          renderQuestion={(item) => (
+            <ProblemCard
+              problem={item}
+              grade={unitById.get(item.unitId)?.grade}
+            />
+          )}
+          changing={!!formatPicker.fromProblemId}
+          onClose={() => setFormatPicker(null)}
+          onChoose={async (actual) => {
+            const selection = selectedQuestionFormat(actual);
+            if (!selection)
+              throw new Error(
+                "실제 출제 형식을 확인하지 못했습니다. 기존 바구니는 유지됩니다.",
+              );
+            const ok = await runBasket(
+              () =>
+                formatPicker.fromProblemId
+                  ? changeBasketFormat(formatPicker.fromProblemId, selection)
+                  : addToBasket(actual.id, selection),
+              "형식 선택",
+            );
+            if (!ok)
+              throw new Error(
+                "형식을 반영하지 못했습니다. 현재 문항과 입력을 유지했습니다. 바구니 안내를 확인하세요.",
+              );
+            setFormatPicker(null);
+          }}
+        />
+      )}
     </main>
   );
 }

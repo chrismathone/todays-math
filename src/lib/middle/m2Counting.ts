@@ -608,7 +608,7 @@ export const M2_COUNTING: TypeEntry[] = [
       if (kind === 0) {
         const ans = k * perm(k, r - 1);
         return {
-          content: `$0$부터 $${k}$까지의 자연수가 각각 하나씩 적힌 $${k + 1}$장의 카드 중에서 $${r}$장을 뽑아 만들 수 있는 ${digitWord(r)} 자연수의 개수를 구하시오.`,
+          content: `$0$부터 $${k}$까지의 숫자가 각각 하나씩 적힌 $${k + 1}$장의 카드 중에서 $${r}$장을 뽑아 만들 수 있는 ${digitWord(r)} 자연수의 개수를 구하시오.`,
           answer: `$${ans}$`,
           solution: `맨 앞 자리에는 $0$ 을 놓을 수 없으므로 $${k}$가지이고, 나머지 자리에는 남은 $${k}$장 중에서 차례로 놓는다.\n따라서 구하는 개수는 $${k}\\times${perm(k, r - 1)}=${ans}$ 이다.`,
           facts: { k, r, kind, ans },
@@ -618,7 +618,7 @@ export const M2_COUNTING: TypeEntry[] = [
       const endFive = (k - 1) * (r === 2 ? 1 : perm(k - 1, r - 2));
       const ans = endZero + endFive;
       return {
-        content: `$0$부터 $${k}$까지의 자연수가 각각 하나씩 적힌 $${k + 1}$장의 카드 중에서 $${r}$장을 뽑아 만들 수 있는 ${digitWord(r)} 자연수 중 $5$의 배수의 개수를 구하시오.`,
+        content: `$0$부터 $${k}$까지의 숫자가 각각 하나씩 적힌 $${k + 1}$장의 카드 중에서 $${r}$장을 뽑아 만들 수 있는 ${digitWord(r)} 자연수 중 $5$의 배수의 개수를 구하시오.`,
         answer: `$${ans}$`,
         solution: `일의 자리가 $0$ 인 경우는 $${endZero}$가지이다.\n일의 자리가 $5$ 인 경우는 맨 앞 자리에 $0$ 을 놓을 수 없으므로 $${endFive}$가지이다.\n따라서 구하는 개수는 $${endZero}+${endFive}=${ans}$ 이다.`,
         facts: { k, r, kind, ans },

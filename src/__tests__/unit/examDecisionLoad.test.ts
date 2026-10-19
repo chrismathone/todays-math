@@ -204,7 +204,8 @@ describe("원장님 결정 — 실제 적재 경로", () => {
       solution: regenerated.solution,
       solutionSource: "ai",
       questionNumber: 8,
-      directUseAllowed: true,
+      // 원본 기출은 패턴 확인용이라 언제나 출제 잠금으로 싣는다(0312944df).
+      directUseAllowed: false,
     });
   });
   it("A6: 대진 13은 초안이 있어도 적재 행을 만들지 않고 사유를 남긴다", async () => {
@@ -233,18 +234,21 @@ describe("원장님 결정 — 실제 적재 경로", () => {
       expect(result.log).toMatch(/보기.*그림.*연결/);
     },
   );
-  it("온전한 짝은 적재 행에도 그대로 남고 출제를 허용한다", async () => {
+  // 원본 기출은 짝이 온전해도 출제 잠금이다(0312944df) — 짝의 판정은 잠금 사유 줄로 본다.
+  it("온전한 짝은 적재 행에도 그대로 남고 보기 그림 잠금 사유를 남기지 않는다", async () => {
     const result = await load({
       choices: Array(5).fill("[그림]"),
       mapping: [1, 2, 3, 4, 5],
       figureCount: 5,
     });
-    expect(result.rows[0].directUseAllowed).toBe(true);
+    expect(result.rows[0].directUseAllowed).toBe(false);
+    expect(result.log).not.toMatch(/보기.*그림.*연결/);
     expect(result.rows[0].choiceFigureIndex).toEqual([1, 2, 3, 4, 5]);
   });
-  it("글 보기에는 출제를 허용한다", async () => {
+  it("글 보기에는 보기 그림 잠금 사유를 남기지 않는다", async () => {
     const result = await load();
-    expect(result.rows[0].directUseAllowed).toBe(true);
+    expect(result.rows[0].directUseAllowed).toBe(false);
+    expect(result.log).not.toMatch(/보기.*그림.*연결/);
   });
   it("글 보기를 가리키는 그림이 있으면 반대쪽 짝도 무효다", async () => {
     const result = await load({
@@ -253,6 +257,7 @@ describe("원장님 결정 — 실제 적재 경로", () => {
       figureCount: 5,
     });
     expect(result.rows[0].directUseAllowed).toBe(false);
+    expect(result.log).toMatch(/보기.*그림.*연결/);
   });
   it("안심의 실제 색인은 적재할 때도 8번 보기 순서로 이동한다", async () => {
     const source = JSON.parse(
@@ -270,7 +275,8 @@ describe("원장님 결정 — 실제 적재 경로", () => {
       result.rows[0].figureUrls.map((url) => url.split("/").at(-1)),
     ).toEqual(["q07.png", "q07-2.png", "q07-3.png", "q07-4.png", "q07-5.png"]);
     expect(result.rows[0].choiceFigureIndex).toEqual([1, 2, 3, 4, 5]);
-    expect(result.rows[0].directUseAllowed).toBe(true);
+    expect(result.rows[0].directUseAllowed).toBe(false);
+    expect(result.log).not.toMatch(/보기.*그림.*연결/);
   });
   it("원본 해설이 있는 행은 그 해설 뒤에 안내를 한 번만 둔다", async () => {
     const config = loadExamConfig(join(examRoot, "2025-dongdo-3-2-mid"), {

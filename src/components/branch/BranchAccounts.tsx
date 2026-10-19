@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import type { StudentEntity } from "@/contracts/class.contract";
 import BulkStudentAccountButton from "@/components/class/BulkStudentAccountButton";
+import s from "./BranchAccounts.module.css";
 
 const StudentAccountPanel = dynamic(() =>
   import("@/components/class/StudentAccountPanel").then(
@@ -40,7 +41,7 @@ export default function BranchAccounts({
   section = "accounts",
 }: {
   canCreateManagers: boolean;
-  section?: "accounts" | "classes";
+  section?: "accounts" | "classes" | "students";
 }) {
   const [staff, setStaff] = useState<Staff[]>([]);
   const [classes, setClasses] = useState<BranchClass[]>([]);
@@ -114,7 +115,7 @@ export default function BranchAccounts({
         const classId = groups[0].id;
         const requestId = ++studentRequest.current;
         const response = await fetch(
-          `/api/students?classId=${encodeURIComponent(classId)}&page=1&pageSize=100`,
+          `/api/branch/students?classId=${encodeURIComponent(classId)}&page=1&pageSize=100`,
           { cache: "no-store", signal: controller.signal },
         );
         const result = await response.json();
@@ -247,7 +248,7 @@ export default function BranchAccounts({
     if (!classId) return;
     try {
       const response = await fetch(
-        `/api/students?classId=${encodeURIComponent(classId)}&page=${page}&pageSize=100`,
+        `/api/branch/students?classId=${encodeURIComponent(classId)}&page=${page}&pageSize=100`,
         { cache: "no-store" },
       );
       const body = await response.json();
@@ -298,7 +299,7 @@ export default function BranchAccounts({
 
   return (
     <section
-      className="mb-8 rounded-xl border border-slate-200 bg-white p-5"
+      className={`${s.section} mb-8 rounded-xl border border-slate-200 bg-white p-5`}
       aria-label={section === "accounts" ? "지점 계정 관리" : "반 배정 관리"}
     >
       <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
@@ -497,10 +498,7 @@ export default function BranchAccounts({
           <p className="mb-3 text-sm text-slate-600">
             원장은 원장·관리자·강사를, 관리자는 강사 계정을 발급합니다.
           </p>
-          <form
-            onSubmit={createStaff}
-            className="mb-5 flex flex-wrap items-end gap-2"
-          >
+          <form onSubmit={createStaff} className={`${s.fields} mb-5`}>
             <label className="grid gap-1 text-sm">
               이름
               <input
@@ -560,55 +558,110 @@ export default function BranchAccounts({
               주세요.
             </p>
           )}
-          <div
-            className="mb-5 flex flex-wrap gap-2"
-            aria-label="지점 직원 목록"
-          >
-            {staff.map((person) => (
-              <span
-                key={person.id}
-                className="rounded-lg border border-slate-200 px-3 py-2 text-sm"
-              >
-                <strong>{person.name}</strong> · {labels[person.branchRole]}{" "}
-                <span className="text-slate-500">{person.email}</span>
-              </span>
-            ))}
+          <div className={`${s.tableFrame} mb-5`}>
+            <table
+              className={`${s.table} ${s.staffTable}`}
+              aria-label="지점 직원 목록"
+            >
+              <thead>
+                <tr>
+                  <th scope="col">이름</th>
+                  <th scope="col">계정 유형</th>
+                  <th scope="col">이메일</th>
+                </tr>
+              </thead>
+              <tbody>
+                {staff.map((person) => (
+                  <tr key={person.id}>
+                    <td>
+                      <span className={s.cellLabel} aria-hidden="true">
+                        이름
+                      </span>
+                      <strong>{person.name}</strong>
+                    </td>
+                    <td>
+                      <span className={s.cellLabel} aria-hidden="true">
+                        계정 유형
+                      </span>
+                      {labels[person.branchRole]}
+                    </td>
+                    <td>
+                      <span className={s.cellLabel} aria-hidden="true">
+                        이메일
+                      </span>
+                      <span className="text-slate-500">{person.email}</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      ) : section === "classes" ? (
+        <>
+          <h3 className="mb-2 font-semibold">반 담당 강사 배정</h3>
+          <div className={s.tableFrame}>
+            <table
+              className={`${s.table} ${s.classTable}`}
+              aria-label="반 담당 강사 배정"
+            >
+              <thead>
+                <tr>
+                  <th scope="col">반 이름</th>
+                  <th scope="col">학년</th>
+                  <th scope="col">학생 수</th>
+                  <th scope="col">담당 강사</th>
+                </tr>
+              </thead>
+              <tbody>
+                {classes.map((group) => (
+                  <tr key={group.id}>
+                    <td>
+                      <span className={s.cellLabel} aria-hidden="true">
+                        반 이름
+                      </span>
+                      <strong>{group.name}</strong>
+                    </td>
+                    <td>
+                      <span className={s.cellLabel} aria-hidden="true">
+                        학년
+                      </span>
+                      {group.grade}
+                    </td>
+                    <td className={s.studentCount}>
+                      <span className={s.cellLabel} aria-hidden="true">
+                        학생 수
+                      </span>
+                      학생 {group._count.students}명
+                    </td>
+                    <td>
+                      <span className={s.cellLabel} aria-hidden="true">
+                        담당 강사
+                      </span>
+                      <select
+                        className="min-h-11 rounded-lg border border-slate-300 px-3"
+                        aria-label={`${group.name} 담당 강사`}
+                        value={group.userId}
+                        disabled={busy}
+                        onChange={(e) => void assign(group.id, e.target.value)}
+                      >
+                        {staff.map((person) => (
+                          <option key={person.id} value={person.id}>
+                            {person.name} ({labels[person.branchRole]})
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </>
       ) : (
         <>
-          <h3 className="mb-2 font-semibold">반 담당 강사 배정</h3>
-          <div className="grid gap-2">
-            {classes.map((group) => (
-              <label
-                key={group.id}
-                className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-slate-200 p-3 text-sm"
-              >
-                <span>
-                  <strong>{group.name}</strong> · {group.grade} · 학생{" "}
-                  {group._count.students}명
-                </span>
-                <select
-                  className="min-h-11 rounded-lg border border-slate-300 px-3"
-                  aria-label={`${group.name} 담당 강사`}
-                  value={group.userId}
-                  disabled={busy}
-                  onChange={(e) => void assign(group.id, e.target.value)}
-                >
-                  {staff.map((person) => (
-                    <option key={person.id} value={person.id}>
-                      {person.name} ({labels[person.branchRole]})
-                    </option>
-                  ))}
-                </select>
-              </label>
-            ))}
-          </div>
-          <h3 className="mb-2 mt-5 font-semibold">학생 반 배정</h3>
-          <form
-            onSubmit={moveStudent}
-            className="flex flex-wrap items-end gap-2"
-          >
+          <h3 className="mb-2 font-semibold">학생 반 배정</h3>
+          <form onSubmit={moveStudent} className={s.fields}>
             <label className="grid gap-1 text-sm">
               현재 반
               <select

@@ -1,0 +1,54 @@
+{
+  "at": "2026-10-18T08:23:12.463Z",
+  "countUnit": "question",
+  "inventory": {
+    "physicalRows": 118166,
+    "questions": 70368,
+    "rawEligibleRows": 115721,
+    "rawEligibleQuestions": 67936,
+    "availableQuestions": 67893,
+    "unknownEligibleRows": 43,
+    "multipleChoice": 53819,
+    "shortAnswer": 61564,
+    "descriptive": 295
+  },
+  "familyCensus": {
+    "physicalFamilyKeys": 16367,
+    "canonicalFamilies": 16358,
+    "availableCanonicalFamilies": 15826
+  },
+  "supported": {
+    "grades": [
+      "초3",
+      "초4",
+      "초5",
+      "초6",
+      "중1",
+      "중2",
+      "중3"
+    ],
+    "units": 360,
+    "unitsAtLeast8Questions": 360,
+    "unitsAtLeast10Questions": 360,
+    "unitsAtLeast20Questions": 360,
+    "unitsAtLeast8Types": 360,
+    "unitsAtLeast10Types": 360,
+    "unitsAtLeast20Types": 107,
+    "unitsWith8TypesEach5Variants": 355,
+    "unitsSupportingFiveRoundsOfEightInCappedInventory": 360
+  },
+  "newReinforcement": {
+    "contents": 94,
+    "physicalRepresentations": 146,
+    "inserted": 146,
+    "rerunInserted": 0,
+    "rerunMatched": 146,
+    "existingWholeScopeRowsPreserved": 4801,
+    "beforeQuestions": 67799,
+    "afterQuestions": 67893
+  },
+  "formatTotalsOverlap": true,
+  "knownScope": "Strict proven MC/short format pairs plus independently held rows. This is not a global semantic or cross-source identical-content dedupe claim.",
+  "fiveRoundCapacityCaveat": "Inventory bound with empty recent history and no fixed format/difficulty quotas; not a per-student issuance guarantee.",
+  "unclassified43NotIssuable": true
+}

@@ -1,0 +1,112 @@
+.round {
+  margin-top: 12px;
+  min-width: 0;
+}
+.roundHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--learn-track);
+}
+.roundHeader h2 {
+  margin: 0;
+  color: var(--learn-ink);
+  font-size: var(--text-section, 18px);
+  font-weight: 700;
+}
+.roundHeader span {
+  color: var(--learn-muted);
+  font-size: var(--text-caption, 12px);
+}
+.typeHeading {
+  margin: 0;
+  color: var(--learn-ink);
+  font-size: var(--text-body, 14px);
+  line-height: 1.5;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+.questionNumber {
+  margin-bottom: 8px;
+  color: var(--learn-accent);
+  font-size: var(--text-body, 14px);
+  font-variant-numeric: tabular-nums;
+}
+.rounds {
+  margin-top: 20px;
+}
+.roundTabs {
+  display: flex;
+  gap: 8px;
+  padding: 0 0 12px;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--learn-track);
+}
+.roundTabs button {
+  flex: 0 0 auto;
+}
+.roundTabs button[aria-selected="true"] {
+  color: var(--learn-accent);
+  background: var(--learn-soft);
+  border-color: var(--learn-accent);
+}
+.roundTabs span {
+  margin-left: 8px;
+  font-size: var(--text-caption, 12px);
+  color: var(--learn-muted);
+}
+.roundActions,
+.typeHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+.roundActions > span {
+  color: var(--learn-muted);
+  font-size: var(--text-caption, 12px);
+}
+.roundActions > button,
+.typeHeader > button {
+  margin-left: auto;
+}
+.typeHeader {
+  margin-top: 16px;
+}
+.groupInstruction {
+  margin: 8px 0 0;
+  font-weight: 600;
+  line-height: 1.6;
+}
+label.selectionLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  width: fit-content;
+  font-size: var(--text-body, 14px);
+  cursor: pointer;
+}
+.selectionLabel input[type="checkbox"] {
+  appearance: auto;
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  accent-color: var(--learn-accent);
+}
+.round [data-selected="true"] {
+  border-color: var(--learn-accent);
+  background: var(--learn-soft);
+}
+.rounds :is(button, input):focus-visible {
+  outline: 2px solid var(--learn-accent);
+  outline-offset: 3px;
+}
+@media (max-width: 480px) {
+  .roundActions > button {
+    width: 100%;
+  }
+}

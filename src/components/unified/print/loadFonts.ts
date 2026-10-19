@@ -12,7 +12,7 @@ const STYLESHEETS: Partial<Record<FontPackId, string>> = {
 };
 const pending = new Map<string, Promise<void>>();
 
-export async function loadPrintFonts(id: FontPackId): Promise<void> {
+function ensureStylesheet(id: FontPackId): Promise<void> | undefined {
   const href = STYLESHEETS[id];
   if (href) {
     let promise = pending.get(href);
@@ -41,8 +41,18 @@ export async function loadPrintFonts(id: FontPackId): Promise<void> {
       });
       pending.set(href, promise);
     }
-    await promise;
+    return promise;
   }
+}
+
+/** 서식 설정의 폰트 단추가 제 글꼴로 보이게 — 스타일시트만 건다(글자 조각은 브라우저가 단추 글자만 받는다). */
+export function loadFontPreviews(): void {
+  for (const id of Object.keys(STYLESHEETS) as FontPackId[])
+    ensureStylesheet(id)?.catch(() => {});
+}
+
+export async function loadPrintFonts(id: FontPackId): Promise<void> {
+  await ensureStylesheet(id);
   if (document.fonts) {
     const pack = getFontPack(id);
     // FontFaceSet.ready alone doesn't request an unused face; load Korean glyphs explicitly.

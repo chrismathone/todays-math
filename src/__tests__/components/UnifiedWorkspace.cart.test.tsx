@@ -1,4 +1,11 @@
-import { lazy, Suspense, type ComponentType, type ReactNode } from "react";
+import {
+  lazy,
+  Suspense,
+  useEffect,
+  useRef,
+  type ComponentType,
+  type ReactNode,
+} from "react";
 import {
   fireEvent,
   render,
@@ -88,45 +95,62 @@ vi.mock("@/components/exam-builder/MathExamBuilder", () => ({
   ),
 }));
 vi.mock("@/components/unified/StudioView", () => ({
-  default: ({
+  default: function StudioDouble({
     picked = [],
     removed = [],
     onAdd,
     onRemove,
     onRestore,
+    onExport,
+    exportRequest,
   }: {
     picked?: StudioProblem[];
     removed?: StudioCartRemoval[];
     onAdd: (problems: StudioProblem[]) => void;
     onRemove?: (problem: StudioProblem) => void;
     onRestore?: (problem: StudioProblem) => void;
-  }) => (
-    <section aria-label="작업실 대역">
-      <output aria-label="작업실이 받은 담은 목록">
-        {picked.map((problem) => problem.id).join(",")}
-      </output>
-      <output aria-label="작업실이 받은 뺀 기억">
-        {removed.map((item) => `${item.problem.id}@${item.index}`).join(",")}
-      </output>
-      {picked.map((problem) => (
-        <button key={problem.id} onClick={() => onRemove?.(problem)}>
-          {problem.id} 빼기
+    onExport: () => void;
+    exportRequest?: { id: number };
+  }) {
+    // 작업실에 있을 때 «편집 이어가기»는 작업실에 출력 요청을 보낸다 — 작업실이 담고 나서
+    // `onExport` 로 넘긴다(4842701cd, 2026-10-15). 대역은 요청마다 한 번 넘기기만 한다.
+    const handled = useRef<number | undefined>(undefined);
+    useEffect(() => {
+      if (!exportRequest || handled.current === exportRequest.id) return;
+      handled.current = exportRequest.id;
+      onExport();
+    }, [exportRequest, onExport]);
+    return (
+      <section aria-label="작업실 대역">
+        <output aria-label="작업실이 받은 담은 목록">
+          {picked.map((problem) => problem.id).join(",")}
+        </output>
+        <output aria-label="작업실이 받은 뺀 기억">
+          {removed.map((item) => `${item.problem.id}@${item.index}`).join(",")}
+        </output>
+        {picked.map((problem) => (
+          <button key={problem.id} onClick={() => onRemove?.(problem)}>
+            {problem.id} 빼기
+          </button>
+        ))}
+        {removed.map((item) => (
+          <button
+            key={item.problem.id}
+            onClick={() => onRestore?.(item.problem)}
+          >
+            {item.problem.id} 다시 담기
+          </button>
+        ))}
+        <button
+          onClick={() =>
+            onAdd([{ ...picked[0], answer: "반영한 정답" } as StudioProblem])
+          }
+        >
+          첫 문항 반영
         </button>
-      ))}
-      {removed.map((item) => (
-        <button key={item.problem.id} onClick={() => onRestore?.(item.problem)}>
-          {item.problem.id} 다시 담기
-        </button>
-      ))}
-      <button
-        onClick={() =>
-          onAdd([{ ...picked[0], answer: "반영한 정답" } as StudioProblem])
-        }
-      >
-        첫 문항 반영
-      </button>
-    </section>
-  ),
+      </section>
+    );
+  },
 }));
 
 const initialData = {
@@ -212,6 +236,17 @@ async function toStudio() {
   fireEvent.click(menu("문제 추출"));
   return screen.findByRole("region", { name: "작업실 대역" });
 }
+/**
+ * 새로 연 화면은 빈 시험지로 선다 — 저장한 시험지는 «저장한 작업 불러오기»로 **명시적으로** 연다
+ * (ec2d38fdb · 4842701cd, 2026-10-15). 불러온 수학 시험지는 시험지 만들기(문제은행)의 출력 단계로 간다.
+ */
+async function resume() {
+  fireEvent.click(await screen.findByRole("button", { name: /편집 이어가기/ }));
+  fireEvent.click(
+    await screen.findByRole("button", { name: "저장한 작업 불러오기" }),
+  );
+  await screen.findByText("저장한 시험지를 불러왔습니다.");
+}
 async function toOrder() {
   // 옆 메뉴에 «시험지 · 내보내기» 줄이 없다(원장님 2026-10-01) — 옆 «현재 시험지 · 편집 이어가기»로
   fireEvent.click(screen.getByRole("button", { name: /편집 이어가기/ }));
@@ -230,6 +265,7 @@ describe("담은 문항 장부 배선", () => {
   it("작업실은 시험지 목록을 그대로 받고, ④ 에서 뺀 것을 뺀 자리와 함께 안다 (어긋남 1)", async () => {
     seed();
     render(<UnifiedWorkspace initialData={initialData} />);
+    await resume();
     await toOrder();
     expect(orderIds()).toEqual(["1쪽", "2쪽", "3쪽"]);
     fireEvent.click(screen.getByRole("button", { name: "2번 문제 빼기" }));
@@ -248,6 +284,7 @@ describe("담은 문항 장부 배선", () => {
   it("작업실에서 빼면 ④·문제은행과 같은 길 — 알림 줄 «되돌리기»도 기억을 푼다", async () => {
     seed();
     render(<UnifiedWorkspace initialData={initialData} />);
+    await resume();
     await toStudio();
     fireEvent.click(screen.getByRole("button", { name: "a 빼기" }));
     expect(studioPicked()).toBe("b,c");
@@ -261,6 +298,7 @@ describe("담은 문항 장부 배선", () => {
   it("반영은 같은 자리에서 갈고, 문제은행에서 다시 담으면 뺀 기억이 풀린다", async () => {
     seed();
     render(<UnifiedWorkspace initialData={initialData} />);
+    await resume();
     await toStudio();
     fireEvent.click(screen.getByRole("button", { name: "첫 문항 반영" }));
     expect(studioPicked()).toBe("a,b,c");
@@ -284,14 +322,16 @@ describe("담은 문항 장부 배선", () => {
   it("뺀 기억은 시험지와 같이 저장된다 — 새로 고친 뒤에도 뺀 자리와 함께 남는다 (트랙 47)", async () => {
     seed();
     const first = render(<UnifiedWorkspace initialData={initialData} />);
+    await resume();
     await toOrder();
     fireEvent.click(screen.getByRole("button", { name: "2번 문제 빼기" }));
     await toStudio();
     fireEvent.click(screen.getByRole("button", { name: "a 빼기" }));
     expect(studioRemoved()).toBe("b@1,a@0");
-    // 화면을 내리면(새로 고침) 저장소에 남은 것만 돌아온다.
+    // 화면을 내리면(새로 고침) 저장소에 남은 것만 돌아온다 — 다시 불러오면.
     first.unmount();
     render(<UnifiedWorkspace initialData={initialData} />);
+    await resume();
     await toStudio();
     expect(studioPicked()).toBe("c");
     expect(studioRemoved()).toBe("b@1,a@0");
@@ -304,10 +344,20 @@ describe("담은 문항 장부 배선", () => {
   it("새 시험지를 열면 담은 목록도 뺀 기억도 빈다 (어긋남 2)", async () => {
     seed();
     render(<UnifiedWorkspace initialData={initialData} />);
+    await resume();
     await toStudio();
     fireEvent.click(screen.getByRole("button", { name: "c 빼기" }));
     expect(studioRemoved()).toBe("c@2");
-    fireEvent.click(screen.getByRole("button", { name: "새 시험지 만들기" }));
+    // 옆 메뉴의 «새 시험지 만들기»를 걷어(2026-10-17) «내 시험지»의 «새 시험지»로 연다.
+    fireEvent.click(
+      within(screen.getByRole("navigation", { name: "작업실 메뉴" })).getByRole(
+        "button",
+        { name: "내 시험지" },
+      ),
+    );
+    fireEvent.click(
+      (await screen.findAllByRole("button", { name: "새 시험지" }))[0]!,
+    );
     fireEvent.click(
       await screen.findByRole("button", { name: /내 자료로 만들기/ }),
     );

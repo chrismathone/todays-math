@@ -1,0 +1,21 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": { "incremental": false },
+  "include": [
+    "../../../next-env.d.ts",
+    "../../../src/contracts/privateWorkspace.contract.ts",
+    "../../../src/contracts/workspaceArithmetic.contract.ts",
+    "../../../src/lib/arithmeticDocumentPolicy.ts",
+    "../../../src/lib/workspaceArithmeticRoutes.ts",
+    "../../../src/lib/privateDocumentActions.ts",
+    "../../../src/lib/privateDocumentList.ts",
+    "../../../src/lib/privateWorkspace.ts",
+    "../../../src/lib/accountRouteAccess.ts",
+    "../../../src/app/api/arithmetic/catalog/route.ts",
+    "../../../src/app/api/arithmetic/generate/route.ts",
+    "../../../src/__tests__/api/workspaceArithmetic.test.ts",
+    "../../../src/__tests__/api/branchLibrary.test.ts",
+    "../../../src/__tests__/unit/accountRouteAccess.test.ts",
+    "../../../src/__tests__/unit/workspaceDocumentKindConstraint.test.ts"
+  ]
+}

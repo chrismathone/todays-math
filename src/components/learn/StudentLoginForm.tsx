@@ -65,7 +65,7 @@ export function StudentLoginForm() {
     <div className={s.column}>
       <main className={s.login}>
         <div className={s.brand}>
-          <b>오늘의수학</b>
+          <b>오늘 수학</b>
           <span>오늘의 개념 · 학생</span>
         </div>
         <div className={s.loginIntro}>

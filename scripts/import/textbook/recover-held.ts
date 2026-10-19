@@ -2,6 +2,8 @@
  * 475 held textbook rows: explicit drafts -> checked plan -> guarded application.
  * Default is a local dry-run. --apply requires ALLOW_SHARED_IMPORT=1.
  * Corrections keep the hold; rewrites become pending transformed rows.
+ * A correction also locks the source's open designated retry slots (`tb-retry-v1:…`) in the
+ * same transaction — they were verified against the pre-correction text (`designatedSlotLocks.ts`).
  * Never writes ProblemReviewLog or fabricates a person's approval.
  */
 import { createHash, randomUUID } from "node:crypto";
@@ -17,6 +19,12 @@ import {
   type RecoveryAsset,
   type RecoverySnapshot,
 } from "../../../src/lib/import/schoolTextbook/recovery";
+import {
+  findDesignatedSlotRows,
+  lockDesignatedSlotsArgs,
+  planDesignatedSlotLocks,
+  slotBreakingReason,
+} from "../../../src/lib/import/schoolTextbook/designatedSlotLocks";
 import { readImageDimensions } from "../../../src/lib/printImageDimensions";
 
 const root = process.cwd();
@@ -326,14 +334,30 @@ async function main() {
               note: "검토 이후 내용 또는 상태가 바뀌어 보존했다",
             };
           if (patch.kind === "correction") {
-            await tx.problem.update({
+            const corrected = await tx.problem.update({
               where: { id: now.id },
               data: patch.after,
             });
+            // 원문을 고치면 그 원문의 열린 지정 두 슬롯(복습 변형)도 같은 트랜잭션에서 잠근다 — 변형은 고치기 전 원문으로
+            // 검산됐다. 다시 여는 것은 대응을 다시 검증한 뒤다(`designatedSlotLocks.ts` · 문제은행 P0 2026-10-14).
+            const reason = slotBreakingReason(now, corrected);
+            const locks = reason
+              ? planDesignatedSlotLocks(
+                  new Map([[now.id, reason]]),
+                  await findDesignatedSlotRows(tx, [now.id]),
+                )
+              : [];
+            const lockedSlots = locks.length
+              ? (await tx.problem.updateMany(lockDesignatedSlotsArgs(locks)))
+                  .count
+              : 0;
             return {
               problemCode: patch.problemCode,
               id: now.id,
               result: "corrected-held",
+              ...(lockedSlots
+                ? { note: `지정 변형 ${lockedSlots}개를 함께 잠갔다` }
+                : {}),
             };
           }
           const existing = await tx.problem.findUnique({
@@ -366,6 +390,7 @@ async function main() {
             problemType: now.problemType,
             pool: "shared",
           };
+          // exam-wiring: 기출아님 — 잠긴 교과서 문항의 변형(source=transformed)만 넣는다.
           const created = await tx.problem.create({ data });
           return {
             problemCode: patch.problemCode,

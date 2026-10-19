@@ -4,7 +4,12 @@ import { db } from "@/lib/db";
 import { authorizeAccount } from "@/lib/accountAccess";
 import { recordAudit } from "@/lib/audit";
 import type { Prisma, WorkspaceDocument } from "@prisma/client";
-import type { AccountAccess } from "@/contracts/accountAccess.contract";
+import {
+  canOutputFrom,
+  type AccountAccess,
+} from "@/contracts/accountAccess.contract";
+import { documentWorkflow } from "@/contracts/workspaceWorkflow.contract";
+import { LIBRARY_DOCUMENT_KINDS } from "@/contracts/privateWorkspace.contract";
 
 export const privateHeaders = {
   "Cache-Control": "private, no-store",
@@ -33,6 +38,7 @@ export function documentDto(
   },
   viewerId?: string,
 ) {
+  const workflow = documentWorkflow(doc.kind, doc.payload);
   return {
     ownerId: doc.userId,
     ownerName: doc.user?.name ?? "선생님",
@@ -46,6 +52,7 @@ export function documentDto(
     revision: doc.revision,
     createdAt: doc.createdAt.toISOString(),
     updatedAt: doc.updatedAt.toISOString(),
+    ...(workflow ? { workflow } : {}),
     ...("payload" in doc ? { payload: doc.payload } : {}),
   };
 }
@@ -67,7 +74,32 @@ export const privateError = (message: string, status: number, code?: string) =>
     },
     { status, headers: privateHeaders },
   );
-export async function authorizePrivate(request: Request, ownerId?: string) {
+/** 기존 보관함·추출의 읽기 범위는 유지하고, 새 제작 메뉴는 자기 자료만 연다. */
+export function privateDocumentKinds(account: AccountAccess) {
+  if (
+    canOutputFrom(account.menus, "library") ||
+    canOutputFrom(account.menus, "studio")
+  )
+    return [...LIBRARY_DOCUMENT_KINDS];
+  return LIBRARY_DOCUMENT_KINDS.filter((kind) =>
+    canOutputFrom(
+      account.menus,
+      kind === "draft"
+        ? "bank"
+        : kind === "extraction"
+          ? "studio"
+          : kind === "arithmeticSheet"
+            ? "arithmetic"
+            : "conceptBlank",
+    ),
+  );
+}
+
+export async function authorizePrivate(
+  request: Request,
+  ownerId?: string,
+  allowSourceDocuments = false,
+) {
   const access = await authorizeAccount(
     request,
     Boolean(ownerId),
@@ -89,8 +121,14 @@ export async function authorizePrivate(request: Request, ownerId?: string) {
     };
   if (
     !ownerId &&
-    !access.account!.menus.some((menu) =>
-      ["studio", "export", "library", "conceptBlank"].includes(menu),
+    !(["bank", "studio", "library"] as const).some((source) =>
+      canOutputFrom(access.account!.menus, source),
+    ) &&
+    !(
+      allowSourceDocuments &&
+      (["arithmetic", "conceptBlank"] as const).some((source) =>
+        canOutputFrom(access.account!.menus, source),
+      )
     )
   )
     return {

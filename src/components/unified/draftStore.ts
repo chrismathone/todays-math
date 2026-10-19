@@ -1,3 +1,7 @@
+import {
+  questionIdSchema,
+  questionRepresentationSchema,
+} from "@/contracts/questionFormats.contract";
 import type { Dispatch, SetStateAction } from "react";
 import type { StudioProblem } from "./types";
 import type { StudioCrop } from "./studioHelpers";
@@ -10,13 +14,21 @@ import {
   type PrintMeta,
 } from "./print/types";
 import { parsePrintOptions, parsePrintMeta } from "./print/settings";
+import {
+  parseWorkspaceWorkflow,
+  type WorkspaceWorkflow,
+} from "@/contracts/workspaceWorkflow.contract";
+import { readSheetTag, type SheetTag } from "@/contracts/sheetTag.contract";
 
 export const DRAFT_STORE_KEY = "today-math-workspace-drafts-v1";
 export const LEGACY_DRAFT_KEY = "today-math-unified-draft-v1";
-export const DEFAULT_DRAFT_TITLE = "오늘의 수학 학습지";
+export const DEFAULT_DRAFT_TITLE = "오늘 수학 학습지";
 const AUTOSAVE_MS = 600;
 
 export interface WorkspaceDraft {
+  workflow?: WorkspaceWorkflow;
+  /** 시험지 태그(W8) — 내 시험지에서 거를 때만 쓴다. 지면에 찍지 않는다. 없으면 «태그 없음». */
+  tag?: SheetTag;
   id: string;
   title: string;
   problems: StudioProblem[];
@@ -36,6 +48,7 @@ export interface WorkspaceDraft {
 }
 
 export interface DraftSummary {
+  workflow?: WorkspaceWorkflow;
   id: string;
   title: string;
   problemCount: number;
@@ -48,6 +61,12 @@ interface DraftEnvelope {
   drafts: WorkspaceDraft[];
 }
 
+/** 새 시험지 기본 양식이 덮는 값 — 서식 전부와 머리 정보의 고정 값(W6). */
+export interface NewSheetSeed {
+  printOptions: PrintOptions;
+  printMeta: Partial<PrintMeta>;
+}
+
 export interface WorkspaceDraftSnapshot {
   draft: WorkspaceDraft;
   hydrated: boolean;
@@ -57,6 +76,10 @@ export interface WorkspaceDraftSnapshot {
 }
 
 type StorageAccess = () => Pick<Storage, "getItem" | "setItem">;
+export interface DraftStoreOptions {
+  /** Live workspaces opt out; old direct consumers keep their recovery behavior. */
+  autoResume?: boolean;
+}
 
 class DraftError extends Error {}
 
@@ -303,6 +326,20 @@ function parseProblems(value: unknown): StudioProblem[] {
     ids.add(problem.id);
     const normalized: Record<string, unknown> = { ...problem };
     if (
+      problem.questionId !== undefined &&
+      !questionIdSchema.safeParse(problem.questionId).success
+    )
+      throw new DraftError(INVALID_IMPORT);
+    if (
+      problem.questionFormats !== undefined &&
+      (!Array.isArray(problem.questionFormats) ||
+        !problem.questionFormats.every(
+          (option: unknown) =>
+            questionRepresentationSchema.safeParse(option).success,
+        ))
+    )
+      throw new DraftError(INVALID_IMPORT);
+    if (
       problem.ocr !== undefined &&
       !MathgenProblemDataSchema.safeParse(problem.ocr).success
     )
@@ -409,7 +446,11 @@ export function parseImport(
     answers: value.answers,
   });
   const problems = parseProblems(value.problems);
+  const workflow = parseWorkspaceWorkflow(value.workflow);
+  const tag = readSheetTag(value.tag);
   return {
+    ...(workflow ? { workflow } : {}),
+    ...(tag ? { tag } : {}),
     title: value.title,
     problems,
     removed: parseRemovals(value.removed, problems),
@@ -459,11 +500,12 @@ export function parseEnvelope(raw: string): DraftEnvelope {
 
 function summaries(envelope: DraftEnvelope): DraftSummary[] {
   return envelope.drafts
-    .map(({ id, title, problems, updatedAt }) => ({
+    .map(({ id, title, problems, updatedAt, workflow }) => ({
       id,
       title,
       problemCount: problems.length,
       updatedAt,
+      ...(workflow ? { workflow } : {}),
     }))
     .sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt));
 }
@@ -485,6 +527,7 @@ function draftRevision(draft: WorkspaceDraft | undefined): string | undefined {
       draft.printMeta,
       draft.updatedAt,
       draft.problems,
+      draft.workflow,
     ])
   );
 }
@@ -504,6 +547,7 @@ function errorMessage(error: unknown): string {
 /** A per-hook session; browser access starts only at hydrate(), never during SSR. */
 export function createWorkspaceDraftStore(
   storageAccess: StorageAccess = () => window.localStorage,
+  { autoResume = true }: DraftStoreOptions = {},
 ) {
   const initial: WorkspaceDraftSnapshot = {
     draft: blankDraft(),
@@ -519,6 +563,29 @@ export function createWorkspaceDraftStore(
   let recoveryError: unknown;
   let timer: ReturnType<typeof setTimeout> | undefined;
   const listeners = new Set<() => void>();
+  /**
+   * 새 시험지 기본 양식(W6 · 2026-10-16) — 있으면 새 시험지가 그 서식 · 머리 정보로 열린다(없으면 처음 값).
+   * 만들어 둔 빈 시험지(아무것도 담지 않고 손대지 않은 것)에도 덮는다 — 저장할 내용이 아니라 더러워지지 않는다.
+   */
+  let newSheet: NewSheetSeed | null = null;
+  const freshDraft = (id: string): WorkspaceDraft => {
+    const draft = blankDraft(id);
+    if (!newSheet) return draft;
+    const printOptions = parsePrintOptions(newSheet.printOptions);
+    return {
+      ...draft,
+      printOptions,
+      columns: printOptions.columns,
+      answers: printOptions.showAnswers,
+      printMeta: parsePrintMeta({ ...draft.printMeta, ...newSheet.printMeta }),
+    };
+  };
+  const pristine = () =>
+    !dirty &&
+    !snapshot.draft.updatedAt &&
+    !snapshot.draft.problems.length &&
+    !snapshot.draft.removed.length &&
+    snapshot.draft.title === DEFAULT_DRAFT_TITLE;
 
   const publish = (patch: Partial<WorkspaceDraftSnapshot>) => {
     snapshot = { ...snapshot, ...patch };
@@ -610,7 +677,7 @@ export function createWorkspaceDraftStore(
         const index = drafts.findIndex((draft) => draft.id === mutation.id);
         if (mutation.remove) {
           drafts.splice(index, 1);
-          if (nextDraft.id === mutation.id) nextDraft = blankDraft(newId());
+          if (nextDraft.id === mutation.id) nextDraft = freshDraft(newId());
         } else {
           const renamed = {
             ...drafts[index],
@@ -660,15 +727,16 @@ export function createWorkspaceDraftStore(
 
   const hydrate = () => {
     if (snapshot.hydrated) return;
-    let recovered = blankDraft(newId());
+    let recovered = freshDraft(newId());
     try {
       const storage = storageAccess();
       const raw = storage.getItem(DRAFT_STORE_KEY);
       if (raw !== null) {
         known = parseEnvelope(raw);
-        recovered =
-          known.drafts.find((draft) => draft.id === known.activeId) ??
-          recovered;
+        if (autoResume)
+          recovered =
+            known.drafts.find((draft) => draft.id === known.activeId) ??
+            recovered;
       } else {
         const legacy = storage.getItem(LEGACY_DRAFT_KEY);
         if (legacy !== null) {
@@ -688,7 +756,12 @@ export function createWorkspaceDraftStore(
             throw new DraftError(INVALID_STORE);
           }
           // The source key is deliberately preserved, including when migration cannot fit.
-          dirty = true;
+          if (autoResume) dirty = true;
+          else {
+            known = { version: 1, activeId: null, drafts: [recovered] };
+            recovered = freshDraft(newId());
+            storage.setItem(DRAFT_STORE_KEY, JSON.stringify(known));
+          }
         }
       }
       publish({
@@ -701,7 +774,11 @@ export function createWorkspaceDraftStore(
     } catch (error) {
       recoveryBlocked = true;
       recoveryError = error;
-      publish({ draft: recovered, hydrated: true });
+      publish({
+        draft: autoResume ? recovered : freshDraft(newId()),
+        hydrated: true,
+        recent: summaries(known),
+      });
       fail(error);
     }
   };
@@ -737,6 +814,34 @@ export function createWorkspaceDraftStore(
       edit((draft) => (title === draft.title ? draft : { ...draft, title })),
     setProblems,
     setRemoved,
+    setWorkflow: (workflow: WorkspaceWorkflow | undefined) => {
+      const next = parseWorkspaceWorkflow(workflow);
+      if (workflow !== undefined && !next) return;
+      if (JSON.stringify(next) === JSON.stringify(snapshot.draft.workflow))
+        return;
+      // Seeding a blank editor's stage is not user content and must not create
+      // a phantom saved worksheet. The next real edit includes this metadata.
+      if (
+        !dirty &&
+        !snapshot.draft.updatedAt &&
+        !snapshot.draft.problems.length &&
+        !snapshot.draft.removed.length &&
+        snapshot.draft.title === DEFAULT_DRAFT_TITLE
+      ) {
+        publish({ draft: { ...snapshot.draft, workflow: next } });
+        return;
+      }
+      edit((draft) => ({ ...draft, workflow: next }));
+    },
+    /** 시험지 태그(W8) — 하나만, 빼면 칸이 없다. */
+    setTag: (tag: SheetTag | null) =>
+      edit((draft) => {
+        if ((draft.tag ?? null) === tag) return draft;
+        const next = { ...draft };
+        if (tag) next.tag = tag;
+        else delete next.tag;
+        return next;
+      }),
     setColumns: (columns: number) => {
       if (columns === 1 || columns === 2)
         edit((draft) =>
@@ -777,7 +882,22 @@ export function createWorkspaceDraftStore(
         ...draft,
         printMeta: parsePrintMeta({ ...draft.printMeta, ...patch }),
       })),
-    createDraft: () => commit(blankDraft(newId())),
+    createDraft: () => commit(freshDraft(newId())),
+    /** 새 시험지 기본 양식을 정한다(null 이면 처음 값) — 손대지 않은 빈 시험지에도 덮는다. */
+    seedNewSheet: (seed: NewSheetSeed | null) => {
+      newSheet = seed;
+      if (!snapshot.hydrated || !pristine()) return;
+      const seeded = freshDraft(snapshot.draft.id);
+      publish({
+        draft: {
+          ...snapshot.draft,
+          printOptions: seeded.printOptions,
+          printMeta: seeded.printMeta,
+          columns: seeded.columns,
+          answers: seeded.answers,
+        },
+      });
+    },
     openDraft: (id: string) => commit(id),
     renameDraft: (id: string, title: string) => {
       const trimmed = title.trim();

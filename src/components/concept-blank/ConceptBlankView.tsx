@@ -763,6 +763,7 @@ export default function ConceptBlankView({
   };
   const { requestSave, dialog: saveDialog } = useLibrarySaveConfirmation(
     branchId,
+    "conceptBlank",
     save,
     savedDocument?.sharedBranchId === branchId
       ? savedDocument?.visibility

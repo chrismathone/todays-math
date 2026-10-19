@@ -10,6 +10,10 @@
 import { randomUUID } from "node:crypto";
 
 import { Prisma } from "@prisma/client";
+import { invalidateBankReadCache } from "@/lib/bankReadCache";
+import type { CountSql } from "@/lib/problem/questionCountSql";
+import { questionFormatWithoutContent } from "@/lib/problem/questionFormat";
+import { problemIneligibleCode } from "@/lib/problemEligibility";
 
 import type {
   ClassEntity,
@@ -175,6 +179,7 @@ interface ProblemRow {
    * 이 대역은 **그 자동 채움을 흉내 내지 않는다** — 넣은 값이 그대로 나와야 판정을 잰다.
    */
   familyKey: string | null;
+  questionGroupKey?: string | null;
   difficulty: Difficulty;
   problemType: string;
   /** 출제 형식(객관식|단답형|서술형) — T7.6 백필 전이라 실데이터도 대부분 NULL 이다. */
@@ -252,6 +257,9 @@ interface SourceMaterialRow {
 /** 역추적 컬럼의 DB 기본값(전부 NULL). 픽스처·create 가 안 주면 이 값이다. */
 const PROBLEM_SOURCE_META_DEFAULTS = {
   externalId: null,
+  questionGroupKey: null,
+  sourceMaterialId: null,
+  figureSource: null,
   sourceFile: null,
   school: null,
   subject: null,
@@ -344,6 +352,8 @@ interface TestRow {
   predictionRunId: string | null;
   /** 아침 자동 초안 회차 연결(D-133). 손으로 낸 시험지는 null — FK SET NULL 은 `autoDraftRun.delete` 가 흉내 낸다. */
   autoDraftRunId: string | null;
+  /** 월말평가 M1 — «내 시험지»에서 반에 낸 시험의 발행본(2026-10-17). 일반 시험지는 null. */
+  publicationId: string | null;
 }
 
 interface TestProblemRow {
@@ -634,6 +644,7 @@ function toTestRow(entity: TestEntity): TestRow {
     createdAt: new Date(entity.createdAt),
     predictionRunId: null,
     autoDraftRunId: null,
+    publicationId: null,
   };
 }
 
@@ -668,6 +679,7 @@ function toFixtureTestRow(): TestRow {
     printedAt: new Date(fixture.printedAt),
     predictionRunId: null,
     autoDraftRunId: null,
+    publicationId: null,
     createdAt: new Date(fixture.createdAt),
   };
 }
@@ -707,6 +719,7 @@ let conceptLectureViewRows: ConceptLectureViewRow[] = [];
 
 /** 매 테스트 시작 전 Mock 픽스처 상태로 되돌린다 — 테스트 간 상태 오염 방지. */
 export function resetPrismaTestDouble() {
+  invalidateBankReadCache();
   resetErrorLogTestDouble();
   resetEnglishTestDouble();
   classRows = [...MOCK_CLASSES, MOCK_CLASS_OTHER_USER].map(toClassRow);
@@ -764,6 +777,7 @@ export function resetPrismaTestDouble() {
     printedAt: new Date("2026-08-12T09:00:00.000Z"),
     predictionRunId: null,
     autoDraftRunId: null,
+    publicationId: null,
     createdAt: new Date("2026-08-12T08:00:00.000Z"),
   });
   testProblemRows.push({
@@ -2125,6 +2139,28 @@ const prismaModels = {
    *    내어 **시험이 통과한다.** 차례는 라우트가 준 `create.orderIndex` 를 그대로 쓴다.
    */
   basketItem: {
+    async update({
+      where,
+      data,
+    }: {
+      where: { id: string };
+      data: { problemId?: string; orderIndex?: number };
+    }) {
+      const row = basketItemRows.find((item) => item.id === where.id);
+      if (!row) throw new Error(`basketItem not found: ${where.id}`);
+      if (
+        data.problemId &&
+        basketItemRows.some(
+          (item) =>
+            item.id !== row.id &&
+            item.userId === row.userId &&
+            item.problemId === data.problemId,
+        )
+      )
+        throw new Error("basketItem userId/problemId unique violation");
+      Object.assign(row, data);
+      return row;
+    },
     async findMany({
       where,
       orderBy,
@@ -2220,6 +2256,7 @@ const prismaModels = {
         printedAt?: Date | null;
         predictionRunId?: string | null;
         autoDraftRunId?: string | null;
+        publicationId?: string | null;
       };
     }) {
       // 🔴 FK `test_auto_draft_run_id_fkey` — 없는 회차 id 는 DB 처럼 P2003. 안 막으면 «아무 id 나 적힌 표지»가 시험에서만 산다.
@@ -2242,6 +2279,7 @@ const prismaModels = {
         printedAt: data.printedAt ?? null,
         predictionRunId: data.predictionRunId ?? null,
         autoDraftRunId: data.autoDraftRunId ?? null,
+        publicationId: data.publicationId ?? null,
         createdAt: new Date(),
       };
       testRows.push(row);
@@ -2953,6 +2991,30 @@ function assertConceptLectureChecks(row: ConceptLectureRow): void {
 }
 
 /**
+ * 월말평가 M1 — «내 시험지»에서 반에 낸 시험(발행본을 가리키는 반 시험) 한 행을 심는다(2026-10-17).
+ * «일반 시험» 조회가 이 행을 빼는지 짝 시험이 본다. 발행본 표 자체는 대역에 없다 — 가리키는 id 만 있으면 된다.
+ */
+export function seedPublicationTest(
+  row: Omit<
+    TestRow,
+    "id" | "createdAt" | "predictionRunId" | "autoDraftRunId"
+  > & {
+    id?: string;
+    createdAt?: Date;
+  },
+): string {
+  const id = row.id ?? randomUUID();
+  testRows.push({
+    ...row,
+    id,
+    createdAt: row.createdAt ?? new Date(),
+    predictionRunId: null,
+    autoDraftRunId: null,
+  });
+  return id;
+}
+
+/**
  * T7.14 전용 시드 헬퍼. `PredictionRun`/`ActualExamScore` 는 기본이 빈 배열이라
  * (아직 예측을 안 돌린 상태가 정상) 필요한 테스트만 직접 채운다.
  */
@@ -3104,24 +3166,116 @@ function restoreRows(snapshot: ReturnType<typeof snapshotRows>) {
   eywaSyncLedgerRows = snapshot.eywaSyncLedgerRows;
 }
 
+/** In-memory tests cannot prove PostgreSQL contention. Only the explicit lock statements are
+ * accepted here; unknown SQL fails. Runtime code always executes real database locks.
+ */
+async function testLockQuery(query: { sql: string }): Promise<unknown[]> {
+  const count = (query as CountSql).questionCountRead;
+  if (count) {
+    const rows = problemRows.filter(
+      (row) =>
+        row.pool === "shared" &&
+        matchesWhere(
+          row,
+          count.where as Record<string, unknown>,
+          PROBLEM_RELATIONS,
+        ),
+    );
+    if (count.mode === "page") {
+      const formats = new Map(count.formats);
+      const groups = new Map<string, typeof rows>();
+      for (const row of applyOrder(rows, count.orderBy)) {
+        const key = row.questionGroupKey ?? `row:${row.id}`;
+        groups.set(key, [...(groups.get(key) ?? []), row]);
+      }
+      return paginate(
+        [...groups.values()].flatMap((members) => {
+          const row = members.find((row) => {
+            const format =
+              formats.get(row.id) ?? questionFormatWithoutContent(row);
+            return (
+              (!count.availableOnly ||
+                (format !== null &&
+                  format !== "unknown" &&
+                  problemIneligibleCode(row) === null)) &&
+              (!count.format || format === count.format)
+            );
+          });
+          return row ? [{ id: row.id }] : [];
+        }),
+        count.skip,
+        count.take,
+      );
+    }
+  }
+
+  const sql = query.sql.replace(/\s+/g, " ").trim();
+  if (
+    /^SELECT pg_advisory_xact_lock\(hashtextextended\(\?,0\)\)::text AS locked$/.test(
+      sql,
+    ) ||
+    /^SELECT id FROM public\.problem WHERE id IN \([?, ]+\) ORDER BY id FOR SHARE$/.test(
+      sql,
+    )
+  )
+    return [];
+  throw new Error(`Unsupported raw SQL in prismaTestDouble: ${sql}`);
+}
+
+// Match the real client's public-count invalidation, including writes in a test transaction.
+for (const model of [
+  prismaModels.problem,
+  prismaModels.sourceBook,
+  prismaModels.sourceMaterial,
+  prismaModels.unit,
+]) {
+  const methods = model as unknown as Record<
+    string,
+    (...args: unknown[]) => Promise<unknown>
+  >;
+  for (const operation of [
+    "create",
+    "createMany",
+    "createManyAndReturn",
+    "update",
+    "updateMany",
+    "upsert",
+    "delete",
+    "deleteMany",
+  ]) {
+    if (!methods[operation]) continue;
+    const write = methods[operation].bind(model);
+    methods[operation] = async (...args) => {
+      const result = await write(...args);
+      invalidateBankReadCache();
+      return result;
+    };
+  }
+}
+
 export const prismaTestDouble = {
   ...prismaModels,
   // 오류 기록 표 — 따로 둔 대역(errorLogTestDouble.ts 머리말)
   ...errorLogModels,
   // 오늘의 영어 표 셋 — 따로 둔 대역(englishTestDouble.ts 머리말, D-148)
   ...englishModels,
+  $queryRaw: testLockQuery,
   /**
    * 🔴 **배열 형태도 트랜잭션이다.** 예전에는 `Promise.all` 만 하고 롤백을 안 걸었다.
    *    실제 Prisma 의 `$transaction([...])` 은 하나가 실패하면 전부 되돌린다 —
    *    가짜가 반쯤 쓰인 상태를 남기면 "원자성 유지"를 확인하는 테스트가 무의미해진다.
    */
   async $transaction<T>(
-    arg: ((tx: typeof prismaModels) => Promise<T>) | Promise<unknown>[],
+    arg:
+      | ((
+          tx: typeof prismaModels & { $queryRaw: typeof testLockQuery },
+        ) => Promise<T>)
+      | Promise<unknown>[],
   ): Promise<T | unknown[]> {
     const snapshot = snapshotRows();
     try {
       return typeof arg === "function"
-        ? await arg(prismaModels)
+        ? await arg({ ...prismaModels, $queryRaw: prismaTestDouble.$queryRaw })
         : await Promise.all(arg);
     } catch (error) {
       restoreRows(snapshot);

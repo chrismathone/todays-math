@@ -44,6 +44,7 @@ import {
 } from "./remarkNativeContent";
 import { figureWidthStyle } from "@/lib/figurePrintSize";
 import { BoxQuoteCard } from "./BoxQuoteCard";
+import { StaticBoxQuoteCard } from "./StaticBoxQuoteCard";
 
 import {
   BOX_HEADER_RE as SHARED_BOX_HEADER_RE,
@@ -60,10 +61,16 @@ export interface MarkdownRendererProps {
   /** 인라인 문맥이면 문단 대신 span 으로 렌더한다 (인쇄 정답란 등). */
   inline?: boolean;
   /** Numbered source figures are replaced in-place, including inside choices. */
-  nativeFigures?: ReadonlyArray<{ src: string; sourceMm?: number }>;
+  nativeFigures?: ReadonlyArray<{
+    src: string;
+    sourceMm?: number;
+    maxWidthMm?: number;
+  }>;
   /** Decorate a native anchor using its original zero-based source index. */
   renderNativeFigure?: (index: number, image: ReactNode) => ReactNode;
   emphasizeNegation?: boolean;
+  /** 서버/인쇄 공통 고정 지면에서는 상자 열 수를 DOM으로 다시 재지 않는다. */
+  staticLayout?: boolean;
 }
 
 /** 렌더마다 새 배열을 넘기면 react-markdown 이 프로세서를 새로 조립한다. */
@@ -211,7 +218,13 @@ function childrenOf(node: ReactNode): ReactNode {
   return node;
 }
 
-function BoxQuote({ children }: { children?: ReactNode }) {
+function BoxQuote({
+  children,
+  staticLayout = false,
+}: {
+  children?: ReactNode;
+  staticLayout?: boolean;
+}) {
   // 인용문 자식에는 문단 사이의 개행 문자열이 섞여 온다 — 그것부터 걸러야
   // 첫 문단이 헤더 자리에 온다(안 거르면 헤더 판정이 항상 빗나간다).
   const blocks = Children.toArray(children).filter(
@@ -231,8 +244,9 @@ function BoxQuote({ children }: { children?: ReactNode }) {
   const items = [...headerBodyLines(blocks[0]), ...blocks.slice(1)];
 
   // 좁은 단에서 그리는 열 수·여백은 카드가 실제 조판에서 고른다(`BoxQuoteCard`, 트랙 51).
+  const Card = staticLayout ? StaticBoxQuoteCard : BoxQuoteCard;
   return (
-    <BoxQuoteCard
+    <Card
       className={side ? SIDE_CARD_CLASS : BOX_CARD_CLASS}
       label={headerless ? null : `${LABEL_OPEN}${label}${LABEL_CLOSE}`}
       columns={columns}
@@ -252,6 +266,15 @@ const BLOCK_COMPONENTS: Components = {
 const INLINE_COMPONENTS: Components = {
   p: ({ children }) => <span>{children}</span>,
   blockquote: BLOCK_COMPONENTS.blockquote,
+};
+
+const STATIC_BLOCK_COMPONENTS: Components = {
+  ...BLOCK_COMPONENTS,
+  blockquote: ({ children }) => <BoxQuote staticLayout>{children}</BoxQuote>,
+};
+const STATIC_INLINE_COMPONENTS: Components = {
+  ...INLINE_COMPONENTS,
+  blockquote: STATIC_BLOCK_COMPONENTS.blockquote,
 };
 
 const INLINE_STYLE: CSSProperties = { display: "inline" };
@@ -277,9 +300,16 @@ export const MarkdownRenderer = memo(function MarkdownRenderer({
   nativeFigures,
   renderNativeFigure,
   emphasizeNegation = false,
+  staticLayout = false,
 }: MarkdownRendererProps) {
   const processed = preprocess(content ?? "");
-  const components = inline ? INLINE_COMPONENTS : BLOCK_COMPONENTS;
+  const components = staticLayout
+    ? inline
+      ? STATIC_INLINE_COMPONENTS
+      : STATIC_BLOCK_COMPONENTS
+    : inline
+      ? INLINE_COMPONENTS
+      : BLOCK_COMPONENTS;
   const nativeComponents: Components = nativeFigures
     ? {
         ...components,
@@ -298,7 +328,7 @@ export const MarkdownRenderer = memo(function MarkdownRenderer({
               src={figure?.src ?? src}
               alt={alt ?? "문항 그림"}
               className="mx-auto block h-auto max-w-full mix-blend-multiply"
-              style={figureWidthStyle(figure?.sourceMm)}
+              style={figureWidthStyle(figure?.sourceMm, figure?.maxWidthMm)}
             />
           );
           return figure && renderNativeFigure

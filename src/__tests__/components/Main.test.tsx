@@ -170,7 +170,7 @@ describe("[T4.3 S-03] 메인 — MSW 기본 데이터 (스택)", () => {
   it("반 목록과 4단계 게이지, 우측 진도 패널을 보여 준다", async () => {
     await renderMain();
 
-    expect(screen.getByText("오늘의수학")).toBeInTheDocument();
+    expect(screen.getByText("오늘 수학")).toBeInTheDocument();
     expect(
       screen.getByRole("article", { name: "중2 심화반" }),
     ).toBeInTheDocument();

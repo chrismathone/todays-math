@@ -189,6 +189,10 @@ class StyleProfile:
     #       (치수 점선 0.72 / 도형 선 1.9 = 0.379, 정본 0.375).
     font_size: float = 16.8
     angle_font_size: float = 16.8
+    # Opt-in compact drills: include halos, other labels and all angle marks in
+    # placement, and fail rather than return a knowingly overlapping label.
+    # Ordinary textbook figures retain their established layout by default.
+    clear_angle_labels: bool = False
     # 글자가 커지면 닻점에서 더 멀리 놓아야 표시 위에 안 앉는다 (글자 24 기준).
     #
     # 🔴 **원장님 확정 2026-08-28 — 「라벨 거리는 RPM 만큼으로」** (D-07 · 절대 규칙 1).
@@ -667,6 +671,24 @@ def _leader_is_drawable(anchor: tuple[float, float], pos: tuple[float, float],
 def _boxes_overlap(a: Box, b: Box, gap: float = 0.0) -> bool:
     return not (a[2] + gap <= b[0] or b[2] + gap <= a[0]
                 or a[3] + gap <= b[1] or b[3] + gap <= a[1])
+
+
+def _angle_leader_points(anchor: tuple[float, float], pos: tuple[float, float],
+                         label: str, font_size: float,
+                         halo_width: float) -> tuple[Point, Point, Point]:
+    """The same curved leader for placement checks and SVG emission."""
+    ax, ay = anchor
+    lx, ly = pos
+    dx, dy = lx - ax, ly - 0.32 * font_size - ay
+    length = math.hypot(dx, dy)
+    ux, uy = dx / length, dy / length
+    stop_r = _leader_stop_radius(label, font_size, halo_width, ux, uy)
+    ex = lx - ux * stop_r
+    ey = ly - 0.32 * font_size - uy * stop_r
+    bow = 0.18 * (length - stop_r)
+    cx = (ax + ex) / 2.0 - uy * bow
+    cy = (ay + ey) / 2.0 + ux * bow
+    return Point("", ax, ay), Point("", cx, cy), Point("", ex, ey)
 
 
 def _point_in_box(x: float, y: float, box: Box, margin: float = 0.0) -> bool:
@@ -1749,7 +1771,8 @@ class FigureScene:
         return out
 
     def _angle_label_layout(
-            self, angle: AngleMark, occupied: Sequence[Box] = ()
+            self, angle: AngleMark, occupied: Sequence[Box] = (),
+            leaders: Sequence[Sequence[Point]] = ()
     ) -> tuple[tuple[float, float], Box, tuple[float, float] | None] | None:
         """각 라벨 자리 — 이등분선 위에서 **비켜설 수 있는 만큼** 비켜선다.
 
@@ -1805,6 +1828,41 @@ class FigureScene:
         #    **밑의 실선을 지운다** — 글자 상자만 보면 「안 겹친다」인데 지면에서는
         #    선이 끊긴다(lint_svg 규칙 7). 경계(viewBox)에는 안 넓힌 상자를 쓴다.
         pad = self.style.halo_width / 2.0 + 0.5
+        other_vertices = {
+            mark.vertex for mark in self.angles.values()
+            if mark.vertex != angle.vertex
+        } if self.style.clear_angle_labels else set()
+
+        def ambiguous_inside(box: Box) -> bool:
+            # Even without an ink collision, a label spanning the halfway line
+            # to another marked vertex can read as that other angle's value.
+            # Require the whole label (including its halo) to belong to this
+            # vertex; otherwise use the existing outside label + arc leader.
+            left, top, right, bottom = _expand_box(box, pad)
+            return any(
+                (x - self.points[name].x) ** 2
+                + (y - self.points[name].y) ** 2
+                <= (x - vertex.x) ** 2 + (y - vertex.y) ** 2
+                for name in other_vertices
+                for x in (left, right) for y in (top, bottom)
+            )
+
+        def blocked(box: Box) -> bool:
+            if not self.style.clear_angle_labels:
+                return self._label_hits_geometry(box)
+            # Include both the white halo and the geometry's stroke thickness.
+            grown = _expand_box(box, pad + max(
+                self.style.segment_width, self.style.circle_width,
+                self.style.mark_width) / 2.0)
+            return (self._label_hits_geometry(grown)
+                    or any(_boxes_overlap(grown, _expand_box(other, pad))
+                           for other in occupied)
+                    or any(_polyline_intersects_box(mark, grown)
+                           for other in self.angles.values()
+                           for mark in self._angle_mark_polylines(other))
+                    or any(_polyline_intersects_box(leader, grown)
+                           for leader in leaders))
+
         best: tuple[tuple[int, int, float], tuple[float, float], Box] | None = None
         for rank, distance in enumerate(distances):
             x = vertex.x + distance * math.cos(mid)
@@ -1823,7 +1881,7 @@ class FigureScene:
             # 그래서 **「잉크를 밟나」를 첫째 항으로** 올린다. 안 밟는 후보가 하나라도
             # 있으면 그것이 이기고, 그러면 아래 판정도 자연히 「안에 남는다」가 된다.
             # (같은 값을 두 번 재지 않도록 그 결과를 `best` 에 함께 싣는다.)
-            hits = self._label_hits_geometry(box)
+            hits = blocked(box) or ambiguous_inside(box)
             cost = (1 if hits else 0,) + self._candidate_cost(
                 "", _expand_box(box, pad), occupied, rank, 0, own_angle=angle.name)
             if best is None or cost < best[0]:
@@ -1908,7 +1966,7 @@ class FigureScene:
                     x = vertex.x + distance * math.cos(direction)
                     y = vertex.y + distance * math.sin(direction) + 0.32 * fs
                     box = _text_box(x, y, angle.label, fs, self.label_metrics)
-                    if self._label_hits_geometry(box):
+                    if blocked(box):
                         continue
                     grown = _expand_box(box, pad)
                     if any(_boxes_overlap(grown, other, gap=1.0) for other in occupied):
@@ -1918,6 +1976,13 @@ class FigureScene:
                     if not _leader_is_drawable(anchor, (x, y), angle.label, fs,
                                                self.style.halo_width):
                         continue
+                    if self.style.clear_angle_labels:
+                        curve = _quadratic_samples("", *_angle_leader_points(
+                            anchor, (x, y), angle.label, fs, self.style.halo_width))
+                        if any(_polyline_intersects_box(
+                                curve, _expand_box(other, pad))
+                               for other in (*occupied, box)):
+                            continue
                     scored.append((
                         # 치수가 달린 팔을 피하는 것이 먼저, 그다음이 «가까이».
                         (1 if arm_taken[arm_rank] else 0,
@@ -1927,6 +1992,9 @@ class FigureScene:
         if scored:
             best_out = min(scored, key=lambda item: item[0])[1]
         if best_out is None:
+            if self.style.clear_angle_labels:
+                raise GeometryValidationError(
+                    f"angle {angle.name!r} has no collision-free label layout")
             # 밖에서도 못 비켰다 — 옛 동작(가장 덜 나쁜 자리)으로 물러선다.
             # 지시선을 그으면 그 선이 또 잉크를 얹으므로 여기서는 긋지 않는다.
             return best[1], best[2], None
@@ -2534,6 +2602,7 @@ class FigureScene:
         occupied: list[Box] = []
         # 각 이름 → (호 위 시작점, 라벨 자리). 라벨을 도형 밖으로 끌어낸 각만 들어간다.
         angle_leaders: dict[str, tuple[tuple[float, float], tuple[float, float]]] = {}
+        leader_curves: list[tuple[Point, ...]] = []
 
         # 🔴 **자리를 잡는 순서는 «자유도가 적은 것부터»다.**
         #
@@ -2550,7 +2619,7 @@ class FigureScene:
         # 자유도가 큰 쪽을 나중에 놓으면 둘 다 자리를 얻는다.
         for angle_name in sorted(self.angles):
             angle = self.angles[angle_name]
-            laid_out = self._angle_label_layout(angle, occupied)
+            laid_out = self._angle_label_layout(angle, occupied, leader_curves)
             if laid_out:
                 pos, box, leader = laid_out
                 key = f"angle:{angle.name}"
@@ -2560,6 +2629,10 @@ class FigureScene:
                 # 호 위의 시작점을 여기서 챙겨 둬야 한다(각 순서가 자리를 정한다).
                 if leader is not None:
                     angle_leaders[angle.name] = (leader, pos)
+                    if self.style.clear_angle_labels:
+                        leader_curves.append(_quadratic_samples(
+                            "", *_angle_leader_points(leader, pos, angle.label,
+                                self.style.angle_font_size, self.style.halo_width)))
 
         dimension_layouts: dict[str, DimensionLayout] = {}
         for dimension_name in sorted(self.dimensions):
@@ -2813,22 +2886,16 @@ class FigureScene:
         for angle_name in sorted(resolved.angle_leaders):
             (ax, ay), (lx, ly) = resolved.angle_leaders[angle_name]
             label_text = self.angles[angle_name].label
-            dx, dy = lx - ax, ly - 0.32 * style.angle_font_size - ay
-            length = math.hypot(dx, dy)
             # 고르는 쪽(`_angle_label_layout`)이 이미 같은 함수로 걸렀다. 여기서 또
             # 보는 것은 **두 벌이 갈라지지 않게** 하기 위해서다 — 규칙은 그 함수 하나다.
             if not _leader_is_drawable((ax, ay), (lx, ly), label_text,
                                        style.angle_font_size, style.halo_width):
                 continue
-            ux, uy = dx / length, dy / length
-            stop_r = _leader_stop_radius(
-                label_text, style.angle_font_size, style.halo_width, ux, uy)
-            ex = lx - ux * stop_r
-            ey = ly - 0.32 * style.angle_font_size - uy * stop_r
             # 살짝 휘게 — 곧은 선은 도형의 변으로 읽힌다(원장님 스케치도 곡선이다).
-            bow = 0.18 * (length - stop_r)
-            cx = (ax + ex) / 2.0 - uy * bow
-            cy = (ay + ey) / 2.0 + ux * bow
+            _, control, end = _angle_leader_points(
+                (ax, ay), (lx, ly), label_text, style.angle_font_size, style.halo_width)
+            cx, cy = control.x, control.y
+            ex, ey = end.x, end.y
             marks.append(
                 f'<path d="M {_fmt(ax + tx)} {_fmt(ay + ty)} '
                 f'Q {_fmt(cx + tx)} {_fmt(cy + ty)} '
@@ -3025,9 +3092,9 @@ def _style_from_spec(theme: Any, overrides: Any) -> StyleProfile:
     _strict_keys(overrides, allowed, "style")
     values: dict[str, Any] = {}
     for key, value in overrides.items():
-        if key == "show_points":
+        if key in {"show_points", "clear_angle_labels"}:
             if not isinstance(value, bool):
-                raise FigureSpecError("style.show_points must be boolean")
+                raise FigureSpecError(f"style.{key} must be boolean")
             values[key] = value
         elif key in {"stroke", "text_color", "font_family", "halo_color",
                      "dimension_dash"}:

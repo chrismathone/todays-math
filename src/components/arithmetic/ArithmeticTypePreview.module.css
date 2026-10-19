@@ -1,0 +1,26 @@
+.preview {
+  position: fixed;
+  z-index: 60;
+  box-sizing: border-box;
+  padding: 12px 14px 14px;
+  background: var(--learn-surface, #fff);
+  border: 1px solid var(--learn-track, #d9e0ea);
+  border-radius: 10px;
+  box-shadow: 0 4px 16px #14243d26;
+  color: var(--learn-ink, #172b4d);
+  pointer-events: none;
+}
+.title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+.caption {
+  margin: 2px 0 10px;
+  font-size: 12px;
+  color: var(--learn-muted, #596c86);
+}
+.body {
+  font-size: 15px;
+  line-height: 1.6;
+}

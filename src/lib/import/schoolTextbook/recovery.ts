@@ -32,7 +32,12 @@ export const recoveryCandidateSchema = z.object({
   remainingIssues: z.array(z.string()),
 });
 export type RecoveryCandidate = z.infer<typeof recoveryCandidateSchema>;
-export type RecoverySnapshot = Omit<Problem, "createdAt" | "updatedAt"> & {
+export type RecoverySnapshot = Omit<
+  Problem,
+  "createdAt" | "updatedAt" | "questionGroupKey"
+> & {
+  /** Old immutable snapshots predate logical question keys. */
+  questionGroupKey?: string | null;
   createdAt: string;
   updatedAt: string;
 };

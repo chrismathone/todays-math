@@ -1,0 +1,123 @@
+.sourceBar {
+  display: grid;
+  min-width: 0;
+  gap: 12px;
+  padding-block: 12px;
+  border-bottom: 1px solid var(--learn-track);
+  --bank-ink: var(--learn-ink);
+  --bank-muted: var(--learn-muted);
+  --bank-control: var(--learn-control);
+  --bank-primary: var(--learn-accent);
+  --bank-line: var(--learn-track);
+  --bank-selected: var(--learn-soft);
+}
+.sourceRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  font-size: var(--text-body);
+}
+.segments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.sourceBar .segments button {
+  border-color: transparent;
+  border-radius: 0;
+}
+.sourceBar .segments button[aria-pressed="true"] {
+  color: var(--learn-accent);
+  border-color: var(--learn-accent);
+  background: var(--learn-soft);
+}
+.extraSources {
+  min-width: 0;
+  font-size: var(--text-body);
+}
+.extraSources > summary {
+  min-height: 44px;
+  align-content: center;
+  cursor: pointer;
+}
+.extraSources[open] > :not(summary) {
+  margin-top: 12px;
+}
+.sourceBar .bookControl {
+  min-width: 0;
+  width: 100%;
+  text-align: left;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.familyRule {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  font-size: var(--text-body);
+}
+.familyRule input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+.sourceBar p {
+  margin: 0;
+  font-size: 13px;
+}
+.sourceBar small {
+  display: block;
+  margin-top: 4px;
+  color: var(--learn-muted);
+}
+.reference {
+  margin: 0 0 8px;
+  color: var(--learn-muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.materialControl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.materialControl button {
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--learn-control);
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  cursor: pointer;
+}
+.materialControl button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.materialControl button:focus-visible {
+  outline: 3px solid var(--learn-accent);
+  outline-offset: 2px;
+}
+.readiness {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--learn-ink);
+}
+.readiness span {
+  color: var(--learn-muted);
+}
+
+@media print {
+  .sourceBar,
+  .reference,
+  .readiness {
+    display: none;
+  }
+}

@@ -1,4 +1,4 @@
-import { writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { gzipSync } from "node:zlib";
 import { describe, expect, it, vi } from "vitest";
 
@@ -28,15 +28,47 @@ import {
   TRIG_KEY,
 } from "../helpers/bankDecideEngineEvidence";
 
-const BASELINE = "bankDecideMiddleLoader.before.json.gz";
+/**
+ * Captured from the pre-edit code (4ad8451e7) with `stable` below. The first baseline hashed
+ * raw figure coordinates: trigonometric points differ in the last bit between Windows and macOS
+ * (위치 관계 20 · 원주각의 활용 07 · 12), so it could only pass on the machine that captured it.
+ */
+const BASELINE = "bankDecideMiddleLoader.before.v2.json.gz";
 const SEEDS = [0, 15, 299];
 type Evidence = {
   templates: string[];
-  rows: { id: string; family: string; format: string; hash: string }[];
+  rows: {
+    id: string;
+    family: string;
+    format: string;
+    hash: string;
+    beforeBoundaryHash?: string;
+  }[];
 };
+// Earlier 2026-10-18 audited fixes added ONLY a command boundary space in these
+// two solutions (bankTexCommandBoundary.test.tsx independently locks the change).
+const TEX_BOUNDARY_FAMILIES = new Set([
+  "mid:2-1|연립일차방정식|90",
+  "mid:3-1|다항식의 곱셈|02",
+]);
 
-function capture(): Evidence {
-  const entries = registeredTypes();
+/** Ten significant digits: far finer than a drawn figure, coarser than a platform's last bit. */
+const stable = (value: unknown): unknown =>
+  typeof value === "number" && !Number.isInteger(value)
+    ? Number(value.toPrecision(10))
+    : Array.isArray(value)
+      ? value.map(stable)
+      : value && typeof value === "object"
+        ? Object.fromEntries(
+            Object.entries(value).map(([key, item]) => [key, stable(item)]),
+          )
+        : value;
+
+function capture(templates?: readonly string[]): Evidence {
+  const included = templates ? new Set(templates) : null;
+  const entries = registeredTypes().filter(
+    (e) => !included || included.has(e.key),
+  );
   const sections = [
     ...new Map(
       entries.map((entry) => [
@@ -46,6 +78,12 @@ function capture(): Evidence {
           grade: entry.grade,
           unitSection: entry.unitSection,
           variants: 1,
+          typeKeys: entries
+            .filter(
+              (e) =>
+                e.grade === entry.grade && e.unitSection === entry.unitSection,
+            )
+            .map((e) => e.key),
         },
       ]),
     ).values(),
@@ -56,7 +94,17 @@ function capture(): Evidence {
         id: row.externalId,
         family: row.familyKey,
         format: row.questionType,
-        hash: digest(row),
+        hash: digest(stable(row)),
+        ...(TEX_BOUNDARY_FAMILIES.has(row.familyKey)
+          ? {
+              beforeBoundaryHash: digest(
+                stable({
+                  ...row,
+                  solution: row.solution.replace(/\\times +/g, "\\times"),
+                }),
+              ),
+            }
+          : {}),
       })),
     ),
   );
@@ -67,7 +115,8 @@ function capture(): Evidence {
 
 describe("B5: 중등 적재 행의 실제 오답 배선", () => {
   it("등록 유형 전부 × 씨앗 세 개: 삼각비 18 객관식 외의 산출은 한 글자도 바뀌지 않는다", () => {
-    const after = capture();
+    const before = readEvidence<Evidence>(BASELINE);
+    const after = capture(before.templates);
     if (process.env.BANK_DECIDE_CAPTURE_LOADER === "1") {
       writeFileSync(fixturePath(BASELINE), gzipSync(JSON.stringify(after)), {
         flag: "wx",
@@ -82,7 +131,21 @@ describe("B5: 중등 적재 행의 실제 오답 배선", () => {
       );
       return;
     }
-    const before = readEvidence<Evidence>(BASELINE);
+    const added = registeredTypes()
+      .filter((e) => !before.templates.includes(e.key))
+      .map((e) => e.key)
+      .sort();
+    const plans = JSON.parse(
+      readFileSync(
+        "docs/planning/tracks/reports/math-bank-reinforcement-20261018/wave1-inputs.json",
+        "utf8",
+      ),
+    );
+    expect(added).toEqual(
+      plans[1].targets
+        .flatMap((t: { typeKeys: string[] }) => t.typeKeys)
+        .sort(),
+    );
     expect(before.templates.length).toBeGreaterThan(1000);
     expect(after.templates).toEqual(before.templates);
     expect(after.rows.map((row) => row.id)).toEqual(
@@ -91,16 +154,24 @@ describe("B5: 중등 적재 행의 실제 오답 배선", () => {
     const changed = after.rows.filter(
       (row, i) => row.hash !== before.rows[i].hash,
     );
-    expect(
-      changed.map(({ id, family, format }) => ({ id, family, format })),
-    ).toEqual(
-      before.rows
-        .filter(
-          (row) => row.family === `mid:${TRIG_KEY}` && row.format === "객관식",
-        )
-        .map(({ id, family, format }) => ({ id, family, format })),
+    // 2026-10-17 — 보기 섞기 씨앗에 갈래를 넣고(정답 자리 쏠림) 양수 정답의 0 보기를 막았다.
+    // 2026-10-18 검수된 두 해설의 명령 경계 공백만 추가 허용한다. 그 공백을
+    // 되돌린 객체 전체 SHA가 기존 fixture와 같아야 하므로 다른 필드 변경은 못 숨긴다.
+    expect(changed.length).toBeGreaterThan(0);
+    const beforeById = new Map(before.rows.map((row) => [row.id, row.hash]));
+    const boundaryChanges = changed.filter(
+      (row) =>
+        row.format !== "객관식" &&
+        TEX_BOUNDARY_FAMILIES.has(row.family) &&
+        row.beforeBoundaryHash === beforeById.get(row.id),
     );
-    expect(changed).toHaveLength(SEEDS.length);
+    expect(boundaryChanges).toHaveLength(6); // exactly two families x the frozen three seeds.
+    expect(
+      changed
+        .filter((row) => row.format !== "객관식")
+        .filter((row) => !boundaryChanges.includes(row))
+        .map(({ id, family, format }) => ({ id, family, format })),
+    ).toEqual([]);
   }, 60000);
 
   it("buildMiddleRows가 삼각비 18의 발문에 나온 다른 값과 1.0000을 실제 보기로 전달한다", () => {

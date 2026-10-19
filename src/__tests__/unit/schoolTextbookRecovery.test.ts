@@ -12,6 +12,9 @@ import {
 const before = {
   id: "11111111-1111-4111-8111-111111111111",
   problemCode: "J10101-A01-001",
+  actualFormat: null,
+  actualFormatVersion: null,
+  actualFormatDigest: null,
   source: "school_textbook",
   pool: "shared",
   unitId: "22222222-2222-4222-8222-222222222222",

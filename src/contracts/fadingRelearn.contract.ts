@@ -32,6 +32,13 @@ import { fadingConceptSchema } from "@/contracts/fadingApi.contract";
 /** 단기 재학습의 간격(밀리초) — 계약의 값이다. 규칙은 `src/lib/fading/relearn.ts` 가 이 값으로 돈다. */
 export const FADING_RELEARN_RETRY_MS = 60_000;
 export const FADING_RELEARN_CONFIRM_MS = 300_000;
+/**
+ * 하루의 끝 — 원장님 결정(2026-10-17 · `docs/planning/tracks/reports/fading-quota-consensus-20261017.md` §7 ④). 모든 학생 공통이다.
+ * 한국 날짜 하루에 판정이 나는 확인은 30회까지(대조를 기다리는 답도 한 자리를 잡는다), 같은 문장을 그날 «틀림»으로 3회 판정하면
+ * 그 문장은 그날 멈춘다. 넘긴 줄은 지우지 않고 다음 날 0시부터 다시 확인한다.
+ */
+export const FADING_RELEARN_DAILY_CHECKS = 30;
+export const FADING_RELEARN_STOP_FAILS = 3;
 
 const epochMs = z.number().int().min(0);
 const count = z.number().int().min(0);
@@ -240,6 +247,20 @@ export const fadingRelearnQueueSchema = z.strictObject({
     cleared: count,
     entered: count,
   }),
+  /**
+   * 오늘의 끝(2026-10-17) — 판정이 난 확인 수 · 대조를 기다리는 자리 · 상한에 닿았는가 · 그날 멈춘 문장 수 · 다시 열리는 시각(다음 한국 날짜 0시).
+   * 상한에 닿았거나 멈춘 줄은 `waiting` 이고 그 `dueAt` 이 `resumeAt` 이다. 선택 칸이다 — 이 칸이 없던 서버의 응답도 읽는다.
+   */
+  limit: z
+    .strictObject({
+      cap: z.literal(FADING_RELEARN_DAILY_CHECKS),
+      checks: count,
+      reserved: count,
+      capped: z.boolean(),
+      stopped: count,
+      resumeAt: epochMs,
+    })
+    .optional(),
 });
 export type FadingRelearnQueue = z.infer<typeof fadingRelearnQueueSchema>;
 

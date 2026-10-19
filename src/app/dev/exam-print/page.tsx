@@ -32,7 +32,7 @@ export const dynamic = "force-dynamic";
 const EXAM_ID = "2025-jeonghwa-3-2-mid";
 
 const META = {
-  academyName: "오늘의수학",
+  academyName: "오늘 수학",
   title: "JH중 3학년 · 2학기 중간고사 대비",
   subtitle: "삼각비 ~ 원주각 · 100점",
 };

@@ -15,6 +15,17 @@ import {
 } from "@/components/unified/print/types";
 import { bankUiItem } from "../fixtures/englishBankUi";
 
+import { EnglishPrintRendererProvider } from "@/components/unified/print/EnglishPrintRenderer";
+import { ENGLISH_PRINT_RENDERER } from "@/components/english/print/englishPrintRenderer";
+
+/** The English output screen supplies the renderer; the shared shell cannot import it. */
+const markup = (node: React.ReactElement) =>
+  renderToStaticMarkup(
+    <EnglishPrintRendererProvider value={ENGLISH_PRINT_RENDERER}>
+      {node}
+    </EnglishPrintRendererProvider>,
+  );
+
 describe("lossless English shared worksheet output", () => {
   it("retains original content/source indices and separates passage reading from gapped variants across sets", () => {
     const reading = bankUiItem(0);
@@ -27,7 +38,7 @@ describe("lossless English shared worksheet output", () => {
     expect(sheets.map((sheet) => sheet.includePassage)).toEqual([false, true]);
     const adapted = englishWorksheetProblem(variant, 2, false);
     expect(adapted.english!.item).toBe(variant);
-    const html = renderToStaticMarkup(
+    const html = markup(
       <EnglishWorksheetQuestion content={adapted.english!} />,
     );
     expect(html).toContain("________");
@@ -35,7 +46,7 @@ describe("lossless English shared worksheet output", () => {
     expect(html).not.toContain("Our town library");
     expect(html).not.toContain("정답으로");
     expect(
-      renderToStaticMarkup(
+      markup(
         <EnglishWorksheetQuestion
           content={englishWorksheetProblem(reading, 1, true).english!}
         />,
@@ -53,7 +64,7 @@ describe("lossless English shared worksheet output", () => {
       };
       const problem = englishWorksheetProblem(item, 7, false);
       const Template = TEMPLATE_COMPONENTS[template];
-      const html = renderToStaticMarkup(
+      const html = markup(
         <Template
           page={1}
           totalPages={1}
@@ -74,7 +85,7 @@ describe("lossless English shared worksheet output", () => {
   it("preserves answer, explanation and evidence verbatim on answer pages", () => {
     const item = bankUiItem(3);
     const problem = englishWorksheetProblem(item, 9, false);
-    const html = renderToStaticMarkup(
+    const html = markup(
       <AnswerPage
         page={1}
         totalPages={1}

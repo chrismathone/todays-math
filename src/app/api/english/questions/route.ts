@@ -9,8 +9,9 @@ import {
   readQuestionBankQuery,
 } from "@/lib/english/questionBank";
 import { requireEnglishSession } from "@/lib/english/routeSupport";
+import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
-export async function GET(request: Request) {
+async function handleGet(request: Request) {
   const gate = await requireEnglishSession(request);
   if (gate.response) return gate.response;
   try {
@@ -23,3 +24,5 @@ export async function GET(request: Request) {
     return questionBankErrorResponse(error);
   }
 }
+
+export const GET = withErrorLog("/api/english/questions", handleGet);

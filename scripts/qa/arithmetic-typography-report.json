@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-15",
+  "base": "70b63ed0d",
+  "scope": "Pure display-only SVG typography; no source maps, IDs, snapshots, shared families, contracts, registry or UI changes",
+  "api": {
+    "module": "src/lib/arithmetic-v2/presentation/typography.ts",
+    "function": "typesetArithmeticGeometrySvg(svg: string, options?: { normalizeLabel?: (label: string) => string }): string",
+    "callBoundary": "Root facade calls after trusted saved-pack validation, then applies its presentation sizing marker",
+    "normalization": "Root supplies Korean polygon/polyhedron name normalization. Original wording stays in data-original-label; typeset groups also retain aria-label and data-label metadata.",
+    "sizing": "Adapter preserves actual viewBox, width, height, original coordinates, anchor, rotation and all geometry. Root owns 280px longest-extent/responsive sizing."
+  },
+  "engine": {
+    "builderImports": [
+      "src/components/unified/figure-editor/mathjaxLabel.ts:typesetLabel",
+      "src/components/unified/figure-editor/mathjaxLabel.ts:placeLabel"
+    ],
+    "editorSha256": "20164ba1ba46772d341316dfec52a05910040457c5f6f70b2ef744ccb1b1127b",
+    "conventions": "Exact MathJax TeX glyph paths and measured editor metrics; uppercase points and words roman; lowercase variables italic. Plain physical units/powers/fractions are normalized into explicit editor TeX. CJK remains visible in the original fallback font, using the editor's 1em mixed-label advance and thin-space convention.",
+    "runtime": "fflate synchronous decode plus prebuilt glyph/layout dictionary; no MathJax, DOMParser, Node/Python imports, HTML or foreignObject in SVG",
+    "unknowns": "Unknown vocabulary, rich positioned tspans, unsupported text layout/style or complex CSS remain unchanged and visible. Already typed engine groups skip unchanged."
+  },
+  "coverage": {
+    "rawSourceFigures": 17471,
+    "alreadyTypedFrozenAngleFigures": 81,
+    "totalCurrentFigures": 17552,
+    "textPlacements": 56614,
+    "uniqueOriginalLabels": 4219,
+    "generatedMathExpressionsIncludingSmallCompatibilityVocabulary": 3620,
+    "internedGlyphPaths": 134,
+    "convertedMathAndMixedPlacements": 50173,
+    "retainedPureCjkPlacements": 6441,
+    "unconvertedMathematicalSpans": 0,
+    "sourceSha256BeforeAndAfter": "8d6efa85d92d5800164bc8be7efe6ce7a63969f499875c2d154cf34a1873dfe2"
+  },
+  "sizeAndCache": {
+    "zlibCompressedBytes": 56826,
+    "base64PayloadBytes": 75768,
+    "decodedJsonBytes": 2368180,
+    "standaloneMinifiedBrowserBundleBytesIncludingInflater": 86173,
+    "standaloneBrowserBundleGzipBytes": 59854,
+    "lazyDictionaryDecode": true,
+    "expandedMathSpanLruLimit": 256,
+    "wholeSvgCache": false,
+    "generatorBase64BudgetBytes": 150000
+  },
+  "verification": {
+    "focusedNodeTests": "8 passed; actual editor path/metrics parity, unit-vs-variable rules, mixed CJK, XML entities, original metadata, anchors, rotations, inherited styles, halos, normalizer, unknown fallback, 81 engine assets and all 17,471 original figures",
+    "idempotence": "Every current figure was processed twice with byte-identical second output",
+    "scopedStrictTypeScript": "passed with existing root dependency type paths",
+    "scopedEslint": "passed",
+    "browser": "Chromium standalone bundle, no Node globals or runtime MathJax; zero page errors",
+    "screenAndPrint": "Seven examples at 280px longest extent; every measured label visible and inside unchanged viewport; screenshots visually inspected; A4 PDF emitted",
+    "examples": [
+      "age-e2-length-m-cm-v1-0-2",
+      "age-e5-area-m2-cm2-v1-1-2",
+      "gt1-m2-midpoint-triangle-perimeter-part-3",
+      "age-e5-rectangle-perimeter-side-v1-4-3",
+      "gm-m1-cone-height-volume-2-2",
+      "gm-m1-sector-arc-2-60",
+      "synthetic: ABC, r, 2m, 1/2, cm³로 나타내기"
+    ]
+  },
+  "commands": [
+    "tsx scripts/qa/arithmetic-typography-build.ts --census",
+    "tsx scripts/qa/arithmetic-typography-build.ts",
+    "tsx --test scripts/qa/arithmetic-typography.test.ts",
+    "tsx scripts/qa/arithmetic-typography-browser.ts"
+  ],
+  "evidence": {
+    "generatedDirectory": "tmp/arithmetic-typography",
+    "preservedForRoot": "C:/Creative/testautocreator/.qa-artifacts/arithmetic-typography-worker-20261015",
+    "files": ["census.json", "build.json", "browser.json", "gallery.html", "screen.png", "print.png", "print.pdf", "screen-measurements.json", "print-measurements.json"]
+  },
+  "notRun": ["whole-app build", "database", "deployment", "push"],
+  "followup": "Elementary grades 3-6 missing non-geometry drills only after root sends a separate detailed assignment"
+}

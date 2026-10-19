@@ -424,6 +424,8 @@ export function numericMistakes(answer: string): Mistake[] {
     }
     push("off-by-two-up", { n: parsed.rat.n + 2, d: 1 });
     push("off-by-two-down", { n: parsed.rat.n - 2, d: 1 });
+    // 정답이 양수면 0 을 막으므로(`sameKind`) 정답 $1$ · $2$ 는 후보가 다시 모자란다 — 하나 더 위로.
+    push("off-by-three-up", { n: parsed.rat.n + 3, d: 1 });
   }
 
   // 🔴 정답이 **단항식**이면 계수만 흔들어서는 안 된다.
@@ -523,6 +525,9 @@ function sameKind(answer: Rat, candidate: Rat): boolean {
   //
   //    정답이 **음수**면 부호 실수가 진짜 오답이므로 그대로 푼다(중등).
   if (answer.n >= 0 && candidate.n < 0) return false;
+  // 🔴 정답이 양수면 «0» 도 막는다 (2026-10-17) — `minus-one` 이 1 에서 0 을 냈다(«③ 0 cm»).
+  //    공유 DB 엔진 객관식의 9.8%(4,724건)가 그랬다. 길이 · 개수 · 넓이의 0 은 오답 노릇을 못 한다.
+  if (answer.n > 0 && candidate.n === 0) return false;
   if (answer.d !== 1) return true;
   if (candidate.d !== 1) return false;
   return true;

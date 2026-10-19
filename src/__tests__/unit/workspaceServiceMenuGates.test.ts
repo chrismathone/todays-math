@@ -150,7 +150,13 @@ describe("listening teacher live branch policy", () => {
       expect(userLookup).toHaveBeenCalledWith({
         where: { id },
         include: {
-          branch: { select: { disabledMenus: true, menuRevision: true } },
+          branch: {
+            select: {
+              disabledMenus: true,
+              ownerDisabledMenus: true,
+              menuRevision: true,
+            },
+          },
         },
       });
       // Sets are material work since 2026-10-04 (2de110c7e): the bank menu alone still opens them …

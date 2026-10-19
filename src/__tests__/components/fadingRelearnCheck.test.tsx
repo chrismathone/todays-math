@@ -404,3 +404,77 @@ describe("server clock queue controller", () => {
     expect(hook.current.active).toBeNull();
   });
 });
+
+describe("오늘의 끝 — 하루 30회 · 같은 문장 «틀림» 3회(2026-10-17 · Hi-fi Q2)", () => {
+  const RESUME = 86_400_000;
+  const ended = (
+    o: { capped?: boolean; stopped?: number },
+    items: FadingRelearnItem[] = [],
+  ): FadingRelearnQueue => ({
+    ...queue(items),
+    limit: {
+      cap: 30,
+      checks: o.capped ? 30 : 12,
+      reserved: 0,
+      capped: o.capped ?? false,
+      stopped: o.stopped ?? 0,
+      resumeAt: RESUME,
+    },
+  });
+
+  it("추가 확인 칸에 구분선 아래 두 줄 — 상한 수(30)는 보이지 않는다", async () => {
+    const api = source();
+    vi.mocked(api.queue).mockResolvedValue(ended({ capped: true, stopped: 2 }));
+    render(<QueueHost api={api} />);
+    const status = await screen.findByRole("complementary", {
+      name: "추가 재학습 현황",
+    });
+    await waitFor(() =>
+      expect(status).toHaveTextContent(
+        "오늘 추가 확인은 여기까지예요. 남은 문장은 내일부터 이어서 확인해요.",
+      ),
+    );
+    expect(status).toHaveTextContent(
+      "오늘 멈춘 문장 2 · 내일부터 다시 확인해요.",
+    );
+    expect(status).not.toHaveTextContent("30");
+    expect(
+      screen.queryByRole("button", { name: "추가 확인 시작" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("세 번째로 틀린 문장은 그 자리에서 «오늘 여기까지»", async () => {
+    const api = source();
+    vi.mocked(api.grade).mockImplementationOnce(async (attempt) => ({
+      queue: ended({ stopped: 1 }, [
+        { ...item, state: "waiting", dueAt: RESUME, waitMs: RESUME - 1000 },
+      ]),
+      result: {
+        ...result(attempt.attemptId, "failed"),
+        next: { stage: "retry", dueAt: 61000 },
+      },
+    }));
+    view(api);
+    fill();
+    fireEvent.click(screen.getByRole("button", { name: "답 제출" }));
+    expect(
+      await screen.findByText(/이 문장은 오늘 여기까지예요/),
+    ).toHaveTextContent("내일부터 다시 확인해요.");
+    expect(screen.getByRole("status")).not.toHaveTextContent("1분 뒤");
+  });
+
+  it("30회째 확인 뒤에는 그날의 끝을 알린다", async () => {
+    const api = source();
+    vi.mocked(api.grade).mockImplementationOnce(async (attempt) => ({
+      queue: ended({ capped: true }),
+      result: result(attempt.attemptId),
+    }));
+    view(api);
+    fill();
+    fireEvent.click(screen.getByRole("button", { name: "답 제출" }));
+    expect(await screen.findByRole("status")).toHaveTextContent(
+      "오늘 추가 확인은 여기까지예요.",
+    );
+    expect(screen.getByRole("status")).not.toHaveTextContent("5분 뒤");
+  });
+});

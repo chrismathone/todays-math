@@ -102,7 +102,7 @@ export function renderExamItem(slot: ExamSlot): string {
 }
 
 const META = {
-  academy: "오늘의수학",
+  academy: "오늘 수학",
   title: "JH중 3학년 · 2학기 중간고사 대비",
   subtitle: "삼각비 ~ 원주각 · 100점",
 };

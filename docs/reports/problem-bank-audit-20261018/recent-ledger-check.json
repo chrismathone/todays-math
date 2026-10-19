@@ -1,0 +1,13 @@
+{
+  "measuredAt": "2026-10-18T00:44:15.793Z",
+  "readOnly": true,
+  "ledgerFile": "scripts/qa/reports/refresh-engine-content/2026-10-17-mc-seed-zero.json.gz",
+  "ledgerSha256": "8b8a9b5bd99ad6b19db183b9a2fcc0eab2cfa3184092d8f0784acc63b0289393",
+  "ledgerRows": 47672,
+  "distinctProblemIds": 47672,
+  "matchedStoredAfterSnapshot": 47672,
+  "mismatches": [],
+  "exactParsedStemUnchangedInLedger": 47672,
+  "exactSelectedChoiceValueUnchangedInLedger": 47672,
+  "scope": "Checks current storage against prior mutation receipt. Does not independently solve the mathematics."
+}

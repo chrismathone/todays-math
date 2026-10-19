@@ -422,12 +422,15 @@ describe("고르기 창의 수 — loadBankSourceCounts · GET …/problems/sour
     curriculumOrder();
     await seed();
     vi.stubEnv("NODE_ENV", "development");
-    const response = await sourcesGET();
+    const request = new Request(
+      "https://math.example/api/dev/unified/problems/sources",
+    );
+    const response = await sourcesGET(request);
     expect(response.status).toBe(200);
     expect(
       bankSourceCountsSchema.safeParse(await response.json()).success,
     ).toBe(true);
     vi.stubEnv("NODE_ENV", "production");
-    expect((await sourcesGET()).status).toBe(404);
+    expect((await sourcesGET(request)).status).toBe(404);
   });
 });

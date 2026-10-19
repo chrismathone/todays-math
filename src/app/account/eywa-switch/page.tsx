@@ -7,7 +7,7 @@ export default async function EywaSwitchPage() {
     return (
       <main>
         <h1>연결 요청이 만료되었습니다</h1>
-        <p>에이와에서 오늘의수학을 다시 열어 주세요.</p>
+        <p>에이와에서 오늘 수학을 다시 열어 주세요.</p>
       </main>
     );
   return (

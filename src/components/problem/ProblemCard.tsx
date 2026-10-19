@@ -10,6 +10,7 @@ import { fractionViewFor } from "@/components/unified/fractionDisplay";
 import type { ReviewStatus } from "@/contracts/common.contract";
 import type { ProblemEntity } from "@/contracts/problem.contract";
 
+import { possibleFormats } from "@/lib/problem/questionSelectionClient";
 import { provenanceBadges } from "@/lib/problem/provenance";
 import { problemIneligibleReason } from "@/lib/problemEligibility";
 import { solutionForDisplay } from "@/lib/solutionSteps";
@@ -110,6 +111,7 @@ type ProblemCardProps = {
     picked: boolean;
     busy: boolean;
     onToggle: (id: string, picked: boolean) => void;
+    onChangeFormat?: (id: string) => void;
   };
 };
 
@@ -142,7 +144,11 @@ export const ProblemCard = memo(function ProblemCard({
    * 낼 수 없는 사유 — 규칙은 `problemEligibility.ts` 한 곳이고 서버가 같은 것을 쓴다.
    * 여기서 다시 판정하면 「화면은 담을 수 있다는데 서버가 거부」가 생긴다.
    */
-  const ineligibleReason = problemIneligibleReason(problem);
+  const ineligibleReason =
+    problemIneligibleReason(problem) ??
+    (problem.questionFormats && !possibleFormats(problem)
+      ? "출제 형식 확인 전입니다."
+      : null);
 
   const changeReview = async (next: ReviewStatus) => {
     if (!onReviewStatusChange || reviewBusy) return;
@@ -238,6 +244,11 @@ export const ProblemCard = memo(function ProblemCard({
           figureSvg={problem.figureSvg}
         />
 
+        {problem.questionFormats && (
+          <p className="pt-3 text-[12px] text-text-2">
+            가능 형식 · {possibleFormats(problem) || "확인 전"}
+          </p>
+        )}
         <div className="mt-auto flex flex-wrap items-center gap-2 pt-6 print:hidden">
           {/* 검수 — 왼쪽(판단), 보기·변형 — 오른쪽(작업). 지금 상태가 될 버튼은 안 낸다
               (승인된 것에 「승인」을 다시 누를 일이 없다). */}
@@ -272,6 +283,18 @@ export const ProblemCard = memo(function ProblemCard({
               {basket.picked ? "✓ 담김" : "담기"}
             </button>
           ) : null}
+          {basket?.picked &&
+            basket.onChangeFormat &&
+            (problem.questionFormats?.length ?? 0) > 1 && (
+              <button
+                type="button"
+                className={CARD_ACTION_CLASS}
+                disabled={basket.busy}
+                onClick={() => basket.onChangeFormat?.(problem.id)}
+              >
+                출제 형식 변경
+              </button>
+            )}
           {/* 🔴 **왜 못 담는지 지면에 적는다** (원장님 확정 2026-09-07).
               기능색이 아니라 **글자색**이라 색 쓰는 자리가 늘지 않는다(검수 상태와 같은
               방식). 담긴 것에는 안 적는다 — 그건 빼기만 하면 되는 상태다. */}

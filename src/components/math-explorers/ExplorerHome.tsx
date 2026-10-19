@@ -450,7 +450,7 @@ export default function ExplorerHome({
     ) ?? units[0];
   const title = activeReview
     ? state.session!.title
-    : (plan?.title ?? currentUnit?.title ?? "오늘의 수학 탐험");
+    : (plan?.title ?? currentUnit?.title ?? "오늘 수학 탐험");
   const subtitle = activeReview
     ? "지난 학습 복습"
     : (plan?.subtitle ?? gradeLabel(state.profile.courseGrade));

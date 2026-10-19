@@ -6,6 +6,10 @@ import type { FontPackId } from "./fontPacks";
 export interface ProblemReview {
   id: string;
   variant: StudioProblem & { topic: string };
+  /** Measured with the first question, so a type heading cannot be orphaned. */
+  sectionHeading?: string;
+  /** Shared group question under the heading, e.g. "[11~20] …". */
+  sectionInstruction?: string;
 }
 
 /** 6 신규 인쇄 템플릿. */
@@ -19,6 +23,8 @@ export type PrintTemplate =
 
 /** 시험지 메타데이터. 헤더 / 푸터 / 워터마크 등에서 사용. */
 export interface PrintMeta {
+  /** Render-only bridge from the existing draft/presentation tag; never saved in printMeta or presets. */
+  sheetTag?: import("@/contracts/sheetTag.contract").SheetTag;
   /** 시험지 타이틀. 예: "2025학년도 1학기 중간고사" */
   title: string;
   /** 학교명. 예: "○○고등학교" */
@@ -53,6 +59,9 @@ export interface PrintMeta {
 
 /** 6 신규 template 컴포넌트가 모두 받는 공통 props. */
 export interface PrintTemplateProps {
+  /** Arithmetic starts a fresh sheet/header per round while pages stay globally numbered. */
+  round?: number;
+  firstPage?: boolean;
   /** 페이지 번호 (1-indexed). */
   page: number;
   /** 총 페이지. */

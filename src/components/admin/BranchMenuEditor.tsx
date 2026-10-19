@@ -2,7 +2,8 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import {
-  WORKSPACE_MENUS,
+  WORKSPACE_SELECTABLE_MENUS,
+  countWorkspaceMenus,
   workspaceMenuOptionsOf,
   type WorkspaceMenu,
   type WorkspaceProduct,
@@ -19,8 +20,8 @@ import {
 import s from "./admin.module.css";
 
 const TABS = [
-  { id: "math", label: "오늘의 수학" },
-  { id: "english", label: "오늘의 영어" },
+  { id: "math", label: "오늘 수학" },
+  { id: "english", label: "오늘 영어" },
 ] as const;
 
 export default function BranchMenuEditor({
@@ -41,10 +42,10 @@ export default function BranchMenuEditor({
   const [notice, setNotice] = useState("");
   const id = useId();
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const added = WORKSPACE_MENUS.filter(
+  const added = WORKSPACE_SELECTABLE_MENUS.filter(
     (menu) => menus.includes(menu.id) && !branch.menus.includes(menu.id),
   );
-  const removed = WORKSPACE_MENUS.filter(
+  const removed = WORKSPACE_SELECTABLE_MENUS.filter(
     (menu) => !menus.includes(menu.id) && branch.menus.includes(menu.id),
   );
   const dirty = added.length + removed.length > 0;
@@ -196,7 +197,8 @@ export default function BranchMenuEditor({
         aria-live="polite"
       >
         <p>
-          사용 메뉴 {menus.length}개 · 적용 대상: 이 지점의 원장·관리자·강사
+          사용 메뉴 {countWorkspaceMenus(menus)}개 · 적용 대상: 이 지점의
+          원장·관리자·강사
         </p>
         {dirty ? (
           <>
@@ -209,7 +211,7 @@ export default function BranchMenuEditor({
         ) : (
           <p>저장하지 않은 변경이 없습니다.</p>
         )}
-        {menus.length === 0 ? (
+        {countWorkspaceMenus(menus) === 0 ? (
           <p className={s.note}>
             사용할 수 있는 메뉴가 없습니다. 내 정보·로그아웃과 허용된 관리
             화면은 계속 이용할 수 있습니다.

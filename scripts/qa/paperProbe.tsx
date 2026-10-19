@@ -179,9 +179,9 @@ export function renderPage(
 ): string {
   const head =
     kind === "first"
-      ? `<header class="firstHeader"><div><div class="academyName">오늘의수학</div><div class="englishLabel">SELF-STUDY</div><h1 class="testTitle">${TITLE}</h1><div class="todayGoal">오늘의 목표 · ${SECTION}의 핵심 개념을 확인하고 문제에 적용한다.</div></div><div class="studentMeta"><div class="dateLabel">학습일</div><div class="dateValue">2026.08.18</div><div class="nameLine">이름 ________ · 반 ______</div></div></header>
+      ? `<header class="firstHeader"><div><div class="academyName">오늘 수학</div><div class="englishLabel">SELF-STUDY</div><h1 class="testTitle">${TITLE}</h1><div class="todayGoal">오늘의 목표 · ${SECTION}의 핵심 개념을 확인하고 문제에 적용한다.</div></div><div class="studentMeta"><div class="dateLabel">학습일</div><div class="dateValue">2026.08.18</div><div class="nameLine">이름 ________ · 반 ______</div></div></header>
 <section class="conceptBox"><h2 class="conceptTitle">◆ 핵심 개념 정리</h2><div class="conceptText">${SECTION}의 정의와 계산 원리를 확인한 뒤 풀이 과정에 적용한다.</div></section>`
-      : `<header class="continuationHeader"><span>오늘의수학 · ${TITLE}</span><span>p. ${pageNumber}</span></header>`;
+      : `<header class="continuationHeader"><span>오늘 수학 · ${TITLE}</span><span>p. ${pageNumber}</span></header>`;
   return `<section class="a4Page ${kind === "first" ? "jaseupFirst" : "jaseupContinuation"}" data-page-kind="questions" data-page-number="${pageNumber}" style="${PAPER_VARS_ATTR}">
 ${head}
 <div class="problemList">${slots.join("\n")}</div>

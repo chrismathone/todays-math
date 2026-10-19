@@ -1,4 +1,11 @@
-import { act, fireEvent, render, screen, within } from "@testing-library/react";
+import {
+  act,
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+  within,
+} from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import {
   fadingTeacherDashboardResponseSchema,
@@ -95,6 +102,110 @@ describe("교사 Hi-fi B 구조", () => {
     expect(within(recent).getAllByRole("row")[1]).toHaveTextContent(
       `${received.days[0]!.passed}회`,
     );
+  });
+
+  it("추가 확인 대기열과 최근 7일을 사실로 보여 준다 — 살펴볼 까닭은 바꾸지 않는다(2026-10-16)", async () => {
+    const facts = {
+      relearn: {
+        waiting: 3,
+        failing: 2,
+        fails: 3,
+        checks: 4,
+        sinceOn: "2026-10-04",
+      },
+      recent: { days: 7, fresh: 0 },
+    };
+    const withFacts = {
+      ...fixture,
+      dashboard: {
+        ...fixture.dashboard,
+        students: fixture.dashboard.students.map((row) => ({
+          ...row,
+          summary: { ...row.summary, ...facts },
+        })),
+      },
+      details: Object.fromEntries(
+        Object.entries(fixture.details).map(([key, detail]) => [
+          key,
+          { ...detail, summary: { ...detail.summary, ...facts } },
+        ]),
+      ),
+    };
+    render(
+      <TeacherFadingStatus
+        {...createTeacherFixtureSource(withFacts)}
+        preview={preview}
+      />,
+    );
+    const detail = await screen.findByRole("complementary", {
+      name: "이도윤 학생 상세",
+    });
+    await within(detail).findByRole("heading", { name: "이도윤" });
+    const metric = (label: string) =>
+      within(detail).getByText(label).closest("div")?.textContent;
+    expect(metric("추가 확인 남음")).toBe("추가 확인 남음3문장");
+    expect(metric("추가 확인 틀림")).toBe("추가 확인 틀림3회 · 2문장");
+    expect(metric("추가 확인 횟수")).toBe("추가 확인 횟수4회");
+    expect(
+      within(detail).getByText(
+        "추가 확인 남음 · 틀림 · 횟수는 대기열에 남은 문장의 기록입니다.",
+      ),
+    ).toBeInTheDocument();
+    expect(metric("가장 오래 남은 추가 확인")).toBe(
+      "가장 오래 남은 추가 확인2026-10-04부터",
+    );
+    expect(metric("최근 7일")).toBe("최근 7일평가한 날 7일 · 첫 평가 0개");
+    // 명단의 표는 그대로다(칸을 더하지 않는다) — 사실은 학생 상세의 숫자 줄에만 싣는다.
+    const roster = screen.getByRole("table", { name: "전체 명단" });
+    expect(
+      within(roster)
+        .getAllByRole("columnheader")
+        .map((cell) => cell.textContent),
+    ).toEqual(["학생", "복습일 됨", "밀림", "살펴볼 까닭", "상세"]);
+    // 판정이 아니다 — 추가 확인의 사실이 있어도 살펴볼 까닭은 응답의 flags 그대로다.
+    expect(within(detail).queryByText("추가 확인 남음")).toBeInTheDocument();
+  });
+
+  it("추가 확인의 칸이 없는 옛 응답도 그린다 — 그 줄만 비운다", async () => {
+    show();
+    const detail = await screen.findByRole("complementary", {
+      name: "이도윤 학생 상세",
+    });
+    await within(detail).findByRole("heading", { name: "이도윤" });
+    expect(within(detail).getByText("추가 확인 남음")).toBeInTheDocument();
+    const old = {
+      ...fixture,
+      dashboard: {
+        ...fixture.dashboard,
+        students: fixture.dashboard.students.map((row) => {
+          const summary = { ...row.summary };
+          delete summary.relearn;
+          delete summary.recent;
+          return { ...row, summary };
+        }),
+      },
+      details: Object.fromEntries(
+        Object.entries(fixture.details).map(([key, detail]) => {
+          const summary = { ...detail.summary };
+          delete summary.relearn;
+          delete summary.recent;
+          return [key, { ...detail, summary }];
+        }),
+      ),
+    };
+    cleanup();
+    render(
+      <TeacherFadingStatus
+        {...createTeacherFixtureSource(old)}
+        preview={preview}
+      />,
+    );
+    const again = await screen.findByRole("complementary", {
+      name: "이도윤 학생 상세",
+    });
+    await within(again).findByRole("heading", { name: "이도윤" });
+    expect(within(again).queryByText("추가 확인 남음")).toBeNull();
+    expect(within(again).queryByText("최근 7일")).toBeNull();
   });
 
   it("금지 표시·문장·답·행 클릭을 넣지 않는다", async () => {

@@ -76,7 +76,8 @@ describe("workspace code and draft loading", () => {
             grades: [],
             chapters: [],
           }}
-          allowedMenus={["bank", "studio", "export"]}
+          deferBankMetadata
+          allowedMenus={["home", "bank", "studio", "export"]}
           storageScope="owner-a"
         />,
       );
@@ -89,6 +90,12 @@ describe("workspace code and draft loading", () => {
       expect(
         requests.mock.calls.filter(
           ([, init]) => init?.method && init.method !== "GET",
+        ),
+      ).toHaveLength(0);
+
+      expect(
+        requests.mock.calls.filter(([url]) =>
+          String(url).includes("/problems"),
         ),
       ).toHaveLength(0);
 

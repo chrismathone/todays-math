@@ -1,0 +1,116 @@
+{
+  "measuredAt": "2026-10-18T01:02:58.937Z",
+  "baseline": "2ae266866",
+  "readOnly": true,
+  "rowCount": 2,
+  "rows": [
+    {
+      "code": "J20501-A70-001",
+      "id": "d533c98e-c85b-4530-8b0a-03d50291aefb",
+      "contentLength": 508,
+      "sha256": "b289626af20d82f6206853902f42234007c8b24d2c01640686fb7445e770b275",
+      "before": {
+        "questionLength": 230,
+        "choiceCount": 9,
+        "labels": [1, 2, 3, 4, 1, 2, 3, 4, 5],
+        "dropped": [5]
+      },
+      "after": {
+        "questionLength": 425,
+        "choiceCount": 5,
+        "labels": [1, 2, 3, 4, 5],
+        "dropped": []
+      },
+      "unchanged": true,
+      "tailHasFiveOrderedMarkers": true,
+      "exactStem": true,
+      "exactChoices": true,
+      "figureCount": 1,
+      "choiceFigureIndex": [0],
+      "renders": [
+        {
+          "path": "bank",
+          "exactStemMarkup": true,
+          "choiceCount": 5,
+          "orderedLabels": true,
+          "figureCount": 1,
+          "figureBeforeChoices": true,
+          "parseErrors": 0
+        },
+        {
+          "path": "paper",
+          "exactStemMarkup": true,
+          "choiceCount": 5,
+          "orderedLabels": true,
+          "figureCount": 1,
+          "figureBeforeChoices": true,
+          "parseErrors": 0
+        },
+        {
+          "path": "templateBody",
+          "exactStemMarkup": true,
+          "choiceCount": 5,
+          "orderedLabels": true,
+          "figureCount": 1,
+          "figureBeforeChoices": true,
+          "parseErrors": 0
+        }
+      ],
+      "allPassed": true
+    },
+    {
+      "code": "J20506-A37-001",
+      "id": "ac37d08a-5f7b-49ee-950b-af34e002c8e9",
+      "contentLength": 556,
+      "sha256": "91372681a21c05c7d289de1c5205b7d116825c4006298bcf8895f97a16947902",
+      "before": {
+        "questionLength": 182,
+        "choiceCount": 10,
+        "labels": [1, 2, 3, 4, 5, 1, 2, 3, 4, 5],
+        "dropped": []
+      },
+      "after": {
+        "questionLength": 494,
+        "choiceCount": 5,
+        "labels": [1, 2, 3, 4, 5],
+        "dropped": []
+      },
+      "unchanged": true,
+      "tailHasFiveOrderedMarkers": true,
+      "exactStem": true,
+      "exactChoices": true,
+      "figureCount": 1,
+      "choiceFigureIndex": [0],
+      "renders": [
+        {
+          "path": "bank",
+          "exactStemMarkup": true,
+          "choiceCount": 5,
+          "orderedLabels": true,
+          "figureCount": 1,
+          "figureBeforeChoices": true,
+          "parseErrors": 0
+        },
+        {
+          "path": "paper",
+          "exactStemMarkup": true,
+          "choiceCount": 5,
+          "orderedLabels": true,
+          "figureCount": 1,
+          "figureBeforeChoices": true,
+          "parseErrors": 0
+        },
+        {
+          "path": "templateBody",
+          "exactStemMarkup": true,
+          "choiceCount": 5,
+          "orderedLabels": true,
+          "figureCount": 1,
+          "figureBeforeChoices": true,
+          "parseErrors": 0
+        }
+      ],
+      "allPassed": true
+    }
+  ]
+}

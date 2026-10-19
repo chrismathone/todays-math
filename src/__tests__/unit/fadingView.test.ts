@@ -320,13 +320,14 @@ describe("상태 — 홈 · 통계 · 풀이가 읽는 한 꼴", () => {
     let state = rated(emptyFading(), A, 1);
     state = rated(state, AM, 2);
     expect(view(state).summary.overdue).toBe(0);
+    // 분량은 명제 칸이다(결정 4) — 묶음 하나(명제 셋)만 들어가는 상한.
     const late = fadingStateSchema.parse(
       fadingStateView({
         fading: state,
         revision: 1,
         today: "2026-12-01",
         concepts: BY_ID,
-        cap: 1,
+        cap: 3,
       }),
     );
     expect(late.summary.queue.due).toHaveLength(1);
@@ -338,27 +339,61 @@ describe("상태 — 홈 · 통계 · 풀이가 읽는 한 꼴", () => {
     let state = rated(emptyFading(), A, 1);
     state = rated(state, AM, 2);
     state = pickFadingConcept(state, B.id, DAY1);
+    // 명제 여섯 칸(결정 4) — 복습 둘이 다 들어가면 평가 전인 B 는 남은 칸이 없어 오늘 내지 않는다.
+    const full = fadingStateSchema.parse(
+      fadingStateView({
+        fading: state,
+        revision: 1,
+        today: "2026-10-09",
+        concepts: BY_ID,
+        cap: 6,
+      }),
+    );
+    expect(full.summary.queue).toEqual({
+      due: [A.id, AM.id],
+      held: [],
+      unrated: [],
+    });
+    // 명제 아홉 칸 — 셋 다.
     const due = fadingStateSchema.parse(
       fadingStateView({
         fading: state,
         revision: 1,
         today: "2026-10-09",
         concepts: BY_ID,
-        cap: 1,
+        cap: 9,
       }),
     );
-    expect(due.cap).toBe(1);
+    expect(due.cap).toBe(9);
     expect(due.summary.queue).toEqual({
-      due: [A.id],
-      held: [AM.id],
+      due: [A.id, AM.id],
+      held: [],
       unrated: [B.id],
     });
-    expect(Object.keys(due.concepts).sort()).toEqual([A.id, B.id].sort());
+    // 명제 세 칸 — 하나만 내고 하나는 미룬다(열쇠만 내려간다).
+    const one = fadingStateSchema.parse(
+      fadingStateView({
+        fading: state,
+        revision: 1,
+        today: "2026-10-09",
+        concepts: BY_ID,
+        cap: 3,
+      }),
+    );
+    expect(one.summary.queue).toEqual({
+      due: [A.id],
+      held: [AM.id],
+      unrated: [],
+    });
+    expect(Object.keys(one.concepts)).toEqual([A.id]);
+    expect(Object.keys(due.concepts).sort()).toEqual(
+      [A.id, AM.id, B.id].sort(),
+    );
     // 오늘은 복습일이 아니다 — 대기열에 없는 평가한 개념은 내려가지 않는다.
     expect(Object.keys(view(state).concepts)).toEqual([B.id]);
   });
 
-  it("미룬 개념이라도 풀이를 열었으면 그 상태가 내려간다", () => {
+  it("풀이를 연 개념은 빚진 것이라 칸이 차도 오늘 낸다(결정 4 — 계획과 같다) · 그 상태가 내려간다", () => {
     let state = rated(emptyFading(), A, 1);
     state = rated(state, AM, 2);
     state = openFadingSession(state, AM, "2026-10-09", {
@@ -371,12 +406,12 @@ describe("상태 — 홈 · 통계 · 풀이가 읽는 한 꼴", () => {
         revision: 1,
         today: "2026-10-09",
         concepts: BY_ID,
-        cap: 1,
+        cap: 3,
       }),
     );
-    expect(held.summary.queue).toMatchObject({ due: [A.id], held: [AM.id] });
+    expect(held.summary.queue).toMatchObject({ due: [AM.id], held: [A.id] });
     expect(held.session!.conceptId).toBe(AM.id);
-    expect(Object.keys(held.concepts).sort()).toEqual([A.id, AM.id].sort());
+    expect(Object.keys(held.concepts)).toEqual([AM.id]);
   });
 
   it("풀이가 열려 있으면 그 개념의 내용과 지금 풀 단계가 같이 내려간다", () => {

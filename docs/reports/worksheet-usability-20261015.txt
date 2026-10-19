@@ -1,0 +1,33 @@
+Worksheet composition usability — 2026-10-15
+
+Implemented
+- Arithmetic selection panel sticks below the workroom header. Its selections and conditions scroll internally on short displays while totals and generation remain visible. Mobile uses normal document flow.
+- Arithmetic limits now distinguish 100 items per round, 20 rounds and 200 items per request from distinct-expression capacity within one round. Two full rounds are supported without increasing the existing 256 KiB save guard. Default titles no longer embed a round number.
+- Shared arithmetic review/output groups questions by type, prints rounds in sheet headers, and owns question numbering in one renderer. Output inspector shows type counts and question ranges. Explicit saved content/order and continuous question/answer numbers remain intact.
+- Removed the arithmetic-only 20px body floor. All six shared templates use the configured/common body size. Normal bank and English formatting remain covered by regressions.
+- Scope picker disables unavailable grades, identifies unknown availability separately, groups units by grade/course, and labels the selected filter as 담은 범위만 보기. Selected rows have direct removal. Composition action is beside the total. Global add and add-to-this-scope actions have distinct labels.
+- Builder sticky header covers the gap under the workroom topbar. Ordinary task dialogs share an 880px maximum token; smaller information/confirmation dialogs retain their sizes. Paper enlargement/student views retain their own contracts.
+
+Validation
+- Integrated targeted suite: 24 files, 334 tests passed. Includes six print templates, round boundaries, question/answer numbering, preserved manual-save behavior, quantity/domain checks, API/contracts, shared output and bank/English adapters.
+- ExamBuilder suite outside the default Vitest include: 20 tests passed.
+- Full TypeScript check passed. Scoped ESLint and affordance checks passed.
+- Full-project affordance audit still reports an existing unrelated selector in src/components/test/SavedRetryPanel.module.css:53; no new violation in changed files.
+- Browser: 1600x900 desktop, maximized header, 1600x600 short viewport with nine selected types, and 390x844 mobile. No horizontal overflow or page errors. Sticky panel top measured 68px normally and 44px maximized; short-screen generate button bottom 563px within 600px viewport.
+- Browser: scope and add dialogs both measured 880px desktop; mobile add dialog 366px inside a 390px viewport. Composition action is in the table footer. Sticky band and its gap cover have identical opaque computed backgrounds. Shared English builder used isolated fixture data, with no account writes.
+- Browser: generated 100 items x 2 rounds, 200 review list items, six type sections, exactly 200 print number headers, no embedded round/question-number strings. Default type-template body measured 11.5px, following the shared geometry.
+- PDF: actual export client payload rendered with the existing server pdfDocument function and local Chromium. Questions 12 A4 pages, answer-only pages 6; round 2 starts on a new page. Inspected rendered first/question round-boundary/answer pages. No asset failures in final proof. Next development cross-site asset protection required navigating the isolated renderer to the same local origin before loading captured HTML; production export authentication/deployment was not exercised by this local proof.
+- Maximum sampled 200-item save body: legacy 132,945 bytes, v2 90,530 bytes, below 262,144. Generator timings from worker: legacy 25.2ms, v2 77.2ms; browser/print time excluded. 2,000 legacy items would exceed the unchanged save guard.
+
+Evidence (local, intentionally untracked)
+tmp/arithmetic-sticky-proof.json, tmp/builder-usability-proof.json
+tmp/arithmetic-output-proof.json, tmp/arithmetic-pdf-proof.json
+tmp/arithmetic-grouped-print.pdf and rendered page PNGs
+tmp/worksheet-usability-tests.log, tmp/exam-builder-integration.log
+tmp/worksheet-usability-types.log, tmp/worksheet-usability-lint.log
+
+Storage policy
+No database writes, migrations, environment changes or arithmetic writer activation. Arithmetic remains explicit save of a completed output; production write activation is deferred per the owner.
+
+Parallel work
+Merged Codex Orca branches arithmetic-grouped-output (e709d827f), arithmetic-round-limits (83a395c20), bank-scope-usability (f6078bbc6). All three were clean, merged, idle and removed; branches retained.

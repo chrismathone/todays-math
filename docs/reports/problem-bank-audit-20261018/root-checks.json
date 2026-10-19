@@ -1,0 +1,29 @@
+{
+  "measuredAt": "2026-10-18T00:39:48.163Z",
+  "conceptTests": {
+    "files": 9,
+    "total": 160,
+    "passed": 160,
+    "failed": 0,
+    "skipped": 0,
+    "filesChecked": [
+      "conceptBlankBank.test.ts",
+      "conceptBlankBankLoad.test.ts",
+      "conceptBlankClarityIntegration.test.ts",
+      "conceptBlankFractionDivisionWording.test.ts",
+      "conceptStudentClearApplication.test.ts",
+      "conceptStudentClearBankSource.test.ts",
+      "conceptStudentClearEvidence.test.ts",
+      "conceptStudentClearExampleCorrections.test.ts",
+      "conceptStudentClearManuscript.test.ts"
+    ]
+  },
+  "typeCheck": {
+    "command": "npm run type-check",
+    "exitCode": 0
+  },
+  "lint": {
+    "command": "eslint scripts/qa/bank/problem-bank-audit.ts scripts/qa/bank/concept-bank-audit.ts",
+    "exitCode": 0
+  }
+}

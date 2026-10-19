@@ -1,0 +1,170 @@
+Arithmetic figure-editor integration — 2026-10-15
+
+Status: implementation and local integration complete. All three figure scopes
+are merged and the remaining adapter is wired after segments and before typography.
+This report records local verification; production release is verified separately.
+
+Scope and counting
+The current registered geometry catalog contains 248 types and 17,552 registered
+finite numeric/condition problem-variant IDs. The latter is not a count of types,
+distinct pictures, or repeated screen/print renders. Grouping canonical source
+SHA-256 values in the census gives 15,183 distinct SVG byte strings: 1,447 groups
+reuse identical source bytes, accounting for 2,369 IDs beyond that unique-byte
+count. Different wording or arithmetic givens can legitimately reuse a diagram.
+Byte uniqueness also does not imply a distinct geometric shape. Every registered
+ID has one audit owner:
+  elementary angle presentation: 912
+  elementary dimensions: 7,754
+  middle segment dimensions: 1,827
+  other canonical geometry: 7,059 (including 81 frozen engine angle figures)
+The remaining audit owns the 912 angles plus the 7,059 other figures. Its
+display adapter changes 4,506 of those figures and retains 3,465 unchanged.
+
+User-visible corrections
+External-bisector dimensions retain the actual measured endpoints. They no longer
+translate the measured segment or invent witness lines. Trapezoid boundary
+dimensions use the editor's outside operation. Interior diagonals and heights
+may use the editor's supported opposite side when necessary.
+Elementary plane, circle, cuboid/cube and cylinder-net dimensions now execute
+the real editor operations. Inverse cylinder nets retain the full original
+target wording, including 밑면 반지름 and 밑면 지름.
+
+Editor and immutable-source contract
+The offline adapters call the public addDimension operation. Where its default
+layout collides, they record and replay addFigureObject(curve), moveFigureHandle,
+addMidLabel and editFigureObject using actual path samples. Actual typesetFigureSvg
+supplies the gap masks and attachments. There is no alternative Q constructor,
+projected measurement lane, synthetic witness line or hand-edited mask.
+Glyph and white-halo coverage are checked against full source stroke width.
+Protected polygon/circle boundaries, equality ticks and right-angle marks must
+remain visible. Open paths are checked for computed fill=none.
+Canonical IDs, source SVG bytes, numerical givens, targets, answers and saved packs
+are unchanged. The display adapters require a full canonical source-string match.
+Runtime adapters use bounded per-family caches and require no editor, DOM, Python
+or MathJax runtime. The shared typography adapter supplies the existing editor font.
+
+Completed elementary evidence
+Commit aa8d2882e; merged into main by d150f5bb7.
+56 families / 7,754 figures / 17,330 dimensions:
+28 plane families / 3,800; 10 circle / 562; 14 cuboid/cube / 1,988;
+4 cylinder nets / 1,404. All 468 inverse-net targets retain their full wording.
+Independent exact command, text, attribute and mask replay: 7,681 defaults plus
+9,649 manual editor sequences; zero unresolved IDs, mismatches or exclusions.
+Raw and facade screen 280/320 plus print 280: 46,524 renders, zero failures.
+Minimum measured effective font 12.2793 px; minimum shape extent 159.6499 px.
+Computed-fill audit passed all 17,330 dimension paths, 23,718 source paths and
+4,120 right marks in both raw and facade output.
+Seven focused tests and scoped TypeScript passed again in main after merge.
+Worker reviewed 73 distinct final representatives. Root inspected representative
+screen galleries and the first and third pages of the retained A4 PDF.
+Asset SHA-256: c32443961801fa548299919851f87605758ccf46d38af1dac6222365689fb703.
+Report: scripts/qa/arithmetic-dimension-presentation-report.txt.
+Evidence: C:/Users/user/AppData/Local/Temp/arithmetic-dimension-editor-audit-20261015/final/.
+
+Completed middle-segment evidence
+Commits b08558c8e and db4a867be.
+50 families / 1,827 figures. All canonical endpoints, numerical labels, point names
+and structural marks are retained. Exact independent editor replay passed every ID.
+Raw and facade screen 280/320 plus print 280: 10,962 renders, zero failures.
+Independent glyph/halo/full-stroke/open-fill audit: 3,654 renders, zero failures.
+The initial 20 raw / 10 facade halo infringements are retained as diagnostics;
+all are resolved in the final asset through supported editor placement choices.
+Seven focused tests, strict ES2017 TypeScript, lint, browser runtime exact-source
+checks and a complete fresh byte reproduction passed. Normal commit hooks passed.
+Asset SHA-256: cc66117da482b346584df07bb9387dc0c0c21b168df106c0da366f26fddb780f.
+Report: scripts/qa/arithmetic-segment-presentation-report.json.
+Evidence: C:/Creative/testautocreator/.qa-artifacts/arithmetic-segment-editor-20261015/.
+
+Completed remaining display evidence
+Commit 24550048e; merged into main by ac6c4f0ad. The original unmerged provisional
+e19476d38 was replaced after root found its relative Husky wrapper was missing.
+The full owned staged diff was recommitted using the actual root wrapper; normal
+ESLint/Prettier hooks passed. Its tree and all artifact hashes remained identical.
+The remaining worker supplied 4,506 updated displays across 104 families. Its
+7,971-ID scope also includes 3,465 retained displays. All 4,506 outputs replayed
+exactly through the actual editor; 18,081 base geometry objects and 13,730 public
+labels were preserved. The 5,992 dimensions comprise 2,785 exact defaults and
+3,207 actual manual editor sequences. Independent numerical/geometry semantics
+cover 2,451 IDs and 4,009 checks; 1,935 measured angle checks passed.
+
+Every final owned ID has screen and actual rounded-mm print browser/independent
+4x glyph-and-halo proof: 15,942 observations per audit, zero unresolved failures.
+The original complete run and final 40-ID repairs are retained separately.
+Only the other 7,931 exact unchanged SVG hashes reuse observations, with full
+formatted checker-source equality; checker behavior cannot change under reuse.
+The final exact editor replay was rerun across all 4,506 changed presentations.
+
+This includes the 22 original trig collisions, later full-width cone-label halo
+hits, a narrow isosceles angle, and detached chord-foot M / circumcenter O labels.
+M is now placed locally before dimensions are selected, reserving its glyph/halo
+space. Visually excessive bows were rejected even when collision checks passed.
+Open angle leaders explicitly retain fill=none, preventing black closed wedges.
+All 400 sector sweeps retain their original 180/240/270-degree behavior.
+
+Worker visually inspected 78 sheets covering 432 distinct final IDs and every
+owned family's first/last cases in both media. Root inspected local repair print
+sheets 2 and 3, confirming M stays at its foot and chord dimensions stay modest.
+These are representative visual reviews; every ID receives automated gates.
+Full report: scripts/qa/arithmetic-full-figure-audit-evidence/README.md.
+Asset SHA-256: 863f4716dfba882d6863137e1fb128f7875fa6b514bd187b91c8cf9b9513ec80.
+The root coverage rerun passed after facade integration. All final observations,
+SVG hashes and format-normalized checker sources match the committed proof.
+Only raw checker-file hashes differ because of Windows checkout line endings.
+
+Completed shared and actual-route checks
+Main after all merges and facade integration: 293 tests across six geometry generation,
+snapshot, subset, text and authorized-regeneration suites passed. Full-project
+TypeScript passed with --noEmit --incremental false and an 8 GiB Node heap.
+The policy fixture correction in 00a93e820 tests the current 280 px presentation,
+200 questions per round, up to 10 new rounds and the actual request byte guard.
+
+Actual Next development route, desktop 1440 and touch mobile 390:
+elementary subset (angle sum, rectangle perimeter, inverse cylinder-net radius)
+and segment subset (trapezoid parallel section, both external-bisector types)
+passed real selection, generation, review, answers and WorksheetEditor output.
+Review and output used identical accepted figure URLs. There were zero attempted
+real API requests, page errors or horizontal overflows. No CSSOM, source, fetch
+implementation or response stubs were applied by the harness.
+Runner: scripts/qa/arithmetic-editor-integrated.mjs.
+Evidence: C:/Creative/testautocreator/.qa-artifacts/arithmetic-editor-integrated-20261015/.
+
+Native-print defect found by the integrated runner
+The first real browser PDFs contained an extra page with the editor step bar,
+export buttons and arithmetic save notice: five PDF pages for four paper pages.
+WorksheetEditor.module.css now excludes its non-document root children in print
+media. Screen controls and the paginated exportGrid remain unchanged.
+The runner now asserts the step bar is hidden and checks the actual PDF page count
+against the question/answer DOM, using pdf-lib. Desktop 1440 and touch mobile 390
+both pass: three question pages plus one answer page, no extra controls page,
+no API requests, errors or overflow. PyMuPDF confirms A4 and nonempty content;
+root visually reviewed all eight rendered PDF pages. The baseline failure is
+retained in all-before-print-fix/. The final run after the remaining adapter merge
+and basket correction passed both modes again, including nine representative
+figures, identical review/output URLs, all eight visually reviewed PDF pages,
+18 px basket checkboxes and zero attempted real API requests or page errors.
+Final evidence is all/proof.json and all/pdf-proof.json in the integrated folder.
+
+Earlier completed UI work
+The disabled generate button came from a missing development-preview arithmetic
+catalog handler (503), not invalid 10 x 1 selection. Local preview catalog/generate/
+regenerate responses now use the real arithmetic helpers. Production gates remain.
+Both baskets support row checkboxes, indeterminate select-all and remove checked.
+The preview logger cannot bypass isolation using captured fetch. Thumbnail hover
+stays transparent and keyboard/touch enlargement works.
+Final actual-route proof: docs/planning/tracks/reports/arithmetic-ui-preview-20261015/final-integrated.txt.
+
+Basket layout follow-up (3c17e020c): native checkboxes are explicitly 18 px and
+excluded from generic input styling. Selection tools share one toolbar row;
+checkbox, title, quantity and remove align in fixed columns with wrapping titles.
+Grade/basic at 1440/390/320 px passed actual layout, partial/select-all/removal and
+keyboard checks with zero attempted API requests, page errors or overflow.
+Report: docs/reports/arithmetic-basket-layout-20261015.txt. The integrated runner
+also asserts actual basket checkbox dimensions before generating the sheet.
+
+Limits
+These checks concern the registered finite corpus and the recorded local Chromium
+environment. They do not claim physical-printer tests or identical font rasterization
+on every platform. The development preview deliberately performs no database writes.
+Native browser print-to-PDF validation does not exercise the authenticated server
+PDF export endpoint. No source snapshot migration or database/environment changes
+are part of this work.

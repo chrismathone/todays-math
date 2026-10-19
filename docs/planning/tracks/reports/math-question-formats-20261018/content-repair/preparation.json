@@ -1,0 +1,115 @@
+{
+  "at": "2026-10-18T06:36:59.459Z",
+  "readOnly": true,
+  "rows": 17,
+  "families": 5,
+  "baselinePreflightSha256": "5b410a6570e175a091b9cba5a336e1e7e41827b27bd97bd03805c273002ef875",
+  "manifestSha256": "5c94751bea7a7c0332d2dca4659e3f9c7d1cf1212095ba58bf0314741e62a08f",
+  "beforeLedgerSha256": "625f49cd2fa8ac093f2ea71bab4375298e0506601b0aa68a59fce5db72e44828",
+  "sourceCommit": "6c97dd0698a891f89f804ed9ef33d96f6a38cae4",
+  "sourceDigests": {
+    "scripts/figure/elementary.py": "edc978feea0c6295e7972e24599fa498749e01d55c761385b50c102045c3e462",
+    "scripts/figure/render_spec.py": "b7adbdc5009cb4ab16ecfcf5dd6fee7a9b93c85989930acc72f75cb1fcdf1e21",
+    "scripts/import/protected-question-maintenance.ts": "1a376d780b753992be2a2b43cd8b0b01e6cab78e5cb1276fe355f27ea55dd03d",
+    "scripts/import/question-content-repair.ts": "309d5f1e5c49e40daf8258527ad187a063f57482d89ad56f97f2e902a0bb5eb1",
+    "scripts/qa/bank/math-question-repair.ts": "9d2f0ba73baf0c6b3fedf022b640a4e62d7320a6197212f90f2ea319a9d1f995",
+    "scripts/qa/bank/verify-question-repairs.py": "70fb2761e02ad7557baac4abf4fec6602d39e98d7ef0b13d5c9f134f6cfb0e57",
+    "src/lib/elementary/forms.ts": "52c4c925fb7a2276773de5ef31e15d24985dca647f0e983ef4c5be3780cc072f",
+    "src/lib/elementary/g4.ts": "81324f2b07a910e989d94b520da42de60296f4f386030a5e4b3cd32663e32c70",
+    "src/lib/elementary/rng.ts": "1b0bd504eec9443e2ad5a558d3581ebad8479c6f789712a6b44b91c049c3e2fb",
+    "src/lib/figure/mathjaxSubstitute.ts": "e45af6952f24b48df024943df506fa2c8749cf38f8b9dc3ef22dbe3d00f3e60a",
+    "src/lib/figure/renderFigureSpec.ts": "2a4211c6a426ce8f30ea4dad81afc080c33df82cb3e3f1593227a2c7abbfb6e7"
+  },
+  "referenceColumns": [
+    {
+      "schema": "public",
+      "table": "basket_item",
+      "column": "problem_id",
+      "kind": "scalar"
+    },
+    {
+      "schema": "public",
+      "table": "exam_question",
+      "column": "problem_id",
+      "kind": "scalar"
+    },
+    {
+      "schema": "public",
+      "table": "problem_answer",
+      "column": "problem_id",
+      "kind": "scalar"
+    },
+    {
+      "schema": "public",
+      "table": "problem_outer_wall_quarantine",
+      "column": "problem_id",
+      "kind": "scalar"
+    },
+    {
+      "schema": "public",
+      "table": "problem_report",
+      "column": "problem_id",
+      "kind": "scalar"
+    },
+    {
+      "schema": "public",
+      "table": "problem_review_log",
+      "column": "problem_id",
+      "kind": "scalar"
+    },
+    {
+      "schema": "public",
+      "table": "problem",
+      "column": "origin_problem_id",
+      "kind": "scalar"
+    },
+    {
+      "schema": "public",
+      "table": "test_problem",
+      "column": "problem_id",
+      "kind": "scalar"
+    },
+    {
+      "schema": "public",
+      "table": "textbook_problem_snapshot",
+      "column": "problem_id",
+      "kind": "scalar"
+    },
+    {
+      "schema": "public",
+      "table": "textbook_problem_snapshot",
+      "column": "source_key",
+      "kind": "source-key"
+    },
+    {
+      "schema": "public",
+      "table": "textbook_problem_snapshot",
+      "column": "source_ref",
+      "kind": "source-ref"
+    }
+  ],
+  "referenceCounts": {
+    "1f5f7704-e3f2-473a-8560-fbbed550a27e": {},
+    "2ce9cb5b-5c47-4d40-a059-0d00acb2642c": {},
+    "3550a513-3957-4662-acab-8ba25498e55f": {},
+    "44f268b3-cff7-46af-879e-6eeb874fbe0d": {},
+    "4a16b2a4-3256-41d0-8e58-9b51038bc829": {},
+    "4b57ab5c-5cb6-450f-845c-d33846d72999": {},
+    "53135b6e-dafc-4424-8c9a-05abba72aa95": {},
+    "702fef05-8c79-4d4f-8703-61d5d8afee77": {},
+    "7995fa62-a5cc-4830-ae21-56b6dacdb58f": {},
+    "837e0291-9510-42ed-817e-f0a5a9b97462": {},
+    "b711aa94-ef28-45e3-a707-009857bf08f2": {},
+    "b753f348-80b7-4bd6-a237-7b9c19558821": {},
+    "d910914a-afd6-437e-84ff-94c6aa147d7d": {},
+    "dfc26b77-edb0-42e8-bc6d-c21f8736be3c": {},
+    "e92f7aa4-49e1-4062-bc20-afb04e7cc7f7": {},
+    "e96f1ca4-b9c3-4527-bec6-f33c8bb23723": {},
+    "ebfa6bac-4abb-4293-a089-43bfb389c2b1": {}
+  },
+  "referencedRows": 0,
+  "allIdsCodesExternalIdsAndAnswerPositionsPreserved": true,
+  "actualSvgIndependentVerification": true,
+  "sharedDatabaseWrites": 0,
+  "physicalPrinterVerified": false
+}

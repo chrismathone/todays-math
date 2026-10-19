@@ -387,7 +387,7 @@ export function StudentMathSrs({
       student={state?.student ?? null}
       practicing={practicing || !!expedition}
       boardReady={!!state && !loading && error?.status !== 503}
-      practiceTitle="오늘의 수학 복습"
+      practiceTitle="오늘 수학 복습"
       practicePageClassName={`${s.student} ${s.practiceViewport}`}
       practiceMainClassName={`${s.body} ${s.practiceBody}`}
     >

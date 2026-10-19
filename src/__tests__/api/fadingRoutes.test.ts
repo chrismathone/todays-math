@@ -3,6 +3,15 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const f = vi.hoisted(() => ({
+  /** 학생의 하루 분량 행(`fading_student_policy`) — 없으면 서비스 기본. */
+  policy: null as null | {
+    quota: number | null;
+    previousQuota: number | null;
+    effectiveOn: Date;
+    revision: number;
+  },
+  /** 상한에 닿은 날로 적힌 것(`fading_relearn_cap_day`). */
+  capDays: [] as string[],
   studentId: "017c1a9b-b28a-4a5b-80b6-f1a21ccfeee2",
   classId: "7e7c388b-c264-4d39-809b-527723b8b74b",
   session: null as unknown,
@@ -25,6 +34,14 @@ vi.mock("@/lib/errorLog/withErrorLog", () => ({
 }));
 vi.mock("@/lib/db", () => ({
   db: {
+    fadingStudentPolicy: { findUnique: async () => f.policy },
+    fadingRelearnCapDay: {
+      upsert: async ({ create }: { create: { on: Date } }) => {
+        const on = create.on.toISOString().slice(0, 10);
+        if (!f.capDays.includes(on)) f.capDays.push(on);
+        return create;
+      },
+    },
     student: {
       findUnique: async ({ where }: { where: { id: string } }) => ({
         id: where.id,
@@ -101,9 +118,13 @@ import {
 import { erasedTargets, type FadingStep } from "@/lib/fading/erasure";
 import { fadingFigureMap } from "@/lib/fading/figures";
 import { FADING_CONTENT_CHANGED } from "@/lib/fading/actions";
+import { FADING_STUDENT_HEADER } from "@/lib/fading/routes";
+import { STUDENT_CHANGED_MESSAGE } from "@/lib/studentRouteAccess";
 import { createLocalFadingSource } from "@/lib/fading/local";
 import { FADING_TRAPS } from "@/lib/fading/trapTable";
 import { fadingTrapMap } from "@/lib/fading/traps";
+import { fadingTypedOutcome } from "@/lib/fading/typed";
+import type { FadingTrap } from "@/lib/fading/chips";
 import { FadingSourceError } from "@/lib/fading/source";
 import { emptyFading, pickFadingConcept } from "@/lib/fading/state";
 import { emptySrsState, parseSrsState } from "@/lib/math-srs/serverState";
@@ -165,6 +186,20 @@ function placements(
   return moves;
 }
 
+/** 그 빈칸에 «틀림»이 되는 글 — 같은 개념의 다른 답 · 함정의 글. 없으면 `null`. */
+function wrongTextOf(
+  c: FadingConcept,
+  targetId: string,
+  traps: readonly FadingTrap[],
+): string | null {
+  for (const text of [
+    ...erasedTargets(c, 4).map((t) => t.text),
+    ...traps.map((t) => t.text),
+  ])
+    if (fadingTypedOutcome(c, targetId, text, traps) === "wrong") return text;
+  return null;
+}
+
 /** 은행의 중2 첫 개념들. */
 async function someConcepts() {
   const response = await catalog("?grade=중2");
@@ -192,6 +227,8 @@ async function toRating(conceptId: string) {
 }
 
 beforeEach(() => {
+  f.policy = null;
+  f.capDays = [];
   f.rows.clear();
   f.writes = 0;
   f.reads = 0;
@@ -1034,6 +1071,95 @@ describe("서버 없이 도는 길(`createLocalFadingSource`)은 학생 API 와 
   });
 });
 
+describe("화면이 실어 보낸 학생(D1) — 다른 학생이면 `STUDENT_CHANGED`, 머리 필수 스위치(②)", () => {
+  const OTHER = "9d2c9d0a-58f5-4b53-bb6d-3f3c1a6f0001";
+  const withHeaders = (headers: Record<string, string>) => ({
+    read: () => GET(new Request(`${base}${path}`, { headers })),
+    post: (body: unknown) =>
+      POST(
+        new Request(`${base}${path}`, {
+          method: "POST",
+          headers: {
+            origin: base,
+            "Content-Type": "application/json",
+            ...headers,
+          },
+          body: JSON.stringify(body),
+        }),
+      ),
+    catalog: () =>
+      CATALOG(new Request(`${base}${path}/catalog?grade=중2`, { headers })),
+    concept: (id: string) =>
+      CONCEPT(new Request(`${base}${path}/concepts/${id}`, { headers }), {
+        params: Promise.resolve({ id }),
+      }),
+  });
+  const changed = async (response: Response) => {
+    expect(response.status).toBe(409);
+    expect((await response.json()).error).toEqual({
+      code: "STUDENT_CHANGED",
+      message: STUDENT_CHANGED_MESSAGE,
+    });
+  };
+
+  it("다른 학생의 머리는 네 길 전부 `STUDENT_CHANGED`(409) — 내용이 바뀐 `CONFLICT` 와 코드가 다르고, 기록을 읽지 않는다", async () => {
+    const [first] = await someConcepts();
+    f.reads = 0;
+    const stale = withHeaders({ [FADING_STUDENT_HEADER]: OTHER });
+    await changed(await stale.read());
+    await changed(await stale.post({ action: "pick", conceptId: first }));
+    await changed(await stale.catalog());
+    await changed(await stale.concept(first!));
+    expect(f.reads).toBe(0);
+    expect(f.writes).toBe(0);
+  });
+
+  it("①(기본): 머리가 없으면 지금까지와 같다 · ②(`MATH_FADING_STUDENT_HEADER=required`): 머리 없는 요청은 기록을 읽기 전에 `STUDENT_CHANGED`, 제 머리는 그대로", async () => {
+    const [first] = await someConcepts();
+    const bare = withHeaders({});
+    const mine = withHeaders({ [FADING_STUDENT_HEADER]: f.studentId });
+    expect((await bare.read()).status).toBe(200);
+    vi.stubEnv("MATH_FADING_STUDENT_HEADER", "required");
+    f.reads = 0;
+    await changed(await bare.read());
+    await changed(await bare.post({ action: "pick", conceptId: first }));
+    await changed(await bare.catalog());
+    await changed(await bare.concept(first!));
+    expect(f.reads).toBe(0);
+    expect(f.writes).toBe(0);
+    expect((await mine.read()).status).toBe(200);
+    expect((await mine.post({ action: "pick", conceptId: first })).status).toBe(
+      200,
+    );
+    expect((await mine.catalog()).status).toBe(200);
+    expect((await mine.concept(first!)).status).toBe(200);
+    // 모르는 값은 켜지 않는다 — 끄려다 낸 오타가 옛 화면을 막지 않게.
+    vi.stubEnv("MATH_FADING_STUDENT_HEADER", "yes");
+    expect((await bare.read()).status).toBe(200);
+  });
+
+  it("응답의 꼴은 그대로다 — 옛 화면의 엄격한 파서가 읽는 열쇠 밖의 것(대기열 …)을 싣지 않는다", async () => {
+    const [first] = await someConcepts();
+    const json = await (
+      await postRaw({ action: "open", conceptId: first })
+    ).json();
+    expect(Object.keys(json)).toEqual(["data"]);
+    expect(Object.keys(json.data).sort()).toEqual(
+      [
+        "today",
+        "revision",
+        "cap",
+        "summary",
+        "concepts",
+        "session",
+        "opened",
+        "days",
+        "receipt",
+      ].sort(),
+    );
+  });
+});
+
 describe("카드 풀이의 하위 문(`MATH_FADING_CARDS`)", () => {
   /** 저장된 열린 풀이 — 학생 기록 한 줄에서 꺼낸다. */
   const storedSession = () =>
@@ -1220,5 +1346,333 @@ describe("카드 풀이의 하위 문(`MATH_FADING_CARDS`)", () => {
       await (await concept(first!)).json(),
     ).data;
     expect(detail.mode).toBe("cards");
+  });
+
+  it("결정 1 — 4단계 부분 틀림: 포기 없이 하나 틀리면 «다시 · 어려움»(2일 이하) · «어려움»으로 닫힌다 · 카드를 넘긴 풀이는 «어려움» 409 · 서버 없이 도는 길과 같다", async () => {
+    vi.stubEnv("MATH_FADING_CARDS", undefined);
+    // 빈칸이 넷 이상이고 «틀림» 글(같은 개념의 다른 답)이 있는 중2 개념 — 은행에서 찾는다.
+    const all = fadingCatalog();
+    const traps = fadingTrapMap(all);
+    const pick = all.find((c) => {
+      const targets = erasedTargets(c, 4);
+      return (
+        c.section.startsWith("중2::") &&
+        targets.length >= 4 &&
+        targets.length < 8 &&
+        targets.some((t) => wrongTextOf(c, t.id, traps[c.id] ?? []) !== null)
+      );
+    })!;
+    expect(pick).toBeDefined();
+    const fresh = { sessionId: uuid(0), seed: 0 };
+    const local = createLocalFadingSource({
+      concepts: all,
+      today: "2026-10-06",
+      defaultGrade: "중2",
+      traps,
+      figures: fadingFigureMap(all, CONCEPT_BLANK_BANK.figures),
+      fresh: () => fresh,
+      cards: true,
+      now: () => DAY1.getTime(),
+    });
+    const both = async (action: FadingAction) => {
+      const server = await act(action);
+      if (action.action === "open" && server.session)
+        Object.assign(fresh, {
+          sessionId: storedSession()!.id,
+          seed: server.session.seed,
+        });
+      expect(await local.act(action)).toStrictEqual(server);
+      return server;
+    };
+    const toFour = async () => {
+      let view = await both({ action: "open", conceptId: pick.id });
+      const ref = { conceptId: pick.id, sessionId: view.session!.id };
+      view = await both({ action: "read", ...ref });
+      for (const step of [2, 3] as const)
+        view = await both({
+          action: "step",
+          ...ref,
+          step,
+          placements: placements(
+            pick,
+            step,
+            view.session!.seed,
+            false,
+            view.opened!.traps,
+          ),
+        });
+      return { view, ref };
+    };
+    const targets = erasedTargets(pick, 4);
+    const slip = targets.find(
+      (t) => wrongTextOf(pick, t.id, traps[pick.id] ?? []) !== null,
+    )!;
+    const slipText = wrongTextOf(pick, slip.id, traps[pick.id] ?? [])!;
+    const correct = targets.map((t) => ({ targetId: t.id, text: t.text }));
+
+    // 하나 틀림 · 넘김 없음.
+    let { view, ref } = await toFour();
+    expect(storedSession()).toMatchObject({ gaveUpAtFour: false });
+    view = await both({
+      action: "step",
+      ...ref,
+      step: 4,
+      placements: [{ targetId: slip.id, text: slipText }, ...correct],
+    });
+    expect(view.session).toMatchObject({
+      phase: "rating",
+      missedAtFour: [slip.id],
+      gaveUpAtFour: false,
+    });
+    expect(view.session!.ratings.map((r) => r.rating)).toEqual([
+      "again",
+      "hard",
+    ]);
+    expect(
+      view.session!.ratings.find((r) => r.rating === "hard")!.intervalDays,
+    ).toBeLessThanOrEqual(2);
+    const rated = await both({
+      action: "rate",
+      ...ref,
+      rating: "hard",
+      requestId: uuid(51),
+    });
+    expect(rated.receipt).toMatchObject({
+      rating: "hard",
+      dueOn: "2026-10-08",
+    });
+    const stored = parseSrsState(f.rows.get(f.studentId)!.payload).fading!
+      .concepts[pick.id]!;
+    expect(stored).toMatchObject({ step: 4, lapses: 0, reviews: 1 });
+
+    // 다른 학생 기록에서 — 카드를 넘긴 풀이는 «어려움»을 받지 않는다(양쪽 같은 409 · 문구까지).
+    f.rows.clear();
+    const other = createLocalFadingSource({
+      concepts: all,
+      today: "2026-10-06",
+      defaultGrade: "중2",
+      traps,
+      figures: fadingFigureMap(all, CONCEPT_BLANK_BANK.figures),
+      fresh: () => fresh,
+      cards: true,
+      now: () => DAY1.getTime(),
+    });
+    const both2 = async (action: FadingAction) => {
+      const server = await act(action);
+      if (action.action === "open" && server.session)
+        Object.assign(fresh, {
+          sessionId: storedSession()!.id,
+          seed: server.session.seed,
+        });
+      expect(await other.act(action)).toStrictEqual(server);
+      return server;
+    };
+    view = await both2({ action: "open", conceptId: pick.id });
+    ref = { conceptId: pick.id, sessionId: view.session!.id };
+    view = await both2({ action: "read", ...ref });
+    for (const step of [2, 3] as const)
+      view = await both2({
+        action: "step",
+        ...ref,
+        step,
+        placements: placements(
+          pick,
+          step,
+          view.session!.seed,
+          false,
+          view.opened!.traps,
+        ),
+      });
+    const card = pick.propositions.at(-1)!;
+    view = await both2({
+      action: "give-up-card",
+      ...ref,
+      propositionId: card.id,
+      placements: [],
+    });
+    view = await both2({
+      action: "step",
+      ...ref,
+      step: 4,
+      placements: correct.filter((t) => !t.targetId.startsWith(`${card.id}#`)),
+      gaveUp: true,
+    });
+    expect(view.session).toMatchObject({ phase: "rating", gaveUpAtFour: true });
+    expect(view.session!.ratings.map((r) => r.rating)).toEqual(["again"]);
+    const hard = {
+      action: "rate",
+      ...ref,
+      rating: "hard",
+      requestId: uuid(52),
+    };
+    const response = await postRaw(hard);
+    const body = await response.json();
+    expect([response.status, body.error?.code]).toEqual([409, "CONFLICT"]);
+    await expect(other.act(hard as FadingAction)).rejects.toMatchObject({
+      status: 409,
+      code: "CONFLICT",
+      message: body.error.message,
+    });
+  });
+
+  it("4단계 카드의 «아직 모르겠어요»(give-up-card · D2) — 그 자리에서 적히고 · 되풀이는 쓰지 않고 · 내용 토큰이 아니면 409 · 칩 풀이는 409 · 서버 없이 도는 길과 같다", async () => {
+    vi.stubEnv("MATH_FADING_CARDS", undefined);
+    const [first] = await someConcepts();
+    const fresh = { sessionId: uuid(0), seed: 0 };
+    const local = createLocalFadingSource({
+      concepts: fadingCatalog(),
+      today: "2026-10-06",
+      defaultGrade: "중2",
+      traps: fadingTrapMap(fadingCatalog()),
+      figures: fadingFigureMap(fadingCatalog(), CONCEPT_BLANK_BANK.figures),
+      fresh: () => fresh,
+      cards: true,
+      now: () => DAY1.getTime(),
+    });
+    const both = async (action: FadingAction) => {
+      const server = await act(action);
+      if (action.action === "open" && server.session)
+        Object.assign(fresh, {
+          sessionId: storedSession()!.id,
+          seed: server.session.seed,
+        });
+      expect(await local.act(action)).toStrictEqual(server);
+      return server;
+    };
+    let view = await both({ action: "open", conceptId: first! });
+    const sessionId = view.session!.id;
+    const content = view.opened!.concept as FadingConcept;
+    const ref = { conceptId: first!, sessionId };
+    view = await both({ action: "read", ...ref });
+    for (const step of [2, 3] as const)
+      view = await both({
+        action: "step",
+        ...ref,
+        step,
+        placements: placements(
+          content,
+          step,
+          view.session!.seed,
+          false,
+          view.opened!.traps,
+        ),
+      });
+    const card = content.propositions[0]!;
+    const mine = erasedTargets(content, 4)
+      .filter((t) => t.id.startsWith(`${card.id}#`))
+      .map((t) => t.id);
+    // 첫 빈칸을 맞게 쓴 뒤 그 카드를 넘긴다 — 나머지 빈칸만 틀림으로 적힌다.
+    const typedSoFar = [
+      { targetId: mine[0]!, text: erasedTargets(content, 4)[0]!.text },
+    ];
+    const writes = f.writes;
+    view = await both({
+      action: "give-up-card",
+      ...ref,
+      propositionId: card.id,
+      placements: typedSoFar,
+    });
+    expect(view.session).toMatchObject({
+      phase: "steps",
+      step: 4,
+      missedAtFour: mine.slice(1),
+    });
+    expect(f.writes).toBe(writes + 1);
+    // 되풀이는 쓰지 않는다 — 같은 답.
+    await both({
+      action: "give-up-card",
+      ...ref,
+      propositionId: card.id,
+      placements: typedSoFar,
+    });
+    expect(f.writes).toBe(writes + 1);
+    // 저장 번호(토큰이 아닌 것) · 다른 토큰은 409 — 열린 풀이의 개념인데 지금 내용의 토큰이 아니면 «내용이 바뀜»이다.
+    expect(
+      await code(
+        await postRaw({
+          action: "give-up-card",
+          ...ref,
+          sessionId: storedSession()!.id,
+          propositionId: card.id,
+          placements: [],
+        }),
+      ),
+    ).toEqual([409, "CONFLICT"]);
+    expect(
+      (
+        await (
+          await postRaw({
+            action: "give-up-card",
+            ...ref,
+            sessionId: uuid(77),
+            propositionId: card.id,
+            placements: [],
+          })
+        ).json()
+      ).error.message,
+    ).toBe(FADING_CONTENT_CHANGED);
+    // 없는 카드는 409.
+    expect(
+      await code(
+        await postRaw({
+          action: "give-up-card",
+          ...ref,
+          propositionId: "no-such-card",
+          placements: [],
+        }),
+      ),
+    ).toEqual([409, "CONFLICT"]);
+    // 복귀 뒤 다 맞게 써서 마쳐도 «알맞음»은 받지 않는다.
+    view = await both({
+      action: "step",
+      ...ref,
+      step: 4,
+      placements: erasedTargets(content, 4).map((t) => ({
+        targetId: t.id,
+        text: t.text,
+      })),
+    });
+    expect(view.session!.missedAtFour).toEqual(mine.slice(1));
+    expect(view.session!.ratings.map((r) => r.rating)).toEqual(["again"]);
+    expect(
+      await code(
+        await postRaw({
+          action: "rate",
+          ...ref,
+          rating: "good",
+          requestId: uuid(42),
+        }),
+      ),
+    ).toEqual([409, "CONFLICT"]);
+
+    // 칩 풀이에는 카드가 없다 — 409.
+    vi.stubEnv("MATH_FADING_CARDS", "off");
+    f.rows.clear();
+    let chips = await act({ action: "open", conceptId: first! });
+    const chipsRef = { conceptId: first!, sessionId: chips.session!.id };
+    chips = await act({ action: "read", ...chipsRef });
+    for (const step of [2, 3] as const)
+      chips = await act({
+        action: "step",
+        ...chipsRef,
+        step,
+        placements: placements(
+          content,
+          step,
+          chips.session!.seed,
+          false,
+          chips.opened!.traps,
+        ),
+      });
+    expect(
+      await code(
+        await postRaw({
+          action: "give-up-card",
+          ...chipsRef,
+          propositionId: card.id,
+          placements: [],
+        }),
+      ),
+    ).toEqual([409, "CONFLICT"]);
   });
 });

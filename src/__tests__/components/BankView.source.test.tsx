@@ -47,6 +47,9 @@ const JANG = "00000000-0000-4000-8000-00000000b002";
 const RYU = "00000000-0000-4000-8000-00000000b003";
 
 const COUNTS: BankSourceCounts = {
+  countUnit: "question",
+  version: 2,
+  queryKey: "fixture",
   sources: {
     total: 1200,
     engine: 900,
@@ -119,6 +122,9 @@ const problem: BankProblem = {
   reviewStatus: "approved",
 };
 const initialData: BankData = {
+  countUnit: "question",
+  version: 2,
+  queryKey: "fixture",
   problems: [problem],
   total: 30,
   page: 1,
@@ -165,7 +171,9 @@ beforeEach(() => {
   vi.stubGlobal(
     "fetch",
     vi.fn(async (url: string) => {
-      if (url.endsWith("/problems/sources")) {
+      if (
+        new URL(url, "http://localhost").pathname.endsWith("/problems/sources")
+      ) {
         countRequests += 1;
         return countsFail
           ? Response.json(
@@ -205,7 +213,11 @@ async function settled() {
     expect(screen.queryByRole("progressbar")).not.toBeInTheDocument(),
   );
 }
-const lastQuery = () => Object.fromEntries(requests.at(-1)!);
+const lastQuery = () => {
+  const query = requests.at(-1)!;
+  expect(query.get("identity")).toBe("question");
+  return Object.fromEntries([...query].filter(([key]) => key !== "identity"));
+};
 /** 필터 줄의 «출처» 칸 — 이름은 «출처 고르기: 지금 고른 것»(칩 «출처 …»과 갈린다). */
 function sourceField() {
   if (!screen.queryByRole("button", { name: /^출처 고르기/ }))
@@ -426,7 +438,8 @@ describe("⑷ [적용]을 눌러야 걸린다 · Esc 는 버린다", () => {
     fireEvent.click(kind(dialog, "대단원 평가"));
     expect(footer(dialog)).toHaveTextContent("걸리는 문항 10개 / 교과서 250");
     fireEvent.click(kind(dialog, "형성 평가"));
-    expect(footer(dialog)).toHaveTextContent("걸리는 문항 40개 / 교과서 250");
+    expect(footer(dialog)).toHaveTextContent("걸리는 문항 미확인 / 교과서 250");
+    expect(footer(dialog)).toHaveTextContent("적용 후 목록에서 확인합니다");
     expect(requests.length).toBe(before);
   });
 
@@ -505,9 +518,9 @@ describe("⑷ [적용]을 눌러야 걸린다 · Esc 는 버린다", () => {
     const all = within(dialog).getByRole("checkbox", {
       name: /^중1 교과서 전부/,
     });
-    expect(all.closest("label")).toHaveTextContent("150");
+    expect(all.closest("label")).toHaveTextContent("미확인");
     fireEvent.click(all);
-    expect(footer(dialog)).toHaveTextContent("걸리는 문항 150개");
+    expect(footer(dialog)).toHaveTextContent("걸리는 문항 미확인");
     fireEvent.click(all);
     expect(footer(dialog)).toHaveTextContent("걸리는 문항 250개");
   });

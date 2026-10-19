@@ -51,7 +51,7 @@ export function TeacherReview() {
       <header className={styles.chrome}>
         <Link href="/lab" className={styles.wordmark}>
           <TodayMathMark size={28} />
-          오늘의수학
+          오늘 수학
         </Link>
         <span className={styles.sub}>교사용 범위</span>
       </header>

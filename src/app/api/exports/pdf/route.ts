@@ -5,6 +5,7 @@ import {
   readExportBody,
 } from "@/lib/export/request";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
+import { PDF_RESPONSE_MAX_BYTES } from "@/lib/export/pdfLimits";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -23,6 +24,11 @@ async function handlePost(request: Request) {
     const requestUrl = new URL(request.url);
     const origin = `${requestUrl.protocol}//${request.headers.get("host") ?? requestUrl.host}`;
     const pdf = await buildPdf(parsed.data, origin, request.signal);
+    if (pdf.byteLength > PDF_RESPONSE_MAX_BYTES)
+      return Response.json(
+        { error: "PDF 용량이 큽니다. 인쇄에서 PDF로 저장해 주세요." },
+        { status: 413, headers: exportHeaders },
+      );
     const filename = encodeURIComponent(
       `${parsed.data.title || "시험지"}.pdf`,
     ).replace(

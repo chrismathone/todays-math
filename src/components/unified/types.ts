@@ -3,10 +3,23 @@ import type { ProblemSourceReference } from "@/contracts/problemSourceReference.
 import type { MathgenProblemData } from "@/lib/mathgen/contracts";
 import type { StudioCrop } from "./studioHelpers";
 import type { EnglishBankQuestion } from "@/contracts/englishQuestionBank.contract";
+import type { QuestionRepresentation } from "@/contracts/questionFormats.contract";
 
 export type SchoolLevel = "elementary" | "secondary";
 
 export interface StudioProblem {
+  /** Optional for old saved payloads, local crops and English; id remains actual UUID. */
+  questionId?: string;
+  questionFormats?: QuestionRepresentation[];
+  /** Display-only arithmetic grouping; the saved item remains untouched in source. */
+  arithmetic?: {
+    round: number;
+    number: number;
+    groupKey: string;
+    groupTitle: string;
+    /** One shared question for the contiguous group, printed as "[11~20] …". */
+    groupInstruction?: string;
+  };
   /** Lossless English output adapter. Never feed English prose through the math parser. */
   english?: {
     item: EnglishBankQuestion;
@@ -35,6 +48,9 @@ export interface StudioProblem {
   /** Whole-problem image from a local crop; used when text has not been transcribed. */
   croppedImage?: string;
   sourceLabel?: string;
+  /** Optional on imported/local crops; retained when a bank problem is selected. */
+  sourceReference?: ProblemSourceReference | null;
+  source?: unknown;
   /** Bank inspection can include shared rows that cannot be issued. */
   eligible?: boolean;
   ineligibleReason?: string | null;
@@ -43,7 +59,6 @@ export interface StudioProblem {
 }
 
 export interface BankProblem extends StudioProblem {
-  sourceReference?: ProblemSourceReference | null;
   source?: string;
   /**
    * 출처 배지(`provenanceBadges`)의 판정 근거 — 엔진이 적는 자기 유형 정체(D-105).
@@ -68,9 +83,19 @@ export interface BankProblem extends StudioProblem {
    *    `[?형식]` 으로 조용히 떨어진다.
    */
   questionTypeRaw: string | null;
+  /**
+   * 자료 안 번호(교과서) · 시험지 번호(기출) — 서버 목록(`UNIFIED_PROBLEM_SELECT`)이 싣는다(문제은행 P0 2026-10-14).
+   * 자료 안에서도 겹칠 수 있다 — 번호만으로 문항을 가리키지 말고 문항 코드와 함께 보인다. 옛 저장 초안에는 없다.
+   */
+  questionNumber?: number | null;
 }
 
 export interface BankData {
+  version?: 2;
+  countUnit?: "question";
+  queryKey?: string;
+  /** Exact-ID recovery may include multiple stored representations; never use its rows as inventory. */
+  queryMode?: "exact_ids";
   problems: BankProblem[];
   total: number;
   page: number;

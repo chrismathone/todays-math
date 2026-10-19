@@ -174,12 +174,12 @@ export default function ElementaryCourseApp() {
         <Link
           href="/lab"
           className={shell.brand}
-          aria-label="오늘의수학 개념 실험실"
+          aria-label="오늘 수학 개념 실험실"
         >
           <TodayMathMark size={28} className={shell.brandMark} />
           <TodayMathMark size={28} inverse className={shell.brandInverse} />
           <span>
-            오늘의수학 <b>초등 학습 · 오늘의 기억</b>
+            오늘 수학 <b>초등 학습 · 오늘의 기억</b>
           </span>
         </Link>
         <nav aria-label="초등 학습 메뉴">

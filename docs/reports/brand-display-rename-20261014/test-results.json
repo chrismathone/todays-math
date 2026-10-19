@@ -1,0 +1,262 @@
+[
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/api/englishPrintPage.test.ts",
+    "passed": 12,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/components/AdminAccounts.test.tsx",
+    "passed": 29,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/components/AppChrome.test.tsx",
+    "passed": 5,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/components/BranchAdmin.test.tsx",
+    "passed": 23,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/components/ClassManage.test.tsx",
+    "passed": 14,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/components/ConceptBlankPaper.test.tsx",
+    "passed": 55,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/components/EnglishMakerView.test.tsx",
+    "passed": 69,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/components/EnglishPrintClient.test.tsx",
+    "passed": 28,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/components/EnglishPrintPaper.test.tsx",
+    "passed": 31,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/components/EnglishStudio.bank.test.tsx",
+    "passed": 4,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/components/EnglishStudio.questions.test.tsx",
+    "passed": 3,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/components/EnglishStudio.test.tsx",
+    "passed": 25,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/components/EywaLinkScreens.test.tsx",
+    "passed": 21,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/components/LearnPasswordPage.test.tsx",
+    "passed": 3,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/components/LearnScreens.test.tsx",
+    "passed": 39,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/components/Main.test.tsx",
+    "passed": 20,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/components/PrintCheck.test.tsx",
+    "passed": 10,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/components/PrivateLibrary.test.tsx",
+    "passed": 27,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/components/ProblemBank.test.tsx",
+    "passed": 62,
+    "failed": [
+      {
+        "name": "[S-08] 문제은행 — 출처 필터 (MSW) 네 출처를 모두 고를 수 있다 — 하나라도 빠지면 그 문항은 못 찾는다",
+        "message": "AssertionError: expected [ '전체', '기출', '변형', '자작', '교과서', …(1) ] to deeply equal [ '전체', '기출', '변형', '자작', 'AI 생성' ]"
+      }
+    ],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/components/TestPrint.test.tsx",
+    "passed": 23,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/components/TodaysExam.test.tsx",
+    "passed": 19,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/components/useWorkspaceDrafts.test.tsx",
+    "passed": 13,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/unit/auditPresentation.test.ts",
+    "passed": 15,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/unit/draftStore.actions.test.ts",
+    "passed": 8,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/unit/draftStoreRemoved.test.ts",
+    "passed": 7,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/unit/englishChatgpt.test.ts",
+    "passed": 27,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/unit/englishListeningPrint.test.tsx",
+    "passed": 1,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "test-results.json",
+    "file": "src/__tests__/unit/examPaperProbeParity.test.tsx",
+    "passed": 7,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "shell-test-results.json",
+    "file": "src/__tests__/components/ApprovalPending.test.tsx",
+    "passed": 3,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "shell-test-results.json",
+    "file": "src/__tests__/components/AuthPages.test.tsx",
+    "passed": 10,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "shell-test-results.json",
+    "file": "src/__tests__/components/LoadingSkeletons.test.tsx",
+    "passed": 13,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "shell-test-results.json",
+    "file": "src/__tests__/components/LoginLanding.test.tsx",
+    "passed": 10,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "shell-test-results.json",
+    "file": "src/__tests__/components/RouteRecovery.test.tsx",
+    "passed": 1,
+    "failed": [],
+    "skipped": 0
+  },
+  {
+    "run": "shell-test-results.json",
+    "file": "src/__tests__/components/UnifiedWorkspace.access.test.tsx",
+    "passed": 58,
+    "failed": [
+      {
+        "name": "제품 전환 — 브랜드 자리 고르기 단추 (D-148) 제품 목록은 권한 있는 제품만 — 영어 메뉴가 없으면 지금 모습 그대로(▾ 없음 · 목록 없음)",
+        "message": "TestingLibraryElementError: Unable to find an accessible element with the role \"button\" and name \"오늘 수학 홈\""
+      }
+    ],
+    "skipped": 0
+  },
+  {
+    "run": "baseline-test-results.json",
+    "file": "src/__tests__/components/BrandAuditProblemBankBaseline.test.tsx",
+    "passed": 0,
+    "failed": [
+      {
+        "name": "[S-08] 문제은행 — 출처 필터 (MSW) 네 출처를 모두 고를 수 있다 — 하나라도 빠지면 그 문항은 못 찾는다",
+        "message": "AssertionError: expected [ '전체', '기출', '변형', '자작', '교과서', …(1) ] to deeply equal [ '전체', '기출', '변형', '자작', 'AI 생성' ]"
+      }
+    ],
+    "skipped": 0
+  }
+]

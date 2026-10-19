@@ -1,4 +1,5 @@
 import "server-only";
+import type { FrozenProblem } from "@/lib/examPublication/freeze";
 import type { Problem, TestProblem } from "@prisma/client";
 import { serializeTestProblemItem } from "@/lib/serializers";
 import { difficultySchema, uuidSchema } from "@/contracts/common.contract";
@@ -37,6 +38,11 @@ export interface TestContentLink {
   snapshotId?: string | null;
   snapshot?: TestSnapshotRow | null;
   snapshotAssets?: ReadonlyMap<string, PrintableSnapshotAsset>;
+  /**
+   * 월말평가 M1 — 반에 낸 시험이면 그 문항의 **낸 그대로**(발행본 · `hydrateTestSnapshots` 가 붙인다).
+   * 있으면 글 · 정답 · 해설 · 형식 · 그림은 은행이 아니라 이것이다(은행 문항을 고쳐도 낸 시험은 그대로).
+   */
+  publicationProblem?: FrozenProblem | null;
 }
 
 /** Authorization precedes this read. A dangling snapshot never silently falls back to today's bank. */
@@ -123,6 +129,20 @@ export function contentOf<
 >(
   row: TestContentLink & { problem: T },
 ): Omit<T, keyof TestProblemFigureFields> & TestProblemFigureFields {
+  const frozen = row.publicationProblem;
+  if (frozen)
+    return {
+      ...row.problem,
+      content: frozen.content,
+      answer: frozen.answer,
+      solution: frozen.solution,
+      questionType: frozen.questionType,
+      figureUrls: frozen.figureUrls,
+      figureDims: frozen.figureDims,
+      figureSourceMm: frozen.figureSourceMm,
+      figureSvg: frozen.figureSvg,
+      choiceFigureIndex: frozen.choiceFigureIndex,
+    };
   const snapshot = snapshotOf(row);
   if (!snapshot) return row.problem;
   const metadata = metadataOf(row);

@@ -1,0 +1,473 @@
+[
+  {
+    "definitionId": "e4-equilateral-audit-r1",
+    "nativeFamilyKey": "native-desc:e4-equilateral-audit-r1",
+    "newRequiredAction": "한 값 계산 대신 틀린 길이·각 주장을 각각 수정하고 두 독립 조건에 대조",
+    "limits": "정삼각형 한 개의 설계만 평가; 실물 작도 능력은 측정하지 않음",
+    "observedAtBaseCommit": "eb5d6e285",
+    "observationScope": "one deterministic source sample per pre-integration registered family; not an exhaustive semantic equivalence proof",
+    "existing": [
+      {
+        "familyKey": "elem:초4|2-2-3 정삼각형의 성질|01",
+        "formId": "01",
+        "difficulty": "연산",
+        "observedSampleStem": "정삼각형 모양의 표지판이 있습니다. 한 변의 길이가 $6\\,\\mathrm{cm}$일 때 나머지 두 변의 길이는 각각 몇 cm인가?"
+      },
+      {
+        "familyKey": "elem:초4|2-2-3 정삼각형의 성질|02",
+        "formId": "02",
+        "difficulty": "기본",
+        "observedSampleStem": "세 각의 크기가 모두 같은 삼각형이 있습니다. 한 변의 길이가 $11\\,\\mathrm{cm}$일 때 세 변의 길이의 합은 몇 cm인가?"
+      },
+      {
+        "familyKey": "elem:초4|2-2-3 정삼각형의 성질|03",
+        "formId": "03",
+        "difficulty": "응용",
+        "observedSampleStem": "길이가 $27\\,\\mathrm{cm}$인 끈을 사용하여 한 변의 길이가 $8\\,\\mathrm{cm}$인 정삼각형을 한 개 만들었습니다. 남은 끈은 몇 cm인가?"
+      },
+      {
+        "familyKey": "elem:초4|2-2-3 정삼각형의 성질|04",
+        "formId": "04",
+        "difficulty": "심화하",
+        "observedSampleStem": "길이가 $216\\,\\mathrm{cm}$인 끈을 남김없이 사용하여 한 변의 길이가 $12\\,\\mathrm{cm}$인 정삼각형을 여러 개 만들었습니다. 정삼각형을 몇 개 만들었는가?"
+      },
+      {
+        "familyKey": "elem:초4|2-2-3 정삼각형의 성질|05",
+        "formId": "05",
+        "difficulty": "기본",
+        "observedSampleStem": "정삼각형의 한 변의 길이가 $13\\,\\mathrm{cm}$입니다. 다른 한 변의 길이는 몇 cm인가?"
+      },
+      {
+        "familyKey": "elem:초4|2-2-3 정삼각형의 성질|06",
+        "formId": "06",
+        "difficulty": "기본",
+        "observedSampleStem": "정삼각형의 한 각의 크기는 몇 도인가?"
+      },
+      {
+        "familyKey": "elem:초4|2-2-3 정삼각형의 성질|07",
+        "formId": "07",
+        "difficulty": "기본",
+        "observedSampleStem": "정삼각형의 세 각의 크기의 합은 몇 도인가?"
+      },
+      {
+        "familyKey": "elem:초4|2-2-3 정삼각형의 성질|08",
+        "formId": "08",
+        "difficulty": "응용",
+        "observedSampleStem": "그림에서 세 각의 크기가 모두 같은 삼각형의 기호를 쓰시오."
+      },
+      {
+        "familyKey": "elem:초4|2-2-3 정삼각형의 성질|09",
+        "formId": "09",
+        "difficulty": "응용",
+        "observedSampleStem": "세 변의 길이의 합이 $12\\,\\mathrm{cm}$인 정삼각형의 한 변은 몇 cm인가?"
+      },
+      {
+        "familyKey": "elem:초4|2-2-3 정삼각형의 성질|10",
+        "formId": "10",
+        "difficulty": "응용",
+        "observedSampleStem": "그림처럼 세 변의 길이가 모두 같은 삼각형을 무엇이라고 하는가?"
+      }
+    ]
+  },
+  {
+    "definitionId": "e4-triangle-dual-proof-r1",
+    "nativeFamilyKey": "native-desc:e4-triangle-dual-proof-r1",
+    "newRequiredAction": "분류명만 고르지 않고 두 기준의 동시 적용과 불가능한 조건의 모순을 입증",
+    "limits": "이등변에 정삼각형을 포함한다는 정의를 명시; 각을 보고 길이를 역산하지 않음",
+    "observedAtBaseCommit": "eb5d6e285",
+    "observationScope": "one deterministic source sample per pre-integration registered family; not an exhaustive semantic equivalence proof",
+    "existing": [
+      {
+        "familyKey": "elem:초4|2-2-5 삼각형을 두 가지 기준으로 분류하기|01",
+        "formId": "01",
+        "difficulty": "연산",
+        "observedSampleStem": "세 각의 크기가 $77^\\circ$, $77^\\circ$, $26^\\circ$인 이등변삼각형이 있습니다. 이 삼각형을 각의 크기에 따라 분류하면 예각삼각형, 직각삼각형, 둔각삼각형 중 무엇인가?"
+      },
+      {
+        "familyKey": "elem:초4|2-2-5 삼각형을 두 가지 기준으로 분류하기|02",
+        "formId": "02",
+        "difficulty": "기본",
+        "observedSampleStem": "이등변삼각형이면서 직각삼각형인 삼각형이 있습니다. 직각이 아닌 두 각의 크기는 각각 몇 도인가?"
+      },
+      {
+        "familyKey": "elem:초4|2-2-5 삼각형을 두 가지 기준으로 분류하기|03",
+        "formId": "03",
+        "difficulty": "응용",
+        "observedSampleStem": "이등변삼각형의 한 밑각의 크기가 $26^\\circ$입니다. 이 삼각형을 각의 크기에 따라 분류하면 예각삼각형, 직각삼각형, 둔각삼각형 중 무엇인가?"
+      },
+      {
+        "familyKey": "elem:초4|2-2-5 삼각형을 두 가지 기준으로 분류하기|04",
+        "formId": "04",
+        "difficulty": "심화하",
+        "observedSampleStem": "한 각의 크기가 $14^\\circ$인 이등변삼각형이 있습니다. 나머지 두 각의 크기가 될 수 있는 경우를 모두 구하고, 각각 각의 크기에 따라 분류하시오."
+      },
+      {
+        "familyKey": "elem:초4|2-2-5 삼각형을 두 가지 기준으로 분류하기|05",
+        "formId": "05",
+        "difficulty": "기본",
+        "observedSampleStem": "세 각의 크기가 $98^\\circ$, $41^\\circ$, $41^\\circ$인 이등변삼각형을 각의 크기에 따라 분류하면 무엇인가?"
+      },
+      {
+        "familyKey": "elem:초4|2-2-5 삼각형을 두 가지 기준으로 분류하기|06",
+        "formId": "06",
+        "difficulty": "기본",
+        "observedSampleStem": "그림에서 직각이등변삼각형이 될 수 있는 기호를 쓰시오."
+      },
+      {
+        "familyKey": "elem:초4|2-2-5 삼각형을 두 가지 기준으로 분류하기|07",
+        "formId": "07",
+        "difficulty": "기본",
+        "observedSampleStem": "정삼각형은 예각삼각형인가? '예' 또는 '아니요'로 답하시오."
+      },
+      {
+        "familyKey": "elem:초4|2-2-5 삼각형을 두 가지 기준으로 분류하기|08",
+        "formId": "08",
+        "difficulty": "응용",
+        "observedSampleStem": "세 변의 길이가 $12\\,\\mathrm{cm}$, $12\\,\\mathrm{cm}$, $12\\,\\mathrm{cm}$인 삼각형을 변의 길이에 따라 분류하면 무엇인가?"
+      },
+      {
+        "familyKey": "elem:초4|2-2-5 삼각형을 두 가지 기준으로 분류하기|09",
+        "formId": "09",
+        "difficulty": "응용",
+        "observedSampleStem": "정삼각형을 각의 크기에 따라 분류하면 무엇인가?"
+      },
+      {
+        "familyKey": "elem:초4|2-2-5 삼각형을 두 가지 기준으로 분류하기|10",
+        "formId": "10",
+        "difficulty": "응용",
+        "observedSampleStem": "직각삼각형에서 직각인 꼭짓점은 몇 개인가?"
+      }
+    ]
+  },
+  {
+    "definitionId": "e4-trapezoid-sufficiency-r1",
+    "nativeFamilyKey": "native-desc:e4-trapezoid-sufficiency-r1",
+    "newRequiredAction": "변 수·모양 이름 대신 평행 정보의 논리적 역할과 잘못된 충분조건을 평가",
+    "limits": "사다리꼴은 한 쌍 이상 평행이라는 포함 정의; 그림·특수사각형의 외관 추측 없음",
+    "observedAtBaseCommit": "eb5d6e285",
+    "observationScope": "one deterministic source sample per pre-integration registered family; not an exhaustive semantic equivalence proof",
+    "existing": [
+      {
+        "familyKey": "elem:초4|2-4-4 사다리꼴|01",
+        "formId": "01",
+        "difficulty": "연산",
+        "observedSampleStem": "사다리꼴 모양의 표지판이 있습니다. 평행한 두 변의 길이가 $7\\,\\mathrm{cm}$, $15\\,\\mathrm{cm}$이고 나머지 두 변의 길이가 $9\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$입니다. 네 변의 길이의 합은 몇 cm인가?"
+      },
+      {
+        "familyKey": "elem:초4|2-4-4 사다리꼴|02",
+        "formId": "02",
+        "difficulty": "기본",
+        "observedSampleStem": "어떤 사각형은 마주 보는 두 변 중 한 쌍만 서로 평행합니다. 이 사각형의 이름을 쓰고, 네 변의 길이가 $7\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $15\\,\\mathrm{cm}$, $7\\,\\mathrm{cm}$일 때 네 변의 길이의 합을 구하시오."
+      },
+      {
+        "familyKey": "elem:초4|2-4-4 사다리꼴|03",
+        "formId": "03",
+        "difficulty": "응용",
+        "observedSampleStem": "사다리꼴 모양의 창문이 있습니다. 네 변의 길이의 합이 $37\\,\\mathrm{cm}$이고, 평행하지 않은 두 변의 길이가 $10\\,\\mathrm{cm}$, $8\\,\\mathrm{cm}$입니다. 평행한 두 변의 길이의 합은 몇 cm인가?"
+      },
+      {
+        "familyKey": "elem:초4|2-4-4 사다리꼴|04",
+        "formId": "04",
+        "difficulty": "심화하",
+        "observedSampleStem": "사다리꼴의 네 변의 길이의 합이 $42\\,\\mathrm{cm}$입니다. 평행하지 않은 두 변의 길이는 각각 $8\\,\\mathrm{cm}$로 같고, 평행한 두 변 중 긴 변은 짧은 변보다 $12\\,\\mathrm{cm}$ 깁니다. 긴 변의 길이는 몇 cm인가?"
+      },
+      {
+        "familyKey": "elem:초4|2-4-4 사다리꼴|05",
+        "formId": "05",
+        "difficulty": "기본",
+        "observedSampleStem": "그림에서 사다리꼴의 기호를 쓰시오."
+      },
+      {
+        "familyKey": "elem:초4|2-4-4 사다리꼴|06",
+        "formId": "06",
+        "difficulty": "기본",
+        "observedSampleStem": "사다리꼴에서 평행한 변은 몇 쌍인가?"
+      },
+      {
+        "familyKey": "elem:초4|2-4-4 사다리꼴|07",
+        "formId": "07",
+        "difficulty": "기본",
+        "observedSampleStem": "네 변의 길이가 $10\\,\\mathrm{cm}$, $21\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $10\\,\\mathrm{cm}$인 사다리꼴의 네 변의 길이의 합은 몇 cm인가?"
+      },
+      {
+        "familyKey": "elem:초4|2-4-4 사다리꼴|08",
+        "formId": "08",
+        "difficulty": "응용",
+        "observedSampleStem": "그림처럼 평행한 변이 한 쌍만 있는 사각형을 무엇이라고 하는가?"
+      },
+      {
+        "familyKey": "elem:초4|2-4-4 사다리꼴|09",
+        "formId": "09",
+        "difficulty": "응용",
+        "observedSampleStem": "사다리꼴의 꼭짓점은 몇 개인가?"
+      },
+      {
+        "familyKey": "elem:초4|2-4-4 사다리꼴|10",
+        "formId": "10",
+        "difficulty": "응용",
+        "observedSampleStem": "사다리꼴에서 평행하지 않은 변은 몇 개인가?"
+      }
+    ]
+  },
+  {
+    "definitionId": "m3-factor-error-proof-r1",
+    "nativeFamilyKey": "native-desc:m3-factor-error-proof-r1",
+    "newRequiredAction": "인수분해 결과만 산출하지 않고 오답의 항별 불일치와 항등식·수치 검산의 차이를 설명",
+    "limits": "최고차항 계수 1인 정수 이차식; 특정 값 대입만으로 항등식 증명 불가를 명시",
+    "observedAtBaseCommit": "eb5d6e285",
+    "observationScope": "one deterministic source sample per pre-integration registered family; not an exhaustive semantic equivalence proof",
+    "existing": [
+      {
+        "familyKey": "mid:3-1|다항식의 인수분해|01",
+        "typeKey": "3-1|다항식의 인수분해|01",
+        "title": "인수",
+        "difficulty": "기본",
+        "observedSampleStem": "다항식 $x^2-x-42$ 의 인수 중 하나가 $x-7$ 일 때, 다른 한 일차식 인수를 구하시오."
+      },
+      {
+        "familyKey": "mid:3-1|다항식의 인수분해|02",
+        "typeKey": "3-1|다항식의 인수분해|02",
+        "title": "공통인 인수로 묶어 인수분해하기",
+        "difficulty": "연산",
+        "observedSampleStem": "다음 식을 인수분해하시오.\n$6x^3-15x^2y$"
+      },
+      {
+        "familyKey": "mid:3-1|다항식의 인수분해|03",
+        "typeKey": "3-1|다항식의 인수분해|03",
+        "title": "의 인수분해",
+        "difficulty": "연산",
+        "observedSampleStem": "다음 식을 인수분해하시오.\n$36x^2-60xy+25y^2$"
+      },
+      {
+        "familyKey": "mid:3-1|다항식의 인수분해|04",
+        "typeKey": "3-1|다항식의 인수분해|04",
+        "title": "완전제곱식이 되도록 하는 미지수의 값 구하기",
+        "difficulty": "응용",
+        "observedSampleStem": "$x^2-18x+k$ 가 완전제곱식이 되도록 하는 상수 $k$ 의 값을 구하시오."
+      },
+      {
+        "familyKey": "mid:3-1|다항식의 인수분해|05",
+        "typeKey": "3-1|다항식의 인수분해|05",
+        "title": "근호 안이 완전제곱식으로 인수분해되는 식",
+        "difficulty": "심화하",
+        "observedSampleStem": "$4<x<9$ 일 때, 다음 식을 간단히 하시오.\n$\\sqrt{x^2-8x+16}-\\sqrt{x^2-18x+81}$"
+      },
+      {
+        "familyKey": "mid:3-1|다항식의 인수분해|06",
+        "typeKey": "3-1|다항식의 인수분해|06",
+        "title": "의 인수분해",
+        "difficulty": "연산",
+        "observedSampleStem": "다음 식을 인수분해하시오.\n$49x^2-4y^2$"
+      },
+      {
+        "familyKey": "mid:3-1|다항식의 인수분해|07",
+        "typeKey": "3-1|다항식의 인수분해|07",
+        "title": "의 인수분해",
+        "difficulty": "연산",
+        "observedSampleStem": "다음 식을 인수분해하시오.\n$x^2+5xy+6y^2$"
+      },
+      {
+        "familyKey": "mid:3-1|다항식의 인수분해|08",
+        "typeKey": "3-1|다항식의 인수분해|08",
+        "title": "의 인수분해",
+        "difficulty": "응용",
+        "observedSampleStem": "다음 식을 인수분해하시오.\n$20x^2+3x-35$"
+      },
+      {
+        "familyKey": "mid:3-1|다항식의 인수분해|09",
+        "typeKey": "3-1|다항식의 인수분해|09",
+        "title": "인수분해 공식 종합",
+        "difficulty": "응용",
+        "observedSampleStem": "다음 식을 인수분해하시오.\n$12x^2-50x+50$"
+      },
+      {
+        "familyKey": "mid:3-1|다항식의 인수분해|50",
+        "typeKey": "3-1|다항식의 인수분해|50",
+        "title": "인수분해한 두 일차식의 상수항의 합",
+        "difficulty": "심화하",
+        "observedSampleStem": "이차식 $5x^2+22x+8$을 계수가 자연수인 두 일차식의 곱으로 인수분해할 때, 두 일차식의 상수항의 합을 구하시오."
+      },
+      {
+        "familyKey": "mid:3-1|다항식의 인수분해|55W",
+        "typeKey": "3-1|다항식의 인수분해|55W",
+        "title": "두 계수의 합이 주어진 이차식이 인수분해되는 경우를 모두 구하기",
+        "difficulty": "심화상",
+        "observedSampleStem": "$a$, $b$가 모두 자연수이고 $a+b=163$이다. 이차식 $x^{2}+ax+b$가 계수와 상수항이 모두 정수이고 상수항이 서로 다른 두 일차식의 곱으로 인수분해될 때, $a$의 값을 모두 구하고 그 합을 구하시오."
+      }
+    ]
+  },
+  {
+    "definitionId": "m3-quadratic-domain-r1",
+    "nativeFamilyKey": "native-desc:m3-quadratic-domain-r1",
+    "newRequiredAction": "양의 길이 답만 쓰지 않고 방정식의 음의 해도 찾고 상황에서 제외하는 이유와 원조건 검산 제시",
+    "limits": "직사각형 넓이 상황의 정수 해; 다른 모델링 상황 전체를 대표하지 않음",
+    "observedAtBaseCommit": "eb5d6e285",
+    "observationScope": "one deterministic source sample per pre-integration registered family; not an exhaustive semantic equivalence proof",
+    "existing": [
+      {
+        "familyKey": "mid:3-1|이차방정식의 활용|08",
+        "typeKey": "3-1|이차방정식의 활용|08",
+        "title": "이차방정식의 활용 식이 주어진 문제",
+        "difficulty": "응용",
+        "observedSampleStem": "$1$부터 자연수 $n$까지의 합은 $\\dfrac{n(n+1)}{2}$이다. 그 합이 $325$가 되도록 하는 $n$의 값을 구하시오."
+      },
+      {
+        "familyKey": "mid:3-1|이차방정식의 활용|09",
+        "typeKey": "3-1|이차방정식의 활용|09",
+        "title": "이차방정식의 활용 수에 대한 문제",
+        "difficulty": "응용",
+        "observedSampleStem": "두 자리 자연수가 있다. 이 수의 십의 자리의 숫자와 일의 자리의 숫자의 합은 $14$이고, 두 숫자의 곱은 이 수보다 $28$만큼 작다고 한다. 이 수를 구하시오."
+      },
+      {
+        "familyKey": "mid:3-1|이차방정식의 활용|10",
+        "typeKey": "3-1|이차방정식의 활용|10",
+        "title": "이차방정식의 활용 실생활에 대한 문제",
+        "difficulty": "응용",
+        "observedSampleStem": "볼펜 $462$개를 몇 명의 학생에게 남김없이 똑같이 나누어 주었다. 학생 한 명이 받은 볼펜의 개수가 학생 수보다 $1$만큼 작다고 할 때, 학생은 모두 몇 명인지 구하시오."
+      },
+      {
+        "familyKey": "mid:3-1|이차방정식의 활용|11",
+        "typeKey": "3-1|이차방정식의 활용|11",
+        "title": "이차방정식의 활용 쏘아 올린 물체에 대한 문제",
+        "difficulty": "응용",
+        "observedSampleStem": "지면으로부터 $90\\,\\mathrm{m}$ 높이의 건물 옥상에서 초속 $35\\,\\mathrm{m}$로 똑바로 위로 쏘아 올린 물체의 $x$초 후의 지면으로부터의 높이는 $(-5x^2+35x+90)\\,\\mathrm{m}$라 한다. 이 물체가 높이 $120\\,\\mathrm{m}$ 이상인 지점을 지나는 것은 몇 초 동안인지 구하시오."
+      },
+      {
+        "familyKey": "mid:3-1|이차방정식의 활용|12",
+        "typeKey": "3-1|이차방정식의 활용|12",
+        "title": "이차방정식의 활용 도형에 대한 문제",
+        "difficulty": "응용",
+        "observedSampleStem": "직사각형 $ABCD$에서 $\\overline{AB}=12\\,\\mathrm{cm}$, $\\overline{BC}=16\\,\\mathrm{cm}$이다. 점 $P$는 점 $A$를 출발하여 점 $B$까지 매초 $1\\,\\mathrm{cm}$의 속력으로 $\\overline{AB}$ 위를 움직이고, 점 $Q$는 점 $B$를 출발하여 점 $C$까지 매초 $2\\,\\mathrm{cm}$의 속력으로 $\\overline{BC}$ 위를 움직인다. 두 점 $P$, $Q$가 동시에 출발할 때, 삼각형 $PBQ$의 넓이가 $35\\,\\mathrm{cm^2}$가 되는 것은 출발한 지 몇 초 후인지 모두 구하시오."
+      },
+      {
+        "familyKey": "mid:3-1|이차방정식의 활용|13",
+        "typeKey": "3-1|이차방정식의 활용|13",
+        "title": "이차방정식의 활용 길의 폭에 대한 문제",
+        "difficulty": "응용",
+        "observedSampleStem": "가로의 길이가 $10\\,\\mathrm{m}$, 세로의 길이가 $18\\,\\mathrm{m}$인 직사각형 모양의 땅에 폭이 일정한 십자 모양의 길을 만들려고 한다. 길을 제외한 땅의 넓이가 $84\\,\\mathrm{m^2}$가 되도록 하려면 길의 폭을 몇 $\\mathrm{m}$로 해야 하는지 구하시오."
+      },
+      {
+        "familyKey": "mid:3-1|이차방정식의 활용|14",
+        "typeKey": "3-1|이차방정식의 활용|14",
+        "title": "이차방정식의 활용 상자를 만드는 문제",
+        "difficulty": "심화하",
+        "observedSampleStem": "폭이 $52\\,\\mathrm{cm}$인 양철판의 양쪽을 같은 높이만큼 직각으로 접어 올려 물받이를 만들려고 한다. 물받이의 단면의 넓이가 $330\\,\\mathrm{cm^2}$일 때, 물받이의 높이가 될 수 있는 값을 모두 구하시오."
+      },
+      {
+        "familyKey": "mid:3-1|이차방정식의 활용|15",
+        "typeKey": "3-1|이차방정식의 활용|15",
+        "title": "이차방정식의 활용 닮음을 이용한 문제",
+        "difficulty": "심화하",
+        "observedSampleStem": "닮음비가 $2 : 3$인 두 정사각형이 있다. 두 정사각형의 넓이의 합이 $325\\,\\mathrm{cm^2}$일 때, 큰 정사각형의 한 변의 길이를 구하시오."
+      },
+      {
+        "familyKey": "mid:3-1|이차방정식의 활용|19",
+        "typeKey": "3-1|이차방정식의 활용|19",
+        "title": "이차방정식의 활용 넓이가 주어진 도형",
+        "difficulty": "연산",
+        "observedSampleStem": "밑변의 길이가 높이보다 $7\\,\\mathrm{cm}$ 더 긴 삼각형의 넓이가 $39\\,\\mathrm{cm^2}$일 때, 이 삼각형의 높이를 구하시오."
+      },
+      {
+        "familyKey": "mid:3-1|이차방정식의 활용|20",
+        "typeKey": "3-1|이차방정식의 활용|20",
+        "title": "이차방정식의 활용 합과 곱이 주어진 두 수",
+        "difficulty": "기본",
+        "observedSampleStem": "두 자연수의 합이 $32$이고 곱이 $231$일 때, 두 수의 차를 구하시오."
+      },
+      {
+        "familyKey": "mid:3-1|이차방정식의 활용|129X",
+        "typeKey": "3-1|이차방정식의 활용|129X",
+        "title": "연속하는 자연수의 합으로 나타낼 때 더하는 개수를 모두 구하기",
+        "difficulty": "심화상",
+        "observedSampleStem": "연속하는 두 개 이상의 자연수를 모두 더하여 $70$을 만들려고 한다. 이때 더하는 자연수의 개수가 될 수 있는 값을 모두 구하고, 그 합을 구하시오."
+      }
+    ]
+  },
+  {
+    "definitionId": "m3-statistics-shift-spread-r1",
+    "nativeFamilyKey": "native-desc:m3-statistics-shift-spread-r1",
+    "newRequiredAction": "한 자료의 평균·분산 계산 대신 평행 이동과 퍼짐 변화를 구별하고 동일 자료로 주장에 반례 제시",
+    "limits": "모분산(편차제곱 평균)을 발문에 명시; 표본분산·실증 학습효과 주장은 하지 않음",
+    "observedAtBaseCommit": "eb5d6e285",
+    "observationScope": "one deterministic source sample per pre-integration registered family; not an exhaustive semantic equivalence proof",
+    "existing": [
+      {
+        "familyKey": "mid:3-2|산포도|01",
+        "typeKey": "3-2|산포도|01",
+        "title": "편차",
+        "difficulty": "기본",
+        "observedSampleStem": "다음은 학생 $5$명 A, B, C, D, E의 수학 점수이다.\nA: $71$점, B: $69$점, C: $62$점, D: $52$점, E: $81$점\n이 자료의 평균이 $67$점일 때, 학생 D의 점수의 편차를 구하시오."
+      },
+      {
+        "familyKey": "mid:3-2|산포도|02",
+        "typeKey": "3-2|산포도|02",
+        "title": "편차를 이용하여 변량 구하기",
+        "difficulty": "응용",
+        "observedSampleStem": "학생 $5$명의 수학 점수의 편차가 각각 $+1$점, $-5$점, $-13$점, $+2$점, $x$점이다. 편차의 합은 항상 $0$임을 이용하여 $x$의 값을 구하시오."
+      },
+      {
+        "familyKey": "mid:3-2|산포도|03",
+        "typeKey": "3-2|산포도|03",
+        "title": "분산과 표준편차",
+        "difficulty": "응용",
+        "observedSampleStem": "학생 $5$명의 수학 점수의 편차가 각각 $+3$점, $-3$점, $-9$점, $+5$점, $+4$점이다. 이 자료의 표준편차를 구하시오."
+      },
+      {
+        "familyKey": "mid:3-2|산포도|04",
+        "typeKey": "3-2|산포도|04",
+        "title": "평균과 분산을 이용하여 식의 값 구하기",
+        "difficulty": "응용",
+        "observedSampleStem": "어떤 자료의 분산이 $4$일 때, 이 자료의 각 변량을 $4$배 하고 $2$를 더한 새로운 자료의 분산을 구하시오."
+      },
+      {
+        "familyKey": "mid:3-2|산포도|05",
+        "typeKey": "3-2|산포도|05",
+        "title": "자료의 이해",
+        "difficulty": "기본",
+        "observedSampleStem": "다음은 학생 $5$명의 몸무게를 조사하여 나타낸 것이다. $40\\,\\mathrm{kg}$, $78\\,\\mathrm{kg}$, $82\\,\\mathrm{kg}$, $86\\,\\mathrm{kg}$, $89\\,\\mathrm{kg}$\n이 자료의 평균을 구하시오."
+      },
+      {
+        "familyKey": "mid:3-2|산포도|06",
+        "typeKey": "3-2|산포도|06",
+        "title": "두 집단 전체의 평균 분산 표준편차",
+        "difficulty": "응용",
+        "observedSampleStem": "A반 학생 $8$명의 수학 점수의 평균이 $89$점이고, B반 학생 $5$명의 수학 점수의 평균이 $76$점이다. 두 반 전체 학생의 수학 점수의 평균을 구하시오."
+      },
+      {
+        "familyKey": "mid:3-2|산포도|07",
+        "typeKey": "3-2|산포도|07",
+        "title": "변화된 변량의 평균 분산 표준편차",
+        "difficulty": "응용",
+        "observedSampleStem": "어떤 자료의 표준편차가 $8$일 때, 각 변량을 $3$배 한 새로운 자료의 표준편차를 구하시오."
+      },
+      {
+        "familyKey": "mid:3-2|산포도|08",
+        "typeKey": "3-2|산포도|08",
+        "title": "자료에서 분산 구하기",
+        "difficulty": "응용",
+        "observedSampleStem": "다음은 학생 $5$명의 수학 점수를 조사하여 나타낸 것이다. $44$점, $62$점, $75$점, $91$점, $93$점\n이 자료의 분산을 구하시오."
+      },
+      {
+        "familyKey": "mid:3-2|산포도|09",
+        "typeKey": "3-2|산포도|09",
+        "title": "분산과 표준편차의 관계",
+        "difficulty": "연산",
+        "observedSampleStem": "어떤 자료의 표준편차가 $6$일 때, 이 자료의 분산을 구하시오."
+      },
+      {
+        "familyKey": "mid:3-2|산포도|10",
+        "typeKey": "3-2|산포도|10",
+        "title": "미지수가 있는 자료의 분산",
+        "difficulty": "심화하",
+        "observedSampleStem": "$5$개의 변량 $3$, $6$, $a$, $b$, $9$의 평균이 $8$이고 두 변량 $a$, $b$의 차가 $8$일 때, 이 자료의 분산을 구하시오. (단, $a<b$)"
+      },
+      {
+        "familyKey": "mid:3-2|산포도|11T",
+        "typeKey": "3-2|산포도|11T",
+        "title": "평균과 중앙값이 같은 변량 구하기",
+        "difficulty": "심화상",
+        "observedSampleStem": "다음은 학생 $5$명이 가지고 있는 연필의 수를 조사하여 나타낸 것이다.\n$3$, $5$, $15$, $29$, $x$\n이 자료의 평균과 중앙값이 서로 같을 때, 자연수 $x$의 값을 모두 구하시오."
+      }
+    ]
+  }
+]

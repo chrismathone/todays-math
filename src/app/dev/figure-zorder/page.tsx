@@ -10,7 +10,7 @@ import { Bench } from "./Bench";
  * (jsdom 은 CSS·그리기를 안 돈다 — 차례가 바뀌었는지와 y축이 보이는지는 다르다). 2026-09-21 t43.
  */
 export const metadata = {
-  title: "도형 순서 확인대 · 오늘의수학",
+  title: "도형 순서 확인대 · 오늘 수학",
   robots: { index: false, follow: false },
 };
 

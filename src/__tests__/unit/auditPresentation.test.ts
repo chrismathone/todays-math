@@ -224,7 +224,7 @@ describe("audit presentation", () => {
     expect(auditDetailRows({ previousMenus: ["english"], menus: [] })).toEqual([
       {
         label: "메뉴 권한",
-        previous: "오늘의 영어 전체",
+        previous: "오늘 영어 전체",
         value: "허용된 메뉴 없음",
         unchanged: false,
       },
@@ -235,6 +235,6 @@ describe("audit presentation", () => {
         action: "ui.navigate",
         details: { path: "/#english" },
       }),
-    ).toBe("오늘의 영어 전체 · 화면 이동");
+    ).toBe("오늘 영어 전체 · 화면 이동");
   });
 });

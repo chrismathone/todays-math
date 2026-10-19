@@ -1,0 +1,82 @@
+{
+  "source": "/Users/pss/orca/workspaces/today_/problem_make/.qa-artifacts/math-bank-reinforcement-20261018/before/census.json",
+  "sourceSha256": "97d55741279ff5dd2bfda1455dc5de961c9ce162f06770da47a020817a62b0fb",
+  "measuredAt": "2026-10-18T02:03:04.047Z",
+  "baselineHead": "4a6e5530d6791cf005f2b3339f40b7f259ce9a06",
+  "readOnly": true,
+  "eligibleRows": 115425,
+  "defaultRatios": {
+    "8": {
+      "연산": 1,
+      "기본": 3,
+      "응용": 3,
+      "심화하": 1,
+      "심화중": 0,
+      "심화상": 0
+    },
+    "10": {
+      "연산": 1,
+      "기본": 4,
+      "응용": 4,
+      "심화하": 1,
+      "심화중": 0,
+      "심화상": 0
+    },
+    "20": {
+      "연산": 3,
+      "기본": 8,
+      "응용": 7,
+      "심화하": 2,
+      "심화중": 0,
+      "심화상": 0
+    }
+  },
+  "targets": [
+    {
+      "unitId": "c8d1b160-ffb6-4da1-9c54-a3522ffcf134",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-3 정삼각형의 성질",
+      "eligibleRows": 150,
+      "families": 10,
+      "distinctStems": 77,
+      "strictDefaultTierActual": 8,
+      "fiveSheetDistinctStemAssignments": 36
+    },
+    {
+      "unitId": "0a069c2f-244d-4f9e-832f-3e0f8969ba21",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-5 삼각형을 두 가지 기준으로 분류하기",
+      "eligibleRows": 99,
+      "families": 10,
+      "distinctStems": 74,
+      "strictDefaultTierActual": 8,
+      "fiveSheetDistinctStemAssignments": 36
+    },
+    {
+      "unitId": "abb7989e-15ae-4dec-9ac0-983dee08a700",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-2 평행과 평행선",
+      "eligibleRows": 117,
+      "families": 11,
+      "distinctStems": 78,
+      "strictDefaultTierActual": 8,
+      "fiveSheetDistinctStemAssignments": 38
+    },
+    {
+      "unitId": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-4 사다리꼴",
+      "eligibleRows": 130,
+      "families": 10,
+      "distinctStems": 67,
+      "strictDefaultTierActual": 8,
+      "fiveSheetDistinctStemAssignments": 32
+    }
+  ],
+  "postLoadCapacity": null,
+  "postLoadMeasurementOwner": "root"
+}

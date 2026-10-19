@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import { COLORS } from "@/components/unified/print/settings";
 import { PAPER_COLORS } from "@/components/unified/print/tokens";
 import { QuestionNumber } from "@/components/unified/print/templates/ProblemMeta";
+import { ExamDetails } from "@/components/unified/print/ExamDetails";
 import {
   readablePaperColor,
   inkOnColor,
@@ -67,7 +68,10 @@ describe("readable ink preserves selected paper accents", () => {
     "%s keeps every selectable question number readable without changing the chosen decoration",
     (template) => {
       const savedColor = DEFAULT_PRINT_OPTIONS.color;
-      for (const [, accent] of COLORS) {
+      for (const [, accent] of [
+        ["남색", DEFAULT_PRINT_OPTIONS.color],
+        ...COLORS,
+      ]) {
         const element = new DOMParser()
           .parseFromString(
             renderToStaticMarkup(
@@ -76,17 +80,44 @@ describe("readable ink preserves selected paper accents", () => {
             "text/html",
           )
           .querySelector("span")!;
-        const background =
-          template === "workbook" ? accent : PAPER_COLORS.paperWarm;
+        const background = accent;
         expect(
           contrast(element.style.color, background),
         ).toBeGreaterThanOrEqual(4.5);
-        if (template === "workbook")
-          expect(element.style.background).toBeTruthy();
-        if (template === "yuhyung")
-          expect(element.style.borderColor).toBeTruthy();
+        expect(element.style.background).toBeTruthy();
+        expect(element.hasAttribute("data-question-number")).toBe(true);
       }
       expect(DEFAULT_PRINT_OPTIONS.color).toBe(savedColor);
     },
   );
+
+  it("keeps every printed metadata line readable, including cyan and orange, while honoring the date toggle", () => {
+    for (const [, color] of [
+      ["남색", DEFAULT_PRINT_OPTIONS.color],
+      ...COLORS,
+    ]) {
+      const doc = new DOMParser().parseFromString(
+        renderToStaticMarkup(
+          <ExamDetails
+            meta={{
+              title: "확인 학습",
+              subject: "수학",
+              schoolName: "한빛중학교",
+              examDate: "2026-10-19",
+            }}
+            options={{ ...DEFAULT_PRINT_OPTIONS, color, showDate: false }}
+          />,
+        ),
+        "text/html",
+      );
+      const details = doc.querySelector<HTMLElement>("[data-exam-details]")!;
+      expect(details.textContent).toContain("한빛중학교");
+      expect(details.textContent).not.toContain("2026-10-19");
+      for (const background of [PAPER_COLORS.paper, PAPER_COLORS.paperWarm]) {
+        expect(
+          contrast(details.style.color, background),
+        ).toBeGreaterThanOrEqual(4.5);
+      }
+    }
+  });
 });

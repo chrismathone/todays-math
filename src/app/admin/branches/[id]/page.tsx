@@ -5,7 +5,7 @@ import { getAccountAccess } from "@/lib/accountAccess";
 import { db } from "@/lib/db";
 import AdminBranchDetail from "@/components/admin/AdminBranchDetail";
 
-export const metadata: Metadata = { title: "지점 관리 | 오늘의수학" };
+export const metadata: Metadata = { title: "지점 관리 | 오늘 수학" };
 
 export default async function AdminBranchPage({
   params,

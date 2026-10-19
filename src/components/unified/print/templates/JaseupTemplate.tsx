@@ -1,9 +1,9 @@
+import { PrintHeader } from "../PrintHeader";
 import { printPagePadding, scaledItemStyle } from "../geometry";
 // JaseupTemplate.tsx (T5) — 자습 학습지 (개념박스 + 모눈 풀이공간)
 // design_handoff 카피 + import path 조정 + options.accentColor → options.color
 // + MarkdownRenderer 실제 import.
 
-import { MarkdownRenderer } from "@/components/math/MarkdownRenderer";
 import type { ProblemReview } from "../types";
 import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
@@ -12,10 +12,12 @@ import { BodyContainer } from "./BodyContainer";
 import { ProblemHeader } from "./ProblemMeta";
 import { ProblemBody } from "./ProblemBody";
 import type { PrintTemplateProps } from "../types";
-import { ExamDetails } from "../ExamDetails";
 
 export function JaseupTemplate({
   page,
+  totalProblems,
+  round,
+  firstPage,
   columns,
   meta,
   problems,
@@ -26,7 +28,6 @@ export function JaseupTemplate({
   measure,
 }: PrintTemplateProps) {
   const accent = options.color || PAPER_COLORS.accentGold;
-  const isFirstPage = page === 1;
   const fs = bodyFontSize("jaseup", columns);
   const gap = Math.max(0, options.spacing);
   const embeddedSolvingArea =
@@ -52,6 +53,8 @@ export function JaseupTemplate({
       >
         <div>
           <ProblemHeader
+            sectionHeading={p.sectionHeading}
+            sectionInstruction={p.sectionInstruction}
             num={num}
             problem={p.variant}
             options={options}
@@ -164,118 +167,14 @@ export function JaseupTemplate({
         flexDirection: "column",
       }}
     >
-      {isFirstPage && (
-        <>
-          {/* 헤더 */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              marginBottom: 12,
-              flexShrink: 0,
-            }}
-          >
-            <div>
-              <div
-                style={{
-                  fontFamily: "var(--paper-font-sans)",
-                  fontSize: 10,
-                  fontWeight: 700,
-                  color: readablePaperColor(accent),
-                  letterSpacing: "0.3em",
-                  marginBottom: 4,
-                }}
-              >
-                SELF-STUDY
-              </div>
-              <div
-                style={{
-                  fontFamily: "var(--paper-font-serif)",
-                  fontSize: 24,
-                  fontWeight: 800,
-                  color: PAPER_COLORS.ink,
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                {meta.title}
-              </div>
-              {meta.todayGoal && (
-                <div
-                  style={{
-                    fontFamily: "var(--paper-font-sans)",
-                    fontSize: 11,
-                    color: PAPER_COLORS.ink70,
-                    marginTop: 4,
-                  }}
-                >
-                  오늘의 목표 · {meta.todayGoal}
-                </div>
-              )}
-            </div>
-            <div style={{ textAlign: "right" }}>
-              <div
-                style={{
-                  fontFamily: "var(--paper-font-sans)",
-                  fontSize: 9.5,
-                  color: PAPER_COLORS.ink50,
-                  marginBottom: 2,
-                }}
-              >
-                학습일
-              </div>
-              <div
-                style={{
-                  fontFamily: "var(--paper-font-serif)",
-                  fontSize: 14,
-                  fontWeight: 700,
-                }}
-              >
-                {options.showDate ? (meta.examDate ?? "—") : ""}
-              </div>
-            </div>
-          </div>
-
-          {/* 개념 박스 */}
-          {meta.conceptNote && (
-            <div
-              style={{
-                background: PAPER_COLORS.paper,
-                border: `1px solid ${accent}`,
-                borderLeft: `5px solid ${accent}`,
-                padding: "12px 16px",
-                marginBottom: 18,
-                flexShrink: 0,
-              }}
-            >
-              <div
-                style={{
-                  fontFamily: "var(--paper-font-sans)",
-                  fontSize: 10.5,
-                  fontWeight: 800,
-                  color: readablePaperColor(accent),
-                  letterSpacing: "0.16em",
-                  marginBottom: 6,
-                }}
-              >
-                ◆ 핵심 개념 정리
-              </div>
-              <div
-                style={{
-                  fontFamily: "var(--paper-font-serif)",
-                  fontSize: 12,
-                  lineHeight: 1.7,
-                  color: PAPER_COLORS.ink90,
-                }}
-              >
-                <MarkdownRenderer content={meta.conceptNote} />
-              </div>
-            </div>
-          )}
-        </>
-      )}
-
-      {isFirstPage && <ExamDetails meta={meta} options={options} />}
+      <PrintHeader
+        page={page}
+        round={round}
+        firstPage={firstPage}
+        totalProblems={totalProblems}
+        meta={meta}
+        options={options}
+      />
 
       <BodyContainer
         solvingArea={options.solvingArea}

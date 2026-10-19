@@ -53,6 +53,7 @@ const NOT_SCANNED: Record<string, string> = {
   problem_code: "코드다 — `$…$` 가 없다",
   external_id: "적재 열쇠다 — 지면에 안 나간다",
   family_key: "유형 정체다 — 지면에 안 나간다",
+  question_group_key: "같은 문항의 형식을 연결하는 정체 키다 — 지면 본문·정답·해설에 출력하지 않는다",
   figure_svg: "SVG 다. LaTeX 가 아니라 그림 마크업이라 축이 다르다",
   figure_source: "출처 딱지다",
   review_note: "사람이 쓴 검수 메모다 — 지면에 안 나간다",

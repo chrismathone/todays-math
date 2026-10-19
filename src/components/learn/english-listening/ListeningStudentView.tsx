@@ -286,7 +286,7 @@ function StudentAttempt({
       <header className={styles.heading}>
         <div>
           <p className={styles.eyebrow}>
-            오늘의 영어 · {mode === "exam" ? "짧은 평가" : "나의 듣기"}
+            오늘 영어 · {mode === "exam" ? "짧은 평가" : "나의 듣기"}
           </p>
           <h1>{view.title}</h1>
           <p className={styles.muted}>대화를 듣고 한 문제씩 답을 확정하세요.</p>

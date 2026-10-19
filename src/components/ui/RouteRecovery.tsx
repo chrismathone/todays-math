@@ -24,7 +24,7 @@ export default function RouteRecovery({
           className="mb-8 inline-flex min-h-11 items-center gap-2 text-lg font-bold"
         >
           <TodayMathMark size={28} />
-          오늘의수학
+          오늘 수학
         </Link>
         <h1 id="recovery-title" className="text-2xl font-bold">
           {title}

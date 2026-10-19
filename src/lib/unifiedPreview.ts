@@ -7,6 +7,11 @@ import {
 import { PROBLEM_CODE_PATTERN } from "@/contracts/problemCode.contract";
 import { db } from "@/lib/db";
 import {
+  cachedBankRead,
+  cachedBankQuestionList,
+  publicBankListQueryKey,
+} from "@/lib/bankReadCache";
+import {
   problemEligibleWhere,
   problemIneligibleReason,
 } from "@/lib/problemEligibility";
@@ -16,7 +21,25 @@ import { findProblemIdsByFormat } from "@/lib/problem/formatQuery";
 import { classifyFormat } from "@/lib/problem/provenance";
 import { PROBLEM_BANK_ORDER_BY } from "@/lib/problem/problemOrder";
 import { withProblemSourceReferences } from "@/lib/problem/sourceReference";
+import { familyKeyVariants } from "@/lib/generator/familyAliases";
+import { familyIdOf } from "@/lib/generator/familyKey";
+import {
+  excludeQuestionsWhere,
+  withQuestionMetadata,
+} from "@/lib/problem/questionQueries";
+import { QUESTION_REVISION_SELECT } from "@/lib/problem/questionSelection";
+import {
+  loadQuestionCandidates,
+  projectQuestionCandidates,
+  countProjectedQuestions,
+  questionReadMetadata,
+  type QuestionCandidate,
+} from "@/lib/problem/questionProjection";
+import { loadQuestionCounts } from "@/lib/problem/questionCountProjection";
+import { questionBucketTally } from "@/lib/problem/questionCountBuckets";
+import { questionPageSql } from "@/lib/problem/questionCountSql";
 import type { ProblemSourceReference } from "@/contracts/problemSourceReference.contract";
+import type { BankQueryContext } from "@/lib/bankQueryContext";
 import type {
   BankData,
   BankProblem,
@@ -25,8 +48,72 @@ import type {
 
 export class UnifiedBankQueryError extends Error {}
 
-/** Shared filters keep manual browsing and random selection in the same pool. */
-export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
+/**
+ * D-111 — 주어진 문항들의 **문항류를 통째로** 빼는 조건. 정체는 `(unitId, familyKey)` 복합키다(D-111 ⑴) —
+ * 같은 키 문자열이라도 단원이 다르면 다른 류라 남는다. 키가 없는(NULL · 빈 값) 문항은 **자기 자신만** 뺀다
+ * (D-105 · D-111 ⑵ — NULL 을 한 무리로 묶으면 레거시 수만 행이 한 류가 된다).
+ */
+async function excludeFamiliesClause(
+  ids: readonly string[],
+): Promise<Prisma.ProblemWhereInput> {
+  const rows = await db.problem.findMany({
+    where: { id: { in: [...ids] } },
+    select: { unitId: true, familyKey: true },
+  });
+  const pairs = new Map<string, { unitId: string; familyKey: string }>();
+  for (const { unitId, familyKey } of rows)
+    if (familyKey?.trim())
+      for (const variant of familyKeyVariants(unitId, familyKey))
+        pairs.set(JSON.stringify([unitId, variant]), {
+          unitId,
+          familyKey: variant,
+        });
+  return {
+    NOT: {
+      OR: [{ id: { in: [...ids] } }, ...pairs.values()],
+    },
+  };
+}
+
+/**
+ * W3 «같은 문항류» — 이 문항과 같은 `(unitId, familyKey)` 의 다른 문항. 키는 `familyIdOf` 처럼 앞뒤 공백을 걷어
+ * 견준다(그래서 그 단원의 키 있는 행을 읽어 가른다 — 단원 하나라 작다). 키가 없으면 혼자라 아무것도 안 걸린다.
+ */
+async function familyOfClause(id: string): Promise<Prisma.ProblemWhereInput> {
+  const row = await db.problem.findUnique({
+    where: { id },
+    select: { unitId: true, familyKey: true },
+  });
+  const key = row?.familyKey?.trim();
+  if (!row || !key) return { id: { in: [] } };
+  const keyed = await db.problem.findMany({
+    where: { unitId: row.unitId, NOT: { familyKey: null } },
+    select: { id: true, familyKey: true },
+  });
+  return {
+    id: {
+      in: keyed
+        .filter(
+          (other) =>
+            other.id !== id &&
+            familyIdOf({ ...other, unitId: row.unitId }) ===
+              familyIdOf({ id, ...row }),
+        )
+        .map((other) => other.id),
+    },
+  };
+}
+
+/**
+ * Shared filters keep manual browsing and random selection in the same pool.
+ *
+ * `context` — 요청 바깥에서 알아야 하는 것(지금은 최근 출제 빼기의 계정). `recent=1` 인데 없으면 거절한다:
+ * 조용히 넘기면 «뺐다»고 말한 화면이 빼지 않은 수를 보인다.
+ */
+export async function resolveUnifiedBankQuery(
+  params = new URLSearchParams(),
+  context?: BankQueryContext,
+) {
   const parsed = unifiedBankQuerySchema.safeParse(
     Object.fromEntries(
       Array.from(params).filter(
@@ -58,11 +145,17 @@ export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
     pageSize,
     unitIds,
     excludeIds,
+    excludeFamiliesOf,
+    recent,
+    familyOf,
     ids,
     semester,
     sourceGroup,
     books,
     materialKinds,
+    materials,
+    identity,
+    availableFormat,
   } = parsed.data;
   // Explicit status inspection may include rows that cannot be issued. Private
   // pools never become visible, and the returned eligibility controls adding.
@@ -71,7 +164,32 @@ export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
     : problemEligibleWhere();
   const clauses: Prisma.ProblemWhereInput[] = [visibility];
   if (unitIds) clauses.push({ unitId: { in: unitIds } });
-  if (excludeIds) clauses.push({ NOT: { id: { in: excludeIds } } });
+  if (excludeIds)
+    clauses.push(
+      identity === "question"
+        ? await excludeQuestionsWhere(excludeIds)
+        : { NOT: { id: { in: excludeIds } } },
+    );
+  if (excludeFamiliesOf)
+    clauses.push(await excludeFamiliesClause(excludeFamiliesOf));
+  if (familyOf) {
+    clauses.push(await familyOfClause(familyOf));
+    if (identity === "question")
+      clauses.push(await excludeQuestionsWhere([familyOf]));
+  }
+  if (recent) {
+    if (!context)
+      throw new UnifiedBankQueryError(
+        "최근 출제 문항을 확인할 계정을 알 수 없습니다.",
+      );
+    const recentIds = await context.recentProblemIds();
+    if (recentIds.length)
+      clauses.push(
+        identity === "question"
+          ? await excludeQuestionsWhere(recentIds)
+          : { NOT: { id: { in: [...recentIds] } } },
+      );
+  }
   if (ids) clauses.push({ id: { in: ids } });
   if (grade || chapter || chapterPrefix)
     clauses.push({
@@ -98,6 +216,8 @@ export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
   if (books) clauses.push({ sourceMaterial: { bookId: { in: books } } });
   if (materialKinds)
     clauses.push({ sourceMaterial: { kind: { in: materialKinds } } });
+  // 자료(문제은행 P0 — 책 → 자료 → 자료 안 번호). 자료가 없는 문항은 고르는 순간 빠진다.
+  if (materials) clauses.push({ sourceMaterialId: { in: materials } });
   const rangeIds = [
     ...new Set([unitFrom, unitTo].filter((id): id is string => Boolean(id))),
   ];
@@ -160,16 +280,39 @@ export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
   const where: Prisma.ProblemWhereInput = { AND: clauses };
   return {
     where,
-    format,
+    /**
+     * 고르는 조건만 — 보임 · 출제 자격 관문을 뺀 나머지(검수 상태를 골랐으면 그것도 여기 든다).
+     * 가용량(`bankSourceAvailability.ts`)이 «보유»(공용 풀) · «사용 가능»(출제 자격)을 **같은 조건**에 걸어 세려고 쓴다.
+     * 검수 상태를 안 골랐으면 `AND[problemEligibleWhere(), ...selection]` 이 곧 `where` 다.
+     */
+    selection: [
+      ...(reviewStatus ? [{ reviewStatus }] : []),
+      ...clauses.slice(1),
+    ] satisfies Prisma.ProblemWhereInput[],
+    format: availableFormat ?? format,
+    identity,
+    exactIds: ids !== undefined,
     visibility,
     grade,
     semester,
     requestedPage,
     pageSize,
+    /**
+     * 목록 차례. 자료를 골랐으면 자료 → 자료 안 번호(`questionNumber`) → 은행 차례 — 번호는 자료 안에서도
+     * 겹칠 수 있어(실측 86편) 마지막 열쇠가 동률을 정한다. 안 골랐으면 은행 차례 그대로.
+     */
+    orderBy: (materials
+      ? [
+          { sourceMaterialId: "asc" },
+          { questionNumber: "asc" },
+          ...PROBLEM_BANK_ORDER_BY,
+        ]
+      : PROBLEM_BANK_ORDER_BY) satisfies Prisma.ProblemOrderByWithRelationInput[],
   };
 }
 
 export const UNIFIED_PROBLEM_SELECT = {
+  ...QUESTION_REVISION_SELECT,
   id: true,
   unitId: true,
   content: true,
@@ -194,6 +337,11 @@ export const UNIFIED_PROBLEM_SELECT = {
    * 그 누락이 드러나지 않았다.
    */
   originProblemId: true,
+  /**
+   * 자료 안 번호(교과서) · 시험지 번호(기출) — 문제은행 P0 의 «책 → 자료 → 자료 안 번호». 자료 안에서도 겹칠 수
+   * 있어(실측 86편) 화면은 문항 코드와 함께 보인다. `sourceReference` 는 변형의 **원본**을 말하므로 이 행의 번호가 아니다.
+   */
+  questionNumber: true,
   pool: true,
   directUseAllowed: true,
   unit: { select: { grade: true, chapter: true, section: true } },
@@ -202,16 +350,47 @@ export const UNIFIED_PROBLEM_SELECT = {
 type UnifiedProblemRow = Prisma.ProblemGetPayload<{
   select: typeof UNIFIED_PROBLEM_SELECT;
 }>;
+type UnifiedProblemInput = Omit<
+  UnifiedProblemRow,
+  | "externalId"
+  | "sourceMaterialId"
+  | "figureSource"
+  | "questionGroupKey"
+  | "updatedAt"
+> &
+  Partial<
+    Pick<
+      UnifiedProblemRow,
+      | "externalId"
+      | "sourceMaterialId"
+      | "figureSource"
+      | "questionGroupKey"
+      | "updatedAt"
+    >
+  >;
 
 export function toBankProblem({
   unit,
   pool,
   directUseAllowed,
   questionType,
+  questionGroupKey,
+  updatedAt,
+  externalId,
+  sourceMaterialId,
+  figureSource,
   ...problem
-}: UnifiedProblemRow & {
+}: UnifiedProblemInput & {
   sourceReference?: ProblemSourceReference | null;
 }): BankProblem {
+  // Internal proof/revision evidence is not part of the old BankProblem response.
+  void [
+    questionGroupKey,
+    updatedAt,
+    externalId,
+    sourceMaterialId,
+    figureSource,
+  ];
   const questionTypes: Record<string, StudioProblem["questionType"]> = {
     multiple_choice: "multiple-choice",
     short_answer: "short-answer",
@@ -247,9 +426,38 @@ export function toBankProblem({
   };
 }
 
+/** Body and revision are read in one snapshot on both authenticated/dev detail routes. */
+export async function loadUnifiedBankProblem(
+  id: string,
+  identity?: "question",
+): Promise<BankProblem | null> {
+  const read = async (client: Prisma.TransactionClient) => {
+    const row = await client.problem.findFirst({
+      where: { AND: [{ id }, problemVisibleWhere()] },
+      select: UNIFIED_PROBLEM_SELECT,
+    });
+    if (!row) return null;
+    const rows = identity ? await withQuestionMetadata([row], client) : [row];
+    return toBankProblem((await withProblemSourceReferences(rows))[0]!);
+  };
+  return identity
+    ? db.$transaction(read, {
+        isolationLevel: "RepeatableRead",
+        timeout: 10000,
+      })
+    : read(db);
+}
+
 export type UnifiedBankBootstrap = Pick<
   BankData,
-  "total" | "grades" | "chapters" | "units" | "unitCounts"
+  | "total"
+  | "grades"
+  | "chapters"
+  | "units"
+  | "unitCounts"
+  | "version"
+  | "countUnit"
+  | "queryKey"
 >;
 
 async function loadUnifiedBankMetadata(
@@ -314,36 +522,48 @@ async function loadUnifiedBankMetadata(
   };
 }
 
-/** Metadata for the authenticated workspace shell; intentionally omits problem payloads. */
-export async function loadUnifiedBankBootstrap(): Promise<UnifiedBankBootstrap> {
+/** Shared metadata for authenticated, deferred bank consumers; omits problem payloads. */
+export async function loadUnifiedBankBootstrap(
+  identity?: "question",
+): Promise<UnifiedBankBootstrap> {
+  if (identity === "question") {
+    return {
+      ...(await loadQuestionBankSummary(problemEligibleWhere())),
+      ...questionReadMetadata(new URLSearchParams({ identity })),
+    };
+  }
   return loadUnifiedBankMetadata(await resolveUnifiedBankQuery());
 }
 
 /** Read-only shared-bank inspection. Issuance eligibility remains a separate rule. */
 export async function loadUnifiedBank(
   params = new URLSearchParams(),
+  context?: BankQueryContext,
 ): Promise<BankData> {
-  const {
-    where,
-    format,
-    visibility,
-    grade,
-    semester,
-    requestedPage,
-    pageSize,
-  } = await resolveUnifiedBankQuery(params);
-  const orderBy = PROBLEM_BANK_ORDER_BY;
+  // Reuse the list route's auth/development gates, but skip candidate paging and
+  // body reads when only the shared curriculum/counts are needed. The summary
+  // already uses bankReadCache; never cache this request's authorization.
+  if (params.get("view") === "bootstrap") {
+    if (params.get("identity") !== "question" || params.size !== 2)
+      throw new UnifiedBankQueryError(
+        "검색 조건이 올바르지 않습니다. 필터를 확인해 주세요.",
+      );
+    return {
+      ...(await loadUnifiedBankBootstrap("question")),
+      problems: [],
+      page: 1,
+      pageSize: 12,
+    };
+  }
+  const resolved = await resolveUnifiedBankQuery(params, context);
+  if (resolved.identity === "question")
+    return loadQuestionBank(params, resolved);
+  const { where, format, requestedPage, pageSize, orderBy } = resolved;
+  if (format === "multiple_choice")
+    throw new UnifiedBankQueryError("객관식 필터에는 문항 보기가 필요합니다.");
   const formatIds = await findProblemIdsByFormat(format, where, orderBy);
   const metadata = await loadUnifiedBankMetadata(
-    {
-      where,
-      format,
-      visibility,
-      grade,
-      semester,
-      requestedPage,
-      pageSize,
-    },
+    resolved,
     formatIds === null ? undefined : formatIds.length,
   );
   const page = Math.min(
@@ -374,5 +594,230 @@ export async function loadUnifiedBank(
     page,
     pageSize,
     ...metadata,
+  };
+}
+
+/** Question projection is opt-in; exact saved IDs keep their actual representations. */
+async function loadQuestionBank(
+  params: URLSearchParams,
+  resolved: Awaited<ReturnType<typeof resolveUnifiedBankQuery>>,
+): Promise<BankData> {
+  return db.$transaction(
+    async (tx) => {
+      const cache = new Map<string, ReturnType<typeof classifyFormat>>();
+      const metadata = await loadQuestionBankSummary(
+        resolved.visibility,
+        resolved.grade,
+        resolved.semester,
+        params.has("reviewStatus"),
+        cache,
+        tx,
+      );
+      const { where, format, requestedPage, pageSize, orderBy, exactIds } =
+        resolved;
+      const listingWhere = {
+        AND: [problemVisibleWhere(), ...resolved.selection],
+      };
+      const inspection = params.has("reviewStatus");
+      let total: number, page: number, ids: string[];
+      if (
+        // Keep the fast replacement page. Ordinary additions use the pre-R1
+        // ordered metadata scan, avoiding an extra SQL page after counting.
+        (params.has("excludeIds") || params.has("excludeFamiliesOf")) &&
+        !exactIds &&
+        typeof tx.$queryRaw === "function" &&
+        questionPageSql(
+          listingWhere,
+          orderBy,
+          !inspection,
+          format,
+          0,
+          pageSize,
+          cache,
+        )
+      ) {
+        const counts = await loadQuestionCounts(
+          listingWhere,
+          tx,
+          [],
+          format,
+          cache,
+        );
+        const tally = questionBucketTally(counts);
+        total = inspection ? tally.held : tally.available;
+        page = Math.min(
+          requestedPage,
+          Math.max(1, Math.ceil(total / pageSize)),
+        );
+        const representatives = total
+          ? await tx.$queryRaw<{ id: string }[]>(
+              questionPageSql(
+                listingWhere,
+                orderBy,
+                !inspection,
+                format,
+                (page - 1) * pageSize,
+                pageSize,
+                cache,
+              )!,
+            )
+          : [];
+        ids = representatives.map((row) => row.id);
+      } else {
+        const listing = await cachedBankQuestionList(
+          publicBankListQueryKey(params),
+          async () => {
+            const candidates = await loadQuestionCandidates(
+              listingWhere,
+              orderBy,
+              tx,
+              cache,
+            );
+            const groups = projectQuestionCandidates(candidates, {
+              format,
+              availableOnly: !inspection && !exactIds,
+            });
+            const exact = exactIds
+              ? candidates.filter((r) => !format || r.actualFormat === format)
+              : null;
+            return {
+              total: groups.length,
+              ids: (exact ?? groups.map((g) => g.representative)).map(
+                (row) => row.id,
+              ),
+            };
+          },
+        );
+        total = listing.total;
+        page = Math.min(
+          requestedPage,
+          Math.max(1, Math.ceil(listing.ids.length / pageSize)),
+        );
+        ids = listing.ids.slice((page - 1) * pageSize, page * pageSize);
+      }
+      const rows = ids.length
+        ? await tx.problem.findMany({
+            where: {
+              AND: [exactIds ? listingWhere : where, { id: { in: ids } }],
+            },
+            select: UNIFIED_PROBLEM_SELECT,
+          })
+        : [];
+      const index = new Map(ids.map((id, i) => [id, i]));
+      rows.sort((a, b) => index.get(a.id)! - index.get(b.id)!);
+      const enriched = await withQuestionMetadata(rows, tx, {
+        AND: resolved.selection,
+      });
+      const problems = (await withProblemSourceReferences(enriched)).map(
+        toBankProblem,
+      );
+      return {
+        problems,
+        page,
+        pageSize,
+        ...questionReadMetadata(params),
+        ...(exactIds ? { queryMode: "exact_ids" as const } : {}),
+        ...metadata,
+        // The cached global summary must never replace this request's filtered total.
+        total,
+      };
+    },
+    { isolationLevel: "RepeatableRead", timeout: 20000 },
+  );
+}
+
+const QUESTION_UNIT_SELECT = {
+  id: true,
+  grade: true,
+  chapter: true,
+  section: true,
+  orderIndex: true,
+  semester: true,
+} as const;
+async function loadQuestionBankSummary(
+  visibility: Prisma.ProblemWhereInput,
+  grade?: string,
+  semester?: string,
+  inspection = false,
+  formats = new Map<string, ReturnType<typeof classifyFormat>>(),
+  client?: Prisma.TransactionClient,
+): Promise<UnifiedBankBootstrap> {
+  const read = async (tx: Prisma.TransactionClient) => {
+    const [rows, units] = await Promise.all([
+      loadQuestionCandidates(visibility, undefined, tx, formats),
+      tx.unit.findMany({
+        select: QUESTION_UNIT_SELECT,
+        orderBy: { orderIndex: "asc" },
+      }),
+    ]);
+    return {
+      total: countProjectedQuestions(rows, true),
+      ...questionBankMetadata(rows, units, grade, semester, inspection),
+    };
+  };
+  return cachedBankRead(
+    `bank-summary:${JSON.stringify([visibility, grade, semester, inspection])}`,
+    () =>
+      client
+        ? read(client)
+        : db.$transaction(read, {
+            isolationLevel: "RepeatableRead",
+            timeout: 20000,
+          }),
+  );
+}
+function questionBankMetadata(
+  rows: readonly QuestionCandidate[],
+  units: readonly {
+    id: string;
+    grade: string;
+    chapter: string;
+    section: string;
+    orderIndex: number;
+    semester: number | null;
+  }[],
+  grade?: string,
+  semester?: string,
+  inspection = false,
+): Omit<UnifiedBankBootstrap, "total"> {
+  const counts = new Map<string, Set<string>>();
+  const grades = new Map<string, Set<string>>();
+  const gradeOf = new Map(units.map((u) => [u.id, u.grade]));
+  for (const row of rows)
+    if (inspection || row.available) {
+      const ids = counts.get(row.unitId) ?? new Set<string>();
+      ids.add(row.questionId);
+      counts.set(row.unitId, ids);
+      const g = gradeOf.get(row.unitId);
+      if (g) {
+        const ids = grades.get(g) ?? new Set<string>();
+        ids.add(row.questionId);
+        grades.set(g, ids);
+      }
+    }
+  return {
+    unitCounts: Object.fromEntries(
+      [...counts].map(([id, set]) => [id, set.size]),
+    ),
+    units: units.map(({ id, grade, chapter, section, orderIndex }) => ({
+      id,
+      grade,
+      chapter,
+      section,
+      orderIndex,
+    })),
+    grades: [...grades].map(([grade, set]) => ({ grade, count: set.size })),
+    chapters: [
+      ...new Set(
+        units
+          .filter(
+            (u) =>
+              (!grade || u.grade === grade) &&
+              (!semester || u.semester === Number(semester)) &&
+              (counts.get(u.id)?.size ?? 0) > 0,
+          )
+          .map((u) => u.chapter),
+      ),
+    ],
   };
 }

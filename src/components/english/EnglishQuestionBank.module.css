@@ -24,7 +24,7 @@
 .bank button:focus-visible,
 .bank input:focus-visible,
 .bank select:focus-visible {
-  outline: 3px solid #a4b5ed;
+  outline: 3px solid var(--learn-focus, #a4b5ed);
   outline-offset: 3px;
 }
 .bank button {
@@ -175,8 +175,8 @@
   position: relative;
 }
 .questionList li.active {
-  background: #edf2ff;
-  box-shadow: inset 0 0 0 1px #bccdf8;
+  background: var(--learn-soft, #edf2ff);
+  box-shadow: inset 0 0 0 1px var(--learn-control, #bccdf8);
 }
 .questionList input {
   margin-top: 3px;
@@ -217,8 +217,8 @@
   font-size: 12px;
 }
 .tags b {
-  background: #edf2ff;
-  color: #2447b8;
+  background: var(--learn-soft, #edf2ff);
+  color: var(--learn-accent-hover, #2447b8);
   border-radius: 4px;
   padding: 3px 6px;
   font-weight: 600;
@@ -336,7 +336,7 @@ summary.trayTitle {
   transform: rotate(90deg);
 }
 .trayTitle:focus-visible {
-  outline: 3px solid #a4b5ed;
+  outline: 3px solid var(--learn-focus, #a4b5ed);
   outline-offset: -3px;
 }
 .trayDisclosure[open] .trayTitle {

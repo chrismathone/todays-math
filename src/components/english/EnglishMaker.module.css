@@ -258,7 +258,7 @@
 }
 .methodButton[aria-pressed="true"] {
   color: #254ecb;
-  background: #edf2ff;
+  background: var(--learn-soft, #edf2ff);
   border-color: #91a7ed;
   font-weight: 700;
 }
@@ -358,11 +358,11 @@
 }
 .startChoice:has(input:checked) {
   color: #254ecb;
-  background: #edf2ff;
+  background: var(--learn-soft, #edf2ff);
   border-color: #7797eb;
 }
 .startChoice input {
-  accent-color: #3159df;
+  accent-color: var(--learn-accent, #3159df);
   margin: 0;
 }
 .results {
@@ -425,8 +425,8 @@
   display: inline-block;
   padding: 2px 7px;
   border-radius: 4px;
-  background: #edf2ff;
-  color: #3159df;
+  background: var(--learn-soft, #edf2ff);
+  color: var(--learn-accent, #3159df);
   font-size: var(--text-caption, 12px);
   font-weight: 700;
 }
@@ -484,7 +484,7 @@
   min-height: var(--control-height, 44px);
   padding: 10px 0;
   cursor: pointer;
-  color: #3159df;
+  color: var(--learn-accent, #3159df);
 }
 .sourceNote {
   margin-top: 16px;
@@ -509,7 +509,7 @@
   gap: 8px;
 }
 .questionHead strong {
-  color: #3159df;
+  color: var(--learn-accent, #3159df);
 }
 .questionHead span {
   font-size: var(--text-caption, 12px);

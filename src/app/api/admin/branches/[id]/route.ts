@@ -10,6 +10,11 @@ import {
 import { ALL_WORKSPACE_MENUS } from "@/contracts/accountAccess.contract";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
+import {
+  notifyEywaBranchMenus,
+  type BranchMenusChange,
+} from "@/lib/eywa/branchMenusChanged";
+import { branchOwnerMenusOn } from "@/contracts/branchOwnerMenus.contract";
 
 type Context = { params: Promise<{ id: string }> };
 const failure = (code: string, message: string, status: number) =>
@@ -57,8 +62,10 @@ async function handlePatch(request: Request, context: Context) {
   const input = parsed.data;
   const selectedMenus =
     input.menus === undefined ? null : new Set<string>(input.menus);
+  // 상한이 바뀌면 지점에서 쓰는 메뉴(상한 − 원장이 끈 것)가 바뀐다 — 에이와 감사 기록에도 알린다(2026-10-19).
+  let ceilingNotice: BranchMenusChange | null = null;
   try {
-    return await db.$transaction(
+    const result = await db.$transaction(
       async (tx) => {
         const branch = await tx.branch.findUnique({
           where: { id },
@@ -111,7 +118,20 @@ async function handlePatch(request: Request, context: Context) {
                 },
               }),
             });
-          if (menusChanged)
+          if (menusChanged) {
+            ceilingNotice = {
+              kind: "ceiling",
+              actorName: access.account!.name,
+              previous: branchOwnerMenusOn(
+                branch.disabledMenus,
+                branch.ownerDisabledMenus,
+              ),
+              menus: branchOwnerMenusOn(
+                disabledMenus,
+                branch.ownerDisabledMenus,
+              ),
+              menuRevision: branch.menuRevision + 1,
+            };
             await tx.accountAuditLog.create({
               data: auditData({
                 userId: access.account!.id,
@@ -129,6 +149,7 @@ async function handlePatch(request: Request, context: Context) {
                 },
               }),
             });
+          }
         }
         const updated =
           menusChanged || nameChanged
@@ -146,6 +167,16 @@ async function handlePatch(request: Request, context: Context) {
       },
       { isolationLevel: "Serializable" },
     );
+    const sent = ceilingNotice as BranchMenusChange | null;
+    // 상한만 바뀌고 지점에서 쓰는 메뉴는 그대로면(원장이 이미 끈 메뉴를 닫음) 알리지 않는다 — 빈 기록 방지.
+    if (
+      sent &&
+      result.ok &&
+      (sent.previous.length !== sent.menus.length ||
+        sent.previous.some((menu) => !sent.menus.includes(menu)))
+    )
+      notifyEywaBranchMenus(id, sent);
+    return result;
   } catch (error) {
     if (isPrismaErrorCode(error, "P2034")) return conflict();
     throw error;

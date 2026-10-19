@@ -1,6 +1,15 @@
 import UnifiedProblem from "../../UnifiedProblem";
-import { EnglishWorksheetQuestion } from "@/components/english/print/EnglishWorksheetQuestion";
+import { useEnglishPrintRenderer } from "../EnglishPrintRenderer";
 import type { PrintOptions, ProblemReview } from "../types";
+
+function EnglishQuestion({
+  content,
+}: {
+  content: NonNullable<ProblemReview["variant"]["english"]>;
+}) {
+  const { Question } = useEnglishPrintRenderer();
+  return <Question content={content} />;
+}
 
 /** Keep the unified math/figure renderer and its display-only elementary fractions. */
 export function ProblemBody({
@@ -24,7 +33,7 @@ export function ProblemBody({
       }}
     >
       {problem.english ? (
-        <EnglishWorksheetQuestion content={problem.english} />
+        <EnglishQuestion content={problem.english} />
       ) : (
         <UnifiedProblem
           problem={problem}

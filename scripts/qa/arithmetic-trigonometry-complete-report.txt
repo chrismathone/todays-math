@@ -1,0 +1,131 @@
+Middle 3 trigonometry completion — 2026-10-15
+
+Integration
+-----------
+Export TRIGONOMETRY_COMPLETE_DEFINITIONS from
+src/lib/arithmetic-v2/families/trigonometryComplete.ts. All nine new definitions
+declare grade 중3, strand 도형 and curriculum {semester:2,unit:'삼각비'}.
+Root owns registry/catalog/save/reopen integration. No shared files or original
+families changed. In particular geometryMeasure/trig.ts and its four published
+IDs and figure packs remain canonical. The preceding algebra commit is
+0c75395045de409e19c76944c6dd3081b495c047; no algebra files changed after handoff.
+
+All new prompts are complete without a diagram. Actual geometry display text and
+instructions contain authored $...$ math; prompt.latex is separate complete valid
+identity math. There are no dollar delimiters inside a LaTeX text command. Right
+angles, named sides, the requested target, acute-angle restrictions and units are
+explicit. AB is the hypotenuse whenever C is the right angle; area givens name AB
+and AC and their included angle A. Endpoint ratios do not posit a degenerate right
+triangle. Units use Roman cm or cm²; answers carry the same unit as answerUnit.
+No new SVG renderer, image, figure ID, schema or answer kind.
+
+Curriculum audit and evidence
+-----------------------------
+Local prisma/seed-data/units.ts has 중3 section orderIndex 481 삼각비의 뜻,
+482 삼각비의 값 and 483 삼각비의 활용 (chapter 5. 삼각비).
+Existing four families cover:
+  m3-trig-ratio: directly supplied sides -> ratio;
+  m3-trig-special-value: 30/45/60 degree sin/cos/tan;
+  m3-trig-special-length: six special-angle given/target-side combinations;
+  m3-trig-triangle-area: two sides and special included angle -> area.
+New coverage complements these calculation shapes rather than rewriting them.
+
+Primary EBS grade/topic map:
+https://www.ebsmath.co.kr/siteMap
+Primary EBS middle-3 trigonometric-ratio category, including episode 33:
+https://www.ebsmath.co.kr/resource/rscList?cate=123400&cate2=123410&grdCd=MGRD03
+Direct episode resource:
+https://ebsmath.co.kr/resource/rscPlayerView?su=https%3A%2F%2Febsmath.co.kr%2Furl%2Fgo%2F108749
+Series landing (the mainSeriesLink redirect failed during this audit; this direct
+seriesDetail page and the direct resource/category were accessible):
+https://www.ebsmath.co.kr/Series/seriesDetail?seriesSno=24
+EBS explicitly teaches the 0/90-degree endpoint ratios in middle 3 and explains
+that tan 90 degrees has no value. That undefined value is excluded from numeric
+answers. The site map places trigonometric ratios/applications in middle 3 and
+sine/cosine laws under high-school algebra.
+
+Coverage by the three local sections:
+뜻: original side-to-ratio remains; new supplied-ratio side calculation and
+  six ratio-to-different-ratio conversions use right-triangle/Pythagoras reasoning.
+값: original 30/45/60 lookup remains; add the five defined endpoint values,
+  inverse acute special-angle recognition, complementary acute sin/cos, and
+  numerical arithmetic on squares of explicitly stated special ratios.
+활용: original angle-supplied lengths/area remain; add rational-ratio lengths,
+  supplied-sine area, missing side from area/sine, and sine from area/two sides.
+
+Excluded: tan 90; arbitrary general-angle trig functions, periodicity, angle-sum
+identities, sine/cosine law; inverse angles outside the acute 30/45/60 domain;
+symbolic trig identities as exercises; trigonometric-table interpolation/rounding;
+narrative height/distance modeling and multi-stage geometric configurations.
+These exclusions distinguish exact direct calculation from conceptual, numerical
+approximation and word-problem work. The audit does not claim every achievement
+standard or arbitrary geometric situation is a finite drill here.
+
+Exact finite domains (25,030 unique public task identities)
+---------------------------------------------------------
+m3-trig-endpoint-values: 5. sin/cos at 0/90 plus tan at 0 only.
+m3-trig-inverse-special-angle: 9. sin/cos/tan at each of 30,45,60 degrees.
+m3-trig-complementary-ratio: 90. 45 reduced proper fractions with denominator
+  2..12, both sin(A)->cos(B) and cos(A)->sin(B).
+m3-trig-ratio-from-another: 362. All six distinct given/target ratio pairs;
+  sin/cos givens use the 45 proper fractions, tan givens use the 91 positive
+  reduced fractions with numerator/denominator 1..12, including values above 1.
+m3-trig-length-given-ratio: 5,068. Six forward/inverse side roles; matching proper
+  sine/cosine or positive tangent fractions; supplied integer length 2..15 cm.
+m3-trig-area-given-sine: 2,970. Proper sine fraction; side lengths 2..12 cm,
+  ordered a<=b to avoid duplicate side permutations.
+m3-trig-side-from-area-sine: 14,850. Proper sine fraction; known side 2..12 cm;
+  area 1..30 cm². Every tuple defines a positive nondegenerate missing side.
+m3-trig-sine-from-area: 1,586. Ordered sides 2..12 cm, all positive integer areas
+  strictly below half the side product. Hence the included angle can be acute.
+m3-trig-special-squared-arithmetic: 90. Nine acute special ratio values, all
+  upper-triangular pairs including equal entries, explicit sum or difference.
+  Both nonnegative and negative rational results occur; no identity is assumed.
+
+Full metadata/count manifest: arithmetic-trigonometry-complete-evidence.json.
+Domains enumerate authored integer tuples, never random retries or capacity caps.
+The ordering is fixed by the source axes/loops. Denominators are nonzero, fractions
+are reduced, impossible acute sine/cosine values are filtered before enumeration.
+
+Canonical exact values and verification
+--------------------------------------
+Reuse the existing geometry conventions: integer [n], rational [n,d], surd [n,r,d]
+meaning n*sqrt(r)/d. Rational denominators exceed one (integers have integer kind);
+all denominators positive; gcd(n,d)=1; r squarefree >1; zero is integer [0] only.
+Read before arithmetic: canonical integer strings, max 40 characters/field,
+max 3 fields and safe integer values; at most 6 safe-integer parameters.
+Malformed, sparse, extra, oversized, unreduced, squareful or zero-denominator
+representations fail, even when their display is regenerated coherently.
+Equivalent reordered object keys remain accepted. Extra answer/prompt keys fail.
+
+The generator reuses existing geometry rational/radical normalization and answer
+formatting. The verifier does not call solve/problemAt or normalize an expected
+answer. It checks exact inverse side-ratio/area relations and Pythagorean squared
+ratios using BigInt cross-products. Every geometric length/ratio must be positive,
+so squaring cannot admit the wrong sign. Only explicit special-square subtraction
+can yield a negative answer. Inverse-angle verification compares independent
+30/45/60 right-triangle side squares within the stated acute domain.
+
+Validation evidence
+-------------------
+4 focused Vitest tests pass:
+  all 25,030 domain tuples: independent exact oracles, schema, canonical values,
+  unique parameters/public task identity, precise metadata and complete text;
+  all new text math/instructions/identity/answer LaTeX: 29,447 distinct KaTeX
+  expressions covering 190,787 occurrences, throwOnError+strict:error, zero errors;
+  45,281 coherent exact-field mutations rejected, plus every applicable negative
+  length/ratio mutation; equivalent unreduced/squareful representations rejected;
+  bounds, determinism, reordered keys, altered givens/units, sparse arrays, negative
+  zero, nonfinite/oversized values and omitted/extra fields checked.
+Old four-family public identities were checked for collisions; none. Old source
+and SVG bytes were not regenerated or edited. New generator/verifier tests import
+no production arithmetic helper for their independent expected-value arithmetic.
+Scoped TypeScript and ESLint pass. Commit uses normal Husky eslint --fix/prettier
+hooks. Root's installed tooling is reused via process-only resolution; no installs,
+junctions, env-file edits, DB access, pushes, deployments or extra workers.
+
+Reproduce from worker workspace:
+node scripts/qa/arithmetic-trigonometry-complete-typecheck.mjs C:/Creative/testautocreator
+node --import file:///C:/Creative/testautocreator/node_modules/tsx/dist/loader.mjs --import ./scripts/qa/arithmetic-angle-presentation-deps.mjs scripts/qa/arithmetic-trigonometry-complete-verify.ts C:/Creative/testautocreator --write-evidence
+From C:/Creative/testautocreator:
+node node_modules/vitest/vitest.mjs run --config C:/Users/user/orca/workspaces/testautocreator/arithmetic-angle-layout/scripts/qa/arithmetic-trigonometry-complete-vitest.config.mts --reporter=verbose --silent=false

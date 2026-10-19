@@ -10,7 +10,7 @@ import { getAccountAccess } from "@/lib/accountAccess";
 import { db } from "@/lib/db";
 import s from "@/components/account/profile.module.css";
 
-export const metadata: Metadata = { title: "내정보 | 오늘의수학" };
+export const metadata: Metadata = { title: "내정보 | 오늘 수학" };
 
 function roleName(account: {
   isSuperAdmin: boolean;
@@ -58,7 +58,7 @@ export default async function AccountPage() {
         <div className={s.sidebarBrand}>
           <Link href="/" className={s.brand}>
             <TodayMathMark size={28} inverse />
-            <span>오늘의수학</span>
+            <span>오늘 수학</span>
           </Link>
           <span className={s.sidebarLabel}>내 계정</span>
         </div>

@@ -1,0 +1,177 @@
+/*
+ * «문항 교체»(W3 · Hi-fi 1 — 원장님 2026-10-16) — `src/app/dev/exam-builder-hifi/hifi.module.css` 의 W3 부분을
+ * 그대로 옮겼다. 단추 · 입력의 규격은 시험지 만들기(`ExamBuilder.module.css` 의 `.root`)가 준다.
+ */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  min-height: 100%;
+}
+.split > * {
+  min-width: 0;
+}
+.left {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 16px 20px;
+  border-right: 1px solid var(--learn-track);
+  background: var(--learn-bg);
+}
+.right {
+  display: grid;
+  align-content: start;
+  gap: 0;
+}
+.tools {
+  display: grid;
+  gap: 10px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--learn-track);
+}
+.root button {
+  white-space: nowrap;
+}
+.seg {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.root .seg button[aria-pressed="true"] {
+  color: var(--learn-accent);
+  border-color: var(--learn-accent);
+  background: var(--learn-soft);
+}
+.root button.small {
+  min-height: 36px;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+.num {
+  font-variant-numeric: tabular-nums;
+}
+.pane {
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--learn-track);
+  border-radius: 12px;
+  background: var(--learn-surface);
+}
+.paneHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  margin-bottom: 8px;
+}
+.paneHead strong {
+  font-size: 14px;
+}
+.paneCompare {
+  composes: pane;
+  border-color: var(--learn-accent);
+  box-shadow: inset 3px 0 0 var(--learn-accent);
+}
+.paneFoot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}
+.root button.primary {
+  border-color: var(--learn-accent);
+  background: var(--learn-accent);
+  color: var(--learn-on-accent, #fff);
+}
+.root button.primary:hover:not(:disabled) {
+  background: var(--learn-accent-hover);
+}
+.meta {
+  display: inline;
+  font-size: 12px;
+  color: var(--learn-muted);
+  line-height: 1.5;
+}
+.candMeta {
+  display: block;
+  font-size: 12px;
+  color: var(--learn-muted);
+  line-height: 1.5;
+}
+.body {
+  min-width: 0;
+  font-size: 14px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+.body img,
+.body svg {
+  max-width: 100%;
+  height: auto;
+}
+/* 두 줄까지만 — 끝까지 읽으려면 [대조]. 그림 · 수식이 섞여도 높이로 자른다. */
+.clamp {
+  composes: body;
+  max-height: calc(2 * 1.65em);
+  overflow: hidden;
+}
+.clamp > :first-child {
+  margin-top: 0;
+}
+.candRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--learn-track);
+}
+.candRowOn {
+  composes: candRow;
+  background: var(--learn-soft);
+}
+.badge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--learn-soft);
+  color: var(--learn-accent);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.empty {
+  margin: 0;
+  padding: 20px;
+  color: var(--learn-muted);
+  font-size: 13px;
+}
+.more {
+  display: flex;
+  justify-content: center;
+  padding: 12px 20px;
+}
+.footNote {
+  flex: 1 1 260px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+/* 폰 — 창이 화면을 덮으면 원문 · 대조가 위, 층 전환 · 후보가 아래 */
+@media (max-width: 520px) {
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+  }
+  .left {
+    border-right: 0;
+    padding: 12px;
+  }
+  .tools {
+    padding: 12px;
+  }
+  .candRow {
+    padding: 10px 12px;
+  }
+}

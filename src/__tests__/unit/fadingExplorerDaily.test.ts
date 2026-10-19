@@ -971,7 +971,8 @@ describe("서버 없이 도는 원천", () => {
     expect(plan.integration).toEqual({ expedition: false });
     expect(plan.prerequisite).toBeNull();
     expect(plan.units.question.planned).toBe(0);
-    expect(plan.counts.total).toBe(20);
+    // 서비스 기본 15칸(2026-10-17 — 전에는 20).
+    expect(plan.counts.total).toBe(15);
   });
 
   it("계획을 읽는 것은 아무것도 바꾸지 않는다 — 저장 칸도 revision 도 그대로", async () => {

@@ -163,7 +163,7 @@ export default function CubeUnitLab({
     >
       <header className={styles.header}>
         <Link href="/lab" className={styles.brand}>
-          <span aria-hidden="true">▦</span> 오늘의수학{" "}
+          <span aria-hidden="true">▦</span> 오늘 수학{" "}
           <span className={styles.labTag}>랩실</span>
         </Link>
         <span className={styles.headerUnit}>초등 3-1 · 1단원</span>

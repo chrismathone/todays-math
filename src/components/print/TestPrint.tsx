@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 
 import { PrintAnswerKeyPage } from "@/components/print/PrintAnswerKeyPage";
@@ -9,7 +9,11 @@ import type {
   JaseupPrintMeta,
   TestPrintDocument,
 } from "@/components/print/types";
-import { paginateAnswerKey } from "@/lib/printLayout";
+import {
+  paginateAnswerKey,
+  splitOverflowingAnswerPages,
+  type AnswerKeyPage,
+} from "@/lib/printLayout";
 import { assessAnswerKeyRisk, assessOverflowRisk } from "@/lib/printOverflow";
 import { packProblems } from "@/lib/printPack";
 import { assignSubjectiveLabels } from "@/lib/tests/essayLabels";
@@ -62,6 +66,14 @@ export function TestPrint({ data, initialMode = "questions" }: TestPrintProps) {
   const [isPrinting, setIsPrinting] = useState(false);
   const title = `${TEST_TYPE_LABEL[data.testType]} · ${data.section}`;
   const problems = data.problems;
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const [measuredAnswers, setMeasuredAnswers] = useState<{
+    problems: typeof problems;
+    pages: AnswerKeyPage[];
+  } | null>(null);
+  const [settledAnswerPages, setSettledAnswerPages] = useState<
+    AnswerKeyPage[] | null
+  >(null);
 
   // 지면 분할·경고는 **문항 목록이 바뀔 때만** 다시 센다. 모드 전환·인쇄 중
   // 상태·오류 문구 때문에 다시 셀 이유가 없다. 결과가 같아야 하므로
@@ -75,7 +87,54 @@ export function TestPrint({ data, initialMode = "questions" }: TestPrintProps) {
     () => assessAnswerKeyRisk(problems),
     [problems],
   );
-  const answerPages = useMemo(() => paginateAnswerKey(problems), [problems]);
+  const initialAnswerPages = useMemo(
+    () => paginateAnswerKey(problems),
+    [problems],
+  );
+  const answerPages =
+    measuredAnswers?.problems === problems
+      ? measuredAnswers.pages
+      : initialAnswerPages;
+  const answerLayoutPending =
+    mode === "answers" && settledAnswerPages !== answerPages;
+
+  useEffect(() => {
+    if (mode !== "answers") return;
+    let cancelled = false;
+    const measure = () => {
+      if (cancelled) return;
+      const cuts = new Map<number, number>();
+      galleryRef.current
+        ?.querySelectorAll('[data-testid="answer-solutions"]')
+        .forEach((box, pageIndex) => {
+          const bounds = box.getBoundingClientRect();
+          if (bounds.height < 1) return; // No layout engine during SSR/jsdom.
+          const articles = [...box.querySelectorAll("article")];
+          const overflowAt = articles.findIndex((article) =>
+            [...article.getClientRects()].some(
+              (rect) =>
+                rect.left >= bounds.right - 1 ||
+                rect.right > bounds.right + 1 ||
+                rect.bottom > bounds.bottom + 1,
+            ),
+          );
+          if (overflowAt > 0 || (overflowAt === 0 && pageIndex === 0))
+            cuts.set(pageIndex, overflowAt);
+        });
+      if (cuts.size)
+        setMeasuredAnswers({
+          problems,
+          pages: splitOverflowingAnswerPages(answerPages, cuts),
+        });
+      else setSettledAnswerPages(answerPages);
+    };
+    // The locally served paper font determines line wraps; fallback-font metrics
+    // must never settle the answer pages before that font finishes loading.
+    void (document.fonts?.ready ?? Promise.resolve()).then(measure);
+    return () => {
+      cancelled = true;
+    };
+  }, [mode, problems, answerPages]);
   // 서술형·단답형 순번은 **시험지 전체**를 가로지르므로 장별로 셀 수 없다.
   // 여기서 한 번 만들어 넘긴다 — 매 렌더 새 Map 이면 JaseupTemplate 의 memo 가 죽는다.
   const essayLabels = useMemo(
@@ -85,7 +144,7 @@ export function TestPrint({ data, initialMode = "questions" }: TestPrintProps) {
   // 매 렌더 새 객체를 만들면 아래 JaseupTemplate 의 memo 가 통째로 무력해진다.
   const meta = useMemo<JaseupPrintMeta>(
     () => ({
-      academyName: "오늘의수학",
+      academyName: "오늘 수학",
       title,
       examDate: data.testDate,
       todayGoal: data.todayGoal,
@@ -157,7 +216,7 @@ export function TestPrint({ data, initialMode = "questions" }: TestPrintProps) {
           </div>
           <button
             className={styles.printButton}
-            disabled={isPrinting}
+            disabled={isPrinting || answerLayoutPending}
             onClick={() => void printCurrentMode()}
             type="button"
           >
@@ -202,6 +261,10 @@ export function TestPrint({ data, initialMode = "questions" }: TestPrintProps) {
 
       <div
         className={styles.pageGallery}
+        ref={galleryRef}
+        data-answer-layout-ready={
+          mode === "answers" ? !answerLayoutPending : undefined
+        }
         role="region"
         aria-label="시험지 미리보기"
         tabIndex={0}

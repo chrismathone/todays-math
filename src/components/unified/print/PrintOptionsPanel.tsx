@@ -1,4 +1,6 @@
+import { useEffect, useId, type ReactNode } from "react";
 import { FONT_PACKS } from "./fontPacks";
+import { loadFontPreviews } from "./loadFonts";
 import { CHOICE_LAYOUTS, COLORS, SPACING_PRESETS, TEMPLATES } from "./settings";
 import {
   DEFAULT_PRINT_OPTIONS,
@@ -6,6 +8,12 @@ import {
   type PrintOptions,
 } from "./types";
 import s from "../WorksheetEditor.module.css";
+import {
+  PRINT_META_FIELDS,
+  PRINTED_META_FIELDS,
+  PRINT_OMIT_REASON,
+  type PrintMetaField,
+} from "./templateFields";
 
 /**
  * 고른 값이 지면에서 **무엇을 감수하는지** 한 줄로 알린다 — 값마다 다르다(D-08).
@@ -19,14 +27,30 @@ const CHOICE_LAYOUT_NOTES: Partial<
 };
 import panel from "./PrintOptionsPanel.module.css";
 
+export interface PrintOptionsSlots {
+  top?: ReactNode;
+  metaTop?: ReactNode;
+  afterTitle?: ReactNode;
+}
+
 export function PrintOptionsPanel({
+  answersOnly = false,
+  groupedArithmetic = false,
   title,
   setTitle,
   options,
   meta,
   onOptions,
   onMeta,
+  slots,
 }: {
+  /**
+   * 3단계 덧붙임의 꽂는 자리(2026-10-16 Hi-fi) — 설정 칸 맨 위(W6 내 양식) · 시험지 정보 맨 위(W8 태그) ·
+   * 제목 칸 바로 아래(W7 추천). 없으면 지금 그대로다.
+   */
+  slots?: PrintOptionsSlots;
+  answersOnly?: boolean;
+  groupedArithmetic?: boolean;
   title: string;
   setTitle: (title: string) => void;
   options: PrintOptions;
@@ -34,6 +58,10 @@ export function PrintOptionsPanel({
   onOptions: (patch: Partial<PrintOptions>) => void;
   onMeta: (patch: Partial<PrintMeta>) => void;
 }) {
+  useEffect(loadFontPreviews, []);
+  const fieldId = useId();
+  const printedFields = PRINTED_META_FIELDS[options.template];
+  const omittedNote = `이 양식에는 찍히지 않음 · ${PRINT_OMIT_REASON[options.template]}`;
   // Mathgen's nearest-preset selection also represents old custom spacing
   // values, while preserving the saved value until the user picks a preset.
   const spacingPreset = SPACING_PRESETS.reduce((closest, preset) =>
@@ -42,26 +70,52 @@ export function PrintOptionsPanel({
       ? preset
       : closest,
   );
-  const field = (key: keyof PrintMeta, label: string, type = "text") => (
-    <label className={s.field} key={key}>
-      {label}
-      <input
-        type={type}
-        min={type === "number" ? 0 : undefined}
-        value={meta[key] ?? ""}
-        onChange={(e) =>
-          onMeta({
-            [key]:
-              type === "number"
-                ? e.target.value === ""
-                  ? undefined
-                  : Number(e.target.value)
-                : e.target.value,
-          })
-        }
-      />
-    </label>
-  );
+  const field = (key: PrintMetaField, label: string, type = "text") => {
+    const disabled = !printedFields.includes(key);
+    const labelId = `${fieldId}-${key}-label`;
+    const noteId = `${fieldId}-${key}-note`;
+    const props = {
+      value: meta[key] ?? "",
+      disabled,
+      "aria-labelledby": labelId,
+      "aria-describedby": disabled ? noteId : undefined,
+    };
+    return (
+      <label
+        className={`${s.field} ${panel.metaField}`}
+        key={key}
+        data-omitted={disabled || undefined}
+      >
+        <span id={labelId}>{label}</span>
+        {key === "conceptNote" ||
+        key === "patternStrategy" ||
+        key === "todayGoal" ? (
+          <textarea
+            {...props}
+            rows={3}
+            onChange={(e) => onMeta({ [key]: e.target.value })}
+          />
+        ) : (
+          <input
+            {...props}
+            type={type}
+            min={type === "number" ? 0 : undefined}
+            onChange={(e) =>
+              onMeta({
+                [key]:
+                  type === "number"
+                    ? e.target.value === ""
+                      ? undefined
+                      : Number(e.target.value)
+                    : e.target.value,
+              })
+            }
+          />
+        )}
+        {disabled && <small id={noteId}>{omittedNote}</small>}
+      </label>
+    );
+  };
   const toggle = (
     key:
       | "showDate"
@@ -77,6 +131,12 @@ export function PrintOptionsPanel({
       <input
         type="checkbox"
         checked={options[key]}
+        disabled={key === "showDate" && !printedFields.includes("examDate")}
+        aria-describedby={
+          key === "showDate" && !printedFields.includes("examDate")
+            ? `${fieldId}-date-note`
+            : undefined
+        }
         onChange={(e) => onOptions({ [key]: e.target.checked })}
       />
       {label}
@@ -89,6 +149,7 @@ export function PrintOptionsPanel({
         event.target.scrollIntoView?.({ block: "nearest", inline: "nearest" })
       }
     >
+      {slots?.top}
       <p className={s.subtle}>
         설정은 미리보기와 인쇄 · PDF에 함께 적용됩니다.
       </p>
@@ -110,6 +171,7 @@ export function PrintOptionsPanel({
       </fieldset>
       <details open className={s.metaDetails}>
         <summary>시험지 정보</summary>
+        {slots?.metaTop}
         <label className={s.field}>
           제목
           <input
@@ -121,51 +183,31 @@ export function PrintOptionsPanel({
             maxLength={80}
           />
         </label>
+        {slots?.afterTitle}
         <div className={s.metaGrid}>
-          {field("schoolName", "학교/기관명")}
-          {field("grade", "학년")}
-          {field("subject", "과목")}
-          {field("semester", "학기")}
-          {field("examDate", "시험일", "date")}
-          {field("examDuration", "시험 시간")}
-          {field("examiner", "출제자")}
-          {field("totalScore", "총점", "number")}
-          {options.template === "workbook" && (
-            <>
-              {field("academyName", "학원명")}
-              {field("instructorName", "강사명")}
-            </>
+          {PRINT_META_FIELDS.slice(1).map(([key, label]) =>
+            field(
+              key,
+              label,
+              key === "examDate"
+                ? "date"
+                : key === "totalScore"
+                  ? "number"
+                  : "text",
+            ),
           )}
         </div>
-        {options.template === "yuhyung" && (
-          <>
-            {field("patternName", "유형명")}
-            {field("patternStrategy", "핵심 전략")}
-          </>
-        )}
-        {options.template === "jaseup" && (
-          <>
-            {field("todayGoal", "오늘의 목표")}
-            <label className={s.field}>
-              개념 정리
-              <textarea
-                rows={4}
-                value={meta.conceptNote ?? ""}
-                onChange={(e) => onMeta({ conceptNote: e.target.value })}
-              />
-            </label>
-          </>
-        )}
       </details>
       <fieldset className={s.optionGroup}>
         <legend>폰트</legend>
-        <div className={s.choiceWrap}>
+        <div className={`${s.choiceWrap} ${s.choiceGrid}`}>
           {FONT_PACKS.map((font) => (
             <button
               key={font.id}
               aria-pressed={options.fontPack === font.id}
               onClick={() => onOptions({ fontPack: font.id })}
               title={font.hint}
+              style={{ fontFamily: font.serif }}
             >
               {font.label}
             </button>
@@ -294,39 +336,53 @@ export function PrintOptionsPanel({
           </>
         )}
       </fieldset>
-      <fieldset className={s.optionGroup}>
-        <legend>보기 번호 배치</legend>
-        <div
-          className={`${s.choiceWrap} ${s.equalChoices} ${s.spacingChoices}`}
-        >
-          {CHOICE_LAYOUTS.map(([value, label]) => (
-            <button
-              key={value}
-              aria-pressed={options.choiceLayout === value}
-              onClick={() => onOptions({ choiceLayout: value })}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-        {CHOICE_LAYOUT_NOTES[options.choiceLayout] && (
-          <p className={s.subtle}>
-            {CHOICE_LAYOUT_NOTES[options.choiceLayout]}
-          </p>
-        )}
-      </fieldset>
+      {/* 연산 연습지에는 보기(객관식)와 배점이 없다 — 그 설정은 보이지 않는다(원장님 2026-10-16). */}
+      {!groupedArithmetic && (
+        <fieldset className={s.optionGroup}>
+          <legend>보기 번호 배치</legend>
+          <div
+            className={`${s.choiceWrap} ${s.equalChoices} ${s.spacingChoices}`}
+          >
+            {CHOICE_LAYOUTS.map(([value, label]) => (
+              <button
+                key={value}
+                aria-pressed={options.choiceLayout === value}
+                onClick={() => onOptions({ choiceLayout: value })}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+          {CHOICE_LAYOUT_NOTES[options.choiceLayout] && (
+            <p className={s.subtle}>
+              {CHOICE_LAYOUT_NOTES[options.choiceLayout]}
+            </p>
+          )}
+        </fieldset>
+      )}
       <fieldset className={s.optionGroup}>
         <legend>표시 옵션</legend>
         {toggle("showDate", "날짜 표시")}
-        {toggle("showChapter", "문항 단원명")}
-        {toggle("showDifficulty", "난이도 라벨")}
-        {toggle("hideScores", "배점 숨기기")}
-        <p className={s.subtle}>이미지에 포함된 배점은 그대로 남습니다.</p>
+        {!printedFields.includes("examDate") && (
+          <p className={s.subtle} id={`${fieldId}-date-note`}>
+            {omittedNote}
+          </p>
+        )}
+        {!groupedArithmetic && toggle("showChapter", "문항 단원명")}
+        {!groupedArithmetic && toggle("showDifficulty", "난이도 라벨")}
+        {!groupedArithmetic && toggle("hideScores", "배점 숨기기")}
+        {!groupedArithmetic && (
+          <p className={s.subtle}>이미지에 포함된 배점은 그대로 남습니다.</p>
+        )}
       </fieldset>
       <fieldset className={s.optionGroup}>
-        <legend>정답 · 해설</legend>
-        {toggle("showAnswers", "정답 · 해설지 포함")}
+        <legend>{answersOnly ? "정답지" : "정답 · 해설"}</legend>
+        {toggle(
+          "showAnswers",
+          answersOnly ? "정답지 포함" : "정답 · 해설지 포함",
+        )}
         {options.showAnswers &&
+          !answersOnly &&
           toggle("quickAnswerOnly", "빠른 정답만 (해설 생략)")}
       </fieldset>
       <button

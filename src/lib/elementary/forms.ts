@@ -18,6 +18,9 @@ import {
   type ElemTier,
   type ElemTierMap,
 } from "./difficulty";
+import { figureForms } from "./figureForms";
+import { reinforcementForms20261018 } from "./reinforcementForms20261018";
+import { statementForms } from "./statementForms";
 import { createRng } from "./rng";
 import type { ElemForm, ElemProblem } from "./types";
 
@@ -91,12 +94,19 @@ export function coreForms(unit: UnitSeed): readonly ElemForm[] {
   return BASE_FORMS[tierKey(unit)] ?? [];
 }
 
+/**
+ * 적재기가 도는 문형 전부 — 기본 열 + 확대 11 · 12 + 그림 21~ + 진술 31 · 32 + 보강 31~39.
+ * 추가 문형은 문형 등록이 있는 소단원에만 붙는다. 진술/보강은 서로 다른 소단원에 등록한다.
+ */
 export function listedForms(unit: UnitSeed): readonly ElemForm[] {
-  return FORMS[tierKey(unit)] ?? [];
+  const forms = FORMS[tierKey(unit)] ?? [];
+  if (forms.length === 0) return forms;
+  const extra = [...figureForms(unit), ...statementForms(unit), ...reinforcementForms20261018(unit)];
+  return extra.length === 0 ? forms : [...forms, ...extra];
 }
 
 /**
- * 이 소단원이 **가져야 할** 문형 수 — 기본 열에 채운 확대 갈래만큼 더한다.
+ * 이 소단원이 **가져야 할** 문형 수 — 기본 열 + 채운 확대 갈래 + 그림/보강 등록.
  *
  * 🔴 검사·계량기는 `10` 도 `12` 도 손으로 적으면 안 된다. 그러면 채우는 도중
  *    전부 빨갛거나(12), 다 채운 뒤에도 안 늘어난 것을 못 본다(10).
@@ -110,7 +120,13 @@ export function expectedFormCount(unit: UnitSeed): number {
   const extra = EXTENDING_FORM_IDS.filter(
     ([tier]) => variants?.[tier] !== undefined,
   ).length;
-  return base.length + extra;
+  return (
+    base.length +
+    extra +
+    figureForms(unit).length +
+    statementForms(unit).length +
+    reinforcementForms20261018(unit).length
+  );
 }
 
 /**

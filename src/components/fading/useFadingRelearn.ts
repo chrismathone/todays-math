@@ -12,7 +12,11 @@ import {
   type FadingRelearnSource,
 } from "@/lib/fading/relearnSource";
 
-/** The deadline is relative to server now; changing the device clock cannot make a check ready. */
+/**
+ * The deadline is relative to server now; changing the device clock cannot make a check ready.
+ * Evidence of a main action is registered by the server inside that action's save (D3); `wrap` only re-reads the queue
+ * afterwards. `record` remains for mid-step evidence (a wrong chip before the step is sent) and keeps its in-memory outbox.
+ */
 export function useFadingRelearn(
   source?: FadingRelearnSource,
   onAccessFailure?: (error: FadingSourceError) => void,
@@ -98,6 +102,7 @@ export function useFadingRelearn(
             error instanceof FadingSourceError &&
             [
               "CONFLICT",
+              "STUDENT_CHANGED",
               "NOT_FOUND",
               "VALIDATION_ERROR",
               "UNAUTHORIZED",
@@ -105,6 +110,11 @@ export function useFadingRelearn(
             ].includes(error.code)
           ) {
             outbox.current.shift();
+            // Another student is signed in (D1): the owner closes this screen; nothing else of it is sent.
+            if (error.code === "STUDENT_CHANGED") {
+              outbox.current = [];
+              break;
+            }
             if (error.code === "CONFLICT") await refresh();
           } else break;
         }

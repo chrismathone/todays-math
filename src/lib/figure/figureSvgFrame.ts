@@ -100,6 +100,25 @@ export function figureSvgViewBoxWidth(svg: string): number | null {
   return figureSvgViewBox(svg)?.width ?? null;
 }
 
+/** The checked arithmetic angle assets use a 216px / 57.15mm square.
+ * Preserve that scale for tall figures too: width follows the longest extent.
+ * This opt-in marker does not change other engine figures' size classes.
+ */
+export function figureSvgAngleDrillWidthMm(svg: string): number | null {
+  const presented = svg.includes(
+    "<desc>arithmetic-geometry-presentation-v1</desc>",
+  );
+  if (
+    !presented &&
+    !svg.includes("<desc>arithmetic-angle-drill-v1</desc>") &&
+    !svg.includes("<desc>arithmetic-geometry-drill-v1</desc>")
+  )
+    return null;
+  const box = figureSvgViewBox(svg);
+  const extentMm = presented ? (280 * 25.4) / 96 : 57.15;
+  return box ? (extentMm * box.width) / Math.max(box.width, box.height) : null;
+}
+
 export function figureSvgSize(svg: string): FigureSvgSize {
   // 🔴 **폭보다 먼저 kind 를 본다.** 짝은 좁아도 열을 통째로 써야 한다 —
   //    폭으로 가르면 「좁은 짝(273)」과 「넓은 단독 cuboid(325)」가 겹쳐 못 갈린다.

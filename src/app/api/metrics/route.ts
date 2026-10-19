@@ -4,6 +4,7 @@ import { accessibleTestsWhere } from "@/lib/classAccess";
  * 대응 계약: src/contracts/metrics.contract.ts
  * 소유 범위(D-130 — 관리자는 모든 반의 시험지를 센다): src/lib/ownerScope.ts
  */
+import { GENERAL_TESTS } from "@/lib/tests/generalTests";
 import type { NextRequest } from "next/server";
 
 import {
@@ -40,6 +41,7 @@ async function handleGet(request: NextRequest) {
   const rows = await db.test.findMany({
     where: {
       ...(await accessibleTestsWhere(session)),
+      ...GENERAL_TESTS,
       status: "printed",
       printedAt: { gte: printedWindow.gte, lt: printedWindow.lt },
     },

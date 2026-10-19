@@ -1,0 +1,122 @@
+Arithmetic unit and presentation integration — 2026-10-15
+
+Catalog
+-------
+Registered 302 new finite calculation types: elementary119 / middle algebra56 /
+functions-data118 / additional trigonometry9. Their combined domains contain
+412,287 tasks. Current catalog649 types: 초3 65, 초4 45, 초5 77, 초6 51, 중1 145,
+중2 162, 중3 94, plus the ten retained 초2 types. Thus the requested 초3–중3
+range contains639 types. Every catalog entry has a nonempty school-unit name and
+explicit semester. Existing identities/canonical family sources are unchanged.
+
+Coverage audits and primary curriculum references are in:
+scripts/qa/arithmetic-elementary-complete-report.json (48 elementary units)
+scripts/qa/arithmetic-algebra-complete-report.txt
+docs/reports/arithmetic-functions-data-20261015.txt
+scripts/qa/arithmetic-trigonometry-complete-report.txt
+docs/reports/arithmetic-curriculum-audit-20261015.txt
+These distinguish direct calculations from proofs, construction, qualitative
+graph reading and narrative modeling; they do not claim every achievement
+standard is represented by a calculation drill. Pythagoras itself is 중2; the
+root-dependent applications retain their saved IDs and are listed under 중3
+제곱근과 실수. Prerequisite metadata remains internal; the extra card caption
+was removed at the user's request.
+
+Shared rendering
+----------------
+All functions/data definitions use explicit definition-only prose presentation.
+Authored prose/math spans wrap in the shared NativeProblem renderer. Exact
+textMath wrappers from elementary families also render as prose; other formulas
+and data arrays retain their authored LaTeX. An answerUnit no longer incorrectly
+routes an ordinary numerical formula through geometry prose. Korean units,
+physical powers and percent signs remain visible beside answer blanks.
+Variable powers in catalog titles, selection rows, review section headings and
+print headings use the common KaTeX renderer. Source titles and saved candidates
+remain unchanged.
+
+The segment adapter now runs after trusted canonical lookup and before typography,
+alongside the angle and elementary dimension adapters. It covers50 middle-school
+families /1,827 figures; exact original-string matching and LRU4 are retained.
+See scripts/qa/arithmetic-segment-presentation-report.json and the net report.
+
+Catalog layout
+--------------
+Only the type count remains above the cards. Cards show title/grade/semester/unit.
+Desktop uses four fixed grid columns and96px rows; a final two-card page fills
+the first two positions. Narrow viewports explicitly use three/two/one columns.
+The300px selection panel is sticky and capped at560px or the available viewport.
+Only its selected-types list scrolls; title, round and generation action remain
+visible. The basic-calculation mode follows the same panel behavior.
+
+Verification
+------------
+All649 catalog types passed shared output/KaTeX/snapshot checks. Original53-family
+snapshot compatibility and workspace catalog integration passed. New-family
+save/reopen/targeted-regeneration/unit tests include200-item multi-round sheets.
+The six-template round/form and grouped-output suites passed37 tests. Updated
+geometry subset tests retain original packs while checking presentation units and
+280px sizing; segment and sizing checks passed. Full TypeScript and scoped ESLint
+passed before the separate round-limit policy follow-up.
+
+Real browser evidence: tmp/arithmetic-catalog-final-proof.json and screenshots
+arithmetic-two-cards-final.png / arithmetic-basket-final.png. Widths1600/1100/900/
+700/390 have no page overflow. A two-card result keeps the configured column width.
+Ten selected types produced a560px panel with178px list viewport and543px scroll
+content; round and generation controls remained visible.
+The functions/data worker separately audited402 distinct shared-renderer samples
+at320px review and85mm print width with zero clipping or missing math/prose.
+
+Round policy integration
+------------------------
+Integrated98f39e8b6: new generation accepts200 questions per round, up to10 rounds
+(2,000 total). Each pair shares at most floor(min(lengths)/5) identical tasks;
+one round has no duplicates. Type sections retain their order and questions are
+shuffled within sections. Old20-round snapshots reopen without applying the new
+overlap rule. Selective regeneration preserves every unselected position; explicit
+no-op reasons retain the original object and dirty-state semantics.
+The two workbenches use the shared200/10 limits and preflight UTF-8 sheet bytes
+before manual save. Generation/regeneration and save routes also enforce budgets.
+See scripts/qa/arithmetic-limit-report.txt and its sizing/performance JSON files.
+
+After integration,762 tests in10 affected integration/UI/route/policy files passed.
+Another43 selective-regeneration, historical-snapshot and round-form tests passed.
+The new integration test builds ten200-item rounds across200 distinct unit types,
+checks all45 pair overlaps, save/reopen, continuous1..2000 output numbering and
+replacement of only three selected saved positions. API persistence tests use
+in-memory database mocks; no live DB or environment changes were made.
+
+Large PDF export
+----------------
+Physical pages are submitted in at most20-page /3,500,000-byte requests. PDF
+responses above4,000,000 bytes return413; the client halves that page batch and
+combines successful PDFs locally in their original order. Only already-measured
+pages are copied, preserving page numbering, round fields, CSS and source DOM.
+Small documents retain the exact one-request PDF bytes. A failed part produces
+no partial download. pdf-lib is loaded only for a multi-part result.
+This fits the4.5MB request/response platform ceiling documented at
+https://vercel.com/docs/functions/limitations (checked2026-10-15).
+Six client tests cover original bytes,41-page order, Korean UTF-8 request size,
+413 subdivision, authentication failure and oversized single-page rejection.
+Two route boundary tests and eight existing export checks also pass (16 total).
+Scoped TypeScript and ESLint passed for the PDF change.
+
+Final browser/PDF evidence
+-------------------------
+tmp/arithmetic-2000-browser-proof.json: actual dev workbench generated2,000
+three-digit addition questions, exposed ten200-item tabs and continuous1801..2000
+numbers in round10. Yuhyung output contains120 measured pages, all2,000 items and
+ten round fields, with zero measured page overflow, KaTeX errors or page errors.
+The actual PDF client sent six20-page requests (largest1,207,149 bytes). Each
+request was rendered by browser print using the actual server pdfDocument helper;
+the route was intercepted locally, so this is not a production-auth/Lambda claim.
+The combined120-page PDF is528,979 bytes. Extracted text confirms all ten rounds
+and final item2000; first/last pages were visually inspected. Four-digit numbers
+now grow the Yuhyung/Workbook number boxes rather than exceeding their border.
+Evidence: tmp/arithmetic-2000.pdf, arithmetic-2000-review.png,
+arithmetic-2000-pdf-{first,last}.png and arithmetic-2000-pdf-text-proof.json.
+Local development timings: generation1.238s; preparation of the full120-page
+output85.267s while the full project check also ran. Large-output preparation is
+still substantial; this report does not assert a production latency target.
+Full project TypeScript (8GiB tool heap), final scoped ESLint and normal hooks pass.
+The final byte/round/form rerun passed682 tests in three files. No code, test or
+source-asset changes were hidden behind a skipped hook.

@@ -42,9 +42,11 @@ describe("English menu compatibility", () => {
     expect(
       workspaceMenuSchema.options.filter((menu) => menu !== "english"),
     ).toEqual(ALL_WORKSPACE_MENUS);
-    // Ten since the textbook menu («교재 제작») joined the math product on 2026-10-03.
+    // Ten since the textbook menu («교재 제작») joined the math product on 2026-10-03;
+    // export는 저장값만 유지하고 표시 메뉴에서는 빠진다(2026-10-19).
     expect(workspaceMenusOf("math")).toHaveLength(10);
     expect(workspaceMenusOf("math")).toContain("textbook");
+    expect(workspaceMenusOf("math")).toContain("arithmetic");
     expect(workspaceMenusOf("english")).toEqual([
       ...englishMenus,
       "english-listening",
@@ -63,10 +65,10 @@ describe("English menu compatibility", () => {
   });
   it("preserves legacy denials and applies new denials independently", () => {
     expect(workspaceMenusFromDisabled(["english"])).toEqual(
-      workspaceMenusOf("math"),
+      ALL_WORKSPACE_MENUS.filter((menu) => !menu.startsWith("english-")),
     );
     expect(workspaceMenusFromDisabled(["english", "english-school"])).toEqual(
-      workspaceMenusOf("math"),
+      ALL_WORKSPACE_MENUS.filter((menu) => !menu.startsWith("english-")),
     );
     expect(workspaceMenusFromDisabled(["english-maker"])).toEqual(
       ALL_WORKSPACE_MENUS.filter((menu) => menu !== "english-maker"),

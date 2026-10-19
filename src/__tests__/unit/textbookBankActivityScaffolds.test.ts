@@ -89,22 +89,37 @@ describe("new bank activity assembly conserves canonical content", () => {
         const parts = blocks.filter(
           (block) => block.semantic?.activity === activity,
         );
-        expect(parts).toHaveLength(
-          Math.ceil(list.length / (activity === "explainActivity" ? 2 : 4)),
-        );
+        for (const part of parts)
+          expect(textbookSemanticSchema.safeParse(part.semantic).success).toBe(
+            true,
+          );
+        if (activity !== "conceptBlankTest") {
+          // Every core section carries reviewed questions (c53681418): explanation and the
+          // map ask each entry's own B question, two to a block, instead of rows scaffolds.
+          const asked = list.filter((entry) => entry.bQuestion);
+          expect(parts).toHaveLength(Math.ceil(asked.length / 2));
+          const ids = parts.flatMap((part) =>
+            part.semantic?.node?.kind === "conceptQuestions"
+              ? part.semantic.node.questions.map((q) => q.entryId)
+              : [],
+          );
+          expect(ids).toEqual(asked.map((entry) => entry.id));
+          seen[activity].push(...ids);
+          continue;
+        }
+        expect(parts).toHaveLength(Math.ceil(list.length / 4));
         const rows = parts.flatMap((part) =>
           part.semantic?.node?.kind === "rows" ? part.semantic.node.rows : [],
         );
         expect(rows).toEqual(conceptMemoryRows(list));
         seen[activity].push(...rows);
-        for (const part of parts)
-          expect(textbookSemanticSchema.safeParse(part.semantic).success).toBe(
-            true,
-          );
       }
     }
-    for (const activity of activities)
-      expect(seen[activity]).toHaveLength(1657);
+    expect(seen.conceptBlankTest).toHaveLength(1657);
+    const asked = core.filter((entry) => entry.bQuestion).length;
+    expect(asked).toBeGreaterThan(0);
+    expect(seen.explainActivity).toHaveLength(asked);
+    expect(seen.conceptMap).toHaveLength(asked);
     expect(sha(core)).toBe(before);
   });
 

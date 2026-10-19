@@ -1,4 +1,5 @@
 import {
+  canOutputFrom,
   normalizeWorkspaceMenus,
   type AccountAccess,
   type WorkspaceMenu,
@@ -15,8 +16,10 @@ export function srsTeacherManagementRoute(method: string, path: string) {
       /^\/api\/students\/[^/]+\/math-srs\/course$/.test(path)) ||
     (method === "GET" &&
       /^\/api\/students\/[^/]+\/math-srs\/explorers$/.test(path)) ||
-    // «오늘의 기억» 새 앱의 교사 현황(2026-10-06) — 읽기 둘뿐이다.
-    (method === "GET" && srsFadingTeacherPath(path))
+    // «오늘의 기억» 새 앱의 교사 현황(2026-10-06) — 읽기 둘, 그리고 학생 하나의 하루 분량 저장(2026-10-17 · PUT).
+    (method === "GET" && srsFadingTeacherPath(path)) ||
+    (method === "PUT" &&
+      /^\/api\/students\/[^/]+\/math-srs\/fading$/.test(path))
   );
 }
 
@@ -174,7 +177,32 @@ export function accountRouteAllowed(
     under(path, "/q")
   )
     return any("textbook");
-  if (under(path, "/api/library")) return any("library", "studio", "export");
+  // «연산대장»은 2026-10-16 부터 제 메뉴다 — «시험지 만들기»(bank)에 딸리지 않는다.
+  if (
+    path === "/api/arithmetic/catalog" ||
+    path === "/api/arithmetic/v2/catalog"
+  )
+    return any("arithmetic") && (method === "GET" || method === "HEAD");
+  if (
+    path === "/api/arithmetic/generate" ||
+    path === "/api/arithmetic/v2/generate" ||
+    path === "/api/arithmetic/regenerate" ||
+    path === "/api/arithmetic/v2/regenerate"
+  )
+    return any("arithmetic") && method === "POST";
+  // 전용 제작 메뉴의 문서 종류는 처리기에서 다시 검사한다. 원본 파일 경로는 열지 않는다.
+  if (
+    (canOutputFrom(account.menus, "arithmetic") ||
+      canOutputFrom(account.menus, "conceptBlank")) &&
+    ((path === "/api/library/documents" && ["GET", "HEAD"].includes(method)) ||
+      (/^\/api\/library\/documents\/[^/]+$/.test(path) &&
+        ["GET", "HEAD", "PUT", "POST", "PATCH", "DELETE"].includes(method)))
+  )
+    return true;
+  if (under(path, "/api/library"))
+    return (["library", "studio", "bank"] as const).some((source) =>
+      canOutputFrom(account.menus, source),
+    );
   if (
     under(path, "/api/studio/ai") ||
     under(path, "/api/studio/pdf-worker") ||
@@ -213,6 +241,8 @@ export function accountRouteAllowed(
   if (
     [
       "/api/studio/problems",
+      // 시험지 만들기의 «이름 붙인 출제 조건»(W5) — 그 화면의 메뉴를 따른다.
+      "/api/studio/exam-conditions",
       "/api/problems",
       "/problems",
       "/review",
@@ -227,16 +257,22 @@ export function accountRouteAllowed(
       "/api/tests",
       "/api/basket",
       "/api/exam",
+      // 월말평가 M1 «반에 내기»(2026-10-17) — «내 시험지»(출력 메뉴)에서 낸다.
+      "/api/exam-publications",
+      "/api/exam-reports",
+      "/exam-reports",
       "/api/predictions",
     ].some((base) => under(path, base))
   )
-    return any("export");
+    return canOutputFrom(account.menus);
+  // 공용 양식은 출력 단계가 있는 메뉴에서 함께 쓴다.
+  if (under(path, "/api/studio/print-presets"))
+    return canOutputFrom(account.menus);
   if (under(path, "/api/exports"))
     return (
-      any("export") ||
-      (method === "POST" &&
-        ["/api/exports/pdf", "/api/exports/hwpx"].includes(path) &&
-        any("english-library"))
+      method === "POST" &&
+      ["/api/exports/pdf", "/api/exports/hwpx"].includes(path) &&
+      (canOutputFrom(account.menus) || any("english-library"))
     );
   // 오늘의 개념(D-124) — 읽기는 메뉴가 켜진 계정, 쓰기는 라우트가 isAdmin 을 따로 막는다.
   if (under(path, "/api/concept")) return any("concept");

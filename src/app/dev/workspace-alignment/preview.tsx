@@ -40,6 +40,9 @@ export default function Preview({
   return (
     <UnifiedWorkspace
       initialData={{
+        version: 2,
+        countUnit: "question",
+        queryKey: "workspace-authored-fixture",
         problems: [],
         total: 0,
         page: 1,
@@ -53,6 +56,7 @@ export default function Preview({
         isAdmin: true,
         isSuperAdmin: true,
       }}
+      storageScope="workspace-preview"
       allowedMenus={WORKSPACE_MENUS.map((menu) => menu.id)}
     />
   );

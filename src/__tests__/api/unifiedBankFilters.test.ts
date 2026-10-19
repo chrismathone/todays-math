@@ -107,6 +107,73 @@ const tierCounts = (counts: Partial<DifficultyRatio> = {}): DifficultyRatio =>
   ) as DifficultyRatio;
 
 describe("Math exam builder scoped bank access", () => {
+  it("reuses the shared cached question summary and serves the same metadata from the deferred list API", async () => {
+    await plant();
+    const problemRows = vi.mocked(db.problem.findMany);
+    problemRows.mockClear();
+    const [bootstrap, simultaneous] = await Promise.all([
+      loadUnifiedBankBootstrap("question"),
+      loadUnifiedBankBootstrap("question"),
+    ]);
+    expect(simultaneous).toEqual(bootstrap);
+    const reads = problemRows.mock.calls.length;
+    expect(reads).toBeGreaterThan(0);
+    expect(await loadUnifiedBankBootstrap("question")).toEqual(bootstrap);
+    expect(problemRows).toHaveBeenCalledTimes(reads);
+    vi.stubEnv("NODE_ENV", "development");
+    const response = await GET(
+      new Request(
+        "http://localhost/api/dev/unified/problems?identity=question&pageSize=1",
+      ),
+    );
+    expect(response.status).toBe(200);
+    expect(response.headers.get("cache-control")).toBe("no-store");
+    const body = await response.json();
+    const readsBeforeMetadata = problemRows.mock.calls.length;
+    const deferred = await GET(
+      new Request(
+        "http://localhost/api/dev/unified/problems?identity=question&view=bootstrap",
+      ),
+    );
+    const deferredBody = await deferred.json();
+    expect(deferred.status).toBe(200);
+    expect(problemRows).toHaveBeenCalledTimes(readsBeforeMetadata);
+    for (const field of [
+      "total",
+      "grades",
+      "chapters",
+      "units",
+      "unitCounts",
+      "countUnit",
+      "version",
+      "queryKey",
+    ] as const) {
+      expect(body[field]).toEqual(bootstrap[field]);
+      expect(deferredBody[field]).toEqual(bootstrap[field]);
+    }
+    expect(body.problems).toHaveLength(1);
+    expect(deferredBody.problems).toEqual([]);
+  });
+  it.each([
+    "view=bootstrap",
+    "identity=question&view=bootstrap&recent=1",
+    "identity=question&view=bootstrap&grade=중1",
+  ])(
+    "rejects non-global bootstrap requests before reading the bank: %s",
+    async (params) => {
+      vi.stubEnv("NODE_ENV", "development");
+      const problemRows = vi.mocked(db.problem.findMany);
+      problemRows.mockClear();
+      expect(
+        (
+          await GET(
+            new Request(`http://localhost/api/dev/unified/problems?${params}`),
+          )
+        ).status,
+      ).toBe(400);
+      expect(problemRows).not.toHaveBeenCalled();
+    },
+  );
   it("bootstraps curriculum and counts without loading rows, then pages actual candidates", async () => {
     const candidate = await plant();
     const problemRows = vi.mocked(db.problem.findMany);
@@ -209,7 +276,7 @@ describe("Math exam builder scoped bank access", () => {
     });
   });
 
-  it("composes all unit quotas in two problem reads and never borrows for shortages", async () => {
+  it("composes all unit quotas in bounded problem reads (sheet families, pool, chosen rows) and never borrows for shortages", async () => {
     const baseline = await db.problem.findMany({
       select: { id: true },
       where: { unitId: { in: [MOCK_UNITS[0].id, MOCK_UNITS[2].id] } },
@@ -233,7 +300,8 @@ describe("Math exam builder scoped bank access", () => {
       ],
       excludeIds: [...baseline.map((row) => row.id), excluded.id],
     });
-    expect(find).toHaveBeenCalledTimes(2);
+    // Metadata pool/identity/family reads stay bounded; no per-candidate full payload.
+    expect(find.mock.calls.length).toBeLessThanOrEqual(6);
     expect(result.problems.map((row) => row.id)).toEqual([first.id, second.id]);
     expect(result.allocations).toEqual([
       { unitId: MOCK_UNITS[0].id, requested: 3, available: 1, actual: 1 },
@@ -241,7 +309,7 @@ describe("Math exam builder scoped bank access", () => {
     ]);
   });
 
-  it("uses a deterministic reservoir draw within each allocation without duplicate questions", async () => {
+  it("uses a repeatable full-pool draw without duplicate questions", async () => {
     const baseline = await db.problem.findMany({
       select: { id: true },
       where: { unitId: MOCK_UNITS[0].id },
@@ -252,10 +320,19 @@ describe("Math exam builder scoped bank access", () => {
       allocations: [{ unitId: MOCK_UNITS[0].id, count: 2 }],
       excludeIds: baseline.map((row) => row.id),
     });
-    expect(result.problems.map((row) => row.id)).toEqual([
-      rows[5].id,
-      rows[1].id,
-    ]);
+    const again = await composeUnifiedBankProblems({
+      allocations: [{ unitId: MOCK_UNITS[0].id, count: 2 }],
+      excludeIds: baseline.map((row) => row.id),
+    });
+    expect(result.problems.map((row) => row.id)).toEqual(
+      again.problems.map((row) => row.id),
+    );
+    expect(new Set(result.problems.map((row) => row.id)).size).toBe(2);
+    expect(
+      result.problems.every((row) =>
+        rows.some((candidate) => candidate.id === row.id),
+      ),
+    ).toBe(true);
     expect(result.allocations[0]).toMatchObject({
       requested: 2,
       available: 6,

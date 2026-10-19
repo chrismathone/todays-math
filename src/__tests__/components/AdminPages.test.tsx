@@ -1,5 +1,7 @@
 import { render, screen, within } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { http, HttpResponse } from "msw";
+import { server } from "@/mocks/server";
 import AdminPage from "@/app/admin/page";
 import AdminSrsPage from "@/app/admin/math-srs/page";
 import AdminUserPage from "@/app/admin/users/[id]/page";
@@ -62,6 +64,10 @@ vi.mock("@/components/approval-pending/ApprovalPending", () => ({
 }));
 
 beforeEach(() => {
+  server.use(
+    http.get("/api/branch/accounts", () => HttpResponse.json({ data: [] })),
+    http.get("/api/branch/classes", () => HttpResponse.json({ data: [] })),
+  );
   access.mockReset();
   findUnique.mockReset();
   findBranch.mockReset();
@@ -119,6 +125,13 @@ describe("account page server gates", () => {
     const branchTabs = within(
       screen.getByRole("navigation", { name: "지점관리 세부 메뉴" }),
     );
+    expect(
+      branchTabs.getAllByRole("link").map((link) => link.getAttribute("href")),
+    ).toEqual([
+      "/branch?tab=classes",
+      "/branch?tab=students",
+      "/branch?tab=accounts",
+    ]);
     expect(branchTabs.getByRole("link", { name: "반 관리" })).toHaveAttribute(
       "href",
       "/branch?tab=classes",
@@ -146,6 +159,39 @@ describe("account page server gates", () => {
       "aria-current",
       "page",
     );
+    expect(
+      screen.queryByRole("heading", { name: "학생 반 배정" }),
+    ).not.toBeInTheDocument();
+  });
+  it("opens student assignment in its own branch tab", async () => {
+    access.mockResolvedValue({
+      ...adminAccount,
+      isSuperAdmin: false,
+      branchId: "55555555-5555-4555-8555-555555555555",
+      branchRole: "manager",
+    });
+    render(
+      await BranchPage({ searchParams: Promise.resolve({ tab: "students" }) }),
+    );
+    const branchTabs = within(
+      screen.getByRole("navigation", { name: "지점관리 세부 메뉴" }),
+    );
+    expect(
+      branchTabs.getByRole("link", { name: "학생 반 배정" }),
+    ).toHaveAttribute("href", "/branch?tab=students");
+    expect(
+      branchTabs.getByRole("link", { name: "학생 반 배정" }),
+    ).toHaveAttribute("aria-current", "page");
+    expect(
+      screen.getByRole("heading", { name: "학생 반 배정" }),
+    ).toBeInTheDocument();
+    expect(screen.queryByText("branch-screen")).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "반 담당 강사 배정" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "직원 계정 발급" }),
+    ).not.toBeInTheDocument();
   });
   it("gates the detail page and selects the requested user's documents", async () => {
     access.mockResolvedValue(null);

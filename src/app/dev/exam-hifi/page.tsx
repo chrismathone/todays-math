@@ -187,7 +187,7 @@ export default async function ExamHifiPage() {
                 {pageIndex === 0 ? (
                   <header className={styles.masthead}>
                     <div className={styles.mastLeft}>
-                      <div className={styles.academy}>오늘의수학</div>
+                      <div className={styles.academy}>오늘 수학</div>
                       <div className={styles.mastEn}>PAST PAPER</div>
                     </div>
                     <div className={styles.mastMid}>
@@ -205,7 +205,7 @@ export default async function ExamHifiPage() {
                   </header>
                 ) : (
                   <header className={styles.contHead}>
-                    <span>오늘의수학 · JH중 3학년 2학기 중간고사 대비</span>
+                    <span>오늘 수학 · JH중 3학년 2학기 중간고사 대비</span>
                     <span>p. {pageIndex + 1}</span>
                   </header>
                 )}

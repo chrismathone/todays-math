@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
+import { FORMAT_LABEL } from "@/lib/problem/questionSelectionClient";
 import BuilderDialog from "./BuilderDialog";
 import type { ExamBuilderSource, ExamScope } from "./types";
 import s from "./ExamBuilder.module.css";
@@ -12,6 +13,8 @@ export default function QuestionPicker<T>({
   questions,
   difficulties,
   replacing,
+  replaceId,
+  excludeRecent = false,
   initialScopeId,
   width,
   maxQuestions,
@@ -24,10 +27,14 @@ export default function QuestionPicker<T>({
   questions: T[];
   difficulties: readonly string[];
   replacing: boolean;
+  /** The slot being replaced — its own family stays available (D-111 ⑷). */
+  replaceId?: string;
+  /** 최근 출제 빼기(W4 · D-20) — 구성 · 가용량과 같은 조건으로 후보를 고른다. */
+  excludeRecent?: boolean;
   initialScopeId?: string;
   width?: number;
   maxQuestions: number;
-  onChoose: (item: T) => void;
+  onChoose: (item: T) => boolean | void;
   onClose: () => void;
   renderQuestion: (item: T) => ReactNode;
 }) {
@@ -48,10 +55,24 @@ export default function QuestionPicker<T>({
   const [excluded] = useState(() =>
     questions.map((item) => source.info(item).id),
   );
+  // D-111: one problem family per sheet. Replacing frees only its own slot's family.
+  const [excludedFamilies] = useState(() =>
+    excluded.filter((id) => id !== replaceId),
+  );
+  const blockedFamilies = new Set(
+    questions.flatMap((item) => {
+      const info = source.info(item);
+      return info.familyId && info.id !== replaceId ? [info.familyId] : [];
+    }),
+  );
   const scopeIds = scopeId ? [scopeId] : scopes.map((scope) => scope.id);
   const key = JSON.stringify([scopeIds, difficulty, query, page, retry]);
   const loading = result?.key !== key;
-  const selected = new Set(questions.map((item) => source.info(item).id));
+  const selected = new Set(
+    questions.map(
+      (item) => source.info(item).questionId ?? source.info(item).id,
+    ),
+  );
   useEffect(() => {
     const timer = setTimeout(() => {
       setQuery(search.trim());
@@ -78,6 +99,8 @@ export default function QuestionPicker<T>({
           page: currentPage,
           pageSize: PAGE_SIZE,
           excludeIds: excluded,
+          excludeFamiliesOf: excludedFamilies,
+          ...(excludeRecent ? { excludeRecent } : {}),
         },
         controller.signal,
       )
@@ -97,7 +120,7 @@ export default function QuestionPicker<T>({
           });
       });
     return () => controller.abort();
-  }, [source, key, excluded]);
+  }, [source, key, excluded, excludedFamilies, excludeRecent]);
   return (
     <BuilderDialog
       title={replacing ? "문항 교체" : "문항 추가"}
@@ -170,31 +193,61 @@ export default function QuestionPicker<T>({
             {result?.items.length ? (
               result.items.map((item) => {
                 const info = source.info(item);
-                const isSelected = selected.has(info.id);
+                const isSelected = selected.has(info.questionId ?? info.id);
+                const sameFamily =
+                  !isSelected &&
+                  !!info.familyId &&
+                  blockedFamilies.has(info.familyId);
                 return (
                   <article className={s.candidate} key={info.id}>
                     <small>
                       {info.scopeLabel} · {info.difficulty || "난이도 미지정"}
                     </small>
+                    {source.questionFormats && (
+                      <small className={s.candidateFormats}>
+                        가능 형식 ·{" "}
+                        {[
+                          ...new Set(
+                            source.questionFormats
+                              .options(item)
+                              .filter(
+                                (row) =>
+                                  row.state === "available" && row.format,
+                              )
+                              .map((row) => FORMAT_LABEL[row.format!]),
+                          ),
+                        ].join(" · ") || "확인 전"}
+                      </small>
+                    )}
                     <div className={s.questionBody}>{renderQuestion(item)}</div>
                     <div className={s.actions}>
                       <button
                         type="button"
-                        className={isSelected ? undefined : s.primary}
+                        className={
+                          isSelected || sameFamily ? undefined : s.primary
+                        }
+                        title={
+                          sameFamily
+                            ? "같은 문항류는 한 시험지에 1문항만 담습니다."
+                            : undefined
+                        }
                         disabled={
                           isSelected ||
+                          sameFamily ||
                           (!replacing && questions.length >= maxQuestions)
                         }
                         onClick={() => {
-                          onChoose(item);
+                          if (onChoose(item) === false) return;
                           setAdded((current) => [...current, info.id]);
                         }}
                       >
                         {isSelected
                           ? "추가됨"
-                          : replacing
-                            ? "이 문항으로 교체"
-                            : "문항 추가"}
+                          : sameFamily
+                            ? "같은 문항류 있음"
+                            : replacing
+                              ? "이 문항으로 교체"
+                              : "문항 추가"}
                       </button>
                     </div>
                   </article>

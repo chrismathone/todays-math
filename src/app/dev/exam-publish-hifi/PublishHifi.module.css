@@ -1,0 +1,333 @@
+/* 반에 내기 Hi-fi — 시안 틀과 덧붙는 부분만. 표 · 창은 제품 CSS 모듈을 그대로 쓴다. */
+.root {
+  min-height: 100vh;
+  padding: 32px 16px 64px;
+  background: var(--learn-bg, #f4f6fa);
+  color: var(--learn-ink, #172b4d);
+  font-family: var(--font-pretendard), "Malgun Gothic", sans-serif;
+  word-break: keep-all;
+}
+.heading,
+.option {
+  max-width: 1480px;
+  margin: 0 auto;
+}
+.heading h1 {
+  margin: 4px 0 8px;
+  font-size: 26px;
+  font-weight: 600;
+}
+.heading p {
+  margin: 0 0 6px;
+  max-width: 820px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.kicker {
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0;
+}
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--learn-control);
+  border-radius: var(--control-radius, 8px);
+  background: #fff;
+  color: var(--learn-accent);
+  font-size: 14px;
+  text-decoration: none;
+}
+.nav a:hover {
+  background: var(--learn-soft-hover);
+}
+.option {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--learn-track);
+}
+.optionHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.optionHead h2 {
+  margin: 0 0 4px;
+  font-size: 20px;
+  font-weight: 600;
+}
+.optionHead p {
+  margin: 0;
+  color: var(--learn-muted);
+  font-size: 14px;
+  max-width: 820px;
+}
+.statePicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+.statePicker select {
+  min-height: 44px;
+  padding: 0 10px;
+  border: 1px solid var(--learn-control);
+  border-radius: var(--control-radius, 8px);
+  background: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+.library {
+  padding: 0;
+}
+.muted {
+  color: var(--learn-muted);
+}
+.right {
+  text-align: right;
+}
+
+/* 창 — 모달이 아니라 그 자리에 그린다(시안). */
+.staticDialog {
+  display: block;
+  margin: 0;
+  box-shadow: 0 12px 40px #10203f22;
+}
+.sheetLine {
+  margin: -12px 0 18px;
+  font-size: 14px;
+}
+.fields {
+  display: grid;
+  gap: 14px;
+}
+.field {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 650;
+}
+.field :is(select, input) {
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid #d2ddeb;
+  border-radius: var(--control-radius, 8px);
+  background: #fff;
+  font: inherit;
+  font-weight: 400;
+}
+.field select {
+  cursor: pointer;
+}
+.classes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 14px;
+}
+.classes legend {
+  margin-bottom: 6px;
+  font-weight: 650;
+}
+.classes label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  cursor: pointer;
+}
+.classes input {
+  width: 18px;
+  height: 18px;
+  accent-color: #3159df;
+  cursor: pointer;
+}
+.note {
+  margin: 0;
+  color: var(--learn-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.doneBox {
+  display: grid;
+  gap: 12px;
+  font-size: 14px;
+}
+.doneBox p {
+  margin: 0;
+}
+.doneLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* 표에 덧붙는 것 */
+/* 제품의 `.table .actionsCell`(0,2,0)보다 세게 — 다른 모듈의 클래스라 조합할 수 없어 같은 클래스를 겹친다. */
+.wideActions.wideActions.wideActions {
+  /* 단추가 하나 늘어 지금 표의 156 에서 넓힌다 — 아이콘 넷(194) · 글자 단추 + 아이콘 셋(약 230). */
+  width: 260px;
+}
+.kindStack {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+.tag,
+.issuedBadge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.tag {
+  border: 1px solid var(--learn-track);
+  color: var(--learn-muted);
+}
+.issuedBadge {
+  background: var(--learn-soft, #edf2ff);
+  color: var(--learn-accent, #3159df);
+}
+.issuedCell.issuedCell.issuedCell {
+  width: 190px;
+  font-size: 13px;
+}
+.issuedToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 4px 8px;
+}
+.textButton {
+  width: auto !important;
+  padding: 0 12px !important;
+  color: var(--learn-accent, #3159df) !important;
+  font-weight: 600;
+}
+.expandRow td {
+  background: var(--learn-bg, #f4f6fa);
+}
+.issuedTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.issuedTable :is(th, td) {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--learn-track);
+  text-align: left;
+  font-weight: 400;
+}
+.issuedTable thead th {
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+.issuedTable tbody th {
+  font-weight: 600;
+}
+.leftBadge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: var(--learn-warning-bg, #fff4df);
+  color: var(--learn-warning, #8a5a06);
+  font-size: 11px;
+  font-weight: 600;
+}
+.gradeButton {
+  min-height: 36px;
+  padding: 0 12px;
+  color: var(--learn-accent, #3159df);
+  font-weight: 600;
+}
+
+/* H3 띠 */
+.strip {
+  margin-bottom: 18px;
+  padding: 14px 16px;
+  border: 1px solid var(--learn-track);
+  border-radius: var(--learn-radius-sm, 10px);
+  background: #fff;
+}
+.strip header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.strip header span {
+  color: var(--learn-muted);
+  font-size: 13px;
+}
+.strip ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.strip li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+.strip li > span:first-child {
+  flex: 1;
+}
+
+/* H4 카드 */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.card {
+  display: grid;
+  gap: 6px;
+  width: 220px;
+  padding: 12px;
+  border: 1px solid var(--learn-track);
+  border-radius: var(--learn-radius-sm, 10px);
+  background: #fff;
+  font-size: 13px;
+}
+.card header {
+  display: flex;
+  justify-content: space-between;
+}
+.card p {
+  margin: 0;
+  color: var(--learn-muted);
+}
+.bar {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--learn-track, #dde3ec);
+  overflow: hidden;
+}
+.bar span {
+  display: block;
+  height: 100%;
+  background: var(--learn-accent, #3159df);
+}

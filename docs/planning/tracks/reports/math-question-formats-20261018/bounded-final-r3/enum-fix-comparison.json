@@ -1,0 +1,12 @@
+{
+  "readOnly": true,
+  "priorR2Failure": "PostgreSQL42804 at first INSERT difficulty text parameter, whole transaction rolled back",
+  "all4801BaselineRowsByteIdentical": true,
+  "all146CandidatePayloadsByteIdentical": true,
+  "changedSourceFiles": [
+    "scripts/import/bounded-question-reinforcement.ts"
+  ],
+  "fix": "Parameter6 explicit public.difficulty enum cast; shared SQL/parameters also used in146 actual readonly EXPLAIN plans without execution",
+  "typedLocalApplyRepeatAndRevertPassed": true,
+  "oldArtifactsPreserved": true
+}

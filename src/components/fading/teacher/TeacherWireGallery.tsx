@@ -22,6 +22,8 @@ const FLAG_LABELS: Record<FadingTeacherFlag, string> = {
   "not-started": "시작 전",
   overdue: "복습 밀림",
   idle: "오래 쉼",
+  "relearn-stop": "보충 필요",
+  "quota-check": "분량 점검 필요",
 };
 const PROPOSALS = {
   A: {
@@ -533,7 +535,7 @@ export function TeacherWireGallery({
   return (
     <div className={s.root}>
       <aside className={s.workspaceRail} aria-label="작업실 위치">
-        <strong>오늘의수학</strong>
+        <strong>오늘 수학</strong>
         <p>작업실</p>
         <div>오늘의 작업</div>
         <div>오늘의 개념</div>

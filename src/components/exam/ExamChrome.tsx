@@ -18,7 +18,7 @@ export function ExamChrome({ children }: { children: React.ReactNode }) {
       <header className="flex items-baseline gap-6 border-b-[3px] border-ink px-[26px] pt-[19px] pb-[15px]">
         <span className="text-[28.5px] font-black tracking-[-0.5px]">
           <Link href="/" className="text-ghost">
-            오늘의수학
+            오늘 수학
           </Link>
           <span className="mx-[7px] font-normal text-divider">│</span>
           <span aria-current="page">오늘의시험</span>

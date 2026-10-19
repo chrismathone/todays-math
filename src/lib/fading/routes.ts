@@ -24,13 +24,12 @@ import { loadCourseStudent } from "@/lib/math-srs/courseServer";
 import { srsFailureResponse } from "@/lib/math-srs/serverRoutes";
 import { changeFadingState, readSrsState } from "@/lib/math-srs/serverStore";
 import { STUDENT_CHANGED_MESSAGE } from "@/lib/studentRouteAccess";
-import {
-  applyFadingAction,
-  fadingActionConceptId,
-  fadingActionNeedsConcept,
-} from "./actions";
+import { fadingActionConceptId, fadingActionNeedsConcept } from "./actions";
 import { fadingCatalog, fadingConceptMap, fadingFigureOf } from "./catalog";
+import { applyFadingActionWithRelearn } from "./compose";
 import { fadingCardsEnabled, fadingEnabled } from "./enabled";
+import { fadingQuotaForStudent } from "./quotaServer";
+import { fadingRelearnEnabled } from "./relearnEnabled";
 import { FadingConflict, emptyFading } from "./state";
 import { fadingTrapsFor } from "./traps";
 import {
@@ -52,6 +51,34 @@ import {
 /** 화면이 «이 요청은 이 학생의 것»이라고 실어 보내는 머리(선택) — 값은 학생 id 다. 교재의 학생 라우트가 쓰는 것과 같은 이름이다. */
 export const FADING_STUDENT_HEADER = "x-student-id";
 
+/**
+ * D1 ②(배포 2단계) — 환경값 `MATH_FADING_STUDENT_HEADER=required` 면 «오늘의 기억»의 학생 요청은 머리가 **있어야** 한다.
+ * 값이 없으면 지금처럼 머리 없는 요청도 받는다(①). ①이 운영에 나가 열린 화면이 모두 머리를 싣는 새 화면이 된 뒤에만 켠다 —
+ * 🔴 «하루 뒤»는 증거가 아니다: 켜면 머리 없는 옛 화면의 요청은 전부 `STUDENT_CHANGED` 로 막힌다(기록을 읽기 전에).
+ */
+export function fadingStudentHeaderRequired(): boolean {
+  return process.env.MATH_FADING_STUDENT_HEADER === "required";
+}
+
+/**
+ * 화면이 «이 학생의 것»이라고 실어 보낸 요청(`x-student-id` — 교재의 학생 라우트와 같은 머리)은 지금 로그인한 학생과 같을 때만 받는다.
+ * 같은 기기에서 학생이 바뀐 뒤, 앞 학생의 화면이 보낸 고르기 · 풀이 열기 · 확인의 답이 새 학생의 기록에 적히지 않게 — 기록을 읽기도 전에
+ * `STUDENT_CHANGED`(409)로 돌려보낸다. 내용이 바뀐 409(`CONFLICT`)와 코드를 가른다 — 화면은 다시 읽지 않고 그 화면을 내린다(D1).
+ * 머리가 없는 요청은 지금까지와 같다(로그인한 학생의 것으로 본다) — ②가 켜져 있으면 그것도 막는다.
+ * 재학습 라우트(`relearnRoutes.ts`)도 이 함수를 쓴다 — 문을 두 벌 두지 않는다.
+ */
+export function fadingStudentHeaderResponse(
+  request: Request,
+  studentId: string,
+): Response | null {
+  const expected = request.headers.get(FADING_STUDENT_HEADER);
+  const rejected =
+    expected === null ? fadingStudentHeaderRequired() : expected !== studentId;
+  return rejected
+    ? noStore(jsonError("STUDENT_CHANGED", STUDENT_CHANGED_MESSAGE, 409))
+    : null;
+}
+
 async function enter(request: Request, mutation: boolean) {
   if (!fadingEnabled())
     return { response: noStore(notFoundError("주소")) } as const;
@@ -59,14 +86,8 @@ async function enter(request: Request, mutation: boolean) {
   if (gate.response) return { response: noStore(gate.response) } as const;
   if (mutation && !sameOriginMutation(request))
     return { response: noStore(crossSiteError()) } as const;
-  // 화면이 «이 학생의 것»이라고 실어 보낸 요청(`x-student-id` — 교재의 학생 라우트와 같은 머리)은 지금 로그인한 학생과 같을 때만 받는다.
-  // 같은 기기에서 학생이 바뀐 뒤, 앞 학생의 화면이 보낸 고르기 · 풀이 열기가 새 학생의 기록에 적히지 않게 — 기록을 읽기도 전에 409 로 돌려보낸다.
-  // 머리가 없는 요청은 지금까지와 같다(로그인한 학생의 것으로 본다).
-  const expected = request.headers.get(FADING_STUDENT_HEADER);
-  if (expected !== null && expected !== gate.student.studentId)
-    return {
-      response: noStore(jsonError("CONFLICT", STUDENT_CHANGED_MESSAGE, 409)),
-    } as const;
+  const changed = fadingStudentHeaderResponse(request, gate.student.studentId);
+  if (changed) return { response: changed } as const;
   const student = await loadCourseStudent(gate.student.studentId);
   if (!student?.studentAccount || student.studentAccount.disabledAt)
     return { response: noStore(unauthorizedError()) } as const;
@@ -87,10 +108,12 @@ export async function handleFadingRequest(
 ): Promise<Response> {
   const gate = await enter(request, operation === "action");
   if (gate.response) return gate.response;
-  const { student, today } = gate;
+  const { student, today, now } = gate;
   try {
     const concepts = fadingConceptMap();
     const cards = fadingCardsEnabled();
+    // 홈의 하루 분량 — 교사가 정한 값(그날 먹는 값 · `quota.ts`). 없으면 서비스 기본이다. «오늘의 학습» 계획과 같은 값이다.
+    const cap = await fadingQuotaForStudent(student.id, today);
     let saved: Awaited<ReturnType<typeof readSrsState>>;
     let requestId: string | undefined;
     if (operation === "read") saved = await readSrsState(student.id);
@@ -105,18 +128,20 @@ export async function handleFadingRequest(
       // 은행에 없는 개념은 고를 수도 풀 수도 없다. 빼는 것만 된다 — 은행에서 사라진 개념의 기록을 치울 길이다.
       if (fadingActionNeedsConcept(action) && !concept)
         return noStore(notFoundError("개념"));
-      // 번호와 씨앗은 여기서 한 번 — 저장이 다시 시도돼도 같은 값이 들어간다.
+      // 번호와 씨앗은 여기서 한 번 — 저장이 다시 시도돼도 같은 값이 들어간다. 재학습 등록의 시각(`now`)도 요청당 한 번이다.
       const fresh = { sessionId: randomUUID(), seed: randomInt(0x7fff_ffff) };
       if (action.action === "rate") requestId = action.requestId;
+      // 본 전이와 단기 재학습 등록을 한 저장 콜백 안에서(D3 · `compose.ts`) — 응답의 꼴은 그대로다.
+      const relearn = { enabled: fadingRelearnEnabled(), now: now.getTime() };
       saved = await changeFadingState(student.id, (fading) =>
-        applyFadingAction(
+        applyFadingActionWithRelearn(
           fading,
           action,
           concept,
           today,
           fresh,
           concept ? fadingTrapsFor(concept) : [],
-          { cards },
+          { cards, relearn },
         ),
       );
     }
@@ -127,6 +152,7 @@ export async function handleFadingRequest(
           revision: saved.revision,
           today,
           concepts,
+          cap,
           requestId,
           trapsOf: fadingTrapsFor,
           figureOf: fadingFigureOf,

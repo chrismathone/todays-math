@@ -66,10 +66,17 @@ const pagePath = () =>
     CLIENT_LOG_PATH_MAX,
   );
 
+// Match the development-only page gate. Check at use time: the root logger
+// survives navigation and can capture fetch before the preview replaces it.
+const isWorkspacePreview = () =>
+  process.env.NODE_ENV === "development" &&
+  typeof location !== "undefined" &&
+  location.pathname === "/dev/workspace-alignment";
+
 /** 사건 하나를 줄에 세운다 — 설치 전이면 버린다. 같은 것은 묶는다. */
 export function reportClientError(report: ClientReport): void {
   const current = state;
-  if (!current || current.stopped) return;
+  if (!current || current.stopped || isWorkspacePreview()) return;
   const event: Queued = {
     kind: report.kind,
     message: clip(report.message || "(문구 없음)", CLIENT_LOG_MESSAGE_MAX),
@@ -131,7 +138,8 @@ function takeBatch(current: State): Queued[] {
 }
 
 async function flush(current: State) {
-  if (current.stopped) return;
+  // Keep real-page events queued during preview; do not stop later reporting.
+  if (current.stopped || isWorkspacePreview()) return;
   const events = takeBatch(current);
   if (!events.length) return;
   try {
@@ -152,7 +160,7 @@ async function flush(current: State) {
 
 /** 화면을 떠날 때 — 남은 것을 sendBeacon 으로(없으면 keepalive fetch) */
 function flushOnLeave(current: State) {
-  if (current.stopped || !current.queue.size) return;
+  if (current.stopped || !current.queue.size || isWorkspacePreview()) return;
   if (current.timer) {
     clearTimeout(current.timer);
     current.timer = undefined;

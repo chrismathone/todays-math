@@ -26,7 +26,7 @@ describe("AppChrome", () => {
     expect(
       within(navigation).getByRole("link", { name: "오늘의시험" }),
     ).toHaveAttribute("href", "/exam");
-    expect(screen.getByRole("link", { name: "오늘의수학" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "오늘 수학" })).toHaveAttribute(
       "href",
       "/",
     );

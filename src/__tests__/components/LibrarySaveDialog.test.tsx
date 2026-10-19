@@ -1,19 +1,30 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import { useLibrarySaveConfirmation } from "@/components/unified/LibrarySaveDialog";
 import { PrivateCloudClient } from "@/components/unified/privateCloudClient";
-import type { DocumentSharing } from "@/contracts/privateWorkspace.contract";
+import type {
+  DocumentKind,
+  DocumentSharing,
+} from "@/contracts/privateWorkspace.contract";
 
 const branchA = "30000000-0000-4000-8000-000000000003";
 const branchB = "40000000-0000-4000-8000-000000000004";
 function Editor({
   branchId,
+  kind = "draft",
   save,
 }: {
   branchId?: string | null;
+  kind?: DocumentKind;
   save: (sharing?: DocumentSharing) => Promise<void>;
 }) {
-  const confirm = useLibrarySaveConfirmation(branchId, save);
+  const confirm = useLibrarySaveConfirmation(branchId, kind, save);
   return (
     <>
       <button onClick={confirm.requestSave}>자료 저장</button>
@@ -78,6 +89,30 @@ it("binds an open confirmation to the old branch, rejects stale membership, then
   fireEvent.click(screen.getByRole("button", { name: "자료 저장" }));
   expect(screen.getByRole("radio", { name: "학원에 비공개" })).toBeChecked();
   window.removeEventListener("workspace-access-change", refreshed);
+});
+
+// 2026-10-16 외부 검토 §3 — 제목은 보관함(저장 위치)이고, 저장할 종류는 따로 보인다.
+it("names the location in the title and shows the stored kind on its own line", async () => {
+  const save = vi.fn(async () => {});
+  const editor = render(
+    <Editor branchId={branchA} kind="conceptBlank" save={save} />,
+  );
+  fireEvent.click(screen.getByRole("button", { name: "자료 저장" }));
+  const dialog = screen.getByRole("dialog", { name: "우리학원 시험지에 저장" });
+  expect(
+    within(dialog)
+      .getAllByRole("term")
+      .map((term) => term.textContent),
+  ).toEqual(["종류", "저장 위치"]);
+  expect(
+    within(dialog)
+      .getAllByRole("definition")
+      .map((definition) => definition.textContent),
+  ).toEqual(["개념 백지", "우리학원 시험지"]);
+  editor.rerender(<Editor branchId={branchA} kind="extraction" save={save} />);
+  expect(within(dialog).getAllByRole("definition")[0]).toHaveTextContent(
+    "추출한 자료",
+  );
 });
 
 it("keeps independent saves direct and removes an open branch dialog when affiliation is removed", async () => {

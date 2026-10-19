@@ -162,9 +162,14 @@ model Branch {
   createdAt DateTime @default(now()) @map("created_at")
   disabledMenus String[] @default([]) @map("disabled_menus")
   menuRevision Int @default(1) @map("menu_revision")
+  /// 지점 원장이 상한(disabledMenus) 안에서 끈 메뉴 — 에이와 원장도 같은 칸을 쓴다(2026-10-19)
+  ownerDisabledMenus String[] @default([]) @map("owner_disabled_menus")
   users     User[]
   sharedDocuments WorkspaceDocument[]
 
+  examPublications ExamPublication[]
+
+  examReports ExamReportDraft[]
   @@map("branch")
 }
 
@@ -239,6 +244,11 @@ model User {
   englishPassageReceipts EnglishPassageReceipt[]
   listeningSets          EnglishListeningSet[]
 
+  /// 월말평가 M1 — 반에 낸 시험지의 고정본(2026-10-17)
+  examPublications ExamPublication[]
+
+  examReports         ExamReportDraft[]
+  examReportConfirmed ExamReportArtifact[] @relation("ExamReportConfirmer")
   @@map("user")
 }
 
@@ -448,11 +458,16 @@ model Student {
   progressPlans       ProgressPlan[]
   /// Generated daily practice is independent of scored exams and private teacher worksheets.
   srsState            StudentSrsState?
+  /// «오늘의 기억» 하루 분량 — 행이 없으면 서비스 기본(2026-10-17)
+  fadingPolicy        FadingStudentPolicy?
+  /// «오늘의 기억» 추가 확인이 하루 상한에 닿은 날 — «분량 점검 필요» 신호의 근거
+  fadingCapDays       FadingRelearnCapDay[]
   /// 교재 배정 — 이 학생 하나에게 건 판본
   textbookAssignments     TextbookAssignment[]
   /// 교재 개념의 백지 활동 — 학생을 지우면 그 글도 같이 지워진다
   textbookConceptAttempts TextbookConceptAttempt[]
 
+  examReports ExamReportDraft[]
   @@index([classId])
   @@map("student")
 }
@@ -468,6 +483,36 @@ model StudentSrsState {
   student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
 
   @@map("student_srs_state")
+}
+
+/// «오늘의 기억» 학생별 하루 분량 (원장님 결정 2026-10-17 · `src/lib/fading/quota.ts`).
+/// 학생 기록 JSON 밖에 둔다 — 학생이 풀 때마다 바뀌는 revision 과 부딪히지 않고, 엄격한 학생 기록 계약의 되돌림 하한을 옮기지 않는다.
+/// 바꾼 값은 다음 한국 날짜(`effective_on`)부터 먹는다 — 그 전날까지는 `previous_quota`. 둘 다 NULL 이면 서비스 기본.
+model FadingStudentPolicy {
+  studentId     String   @id @map("student_id") @db.Uuid
+  quota         Int?     @db.SmallInt
+  previousQuota Int?     @map("previous_quota") @db.SmallInt
+  effectiveOn   DateTime @map("effective_on") @db.Date
+  /// 교사 화면의 덮어쓰기 막기 — 저장할 때 견준다.
+  revision      Int      @default(1)
+  /// 바꾼 계정(감사 기록에도 남는다). 계정이 지워져도 행은 남도록 외래 키를 걸지 않는다.
+  updatedById   String?  @map("updated_by") @db.Uuid
+  updatedAt     DateTime @default(now()) @updatedAt @map("updated_at")
+  student       Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@map("fading_student_policy")
+}
+
+/// «오늘의 기억» 추가 확인이 하루 상한(30회)에 닿은 한국 날짜 — 학생 하나에 하루 한 행. 학생 라우트가 닿은 그때 적는다.
+/// 학생 기록 JSON 의 하루치 집계로는 지난 날을 되살릴 수 없어 따로 둔다(합의 §3).
+model FadingRelearnCapDay {
+  studentId String   @map("student_id") @db.Uuid
+  on        DateTime @db.Date
+  createdAt DateTime @default(now()) @map("created_at")
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@id([studentId, on])
+  @@map("fading_relearn_cap_day")
 }
 
 // ─────────────────────────────────────────────
@@ -794,6 +839,11 @@ model Problem {
   /// mapProblemType 이 객관식→"개념" 으로 뭉개 원본 구분이 소실돼 있었다(11 §2.4).
   /// 청사진의 유형 배분(학교 고유성 51.1%)을 채우려면 이 컬럼이 필요하다.
   questionType      String?    @map("question_type") @db.VarChar(10)
+  /// 실제 형식 캐시. NULL=미계산, unknown=계산했으나 확정 불가. DB 먼저 적용하며 기존 reader는 그대로 둔다.
+  actualFormat        String? @map("actual_format") @db.VarChar(20)
+  /// 정본 분류기·파서 의존 소스의 버전. 입력 변경 시 DB 트리거가 세 칸을 함께 비운다.
+  actualFormatVersion String? @map("actual_format_version") @db.VarChar(96)
+  actualFormatDigest  String? @map("actual_format_digest") @db.Char(64)
   /// 문제 본문 — LaTeX 수식 포함 마크다운
   content           String     @db.Text
   answer            String     @db.Text
@@ -874,6 +924,8 @@ model Problem {
   /// ⚠️ 비면 **자기 혼자 한 무리**를 차지한다(`solo:<uuid>`, 트리거가 채운다).
   ///    번호 형식이 한 가지로 유지되게 하려는 것이다 — 나중에 「이건 저 무리」로 옮길 수 있다.
   familyKey        String?      @map("family_key")
+  /// Proven same-task representations only; NULL preserves independent legacy rows.
+  questionGroupKey String?      @map("question_group_key")
   /// 문항 코드 — 원장님이 문항을 **지목**하는 값 (D-53 · D-105). 예: `J30103-A01-001`.
   /// 옛 형식(`J31402-K7M2`, 무작위 4자)을 단 행이 45,374건 남아 있다 — 격리 대상이고
   /// freeze 트리거가 UPDATE 를 막으므로 영영 그대로다. CHECK 는 둘 다 받는다.
@@ -926,8 +978,14 @@ model Problem {
   @@index([reviewStatus, createdAt(sort: Desc)])
   // 「이 문항과 같은 류가 몇 개인가」 — 아류 묶어 보기(D-105).
   @@index([unitId, familyKey])
+  @@index([questionGroupKey])
+  @@index([unitId, questionGroupKey])
   // 「이 자료의 문항」 — 출판사 · 자료 종류로 거르는 조회가 자료 → 문항으로 내려온다(D-161).
   @@index([sourceMaterialId])
+  // 실제 형식 집계·단원/자료별 후보 쪽 자르기. 아직 운영 reader가 이 캐시를 읽지는 않는다.
+  @@index([pool, actualFormat, id], map: "problem_pool_actual_format_id_idx")
+  @@index([pool, unitId, actualFormat, problemCode, id], map: "problem_pool_unit_actual_format_code_id_idx")
+  @@index([pool, sourceMaterialId, actualFormat, questionNumber, id], map: "problem_pool_material_actual_format_number_id_idx")
   @@map("problem")
 }
 
@@ -1141,6 +1199,9 @@ model Test {
   ///    요청 계약(`TestGenerateRequest`)에는 칸이 없다(strict — 넣으면 400). 밖에서 채울 수 있으면 표지가 거짓말이 된다.
   ///    시각으로 짐작하지도 않는다 — 8시 무렵 «모두 출제»로 낸 시험지가 섞인다.
   autoDraftRunId  String?  @map("auto_draft_run_id") @db.Uuid
+  /// 월말평가 M1(2026-10-17) — «내 시험지»에서 반에 낸 시험이면 그 발행본. 🔴 있으면 «일반 시험» 조회(확인테스트 범위 · 자동 초안 ·
+  /// 메인 · 지표 · 최근 출제)에서 뺀다 — `docs/planning/monthly-exam-plan-20261017.md` §9.
+  publicationId   String?  @map("publication_id") @db.Uuid
   createdAt       DateTime @default(now()) @map("created_at")
 
   user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -1151,16 +1212,100 @@ model Test {
   predictionRun  PredictionRun? @relation(fields: [predictionRunId], references: [id], onDelete: SetNull)
   /// 회차 기록이 지워져도 시험지는 남긴다 — 칸만 빈다(표지가 사라질 뿐 시험지·문항은 그대로).
   autoDraftRun   AutoDraftRun?  @relation(fields: [autoDraftRunId], references: [id], onDelete: SetNull)
+  publication    ExamPublication? @relation(fields: [publicationId], references: [id], onDelete: Restrict)
   rangeEndUnit   Unit           @relation("TestRangeEndUnit", fields: [rangeEndUnitId], references: [id], onDelete: Restrict)
   testProblems   TestProblem[]
   testResults    TestResult[]
 
+  examReports ExamReportDraft[]
   @@index([userId, testDate(sort: Desc)])
   @@index([classId, testDate(sort: Desc)])
   @@index([studentId])
   @@index([predictionRunId])
   @@index([autoDraftRunId])
   @@map("test")
+}
+
+/// 월말평가 M1 — 반에 낸 시험지의 **고정본**(2026-10-17 · 계획서 §9). 문항의 글 · 정답 · 해설 · 그림 참조 · 배점 · 차례 · 출력 설정을
+/// 낸 그대로 묶는다 — 원본 «내 시험지»를 고치거나 지워도, 은행 문항이 바뀌어도 낸 시험은 그대로다. 반마다 `test` 한 행이 이것을 가리킨다.
+/// 종류는 enum 을 늘리지 않고 글자 칸(CHECK)이다. 같은 요청 번호의 재전송은 같은 발행본이다(`user_id`, `request_id`).
+model ExamPublication {
+  id             String   @id @default(uuid()) @db.Uuid
+  userId         String   @map("user_id") @db.Uuid
+  branchId       String?  @map("branch_id") @db.Uuid
+  documentId     String   @map("document_id") @db.VarChar(100)
+  sourceRevision Int      @map("source_revision")
+  title          String   @db.VarChar(200)
+  examType       String   @default("monthly") @map("exam_type") @db.VarChar(20)
+  testDate       DateTime @map("test_date") @db.Date
+  payload        Json     @db.JsonB
+  contentHash    String   @map("content_hash") @db.Char(64)
+  requestId      String   @map("request_id") @db.Uuid
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  branch Branch? @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  tests  Test[]
+  examReports ExamReportDraft[]
+
+  @@unique([userId, requestId])
+  @@index([userId, documentId, createdAt(sort: Desc)])
+  @@map("exam_publication")
+}
+
+/// 월말평가 성적표 — 낸 시험 한 회 × 학생 한 명의 편집 자리(원장님 문장 · 지면 설정 · 상태). 마이그레이션 `20261018150000_exam_report_confirmation`.
+/// 문장 · 지면 설정 · 원시험을 고치면 DB 트리거가 판을 올리고 확정을 푼다. 재채점은 읽을 때 지문으로 가린다.
+model ExamReportDraft {
+  id                  String   @id @default(uuid()) @db.Uuid
+  publicationId       String   @map("publication_id") @db.Uuid
+  testId              String   @map("test_id") @db.Uuid
+  studentId           String   @map("student_id") @db.Uuid
+  userId              String   @map("user_id") @db.Uuid
+  branchId            String?  @map("branch_id") @db.Uuid
+  teacherNote         String   @default("") @map("teacher_note")
+  options             Json     @default("{}") @db.JsonB
+  revision            Int      @default(1)
+  state               String   @default("draft") @db.VarChar(12)
+  confirmedArtifactId String?  @map("confirmed_artifact_id") @db.Uuid
+  createdAt           DateTime @default(now()) @map("created_at")
+  updatedAt           DateTime @default(now()) @map("updated_at")
+
+  publication       ExamPublication      @relation(fields: [publicationId], references: [id], onDelete: Restrict)
+  test              Test                 @relation(fields: [testId], references: [id], onDelete: Restrict)
+  student           Student              @relation(fields: [studentId], references: [id], onDelete: Restrict)
+  user              User                 @relation(fields: [userId], references: [id], onDelete: Restrict)
+  branch            Branch?              @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  artifacts         ExamReportArtifact[] @relation("ExamReportArtifacts")
+  confirmedArtifact ExamReportArtifact?  @relation("ExamReportConfirmed", fields: [confirmedArtifactId, id], references: [id, reportId], onDelete: Restrict, map: "exam_report_draft_confirmed_artifact_fkey")
+
+  @@unique([publicationId, studentId])
+  @@index([testId])
+  @@map("exam_report_draft")
+}
+
+/// 확정한 순간의 고정본 — 고치거나 지울 수 없다(DB 트리거). PDF 바이트는 비공개 버킷 `exam-report-private` 의 `pdfPath` 에 있다.
+model ExamReportArtifact {
+  id             String   @id @default(uuid()) @db.Uuid
+  reportId       String   @map("report_id") @db.Uuid
+  revision       Int
+  sourceResultId String   @map("source_result_id") @db.Uuid
+  confirmedBy    String   @map("confirmed_by") @db.Uuid
+  confirmedAt    DateTime @default(now()) @map("confirmed_at")
+  layoutVersion  String   @map("layout_version") @db.VarChar(100)
+  sourceDigest   String   @map("source_digest") @db.Char(64)
+  snapshot       Json     @db.JsonB
+  pdfPath        String   @unique @map("pdf_path") @db.VarChar(300)
+  pdfSha256      String   @map("pdf_sha256") @db.Char(64)
+  pdfSize        Int      @map("pdf_size")
+
+  report       ExamReportDraft   @relation("ExamReportArtifacts", fields: [reportId], references: [id], onDelete: Restrict)
+  sourceResult TestResult        @relation(fields: [sourceResultId], references: [id], onDelete: Restrict)
+  confirmer    User              @relation("ExamReportConfirmer", fields: [confirmedBy], references: [id], onDelete: Restrict)
+  confirmedOf  ExamReportDraft[] @relation("ExamReportConfirmed")
+
+  @@unique([reportId, revision])
+  @@unique([id, reportId])
+  @@map("exam_report_artifact")
 }
 
 // ─────────────────────────────────────────────
@@ -1279,6 +1424,7 @@ model TestResult {
   /// 1:1 — 실제 FK는 AnalysisReport.testResultId(unique)가 소유한다(순환 FK 회피).
   analysisReport AnalysisReport?
 
+  examReportArtifacts ExamReportArtifact[]
   @@index([testId, studentId, takenAt])
   @@map("test_result")
 }

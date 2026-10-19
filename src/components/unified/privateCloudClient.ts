@@ -223,7 +223,21 @@ export class PrivateCloudClient {
     kind?: PrivateDocumentSummary["kind"],
     mine = true,
   ): Promise<PrivateDocumentSummary[]> {
+    return (await this.library(kind, mine)).items;
+  }
+  /**
+   * 목록과 함께 «연산 연습지를 지금 바꿀 수 있나»(쓰기 문)를 읽는다 — 서버가 안 보내면 열린 것으로 본다
+   * (옛 응답 · 시험 대역). 닫혀 있으면 화면이 이름 변경 · 삭제 · 사본을 미리 잠근다(2026-10-16 외부 검토 P3).
+   */
+  async library(
+    kind?: PrivateDocumentSummary["kind"],
+    mine = true,
+  ): Promise<{
+    items: PrivateDocumentSummary[];
+    arithmeticWriteEnabled: boolean;
+  }> {
     const items: PrivateDocumentSummary[] = [];
+    let arithmeticWriteEnabled = true;
     for (let page = 1; ; page++) {
       const response = await this.request(
         `/api/library/documents?page=${page}&pageSize=100${kind ? `&kind=${kind}` : ""}${mine ? "&mine=true" : ""}`,
@@ -231,8 +245,11 @@ export class PrivateCloudClient {
       const body = await response.json();
       if (!Array.isArray(body.data) || !Number.isInteger(body.meta?.total))
         throw new Error("자료 목록을 읽지 못했습니다.");
+      if (body.meta.arithmeticWriteEnabled === false)
+        arithmeticWriteEnabled = false;
       items.push(...body.data);
-      if (items.length >= body.meta.total) return items;
+      if (items.length >= body.meta.total)
+        return { items, arithmeticWriteEnabled };
       if (!body.data.length)
         throw new Error("자료 목록이 변경되었습니다. 다시 불러와 주세요.");
     }

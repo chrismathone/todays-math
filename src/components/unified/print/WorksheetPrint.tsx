@@ -1,5 +1,5 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { A4_DIM } from "./tokens";
+import { useEffect, useMemo, useState } from "react";
+import { PaperStrip } from "@/components/paper-strip/PaperStrip";
 import type { StudioProblem } from "../types";
 import { AnswerPage } from "./AnswerPage";
 import WorkProgress from "../WorkProgress";
@@ -9,6 +9,12 @@ import type { PrintMeta, PrintOptions, ProblemReview } from "./types";
 import s from "./WorksheetPrint.module.css";
 import { kstDateOf } from "@/lib/kstDate";
 import editor from "../WorksheetEditor.module.css";
+import {
+  arithmeticGroupFrom,
+  arithmeticGroupInstruction,
+  arithmeticGroupStarts,
+  arithmeticOutputGroups,
+} from "@/lib/arithmeticOutputLayout";
 
 const EMPTY: ProblemReview[] = [];
 
@@ -25,35 +31,22 @@ export function WorksheetPrint({
   printMeta: PrintMeta;
   onReady: (ready: boolean) => void;
 }) {
-  const [zoom, setZoom] = useState<number | "fit">("fit");
-  const [fitScale, setFitScale] = useState(0.85);
-  const [viewportWidth, setViewportWidth] = useState(0);
-  const [pageIndex, setPageIndex] = useState(0);
   const [dismissedNotice, setDismissedNotice] = useState("");
-  const visiblePage = useRef(0);
-  const viewport = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const element = viewport.current;
-    if (!element) return;
-    const resize = () => {
-      setViewportWidth(element.clientWidth);
-      setFitScale(
-        Math.min(1, Math.max(0.1, (element.clientWidth - 2) / A4_DIM.width)),
-      );
-    };
-    resize();
-    const observer = new ResizeObserver(resize);
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
   const problems = useMemo(
     () =>
-      selected.map((p) => ({
+      selected.map((p, index) => ({
         id: p.id,
         variant: { ...p, topic: p.section || p.chapter },
+        sectionHeading: arithmeticGroupStarts(p, selected[index - 1])
+          ? p.arithmetic?.groupTitle
+          : undefined,
+        sectionInstruction: arithmeticGroupStarts(p, selected[index - 1])
+          ? arithmeticGroupInstruction(arithmeticGroupFrom(selected, index))
+          : undefined,
       })),
     [selected],
   );
+  const rounds = useMemo(() => arithmeticOutputGroups(selected), [selected]);
   const meta = useMemo(() => {
     const result = Object.fromEntries(
       Object.entries(printMeta).map(([key, value]) => [
@@ -64,7 +57,7 @@ export function WorksheetPrint({
     const today = new Date();
     return {
       ...result,
-      title: title || "오늘의 수학 학습지",
+      title: title || "오늘 수학 학습지",
       subject: result.subject || "수학",
       grade:
         result.grade ||
@@ -98,35 +91,57 @@ export function WorksheetPrint({
     return () => onReady(false);
   }, [ready, onReady]);
   const total = questions.pages.length + answers.pages.length;
-  const scale = zoom === "fit" ? fitScale : zoom;
-  const currentPage = Math.min(pageIndex, Math.max(0, total - 1));
-  function scrollToPage(index: number) {
-    const element = viewport.current;
-    const page = element?.querySelectorAll<HTMLElement>("[data-unified-paper]")[
-      index
-    ];
-    if (!element || !page) return;
-    element.scrollTo({
-      left:
-        element.scrollLeft +
-        page.getBoundingClientRect().left -
-        element.getBoundingClientRect().left,
-      top: 0,
-      behavior: "instant",
-    });
+  function roundPageProps(indices: number[]) {
+    const first = problems[indices[0]]?.variant.arithmetic;
+    if (!first) return {};
+    const round = rounds.find((item) => item.round === first.round);
+    return {
+      round: first.round,
+      firstPage:
+        first.number === round?.groups[0]?.problems[0].arithmetic?.number,
+      totalProblems: round?.count,
+    };
   }
-  function goToPage(index: number) {
-    const next = Math.max(0, Math.min(index, total - 1));
-    visiblePage.current = next;
-    setPageIndex(next);
-    scrollToPage(next);
-  }
-  // Keep the same sheet in view when zoom, available width or pagination changes.
-  // Native scrolling updates the ref without forcing scroll position on every render.
-  useLayoutEffect(() => {
-    if (!ready) return;
-    scrollToPage(Math.min(visiblePage.current, Math.max(0, total - 1)));
-  }, [scale, viewportWidth, total, ready]);
+  const pages = [
+    ...questions.pages.map((page, i) => ({
+      key: `question-${i}`,
+      kind: "questions",
+      content: (
+        <Template
+          page={i + 1}
+          totalPages={total}
+          totalProblems={problems.length}
+          {...roundPageProps(page.indices)}
+          columns={options.columns}
+          meta={meta}
+          options={options}
+          problems={page.indices.map((index) => problems[index])}
+          startingNumber={page.indices[0] + 1}
+          splitIndex={page.splitIndex}
+          itemScales={page.scales}
+        />
+      ),
+    })),
+    ...answers.pages.map((page, i) => ({
+      key: `answer-${i}`,
+      kind: "answers",
+      content: (
+        <AnswerPage
+          page={questions.pages.length + i + 1}
+          totalPages={total}
+          totalProblems={problems.length}
+          {...roundPageProps(page.indices)}
+          columns={options.columns}
+          meta={meta}
+          options={{ ...options, solvingArea: "off" }}
+          problems={page.indices.map((index) => problems[index])}
+          startingNumber={page.indices[0] + 1}
+          splitIndex={page.splitIndex}
+          itemScales={page.scales}
+        />
+      ),
+    })),
+  ];
   const notice = [
     questions.fontError || answers.fontError
       ? "선택한 웹 글꼴을 불러오지 못해 대체 글꼴로 표시합니다. 네트워크를 확인하거나 시스템 글꼴을 선택해 주세요."
@@ -147,49 +162,6 @@ export function WorksheetPrint({
           미리보기 · A4 · {options.columns}단 · {selected.length}문항 · {total}
           쪽
         </span>
-        <nav
-          className={editor.pageNavigation}
-          aria-label="미리보기 페이지 이동"
-        >
-          <button
-            type="button"
-            aria-label="이전 페이지"
-            aria-controls="worksheet-preview"
-            disabled={currentPage === 0 || !total}
-            onClick={() => goToPage(currentPage - 1)}
-          >
-            ← 이전
-          </button>
-          <span role="status" aria-live="polite" aria-atomic="true">
-            {total ? currentPage + 1 : 0} / {total}쪽
-          </span>
-          <button
-            type="button"
-            aria-label="다음 페이지"
-            aria-controls="worksheet-preview"
-            disabled={!total || currentPage >= total - 1}
-            onClick={() => goToPage(currentPage + 1)}
-          >
-            다음 →
-          </button>
-        </nav>
-        <label>
-          확대{" "}
-          <select
-            aria-label="미리보기 확대"
-            value={zoom}
-            onChange={(e) =>
-              setZoom(e.target.value === "fit" ? "fit" : Number(e.target.value))
-            }
-          >
-            <option value="fit">너비 맞춤</option>
-            {[0.5, 0.65, 0.85, 1, 1.25].map((n) => (
-              <option key={n} value={n}>
-                {Math.round(n * 100)}%
-              </option>
-            ))}
-          </select>
-        </label>
       </div>
       {!ready &&
       (!questions.pages.length ||
@@ -219,108 +191,45 @@ export function WorksheetPrint({
           </button>
         </div>
       )}
-      <div
-        className={editor.paperViewport}
-        id="worksheet-preview"
-        ref={viewport}
-        role="region"
-        aria-label="시험지 미리보기"
-        aria-busy={!ready}
-        tabIndex={0}
-        onKeyDown={(event) => {
-          if (
-            event.target !== event.currentTarget ||
-            event.altKey ||
-            event.ctrlKey ||
-            event.metaKey
-          )
-            return;
-          const index =
-            event.key === "ArrowLeft"
-              ? currentPage - 1
-              : event.key === "ArrowRight"
-                ? currentPage + 1
-                : event.key === "Home"
-                  ? 0
-                  : event.key === "End"
-                    ? total - 1
-                    : null;
-          if (index === null) return;
-          event.preventDefault();
-          goToPage(index);
-        }}
-        onScroll={(event) => {
-          if (!ready || !total) return;
-          const element = event.currentTarget;
-          const left = element.getBoundingClientRect().left;
-          const pages = [
-            ...element.querySelectorAll<HTMLElement>("[data-unified-paper]"),
-          ];
-          let closest = 0;
-          let distance = Infinity;
-          pages.forEach((page, index) => {
-            const next = Math.abs(page.getBoundingClientRect().left - left);
-            if (next < distance) {
-              closest = index;
-              distance = next;
-            }
-          });
-          visiblePage.current = closest;
-          setPageIndex(closest);
-        }}
-      >
+      <div className={s.screenPreview}>
+        <PaperStrip
+          id="worksheet-preview"
+          label="시험지 미리보기"
+          busy={!ready}
+          hint="옆으로 넘겨 보고, 쪽을 누르면 크게 볼 수 있어요."
+          pages={pages.map((page, index) => ({
+            key: page.key,
+            node: (
+              <div className={s.document} style={questions.fontStyle}>
+                <article className={s.page}>{page.content}</article>
+              </div>
+            ),
+            caption: (
+              <>
+                <strong>{index + 1}</strong> / {total}쪽 ·{" "}
+                {page.kind === "answers" ? "정답" : "문제"}
+              </>
+            ),
+            ...(ready ? { enlargeLabel: `${index + 1}쪽 확대` } : {}),
+          }))}
+        />
+      </div>
+      {/* Export clients clone only this unscaled document, never the overview or dialog. */}
+      <div className={s.printDocument} aria-hidden="true" inert>
         <div
           className={s.document}
-          style={
-            {
-              ...questions.fontStyle,
-              "--preview-scale": scale,
-              "--preview-trailing-space": `${Math.max(0, viewportWidth - A4_DIM.width * scale)}px`,
-            } as React.CSSProperties
-          }
+          style={questions.fontStyle}
           data-mathgen-document
           data-template={options.template}
         >
-          {questions.pages.map((page, i) => (
+          {pages.map((page) => (
             <article
               className={s.page}
               data-unified-paper
-              data-page-kind="questions"
-              key={`question-${i}`}
+              data-page-kind={page.kind}
+              key={page.key}
             >
-              <Template
-                page={i + 1}
-                totalPages={total}
-                totalProblems={problems.length}
-                columns={options.columns}
-                meta={meta}
-                options={options}
-                problems={page.indices.map((index) => problems[index])}
-                startingNumber={page.indices[0] + 1}
-                splitIndex={page.splitIndex}
-                itemScales={page.scales}
-              />
-            </article>
-          ))}
-          {answers.pages.map((page, i) => (
-            <article
-              className={s.page}
-              data-unified-paper
-              data-page-kind="answers"
-              key={`answer-${i}`}
-            >
-              <AnswerPage
-                page={questions.pages.length + i + 1}
-                totalPages={total}
-                totalProblems={problems.length}
-                columns={options.columns}
-                meta={meta}
-                options={{ ...options, solvingArea: "off" }}
-                problems={page.indices.map((index) => problems[index])}
-                startingNumber={page.indices[0] + 1}
-                splitIndex={page.splitIndex}
-                itemScales={page.scales}
-              />
+              {page.content}
             </article>
           ))}
         </div>

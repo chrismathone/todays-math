@@ -14,6 +14,8 @@ import {
   fadingTeacherStudentResponseSchema,
   type FadingTeacherDashboard,
   type FadingTeacherFlag,
+  type FadingTeacherQuota,
+  type FadingTeacherQuotaInput,
   type FadingTeacherStudent,
 } from "@/contracts/fadingTeacher.contract";
 import { FadingMath } from "../FadingMath";
@@ -21,6 +23,7 @@ import { curriculumName } from "../labels";
 import type { FadingPreview as PreviewComponent } from "../FadingPreview";
 import { TeacherFadingSourceError, type TeacherFadingSource } from "./source";
 import type { TeacherHifiVariant } from "./hifiVariants";
+import { QuotaCard, RelearnTodayCard } from "./TeacherQuotaCards";
 import { teacherWireKey } from "./wireKey";
 import s from "./TeacherFadingStatus.module.css";
 
@@ -69,6 +72,8 @@ const FLAG_LABELS: Record<FadingTeacherFlag, string> = {
   "not-started": "시작 전",
   overdue: "복습 밀림",
   idle: "오래 쉼",
+  "relearn-stop": "보충 필요",
+  "quota-check": "분량 점검 필요",
 };
 function Flags({ flags }: { flags: readonly FadingTeacherFlag[] }) {
   return flags.length ? (
@@ -210,9 +215,13 @@ function RosterTable({
 function StudentDetailContent({
   detail,
   memberships,
+  onSaveQuota,
+  onReload,
 }: {
   detail: FadingTeacherStudent;
   memberships: string[];
+  onSaveQuota?: (input: FadingTeacherQuotaInput) => Promise<FadingTeacherQuota>;
+  onReload: () => Promise<FadingTeacherQuota | undefined>;
 }) {
   const { student, summary, concepts, days } = detail;
   return (
@@ -281,8 +290,57 @@ function StudentDetailContent({
           <dt>‘다시’ 평가</dt>
           <dd>{summary.lapses}회</dd>
         </div>
+        {summary.relearn ? (
+          <>
+            <div>
+              <dt>추가 확인 남음</dt>
+              <dd>{summary.relearn.waiting}문장</dd>
+            </div>
+            <div>
+              <dt>추가 확인 틀림</dt>
+              <dd>
+                {summary.relearn.fails}회 · {summary.relearn.failing}문장
+              </dd>
+            </div>
+            <div>
+              <dt>추가 확인 횟수</dt>
+              <dd>{summary.relearn.checks}회</dd>
+            </div>
+            <div>
+              <dt>가장 오래 남은 추가 확인</dt>
+              <dd>
+                {summary.relearn.sinceOn
+                  ? `${summary.relearn.sinceOn}부터`
+                  : "없음"}
+              </dd>
+            </div>
+          </>
+        ) : null}
+        {summary.recent ? (
+          <div>
+            <dt>최근 7일</dt>
+            <dd>
+              평가한 날 {summary.recent.days}일 · 첫 평가 {summary.recent.fresh}
+              개
+            </dd>
+          </div>
+        ) : null}
       </dl>
+      <RelearnTodayCard detail={detail} />
+      {detail.quota ? (
+        <QuotaCard
+          quota={detail.quota}
+          today={detail.today}
+          onSave={onSaveQuota}
+          onReload={onReload}
+        />
+      ) : null}
       <p className={s.note}>배운 개념은 첫 평가를 마친 개념입니다.</p>
+      {summary.relearn ? (
+        <p className={s.note}>
+          추가 확인 남음 · 틀림 · 횟수는 대기열에 남은 문장의 기록입니다.
+        </p>
+      ) : null}
       <dl className={s.steps} aria-label="단계별 개념 수">
         {([1, 2, 3, 4] as const).map((step) => (
           <div key={step}>
@@ -368,10 +426,12 @@ function StudentDetail({
   row,
   dashboard,
   getStudent,
+  setQuota,
 }: {
   row: Row;
   dashboard: FadingTeacherDashboard;
   getStudent: TeacherFadingSource["getStudent"];
+  setQuota?: TeacherFadingSource["setQuota"];
 }) {
   const [retry, setRetry] = useState(0);
   const read = useCallback(async () => {
@@ -408,7 +468,21 @@ function StudentDetail({
           onRetry={() => setRetry((value) => value + 1)}
         />
       ) : (
-        <StudentDetailContent detail={result.data} memberships={memberships} />
+        <StudentDetailContent
+          detail={result.data}
+          memberships={memberships}
+          onSaveQuota={
+            setQuota
+              ? async (input) =>
+                  (await setQuota(row.id, row.classId, input)).data
+              : undefined
+          }
+          onReload={async () =>
+            fadingTeacherStudentResponseSchema.parse(
+              await getStudent(row.id, row.classId),
+            ).data.quota
+          }
+        />
       )}
     </aside>
   );
@@ -417,10 +491,12 @@ function StudentDetail({
 function LoadedStatus({
   dashboard,
   getStudent,
+  setQuota,
   initialClass,
 }: {
   dashboard: FadingTeacherDashboard;
   getStudent: TeacherFadingSource["getStudent"];
+  setQuota?: TeacherFadingSource["setQuota"];
   initialClass?: string;
 }) {
   const [classId, setClassId] = useState(initialClass ?? "all");
@@ -521,6 +597,7 @@ function LoadedStatus({
               row={selected}
               dashboard={dashboard}
               getStudent={getStudent}
+              setQuota={setQuota}
             />
           ) : null}
         </div>
@@ -580,6 +657,7 @@ function PreviewDataView({
 export function TeacherFadingStatus({
   getDashboard,
   getStudent,
+  setQuota,
   preview,
   initialClass,
   variant = "H2",
@@ -663,6 +741,7 @@ export function TeacherFadingStatus({
             key={`${retry}`}
             dashboard={result.data}
             getStudent={getStudent}
+            setQuota={setQuota}
             initialClass={initialClass}
           />
         )}

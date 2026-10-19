@@ -1,3 +1,4 @@
+import { GENERAL_TESTS } from "@/lib/tests/generalTests";
 import { accessibleTestsWhere } from "@/lib/classAccess";
 /**
  * GET /api/tests — 소유 범위 안의 테스트 목록 (classId/studentId/status 필터, 페이지네이션).
@@ -28,6 +29,8 @@ async function handleGet(request: NextRequest) {
   const { classId, studentId, status, page, pageSize } = parsed.data;
   const where = {
     ...(await accessibleTestsWhere(session)),
+    // 반에 낸 월말평가는 «내 시험지»에서 본다 — 이 목록(메인의 «오늘의 테스트»)에 섞지 않는다.
+    ...GENERAL_TESTS,
     ...(classId ? { classId } : {}),
     ...(studentId ? { studentId } : {}),
     ...(status ? { status } : {}),

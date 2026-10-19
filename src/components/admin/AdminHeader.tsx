@@ -18,7 +18,7 @@ export default function AdminHeader({
       <div className={s.headerBrand}>
         <Link href={isSuperAdmin ? "/admin" : "/branch"} className={s.brand}>
           <TodayMathMark size={28} inverse />
-          <span>오늘의수학</span>
+          <span>오늘 수학</span>
         </Link>
         <span className={s.adminLabel}>관리 콘솔</span>
       </div>

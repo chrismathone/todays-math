@@ -1,0 +1,47 @@
+Local authored fixture verification, 2026-10-18 KST. No shared DB writes, Prisma generation, push, or deploy.
+
+Combined UI/API client regression (23 suites)
+RUN  v4.1.11 /Users/pss/orca/workspaces/today_/math-question-format-ui-20261018
+
+
+ Test Files  23 passed (23)
+      Tests  309 passed (309)
+   Start at  16:19:51
+   Duration  13.07s (transform 10.55s, setup 13.39s, import 8.13s, tests 34.31s, environment 11.71s)
+
+Generic English-compatible builder regressions
+RUN  v4.1.11 /Users/pss/orca/workspaces/today_/math-question-format-ui-20261018
+
+
+ Test Files  2 passed (2)
+      Tests  49 passed (49)
+   Start at  16:19:51
+   Duration  4.51s (transform 550ms, setup 0ms, import 1.14s, tests 3.86s, environment 1.12s)
+
+Workspace save/selection/order follow-up
+RUN  v4.1.11 /Users/pss/orca/workspaces/today_/math-question-format-ui-20261018
+
+
+ Test Files  3 passed (3)
+      Tests  13 passed (13)
+   Start at  16:20:57
+   Duration  2.18s (transform 1.78s, setup 1.19s, import 637ms, tests 2.97s, environment 629ms)
+
+Question format/shortage follow-up
+RUN  v4.1.11 /Users/pss/orca/workspaces/today_/math-question-format-ui-20261018
+
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  16:21:59
+   Duration  1.78s (transform 475ms, setup 438ms, import 217ms, tests 735ms, environment 282ms)
+
+Browser matrix
+{"passedViewports":[{"width":320,"height":600},{"width":390,"height":600},{"width":1280,"height":800},{"width":1280,"height":600}],"pageErrors":0,"networkWrites":0,"output":"/Users/pss/orca/workspaces/today_/math-question-format-ui-20261018/docs/planning/tracks/reports/math-question-formats-20261018/ui-qa"}
+
+Expanded UI/client scoped TypeScript: exit 0.
+ESLint on modified/new TS/TSX/CJS: exit 0.
+git diff --check: exit 0.
+See typecheck-files.json for client scope and excluded server entrypoints.
+
+D-30 affordance guard on all modified/new TSX/CSS: exit 0.

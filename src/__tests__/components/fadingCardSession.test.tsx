@@ -17,6 +17,7 @@ import { erasedTargets } from "@/lib/fading/erasure";
 import { fadingCardBlanks } from "@/lib/fading/cards";
 import { chipTray } from "@/lib/fading/chips";
 import { FadingFillCard } from "@/components/fading/FadingFillCard";
+import { FadingSourceError } from "@/lib/fading/source";
 
 vi.mock("@/components/math-explorers/ExplorerMath", () => ({
   ExplorerMath: ({ text }: { text: string }) => <>{text}</>,
@@ -858,15 +859,28 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
     expect(local.snapshot().concepts[concept.id]!.reviews).toBe(2);
   });
 
-  it("한 카드의 포기는 다음 카드를 보여 주고 끝에 다시만 허용한다", async () => {
+  it("한 카드의 포기는 저장된 뒤 다음 카드를 보여 주고 끝에 다시만 허용한다", async () => {
     const { local, state } = await atFour();
     const send = vi.spyOn(local, "act");
     app(local, state);
     fireEvent.click(screen.getByRole("button", { name: "아직 모르겠어요" }));
-    expect(document.querySelector("[data-fading-sentence]")).toHaveAttribute(
-      "data-fading-sentence",
-      "p1",
+    // The card's give-up is saved first (D2); the next card opens after the save.
+    await waitFor(() =>
+      expect(send).toHaveBeenCalledWith(
+        expect.objectContaining({
+          action: "give-up-card",
+          propositionId: "p0",
+          placements: [],
+        }),
+      ),
     );
+    await waitFor(() =>
+      expect(document.querySelector("[data-fading-sentence]")).toHaveAttribute(
+        "data-fading-sentence",
+        "p1",
+      ),
+    );
+    expect(local.snapshot().session!.missedAtFour).toEqual(["p0#1", "p0#2"]);
     expect(
       screen.queryByRole("region", { name: "내 답과 기준안 대조" }),
     ).not.toBeInTheDocument();
@@ -882,9 +896,132 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
     expect(
       screen.queryByRole("button", { name: /알맞음/ }),
     ).not.toBeInTheDocument();
+    // 넘긴 카드가 있으면 결정 1 의 «어려움»도 열리지 않는다.
+    expect(
+      screen.queryByRole("button", { name: /어려움/ }),
+    ).not.toBeInTheDocument();
+    expect(local.snapshot().session!.gaveUpAtFour).toBe(true);
     expect(send).toHaveBeenCalledWith(
       expect.objectContaining({ action: "step", step: 4, gaveUp: true }),
     );
+  });
+
+  it("카드의 포기(D2)는 지금까지 넣은 차례와 함께 저장되고, 저장 뒤 로컬 입력을 지키며 다음 카드로 간다 · 틀리게 쓴 뒤 포기한 빈칸도 적힌다", async () => {
+    const { local, state } = await atFour();
+    const send = vi.spyOn(local, "act");
+    app(local, state);
+    // 첫 카드: 첫 빈칸을 맞게 쓰고 둘째 빈칸은 틀리게 쓴 뒤 포기한다.
+    answer("외심");
+    answer("반지름");
+    await waitFor(() =>
+      expect(send).toHaveBeenCalledWith(
+        expect.objectContaining({ action: "miss" }),
+      ),
+    );
+    await waitFor(() => expect(screen.getByRole("textbox")).toBeEnabled());
+    fireEvent.click(screen.getByRole("button", { name: "아직 모르겠어요" }));
+    await waitFor(() =>
+      expect(send).toHaveBeenCalledWith({
+        action: "give-up-card",
+        conceptId: concept.id,
+        sessionId: state.session!.id,
+        propositionId: "p0",
+        placements: [
+          { targetId: "p0#1", text: "외심" },
+          { targetId: "p0#2", text: "반지름" },
+        ],
+      }),
+    );
+    await waitFor(() =>
+      expect(document.querySelector("[data-fading-sentence]")).toHaveAttribute(
+        "data-fading-sentence",
+        "p1",
+      ),
+    );
+    expect(local.snapshot().session!.missedAtFour).toEqual(["p0#2"]);
+    answer("반지름");
+    answer("90deg");
+    await waitFor(() =>
+      expect(
+        screen.getByRole("region", { name: "내 답과 기준안 대조" }),
+      ).toBeInTheDocument(),
+    );
+    finishComparison();
+    expect(
+      screen.queryByRole("button", { name: /알맞음/ }),
+    ).not.toBeInTheDocument();
+    const sent = send.mock.calls.map(([action]) => action.action);
+    expect(sent).toEqual(["miss", "give-up-card", "step"]);
+    // 로컬 입력은 그대로다 — 저장 전의 차례와 뒤의 차례가 한 줄로 step 에 실린다(서버 응답으로 되돌리지 않는다).
+    expect(send.mock.calls.at(-1)![0]).toMatchObject({
+      action: "step",
+      step: 4,
+      gaveUp: true,
+      placements: [
+        { targetId: "p0#1", text: "외심" },
+        { targetId: "p0#2", text: "반지름" },
+        { targetId: "p1#1", text: "반지름" },
+        { targetId: "p2#1", text: "90deg" },
+      ],
+    });
+  });
+
+  it("포기 저장이 실패하면 다음 카드로 가지 않고 같은 요청을 다시 보낸다 · 마지막 카드의 포기는 저장 뒤 이어서 step 을 보내고, 그 step 이 실패하면 재시도 성공 뒤에만 기준안이 열린다", async () => {
+    const { local, state } = await atFour();
+    const real = local.act.bind(local);
+    let failNext: "give-up-card" | "step" | null = "give-up-card";
+    const send = vi.spyOn(local, "act").mockImplementation(async (action) => {
+      if (failNext === action.action) {
+        failNext = null;
+        throw new FadingSourceError("OFFLINE", "연결 실패", 0);
+      }
+      return real(action);
+    });
+    app(local, state);
+    answer("외심");
+    answer("수직이등분선");
+    answer("반지름");
+    fireEvent.click(screen.getByRole("button", { name: "아직 모르겠어요" }));
+    await screen.findByRole("alert");
+    expect(screen.getByRole("alert")).toHaveTextContent("연결 실패");
+    expect(local.snapshot().session!.missedAtFour).toEqual([]);
+    expect(
+      screen.queryByRole("region", { name: "내 답과 기준안 대조" }),
+    ).not.toBeInTheDocument();
+    // 다시 시도 — 같은 포기가 저장되고, 마지막 카드라 이어서 step 을 보낸다. 그 step 은 실패한다.
+    failNext = "step";
+    fireEvent.click(screen.getByRole("button", { name: "저장 다시 시도" }));
+    await waitFor(() =>
+      expect(local.snapshot().session!.missedAtFour).toEqual(["p2#1"]),
+    );
+    await waitFor(() => expect(screen.getByRole("alert")).toBeInTheDocument());
+    expect(local.snapshot().session!.phase).toBe("steps");
+    expect(
+      screen.queryByRole("region", { name: "내 답과 기준안 대조" }),
+    ).not.toBeInTheDocument();
+    expect(document.body.innerHTML).not.toContain("$90^{\\circ}$");
+    fireEvent.click(screen.getByRole("button", { name: "저장 다시 시도" }));
+    await waitFor(() =>
+      expect(
+        screen.getByRole("region", { name: "내 답과 기준안 대조" }),
+      ).toBeInTheDocument(),
+    );
+    expect(local.snapshot().session).toMatchObject({
+      phase: "rating",
+      missedAtFour: ["p2#1"],
+    });
+    expect(
+      send.mock.calls
+        .map(([action]) => action)
+        .filter((action) => action.action === "give-up-card"),
+    ).toHaveLength(2);
+    expect(
+      send.mock.calls.filter(([action]) => action.action === "step"),
+    ).toHaveLength(2);
+    finishComparison();
+    expect(
+      screen.queryByRole("button", { name: /알맞음/ }),
+    ).not.toBeInTheDocument();
   });
 
   it("Space는 공백이며 Enter 조합/229를 무시하고 Tab은 빈칸으로, Escape 뒤 Tab은 밖으로 간다", async () => {
@@ -968,7 +1105,7 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
     ).not.toBeInTheDocument();
   });
 
-  it("자기 대조의 다름은 다시만 보여 준다", async () => {
+  it("자기 대조의 다름은 «다시»를 건다 — 빈칸 넷에 «다름» 하나는 부분 틀림이라 «다시 · 어려움»만(결정 1)", async () => {
     const { local, state } = await atFour();
     app(local, state);
     answer("내 다른 표현");
@@ -983,10 +1120,57 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
     expect(
       screen.queryByRole("button", { name: /쉬움/ }),
     ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /알맞음/ }),
+    ).not.toBeInTheDocument();
+    // 서버의 미리 보기는 «다 같은 뜻»일 때의 값이다 — 화면이 고른 대조로 «어려움»을 2일 이하로 자른다.
+    expect(screen.getByRole("button", { name: /어려움/ })).toHaveTextContent(
+      /^어려움[12]일 뒤$/,
+    );
     fireEvent.click(screen.getByRole("button", { name: /다시/ }));
     await waitFor(() =>
       expect(local.snapshot().receipts[0]?.rating).toBe("again"),
     );
+  });
+
+  it("결정 1 — 빈칸 넷 가운데 하나를 틀리고 넘김이 없으면 «다시 · 어려움»(2일 이하)을 보여 주고, «어려움»으로 닫힌다", async () => {
+    const { local, state } = await atFour();
+    const send = vi.spyOn(local, "act");
+    app(local, state);
+    expect(local.snapshot().session!.gaveUpAtFour).toBe(false);
+    answer("반지름");
+    await waitFor(() =>
+      expect(send).toHaveBeenCalledWith(
+        expect.objectContaining({ action: "miss" }),
+      ),
+    );
+    await waitFor(() => expect(screen.getByRole("textbox")).toBeEnabled());
+    answer("외심");
+    answer("수직이등분선");
+    answer("반지름");
+    answer("90deg");
+    await waitFor(() =>
+      expect(
+        screen.getByRole("region", { name: "내 답과 기준안 대조" }),
+      ).toBeInTheDocument(),
+    );
+    finishComparison();
+    expect(
+      screen.getByText("틀린 빈칸이 적어 «어려움»도 고를 수 있습니다."),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText(/이번 평가는 «다시»입니다/),
+    ).not.toBeInTheDocument();
+    const shown = screen
+      .getAllByRole("button", { name: /^(다시|어려움|알맞음|쉬움)/ })
+      .map((button) => button.textContent);
+    expect(shown).toEqual(["다시1일 뒤", "어려움2일 뒤"]);
+    fireEvent.click(screen.getByRole("button", { name: /어려움/ }));
+    await waitFor(() =>
+      expect(local.snapshot().receipts[0]?.rating).toBe("hard"),
+    );
+    const stored = local.snapshot().concepts[concept.id]!;
+    expect(stored).toMatchObject({ step: 4, lapses: 0, dueOn: "2026-10-09" });
   });
 
   it("연습은 카드 모드를 따라도 API 요청과 기록 변경이 없다", async () => {
@@ -1010,7 +1194,8 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
     answer("외심");
     answer("수직이등분선");
     confidence();
-    answer("반지름");
+    // 연습의 카드 포기는 보내지 않는다(D2) — 로컬에서만 넘어간다.
+    fireEvent.click(screen.getByRole("button", { name: "아직 모르겠어요" }));
     confidence();
     answer("90deg");
     expect(

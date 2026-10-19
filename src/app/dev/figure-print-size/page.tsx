@@ -62,7 +62,7 @@ const MICRO = "text-[10px] font-extrabold tracking-[1.2px]";
 const PANEL = "border-2 border-ink bg-side p-4";
 
 const META: JaseupPrintMeta = {
-  academyName: "오늘의수학",
+  academyName: "오늘 수학",
   title: "그림 크기 비교 (시안)",
   examDate: "2026-08-19",
   todayGoal: "그림이 문항마다 같은 크기로 나오는지 본다",

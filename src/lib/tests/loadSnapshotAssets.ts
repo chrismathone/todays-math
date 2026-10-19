@@ -6,6 +6,7 @@ import { assertAssetMime, assertSafeSvg } from "@/lib/textbook/assets";
 import { sha256 } from "@/lib/textbook/hash.server";
 import type { PrintableSnapshotAsset } from "@/lib/textbook/snapshotToPrintable";
 import { snapshotOf, type TestContentLink } from "./testProblemContent";
+import type { FrozenPayload } from "@/lib/examPublication/freeze";
 
 type AssetRow = {
   userId: string;
@@ -55,8 +56,10 @@ function checkedMetadata(
 
 /** The caller has authorized these Test rows. Only immutable assets referenced by their snapshots are read. */
 export async function hydrateTestSnapshots<T extends TestContentLink>(
-  rows: readonly T[],
+  input: readonly T[],
+  client: Prisma.TransactionClient = db,
 ): Promise<T[]> {
+  const rows = await withPublicationProblems(input, client);
   const wanted = new Map<string, Set<string>>();
   for (const row of rows) {
     const snapshot = snapshotOf(row);
@@ -82,12 +85,12 @@ export async function hydrateTestSnapshots<T extends TestContentLink>(
     ),
     " OR ",
   );
-  const metadata = await db.$queryRaw<AssetRow[]>(Prisma.sql`
+  const metadata = await client.$queryRaw<AssetRow[]>(Prisma.sql`
     SELECT a."user_id" AS "userId", a."id", a."mime_type" AS "mimeType",
            a."width_px" AS "widthPx", a."height_px" AS "heightPx", b."size"
       FROM "textbook_asset" a JOIN "textbook_blob" b ON b."sha256" = a."id" WHERE ${where}`);
   const expected = checkedMetadata(metadata, wanted, expectedCount);
-  const assets = await db.$queryRaw<AssetRow[]>(Prisma.sql`
+  const assets = await client.$queryRaw<AssetRow[]>(Prisma.sql`
     SELECT a."user_id" AS "userId", a."id", a."mime_type" AS "mimeType",
            a."width_px" AS "widthPx", a."height_px" AS "heightPx", b."size", b."bytes"
       FROM "textbook_asset" a JOIN "textbook_blob" b ON b."sha256" = a."id" WHERE ${where}`);
@@ -134,4 +137,55 @@ export async function hydrateTestSnapshots<T extends TestContentLink>(
         }
       : row,
   );
+}
+
+/**
+ * 월말평가 M1 — 반에 낸 시험(`test.publication_id`)의 문항에 발행본의 **낸 그대로**를 붙인다(`contentOf` 가 먼저 쓴다).
+ * 반에 낸 시험이 아니면 한 번 묻고 그대로 돌려준다. 🔴 발행본에 그 문항이 없으면 은행 글로 넘어가지 않고 실패한다.
+ */
+async function withPublicationProblems<T extends TestContentLink>(
+  rows: readonly T[],
+  client: Prisma.TransactionClient,
+): Promise<T[]> {
+  const testIds = [
+    ...new Set(
+      rows.flatMap((row) => {
+        const testId = (row as { testId?: unknown }).testId;
+        return typeof testId === "string" ? [testId] : [];
+      }),
+    ),
+  ];
+  if (!testIds.length) return [...rows];
+  const tests = await client.test.findMany({
+    where: { id: { in: testIds } },
+    select: { id: true, publicationId: true },
+  });
+  const published = tests.filter((t) => t.publicationId !== null);
+  if (!published.length) return [...rows];
+  const publications = await client.examPublication.findMany({
+    where: { id: { in: [...new Set(published.map((t) => t.publicationId!))] } },
+    select: { id: true, payload: true },
+  });
+  const byPublication = new Map(
+    publications.map((p) => [
+      p.id,
+      new Map(
+        (p.payload as unknown as FrozenPayload).problems.map((problem) => [
+          problem.problemId,
+          problem,
+        ]),
+      ),
+    ]),
+  );
+  const publicationOf = new Map(published.map((t) => [t.id, t.publicationId!]));
+  return rows.map((row) => {
+    const testId = (row as { testId?: unknown }).testId;
+    const publicationId =
+      typeof testId === "string" ? publicationOf.get(testId) : undefined;
+    if (!publicationId) return row;
+    const frozen = byPublication.get(publicationId)?.get(row.problemId);
+    if (!frozen)
+      throw new Error("반에 낸 시험지의 고정 문항을 불러오지 못했습니다.");
+    return { ...row, publicationProblem: frozen };
+  });
 }

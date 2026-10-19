@@ -472,7 +472,7 @@ const MUTATIONS: Mutation[] = [
     tests: [PW_PAGE],
   },
   {
-    name: "⑧d 첫 로그인 화면에 큰 로고를 되살린다 («오늘의수학»이 두 번)",
+    name: "⑧d 첫 로그인 화면에 큰 로고를 되살린다 («오늘 수학»이 두 번)",
     file: PASSWORD_UI,
     from: L(
       "      <main className={s.login}>",
@@ -481,7 +481,7 @@ const MUTATIONS: Mutation[] = [
     to: L(
       "      <main className={s.login}>",
       "        <div className={s.brand}>",
-      "          <b>오늘의수학</b>",
+      "          <b>오늘 수학</b>",
       "          <span>오늘의 개념 · 학생</span>",
       "        </div>",
       "        <p className={s.kick}>처음 들어왔습니다</p>",

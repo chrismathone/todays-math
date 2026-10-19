@@ -1,0 +1,92 @@
+Geometry arithmetic live integration — 2026-10-15
+Base: 46f9781c8; branch BIGSHOL/arithmetic-geometry-live.
+
+Coordinator integration contract (ready)
+- Two added catalog types, grade 초4 / strand 도형:
+  e4-triangle-missing-angle: 70 checked figures.
+  e4-right-triangle-missing-angle: 11 checked figures (20..70 degrees, step 5).
+- Catalog now has 86 types. No broad official curriculum-alignment claim.
+- Prompt stays layout=math, adds optional figureId. Numeric prompts unchanged.
+- Sheet adds optional figures={version:1,svgPack:string}. buildArithmeticV2Sheet
+  includes the whole immutable v1 SVG pack whenever a geometry item is present.
+  The 81 SVGs compress to 35,168 base64 bytes; stored once per sheet.
+- Regeneration within existing type IDs needs NO refresh: preserve sheet.figures
+  while replacing candidates. All 81 figures are already in that saved pack.
+- Coordinator must change GradeArithmeticWorkbench's GradeArithmeticExpression
+  import from ./GradeArithmeticPaper to ./GradeArithmeticPrompt for catalog figures.
+  The new renderer uses a fixed 216px square. Keep type-card content >=216px wide;
+  do not scale it down. Review/output already use arithmeticToStudioProblems.
+- No edits here to ArithmeticWorkflow.tsx, GradeArithmeticWorkbench.tsx,
+  LegacyArithmeticWorkbench.tsx or print templates.
+
+Implemented acceptance
+- Real finite definitions are registered in the existing catalog. Selection filters
+  discover 초4 / 도형 without another registry or AI request.
+- Triangle domain: a,b are multiples of 5 in [25,80], a<=b; remaining angle in
+  [25,120], excluding 90. Canonical given-pair ordering avoids mirrored duplicates.
+- Right triangle: one given acute angle [20,70], step 5, explicit square at B,
+  one unknown acute angle. Exact answers are integer strings, displayed in degrees.
+- All figures come from triangleAngleDrill / renderFigureSpec, not a second drawing
+  engine. Added the right-triangle entry point to retain strict layout and label gates.
+- Single blank has an unlabelled arc; no question mark, answer numeral or vertex
+  letter is added at that angle. Given angles keep engine typeset paths. Ambiguous
+  labels move outside with leaders; no shrunken labels or distorted triangles.
+- Candidate/schema/reopen verify domain index, parameters, prompt and exact answer.
+  Figure IDs are allowlisted; packs must exactly match the immutable checked v1
+  artifact BEFORE decompression. Arbitrary SVG/compression input is never inflated.
+- Persisted pack contains all actual SVG bytes. Reopen/output have no engine I/O,
+  URL fetch, sampling or rerendering. Existing v1 and original 53-family v2 fixtures
+  retain their exact fields/seed output; nongeometry sheets gain no fields.
+- Whole-pack snapshot is deliberate: per-item raw SVG would exceed 256 KiB;
+  per-sheet deflate shares repeated typeset glyphs across 81 figures and lets
+  selective regeneration preserve sheet metadata without rebuilding SVG tables.
+  The old pack is versioned and must remain frozen; future layouts use a new asset
+  version/type identity. Offline builder refuses to overwrite a different v1 pack.
+- Output projects saved SVG to a local data URI, flat dimensions and physical width.
+  The SVG desc marker makes figureSvgUrlPrintMm retain the tested 216px / 57.15mm
+  longest extent; other figures' existing size classification is unchanged.
+- UnifiedProblem now routes arithmetic to NativeProblem, as review already does.
+  This resolves [그림1] at its saved position and prevents duplicate inline/URL SVGs
+  in common print output. No print template was changed. Answers remain answers only.
+
+Validation/results
+- Offline full-domain browser proof: 81/81 figures in both screen and print media;
+  actual vertex angles within 0.01 degrees; zero geometry/label overlap, clipping,
+  ambiguous inside labels or missing outside leaders. 64 outside labels have leaders.
+  Smallest displayed nominal label: 17.8078px. Screenshot inspected directly.
+- Local evidence: tmp/arithmetic-angle-assets-v1/gallery.html, gallery.png,
+  preview.png, proof.json. Reproduce with:
+  node node_modules/tsx/dist/cli.mjs scripts/qa/build-arithmetic-angle-assets.ts
+- Uncompressed SVG map: 575,575 bytes; base64 deflate: 35,168 bytes.
+  SHA-256 of exact SVG map:
+  4bae5761ad48954cb20cccaefe7f42bb07452b8a31b94620d9865eb452fadc5c
+- 200 geometry questions + seed/title/presentation save body measured 109,896 bytes.
+  Tests also cover 20 rounds and mixed geometry/numeric 100-question rounds against
+  unchanged parseStrictJson 256 KiB / depth 16 limits.
+- Targeted test runs: 56/56 (5 files) plus 259/259 (10 files). Covers all-domain exact
+  answers/coordinates, security/schema tampering, deterministic generation, capacity,
+  output SVG, shared review/print renderer, old snapshot compatibility, real catalog
+  API integration, round limits, workbench, manual save, grouped output, existing
+  triangle helper and figure sizing. Final UnifiedProblem dispatch rerun also passes.
+- Scoped ESLint passed for changed TS/TSX and the builder; git diff --check passed.
+- Full tsc was attempted: default Node heap exhausted; the 8 GiB retry reported
+  2,199 diagnostic lines across the worktree, including missing generated Prisma
+  exports (e.g. @prisma/client Problem / PrismaClientKnownRequestError). No diagnostic
+  matched this change's files. Root explicitly owns the combined full type-check
+  after integration; this report does not claim a clean whole-project type-check.
+- Initial tests launched with root Vitest binaries and worktree modules had missing
+  jest-dom matchers from two Vitest instances. Running the existing worktree binary
+  resolved that environment issue; the tests above passed without module changes.
+- A package-lock.json diff appeared during this session (apparently worktree setup);
+  left untouched and excluded from this commit. No modules were installed/deleted,
+  and no node_modules junction was created by this task. tmp evidence is untracked.
+
+Boundaries / coordinator finish
+- Workbench catalog import remains coordinator-owned as described above; root has
+  confirmed the integration and a >=218px content minimum. This worker does not
+  claim the final combined authenticated browser/PDF workflow has been checked.
+- Selective regeneration worker notified directly by ordinary terminal send:
+  term_3fa07b02-bc29-4df1-99c7-b2c90db9259c. Existing-type swaps preserve figures.
+- No AI calls, DB/env activation, autosave, push, merge, deployment or new workers.
+- This is the two-type initial integration, not complete geometry/curriculum coverage.
+- Commit: see the commit containing this report (geometry scoped changes only).

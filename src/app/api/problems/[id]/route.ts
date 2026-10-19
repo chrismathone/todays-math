@@ -28,6 +28,8 @@ import { requireAccessibleProblem } from "@/lib/ownership";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { serializeProblem } from "@/lib/serializers";
 import { withProblemSourceReferences } from "@/lib/problem/sourceReference";
+import { withQuestionMetadata } from "@/lib/problem/questionQueries";
+import { problemVisibleWhere } from "@/lib/problemPool";
 import { getSessionUser } from "@/lib/session";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
@@ -52,6 +54,34 @@ async function handleGet(request: NextRequest, { params }: RouteContext) {
 
   const accessible = await requireAccessibleProblem(id, session.id);
   if (!accessible.ok) return accessible.response;
+
+  const identity = new URL(request.url).searchParams.get("identity");
+  if (identity !== null && identity !== "question")
+    return Response.json(
+      { error: "알 수 없는 문항 보기입니다." },
+      { status: 400 },
+    );
+  if (identity === "question") {
+    const data = await db.$transaction(
+      async (tx) => {
+        const current = await tx.problem.findFirst({
+          where: { AND: [{ id }, problemVisibleWhere()] },
+        });
+        if (!current) return null;
+        const rows = await withQuestionMetadata([current], tx);
+        const row = (await withProblemSourceReferences(rows))[0]!;
+        return {
+          ...serializeProblem(row),
+          questionId: row.questionId,
+          questionFormats: row.questionFormats,
+        };
+      },
+      { isolationLevel: "RepeatableRead", timeout: 10000 },
+    );
+    return data
+      ? jsonOk(problemResponseSchema, { data })
+      : notFoundError("문제");
+  }
 
   return jsonOk(problemResponseSchema, {
     data: serializeProblem(

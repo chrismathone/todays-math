@@ -14,6 +14,79 @@ const account: AccountAccess = {
   menus: [...ALL_WORKSPACE_MENUS],
 };
 describe("account approval and menu route policy", () => {
+  it("성적표 화면과 모든 읽기·쓰기·PDF는 출력 단계가 있는 메뉴를 따른다", () => {
+    for (const [method, path] of [
+      ["GET", "/exam-reports/test-1"],
+      ["GET", "/api/exam-reports/test-1"],
+      ["GET", "/api/exam-reports/test-1/students/student-1"],
+      ["PUT", "/api/exam-reports/test-1/students/student-1"],
+      ["POST", "/api/exam-reports/test-1/students/student-1/confirm"],
+      ["GET", "/api/exam-reports/test-1/students/student-1/pdf"],
+      ["PATCH", "/api/exam-reports/test-1/settings"],
+      ["POST", "/api/exam-reports/test-1/print"],
+    ]) {
+      expect(
+        accountRouteAllowed({ ...account, menus: ["library"] }, method!, path!),
+      ).toBe(true);
+      expect(
+        accountRouteAllowed(
+          { ...account, menus: ["export", "teaching"] },
+          method!,
+          path!,
+        ),
+      ).toBe(false);
+    }
+  });
+  it("declares only arithmetic-menu catalog/generation and document routes for arithmetic", () => {
+    const bank = {
+      ...account,
+      menus: ["arithmetic"] as AccountAccess["menus"],
+    };
+    for (const [method, path] of [
+      ["GET", "/api/arithmetic/catalog"],
+      ["HEAD", "/api/arithmetic/catalog"],
+      ["POST", "/api/arithmetic/generate"],
+      ["GET", "/api/library/documents"],
+      ...["GET", "HEAD", "PUT", "POST", "PATCH", "DELETE"].map((method) => [
+        method,
+        "/api/library/documents/sheet-1",
+      ]),
+    ])
+      expect(accountRouteAllowed(bank, method!, path!)).toBe(true);
+    for (const [method, path] of [
+      ["POST", "/api/arithmetic/catalog"],
+      ["GET", "/api/arithmetic/generate"],
+      ["PUT", "/api/arithmetic/generate"],
+      ["POST", "/api/arithmetic/unknown"],
+      ["POST", "/api/library/documents"],
+      ["GET", "/api/library/assets/a"],
+      ["PUT", "/api/library/assets/a"],
+      ["GET", "/api/library/documents/sheet-1/unknown"],
+    ])
+      expect(accountRouteAllowed(bank, method!, path!)).toBe(false);
+    for (const menus of [
+      [],
+      ["library"],
+      ["export"],
+      ["studio"],
+      // 2026-10-16 — 연산대장은 더는 «시험지 만들기»에 딸리지 않는다.
+      ["bank"],
+    ] as AccountAccess["menus"][])
+      expect(
+        accountRouteAllowed(
+          { ...account, menus },
+          "POST",
+          "/api/arithmetic/generate",
+        ),
+      ).toBe(false);
+    expect(
+      accountRouteAllowed(
+        { ...bank, approvalStatus: "pending" },
+        "GET",
+        "/api/arithmetic/catalog",
+      ),
+    ).toBe(false);
+  });
   it.each(["/dev/unified", "/api/dev/unified/ai"])(
     "keeps privileged path %s admin-only",
     (path) => {
@@ -76,13 +149,9 @@ describe("account approval and menu route policy", () => {
     expect(accountRouteAllowed(limited, "GET", "/api/library/documents")).toBe(
       true,
     );
-    for (const path of [
-      "/api/problems",
-      "/api/studio/ai",
-      "/api/tests",
-      "/api/new-feature",
-    ])
+    for (const path of ["/api/problems", "/api/studio/ai", "/api/new-feature"])
       expect(accountRouteAllowed(limited, "GET", path)).toBe(false);
+    expect(accountRouteAllowed(limited, "GET", "/api/tests")).toBe(true);
     expect(accountRouteAllowed({ ...account, menus: [] }, "GET", "/")).toBe(
       true,
     );
@@ -220,6 +289,54 @@ describe("account approval and menu route policy", () => {
         false,
       );
     });
+  });
+  it("opens named exam conditions (W5) to the 시험지 만들기 menu only", () => {
+    for (const [method, path] of [
+      ["GET", "/api/studio/exam-conditions"],
+      ["POST", "/api/studio/exam-conditions"],
+      ["PATCH", "/api/studio/exam-conditions/c1"],
+      ["DELETE", "/api/studio/exam-conditions/c1"],
+    ]) {
+      expect(
+        accountRouteAllowed({ ...account, menus: ["bank"] }, method!, path!),
+      ).toBe(true);
+      for (const menus of [
+        [],
+        ["library"],
+        ["studio", "export"],
+      ] as AccountAccess["menus"][])
+        expect(accountRouteAllowed({ ...account, menus }, method!, path!)).toBe(
+          false,
+        );
+    }
+  });
+  it("opens saved print layouts (W6) through each menu that owns output", () => {
+    for (const [method, path] of [
+      ["GET", "/api/studio/print-presets"],
+      ["POST", "/api/studio/print-presets"],
+      ["PATCH", "/api/studio/print-presets/p1"],
+      ["DELETE", "/api/studio/print-presets/p1"],
+    ]) {
+      for (const menus of [
+        ["library"],
+        ["bank"],
+        ["studio"],
+        ["arithmetic"],
+        ["textbook"],
+        ["conceptBlank"],
+      ] as AccountAccess["menus"][])
+        expect(accountRouteAllowed({ ...account, menus }, method!, path!)).toBe(
+          true,
+        );
+      for (const menus of [
+        [],
+        ["export"],
+        ["home", "teaching"],
+      ] as AccountAccess["menus"][])
+        expect(accountRouteAllowed({ ...account, menus }, method!, path!)).toBe(
+          false,
+        );
+    }
   });
   it("requires both bank and studio for AI problem transformations", () => {
     expect(

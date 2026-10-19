@@ -1,0 +1,1846 @@
+{
+  "measuredAt": "2026-10-18T03:14:44.206Z",
+  "completedAt": "2026-10-18T03:14:55.864Z",
+  "baselineHead": "a40045f4bddcb7684f032374407034589e78e071",
+  "readOnly": true,
+  "isolation": "RepeatableRead",
+  "eligibleRows": 115575,
+  "units": 735,
+  "defaultRatios": {
+    "8": {
+      "연산": 1,
+      "기본": 3,
+      "응용": 3,
+      "심화하": 1,
+      "심화중": 0,
+      "심화상": 0
+    },
+    "10": {
+      "연산": 1,
+      "기본": 4,
+      "응용": 4,
+      "심화하": 1,
+      "심화중": 0,
+      "심화상": 0
+    },
+    "20": {
+      "연산": 3,
+      "기본": 8,
+      "응용": 7,
+      "심화하": 2,
+      "심화중": 0,
+      "심화상": 0
+    }
+  },
+  "assumptions": {
+    "oneUnitAtATime": true,
+    "oneFamilyPerSheet": true,
+    "repeatSessions": [1, 3, 5, 10, 15],
+    "contentUniqueness": "same parsed question with normalized whitespace plus exact SVG and URL array, within one unit",
+    "payloadUniqueness": "exact content including choices plus SVG and URL array, within one unit",
+    "repeatedCapacity": "Maximum flow: distinct stem capacity 1, family capacity number of sheets. Row alternative sums min(rows per family, sheets). This is stock capacity, not actual account/learner recent-use history.",
+    "exactTierCapacity": "Family-to-tier max flow for the product default ratio, without neighboring-tier substitution.",
+    "autoCapacity": "Actual balanceDifficulty with the default ratio; no historical exclusions. Substitutions counted.",
+    "arithmeticSeparate": true
+  },
+  "targetDetails": [
+    {
+      "id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "grade": "중3",
+      "chapter": "1. 실수와 그 계산",
+      "section": "무리수와 실수",
+      "orderIndex": 470,
+      "semester": 1,
+      "markedOutsideCurriculum": false,
+      "eligibleRows": 249,
+      "distinctPayloads": 249,
+      "distinctStems": 141,
+      "families": 14,
+      "familySizeHistogram": {
+        "3": 3,
+        "12": 2,
+        "24": 9
+      },
+      "tiers": {
+        "연산": {
+          "rows": 0,
+          "families": 0
+        },
+        "기본": {
+          "rows": 57,
+          "families": 5
+        },
+        "응용": {
+          "rows": 144,
+          "families": 7
+        },
+        "심화하": {
+          "rows": 24,
+          "families": 1
+        },
+        "심화중": {
+          "rows": 24,
+          "families": 1
+        },
+        "심화상": {
+          "rows": 0,
+          "families": 0
+        }
+      },
+      "formats": {
+        "multiple_choice": {
+          "rows": 117,
+          "families": 12
+        },
+        "short_answer": {
+          "rows": 132,
+          "families": 11
+        },
+        "descriptive": {
+          "rows": 0,
+          "families": 0
+        },
+        "unknown": {
+          "rows": 0,
+          "families": 0
+        }
+      },
+      "sources": {
+        "manual": 249
+      },
+      "rawQuestionTypes": {
+        "단답형": 132,
+        "객관식": 117
+      },
+      "repeated": [
+        {
+          "sheets": 1,
+          "rowAssignments": 14,
+          "distinctStemAssignments": 14
+        },
+        {
+          "sheets": 3,
+          "rowAssignments": 42,
+          "distinctStemAssignments": 42
+        },
+        {
+          "sheets": 5,
+          "rowAssignments": 64,
+          "distinctStemAssignments": 64
+        },
+        {
+          "sheets": 10,
+          "rowAssignments": 119,
+          "distinctStemAssignments": 119
+        },
+        {
+          "sheets": 15,
+          "rowAssignments": 168,
+          "distinctStemAssignments": 141
+        }
+      ],
+      "scenarios": [
+        {
+          "count": 8,
+          "autoActual": 8,
+          "autoSubstitutions": 1,
+          "strictDefaultTierActual": 7,
+          "oneSheetDistinctStemActual": 8,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 8,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 3,
+              "required": 24,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 5,
+              "required": 40,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 10,
+              "required": 80,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 15,
+              "required": 120,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            }
+          ]
+        },
+        {
+          "count": 10,
+          "autoActual": 10,
+          "autoSubstitutions": 1,
+          "strictDefaultTierActual": 9,
+          "oneSheetDistinctStemActual": 10,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 10,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 3,
+              "required": 30,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 5,
+              "required": 50,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 10,
+              "required": 100,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 15,
+              "required": 150,
+              "rowsEnough": true,
+              "distinctStemsEnough": false
+            }
+          ]
+        },
+        {
+          "count": 20,
+          "autoActual": 14,
+          "autoSubstitutions": 11,
+          "strictDefaultTierActual": 13,
+          "oneSheetDistinctStemActual": 14,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 20,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 3,
+              "required": 60,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 5,
+              "required": 100,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 10,
+              "required": 200,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 15,
+              "required": 300,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "grade": "중3",
+      "chapter": "2. 다항식의 곱셈과 인수분해",
+      "section": "인수분해",
+      "orderIndex": 473,
+      "semester": 1,
+      "markedOutsideCurriculum": false,
+      "eligibleRows": 281,
+      "distinctPayloads": 281,
+      "distinctStems": 143,
+      "families": 15,
+      "familySizeHistogram": {
+        "2": 1,
+        "3": 1,
+        "6": 2,
+        "24": 11
+      },
+      "tiers": {
+        "연산": {
+          "rows": 96,
+          "families": 4
+        },
+        "기본": {
+          "rows": 30,
+          "families": 2
+        },
+        "응용": {
+          "rows": 83,
+          "families": 6
+        },
+        "심화하": {
+          "rows": 48,
+          "families": 2
+        },
+        "심화중": {
+          "rows": 0,
+          "families": 0
+        },
+        "심화상": {
+          "rows": 24,
+          "families": 1
+        }
+      },
+      "formats": {
+        "multiple_choice": {
+          "rows": 141,
+          "families": 14
+        },
+        "short_answer": {
+          "rows": 138,
+          "families": 13
+        },
+        "descriptive": {
+          "rows": 2,
+          "families": 1
+        },
+        "unknown": {
+          "rows": 0,
+          "families": 0
+        }
+      },
+      "sources": {
+        "manual": 281
+      },
+      "rawQuestionTypes": {
+        "단답형": 138,
+        "객관식": 141,
+        "서술형": 2
+      },
+      "repeated": [
+        {
+          "sheets": 1,
+          "rowAssignments": 15,
+          "distinctStemAssignments": 15
+        },
+        {
+          "sheets": 3,
+          "rowAssignments": 44,
+          "distinctStemAssignments": 44
+        },
+        {
+          "sheets": 5,
+          "rowAssignments": 70,
+          "distinctStemAssignments": 66
+        },
+        {
+          "sheets": 10,
+          "rowAssignments": 127,
+          "distinctStemAssignments": 121
+        },
+        {
+          "sheets": 15,
+          "rowAssignments": 182,
+          "distinctStemAssignments": 143
+        }
+      ],
+      "scenarios": [
+        {
+          "count": 8,
+          "autoActual": 8,
+          "autoSubstitutions": 1,
+          "strictDefaultTierActual": 7,
+          "oneSheetDistinctStemActual": 8,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 8,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 3,
+              "required": 24,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 5,
+              "required": 40,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 10,
+              "required": 80,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 15,
+              "required": 120,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            }
+          ]
+        },
+        {
+          "count": 10,
+          "autoActual": 10,
+          "autoSubstitutions": 2,
+          "strictDefaultTierActual": 8,
+          "oneSheetDistinctStemActual": 10,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 10,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 3,
+              "required": 30,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 5,
+              "required": 50,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 10,
+              "required": 100,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 15,
+              "required": 150,
+              "rowsEnough": true,
+              "distinctStemsEnough": false
+            }
+          ]
+        },
+        {
+          "count": 20,
+          "autoActual": 15,
+          "autoSubstitutions": 9,
+          "strictDefaultTierActual": 13,
+          "oneSheetDistinctStemActual": 15,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 20,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 3,
+              "required": 60,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 5,
+              "required": 100,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 10,
+              "required": 200,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 15,
+              "required": 300,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "grade": "중3",
+      "chapter": "3. 이차방정식",
+      "section": "이차방정식의 활용",
+      "orderIndex": 477,
+      "semester": 1,
+      "markedOutsideCurriculum": false,
+      "eligibleRows": 482,
+      "distinctPayloads": 482,
+      "distinctStems": 245,
+      "families": 15,
+      "familySizeHistogram": {
+        "2": 1,
+        "3": 2,
+        "6": 1,
+        "24": 1,
+        "34": 1,
+        "40": 1,
+        "42": 1,
+        "46": 4,
+        "48": 3
+      },
+      "tiers": {
+        "연산": {
+          "rows": 46,
+          "families": 1
+        },
+        "기본": {
+          "rows": 54,
+          "families": 3
+        },
+        "응용": {
+          "rows": 276,
+          "families": 8
+        },
+        "심화하": {
+          "rows": 82,
+          "families": 2
+        },
+        "심화중": {
+          "rows": 0,
+          "families": 0
+        },
+        "심화상": {
+          "rows": 24,
+          "families": 1
+        }
+      },
+      "formats": {
+        "multiple_choice": {
+          "rows": 243,
+          "families": 14
+        },
+        "short_answer": {
+          "rows": 237,
+          "families": 12
+        },
+        "descriptive": {
+          "rows": 2,
+          "families": 1
+        },
+        "unknown": {
+          "rows": 0,
+          "families": 0
+        }
+      },
+      "sources": {
+        "manual": 482
+      },
+      "rawQuestionTypes": {
+        "단답형": 237,
+        "객관식": 243,
+        "서술형": 2
+      },
+      "repeated": [
+        {
+          "sheets": 1,
+          "rowAssignments": 15,
+          "distinctStemAssignments": 15
+        },
+        {
+          "sheets": 3,
+          "rowAssignments": 44,
+          "distinctStemAssignments": 44
+        },
+        {
+          "sheets": 5,
+          "rowAssignments": 68,
+          "distinctStemAssignments": 66
+        },
+        {
+          "sheets": 10,
+          "rowAssignments": 124,
+          "distinctStemAssignments": 121
+        },
+        {
+          "sheets": 15,
+          "rowAssignments": 179,
+          "distinctStemAssignments": 173
+        }
+      ],
+      "scenarios": [
+        {
+          "count": 8,
+          "autoActual": 8,
+          "autoSubstitutions": 0,
+          "strictDefaultTierActual": 8,
+          "oneSheetDistinctStemActual": 8,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 8,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 3,
+              "required": 24,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 5,
+              "required": 40,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 10,
+              "required": 80,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 15,
+              "required": 120,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            }
+          ]
+        },
+        {
+          "count": 10,
+          "autoActual": 10,
+          "autoSubstitutions": 1,
+          "strictDefaultTierActual": 9,
+          "oneSheetDistinctStemActual": 10,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 10,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 3,
+              "required": 30,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 5,
+              "required": 50,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 10,
+              "required": 100,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 15,
+              "required": 150,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            }
+          ]
+        },
+        {
+          "count": 20,
+          "autoActual": 15,
+          "autoSubstitutions": 12,
+          "strictDefaultTierActual": 13,
+          "oneSheetDistinctStemActual": 15,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 20,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 3,
+              "required": 60,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 5,
+              "required": 100,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 10,
+              "required": 200,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 15,
+              "required": 300,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "grade": "중3",
+      "chapter": "7. 통계",
+      "section": "대푯값과 산포도",
+      "orderIndex": 488,
+      "semester": 2,
+      "markedOutsideCurriculum": false,
+      "eligibleRows": 278,
+      "distinctPayloads": 278,
+      "distinctStems": 143,
+      "families": 15,
+      "familySizeHistogram": {
+        "2": 1,
+        "3": 2,
+        "6": 1,
+        "24": 11
+      },
+      "tiers": {
+        "연산": {
+          "rows": 24,
+          "families": 1
+        },
+        "기본": {
+          "rows": 54,
+          "families": 4
+        },
+        "응용": {
+          "rows": 152,
+          "families": 8
+        },
+        "심화하": {
+          "rows": 24,
+          "families": 1
+        },
+        "심화중": {
+          "rows": 0,
+          "families": 0
+        },
+        "심화상": {
+          "rows": 24,
+          "families": 1
+        }
+      },
+      "formats": {
+        "multiple_choice": {
+          "rows": 141,
+          "families": 14
+        },
+        "short_answer": {
+          "rows": 135,
+          "families": 12
+        },
+        "descriptive": {
+          "rows": 2,
+          "families": 1
+        },
+        "unknown": {
+          "rows": 0,
+          "families": 0
+        }
+      },
+      "sources": {
+        "manual": 278
+      },
+      "rawQuestionTypes": {
+        "객관식": 141,
+        "단답형": 135,
+        "서술형": 2
+      },
+      "repeated": [
+        {
+          "sheets": 1,
+          "rowAssignments": 15,
+          "distinctStemAssignments": 15
+        },
+        {
+          "sheets": 3,
+          "rowAssignments": 44,
+          "distinctStemAssignments": 44
+        },
+        {
+          "sheets": 5,
+          "rowAssignments": 68,
+          "distinctStemAssignments": 66
+        },
+        {
+          "sheets": 10,
+          "rowAssignments": 124,
+          "distinctStemAssignments": 121
+        },
+        {
+          "sheets": 15,
+          "rowAssignments": 179,
+          "distinctStemAssignments": 143
+        }
+      ],
+      "scenarios": [
+        {
+          "count": 8,
+          "autoActual": 8,
+          "autoSubstitutions": 0,
+          "strictDefaultTierActual": 8,
+          "oneSheetDistinctStemActual": 8,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 8,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 3,
+              "required": 24,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 5,
+              "required": 40,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 10,
+              "required": 80,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 15,
+              "required": 120,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            }
+          ]
+        },
+        {
+          "count": 10,
+          "autoActual": 10,
+          "autoSubstitutions": 0,
+          "strictDefaultTierActual": 10,
+          "oneSheetDistinctStemActual": 10,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 10,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 3,
+              "required": 30,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 5,
+              "required": 50,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 10,
+              "required": 100,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 15,
+              "required": 150,
+              "rowsEnough": true,
+              "distinctStemsEnough": false
+            }
+          ]
+        },
+        {
+          "count": 20,
+          "autoActual": 15,
+          "autoSubstitutions": 10,
+          "strictDefaultTierActual": 13,
+          "oneSheetDistinctStemActual": 15,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 20,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 3,
+              "required": 60,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 5,
+              "required": 100,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 10,
+              "required": 200,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 15,
+              "required": 300,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c8d1b160-ffb6-4da1-9c54-a3522ffcf134",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-3 정삼각형의 성질",
+      "orderIndex": 225,
+      "semester": 2,
+      "markedOutsideCurriculum": false,
+      "eligibleRows": 164,
+      "distinctPayloads": 164,
+      "distinctStems": 85,
+      "families": 13,
+      "familySizeHistogram": {
+        "1": 1,
+        "2": 3,
+        "3": 1,
+        "6": 2,
+        "22": 1,
+        "24": 5
+      },
+      "tiers": {
+        "연산": {
+          "rows": 24,
+          "families": 1
+        },
+        "기본": {
+          "rows": 58,
+          "families": 5
+        },
+        "응용": {
+          "rows": 58,
+          "families": 6
+        },
+        "심화하": {
+          "rows": 24,
+          "families": 1
+        },
+        "심화중": {
+          "rows": 0,
+          "families": 0
+        },
+        "심화상": {
+          "rows": 0,
+          "families": 0
+        }
+      },
+      "formats": {
+        "multiple_choice": {
+          "rows": 79,
+          "families": 10
+        },
+        "short_answer": {
+          "rows": 83,
+          "families": 12
+        },
+        "descriptive": {
+          "rows": 2,
+          "families": 1
+        },
+        "unknown": {
+          "rows": 0,
+          "families": 0
+        }
+      },
+      "sources": {
+        "manual": 164
+      },
+      "rawQuestionTypes": {
+        "단답형": 83,
+        "객관식": 79,
+        "서술형": 2
+      },
+      "repeated": [
+        {
+          "sheets": 1,
+          "rowAssignments": 13,
+          "distinctStemAssignments": 13
+        },
+        {
+          "sheets": 3,
+          "rowAssignments": 34,
+          "distinctStemAssignments": 32
+        },
+        {
+          "sheets": 5,
+          "rowAssignments": 50,
+          "distinctStemAssignments": 44
+        },
+        {
+          "sheets": 10,
+          "rowAssignments": 82,
+          "distinctStemAssignments": 74
+        },
+        {
+          "sheets": 15,
+          "rowAssignments": 112,
+          "distinctStemAssignments": 85
+        }
+      ],
+      "scenarios": [
+        {
+          "count": 8,
+          "autoActual": 8,
+          "autoSubstitutions": 0,
+          "strictDefaultTierActual": 8,
+          "oneSheetDistinctStemActual": 8,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 8,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 3,
+              "required": 24,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 5,
+              "required": 40,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 10,
+              "required": 80,
+              "rowsEnough": true,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 15,
+              "required": 120,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            }
+          ]
+        },
+        {
+          "count": 10,
+          "autoActual": 10,
+          "autoSubstitutions": 0,
+          "strictDefaultTierActual": 10,
+          "oneSheetDistinctStemActual": 10,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 10,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 3,
+              "required": 30,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 5,
+              "required": 50,
+              "rowsEnough": true,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 10,
+              "required": 100,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 15,
+              "required": 150,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            }
+          ]
+        },
+        {
+          "count": 20,
+          "autoActual": 13,
+          "autoSubstitutions": 8,
+          "strictDefaultTierActual": 13,
+          "oneSheetDistinctStemActual": 13,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 20,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 3,
+              "required": 60,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 5,
+              "required": 100,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 10,
+              "required": 200,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 15,
+              "required": 300,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "0a069c2f-244d-4f9e-832f-3e0f8969ba21",
+      "grade": "초4",
+      "chapter": "2-2 삼각형",
+      "section": "2-2-5 삼각형을 두 가지 기준으로 분류하기",
+      "orderIndex": 227,
+      "semester": 2,
+      "markedOutsideCurriculum": false,
+      "eligibleRows": 110,
+      "distinctPayloads": 110,
+      "distinctStems": 82,
+      "families": 13,
+      "familySizeHistogram": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "6": 1,
+        "8": 1,
+        "12": 3,
+        "24": 2
+      },
+      "tiers": {
+        "연산": {
+          "rows": 12,
+          "families": 1
+        },
+        "기본": {
+          "rows": 40,
+          "families": 4
+        },
+        "응용": {
+          "rows": 34,
+          "families": 7
+        },
+        "심화하": {
+          "rows": 24,
+          "families": 1
+        },
+        "심화중": {
+          "rows": 0,
+          "families": 0
+        },
+        "심화상": {
+          "rows": 0,
+          "families": 0
+        }
+      },
+      "formats": {
+        "multiple_choice": {
+          "rows": 28,
+          "families": 4
+        },
+        "short_answer": {
+          "rows": 80,
+          "families": 12
+        },
+        "descriptive": {
+          "rows": 2,
+          "families": 1
+        },
+        "unknown": {
+          "rows": 0,
+          "families": 0
+        }
+      },
+      "sources": {
+        "manual": 110
+      },
+      "rawQuestionTypes": {
+        "객관식": 28,
+        "단답형": 80,
+        "서술형": 2
+      },
+      "repeated": [
+        {
+          "sheets": 1,
+          "rowAssignments": 13,
+          "distinctStemAssignments": 13
+        },
+        {
+          "sheets": 3,
+          "rowAssignments": 33,
+          "distinctStemAssignments": 32
+        },
+        {
+          "sheets": 5,
+          "rowAssignments": 47,
+          "distinctStemAssignments": 44
+        },
+        {
+          "sheets": 10,
+          "rowAssignments": 76,
+          "distinctStemAssignments": 72
+        },
+        {
+          "sheets": 15,
+          "rowAssignments": 92,
+          "distinctStemAssignments": 82
+        }
+      ],
+      "scenarios": [
+        {
+          "count": 8,
+          "autoActual": 8,
+          "autoSubstitutions": 0,
+          "strictDefaultTierActual": 8,
+          "oneSheetDistinctStemActual": 8,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 8,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 3,
+              "required": 24,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 5,
+              "required": 40,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 10,
+              "required": 80,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 15,
+              "required": 120,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            }
+          ]
+        },
+        {
+          "count": 10,
+          "autoActual": 10,
+          "autoSubstitutions": 0,
+          "strictDefaultTierActual": 10,
+          "oneSheetDistinctStemActual": 10,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 10,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 3,
+              "required": 30,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 5,
+              "required": 50,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 10,
+              "required": 100,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 15,
+              "required": 150,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            }
+          ]
+        },
+        {
+          "count": 20,
+          "autoActual": 13,
+          "autoSubstitutions": 9,
+          "strictDefaultTierActual": 13,
+          "oneSheetDistinctStemActual": 13,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 20,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 3,
+              "required": 60,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 5,
+              "required": 100,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 10,
+              "required": 200,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 15,
+              "required": 300,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "abb7989e-15ae-4dec-9ac0-983dee08a700",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-2 평행과 평행선",
+      "orderIndex": 236,
+      "semester": 2,
+      "markedOutsideCurriculum": false,
+      "eligibleRows": 129,
+      "distinctPayloads": 129,
+      "distinctStems": 84,
+      "families": 13,
+      "familySizeHistogram": {
+        "1": 3,
+        "2": 1,
+        "6": 2,
+        "8": 1,
+        "12": 3,
+        "20": 1,
+        "24": 2
+      },
+      "tiers": {
+        "연산": {
+          "rows": 12,
+          "families": 1
+        },
+        "기본": {
+          "rows": 34,
+          "families": 4
+        },
+        "응용": {
+          "rows": 47,
+          "families": 6
+        },
+        "심화하": {
+          "rows": 12,
+          "families": 1
+        },
+        "심화중": {
+          "rows": 24,
+          "families": 1
+        },
+        "심화상": {
+          "rows": 0,
+          "families": 0
+        }
+      },
+      "formats": {
+        "multiple_choice": {
+          "rows": 45,
+          "families": 7
+        },
+        "short_answer": {
+          "rows": 84,
+          "families": 13
+        },
+        "descriptive": {
+          "rows": 0,
+          "families": 0
+        },
+        "unknown": {
+          "rows": 0,
+          "families": 0
+        }
+      },
+      "sources": {
+        "manual": 129
+      },
+      "rawQuestionTypes": {
+        "단답형": 84,
+        "객관식": 45
+      },
+      "repeated": [
+        {
+          "sheets": 1,
+          "rowAssignments": 13,
+          "distinctStemAssignments": 13
+        },
+        {
+          "sheets": 3,
+          "rowAssignments": 32,
+          "distinctStemAssignments": 31
+        },
+        {
+          "sheets": 5,
+          "rowAssignments": 50,
+          "distinctStemAssignments": 44
+        },
+        {
+          "sheets": 10,
+          "rowAssignments": 85,
+          "distinctStemAssignments": 74
+        },
+        {
+          "sheets": 15,
+          "rowAssignments": 106,
+          "distinctStemAssignments": 84
+        }
+      ],
+      "scenarios": [
+        {
+          "count": 8,
+          "autoActual": 8,
+          "autoSubstitutions": 0,
+          "strictDefaultTierActual": 8,
+          "oneSheetDistinctStemActual": 8,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 8,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 3,
+              "required": 24,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 5,
+              "required": 40,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 10,
+              "required": 80,
+              "rowsEnough": true,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 15,
+              "required": 120,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            }
+          ]
+        },
+        {
+          "count": 10,
+          "autoActual": 10,
+          "autoSubstitutions": 0,
+          "strictDefaultTierActual": 10,
+          "oneSheetDistinctStemActual": 10,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 10,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 3,
+              "required": 30,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 5,
+              "required": 50,
+              "rowsEnough": true,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 10,
+              "required": 100,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 15,
+              "required": 150,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            }
+          ]
+        },
+        {
+          "count": 20,
+          "autoActual": 13,
+          "autoSubstitutions": 10,
+          "strictDefaultTierActual": 12,
+          "oneSheetDistinctStemActual": 13,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 20,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 3,
+              "required": 60,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 5,
+              "required": 100,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 10,
+              "required": 200,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 15,
+              "required": 300,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5599a8d2-15d4-4160-9a59-741fc9541b64",
+      "grade": "초4",
+      "chapter": "2-4 사각형",
+      "section": "2-4-4 사다리꼴",
+      "orderIndex": 238,
+      "semester": 2,
+      "markedOutsideCurriculum": false,
+      "eligibleRows": 147,
+      "distinctPayloads": 147,
+      "distinctStems": 78,
+      "families": 14,
+      "familySizeHistogram": {
+        "1": 1,
+        "2": 4,
+        "3": 2,
+        "6": 2,
+        "24": 5
+      },
+      "tiers": {
+        "연산": {
+          "rows": 24,
+          "families": 1
+        },
+        "기본": {
+          "rows": 53,
+          "families": 4
+        },
+        "응용": {
+          "rows": 46,
+          "families": 8
+        },
+        "심화하": {
+          "rows": 24,
+          "families": 1
+        },
+        "심화중": {
+          "rows": 0,
+          "families": 0
+        },
+        "심화상": {
+          "rows": 0,
+          "families": 0
+        }
+      },
+      "formats": {
+        "multiple_choice": {
+          "rows": 69,
+          "families": 10
+        },
+        "short_answer": {
+          "rows": 76,
+          "families": 13
+        },
+        "descriptive": {
+          "rows": 2,
+          "families": 1
+        },
+        "unknown": {
+          "rows": 0,
+          "families": 0
+        }
+      },
+      "sources": {
+        "manual": 147
+      },
+      "rawQuestionTypes": {
+        "단답형": 76,
+        "객관식": 69,
+        "서술형": 2
+      },
+      "repeated": [
+        {
+          "sheets": 1,
+          "rowAssignments": 14,
+          "distinctStemAssignments": 14
+        },
+        {
+          "sheets": 3,
+          "rowAssignments": 36,
+          "distinctStemAssignments": 33
+        },
+        {
+          "sheets": 5,
+          "rowAssignments": 50,
+          "distinctStemAssignments": 43
+        },
+        {
+          "sheets": 10,
+          "rowAssignments": 77,
+          "distinctStemAssignments": 68
+        },
+        {
+          "sheets": 15,
+          "rowAssignments": 102,
+          "distinctStemAssignments": 78
+        }
+      ],
+      "scenarios": [
+        {
+          "count": 8,
+          "autoActual": 8,
+          "autoSubstitutions": 0,
+          "strictDefaultTierActual": 8,
+          "oneSheetDistinctStemActual": 8,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 8,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 3,
+              "required": 24,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 5,
+              "required": 40,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 10,
+              "required": 80,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 15,
+              "required": 120,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            }
+          ]
+        },
+        {
+          "count": 10,
+          "autoActual": 10,
+          "autoSubstitutions": 0,
+          "strictDefaultTierActual": 10,
+          "oneSheetDistinctStemActual": 10,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 10,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 3,
+              "required": 30,
+              "rowsEnough": true,
+              "distinctStemsEnough": true
+            },
+            {
+              "sheets": 5,
+              "required": 50,
+              "rowsEnough": true,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 10,
+              "required": 100,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 15,
+              "required": 150,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            }
+          ]
+        },
+        {
+          "count": 20,
+          "autoActual": 14,
+          "autoSubstitutions": 9,
+          "strictDefaultTierActual": 13,
+          "oneSheetDistinctStemActual": 14,
+          "repeated": [
+            {
+              "sheets": 1,
+              "required": 20,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 3,
+              "required": 60,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 5,
+              "required": 100,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 10,
+              "required": 200,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            },
+            {
+              "sheets": 15,
+              "required": 300,
+              "rowsEnough": false,
+              "distinctStemsEnough": false
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "outsideTargetChanges": [
+    {
+      "id": "ac9dd2b1-efb5-49cb-99a3-cafbadb7d9c9",
+      "grade": "초3",
+      "section": "2-4-4 진분수와 가분수 알아보기",
+      "rowsDelta": 6,
+      "familiesDelta": 2
+    },
+    {
+      "id": "4c7baa74-282e-49b9-ad4a-1b6f48c2320c",
+      "grade": "초3",
+      "section": "2-4-5 대분수 알아보기",
+      "rowsDelta": 6,
+      "familiesDelta": 2
+    },
+    {
+      "id": "d32b3290-b45a-4945-ab3e-7797fba24935",
+      "grade": "초5",
+      "section": "2-1-1 이상과 이하 알아보기",
+      "rowsDelta": 6,
+      "familiesDelta": 2
+    },
+    {
+      "id": "ca9bdd29-8cf2-4c5e-8b51-8870b0a7d9f2",
+      "grade": "초5",
+      "section": "2-1-2 초과와 미만 알아보기",
+      "rowsDelta": 6,
+      "familiesDelta": 2
+    },
+    {
+      "id": "8f8aa797-4aae-4d9a-a893-842338f974c4",
+      "grade": "초5",
+      "section": "2-1-6 반올림 알아보기와 어림의 활용",
+      "rowsDelta": 6,
+      "familiesDelta": 2
+    },
+    {
+      "id": "bec75cad-80be-4cab-b183-5958b1aa4c78",
+      "grade": "초6",
+      "section": "2-4-1 비의 성질 알아보기",
+      "rowsDelta": 6,
+      "familiesDelta": 2
+    },
+    {
+      "id": "32e86043-1f1d-4c06-8c0f-8b65fea61167",
+      "grade": "초6",
+      "section": "2-4-4 비례식의 성질 알아보기",
+      "rowsDelta": 6,
+      "familiesDelta": 2
+    }
+  ]
+}

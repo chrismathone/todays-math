@@ -10,7 +10,7 @@ import { FoldingDemo } from "./FoldingDemo";
 import styles from "./blender.module.css";
 
 export const metadata: Metadata = {
-  title: "직육면체 전개도 | 오늘의수학",
+  title: "직육면체 전개도 | 오늘 수학",
   robots: { index: false, follow: false },
 };
 

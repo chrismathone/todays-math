@@ -1,0 +1,11 @@
+{
+  "extends": "../../../../../tsconfig.json",
+  "compilerOptions": { "incremental": false, "noEmit": true },
+  "files": ["../../../../../node_modules/next/types/global.d.ts"],
+  "include": [
+    "../../../../../src/lib/elementary/reinforcementForms20261018.ts",
+    "../../../../../src/lib/elementary/forms.ts",
+    "../../../../../src/__tests__/unit/elementaryReinforcement20261018.test.tsx"
+  ],
+  "exclude": ["../../../../../node_modules"]
+}

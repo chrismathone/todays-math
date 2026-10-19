@@ -36,7 +36,7 @@ export default function EnglishDialog({
   /** 제목 위 작은 글(«오늘의 영어») */
   kicker?: string;
   busy?: boolean;
-  /** 창 틀에 덧붙이는 클래스 — 넓은 창(«사진에서 글 읽기» 1080px)만 쓴다. 틀 · 제목 · 닫기 단추는 그대로다 */
+  /** 창 틀에 덧붙이는 클래스. 일반 작업 창의 공통 최대 폭을 유지한다. */
   className?: string;
   returnFocus?: RefObject<HTMLElement | null>;
   onClose: () => void;

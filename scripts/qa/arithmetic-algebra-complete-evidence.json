@@ -1,0 +1,569 @@
+{
+  "families": 56,
+  "total": 95414,
+  "unique": 95414,
+  "legacyTasksCheckedForDuplicateIdentity": 581624,
+  "representativeTypesets": 336,
+  "definitions": [
+    {
+      "id": "m1-prime-factorization",
+      "title": "소인수분해",
+      "grade": "중1",
+      "curriculum": {
+        "semester": 1,
+        "unit": "소인수분해"
+      },
+      "domainSize": 299
+    },
+    {
+      "id": "m1-divisor-count-factors",
+      "title": "소인수분해로 약수의 개수",
+      "grade": "중1",
+      "curriculum": {
+        "semester": 1,
+        "unit": "소인수분해"
+      },
+      "domainSize": 59
+    },
+    {
+      "id": "m1-factor-gcd",
+      "title": "소인수분해로 최대공약수",
+      "grade": "중1",
+      "curriculum": {
+        "semester": 1,
+        "unit": "소인수분해"
+      },
+      "domainSize": 676
+    },
+    {
+      "id": "m1-factor-lcm",
+      "title": "소인수분해로 최소공배수",
+      "grade": "중1",
+      "curriculum": {
+        "semester": 1,
+        "unit": "소인수분해"
+      },
+      "domainSize": 676
+    },
+    {
+      "id": "m1-absolute-value",
+      "title": "절댓값",
+      "grade": "중1",
+      "curriculum": {
+        "semester": 1,
+        "unit": "정수와 유리수"
+      },
+      "domainSize": 140
+    },
+    {
+      "id": "m1-additive-opposite",
+      "title": "부호가 반대인 수",
+      "grade": "중1",
+      "curriculum": {
+        "semester": 1,
+        "unit": "정수와 유리수"
+      },
+      "domainSize": 140
+    },
+    {
+      "id": "m2-recurring-pure-fraction",
+      "title": "순순환소수를 분수로",
+      "grade": "중2",
+      "curriculum": {
+        "semester": 1,
+        "unit": "유리수와 순환소수"
+      },
+      "domainSize": 90
+    },
+    {
+      "id": "m2-recurring-mixed-fraction",
+      "title": "혼순환소수를 분수로",
+      "grade": "중2",
+      "curriculum": {
+        "semester": 1,
+        "unit": "유리수와 순환소수"
+      },
+      "domainSize": 90
+    },
+    {
+      "id": "m2-terminating-minimum-multiplier",
+      "title": "유한소수가 되는 최소 자연수",
+      "grade": "중2",
+      "curriculum": {
+        "semester": 1,
+        "unit": "유리수와 순환소수"
+      },
+      "domainSize": 3043
+    },
+    {
+      "id": "m2-terminating-decimal-places",
+      "title": "유한소수의 소수 자릿수",
+      "grade": "중2",
+      "curriculum": {
+        "semester": 1,
+        "unit": "유리수와 순환소수"
+      },
+      "domainSize": 207
+    },
+    {
+      "id": "m2-recurring-rational-operations",
+      "title": "순환소수를 포함한 사칙계산",
+      "grade": "중2",
+      "curriculum": {
+        "semester": 1,
+        "unit": "유리수와 순환소수"
+      },
+      "domainSize": 1224
+    },
+    {
+      "id": "m1-linear-substitution-value",
+      "title": "일차식에 수 대입",
+      "grade": "중1",
+      "curriculum": {
+        "semester": 1,
+        "unit": "문자와 식"
+      },
+      "domainSize": 2040
+    },
+    {
+      "id": "m1-two-variable-substitution",
+      "title": "두 문자에 수 대입",
+      "grade": "중1",
+      "curriculum": {
+        "semester": 1,
+        "unit": "문자와 식"
+      },
+      "domainSize": 2916
+    },
+    {
+      "id": "m1-rational-substitution",
+      "title": "분수인 수 대입",
+      "grade": "중1",
+      "curriculum": {
+        "semester": 1,
+        "unit": "문자와 식"
+      },
+      "domainSize": 1792
+    },
+    {
+      "id": "m2-exponent-product-missing",
+      "title": "같은 밑의 곱 지수",
+      "grade": "중2",
+      "curriculum": {
+        "semester": 1,
+        "unit": "식의 계산"
+      },
+      "domainSize": 35
+    },
+    {
+      "id": "m2-exponent-quotient-missing",
+      "title": "같은 밑의 나눗셈 지수",
+      "grade": "중2",
+      "curriculum": {
+        "semester": 1,
+        "unit": "식의 계산"
+      },
+      "domainSize": 20
+    },
+    {
+      "id": "m2-exponent-power-missing",
+      "title": "거듭제곱의 거듭제곱 지수",
+      "grade": "중2",
+      "curriculum": {
+        "semester": 1,
+        "unit": "식의 계산"
+      },
+      "domainSize": 35
+    },
+    {
+      "id": "m2-product-power-two-variable",
+      "title": "두 문자 단항식의 거듭제곱",
+      "grade": "중2",
+      "curriculum": {
+        "semester": 1,
+        "unit": "식의 계산"
+      },
+      "domainSize": 108
+    },
+    {
+      "id": "m2-monomial-mixed-two-variable",
+      "title": "두 문자 단항식의 곱셈과 나눗셈",
+      "grade": "중2",
+      "curriculum": {
+        "semester": 1,
+        "unit": "식의 계산"
+      },
+      "domainSize": 2160
+    },
+    {
+      "id": "m3-root-of-square-identity",
+      "title": "제곱의 제곱근",
+      "grade": "중3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "제곱근과 실수"
+      },
+      "domainSize": 61
+    },
+    {
+      "id": "m3-square-of-root-identity",
+      "title": "제곱근의 제곱",
+      "grade": "중3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "제곱근과 실수"
+      },
+      "domainSize": 101
+    },
+    {
+      "id": "m3-multiplication-linear-square",
+      "title": "일차식의 제곱 전개",
+      "grade": "중3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "다항식의 곱셈과 인수분해"
+      },
+      "domainSize": 96
+    },
+    {
+      "id": "m3-multiplication-bivariate-square",
+      "title": "두 문자 완전제곱 전개",
+      "grade": "중3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "다항식의 곱셈과 인수분해"
+      },
+      "domainSize": 96
+    },
+    {
+      "id": "m3-multiplication-bivariate-conjugate",
+      "title": "합과 차의 곱 공식",
+      "grade": "중3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "다항식의 곱셈과 인수분해"
+      },
+      "domainSize": 96
+    },
+    {
+      "id": "m3-square-formula-substitution",
+      "title": "곱셈 공식으로 식의 값",
+      "grade": "중3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "다항식의 곱셈과 인수분해"
+      },
+      "domainSize": 360
+    },
+    {
+      "id": "m1-linear-equation-integer",
+      "title": "정수 계수 일차방정식",
+      "grade": "중1",
+      "curriculum": {
+        "semester": 1,
+        "unit": "일차방정식"
+      },
+      "domainSize": 2040
+    },
+    {
+      "id": "m1-linear-equation-both-sides",
+      "title": "양변에 문자가 있는 일차방정식",
+      "grade": "중1",
+      "curriculum": {
+        "semester": 1,
+        "unit": "일차방정식"
+      },
+      "domainSize": 1920
+    },
+    {
+      "id": "m1-linear-equation-parentheses",
+      "title": "괄호가 있는 일차방정식",
+      "grade": "중1",
+      "curriculum": {
+        "semester": 1,
+        "unit": "일차방정식"
+      },
+      "domainSize": 3276
+    },
+    {
+      "id": "m1-linear-equation-fraction",
+      "title": "분수 계수 일차방정식",
+      "grade": "중1",
+      "curriculum": {
+        "semester": 1,
+        "unit": "일차방정식"
+      },
+      "domainSize": 2816
+    },
+    {
+      "id": "m1-linear-equation-decimal",
+      "title": "소수 계수 일차방정식",
+      "grade": "중1",
+      "curriculum": {
+        "semester": 1,
+        "unit": "일차방정식"
+      },
+      "domainSize": 6156
+    },
+    {
+      "id": "m1-linear-equation-missing-coefficient",
+      "title": "주어진 해로 일차방정식 계수 구하기",
+      "grade": "중1",
+      "curriculum": {
+        "semester": 1,
+        "unit": "일차방정식"
+      },
+      "domainSize": 1440
+    },
+    {
+      "id": "m2-linear-inequality-integer",
+      "title": "정수 계수 일차부등식",
+      "grade": "중2",
+      "curriculum": {
+        "semester": 1,
+        "unit": "일차부등식"
+      },
+      "domainSize": 3520
+    },
+    {
+      "id": "m2-linear-inequality-both-sides",
+      "title": "양변에 문자가 있는 일차부등식",
+      "grade": "중2",
+      "curriculum": {
+        "semester": 1,
+        "unit": "일차부등식"
+      },
+      "domainSize": 4320
+    },
+    {
+      "id": "m2-linear-inequality-parentheses",
+      "title": "괄호가 있는 일차부등식",
+      "grade": "중2",
+      "curriculum": {
+        "semester": 1,
+        "unit": "일차부등식"
+      },
+      "domainSize": 864
+    },
+    {
+      "id": "m2-linear-inequality-fraction",
+      "title": "분수 계수 일차부등식",
+      "grade": "중2",
+      "curriculum": {
+        "semester": 1,
+        "unit": "일차부등식"
+      },
+      "domainSize": 3024
+    },
+    {
+      "id": "m2-inequality-integer-bound",
+      "title": "일차부등식의 정수 해 경계",
+      "grade": "중2",
+      "curriculum": {
+        "semester": 1,
+        "unit": "일차부등식"
+      },
+      "domainSize": 4160
+    },
+    {
+      "id": "m2-simultaneous-equations-elimination",
+      "title": "연립일차방정식 가감법",
+      "grade": "중2",
+      "curriculum": {
+        "semester": 1,
+        "unit": "연립일차방정식"
+      },
+      "domainSize": 10192
+    },
+    {
+      "id": "m2-simultaneous-equations-fraction",
+      "title": "분수 계수 연립일차방정식",
+      "grade": "중2",
+      "curriculum": {
+        "semester": 1,
+        "unit": "연립일차방정식"
+      },
+      "domainSize": 10192
+    },
+    {
+      "id": "m2-simultaneous-equations-decimal",
+      "title": "소수 계수 연립일차방정식",
+      "grade": "중2",
+      "curriculum": {
+        "semester": 1,
+        "unit": "연립일차방정식"
+      },
+      "domainSize": 10192
+    },
+    {
+      "id": "m2-simultaneous-equations-substitution",
+      "title": "연립일차방정식 대입법",
+      "grade": "중2",
+      "curriculum": {
+        "semester": 1,
+        "unit": "연립일차방정식"
+      },
+      "domainSize": 7616
+    },
+    {
+      "id": "m2-system-missing-coefficient",
+      "title": "연립방정식의 해로 계수 구하기",
+      "grade": "중2",
+      "curriculum": {
+        "semester": 1,
+        "unit": "연립일차방정식"
+      },
+      "domainSize": 1764
+    },
+    {
+      "id": "m3-factor-common",
+      "title": "공통인수로 인수분해",
+      "grade": "중3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "다항식의 곱셈과 인수분해"
+      },
+      "domainSize": 480
+    },
+    {
+      "id": "m3-factor-common-two-variable",
+      "title": "두 문자 공통인수로 인수분해",
+      "grade": "중3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "다항식의 곱셈과 인수분해"
+      },
+      "domainSize": 224
+    },
+    {
+      "id": "m3-factor-difference-squares",
+      "title": "제곱의 차 인수분해",
+      "grade": "중3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "다항식의 곱셈과 인수분해"
+      },
+      "domainSize": 36
+    },
+    {
+      "id": "m3-factor-bivariate-difference-squares",
+      "title": "두 문자 제곱의 차 인수분해",
+      "grade": "중3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "다항식의 곱셈과 인수분해"
+      },
+      "domainSize": 36
+    },
+    {
+      "id": "m3-factor-perfect-square",
+      "title": "완전제곱식 인수분해",
+      "grade": "중3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "다항식의 곱셈과 인수분해"
+      },
+      "domainSize": 64
+    },
+    {
+      "id": "m3-factor-bivariate-perfect-square",
+      "title": "두 문자 완전제곱식 인수분해",
+      "grade": "중3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "다항식의 곱셈과 인수분해"
+      },
+      "domainSize": 64
+    },
+    {
+      "id": "m3-factor-monic-quadratic",
+      "title": "x²의 계수가 1인 이차식 인수분해",
+      "grade": "중3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "다항식의 곱셈과 인수분해"
+      },
+      "domainSize": 112
+    },
+    {
+      "id": "m3-factor-nonmonic-quadratic",
+      "title": "x²의 계수가 1이 아닌 이차식 인수분해",
+      "grade": "중3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "다항식의 곱셈과 인수분해"
+      },
+      "domainSize": 420
+    },
+    {
+      "id": "m3-factor-common-binomial",
+      "title": "공통인 식을 이용한 인수분해",
+      "grade": "중3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "다항식의 곱셈과 인수분해"
+      },
+      "domainSize": 320
+    },
+    {
+      "id": "m3-quadratic-equation-factoring",
+      "title": "인수분해로 이차방정식 풀기",
+      "grade": "중3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "이차방정식"
+      },
+      "domainSize": 153
+    },
+    {
+      "id": "m3-quadratic-equation-nonmonic-factoring",
+      "title": "분수인 근을 갖는 이차방정식 인수분해",
+      "grade": "중3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "이차방정식"
+      },
+      "domainSize": 410
+    },
+    {
+      "id": "m3-quadratic-equation-square-root",
+      "title": "제곱근을 이용한 이차방정식",
+      "grade": "중3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "이차방정식"
+      },
+      "domainSize": 305
+    },
+    {
+      "id": "m3-quadratic-equation-perfect-square",
+      "title": "완전제곱 꼴 이차방정식",
+      "grade": "중3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "이차방정식"
+      },
+      "domainSize": 930
+    },
+    {
+      "id": "m3-quadratic-equation-formula",
+      "title": "근의 공식으로 이차방정식 풀기",
+      "grade": "중3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "이차방정식"
+      },
+      "domainSize": 1088
+    },
+    {
+      "id": "m3-quadratic-missing-coefficient",
+      "title": "주어진 근으로 이차방정식 계수 구하기",
+      "grade": "중3",
+      "curriculum": {
+        "semester": 1,
+        "unit": "이차방정식"
+      },
+      "domainSize": 720
+    }
+  ]
+}

@@ -1,0 +1,552 @@
+.root {
+  color: var(--learn-ink);
+  min-width: 0;
+}
+.root:has(> [data-arithmetic-step="output"]) > .notice {
+  display: none;
+}
+.catalogFilters.gradeFilters {
+  grid-template-columns: 100px 96px 120px minmax(150px, 1fr);
+}
+.catalogToolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: end;
+  padding: 16px;
+  background: var(--learn-surface);
+  border: 1px solid var(--learn-track);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.catalogToolbar .catalogFilters {
+  margin: 0;
+}
+.catalogHeading {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 16px;
+  margin: 0 0 10px;
+}
+.catalogToolbar .compactRandomSelection {
+  margin: 0;
+  padding-left: 16px;
+  border-left: 1px solid var(--learn-track);
+  flex-wrap: nowrap;
+}
+.compactRandomSelection button {
+  white-space: nowrap;
+}
+.selectionTitle {
+  font-size: 13px;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 12px;
+}
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 20px;
+  align-items: start;
+}
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 244px), 1fr));
+  gap: 8px;
+}
+.typeCatalog {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  /* A long type name may need a third line; the row grows instead of clipping. */
+  grid-auto-rows: minmax(96px, auto);
+}
+.root .typeCatalog .card {
+  min-height: 96px;
+  min-width: 0;
+  justify-content: flex-start;
+}
+.catalogFilters {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.catalogFilters label {
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+}
+.catalogCount,
+.capacity {
+  font-size: 12px;
+  color: var(--learn-muted);
+  line-height: 1.5;
+}
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 16px;
+}
+:where(.root) button,
+:where(.root) input:not(:where([type="checkbox"], [type="radio"])),
+:where(.root) select {
+  font: inherit;
+  min-height: 44px;
+  border: 1px solid var(--learn-control);
+  border-radius: 8px;
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  padding: 8px 12px;
+  box-sizing: border-box;
+}
+:where(.root) button {
+  cursor: pointer;
+}
+/* Keep default hover below component-owned backgrounds, including PaperStrip's
+   transparent page enlargement button. */
+:where(.root) button:where(:hover) {
+  background: var(--learn-soft);
+}
+:where(.root) button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.root :is(button, input, select):focus-visible {
+  outline: 3px solid var(--learn-accent);
+  outline-offset: 2px;
+}
+.root .card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: left;
+  min-height: 130px;
+  gap: 6px;
+  padding: 10px 12px;
+  border-color: var(--learn-track);
+  user-select: none;
+  touch-action: pan-y;
+}
+.root .card[aria-pressed="true"] {
+  background: var(--learn-soft);
+  border-color: var(--learn-accent);
+}
+.cardTop {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.cardTop strong {
+  font-size: 14px;
+  min-width: 0;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.cardTop > span {
+  color: var(--learn-accent);
+  font-size: 12px;
+}
+.labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  min-height: 23px;
+}
+.labels > span {
+  background: var(--learn-neutral);
+  border-radius: 4px;
+  color: var(--learn-muted);
+  font-size: 12px;
+  padding: 2px 7px;
+}
+.example {
+  display: block;
+  margin-top: 6px;
+  font-size: 19px;
+  min-height: 48px;
+}
+.settings {
+  position: sticky;
+  top: var(--workspace-sticky-inset, 16px);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  max-height: calc(100dvh - var(--workspace-sticky-inset, 16px) - 16px);
+  min-height: 0;
+  background: var(--learn-surface);
+  border: 1px solid var(--learn-track);
+  border-radius: 10px;
+  padding: 20px;
+}
+.settingsContent {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-gutter: stable;
+  padding: 6px;
+  margin: -6px -6px 0;
+}
+.settingsFooter {
+  flex: none;
+}
+.settings.gradeSettings {
+  max-height: min(
+    560px,
+    calc(100dvh - var(--workspace-sticky-inset, 16px) - 16px)
+  );
+}
+.gradeSettings .settingsContent {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  scrollbar-gutter: auto;
+}
+.gradeSettings .settingsContent > :not(.selectedTypes) {
+  flex: none;
+}
+.selectedTypes {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-gutter: stable;
+  margin: 0 -6px 12px;
+  padding: 0 6px;
+}
+@media (min-width: 1051px) and (max-width: 1300px) {
+  .typeCatalog {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.settingsContent > label,
+.constraints label {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+  font-size: 13px;
+}
+:where(.root) input:not(:where([type="checkbox"], [type="radio"])),
+:where(.root) select {
+  width: 100%;
+  min-width: 0;
+}
+.settings h2,
+.output h2 {
+  font-size: 17px;
+  margin: 16px 0 12px;
+}
+:where(.root) small {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--learn-muted);
+}
+.allocation {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) 54px 44px;
+  gap: 6px;
+  min-height: 56px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--learn-track);
+  align-items: center;
+}
+.allocation button {
+  font-size: 12px;
+  padding: 6px;
+}
+.allocation .selectionTitle {
+  min-width: 0;
+  line-height: 1.5;
+  text-align: left;
+}
+.allocation button[aria-pressed="true"] {
+  border-color: var(--learn-accent);
+}
+.allocation input {
+  padding: 6px;
+}
+.allocation > input[type="number"] {
+  width: 100%;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.allocation > .basketCheck {
+  align-self: stretch;
+}
+.basketActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--learn-track);
+  font-size: 13px;
+}
+.basketActions > button {
+  flex: none;
+  padding: 6px 10px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.root .basketCheck {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  min-width: 0;
+  min-height: 44px;
+  margin: 0;
+  white-space: nowrap;
+}
+.allocation > .basketCheck {
+  justify-content: center;
+}
+.root .basketCheck input[type="checkbox"] {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  min-height: 18px;
+  max-width: 18px;
+  max-height: 18px;
+  margin: 0;
+  padding: 0;
+  accent-color: var(--learn-accent);
+}
+.constraints {
+  border: 1px solid var(--learn-track);
+  padding: 12px;
+  border-radius: 8px;
+  margin: 18px 0;
+}
+.constraints legend {
+  padding: 0 6px;
+  font-size: 13px;
+}
+.constraints > div {
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+.constraints p {
+  color: var(--learn-muted);
+  font-size: 12px;
+  margin-bottom: 0;
+}
+.range {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 6px;
+  align-items: center;
+  margin-top: 6px;
+}
+.dans {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+.dans label {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  gap: 4px;
+  min-height: 32px;
+}
+.dans input {
+  width: 16px;
+  height: 16px;
+  min-height: 0;
+  padding: 0;
+}
+.total {
+  border-top: 1px solid var(--learn-track);
+  padding-top: 14px;
+  font-size: 14px;
+}
+.total small {
+  display: block;
+  margin-top: 4px;
+}
+.root .primary {
+  background: var(--learn-accent);
+  border-color: var(--learn-accent);
+  color: var(--learn-on-accent);
+}
+.root .primary:hover {
+  background: var(--learn-accent-hover);
+}
+.settingsFooter > .primary {
+  width: 100%;
+}
+.notice,
+.error {
+  padding: 12px;
+  font-size: 13px;
+  border-radius: 8px;
+}
+.notice {
+  background: var(--learn-soft);
+}
+.error {
+  background: var(--learn-danger-bg);
+  color: var(--learn-danger);
+}
+.output {
+  margin-top: 24px;
+}
+.workflow {
+  min-width: 0;
+  scroll-margin-top: 68px;
+}
+.randomSelection {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+.randomSelection label {
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+}
+.randomSelection input {
+  width: 90px;
+}
+.randomSelection > span,
+.randomSelection > small {
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+.randomSelection > small {
+  flex-basis: 100%;
+}
+.review {
+  padding: 16px 0;
+}
+.reviewToolbar {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px 0;
+}
+.reviewToolbar label {
+  display: grid;
+  gap: 4px;
+  flex: 1 1 220px;
+  font-size: 13px;
+}
+.reviewToolbar > span {
+  font-size: 13px;
+  color: var(--learn-muted);
+}
+.reviewGrid {
+  list-style: none;
+  margin: 16px 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 12px;
+}
+.reviewCard {
+  min-width: 0;
+  background: var(--learn-surface);
+  border: 1px solid var(--learn-track);
+  border-radius: 8px;
+  padding: 16px;
+}
+.geometryReviewGrid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+}
+.reviewCard :global(.katex-display) {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.reviewAnswer {
+  border-top: 1px solid var(--learn-track);
+  margin-top: 12px;
+  padding-top: 12px;
+  color: var(--learn-accent);
+}
+.outputBar {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.outputBar h2 {
+  margin-right: auto;
+}
+.outputBar label {
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+}
+.printRoot {
+  display: none;
+}
+@media (max-width: 1050px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .settings {
+    position: static;
+    max-height: none;
+  }
+  .settingsContent {
+    overflow: visible;
+    padding: 0;
+    margin: 0;
+    scrollbar-gutter: auto;
+  }
+}
+@media (max-width: 760px) {
+  .typeCatalog {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .catalogToolbar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .catalogToolbar .compactRandomSelection {
+    padding: 12px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--learn-track);
+  }
+  .root .card {
+    padding: 12px;
+  }
+  .settings {
+    padding: 16px;
+  }
+}
+@media (max-width: 480px) {
+  .catalogFilters.gradeFilters {
+    grid-template-columns: 1fr 1fr;
+  }
+  .gradeFilters label:last-child {
+    grid-column: 1 / -1;
+  }
+  .catalog {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media print {
+  :global(body[data-arithmetic-print="true"])
+    > :not([data-arithmetic-print-root]) {
+    display: none !important;
+  }
+  :global(body[data-arithmetic-print="true"]) {
+    margin: 0;
+    padding: 0;
+    background: white;
+  }
+  .printRoot {
+    display: block !important;
+  }
+}

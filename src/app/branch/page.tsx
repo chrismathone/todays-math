@@ -3,13 +3,14 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import TodayMathMark from "@/components/brand/TodayMathMark";
 import BranchAccounts from "@/components/branch/BranchAccounts";
+import BranchMenus from "@/components/branch/BranchMenus";
 import AdminSignOut from "@/components/admin/AdminSignOut";
 import TeachingView from "@/components/unified/TeachingView";
 import RouteLinkStatus from "@/components/ui/RouteLinkStatus";
 import { getAccountAccess } from "@/lib/accountAccess";
 import s from "@/components/admin/admin.module.css";
 
-export const metadata: Metadata = { title: "지점관리 | 오늘의수학" };
+export const metadata: Metadata = { title: "지점관리 | 오늘 수학" };
 
 export default async function BranchPage({
   searchParams,
@@ -24,7 +25,15 @@ export default async function BranchPage({
     !["owner", "manager"].includes(account.branchRole ?? "")
   )
     redirect(account.isSuperAdmin ? "/admin" : "/");
-  const tab = (await searchParams)?.tab === "classes" ? "classes" : "accounts";
+  const isOwner = account.branchRole === "owner";
+  const requestedTab = (await searchParams)?.tab;
+  // 사용 메뉴는 원장만(원장님 2026-10-19) — 관리자에게는 탭도 없고 주소로 와도 계정 관리로.
+  const tab =
+    requestedTab === "classes" || requestedTab === "students"
+      ? requestedTab
+      : requestedTab === "menus" && isOwner
+        ? "menus"
+        : "accounts";
 
   return (
     <div className={s.shell}>
@@ -32,7 +41,7 @@ export default async function BranchPage({
         <div className={s.headerBrand}>
           <Link href="/" className={s.brand}>
             <TodayMathMark size={28} inverse />
-            <span>오늘의수학</span>
+            <span>오늘 수학</span>
           </Link>
           <span className={s.adminLabel}>지점관리</span>
         </div>
@@ -81,15 +90,32 @@ export default async function BranchPage({
             <RouteLinkStatus />
           </Link>
           <Link
+            href="/branch?tab=students"
+            aria-current={tab === "students" ? "page" : undefined}
+          >
+            학생 반 배정
+            <RouteLinkStatus />
+          </Link>
+          <Link
             href="/branch?tab=accounts"
             aria-current={tab === "accounts" ? "page" : undefined}
           >
             계정 관리
             <RouteLinkStatus />
           </Link>
+          {isOwner && (
+            <Link
+              href="/branch?tab=menus"
+              aria-current={tab === "menus" ? "page" : undefined}
+            >
+              사용 메뉴
+              <RouteLinkStatus />
+            </Link>
+          )}
         </nav>
         {tab === "classes" && <TeachingView embedded />}
-        {account.branchId && (
+        {tab === "menus" && <BranchMenus />}
+        {account.branchId && tab !== "menus" && (
           <BranchAccounts
             canCreateManagers={account.branchRole === "owner"}
             section={tab}

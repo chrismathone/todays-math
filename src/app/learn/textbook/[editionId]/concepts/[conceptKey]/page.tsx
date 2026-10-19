@@ -10,7 +10,7 @@ import { LearnTopBar } from "@/components/learn/LearnTopBar";
 import { TextbookConceptActivity } from "@/components/learn/textbook/TextbookConceptActivity";
 import styles from "@/components/learn/textbook/textbookLearn.module.css";
 
-export const metadata = { title: "교재 개념백지 · 오늘의수학" };
+export const metadata = { title: "교재 개념백지 · 오늘 수학" };
 export default async function TextbookConceptPage({
   params,
 }: {

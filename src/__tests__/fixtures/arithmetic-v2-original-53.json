@@ -1,0 +1,962 @@
+{
+  "payloadVersion": 2,
+  "kind": "arithmeticSheet",
+  "engineVersion": "arithmetic-engine-v2",
+  "catalogVersion": "arithmetic-catalog-v2",
+  "seed": "original-53-20261014",
+  "rounds": [
+    {
+      "round": 1,
+      "items": [
+        {
+          "parameters": [636, 973],
+          "prompt": {
+            "layout": "vertical",
+            "operator": "+",
+            "left": 636,
+            "right": 973
+          },
+          "answer": {
+            "kind": "integer",
+            "exact": ["1609"],
+            "text": "1609",
+            "latex": "1609"
+          },
+          "order": 1,
+          "typeId": "elem-g3-add-3digit",
+          "domainIndex": 483273
+        },
+        {
+          "parameters": [972, 308],
+          "prompt": {
+            "layout": "vertical",
+            "operator": "-",
+            "left": 972,
+            "right": 308
+          },
+          "answer": {
+            "kind": "integer",
+            "exact": ["664"],
+            "text": "664",
+            "latex": "664"
+          },
+          "order": 2,
+          "typeId": "elem-g3-sub-3digit",
+          "domainIndex": 380836
+        },
+        {
+          "parameters": [282, 6],
+          "prompt": {
+            "layout": "vertical",
+            "operator": "×",
+            "left": 282,
+            "right": 6
+          },
+          "answer": {
+            "kind": "integer",
+            "exact": ["1692"],
+            "text": "1692",
+            "latex": "1692"
+          },
+          "order": 3,
+          "typeId": "elem-g3-mul-3x1",
+          "domainIndex": 1643
+        },
+        {
+          "parameters": [81, 84],
+          "prompt": {
+            "layout": "vertical",
+            "operator": "×",
+            "left": 81,
+            "right": 84
+          },
+          "answer": {
+            "kind": "integer",
+            "exact": ["6804"],
+            "text": "6804",
+            "latex": "6804"
+          },
+          "order": 4,
+          "typeId": "elem-g3-mul-2x2",
+          "domainIndex": 6464
+        },
+        {
+          "parameters": [24, 8],
+          "prompt": {
+            "layout": "math",
+            "text": "24 ÷ 8",
+            "latex": "24 \\div 8",
+            "instruction": "몫과 나머지를 구하세요."
+          },
+          "answer": {
+            "kind": "remainder",
+            "exact": ["3", "0"],
+            "text": "몫 3, 나머지 0",
+            "latex": "\\text{몫 }3,\\;\\text{나머지 }0"
+          },
+          "order": 5,
+          "typeId": "elem-g3-div-2x1-remainder",
+          "domainIndex": 133
+        },
+        {
+          "parameters": [773, 7],
+          "prompt": {
+            "layout": "math",
+            "text": "773 ÷ 7",
+            "latex": "773 \\div 7",
+            "instruction": "몫과 나머지를 구하세요."
+          },
+          "answer": {
+            "kind": "remainder",
+            "exact": ["110", "3"],
+            "text": "몫 110, 나머지 3",
+            "latex": "\\text{몫 }110,\\;\\text{나머지 }3"
+          },
+          "order": 6,
+          "typeId": "elem-g3-div-3x1-remainder",
+          "domainIndex": 6063
+        },
+        {
+          "parameters": [503, 66],
+          "prompt": {
+            "layout": "vertical",
+            "operator": "×",
+            "left": 503,
+            "right": 66
+          },
+          "answer": {
+            "kind": "integer",
+            "exact": ["33198"],
+            "text": "33198",
+            "latex": "33198"
+          },
+          "order": 7,
+          "typeId": "elem-g4-mul-3x2",
+          "domainIndex": 36326
+        },
+        {
+          "parameters": [57, 15],
+          "prompt": {
+            "layout": "math",
+            "text": "57 ÷ 15",
+            "latex": "57 \\div 15",
+            "instruction": "몫과 나머지를 구하세요."
+          },
+          "answer": {
+            "kind": "remainder",
+            "exact": ["3", "12"],
+            "text": "몫 3, 나머지 12",
+            "latex": "\\text{몫 }3,\\;\\text{나머지 }12"
+          },
+          "order": 8,
+          "typeId": "elem-g4-div-2x2-remainder",
+          "domainIndex": 1133
+        },
+        {
+          "parameters": [747, 33],
+          "prompt": {
+            "layout": "math",
+            "text": "747 ÷ 33",
+            "latex": "747 \\div 33",
+            "instruction": "몫과 나머지를 구하세요."
+          },
+          "answer": {
+            "kind": "remainder",
+            "exact": ["22", "21"],
+            "text": "몫 22, 나머지 21",
+            "latex": "\\text{몫 }22,\\;\\text{나머지 }21"
+          },
+          "order": 9,
+          "typeId": "elem-g4-div-3x2-remainder",
+          "domainIndex": 58253
+        },
+        {
+          "parameters": [1, 70, 11, 12],
+          "prompt": {
+            "layout": "math",
+            "text": "(70 + 11) × 12",
+            "latex": "(70 + 11) \\times 12"
+          },
+          "answer": {
+            "kind": "integer",
+            "exact": ["972"],
+            "text": "972",
+            "latex": "972"
+          },
+          "order": 10,
+          "typeId": "elem-g5-natural-mixed",
+          "domainIndex": 24467
+        },
+        {
+          "parameters": [6, 9, 1, 9],
+          "prompt": {
+            "layout": "math",
+            "text": "6/9 + 1/9",
+            "latex": "\\frac{6}{9} + \\frac{1}{9}",
+            "instruction": "계산하고 약분하세요. 가분수는 대분수로 나타내세요."
+          },
+          "answer": {
+            "kind": "rational",
+            "exact": ["7", "9"],
+            "text": "7/9",
+            "latex": "\\frac{7}{9}"
+          },
+          "order": 11,
+          "typeId": "elem-g4-fraction-same-add",
+          "domainIndex": 180
+        },
+        {
+          "parameters": [8, 10, 5, 10],
+          "prompt": {
+            "layout": "math",
+            "text": "8/10 - 5/10",
+            "latex": "\\frac{8}{10} - \\frac{5}{10}",
+            "instruction": "계산하고 약분하세요. 가분수는 대분수로 나타내세요."
+          },
+          "answer": {
+            "kind": "rational",
+            "exact": ["3", "10"],
+            "text": "3/10",
+            "latex": "\\frac{3}{10}"
+          },
+          "order": 12,
+          "typeId": "elem-g4-fraction-same-sub",
+          "domainIndex": 152
+        },
+        {
+          "parameters": [10, 7, 13, 7],
+          "prompt": {
+            "layout": "math",
+            "text": "1 3/7 + 1 6/7",
+            "latex": "1\\frac{3}{7} + 1\\frac{6}{7}",
+            "instruction": "계산하고 약분하세요. 가분수는 대분수로 나타내세요."
+          },
+          "answer": {
+            "kind": "rational",
+            "exact": ["23", "7"],
+            "text": "3 2/7",
+            "latex": "3\\frac{2}{7}"
+          },
+          "order": 13,
+          "typeId": "elem-g4-mixed-same-add",
+          "domainIndex": 536
+        },
+        {
+          "parameters": [16, 11, 15, 11],
+          "prompt": {
+            "layout": "math",
+            "text": "1 5/11 - 1 4/11",
+            "latex": "1\\frac{5}{11} - 1\\frac{4}{11}",
+            "instruction": "계산하고 약분하세요. 가분수는 대분수로 나타내세요."
+          },
+          "answer": {
+            "kind": "rational",
+            "exact": ["1", "11"],
+            "text": "1/11",
+            "latex": "\\frac{1}{11}"
+          },
+          "order": 14,
+          "typeId": "elem-g4-mixed-same-sub",
+          "domainIndex": 1363
+        },
+        {
+          "parameters": [5, 6, 3, 5],
+          "prompt": {
+            "layout": "math",
+            "text": "5/6 + 3/5",
+            "latex": "\\frac{5}{6} + \\frac{3}{5}",
+            "instruction": "계산하고 약분하세요. 가분수는 대분수로 나타내세요."
+          },
+          "answer": {
+            "kind": "rational",
+            "exact": ["43", "30"],
+            "text": "1 13/30",
+            "latex": "1\\frac{13}{30}"
+          },
+          "order": 15,
+          "typeId": "elem-g5-fraction-unlike-add",
+          "domainIndex": 430
+        },
+        {
+          "parameters": [1, 8, 1, 12],
+          "prompt": {
+            "layout": "math",
+            "text": "1/8 - 1/12",
+            "latex": "\\frac{1}{8} - \\frac{1}{12}",
+            "instruction": "계산하고 약분하세요. 가분수는 대분수로 나타내세요."
+          },
+          "answer": {
+            "kind": "rational",
+            "exact": ["1", "24"],
+            "text": "1/24",
+            "latex": "\\frac{1}{24}"
+          },
+          "order": 16,
+          "typeId": "elem-g5-fraction-unlike-sub",
+          "domainIndex": 353
+        },
+        {
+          "parameters": [19, 6, 14, 11],
+          "prompt": {
+            "layout": "math",
+            "text": "3 1/6 + 1 3/11",
+            "latex": "3\\frac{1}{6} + 1\\frac{3}{11}",
+            "instruction": "계산하고 약분하세요. 가분수는 대분수로 나타내세요."
+          },
+          "answer": {
+            "kind": "rational",
+            "exact": ["293", "66"],
+            "text": "4 29/66",
+            "latex": "4\\frac{29}{66}"
+          },
+          "order": 17,
+          "typeId": "elem-g5-mixed-unlike-add",
+          "domainIndex": 4025
+        },
+        {
+          "parameters": [39, 11, 5, 3],
+          "prompt": {
+            "layout": "math",
+            "text": "3 6/11 - 1 2/3",
+            "latex": "3\\frac{6}{11} - 1\\frac{2}{3}",
+            "instruction": "계산하고 약분하세요. 가분수는 대분수로 나타내세요."
+          },
+          "answer": {
+            "kind": "rational",
+            "exact": ["62", "33"],
+            "text": "1 29/33",
+            "latex": "1\\frac{29}{33}"
+          },
+          "order": 18,
+          "typeId": "elem-g5-mixed-unlike-sub",
+          "domainIndex": 6778
+        },
+        {
+          "parameters": [29, 12, 12, 11],
+          "prompt": {
+            "layout": "math",
+            "text": "2 5/12 × 1 1/11",
+            "latex": "2\\frac{5}{12} \\times 1\\frac{1}{11}",
+            "instruction": "계산하고 약분하세요. 가분수는 대분수로 나타내세요."
+          },
+          "answer": {
+            "kind": "rational",
+            "exact": ["29", "11"],
+            "text": "2 7/11",
+            "latex": "2\\frac{7}{11}"
+          },
+          "order": 19,
+          "typeId": "elem-g5-fraction-mul",
+          "domainIndex": 31278
+        },
+        {
+          "parameters": [7, 5, 5, 1],
+          "prompt": {
+            "layout": "math",
+            "text": "1 2/5 × 5",
+            "latex": "1\\frac{2}{5} \\times 5",
+            "instruction": "계산하고 약분하세요. 가분수는 대분수로 나타내세요."
+          },
+          "answer": {
+            "kind": "rational",
+            "exact": ["7", "1"],
+            "text": "7",
+            "latex": "7"
+          },
+          "order": 20,
+          "typeId": "elem-g5-fraction-mul-natural",
+          "domainIndex": 553
+        },
+        {
+          "parameters": [2, 3, 20, 11],
+          "prompt": {
+            "layout": "math",
+            "text": "2/3 ÷ 1 9/11",
+            "latex": "\\frac{2}{3} \\div 1\\frac{9}{11}",
+            "instruction": "계산하고 약분하세요. 가분수는 대분수로 나타내세요."
+          },
+          "answer": {
+            "kind": "rational",
+            "exact": ["11", "30"],
+            "text": "11/30",
+            "latex": "\\frac{11}{30}"
+          },
+          "order": 21,
+          "typeId": "elem-g6-fraction-div",
+          "domainIndex": 506
+        },
+        {
+          "parameters": [34, 11, 9, 1],
+          "prompt": {
+            "layout": "math",
+            "text": "3 1/11 ÷ 9",
+            "latex": "3\\frac{1}{11} \\div 9",
+            "instruction": "계산하고 약분하세요. 가분수는 대분수로 나타내세요."
+          },
+          "answer": {
+            "kind": "rational",
+            "exact": ["34", "99"],
+            "text": "34/99",
+            "latex": "\\frac{34}{99}"
+          },
+          "order": 22,
+          "typeId": "elem-g6-fraction-div-natural",
+          "domainIndex": 1430
+        },
+        {
+          "parameters": [1589, 8380],
+          "prompt": {
+            "layout": "math",
+            "text": "15.89 + 83.8",
+            "latex": "15.89 + 83.8"
+          },
+          "answer": {
+            "kind": "decimal",
+            "exact": ["9969", "2"],
+            "text": "99.69",
+            "latex": "99.69"
+          },
+          "order": 23,
+          "typeId": "elem-g4-decimal-add",
+          "domainIndex": 15580996
+        },
+        {
+          "parameters": [7914, 5094],
+          "prompt": {
+            "layout": "math",
+            "text": "79.14 - 50.94",
+            "latex": "79.14 - 50.94"
+          },
+          "answer": {
+            "kind": "decimal",
+            "exact": ["282", "1"],
+            "text": "28.2",
+            "latex": "28.2"
+          },
+          "order": 24,
+          "typeId": "elem-g4-decimal-sub",
+          "domainIndex": 30694738
+        },
+        {
+          "parameters": [577, 207],
+          "prompt": {
+            "layout": "math",
+            "text": "5.77 × 2.07",
+            "latex": "5.77 \\times 2.07"
+          },
+          "answer": {
+            "kind": "decimal",
+            "exact": ["119439", "4"],
+            "text": "11.9439",
+            "latex": "11.9439"
+          },
+          "order": 25,
+          "typeId": "elem-g5-decimal-mul",
+          "domainIndex": 565494
+        },
+        {
+          "parameters": [50, 625],
+          "prompt": {
+            "layout": "math",
+            "text": "0.5 ÷ 6.25",
+            "latex": "0.5 \\div 6.25"
+          },
+          "answer": {
+            "kind": "decimal",
+            "exact": ["8", "2"],
+            "text": "0.08",
+            "latex": "0.08"
+          },
+          "order": 26,
+          "typeId": "elem-g6-decimal-div",
+          "domainIndex": 28532
+        },
+        {
+          "parameters": [717, 1],
+          "prompt": {
+            "layout": "math",
+            "text": "7.17 ÷ 1",
+            "latex": "7.17 \\div 1"
+          },
+          "answer": {
+            "kind": "decimal",
+            "exact": ["717", "2"],
+            "text": "7.17",
+            "latex": "7.17"
+          },
+          "order": 27,
+          "typeId": "elem-g6-decimal-div-natural",
+          "domainIndex": 709
+        },
+        {
+          "parameters": [-1, 13],
+          "prompt": {
+            "layout": "math",
+            "text": "(-1) + 13",
+            "latex": "(-1) + 13",
+            "instruction": "계산하시오."
+          },
+          "answer": {
+            "kind": "integer",
+            "exact": ["12"],
+            "text": "12",
+            "latex": "12"
+          },
+          "order": 28,
+          "typeId": "m1-integer-add",
+          "domainIndex": 812
+        },
+        {
+          "parameters": [-1, 1],
+          "prompt": {
+            "layout": "math",
+            "text": "(-1) - 1",
+            "latex": "(-1) - 1",
+            "instruction": "계산하시오."
+          },
+          "answer": {
+            "kind": "integer",
+            "exact": ["-2"],
+            "text": "-2",
+            "latex": "-2"
+          },
+          "order": 29,
+          "typeId": "m1-integer-subtract",
+          "domainIndex": 800
+        },
+        {
+          "parameters": [-4, 10],
+          "prompt": {
+            "layout": "math",
+            "text": "(-4) × 10",
+            "latex": "(-4) \\times 10",
+            "instruction": "계산하시오."
+          },
+          "answer": {
+            "kind": "integer",
+            "exact": ["-40"],
+            "text": "-40",
+            "latex": "-40"
+          },
+          "order": 30,
+          "typeId": "m1-integer-multiply",
+          "domainIndex": 222
+        },
+        {
+          "parameters": [30, 5],
+          "prompt": {
+            "layout": "math",
+            "text": "30 ÷ 5",
+            "latex": "30 \\div 5",
+            "instruction": "계산하시오."
+          },
+          "answer": {
+            "kind": "integer",
+            "exact": ["6"],
+            "text": "6",
+            "latex": "6"
+          },
+          "order": 31,
+          "typeId": "m1-integer-divide",
+          "domainIndex": 310
+        },
+        {
+          "parameters": [-1, 11, 9, 4],
+          "prompt": {
+            "layout": "math",
+            "text": "(-1/11) + (9/4)",
+            "latex": "\\left(-\\frac{1}{11}\\right) + \\left(\\frac{9}{4}\\right)",
+            "instruction": "계산하시오."
+          },
+          "answer": {
+            "kind": "rational",
+            "exact": ["95", "44"],
+            "text": "95/44",
+            "latex": "\\frac{95}{44}"
+          },
+          "order": 32,
+          "typeId": "m1-rational-add",
+          "domainIndex": 12301
+        },
+        {
+          "parameters": [-3, 10, -7, 5],
+          "prompt": {
+            "layout": "math",
+            "text": "(-3/10) - (-7/5)",
+            "latex": "\\left(-\\frac{3}{10}\\right) - \\left(-\\frac{7}{5}\\right)",
+            "instruction": "계산하시오."
+          },
+          "answer": {
+            "kind": "rational",
+            "exact": ["11", "10"],
+            "text": "11/10",
+            "latex": "\\frac{11}{10}"
+          },
+          "order": 33,
+          "typeId": "m1-rational-subtract",
+          "domainIndex": 9670
+        },
+        {
+          "parameters": [8, 7, 5, 12],
+          "prompt": {
+            "layout": "math",
+            "text": "(8/7) × (5/12)",
+            "latex": "\\left(\\frac{8}{7}\\right) \\times \\left(\\frac{5}{12}\\right)",
+            "instruction": "계산하시오."
+          },
+          "answer": {
+            "kind": "rational",
+            "exact": ["10", "21"],
+            "text": "10/21",
+            "latex": "\\frac{10}{21}"
+          },
+          "order": 34,
+          "typeId": "m1-rational-multiply",
+          "domainIndex": 20813
+        },
+        {
+          "parameters": [-4, 9, -11, 8],
+          "prompt": {
+            "layout": "math",
+            "text": "(-4/9) ÷ (-11/8)",
+            "latex": "\\left(-\\frac{4}{9}\\right) \\div \\left(-\\frac{11}{8}\\right)",
+            "instruction": "계산하시오."
+          },
+          "answer": {
+            "kind": "rational",
+            "exact": ["32", "99"],
+            "text": "32/99",
+            "latex": "\\frac{32}{99}"
+          },
+          "order": 35,
+          "typeId": "m1-rational-divide",
+          "domainIndex": 8541
+        },
+        {
+          "parameters": [-4, 3],
+          "prompt": {
+            "layout": "math",
+            "text": "(-4)^3",
+            "latex": "(-4)^{3}",
+            "instruction": "계산하시오."
+          },
+          "answer": {
+            "kind": "integer",
+            "exact": ["-64"],
+            "text": "-64",
+            "latex": "-64"
+          },
+          "order": 36,
+          "typeId": "m1-integer-power",
+          "domainIndex": 13
+        },
+        {
+          "parameters": [-5, 2, 2],
+          "prompt": {
+            "layout": "math",
+            "text": "(-5 + 2) × 2",
+            "latex": "\\left(-5 + 2\\right) \\times 2",
+            "instruction": "계산하시오."
+          },
+          "answer": {
+            "kind": "integer",
+            "exact": ["-6"],
+            "text": "-6",
+            "latex": "-6"
+          },
+          "order": 37,
+          "typeId": "m1-numeric-expression",
+          "domainIndex": 2275
+        },
+        {
+          "parameters": [9, -3],
+          "prompt": {
+            "layout": "math",
+            "text": "(9x) + (-3x)",
+            "latex": "\\left(9x\\right) + \\left(-3x\\right)",
+            "instruction": "식을 간단히 하시오."
+          },
+          "answer": {
+            "kind": "polynomial",
+            "exact": ["1", "6", "1"],
+            "text": "6x",
+            "latex": "6x"
+          },
+          "order": 38,
+          "typeId": "m1-like-terms",
+          "domainIndex": 312
+        },
+        {
+          "parameters": [3, 0, 5, 1],
+          "prompt": {
+            "layout": "math",
+            "text": "(3x) + (5x + 1)",
+            "latex": "\\left(3x\\right) + \\left(5x + 1\\right)",
+            "instruction": "식을 간단히 하시오."
+          },
+          "answer": {
+            "kind": "polynomial",
+            "exact": ["1", "8", "1", "0", "1", "1"],
+            "text": "8x + 1",
+            "latex": "8x + 1"
+          },
+          "order": 39,
+          "typeId": "m1-linear-add",
+          "domainIndex": 9125
+        },
+        {
+          "parameters": [-5, -1, 1, 2],
+          "prompt": {
+            "layout": "math",
+            "text": "(-5x - 1) - (x + 2)",
+            "latex": "\\left(-5x - 1\\right) - \\left(x + 2\\right)",
+            "instruction": "식을 간단히 하시오."
+          },
+          "answer": {
+            "kind": "polynomial",
+            "exact": ["1", "-6", "1", "0", "-3", "1"],
+            "text": "-6x - 3",
+            "latex": "-6x - 3"
+          },
+          "order": 40,
+          "typeId": "m1-linear-subtract",
+          "domainIndex": 502
+        },
+        {
+          "parameters": [-1, 2, 2, 1],
+          "prompt": {
+            "layout": "math",
+            "text": "(-x^2) × (2x)",
+            "latex": "\\left(-x^{2}\\right) \\times \\left(2x\\right)",
+            "instruction": "식을 간단히 하시오."
+          },
+          "answer": {
+            "kind": "polynomial",
+            "exact": ["3", "-2", "1"],
+            "text": "-2x^3",
+            "latex": "-2x^{3}"
+          },
+          "order": 41,
+          "typeId": "m2-monomial-multiply",
+          "domainIndex": 1380
+        },
+        {
+          "parameters": [-9, 6, -5, 3],
+          "prompt": {
+            "layout": "math",
+            "text": "(-9x^6) ÷ (-5x^3)",
+            "latex": "\\left(-9x^{6}\\right) \\div \\left(-5x^{3}\\right)",
+            "instruction": "식을 간단히 하시오. (단, x ≠ 0)"
+          },
+          "answer": {
+            "kind": "polynomial",
+            "exact": ["3", "9", "5"],
+            "text": "(9/5)x^3",
+            "latex": "\\frac{9}{5}x^{3}"
+          },
+          "order": 42,
+          "typeId": "m2-monomial-divide",
+          "domainIndex": 176
+        },
+        {
+          "parameters": [-3, -2, 0, -3, -2, -1],
+          "prompt": {
+            "layout": "math",
+            "text": "(-3x^2 - 2x) + (-3x^2 - 2x - 1)",
+            "latex": "\\left(-3x^{2} - 2x\\right) + \\left(-3x^{2} - 2x - 1\\right)",
+            "instruction": "식을 간단히 하시오."
+          },
+          "answer": {
+            "kind": "polynomial",
+            "exact": ["2", "-6", "1", "1", "-4", "1", "0", "-1", "1"],
+            "text": "-6x^2 - 4x - 1",
+            "latex": "-6x^{2} - 4x - 1"
+          },
+          "order": 43,
+          "typeId": "m2-polynomial-add",
+          "domainIndex": 2949
+        },
+        {
+          "parameters": [-3, 0, 2, 2, 3, -2],
+          "prompt": {
+            "layout": "math",
+            "text": "(-3x^2 + 2) - (2x^2 + 3x - 2)",
+            "latex": "\\left(-3x^{2} + 2\\right) - \\left(2x^{2} + 3x - 2\\right)",
+            "instruction": "식을 간단히 하시오."
+          },
+          "answer": {
+            "kind": "polynomial",
+            "exact": ["2", "-5", "1", "1", "-3", "1", "0", "4", "1"],
+            "text": "-5x^2 - 3x + 4",
+            "latex": "-5x^{2} - 3x + 4"
+          },
+          "order": 44,
+          "typeId": "m2-polynomial-subtract",
+          "domainIndex": 7883
+        },
+        {
+          "parameters": [-3, 2, -2, 1, 2],
+          "prompt": {
+            "layout": "math",
+            "text": "(-3x^2 + 2x - 2) × (x^2)",
+            "latex": "\\left(-3x^{2} + 2x - 2\\right) \\times \\left(x^{2}\\right)",
+            "instruction": "식을 간단히 하시오."
+          },
+          "answer": {
+            "kind": "polynomial",
+            "exact": ["4", "-3", "1", "3", "2", "1", "2", "-2", "1"],
+            "text": "-3x^4 + 2x^3 - 2x^2",
+            "latex": "-3x^{4} + 2x^{3} - 2x^{2}"
+          },
+          "order": 45,
+          "typeId": "m2-polynomial-monomial-multiply",
+          "domainIndex": 731
+        },
+        {
+          "parameters": [3, 1, 2, -5, 2],
+          "prompt": {
+            "layout": "math",
+            "text": "(3x^4 + x^3 + 2x^2) ÷ (-5x^2)",
+            "latex": "\\left(3x^{4} + x^{3} + 2x^{2}\\right) \\div \\left(-5x^{2}\\right)",
+            "instruction": "식을 간단히 하시오. (단, x ≠ 0)"
+          },
+          "answer": {
+            "kind": "polynomial",
+            "exact": ["2", "-3", "5", "1", "-1", "5", "0", "-2", "5"],
+            "text": "-(3/5)x^2 - (1/5)x - 2/5",
+            "latex": "-\\frac{3}{5}x^{2} - \\frac{1}{5}x - \\frac{2}{5}"
+          },
+          "order": 46,
+          "typeId": "m2-polynomial-monomial-divide",
+          "domainIndex": 5561
+        },
+        {
+          "parameters": [-5, -4, -1, 4],
+          "prompt": {
+            "layout": "math",
+            "text": "(-5x - 4) × (-x + 4)",
+            "latex": "\\left(-5x - 4\\right) \\times \\left(-x + 4\\right)",
+            "instruction": "식을 간단히 하시오."
+          },
+          "answer": {
+            "kind": "polynomial",
+            "exact": ["2", "5", "1", "1", "-16", "1", "0", "-16", "1"],
+            "text": "5x^2 - 16x - 16",
+            "latex": "5x^{2} - 16x - 16"
+          },
+          "order": 47,
+          "typeId": "m3-polynomial-multiply",
+          "domainIndex": 163
+        },
+        {
+          "parameters": [129],
+          "prompt": {
+            "layout": "math",
+            "text": "√129",
+            "latex": "\\sqrt{129}",
+            "instruction": "근호를 간단히 하시오."
+          },
+          "answer": {
+            "kind": "surd",
+            "exact": ["129", "1", "1"],
+            "text": "√129",
+            "latex": "\\sqrt{129}"
+          },
+          "order": 48,
+          "typeId": "m3-radical-simplify",
+          "domainIndex": 129
+        },
+        {
+          "parameters": [1, 27, -2, 3],
+          "prompt": {
+            "layout": "math",
+            "text": "(√27) + (-2√3)",
+            "latex": "\\left(\\sqrt{27}\\right) + \\left(-2\\sqrt{3}\\right)",
+            "instruction": "계산하시오."
+          },
+          "answer": {
+            "kind": "surd",
+            "exact": ["3", "1", "1"],
+            "text": "√3",
+            "latex": "\\sqrt{3}"
+          },
+          "order": 49,
+          "typeId": "m3-radical-add",
+          "domainIndex": 2381
+        },
+        {
+          "parameters": [2, 48, 2, 27],
+          "prompt": {
+            "layout": "math",
+            "text": "(2√48) - (2√27)",
+            "latex": "\\left(2\\sqrt{48}\\right) - \\left(2\\sqrt{27}\\right)",
+            "instruction": "계산하시오."
+          },
+          "answer": {
+            "kind": "surd",
+            "exact": ["3", "2", "1"],
+            "text": "2√3",
+            "latex": "2\\sqrt{3}"
+          },
+          "order": 50,
+          "typeId": "m3-radical-subtract",
+          "domainIndex": 3319
+        },
+        {
+          "parameters": [-4, 25, -2, 8],
+          "prompt": {
+            "layout": "math",
+            "text": "(-4√25) × (-2√8)",
+            "latex": "\\left(-4\\sqrt{25}\\right) \\times \\left(-2\\sqrt{8}\\right)",
+            "instruction": "계산하시오."
+          },
+          "answer": {
+            "kind": "surd",
+            "exact": ["2", "80", "1"],
+            "text": "80√2",
+            "latex": "80\\sqrt{2}"
+          },
+          "order": 51,
+          "typeId": "m3-radical-multiply",
+          "domainIndex": 5400
+        },
+        {
+          "parameters": [-4, 5, -2, 18],
+          "prompt": {
+            "layout": "math",
+            "text": "(-4√5) ÷ (-2√18)",
+            "latex": "\\left(-4\\sqrt{5}\\right) \\div \\left(-2\\sqrt{18}\\right)",
+            "instruction": "계산하시오."
+          },
+          "answer": {
+            "kind": "surd",
+            "exact": ["10", "1", "3"],
+            "text": "√10/3",
+            "latex": "\\frac{\\sqrt{10}}{3}"
+          },
+          "order": 52,
+          "typeId": "m3-radical-divide",
+          "domainIndex": 770
+        },
+        {
+          "parameters": [2, 3, 7],
+          "prompt": {
+            "layout": "math",
+            "text": "2/(3√7)",
+            "latex": "\\frac{2}{3\\sqrt{7}}",
+            "instruction": "분모를 유리화하시오."
+          },
+          "answer": {
+            "kind": "surd",
+            "exact": ["7", "2", "21"],
+            "text": "2√7/21",
+            "latex": "\\frac{2\\sqrt{7}}{21}"
+          },
+          "order": 53,
+          "typeId": "m3-radical-rationalize",
+          "domainIndex": 356
+        }
+      ]
+    }
+  ]
+}

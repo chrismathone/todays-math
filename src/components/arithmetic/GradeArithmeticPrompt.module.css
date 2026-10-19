@@ -1,0 +1,30 @@
+.prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  width: 100%;
+  color: var(--learn-ink);
+  font-size: var(--text-body, 14px);
+  font-weight: 400;
+}
+.figure {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+.blank {
+  display: inline-block;
+  width: 3em;
+  border-bottom: 1px solid currentColor;
+}
+.givens {
+  width: 100%;
+  text-align: left;
+  line-height: 1.5;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}

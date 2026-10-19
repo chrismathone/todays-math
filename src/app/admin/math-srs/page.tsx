@@ -8,7 +8,7 @@ import styles from "./page.module.css";
 import adminStyles from "@/components/admin/admin.module.css";
 
 export const metadata: Metadata = {
-  title: "SRS 학습 현황 | 오늘의수학 관리자",
+  title: "SRS 학습 현황 | 오늘 수학 관리자",
 };
 
 export default async function AdminSrsPage({

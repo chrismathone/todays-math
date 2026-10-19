@@ -54,7 +54,7 @@ function mockLayout(
 function client(props: Partial<Parameters<typeof EnglishPrintClient>[0]> = {}) {
   return render(
     <EnglishPrintClient
-      academyName="오늘의수학"
+      academyName="오늘 수학"
       exam={EXAM}
       set={SAMPLE_SET}
       {...props}

@@ -1,0 +1,149 @@
+/* 월말평가 M1 — «내 시험지»에 덧붙는 부분(Hi-fi H3 · `/dev/exam-publish-hifi`). 표 · 창은 제품 모듈 그대로다. */
+.strip {
+  margin: 0 0 18px;
+  padding: 14px 16px;
+  border: 1px solid var(--library-line, #dde3ec);
+  border-radius: var(--learn-radius-sm, 10px);
+  background: #fff;
+}
+.strip header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.strip header span {
+  color: var(--library-muted, #596c86);
+  font-size: 13px;
+}
+.strip ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.strip li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+.strip li > span:first-child {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.left {
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: var(--learn-warning-bg, #fff4df);
+  color: var(--learn-warning, #8a5a06);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.gradeLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--library-control, #b8c4d6);
+  border-radius: var(--control-radius, 8px);
+  color: var(--library-accent, #3159df);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.gradeLink:hover {
+  background: var(--learn-soft-hover, #e4ebff);
+}
+.issuedBadge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--library-soft, #edf2ff);
+  color: var(--library-accent, #3159df);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.sheetLine {
+  margin: -12px 0 18px;
+  font-size: 14px;
+}
+.fields {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.field {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 650;
+}
+.field :is(select, input) {
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid #d2ddeb;
+  border-radius: var(--control-radius, 8px);
+  background: #fff;
+  font: inherit;
+  font-weight: 400;
+}
+.field select {
+  cursor: pointer;
+}
+.classes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 14px;
+}
+.classes legend {
+  margin-bottom: 6px;
+  font-weight: 650;
+}
+.classes label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  cursor: pointer;
+}
+.classes input {
+  width: 18px;
+  height: 18px;
+  accent-color: #3159df;
+  cursor: pointer;
+}
+.note {
+  margin: 0;
+  color: var(--library-muted, #596c86);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.doneLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.doneLinks a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid #d2ddeb;
+  border-radius: var(--control-radius, 8px);
+  color: #3159df;
+  font-weight: 600;
+  text-decoration: none;
+}
+.doneLinks a:hover {
+  border-color: #91a9da;
+}

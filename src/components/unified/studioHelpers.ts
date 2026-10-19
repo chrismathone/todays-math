@@ -267,7 +267,7 @@ export function drawStudioSample(): HTMLCanvasElement {
   ctx.fillRect(0, 0, 1200, 1600);
   ctx.fillStyle = "#176b5b";
   ctx.font = '600 22px "Malgun Gothic", sans-serif';
-  ctx.fillText("오늘의 수학  /  직접 잘라 보는 예제", 90, 85);
+  ctx.fillText("오늘 수학  /  직접 잘라 보는 예제", 90, 85);
   ctx.fillStyle = "#202e28";
   ctx.font = '700 46px "Malgun Gothic", sans-serif';
   ctx.fillText("한 장으로 시작하는 수학", 90, 160);

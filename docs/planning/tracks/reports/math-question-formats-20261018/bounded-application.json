@@ -1,0 +1,47 @@
+{
+  "kind": "bounded-family-reinforcement-application",
+  "firstCommittedAt": "2026-10-18T08:20:38.278Z",
+  "idempotentCommittedAt": "2026-10-18T08:23:20.597Z",
+  "manifestSha256": "e2fb1422fbeb22f45aeeb5aeef66118a735c5cc878aa776cd63a56e004ea11da",
+  "approvalSha256": "665b456d64d5e43432b12052ab1f36d57af5682c691cf0eb5003c58f66a025ec",
+  "journalSha256": "9b1ce929b869c4b46ee8f4f62136192876eaf45c89ecfe61e5625949026c5471",
+  "newContents": 94,
+  "physicalRepresentations": 146,
+  "firstApply": {
+    "inserted": 146,
+    "matched": 0
+  },
+  "repeatApply": {
+    "inserted": 0,
+    "matched": 146
+  },
+  "readback": {
+    "rows": 146,
+    "sameCompleteIdCodeAndFullRowDigestLedgerOnRepeat": true,
+    "allStoredPayloadsValidatedByLockedOperator": true
+  },
+  "existingScope": {
+    "units": 20,
+    "wholeRows": 4801,
+    "allValuesValidatedUnchangedBeforeAndAfterInTransaction": true
+  },
+  "families": {
+    "reviewed": 53,
+    "nowWithFiveDistinctContents": 52,
+    "finiteDomainShortfall": {
+      "familyKey": "mid:1-2|다면체와 회전체|51",
+      "contents": 3,
+      "shortfallToFive": 2,
+      "duplicateOtherFamilyTasksNotInserted": true
+    }
+  },
+  "newContracts": {
+    "provenMultipleChoiceAndShortPairs": 52,
+    "shortOnly": 4,
+    "nativeMultipleChoiceOnly": 20,
+    "nativeDescriptiveOnly": 18
+  },
+  "referenceColumnsChecked": 11,
+  "oldStudentOrExamRowsRewritten": 0,
+  "deletes": 0
+}

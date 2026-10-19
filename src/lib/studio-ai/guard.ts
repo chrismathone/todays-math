@@ -18,11 +18,12 @@ export async function authorizeStudio(request?: Request) {
   const role = session?.user?.role === "reviewer" ? "reviewer" : "director";
   if (
     !session?.user?.id ||
-    routeAccessFor(
-      role,
-      request?.method ?? "GET",
-      request ? new URL(request.url).pathname : "/studio",
-    ) === "deny"
+    (user.isAdmin !== true &&
+      routeAccessFor(
+        role,
+        request?.method ?? "GET",
+        request ? new URL(request.url).pathname : "/studio",
+      ) === "deny")
   )
     return {
       user: null,

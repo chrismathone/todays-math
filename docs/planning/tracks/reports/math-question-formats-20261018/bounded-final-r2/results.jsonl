@@ -1,0 +1,2 @@
+{"at":"2026-10-18T08:05:58.279Z","kind":"started","mode":"apply","manifestSha256":"f36118351dbe017c97d79675b44087694de46d7b9d03445b12d48fcea7178eaa"}
+{"at":"2026-10-18T08:05:59.511Z","kind":"failed","mode":"apply","error":"\nInvalid `prisma.$executeRawUnsafe()` invocation:\n\n\nRaw query failed. Code: `42804`. Message: `ERROR: column \"difficulty\" is of type difficulty but expression is of type text\nHINT: You will need to rewrite or cast the expression.`"}

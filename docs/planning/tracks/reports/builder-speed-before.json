@@ -1,0 +1,496 @@
+{
+  "fixtureRows": 12000,
+  "fixtureProblemRows": 12048,
+  "curriculumUnits": 15,
+  "kind": "all reads: in-memory Prisma mock; logical returned rows; JSON UTF-8 return bytes; excludes transaction/auth/network",
+  "measures": [
+    {
+      "path": "1 initial scopes",
+      "ms": 182.55,
+      "queries": 6,
+      "rows": 14555,
+      "bytes": 5517029,
+      "responseBytes": 1130,
+      "responseSha256": "c8a5af7536c09e9fc47807b03e47ef8c3d1e7e2f2967983027c95958768df523",
+      "reads": [
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 2,
+          "bytes": 187,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 2,
+          "bytes": 187,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 2,
+          "bytes": 187,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 2,
+          "bytes": 187,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 11472,
+          "bytes": 5185928,
+          "content": false,
+          "answer": true
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 3075,
+          "bytes": 330353,
+          "content": true,
+          "answer": false
+        }
+      ]
+    },
+    {
+      "path": "2 add questions",
+      "ms": 145.43,
+      "queries": 7,
+      "rows": 15975,
+      "bytes": 6239003,
+      "responseBytes": 15502,
+      "responseSha256": "ff86764f6bbadd66cfc67aac64bd406f73885386d04cf3bf1cf57b57c5ed560e",
+      "reads": [
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 9168,
+          "bytes": 4166264,
+          "content": false,
+          "answer": true
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 2509,
+          "bytes": 270780,
+          "content": true,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 3826,
+          "bytes": 1736086,
+          "content": false,
+          "answer": true
+        },
+        {
+          "model": "unit",
+          "operation": "findMany",
+          "rows": 15,
+          "bytes": 2832,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 433,
+          "bytes": 42865,
+          "content": true,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 12,
+          "bytes": 11504,
+          "content": true,
+          "answer": true
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 12,
+          "bytes": 8672,
+          "content": true,
+          "answer": true
+        }
+      ]
+    },
+    {
+      "path": "3 replace questions",
+      "ms": 135.72,
+      "queries": 8,
+      "rows": 12565,
+      "bytes": 4761740,
+      "responseBytes": 12745,
+      "responseSha256": "10de803138cf7295b4e1584796b47fa54e57dcafa9a20fc46245b03c33be7f4b",
+      "reads": [
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 1,
+          "bytes": 94,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 9168,
+          "bytes": 4166264,
+          "content": false,
+          "answer": true
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 2509,
+          "bytes": 270780,
+          "content": true,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 766,
+          "bytes": 297621,
+          "content": false,
+          "answer": true
+        },
+        {
+          "model": "unit",
+          "operation": "findMany",
+          "rows": 15,
+          "bytes": 2832,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 86,
+          "bytes": 8569,
+          "content": true,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 10,
+          "bytes": 8970,
+          "content": true,
+          "answer": true
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 10,
+          "bytes": 6610,
+          "content": true,
+          "answer": true
+        }
+      ]
+    },
+    {
+      "path": "4 source picker",
+      "ms": 121.62,
+      "queries": 4,
+      "rows": 14629,
+      "bytes": 5539309,
+      "responseBytes": 484,
+      "responseSha256": "244664f4249caa6f9a8844c51719961190c54871170a105341ca47a8623d0c2d",
+      "reads": [
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 11525,
+          "bytes": 5204270,
+          "content": false,
+          "answer": true
+        },
+        {
+          "model": "sourceBook",
+          "operation": "findMany",
+          "rows": 0,
+          "bytes": 2,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "unit",
+          "operation": "findMany",
+          "rows": 15,
+          "bytes": 2832,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 3089,
+          "bytes": 332205,
+          "content": true,
+          "answer": false
+        }
+      ]
+    },
+    {
+      "path": "1 initial scopes warm",
+      "ms": 161.76,
+      "queries": 6,
+      "rows": 14555,
+      "bytes": 5517029,
+      "responseBytes": 1130,
+      "responseSha256": "c8a5af7536c09e9fc47807b03e47ef8c3d1e7e2f2967983027c95958768df523",
+      "reads": [
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 2,
+          "bytes": 187,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 2,
+          "bytes": 187,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 2,
+          "bytes": 187,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 2,
+          "bytes": 187,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 11472,
+          "bytes": 5185928,
+          "content": false,
+          "answer": true
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 3075,
+          "bytes": 330353,
+          "content": true,
+          "answer": false
+        }
+      ]
+    },
+    {
+      "path": "2 add questions warm",
+      "ms": 139.22,
+      "queries": 7,
+      "rows": 15975,
+      "bytes": 6239003,
+      "responseBytes": 15502,
+      "responseSha256": "ff86764f6bbadd66cfc67aac64bd406f73885386d04cf3bf1cf57b57c5ed560e",
+      "reads": [
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 9168,
+          "bytes": 4166264,
+          "content": false,
+          "answer": true
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 2509,
+          "bytes": 270780,
+          "content": true,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 3826,
+          "bytes": 1736086,
+          "content": false,
+          "answer": true
+        },
+        {
+          "model": "unit",
+          "operation": "findMany",
+          "rows": 15,
+          "bytes": 2832,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 433,
+          "bytes": 42865,
+          "content": true,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 12,
+          "bytes": 11504,
+          "content": true,
+          "answer": true
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 12,
+          "bytes": 8672,
+          "content": true,
+          "answer": true
+        }
+      ]
+    },
+    {
+      "path": "3 replace questions warm",
+      "ms": 132.47,
+      "queries": 8,
+      "rows": 12565,
+      "bytes": 4761740,
+      "responseBytes": 12745,
+      "responseSha256": "10de803138cf7295b4e1584796b47fa54e57dcafa9a20fc46245b03c33be7f4b",
+      "reads": [
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 1,
+          "bytes": 94,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 9168,
+          "bytes": 4166264,
+          "content": false,
+          "answer": true
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 2509,
+          "bytes": 270780,
+          "content": true,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 766,
+          "bytes": 297621,
+          "content": false,
+          "answer": true
+        },
+        {
+          "model": "unit",
+          "operation": "findMany",
+          "rows": 15,
+          "bytes": 2832,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 86,
+          "bytes": 8569,
+          "content": true,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 10,
+          "bytes": 8970,
+          "content": true,
+          "answer": true
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 10,
+          "bytes": 6610,
+          "content": true,
+          "answer": true
+        }
+      ]
+    },
+    {
+      "path": "4 source picker warm",
+      "ms": 121.05,
+      "queries": 4,
+      "rows": 14629,
+      "bytes": 5539309,
+      "responseBytes": 484,
+      "responseSha256": "244664f4249caa6f9a8844c51719961190c54871170a105341ca47a8623d0c2d",
+      "reads": [
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 11525,
+          "bytes": 5204270,
+          "content": false,
+          "answer": true
+        },
+        {
+          "model": "sourceBook",
+          "operation": "findMany",
+          "rows": 0,
+          "bytes": 2,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "unit",
+          "operation": "findMany",
+          "rows": 15,
+          "bytes": 2832,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 3089,
+          "bytes": 332205,
+          "content": true,
+          "answer": false
+        }
+      ]
+    }
+  ]
+}

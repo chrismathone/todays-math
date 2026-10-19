@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
   activationGate,
-  classOwnerForArchive,
   pageWindow,
   parseStudentIssueRequest,
   passwordReissueDecision,
@@ -73,12 +72,6 @@ describe("account usability policy", () => {
     ]);
   });
 
-  it("keeps an existing class owner and otherwise uses the teacher", () => {
-    expect(classOwnerForArchive("owner", "teacher", "archive")).toBe("owner");
-    expect(classOwnerForArchive(null, "teacher", "archive")).toBe("teacher");
-    expect(classOwnerForArchive(null, null, "archive")).toBe("archive");
-    expect(classOwnerForArchive(null, null, null)).toBeNull();
-  });
 
   it("shares one password decision for source, mapped, deleted and super-admin accounts", () => {
     expect(

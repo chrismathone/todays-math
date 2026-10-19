@@ -1,0 +1,48 @@
+{
+  "comparedWith": "/tmp/builder-simple-hifi-gNkLp1/standalone.html",
+  "current": "/tmp/builder-simple-hifi-NoTpW1/standalone.html",
+  "checks": [
+    {
+      "width": 1440,
+      "existingScreens": 8,
+      "unchangedDOM": [
+        "H1-1",
+        "H1-2",
+        "H2-1",
+        "H2-2",
+        "H3-1",
+        "H3-2",
+        "H4-1",
+        "H4-2"
+      ],
+      "changedDOM": [],
+      "h2ReviewPixelEqual": true,
+      "h2ReviewHashes": [
+        "a2af85b0d78d869d76577a7ffa52c33d099f5bfaa02647705e23fd1ebccf3be3",
+        "a2af85b0d78d869d76577a7ffa52c33d099f5bfaa02647705e23fd1ebccf3be3"
+      ]
+    },
+    {
+      "width": 390,
+      "existingScreens": 8,
+      "unchangedDOM": [
+        "H1-1",
+        "H1-2",
+        "H2-1",
+        "H2-2",
+        "H3-1",
+        "H3-2",
+        "H4-1",
+        "H4-2"
+      ],
+      "changedDOM": [],
+      "h2ReviewPixelEqual": true,
+      "h2ReviewHashes": [
+        "dfe958d4fd7abcda201caac3cf54516493d10737527c4813507c6199a447a056",
+        "dfe958d4fd7abcda201caac3cf54516493d10737527c4813507c6199a447a056"
+      ]
+    }
+  ],
+  "blockedRequests": [],
+  "errors": []
+}

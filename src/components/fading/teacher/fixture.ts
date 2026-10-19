@@ -10,6 +10,12 @@ import {
 } from "@/contracts/fadingTeacher.contract";
 import { fadingConceptDigest, type FadingConcept } from "@/lib/fading/concepts";
 import { fadingDateOf, fadingDayOfDate } from "@/lib/fading/schedule";
+import { FADING_RELEARN_DAILY_CHECKS } from "@/contracts/fadingRelearn.contract";
+import { fadingQuotaView } from "@/lib/fading/quota";
+import {
+  fadingPropositionDigest,
+  fadingRelearnLimits,
+} from "@/lib/fading/relearn";
 import { emptyFading, pickFadingConcept } from "@/lib/fading/state";
 import {
   FADING_IDLE_FLAG_DAYS,
@@ -85,6 +91,58 @@ function buildRecord(
   return storedFadingSchema.parse(record);
 }
 
+/**
+ * 하루 분량 손잡이(2026-10-17)의 표본 — 오늘 추가 확인 30회를 다 했고(상한), 한 문장은 «틀림» 3회로 멈췄고, 남은 문장이 있다.
+ * 최근 7일 가운데 오늘을 뺀 지난 날 상한에 닿은 날(학생 기록 밖의 표)은 라우트가 넘기는 값이라 여기서 2로 둔다 — 오늘을 더해 3일.
+ */
+const NOON = Date.parse(`${TODAY}T12:00:00+09:00`);
+const FIXTURE_CAP_DAYS = 2;
+function withRelearnEnd(
+  record: StoredFading,
+  catalog: readonly FadingConcept[],
+): StoredFading {
+  const learned = catalog.filter((c) => record.concepts[c.id]?.reviews);
+  const rows = learned
+    .flatMap((c) => c.propositions.map((p) => ({ c, p })))
+    .slice(0, 8);
+  const first = rows[0]!;
+  return storedFadingSchema.parse({
+    ...record,
+    relearn: {
+      version: 1,
+      items: rows.map(({ c, p }, i) => ({
+        conceptId: c.id,
+        propositionId: p.id,
+        digest: fadingPropositionDigest(p),
+        stage: "retry",
+        dueAt: NOON + 60_000,
+        origin: "missed",
+        since: NOON - 3_600_000 - i,
+        fails: i === 0 ? 4 : 1,
+        checks: i === 0 ? 3 : 1,
+      })),
+      seen: [],
+      graded: [1, 2, 3].map((n) => ({
+        attemptId: uuid(900 + n),
+        conceptId: first.c.id,
+        propositionId: first.p.id,
+        verdict: "failed",
+        next: { stage: "retry", dueAt: NOON + n * 60_000 },
+        marks: "w".repeat(
+          first.p.pieces.filter((piece) => piece.kind === "target").length,
+        ),
+        at: NOON - (4 - n) * 60_000,
+      })),
+      day: {
+        on: TODAY,
+        checks: FADING_RELEARN_DAILY_CHECKS,
+        cleared: 0,
+        entered: rows.length,
+      },
+    },
+  });
+}
+
 /** 개념 내용은 서버에서 받아 계산에만 쓰고, 반환에는 이름·상태만 남긴다. */
 export function buildTeacherWireFixture(
   catalog: readonly FadingConcept[],
@@ -126,6 +184,7 @@ export function buildTeacherWireFixture(
     name: string,
     classIndex: number,
     profile: Profile,
+    relearnEnd = false,
   ) => {
     const cls = classes[classIndex]!;
     const account = {
@@ -134,8 +193,21 @@ export function buildTeacherWireFixture(
         fadingDayOfDate(TODAY) - FADING_NOT_STARTED_GRACE_DAYS - 1,
       ),
     };
-    const record = storedFadingSchema.parse(buildRecord(catalog, profile));
-    const summary = fadingTeacherSummary(record, TODAY, account, known);
+    const built = storedFadingSchema.parse(buildRecord(catalog, profile));
+    const record = relearnEnd ? withRelearnEnd(built, catalog) : built;
+    const capDays = relearnEnd ? FIXTURE_CAP_DAYS : 0;
+    const summary = fadingTeacherSummary(record, TODAY, account, known, {
+      capDays,
+    });
+    const stops = record.relearn
+      ? fadingRelearnLimits(record.relearn, NOON).stopped.flatMap((key) => {
+          const [conceptId, propositionId] = key.split("/") as [string, string];
+          const p = concepts
+            .get(conceptId)
+            ?.propositions.find((x) => x.id === propositionId);
+          return p ? [{ conceptId, propositionId, term: p.term }] : [];
+        })
+      : [];
     const row = {
       id: uuid(n),
       name,
@@ -159,6 +231,8 @@ export function buildTeacherWireFixture(
       summary,
       concepts: fadingTeacherConcepts(record, concepts, TODAY),
       days: record.days,
+      quota: { ...fadingQuotaView(null, TODAY), canEdit: true },
+      relearnStops: stops,
     });
   };
   add(1, names[0]!, 1, "active");
@@ -173,6 +247,7 @@ export function buildTeacherWireFixture(
       ["김서준", "이하은", "박지안", "최서우"][i]!,
       3,
       profile as Profile,
+      profile === "overdue",
     );
   });
   return {

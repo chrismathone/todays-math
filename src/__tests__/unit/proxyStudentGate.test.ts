@@ -209,6 +209,10 @@ const SIGNED_RECEIVER = [
   `/api/integrations/eywa/v2/events/${UUID}`,
   "/api/integrations/eywa/v2/process",
   `/api/integrations/eywa/v2/students/${UUID}`,
+  "/api/integrations/eywa/v2/results",
+  `/api/integrations/eywa/v2/results/${UUID}`,
+  `/api/integrations/eywa/v2/exam-reports/${UUID}`,
+  `/api/integrations/eywa/v2/exam-reports/${UUID}/${UUID}/${UUID}`,
 ].flatMap((p) => METHODS.map((method) => `${method} ${p}`));
 
 /** 브라우저 오류 보고 — 학생 화면의 오류도 모은다(원장님 2026-09-22). 보내기 한 메서드 · 한 경로뿐 */

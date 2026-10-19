@@ -1,0 +1,81 @@
+/*
+ * 수직선 Hi-fi 의 껍데기. 지면 자체는 `PastPaper.module.css` 다.
+ * `.oneColumn` 은 시안 L2(넓은 그림 보기는 1열)를 이 화면에서만 덮어 그린다 —
+ * 지금 지면 규칙(D-156)은 그림 보기를 늘 2열로 놓는다. 고르시면 `ProblemContent` 에 규칙으로 넣는다.
+ */
+.shell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  padding: 32px 16px 80px;
+  background: #f1f0ea;
+  min-height: 100vh;
+}
+.head,
+.variant {
+  width: 100%;
+  max-width: 1720px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.h1 {
+  font-size: 20px;
+  font-weight: 700;
+}
+.h2 {
+  font-size: 17px;
+  font-weight: 700;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding-top: 11px;
+  border-top: 2px solid #3f3f3a;
+}
+.rec {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border: 1px solid #3f3f3a;
+}
+.note {
+  max-width: 920px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.75;
+  color: #3f3f3a;
+}
+.pages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  overflow-x: auto;
+  max-width: 100%;
+}
+.gray {
+  filter: grayscale(1);
+}
+
+.oneColumn :global([data-choice-layout="3x2"]) {
+  grid-template-columns: 1fr !important;
+  row-gap: var(--choice-gap) !important;
+}
+.oneColumn :global([data-choice-layout="3x2"] img) {
+  width: var(--choice-fig-w) !important;
+}
+.markOnAxis :global([data-choice-layout="3x2"] > div > span:first-child) {
+  /* 수직선 축(위에서 18 / 38)에 번호를 맞춘다 — 그림 높이의 절반쯤. */
+  padding-top: 11px;
+  align-self: flex-start;
+}
+.markOnAxis :global([data-choice-layout="3x2"] > div) {
+  align-items: flex-start;
+}
+.markTop :global([data-choice-layout="3x2"] > div > span:first-child) {
+  margin-top: -4px;
+}
+.divided :global([data-choice-layout="3x2"] > div) {
+  padding-bottom: 4px;
+  border-bottom: 1px dotted #b9b6aa;
+}

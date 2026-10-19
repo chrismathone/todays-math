@@ -164,6 +164,13 @@ export const storedFadingSessionSchema = z
       .string()
       .regex(/^[0-9a-f]{8}$/)
       .optional(),
+    /**
+     * 이 풀이의 4단계에서 «아직 모르겠어요»(카드 하나든 단계 전체든)를 고른 적이 있는가 — 결정 1(원장님 승인 2026-10-16)의 판정 재료다.
+     * 4단계의 부분 틀림에 «어려움»을 허용하는 예외는 **포기가 없었다고 적힌**(`false`) 풀이에서만 연다 — 칸이 없는 옛 풀이는 예외가 아니다.
+     * 포기는 일반 틀림과 같은 `missedAtFour` 에 합쳐지므로 새로고침 뒤에도 가르려면 따로 적어야 한다.
+     * 🔴 이 칸을 **읽고 보존하는** 배포판(1a)이 쓰는 배포판(1b)보다 먼저 나간다(파일 머리의 규칙).
+     */
+    gaveUpAtFour: z.boolean().optional(),
   })
   .refine(
     (session) => uniqueIds(session.missedAtFour),

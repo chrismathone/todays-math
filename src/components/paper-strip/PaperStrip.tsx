@@ -20,7 +20,7 @@ import s from "./paper-strip.module.css";
  * 개념 백지 미리보기에서 떼어 냈다(원장님 2026-10-07 «비슷한 류는 하나의 방식으로 묶기»). 지면을 여러 쪽 보여 주는 화면은
  * 이 부품을 쓴다 — 이전 · 다음 단추나 배율 단추를 따로 짓지 않는다. 지금 쓰는 곳: 개념 백지 · 교재 제작의 완성 보기.
  *
- * 지면은 부르는 쪽이 그린다. 이 부품은 배율을 CSS 변수 `--paper-strip-scale` 로 내려 주고(띠에서는 줄여서, 크게 보기에서는 폭에 맞춰),
+ * 지면은 부르는 쪽이 그린다. 이 부품은 배율을 CSS 변수 `--paper-strip-scale` 로 내려 주고(띠에서는 줄여서, 크게 보기에서는 한 쪽에 맞춰),
  * 지면이 그 값으로 제 크기를 줄인다. 다른 이름을 읽는 지면이면 `scaleVars` 에 그 이름을 더한다.
  */
 export type PaperStripPage = {
@@ -34,12 +34,14 @@ export type PaperStripPage = {
 };
 
 const SCALE_VAR = "--paper-strip-scale";
+type PreviewZoom = "page" | "width" | number;
 
-/** 쪽 수와 관계없이 같은 배율. 작은 화면에서만 가로 폭에 맞춘다. */
+/** 쪽 수와 관계없이 같은 배율. 가용 폭과 높이 안에 온전한 지면을 놓는다. */
 function usePageScroll(
   maxScale: number,
   scaleVars: readonly string[],
   horizontal = false,
+  zoom: PreviewZoom = "page",
 ) {
   const ref = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(maxScale);
@@ -60,18 +62,47 @@ function usePageScroll(
     const el = ref.current;
     if (!el) return;
     const measure = () => {
-      const available = el.clientWidth - 32;
-      if (available > 0)
-        setScale(Math.min(maxScale, available / A4_DIMENSIONS.widthPx));
+      const width = el.clientWidth - 32;
+      if (width > 0) {
+        const caption =
+          el.querySelector("figcaption")?.getBoundingClientRect().height ?? 0;
+        const remaining =
+          window.innerHeight - Math.max(0, el.getBoundingClientRect().top) - 16;
+        // The strip fills the viewport below its top edge (owner, 2026-10-16: a
+        // large monitor left most of the output step empty), capped so some
+        // page context stays visible. A stacked preview that starts below the
+        // fold keeps a useful overview height until the user scrolls to it.
+        const overviewHeight = Math.min(
+          window.innerHeight * 0.85,
+          remaining > 180 ? remaining : window.innerHeight * 0.68,
+        );
+        const height = horizontal
+          ? overviewHeight - 32 - caption - 16 // padding + caption + horizontal scrollbar
+          : el.clientHeight - 32;
+        const widthFit = Math.min(maxScale, width / A4_DIMENSIONS.widthPx);
+        setScale(
+          typeof zoom === "number"
+            ? zoom
+            : zoom === "width" || height <= 0
+              ? widthFit
+              : Math.min(widthFit, height / A4_DIMENSIONS.heightPx),
+        );
+      }
       measureEdges();
     };
-    if (typeof ResizeObserver === "undefined") return;
-    const observer = new ResizeObserver(measure);
-    observer.observe(el);
-    if (el.firstElementChild) observer.observe(el.firstElementChild);
+    const observer =
+      typeof ResizeObserver === "undefined"
+        ? null
+        : new ResizeObserver(measure);
+    observer?.observe(el);
+    if (el.firstElementChild) observer?.observe(el.firstElementChild);
+    window.addEventListener("resize", measure);
     measure();
-    return () => observer.disconnect();
-  }, [maxScale, measureEdges]);
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [horizontal, maxScale, measureEdges, zoom]);
   useEffect(() => {
     const el = ref.current;
     if (!horizontal || !el) return;
@@ -148,8 +179,11 @@ function leadingItem(desk: HTMLElement) {
 export function PaperStrip({
   pages,
   hint,
+  id,
+  busy = false,
   label = "지면 미리보기",
-  maxScale = 0.46,
+  // Thumbnails are bounded by the available height, not a fixed fraction.
+  maxScale = 1,
   scaleVars = [],
   scrollTo,
   onVisible,
@@ -157,9 +191,12 @@ export function PaperStrip({
   pages: readonly PaperStripPage[];
   /** 띠 위의 안내 한 줄. */
   hint: ReactNode;
+  /** 외부의 미리보기 바로가기가 초점을 옮길 영역. */
+  id?: string;
+  busy?: boolean;
   /** 띠 영역의 이름. */
   label?: string;
-  /** 띠에서의 배율 — 좁은 화면에서는 폭에 맞춰 더 줄인다. */
+  /** 띠에서의 최대 배율 — 가용 폭과 높이에 맞춰 더 줄인다. */
   maxScale?: number;
   /** 배율을 같이 내려 줄 CSS 변수 이름(`--paper-strip-scale` 은 늘 내려 준다). */
   scaleVars?: readonly string[];
@@ -173,6 +210,7 @@ export function PaperStrip({
     style,
     edges,
     measureEdges,
+    scale,
   } = usePageScroll(maxScale, scaleVars, true);
   const [expanded, setExpanded] = useState<string | null>(null);
   const opener = useRef<HTMLButtonElement | null>(null);
@@ -202,7 +240,7 @@ export function PaperStrip({
       item.getBoundingClientRect().left - desk.getBoundingClientRect().left;
     if (Math.abs(offset - held.offset) > 1)
       desk.scrollLeft += offset - held.offset;
-  }, [deskRef, pages]);
+  }, [deskRef, pages, scale]);
   const target = scrollTo?.key;
   const nonce = scrollTo?.nonce;
   // 쪽이 아직 없을 때 가리켰으면, 그 쪽이 생긴 뒤에 옮긴다.
@@ -230,6 +268,7 @@ export function PaperStrip({
       <p className={s.hint}>{hint}</p>
       <div className={s.frame}>
         <div
+          id={id}
           ref={deskRef}
           className={`${s.desk} ${s.thumbnailDesk}`}
           style={style}
@@ -237,6 +276,7 @@ export function PaperStrip({
           tabIndex={0}
           role="region"
           aria-label={label}
+          aria-busy={busy}
           data-paper-desk=""
         >
           <div className={`${s.pages} ${s.thumbnailPages}`}>
@@ -300,6 +340,7 @@ function ExpandedPages({
   const closeRef = useRef<HTMLButtonElement>(null);
   const items = useRef<(HTMLDivElement | null)[]>([]);
   const [current, setCurrent] = useState(start);
+  const [zoom, setZoom] = useState<PreviewZoom>("page");
   const currentRef = useRef(start);
   const {
     ref: deskRef,
@@ -307,7 +348,7 @@ function ExpandedPages({
     edges,
     measureEdges,
     scale,
-  } = usePageScroll(1, scaleVars);
+  } = usePageScroll(1, scaleVars, false, zoom);
   const titleId = useId();
   const goTo = useCallback(
     (index: number) => {
@@ -365,6 +406,13 @@ function ExpandedPages({
         onClose();
       }}
       onKeyDown={(event) => {
+        if (
+          (event.target as HTMLElement).closest("select, input, textarea") ||
+          event.altKey ||
+          event.ctrlKey ||
+          event.metaKey
+        )
+          return;
         if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
           event.preventDefault();
           goTo(current + (event.key === "ArrowLeft" ? -1 : 1));
@@ -373,6 +421,27 @@ function ExpandedPages({
     >
       <header className={s.toolbar}>
         <h2 id={titleId}>지면 확대 보기</h2>
+        <label className={s.zoomControl}>
+          확대
+          <select
+            aria-label="미리보기 확대"
+            value={zoom}
+            onChange={(event) => {
+              const value = event.target.value;
+              setZoom(
+                value === "page" || value === "width" ? value : Number(value),
+              );
+            }}
+          >
+            <option value="page">한 쪽 맞춤</option>
+            <option value="width">너비 맞춤</option>
+            {[0.5, 0.65, 0.85, 1, 1.25].map((value) => (
+              <option key={value} value={value}>
+                {Math.round(value * 100)}%
+              </option>
+            ))}
+          </select>
+        </label>
         <div className={s.navigation}>
           <button
             type="button"

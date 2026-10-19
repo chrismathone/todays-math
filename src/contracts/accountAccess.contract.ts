@@ -5,15 +5,19 @@ import { z } from "zod";
  * 메뉴는 제품 하나에 딸린다(`product` 없음 = 수학). 제품은 뷰에서 파생하고 따로 저장하지 않는다.
  */
 export const WORKSPACE_PRODUCTS = [
-  { id: "math", label: "오늘의수학" },
-  { id: "english", label: "오늘의영어" },
+  { id: "math", label: "오늘 수학" },
+  { id: "english", label: "오늘 영어" },
 ] as const;
 export type WorkspaceProduct = (typeof WORKSPACE_PRODUCTS)[number]["id"];
 
 export const WORKSPACE_MENUS = [
   { id: "home", label: "오늘의 작업" },
   { id: "bank", label: "시험지 만들기" },
+  // 원장님 2026-10-16 — «시험지 만들기» 바로 아래. 그동안 bank 에 얹혀 관리 콘솔이 켜고 끌 수 없었다.
+  // 관문 `/api/arithmetic/**` · 연산 학습지 자료 경로가 이 메뉴를 본다(두 CHECK 는 `20261016120000_menu_arithmetic`).
+  { id: "arithmetic", label: "연산대장" },
   { id: "studio", label: "문제 추출" },
+  // 저장된 메뉴 값과 DB CHECK 호환용. 출력 권한·관리 선택·옆 메뉴에는 쓰지 않는다.
   { id: "export", label: "시험지 · 내보내기" },
   { id: "library", label: "내 시험지" },
   { id: "textbook", label: "교재 제작" },
@@ -33,6 +37,7 @@ export const WORKSPACE_MENUS = [
 export const workspaceMenuSchema = z.enum([
   "home",
   "bank",
+  "arithmetic",
   "studio",
   "export",
   "library",
@@ -52,6 +57,36 @@ export type WorkspaceMenu = z.infer<typeof workspaceMenuSchema>;
 export const ALL_WORKSPACE_MENUS: WorkspaceMenu[] = WORKSPACE_MENUS.map(
   (menu) => menu.id,
 );
+/** 관리 화면에서 고르는 메뉴. 저장된 export 값은 지우지 않는다. */
+export const WORKSPACE_SELECTABLE_MENUS = WORKSPACE_MENUS.filter(
+  (menu) => menu.id !== "export",
+);
+
+/** 출력 단계가 있는 수학 메뉴. 영어는 기존 전용 메뉴 관문을 유지한다. */
+export const WORKSPACE_OUTPUT_MENUS = [
+  "bank",
+  "arithmetic",
+  "studio",
+  "library",
+  "textbook",
+  "conceptBlank",
+] as const satisfies readonly WorkspaceMenu[];
+export type WorkspaceOutputSource = (typeof WORKSPACE_OUTPUT_MENUS)[number];
+
+/** 화면과 서버가 함께 쓰는 출력 판정. 공용 양식·내보내기는 출처 중 하나면 된다. */
+export function canOutputFrom(
+  menus: readonly WorkspaceMenu[],
+  source?: WorkspaceOutputSource,
+): boolean {
+  return source
+    ? menus.includes(source)
+    : WORKSPACE_OUTPUT_MENUS.some((menu) => menus.includes(menu));
+}
+
+export function countWorkspaceMenus(menus: readonly string[]): number {
+  return normalizeWorkspaceMenus(menus).filter((menu) => menu !== "export")
+    .length;
+}
 /** 이전 english 허용/차단 값은 세 권한으로 확장한다. 새 저장값에는 통합 키를 남기지 않는다. */
 export function normalizeWorkspaceMenus(
   menus: readonly string[],
@@ -116,7 +151,7 @@ export function workspaceMenuProduct(menu: WorkspaceMenu): WorkspaceProduct {
 /** 한 제품의 메뉴만(옆 메뉴 순서 그대로) */
 export function workspaceMenusOf(product: WorkspaceProduct): WorkspaceMenu[] {
   return ALL_WORKSPACE_MENUS.filter(
-    (menu) => workspaceMenuProduct(menu) === product,
+    (menu) => menu !== "export" && workspaceMenuProduct(menu) === product,
   );
 }
 
@@ -158,7 +193,7 @@ export function workspaceMenuOptionsOf(
       },
     ];
   }
-  return WORKSPACE_MENUS.filter(
+  return WORKSPACE_SELECTABLE_MENUS.filter(
     (menu) => workspaceMenuProduct(menu.id) === product,
   ).map((menu) => ({
     id: menu.id,
@@ -167,17 +202,9 @@ export function workspaceMenuOptionsOf(
   }));
 }
 
-/** 내보내기는 진입 메뉴가 없을 때만 좌측 메뉴에 표시된다. 권한 자체는 유지한다. */
-export function workspaceMenuInSidebar(
-  menu: WorkspaceMenu,
-  allowedMenus: readonly WorkspaceMenu[],
-): boolean {
-  return (
-    menu !== "export" ||
-    !allowedMenus.some(
-      (item) => item === "bank" || item === "studio" || item === "library",
-    )
-  );
+/** export는 공통 출력 단계의 화면 ID만 남긴다. 별도 메뉴로는 표시하지 않는다. */
+export function workspaceMenuInSidebar(menu: WorkspaceMenu): boolean {
+  return menu !== "export";
 }
 export const approvalStatusSchema = z.enum(["pending", "approved", "rejected"]);
 export type ApprovalStatus = z.infer<typeof approvalStatusSchema>;

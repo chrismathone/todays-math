@@ -11,7 +11,7 @@ import {
   type QueryValues,
 } from "@/lib/adminReturn";
 
-export const metadata: Metadata = { title: "반 수학 복습 · 오늘의수학" };
+export const metadata: Metadata = { title: "반 수학 복습 · 오늘 수학" };
 
 export default async function ClassMathSrsPage({
   params,

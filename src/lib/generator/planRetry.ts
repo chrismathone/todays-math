@@ -39,11 +39,16 @@
  */
 import type { Difficulty } from "@/contracts/difficulty";
 import type { ProblemSource } from "@/contracts/common.contract";
-import { isProblemEligible } from "@/lib/problemEligibility";
-import { DEFAULT_PROBLEM_POOL } from "@/lib/problemPool";
 
 import { familyIdOf } from "./familyKey";
 import { createSeededRandom } from "./seededRandom";
+import {
+  parseTextbookSlotExternalId,
+  retryCandidateIneligibleCode,
+  TEXTBOOK_RETRY_REQUIRED,
+  TEXTBOOK_RETRY_SLOTS,
+  textbookSlotFit,
+} from "./textbookSlots";
 
 /** 복습 계획이 보는 최소한의 문항 — 출제 후보와 같은 모양의 부분집합. */
 export interface RetryCandidate {
@@ -115,12 +120,7 @@ export interface PlanRetryResult {
 }
 
 function eligible(candidate: RetryCandidate): boolean {
-  return isProblemEligible({
-    pool: candidate.pool ?? DEFAULT_PROBLEM_POOL,
-    reviewStatus: candidate.reviewStatus ?? "approved",
-    directUseAllowed: candidate.directUseAllowed,
-    answer: candidate.answer ?? "",
-  });
+  return retryCandidateIneligibleCode(candidate) === null;
 }
 
 /** 같은 오답 id의 중복은 요청 수를 늘리지 않는다. 일반 갈래 접힘은 계획이 따로 보고한다. */
@@ -129,7 +129,10 @@ export function retryRequestedCount(wrong: readonly RetryCandidate[]): number {
   return wrong.reduce((total, problem) => {
     if (seen.has(problem.id)) return total;
     seen.add(problem.id);
-    return total + (problem.source === "school_textbook" ? 2 : 1);
+    return (
+      total +
+      (problem.source === "school_textbook" ? TEXTBOOK_RETRY_REQUIRED : 1)
+    );
   }, 0);
 }
 
@@ -138,6 +141,8 @@ export function planRetry(args: PlanRetryArgs): PlanRetryResult {
   const count = args.count ?? retryRequestedCount(wrong);
   const excluded = new Set(args.excludeIds ?? []);
   const wrongIds = new Set(wrong.map((p) => p.id));
+  /** 지정 슬롯에 쓰지 않는 id — 호출자가 뺀 것과 이번 오답들(오답을 그 자신의 복습으로 다시 내지 않는다). */
+  const blocked = new Set([...excluded, ...wrongIds]);
   const textbookIds = new Set(
     wrong.filter((p) => p.source === "school_textbook").map((p) => p.id),
   );
@@ -161,11 +166,11 @@ export function planRetry(args: PlanRetryArgs): PlanRetryResult {
       p.originProblemId &&
       textbookIds.has(p.originProblemId)
     ) {
-      const slots = [1, 2].map(
-        (slot) => `tb-retry-v1:${p.originProblemId}:${slot}`,
-      );
-      // 과거 복구 자식이나 같은 단원 원문은 지정 변형 쌍이 아니다.
-      if (slots.includes(p.externalId ?? "") && !wrongIds.has(p.id)) {
+      // 과거 복구 자식이나 같은 단원 원문은 지정 변형 쌍이 아니다 — 자리를 채우는지는 아래 `textbookSlotFit` 이 정한다.
+      if (
+        parseTextbookSlotExternalId(p.externalId)?.originId ===
+        p.originProblemId
+      ) {
         const list = textbookPairs.get(p.originProblemId) ?? [];
         list.push(p);
         textbookPairs.set(p.originProblemId, list);
@@ -191,14 +196,17 @@ export function planRetry(args: PlanRetryArgs): PlanRetryResult {
     if (seenWrongIds.has(w.id)) continue;
     seenWrongIds.add(w.id);
     if (w.source === "school_textbook") {
-      const required = Math.min(2, Math.max(0, count - picked.length));
+      const required = Math.min(
+        TEXTBOOK_RETRY_REQUIRED,
+        Math.max(0, count - picked.length),
+      );
       let available = 0;
-      for (const slot of [1, 2]) {
+      for (const slot of TEXTBOOK_RETRY_SLOTS) {
         if (available >= required) break;
+        // 준비 상태(0/2 · 1/2 · 2/2)와 같은 술어 — 출처 · 부모 · 열쇠 · 차시 · 자격 · 제외(다른 오답 포함).
         const candidates = (textbookPairs.get(w.id) ?? []).filter(
           (p) =>
-            p.unitId === w.unitId &&
-            p.externalId === `tb-retry-v1:${w.id}:${slot}` &&
+            textbookSlotFit(w, slot, p, blocked).status === "ready" &&
             !usedProblemIds.has(p.id),
         );
         if (candidates.length === 0) continue;

@@ -82,6 +82,305 @@ export const SPECIMEN_ITEM_IDS = [
 ] as const;
 
 export const ITEMS: PrintCheckItem[] = [
+  ...(
+    [
+      ["pyeongga", "평가원"],
+      ["jeongtong", "정통"],
+      ["modern", "모던"],
+      ["workbook", "워크북"],
+      ["jaseup", "자습"],
+      ["yuhyung", "유형"],
+    ] as const
+  ).map(([template, label]): PrintCheckItem => ({
+    id: `print-c2-${template}-20261019`,
+    title: `${label} 양식 C2 — 머리 면·번호·시험 종류`,
+    changed:
+      "확정 C2의 선택색 머리 면·번호 상자와 양식별 정보 구성을 실제 출력에 적용했다. 워크북은 유형·전략 상자를 새로 싣고 모든 양식에 기존 시험 종류를 표시한다.",
+    look: "기본 남색 포함 9색과 회색조에서 머리·번호 글자가 읽혀야 한다. 해당 양식의 정보만 찍히고 시험 종류 «없음»과 날짜 숨김이 지켜져야 한다. 긴 제목·개념·전략과 연산 회차 첫 쪽/이어지는 쪽에서 넘침·겹침·문항 누락이 없어야 한다. 인쇄·PDF·HWPX에서 선택색 면과 새 칸이 남는지도 확인한다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/brief-print-color-impl-codex.md",
+      "src/components/unified/print/PrintHeader.tsx",
+      "src/components/unified/print/templates/",
+      "src/components/unified/print/templateFields.ts",
+    ],
+    needs: `${label} 양식으로 연산대장·시험지 만들기·문제 추출·저장본을 출력. 9색·회색조, 시험 종류 있음/없음, 날짜 켬/끔, 1단/2단, 긴 머리 정보·이어지는 쪽을 확인.`,
+    scale: "여섯 양식 × C2 중 한 양식 — 실물 검수 미실시",
+    status: "대기",
+    changedOn: "2026-10-19",
+  })),
+  {
+    id: "print-info-color-20261019",
+    title: "시험지 정보줄 대비 · 지면 색상 비교 시안",
+    changed:
+      "선행 감사에서 기존 정보줄에 readablePaperColor를 적용하고 /dev/print-color-hifi에 비교 시안을 남겼다. 이후 확정 C2를 실제 여섯 양식에 적용했으며, 양식별 실물 검수는 별도 C2 항목 여섯 개에서 관리한다. C5는 적용 전 모습이다.",
+    look: "사이언·주황·노랑에서 정보줄의 제목·학교·날짜가 흐리지 않은지 확인한다. 날짜 표시를 끄면 정보줄에서도 시험일이 없어야 한다. 시안은 각 템플릿의 남색·사이언·주황 및 회색조를 비교하고, 선·머리 면·번호가 구별되는지 본다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/brief-print-info-color-codex.md",
+      "docs/planning/tracks/reports/print-info-color-codex-20261019.md",
+      "src/components/unified/print/ExamDetails.tsx",
+      "src/app/dev/print-color-hifi/",
+    ],
+    needs:
+      "실제 지면은 아래 양식별 C2 검수 항목을 따른다. /dev/print-color-hifi는 로컬 개발용 색상·회색조·이전 C5 비교 화면이다.",
+    status: "대기",
+    changedOn: "2026-10-19",
+  },
+  {
+    id: "exam-report-confirmed-print",
+    title: "실제 월말평가 성적표 — 확정 보관 PDF · 반 인쇄",
+    changed:
+      "실제 작업실에서 문장·반 지면 설정을 저장하고 H1 S1·M1 PDF를 확정 보관한다. 확정된 학생은 보관 PDF, 확정 전 학생은 현재 저장 내용으로 반 인쇄 PDF를 합친다. C2는 가로 A4다.",
+    look: "문장 없음·상한 길이·긴 이름·많은 오답에서 요약 첫 쪽의 잘림·겹침이 없어야 한다. M1 쪽 나눔과 정답·해설, C2 가로 방향, 배경 인쇄를 꺼도 정오가 남는지 확인한다. 확정 후 반 인쇄의 해당 학생 쪽은 받은 확정 PDF와 같아야 한다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/brief-exam-report-screen-impl-codex.md",
+      "src/components/exam-report/ExamReportWorkspace.tsx",
+      "src/lib/examReport/server.ts",
+    ],
+    needs:
+      "낸 시험의 채점을 마친 반 → 성적표 → S1·M1 각각 확정 및 확정 전 포함 인쇄. 문장 상한 실측 뒤 프린터 100% 배율로 확인.",
+    status: "대기",
+    changedOn: "2026-10-18",
+  },
+  {
+    id: "exam-report-hifi",
+    title: "월말평가 성적표 — H1 선택 · 새 부품",
+    changed:
+      "H1 선택 · 새 부품으로 S1 요약 · M1 오답 풀이 · C2 반 정오 격자를 그린다. 시안과 서버 HTML이 같은 지면을 쓴다.",
+    look: "선택된 H1을 실물에서 9pt 이상 글자 · 긴 이름과 원장님 문장의 잘림 · M1 쪽 나눔 · C2 가로 A4 · 배경 인쇄를 꺼도 정오와 수치가 남는지 확인한다.",
+    lookFromSource: true,
+    evidence: [
+      "src/app/dev/exam-report-hifi/page.tsx",
+      "docs/planning/tracks/brief-exam-report-eywa-codex.md §A",
+      "docs/planning/tracks/brief-exam-report-paper-codex.md",
+      "src/components/exam-report/ExamReportPaper.tsx",
+      "docs/planning/23-achievement-report.md §7.2",
+    ],
+    scale:
+      "지어낸 20문항 · 8명. 기본·많은 오답·0점·만점·결시·미채점·긴 이름과 문장 예시.",
+    status: "대기",
+    changedOn: "2026-10-18",
+  },
+  {
+    id: "math-question-content-repair-20261018",
+    title: "수학 문항 오류 17행 — 선택 도형·수선·정다각형 조건",
+    changed:
+      "초4 다섯 문항류의 이등변삼각형 오답 2개씩, 사다리꼴 오답, 수선 4·5개 그림과 정다각형의 모든 각 조건을 바로잡는다.",
+    look: "① 두 삼각형 선택 문제는 실제 도형에서 정답이 하나뿐인가. ② 사다리꼴 선택의 두 오답에 평행한 변이 없는가. ③ 수선 4·5개가 본문과 그림에서 일치하고 직각 표시가 겹치지 않는가. ④ 정다각형의 모든 변·모든 각 조건이 빠지거나 잘리지 않는가. ⑤ 학생 문제지에 정답·해설이 노출되지 않고 교사용 답지의 기호·풀이가 같은 그림과 대응하는가.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/math-question-formats-20261018.md §5·7",
+      "docs/planning/tracks/reports/math-question-formats-20261018/claude-plan-review-r1.md C1·C6",
+      "scripts/qa/bank/math-question-repair.ts",
+    ],
+    scale: "수정 대상 17행 · 5문항류, 물리 출력 미검수",
+    needs: "17행 수정 후보를 담은 학생용 문제지와 교사용 정답·해설지",
+    status: "대기",
+    changedOn: "2026-10-18",
+  },
+  {
+    id: "math-question-format-picker-20261018",
+    title: "같은 수학 문항의 실제 형식 선택과 인쇄",
+    changed:
+      "교사가 같은 문항의 객관·단답 실제 표현을 선택하고 담기에서 형식을 바꾼다. 선택한 실제 행의 본문·보기·정답을 출력한다.",
+    look: "객관→단답·단답→객관을 각각 선택해 인쇄한다. 담긴 자리와 문항 수가 유지되고 선택한 실제 본문·보기가 나타나는가. 학생용에는 정답·해설·형식 선택창의 교사용 답이 보이지 않으며, 교사용 답지의 보기 번호가 선택한 실제 표현과 일치하는가. 과거 저장본의 형제 중복과 순서가 그대로 출력되는가.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/math-question-formats-20261018.md §3·4·7",
+      "docs/planning/tracks/reports/math-question-formats-20261018/claude-plan-review-r1.md C6",
+    ],
+    scale: "형식 선택 UI·담기·저장·인쇄 경로, 물리 출력 미검수",
+    needs: "실제 단답·객관 형제를 바꾼 시험지와 중복 형제를 가진 과거 저장본",
+    status: "대기",
+    changedOn: "2026-10-18",
+  },
+  {
+    id: "math-question-bounded-reinforcement-20261018",
+    title: "수학 재고 보강 후보 — 원래 객관식·서술형 포함",
+    changed:
+      "읽기 전용 재집계 후 승인된 53문항류 중 부족분만 기존 생성기로 준비한다. 새 내용 96개·표현 174행은 상한이며 객관 전용과 native 서술형은 단독 행이다.",
+    look: "최종 승인 manifest의 새 문항을 학생·교사 두 지면으로 출력한다. 보기 자체가 조건인 객관식의 모든 보기가 유지되고, 그림·수식·단위가 잘리지 않는가. 서술형의 풀이 공간이 충분하며 채점 기준·부분점수·해설은 교사용에서만 보이는가. 단답 전용 f33/f39에 객관식이 생기지 않았는가.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/math-question-formats-20261018.md §6·7",
+      "docs/planning/tracks/reports/math-question-formats-20261018/claude-plan-review-r1.md C3·C6",
+      "docs/planning/tracks/reports/math-question-formats-20261018/bounded-reinforcement/report.md",
+    ],
+    scale:
+      "현재 검토 후보 94새 내용 · 146표현(상한 96·174), 유한 영역 중복 2내용 보류, 물리 출력 미검수",
+    needs:
+      "별도 Claude 실행 검토를 받을 최종 보강 후보 manifest 전체의 학생·교사 출력",
+    status: "대기",
+    changedOn: "2026-10-18",
+  },
+  {
+    id: "answer-key-measured-pagination-20261018",
+    title: "정답지 — 긴 빠른 정답·서술형 해설의 다음 장 배치",
+    changed:
+      "실제 글꼴이 준비된 정답지에서 해설이 세 번째 단으로 밀리면 다음 장으로 분리한다. 두 단과 장당 최대 8항목은 유지하며 페이지 계산 중 인쇄 버튼을 비활성화한다.",
+    look: "빠른 정답이 긴 17문항 혼합 시험지와 서술형 12문항 시험지에서 빠른 정답·모든 해설·채점 기준이 빠짐없이 보이고 번호가 이어지는지 확인한다. 해설이 세 번째 단이나 A4 아래로 사라지거나 계산이 끝나기 전 인쇄되면 불합격이다.",
+    lookFromSource: true,
+    evidence: [
+      "src/components/print/TestPrint.tsx",
+      "src/lib/printLayout.ts",
+      "docs/planning/tracks/reports/math-bank-reinforcement-20261018/execution-addendum.md",
+    ],
+    scale: "긴 정답·해설이 있는 수학 정답지 전체",
+    needs: "새 사다리꼴 17문항 혼합과 서술형 12문항, A4 실제 크기 100%",
+    status: "대기",
+    changedOn: "2026-10-18",
+  },
+  {
+    id: "math-bank-g4-repeat-20261018",
+    title: "수학 문제은행 보강 — 초4 삼각형·평행·사다리꼴 새 문형",
+    changed:
+      "초4의 정삼각형의 성질, 삼각형의 두 기준 분류, 평행과 평행선, 사다리꼴에 새 문형 9개를 보강한다. 기존 인쇄 양식은 유지하며 새 조건·수치·그림이 있는 문항을 확인한다.",
+    look: "새 문형을 기존 A4 문제지에 넣어 조건·수식·그림과 답란이 잘리거나 겹치지 않는지 본다. 그림의 주어진 값과 물음이 일치해야 하며, 학생 문제지에 정답이나 교사용 해설이 보이면 불합격이다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/math-bank-reinforcement-20261018.md §2·§6",
+      "docs/planning/tracks/reports/math-bank-reinforcement-20261018/claude-plan-review-r2.md",
+    ],
+    scale: "초4 4차시 · 새 문형 9개 · 발문 27개 이상",
+    status: "대기",
+    needs:
+      "보강 결과 원장의 초4 신규 문항을 골라 문제지·정답지를 각각 실제 프린터로 출력한다. 브라우저·PDF 검사와 실물 확인을 구분해 기록한다.",
+    changedOn: "2026-10-18",
+  },
+  {
+    id: "math-bank-native-descriptive-20261018",
+    title: "수학 문제은행 보강 — 본래 서술형과 교사용 채점 기준",
+    changed:
+      "초4와 중3에 추론·근거 설명을 처음부터 요구하는 서술형 12문항을 보강한다. 교사용 해설에는 모범 풀이와 부분점수 기준을 함께 두며 학생용 문제지와 분리한다.",
+    look: "학생용 문제지의 조건·수식·풀이 공간이 잘리지 않고, 모범 답과 채점 기준이 노출되지 않는지 본다. 정답지에는 문항별 모범 풀이와 채점 기준이 빠짐없이 대응해야 하며, 해설이 다음 단이나 페이지 밖으로 사라지면 불합격이다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/math-bank-reinforcement-20261018.md §4·§6",
+      "docs/planning/tracks/reports/math-bank-reinforcement-20261018/claude-plan-review-r2.md",
+    ],
+    scale: "초4 6문항 · 중3 6문항 · 본래 서술형 6유형",
+    status: "대기",
+    needs:
+      "보강 결과 원장의 서술형 12문항을 포함해 학생용 문제지와 교사용 정답지를 실제 프린터로 출력하고, 번호·부분점수 합계·답안 비노출을 확인한다.",
+    changedOn: "2026-10-18",
+  },
+  {
+    id: "arithmetic-basic-preset-heading-20261016",
+    title: "연산대장 기초 연산 — 묶음 머리말이 고른 유형 이름으로",
+    changed:
+      "기초 연산 시험지의 묶음 머리말(검토 화면 · 지면 sectionHeading)이 «한 자리 덧셈 · 받아올림 있음 · 가로셈» 같은 기능 이름에서 원장님이 담은 카드 이름 «3 더하기 · 받아올림 있음 · 가로셈»으로 바뀌었다. 카드와 맞지 않는 직접 설정은 «한 자리 덧셈 · 받아올림 있음 · 더하는 수 4 · 가로셈»처럼 고정된 수를 적는다. 저장본은 그대로이고 머리말만 바뀐다(원장님 2026-10-16 «3 더하기로 추가했는데도 한자리 덧셈 받아올림있음 가로셈으로 나옴»).",
+    look: "(제안) 기초 연산 지면에서 묶음 머리말이 담은 카드 이름 그대로인지, 긴 이름(«두 자리 덧셈 · 받아올림 0회 · 세로셈» · «19 빼기 · 받아내림 1회 · 세로셈»)이 2단에서 한 줄에 들고 잘리지 않는지 본다. 머리말이 기능 이름(«두 자리 세로 덧셈 …»)으로 찍히거나 줄이 접혀 문항과 겹치면 불합격이다.",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/arithmeticPresentation.ts (arithmeticSelectionTitle)",
+      "src/lib/arithmeticOutput.ts (payloadVersion 1 groupTitle)",
+      "src/__tests__/unit/arithmeticOutput.test.ts",
+    ],
+    scale: "기초 연산 110유형 전부 — 머리말 글자만",
+    status: "대기",
+    needs:
+      "연산대장 → 학년 «기초 연산» → «3 더하기 · 받아올림 있음»과 «두 자리 덧셈 · 받아올림 0회»를 담아 양식 구성·출력 → 2단으로 인쇄",
+    changedOn: "2026-10-16",
+  },
+  {
+    id: "arithmetic-figure-first-20261016",
+    title: "연산대장 — 그림 우선 도형 유형(삼각비·피타고라스·닮음·원·중1 각)",
+    changed:
+      "내심·외심에 이어 70유형을 그림 우선으로 바꿨다. gt1 49유형(1,718문항)은 주어진 값을 모두 적고 x를 표시한 그림으로 다시 그리고, gm 14유형(234문항)은 편집기 배치 그대로 빈 각·굵은 선분에 x를 더하며, 삼각비 4유형(24,474문항)은 문장의 값으로 직각삼각형을 새로 그린다. 문항 문장은 없애고 «[11~20] 다음 그림의 직각삼각형 ABC에서 x의 값을 구하세요.» 한 줄을 묶음 위에 둔다. 비·넓이·sin 값처럼 그림에 못 싣는 것만 문항 아래 한 줄로 남는다.",
+    look: "(제안) 여섯 템플릿과 연산 인쇄에서 x와 숫자가 자기 변·각 옆에 읽히는지(좁은 자리는 가는 지시선), 머리말 번호 범위가 문항 번호와 맞는지, 사인값·비 한 줄이 그림과 답란 사이에서 잘리지 않는지 본다. 라벨이 선에 겹치거나 x가 어느 변의 것인지 모호하면 불합격이다.",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/arithmetic-v2/presentation/figureFirst.ts",
+      "src/lib/arithmetic-v2/presentation/figureFirstTriangles.ts",
+      "src/lib/arithmetic-v2/presentation/figureFirstAnnotated.ts",
+      "src/lib/arithmetic-v2/presentation/figureFirstTrig.ts",
+    ],
+    scale: "70유형 · 26,948문항",
+    status: "대기",
+    needs:
+      "/dev/arithmetic/grade-print?type=m3-trig-special-length&count=8 · type=m3-pythagoras-leg-surd · type=m3-circle-chord-length · type=m3-trig-length-given-ratio · 연산대장에서 해당 유형을 담아 양식 구성·출력",
+    changedOn: "2026-10-16",
+  },
+  {
+    id: "arithmetic-figure-first-elementary-20261016",
+    title: "연산대장 — 초등 각도·둘레·넓이 그림 우선, 미지수는 □",
+    changed:
+      "초4 각도·삼각형 10유형(993문항)과 초5 다각형의 둘레와 넓이 28유형(3,800문항), 초6 원의 둘레·넓이 4유형(232문항)을 그림 우선으로 바꿨다. " +
+      "얼린 표시 배치는 그대로 두고 구할 값만 □로 표시한다 — 각은 빈 호 안쪽에 «□»(교과서 표기 — ° 없음), 길이는 «가로·밑변·높이» 글자가 있던 자리에 «□ cm»(단위 자리는 숫자와 같다). " +
+      "둘레·넓이·원주를 구하는 유형은 □ 없이 머리말 «[1~4] 다음 직사각형의 둘레를 구하세요.»가 묻고, 나머지는 «다음 사각형에서 □의 값을 구하세요.»다. " +
+      "□는 글꼴 글자가 아니라 숫자 높이·굵기로 그린 네모라 어느 프린터에서나 같다. 원주·넓이에서 반지름·지름을 구하는 원 유형은 그림에 반지름이 없어 문장 그대로다.",
+    look:
+      "(제안) ① □가 숫자(«4 cm»)와 같은 높이·굵기로 찍히는지, 각의 «□»에 ° 가 붙지 않았는지. " +
+      "② □가 각의 호·꼭짓점·같음 표시·직각 표시·점선 높이 위에 겹치지 않는지(높이 안쪽 «□ cm»는 점선에서 2 px 비켜 선다). " +
+      "③ 직각삼각형 20°·25° 꼭지각 둘만 가는 지시선으로 밖에 두는데, 지시선이 변을 가로지르지 않는지. " +
+      "④ 둘레·넓이 메모(«둘레 36 cm»)가 그림 위에 남아 있고 문항 문장이 사라졌는지, 머리말 번호 범위가 문항 번호와 맞는지.",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/arithmetic-v2/presentation/figureFirstElementary.ts",
+      "src/lib/arithmetic-v2/presentation/figurePolicyElementary.ts",
+      "src/__tests__/unit/arithmeticFigureFirstElementary.test.ts",
+    ],
+    scale: "42유형 · 5,025문항",
+    status: "대기",
+    needs:
+      "/dev/arithmetic/grade-print?type=e4-angle-sum&count=8 · type=e4-right-triangle-missing-angle · type=e5-rectangle-perimeter-side · type=e5-triangle-area-height · type=e5-trapezoid-area-top · type=e6-circle-area-radius · 연산대장에서 해당 유형을 담아 양식 구성·출력",
+    changedOn: "2026-10-16",
+  },
+  {
+    id: "arithmetic-center-angles-20261016",
+    title: "연산대장 — 내심·외심 각도 그림과 묶음 머리말",
+    changed:
+      "내심·외심 각도 14유형(159문항)을 그림 위주로 바꿨다. 주어진 각을 모두 그림에 적고 구할 각을 x로 표시하며, 문장 대신 같은 유형 묶음 위에 «[1~4] 다음 그림에서 점 I가 △ABC의 내심일 때, ∠x의 크기를 구하세요.» 한 줄을 둔다.",
+    look: "(제안) 여섯 템플릿과 연산 인쇄에서 머리말 범위 번호가 실제 문항 번호와 맞고, 각도 숫자와 x가 자기 각 안(좁은 각은 지시선)에 읽히는지 본다. 머리말이 쪽 끝에 홀로 남거나 그림·답란이 잘리면 불합격이다.",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/arithmetic-v2/presentation/centerAngles.ts",
+      "src/components/unified/print/templates/ProblemMeta.tsx",
+      "src/components/arithmetic/GradeArithmeticPaper.tsx",
+    ],
+    status: "대기",
+    needs:
+      "/dev/arithmetic/grade-print?type=m2-incenter-three-half-angles&count=8 (외심은 m2-circum-central-angle) · 연산대장에서 내심·외심 유형을 담아 양식 구성·출력",
+    changedOn: "2026-10-16",
+  },
+  {
+    id: "arithmetic-paper-20261014",
+    title: "연산대장 — 문제지와 정답지",
+    changed:
+      "자연수 기초 연산을 쪽당 12·24·40문항으로 출력한다. 세로셈 자릿수를 맞추고 정답은 별도 지면에만 표시한다.",
+    look: "(제안) 세 가지 밀도로 가로셈·세로셈을 섞어 출력한다. 식·답란·문항 번호가 셀 밖으로 겹치거나 잘리면 불합격이다. 문제지와 정답지 번호 및 회차가 일치하고, 문제지에는 정답이 없어야 한다.",
+    lookFromSource: false,
+    evidence: [
+      "src/components/arithmetic/ArithmeticPaper.tsx",
+      "docs/planning/arithmetic-paper-benchmark-20261014.md",
+    ],
+    status: "대기",
+    needs:
+      "/dev/arithmetic 에서 생성 또는 /dev/arithmetic/print?density=12 (24·40도 확인)",
+    changedOn: "2026-10-14",
+  },
+  {
+    id: "product-display-name-20261014",
+    title: "오늘 수학 · 오늘 영어 — 인쇄 제품명",
+    changed:
+      "수학 시험지·정답지·개념백지와 영어 시험지·듣기 지면의 제품 표시명을 오늘 수학·오늘 영어로 바꿨다. 새 학습지의 기본 제목도 오늘 수학 학습지로 표시한다.",
+    look: "(제안) 첫 쪽과 이어지는 쪽의 머리·꼬리말에서 새 제품명과 띄어쓰기가 보이고 글자가 잘리지 않는지 확인한다. 기존에 저장한 학습지 제목과 사용자가 지정한 학원명은 그대로여야 한다. 문항 번호·답란·쪽 나눔이 유지되지 않으면 불합격이다.",
+    lookFromSource: false,
+    evidence: [
+      "docs/planning/goal-bank-arithmetic-brand-20261014.md",
+      "src/components/print/PrintAnswerKeyPage.tsx",
+      "src/components/concept-blank/paper/PaperParts.tsx",
+      "src/components/english/print/EnglishPaper.tsx",
+      "src/components/english/listening/print/ListeningPrint.tsx",
+    ],
+    scale: "수학·영어 제품명이 표시되는 인쇄 지면",
+    status: "대기",
+    needs:
+      "수학 시험지·정답지·개념백지와 영어 학생용·교사용·듣기 지면 각 첫 쪽 및 이어지는 쪽",
+    changedOn: "2026-10-14",
+  },
   {
     id: "paper-readable-accent-20261005",
     title: "시험지 선택 색상 — 문항 번호·안내 글자 대비",
@@ -2046,7 +2345,7 @@ export const ITEMS: PrintCheckItem[] = [
       "잘리면 불합격. ② **흑백 프린터 · «배경 그래픽» 꺼짐**(크롬 기본값)에서 난이도 숫자판의 칸 선 · " +
       "칸 안 얇은 막대의 채움 · 회차 칸의 선이 **보이는가** — 사라지거나 막대가 빈 틀로만 보이면 불합격. " +
       "그리고 **실제 0(«0문제» + 빈 막대 바탕)과 평가 보류(막대 없음)가 갈려 읽히는가**. " +
-      "③ 가장 작은 글자(9pt — 머리의 «오늘의수학», 근거 밑의 «…셉니다» 줄)가 읽히는가. " +
+      "③ 가장 작은 글자(9pt — 머리의 «오늘 수학», 근거 밑의 «…셉니다» 줄)가 읽히는가. " +
       "④ 소단원 이름이 «…»로 잘린 곳이 있으면 불합격. ①②③④ 는 브리프 §2 규칙 1·2 에서 왔다. " +
       "⑤ (제안) 금색 영역 이름이 흑백에서 너무 옅어 제목으로 안 읽히면 불합격.",
     lookFromSource: false,
@@ -2672,10 +2971,10 @@ export const ITEMS: PrintCheckItem[] = [
   },
   {
     id: "english-student-a4",
-    title: "오늘의 영어 — 학생용 A4 (새 지면 · 1단 · 배점 없음)",
+    title: "오늘 영어 — 학생용 A4 (새 지면 · 1단 · 배점 없음)",
     changed:
-      "둘째 제품 «오늘의 영어»(D-148)의 첫 지면. `A4Page` 경계·종이색·서체 변수만 수학과 같이 쓰고 **1단**으로 " +
-      "새로 그렸다(수학 2단 폭·장당 2문항·`.paperParity` 안 씀). 머리 «오늘의 영어 · 학원 | 학생용 · 검토 상태» · " +
+      "둘째 제품 «오늘 영어»(D-148)의 첫 지면. `A4Page` 경계·종이색·서체 변수만 수학과 같이 쓰고 **1단**으로 " +
+      "새로 그렸다(수학 2단 폭·장당 2문항·`.paperParity` 안 씀). 머리 «오늘 영어 · 학원 | 학생용 · 검토 상태» · " +
       "세트 제목 · «학교 학년 · 시험» · 이름·날짜 줄 → 지문 상자(세리프 12pt · 줄 간격 1.9 · 얇은 테두리 · " +
       "`pre-wrap`) → 문항(«1. 발문» · 보기 ①~⑤ · 서술형·원문 복원은 50px 밑줄 답란). 쪽은 문단·문항 높이를 " +
       "숨은 틀에서 재어 나눈다(한 쪽보다 긴 블록은 혼자 한 쪽 + 미리보기 경고). 배점은 어디에도 없다(원장님 ⑻).",
@@ -2697,7 +2996,7 @@ export const ITEMS: PrintCheckItem[] = [
       "src/__tests__/components/EnglishPrintPaper.test.tsx",
       "src/app/(main)/english/sets/[id]/print/page.tsx (인쇄 경로 /english/sets/{세트id}/print?view=student)",
     ],
-    scale: "오늘의 영어 세트 전부(새 제품 — 기존 문항 0건)",
+    scale: "오늘 영어 세트 전부(새 제품 — 기존 문항 0건)",
     status: "대기",
     needs:
       "검토 완료 세트 하나 — 객관식 2 · 서술형 1 · 원문 복원 1. 지문에 빈 줄이 든 것(문단 둘 이상)이면 " +
@@ -2706,7 +3005,7 @@ export const ITEMS: PrintCheckItem[] = [
   },
   {
     id: "english-teacher-a4",
-    title: "오늘의 영어 — 교사용 A4 (정답·해설·근거 상자 · 회색 면)",
+    title: "오늘 영어 — 교사용 A4 (정답·해설·근거 상자 · 회색 면)",
     changed:
       "학생용과 같은 지면에 문항마다 **정답·해설·근거 상자**를 얹는다 — 회색 면(#e8e8eb) + 왼쪽 3px 회색 선 " +
       "(지면 규약 — 화면의 왼쪽 색 막대 금지 D-30 과 무관). 객관식 정답은 ③ 처럼 보기 번호 글자, 서술형·원문 복원은 " +
@@ -2726,7 +3025,7 @@ export const ITEMS: PrintCheckItem[] = [
       "src/__tests__/components/EnglishPrintPaper.test.tsx",
       "src/app/(main)/english/sets/[id]/print/page.tsx (인쇄 경로 /english/sets/{세트id}/print?view=teacher)",
     ],
-    scale: "오늘의 영어 세트 전부(새 제품 — 기존 문항 0건)",
+    scale: "오늘 영어 세트 전부(새 제품 — 기존 문항 0건)",
     status: "대기",
     needs:
       "학생용과 같은 세트(객관식 2 · 서술형 1 · 원문 복원 1)를 교사용으로 한 번 더 뽑는다. " +
@@ -2738,8 +3037,8 @@ export const ITEMS: PrintCheckItem[] = [
     title:
       "개념 백지 A 완전 백지 — 소단원 칸 · 모눈/예 칸 · 줄 칸이 장을 채운다",
     changed:
-      "새 지면. 소단원 이름만 적힌 칸을 장마다 넷까지(넘치면 다음 장 · 간소 머리 «오늘의수학 · 제목» + p. N). 칸 왼쪽은 30px 간격 줄 칸, 오른쪽 170px 은 그림 소단원이면 16px 모눈 · 아니면 점선 «예» 칸 — 오른쪽 칸의 아랫변은 왼쪽 마지막 줄에 맞춘다. 칸은 장의 남는 높이를 나눠 채우고(칸이 하나면 장 전체), 다섯 칸은 4 + 1 이 아니라 3 + 2 로 고르게 나눈다. 머리(오늘의수학 · CONCEPT RECALL · 제목 · 목표 · 학습일 · 이름/반 · 단원) · 발(떠올린 개념 칸 · 오늘의 메모 · p. 1). 안쪽 여백은 시험지와 같다(첫 장 36/50/20 · 이어지는 장 24/50/20). 배점 없음.",
-    look: "(제안) 학생지(?view=student)를 인쇄해 ① 칸이 장 아래까지 고르게 차고(아래가 비면 불합격) 금색 칸 머리선 · 동그라미 번호가 보이는가. ② **줄 칸의 회색 줄과 모눈이 종이에 찍히는가** — 배경 그림(gradient)이라 «배경 그래픽»이 꺼져 있으면 사라질 수 있다. 켜고도 안 나오면 불합격. ③ 오른쪽 칸의 윗변 · 아랫변이 왼쪽 줄 칸과 같은 높이에서 시작하고 끝나는가. ④ 머리 글이 한 줄도 안 잘리는가(긴 제목은 글씨가 줄고 두 줄까지 접힌다). ⑤ 발의 «떠올린 개념 ___ / N» 칸 · 점선 · p. 1. ⑥ 소단원을 다섯 이상 골랐으면 둘째 장 간소 머리 «오늘의수학 · 제목 … p. 2». ⑦ 종이 가장자리에서 글까지 여백이 시험지와 같은가. ⑧ 배점·점수 글자가 보이면 불합격.",
+      "새 지면. 소단원 이름만 적힌 칸을 장마다 넷까지(넘치면 다음 장 · 간소 머리 «오늘 수학 · 제목» + p. N). 칸 왼쪽은 30px 간격 줄 칸, 오른쪽 170px 은 그림 소단원이면 16px 모눈 · 아니면 점선 «예» 칸 — 오른쪽 칸의 아랫변은 왼쪽 마지막 줄에 맞춘다. 칸은 장의 남는 높이를 나눠 채우고(칸이 하나면 장 전체), 다섯 칸은 4 + 1 이 아니라 3 + 2 로 고르게 나눈다. 머리(오늘 수학 · CONCEPT RECALL · 제목 · 목표 · 학습일 · 이름/반 · 단원) · 발(떠올린 개념 칸 · 오늘의 메모 · p. 1). 안쪽 여백은 시험지와 같다(첫 장 36/50/20 · 이어지는 장 24/50/20). 배점 없음.",
+    look: "(제안) 학생지(?view=student)를 인쇄해 ① 칸이 장 아래까지 고르게 차고(아래가 비면 불합격) 금색 칸 머리선 · 동그라미 번호가 보이는가. ② **줄 칸의 회색 줄과 모눈이 종이에 찍히는가** — 배경 그림(gradient)이라 «배경 그래픽»이 꺼져 있으면 사라질 수 있다. 켜고도 안 나오면 불합격. ③ 오른쪽 칸의 윗변 · 아랫변이 왼쪽 줄 칸과 같은 높이에서 시작하고 끝나는가. ④ 머리 글이 한 줄도 안 잘리는가(긴 제목은 글씨가 줄고 두 줄까지 접힌다). ⑤ 발의 «떠올린 개념 ___ / N» 칸 · 점선 · p. 1. ⑥ 소단원을 다섯 이상 골랐으면 둘째 장 간소 머리 «오늘 수학 · 제목 … p. 2». ⑦ 종이 가장자리에서 글까지 여백이 시험지와 같은가. ⑧ 배점·점수 글자가 보이면 불합격.",
     lookFromSource: false,
     evidence: [
       "docs/planning/26-concept-blank.md §6",
@@ -3008,8 +3307,7 @@ export const ITEMS: PrintCheckItem[] = [
   },
   {
     id: "english-bundle-sheets",
-    title:
-      "오늘의 영어 — 학생용 묶음 분리 (묶음마다 따로 뽑기 · 머리의 묶음 줄)",
+    title: "오늘 영어 — 학생용 묶음 분리 (묶음마다 따로 뽑기 · 머리의 묶음 줄)",
     changed:
       "학생용이 한 장짜리에서 **순서가 있는 묶음**으로 바뀌었다(D-151 · 3자 합의). 변형 문항(어법 · 빈칸 · 삽입)은 원 지문 " +
       "상자 없이 앞 묶음, 원 지문 + 독해형(주제 · 내용 일치 · 서술형)은 맨 뒤 묶음. 다른 문항의 답을 지문으로 보여 주는 " +
@@ -3037,7 +3335,7 @@ export const ITEMS: PrintCheckItem[] = [
       "인쇄 경로 /english/sets/{세트id}/print?view=student&bundle=1",
     ],
     scale:
-      "오늘의 영어 세트 전부 — 변형 문항과 독해형이 같이 있는 세트는 묶음 둘 이상",
+      "오늘 영어 세트 전부 — 변형 문항과 독해형이 같이 있는 세트는 묶음 둘 이상",
     status: "대기",
     needs:
       "여섯 유형이 다 든 세트 하나(AI 생성 기본값). 누출 줄에 «…묶음 2로 두었습니다»가 뜨는 세트면 묶음이 셋이다 " +
@@ -3046,7 +3344,7 @@ export const ITEMS: PrintCheckItem[] = [
   },
   {
     id: "english-grammar-underline",
-    title: "오늘의 영어 — 어법의 밑줄 (꺾쇠 글자 → 글자 밑줄 1px · 0.3em)",
+    title: "오늘 영어 — 어법의 밑줄 (꺾쇠 글자 → 글자 밑줄 1px · 0.3em)",
     changed:
       "어법 문항의 `①<u>표현</u>` 표기를 지금까지 **글자 그대로** 찍었다(꺾쇠가 종이에 보였다). 이제 밑줄로 그린다 — " +
       "글자 밑줄(`text-decoration`) · 굵기 1px · 기준선 아래 0.3em · 내림 글자(g · y · p)에서 선을 끊지 않는다 " +
@@ -3076,7 +3374,7 @@ export const ITEMS: PrintCheckItem[] = [
   },
   {
     id: "english-vocab-underline",
-    title: "오늘의 영어 — 어휘의 밑줄 (어법과 같은 글자 밑줄 1px · 0.3em)",
+    title: "오늘 영어 — 어휘의 밑줄 (어법과 같은 글자 밑줄 1px · 0.3em)",
     changed:
       "어휘 문항도 어법과 같이 `①<u>표현</u>` 를 글자 밑줄로 그린다. 굵기 1px · 기준선 아래 0.3em · " +
       "내림 글자에서 선을 끊지 않는다. 번호 ①~⑤ 는 선 밖. 꺾쇠 글자는 종이에 보이지 않아야 한다.",
@@ -3099,7 +3397,7 @@ export const ITEMS: PrintCheckItem[] = [
   },
   {
     id: "english-teacher-head-notes",
-    title: "오늘의 영어 — 교사용 머리의 안내 줄 (배부 순서 · 답이 보이는 문항)",
+    title: "오늘 영어 — 교사용 머리의 안내 줄 (배부 순서 · 답이 보이는 문항)",
     changed:
       "교사용 첫 쪽 머리의 이름 줄 아래에 안내가 생겼다 — «배부 순서 — 묶음 1(3~4번) → 걷은 뒤 묶음 2(5번) → …» · " +
       "«답이 보이는 문항 — 5번의 지문에 3번 · 4번의 답»(없으면 «검사에서 찾은 누출 없음»). 어법의 밑줄 표기가 깨진 " +
@@ -3127,7 +3425,7 @@ export const ITEMS: PrintCheckItem[] = [
   },
   {
     id: "english-bare-choice-marks",
-    title: "오늘의 영어 — 번호뿐인 보기(삽입 · 어법)의 보기 줄",
+    title: "오늘 영어 — 번호뿐인 보기(삽입 · 어법)의 보기 줄",
     changed:
       "보기 값이 번호 글자뿐인 문항이 «① ①» · «② ②»로 번호를 두 번 찍던 것을 고쳤다(25 §12.12 「3」 — 3자 합의). " +
       "다섯 보기가 모두 자기 번호뿐이고 발문에 ①~⑤ **자리**(«( ① )» · «①<u>…</u>»)가 다 있으면 **보기 줄을 찍지 않는다** — " +
@@ -3151,7 +3449,7 @@ export const ITEMS: PrintCheckItem[] = [
   },
   {
     id: "english-four-choice-unmentioned",
-    title: "오늘의 영어 — «언급 없음»의 보기 넷",
+    title: "오늘 영어 — «언급 없음»의 보기 넷",
     changed:
       "객관식은 보기 다섯 고정이었다. 학교 시험의 «윗글을 읽고 알 수 없는 것은?»이 4지선다라, 새 유형 «언급 없음»만 보기 넷도 받는다" +
       "(D-158 · 25 §13 — 원장님 2026-10-06 «부딪히는 거 다 해결하는 방향으로»). 다른 객관식은 그대로 다섯이다. " +
@@ -3175,7 +3473,7 @@ export const ITEMS: PrintCheckItem[] = [
   {
     id: "english-open-types-d158",
     title:
-      "오늘의 영어 — 보기 없는 새 유형(해석 · 영영풀이 · 공통 빈칸 · 문장 전환 · 단어 배열)",
+      "오늘 영어 — 보기 없는 새 유형(해석 · 영영풀이 · 공통 빈칸 · 문장 전환 · 단어 배열)",
     changed:
       "보기 없는 유형 다섯을 더했다(D-158 · 25 §13). 종이는 서술형과 같다 — 발문 아래 50px 밑줄 답란 한 줄, 교사용은 정답 · 해설 · 근거 상자" +
       "(새 시안 없음 — 어휘를 어법과 같은 종이로 들인 것과 같은 처리). 공통 빈칸 · 단어 배열은 문장을 원 지문에서 가져오면 원 지문 상자가 답을 보여 주므로 " +

@@ -1473,17 +1473,44 @@ describe("student pages never carry a confirmation's answer", () => {
       createTextbookRenderModel(book.exchange, variant)
         .sections.flatMap((section) => section.blocks)
         .filter((block) => block.kind === "recall");
+    // The section's reviewed questions (c53681418): the reference answers and required ideas
+    // exist only in the saved manuscript.
+    const questions = book.blocks.flatMap((block) =>
+      block.kind === "concept-recall" &&
+      block.semantic?.node?.kind === "conceptQuestions"
+        ? block.semantic.node.questions
+        : [],
+    );
+    expect(questions.length).toBeGreaterThan(0);
     let keywords = 0,
       sentences = 0;
     const student = sheets("student");
-    // One render block per manuscript block: every row is printed once per phase.
+    // One render block per manuscript block: every row is printed once per phase, and a
+    // reviewed section answers its sentences phase with its questions, two to a block.
     expect(student.map((block) => block.phase)).toEqual([
       "study",
       "keywords",
-      "sentences",
+      ...Array.from(
+        { length: Math.ceil(questions.length / 2) },
+        () => "sentences",
+      ),
     ]);
     for (const block of student) {
       const dto = JSON.stringify(block);
+      if (block.questionRows) {
+        for (const row of block.questionRows) {
+          const question = questions.find((q) => q.entryId === row.entryId)!;
+          expect(row.prompt).toBe(question.question.prompt);
+          expect(dto, row.entryId).not.toContain(question.question.answer);
+          for (const idea of question.question.requiredIdeas)
+            for (const phrase of idea.anyOf)
+              expect(dto, `${row.entryId}: ${phrase}`).not.toContain(
+                `"${phrase}"`,
+              );
+          sentences++;
+        }
+        continue;
+      }
       const dom = parse(renderBlockHtml(block, resources));
       const rows = Array.from(dom.querySelectorAll("[data-row-key]"));
       expect(rows.map((row) => row.getAttribute("data-row-key"))).toEqual([

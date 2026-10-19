@@ -1,0 +1,167 @@
+Arithmetic notation numeric audit — 2026-10-15
+Baseline commit: 955b58866ba6abd18e308b527a5ff25839cfbb9a
+Scope: independently authored QA only; no canonical content, IDs, answers, metadata, SVG, packs, renderer, UI or contracts modified by this worker.
+Result: all final production pattern checks, v1 projections, independent semantic fixtures and catalog title checks pass. Geometry prompt semantics are owned by the geometry worker.
+Final notation.ts SHA-256: e804a43df1f0feb8489cf541f8ee508959cb3bb9c3bd7fe0047d65f256cd9d85
+Final text.ts SHA-256: 9435a2650d6529a375d5af34b672a584421ff12122a4d5c103e8dc71df85e33f
+
+EXACT COVERAGE
+Registry: 649 families; excluded all 272 strand=도형 families, including text-only trigonometry. Included all 377 other families and all 33 측정 families.
+Executed every problemAt(index), index=0..domainSize-1: 152,884,093 v2 candidates. Census UTC 2026-10-15T08:42:25.198Z through 2026-10-15T08:47:39.219Z. No candidate sampling.
+All candidate prompt text/latex, optional instruction and answer text/latex were classified into grammar patterns; numeric parameters and canonical exact values were not re-derived.
+Patterns: 14,291 prompt; 370 instruction; 1,812 answer = 16,473. Only ASCII digit runs are replaced in keys; signs, punctuation, decimal points, TeX commands, powers, units, variables, Korean and delimiters remain distinct.
+Bounded retained evidence: count and first/last original witness for each pattern, gzip-compressed. There is no retained 152-million-string corpus.
+Actual final production verification: 28,203 prompt endpoint witnesses, 31,841 component SSR calls, 740 direct MarkdownRenderer SSR calls, 53,979 distinct strict KaTeX checks.
+The 152,884,093 count is generation/census execution, NOT 152,884,093 separate KaTeX renders. KaTeX/DOM checks cover all grammar patterns and their first/last witnesses. Numeric-only substitution equivalence is explicitly the rendering partition.
+The DOM oracle removes actual .katex subtrees and inspects remaining visible text; it checks explicit input boundaries independently, so heuristic recovery cannot make a missing boundary pass. No production tokenizer or formatter is used to derive expectations.
+
+Strand | families | candidates
+자료·확률 | 78 | 38371
+소수 | 22 | 150095428
+문자식 | 35 | 244254
+측정 | 33 | 2000
+정수·유리수 | 24 | 201101
+분수 | 33 | 123933
+자연수 | 51 | 1893363
+근호 | 10 | 152875
+함수 | 55 | 45390
+방정식·부등식 | 22 | 77098
+비와 비율 | 14 | 10280
+
+ACTUAL DISPLAY ROUTES
+mixed-prose: 62491 candidates
+display-formula: 151327052 candidates
+display-array: 1494550 candidates
+Saved review/output: arithmeticToStudioProblems -> NativeProblem -> MarkdownRenderer; answers -> MathText. Both screen and print modes are exercised over every prompt grammar (first/last finite endpoints).
+All v2 answer.latex values are already explicitly delimited on the saved-output path. Plain alternate prompt.text for formula families is NOT the displayed formula and is not misreported as a live raw-math failure.
+Functions/data authored prose uses existing explicit math spans. Natural Korean explanation remains prose. Counts in prose instructions are math quantities; words such as 자연수, 기약분수, 첫째, 두 명 are natural Korean and are not treated as TeX commands.
+AdminDocumentPreview and dev grade-print previously called the latex-only GradeArithmeticPaper route; root now passes saved-sheet projected problems and NativeProblem. Five semantic fixtures also render real gradeArithmeticPaperPages question/answer pages with those projections.
+GradeArithmeticPrompt has no production importer in this snapshot. Its separate helper findings are disclosed as helper findings, not NativeProblem failures. Compatibility helpers were rechecked in the final all-family smoke run.
+
+BASELINE FINDINGS AND RESOLUTION
+Saved NativeProblem output had raw instruction math in 53 distinct nongeometry families (60 instruction/prose variants). No strict KaTeX parse failures: valid formulas alone did not guarantee explicit rendering of surrounding instructions.
+Typical exact cases: x≠0 and □; x≠0, y≠0; (단, x ≠ 0); 주어진 x ... k; x, y lists; % 앞의 수; A/C 항목; 2를 곱하고 0을 더하는 규칙; 지정한 소수 자리의 0. Root arithmeticProseNotation now supplies explicit boundaries; existing authored spans remain unchanged.
+Baseline admin GradeArithmeticPaper raw-text findings affected 149 families, including authored $...$ instruction strings and raw vertical arithmetic. Its saved-sheet caller now uses the production projection; numeric compatibility helpers also use math spans.
+Baseline unreferenced catalog helper findings affected 157 families. Final residual percent-unit issue was exactly ec-g6-fraction-to-percent-v1, ec-g6-decimal-to-percent-v1, ec-g6-percent-rate-v1, ec-g6-chart-percent-v1, ec-g6-chart-missing-percent-v1; arithmeticGeometryUnitText now explicitly escapes %. This was not a saved NativeProblem failure.
+Final compatibility/helper smoke findings: 0; final production findings: 0; final strict KaTeX errors: 0.
+
+Exact baseline saved-output instruction cases (family | authored text):
+ec-g3-data-difference-v1 | C 항목과 A 항목의 수량의 차를 구하세요.
+ec-g3-data-missing-v1 | C 항목의 수량을 구하세요.
+ec-g3-tenths-fraction-v1 | 분모가 10인 분수로 나타내세요. 약분하지 마세요.
+ec-g4-bar-data-difference-v1 | C 항목과 A 항목의 수량의 차를 구하세요.
+ec-g4-bar-data-missing-v1 | C 항목의 수량을 구하세요.
+ec-g4-pattern-add-missing-v1 | 앞의 수보다 2씩 커지는 규칙입니다. 빈칸의 수를 구하세요.
+ec-g4-pattern-add-next-v1 | 앞의 수보다 2씩 커지는 규칙입니다. 빈칸의 수를 구하세요.
+ec-g4-pattern-divide-missing-v1 | 앞의 수를 2로 나누는 규칙입니다. 빈칸의 수를 구하세요.
+ec-g4-pattern-divide-next-v1 | 앞의 수를 2로 나누는 규칙입니다. 빈칸의 수를 구하세요.
+ec-g4-pattern-multiply-missing-v1 | 앞의 수에 2씩 곱하는 규칙입니다. 빈칸의 수를 구하세요.
+ec-g4-pattern-multiply-next-v1 | 앞의 수에 2씩 곱하는 규칙입니다. 빈칸의 수를 구하세요.
+ec-g4-pattern-subtract-missing-v1 | 앞의 수에서 2씩 빼는 규칙입니다. 빈칸의 수를 구하세요.
+ec-g4-pattern-subtract-next-v1 | 앞의 수에서 2씩 빼는 규칙입니다. 빈칸의 수를 구하세요.
+ec-g5-correspondence-input-v1 | 입력에 2을 곱한 뒤 0을 더하는 규칙입니다. 빈칸의 수를 구하세요.
+ec-g5-correspondence-output-v1 | 입력에 2을 곱한 뒤 0을 더하는 규칙입니다. 빈칸의 수를 구하세요.
+ec-g5-round-decimal-down-v1 | 버림하여 일의 자리까지 나타내세요. 지정한 소수 자리의 0도 쓰세요. / 버림하여 소수 첫째 자리까지 나타내세요. 지정한 소수 자리의 0도 쓰세요. / 버림하여 소수 둘째 자리까지 나타내세요. 지정한 소수 자리의 0도 쓰세요.
+ec-g5-round-decimal-nearest-v1 | 반올림하여 일의 자리까지 나타내세요. 지정한 소수 자리의 0도 쓰세요. / 반올림하여 소수 첫째 자리까지 나타내세요. 지정한 소수 자리의 0도 쓰세요. / 반올림하여 소수 둘째 자리까지 나타내세요. 지정한 소수 자리의 0도 쓰세요.
+ec-g5-round-decimal-up-v1 | 올림하여 일의 자리까지 나타내세요. 지정한 소수 자리의 0도 쓰세요. / 올림하여 소수 첫째 자리까지 나타내세요. 지정한 소수 자리의 0도 쓰세요. / 올림하여 소수 둘째 자리까지 나타내세요. 지정한 소수 자리의 0도 쓰세요.
+ec-g6-chart-count-v1 | A 항목의 사람 수를 구하세요.
+ec-g6-chart-missing-percent-v1 | C 항목의 백분율을 구하세요. % 앞의 수를 쓰세요.
+ec-g6-chart-percent-v1 | A 항목의 백분율을 구하세요. % 앞의 수를 쓰세요.
+ec-g6-decimal-to-percent-v1 | 백분율을 구하세요. % 앞의 수를 쓰세요.
+ec-g6-fraction-to-percent-v1 | 백분율을 구하세요. % 앞의 수를 쓰세요.
+ec-g6-percent-rate-v1 | 백분율을 구하세요. % 앞의 수를 쓰세요.
+ec-g6-percent-to-fraction-v1 | 기약분수로 나타내세요. 자연수인 값은 자연수로, 그 밖의 1보다 큰 값은 대분수로 쓰세요.
+ec-g6-ratio-value-v1 | 앞의 수를 비교하는 양으로 하는 비율을 기약분수로 나타내세요. 자연수인 값은 자연수로, 그 밖의 1보다 큰 값은 대분수로 쓰세요.
+ec-g6-rounded-quotient-v1 | 몫을 반올림하여 소수 첫째 자리까지 나타내세요. 지정한 소수 자리의 0도 쓰세요. / 몫을 반올림하여 소수 둘째 자리까지 나타내세요. 지정한 소수 자리의 0도 쓰세요.
+m1-linear-equation-both-sides | 방정식을 풀어 x의 값을 구하시오.
+m1-linear-equation-decimal | 방정식을 풀어 x의 값을 구하시오.
+m1-linear-equation-fraction | 방정식을 풀어 x의 값을 구하시오.
+m1-linear-equation-integer | 방정식을 풀어 x의 값을 구하시오.
+m1-linear-equation-missing-coefficient | 주어진 x가 방정식의 해일 때 k를 구하시오.
+m1-linear-equation-parentheses | 방정식을 풀어 x의 값을 구하시오.
+m1-linear-substitution-value | 주어진 x에 대한 식의 값을 구하시오.
+m1-rational-substitution | 주어진 x에 대한 식의 값을 구하시오.
+m1-two-variable-substitution | 주어진 x, y에 대한 식의 값을 구하시오.
+m2-exponent-power-missing | x≠0일 때 □에 알맞은 자연수를 구하시오.
+m2-exponent-product-missing | x≠0일 때 □에 알맞은 자연수를 구하시오.
+m2-exponent-quotient-missing | x≠0일 때 □에 알맞은 자연수를 구하시오.
+m2-linear-inequality-both-sides | 부등식을 풀어 x의 범위를 구하시오.
+m2-linear-inequality-fraction | 부등식을 풀어 x의 범위를 구하시오.
+m2-linear-inequality-integer | 부등식을 풀어 x의 범위를 구하시오.
+m2-linear-inequality-parentheses | 부등식을 풀어 x의 범위를 구하시오.
+m2-monomial-divide | 식을 간단히 하시오. (단, x ≠ 0)
+m2-monomial-mixed-two-variable | x≠0, y≠0일 때 식을 간단히 하시오.
+m2-polynomial-monomial-divide | 식을 간단히 하시오. (단, x ≠ 0)
+m2-simultaneous-equations-decimal | 연립방정식을 풀어 x, y의 값을 구하시오.
+m2-simultaneous-equations-elimination | 연립방정식을 풀어 x, y의 값을 구하시오.
+m2-simultaneous-equations-fraction | 연립방정식을 풀어 x, y의 값을 구하시오.
+m2-simultaneous-equations-substitution | 연립방정식을 풀어 x, y의 값을 구하시오.
+m2-system-missing-coefficient | 주어진 x, y가 연립방정식의 해일 때 k를 구하시오.
+m2-terminating-minimum-multiplier | 값이 유한소수로 나타내어지도록 하는 가장 작은 자연수 k를 구하시오.
+m3-quadratic-missing-coefficient | 주어진 x가 이차방정식의 근일 때 k를 구하시오.
+
+V1 FINITE DOMAINS AND PATHS
+All legal full operand ranges, all carry/borrow partitions and all 1..9 multiplication tables were enumerated; narrower user constraint ranges select subsets. 13,495 distinct skill/operand candidates, seven skills.
+one-digit-add | 100 | final raw prompt/answer/legacy-expression = 0/0/0
+one-digit-sub | 55 | final raw prompt/answer/legacy-expression = 0/0/0
+two-digit-vertical-add | 8100 | final raw prompt/answer/legacy-expression = 0/0/0
+two-digit-vertical-sub | 4095 | final raw prompt/answer/legacy-expression = 0/0/0
+times-table | 81 | final raw prompt/answer/legacy-expression = 0/0/0
+two-digit-times-one | 810 | final raw prompt/answer/legacy-expression = 0/0/0
+two-digit-div-one | 254 | final raw prompt/answer/legacy-expression = 0/0/0
+Baseline all 13,495 saved answers were raw digits; saved prompts were already explicit display TeX. Legacy ArithmeticPaper rendered all expressions/answer cells as raw React text. Root now explicitly wraps these; the horizontal equality and vertical subtraction operator are included, not left beside partial math.
+
+ALL 649 CATALOG TITLES (ADDITIONAL OWNER REQUEST)
+Actual arithmeticTypeTitle -> MarkdownRenderer check: 649 titles. Baseline 28 affected family titles; final 0 findings.
+26 baseline titles had standalone arithmetic operators between Korean operand descriptions. Two had literal fraction lists. Textual counts, grade references, Korean colon headings and middle-dot list separators are not assumed mathematical expressions.
+Independent semantic check: 큰 수의 1/10·1/100·1/1000배 contains three alternative fractions; 소수의 1/10·1/100배 contains two. The middle dots must not turn into multiplication; actual MathML fraction counts and TeX annotations are checked.
+elem-g3-mul-3x1 | 세 자리 수 × 한 자리 수
+elem-g3-mul-2x2 | 두 자리 수 × 두 자리 수
+elem-g3-div-2x1-remainder | 두 자리 수 ÷ 한 자리 수
+elem-g3-div-3x1-remainder | 세 자리 수 ÷ 한 자리 수
+elem-g4-mul-3x2 | 세 자리 수 × 두 자리 수
+elem-g4-div-2x2-remainder | 두 자리 수 ÷ 두 자리 수
+elem-g4-div-3x2-remainder | 세 자리 수 ÷ 두 자리 수
+elem-g5-fraction-mul-natural | 분수 × 자연수
+elem-g6-fraction-div-natural | 분수 ÷ 자연수
+elem-g6-decimal-div | 소수 ÷ 소수
+elem-g6-decimal-div-natural | 소수 ÷ 자연수
+elem-g2-add-2x1 | 두 자리 수 + 한 자리 수
+elem-g2-sub-2x1 | 두 자리 수 - 한 자리 수
+elem-g3-add-3x-short | 세 자리 수 + 한두 자리 수
+elem-g3-sub-3x-short | 세 자리 수 - 한두 자리 수
+elem-g5-decimal-mul-natural | 소수 × 자연수
+elem-g4-natural-sub-decimal | 자연수 - 소수
+elem-g6-natural-div-decimal | 자연수 ÷ 소수
+elem-g4-natural-add-decimal | 자연수 + 소수
+elem-g4-decimal-sub-natural | 소수 - 자연수
+elem-g6-natural-div-fraction | 자연수 ÷ 분수
+elem-g5-natural-sub-fraction | 자연수 - 분수
+elem-g5-mixed-add-proper | 대분수 + 진분수
+elem-g5-natural-add-fraction | 자연수 + 분수
+elem-g5-mixed-sub-proper | 대분수 - 진분수
+ec-g3-multiply-two-by-one-v1 | 두 자리 수 × 한 자리 수
+ec-g4-large-scale-down-v1 | 큰 수의 1/10·1/100·1/1000배
+ec-g4-decimal-scale-down-v1 | 소수의 1/10·1/100배
+
+INDEPENDENT FIXTURES / VALIDATION
+17 independent fixtures pass: contiguous nonzero restrictions, variables, escaped percent, upright units, category symbols, natural Korean preservation, authored fraction/root byte preservation, actual radical/fraction/ratio/exponent/function output and saved-sheet admin projection.
+Additional 379 singleton-grammar print checks pass; together with the full first/last run, every prompt grammar has both screen and print coverage.
+Focused TypeScript and ESLint/Prettier validate the audit scripts. Commit uses the normal hook via git -c core.hooksPath=C:/Creative/testautocreator/.husky/_. Dependencies resolve only in the process from existing C:/Creative/testautocreator/node_modules; no installs, links, env files, DB operations or lockfile changes.
+This is semantic/DOM and KaTeX validation, not a claim of browser geometry, clipping, fonts, print-page screenshots, official curriculum completeness or learning effectiveness. Root owns browser/layout verification.
+
+EVIDENCE / REPRODUCTION
+scripts/qa/arithmetic-notation-numeric-audit-inventory.json.gz: every family's domain count plus all grammar patterns, counts and exact first/last candidates.
+scripts/qa/arithmetic-notation-numeric-audit-baseline.json: original output and helper failure evidence; counts in findings are weighted endpoint observations, not unique affected candidates.
+scripts/qa/arithmetic-notation-numeric-audit-verification.json: final full production run, exact execution counts, source SHA-256 hashes and per-family output routing.
+scripts/qa/arithmetic-notation-numeric-audit-smoke.json, fixtures-result.json, titles-{baseline,verification}.json: final helper/semantic/title evidence.
+From this worktree (PowerShell; replace source checkout with . after merge):
+node --import ./scripts/qa/arithmetic-angle-presentation-deps.mjs --import file:///C:/Creative/testautocreator/node_modules/tsx/dist/loader.mjs scripts/qa/arithmetic-notation-numeric-audit-inventory.ts
+node scripts/qa/arithmetic-notation-numeric-audit-build.mjs C:/Creative/testautocreator
+node --import ./scripts/qa/arithmetic-angle-presentation-deps.mjs scripts/qa/arithmetic-notation-numeric-audit-runtime.mjs
+Repeat runtime with --smoke for every family's helper/instruction checks.
+Build with --fixtures or --titles and run corresponding runtime-fixtures.mjs / runtime-titles.mjs using the same --import dependency loader.
+node scripts/qa/arithmetic-notation-numeric-audit-typecheck.mjs C:/Creative/testautocreator
+node scripts/qa/arithmetic-notation-numeric-audit-report.mjs
+Runtime bundles are disposable local build products, deliberately not committed. The original baseline source is commit 955b58866ba6abd18e308b527a5ff25839cfbb9a.
+No push or merge performed by this worker. Preserve this branch/worktree until root merges it.

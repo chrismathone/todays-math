@@ -27,6 +27,23 @@ import { extensionNumberReason } from "../helpers/rpmCatalog";
 
 const TEST_DIR = path.resolve(process.cwd(), "src/__tests__/unit");
 const SELF = "middleTypeCoverage.test.ts";
+const REVIEW = "docs/planning/tracks/reports/math-bank-reinforcement-20261018/";
+const authoredKeys = new Set<string>(
+  JSON.parse(
+    readFileSync(REVIEW + "wave1-inputs.json", "utf8"),
+  )[1].targets.flatMap((t: { typeKeys: string[] }) => t.typeKeys),
+);
+const authoredStems = JSON.parse(
+  readFileSync(REVIEW + "m3-candidates.json", "utf8"),
+).stems as {
+  key: string;
+  rpmBook: string;
+  rpmMinor: string;
+  rpmType: string;
+  rpmTitle: string;
+  grade: string;
+  unitSection: string;
+}[];
 
 function middleTestSources(): { file: string; src: string }[] {
   return readdirSync(TEST_DIR)
@@ -62,7 +79,7 @@ describe("중학 유형 시험 커버리지 — 분모를 지킨다", () => {
     ).toEqual([]);
   });
 
-  it("등록 유형의 책·중단원·번호·제목이 RPM 색인 정본과 글자 그대로 같다", () => {
+  it("RPM 계열은 색인 정본과 같고, 자작 12유형은 승인된 별도 목록·검산 대상과 같다", () => {
     // 왜: 세션마다 중단원 이름을 **손으로 적는다**. 정본은 「일차함수와 그 그래프」
     // 뒤에 **얇은 공백(U+2009)** 을 쓰는데 보통 공백으로 적으면 어디서도 안 걸린다 —
     // 실제로 m2Func 가 그렇게 등록돼 있었고, 그 자리를 고치는 날 다른 시험의
@@ -77,7 +94,30 @@ describe("중학 유형 시험 커버리지 — 분모를 지킨다", () => {
       { types: { minor: string; number: string; title: string }[] }
     >;
     const bad: string[] = [];
+    expect(authoredKeys.size).toBe(12);
+    expect(
+      registeredTypes()
+        .filter((e) => e.rpmBook === "manual-20261018")
+        .map((e) => e.key)
+        .sort(),
+    ).toEqual([...authoredKeys].sort());
     for (const e of registeredTypes()) {
+      if (authoredKeys.has(e.key)) {
+        const authored = authoredStems.find((s) => s.key === e.key);
+        expect(authored, e.key).toBeDefined();
+        for (const key of [
+          "rpmBook",
+          "rpmMinor",
+          "rpmType",
+          "rpmTitle",
+          "grade",
+          "unitSection",
+        ] as const)
+          expect(e[key], `${e.key} / ${key}`).toBe(authored![key]);
+        expect(e.rpmBook).toBe("manual-20261018");
+        expect(catalog[e.rpmBook]).toBeUndefined(); // Never invent RPM provenance for authored tasks.
+        continue;
+      }
       const book = catalog[e.rpmBook];
       if (!book) {
         bad.push(`${e.key}: 색인에 없는 책 ${e.rpmBook}`);

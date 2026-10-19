@@ -1,5 +1,11 @@
 "use client";
 
+import FormatQuotaFields from "@/components/exam-builder/FormatQuotaFields";
+import {
+  emptyFormats,
+  formatIntent,
+  formatIssue,
+} from "@/components/exam-builder/conditionsPlan";
 import { useId, useState } from "react";
 import {
   DIFFICULTY_LADDER,
@@ -13,6 +19,8 @@ export interface BankRandomResult {
   requested: DifficultyRatio;
   actual: DifficultyRatio;
   available: DifficultyRatio;
+  formats?: { format: string; requested: number; actual: number }[];
+  selectionStatus?: string;
 }
 
 export default function BankRandomPanel({
@@ -26,12 +34,14 @@ export default function BankRandomPanel({
   disabled: boolean;
   result: BankRandomResult | null;
   error: string | null;
-  onAdd: (counts: DifficultyRatio) => void;
+  onAdd: (counts: DifficultyRatio, formats?: Record<string, number>) => void;
 }) {
   const id = useId();
   const [counts, setCounts] = useState(() => defaultRatioFor(20));
+  const [formats, setFormats] = useState(emptyFormats);
   const total = DIFFICULTY_LADDER.reduce((sum, tier) => sum + counts[tier], 0);
-  const valid = total >= 1 && total <= 100;
+  const formatWarning = formatIssue(formats, total);
+  const valid = total >= 1 && total <= 100 && !formatWarning;
   const requested =
     result &&
     DIFFICULTY_LADDER.reduce((sum, tier) => sum + result.requested[tier], 0);
@@ -109,6 +119,12 @@ export default function BankRandomPanel({
           </label>
         ))}
       </fieldset>
+      <FormatQuotaFields
+        value={formats}
+        onChange={setFormats}
+        count={total}
+        disabled={busy}
+      />
       <div className={styles.randomActions}>
         <button
           type="button"
@@ -119,15 +135,17 @@ export default function BankRandomPanel({
           기본 배분
         </button>
         <p>
-          {valid
-            ? `합계 ${total}문항 · 부족한 난이도는 다른 난이도로 채우지 않습니다.`
-            : "합계를 1~100문항으로 맞춰 주세요."}
+          {formatWarning
+            ? "출제 형식 배분을 확인해 주세요."
+            : valid
+              ? `합계 ${total}문항 · 부족한 난이도는 다른 난이도로 채우지 않습니다.`
+              : "합계를 1~100문항으로 맞춰 주세요."}
         </p>
         <button
           type="button"
           className={styles.primaryButton}
           disabled={busy || disabled || !valid}
-          onClick={() => onAdd({ ...counts })}
+          onClick={() => onAdd({ ...counts }, formatIntent(formats))}
         >
           {busy ? "문제를 고르는 중…" : `${total}문항 랜덤 추가`}
         </button>
@@ -142,11 +160,30 @@ export default function BankRandomPanel({
           <strong>
             요청 {requested}문항 중 {actual}문항을 추가했어요.
           </strong>
+          {result.selectionStatus === "search_limit" && (
+            <p>
+              조건에 맞는 구성을 끝까지 확인하지 못했습니다. 재고 부족이 확정된
+              결과는 아닙니다.
+            </p>
+          )}
+          {result.formats?.some((row) => row.actual < row.requested) && (
+            <ul>
+              {result.formats
+                .filter((row) => row.actual < row.requested)
+                .map((row) => (
+                  <li key={row.format}>
+                    {row.format}: 요청 {row.requested} · 추가 {row.actual} ·
+                    부족 {row.requested - row.actual}문항. 다른 형식으로 채우지
+                    않았습니다.
+                  </li>
+                ))}
+            </ul>
+          )}
           {shortages?.length ? (
             <>
               <p>
-                부족한 문항은 추가하지 않았습니다. 범위를 넓히거나 문항 수를
-                조정해 주세요.
+                부족한 문항은 추가하지 않았습니다. 같은 문항류는 한 시험지에
+                1문항만 담습니다. 범위를 넓히거나 문항 수를 조정해 주세요.
               </p>
               <ul>
                 {shortages.map((tier) => (
@@ -154,7 +191,7 @@ export default function BankRandomPanel({
                     {tier}: 요청 {result.requested[tier]} · 추가{" "}
                     {result.actual[tier]} · 부족{" "}
                     {result.requested[tier] - result.actual[tier]}문항 (선택 전
-                    가능 {result.available[tier]}문항)
+                    가능 {result.available[tier]}갈래)
                   </li>
                 ))}
               </ul>

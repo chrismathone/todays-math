@@ -257,7 +257,7 @@ export function EnglishPrintClient({
       <header className={printStyles.previewToolbar}>
         <div>
           <div className={printStyles.previewEyebrow}>
-            오늘의 영어 · 인쇄 미리보기
+            오늘 영어 · 인쇄 미리보기
           </div>
           <h1>{set.title}</h1>
           <p>

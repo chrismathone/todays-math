@@ -7,7 +7,7 @@ import { db } from "@/lib/db";
 import AdminUserDetail from "@/components/admin/AdminUserDetail";
 
 export const metadata: Metadata = {
-  title: "계정 자료 · 활동 기록 | 오늘의수학",
+  title: "계정 자료 · 활동 기록 | 오늘 수학",
 };
 
 export default async function AdminBranchUserPage({

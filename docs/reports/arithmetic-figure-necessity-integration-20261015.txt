@@ -1,0 +1,89 @@
+Arithmetic unnecessary figure/annotation audit — 2026-10-15
+
+Owner request
+Remove 겨냥도 wording everywhere in arithmetic display. Omit figures when
+the complete public prose already determines the answer. Remove unnecessary
+dimension/target-name/duplicate area annotations, including the reported
+trapezoid bottom-side and cuboid base-area examples. Audit the full corpus.
+
+Scope and decision
+All 248 registered figure families / 17,552 finite variants were classified.
+These are 248 types, not 17,552 different types. The variants are the finite
+parameter combinations belonging to those types; source byte duplication was
+not used as a type count.
+
+Elementary: 84 families / 11,822 variants, all omitted.
+Middle: 164 families / 5,730 variants; 153 families / 5,553 variants omitted;
+11 families / 177 variants retained.
+Total: 237 families / 17,375 variants omitted; 11 / 177 retained.
+
+The two independent public-prose oracles reconstruct the answers of all
+17,375 omitted candidates without parameters, SVG coordinates or family
+solver output. The existing candidate answer is compared only afterwards.
+Elementary additionally rejects 27,167 deleted-given and 11,822 deleted-target
+mutations. Full finite tables and concrete reasoning are in the companion
+elementary and middle reports. Unknown future families retain their figure
+until explicitly reviewed.
+
+Retained types and why
+m1-parallel-angle: the angle-ray associations are visual.
+m1-triangle-interior-exterior: C identifies the other remote interior angle.
+m2-incenter-part-area: D lies on BC.
+m2-iso-bisector-angle / base / half-base: D lies on BC.
+m2-right-triangle-height / projection: D lies on AC.
+m2-right-altitude-product / m3-right-leg-product: D lies on AC.
+m3-circle-chord-length: M lies on chord AB.
+Those incidences are not added to the original prose just to omit the figure.
+
+Annotations removed from retained variants
+92 complete numerical segment dimension groups and their separate numeric
+texts; 66 chord measurement curves and 66 numerical-unit label groups;
+14 duplicate parallel-relation notes. Chord dimension gap masks are removed
+and their stroke masks cleared, restoring the continuous original geometry.
+Point labels, structural geometry, right/equality/parallel marks and the
+79 angle values needed for visual association stay unchanged. No generated
+curves, inferred endpoints, layout optimizer or editor bypass was introduced:
+the shared adapter only deletes the reviewed elements from trusted figures.
+
+Shared display integration
+Explicit family policies are consumed by arithmeticToStudioProblems and the
+catalog compatibility renderer. Review, all print templates, saved-sheet
+reopen, and admin paper previews therefore use the same projection.
+When frozen elementary angle figures disappear, their original prose givens
+are restored (the previous diagram helper intentionally suppressed them).
+Instruction overrides remove obsolete picture/mark/empty-angle references;
+the exterior-angle prompt drops 표시된. The prism condition 옆면은 모두
+직사각형입니다 is preserved. All 겨냥도 wording is removed at display time.
+Canonical IDs, prompts, parameters, answers, SVG bytes, snapshots, packs,
+generation, regeneration, auth and save validation are unchanged. Required
+saved SVG validation still runs even when the figure will not be displayed.
+
+Verification
+Independent worker commits: a4ab81d47 (elementary), fdcb09983 (middle), both
+merged with normal hooks. Full TypeScript completed with exit 0.
+Root regression suites cover output for all 649 catalog families, every
+canonical geometry candidate, exact annotation deletion and structural/point
+preservation for all 177 retained variants, admin paper, shared screen/print,
+wording/math, original-snapshot retention, regeneration and reopen.
+Final combined run: 295 tests PASS across 7 suites. Actual browser: 13 flows
+PASS (two integrated viewport flows and eleven exhaustive retained-family
+flows), zero page errors, math errors, content overflow or real API attempts.
+
+Actual-browser reproduction (Node 24 and existing Playwright installation):
+  node --import tsx scripts/qa/arithmetic-figure-necessity-browser.mjs
+It uses /dev/workspace-alignment#arithmetic at 1440px and 390px with the real
+basket, generation, review, WorksheetEditor and print output, plus every one
+of the 177 retained variants on the actual grade-print route. Eight selected
+examples mix omitted and retained figures. Every mode checks math content,
+image presence, overflow, obsolete wording, page errors and network requests.
+Real /api requests are blocked and zero attempts are required; no browser
+source replacement, render stub, API write, DB or environment modification.
+Evidence: .qa-artifacts/arithmetic-figure-necessity-20261015/browser.json,
+desktop/mobile example PNGs, actual print pages, and all 11 retained-family
+representative page PNGs. All 11 retained representative pages and the
+reported trapezoid/cuboid examples were visually inspected.
+
+Limitations
+This is a deterministic arithmetic display audit, not an official curriculum
+completeness or learning-effect claim. Canonical saved geometry remains intact
+for compatibility; it is intentionally not rewritten or deleted from packs.

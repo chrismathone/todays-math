@@ -3,6 +3,7 @@ import {
   fireEvent,
   render,
   screen,
+  waitFor,
   within,
 } from "@testing-library/react";
 import { useState } from "react";
@@ -146,10 +147,16 @@ function Workspace({
   initial = [],
   onExport,
   restoreRequest,
+  exportRequest,
+  active = true,
+  canExport = true,
 }: {
   initial?: StudioProblem[];
   onExport?: () => void;
   restoreRequest?: { id: number; crops: StudioCrop[] };
+  exportRequest?: { id: number };
+  active?: boolean;
+  canExport?: boolean;
 }) {
   const [picked, setPicked] = useState<StudioProblem[]>(initial);
   const [removed, setRemoved] = useState<StudioCartRemoval[]>([]);
@@ -184,7 +191,9 @@ function Workspace({
           }}
           onExport={onExport ?? (() => {})}
           restoreRequest={restoreRequest}
-          canExport
+          exportRequest={exportRequest}
+          active={active}
+          canExport={canExport}
           storageScope="owner-a"
         />
       </DevAiProvider>
@@ -235,8 +244,9 @@ async function openReview(
     } satisfies StudioSessionData,
     originals: new Map(),
   });
-  render(<Workspace {...props} />);
+  const view = render(<Workspace {...props} />);
   await screen.findByText("이전 문제 추출 작업을 복원했습니다.");
+  return view;
 }
 
 const footer = () =>
@@ -272,10 +282,164 @@ const stepTab = (name: RegExp) =>
     "button",
     { name },
   );
-const tabBadge = () => stepTab(/시험지 구성/).querySelector("b")?.textContent;
+const tabBadge = () =>
+  stepTab(/3 양식 구성·출력/).querySelector("b")?.textContent;
 const panel = () => screen.getByRole("region", { name: "담은 문항 목록" });
 
 describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () => {
+  it("구성 탭도 현재 추출 18문항을 넘기고 기존 은행 20문항을 보존한다", async () => {
+    const onExport = vi.fn();
+    const existing = Array.from({ length: 20 }, (_, index) => ({
+      ...bank,
+      id: `bank-${index + 1}`,
+    }));
+    const extracted = Array.from({ length: 18 }, (_, index) =>
+      crop(`extracted-${index + 1}`),
+    );
+    await openReview(extracted, { initial: existing, onExport });
+
+    expect(stepTab(/2 문항 검토/)).toHaveTextContent("18");
+    expect(tabBadge()).toBe("20");
+    fireEvent.click(stepTab(/3 양식 구성·출력/));
+
+    expect(onExport).toHaveBeenCalledOnce();
+    expect(worksheet().map((problem) => problem.id)).toEqual([
+      ...existing.map((problem) => problem.id),
+      ...extracted.map((problem) => problem.id),
+    ]);
+    expect(tabBadge()).toBe("38");
+    expect(footer()).toHaveTextContent("18문항 담음");
+    // Re-entering composition must not duplicate the imported questions.
+    fireEvent.click(stepTab(/3 양식 구성·출력/));
+    expect(worksheet()).toHaveLength(38);
+    expect(onExport).toHaveBeenCalledTimes(2);
+  });
+
+  it("빈 시험지도 추출 문항으로 구성할 수 있고 담기 전 배지는 0을 유지한다", async () => {
+    const onExport = vi.fn();
+    await openReview([crop("a"), crop("b")], { onExport });
+    expect(tabBadge()).toBe("0");
+    expect(footer()).toHaveTextContent("2문항 추가 예정");
+    expect(stepTab(/3 양식 구성·출력/)).toBeEnabled();
+    fireEvent.click(stepTab(/3 양식 구성·출력/));
+    expect(worksheet().map((problem) => problem.id)).toEqual(["a", "b"]);
+    expect(onExport).toHaveBeenCalledOnce();
+  });
+
+  it("담은 문항 패널의 구성 버튼도 현재 추출을 넘긴다", async () => {
+    const onExport = vi.fn();
+    await openReview([crop("a"), crop("b")], { initial: [bank], onExport });
+    fireEvent.click(cartToggle());
+    fireEvent.click(
+      within(panel()).getByRole("button", { name: /시험지 구성/ }),
+    );
+    expect(worksheet().map((problem) => problem.id)).toEqual([
+      bank.id,
+      "a",
+      "b",
+    ]);
+    expect(onExport).toHaveBeenCalledOnce();
+    expect(screen.queryByRole("region", { name: "담은 문항 목록" })).toBeNull();
+  });
+
+  it("구성 탭은 뺀 문항을 건너뛰고 기존 문항 순서와 반영 전 판을 보존한다", async () => {
+    const onExport = vi.fn();
+    const current = crop("a", { revision: 2 });
+    await openReview([current, crop("b"), crop("c")], {
+      initial: [
+        studioProblem({ ...current, revision: 1 }),
+        bank,
+        studioProblem(crop("b")),
+      ],
+      onExport,
+    });
+    fireEvent.click(screen.getByRole("button", { name: "④ 3번 문제 빼기" }));
+    fireEvent.click(stepTab(/3 양식 구성·출력/));
+    expect(worksheet().map((problem) => problem.id)).toEqual([
+      "a",
+      "bank-1",
+      "c",
+    ]);
+    expect(worksheet()[0].revision).toBe(1);
+    expect(chip(1)).toBe("반영 전");
+    expect(chip(2)).toBe("뺌");
+    expect(onExport).toHaveBeenCalledOnce();
+  });
+
+  it("현재 추출이 없어도 기존 시험지는 구성 탭으로 이어서 열 수 있다", async () => {
+    const onExport = vi.fn();
+    await openReview([], { initial: [bank], onExport });
+    fireEvent.click(stepTab(/3 양식 구성·출력/));
+    expect(worksheet().map((problem) => problem.id)).toEqual([bank.id]);
+    expect(onExport).toHaveBeenCalledOnce();
+  });
+
+  it("셸 구성 요청은 복원된 추출을 한 번만 담고 숨겨진 작업실에서는 실행하지 않는다", async () => {
+    const onExport = vi.fn();
+    const props = { initial: [bank], onExport, exportRequest: { id: 1 } };
+    const view = await openReview([crop("a"), crop("b")], {
+      ...props,
+      active: false,
+    });
+    expect(worksheet().map((problem) => problem.id)).toEqual([bank.id]);
+    expect(onExport).not.toHaveBeenCalled();
+
+    view.rerender(<Workspace {...props} />);
+    expect(worksheet().map((problem) => problem.id)).toEqual([
+      bank.id,
+      "a",
+      "b",
+    ]);
+    expect(onExport).toHaveBeenCalledOnce();
+    view.rerender(<Workspace {...props} exportRequest={{ id: 1 }} />);
+    expect(onExport).toHaveBeenCalledOnce();
+    view.rerender(<Workspace {...props} exportRequest={{ id: 2 }} />);
+    expect(onExport).toHaveBeenCalledTimes(2);
+    expect(worksheet()).toHaveLength(3);
+  });
+
+  it("복원 중 들어온 셸 구성 요청도 저장된 추출 문항을 기다린다", async () => {
+    const onExport = vi.fn();
+    await openReview([crop("a")], {
+      initial: [bank],
+      onExport,
+      exportRequest: { id: 1 },
+    });
+    await waitFor(() =>
+      expect(worksheet().map((problem) => problem.id)).toEqual([bank.id, "a"]),
+    );
+    expect(onExport).toHaveBeenCalledOnce();
+  });
+
+  it("추출 복원 실패를 기존 시험지 출력 성공으로 처리하지 않는다", async () => {
+    const onExport = vi.fn();
+    saved.current = Promise.reject(new Error("원본 복원 실패"));
+    render(
+      <Workspace
+        initial={[bank]}
+        onExport={onExport}
+        exportRequest={{ id: 1 }}
+      />,
+    );
+    await screen.findByText("원본 복원 실패");
+    expect(stepTab(/3 양식 구성·출력/)).toBeDisabled();
+    expect(worksheet().map((problem) => problem.id)).toEqual([bank.id]);
+    expect(onExport).not.toHaveBeenCalled();
+  });
+
+  it("출력 권한이 없으면 셸 구성 요청으로 문항을 추가하거나 이동하지 않는다", async () => {
+    const onExport = vi.fn();
+    await openReview([crop("a")], {
+      initial: [bank],
+      onExport,
+      canExport: false,
+      exportRequest: { id: 1 },
+    });
+    expect(stepTab(/3 양식 구성·출력/)).toBeDisabled();
+    expect(worksheet().map((problem) => problem.id)).toEqual([bank.id]);
+    expect(onExport).not.toHaveBeenCalled();
+  });
+
   it("담으면 카드 바닥에 «담음», 목록·탭 배지·바닥 개수가 모두 시험지와 같은 수", async () => {
     await openReview([crop("a"), crop("b"), crop("c")], { initial: [bank] });
     expect(addButton()).toHaveTextContent("3문항 담기");
@@ -402,7 +566,8 @@ describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () =
       within(chipOf(1)!).getByText("담음 · 고친 내용 반영 전"),
     ).not.toHaveAttribute("aria-hidden");
     // ② 자른 문제 목록 배지도 같은 표시 — 목록 단추의 이름에 긴 뜻이 실린다(목록은 ② 단계에서 보인다).
-    fireEvent.click(stepTab(/잘라내기/));
+    fireEvent.click(stepTab(/1 범위 설정/));
+    fireEvent.click(screen.getByRole("button", { name: "문제&도형 잘라내기" }));
     const listItem = within(screen.getByLabelText("자른 문제 목록")).getByRole(
       "button",
       { name: /문제 01.*담음 · 고친 내용 반영 전/ },
@@ -410,7 +575,7 @@ describe("작업실 «담음»은 시험지 목록 하나에서 나온다", () =
     expect(
       listItem.querySelector('[data-studio-cart-chip] [aria-hidden="true"]'),
     ).toHaveTextContent("반영 전");
-    fireEvent.click(stepTab(/OCR · 디지털화/));
+    fireEvent.click(stepTab(/2 문항 검토/));
     // 고친 것은 한꺼번에 담기의 일이 아니다 — 시험지에는 있으니 «모두 담았습니다».
     expect(addButton()).toHaveTextContent("모두 담았습니다");
     expect(worksheet()[0]).toMatchObject({ id: "a", mode: "text" });

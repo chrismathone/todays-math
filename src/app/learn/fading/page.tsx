@@ -9,5 +9,8 @@ export default async function StudentFadingPage() {
   const student = await getStudentSession();
   if (!student) redirect("/learn/login");
   if (student.mustChangePassword) redirect("/learn/password");
-  return <StudentFadingApp />;
+  // 화면을 연 학생에게 고정한다(D1) — 요청마다 그 id 를 싣고, 학생이 바뀌면 `key` 로 원천 · 상태를 새로 짓는다.
+  return (
+    <StudentFadingApp key={student.studentId} studentId={student.studentId} />
+  );
 }

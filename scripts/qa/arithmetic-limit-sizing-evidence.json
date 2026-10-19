@@ -1,0 +1,31 @@
+{
+  "recorded": "2026-10-15",
+  "results": [
+    {
+      "scenario": "2000-heterogeneous",
+      "types": 412,
+      "uniqueFigures": 1240,
+      "uncompressedFigureBytes": 1859007,
+      "packBytes": 101168,
+      "sheetBytes": 991272,
+      "saveWrapperBytes": 992034,
+      "generateResponseBytes": 991281,
+      "savedResponseBytes": 992948,
+      "regenerateResponseBytes": 992032,
+      "elapsedMs": 497
+    },
+    {
+      "scenario": "2000-distinct-geometry",
+      "types": 248,
+      "uniqueFigures": 2000,
+      "uncompressedFigureBytes": 3013869,
+      "packBytes": 156996,
+      "sheetBytes": 1186580,
+      "saveWrapperBytes": 1187342,
+      "generateResponseBytes": 1186589,
+      "savedResponseBytes": 1188256,
+      "regenerateResponseBytes": 1187340,
+      "elapsedMs": 663
+    }
+  ]
+}

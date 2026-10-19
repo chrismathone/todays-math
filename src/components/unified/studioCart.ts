@@ -1,3 +1,4 @@
+import { questionIdentity } from "@/lib/problem/questionSelectionClient";
 import { useState } from "react";
 import type { StudioCrop } from "./studioHelpers";
 import type { StudioProblem } from "./types";
@@ -106,7 +107,15 @@ export function studioCartPending(
 
 /** 담기·반영 — 같은 id 는 제자리에서 갈고 새것은 뒤에 붙인다. 출제 불가 문항은 거른다. */
 export function addToCart(current: StudioProblem[], problems: StudioProblem[]) {
-  const eligible = problems.filter((problem) => problem.eligible !== false);
+  const seen = new Set(current.map(questionIdentity));
+  const eligible = problems.filter((problem) => {
+    if (problem.eligible === false) return false;
+    const key = questionIdentity(problem);
+    if (current.some((row) => row.id === problem.id)) return true;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
   const updates = new Map(eligible.map((problem) => [problem.id, problem]));
   return [
     ...current.map((problem) => updates.get(problem.id) ?? problem),
@@ -122,7 +131,10 @@ export function restoreToCart(
   problem: StudioProblem,
   index: number,
 ) {
-  if (current.some((item) => item.id === problem.id)) return current;
+  if (
+    current.some((item) => questionIdentity(item) === questionIdentity(problem))
+  )
+    return current;
   const next = [...current];
   next.splice(Math.min(index, next.length), 0, problem);
   return next;

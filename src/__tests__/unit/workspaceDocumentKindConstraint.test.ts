@@ -1,3 +1,4 @@
+// @vitest-environment node
 /**
  * 내 시험지 자료 종류를 코드에 더하면 DB 의 CHECK 도 같이 넓혀야 한다 — `workspace_document.kind` 는
  * `workspace_document_kind_check` 로 막혀 있다(처음엔 표를 만들 때 칸 옆에 쓴 CHECK — 이름은 Postgres 가 붙였다).
@@ -10,8 +11,17 @@ import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 import { describe, expect, it } from "vitest";
+import { PGlite } from "@electric-sql/pglite";
 
-import { documentKindSchema } from "@/contracts/privateWorkspace.contract";
+import {
+  DOCUMENT_KINDS,
+  EXAM_CONDITION_KIND,
+  PRINT_PRESET_KIND,
+  documentKindLabel,
+  documentKindSchema,
+  libraryDocumentKindSchema,
+  saveDocumentSchema,
+} from "@/contracts/privateWorkspace.contract";
 
 const MIGRATIONS = path.join(process.cwd(), "prisma", "migrations");
 
@@ -48,5 +58,119 @@ describe("내 시험지 자료 종류 ↔ DB CHECK(workspace_document_kind_check
 
   it("개념 백지가 종류에 있다(26 §9 ⑾)", () => {
     expect(documentKindSchema.options).toContain("conceptBlank");
+  });
+
+  // 2026-10-16 외부 검토 §3 — 표 배지 · 종류 고르기 · 정보 창 · 저장 창이 한 정의를 읽는다.
+  it("화면의 종류 정의(이름 · 차례)가 자료 종류 넷을 한 번씩 덮고, 이름이 비지 않는다", () => {
+    expect(DOCUMENT_KINDS.map((entry) => entry.id).sort()).toEqual(
+      [...libraryDocumentKindSchema.options].sort(),
+    );
+    expect(DOCUMENT_KINDS.map((entry) => entry.label)).toEqual([
+      "시험지",
+      "연산 연습지",
+      "추출한 자료",
+      "개념 백지",
+    ]);
+    for (const option of libraryDocumentKindSchema.options)
+      expect(documentKindLabel(option)).not.toBe(option);
+  });
+
+  // 2026-10-16 W5 «이름 붙인 출제 조건» — 같은 표에 담지만 자료가 아니다.
+  it("출제 조건은 표의 종류에는 있고 자료 종류 · 화면의 종류 · 자료 저장 형식에는 없다", () => {
+    expect(documentKindSchema.options).toContain(EXAM_CONDITION_KIND);
+    expect(libraryDocumentKindSchema.options).not.toContain(
+      EXAM_CONDITION_KIND,
+    );
+    expect(DOCUMENT_KINDS.map((entry) => entry.id)).not.toContain(
+      EXAM_CONDITION_KIND,
+    );
+    expect(
+      saveDocumentSchema.safeParse({
+        kind: EXAM_CONDITION_KIND,
+        title: "조건",
+        payload: {},
+        expectedRevision: null,
+      }).success,
+    ).toBe(false);
+  });
+
+  // 2026-10-16 W6 «내 양식» — 출제 조건처럼 같은 표에 담지만 자료가 아니다.
+  it("내 양식은 표의 종류에는 있고 자료 종류 · 화면의 종류 · 자료 저장 형식에는 없다", () => {
+    expect(documentKindSchema.options).toContain(PRINT_PRESET_KIND);
+    expect(libraryDocumentKindSchema.options).not.toContain(PRINT_PRESET_KIND);
+    expect(DOCUMENT_KINDS.map((entry) => entry.id)).not.toContain(
+      PRINT_PRESET_KIND,
+    );
+    expect(
+      saveDocumentSchema.safeParse({
+        kind: PRINT_PRESET_KIND,
+        title: "양식",
+        payload: {},
+        expectedRevision: null,
+      }).success,
+    ).toBe(false);
+  });
+
+  it("widens the real PostgreSQL CHECK without losing old rows or allowing unknown kinds", async () => {
+    const memory = new PGlite();
+    try {
+      await memory.exec(`
+        CREATE TABLE "workspace_document" (
+          id text PRIMARY KEY,
+          kind text CONSTRAINT "workspace_document_kind_check"
+            CHECK (kind IN ('draft', 'extraction', 'conceptBlank')),
+          payload jsonb NOT NULL
+        );
+        INSERT INTO "workspace_document" VALUES
+          ('old-draft', 'draft', '{"problems":[]}'),
+          ('old-extraction', 'extraction', '{"data":{"crops":[]}}'),
+          ('old-blank', 'conceptBlank', '{"version":1}');
+      `);
+      const before = await memory.query(
+        'SELECT * FROM "workspace_document" ORDER BY id',
+      );
+      await expect(
+        memory.query('INSERT INTO "workspace_document" VALUES ($1,$2,$3)', [
+          "blocked",
+          "arithmeticSheet",
+          "{}",
+        ]),
+      ).rejects.toMatchObject({ code: "23514" });
+      for (const migration of [
+        "20261014190000_workspace_document_arithmetic_sheet",
+        "20261016180000_workspace_document_exam_condition",
+        "20261016210000_workspace_document_print_preset",
+      ])
+        await memory.exec(
+          readFileSync(
+            path.join(MIGRATIONS, migration, "migration.sql"),
+            "utf8",
+          ),
+        );
+      expect(
+        (await memory.query('SELECT * FROM "workspace_document" ORDER BY id'))
+          .rows,
+      ).toEqual(before.rows);
+      for (const kind of documentKindSchema.options)
+        await memory.query(
+          'INSERT INTO "workspace_document" VALUES ($1,$2,$3)',
+          [kind, kind, "{}"],
+        );
+      await expect(
+        memory.query('INSERT INTO "workspace_document" VALUES ($1,$2,$3)', [
+          "bad",
+          "arithmetic-sheet",
+          "{}",
+        ]),
+      ).rejects.toMatchObject({ code: "23514" });
+      await expect(
+        memory.query('UPDATE "workspace_document" SET kind=$1 WHERE id=$2', [
+          "unknown",
+          "old-draft",
+        ]),
+      ).rejects.toMatchObject({ code: "23514" });
+    } finally {
+      await memory.close();
+    }
   });
 });

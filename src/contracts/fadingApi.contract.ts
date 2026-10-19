@@ -164,6 +164,11 @@ const sessionViewSchema = z.strictObject({
    * 평가는 푼 내용의 지문으로 적힌다. 풀이 중의 옛 화면 요청은 이 칸이 아니라 풀이 토큰의 409 가 막는다(`contentKey.ts`).
    */
   stale: z.literal(true).optional(),
+  /**
+   * 이 풀이의 4단계에서 «아직 모르겠어요»를 고른 적이 있는가(저장 칸 그대로 · 결정 1). 화면은 부분 틀림의 «어려움» 판정에 서버와 같은 재료로 쓴다.
+   * 🔴 이 칸을 읽는 판(화면)이 싣는 판보다 먼저 나간다 — 1a 는 읽기만 한다.
+   */
+  gaveUpAtFour: z.boolean().optional(),
 });
 
 /** 통계 탭에 내려가는 날 수(여덟 주). */
@@ -278,6 +283,18 @@ export const fadingActionSchema = z.discriminatedUnion("action", [
     placements: z.array(fadingPlacementSchema).max(FADING_PLACEMENTS_MAX),
     gaveUp: z.boolean().optional(),
     sure: fadingMarksTextSchema.optional(),
+  }),
+  /**
+   * 카드 풀이의 4단계에서 카드(명제) 하나를 «아직 모르겠어요»로 넘겼다 — **그 자리에서** 보낸다(D2 · 2026-10-16).
+   * `placements` 는 이 단계에서 지금까지 넣은 차례 전부(틀린 것까지)다. 서버가 같은 규칙으로 다시 돌려 그 카드의 아직 못 채운 빈칸을
+   * 틀림으로 적는다(새로고침으로 지워지지 않는다). 마지막 카드였으면 화면은 이어서 `step`(`gaveUp`)을 보낸다.
+   * 🔴 이 행동을 모르는 서버(2026-10-16 이전)는 400 으로 답한다 — 새 화면이 열려 있는 동안 서버를 그 앞으로 되돌리지 않는다.
+   */
+  z.strictObject({
+    action: z.literal("give-up-card"),
+    ...sessionRef,
+    propositionId: z.string().min(1).max(80),
+    placements: z.array(fadingPlacementSchema).max(FADING_PLACEMENTS_MAX),
   }),
   /**
    * 평가로 닫는다 — 요청 번호는 화면이 짓는다(같은 번호로 다시 보내면 한 번만 적용된다).

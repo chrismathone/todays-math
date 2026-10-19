@@ -1,10 +1,4 @@
-import {
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-  within,
-} from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { HttpResponse, http } from "msw";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { server } from "@/mocks/server";
@@ -56,16 +50,14 @@ beforeEach(() => {
   );
 });
 async function compose() {
-  const choose = await screen.findByRole("button", { name: "범위 선택" });
-  await waitFor(() => expect(choose).toBeEnabled());
-  fireEvent.click(choose);
+  // 1단계 «범위 고르기»는 화면에 펴져 있다 — 체크하면 바로 구성표에 들어간다(적용 단추 없음).
+  await screen.findByRole("region", { name: "범위 고르기" });
   fireEvent.change(screen.getByLabelText("학년·과정"), {
     target: { value: "" },
   });
   fireEvent.click(
     screen.getByRole("checkbox", { name: new RegExp(item.title) }),
   );
-  fireEvent.click(screen.getByRole("button", { name: "1개 범위 적용" }));
   fireEvent.change(screen.getByLabelText(`${item.title} 구성 수`), {
     target: { value: "1" },
   });
@@ -120,10 +112,11 @@ describe("English bank workspace integration", () => {
       ),
     );
     render(<Harness initialView="english-questions" log={makeLog()} />);
+    // 1단계 화면 그대로 — 구성표가 «고를 범위 없음»을 말한다.
     expect(
-      await screen.findByRole("heading", {
-        name: "범위를 정하고 문항을 구성하세요.",
-      }),
+      await screen.findByText(
+        "선택할 출제 범위가 없습니다. 등록된 자료를 확인해 주세요.",
+      ),
     ).toBeVisible();
     expect(
       screen.queryByRole("heading", { name: "첫 시험을 등록해 주세요" }),

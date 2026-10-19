@@ -1,0 +1,55 @@
+Arithmetic output thumbnail hover repair
+2026-10-15
+
+Cause
+ArithmeticWorkbench's generic :where(.root) button:hover selector had greater
+specificity than PaperStrip's .enlarge rule. Hover filled the empty, full-page
+enlargement button with --learn-soft (rgb(237, 242, 255)), hiding the document
+underneath. Mobile tapping the jump-to-preview control also left this overlay
+hovered after scrolling. Actual enlarged question/answer pages remained intact.
+
+Change
+Move :hover inside :where in the arithmetic fallback selector. Its priority now
+matches the base button default and stays below component-owned class styles.
+Ordinary unstyled buttons retain the default hover; primary buttons retain their
+explicit hover. PaperStrip keeps its transparent background and hover outline.
+No DOM, event handlers, focus rules, print layout or geometry files change.
+
+Guidance
+Read DESIGN.md's control, focus, print-exception and review rules and the menu
+map's arithmetic/WorksheetEditor/PaperStrip ownership. The shared paper preview
+retains its own visual treatment inside the arithmetic workspace.
+
+Verification
+Baseline on the actual root route: both 1440px desktop hover and 390px touch
+jump-to-preview changed the overlay from transparent to rgb(237,242,255).
+Candidate: applied only the exact changed CSS selector in browser CSSOM on the
+actual root route, with root files/server untouched. This was a browser-only CSS
+preview, not a post-merge CSS result. No generated output or API response stubs.
+
+All four combinations (grade/basic x 1440x1000/390x844) passed:
+- Real origin-reflection 10-item / multiplication 7-item generation and output.
+- Transparent page overlay during desktop hover and mobile jump-to-preview.
+- Existing hover inset border, keyboard focus ring and Enter-to-open behavior.
+- Click/tap opens actual questions; Escape closes and restores button focus.
+- Actual answer sheet inclusion and second-page enlargement.
+- Library save remains disabled. No page errors or real API request attempts.
+
+The logger fix was already merged by root at a6dec965a during this verification.
+Each fresh page's fixture 503 and an explicit error/pagehide probe resulted in
+zero real API requests. The audit still aborted all /api/** traffic defensively.
+This is live integrated evidence for the logger, separate from candidate CSS.
+
+Existing PaperStrip tests and the scoped CSS affordance scan passed, including
+the normal Husky hook. Combined PaperStrip/affordanceGuard run: 24 passed, 1
+failed. The full-repository guard reports the pre-existing cursor:pointer rule
+in SavedRetryPanel.module.css:53 (.primary, .secondary), outside this change.
+That unrelated file was not edited. Installed dependencies resolve per process.
+
+Evidence outside the worktree
+C:/Users/user/orca/verification/arithmetic-ui-integrated-20261015-134243/
+Baseline: thumbnail-hover-evidence.json, grade-{1440,390}-thumbnail-hover-defect.png
+Candidate: candidate-css/evidence.json, {grade,basic}-{1440,390}-visible-preview.png,
+*-keyboard-focus.png, *-actual-questions.png, *-actual-answers.png.
+Screenshots were visually reviewed. Post-merge unmodified-browser verification
+can use verify-preview-fixes.mjs --integrated and records integrated-fixed/.

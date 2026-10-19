@@ -58,6 +58,34 @@ const native = {
 };
 
 describe("print score visibility", () => {
+  it.each([11.5, 24])(
+    "honors explicit %spx body size for arithmetic and regular bank questions",
+    (fontSize) => {
+      const { container, rerender } = render(
+        <ProblemBody
+          problem={{ ...plain, source: { kind: "arithmeticSheet" } }}
+          fontSize={fontSize}
+          compact
+          options={DEFAULT_PRINT_OPTIONS}
+        />,
+      );
+      expect(container.querySelector("[data-problem-body]")).toHaveStyle({
+        fontSize: `${fontSize}px`,
+      });
+      rerender(
+        <ProblemBody
+          problem={plain}
+          fontSize={fontSize}
+          compact
+          options={DEFAULT_PRINT_OPTIONS}
+        />,
+      );
+      expect(container.querySelector("[data-problem-body]")).toHaveStyle({
+        fontSize: `${fontSize}px`,
+      });
+    },
+  );
+
   it.each(Object.entries(TEMPLATE_COMPONENTS))(
     "%s hides parent/subquestion points and restores them",
     (_, Template) => {

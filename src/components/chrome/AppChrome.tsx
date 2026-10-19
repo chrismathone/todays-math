@@ -55,9 +55,9 @@ export function AppChrome({
         본문으로 건너뛰기
       </a>
       <aside className={s.sidebar}>
-        <Link className={s.brand} href="/" aria-label="오늘의수학">
+        <Link className={s.brand} href="/" aria-label="오늘 수학">
           <TodayMathMark size={30} inverse />
-          <span>오늘의수학</span>
+          <span>오늘 수학</span>
           <RouteLinkStatus />
         </Link>
         <div className={s.navBlock}>

@@ -3,6 +3,7 @@
 import BackLink from "@/components/ui/BackLink";
 import { useEffect, useState } from "react";
 import { replaceScreenQuery, useScreenQuery } from "@/hooks/useScreenQuery";
+import { countWorkspaceMenus } from "@/contracts/accountAccess.contract";
 import type {
   BranchResponse,
   BranchSummary,
@@ -98,7 +99,7 @@ export default function AdminBranchDetail({
                 원장{" "}
                 {branch.users.map((owner) => owner.name).join(", ") || "없음"} ·
                 계정 {branch._count.users}명 · 승인 대기 {branch.pendingCount}명
-                · 사용 메뉴 {branch.menus.length}개
+                · 사용 메뉴 {countWorkspaceMenus(branch.menus)}개
               </p>
             ) : null}
           </div>

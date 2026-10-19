@@ -17,7 +17,96 @@
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
-  margin: 24px 0 14px;
+  margin: 8px 0 14px;
+}
+.kindTabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.kindTabs button {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  min-height: 44px;
+}
+.kindTabs button[aria-pressed="true"] {
+  background: var(--library-soft);
+  border-color: var(--library-accent);
+  color: var(--library-accent);
+}
+.kindTabs span {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--library-muted);
+}
+/* 상태 토글 둘 — 종류 줄과 따로 둔다. 종류 × 작업 중 × 내 자료는 교집합이다. */
+.toggles {
+  display: flex;
+  gap: 4px 20px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+label.toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: var(--library-muted);
+  font-size: 13px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.toggle span {
+  font-variant-numeric: tabular-nums;
+}
+.toggle input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  padding: 0;
+  accent-color: var(--library-accent);
+}
+.readOnlyNote {
+  margin: 0 0 8px;
+  color: var(--library-muted);
+  font-size: 13px;
+}
+.cleanupNotice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 0 0 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--learn-danger, #b42318);
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--learn-danger, #b42318);
+}
+.cleanupNotice p {
+  flex: 1 1 320px;
+  margin: 0;
+  line-height: 1.5;
+}
+.infoList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 20px;
+  padding-block: 12px;
+}
+.infoList div {
+  min-width: 0;
+}
+.infoList dt {
+  font-size: 12px;
+  color: var(--learn-muted);
+}
+.infoList dd {
+  margin: 4px 0 0;
+  color: var(--learn-ink);
+  overflow-wrap: anywhere;
 }
 .tools > input {
   flex: 1;
@@ -32,17 +121,6 @@
   color: var(--library-muted);
   font-size: 13px;
   white-space: nowrap;
-}
-.tools label.mineFilter {
-  min-height: 44px;
-  cursor: pointer;
-}
-.tools input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  min-height: 0;
-  padding: 0;
-  accent-color: var(--library-accent);
 }
 .library input,
 .library select {
@@ -183,6 +261,24 @@
   font-size: 12px;
   line-height: 1.6;
 }
+.progressLine {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--library-muted);
+  font-size: 12px;
+}
+.library .progressLine button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 36px;
+  padding: 4px 8px;
+  border: 0;
+  background: var(--library-soft);
+  font-size: 12px;
+}
 .table .countCell {
   width: 82px;
   text-align: right;
@@ -203,9 +299,23 @@
   justify-content: flex-end;
   gap: 6px;
 }
+.table[data-publish="true"] .actionsCell {
+  /* 월말평가 M1 — «반에 내기» 글자 단추가 더해져 넓힌다(Hi-fi H3 · 156 → 260). */
+  width: 260px;
+}
+.library .actions .publishButton {
+  width: auto;
+  padding: 0 12px;
+  color: var(--library-accent);
+  font-weight: 600;
+}
 .actions button {
-  padding: 6px 9px;
-  min-height: 36px;
+  display: inline-grid;
+  place-items: center;
+  padding: 10px;
+  width: 44px;
+  min-height: 44px;
+  color: var(--library-muted);
   font-size: 12px;
   white-space: nowrap;
 }

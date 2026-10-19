@@ -42,6 +42,7 @@ export default function StudioStepBar({
   canCrop,
   canReview,
   canExport = true,
+  canCompose,
   canStudio = true,
   onStep,
   barRef,
@@ -56,7 +57,7 @@ export default function StudioStepBar({
    * 모르는 동안은 배지 없이 이름만 선다.
    */
   cropCount?: number;
-  /** 시험지에 담은 문항 수 — 「시험지 구성」 탭의 배지이자 눌림 조건(D-07 확정: 0이면 흐림). */
+  /** Actual worksheet count. It also gates composition unless canCompose supplies a pending-crop handoff. */
   pickedCount: number;
   /**
    * 갈 수 있나 — **배지가 아니라 이 값이 탭을 막는다.** 작업실은 제 상태를 아니까 원본·자른 수로
@@ -66,6 +67,8 @@ export default function StudioStepBar({
   canCrop: boolean;
   canReview: boolean;
   canExport?: boolean;
+  /** Extraction may add pending crops on entry while the badge keeps the current picked count. */
+  canCompose?: boolean;
   /**
    * 이 계정이 자료 제작을 쓸 수 있나. 못 쓰면 앞 세 탭을 **아예 세우지 않는다** —
    * 갈 수 없는 자리를 흐리게 세우면 «여기까지 하면 열린다»는 거짓말이 된다.
@@ -85,7 +88,9 @@ export default function StudioStepBar({
       data-studio-band
     >
       <div className={styles.editorTabs}>
-        <h1>{headerTitle ?? (canStudio ? "문제 추출" : "시험지 구성")}</h1>
+        <h1>
+          {headerTitle ?? (step === "export" ? "시험지 만들기" : "문제 추출")}
+        </h1>
         {stepNavigation ? (
           <nav className={styles.stepTabs} aria-label={stepNavigation.label}>
             {stepNavigation.items.map((item) => (
@@ -107,18 +112,10 @@ export default function StudioStepBar({
               <>
                 <button
                   type="button"
-                  aria-pressed={step === "upload"}
+                  aria-pressed={step === "upload" || step === "crop"}
                   onClick={() => onStep("upload")}
                 >
-                  원본 가져오기
-                </button>
-                <button
-                  type="button"
-                  aria-pressed={step === "crop"}
-                  disabled={!canCrop}
-                  onClick={() => onStep("crop")}
-                >
-                  문제&amp;도형 잘라내기
+                  1 범위 설정
                 </button>
                 <button
                   type="button"
@@ -126,7 +123,7 @@ export default function StudioStepBar({
                   disabled={!canReview}
                   onClick={() => onStep("review")}
                 >
-                  OCR · 디지털화{" "}
+                  2 문항 검토{" "}
                   {typeof cropCount === "number" && <b>{cropCount}</b>}
                 </button>
               </>
@@ -134,14 +131,35 @@ export default function StudioStepBar({
             <button
               type="button"
               aria-pressed={step === "export"}
-              disabled={!canExport || !pickedCount}
+              disabled={!canExport || !(canCompose ?? pickedCount > 0)}
               onClick={() => onStep("export")}
             >
-              시험지 구성 <b>{pickedCount}</b>
+              3 양식 구성·출력 <b>{pickedCount}</b>
             </button>
           </nav>
         )}
       </div>
+      {!stepNavigation &&
+        canStudio &&
+        (step === "upload" || step === "crop") && (
+          <nav className={styles.stepTabs} aria-label="원본 범위 작업">
+            <button
+              type="button"
+              aria-pressed={step === "upload"}
+              onClick={() => onStep("upload")}
+            >
+              원본 가져오기
+            </button>
+            <button
+              type="button"
+              aria-pressed={step === "crop"}
+              disabled={!canCrop}
+              onClick={() => onStep("crop")}
+            >
+              문제&amp;도형 잘라내기
+            </button>
+          </nav>
+        )}
       {children && <div className={styles.editorTools}>{children}</div>}
     </div>
   );

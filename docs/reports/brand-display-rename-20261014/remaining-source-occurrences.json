@@ -1,0 +1,698 @@
+[
+  {
+    "file": "src/__tests__/fixtures/englishPrintSet.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 지면 시험의 표본 세트 (D-148). 객관식 2 · 서술형 1 · 원문 복원 1 — print-check 항목의"
+  },
+  {
+    "file": "src/__tests__/components/UnifiedWorkspace.access.test.tsx",
+    "line": 280,
+    "reason": "historical comment",
+    "text": "// «오늘의 영어» 뷰 셋의 뿌리(D-148) — 셸이 주는 props 만 보이는 탐침"
+  },
+  {
+    "file": "src/__tests__/components/TodaysExam.test.tsx",
+    "line": 67,
+    "reason": "historical comment",
+    "text": "// 반대쪽은 '오늘의 수학'으로 건너가는 링크여야 한다."
+  },
+  {
+    "file": "src/__tests__/components/PrintCheck.test.tsx",
+    "line": 202,
+    "reason": "historical comment",
+    "text": "// 80: english-student-a4 추가 (2026-09-30 트랙 english-print — 오늘의 영어 학생용 A4. 새 제품의 새 지면,"
+  },
+  {
+    "file": "src/__tests__/components/PrintCheck.test.tsx",
+    "line": 234,
+    "reason": "historical comment",
+    "text": "// 110: english-four-choice-unmentioned · english-open-types-d158 둘을 더했다(D-158 — 오늘의 영어 유형 확장)."
+  },
+  {
+    "file": "src/__tests__/components/EnglishPrintPaper.test.tsx",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 지면 `EnglishPaper` (D-148 · 25 §5 · 브리프 english-print §3)."
+  },
+  {
+    "file": "src/__tests__/components/EnglishPrintClient.test.tsx",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 인쇄 미리보기 `EnglishPrintClient` (D-148 · 25 §5 · 브리프 english-print §3 · D-151 · 25 §12.11)."
+  },
+  {
+    "file": "src/__tests__/components/EnglishMakerView.test.tsx",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — «문제 만들기» 화면 (D-148 · 25 §4 · 브리프 english-ai §3)."
+  },
+  {
+    "file": "src/__tests__/components/ConceptBlankPaper.test.tsx",
+    "line": 472,
+    "reason": "historical comment",
+    "text": "// 이어지는 장 — 간소 머리 «오늘의수학 · 제목» + p. 2, 번호는 이어진다"
+  },
+  {
+    "file": "src/__tests__/unit/workspaceMenuConstraint.test.ts",
+    "line": 5,
+    "reason": "historical comment",
+    "text": "* 2026-10-01 원장님 «선생님 승인이 안 됨»: «오늘의 개념»(D-124) · «오늘의 기억 · SRS» · «오늘의 영어»(D-148) ·"
+  },
+  {
+    "file": "src/mocks/prismaTestDouble.ts",
+    "line": 3111,
+    "reason": "historical comment",
+    "text": "// 오늘의 영어 표 셋 — 따로 둔 대역(englishTestDouble.ts 머리말, D-148)"
+  },
+  {
+    "file": "src/__tests__/unit/classOwnerPrintFree.test.ts",
+    "line": 22,
+    "reason": "historical comment",
+    "text": "// 오늘의 영어 지면(D-148) — 종이는 마찬가지로 학생에게 간다"
+  },
+  {
+    "file": "src/mocks/handlers/index.ts",
+    "line": 19,
+    "reason": "historical comment",
+    "text": "*   - src/mocks/handlers/english.ts  (오늘의 영어 — 시험·자료·세트, D-148)"
+  },
+  {
+    "file": "src/mocks/handlers/english.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* MSW 핸들러 — 오늘의 영어 (D-148 · 25 §3). 대응 계약: src/contracts/english.contract.ts"
+  },
+  {
+    "file": "src/mocks/englishV2Fixtures.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 2판 — 시험용 표본 (자료 개선 M0, docs/planning/english-material-upgrade-20261002.md §B)."
+  },
+  {
+    "file": "src/mocks/englishTestDouble.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 표 셋(`english_exam` · `english_material` · `english_question_set`)의 **인메모리 대역** (D-148 · 25 §2)."
+  },
+  {
+    "file": "src/__tests__/unit/studioApiTransport.test.ts",
+    "line": 140,
+    "reason": "historical comment",
+    "text": "// 오늘의 영어의 사진 읽기(D-158) — Opus 5.5 는 생각이 늘 켜져 있어 강도로 조절한다. temperature 를 같이 보내지 않는다"
+  },
+  {
+    "file": "src/__tests__/api/englishPrintPage.test.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 인쇄 페이지 `/english/sets/{id}/print` (D-148 · 25 §5 · 브리프 english-print §2)."
+  },
+  {
+    "file": "src/__tests__/api/englishPrintPage.test.ts",
+    "line": 5,
+    "reason": "historical comment",
+    "text": "* 세트 없음·부모 시험 범위 밖 → 404 · `?view=` 분기와 학원 이름(지점 이름 → 없으면 «오늘의수학»)."
+  },
+  {
+    "file": "src/__tests__/api/englishMaterials.test.ts",
+    "line": 3,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 자료 API `/api/english/exams/[id]/materials` · `/api/english/materials/[id]` (D-148 · 25 §3)."
+  },
+  {
+    "file": "src/__tests__/api/englishMaterialRead.test.ts",
+    "line": 3,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 사진 자료에서 글 읽기 `POST /api/english/materials/[id]/read` (D-158 · 25 §13.8)."
+  },
+  {
+    "file": "src/__tests__/api/englishExams.test.ts",
+    "line": 3,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 시험 API `/api/english/exams` · `/api/english/exams/[id]` (D-148 · 25 §3 · 브리프 english-base §1.6)."
+  },
+  {
+    "file": "src/__tests__/api/englishSets.test.ts",
+    "line": 3,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 세트 API `/api/english/exams/[id]/sets` · `/api/english/sets/[id]` (D-148 · 25 §3 · §4.4)."
+  },
+  {
+    "file": "src/__tests__/api/englishSchemaVersion.test.ts",
+    "line": 3,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 세트 저장 API 의 형식 판 관문 (자료 개선 M0, docs/planning/english-material-upgrade-20261002.md §B)."
+  },
+  {
+    "file": "src/__tests__/unit/englishFeedback.test.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 고쳐 쓰기 되먹임의 **근거 자리 짚기** (D-151 · 25 §12)."
+  },
+  {
+    "file": "src/__tests__/unit/englishChatgpt.test.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — ChatGPT 로 제작 (D-148 · 25 §4.1). 키 없는 주 경로."
+  },
+  {
+    "file": "src/__tests__/unit/englishBundle.test.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 학생용 지면의 묶음 짓기 (D-151 · 25 §12.11 3자 합의 «가 · 나»)."
+  },
+  {
+    "file": "src/__tests__/unit/englishLeak.test.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 변형 문항끼리의 정답 누출 (D-151 · 25 §12.8 「1」 · §12.9)."
+  },
+  {
+    "file": "src/__tests__/unit/englishGenerate.test.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — DeepSeek 직접 생성 (D-148 · 25 §4.3)."
+  },
+  {
+    "file": "src/__tests__/unit/englishFence.test.ts",
+    "line": 5,
+    "reason": "historical comment",
+    "text": "* «오늘의 영어»는 둘째 제품이다 — 문제은행·시험지·엔진·AI 해설·매일 자동 출제·복습·탐험 어디도 영어 모듈을"
+  },
+  {
+    "file": "src/__tests__/unit/englishSchemaVersionDraft.test.ts",
+    "line": 3,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — «형식 판» SQL 초안의 문지기 (자료 개선 M0, docs/planning/english-material-upgrade-20261002.md §C)."
+  },
+  {
+    "file": "src/__tests__/unit/englishReadRefine.test.ts",
+    "line": 3,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 읽은 글의 후보정 (D-158 · 25 §13.10). 결정적이다 — 모델을 더 부르지 않는다."
+  },
+  {
+    "file": "src/__tests__/unit/englishReadPhoto.test.ts",
+    "line": 3,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 사진에서 글 읽기의 뒷단 (D-158 · 25 §13.8)."
+  },
+  {
+    "file": "src/__tests__/unit/englishQuality.test.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 결정적 품질 검사(D-148 · 25 §12). 검증기(막는 규칙)와 달리 **막지 않고 재기만** 한다."
+  },
+  {
+    "file": "src/__tests__/unit/englishPrintLayout.test.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 지면 — 쪽 나눔 순수 함수 (D-148 · 25 §5 · 브리프 english-print §1)."
+  },
+  {
+    "file": "src/__tests__/unit/englishValidate.test.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 검증기 · 원문 복원 (D-148 · 25 §4.2 · §4.4) — 세 길이 같은 규칙을 지난다."
+  },
+  {
+    "file": "src/__tests__/unit/englishV2VersionGate.test.ts",
+    "line": 3,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 형식 판 관문 · 사용 권한 정책 (자료 개선 M0, docs/planning/english-material-upgrade-20261002.md §B)."
+  },
+  {
+    "file": "src/__tests__/unit/englishV2Validate.test.ts",
+    "line": 3,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 2판 검증기 — 뜻 (자료 개선 M0, docs/planning/english-material-upgrade-20261002.md §B)."
+  },
+  {
+    "file": "src/__tests__/unit/englishV2Serialize.test.ts",
+    "line": 3,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 2판 — 왕복 (자료 개선 M0, docs/planning/english-material-upgrade-20261002.md §B)."
+  },
+  {
+    "file": "src/__tests__/unit/englishV2Legacy.test.ts",
+    "line": 3,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 1판 읽기 변환 (자료 개선 M0, docs/planning/english-material-upgrade-20261002.md §B)."
+  },
+  {
+    "file": "src/__tests__/unit/englishV2Contract.test.ts",
+    "line": 3,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 2판 계약 — 모양 (자료 개선 M0, docs/planning/english-material-upgrade-20261002.md §B)."
+  },
+  {
+    "file": "src/__tests__/unit/englishV1LossGuard.test.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 1판 경로가 2판 값을 «줄여서» 받지 않는다 (자료 개선 M0, docs/planning/english-material-upgrade-20261002.md §B)."
+  },
+  {
+    "file": "src/__tests__/unit/englishUnderline.test.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 어법의 밑줄 표기 (D-151 · 25 §12.11 3자 합의 «다»)."
+  },
+  {
+    "file": "src/__tests__/unit/englishTypeExpansionGuards.test.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 유형 확장(D-158)의 적대적 검토에서 나온 구멍 (25 §13.7)."
+  },
+  {
+    "file": "src/__tests__/unit/englishTypeExpansion.test.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 유형 확장 (D-158 · 25 §13). 학교 «총괄 평가» 시험지에서 못 만들던 꼴을 1판 계약에 들인다:"
+  },
+  {
+    "file": "src/app/(main)/english/sets/[id]/print/page.tsx",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 세트 인쇄 페이지 `/english/sets/{id}/print?view=student|teacher` (D-148 · 25 §5)."
+  },
+  {
+    "file": "src/app/(main)/english/sets/[id]/print/page.tsx",
+    "line": 11,
+    "reason": "historical comment",
+    "text": "* 학원 이름은 시험 주인의 지점 이름, 지점이 없으면 «오늘의수학»(리드 결정 2026-09-30)."
+  },
+  {
+    "file": "src/lib/auth.ts",
+    "line": 30,
+    "reason": "historical comment",
+    "text": "* eywa 에 로그인한 사람이 «연결 앱 → 오늘의 수학»을 누르면 eywa 가 서명한 60초짜리 표를 들고"
+  },
+  {
+    "file": "src/lib/accountRouteAccess.ts",
+    "line": 245,
+    "reason": "historical comment",
+    "text": "// 오늘의 영어(D-148) — 자료·세트·생성 API 와 크롬 없는 인쇄 페이지(`/english/sets/{id}/print`) 둘 다."
+  },
+  {
+    "file": "src/contracts/english.contract.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 외부지문 내신 스튜디오 계약 (D-148, docs/planning/25-english-studio.md §2~§4)."
+  },
+  {
+    "file": "src/contracts/common.contract.ts",
+    "line": 133,
+    "reason": "historical comment",
+    "text": "// 오늘의 영어(D-148, 25 §3~§4) — 세트 저장·생성의 검증기 거절(422/502, details 에 issues) ·"
+  },
+  {
+    "file": "src/lib/ai/prompts/englishRead.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 사진에서 글 읽기 프롬프트 r2 (2026-10-06, D-158 · 25 §13.8 · §13.9)."
+  },
+  {
+    "file": "src/lib/ai/prompts/englishExam.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 지문·문제 생성 프롬프트 v2 (2026-09-30, D-148 · 25 §4.3 · §12)."
+  },
+  {
+    "file": "src/lib/ai/openai.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* OpenAI API 래퍼 — 서버 전용. 지금은 **오늘의 영어 생성**만 쓴다(gpt-6-luna, D-151 · 25 §12.7)."
+  },
+  {
+    "file": "src/contracts/englishV2.contract.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 문항 형식 2판 계약 (자료 개선 M0, docs/planning/english-material-upgrade-20261002.md §A-3 · §B)."
+  },
+  {
+    "file": "src/lib/ai/jsonRepair.ts",
+    "line": 187,
+    "reason": "historical comment",
+    "text": "* `latex: false` — LaTeX 가 없는 글(오늘의 영어)용. `"
+  },
+  {
+    "file": "src/lib/ai/jsonRepair.ts",
+    "line": 261,
+    "reason": "historical comment",
+    "text": "* AI 응답(또는 ChatGPT 에서 붙여 넣은 글)에서 **JSON 객체 하나**를 읽는다 — 오늘의 영어(D-148 · 25 §4.3)가"
+  },
+  {
+    "file": "src/lib/ai/jsonRepair.ts",
+    "line": 278,
+    "reason": "historical comment",
+    "text": "// 객체 파서는 오늘의 영어만 쓴다 — LaTeX 규칙을 끈 복구(위 `repairJsonString` 머리말의 🔴)"
+  },
+  {
+    "file": "src/lib/eywaSso.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* eywa → 오늘의 수학 자동 로그인(SSO) — 받는 쪽 판정 (원장님 2026-09-26, CLAUDE.md 절대 규칙 7 의 예외)."
+  },
+  {
+    "file": "src/lib/eywaSso.ts",
+    "line": 154,
+    "reason": "historical comment",
+    "text": "* 아무 주소로 바꿀 수 있어(eywa 세션 답변), 이메일로 찾으면 오늘의 수학 원장·관리자 계정을 가져갈 수 있다."
+  },
+  {
+    "file": "src/lib/english/validate.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 초안 검증기 (D-148 · 25 §4.4). 만들기 세 길(ChatGPT 붙여넣기 · 원문 복원 · DeepSeek)과"
+  },
+  {
+    "file": "src/lib/english/v2/versionGate.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 형식 판 관문 (자료 개선 M0, docs/planning/english-material-upgrade-20261002.md §B)."
+  },
+  {
+    "file": "src/lib/english/v2/validate.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 2판 — 문서 검증기 (자료 개선 M0, docs/planning/english-material-upgrade-20261002.md §B)."
+  },
+  {
+    "file": "src/lib/english/v2/serialize.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 2판 — 글자열로 내보내기 · 다시 읽기 (자료 개선 M0, docs/planning/english-material-upgrade-20261002.md §B)."
+  },
+  {
+    "file": "src/lib/english/v2/rights.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 2판 — 사용 권한 정책 (자료 개선 M0, docs/planning/english-material-upgrade-20261002.md §A-6 · §B)."
+  },
+  {
+    "file": "src/lib/english/v2/legacy.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 1판 읽기 변환 (자료 개선 M0, docs/planning/english-material-upgrade-20261002.md §B)."
+  },
+  {
+    "file": "src/lib/english/underline.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 어법의 밑줄 표기 (D-151 · 25 §12.11 3자 합의 «다»)."
+  },
+  {
+    "file": "src/lib/english/serialize.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — DB 행 → 계약 모양 (D-148 · 25 §3). 라우트(`src/app/api/english/**`)와 인쇄 페이지(서버)가 같이 쓴다."
+  },
+  {
+    "file": "src/lib/english/routeSupport.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 라우트(`src/app/api/english/**`)가 같이 쓰는 것 — 세션·같은 출처 관문, 영어 전용 거절 응답,"
+  },
+  {
+    "file": "src/lib/english/readRefine.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 읽은 글의 후보정 (D-158 · 25 §13.10). **결정적이다** — 모델을 더 부르지 않는다."
+  },
+  {
+    "file": "src/lib/english/readPhoto.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 사진 자료에서 글 읽기 (D-158 · 25 §13.8 ~ §13.10). 서버 전용."
+  },
+  {
+    "file": "src/lib/english/quality.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 결정적 품질 검사 (D-148 · 25 §12). **막지 않고 잰다** — 검증기(`validate.ts`)는 저장을 막는 규칙,"
+  },
+  {
+    "file": "src/lib/english/options.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 보기 줄 (D-151 · 3자 합의 25 §12.12 「3」). **지면과 편집 화면이 같이 쓴다** — 화면마다 규칙이 다르면"
+  },
+  {
+    "file": "src/lib/english/notes.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 편집 화면의 «확인해 볼 곳» (D-151 · 3자 합의 25 §12.13). **관측 사실과 자리만** — 결함 판정이 아니고,"
+  },
+  {
+    "file": "src/lib/english/meta.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 세트의 «만든 조건» (원장님 2026-10-01 «입력할 수 있는 모든 메타데이터 기억되게»)."
+  },
+  {
+    "file": "src/components/unified/WorkspaceIcon.tsx",
+    "line": 105,
+    "reason": "historical comment",
+    "text": "/** 오늘의 영어(D-148) — 학교별 내신 대비 */"
+  },
+  {
+    "file": "src/components/unified/WorkspaceIcon.tsx",
+    "line": 112,
+    "reason": "historical comment",
+    "text": "/** 오늘의 영어(D-148) — 문제 만들기 */"
+  },
+  {
+    "file": "src/components/unified/UnifiedWorkspace.tsx",
+    "line": 146,
+    "reason": "root-owned visible",
+    "text": "label=\"오늘의 영어를 여는 중입니다…\""
+  },
+  {
+    "file": "src/components/unified/UnifiedWorkspace.tsx",
+    "line": 262,
+    "reason": "historical comment",
+    "text": "/** 오늘의 영어 옆 메뉴 — 위 넷은 수학의 같은 자리와 짝이고, 영어듣기 · 자료은행은 영어만의 메뉴다. */"
+  },
+  {
+    "file": "src/components/unified/UnifiedWorkspace.tsx",
+    "line": 414,
+    "reason": "root-owned visible",
+    "text": "\"오늘의수학\";"
+  },
+  {
+    "file": "src/components/unified/UnifiedWorkspace.tsx",
+    "line": 1099,
+    "reason": "root-owned visible",
+    "text": "\"작업 파일을 읽지 못했습니다. 오늘의수학에서 내보낸 JSON 파일인지 확인해 주세요.\","
+  },
+  {
+    "file": "src/components/unified/UnifiedWorkspace.tsx",
+    "line": 1288,
+    "reason": "root-owned visible",
+    "text": "? \"오늘의수학 홈\""
+  },
+  {
+    "file": "src/components/unified/UnifiedWorkspace.tsx",
+    "line": 1746,
+    "reason": "historical comment",
+    "text": "{/* 오늘의 영어(D-148) — 개념·SRS 블록과 같은 결로 마운트를 유지한다. `worksheetView` 에 넣지 않는다 */}"
+  },
+  {
+    "file": "src/components/unified/UnifiedWorkspace.tsx",
+    "line": 2079,
+    "reason": "root-owned visible",
+    "text": ": \"오늘의수학 작업실\"}"
+  },
+  {
+    "file": "src/components/unified/UnifiedWorkspace.tsx",
+    "line": 2101,
+    "reason": "root-owned visible",
+    "text": "placeholder=\"오늘의 수학 학습지\""
+  },
+  {
+    "file": "src/lib/english/leak.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 변형 문항끼리의 정답 누출 (D-151 · 25 §12.8 「1」). **막지 않고 잰다.**"
+  },
+  {
+    "file": "src/lib/english/generate.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — AI 직접 생성 (D-148 · 25 §4.3). 서버 전용 — 호출부가 키를 읽는다."
+  },
+  {
+    "file": "src/lib/english/feedback.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 고쳐 쓰기 되먹임 (D-151 · 25 §12). 초안 하나에 대해 **기계가 잰 사실**만 한 줄씩 돌려준다:"
+  },
+  {
+    "file": "src/lib/english/cloze.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 원문 복원 연습 (D-148 · 25 §4.2). **AI 가 아니다** — 규칙 하나:"
+  },
+  {
+    "file": "src/lib/english/chatgpt.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — ChatGPT 로 제작 (D-148 · 25 §4.1). **키 없는 주 경로.**"
+  },
+  {
+    "file": "src/lib/english/bundle.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 학생용 지면의 묶음 (D-151 · 25 §12.11 3자 합의 «가 · 나 · 다»)."
+  },
+  {
+    "file": "src/lib/ownership.ts",
+    "line": 201,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 시험(`english_exam`)이 존재하고, 뷰어의 소유 범위 안인지 확인한다 (D-148 · 25 §3)."
+  },
+  {
+    "file": "src/lib/studio-ai/api.ts",
+    "line": 32,
+    "reason": "historical comment",
+    "text": "* 그 밖은 temperature 0). 오늘의 영어의 사진 읽기가 Opus 5.5 를 low 로 부른다(D-158 · 25 §13.9)."
+  },
+  {
+    "file": "src/components/learn/StudentPasswordForm.tsx",
+    "line": 30,
+    "reason": "historical comment",
+    "text": "* 🔴 D-128(원장님 답 17 ① · 18 ①) — 윗줄을 둔 뒤 그 아래 큰 로고가 «오늘의수학»을 한 번 더 세웠다 → **로고를 뺐다**"
+  },
+  {
+    "file": "src/components/learn/LearnTopBar.tsx",
+    "line": 17,
+    "reason": "historical comment",
+    "text": "* 학생 화면 윗줄 — «오늘의수학» · 이름 · 반 · 나가기 (시안 `sTop`)."
+  },
+  {
+    "file": "src/components/english/EnglishDialog.tsx",
+    "line": 17,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어의 작은 창(새 시험 등록 · 자료 추가 · 출제 설정 · 인쇄) — 작업실 창(`.dialog`)의 틀·제목·닫기 단추를"
+  },
+  {
+    "file": "src/components/english/EnglishDialog.tsx",
+    "line": 36,
+    "reason": "historical comment",
+    "text": "/** 제목 위 작은 글(«오늘의 영어») */"
+  },
+  {
+    "file": "src/components/english/englishClient.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 화면 공용 — 요청 · 오류 문구 · 고른 시험 기억 · 표기 (D-148)."
+  },
+  {
+    "file": "src/components/english/views.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 뷰 셋의 id (D-148 · 25 §1.2). 셸(`UnifiedWorkspace`)과 뷰 뿌리(`EnglishStudio`)가 같이 쓴다."
+  },
+  {
+    "file": "src/components/english/print/useEnglishPages.tsx",
+    "line": 4,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 지면 — 쪽 나눔 측정 (D-148 · 25 §5). `useMeasuredPages` 의 결:"
+  },
+  {
+    "file": "src/components/english/print/EnglishPrintClient.tsx",
+    "line": 4,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 인쇄 미리보기 (D-148 · 25 §5 · 브리프 english-print §1 · D-151 · 25 §12.11)."
+  },
+  {
+    "file": "src/components/english/print/EnglishPrint.module.css",
+    "line": 1,
+    "reason": "historical comment",
+    "text": "/* 오늘의 영어 — 학생용·교사용 A4 지면 (D-148 · 25 §5 · 05 §8.23)."
+  },
+  {
+    "file": "src/components/english/print/englishPaperLayout.ts",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 지면 — 쪽 나눔 (D-148 · 25 §5 · 브리프 english-print §1)."
+  },
+  {
+    "file": "src/components/english/print/EnglishPaper.tsx",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 학생용·교사용 A4 지면 (D-148 · 25 §5 · 브리프 english-print §1)."
+  },
+  {
+    "file": "src/components/concept-blank/paper/PaperParts.tsx",
+    "line": 155,
+    "reason": "historical comment",
+    "text": "/** 첫 장 머리(05 §8.5) — 오늘의수학 · 영문 라벨 · 제목 · 목표 | 학습일 · 이름/반 · 단원. */"
+  },
+  {
+    "file": "src/components/concept-blank/paper/PaperParts.tsx",
+    "line": 193,
+    "reason": "historical comment",
+    "text": "/** 이어지는 장의 간소 머리 — «오늘의수학 · 제목» + p. N. */"
+  },
+  {
+    "file": "src/components/english/EnglishStudio.tsx",
+    "line": 4,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 뷰 셋의 공통 뿌리 (D-148 · 25 §1.2 · 셸 브리프 §2.1)."
+  },
+  {
+    "file": "src/components/concept-blank/paper/paper.module.css",
+    "line": 211,
+    "reason": "historical comment",
+    "text": "/* 이어지는 장 — «오늘의수학 · 제목» + p. N */"
+  },
+  {
+    "file": "src/components/english/EnglishStudio.module.css",
+    "line": 2,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — 05 §8.23 «작업실 그대로»(D-148). 값은 `Workroom.module.css` 토큰과 시안"
+  },
+  {
+    "file": "src/components/concept-blank/ConceptBlankPaper.tsx",
+    "line": 29,
+    "reason": "historical comment",
+    "text": "*   함수를 쓴다: 같은 고르기면 같은 장 수 · 같은 문항 번호). 넘치면 다음 장 — 간소 머리 «오늘의수학 · 제목» + p. N."
+  },
+  {
+    "file": "src/components/english/EnglishMakerView.tsx",
+    "line": 4,
+    "reason": "historical comment",
+    "text": "* 오늘의 영어 — «문제 만들기» (D-148 · 25 §4 · 브리프 english-ai §3). 트랙 english-ai 소유."
+  },
+  {
+    "file": "src/components/english/EnglishMaker.module.css",
+    "line": 1,
+    "reason": "historical comment",
+    "text": "/* 오늘의 영어 — 문제 만들기 (D-148). 작업실 토큰 그대로(05 §8.9 · Workroom.module.css) — 새 색·새 글꼴 없음."
+  },
+  {
+    "file": "src/components/exam/viewModel.ts",
+    "line": 94,
+    "reason": "historical comment",
+    "text": "* (블루는 '오늘의 수학'에서 \"지금 할 일\"을 뜻한다). 3단계뿐이라 블루가 필요 없다."
+  },
+  {
+    "file": "src/components/exam/RoundRow.tsx",
+    "line": 20,
+    "reason": "historical comment",
+    "text": "*    '오늘의 수학'에서는 같은 자리가 \"지금 할 일\"(블루)이라 뜻이 겹치면 안 된다."
+  },
+  {
+    "file": "src/components/exam/ExamDashboard.tsx",
+    "line": 16,
+    "reason": "historical comment",
+    "text": "* 진행 중인 내신 회차를 큰 순번 + D-day 로 세운다. 반·진도 단위로 도는 '오늘의 수학'과 달리"
+  },
+  {
+    "file": "src/components/exam/ExamChrome.tsx",
+    "line": 11,
+    "reason": "historical comment",
+    "text": "* ⚠️ 반대 방향('오늘의 수학' → '오늘의 시험')의 분기는 `src/components/chrome/AppChrome.tsx`"
+  }
+]

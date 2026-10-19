@@ -1,5 +1,6 @@
 import {
   fadingTeacherDashboardResponseSchema,
+  fadingTeacherQuotaResponseSchema,
   fadingTeacherStudentResponseSchema,
 } from "@/contracts/fadingTeacher.contract";
 import { TeacherFadingSourceError, type TeacherFadingSource } from "./source";
@@ -34,5 +35,18 @@ export function createTeacherFadingApiSource({
           `/api/students/${encodeURIComponent(studentId)}/math-srs/fading${query(classId)}`,
         ),
       ),
+    setQuota: async (studentId, classId, input) => {
+      const response = await fetcher(
+        `/api/students/${encodeURIComponent(studentId)}/math-srs/fading${query(classId)}`,
+        {
+          method: "PUT",
+          cache: "no-store",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(input),
+        },
+      );
+      if (!response.ok) throw new TeacherFadingSourceError(response.status);
+      return fadingTeacherQuotaResponseSchema.parse(await response.json());
+    },
   };
 }

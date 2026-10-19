@@ -10,7 +10,7 @@ import { StackCubesDemo } from "./StackCubesDemo";
 import styles from "./stack-cubes.module.css";
 
 export const metadata: Metadata = {
-  title: "쌓기나무 | 오늘의수학",
+  title: "쌓기나무 | 오늘 수학",
   robots: { index: false, follow: false },
 };
 

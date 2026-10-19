@@ -52,10 +52,10 @@ export default function LandingPage({
       </a>
       <header className={styles.header}>
         <div className={styles.headerInner}>
-          <Link href="/" className={styles.brand} aria-label="오늘의수학 홈">
+          <Link href="/" className={styles.brand} aria-label="오늘 수학 홈">
             <TodayMathMark size={35} />
             <span>
-              오늘의수학<span className={styles.brandDot}>.</span>
+              오늘 수학<span className={styles.brandDot}>.</span>
             </span>
           </Link>
           <nav className={styles.sectionNav} aria-label="서비스 소개">
@@ -79,7 +79,7 @@ export default function LandingPage({
           <div className={styles.heroCopy}>
             <p className={styles.eyebrow}>
               <span className={styles.smallPlus}>+</span> 선생님의 수학 준비,
-              오늘의수학
+              오늘 수학
             </p>
             <h1 id="hero-title">
               좋은 수업의 시작,
@@ -138,7 +138,7 @@ export default function LandingPage({
 
         <div
           className={styles.topicStrip}
-          aria-label="오늘의수학으로 할 수 있는 일"
+          aria-label="오늘 수학으로 할 수 있는 일"
         >
           <div>
             <span>자료를 발견하고</span>
@@ -235,7 +235,7 @@ export default function LandingPage({
               <p className={styles.workroomDescription}>
                 선생님의 생각이 자료의 중심에 있도록.
                 <br />
-                오늘의수학은 준비의 과정들을 한곳에 모았습니다.
+                오늘 수학은 준비의 과정들을 한곳에 모았습니다.
               </p>
               <dl className={styles.workroomFeatures}>
                 <div>
@@ -316,7 +316,7 @@ export default function LandingPage({
             <br className={styles.mobileBreak} /> 내일의 좋은 수업으로.
           </h2>
           <Link href={SIGNUP} className={styles.primaryCta}>
-            오늘의수학 시작하기 <Arrow diagonal />
+            오늘 수학 시작하기 <Arrow diagonal />
           </Link>
           <p className={styles.closingLogin}>
             이미 작업실이 있다면{" "}
@@ -329,10 +329,10 @@ export default function LandingPage({
 
       <footer className={styles.footer}>
         <div className={styles.footerInner}>
-          <Link href="/" className={styles.brand} aria-label="오늘의수학 홈">
+          <Link href="/" className={styles.brand} aria-label="오늘 수학 홈">
             <TodayMathMark size={29} />
             <span>
-              오늘의수학<span className={styles.brandDot}>.</span>
+              오늘 수학<span className={styles.brandDot}>.</span>
             </span>
           </Link>
           <p>선생님의 생각이 수업이 되는 곳.</p>

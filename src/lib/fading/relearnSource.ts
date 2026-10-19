@@ -66,6 +66,16 @@ export function fadingRelearnObservationOf(
       step: 4,
       placements: [action.placement],
     };
+  // 4단계 카드 하나의 «아직 모르겠어요»(D2) — 그 단계의 지금까지의 차례와 넘긴 카드 하나. 같은 풀이 × 단계 × 명제는 서버가 한 번만 센다.
+  if (action.action === "give-up-card")
+    return {
+      kind: "step",
+      conceptId: action.conceptId,
+      sessionId: action.sessionId,
+      step: 4,
+      placements: action.placements,
+      gaveUpCards: [action.propositionId],
+    };
   if (action.action === "rate")
     return {
       kind: "rated",
@@ -75,57 +85,40 @@ export function fadingRelearnObservationOf(
   return null;
 }
 
-/** 다시 보낼 증거를 쌓아 두는 수 — 연결이 끊긴 동안의 것. */
-const OUTBOX_MAX = 8;
-
 /**
- * `FadingSource` 를 감싸, 풀이의 행동이 끝날 때마다 그 증거를 대기열에 알린다 — 화면이 따로 챙길 것이 없다.
- * - 대기열 쪽의 실패는 **본 행동을 실패시키지 않는다**(풀이는 이미 저장됐다). `onError` 로만 알린다.
- * - 연결이 끊겨 못 보낸 증거는 쌓아 두었다가 다음 행동 때 먼저 다시 보낸다(여덟 개까지). 서버가 거절한 것(409 · 404 · 400)은 버린다 —
- *   다시 보내도 같은 답이다. 404 는 쓰는 길이 닫혀 있다는 뜻이라 그 뒤로는 알리지 않는다.
- * - 대기열이 바뀌면 `onQueue` 로 새 대기열을 준다.
+ * `FadingSource` 를 감싸, 증거가 되는 행동(`step` · `miss` · `give-up-card` · `rate`)이 끝날 때마다 대기열을 다시 읽어 `onQueue` 로 준다 —
+ * 화면이 따로 챙길 것이 없다. 🔴 등록은 **서버가 본 행동과 한 저장으로** 한다(D3 · `compose.ts`) — 이 싸개는 증거를 따로 보내지 않는다.
+ * 전에는 본 행동 뒤에 `/relearn` 으로 증거를 따로 보냈고, 그 요청이 끊기면 증거는 메모리에만 남아 새로고침에 사라졌다.
+ * - 대기열 읽기의 실패는 **본 행동을 실패시키지 않는다**(풀이도 등록도 이미 저장됐다 — 돌아오면 `queue()` 가 회복한다). `onError` 로만 알리고
+ *   본 행동을 다시 보내지 않는다. 404 는 쓰는 길이 닫혀 있다는 뜻이라 그 뒤로는 읽지 않는다.
+ * - 🔴 읽기가 `STUDENT_CHANGED`(화면을 연 학생이 아니다 — D1)로 실패하면 그 종료가 먼저다 — 본 행동의 결과도 돌려주지 않고 그 실패를 던진다
+ *   (늦게 온 행동의 결과를 화면이 쓰지 않게).
  * 받은 원천의 다른 길(`dailyPlan` 같은 선택 길 포함)은 그대로 둔다.
  */
 export function withFadingRelearn<S extends FadingSource>(
   source: S,
-  relearn: Pick<FadingRelearnSource, "record">,
+  relearn: Pick<FadingRelearnSource, "queue">,
   options: {
     onQueue?: (queue: FadingRelearnQueue) => void;
     onError?: (error: unknown) => void;
   } = {},
 ): S {
-  let outbox: FadingRelearnObservation[] = [];
   let closed = false;
-  const flush = async () => {
-    const sending = outbox;
-    outbox = [];
-    for (const [i, observation] of sending.entries()) {
-      if (closed) return;
-      try {
-        // 받는 쪽(`onQueue`)이 없어도 알린다 — 선택 호출의 인수 자리에 두면 받는 쪽이 없을 때 보내지도 않는다.
-        const { queue } = await relearn.record(observation);
-        options.onQueue?.(queue);
-      } catch (error) {
-        const code = error instanceof FadingSourceError ? error.code : null;
-        if (code === "NOT_FOUND") closed = true;
-        // 응답을 못 받은 것만 남긴다 — 이번 것과 아직 안 보낸 것을 차례 그대로.
-        else if (code === "OFFLINE" || code === "UNKNOWN" || code === null) {
-          outbox = [...sending.slice(i), ...outbox].slice(-OUTBOX_MAX);
-          options.onError?.(error);
-          return;
-        }
-        options.onError?.(error);
-      }
-    }
-  };
   return {
     ...source,
     async act(action: FadingAction) {
       const state = await source.act(action);
-      const observation = fadingRelearnObservationOf(action);
-      if (observation && !closed) {
-        outbox = [...outbox, observation].slice(-OUTBOX_MAX);
-        await flush();
+      if (closed || !fadingRelearnObservationOf(action)) return state;
+      try {
+        // 받는 쪽(`onQueue`)이 없어도 읽는다 — 선택 호출의 인수 자리에 두면 받는 쪽이 없을 때 읽지도 않는다.
+        const queue = await relearn.queue();
+        options.onQueue?.(queue);
+      } catch (error) {
+        if (error instanceof FadingSourceError) {
+          if (error.code === "STUDENT_CHANGED") throw error;
+          if (error.code === "NOT_FOUND") closed = true;
+        }
+        options.onError?.(error);
       }
       return state;
     },

@@ -39,6 +39,7 @@ import {
  *     그 행은 `created + skipped < targets` 라 끝난 회차와 갈린다.
  * 정리마저 실패하면(DB 가 아예 끊긴 경우) 행이 합계 0 으로 남을 수 있다 — 보고서 plan-screen-followup ⑤-B.
  */
+import { GENERAL_TESTS } from "@/lib/tests/generalTests";
 import type {
   AutoDraftSkip,
   AutoDraftSummary,
@@ -185,6 +186,7 @@ async function draftAll(args: {
       where: {
         classId: { in: planClassIds },
         predictionRunId: null,
+        ...GENERAL_TESTS,
         studentId: { in: studentIds },
         testType: "review",
         status: { in: ["confirmed", "printed"] },
@@ -197,6 +199,7 @@ async function draftAll(args: {
       where: {
         classId: { in: planClassIds },
         predictionRunId: null,
+        ...GENERAL_TESTS,
         studentId: { in: studentIds },
         testType: "review",
         testDate,

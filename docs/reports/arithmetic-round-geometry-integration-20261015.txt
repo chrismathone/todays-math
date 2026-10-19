@@ -1,0 +1,90 @@
+Arithmetic review, selective regeneration and geometry integration — 2026-10-15
+
+Integrated changes
+- Merged b49fe2e09 (round form), 0b0794415 (selective regeneration), and
+  ec3bcdbbf (live geometry) into main without discarding their scoped work.
+- Review now has keyboard-accessible round tabs and shows one round at a time.
+  A question checkbox, section checkbox and section regeneration button select
+  saved local orders; visible question numbers stay continuous across rounds.
+  All-round regeneration remains available as a separate explicit action.
+- The grade catalog now imports GradeArithmeticPrompt. Its geometry examples
+  keep the checked 216 px extent inside cards with sufficient available width.
+  Two initial geometry types are available under 초4 / 도형: triangle missing
+  angle (70 finite tasks) and right-triangle missing acute angle (11 tasks).
+  Total grade catalog count is 86. This is not full geometry curriculum coverage.
+- Selected regeneration maximizes changed questions without changing retained
+  questions, other rounds, title, form options or the frozen SVG pack. A domain
+  that cannot supply a different question reports the retained order explicitly.
+- Round labels are inside all six forms and answer headers, including arithmetic
+  continuation pages. Ordinary-paper behavior and existing print exceptions remain.
+- Geometry uses actual checked SVG in catalog, review and shared output, with no
+  question mark in the unknown angle and outside labels when needed for clarity.
+- The combined route regression test sends the real SVG pack through the strict
+  v2 request parser and verifies exact retained items plus successful reopening.
+- Updated grouped-review assertions for tabs, the structured preset capacity
+  error assertion, and a section heading's accessible name.
+
+Automated verification in main
+- Combined arithmetic/API/component/print run: 39 suites, 1,203 cases. The first
+  run passed 1,201 and exposed two stale expectations (all rounds visible and an
+  older Korean capacity-message substring). Updated expectations and the section
+  heading accessible name; affected preset suite passed 295 cases and the final
+  grouped-output/review run passed all 11 cases. All cases from the combined run
+  are passing after these targeted reruns; no remaining failing test is hidden.
+- Existing ArithmeticManualSave cases passed in the main environment. The worker
+  report's missing-jest-dom limitation did not reproduce in this combined run.
+- Full npm run type-check passed after all worker merges and the new geometry API
+  regression test. Scoped ESLint and Prettier passed on final integration files.
+- Worker reports retain their own detailed helper, catalog, schema, form and
+  81-figure full-domain screen/print checks; see the three same-date reports.
+
+Actual browser and PDF checks
+- /dev/arithmetic, three rounds: tab selection exposes only the chosen round;
+  checkbox selection is local to that round; 390 px viewport has no overflow.
+- Two geometry types, 6 + 4 questions, two rounds: changed one question in round
+  two and verified the other nine plus all of round one remained identical.
+  Regenerated the four-question right-triangle section in round one and verified
+  its first six and all of round two remained identical. No browser page errors.
+- Geometry catalog at 390 and 900 px: no horizontal overflow, both images loaded,
+  and their longest displayed extent remains 216 px (within rounding tolerance).
+- Geometry output: 20 question headers, 20 loaded figures, round fields within
+  the title bands. Chromium PDF has six physical A4 pages: four question pages
+  and two answer pages, 138,132 bytes. Rendered first and continuation pages were
+  visually checked for round placement, readable labels, outside leaders and
+  clipping. Every physical page includes its round, including answer pages.
+- Numeric output was rerun after the common NativeProblem dispatch merge:
+  100 questions per round, two rounds, 200 distinct headers, six type headings,
+  18 physical A4 pages (12 questions + six answers), 102,671 bytes. No duplicate
+  embedded numbering or round prefix; every page includes its round. First and
+  continuation renders were visually checked; no browser page errors.
+- All six templates were measured in the live browser with a long Korean title
+  and 60 questions per round, two rounds. Each retained 120 items and round labels
+  inside its page before the questions, with all items within page bounds:
+  Pyeongga 8 pages, Jeongtong 8, Modern 12, Workbook 10, Jaseup 12, Yuhyung 8.
+- Browser checks used local preview and actual DOM/export payloads. The PDF
+  endpoint was intercepted and rendered with the shared pdfDocument helper in
+  local Chromium. This does not claim an authenticated production save or export
+  request. Same-origin local asset loading was used to avoid Next dev CORS blocks.
+
+Local evidence (not committed)
+- tmp/arithmetic-combined-tests.log, arithmetic-updated-expectations.log,
+  arithmetic-review-final.log, arithmetic-combined-types.log
+- tmp/arithmetic-round-tabs-proof.json and desktop/mobile screenshots
+- tmp/arithmetic-live-geometry-proof.json, arithmetic-live-geometry.pdf,
+  arithmetic-live-geometry-final-1.png, arithmetic-live-geometry-final-2.png,
+  catalog/review/output screenshots and exported payload
+- tmp/arithmetic-output-proof.json, arithmetic-grouped-print.pdf,
+  arithmetic-final-numeric-output.log, arithmetic-numeric-final-cont.png
+- tmp/arithmetic-final-layout-proof.json and arithmetic-final-layout.log
+- tmp/geometry-arithmetic-worker-evidence preserves the geometry worker's full
+  finite-domain gallery, measurements and local checks before worktree cleanup.
+
+Scope and cleanup
+- Arithmetic autosave remains deferred. No environment variable, database
+  migration, write gate or stored user data was changed by this integration.
+- Each worker was merged, verified clean and idle, then its terminals and Orca
+  worktree were removed. Git branches and evidence are preserved. The final
+  Orca worktree list confirms all three completed arithmetic workers are absent.
+- Root tmp evidence remains untracked. No node_modules junction was created.
+- Publication must use the normal hooks and a fresh remote fetch/compare directly
+  before pushing. Deployment success is checked separately against the pushed SHA.

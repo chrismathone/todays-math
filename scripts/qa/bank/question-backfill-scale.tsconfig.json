@@ -1,0 +1,12 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "incremental": false,
+    "plugins": []
+  },
+  "include": [
+    "../../import/question-group-backfill.ts",
+    "question-backfill-scale.ts",
+    "../../../src/__tests__/unit/questionIdentityDdl.test.ts"
+  ]
+}

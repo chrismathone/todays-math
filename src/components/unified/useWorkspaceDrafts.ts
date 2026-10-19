@@ -11,18 +11,23 @@ export function useWorkspaceDrafts(
   active = true,
   branchId?: string | null,
 ) {
-  const store = useMemo(
-    () =>
-      storageScope
-        ? enabled
-          ? createPrivateDraftStore(storageScope)
-          : createWorkspaceDraftStore(() => ({
-              getItem: () => null,
-              setItem: () => {},
-            }))
-        : createWorkspaceDraftStore(),
-    [storageScope, enabled],
+  // Keep this mounted session's work through temporary permission changes.
+  // A new page still starts blank; disabled views use a separate inert store.
+  const stores = useMemo(
+    () => ({
+      allowed: storageScope
+        ? createPrivateDraftStore(storageScope, undefined, undefined, {
+            autoResume: false,
+          })
+        : createWorkspaceDraftStore(undefined, { autoResume: false }),
+      disabled: createWorkspaceDraftStore(
+        () => ({ getItem: () => null, setItem: () => {} }),
+        { autoResume: false },
+      ),
+    }),
+    [storageScope],
   );
+  const store = enabled ? stores.allowed : stores.disabled;
   const snapshot = useSyncExternalStore(
     store.subscribe,
     store.getSnapshot,
@@ -54,13 +59,17 @@ export function useWorkspaceDrafts(
       ? { saveStatus: "disabled" as const, saveError: null }
       : {}),
     prepare: store.hydrate,
+    getCurrentDraft: () => store.getSnapshot().draft,
     setTitle: store.setTitle,
     setProblems: store.setProblems,
     setRemoved: store.setRemoved,
+    setWorkflow: store.setWorkflow,
     setColumns: store.setColumns,
     setAnswers: store.setAnswers,
     setPrintOptions: store.setPrintOptions,
     setPrintMeta: store.setPrintMeta,
+    seedNewSheet: store.seedNewSheet,
+    setTag: store.setTag,
     saveNow: storageScope && !enabled ? () => false : store.saveNow,
     visibility:
       "getVisibility" in store && store.getSharedBranchId() === branchId

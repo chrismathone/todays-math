@@ -1,0 +1,56 @@
+{
+  "at": "2026-10-18T07:50:41.375Z",
+  "status": "applied-and-idempotence-verified",
+  "manifestSha256": "82c2eb7388467d09af7fd3904ac850a0594312d6364441b03ca1f0f308df62d6",
+  "ddlSha256": "b36dae98a6e343a5207fc61e77e52fa050bde6dd8a8b75bfce57507baaa0b64c",
+  "operatorSha256": "66194f3dcf0ca0b7d4d0069250e2648745efbe3ab3838e9a95e3f3b2f902421a",
+  "appliedPairs": 47746,
+  "keyedRows": 95492,
+  "distinctKeys": 47746,
+  "nonPairGroups": 0,
+  "quarantineOverlap": 0,
+  "actualSecondRunProblemUpdates": 0,
+  "rowVersionProof": {
+    "beforeAt": "2026-10-18T07:46:57.676Z",
+    "afterAt": "2026-10-18T07:50:41.375Z",
+    "rowsCompared": 95492,
+    "orderedIdAndXminSha256": "db53eb508260874f2883a606afe966378d9e81f5e4110278ba5770ab29898692",
+    "allRowVersionsIdentical": true
+  },
+  "beforeAdditionalGeneration": {
+    "physicalRows": 118020,
+    "questions": 70274,
+    "rawEligibleRows": 115575,
+    "rawEligibleQuestions": 67842,
+    "availableQuestions": 67799,
+    "unknownEligibleRows": 43,
+    "multipleChoice": 53747,
+    "shortAnswer": 61508,
+    "descriptive": 277
+  },
+  "familyCensus": {
+    "physicalFamilyKeys": 16367,
+    "canonicalFamilies": 16358,
+    "availableCanonicalFamilies": 15826
+  },
+  "supportedUnitCapacity": {
+    "grades": [
+      "초3",
+      "초4",
+      "초5",
+      "초6",
+      "중1",
+      "중2",
+      "중3"
+    ],
+    "units": 360,
+    "unitsAtLeast8Questions": 360,
+    "unitsAtLeast10Questions": 360,
+    "unitsAtLeast20Questions": 360,
+    "unitsAtLeast8Types": 360,
+    "unitsAtLeast10Types": 360,
+    "unitsAtLeast20Types": 107,
+    "unitsWith8TypesEach5Variants": 349
+  },
+  "studentRecordsAndSavedExamContentsRewritten": 0
+}

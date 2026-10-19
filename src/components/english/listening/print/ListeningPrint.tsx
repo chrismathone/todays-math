@@ -26,7 +26,7 @@ export function ListeningPrint({
       </div>
       <article className={s.paper}>
         <header className={s.header}>
-          <p>오늘의 영어 · 영어듣기</p>
+          <p>오늘 영어 · 영어듣기</p>
           <h1>{document.title}</h1>
           <p>
             {document.view === "teacher"

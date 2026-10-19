@@ -179,6 +179,7 @@ describe("1 · 문제 인식 진행 문구", () => {
 describe("10 · 잘라내기 단계 이름", () => {
   it("단계 탭은 «문제&도형 잘라내기» — 옛 «문제 자르기»는 없다", async () => {
     await openStudio([crop("c1")], { step: "review" });
+    fireEvent.click(screen.getByRole("button", { name: "1 범위 설정" }));
     const tabs = screen.getAllByRole("button", { name: "문제&도형 잘라내기" });
     expect(tabs.length).toBeGreaterThan(0);
     expect(
@@ -433,8 +434,10 @@ describe("6 · 편집창 확대는 원장님 선택에만 따른다(2026-09-21 �
   const focused = () =>
     screen.queryByRole("dialog", { name: "문제 제작 스튜디오" }) !== null;
   // 머리 탭 — 단계 목록(편집 중에는 CSS 로 숨김)에도 같은 이름이 있다.
-  const cropTab = () =>
-    screen.getAllByRole("button", { name: "문제&도형 잘라내기" })[0];
+  const cropTab = () => {
+    fireEvent.click(screen.getByRole("button", { name: "1 범위 설정" }));
+    return screen.getAllByRole("button", { name: "문제&도형 잘라내기" })[0];
+  };
   const twoCrops = () => [
     crop("p1", { content: "본문", mode: "text" }),
     crop("p2", { rect: { x: 0.1, y: 0.5, width: 0.8, height: 0.3 } }),
@@ -444,9 +447,7 @@ describe("6 · 편집창 확대는 원장님 선택에만 따른다(2026-09-21 �
     await openStudio(twoCrops());
     expect(studio()).toBeInTheDocument();
     expect(focused()).toBe(false);
-    fireEvent.click(
-      screen.getByRole("button", { name: /^OCR · 디지털화 \d+$/ }),
-    );
+    fireEvent.click(screen.getByRole("button", { name: /^2 문항 검토 \d+$/ }));
     expect(focused()).toBe(false);
     expect(screen.getByRole("button", { name: "편집창 확대" })).toHaveAttribute(
       "aria-pressed",
@@ -455,9 +456,7 @@ describe("6 · 편집창 확대는 원장님 선택에만 따른다(2026-09-21 �
     fireEvent.click(cropTab());
     expect(focused()).toBe(false);
     // 다시 들어가도 마찬가지다 — «검수는 확대로»가 되살아나지 않는다.
-    fireEvent.click(
-      screen.getByRole("button", { name: /^OCR · 디지털화 \d+$/ }),
-    );
+    fireEvent.click(screen.getByRole("button", { name: /^2 문항 검토 \d+$/ }));
     expect(focused()).toBe(false);
   });
 
@@ -465,9 +464,7 @@ describe("6 · 편집창 확대는 원장님 선택에만 따른다(2026-09-21 �
     await openStudio(twoCrops());
     fireEvent.click(screen.getByRole("button", { name: "편집창 확대" }));
     expect(focused()).toBe(true);
-    fireEvent.click(
-      screen.getByRole("button", { name: /^OCR · 디지털화 \d+$/ }),
-    );
+    fireEvent.click(screen.getByRole("button", { name: /^2 문항 검토 \d+$/ }));
     expect(focused()).toBe(true);
   });
 

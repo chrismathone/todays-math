@@ -1,0 +1,129 @@
+[
+  {
+    "label": "grade4-wave1-20261018",
+    "seedBase": 20261043,
+    "targets": [
+      {
+        "engine": "elem",
+        "grade": "초4",
+        "chapter": "2-2 삼각형",
+        "sections": [
+          "2-2-3 정삼각형의 성질"
+        ],
+        "formIds": [
+          "31",
+          "32"
+        ],
+        "perTier": 3
+      },
+      {
+        "engine": "elem",
+        "grade": "초4",
+        "chapter": "2-2 삼각형",
+        "sections": [
+          "2-2-5 삼각형을 두 가지 기준으로 분류하기"
+        ],
+        "formIds": [
+          "33",
+          "34"
+        ],
+        "perTier": 3
+      },
+      {
+        "engine": "elem",
+        "grade": "초4",
+        "chapter": "2-4 사각형",
+        "sections": [
+          "2-4-2 평행과 평행선"
+        ],
+        "formIds": [
+          "35",
+          "36"
+        ],
+        "perTier": 3
+      },
+      {
+        "engine": "elem",
+        "grade": "초4",
+        "chapter": "2-4 사각형",
+        "sections": [
+          "2-4-4 사다리꼴"
+        ],
+        "formIds": [
+          "37",
+          "38",
+          "39"
+        ],
+        "perTier": 3
+      }
+    ]
+  },
+  {
+    "label": "middle3-wave1-20261018",
+    "seedBase": 20261020,
+    "targets": [
+      {
+        "engine": "middle",
+        "grade": "중3",
+        "unitSection": "무리수와 실수",
+        "variants": 3,
+        "typeKeys": [
+          "manual-20261018|무리수와 실수|R01",
+          "manual-20261018|무리수와 실수|R02",
+          "manual-20261018|무리수와 실수|R03"
+        ]
+      },
+      {
+        "engine": "middle",
+        "grade": "중3",
+        "unitSection": "인수분해",
+        "variants": 3,
+        "typeKeys": [
+          "manual-20261018|인수분해|F01",
+          "manual-20261018|인수분해|F02",
+          "manual-20261018|인수분해|F03"
+        ]
+      },
+      {
+        "engine": "middle",
+        "grade": "중3",
+        "unitSection": "이차방정식의 활용",
+        "variants": 3,
+        "typeKeys": [
+          "manual-20261018|이차방정식의 활용|Q01",
+          "manual-20261018|이차방정식의 활용|Q02",
+          "manual-20261018|이차방정식의 활용|Q03"
+        ]
+      },
+      {
+        "engine": "middle",
+        "grade": "중3",
+        "unitSection": "대푯값과 산포도",
+        "variants": 3,
+        "typeKeys": [
+          "manual-20261018|대푯값과 산포도|S01",
+          "manual-20261018|대푯값과 산포도|S02",
+          "manual-20261018|대푯값과 산포도|S03"
+        ]
+      }
+    ]
+  },
+  {
+    "label": "native-descriptive-wave1-20261018",
+    "seedBase": 20261018,
+    "targets": [
+      {
+        "engine": "native-descriptive",
+        "definitionIds": [
+          "e4-equilateral-audit-r1",
+          "e4-triangle-dual-proof-r1",
+          "e4-trapezoid-sufficiency-r1",
+          "m3-factor-error-proof-r1",
+          "m3-quadratic-domain-r1",
+          "m3-statistics-shift-spread-r1"
+        ],
+        "variants": 2
+      }
+    ]
+  }
+]

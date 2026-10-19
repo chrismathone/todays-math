@@ -135,6 +135,9 @@ export const errorCodeSchema = z.enum([
   "ENGLISH_DRAFT_REJECTED",
   "REVISION_MISMATCH",
   "PAYLOAD_TOO_LARGE",
+  // 학생 화면이 실어 보낸 학생(`x-student-id`)이 로그인한 학생과 다르다(409 — D1, 2026-10-16). 내용이 바뀐 409(`CONFLICT`)와 갈라
+  // 화면이 «다시 읽기»가 아니라 «그 화면을 내리고 새로고침»으로 답하게 한다. 문구는 studentRouteAccess.ts STUDENT_CHANGED_MESSAGE
+  "STUDENT_CHANGED",
 ]);
 export type ErrorCode = z.infer<typeof errorCodeSchema>;
 

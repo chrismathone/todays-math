@@ -1,0 +1,53 @@
+Development workspace preview: client logger isolation
+2026-10-15
+
+Cause and scope
+The root ClientErrorLog installs once and retains the original fetch in
+clientReporter State.send. The development preview replaces window.fetch later,
+so timed log flushes bypass previewFetch. The leave handler also uses sendBeacon
+directly. A fixture AI 503 caused POST /api/logs/client, whose handler records
+events in the database. Browser audits aborted every real /api/** request before
+delivery; no API write was performed during verification.
+
+Change
+Use the page's exact development-only gate: NODE_ENV === development and
+location.pathname === /dev/workspace-alignment. Check at enqueue, timed flush
+and leave flush. Fixture errors never enter the queue. Real-page events queued
+before entering preview stay queued without polling or consuming the page quota.
+Returning to a normal page permits the next report/leave to flush them normally.
+The reporter remains installed; production and other development routes retain
+existing behavior. No route, API, geometry or database files changed.
+
+Regression evidence
+clientErrorReporterPreview.test.ts: 11 cases. Seven failed before the fix; all
+eleven passed afterward. Covers installation before/on preview, the captured
+fetch transport, readAiJson 503, direct/error/rejection reports, pending batches,
+pagehide/visibilitychange, beacon and keepalive fallback, return navigation,
+production/test environments and neighboring development paths.
+Combined run: 37 tests passed in clientErrorReporterPreview, clientErrorReporter,
+ClientErrorLog and arithmeticWorkspacePreview. Focused TypeScript: 0 diagnostics.
+ESLint passed. Commit uses the normal Husky lint-staged hooks with installed root
+tools resolved only for the command; no installs, junctions or hook bypass.
+
+Root integration review
+Read the actual root layout, development page and preview setup. The page gate
+matches; the logger persists in the layout and preview owns its fetch lifecycle.
+The shared root server was left untouched. Before merge it still exhibited one
+blocked log POST per fresh page, as expected for its unchanged clientReporter.
+The candidate fix is verified in the owned worktree; a post-merge browser run is
+needed to certify the running root route has picked it up.
+
+Earlier integrated UI evidence on the actual shared route (no output stubs)
+Both grade/basic at 1440x1000 and 390x844 passed select-all, partial selection,
+remove only checked rows, retained count/draft, real generation, question review,
+actual WorksheetEditor/print preview and disabled library save. Mobile page zoom
+and real answer sheet also worked. A separate thumbnail hover CSS defect was
+reported and authorized for a separate follow-up commit.
+
+Evidence outside the worktree
+C:/Users/user/orca/verification/arithmetic-ui-integrated-20261015-134243/
+evidence.json, mobile-output-evidence.json, thumbnail-hover-evidence.json,
+grade/basic-{1440,390}-basket-partial.png, *-basket-retained.png,
+*-review-answers.png, *-actual-output.png, *-output-enlarged.png,
+*-output-answers.png. All browser API requests were guarded with abort, never
+fulfilled with test data. The actual preview adapter and arithmetic engines ran.

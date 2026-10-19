@@ -201,8 +201,42 @@ function learnToRating(
   return step4(s, c, o);
 }
 
-/** A 를 10월 6일에 처음 배우고(4단계에서 `a2#1` 을 틀림 → «다시») 그 평가를 대기열에 알린 기록. */
-function seeded(now = T0, o: Typed = { wrong: ["a2#1"] }) {
+/**
+ * 결정 2(2026-10-16) **이전** 규칙으로 든 `exposed` 줄의 꼴 — `retry`·1분 뒤. 그 규칙으로 든 줄은 운영의 대기열에 남아 있고 그대로 돈다
+ * (새 규칙은 이미 있는 줄을 바꾸지 않는다). 1분 → 5분 → 나감의 일반 규칙을 보는 시험은 이 꼴을 받침으로 쓴다(`seeded`).
+ */
+function legacyExposed<T extends { fading: StoredFading }>(done: T): T {
+  const queue = done.fading.relearn;
+  if (!queue) return done;
+  return {
+    ...done,
+    fading: {
+      ...done.fading,
+      relearn: {
+        ...queue,
+        items: queue.items.map((i) =>
+          i.origin === "exposed" && i.checks === 0 && i.stage === "confirm"
+            ? {
+                ...i,
+                stage: "retry" as const,
+                dueAt: i.dueAt - FIVE + MIN,
+              }
+            : i,
+        ),
+      },
+    },
+  };
+}
+
+/**
+ * A 를 10월 6일에 처음 배우고(4단계에서 `a2#1` 을 틀림 → «다시») 그 평가를 대기열에 알린 기록.
+ * 기본은 옛 규칙의 `exposed` 줄(`retry`·1분 — `legacyExposed`)이다. 새 규칙의 꼴 그대로는 `{ fresh: true }`.
+ */
+function seeded(
+  now = T0,
+  o: Typed = { wrong: ["a2#1"] },
+  { fresh = false }: { fresh?: boolean } = {},
+) {
   const missed = Boolean(o.wrong?.length || o.skip?.length);
   const rated = rate(
     learnToRating(emptyFading(), A, DAY1, 1, o),
@@ -211,12 +245,13 @@ function seeded(now = T0, o: Typed = { wrong: ["a2#1"] }) {
     DAY1,
     2,
   );
-  return observeFadingRelearn(
+  const done = observeFadingRelearn(
     rated,
     A,
     { kind: "rated", conceptId: A.id, requestId: uuid(2) },
     now,
   );
+  return fresh ? done : legacyExposed(done);
 }
 
 const item = (state: StoredFading, propositionId: string) =>
@@ -300,7 +335,7 @@ describe("간격은 둘뿐이다 — 계약의 값", () => {
 });
 
 describe("증거 → 대기열 — 평가로 닫은 풀이", () => {
-  it("처음 배운 풀이: 4단계에서 틀린 명제는 `missed`, 나머지는 `exposed`(틀림이 아니다) — 전부 1분 뒤 확인이다", () => {
+  it("처음 배운 풀이: 4단계에서 틀린 명제는 `missed`(1분 뒤), 나머지는 `exposed`(틀림이 아니다 — 5분 뒤 확인 한 번 · 결정 2)", () => {
     const rated = rate(
       learnToRating(emptyFading(), A, DAY1, 1, { wrong: ["a2#1"] }),
       A,
@@ -330,9 +365,9 @@ describe("증거 → 대기열 — 평가로 닫은 풀이", () => {
         i.checks,
       ]),
     ).toEqual([
-      ["a1", "exposed", "retry", T0 + MIN, 0, 0],
+      ["a1", "exposed", "confirm", T0 + FIVE, 0, 0],
       ["a2", "missed", "retry", T0 + MIN, 1, 0],
-      ["a3", "exposed", "retry", T0 + MIN, 0, 0],
+      ["a3", "exposed", "confirm", T0 + FIVE, 0, 0],
     ]);
     // 명제마다 그 명제의 지문이다(묶음의 지문이 아니다).
     expect(fading.relearn!.items.map((i) => i.digest)).toEqual(
@@ -345,6 +380,78 @@ describe("증거 → 대기열 — 평가로 닫은 풀이", () => {
       entered: 3,
     });
     expectLongTermUntouched(rated, fading);
+  });
+
+  it("결정 2 — 새로 든 `exposed` 줄은 5분 뒤 확인 한 번: 1분 뒤에는 아직이고, 5분 뒤 맞히면 나가고, 틀리면 1분 뒤 `retry` 로 간다", () => {
+    const { fading } = seeded(T0, undefined, { fresh: true });
+    expect(item(fading, "a1")).toMatchObject({
+      origin: "exposed",
+      stage: "confirm",
+      dueAt: T0 + FIVE,
+      checks: 0,
+      fails: 0,
+    });
+    // 1분 뒤에는 `exposed` 를 확인할 때가 아니다(틀린 a2 만 준비됐다).
+    expect(
+      conflictOf(() =>
+        gradeFadingRelearn(fading, A, attempt(fading, A, "a1", 50), T0 + MIN),
+      ),
+    ).toBe(FADING_RELEARN_NOT_DUE);
+    // 5분 뒤 도움 없이 맞히면 대기열에서 나간다 — 확인은 한 번이다.
+    const passed = gradeFadingRelearn(
+      fading,
+      A,
+      attempt(fading, A, "a1", 51),
+      T0 + FIVE,
+    );
+    expect(passed.result.verdict).toBe("passed");
+    expect(passed.result.next).toBeNull();
+    expect(
+      passed.fading.relearn!.items.some((i) => i.propositionId === "a1"),
+    ).toBe(false);
+    // 5분 뒤 틀리면 그때의 규칙(`settled`) 그대로 1분 뒤 `retry` · 틀림 +1.
+    const failed = gradeFadingRelearn(
+      fading,
+      A,
+      attempt(fading, A, "a3", 52, { "a3#1": "수직이등분선" }),
+      T0 + FIVE,
+    );
+    expect(failed.result.verdict).toBe("failed");
+    expect(item(failed.fading, "a3")).toMatchObject({
+      origin: "exposed",
+      stage: "retry",
+      dueAt: T0 + FIVE + MIN,
+      fails: 1,
+      checks: 1,
+    });
+  });
+
+  it("결정 2 — 이미 대기열에 있는 줄은 `exposed` 증거로 바뀌지 않는다(옛 `retry` 줄 · 다른 개념의 줄 그대로)", () => {
+    const { fading } = seeded(T0, undefined, { fresh: true });
+    // 옛 규칙으로 든 줄처럼 a1 을 `retry`·1분으로 되돌려 두고, 같은 개념의 첫 평가 증거를 다시 보낸다(이미 센 증거라 아무것도 하지 않는다).
+    const old: StoredFading = {
+      ...fading,
+      relearn: {
+        ...fading.relearn!,
+        items: fading.relearn!.items.map((i) =>
+          i.propositionId === "a1"
+            ? { ...i, stage: "retry" as const, dueAt: T0 + MIN }
+            : i,
+        ),
+      },
+    };
+    const again = observeFadingRelearn(
+      old,
+      A,
+      { kind: "rated", conceptId: A.id, requestId: uuid(2) },
+      T0 + 10_000,
+    );
+    expect(again.applied.duplicate).toBe(true);
+    expect(again.fading).toBe(old);
+    expect(item(again.fading, "a1")).toMatchObject({
+      stage: "retry",
+      dueAt: T0 + MIN,
+    });
   });
 
   it("넘긴 빈칸(«아직 모르겠어요»)과 대조에서 «다름»으로 고른 빈칸의 명제도 `missed` 다", () => {
@@ -804,7 +911,7 @@ describe("증거 → 대기열 — 단계의 넣기 차례(열린 풀이를 다�
       skipped: 0,
       duplicate: false,
     });
-    // a2 는 틀린 그때 잡힌 시각 그대로 · a3 은 «다름» — 지금부터 1분 · a1 은 처음 배운 풀이의 틀리지 않은 명제.
+    // a2 는 틀린 그때 잡힌 시각 그대로 · a3 은 «다름» — 지금부터 1분 · a1 은 처음 배운 풀이의 틀리지 않은 명제(5분 뒤 확인 한 번 · 결정 2).
     expect(item(done.fading, "a2")).toMatchObject({
       origin: "missed",
       dueAt: T0 + MIN,
@@ -817,7 +924,8 @@ describe("증거 → 대기열 — 단계의 넣기 차례(열린 풀이를 다�
     });
     expect(item(done.fading, "a1")).toMatchObject({
       origin: "exposed",
-      dueAt: T0 + 50_000 + MIN,
+      stage: "confirm",
+      dueAt: T0 + 50_000 + FIVE,
       fails: 0,
     });
     // 평가를 알렸으니 그 풀이의 단계 열쇠는 걷히고 평가의 열쇠만 남는다.
@@ -1717,8 +1825,9 @@ describe("🔴 같은 요청의 되풀이 — 한 번만 적용되고, 틀림이
 
   it("영수증은 쓰는 쪽의 상한까지만 남는다", () => {
     let state = seeded().fading;
+    // 하루 30회 상한(2026-10-17)이 있어 세 시간씩 띄워 여러 날에 나눈다.
     for (let n = 0; n < FADING_RELEARN_RECEIPTS_MAX + 3; n++) {
-      const now = T0 + (n + 1) * MIN;
+      const now = T0 + (n + 1) * 3 * 3_600_000;
       state = gradeFadingRelearn(
         state,
         A,
@@ -2147,14 +2256,17 @@ describe("🔴 장기 일정과 따로 돈다 — 같은 날 몇 번을 다시 �
     );
     const base = open(rated, B, DAY1, 5);
     const frozen = JSON.stringify(base);
-    let state = applyFadingRelearnAction(
-      base,
-      {
-        action: "record",
-        observation: { kind: "rated", conceptId: A.id, requestId: uuid(2) },
-      },
-      A,
-      T0,
+    // 옛 규칙의 `exposed` 줄(1분 뒤)로 — 확인을 여러 번 지나게 하려고(`legacyExposed`).
+    let state = legacyExposed(
+      applyFadingRelearnAction(
+        base,
+        {
+          action: "record",
+          observation: { kind: "rated", conceptId: A.id, requestId: uuid(2) },
+        },
+        A,
+        T0,
+      ),
     ).fading;
     let now = T0;
     let n = 50;

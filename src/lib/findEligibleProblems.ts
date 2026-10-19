@@ -31,6 +31,7 @@ import type { ProblemType } from "@/contracts/problem.contract";
 import { db } from "@/lib/db";
 import type { SelectableProblem } from "@/lib/generator/selectProblems";
 import { problemEligibleWhere } from "@/lib/problemEligibility";
+import { questionIdOf } from "@/lib/problem/questionIdentity";
 
 /**
  * 출제 후보 1건 — 엔진이 읽는 필드만.
@@ -40,11 +41,14 @@ import { problemEligibleWhere } from "@/lib/problemEligibility";
  * 에서 하나라도 빠지면 정책이 조용히 꺼진다 — 그 배선을 타입이 붙잡게 한다.
  */
 export interface EligibleProblem extends SelectableProblem {
+  familyKey: string | null;
   difficulty: Difficulty;
   problemType: ProblemType;
   content: string;
   figureUrls: string[];
   figureDims: number[];
+  questionType: string | null;
+  answer: string;
 }
 
 export interface FindEligibleProblemsParams {
@@ -82,7 +86,11 @@ export async function countEligibleProblems(
   params: FindEligibleProblemsParams,
 ): Promise<number> {
   if (params.unitIds.length === 0) return 0;
-  return db.problem.count({ where: eligibleProblemsWhere(params) });
+  const rows = await db.problem.findMany({
+    where: eligibleProblemsWhere(params),
+    select: { id: true, questionGroupKey: true },
+  });
+  return new Set(rows.map(questionIdOf)).size;
 }
 
 /** 자동 출제용 문제 풀 조회 — reviewStatus='approved'만 대상으로 한다(D-22 품질 리스크 완화). */
@@ -105,6 +113,9 @@ export async function findEligibleProblems(
       //    되어 시험이 초록인 채로 정책만 조용히 꺼진다 — 「없는 축은 변이시킬 수
       //    없다」가 이 저장소에서 네 번 난 자리다.
       familyKey: true,
+      questionGroupKey: true,
+      questionType: true,
+      answer: true,
       // ── 지면을 보기 위한 넷 (⑷ · mm 은 2026-08-20) ─────────────────────
       // 엔진(`risksTightSeat`)이 이 넷으로 「칸에 들어가나」를 본다. 하나라도
       // 빠지면 그 문항의 높이를 «모른다»로 받아 **후순위**로 돌린다.
@@ -127,6 +138,9 @@ export async function findEligibleProblems(
     problemType: row.problemType as ProblemType,
     directUseAllowed: row.directUseAllowed,
     familyKey: row.familyKey,
+    questionGroupKey: row.questionGroupKey,
+    questionType: row.questionType,
+    answer: row.answer,
     content: row.content,
     figureUrls: row.figureUrls,
     figureDims: row.figureDims,

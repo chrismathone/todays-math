@@ -5,6 +5,7 @@ import {
 } from "@/lib/studio-ai/guard";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 import { readUnifiedBankQueryBody } from "@/lib/unifiedBankQueryBody";
+import { bankQueryContext } from "@/lib/bankQueryContext";
 async function handleGet(request: Request) {
   try {
     const access = await authorizeStudio(request);
@@ -14,6 +15,8 @@ async function handleGet(request: Request) {
         request.method === "POST"
           ? await readUnifiedBankQueryBody(request)
           : new URL(request.url).searchParams,
+        // 최근 출제 빼기(`recent=1`)는 로그인한 이 계정의 시험지로 센다(D-20).
+        bankQueryContext(access.user.id),
       ),
       { headers },
     );

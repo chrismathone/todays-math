@@ -52,7 +52,7 @@ export default function CourseProgressBoard({
           days: [],
           upcoming: [
             {
-              title: section?.title ?? "오늘의 수학",
+              title: section?.title ?? "오늘 수학",
               subtitle: section
                 ? `초${section.grade} · ${section.semester}학기 · ${section.chapterTitle}`
                 : "초등 복습",

@@ -42,6 +42,8 @@ import {
 import {
   recallMeasurementModel,
   dialogueMeasurementModel,
+  dialogueMeasurementPasses,
+  measureDialogueCeilings,
   recoveryMeasurePlan,
   measureRecoveryDom,
   applyRecoveryMeasurements,
@@ -391,11 +393,16 @@ export async function renderTextbookChunk(
     throw new Error(
       "Render chunk exceeds 600 projected blocks; split sections before publishing",
     );
-  const sizingModel = dialogueMeasurementModel(wholeModel, model);
   const recallProbes = recallMeasurementModel(
     createTextbookRenderModel(exchange, "answers"),
     model,
   );
+  const { sizing: sizingModel, batches: dialogueBatches } =
+    dialogueMeasurementPasses(
+      dialogueMeasurementModel(wholeModel, model),
+      model,
+      recallProbes,
+    );
   assertRecoveryMeasurementBudget(sizingModel, recallProbes);
   if (
     continuesTextbookSection(
@@ -445,6 +452,22 @@ export async function renderTextbookChunk(
   input.signal?.addEventListener("abort", abort, { once: true });
   try {
     input.onProgress?.("measuring");
+    // Sibling lessons that do not fit beside this chunk bound the unit font first.
+    const dialogueCeilingsPt = await measureDialogueCeilings(
+      dialogueBatches,
+      async (batch, plan) => {
+        await loadReady(
+          page,
+          textbookHtmlDocument(
+            model.title,
+            measurementHtml(batch, resolver),
+            bundle.fontCss,
+            bundle.katexCss,
+          ),
+        );
+        return page.evaluate(measureRecoveryDom, plan);
+      },
+    );
     await loadReady(
       page,
       textbookHtmlDocument(
@@ -455,10 +478,10 @@ export async function renderTextbookChunk(
         bundle.katexCss,
       ),
     );
-    const recoveryMeasurements = await page.evaluate(
-      measureRecoveryDom,
-      recoveryMeasurePlan(sizingModel, input.firstPhysicalPageIndex),
-    );
+    const recoveryMeasurements = await page.evaluate(measureRecoveryDom, {
+      ...recoveryMeasurePlan(sizingModel, input.firstPhysicalPageIndex),
+      dialogueCeilingsPt,
+    });
     applyRecoveryMeasurements(model, recoveryMeasurements);
     await loadReady(
       page,

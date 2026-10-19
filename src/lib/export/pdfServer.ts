@@ -3,6 +3,8 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 import puppeteer, { type Page } from "puppeteer-core";
 import { z } from "zod";
+import { paginateWrongTableRows } from "@/lib/examReport/wrongTable";
+import { examReportTableDom } from "@/lib/examReport/wrongTableDom";
 
 const PACK =
   "https://github.com/Sparticuz/chromium/releases/download/v149.0.0/chromium-v149.0.0-pack.x64.tar";
@@ -21,6 +23,10 @@ export const PdfPayloadSchema = z.object({
   cssUrls: z.array(z.string().max(4000)).max(32).default([]),
   cssText: z.string().max(2_000_000).default(""),
   title: z.string().trim().max(200).default("시험지"),
+  /** 기존 시험지의 외부 글꼴 적재는 유지하고, 자체 글꼴 문서만 명시적으로 닫는다. */
+  fontPolicy: z.enum(["default", "self-hosted"]).default("default"),
+  /** 반 성적표 C2 가로 A4. 기존 시험지의 방향은 유지한다. */
+  landscape: z.boolean().optional(),
 });
 export type PdfPayload = z.infer<typeof PdfPayloadSchema>;
 const escape = (text: string) =>
@@ -36,6 +42,7 @@ export function allowedPdfResource(
   raw: string,
   type: string,
   origin: string,
+  fontPolicy: PdfPayload["fontPolicy"] = "default",
 ): boolean {
   if (raw === "about:blank") return true;
   if (raw.startsWith("data:")) return ["image", "font"].includes(type);
@@ -55,6 +62,7 @@ export function allowedPdfResource(
       );
     return (
       url.protocol === "https:" &&
+      fontPolicy !== "self-hosted" &&
       FONT_HOSTS.has(url.hostname) &&
       ["stylesheet", "font"].includes(type)
     );
@@ -64,8 +72,13 @@ export function allowedPdfResource(
 }
 
 export function pdfDocument(input: PdfPayload, origin: string): string {
-  const styles = [...new Set([...input.cssUrls, ...FONT_CSS])].filter((url) =>
-    allowedPdfResource(url, "stylesheet", origin),
+  const styles = [
+    ...new Set([
+      ...input.cssUrls,
+      ...(input.fontPolicy === "self-hosted" ? [] : FONT_CSS),
+    ]),
+  ].filter((url) =>
+    allowedPdfResource(url, "stylesheet", origin, input.fontPolicy),
   );
   return `<!doctype html><html lang="ko"><head><meta charset="utf-8"><base href="${escape(origin)}/"><title>${escape(input.title)}</title>${styles.map((url) => `<link rel="stylesheet" href="${escape(url)}">`).join("")}<style>${input.cssText.replace(/<\/style/gi, "<\\/style")}</style><style>html,body{margin:0;padding:0}[data-mathgen-document]{display:block!important;--preview-scale:1!important;--preview-trailing-space:0px!important;width:210mm!important;min-width:0!important}[data-unified-paper]{zoom:1!important;margin:0!important;box-shadow:none!important;break-after:page}[data-unified-paper]:last-child{break-after:auto}@page{size:A4;margin:0}</style></head><body>${input.html}</body></html>`;
 }
@@ -74,7 +87,12 @@ async function preparePage(page: Page, input: PdfPayload, origin: string) {
   await page.setJavaScriptEnabled(false);
   await page.setRequestInterception(true);
   page.on("request", (request) => {
-    void (allowedPdfResource(request.url(), request.resourceType(), origin)
+    void (allowedPdfResource(
+      request.url(),
+      request.resourceType(),
+      origin,
+      input.fontPolicy,
+    )
       ? request.continue()
       : request.abort());
   });
@@ -83,23 +101,31 @@ async function preparePage(page: Page, input: PdfPayload, origin: string) {
     waitUntil: "load",
     timeout: 30000,
   });
-  await page.evaluate(async () => {
-    const families = [
-      "Noto Serif KR",
-      "Noto Sans KR",
-      "Nanum Myeongjo",
-      "Nanum Gothic",
-      "Gowun Batang",
-      "Gowun Dodum",
-      "Pretendard",
-    ];
+  await page.evaluate(async (selfHosted: boolean) => {
+    const families = selfHosted
+      ? ["Noto Serif KR", "Pretendard"]
+      : [
+          "Noto Serif KR",
+          "Noto Sans KR",
+          "Nanum Myeongjo",
+          "Nanum Gothic",
+          "Gowun Batang",
+          "Gowun Dodum",
+          "Pretendard",
+        ];
     await Promise.all(
       families.flatMap((family) =>
-        [400, 700].map((weight) =>
-          document.fonts
-            .load(`${weight} 16px "${family}"`, "가힣국문수학9A")
-            .catch(() => undefined),
-        ),
+        [400, 700].map(async (weight) => {
+          const loading = document.fonts.load(
+            `${weight} 16px "${family}"`,
+            "가힣국문수학9A",
+          );
+          if (selfHosted) {
+            const loaded = await loading;
+            if (loaded.length === 0)
+              throw new Error("성적표 글꼴을 불러오지 못했습니다.");
+          } else await loading.catch(() => undefined);
+        }),
       ),
     );
     await document.fonts.ready;
@@ -108,6 +134,51 @@ async function preparePage(page: Page, input: PdfPayload, origin: string) {
     );
     if (!document.querySelector("[data-unified-paper]"))
       throw new Error("내보낼 페이지가 없습니다.");
+  }, input.fontPolicy === "self-hosted");
+  // 신뢰한 함수만 evaluate한다. 제출 HTML의 JavaScript는 계속 닫아 둔다.
+  const table = await page.evaluate(examReportTableDom);
+  if (table) {
+    const layout = paginateWrongTableRows(
+      table.heights,
+      table.first,
+      table.continuation,
+    );
+    await page.evaluate(examReportTableDom, null, layout);
+  }
+  await page.evaluate(() => {
+    // 정상적으로 이어지는 표는 먼저 옮긴 뒤 검사한다. 문장 자체의 넘침 등은 거절한다.
+    for (const [index, sheet] of [
+      ...document.querySelectorAll<HTMLElement>(
+        "[data-exam-report-page] .er-sheet",
+      ),
+    ].entries()) {
+      const children = [...sheet.children] as HTMLElement[];
+      if (
+        sheet.scrollHeight > sheet.clientHeight + 1 ||
+        sheet.scrollWidth > sheet.clientWidth + 1 ||
+        children.some(
+          (child, i) =>
+            child.scrollHeight > child.clientHeight + 2 ||
+            (children[i + 1] &&
+              child.getBoundingClientRect().bottom >
+                children[i + 1].getBoundingClientRect().top + 1),
+        )
+      )
+        throw new Error(
+          `성적표 ${index + 1}쪽이 지면을 벗어납니다. 문장·지면 설정을 확인해 주세요.`,
+        );
+    }
+  });
+}
+
+async function printPdfPage(page: Page, input: PdfPayload, origin: string) {
+  await preparePage(page, input, origin);
+  return page.pdf({
+    format: "A4",
+    ...(input.landscape ? { landscape: true } : {}),
+    printBackground: true,
+    preferCSSPageSize: false,
+    margin: { top: "0mm", right: "0mm", bottom: "0mm", left: "0mm" },
   });
 }
 
@@ -173,16 +244,90 @@ export async function buildPdf(
   try {
     if (signal?.aborted) throw new Error("내보내기가 취소되었습니다.");
     const page = await browser.newPage();
-    await preparePage(page, input, origin);
-    return await page.pdf({
-      format: "A4",
-      printBackground: true,
-      preferCSSPageSize: false,
-      margin: { top: "0mm", right: "0mm", bottom: "0mm", left: "0mm" },
-    });
+    return await printPdfPage(page, input, origin);
   } finally {
     clearTimeout(timeout);
     signal?.removeEventListener("abort", close);
     await browser.close();
   }
+}
+
+const PDF_BATCH_CONCURRENCY = 3;
+export type PdfBatchInput = () => Promise<PdfPayload | Uint8Array>;
+
+/** Ordered, all-or-nothing batch. Existing PDFs bypass Chromium; other inputs share one browser. */
+export async function buildPdfBatch(
+  inputs: readonly PdfBatchInput[],
+  origin: string,
+): Promise<Uint8Array[]> {
+  const output = new Array<Uint8Array>(inputs.length);
+  let next = 0;
+  let failed = false;
+  let failure: unknown;
+  let browser: Awaited<ReturnType<typeof launchExportBrowser>> | undefined;
+  let launching: ReturnType<typeof launchExportBrowser> | undefined;
+  let closing: Promise<void> | undefined;
+  const fail = (error: unknown) => {
+    if (!failed) {
+      failed = true;
+      failure = error;
+    }
+  };
+  const closeBrowser = () => {
+    if (browser) return (closing ??= browser.close());
+  };
+  const worker = async () => {
+    while (!failed) {
+      const index = next++;
+      if (index >= inputs.length) return;
+      let page: Page | undefined;
+      let timeout: ReturnType<typeof setTimeout> | undefined;
+      try {
+        const input = await inputs[index]();
+        if (failed) return;
+        if (input instanceof Uint8Array) {
+          output[index] = input;
+          continue;
+        }
+        launching ??= launchExportBrowser().then((value) => {
+          browser = value;
+          return value;
+        });
+        const shared = await launching;
+        if (failed) return;
+        // Keep the existing per-PDF deadline, rather than timing the entire class.
+        timeout = setTimeout(() => {
+          void closeBrowser()?.catch(fail);
+        }, 60000);
+        page = await shared.newPage();
+        output[index] = await printPdfPage(page, input, origin);
+      } catch (error) {
+        fail(error);
+      } finally {
+        clearTimeout(timeout);
+        try {
+          await page?.close();
+        } catch (error) {
+          fail(error);
+        }
+      }
+    }
+  };
+  try {
+    await Promise.all(
+      Array.from(
+        { length: Math.min(PDF_BATCH_CONCURRENCY, inputs.length) },
+        worker,
+      ),
+    );
+  } finally {
+    // Workers settle before the shared browser closes, including on a render failure.
+    try {
+      await closeBrowser();
+    } catch (error) {
+      fail(error);
+    }
+  }
+  if (failed) throw failure;
+  return output;
 }

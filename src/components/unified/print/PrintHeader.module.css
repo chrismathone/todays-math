@@ -1,0 +1,224 @@
+/* Approved C2 header geometry from /dev/print-color-hifi. */
+.header {
+  flex-shrink: 0;
+  margin-bottom: 20px;
+}
+.paperTitle {
+  font-family: var(--paper-font-sans);
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.4;
+  margin: 10px 0;
+}
+.prominentField {
+  display: inline;
+}
+.paperInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  padding: 8px 0;
+  font-family: var(--paper-font-sans);
+  font-size: 11px;
+}
+.infoField {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+.fieldLabel {
+  flex-shrink: 0;
+  font-family: var(--paper-font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--head-info);
+}
+.examBand {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-top: 3px solid var(--head-rule);
+  border-bottom: 2px solid var(--head-rule);
+  background: var(--head-accent);
+  color: var(--head-ink);
+  font-family: var(--paper-font-sans);
+}
+.examBand strong {
+  font-size: 26px;
+  font-weight: 800;
+}
+.examBand > span {
+  font-size: 12px;
+  flex-shrink: 0;
+}
+.examBand .paperTitle {
+  margin: 0;
+  font-size: 22px;
+}
+.schoolTable {
+  border: 2px solid var(--head-rule);
+}
+.schoolTable .examBand {
+  justify-content: center;
+  border-top: none;
+}
+.tableFields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  background: var(--head-paper);
+}
+.tableFields > .infoField {
+  padding: 8px 10px;
+  border-right: 1px solid var(--head-line);
+  border-bottom: 1px solid var(--head-line);
+  font-size: 11px;
+  flex-wrap: wrap;
+}
+.studentLine {
+  padding: 8px 10px;
+  margin-top: 10px;
+  border-top: 1px solid var(--head-line);
+  border-bottom: 1px solid var(--head-line);
+  font-family: var(--paper-font-sans);
+  font-size: 11px;
+}
+.modernHead {
+  border-bottom: 3px solid var(--head-rule);
+  padding: 10px 14px;
+  background: var(--head-accent);
+  color: var(--head-ink);
+}
+.modernHead .fieldLabel {
+  color: inherit;
+}
+.schoolTitle {
+  font-family: var(--paper-font-sans);
+  font-size: 26px;
+  font-weight: 800;
+}
+.academyHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.academyName {
+  font-family: var(--paper-font-sans);
+  font-size: 19px;
+  font-weight: 800;
+}
+.academyHead .paperInfo {
+  justify-content: flex-end;
+}
+.noteBox {
+  padding: 10px 14px;
+  border: 1px solid var(--head-rule);
+  border-left: 5px solid var(--head-rule);
+  background: var(--head-paper);
+  margin: 10px 0;
+}
+.noteBox > .infoField {
+  display: flex;
+  margin: 3px 0;
+}
+.noteBox p {
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 4px 0 0;
+}
+.noteLabel {
+  color: var(--head-info);
+  font-family: var(--paper-font-sans);
+  font-size: 11px;
+  font-weight: 700;
+}
+.selfHead {
+  border-top: 3px solid var(--head-rule);
+  padding: 10px 14px;
+  background: var(--head-accent);
+  color: var(--head-ink);
+}
+.selfHead .kicker {
+  color: inherit;
+  font-size: 10px;
+}
+.selfHead .fieldLabel {
+  color: inherit;
+}
+.goal {
+  padding: 8px 0;
+}
+.goal .infoField {
+  display: flex;
+  font-size: 12px;
+}
+.patternTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.patternTop .paperTitle {
+  font-size: 16px;
+}
+.patternName {
+  font-family: var(--paper-font-sans);
+  font-size: 21px;
+  font-weight: 800;
+}
+.strategy {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--head-line);
+  background: var(--head-paper);
+}
+.strategy .infoField {
+  font-size: 12px;
+}
+
+.examTag {
+  display: inline-block;
+  border: 1px solid currentColor;
+  padding: 2px 8px;
+  font-family: var(--paper-font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.examPeriod {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.modernTop,
+.selfKicker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.selfKicker {
+  font-family: var(--paper-font-sans);
+  font-size: 10px;
+}
+.examBand,
+.schoolTable,
+.modernHead,
+.selfHead {
+  border-color: var(--head-accent);
+}
+.header {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.examBand > :first-child,
+.modernTop > :first-child {
+  min-width: 0;
+}

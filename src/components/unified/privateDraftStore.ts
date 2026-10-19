@@ -5,7 +5,10 @@ import {
   parseImport,
   type WorkspaceDraft,
   type WorkspaceDraftSnapshot,
+  type DraftStoreOptions,
+  type DraftSummary,
 } from "./draftStore";
+import { parseWorkspaceWorkflow } from "@/contracts/workspaceWorkflow.contract";
 import {
   cloudError,
   PrivateCloudClient,
@@ -37,6 +40,7 @@ export function createPrivateDraftStore(
   scope: string,
   client = new PrivateCloudClient(scope),
   storage = () => window.localStorage,
+  { autoResume = true }: DraftStoreOptions = {},
 ) {
   const recoveryKey = `${DRAFT_STORE_KEY}:cloud:${encodeURIComponent(scope)}`;
   let raw: string | null = null;
@@ -66,19 +70,22 @@ export function createPrivateDraftStore(
       /* Remote saves can succeed when the optional browser recovery cache is full. */
     }
   };
-  const local = createWorkspaceDraftStore(() => ({
-    getItem: (key) => (key === DRAFT_STORE_KEY ? raw : null),
-    setItem: (_key, value) => {
-      raw = value;
-      persist();
-    },
-  }));
+  const local = createWorkspaceDraftStore(
+    () => ({
+      getItem: (key) => (key === DRAFT_STORE_KEY ? raw : null),
+      setItem: (_key, value) => {
+        raw = value;
+        persist();
+      },
+    }),
+    { autoResume },
+  );
   const initial = local.getServerSnapshot();
   let snapshot: WorkspaceDraftSnapshot = initial;
   const publish = () => {
     const state = local.getSnapshot();
     // The library needs metadata, not every worksheet's payload and images.
-    const recent = new Map(
+    const recent = new Map<string, DraftSummary>(
       remoteSummaries.map((item) => [
         item.id,
         {
@@ -86,10 +93,29 @@ export function createPrivateDraftStore(
           title: item.title,
           problemCount: item.problemCount,
           updatedAt: item.updatedAt,
+          workflow: parseWorkspaceWorkflow(item.workflow),
         },
       ]),
     );
-    for (const item of state.recent) recent.set(item.id, item);
+    const cachedDrafts = new Map<string, WorkspaceDraft>();
+    if (!autoResume && state.recent.length && raw) {
+      try {
+        for (const draft of parseEnvelope(raw).drafts)
+          cachedDrafts.set(draft.id, draft);
+      } catch {
+        /* Hydration already reports corrupt recovery; never hide that error. */
+      }
+    }
+    for (const item of state.recent) {
+      const cached = cachedDrafts.get(item.id);
+      if (
+        autoResume ||
+        !recent.has(item.id) ||
+        !cached ||
+        bases[item.id]?.acknowledged !== fingerprint(cached)
+      )
+        recent.set(item.id, item);
+    }
     for (const id of deleted) recent.delete(id);
     snapshot = {
       ...state,
@@ -129,6 +155,9 @@ export function createPrivateDraftStore(
   const enqueue = () => {
     if (initializing || !raw || loadError) return;
     for (const draft of parseEnvelope(raw).drafts) {
+      // Unopened recovery remains intact, including its original optimistic
+      // revision. Merely visiting must not retry or mutate old cloud records.
+      if (!autoResume && draft.id !== local.getSnapshot().draft.id) continue;
       if (deleted.has(draft.id) || conflicts.has(draft.id)) continue;
       const signature = fingerprint(draft);
       if (
@@ -219,7 +248,7 @@ export function createPrivateDraftStore(
           // Keep every unsent recovery with its ORIGINAL revision. Inactive
           // images stay portable; saving them does not require downloading them.
           // Clean cached copies (including remote deletions) need no local payload.
-          if (!base || base.acknowledged !== fingerprint(draft))
+          if (!autoResume || !base || base.acknowledged !== fingerprint(draft))
             merged.set(draft.id, draft);
         }
         const activeId =
@@ -228,7 +257,7 @@ export function createPrivateDraftStore(
             summaries.some((item) => item.id === recovered.activeId))
             ? recovered.activeId
             : (summaries[0]?.id ?? merged.keys().next().value ?? null);
-        if (activeId) {
+        if (autoResume && activeId) {
           const recovery = merged.get(activeId);
           if (recovery) {
             merged.set(activeId, await client.materialize(recovery));
@@ -248,7 +277,7 @@ export function createPrivateDraftStore(
         const drafts = [...merged.values()];
         raw = JSON.stringify({
           version: 1,
-          activeId,
+          activeId: autoResume ? activeId : recovered.activeId,
           drafts,
         });
       } catch (cause) {
@@ -271,10 +300,11 @@ export function createPrivateDraftStore(
       try {
         // Reconnect without replacing edits made while offline; optimistic revisions still fence writes.
         const summaries = await client.list("draft");
+        remoteSummaries = summaries;
         const envelope: ReturnType<typeof parseEnvelope> = raw
           ? parseEnvelope(raw)
           : { version: 1, activeId: null, drafts: [] };
-        for (const summary of summaries) {
+        for (const summary of autoResume ? summaries : []) {
           if (envelope.drafts.some((item) => item.id === summary.id)) continue;
           const document = await client.get(summary.id);
           const displayed = await client.materialize(fromDocument(document));
@@ -303,6 +333,7 @@ export function createPrivateDraftStore(
         // retried without changing worksheet content or adopting a newer base.
         void run(async () => {
           const draft = local.getSnapshot().draft;
+          if (!draft.updatedAt) return;
           const payload = await client.externalize({ ...draft, version: 1 });
           const saved = await client.save(
             draft.id,
@@ -342,13 +373,24 @@ export function createPrivateDraftStore(
   };
   const openDraft = async (id: string) => {
     const request = ++opening;
-    if (!(await saveNow())) return false;
+    await hydrate();
+    const cached = raw
+      ? parseEnvelope(raw).drafts.find((draft) => draft.id === id)
+      : undefined;
+    const unsent = cached && bases[id]?.acknowledged !== fingerprint(cached);
+    // An unsent recovery wins over the server. It can be inspected even while
+    // offline or after a revision conflict; the existing base still fences writes.
+    if (!autoResume && unsent) {
+      if (!local.saveNow()) return false;
+    } else if (!(await saveNow())) return false;
     const outgoing = fingerprint(local.getSnapshot().draft);
     try {
-      const document = await client.get(id);
-      if (document.kind !== "draft")
+      const document = !autoResume && unsent ? undefined : await client.get(id);
+      if (document && document.kind !== "draft")
         throw new Error("시험지 형식을 확인해 주세요.");
-      const draft = await client.materialize(fromDocument(document));
+      const draft = await client.materialize(
+        document ? fromDocument(document) : cached!,
+      );
       if (request !== opening || deleted.has(id)) return false;
       // Lazy payload/image reads may finish after a newer editor action. Never
       // replace recovery or the optimistic base with that stale response.
@@ -364,12 +406,13 @@ export function createPrivateDraftStore(
         draft,
       ];
       raw = JSON.stringify(envelope);
-      bases[id] = {
-        revision: document.revision,
-        visibility: document.visibility,
-        sharedBranchId: document.sharedBranchId,
-        acknowledged: fingerprint(draft),
-      };
+      if (document)
+        bases[id] = {
+          revision: document.revision,
+          visibility: document.visibility,
+          sharedBranchId: document.sharedBranchId,
+          acknowledged: fingerprint(draft),
+        };
       persist();
       return local.openDraft(id);
     } catch (cause) {

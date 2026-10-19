@@ -1,0 +1,30 @@
+Arithmetic school-unit audit — 2026-10-15
+
+Owner scope: all direct calculational practice available in grades 초3–중3,
+including factorization, equations, functions, trigonometry, measurement and data.
+This supersedes the original numeric-only/no-equation scope comment.
+
+Primary references checked 2026-10-15:
+https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&m=0404
+Education Ministry notice 2022-33: 2022 curriculum applies to elementary 3/4
+and middle 1 from 2025; elementary 5/6 and middle 2 from 2026; middle 3 from
+2027. Thus current middle 3 still follows the 2015 curriculum.
+https://www.ebsmath.co.kr/
+EBS school-grade subject navigation supplies observable textbook unit placement.
+Cross-checked local prisma/seed-data/units.ts. Semester is the common textbook
+sequence, not a claim that national achievement standards prescribe semesters.
+
+Observed baseline: 347 registered types, of which 263 geometry types.
+Missing major calculational units include factorization, equation solving,
+functions, number theory, ratios and data/probability. Geometry-only expansion
+was not complete coverage of grades 3–9. Expansion and detailed coverage audit
+are in progress; no completeness claim is made by this baseline report.
+
+Pythagoras: integer-answer definitions already belong to middle 2. Seven
+root-dependent geometry definitions have middle 3 IDs. Keep published IDs and
+saved prompts intact; catalog school unit is middle 3 '제곱근과 실수', with
+explicit '중2 피타고라스·닮음 활용'. They are not a new middle 3 Pythagoras unit.
+
+Catalog metadata is a display-only addition; source candidate identity and saved
+figure validation are unchanged. Every catalog type must have a unit and term;
+unknown families fail the mapping audit instead of silently receiving a guess.

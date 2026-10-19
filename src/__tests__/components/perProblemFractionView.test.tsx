@@ -285,6 +285,7 @@ const SCREENS: Screen[] = [
     show: (f) => {
       const row: BankProblem = {
         ...studioProblem(f),
+        source: "manual",
         familyKey: null,
         originProblemId: null,
         questionTypeRaw: null,

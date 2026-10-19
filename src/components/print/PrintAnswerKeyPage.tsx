@@ -29,7 +29,7 @@ export function PrintAnswerKeyPage({
     <A4Page className={styles.answerPage} kind="answers" pageNumber={page}>
       <header className={styles.answerHeader}>
         <div>
-          <div className={styles.answerEyebrow}>오늘의수학 · ANSWER KEY</div>
+          <div className={styles.answerEyebrow}>오늘 수학 · ANSWER KEY</div>
           <h2>{testTitle}</h2>
         </div>
         <span>
@@ -93,7 +93,7 @@ export function PrintAnswerKeyPage({
         })}
       </div>
 
-      <footer className={styles.answerFooter}>오늘의수학 · p. {page}</footer>
+      <footer className={styles.answerFooter}>오늘 수학 · p. {page}</footer>
     </A4Page>
   );
 }

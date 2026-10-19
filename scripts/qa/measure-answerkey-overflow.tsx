@@ -69,10 +69,10 @@ function renderAnswerPage(
     )
     .join("");
   return `<section class="a4Page answerPage" data-tag="${tag}" data-page="${pageNumber}" style="${PAPER_VARS}">
-<header class="answerHeader"><div><div class="answerEyebrow">오늘의수학 · ANSWER KEY</div><h2>일일테스트 · 이차방정식</h2></div><span>정답 및 해설 · ${pageNumber} / ${totalPages}</span></header>
+<header class="answerHeader"><div><div class="answerEyebrow">오늘 수학 · ANSWER KEY</div><h2>일일테스트 · 이차방정식</h2></div><span>정답 및 해설 · ${pageNumber} / ${totalPages}</span></header>
 ${quick}
 <div class="answerSolutions" style="column-count:2">${items}</div>
-<footer class="answerFooter">오늘의수학 · p. ${pageNumber}</footer>
+<footer class="answerFooter">오늘 수학 · p. ${pageNumber}</footer>
 </section>`;
 }
 

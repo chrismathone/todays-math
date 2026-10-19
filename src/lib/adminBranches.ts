@@ -8,6 +8,7 @@ export const branchSummarySelect = {
   name: true,
   createdAt: true,
   disabledMenus: true,
+  ownerDisabledMenus: true,
   menuRevision: true,
   _count: { select: { users: { where: { deletedAt: null } } } },
   users: {

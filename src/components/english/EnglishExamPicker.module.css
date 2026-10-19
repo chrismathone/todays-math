@@ -62,13 +62,13 @@
 
 .chip:hover,
 .examSelect:hover {
-  border-color: #91a9da;
+  border-color: var(--learn-focus, #91a9da);
 }
 
 .chip[aria-pressed="true"] {
   border-color: var(--accent, #3159df);
-  background: #edf2ff;
-  color: #2447b8;
+  background: var(--learn-soft, #edf2ff);
+  color: var(--learn-accent-hover, #2447b8);
 }
 
 .examSelect {
@@ -78,7 +78,7 @@
 }
 
 .context :is(button, select):focus-visible {
-  outline: 3px solid #82a1ff;
+  outline: 3px solid var(--learn-focus, #82a1ff);
   outline-offset: 3px;
 }
 

@@ -42,26 +42,46 @@ afterEach(() => vi.unstubAllGlobals());
 
 describe("account menu product tabs", () => {
   it("restores direct-link list state and selection and carries a same-branch return to detail", async () => {
-    const params = new URLSearchParams({ q: "haneul@example.com", status: "pending", page: "2", tab: "accounts", selection: pendingAccount.id });
-    window.history.replaceState(null, "", `/admin/branches/unassigned?${params}#admin-main`);
-    fetchMock.mockResolvedValue(json(accountsResponse([pendingAccount], { page: 2, total: 51 })));
+    const params = new URLSearchParams({
+      q: "haneul@example.com",
+      status: "pending",
+      page: "2",
+      tab: "accounts",
+      selection: pendingAccount.id,
+    });
+    window.history.replaceState(
+      null,
+      "",
+      `/admin/branches/unassigned?${params}#admin-main`,
+    );
+    fetchMock.mockResolvedValue(
+      json(accountsResponse([pendingAccount], { page: 2, total: 51 })),
+    );
     render(<AdminAccounts identity={adminIdentity} branchId="unassigned" />);
     const link = await screen.findByRole("link", { name: "김하늘" });
     expect(screen.getByRole("searchbox")).toHaveValue("haneul@example.com");
     await screen.findByRole("button", { name: "검토 닫기" });
-    const request = new URL(String(fetchMock.mock.calls[0][0]), "http://localhost");
+    const request = new URL(
+      String(fetchMock.mock.calls[0][0]),
+      "http://localhost",
+    );
     expect(request.searchParams.get("q")).toBe("haneul@example.com");
     expect(request.searchParams.get("page")).toBe("2");
     expect(request.searchParams.get("status")).toBe("pending");
     const destination = new URL(link.getAttribute("href")!, "http://localhost");
-    const back = new URL(destination.searchParams.get("returnTo")!, "http://localhost");
+    const back = new URL(
+      destination.searchParams.get("returnTo")!,
+      "http://localhost",
+    );
     expect(back.pathname).toBe("/admin/branches/unassigned");
-    for (const [key, value] of params) expect(back.searchParams.get(key)).toBe(value);
+    for (const [key, value] of params)
+      expect(back.searchParams.get(key)).toBe(value);
     expect(back.hash).toBe("#admin-main");
   });
   const mathLabels = [
     "오늘의 작업",
     "시험지 만들기",
+    "연산대장",
     "문제 추출",
     "내 시험지",
     "교재 제작",
@@ -103,25 +123,25 @@ describe("account menu product tabs", () => {
     "uses the target branch %s for library labels in sidebar order",
     (branchId, libraryLabel) => {
       review({ ...pendingAccount, branchId });
-      expect(tab("오늘의 수학")).toHaveAttribute("aria-selected", "true");
-      expect(labels()).toEqual([
-        ...mathLabels.map((label) =>
+      expect(tab("오늘 수학")).toHaveAttribute("aria-selected", "true");
+      expect(labels()).toEqual(
+        mathLabels.map((label) =>
           label === "내 시험지" ? libraryLabel : label,
         ),
-        "시험지 · 내보내기",
-      ]);
+      );
       expect(
-        panel().getByRole("heading", { name: "추가 기능 권한" }),
-      ).toBeInTheDocument();
+        screen.queryByLabelText("시험지 · 내보내기"),
+      ).not.toBeInTheDocument();
+      expect(screen.queryByText("추가 기능 권한")).not.toBeInTheDocument();
       expect(panel().getByRole("group")).toHaveAccessibleName(
-        "오늘의 수학 2 / 9",
+        "오늘 수학 2 / 10",
       );
     },
   );
 
   it("expands the legacy grant into three independently editable English menus", () => {
     const { onLockChange } = review({ ...pendingAccount, menus: ["english"] });
-    fireEvent.click(tab("오늘의 영어"));
+    fireEvent.click(tab("오늘 영어"));
     expect(labels()).toEqual([
       "학교별 내신 대비",
       "문제 만들기",
@@ -136,9 +156,7 @@ describe("account menu product tabs", () => {
           ? expect(input).toBeChecked()
           : expect(input).not.toBeChecked(),
       );
-    expect(panel().getByRole("group")).toHaveAccessibleName(
-      "오늘의 영어 3 / 5",
-    );
+    expect(panel().getByRole("group")).toHaveAccessibleName("오늘 영어 3 / 5");
     expect(onLockChange).not.toHaveBeenCalled();
     expect(screen.getByRole("button", { name: "변경 저장" })).toBeDisabled();
     fireEvent.click(screen.getByRole("checkbox", { name: "문제 만들기" }));
@@ -163,15 +181,16 @@ describe("account menu product tabs", () => {
     );
     const { onLockChange } = review(account);
     fireEvent.click(screen.getByRole("checkbox", { name: "문제 추출" }));
-    fireEvent.click(tab("오늘의 영어"));
+    fireEvent.click(tab("오늘 영어"));
     fireEvent.click(screen.getByRole("checkbox", { name: "문제 만들기" }));
-    fireEvent.click(tab("오늘의 수학"));
+    fireEvent.click(tab("오늘 수학"));
     expect(screen.getByRole("checkbox", { name: "문제 추출" })).toBeChecked();
     expect(
-      screen.getByRole("checkbox", { name: "시험지 · 내보내기" }),
-    ).toBeChecked();
+      screen.queryByLabelText("시험지 · 내보내기"),
+    ).not.toBeInTheDocument();
+    expect(panel().getByRole("group")).toHaveAccessibleName("오늘 수학 3 / 10");
     expect(onLockChange).toHaveBeenLastCalledWith(true);
-    fireEvent.click(tab("오늘의 영어"));
+    fireEvent.click(tab("오늘 영어"));
     expect(screen.getByRole("checkbox", { name: "문제 만들기" })).toBeChecked();
     expect(
       fetchMock.mock.calls.filter(([, init]) => init?.method === "PATCH"),
@@ -193,28 +212,40 @@ describe("account menu product tabs", () => {
     });
   });
 
-  it("moves export to its sidebar position when every entry menu is off", () => {
+  it("keeps legacy export hidden and uncounted when every selectable menu is off", () => {
     review({ ...pendingAccount, menus: ["export"] });
-    expect(labels()).toEqual([
-      ...mathLabels.slice(0, 3),
-      "시험지 · 내보내기",
-      ...mathLabels.slice(3),
-    ]);
+    expect(labels()).toEqual(mathLabels);
+    expect(panel().getByRole("group")).toHaveAccessibleName("오늘 수학 0 / 10");
+    expect(
+      screen.queryByLabelText("시험지 · 내보내기"),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByText(/사용할 수 있는 메뉴가 없습니다/),
+    ).toBeInTheDocument();
     expect(
       panel().queryByRole("heading", { name: "추가 기능 권한" }),
     ).not.toBeInTheDocument();
     for (const name of ["시험지 만들기", "문제 추출", "내 시험지"]) {
       fireEvent.click(screen.getByRole("checkbox", { name }));
-      expect(labels()).toEqual([...mathLabels, "시험지 · 내보내기"]);
+      expect(labels()).toEqual(mathLabels);
+      expect(panel().getByRole("group")).toHaveAccessibleName(
+        "오늘 수학 1 / 10",
+      );
       expect(
-        screen.getByRole("checkbox", { name: "시험지 · 내보내기" }),
-      ).toBeChecked();
+        screen.queryByLabelText("시험지 · 내보내기"),
+      ).not.toBeInTheDocument();
+      expect(screen.queryByText("추가 기능 권한")).not.toBeInTheDocument();
       fireEvent.click(screen.getByRole("checkbox", { name }));
     }
     expect(
       panel().queryByRole("heading", { name: "추가 기능 권한" }),
     ).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "변경 저장" })).toBeDisabled();
+    fireEvent.click(tab("오늘 영어"));
+    expect(panel().getByRole("group")).toHaveAccessibleName("오늘 영어 0 / 5");
+    expect(
+      screen.queryByLabelText("시험지 · 내보내기"),
+    ).not.toBeInTheDocument();
   });
 
   it("updates the library label immediately with a branch draft and saves it with English permissions", async () => {
@@ -240,7 +271,7 @@ describe("account menu product tabs", () => {
     expect(
       screen.getByRole("checkbox", { name: "우리학원 시험지" }),
     ).toBeInTheDocument();
-    fireEvent.click(tab("오늘의 영어"));
+    fireEvent.click(tab("오늘 영어"));
     fireEvent.click(screen.getByRole("checkbox", { name: "문제 보관함" }));
     fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
     await screen.findByText("계정 변경을 저장했습니다.");
@@ -264,7 +295,7 @@ describe("account menu product tabs", () => {
         : json({ data: [] }),
     );
     review(account);
-    fireEvent.click(tab("오늘의 영어"));
+    fireEvent.click(tab("오늘 영어"));
     fireEvent.click(screen.getByRole("checkbox", { name: "문제 만들기" }));
     fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
     await screen.findByText("계정 변경을 저장했습니다.");
@@ -327,7 +358,7 @@ describe("account menu product tabs", () => {
           target: { value: "teacher" },
         });
       expect(screen.getByRole("checkbox", { name: label! })).toBeEnabled();
-      fireEvent.click(tab("오늘의 영어"));
+      fireEvent.click(tab("오늘 영어"));
       fireEvent.click(screen.getByRole("checkbox", { name: "문제 보관함" }));
       fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
       await screen.findByText("계정 변경을 저장했습니다.");
@@ -424,31 +455,31 @@ describe("account menu product tabs", () => {
 
   it("supports arrow and boundary keys without dirtying the account", () => {
     const { onLockChange } = review();
-    fireEvent.keyDown(tab("오늘의 수학"), { key: "ArrowRight" });
-    expect(tab("오늘의 영어")).toHaveFocus();
-    expect(tab("오늘의 영어")).toHaveAttribute("aria-selected", "true");
-    expect(tab("오늘의 수학")).toHaveAttribute("tabindex", "-1");
-    fireEvent.keyDown(tab("오늘의 영어"), { key: "ArrowRight" });
-    expect(tab("오늘의 수학")).toHaveFocus();
-    fireEvent.keyDown(tab("오늘의 수학"), { key: "End" });
-    expect(tab("오늘의 영어")).toHaveFocus();
-    fireEvent.keyDown(tab("오늘의 영어"), { key: "Home" });
-    expect(tab("오늘의 수학")).toHaveFocus();
-    fireEvent.keyDown(tab("오늘의 수학"), { key: "ArrowLeft" });
-    expect(tab("오늘의 영어")).toHaveFocus();
+    fireEvent.keyDown(tab("오늘 수학"), { key: "ArrowRight" });
+    expect(tab("오늘 영어")).toHaveFocus();
+    expect(tab("오늘 영어")).toHaveAttribute("aria-selected", "true");
+    expect(tab("오늘 수학")).toHaveAttribute("tabindex", "-1");
+    fireEvent.keyDown(tab("오늘 영어"), { key: "ArrowRight" });
+    expect(tab("오늘 수학")).toHaveFocus();
+    fireEvent.keyDown(tab("오늘 수학"), { key: "End" });
+    expect(tab("오늘 영어")).toHaveFocus();
+    fireEvent.keyDown(tab("오늘 영어"), { key: "Home" });
+    expect(tab("오늘 수학")).toHaveFocus();
+    fireEvent.keyDown(tab("오늘 수학"), { key: "ArrowLeft" });
+    expect(tab("오늘 영어")).toHaveFocus();
     expect(onLockChange).not.toHaveBeenCalled();
   });
 
   it("cancels menu edits in both tabs", () => {
     review();
     fireEvent.click(screen.getByRole("checkbox", { name: "문제 추출" }));
-    fireEvent.click(tab("오늘의 영어"));
+    fireEvent.click(tab("오늘 영어"));
     fireEvent.click(screen.getByRole("checkbox", { name: "문제 만들기" }));
     fireEvent.click(screen.getByRole("button", { name: "변경 취소" }));
     expect(
       screen.getByRole("checkbox", { name: "문제 만들기" }),
     ).not.toBeChecked();
-    fireEvent.click(tab("오늘의 수학"));
+    fireEvent.click(tab("오늘 수학"));
     expect(
       screen.getByRole("checkbox", { name: "문제 추출" }),
     ).not.toBeChecked();
@@ -462,7 +493,7 @@ describe("account menu product tabs", () => {
     fireEvent.change(screen.getByRole("textbox", { name: "이름" }), {
       target: { value: "새 이름" },
     });
-    fireEvent.click(tab("오늘의 영어"));
+    fireEvent.click(tab("오늘 영어"));
     fireEvent.click(screen.getByRole("checkbox", { name: "문제 만들기" }));
     fireEvent.click(screen.getByRole("checkbox", { name: "문제 만들기" }));
     expect(onLockChange).toHaveBeenLastCalledWith(true);
@@ -482,11 +513,11 @@ describe("account menu product tabs", () => {
       panel()
         .getAllByRole("checkbox")
         .forEach((input) => expect(input).toBeDisabled());
-      fireEvent.click(tab("오늘의 영어"));
+      fireEvent.click(tab("오늘 영어"));
       expect(
         screen.getByRole("checkbox", { name: "문제 만들기" }),
       ).toBeDisabled();
-      expect(tab("오늘의 영어")).toHaveAttribute("aria-selected", "true");
+      expect(tab("오늘 영어")).toHaveAttribute("aria-selected", "true");
     },
   );
 
@@ -508,7 +539,7 @@ describe("account menu product tabs", () => {
     fireEvent.click(screen.getByRole("checkbox", { name: "문제 추출" }));
     fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
     await screen.findByText(/다른 관리자가 이 계정을 변경했습니다/);
-    fireEvent.click(tab("오늘의 영어"));
+    fireEvent.click(tab("오늘 영어"));
     expect(
       screen.getByRole("checkbox", { name: "문제 만들기" }),
     ).toBeDisabled();
@@ -516,7 +547,7 @@ describe("account menu product tabs", () => {
     await screen.findByText(/최신 정보를 불러왔습니다/);
     expect(screen.getByRole("checkbox", { name: "문제 만들기" })).toBeEnabled();
     expect(screen.getByRole("checkbox", { name: "문제 만들기" })).toBeChecked();
-    fireEvent.click(tab("오늘의 수학"));
+    fireEvent.click(tab("오늘 수학"));
     expect(
       screen.getByRole("checkbox", { name: "문제 추출" }),
     ).not.toBeChecked();

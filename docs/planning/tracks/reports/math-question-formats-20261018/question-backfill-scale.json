@@ -1,0 +1,91 @@
+{
+  "kind": "question-backfill-local-scale",
+  "capturedAt": "2026-10-18T07:32:40.262Z",
+  "scope": "Private stale pre-repair preview, read only; synthetic catalog answers; no DB client, connection, query or shared write. Disk run simulates receipt ownership checkpoints only.",
+  "operatorSha256": "66194f3dcf0ca0b7d4d0069250e2648745efbe3ab3838e9a95e3f3b2f902421a",
+  "inputManifestSha256": "c26c6dd3ed8519a16341aaaf6e861f4ba8bdc1ee060e835fa219931361e1cfe5",
+  "ddlSha256": "b36dae98a6e343a5207fc61e77e52fa050bde6dd8a8b75bfce57507baaa0b64c",
+  "pairs": 47746,
+  "targetRows": 95492,
+  "manifestBytes": 24262301,
+  "manifestParseMs": 27.18633299999999,
+  "approvalValidation": {
+    "samplesMs": [
+      46.76249999999999,
+      35.70158300000003,
+      35.429250000000025,
+      39.657624999999996,
+      34.70658300000002
+    ],
+    "medianMs": 35.70158300000003
+  },
+  "receiptMembershipValidation": {
+    "samplesMs": [
+      157.885875,
+      142.25154199999997,
+      147.38924999999995,
+      148.462583,
+      145.0747909999999
+    ],
+    "medianMs": 147.38924999999995,
+    "catalogQueries": 10,
+    "rowTransactions": 0
+  },
+  "serialization": {
+    "pretty": {
+      "bytes": 24255333,
+      "samplesMs": [
+        20.180082999999968,
+        19.853832999999895,
+        20.903332999999975,
+        19.480542000000014,
+        20.054582999999866
+      ],
+      "medianMs": 20.054582999999866
+    },
+    "compact": {
+      "bytes": 17523107,
+      "samplesMs": [
+        14.132125000000087,
+        14.10391699999991,
+        16.878250000000207,
+        14.068083000000115,
+        16.945999999999913
+      ],
+      "medianMs": 14.132125000000087
+    }
+  },
+  "disk": {
+    "elapsedMs": 18118.331083,
+    "checkpoints": 957,
+    "cumulativeBytes": 8406614980,
+    "finalBytes": 17523107,
+    "maxCheckpointMs": 77.9128750000018,
+    "fileFsyncs": 957,
+    "directoryFsyncs": 957,
+    "atomicRenames": 957,
+    "finalFileMode": 384,
+    "directoryMode": 448,
+    "retainedTemporaryReceipts": 0
+  },
+  "projectedSql": {
+    "note": "Counts from local 201-pair integration regression; no shared-network latency or actual full-payload SQL timing claim.",
+    "pairsPerChunk": 100,
+    "maxLockedRows": 200,
+    "maxUpdateParameters": 800,
+    "chunks": 478,
+    "keyUpdateCalls": 478,
+    "previousPerRowKeyUpdateCalls": 95492,
+    "rawSqlCallsIncludingTwoCatalogChecks": 2870,
+    "transactionBeginCommitCalls": 956,
+    "rerunKeyUpdateCalls": 0,
+    "fullApplyReceiptCheckpoints": 957,
+    "previousDefault20PairReceiptCheckpoints": 4777
+  },
+  "limits": [
+    "Every operation still re-proves locked actual rows and checks current quarantine overlap before its sole chunk UPDATE.",
+    "Durable full v1 JSON is still rewritten twice per chunk plus final completion; no ownership or crash journal is dropped. Compact changes whitespace only; manifest bytes stay pretty and hash-bound.",
+    "CPU/receipt I/O figures are local measurements, not production database/lock/concurrency/network throughput. Up to 200 full payload JSON preimages per UPDATE can still be large.",
+    "Lock 3s, statement 15s and transaction 20s bounds are unchanged. A failure retains pendingChunk and requires explicit reconciliation before reuse."
+  ]
+}

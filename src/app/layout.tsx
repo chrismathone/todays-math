@@ -8,7 +8,7 @@ import "./globals.css";
 import { notoSerifKR, pretendard } from "./fonts";
 
 export const metadata: Metadata = {
-  title: "오늘의수학",
+  title: "오늘 수학",
   description: "진도 기반 수학 시험지 자동 출제",
 };
 

@@ -5,6 +5,7 @@ export const ADMIN_KIND_LABEL: Readonly<Record<DocumentKind, string>> = {
   draft: "시험지",
   extraction: "추출 자료",
   conceptBlank: "개념 백지",
+  arithmeticSheet: "연산 연습지",
 };
 
 export type UserDocument = {

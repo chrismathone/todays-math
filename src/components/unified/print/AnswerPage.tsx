@@ -4,11 +4,23 @@ import { A4_DIM } from "./tokens";
 import { printPagePadding, scaledItemStyle } from "./geometry";
 import { BodyContainer } from "./templates/BodyContainer";
 import type { PrintTemplateProps } from "./types";
-import { EnglishWorksheetAnswer } from "@/components/english/print/EnglishWorksheetQuestion";
+import { useEnglishPrintRenderer } from "./EnglishPrintRenderer";
+import { ArithmeticRoundLabel } from "./templates/ProblemMeta";
+
+function EnglishAnswer(props: {
+  content: NonNullable<
+    PrintTemplateProps["problems"][number]["variant"]["english"]
+  >;
+  quick?: boolean;
+}) {
+  const { Answer } = useEnglishPrintRenderer();
+  return <Answer {...props} />;
+}
 
 /** Answers share measured pagination; long solutions and quick keys never truncate. */
 export function AnswerPage({
   page,
+  round,
   totalPages,
   problems,
   startingNumber,
@@ -36,15 +48,12 @@ export function AnswerPage({
         }}
       >
         {p.english ? (
-          <EnglishWorksheetAnswer
-            content={p.english}
-            quick={options.quickAnswerOnly}
-          />
+          <EnglishAnswer content={p.english} quick={options.quickAnswerOnly} />
         ) : (
           <>
             <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
               <strong style={{ color: options.color }}>
-                {startingNumber + index}.
+                {p.arithmetic?.number ?? startingNumber + index}.
               </strong>
               <MathText text={shown(p.answer || "정답 미입력")} />
             </div>
@@ -79,6 +88,14 @@ export function AnswerPage({
           marginBottom: 16,
           paddingBottom: 12,
           flexShrink: 0,
+          ...(round !== undefined
+            ? {
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: 16,
+              }
+            : {}),
         }}
       >
         <h2
@@ -86,10 +103,17 @@ export function AnswerPage({
             fontFamily: "var(--paper-font-sans)",
             fontSize: 18,
             fontWeight: 800,
+            ...(round !== undefined
+              ? { minWidth: 0, overflowWrap: "anywhere" }
+              : {}),
           }}
         >
           {meta.title} · {options.quickAnswerOnly ? "빠른 정답" : "정답과 해설"}
         </h2>
+        <ArithmeticRoundLabel
+          round={round}
+          style={{ border: `1px solid ${options.color}`, padding: "4px 12px" }}
+        />
       </header>
       <BodyContainer
         columns={options.columns}

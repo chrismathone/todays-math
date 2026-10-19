@@ -270,9 +270,7 @@ function videoMaterial(
     concepts: [],
     qrTargets: [],
     conceptQrTargets: [],
-  } as unknown as Awaited<
-    ReturnType<TextbookStudioApi["readPreviewMaterial"]>
-  >;
+  } as unknown as Awaited<ReturnType<TextbookStudioApi["readPreviewMaterial"]>>;
 }
 
 describe("TextbookStudioView", () => {
@@ -529,7 +527,7 @@ describe("TextbookStudioView", () => {
     fireEvent.change(screen.getByRole("textbox", { name: "정의" }), {
       target: { value: "분모를 같게 한다" },
     });
-    expect(screen.getByRole("button", { name: "용어" })).toHaveAttribute(
+    expect(screen.getByRole("button", { name: "질문" })).toHaveAttribute(
       "aria-pressed",
       "true",
     );

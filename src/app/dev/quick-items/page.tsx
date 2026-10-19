@@ -17,7 +17,7 @@ import {
 } from "./samples";
 
 export const metadata = {
-  title: "한 걸음 문항 시안 · 오늘의수학",
+  title: "한 걸음 문항 시안 · 오늘 수학",
   robots: { index: false, follow: false },
 };
 

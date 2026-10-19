@@ -25,6 +25,7 @@ import {
   MOCK_PROBLEMS,
   MOCK_UNITS,
 } from "@/mocks/data";
+import { mockQuestionViewRow } from "@/mocks/handlers/problem";
 import { server } from "@/mocks/server";
 import { EMPTY_BASKET } from "@/lib/problem/basketApi";
 
@@ -95,6 +96,9 @@ describe("[T3.3 S-08] 문제은행 — 크롬·필터·액션", () => {
     server.use(
       http.get("/api/problems", () =>
         HttpResponse.json({
+          version: 2,
+          countUnit: "question",
+          queryKey: "fixture",
           data: [],
           meta: { total: 0, page: 1, pageSize: 20 },
         }),
@@ -179,7 +183,12 @@ describe("[T3.3 S-08] 문제은행 — 크롬·필터·액션", () => {
         .closest("article")!;
       expect(
         within(approvedCard).getByRole("button", { name: "담기" }),
-      ).toBeEnabled();
+      ).toBeDisabled();
+      // This legacy fixture has no verified actual format. Recovering the
+      // basket request must not invent one or enable issuance for that row.
+      expect(
+        within(approvedCard).getByRole("button", { name: "담기" }),
+      ).toHaveAttribute("title", "출제 형식 확인 전입니다.");
     });
     expect(screen.queryByText(/담기 바구니 —/)).not.toBeInTheDocument();
     expect(screen.getByText(/를 유한소수로 나타내어라/)).toBeInTheDocument();
@@ -188,7 +197,7 @@ describe("[T3.3 S-08] 문제은행 — 크롬·필터·액션", () => {
   it("AppChrome 내비와 학년/중단원/소단원/난이도/유형/상태 필터, 등록·생성을 보여 준다", async () => {
     await renderBank();
 
-    expect(screen.getByRole("link", { name: "오늘의수학" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "오늘 수학" })).toHaveAttribute(
       "href",
       "/",
     );
@@ -328,7 +337,13 @@ describe("[T3.3 S-08] 문제은행 — 필터 (MSW)", () => {
  *    같은 **범위**는 종전에 아예 물어볼 수 없었다.
  */
 describe("[S-08] 문제은행 — 단원 범위 (MSW)", () => {
-  const EMPTY_LIST = { data: [], meta: { page: 1, pageSize: 20, total: 0 } };
+  const EMPTY_LIST = {
+    version: 2,
+    countUnit: "question",
+    queryKey: "fixture",
+    data: [],
+    meta: { page: 1, pageSize: 20, total: 0 },
+  };
 
   function captureQueries() {
     const captured: URLSearchParams[] = [];
@@ -514,12 +529,12 @@ describe("[T3.3 S-08] 문제은행 — 등록/생성/변형", () => {
     await user.type(within(form).getByLabelText("정답"), "2");
     await user.click(within(form).getByRole("button", { name: "등록하기" }));
 
-    await screen.findByText("1건 등록 — 현재 필터에 0건만 보입니다");
+    await screen.findByText(/1개 표현 등록 — 현재 필터에 0개 표현/);
     expect(screen.queryByText(/필터에서 제외할 문제/)).not.toBeInTheDocument();
     expect(screen.getByText(/밑변의 길이가/)).toBeInTheDocument();
   });
 
-  it("등록하면 작성한 본문이 목록 앞에 나타난다", async () => {
+  it("등록 후 문항 단위 목록을 다시 읽고 원시 응답을 임의로 끼워 넣지 않는다", async () => {
     const { user } = await renderBank();
     await user.click(screen.getByRole("button", { name: "등록" }));
 
@@ -536,11 +551,12 @@ describe("[T3.3 S-08] 문제은행 — 등록/생성/변형", () => {
     await user.type(within(form).getByLabelText("정답"), "2");
     await user.click(within(form).getByRole("button", { name: "등록하기" }));
 
-    await screen.findByText("1건 등록");
-    expect(screen.getByText(/등록 본문/)).toBeInTheDocument();
+    await screen.findByText(/1개 표현 등록/);
+    await screen.findByText(/를 유한소수로 나타내어라/);
+    expect(screen.queryByText(/등록 본문/)).not.toBeInTheDocument();
   });
 
-  it("생성하면 AI 픽스처 본문이 현재 목록에 추가된다", async () => {
+  it("생성 후에도 현재 범위의 서버 문항 목록과 수량을 사용한다", async () => {
     const { user } = await renderBank();
     await pickUnit(user, MOCK_PROBLEM_WITH_FRACTION.unitId);
     await waitFor(() => {
@@ -558,12 +574,15 @@ describe("[T3.3 S-08] 문제은행 — 등록/생성/변형", () => {
     await user.selectOptions(within(form).getByLabelText("난이도"), "기본");
     await user.click(within(form).getByRole("button", { name: "생성하기" }));
 
-    await screen.findByText("1건 생성");
-    expect(screen.getByText(/에 물을 더 넣어 농도를/)).toBeInTheDocument();
+    await screen.findByText(/1개 표현 생성/);
+    await screen.findByText(/를 유한소수로 나타내어라/);
+    expect(
+      screen.queryByText(/에 물을 더 넣어 농도를/),
+    ).not.toBeInTheDocument();
     expect(MOCK_AI_GENERATED_PROBLEMS[0]!.content).toContain("소금물");
   });
 
-  it("카드에서 변형하면 후보를 먼저 보여 주고, 채택한 것만 목록에 들어온다", async () => {
+  it("변형 후보를 먼저 보여 주고, 채택 뒤 현재 범위의 문항 목록을 다시 읽는다", async () => {
     const { user } = await renderBank();
     await pickUnit(user, MOCK_PROBLEM_WITH_GEOMETRY_SYMBOL.unitId);
     await waitFor(() => {
@@ -586,8 +605,11 @@ describe("[T3.3 S-08] 문제은행 — 등록/생성/변형", () => {
       within(panel).getByRole("button", { name: "채택분 저장" }),
     );
 
-    await screen.findByText("1건 변형");
-    expect(screen.getByText(/을 유한소수로 나타내어라/)).toBeInTheDocument();
+    await screen.findByText(/1개 표현 변형/);
+    await screen.findByText(/밑변의 길이가/);
+    expect(
+      screen.queryByText(/을 유한소수로 나타내어라/),
+    ).not.toBeInTheDocument();
     expect(MOCK_AI_TRANSFORMED_PROBLEMS[0]!.content).toContain("11");
   });
 
@@ -794,7 +816,13 @@ describe("[렌더 수리 A] 문제은행 — 필터 폭 고정", () => {
  * 스키마상 그림의 다른 갈래라 서버 조건에 함께 넣는다.
  */
 describe("[S-08] 문제은행 — 자료 토글 그림·해설·정답 (MSW)", () => {
-  const EMPTY_LIST = { data: [], meta: { page: 1, pageSize: 20, total: 0 } };
+  const EMPTY_LIST = {
+    version: 2,
+    countUnit: "question",
+    queryKey: "fixture",
+    data: [],
+    meta: { page: 1, pageSize: 20, total: 0 },
+  };
 
   function captureQueries() {
     const captured: URLSearchParams[] = [];
@@ -860,7 +888,13 @@ describe("[S-08] 문제은행 — 자료 토글 그림·해설·정답 (MSW)", (
  * 셋은 **서로 독립**이다 — 켠 것을 모두 만족하는 문항만 남는다(AND).
  */
 describe("[S-08] 문제은행 — 해설·정답 토글 (MSW)", () => {
-  const EMPTY_LIST = { data: [], meta: { page: 1, pageSize: 20, total: 0 } };
+  const EMPTY_LIST = {
+    version: 2,
+    countUnit: "question",
+    queryKey: "fixture",
+    data: [],
+    meta: { page: 1, pageSize: 20, total: 0 },
+  };
 
   function captureQueries() {
     const captured: URLSearchParams[] = [];
@@ -965,7 +999,13 @@ describe("[S-08] 문제은행 — 해설·정답 토글 (MSW)", () => {
 const 검색칸이름 = "검색 — 본문·문항번호·정답·해설·학교";
 
 describe("[S-08] 문제은행 — 본문 검색 (MSW)", () => {
-  const EMPTY_LIST = { data: [], meta: { page: 1, pageSize: 20, total: 0 } };
+  const EMPTY_LIST = {
+    version: 2,
+    countUnit: "question",
+    queryKey: "fixture",
+    data: [],
+    meta: { page: 1, pageSize: 20, total: 0 },
+  };
 
   function captureQueries() {
     const captured: URLSearchParams[] = [];
@@ -1122,7 +1162,13 @@ describe("[S-08] 문제은행 — 필터 줄맞춤", () => {
  *    필터만 조용히 안 붙는다. 2026-08-19 에 자료 토글에서 실제로 그랬다.
  */
 describe("[S-08] 문제은행 — 출처 필터 (MSW)", () => {
-  const EMPTY_LIST = { data: [], meta: { page: 1, pageSize: 20, total: 0 } };
+  const EMPTY_LIST = {
+    version: 2,
+    countUnit: "question",
+    queryKey: "fixture",
+    data: [],
+    meta: { page: 1, pageSize: 20, total: 0 },
+  };
 
   function captureQueries() {
     const captured: URLSearchParams[] = [];
@@ -1135,11 +1181,18 @@ describe("[S-08] 문제은행 — 출처 필터 (MSW)", () => {
     return captured;
   }
 
-  it("네 출처를 모두 고를 수 있다 — 하나라도 빠지면 그 문항은 못 찾는다", async () => {
+  it("모든 출처를 고를 수 있다 — 하나라도 빠지면 그 문항은 못 찾는다", async () => {
     await renderBank();
     const box = screen.getByLabelText("출처");
     const names = [...box.querySelectorAll("option")].map((o) => o.textContent);
-    expect(names).toEqual(["전체", "기출", "변형", "자작", "AI 생성"]);
+    expect(names).toEqual([
+      "전체",
+      "기출",
+      "변형",
+      "자작",
+      "교과서",
+      "AI 생성",
+    ]);
   });
 
   it("AI 생성을 고르면 source=ai_generated 로 조회하고, 되돌리면 빠진다", async () => {
@@ -1185,10 +1238,15 @@ describe("[D-22] 문제은행 — 검수 승격 (MSW)", () => {
       http.patch(
         "/api/problems/:id/review-status",
         async ({ params, request }) => {
-          const body = (await request.json()) as { reviewStatus: string };
+          const body = (await request.json()) as {
+            reviewStatus: typeof target.reviewStatus;
+          };
           calls.push({ id: String(params.id), body });
           return HttpResponse.json({
-            data: { ...target, reviewStatus: body.reviewStatus },
+            data: mockQuestionViewRow({
+              ...target,
+              reviewStatus: body.reviewStatus,
+            }),
           });
         },
       ),
@@ -1279,7 +1337,13 @@ describe("[D-22] 문제은행 — 검수 승격 (MSW)", () => {
  *    안 넘기므로 종전 이동만 한다.
  */
 describe("[S-08] 문제은행 — 무리 전체 고르기 (MSW)", () => {
-  const EMPTY_LIST = { data: [], meta: { page: 1, pageSize: 20, total: 0 } };
+  const EMPTY_LIST = {
+    version: 2,
+    countUnit: "question",
+    queryKey: "fixture",
+    data: [],
+    meta: { page: 1, pageSize: 20, total: 0 },
+  };
 
   function captureQueries() {
     const captured: URLSearchParams[] = [];

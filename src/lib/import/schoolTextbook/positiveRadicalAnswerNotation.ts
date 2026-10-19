@@ -16,12 +16,13 @@ export function positiveRadicalAnswerKey(input: string): string | null {
     .replace(/\\[,;:!]/g, "");
   // A single positive numeric radical over an integer has an exact prime-power
   // key, even when the blind solver uses √3/5 and the book uses \frac{\sqrt3}{5}.
+  // An unbraced TeX argument is one digit: \sqrt23 is \sqrt{2}3, never √23.
   const fractionForm = /^\\frac\{(.+)\}\{(\d{1,7})\}$/.exec(text);
   const slashForm = fractionForm ? null : /^(.+)\/(\d{1,7})$/.exec(text);
   const numerator = fractionForm?.[1] ?? slashForm?.[1] ?? text;
   const denominator = fractionForm?.[2] ?? slashForm?.[2];
   const root =
-    /^(\d{1,7})?(?:\\sqrt(?:\[(\d{1,2})\])?(?:\{(\d{1,7})\}|(\d{1,7}))|√(\d{1,7}))$/.exec(
+    /^(\d{1,7})?(?:\\sqrt(?:\[(\d{1,2})\])?(?:\{(\d{1,7})\}|(\d)(?!\d))|√(\d{1,7}))$/.exec(
       numerator,
     );
   const power =

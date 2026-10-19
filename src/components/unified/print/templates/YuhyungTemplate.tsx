@@ -1,3 +1,4 @@
+import { PrintHeader } from "../PrintHeader";
 import { printPagePadding, scaledItemStyle } from "../geometry";
 // YuhyungTemplate.tsx (T6) — 유형 훈련지 (같은 유형 반복, 컴팩트)
 // design_handoff 카피 + import path 조정 + options.accentColor → options.color.
@@ -10,10 +11,11 @@ import { BodyContainer } from "./BodyContainer";
 import { ProblemHeader } from "./ProblemMeta";
 import { ProblemBody } from "./ProblemBody";
 import type { PrintTemplateProps } from "../types";
-import { ExamDetails } from "../ExamDetails";
 
 export function YuhyungTemplate({
   page,
+  round,
+  firstPage,
   totalPages,
   totalProblems,
   columns,
@@ -26,7 +28,6 @@ export function YuhyungTemplate({
   measure,
 }: PrintTemplateProps) {
   const accent = options.color || PAPER_COLORS.accentSlate;
-  const isFirstPage = page === 1;
   const fs = bodyFontSize("yuhyung", columns);
   const gap = Math.max(0, options.spacing);
 
@@ -43,6 +44,8 @@ export function YuhyungTemplate({
         }}
       >
         <ProblemHeader
+          sectionHeading={p.sectionHeading}
+          sectionInstruction={p.sectionInstruction}
           num={num}
           problem={p.variant}
           options={options}
@@ -89,107 +92,14 @@ export function YuhyungTemplate({
         flexDirection: "column",
       }}
     >
-      {isFirstPage && (
-        <>
-          {/* 유형 배너 */}
-          <div
-            style={{
-              background: PAPER_COLORS.ink,
-              color: "white",
-              padding: "10px 16px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              marginBottom: 14,
-              flexShrink: 0,
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <span
-                style={{
-                  fontFamily: "var(--paper-font-sans)",
-                  fontSize: 10,
-                  fontWeight: 800,
-                  letterSpacing: "0.32em",
-                  color: PAPER_COLORS.ink30,
-                }}
-              >
-                PATTERN
-              </span>
-              <span
-                style={{
-                  fontFamily: "var(--paper-font-sans)",
-                  fontSize: 17,
-                  fontWeight: 800,
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                {meta.patternName ?? meta.title}
-              </span>
-            </div>
-            <div
-              style={{
-                fontFamily: "var(--paper-font-mono)",
-                fontSize: 12,
-                fontWeight: 700,
-                letterSpacing: "0.06em",
-                background: "rgba(255,255,255,0.12)",
-                padding: "4px 10px",
-              }}
-            >
-              {String(totalProblems ?? problems.length).padStart(2, "0")} 문항
-            </div>
-          </div>
-
-          {/* 전략 + 이름·날짜 */}
-          {meta.patternStrategy && (
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 16,
-                marginBottom: 16,
-                padding: "6px 0",
-                borderBottom: `1px solid ${PAPER_COLORS.ink15}`,
-                flexShrink: 0,
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: "var(--paper-font-sans)",
-                  fontSize: 10.5,
-                  fontWeight: 700,
-                  color: readablePaperColor(accent),
-                  letterSpacing: "0.12em",
-                }}
-              >
-                핵심 전략
-              </span>
-              <span
-                style={{
-                  fontFamily: "var(--paper-font-serif)",
-                  fontSize: 11.5,
-                  color: PAPER_COLORS.ink90,
-                }}
-              >
-                {meta.patternStrategy}
-              </span>
-              <span style={{ flex: 1 }} />
-              <span
-                style={{
-                  fontFamily: "var(--paper-font-sans)",
-                  fontSize: 10,
-                  color: PAPER_COLORS.ink50,
-                }}
-              >
-                이름 ____________ · 날짜 ___________
-              </span>
-            </div>
-          )}
-        </>
-      )}
-
-      {isFirstPage && <ExamDetails meta={meta} options={options} />}
+      <PrintHeader
+        page={page}
+        round={round}
+        firstPage={firstPage}
+        totalProblems={totalProblems}
+        meta={meta}
+        options={options}
+      />
 
       <BodyContainer
         solvingArea={options.solvingArea}

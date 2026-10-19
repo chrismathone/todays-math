@@ -7,6 +7,38 @@ import {
 } from "@/components/unified/print/types";
 
 describe("Mathgen print spacing presets", () => {
+  it("keeps arithmetic type headings mandatory without offering ineffective per-question metadata toggles", () => {
+    const props = {
+      title: "연산",
+      setTitle: vi.fn(),
+      meta: DEFAULT_PRINT_META,
+      onMeta: vi.fn(),
+      onOptions: vi.fn(),
+      options: {
+        ...DEFAULT_PRINT_OPTIONS,
+        quickAnswerOnly: true,
+        showAnswers: true,
+      },
+    };
+    const { rerender } = render(
+      <PrintOptionsPanel {...props} groupedArithmetic answersOnly />,
+    );
+    expect(screen.queryByRole("checkbox", { name: "문항 단원명" })).toBeNull();
+    expect(screen.queryByRole("checkbox", { name: "난이도 라벨" })).toBeNull();
+    // 연산 연습지에는 보기(객관식)도 배점도 없다 — 그 설정은 보이지 않는다(원장님 2026-10-16).
+    expect(screen.queryByRole("group", { name: "보기 번호 배치" })).toBeNull();
+    expect(screen.queryByRole("checkbox", { name: "배점 숨기기" })).toBeNull();
+    expect(
+      screen.queryByText("이미지에 포함된 배점은 그대로 남습니다."),
+    ).toBeNull();
+    expect(screen.getByRole("checkbox", { name: "정답지 포함" })).toBeChecked();
+    expect(props.onOptions).not.toHaveBeenCalled();
+    rerender(<PrintOptionsPanel {...props} />);
+    expect(screen.getByRole("checkbox", { name: "문항 단원명" })).toBeChecked();
+    expect(screen.getByRole("checkbox", { name: "난이도 라벨" })).toBeChecked();
+    expect(screen.getByRole("group", { name: "보기 번호 배치" })).toBeVisible();
+    expect(screen.getByRole("checkbox", { name: "배점 숨기기" })).toBeVisible();
+  });
   it("defaults score hiding ON and offers a reversible checkbox", () => {
     const onOptions = vi.fn();
     const props = {

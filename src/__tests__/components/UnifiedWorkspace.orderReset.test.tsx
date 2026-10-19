@@ -106,6 +106,13 @@ describe("순서 초기화", () => {
   it("원본의 쪽·번호 차례로 되돌리고 되돌리기를 남긴다", async () => {
     seed();
     render(<UnifiedWorkspace initialData={initialData} />);
+    // 새로 연 화면은 빈 시험지다 — 저장한 시험지를 명시적으로 불러온 뒤(ec2d38fdb · 4842701cd,
+    // 2026-10-15 — 수학 시험지는 문제은행 출력 단계로 열린다) 편집으로 간다.
+    fireEvent.click(
+      await screen.findByRole("button", { name: "저장한 작업 불러오기" }),
+    );
+    await screen.findByText("저장한 시험지를 불러왔습니다.");
+    fireEvent.click(screen.getByRole("button", { name: /편집 이어가기/ }));
     fireEvent.click(await screen.findByRole("tab", { name: /문제 순서/ }));
     expect(orderNames()).toEqual(["3쪽 1번", "1쪽 2번", "1쪽 5번"]);
     const reset = screen.getByRole("button", { name: "순서 초기화" });
