@@ -1,0 +1,14 @@
+{
+  "stage": "STAGE1",
+  "status": "complete-awaiting-parent-seal-verification-and-explicit-stage2-permission",
+  "verifierId": "codex-stage1-clean-q04-0fc94311-fb71-40f7-a231-41156894d828",
+  "studentDigest": "fcca4ce290ea6f3e26d0591de1ec75a10e7cb2472a7f2797323d1f081820c4c9",
+  "rawSha256": "741ae7319208640e30bc49bf7f9d1aa4fc0c3b236204b1c0188ecd39b9335ad3",
+  "blindCopySha256": "741ae7319208640e30bc49bf7f9d1aa4fc0c3b236204b1c0188ecd39b9335ad3",
+  "priorExposure": "none",
+  "firstCommandSucceeded": true,
+  "utf8WriteReadProbeSucceeded": true,
+  "validation": "assertRawSolveReadable and review workflow raw fields passed; exact-byte copy verified",
+  "renderInspection": "Actual SVG locally rendered at CSS 70mm and viewed; separate findings in raw.",
+  "scope": "No DB, install, push, new worktree, private answer access or old evidence edits. STAGE2 not started."
+}

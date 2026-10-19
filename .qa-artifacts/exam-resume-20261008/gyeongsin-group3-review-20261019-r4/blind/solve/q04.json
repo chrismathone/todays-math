@@ -1,0 +1,40 @@
+{
+  "studentDigest": "fcca4ce290ea6f3e26d0591de1ec75a10e7cb2472a7f2797323d1f081820c4c9",
+  "solverId": "codex-stage1-clean-q04-0fc94311-fb71-40f7-a231-41156894d828",
+  "verifierId": "codex-stage1-clean-q04-0fc94311-fb71-40f7-a231-41156894d828",
+  "status": "solved",
+  "answer": "(1) 18 cm, (2) 10 cm",
+  "solution": "모든 길이의 단위는 cm이다. 접점에서 반지름은 접선에 수직이다. PQ와 QS는 같은 직선 위에 있고 QR은 이에 수직이므로, 사각형 QSOE는 직사각형이다. 따라서 QS=OE=6, QE=OS=6이다. P,Q,S의 순서에서 PS=PQ+QS=12이다. 같은 외부 점 P에서 그은 두 접선의 길이는 같으므로 PT=PS=12이다. 외부 점 R에서의 접선 길이도 같으므로 RT=RE이다. E가 QR 내부에 있고 P,R,T의 순서이므로 RE=QR-QE=QR-6, PT=PR+RT이다. 따라서 12=PR+QR-6이고 (1) PR+QR=18 cm이다.\n(2) QR=x, PR=y라 놓으면 x>6, y>0, x+y=18이다. 직각삼각형 PQR에 피타고라스 정리를 적용하면 y²=x²+36이다. 따라서 (y-x)(y+x)=36, y-x=2이다. x+y=18과 함께 풀면 x=8, y=10이다. 그러므로 PR=10 cm이다.\n유일성: 어떤 허용된 도형도 위 두 일차 관계를 만족해야 하므로 QR=8, PR=10 이외의 길이는 불가능하다. 6,8,10은 양수이며 6²+8²=10², 6+8>10이어서 실제 비퇴화 직각삼각형이 존재한다.\n접원 조건의 존재도 별도로 확인한다. PQ=6, QR=8인 직각삼각형에서 Q를 지나 PQ를 R 반대쪽으로 연장하여 QS=6인 S를 잡는다. QR 위 QE=6인 E를 잡고 QSOE를 직사각형으로 완성하면 OS=OE=6이다. 반직선 PR 위에 PT=12인 T를 잡으면 PR=10이므로 RT=2>0이다. P에서 T까지의 수평·수직 이동은 삼각형의 닮음으로 각각 36/5,48/5이고, P에서 O까지는 각각 12,6이다. 따라서 OT의 두 직각 방향 성분의 길이는 24/5,18/5이고 피타고라스 정리로 OT=6이다. 또한 OP²=12²+6²=180=PT²+OT²이므로 피타고라스 정리의 역에 의해 OT는 PT에 수직이다. 그러므로 중심 O, 반지름 6인 원은 세 직선에 각각 S,T,E에서 접한다. S는 Q 뒤, T는 R 뒤에 있으며 QE=6<QR=8이므로 E는 내부이다. 원은 QR의 삼각형 반대쪽에 놓여 삼각형 내부와 만나지 않는다. 좌우 반사한 배치는 같은 길이를 주므로 요구한 답의 유일성에는 영향이 없다.",
+  "derivation": "모든 길이의 단위는 cm이다. 접점에서 반지름은 접선에 수직이다. PQ와 QS는 같은 직선 위에 있고 QR은 이에 수직이므로, 사각형 QSOE는 직사각형이다. 따라서 QS=OE=6, QE=OS=6이다. P,Q,S의 순서에서 PS=PQ+QS=12이다. 같은 외부 점 P에서 그은 두 접선의 길이는 같으므로 PT=PS=12이다. 외부 점 R에서의 접선 길이도 같으므로 RT=RE이다. E가 QR 내부에 있고 P,R,T의 순서이므로 RE=QR-QE=QR-6, PT=PR+RT이다. 따라서 12=PR+QR-6이고 (1) PR+QR=18 cm이다.\n(2) QR=x, PR=y라 놓으면 x>6, y>0, x+y=18이다. 직각삼각형 PQR에 피타고라스 정리를 적용하면 y²=x²+36이다. 따라서 (y-x)(y+x)=36, y-x=2이다. x+y=18과 함께 풀면 x=8, y=10이다. 그러므로 PR=10 cm이다.\n유일성: 어떤 허용된 도형도 위 두 일차 관계를 만족해야 하므로 QR=8, PR=10 이외의 길이는 불가능하다. 6,8,10은 양수이며 6²+8²=10², 6+8>10이어서 실제 비퇴화 직각삼각형이 존재한다.\n접원 조건의 존재도 별도로 확인한다. PQ=6, QR=8인 직각삼각형에서 Q를 지나 PQ를 R 반대쪽으로 연장하여 QS=6인 S를 잡는다. QR 위 QE=6인 E를 잡고 QSOE를 직사각형으로 완성하면 OS=OE=6이다. 반직선 PR 위에 PT=12인 T를 잡으면 PR=10이므로 RT=2>0이다. P에서 T까지의 수평·수직 이동은 삼각형의 닮음으로 각각 36/5,48/5이고, P에서 O까지는 각각 12,6이다. 따라서 OT의 두 직각 방향 성분의 길이는 24/5,18/5이고 피타고라스 정리로 OT=6이다. 또한 OP²=12²+6²=180=PT²+OT²이므로 피타고라스 정리의 역에 의해 OT는 PT에 수직이다. 그러므로 중심 O, 반지름 6인 원은 세 직선에 각각 S,T,E에서 접한다. S는 Q 뒤, T는 R 뒤에 있으며 QE=6<QR=8이므로 E는 내부이다. 원은 QR의 삼각형 반대쪽에 놓여 삼각형 내부와 만나지 않는다. 좌우 반사한 배치는 같은 길이를 주므로 요구한 답의 유일성에는 영향이 없다.",
+  "evidence": {
+    "priorExposure": {
+      "declaration": "none",
+      "detail": "Fresh independent solver. No previous reviewer conversation, old raw proofs/reports, private package, author candidates, original sources or answers were opened. Only required AGENTS instructions, blind student JSON and its SVG, and generic workflow/render implementation code or schema were read. No answer lookup."
+    },
+    "gradeConstraints": {
+      "grade": "중3",
+      "curriculum": "2015",
+      "methods": [
+        "접점에서 반지름과 접선의 수직",
+        "직사각형의 성질",
+        "한 외부 점에서 그은 접선 길이의 같음",
+        "피타고라스 정리와 그 역",
+        "중학교 삼각형 닮음",
+        "인수분해와 일차 연립 관계"
+      ],
+      "excluded": "No trigonometry, analytic point-to-line distance formula, exradius formula, calculus, or pixel-derived lengths."
+    },
+    "mathematicalChecks": {
+      "existence": "Explicit 6-8-10 construction and all three radius/tangency checks in solution.",
+      "uniqueness": "Necessary x+y=18 and y-x=2 force x=8,y=10.",
+      "signsOrderUnits": "QE=QS=6, RE=RT=2, PS=PT=12; all positive. P-Q-S and P-R-T strict, E interior. Answers in cm."
+    },
+    "visualInspection": {
+      "separateFromMathematics": true,
+      "svgSha256": "1b7391c02598645709fa5d8e8c2dc05f5b06e317908fa65922baef925ad1296a",
+      "method": "Local Edge headless render, CSS width 70mm, device scale 1; PNG opened with view_image.",
+      "render": "q04-70mm.png",
+      "findings": "P,Q,S and P,R,T order, E within QR, O label, three tangent radii and right-angle marks are discernible at 70 mm. No critical clipping, overlap or geometric conflict observed. No pixel measurements used for calculation."
+    }
+  }
+}
