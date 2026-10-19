@@ -1,0 +1,20 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/unit/examStudyCurriculumEligibility.test.ts (10 tests) 14737ms
+     ✓ keeps all fourteen mathematical proofs inspectable without offering the out-of-grade M1 task  424ms
+     ✓ hides the held template from selectable catalogs and retains its definition for internal review  14228ms
+ ✓ src/__tests__/unit/mathSrsCourseServer.test.ts (34 tests) 3900ms
+     ✓ bounds retained history while preserving exact lifetime and daily totals  3118ms
+ ✓ src/__tests__/unit/courseChoicePlausibility.test.ts (2 tests) 2053ms
+     ✓ keeps every 초5 engine choice set free of far values  1855ms
+ ✓ src/__tests__/api/mathSrsCourseRoutes.test.ts (15 tests) 499ms
+ ✓ src/__tests__/unit/examStudyRoutes.test.ts (23 tests) 254ms
+ ✓ src/__tests__/unit/examStudyM1StudentMethods.test.ts (6 tests) 247ms
+
+ Test Files  6 passed (6)
+      Tests  90 passed (90)
+   Start at  21:48:26
+   Duration  102.92s (transform 14.10s, setup 20.12s, import 24.57s, tests 21.69s, environment 34.37s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r12.json

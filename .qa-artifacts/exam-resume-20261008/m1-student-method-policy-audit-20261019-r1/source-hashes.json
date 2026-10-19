@@ -1,0 +1,21 @@
+{
+  "requestedRootCommit": "defb4d9ae65e5115f7d546daac99d77623703e9d",
+  "observedFinalRootCommit": "73361b0c40073d3c99466f8477b8419fe0592b12",
+  "allReadFilesMatchRequestedCommitAfterCRLFNormalization": true,
+  "algorithm": "SHA256",
+  "files": {
+    "src/contracts/difficulty.ts": "9a26abf49ca126b06f98051c10b964b423018186b1f5a2011d94b787b853a2fc",
+    "src/contracts/examStudy.contract.ts": "5f5b38ad33b8c08c8d6e59fe1e59ec7af0805b0da7b25d006d81d09dfab283ec",
+    "src/lib/examStudy/families/middle/support.ts": "e89345bd78a46a3c793e01273684885efc654a205c15896854fcd0caa979aa1c",
+    "src/lib/examStudy/families/middle/algebra.ts": "86e909f20bc56e93aef2c95aa0991c32a668334a77b4fb83bfe979b2394fe7ed",
+    "src/lib/examStudy/families/middle/graphs.ts": "197b1f343d38fe65ef082a741de9917fa77459accc801fc389384e617a61e47f",
+    "src/lib/examStudy/curriculumEligibility.ts": "2ef9871e67f090f8ef90a804660762e1810e837656f1a447396e75149979e013",
+    "src/lib/examStudy/evidence.ts": "3d199918eff793ea20116daa87b0d07bd30a872c9b73a83ca0528e27c91ba5ae",
+    "src/lib/examStudy/registry.ts": "387253476c964d06bfad901eb6732ef4adec56774fd63a79fc3538550bf93bdd",
+    "src/lib/examStudy/generate.ts": "8eb9656939a016fd729edd0835380e5c314aee6f7d2ceb0955577569a78ad1f9",
+    "src/__tests__/unit/examStudyM1StudentMethods.test.ts": "ea0f363c66f1f3d7cdcf643f5bd04ea6c68a214f286e069f37f20c84c59f1fd2",
+    "src/__tests__/unit/examStudyCurriculumEligibility.test.ts": "2bbf5aa5837842e6d87108703774c2a1cc0cc970e0370229c7bd0094da60593a",
+    "src/__tests__/unit/examStudyRoutes.test.ts": "bc6cd779a153a7142f7f33ebd5fbe61146f09d6eb1d5ea0afe46ff86abd291e9"
+  },
+  "missingRequestedFile": "src/lib/examStudy/output.ts"
+}

@@ -1,0 +1,122 @@
+{
+  "actualHandler": "src/lib/examStudyRoutes.ts::resolveExamStudy",
+  "cases": 16,
+  "rows": [
+    {
+      "label": "matching digest and nonempty available generation",
+      "status": 200,
+      "generationCalls": 1,
+      "code": null
+    },
+    {
+      "label": "stale client expected digest",
+      "status": 409,
+      "generationCalls": 1,
+      "code": "CONFLICT"
+    },
+    {
+      "label": "generation changed",
+      "status": 409,
+      "generationCalls": 1,
+      "code": "CONFLICT"
+    },
+    {
+      "label": "generation empty",
+      "status": 409,
+      "generationCalls": 1,
+      "code": "CONFLICT"
+    },
+    {
+      "label": "generation unavailable",
+      "status": 409,
+      "generationCalls": 1,
+      "code": "CONFLICT"
+    },
+    {
+      "label": "generation throw",
+      "status": 409,
+      "generationCalls": 1,
+      "code": "CONFLICT"
+    },
+    {
+      "label": "nested recipe rejects families",
+      "status": 400,
+      "generationCalls": 0,
+      "code": "VALIDATION_ERROR"
+    },
+    {
+      "label": "create rejects families",
+      "status": 400,
+      "generationCalls": 0,
+      "code": "VALIDATION_ERROR"
+    },
+    {
+      "label": "nested recipe rejects family",
+      "status": 400,
+      "generationCalls": 0,
+      "code": "VALIDATION_ERROR"
+    },
+    {
+      "label": "create rejects family",
+      "status": 400,
+      "generationCalls": 0,
+      "code": "VALIDATION_ERROR"
+    },
+    {
+      "label": "nested recipe rejects gradeApproved",
+      "status": 400,
+      "generationCalls": 0,
+      "code": "VALIDATION_ERROR"
+    },
+    {
+      "label": "create rejects gradeApproved",
+      "status": 400,
+      "generationCalls": 0,
+      "code": "VALIDATION_ERROR"
+    },
+    {
+      "label": "nested recipe rejects confidence",
+      "status": 400,
+      "generationCalls": 0,
+      "code": "VALIDATION_ERROR"
+    },
+    {
+      "label": "create rejects confidence",
+      "status": 400,
+      "generationCalls": 0,
+      "code": "VALIDATION_ERROR"
+    },
+    {
+      "label": "resolve envelope rejects gradeApproved",
+      "status": 400,
+      "generationCalls": 0,
+      "code": "VALIDATION_ERROR"
+    },
+    {
+      "label": "resolve envelope rejects families",
+      "status": 400,
+      "generationCalls": 0,
+      "code": "VALIDATION_ERROR"
+    }
+  ],
+  "generationCalls": 6,
+  "renderCalls": 0,
+  "dbCalls": 0,
+  "mocked": [
+    "authorization allowed director",
+    "readStrictJson transport delegates to Request.json; no size/depth parser certification",
+    "generation output/exception",
+    "renderer must remain unused"
+  ],
+  "actual": [
+    "createExamStudy/resolveExamStudy code",
+    "strict generate/resolve Zod schemas",
+    "native Request/Response"
+  ],
+  "sourceHashes": {
+    "src/contracts/difficulty.ts": "9a26abf49ca126b06f98051c10b964b423018186b1f5a2011d94b787b853a2fc",
+    "src/contracts/examStudy.contract.ts": "5f5b38ad33b8c08c8d6e59fe1e59ec7af0805b0da7b25d006d81d09dfab283ec",
+    "src/lib/examStudyRoutes.ts": "22e94bf55c25d41455561681f4ee7f6c1a41187bbf1eaa877d6ff3960b3a085f"
+  },
+  "previousAuditedFileHashesUnchanged": true
+}
