@@ -127,7 +127,7 @@ describe("builder speed: frozen pre-change counts and candidate identities", () 
       bootstrap: await reads.loadUnifiedBankBootstrap("question"),
     }).toMatchSnapshot();
   });
-  it("restores the pre-R1 bulk count reader without SQL format aggregates", async () => {
+  it("aggregates counts in SQL without a full candidate or payload scan", async () => {
     const find = vi.mocked(db.problem.findMany);
     find.mockClear();
     const groups = vi.spyOn(db.problem, "groupBy");
@@ -135,18 +135,19 @@ describe("builder speed: frozen pre-change counts and candidate identities", () 
     await loadBankSourceAvailability(
       builderParams({ view: "available", families: "1" }),
     );
-    expect(raw).not.toHaveBeenCalled();
+    expect(
+      raw.mock.calls.map(([q]) => (q as CountSql).questionCountRead?.mode),
+    ).toEqual([undefined, "formats", "counts"]);
     expect(groups).not.toHaveBeenCalled();
     const metadata = find.mock.calls.filter(
       ([args]) => args?.select?.answer && args?.select?.questionGroupKey,
     );
-    expect(metadata).toHaveLength(1);
-    expect(metadata[0][0]?.take).toBeUndefined();
+    expect(metadata).toHaveLength(0);
     expect(find.mock.calls.every(([args]) => !args?.select?.solution)).toBe(
       true,
     );
   });
-  it("does not split a large count scan into 500-row database round trips", async () => {
+  it("keeps a legacy NULL count read in three SQL round trips including fingerprint", async () => {
     resetPrismaTestDouble();
     await seedBuilderSpeedFixture(1200);
     const raw = vi.spyOn(prismaTestDouble, "$queryRaw");
@@ -155,15 +156,15 @@ describe("builder speed: frozen pre-change counts and candidate identities", () 
     await loadBankSourceAvailability(
       builderParams({ view: "available", families: "1" }),
     );
-    expect(raw).not.toHaveBeenCalled();
+    expect(
+      raw.mock.calls.map(([q]) => (q as CountSql).questionCountRead?.mode),
+    ).toEqual([undefined, "formats", "counts"]);
     const metadata = find.mock.calls.filter(
       ([args]) => args?.select?.answer && args?.select?.questionGroupKey,
     );
-    expect(metadata).toHaveLength(1);
-    expect(metadata[0][0]?.skip).toBeUndefined();
-    expect(metadata[0][0]?.take).toBeUndefined();
+    expect(metadata).toHaveLength(0);
   });
-  it("keeps ID-only candidate pages alongside the restored count reader", async () => {
+  it("returns only the requested IDs from SQL candidate pages", async () => {
     resetPrismaTestDouble();
     await seedBuilderSpeedFixture(1200);
     const find = vi.mocked(db.problem.findMany);
@@ -174,12 +175,11 @@ describe("builder speed: frozen pre-change counts and candidate identities", () 
     );
     expect(result.problems).toHaveLength(12);
     expect(result.total).toBeGreaterThan(12);
-    // Counts use baseline metadata; the separate candidate query returns only page IDs.
-    expect(raw).toHaveBeenCalledOnce();
-    expect((raw.mock.calls[0][0] as CountSql).questionCountRead.mode).toBe(
-      "page",
+    const pageReads = raw.mock.calls.flatMap(([q], i) =>
+      (q as CountSql).questionCountRead?.mode === "page" ? [i] : [],
     );
-    expect(await raw.mock.results[0].value).toHaveLength(12);
+    expect(pageReads).toHaveLength(1);
+    expect(await raw.mock.results[pageReads[0]].value).toHaveLength(12);
     const pageQuestions = new Set(result.problems.map((row) => row.questionId));
     const payloadReads = find.mock.calls.flatMap(([args], index) =>
       args?.select?.answer && args?.select?.content ? [index] : [],

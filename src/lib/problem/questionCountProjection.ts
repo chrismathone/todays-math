@@ -3,16 +3,17 @@ import type { Prisma } from "@prisma/client";
 import type { QuestionFormat } from "@/contracts/questionFormats.contract";
 import { db } from "@/lib/db";
 import { problemVisibleWhere } from "@/lib/problemPool";
+import { problemEligibleWhere } from "@/lib/problemEligibility";
 import type { classifyFormat } from "./provenance";
 import type { QuestionDb } from "./questionQueries";
 import { loadQuestionCandidates } from "./questionProjection";
 import { questionBucketsFromRows } from "./questionCountBuckets";
 import type { CountBucket, CountDimension } from "./questionCountSql";
+import { questionCountsSql } from "./questionCountSql";
+import { loadActualFormats } from "./actualFormatProjection";
 
-/** R2 fallback: the pre-R1 metadata/body reader is faster on the shared corpus
- * than SQL format aggregates, even after removing their second aggregate.
- * Preserve its request-local format evidence for the separate ID-only page query.
- */
+/** Aggregate stored, verified facts in PostgreSQL. Only invalid facts use the
+ * old classifier; unsupported Prisma predicates retain the original reader. */
 export async function loadQuestionCounts(
   where: Prisma.ProblemWhereInput,
   client: QuestionDb &
@@ -20,7 +21,55 @@ export async function loadQuestionCounts(
   dimensions: readonly CountDimension[] = [],
   format?: QuestionFormat,
   formats = new Map<string, ReturnType<typeof classifyFormat>>(),
+  includeFormats = true,
 ): Promise<CountBucket[]> {
+  const sql = questionCountsSql(
+    where,
+    dimensions,
+    format,
+    formats,
+    client,
+    includeFormats,
+  );
+  if (
+    sql &&
+    typeof (client as Prisma.TransactionClient).$queryRaw === "function" &&
+    (await loadActualFormats(
+      JSON.stringify(where) === JSON.stringify(problemEligibleWhere())
+        ? problemVisibleWhere()
+        : where,
+      client,
+      formats,
+    ))
+  ) {
+    const found = await (client as Prisma.TransactionClient).$queryRaw<
+      CountBucket[]
+    >(
+      questionCountsSql(
+        where,
+        dimensions,
+        format,
+        formats,
+        client,
+        includeFormats,
+      )!,
+    );
+    const buckets = found.map(({ firstAvailable, ...bucket }) =>
+      Object.defineProperty(bucket, "firstAvailable", {
+        value: firstAvailable ?? Infinity,
+      }),
+    );
+    if (!buckets.some((bucket) => bucket.axis === "all"))
+      buckets.push({
+        axis: "all",
+        key: "",
+        extra: null,
+        held: 0,
+        available: 0,
+        rowCount: 0,
+      });
+    return buckets;
+  }
   const rows = await loadQuestionCandidates(
     { AND: [problemVisibleWhere(), where] },
     undefined,

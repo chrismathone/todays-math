@@ -13,6 +13,9 @@ import { Prisma } from "@prisma/client";
 import { invalidateBankReadCache } from "@/lib/bankReadCache";
 import type { CountSql } from "@/lib/problem/questionCountSql";
 import { questionFormatWithoutContent } from "@/lib/problem/questionFormat";
+import { ACTUAL_FORMAT_VERSION } from "@/lib/problem/actualFormat";
+import { classifyFormat, type ProblemFormat } from "@/lib/problem/provenance";
+import { questionBucketsFromRows } from "@/lib/problem/questionCountBuckets";
 import { problemIneligibleCode } from "@/lib/problemEligibility";
 
 import type {
@@ -3170,6 +3173,16 @@ function restoreRows(snapshot: ReturnType<typeof snapshotRows>) {
  * accepted here; unknown SQL fails. Runtime code always executes real database locks.
  */
 async function testLockQuery(query: { sql: string }): Promise<unknown[]> {
+  if ((query as { bankReadFingerprint?: boolean }).bankReadFingerprint) {
+    const shared = problemRows.filter((row) => row.pool === "shared");
+    return [{
+      token: JSON.stringify([shared, unitRows, sourceMaterialRows, sourceBookRows]),
+      invalid: String(shared.filter((row) => {
+        const fact = row as typeof row & { actualFormat?: string | null; actualFormatVersion?: string | null };
+        return fact.actualFormat == null || fact.actualFormatVersion !== ACTUAL_FORMAT_VERSION;
+      }).length),
+    }];
+  }
   const count = (query as CountSql).questionCountRead;
   if (count) {
     const rows = problemRows.filter(
@@ -3181,6 +3194,56 @@ async function testLockQuery(query: { sql: string }): Promise<unknown[]> {
           PROBLEM_RELATIONS,
         ),
     );
+    const actual = (row: (typeof rows)[number]) => {
+      const cached = row as typeof row & {
+        actualFormat?: ProblemFormat | null;
+        actualFormatVersion?: string | null;
+        actualFormatDigest?: string | null;
+      };
+      return cached.actualFormatVersion === ACTUAL_FORMAT_VERSION
+        ? (cached.actualFormat ?? null)
+        : null;
+    };
+    if (count.mode === "formats")
+      return rows
+        .filter((row) => !count.onlyInvalid || actual(row) === null)
+        .map((row) => ({
+          ...row,
+          actualFormat: actual(row),
+          storedFormat:
+            (row as unknown as { actualFormat?: string }).actualFormat ?? null,
+          actualFormatVersion: null,
+          actualFormatDigest: null,
+          writable: false,
+        }));
+    if (count.mode === "counts") {
+      const formats = new Map(count.formats);
+      return questionBucketsFromRows(
+        rows.map((row) => {
+          const format =
+            formats.get(row.id) ??
+            actual(row) ??
+            questionFormatWithoutContent(row) ??
+            classifyFormat(row);
+          return {
+            ...row,
+            questionId: row.questionGroupKey ?? `row:${row.id}`,
+            sourceMaterialId: row.sourceMaterialId ?? null,
+            actualFormat:
+              format === "unknown"
+                ? null
+                : (format as Exclude<ProblemFormat, "unknown">),
+            available:
+              format !== "unknown" && problemIneligibleCode(row) === null,
+            weight: 1,
+            rowCount: 1,
+          };
+        }),
+        count.dimensions ?? [],
+        count.format,
+        { units: unitRows, materials: sourceMaterialRows },
+      );
+    }
     if (count.mode === "page") {
       const formats = new Map(count.formats);
       const groups = new Map<string, typeof rows>();
@@ -3192,7 +3255,10 @@ async function testLockQuery(query: { sql: string }): Promise<unknown[]> {
         [...groups.values()].flatMap((members) => {
           const row = members.find((row) => {
             const format =
-              formats.get(row.id) ?? questionFormatWithoutContent(row);
+              formats.get(row.id) ??
+              actual(row) ??
+              questionFormatWithoutContent(row) ??
+              classifyFormat(row);
             return (
               (!count.availableOnly ||
                 (format !== null &&

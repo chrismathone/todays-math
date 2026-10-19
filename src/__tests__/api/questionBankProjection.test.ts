@@ -1,5 +1,7 @@
 import { beforeEach, afterEach, describe, expect, it, vi } from "vitest";
 import { db } from "@/lib/db";
+import { prismaTestDouble } from "@/mocks/prismaTestDouble";
+import type { CountSql } from "@/lib/problem/questionCountSql";
 import { MOCK_UNITS, USER_TEACHER_ID } from "@/mocks/data";
 import {
   loadUnifiedBank,
@@ -156,9 +158,19 @@ describe("question list/source/bootstrap/actual-format parity", () => {
     }
   });
 
-  it("reuses only grouped IDs across page sizes and still validates each request", async () => {
+  it("slices SQL pages without candidate scans and validates each request", async () => {
     await pairs();
     const first = await loadUnifiedBank(q({ pageSize: "1" }));
+    const raw = vi.spyOn(prismaTestDouble, "$queryRaw");
+    expect(JSON.stringify(await loadUnifiedBank(q({ pageSize: "1" })))).toBe(
+      JSON.stringify(first),
+    );
+    expect(
+      raw.mock.calls.some(
+        ([query]) =>
+          (query as { bankReadFingerprint?: boolean }).bankReadFingerprint,
+      ),
+    ).toBe(true);
     const scans = candidateReads();
     const second = await loadUnifiedBank(q({ pageSize: "1", page: "2" }));
     const all = await loadUnifiedBank(q({ pageSize: "2" }));
@@ -169,7 +181,7 @@ describe("question list/source/bootstrap/actual-format parity", () => {
     ]);
     await expect(loadUnifiedBank(q({ page: "0" }))).rejects.toThrow();
     await loadUnifiedBank(q({ availableFormat: "multiple_choice" }));
-    expect(candidateReads()).toBe(scans + 1);
+    expect(candidateReads()).toBe(scans);
   });
 
   it("never shares recent account state or explicit IDs/exclusions", async () => {
@@ -184,7 +196,7 @@ describe("question list/source/bootstrap/actual-format parity", () => {
     expect(b.problems.map((p) => p.questionId)).toEqual([Q1]);
     expect(first.recentProblemIds).toHaveBeenCalledOnce();
     expect(second.recentProblemIds).toHaveBeenCalledOnce();
-    expect(candidateReads()).toBe(scans + 2);
+    expect(candidateReads()).toBe(scans);
     await expect(loadUnifiedBank(q({ recent: "1" }))).rejects.toThrow("계정");
     for (const key of ["ids", "excludeIds", "excludeFamiliesOf", "familyOf"]) {
       const before = candidateReads();
@@ -207,12 +219,16 @@ describe("question list/source/bootstrap/actual-format parity", () => {
     const updated = await loadUnifiedBank(q());
     expect(updated.total).toBe(1);
     expect(updated.problems[0].id).toBe(sa2.id);
-    const scans = candidateReads();
+    const raw = vi.spyOn(prismaTestDouble, "$queryRaw");
     vi.stubEnv("BANK_COUNTS_EPOCH", "new-import");
     expect(JSON.stringify(await loadUnifiedBank(q()))).toBe(
       JSON.stringify(updated),
     );
-    expect(candidateReads()).toBeGreaterThan(scans);
+    expect(
+      raw.mock.calls.some(
+        ([q]) => (q as CountSql).questionCountRead?.mode === "counts",
+      ),
+    ).toBe(true);
   });
 
   it("never stamps an older native body with a later revision or silently refreshes a saved body", async () => {
@@ -402,9 +418,10 @@ describe("question list/source/bootstrap/actual-format parity", () => {
       true,
     );
   });
-  it("reuses one request-local metadata scan for identical availability facet scopes", async () => {
+  it("reuses one SQL aggregate for identical availability facet scopes", async () => {
     await pairs();
     const find = vi.mocked(db.problem.findMany);
+    const raw = vi.spyOn(prismaTestDouble, "$queryRaw");
     find.mockClear();
     const result = await loadBankSourceAvailability(
       q({ view: "available", version: "2" }),
@@ -412,6 +429,9 @@ describe("question list/source/bootstrap/actual-format parity", () => {
     expect(result.available).toBe(2);
     expect(
       find.mock.calls.filter(([args]) => args?.select?.questionGroupKey),
-    ).toHaveLength(1);
+    ).toHaveLength(0);
+    expect(
+      raw.mock.calls.map(([q]) => (q as CountSql).questionCountRead?.mode),
+    ).toEqual([undefined, "formats", "counts"]);
   });
 });

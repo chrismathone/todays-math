@@ -5,7 +5,7 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { classifyFact, formatInputDigest, formatRuleVersion, MIGRATION_PATH, safeCode, type FormatRow, type SqlClient } from "../../../scripts/db/problem-actual-format";
 import { parseBackfillArgs, reconcileFailures, retryChunk, updateLockedRows, type BackfillState } from "../../../scripts/db/backfill-problem-actual-format";
-import { compareBuckets, MIRROR_DDL, mirroredBuckets } from "../../../scripts/db/verify-problem-actual-format";
+import { compareBuckets, MIRROR_DDL, mirroredBuckets, auditStoredFact } from "../../../scripts/db/verify-problem-actual-format";
 import { validateCatalog } from "../../../scripts/db/apply-problem-actual-format-migration";
 
 const row = (patch: Partial<FormatRow> = {}): FormatRow => ({
@@ -15,6 +15,18 @@ const row = (patch: Partial<FormatRow> = {}): FormatRow => ({
 const state = (): BackfillState => ({ kind: "problem-actual-format-backfill-v1", databaseHash: "test", version: "test", failures: {}, completed: false });
 
 describe("형식 백필의 원문·관문·재개", () => {
+  it("형식이 같아도 잘못된 저장 digest/버전을 독립 감사에서 거절한다", () => {
+    const input = row(), fact = classifyFact(input, "test");
+    const stored = { ...input, ...fact };
+    expect(auditStoredFact(stored, fact).matches).toBe(true);
+    expect(auditStoredFact({ ...stored, actualFormatDigest: "0".repeat(64) }, fact)).toMatchObject({ matches: false, digestMismatch: true, formatMismatch: false });
+    const changed = { ...stored, content: "물음 " };
+    expect(auditStoredFact(changed, classifyFact(changed,"test"))).toMatchObject({ matches: false, digestMismatch: true, formatMismatch: false });
+    expect(auditStoredFact({ ...stored, actualFormatVersion: "old" }, fact)).toMatchObject({ matches: false, versionMismatch: true });
+    expect(auditStoredFact(input, fact)).toMatchObject({ matches: false, missing: true });
+    const unknown = row({ questionType: null }), unknownFact = classifyFact(unknown, "test");
+    expect(auditStoredFact({ ...unknown, ...unknownFact }, unknownFact).matches).toBe(true);
+  });
   it("판정 입력 전부가 digest에 참여하고 공백·개행·빈 문자열을 뭉개지 않는다", () => {
     const base = row();
     for (const patch of [{ content: "물음 " }, { content: "물음\r\n" }, { answer: "8" }, { questionType: null },

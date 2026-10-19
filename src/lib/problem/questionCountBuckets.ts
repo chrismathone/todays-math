@@ -40,7 +40,7 @@ export function questionBucketsFromRows(
       availableIds: Map<string, number>;
     }
   >();
-  for (const row of rows) {
+  for (const [position, row] of rows.entries()) {
     const keys: [string, string | null | undefined, string | null][] = [
       ["all", "", null],
       ["format", row.actualFormat, null],
@@ -98,22 +98,31 @@ export function questionBucketsFromRows(
         held: 0,
         available: 0,
         rowCount: 0,
+        firstAvailable: undefined as number | undefined,
         heldIds: new Map(),
         availableIds: new Map(),
       };
       bucket.heldIds.set(row.questionId, row.weight);
       if (row.available) {
+        bucket.firstAvailable ??= position + 1;
         bucket.availableIds.set(row.questionId, row.weight);
         bucket.rowCount += row.rowCount;
       }
       buckets.set(id, bucket);
     }
   }
-  return [...buckets.values()].map(({ heldIds, availableIds, ...bucket }) => ({
-    ...bucket,
-    held: [...heldIds.values()].reduce((sum, n) => sum + n, 0),
-    available: [...availableIds.values()].reduce((sum, n) => sum + n, 0),
-  }));
+  return [...buckets.values()].map(
+    ({ heldIds, availableIds, firstAvailable, ...bucket }) =>
+      Object.defineProperty(
+        {
+          ...bucket,
+          held: [...heldIds.values()].reduce((sum, n) => sum + n, 0),
+          available: [...availableIds.values()].reduce((sum, n) => sum + n, 0),
+        },
+        "firstAvailable",
+        { value: firstAvailable ?? Infinity },
+      ),
+  );
 }
 
 export const questionBucketTally = (

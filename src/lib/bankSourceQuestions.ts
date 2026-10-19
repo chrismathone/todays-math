@@ -2,6 +2,7 @@ import "server-only";
 import type { Prisma } from "@prisma/client";
 import { db } from "@/lib/db";
 import { cachedBankRead, publicBankQueryKey } from "./bankReadCache";
+import { withBankReadFingerprint } from "./bankReadFingerprint";
 import { problemVisibleWhere } from "@/lib/problemPool";
 import { familyIdOf } from "@/lib/generator/familyKey";
 import { SOURCE_MATERIAL_KINDS } from "@/contracts/sourceMaterial.contract";
@@ -13,51 +14,55 @@ import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 import {
   BANK_AVAILABILITY_AXES,
   BANK_SOURCE_GROUPS,
-  BANK_SOURCE_GROUP_SOURCES,
   bankBookIdsParamSchema,
-  type BankAvailabilityTally,
   type BankSourceAvailability,
   type BankSourceCounts,
   type BankSourceMaterials,
 } from "@/contracts/bankSource.contract";
 import type { BankQueryContext } from "@/lib/bankQueryContext";
-import {
-  loadQuestionCandidates,
-  countProjectedQuestions,
-  questionReadMetadata,
-  type QuestionCandidate,
-} from "@/lib/problem/questionProjection";
+import { questionReadMetadata } from "@/lib/problem/questionProjection";
 import {
   resolveUnifiedBankQuery,
   UnifiedBankQueryError,
 } from "./unifiedPreview";
 
-type QSets = { held: Set<string>; available: Set<string> };
-const sets = (): QSets => ({ held: new Set(), available: new Set() });
-function add(to: QSets, row: QuestionCandidate) {
-  to.held.add(row.questionId);
-  if (row.available) to.available.add(row.questionId);
-}
-function tally(to: QSets): BankAvailabilityTally {
-  return { held: to.held.size, available: to.available.size };
-}
-function collect(
-  rows: readonly QuestionCandidate[],
-  key: (r: QuestionCandidate) => string,
-) {
-  const map = new Map<string, QSets>();
-  for (const row of rows) {
-    const k = key(row);
-    const group = map.get(k) ?? sets();
-    add(group, row);
-    map.set(k, group);
+import { loadQuestionCounts } from "./problem/questionCountProjection";
+import { questionBucketTally } from "./problem/questionCountBuckets";
+import type { CountBucket, CountDimension } from "./problem/questionCountSql";
+
+const tally = questionBucketTally;
+const axis = (buckets: readonly CountBucket[], name: string) =>
+  buckets.filter((b) => b.axis === name);
+
+function unitFamilyCounts(buckets: readonly CountBucket[]) {
+  const units = axis(buckets, "unit")
+    .filter((b) => b.available > 0)
+    .sort(
+      (a, b) => (a.firstAvailable ?? Infinity) - (b.firstAvailable ?? Infinity),
+    );
+  const keyed = new Map<string, Set<string>>();
+  const solo = new Map<string, number>();
+  for (const bucket of axis(buckets, "family")) {
+    if (!bucket.available) continue;
+    if (!bucket.extra?.trim())
+      solo.set(bucket.key, (solo.get(bucket.key) ?? 0) + bucket.rowCount);
+    else {
+      const keys = keyed.get(bucket.key) ?? new Set<string>();
+      keys.add(
+        familyIdOf({ id: "", unitId: bucket.key, familyKey: bucket.extra }),
+      );
+      keyed.set(bucket.key, keys);
+    }
   }
-  return map;
-}
-function all(rows: readonly QuestionCandidate[]) {
-  const to = sets();
-  for (const row of rows) add(to, row);
-  return tally(to);
+  return Object.fromEntries(
+    units.map((bucket) => [
+      bucket.key,
+      Math.min(
+        (keyed.get(bucket.key)?.size ?? 0) + (solo.get(bucket.key) ?? 0),
+        bucket.available,
+      ),
+    ]),
+  );
 }
 function clean(params: URLSearchParams, omit: readonly string[] = []) {
   const copy = new URLSearchParams(params);
@@ -86,15 +91,22 @@ export async function loadQuestionSourceAvailability(
 ): Promise<BankSourceAvailability> {
   check(params);
   const key = publicBankQueryKey(params);
-  return key === null
-    ? readQuestionSourceAvailability(params, context)
-    : cachedBankRead(`availability:${key}`, () =>
-        readQuestionSourceAvailability(params, context),
-      );
+  return db.$transaction(
+    (tx) =>
+      withBankReadFingerprint(tx, () =>
+        key === null
+          ? readQuestionSourceAvailability(params, context, tx)
+          : cachedBankRead(`availability:${key}`, () =>
+              readQuestionSourceAvailability(params, context, tx),
+            ),
+      ),
+    { isolationLevel: "RepeatableRead", timeout: 30000 },
+  );
 }
 async function readQuestionSourceAvailability(
   params: URLSearchParams,
   context?: BankQueryContext,
+  tx?: Prisma.TransactionClient,
 ): Promise<BankSourceAvailability> {
   const filters = clean(params);
   const [main, units, difficulties, sources] = await Promise.all([
@@ -112,155 +124,128 @@ async function readQuestionSourceAvailability(
       context,
     ),
   ]);
-  return db.$transaction(
-    async (tx) => {
-      const cache = new Map<
-        string,
-        ReturnType<typeof import("@/lib/problem/provenance").classifyFormat>
-      >();
-      const scans = new Map<string, Promise<QuestionCandidate[]>>();
-      const intern = new Map<string, QuestionCandidate>();
-      const load = async (
-        selection: Prisma.ProblemWhereInput[],
-        format: QuestionFormat | null | undefined = main.format,
-      ) => {
-        const key = JSON.stringify(selection);
-        let pending = scans.get(key);
-        if (!pending) {
-          pending = loadQuestionCandidates(
-            { AND: [problemVisibleWhere(), ...selection] },
-            undefined,
-            tx,
-            cache,
-            intern,
-          );
-          scans.set(key, pending);
-        }
-        const rows = await pending;
-        return format ? rows.filter((r) => r.actualFormat === format) : rows;
-      };
-      // Sequential scans share classifications; the transaction protects their correspondence.
-      const mainAll = await load(main.selection, null);
-      const mainRows = main.format
-        ? mainAll.filter((row) => row.actualFormat === main.format)
-        : mainAll;
-      const unitRows = await load(units.selection, units.format);
-      const difficultyRows = await load(
-        difficulties.selection,
-        difficulties.format,
-      );
-      const sourceRows = await load(sources.selection, sources.format);
-      const unitSets = collect(unitRows, (r) => r.unitId);
-      const diffSets = collect(difficultyRows, (r) => r.difficulty);
-      const sourceTally = (source: string) =>
-        all(
-          sourceRows.filter((r) =>
-            BANK_SOURCE_GROUP_SOURCES[
-              source as (typeof BANK_SOURCE_GROUPS)[number]
-            ]?.includes(r.source),
-          ),
-        );
-      const textbookRows = sourceRows.filter(
-        (r) => r.source === "school_textbook",
-      );
-      const materialIds = [
-        ...new Set(
-          textbookRows.flatMap((r) =>
-            r.sourceMaterialId ? [r.sourceMaterialId] : [],
-          ),
-        ),
-      ];
-      const materials = materialIds.length
-        ? await tx.sourceMaterial.findMany({
-            where: { id: { in: materialIds } },
-            select: { id: true, bookId: true, kind: true },
-          })
-        : [];
-      const materialById = new Map(materials.map((m) => [m.id, m]));
-      const bookSets = new Map<string, QSets>();
-      const kindSets = new Map<string, Map<string, QSets>>();
-      for (const row of textbookRows) {
-        const m = materialById.get(row.sourceMaterialId ?? "");
-        if (!m) continue;
-        const book = bookSets.get(m.bookId) ?? sets();
-        add(book, row);
-        bookSets.set(m.bookId, book);
-        const kinds = kindSets.get(m.bookId) ?? new Map<string, QSets>();
-        const kind = kinds.get(m.kind) ?? sets();
-        add(kind, row);
-        kinds.set(m.kind, kind);
-        kindSets.set(m.bookId, kinds);
+  const read = async (
+    tx: Prisma.TransactionClient,
+  ): Promise<BankSourceAvailability> => {
+    const cache = new Map<
+      string,
+      ReturnType<typeof import("@/lib/problem/provenance").classifyFormat>
+    >();
+    // Equal facet scopes share one SQL aggregate with the union of dimensions.
+    const scans = new Map<
+      string,
+      {
+        where: Prisma.ProblemWhereInput;
+        format?: QuestionFormat;
+        dimensions: Set<CountDimension>;
+        result?: CountBucket[];
       }
-      const families = collect(
-        unitRows.filter((r) => r.available),
-        (r) => r.unitId,
-      );
-      const familySets = new Map<string, Set<string>>();
-      for (const row of unitRows)
-        if (row.available) {
-          const set = familySets.get(row.unitId) ?? new Set<string>();
-          set.add(familyIdOf(row));
-          familySets.set(row.unitId, set);
-        }
-      return {
-        view: "available",
-        ...questionReadMetadata(params),
-        ...all(mainRows),
-        formatAvailable: Object.fromEntries(
-          QUESTION_FORMATS.map((f) => [
-            f,
-            countProjectedQuestions(mainAll, true, f),
-          ]),
-        ) as Record<(typeof QUESTION_FORMATS)[number], number>,
-        facets: {
-          units: Object.fromEntries(
-            [...unitSets].map(([id, s]) => [id, tally(s)]),
-          ),
-          ...(params.get("families") === "1"
-            ? {
-                unitFamilies: Object.fromEntries(
-                  [...families.keys()].map((id) => [
-                    id,
-                    Math.min(
-                      familySets.get(id)?.size ?? 0,
-                      families.get(id)?.available.size ?? 0,
-                    ),
-                  ]),
-                ),
-              }
-            : {}),
-          difficulties: Object.fromEntries(
-            DIFFICULTY_LADDER.map((tier) => [
-              tier,
-              tally(diffSets.get(tier) ?? sets()),
-            ]),
-          ) as NonNullable<BankSourceAvailability["facets"]>["difficulties"],
-          sources: {
-            total: all(sourceRows),
-            ...Object.fromEntries(
-              BANK_SOURCE_GROUPS.map((g) => [g, sourceTally(g)]),
-            ),
-          } as NonNullable<BankSourceAvailability["facets"]>["sources"],
-          textbook: {
-            ...all(textbookRows),
-            books: [...bookSets]
-              .sort(([a], [b]) => a.localeCompare(b))
-              .map(([id, s]) => ({
-                id,
-                ...tally(s),
-                kinds: Object.fromEntries(
-                  [...(kindSets.get(id) ?? [])].map(([kind, s]) => [
-                    kind,
-                    tally(s),
-                  ]),
-                ),
-              })),
-          },
-        },
+    >();
+    const plan = (
+      selection: Prisma.ProblemWhereInput[],
+      format: QuestionFormat | undefined,
+      dimensions: CountDimension[],
+    ) => {
+      const where = { AND: [problemVisibleWhere(), ...selection] };
+      const key = JSON.stringify([where, format]);
+      const scan = scans.get(key) ?? {
+        where,
+        format,
+        dimensions: new Set<CountDimension>(),
+        result: undefined as CountBucket[] | undefined,
       };
-    },
-    { isolationLevel: "RepeatableRead", timeout: 30000 },
-  );
+      for (const dimension of dimensions) scan.dimensions.add(dimension);
+      scans.set(key, scan);
+      return scan;
+    };
+    const mainScan = plan(main.selection, main.format, []);
+    const unitScan = plan(units.selection, units.format, [
+      "unit",
+      ...(params.get("families") === "1" ? ["family" as const] : []),
+    ]);
+    const difficultyScan = plan(difficulties.selection, difficulties.format, [
+      "difficulty",
+    ]);
+    const sourceScan = plan(sources.selection, sources.format, [
+      "source",
+      "book",
+      "kind",
+    ]);
+    for (const scan of scans.values())
+      scan.result = await loadQuestionCounts(
+        scan.where,
+        tx,
+        [...scan.dimensions],
+        scan.format,
+        cache,
+        scan === mainScan,
+      );
+    const mainBuckets = mainScan.result!,
+      unitBuckets = unitScan.result!,
+      difficultyBuckets = difficultyScan.result!,
+      sourceBuckets = sourceScan.result!;
+    return {
+      view: "available",
+      ...questionReadMetadata(params),
+      ...tally(mainBuckets),
+      formatAvailable: Object.fromEntries(
+        QUESTION_FORMATS.map((f) => [
+          f,
+          tally(mainBuckets, "format", f).available,
+        ]),
+      ) as Record<(typeof QUESTION_FORMATS)[number], number>,
+      facets: {
+        units: Object.fromEntries(
+          axis(unitBuckets, "unit").map((b) => [
+            b.key,
+            { held: b.held, available: b.available },
+          ]),
+        ),
+        ...(params.get("families") === "1"
+          ? { unitFamilies: unitFamilyCounts(unitBuckets) }
+          : {}),
+        difficulties: Object.fromEntries(
+          DIFFICULTY_LADDER.map((tier) => [
+            tier,
+            tally(difficultyBuckets, "difficulty", tier),
+          ]),
+        ) as NonNullable<BankSourceAvailability["facets"]>["difficulties"],
+        sources: {
+          total: tally(sourceBuckets),
+          ...Object.fromEntries(
+            BANK_SOURCE_GROUPS.map((g) => [
+              g,
+              tally(sourceBuckets, "source", g),
+            ]),
+          ),
+        } as NonNullable<BankSourceAvailability["facets"]>["sources"],
+        textbook: {
+          ...tally(sourceBuckets, "source", "school_textbook"),
+          books: axis(sourceBuckets, "book")
+            .sort((a, b) => a.key.localeCompare(b.key))
+            .map((b) => ({
+              id: b.key,
+              held: b.held,
+              available: b.available,
+              kinds: Object.fromEntries(
+                axis(sourceBuckets, "kind")
+                  .filter((k) => k.key === b.key)
+                  .map((k) => [
+                    k.extra!,
+                    { held: k.held, available: k.available },
+                  ]),
+              ),
+            })),
+        },
+      },
+    };
+  };
+  return tx
+    ? read(tx)
+    : db.$transaction(read, {
+        isolationLevel: "RepeatableRead",
+        timeout: 30000,
+      });
 }
 
 /** Global source picker scope stays global; every union is counted by question. */
@@ -269,101 +254,101 @@ export async function loadQuestionSourceCounts(
 ): Promise<BankSourceCounts> {
   check(params);
   const key = publicBankQueryKey(params);
-  return key === null
-    ? readQuestionSourceCounts(params)
-    : cachedBankRead(`counts:${key}`, () => readQuestionSourceCounts(params));
+  return db.$transaction(
+    (tx) =>
+      withBankReadFingerprint(tx, () =>
+        key === null
+          ? readQuestionSourceCounts(params, tx)
+          : cachedBankRead(`counts:${key}`, () =>
+              readQuestionSourceCounts(params, tx),
+            ),
+      ),
+    { isolationLevel: "RepeatableRead", timeout: 30000 },
+  );
 }
 async function readQuestionSourceCounts(
   params: URLSearchParams,
+  tx: Prisma.TransactionClient,
 ): Promise<BankSourceCounts> {
-  return db.$transaction(
-    async (tx) => {
-      const [rows, books, units] = await Promise.all([
-        loadQuestionCandidates(problemVisibleWhere(), undefined, tx),
-        tx.sourceBook.findMany({
-          where: { kind: "school_textbook" },
-          select: {
-            id: true,
-            grade: true,
-            publisher: true,
-            author: true,
-            title: true,
-          },
-        }),
-        tx.unit.findMany({
-          select: { grade: true, orderIndex: true },
-          orderBy: { orderIndex: "asc" },
-        }),
-      ]);
-      const materials = books.length
-        ? await tx.sourceMaterial.findMany({
-            where: { bookId: { in: books.map((b) => b.id) } },
-            select: { id: true, bookId: true, kind: true },
-          })
-        : [];
-      const materialById = new Map(materials.map((m) => [m.id, m]));
-      const textbook = rows.filter((r) => r.source === "school_textbook");
-      const first = new Map<string, number>();
-      for (const u of units)
-        if (!first.has(u.grade)) first.set(u.grade, u.orderIndex);
-      const listed = books.flatMap((book) => {
-        const matches = textbook.filter(
-          (r) => materialById.get(r.sourceMaterialId ?? "")?.bookId === book.id,
-        );
-        if (!matches.length) return [];
-        const count = all(matches);
-        const kindSets = collect(
-          matches,
-          (r) => materialById.get(r.sourceMaterialId ?? "")!.kind,
-        );
-        return [
-          {
-            ...book,
-            count: count.held,
-            open: count.available,
-            materials: new Set(matches.map((r) => r.sourceMaterialId)).size,
-            kinds: Object.fromEntries(
-              [...kindSets].map(([kind, s]) => [kind, s.held.size]),
-            ),
-          },
-        ];
-      });
-      const grades = [...new Set(listed.map((b) => b.grade))].sort(
-        (a, b) =>
-          (first.get(a) ?? Infinity) - (first.get(b) ?? Infinity) ||
-          a.localeCompare(b, "ko"),
-      );
-      return {
-        ...questionReadMetadata(params),
-        sources: {
-          total: all(rows).held,
-          ...Object.fromEntries(
-            BANK_SOURCE_GROUPS.map((g) => [
-              g,
-              all(
-                rows.filter((r) =>
-                  BANK_SOURCE_GROUP_SOURCES[g].includes(r.source),
-                ),
-              ).held,
-            ]),
-          ),
-        } as BankSourceCounts["sources"],
-        textbook: {
-          total: all(textbook).held,
-          grades,
-          kinds: [...SOURCE_MATERIAL_KINDS],
-          books: listed.sort(
-            (a, b) =>
-              grades.indexOf(a.grade) - grades.indexOf(b.grade) ||
-              b.count - a.count ||
-              a.publisher.localeCompare(b.publisher, "ko") ||
-              (a.author ?? "").localeCompare(b.author ?? "", "ko"),
-          ),
-        },
-      };
-    },
-    { isolationLevel: "RepeatableRead", timeout: 30000 },
+  const [buckets, books, units] = await Promise.all([
+    loadQuestionCounts(
+      problemVisibleWhere(),
+      tx,
+      ["source", "book", "kind", "material"],
+      undefined,
+      undefined,
+      false,
+    ),
+    tx.sourceBook.findMany({
+      where: { kind: "school_textbook" },
+      select: {
+        id: true,
+        grade: true,
+        publisher: true,
+        author: true,
+        title: true,
+      },
+    }),
+    tx.unit.findMany({
+      select: { grade: true, orderIndex: true },
+      orderBy: { orderIndex: "asc" },
+    }),
+  ]);
+  const materials = books.length
+    ? await tx.sourceMaterial.findMany({
+        where: { bookId: { in: books.map((b) => b.id) } },
+        select: { id: true, bookId: true, kind: true },
+      })
+    : [];
+  const first = new Map<string, number>();
+  for (const u of units)
+    if (!first.has(u.grade)) first.set(u.grade, u.orderIndex);
+  const listed = books.flatMap((book) => {
+    const count = tally(buckets, "book", book.id);
+    if (!count.held) return [];
+    return [
+      {
+        ...book,
+        count: count.held,
+        open: count.available,
+        materials: materials.filter(
+          (m) =>
+            m.bookId === book.id && tally(buckets, "material", m.id).held > 0,
+        ).length,
+        kinds: Object.fromEntries(
+          axis(buckets, "kind")
+            .filter((k) => k.key === book.id)
+            .map((k) => [k.extra!, k.held]),
+        ),
+      },
+    ];
+  });
+  const grades = [...new Set(listed.map((b) => b.grade))].sort(
+    (a, b) =>
+      (first.get(a) ?? Infinity) - (first.get(b) ?? Infinity) ||
+      a.localeCompare(b, "ko"),
   );
+  return {
+    ...questionReadMetadata(params),
+    sources: {
+      total: tally(buckets).held,
+      ...Object.fromEntries(
+        BANK_SOURCE_GROUPS.map((g) => [g, tally(buckets, "source", g).held]),
+      ),
+    } as BankSourceCounts["sources"],
+    textbook: {
+      total: tally(buckets, "source", "school_textbook").held,
+      grades,
+      kinds: [...SOURCE_MATERIAL_KINDS],
+      books: listed.sort(
+        (a, b) =>
+          grades.indexOf(a.grade) - grades.indexOf(b.grade) ||
+          b.count - a.count ||
+          a.publisher.localeCompare(b.publisher, "ko") ||
+          (a.author ?? "").localeCompare(b.author ?? "", "ko"),
+      ),
+    },
+  };
 }
 const nullsLast = (a: number | null, b: number | null) =>
   a === b ? 0 : a === null ? 1 : b === null ? -1 : a - b;
@@ -381,7 +366,7 @@ export async function loadQuestionSourceMaterials(
   );
   return db.$transaction(
     async (tx) => {
-      const [materials, rows] = await Promise.all([
+      const [materials, buckets] = await Promise.all([
         tx.sourceMaterial.findMany({
           where: { bookId: { in: books.data } },
           select: {
@@ -400,7 +385,7 @@ export async function loadQuestionSourceMaterials(
             sequence: true,
           },
         }),
-        loadQuestionCandidates(
+        loadQuestionCounts(
           {
             AND: [
               problemVisibleWhere(),
@@ -409,22 +394,19 @@ export async function loadQuestionSourceMaterials(
               { sourceMaterial: { bookId: { in: books.data } } },
             ],
           },
-          undefined,
           tx,
+          ["material"],
+          query.format,
+          undefined,
+          false,
         ),
       ]);
-      const counts = collect(
-        query.format
-          ? rows.filter((r) => r.actualFormat === query.format)
-          : rows,
-        (r) => r.sourceMaterialId ?? "",
-      );
       const order = new Map(books.data.map((id, i) => [id, i]));
       return {
         view: "materials",
         ...questionReadMetadata(params),
         materials: materials
-          .map((m) => ({ ...m, ...tally(counts.get(m.id) ?? sets()) }))
+          .map((m) => ({ ...m, ...tally(buckets, "material", m.id) }))
           .sort(
             (a, b) =>
               order.get(a.bookId)! - order.get(b.bookId)! ||

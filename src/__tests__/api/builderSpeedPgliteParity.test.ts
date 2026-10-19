@@ -24,6 +24,12 @@ import type {
   CountBucket,
   CountDimension,
 } from "@/lib/problem/questionCountSql";
+import {
+  ACTUAL_FORMAT_VERSION,
+  actualFormatDigest,
+} from "@/lib/problem/actualFormat";
+import { classifyFormat, type FormatInput } from "@/lib/problem/provenance";
+import { questionFormatWithoutContent } from "@/lib/problem/questionFormat";
 import { questionPageSql } from "@/lib/problem/questionCountSql";
 import { MISSING_ANSWER } from "@/lib/missingAnswer";
 import { unifiedBankQuerySchema } from "@/contracts/bankSource.contract";
@@ -121,6 +127,23 @@ it("matches the old readers on real local PostgreSQL across format evidence, fac
                 pool: i % 23 === 0 ? "private" : "shared",
               });
             }
+  for (const [i, row] of rows.entries()) {
+    const input = row as unknown as FormatInput;
+    const exact = classifyFormat(input),
+      proof = questionFormatWithoutContent(input);
+    if (proof !== null && proof !== exact) continue;
+    if (i % 4 === 1) continue;
+    row.actualFormat =
+      i % 4 === 0 || i % 4 === 3
+        ? exact
+        : exact === "short_answer"
+          ? "descriptive"
+          : "short_answer";
+    row.actualFormatVersion =
+      i % 4 === 2 ? "format-v1:old" : ACTUAL_FORMAT_VERSION;
+    row.actualFormatDigest =
+      i % 4 === 3 ? "0".repeat(64) : actualFormatDigest(input);
+  }
   const units = await db.unit.findMany();
   const pg = await builderSpeedPglite(rows, units, materials);
   const rawReads: { mode: string; rows: number }[] = [];
@@ -128,7 +151,10 @@ it("matches the old readers on real local PostgreSQL across format evidence, fac
     query: CountSql,
   ) => {
     const result = await pg.queryRaw(query);
-    rawReads.push({ mode: query.questionCountRead.mode, rows: result.length });
+    rawReads.push({
+      mode: query.questionCountRead?.mode ?? "fingerprint",
+      rows: result.length,
+    });
     return result;
   }) as typeof prismaTestDouble.$queryRaw);
   vi.spyOn(db.problem, "findMany").mockImplementation(
@@ -262,8 +288,8 @@ it("matches the old readers on real local PostgreSQL across format evidence, fac
     expect(await loadQuestionSourceMaterials(materialParams)).toEqual(
       await prior.loadQuestionSourceMaterials(materialParams),
     );
-    // R2 restores baseline counts. Raw reads are reserved for ID-only pages.
-    expect(rawReads.every((read) => read.mode === "page")).toBe(true);
+    expect(rawReads.some((read) => read.mode === "counts")).toBe(true);
+    expect(rawReads.some((read) => read.mode === "formats")).toBe(true);
     expect(
       rawReads
         .filter((read) => read.mode === "page")
