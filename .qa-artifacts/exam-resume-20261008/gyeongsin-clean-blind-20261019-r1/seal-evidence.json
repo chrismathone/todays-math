@@ -1,0 +1,44 @@
+{
+  "kind": "stage1-independent-blind-proof-seal/v1",
+  "solverId": "codex-gyeongsin-clean-blind-20261019-r1",
+  "studentDigest": "1926b5e6809401ef62d86c962defff8aec71099435d0e8c9a556a225ec9f8811",
+  "proofFile": "q01.json",
+  "proofSha256": "1ed5729bdb2693028fffaa3e315819d50ec74f36f7255679f515ccb7bc1968f1",
+  "answer": "③",
+  "answerCodePoint": "U+2462",
+  "strictUtf8Reopened": true,
+  "fullKoreanProofPrintedFromActualDisk": true,
+  "questionMarkOrReplacementCorruption": false,
+  "calculationMethod": "Python Fraction exact arithmetic; 180-2*67=46; all actual options checked against the raw proof",
+  "allFiveOptionChecksMatch": true,
+  "existenceAndRequestedAngleUniquenessReasoned": true,
+  "figureRenderedAndViewed": true,
+  "figurePixelsUsedForAnswer": false,
+  "blindInputFiles": [
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-review-20261019-r2\\blind\\student-problems.json",
+      "sha256": "eb9aff4f05e0b7c8558e2a9fd5c8502a7d79f4dac843e5759e65a37a73432f70",
+      "bytes": 973
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-review-20261019-r2\\blind\\blind-manifest.json",
+      "sha256": "d9ffa4e67de4dea4c1c3979bd26542d69e3b1a5a3f443fee68a83a4c27d59a2d",
+      "bytes": 335
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-review-20261019-r2\\blind\\figures\\q01-1.svg",
+      "sha256": "7cc128cefeb54521cc5f895d6b2b372fa9883540f5d47469b7472801067288d7",
+      "bytes": 12523
+    }
+  ],
+  "localFigureInspection": {
+    "path": "figure-inspection.local.png",
+    "sha256": "e313366a2066a0c598bacd0d08c21d95644bcf6946e650235f8ac9077333fa39",
+    "commit": false
+  },
+  "stage1Only": true,
+  "authorAnswerExposure": false,
+  "finalMathGradeContentRightsApproval": false,
+  "loadable": 0,
+  "dbWrites": 0
+}
