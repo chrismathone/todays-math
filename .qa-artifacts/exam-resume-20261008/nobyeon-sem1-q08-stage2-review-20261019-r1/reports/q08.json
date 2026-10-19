@@ -1,0 +1,183 @@
+{
+    "status":  "pending",
+    "studentDigest":  "1d6563056697661a1c4a56c3883cfc51998879e10674b3953412963d5dd1e827",
+    "candidateDigest":  "9276d52ab4cda6b2e941d0fa4a97ee900ff3c1b830dbca1508fd9226544c1f2f",
+    "assetDigest":  "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "method":  "independent-solve-then-review",
+    "verifierId":  "codex-clean-blind-20261019-r1",
+    "solveDigest":  "7d1f434df422d1a5fd74c94d025ab7ad03f53554d078902df123d04588c21ffa",
+    "checks":  {
+                   "answerCorrect":  true,
+                   "solutionCorrect":  true,
+                   "existenceUniqueness":  true,
+                   "choicesCorrect":  true,
+                   "figureConsistent":  true,
+                   "sameCoreConceptAndProcedure":  true,
+                   "distinctPresentation":  true,
+                   "naturalKorean":  true,
+                   "curriculumAppropriate":  true,
+                   "allStudentSurfacesInScope":  true,
+                   "unitFamilyFit":  false,
+                   "scoreAppropriate":  true
+               },
+    "evidence":  {
+                     "reviewedCandidate":  "exam-twin-nobyeon-2025-1-mid-author-group2-r3-q08",
+                     "checkEvidence":  {
+                                           "answerCorrect":  "봉인 풀이의 x=1,3 및 합4, 보기④가 현재 r3 후보 answer④와 일치한다. 원문 정답은 근거로 쓰지 않았다.",
+                                           "solutionCorrect":  "두 넓이=(x+2)^2,(2x-3)^2. 양의 변은 |x+2|,|2x-3|. 세 구간의 차 x-5,3x-1,5-x와 후보7,1,3 모두 독립 풀이와 일치. 7은 구간 위반으로 제외한다. 후보 해설의 각 등식·부호·대입 확인에 오류가 없다.",
+                                           "existenceUniqueness":  "실수 전체에서 x=-2,3/2는 각각 A 또는 B의 길이가0이므로 제외. 남은 세 열린 구간이 허용 정의역 전체이다. 각 구간의 일차방정식에는 후보 하나씩만 있어 누락 해가 없다. x=1은 변3cm,1cm 및 넓이9cm²,1cm²; x=3은 변5cm,3cm 및 넓이25cm²,9cm²로 실재하는 양수 정사각형이다. 둘 다 차2cm. x의 해는 둘이지만 요청한 모든 해의 합은 유일하게4이다.",
+                                           "choicesCorrect":  "5개 값은 순서대로1,2,3,4,6이며 서로 다르다. 합4와 비교하면 ①1 불일치,②2 불일치,③3 불일치,④4 일치,⑤6 불일치. 단일 정답이다. x=1 또는3 자체를 고르는 오독도 정답합과 구분된다.",
+                                           "figureConsistent":  "독립 단계에서 실제 q08.png를 보았으며 후보와 같은 전개된 두 넓이·양수 조건·2cm 차·다섯 보기를 확인했다. 현재 packet assets와 figureArtifacts는 빈 배열이고 본문 표만 있다. 표의 넓이 단위cm²와 길이cm가 맞는다. 축척·픽셀 측정·숨은 도형 조건은 필요 없다. 최종 제품 native 렌더링 또는 출처 원본 도형 대응을 인증하는 판정은 아니다.",
+                                           "sameCoreConceptAndProcedure":  "허용된 source-q08-only의 원문은 두 전개 완전제곱식의 근호 차와 두 부호 경계의 세 구간을 다룬다. 후보도 전개식을 먼저 인수분해해야 하며 양의 제곱근을 절댓값으로 바꾼 뒤 세 구간 부호를 판단한다. 원문과 같은 핵심 단계가 유지된다. 기하 표현은 정사각형 넓이=변²인 선수지식만 쓰며 피타고라스·좌표·고등 절댓값 부등식 풀이를 요구하지 않는다. 역추론에 필요한 것은 9수02-05 일차방정식이다.",
+                                           "distinctPresentation":  "원문은 주어진 세 구간의 간단히 한 식에 대한 ㄱㄴㄷ 정오 조합을 고른다. 후보는 넓이 표에서 변을 복원하고 고정 길이차의 모든 입력값을 역으로 구해 합을 묻는다. 표현(근호차→넓이/길이), 정보 구조(제시된 구간→스스로 구간 분할), 목표(진술 정오→해 전체의 합)가 바뀌었다. 다항식 계수 교체만으로 차별성을 주장하지 않는다. 다만 절댓값 두 항의 차라는 수학 골격은 의도적으로 공유하며 유사성/권리 법적 승인은 별도 보류한다.",
+                                           "naturalKorean":  "실수 x, 양수인 두 정사각형의 한 변, 넓이 표, A가 B보다2cm 길다는 방향, 가능한 모든 x의 값의 합이 명료하다. A/B는 정사각형 명칭임이 첫 문장에서 정해진다. 표의 전개식은 x를 길이라고 오인하게 하지 않으며 답합에 cm를 붙이지 않는다. 정사각형의 어느 변인지에 따른 모호함은 없다.",
+                                           "curriculumAppropriate":  "아래 실제 교육부 고시 HWP locator로 제곱근 성질·근호 계산·인수분해와 일차방정식 선수를 확인했다. 절댓값은 수와 연산 학습요소이며 세 구간에서 두 일차식의 부호를 판단하는 수준이다. 정사각형 넓이는 초5~6 선수기준이다. 중3 2015에서 인수분해까지 학습한 뒤 사용 가능하며 제곱근 단원 최초 도입 직후에 선수 없이 사용해도 된다는 뜻은 아니다. 2025/2026중3 대상이며 2027중3의2022교육과정에는 자동 이관하지 않는다.",
+                                           "allStudentSurfacesInScope":  "stem, choices, figuresAndTables, notation, answer, studentSolution, prerequisites의7면을 각각 아래 평가했다. 코드 계산은 검산용이며 학생 필수 방법으로 사용하지 않는다. 선수 인수분해 학습을 전제로 모두2015중3 범위이다.",
+                                           "unitFamilyFit":  "false: 후보 unit은 중3 제곱근의 뜻과 성질이고 선수 인수분해 unit도 표시되어 있어 개념 관련성은 있다. 그러나 liveFamily A08/A09의 실제 정의/대표 문제/배정 기준은 제공되지 않았고 허용 범위 밖 snapshot을 읽지 않았다. familyKey=null 유지, 어느family도 확정하지 않는다.",
+                                           "scoreAppropriate":  "5점에 대한 편집적 적절성: 두 전개식 인수분해, 양의 제곱근 해석, 두 경계 설정, 세 구간별 부호와 방정식, 원범위 필터, 두 해의 실제 길이 검증 및 합산을 결합한다. 단순 제곱근 수치계산보다 단계가 많고 원문의 인수분해·세 구간 부호 부담을 유지하면서 일차방정식 역추론을 추가하므로 응용/5점 제안은 합리적이다. 숫자는 작은 정수이며 고난도 추가 정리는 없다. source 발췌의5점/중 표시는 비교용 관찰일 뿐 승인의 단독 근거가 아니다. 학교 전체 배점비율·소요시간·정답률에 의한 실측 보정은 미실시이며 이를 주장하지 않는다."
+                                       },
+                     "packetBinding":  {
+                                           "verificationInputsSha256":  "954cb271c6cb4eddd6037bf92e575a36e416ec8198d5769c0d305ede21b3795a",
+                                           "packageDigest":  "3aa9d6abda948087a3ac3f5d954f5a9d3537f6b31ce73ff21b164f1c2a270d27",
+                                           "rawSha256":  "0e1a5c9f889e6e0a10332e9de6e8de944dc953b3f15c88a4d3d1baa8fd5ecc89",
+                                           "note":  "실제 verification-inputs 파일SHA256와 로컬 봉인 rawSHA256를 대조했다. candidateDigest/assetDigest/solveDigest는 검증 packet의 정확한 지정값을 기록했다. raw 바이트 해시와 solveDigest는 다르다."
+                                       },
+                     "exposureChronology":  [
+                                                {
+                                                    "order":  1,
+                                                    "event":  "Declared no prior exposure before first student-only reads; independently solved only the four authorized student files."
+                                                },
+                                                {
+                                                    "order":  2,
+                                                    "event":  "Original raw proof and own evidence committed before author exposure",
+                                                    "commit":  "ceb618ca0943505fcb6f02b2976e40c96412433e"
+                                                },
+                                                {
+                                                    "order":  3,
+                                                    "event":  "Serialization correction only; no new independent solver; r1 immutable",
+                                                    "commit":  "e0384dbf06b23a8f0b3db550b4ea63c24ff7d89d"
+                                                },
+                                                {
+                                                    "order":  4,
+                                                    "event":  "Parent reported byte-identical Git seal and prepare-sealed-review success",
+                                                    "commit":  "3d0acd4278422f429e90f6b11ddaa8b613243d23"
+                                                },
+                                                {
+                                                    "order":  5,
+                                                    "event":  "Only after explicit current user authorization, read VERIFY-BRIEF.md, verification-manifest.json, verification-inputs.json, sealed-raw-commit.json and source-q08-only.json in this stage2 folder. First author answer/solution exposure occurred in verification-inputs.json. No other original questions or whole original manifest opened."
+                                                },
+                                                {
+                                                    "order":  6,
+                                                    "event":  "Targeted official curriculum web reads and in-memory MOE HWP extraction, then report creation. Candidate/raw unchanged; no DB/install/deploy/push."
+                                                }
+                                            ],
+                     "officialCurriculum":  {
+                                                "document":  "교육부 고시 제2020-236호 별책8 수학과 교육과정 수정(2020.09.11.)",
+                                                "indexUrl":  "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141\u0026boardSeq=81884\u0026lev=0",
+                                                "downloadUrl":  "https://www.moe.go.kr/boardCnts/fileDown.do?m=\u0026s=moe\u0026fileSeq=9626ca7f4483de728b1e9b14e8f41f84",
+                                                "actualDownloadedSha256":  "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+                                                "candidateDocumentHashMatched":  true,
+                                                "extraction":  "HTTP download into memory; existing olefile library; FileHeader compression flag; raw-deflate BodyText/Section0; sequential HWP record headers counted1based; text tag67 decoded UTF-16LE. No install and no repository source reads.",
+                                                "locators":  [
+                                                                 {
+                                                                     "code":  "9수01-07",
+                                                                     "stream":  "BodyText/Section0",
+                                                                     "record1based":  3776,
+                                                                     "paraphrase":  "제곱근 의미와 성질",
+                                                                     "appliesTo":  "양의 제곱근 및 제곱식의 부호"
+                                                                 },
+                                                                 {
+                                                                     "code":  "9수01-10",
+                                                                     "stream":  "BodyText/Section0",
+                                                                     "record1based":  3788,
+                                                                     "paraphrase":  "근호식 사칙계산",
+                                                                     "appliesTo":  "두 양의 제곱근의 차"
+                                                                 },
+                                                                 {
+                                                                     "code":  "9수02-12",
+                                                                     "stream":  "BodyText/Section0",
+                                                                     "record1based":  3956,
+                                                                     "paraphrase":  "다항식 곱셈/인수분해",
+                                                                     "appliesTo":  "전개된 넓이 두 항을 완전제곱식으로 인수분해"
+                                                                 },
+                                                                 {
+                                                                     "code":  "9수02-05",
+                                                                     "stream":  "BodyText/Section0",
+                                                                     "record1based":  3916,
+                                                                     "paraphrase":  "일차방정식 풀이/활용",
+                                                                     "appliesTo":  "각 구간의 일차방정식과 해 검토"
+                                                                 },
+                                                                 {
+                                                                     "code":  "6수03-05",
+                                                                     "stream":  "BodyText/Section0",
+                                                                     "record1based":  3429,
+                                                                     "paraphrase":  "직사각형/정사각형 넓이",
+                                                                     "appliesTo":  "넓이=양수인 변의 제곱이라는 기하 표현의 선수"
+                                                                 },
+                                                                 {
+                                                                     "code":  "수와 연산 학습 요소",
+                                                                     "stream":  "BodyText/Section0",
+                                                                     "record1based":  3799,
+                                                                     "paraphrase":  "절댓값, 제곱근, 근호, 실수 등",
+                                                                     "appliesTo":  "절댓값 표기는 중학교 학습요소. 고등 절댓값 일차부등식 일반해법을 요구하지 않음"
+                                                                 }
+                                                             ],
+                                                "secondaryOfficialCrosscheck":  {
+                                                                                    "url":  "https://www.pen.go.kr/upload/main/na/bbs_2448/ntt_1105533/doc_8000v0afc=28vd5=47v17=bdvdd=2320v7428va20c_v7316.pdf",
+                                                                                    "document":  "부산광역시교육청 고시 제2024-4호 중학교 교육과정 편성 운영 지침",
+                                                                                    "locators":  "PDF zero-based page84/printed76, 수와 연산:9수01-07/10; page85/printed77 문자와 식:9수02-05/12",
+                                                                                    "note":  "공식 교육청 재수록 기준과 원교육부 HWP를 교차 확인."
+                                                                                },
+                                                "era":  {
+                                                            "url":  "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141\u0026boardSeq=93458\u0026lev=0",
+                                                            "document":  "교육부 고시 제2022-33호",
+                                                            "locator":  "부칙1 나/다/라, 부칙3",
+                                                            "conclusion":  "2025중1→2026중2→2027중3 적용 일정.2025/2026중3는2015,2027중3부터2022. 이 검토는2015중3만 대상으로 하며2022재출판은 별도 검토."
+                                                        }
+                                            },
+                     "scoreDifficultyScope":  "Editorial review only; no empirical item difficulty, student trial, full-paper weighting or timed calibration claim.",
+                     "sourceComparisonScope":  "Only pre-extracted question8 text in source-q08-only.json. Neither original answer key nor whole paper nor source-body visual identity used. Source topic/difficulty labels remain source observations.",
+                     "holds":  {
+                                   "liveFamily":  "unknown",
+                                   "unitFamilyFit":  false,
+                                   "sourceIdentityApproved":  false,
+                                   "rightsApproved":  false,
+                                   "similarityApproved":  false,
+                                   "nativeProvenanceApproved":  false,
+                                   "finalNativeRenderingApproved":  false,
+                                   "loadable":  false,
+                                   "dbWrites":  0,
+                                   "reason":  "Family A08/A09 fit cannot be established from proposed keys/live counts; source body/original identity and rights/similarity/native certification remain outside this math review. No automatic approval."
+                               }
+                 },
+    "curriculumSurfaces":  {
+                               "stem":  {
+                                            "status":  "passed",
+                                            "evidence":  "실수 정의역 및 두 전개 이차식은 인수분해/제곱근 성질로 해석. 정사각형 조건은6수03-05의 선수이다."
+                                        },
+                               "choices":  {
+                                               "status":  "passed",
+                                               "evidence":  "정수1,2,3,4,6을 해 전체의 합4와 비교하며 추가 개념 없음. 다섯 보기 전부 대조 완료."
+                                           },
+                               "figuresAndTables":  {
+                                                        "status":  "passed",
+                                                        "evidence":  "정사각형별 넓이2항의 표만 사용. cm² 표기와 행/열 대응 정확. 별도 도형 또는 축척 전제 없음. 최초 student PNG 확인 이력 있음."
+                                                    },
+                               "notation":  {
+                                                "status":  "passed",
+                                                "evidence":  "x², 실수, 분수3/2, 제곱근, |x+2|, |2x-3|, 부등호는2015중학교 학습요소 및 해당 성취기준 범위. 절댓값 방정식 일반해법을 선행시키지 않고 부호별 양의 제곱근을 직접 판단한다."
+                                            },
+                               "answer":  {
+                                              "status":  "passed",
+                                              "evidence":  "④4. 독립 봉인 풀이로 모든 해1,3 및 합4를 얻었고 존재/양수/유일성을 확인."
+                                          },
+                               "studentSolution":  {
+                                                       "status":  "passed",
+                                                       "evidence":  "9수02-12→9수01-07/10→부호 판단→9수02-05 일차방정식 및 원범위 확인. 미분·이차함수 그래프·고등 절댓값 부등식 정리·계산 도구를 필수로 쓰지 않는다."
+                                                   },
+                               "prerequisites":  {
+                                                     "status":  "passed",
+                                                     "evidence":  "9수02-05(일차방정식), 수와 연산 학습요소 절댓값,6수03-05(정사각형 넓이). 인수분해9수02-12는 목표 중3의 동학년 선수이며 실제로 학습 후 배치해야 한다. 추가 기하 선수 없음."
+                                                 }
+                           }
+}
