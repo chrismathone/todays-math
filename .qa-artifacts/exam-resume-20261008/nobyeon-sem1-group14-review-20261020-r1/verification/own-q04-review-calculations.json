@@ -1,0 +1,111 @@
+{
+  "studentDigest": "a16cc78ef5d329c852b045664c79f9d1076588a6b2eeb05bbfc260a2bfa609bd",
+  "candidateDigest": "9c305436d0c8e3d4732bd98bf313035cbdfb3dc00bd919c07ce33f89ed57eb71",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "solveDigest": "00b44e08db802b3a66d99a38e808589cff3e8b25774e6753e3cee1d1f192974d",
+  "allCanonicalDigestsIndependentlyRecomputed": true,
+  "rawSha256": "aa4f6128114d6eaaa47964fbe58517ed94a8b6737641b2212c1f6375f162a5bb",
+  "parentRawSeal": "4924ca5ee4e40d38135e110ca4e5a166a7d95af3",
+  "rawAnswerSolutionAndDeclarationUnchanged": true,
+  "ownCalculation": {
+    "a": "3",
+    "b": "7",
+    "requested": "sqrt7",
+    "firstCondition": "sqrt48=4sqrt3; (4-1)sqrt3=a sqrt3, positive sqrt3 permits division; a3 unique",
+    "secondCondition": "9+b=16 ->b7 unique, positive and rational",
+    "existence": "substitution a3,b7 satisfies both original conditions and rational/positive premises",
+    "allChoices": [
+      {
+        "mark": "①",
+        "normalized": {
+          "7": "1"
+        },
+        "positive": true,
+        "square": "7",
+        "matchesSqrtB": true
+      },
+      {
+        "mark": "②",
+        "normalized": {
+          "3": "2"
+        },
+        "positive": true,
+        "square": "12",
+        "matchesSqrtB": false
+      },
+      {
+        "mark": "③",
+        "normalized": {
+          "13": "1"
+        },
+        "positive": true,
+        "square": "13",
+        "matchesSqrtB": false
+      },
+      {
+        "mark": "④",
+        "normalized": {
+          "1": "5"
+        },
+        "positive": true,
+        "square": "25",
+        "matchesSqrtB": false
+      },
+      {
+        "mark": "⑤",
+        "normalized": {
+          "3": "1"
+        },
+        "positive": true,
+        "square": "3",
+        "matchesSqrtB": false
+      }
+    ],
+    "allNumericRadicandsPositive": [
+      3,
+      7,
+      12,
+      13,
+      25,
+      28,
+      48,
+      52,
+      100
+    ],
+    "variableRadicandB": "7",
+    "studentMethod": "positive principal roots, square-factor extraction, division by nonzero sqrt3, integer square/substitution and inverse addition; no high-school coefficient theorem or quadratic formula",
+    "units": "scalar only; no physical unit",
+    "figures": []
+  },
+  "actualAuthorSolutionAudit": {
+    "firstRootSimplification": "correct",
+    "sqrt3NonzeroAndA": "explicit and correct",
+    "bAndPositiveDomain": "explicit7>0, rational",
+    "fiveChoiceSimplifications": "all correct; exact own squares7,12,13,25,3",
+    "allFivePositiveAndUnique": "correct",
+    "aBUniqueness": "correct; first equation fixes a, second fixes b; no extraneous plus/minus branch",
+    "existence": "a3,b7 directly substituted in own code; actual solution values satisfy both",
+    "studentGradeNecessaryTools": "only2015M3 root arithmetic and earlier integer arithmetic/equation substitution"
+  },
+  "sourceComparison": {
+    "sourceArtifactSha256": "91cb64894a165c532d4db75648837ce45f7c59ef32c3a19ca758a2a7213585cc",
+    "sourceStemObserved": "$\\sqrt{27}+\\sqrt{3}=a\\sqrt{3}$, $\\sqrt{20}-\\sqrt{5}=\\sqrt{b}$일 때, 유리수 $a$, $b$에 대하여 $a^{2}+b$의 값은? [$4$점]",
+    "sourceDifficultyObserved": "하",
+    "sourceScoreObserved": [
+      4.0
+    ],
+    "sourceAnswerNotUsed": true,
+    "sameCore": "source first simplifies a radical multiple to identify a; another radical difference gives sqrt(b); finally applies integer square and sum. New task preserves simplification of like radical terms and a^2+b relation.",
+    "actualStructuralChange": "new task moves final a^2+b result into a condition, restores b by inverse addition after identifying a, then asks for a radical expression equivalent to sqrt(b). Source direct scalar-sum output becomes inverse recovery plus equivalence selection; this is more than numeric replacement.",
+    "notCertified": "source artifact text alone does not certify HWP/PDF/original whole-pair identity or rights; no source key calculated or used"
+  },
+  "inputHashes": {
+    "VERIFY-BRIEF.md": "35f0141b096cf184d92c0fdb4f5da623e99cf1882faa33bff9b2cda745d835b5",
+    "verification-inputs.json": "26079ebcf9cc1aca412d9d76e2c17115431baf9818aec628cc614204ff46d6c7",
+    "verification-manifest.json": "d9193746086f995530a743f0134668e0091bb51ae5ef41564ad764c6adae9431",
+    "sealed-raw-commit.json": "a40cebe249cb2da65722807442e67efacbd76c91647fcb9e73466f3eb30400d8"
+  },
+  "utf8WriteReadPassed": true,
+  "rootCodeReads": 0,
+  "dbWrites": 0
+}

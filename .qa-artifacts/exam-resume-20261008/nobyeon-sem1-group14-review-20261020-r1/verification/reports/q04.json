@@ -1,0 +1,284 @@
+{
+  "status": "pending",
+  "studentDigest": "a16cc78ef5d329c852b045664c79f9d1076588a6b2eeb05bbfc260a2bfa609bd",
+  "candidateDigest": "9c305436d0c8e3d4732bd98bf313035cbdfb3dc00bd919c07ce33f89ed57eb71",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-q04-stage2-review-20261020-r1",
+  "solveDigest": "00b44e08db802b3a66d99a38e808589cff3e8b25774e6753e3cee1d1f192974d",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "두 조건을 순차적으로 사용하는 역산이며 실제2015중3 제곱근 성질·근호 사칙 학습 이후의 학생 방법이다.",
+      "evidence": "√48=4√3에서 3√3=a√3. √3≠0이므로 나누어 a=3; 정수제곱 후9+b=16에서b=7. 일반적인 이원 연립/무리방정식·고등 계수비교 정리가 필요하지 않다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "다섯 보기 모두 양수 피제곱수의 근호 차이며2015중3 완전제곱인수 추출과 동류 근호항 계산으로 검토할 수 있다.",
+      "evidence": "①√7,②2√3,③√13,④5,⑤√3. 모두 양수이고 제곱7,12,13,25,3이 서로 달라 정답①만 유일하다. 모든 보기를 자체 정수/Fraction 코드로 검산했다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "문항과 보기 및 해설에 도형·표가 없어 별도 기하·측정 선수가 추가되지 않는다.",
+      "evidence": "current assets=[], figureArtifacts=[], student figures=[]; 순수 식 계산으로 완결된다. optionalpreview/픽셀은 계산에 쓰지 않았고 native 렌더러 검증을 주장하지 않는다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "a,b 유리수, a²+b, √b 및 양수 주제곱근 표기는 중3 제곱근과 이전 제곱·방정식 대입 범위이다.",
+      "evidence": "수치 피제곱수3,7,12,13,25,28,48,52,100은 모두 양수이고 b=7>0. √b를±√7로 취하지 않는다. 유일하게 나누는 √3도 양수이므로0아님. 단위 없음."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "답①은 실제 두 조건을 만족하는 유일한 유리수a=3,b=7에서 나온 양의√b와 같은 값이다.",
+      "evidence": "a3,b7 대입으로 첫조건3√3=3√3,둘째9+7=16을 만족해 존재. 첫조건이a를 고정하므로 a²에서±a가지가 생기지 않고 b도 유일. 새 author answer①와 pre-exposure raw①가 일치한다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "현재 저자 해설은 근호 간단화,0아닌√3으로 나누기,정수제곱·덧셈 역산,다섯 보기 간단화 및 양수 제곱 비교로 완결되는2015중3 방법이다.",
+      "evidence": "현재 해설은√3≠0,a3,b7>0와 유리수성·유일성,모든 보기와 제곱값7/12/13/25/3을 명시한다. 자체 정수제곱인수 분해와 Fraction 계산이 각 단계에 일치한다. 고등 항등식 계수방법·이차방정식 공식·함수 정리 없음."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "제곱근의 뜻·양수성·성질과 근호항의 사칙계산을 실제 학습한2015중3 이후에만 배정한다. 이전 유리수/정수제곱/단순 방정식 대입도 필요하다.",
+      "evidence": "MOE3776/3788 및 실제 중3표 pageIndex38의9수01-07/10에 대조했다. captured root 성질UUID1682f01b-5293-4672-91cd-07fc02e305ac와 근호계산UUID99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1는 제안 바인딩이며 학교 중간고사 진도나 live family 인증이 아니다. 다항식 전개나 고등 계수비교를 선수로 요구하지 않는다."
+    }
+  },
+  "evidence": {
+    "ownCalculationFile": "own-q04-review-calculations.json",
+    "ownCalculationSha256": "37bcd700b8d942068816abd392a4bb110dcb1b6f036e25582413e96d1b4a5dd9",
+    "answerAndSolutionComparison": {
+      "firstRootSimplification": "correct",
+      "sqrt3NonzeroAndA": "explicit and correct",
+      "bAndPositiveDomain": "explicit7>0, rational",
+      "fiveChoiceSimplifications": "all correct; exact own squares7,12,13,25,3",
+      "allFivePositiveAndUnique": "correct",
+      "aBUniqueness": "correct; first equation fixes a, second fixes b; no extraneous plus/minus branch",
+      "existence": "a3,b7 directly substituted in own code; actual solution values satisfy both",
+      "studentGradeNecessaryTools": "only2015M3 root arithmetic and earlier integer arithmetic/equation substitution"
+    },
+    "allChoices": [
+      {
+        "mark": "①",
+        "normalized": {
+          "7": "1"
+        },
+        "positive": true,
+        "square": "7",
+        "matchesSqrtB": true
+      },
+      {
+        "mark": "②",
+        "normalized": {
+          "3": "2"
+        },
+        "positive": true,
+        "square": "12",
+        "matchesSqrtB": false
+      },
+      {
+        "mark": "③",
+        "normalized": {
+          "13": "1"
+        },
+        "positive": true,
+        "square": "13",
+        "matchesSqrtB": false
+      },
+      {
+        "mark": "④",
+        "normalized": {
+          "1": "5"
+        },
+        "positive": true,
+        "square": "25",
+        "matchesSqrtB": false
+      },
+      {
+        "mark": "⑤",
+        "normalized": {
+          "3": "1"
+        },
+        "positive": true,
+        "square": "3",
+        "matchesSqrtB": false
+      }
+    ],
+    "domainExistenceUniqueness": {
+      "a": "3",
+      "b": "7",
+      "requested": "sqrt7",
+      "firstCondition": "sqrt48=4sqrt3; (4-1)sqrt3=a sqrt3, positive sqrt3 permits division; a3 unique",
+      "secondCondition": "9+b=16 ->b7 unique, positive and rational",
+      "existence": "substitution a3,b7 satisfies both original conditions and rational/positive premises",
+      "allChoices": [
+        {
+          "mark": "①",
+          "normalized": {
+            "7": "1"
+          },
+          "positive": true,
+          "square": "7",
+          "matchesSqrtB": true
+        },
+        {
+          "mark": "②",
+          "normalized": {
+            "3": "2"
+          },
+          "positive": true,
+          "square": "12",
+          "matchesSqrtB": false
+        },
+        {
+          "mark": "③",
+          "normalized": {
+            "13": "1"
+          },
+          "positive": true,
+          "square": "13",
+          "matchesSqrtB": false
+        },
+        {
+          "mark": "④",
+          "normalized": {
+            "1": "5"
+          },
+          "positive": true,
+          "square": "25",
+          "matchesSqrtB": false
+        },
+        {
+          "mark": "⑤",
+          "normalized": {
+            "3": "1"
+          },
+          "positive": true,
+          "square": "3",
+          "matchesSqrtB": false
+        }
+      ],
+      "allNumericRadicandsPositive": [
+        3,
+        7,
+        12,
+        13,
+        25,
+        28,
+        48,
+        52,
+        100
+      ],
+      "variableRadicandB": "7",
+      "studentMethod": "positive principal roots, square-factor extraction, division by nonzero sqrt3, integer square/substitution and inverse addition; no high-school coefficient theorem or quadratic formula",
+      "units": "scalar only; no physical unit",
+      "figures": []
+    },
+    "rawBinding": {
+      "ownCommit": "c28873713eee85c095f2759086b40abd144fa9e2",
+      "parentSeal": "4924ca5ee4e40d38135e110ca4e5a166a7d95af3",
+      "rawSha256": "aa4f6128114d6eaaa47964fbe58517ed94a8b6737641b2212c1f6375f162a5bb",
+      "immutableRawAndOriginalNoExposureDeclarationPreserved": true,
+      "authorExposureOnlyAfterRawCommit": true
+    },
+    "sourceComparison": {
+      "sourceArtifactSha256": "91cb64894a165c532d4db75648837ce45f7c59ef32c3a19ca758a2a7213585cc",
+      "observed": "source-q04-only provides two radical relations identifying a and√b, followed by direct output ofa²+b. source topic根号計算, observed하/4점. No original answer/key was computed or used.",
+      "sameCoreConceptAndProcedure": "source first simplifies a radical multiple to identify a; another radical difference gives sqrt(b); finally applies integer square and sum. New task preserves simplification of like radical terms and a^2+b relation.",
+      "actualInverseStructure": "new task moves final a^2+b result into a condition, restores b by inverse addition after identifying a, then asks for a radical expression equivalent to sqrt(b). Source direct scalar-sum output becomes inverse recovery plus equivalence selection; this is more than numeric replacement.",
+      "separateSourceIdentity": "제공 추출 요약과 식의 관계를 비교했을 뿐 HWP/PDF/원본의 whole-pair 대응이나 문서 권리를 인증하지 않는다."
+    },
+    "naturalKorean": "유리수a,b라는 도메인,두 등식,b>0,√b와 같은 수라는 목표가 분명하다. a,b의 역할을 혼동할 중의성 없고 앞조건에서a가 결정된 뒤 뒤조건으로b를 복원한다. 근호/대입 표현은 학생에게 자연스럽다.",
+    "scoreDifficultyEditorial": {
+      "sourceObserved": "하/4점",
+      "currentProposal": "기본/4점",
+      "decision": "reasonable editorial proposal; no measured same-difficulty certification",
+      "basis": "완전제곱인수로근호를 정리하고 a를 구한 뒤 정수제곱과 한 번의 역산,짧은 보기5개 간단화로 완결된다. source의직접합 계산에서 inverse조건과동치선택으로 바꾸었으나 고등단계나 복잡한수치가 추가되지 않아 기본4점 제안은 합리적이다. 이 문항은 객관식이므로 서술형 rubric을 만들지 않는다."
+    },
+    "unitFamily": {
+      "capturedUnitUuid": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "capturedSection": "근호를 포함한 식의 계산",
+      "snapshotSha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0",
+      "basis": "현재 수학적 핵심은 근호를 포함한 식의 계산이고 선수 제곱근 성질과 일치한다. 그러나 알려진합→b복원→동치근호식선택 전체목표와 실제 live family 정의의 정확 호환성은 이 범위에서 확인하지 못했다.",
+      "familyKey": null,
+      "unitFamilyFit": false,
+      "notCurrentDbPromise": true
+    },
+    "primaryReferences": {
+      "basis": "Actual official documents previously directly inspected in this same session; document locators reused, not prior item-grade approval. No new network or root code read.",
+      "moe2015": {
+        "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84",
+        "sha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "stream": "BodyText/Section0",
+        "records1based": {
+          "3776": {
+            "code": "9수01-07",
+            "scope": "제곱근의 뜻과 성질"
+          },
+          "3788": {
+            "code": "9수01-10",
+            "scope": "근호를 포함한 식의 사칙계산"
+          }
+        }
+      },
+      "actualM3Placement": {
+        "url": "https://www.goe.go.kr/resource/old/BBSMSTR_000000030136/BBS_202202101132253081.pdf",
+        "pageIndex0": 38,
+        "printedPage": 38,
+        "observed": "중3 표에9수01-07/08/09/10 실제 배치; 문서발행연도2022를2022개정 배치로 오인하지 않음"
+      },
+      "target": "source2025/practice2026 중3=2015, root arithmetic learned before assignment",
+      "2022M3From2027": "pending separate actual placement review",
+      "limits": "학교명·학기·중학교군 코드만을 승인 근거로 쓰지 않고 현재 전체 학생 절차에 대조했다."
+    },
+    "currentBindings": {
+      "studentDigest": "a16cc78ef5d329c852b045664c79f9d1076588a6b2eeb05bbfc260a2bfa609bd",
+      "candidateDigest": "9c305436d0c8e3d4732bd98bf313035cbdfb3dc00bd919c07ce33f89ed57eb71",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "00b44e08db802b3a66d99a38e808589cff3e8b25774e6753e3cee1d1f192974d"
+    },
+    "sourceGradeVsRights": {
+      "independentMathDecision": true,
+      "independentGradeDecision2015AfterPrerequisites": true,
+      "sourceIdentityApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "loadable": false,
+      "2022M3": "pending"
+    },
+    "scopeLimits": [
+      "No parent code/actual collector/DB/native reader execution in this q04 review. These are independent report decisions; actual collector counts belong to parent.",
+      "Exact family definition, source pair identity, custody, rights/similarity and actual native rendering remain held.",
+      "No fresh blind or new question increment from this second stage; original raw remains unchanged."
+    ],
+    "counts": {
+      "independentMathPass": 1,
+      "independentGradePass2015AfterPrerequisites": 1,
+      "checksPassed": 11,
+      "checksHeld": 1,
+      "studentSurfacesPassed": 7,
+      "contentHeld": 1,
+      "newBlindOrQuestionIncrement": 0
+    },
+    "utf8WriteReadPassed": true,
+    "rootCodeReads": 0,
+    "dbWrites": 0,
+    "paidAiApiCalls": 0,
+    "newWorkers": 0
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "inputHashes": {
+    "VERIFY-BRIEF.md": "35f0141b096cf184d92c0fdb4f5da623e99cf1882faa33bff9b2cda745d835b5",
+    "verification-inputs.json": "26079ebcf9cc1aca412d9d76e2c17115431baf9818aec628cc614204ff46d6c7",
+    "verification-manifest.json": "d9193746086f995530a743f0134668e0091bb51ae5ef41564ad764c6adae9431",
+    "sealed-raw-commit.json": "a40cebe249cb2da65722807442e67efacbd76c91647fcb9e73466f3eb30400d8"
+  },
+  "sourceQ04OnlySha256": "91cb64894a165c532d4db75648837ce45f7c59ef32c3a19ca758a2a7213585cc",
+  "rawSha256": "aa4f6128114d6eaaa47964fbe58517ed94a8b6737641b2212c1f6375f162a5bb",
+  "reportSha256": "365796db54b2186397f452c3b4f9506faf0c81a4f2d95bac9d8f6a1cab48fd4c",
+  "evidenceHashes": {
+    "own-q04-review-calculate.py": "f3788adc7e9b5d1db0055f358f45367a5bb1337e2baaecfed7202b765c1598bd",
+    "own-q04-review-calculations.json": "37bcd700b8d942068816abd392a4bb110dcb1b6f036e25582413e96d1b4a5dd9",
+    "own-q04-review-utf8-probe.txt": "47931b1eeecd346b1792f694da46f15e7a07c806b72fa2cf3e1bab60b0119110",
+    "own-q04-review-write-report.py": "6fe42b829cc5bdbad274d89852a8424b4142c41317f59c55448bc85fe79c39c4"
+  },
+  "inputRawUnchanged": true,
+  "allCanonicalDigestsRecomputed": true,
+  "counts": {
+    "independentMathPass": 1,
+    "independentGradePass2015AfterPrerequisites": 1,
+    "checksPassed": 11,
+    "checksHeld": 1,
+    "studentSurfacesPassed": 7,
+    "contentHeld": 1,
+    "newBlindOrQuestionIncrement": 0
+  }
+}
