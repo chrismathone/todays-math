@@ -5,6 +5,10 @@ import puppeteer, { type Page } from "puppeteer-core";
 import { z } from "zod";
 import { paginateWrongTableRows } from "@/lib/examReport/wrongTable";
 import { examReportTableDom } from "@/lib/examReport/wrongTableDom";
+import {
+  styledReportTableDom,
+  styledReportOverflow,
+} from "@/lib/examReport/styledReportDom";
 
 const PACK =
   "https://github.com/Sparticuz/chromium/releases/download/v149.0.0/chromium-v149.0.0-pack.x64.tar";
@@ -145,6 +149,19 @@ async function preparePage(page: Page, input: PdfPayload, origin: string) {
     );
     await page.evaluate(examReportTableDom, null, layout);
   }
+  const styledTable = await page.evaluate(styledReportTableDom);
+  if (styledTable) {
+    const layout = paginateWrongTableRows(
+      styledTable.heights,
+      styledTable.first,
+      styledTable.continuation,
+    );
+    await page.evaluate(styledReportTableDom, null, layout);
+  }
+  if (await page.evaluate(styledReportOverflow))
+    throw new Error(
+      "성적표가 지면을 벗어납니다. 문장·지면 설정을 확인해 주세요.",
+    );
   await page.evaluate(() => {
     // 정상적으로 이어지는 표는 먼저 옮긴 뒤 검사한다. 문장 자체의 넘침 등은 거절한다.
     for (const [index, sheet] of [

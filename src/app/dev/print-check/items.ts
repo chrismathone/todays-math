@@ -84,6 +84,43 @@ export const SPECIMEN_ITEM_IDS = [
 export const ITEMS: PrintCheckItem[] = [
   ...(
     [
+      ["H1", "H1 (기본)", "명조 이름과 얇은 선, 나란한 점수·맞힌 수의 균형"],
+      [
+        "letter",
+        "편지형",
+        "11pt 문장 본문과 작은 점수, 줄어든 머리·숫자 행 여백",
+      ],
+      [
+        "grid",
+        "정오 격자형",
+        "전체 문항의 고정 번호·○·✕와 별도 오답 설명, 같은 굵기의 칸 선",
+      ],
+      [
+        "ledger",
+        "장부형",
+        "10pt 문장과 고정 항목 열, 이름표 열까지 쓰는 오답 표",
+      ],
+    ] as const
+  ).map(([style, label, detail]): PrintCheckItem => ({
+    id: `exam-report-four-styles-${style}-20261019`,
+    title: `월말평가 성적표 — ${label} 제품 지면`,
+    changed: `반 지면 설정의 기존 구성 옆에서 ${label}을 고르고 같은 JSON 설정에 저장한다. 미리보기·미확정 학생 반 인쇄·새 확정 PDF는 같은 양식이다. ${detail}을 적용했다. 기존 확정 보관 PDF는 그대로 읽는다.`,
+    look: "첫 쪽에 문장·점수·맞힌 수·추이·재시험·문의가 남고, 다음 쪽에는 넘친 오답 행만 이어져야 한다. 오답 번호가 누락·중복되거나 순서가 바뀌면 불합격이다. 흑백·배경 인쇄 끔에서도 정오 기호와 원점수·만점·결시·미채점이 구별되어야 한다. 글자 축소·말줄임·잘림·겹침이 없어야 한다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/reports/exam-report-style-consensus-20261019.md",
+      "docs/planning/tracks/reports/exam-report-four-styles-codex-20261019.md",
+      "src/components/exam-report/StyledExamReportPaper.tsx",
+      "src/lib/examReport/styledReportDom.ts",
+    ],
+    needs: `반 지면 설정에서 ${label} 선택 → 저장 → 미리보기·확정 전 포함 반 인쇄·새 확정 PDF를 A4 100%로 출력. 긴 문장·오답 10/16/20개와 이어지는 쪽, 정오 격자의 전체 번호, 기존 보관 PDF 불변을 확인.`,
+    scale:
+      "4양식 × 2구성 × 13상황 = Chromium PDF 104벌 재측정. 숫자만 구성은 개발 시안 전용. 관련 자동 시험 26파일·528개 통과. 실물 검수는 별도다.",
+    status: "대기",
+    changedOn: "2026-10-19",
+  })),
+  ...(
+    [
       ["pyeongga", "평가원"],
       ["jeongtong", "정통"],
       ["modern", "모던"],
@@ -163,7 +200,7 @@ export const ITEMS: PrintCheckItem[] = [
     id: "exam-report-confirmed-print",
     title: "실제 월말평가 성적표 — 확정 보관 PDF · 반 인쇄",
     changed:
-      "실제 작업실에서 문장·반 지면 설정을 저장하고 풀이 없는 H1 요약 PDF를 확정 보관한다. 기존 M1 선택값도 요약으로 읽고 이미 확정한 PDF는 그대로 둔다. 확정된 학생은 보관 PDF, 확정 전 학생은 현재 저장 내용으로 반 인쇄 PDF를 합친다. C2는 가로 A4다.",
+      "실제 작업실에서 문장·반 지면 설정·네 양식을 저장하고 풀이 없는 요약 PDF를 확정 보관한다. 양식 미설정은 H1이다. 기존 M1 선택값도 요약으로 읽고 이미 확정한 PDF는 그대로 둔다. 확정된 학생은 보관 PDF, 확정 전 학생은 현재 저장 내용으로 반 인쇄 PDF를 합친다. C2는 가로 A4다.",
     look: "문장 없음·상한 길이·긴 이름·많은 오답에서 요약 첫 쪽의 잘림·겹침이 없어야 한다. 긴 오답 표의 이어지는 쪽과 풀이 미노출, C2 가로 방향, 배경 인쇄를 꺼도 정오가 남는지 확인한다. 확정 후 반 인쇄의 해당 학생 쪽은 받은 확정 PDF와 같아야 한다.",
     lookFromSource: true,
     evidence: [
@@ -178,17 +215,17 @@ export const ITEMS: PrintCheckItem[] = [
   },
   {
     id: "exam-report-styles",
-    title: "월말평가 성적표 — H1 + 지면 후보 여섯 가지",
+    title: "월말평가 성적표 — 합의한 네 양식 비교",
     changed:
-      "같은 블록 목록을 편지·증서·신문·정오 격자·큰 숫자·장부로 비교한다. 100점 환산과 원점수, 최근 여섯 회 추이, 표의 이어지는 쪽을 그린다.",
-    look: "A4 세로 · 9pt 이상 · 긴 문장과 틀린 10·16·20개 · 틀린 문항 표의 다음 쪽 · 결시 추이의 끊김 · 배경 인쇄를 꺼도 숫자와 굵은 ✕·밑줄이 남는지 확인한다.",
+      "H1·편지형·정오 격자형·장부형을 제품과 같은 CSS·조판으로 비교한다. 증서·신문·큰 숫자는 제외로 표시한다. 고정 기록의 첫 쪽 자리를 먼저 예약하고 넘친 오답 행만 잇는다.",
+    look: "A4 세로 · 9pt 이상 · 긴 문장과 오답 10·16·20개 · 재시험·문의 첫 쪽 유지 · 오답 행만 이어지는 쪽 · 전체 정오 번호·기호 · 결시 추이의 끊김 · 배경 인쇄 끔과 회색조 가독을 확인한다.",
     lookFromSource: true,
     evidence: [
       "src/app/dev/exam-report-styles/page.tsx",
       "docs/planning/tracks/brief-exam-report-styles-codex.md",
     ],
     scale:
-      "지어낸 학생·20문항·월말평가 이력. 블록 구성 예 두 가지와 예시 상황 13가지.",
+      "지어낸 학생·20문항·월말평가 이력. 네 양식 × 구성 두 가지 × 13상황 = 실제 Chromium PDF 104벌. 관련 자동 시험 26파일·528개 통과. 실물 검수 대기.",
     status: "대기",
     changedOn: "2026-10-19",
   },

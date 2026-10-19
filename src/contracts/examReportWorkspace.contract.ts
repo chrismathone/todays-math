@@ -6,15 +6,29 @@ import {
 } from "./examReport.contract";
 import { EXAM_REPORT_NOTE_LIMIT } from "@/lib/examReport/settings";
 
+export const examReportStyleSchema = z.enum(["H1", "letter", "grid", "ledger"]);
+export type ExamReportStyle = z.infer<typeof examReportStyleSchema>;
+
 export const examReportOptionsSchema = z.strictObject({
   /** M1은 기존 저장값·확정 PDF 지문 호환용. 새 선택·출력은 S1 요약만 쓴다. */
   format: z.enum(["S1", "M1"]).default("S1"),
+  /** 생략은 H1. 구성(format)과 독립적인 지면 모양이다. */
+  style: examReportStyleSchema.optional(),
   wrongQuestions: z.boolean().default(true),
   retries: z.boolean().default(true),
   teacherNote: z.boolean().default(true),
   classAverage: z.boolean().default(false),
 });
 export type ExamReportOptions = z.infer<typeof examReportOptionsSchema>;
+
+/** 기본 양식은 기존 JSON 모양을 유지해 설정·확정 보관본의 지문을 바꾸지 않는다. */
+export function examReportOptionsForStorage({
+  style,
+  ...options
+}: ExamReportOptions): ExamReportOptions {
+  return style && style !== "H1" ? { ...options, style } : options;
+}
+
 export const examReportWorkflowStatusSchema = z.enum([
   "none",
   "draft",

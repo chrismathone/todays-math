@@ -5,6 +5,10 @@ import {
   uuidSchema,
 } from "./common.contract";
 import { studentExamReportSchema } from "./examReport.contract";
+import {
+  examReportOptionsForStorage,
+  examReportStyleSchema,
+} from "./examReportWorkspace.contract";
 
 export const examReportDigestSchema = z.string().regex(/^[a-f0-9]{64}$/);
 const sourceStudentId = z
@@ -16,13 +20,16 @@ export const examReportSnapshotSchema = z
   .strictObject({
     report: studentExamReportSchema,
     layoutVersion: z.string().min(1).max(100),
-    options: z.strictObject({
-      format: z.enum(["S1", "M1"]),
-      wrongQuestions: z.boolean(),
-      retries: z.boolean(),
-      teacherNote: z.boolean(),
-      classAverage: z.boolean().default(false),
-    }),
+    options: z
+      .strictObject({
+        format: z.enum(["S1", "M1"]),
+        style: examReportStyleSchema.optional(),
+        wrongQuestions: z.boolean(),
+        retries: z.boolean(),
+        teacherNote: z.boolean(),
+        classAverage: z.boolean().default(false),
+      })
+      .transform(examReportOptionsForStorage),
     classComparison: z
       .strictObject({
         averageScore: z.number().nonnegative(),

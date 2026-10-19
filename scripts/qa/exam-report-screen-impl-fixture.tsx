@@ -10,7 +10,7 @@ import {
   paginateWrongTableRows,
   type WrongTableLayout,
 } from "@/lib/examReport/wrongTable";
-import { examReportTableDom } from "@/lib/examReport/wrongTableDom";
+import { styledReportTableDom as examReportTableDom } from "@/lib/examReport/styledReportDom";
 import {
   screenFixture,
   classFixture,
@@ -218,8 +218,10 @@ function Fixture() {
                 await frame();
               }
               const sheets = [
-                ...ruler.querySelectorAll<HTMLElement>(".er-sheet"),
+                ...ruler.querySelectorAll<HTMLElement>(".sc-sheet"),
               ];
+              if (!sheets.length)
+                throw new Error("검사할 성적표 지면이 없습니다.");
               const measurements = sheets.map((sheet) => {
                 const children = [...sheet.children] as HTMLElement[];
                 const overlaps = children.some(
@@ -243,13 +245,14 @@ function Fixture() {
               return {
                 fits: measurements.every((sheet) => sheet.fits),
                 pageCount: sheets.length,
-                tablePageCount: ruler.querySelectorAll(".er-wrongTable").length,
+                tablePageCount: ruler.querySelectorAll("table.sc-wrongTable")
+                  .length,
                 columns:
                   ruler
-                    .querySelector(".er-wrongTable")
+                    .querySelector("table.sc-wrongTable")
                     ?.getAttribute("data-er-wrong-columns") ?? null,
                 rowsPerTable: [
-                  ...ruler.querySelectorAll(".er-wrongTable tbody"),
+                  ...ruler.querySelectorAll("table.sc-wrongTable tbody"),
                 ].map((body) => body.children.length),
                 sheets: measurements,
               };

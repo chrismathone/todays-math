@@ -1,4 +1,10 @@
 import { Fragment, type CSSProperties } from "react";
+import {
+  styleReportPages,
+  measureStyleBlock,
+  type ExamReportStyle,
+  type StyleReportOptions,
+} from "@/components/exam-report/StyledExamReportPaper";
 import type { StudentExamReport } from "@/contracts/examReport.contract";
 import { A4Page } from "@/components/print/A4Page";
 import { PAPER_COLORS } from "@/components/print/tokens";
@@ -9,7 +15,6 @@ import {
   type BlockId,
   type BlockMeasure,
   type PlannedBlock,
-  type ReportBlockOptions,
 } from "@/lib/examReport/blocks";
 import { originalScoreLabel, scoreTo100 } from "@/lib/examReport/score100";
 import { recentExamHistory } from "@/lib/examReport/trend";
@@ -66,7 +71,7 @@ export const STYLE_CANDIDATES = [
   },
 ] as const;
 export type StyleCandidateId = (typeof STYLE_CANDIDATES)[number]["id"];
-export type StyleCandidateOptions = ReportBlockOptions;
+export type StyleCandidateOptions = StyleReportOptions;
 type Question = StudentExamReport["questions"][number];
 const statusLabels = {
   absent: "결시",
@@ -137,6 +142,8 @@ export function measureCandidateBlock(
   options: StyleCandidateOptions,
   block: BlockId,
 ): BlockMeasure {
+  if (["H1", "letter", "grid", "ledger"].includes(id))
+    return measureStyleBlock(id as ExamReportStyle, report, options, block);
   const { width } = metrics(id);
   const ledger = id === "ledger";
   const head = ledger ? 7 : 8;
@@ -593,6 +600,8 @@ export function styleCandidatePages(
   report: StudentExamReport,
   options: StyleCandidateOptions = {},
 ) {
+  if (["H1", "letter", "grid", "ledger"].includes(id))
+    return styleReportPages(id as ExamReportStyle, report, options);
   const profile = metrics(id);
   const pages = planReportBlocks(
     report,
