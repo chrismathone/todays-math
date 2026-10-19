@@ -1,0 +1,52 @@
+{
+  "kind": "offline-vendored-vector-replay/v2",
+  "createdAt": "2026-10-19T17:49:35.809Z",
+  "renderer": "existing renderFigureSpec with strict:true; local vendored Python and MathJax",
+  "nodeVersion": "v22.17.1",
+  "pythonVersion": "Python 3.11.9",
+  "mathjaxFullVersion": "3.2.1",
+  "sourceHashes": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs": "26a110d499684bc5398499f5f83aa10c7f5e32009a0e68adc962a82739b02dce",
+    "scripts/import/exam-twin/vectorReplay.mjs": "b40e21897d5a3fbcdc8c3d48f47ada04bf018a30ab2dd9959456ca88abb6066a",
+    "scripts/import/exam-twin/candidatePack.mjs": "0acb61d7f1bbaae37cd6f8164fd532e4dbf8f465d00bcfd73cf2f4a50d6aa345",
+    "src/lib/figure/renderFigureSpec.ts": "19c10c1cb1aa416cbb376314931bb9dcdce45d17b3f707fb3c2b9dfb157598df",
+    "src/lib/figure/mathjaxSubstitute.ts": "5cf79fb0dfff1f99bcba025fcf0ef24f7f05900f9a40276d1e218070f9e4de21",
+    "src/lib/figure/mathjaxLabel.ts": "1fea1628a51754de8c1654c59903eb562001b67f23e5ab97e78eed4b316d34fd",
+    "scripts/figure/render_spec.py": "773b75c61d5e55f72f1c31a5babff698b61f280c077e305ac35587697d333627",
+    "scripts/figure/engine_path.py": "96e6a07ec22dfa3393c85affd6a6117c8303f4eb31e95bc5a3707388af8b0375",
+    "node_modules/mathjax-full/package.json": "aaecba51d5d5d66da591425a3d03fe1bec88a5ce09af3f6f2805b442eafc9f42",
+    "vendor\\figure-engine\\core\\figure_quality.py": "62e4284e3d435eb55053af77cd33102c3cbdc32f6cf65829bbf946dd515a5934",
+    "vendor\\figure-engine\\core\\figure_scene.py": "5291fc1f92dc8a08bc3c850826e906eb1623aa4af20ced3813ad440827a0773e",
+    "vendor\\figure-engine\\core\\figure_solid.py": "2e6c3c44f496e38453250c7f1aa3c6d886fa5cbba3a54dc2398ca42184357293",
+    "vendor\\figure-engine\\core\\figure_svg.py": "81587508b3f04a4e6e85feafc9b41caed42cdde1de1cd0098e1e489f67c7f1d8",
+    "vendor\\figure-engine\\core\\label_markup.py": "3e8d625f15f6c4f094d2d08dfd1d0f07a6ffb7fe1a8160d04d6275ac8fef1c4c",
+    "vendor\\figure-engine\\core\\__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "sourcesUnchanged": true,
+  "reports": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-cli-20261020-r3\\candidate-1-replay.json",
+      "sha256": "7fa39b1c507fc87ad576111ac1068bfa971fec8efb45fcb4bb4e5567c1306cf2",
+      "status": "reproduced",
+      "assets": 1,
+      "reproduced": 1
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-cli-20261020-r3\\candidate-2-replay.json",
+      "sha256": "42cc9a9f99bf83ccf8cfa84e94ceacdd433fe608e9144b2268c5f8f808ee6ae6",
+      "status": "reproduced",
+      "assets": 1,
+      "reproduced": 1
+    }
+  ],
+  "allReproduced": true,
+  "limits": "Exact SVG bytes in this captured environment only; not mathematical, grade, rights, whole reader/print or raster-template approval",
+  "mathematicalApproval": false,
+  "gradeApproval": false,
+  "rightsApproval": false,
+  "nativeReaderParity": false,
+  "loadable": false,
+  "newManualQuestions": 0,
+  "newAuthoredFigures": 0,
+  "dbWrites": 0
+}

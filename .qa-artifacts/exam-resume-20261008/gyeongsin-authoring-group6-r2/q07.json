@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 7,
+  "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group6-r2-q07",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "객관식",
+  "score": 5,
+  "content": "그림과 같이 원 $O$ 위의 세 점 $P,Q,R$에 대하여 $\\overline{PQ}=\\overline{OQ}$이고, 선분 $OQ$와 현 $PR$는 점 $M$에서 수직으로 만난다. 점 $O$에서 현 $QR$에 내린 수선의 발을 $T$라 하고, 선분 $OT$와 현 $PR$의 교점을 $U$라 하자. $\\overline{TU}=\\sqrt3\\,\\mathrm{cm}$일 때, 원 $O$의 지름의 길이는?",
+  "choices": [
+    "$8\\,\\mathrm{cm}$",
+    "$10\\,\\mathrm{cm}$",
+    "$12\\,\\mathrm{cm}$",
+    "$14\\,\\mathrm{cm}$",
+    "$16\\,\\mathrm{cm}$"
+  ],
+  "answer": "③",
+  "solution": "원의 반지름의 길이를 $r\\,\\mathrm{cm}$라 하자. $OP=OQ=PQ=r$이므로 삼각형 $OPQ$는 정삼각형이다. 원의 중심에서 현에 내린 수선은 그 현을 이등분하므로 $PM=MR$이고, $\\triangle OPM$과 $\\triangle ORM$는 합동이다.\n\n$O,M,Q$는 한 직선 위에 있으므로 $\\angle POM=\\angle POQ=60^\\circ$이다. 따라서 $\\angle MOR=60^\\circ$이고, $\\angle QOR=60^\\circ$이다. $OQ=OR$이므로 삼각형 $OQR$도 정삼각형이다.\n\n직각삼각형 $OPM$에서 $\\angle OPM=30^\\circ$이므로 $OM=\\frac r2$이다. 또 $OT\\perp QR$이므로 정삼각형 $OQR$에서 $RT=\\frac r2$, $OT=\\frac{\\sqrt3}2r$, $\\angle TOR=30^\\circ$이다. $\\angle MOU=30^\\circ$이므로 두 직각삼각형 $OMU$와 $OTR$는 닮음이다. 대응하는 변의 길이의 비에 따라\n$\\displaystyle \\frac{OU}{OR}=\\frac{OM}{OT}=\\frac{r/2}{\\sqrt3r/2}=\\frac1{\\sqrt3}$이므로 $OU=\\frac{\\sqrt3}3r$이다.\n\n점 $U$는 선분 $OT$ 위에 있으므로 $TU=OT-OU=(\\frac{\\sqrt3}2-\\frac{\\sqrt3}3)r=\\frac{\\sqrt3}6r$이다. 이것이 $\\sqrt3$이므로 $r=6$이다. 따라서 지름의 길이는 $2r=12\\,\\mathrm{cm}$이고 정답은 ③이다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "q07.figure.spec.json",
+      "svgPath": "q07.figure.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "sourceReference": {
+    "externalId": "2025-gyeongsin-3-2-mid-7",
+    "newSourceReferenceId": "source-ref-gyeongsin-2025-2-mid-group6-r2-q07",
+    "sourceContentSha256": "393ea227429bd9b75ad6a1397c3731454c65adf4199c7b4aae4f7bbba8c27457",
+    "sourceSchoolInternal": "경신중학교",
+    "sourceExamYear": 2025,
+    "inventoryExamId": "personal-57fc57dc583e9f120f45ebc6abedfee4",
+    "sourceManifest": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+      "sha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+        "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9"
+      }
+    ],
+    "actualReference": "OriginalH page2 q7 viewed; only component correspondence, not wholepaper/pair/year/rights certification.",
+    "componentObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group6-r2/source-q07-component-observation-r1.json",
+      "sha256": "8452c457f50532b1175f40c065642dc64c7665714cad96e72187b9540de6d544"
+    },
+    "sourceCropViewed": true,
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false,
+    "originalQuestionRender": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/evidence/additional-original-H-page-02.webp",
+      "sha256": "69c01d1bbcbf7ed5906adaf1961cb5b9f0a377e84b9493901b0712828675a5e0",
+      "physicalPdfPage": 2,
+      "printedQuestion": 7
+    }
+  },
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "structure",
+      "new-vector"
+    ],
+    "before": "반지름을 수치로 주고 두 수선의 교점으로 나뉜 짧은 선분을 구한다.",
+    "after": "분할 선분의 길이를 조건으로 옮기고 원의 지름을 복원한다.",
+    "sharedConcept": "원의 중심에서 현에 내린 수선, 정삼각형, 직각삼각형의 닮음과 길이의 차",
+    "sharedProcedure": "반지름과 현이 같은 조건→정삼각형과 수선→두 직각삼각형의 닮음→같은 선분 위의 차→양수 길이 역추론",
+    "actualStructuralChange": "기존 출력인 짧은 분할 선분을 새 입력으로 주고 기존 입력인 반지름의 두 배를 질문으로 바꿨다. 수치를 대입하여 차를 구하는 방향에서 공통 반지름의 식을 세워 역으로 결정하는 방향이다. 새 방향의 작도와 점 이름으로 그림도 새로 만들었다.",
+    "domainProof": "저자 전용 sqrt3 정수쌍 계산으로 세 원주점·같은 반지름과 현·두 수직·교점 내부와 TU제곱3을 확인했다. r>0에서 TU=r√3/6은 엄격 증가하므로 TU=√3은 r6 하나이고 지름12이다. 다섯 보기 양수/상호다름. 렌더 픽셀을 계산에 쓰지 않는다.",
+    "difficultyBasis": "원문5점의 원과현·정삼각형·직각삼각형 관계를 역방향으로 쓴 표준5점 제안. 원과비례·삼각비·좌표를 필수 학생 방법으로 요구하지 않는다. 실제 학년/난도 검토는 독립 검수 대기."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수04-19",
+      "9수04-14",
+      "9수04-16"
+    ],
+    "officialProvisions": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+      "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+    },
+    "officialPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "editionObserved": "2015",
+      "readCurrentPage": true,
+      "standard": "9수04-19",
+      "actualScope": "2015 circle chord/tangent properties, with similarity/Pythagoras prerequisite standards; no general circle proportion formula"
+    },
+    "legitimateMethodDraft": "원의 중심에서 현에 내린 수선의 이등분 성질, 정삼각형, 30도 직각삼각형의 길이 관계와 실제 AA닮음, 피타고라스로 계산한다. 삼각비와 원과비례 및 좌표는 학생 필수 방법이 아니다.",
+    "sevenSurfaces": {
+      "stem": "author-proposed",
+      "choices": "author-proposed",
+      "figureTable": "author-new-vector-proposed",
+      "notation": "author-proposed",
+      "answer": "author-exact-angles-only",
+      "studentSolution": "author-proposed",
+      "prerequisites": "author-proposed"
+    },
+    "independentReviewPending": true
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "answerFormat": "single-choice",
+    "score": 5,
+    "difficultyProposal": "표준",
+    "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+    "problemTypeProposal": "분할 선분 길이에서 원의 지름 역추론",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원과 현",
+        "semester": 2,
+        "orderIndex": 484,
+        "problemCodePrefix": "J30601"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+        "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+      },
+      "evidence": "원과현의 실제 UUID 연결. 원과현/정삼각형/AA닮음 역추론 전체 평가목적의 정확한 livefamily는 불명이며 null 유지."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+    },
+    "figureAuthoring": {
+      "method": "existing-FigureSpec-v2-vector-engine-strict",
+      "newFigures": 1,
+      "newTables": 0,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "Exact sqrt3 integer pairs prove geometry; floats place points only.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gyeongsin-q07-r2.ts",
+      "renderingReviewPending": true,
+      "lengthUnit": "cm",
+      "numericSegmentLabelOnlyInStem": "TU=sqrt3; no repeated short dimension collision"
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "source": "transformed",
+    "originProblemId": null,
+    "sourceDifficultyLabelObserved": null,
+    "prerequisiteUnits": [],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "원과현의성질",
+        "삼각형의합동",
+        "정삼각형과30도직각삼각형",
+        "AA닮음",
+        "피타고라스"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    },
+    "namedPrerequisitesWithoutCapturedUuid": [
+      "삼각형의합동과정삼각형",
+      "직각삼각형의30도길이관계와피타고라스",
+      "삼각형의AA닮음"
+    ]
+  }
+}

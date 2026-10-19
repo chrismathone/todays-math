@@ -1,0 +1,39 @@
+{
+  "utc": "2026-10-19T18:00:23.416Z",
+  "previous": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/working-candidates-20261020-r7.json",
+    "sha256": "38ff2190214469ba165b985a6f5b035a23901cf8baed1772fa6806980aed2cee"
+  },
+  "canonicalSelected": 134,
+  "canonicalFigures": 94,
+  "canonicalMathGradeReviewed": 133,
+  "workingManualCandidates": [
+    {
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group6-r2/q07.json",
+        "sha256": "b0a5aca06dfd00e45e9e7925cac803af0bec983ab5d42a28293c7c34c29277d3"
+      },
+      "proposedNewFigures": 1,
+      "status": "authored; independent review pending; not selected count"
+    },
+    {
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group7-r1/q08.json",
+        "sha256": "5abc699e28ed712f6488a4ebb1c36e47d342cdb7c6719165cb725b37c9618d43"
+      },
+      "proposedNewFigures": 1,
+      "status": "authored; independent review pending; not selected count"
+    }
+  ],
+  "newPrototype": {
+    "id": "U51",
+    "status": "R2 independently confirmed candidate-JSON semantic binding hold; preserve code before R3repair",
+    "report": {
+      "path": ".qa-artifacts/exam-resume-20261008/vector-replay-code-audit-20261020-r2/own-report.json",
+      "sha256": "f4882f95f1d245839db816c7f5a33d41fbf899e15856b8eb74f6d229f0333a17"
+    }
+  },
+  "loadable": 0,
+  "dbWrites": 0,
+  "wholeGoalComplete": false
+}

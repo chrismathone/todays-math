@@ -1,11 +1,19 @@
 /** Technical replay only. Exact rendering never grants math, curriculum or rights approval. */
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { bindCandidate, readJson, sha256 } from "./candidatePack.mjs";
+import path from "node:path";
+import { bindCandidate, sha256 } from "./candidatePack.mjs";
 
 export function assertLocalReplayEnvironment(env) {
   for (const key of ["STUDIO_ENGINE_URL", "VERCEL", "FIGURE_ENGINE_PATH"])
     assert(!env[key], `Offline vendored replay: ${key} must be unset`);
+}
+
+export function assertReplayWorkingDirectory(workspace, cliFile) {
+  const relative = path.relative(path.resolve(workspace), path.resolve(cliFile)).split(path.sep).join("/");
+  assert.equal(process.platform === "win32" ? relative.toLowerCase() : relative,
+    "scripts/import/exam-twin/replay-vector-figures.mjs",
+    "Run replay from its own task worktree; imported code and captured renderer sources must share that root");
 }
 
 const snapshot = (files) => Object.fromEntries(
@@ -18,13 +26,16 @@ const snapshot = (files) => Object.fromEntries(
 export async function replayVectorCandidate(candidateFile, render) {
   assert.equal(typeof render, "function");
   const binding = bindCandidate(candidateFile);
-  const files = [binding.candidateFile];
+  const expected = [[binding.candidateFile, binding.candidateFileSha256]];
   for (const asset of binding.assets) {
-    files.push(asset.sourceSpecPath, asset.sourceSvgPath);
+    expected.push([asset.sourceSpecPath, asset.specSha256], [asset.sourceSvgPath, asset.svgSha256]);
     for (const resource of asset.resources ?? [])
-      files.push(resource.sourceRasterPath, resource.sourceGenerationPath);
+      expected.push([resource.sourceRasterPath, resource.rasterSha256],
+        [resource.sourceGenerationPath, resource.generationSha256]);
   }
-  const before = snapshot(files);
+  const before = snapshot(expected.map(([file]) => file));
+  for (const [file, hash] of expected)
+    assert.equal(before[file], hash, `Input changed after binding: ${file}`);
   const assets = [];
   try {
     for (const [index, asset] of binding.assets.entries()) {
@@ -35,7 +46,13 @@ export async function replayVectorCandidate(candidateFile, render) {
         expectedSvgSha256: asset.svgSha256,
         intendedWidthMm: asset.intendedWidthMm,
       };
-      const spec = readJson(asset.sourceSpecPath);
+      // Parse the exact bytes whose identity was checked, rather than rereading
+      // a potentially replaced path inside the JSON parser. The binder already
+      // validated their UTF-8/object shape; only an initial supported BOM is removed.
+      const specBytes = fs.readFileSync(asset.sourceSpecPath);
+      assert.equal(sha256(specBytes), asset.specSha256, `Render spec changed after binding: ${asset.sourceSpecPath}`);
+      const specText = specBytes.toString("utf8");
+      const spec = JSON.parse(specText.startsWith("\uFEFF") ? specText.slice(1) : specText);
       if (spec.version !== 2 || (asset.resources?.length ?? 0) > 0) {
         assets.push({ ...row, status: "unsupported", exactByteParity: false,
           reason: "Only plain FigureSpec v2 vectors are covered; raster assets/templates require separate provenance review" });
@@ -57,7 +74,7 @@ export async function replayVectorCandidate(candidateFile, render) {
       }
       const replayedSvgSha256 = sha256(Buffer.from(result.svg, "utf8"));
       const exactByteParity = replayedSvgSha256 === asset.svgSha256;
-      assets.push({ ...row, replayedSvgSha256, exactByteParity,
+      assets.push({ ...row, renderedSpecSha256: sha256(specBytes), replayedSvgSha256, exactByteParity,
         status: exactByteParity ? "reproduced" : "mismatch", droppedDimensions: [] });
     }
   } finally {
@@ -67,7 +84,7 @@ export async function replayVectorCandidate(candidateFile, render) {
   const allVectorAssetsReproduced = assets.length > 0 &&
     assets.every((asset) => asset.status === "reproduced");
   return {
-    kind: "authored-vector-render-replay/v1",
+    kind: "authored-vector-render-replay/v2",
     candidate: { path: binding.candidateFile, sha256: binding.candidateFileSha256 },
     twinExternalId: binding.candidate.twinExternalId,
     candidateDigest: binding.candidateDigest,
@@ -77,6 +94,7 @@ export async function replayVectorCandidate(candidateFile, render) {
     assets,
     allVectorAssetsReproduced,
     inputHashes: before,
+    inputsMatchCapturedBinding: true,
     inputsUnchanged: true,
     candidateValidation: binding.validation,
     mathematicalApproval: false,

@@ -5,13 +5,14 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
 import { newOutputPath, readJson, sha256 } from "./candidatePack.mjs";
-import { assertLocalReplayEnvironment, replayVectorCandidate } from "./vectorReplay.mjs";
+import { assertLocalReplayEnvironment, assertReplayWorkingDirectory, replayVectorCandidate } from "./vectorReplay.mjs";
 
 async function main() {
   const [directory, ...candidates] = process.argv.slice(2);
   assert(directory && candidates.length, "replay-vector-figures <new-dir> <candidate-json...>");
   assert(![directory, ...candidates].some((arg) => arg.startsWith("--")), "No apply, writer or approval mode exists");
   assertLocalReplayEnvironment(process.env);
+  assertReplayWorkingDirectory(process.cwd(), fileURLToPath(import.meta.url));
   const vendor = "vendor/figure-engine/core";
   assert(fs.existsSync(path.join(vendor, "figure_scene.py")), "Run from the task worktree with its vendored engine");
   const sourceFiles = [fileURLToPath(import.meta.url),
@@ -36,7 +37,7 @@ async function main() {
     assert.equal(sha256(fs.readFileSync(file)), hash, `Renderer source changed during replay: ${file}`);
   const allReproduced = reports.every((report) => report.status === "reproduced");
   fs.writeFileSync(path.join(output, "replay-manifest.json"), JSON.stringify({
-    kind: "offline-vendored-vector-replay/v1", createdAt: new Date().toISOString(),
+    kind: "offline-vendored-vector-replay/v2", createdAt: new Date().toISOString(),
     renderer: "existing renderFigureSpec with strict:true; local vendored Python and MathJax",
     nodeVersion: process.version,
     pythonVersion: execFileSync(process.env.PYTHON_BIN || "python", ["--version"], { encoding: "utf8", windowsHide: true }).trim(),

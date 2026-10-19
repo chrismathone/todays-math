@@ -1,0 +1,77 @@
+{
+  "status": "technical-hold",
+  "ownActualRendererCase": true,
+  "ownCaseCount": 1,
+  "parentCaseCounted": false,
+  "operation": "First owned candidate read returns old JSON; then write different ID/content/answer before binder separately rereads candidate file for candidateFileSha256.",
+  "observed": {
+    "status": "reproduced",
+    "inputsMatchCapturedBinding": true,
+    "oldParsedId": "exam-twin-own-r2-old-parsed-candidate",
+    "newSavedId": "exam-twin-own-r2-new-saved-candidate",
+    "receiptCandidateDigest": "4b7a06e5ecaccd952b9698380a58b6a25170fd0e406e9d7478773f50cc7f2b79",
+    "currentSavedCandidateDigest": "7b28b05a8660320830c29a8c0d5584c70d64d1f1c35191441940a10aaf912fb7",
+    "receiptStudentDigest": "a5a32a3256842032487f908b989ed12fe3244a4111c6a650391fe3df9aa09a4a",
+    "currentSavedStudentDigest": "1156044a48877226d079960090470df3d8118e253467b8becc361f7c35d97a5a",
+    "receiptFileHash": "01ec9e407133348dcd471e004c089d50a73be12e11a0b25e753e51f22c02ff6f",
+    "currentFileHash": "01ec9e407133348dcd471e004c089d50a73be12e11a0b25e753e51f22c02ff6f",
+    "reads": 4,
+    "calls": 1
+  },
+  "cause": "candidatePack.bindCandidate calls readJson(file) near entry but separately fs.readFileSync(file) for candidateFileSha256 near return. New replay expected-snapshot equality only proves second-read bytes match snapshot, not that parsed candidate and candidate/student digests derive from those bytes.",
+  "needed": "Capture candidate bytes exactly once for validated JSON and file SHA, and bind snapshot to that same captured identity; add regression for semantic candidate replacement after first read.",
+  "originalsBefore": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.json": "caad335419023dda1bf7413efee0732eb8e417a20c2f342ecd8d817c6f4ecc24",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.figure.spec.json": "83b0cd17c8e648a368ceabab17e098f6fb7e3219322f47dcffc968b283c399c6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.figure.svg": "69f53b0c707230d6a2c7e9554100ad1a7dfd293e986e8cb177971cc4cccf9160"
+  },
+  "originalsAfter": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.json": "caad335419023dda1bf7413efee0732eb8e417a20c2f342ecd8d817c6f4ecc24",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.figure.spec.json": "83b0cd17c8e648a368ceabab17e098f6fb7e3219322f47dcffc968b283c399c6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.figure.svg": "69f53b0c707230d6a2c7e9554100ad1a7dfd293e986e8cb177971cc4cccf9160"
+  },
+  "sourceHashChecks": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\vectorReplay.mjs",
+      "sha256": "b40e21897d5a3fbcdc8c3d48f47ada04bf018a30ab2dd9959456ca88abb6066a",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs",
+      "sha256": "26a110d499684bc5398499f5f83aa10c7f5e32009a0e68adc962a82739b02dce",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\vectorReplay.test.mjs",
+      "sha256": "b08da7c4dd2e8a91837cd5da122227c34f1c737d4c9e3458e4004b19eb55d3a0",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\candidatePack.mjs",
+      "sha256": "0acb61d7f1bbaae37cd6f8164fd532e4dbf8f465d00bcfd73cf2f4a50d6aa345",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\renderFigureSpec.ts",
+      "sha256": "19c10c1cb1aa416cbb376314931bb9dcdce45d17b3f707fb3c2b9dfb157598df",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\render_spec.py",
+      "sha256": "773b75c61d5e55f72f1c31a5babff698b61f280c077e305ac35587697d333627",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\engine_path.py",
+      "sha256": "96e6a07ec22dfa3393c85affd6a6117c8303f4eb31e95bc5a3707388af8b0375",
+      "unchanged": true
+    }
+  ],
+  "mathematicalApproval": false,
+  "gradeApproval": false,
+  "rightsApproval": false,
+  "nativeReaderParity": false,
+  "loadable": false,
+  "newManualQuestions": 0,
+  "dbWrites": 0
+}

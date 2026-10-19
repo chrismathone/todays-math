@@ -3,7 +3,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
-import { assertLocalReplayEnvironment, replayVectorCandidate } from "./vectorReplay.mjs";
+import { assertLocalReplayEnvironment, assertReplayWorkingDirectory, replayVectorCandidate } from "./vectorReplay.mjs";
 
 function fixture() {
   const folder = fs.mkdtempSync(path.join(os.tmpdir(), "twin-vector-replay-"));
@@ -92,4 +92,49 @@ test("offline CLI environment cannot silently select a service or external engin
   assertLocalReplayEnvironment({});
   for (const key of ["STUDIO_ENGINE_URL", "VERCEL", "FIGURE_ENGINE_PATH"])
     assert.throws(() => assertLocalReplayEnvironment({ [key]: "set" }), /must be unset/);
+});
+
+test("a saved SVG replaced between binding and snapshot cannot reproduce stale bytes", withFixture(async (f) => {
+  const read = fs.readFileSync, target = f.file("figure.svg"); let reads = 0, calls = 0;
+  fs.readFileSync = (file, ...args) => {
+    const bytes = read(file, ...args);
+    if (typeof file === "string" && path.resolve(file) === target && ++reads === 1)
+      fs.writeFileSync(target, f.svg.replace('cx="1"', 'cx="2"'));
+    return bytes;
+  };
+  try {
+    await assert.rejects(replayVectorCandidate(f.file("candidate.json"), async () => { calls++; return { ok: true, svg: f.svg }; }), /Input changed after binding/);
+    assert.equal(calls, 0);
+  } finally { fs.readFileSync = read; }
+}));
+
+test("spec bytes replaced after snapshot are rejected even if restored before final hash check", withFixture(async (f) => {
+  const read = fs.readFileSync, target = f.file("figure.json"), original = read(target); let reads = 0, calls = 0;
+  fs.readFileSync = (file, ...args) => {
+    const bytes = read(file, ...args);
+    if (typeof file === "string" && path.resolve(file) === target) {
+      reads++;
+      if (reads === 2) fs.writeFileSync(target, '{"version":2,"style":{}}');
+      if (reads === 3) fs.writeFileSync(target, original);
+    }
+    return bytes;
+  };
+  try {
+    await assert.rejects(replayVectorCandidate(f.file("candidate.json"), async () => { calls++; return { ok: true, svg: f.svg }; }), /Render spec changed after binding/);
+    assert.equal(calls, 0); assert.deepEqual(read(target), original);
+  } finally { fs.readFileSync = read; }
+}));
+
+test("verified UTF-8 BOM spec bytes retain their identity during parsing", withFixture(async (f) => {
+  fs.writeFileSync(f.file("figure.json"), Buffer.concat([Buffer.from([0xef, 0xbb, 0xbf]), Buffer.from('{"version":2}')]));
+  const r = await replayVectorCandidate(f.file("candidate.json"), async (spec) => { assert.equal(spec.version, 2); return { ok: true, svg: f.svg }; });
+  assert.equal(r.status, "reproduced"); assert.equal(r.inputsMatchCapturedBinding, true);
+  assert.equal(r.assets[0].renderedSpecSha256, r.assets[0].specSha256);
+}));
+
+test("CLI code and renderer fingerprints must belong to the same worktree", () => {
+  const workspace = path.join(os.tmpdir(), "replay-owner-root"), suffix = path.join("scripts", "import", "exam-twin", "replay-vector-figures.mjs");
+  assertReplayWorkingDirectory(workspace, path.join(workspace, suffix));
+  for (const file of [path.join(workspace + "-other", suffix), path.join(workspace, "extra", suffix), path.join(workspace, "scripts", "different.mjs")])
+    assert.throws(() => assertReplayWorkingDirectory(workspace, file), /own task worktree/);
 });

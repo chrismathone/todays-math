@@ -1,0 +1,55 @@
+{
+  "utc": "2026-10-19T17:53:20.171Z",
+  "root": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008",
+  "files": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\vectorReplay.mjs",
+      "sha256": "b40e21897d5a3fbcdc8c3d48f47ada04bf018a30ab2dd9959456ca88abb6066a"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs",
+      "sha256": "26a110d499684bc5398499f5f83aa10c7f5e32009a0e68adc962a82739b02dce"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\vectorReplay.test.mjs",
+      "sha256": "b08da7c4dd2e8a91837cd5da122227c34f1c737d4c9e3458e4004b19eb55d3a0"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\candidatePack.mjs",
+      "sha256": "0acb61d7f1bbaae37cd6f8164fd532e4dbf8f465d00bcfd73cf2f4a50d6aa345"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\renderFigureSpec.ts",
+      "sha256": "19c10c1cb1aa416cbb376314931bb9dcdce45d17b3f707fb3c2b9dfb157598df"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\render_spec.py",
+      "sha256": "773b75c61d5e55f72f1c31a5babff698b61f280c077e305ac35587697d333627"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\engine_path.py",
+      "sha256": "96e6a07ec22dfa3393c85affd6a6117c8303f4eb31e95bc5a3707388af8b0375"
+    }
+  ],
+  "parentEvidence": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\vector-replay-validation-r2.json",
+      "sha256": "c1a5b80545b050eb26fb896895efe76a44a630ac62b8e2fba5dc378ee95c3d69"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-cli-20261020-r3\\replay-manifest.json",
+      "sha256": "1b3b4deb44b0bba33665f02a3188576b3d066cd4126bc65609cf9de66df69512"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-negative-20261020-r2\\negative-control-receipt-r2.json",
+      "sha256": "27096d6c8fd10c081d1a50d89907472e49aa638a3f1c665670cfdd1d89354a90"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-pre-snapshot-20261020-r2\\finding-r2.json",
+      "sha256": "5ae97d1bb4a8d128494098959a2015b1d06181c6c695ef9c9eb707f29f002cbd"
+    }
+  ],
+  "scope": "R2 check exact captured binding vs input snapshot, verified spec parsing, CWD/code context, normal/rejection controls; preserve sealed R1 bytes; no math/grade/rights/loadable approval",
+  "newManualQuestions": 0,
+  "dbWrites": 0
+}
