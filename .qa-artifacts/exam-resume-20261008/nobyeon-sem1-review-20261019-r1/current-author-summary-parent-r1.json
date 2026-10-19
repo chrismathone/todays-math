@@ -1,0 +1,235 @@
+{
+  "kind": "current-authored-twin-review-summary/v1",
+  "createdAt": "2026-10-19T11:28:52.947Z",
+  "index": {
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-review-20261019-r1/current-author-index-parent-r1.json",
+    "sha256": "fcd39a3fa0d360d4b095abd57cb9fdd4dbc7c432f8b79534a09eca9cff88e49c"
+  },
+  "selectionPolicy": "exact current author ID and raw author hash; prior versions retained, never reused",
+  "counts": {
+    "authored": 1,
+    "historicalCandidateVersions": 1,
+    "independentSolvesBound": 1,
+    "mathematicalVerified": 1,
+    "gradeReviewed": 1,
+    "contentReportVerified": 0,
+    "contentReviewPassed": 0,
+    "contentReviewHeld": 1,
+    "figureInstances": 0,
+    "overallVerified": 0,
+    "loadable": 0,
+    "productionWrites": 0
+  },
+  "contentReviewPassedNumbers": [],
+  "contentReviewHeldNumbers": [
+    6
+  ],
+  "supersededReviews": [],
+  "questions": [
+    {
+      "n": 6,
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-r1-q06",
+      "studentDigest": "ca2b0892a21f3ec00dbe110218e60c87f8679dc54da997e26bff17d525120065",
+      "candidateDigest": "0af41058c7a895844251c26adc20926d124cc15bbbadde0c4590d784f661ddb1",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "013200be1b9fd80729612ef078691036f84d926f8d761e111c0dfdc6d9b38cb9",
+      "reportSha256": "562192762ebd6b8153917099c7ee99f39fecd36c4b2f429e7d65cb4c1ca9f422",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "reviewChecks": {
+        "answerCorrect": true,
+        "solutionCorrect": true,
+        "existenceUniqueness": true,
+        "choicesCorrect": true,
+        "figureConsistent": true,
+        "sameCoreConceptAndProcedure": true,
+        "distinctPresentation": true,
+        "naturalKorean": true,
+        "curriculumAppropriate": true,
+        "allStudentSurfacesInScope": true,
+        "scoreAppropriate": true,
+        "unitFamilyFit": false
+      },
+      "sourceReference": {
+        "sourceReferenceId": "source-ref-nobyeon-2025-1-mid-fresh-r6-q06",
+        "inventoryExamId": "personal-651da9aa806ce1c9d1c3ae5539e6038f",
+        "sourceSchoolInternal": "노변중학교",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceContentSha256": "6c2a1409562ed7b00e5cec48601527fad5729da1497ac52f180e6ff9a45d98b8",
+        "sourceManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-651da9aa806ce1c9d1c3ae5539e6038f/source-manifest.local.json",
+          "sha256": "76749165acccb92c23dd167adfbe16377d0c60735ea5568780c328ee469b0cf9"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[노변중][3][25-1-중간][동아강] (완료).hwp",
+            "sha256": "711bf0e161d5f83ee5261c40c48796ebc13f03b0f7f213f4973be00263190e44",
+            "bytes": 579072
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[노변중][3][25-1-중간][동아강] (완료).PDF",
+            "sha256": "b35bc2edff56bc9b92aaecb77f43a403017254cc48f817099badeb1743eca742",
+            "bytes": 154842
+          }
+        ],
+        "originalIdentitySource": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[노변중][3][25-1-중간] (원본)  (흰닭).pdf",
+          "sha256": "0010d2a15529c79f3407d2b8c461787080247e126dc7e725bb8c7eda461ed643",
+          "bytes": 3313997
+        },
+        "hwpAnchor": {
+          "stream": "BodyText/Section0",
+          "recordIndex": 771,
+          "inflatedByteOffset": 31171,
+          "tag": 71,
+          "level": 1,
+          "payloadSha256": "a8134043b9a32d5e5542b7793ea23fec020aeba5ed5a7790344ab0ac88d1abca"
+        },
+        "originalHeaderObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/reviewer-observations-r1.json",
+          "sha256": "3eeaf1cc90a8677b850169154fc6ddc83c938d9213e63a9419f4636251267e02"
+        },
+        "actualReference": "Original header date2025-04-29 observed earlier;2026 preparation footer is separate. This component has not received original/body/whole-pair identity certification.",
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "sourceCropViewed": false,
+        "sourceBodyVisualCorrespondence": "pending-N-original-access"
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 4,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "계산",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "무리수와 실수",
+            "semester": 1,
+            "orderIndex": 470,
+            "problemCodePrefix": "J30102"
+          },
+          "familyCandidate": {
+            "unit_id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+            "family_key": "mid:3-1|무리수와 실수|09",
+            "family_code": "A09",
+            "live_count": 24
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+            "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+          },
+          "evidence": "실제 Unit UUID와 live 표 읽기09를 연결했다. 입력 열을 되찾는 목적과 전체 풀이의 family 적합성은 독립 검토 전 확정하지 않는다."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "본문·보기·표·해설에 학교명이 없다. 실제 출처 학교는 내부 메타데이터에만 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "fresh-native-markdown-table",
+          "newTables": 1,
+          "newFigures": 0,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure",
+          "data-reorganization"
+        ],
+        "before": "표를 읽고 자릿수를 이동하여 두 제곱근을 구한 뒤 결합식의 값을 직접 묻는다.",
+        "after": "결합식의 계산 결과와 양수의 제곱 관계를 제시하고, 새로 계산한 다섯 열의 표에서 선택했던 입력 수를 역으로 찾는다.",
+        "sharedConcept": "양의 제곱근, 제곱근표 읽기, 근호 안의100배 변화와 밖의10배 변화, 소수 근삿값 계산",
+        "sharedProcedure": "완전제곱수의 양의 제곱근 →100분의1인 피제곱수의 제곱근은10분의1 →결합식 계산과 제곱근표 대응",
+        "actualStructuralChange": "출력값 직접 계산에서 주어진 출력으로 표의 입력 열을 되찾는 문제로 질문 대상을 역전했다. 원문의 다단 표를 새 단일 행5열로 재조직했다. 숫자 교체만으로 완료한 것이 아니다.",
+        "domainProof": "x는 표의 다섯 양수 중 하나로 제한한다. 각 x에서 a,b는 양수 조건으로 하나씩 정해진다. 표의 소수값으로 계산한 결과는45.58,45.61,45.63,45.65,45.67로 서로 달라 선택이 유일하다. 실제 근호값과 반올림된 표 값을 혼동하지 않는다.",
+        "difficultyBasis": "원문의 표 읽기·자릿수 변화·양의 제곱근·결합식 계산을 유지한다. 결합식을 거꾸로 계산하는 중1 일차식 수준의 한 단계를 추가하며 목표 난이도 동등성은 독립 검토 대기."
+      },
+      "packageDigest": "184561e5a45cc5a11c49111b537cc53e7b313155d15521c4a810baf1e2ed4b9d",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-sem1-authoring-r1\\candidates\\q06.json",
+        "sha256": "43eb782c181b71b0ae64c3f172c01660de5bea4262cacc9522149a026b017be5"
+      },
+      "figureBindings": [],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-sem1-review-20261019-r1\\blind\\solve\\q06.json",
+        "sha256": "04505180a8b99a2aa393e622668f2c6e38be725f20f29cbf19687d08aae16ce6"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-review-20261019-r1/verification/reports/q06.json",
+        "sha256": "562192762ebd6b8153917099c7ee99f39fecd36c4b2f429e7d65cb4c1ca9f422"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-review-20261019-r1/verification/verification-manifest.json",
+        "sha256": "fcc60de716159c96e106279a91ab458184bb15893441243f9c37640919d5915c"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-review-20261019-r1/blind/blind-manifest.json",
+        "sha256": "58a4667c77d407d3ccbec1ba4b9a46517748cb85f5a65b2045bf7417a10d93d3"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-review-20261019-r1/package/private/q06/candidate.json",
+        "sha256": "43eb782c181b71b0ae64c3f172c01660de5bea4262cacc9522149a026b017be5"
+      },
+      "candidateContentWithoutRelocatedPaths": "143ed37bffaf93c15db861df4b8d4cec8a679457509dd38d74e00f8856b5faee",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-r1/candidates/q06.json",
+        "sha256": "43eb782c181b71b0ae64c3f172c01660de5bea4262cacc9522149a026b017be5"
+      },
+      "authorCandidateDigest": "0af41058c7a895844251c26adc20926d124cc15bbbadde0c4590d784f661ddb1"
+    }
+  ],
+  "reviewBindingDigest": "83ccc4b67400755034f01390258d92e5c0b7edf1596815b694fe488c760ee000",
+  "limits": [
+    "External review reports supply mathematical/curriculum evidence; hashes never calculate correctness",
+    "Source identity/custody, taxonomy, rights/similarity and native reader/provenance remain separate unresolved gates",
+    "No database, writer, operational approval or original-answer oracle"
+  ]
+}

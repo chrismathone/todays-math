@@ -1,0 +1,7 @@
+﻿from pathlib import Path
+import json,hashlib
+out=Path(__file__).parent;root=Path('C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008');blind=out.parent/'nobyeon-sem1-clean-blind-20261019-r1'
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def read(p):return json.loads(p.read_text(encoding='utf8'))
+code=read(out/'code-before.json');current={p:sha(root/p) for p in code};assert current==code==read(out/'code-after.json');assert sha(blind/'solve/q06.json')=='04505180a8b99a2aa393e622668f2c6e38be725f20f29cbf19687d08aae16ce6';inputs=read(out/'review-input-hashes.json')['verificationInputs'];assert all(sha(out/n)==s for n,s in inputs.items())
+(out/'closing-source-hashes.json').write_text(json.dumps(current,indent=2)+'\n',encoding='utf8');files=['reports/q06.json','official-locators.json','source-family-comparison.json','review-input-hashes.json','evaluate-packet.mjs','write-report.py','workflow-evaluation.json','code-before.json','code-after.json','closing-source-hashes.json','finalize-evidence.py'];(out/'evidence-manifest.json').write_text(json.dumps({'ownFiles':{n:sha(out/n) for n in files},'rawUnchangedSha256':sha(blind/'solve/q06.json'),'onlyOwnReportAndAuxiliaryFilesToCommit':True,'thirdPartyFullDocumentsOrOriginalQuestionTextPublished':False,'inputFilesNotModified':True,'scopeErrorRecorded':'reports/q06.json evidence.exposure.postSealScopeError'},ensure_ascii=False,indent=2)+'\n',encoding='utf8');print('reportSHA256',sha(out/'reports/q06.json'))

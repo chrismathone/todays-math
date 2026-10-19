@@ -1,0 +1,29 @@
+{
+  "mode": "actual-root-evaluateReview-on-four-file-verification-binding;not-a-root-package-collect",
+  "transport": "Parent provided transport seal; local own raw and packet canonical digests checked. Parent Git/current package not self-opened.",
+  "bindingDigestsChecked": true,
+  "actualRawSha256": "04505180a8b99a2aa393e622668f2c6e38be725f20f29cbf19687d08aae16ce6",
+  "validation": {
+    "structurallyValid": true,
+    "surfaceKeywordViolations": [],
+    "semanticGradeReviewStillRequired": true
+  },
+  "answerComparator": true,
+  "result": {
+    "mathematicalVerified": true,
+    "gradeReviewed": true,
+    "overallVerified": false,
+    "loadable": false,
+    "reasons": [
+      "review-status-pending",
+      "review-unitFamilyFit-not-passed",
+      "source-identity-held",
+      "taxonomy-held",
+      "rights-review-pending",
+      "similarity-review-pending",
+      "native-exam-twin-provenance-not-implemented"
+    ],
+    "productionWrites": false
+  },
+  "sourceHashesStable": true
+}
