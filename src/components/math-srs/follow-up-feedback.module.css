@@ -74,7 +74,7 @@
   min-width: 150px;
 }
 /* Match the bank action while keeping the shared feedback independent of its shell. */
-.solution .understood {
+.solution button.understood {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -93,14 +93,16 @@
   cursor: pointer;
   transition: background 150ms ease;
 }
-.solution .understood:hover:not(:disabled) {
-  background: var(--learn-accent-hover);
+@media (hover: hover) and (pointer: fine) {
+  .solution button.understood:hover:not(:disabled) {
+    background: var(--learn-accent-hover);
+  }
 }
-.solution .understood:disabled {
+.solution button.understood:disabled {
   opacity: 0.55;
   cursor: default;
 }
-.solution .understood:focus-visible {
+.solution button.understood:focus-visible {
   outline: 2px solid var(--learn-accent);
   outline-offset: 3px;
 }
@@ -123,4 +125,13 @@
   .previous {
     font-size: 11px;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .solution button.understood {
+    transition: none;
+  }
+}
+:global([data-learning-motion="reduce"]) .solution button.understood {
+  transition: none;
 }
