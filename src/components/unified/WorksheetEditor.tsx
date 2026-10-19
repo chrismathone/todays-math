@@ -35,7 +35,10 @@ import s from "./WorksheetEditor.module.css";
 import { arithmeticOutputGroups } from "@/lib/arithmeticOutputLayout";
 import { MathText } from "@/components/math/MathText";
 import { arithmeticTypeTitle } from "@/lib/arithmetic-v2/presentation/text";
+import type { SheetTag } from "@/contracts/sheetTag.contract";
 interface Props {
+  /** Existing draft/presentation tag, rendered without adding it to printMeta storage. */
+  sheetTag?: SheetTag | null;
   /** 서식 설정 탭의 덧붙임(W6 내 양식 · W7 제목 추천 · W8 태그) — 그 화면이 꽂는다. */
   settingsSlots?: PrintOptionsSlots;
   /** Arithmetic output has a key only, with no solution pages. */
@@ -84,6 +87,7 @@ interface Props {
   onEditSource?: (problem: StudioProblem) => void;
 }
 export default function WorksheetEditor({
+  sheetTag,
   settingsSlots,
   answersOnly = false,
   fixedComposition = false,
@@ -146,7 +150,10 @@ export default function WorksheetEditor({
   }));
   const [localMeta, setLocalMeta] = useState(() => ({ ...DEFAULT_PRINT_META }));
   const options = printOptions ?? localOptions;
-  const meta = printMeta ?? localMeta;
+  const meta = useMemo(
+    () => ({ ...(printMeta ?? localMeta), sheetTag: sheetTag ?? undefined }),
+    [printMeta, localMeta, sheetTag],
+  );
   const [prepared, setPrepared] = useState<{
     selected: StudioProblem[];
     title: string;

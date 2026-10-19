@@ -1,3 +1,4 @@
+import { PrintHeader } from "../PrintHeader";
 import { printPagePadding, scaledItemStyle } from "../geometry";
 // WorkbookTemplate.tsx (T4) — 학원 워크북 (풀이공간 포함)
 // design_handoff 카피 + import path 조정 + options.accentColor → options.color.
@@ -5,15 +6,15 @@ import { printPagePadding, scaledItemStyle } from "../geometry";
 import type { ProblemReview } from "../types";
 import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
-import { readablePaperColor, inkOnColor } from "../readableColor";
+import { readablePaperColor } from "../readableColor";
 import { BodyContainer } from "./BodyContainer";
-import { ArithmeticRoundLabel, ProblemHeader } from "./ProblemMeta";
+import { ProblemHeader } from "./ProblemMeta";
 import { ProblemBody } from "./ProblemBody";
 import type { PrintTemplateProps } from "../types";
-import { ExamDetails } from "../ExamDetails";
 
 export function WorkbookTemplate({
   page,
+  totalProblems,
   round,
   firstPage,
   columns,
@@ -26,7 +27,6 @@ export function WorkbookTemplate({
   measure,
 }: PrintTemplateProps) {
   const accent = options.color || PAPER_COLORS.accentRed;
-  const isFirstPage = firstPage ?? page === 1;
   const fs = bodyFontSize("workbook", columns);
   const gap = Math.max(0, options.spacing);
   const embeddedSolvingArea =
@@ -135,143 +135,14 @@ export function WorkbookTemplate({
         flexDirection: "column",
       }}
     >
-      {(isFirstPage || round !== undefined) && (
-        <>
-          {/* 학원 헤더 */}
-          {isFirstPage && (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: 14,
-                flexShrink: 0,
-              }}
-            >
-              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <div
-                  style={{
-                    width: 36,
-                    height: 36,
-                    background: accent,
-                    color: inkOnColor(accent),
-                    display: "grid",
-                    placeItems: "center",
-                    fontFamily: "var(--paper-font-sans)",
-                    fontWeight: 900,
-                    fontSize: 18,
-                    letterSpacing: "-0.04em",
-                  }}
-                >
-                  {meta.academyName?.[0] ?? "M"}
-                </div>
-                <div>
-                  <div
-                    style={{
-                      fontFamily: "var(--paper-font-sans)",
-                      fontWeight: 800,
-                      fontSize: 17,
-                      letterSpacing: "-0.01em",
-                    }}
-                  >
-                    {meta.academyName ?? "수학 학원"}
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: "var(--paper-font-sans)",
-                      fontSize: 10.5,
-                      color: PAPER_COLORS.ink50,
-                      letterSpacing: "0.04em",
-                    }}
-                  >
-                    MATH ACADEMY WORKBOOK
-                  </div>
-                </div>
-              </div>
-              <div
-                style={{
-                  fontFamily: "var(--paper-font-sans)",
-                  fontSize: 11,
-                  color: PAPER_COLORS.ink70,
-                  textAlign: "right",
-                }}
-              >
-                <div>
-                  <span style={{ color: PAPER_COLORS.ink50 }}>강의</span> ·{" "}
-                  {meta.instructorName ?? "—"} T
-                </div>
-                <div>
-                  <span style={{ color: PAPER_COLORS.ink50 }}>일자</span> ·{" "}
-                  {options.showDate ? (meta.examDate ?? "—") : ""}
-                </div>
-              </div>
-            </div>
-          )}
-          {/* 단원 배너 */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 0,
-              background: PAPER_COLORS.ink,
-              color: "white",
-              padding: "10px 16px",
-              flexShrink: 0,
-            }}
-          >
-            <div
-              style={{
-                flex: 1,
-                ...(round !== undefined
-                  ? { minWidth: 0, overflowWrap: "anywhere" }
-                  : {}),
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: "var(--paper-font-sans)",
-                  fontWeight: 800,
-                  fontSize: 14,
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                {meta.title}
-              </span>
-            </div>
-            <ArithmeticRoundLabel
-              round={round}
-              style={{
-                margin: "0 14px",
-                padding: "0 14px",
-                borderLeft: "1px solid rgba(255,255,255,0.4)",
-                borderRight: "1px solid rgba(255,255,255,0.4)",
-              }}
-            />
-            <div
-              style={{
-                fontFamily: "var(--paper-font-sans)",
-                fontSize: 11,
-                display: "flex",
-                gap: 14,
-                ...(round !== undefined
-                  ? { flexShrink: 0, whiteSpace: "nowrap" }
-                  : {}),
-              }}
-            >
-              <span>
-                <span style={{ color: PAPER_COLORS.mutedText }}>이름</span>{" "}
-                ___________
-              </span>
-              <span>
-                <span style={{ color: PAPER_COLORS.mutedText }}>날짜</span>{" "}
-                ___________
-              </span>
-            </div>
-          </div>
-        </>
-      )}
-
-      {isFirstPage && <ExamDetails meta={meta} options={options} />}
+      <PrintHeader
+        page={page}
+        round={round}
+        firstPage={firstPage}
+        totalProblems={totalProblems}
+        meta={meta}
+        options={options}
+      />
 
       <BodyContainer
         solvingArea={options.solvingArea}

@@ -164,9 +164,7 @@ describe.each(Object.entries(TEMPLATE_COMPONENTS))(
             paper.querySelector("[data-arithmetic-type-heading]")?.textContent,
           ).toBe("유형 1");
           if (template === "jeongtong")
-            expect(
-              label.closest("tr")?.firstElementChild?.getAttribute("colspan"),
-            ).toBe("5");
+            expect(label.closest("[data-print-header]")).not.toBeNull();
           if (template === "yuhyung")
             expect(label.parentElement?.textContent).toContain("100 문항");
         }

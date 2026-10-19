@@ -82,14 +82,65 @@ export const SPECIMEN_ITEM_IDS = [
 ] as const;
 
 export const ITEMS: PrintCheckItem[] = [
+  ...(
+    [
+      ["pyeongga", "평가원"],
+      ["jeongtong", "정통"],
+      ["modern", "모던"],
+      ["workbook", "워크북"],
+      ["jaseup", "자습"],
+      ["yuhyung", "유형"],
+    ] as const
+  ).map(([template, label]): PrintCheckItem => ({
+    id: `print-c2-${template}-20261019`,
+    title: `${label} 양식 C2 — 머리 면·번호·시험 종류`,
+    changed:
+      "확정 C2의 선택색 머리 면·번호 상자와 양식별 정보 구성을 실제 출력에 적용했다. 워크북은 유형·전략 상자를 새로 싣고 모든 양식에 기존 시험 종류를 표시한다.",
+    look: "기본 남색 포함 9색과 회색조에서 머리·번호 글자가 읽혀야 한다. 해당 양식의 정보만 찍히고 시험 종류 «없음»과 날짜 숨김이 지켜져야 한다. 긴 제목·개념·전략과 연산 회차 첫 쪽/이어지는 쪽에서 넘침·겹침·문항 누락이 없어야 한다. 인쇄·PDF·HWPX에서 선택색 면과 새 칸이 남는지도 확인한다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/brief-print-color-impl-codex.md",
+      "src/components/unified/print/PrintHeader.tsx",
+      "src/components/unified/print/templates/",
+      "src/components/unified/print/templateFields.ts",
+    ],
+    needs: `${label} 양식으로 연산대장·시험지 만들기·문제 추출·저장본을 출력. 9색·회색조, 시험 종류 있음/없음, 날짜 켬/끔, 1단/2단, 긴 머리 정보·이어지는 쪽을 확인.`,
+    scale: "여섯 양식 × C2 중 한 양식 — 실물 검수 미실시",
+    status: "대기",
+    changedOn: "2026-10-19",
+  })),
+  {
+    id: "print-info-color-20261019",
+    title: "시험지 정보줄 대비 · 지면 색상 비교 시안",
+    changed:
+      "선행 감사에서 기존 정보줄에 readablePaperColor를 적용하고 /dev/print-color-hifi에 비교 시안을 남겼다. 이후 확정 C2를 실제 여섯 양식에 적용했으며, 양식별 실물 검수는 별도 C2 항목 여섯 개에서 관리한다. C5는 적용 전 모습이다.",
+    look: "사이언·주황·노랑에서 정보줄의 제목·학교·날짜가 흐리지 않은지 확인한다. 날짜 표시를 끄면 정보줄에서도 시험일이 없어야 한다. 시안은 각 템플릿의 남색·사이언·주황 및 회색조를 비교하고, 선·머리 면·번호가 구별되는지 본다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/brief-print-info-color-codex.md",
+      "docs/planning/tracks/reports/print-info-color-codex-20261019.md",
+      "src/components/unified/print/ExamDetails.tsx",
+      "src/app/dev/print-color-hifi/",
+    ],
+    needs:
+      "실제 지면은 아래 양식별 C2 검수 항목을 따른다. /dev/print-color-hifi는 로컬 개발용 색상·회색조·이전 C5 비교 화면이다.",
+    status: "대기",
+    changedOn: "2026-10-19",
+  },
   {
     id: "exam-report-confirmed-print",
     title: "실제 월말평가 성적표 — 확정 보관 PDF · 반 인쇄",
-    changed: "실제 작업실에서 문장·반 지면 설정을 저장하고 H1 S1·M1 PDF를 확정 보관한다. 확정된 학생은 보관 PDF, 확정 전 학생은 현재 저장 내용으로 반 인쇄 PDF를 합친다. C2는 가로 A4다.",
+    changed:
+      "실제 작업실에서 문장·반 지면 설정을 저장하고 H1 S1·M1 PDF를 확정 보관한다. 확정된 학생은 보관 PDF, 확정 전 학생은 현재 저장 내용으로 반 인쇄 PDF를 합친다. C2는 가로 A4다.",
     look: "문장 없음·상한 길이·긴 이름·많은 오답에서 요약 첫 쪽의 잘림·겹침이 없어야 한다. M1 쪽 나눔과 정답·해설, C2 가로 방향, 배경 인쇄를 꺼도 정오가 남는지 확인한다. 확정 후 반 인쇄의 해당 학생 쪽은 받은 확정 PDF와 같아야 한다.",
     lookFromSource: true,
-    evidence: ["docs/planning/tracks/brief-exam-report-screen-impl-codex.md", "src/components/exam-report/ExamReportWorkspace.tsx", "src/lib/examReport/server.ts"],
-    needs: "낸 시험의 채점을 마친 반 → 성적표 → S1·M1 각각 확정 및 확정 전 포함 인쇄. 문장 상한 실측 뒤 프린터 100% 배율로 확인.",
+    evidence: [
+      "docs/planning/tracks/brief-exam-report-screen-impl-codex.md",
+      "src/components/exam-report/ExamReportWorkspace.tsx",
+      "src/lib/examReport/server.ts",
+    ],
+    needs:
+      "낸 시험의 채점을 마친 반 → 성적표 → S1·M1 각각 확정 및 확정 전 포함 인쇄. 문장 상한 실측 뒤 프린터 100% 배율로 확인.",
     status: "대기",
     changedOn: "2026-10-18",
   },

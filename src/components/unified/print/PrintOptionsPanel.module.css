@@ -11,3 +11,26 @@
 .fields textarea {
   scroll-margin-block: 8px;
 }
+
+.metaField[data-omitted] {
+  padding: 10px;
+  border-left: 3px solid var(--learn-control);
+  background: var(--learn-neutral);
+}
+
+.metaField small {
+  color: var(--learn-muted);
+  font-size: var(--text-caption, 12px);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.metaField:has(textarea) {
+  grid-column: 1 / -1;
+}
+
+.metaField input:disabled,
+.metaField textarea:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

@@ -6,7 +6,7 @@ import o from "./OutputExtras.module.css";
 
 /**
  * W8 시험지 태그(Hi-fi 1안) — 3단계 «시험지 정보» 맨 위 «시험 종류», 폰트 · 색과 같은 눌림 단추(없음 + 여덟).
- * 하나만 고르고, 지면에 찍지 않는다. `src/app/dev/exam-output-hifi/W8Tags.tsx` 의 `Pick1`.
+ * 하나만 고른다. 모든 문제지 양식에 표시하며 내 양식에는 저장하지 않는다.
  */
 export default function SheetTagPicker({
   value,
@@ -43,7 +43,7 @@ export default function SheetTagPicker({
         ))}
       </div>
       <p className={we.subtle} style={{ marginTop: 0 }}>
-        지면에 찍히지 않습니다 — 내 시험지에서 거를 때 씁니다.
+        모든 양식에 표시합니다. «없음»을 고르면 지면에서 생략합니다.
       </p>
     </div>
   );

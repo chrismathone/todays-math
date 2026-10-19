@@ -560,6 +560,7 @@ export default function MathExamBuilder({
               />
             ),
           }}
+          sheetTag={sheetTag ? sheetTag.value : editor.sheetTag}
           selected={questions}
           title={title}
           setTitle={onTitleChange}

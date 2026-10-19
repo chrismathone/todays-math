@@ -1339,6 +1339,7 @@ function UnifiedWorkspaceContent({
   );
   const editorProps: ComponentProps<typeof WorksheetEditorComponent> = {
     draftActions: canUseWorksheetDrafts,
+    sheetTag: draft.tag ?? null,
     selected,
     title,
     columns,

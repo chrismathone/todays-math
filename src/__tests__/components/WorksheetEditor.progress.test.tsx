@@ -2,13 +2,23 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import WorksheetEditor from "@/components/unified/WorksheetEditor";
 import type { StudioProblem } from "@/components/unified/types";
+import {
+  DEFAULT_PRINT_META,
+  type PrintMeta,
+} from "@/components/unified/print/types";
 
 vi.mock("@/components/unified/print/PrintOptionsPanel", () => ({
   PrintOptionsPanel: () => null,
 }));
 vi.mock("@/components/unified/print/WorksheetPrint", () => ({
-  WorksheetPrint: ({ onReady }: { onReady: (ready: boolean) => void }) => (
-    <div data-mathgen-document>
+  WorksheetPrint: ({
+    onReady,
+    printMeta,
+  }: {
+    onReady: (ready: boolean) => void;
+    printMeta: PrintMeta;
+  }) => (
+    <div data-mathgen-document data-preview-tag={printMeta.sheetTag}>
       <button onClick={() => onReady(true)}>페이지 구성 완료</button>
     </div>
   ),
@@ -57,6 +67,37 @@ const props = {
 };
 
 describe("worksheet print readiness feedback", () => {
+  it("bridges the existing sheet tag without changing stored metadata and invalidates output when it changes", () => {
+    const stored = { ...DEFAULT_PRINT_META, title: "저장본" };
+    const before = JSON.stringify(stored);
+    const { container, rerender } = render(
+      <WorksheetEditor {...props} printMeta={stored} sheetTag="일일TEST" />,
+    );
+    expect(
+      container
+        .querySelector("[data-preview-tag]")
+        ?.getAttribute("data-preview-tag"),
+    ).toBe("일일TEST");
+    fireEvent.click(screen.getByRole("button", { name: "페이지 구성 완료" }));
+    expect(
+      screen.getByRole("button", { name: "인쇄 / PDF 저장" }),
+    ).toBeEnabled();
+    rerender(
+      <WorksheetEditor {...props} printMeta={stored} sheetTag="주간TEST" />,
+    );
+    expect(
+      container
+        .querySelector("[data-preview-tag]")
+        ?.getAttribute("data-preview-tag"),
+    ).toBe("주간TEST");
+    expect(
+      screen.getByRole("button", { name: "인쇄 준비 중…" }),
+    ).toBeDisabled();
+    rerender(<WorksheetEditor {...props} printMeta={stored} sheetTag={null} />);
+    expect(container.querySelector("[data-preview-tag]")).toBeNull();
+    expect(JSON.stringify(stored)).toBe(before);
+    expect(stored).not.toHaveProperty("sheetTag");
+  });
   it.each(["인쇄 / PDF 저장", "PDF 내려받기", "HWPX 내보내기"])(
     "runs subject preflight before %s and blocks failures",
     async (name) => {
