@@ -1,0 +1,75 @@
+{
+  "status": "completed-four-held",
+  "method": "readonly-current-candidate-vs-actual-TypeEntry-definition-and-code-computed-samples",
+  "scope": [
+    "four authorized candidate JSON files",
+    "m3Root.ts",
+    "m3Poly.ts",
+    "direct TypeEntry types/RNG/josa dependencies",
+    "captured live-family snapshot"
+  ],
+  "items": [
+    {
+      "n": 6,
+      "status": "held-no-exact-supported-existing-family",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "exactCompatibleExistingFamily": null,
+      "newFamilyProposal": "제곱근표의 근삿값 결합식에서 입력 열 역추론"
+    },
+    {
+      "n": 8,
+      "status": "held-no-exact-supported-existing-family",
+      "unitId": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "exactCompatibleExistingFamily": null,
+      "newFamilyProposal": "두 정사각형의 전개된 넓이와 길이 차에서 모든 입력의 합"
+    },
+    {
+      "n": 9,
+      "status": "held-no-exact-supported-existing-family",
+      "unitId": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "exactCompatibleExistingFamily": null,
+      "newFamilyProposal": "근호 계산 자료의 최대·최소 차에서 양수 계수 역산"
+    },
+    {
+      "n": 10,
+      "status": "held-no-exact-supported-existing-family",
+      "unitId": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "exactCompatibleExistingFamily": null,
+      "newFamilyProposal": "두 일차식 곱의 계수 합에서 인수 안 상수 복원"
+    }
+  ],
+  "sampleEvidence": "bounded-samples.json",
+  "independentCalculations": "own-calculations.json",
+  "sampleCount": 30,
+  "sampledFamilies": 15,
+  "sourceEvidence": "definition-evidence.json",
+  "sourceHashes": "source-hashes.json",
+  "snapshot": {
+    "capturedAt": "2026-10-19 06:14:08.658144+00",
+    "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0",
+    "currentDBPromise": false
+  },
+  "engineGaps": [
+    "MidProblem/TypeEntry has task text/answer but no explicit target-direction/full procedure/prerequisite/parameter-domain contract for semantic matching.",
+    "No exact full target/procedure/domain match established for current inverse/composite candidates in the two authorized modules.",
+    "Repository TypeEntry key has no DB Unit UUID. Snapshot binds captured Unit UUID/family key/count, but engine key→persisted mid: mapping and semantic compatibility require separate registration attestation; prefix equality is not proof of full procedure fit.",
+    "52V and mixed A19 have no definitions in these two modules; semantics remain unresolved.",
+    "Generic MC conversion cannot turn a direct target into an inverse target.",
+    "New family proposal needs parameter-domain uniqueness guards, independent printed-data verifier, grade/precondition scope and exact versioned bindings before release."
+  ],
+  "gradeScope": "Only 2015 M3 2025/2026 context; q08 after factorization. 2027/2022 separately held. q06 is author-exposed metadata audit, no fresh proof or general grade certification.",
+  "limitations": [
+    "30 deterministic samples are bounded examples, not exhaustive engine validation.",
+    "Actual definitions were evaluated; no DB/live bank item contents, originals or other candidate sessions were opened.",
+    "No exact existing family proposed. This is not proof that no family exists anywhere outside authorized modules.",
+    "Captured family counts establish observation only; source identity/rights/native provenance/loadability remain false."
+  ],
+  "candidateFilesUnchanged": true,
+  "rootFilesUnchanged": true,
+  "dbCalls": 0,
+  "paidAIRequests": 0,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false
+}

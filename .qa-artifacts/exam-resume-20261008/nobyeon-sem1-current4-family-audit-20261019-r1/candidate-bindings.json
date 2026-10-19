@@ -1,0 +1,454 @@
+[
+  {
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-r1/candidates/q06.json",
+    "sha256": "43eb782c181b71b0ae64c3f172c01660de5bea4262cacc9522149a026b017be5",
+    "n": 6,
+    "content": "다음은 제곱근표의 일부이다.\n\n|$x$|$5.10$|$5.11$|$5.12$|$5.13$|$5.14$|\n|:---:|:---:|:---:|:---:|:---:|:---:|\n|$\\sqrt{x}$의 근삿값|$2.258$|$2.261$|$2.263$|$2.265$|$2.267$|\n\n표에 있는 다섯 수 중 하나를 $x$라 하자. 두 양수 $a,b$가 $a^{2}=\\dfrac{x}{100}$, $b^{2}=529$를 만족한다. 표에 실린 소수값을 그대로 이용해 $a$의 근삿값을 구한 뒤, 그 값으로 $100a+b$를 계산하였더니 $45.63$을 얻었다. 선택한 $x$의 값은?",
+    "choices": [
+      "$5.10$",
+      "$5.11$",
+      "$5.12$",
+      "$5.13$",
+      "$5.14$"
+    ],
+    "answer": "③",
+    "solution": "$b$는 양수이고 $b^{2}=529$이므로 $b=23$이다.\n\n표에 실린 $\\sqrt{x}$의 근삿값을 $s$라 하면, $a>0$이고 $a^{2}=x/100$이므로 $a=\\sqrt{x}/10$이다. 따라서 표를 이용해 구한 $a$의 근삿값은 $s/10$이다.\n\n이 값으로 계산한 결과가 $45.63$이므로 $100\\times(s/10)+23=45.63$, 즉 $10s=22.63$에서 $s=2.263$이다.\n\n표에서 $2.263$에 대응하는 수는 $5.12$ 하나뿐이다. 따라서 선택한 $x$의 값은 $5.12$이다. 여기서 $2.263$은 표의 근삿값이며 실제 제곱근과 정확히 같다고 놓은 것이 아니다.",
+    "assignment": {
+      "status": "pending",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "무리수와 실수",
+        "semester": 1,
+        "orderIndex": 470,
+        "problemCodePrefix": "J30102"
+      },
+      "familyCandidate": {
+        "unit_id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+        "family_key": "mid:3-1|무리수와 실수|09",
+        "family_code": "A09",
+        "live_count": 24
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+        "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+      },
+      "evidence": "실제 Unit UUID와 live 표 읽기09를 연결했다. 입력 열을 되찾는 목적과 전체 풀이의 family 적합성은 독립 검토 전 확정하지 않는다."
+    },
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 1,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "prerequisites": []
+  },
+  {
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group2-r3/candidates/q08.json",
+    "sha256": "43298d2898ac0b1be2bddad6a37c4f764a157086718d758d6ded5f109d12e7a0",
+    "n": 8,
+    "content": "실수 $x$에 대하여, 한 변의 길이가 양수인 두 정사각형 A, B의 넓이는 다음 표와 같다.\n\n|정사각형|A|B|\n|:---:|:---:|:---:|\n|넓이($\\mathrm{cm}^{2}$)|$x^{2}+4x+4$|$4x^{2}-12x+9$|\n\nA의 한 변은 B의 한 변보다 $2\\,\\mathrm{cm}$ 길다. 가능한 모든 $x$의 값의 합은?",
+    "choices": [
+      "$1$",
+      "$2$",
+      "$3$",
+      "$4$",
+      "$6$"
+    ],
+    "answer": "④",
+    "solution": "넓이를 나타내는 식을 인수분해하면 $x^{2}+4x+4=(x+2)^{2}$, $4x^{2}-12x+9=(2x-3)^{2}$이다.\n\n정사각형의 한 변의 길이는 넓이의 양의 제곱근이다. 따라서 A, B의 한 변의 길이는 각각 $\\sqrt{(x+2)^{2}}=|x+2|$, $\\sqrt{(2x-3)^{2}}=|2x-3|$ (단위: $\\mathrm{cm}$)이다. 두 길이가 양수이므로 $x\\ne-2$, $x\\ne\\dfrac32$이다.\n\n$x<-2$일 때, 두 길이의 차는 $(-x-2)-(3-2x)=x-5$이다. $x-5=2$에서 $x=7$이지만 주어진 범위에 맞지 않으므로 해가 아니다.\n\n$-2<x<\\dfrac32$일 때, 두 길이의 차는 $(x+2)-(3-2x)=3x-1$이다. $3x-1=2$에서 $x=1$이고, 이 값은 해당 범위에 속한다.\n\n$x>\\dfrac32$일 때, 두 길이의 차는 $(x+2)-(2x-3)=5-x$이다. $5-x=2$에서 $x=3$이고, 이 값은 해당 범위에 속한다.\n\n$x=1$이면 두 길이는 $3$, $1$이고, $x=3$이면 $5$, $3$이므로 두 경우 모두 A가 B보다 $2$ 길다. 따라서 가능한 값은 $1,3$뿐이고 그 합은 $4$이다.",
+    "assignment": {
+      "status": "pending",
+      "unitId": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "제곱근의 뜻과 성질",
+        "semester": 1,
+        "orderIndex": 469,
+        "problemCodePrefix": "J30101"
+      },
+      "familyCandidates": [
+        {
+          "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+          "family_key": "mid:3-1|제곱근의 뜻과 성질|08",
+          "family_code": "A08",
+          "live_count": 33
+        },
+        {
+          "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+          "family_key": "mid:3-1|제곱근의 뜻과 성질|09",
+          "family_code": "A09",
+          "live_count": 44
+        }
+      ],
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+        "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+      },
+      "evidence": "실제 제곱근 성질 Unit UUID와live08/09를 연결한다. 여러 구간 전체를 거치는 입력 역추론과 기하 표현에 어느family가 맞는지 독립 판단 전 배정하지 않는다."
+    },
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 1,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "prerequisites": [
+      {
+        "id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+        "grade": "중3",
+        "chapter": "2. 다항식의 곱셈과 인수분해",
+        "section": "인수분해",
+        "semester": 1,
+        "orderIndex": 473,
+        "problemCodePrefix": "J30202"
+      }
+    ]
+  },
+  {
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group3-r1/candidates/q09.json",
+    "sha256": "2888b07139a0b65d53925c0762aab4510cd3e80b40e2cfc390ba7d89d2fe296c",
+    "n": 9,
+    "content": "양수 $m$에 대하여 다음 표의 다섯 식을 각각 계산한다.\n\n|구분|식|\n|:---:|:---:|\n|A|$\\sqrt{18}\\div\\sqrt2\\times\\sqrt4$|\n|B|$\\sqrt{12}\\div\\sqrt3\\times\\sqrt{25}$|\n|C|$\\sqrt{\\dfrac23}\\times\\sqrt{\\dfrac38}\\times\\sqrt{16}$|\n|D|$(-\\sqrt{45})\\div\\sqrt5\\times\\left(-\\dfrac{\\sqrt{16}}3\\right)$|\n|E|$m\\sqrt6\\div\\sqrt{24}$|\n\n계산 결과 중 가장 큰 수와 가장 작은 수의 차가 $12$일 때, $m$의 값은?",
+    "choices": [
+      "$20$",
+      "$24$",
+      "$26$",
+      "$28$",
+      "$32$"
+    ],
+    "answer": "④",
+    "solution": "곱셈과 나눗셈을 왼쪽부터 계산하면 A, B, C, D의 결과는 각각 $\\sqrt9\\times2=6$, $\\sqrt4\\times5=10$, $\\sqrt{\\dfrac14}\\times4=2$, $(-3)\\times\\left(-\\dfrac43\\right)=4$이다. E의 결과는 $m\\sqrt{\\dfrac6{24}}=\\dfrac m2$이다.\n\n$m>0$이므로 $\\dfrac m2>0$이다. $0<\\dfrac m2<2$이면 가장 큰 수는 $10$이고, 차는 $10-\\dfrac m2<10$이므로 $12$가 될 수 없다. $2\\le\\dfrac m2\\le10$이면 가장 큰 수와 가장 작은 수는 각각 $10$, $2$이므로 차는 $8$이다.\n\n따라서 $\\dfrac m2>10$이어야 한다. 이때 가장 큰 수는 $\\dfrac m2$, 가장 작은 수는 $2$이므로 $\\dfrac m2-2=12$에서 $m=28$이다. 실제 다섯 결과는 $6,10,2,4,14$이고 그 차는 $14-2=12$이다. 양수 $m$의 모든 범위를 검사했으므로 이 값만 가능하다.",
+    "assignment": {
+      "status": "pending",
+      "unitId": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "근호를 포함한 식의 계산",
+        "semester": 1,
+        "orderIndex": 471,
+        "problemCodePrefix": "J30103"
+      },
+      "familyCandidates": [
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|01",
+          "family_code": "A01",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|02",
+          "family_code": "A02",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|03",
+          "family_code": "A03",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|04",
+          "family_code": "A04",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|05",
+          "family_code": "A05",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|06",
+          "family_code": "A06",
+          "live_count": 14
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|07",
+          "family_code": "A07",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|08",
+          "family_code": "A08",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|09",
+          "family_code": "A09",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|10",
+          "family_code": "A10",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|11",
+          "family_code": "A11",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|12",
+          "family_code": "A12",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|13",
+          "family_code": "A13",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|14",
+          "family_code": "A14",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|15",
+          "family_code": "A15",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|16",
+          "family_code": "A16",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|17",
+          "family_code": "A17",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|18",
+          "family_code": "A18",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|19",
+          "family_code": "A19",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|20",
+          "family_code": "A20",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|54V",
+          "family_code": "A21",
+          "live_count": 16
+        }
+      ],
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+        "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+      },
+      "evidence": "실제 근호 계산Unit UUID/live family 목록을 연결했다. 단순 연산과 여러 수의 대소 관계를 결합한 역추론의 family 의미 적합성은 독립 판단 전 보류한다."
+    },
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 1,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "prerequisites": []
+  },
+  {
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group4-r2/candidates/q10.json",
+    "sha256": "262bd6d918b92316747bb6ceafe6a5653cef272d3299bb455579bdbff52faec7",
+    "n": 10,
+    "content": "다항식 $(3x+ky)(2x-5y)$를 전개하여 동류항끼리 정리했더니, $xy$의 계수와 $y^{2}$의 계수의 합이 $-39$였다. 이때 상수 $k$의 값은?",
+    "choices": [
+      "$4$",
+      "$6$",
+      "$8$",
+      "$10$",
+      "$12$"
+    ],
+    "answer": "③",
+    "solution": "분배법칙으로 전개하면 $(3x+ky)(2x-5y)=6x^{2}-15xy+2kxy-5ky^{2}$이다. $xy$항끼리 모아 정리한 식은 $6x^{2}+(2k-15)xy-5ky^{2}$이다. 따라서 $xy$의 계수는 $2k-15$, $y^{2}$의 계수는 $-5k$이다.\n\n두 계수의 합이 $-39$이므로 $(2k-15)+(-5k)=-39$이다. 이를 정리하면 $-3k-15=-39$, $-3k=-24$이므로 $k=8$이다.\n\n실제로 $k=8$을 넣으면 전개식은 $6x^{2}+xy-40y^{2}$이고, 두 계수의 합은 $1+(-40)=-39$이다. 상수 $k$를 정하는 일차방정식의 해가 하나이므로 다른 값은 가능하지 않다.",
+    "assignment": {
+      "status": "pending",
+      "unitId": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+        "grade": "중3",
+        "chapter": "2. 다항식의 곱셈과 인수분해",
+        "section": "다항식의 곱셈",
+        "semester": 1,
+        "orderIndex": 472,
+        "problemCodePrefix": "J30201"
+      },
+      "familyCandidates": [
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|01",
+          "family_code": "A01",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|02",
+          "family_code": "A02",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|03",
+          "family_code": "A03",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|04",
+          "family_code": "A04",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|05",
+          "family_code": "A05",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|06",
+          "family_code": "A06",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|07",
+          "family_code": "A07",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|08",
+          "family_code": "A08",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|09",
+          "family_code": "A09",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|10",
+          "family_code": "A10",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|11",
+          "family_code": "A11",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|12",
+          "family_code": "A12",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|13",
+          "family_code": "A13",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|14",
+          "family_code": "A14",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|15",
+          "family_code": "A15",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|16",
+          "family_code": "A16",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|17",
+          "family_code": "A17",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|18",
+          "family_code": "A18",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|52V",
+          "family_code": "A20",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:중3|다항식의 곱셈::중3|근호를 포함한 식의 계산",
+          "family_code": "A19",
+          "live_count": 24
+        }
+      ],
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+        "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+      },
+      "evidence": "실제 다항식 곱셈Unit UUID와 live family 목록을 연결했다. 미정 계수의 입력 역추론을 포함한 풀이 목적에 맞는 family는 독립 판단 전 확정하지 않는다."
+    },
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 1,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "prerequisites": []
+  }
+]

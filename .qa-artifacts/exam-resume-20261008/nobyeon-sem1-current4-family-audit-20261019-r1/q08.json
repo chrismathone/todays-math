@@ -1,0 +1,74 @@
+{
+  "questionNumber": 8,
+  "status": "held-no-exact-supported-existing-family",
+  "candidatePath": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group2-r3/candidates/q08.json",
+  "candidateSha256": "43298d2898ac0b1be2bddad6a37c4f764a157086718d758d6ded5f109d12e7a0",
+  "existingFamilyProposal": null,
+  "unitObservation": {
+    "snapshotCapturedAt": "2026-10-19 06:14:08.658144+00",
+    "uuid": "1682f01b-5293-4672-91cd-07fc02e305ac",
+    "course": "중3",
+    "section": "제곱근의 뜻과 성질",
+    "candidateMatchesCapturedUnit": true,
+    "currentDatabasePromise": false,
+    "declaredFamilies": [
+      {
+        "unitId": "1682f01b-5293-4672-91cd-07fc02e305ac",
+        "familyKey": "mid:3-1|제곱근의 뜻과 성질|08",
+        "code": "A08",
+        "capturedCount": 33,
+        "semanticsFromCount": false
+      },
+      {
+        "unitId": "1682f01b-5293-4672-91cd-07fc02e305ac",
+        "familyKey": "mid:3-1|제곱근의 뜻과 성질|09",
+        "code": "A09",
+        "capturedCount": 44,
+        "semanticsFromCount": false
+      }
+    ]
+  },
+  "relatedEngineKeys": [
+    "3-1|제곱근의 뜻과 성질|05",
+    "3-1|제곱근의 뜻과 성질|08",
+    "3-1|제곱근의 뜻과 성질|09",
+    "3-1|제곱근의 뜻과 성질|10",
+    "3-1|다항식의 인수분해|03",
+    "3-1|다항식의 인수분해|13",
+    "3-1|다항식의 인수분해|14"
+  ],
+  "verdict": "cross-unit factorization + positive geometric roots + all-input inverse gap",
+  "reusedConcept": "√u²=|u|와 부호 판단은 root08/09, 양수인 기하 길이는 root05, 전개식의 완전제곱 인수분해는 factor03의 구성요소와 관련된다.",
+  "changedPurpose": "root08은 한 문자의 부호가 주어지고 root09는 이미 a<x<b인 단일 구간을 주어 이미 제곱인 두 식을 간단히 한다. 후보는 전개된 두 넓이를 인수분해하고 세 구간 전체에서 차 조건을 풀어 실제 양수 길이와 원구간을 재검사한 뒤 모든 x의 합을 출력한다.",
+  "procedureAndParameterDomain": "root08: p,q∈1..5,p≠q, sign=±1, 하나의 a 부호. root09: a∈1..7,b=a+d,d∈2..8, 미리 주어진 a<x<b, sqrt((x-a)²)±sqrt((x-b)²). 후보 경계 -2,3/2와 서로 다른 일차인수 기울기 1,2, 퇴화길이 제외, 구간 밖 x=7 제거는 기존 domain/target에 없다.",
+  "questionAndAnswerFormat": "기존 응답은 간단히 한 식/한 길이/인수분해식이다. 후보는 가능한 모든 입력의 합 4를 선택한다. 같은 scalar라는 이유로 exact family fit이 되지 않는다.",
+  "crossUnitAndMetadataGap": "제곱근 Unit 1682...만으로 factor03의 068b... 선수를 숨길 수 없다. factor13/14도 넓이 모델은 공유하지만 직사각형 둘레/가로 길이의 대수식이며 세 부호구간 입력 역추론과 다르다.",
+  "proposedNewFamily": {
+    "title": "두 정사각형의 전개된 넓이와 길이 차에서 모든 입력의 합",
+    "provisionalOnly": true,
+    "key": null,
+    "unitIdSuggested": "1682f01b-5293-4672-91cd-07fc02e305ac",
+    "parameterContract": {
+      "areaAPolynomial": "expanded perfect-square quadratic",
+      "areaBPolynomial": "expanded perfect-square quadratic",
+      "lengthDifference": "positive rational",
+      "domain": "real excluding zero lengths",
+      "asked": "sum of all feasible roots"
+    },
+    "requiredChecks": [
+      "전개형 입력을 유지하고 인수분해 선수를 명시",
+      "두 경계 전체 구간과 영길이 제외 검증",
+      "가짜 후보 제거·양수 길이·존재/모든 해 검증",
+      "primary Unit/factorization prerequisite를 함께 표현하는 composite binding"
+    ]
+  },
+  "gradeConditions": "2015 중3 인수분해 학습 이후의 통합 배치 필요. 제곱근 단원 첫 학습 시점 인증 아님. 이전 수학 검토는 보존하며 이번 감사는 배정 범위만 판단.",
+  "bindingRequired": "별도의 versioned digest-bound metadata attestation after actual family definition/review; no candidate/raw/prior-report bytes changed",
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "liveFamily": false,
+  "unitFamilyFit": false,
+  "loadable": false
+}
