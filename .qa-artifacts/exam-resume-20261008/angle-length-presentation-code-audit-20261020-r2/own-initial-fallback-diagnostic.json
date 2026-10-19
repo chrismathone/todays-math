@@ -1,0 +1,53 @@
+{
+  "failure": "Initial own control incorrectly expected integration to reject every standalone-parser-invalid form; inspect existing normalization fallback separately",
+  "exceptions": [
+    {
+      "input": "4\\leftcm",
+      "compare": {
+        "status": "unsupported",
+        "reason": "Numbered parts required",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      },
+      "normalized": "4cm"
+    },
+    {
+      "input": "4\\rightcm",
+      "compare": {
+        "status": "unsupported",
+        "reason": "Numbered parts required",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      },
+      "normalized": "4cm"
+    },
+    {
+      "input": "4c\\mathrm{m}",
+      "compare": {
+        "status": "unsupported",
+        "reason": "Numbered parts required",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      },
+      "normalized": "4cm"
+    },
+    {
+      "input": "$$4cm$$",
+      "compare": {
+        "status": "unsupported",
+        "reason": "Numbered parts required",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      },
+      "normalized": "4cm"
+    }
+  ]
+}

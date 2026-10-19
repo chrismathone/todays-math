@@ -1,0 +1,104 @@
+{
+  "kind": "independent-angle-length-presentation-code-audit/v2",
+  "status": "bounded-controls-passed-with-legacy-fallback-limit",
+  "ownControls": 683,
+  "controlsResultSha256": "c4aa1685a70f64ca1fecd17debd426d369156042e1f91f58918722ae7e36048c",
+  "sourceBeforeAfterHashes": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\answerPresentation.mjs": "1f9b80c974d61e5a5322ab0e188bf4d8fe3efed6c84ea890d510edb4c5e4c66e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\answerPresentation.test.mjs": "8bba8c7cfd48a53ecc3f6e956d3d3347cea20759bc12832a3231b214a37cf2b7",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\candidatePack.mjs": "37340da93493163a9641933f2a57cc84172e64ed0d399ce056f7522dcc85b6e6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\constantAnswers.mjs": "1c19933e87dfa2ef37455bc66e041e218e035ae3c173510f71854b829d1dd674",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\review-exam-twins.mjs": "e7cf6d8ed7d9bbef3934ff39552bf88f416f29469bb37206b7438277605ba7a1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\prepare-sealed-review.mjs": "4b47e4e74fc8f51c281b3c201130e999cc14874bdd3c86fe4c6e7ed987cf15fe",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\singleLengthPresentation.mjs": "e008265a157ce98f0109e6bcbeadac8999d57470942641acce7bcd9a2e7398b1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\singleLengthPresentation.test.mjs": "fe862a698bdff39f67cfb17ec00a5fec4b83aaa0536ddb2c6bcee7c0b8b28bd7"
+  },
+  "oldArtifactsGitBinding": {
+    "commit": "b68048e839f78ea5bff0e93e41b241184390f071",
+    "files": {
+      ".qa-artifacts/exam-resume-20261008/gyeongsin-group10-review-20261020-r1/blind/solve/q11.json": "b36067fb6aa11cb1d1a655401ba56e258d36692e661e4147414a83e58c120b8b",
+      ".qa-artifacts/exam-resume-20261008/gyeongsin-group10-review-20261020-r1/verification/reports/q11.json": "f012be660f942c3178b277456d0c9eebd957c5371465b1d15c1370cf0eeae1b1",
+      ".qa-artifacts/exam-resume-20261008/gyeongsin-group10-review-20261020-r1/blind/solve/q12.json": "580b2c6a3c4dd9ebe0a089b189ad979c4f36bb3e09e54b926951de29435e180f",
+      ".qa-artifacts/exam-resume-20261008/gyeongsin-group10-review-20261020-r1/verification/reports/q12.json": "61cc9667fb9894d64ecf033921ed072a4a76fc2b27bd3bad23eb6afa537f1577",
+      ".qa-artifacts/exam-resume-20261008/gyeongsin-group11-review-20261020-r1/blind/solve/q13.json": "620dcdf3464f8d7710a5773513c9fb3fbf2d855bafd5dc34342c4c2e6aa490b8",
+      ".qa-artifacts/exam-resume-20261008/gyeongsin-group11-review-20261020-r1/verification/reports/q13.json": "2e99c8bf194a3e2bc73b37eaaba3bbae2d9b0a19278beddfaaab59b1dc55abb5",
+      ".qa-artifacts/exam-resume-20261008/gyeongsin-group11-review-20261020-r1/blind/solve/q14.json": "ff820db7da0f843aff48da33a11157fc93685bbc2be02c7bfa71be38854f034f",
+      ".qa-artifacts/exam-resume-20261008/gyeongsin-group11-review-20261020-r1/verification/reports/q14.json": "8310839466714b121bf9c626e67a9ee734de96669a5f8ca9080a52f8cb605323",
+      ".qa-artifacts/exam-resume-20261008/gyeongsin-group11-review-20261020-r1/blind/solve/q15.json": "ba83a05eb711be5e216726c7b8c04d1990bed219f0d639f7225fad840dce797b",
+      ".qa-artifacts/exam-resume-20261008/gyeongsin-group11-review-20261020-r1/verification/reports/q15.json": "c50c361ffa9573c5c879fecd9bf524e18ef17f4a32f187087936fc665ad2efe3",
+      ".qa-artifacts/exam-resume-20261008/gyeongsin-group11-review-20261020-r1/blind/solve/q16.json": "fe7fcf936c383f845ed5e937a507ebd8a75c10f7a1cbd87e24e98f22b7a9eff0",
+      ".qa-artifacts/exam-resume-20261008/gyeongsin-group11-review-20261020-r1/verification/reports/q16.json": "2efba14c7cfb9b774655392b4b52484fa4995e185d7d2811cd11af77db757178",
+      ".qa-artifacts/exam-resume-20261008/gyeongsin-group11-review-20261020-r1/blind/solve/q17.json": "80d48077fadbd63dd587866ff6f587adbe48f5903142f925956300f12b1f7cfd",
+      ".qa-artifacts/exam-resume-20261008/gyeongsin-group11-review-20261020-r1/verification/reports/q17.json": "f8d2ae19133904c7c17ce533e774ea9fa403553920534aeec4603052e1bd03ee",
+      ".qa-artifacts/exam-resume-20261008/angle-presentation-code-audit-20261020-r1/own-code-audit-report.json": "34bc6e97052eba284a3d0ac377d4cbf5e8e7cf8b7485aa5f07cce0b722905bee",
+      ".qa-artifacts/exam-resume-20261008/angle-presentation-code-audit-20261020-r1/own-code-controls-results.json": "c2290ec498dc7a9b8089b26c3df6d57fb56638e2be2f61cbeb6d6f0ca2ee970c",
+      ".qa-artifacts/exam-resume-20261008/angle-presentation-code-audit-20261020-r1/own-code-controls.mjs": "e1ffc6d711e209b8191d2d20317cca69e16bcdb351d5c75ad7fca9571c2a6898",
+      ".qa-artifacts/exam-resume-20261008/angle-presentation-code-audit-20261020-r1/own-seal-evidence.py": "e30fb63d7837151323e7adf6e7aaf34fdb393662e268fb2672ffb3515167a2c3",
+      ".qa-artifacts/exam-resume-20261008/angle-presentation-code-audit-20261020-r1/own-utf8-probe.txt": "17cf9a40a0a2b79fe9e0227f380e7b71726dc8e83f97a1ea182d81c439f17c49",
+      ".qa-artifacts/exam-resume-20261008/gyeongsin-group11-review-20261020-r1/verification/own-q13-q17-review-collector.json": "561c7b9deb73faa6e554e524a7087e03c704f3f3fa5a3d4346b63fa8049c26a8"
+    },
+    "allByteIdentical": true
+  },
+  "findings": [
+    {
+      "severity": "bounded-pass",
+      "subject": "standalone-length-parser",
+      "evidence": "Whole scalar is delegated to existing bounded exact rational/radical parser. Explicit cm/m suffix and scalar-length role retained. Tests cover rationalization, sqrt simplification, integer scale, one-last-decimal differences, dimensions, wrongunit/value, zero division, unsupported symbols/prose, input/token/radicand bounds."
+    },
+    {
+      "severity": "bounded-pass",
+      "subject": "numbered-and-named-role-boundary",
+      "evidence": "Direct singleLengthPart rejects (1)4cm, (1)4√3cm, (01), spaced index, circled index, namedAC=4cm and multipart. Integrated comparator preserves standalone vs numbered/named roles, missing/extra parts and order. No name or unit erasure is attributed to the new grammar."
+    },
+    {
+      "severity": "preserved-legacy-limitation",
+      "subject": "existing-exact-fallback",
+      "evidence": "Initial own test expected all malformed standalone inputs to be rejected by integration and failed. Separate diagnostic confirms 4\\leftcm,4\\rightcm,4c\\mathrm{m},$$4cm$$ are unsupported by comparator but accepted against4cm by existing normalizeAnswer exact fallback. This behavior predates R2 and is not newly approved syntax. Initial failure and four concrete examples retained in own-initial-fallback-diagnostic.json."
+    },
+    {
+      "severity": "bounded-pass",
+      "subject": "no-physical-or-grade-approval",
+      "evidence": "-1cm=-0.01m and0cm=0m are numeric identities only. Result flags still deny relation truth and grade/question approval. Missing grade basis, pending grade, wrong answers or stale digest fail respective review dimensions. Forged source/rights/taxonomy flags never enable native/loadable or production writes."
+    }
+  ],
+  "actualCollectorReproduction": {
+    "group10": {
+      "oldMathGrade": [
+        1,
+        1
+      ],
+      "currentMathGrade": [
+        2,
+        2
+      ]
+    },
+    "group11": {
+      "angleOnlyMathGrade": [
+        3,
+        3
+      ],
+      "currentMathGrade": [
+        5,
+        5
+      ]
+    },
+    "currentCollectorExecuted": true,
+    "beforeMethod": "Remove current scalar-angle or scalar-length parse branch in memory only; use actual fixed candidate/raw/reports. This isolates presentation changes, not a claim of running historical Git source.",
+    "overallVerified": 0,
+    "loadable": 0,
+    "productionWrites": false
+  },
+  "limitations": [
+    "only exact bounded constant cm/m and existing bounded decimal degree grammar",
+    "numerical identity of zero or negative values is permitted without physical positivity proof",
+    "existing identical-string normalization fallback is prior behavior; comparator unsupported syntax is not globally banned by integration",
+    "no complete symbolic/TeX proof, no method/grade/source/rights/native/livefamily/loadable approval",
+    "before states are explicit in-memory branch-removal controls, actual current collectors executed separately",
+    "parent101 test and current138/315 raw parity claims not independently rerun; this audit covers the seven already reviewed current manual artifacts and own controls",
+    "eight scoped explicit source reads; runtime imports may resolve existing dependencies; no DB/API/root mutation"
+  ],
+  "parent101TestsOr138315ParityClaimedAsOwn": false,
+  "newManualCounts": 0,
+  "dbWrites": 0,
+  "rootSourceWrites": 0
+}
