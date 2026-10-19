@@ -1,0 +1,41 @@
+{
+  "inputSha256": "5470db05230a06b8b86d16ed9c9e55ec4f4e06ee062515e47c6b030c816a1181",
+  "exposure": {
+    "currentAuthorAnswerOrSolutionExposedBeforeRaw": false,
+    "priorExposure": "이전 원본 H 2·3쪽을 허용된 범위에서 보았고 관련 원주각·접선·삼각형 문제 및 엔진을 검토했다. 현재 q13–17의 저자 답·해설·패키지는 열지 않았다. 이 다섯 원문 각각을 과거 보았는지에 대한 완전한 부정은 하지 않으며, 원본 전체 미노출 주장도 하지 않는다. 이번에는 학생 발문과 새 SVG만 사용했다.",
+    "pixelOrCoordinateOracle": false
+  },
+  "checks": "Exact rational/radical algebra; five SVG views; nondegenerate positive existence witnesses; no floating/pixel answer oracle",
+  "results": [
+    {
+      "q": 13,
+      "studentDigest": "6576a7ea0dd85f0ac49db36dc3002ff57c50ebd64d3c04039e9ff7c7980031d9",
+      "rawSha256": "620dcdf3464f8d7710a5773513c9fb3fbf2d855bafd5dc34342c4c2e6aa490b8",
+      "answer": "18+18√3 cm"
+    },
+    {
+      "q": 14,
+      "studentDigest": "17b9d4462efffcd49591e1b526e85cafd5e9ac7bd0909c2a921465b573de1d22",
+      "rawSha256": "ff820db7da0f843aff48da33a11157fc93685bbc2be02c7bfa71be38854f034f",
+      "answer": "50°"
+    },
+    {
+      "q": 15,
+      "studentDigest": "55b39a504ac244161e1ab29e3a767a1c323a3be9e5b660ec0d1f22738bc2cad6",
+      "rawSha256": "ba83a05eb711be5e216726c7b8c04d1990bed219f0d639f7225fad840dce797b",
+      "answer": "4√3 cm"
+    },
+    {
+      "q": 16,
+      "studentDigest": "788030111f5419175154ece438df6bd6956d0fb5a59c78dc02a7a7c4415a9e8f",
+      "rawSha256": "fe7fcf936c383f845ed5e937a507ebd8a75c10f7a1cbd87e24e98f22b7a9eff0",
+      "answer": "8 cm"
+    },
+    {
+      "q": 17,
+      "studentDigest": "045e848447691f7c51335a12830d06f46a2077ef2e3869c9450dc5ba86ff2ae8",
+      "rawSha256": "80d48077fadbd63dd587866ff6f587adbe48f5903142f925956300f12b1f7cfd",
+      "answer": "25 cm"
+    }
+  ]
+}
