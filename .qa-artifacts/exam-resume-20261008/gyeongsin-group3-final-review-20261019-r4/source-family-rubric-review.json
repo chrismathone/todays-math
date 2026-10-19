@@ -1,0 +1,41 @@
+{
+  "originalComponent": {
+    "observed": "A outside circle; B,C tangent contacts; D on AC; DF third tangent with DF perpendicular AB, AD5,AF3, asked radius in one MC item worth5.",
+    "methodIndependentOfAnswerKey": "From AD5 and AF3, Pythagoras gives DF4. Rectangle gives FB=FE=r. DE=DC=4-r and AC=AB=3+r, while AC=AD+DC=9-r, hence r3. This is reviewer derivation from permitted printed component, not answer-key agreement as approval.",
+    "mapping": "A/F/D/B/C/E to P/Q/R/S/T/E",
+    "identity": "Top crop shows grade3 semester2 midterm 2025-09-19; footer shows 경신중 and explicit copyright restriction. Component is consistent with a 2025 original; whole-pair 2024/2025 conflict persists. No custody/rights conclusion."
+  },
+  "transformation": {
+    "status": "substantive-inverse",
+    "basis": "Original observed q04 is one multiple-choice radius question with AD=5 and AF=3. New item is a two-part written inverse problem with radius=6 and PQ=6, asks PR+QR then PR, and requires a quadratic expansion that cancels to a linear equation. This changes known/unknown roles and reasoning order beyond renaming or scaling. Does not certify legal originality or similarity clearance.",
+    "limitations": "Same geometric configuration remains intentionally shared; legal similarity clearance not granted."
+  },
+  "family": {
+    "unitStatus": "fits",
+    "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+    "familyKey": null,
+    "status": "pending",
+    "basis": "Unit 635abab8-4a87-452b-ad6c-d59065822f29, 중3/6. 원의 성질/원의 접선/J30602 matches the dominant tangent procedure. Captured live snapshot lists multiple families without procedure evidence sufficient to assign this inverse two-part task. familyKey remains null; family/taxonomy fit is pending, not silently approved.",
+    "snapshotSha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+  },
+  "rubric": {
+    "status": "appropriate",
+    "total": 5,
+    "part1": 2,
+    "part2": 3,
+    "basis": "2+3=5. Part1: 1 for QS=QE=6 and PT=12/equivalent tangent setup, 1 for deriving sum18. Part2: 1 for Pythagoras with linked lengths, 1 for solving PR10, 1 for valid lengths/order (QR8>QE6 or equivalent). Accept the raw factorization alternative; no coordinate construction, special circle formula or lengthy existence proof is required. Reading and expansion add application demand but scaffolded two parts support 5 points. No empirical difficulty claim."
+  },
+  "difficulty": {
+    "status": "reviewer-qualitative-application",
+    "basis": "Reversing known/unknown requires an additional symbolic expansion; two subparts scaffold it. No timing, calibration or learning-effect evidence."
+  },
+  "holds": [
+    "unresolved actual comparator failure on immutable raw answer presentation",
+    "whole-pair 2024/2025 header conflict",
+    "custody pending",
+    "rights pending; printed copyright notice observed",
+    "similarity review pending",
+    "native provenance/read-contract not implemented",
+    "familyKey null; taxonomy pending"
+  ]
+}

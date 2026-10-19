@@ -1,0 +1,49 @@
+{
+  "head": "7a83cbc19ec3b0c3430150cf579dfa1d177dd419",
+  "comparatorUpgradePresent": true,
+  "validation": {
+    "structurallyValid": true,
+    "surfaceKeywordViolations": [],
+    "semanticGradeReviewStillRequired": true
+  },
+  "comparison": {
+    "status": "unsupported",
+    "reason": "Unique named assignment required",
+    "presentationComparisonOnly": true,
+    "relationTruthProved": false,
+    "permitsGradeOrQuestionApproval": false,
+    "generalSymbolicEquivalence": false
+  },
+  "independentAnswerMatches": false,
+  "rawSha256": "741ae7319208640e30bc49bf7f9d1aa4fc0c3b236204b1c0188ecd39b9335ad3",
+  "rawGitCurrentBlindIdentical": true,
+  "stage1MetadataUnchanged": true,
+  "evaluateReview": {
+    "mathematicalVerified": false,
+    "gradeReviewed": false,
+    "overallVerified": false,
+    "loadable": false,
+    "reasons": [
+      "review-status-pending",
+      "independent-answer-mismatch",
+      "review-unitFamilyFit-not-passed",
+      "source-identity-held",
+      "taxonomy-held",
+      "rights-review-pending",
+      "similarity-review-pending",
+      "native-exam-twin-provenance-not-implemented"
+    ],
+    "productionWrites": false
+  },
+  "diagnosticOnly": {
+    "rawUnchanged": true,
+    "source": "In-memory replacement of the single inter-part comma for diagnosis only; not used for review binding or approval.",
+    "withoutInterpartComma": {
+      "status": "equivalent",
+      "presentationComparisonOnly": true,
+      "relationTruthProved": false,
+      "permitsGradeOrQuestionApproval": false,
+      "generalSymbolicEquivalence": false
+    }
+  }
+}
