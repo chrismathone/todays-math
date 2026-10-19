@@ -1,0 +1,304 @@
+{
+  "status": "pending",
+  "studentDigest": "437c39853bafc44982d38911db325ed5a206fd50a99c8788f21cd4ca334994c9",
+  "candidateDigest": "53759e771d6d37af7010a319e8f10ee6aaf10d9d90e7548635c63bd671b8b155",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-q07-stage2-review-20261020-r1",
+  "solveDigest": "602f1571b42702ffa4247261b295dea32770dd66f43e858e36fef7b1b413c782",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "actual2015중3 무리수/실수·제곱근·근호 계산 학습 후, 이전 유리수/순환소수 학습을 조건으로 한 수의 분류 역추론이다.",
+      "evidence": "아홉 수의 무리수·음수·정수아닌유리수는3/3/3이고 목표4/4/3이므로 음의무리수 하나를 골라야 한다. 고등 집합기호·확률·함수 도구 없이 각 범주를 따로 세는 방법이다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제 다섯 근호식은 중3 제곱근 성질/무리수·실수대소와 이전 소수계산으로 분류된다.",
+      "evidence": "①0,②9/10,③−7,④양의무리수√5−1,⑤음의무리수2−√7. 최종수3/3/3,3/3/4,3/4/3,4/3/3,4/4/3을 모두 계산하여⑤만 일치한다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "실제 수 목록 외 도형·표·측정이 없으며 추가 기하 선수는 없다.",
+      "evidence": "assets=[],figureArtifacts=[],수치9개의 목록만 분류했다. optionalPNG/픽셀 계산이나 native 렌더 인증은 하지 않았다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "dot6의 순환소수 표기와 근호·분수·음수 표기는2015 중학교 수체계/제곱근 범위이다. 반복되는 숫자는 실제 문장에서0.666...로 명시된다.",
+      "evidence": "0.dot6=2/3;−1.25=−5/4;√(9/16)=3/4;√0.81=9/10. MOE실제record3768(9수01-06),3841은 순환소수의 유리수성 이해 정도의 분수변환 범위이고 이 짧은 사례가 그 범위에 맞는다. 유한소수를 순환소수로 바꾸는 유형은 요구하지 않는다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "⑤의 음의무리수성은 n7의 제곱근 성질과 유리수 뺄셈으로 정당하며 현재답과 독립raw가 일치한다.",
+      "evidence": "7>4→√7>2→2−√7<0. 그 수가 유리수라면√7=2−그수도 유리수라는 모순.⑤추가로4/4/3 실제성립,다른 네보기 실패. 일반 실수x 전체는 유일하지 않으며 보기 중 정답만 유일하다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "현재 해설은 실제 아홉 수/다섯 보기의 분류,순환소수/분수 간단화,분류별 증감과 근호식의 무리수성 설명을 제공하는2015중3 방법이다.",
+      "evidence": "0은 정수이고 음수가 아님,−√3의 무리수·음수 중첩,−1.25의 비정수유리수·음수 중첩을 각각 독립계수로 처리한다. 기본3/3/3과 조건4/4/3이 정확하다.√8−2/√5−1의 무리수·부호도 같은 기본 성질로 검산했다. 일반 대수적수 정리/집합계산 필요 없음."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "정수⊂유리수,부호·0의 뜻,유한/순환소수의 유리수성,제곱근의 성질·무리수·실수대소·근호 계산을 먼저 배운2015중3에게만 배정한다.",
+      "evidence": "교육부actual3768/3776/3780/3784/3788 및 순환소수변환범위3841을 확인했다. 실제 중3 root배치는 경기도교육청PDFpageIndex38/printed38. captured root선수UUID1682f01b와 무리수실수UUID28032bdd 제안은 있으나 중1/중2 세부UnitUUID와 학교 진도는 미확인으로 보류한다."
+    }
+  },
+  "evidence": {
+    "ownCalculationFile": "own-q07-review-calculations.json",
+    "ownCalculationSha256": "8b11f437103ba5b89b71dae405d959c3964e5a6febba01266a9f868041a1386f",
+    "rawBinding": {
+      "ownCommit": "d7829a98f9e67bce0d36a45031a2d83967a52b7b",
+      "parentSeal": "979bb1690254873d3c26fd8cecf2ebaed2445bcf",
+      "rawSha256": "bef60c852d5add18f1ce613f3145aaf8f4f95bd14fd4050cf22b3099461ab5c4",
+      "originalExposureDeclarationAndRawPreserved": true
+    },
+    "currentAuthorSolutionAudit": {
+      "allNineAndFive": "correct; own exact values/counts agree",
+      "overlap": "author counts each category separately and uses simultaneous conditions, no disjoint-sum mistake",
+      "irrationality": "author explicitly explains2-sqrt7 via rational subtraction; base sqrt8-2 and option sqrt5-1 use same elementary rule implicitly, verified here",
+      "cyclic": "actual dot6 explicitly defined0.666...;2/3 conversion correct and within official limit of understanding rationality",
+      "existenceUniqueChoice": "option5 realizes4/4/3 and every other option fails at least one condition; no claim globally unique realx"
+    },
+    "overlapAndExactChoices": {
+      "overlap": {
+        "baseNegativeIrrational": 1,
+        "baseNegativeNonintegerRational": 1,
+        "finalNegativeIrrational": 2
+      },
+      "options": [
+        {
+          "mark": "①",
+          "printed": "$\\sqrt{25}-5$",
+          "classification": {
+            "normalForm": {
+              "n": 0,
+              "coefficient": "0",
+              "constant": "0"
+            },
+            "irrational": false,
+            "negative": false,
+            "nonintegerRational": false,
+            "integer": true,
+            "sign": "zero",
+            "exactBounds": [
+              "0",
+              "0"
+            ]
+          },
+          "finalCounts": [
+            3,
+            3,
+            3
+          ],
+          "meetsTarget": false
+        },
+        {
+          "mark": "②",
+          "printed": "$\\sqrt{0.81}$",
+          "classification": {
+            "normalForm": {
+              "n": 0,
+              "coefficient": "0",
+              "constant": "9/10"
+            },
+            "irrational": false,
+            "negative": false,
+            "nonintegerRational": true,
+            "integer": false,
+            "sign": "positive",
+            "exactBounds": [
+              "9/10",
+              "9/10"
+            ]
+          },
+          "finalCounts": [
+            3,
+            3,
+            4
+          ],
+          "meetsTarget": false
+        },
+        {
+          "mark": "③",
+          "printed": "$-\\sqrt{49}$",
+          "classification": {
+            "normalForm": {
+              "n": 0,
+              "coefficient": "0",
+              "constant": "-7"
+            },
+            "irrational": false,
+            "negative": true,
+            "nonintegerRational": false,
+            "integer": true,
+            "sign": "negative",
+            "exactBounds": [
+              "-7",
+              "-7"
+            ]
+          },
+          "finalCounts": [
+            3,
+            4,
+            3
+          ],
+          "meetsTarget": false
+        },
+        {
+          "mark": "④",
+          "printed": "$\\sqrt5-1$",
+          "classification": {
+            "normalForm": {
+              "n": 5,
+              "coefficient": "1",
+              "constant": "-1"
+            },
+            "irrational": true,
+            "negative": false,
+            "nonintegerRational": false,
+            "integer": false,
+            "sign": "positive",
+            "exactBounds": [
+              "1",
+              "2"
+            ]
+          },
+          "finalCounts": [
+            4,
+            3,
+            3
+          ],
+          "meetsTarget": false
+        },
+        {
+          "mark": "⑤",
+          "printed": "$2-\\sqrt7$",
+          "classification": {
+            "normalForm": {
+              "n": 7,
+              "coefficient": "-1",
+              "constant": "2"
+            },
+            "irrational": true,
+            "negative": true,
+            "nonintegerRational": false,
+            "integer": false,
+            "sign": "negative",
+            "exactBounds": [
+              "-1",
+              "0"
+            ]
+          },
+          "finalCounts": [
+            4,
+            4,
+            3
+          ],
+          "meetsTarget": true
+        }
+      ],
+      "existenceUniqueness": "negative irrational5realizes target; unique amongchoices,not allrealx. Categories overlap; sums need not equal10."
+    },
+    "sourceCoreAndChangedTarget": {
+      "sourceArtifactSha256": "beb995c7bdf38617cf769916b2771b3fcb489464a425553aeee4289c4f298353",
+      "sourceObserved": "complete10-number list; independently classify/count irrational,negative,noninteger rational then output a^2+b-c; source중/5points",
+      "currentObserved": "nine known entries plus three required final counts; recover missing datum by choosing negative irrational from5options",
+      "sameCore": "radical/finite/recurring decimal simplification, integer/rational/irrational inclusion and sign classification, overlapping counts",
+      "actualInverseTarget": "source output classification counts become target conditions and tenth datum becomes unknown; role/structure genuinely changed, not only numbers",
+      "difficultyTradeoff": "new list omits original pi and more complicated root forms, reducing some expression burden; inverse joint-count reasoning and five trial classifications add burden; no measured same difficulty claim",
+      "sourceKeyNotUsed": true
+    },
+    "naturalKorean": "아홉 수에x를 더해 열 개가 된다는 역할과 최종 세 개수 조건이 명확하다. 정수가 아닌 유리수라는 범위를 정확히 구별하고 순환소수의 반복도 직접 밝혀 표기의 모호성이 없다. 같은 수가 목록에 반복돼도 항목 개수로 세며,오답①의0은 중복되어도 목표집계에 도달하지 못한다.",
+    "scoreDifficulty": {
+      "sourceObserved": "중/5점",
+      "currentProposal": "표준/5점",
+      "decision": "reasonable editorial proposal; difficulty taxonomy/native binding and empirical calibration remain unverified",
+      "basis": "아홉 기본값의 여러표현/부호와세중첩범주,최종개수에서추가수유형역산,다섯보기분류를 수행한다. source의복잡한pi등을줄였지만 역추론/보기검산이추가되어 표준5점 제안은 합리적이다. 동일실측난도나기존엔진분류키호환을 인증하지 않는다."
+    },
+    "unitFamily": {
+      "capturedUnitUuid": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "capturedSection": "무리수와 실수",
+      "snapshotSha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0",
+      "familyKey": null,
+      "unitFamilyFit": false,
+      "basis": "무리수와실수라는 실제수학적핵심과 제안Unit은 관련되지만 중첩분류개수→누락입력복원 전체목표와 실제livefamily 정의의 호환성은 미확인이다. 이름/UUID만으로 승인하지 않는다.",
+      "prerequisiteUuidGaps": [
+        "중1정수·유리수와부호",
+        "중2유한소수·순환소수"
+      ],
+      "notCurrentDbPromise": true
+    },
+    "primaryReferences": {
+      "moe": {
+        "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84",
+        "sha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "stream": "BodyText/Section0",
+        "actualRelevantRecordIndices": [
+          1551,
+          3764,
+          3768,
+          3776,
+          3780,
+          3784,
+          3788,
+          3799,
+          3837,
+          3841
+        ],
+        "scopeAndLimits": "9수01-06순환소수/유리수관계;9수01-07/08/09/10제곱근·무리수·실수대소·근호계산;3841분수변환은유리수성 이해정도. 문항은그단순범위만사용."
+      },
+      "actualM3Placement": {
+        "url": "https://www.goe.go.kr/resource/old/BBSMSTR_000000030136/BBS_202202101132253081.pdf",
+        "pageIndex0": 38,
+        "printedPage": 38,
+        "basis": "previously directly inspected actualM3 root standards9수01-07/08/09/10;2022publicationnot2022edition"
+      },
+      "primaryEvidenceFile": "own-q07-review-primary-evidence.json",
+      "textSearchMissRetained": {
+        "goePdfFindCyclic": "No matching text; preserved as failed text search, not evidence that topic is absent or out-of-grade.",
+        "pdfUrl": "https://www.goe.go.kr/resource/old/BBSMSTR_000000030136/BBS_202202101132253081.pdf"
+      },
+      "fullHwpNotCommitted": true
+    },
+    "gradeAndRelease": {
+      "independentMathDecision": true,
+      "independentGrade2015M3AfterPrerequisites": true,
+      "2025Source2026Practice": "2015",
+      "2027M3/2022": "pending separate actual placement review",
+      "sourcePairIdentityApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "loadable": false
+    },
+    "counts": {
+      "independentMathDecision": 1,
+      "independentGradeDecision": 1,
+      "checksPassed": 11,
+      "checksHeld": 1,
+      "studentSurfacesPassed": 7,
+      "contentHeld": 1,
+      "newBlindOrQuestionIncrement": 0
+    },
+    "scopeLimits": "No rootcode,actualcollector,DB,native-reader or source-paper identity audit. Report supplies bounded itemmath/grade decisions only. No paidAI/newworker/fullrelease.",
+    "utf8WriteReadPassed": true,
+    "dbWrites": 0,
+    "paidApiCalls": 0,
+    "newWorkers": 0
+  }
+}
