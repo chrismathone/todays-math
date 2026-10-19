@@ -1,0 +1,260 @@
+{
+  "studentDigest": "38276b7c407152357444cbda98605b33b842f6c6e5099fc2daa77d401790a861",
+  "candidateDigest": "ff6421ee4d288ba585d613d91416ca4abd7b37d71ad1ae5f8f218666e58c464a",
+  "assetDigest": "ca03bce69450c9c0408c424a1e664c0baef98a8bbd132f4a0ff82bfdf09d9ba8",
+  "solveDigest": "ab79260e134e1f43d80a20e401d15f4ce02e57e952e1617fc337805c3b543885",
+  "questionNumber": 20,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q20",
+  "status": "pending",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-gf14-independent-20261019-r2",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "checkEvidence": {
+    "answerCorrect": "(1)PQ=PR10,QH=RH5,PH common gives SSS. Equal adjacent angles atH sum180?, hence both90?; equal angles atP split60? into30?. (2)PH=?(100?25)=5?3cm. (3)sin?=1/2,cos?=?3/2,tan?=?3/3 from actual sides. Simple congruence, not complex formal logic. 2+3+3=8. Compared mathematically against this verifier?s sealed new raw solve; representation differences do not rewrite that proof.",
+    "solutionCorrect": "(1)PQ=PR10,QH=RH5,PH common gives SSS. Equal adjacent angles atH sum180?, hence both90?; equal angles atP split60? into30?. (2)PH=?(100?25)=5?3cm. (3)sin?=1/2,cos?=?3/2,tan?=?3/3 from actual sides. Simple congruence, not complex formal logic. 2+3+3=8.",
+    "existenceUniqueness": "An equilateral triangle with side10 exists; the midpoint forces QH=HR5. SSS uniquely proves perpendicular and bisected vertex angle; positivePH=5√3 and α30 follow. PHcm; three ratios dimensionless.",
+    "choicesCorrect": "All three written subparts and their separate units/derivations match the sealed proof. Child scores total8, counted once.",
+    "figureConsistent": "Equilateral PQR10 with H midpointQR and alphaQPH; segmentPH is the justified altitude. No added higher-grade construction. Actual bound SVG rendered/viewed in stage1 and actual expanded author-answer/solution PNG viewed in stage2. Preview student/candidate digests and PNG hash verified; no overflow/clipping observed. Strict record binds exact SVG/spec bytes, not native/rights approval.",
+    "sameCoreConceptAndProcedure": "Original equilateral triangle asks deriving60? ratios, with auxiliary perpendicular to be constructed. Candidate supplies midpoint and asks SSS/right-angle justification, height, then30? ratios. Changed output and explicit scaffold. Same equilateral decomposition/Pythagoras/direct ratios, although scaffold reduces construction burden.",
+    "distinctPresentation": "Original equilateral triangle asks deriving60? ratios, with auxiliary perpendicular to be constructed. Candidate supplies midpoint and asks SSS/right-angle justification, height, then30? ratios. Changed output and explicit scaffold. Same equilateral decomposition/Pythagoras/direct ratios, although scaffold reduces construction burden.",
+    "naturalKorean": "No original school name appears on student surfaces; metadata-only substitution is not claimed as a displayed context change. Question target, conditions and answer format are readable Korean in the actual expanded preview; no unresolved referent found.",
+    "curriculumAppropriate": "(1)PQ=PR10,QH=RH5,PH common gives SSS. Equal adjacent angles atH sum180?, hence both90?; equal angles atP split60? into30?. (2)PH=?(100?25)=5?3cm. (3)sin?=1/2,cos?=?3/2,tan?=?3/3 from actual sides. Simple congruence, not complex formal logic. 2+3+3=8. Methods: SSS 합동, 일직선 위의 두 각과 정삼각형의 각, 피타고라스 정리, 삼각비 각각의 변의 비 정의. Applied2015 M3; angles remain0?90?. No trig relationships/identities, sine/cosine law, Heron, vectors or advanced shortcut in author student solution.",
+    "allStudentSurfacesInScope": "All seven surfaces individually reviewed below; mathematical calculation is deterministic supporting evidence, not an AI confidence/classification approval.",
+    "unitFamilyFit": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family.",
+    "scoreAppropriate": "Parent score8 matches the printed source score; 3 written parts with stated child allocation sum8. Operations described in source comparison remain plausible within this school-level task band; no measured equal-difficulty claim. Explicit scaffolding/inversion differences above remain visible."
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "한 변의 길이가 $10\\,\\mathrm{cm}$인 정삼각형 $PQR$에서 $H$는 $QR$의 중점이다. 선분 $PH$를 그어 새로운 기준각 $\\alpha=\\angle QPH$의 삼각비를 기록하려고 한다.\n\n(1) 두 삼각형 $PQH$, $PRH$를 이용하여 $PH\\perp QR$임을 설명하고 $\\alpha$의 크기를 구하시오. [2점]\n\n(2) $PH$의 길이를 구하시오. [3점]\n\n(3) 다음 기록표를 완성하고 각 값이 나오는 선분의 비를 쓰시오. [3점]\n\n| 기록 항목 | $\\sin\\alpha$ | $\\cos\\alpha$ | $\\tan\\alpha$ |\n|---|---|---|---|\n| 값 | ㉠ | ㉡ | ㉢ |",
+      "officialProvisions": [
+        "9수04-04",
+        "9수04-05",
+        "9수04-16",
+        "9수04-17",
+        "9수01-07",
+        "9수01-10",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "Three written subparts, including explanation and positive-length selection, checked separately.",
+      "officialProvisions": [
+        "9수04-04",
+        "9수04-05",
+        "9수04-16",
+        "9수04-17",
+        "9수01-07",
+        "9수01-10",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "Equilateral PQR10 with H midpointQR and alphaQPH; segmentPH is the justified altitude. No added higher-grade construction.",
+      "officialProvisions": [
+        "9수04-04",
+        "9수04-05",
+        "9수04-16",
+        "9수04-17",
+        "9수01-07",
+        "9수01-10",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "Right-angle labels, acute degree measures, segment notation, fractions/radicals and cm/m/area units are conventional and agree with target. An equilateral triangle with side10 exists; the midpoint forces QH=HR5. SSS uniquely proves perpendicular and bisected vertex angle; positivePH=5√3 and α30 follow. PHcm; three ratios dimensionless.",
+      "officialProvisions": [
+        "9수04-04",
+        "9수04-05",
+        "9수04-16",
+        "9수04-17",
+        "9수01-07",
+        "9수01-10",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "(1)PQ=PR10,QH=RH5,PH common gives SSS. Equal adjacent angles atH sum180?, hence both90?; equal angles atP split60? into30?. (2)PH=?(100?25)=5?3cm. (3)sin?=1/2,cos?=?3/2,tan?=?3/3 from actual sides. Simple congruence, not complex formal logic. 2+3+3=8.",
+      "officialProvisions": [
+        "9수04-04",
+        "9수04-05",
+        "9수04-16",
+        "9수04-17",
+        "9수01-07",
+        "9수01-10",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "(1)PQ=PR10,QH=RH5,PH common gives SSS. Equal adjacent angles atH sum180?, hence both90?; equal angles atP split60? into30?. (2)PH=?(100?25)=5?3cm. (3)sin?=1/2,cos?=?3/2,tan?=?3/3 from actual sides. Simple congruence, not complex formal logic. 2+3+3=8.",
+      "officialProvisions": [
+        "9수04-04",
+        "9수04-05",
+        "9수04-16",
+        "9수04-17",
+        "9수01-07",
+        "9수01-10",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "SSS 합동, 일직선 위의 두 각과 정삼각형의 각, 피타고라스 정리, 삼각비 각각의 변의 비 정의. An equilateral triangle with side10 exists; the midpoint forces QH=HR5. SSS uniquely proves perpendicular and bisected vertex angle; positivePH=5√3 and α30 follow. PHcm; three ratios dimensionless.",
+      "officialProvisions": [
+        "9수04-04",
+        "9수04-05",
+        "9수04-16",
+        "9수04-17",
+        "9수01-07",
+        "9수01-10",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    }
+  },
+  "unitFamily": {
+    "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+    "familyKey": null,
+    "status": "held-current-proof-missing",
+    "basis": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family."
+  },
+  "evidence": {
+    "rawCommit": "9870f836a8221a23d4cea3c08b43af1e9c3f7891",
+    "rawFile": "blind/solve/q20.json",
+    "independentAnswer": "(1) PH⊥QR, α=30°; (2) PH=5√3 cm; (3) sinα=1/2, cosα=√3/2, tanα=√3/3",
+    "independentProof": "(1) 정삼각형에서 PQ=PR=10 cm이고, H가 QR의 중점이므로 QH=HR=5 cm이다. PH는 공통변이므로 삼각형 PQH와 PRH는 세 변의 길이가 각각 같아 SSS 합동이다. 대응각 ∠QHP=∠PHR이고 Q,H,R은 한 직선 위이므로 두 각은 각각90°이다. 따라서 PH⊥QR이다. 또한 ∠QPH=∠HPR이고 정삼각형의 꼭짓각 P는60°이므로 α=30°이다.\n(2) 직각삼각형 PQH에서 PH²=10²−5²=75이므로 PH=5√3 cm이다.\n(3) 기준각은 P의30°이므로 sinα=QH/PQ=5/10=1/2, cosα=PH/PQ=5√3/10=√3/2, tanα=QH/PH=5/(5√3)=√3/3이다. 각각 실제 직각삼각형의 대응 변의 비로 구한다.",
+    "authorStepReview": "(1)PQ=PR10,QH=RH5,PH common gives SSS. Equal adjacent angles atH sum180?, hence both90?; equal angles atP split60? into30?. (2)PH=?(100?25)=5?3cm. (3)sin?=1/2,cos?=?3/2,tan?=?3/3 from actual sides. Simple congruence, not complex formal logic. 2+3+3=8.",
+    "choiceChecks": [],
+    "writtenParts": [
+      {
+        "label": "(1)",
+        "answer": "SSS 합동 → PH⊥QR, α=30°",
+        "points": 2
+      },
+      {
+        "label": "(2)",
+        "answer": "PH=5√3 cm",
+        "points": 3
+      },
+      {
+        "label": "(3)",
+        "answer": "sinα=QH/PQ=1/2, cosα=PH/PQ=√3/2, tanα=QH/PH=√3/3",
+        "points": 3
+      }
+    ],
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q20",
+      "actualResult": {
+        "part1": "SSS -> PH perpendicular QR, alpha30deg",
+        "part2PH": "5sqrt3 cm",
+        "part3": {
+          "sin": "QH/PQ=1/2",
+          "cos": "PH/PQ=sqrt3/2",
+          "tan": "QH/PH=sqrt3/3"
+        },
+        "rightTriangleCheck": "25+75=100",
+        "rubricPoints": [
+          2,
+          3,
+          3
+        ]
+      }
+    },
+    "existenceUniquenessPositiveLengthsUnits": "An equilateral triangle with side10 exists; the midpoint forces QH=HR5. SSS uniquely proves perpendicular and bisected vertex angle; positivePH=5√3 and α30 follow. PHcm; three ratios dimensionless.",
+    "sourceComparison": "Original equilateral triangle asks deriving60? ratios, with auxiliary perpendicular to be constructed. Candidate supplies midpoint and asks SSS/right-angle justification, height, then30? ratios. Changed output and explicit scaffold. Same equilateral decomposition/Pythagoras/direct ratios, although scaffold reduces construction burden.",
+    "preview": "gyeongsang-remaining-final14-r1/inspection/q20-expanded.png",
+    "exposure": "Before seal: no actual new GF14 author answers/authorship. Prior unbound generic REVIEW-KIT q7/? illustration had been read in NB5; disclosed and unused. Actual q7 independently yielded?. Stage2 actual author exposure authorized after raw seal; no legacy Claude proof/review used."
+  },
+  "findings": [
+    {
+      "severity": "blocker",
+      "surface": "unitFamilyFit",
+      "text": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family."
+    },
+    {
+      "severity": "note",
+      "surface": "source",
+      "text": "Question-only image comparison performed. Supplied sourceIdentity says original header/footer and completed-question identity supported; this review does not reopen immutable source bytes or independently certify full content pair/custody/rights. Existing source/loading holds remain."
+    }
+  ],
+  "gates": {
+    "loadable": false,
+    "rightsCleared": false,
+    "nativeApproved": false,
+    "sourceCertification": false
+  }
+}
