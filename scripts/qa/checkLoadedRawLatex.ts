@@ -53,7 +53,8 @@ const NOT_SCANNED: Record<string, string> = {
   problem_code: "코드다 — `$…$` 가 없다",
   external_id: "적재 열쇠다 — 지면에 안 나간다",
   family_key: "유형 정체다 — 지면에 안 나간다",
-  question_group_key: "같은 문항의 형식을 연결하는 정체 키다 — 지면 본문·정답·해설에 출력하지 않는다",
+  question_group_key:
+    "같은 문항의 형식을 연결하는 정체 키다 — 지면 본문·정답·해설에 출력하지 않는다",
   figure_svg: "SVG 다. LaTeX 가 아니라 그림 마크업이라 축이 다르다",
   figure_source: "출처 딱지다",
   review_note: "사람이 쓴 검수 메모다 — 지면에 안 나간다",
@@ -61,6 +62,9 @@ const NOT_SCANNED: Record<string, string> = {
   exam_id: "원본 시험지 열쇠다",
   problem_type: "계산/개념/활용 — 열거값이다",
   question_type: "단답형/객관식/서술형 — 열거값이다",
+  actual_format: "실제 형식 캐시(열거값 · unknown) — 지면에 안 나간다",
+  actual_format_version:
+    "형식 분류기 · 파서 소스의 버전 문자열이다 — 지면에 안 나간다",
   school: "학교 이름이다 — 지면 머리글이지 수식이 아니다",
   subject: "과목 이름이다",
 };
