@@ -1,0 +1,128 @@
+{
+  "kind": "authored-current-subset-index/v1",
+  "createdAt": "2026-10-19T11:23:37.965Z",
+  "exam": "Nobyeon-2025-sem1",
+  "authored": 1,
+  "pointTotal": 4,
+  "figureInstances": 0,
+  "newTables": 1,
+  "candidates": [
+    {
+      "questionNumber": 6,
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-r1-q06",
+      "authorId": "codex-parent-engine-upgrade-20261019",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-r1/candidates/q06.json",
+        "sha256": "43eb782c181b71b0ae64c3f172c01660de5bea4262cacc9522149a026b017be5"
+      },
+      "studentDigest": "ca2b0892a21f3ec00dbe110218e60c87f8679dc54da997e26bff17d525120065",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateDigest": "0af41058c7a895844251c26adc20926d124cc15bbbadde0c4590d784f661ddb1",
+      "metadataDigest": "7593eec9ee1514c50cf877a21d5e1ef00446ebca1a9f77eba3651bcfa678e154",
+      "sourceReferenceDigest": "8d8aceda355ca90163a290de28ae3b4aa172792c0af282a919d292d9e460bb9c",
+      "score": 4,
+      "questionType": "객관식",
+      "figureInstances": 0,
+      "newTables": 1,
+      "searchMetadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 4,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "계산",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "무리수와 실수",
+            "semester": 1,
+            "orderIndex": 470,
+            "problemCodePrefix": "J30102"
+          },
+          "familyCandidate": {
+            "unit_id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+            "family_key": "mid:3-1|무리수와 실수|09",
+            "family_code": "A09",
+            "live_count": 24
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+            "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+          },
+          "evidence": "실제 Unit UUID와 live 표 읽기09를 연결했다. 입력 열을 되찾는 목적과 전체 풀이의 family 적합성은 독립 검토 전 확정하지 않는다."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "본문·보기·표·해설에 학교명이 없다. 실제 출처 학교는 내부 메타데이터에만 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "fresh-native-markdown-table",
+          "newTables": 1,
+          "newFigures": 0,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure",
+          "data-reorganization"
+        ],
+        "before": "표를 읽고 자릿수를 이동하여 두 제곱근을 구한 뒤 결합식의 값을 직접 묻는다.",
+        "after": "결합식의 계산 결과와 양수의 제곱 관계를 제시하고, 새로 계산한 다섯 열의 표에서 선택했던 입력 수를 역으로 찾는다.",
+        "sharedConcept": "양의 제곱근, 제곱근표 읽기, 근호 안의100배 변화와 밖의10배 변화, 소수 근삿값 계산",
+        "sharedProcedure": "완전제곱수의 양의 제곱근 →100분의1인 피제곱수의 제곱근은10분의1 →결합식 계산과 제곱근표 대응",
+        "actualStructuralChange": "출력값 직접 계산에서 주어진 출력으로 표의 입력 열을 되찾는 문제로 질문 대상을 역전했다. 원문의 다단 표를 새 단일 행5열로 재조직했다. 숫자 교체만으로 완료한 것이 아니다.",
+        "domainProof": "x는 표의 다섯 양수 중 하나로 제한한다. 각 x에서 a,b는 양수 조건으로 하나씩 정해진다. 표의 소수값으로 계산한 결과는45.58,45.61,45.63,45.65,45.67로 서로 달라 선택이 유일하다. 실제 근호값과 반올림된 표 값을 혼동하지 않는다.",
+        "difficultyBasis": "원문의 표 읽기·자릿수 변화·양의 제곱근·결합식 계산을 유지한다. 결합식을 거꾸로 계산하는 중1 일차식 수준의 한 단계를 추가하며 목표 난이도 동등성은 독립 검토 대기."
+      },
+      "review": {
+        "status": "pre-exposure-raw-sealed;formal-review-pending",
+        "raw": {
+          "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-clean-blind-20261019-r1/solve/q06.json",
+          "sha256": "04505180a8b99a2aa393e622668f2c6e38be725f20f29cbf19687d08aae16ce6"
+        },
+        "workerRawCommit": "c3655bae8d8e4deacf2614e56ff4bd939e639fe9",
+        "parentTransportCommit": "fe86cd4bc1b7cd1c2100b6500de7ea818675d52a",
+        "seal": {
+          "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-review-20261019-r1/verification/sealed-raw-commit.json",
+          "sha256": "9499716e868aa5e3f1fbe4c5f0bd1f7233bcfae4ecd889a5f5db185cb138010c"
+        }
+      }
+    }
+  ],
+  "fullVerified": 0,
+  "loadable": 0,
+  "dbWrites": 0
+}
