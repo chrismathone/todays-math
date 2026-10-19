@@ -11,6 +11,7 @@
 import { pick } from "../elementary/rng";
 import type { Rng } from "../elementary/types";
 import { canonicalCircled } from "../math/circledNumber";
+import { exactChoiceValue } from "../math/exactChoiceValue";
 import { hasChoices } from "../problem/choiceCountRule";
 
 export type QuestionFormat = "객관식" | "단답형" | "서술형";
@@ -131,8 +132,10 @@ export function asMultipleChoice(stem: StemProblem, rng: Rng): DerivedProblem {
   const decimalPlaces = parsedCorrect?.decimalPlaces;
   // 소수는 끝자리 0·약분 여부가 달라도 같은 유리수면 같은 보기다.
   // 다른 형식의 후보 순서·난수 소비는 그대로 둔다.
+  // 분수·근호는 **정확값**으로 가른다 — `$\sqrt{8}$` 과 `$2\sqrt{2}$` 는 같은 보기다
+  // (2026-10-14, `exactChoiceValue`). 읽지 못하는 꼴(문자·식)은 글자 그대로 견준다.
   const choiceKey = (value: string): string => {
-    if (decimalPlaces === undefined) return value;
+    if (decimalPlaces === undefined) return exactChoiceValue(value)?.key ?? value;
     const parsed = parseNumericAnswer(value);
     return parsed ? `${parsed.rat.n}/${parsed.rat.d}` : value;
   };
@@ -196,7 +199,18 @@ export function asMultipleChoice(stem: StemProblem, rng: Rng): DerivedProblem {
       : strong
     ).push(m.value);
   }
-  const pool = strong.length + weak.length + overs.length;
+  // 덜 정리된 오답을 걸러 넷이 안 되면(근호·분수 정답) **그때만** 근호·분수의 흔한 실수로
+  // 채운다. 넷이 되는 판은 한 글자도 안 바뀐다 — 적재본과 엔진의 어긋남을 최소로 둔다.
+  const fallback: string[] = [];
+  if (strong.length + weak.length + overs.length < 4) {
+    for (const m of tidyFallbackMistakes(correct)) {
+      const key = choiceKey(m.value);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      fallback.push(m.value);
+    }
+  }
+  const pool = strong.length + weak.length + overs.length + fallback.length;
   if (pool < 4) {
     throw new Error(
       `정답이 수·분수·소수가 아니거나 오답 후보가 ${pool}개뿐이라 5지선다를 못 만듭니다: ${correct}`,
@@ -216,7 +230,7 @@ export function asMultipleChoice(stem: StemProblem, rng: Rng): DerivedProblem {
     distractors.push(first);
     strong.splice(strong.indexOf(first), 1);
   }
-  for (const bucket of [strong, weak, overs]) {
+  for (const bucket of [strong, weak, overs, fallback]) {
     const rest = [...bucket];
     while (distractors.length < 4 && rest.length > 0) {
       const next = pick(rng, rest);
@@ -345,6 +359,16 @@ export function numericMistakes(answer: string): Mistake[] {
   //    모양이 같은 것만 남긴다.
   const shapeOf = (t: string) => t.replace(/-?\d+(?:\.\d+)?/g, "N");
   const wantShape = shapeOf(answer.trim());
+  // 🔴 근호·분수에 단위가 붙은 정답은 아래 `decorated` 길로 와서 **맨 앞의 수 하나**만
+  //    흔들린다. 그러면 `$2\sqrt{3}\,\mathrm{cm}$` 에서 `$0\sqrt{3}\,\mathrm{cm}$`(길이 0)·
+  //    `$1\sqrt{3}$` 이, `$\dfrac{\sqrt{3}}{2}$` 에서 근호 안이 흔들려 `$\dfrac{\sqrt{4}}{2}$`·
+  //    `$\dfrac{\sqrt{1}}{2}$` 이, `$\dfrac{31}{2}\,\mathrm{cm}$` 에서 `$\dfrac{30}{2}$` 가 나온다.
+  //    모양(`shapeOf`)은 같아 아무 자도 못 봤다 — 학생은 «덜 정리된 보기»로 계산 없이 지워 낸다.
+  //    실측 2026-10-14: 중등 33유형 객관식 225판(21,888판 중, `scan-choice-exact-values.ts`).
+  //    정답이 **정리된 꼴**일 때만 막는다. 정답부터 `$\sqrt{27}$` 처럼 덜 정리된 꼴이면
+  //    그것이 묻는 것(「$\sqrt{a}$ 꼴로」)이라 오답도 같은 꼴이어야 한다.
+  const exactAnswer = exactChoiceValue(answer);
+  const tidyAnswer = exactAnswer !== null && exactAnswer.unsimplified.length === 0;
   const push = (tag: string, rat: Rat | null): void => {
     if (!rat || rat.d === 0) return;
     const reduced = reduce(rat);
@@ -365,6 +389,10 @@ export function numericMistakes(answer: string): Mistake[] {
     //    `shapeOf` 가르기는 이걸 못 본다 — 모양(`$N\le y\le N$`)은 그대로다.
     //    등록 1,411유형을 전수로 훑어 이 부류를 내는 것은 `35V` **하나뿐**이었다.
     if (reversesOrder(value)) return;
+    if (tidyAnswer) {
+      const exact = exactChoiceValue(value);
+      if (exact && (exact.unsimplified.length > 0 || exact.key === exactAnswer.key)) return;
+    }
     const key = parsed.style === "dec" ? `${reduced.n}/${reduced.d}` : value;
     if (seen.has(key)) return;
     seen.add(key);
@@ -448,6 +476,77 @@ export function numericMistakes(answer: string): Mistake[] {
   }
 
   return out;
+}
+
+/**
+ * 덜 정리된 오답을 걸러 후보가 넷이 안 될 때만 쓰는 **보충 오답** — 정답이 정리된 꼴일 때만.
+ *   · 근호의 흔한 실수(`surdMistakes`)
+ *   · 분수 `\frac{a}{b}` 의 분자 ±2·±1·±4 · 분모 ±1·±2 (약분되는 것은 거른다)
+ * 모두 «정리된 꼴이고 정답과 값이 다른가»를 `exactChoiceValue` 로 다시 본다.
+ */
+export function tidyFallbackMistakes(answer: string): Mistake[] {
+  const exactAnswer = exactChoiceValue(answer);
+  if (!exactAnswer || exactAnswer.unsimplified.length > 0) return [];
+  const raw: Mistake[] = [...surdMistakes(answer)];
+  const frac = /\\[dt]?frac\{(\d*)(\\sqrt\{\d+\})?\}\{(\d+)\}/.exec(answer);
+  if (frac) {
+    const top = frac[1] ? Number(frac[1]) : null;
+    const surd = frac[2] ?? "";
+    const b = Number(frac[3]);
+    const head = frac[0].slice(0, frac[0].indexOf("{"));
+    const at = (t: string, d: number) =>
+      answer.slice(0, frac.index) + `${head}{${t}}{${d}}` + answer.slice(frac.index + frac[0].length);
+    const topText = (n: number) => (surd && n === 1 ? surd : `${n}${surd}`);
+    if (top !== null) {
+      for (const step of [2, -2, 1, -1, 4, -4])
+        if (top + step >= 1) raw.push({ tag: `frac-top-${step}`, value: at(topText(top + step), b) });
+    }
+    for (const step of [1, -1, 2, -2]) {
+      if (b + step >= 2) raw.push({ tag: `frac-bottom-${step}`, value: at(frac[1] + surd, b + step) });
+    }
+  }
+  const seen = new Set<string>([exactAnswer.key]);
+  const out: Mistake[] = [];
+  for (const m of raw) {
+    const exact = exactChoiceValue(m.value);
+    if (!exact || exact.unsimplified.length > 0 || seen.has(exact.key)) continue;
+    seen.add(exact.key);
+    out.push(m);
+  }
+  return out;
+}
+
+/**
+ * 정답 속 **첫 근호** `k\sqrt{n}` 의 흔한 실수 — 나머지 글(분모·단위·부호)은 그대로 둔다.
+ *   · 맞바꾸기 `n\sqrt{k}`(계수와 근호 안을 뒤바꿔 적음)
+ *   · 접어 넣기 `\sqrt{kn}`(계수를 제곱하지 않고 근호 안에 넣음)
+ *   · 근호 안 ±1
+ *   · 계수 없는 `\sqrt{n}` 이면 — 계수 2 를 붙이기(`2\sqrt{n}`), 근호를 빠뜨리기(`n` —
+ *     표준편차 `$\sqrt{2}$` 를 분산 `$2$` 로 적는 실수가 이것이다)
+ * 덜 정리된 꼴이 되는 후보는 부르는 쪽(`numericMistakes`)이 거른다.
+ */
+export function surdMistakes(answer: string): Mistake[] {
+  const m = /(\d*)\\sqrt\{(\d+)\}/.exec(answer);
+  if (!m) return [];
+  const k = m[1] ? Number(m[1]) : 1;
+  const n = Number(m[2]);
+  const at = (replacement: string) =>
+    answer.slice(0, m.index) + replacement + answer.slice(m.index + m[0].length);
+  const coef = m[1] ?? "";
+  const out: Mistake[] = [];
+  if (k >= 2 && k !== n) out.push({ tag: "surd-swap", value: at(`${n}\\sqrt{${k}}`) });
+  if (k >= 2) out.push({ tag: "surd-fold", value: at(`\\sqrt{${k * n}}`) });
+  out.push({ tag: "surd-radicand-up", value: at(`${coef}\\sqrt{${n + 1}}`) });
+  if (n - 1 >= 2) out.push({ tag: "surd-radicand-down", value: at(`${coef}\\sqrt{${n - 1}}`) });
+  if (k === 1) {
+    out.push({ tag: "surd-coef-two", value: at(`2\\sqrt{${n}}`) });
+    out.push({ tag: "surd-coef-three", value: at(`3\\sqrt{${n}}`) });
+    out.push({ tag: "surd-drop-root", value: at(`${n}`) });
+    // 맨 근호(분수 밖)면 반으로 나눈 꼴도 흔한 실수다 — `$\sqrt{2}$` ↔ `$\frac{\sqrt{2}}{2}$`.
+    if (!/\\[dt]?frac\{[^{}]*$/.test(answer.slice(0, m.index)))
+      out.push({ tag: "surd-half", value: at(`\\frac{\\sqrt{${n}}}{2}`) });
+  }
+  return out.filter((x) => x.value !== answer);
 }
 
 /** `$-8x^{3}y^{7}$` 처럼 **계수 하나 × 변수 거듭제곱**뿐인 정답. */
