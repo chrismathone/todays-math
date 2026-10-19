@@ -1,0 +1,2049 @@
+{
+  "schemaVersion": 1,
+  "auditDate": "2026-10-19",
+  "createdAt": "2026-10-19T00:41:37.950420+00:00",
+  "sourceCommit": "f8c55083bfb529b95c89a70d9ce95c915264b402",
+  "manifestVersion": "exam-study-manifest-afaac8127d86b8d051ad4b37",
+  "scope": {
+    "mode": "audit-only",
+    "requirements": [
+      "algebra.candidate-verification",
+      "algebra.equality-truth",
+      "algebra.equation-classification",
+      "algebra.linear-model",
+      "algebra.linear-simplify",
+      "written.rectangle-domain"
+    ],
+    "productionSourceChanged": false,
+    "mappingsChanged": false,
+    "evidenceStatusChanged": false,
+    "originalSchoolQuestionTextOrImagesIncluded": false,
+    "dbNetworkProviderEnvInstallPrismaBuildPushUsed": false,
+    "sourceReportDirectoryNote": "준비도 근거의 실제 저장소 경로는 math-exam-engine-이 아니라 docs/reports/math-engine-study-readiness-20261018 이다."
+  },
+  "conclusion": {
+    "promotionRecommendedNow": false,
+    "currentStateRecommendation": "6개 모두 unverified 유지",
+    "mathematicalErrorsFoundInCheckedRecords": [],
+    "qualityIssueCount": 3,
+    "primaryVerificationCandidate": "algebra.equation-classification",
+    "note": "등록 여부·valid:true·정답 표본 일치·응답 포장만으로 full 또는 학교 전체 대비/실측 난도를 주장하지 않는다."
+  },
+  "counting": {
+    "unit": "등록 family; 문항 용량 아님",
+    "sourceRegistrationCounts": {
+      "authored": 23,
+      "elementary": 2499,
+      "middle": 1517,
+      "high": 168,
+      "native": 6
+    },
+    "totalRegistrations": 4213,
+    "mappedEligibleRegistrationsForTheseSix": 6,
+    "directDraws": 72,
+    "directDistinctPrintedContents": 71,
+    "coreRequests": 48,
+    "coreDeliveredOutputRecords": 34,
+    "mathCheckedOutputRecords": 106,
+    "mcOutputRecords": 10,
+    "formatMultiplicationUsed": false,
+    "sampledMaxAttemptsIsCapacity": false
+  },
+  "commonGateAnalysis": {
+    "productionVerifier": "해당 family에 curated 독립 수학 검산기가 없고 draftErrors의 문법/형태 검사만 실행한다.",
+    "familyEvidence": {
+      "testFile": null,
+      "sampleCount": null,
+      "boundaryCases": null,
+      "checkedRequirements": null,
+      "checks": null
+    },
+    "actualVerificationChecks": [],
+    "declaredIntent": "component",
+    "metadataAloneCanPromoteToFull": false,
+    "explanation": "familyCoverage는 evidence 부재 때 unverified를 반환하며, 증거가 완비되어도 intent가 component인 한 full을 부여하지 않는다. 테스트 경로 정규식·양수 표본 수·비어 있지 않은 boundaryCases는 연결 형식일 뿐 실제 수학 증명은 아니다."
+  },
+  "requirementAudits": [
+    {
+      "id": "algebra.candidate-verification",
+      "requestedCoverage": "후보별 양변 계산과 성립 여부를 구별하는 완결 연습(full). 상위 추상 비교는 서로 다른 식-후보 쌍의 진리집합을 요구한다.",
+      "observedFitness": "소수 계수 일차방정식 하나를 푸는 선수 연습이다. 12개 직접 표본 모두 서로 다른 식-후보 쌍을 제시하지 않는다. 객관식의 여러 x 후보도 같은 방정식의 해 선택이다.",
+      "workClass": "검증 + 기존 문형의 후보쌍 생성/풀이 확장",
+      "verificationOnlySufficientForFull": false,
+      "missingIndependentChecks": [
+        "각 인쇄 방정식과 그 행의 후보를 읽고 Fraction으로 좌변/우변을 별도 계산한다.",
+        "참인 행 ID 집합을 비교하며 참 개수만 같은 잘못된 ID 집합을 거절한다.",
+        "후보의 부호/소수/분수, 괄호 전개, 후보만 교체, 한쪽 식만 변경, 전부 참/거짓 등 허용 여부를 명시한다.",
+        "예외 하나를 묻는 포장에서는 정확히 하나가 거짓이고 보기의 정답이 유일한지 검증한다."
+      ],
+      "missingQuestionSolutionSteps": [
+        "현재 발문에는 후보별 검산 행위가 없다.",
+        "현재 풀이는 소수 제거→이항→해이고 각 후보의 양변 값/기각 이유를 제시하지 않는다."
+      ],
+      "rubric": {
+        "exists": false,
+        "neededForCurrentResponse": false
+      },
+      "existingTestsRead": [
+        {
+          "path": "src/__tests__/unit/middleM1Expr.test.ts",
+          "lines": "299-315,592,835-850",
+          "scope": "EQ11 인쇄식에 답을 대입하고 비영 기울기 확인; 서로 다른 후보쌍 요구 검증은 아님."
+        }
+      ],
+      "unmappedNeighborSourceEvidence": [
+        {
+          "familyId": "legacy:mid:1-1|일차방정식의 풀이|33",
+          "path": "src/lib/middle/m1Expr.ts",
+          "line": 351,
+          "scope": "고정 후보 하나를 다섯 식에 넣는 연습. 현재 candidate 요구로 매핑되어 있지 않으며 행별 서로 다른 후보도 아니다."
+        }
+      ],
+      "minimumBeforeFull": [
+        "현재 EQ11의 올바른 해만 검증해 full로 올리지 않는다.",
+        "후보쌍·행별 대입·진리집합과 독립 검산/오답 변이 검사를 갖춘 기존 family 확장을 검토한다.",
+        "실제 완결 범위가 확인된 뒤에만 evidence와 full intent 연결을 검토한다."
+      ],
+      "priority": 3,
+      "profileId": "kyungmyung-m1",
+      "course": "중1",
+      "mappedEligibleFamilyIds": [
+        "legacy:mid:1-1|일차방정식의 풀이|11"
+      ],
+      "mappedEligibleFamilyCount": 1,
+      "currentRegisteredFormats": [
+        "단답형",
+        "객관식"
+      ],
+      "currentCoverage": "unverified",
+      "currentIntent": "component",
+      "requiredGateChecks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "commonMissingGateEvidence": {
+        "productionVerifier": "해당 family에 curated 독립 수학 검산기가 없고 draftErrors의 문법/형태 검사만 실행한다.",
+        "familyEvidence": {
+          "testFile": null,
+          "sampleCount": null,
+          "boundaryCases": null,
+          "checkedRequirements": null,
+          "checks": null
+        },
+        "actualVerificationChecks": [],
+        "declaredIntent": "component",
+        "metadataAloneCanPromoteToFull": false,
+        "explanation": "familyCoverage는 evidence 부재 때 unverified를 반환하며, 증거가 완비되어도 intent가 component인 한 full을 부여하지 않는다. 테스트 경로 정규식·양수 표본 수·비어 있지 않은 boundaryCases는 연결 형식일 뿐 실제 수학 증명은 아니다."
+      },
+      "sourceDimensions": {
+        "id": "algebra.candidate-verification",
+        "title": "식과 후보 해를 각각 대입 검산",
+        "concepts": [
+          "대입",
+          "방정식의 해"
+        ],
+        "conditionTopology": [
+          "후보별 양변 계산",
+          "성립 여부 구별"
+        ],
+        "representation": "text",
+        "caseAnalysis": "enumerate",
+        "response": [
+          "객관식",
+          "단답형"
+        ],
+        "structuralDifficultyBasis": [
+          "후보별 양변 계산",
+          "성립 여부 구별"
+        ]
+      },
+      "directSampleCount": 12,
+      "distinctDirectPrintedContents": 12,
+      "sampledMathValidity": "이번 독립 검산의 출력 레코드에서 수치·식 불일치 미발견; 전체 생성 영역 증명 아님"
+    },
+    {
+      "id": "algebra.equality-truth",
+      "requestedCoverage": "주어진 관계에서 각 변형의 보편 항등성과 참인 진술 집합을 판단하는 완결 연습(full). 상위 비교에는 비단위 배수 관계가 포함된다.",
+      "observedFitness": "a=b에서 같은 수의 덧셈/곱셈/상수 분모 나눗셈을 판단하는 부분집합은 수학적으로 맞다. 12개 직접 표본 모두 전제가 a=b로 고정되어 비단위 관계는 연습하지 않는다.",
+      "workClass": "검증 + 같은 family의 비단위 관계/진술 집합 확장; 객관식 오답 품질 보강",
+      "verificationOnlySufficientForFull": false,
+      "missingIndependentChecks": [
+        "현재 a=b는 a=b=t로 치환한 다항식 계수를 비교하고, 비단위 관계는 각 인쇄 전제에 맞게 매개화하여 항등성을 검증한다.",
+        "a=b=0 한 번의 대입으로 보편 명제를 승인하지 않는다; 거짓마다 전제를 만족하는 반례를 산출한다.",
+        "분모 0, 전제 제거/관계의 계수 변경, 한 항 부호 변경을 거절한다.",
+        "참인 ID 집합과 정답을 비교하며 조합형 보기로 확장할 때 정확한 집합의 보기 유일성을 확인한다.",
+        "다섯 진술의 개수 선택지는 0..5 범위이고 값으로도 서로 달라야 한다."
+      ],
+      "missingQuestionSolutionSteps": [
+        "비단위 배수 전제가 없다.",
+        "해설은 일반 원리와 개수만 쓰며 각 진술의 보편성/반례는 보여 주지 않는다."
+      ],
+      "rubric": {
+        "exists": false,
+        "neededForCurrentResponse": false
+      },
+      "existingTestsRead": [
+        {
+          "path": "src/__tests__/unit/middleM1Expr.test.ts",
+          "lines": "577-588,835-850",
+          "scope": "인쇄된 다섯 진술을 a=b=t의 다섯 값에서 검사해 개수와 facts를 대조. 현재 소스 범위의 근거이며 비단위/전체 진술 ID/게이트 연결은 아님."
+        }
+      ],
+      "minimumBeforeFull": [
+        "현재 a=b 제한 범위를 명시한 검증을 먼저 연결하되 학교 요구 전체의 full과 구분한다.",
+        "비단위 관계와 진술별 진리집합 생성/독립 판정을 같은 구조 안에서 확장한다.",
+        "실제로 발견한 6개 오답 보기와 한 점 대입의 착시를 회귀 검사한다."
+      ],
+      "priority": 3,
+      "profileId": "kyungmyung-m1",
+      "course": "중1",
+      "mappedEligibleFamilyIds": [
+        "legacy:mid:1-1|일차방정식의 풀이|06"
+      ],
+      "mappedEligibleFamilyCount": 1,
+      "currentRegisteredFormats": [
+        "단답형",
+        "객관식"
+      ],
+      "currentCoverage": "unverified",
+      "currentIntent": "component",
+      "requiredGateChecks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "commonMissingGateEvidence": {
+        "productionVerifier": "해당 family에 curated 독립 수학 검산기가 없고 draftErrors의 문법/형태 검사만 실행한다.",
+        "familyEvidence": {
+          "testFile": null,
+          "sampleCount": null,
+          "boundaryCases": null,
+          "checkedRequirements": null,
+          "checks": null
+        },
+        "actualVerificationChecks": [],
+        "declaredIntent": "component",
+        "metadataAloneCanPromoteToFull": false,
+        "explanation": "familyCoverage는 evidence 부재 때 unverified를 반환하며, 증거가 완비되어도 intent가 component인 한 full을 부여하지 않는다. 테스트 경로 정규식·양수 표본 수·비어 있지 않은 boundaryCases는 연결 형식일 뿐 실제 수학 증명은 아니다."
+      },
+      "sourceDimensions": {
+        "id": "algebra.equality-truth",
+        "title": "등식 변형의 참인 진술 판단",
+        "concepts": [
+          "등식의 성질",
+          "보편 명제"
+        ],
+        "conditionTopology": [
+          "주어진 관계",
+          "각 변형의 항등성",
+          "참인 진술 집합"
+        ],
+        "representation": "text",
+        "caseAnalysis": "enumerate",
+        "response": [
+          "객관식",
+          "단답형"
+        ],
+        "structuralDifficultyBasis": [
+          "주어진 관계",
+          "각 변형의 항등성",
+          "참인 진술 집합"
+        ]
+      },
+      "directSampleCount": 12,
+      "distinctDirectPrintedContents": 12,
+      "sampledMathValidity": "이번 독립 검산의 출력 레코드에서 수치·식 불일치 미발견; 전체 생성 영역 증명 아님"
+    },
+    {
+      "id": "algebra.equation-classification",
+      "requestedCoverage": "양변을 정리하여 차수와 해집합을 구별하는 완결 연습(full). 개수와 예외 번호의 차이를 새 수학 family 결손으로 세지 않는다.",
+      "observedFitness": "12개 직접 표본을 합쳐 일차/항등/불가능/이차 네 갈래를 모두 관측했다. 실제 발문은 일차방정식 개수지만 비일차식을 정리해 제외하는 핵심 판단은 이미 있다.",
+      "workClass": "독립 검증 연결 중심; 항목별 해설 및 객관식 오답 품질 보강 권고",
+      "verificationOnlySufficientForFull": false,
+      "coreMathNeedsNewGenerationStructure": false,
+      "qualification": "기존 수학 구조는 독립 검증 중심으로 다룰 수 있다. 객관식 오답 범위의 실제 품질 결함과 evidence/intent 검토는 별도로 남는다.",
+      "missingIndependentChecks": [
+        "인쇄된 각 식의 좌변-우변을 정확한 다항식으로 정리하고 계수 전체로 네 갈래를 독립 판정한다.",
+        "일차 계수≠0, 항등식 0=0, 불가능한 0=c(c≠0), 실제 이차항이 남는 경계를 강제 fixture로 검사한다.",
+        "정답 개수뿐 아니라 내부 분류/선택 ID도 확인하고 식 한 개·답·부호 변이의 기각을 검사한다.",
+        "객관식은 원래 개수와 표시된 정답의 일치·유일성 및 0..5 개수 범위를 확인한다."
+      ],
+      "missingQuestionSolutionSteps": [
+        "현재 해설은 일차식의 기준과 개수만 제시한다. 각 비일차식이 항등/불가능/이차인 이유를 보여 주면 학습용 풀이가 더 명료하다.",
+        "개수→번호 또는 명시적 네 분류 답변의 차이만으로 별도 family를 요구하지 않는다."
+      ],
+      "rubric": {
+        "exists": false,
+        "neededForCurrentResponse": false
+      },
+      "existingTestsRead": [
+        {
+          "path": "src/__tests__/unit/middleM1Expr.test.ts",
+          "lines": "606-621,835-850",
+          "scope": "인쇄식의 0,1,2,3 대입 차분으로 일차성/비영 기울기를 판정하여 개수를 검사. 기존 근거는 있으나 examStudy 게이트에 연결되지 않았다."
+        }
+      ],
+      "minimumBeforeFull": [
+        "이미 구현된 네 갈래의 정확한 독립 판정과 음성 변이·경계 fixture를 추가/연결한다.",
+        "개수 보기의 6개 오답을 제거하거나 허용 범위를 지키게 한다.",
+        "실제 테스트/evidence와 필요한 checks를 등록하고 현재 추상 범위의 full intent가 타당한지 검토한다."
+      ],
+      "priority": 1,
+      "profileId": "kyungmyung-m1",
+      "course": "중1",
+      "mappedEligibleFamilyIds": [
+        "legacy:mid:1-1|일차방정식의 풀이|09"
+      ],
+      "mappedEligibleFamilyCount": 1,
+      "currentRegisteredFormats": [
+        "단답형",
+        "객관식"
+      ],
+      "currentCoverage": "unverified",
+      "currentIntent": "component",
+      "requiredGateChecks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "commonMissingGateEvidence": {
+        "productionVerifier": "해당 family에 curated 독립 수학 검산기가 없고 draftErrors의 문법/형태 검사만 실행한다.",
+        "familyEvidence": {
+          "testFile": null,
+          "sampleCount": null,
+          "boundaryCases": null,
+          "checkedRequirements": null,
+          "checks": null
+        },
+        "actualVerificationChecks": [],
+        "declaredIntent": "component",
+        "metadataAloneCanPromoteToFull": false,
+        "explanation": "familyCoverage는 evidence 부재 때 unverified를 반환하며, 증거가 완비되어도 intent가 component인 한 full을 부여하지 않는다. 테스트 경로 정규식·양수 표본 수·비어 있지 않은 boundaryCases는 연결 형식일 뿐 실제 수학 증명은 아니다."
+      },
+      "sourceDimensions": {
+        "id": "algebra.equation-classification",
+        "title": "방정식·항등식·불가능한 등식 구별",
+        "concepts": [
+          "일차방정식",
+          "항등식"
+        ],
+        "conditionTopology": [
+          "양변 정리",
+          "차수와 해집합 구별"
+        ],
+        "representation": "text",
+        "caseAnalysis": "enumerate",
+        "response": [
+          "객관식",
+          "단답형"
+        ],
+        "structuralDifficultyBasis": [
+          "양변 정리",
+          "차수와 해집합 구별"
+        ]
+      },
+      "directSampleCount": 12,
+      "distinctDirectPrintedContents": 12,
+      "sampledMathValidity": "이번 독립 검산의 출력 레코드에서 수치·식 불일치 미발견; 전체 생성 영역 증명 아님"
+    },
+    {
+      "id": "algebra.linear-model",
+      "requestedCoverage": "미지수 뜻→관계식→원상황 확인을 포함하는 완결 연습(full). 현재 응답은 단답/객관이며 자유 서술 rubric 요구는 없다.",
+      "observedFitness": "문장의 두 선형 결과를 같게 두는 핵심은 있다. 12개 직접 표본에서 크다/작다 두 관계를 관측했으며 독립 복원식·해·원상황 차가 모두 맞았다.",
+      "workClass": "독립 검증 + 원상황 대입 풀이 보강; 새 모델 family 불필요",
+      "verificationOnlySufficientForFull": false,
+      "missingIndependentChecks": [
+        "facts 없이 인쇄 문장의 곱/더함/비교 배수/차와 크다·작다를 읽어 관계식을 복원한다.",
+        "a≠c인 일의적 해와 원문 부등 방향·차를 검증하며 미지수가 지칭하는 수의 뜻을 보존한다.",
+        "크다↔작다, 수치/답 변경을 거절하고 계수 차 양/음 및 큰/작은 관계를 강제 검사한다.",
+        "복원한 답을 문장의 두 양에 대입하여 지정된 차와 방향을 확인한다."
+      ],
+      "missingQuestionSolutionSteps": [
+        "현재 풀이에는 미지수와 관계식·해가 있으나 원래 두 계산 결과에 대입해 차/방향을 확인하는 마지막 단계가 없다."
+      ],
+      "rubric": {
+        "exists": false,
+        "neededForCurrentResponse": false,
+        "scope": "이 요구에 매핑된 family의 native 서술형은 없다. 다른 요구의 중1 서술형 family와 혼동하지 않는다."
+      },
+      "existingTestsRead": [
+        {
+          "path": "src/__tests__/unit/middleLinearApply.test.ts",
+          "lines": "28-31,251,591-637",
+          "scope": "01은 facts 조건 재계산과 답/facts 일치를 확인. CONTENT_CHECKS에는 01이 없어 발문 수치/관계의 독립 되읽기는 이번 게이트에 없다."
+        }
+      ],
+      "minimumBeforeFull": [
+        "현재 family의 모델을 유지하면서 인쇄 문장을 읽는 verifier와 관계 방향/변이 검사를 연결한다.",
+        "모범 풀이에 원상황의 두 양 대입을 보강한다.",
+        "충분한 경계 증거 후에만 full intent와 evidence를 연결한다."
+      ],
+      "priority": 2,
+      "profileId": "kyungmyung-m1",
+      "course": "중1",
+      "mappedEligibleFamilyIds": [
+        "legacy:mid:1-1|일차방정식의 활용|01"
+      ],
+      "mappedEligibleFamilyCount": 1,
+      "currentRegisteredFormats": [
+        "단답형",
+        "객관식"
+      ],
+      "currentCoverage": "unverified",
+      "currentIntent": "component",
+      "requiredGateChecks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "commonMissingGateEvidence": {
+        "productionVerifier": "해당 family에 curated 독립 수학 검산기가 없고 draftErrors의 문법/형태 검사만 실행한다.",
+        "familyEvidence": {
+          "testFile": null,
+          "sampleCount": null,
+          "boundaryCases": null,
+          "checkedRequirements": null,
+          "checks": null
+        },
+        "actualVerificationChecks": [],
+        "declaredIntent": "component",
+        "metadataAloneCanPromoteToFull": false,
+        "explanation": "familyCoverage는 evidence 부재 때 unverified를 반환하며, 증거가 완비되어도 intent가 component인 한 full을 부여하지 않는다. 테스트 경로 정규식·양수 표본 수·비어 있지 않은 boundaryCases는 연결 형식일 뿐 실제 수학 증명은 아니다."
+      },
+      "sourceDimensions": {
+        "id": "algebra.linear-model",
+        "title": "말로 주어진 관계의 일차 모델",
+        "concepts": [
+          "미지수",
+          "일차방정식"
+        ],
+        "conditionTopology": [
+          "양의 뜻 설정",
+          "관계식",
+          "원상황 확인"
+        ],
+        "representation": "text",
+        "caseAnalysis": "none",
+        "response": [
+          "객관식",
+          "단답형"
+        ],
+        "structuralDifficultyBasis": [
+          "양의 뜻 설정",
+          "관계식",
+          "원상황 확인"
+        ]
+      },
+      "directSampleCount": 12,
+      "distinctDirectPrintedContents": 12,
+      "sampledMathValidity": "이번 독립 검산의 출력 레코드에서 수치·식 불일치 미발견; 전체 생성 영역 증명 아님"
+    },
+    {
+      "id": "algebra.linear-simplify",
+      "requestedCoverage": "괄호 전개→동류항 정리→계수·상수항 해석의 완결 연습(full). 표적 합산은 같은 family의 작은 확장으로 본다.",
+      "observedFitness": "12개 직접 표본에서 전개와 정리한 식의 계수/상수항이 정확히 일치했다. 학생에게 요구하는 출력은 간단한 식 하나이고 계수·상수항 읽기/합산을 연결하지 않는다.",
+      "workClass": "독립 검증 + 작은 표적/풀이 확장; 별도 사고 family로 증식하지 않음",
+      "verificationOnlySufficientForFull": false,
+      "missingIndependentChecks": [
+        "발문의 괄호식, 전개 풀이, 최종 식을 각각 파싱하여 유리수 계수 전체를 비교한다.",
+        "바깥 +/- 및 안쪽 음수, 상수항/계수 부호, 허용 계수 경계를 검사하고 한 부호/상수항/정답 변이를 거절한다.",
+        "최종 ax+b에서 a와 b를 별도로 읽고 요청한 표적값과 연결한다.",
+        "객관식에서는 식 동치 기준으로 정답 유일성과 오답 구별을 검사한다."
+      ],
+      "missingQuestionSolutionSteps": [
+        "현재 발문과 풀이 모두 계수·상수항 해석/최종 표적 산출이 없다."
+      ],
+      "rubric": {
+        "exists": false,
+        "neededForCurrentResponse": false
+      },
+      "existingTestsRead": [
+        {
+          "path": "src/__tests__/unit/middleM1Extra.test.ts",
+          "lines": "496-504",
+          "scope": "facts의 p,q 산술과 정답 첫 수(p)를 검사. 인쇄 괄호식/상수항/중간 풀이 동치의 전체 검사는 아니다."
+        }
+      ],
+      "unmappedNeighborSourceEvidence": [
+        {
+          "familyId": "legacy:mid:1-1|문자의 사용과 식의 계산|09",
+          "path": "src/lib/middle/m1Book1.ts",
+          "line": 432,
+          "scope": "계수·상수항 읽기 과제가 따로 존재한다. 현재 요구에 매핑된 완결 연결 family로는 세지 않는다."
+        }
+      ],
+      "minimumBeforeFull": [
+        "독립 전개/계수 비교를 연결하고 같은 family 안에서 계수 해석 표적을 마무리한다.",
+        "단답/객관, 정리식/계수합 포장을 별도 family 수로 곱하지 않는다.",
+        "실제 표적 및 풀이 연결의 증거를 갖춘 후 full intent 검토를 한다."
+      ],
+      "priority": 2,
+      "profileId": "kyungmyung-m1",
+      "course": "중1",
+      "mappedEligibleFamilyIds": [
+        "legacy:mid:1-1|문자의 사용과 식의 계산|13"
+      ],
+      "mappedEligibleFamilyCount": 1,
+      "currentRegisteredFormats": [
+        "단답형",
+        "객관식"
+      ],
+      "currentCoverage": "unverified",
+      "currentIntent": "component",
+      "requiredGateChecks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "commonMissingGateEvidence": {
+        "productionVerifier": "해당 family에 curated 독립 수학 검산기가 없고 draftErrors의 문법/형태 검사만 실행한다.",
+        "familyEvidence": {
+          "testFile": null,
+          "sampleCount": null,
+          "boundaryCases": null,
+          "checkedRequirements": null,
+          "checks": null
+        },
+        "actualVerificationChecks": [],
+        "declaredIntent": "component",
+        "metadataAloneCanPromoteToFull": false,
+        "explanation": "familyCoverage는 evidence 부재 때 unverified를 반환하며, 증거가 완비되어도 intent가 component인 한 full을 부여하지 않는다. 테스트 경로 정규식·양수 표본 수·비어 있지 않은 boundaryCases는 연결 형식일 뿐 실제 수학 증명은 아니다."
+      },
+      "sourceDimensions": {
+        "id": "algebra.linear-simplify",
+        "title": "일차식의 정리와 계수 해석",
+        "concepts": [
+          "분배법칙",
+          "동류항"
+        ],
+        "conditionTopology": [
+          "괄호 전개",
+          "동류항 정리",
+          "계수·상수항 해석"
+        ],
+        "representation": "text",
+        "caseAnalysis": "none",
+        "response": [
+          "객관식",
+          "단답형"
+        ],
+        "structuralDifficultyBasis": [
+          "괄호 전개",
+          "동류항 정리",
+          "계수·상수항 해석"
+        ]
+      },
+      "directSampleCount": 12,
+      "distinctDirectPrintedContents": 12,
+      "sampledMathValidity": "이번 독립 검산의 출력 레코드에서 수치·식 불일치 미발견; 전체 생성 영역 증명 아님"
+    },
+    {
+      "id": "written.rectangle-domain",
+      "requestedCoverage": "변 변화의 길이 모델→모든 방정식 해→시간·길이 제약→적합성 설명을 쓰는 완결 서술형(full).",
+      "observedFitness": "현재 고정 길이차/넓이 모델은 올바르며 두 해, 양의 길이, 원조건 검산과 본래 rubric을 갖춘다. 12개 직접 표본 모두 정적 모델이고 시간에 따른 반대 방향 변화/최초 시점 제외가 없다.",
+      "workClass": "독립 검증 + 시간 변화 문항/모범 풀이/native rubric 확장",
+      "verificationOnlySufficientForFull": false,
+      "missingIndependentChecks": [
+        "현재 정적 모델에서는 발문의 차·넓이에서 두 근을 독립 도출하고 x>0 및 x+delta>0을 적용하여 원조건 두 개를 검산한다.",
+        "목표 시간 모델에서는 각 길이와 속률/시간 단위, 모든 근, 시작 시각 0 제외, 줄어드는 변의 양수 상한을 각각 확인한다.",
+        "계수/수치/한 근/제외 이유/길이 경계를 바꾼 오답 변이와 음수·0·상한 경계를 강제 검사한다.",
+        "native-rubric은 단순 6점 합계가 아니라 미지수 뜻·모델·모든 근·시간/길이의 허용 이유·원상황 검산의 실제 기대값/대안/오류가 일치하는지 검사한다."
+      ],
+      "missingQuestionSolutionSteps": [
+        "시간 미지수/단위와 한 변 증가·다른 변 감소의 길이식이 없다.",
+        "0 시점 및 길이 양수 시간 상한의 판별을 요구하지 않는다.",
+        "현재 rubric은 정적 길이 x>0에 맞으며 시간 모델의 제외 논리를 채점하지 않는다."
+      ],
+      "rubric": {
+        "exists": true,
+        "totalPoints": 6,
+        "criteria": [
+          {
+            "id": "model",
+            "points": 2
+          },
+          {
+            "id": "roots",
+            "points": 2
+          },
+          {
+            "id": "check",
+            "points": 2
+          }
+        ],
+        "alternativesAndErrorsPresent": true,
+        "fit": "정적 모델에는 적합. 시간 모델 요구의 rubric을 대신하지 못함.",
+        "automaticStudentScoringVerified": false
+      },
+      "existingTestsRead": [
+        {
+          "path": "src/__tests__/unit/nativeDescriptive20261018.test.ts",
+          "lines": "182-202,232-289",
+          "scope": "발문의 길이차·넓이에서 정수 두 근 및 양의 길이를 독립 탐색하고 모범 답/숫자 등식/rubric 합계를 대조하는 기존 테스트가 있다. 이번 실행은 그 파일을 실행하지 않았으며, 시간 모델 증거로 확대하지 않는다."
+        }
+      ],
+      "unmappedNeighborSourceEvidence": [
+        {
+          "familyId": "legacy:mid:3-1|이차방정식의 활용|12",
+          "path": "src/lib/middle/m3Quad.ts",
+          "line": 1615,
+          "scope": "같은 길이만큼 두 변 늘리기 등의 일반 계산 연습. 현재 written.rectangle-domain의 eligible family가 아니며 시간 서술 rubric 근거도 아니다."
+        },
+        {
+          "familyId": "legacy:mid:manual-20261018|이차방정식의 활용|Q01",
+          "path": "src/lib/middle/m3Reinforcement20261018.ts",
+          "line": 236,
+          "scope": "본래 객관식 넓이 모델 선택 과제는 존재한다. 현재 요구로 매핑되어 있지 않아 서술형 완결 대응 수에 더하지 않는다."
+        }
+      ],
+      "minimumBeforeFull": [
+        "기존 정적 두 해 문제의 검증 완료와 시간 변화 요구 완료를 별도로 기록한다.",
+        "시간 변화의 길이식, 모든 해와 t=0/양의 길이 범위의 선택·기각, 원상황 대입을 실제 학생 과제로 만든다.",
+        "해당 시간 모델에 맞는 native rubric 및 음성/경계 검사를 갖춘 뒤 full intent/evidence 연결을 검토한다."
+      ],
+      "priority": 4,
+      "profileId": "kyungmyung-m3",
+      "course": "중3",
+      "mappedEligibleFamilyIds": [
+        "legacy:native:m3-quadratic-domain-r1"
+      ],
+      "mappedEligibleFamilyCount": 1,
+      "currentRegisteredFormats": [
+        "서술형"
+      ],
+      "currentCoverage": "unverified",
+      "currentIntent": "component",
+      "requiredGateChecks": [
+        "independent-solution",
+        "essential-conditions",
+        "native-rubric"
+      ],
+      "commonMissingGateEvidence": {
+        "productionVerifier": "해당 family에 curated 독립 수학 검산기가 없고 draftErrors의 문법/형태 검사만 실행한다.",
+        "familyEvidence": {
+          "testFile": null,
+          "sampleCount": null,
+          "boundaryCases": null,
+          "checkedRequirements": null,
+          "checks": null
+        },
+        "actualVerificationChecks": [],
+        "declaredIntent": "component",
+        "metadataAloneCanPromoteToFull": false,
+        "explanation": "familyCoverage는 evidence 부재 때 unverified를 반환하며, 증거가 완비되어도 intent가 component인 한 full을 부여하지 않는다. 테스트 경로 정규식·양수 표본 수·비어 있지 않은 boundaryCases는 연결 형식일 뿐 실제 수학 증명은 아니다."
+      },
+      "sourceDimensions": {
+        "id": "written.rectangle-domain",
+        "title": "직사각형 변화의 해와 정의역 설명",
+        "concepts": [
+          "넓이",
+          "이차방정식",
+          "양의 길이"
+        ],
+        "conditionTopology": [
+          "길이 모델",
+          "모든 방정식 해",
+          "시간·길이 제약",
+          "해의 적합성 설명"
+        ],
+        "representation": "text",
+        "caseAnalysis": "exclude",
+        "response": [
+          "서술형"
+        ],
+        "structuralDifficultyBasis": [
+          "길이 모델",
+          "모든 방정식 해",
+          "시간·길이 제약",
+          "해의 적합성 설명"
+        ]
+      },
+      "directSampleCount": 12,
+      "distinctDirectPrintedContents": 11,
+      "sampledMathValidity": "이번 독립 검산의 출력 레코드에서 수치·식 불일치 미발견; 전체 생성 영역 증명 아님"
+    }
+  ],
+  "qualityFindings": [
+    {
+      "requirement": "algebra.equality-truth",
+      "origin": "core",
+      "requestSeed": 71,
+      "format": "객관식",
+      "familyId": "legacy:mid:1-1|일차방정식의 풀이|06",
+      "seed": 1638860089,
+      "variant": 0,
+      "contentDigest": "8bfa62436c6f46d6ee3afe5c3004ae9012568e736c02af5e94c0a7d04f42adc2",
+      "issues": [
+        {
+          "kind": "out-of-range-count-distractor",
+          "choice": 3,
+          "value": 6,
+          "statementCount": 5
+        }
+      ]
+    },
+    {
+      "requirement": "algebra.equation-classification",
+      "origin": "core",
+      "requestSeed": 71,
+      "format": "객관식",
+      "familyId": "legacy:mid:1-1|일차방정식의 풀이|09",
+      "seed": 648800451,
+      "variant": 0,
+      "contentDigest": "c75adfe8d6a43480094f3f99bda3fdc387f9302bd0d454ee27e7b5db60400be6",
+      "issues": [
+        {
+          "kind": "out-of-range-count-distractor",
+          "choice": 3,
+          "value": 6,
+          "statementCount": 5
+        }
+      ]
+    },
+    {
+      "requirement": "algebra.equation-classification",
+      "origin": "core",
+      "requestSeed": 20261019,
+      "format": "객관식",
+      "familyId": "legacy:mid:1-1|일차방정식의 풀이|09",
+      "seed": 1360768244,
+      "variant": 0,
+      "contentDigest": "e7a188b1f5439393890ab5ffc3310d65714146a6a47a6f61ea74949ce5cfe4cf",
+      "issues": [
+        {
+          "kind": "out-of-range-count-distractor",
+          "choice": 3,
+          "value": 6,
+          "statementCount": 5
+        }
+      ]
+    }
+  ],
+  "minimumSharedPromotionChecks": [
+    "생성기의 facts/answer를 oracle로 삼지 않고 인쇄 발문/조건에서 풀이를 복원하는 production verifier를 연결한다.",
+    "필수 조건/분기와 수학적 오답·조건 누락·무관 풀이·rubric 변이 음성 검사를 실제 실행한다.",
+    "실행된 src/__tests__ 경로, 양수 sampleCount, 구체적 boundaryCases, checkedRequirements 및 checks를 사실대로 연결한다.",
+    "문항별 verification.checks가 필요한 항목을 실제 통과해야 하며 native written에는 native-rubric이 필요하다.",
+    "실제 조건/응답 요구가 완결된 경우에만 component intent를 full로 바꿀 근거를 검토한다; 이번 감사는 어떤 상태도 바꾸지 않는다.",
+    "core의 해당 요구 단독/프로필·지원 응답에서 full 할당, 오답 거절, 형식 부족 유지와 중복 배제를 다시 검사한다."
+  ],
+  "reproduction": {
+    "node": "v24.22.0",
+    "dependencies": "기존 공유 node_modules를 symlink로 사용; 설치 없음",
+    "commands": [
+      "env -i PATH=/Users/pss/.nvm/versions/node/v24.22.0/bin:/usr/bin:/bin NODE_ENV=test /Users/pss/.nvm/versions/node/v24.22.0/bin/node /Users/pss/Desktop/creative/today_/node_modules/vitest/vitest.mjs run --config .qa-artifacts/math-exam-engine-remaining-20261019/unverified-vitest.config.mts --reporter=verbose",
+      "python3 .qa-artifacts/math-exam-engine-remaining-20261019/check_unverified_math.py"
+    ],
+    "configGuarantees": {
+      "envDir": false,
+      "setupFiles": [],
+      "environment": "node",
+      "defaultVitestConfigUsed": false,
+      "dotenvImported": false,
+      "rendererSupplied": false
+    },
+    "testResult": {
+      "vitestFiles": 1,
+      "vitestTests": 1,
+      "passed": true,
+      "pythonMathRecords": 106,
+      "productionFallbackMutationAcceptances": 19,
+      "localIndependentMutationRejections": 19
+    },
+    "scripts": {
+      "unverified-vitest.config.mts": "import { defineConfig } from 'vitest/config';\nimport { resolve } from 'node:path';\n\nexport default defineConfig({\n  envDir: false,\n  resolve: { alias: { '@': resolve(process.cwd(), 'src') } },\n  test: {\n    environment: 'node',\n    globals: false,\n    setupFiles: [],\n    include: ['.qa-artifacts/math-exam-engine-remaining-20261019/unverified-probe.test.ts'],\n    exclude: ['**/node_modules/**'],\n    fileParallelism: false,\n    maxWorkers: 1,\n    testTimeout: 60000,\n  },\n});\n",
+      "unverified-probe.test.ts": "import { describe, expect, it } from 'vitest';\nimport { writeFileSync } from 'node:fs';\nimport { execFileSync } from 'node:child_process';\nimport { examStudyFamilies, generateExamStudy, familyCoverage, requiredEvidenceChecks, studyManifestVersion, REQUIREMENT_BY_ID, EXAM_STUDY_PROFILES } from '@/lib/examStudy';\nimport { verifyDraft } from '@/lib/examStudy/evidence';\nimport type { StudyRequirementId } from '@/contracts/examStudy.contract';\n\nconst ids: StudyRequirementId[] = [\n  'algebra.candidate-verification', 'algebra.equality-truth',\n  'algebra.equation-classification', 'algebra.linear-model',\n  'algebra.linear-simplify', 'written.rectangle-domain',\n];\nconst seeds = [1, 2, 17, 71, 20261018, 20261019];\nconst output = '.qa-artifacts/math-exam-engine-remaining-20261019/unverified-runtime.json';\n\ndescribe('read-only current exam-study unverified audit', () => {\n  it('captures actual families, independent-gate negative controls and core formats', async () => {\n    const all = examStudyFamilies();\n    const requirements = [];\n    for (const id of ids) {\n      const course = id === 'written.rectangle-domain' ? '중3' : '중1';\n      const profileId = course === '중3' ? 'kyungmyung-m3' : 'kyungmyung-m1';\n      const mapped = all.filter(f => f.course === course && f.fulfills.some(r => r.requirement === id));\n      expect(mapped).toHaveLength(1);\n      const families = mapped.map(f => {\n        const samples = seeds.flatMap(seed => [0, 1].map(variant => {\n          const draft = f.generate(seed, variant);\n          const verification = verifyDraft(f, draft);\n          expect(verification.valid).toBe(true);\n          expect(verification.checks).toEqual([]);\n          expect(draft.figureSpec).toBeNull();\n          expect(familyCoverage(f, id, verification, draft)).toBe('unverified');\n          return {seed, variant, draft, verification, coverage: familyCoverage(f, id, verification, draft)};\n        }));\n        const base = samples[0]!.draft;\n        const wrongAnswer = id === 'algebra.candidate-verification' ? '$x=999999$'\n          : id === 'algebra.equality-truth' || id === 'algebra.equation-classification' ? '$0$개'\n          : id === 'algebra.linear-simplify' ? '$999999x+999999$'\n          : id === 'written.rectangle-domain' ? base.answer.replace(/세로 \\$\\d+/, '세로 $999999')\n          : '$999999$';\n        const negativeControls = [\n          {name: 'wrong-answer', replacementAnswer: wrongAnswer, draft: {...base, answer: wrongAnswer}},\n          {name: 'missing-printed-conditions', draft: {...base, content: '조건 없는 문항'}},\n          {name: 'unrelated-solution', draft: {...base, solution: '무관한 풀이 자리 표시자'}},\n          ...(base.rubric ? [{name: 'unrelated-rubric-expectations', draft: {...base, rubric: {...base.rubric, criteria: base.rubric.criteria.map(c => ({...c, expected: '무관한 설명'}))}}}] : []),\n        ].map(({name, draft}) => ({name, mutatedDraft: draft, verification: verifyDraft(f, draft), coverage: familyCoverage(f, id, verifyDraft(f, draft), draft)}));\n        for (const control of negativeControls) {\n          expect(control.verification.valid).toBe(true);\n          expect(control.verification.checks).toEqual([]);\n          expect(control.coverage).toBe('unverified');\n        }\n        return {id: f.id, version: f.version, title: f.title, course: f.course, source: f.source,\n          fulfills: f.fulfills, formats: f.formats, difficulties: f.difficulties,\n          representation: f.representation, figureKinds: f.figureKinds,\n          paramDomain: f.paramDomain, evidence: f.evidence ?? null,\n          catalogCoverage: familyCoverage(f, id), samples, negativeControls};\n      });\n      const coreRuns = [];\n      for (const seed of [71, 20261019]) for (const format of ['혼합', '단답형', '객관식', '서술형']) {\n        const request = {course, profileId, requirementIds: [id], count: 1, format, seed, maxPerFamily: 1};\n        const result = await generateExamStudy(request);\n        expect(result.requirements).toHaveLength(1);\n        expect(result.requirements[0]!.delivered).toBe(0);\n        expect(result.requirements[0]!.status).toBe(families[0]!.formats.includes(format as never) || format === '혼합' ? 'unverified' : 'unavailable');\n        for (const q of result.questions) {\n          expect(q.figureSpec).toBeNull();\n          expect(q.figureSvg).toBeNull();\n          expect(q.requirements).toEqual([]);\n        }\n        coreRuns.push({request, result});\n      }\n      requirements.push({id, requirement: REQUIREMENT_BY_ID.get(id), profile: EXAM_STUDY_PROFILES.find(p => p.id === profileId),\n        requiredEvidenceChecks: requiredEvidenceChecks(id), mappedFamilyCount: mapped.length, families, coreRuns});\n    }\n    const data = {schemaVersion: 1, capturedAt: new Date().toISOString(), node: process.version,\n      sourceCommit: execFileSync('git', ['rev-parse', 'HEAD'], {encoding: 'utf8'}).trim(),\n      manifestVersion: studyManifestVersion(all), totalFamilyRegistrations: all.length,\n      sourceRegistrationCounts: Object.fromEntries(['authored', 'elementary', 'middle', 'high', 'native'].map(source => [source, all.filter(f => f.source === source).length])),\n      directSeeds: seeds, directVariants: [0, 1], requirements};\n    writeFileSync(output, JSON.stringify(data, null, 2) + '\\n');\n  });\n});\n",
+      "check_unverified_math.py": "\"\"\"Independent exact arithmetic on captured printed drafts; no engine facts/imports.\"\"\"\nimport json\nimport re\nfrom collections import Counter\nfrom fractions import Fraction as F\nfrom math import isqrt\nfrom pathlib import Path\n\nROOT = Path(__file__).resolve().parent\n\n\ndef trim(p):\n    while len(p) > 1 and p[-1] == 0:\n        p.pop()\n    return p\n\n\ndef add(a, b):\n    return trim([(a[i] if i < len(a) else F(0)) + (b[i] if i < len(b) else F(0)) for i in range(max(len(a), len(b)))])\n\n\ndef neg(a):\n    return [-x for x in a]\n\n\ndef mul(a, b):\n    out = [F(0)] * (len(a) + len(b) - 1)\n    for i, x in enumerate(a):\n        for j, y in enumerate(b):\n            out[i + j] += x * y\n    return trim(out)\n\n\ndef polynomial(tex):\n    s = re.sub(r'\\\\(?:left|right)', '', tex)\n    s = s.replace('\\\\times', '*').replace('\\\\div', '/')\n    for _ in range(3):\n        s = re.sub(r'\\\\d?frac\\{([^{}]+)\\}\\{([^{}]+)\\}', r'((\\1)/(\\2))', s)\n    s = re.sub(r'\\^\\{(\\d+)\\}', r'^\\1', s)\n    s = re.sub(r'\\s+', '', s)\n    tokens = re.findall(r'\\d+(?:\\.\\d+)?|[xab()+*/^\\-]', s)\n    assert ''.join(tokens) == s, ('unsupported printed expression', tex, s)\n    at = 0\n\n    def atom():\n        nonlocal at\n        t = tokens[at]\n        at += 1\n        if t == '(':\n            out = total()\n            assert tokens[at] == ')'\n            at += 1\n            return out\n        if t in ('x', 'a', 'b'):\n            # a=b=t for universal equality checks.\n            return [F(0), F(1)]\n        assert re.fullmatch(r'\\d+(?:\\.\\d+)?', t), t\n        return [F(t)]\n\n    def power():\n        nonlocal at\n        out = atom()\n        if at < len(tokens) and tokens[at] == '^':\n            at += 1\n            n = int(tokens[at])\n            at += 1\n            factor = out\n            out = [F(1)]\n            for _ in range(n):\n                out = mul(out, factor)\n        return out\n\n    def unary():\n        nonlocal at\n        if tokens[at] in ('+', '-'):\n            sign = tokens[at]\n            at += 1\n            p = unary()\n            return neg(p) if sign == '-' else p\n        return power()\n\n    def product():\n        nonlocal at\n        out = unary()\n        while at < len(tokens):\n            op = tokens[at]\n            if op in ('*', '/'):\n                at += 1\n                p = unary()\n                if op == '/':\n                    assert len(p) == 1 and p[0] != 0\n                    out = [x / p[0] for x in out]\n                else:\n                    out = mul(out, p)\n            elif op == '(' or op in ('x', 'a', 'b') or re.fullmatch(r'\\d+(?:\\.\\d+)?', op):\n                out = mul(out, unary())\n            else:\n                break\n        return trim(out)\n\n    def total():\n        nonlocal at\n        out = product()\n        while at < len(tokens) and tokens[at] in ('+', '-'):\n            op = tokens[at]\n            at += 1\n            p = product()\n            out = add(out, p if op == '+' else neg(p))\n        return out\n\n    result = total()\n    assert at == len(tokens), (tex, tokens[at:])\n    return result\n\n\ndef value(poly, x):\n    return sum(c * x ** i for i, c in enumerate(poly))\n\n\ndef segs(text):\n    return re.findall(r'\\$([^$]+)\\$', text)\n\n\ndef sides(eq):\n    left, right = eq.split('=')\n    return polynomial(left), polynomial(right)\n\n\ndef difference(eq):\n    left, right = sides(eq)\n    return add(left, neg(right))\n\n\ndef pstr(poly):\n    return [str(v) for v in poly]\n\n\ndef stem_and_answer(draft):\n    choices = re.findall(r'^[①-⑤] (.+)$', draft['content'], re.M)\n    stem = re.split(r'\\n① ', draft['content'])[0]\n    answer = draft['answer']\n    if draft['questionType'] == '객관식':\n        assert len(choices) == 5 and answer in '①②③④⑤'\n        answer = choices['①②③④⑤'.index(answer)]\n    else:\n        assert not choices\n    return stem, answer, choices\n\n\ndef check(requirement, draft):\n    stem, answer, choices = stem_and_answer(draft)\n    result = {'mathValid': True, 'issues': [], 'choices': choices}\n    equations_checked = 0\n    rid = requirement.split('.')[-1]\n    if rid == 'linear-simplify':\n        target = polynomial(segs(stem)[-1])\n        actual = polynomial(segs(answer)[0])\n        assert target == actual, (stem, answer, target, actual)\n        solution_segments = segs(draft['solution'])\n        assert len(solution_segments) == 2\n        for expr in solution_segments:\n            assert polynomial(expr) == target\n            equations_checked += 1\n        result.update(coefficients=pstr(target), coefficientConstantSum=str(sum(target)),\n                      responseAsksCoefficientInterpretation=False)\n        if choices:\n            matches = [i + 1 for i, c in enumerate(choices) if polynomial(segs(c)[0]) == target]\n            assert len(matches) == 1\n            result['uniqueCorrectChoice'] = matches[0]\n    elif rid in ('equality-truth', 'equation-classification'):\n        items = segs(stem.split('\\n', 1)[1])\n        assert len(items) == 5\n        deltas = [difference(eq) for eq in items]\n        if rid == 'equality-truth':\n            truths = [p == [F(0)] for p in deltas]\n            witnesses = []\n            for eq, delta, truth in zip(items, deltas, truths):\n                witness = None if truth else next(x for x in [F(0), F(1), F(-1), F(2)] if value(delta, x) != 0)\n                witnesses.append({'statement': eq, 'differenceUnderAEqualsB': pstr(delta), 'universalTruth': truth,\n                                  'counterexampleAEqualsB': None if witness is None else str(witness),\n                                  'accidentallyTrueAtZero': not truth and value(delta, F(0)) == 0})\n            result.update(truthIds=[i + 1 for i, yes in enumerate(truths) if yes], statements=witnesses)\n            count = sum(truths)\n        else:\n            classes = ['identity' if p == [F(0)] else 'impossible' if len(p) == 1 else 'linear' if len(p) == 2 else 'quadratic' for p in deltas]\n            count = classes.count('linear')\n            result.update(classifications=[{'statement': eq, 'leftMinusRight': pstr(p), 'classification': cls} for eq, p, cls in zip(items, deltas, classes)],\n                          linearIds=[i + 1 for i, cls in enumerate(classes) if cls == 'linear'])\n        assert int(re.fullmatch(r'\\$(\\d+)\\$개', answer)[1]) == count\n        # The existing solution states a criterion and the count, rather than per-item explanations.\n        assert segs(draft['solution'])[-1] == str(count)\n        result['independentCount'] = count\n        if choices:\n            nums = [int(re.fullmatch(r'\\$(-?\\d+)\\$개', c)[1]) for c in choices]\n            matches = [i + 1 for i, n in enumerate(nums) if n == count]\n            assert len(matches) == 1\n            result['uniqueCorrectChoice'] = matches[0]\n            for i, n in enumerate(nums):\n                if not 0 <= n <= 5:\n                    result['issues'].append({'kind': 'out-of-range-count-distractor', 'choice': i + 1, 'value': n, 'statementCount': 5})\n    elif rid == 'candidate-verification':\n        equation = segs(stem)[0]\n        delta = difference(equation)\n        assert len(delta) == 2 and delta[1] != 0\n        root = -delta[0] / delta[1]\n        actual = F(re.fullmatch(r'\\$x=(-?\\d+)\\$', answer)[1])\n        assert actual == root\n        solution_equations = [s for s in segs(draft['solution']) if '=' in s]\n        assert len(solution_equations) == 3\n        integer_left, integer_right = sides(solution_equations[0])\n        source_left, source_right = sides(equation)\n        assert integer_left == [v * 100 for v in source_left]\n        assert integer_right == [v * 100 for v in source_right]\n        for eq in solution_equations:\n            p = difference(eq)\n            assert len(p) == 2 and p[1] != 0 and value(p, root) == 0\n            equations_checked += 1\n        result.update(equation=equation, root=str(root), originalLeft=str(value(source_left, root)), originalRight=str(value(source_right, root)),\n                      distinctEquationCandidatePairsPresent=False)\n        if choices:\n            roots = [F(re.fullmatch(r'\\$x=(-?\\d+)\\$', c)[1]) for c in choices]\n            matches = [i + 1 for i, r in enumerate(roots) if value(delta, r) == 0]\n            assert len(matches) == 1\n            result['uniqueCorrectChoice'] = matches[0]\n    elif rid == 'linear-model':\n        nums = [int(n) for n in segs(stem)]\n        assert len(nums) == 4\n        a, b, c, gap = nums\n        sign = 1 if '크다고' in stem else -1\n        assert '크다고' in stem or '작다고' in stem\n        assert a != c\n        root = F(sign * gap - b, a - c)\n        actual = F(re.fullmatch(r'\\$(-?\\d+)\\$', answer)[1])\n        assert root == actual\n        eq = next(s for s in segs(draft['solution']) if '=' in s)\n        left, right = sides(eq)\n        assert left == [F(b), F(a)]\n        assert right == [F(sign * gap), F(c)]\n        assert a * root + b - c * root == sign * gap\n        assert segs(draft['solution'])[-1] == f'x={root}'\n        equations_checked += 2\n        result.update(root=str(root), relation='greater' if sign > 0 else 'less',\n                      originalValues=[str(a * root + b), str(c * root)], signedDifference=str(sign * gap),\n                      solutionIncludesOriginalContextSubstitution=False)\n        if choices:\n            nums = [F(re.fullmatch(r'\\$(-?\\d+)\\$', c)[1]) for c in choices]\n            matches = [i + 1 for i, r in enumerate(nums) if a * r + b - c * r == sign * gap]\n            assert len(matches) == 1\n            result['uniqueCorrectChoice'] = matches[0]\n    elif rid == 'rectangle-domain':\n        plain = stem.replace('$', '').replace('\\\\,\\\\mathrm{cm}', 'cm')\n        delta = int(re.search(r'세로보다 (\\d+)cm', plain)[1])\n        area = int(re.search(r'넓이는 (\\d+)cm\\^2', plain)[1])\n        discriminant = delta * delta + 4 * area\n        sq = isqrt(discriminant)\n        assert sq * sq == discriminant\n        roots = sorted([F(-delta - sq, 2), F(-delta + sq, 2)])\n        valid = [r for r in roots if r > 0 and r + delta > 0]\n        assert len(valid) == 1\n        width, length = valid[0], valid[0] + delta\n        assert length - width == delta and width * length == area\n        nums = re.findall(r'\\$(-?\\d+)(?:\\\\,\\\\mathrm\\{cm\\})?\\$', answer)\n        assert list(map(F, nums)) == [width, length, roots[1], roots[0]], (answer, nums, roots)\n        model = draft['solution'].split('채점 기준')[0]\n        assert '$x>0$' in model and '만족하지 않아 제외' in model\n        eqs = [s for s in segs(model) if '=' in s]\n        model_equations = []\n        for eq in eqs:\n            parts = eq.split('=')\n            ps = list(map(polynomial, parts))\n            if any(len(p) > 1 for p in ps):\n                # equations x=root are root reports, not identities true of both roots.\n                if re.fullmatch(r'x=-?\\d+', eq):\n                    root = F(eq.split('=')[1])\n                    assert root in roots\n                else:\n                    for r in roots:\n                        assert len({value(p, r) for p in ps}) == 1\n            else:\n                assert len({p[0] for p in ps}) == 1\n            model_equations.append(eq)\n            equations_checked += 1\n        rubric = draft['rubric']\n        assert rubric['totalPoints'] == 6\n        assert [(c['criterionId'], c['points']) for c in rubric['criteria']] == [('model', 2), ('roots', 2), ('check', 2)]\n        expected = {c['criterionId']: c['expected'] for c in rubric['criteria']}\n        assert f'x(x+{delta})={area}' in expected['model']\n        assert str(roots[0]) in expected['roots'] and str(roots[1]) in expected['roots']\n        assert all(c['alternatives'] and c['errors'] for c in rubric['criteria'])\n        assert '단위' in expected['check'] and '차와 곱' in expected['check']\n        result.update(delta=delta, area=area, allRoots=list(map(str, roots)), validRoots=list(map(str, valid)),\n                      dimensions=list(map(str, [width, length])), numericAndModelEquations=model_equations,\n                      rubricMeaningMatchesStaticModel=True, timeModelPresent=False)\n    else:\n        raise ValueError(requirement)\n    result['solutionMathSegmentsChecked'] = equations_checked\n    return result\n\n\ndef main():\n    source = json.loads((ROOT / 'unverified-runtime.json').read_text())\n    records = []\n    checker_negative_controls = []\n    for req in source['requirements']:\n        family = req['families'][0]\n        for control in family['negativeControls']:\n            if control['name'] not in ('wrong-answer', 'missing-printed-conditions', 'unrelated-solution', 'unrelated-rubric-expectations'):\n                continue\n            rejected = False\n            try:\n                check(req['id'], control['mutatedDraft'])\n            except (AssertionError, IndexError, TypeError, ValueError, AttributeError, StopIteration):\n                rejected = True\n            checker_negative_controls.append({'requirement': req['id'], 'mutation': control['name'], 'independentProbeRejected': rejected,\n                                              'productionFallbackValid': control['verification']['valid']})\n            assert rejected, ('Independent probe did not reject mutation', req['id'], control['name'])\n        for s in family['samples']:\n            records.append({'requirement': req['id'], 'origin': 'direct', 'familyId': family['id'], 'seed': s['seed'], 'variant': s['variant'],\n                            'result': check(req['id'], s['draft'])})\n        for run in req['coreRuns']:\n            for q in run['result']['questions']:\n                records.append({'requirement': req['id'], 'origin': 'core', 'requestSeed': run['request']['seed'], 'format': run['request']['format'],\n                                'familyId': q['familyId'], 'seed': q['seed'], 'variant': q['variant'], 'contentDigest': q['contentDigest'],\n                                'result': check(req['id'], q)})\n    issues = [{**{k: v for k, v in r.items() if k != 'result'}, 'issues': r['result']['issues']} for r in records if r['result']['issues']]\n    summary = {'checkedRecords': len(records), 'origins': dict(Counter(r['origin'] for r in records)),\n               'recordsByRequirement': dict(Counter(r['requirement'] for r in records)),\n               'mathFailures': 0, 'mcRecords': sum(r.get('format') == '객관식' for r in records),\n               'qualityIssueRecords': len(issues), 'qualityIssues': issues,\n               'limitations': ['Printed-template parser only; sampled seeds are not domain exhaustion.',\n                              'No student-answer grading, figure rendering, real UI/API/authentication, print, or difficulty calibration.']}\n    summary['independentProbeNegativeControlsRejected'] = len(checker_negative_controls)\n    out = {'summary': summary, 'checkerNegativeControls': checker_negative_controls, 'records': records}\n    (ROOT / 'unverified-independent-math.json').write_text(json.dumps(out, ensure_ascii=False, indent=2) + '\\n')\n    print(json.dumps(summary, ensure_ascii=False, indent=2))\n\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "artifactHashes": {
+      ".qa-artifacts/math-exam-engine-remaining-20261019/unverified-vitest.config.mts": "bcc0e5c0e109bba3bfbe547758f7bb6f5311d74665bbe259372541ff79b19761",
+      ".qa-artifacts/math-exam-engine-remaining-20261019/unverified-probe.test.ts": "82406fe71e25afd73fa08e907bca64d4fb2a077266ed237e83a1727e7fb0ca0f",
+      ".qa-artifacts/math-exam-engine-remaining-20261019/check_unverified_math.py": "71e65a935be060fc005cbd78ab515b7930fd5904b68402d067e467873e7c4f8c",
+      ".qa-artifacts/math-exam-engine-remaining-20261019/unverified-runtime.json": "8b6375773bc31f91602ca7eb69aa8691c86be7d3a222ae57ed5223029b1bbbf9",
+      ".qa-artifacts/math-exam-engine-remaining-20261019/unverified-independent-math.json": "bb94c90015d1f345237f9b8be3d41377ab6cfda95c45951f243528a15ec0dc42",
+      ".qa-artifacts/math-exam-engine-remaining-20261019/unverified-vitest.log": "b8f7f7885ec88811098cdd49c08aae4422b0c592ac9caafafb1d5181fcd0bf56",
+      ".qa-artifacts/math-exam-engine-remaining-20261019/unverified-independent-math.log": "2797231fa6f7d21cac24fa99c1e63b7e006a10d2bee4ca4e11f55ec86ab0cec2"
+    }
+  },
+  "sourceHashes": {
+    "src/lib/examStudy/requirements.ts": "060a46bcd488aaeb138af98ef095887a141f2689d5a499e346e6daab4d0bdde1",
+    "src/lib/examStudy/profiles.ts": "25370538b3d290cfc0bcf078db42916864bd576b45b7bfdd809b1a9225879de6",
+    "src/lib/examStudy/adapters.ts": "3f0d36d3d8bda2233eb9c8941af5d4d23580cf6ffad4a99f9feb11b415deeba5",
+    "src/lib/examStudy/legacyVerification.ts": "2ea685576e5a77f20a534895b353ca225723319a2a4e4c669273baba504e5904",
+    "src/lib/examStudy/evidence.ts": "0208e4d17853e282dccda015eef76b53eadee86e89094ac1f01a73489fa8708b",
+    "src/lib/examStudy/generate.ts": "9f1e7349690692b01a28fbbdee73a34a45b1a6f16ed30fe2e5ca5bc07cd68206",
+    "src/lib/examStudy/registry.ts": "0062167b48cd9e6ff19a65d5b6810e9283041c40a97335da2a4ac5d74712a618",
+    "src/lib/examStudy/identity.ts": "b629b2b9118f264a956e32036506333a600c467129cb30059b391d75c8a352d3",
+    "src/contracts/examStudy.contract.ts": "c2ba339ba930dc7cf96404276194b34827ae52a0035874a437626d861155f42c",
+    "src/lib/middle/generate.ts": "bd8bf15b0c98a6c2e337edfc10be39bc0fcdd851a5ffe9a8f0bfa2b848f5ccc4",
+    "src/lib/middle/m1Expr.ts": "cd488273f876fb83aecdfec88c351db831fdd3593d49e4801e0dda2536e34b47",
+    "src/lib/middle/m1Book1.ts": "a2c8dd593e019e6f8ac04cc28ed6ec036885014f62b5bc946dbcec20fefd447c",
+    "src/lib/middle/m1LinearApply.ts": "f7071cb8c6bfa47db9db23eaf5d1f8c54256701dbd47399b338c3d1694cd4cca",
+    "src/lib/engine/nativeDescriptive20261018.ts": "ab312bcf46eaddc2b934feb88f370f6e83969b774e1e03e7dc48d98ba19d1483",
+    "src/lib/engine/deriveFormats.ts": "b81f8c63fda6eea1a8e02ddc161707e6484a447383ddbf63fd02ad2a05a54267",
+    "src/__tests__/unit/middleM1Expr.test.ts": "9805e805367218907d870c2fe6faf0a9924d49a10b3e71afda47ef723eea8c0a",
+    "src/__tests__/unit/middleM1Extra.test.ts": "23eea5dc10a4359a1ecedf1892c76e746a30f75d56a4d6ad4793d2f07b3309e5",
+    "src/__tests__/unit/middleLinearApply.test.ts": "c44b39a10dbb9b012e478acb73ea31a850ca75a862f81fdf083ef4d07c54ec35",
+    "src/__tests__/unit/nativeDescriptive20261018.test.ts": "db4868e501f8cf5eb54c9436608c30cfc621ae893f7920c2075a17bae5c77d00",
+    "src/__tests__/unit/examStudyCoreLegacy.test.ts": "c374cacdb592dc5acf7055c4bcc4c4cd15beb467378290c18a1166c6f1f64cb7",
+    "src/lib/middle/m3Quad.ts": "57b3c970dbc41c1395ce0281bd4a6e9b0f5aa54ea7555424cbf7fefbfe173d5a",
+    "src/lib/middle/m3Reinforcement20261018.ts": "d6c0a2f8cca05452226b9329397a2eded5d6a3ed3882dd03337ac7fbf2dfd830",
+    "docs/reports/math-engine-study-readiness-20261018/OWNER-CRITERIA.md": "8f2ee3a31bf617285203fd83307f3ff8e9491d25bfc5ab05bff1e5d3c0bb8462",
+    "docs/reports/math-engine-study-readiness-20261018/study-structures.md": "bf7034e56a2b61311e0ecc2135b32ac6c46a87cb0cf6463a60afcae473d018fe",
+    "docs/reports/exam-engine-capacity-20261018/benchmark-engine-gap.json": "199a61ca906c918ca020418bce7b5b96ca4edc02c71c87217820b0fa619e58e7",
+    "docs/reports/math-exam-engine-upgrade-20261018/README.md": "c4cf0800280fc5c4e19492162f08a2336190e990ad3dfdb60a3388c78200d3f1",
+    "docs/reports/math-exam-engine-upgrade-20261018/core-implementation.md": "a9a260cf8aae2ed25b5523251f87d410d63817dc1aa0ddd078be9ad97d0e4c4a",
+    "docs/reports/math-exam-engine-upgrade-20261018/verification.json": "d4530e2f9f3a077227e1b3c25298a4936d918857b75c9e22d226e27f5aeaa588"
+  },
+  "sourceReferences": [
+    "docs/reports/math-engine-study-readiness-20261018/OWNER-CRITERIA.md",
+    "docs/reports/math-engine-study-readiness-20261018/study-structures.md",
+    "docs/reports/exam-engine-capacity-20261018/benchmark-engine-gap.json",
+    "docs/reports/math-exam-engine-upgrade-20261018/README.md",
+    "docs/reports/math-exam-engine-upgrade-20261018/core-implementation.md",
+    "docs/reports/math-exam-engine-upgrade-20261018/verification.json"
+  ],
+  "limitations": [
+    "각 mapped family의 6 seeds × 2 variants만 직접 확인했다. native 12개 출력 중 인쇄 본문 11개이며 중복을 숨기지 않는다.",
+    "106은 출력 검산 레코드 수이고 재포장·중복을 포함하므로 서로 다른 문제 수 또는 생산 용량으로 쓰지 않는다.",
+    "정확한 유리수/다항식 검산은 관측된 발문에 대한 증거이며 모든 seed·숨은 생성 영역의 증명이 아니다.",
+    "기존 테스트 파일은 정적으로 읽었다. 이번 fresh 실행은 JSON 내 임시 probe와 Python checker만이다.",
+    "6요구는 text이고 생성 소스에도 필요한 figure가 없어 renderer를 호출하지 않았다; 그림 출력 검증을 주장하지 않는다.",
+    "실제 API/권한/UI/학생 응답 자동 채점/인쇄·배포·DB 적재는 이 worker 실행 범위 밖이다.",
+    "측정 난도·학교 전체 대응률/적중률·학생 학습 효과·교육과정 전수 정합성은 검증하지 않았다.",
+    "원문/이미지/비공개 artifact를 읽거나 재현하지 않았고 공개 추상 비교와 자작 엔진 출력만 기록했다."
+  ],
+  "runtimeEvidence": {
+    "artifactPath": ".qa-artifacts/math-exam-engine-remaining-20261019/unverified-runtime.json",
+    "sha256": "8b6375773bc31f91602ca7eb69aa8691c86be7d3a222ae57ed5223029b1bbbf9",
+    "capturedAt": "2026-10-19T00:34:24.819Z",
+    "sourceCommit": "f8c55083bfb529b95c89a70d9ce95c915264b402",
+    "manifestVersion": "exam-study-manifest-afaac8127d86b8d051ad4b37",
+    "summary": {
+      "directDraws": 72,
+      "coreRequests": 48,
+      "coreDeliveredRecords": 34,
+      "mappedEligibleRegistrations": 6,
+      "directSeeds": [
+        1,
+        2,
+        17,
+        71,
+        20261018,
+        20261019
+      ],
+      "directVariants": [
+        0,
+        1
+      ],
+      "rendererUsed": false
+    },
+    "representativeRequirements": [
+      {
+        "requirementId": "algebra.candidate-verification",
+        "familyId": "legacy:mid:1-1|일차방정식의 풀이|11",
+        "familyVersion": "9cfbb8683-r1",
+        "catalogCoverage": "unverified",
+        "requiredGateChecks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "evidence": null,
+        "directDrawCount": 12,
+        "negativeControlAcceptances": 3,
+        "representativeDirectSample": {
+          "seed": 1,
+          "variant": 0,
+          "draft": {
+            "content": "다음 일차방정식을 푸시오.\n$0.2x+0.75=0.1x+0.85$",
+            "answer": "$x=1$",
+            "solution": "계수를 정수로 고치기 위해 양변에 $100$을 곱하면 $20x+75=10x+85$이다.\n이항하여 정리하면 $10x=10$이다.\n따라서 $x=1$이다.",
+            "questionType": "단답형",
+            "difficulty": "응용",
+            "difficultyBasis": [
+              "기존 유형의 실제 출력 갈래; 학교 난도와의 교정은 미측정"
+            ],
+            "parameters": {
+              "nativeTaskDigest": "1aff339f7f2fa703e7c61a256005c9934c2c0a74c5bc2de34d76d902e8993991"
+            },
+            "figureSpec": null
+          },
+          "verification": {
+            "valid": true,
+            "checks": [],
+            "errors": []
+          },
+          "coverage": "unverified"
+        },
+        "coreRequestTemplate": {
+          "course": "중1",
+          "profileId": "kyungmyung-m1",
+          "requirementIds": [
+            "algebra.candidate-verification"
+          ],
+          "count": 1,
+          "format": "혼합",
+          "seed": 71,
+          "maxPerFamily": 1
+        },
+        "coreFormatSummary": [
+          {
+            "format": "혼합",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              1,
+              1
+            ],
+            "generationStatuses": [
+              "partial",
+              "partial"
+            ],
+            "requirementStatuses": [
+              "unverified",
+              "unverified"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          },
+          {
+            "format": "단답형",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              1,
+              1
+            ],
+            "generationStatuses": [
+              "partial",
+              "partial"
+            ],
+            "requirementStatuses": [
+              "unverified",
+              "unverified"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          },
+          {
+            "format": "객관식",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              1,
+              1
+            ],
+            "generationStatuses": [
+              "partial",
+              "partial"
+            ],
+            "requirementStatuses": [
+              "unverified",
+              "unverified"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          },
+          {
+            "format": "서술형",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              0,
+              0
+            ],
+            "generationStatuses": [
+              "unavailable",
+              "unavailable"
+            ],
+            "requirementStatuses": [
+              "unavailable",
+              "unavailable"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "requirementId": "algebra.equality-truth",
+        "familyId": "legacy:mid:1-1|일차방정식의 풀이|06",
+        "familyVersion": "9cfbb8683-r1",
+        "catalogCoverage": "unverified",
+        "requiredGateChecks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "evidence": null,
+        "directDrawCount": 12,
+        "negativeControlAcceptances": 3,
+        "representativeDirectSample": {
+          "seed": 1,
+          "variant": 0,
+          "draft": {
+            "content": "$a=b$일 때, 다음 중 옳은 것의 개수를 구하시오.\n$-4a=3b$, $a+8=b+8$, $-2a=-6b$, $\\dfrac{a}{7}=\\dfrac{b}{7}$, $6a+6=6b+6$",
+            "answer": "$3$개",
+            "solution": "등식의 양변에 같은 수를 더하거나 빼거나 곱하거나 $0$이 아닌 같은 수로 나누어도 등식은 성립한다.\n양변에 같은 연산을 한 것만 옳으므로 옳은 것은 $3$개이다.",
+            "questionType": "단답형",
+            "difficulty": "기본",
+            "difficultyBasis": [
+              "기존 유형의 실제 출력 갈래; 학교 난도와의 교정은 미측정"
+            ],
+            "parameters": {
+              "nativeTaskDigest": "963a6ae13e13818056e1a3c3f3b86b8d5475f31d0bf4fad5bac3ee712872c60a"
+            },
+            "figureSpec": null
+          },
+          "verification": {
+            "valid": true,
+            "checks": [],
+            "errors": []
+          },
+          "coverage": "unverified"
+        },
+        "coreRequestTemplate": {
+          "course": "중1",
+          "profileId": "kyungmyung-m1",
+          "requirementIds": [
+            "algebra.equality-truth"
+          ],
+          "count": 1,
+          "format": "혼합",
+          "seed": 71,
+          "maxPerFamily": 1
+        },
+        "coreFormatSummary": [
+          {
+            "format": "혼합",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              1,
+              1
+            ],
+            "generationStatuses": [
+              "partial",
+              "partial"
+            ],
+            "requirementStatuses": [
+              "unverified",
+              "unverified"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          },
+          {
+            "format": "단답형",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              1,
+              1
+            ],
+            "generationStatuses": [
+              "partial",
+              "partial"
+            ],
+            "requirementStatuses": [
+              "unverified",
+              "unverified"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          },
+          {
+            "format": "객관식",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              1,
+              1
+            ],
+            "generationStatuses": [
+              "partial",
+              "partial"
+            ],
+            "requirementStatuses": [
+              "unverified",
+              "unverified"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          },
+          {
+            "format": "서술형",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              0,
+              0
+            ],
+            "generationStatuses": [
+              "unavailable",
+              "unavailable"
+            ],
+            "requirementStatuses": [
+              "unavailable",
+              "unavailable"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "requirementId": "algebra.equation-classification",
+        "familyId": "legacy:mid:1-1|일차방정식의 풀이|09",
+        "familyVersion": "9cfbb8683-r1",
+        "catalogCoverage": "unverified",
+        "requiredGateChecks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "evidence": null,
+        "directDrawCount": 12,
+        "negativeControlAcceptances": 3,
+        "representativeDirectSample": {
+          "seed": 1,
+          "variant": 0,
+          "draft": {
+            "content": "다음 중 일차방정식인 것의 개수를 구하시오.\n$-5x+1=-4x+6$, $-7x+4=3x+2$, $-6\\left(x+6\\right)=-6x-36$, $-5\\left(x+2\\right)=-5x-10$, $-4x+8=-2x+9$",
+            "answer": "$3$개",
+            "solution": "모든 항을 좌변으로 옮겨 정리했을 때 $ax+b=0$ ($a\\ne0$)의 꼴이 되는 것이 일차방정식이다.\n이차항이 남거나 $x$항이 없어지는 것은 일차방정식이 아니므로 일차방정식은 $3$개이다.",
+            "questionType": "단답형",
+            "difficulty": "응용",
+            "difficultyBasis": [
+              "기존 유형의 실제 출력 갈래; 학교 난도와의 교정은 미측정"
+            ],
+            "parameters": {
+              "nativeTaskDigest": "698b30f92ed1ba34ce936881fbad6c22503813153973232d85c2310814a8d12f"
+            },
+            "figureSpec": null
+          },
+          "verification": {
+            "valid": true,
+            "checks": [],
+            "errors": []
+          },
+          "coverage": "unverified"
+        },
+        "coreRequestTemplate": {
+          "course": "중1",
+          "profileId": "kyungmyung-m1",
+          "requirementIds": [
+            "algebra.equation-classification"
+          ],
+          "count": 1,
+          "format": "혼합",
+          "seed": 71,
+          "maxPerFamily": 1
+        },
+        "coreFormatSummary": [
+          {
+            "format": "혼합",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              1,
+              1
+            ],
+            "generationStatuses": [
+              "partial",
+              "partial"
+            ],
+            "requirementStatuses": [
+              "unverified",
+              "unverified"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          },
+          {
+            "format": "단답형",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              1,
+              1
+            ],
+            "generationStatuses": [
+              "partial",
+              "partial"
+            ],
+            "requirementStatuses": [
+              "unverified",
+              "unverified"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          },
+          {
+            "format": "객관식",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              1,
+              1
+            ],
+            "generationStatuses": [
+              "partial",
+              "partial"
+            ],
+            "requirementStatuses": [
+              "unverified",
+              "unverified"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          },
+          {
+            "format": "서술형",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              0,
+              0
+            ],
+            "generationStatuses": [
+              "unavailable",
+              "unavailable"
+            ],
+            "requirementStatuses": [
+              "unavailable",
+              "unavailable"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "requirementId": "algebra.linear-model",
+        "familyId": "legacy:mid:1-1|일차방정식의 활용|01",
+        "familyVersion": "9cfbb8683-r1",
+        "catalogCoverage": "unverified",
+        "requiredGateChecks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "evidence": null,
+        "directDrawCount": 12,
+        "negativeControlAcceptances": 3,
+        "representativeDirectSample": {
+          "seed": 1,
+          "variant": 0,
+          "draft": {
+            "content": "어떤 수에 $2$를 곱한 후 $9$를 더한 수는 어떤 수의 $5$배보다 $15$만큼 작다고 한다. 어떤 수를 구하시오.",
+            "answer": "$8$",
+            "solution": "어떤 수를 $x$라 하면 $2x+9=5x-15$이다.\n정리하여 풀면 $x=8$이다.",
+            "questionType": "단답형",
+            "difficulty": "기본",
+            "difficultyBasis": [
+              "기존 유형의 실제 출력 갈래; 학교 난도와의 교정은 미측정"
+            ],
+            "parameters": {
+              "nativeTaskDigest": "0d2995eecaf2b33170b85d9d9a2ab7d9e6cd3ce5ccf811e045991a4db73ecb77"
+            },
+            "figureSpec": null
+          },
+          "verification": {
+            "valid": true,
+            "checks": [],
+            "errors": []
+          },
+          "coverage": "unverified"
+        },
+        "coreRequestTemplate": {
+          "course": "중1",
+          "profileId": "kyungmyung-m1",
+          "requirementIds": [
+            "algebra.linear-model"
+          ],
+          "count": 1,
+          "format": "혼합",
+          "seed": 71,
+          "maxPerFamily": 1
+        },
+        "coreFormatSummary": [
+          {
+            "format": "혼합",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              1,
+              1
+            ],
+            "generationStatuses": [
+              "partial",
+              "partial"
+            ],
+            "requirementStatuses": [
+              "unverified",
+              "unverified"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          },
+          {
+            "format": "단답형",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              1,
+              1
+            ],
+            "generationStatuses": [
+              "partial",
+              "partial"
+            ],
+            "requirementStatuses": [
+              "unverified",
+              "unverified"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          },
+          {
+            "format": "객관식",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              1,
+              1
+            ],
+            "generationStatuses": [
+              "partial",
+              "partial"
+            ],
+            "requirementStatuses": [
+              "unverified",
+              "unverified"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          },
+          {
+            "format": "서술형",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              0,
+              0
+            ],
+            "generationStatuses": [
+              "unavailable",
+              "unavailable"
+            ],
+            "requirementStatuses": [
+              "unavailable",
+              "unavailable"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "requirementId": "algebra.linear-simplify",
+        "familyId": "legacy:mid:1-1|문자의 사용과 식의 계산|13",
+        "familyVersion": "9cfbb8683-r1",
+        "catalogCoverage": "unverified",
+        "requiredGateChecks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "evidence": null,
+        "directDrawCount": 12,
+        "negativeControlAcceptances": 3,
+        "representativeDirectSample": {
+          "seed": 1,
+          "variant": 0,
+          "draft": {
+            "content": "다음 식을 간단히 하시오.\n$(-4x-5)+4(6x+8)$",
+            "answer": "$20x+27$",
+            "solution": "괄호를 풀면 $-4x-5+24x+32$이다.\n동류항끼리 모으면 $20x+27$이다.",
+            "questionType": "단답형",
+            "difficulty": "응용",
+            "difficultyBasis": [
+              "기존 유형의 실제 출력 갈래; 학교 난도와의 교정은 미측정"
+            ],
+            "parameters": {
+              "nativeTaskDigest": "bd2e71e214929ab556bb0078f553522eb6a0917b930ff8d247cfbc00fd956a51"
+            },
+            "figureSpec": null
+          },
+          "verification": {
+            "valid": true,
+            "checks": [],
+            "errors": []
+          },
+          "coverage": "unverified"
+        },
+        "coreRequestTemplate": {
+          "course": "중1",
+          "profileId": "kyungmyung-m1",
+          "requirementIds": [
+            "algebra.linear-simplify"
+          ],
+          "count": 1,
+          "format": "혼합",
+          "seed": 71,
+          "maxPerFamily": 1
+        },
+        "coreFormatSummary": [
+          {
+            "format": "혼합",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              1,
+              1
+            ],
+            "generationStatuses": [
+              "partial",
+              "partial"
+            ],
+            "requirementStatuses": [
+              "unverified",
+              "unverified"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          },
+          {
+            "format": "단답형",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              1,
+              1
+            ],
+            "generationStatuses": [
+              "partial",
+              "partial"
+            ],
+            "requirementStatuses": [
+              "unverified",
+              "unverified"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          },
+          {
+            "format": "객관식",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              1,
+              1
+            ],
+            "generationStatuses": [
+              "partial",
+              "partial"
+            ],
+            "requirementStatuses": [
+              "unverified",
+              "unverified"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          },
+          {
+            "format": "서술형",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              0,
+              0
+            ],
+            "generationStatuses": [
+              "unavailable",
+              "unavailable"
+            ],
+            "requirementStatuses": [
+              "unavailable",
+              "unavailable"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "requirementId": "written.rectangle-domain",
+        "familyId": "legacy:native:m3-quadratic-domain-r1",
+        "familyVersion": "9cfbb8683-r1",
+        "catalogCoverage": "unverified",
+        "requiredGateChecks": [
+          "independent-solution",
+          "essential-conditions",
+          "native-rubric"
+        ],
+        "evidence": null,
+        "directDrawCount": 12,
+        "negativeControlAcceptances": 4,
+        "representativeDirectSample": {
+          "seed": 1,
+          "variant": 0,
+          "draft": {
+            "content": "직사각형 종이의 가로는 세로보다 $2\\,\\mathrm{cm}$ 길고 넓이는 $143\\,\\mathrm{cm}^2$입니다.\n\n(1) 세로를 $x\\,\\mathrm{cm}$로 놓고 $x$의 조건과 넓이에 관한 이차방정식을 세우세요. (2) 방정식의 두 해를 모두 구하고 이 상황에 쓸 수 없는 해를 제외하는 이유를 설명하세요. (3) 가로와 세로를 정하고 길이 차와 넓이를 원래 조건에 대입해 확인하세요.",
+            "answer": "세로 $11\\,\\mathrm{cm}$, 가로 $13\\,\\mathrm{cm}$; 두 해 $11$, $-13$ 중 음수 해 제외.",
+            "solution": "길이이므로 $x>0$이고 가로는 $x+2$입니다. $x(x+2)=143$, 즉 $x^2+2x-143=0$입니다. $(x-11)(x+13)=0$이므로 $x=11$ 또는 $x=-13$입니다. 음수 해는 길이의 조건 $x>0$을 만족하지 않아 제외합니다. 세로 $11\\,\\mathrm{cm}$, 가로 $13\\,\\mathrm{cm}$이고 $13-11=2$, $11\\times13=143$이므로 두 조건에 모두 맞습니다.\n\n채점 기준 (총 6점)\nmodel (2점): x>0, 가로 x+2, x(x+2)=143를 연결 / 허용 다른 풀이: 가로를 미지수로 놓고 그에 맞는 정의역·식 제시 / 흔한 오류: 넓이를 길이 합으로 모델링\nroots (2점): 두 해 11, -13를 구하고 길이 조건으로 음수 제외 / 허용 다른 풀이: 근의 공식 또는 완전제곱식 사용 / 흔한 오류: 음수라는 이유 없이 한 해를 누락하거나 절댓값으로 변경\ncheck (2점): 가로·세로 및 단위를 쓰고 차와 곱 모두 확인 / 허용 다른 풀이: 원래 문장 두 조건에 각각 대입 / 흔한 오류: 방정식만 확인하고 가로 길이나 원조건 검산 생략",
+            "rubric": {
+              "totalPoints": 6,
+              "criteria": [
+                {
+                  "criterionId": "model",
+                  "points": 2,
+                  "expected": "x>0, 가로 x+2, x(x+2)=143를 연결",
+                  "alternatives": [
+                    "가로를 미지수로 놓고 그에 맞는 정의역·식 제시"
+                  ],
+                  "errors": [
+                    "넓이를 길이 합으로 모델링"
+                  ]
+                },
+                {
+                  "criterionId": "roots",
+                  "points": 2,
+                  "expected": "두 해 11, -13를 구하고 길이 조건으로 음수 제외",
+                  "alternatives": [
+                    "근의 공식 또는 완전제곱식 사용"
+                  ],
+                  "errors": [
+                    "음수라는 이유 없이 한 해를 누락하거나 절댓값으로 변경"
+                  ]
+                },
+                {
+                  "criterionId": "check",
+                  "points": 2,
+                  "expected": "가로·세로 및 단위를 쓰고 차와 곱 모두 확인",
+                  "alternatives": [
+                    "원래 문장 두 조건에 각각 대입"
+                  ],
+                  "errors": [
+                    "방정식만 확인하고 가로 길이나 원조건 검산 생략"
+                  ]
+                }
+              ]
+            },
+            "questionType": "서술형",
+            "difficulty": "응용",
+            "difficultyBasis": [
+              "미지수·방정식·두 해·정의역·원조건 확인을 분리"
+            ],
+            "parameters": {
+              "nativeTaskDigest": "a7c9f75482ae9bd2a0e02507649edf278777093c12fe5b78db290fdce224f015"
+            },
+            "figureSpec": null
+          },
+          "verification": {
+            "valid": true,
+            "checks": [],
+            "errors": []
+          },
+          "coverage": "unverified"
+        },
+        "coreRequestTemplate": {
+          "course": "중3",
+          "profileId": "kyungmyung-m3",
+          "requirementIds": [
+            "written.rectangle-domain"
+          ],
+          "count": 1,
+          "format": "혼합",
+          "seed": 71,
+          "maxPerFamily": 1
+        },
+        "coreFormatSummary": [
+          {
+            "format": "혼합",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              1,
+              1
+            ],
+            "generationStatuses": [
+              "partial",
+              "partial"
+            ],
+            "requirementStatuses": [
+              "unverified",
+              "unverified"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          },
+          {
+            "format": "단답형",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              0,
+              0
+            ],
+            "generationStatuses": [
+              "unavailable",
+              "unavailable"
+            ],
+            "requirementStatuses": [
+              "unavailable",
+              "unavailable"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          },
+          {
+            "format": "객관식",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              0,
+              0
+            ],
+            "generationStatuses": [
+              "unavailable",
+              "unavailable"
+            ],
+            "requirementStatuses": [
+              "unavailable",
+              "unavailable"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          },
+          {
+            "format": "서술형",
+            "requestSeeds": [
+              71,
+              20261019
+            ],
+            "deliveredCounts": [
+              1,
+              1
+            ],
+            "generationStatuses": [
+              "partial",
+              "partial"
+            ],
+            "requirementStatuses": [
+              "unverified",
+              "unverified"
+            ],
+            "fullDeliveredCounts": [
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "independentMathEvidence": {
+    "artifactPath": ".qa-artifacts/math-exam-engine-remaining-20261019/unverified-independent-math.json",
+    "sha256": "bb94c90015d1f345237f9b8be3d41377ab6cfda95c45951f243528a15ec0dc42",
+    "summary": {
+      "checkedRecords": 106,
+      "origins": {
+        "direct": 72,
+        "core": 34
+      },
+      "recordsByRequirement": {
+        "algebra.candidate-verification": 18,
+        "algebra.equality-truth": 18,
+        "algebra.equation-classification": 18,
+        "algebra.linear-model": 18,
+        "algebra.linear-simplify": 18,
+        "written.rectangle-domain": 16
+      },
+      "mathFailures": 0,
+      "mcRecords": 10,
+      "qualityIssueRecords": 3,
+      "qualityIssues": [
+        {
+          "requirement": "algebra.equality-truth",
+          "origin": "core",
+          "requestSeed": 71,
+          "format": "객관식",
+          "familyId": "legacy:mid:1-1|일차방정식의 풀이|06",
+          "seed": 1638860089,
+          "variant": 0,
+          "contentDigest": "8bfa62436c6f46d6ee3afe5c3004ae9012568e736c02af5e94c0a7d04f42adc2",
+          "issues": [
+            {
+              "kind": "out-of-range-count-distractor",
+              "choice": 3,
+              "value": 6,
+              "statementCount": 5
+            }
+          ]
+        },
+        {
+          "requirement": "algebra.equation-classification",
+          "origin": "core",
+          "requestSeed": 71,
+          "format": "객관식",
+          "familyId": "legacy:mid:1-1|일차방정식의 풀이|09",
+          "seed": 648800451,
+          "variant": 0,
+          "contentDigest": "c75adfe8d6a43480094f3f99bda3fdc387f9302bd0d454ee27e7b5db60400be6",
+          "issues": [
+            {
+              "kind": "out-of-range-count-distractor",
+              "choice": 3,
+              "value": 6,
+              "statementCount": 5
+            }
+          ]
+        },
+        {
+          "requirement": "algebra.equation-classification",
+          "origin": "core",
+          "requestSeed": 20261019,
+          "format": "객관식",
+          "familyId": "legacy:mid:1-1|일차방정식의 풀이|09",
+          "seed": 1360768244,
+          "variant": 0,
+          "contentDigest": "e7a188b1f5439393890ab5ffc3310d65714146a6a47a6f61ea74949ce5cfe4cf",
+          "issues": [
+            {
+              "kind": "out-of-range-count-distractor",
+              "choice": 3,
+              "value": 6,
+              "statementCount": 5
+            }
+          ]
+        }
+      ],
+      "limitations": [
+        "Printed-template parser only; sampled seeds are not domain exhaustion.",
+        "No student-answer grading, figure rendering, real UI/API/authentication, print, or difficulty calibration."
+      ],
+      "independentProbeNegativeControlsRejected": 19
+    },
+    "negativeControlSummary": {
+      "mutations": [
+        "wrong-answer",
+        "missing-printed-conditions",
+        "unrelated-solution",
+        "unrelated-rubric-expectations (native only)"
+      ],
+      "productionAccepted": 19,
+      "independentProbeRejected": 19,
+      "fullDetailsInArtifact": true
+    },
+    "representativeChecks": [
+      {
+        "requirement": "algebra.candidate-verification",
+        "origin": "direct",
+        "familyId": "legacy:mid:1-1|일차방정식의 풀이|11",
+        "seed": 1,
+        "variant": 0,
+        "result": {
+          "mathValid": true,
+          "issues": [],
+          "choices": [],
+          "equation": "0.2x+0.75=0.1x+0.85",
+          "root": "1",
+          "originalLeft": "19/20",
+          "originalRight": "19/20",
+          "distinctEquationCandidatePairsPresent": false,
+          "solutionMathSegmentsChecked": 3
+        }
+      },
+      {
+        "requirement": "algebra.equality-truth",
+        "origin": "direct",
+        "familyId": "legacy:mid:1-1|일차방정식의 풀이|06",
+        "seed": 1,
+        "variant": 0,
+        "result": {
+          "mathValid": true,
+          "issues": [],
+          "choices": [],
+          "truthIds": [
+            2,
+            4,
+            5
+          ],
+          "statements": [
+            {
+              "statement": "-4a=3b",
+              "differenceUnderAEqualsB": [
+                "0",
+                "-7"
+              ],
+              "universalTruth": false,
+              "counterexampleAEqualsB": "1",
+              "accidentallyTrueAtZero": true
+            },
+            {
+              "statement": "a+8=b+8",
+              "differenceUnderAEqualsB": [
+                "0"
+              ],
+              "universalTruth": true,
+              "counterexampleAEqualsB": null,
+              "accidentallyTrueAtZero": false
+            },
+            {
+              "statement": "-2a=-6b",
+              "differenceUnderAEqualsB": [
+                "0",
+                "4"
+              ],
+              "universalTruth": false,
+              "counterexampleAEqualsB": "1",
+              "accidentallyTrueAtZero": true
+            },
+            {
+              "statement": "\\dfrac{a}{7}=\\dfrac{b}{7}",
+              "differenceUnderAEqualsB": [
+                "0"
+              ],
+              "universalTruth": true,
+              "counterexampleAEqualsB": null,
+              "accidentallyTrueAtZero": false
+            },
+            {
+              "statement": "6a+6=6b+6",
+              "differenceUnderAEqualsB": [
+                "0"
+              ],
+              "universalTruth": true,
+              "counterexampleAEqualsB": null,
+              "accidentallyTrueAtZero": false
+            }
+          ],
+          "independentCount": 3,
+          "solutionMathSegmentsChecked": 0
+        }
+      },
+      {
+        "requirement": "algebra.equation-classification",
+        "origin": "direct",
+        "familyId": "legacy:mid:1-1|일차방정식의 풀이|09",
+        "seed": 1,
+        "variant": 0,
+        "result": {
+          "mathValid": true,
+          "issues": [],
+          "choices": [],
+          "classifications": [
+            {
+              "statement": "-5x+1=-4x+6",
+              "leftMinusRight": [
+                "-5",
+                "-1"
+              ],
+              "classification": "linear"
+            },
+            {
+              "statement": "-7x+4=3x+2",
+              "leftMinusRight": [
+                "2",
+                "-10"
+              ],
+              "classification": "linear"
+            },
+            {
+              "statement": "-6\\left(x+6\\right)=-6x-36",
+              "leftMinusRight": [
+                "0"
+              ],
+              "classification": "identity"
+            },
+            {
+              "statement": "-5\\left(x+2\\right)=-5x-10",
+              "leftMinusRight": [
+                "0"
+              ],
+              "classification": "identity"
+            },
+            {
+              "statement": "-4x+8=-2x+9",
+              "leftMinusRight": [
+                "-1",
+                "-2"
+              ],
+              "classification": "linear"
+            }
+          ],
+          "linearIds": [
+            1,
+            2,
+            5
+          ],
+          "independentCount": 3,
+          "solutionMathSegmentsChecked": 0
+        }
+      },
+      {
+        "requirement": "algebra.linear-model",
+        "origin": "direct",
+        "familyId": "legacy:mid:1-1|일차방정식의 활용|01",
+        "seed": 1,
+        "variant": 0,
+        "result": {
+          "mathValid": true,
+          "issues": [],
+          "choices": [],
+          "root": "8",
+          "relation": "less",
+          "originalValues": [
+            "25",
+            "40"
+          ],
+          "signedDifference": "-15",
+          "solutionIncludesOriginalContextSubstitution": false,
+          "solutionMathSegmentsChecked": 2
+        }
+      },
+      {
+        "requirement": "algebra.linear-simplify",
+        "origin": "direct",
+        "familyId": "legacy:mid:1-1|문자의 사용과 식의 계산|13",
+        "seed": 1,
+        "variant": 0,
+        "result": {
+          "mathValid": true,
+          "issues": [],
+          "choices": [],
+          "coefficients": [
+            "27",
+            "20"
+          ],
+          "coefficientConstantSum": "47",
+          "responseAsksCoefficientInterpretation": false,
+          "solutionMathSegmentsChecked": 2
+        }
+      },
+      {
+        "requirement": "written.rectangle-domain",
+        "origin": "direct",
+        "familyId": "legacy:native:m3-quadratic-domain-r1",
+        "seed": 1,
+        "variant": 0,
+        "result": {
+          "mathValid": true,
+          "issues": [],
+          "choices": [],
+          "delta": 2,
+          "area": 143,
+          "allRoots": [
+            "-13",
+            "11"
+          ],
+          "validRoots": [
+            "11"
+          ],
+          "dimensions": [
+            "11",
+            "13"
+          ],
+          "numericAndModelEquations": [
+            "x(x+2)=143",
+            "x^2+2x-143=0",
+            "(x-11)(x+13)=0",
+            "x=11",
+            "x=-13",
+            "13-11=2",
+            "11\\times13=143"
+          ],
+          "rubricMeaningMatchesStaticModel": true,
+          "timeModelPresent": false,
+          "solutionMathSegmentsChecked": 7
+        }
+      }
+    ]
+  }
+}
