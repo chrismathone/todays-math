@@ -1,0 +1,13 @@
+{
+  "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&m=040401",
+  "rawHtmlSha256": "0342683e6c7381c43079f291261a73e94c31578a04e2f130171bed70410c3f57",
+  "textExtraction": "HTMLParser text nodes, line trim only",
+  "observedLines": [
+    "8. 수학과 교육과정은【별책 8】과 같다.",
+    "가. 2024년 3월 1일：초등학교 1, 2학년",
+    "나. 2025년 3월 1일：초등학교 3, 4학년, 중학교 1학년, 고등학교 1학년",
+    "다. 2026년 3월 1일：초등학교 5, 6학년, 중학교 2학년, 고등학교 2학년",
+    "라. 2027년 3월 1일：중학교 3학년, 고등학교 3학년"
+  ],
+  "inference": "M1 academic years2025 and2026 both target2022. Those entering cohorts completed elementary5/6 before the2022 elementary5/6 implementation date2026-03-01, hence2015-edition elementary prerequisites are the relevant historical path."
+}

@@ -1,0 +1,357 @@
+{
+  "kind": "abstract-curriculum-reference/v1",
+  "requirement": "model.circle-revolution-percentage",
+  "scope": "Abstract two-positive-different-diameter wheels, no-slip equal-distance travel, known positive revolution count, other count and relative percentage change with explicit reference and decimal rounding. Not an original-school problem. No new draft/family module/generated samples/answers/solutions inspected. No incoming main family code inspected. No item or template approved.",
+  "researchStatus": "reference-complete; actual-template-seven-surfaces-pending",
+  "observed": {
+    "implementation": {
+      "notice": "교육부 고시 제2022-33호 (2022-12-22), 별책8",
+      "noticeUrl": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&m=040401",
+      "dates": {
+        "2024-03-01": "elementary1/2",
+        "2025-03-01": "elementary3/4, middle1, high1",
+        "2026-03-01": "elementary5/6, middle2, high2",
+        "2027-03-01": "middle3, high3"
+      },
+      "extract": "official-notice-implementation-extract.json"
+    },
+    "actualPrimaryDocumentReading": {
+      "2022": "Downloaded current official MOE attachment2 ZIP, selected exact Book8 HWP. Independently decompressed BodyText, decoded paragraph tag67, selected exact record locators. Raw HWP, full extraction and selected extracts hashed. No second-hand lesson titles used as primary proof.",
+      "2015": "Actual official Book8 PDF retained from MOE attachment inspected at physical26/29/30 (printed22/25/26). Independently extracted corresponding2020-236 official HWP provisions for cohort prerequisites.",
+      "limitations": "HWP paragraph extraction is text-only. Equation objects retain control-field placeholder glyphs in a few surrounding paragraphs; no guessed equation symbols or HWP page numbers are certified from those fields. Selected standalone standard statements are readable.2015 page PNGs were actually viewed."
+    },
+    "provisions": [
+      {
+        "edition": "2022",
+        "code": "6수01-03",
+        "officialText": "[6수01-03] 어림값을 구하기 위한 방법으로 올림, 버림, 반올림의 의미와 필요성을 알고, 이를 실생활에 활용함으로써 수학의 유용성을 인식할 수 있다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 2791
+        },
+        "relevanceInterpretation": "Rounding as an elementary skill in2022, not the cohort historical standard code."
+      },
+      {
+        "edition": "2022",
+        "code": "6수01-15",
+        "officialText": "[6수01-15] 소수의 나눗셈의 계산 원리를 탐구하고 그 계산을 할 수 있다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 2878
+        },
+        "relevanceInterpretation": "Decimal division"
+      },
+      {
+        "edition": "2022",
+        "code": "6수02-03",
+        "officialText": "[6수02-03] 비율을 이해하고, 비율을 분수, 소수, 백분율로 나타낼 수 있다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3002
+        },
+        "relevanceInterpretation": "Ratio as fraction/decimal/percentage"
+      },
+      {
+        "edition": "2022",
+        "code": "6수02-04",
+        "officialText": "[6수02-04] 비례식을 알고, 그 성질을 이해하며, 이를 활용하여 간단한 비례식을 풀 수 있다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3013
+        },
+        "relevanceInterpretation": "Simple proportion"
+      },
+      {
+        "edition": "2022",
+        "code": "6수03-15",
+        "officialText": "[6수03-15] 여러 가지 원 모양 물체의 원주와 지름을 측정하는 활동을 통하여, 원주율이 일정한 값임을 알고 그 근삿값을 사용할 수 있다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3183
+        },
+        "relevanceInterpretation": "Constant circumference/diameter ratio and approximation"
+      },
+      {
+        "edition": "2022",
+        "code": "6수03-16",
+        "officialText": "[6수03-16] 원주와 원의 넓이를 구하는 방법을 이해하고, 이를 구할 수 있다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3187
+        },
+        "relevanceInterpretation": "Circumference method"
+      },
+      {
+        "edition": "2022",
+        "code": "9수02-01",
+        "officialText": "[9수02-01] 다양한 상황을 문자를 사용한 식으로 나타내어 그 유용성을 인식하고, 식의 값을 구할 수 있다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3604
+        },
+        "relevanceInterpretation": "Letters and substitution"
+      },
+      {
+        "edition": "2022",
+        "code": "9수02-04",
+        "officialText": "[9수02-04] 일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3623
+        },
+        "relevanceInterpretation": "One-variable linear equation"
+      },
+      {
+        "edition": "2022",
+        "code": "9수02-07",
+        "officialText": "[9수02-07] 정비례, 반비례 관계를 이해하고, 그 관계를 표, 식, 그래프로 나타낼 수 있다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3642
+        },
+        "relevanceInterpretation": "Direct/inverse proportion"
+      },
+      {
+        "edition": "2022",
+        "officialText": "‘변화와 관계’ 영역에서는 용어와 기호로 ‘비, 기준량, 비교하는 양, 비율, 백분율, 비례식, 비례배분, :, %’를 다룬다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3033
+        },
+        "kind": "guidance/restriction"
+      },
+      {
+        "edition": "2022",
+        "officialText": "비와 비율을 다룰 때는 기준량과 비교하는 양을 명확하게 인식하게 한다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3045
+        },
+        "kind": "guidance/restriction"
+      },
+      {
+        "edition": "2022",
+        "officialText": "[6수03-16] 지름과 원주율을 이용하면 원주를 직접 측정하지 않고도 구할 수 있음을 알게 하고, 직사각형의 넓이를 구하는 방법을 이용하여 원의 넓이를 구하는 방법을 이해하게 한다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3231
+        },
+        "kind": "guidance/restriction"
+      },
+      {
+        "edition": "2022",
+        "officialText": "원주율, 원주, 원의 넓이, 입체도형의 겉넓이와 부피 등을 구할 때 복잡한 계산은 계산기를 사용하게 한다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3295
+        },
+        "kind": "guidance/restriction"
+      },
+      {
+        "edition": "2022",
+        "officialText": "정수, 유리수와 관련하여 지나치게 복잡한 계산을 포함하는 문제는 다루지 않는다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3583
+        },
+        "kind": "guidance/restriction"
+      },
+      {
+        "edition": "2022",
+        "officialText": "[9수02-07] 속력과 거리, 속력과 시간과 같은 실생활의 예를 통해 정비례와 반비례 관계를 직관적으로 이해하게 하고, 정비례와 반비례 관계가 성립하는 실생활의 예를 찾아 설명하게 한다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3783
+        },
+        "kind": "guidance/restriction"
+      },
+      {
+        "edition": "2022",
+        "officialText": "방정식, 부등식, 함수에 대한 지나치게 복잡한 활용 문제는 다루지 않는다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3887
+        },
+        "kind": "guidance/restriction"
+      },
+      {
+        "edition": "2015 (2020-236 consolidated corroboration)",
+        "officialText": "[6수01-14]‘(자연수)÷(자연수)’, ‘(소수)÷(자연수)’에서 나눗셈의 몫을 소수로 나타낼 수 있다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3169
+        }
+      },
+      {
+        "edition": "2015 (2020-236 consolidated corroboration)",
+        "officialText": "[6수01-16]소수의 곱셈과 나눗셈의 계산 결과를 어림할 수 있다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3177
+        }
+      },
+      {
+        "edition": "2015 (2020-236 consolidated corroboration)",
+        "officialText": "[6수03-02]어림값을 구하기 위한 방법으로 올림, 버림, 반올림의 의미와 필요성을 알고, 이를 실생활에 활용할 수 있다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3413
+        }
+      },
+      {
+        "edition": "2015 (2020-236 consolidated corroboration)",
+        "officialText": "[6수03-07]여러 가지 둥근 물체의 원주와 지름을 측정하는 활동을 통하여 원주율을 이해한다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3441
+        }
+      },
+      {
+        "edition": "2015 (2020-236 consolidated corroboration)",
+        "officialText": "[6수03-08]원주와 원의 넓이를 구하는 방법을 이해하고, 이를 구할 수 있다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3445
+        }
+      },
+      {
+        "edition": "2015 (2020-236 consolidated corroboration)",
+        "officialText": "[6수04-02]두 양의 크기를 비교하는 상황을 통해 비의 개념을 이해하고, 그 관계를 비로 나타낼 수 있다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3545
+        }
+      },
+      {
+        "edition": "2015 (2020-236 consolidated corroboration)",
+        "officialText": "[6수04-03]비율을 이해하고, 비율을 분수, 소수, 백분율로 나타낼 수 있다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3549
+        }
+      },
+      {
+        "edition": "2015 (2020-236 consolidated corroboration)",
+        "officialText": "[6수04-04]비례식을 알고, 그 성질을 이해하며, 이를 활용하여 간단한 비례식을 풀 수 있다.",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3558
+        }
+      },
+      {
+        "edition": "2015 (2020-236 consolidated corroboration)",
+        "officialText": "비, 기준량, 비교하는 양, 비율, 백분율, 비례식, 비례배분, : , %",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record1based": 3570
+        }
+      }
+    ],
+    "projectReferenceObservation": {
+      "requirementDefinition": "Current checkout src/lib/examStudy/requirements.ts records circumference/inverse proportion/percentage and diameter/circumference, fixed-distance count, reference quantity, rounding. It is a demand description, not a curriculum certificate.",
+      "units": "project-unit-references.json supplies observed unit UUIDs and semester metadata; project-standard-crosswalk.json preserves existing standard references checked against official text. No unit/family assignment made.",
+      "editionCrosswalk": "2015 inverse proportion9수03-03 differs from2022 9수02-07.2015 circumference6수03-08 differs from2022 6수03-16;2015 percentage6수04-03 differs from2022 6수02-03. Titles and same-looking numeric codes alone cannot establish scope."
+    }
+  },
+  "inferred": {
+    "cohort": "Both2025 and2026 middle1 use2022 target curriculum while their completed elementary5/6 work followed2015.2022 elementary provisions are forward-edition corroboration, not a claim those cohorts were taught them under2022.",
+    "gradeBand": "Official9수 codes are middle-school grade-band standards; project middle1 inverse-proportion and equation unit placement supports an M1 route. Exact school term/sequence still requires actual review.",
+    "potentialFit": "No intrinsically upper-grade technique is necessary for the abstract task if all values and arithmetic are chosen accessibly. Simple circumference, division/ratio, subtraction, percentage and final rounding suffice. This is a method-level inference, not actual-item approval.",
+    "minimalStudentMethod": [
+      "Use one complete no-slip revolution travels one circumference; each circumference is diameter times the same circle ratio. This modelling bridge must be explicit or intelligibly explained.",
+      "Same distance gives (circumference A)×(revolutions A)=(circumference B)×(revolutions B). Compute the second count by multiplying the first count by diameterA/diameterB. Concrete given diameters allow simple numeric ratio reasoning or an M1 one-unknown equation; formal multivariable algebra is unnecessary.",
+      "For B compared with A, percentage increase is (countB-countA)/countA×100 when B>A; decrease is (countA-countB)/countA×100 when B<A. A is the baseline in both. A reversed comparison needs a different denominator. Percentage change is a derived application of elementary subtraction and ratio/percentage, not a separately quoted official wheel standard.",
+      "Keep exact fractions/ratios through the count and difference ratio. Round the final numerical percentage at the explicitly specified decimal place. Long division for the needed digits is sufficient; formal recurring-decimal theory is not required."
+    ],
+    "abstractDomainVerification": "For dA,dB,nA positive and dA≠dB, nB=nA×dA/dB exists, is positive and unique. If dB>dA then nB<nA; if dB<dA then nB>nA. Baseline count is nonzero. A revolution count may be noninteger; permit partial turns explicitly or select data producing an integral count. This proof is symbolic research, not a numerical sample answer.",
+    "unitsAndPrecision": [
+      "Diameters must use the same length unit before ratios; distance units cancel consistently and counts use 회/바퀴. Never divide diameter units inconsistently.",
+      "A common circumference factor cancels. No numerical π approximation is needed for the count ratio or percentage. If a student solution uses π notation, actual notation and explanation must be inspected; irrational-number theory is not required.",
+      "몇 %인가 asks B/A×100; 몇 % 증가/감소 asks difference/A×100. They are different requests. Use percent, not percentage points, for changing counts.",
+      "Specify both rounding position and retained precision unambiguously; do not prematurely round revolution count. A rounded zero percentage can conflict with positive change wording for near-equal diameters; actual numeric domain must avoid or explicitly explain that case.",
+      "No-slip is an ideal geometric model for rigid wheels; no angular speed, gear-contact relation or deformation model is assumed. Same distance does not mean same number of turns."
+    ]
+  },
+  "outsideOrUnnecessaryMethods": {
+    "wouldRequireSeparateOutOfGradeReview": [
+      "Radian angular measure/angular velocity, differential or logarithmic percentage approximation, calculus/optimization, irrationality proof ofπ.",
+      "Requiring formal rational-function/inverse-function theory or general rational-expression manipulation instead of concrete M1 proportions.",
+      "Formal recurring-decimal expansion theory as an indispensable step, instead of finite-place long division."
+    ],
+    "notAutomaticallyOutOfGrade": [
+      "The circumference/diameter ratio is an elementary fact; this is not a need for advanced chord/tangent circle-proportionality theorems.",
+      "A π symbol does not by itself require proving π irrational; exact actual notation must be reviewed.",
+      "Positive fractional revolution counts are mathematically meaningful if partial revolutions are clearly allowed."
+    ]
+  },
+  "sevenStudentSurfaces": {
+    "stem": {
+      "status": "pending",
+      "abstractBasis": "Conditional M1 route",
+      "requiredActualReview": "State rigid non-slip wheels, two known positive different diameters, same positive distance, known positive revolution count, which wheel is reference, whether partial turns are allowed and the exact percentage/rounding request. No hidden shared-time/speed/gear condition."
+    },
+    "choices": {
+      "status": "pending",
+      "abstractBasis": "Unseen and optional",
+      "requiredActualReview": "If multiple choice, each option must have correct asked count/percent dimensions and precision. Exactly one answer after rounding; no distractor requiring upper-grade tools or incompatible integer-only count assumption. If written, record choices absent."
+    },
+    "figuresAndTables": {
+      "status": "pending",
+      "abstractBasis": "Unseen and optional",
+      "requiredActualReview": "A simple diameter-labelled wheel sketch or table may be used; no scale-derived lengths, angles/radians or unlabelled radius-versus-diameter ambiguity. Actual printed figure/table must be reviewed at intended size."
+    },
+    "notation": {
+      "status": "pending",
+      "abstractBasis": "Potentially elementary/M1",
+      "requiredActualReview": "Use ordinary multiplication/division, fraction/decimal, percentage sign and clear count/length units. Letters and one-variable equations follow2022 9수02-01/03/04. Inverse-proportion formula follows9수02-07. Exactπ glyph or fractions in actual surfaces still needs inspection."
+    },
+    "answer": {
+      "status": "pending",
+      "abstractBasis": "Unseen",
+      "requiredActualReview": "Check positive unique count, direction of change, explicit baseline and percent unit. Match required final precision and allow partial turns if needed. No sample answer calculated or inspected."
+    },
+    "studentSolution": {
+      "status": "pending",
+      "abstractBasis": "Plausible permitted route only",
+      "requiredActualReview": "Circle circumference→equal distance→numeric diameter/count ratio→difference/reference percentage→final rounding. No irrationality, higher algebra, radian/velocity or premature rounding required. Actual prose and every displayed transformation pending."
+    },
+    "prerequisites": {
+      "status": "pending",
+      "abstractBasis": "Observed standards; actual burden unknown",
+      "requiredActualReview": "2015 elementary6수03-02/07/08,6수04-02/03/04,6수01-14/16;2022 target middle9수02-01/03/04/07. No-slip distance-per-turn is a contextual modelling inference to explain, not a verbatim curricular wheel theorem."
+    }
+  },
+  "unknownHeld": [
+    "All actual stem, choices, figures/tables, notation, answer, student solution and prerequisites are unseen; no grade approval.",
+    "Actual numeric range, arithmetic burden, available calculator policy, rounding tie handling and answer uniqueness after displayed rounding remain unreviewed.",
+    "Actual school-term sequencing within M1 is not proved by national grade-band codes or project unit titles.",
+    "Full official amendment inventory after the base2022 notice was not exhaustively audited. This research identifies the cited operative2022 implementation framework and relevant source provisions, not legal certification of every subsequent revision.",
+    "No actual incoming family implementation/registration, family fit or coverage claim; main integration update does not change the abstract scope.",
+    "No empirical difficulty, pedagogical effectiveness, originality, rights/copyright, source custody, native provenance or release assessment."
+  ],
+  "judgmentDesign": {
+    "skill": ".agents/skills/typesafe-ai/SKILL.md",
+    "liveDocs": [
+      "https://docs.typesafe.ai/llms.txt",
+      "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
+      "https://docs.typesafe.ai/cookbooks/citation_check.md"
+    ],
+    "readResult": "All three live documents fetched as exact UTF8 bytes; receipts and hashes retained. Browser access to build Markdown initially failed, direct Python HTTP succeeded. Citation cookbook regular page also read.",
+    "designOnly": [
+      "Store edition/cohort/date and exact official span as evidence state. A citation string match is deterministic evidence location, not proof the span supports a particular item.",
+      "Separate method classification, wording/reference-quantity clarity and each of seven student surfaces. Unsupported/missing evidence remains held and cannot be compensated by other positive judgments.",
+      "Code owns rational arithmetic, domain positivity/order, percentage denominator and decimal rounding checks. AI can assist contextual reading/routing only if separately authorized and validated.",
+      "No model calls, API installation or probabilities used here. Cookbook confidence thresholds are examples and confer no curriculum/rights approval; no auto-accept threshold is adopted."
+    ]
+  },
+  "finalGates": {
+    "actualTemplateGradeStatus": "pending-unseen-surfaces",
+    "mathematicalItemApproval": false,
+    "gradeApproval": false,
+    "rightsApproval": false,
+    "familyAssignment": null,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0
+  }
+}
