@@ -23,6 +23,10 @@ section.frame .dock {
   border: 0;
   background: var(--learn-surface);
 }
+/* Truth has no confirm action: keep the initial attempt's dock geometry. */
+section.frame .dock:has([data-kind="truth"]) {
+  padding-block: 11px 15px;
+}
 .solutionPane {
   padding: 0 30px 28px;
 }
@@ -64,10 +68,18 @@ section.frame .dock {
   section.frame .dock {
     padding: 0 20px 24px;
   }
+  section.frame .dock:has([data-kind="truth"]) {
+    padding-block: 8px 12px;
+  }
   .solutionPane {
     padding: 0 20px 24px;
   }
   .content {
     font-size: 16px;
+  }
+}
+@media (max-height: 650px) and (max-width: 600px) {
+  section.frame .dock:has([data-kind="truth"]) {
+    padding-block: 4px 10px;
   }
 }
