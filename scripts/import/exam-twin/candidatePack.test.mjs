@@ -438,3 +438,21 @@ test("copied choice descriptors are held on written responses without erasing in
   mc.metadata.answerFormat = "single-choice";
   assert.equal(validateCandidate(mc).metadataAnswerFormatMismatch, false);
 });
+
+test("lost math command escapes remain readable evidence but cannot inherit passing math or grade reports", () => {
+  for (const surface of ["content", "solution"]) {
+    const c = control();
+    c.binding.candidate[surface] += String.raw` $$\sqrt1, sqrt2, ldots$$`;
+    c.binding.validation = validateCandidate(c.binding.candidate);
+    assert.equal(c.binding.validation.structurallyValid, true);
+    assert.equal(c.binding.validation.studentMathNotationWarnings.length, 2);
+    const result = evaluateReview(c.binding, c.solve, c.review);
+    assert.equal(result.mathematicalVerified, false);
+    assert.equal(result.gradeReviewed, false);
+    assert(result.reasons.includes("student-math-notation-command-escape-held"));
+    assert.equal(result.loadable, false);
+  }
+  const value = structuredClone(candidate);
+  value.choices[4] += String.raw` $frac{1}{2}$`;
+  assert.equal(validateCandidate(value).studentMathNotationWarnings[0].surface, "choice-5");
+});

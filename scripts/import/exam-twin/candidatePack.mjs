@@ -5,6 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { compareConstantParts } from "./constantAnswers.mjs";
 import { compareWrittenAnswerPresentation } from "./answerPresentation.mjs";
+import { unescapedMathCommandWarnings } from "./authoredMathNotation.mjs";
 
 export const REVIEW_CHECKS = [
   "answerCorrect",
@@ -299,6 +300,14 @@ export function validateCandidate(candidate) {
   return {
     structurallyValid: true,
     surfaceKeywordViolations: violations,
+    studentMathNotationWarnings: [
+      ["stem", candidate.content],
+      ...candidate.choices.map((text, i) => [`choice-${i + 1}`, text]),
+      ["answer", candidate.answer],
+      ["studentSolution", candidate.solution],
+    ].flatMap(([surface, text]) =>
+      unescapedMathCommandWarnings(text).map((warning) => ({ surface, ...warning })),
+    ),
     semanticGradeReviewStillRequired: true,
     // Preserve readable historical drafts, but never count a known copied MC
     // answer descriptor as valid metadata for a non-choice response.
@@ -499,6 +508,8 @@ export function evaluateReview(binding, solve, review, gates = {}) {
     fail("student-surface-out-of-grade-keyword");
   if (binding.validation.metadataAnswerFormatMismatch)
     fail("metadata-answer-format-mismatch");
+  if (binding.validation.studentMathNotationWarnings?.length)
+    fail("student-math-notation-command-escape-held");
   if (!solve || !review) fail("independent-evidence-missing");
   else {
     if (
@@ -554,11 +565,13 @@ export function evaluateReview(binding, solve, review, gates = {}) {
     );
     mathematicalVerified =
       authentic &&
+      !binding.validation.studentMathNotationWarnings?.length &&
       !reasons.some((r) =>
         /review-(answer|solution|existence|choices|figure)/.test(r),
       );
     gradeReviewed =
       authentic &&
+      !binding.validation.studentMathNotationWarnings?.length &&
       !reasons.some((r) =>
         /curriculum|out-of-grade-keyword|review-allStudentSurfaces/.test(r),
       );

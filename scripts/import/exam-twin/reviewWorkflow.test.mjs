@@ -127,6 +127,24 @@ test("freeze and blind input bind actual assets; stale spec blocks dry-run", () 
     f.clean();
   }
 });
+
+test("a renderable lost radical command is held before freeze without changing its source", () => {
+  const f = fixture();
+  try {
+    f.candidate.content += String.raw` $$\sqrt1, sqrt2, ldots$$`;
+    const file = path.join(f.root, "candidate.json");
+    fs.writeFileSync(file, JSON.stringify(f.candidate));
+    const before = fs.readFileSync(file);
+    const result = f.run("freeze", "package", "candidate.json");
+    assert.notEqual(result.status, 0);
+    assert.match(result.stderr, /lost math command escapes/);
+    assert(!fs.existsSync(path.join(f.root, "package")));
+    assert.deepEqual(fs.readFileSync(file), before);
+    assert(bindCandidate(file).validation.studentMathNotationWarnings.length > 0);
+  } finally {
+    f.clean();
+  }
+});
 test("independent solve is frozen before new answer exposure; later alteration rejects", () => {
   const f = fixture();
   try {

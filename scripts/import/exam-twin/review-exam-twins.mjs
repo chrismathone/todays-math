@@ -90,6 +90,10 @@ function freeze(directory, files) {
     sourceBindings.every((b) => !b.validation.surfaceKeywordViolations.length),
     "Known out-of-grade student surface cannot enter a solve pack",
   );
+  assert(
+    sourceBindings.every((b) => !b.validation.studentMathNotationWarnings.length),
+    "Suspected lost math command escapes require a corrected student version before a solve pack",
+  );
   const output = newDirectory(directory);
   fs.mkdirSync(path.join(output, "private"));
   const bindings = sourceBindings.map((b) => {

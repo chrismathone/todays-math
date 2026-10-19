@@ -1,0 +1,13 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {bindCandidate,readJson,digest,sha256} from '../../../scripts/import/exam-twin/candidatePack.mjs';
+const b='.qa-artifacts/exam-resume-20261008/',oldPath=b+'nobyeon-sem1-authoring-group11-r1/candidates/q19.json',r=b+'nobyeon-sem1-authoring-group11-r2/',before=bindCandidate(oldPath),c=structuredClone(before.candidate);
+const multiplication=readJson(b+'nobyeon-sem1-authoring-group8-r1/candidates/q14.json').curriculumReview.officialBasis;
+assert(multiplication.primaryStandardCodes.includes('9수02-12'));assert(multiplication.records1based.includes(3956));
+c.curriculumReview.standardCodes=['9수01-08','9수01-10','9수02-12'];c.curriculumReview.officialBasis.primaryStandardCodes=[...c.curriculumReview.standardCodes];
+c.curriculumReview.officialBasis.multiplicationLocator={record1based:3956,code:'9수02-12',evidence:'Captured actual MOE2015 polynomial multiplication/factorization provision;9수02-05 is linear equations and is not the square-expansion provision.'};
+c.metadata.standardMetadataCorrection={status:'corrected-before-author-packet;independent-review-required',previousWrongCode:'9수02-05',actualPolynomialMultiplicationCode:'9수02-12',studentPayloadChanged:false,sourceDifficultyChanged:false};
+fs.mkdirSync(r);fs.mkdirSync(r+'candidates');const p=r+'candidates/q19.json';fs.writeFileSync(p,JSON.stringify(c,null,2)+'\n',{flag:'wx'});const after=bindCandidate(p);
+for(const k of ['studentDigest','assetDigest'])assert.equal(after[k],before[k]);for(const k of ['content','answer','solution','score','questionType'])assert.deepEqual(after.candidate[k],before.candidate[k]);assert.deepEqual(after.candidate.metadata.writtenRubric,before.candidate.metadata.writtenRubric);assert.notEqual(after.candidateDigest,before.candidateDigest);
+fs.writeFileSync(r+'metadata-correction-receipt-r2.json',JSON.stringify({utc:new Date().toISOString(),previous:{path:oldPath,sha256:before.candidateFileSha256},current:{path:p,sha256:after.candidateFileSha256},sameId:true,sameStudentAnswerSolutionScoreRubricAssets:true,studentDigest:after.studentDigest,oldCandidateDigest:before.candidateDigest,newCandidateDigest:after.candidateDigest,newQuestion:false,newBlindSolve:false,classificationApproved:false,actualProvision:{code:'9수02-12',record1based:3956,sourceDigest:multiplication.documentSha256},sourceCopyPreserved:true,dbWrites:0},null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({metadataCorrected:true,current:p,sameStudentDigest:after.studentDigest,newProblem:false,independentApproval:false}));

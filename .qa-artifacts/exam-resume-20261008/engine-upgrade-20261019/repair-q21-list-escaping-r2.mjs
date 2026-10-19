@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {bindCandidate,readJson} from '../../../scripts/import/exam-twin/candidatePack.mjs';
+const b='.qa-artifacts/exam-resume-20261008/',old=b+'nobyeon-sem1-authoring-group12-r1/',r=b+'nobyeon-sem1-authoring-group12-r2/',before=bindCandidate(old+'candidates/q21.json'),c=structuredClone(before.candidate);
+const paragraphs=c.content.split('\n\n');assert.equal(paragraphs.length,3);
+paragraphs[1]=String.raw`$$\sqrt1,\ \sqrt2,\ \sqrt3,\ \ldots,\ \sqrt k$$`;
+c.content=paragraphs.join('\n\n');c.twinExternalId='exam-twin-nobyeon-2025-1-mid-author-group12-r2-q21';
+c.metadata.failedDraftPreserved={path:old+'candidates/q21.json',selected:false,reason:'Visual inspection caught missing radical/ellipsis backslashes in the finite-list string. The math guard accepted literal variables; failed student draft is not counted or sent to a blind solver.'};
+fs.mkdirSync(r);fs.mkdirSync(r+'candidates');const p=r+'candidates/q21.json';fs.writeFileSync(p,JSON.stringify(c,null,2)+'\n',{flag:'wx'});const after=bindCandidate(p);assert.notEqual(before.studentDigest,after.studentDigest);assert.equal(c.answer,before.candidate.answer);assert.equal(c.solution,before.candidate.solution);
+const calc=readJson(old+'author-calculations-q21.json');fs.writeFileSync(r+'author-calculations-q21.json',JSON.stringify({...calc,utc:new Date().toISOString(),candidate:{path:p,sha256:after.candidateFileSha256},studentDigest:after.studentDigest,candidateDigest:after.candidateDigest,assetDigest:after.assetDigest,failedDraftCounted:false,studentMathPayloadRepairedBeforeBlind:true,independentReview:false},null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({current:p,newStudentDigest:after.studentDigest,failedDraftPreserved:true,independentReview:0}));
