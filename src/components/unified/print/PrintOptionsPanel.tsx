@@ -1,5 +1,6 @@
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { FONT_PACKS } from "./fontPacks";
+import { loadFontPreviews } from "./loadFonts";
 import { CHOICE_LAYOUTS, COLORS, SPACING_PRESETS, TEMPLATES } from "./settings";
 import {
   DEFAULT_PRINT_OPTIONS,
@@ -51,6 +52,7 @@ export function PrintOptionsPanel({
   onOptions: (patch: Partial<PrintOptions>) => void;
   onMeta: (patch: Partial<PrintMeta>) => void;
 }) {
+  useEffect(loadFontPreviews, []);
   // Mathgen's nearest-preset selection also represents old custom spacing
   // values, while preserving the saved value until the user picks a preset.
   const spacingPreset = SPACING_PRESETS.reduce((closest, preset) =>
@@ -179,13 +181,14 @@ export function PrintOptionsPanel({
       </details>
       <fieldset className={s.optionGroup}>
         <legend>폰트</legend>
-        <div className={s.choiceWrap}>
+        <div className={`${s.choiceWrap} ${s.choiceGrid}`}>
           {FONT_PACKS.map((font) => (
             <button
               key={font.id}
               aria-pressed={options.fontPack === font.id}
               onClick={() => onOptions({ fontPack: font.id })}
               title={font.hint}
+              style={{ fontFamily: font.serif }}
             >
               {font.label}
             </button>

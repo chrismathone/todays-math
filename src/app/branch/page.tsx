@@ -26,12 +26,12 @@ export default async function BranchPage({
   )
     redirect(account.isSuperAdmin ? "/admin" : "/");
   const isOwner = account.branchRole === "owner";
-  const requested = (await searchParams)?.tab;
+  const requestedTab = (await searchParams)?.tab;
   // 사용 메뉴는 원장만(원장님 2026-10-19) — 관리자에게는 탭도 없고 주소로 와도 계정 관리로.
   const tab =
-    requested === "classes"
-      ? "classes"
-      : requested === "menus" && isOwner
+    requestedTab === "classes" || requestedTab === "students"
+      ? requestedTab
+      : requestedTab === "menus" && isOwner
         ? "menus"
         : "accounts";
 
@@ -87,6 +87,13 @@ export default async function BranchPage({
             aria-current={tab === "classes" ? "page" : undefined}
           >
             반 관리
+            <RouteLinkStatus />
+          </Link>
+          <Link
+            href="/branch?tab=students"
+            aria-current={tab === "students" ? "page" : undefined}
+          >
+            학생 반 배정
             <RouteLinkStatus />
           </Link>
           <Link

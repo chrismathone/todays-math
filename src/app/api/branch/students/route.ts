@@ -1,9 +1,19 @@
 import { z } from "zod";
+import {
+  studentListQuerySchema,
+  studentListResponseSchema,
+} from "@/contracts/class.contract";
 import { authorizeAccount } from "@/lib/accountAccess";
+import { forbiddenError, jsonOk, validationError } from "@/lib/apiResponse";
 import { recordAudit } from "@/lib/audit";
+import {
+  currentEnrollmentWhere,
+  studentsInClassWhere,
+} from "@/lib/classAccess";
 import { db } from "@/lib/db";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 import { canManageStudentAccounts } from "@/lib/learn/studentAccountPolicy";
+import { serializeStudent } from "@/lib/serializers";
 
 const createSchema = z.strictObject({
   classId: z.uuid(),
@@ -21,6 +31,63 @@ const createSchema = z.strictObject({
       { error: "전화번호를 확인해 주세요." },
     ),
 });
+
+async function handleGet(request: Request) {
+  const access = await authorizeAccount(request);
+  if (access.response) return access.response;
+  const branchId = access.account?.branchId;
+  if (!branchId || !access.account || !canManageStudentAccounts(access.account))
+    return forbiddenError();
+
+  const parsed = studentListQuerySchema.safeParse(
+    Object.fromEntries(new URL(request.url).searchParams),
+  );
+  if (!parsed.success) return validationError(parsed.error);
+
+  const { page, pageSize, classId } = parsed.data;
+  const target = await db.class.findFirst({
+    where: { id: classId, branchId },
+    select: { id: true },
+  });
+  if (!target) return forbiddenError();
+
+  const [rows, total] = await Promise.all([
+    db.student.findMany({
+      where: studentsInClassWhere(classId),
+      include: {
+        enrollments: {
+          where: { classId, ...currentEnrollmentWhere(undefined, true) },
+          orderBy: { startsOn: "desc" },
+          take: 1,
+        },
+      },
+      skip: (page - 1) * pageSize,
+      take: pageSize,
+      orderBy: { createdAt: "asc" },
+    }),
+    db.student.count({ where: studentsInClassWhere(classId) }),
+  ]);
+
+  const response = jsonOk(studentListResponseSchema, {
+    data: rows.map((row) =>
+      serializeStudent({
+        ...row,
+        classId,
+        ...(row.eywaBindingId
+          ? {
+              eywaLastReportDate:
+                row.enrollments[0]?.eywaLastReportDate ?? null,
+              eywaLastReportText:
+                row.enrollments[0]?.eywaLastReportText ?? null,
+            }
+          : {}),
+      }),
+    ),
+    meta: { page, pageSize, total },
+  });
+  response.headers.set("Cache-Control", "no-store");
+  return response;
+}
 
 /** Registration creates a roster record only. Class-wide issuance is a separate explicit action. */
 async function handlePost(request: Request) {
@@ -86,4 +153,5 @@ async function handlePost(request: Request) {
     { status: 201, headers: { "Cache-Control": "no-store" } },
   );
 }
+export const GET = withErrorLog("/api/branch/students", handleGet);
 export const POST = withErrorLog("/api/branch/students", handlePost);
