@@ -1,0 +1,632 @@
+[
+  {
+    "tuple": {
+      "a2": 100,
+      "mult": 10
+    },
+    "native": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{1.00}\\approx1.000$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{100}$의 근삿값을 구하시오.",
+      "answer": "$10$",
+      "solution": "$100=1.00\\times100$ 이므로 $\\sqrt{100}=10\\sqrt{1.00}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{100}\\approx10\\times1.000=10$ 이다.",
+      "facts": {
+        "a2": 100,
+        "v3": 1000,
+        "mult": 10
+      },
+      "figureSpec": null
+    },
+    "mc": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{1.00}\\approx1.000$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{100}$의 근삿값을 구하시오.\n① $5$\n② $20$\n③ $10$\n④ $12$\n⑤ $13$",
+      "answer": "③",
+      "solution": "$100=1.00\\times100$ 이므로 $\\sqrt{100}=10\\sqrt{1.00}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{100}\\approx10\\times1.000=10$ 이다.",
+      "facts": {
+        "a2": 100,
+        "v3": 1000,
+        "mult": 10
+      },
+      "figureSpec": null,
+      "familyKey": "3-1|무리수와 실수|09",
+      "problemType": "계산",
+      "questionType": "객관식"
+    }
+  },
+  {
+    "tuple": {
+      "a2": 100,
+      "mult": 100
+    },
+    "native": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{1.00}\\approx1.000$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{10000}$의 근삿값을 구하시오.",
+      "answer": "$100$",
+      "solution": "$10000=1.00\\times10000$ 이므로 $\\sqrt{10000}=100\\sqrt{1.00}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{10000}\\approx100\\times1.000=100$ 이다.",
+      "facts": {
+        "a2": 100,
+        "v3": 1000,
+        "mult": 100
+      },
+      "figureSpec": null
+    },
+    "mc": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{1.00}\\approx1.000$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{10000}$의 근삿값을 구하시오.\n① $200$\n② $102$\n③ $100$\n④ $99$\n⑤ $50$",
+      "answer": "③",
+      "solution": "$10000=1.00\\times10000$ 이므로 $\\sqrt{10000}=100\\sqrt{1.00}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{10000}\\approx100\\times1.000=100$ 이다.",
+      "facts": {
+        "a2": 100,
+        "v3": 1000,
+        "mult": 100
+      },
+      "figureSpec": null,
+      "familyKey": "3-1|무리수와 실수|09",
+      "problemType": "계산",
+      "questionType": "객관식"
+    }
+  },
+  {
+    "tuple": {
+      "a2": 101,
+      "mult": 10
+    },
+    "native": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{1.01}\\approx1.005$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{101}$의 근삿값을 구하시오.",
+      "answer": "$10.05$",
+      "solution": "$101=1.01\\times100$ 이므로 $\\sqrt{101}=10\\sqrt{1.01}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{101}\\approx10\\times1.005=10.05$ 이다.",
+      "facts": {
+        "a2": 101,
+        "v3": 1005,
+        "mult": 10
+      },
+      "figureSpec": null
+    },
+    "mc": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{1.01}\\approx1.005$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{101}$의 근삿값을 구하시오.\n① $10.04$\n② $10.03$\n③ $10.06$\n④ $9.95$\n⑤ $10.05$",
+      "answer": "⑤",
+      "solution": "$101=1.01\\times100$ 이므로 $\\sqrt{101}=10\\sqrt{1.01}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{101}\\approx10\\times1.005=10.05$ 이다.",
+      "facts": {
+        "a2": 101,
+        "v3": 1005,
+        "mult": 10
+      },
+      "figureSpec": null,
+      "familyKey": "3-1|무리수와 실수|09",
+      "problemType": "계산",
+      "questionType": "객관식"
+    }
+  },
+  {
+    "tuple": {
+      "a2": 101,
+      "mult": 100
+    },
+    "native": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{1.01}\\approx1.005$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{10100}$의 근삿값을 구하시오.",
+      "answer": "$100.5$",
+      "solution": "$10100=1.01\\times10000$ 이므로 $\\sqrt{10100}=100\\sqrt{1.01}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{10100}\\approx100\\times1.005=100.5$ 이다.",
+      "facts": {
+        "a2": 101,
+        "v3": 1005,
+        "mult": 100
+      },
+      "figureSpec": null
+    },
+    "mc": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{1.01}\\approx1.005$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{10100}$의 근삿값을 구하시오.\n① $100.5$\n② $67.0$\n③ $101.0$\n④ $100.3$\n⑤ $100.7$",
+      "answer": "①",
+      "solution": "$10100=1.01\\times10000$ 이므로 $\\sqrt{10100}=100\\sqrt{1.01}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{10100}\\approx100\\times1.005=100.5$ 이다.",
+      "facts": {
+        "a2": 101,
+        "v3": 1005,
+        "mult": 100
+      },
+      "figureSpec": null,
+      "familyKey": "3-1|무리수와 실수|09",
+      "problemType": "계산",
+      "questionType": "객관식"
+    }
+  },
+  {
+    "tuple": {
+      "a2": 200,
+      "mult": 10
+    },
+    "native": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{2.00}\\approx1.414$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{200}$의 근삿값을 구하시오.",
+      "answer": "$14.14$",
+      "solution": "$200=2.00\\times100$ 이므로 $\\sqrt{200}=10\\sqrt{2.00}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{200}\\approx10\\times1.414=14.14$ 이다.",
+      "facts": {
+        "a2": 200,
+        "v3": 1414,
+        "mult": 10
+      },
+      "figureSpec": null
+    },
+    "mc": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{2.00}\\approx1.414$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{200}$의 근삿값을 구하시오.\n① $14.04$\n② $14.14$\n③ $14.24$\n④ $28.28$\n⑤ $14.15$",
+      "answer": "②",
+      "solution": "$200=2.00\\times100$ 이므로 $\\sqrt{200}=10\\sqrt{2.00}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{200}\\approx10\\times1.414=14.14$ 이다.",
+      "facts": {
+        "a2": 200,
+        "v3": 1414,
+        "mult": 10
+      },
+      "figureSpec": null,
+      "familyKey": "3-1|무리수와 실수|09",
+      "problemType": "계산",
+      "questionType": "객관식"
+    }
+  },
+  {
+    "tuple": {
+      "a2": 200,
+      "mult": 100
+    },
+    "native": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{2.00}\\approx1.414$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{20000}$의 근삿값을 구하시오.",
+      "answer": "$141.4$",
+      "solution": "$20000=2.00\\times10000$ 이므로 $\\sqrt{20000}=100\\sqrt{2.00}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{20000}\\approx100\\times1.414=141.4$ 이다.",
+      "facts": {
+        "a2": 200,
+        "v3": 1414,
+        "mult": 100
+      },
+      "figureSpec": null
+    },
+    "mc": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{2.00}\\approx1.414$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{20000}$의 근삿값을 구하시오.\n① $141.3$\n② $141.2$\n③ $141.5$\n④ $141.6$\n⑤ $141.4$",
+      "answer": "⑤",
+      "solution": "$20000=2.00\\times10000$ 이므로 $\\sqrt{20000}=100\\sqrt{2.00}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{20000}\\approx100\\times1.414=141.4$ 이다.",
+      "facts": {
+        "a2": 200,
+        "v3": 1414,
+        "mult": 100
+      },
+      "figureSpec": null,
+      "familyKey": "3-1|무리수와 실수|09",
+      "problemType": "계산",
+      "questionType": "객관식"
+    }
+  },
+  {
+    "tuple": {
+      "a2": 225,
+      "mult": 10
+    },
+    "native": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{2.25}\\approx1.500$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{225}$의 근삿값을 구하시오.",
+      "answer": "$15$",
+      "solution": "$225=2.25\\times100$ 이므로 $\\sqrt{225}=10\\sqrt{2.25}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{225}\\approx10\\times1.500=15$ 이다.",
+      "facts": {
+        "a2": 225,
+        "v3": 1500,
+        "mult": 10
+      },
+      "figureSpec": null
+    },
+    "mc": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{2.25}\\approx1.500$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{225}$의 근삿값을 구하시오.\n① $16$\n② $30$\n③ $18$\n④ $15$\n⑤ $5$",
+      "answer": "④",
+      "solution": "$225=2.25\\times100$ 이므로 $\\sqrt{225}=10\\sqrt{2.25}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{225}\\approx10\\times1.500=15$ 이다.",
+      "facts": {
+        "a2": 225,
+        "v3": 1500,
+        "mult": 10
+      },
+      "figureSpec": null,
+      "familyKey": "3-1|무리수와 실수|09",
+      "problemType": "계산",
+      "questionType": "객관식"
+    }
+  },
+  {
+    "tuple": {
+      "a2": 225,
+      "mult": 100
+    },
+    "native": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{2.25}\\approx1.500$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{22500}$의 근삿값을 구하시오.",
+      "answer": "$150$",
+      "solution": "$22500=2.25\\times10000$ 이므로 $\\sqrt{22500}=100\\sqrt{2.25}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{22500}\\approx100\\times1.500=150$ 이다.",
+      "facts": {
+        "a2": 225,
+        "v3": 1500,
+        "mult": 100
+      },
+      "figureSpec": null
+    },
+    "mc": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{2.25}\\approx1.500$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{22500}$의 근삿값을 구하시오.\n① $152$\n② $300$\n③ $148$\n④ $50$\n⑤ $150$",
+      "answer": "⑤",
+      "solution": "$22500=2.25\\times10000$ 이므로 $\\sqrt{22500}=100\\sqrt{2.25}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{22500}\\approx100\\times1.500=150$ 이다.",
+      "facts": {
+        "a2": 225,
+        "v3": 1500,
+        "mult": 100
+      },
+      "figureSpec": null,
+      "familyKey": "3-1|무리수와 실수|09",
+      "problemType": "계산",
+      "questionType": "객관식"
+    }
+  },
+  {
+    "tuple": {
+      "a2": 512,
+      "mult": 10
+    },
+    "native": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{5.12}\\approx2.263$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{512}$의 근삿값을 구하시오.",
+      "answer": "$22.63$",
+      "solution": "$512=5.12\\times100$ 이므로 $\\sqrt{512}=10\\sqrt{5.12}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{512}\\approx10\\times2.263=22.63$ 이다.",
+      "facts": {
+        "a2": 512,
+        "v3": 2263,
+        "mult": 10
+      },
+      "figureSpec": null
+    },
+    "mc": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{5.12}\\approx2.263$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{512}$의 근삿값을 구하시오.\n① $23.63$\n② $22.64$\n③ $22.63$\n④ $22.61$\n⑤ $22.65$",
+      "answer": "③",
+      "solution": "$512=5.12\\times100$ 이므로 $\\sqrt{512}=10\\sqrt{5.12}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{512}\\approx10\\times2.263=22.63$ 이다.",
+      "facts": {
+        "a2": 512,
+        "v3": 2263,
+        "mult": 10
+      },
+      "figureSpec": null,
+      "familyKey": "3-1|무리수와 실수|09",
+      "problemType": "계산",
+      "questionType": "객관식"
+    }
+  },
+  {
+    "tuple": {
+      "a2": 512,
+      "mult": 100
+    },
+    "native": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{5.12}\\approx2.263$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{51200}$의 근삿값을 구하시오.",
+      "answer": "$226.3$",
+      "solution": "$51200=5.12\\times10000$ 이므로 $\\sqrt{51200}=100\\sqrt{5.12}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{51200}\\approx100\\times2.263=226.3$ 이다.",
+      "facts": {
+        "a2": 512,
+        "v3": 2263,
+        "mult": 100
+      },
+      "figureSpec": null
+    },
+    "mc": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{5.12}\\approx2.263$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{51200}$의 근삿값을 구하시오.\n① $227.3$\n② $226.1$\n③ $226.3$\n④ $226.5$\n⑤ $452.6$",
+      "answer": "③",
+      "solution": "$51200=5.12\\times10000$ 이므로 $\\sqrt{51200}=100\\sqrt{5.12}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{51200}\\approx100\\times2.263=226.3$ 이다.",
+      "facts": {
+        "a2": 512,
+        "v3": 2263,
+        "mult": 100
+      },
+      "figureSpec": null,
+      "familyKey": "3-1|무리수와 실수|09",
+      "problemType": "계산",
+      "questionType": "객관식"
+    }
+  },
+  {
+    "tuple": {
+      "a2": 998,
+      "mult": 10
+    },
+    "native": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{9.98}\\approx3.159$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{998}$의 근삿값을 구하시오.",
+      "answer": "$31.59$",
+      "solution": "$998=9.98\\times100$ 이므로 $\\sqrt{998}=10\\sqrt{9.98}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{998}\\approx10\\times3.159=31.59$ 이다.",
+      "facts": {
+        "a2": 998,
+        "v3": 3159,
+        "mult": 10
+      },
+      "figureSpec": null
+    },
+    "mc": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{9.98}\\approx3.159$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{998}$의 근삿값을 구하시오.\n① $31.57$\n② $31.59$\n③ $30.59$\n④ $31.49$\n⑤ $63.18$",
+      "answer": "②",
+      "solution": "$998=9.98\\times100$ 이므로 $\\sqrt{998}=10\\sqrt{9.98}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{998}\\approx10\\times3.159=31.59$ 이다.",
+      "facts": {
+        "a2": 998,
+        "v3": 3159,
+        "mult": 10
+      },
+      "figureSpec": null,
+      "familyKey": "3-1|무리수와 실수|09",
+      "problemType": "계산",
+      "questionType": "객관식"
+    }
+  },
+  {
+    "tuple": {
+      "a2": 998,
+      "mult": 100
+    },
+    "native": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{9.98}\\approx3.159$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{99800}$의 근삿값을 구하시오.",
+      "answer": "$315.9$",
+      "solution": "$99800=9.98\\times10000$ 이므로 $\\sqrt{99800}=100\\sqrt{9.98}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{99800}\\approx100\\times3.159=315.9$ 이다.",
+      "facts": {
+        "a2": 998,
+        "v3": 3159,
+        "mult": 100
+      },
+      "figureSpec": null
+    },
+    "mc": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{9.98}\\approx3.159$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{99800}$의 근삿값을 구하시오.\n① $316.1$\n② $315.7$\n③ $316.9$\n④ $316.0$\n⑤ $315.9$",
+      "answer": "⑤",
+      "solution": "$99800=9.98\\times10000$ 이므로 $\\sqrt{99800}=100\\sqrt{9.98}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{99800}\\approx100\\times3.159=315.9$ 이다.",
+      "facts": {
+        "a2": 998,
+        "v3": 3159,
+        "mult": 100
+      },
+      "figureSpec": null,
+      "familyKey": "3-1|무리수와 실수|09",
+      "problemType": "계산",
+      "questionType": "객관식"
+    }
+  },
+  {
+    "tuple": {
+      "a2": 999,
+      "mult": 10
+    },
+    "native": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{9.99}\\approx3.161$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{999}$의 근삿값을 구하시오.",
+      "answer": "$31.61$",
+      "solution": "$999=9.99\\times100$ 이므로 $\\sqrt{999}=10\\sqrt{9.99}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{999}\\approx10\\times3.161=31.61$ 이다.",
+      "facts": {
+        "a2": 999,
+        "v3": 3161,
+        "mult": 10
+      },
+      "figureSpec": null
+    },
+    "mc": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{9.99}\\approx3.161$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{999}$의 근삿값을 구하시오.\n① $31.51$\n② $31.62$\n③ $31.61$\n④ $31.71$\n⑤ $32.61$",
+      "answer": "③",
+      "solution": "$999=9.99\\times100$ 이므로 $\\sqrt{999}=10\\sqrt{9.99}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{999}\\approx10\\times3.161=31.61$ 이다.",
+      "facts": {
+        "a2": 999,
+        "v3": 3161,
+        "mult": 10
+      },
+      "figureSpec": null,
+      "familyKey": "3-1|무리수와 실수|09",
+      "problemType": "계산",
+      "questionType": "객관식"
+    }
+  },
+  {
+    "tuple": {
+      "a2": 999,
+      "mult": 100
+    },
+    "native": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{9.99}\\approx3.161$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{99900}$의 근삿값을 구하시오.",
+      "answer": "$316.1$",
+      "solution": "$99900=9.99\\times10000$ 이므로 $\\sqrt{99900}=100\\sqrt{9.99}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{99900}\\approx100\\times3.161=316.1$ 이다.",
+      "facts": {
+        "a2": 999,
+        "v3": 3161,
+        "mult": 100
+      },
+      "figureSpec": null
+    },
+    "mc": {
+      "grade": "중3",
+      "unitSection": "무리수와 실수",
+      "rpmBook": "3-1",
+      "rpmMinor": "무리수와 실수",
+      "rpmType": "09",
+      "rpmTitle": "제곱근표를 이용하여 제곱근의 값 구하기",
+      "difficulty": "응용",
+      "content": "제곱근표에 $\\sqrt{9.99}\\approx3.161$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{99900}$의 근삿값을 구하시오.\n① $316.3$\n② $315.1$\n③ $632.2$\n④ $316.2$\n⑤ $316.1$",
+      "answer": "⑤",
+      "solution": "$99900=9.99\\times10000$ 이므로 $\\sqrt{99900}=100\\sqrt{9.99}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{99900}\\approx100\\times3.161=316.1$ 이다.",
+      "facts": {
+        "a2": 999,
+        "v3": 3161,
+        "mult": 100
+      },
+      "figureSpec": null,
+      "familyKey": "3-1|무리수와 실수|09",
+      "problemType": "계산",
+      "questionType": "객관식"
+    }
+  }
+]
