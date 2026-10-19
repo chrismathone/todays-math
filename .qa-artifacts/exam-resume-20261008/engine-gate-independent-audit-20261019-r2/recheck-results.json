@@ -1,0 +1,2368 @@
+{
+  "kind": "independent-count-domain-recheck/v2",
+  "root": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008",
+  "codeBefore": {
+    "src/lib/engine/deriveFormats.ts": "7640ebad4371cdef906be9b62b6e71bf3299c73bd7ca4517410c446ddb62ad50",
+    "src/lib/elementary/rng.ts": "a91a03e74d14bbbad7a550f5e3daa78bf4646b06a8d584476f9321adc2e6a3f0",
+    "src/lib/middle/generate.ts": "8f2639b269024fdec1eb57752f975526b0d4d1e38e2c265ebe6ab7908bc414f7",
+    "src/lib/middle/m1Expr.ts": "730630b804f0ef793c45b0cabcf6c6e21f333d0f03ea7a542f4ec1b94850a336",
+    "src/lib/problem/parseProblemContent.ts": "c4bbe8b092dfa43f7d9a72a4be5661f44f4ed89932a1db826e70c327300a7b91"
+  },
+  "codeAfter": {
+    "src/lib/engine/deriveFormats.ts": "7640ebad4371cdef906be9b62b6e71bf3299c73bd7ca4517410c446ddb62ad50",
+    "src/lib/elementary/rng.ts": "a91a03e74d14bbbad7a550f5e3daa78bf4646b06a8d584476f9321adc2e6a3f0",
+    "src/lib/middle/generate.ts": "8f2639b269024fdec1eb57752f975526b0d4d1e38e2c265ebe6ab7908bc414f7",
+    "src/lib/middle/m1Expr.ts": "730630b804f0ef793c45b0cabcf6c6e21f333d0f03ea7a542f4ec1b94850a336",
+    "src/lib/problem/parseProblemContent.ts": "c4bbe8b092dfa43f7d9a72a4be5661f44f4ed89932a1db826e70c327300a7b91"
+  },
+  "codeStable": true,
+  "r1EvidenceHashes": {
+    ".qa-artifacts/exam-resume-20261008/engine-gate-independent-audit-20261019-r1/audit-findings.json": "92b08b37cba8397f1365669d2fdb5ad1636eb3c0d8eb5eafcf18a87d29246cf6",
+    ".qa-artifacts/exam-resume-20261008/engine-gate-independent-audit-20261019-r1/count-boundary-results.json": "7d71ca6642830e24ae89ac7fba6f4d95fb73d4e82eccb4c773a3ba29af745d71",
+    ".qa-artifacts/exam-resume-20261008/engine-gate-independent-audit-20261019-r1/additional-count-results.json": "c48bee2fb2a1eab7190e10a0a9f3a80904995903806761ec029649c7c4ba6fba",
+    ".qa-artifacts/exam-resume-20261008/engine-gate-independent-audit-20261019-r1/summarizer-results.json": "643cb2f3f27a8841c05209ecc2f84ae58fb06fc7fca80538b59962b032b1ae44"
+  },
+  "r1Unchanged": true,
+  "actual64": {
+    "passed": 64,
+    "failed": 0,
+    "results": [
+      {
+        "name": "actual-generator",
+        "seed": 1,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          3,
+          0,
+          2,
+          4,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 2,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          0,
+          2,
+          4,
+          1,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 3,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          0,
+          2,
+          1,
+          4,
+          3
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 4,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          0,
+          3,
+          2,
+          1,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 5,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          4,
+          2,
+          0,
+          5,
+          3
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 6,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          1,
+          2,
+          4,
+          3,
+          0
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 7,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          4,
+          2,
+          5,
+          0,
+          1
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 8,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          1,
+          3,
+          5,
+          0,
+          4
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 9,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          4,
+          0,
+          3,
+          5,
+          1
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 10,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          4,
+          1,
+          2,
+          3,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 11,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          1,
+          3,
+          2,
+          4,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 12,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          4,
+          1,
+          0,
+          5,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 13,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          3,
+          1,
+          0,
+          4,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 14,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          4,
+          0,
+          1,
+          2,
+          3
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 15,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          0,
+          2,
+          4,
+          3,
+          1
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 16,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          5,
+          1,
+          0,
+          3,
+          4
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 17,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          0,
+          4,
+          1,
+          3,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 18,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          1,
+          3,
+          2,
+          4,
+          0
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 19,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          3,
+          2,
+          4,
+          0,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 20,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          2,
+          4,
+          0,
+          3,
+          1
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 21,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          3,
+          2,
+          4,
+          0,
+          1
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 22,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          3,
+          0,
+          2,
+          1,
+          4
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 23,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          4,
+          1,
+          2,
+          3,
+          0
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 24,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          1,
+          2,
+          0,
+          3,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 25,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          5,
+          1,
+          4,
+          3,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 26,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          3,
+          2,
+          1,
+          4,
+          0
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 27,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          2,
+          0,
+          1,
+          3,
+          4
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 28,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          4,
+          2,
+          5,
+          1,
+          3
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 29,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          0,
+          3,
+          2,
+          4,
+          1
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 30,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          1,
+          0,
+          4,
+          5,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 31,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          0,
+          2,
+          3,
+          4,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 32,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          4,
+          0,
+          3,
+          1,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 33,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          0,
+          2,
+          3,
+          1,
+          4
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 34,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          1,
+          5,
+          4,
+          0,
+          3
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 35,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          2,
+          4,
+          5,
+          3,
+          0
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 36,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          3,
+          4,
+          5,
+          0,
+          1
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 37,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          0,
+          3,
+          4,
+          5,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 38,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          5,
+          3,
+          0,
+          4,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 39,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          0,
+          2,
+          3,
+          5,
+          1
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 40,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          5,
+          3,
+          2,
+          0,
+          4
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 41,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          1,
+          2,
+          3,
+          5,
+          4
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 42,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          5,
+          4,
+          3,
+          1,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 43,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          5,
+          3,
+          0,
+          1,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 44,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          0,
+          2,
+          4,
+          5,
+          1
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 45,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          1,
+          4,
+          2,
+          0,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 46,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          5,
+          3,
+          2,
+          4,
+          0
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 47,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          2,
+          4,
+          3,
+          5,
+          0
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 48,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          5,
+          1,
+          2,
+          0,
+          3
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 49,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          5,
+          0,
+          1,
+          2,
+          4
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 50,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          2,
+          0,
+          1,
+          4,
+          3
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 51,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          1,
+          2,
+          4,
+          3,
+          0
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 52,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          1,
+          4,
+          3,
+          5,
+          0
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 53,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          1,
+          0,
+          4,
+          5,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 54,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          3,
+          0,
+          2,
+          4,
+          1
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 55,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          5,
+          4,
+          2,
+          1,
+          3
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 56,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          0,
+          3,
+          5,
+          1,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 57,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          1,
+          4,
+          3,
+          5,
+          0
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 58,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          2,
+          4,
+          5,
+          3,
+          0
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 59,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          1,
+          0,
+          3,
+          4,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 60,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          3,
+          1,
+          0,
+          5,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 61,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          4,
+          5,
+          3,
+          1,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 62,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          3,
+          1,
+          0,
+          4,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 63,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          0,
+          4,
+          2,
+          3,
+          1
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "actual-generator",
+        "seed": 64,
+        "bound": 5,
+        "passed": true,
+        "choiceValues": [
+          5,
+          2,
+          1,
+          3,
+          0
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      }
+    ]
+  },
+  "domainN4N20": {
+    "passed": 78,
+    "failed": 0,
+    "results": [
+      {
+        "name": "synthetic-domain-4",
+        "seed": 1,
+        "bound": 4,
+        "passed": true,
+        "choiceValues": [
+          0,
+          1,
+          4,
+          3,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-4",
+        "seed": 7,
+        "bound": 4,
+        "passed": true,
+        "choiceValues": [
+          3,
+          0,
+          4,
+          1,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-4",
+        "seed": 64,
+        "bound": 4,
+        "passed": true,
+        "choiceValues": [
+          4,
+          0,
+          2,
+          3,
+          1
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-4",
+        "seed": 1,
+        "bound": 4,
+        "passed": true,
+        "choiceValues": [
+          1,
+          0,
+          4,
+          3,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-4",
+        "seed": 7,
+        "bound": 4,
+        "passed": true,
+        "choiceValues": [
+          3,
+          1,
+          4,
+          0,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-4",
+        "seed": 64,
+        "bound": 4,
+        "passed": true,
+        "choiceValues": [
+          4,
+          1,
+          2,
+          3,
+          0
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-4",
+        "seed": 1,
+        "bound": 4,
+        "passed": true,
+        "choiceValues": [
+          2,
+          0,
+          4,
+          3,
+          1
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-4",
+        "seed": 7,
+        "bound": 4,
+        "passed": true,
+        "choiceValues": [
+          3,
+          2,
+          4,
+          0,
+          1
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-4",
+        "seed": 64,
+        "bound": 4,
+        "passed": true,
+        "choiceValues": [
+          4,
+          2,
+          1,
+          3,
+          0
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-4",
+        "seed": 1,
+        "bound": 4,
+        "passed": true,
+        "choiceValues": [
+          3,
+          0,
+          4,
+          2,
+          1
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-4",
+        "seed": 7,
+        "bound": 4,
+        "passed": true,
+        "choiceValues": [
+          2,
+          3,
+          4,
+          0,
+          1
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-4",
+        "seed": 64,
+        "bound": 4,
+        "passed": true,
+        "choiceValues": [
+          4,
+          3,
+          1,
+          2,
+          0
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-4",
+        "seed": 1,
+        "bound": 4,
+        "passed": true,
+        "choiceValues": [
+          4,
+          0,
+          3,
+          2,
+          1
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-4",
+        "seed": 7,
+        "bound": 4,
+        "passed": true,
+        "choiceValues": [
+          2,
+          4,
+          3,
+          0,
+          1
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-4",
+        "seed": 64,
+        "bound": 4,
+        "passed": true,
+        "choiceValues": [
+          3,
+          4,
+          1,
+          2,
+          0
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 1,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          0,
+          1,
+          11,
+          13,
+          20
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 7,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          14,
+          0,
+          20,
+          1,
+          3
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 64,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          17,
+          0,
+          9,
+          13,
+          6
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 1,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          1,
+          0,
+          11,
+          13,
+          20
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 7,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          14,
+          1,
+          20,
+          0,
+          3
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 64,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          17,
+          1,
+          9,
+          13,
+          6
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 1,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          2,
+          0,
+          11,
+          13,
+          20
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 7,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          14,
+          2,
+          20,
+          0,
+          3
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 64,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          17,
+          2,
+          9,
+          13,
+          6
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 1,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          3,
+          0,
+          11,
+          13,
+          20
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 7,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          14,
+          3,
+          20,
+          0,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 64,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          17,
+          3,
+          9,
+          13,
+          6
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 1,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          4,
+          0,
+          11,
+          13,
+          20
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 7,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          14,
+          4,
+          20,
+          0,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 64,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          17,
+          4,
+          9,
+          13,
+          6
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 1,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          5,
+          0,
+          11,
+          13,
+          20
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 7,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          14,
+          5,
+          20,
+          0,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 64,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          17,
+          5,
+          9,
+          13,
+          6
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 1,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          6,
+          0,
+          11,
+          13,
+          20
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 7,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          14,
+          6,
+          20,
+          0,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 64,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          17,
+          6,
+          9,
+          13,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 1,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          7,
+          0,
+          11,
+          13,
+          20
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 7,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          14,
+          7,
+          20,
+          0,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 64,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          17,
+          7,
+          9,
+          13,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 1,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          8,
+          0,
+          11,
+          13,
+          20
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 7,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          14,
+          8,
+          20,
+          0,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 64,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          17,
+          8,
+          9,
+          13,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 1,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          9,
+          0,
+          11,
+          13,
+          20
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 7,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          14,
+          9,
+          20,
+          0,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 64,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          17,
+          9,
+          8,
+          13,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 1,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          10,
+          0,
+          11,
+          13,
+          20
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 7,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          14,
+          10,
+          20,
+          0,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 64,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          17,
+          10,
+          8,
+          13,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 1,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          11,
+          0,
+          10,
+          13,
+          20
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 7,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          14,
+          11,
+          20,
+          0,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 64,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          17,
+          11,
+          8,
+          13,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 1,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          12,
+          0,
+          10,
+          13,
+          20
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 7,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          14,
+          12,
+          20,
+          0,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 64,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          17,
+          12,
+          8,
+          13,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 1,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          13,
+          0,
+          10,
+          12,
+          20
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 7,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          14,
+          13,
+          20,
+          0,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 64,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          17,
+          13,
+          8,
+          12,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 1,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          14,
+          0,
+          10,
+          12,
+          20
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 7,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          13,
+          14,
+          20,
+          0,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 64,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          17,
+          14,
+          8,
+          12,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 1,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          15,
+          0,
+          10,
+          12,
+          20
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 7,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          13,
+          15,
+          20,
+          0,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 64,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          17,
+          15,
+          8,
+          12,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 1,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          16,
+          0,
+          10,
+          12,
+          20
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 7,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          13,
+          16,
+          20,
+          0,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 64,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          17,
+          16,
+          8,
+          12,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 1,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          17,
+          0,
+          10,
+          12,
+          20
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 7,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          13,
+          17,
+          20,
+          0,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 64,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          16,
+          17,
+          8,
+          12,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 1,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          18,
+          0,
+          10,
+          12,
+          20
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 7,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          13,
+          18,
+          20,
+          0,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 64,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          16,
+          18,
+          8,
+          12,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 1,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          19,
+          0,
+          10,
+          12,
+          20
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 7,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          13,
+          19,
+          20,
+          0,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 64,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          16,
+          19,
+          8,
+          12,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 1,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          20,
+          0,
+          10,
+          12,
+          19
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 7,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          13,
+          20,
+          19,
+          0,
+          2
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      },
+      {
+        "name": "synthetic-domain-20",
+        "seed": 64,
+        "bound": 20,
+        "passed": true,
+        "choiceValues": [
+          16,
+          20,
+          8,
+          12,
+          5
+        ],
+        "markedAnswerPreserved": true,
+        "solutionPreserved": true
+      }
+    ]
+  },
+  "negativeControls": {
+    "passed": 25,
+    "failed": 0,
+    "results": [
+      {
+        "name": "blank",
+        "bound": null,
+        "rejected": true,
+        "error": "Error: 분류 목록이 완전하게 명시되지 않아 가능한 개수 범위를 확정하지 않습니다"
+      },
+      {
+        "name": "ellipsis-cdots",
+        "bound": null,
+        "rejected": true,
+        "error": "Error: 분류 목록이 완전하게 명시되지 않아 가능한 개수 범위를 확정하지 않습니다"
+      },
+      {
+        "name": "ellipsis-ldots",
+        "bound": null,
+        "rejected": true,
+        "error": "Error: 분류 목록이 완전하게 명시되지 않아 가능한 개수 범위를 확정하지 않습니다"
+      },
+      {
+        "name": "ellipsis-dots",
+        "bound": null,
+        "rejected": true,
+        "error": "Error: 분류 목록이 완전하게 명시되지 않아 가능한 개수 범위를 확정하지 않습니다"
+      },
+      {
+        "name": "ellipsis-vdots",
+        "bound": null,
+        "rejected": true,
+        "error": "Error: 분류 목록이 완전하게 명시되지 않아 가능한 개수 범위를 확정하지 않습니다"
+      },
+      {
+        "name": "ellipsis-ddots",
+        "bound": null,
+        "rejected": true,
+        "error": "Error: 분류 목록이 완전하게 명시되지 않아 가능한 개수 범위를 확정하지 않습니다"
+      },
+      {
+        "name": "ellipsis-unicode",
+        "bound": null,
+        "rejected": true,
+        "error": "Error: 분류 목록이 완전하게 명시되지 않아 가능한 개수 범위를 확정하지 않습니다"
+      },
+      {
+        "name": "ellipsis-midline",
+        "bound": null,
+        "rejected": true,
+        "error": "Error: 분류 목록이 완전하게 명시되지 않아 가능한 개수 범위를 확정하지 않습니다"
+      },
+      {
+        "name": "ellipsis-periods",
+        "bound": null,
+        "rejected": true,
+        "error": "Error: 분류 목록이 완전하게 명시되지 않아 가능한 개수 범위를 확정하지 않습니다"
+      },
+      {
+        "name": "duplicate",
+        "bound": null,
+        "rejected": true,
+        "error": "Error: 분류 목록이 완전하게 명시되지 않아 가능한 개수 범위를 확정하지 않습니다"
+      },
+      {
+        "name": "whitespace-duplicate",
+        "bound": null,
+        "rejected": true,
+        "error": "Error: 분류 목록이 완전하게 명시되지 않아 가능한 개수 범위를 확정하지 않습니다"
+      },
+      {
+        "name": "header-only",
+        "bound": null,
+        "rejected": true,
+        "error": "Error: 분류 목록이 완전하게 명시되지 않아 가능한 개수 범위를 확정하지 않습니다"
+      },
+      {
+        "name": "extra-line",
+        "bound": null,
+        "rejected": true,
+        "error": "Error: 분류 목록이 완전하게 명시되지 않아 가능한 개수 범위를 확정하지 않습니다"
+      },
+      {
+        "name": "unprinted-tail",
+        "bound": null,
+        "rejected": true,
+        "error": "Error: 분류 목록이 완전하게 명시되지 않아 가능한 개수 범위를 확정하지 않습니다"
+      },
+      {
+        "name": "insufficient-domain-2",
+        "bound": 2,
+        "rejected": true,
+        "error": "Error: 가능한 개수 값이 다섯 미만이라 5지선다를 만들지 않습니다"
+      },
+      {
+        "name": "insufficient-domain-3",
+        "bound": 3,
+        "rejected": true,
+        "error": "Error: 가능한 개수 값이 다섯 미만이라 5지선다를 만들지 않습니다"
+      },
+      {
+        "name": "bad-answer-$6$개",
+        "bound": 5,
+        "rejected": true,
+        "error": "Error: 목록의 개수 범위를 벗어난 정답입니다"
+      },
+      {
+        "name": "bad-answer-$-1$개",
+        "bound": 5,
+        "rejected": true,
+        "error": "Error: 목록의 개수 범위를 벗어난 정답입니다"
+      },
+      {
+        "name": "bad-answer-$2.5$개",
+        "bound": 5,
+        "rejected": true,
+        "error": "Error: 목록의 개수 범위를 벗어난 정답입니다"
+      },
+      {
+        "name": "bad-answer-$02$개",
+        "bound": 5,
+        "rejected": true,
+        "error": "Error: 목록의 개수 범위를 벗어난 정답입니다"
+      },
+      {
+        "name": "bad-answer-$2$",
+        "bound": 5,
+        "rejected": true,
+        "error": "Error: 목록의 개수 범위를 벗어난 정답입니다"
+      },
+      {
+        "name": "bad-distractors-$0$개|$1$개|$3$개|$6$개",
+        "bound": 5,
+        "rejected": true,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "name": "bad-distractors-$0$개|$1$개|$3$개|$3$개",
+        "bound": 5,
+        "rejected": true,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "name": "bad-distractors-$0$개|$1$개|$2$개|$4$개",
+        "bound": 5,
+        "rejected": true,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "name": "bad-distractors-$0$개|$1$개|$3$개",
+        "bound": 5,
+        "rejected": true,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      }
+    ]
+  },
+  "validAuthored": {
+    "name": "valid-authored",
+    "seed": 7,
+    "bound": 5,
+    "passed": true,
+    "choiceValues": [
+      3,
+      2,
+      4,
+      0,
+      1
+    ],
+    "markedAnswerPreserved": true,
+    "solutionPreserved": true
+  },
+  "unknownNonclassification": {
+    "bound": null,
+    "legacyOutOfClassificationRangeChoiceRetained": true,
+    "correctAnswerPreserved": true
+  },
+  "findings": [
+    {
+      "id": "r1-F1",
+      "severity": "high",
+      "state": "resolved-for-current-hash",
+      "basis": "Actual64 generator cases and N4/N20 answer endpoints/interiors produce five distinct integer choices within0..N, preserve marked answer and solution."
+    },
+    {
+      "id": "r1-F2",
+      "severity": "medium",
+      "state": "resolved-for-tested-bounded-grammar",
+      "basis": "Blank/ellipsis/exact and whitespace duplicates now return null and reject before legacy fallback even with valid authored distractors. Incomplete recognized headers reject."
+    }
+  ],
+  "scope": "New current-code runtime checks only; historical r1 failures remain intact. No root code/records edits; no candidate/taxonomy edits, DB/install/push. No future blind problem answers read.",
+  "limits": [
+    "Count grammar/distractor bounds do not establish semantic correctness of the supplied answer or equations.",
+    "No independent grade, copyright/rights, pedagogy or corpus coverage approval.",
+    "Candidate115 and taxonomy15/99 are unchanged context, not recalculated or promoted by this recheck.",
+    "Full/loadable remain0; existing source/custody/rights/similarity/native/family holds unaffected."
+  ],
+  "status": "passed-within-requested-bounded-scope",
+  "fullVerified": 0,
+  "loadable": 0
+}
