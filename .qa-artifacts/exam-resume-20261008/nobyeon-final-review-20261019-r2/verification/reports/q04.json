@@ -1,0 +1,245 @@
+{
+  "status": "pending",
+  "questionNumber": 4,
+  "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q04",
+  "studentDigest": "3bab64f7e8071bfce6043053aa19c709a2eb5be3e7fdea99f324d7e1e37db9b3",
+  "candidateDigest": "825f9d8ad2d06aeaf3e0a0b29efee776bda06ae5f410c788287213ad4753c828",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "solveDigest": "2373e4667c4a3462676c1ccef9cd59510ad0c3698892e89bb08f6b4a79c20ed0",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-nobyeon-independent-20261019-r2-stage2",
+  "rawSolverId": "codex-nobyeon-independent-20261019-r2",
+  "rawSolveCommit": "c51c84ce57debd1287f5a1d7708f0c4d709ba01b",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "evidence": {
+    "answerCorrect": "Q=(0,6), P left of O since k>0; a=∠OPQ. OP=4t,PQ=5t; Pythagoras gives OQ=3t, t=2, OP=8. Area24 selects③. Author uses actual side lengths rather than a relationship between trig functions; k=3/4 is an admissible witness. Raw proof option+value and author option-only agree semantically; not legacy string equality.",
+    "solutionCorrect": "Q=(0,6), P left of O since k>0; a=∠OPQ. OP=4t,PQ=5t; Pythagoras gives OQ=3t, t=2, OP=8. Area24 selects③. Author uses actual side lengths rather than a relationship between trig functions; k=3/4 is an admissible witness.",
+    "existenceUniqueness": "{\"domain\": \"k>0, a acute, Q above O and P left of O; OP and PQ positive\", \"existence\": \"Line y=(3/4)x+6 gives intercepts (−8,0),(0,6) and right-triangle sides 6,8,10.\", \"uniqueness\": \"The positive 4:5 adjacent-to-hypotenuse ratio and OQ=6 force t=2 and k=3/4.\", \"positiveLengths\": \"OP=8,OQ=6,PQ=10>0; negative x-intercept is not a negative length.\", \"units\": \"24 coordinate square units; no cm² supplied.\"}",
+    "choicesCorrect": "[{\"choice\": 1, \"area\": 12, \"squaredAdjacentHypotenuseRatio\": \"4/13\", \"equals16over25\": false}, {\"choice\": 2, \"area\": 18, \"squaredAdjacentHypotenuseRatio\": \"1/2\", \"equals16over25\": false}, {\"choice\": 3, \"area\": 24, \"squaredAdjacentHypotenuseRatio\": \"16/25\", \"equals16over25\": true}, {\"choice\": 4, \"area\": 36, \"squaredAdjacentHypotenuseRatio\": \"4/5\", \"equals16over25\": false}, {\"choice\": 5, \"area\": 48, \"squaredAdjacentHypotenuseRatio\": \"64/73\", \"equals16over25\": false}]",
+    "figureConsistent": "No figure artifact supplied or required; inspected both author previews and reconstructed intercept incidences from the given positive-slope equation. No unseen graph presumed.",
+    "sameCoreConceptAndProcedure": "Original: fully known line→acute-angle trig expression. Twin: positive unknown slope, y-intercept and cosine→intercept triangle area. Both use a line/intercepts right triangle and Pythagoras; the direction of inference and target quantity actually change.",
+    "distinctPresentation": "Known coefficients→trig result becomes known intercept/ratio→unknown side/area with k>0. Actual inverse/structural transformation.",
+    "naturalKorean": "Full current stem, all five choices and entire solution read in JSON and rendered author sheets. Conditions/target/point referents are natural and consistent. Student content does not contain original school names; internal sourceSchoolInternal remains provenance only.",
+    "curriculumAppropriate": "Checked the actual derivation against 9수03-01, 9수03-05, 9수03-06, 9수04-16, 9수04-17, 6수03-06, angle_range and no_trig_ratio_relationships in the supplied official2015 provisions. Q=(0,6), P left of O since k>0; a=∠OPQ. OP=4t,PQ=5t; Pythagoras gives OQ=3t, t=2, OP=8. Area24 selects③. Author uses actual side lengths rather than a relationship between trig functions; k=3/4 is an admissible witness. All trig angles are acute/special0–90°. No trig identities/laws, Heron, vectors or higher-grade shortcuts are needed or used.",
+    "allStudentSurfacesInScope": "All seven explicit audits below passed independently; math answer alone is not taken as grade evidence.",
+    "unitFamilyFit": "Pending: proposed historical unit 3e93bf73-4493-4299-b8a3-c4f5247e4413 exists in the exact cited2026-10-08 snapshot, but familyKey and problemTypeProposal are null. Snapshot/registry hashes match citations; neither demonstrates current whole-item family fit. No title-based family selection is made.",
+    "scoreAppropriate": "Question-only original printed score=5, current score=5; one MC parent and five choices, no hidden subpart/rubric. Original: fully known line→acute-angle trig expression. Twin: positive unknown slope, y-intercept and cosine→intercept triangle area. Both use a line/intercepts right triangle and Pythagoras; the direction of inference and target quantity actually change. Qualitatively comparable school-level multistep demand; no measured difficulty equivalence claimed."
+  },
+  "checkEvidence": {
+    "answerCorrect": "Q=(0,6), P left of O since k>0; a=∠OPQ. OP=4t,PQ=5t; Pythagoras gives OQ=3t, t=2, OP=8. Area24 selects③. Author uses actual side lengths rather than a relationship between trig functions; k=3/4 is an admissible witness. Raw proof option+value and author option-only agree semantically; not legacy string equality.",
+    "solutionCorrect": "Q=(0,6), P left of O since k>0; a=∠OPQ. OP=4t,PQ=5t; Pythagoras gives OQ=3t, t=2, OP=8. Area24 selects③. Author uses actual side lengths rather than a relationship between trig functions; k=3/4 is an admissible witness.",
+    "existenceUniqueness": "{\"domain\": \"k>0, a acute, Q above O and P left of O; OP and PQ positive\", \"existence\": \"Line y=(3/4)x+6 gives intercepts (−8,0),(0,6) and right-triangle sides 6,8,10.\", \"uniqueness\": \"The positive 4:5 adjacent-to-hypotenuse ratio and OQ=6 force t=2 and k=3/4.\", \"positiveLengths\": \"OP=8,OQ=6,PQ=10>0; negative x-intercept is not a negative length.\", \"units\": \"24 coordinate square units; no cm² supplied.\"}",
+    "choicesCorrect": "[{\"choice\": 1, \"area\": 12, \"squaredAdjacentHypotenuseRatio\": \"4/13\", \"equals16over25\": false}, {\"choice\": 2, \"area\": 18, \"squaredAdjacentHypotenuseRatio\": \"1/2\", \"equals16over25\": false}, {\"choice\": 3, \"area\": 24, \"squaredAdjacentHypotenuseRatio\": \"16/25\", \"equals16over25\": true}, {\"choice\": 4, \"area\": 36, \"squaredAdjacentHypotenuseRatio\": \"4/5\", \"equals16over25\": false}, {\"choice\": 5, \"area\": 48, \"squaredAdjacentHypotenuseRatio\": \"64/73\", \"equals16over25\": false}]",
+    "figureConsistent": "No figure artifact supplied or required; inspected both author previews and reconstructed intercept incidences from the given positive-slope equation. No unseen graph presumed.",
+    "sameCoreConceptAndProcedure": "Original: fully known line→acute-angle trig expression. Twin: positive unknown slope, y-intercept and cosine→intercept triangle area. Both use a line/intercepts right triangle and Pythagoras; the direction of inference and target quantity actually change.",
+    "distinctPresentation": "Known coefficients→trig result becomes known intercept/ratio→unknown side/area with k>0. Actual inverse/structural transformation.",
+    "naturalKorean": "Full current stem, all five choices and entire solution read in JSON and rendered author sheets. Conditions/target/point referents are natural and consistent. Student content does not contain original school names; internal sourceSchoolInternal remains provenance only.",
+    "curriculumAppropriate": "Checked the actual derivation against 9수03-01, 9수03-05, 9수03-06, 9수04-16, 9수04-17, 6수03-06, angle_range and no_trig_ratio_relationships in the supplied official2015 provisions. Q=(0,6), P left of O since k>0; a=∠OPQ. OP=4t,PQ=5t; Pythagoras gives OQ=3t, t=2, OP=8. Area24 selects③. Author uses actual side lengths rather than a relationship between trig functions; k=3/4 is an admissible witness. All trig angles are acute/special0–90°. No trig identities/laws, Heron, vectors or higher-grade shortcuts are needed or used.",
+    "allStudentSurfacesInScope": "All seven explicit audits below passed independently; math answer alone is not taken as grade evidence.",
+    "unitFamilyFit": "Pending: proposed historical unit 3e93bf73-4493-4299-b8a3-c4f5247e4413 exists in the exact cited2026-10-08 snapshot, but familyKey and problemTypeProposal are null. Snapshot/registry hashes match citations; neither demonstrates current whole-item family fit. No title-based family selection is made.",
+    "scoreAppropriate": "Question-only original printed score=5, current score=5; one MC parent and five choices, no hidden subpart/rubric. Original: fully known line→acute-angle trig expression. Twin: positive unknown slope, y-intercept and cosine→intercept triangle area. Both use a line/intercepts right triangle and Pythagoras; the direction of inference and target quantity actually change. Qualitatively comparable school-level multistep demand; no measured difficulty equivalence claimed."
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "Current stem reviewed in full: 일차함수 $y=kx+6$ $(k>0)$의 그래프가 $x$축, $y$축과 만나는 점을 각각 $\\mathrm{P}$, $\\mathrm{Q}$라 하고, 이 그래프와 $x$축이 이루는 예각의 크기를 $a$라 하자. $\\cos a=\\frac{4}{5}$일 때, 원점 $\\mathrm{O}$에 대하여 삼각형 $\\mathrm{OPQ}$의 넓이는? k>0, a acute, Q above O and P left of O; OP and PQ positive",
+      "officialProvisions": [
+        "9수03-01",
+        "9수03-05",
+        "9수03-06",
+        "9수04-16",
+        "9수04-17",
+        "6수03-06"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_trig_laws",
+        "no_Heron",
+        "no_vectors",
+        "height_before_area_formula"
+      ]
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "All five literal choices reviewed: [\"$12$\", \"$18$\", \"$24$\", \"$36$\", \"$48$\"] Exact per-choice tests: [{\"choice\": 1, \"area\": 12, \"squaredAdjacentHypotenuseRatio\": \"4/13\", \"equals16over25\": false}, {\"choice\": 2, \"area\": 18, \"squaredAdjacentHypotenuseRatio\": \"1/2\", \"equals16over25\": false}, {\"choice\": 3, \"area\": 24, \"squaredAdjacentHypotenuseRatio\": \"16/25\", \"equals16over25\": true}, {\"choice\": 4, \"area\": 36, \"squaredAdjacentHypotenuseRatio\": \"4/5\", \"equals16over25\": false}, {\"choice\": 5, \"area\": 48, \"squaredAdjacentHypotenuseRatio\": \"64/73\", \"equals16over25\": false}]",
+      "officialProvisions": [
+        "9수03-01",
+        "9수03-05",
+        "9수03-06",
+        "9수04-16",
+        "9수04-17",
+        "6수03-06"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_trig_laws",
+        "no_Heron",
+        "no_vectors",
+        "height_before_area_formula"
+      ]
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "No figure artifact supplied or required; inspected both author previews and reconstructed intercept incidences from the given positive-slope equation. No unseen graph presumed.",
+      "officialProvisions": [
+        "9수03-01",
+        "9수03-05",
+        "9수03-06",
+        "9수04-16",
+        "9수04-17",
+        "6수03-06"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_trig_laws",
+        "no_Heron",
+        "no_vectors",
+        "height_before_area_formula"
+      ]
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "Segment/angle letters and radical/ratio notation in current stem, choices and author solution agree with the given diagram. Units checked: 24 coordinate square units; no cm² supplied.",
+      "officialProvisions": [
+        "9수03-01",
+        "9수03-05",
+        "9수03-06",
+        "9수04-16",
+        "9수04-17",
+        "6수03-06"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_trig_laws",
+        "no_Heron",
+        "no_vectors",
+        "height_before_area_formula"
+      ]
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "Q=(0,6), P left of O since k>0; a=∠OPQ. OP=4t,PQ=5t; Pythagoras gives OQ=3t, t=2, OP=8. Area24 selects③. Author uses actual side lengths rather than a relationship between trig functions; k=3/4 is an admissible witness.",
+      "officialProvisions": [
+        "9수03-01",
+        "9수03-05",
+        "9수03-06",
+        "9수04-16",
+        "9수04-17",
+        "6수03-06"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_trig_laws",
+        "no_Heron",
+        "no_vectors",
+        "height_before_area_formula"
+      ]
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "Actual author solution read in full, not replaced with the blind solution: Q=(0,6), P left of O since k>0; a=∠OPQ. OP=4t,PQ=5t; Pythagoras gives OQ=3t, t=2, OP=8. Area24 selects③. Author uses actual side lengths rather than a relationship between trig functions; k=3/4 is an admissible witness.",
+      "officialProvisions": [
+        "9수03-01",
+        "9수03-05",
+        "9수03-06",
+        "9수04-16",
+        "9수04-17",
+        "6수03-06"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_trig_laws",
+        "no_Heron",
+        "no_vectors",
+        "height_before_area_formula"
+      ]
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "Used concepts are 일차함수의 절편과 양의 기울기, 직각삼각형에서 cos의 정의, 피타고라스 정리, 직각삼각형의 넓이. All are earlier/current school geometry, arithmetic or elementary functions; the derivation does not require higher-grade identities.",
+      "officialProvisions": [
+        "9수03-01",
+        "9수03-05",
+        "9수03-06",
+        "9수04-16",
+        "9수04-17",
+        "6수03-06"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_trig_laws",
+        "no_Heron",
+        "no_vectors",
+        "height_before_area_formula"
+      ]
+    }
+  },
+  "unitFamily": {
+    "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+    "familyKey": null,
+    "status": "pending",
+    "basis": "Pending: proposed historical unit 3e93bf73-4493-4299-b8a3-c4f5247e4413 exists in the exact cited2026-10-08 snapshot, but familyKey and problemTypeProposal are null. Snapshot/registry hashes match citations; neither demonstrates current whole-item family fit. No title-based family selection is made."
+  },
+  "sourceComparison": {
+    "questionOnlyFile": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/question-only-staged/nobyeon/q04.json",
+      "sha256": "0105c9a2ad4e393a10a02705ff6fd624abf6d913e7f5b6e0b5d9077c86710052"
+    },
+    "sourceSchoolInternal": "노변중학교",
+    "sourceScore": 5,
+    "sourceAnswersUsed": false,
+    "wholePairCertified": false
+  },
+  "findings": [
+    {
+      "severity": "blocker",
+      "surface": "classification",
+      "text": "Null whole-item family and unresolved problemType: unitFamilyFit=false; status pending, no load."
+    },
+    {
+      "severity": "note",
+      "surface": "source/rights/native",
+      "text": "Question-only source comparison is supported, but whole-pair identity/custody, rights/similarity and native gates are not approved."
+    },
+    {
+      "severity": "note",
+      "surface": "collector",
+      "text": "This child legacy normalizeAnswer marks sealed option+value different from author option-only. Parent will implement bounded selected-option/value/unit checking separately. Raw proofs must remain unchanged."
+    }
+  ],
+  "gates": {
+    "loadable": false,
+    "rightsCleared": false,
+    "similarityCleared": false,
+    "sourceIdentityConfirmed": false,
+    "nativeApproved": false
+  },
+  "outcomes": {
+    "mathematics": "passed-manual-semantic-comparison",
+    "gradeSevenSurfaces": "passed",
+    "transformationAndKorean": "passed",
+    "classification": "pending",
+    "fullContentReview": "pending",
+    "release": "held"
+  }
+}

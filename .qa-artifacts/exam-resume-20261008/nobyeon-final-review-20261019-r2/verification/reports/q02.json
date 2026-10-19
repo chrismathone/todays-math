@@ -1,0 +1,238 @@
+{
+  "status": "pending",
+  "questionNumber": 2,
+  "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q02",
+  "studentDigest": "d7c3cf3497e682a8bef4ceb2a6cf5f64eb873e53fa31597237368ba824d9ffb4",
+  "candidateDigest": "3cd0ef3139808017150a68a4bdf141dfb30f868893637cfa569dd98cbad580c4",
+  "assetDigest": "994f9c6ba3713c3d7e425c055d180090e778201542066639f7e1347c03c6df3b",
+  "solveDigest": "76300b73db11470e93aab3075334bfe0762d96e3a599b965ac5c1acf9d698080",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-nobyeon-independent-20261019-r2-stage2",
+  "rawSolverId": "codex-nobyeon-independent-20261019-r2",
+  "rawSolveCommit": "c51c84ce57debd1287f5a1d7708f0c4d709ba01b",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "evidence": {
+    "answerCorrect": "DE∥AB since both are perpendicular to BC; corresponding angles give x=A. AB=26·5/13=10, then positive BC=√(676−100)=24, option④. Author angle identification and all arithmetic agree with the sealed proof. cos x=cos A is equality of the same geometric angle, not a trig identity. Raw proof option+value and author option-only agree semantically; not legacy string equality.",
+    "solutionCorrect": "DE∥AB since both are perpendicular to BC; corresponding angles give x=A. AB=26·5/13=10, then positive BC=√(676−100)=24, option④. Author angle identification and all arithmetic agree with the sealed proof. cos x=cos A is equality of the same geometric angle, not a trig identity.",
+    "existenceUniqueness": "{\"domain\": \"Nondegenerate right triangle; x is defined and acute. D≠C, DE>0 and DC>0.\", \"existence\": \"AB=10, BC=24, AC=26 is a positive right triangle; choose D at AC midpoint, giving DE=5, EC=12, DC=13.\", \"uniqueness\": \"Similarity fixes AB=10; Pythagoras and BC>0 select only BC=24. Moving D does not change the result.\", \"positiveLengths\": \"AB=10, BC=24, AC=26 and midpoint witness DE=5, EC=12, DC=13 are positive.\", \"units\": \"24 in the same unspecified length unit as AC=26; do not invent cm.\"}",
+    "choicesCorrect": "[{\"choice\": 1, \"BC\": 10, \"ABSquaredPlusBCSquared\": \"200\", \"equals676\": false}, {\"choice\": 2, \"BC\": 12, \"ABSquaredPlusBCSquared\": \"244\", \"equals676\": false}, {\"choice\": 3, \"BC\": 20, \"ABSquaredPlusBCSquared\": \"500\", \"equals676\": false}, {\"choice\": 4, \"BC\": 24, \"ABSquaredPlusBCSquared\": \"676\", \"equals676\": true}, {\"choice\": 5, \"BC\": 25, \"ABSquaredPlusBCSquared\": \"725\", \"equals676\": false}]",
+    "figureConsistent": "Inspected SVG/spec and both PNGs: A,D,C collinear; B,E,C collinear; DE perpendicular BC; B and E right marks; x between DC/DE. Spec AB:BC=100:240=10:24 and D on AC. No arbitrary position is inferred from pixels; labels legible.",
+    "sameCoreConceptAndProcedure": "Original: two leg lengths and a perpendicular construction, then a linear combination of two ratios. Twin: cosine and hypotenuse are given, a missing leg is requested, and D moves to the hypotenuse. Equal-angle identification and Pythagorean/right-triangle reasoning are retained, with reversed data/target.",
+    "distinctPresentation": "Ratio+hypotenuse replaces two leg inputs, length replaces ratio expression output, and foot construction changes. Actual inverse/structural transformation.",
+    "naturalKorean": "Full current stem, all five choices and entire solution read in JSON and rendered author sheets. Conditions/target/point referents are natural and consistent. Student content does not contain original school names; internal sourceSchoolInternal remains provenance only.",
+    "curriculumAppropriate": "Checked the actual derivation against 9수04-02, 9수04-14, 9수04-16, 9수04-17, 9수01-10, angle_range and no_trig_ratio_relationships in the supplied official2015 provisions. DE∥AB since both are perpendicular to BC; corresponding angles give x=A. AB=26·5/13=10, then positive BC=√(676−100)=24, option④. Author angle identification and all arithmetic agree with the sealed proof. cos x=cos A is equality of the same geometric angle, not a trig identity. All trig angles are acute/special0–90°. No trig identities/laws, Heron, vectors or higher-grade shortcuts are needed or used.",
+    "allStudentSurfacesInScope": "All seven explicit audits below passed independently; math answer alone is not taken as grade evidence.",
+    "unitFamilyFit": "Pending: proposed historical unit 3e93bf73-4493-4299-b8a3-c4f5247e4413 exists in the exact cited2026-10-08 snapshot, but familyKey and problemTypeProposal are null. Snapshot/registry hashes match citations; neither demonstrates current whole-item family fit. No title-based family selection is made.",
+    "scoreAppropriate": "Question-only original printed score=4, current score=4; one MC parent and five choices, no hidden subpart/rubric. Original: two leg lengths and a perpendicular construction, then a linear combination of two ratios. Twin: cosine and hypotenuse are given, a missing leg is requested, and D moves to the hypotenuse. Equal-angle identification and Pythagorean/right-triangle reasoning are retained, with reversed data/target. Qualitatively comparable school-level multistep demand; no measured difficulty equivalence claimed."
+  },
+  "checkEvidence": {
+    "answerCorrect": "DE∥AB since both are perpendicular to BC; corresponding angles give x=A. AB=26·5/13=10, then positive BC=√(676−100)=24, option④. Author angle identification and all arithmetic agree with the sealed proof. cos x=cos A is equality of the same geometric angle, not a trig identity. Raw proof option+value and author option-only agree semantically; not legacy string equality.",
+    "solutionCorrect": "DE∥AB since both are perpendicular to BC; corresponding angles give x=A. AB=26·5/13=10, then positive BC=√(676−100)=24, option④. Author angle identification and all arithmetic agree with the sealed proof. cos x=cos A is equality of the same geometric angle, not a trig identity.",
+    "existenceUniqueness": "{\"domain\": \"Nondegenerate right triangle; x is defined and acute. D≠C, DE>0 and DC>0.\", \"existence\": \"AB=10, BC=24, AC=26 is a positive right triangle; choose D at AC midpoint, giving DE=5, EC=12, DC=13.\", \"uniqueness\": \"Similarity fixes AB=10; Pythagoras and BC>0 select only BC=24. Moving D does not change the result.\", \"positiveLengths\": \"AB=10, BC=24, AC=26 and midpoint witness DE=5, EC=12, DC=13 are positive.\", \"units\": \"24 in the same unspecified length unit as AC=26; do not invent cm.\"}",
+    "choicesCorrect": "[{\"choice\": 1, \"BC\": 10, \"ABSquaredPlusBCSquared\": \"200\", \"equals676\": false}, {\"choice\": 2, \"BC\": 12, \"ABSquaredPlusBCSquared\": \"244\", \"equals676\": false}, {\"choice\": 3, \"BC\": 20, \"ABSquaredPlusBCSquared\": \"500\", \"equals676\": false}, {\"choice\": 4, \"BC\": 24, \"ABSquaredPlusBCSquared\": \"676\", \"equals676\": true}, {\"choice\": 5, \"BC\": 25, \"ABSquaredPlusBCSquared\": \"725\", \"equals676\": false}]",
+    "figureConsistent": "Inspected SVG/spec and both PNGs: A,D,C collinear; B,E,C collinear; DE perpendicular BC; B and E right marks; x between DC/DE. Spec AB:BC=100:240=10:24 and D on AC. No arbitrary position is inferred from pixels; labels legible.",
+    "sameCoreConceptAndProcedure": "Original: two leg lengths and a perpendicular construction, then a linear combination of two ratios. Twin: cosine and hypotenuse are given, a missing leg is requested, and D moves to the hypotenuse. Equal-angle identification and Pythagorean/right-triangle reasoning are retained, with reversed data/target.",
+    "distinctPresentation": "Ratio+hypotenuse replaces two leg inputs, length replaces ratio expression output, and foot construction changes. Actual inverse/structural transformation.",
+    "naturalKorean": "Full current stem, all five choices and entire solution read in JSON and rendered author sheets. Conditions/target/point referents are natural and consistent. Student content does not contain original school names; internal sourceSchoolInternal remains provenance only.",
+    "curriculumAppropriate": "Checked the actual derivation against 9수04-02, 9수04-14, 9수04-16, 9수04-17, 9수01-10, angle_range and no_trig_ratio_relationships in the supplied official2015 provisions. DE∥AB since both are perpendicular to BC; corresponding angles give x=A. AB=26·5/13=10, then positive BC=√(676−100)=24, option④. Author angle identification and all arithmetic agree with the sealed proof. cos x=cos A is equality of the same geometric angle, not a trig identity. All trig angles are acute/special0–90°. No trig identities/laws, Heron, vectors or higher-grade shortcuts are needed or used.",
+    "allStudentSurfacesInScope": "All seven explicit audits below passed independently; math answer alone is not taken as grade evidence.",
+    "unitFamilyFit": "Pending: proposed historical unit 3e93bf73-4493-4299-b8a3-c4f5247e4413 exists in the exact cited2026-10-08 snapshot, but familyKey and problemTypeProposal are null. Snapshot/registry hashes match citations; neither demonstrates current whole-item family fit. No title-based family selection is made.",
+    "scoreAppropriate": "Question-only original printed score=4, current score=4; one MC parent and five choices, no hidden subpart/rubric. Original: two leg lengths and a perpendicular construction, then a linear combination of two ratios. Twin: cosine and hypotenuse are given, a missing leg is requested, and D moves to the hypotenuse. Equal-angle identification and Pythagorean/right-triangle reasoning are retained, with reversed data/target. Qualitatively comparable school-level multistep demand; no measured difficulty equivalence claimed."
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "Current stem reviewed in full: 그림과 같이 $\\angle \\mathrm{B}=90^\\circ$인 직각삼각형 $\\mathrm{ABC}$의 빗변 $\\mathrm{AC}$ 위의 점 $\\mathrm{D}$에서 변 $\\mathrm{BC}$에 내린 수선의 발을 $\\mathrm{E}$라 하고, $\\angle \\mathrm{CDE}=x$라 하자. $\\cos x=\\frac{5}{13}$이고 $\\overline{\\mathrm{AC}}=26$일 때, $\\overline{\\mathrm{BC}}$의 길이는? Nondegenerate right triangle; x is defined and acute. D≠C, DE>0 and DC>0.",
+      "officialProvisions": [
+        "9수04-02",
+        "9수04-14",
+        "9수04-16",
+        "9수04-17",
+        "9수01-10"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_trig_laws",
+        "no_Heron",
+        "no_vectors",
+        "height_before_area_formula"
+      ]
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "All five literal choices reviewed: [\"$10$\", \"$12$\", \"$20$\", \"$24$\", \"$25$\"] Exact per-choice tests: [{\"choice\": 1, \"BC\": 10, \"ABSquaredPlusBCSquared\": \"200\", \"equals676\": false}, {\"choice\": 2, \"BC\": 12, \"ABSquaredPlusBCSquared\": \"244\", \"equals676\": false}, {\"choice\": 3, \"BC\": 20, \"ABSquaredPlusBCSquared\": \"500\", \"equals676\": false}, {\"choice\": 4, \"BC\": 24, \"ABSquaredPlusBCSquared\": \"676\", \"equals676\": true}, {\"choice\": 5, \"BC\": 25, \"ABSquaredPlusBCSquared\": \"725\", \"equals676\": false}]",
+      "officialProvisions": [
+        "9수04-02",
+        "9수04-14",
+        "9수04-16",
+        "9수04-17",
+        "9수01-10"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_trig_laws",
+        "no_Heron",
+        "no_vectors",
+        "height_before_area_formula"
+      ]
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "Inspected SVG/spec and both PNGs: A,D,C collinear; B,E,C collinear; DE perpendicular BC; B and E right marks; x between DC/DE. Spec AB:BC=100:240=10:24 and D on AC. No arbitrary position is inferred from pixels; labels legible.",
+      "officialProvisions": [
+        "9수04-02",
+        "9수04-14",
+        "9수04-16",
+        "9수04-17",
+        "9수01-10"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_trig_laws",
+        "no_Heron",
+        "no_vectors",
+        "height_before_area_formula"
+      ]
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "Segment/angle letters and radical/ratio notation in current stem, choices and author solution agree with the given diagram. Units checked: 24 in the same unspecified length unit as AC=26; do not invent cm.",
+      "officialProvisions": [
+        "9수04-02",
+        "9수04-14",
+        "9수04-16",
+        "9수04-17",
+        "9수01-10"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_trig_laws",
+        "no_Heron",
+        "no_vectors",
+        "height_before_area_formula"
+      ]
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "DE∥AB since both are perpendicular to BC; corresponding angles give x=A. AB=26·5/13=10, then positive BC=√(676−100)=24, option④. Author angle identification and all arithmetic agree with the sealed proof. cos x=cos A is equality of the same geometric angle, not a trig identity.",
+      "officialProvisions": [
+        "9수04-02",
+        "9수04-14",
+        "9수04-16",
+        "9수04-17",
+        "9수01-10"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_trig_laws",
+        "no_Heron",
+        "no_vectors",
+        "height_before_area_formula"
+      ]
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "Actual author solution read in full, not replaced with the blind solution: DE∥AB since both are perpendicular to BC; corresponding angles give x=A. AB=26·5/13=10, then positive BC=√(676−100)=24, option④. Author angle identification and all arithmetic agree with the sealed proof. cos x=cos A is equality of the same geometric angle, not a trig identity.",
+      "officialProvisions": [
+        "9수04-02",
+        "9수04-14",
+        "9수04-16",
+        "9수04-17",
+        "9수01-10"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_trig_laws",
+        "no_Heron",
+        "no_vectors",
+        "height_before_area_formula"
+      ]
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "Used concepts are 한 직선에 수직인 두 직선의 평행, AA 닮음과 대응변의 비, cos의 정의, 피타고라스 정리. All are earlier/current school geometry, arithmetic or elementary functions; the derivation does not require higher-grade identities.",
+      "officialProvisions": [
+        "9수04-02",
+        "9수04-14",
+        "9수04-16",
+        "9수04-17",
+        "9수01-10"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_trig_laws",
+        "no_Heron",
+        "no_vectors",
+        "height_before_area_formula"
+      ]
+    }
+  },
+  "unitFamily": {
+    "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+    "familyKey": null,
+    "status": "pending",
+    "basis": "Pending: proposed historical unit 3e93bf73-4493-4299-b8a3-c4f5247e4413 exists in the exact cited2026-10-08 snapshot, but familyKey and problemTypeProposal are null. Snapshot/registry hashes match citations; neither demonstrates current whole-item family fit. No title-based family selection is made."
+  },
+  "sourceComparison": {
+    "questionOnlyFile": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/question-only-staged/nobyeon/q02.json",
+      "sha256": "51349565096767f1b033b493d6a7ff43ea658a4eba7d34e2b5722f3f1d4f2b05"
+    },
+    "sourceSchoolInternal": "노변중학교",
+    "sourceScore": 4,
+    "sourceAnswersUsed": false,
+    "wholePairCertified": false
+  },
+  "findings": [
+    {
+      "severity": "blocker",
+      "surface": "classification",
+      "text": "Null whole-item family and unresolved problemType: unitFamilyFit=false; status pending, no load."
+    },
+    {
+      "severity": "note",
+      "surface": "source/rights/native",
+      "text": "Question-only source comparison is supported, but whole-pair identity/custody, rights/similarity and native gates are not approved."
+    },
+    {
+      "severity": "note",
+      "surface": "collector",
+      "text": "This child legacy normalizeAnswer marks sealed option+value different from author option-only. Parent will implement bounded selected-option/value/unit checking separately. Raw proofs must remain unchanged."
+    }
+  ],
+  "gates": {
+    "loadable": false,
+    "rightsCleared": false,
+    "similarityCleared": false,
+    "sourceIdentityConfirmed": false,
+    "nativeApproved": false
+  },
+  "outcomes": {
+    "mathematics": "passed-manual-semantic-comparison",
+    "gradeSevenSurfaces": "passed",
+    "transformationAndKorean": "passed",
+    "classification": "pending",
+    "fullContentReview": "pending",
+    "release": "held"
+  }
+}

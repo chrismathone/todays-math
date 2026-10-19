@@ -1,0 +1,274 @@
+{
+  "kind": "NB5-stage2-input-and-seal-receipt/v1",
+  "createdAt": "2026-10-19T06:11:44.517189+00:00",
+  "rawSolveCommit": "c51c84ce57debd1287f5a1d7708f0c4d709ba01b",
+  "correctedSealReceipt": "pre-exposure-seal-receipt-r2.json",
+  "correctedSealReceiptSha256": "f96937cc6973a298fd0e768691d50389bfc572206a2b152c2de4fca54ac6ad0d",
+  "r1ReceiptDisposition": "Preserved invalid typed-full-SHA receipt, not used as evidence.",
+  "actualBrief": "verification/VERIFY-BRIEF.md (REVIEW-BRIEF.md named in dispatch is absent; actual prepared brief used)",
+  "bundleCopiedByteExact": 31,
+  "bundleFiles": [
+    {
+      "path": "blind\\blind-manifest.json",
+      "sha256": "5a5ef0de22cd7db50400efdd8523a474573d42bd48ec137ba639c05c0da07347",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "blind\\figures\\q01-1.svg",
+      "sha256": "67c0329b8f2e36bc17fd2b4c65af1616c53caeafbee1309272cd163edd640450",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "blind\\figures\\q02-1.svg",
+      "sha256": "804a082c61015361b7dd41ce229c1f5a2209712cb4a92d0850c6628a215e8b0b",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "blind\\figures\\q06-1.svg",
+      "sha256": "f6f47ffb623aa37d38b18fd67147d64f2b2189a8ed4ba7e93b52928fc0563fd8",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "blind\\figures\\q08-1.svg",
+      "sha256": "a9b108595e538294c400c250ec6757b4d1d0a1b59cd4733630d108350d147172",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "blind\\solve\\q01.json",
+      "sha256": "098e0f5ae3400203044463c82c0787e42b4b3bd6aaf6c700cf7bbce497a0b350",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "blind\\solve\\q02.json",
+      "sha256": "078bcdba7ea8b5ae7364e1801e85647e083c1c0b828e6649ae315ef5619372ba",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "blind\\solve\\q04.json",
+      "sha256": "bb4b919629fdd78c77e03c7ee8594a8d54fc6f0ef6156fe9dc35c56676c63a60",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "blind\\solve\\q06.json",
+      "sha256": "32cd6ee617b3dea5656ab75b148e8bc27134569109b84fdef75a43c3a8b320bd",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "blind\\solve\\q08.json",
+      "sha256": "ab7c55e334ae458f62ad0e75641db03467d2820e06dc4b65f695d1eb0715c3e1",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "blind\\SOLVE-BRIEF.md",
+      "sha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "blind\\student-problems.json",
+      "sha256": "34c42535a0e6eeac0932a176bab94908ec8a3e9a4a0a49ee27c9515b531e8e46",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "package\\manifest.json",
+      "sha256": "99ae79b6427dd2cfb2ef1c9ec737fed664b4a08ba887f49c38b0d206581030fb",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "package\\private\\q01\\candidate.json",
+      "sha256": "fdc1f46f990be6017c7dbce15a2863602b62d910328dfebca02f43b02c2c9627",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "package\\private\\q01\\figure-1.spec.json",
+      "sha256": "aa48128c7e50058c8fa28b4567de0cd4729d2e2f23b81780eb50f5278883872b",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "package\\private\\q01\\figure-1.svg",
+      "sha256": "67c0329b8f2e36bc17fd2b4c65af1616c53caeafbee1309272cd163edd640450",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "package\\private\\q02\\candidate.json",
+      "sha256": "5b678709fa0be08624dbded5f48578a7e879498d7839273d2accbe547377057b",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "package\\private\\q02\\figure-1.spec.json",
+      "sha256": "0dc83ca732db350f966510febb7bd9aa7445727417ca48d3bda0adc44d9ccbe8",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "package\\private\\q02\\figure-1.svg",
+      "sha256": "804a082c61015361b7dd41ce229c1f5a2209712cb4a92d0850c6628a215e8b0b",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "package\\private\\q04\\candidate.json",
+      "sha256": "8ec6189648a7e6e117bf4d49582d4907527d72b5541f09e615fc82ce0e148af5",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "package\\private\\q06\\candidate.json",
+      "sha256": "d98d60209e3fea192b303dc4b899bc095faea0c1a8d3483271c4331790a48f72",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "package\\private\\q06\\figure-1.spec.json",
+      "sha256": "0e089f4b2cc9363756284fea2e3ed2875125aa7e09a4a1c1fb69e54febb3ecb2",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "package\\private\\q06\\figure-1.svg",
+      "sha256": "f6f47ffb623aa37d38b18fd67147d64f2b2189a8ed4ba7e93b52928fc0563fd8",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "package\\private\\q08\\candidate.json",
+      "sha256": "674adc5416cb505fb3e0806832fc2199a1df3b5df1d7f18f9f21b1ee7459a886",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "package\\private\\q08\\figure-1.spec.json",
+      "sha256": "70d173b1ac06588b7d941259b9bd7e581e039b49cac2db8647621f33668366a4",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "package\\private\\q08\\figure-1.svg",
+      "sha256": "a9b108595e538294c400c250ec6757b4d1d0a1b59cd4733630d108350d147172",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "pre-exposure-seal-receipt-r2.json",
+      "sha256": "f96937cc6973a298fd0e768691d50389bfc572206a2b152c2de4fca54ac6ad0d",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "pre-exposure-seal-receipt.json",
+      "sha256": "2ae046dfb97f3379d287e0c2938148addd979329b8e9eaa57e9cb707a3a47f58",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "verification\\verification-inputs.json",
+      "sha256": "08ecc3ced8eada2d93234a8b32b98b3b8f55f34c6dbb0ddb7c711b2d6b100f96",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "verification\\verification-manifest.json",
+      "sha256": "525b5f4050650124e9f923b6a835cdec1ff11347a98eca4003f89f14a1130674",
+      "parentAndCopyUnchanged": true
+    },
+    {
+      "path": "verification\\VERIFY-BRIEF.md",
+      "sha256": "0ba3301b43b6101974345048a56594dd96d9c872aee6878ce65f907cda025ca3",
+      "parentAndCopyUnchanged": true
+    }
+  ],
+  "additionalStage2InputsReadOnly": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-review-r1\\claude-review-r1\\REVIEW-KIT.md",
+      "sha256": "142aefc3925a129546fd44b5d276ba8c11c02780bf8c9c0a3932ad983f9f7efb"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-final14-r1\\claude-review-r1\\REVIEW-KIT.md",
+      "sha256": "37033ca204f5a19e64c0885e297bfa6ee06f96db4316214f161dd87e8648c135"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-final14-r1\\claude-review-r1\\official-provisions.json",
+      "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r3-20261008.json",
+      "sha256": "31f6e3369f5d62072e6728566f8cd71f44f4d451c4ff2dd87a132a6ff6fa1a26"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Trig.ts",
+      "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-authoring-r1\\strict-render-receipt.json",
+      "sha256": "0ec9ff48fd9b2eed939de5880a83a3fb3b72696a464178763d2d9af6a4c4e3b6"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\question-only-staged\\nobyeon\\q01.json",
+      "sha256": "d706c715d925bb8f1a07e7501840e2cf579d687aa6c5add12c9f24f9dfb68a8c"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-authoring-r1\\qa\\review-r3\\q01.png",
+      "sha256": "6bbb68e404ee01615f7d9dbd89d9d6503e0ec52a882df5c41203c69b73e23300"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-authoring-r1\\qa\\review-r3\\q01.solution.png",
+      "sha256": "8c5d3f69a62ce2d527b026a3c5922e4b57a48f937362ce06ca558c61c291c9e9"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\question-only-staged\\nobyeon\\q02.json",
+      "sha256": "51349565096767f1b033b493d6a7ff43ea658a4eba7d34e2b5722f3f1d4f2b05"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-authoring-r1\\qa\\review-r3\\q02.png",
+      "sha256": "226fd1e4ce1b5e9e035dcfadbb9e39964cf6136b057f75c51963bfc20a8ff754"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-authoring-r1\\qa\\review-r3\\q02.solution.png",
+      "sha256": "2fce14d7417f5cb97a69036a80309f0e719367bb137480dd7d199246d0eda582"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\question-only-staged\\nobyeon\\q04.json",
+      "sha256": "0105c9a2ad4e393a10a02705ff6fd624abf6d913e7f5b6e0b5d9077c86710052"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-authoring-r1\\qa\\review-r3\\q04.png",
+      "sha256": "3fadc94650b600e86d9689885e0ef656b8ef089c13c4a97c8a8a0ef57e5f5a7d"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-authoring-r1\\qa\\review-r3\\q04.solution.png",
+      "sha256": "5c0eda2acba457e68c0fe04c2c8d1cf04b9058871445a4d1ce3dad173eb5b91c"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\question-only-staged\\nobyeon\\q06.json",
+      "sha256": "babbeb3d8d96839996ea4d107bee4238476f4d8bb523306fc07b7935f3f60f01"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-authoring-r1\\qa\\review-r3\\q06.png",
+      "sha256": "be20ff82c1c07ecdff1dfa564705f299073a9d533c68e02397879e91521c3584"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-authoring-r1\\qa\\review-r3\\q06.solution.png",
+      "sha256": "5b5bd6968b38439ef6ff36d160a0f3d5e90e84a0e801517f8efe29c738fae200"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\question-only-staged\\nobyeon\\q08.json",
+      "sha256": "447e58bb3371aaf0165302fa147e73c12576b7c42be5606d8ce1fcc98e8e17c3"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-authoring-r1\\qa\\review-r4\\q08.png",
+      "sha256": "6649341e809e6aaaa975a265f5566671f5235d546644819e848002cb9fef9868"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-authoring-r1\\qa\\review-r4\\q08.solution.png",
+      "sha256": "4be3be38b1d43595a2117a1cdb23d901835a5088a2cee34fa08d96bd1572d64c"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\reviewer-only\\nobyeon\\completed-q01-q04.png",
+      "sha256": "73898eb407e568655bc32fd31a1967884d8fdbb124cc94de3d4e2130f41cd2a4"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\reviewer-only\\nobyeon\\completed-q05-q08.png",
+      "sha256": "f390ae7ccb02ea89e75827e12252217d459699b89fee2aa6adce2bfc46baa4cf"
+    }
+  ],
+  "sourceQuestionsUsedOnlyForTransformationNotAnswerChecking": true,
+  "authorExposure": "Stage2 only, after user confirmed raw seal integration and authorized exposure. No author answer or legacy solve was read before c51c84ce5.",
+  "gitRawSolveByteEqualityVerified": 5,
+  "currentPackageAndVerificationInputDigestChecksPassed": 5,
+  "inputManifestsUnchanged": true,
+  "reportsSchemaChecksPassed": {
+    "reports": 5,
+    "checkCountEach": 12,
+    "surfaceCountEach": 7,
+    "authorSeparation": true
+  },
+  "legacyCollectorStringEquality": "False for all5 because raw answers include option+value and author answer only glyph. Manual selected-option/value/units agree. Parent will implement bounded comparison separately; no raw edits.",
+  "sourceOrRightsOrNativeOrReleaseApproval": false
+}
