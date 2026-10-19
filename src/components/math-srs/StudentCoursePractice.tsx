@@ -32,6 +32,11 @@ import s from "./elementary-practice.module.css";
 import pageTurn from "./question-page-turn.module.css";
 import { useQuestionPageTurn } from "./useQuestionPageTurn";
 import f from "./course-follow-up.module.css";
+import {
+  FollowUpSolution,
+  FollowUpWarning,
+  PreviousAnswerMark,
+} from "./FollowUpFeedback";
 
 const ProblemContent = dynamic(() =>
   import("@/components/math/ProblemContent").then((mod) => mod.ProblemContent),
@@ -560,51 +565,36 @@ function CourseQuestion({
               </button>
             </div>
           ) : (
-            <section
-              className={f.solution}
-              aria-labelledby="course-inline-solution-title"
-            >
-              <span className={f.tag}>다시 살펴봐요</span>
-              <h3 id="course-inline-solution-title">정답과 풀이</h3>
-              <div className={f.columns}>
-                <div>
-                  {problem.hint ? (
-                    <Solution solution={problem.hint} />
+            <FollowUpSolution
+              headingId="course-inline-solution-title"
+              footerText="이 문제는 다음 복습에서 다시 만나요."
+              buttonRef={nextButton}
+              busy={busy || !problem.hint}
+              onUnderstood={() =>
+                onFollowUp?.({
+                  sessionId: session.id,
+                  problemId: problem.id,
+                  action: "done",
+                })
+              }
+              figure={
+                problem.figureUrl ? (
+                  figure.svg ? (
+                    <div dangerouslySetInnerHTML={{ __html: figure.svg }} />
                   ) : (
-                    <p role="alert">
-                      풀이를 불러오지 못했어요. 다시 불러와 주세요.
-                    </p>
-                  )}
-                </div>
-                {problem.figureUrl ? (
-                  <div className={f.figure}>
-                    {figure.svg ? (
-                      <div dangerouslySetInnerHTML={{ __html: figure.svg }} />
-                    ) : (
-                      <p role="status">문제의 그림을 확인해 주세요.</p>
-                    )}
-                  </div>
-                ) : null}
-              </div>
-              <footer className={f.solutionFooter}>
-                <p>이 문제는 다음 복습에서 다시 만나요.</p>
-                <button
-                  ref={nextButton}
-                  type="button"
-                  className={s.primary}
-                  disabled={busy || !problem.hint}
-                  onClick={() =>
-                    onFollowUp?.({
-                      sessionId: session.id,
-                      problemId: problem.id,
-                      action: "done",
-                    })
-                  }
-                >
-                  알겠어요
-                </button>
-              </footer>
-            </section>
+                    <p role="status">문제의 그림을 확인해 주세요.</p>
+                  )
+                ) : undefined
+              }
+            >
+              {problem.hint ? (
+                <Solution solution={problem.hint} />
+              ) : (
+                <p role="alert">
+                  풀이를 불러오지 못했어요. 다시 불러와 주세요.
+                </p>
+              )}
+            </FollowUpSolution>
           )
         ) : hasFeedback && selfCheck ? (
           <div className={s.feedback}>
@@ -734,9 +724,7 @@ function CourseQuestion({
             >
               <div className={s.answerDockHeader}>
                 {awaiting ? (
-                  <p role="status" className={f.warning}>
-                    다시 해 볼까요
-                  </p>
+                  <FollowUpWarning />
                 ) : hasFeedback ? (
                   result
                 ) : (
@@ -839,7 +827,7 @@ function CourseQuestion({
                         />
                         <MathText text={choice} as="span" />
                         {awaiting && attempt?.submittedAnswer === choice ? (
-                          <span className={f.previous}>앞에서 고른 답</span>
+                          <PreviousAnswerMark />
                         ) : null}
                       </button>
                     ))}
