@@ -1,0 +1,23 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {spawn,execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+const integratedMain='3d744bba2bf32163ffbc63d0e8896c91195070c7',priorMain='76e26797d40f9ba6a014414fe62ad4a97f81dd76';
+const e='.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/',hash=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex'),git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
+const inbound=git('diff','--name-only',priorMain,integratedMain).split(/\r?\n/u).filter(p=>/\.(tsx?|mts)$/u.test(p));
+const tests=["src/__tests__/components/ExplorerCardFollowUp.test.tsx", "src/__tests__/components/FollowUpFeedback.test.tsx", "src/__tests__/components/StudentExplorerFollowUp.test.tsx", "src/__tests__/components/StudentCourseFollowUp.test.tsx", "src/__tests__/components/StudentCourseSrs.test.tsx", "src/__tests__/components/ExplorerConceptMemory.test.tsx", "src/__tests__/components/ExplorerHomeAtelier.test.tsx", "src/__tests__/components/ExplorerStudyBook.test.tsx"];
+const prior=JSON.parse(fs.readFileSync(e+'prepush-r25-receipt.json','utf8'));
+for(const[p,h]of Object.entries(prior.after))if(!inbound.some(f=>path.resolve(f).toLowerCase()===path.resolve(p).toLowerCase()))assert.equal(hash(p),h,p);
+const paths=[...new Set([...Object.keys(prior.after),...tests,...inbound])],before=Object.fromEntries(paths.map(p=>[p,hash(p)]));
+git('merge-base','--is-ancestor',integratedMain,'HEAD');
+fs.writeFileSync(e+'prepush-r26-source-before.json',JSON.stringify({utc:new Date().toISOString(),integratedMain,priorMain,inbound,before},null,2)+'\n',{flag:'wx'});
+const config=JSON.parse(fs.readFileSync(e+'tsconfig-owned-isolated-r20.json','utf8'));config.files=[...new Set([...config.files,...tests.map(p=>'../../../'+p),...inbound.map(p=>'../../../'+p)])];
+fs.writeFileSync(e+'tsconfig-owned-isolated-r21.json',JSON.stringify(config,null,2)+'\n',{flag:'wx'});
+fs.writeFileSync(e+'vitest-prepush-r26.mts',fs.readFileSync(e+'vitest-prepush-r20.mts','utf8').replaceAll('prepush-r20-evidence','prepush-r26-evidence'),{flag:'wx'});
+const env={...process.env,AUTH_URL:'http://localhost',NEXTAUTH_URL:'http://localhost',DATABASE_URL:'postgresql://test:test@127.0.0.1:1/test',DIRECT_URL:'postgresql://test:test@127.0.0.1:1/test'};for(const k of ['STUDIO_ENGINE_URL','VERCEL','VERCEL_ENV'])delete env[k];
+const jobs=[['prepush-tests-r25.log',['node_modules/vitest/vitest.mjs','run',...tests,'--config',e+'vitest-prepush-r26.mts','--maxWorkers=1','--reporter=json','--reporter=default','--outputFile.json='+e+'prepush-r26.json']],['prepush-types-r25.log',['node_modules/typescript/bin/tsc','--noEmit','--project',e+'tsconfig-owned-isolated-r21.json']]],outcomes=[];
+for(const[name,args]of jobs){const log=fs.createWriteStream(e+name,{flags:'wx'}),status=await new Promise((resolve,reject)=>{const p=spawn(process.execPath,args,{env,stdio:['ignore','pipe','pipe']});console.log(JSON.stringify({name,pid:p.pid}));p.stdout.pipe(log,{end:false});p.stderr.pipe(log,{end:false});p.on('error',reject);p.on('close',resolve);});await new Promise(r=>log.end(r));outcomes.push({name,status});for(const[p,h]of Object.entries(before))assert.equal(hash(p),h,p);assert.equal(status,0,fs.readFileSync(e+name,'utf8').slice(-9000));console.log(JSON.stringify({name,status}));}
+const run=JSON.parse(fs.readFileSync(e+'prepush-r26.json','utf8'));assert.equal(run.numFailedTests,0);assert.equal(run.numPendingTests,0);
+fs.writeFileSync(e+'prepush-r26-receipt.json',JSON.stringify({utc:new Date().toISOString(),integratedMain,priorMain,target:git('rev-parse','origin/chrismathone/exam-extraction-resume-20261008'),snapshot:git('rev-parse','HEAD'),before,after:before,sourceUnchanged:true,inbound,tests,files:run.testResults.length,passed:run.numPassedTests,failed:0,skipped:0,outcomes,prismaSchemaChanged:false,sharedDependenciesChanged:false,fullAppBuildValidated:false,repositoryEnvLoaded:false,dbMocked:true,dbWrites:0,deploy:false,featureMergedIntoMain:false},null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({files:run.testResults.length,passed:run.numPassedTests,typesPassed:true}));

@@ -1,0 +1,78 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+stderr | src/__tests__/components/StudentCourseSrs.test.tsx > persisted course practice > waits for the saved answer, prevents double submit, and supports Enter to advance
+A component suspended inside an `act` scope, but the `act` call was not awaited. When testing React components that depend on asynchronous data, you must await the result:
+
+await act(() => ...)
+
+ ✓ src/__tests__/components/StudentCourseSrs.test.tsx (48 tests) 16727ms
+     ✓ routes the second answer to follow-up and reconciles a 409 before continuing  1796ms
+     ✓ restores a pending solution in a completed session (embedded=false) before starting another  315ms
+     ✓ keeps supply shortage distinct from completion after the last answer (recommendation=false)  631ms
+     ✓ keeps supply shortage distinct from completion after the last answer (recommendation=true)  610ms
+     ✓ shows the question and four server choices together and submits the selected string  326ms
+     ✓ lets the student shade fraction parts and submits the part count  391ms
+     ✓ keeps wrong questions in the retry queue and sends the retry sequence  310ms
+     ✓ moves focus into settings and returns it to the opener on Escape  441ms
+     ✓ requires each curriculum choice and does not silently select the first section  475ms
+     ✓ uses the signed-in student, server recommendation, real progress and navigation  328ms
+     ✓ persists a setup plan before allowing automatic start  484ms
+     ✓ maps actual confirmed course action: self-true  399ms
+     ✓ maps actual confirmed course action: self-false  366ms
+     ✓ maps actual confirmed course action: give-up  312ms
+     ✓ maps actual confirmed course action: other-student  313ms
+     ✓ maps actual confirmed course action: other-session  333ms
+     ✓ focuses the next recommendation at completion so Enter continues  349ms
+     ✓ waits for the saved answer, prevents double submit, and supports Enter to advance  633ms
+     ✓ locks an uncertain offline answer and retries the exact same request  730ms
+     ✓ requires a fresh server reload after a 409  682ms
+     ✓ loads the authenticated SVG before answer controls and can retry a broken figure  562ms
+     ✓ keeps the first answer and feedback in the question without revealing the solution  463ms
+     ✓ records giveUp explicitly without locally judging correctness  330ms
+     ✓ records first-pass self-check without revealing an answer  671ms
+     ✓ records retry self-check privately before optional explanation  437ms
+     ✓ requests the next recommendation after five problems and stops at the daily goal  1001ms
+ ✓ src/__tests__/components/ExplorerConceptMemory.test.tsx (21 tests) 9974ms
+     ✓ shows only one student start and device settings, preserving the exact recall next  1626ms
+     ✓ queues cold checks via the first rating receipt and leaves long-term and explorer records unchanged by a minute check  1479ms
+     ✓ records partial wrong/give-up evidence before the main step and keeps minute checks separate from explorer progress  512ms
+     ✓ offers a ready check at a completed sentence, preserves main drafts and pauses its keyboard while mounted  512ms
+     ✓ fences the API source and remounts after a changed login reported by state  391ms
+     ✓ fences the API source and remounts after a changed login reported by daily  330ms
+     ✓ runs the actual local daily planner from first activity to persisted resume inside the explorer  686ms
+     ✓ uses the supplied daily next activity and distinct counts instead of inventing a question quota  566ms
+     ✓ selects a real catalog concept, opens the shared recall screen inline, and returns keyboard focus  598ms
+     ✓ resumes typed recall without posting an open action and leaves old credits untouched after rating  655ms
+     ✓ offers a future concept as unrecorded practice and sends no pick/open or schedule write  573ms
+     ✓ rereads the shared explorer revision before the next old action without crediting concept results  399ms
+stderr | src/__tests__/components/StudentExplorerFollowUp.test.tsx > student explorer follow-up requests and progression > restores an already open solution on initial data without sending an answer
+[MSW] Error: intercepted a request without a matching request handler:
+
+  • GET /api/learn/math-explorers
+
+If you still wish to intercept this unhandled request, please create a request handler for it.
+Read more: https://mswjs.io/docs/http/intercepting-requests
+
+ ✓ src/__tests__/components/StudentExplorerFollowUp.test.tsx (3 tests) 2278ms
+     ✓ restores the waiting question, keeps the solution open without a timer, and sends understood before leaving  898ms
+     ✓ shows a second correct answer as 맞았어요, then continues with the existing short transition  1295ms
+ ✓ src/__tests__/components/ExplorerCardFollowUp.test.tsx (7 tests) 1921ms
+     ✓ resets assemble selection and rotates only display order, preserving choice IDs and number keys  1184ms
+ ✓ src/__tests__/components/ExplorerStudyBook.test.tsx (6 tests) 714ms
+     ✓ shows the unit once in C order for todo  467ms
+ ✓ src/__tests__/components/ExplorerHomeAtelier.test.tsx (7 tests) 2276ms
+   ✓ shows one journey heading inside the book while retaining board controls and totals  796ms
+     ✓ 학습 설정 시트에서 켜고 끄며 이 기기에 남는다  346ms
+     ✓ 다른 시트(도감 · 우리 기지)에는 스위치를 두지 않는다  414ms
+ ✓ src/__tests__/components/FollowUpFeedback.test.tsx (3 tests) 560ms
+     ✓ labels the solution and preserves the caller's button ref and action  487ms
+ ✓ src/__tests__/components/StudentCourseFollowUp.test.tsx (7 tests) 830ms
+     ✓ clears the first selected choice when its saved wrong answer opens the second try  335ms
+
+ Test Files  8 passed (8)
+      Tests  102 passed (102)
+   Start at  01:34:09
+   Duration  93.36s (transform 11.02s, setup 18.14s, import 11.40s, tests 35.28s, environment 24.93s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r27.json
