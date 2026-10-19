@@ -1,0 +1,16 @@
+{
+  "scope": "Same r4 candidate and same sealed independent proof; r5 workflow reevaluation only. No new solve, candidate, grade or visual inspection claimed.",
+  "result": {
+    "math": 1,
+    "grade": 1,
+    "full": 0,
+    "loadable": 0
+  },
+  "reportSha256": "1e6fe0bb2c156baeaff4a3a83b87b026b3206094db7601653dca6aeda2a90408",
+  "collectSha256": "8b47e2c82906a2ba4f34ce3d8f458c862923aae2fbb215ed69bfe51d3be23c40",
+  "historicalCommaFailure": "r4 report and actual-results.json are unchanged and referenced with hashes in exact-recheck.json.",
+  "remainingHolds": "familyKey null / unitFamilyFit false; whole-pair2024/2025, source identity, custody, rights, similarity and native provenance remain held.",
+  "attemptHistory": "First helper run stopped at an incorrect direct-candidate digest assertion: the contract hashes candidate together with assetBindings. currentPackage had already validated that binding. Corrected helper uses currentPackage binding and deep equality. The initial collect ran before the new report existed and returned independent-evidence-missing; retained as pre-report-collect-attempt.json. Final collect ran after report creation and passed math/grade. Neither raw/candidate nor production code was modified.",
+  "dbWrites": 0,
+  "push": false
+}
