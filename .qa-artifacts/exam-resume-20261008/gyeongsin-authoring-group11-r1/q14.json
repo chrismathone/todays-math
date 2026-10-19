@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 14,
+  "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group11-r1-q14",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "서술형",
+  "score": 7,
+  "content": "원 $O$ 밖의 점 $S$에서 그은 두 접선의 접점을 $U$, $V$라 하자. 점 $W$는 작은 호 $UV$ 위에서 $U$, $V$와 다른 점이다. $\\angle UWV=115^\\circ$일 때, 두 접선이 이루는 $\\angle USV$의 크기를 구하고 그 과정을 쓰시오.",
+  "choices": [],
+  "answer": "$50^\\circ$",
+  "solution": "점 $W$가 작은 호 $UV$ 위에 있으므로 원주각 $UWV$는 $W$를 포함하지 않는 큰 호 $UV$에 대응한다. 이 큰 호에 대한 중심각은 $2\\times115^\\circ=230^\\circ$이다. 한 바퀴의 각이 $360^\\circ$이므로 작은 호 $UV$에 대한 중심각은 $\\angle UOV=360^\\circ-230^\\circ=130^\\circ$이다.\n\n접점에서의 반지름은 접선에 수직이므로 $\\angle OUS=\\angle OVS=90^\\circ$이다. 사각형 $OUSV$의 네 내각의 합은 $360^\\circ$이므로 $\\angle USV=360^\\circ-90^\\circ-90^\\circ-130^\\circ=50^\\circ$이다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "q14.figure.spec.json",
+      "svgPath": "q14.figure.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "sourceReference": {
+    "externalId": "2025-gyeongsin-3-2-mid-14",
+    "newSourceReferenceId": "source-ref-gyeongsin-2025-2-mid-group11-r1-q14",
+    "sourceContentSha256": "ab699496178ee7ff3881e84c955e01156e69c4d7e1e3bd41499121594894dfd4",
+    "sourceSchoolInternal": "경신중학교",
+    "sourceExamYear": 2025,
+    "inventoryExamId": "personal-57fc57dc583e9f120f45ebc6abedfee4",
+    "sourceManifest": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+      "sha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+        "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9"
+      }
+    ],
+    "actualReference": "OriginalH page4 written4: two tangents outsideP angle44, C on minorarcAB, ask ACB;7points. Component only; no wholepaper/pair/year/rights certification.",
+    "componentObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group11-r1/q14-source-component-observation-r1.json",
+      "sha256": "1aee06d3bb295a6ccdf248a8521c1f83e51963050b6d90a399253abd42934b45"
+    },
+    "sourceCropViewed": true,
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false,
+    "originalQuestionRender": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/evidence/additional-original-H-page-04.webp",
+      "sha256": "c7ae5e4a69b89a2bd41a505c3e45d2f23e913a8ae0cd7a3d6cb7db6457ebc0ba",
+      "physicalPdfPage": 4,
+      "printedQuestion": "서술형4"
+    }
+  },
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "structure",
+      "new-vector"
+    ],
+    "before": "두 접선의 사이각을 주고 작은 호 위의 점이 보는 원주각을 구한다.",
+    "after": "작은 호 위의 점이 보는 원주각을 주고 두 접선의 사이각을 역으로 구한다.",
+    "sharedConcept": "접점 반지름의 수직, 큰 호/작은 호의 원주각과 중심각, 사각형 내각의 합",
+    "sharedProcedure": "원주각이 보는 큰호 확인→한 바퀴에서 작은 중심각 복원→두 직각이 있는 사각형의 남은 각",
+    "actualStructuralChange": "작은 호 위의 점이 보는 원주각을 주고 두 접선의 사이각을 역으로 구한다. 입력/질문 대상과 조건 조직을 바꾸고 모든 문장·답·해설·그림을 새로 제작했다. 단순 숫자/학교명/동의어 치환은 완료 근거가 아니다.",
+    "domainProof": "작은 중심각130°, 큰호230°, 외부접선각50°가 양수다. 원주각115°를 보는 W는 작은호 내부에 존재한다. 좌표는 반지름1과 중심각±65°로 접점 및 외부접선의 수직을 확인할 뿐 각 답은 정수 각의 식으로 구한다. 큰호 표현/학생 방법의 실제 학년 적합성은 독립 검수 전 보류다.",
+    "difficultyBasis": "원문 배점과 같은 핵심 관계를 유지하는 심화하 저자 제안이다. 새로 요구되는 관계와 연산이 해당 학년/2015교육과정 안인지 독립 7면 검수를 받아야 한다. 체감 난도 동등성/2022적용은 별도 보류."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수04-19",
+      "9수04-20"
+    ],
+    "officialProvisions": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+      "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+    },
+    "officialPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "editionObserved": "2015",
+      "readCurrentPage": true,
+      "standard": "9수04-19, 9수04-20",
+      "actualScope": "2015 tangent/chord/inscribed-angle and Pythagoras only as actually required per candidate. No general circle proportionality; exact grade placement and all seven student surfaces independently pending."
+    },
+    "legitimateMethodDraft": "원주각이 보는 큰호 확인→한 바퀴에서 작은 중심각 복원→두 직각이 있는 사각형의 남은 각",
+    "sevenSurfaces": {
+      "stem": "author-proposed-independent-review-pending",
+      "choices": "author-proposed-independent-review-pending",
+      "figuresAndTables": "author-proposed-independent-review-pending",
+      "notation": "author-proposed-independent-review-pending",
+      "answer": "author-proposed-independent-review-pending",
+      "studentSolution": "author-proposed-independent-review-pending",
+      "prerequisites": "author-proposed-independent-review-pending"
+    },
+    "independentReviewPending": true
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "서술형",
+    "answerFormat": "scalar-with-working",
+    "score": 7,
+    "difficultyProposal": "심화하",
+    "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+    "problemTypeProposal": "작은 호 위의 점이 보는 원주각을 주고 두 접선의 사이각을 역으로 구한다.",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원주각의 활용",
+        "semester": 2,
+        "orderIndex": 487,
+        "problemCodePrefix": "J30604"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+      },
+      "evidence": "실제 Unit UUID를 제안 연결했다. 질문 역전과 새 필수 풀이 목적에 맞는 정확한 live family는 null/보류이며 자동 분류 승인하지 않는다."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+    },
+    "figureAuthoring": {
+      "method": "existing-FigureSpec-v2-vector-engine-strict",
+      "newFigures": 1,
+      "newTables": 0,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "작은 중심각130°, 큰호230°, 외부접선각50°가 양수다. 원주각115°를 보는 W는 작은호 내부에 존재한다. 좌표는 반지름1과 중심각±65°로 접점 및 외부접선의 수직을 확인할 뿐 각 답은 정수 각의 식으로 구한다. 큰호 표현/학생 방법의 실제 학년 적합성은 독립 검수 전 보류다.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gyeongsin-written13-17-r1.ts",
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "source": "transformed",
+    "originProblemId": null,
+    "sourceDifficultyLabelObserved": null,
+    "prerequisiteUnits": [
+      {
+        "id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원과 현",
+        "semester": 2,
+        "orderIndex": 484,
+        "problemCodePrefix": "J30601"
+      },
+      {
+        "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원의 접선",
+        "semester": 2,
+        "orderIndex": 485,
+        "problemCodePrefix": "J30602"
+      },
+      {
+        "id": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원주각의 활용",
+        "semester": 2,
+        "orderIndex": 487,
+        "problemCodePrefix": "J30604"
+      }
+    ],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "원주각과 중심각",
+        "큰호·작은호와 한 바퀴360°",
+        "접선과 반지름의 수직",
+        "사각형 내각의 합"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    }
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 16,
+  "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group11-r1-q16",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "서술형",
+  "score": 8,
+  "content": "선분 $AB$를 지름으로 하는 반원 $O$가 있다. 두 끝점 $A$, $B$에서 반원이 있는 쪽으로 그은 접선 위의 점을 각각 $D$, $C$라 하고, 선분 $DC$도 반원에 접한다. $\\overline{AD}=3\\,\\mathrm{cm}$이고 반원의 넓이가 $12\\pi\\,\\mathrm{cm}^2$일 때, $BC$의 길이를 구하고 그 과정을 쓰시오.",
+  "choices": [],
+  "answer": "$8\\,\\mathrm{cm}$",
+  "solution": "반지름을 $r$라 하면 $\\frac12\\pi r^2=12\\pi$이므로 $r^2=24$이다. 선분 $DC$의 접점을 $F$, $BC=x$라 하자. 한 점에서 원에 그은 접선의 길이는 같으므로 $DF=DA=3$, $CF=CB=x$이고 $DC=x+3$이다.\n\n$AD$, $BC$는 지름 $AB$에 수직이므로 서로 평행하다. 두 평행선 사이의 거리는 $AB=2r$이고, 점 $D$, $C$가 지름에서 떨어진 길이의 차는 $|x-3|$이다. 따라서 두 점 사이의 직각삼각형에서 피타고라스 정리를 쓰면 $(x+3)^2=(x-3)^2+(2r)^2$이다.\n\n전개하여 정리하면 $12x=4r^2=96$이므로 $x=8$이다. 길이가 양수이고 접선의 두 부분 $3$, $8$도 양수이다. 따라서 $BC=8\\,\\mathrm{cm}$이다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "sourceReference": {
+    "externalId": "2025-gyeongsin-3-2-mid-16",
+    "newSourceReferenceId": "source-ref-gyeongsin-2025-2-mid-group11-r1-q16",
+    "sourceContentSha256": "51de71a6402fcc6e6772dc269a49e342e7b84f758d1c10611ae8fe886e14f81f",
+    "sourceSchoolInternal": "경신중학교",
+    "sourceExamYear": 2025,
+    "inventoryExamId": "personal-57fc57dc583e9f120f45ebc6abedfee4",
+    "sourceManifest": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+      "sha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+        "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9"
+      }
+    ],
+    "actualReference": "OriginalH page4 written6: diameterAB, endpoint tangentsAD3/BC5 andcommon tangentCD; ask semicircle area;8points. Component only; no wholepaper/pair/year/rights certification.",
+    "componentObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group11-r1/q16-source-component-observation-r1.json",
+      "sha256": "2c36d918a1547232cfee3d73bfbb3b6783c1e030bc878450bfb0dfa642e53914"
+    },
+    "sourceCropViewed": true,
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false,
+    "originalQuestionRender": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/evidence/additional-original-H-page-04.webp",
+      "sha256": "c7ae5e4a69b89a2bd41a505c3e45d2f23e913a8ae0cd7a3d6cb7db6457ebc0ba",
+      "physicalPdfPage": 4,
+      "printedQuestion": "서술형6"
+    }
+  },
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "structure",
+      "new-vector"
+    ],
+    "before": "지름 양 끝의 두 접선 길이를 주고 반원 넓이를 구한다.",
+    "after": "반원 넓이와 한쪽 접선 길이를 주고 다른 접선 길이를 역추론한다.",
+    "sharedConcept": "접선 길이의 대응, 지름에서의 수직·평행, 피타고라스 전개, 원/반원의 넓이",
+    "sharedProcedure": "넓이에서 반지름 제곱→두 접선 부분의 합과 끝점 거리→피타고라스 식 전개로 길이 복원",
+    "actualStructuralChange": "반원 넓이와 한쪽 접선 길이를 주고 다른 접선 길이를 역추론한다. 입력/질문 대상과 조건 조직을 바꾸고 모든 문장·답·해설·그림을 새로 제작했다. 단순 숫자/학교명/동의어 치환은 완료 근거가 아니다.",
+    "domainProof": "r²24,AD3,BC8,DC11이며 11²=5²+4×24다. 정확한 접점F(48/11,5r/11)의 원 위 위치·접선 수직·양쪽 부분3/8을 별도 코드로 확인했다. 반원을 실제 arc로 새로 그리며 원본 크롭/전체원을 반원으로 오인하지 않는다.",
+    "difficultyBasis": "원문 배점과 같은 핵심 관계를 유지하는 심화하 저자 제안이다. 새로 요구되는 관계와 연산이 해당 학년/2015교육과정 안인지 독립 7면 검수를 받아야 한다. 체감 난도 동등성/2022적용은 별도 보류."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수04-19",
+      "9수04-16"
+    ],
+    "officialProvisions": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+      "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+    },
+    "officialPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "editionObserved": "2015",
+      "readCurrentPage": true,
+      "standard": "9수04-19, 9수04-16",
+      "actualScope": "2015 tangent/chord/inscribed-angle and Pythagoras only as actually required per candidate. No general circle proportionality; exact grade placement and all seven student surfaces independently pending."
+    },
+    "legitimateMethodDraft": "넓이에서 반지름 제곱→두 접선 부분의 합과 끝점 거리→피타고라스 식 전개로 길이 복원",
+    "sevenSurfaces": {
+      "stem": "author-proposed-independent-review-pending",
+      "choices": "author-proposed-independent-review-pending",
+      "figuresAndTables": "author-proposed-independent-review-pending",
+      "notation": "author-proposed-independent-review-pending",
+      "answer": "author-proposed-independent-review-pending",
+      "studentSolution": "author-proposed-independent-review-pending",
+      "prerequisites": "author-proposed-independent-review-pending"
+    },
+    "independentReviewPending": true
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "서술형",
+    "answerFormat": "scalar-with-working",
+    "score": 8,
+    "difficultyProposal": "심화하",
+    "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+    "problemTypeProposal": "반원 넓이와 한쪽 접선 길이를 주고 다른 접선 길이를 역추론한다.",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원의 접선",
+        "semester": 2,
+        "orderIndex": 485,
+        "problemCodePrefix": "J30602"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+      },
+      "evidence": "실제 Unit UUID를 제안 연결했다. 질문 역전과 새 필수 풀이 목적에 맞는 정확한 live family는 null/보류이며 자동 분류 승인하지 않는다."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+    },
+    "figureAuthoring": {
+      "method": "existing-FigureSpec-v2-vector-engine-strict",
+      "newFigures": 1,
+      "newTables": 0,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "r²24,AD3,BC8,DC11이며 11²=5²+4×24다. 정확한 접점F(48/11,5r/11)의 원 위 위치·접선 수직·양쪽 부분3/8을 별도 코드로 확인했다. 반원을 실제 arc로 새로 그리며 원본 크롭/전체원을 반원으로 오인하지 않는다.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gyeongsin-written13-17-r1.ts",
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "source": "transformed",
+    "originProblemId": null,
+    "sourceDifficultyLabelObserved": null,
+    "prerequisiteUnits": [
+      {
+        "id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원과 현",
+        "semester": 2,
+        "orderIndex": 484,
+        "problemCodePrefix": "J30601"
+      },
+      {
+        "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원의 접선",
+        "semester": 2,
+        "orderIndex": 485,
+        "problemCodePrefix": "J30602"
+      }
+    ],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "접선의 길이",
+        "반지름과 접선의 수직",
+        "평행선 사이 거리",
+        "피타고라스",
+        "다항식 전개와 일차방정식",
+        "반원의 넓이"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    }
+  }
+}

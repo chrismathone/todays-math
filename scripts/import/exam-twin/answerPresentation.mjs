@@ -1,10 +1,24 @@
-/** Bounded numbered-answer comparison, not a solver or geometry/grade proof.
+/** Bounded single-angle/numbered-answer comparison, not a solver or geometry/grade proof.
  * Roles, explicit units, subpart order and a single x factor are preserved.
  * Unnamed lengths have a separate, decimal-only grammar and cannot erase roles.
  * No prose, general symbolic identities, substitutions or sampled equivalence.
  */
 import assert from 'node:assert/strict';
 import { compareConstantParts } from './constantAnswers.mjs';
+
+/** One explicit decimal degree value. Fully consume the input; do not erase
+ * angle units, names, prose, signs, arithmetic or arbitrary Unicode numerals.
+ * This grammar is deliberately separate from named and numbered answers.
+ */
+export function singleAnglePart(source) {
+  assert(typeof source === 'string' && source.length <= 64, 'Bounded single angle required');
+  let text = source.trim();
+  if (text.startsWith('$') && text.endsWith('$')) text = text.slice(1, -1).trim();
+  else if (text.startsWith('\\(') && text.endsWith('\\)')) text = text.slice(2, -2).trim();
+  const match = /^((?:0|[1-9]\d{0,2})(?:\.\d{1,6})?)\s*(?:°|\^\s*(?:\\circ|\{\\circ\}))$/u.exec(text);
+  assert(match && Number(match[1]) <= 360, 'One explicit decimal degree in [0,360] required');
+  return { role: 'scalar-angle', value: match[1], unit: 'deg' };
+}
 
 function parseNumberedLengths(source) {
   assert(typeof source === 'string' && source.length <= 4096);
@@ -78,6 +92,8 @@ function parseNamed(source) {
 }
 
 function parse(source) {
+  try { return [{ label: 1, terms: [{ part: singleAnglePart(source), variable: null }] }]; }
+  catch { /* Numbered/named grammars retain their own roles and bounds. */ }
   try { return parseNumberedLengths(source); }
   catch { return parseNamed(source); }
 }

@@ -1,0 +1,197 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 13,
+  "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group11-r1-q13",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "서술형",
+  "score": 7,
+  "content": "정삼각형 $PQR$ 안에 반지름이 모두 같은 세 원이 있다. 세 원은 서로 외접하며, 각 원은 정삼각형의 서로 다른 꼭짓점에서 만나는 두 변에 접한다. 한 원의 둘레의 길이가 $6\\pi\\,\\mathrm{cm}$일 때, 정삼각형 $PQR$의 둘레의 길이를 구하고 그 과정을 쓰시오.",
+  "choices": [],
+  "answer": "$(18+18\\sqrt3)\\,\\mathrm{cm}$",
+  "solution": "각 원의 반지름을 $r$라 하면 $2\\pi r=6\\pi$이므로 $r=3$이다. 변 $QR$에 접하는 두 원의 중심을 $J$, $K$, 접점을 각각 $H$, $I$라 하자. 두 원의 반지름이 같고 서로 외접하므로 $JK=2r=6$이다. $JH$, $KI$는 $QR$에 수직이고 길이가 같으므로 $HI=JK=6$이다.\n\n원 $J$가 꼭짓점 $Q$에서 만나는 두 변에 접하므로 $QJ$는 $60^\\circ$인 꼭짓각을 이등분한다. 직각삼각형 $QHJ$에서 $\\angle HQJ=30^\\circ$, $JH=3$이므로 $QJ=6$이다. 피타고라스 정리에 따라 $QH=\\sqrt{6^2-3^2}=3\\sqrt3$이다. 마찬가지로 $IR=3\\sqrt3$이다.\n\n따라서 한 변은 $QR=QH+HI+IR=6+6\\sqrt3$이고 정삼각형의 둘레는 $3(6+6\\sqrt3)=18+18\\sqrt3\\,\\mathrm{cm}$이다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "q13.figure.spec.json",
+      "svgPath": "q13.figure.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "sourceReference": {
+    "externalId": "2025-gyeongsin-3-2-mid-13",
+    "newSourceReferenceId": "source-ref-gyeongsin-2025-2-mid-group11-r1-q13",
+    "sourceContentSha256": "5530cadab54996cb5179abe6fbe11d78d71c57646e633870b2fa1b31b5262de5",
+    "sourceSchoolInternal": "경신중학교",
+    "sourceExamYear": 2025,
+    "inventoryExamId": "personal-57fc57dc583e9f120f45ebc6abedfee4",
+    "sourceManifest": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+      "sha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+        "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9"
+      }
+    ],
+    "actualReference": "OriginalH page4 written3: three mutually tangent equal circles each near a different equilateral-triangle vertex; triangle perimeter15+15sqrt3; ask one circle circumference;7points. Component only; no wholepaper/pair/year/rights certification.",
+    "componentObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group11-r1/q13-source-component-observation-r1.json",
+      "sha256": "5b98ff46ca3acdd596c64d929b9cb17de2c356a62ea84030f74c504f5b8070b5"
+    },
+    "sourceCropViewed": true,
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false,
+    "originalQuestionRender": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/evidence/additional-original-H-page-04.webp",
+      "sha256": "c7ae5e4a69b89a2bd41a505c3e45d2f23e913a8ae0cd7a3d6cb7db6457ebc0ba",
+      "physicalPdfPage": 4,
+      "printedQuestion": "서술형3"
+    }
+  },
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "structure",
+      "new-vector"
+    ],
+    "before": "정삼각형 전체 둘레를 주고 같은 세 접원의 한 원 둘레를 구한다.",
+    "after": "한 원의 둘레를 주고 정삼각형 전체 둘레를 복원한다.",
+    "sharedConcept": "같은 반지름의 원의 외접, 접선과 반지름의 수직, 정삼각형 꼭짓각과 피타고라스",
+    "sharedProcedure": "원의 둘레에서 양의 반지름→30° 직각삼각형으로 꼭짓점 부분 길이→가운데 두 반지름과 양 끝 부분을 합함",
+    "actualStructuralChange": "한 원의 둘레를 주고 정삼각형 전체 둘레를 복원한다. 입력/질문 대상과 조건 조직을 바꾸고 모든 문장·답·해설·그림을 새로 제작했다. 단순 숫자/학교명/동의어 치환은 완료 근거가 아니다.",
+    "domainProof": "r3, 한 변6+6√3, 높이9+3√3. 세 중심 사이 거리는6, 각 원과 대응하는 두 변 사이 거리는3을 별도 좌표 코드로 확인했다. 답은 정수/근호 식과 접선 분할에서 계산하며 픽셀을 쓰지 않는다.",
+    "difficultyBasis": "원문 배점과 같은 핵심 관계를 유지하는 심화하 저자 제안이다. 새로 요구되는 관계와 연산이 해당 학년/2015교육과정 안인지 독립 7면 검수를 받아야 한다. 체감 난도 동등성/2022적용은 별도 보류."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수04-19",
+      "9수04-16"
+    ],
+    "officialProvisions": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+      "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+    },
+    "officialPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "editionObserved": "2015",
+      "readCurrentPage": true,
+      "standard": "9수04-19, 9수04-16",
+      "actualScope": "2015 tangent/chord/inscribed-angle and Pythagoras only as actually required per candidate. No general circle proportionality; exact grade placement and all seven student surfaces independently pending."
+    },
+    "legitimateMethodDraft": "원의 둘레에서 양의 반지름→30° 직각삼각형으로 꼭짓점 부분 길이→가운데 두 반지름과 양 끝 부분을 합함",
+    "sevenSurfaces": {
+      "stem": "author-proposed-independent-review-pending",
+      "choices": "author-proposed-independent-review-pending",
+      "figuresAndTables": "author-proposed-independent-review-pending",
+      "notation": "author-proposed-independent-review-pending",
+      "answer": "author-proposed-independent-review-pending",
+      "studentSolution": "author-proposed-independent-review-pending",
+      "prerequisites": "author-proposed-independent-review-pending"
+    },
+    "independentReviewPending": true
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "서술형",
+    "answerFormat": "scalar-with-working",
+    "score": 7,
+    "difficultyProposal": "심화하",
+    "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+    "problemTypeProposal": "한 원의 둘레를 주고 정삼각형 전체 둘레를 복원한다.",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원의 접선",
+        "semester": 2,
+        "orderIndex": 485,
+        "problemCodePrefix": "J30602"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+      },
+      "evidence": "실제 Unit UUID를 제안 연결했다. 질문 역전과 새 필수 풀이 목적에 맞는 정확한 live family는 null/보류이며 자동 분류 승인하지 않는다."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+    },
+    "figureAuthoring": {
+      "method": "existing-FigureSpec-v2-vector-engine-strict",
+      "newFigures": 1,
+      "newTables": 0,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "r3, 한 변6+6√3, 높이9+3√3. 세 중심 사이 거리는6, 각 원과 대응하는 두 변 사이 거리는3을 별도 좌표 코드로 확인했다. 답은 정수/근호 식과 접선 분할에서 계산하며 픽셀을 쓰지 않는다.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gyeongsin-written13-17-r1.ts",
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "source": "transformed",
+    "originProblemId": null,
+    "sourceDifficultyLabelObserved": null,
+    "prerequisiteUnits": [
+      {
+        "id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원과 현",
+        "semester": 2,
+        "orderIndex": 484,
+        "problemCodePrefix": "J30601"
+      },
+      {
+        "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원의 접선",
+        "semester": 2,
+        "orderIndex": 485,
+        "problemCodePrefix": "J30602"
+      }
+    ],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "원의 둘레",
+        "접선과 반지름의 수직",
+        "정삼각형과 각의 이등분",
+        "30° 직각삼각형",
+        "피타고라스와 제곱근"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    }
+  }
+}

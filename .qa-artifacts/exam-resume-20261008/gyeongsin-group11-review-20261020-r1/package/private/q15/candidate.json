@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 15,
+  "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group11-r1-q15",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "서술형",
+  "score": 7,
+  "content": "원 $O$ 위의 점 $A$를 지나는 접선 $AT$와 현 $BC$가 평행하다. 그림과 같이 $\\angle BAT=60^\\circ$이고 삼각형 $ABC$의 넓이는 $12\\sqrt3\\,\\mathrm{cm}^2$이다. 선분 $AC$의 길이를 구하고 그 과정을 쓰시오.",
+  "choices": [],
+  "answer": "$4\\sqrt3\\,\\mathrm{cm}$",
+  "solution": "접선 $AT$는 반지름 $OA$에 수직이고 $BC$와 평행하므로 직선 $OA$는 현 $BC$에 수직이다. 원의 중심을 지나 현에 수직인 직선은 그 현을 이등분하므로 $A$는 $BC$의 수직이등분선 위에 있고 $AB=AC$이다.\n\n평행선의 각 관계에서 $\\angle ABC=\\angle BAT=60^\\circ$이다. 이등변삼각형의 두 밑각이 같으므로 $\\angle ACB=60^\\circ$이고 나머지 각도 $60^\\circ$이다. 따라서 $ABC$는 정삼각형이다.\n\n한 변을 $a>0$이라 하면 높이는 피타고라스 정리에 따라 $\\sqrt{a^2-(a/2)^2}=\\frac{\\sqrt3}{2}a$이다. 넓이가 $\\frac{\\sqrt3}{4}a^2=12\\sqrt3$이므로 $a^2=48$이고, 길이는 양수이므로 $AC=a=4\\sqrt3\\,\\mathrm{cm}$이다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "sourceReference": {
+    "externalId": "2025-gyeongsin-3-2-mid-15",
+    "newSourceReferenceId": "source-ref-gyeongsin-2025-2-mid-group11-r1-q15",
+    "sourceContentSha256": "909fafe944451861bf585d2628ca4a976c2f68f54477b99eb63bbdba25d4790a",
+    "sourceSchoolInternal": "경신중학교",
+    "sourceExamYear": 2025,
+    "inventoryExamId": "personal-57fc57dc583e9f120f45ebc6abedfee4",
+    "sourceManifest": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+      "sha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+        "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9"
+      }
+    ],
+    "actualReference": "OriginalH page4 written5: chordBC parallel tangentAT atA, BAT60, AC9; ask areaABC;7points. Component only; no wholepaper/pair/year/rights certification.",
+    "componentObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group11-r1/q15-source-component-observation-r1.json",
+      "sha256": "b753767af9df545418fde94ea0adc4578878e9db97f08cd103300b265a717ec4"
+    },
+    "sourceCropViewed": true,
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false,
+    "originalQuestionRender": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/evidence/additional-original-H-page-04.webp",
+      "sha256": "c7ae5e4a69b89a2bd41a505c3e45d2f23e913a8ae0cd7a3d6cb7db6457ebc0ba",
+      "physicalPdfPage": 4,
+      "printedQuestion": "서술형5"
+    }
+  },
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "structure",
+      "new-vector"
+    ],
+    "before": "접선과 평행한 현,60°각과 한 변을 주고 삼각형의 넓이를 구한다.",
+    "after": "접선·평행 현의 관계와 삼각형 넓이를 주고 양의 한 변 길이를 복원한다.",
+    "sharedConcept": "접선 반지름의 수직, 현의 수직이등분, 평행선과 이등변/정삼각형, 피타고라스 넓이",
+    "sharedProcedure": "수직·평행으로 현의 수직이등분선→정삼각형 증명→넓이 관계를 거꾸로 풀어 양의 변 선택",
+    "actualStructuralChange": "접선·평행 현의 관계와 삼각형 넓이를 주고 양의 한 변 길이를 복원한다. 입력/질문 대상과 조건 조직을 바꾸고 모든 문장·답·해설·그림을 새로 제작했다. 단순 숫자/학교명/동의어 치환은 완료 근거가 아니다.",
+    "domainProof": "반지름4인 원 위의 각180°,60°,300° 점이 정삼각형을 이루고 세 변4√3/넓이12√3이다. AT는 A에서 수직 접선,BC와 평행. 접현각 정리를 학생의 미검증 선수 개념으로 쓰지 않고 반지름/현/평행선으로 직접 증명한다.",
+    "difficultyBasis": "원문 배점과 같은 핵심 관계를 유지하는 심화하 저자 제안이다. 새로 요구되는 관계와 연산이 해당 학년/2015교육과정 안인지 독립 7면 검수를 받아야 한다. 체감 난도 동등성/2022적용은 별도 보류."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수04-19",
+      "9수04-16"
+    ],
+    "officialProvisions": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+      "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+    },
+    "officialPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "editionObserved": "2015",
+      "readCurrentPage": true,
+      "standard": "9수04-19, 9수04-16",
+      "actualScope": "2015 tangent/chord/inscribed-angle and Pythagoras only as actually required per candidate. No general circle proportionality; exact grade placement and all seven student surfaces independently pending."
+    },
+    "legitimateMethodDraft": "수직·평행으로 현의 수직이등분선→정삼각형 증명→넓이 관계를 거꾸로 풀어 양의 변 선택",
+    "sevenSurfaces": {
+      "stem": "author-proposed-independent-review-pending",
+      "choices": "author-proposed-independent-review-pending",
+      "figuresAndTables": "author-proposed-independent-review-pending",
+      "notation": "author-proposed-independent-review-pending",
+      "answer": "author-proposed-independent-review-pending",
+      "studentSolution": "author-proposed-independent-review-pending",
+      "prerequisites": "author-proposed-independent-review-pending"
+    },
+    "independentReviewPending": true
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "서술형",
+    "answerFormat": "scalar-with-working",
+    "score": 7,
+    "difficultyProposal": "심화하",
+    "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+    "problemTypeProposal": "접선·평행 현의 관계와 삼각형 넓이를 주고 양의 한 변 길이를 복원한다.",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원의 접선",
+        "semester": 2,
+        "orderIndex": 485,
+        "problemCodePrefix": "J30602"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+      },
+      "evidence": "실제 Unit UUID를 제안 연결했다. 질문 역전과 새 필수 풀이 목적에 맞는 정확한 live family는 null/보류이며 자동 분류 승인하지 않는다."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+    },
+    "figureAuthoring": {
+      "method": "existing-FigureSpec-v2-vector-engine-strict",
+      "newFigures": 1,
+      "newTables": 0,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "반지름4인 원 위의 각180°,60°,300° 점이 정삼각형을 이루고 세 변4√3/넓이12√3이다. AT는 A에서 수직 접선,BC와 평행. 접현각 정리를 학생의 미검증 선수 개념으로 쓰지 않고 반지름/현/평행선으로 직접 증명한다.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gyeongsin-written13-17-r1.ts",
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "source": "transformed",
+    "originProblemId": null,
+    "sourceDifficultyLabelObserved": null,
+    "prerequisiteUnits": [
+      {
+        "id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원과 현",
+        "semester": 2,
+        "orderIndex": 484,
+        "problemCodePrefix": "J30601"
+      },
+      {
+        "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원의 접선",
+        "semester": 2,
+        "orderIndex": 485,
+        "problemCodePrefix": "J30602"
+      }
+    ],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "접선과 반지름의 수직",
+        "중심에서 현에 내린 수선의 이등분",
+        "평행선의 각",
+        "이등변·정삼각형",
+        "피타고라스와 제곱근",
+        "삼각형 넓이"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    }
+  }
+}

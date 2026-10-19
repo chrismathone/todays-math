@@ -1,0 +1,52 @@
+{
+  "results": [
+    {
+      "q": 11,
+      "rawSha256": "b36067fb6aa11cb1d1a655401ba56e258d36692e661e4147414a83e58c120b8b",
+      "reportSha256": "f012be660f942c3178b277456d0c9eebd957c5371465b1d15c1370cf0eeae1b1",
+      "trueChecks": 11,
+      "gradeSurfacesPassed": 7,
+      "exactMathAndSpecControls": "passed"
+    },
+    {
+      "q": 12,
+      "rawSha256": "580b2c6a3c4dd9ebe0a089b189ad979c4f36bb3e09e54b926951de29435e180f",
+      "reportSha256": "61cc9667fb9894d64ecf033921ed072a4a76fc2b27bd3bad23eb6afa537f1577",
+      "trueChecks": 11,
+      "gradeSurfacesPassed": 7,
+      "exactMathAndSpecControls": "passed"
+    }
+  ],
+  "inputBeforeAfterHashes": {
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\verification\\verification-inputs.json": "5bc4a0befca20241aeea136e78f5902214662c143d266c8b38e9bc2f69b66703",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\verification\\verification-manifest.json": "7c9e98d5e04b873d59a18205c0310ff3473eea4851db444968d8f27cfa59ccf8",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\verification\\sealed-raw-commit.json": "6ae297b1a1e1d119174ce11ab623db021e14ed736202bbc63760871b4524249e",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\blind\\student-problems.json": "59aa8041f279fac3bb9b1db7e6058d691293179df5a3aaf58de39797bd93d614",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\package\\private\\q11\\candidate.json": "2e14501c89c7fbb7b2637ef13411957b2d9a10e75eed4ffa5d8f61af41a5a3ed",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\blind\\solve\\q11.json": "b36067fb6aa11cb1d1a655401ba56e258d36692e661e4147414a83e58c120b8b",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\package\\private\\q11\\figure-1.spec.json": "56486920126a731fdf64afdc848bbe2f28423116a45c370451a83939f08e7f73",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\package\\private\\q11\\figure-1.svg": "3b5a33002ee0545fa38dfeeb52acc2a14158a0e6242386e0ac71ca62939c84f9",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\package\\private\\q12\\candidate.json": "361bb3cbab73a701c7c4d86375db19edd6239d9f94dc407e408f2520061d0fea",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\blind\\solve\\q12.json": "580b2c6a3c4dd9ebe0a089b189ad979c4f36bb3e09e54b926951de29435e180f",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\package\\private\\q12\\figure-1.spec.json": "6a472e45bd3ee64db85d5d931bba86b64f66de1f56a323f9f061fbd2baa30c69",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\package\\private\\q12\\figure-1.svg": "f56dfda7e5c8c112b0ebd9f96ce8c7b41a4bd7b4737385c6cf040e1b9ab5b2ab"
+  },
+  "allInputsAndRawUnchanged": true,
+  "primaryEvidence": {
+    "normative": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "edition": "2015",
+      "previouslyActuallyViewed": true,
+      "locator": "2015 tab; standards 9수04-19 원의 현과 접선, 9수04-20 원주각; 교수학습 유의사항 일반적인 원의 비례관계 제외, 접선의 길이 용어 사용 가능",
+      "scopeLimit": "원 비례·접선 곱·삼각함수·좌표 해법을 학생의 필수 방법으로 사용하지 않음"
+    },
+    "placement": {
+      "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+      "sha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+      "previouslyActuallyViewed": true,
+      "locator": "PDF index73 / physical74 / PRINTED72: 중3 수학 2학기; 9월9수04-19, 10월9수04-20",
+      "limit": "실제 중3 배치 근거. 경신중 특정 시험 진도·2022 교육과정·권리 인증 아님; 예전 인쇄73 잠정 표기는 사용하지 않음"
+    }
+  },
+  "noDBorAPI": true
+}

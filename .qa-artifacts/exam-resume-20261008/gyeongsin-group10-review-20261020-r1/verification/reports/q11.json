@@ -1,0 +1,133 @@
+{
+  "status": "pending",
+  "studentDigest": "7c81ffe74eeeb05de0710f18bd74446f334d9fe586658198deb8c933107a1e32",
+  "candidateDigest": "9aff0ca8d11b6a20a9859ca3a526a634682108a4abc5a5ee905055b8d347f4a2",
+  "assetDigest": "3e5ff7f003c5f917f24ed4308dcf9d1bbca61b335f8be70a4297b547cd167e7e",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-gyeongsin-group10-review-20261020",
+  "solveDigest": "af0feba575fa97cc342ff94e73986f2bd40a18dae6306f667bb688a20b4fc8f5",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "evidence": {
+    "classification": {
+      "math": "passed",
+      "grade2015M3AfterPrerequisites": "passed",
+      "content": "held",
+      "fullRelease": false
+    },
+    "ownExactCalculations": {
+      "centralSplit": "54",
+      "inscribed": "27",
+      "existence": "임의의 양의 반지름에 K=0°,L=54°,M=108°,T=234°를 잡으면 네 점이 서로 다르고 호 위치가 충족된다.",
+      "uniqueness": "T가 L을 포함하지 않는 호 KM 위라는 조건으로 작은 호 KL을 보는 원주각만 가능. T의 이동·원의 반지름과 무관하게 27°."
+    },
+    "authorSolutionReview": "실제 저자 해설의 ∠KOL=∠LOM, 합108°, 부분54°, ∠KTL=54°÷2를 각각 검증했다. T가 작은 호 KL에 있지 않음을 발문으로 보장한다. 9수04-20 및 같은 호 중심각 성질만 필요하며 고등 방법·원의 일반 비례를 사용하지 않는다.",
+    "sourceAndStructuralReview": "제공 sourceReference와 이전 실제 원본 관찰은 같은 두 작은 호 및 원주각을 주고 두 호 전체 중심각을 묻는 원문 구성과 대응한다. 원문 답은 계산·비교하지 않았다. 새 문항은 전체 중심각→한 호 중심각→한 호 원주각으로 입력·출력 방향을 역전했다. 같은 호/중심각/원주각 핵심을 유지하는 실질적 역문제이나 통계적 유사도 승인은 아니다.",
+    "naturalKorean": "질문 대상과 조건이 명시되고 인명·학교명 삽입이 없다. L을 포함하지 않는 호 KM의 T라는 조건으로 보는 호를 분명히 한다.",
+    "scoreAndDifficulty": {
+      "score": 6,
+      "scoreAppropriateBasis": "6점 서술형으로 같은 호 중심각 동일→합의 분할→원주각 관계와 답을 설명할 수 있다. 제공 원문 배점과 같고 핵심을 유지하므로 배점 제안은 수용 가능. 세부 배점표나 측정된 학생 난도는 제공되지 않았다.",
+      "difficultyProposal": "기본",
+      "difficultyApproval": "pending",
+      "basis": "기본 관계만 사용하는 제안은 이해되나 원문 관측 난도 라벨이 null이며 역방향이 항상 동일 난도라는 근거는 없다. 같은 난도/실증적 보정은 승인하지 않는다."
+    },
+    "unitFamily": {
+      "capturedUnitId": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+      "capturedSection": "원주각",
+      "unitConceptCorrespondence": "현재 개념에 대응하는 단원명 및 캡처 UUID는 확인하되 실시간 DB나 family 정의를 이번 범위에서 읽지 않았다.",
+      "familyKey": null,
+      "unitFamilyFit": false,
+      "basis": "정확한 입력·출력·방법·형식 전체에 대한 live family 호환성 미확인. UUID/이름/개수만으로 적합 판정하지 않는다."
+    },
+    "primaryEvidence": {
+      "normative": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "edition": "2015",
+        "previouslyActuallyViewed": true,
+        "locator": "2015 tab; standards 9수04-19 원의 현과 접선, 9수04-20 원주각; 교수학습 유의사항 일반적인 원의 비례관계 제외, 접선의 길이 용어 사용 가능",
+        "scopeLimit": "원 비례·접선 곱·삼각함수·좌표 해법을 학생의 필수 방법으로 사용하지 않음"
+      },
+      "placement": {
+        "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+        "sha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+        "previouslyActuallyViewed": true,
+        "locator": "PDF index73 / physical74 / PRINTED72: 중3 수학 2학기; 9월9수04-19, 10월9수04-20",
+        "limit": "실제 중3 배치 근거. 경신중 특정 시험 진도·2022 교육과정·권리 인증 아님; 예전 인쇄73 잠정 표기는 사용하지 않음"
+      }
+    },
+    "exposure": {
+      "rawDeclarationPreserved": true,
+      "priorOriginalPageExposure": true,
+      "currentAuthorFirstRead": "after helper ffe080340 and parent raw seal 4c103299c8188d0cafe79e78ba3eecd14c612f3b",
+      "claim": "현재 저자 노출 전 학생 풀이이며 원본 전체 미노출 주장 아님"
+    },
+    "rawSha256": "b36067fb6aa11cb1d1a655401ba56e258d36692e661e4147414a83e58c120b8b",
+    "binding": {
+      "candidatePackageByteHashAndManifestBindingVerified": true,
+      "solveCanonicalHashVerified": true,
+      "studentFieldsEqual": true,
+      "privateAndStudentSvgByteEqual": true,
+      "specSha256": "56486920126a731fdf64afdc848bbe2f28423116a45c370451a83939f08e7f73",
+      "svgSha256": "3b5a33002ee0545fa38dfeeb52acc2a14158a0e6242386e0ac71ca62939c84f9"
+    },
+    "holds": {
+      "sourceIdentityApproved": false,
+      "wholePaperPairApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "loadable": false,
+      "liveFamilyApproved": false,
+      "curriculum2022": "pending",
+      "schoolSpecificPacing": "pending"
+    },
+    "limits": [
+      "수학·학년 판정과 권리·출처·native·live family 판정은 별개",
+      "원본 답안 키 비교 없음; 제공 sourceReference는 구성 대응 근거이고 전체 원본/답안 쌍 인증 아님",
+      "렌더 이미지 확인 및 바이트/spec 검증은 전체 native reader/print 인증 아님"
+    ]
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "같은 두 작은 호와 전체 중심각108°에서 원주각을 구하는 실제 발문은 2015 9수04-20 범위이다. L과 T의 호 위치가 명시되어 보각 분기가 제거된다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제 choices=[]인 서술형이다. 객관식 보기는 없고 5개를 가정하지 않는다. 답과 과정을 요구하는 형태 자체에 추가 학년 개념은 없다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "학생 SVG 실제 렌더에서 O,K,L,M,T와108°,x를 확인. 작은 호 K-L-M 및 반대 호 T와 연결선이 발문과 대응한다. 현재 private SVG와 학생 SVG가 바이트 동일하고 spec/SVG 해시를 검증했다. spec 수치는 그림 존재·배치 확인 전용으로만 사용했으며 학생 답은 정확한 성질 계산으로 구했다. 별도 고등 좌표 방법이 학생에게 요구되지 않는다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "∠KOM,∠KTL, 작은 호 및 도 기호는 중학교 원주각 표기이다. 네 점이 서로 다름과 T의 호 위치가 명시되어 반사각/보각 혼동을 제한한다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "독립 raw27°와 저자 $27^\\circ$는 같은 각의 크기이다. 54° 중심각과153° 보각은 답이 아니다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "실제 저자 해설의 ∠KOL=∠LOM, 합108°, 부분54°, ∠KTL=54°÷2를 각각 검증했다. T가 작은 호 KL에 있지 않음을 발문으로 보장한다. 9수04-20 및 같은 호 중심각 성질만 필요하며 고등 방법·원의 일반 비례를 사용하지 않는다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "중심각, 작은 호, 같은 원에서 같은 길이의 호에 대한 중심각 동일, 원주각은 같은 호 중심각의 절반, 각의 덧셈·나눗셈 이후 배정. 위 실제 중3 2학기 원주각 배치에 근거하며 학교별 중간고사 진도는 보증하지 않는다."
+    }
+  }
+}

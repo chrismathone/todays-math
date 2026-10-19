@@ -1,0 +1,60 @@
+{
+  "kind": "authored-exam-twin-review-result/v1",
+  "packageDigest": "76ad6abaeb8eea243b79ee1323bda8635a300a5a82ab5e1f84888776fc77dae7",
+  "createdAt": "2026-10-19T19:24:24.401Z",
+  "authored": 2,
+  "mathematicalVerified": 1,
+  "gradeReviewed": 1,
+  "overallVerified": 0,
+  "loadable": 0,
+  "productionWrites": false,
+  "results": [
+    {
+      "n": 11,
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group10-r1-q11",
+      "studentDigest": "7c81ffe74eeeb05de0710f18bd74446f334d9fe586658198deb8c933107a1e32",
+      "candidateDigest": "9aff0ca8d11b6a20a9859ca3a526a634682108a4abc5a5ee905055b8d347f4a2",
+      "assetDigest": "3e5ff7f003c5f917f24ed4308dcf9d1bbca61b335f8be70a4297b547cd167e7e",
+      "solveDigest": "af0feba575fa97cc342ff94e73986f2bd40a18dae6306f667bb688a20b4fc8f5",
+      "reportSha256": "f012be660f942c3178b277456d0c9eebd957c5371465b1d15c1370cf0eeae1b1",
+      "mathematicalVerified": false,
+      "gradeReviewed": false,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "independent-answer-mismatch",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    },
+    {
+      "n": 12,
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group10-r1-q12",
+      "studentDigest": "5ed011ed72f97fdc1b515d56f972ffb1c98e57201cff89f597bbc8722e1c16d3",
+      "candidateDigest": "8460caa0a7810d62eac90f0a81c50e35dcb33573025c4142e993bc096a52a571",
+      "assetDigest": "ed421669f19179c16b59c926c08d4d080e71a35393b7154d674ffe9a64119a43",
+      "solveDigest": "bd11b13142e3415fc83dffe8901e74de151c6b4a5c37e4d48c8c15e6c215e507",
+      "reportSha256": "61cc9667fb9894d64ecf033921ed072a4a76fc2b27bd3bad23eb6afa537f1577",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    }
+  ]
+}

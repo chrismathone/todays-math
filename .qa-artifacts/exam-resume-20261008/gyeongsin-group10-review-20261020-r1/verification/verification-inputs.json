@@ -1,0 +1,539 @@
+[
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 11,
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group10-r1-q11",
+      "authorId": "codex-parent-engine-upgrade-20261020",
+      "questionType": "서술형",
+      "score": 6,
+      "content": "원 $O$ 위의 서로 다른 네 점 $K,L,M,T$가 있다. 점 $L$은 작은 호 $KM$ 위에 있고 두 작은 호 $KL$, $LM$의 길이는 같다. 점 $T$는 $L$을 포함하지 않는 호 $KM$ 위에 있다. 중심각 $KOM$의 크기가 $108^\\circ$일 때, $\\angle KTL$의 크기를 구하고 그 과정을 쓰시오.",
+      "choices": [],
+      "answer": "$27^\\circ$",
+      "solution": "길이가 같은 두 호에 대한 중심각의 크기는 같으므로 $\\angle KOL=\\angle LOM$이다. 점 $L$이 작은 호 $KM$ 위에 있으므로 $\\angle KOL+\\angle LOM=108^\\circ$이고, 따라서 $\\angle KOL=54^\\circ$이다.\n\n점 $T$는 작은 호 $KL$ 위에 있지 않으므로 $\\angle KTL$은 이 호에 대한 원주각이다. 같은 호에 대한 원주각의 크기는 중심각의 크기의 절반이므로 $\\angle KTL=54^\\circ\\div2=27^\\circ$이다.",
+      "figureArtifacts": [
+        {
+          "role": "stem",
+          "specPath": "figure-1.spec.json",
+          "svgPath": "figure-1.svg",
+          "intendedWidthMm": 70
+        }
+      ],
+      "sourceReference": {
+        "externalId": "2025-gyeongsin-3-2-mid-11",
+        "newSourceReferenceId": "source-ref-gyeongsin-2025-2-mid-group10-r1-q11",
+        "sourceContentSha256": "f814fb2c048af129f89ae2415373a2da8e08c5d50ecd3f45b3479674de5aa0ba",
+        "sourceSchoolInternal": "경신중학교",
+        "sourceExamYear": 2025,
+        "inventoryExamId": "personal-57fc57dc583e9f120f45ebc6abedfee4",
+        "sourceManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+          "sha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+            "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9"
+          }
+        ],
+        "actualReference": "OriginalH page3 written1: equal small arcsAB/BC each2 and ADB21; ask AOC;6points. Component only; no wholepaper/pair/year/rights certification.",
+        "componentObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group10-r1/q11-source-component-observation-r1.json",
+          "sha256": "69cbeac5797347199c06fecfdf6c90412a726c664883badf1ab3bbcc1517805b"
+        },
+        "sourceCropViewed": true,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "originalQuestionRender": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/evidence/additional-original-H-page-03.webp",
+          "sha256": "0663a680ec641aa045a9b81db40fbfa5c5a73e32e0b204f38dd68749a2ccf1fe",
+          "physicalPdfPage": 3,
+          "printedQuestion": "서술형1"
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure",
+          "new-vector"
+        ],
+        "before": "같은 두 작은 호와 원주각을 주고 두 호 전체의 중심각을 구한다.",
+        "after": "두 호 전체의 중심각을 주고 한 호를 보는 원주각을 역으로 복원한다.",
+        "sharedConcept": "같은 호의 중심각과 원주각, 길이가 같은 호의 중심각",
+        "sharedProcedure": "같은 두 호의 각을 한 문자로 묶음→중심각 전체와 부분의 관계→원주각의 절반 관계",
+        "actualStructuralChange": "두 호 전체의 중심각을 주고 한 호를 보는 원주각을 역으로 복원한다. 입력과 질문 대상을 역전하고 점 위치·배치·표시를 새로 제작했다. 단순 숫자/학교명/동의어 교체로 완료하지 않는다.",
+        "domainProof": "양의 두 중심각54°가 합108°를 이루고 나머지호252°에 T를 잡을 수 있다. 주어진 작은호와 T의 위치가 원주각이 보는 호를 유일하게 정한다. 실제 좌표는 각-30,-84,-138,80°의 서로 다른 점을 배치할 뿐 답의 입력이 아니다.",
+        "difficultyBasis": "원문 배점과 같은 개념·핵심 관계를 유지한다. 직접 결과→누락 입력 복원의 역방향이며 새 선수 개념을 요구하지 않는다. 기본은 저자 제안으로 실제 난도 동등성은 별도 보류."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "status": "author-proposed",
+        "standardCodes": [
+          "9수04-20"
+        ],
+        "officialProvisions": {
+          "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+          "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+        },
+        "officialPrimary": {
+          "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+          "editionObserved": "2015",
+          "readCurrentPage": true,
+          "standard": "9수04-20",
+          "actualScope": "2015 central-angle and inscribed-angle properties; general circle proportionality excluded."
+        },
+        "legitimateMethodDraft": "같은 두 호의 각을 한 문자로 묶음→중심각 전체와 부분의 관계→원주각의 절반 관계",
+        "sevenSurfaces": {
+          "stem": "author-proposed-independent-review-pending",
+          "choices": "author-proposed-independent-review-pending",
+          "figuresAndTables": "author-proposed-independent-review-pending",
+          "notation": "author-proposed-independent-review-pending",
+          "answer": "author-proposed-independent-review-pending",
+          "studentSolution": "author-proposed-independent-review-pending",
+          "prerequisites": "author-proposed-independent-review-pending"
+        },
+        "independentReviewPending": true
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "서술형",
+        "answerFormat": "scalar-with-working",
+        "score": 6,
+        "difficultyProposal": "기본",
+        "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+        "problemTypeProposal": "두 호 전체의 중심각을 주고 한 호를 보는 원주각을 역으로 복원한다.",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원주각",
+            "semester": 2,
+            "orderIndex": 486,
+            "problemCodePrefix": "J30603"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+          },
+          "evidence": "실제 단원 UUID를 연결했다. 질문 역전의 전체 평가 목적에 대응하는 정확한 live family는 별도 검수 전 null/보류다."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+        },
+        "figureAuthoring": {
+          "method": "existing-FigureSpec-v2-vector-engine-strict",
+          "newFigures": 1,
+          "newTables": 0,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "coordinateConstruction": "양의 두 중심각54°가 합108°를 이루고 나머지호252°에 T를 잡을 수 있다. 주어진 작은호와 T의 위치가 원주각이 보는 호를 유일하게 정한다. 실제 좌표는 각-30,-84,-138,80°의 서로 다른 점을 배치할 뿐 답의 입력이 아니다.",
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gyeongsin-written11-12-r1.ts",
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "source": "transformed",
+        "originProblemId": null,
+        "sourceDifficultyLabelObserved": null,
+        "prerequisiteUnits": [
+          {
+            "id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원주각",
+            "semester": 2,
+            "orderIndex": 486,
+            "problemCodePrefix": "J30603"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "중심각과 원주각의 관계",
+            "길이가 같은 호의 중심각",
+            "일차적인 각의 분할"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        }
+      }
+    },
+    "assets": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\package\\private\\q11\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\package\\private\\q11\\figure-1.svg",
+        "specSha256": "56486920126a731fdf64afdc848bbe2f28423116a45c370451a83939f08e7f73",
+        "svgSha256": "3b5a33002ee0545fa38dfeeb52acc2a14158a0e6242386e0ac71ca62939c84f9",
+        "intendedWidthMm": 70,
+        "studentPath": "figures/q11-1.svg"
+      }
+    ],
+    "studentDigest": "7c81ffe74eeeb05de0710f18bd74446f334d9fe586658198deb8c933107a1e32",
+    "candidateDigest": "9aff0ca8d11b6a20a9859ca3a526a634682108a4abc5a5ee905055b8d347f4a2",
+    "assetDigest": "3e5ff7f003c5f917f24ed4308dcf9d1bbca61b335f8be70a4297b547cd167e7e",
+    "independentSolve": {
+      "studentDigest": "7c81ffe74eeeb05de0710f18bd74446f334d9fe586658198deb8c933107a1e32",
+      "solverId": "independent-helper-gyeongsin-group10-20261020",
+      "answer": "27°",
+      "solution": "같은 원에서 길이가 같은 두 작은 호 KL, LM에 대한 중심각은 같다. L은 작은 호 KM 위에 있으므로 ∠KOL=108°÷2=54°이다. T는 L을 포함하지 않는 호 KM 위에 있으므로 ∠KTL은 작은 호 KL에 대한 원주각이다. 따라서 ∠KTL=54°÷2=27°이다. 반지름이 양수인 원에서 K, L, M을 차례로 잡고 반대쪽 호에 T를 잡으면 조건을 만족한다. 허용된 T의 위치가 달라져도 같은 작은 호 KL에 대한 원주각이므로 답은 유일하다.",
+      "evidence": {
+        "exposure": {
+          "currentAuthoredAnswerOrSolutionExposed": false,
+          "priorOriginalExposure": true,
+          "details": "이전 허용된 원본 H 3쪽 열람에서 서술형 1·2의 조건과 그림이 함께 보였다. 관련 원·접선 문제와 다른 시험 문제도 검토한 이력이 있다. 이번 authored q11/q12의 저자 답·해설·비공개 패키지는 읽지 않았다. 완전히 미노출된 원본 문제라는 주장은 하지 않는다.",
+          "calculationSource": "이번 학생 발문과 학생 SVG만 사용; 원본 재열람·답 검색·좌표 측정 없음"
+        },
+        "ownCalculation": {
+          "centralKM": "108",
+          "centralKL": "54",
+          "inscribedKTL": "27",
+          "exactExistenceWitnessAngularDegrees": {
+            "K": "0",
+            "L": "54",
+            "M": "108",
+            "T": "234"
+          },
+          "uniqueness": "T가 L을 포함하지 않는 호 KM의 어느 점이든 T를 포함하지 않는 작은 호 KL은 고정되어 원주각은 27도이다. 반대 호의 원주각이나 반사각을 선택하지 않는다."
+        },
+        "figureSha256": "3b5a33002ee0545fa38dfeeb52acc2a14158a0e6242386e0ac71ca62939c84f9",
+        "studentProjectionSha256": "7c81ffe74eeeb05de0710f18bd74446f334d9fe586658198deb8c933107a1e32",
+        "studentDigestProjectionMatches": true,
+        "choicesCheck": "서술형: 실제 보기 0개, 검토할 객관식 보기 없음",
+        "gradeSurfaceProposals": {
+          "stem": {
+            "status": "proposed-in-scope",
+            "basis": "q11: 같은 호의 중심각과 원주각. q12: 한 점에서 그은 접선 길이. 해당 학생 발문에 직접 필요한 성질만 사용."
+          },
+          "choices": {
+            "status": "not-applicable",
+            "basis": "실제 두 문항 choices=[]인 서술형이며 보기나 선택 기호를 만들지 않았다."
+          },
+          "figure": {
+            "status": "student-view-checked",
+            "basis": "학생 SVG를 로컬 렌더하여 실제 확인. q11 K,L,M의 작은 호 순서와 반대 호 T, 중심 O 및 각 표기; q12 삼각형 내접원과 U,V,W의 변상 위치가 발문과 대응한다. 길이·각의 픽셀 측정 없음."
+          },
+          "notation": {
+            "status": "proposed-in-scope",
+            "basis": "중심·원주각, 작은 호, 접점, 선분 및 도·cm 표기는 중학교 기하 표기이다."
+          },
+          "answer": {
+            "status": "independently-solved",
+            "basis": "정확한 유리수 연산으로 27도이며 각의 크기 단위 사용."
+          },
+          "solution": {
+            "status": "own-method-proposed-author-unseen",
+            "basis": "자체 학생 풀이는 같은 호에 대한 중심각을 반으로 나누는 원주각 성질만 사용한다. 저자 전체 해설과 채점기준은 아직 미노출이므로 판정하지 않았다."
+          },
+          "prerequisites": {
+            "status": "2015-M3-after-prerequisites-proposal",
+            "basis": "2015 9수04-20 원주각 및 같은 호의 중심각 성질 이후. 이미 확인한 공식 2015 교육과정과 중3 2학기 배치에 근거한 학생 방법 제안이며 이 새 문항의 정식 7면 승인·2022 배치 인증은 아니다."
+          }
+        },
+        "limits": [
+          "원문·저자 답과 비교하지 않음",
+          "정식 수학/학년/출처/권리/실시간 family/native/loadable 승인 아님",
+          "2022 교육과정 배치 및 저자 채점기준 미검토"
+        ]
+      },
+      "status": "solved"
+    },
+    "solveDigest": "af0feba575fa97cc342ff94e73986f2bd40a18dae6306f667bb688a20b4fc8f5"
+  },
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 12,
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group10-r1-q12",
+      "authorId": "codex-parent-engine-upgrade-20261020",
+      "questionType": "서술형",
+      "score": 7,
+      "content": "삼각형 $PQR$의 내접원이 세 변 $PQ$, $QR$, $RP$와 만나는 접점을 각각 $U$, $V$, $W$라 하자. $\\overline{PU}=4\\,\\mathrm{cm}$, $\\overline{PQ}=11\\,\\mathrm{cm}$, $\\overline{QR}=16\\,\\mathrm{cm}$이다. 변 $PR$의 길이를 구하고 그 과정을 쓰시오.",
+      "choices": [],
+      "answer": "$13\\,\\mathrm{cm}$",
+      "solution": "같은 점에서 원에 그은 두 접선의 길이는 같으므로 $PU=PW=4$이다. 또 $QU=QV$이므로 $QV=PQ-PU=11-4=7$이다.\n\n$RV=RW$이므로 $RW=QR-QV=16-7=9$이다. 따라서 $PR=PW+WR=4+9=13\\,\\mathrm{cm}$이다. 각 분할 선분의 길이는 $4$, $7$, $9$로 모두 양수이며, 세 변 $11$, $16$, $13$도 삼각형의 성립 조건을 만족한다.",
+      "figureArtifacts": [
+        {
+          "role": "stem",
+          "specPath": "figure-1.spec.json",
+          "svgPath": "figure-1.svg",
+          "intendedWidthMm": 70
+        }
+      ],
+      "sourceReference": {
+        "externalId": "2025-gyeongsin-3-2-mid-12",
+        "newSourceReferenceId": "source-ref-gyeongsin-2025-2-mid-group10-r1-q12",
+        "sourceContentSha256": "e8ae379a374c4992fc47df04414ed41ca72ad9e04d6139a824532a9d966d1708",
+        "sourceSchoolInternal": "경신중학교",
+        "sourceExamYear": 2025,
+        "inventoryExamId": "personal-57fc57dc583e9f120f45ebc6abedfee4",
+        "sourceManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+          "sha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+            "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9"
+          }
+        ],
+        "actualReference": "OriginalH page3 written2: incircleABC touchesD/E/F, sidesAB9/BC14/CA11; askAD;7points. Component only; no wholepaper/pair/year/rights certification.",
+        "componentObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group10-r1/q12-source-component-observation-r1.json",
+          "sha256": "d537c71dff2995cdcad835418d4e94155c0b92e1448a6bbd98b0f4d541e37e4f"
+        },
+        "sourceCropViewed": true,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "originalQuestionRender": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/evidence/additional-original-H-page-03.webp",
+          "sha256": "0663a680ec641aa045a9b81db40fbfa5c5a73e32e0b204f38dd68749a2ccf1fe",
+          "physicalPdfPage": 3,
+          "printedQuestion": "서술형2"
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure",
+          "new-vector"
+        ],
+        "before": "삼각형의 세 변을 주고 한 꼭짓점에서의 접선 부분 길이를 구한다.",
+        "after": "접선 부분 길이와 두 변을 주고 빠진 전체 변을 복원한다.",
+        "sharedConcept": "같은 점에서 그은 두 접선 길이와 변의 분할",
+        "sharedProcedure": "접선 길이를 세 꼭짓점에서 대응→부분 길이 덧셈·뺄셈의 연결",
+        "actualStructuralChange": "접선 부분 길이와 두 변을 주고 빠진 전체 변을 복원한다. 입력과 질문 대상을 역전하고 점 위치·배치·표시를 새로 제작했다. 단순 숫자/학교명/동의어 교체로 완료하지 않는다.",
+        "domainProof": "부분 접선4,7,9가 양수이고 세 변11,16,13이 삼각형부등식을 만족한다. 독립 저자 좌표 P(13/2,3√35/2),Q(0,0),R(16,0),O(7,3√35/5)와 정확한 접점의 거리·수직을 코드로 확인했다. 제곱근/좌표 계산은 작도 검사용이며 학생은 접선 길이 대응과 정수 덧셈·뺄셈만 쓴다.",
+        "difficultyBasis": "원문 배점과 같은 개념·핵심 관계를 유지한다. 직접 결과→누락 입력 복원의 역방향이며 새 선수 개념을 요구하지 않는다. 기본은 저자 제안으로 실제 난도 동등성은 별도 보류."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "status": "author-proposed",
+        "standardCodes": [
+          "9수04-19"
+        ],
+        "officialProvisions": {
+          "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+          "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+        },
+        "officialPrimary": {
+          "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+          "editionObserved": "2015",
+          "readCurrentPage": true,
+          "standard": "9수04-19",
+          "actualScope": "2015 chord and tangent properties; general circle proportionality excluded."
+        },
+        "legitimateMethodDraft": "접선 길이를 세 꼭짓점에서 대응→부분 길이 덧셈·뺄셈의 연결",
+        "sevenSurfaces": {
+          "stem": "author-proposed-independent-review-pending",
+          "choices": "author-proposed-independent-review-pending",
+          "figuresAndTables": "author-proposed-independent-review-pending",
+          "notation": "author-proposed-independent-review-pending",
+          "answer": "author-proposed-independent-review-pending",
+          "studentSolution": "author-proposed-independent-review-pending",
+          "prerequisites": "author-proposed-independent-review-pending"
+        },
+        "independentReviewPending": true
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "서술형",
+        "answerFormat": "scalar-with-working",
+        "score": 7,
+        "difficultyProposal": "기본",
+        "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+        "problemTypeProposal": "접선 부분 길이와 두 변을 주고 빠진 전체 변을 복원한다.",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원의 접선",
+            "semester": 2,
+            "orderIndex": 485,
+            "problemCodePrefix": "J30602"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+          },
+          "evidence": "실제 단원 UUID를 연결했다. 질문 역전의 전체 평가 목적에 대응하는 정확한 live family는 별도 검수 전 null/보류다."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+        },
+        "figureAuthoring": {
+          "method": "existing-FigureSpec-v2-vector-engine-strict",
+          "newFigures": 1,
+          "newTables": 0,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "coordinateConstruction": "부분 접선4,7,9가 양수이고 세 변11,16,13이 삼각형부등식을 만족한다. 독립 저자 좌표 P(13/2,3√35/2),Q(0,0),R(16,0),O(7,3√35/5)와 정확한 접점의 거리·수직을 코드로 확인했다. 제곱근/좌표 계산은 작도 검사용이며 학생은 접선 길이 대응과 정수 덧셈·뺄셈만 쓴다.",
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gyeongsin-written11-12-r1.ts",
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "source": "transformed",
+        "originProblemId": null,
+        "sourceDifficultyLabelObserved": null,
+        "prerequisiteUnits": [
+          {
+            "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원의 접선",
+            "semester": 2,
+            "orderIndex": 485,
+            "problemCodePrefix": "J30602"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "같은 점에서 원에 그은 접선의 길이",
+            "선분의 부분과 전체",
+            "양의 길이와 삼각형의 성립 조건"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        }
+      }
+    },
+    "assets": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\package\\private\\q12\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\package\\private\\q12\\figure-1.svg",
+        "specSha256": "6a472e45bd3ee64db85d5d931bba86b64f66de1f56a323f9f061fbd2baa30c69",
+        "svgSha256": "f56dfda7e5c8c112b0ebd9f96ce8c7b41a4bd7b4737385c6cf040e1b9ab5b2ab",
+        "intendedWidthMm": 70,
+        "studentPath": "figures/q12-1.svg"
+      }
+    ],
+    "studentDigest": "5ed011ed72f97fdc1b515d56f972ffb1c98e57201cff89f597bbc8722e1c16d3",
+    "candidateDigest": "8460caa0a7810d62eac90f0a81c50e35dcb33573025c4142e993bc096a52a571",
+    "assetDigest": "ed421669f19179c16b59c926c08d4d080e71a35393b7154d674ffe9a64119a43",
+    "independentSolve": {
+      "studentDigest": "5ed011ed72f97fdc1b515d56f972ffb1c98e57201cff89f597bbc8722e1c16d3",
+      "solverId": "independent-helper-gyeongsin-group10-20261020",
+      "answer": "13 cm",
+      "solution": "한 점에서 원에 그은 두 접선의 길이는 같으므로 PW=PU=4 cm이다. QU=PQ−PU=11−4=7 cm이므로 QV=7 cm이다. 따라서 RV=QR−QV=16−7=9 cm이고 RW=9 cm이다. 그러므로 PR=PW+WR=4+9=13 cm이다. 접선 조각 4, 7, 9는 모두 양수이고, 세 변 11, 16, 13은 삼각부등식을 만족하므로 조건에 맞는 삼각형이 존재한다. 위의 접선 길이들은 순서대로 정해지므로 PR의 값도 유일하다.",
+      "evidence": {
+        "exposure": {
+          "currentAuthoredAnswerOrSolutionExposed": false,
+          "priorOriginalExposure": true,
+          "details": "이전 허용된 원본 H 3쪽 열람에서 서술형 1·2의 조건과 그림이 함께 보였다. 관련 원·접선 문제와 다른 시험 문제도 검토한 이력이 있다. 이번 authored q11/q12의 저자 답·해설·비공개 패키지는 읽지 않았다. 완전히 미노출된 원본 문제라는 주장은 하지 않는다.",
+          "calculationSource": "이번 학생 발문과 학생 SVG만 사용; 원본 재열람·답 검색·좌표 측정 없음"
+        },
+        "ownCalculation": {
+          "PU_PW": "4",
+          "QU_QV": "7",
+          "RV_RW": "9",
+          "PR": "13",
+          "semiperimeter": "20",
+          "triangleInequalityMargins": [
+            "8",
+            "14",
+            "18"
+          ],
+          "uniqueness": "각 꼭짓점의 접선 길이가 차례로 4,7,9로 강제되므로 PR=13만 가능. 엄격한 삼각부등식으로 이 세 변의 삼각형이 존재하고 내접원의 접선 분할도 주어진 값과 일치한다."
+        },
+        "figureSha256": "f56dfda7e5c8c112b0ebd9f96ce8c7b41a4bd7b4737385c6cf040e1b9ab5b2ab",
+        "studentProjectionSha256": "5ed011ed72f97fdc1b515d56f972ffb1c98e57201cff89f597bbc8722e1c16d3",
+        "studentDigestProjectionMatches": true,
+        "choicesCheck": "서술형: 실제 보기 0개, 검토할 객관식 보기 없음",
+        "gradeSurfaceProposals": {
+          "stem": {
+            "status": "proposed-in-scope",
+            "basis": "q11: 같은 호의 중심각과 원주각. q12: 한 점에서 그은 접선 길이. 해당 학생 발문에 직접 필요한 성질만 사용."
+          },
+          "choices": {
+            "status": "not-applicable",
+            "basis": "실제 두 문항 choices=[]인 서술형이며 보기나 선택 기호를 만들지 않았다."
+          },
+          "figure": {
+            "status": "student-view-checked",
+            "basis": "학생 SVG를 로컬 렌더하여 실제 확인. q11 K,L,M의 작은 호 순서와 반대 호 T, 중심 O 및 각 표기; q12 삼각형 내접원과 U,V,W의 변상 위치가 발문과 대응한다. 길이·각의 픽셀 측정 없음."
+          },
+          "notation": {
+            "status": "proposed-in-scope",
+            "basis": "중심·원주각, 작은 호, 접점, 선분 및 도·cm 표기는 중학교 기하 표기이다."
+          },
+          "answer": {
+            "status": "independently-solved",
+            "basis": "정확한 유리수 연산으로 13 cm이며 길이 단위 사용."
+          },
+          "solution": {
+            "status": "own-method-proposed-author-unseen",
+            "basis": "자체 학생 풀이는 두 접선 길이의 동일성과 자연수 뺄셈·덧셈만 사용한다. 접선 길이 성질은 공통 빗변과 같은 반지름을 가진 두 직각삼각형의 합동으로 설명 가능하다. 저자 전체 해설과 채점기준은 아직 미노출이므로 판정하지 않았다."
+          },
+          "prerequisites": {
+            "status": "2015-M3-after-prerequisites-proposal",
+            "basis": "2015 9수04-19 원의 접선 성질, 이전 삼각형 합동·삼각부등식·내접원 이해 이후. 이미 확인한 공식 2015 교육과정과 중3 2학기 배치에 근거한 학생 방법 제안이며 이 새 문항의 정식 7면 승인·2022 배치 인증은 아니다."
+          }
+        },
+        "limits": [
+          "원문·저자 답과 비교하지 않음",
+          "정식 수학/학년/출처/권리/실시간 family/native/loadable 승인 아님",
+          "2022 교육과정 배치 및 저자 채점기준 미검토"
+        ]
+      },
+      "status": "solved"
+    },
+    "solveDigest": "bd11b13142e3415fc83dffe8901e74de151c6b4a5c37e4d48c8c15e6c215e507"
+  }
+]

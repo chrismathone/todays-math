@@ -3,6 +3,37 @@ import test from 'node:test';
 import { compareWrittenAnswerPresentation as compare } from './answerPresentation.mjs';
 import { independentAnswerMatches } from './candidatePack.mjs';
 
+test('single degree answers compare explicit Unicode/TeX presentation without editing sealed answers', () => {
+  const candidate = Object.freeze({ questionType: '서술형', choices: Object.freeze([]), answer: '$27^\\circ$' });
+  const raw = Object.freeze({ answer: '27°', status: 'solved' });
+  const before = JSON.stringify({ candidate, raw });
+  for (const variant of ['27°', '$27^{\\circ}$', '\\(27^\\circ\\)', ' 27 ^{\\circ} ']) {
+    assert.equal(compare(candidate.answer, variant).status, 'equivalent');
+    assert.equal(compare(variant, candidate.answer).status, 'equivalent');
+    assert.equal(independentAnswerMatches(candidate, variant), true);
+  }
+  assert.equal(compare('$27.125^\\circ$', '27.125000°').status, 'equivalent');
+  assert.equal(compare('0°', '$0^\\circ$').status, 'equivalent');
+  assert.equal(compare('360°', '$360^{\\circ}$').status, 'equivalent');
+  assert.equal(compare('27°', '28°').status, 'different');
+  assert.equal(JSON.stringify({ candidate, raw }), before);
+  assert.equal(compare(candidate.answer, raw.answer).permitsGradeOrQuestionApproval, false);
+});
+
+test('single degree comparison preserves units, names, bounds and complete syntax', () => {
+  for (const bad of ['27', '27cm', '27rad', '27°cm', '27°°', '27도', '정답27°', '27°이다',
+    'α=27°', '(1) α=27°', '(1) 27°', '27°, 27°', '27°; 28°', '2 7°', '2\\,7°',
+    '²⁷°', '２７°', '027°', '+27°', '-27°', '.27°', '27.°', '27.0000000°',
+    '1e1°', '361°', '360.000001°', '(54/2)°', '\\frac{54}{2}°', '$27°', '27°$',
+    '$$27°$$', '$27$°', '27^{\\circ}extra', '27^\\circ{}', '27^{\\circ', '27^{°}']) {
+    assert.notEqual(compare('$27^\\circ$', bad).status, 'equivalent', bad);
+    assert.notEqual(compare(bad, '$27^\\circ$').status, 'equivalent', bad);
+    assert.equal(independentAnswerMatches({ questionType: '서술형', choices: [], answer: '$27^\\circ$' }, bad), false, bad);
+  }
+  assert.equal(compare('27°', '(1) α=27°').status, 'different');
+  for (const bad of [null, undefined, 27, {}, []]) assert.equal(compare('27°', bad).status, 'unsupported');
+});
+
 test('numbered length roles preserve x coefficients and every written subpart', () => {
   const author = '⑴ $QR=\\frac{3x}{5}\\,\\mathrm{cm}$, $PR=\\frac{4x}{5}\\,\\mathrm{cm}$ ⑵ $PQ=10\\,\\mathrm{cm}$ ⑶ $QR=6\\,\\mathrm{cm}$, $PR=8\\,\\mathrm{cm}$';
   const raw = '(1) QR=3x/5 cm, PR=4x/5 cm; (2) PQ=10 cm; (3) QR=6 cm, PR=8 cm';
