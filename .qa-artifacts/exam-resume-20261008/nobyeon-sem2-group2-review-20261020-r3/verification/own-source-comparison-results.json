@@ -1,0 +1,82 @@
+{
+  "results": [
+    {
+      "q": 9,
+      "reportSha256": "4d1bdf9ac0b5d317414b54998121f2c4708dfbc273f6d943dd4c6bbdb48982af",
+      "trueChecks": 11,
+      "gradeSurfacesPassed": 7,
+      "mathGrade": "same-current-raw-rebound",
+      "content": "held"
+    },
+    {
+      "q": 10,
+      "reportSha256": "95e4813b335529dd465a2d0a4e558f9815676ab610f45c7a85e9b127a8e7030f",
+      "trueChecks": 11,
+      "gradeSurfacesPassed": 7,
+      "mathGrade": "same-current-raw-rebound",
+      "content": "held"
+    },
+    {
+      "q": 11,
+      "reportSha256": "4bbbd097c87c1e0fc6a9c1fae061a5ee6ab48b538121afff945e03ba7effdba4",
+      "trueChecks": 11,
+      "gradeSurfacesPassed": 7,
+      "mathGrade": "same-current-raw-rebound",
+      "content": "held"
+    }
+  ],
+  "contextManifestSha256": "33d8b39e6d1013808dacc962767a1335a2bd3e18408d940770565897ca07fbff",
+  "inputBeforeAfterHashes": {
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r3\\source-only-context\\q09-original-question-only.json": "bf65a7bd8490d8db74bebd8f107a9ae84e39ef2e3e6e494c7bbb7795696786d6",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r3\\source-only-context\\q09-reference-only.png": "2600b1d6c8ed835a4d12974f05c5ac81877e3836692474c4b63e97d3e5738107",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r3\\blind\\solve\\q09.json": "cf3bda60fb12572115765aa18803b26ecd48fa142c528f9ea6dfe051e26b35a3",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\blind\\solve\\q09.json": "cf3bda60fb12572115765aa18803b26ecd48fa142c528f9ea6dfe051e26b35a3",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\verification\\reports\\q09.json": "568051f8ccbf7a15517df9ed4eb65cde98dbad1800332baa282295051f01136c",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r3\\package\\private\\q09\\candidate.json": "68383dfb31b7d05732bfcb8cb8162895dc3fa0cfcd0f5a540d0c6a16164550ed",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\package\\private\\q09\\candidate.json": "68383dfb31b7d05732bfcb8cb8162895dc3fa0cfcd0f5a540d0c6a16164550ed",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r3\\package\\private\\q09\\figure-1.spec.json": "15bd51bf8b2a2827578c1b0e4d5d892a1a3ac5cfd386d3cdcbf3220b44ff8855",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\package\\private\\q09\\figure-1.spec.json": "15bd51bf8b2a2827578c1b0e4d5d892a1a3ac5cfd386d3cdcbf3220b44ff8855",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r3\\package\\private\\q09\\figure-1.svg": "1ecbc9981e8f2715a84099b6dca4d1c698724e1b06a273ad08748123e554bbed",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\package\\private\\q09\\figure-1.svg": "1ecbc9981e8f2715a84099b6dca4d1c698724e1b06a273ad08748123e554bbed",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r3\\source-only-context\\q10-original-question-only.json": "4fd566af77598bbd1373cff818e8662e4d27703979cf209249ebdc25666fba45",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r3\\source-only-context\\q10-reference-only.png": "843cd458f7785dadd280ccb728713675a03bfd9cbfed22cf1f1ea5545fbd04af",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r3\\blind\\solve\\q10.json": "0232b841266a0a98f3cce8655439f12210be6c4f9000e85cb65068ce5dc75d8c",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\blind\\solve\\q10.json": "0232b841266a0a98f3cce8655439f12210be6c4f9000e85cb65068ce5dc75d8c",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\verification\\reports\\q10.json": "17622b052e7634f34f0f4f3333212ef3c84573503ae65b9c9c77a13a929a0b7e",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r3\\package\\private\\q10\\candidate.json": "9e3fab44a36167b21235a8fb5c9a80d42da654946db19c20cecd72312422b8eb",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\package\\private\\q10\\candidate.json": "9e3fab44a36167b21235a8fb5c9a80d42da654946db19c20cecd72312422b8eb",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r3\\package\\private\\q10\\figure-1.spec.json": "f10caf67e5041aad4cce09b438157094045369dd9f2e53a75ee225b7af748117",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\package\\private\\q10\\figure-1.spec.json": "f10caf67e5041aad4cce09b438157094045369dd9f2e53a75ee225b7af748117",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r3\\package\\private\\q10\\figure-1.svg": "c54eb6410f9ff6f40bc336cc817d0ad6dc6e0b5b48290501e7ff779ddb7d47b3",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\package\\private\\q10\\figure-1.svg": "c54eb6410f9ff6f40bc336cc817d0ad6dc6e0b5b48290501e7ff779ddb7d47b3",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r3\\source-only-context\\q11-original-question-only.json": "66b9220c7712af31fe9487e5d2340ed0024a66f7799ab5c6028fb3360f7f4259",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r3\\blind\\solve\\q11.json": "5ceca7453ea5548bb9af43c198bde342acee9faa69ea1d20ba54e204a0298f08",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\blind\\solve\\q11.json": "5ceca7453ea5548bb9af43c198bde342acee9faa69ea1d20ba54e204a0298f08",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\verification\\reports\\q11.json": "235c2c3a046dcd0969733763d342e2dd11c11888a945f3cfa1c16c10055ae64b",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r3\\package\\private\\q11\\candidate.json": "7cc5e43b77115211d446e11883d923b3a3475d55d9e7e0167e818f0ea8d43406",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\package\\private\\q11\\candidate.json": "7cc5e43b77115211d446e11883d923b3a3475d55d9e7e0167e818f0ea8d43406"
+  },
+  "sourceMathObservations": {
+    "9": {
+      "sourceObserved": "원문 질문·그림은 연못 가장자리AB거리를 묻고, AC8m,BC12m, C60°를 제공한다. 원문5개보기는m 단위 근호 길이이다. 참고그림에는 수선이 없으나 A에서BC로수선을 내려 실제 두 직각삼각형을 만들 수 있다.",
+      "sharedCore": "원문의 두 변과끼인각은 한 직각삼각형에서높이와투영을 정하고 전체밑변에서나머지투영을 얻어 피타고라스로목표거리를구하는 절차를 허용한다. 새문항은 PR과PQ를주고 H내부조건하에서투영둘을합해QR을구한다. 두실제직각삼각형의삼각비/피타고라스라는같은핵심이다. 코사인법칙이나원문답은사용하지않았다.",
+      "substantiveChange": "원문에서주어진밑변전체를새목표로, 원문의목표측면거리를새입력으로조직했다. 수선발내부를명시해부호를고정하고측량상황을추상삼각형으로재표현했다. 숫자/점이름만바꾼변형이아니다.",
+      "symbolicProcedure": "source: height=a·sin60°, projection=a·cos60°, remaining=b−projection, target²=height²+remaining². current: same height/projection fromgiven side, remaining²=givenOtherSide²−height², total=projection+positiveRemaining. Original numeric target/key not evaluated."
+    },
+    "10": {
+      "sourceObserved": "원문질문과참고그림은같은쪽지면A-B-D순서, AB8m와45°/60°관측각에서나무높이CD를묻는다. 원문의5보기도m단위근호식이다.",
+      "sharedCore": "원문과새문항모두하나의수직높이를공유하는두직각삼각형에서tan45°와tan60°의맞은편/이웃변정의로각밑변을구하고순서에따라차를쓴다. 삼각비사이항등식을필요로하지않는다.",
+      "substantiveChange": "원문은간격을입력으로높이를미지수로정하지만,현재는높이를입력으로간격을목표로정한다. 나무를기둥으로바꾼소재변화만이아니라거리/높이의입출력역전이실제수식에반영된다.",
+      "symbolicProcedure": "source: gap=h/tan45°−h/tan60°, solve for h. current: h known, compute both ground distances and their difference. No original numeric height/key evaluated."
+    },
+    "11": {
+      "sourceObserved": "원문은중앙값이항상원자료에있는지,편차총합과표준편차,복수최빈값,편차제곱평균,절대편차와평균거리의5추상주장에대한조합형객관식이다. 원문에수치자료나표는없다.",
+      "sharedCore": "새자료1,5,5,7,7,11에각정의를적용하면중앙값6은원자료밖에있고,최빈값5/7은복수이며,편차총합0,분산9,표준편차3,최대거리변량1/11이다. 이5개념연결을원문과직접대응시켰다.",
+      "substantiveChange": "추상명제조합선택에서새유한자료의요약기록오류를수정하는과제로변경했다. ㄱ~ㅁ라벨은원문명제와동일내용을복사하지않고,서로다른순서의실제통계값을조직한다. 특히분산3오기를9로고치는진단형보기는새계산/표현이다. 공유개념은행내용변경은없다.",
+      "symbolicProcedure": "current: median=(5+7)/2; deviations=x−6; variance=sum(deviation²)/6; modes byfrequency; distance=abs(deviation). Original MC combination/key not selected or compared."
+    }
+  },
+  "noOriginalAnswerKeyUsed": true,
+  "noNewQuestionOrBlindCount": true,
+  "r2ReportsAndRawUnchanged": true
+}

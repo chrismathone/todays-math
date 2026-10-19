@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 9,
+  "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group2-r2-q09",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "객관식",
+  "score": 5,
+  "content": "삼각형 $PQR$에서 $\\overline{PR}=12\\,\\mathrm{cm}$, $\\overline{PQ}=3\\sqrt{21}\\,\\mathrm{cm}$, $\\angle PRQ=60^\\circ$이다. 점 $P$에서 변 $QR$에 내린 수선의 발 $H$가 선분 $QR$의 내부에 있을 때, $QR$의 길이는?",
+  "choices": [
+    "$13\\,\\mathrm{cm}$",
+    "$14\\,\\mathrm{cm}$",
+    "$15\\,\\mathrm{cm}$",
+    "$16\\,\\mathrm{cm}$",
+    "$17\\,\\mathrm{cm}$"
+  ],
+  "answer": "③",
+  "solution": "직각삼각형 $PRH$에서 $PH=PR\\sin60^\\circ=12\\times\\frac{\\sqrt3}{2}=6\\sqrt3$, $RH=PR\\cos60^\\circ=12\\times\\frac12=6$이다.\n\n직각삼각형 $PQH$에서 피타고라스 정리를 쓰면 $QH^2=PQ^2-PH^2=(3\\sqrt{21})^2-(6\\sqrt3)^2=189-108=81$이다. 길이는 양수이므로 $QH=9$이다. 점 $H$가 변 $QR$의 내부에 있으므로 $QR=QH+HR=9+6=15\\,\\mathrm{cm}$이다. 따라서 정답은 ③이다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "sourceReference": {
+    "externalId": "2025-nobyeon-3-2-mid-9",
+    "newSourceReferenceId": "source-ref-nobyeon-2025-2-mid-group2-r2-q09",
+    "sourceContentSha256": "bf65a7bd8490d8db74bebd8f107a9ae84e39ef2e3e6e494c7bbb7795696786d6",
+    "sourceSchoolInternal": "노변중학교",
+    "sourceExamYear": 2025,
+    "questionOnlyStaged": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/question-only-staged/nobyeon/q09.json",
+      "sha256": "bf65a7bd8490d8db74bebd8f107a9ae84e39ef2e3e6e494c7bbb7795696786d6"
+    },
+    "sourceReviewReport": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/items/nobyeon/q09.json",
+      "sha256": "e1dc725839522ae8cd113ee092aeeee25217c22751b8d29a091f5879c88a0cc8"
+    },
+    "sourceManifest": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\nobyeon\\source-manifest.json",
+      "sha256": "6f3efd989d305e65127eb4268db05d9e1c099b2aec55706ebb554d45e6782454"
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[노변중][3][25-2-중간][동아강] (완료).hwp",
+        "sha256": "7d90e6b374469e3d4a32d31a9085d526a6935af970f66f5b8e293885391731ab",
+        "bytes": 1736704
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[노변중][3][25-2-중간][동아강] (완료).PDF",
+        "sha256": "5d068b76205f5690b2ea1ecf98ff6ecff8f74e33ed41b866fda54ef6048d27aa",
+        "bytes": 14857959
+      }
+    ],
+    "componentObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group2-r2/q09-source-component-observation-r1.json",
+      "sha256": "a06d4a9b34bbcb8d7acd18eb5a7c0e7a28136ddd7b51c9130a75a0f771c9c7aa"
+    },
+    "sourceIdentityAsProvided": "printed-identity-observed-not-whole-pair-certified",
+    "currentNFilesReRead": false,
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false
+  },
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "structure",
+      "new-vector"
+    ],
+    "before": "연못의 두 점 거리를 다른 두 변과 끼인각에서 계산한다.",
+    "after": "삼각형의 한 거리와 끼인각, 다른 거리를 주고 수선의 발을 포함한 밑변 전체를 역으로 복원한다.",
+    "sharedConcept": "실제 직각삼각형 두 개의 삼각비와 피타고라스",
+    "sharedProcedure": "수선으로 높이와 투영 길이→다른 직각삼각형의 양의 밑변→전체 밑변",
+    "actualStructuralChange": "삼각형의 한 거리와 끼인각, 다른 거리를 주고 수선의 발을 포함한 밑변 전체를 역으로 복원한다. 조건 제시와 묻는 대상을 새로 조직했다. 새 발문/답/전체 해설/그림·표를 제작하며 숫자·학교명·동의어만 바꿨다는 이유로 완료하지 않는다.",
+    "domainProof": "PR12,PH6√3,RH6,PQ3√21,QH9,QR15. H가 QR 내부라는 새 조건으로 두 가능한 부호 중 더하는 구성을 유일하게 정한다. 세 변의 삼각형부등식 및 양수 선분을 만족한다. 코사인법칙/벡터/임의 삼각비 항등식은 학생 방법에 쓰지 않는다.",
+    "difficultyBasis": "원문 배점과 같은 개념·핵심 원리를 유지한 기본 저자 제안이다. 실제 난도 동등성/출제시점 선수학습/2022적용은 별도 보류."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수04-16",
+      "9수04-17",
+      "9수04-18"
+    ],
+    "officialProvisions": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+      "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+    },
+    "officialPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "editionObserved": "2015",
+      "readCurrentPage": true,
+      "standard": "9수04-16, 9수04-17, 9수04-18",
+      "actualScope": "2015 M3 actual right-triangle ratio definitions/Pythagoras or representative values/dispersion as required; no arbitrary trig identities. Independent seven-surface and whole-method placement required."
+    },
+    "legitimateMethodDraft": "수선으로 높이와 투영 길이→다른 직각삼각형의 양의 밑변→전체 밑변",
+    "sevenSurfaces": {
+      "stem": "author-proposed-independent-review-pending",
+      "choices": "author-proposed-independent-review-pending",
+      "figuresAndTables": "author-proposed-independent-review-pending",
+      "notation": "author-proposed-independent-review-pending",
+      "answer": "author-proposed-independent-review-pending",
+      "studentSolution": "author-proposed-independent-review-pending",
+      "prerequisites": "author-proposed-independent-review-pending"
+    },
+    "independentReviewPending": true
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "answerFormat": "single-choice",
+    "score": 5,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+    "problemTypeProposal": "삼각형의 한 거리와 끼인각, 다른 거리를 주고 수선의 발을 포함한 밑변 전체를 역으로 복원한다.",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+      },
+      "evidence": "실제 단원 UUID 재대응, 새 역추론/기록 교정의 정확한 live family는 별도 검수 전 null/보류."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+    },
+    "figureAuthoring": {
+      "method": "existing-FigureSpec-v2-vector-engine-strict",
+      "newFigures": 1,
+      "newTables": 0,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "PR12,PH6√3,RH6,PQ3√21,QH9,QR15. H가 QR 내부라는 새 조건으로 두 가능한 부호 중 더하는 구성을 유일하게 정한다. 세 변의 삼각형부등식 및 양수 선분을 만족한다. 코사인법칙/벡터/임의 삼각비 항등식은 학생 방법에 쓰지 않는다.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-nobyeon-sem2-q09-11-r2.ts",
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "source": "transformed",
+    "originProblemId": null,
+    "sourceDifficultyLabelObserved": "중",
+    "prerequisiteUnits": [
+      {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      }
+    ],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "예각의 삼각비 정의와60°값",
+        "수선과 직각삼각형",
+        "피타고라스",
+        "양의 제곱근과 선분의 합"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    },
+    "sourceDifficultyStatus": "prior-preparation-label-not-measured-target-calibration"
+  }
+}

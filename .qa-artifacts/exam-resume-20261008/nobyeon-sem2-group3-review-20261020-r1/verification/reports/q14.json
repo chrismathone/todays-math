@@ -1,0 +1,271 @@
+{
+  "status": "pending",
+  "studentDigest": "71166593c09a92be32e837a457b7e4994b9cc179748068a494b0fa6c29aaecfa",
+  "candidateDigest": "b1be3b2ef53c7a6de407cb8b31a9accf1521d75bbfe8ede561143f41e9eeb8a1",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-nobyeon-sem2-group3-full-review-20261020",
+  "solveDigest": "65992b751c2fec89eae870ba4fb7a0277b157824360b9518a586ba6cf51a2bd0",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "evidence": {
+    "classification": {
+      "math": "passed",
+      "grade": "2015-M3-after-prerequisites-passed",
+      "content": "held"
+    },
+    "ownExecutableChecks": {
+      "orderedPairs": {
+        "A": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            7
+          ]
+        ],
+        "B": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            8
+          ]
+        ],
+        "C": [
+          [
+            1,
+            9
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            3
+          ]
+        ],
+        "D": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "E": [
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            5,
+            7
+          ]
+        ]
+      },
+      "observations": {
+        "A": "전체상승",
+        "B": "전체상승",
+        "C": "전체하강",
+        "D": "전체상승",
+        "E": "전체상승"
+      },
+      "ownBlindScatterSha256": "f2added0a6e20f1b3e4ebcf4715c22a60fc5f8ba98bcce3dbd7985fff0f9515e",
+      "domain": "각행의y와x1..5가5개의짝측정값. 총25점, 미제공단위는만들지않음.",
+      "uniqueness": "실제산점도에서C만왼쪽상단→오른쪽하단이며나머지4행은전반적상승. C의2→3국소상승이나E의국소하강2회는전체경향과모순되지않음.",
+      "method": "qualitative-scatter-only; 공분산/상관계수/회귀실행없음; 인과추론없음",
+      "allFiveChoiceChecks": {
+        "①": false,
+        "②": false,
+        "③": true,
+        "④": false,
+        "⑤": false
+      }
+    },
+    "fullAuthorSolutionReview": "현재학생해설은음의상관을전반적감소경향으로정의하고 C의초반9/7/8에서후반4/3으로의하강을설명한다. A/B/D/E는전체상승이다. 인접모든점의감소를요구하지않고인과추론하지않는다. 저자metadata의공분산검산은읽은이후에도학생풀이/필수선수로채택하거나실행하지않았다.",
+    "sourceComparison": {
+      "status": "question-only-core-and-transformation-passed",
+      "observations": {
+        "observed": "원문질문은5생활소재쌍의상관방향이다른하나를묻는객관식이고원문에는수치표가없다. 원문질문/5소재보기를실제읽었다.",
+        "core": "한변량이증가할때다른변량이대체로어느방향으로변하는지를비교하는질적상관개념이다. 원문답이나인과관계를새문항정답근거로쓰지않았다.",
+        "change": "새문항은생활소재상식대신실제25쌍의새측정값을5기록표로주고전반적음의산점도경향을묻는다. 흔들리는중간값이있어단조변화와상관경향을구별해야한다. 데이터/표현/평가과제의실질변경이며고등공분산은불필요하다."
+      },
+      "sourceQuestionSha256": "0691a0319470fb9d39659b74c2c8324015ba46f164f1cd9aa2f6c9453bbd8c32",
+      "noOriginalAnswerKeyOrNumericConclusionCompared": true,
+      "scope": "질문전용자료의수학적구조대응만;전문서/답안쌍/저작권인증아님"
+    },
+    "primaryEvidence": {
+      "normative": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "actuallyViewedPrior": true,
+        "edition": "2015",
+        "locators": [
+          "line570:9수05-06 평균/중앙값/최빈값,9수05-08 쌍자료·산점도와상관관계",
+          "line573 통계학습용어",
+          "line585 양/음/상관없음의분류"
+        ],
+        "wholeMethodLimit": "대표값정의·정렬·자료합·빈도및질적인산점도경향에한정;고등공분산/회귀/인과추론필요없음"
+      },
+      "actualM3Placement": {
+        "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+        "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+        "previouslyActuallyViewed": true,
+        "locators": [
+          "PDFindex73/physical74/printed72:중3수학2학기header 및10월9수05-06",
+          "PDFindex74/physical75/printed73:11월9수05-08 산점도로상관관계말하기"
+        ],
+        "limits": "특정노변중시험진도·2022교육과정·학교원문출처/권리인증아님"
+      }
+    },
+    "naturalWording": "현재발문은요구하는기록/자료/목표가명확하다. r2에서각기록같은열의x/y가한쌍이라고명시했다. 음의경향과인과관계를구별하는해설은자연스럽다.",
+    "scoreDifficulty": {
+      "score": 3,
+      "scoreBasis": "원문과같은3점이며 다섯쌍자료경향비교를요구하므로배점제안은내용상수용가능. 실제측정난도는미제공.",
+      "proposal": "기본",
+      "sourceLabelAsProvided": "하",
+      "difficultyApproval": "pending",
+      "basis": "원문하라벨은참고자료이며새기본제안의실측동등성/보정은미확인. difficultyStatus의source-label-unknown일반문구와관측라벨의동시존재도별도편집정리대상."
+    },
+    "unitFamily": {
+      "capturedUnitId": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+      "capturedSection": "산점도와 상관관계",
+      "familyKey": null,
+      "unitFamilyFit": false,
+      "basis": "제공캡처단원과내용대응은있으나새역추론/새표과제의정확한livefamily정의·등록상태는미검증. UUID나label만으로적합판정하지않음."
+    },
+    "rawBinding": {
+      "helperRawCommit": "b8099cf72515e54944507cb55c1307a88cfb2e7c",
+      "parentRawCommit": "77ea33927ed8c8c7b0c0c860c261404ac8056dd0",
+      "rawSha256": "f6f308cba7898c388114b65ffd4ce53511ad4afb021ac1a15a79a4e5fd80c457",
+      "byteEqualGit": true,
+      "originalExposureDeclarationPreserved": {
+        "currentAuthorAnswerSolutionPackageExposed": false,
+        "priorSourceExposure": "이전 노변1학기 다수문항과노변2학기q09~11의학생풀이/저자해설/질문전용원문을검토했다. 관련대표값·산포도와다른시험기하검토이력도있다. 이번q12~14의현재저자답·해설·비공개패키지와원문은열지않았다. 전체원본코퍼스의완전미노출은주장하지않는다.",
+        "inputsUsed": "현재학생발문·표·5보기만; 저자답/원문키검색없음",
+        "noCovarianceFormulaUsed": true
+      },
+      "newSourceExposure": "이번전체검토에서원문질문에노출;원시Git봉인이후이며원문답키는미제공"
+    },
+    "releasePolicyInterpretation": "원문staging의authoringRelease=false는일반상태표시일뿐특정학년/출처hold를해제하거나운영승인을주는값이아니다. 해당원문전체/권리와livefamily/native각각별도보류.",
+    "holds": {
+      "sourceIdentityApproved": false,
+      "wholeSourcePairApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "liveFamilyApproved": false,
+      "loadable": false,
+      "2022Placement": "pending",
+      "schoolSpecificPacing": "pending",
+      "difficultyEquivalence": "pending"
+    },
+    "sharedConceptBankChanged": false
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "r2발문은같은열의쌍측정값임을명시하여산점도음의경향을묻는다. 2015 9수05-08의자료쌍/산점도상관판단범위이다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "기록A~E각각의실제다섯점을검토하여C만전반적하강,다른4개는상승이다. 수치상관공식이필요하지않다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "실제5기록×5쌍을확인했고봉인전학생자료로직접그린산점도5개를실제view했다. 표의열별짝관계가r2본문에명시되어있다. 제공그림은없고새표는초중등자료표현범위이다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "두변량x/y,짝측정값,음의상관관계는2015통계용어이다. 공분산/상관계수기호는실제학생본문/보기/해설에없다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "독립raw와저자③이일치하며모든5보기를검토했다. 기록C의전체하강경향을답으로하며인과적주장이나완전단조감소를요구하지않는다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "현재학생해설은음의상관을전반적감소경향으로정의하고 C의초반9/7/8에서후반4/3으로의하강을설명한다. A/B/D/E는전체상승이다. 인접모든점의감소를요구하지않고인과추론하지않는다. 저자metadata의공분산검산은읽은이후에도학생풀이/필수선수로채택하거나실행하지않았다. 이전실제공식primary의범위/학년배치와전체학생방법을대조했다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "쌍자료와산점도,양/음/없는상관관계9수05-08을학습한후배정한다. 실제공식중3계획printed73의9수05-08배치를확인했다. 고등공분산은선수조건이아니다. 특정노변중중간고사진도및2022배치는인증하지않는다."
+    }
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "studentFileSha256": "997d8ddb10e40c6aaed65eddf2db9f534940be83ffd5bc45a847893958f7213a",
+  "exposure": {
+    "currentAuthoredAnswersOrSolutionsExposed": false,
+    "priorExposure": "이전 노변 1학기 여러 문항·메타데이터와 관련 대수/기하/엔진 검토 이력이 있다. 다른 시험의 관련 원·접선·피타고라스 문제도 보았다. 이번 노변2학기 current group2-r2의 저자 답·해설·패키지·원본은 읽지 않았다. 과거 전체 원본 코퍼스의 완전 미노출을 주장하지 않는다.",
+    "basis": "이번 학생 발문·표·선택지와 학생SVG만 사용. 원문답/코드/비공개 자료 검색 없음.",
+    "pixelOrSvgCoordinateOracle": false
+  },
+  "exactCalculations": {
+    "9": {
+      "PR": 12,
+      "RH": 6,
+      "PHsquared": 108,
+      "PQsquared": 189,
+      "QHsquared": 81,
+      "QH": 9,
+      "QR": 15,
+      "unit": "cm",
+      "existence": "자체 존재 예 R=(0,0),H=(6,0),Q=(15,0),P=(6,6√3). PR²144,PQ²189, ∠PRH60°,0<6<15. 좌표는 존재 증명용으로 새로 구성했고 SVG 좌표에서 얻지 않았다.",
+      "uniqueness": "H 내부로 Q가H의R 반대쪽에 있어 QR은 차가 아닌합이다. RH6과 양의QH9가 강제된다. 반사된 삼각형도 목표15는 동일.",
+      "allChoiceChecks": {
+        "①": false,
+        "②": false,
+        "③": true,
+        "④": false,
+        "⑤": false
+      }
+    },
+    "10": {
+      "PRexact": "9√3",
+      "QR": 9,
+      "PQexact": "9√3−9",
+      "unit": "m",
+      "choiceRingRepresentation": "각 a+b√3를 정수/유리수 쌍으로 비교. √3의 무리성으로 서로 다른 쌍은 같은 값이 아니다.",
+      "allChoicePairs": [
+        [
+          "-3",
+          "3"
+        ],
+        [
+          "9",
+          "0"
+        ],
+        [
+          "-9",
+          "9"
+        ],
+        [
+          "0",
+          "9"
+        ],
+        [
+          "9",
+          "9"
+        ]
+      ],
+      "allChoiceChecks": {
+        "①": false,
+        "②": false,
+        "③": true,
+        "④": false,
+        "⑤": false
+      },
+      "existence": "자체 구성 R=(0,0),P=(−9√3,0),Q=(−9,0),T=(0,9√3)로 높이와 두 각이 충족된다.1<√3<2이므로P<Q<R. 관측점 눈높이 보정 같은 미제공 조건은 도입하지 않는다.",
+      "uniqueness": "주어진 높이에 대해45°와60° 직각삼각형의 밑변이 각각 유일하고 P,Q,R 순서로 차가 정해진다."
+    },
+    "11": {
+      "data": [
+        1,
+        5,
+        5,
+        7,
+        7,
+        11
+      ],
+      "sum": 36,
+      "count": 6,
+      "mean": "6",
+      "median": "6",
+      "frequencies": {
+        "1": 1,
+        "5": 2,
+        "7": 2,
+        "11": 1
+      },
+      "modes": [
+        5,
+        7
+      ],
+      "deviations": [
+        "-5",
+        "-1",
+        "-1",
+        "1",
+        "1",
+        "5"
+      ],
+      "deviationSum": "0",
+      "squaredDeviations": [
+        "25",
+        "1",
+        "1",
+        "1",
+        "1",
+        "25"
+      ],
+      "squareSum": "54",
+      "variance": "9",
+      "farthest": [
+        1,
+        11
+      ],
+      "recordTruth": {
+        "ㄱ": true,
+        "ㄴ": true,
+        "ㄷ": true,
+        "ㄹ": false,
+        "ㅁ": true
+      },
+      "allChoiceChecks": {
+        "①": false,
+        "②": false,
+        "③": false,
+        "④": true,
+        "⑤": false
+      },
+      "domainExistenceUniqueness": "실제6개 유한 자료이고 분산 정의의 분모6은0이 아니다. 표의 잘못된 기록은 ㄹ 하나이며 보기④만 이를 실제 참인 값9로 고친다. 표준편차3과 분산9를 혼동하지 않는다. 변량 단위는 제시되지 않았으므로 임의 cm/m나 측정 단위를 붙이지 않는다."
+    }
+  },
+  "results": [
+    {
+      "q": 9,
+      "studentDigest": "fb01f6709f673af33ec51622497bc8b8e66cb2f07d2012f91954a06f9673e6ec",
+      "rawSha256": "cf3bda60fb12572115765aa18803b26ecd48fa142c528f9ea6dfe051e26b35a3",
+      "answer": "③",
+      "mathStatus": "solved",
+      "formalGradeStatus": "pending-review"
+    },
+    {
+      "q": 10,
+      "studentDigest": "3f419502d9307045efee2c9f3344124887f273a7383946225c857db7b3c4ac34",
+      "rawSha256": "0232b841266a0a98f3cce8655439f12210be6c4f9000e85cb65068ce5dc75d8c",
+      "answer": "③",
+      "mathStatus": "solved",
+      "formalGradeStatus": "pending-review"
+    },
+    {
+      "q": 11,
+      "studentDigest": "2b33750ff92006a911168c78ca51b329de12bd4d1b22aa32dbab7a379bd3efa5",
+      "rawSha256": "5ceca7453ea5548bb9af43c198bde342acee9faa69ea1d20ba54e204a0298f08",
+      "answer": "④",
+      "mathStatus": "solved",
+      "formalGradeStatus": "pending-review"
+    }
+  ],
+  "UTF8Probe": "passed",
+  "viewedStudentSVGs": 2
+}

@@ -1,0 +1,677 @@
+{
+  "kind": "current-authored-twin-review-summary/v1",
+  "createdAt": "2026-10-19T20:08:18.271Z",
+  "index": {
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-group3-review-20261020-r1/current-author-index-parent-r1.json",
+    "sha256": "6bc3e98f2c093d1106d05afd670e616335830c548555efb8c2427570fb15f4dd"
+  },
+  "selectionPolicy": "exact current author ID and raw author hash; prior versions retained, never reused",
+  "counts": {
+    "authored": 3,
+    "historicalCandidateVersions": 3,
+    "independentSolvesBound": 3,
+    "mathematicalVerified": 3,
+    "gradeReviewed": 3,
+    "contentReportVerified": 0,
+    "contentReviewPassed": 0,
+    "contentReviewHeld": 3,
+    "figureInstances": 0,
+    "overallVerified": 0,
+    "loadable": 0,
+    "productionWrites": 0
+  },
+  "contentReviewPassedNumbers": [],
+  "contentReviewHeldNumbers": [
+    12,
+    13,
+    14
+  ],
+  "supersededReviews": [],
+  "questions": [
+    {
+      "n": 12,
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group3-r1-q12",
+      "studentDigest": "093429d9f708deabeffa69e94201f10f9b0f037230c219e873633f70fa75c6a1",
+      "candidateDigest": "c1835230710ff68e547a5973fe2003defe35196b0fa231a0454bb5a2296a0f8d",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "fde868f221009dd19f863ac382329f8c148d78ede820c409e7414e3a7f14b608",
+      "reportSha256": "e63921a71e2e0edc809d970da9917257bf8fecc57da8611e52ca6581da40d1cf",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "reviewChecks": {
+        "answerCorrect": true,
+        "solutionCorrect": true,
+        "existenceUniqueness": true,
+        "choicesCorrect": true,
+        "figureConsistent": true,
+        "sameCoreConceptAndProcedure": true,
+        "distinctPresentation": true,
+        "naturalKorean": true,
+        "curriculumAppropriate": true,
+        "allStudentSurfacesInScope": true,
+        "scoreAppropriate": true,
+        "unitFamilyFit": false
+      },
+      "sourceReference": {
+        "externalId": "2025-nobyeon-3-2-mid-12",
+        "newSourceReferenceId": "source-ref-nobyeon-2025-2-mid-group3-r1-q12",
+        "sourceContentSha256": "9d57e886c3808108025e695d15883d65a1a71ffb0e58760285df87ad75714e0f",
+        "sourceSchoolInternal": "노변중학교",
+        "sourceExamYear": 2025,
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/question-only-staged/nobyeon/q12.json",
+          "sha256": "9d57e886c3808108025e695d15883d65a1a71ffb0e58760285df87ad75714e0f"
+        },
+        "sourceReviewReport": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/items/nobyeon/q12.json",
+          "sha256": "1e906e60779b090f7743509860818fdc05ac93654470c254e4bb8c9b8b33c13f"
+        },
+        "sourceManifest": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\nobyeon\\source-manifest.json",
+          "sha256": "6f3efd989d305e65127eb4268db05d9e1c099b2aec55706ebb554d45e6782454"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[노변중][3][25-2-중간][동아강] (완료).hwp",
+            "sha256": "7d90e6b374469e3d4a32d31a9085d526a6935af970f66f5b8e293885391731ab",
+            "bytes": 1736704
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[노변중][3][25-2-중간][동아강] (완료).PDF",
+            "sha256": "5d068b76205f5690b2ea1ecf98ff6ecff8f74e33ed41b866fda54ef6048d27aa",
+            "bytes": 14857959
+          }
+        ],
+        "componentObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group3-r1/q12-source-component-observation-r1.json",
+          "sha256": "94ab718a6280d89df9109ee8f35142ce276b84672acb80a744187d390f2917be"
+        },
+        "sourceIdentityAsProvided": "printed-identity-observed-not-whole-pair-certified",
+        "currentNFilesReRead": false,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 3,
+        "difficultyProposal": "기본",
+        "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+        "problemTypeProposal": "홀수 자료의 중앙값과 미지수의 일차식을 주고 짝수 자료의 중앙값을 역으로 복원한다.",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+            "grade": "중3",
+            "chapter": "7. 통계",
+            "section": "대푯값과 산포도",
+            "semester": 2,
+            "orderIndex": 488,
+            "problemCodePrefix": "J30701"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+          },
+          "evidence": "실제 Unit UUID 연결; 역추론/새 자료 조직의 정확한 live family는 별도 보류."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+        },
+        "figureAuthoring": {
+          "method": "new-native-Markdown-table",
+          "newFigures": 0,
+          "newTables": 1,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "coordinateConstruction": "2a+b16과 a,b양수로 모든 후보는 a<=7,b<=14 안에 있다. 유한 전수 계산에서(a4,b8)만 A중앙값8을 만족하고 B중앙값5로 유일하다. 학생 해설은 유한 탐색 대신 중앙값8인 미지수의 두 경우를 나누어 증명한다.",
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-nobyeon-sem2-q12-14-r1.mjs",
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "source": "transformed",
+        "originProblemId": null,
+        "sourceDifficultyLabelObserved": "하",
+        "prerequisiteUnits": [
+          {
+            "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+            "grade": "중3",
+            "chapter": "7. 통계",
+            "section": "대푯값과 산포도",
+            "semester": 2,
+            "orderIndex": 488,
+            "problemCodePrefix": "J30701"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "홀수/짝수 개수의 중앙값",
+            "정렬과 자료의 개수",
+            "양의 자연수와 일차식"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "sourceDifficultyStatus": "prior-preparation-label-not-measured-target-calibration"
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure",
+          "new-table"
+        ],
+        "before": "홀수·짝수 자료의 중앙값 두 개를 주고 미지수의 일차식을 구한다.",
+        "after": "홀수 자료의 중앙값과 미지수의 일차식을 주고 짝수 자료의 중앙값을 역으로 복원한다.",
+        "sharedConcept": "홀수·짝수 자료의 중앙값과 정렬 조건",
+        "sharedProcedure": "홀수 중앙값이 실제 자료값임을 이용→양의 자연수 조건과 일차식으로 두 수 결정→짝수 자료 가운데 두 값의 평균",
+        "actualStructuralChange": "홀수 자료의 중앙값과 미지수의 일차식을 주고 짝수 자료의 중앙값을 역으로 복원한다. 입력과 질문 또는 자료 조직을 실제로 바꾸고 새 문장·답·해설·표를 작성했다. 숫자/학교명 치환만으로 완료하지 않는다.",
+        "domainProof": "2a+b16과 a,b양수로 모든 후보는 a<=7,b<=14 안에 있다. 유한 전수 계산에서(a4,b8)만 A중앙값8을 만족하고 B중앙값5로 유일하다. 학생 해설은 유한 탐색 대신 중앙값8인 미지수의 두 경우를 나누어 증명한다.",
+        "difficultyBasis": "원문 배점과 핵심 개념의 기본 난도 저자 제안이다. 실제 난도 동등성·진도·2022적용은 독립 검수 전 보류."
+      },
+      "packageDigest": "0ce6760b523cd632ffbcb501fde1e3143fe6d155be4e1299e9da02eb56af1983",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-authoring-group3-r1\\q12.json",
+        "sha256": "329b704fa242ea09e66639b7265dfbd93b8f68545c63e97c52c51de37f0be2cd"
+      },
+      "figureBindings": [],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group3-review-20261020-r1\\blind\\solve\\q12.json",
+        "sha256": "e4a79e3619c99bc1df01b5c064e668016bd4f89cd422620fb0199af0081bf655"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-group3-review-20261020-r1/verification/reports/q12.json",
+        "sha256": "e63921a71e2e0edc809d970da9917257bf8fecc57da8611e52ca6581da40d1cf"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-group3-review-20261020-r1/verification/verification-manifest.json",
+        "sha256": "94cc1e8859869771e67ff38ded49508d12c56b62854c80c2e76d17fd5337d271"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-group3-review-20261020-r1/blind/blind-manifest.json",
+        "sha256": "c8a91ddafb32eb72dae3d1ed396177f3c6f762a11b671f24563418f0ff5916ea"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-group3-review-20261020-r1/package/private/q12/candidate.json",
+        "sha256": "329b704fa242ea09e66639b7265dfbd93b8f68545c63e97c52c51de37f0be2cd"
+      },
+      "candidateContentWithoutRelocatedPaths": "8f443fa1c2a43d7da1452ab5c0462e0962ffc1e24373ced4ff3ad8f85ddbfcf4",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group3-r1/q12.json",
+        "sha256": "329b704fa242ea09e66639b7265dfbd93b8f68545c63e97c52c51de37f0be2cd"
+      },
+      "authorCandidateDigest": "c1835230710ff68e547a5973fe2003defe35196b0fa231a0454bb5a2296a0f8d"
+    },
+    {
+      "n": 13,
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group3-r1-q13",
+      "studentDigest": "af62231ac743740f6043a3809993e34c59c93506af0102a78086fd9a923693a7",
+      "candidateDigest": "71c405575eace88aebddd889172722bb9971d1e0529d78c580a6afdf86299462",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "8fc09f61bf62b88ac17e151b8eb5df469991b6ccc41c9590bbd80a61c72bd879",
+      "reportSha256": "7dd5e6e046322b554ec41a73d570c73992b2ee4e479de0f3b94cbd23d8eff151",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "reviewChecks": {
+        "answerCorrect": true,
+        "solutionCorrect": true,
+        "existenceUniqueness": true,
+        "choicesCorrect": true,
+        "figureConsistent": true,
+        "sameCoreConceptAndProcedure": true,
+        "distinctPresentation": true,
+        "naturalKorean": true,
+        "curriculumAppropriate": true,
+        "allStudentSurfacesInScope": true,
+        "scoreAppropriate": true,
+        "unitFamilyFit": false
+      },
+      "sourceReference": {
+        "externalId": "2025-nobyeon-3-2-mid-13",
+        "newSourceReferenceId": "source-ref-nobyeon-2025-2-mid-group3-r1-q13",
+        "sourceContentSha256": "c8b0fb01e2360aca555c450545db691d05910c9cc1a79dddac3e7722804567d3",
+        "sourceSchoolInternal": "노변중학교",
+        "sourceExamYear": 2025,
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/question-only-staged/nobyeon/q13.json",
+          "sha256": "c8b0fb01e2360aca555c450545db691d05910c9cc1a79dddac3e7722804567d3"
+        },
+        "sourceReviewReport": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/items/nobyeon/q13.json",
+          "sha256": "8ed79de82ed7be9942cd3459ca1b29e315d621fcaf30049c48ed007a5132c181"
+        },
+        "sourceManifest": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\nobyeon\\source-manifest.json",
+          "sha256": "6f3efd989d305e65127eb4268db05d9e1c099b2aec55706ebb554d45e6782454"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[노변중][3][25-2-중간][동아강] (완료).hwp",
+            "sha256": "7d90e6b374469e3d4a32d31a9085d526a6935af970f66f5b8e293885391731ab",
+            "bytes": 1736704
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[노변중][3][25-2-중간][동아강] (완료).PDF",
+            "sha256": "5d068b76205f5690b2ea1ecf98ff6ecff8f74e33ed41b866fda54ef6048d27aa",
+            "bytes": 14857959
+          }
+        ],
+        "componentObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group3-r1/q13-source-component-observation-r1.json",
+          "sha256": "694c46fb741d29e86fee8bcd5d31b5476b02111a35102633d342bf9566591adb"
+        },
+        "sourceIdentityAsProvided": "printed-identity-observed-not-whole-pair-certified",
+        "currentNFilesReRead": false,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 4,
+        "difficultyProposal": "기본",
+        "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+        "problemTypeProposal": "평균을 주어 미지 자료를 정한 뒤 두 최빈값을 빠짐없이 찾는다.",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+            "grade": "중3",
+            "chapter": "7. 통계",
+            "section": "대푯값과 산포도",
+            "semester": 2,
+            "orderIndex": 488,
+            "problemCodePrefix": "J30701"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+          },
+          "evidence": "실제 Unit UUID 연결; 역추론/새 자료 조직의 정확한 live family는 별도 보류."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+        },
+        "figureAuthoring": {
+          "method": "new-native-Markdown-table",
+          "newFigures": 0,
+          "newTables": 1,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "coordinateConstruction": "고정된 합48과 전체합56으로 a8하나가 정해진다. 빈도는7/8이2회, 나머지1회로 동일 최빈값 두 개가 유일하다. 원문의 입력이던 최빈값과 계산 대상이던 평균의 역할을 뒤집었다.",
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-nobyeon-sem2-q12-14-r1.mjs",
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "source": "transformed",
+        "originProblemId": null,
+        "sourceDifficultyLabelObserved": "하",
+        "prerequisiteUnits": [
+          {
+            "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+            "grade": "중3",
+            "chapter": "7. 통계",
+            "section": "대푯값과 산포도",
+            "semester": 2,
+            "orderIndex": 488,
+            "problemCodePrefix": "J30701"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "평균과 자료의 합",
+            "자료 개수",
+            "최빈값은 여러 개일 수 있음"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "sourceDifficultyStatus": "prior-preparation-label-not-measured-target-calibration"
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure",
+          "new-table"
+        ],
+        "before": "두 최빈값을 주어 미지 자료를 정한 뒤 평균과의 합을 구한다.",
+        "after": "평균을 주어 미지 자료를 정한 뒤 두 최빈값을 빠짐없이 찾는다.",
+        "sharedConcept": "평균으로 정해지는 자료의 합과 여러 최빈값",
+        "sharedProcedure": "평균×자료개수에서 누락 자료 복원→빈도 세기→모든 최대 빈도 값을 함께 선택",
+        "actualStructuralChange": "평균을 주어 미지 자료를 정한 뒤 두 최빈값을 빠짐없이 찾는다. 입력과 질문 또는 자료 조직을 실제로 바꾸고 새 문장·답·해설·표를 작성했다. 숫자/학교명 치환만으로 완료하지 않는다.",
+        "domainProof": "고정된 합48과 전체합56으로 a8하나가 정해진다. 빈도는7/8이2회, 나머지1회로 동일 최빈값 두 개가 유일하다. 원문의 입력이던 최빈값과 계산 대상이던 평균의 역할을 뒤집었다.",
+        "difficultyBasis": "원문 배점과 핵심 개념의 기본 난도 저자 제안이다. 실제 난도 동등성·진도·2022적용은 독립 검수 전 보류."
+      },
+      "packageDigest": "0ce6760b523cd632ffbcb501fde1e3143fe6d155be4e1299e9da02eb56af1983",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-authoring-group3-r1\\q13.json",
+        "sha256": "b774211ab588b612b68130c835fcecd001d9cc96f9ecc5c89558a236a0c03909"
+      },
+      "figureBindings": [],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group3-review-20261020-r1\\blind\\solve\\q13.json",
+        "sha256": "1ac5ab4530052186e7515d35dd8be828e4c78304035c2873074012a4887a67ad"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-group3-review-20261020-r1/verification/reports/q13.json",
+        "sha256": "7dd5e6e046322b554ec41a73d570c73992b2ee4e479de0f3b94cbd23d8eff151"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-group3-review-20261020-r1/verification/verification-manifest.json",
+        "sha256": "94cc1e8859869771e67ff38ded49508d12c56b62854c80c2e76d17fd5337d271"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-group3-review-20261020-r1/blind/blind-manifest.json",
+        "sha256": "c8a91ddafb32eb72dae3d1ed396177f3c6f762a11b671f24563418f0ff5916ea"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-group3-review-20261020-r1/package/private/q13/candidate.json",
+        "sha256": "b774211ab588b612b68130c835fcecd001d9cc96f9ecc5c89558a236a0c03909"
+      },
+      "candidateContentWithoutRelocatedPaths": "d919b733c01868a733d41b4ed17e3256987dfb16890ea22782781158782f5172",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group3-r1/q13.json",
+        "sha256": "b774211ab588b612b68130c835fcecd001d9cc96f9ecc5c89558a236a0c03909"
+      },
+      "authorCandidateDigest": "71c405575eace88aebddd889172722bb9971d1e0529d78c580a6afdf86299462"
+    },
+    {
+      "n": 14,
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group3-r2-q14",
+      "studentDigest": "71166593c09a92be32e837a457b7e4994b9cc179748068a494b0fa6c29aaecfa",
+      "candidateDigest": "b1be3b2ef53c7a6de407cb8b31a9accf1521d75bbfe8ede561143f41e9eeb8a1",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "65992b751c2fec89eae870ba4fb7a0277b157824360b9518a586ba6cf51a2bd0",
+      "reportSha256": "1a7a8feaf7b9151fe1d04735d61819ed88e209c57f6e278b7fb148f58fc3ea5b",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "reviewChecks": {
+        "answerCorrect": true,
+        "solutionCorrect": true,
+        "existenceUniqueness": true,
+        "choicesCorrect": true,
+        "figureConsistent": true,
+        "sameCoreConceptAndProcedure": true,
+        "distinctPresentation": true,
+        "naturalKorean": true,
+        "curriculumAppropriate": true,
+        "allStudentSurfacesInScope": true,
+        "scoreAppropriate": true,
+        "unitFamilyFit": false
+      },
+      "sourceReference": {
+        "externalId": "2025-nobyeon-3-2-mid-14",
+        "newSourceReferenceId": "source-ref-nobyeon-2025-2-mid-group3-r2-q14",
+        "sourceContentSha256": "0691a0319470fb9d39659b74c2c8324015ba46f164f1cd9aa2f6c9453bbd8c32",
+        "sourceSchoolInternal": "노변중학교",
+        "sourceExamYear": 2025,
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/question-only-staged/nobyeon/q14.json",
+          "sha256": "0691a0319470fb9d39659b74c2c8324015ba46f164f1cd9aa2f6c9453bbd8c32"
+        },
+        "sourceReviewReport": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/items/nobyeon/q14.json",
+          "sha256": "cb374403d2cbd8f59fcfe1dc2965dc599f772137ea79ca8cf2f74bfcac690717"
+        },
+        "sourceManifest": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\nobyeon\\source-manifest.json",
+          "sha256": "6f3efd989d305e65127eb4268db05d9e1c099b2aec55706ebb554d45e6782454"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[노변중][3][25-2-중간][동아강] (완료).hwp",
+            "sha256": "7d90e6b374469e3d4a32d31a9085d526a6935af970f66f5b8e293885391731ab",
+            "bytes": 1736704
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[노변중][3][25-2-중간][동아강] (완료).PDF",
+            "sha256": "5d068b76205f5690b2ea1ecf98ff6ecff8f74e33ed41b866fda54ef6048d27aa",
+            "bytes": 14857959
+          }
+        ],
+        "componentObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group3-r1/q14-source-component-observation-r1.json",
+          "sha256": "20692e84b34bbc442bcbc4bef692834a18be67fe77a922075b89bd34a38a21aa"
+        },
+        "sourceIdentityAsProvided": "printed-identity-observed-not-whole-pair-certified",
+        "currentNFilesReRead": false,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 3,
+        "difficultyProposal": "기본",
+        "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+        "problemTypeProposal": "새 관측값 다섯 묶음을 표로 조직하고 실제 점들의 전체 경향으로 음의 상관관계를 판단한다.",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+            "grade": "중3",
+            "chapter": "7. 통계",
+            "section": "산점도와 상관관계",
+            "semester": 2,
+            "orderIndex": 489,
+            "problemCodePrefix": "J30702"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+          },
+          "evidence": "실제 Unit UUID 연결; 역추론/새 자료 조직의 정확한 live family는 별도 보류."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+        },
+        "figureAuthoring": {
+          "method": "new-native-Markdown-table",
+          "newFigures": 0,
+          "newTables": 1,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "coordinateConstruction": "x1..5의 각 기록에서 추세를 확인했다. 저자 전용 정수 공분산 부호 검산5Σxy-ΣxΣy는 A60/B50/C-75/D55/E55로 C만 음수다. 이 계산식·상관계수·회귀/인과 도구는 학생에게 요구하지 않는다. 실제 새 표의 개별값과 전반적 방향은 독립 검수 대상이다.",
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/revise-nobyeon-sem2-q14-r2.mjs",
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "source": "transformed",
+        "originProblemId": null,
+        "sourceDifficultyLabelObserved": "하",
+        "prerequisiteUnits": [
+          {
+            "id": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+            "grade": "중3",
+            "chapter": "7. 통계",
+            "section": "산점도와 상관관계",
+            "semester": 2,
+            "orderIndex": 489,
+            "problemCodePrefix": "J30702"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "산점도와 두 변량",
+            "양의/음의 상관관계의 뜻",
+            "경향과 항상 성립하는 관계의 구별"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "sourceDifficultyStatus": "prior-preparation-label-not-measured-target-calibration"
+      },
+      "variantDelta": {
+        "modes": [
+          "new-data",
+          "structure",
+          "new-table"
+        ],
+        "before": "생활 소재 다섯 쌍에서 상관관계 방향이 다른 하나를 고른다.",
+        "after": "새 관측값 다섯 묶음을 표로 조직하고 실제 점들의 전체 경향으로 음의 상관관계를 판단한다.",
+        "sharedConcept": "산점도에서 보이는 양/음의 상관관계 방향",
+        "sharedProcedure": "같은 x축의 작은값/큰값에서 y의 전체 경향 대조→중간 흔들림과 전체 방향 구별",
+        "actualStructuralChange": "새 관측값 다섯 묶음을 표로 조직하고 실제 점들의 전체 경향으로 음의 상관관계를 판단한다. 입력과 질문 또는 자료 조직을 실제로 바꾸고 새 문장·답·해설·표를 작성했다. 숫자/학교명 치환만으로 완료하지 않는다.",
+        "domainProof": "x1..5의 각 기록에서 추세를 확인했다. 저자 전용 정수 공분산 부호 검산5Σxy-ΣxΣy는 A60/B50/C-75/D55/E55로 C만 음수다. 이 계산식·상관계수·회귀/인과 도구는 학생에게 요구하지 않는다. 실제 새 표의 개별값과 전반적 방향은 독립 검수 대상이다.",
+        "difficultyBasis": "원문 배점과 핵심 개념의 기본 난도 저자 제안이다. 실제 난도 동등성·진도·2022적용은 독립 검수 전 보류."
+      },
+      "packageDigest": "0ce6760b523cd632ffbcb501fde1e3143fe6d155be4e1299e9da02eb56af1983",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-authoring-group3-q14-r2\\q14.json",
+        "sha256": "766c2a224c4b9dc4a0d768f92d9548047219769c4688a277cb6f907088c3f5a2"
+      },
+      "figureBindings": [],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group3-review-20261020-r1\\blind\\solve\\q14.json",
+        "sha256": "f6f308cba7898c388114b65ffd4ce53511ad4afb021ac1a15a79a4e5fd80c457"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-group3-review-20261020-r1/verification/reports/q14.json",
+        "sha256": "1a7a8feaf7b9151fe1d04735d61819ed88e209c57f6e278b7fb148f58fc3ea5b"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-group3-review-20261020-r1/verification/verification-manifest.json",
+        "sha256": "94cc1e8859869771e67ff38ded49508d12c56b62854c80c2e76d17fd5337d271"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-group3-review-20261020-r1/blind/blind-manifest.json",
+        "sha256": "c8a91ddafb32eb72dae3d1ed396177f3c6f762a11b671f24563418f0ff5916ea"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-group3-review-20261020-r1/package/private/q14/candidate.json",
+        "sha256": "766c2a224c4b9dc4a0d768f92d9548047219769c4688a277cb6f907088c3f5a2"
+      },
+      "candidateContentWithoutRelocatedPaths": "f959b1fde9ff8e7063a556b50589296a96bc9e5a00bd953033270566b7ad10c7",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group3-q14-r2/q14.json",
+        "sha256": "766c2a224c4b9dc4a0d768f92d9548047219769c4688a277cb6f907088c3f5a2"
+      },
+      "authorCandidateDigest": "b1be3b2ef53c7a6de407cb8b31a9accf1521d75bbfe8ede561143f41e9eeb8a1"
+    }
+  ],
+  "reviewBindingDigest": "28b99534724cf6e7335e5ff1a5397fe52de45e35773a465061c0f4f1166f5e8d",
+  "limits": [
+    "External review reports supply mathematical/curriculum evidence; hashes never calculate correctness",
+    "Source identity/custody, taxonomy, rights/similarity and native reader/provenance remain separate unresolved gates",
+    "No database, writer, operational approval or original-answer oracle"
+  ]
+}

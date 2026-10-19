@@ -1,0 +1,65 @@
+{
+  "utc": "2026-10-19T20:07:13.890307+00:00",
+  "purpose": "Review actual original ownership and shared16/17 context, not author new twin or approve rights/family/grade. Staged generic authoringRelease false applies to all questions; specific prior source-holds are the subject.",
+  "questions": [
+    {
+      "n": 15,
+      "stage": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\question-only-staged\\nobyeon\\q15.json",
+        "sha256": "1d64f4bfd366f7b944bc6034390ee502b6b622c1e3253faa8699118a9093b5e9"
+      },
+      "review": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\items\\nobyeon\\q15.json",
+        "sha256": "66428b5e8693783a3a14fa78e544e296a76db1488d72097b0216e569e2f16875"
+      },
+      "explicitPriorScope": "source-hold",
+      "sharedContextPresent": false
+    },
+    {
+      "n": 16,
+      "stage": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\question-only-staged\\nobyeon\\q16.json",
+        "sha256": "5f917af01f0e4e2963bd15e69e8ad9a7ff7dca272994ae456cfbf07997d42aaf"
+      },
+      "review": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\items\\nobyeon\\q16.json",
+        "sha256": "1f7028b4c1a49fa0c5df6be179bb376105ebc4d20ccd2fc64ca681372b089355"
+      },
+      "explicitPriorScope": "source-hold",
+      "sharedContextPresent": true
+    },
+    {
+      "n": 17,
+      "stage": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\question-only-staged\\nobyeon\\q17.json",
+        "sha256": "71dfa1fd221bedbe3b4b298661e50b8647f958ebfb4c5364507176c7fac962eb"
+      },
+      "review": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\items\\nobyeon\\q17.json",
+        "sha256": "80daba47dd3a3dd549ff6d5fc9c32f02204ba705b7e135c6822708d20a902b3e"
+      },
+      "explicitPriorScope": "source-hold",
+      "sharedContextPresent": true
+    }
+  ],
+  "originalReferences": [
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\reviewer-only\\nobyeon\\original-01-page-03-r2.png",
+      "sha256": "4dc38cab6d66ff03f057d754ba21e5d1805c4911da15cf565b2cdaec40f50ebb",
+      "copy": "original-01-page-03-r2.png",
+      "physicalSourcePage": 3,
+      "figureReferenceOnly": true
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\reviewer-only\\nobyeon\\original-02-page-04-r2.png",
+      "sha256": "2492b5001b2dd631972acace37df109ce469d9cb72808d68576eb520891741c1",
+      "copy": "original-02-page-04-r2.png",
+      "physicalSourcePage": 4,
+      "figureReferenceOnly": true
+    }
+  ],
+  "sourceKeyOrSolutionRequested": false,
+  "originalsOrOldEvidenceMayChange": false,
+  "figurePixelsAsMathLengthOracle": false,
+  "dbWrites": 0
+}

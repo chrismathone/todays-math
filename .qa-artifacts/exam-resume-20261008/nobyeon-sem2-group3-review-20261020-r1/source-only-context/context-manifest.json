@@ -1,0 +1,225 @@
+{
+  "utc": "2026-10-19T20:00:28.755371+00:00",
+  "questions": [
+    {
+      "n": 12,
+      "question": {
+        "path": "q12-original-question-only.json",
+        "sha256": "9d57e886c3808108025e695d15883d65a1a71ffb0e58760285df87ad75714e0f"
+      },
+      "sourceInput": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\question-only-staged\\nobyeon\\q12.json",
+        "sha256": "9d57e886c3808108025e695d15883d65a1a71ffb0e58760285df87ad75714e0f"
+      },
+      "priorReview": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\items\\nobyeon\\q12.json",
+        "sha256": "1e906e60779b090f7743509860818fdc05ac93654470c254e4bb8c9b8b33c13f"
+      },
+      "priorCoreProposal": {
+        "grade": "\uc9113",
+        "edition": "2015",
+        "appliedSourceEditionBasis": "2025middle3\u21922015;2022middle3 rollout2027. KI2025/grade observed but school/term conflict remains.",
+        "standardCodes": [
+          "9\uc21805-06"
+        ],
+        "coreConceptProposal": "\ub450 \uc790\ub8cc\uc758 \uc911\uc559\uac12 \uc870\uac74",
+        "procedureProposal": "\uc790\uc5f0\uc218a<b \uc870\uac74\uc5d0\uc11c \ub450 \uc815\ub82c\uc758 \uac00\uc6b4\ub370 \uac12\uc744 \uacbd\uc6b0\ubcc4\ub85c \uc77d\ub294\ub2e4.",
+        "status": "candidate",
+        "gradeApproved": false,
+        "hardExclusionGround": null,
+        "restrictions": [
+          "no arbitrary trig identities",
+          "angles0..90 for ratio values",
+          "no circle proportionality",
+          "no sine/cosine law,Heron,vector,addition formula",
+          "no overly complicated transformed geometry assessment"
+        ],
+        "sevenStudentSurfaces": {
+          "stem": {
+            "sourceObserved": true,
+            "risk": "candidate"
+          },
+          "choices": {
+            "sourceObserved": true,
+            "risk": "source observed; final twin choices pending"
+          },
+          "figuresAndNotation": {
+            "sourceObserved": true,
+            "risk": "[a,b,2,8,10]\uc911\uc559\uac127;[2,a,b,5]\uc911\uc559\uac124;2a+b,3\uc810",
+            "tablesIncluded": false
+          },
+          "answerFormat": {
+            "sourceObserved": "MC5choices",
+            "risk": "source answer not read/exported; future format must remain within grade"
+          },
+          "studentSolution": {
+            "status": "not-exposed-not-reviewed",
+            "risk": "No original solution used. New author solution and independent grade review are required."
+          },
+          "requiredProcedure": {
+            "status": "proposal-only",
+            "risk": "\uc790\uc5f0\uc218a<b \uc870\uac74\uc5d0\uc11c \ub450 \uc815\ub82c\uc758 \uac00\uc6b4\ub370 \uac12\uc744 \uacbd\uc6b0\ubcc4\ub85c \uc77d\ub294\ub2e4."
+          },
+          "prerequisites": {
+            "status": "proposal-only",
+            "risk": "Use actual perpendicular heights,triangle congruence/similarity,Pythagorean and ratio definitions; never import prohibited higher methods."
+          }
+        },
+        "curriculumEvidenceBinding": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+          "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+          "bytes": 114892
+        }
+      },
+      "wholeSourceIdentityOrRightsApproved": false
+    },
+    {
+      "n": 13,
+      "question": {
+        "path": "q13-original-question-only.json",
+        "sha256": "c8b0fb01e2360aca555c450545db691d05910c9cc1a79dddac3e7722804567d3"
+      },
+      "sourceInput": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\question-only-staged\\nobyeon\\q13.json",
+        "sha256": "c8b0fb01e2360aca555c450545db691d05910c9cc1a79dddac3e7722804567d3"
+      },
+      "priorReview": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\items\\nobyeon\\q13.json",
+        "sha256": "8ed79de82ed7be9942cd3459ca1b29e315d621fcaf30049c48ed007a5132c181"
+      },
+      "priorCoreProposal": {
+        "grade": "\uc9113",
+        "edition": "2015",
+        "appliedSourceEditionBasis": "2025middle3\u21922015;2022middle3 rollout2027. KI2025/grade observed but school/term conflict remains.",
+        "standardCodes": [
+          "9\uc21805-06"
+        ],
+        "coreConceptProposal": "\ubcf5\uc218 \ucd5c\ube48\uac12\uacfc \ud3c9\uade0",
+        "procedureProposal": "\uc778\uc1c48\uc790\ub8cc\uc758 \ube48\ub3c4\ub97c \uc138\uace0 \ub450 \ucd5c\ube48\uac12 \uc870\uac74\uc744 \ubcf4\uc874\ud55c \ub4a4 \ud3c9\uade0\uc744 \uad6c\ud55c\ub2e4.",
+        "status": "candidate",
+        "gradeApproved": false,
+        "hardExclusionGround": null,
+        "restrictions": [
+          "no arbitrary trig identities",
+          "angles0..90 for ratio values",
+          "no circle proportionality",
+          "no sine/cosine law,Heron,vector,addition formula",
+          "no overly complicated transformed geometry assessment"
+        ],
+        "sevenStudentSurfaces": {
+          "stem": {
+            "sourceObserved": true,
+            "risk": "candidate"
+          },
+          "choices": {
+            "sourceObserved": true,
+            "risk": "source observed; final twin choices pending"
+          },
+          "figuresAndNotation": {
+            "sourceObserved": true,
+            "risk": "6,10,11,7,a,12,13,10;\ucd5c\ube48\uac1210\uacfc11,\ud3c9\uade0b,a/b\uc790\uc5f0\uc218,4\uc810",
+            "tablesIncluded": true
+          },
+          "answerFormat": {
+            "sourceObserved": "MC5choices",
+            "risk": "source answer not read/exported; future format must remain within grade"
+          },
+          "studentSolution": {
+            "status": "not-exposed-not-reviewed",
+            "risk": "No original solution used. New author solution and independent grade review are required."
+          },
+          "requiredProcedure": {
+            "status": "proposal-only",
+            "risk": "\uc778\uc1c48\uc790\ub8cc\uc758 \ube48\ub3c4\ub97c \uc138\uace0 \ub450 \ucd5c\ube48\uac12 \uc870\uac74\uc744 \ubcf4\uc874\ud55c \ub4a4 \ud3c9\uade0\uc744 \uad6c\ud55c\ub2e4."
+          },
+          "prerequisites": {
+            "status": "proposal-only",
+            "risk": "Use actual perpendicular heights,triangle congruence/similarity,Pythagorean and ratio definitions; never import prohibited higher methods."
+          }
+        },
+        "curriculumEvidenceBinding": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+          "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+          "bytes": 114892
+        }
+      },
+      "wholeSourceIdentityOrRightsApproved": false
+    },
+    {
+      "n": 14,
+      "question": {
+        "path": "q14-original-question-only.json",
+        "sha256": "0691a0319470fb9d39659b74c2c8324015ba46f164f1cd9aa2f6c9453bbd8c32"
+      },
+      "sourceInput": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\question-only-staged\\nobyeon\\q14.json",
+        "sha256": "0691a0319470fb9d39659b74c2c8324015ba46f164f1cd9aa2f6c9453bbd8c32"
+      },
+      "priorReview": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\items\\nobyeon\\q14.json",
+        "sha256": "cb374403d2cbd8f59fcfe1dc2965dc599f772137ea79ca8cf2f74bfcac690717"
+      },
+      "priorCoreProposal": {
+        "grade": "\uc9113",
+        "edition": "2015",
+        "appliedSourceEditionBasis": "2025middle3\u21922015;2022middle3 rollout2027. KI2025/grade observed but school/term conflict remains.",
+        "standardCodes": [
+          "9\uc21805-08"
+        ],
+        "coreConceptProposal": "\uc0c1\uad00\uad00\uacc4\uc758 \ubc29\ud5a5",
+        "procedureProposal": "\uac01 \uc18c\uc7ac\uc758 \ubcc0\ub7c9 \ubc29\ud5a5\uc744 \ud310\ub2e8\ud558\ub418 \uc6d0\uc778/\uacb0\uacfc\ub098 \ud56d\uc0c1 \ube44\ub840\ud568\uc744 \ucd94\uac00\ub85c \uc8fc\uc7a5\ud558\uc9c0 \uc54a\ub294\ub2e4.",
+        "status": "candidate",
+        "gradeApproved": false,
+        "hardExclusionGround": null,
+        "restrictions": [
+          "no arbitrary trig identities",
+          "angles0..90 for ratio values",
+          "no circle proportionality",
+          "no sine/cosine law,Heron,vector,addition formula",
+          "no overly complicated transformed geometry assessment"
+        ],
+        "sevenStudentSurfaces": {
+          "stem": {
+            "sourceObserved": true,
+            "risk": "candidate"
+          },
+          "choices": {
+            "sourceObserved": true,
+            "risk": "source observed; final twin choices pending"
+          },
+          "figuresAndNotation": {
+            "sourceObserved": true,
+            "risk": "\ud1b5\ud559/\uc785\uc7a5\ub8cc/\ub0c9\ubc29\ube44/\uc0b0\ub192\uc774\uae30\uc628/\uac00\uc871\uc9c0\ucd9c5\uc18c\uc7ac,3\uc810",
+            "tablesIncluded": false
+          },
+          "answerFormat": {
+            "sourceObserved": "MC5choices",
+            "risk": "source answer not read/exported; future format must remain within grade"
+          },
+          "studentSolution": {
+            "status": "not-exposed-not-reviewed",
+            "risk": "No original solution used. New author solution and independent grade review are required."
+          },
+          "requiredProcedure": {
+            "status": "proposal-only",
+            "risk": "\uac01 \uc18c\uc7ac\uc758 \ubcc0\ub7c9 \ubc29\ud5a5\uc744 \ud310\ub2e8\ud558\ub418 \uc6d0\uc778/\uacb0\uacfc\ub098 \ud56d\uc0c1 \ube44\ub840\ud568\uc744 \ucd94\uac00\ub85c \uc8fc\uc7a5\ud558\uc9c0 \uc54a\ub294\ub2e4."
+          },
+          "prerequisites": {
+            "status": "proposal-only",
+            "risk": "Use actual perpendicular heights,triangle congruence/similarity,Pythagorean and ratio definitions; never import prohibited higher methods."
+          }
+        },
+        "curriculumEvidenceBinding": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+          "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+          "bytes": 114892
+        }
+      },
+      "wholeSourceIdentityOrRightsApproved": false
+    }
+  ],
+  "providedOnlyAfterCurrentRawGitSeal": "77ea33927ed8c8c7b0c0c860c261404ac8056dd0",
+  "noOriginalAnswersOrSolutions": true,
+  "releaseBooleansInOldStagingNotApproval": true,
+  "dbWrites": 0
+}

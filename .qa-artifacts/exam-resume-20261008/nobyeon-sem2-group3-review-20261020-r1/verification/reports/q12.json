@@ -1,0 +1,173 @@
+{
+  "status": "pending",
+  "studentDigest": "093429d9f708deabeffa69e94201f10f9b0f037230c219e873633f70fa75c6a1",
+  "candidateDigest": "c1835230710ff68e547a5973fe2003defe35196b0fa231a0454bb5a2296a0f8d",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-nobyeon-sem2-group3-full-review-20261020",
+  "solveDigest": "fde868f221009dd19f863ac382329f8c148d78ede820c409e7414e3a7f14b608",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "evidence": {
+    "classification": {
+      "math": "passed",
+      "grade": "2015-M3-after-prerequisites-passed",
+      "content": "held"
+    },
+    "ownExecutableChecks": {
+      "validNaturalPairs": [
+        [
+          4,
+          8
+        ]
+      ],
+      "zeroIncludedDomainSameResult": true,
+      "sortedA": [
+        1,
+        4,
+        8,
+        9,
+        12
+      ],
+      "sortedB": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "medianB": "5",
+      "denominators": [
+        2
+      ],
+      "existenceUniqueness": "(4,8)로A조건과일차식을직접확인; a8분기는b0이므로a<b도성립하지않는다. 양수자연수든0포함해석이든유일.",
+      "allFiveChoiceChecks": {
+        "①": false,
+        "②": false,
+        "③": true,
+        "④": false,
+        "⑤": false
+      }
+    },
+    "fullAuthorSolutionReview": "자료A가5개여서중앙값8은실제원소이다. 고정값에는8이없으므로a8/b8두경우. a8이면b0으로양의자연수조건에어긋나고 a<b에도위배된다. b8이면a4,정렬A1/4/8/9/12확인, B2/4/6/8에서가운데평균5. 저자전체해설과일치한다.",
+    "sourceComparison": {
+      "status": "question-only-core-and-transformation-passed",
+      "observations": {
+        "observed": "원문은자연수a<b의홀수5자료중앙값과짝수4자료중앙값을모두입력으로주고2a+b를묻는다. 원문질문/5보기를실제읽었다.",
+        "core": "홀수중앙값이실제원소라는정의, a<b로정렬조건검토, 짝수중앙값의가운데두수평균을연결하는동일절차이다.",
+        "change": "새문항은홀수중앙값과2a+b를입력으로하고짝수중앙값을목표로바꾼다. 미지수일차식과평균중앙값의입출력역전이실제수식에반영되고두기록표로표현한다. 숫자만교체한것이아니다."
+      },
+      "sourceQuestionSha256": "9d57e886c3808108025e695d15883d65a1a71ffb0e58760285df87ad75714e0f",
+      "noOriginalAnswerKeyOrNumericConclusionCompared": true,
+      "scope": "질문전용자료의수학적구조대응만;전문서/답안쌍/저작권인증아님"
+    },
+    "primaryEvidence": {
+      "normative": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "actuallyViewedPrior": true,
+        "edition": "2015",
+        "locators": [
+          "line570:9수05-06 평균/중앙값/최빈값,9수05-08 쌍자료·산점도와상관관계",
+          "line573 통계학습용어",
+          "line585 양/음/상관없음의분류"
+        ],
+        "wholeMethodLimit": "대표값정의·정렬·자료합·빈도및질적인산점도경향에한정;고등공분산/회귀/인과추론필요없음"
+      },
+      "actualM3Placement": {
+        "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+        "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+        "previouslyActuallyViewed": true,
+        "locators": [
+          "PDFindex73/physical74/printed72:중3수학2학기header 및10월9수05-06",
+          "PDFindex74/physical75/printed73:11월9수05-08 산점도로상관관계말하기"
+        ],
+        "limits": "특정노변중시험진도·2022교육과정·학교원문출처/권리인증아님"
+      }
+    },
+    "naturalWording": "현재발문은요구하는기록/자료/목표가명확하다. 짝수자료가운데두값의평균을묻는빈칸과자연수조건이일관된다.",
+    "scoreDifficulty": {
+      "score": 3,
+      "scoreBasis": "원문과같은3점이며 두중앙값/경우검토를요구하므로배점제안은내용상수용가능. 실제측정난도는미제공.",
+      "proposal": "기본",
+      "sourceLabelAsProvided": "하",
+      "difficultyApproval": "pending",
+      "basis": "원문하라벨은참고자료이며새기본제안의실측동등성/보정은미확인. difficultyStatus의source-label-unknown일반문구와관측라벨의동시존재도별도편집정리대상."
+    },
+    "unitFamily": {
+      "capturedUnitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "capturedSection": "대푯값과 산포도",
+      "familyKey": null,
+      "unitFamilyFit": false,
+      "basis": "제공캡처단원과내용대응은있으나새역추론/새표과제의정확한livefamily정의·등록상태는미검증. UUID나label만으로적합판정하지않음."
+    },
+    "rawBinding": {
+      "helperRawCommit": "b8099cf72515e54944507cb55c1307a88cfb2e7c",
+      "parentRawCommit": "77ea33927ed8c8c7b0c0c860c261404ac8056dd0",
+      "rawSha256": "e4a79e3619c99bc1df01b5c064e668016bd4f89cd422620fb0199af0081bf655",
+      "byteEqualGit": true,
+      "originalExposureDeclarationPreserved": {
+        "currentAuthorAnswerSolutionPackageExposed": false,
+        "priorSourceExposure": "이전 노변1학기 다수문항과노변2학기q09~11의학생풀이/저자해설/질문전용원문을검토했다. 관련대표값·산포도와다른시험기하검토이력도있다. 이번q12~14의현재저자답·해설·비공개패키지와원문은열지않았다. 전체원본코퍼스의완전미노출은주장하지않는다.",
+        "inputsUsed": "현재학생발문·표·5보기만; 저자답/원문키검색없음",
+        "noCovarianceFormulaUsed": true
+      },
+      "newSourceExposure": "이번전체검토에서원문질문에노출;원시Git봉인이후이며원문답키는미제공"
+    },
+    "releasePolicyInterpretation": "원문staging의authoringRelease=false는일반상태표시일뿐특정학년/출처hold를해제하거나운영승인을주는값이아니다. 해당원문전체/권리와livefamily/native각각별도보류.",
+    "holds": {
+      "sourceIdentityApproved": false,
+      "wholeSourcePairApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "liveFamilyApproved": false,
+      "loadable": false,
+      "2022Placement": "pending",
+      "schoolSpecificPacing": "pending",
+      "difficultyEquivalence": "pending"
+    },
+    "sharedConceptBankChanged": false
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "홀수/짝수중앙값과자연수일차관계의실제발문은2015 9수05-06의대표값정의와이전일차식으로완결된다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "3/4/5/6/7의다섯중앙값후보를모두검사하여5만조건의결과와같다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "기록A의5자료/중앙값8과B의4자료/빈칸표를전부검산했다. 정렬후가운데위치를판단하는표현은중3대표값범위이다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "a,b자연수,a<b,일차식및중앙값기호는이전수/식과대표값표기이다. 0포함관례차이에도결과는불변이다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "독립raw와저자③이일치하며모든5보기를검토했다. 중앙값5는자료개수4의가운데4/6평균이다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "자료A가5개여서중앙값8은실제원소이다. 고정값에는8이없으므로a8/b8두경우. a8이면b0으로양의자연수조건에어긋나고 a<b에도위배된다. b8이면a4,정렬A1/4/8/9/12확인, B2/4/6/8에서가운데평균5. 저자전체해설과일치한다. 이전실제공식primary의범위/학년배치와전체학생방법을대조했다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "대표값9수05-06의홀수/짝수중앙값정렬,평균/최빈값정의및이전일차식·자연수·분수계산이후배정한다. 실제공식중3계획printed72에9수05-06배치가있다. 특정노변중중간고사진도및2022배치는인증하지않는다."
+    }
+  }
+}

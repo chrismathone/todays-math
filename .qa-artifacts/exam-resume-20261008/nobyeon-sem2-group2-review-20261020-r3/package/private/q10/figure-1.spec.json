@@ -1,0 +1,79 @@
+{
+  "version": 2,
+  "style": {
+    "show_points": true
+  },
+  "points": {
+    "P": [
+      39.703884586920964,
+      180
+    ],
+    "Q": [
+      99,
+      180
+    ],
+    "R": [
+      180,
+      180
+    ],
+    "T": [
+      180,
+      39.703884586920964
+    ]
+  },
+  "segments": {
+    "PR": [
+      "P",
+      "R"
+    ],
+    "RT": [
+      "R",
+      "T"
+    ],
+    "PT": [
+      "P",
+      "T"
+    ],
+    "QT": [
+      "Q",
+      "T"
+    ]
+  },
+  "angles": {
+    "far": {
+      "vertex": "P",
+      "points": [
+        "R",
+        "T"
+      ],
+      "label": "45°",
+      "radius": 18,
+      "label_distance": 32
+    },
+    "near": {
+      "vertex": "Q",
+      "points": [
+        "R",
+        "T"
+      ],
+      "label": "60°",
+      "radius": 17,
+      "label_distance": 31
+    },
+    "right": {
+      "vertex": "R",
+      "points": [
+        "P",
+        "T"
+      ],
+      "right": true,
+      "label": ""
+    }
+  },
+  "labels": {
+    "P": "P",
+    "Q": "Q",
+    "R": "R",
+    "T": "T"
+  }
+}
