@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 14,
+  "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group3-r1-q14",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "객관식",
+  "score": 3,
+  "content": "다섯 기록 A~E에서 변량 $x$와 $y$를 함께 측정하였다. 표의 각 열은 한 쌍의 측정값을 나타낸다. 이 자료로 산점도를 그렸을 때 음의 상관관계가 보이는 기록은?\n\n| $x$ | $1$ | $2$ | $3$ | $4$ | $5$ |\n| --- | --- | --- | --- | --- | --- |\n| A의 $y$ | $2$ | $4$ | $3$ | $6$ | $7$ |\n| B의 $y$ | $3$ | $5$ | $6$ | $5$ | $8$ |\n| C의 $y$ | $9$ | $7$ | $8$ | $4$ | $3$ |\n| D의 $y$ | $1$ | $2$ | $4$ | $3$ | $6$ |\n| E의 $y$ | $4$ | $3$ | $6$ | $8$ | $7$ |",
+  "choices": [
+    "기록 A",
+    "기록 B",
+    "기록 C",
+    "기록 D",
+    "기록 E"
+  ],
+  "answer": "③",
+  "solution": "음의 상관관계는 한 변량의 값이 커질수록 다른 변량의 값이 작아지는 경향이 있는 관계이다. 모든 인접한 측정에서 반드시 작아져야 한다는 뜻은 아니다.\n\n기록 C는 $x$가 작은 쪽에서 $y$가 주로 $9$, $7$, $8$이고, 큰 쪽에서는 $4$, $3$으로 작아지는 전체적인 경향이 보인다. 나머지 A, B, D, E는 $x$가 큰 쪽에서 $y$도 대체로 커지는 경향이다. 따라서 음의 상관관계를 보이는 기록은 C이고 정답은 ③이다. 이 자료만으로 원인과 결과를 판단하지는 않는다.",
+  "figureArtifacts": [],
+  "sourceReference": {
+    "externalId": "2025-nobyeon-3-2-mid-14",
+    "newSourceReferenceId": "source-ref-nobyeon-2025-2-mid-group3-r1-q14",
+    "sourceContentSha256": "0691a0319470fb9d39659b74c2c8324015ba46f164f1cd9aa2f6c9453bbd8c32",
+    "sourceSchoolInternal": "노변중학교",
+    "sourceExamYear": 2025,
+    "questionOnlyStaged": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/question-only-staged/nobyeon/q14.json",
+      "sha256": "0691a0319470fb9d39659b74c2c8324015ba46f164f1cd9aa2f6c9453bbd8c32"
+    },
+    "sourceReviewReport": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/items/nobyeon/q14.json",
+      "sha256": "cb374403d2cbd8f59fcfe1dc2965dc599f772137ea79ca8cf2f74bfcac690717"
+    },
+    "sourceManifest": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\nobyeon\\source-manifest.json",
+      "sha256": "6f3efd989d305e65127eb4268db05d9e1c099b2aec55706ebb554d45e6782454"
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[노변중][3][25-2-중간][동아강] (완료).hwp",
+        "sha256": "7d90e6b374469e3d4a32d31a9085d526a6935af970f66f5b8e293885391731ab",
+        "bytes": 1736704
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[노변중][3][25-2-중간][동아강] (완료).PDF",
+        "sha256": "5d068b76205f5690b2ea1ecf98ff6ecff8f74e33ed41b866fda54ef6048d27aa",
+        "bytes": 14857959
+      }
+    ],
+    "componentObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group3-r1/q14-source-component-observation-r1.json",
+      "sha256": "20692e84b34bbc442bcbc4bef692834a18be67fe77a922075b89bd34a38a21aa"
+    },
+    "sourceIdentityAsProvided": "printed-identity-observed-not-whole-pair-certified",
+    "currentNFilesReRead": false,
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false
+  },
+  "variantDelta": {
+    "modes": [
+      "new-data",
+      "structure",
+      "new-table"
+    ],
+    "before": "생활 소재 다섯 쌍에서 상관관계 방향이 다른 하나를 고른다.",
+    "after": "새 관측값 다섯 묶음을 표로 조직하고 실제 점들의 전체 경향으로 음의 상관관계를 판단한다.",
+    "sharedConcept": "산점도에서 보이는 양/음의 상관관계 방향",
+    "sharedProcedure": "같은 x축의 작은값/큰값에서 y의 전체 경향 대조→중간 흔들림과 전체 방향 구별",
+    "actualStructuralChange": "새 관측값 다섯 묶음을 표로 조직하고 실제 점들의 전체 경향으로 음의 상관관계를 판단한다. 입력과 질문 또는 자료 조직을 실제로 바꾸고 새 문장·답·해설·표를 작성했다. 숫자/학교명 치환만으로 완료하지 않는다.",
+    "domainProof": "x1..5의 각 기록에서 추세를 확인했다. 저자 전용 정수 공분산 부호 검산5Σxy-ΣxΣy는 A60/B50/C-75/D55/E55로 C만 음수다. 이 계산식·상관계수·회귀/인과 도구는 학생에게 요구하지 않는다. 실제 새 표의 개별값과 전반적 방향은 독립 검수 대상이다.",
+    "difficultyBasis": "원문 배점과 핵심 개념의 기본 난도 저자 제안이다. 실제 난도 동등성·진도·2022적용은 독립 검수 전 보류."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수05-08"
+    ],
+    "officialProvisions": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+      "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+    },
+    "officialPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "editionObserved": "2015",
+      "readCurrentPage": true,
+      "standard": "9수05-08",
+      "actualScope": "2015 M3 representative values or correlation direction, no regression/Pearson/student-only advanced method. Whole new seven surfaces independently pending."
+    },
+    "legitimateMethodDraft": "같은 x축의 작은값/큰값에서 y의 전체 경향 대조→중간 흔들림과 전체 방향 구별",
+    "sevenSurfaces": {
+      "stem": "author-proposed-independent-review-pending",
+      "choices": "author-proposed-independent-review-pending",
+      "figuresAndTables": "author-proposed-independent-review-pending",
+      "notation": "author-proposed-independent-review-pending",
+      "answer": "author-proposed-independent-review-pending",
+      "studentSolution": "author-proposed-independent-review-pending",
+      "prerequisites": "author-proposed-independent-review-pending"
+    },
+    "independentReviewPending": true
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "answerFormat": "single-choice",
+    "score": 3,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+    "problemTypeProposal": "새 관측값 다섯 묶음을 표로 조직하고 실제 점들의 전체 경향으로 음의 상관관계를 판단한다.",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "산점도와 상관관계",
+        "semester": 2,
+        "orderIndex": 489,
+        "problemCodePrefix": "J30702"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+      },
+      "evidence": "실제 Unit UUID 연결; 역추론/새 자료 조직의 정확한 live family는 별도 보류."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+    },
+    "figureAuthoring": {
+      "method": "new-native-Markdown-table",
+      "newFigures": 0,
+      "newTables": 1,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "x1..5의 각 기록에서 추세를 확인했다. 저자 전용 정수 공분산 부호 검산5Σxy-ΣxΣy는 A60/B50/C-75/D55/E55로 C만 음수다. 이 계산식·상관계수·회귀/인과 도구는 학생에게 요구하지 않는다. 실제 새 표의 개별값과 전반적 방향은 독립 검수 대상이다.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-nobyeon-sem2-q12-14-r1.mjs",
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "source": "transformed",
+    "originProblemId": null,
+    "sourceDifficultyLabelObserved": "하",
+    "prerequisiteUnits": [
+      {
+        "id": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "산점도와 상관관계",
+        "semester": 2,
+        "orderIndex": 489,
+        "problemCodePrefix": "J30702"
+      }
+    ],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "산점도와 두 변량",
+        "양의/음의 상관관계의 뜻",
+        "경향과 항상 성립하는 관계의 구별"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    },
+    "sourceDifficultyStatus": "prior-preparation-label-not-measured-target-calibration"
+  }
+}

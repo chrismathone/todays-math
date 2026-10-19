@@ -1,0 +1,63 @@
+{
+  "x": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "records": {
+    "A": [
+      2,
+      4,
+      3,
+      6,
+      7
+    ],
+    "B": [
+      3,
+      5,
+      6,
+      5,
+      8
+    ],
+    "C": [
+      9,
+      7,
+      8,
+      4,
+      3
+    ],
+    "D": [
+      1,
+      2,
+      4,
+      3,
+      6
+    ],
+    "E": [
+      4,
+      3,
+      6,
+      8,
+      7
+    ]
+  },
+  "authorOnlyCovarianceNumerators": {
+    "A": 60,
+    "B": 50,
+    "C": -75,
+    "D": 55,
+    "E": 55
+  },
+  "studentFormulaRequired": false,
+  "utc": "2026-10-19T19:52:52.463Z",
+  "candidateFileSha256": "9610ebd58c4c118e194e2b2d49c818d7bc6bbc0b9718564028ee9996faac488c",
+  "studentDigest": "fd85b135a11c09e0397d0b0b9d511a132f3abb9fcf3b9b881999f8b5d0e4f0fe",
+  "candidateDigest": "f06a5b395124ca9f67c56e3d0a778ffdc544e85502c41a5a9165c61224340628",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "authorOnly": true,
+  "independentReview": false,
+  "loadable": 0,
+  "dbWrites": 0
+}

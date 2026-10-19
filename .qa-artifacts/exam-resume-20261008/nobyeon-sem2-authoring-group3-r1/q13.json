@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 13,
+  "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group3-r1-q13",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "객관식",
+  "score": 4,
+  "content": "자연수 $a$를 포함한 다음 여덟 자료의 평균은 $7$이다. 이 자료의 최빈값을 빠짐없이 나열한 것은?\n\n| 자료 | $3$ | $7$ | $8$ | $4$ | $a$ | $9$ | $10$ | $7$ |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+  "choices": [
+    "$7$",
+    "$8$",
+    "$7$, $8$",
+    "$7$, $9$",
+    "$8$, $9$"
+  ],
+  "answer": "③",
+  "solution": "평균이 $7$이고 자료가 $8$개이므로 전체 합은 $7\\times8=56$이다. 알려진 일곱 값의 합은 $3+7+8+4+9+10+7=48$이므로 $a=56-48=8$이다.\n\n이때 $7$과 $8$은 각각 두 번씩 나타나고 다른 값들은 한 번씩 나타난다. 따라서 최빈값은 $7$, $8$ 두 개이며 빠짐없이 나열한 정답은 ③이다.",
+  "figureArtifacts": [],
+  "sourceReference": {
+    "externalId": "2025-nobyeon-3-2-mid-13",
+    "newSourceReferenceId": "source-ref-nobyeon-2025-2-mid-group3-r1-q13",
+    "sourceContentSha256": "c8b0fb01e2360aca555c450545db691d05910c9cc1a79dddac3e7722804567d3",
+    "sourceSchoolInternal": "노변중학교",
+    "sourceExamYear": 2025,
+    "questionOnlyStaged": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/question-only-staged/nobyeon/q13.json",
+      "sha256": "c8b0fb01e2360aca555c450545db691d05910c9cc1a79dddac3e7722804567d3"
+    },
+    "sourceReviewReport": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/items/nobyeon/q13.json",
+      "sha256": "8ed79de82ed7be9942cd3459ca1b29e315d621fcaf30049c48ed007a5132c181"
+    },
+    "sourceManifest": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\nobyeon\\source-manifest.json",
+      "sha256": "6f3efd989d305e65127eb4268db05d9e1c099b2aec55706ebb554d45e6782454"
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[노변중][3][25-2-중간][동아강] (완료).hwp",
+        "sha256": "7d90e6b374469e3d4a32d31a9085d526a6935af970f66f5b8e293885391731ab",
+        "bytes": 1736704
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[노변중][3][25-2-중간][동아강] (완료).PDF",
+        "sha256": "5d068b76205f5690b2ea1ecf98ff6ecff8f74e33ed41b866fda54ef6048d27aa",
+        "bytes": 14857959
+      }
+    ],
+    "componentObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group3-r1/q13-source-component-observation-r1.json",
+      "sha256": "694c46fb741d29e86fee8bcd5d31b5476b02111a35102633d342bf9566591adb"
+    },
+    "sourceIdentityAsProvided": "printed-identity-observed-not-whole-pair-certified",
+    "currentNFilesReRead": false,
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false
+  },
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "structure",
+      "new-table"
+    ],
+    "before": "두 최빈값을 주어 미지 자료를 정한 뒤 평균과의 합을 구한다.",
+    "after": "평균을 주어 미지 자료를 정한 뒤 두 최빈값을 빠짐없이 찾는다.",
+    "sharedConcept": "평균으로 정해지는 자료의 합과 여러 최빈값",
+    "sharedProcedure": "평균×자료개수에서 누락 자료 복원→빈도 세기→모든 최대 빈도 값을 함께 선택",
+    "actualStructuralChange": "평균을 주어 미지 자료를 정한 뒤 두 최빈값을 빠짐없이 찾는다. 입력과 질문 또는 자료 조직을 실제로 바꾸고 새 문장·답·해설·표를 작성했다. 숫자/학교명 치환만으로 완료하지 않는다.",
+    "domainProof": "고정된 합48과 전체합56으로 a8하나가 정해진다. 빈도는7/8이2회, 나머지1회로 동일 최빈값 두 개가 유일하다. 원문의 입력이던 최빈값과 계산 대상이던 평균의 역할을 뒤집었다.",
+    "difficultyBasis": "원문 배점과 핵심 개념의 기본 난도 저자 제안이다. 실제 난도 동등성·진도·2022적용은 독립 검수 전 보류."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수05-06"
+    ],
+    "officialProvisions": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+      "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+    },
+    "officialPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "editionObserved": "2015",
+      "readCurrentPage": true,
+      "standard": "9수05-06",
+      "actualScope": "2015 M3 representative values or correlation direction, no regression/Pearson/student-only advanced method. Whole new seven surfaces independently pending."
+    },
+    "legitimateMethodDraft": "평균×자료개수에서 누락 자료 복원→빈도 세기→모든 최대 빈도 값을 함께 선택",
+    "sevenSurfaces": {
+      "stem": "author-proposed-independent-review-pending",
+      "choices": "author-proposed-independent-review-pending",
+      "figuresAndTables": "author-proposed-independent-review-pending",
+      "notation": "author-proposed-independent-review-pending",
+      "answer": "author-proposed-independent-review-pending",
+      "studentSolution": "author-proposed-independent-review-pending",
+      "prerequisites": "author-proposed-independent-review-pending"
+    },
+    "independentReviewPending": true
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "answerFormat": "single-choice",
+    "score": 4,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+    "problemTypeProposal": "평균을 주어 미지 자료를 정한 뒤 두 최빈값을 빠짐없이 찾는다.",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+      },
+      "evidence": "실제 Unit UUID 연결; 역추론/새 자료 조직의 정확한 live family는 별도 보류."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+    },
+    "figureAuthoring": {
+      "method": "new-native-Markdown-table",
+      "newFigures": 0,
+      "newTables": 1,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "고정된 합48과 전체합56으로 a8하나가 정해진다. 빈도는7/8이2회, 나머지1회로 동일 최빈값 두 개가 유일하다. 원문의 입력이던 최빈값과 계산 대상이던 평균의 역할을 뒤집었다.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-nobyeon-sem2-q12-14-r1.mjs",
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "source": "transformed",
+    "originProblemId": null,
+    "sourceDifficultyLabelObserved": "하",
+    "prerequisiteUnits": [
+      {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      }
+    ],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "평균과 자료의 합",
+        "자료 개수",
+        "최빈값은 여러 개일 수 있음"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    },
+    "sourceDifficultyStatus": "prior-preparation-label-not-measured-target-calibration"
+  }
+}

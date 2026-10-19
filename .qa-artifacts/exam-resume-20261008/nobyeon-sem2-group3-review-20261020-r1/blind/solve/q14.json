@@ -1,0 +1,260 @@
+{
+  "studentDigest": "71166593c09a92be32e837a457b7e4994b9cc179748068a494b0fa6c29aaecfa",
+  "solverId": "independent-helper-nobyeon-sem2-group3-blind-20261020",
+  "answer": "③",
+  "solution": "같은 열의 x와y를짝지어 각 기록의 산점도를 생각한다. A는왼쪽의y2,4에서오른쪽의6,7로, B는3,5에서5,8로, D는1,2에서3,6으로, E는4,3에서8,7로전체적으로높아지는경향이있다. C는x가1,2일때y가9,7로높고x가4,5일때4,3으로낮아져전체적으로오른쪽아래로내려가는경향이다. C에서x2→3일때7→8로일시적으로증가해도전체적인음의상관관계는유지된다. 따라서음의상관관계가보이는기록은C,정답은③이다. 이판단은측정값의경향에관한것이며x의증가가y의감소를일으킨다는인과관계를뜻하지않는다.",
+  "evidence": {
+    "exposure": {
+      "currentAuthorAnswerSolutionPackageExposed": false,
+      "priorSourceExposure": "이전 노변1학기 다수문항과노변2학기q09~11의학생풀이/저자해설/질문전용원문을검토했다. 관련대표값·산포도와다른시험기하검토이력도있다. 이번q12~14의현재저자답·해설·비공개패키지와원문은열지않았다. 전체원본코퍼스의완전미노출은주장하지않는다.",
+      "inputsUsed": "현재학생발문·표·5보기만; 저자답/원문키검색없음",
+      "noCovarianceFormulaUsed": true
+    },
+    "ownExactCalculations": {
+      "records": {
+        "A": {
+          "orderedPairs": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              5,
+              7
+            ]
+          ],
+          "adjacentChanges": [
+            2,
+            -1,
+            3,
+            1
+          ],
+          "firstTwoY": [
+            2,
+            4
+          ],
+          "lastTwoY": [
+            6,
+            7
+          ],
+          "observedScatterTrend": "overall-increasing"
+        },
+        "B": {
+          "orderedPairs": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              8
+            ]
+          ],
+          "adjacentChanges": [
+            2,
+            1,
+            -1,
+            3
+          ],
+          "firstTwoY": [
+            3,
+            5
+          ],
+          "lastTwoY": [
+            5,
+            8
+          ],
+          "observedScatterTrend": "overall-increasing"
+        },
+        "C": {
+          "orderedPairs": [
+            [
+              1,
+              9
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              5,
+              3
+            ]
+          ],
+          "adjacentChanges": [
+            -2,
+            1,
+            -4,
+            -1
+          ],
+          "firstTwoY": [
+            9,
+            7
+          ],
+          "lastTwoY": [
+            4,
+            3
+          ],
+          "observedScatterTrend": "overall-decreasing"
+        },
+        "D": {
+          "orderedPairs": [
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              5,
+              6
+            ]
+          ],
+          "adjacentChanges": [
+            1,
+            2,
+            -1,
+            3
+          ],
+          "firstTwoY": [
+            1,
+            2
+          ],
+          "lastTwoY": [
+            3,
+            6
+          ],
+          "observedScatterTrend": "overall-increasing"
+        },
+        "E": {
+          "orderedPairs": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              5,
+              7
+            ]
+          ],
+          "adjacentChanges": [
+            -1,
+            3,
+            2,
+            -1
+          ],
+          "firstTwoY": [
+            4,
+            3
+          ],
+          "lastTwoY": [
+            8,
+            7
+          ],
+          "observedScatterTrend": "overall-increasing"
+        }
+      },
+      "choiceChecks": {
+        "①": false,
+        "②": false,
+        "③": true,
+        "④": false,
+        "⑤": false
+      },
+      "existenceUniqueness": "5개기록각각유한한5쌍이다. 제공짝의산점도에서C만전반적인하강,나머지4개는상승. 단조감소/완전한직선일필요없음. 질적경향의충분한분리가있어유일한선택이다.",
+      "methodLimit": "공분산·상관계수·회귀·인과공식미사용. 인접변화/초반후반값의코드출력은실제산점도확인의보조기록이지일반상관판정공식이아니다."
+    },
+    "studentDigestVerified": true,
+    "gradeSurfaceProposals": {
+      "stem": {
+        "status": "student-method-proposed-in-scope",
+        "basis": "같은열의짝측정값으로산점도의양/음경향을판단한다. 상관계수/인과추론이아니다."
+      },
+      "choices": {
+        "status": "all-five-checked",
+        "basis": "A,B,D,E의전체상승및C의전체하강을각각확인하여③만해당."
+      },
+      "figuresAndTables": {
+        "status": "student-table-checked",
+        "basis": "실제5×5개측정값을열별짝으로확인하고자체산점도5개를그려view했다. 공분산계산없음. 제공SVG는없다."
+      },
+      "notation": {
+        "status": "proposed-in-scope",
+        "basis": "x/y의쌍과음의상관관계용어는중학교산점도표현이다. x/y축의물리단위가미제공이므로임의단위를만들지않는다."
+      },
+      "answer": {
+        "status": "independently-solved",
+        "basis": "보기③만참임을정확한계산/전체기록관찰로확인. raw answer에는선택기호하나만저장하고수치및근거는solution/evidence로분리한다."
+      },
+      "studentSolution": {
+        "status": "own-method-proposed-author-unseen",
+        "basis": "학생해설은주어진짝의산점도상승/하강경향이며고등공분산공식과인과주장을사용하지않는다. 현재저자해설은미노출이므로그해설은후속검토대상."
+      },
+      "prerequisites": {
+        "status": "2015-M3-after-prerequisites-proposal",
+        "basis": "2015중3상관관계9수05-08의쌍측정값·산점도·양/음/없는상관을학습한뒤배정. 고등수치상관계수불필요. 이전공식2015기준/중3배치열람이력은있으나이번새학생문항의정식7면·2022승인은후속전체해설검토와별개이다."
+      }
+    },
+    "domainUnits": "자연수/유한자료의정의역과양의자료개수·중앙값분모확인. 물리적길이나측정단위는제시되지않음.",
+    "limits": [
+      "수학solved와정식학년승인은구분;저자전체해설후속검토필요",
+      "새수동승인/출처/권리/livefamily/native승인아님",
+      "2022배치보류"
+    ]
+  },
+  "status": "solved"
+}

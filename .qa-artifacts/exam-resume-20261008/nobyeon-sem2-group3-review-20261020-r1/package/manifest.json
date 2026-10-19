@@ -1,0 +1,57 @@
+{
+  "kind": "authored-exam-twin-review/v1",
+  "version": 1,
+  "createdAt": "2026-10-19T19:55:58.713Z",
+  "questionNumbers": [
+    12,
+    13,
+    14
+  ],
+  "packageDigest": "0ce6760b523cd632ffbcb501fde1e3143fe6d155be4e1299e9da02eb56af1983",
+  "scope": "authored-subset; no source exam completeness or production authorization implied",
+  "bindings": [
+    {
+      "privateCandidatePath": "private/q12/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-authoring-group3-r1\\q12.json",
+        "sha256": "329b704fa242ea09e66639b7265dfbd93b8f68545c63e97c52c51de37f0be2cd"
+      },
+      "candidateFileSha256": "329b704fa242ea09e66639b7265dfbd93b8f68545c63e97c52c51de37f0be2cd",
+      "candidateDigest": "c1835230710ff68e547a5973fe2003defe35196b0fa231a0454bb5a2296a0f8d",
+      "studentDigest": "093429d9f708deabeffa69e94201f10f9b0f037230c219e873633f70fa75c6a1",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "assets": []
+    },
+    {
+      "privateCandidatePath": "private/q13/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-authoring-group3-r1\\q13.json",
+        "sha256": "b774211ab588b612b68130c835fcecd001d9cc96f9ecc5c89558a236a0c03909"
+      },
+      "candidateFileSha256": "b774211ab588b612b68130c835fcecd001d9cc96f9ecc5c89558a236a0c03909",
+      "candidateDigest": "71c405575eace88aebddd889172722bb9971d1e0529d78c580a6afdf86299462",
+      "studentDigest": "af62231ac743740f6043a3809993e34c59c93506af0102a78086fd9a923693a7",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "assets": []
+    },
+    {
+      "privateCandidatePath": "private/q14/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-authoring-group3-q14-r2\\q14.json",
+        "sha256": "766c2a224c4b9dc4a0d768f92d9548047219769c4688a277cb6f907088c3f5a2"
+      },
+      "candidateFileSha256": "766c2a224c4b9dc4a0d768f92d9548047219769c4688a277cb6f907088c3f5a2",
+      "candidateDigest": "b1be3b2ef53c7a6de407cb8b31a9accf1521d75bbfe8ede561143f41e9eeb8a1",
+      "studentDigest": "71166593c09a92be32e837a457b7e4994b9cc179748068a494b0fa6c29aaecfa",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "assets": []
+    }
+  ],
+  "independentReports": "external evidence only; no mathematical correctness inferred from IDs/digests/render or original answer agreement",
+  "gates": {
+    "sourceIdentity": "pending",
+    "taxonomy": "pending",
+    "rights": "pending",
+    "similarity": "pending"
+  }
+}

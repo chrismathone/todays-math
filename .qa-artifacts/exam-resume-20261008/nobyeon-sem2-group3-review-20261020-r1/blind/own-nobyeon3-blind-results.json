@@ -1,0 +1,332 @@
+{
+  "inputSha256": "a479459f67523a368c215c94efd3e5e0f180088d622e8000b4e5ed3558b6ba96",
+  "exposure": {
+    "currentAuthorAnswerSolutionPackageExposed": false,
+    "priorSourceExposure": "이전 노변1학기 다수문항과노변2학기q09~11의학생풀이/저자해설/질문전용원문을검토했다. 관련대표값·산포도와다른시험기하검토이력도있다. 이번q12~14의현재저자답·해설·비공개패키지와원문은열지않았다. 전체원본코퍼스의완전미노출은주장하지않는다.",
+    "inputsUsed": "현재학생발문·표·5보기만; 저자답/원문키검색없음",
+    "noCovarianceFormulaUsed": true
+  },
+  "allOwnCalculations": {
+    "12": {
+      "completeNonnegativeDomainPairs": [
+        [
+          0,
+          16
+        ],
+        [
+          1,
+          14
+        ],
+        [
+          2,
+          12
+        ],
+        [
+          3,
+          10
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "medianA8ValidPairs": [
+        [
+          4,
+          8
+        ]
+      ],
+      "sortedA": [
+        1,
+        4,
+        8,
+        9,
+        12
+      ],
+      "sortedB": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "medianB": "5",
+      "choiceChecks": {
+        "①": false,
+        "②": false,
+        "③": true,
+        "④": false,
+        "⑤": false
+      },
+      "existenceUniqueness": "중앙값8은홀수5자료의중간원소이므로a또는b가8. a8분기는a<b위배,b8에서a4유일. 자연수를양의정수로보거나0포함으로보아도결과같음. 중앙값B분모2>0, 자료개수양수."
+    },
+    "13": {
+      "knownSum": 48,
+      "requiredTotal": 56,
+      "a": 8,
+      "data": [
+        3,
+        7,
+        8,
+        4,
+        8,
+        9,
+        10,
+        7
+      ],
+      "mean": "7",
+      "frequency": {
+        "3": 1,
+        "7": 2,
+        "8": 2,
+        "4": 1,
+        "9": 1,
+        "10": 1
+      },
+      "allModes": [
+        7,
+        8
+      ],
+      "choiceChecks": {
+        "①": false,
+        "②": false,
+        "③": true,
+        "④": false,
+        "⑤": false
+      },
+      "existenceUniqueness": "평균의분모8>0, 합식으로a8이유일하고자연수조건충족. 최빈값은가장큰빈도2를갖는두값을빠짐없이쓴집합으로유일."
+    },
+    "14": {
+      "records": {
+        "A": {
+          "orderedPairs": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              5,
+              7
+            ]
+          ],
+          "adjacentChanges": [
+            2,
+            -1,
+            3,
+            1
+          ],
+          "firstTwoY": [
+            2,
+            4
+          ],
+          "lastTwoY": [
+            6,
+            7
+          ],
+          "observedScatterTrend": "overall-increasing"
+        },
+        "B": {
+          "orderedPairs": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              8
+            ]
+          ],
+          "adjacentChanges": [
+            2,
+            1,
+            -1,
+            3
+          ],
+          "firstTwoY": [
+            3,
+            5
+          ],
+          "lastTwoY": [
+            5,
+            8
+          ],
+          "observedScatterTrend": "overall-increasing"
+        },
+        "C": {
+          "orderedPairs": [
+            [
+              1,
+              9
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              5,
+              3
+            ]
+          ],
+          "adjacentChanges": [
+            -2,
+            1,
+            -4,
+            -1
+          ],
+          "firstTwoY": [
+            9,
+            7
+          ],
+          "lastTwoY": [
+            4,
+            3
+          ],
+          "observedScatterTrend": "overall-decreasing"
+        },
+        "D": {
+          "orderedPairs": [
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              5,
+              6
+            ]
+          ],
+          "adjacentChanges": [
+            1,
+            2,
+            -1,
+            3
+          ],
+          "firstTwoY": [
+            1,
+            2
+          ],
+          "lastTwoY": [
+            3,
+            6
+          ],
+          "observedScatterTrend": "overall-increasing"
+        },
+        "E": {
+          "orderedPairs": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              5,
+              7
+            ]
+          ],
+          "adjacentChanges": [
+            -1,
+            3,
+            2,
+            -1
+          ],
+          "firstTwoY": [
+            4,
+            3
+          ],
+          "lastTwoY": [
+            8,
+            7
+          ],
+          "observedScatterTrend": "overall-increasing"
+        }
+      },
+      "choiceChecks": {
+        "①": false,
+        "②": false,
+        "③": true,
+        "④": false,
+        "⑤": false
+      },
+      "existenceUniqueness": "5개기록각각유한한5쌍이다. 제공짝의산점도에서C만전반적인하강,나머지4개는상승. 단조감소/완전한직선일필요없음. 질적경향의충분한분리가있어유일한선택이다.",
+      "methodLimit": "공분산·상관계수·회귀·인과공식미사용. 인접변화/초반후반값의코드출력은실제산점도확인의보조기록이지일반상관판정공식이아니다."
+    }
+  },
+  "ownScatterSha256": "f2added0a6e20f1b3e4ebcf4715c22a60fc5f8ba98bcce3dbd7985fff0f9515e",
+  "results": [
+    {
+      "q": 12,
+      "studentDigest": "093429d9f708deabeffa69e94201f10f9b0f037230c219e873633f70fa75c6a1",
+      "answer": "③",
+      "rawSha256": "e4a79e3619c99bc1df01b5c064e668016bd4f89cd422620fb0199af0081bf655"
+    },
+    {
+      "q": 13,
+      "studentDigest": "af62231ac743740f6043a3809993e34c59c93506af0102a78086fd9a923693a7",
+      "answer": "③",
+      "rawSha256": "1ac5ab4530052186e7515d35dd8be828e4c78304035c2873074012a4887a67ad"
+    },
+    {
+      "q": 14,
+      "studentDigest": "71166593c09a92be32e837a457b7e4994b9cc179748068a494b0fa6c29aaecfa",
+      "answer": "③",
+      "rawSha256": "f6f308cba7898c388114b65ffd4ce53511ad4afb021ac1a15a79a4e5fd80c457"
+    }
+  ]
+}

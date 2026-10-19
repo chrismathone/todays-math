@@ -1,0 +1,12 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {bindCandidate,readJson,sha256} from '../../../scripts/import/exam-twin/candidatePack.mjs';
+const b='.qa-artifacts/exam-resume-20261008/',old=b+'nobyeon-sem2-authoring-group3-r1/q14.json',out=b+'nobyeon-sem2-authoring-group3-q14-r2/',q=readJson(old),original=structuredClone(q);
+const before='표의 각 열은 한 쌍의 측정값을 나타낸다.',after='각 기록에서 같은 열의 $x$와 $y$가 한 쌍의 측정값이다.';
+assert.equal(q.content.split(before).length,2);q.content=q.content.replace(before,after);
+q.twinExternalId='exam-twin-nobyeon-2025-2-mid-author-group3-r2-q14';q.sourceReference.newSourceReferenceId='source-ref-nobyeon-2025-2-mid-group3-r2-q14';
+q.metadata.figureAuthoring.reproductionScript='.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/revise-nobyeon-sem2-q14-r2.mjs';
+assert.deepEqual(q.choices,original.choices);assert.equal(q.answer,original.answer);assert.equal(q.solution,original.solution);assert.deepEqual(q.figureArtifacts,[]);
+fs.mkdirSync(out);fs.writeFileSync(out+'q14.json',JSON.stringify(q,null,2)+'\n',{flag:'wx'});const x=bindCandidate(out+'q14.json');assert.deepEqual(x.validation.studentMathNotationWarnings,[]);
+fs.writeFileSync(out+'wording-delta-r1.json',JSON.stringify({utc:new Date().toISOString(),previousCandidate:{path:old,sha256:sha256(fs.readFileSync(old))},currentCandidate:{path:out+'q14.json',sha256:x.candidateFileSha256},before,after,reason:'표의 한 열에는 서로 다른 다섯 기록의 쌍이 있으므로 각 기록 안에서 x/y를 짝짓는다고 명확히 한다. 첫 blind 봉인 전 교정이며 이전 r1 문제/지면을 보존한다.',unchangedChoicesAnswerSolutionData:true,newLogicalTables:1,extraCountForSupersededVersion:0,studentDigest:x.studentDigest,candidateDigest:x.candidateDigest,assetDigest:x.assetDigest,independentReviewPending:true,loadable:0,dbWrites:0},null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({revised:1,firstBlindNotYetMade:true,oldEvidencePreserved:true,canonicalCountsUnchanged:true}));

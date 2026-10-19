@@ -1,0 +1,108 @@
+{
+  "studentDigest": "093429d9f708deabeffa69e94201f10f9b0f037230c219e873633f70fa75c6a1",
+  "solverId": "independent-helper-nobyeon-sem2-group3-blind-20261020",
+  "answer": "③",
+  "solution": "자료 A는5개이므로 크기순으로 정리했을 때 세 번째 값이 중앙값이다. 중앙값8은 실제 자료 중 하나여야 한다. 고정된 값1,9,12에는8이 없으므로 a나b가8이다. a=8이면 2a+b=16에서 b=0이 되어 a<b에 어긋난다. 따라서 b=8이고 a=4이다. 자료 A는1,4,8,9,12이므로 조건을 만족한다. 자료 B를 크기순으로 정리하면2,4,6,8이므로 중앙값은(4+6)/2=5이다. 보기3,4,5,6,7 중5만 같으므로③이다.",
+  "evidence": {
+    "exposure": {
+      "currentAuthorAnswerSolutionPackageExposed": false,
+      "priorSourceExposure": "이전 노변1학기 다수문항과노변2학기q09~11의학생풀이/저자해설/질문전용원문을검토했다. 관련대표값·산포도와다른시험기하검토이력도있다. 이번q12~14의현재저자답·해설·비공개패키지와원문은열지않았다. 전체원본코퍼스의완전미노출은주장하지않는다.",
+      "inputsUsed": "현재학생발문·표·5보기만; 저자답/원문키검색없음",
+      "noCovarianceFormulaUsed": true
+    },
+    "ownExactCalculations": {
+      "completeNonnegativeDomainPairs": [
+        [
+          0,
+          16
+        ],
+        [
+          1,
+          14
+        ],
+        [
+          2,
+          12
+        ],
+        [
+          3,
+          10
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "medianA8ValidPairs": [
+        [
+          4,
+          8
+        ]
+      ],
+      "sortedA": [
+        1,
+        4,
+        8,
+        9,
+        12
+      ],
+      "sortedB": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "medianB": "5",
+      "choiceChecks": {
+        "①": false,
+        "②": false,
+        "③": true,
+        "④": false,
+        "⑤": false
+      },
+      "existenceUniqueness": "중앙값8은홀수5자료의중간원소이므로a또는b가8. a8분기는a<b위배,b8에서a4유일. 자연수를양의정수로보거나0포함으로보아도결과같음. 중앙값B분모2>0, 자료개수양수."
+    },
+    "studentDigestVerified": true,
+    "gradeSurfaceProposals": {
+      "stem": {
+        "status": "student-method-proposed-in-scope",
+        "basis": "자연수두수의일차관계와홀수/짝수자료중앙값정의를적용한다."
+      },
+      "choices": {
+        "status": "all-five-checked",
+        "basis": "3,4,5,6,7을계산한중앙값5와비교하여③만일치."
+      },
+      "figuresAndTables": {
+        "status": "student-table-checked",
+        "basis": "실제두기록표의A자료5개·중앙값8과B자료4개·빈칸을확인했다. 제공SVG는없다."
+      },
+      "notation": {
+        "status": "proposed-in-scope",
+        "basis": "자연수a,b,a<b,2a+b=16,중앙값과빈칸표시는이전일차식및중학교통계표기이다."
+      },
+      "answer": {
+        "status": "independently-solved",
+        "basis": "보기③만참임을정확한계산/전체기록관찰로확인. raw answer에는선택기호하나만저장하고수치및근거는solution/evidence로분리한다."
+      },
+      "studentSolution": {
+        "status": "own-method-proposed-author-unseen",
+        "basis": "중앙값의정렬정의와일차식·평균및빈도정의뿐이다. 현재저자해설은미노출이므로그해설은후속검토대상."
+      },
+      "prerequisites": {
+        "status": "2015-M3-after-prerequisites-proposal",
+        "basis": "2015중3대표값9수05-06의중앙값·평균·최빈값을학습한뒤배정. 이전자연수·부등관계·일차식·분수계산필요. 이전공식2015기준/중3배치열람이력은있으나이번새학생문항의정식7면·2022승인은후속전체해설검토와별개이다."
+      }
+    },
+    "domainUnits": "자연수/유한자료의정의역과양의자료개수·중앙값분모확인. 물리적길이나측정단위는제시되지않음.",
+    "limits": [
+      "수학solved와정식학년승인은구분;저자전체해설후속검토필요",
+      "새수동승인/출처/권리/livefamily/native승인아님",
+      "2022배치보류"
+    ]
+  },
+  "status": "solved"
+}
