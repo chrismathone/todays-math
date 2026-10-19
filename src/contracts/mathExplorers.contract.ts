@@ -120,6 +120,20 @@ export const explorerDefinitionSessionSchema = z.strictObject({
   unresolved: z.array(task).max(15),
   eligible: z.array(id).max(5),
   reviewOnly: z.boolean().optional(),
+  /**
+   * «한 번 더 → 풀이»(plan §3.2 ②): the current question waits for a second try
+   * (`again`) or shows its solution (`solution`); `firstChoiceIds` are the public
+   * choice positions the student picked first. Read before anything writes it.
+   */
+  followUp: z
+    .strictObject({
+      questionId: id,
+      state: z.enum(["again", "solution"]),
+      firstChoiceIds: z.array(z.number().int().min(0).max(3)).max(4),
+    })
+    .optional(),
+  /** Activities (`cardId:kind`) whose solution was shown — not asked again today. */
+  shown: z.array(id).max(15).optional(),
 });
 export const explorerDefinitionsSchema = z.strictObject({
   courseGrade: grade.optional(),
@@ -379,6 +393,14 @@ export const explorerActivitySchema = z.strictObject({
     .array(z.strictObject({ id: z.number().int().min(0).max(3), label: text }))
     .max(4),
   reading: z.strictObject({ definition: text, note: text }).optional(),
+  /** After a wrong first answer (plan §3.2 ②) — sent only to screens that ask. */
+  followUp: z
+    .strictObject({
+      state: z.enum(["again", "solution"]),
+      firstChoiceIds: z.array(z.number().int().min(0).max(3)).max(4),
+    })
+    .optional(),
+  solution: explorerSolutionSchema.optional(),
 });
 export const explorerViewSchema = z.strictObject({
   profile: z.strictObject({

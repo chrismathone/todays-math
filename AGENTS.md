@@ -108,6 +108,21 @@ reopens an unfinished solution from `followUp.done === false`. Explorer card
 activities keep their own retry state in the explorer record (plan §3.2), not
 this field.
 
+**Explorer card follow-ups — reader first (2026-10-20):** a definitions session
+may carry `followUp` (`questionId`, `state` again | solution, `firstChoiceIds`)
+and `shown` (activity keys `cardId:kind` whose solution was shown), and the
+public activity may carry `followUp` and `solution` — the reader commit "feat(srs):
+read explorer card follow-ups before anything writes them" accepts them and
+nothing writes them yet. The writer (after the reader is Ready in production)
+must: let the stored state, not the header, drive an open follow-up (reject an
+answer while the solution is open, accept only `understood`); include
+`understood` in the review-only snapshot and the completed-day record; keep
+`shown` out of `passed` · `next` · `unresolved`, count `missed` as the union of
+keys, never copy a shown solution into `hinted`; keep the workshop interlude out
+of an open follow-up; count a waiting activity once in the mission's answered
+number; send the response fields only to screens that ask (GET, POST and
+replayed receipts alike).
+
 On 2026-10-06 the user split this work: **Codex owns the design** (screens,
 components, CSS in the user's "v2" Stitch look) and **Claude owns the internals**
 (concept data contract, schedule, session rules, numbers, storage, tests).
