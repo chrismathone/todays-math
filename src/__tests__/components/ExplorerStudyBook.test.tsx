@@ -65,8 +65,7 @@ describe("§8.25 오늘 공부", () => {
       />,
     );
     const journey = screen.getByRole("button", {
-      name: "나의 수학 여정",
-      exact: true,
+      name: /^나의 수학 여정$/,
     });
     fireEvent.click(journey);
     expect(journey).toHaveAttribute("aria-pressed", "true");
@@ -76,7 +75,7 @@ describe("§8.25 오늘 공부", () => {
       changedTouches: [{ clientX: 200, clientY: 105 }],
     });
     expect(
-      screen.getByRole("button", { name: "오늘 공부", exact: true }),
+      screen.getByRole("button", { name: /^오늘 공부$/ }),
     ).toHaveAttribute("aria-pressed", "true");
     fireEvent.click(
       screen.getByRole("button", { name: "나의 수학 여정 보기" }),

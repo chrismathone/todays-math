@@ -34,7 +34,7 @@ export function DailyStudy({
   const done = plan.status === "done" || plan.status === "short";
   return (
     <div className={b.study}>
-      <h1>{done ? "오늘 공부를 마쳤어요" : "오늘도 한 장씩, 함께 공부해요"}</h1>
+      <h1>{done ? "오늘 공부를 마쳤어요" : "오늘도 한 칸씩 배워요"}</h1>
       {done ? (
         <>
           <section className={b.result}>

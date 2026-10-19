@@ -242,6 +242,36 @@ afterEach(() => {
 });
 
 describe("Explorer concept memory inside the old shell", () => {
+  it("shows only one student start and device settings, preserving the exact recall next", async () => {
+    const source = { ...local(), dailyPlan: vi.fn(async () => suppliedPlan()) };
+    const actions = vi.spyOn(source, "act");
+    render(
+      <StudentMathExplorers
+        conceptMemoryEnabled
+        fadingSource={source}
+        initialState={explorer()}
+      />,
+    );
+    const start = await screen.findByRole("button", { name: "오늘 공부 시작" });
+    expect(
+      screen.queryByRole("button", {
+        name: /탐험 문제 시작|배울 개념 고르기|학습 설정/,
+      }),
+    ).toBeNull();
+    expect(
+      screen.queryByText(/기본 분량|추가 확인 ·|오늘 학습 순서/),
+    ).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "이 기기 설정" }));
+    expect(screen.queryByText("목표 단원")).toBeNull();
+    expect(screen.queryByRole("group", { name: "학년 선택" })).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "이 기기 설정 닫기" }));
+    fireEvent.click(start);
+    await screen.findByRole("button", { name: "문장 보기" });
+    expect(actions).toHaveBeenCalledWith({
+      action: "open",
+      conceptId: concept.id,
+    });
+  });
   it("queues cold checks via the first rating receipt and leaves long-term and explorer records unchanged by a minute check", async () => {
     let now = Date.UTC(2026, 9, 7);
     const { source } = await atFour(() => now);
@@ -628,14 +658,11 @@ describe("Explorer concept memory inside the old shell", () => {
         initialState={explorer()}
       />,
     );
-    await screen.findByRole("region", { name: "오늘의 자동 학습 계획" });
+    await screen.findByRole("button", { name: "오늘 공부 시작" });
+    expect(screen.queryByRole("button", { name: /탐험 문제 시작/ })).toBeNull();
     expect(
-      screen.getByRole("button", { name: /탐험 문제 시작/ }),
-    ).toBeDisabled();
-    expect(
-      screen.getAllByText("이 문제 묶음은 오늘 남은 분량에 들어가지 않아요.")
-        .length,
-    ).toBeGreaterThan(0);
+      screen.queryByText(/기본 분량|오늘 학습 순서|배울 개념 고르기/),
+    ).toBeNull();
     expect(fetch).not.toHaveBeenCalled();
   });
 
@@ -671,7 +698,7 @@ describe("Explorer concept memory inside the old shell", () => {
         />,
       );
       fireEvent.click(
-        await screen.findByRole("button", { name: "오늘 학습 시작" }),
+        await screen.findByRole("button", { name: "오늘 공부 시작" }),
       );
       await waitFor(() => expect(requests).toHaveLength(1));
       expect(requests[0]).toMatchObject({

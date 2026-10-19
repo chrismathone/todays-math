@@ -34,6 +34,7 @@ import {
   FadingRelearnStatus,
 } from "@/components/fading/FadingRelearnCheck";
 import { curriculumName, dueLabel } from "@/components/fading/labels";
+import { DailyStudy } from "./ExplorerStudyBook";
 import { ExplorerMath } from "./ExplorerMath";
 import f from "@/components/fading/fading.module.css";
 import s from "./explorer-concept-memory.module.css";
@@ -52,6 +53,9 @@ const failureText = (error: unknown) =>
 export type ExplorerMemoryHomeOptions = {
   dailyExplorerAllowed?: boolean;
   dailyExplorerNote?: string;
+  studyBook?: boolean;
+  separateExpedition?: boolean;
+  dailyUnit?: string;
 };
 const bucketNames = {
   review: "복습",
@@ -255,6 +259,7 @@ export default function ExplorerConceptMemory({
   relearnController,
   studentId,
   preview = false,
+  studyBook = false,
   busy: explorerBusy = false,
   onSessionChange,
   onAccessFailure,
@@ -267,6 +272,7 @@ export default function ExplorerConceptMemory({
   relearnController?: FadingRelearnController;
   studentId?: string;
   preview?: boolean;
+  studyBook?: boolean;
   busy?: boolean;
   onSessionChange?: (active: boolean) => void;
   onAccessFailure?: (error: FadingSourceError) => void;
@@ -574,6 +580,71 @@ export default function ExplorerConceptMemory({
           )}
         </div>
       </div>
+    );
+
+  if (studyBook && dailySource?.dailyPlan)
+    return renderHome(
+      <>
+        {relearn.failure ? (
+          <div role="alert" className={s.failure}>
+            <p>{relearn.failure}</p>
+            <button type="button" onClick={() => void relearn.refresh()}>
+              추가 확인 다시 불러오기
+            </button>
+          </div>
+        ) : null}
+        {relearnController ? null : <FadingRelearnModal controller={relearn} />}
+        {failure ? (
+          <div role="alert" className={s.failure}>
+            <p>{failure}</p>
+            <button
+              type="button"
+              disabled={disabled}
+              onClick={() =>
+                void run(async () => {
+                  const next = await source!.state();
+                  if (alive.current) {
+                    setState(next);
+                    setLoading(false);
+                  }
+                })
+              }
+            >
+              개념 자료 다시 불러오기
+            </button>
+          </div>
+        ) : null}
+        {dailyFailure ? (
+          <div role="alert" className={s.failure}>
+            <p>{dailyFailure}</p>
+            <button
+              type="button"
+              disabled={disabled || dailyBusy}
+              onClick={() => void refreshDailyPlan()}
+            >
+              오늘 계획 다시 불러오기
+            </button>
+          </div>
+        ) : dailyPlan ? (
+          <DailyStudy
+            plan={dailyPlan}
+            busy={disabled || dailyBusy || loading || !!failure}
+            onStart={startDaily}
+            startId={`${prefix}-daily-start`}
+          />
+        ) : (
+          <p role="status">오늘 공부를 준비하고 있어요…</p>
+        )}
+      </>,
+      {
+        studyBook: true,
+        separateExpedition: dailyPlan?.integration.expedition === false,
+        dailyUnit:
+          dailyPlan?.prerequisite?.target.title ??
+          dailyPlan?.activities.find((activity) => activity.kind === "practice")
+            ?.source.title,
+        dailyExplorerAllowed: !dailyBusy && !dailyFailure,
+      },
     );
 
   return renderHome(
