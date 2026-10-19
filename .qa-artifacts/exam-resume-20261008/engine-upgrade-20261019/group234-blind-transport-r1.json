@@ -1,0 +1,55 @@
+{
+  "utc": "2026-10-19T12:30:20.988Z",
+  "helperCommit": "b80faf8a2dd08261761a57c381c534c90373cb6e",
+  "files": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-q08q09q10-clean-blind-20261019-r1/independent-calc-20261019.py",
+      "sha256": "dcf84f9f38b54c6b89e6d89656f8ec837efcf9ccda7968b43872869f28801552"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-q08q09q10-clean-blind-20261019-r1/independent-calculations-20261019.json",
+      "sha256": "ffa2c95759e8b67b585de9502f7a7092f6a2708d061d6854b26f40985ea9bb04"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-q08q09q10-clean-blind-20261019-r1/independent-utf8-probe-20261019.txt",
+      "sha256": "9535696f1a6d42cdc792909197430c16e45aede54daed7abfe0b25e9d8e5060b"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-q08q09q10-clean-blind-20261019-r1/solve/q08.json",
+      "sha256": "57bfe42a2619bc42e894e46332ff0dc0519e429af4f38ce519e0323b55f31ea6"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-q08q09q10-clean-blind-20261019-r1/solve/q09.json",
+      "sha256": "28762ff5c76e9978d06c2fc0bf3b062081f8ef8bc49e8f03539d850f06a0fb37"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-q08q09q10-clean-blind-20261019-r1/solve/q10.json",
+      "sha256": "db8756657fcdba7bbd6c7dd74167109f70bc9c5b0593c17733e68dbb572df9ca"
+    }
+  ],
+  "blindProofs": [
+    {
+      "n": 8,
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group234-current-review-20261019-r2/blind/solve/q08.json",
+      "sha256": "57bfe42a2619bc42e894e46332ff0dc0519e429af4f38ce519e0323b55f31ea6",
+      "studentDigest": "1d6563056697661a1c4a56c3883cfc51998879e10674b3953412963d5dd1e827"
+    },
+    {
+      "n": 9,
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group234-current-review-20261019-r2/blind/solve/q09.json",
+      "sha256": "28762ff5c76e9978d06c2fc0bf3b062081f8ef8bc49e8f03539d850f06a0fb37",
+      "studentDigest": "3b9231921758e1f1f7ffdce33fcfca4dc63f1f5a37b7a9ca573e7a225817e656"
+    },
+    {
+      "n": 10,
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group234-current-review-20261019-r2/blind/solve/q10.json",
+      "sha256": "db8756657fcdba7bbd6c7dd74167109f70bc9c5b0593c17733e68dbb572df9ca",
+      "studentDigest": "721c5c180c68ee2b461c64c339a59793109a73c5dc0f80c1603f4ef27d005c8e"
+    }
+  ],
+  "priorQ08RawPreserved": true,
+  "newCurrentCandidatesApproved": 0,
+  "rawBytesModified": false,
+  "authorExposureBeforeParentSeal": false,
+  "dbWrites": 0
+}
