@@ -1,0 +1,74 @@
+{
+  "studentDigest": "d1383819440e4f13e5e93729749160d2315d5211de41749cd00fcab50a3b3c1e",
+  "solverId": "codex-nobyeon-independent-20261019-r2",
+  "answer": "④ 18√3 cm²",
+  "solution": "삼각형 ABC에서 B=90°, A=45°이므로 C=45°이고 AB=BC이다. BC=t>0이라 두면 AC²=2t²=(6√2)²=72이므로 BC=6 cm이다. 삼각형 BCD에서 C=90°, D=30°이므로 30°·60°·90° 직각삼각형의 세 변의 비에 의해 BC:CD=1:√3이다. 따라서 CD=6√3 cm이고 넓이는 (1/2)×6×6√3=18√3 cm², 즉 ④이다.",
+  "evidence": {
+    "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q06",
+    "questionNumber": 6,
+    "blindInputOnly": true,
+    "actualFiguresViewed": [
+      {
+        "path": "figures/q06-1.svg",
+        "sha256": "f6f47ffb623aa37d38b18fd67147d64f2b2189a8ed4ba7e93b52928fc0563fd8",
+        "renderedPng": "rendered/q06-1.png",
+        "pixelMeasurementUsed": false
+      }
+    ],
+    "figureObservation": "Rendered figure labels and incidences agree with the stated roles; no geometric length was inferred from pixels.",
+    "allFiveChoiceChecks": [
+      {
+        "choice": 1,
+        "areaSqrt3Coefficient": 6,
+        "equals18": false
+      },
+      {
+        "choice": 2,
+        "areaSqrt3Coefficient": 9,
+        "equals18": false
+      },
+      {
+        "choice": 3,
+        "areaSqrt3Coefficient": 12,
+        "equals18": false
+      },
+      {
+        "choice": 4,
+        "areaSqrt3Coefficient": 18,
+        "equals18": true
+      },
+      {
+        "choice": 5,
+        "areaSqrt3Coefficient": 36,
+        "equals18": false
+      }
+    ],
+    "domainExistenceUniquenessUnits": {
+      "domain": "Nondegenerate triangles with indicated 90°,45°,30° angles; AC=6√2 cm>0",
+      "existence": "Take BC=6, erect AB=6 and CD=6√3 on the shown side of BC; both triangles satisfy all stated angles.",
+      "uniqueness": "BC is fixed by the isosceles right triangle; CD fixed by the 30° triangle, so area fixed.",
+      "positiveLengths": "AB=BC=6, CD=6√3, BD=12>0",
+      "units": "Area is 18√3 cm², not a length."
+    },
+    "withinGradeMethodEvidence": {
+      "target": "middle3 / 2015",
+      "usedConcepts": [
+        "삼각형의 내각의 합과 이등변직각삼각형",
+        "피타고라스 정리",
+        "30°·60°·90° 직각삼각형의 변의 비",
+        "밑변×높이÷2"
+      ],
+      "scope": "Method-level evidence from the actual derivation, not full formal curriculum/classification approval.",
+      "advancedMethodsUsed": false,
+      "forbiddenMethods": [
+        "trigonometric identities/laws",
+        "Heron",
+        "vectors",
+        "pixel measurement"
+      ]
+    },
+    "codeCalculationReference": "calculation-results.json#q06",
+    "authorAnswersSeen": false
+  },
+  "status": "solved"
+}

@@ -1,0 +1,33 @@
+{
+  "initialRendererFailure": "CairoSVG missing native cairo; no install; switched to existing PyMuPDF",
+  "renders": [
+    {
+      "input": ".qa-artifacts\\exam-resume-20261008\\nobyeon-independent-20261019-r2\\blind\\figures\\q01-1.svg",
+      "output": ".qa-artifacts\\exam-resume-20261008\\nobyeon-independent-20261019-r2\\rendered\\q01-1.png",
+      "sha256": "b49dbaccef9471777c308ce1973551850b982fccdc88c2c59b342d01c5d871ac",
+      "renderer": "PyMuPDF SVG to PDF to PNG; no measurement",
+      "viewed": false
+    },
+    {
+      "input": ".qa-artifacts\\exam-resume-20261008\\nobyeon-independent-20261019-r2\\blind\\figures\\q02-1.svg",
+      "output": ".qa-artifacts\\exam-resume-20261008\\nobyeon-independent-20261019-r2\\rendered\\q02-1.png",
+      "sha256": "3d7dfd7fa294e566db5eb633094017ed854999b36ac22403ea9679736fe378fa",
+      "renderer": "PyMuPDF SVG to PDF to PNG; no measurement",
+      "viewed": false
+    },
+    {
+      "input": ".qa-artifacts\\exam-resume-20261008\\nobyeon-independent-20261019-r2\\blind\\figures\\q06-1.svg",
+      "output": ".qa-artifacts\\exam-resume-20261008\\nobyeon-independent-20261019-r2\\rendered\\q06-1.png",
+      "sha256": "0cc90ba8009ee14ecb1684fe246717c04c80ba1ef322ab68f2e91c962b922485",
+      "renderer": "PyMuPDF SVG to PDF to PNG; no measurement",
+      "viewed": false
+    },
+    {
+      "input": ".qa-artifacts\\exam-resume-20261008\\nobyeon-independent-20261019-r2\\blind\\figures\\q08-1.svg",
+      "output": ".qa-artifacts\\exam-resume-20261008\\nobyeon-independent-20261019-r2\\rendered\\q08-1.png",
+      "sha256": "47e34de2f3fa3f3b1fe4d37d3c681e86c5530bc1ba835b3f4d83c92a0ad4af23",
+      "renderer": "PyMuPDF SVG to PDF to PNG; no measurement",
+      "viewed": false
+    }
+  ]
+}

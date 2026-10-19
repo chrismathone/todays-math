@@ -1,0 +1,74 @@
+{
+  "studentDigest": "e8911402280f3ba8dc1f2d57d5597620dc14765a1aa760231797f107108cf0dc",
+  "solverId": "codex-nobyeon-independent-20261019-r2",
+  "answer": "③ 16 cm",
+  "solution": "A에서 직선 BC에 내린 수선의 발을 H라 하자. ∠ABC=60°, AB=6 cm이므로 30°·60°·90° 직각삼각형 ABH의 변의 비에 따라 AH=3√3 cm, BH=3 cm이다. 평행사변형의 대각선은 서로를 이등분하므로 AO=OC이다. 삼각형 ABO와 OBC는 AC 위의 밑변 AO,OC가 같고 B에서 AC까지의 높이가 같으므로 넓이가 같다. 따라서 삼각형 ABC의 넓이는 삼각형 OBC의 두 배인 24√3 cm²이다. BC=b>0이라 두면 (1/2)×b×3√3=24√3이므로 b=16 cm, 즉 ③이다. 구한 BC=16>BH=3이므로 H가 선분 BC 위에 놓이는 그림과도 일치한다.",
+  "evidence": {
+    "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q08",
+    "questionNumber": 8,
+    "blindInputOnly": true,
+    "actualFiguresViewed": [
+      {
+        "path": "figures/q08-1.svg",
+        "sha256": "a9b108595e538294c400c250ec6757b4d1d0a1b59cd4733630d108350d147172",
+        "renderedPng": "rendered/q08-1.png",
+        "pixelMeasurementUsed": false
+      }
+    ],
+    "figureObservation": "Rendered figure labels and incidences agree with the stated roles; no geometric length was inferred from pixels.",
+    "allFiveChoiceChecks": [
+      {
+        "choice": 1,
+        "resultingAreaOBC": "3√3",
+        "equals12sqrt3": false
+      },
+      {
+        "choice": 2,
+        "resultingAreaOBC": "6√3",
+        "equals12sqrt3": false
+      },
+      {
+        "choice": 3,
+        "resultingAreaOBC": "12√3",
+        "equals12sqrt3": true
+      },
+      {
+        "choice": 4,
+        "resultingAreaOBC": "36",
+        "equals12sqrt3": false
+      },
+      {
+        "choice": 5,
+        "resultingAreaOBC": "24√3",
+        "equals12sqrt3": false
+      }
+    ],
+    "domainExistenceUniquenessUnits": {
+      "domain": "Nondegenerate parallelogram; ∠ABC=60°, AB=6 cm, area OBC=12√3 cm²>0",
+      "existence": "Construct BC=16, BH=3 and AH=3√3 with AB=6; complete the parallelogram by parallel lines. The diagonals intersect internally and OBC has the required area.",
+      "uniqueness": "Positive fixed height gives area OBC=(3√3/4)BC, strictly proportional to positive BC, so only BC=16.",
+      "positiveLengths": "AB=6,BC=16,AH=3√3,BH=3; BH<BC confirms the perpendicular foot is inside the depicted base.",
+      "units": "BC=16 cm; area inputs remain cm²."
+    },
+    "withinGradeMethodEvidence": {
+      "target": "middle3 / 2015",
+      "usedConcepts": [
+        "평행사변형의 대각선 이등분 성질",
+        "같은 높이와 같은 밑변의 삼각형의 넓이",
+        "수선과 30°·60°·90° 삼각형의 변의 비",
+        "밑변×높이÷2"
+      ],
+      "scope": "Method-level evidence from the actual derivation, not full formal curriculum/classification approval.",
+      "advancedMethodsUsed": false,
+      "forbiddenMethods": [
+        "trigonometric identities/laws",
+        "Heron",
+        "vectors",
+        "pixel measurement"
+      ]
+    },
+    "codeCalculationReference": "calculation-results.json#q08",
+    "authorAnswersSeen": false
+  },
+  "status": "solved"
+}
