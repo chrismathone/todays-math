@@ -1,0 +1,77 @@
+{
+    "method":  "Piecewise linear equations from positive square roots of printed areas",
+    "excludedBoundaryPoints":  [
+                                   -2,
+                                   1.5
+                               ],
+    "cases":  [
+                  {
+                      "interval":  "x \u003c -2",
+                      "candidate":  7,
+                      "inInterval":  false,
+                      "aCm":  9,
+                      "bCm":  11,
+                      "areaA":  81,
+                      "areaB":  121,
+                      "positive":  true,
+                      "differenceCm":  -2,
+                      "accepted":  false
+                  },
+                  {
+                      "interval":  "-2 \u003c x \u003c 3/2",
+                      "candidate":  1,
+                      "inInterval":  true,
+                      "aCm":  3,
+                      "bCm":  1,
+                      "areaA":  9,
+                      "areaB":  1,
+                      "positive":  true,
+                      "differenceCm":  2,
+                      "accepted":  true
+                  },
+                  {
+                      "interval":  "x \u003e 3/2",
+                      "candidate":  3,
+                      "inInterval":  true,
+                      "aCm":  5,
+                      "bCm":  3,
+                      "areaA":  25,
+                      "areaB":  9,
+                      "positive":  true,
+                      "differenceCm":  2,
+                      "accepted":  true
+                  }
+              ],
+    "roots":  [
+                  1,
+                  3
+              ],
+    "sum":  4,
+    "choices":  [
+                    {
+                        "choice":  1,
+                        "value":  1,
+                        "matchesSum":  false
+                    },
+                    {
+                        "choice":  2,
+                        "value":  2,
+                        "matchesSum":  false
+                    },
+                    {
+                        "choice":  3,
+                        "value":  3,
+                        "matchesSum":  false
+                    },
+                    {
+                        "choice":  4,
+                        "value":  4,
+                        "matchesSum":  true
+                    },
+                    {
+                        "choice":  5,
+                        "value":  6,
+                        "matchesSum":  false
+                    }
+                ]
+}
