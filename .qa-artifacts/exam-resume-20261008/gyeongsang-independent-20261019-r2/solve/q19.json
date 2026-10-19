@@ -1,0 +1,85 @@
+{
+  "studentDigest": "8a288ba524f8e0508bca7471f09f5ee7284677aa0e4a0150ac5e45c71e088254",
+  "solverId": "codex-gf14-independent-20261019-r2",
+  "answer": "(1) QR=3x/5 cm, PR=4x/5 cm; (2) PQ=10 cm; (3) QR=6 cm, PR=8 cm",
+  "solution": "(1) R이 직각이고 PQ=x>0이므로 cosQ=QR/PQ=3/5에서 QR=3x/5 cm이다. 피타고라스 정리에 의해 PR²=x²−(3x/5)²=16x²/25이다. PR,x>0이므로 PR=4x/5 cm이다.\n(2) 두 직각변이 서로 수직이므로 넓이는 (1/2)×(3x/5)×(4x/5)=6x²/25이다. 이것이24이므로 x²=100이다. x>0이므로 PQ=x=10 cm이다.\n(3) QR=3×10/5=6 cm, PR=4×10/5=8 cm이다. 6²+8²=10²이고 넓이6×8/2=24 cm²도 다시 확인된다. PR을 구할 때 삼각비 관계식이 아니라 실제 변에 피타고라스 정리를 적용하였다.",
+  "evidence": {
+    "questionNumber": 19,
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q19",
+    "studentOnlyInputs": true,
+    "figureReading": "R right; cos atQ has QR adjacent, PR opposite and PQ hypotenuse.",
+    "renderedFiguresViewed": [
+      {
+        "svgPath": "figures/q19-1.svg",
+        "sha256": "f20873d5f9b8459b755075e8aca5ef71c14d5f1d5f06b17b68835885591de7fc",
+        "pngPath": "rendered/q19-1.png",
+        "pixelMeasurement": false
+      }
+    ],
+    "choiceChecks": [],
+    "parts": [
+      {
+        "label": "(1)",
+        "answer": "QR=3x/5 cm, PR=4x/5 cm",
+        "points": 2
+      },
+      {
+        "label": "(2)",
+        "answer": "PQ=10 cm",
+        "points": 4
+      },
+      {
+        "label": "(3)",
+        "answer": "QR=6 cm, PR=8 cm",
+        "points": 2
+      }
+    ],
+    "existenceUniquenessPositiveLengthsUnits": "x>0 and area24 exclude zero/negative roots. Area=(6/25)x² fixes x²=100 and only x10. Legs6,8 are positive, satisfy Pythagoras and give area24. Part1 lengths in cm expressed using the positive numerical parameterx; part2/3 cm.",
+    "withinGradeMethodEvidence": {
+      "target": "M3 / 2015",
+      "usedConcepts": [
+        "코사인의 정의",
+        "실제 길이에 대한 피타고라스 정리",
+        "직각삼각형의 넓이",
+        "양의 제곱근"
+      ],
+      "derivationBasis": "Actual student-level proof written above; no formal live-family/classification or release approval is asserted.",
+      "forbiddenMethodsUsed": false,
+      "restrictionsChecked": [
+        "no general trig identities or function relationships",
+        "no sine/cosine laws",
+        "no Heron",
+        "no vectors",
+        "no higher-grade shortcuts",
+        "no pixel measurement"
+      ]
+    },
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q19",
+      "actualResult": {
+        "part1": {
+          "QR": "3x/5",
+          "PR": "4x/5",
+          "xDomain": "x>0"
+        },
+        "areaCoefficient": "6/25",
+        "xSquared": "100",
+        "part2Hypotenuse": 10,
+        "part3Legs": [
+          6,
+          8
+        ],
+        "positiveRootOnly": true,
+        "rubricPoints": [
+          2,
+          4,
+          2
+        ]
+      }
+    },
+    "exposure": "No GF14 candidate/private/source/old solves or actual author answers read. Prior unbound generic REVIEW-KIT example disclosed in input receipt and unused as answer evidence.",
+    "authorAnswersUsed": false
+  },
+  "status": "solved"
+}

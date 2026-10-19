@@ -1,0 +1,80 @@
+{
+  "studentDigest": "f1b9e9f5a3138cc5b9f702c6f3f2ecf50b21aed02cd5f518d3a5066955d4284c",
+  "solverId": "codex-gf14-independent-20261019-r2",
+  "answer": "(1) OH=9 m, PH=9√3 m; (2) HQ=15 m; (3) OQ=24 m",
+  "solution": "(1) H가 O,Q 사이에 있고 PH⊥OQ이므로 직각삼각형 OPH의 O각은60°이다. OP=18 m이므로 OH=OP×cos60°=9 m, PH=OP×sin60°=9√3 m이다.\n(2) 직각삼각형 PHQ에서 PQ=6√13 m이므로 HQ²=PQ²−PH²=(6√13)²−(9√3)²=468−243=225이다. HQ는 길이이므로 HQ=15 m이다.\n(3) O,H,Q가 이 순서로 놓이므로 OQ=OH+HQ=9+15=24 m이다. H가 내부라는 조건 때문에 길이를 더해야 하며, 음의 제곱근이나 두 길이의 차를 답으로 택하지 않는다. 두 직각삼각형에 피타고라스 정리와 특수각의 변의 비만 사용한다.",
+  "evidence": {
+    "questionNumber": 21,
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q21",
+    "studentOnlyInputs": true,
+    "figureReading": "O,H,Q appear in stated order; PH perpendicularOQ, angle60° atO; right triangles OPH and PHQ identified.",
+    "renderedFiguresViewed": [
+      {
+        "svgPath": "figures/q21-1.svg",
+        "sha256": "c6e898b6a95b15b1231782c8c1dc97d9c93a57c92d8d34b1de025276018e3e0d",
+        "pngPath": "rendered/q21-1.png",
+        "pixelMeasurement": false
+      }
+    ],
+    "choiceChecks": [],
+    "parts": [
+      {
+        "label": "(1)",
+        "answer": "OH=9 m, PH=9√3 m",
+        "points": 3
+      },
+      {
+        "label": "(2)",
+        "answer": "HQ=15 m",
+        "points": 3
+      },
+      {
+        "label": "(3)",
+        "answer": "OQ=24 m",
+        "points": 2
+      }
+    ],
+    "existenceUniquenessPositiveLengthsUnits": "Right-triangle witness OH9,PH9√3,HQ15 has OP18 and PQ6√13. OQ24 makes0<OH9<OQ24, so H is interior. Positive roots and the given O–H–Q order make target lengths unique even if the whole triangle is reflected. All lengths in metres.",
+    "withinGradeMethodEvidence": {
+      "target": "M3 / 2015",
+      "usedConcepts": [
+        "특수각의 변의 비",
+        "피타고라스 정리",
+        "선분 위 점의 순서와 길이의 합"
+      ],
+      "derivationBasis": "Actual student-level proof written above; no formal live-family/classification or release approval is asserted.",
+      "forbiddenMethodsUsed": false,
+      "restrictionsChecked": [
+        "no general trig identities or function relationships",
+        "no sine/cosine laws",
+        "no Heron",
+        "no vectors",
+        "no higher-grade shortcuts",
+        "no pixel measurement"
+      ]
+    },
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q21",
+      "actualResult": {
+        "part1": {
+          "OH": "9 m",
+          "PH": "9sqrt3 m"
+        },
+        "part2HQ": "15 m",
+        "part3OQ": "24 m",
+        "heightSquared": "243",
+        "HqSquared": "225",
+        "interiorFootVerified": true,
+        "rubricPoints": [
+          3,
+          3,
+          2
+        ]
+      }
+    },
+    "exposure": "No GF14 candidate/private/source/old solves or actual author answers read. Prior unbound generic REVIEW-KIT example disclosed in input receipt and unused as answer evidence.",
+    "authorAnswersUsed": false
+  },
+  "status": "solved"
+}

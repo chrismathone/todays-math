@@ -1,0 +1,402 @@
+{
+  "method": "Exact fractions/surd coefficients, decimal table lookup/rounding, Pythagoras and elementary areas only; no trigonometric function evaluation or trig identities.",
+  "checks": {
+    "q01": {
+      "calculated": "7",
+      "choices": [
+        {
+          "choice": 1,
+          "encodedValue": "24",
+          "correct": false
+        },
+        {
+          "choice": 2,
+          "encodedValue": "175",
+          "correct": false
+        },
+        {
+          "choice": 3,
+          "encodedValue": "7",
+          "correct": true
+        },
+        {
+          "choice": 4,
+          "encodedValue": "25",
+          "correct": false
+        },
+        {
+          "choice": 5,
+          "encodedValue": "18",
+          "correct": false
+        }
+      ],
+      "uniqueChoice": 3
+    },
+    "q02": {
+      "calculated": "16",
+      "choices": [
+        {
+          "choice": 1,
+          "encodedValue": "12",
+          "correct": false
+        },
+        {
+          "choice": 2,
+          "encodedValue": "4",
+          "correct": false
+        },
+        {
+          "choice": 3,
+          "encodedValue": "20",
+          "correct": false
+        },
+        {
+          "choice": 4,
+          "encodedValue": "16",
+          "correct": true
+        },
+        {
+          "choice": 5,
+          "encodedValue": "25",
+          "correct": false
+        }
+      ],
+      "uniqueChoice": 4
+    },
+    "q03": {
+      "calculated": "((Fraction(1, 1), 69), (Fraction(1, 10), 69))",
+      "choices": [
+        {
+          "choice": 1,
+          "encodedValue": "((Fraction(1, 1), 69), (Fraction(10, 69), 69))",
+          "correct": false
+        },
+        {
+          "choice": 2,
+          "encodedValue": "((Fraction(1, 1), 69), (Fraction(1, 10), 69))",
+          "correct": true
+        },
+        {
+          "choice": 3,
+          "encodedValue": "((Fraction(3, 1), 1), (Fraction(3, 10), 1))",
+          "correct": false
+        },
+        {
+          "choice": 4,
+          "encodedValue": "((Fraction(1, 1), 159), (Fraction(1, 10), 159))",
+          "correct": false
+        },
+        {
+          "choice": 5,
+          "encodedValue": "((Fraction(1, 1), 69), (Fraction(1, 13), 69))",
+          "correct": false
+        }
+      ],
+      "uniqueChoice": 2
+    },
+    "q04": {
+      "calculated": "(Decimal('0.7660'), Decimal('0.8391'))",
+      "choices": [
+        {
+          "choice": 1,
+          "encodedValue": "(Decimal('0.6428'), Decimal('0.7660'))",
+          "correct": false
+        },
+        {
+          "choice": 2,
+          "encodedValue": "(Decimal('0.7660'), Decimal('8.3910'))",
+          "correct": false
+        },
+        {
+          "choice": 3,
+          "encodedValue": "(Decimal('7.6604'), Decimal('0.8391'))",
+          "correct": false
+        },
+        {
+          "choice": 4,
+          "encodedValue": "(Decimal('0.7660'), Decimal('0.8391'))",
+          "correct": true
+        },
+        {
+          "choice": 5,
+          "encodedValue": "(Decimal('0.6428'), Decimal('0.8391'))",
+          "correct": false
+        }
+      ],
+      "uniqueChoice": 4
+    },
+    "q05": {
+      "calculated": "-123/5000",
+      "choices": [
+        {
+          "choice": 1,
+          "encodedValue": "168/125",
+          "correct": false
+        },
+        {
+          "choice": 2,
+          "encodedValue": "123/5000",
+          "correct": false
+        },
+        {
+          "choice": 3,
+          "encodedValue": "13563/5000",
+          "correct": false
+        },
+        {
+          "choice": 4,
+          "encodedValue": "-123/5000",
+          "correct": true
+        },
+        {
+          "choice": 5,
+          "encodedValue": "6843/5000",
+          "correct": false
+        }
+      ],
+      "uniqueChoice": 4
+    },
+    "q06": {
+      "calculated": "1",
+      "choices": [
+        {
+          "choice": 1,
+          "encodedValue": "-2",
+          "correct": false
+        },
+        {
+          "choice": 2,
+          "encodedValue": "-1",
+          "correct": false
+        },
+        {
+          "choice": 3,
+          "encodedValue": "0",
+          "correct": false
+        },
+        {
+          "choice": 4,
+          "encodedValue": "1",
+          "correct": true
+        },
+        {
+          "choice": 5,
+          "encodedValue": "2",
+          "correct": false
+        }
+      ],
+      "uniqueChoice": 4
+    },
+    "q07": {
+      "calculated": "(24, -12)",
+      "choices": [
+        {
+          "choice": 1,
+          "encodedValue": "(12, 0)",
+          "correct": false
+        },
+        {
+          "choice": 2,
+          "encodedValue": "(24, -12)",
+          "correct": true
+        },
+        {
+          "choice": 3,
+          "encodedValue": "(0, 12)",
+          "correct": false
+        },
+        {
+          "choice": 4,
+          "encodedValue": "(24, 12)",
+          "correct": false
+        },
+        {
+          "choice": 5,
+          "encodedValue": "(24, 0)",
+          "correct": false
+        }
+      ],
+      "uniqueChoice": 2
+    },
+    "q08": {
+      "calculated": "(Fraction(1, 2), 3)",
+      "choices": [
+        {
+          "choice": 1,
+          "encodedValue": "(Fraction(1, 6), 3)",
+          "correct": false
+        },
+        {
+          "choice": 2,
+          "encodedValue": "(Fraction(1, 3), 3)",
+          "correct": false
+        },
+        {
+          "choice": 3,
+          "encodedValue": "(Fraction(1, 2), 1)",
+          "correct": false
+        },
+        {
+          "choice": 4,
+          "encodedValue": "(Fraction(1, 2), 6)",
+          "correct": false
+        },
+        {
+          "choice": 5,
+          "encodedValue": "(Fraction(1, 2), 3)",
+          "correct": true
+        }
+      ],
+      "uniqueChoice": 5
+    },
+    "q09": {
+      "calculated": "(60, (Fraction(3, 4), 1))",
+      "choices": [
+        {
+          "choice": 1,
+          "encodedValue": "(30, (Fraction(1, 4), 1))",
+          "correct": false
+        },
+        {
+          "choice": 2,
+          "encodedValue": "(60, (Fraction(1, 4), 1))",
+          "correct": false
+        },
+        {
+          "choice": 3,
+          "encodedValue": "(30, (Fraction(3, 4), 1))",
+          "correct": false
+        },
+        {
+          "choice": 4,
+          "encodedValue": "(60, (Fraction(1, 4), 3))",
+          "correct": false
+        },
+        {
+          "choice": 5,
+          "encodedValue": "(60, (Fraction(3, 4), 1))",
+          "correct": true
+        }
+      ],
+      "uniqueChoice": 5
+    },
+    "q16": {
+      "calculated": "(Fraction(36, 1), 3)",
+      "choices": [
+        {
+          "choice": 1,
+          "encodedValue": "(Fraction(18, 1), 3)",
+          "correct": false
+        },
+        {
+          "choice": 2,
+          "encodedValue": "(Fraction(108, 1), 1)",
+          "correct": false
+        },
+        {
+          "choice": 3,
+          "encodedValue": "(Fraction(36, 1), 3)",
+          "correct": true
+        },
+        {
+          "choice": 4,
+          "encodedValue": "(Fraction(54, 1), 3)",
+          "correct": false
+        },
+        {
+          "choice": 5,
+          "encodedValue": "(Fraction(72, 1), 3)",
+          "correct": false
+        }
+      ],
+      "uniqueChoice": 3
+    },
+    "q17": {
+      "calculated": "10.1",
+      "choices": [
+        {
+          "choice": 1,
+          "encodedValue": "2.6",
+          "correct": false
+        },
+        {
+          "choice": 2,
+          "encodedValue": "5.2",
+          "correct": false
+        },
+        {
+          "choice": 3,
+          "encodedValue": "10.4",
+          "correct": false
+        },
+        {
+          "choice": 4,
+          "encodedValue": "10.1",
+          "correct": true
+        },
+        {
+          "choice": 5,
+          "encodedValue": "5.1",
+          "correct": false
+        }
+      ],
+      "uniqueChoice": 4
+    },
+    "q19": {
+      "part1": {
+        "QR": "3x/5",
+        "PR": "4x/5",
+        "xDomain": "x>0"
+      },
+      "areaCoefficient": "6/25",
+      "xSquared": "100",
+      "part2Hypotenuse": 10,
+      "part3Legs": [
+        6,
+        8
+      ],
+      "positiveRootOnly": true,
+      "rubricPoints": [
+        2,
+        4,
+        2
+      ]
+    },
+    "q20": {
+      "part1": "SSS -> PH perpendicular QR, alpha30deg",
+      "part2PH": "5sqrt3 cm",
+      "part3": {
+        "sin": "QH/PQ=1/2",
+        "cos": "PH/PQ=sqrt3/2",
+        "tan": "QH/PH=sqrt3/3"
+      },
+      "rightTriangleCheck": "25+75=100",
+      "rubricPoints": [
+        2,
+        3,
+        3
+      ]
+    },
+    "q21": {
+      "part1": {
+        "OH": "9 m",
+        "PH": "9sqrt3 m"
+      },
+      "part2HQ": "15 m",
+      "part3OQ": "24 m",
+      "heightSquared": "243",
+      "HqSquared": "225",
+      "interiorFootVerified": true,
+      "rubricPoints": [
+        3,
+        3,
+        2
+      ]
+    }
+  },
+  "multipleChoiceQuestionsChecked": 11,
+  "choicesChecked": 55,
+  "writtenQuestionsChecked": 3,
+  "writtenSubpartsChecked": 9,
+  "authorAnswerInputs": false
+}

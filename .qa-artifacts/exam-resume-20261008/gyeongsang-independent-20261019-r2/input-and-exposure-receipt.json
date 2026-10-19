@@ -1,0 +1,208 @@
+{
+  "solverId": "codex-gf14-independent-20261019-r2",
+  "createdAt": "2026-10-19T06:24:52.024069+00:00",
+  "sourceBlindRoot": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-final14-r1\\blind",
+  "actualExposureHistory": "This session has not authored GF14 candidates or seen their actual new author answers. During NB5 stage2 it read the GF14 REVIEW-KIT procedure including a generic illustrative JSON questionNumber7/answer?, without candidate binding; that template is not used as a key. Official2015 provisions were read for NB5, not GF14 private answers. No old GF14 raw solves, package/review/evidence/inspection/context, legacy Claude raw/reports or git author history opened for this scope. Worktree/name is not used to infer independence.",
+  "priorGF14ProofClaimedAsOwn": false,
+  "authorAnswerExposure": false,
+  "questionNumbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    16,
+    17,
+    19,
+    20,
+    21
+  ],
+  "q18Excluded": true,
+  "inputs": [
+    {
+      "path": "SOLVE-BRIEF.md",
+      "sha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+      "bytes": 676,
+      "parentCopyByteExact": true,
+      "figureExpectedHashMatched": null
+    },
+    {
+      "path": "student-problems.json",
+      "sha256": "e2e08c7cf6e5bc46b4e7ecb962f10e386c53030f7ea61a6d59255970bd4b109d",
+      "bytes": 14409,
+      "parentCopyByteExact": true,
+      "figureExpectedHashMatched": null
+    },
+    {
+      "path": "figures/q01-1.svg",
+      "sha256": "596ab0a4a5bdf2fe7f99d64915eaff2077717b085bf0cb6c3e2d55798baffe76",
+      "bytes": 3734,
+      "parentCopyByteExact": true,
+      "figureExpectedHashMatched": true
+    },
+    {
+      "path": "figures/q02-1.svg",
+      "sha256": "8fa8ed74705016ff969a492d66227e37efefc62da08e8084bcc724a6d12a62c7",
+      "bytes": 6126,
+      "parentCopyByteExact": true,
+      "figureExpectedHashMatched": true
+    },
+    {
+      "path": "figures/q03-1.svg",
+      "sha256": "1d8a4b296cdfae1da1e056ca99636a9bf4b3e1af1bd9261a6a32c3b8655a87da",
+      "bytes": 3749,
+      "parentCopyByteExact": true,
+      "figureExpectedHashMatched": true
+    },
+    {
+      "path": "figures/q04-1.svg",
+      "sha256": "38ea7364c29363f02e4c316ec6d33bd6d2c592fa80ecb00eedfc58260e9a073a",
+      "bytes": 9012,
+      "parentCopyByteExact": true,
+      "figureExpectedHashMatched": true
+    },
+    {
+      "path": "figures/q07-1.svg",
+      "sha256": "7dfd74e8fcfae4bf45df5049313461b8ec7fb4b1912b33df4492c7f30ad2b1e8",
+      "bytes": 6943,
+      "parentCopyByteExact": true,
+      "figureExpectedHashMatched": true
+    },
+    {
+      "path": "figures/q09-1.svg",
+      "sha256": "94d17dd51dad0aa8b979b4e7c849df0aebec286b873075f2899b5fb44408440a",
+      "bytes": 3749,
+      "parentCopyByteExact": true,
+      "figureExpectedHashMatched": true
+    },
+    {
+      "path": "figures/q16-1.svg",
+      "sha256": "d7914810a8b49c895a08d3ec9ebda0e76f48575b346be96a0ac350be59fd98b1",
+      "bytes": 8008,
+      "parentCopyByteExact": true,
+      "figureExpectedHashMatched": true
+    },
+    {
+      "path": "figures/q17-1.svg",
+      "sha256": "6c1ca8318654e10257b87f02a1591708451dc814e14f1150058d533e5b21357c",
+      "bytes": 6675,
+      "parentCopyByteExact": true,
+      "figureExpectedHashMatched": true
+    },
+    {
+      "path": "figures/q19-1.svg",
+      "sha256": "f20873d5f9b8459b755075e8aca5ef71c14d5f1d5f06b17b68835885591de7fc",
+      "bytes": 3749,
+      "parentCopyByteExact": true,
+      "figureExpectedHashMatched": true
+    },
+    {
+      "path": "figures/q20-1.svg",
+      "sha256": "ec5d27710c8b985a6f1acfd9ac87005b85e85a0a2276a317251dfdbd12dfe63c",
+      "bytes": 4658,
+      "parentCopyByteExact": true,
+      "figureExpectedHashMatched": true
+    },
+    {
+      "path": "figures/q21-1.svg",
+      "sha256": "c6e898b6a95b15b1231782c8c1dc97d9c93a57c92d8d34b1de025276018e3e0d",
+      "bytes": 7632,
+      "parentCopyByteExact": true,
+      "figureExpectedHashMatched": true
+    }
+  ],
+  "renders": [
+    {
+      "questionNumber": 1,
+      "svg": "figures/q01-1.svg",
+      "png": "rendered\\q01-1.png",
+      "pngSha256": "551433281dfbb08437bf2585cc052ca3ab12c162ff70f184a52825459669a301",
+      "renderer": "existing PyMuPDF SVG?PDF?PNG",
+      "pixelMeasurements": false
+    },
+    {
+      "questionNumber": 2,
+      "svg": "figures/q02-1.svg",
+      "png": "rendered\\q02-1.png",
+      "pngSha256": "3559845b51d6b13aa0fecbaf901471fbd4208b67b501a00c0f87235d688f0616",
+      "renderer": "existing PyMuPDF SVG?PDF?PNG",
+      "pixelMeasurements": false
+    },
+    {
+      "questionNumber": 3,
+      "svg": "figures/q03-1.svg",
+      "png": "rendered\\q03-1.png",
+      "pngSha256": "8e743963f6406d59115b4ba6c956e3b72fd94c6877253f73579cbc2ec90b379e",
+      "renderer": "existing PyMuPDF SVG?PDF?PNG",
+      "pixelMeasurements": false
+    },
+    {
+      "questionNumber": 4,
+      "svg": "figures/q04-1.svg",
+      "png": "rendered\\q04-1.png",
+      "pngSha256": "2520aec98a97c3ad2fb6dd8671dfe5ff490fd2a495125b4dbb6c1c792bb598ad",
+      "renderer": "existing PyMuPDF SVG?PDF?PNG",
+      "pixelMeasurements": false
+    },
+    {
+      "questionNumber": 7,
+      "svg": "figures/q07-1.svg",
+      "png": "rendered\\q07-1.png",
+      "pngSha256": "bc488e0e6ca7cff0dbb2490337d801e76c5fd987d1d854d5a7ab20f14a363561",
+      "renderer": "existing PyMuPDF SVG?PDF?PNG",
+      "pixelMeasurements": false
+    },
+    {
+      "questionNumber": 9,
+      "svg": "figures/q09-1.svg",
+      "png": "rendered\\q09-1.png",
+      "pngSha256": "5ee32f16c5bd1f6d874c2ee44b3435dffa287d49b66eea03ed52fc0cca5b3328",
+      "renderer": "existing PyMuPDF SVG?PDF?PNG",
+      "pixelMeasurements": false
+    },
+    {
+      "questionNumber": 16,
+      "svg": "figures/q16-1.svg",
+      "png": "rendered\\q16-1.png",
+      "pngSha256": "0a10c7f2f50b15624cd6775776dcdb5a4f4f2fb8c6ee144de0b1d5ea14219f5e",
+      "renderer": "existing PyMuPDF SVG?PDF?PNG",
+      "pixelMeasurements": false
+    },
+    {
+      "questionNumber": 17,
+      "svg": "figures/q17-1.svg",
+      "png": "rendered\\q17-1.png",
+      "pngSha256": "8550eee578ab428c7b06273dd2a25c988c483bbe2a9b03c303da49f9339caeef",
+      "renderer": "existing PyMuPDF SVG?PDF?PNG",
+      "pixelMeasurements": false
+    },
+    {
+      "questionNumber": 19,
+      "svg": "figures/q19-1.svg",
+      "png": "rendered\\q19-1.png",
+      "pngSha256": "afab6bd167b524ab910cf3865333d91ec9b181bfadcae1e08ca91cf23e968af2",
+      "renderer": "existing PyMuPDF SVG?PDF?PNG",
+      "pixelMeasurements": false
+    },
+    {
+      "questionNumber": 20,
+      "svg": "figures/q20-1.svg",
+      "png": "rendered\\q20-1.png",
+      "pngSha256": "01d6572bddae5b2937b79990c764cd940efaa6b2c9dee4b0059ea0d1b71e56cf",
+      "renderer": "existing PyMuPDF SVG?PDF?PNG",
+      "pixelMeasurements": false
+    },
+    {
+      "questionNumber": 21,
+      "svg": "figures/q21-1.svg",
+      "png": "rendered\\q21-1.png",
+      "pngSha256": "66d1a318ff19ff0bb3d7abbfcf8dce9d6a6c311e9451008bdc6c757207de36a9",
+      "renderer": "existing PyMuPDF SVG?PDF?PNG",
+      "pixelMeasurements": false
+    }
+  ]
+}
