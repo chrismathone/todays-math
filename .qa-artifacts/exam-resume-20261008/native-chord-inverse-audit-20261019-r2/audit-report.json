@@ -1,0 +1,693 @@
+{
+  "kind": "independent-native-chord-inverse-audit/v2",
+  "status": "scoped-math-grade-and-geometry-recheck-passed",
+  "scope": "42 actual native chord tuples; current analytic figure repair. Independent exposed-code/surface audit, not another blind solve. No changes to existing115 proofs.",
+  "rootHead": "9795daaadf89970db3acfb4a3e2f26776addc723",
+  "execution": {
+    "rootCwd": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008",
+    "explicitRootTsconfig": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/tsconfig.json",
+    "actualResolvedModule": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3.ts",
+    "commandAndUtf8WriteReadProbeSucceeded": true,
+    "beforeHashes": "code-before.json",
+    "afterHashes": "code-after.json",
+    "sameDuringRun": true,
+    "closingHashes": {
+      "tsconfig.json": "ca8cecedd4b5c15845f5796037ff788b6f9b03c832d13b0e2957ff1a07a196e1",
+      "src/lib/middle/m3.ts": "26b3bc42750d6c70a22989c71a45fc4003d5ea3f30df1947ed1bab54858b8b80",
+      "src/lib/middle/m3Figures.ts": "56cd9f00f752b2145ce2b0e0edc731aed02649a37259b53678f743bec9c07051",
+      "src/lib/middle/generate.ts": "8f2639b269024fdec1eb57752f975526b0d4d1e38e2c265ebe6ab7908bc414f7",
+      "src/lib/examStudy/adapters.ts": "ed5a5dbc728b7bb613610efc57ef5b9b769dc22d4bfe4efe97078290e4251fc8",
+      "src/lib/examStudy/legacyReinforcement.ts": "1ce2ac49a74e9e77a93aed428519468977ea63995f3e7654fe65dafb141a5915",
+      "src/lib/engine/deriveFormats.ts": "7640ebad4371cdef906be9b62b6e71bf3299c73bd7ca4517410c446ddb62ad50",
+      "src/lib/figure/renderFigureSpec.ts": "19c10c1cb1aa416cbb376314931bb9dcdce45d17b3f707fb3c2b9dfb157598df",
+      "src/lib/figure/mathjaxSubstitute.ts": "5cf79fb0dfff1f99bcba025fcf0ef24f7f05900f9a40276d1e218070f9e4de21",
+      "scripts/figure/render_spec.py": "773b75c61d5e55f72f1c31a5babff698b61f280c077e305ac35587697d333627",
+      "src/__tests__/unit/middleChordInverse.test.ts": "f37d37b60276b92ed12eda98dacda50f67379ae0c704a48695968070d825172e"
+    },
+    "changedAfterCompletedRun": [],
+    "limits": "Parent concurrently owns its own test runs. No test failure is erased if a later parent threshold revision differs. This report binds the captured execution hashes, not subsequent sources.",
+    "retainedInvocationFailure": "First audit invocation intentionally enforced root cwd and rejected helper cwd before any root module import/results write. Corrected invocation used actual root cwd and explicit root tsconfig; completed run passed. No mathematical assertion was changed to repair this invocation."
+  },
+  "mathematics": {
+    "status": "all42-printed-angle-results-passed",
+    "independentMethod": "Only printed conditions are read: equal perpendicular distances OM=ON from circle center to chordsAB/AC imply AB=AC; hence base angles B=C. If apex is given, subtract from180 and halve. If base is given, subtract twice it from180. Answers compared only after this inference. No facts or image coordinates used as answer oracle.",
+    "existence": "For every apex40..80 by2, bases=(180−apex)/2 lie50..70. All three angles positive and sum180, so a nondegenerate acute isosceles triangle exists. Its circumcircle exists; equal chords have equal center distances. Perpendicular feet lie inside chords. No radius/unit length is needed.",
+    "uniqueness": "Requested angle uniquely determined in each mode. The whole triangle is not unique at fixed size: similarity scaling/reflection remains; only the angle is asked. No rounding of requested angles.",
+    "methodLimits": "Student uses chord theorem, isosceles property and triangle sum. Trigonometric/coordinate calculations below audit vector consistency only; no student trig, vectors, circle-power or higher-grade formula required.",
+    "answers": [
+      {
+        "tuple": {
+          "apexParameter": 40,
+          "mode": 0
+        },
+        "given": 40,
+        "givenAt": "BAC",
+        "target": "ABC",
+        "answer": 70
+      },
+      {
+        "tuple": {
+          "apexParameter": 40,
+          "mode": 1
+        },
+        "given": 70,
+        "givenAt": "ABC",
+        "target": "BAC",
+        "answer": 40
+      },
+      {
+        "tuple": {
+          "apexParameter": 42,
+          "mode": 0
+        },
+        "given": 42,
+        "givenAt": "BAC",
+        "target": "ABC",
+        "answer": 69
+      },
+      {
+        "tuple": {
+          "apexParameter": 42,
+          "mode": 1
+        },
+        "given": 69,
+        "givenAt": "ABC",
+        "target": "BAC",
+        "answer": 42
+      },
+      {
+        "tuple": {
+          "apexParameter": 44,
+          "mode": 0
+        },
+        "given": 44,
+        "givenAt": "BAC",
+        "target": "ABC",
+        "answer": 68
+      },
+      {
+        "tuple": {
+          "apexParameter": 44,
+          "mode": 1
+        },
+        "given": 68,
+        "givenAt": "ABC",
+        "target": "BAC",
+        "answer": 44
+      },
+      {
+        "tuple": {
+          "apexParameter": 46,
+          "mode": 0
+        },
+        "given": 46,
+        "givenAt": "BAC",
+        "target": "ABC",
+        "answer": 67
+      },
+      {
+        "tuple": {
+          "apexParameter": 46,
+          "mode": 1
+        },
+        "given": 67,
+        "givenAt": "ABC",
+        "target": "BAC",
+        "answer": 46
+      },
+      {
+        "tuple": {
+          "apexParameter": 48,
+          "mode": 0
+        },
+        "given": 48,
+        "givenAt": "BAC",
+        "target": "ABC",
+        "answer": 66
+      },
+      {
+        "tuple": {
+          "apexParameter": 48,
+          "mode": 1
+        },
+        "given": 66,
+        "givenAt": "ABC",
+        "target": "BAC",
+        "answer": 48
+      },
+      {
+        "tuple": {
+          "apexParameter": 50,
+          "mode": 0
+        },
+        "given": 50,
+        "givenAt": "BAC",
+        "target": "ABC",
+        "answer": 65
+      },
+      {
+        "tuple": {
+          "apexParameter": 50,
+          "mode": 1
+        },
+        "given": 65,
+        "givenAt": "ABC",
+        "target": "BAC",
+        "answer": 50
+      },
+      {
+        "tuple": {
+          "apexParameter": 52,
+          "mode": 0
+        },
+        "given": 52,
+        "givenAt": "BAC",
+        "target": "ABC",
+        "answer": 64
+      },
+      {
+        "tuple": {
+          "apexParameter": 52,
+          "mode": 1
+        },
+        "given": 64,
+        "givenAt": "ABC",
+        "target": "BAC",
+        "answer": 52
+      },
+      {
+        "tuple": {
+          "apexParameter": 54,
+          "mode": 0
+        },
+        "given": 54,
+        "givenAt": "BAC",
+        "target": "ABC",
+        "answer": 63
+      },
+      {
+        "tuple": {
+          "apexParameter": 54,
+          "mode": 1
+        },
+        "given": 63,
+        "givenAt": "ABC",
+        "target": "BAC",
+        "answer": 54
+      },
+      {
+        "tuple": {
+          "apexParameter": 56,
+          "mode": 0
+        },
+        "given": 56,
+        "givenAt": "BAC",
+        "target": "ABC",
+        "answer": 62
+      },
+      {
+        "tuple": {
+          "apexParameter": 56,
+          "mode": 1
+        },
+        "given": 62,
+        "givenAt": "ABC",
+        "target": "BAC",
+        "answer": 56
+      },
+      {
+        "tuple": {
+          "apexParameter": 58,
+          "mode": 0
+        },
+        "given": 58,
+        "givenAt": "BAC",
+        "target": "ABC",
+        "answer": 61
+      },
+      {
+        "tuple": {
+          "apexParameter": 58,
+          "mode": 1
+        },
+        "given": 61,
+        "givenAt": "ABC",
+        "target": "BAC",
+        "answer": 58
+      },
+      {
+        "tuple": {
+          "apexParameter": 60,
+          "mode": 0
+        },
+        "given": 60,
+        "givenAt": "BAC",
+        "target": "ABC",
+        "answer": 60
+      },
+      {
+        "tuple": {
+          "apexParameter": 60,
+          "mode": 1
+        },
+        "given": 60,
+        "givenAt": "ABC",
+        "target": "BAC",
+        "answer": 60
+      },
+      {
+        "tuple": {
+          "apexParameter": 62,
+          "mode": 0
+        },
+        "given": 62,
+        "givenAt": "BAC",
+        "target": "ABC",
+        "answer": 59
+      },
+      {
+        "tuple": {
+          "apexParameter": 62,
+          "mode": 1
+        },
+        "given": 59,
+        "givenAt": "ABC",
+        "target": "BAC",
+        "answer": 62
+      },
+      {
+        "tuple": {
+          "apexParameter": 64,
+          "mode": 0
+        },
+        "given": 64,
+        "givenAt": "BAC",
+        "target": "ABC",
+        "answer": 58
+      },
+      {
+        "tuple": {
+          "apexParameter": 64,
+          "mode": 1
+        },
+        "given": 58,
+        "givenAt": "ABC",
+        "target": "BAC",
+        "answer": 64
+      },
+      {
+        "tuple": {
+          "apexParameter": 66,
+          "mode": 0
+        },
+        "given": 66,
+        "givenAt": "BAC",
+        "target": "ABC",
+        "answer": 57
+      },
+      {
+        "tuple": {
+          "apexParameter": 66,
+          "mode": 1
+        },
+        "given": 57,
+        "givenAt": "ABC",
+        "target": "BAC",
+        "answer": 66
+      },
+      {
+        "tuple": {
+          "apexParameter": 68,
+          "mode": 0
+        },
+        "given": 68,
+        "givenAt": "BAC",
+        "target": "ABC",
+        "answer": 56
+      },
+      {
+        "tuple": {
+          "apexParameter": 68,
+          "mode": 1
+        },
+        "given": 56,
+        "givenAt": "ABC",
+        "target": "BAC",
+        "answer": 68
+      },
+      {
+        "tuple": {
+          "apexParameter": 70,
+          "mode": 0
+        },
+        "given": 70,
+        "givenAt": "BAC",
+        "target": "ABC",
+        "answer": 55
+      },
+      {
+        "tuple": {
+          "apexParameter": 70,
+          "mode": 1
+        },
+        "given": 55,
+        "givenAt": "ABC",
+        "target": "BAC",
+        "answer": 70
+      },
+      {
+        "tuple": {
+          "apexParameter": 72,
+          "mode": 0
+        },
+        "given": 72,
+        "givenAt": "BAC",
+        "target": "ABC",
+        "answer": 54
+      },
+      {
+        "tuple": {
+          "apexParameter": 72,
+          "mode": 1
+        },
+        "given": 54,
+        "givenAt": "ABC",
+        "target": "BAC",
+        "answer": 72
+      },
+      {
+        "tuple": {
+          "apexParameter": 74,
+          "mode": 0
+        },
+        "given": 74,
+        "givenAt": "BAC",
+        "target": "ABC",
+        "answer": 53
+      },
+      {
+        "tuple": {
+          "apexParameter": 74,
+          "mode": 1
+        },
+        "given": 53,
+        "givenAt": "ABC",
+        "target": "BAC",
+        "answer": 74
+      },
+      {
+        "tuple": {
+          "apexParameter": 76,
+          "mode": 0
+        },
+        "given": 76,
+        "givenAt": "BAC",
+        "target": "ABC",
+        "answer": 52
+      },
+      {
+        "tuple": {
+          "apexParameter": 76,
+          "mode": 1
+        },
+        "given": 52,
+        "givenAt": "ABC",
+        "target": "BAC",
+        "answer": 76
+      },
+      {
+        "tuple": {
+          "apexParameter": 78,
+          "mode": 0
+        },
+        "given": 78,
+        "givenAt": "BAC",
+        "target": "ABC",
+        "answer": 51
+      },
+      {
+        "tuple": {
+          "apexParameter": 78,
+          "mode": 1
+        },
+        "given": 51,
+        "givenAt": "ABC",
+        "target": "BAC",
+        "answer": 78
+      },
+      {
+        "tuple": {
+          "apexParameter": 80,
+          "mode": 0
+        },
+        "given": 80,
+        "givenAt": "BAC",
+        "target": "ABC",
+        "answer": 50
+      },
+      {
+        "tuple": {
+          "apexParameter": 80,
+          "mode": 1
+        },
+        "given": 50,
+        "givenAt": "ABC",
+        "target": "BAC",
+        "answer": 80
+      }
+    ]
+  },
+  "formats": {
+    "shortAnswer": "All42 correct angle-only native prompts/answers; no mandatory worked-proof demand in native short stem.",
+    "multipleChoice": "42 conversions checked:5 distinct options, correct marked angle, degree unit and printed target preserved; sampled distractor values all within interior-angle domain. This is one deterministic choice seed per tuple, not every possible packaging seed.",
+    "descriptive": "42 generic asDescriptive conversions preserve target, answer, solution and figure association. It is a generic prose conversion only, not evidence of native written rubric/coverage. Actual legacy adapter advertises its own formats in route-results.json.",
+    "nativeRoute": "Seeded public generateMiddleProblem traversal found all42 tuples, verified exact grade/unit and determinism; onlyfirst seed for each captured. No new family ID counted.",
+    "adapter": {
+      "id": "legacy:mid:3-2|원과 직선|06",
+      "version": "20261019-inverse-chord-angle-r1",
+      "formats": [
+        "단답형",
+        "객관식"
+      ],
+      "neighbourVersion": "9cfbb8683-r1"
+    },
+    "fullRegistryExecuted": false
+  },
+  "curriculum": {
+    "grade": "중3",
+    "edition": "2015",
+    "cohort": "M3 exam years2025/2026 remain2015;2022 revised M3 implementation begins2027-03-01. No2027+ clearance.",
+    "rolloutReference": {
+      "path": "C:/Users/user/orca/artifacts/outputs/exam-curriculum-primary-20261019-r1/curriculum-reference-circle-revolutions-20261019-r1/official-notice-implementation-extract.json",
+      "sha256": "aabc2137094d94825dba49a01749a5abe33c6c69d860a0ec6a9c64752bb21761",
+      "noticeUrl": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&m=040401"
+    },
+    "primary2015": {
+      "officialUrl": "https://www.moe.go.kr/boardCnts/fileDown.do?m=0404&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84",
+      "document": "MOE2020-236 Book8,2015 revised curriculum",
+      "hwpSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "paragraphArchive": "C:/Users/user/orca/artifacts/outputs/worktree-cleanup-20261012-r1/exam-twin-curriculum-20261008/local-evidence/.qa-artifacts/exam-resume-20261008/sources/moe-2020-236-paragraphs.json",
+      "paragraphArchiveSha256": "185fb860e76e42f33bd5f75158681a1f3f44dc5a63b6036db4886eafcd233c95",
+      "selectedProvisions": [
+        {
+          "code": "9수04-04",
+          "stream": "BodyText/Section0",
+          "record1based": 4264,
+          "textSha256": "72057083877e22d04c018aa6a67fb801ba699d39fe0f3fe08ea654b2e6066054",
+          "meaning": "triangle congruence (optional chord-theorem justification)"
+        },
+        {
+          "code": "9수04-05",
+          "stream": "BodyText/Section0",
+          "record1based": 4272,
+          "textSha256": "2a511890e986c25a906b6d8ad1b4f077e69b5529f0c432ff4bac6d3a5f5c7067",
+          "meaning": "polygon/triangle angle properties"
+        },
+        {
+          "code": "9수04-10",
+          "stream": "BodyText/Section0",
+          "record1based": 4300,
+          "textSha256": "e5227f37a17a14a85951a6c31773d94966b4c1e584965ab7405d142b70e086e0",
+          "meaning": "isosceles-triangle properties"
+        },
+        {
+          "code": "9수04-11",
+          "stream": "BodyText/Section0",
+          "record1based": 4304,
+          "textSha256": "c97dbfedbba5a69096f399a1c04e6bdc1eb85214d7134b3e801c69c89b176ee6",
+          "meaning": "circumcenter/circumcircle for existence"
+        },
+        {
+          "code": "9수04-19",
+          "stream": "BodyText/Section0",
+          "record1based": 4353,
+          "textSha256": "3d96c486a3f2f09a3e5e999dcb121a5fec2532163e6417beee41c6b96dd0bb44",
+          "meaning": "chord properties, including equal center distances"
+        }
+      ]
+    },
+    "limitations": "Official grade-band provisions plus established M3 circle-chord placement support this actual procedure. No raw third-party document/page publication in this audit; own paraphrases/locators/hashes only."
+  },
+  "sevenSurfaces": {
+    "stem": {
+      "status": "passed-M3-2015",
+      "basis": "Same circle, ABC inscribed, center perpendicular feetM/N, equal distances, one supplied angle and distinct requested angle explicitly stated. Both orderings are mathematically complete."
+    },
+    "choices": {
+      "status": "passed-sampled42-MC-packagings",
+      "basis": "Five distinct degree choices; one correct asked angle. No unsupported notation found; not a proof over every choice random seed."
+    },
+    "figuresAndTables": {
+      "status": "passed-all42-analytic-and-actual70mm",
+      "basis": {
+        "all42Viewed": true,
+        "widthCssMm": 70,
+        "deviceScale": 1,
+        "contactSheets": [
+          "contact-1.png",
+          "contact-2.png",
+          "contact-3.png"
+        ],
+        "fullRowsVisible": true,
+        "criticalIssues": [],
+        "localOnly": "SVG/PNG/HTML not committed; mathematical results derive from printed statements, not pixels."
+      }
+    },
+    "notation": {
+      "status": "passed-M3-2015",
+      "basis": "CircleO, perpendicular feet, segment equality,angleBAC/ABC,degree unit and x. No higher-grade student notation or target numeric label at unknown vertex."
+    },
+    "answer": {
+      "status": "passed-all42",
+      "basis": "Unique positive interior angle, exact integerdegrees, correct mode. Answers are not obtained from pixels."
+    },
+    "studentSolution": {
+      "status": "passed-all42-in-grade",
+      "basis": "Equal distances→equal chords→isosceles→180° sum. Native inverse solution explicitly supplies chord theorem; forward relation correct. Generic descriptive conversion not native rubric approval."
+    },
+    "prerequisites": {
+      "status": "passed-with-cited-standards",
+      "basis": "M3 chord property; earlier isosceles andtriangle angle sum. Circumcircle reasoning supports reviewer existence only. Coordinate/trig vector audit is not the student method."
+    }
+  },
+  "findings": [
+    {
+      "id": "F-precision",
+      "severity": "medium",
+      "status": "resolved-in-hash-bound-r2",
+      "basis": "All42 now satisfy chord/distance equality, perpendicular foot and true midpoint residuals below1e-8. R1 required equal distance1e-8 but permitted .012 for foot/midpoint quantization; r2 strengthens all to1e-8. No threshold relaxation. Original22 failures retained in r1."
+    }
+  ],
+  "finalGates": {
+    "mathAngleResult": "passed42",
+    "studentMethodGrade": "supportedM3-2015",
+    "currentFigurePrecision": "passed-strict-analytic-r2",
+    "nativeWrittenRubricApproval": false,
+    "unrelatedFamilyGradeApproval": false,
+    "rightsApproval": false,
+    "fullVerified": 0,
+    "loadable": 0,
+    "rootEdits": 0,
+    "dbWrites": 0,
+    "push": false,
+    "operatingDB": 0
+  },
+  "historicalEvidence": {
+    "commit": "0d9b36cb4c0a9679940194c3771bc3029f73b45d",
+    "reportSha256": "a27f2dcc11ca401ed612a587361c3ac802294d307f0c72955b1cc55259345f3d",
+    "tupleResultsSha256": "9b70754a99f3f06ef1814880c4a3102c5fd28909129686c9d3d1ddaa7a718293",
+    "originalFailures": 22,
+    "originalMaxEqualDistanceError": 0.009396922845542832,
+    "immutable": true
+  },
+  "geometryRecheck": {
+    "threshold": 1e-08,
+    "maxResiduals": {
+      "equalChordError": 5.684341886080802e-14,
+      "equalDistanceError": 1.7763568394002505e-14,
+      "rightFootMErrorPx": 2.5813727214297117e-14,
+      "rightFootNErrorPx": 1.4111269872406415e-14,
+      "footMFromMidpointPx": 4.0194366942304644e-14,
+      "footNFromMidpointPx": 2.0097183471152322e-14
+    },
+    "sourceRepair": "exactPoint uses same analytic circle coordinate convention; raw midpoint removes both intermediate and final r2 quantization."
+  },
+  "actualVisual": {
+    "all42Viewed": true,
+    "widthCssMm": 70,
+    "deviceScale": 1,
+    "contactSheets": [
+      "contact-1.png",
+      "contact-2.png",
+      "contact-3.png"
+    ],
+    "fullRowsVisible": true,
+    "criticalIssues": [],
+    "localOnly": "SVG/PNG/HTML not committed; mathematical results derive from printed statements, not pixels."
+  },
+  "historicalR1Geometry": {
+    "strictRenders": 42,
+    "allGivenAndTargetAnglesAgree": true,
+    "equalChordsPassed": true,
+    "perpendicularFootResidualsWithinLocalCoordinateRounding": true,
+    "exactCenterDistanceEqualityFailedTuples": 22,
+    "affectedApexAngles": [
+      40,
+      42,
+      44,
+      52,
+      54,
+      56,
+      58,
+      64,
+      66,
+      68,
+      80
+    ],
+    "maxDistanceDifferenceSvgUnits": 0.009396922845542832,
+    "rawFailures": "tuple-results.json.failures (22) and route-results.json.failures (same retained findings)",
+    "explanation": "A/B/C are exact on_circle points; M/N are midpoints formed from pre-rounded circle coordinates and rounded again. Independently rounding the two symmetric x coordinates can produce Mx+Nx=240.01 instead of240, so OM and ON need not agree to8 decimal places. This is quantization/asymmetry in construction, not failure of the printed theorem.",
+    "pending": "Parent has requested a later exact analytic midpoint repair. No relaxation of r1 equality assertions is treated as a repair here."
+  },
+  "geometry": {
+    "threshold": 1e-08,
+    "maxResiduals": {
+      "equalChordError": 5.684341886080802e-14,
+      "equalDistanceError": 1.7763568394002505e-14,
+      "rightFootMErrorPx": 2.5813727214297117e-14,
+      "rightFootNErrorPx": 1.4111269872406415e-14,
+      "footMFromMidpointPx": 4.0194366942304644e-14,
+      "footNFromMidpointPx": 2.0097183471152322e-14
+    },
+    "sourceRepair": "exactPoint uses same analytic circle coordinate convention; raw midpoint removes both intermediate and final r2 quantization."
+  },
+  "historicalR1Visual": {
+    "status": "actual42-local-rendered-and-viewed;precision-finding-separate",
+    "strictRenderCount": 42,
+    "strictDroppedCount": 0,
+    "cssWidthMm": 70,
+    "deviceScale": 1,
+    "viewedImages": [
+      "local-render/contact-1.png",
+      "local-render/contact-2.png",
+      "local-render/contact-3.png",
+      "local-render/bottom-rows.png"
+    ],
+    "inspection": "A/B/C,O,M/N and x labels legible. The unknown is at requested vertex, and only supplied angle is numerically labelled. At a=60 the given angle and target happen to equal60; that is a mathematical special case, not an independent target-label leak. Some angle numbers use exterior leader lines (e.g.a62..66 apex labels and a62..80 base labels); leaders remain associated with the correct angle. No critical overlap or missing condition found at70mm. No pixels used to calculate angles.",
+    "captureLimitationResolved": "First contact images clipped their last row;52 and66 both modes were re-viewed completely in bottom-rows.png.",
+    "localOnly": "SVG/PNG/HTML kept in this helper for inspection and hashes only; not included in commit."
+  },
+  "visual": {
+    "all42Viewed": true,
+    "widthCssMm": 70,
+    "deviceScale": 1,
+    "contactSheets": [
+      "contact-1.png",
+      "contact-2.png",
+      "contact-3.png"
+    ],
+    "fullRowsVisible": true,
+    "criticalIssues": [],
+    "localOnly": "SVG/PNG/HTML not committed; mathematical results derive from printed statements, not pixels."
+  }
+}
