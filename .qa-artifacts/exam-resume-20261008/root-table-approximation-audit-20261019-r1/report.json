@@ -1,0 +1,116 @@
+{
+  "audit": "root-table-approximation-audit-20261019-r1",
+  "kind": "independent engine baseline, not blind solve",
+  "status": "failed-exactness; correction-required",
+  "rootHead": "522650bae1db7e44f5cf3da8ee6abe40ade9a2c1",
+  "scope": "3-1|무리수와 실수|09",
+  "domain": {
+    "a2": "every integer100..999",
+    "mult": [
+      10,
+      100
+    ],
+    "actualHandlerCalls": 1800
+  },
+  "results": {
+    "key": "3-1|무리수와 실수|09",
+    "total": 1800,
+    "tableExact": 44,
+    "tableFalseExact": 1756,
+    "scaledExact": 44,
+    "scaledFalseExact": 1756,
+    "roundingFailures": 0,
+    "prescribedValueFailures": 0,
+    "exactA2": [
+      100,
+      121,
+      144,
+      169,
+      196,
+      225,
+      256,
+      289,
+      324,
+      361,
+      400,
+      441,
+      484,
+      529,
+      576,
+      625,
+      676,
+      729,
+      784,
+      841,
+      900,
+      961
+    ],
+    "sourceUnchanged": true,
+    "oracle": "Integer squared comparisons of actual printed decimals; no Math.sqrt in audit oracle. RNG injection exercises actual handler for every tuple."
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "high",
+      "status": "open",
+      "title": "Rounded values presented as exact square-root identities",
+      "locations": [
+        "src/lib/middle/m3Root.ts:968",
+        "src/lib/middle/m3Root.ts:970"
+      ],
+      "evidence": "1756/1800 printed premises and scaled answer equalities fail integer-square exactness.44/1800 are exact. False equality is a statement/solution correctness defect, not floating-point display noise.",
+      "retainedExample": {
+        "a2": 101,
+        "mult": 10,
+        "premise": "sqrt(1.01)=1.005",
+        "squaredPremise": "1005²=1010025, but1.01×1000000=1010000",
+        "answer": "sqrt(101)=10.05",
+        "squaredAnswer": "10.05²=101.0025, not101"
+      },
+      "minimalProposedFix": "State the table entry is rounded to3decimal places and approximate. Explicitly require scaling the supplied table value as the approximation; do not promise final nearest rounding of the exact radical. Preserve exact b=a×m² and sqrt(b)=m sqrt(a), then use approximation only at table substitution/output. Retain family identity and invalidate old recipe versions when wording changes."
+    },
+    {
+      "id": "F2",
+      "severity": "medium",
+      "status": "test-gap-observed",
+      "title": "Existing tests accept numerical proximity without checking exact printed semantics",
+      "location": "src/__tests__/unit/middleM3Root.test.ts:514-519",
+      "evidence": "Actual current396tests pass although1756 statements are false as printed. Root test compares rounded table within.0005 and answer within mult×.0006; it does not establish printed equality.",
+      "proposedRegression": "Exhaust bounded domain with integer squared comparisons; verify supplied-table instruction and approximation wording while preserving exact scaling identities. Include exact roots and nonexact roots, both multipliers."
+    }
+  ],
+  "actualRootTest": {
+    "command": "node node_modules/vitest/vitest.mjs run src/__tests__/unit/middleM3Root.test.ts",
+    "cwd": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008",
+    "exitCode": 0,
+    "testFilesPassed": 1,
+    "testsPassed": 396,
+    "durationSeconds": 13.04,
+    "stdoutSummary": "Test Files1passed;Tests396passed;Start20:30:23;Duration13.04s. This pass does not negate F1."
+  },
+  "method": "Controlled RNG selects all parameter pairs through actual handler. Printed premise/target/answer independently parsed; exact decimal integers squared. Oracle does not call sqrt. Integer half-thousand bounds verify nearest3dp rounding; scaled printed-table-value equality checked independently.",
+  "existenceUniqueness": "Every actual radicand is positive. Each positive principal root exists uniquely. A rounded supplied table value uniquely determines the requested instructed approximation, once that instruction is explicit. Current exact premise is inconsistent in1756cases.",
+  "grade": "M3/2015 square-root scaling applies; wording failure is distinct from outside-grade-method failure. No unrelated family grade certification.",
+  "identityVersion": "Adapter baseline default LEGACY_VERSION=9cfbb8683-r1; only chord has explicit family override. No version edit made; proposed correction must invalidate old manifests.",
+  "sourceIntegrity": {
+    "beforeAfterClosingEqual": true,
+    "files": [
+      "src/lib/middle/m3Root.ts",
+      "src/lib/elementary/rng.ts",
+      "src/lib/examStudy/adapters.ts",
+      "src/lib/examStudy/legacyVerification.ts",
+      "src/lib/examStudy/legacyReinforcement.ts",
+      "src/__tests__/unit/middleM3Root.test.ts"
+    ]
+  },
+  "limitations": [
+    "No original source or DB outputs read.",
+    "Not an end-to-end adapter/catalog/format or seven-surface approval; actual handler content, answer and solution are the bounded subject.",
+    "No rights, source identity, family classification, similarity, native provenance or release clearance.",
+    "Previous q06 source exposure declaration remains in force."
+  ],
+  "operatingDB": 0,
+  "full": 0,
+  "loadable": 0,
+  "noRootEdits": true
+}
