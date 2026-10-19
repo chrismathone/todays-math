@@ -1,0 +1,73 @@
+{
+  "hashes": {
+    "candidate-figure.spec.json": "09a1f9ea5599d03118de7bedac7832d4b112a1a9bfd484ecb41fdd2cafb965ee",
+    "candidate-figure.svg": "5340655f8a589234dd79e7b6d2bce30f5541808de0d7cd465399a5e4c0544158"
+  },
+  "edges": [
+    [
+      30.0,
+      25.0,
+      150.0,
+      25.0
+    ],
+    [
+      150.0,
+      25.0,
+      150.0,
+      145.0
+    ],
+    [
+      150.0,
+      145.0,
+      30.0,
+      145.0
+    ],
+    [
+      30.0,
+      145.0,
+      30.0,
+      25.0
+    ],
+    [
+      210.0,
+      35.0,
+      320.0,
+      35.0
+    ],
+    [
+      320.0,
+      35.0,
+      320.0,
+      145.0
+    ],
+    [
+      320.0,
+      145.0,
+      210.0,
+      145.0
+    ],
+    [
+      210.0,
+      145.0,
+      210.0,
+      35.0
+    ]
+  ],
+  "equalSidesAndRightAngles": true,
+  "labels": [
+    "A",
+    "B"
+  ],
+  "squareSidesGraphicUnits": [
+    120,
+    110
+  ],
+  "independentlySolvedSidesCm": [
+    12,
+    11
+  ],
+  "postSolveCommonGraphicUnitsPerCm": 10,
+  "intendedWidthMm": 70,
+  "interpretation": "350単位幅を70mmで示す模式図。実物大ではない。座標は解答導出に使用せず、代数解確定後の比率一致のみ検査。",
+  "limitations": "SVG/spec構造とラベル位置を検査。印刷実機・ブラウザ描画の実測は未実施。native/rightsは承認しない。"
+}

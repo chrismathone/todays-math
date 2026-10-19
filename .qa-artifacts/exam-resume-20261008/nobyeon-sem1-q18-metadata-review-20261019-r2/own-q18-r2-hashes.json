@@ -1,0 +1,37 @@
+{
+  "inputs": {
+    "verification-inputs.json": "89796cde083d02416cb5fb86870f89fa6879ede76729fd29221e646b0beaaf0e",
+    "verification-manifest.json": "052ee7e55a1aeb52e4422bb5cb4bd3110ea0d6e3201c550a5fa5f41f94df4520",
+    "VERIFY-BRIEF.md": "35f0141b096cf184d92c0fdb4f5da623e99cf1882faa33bff9b2cda745d835b5",
+    "sealed-raw-commit.json": "30ddbf552181f9ca273105d26dfa511e22988fda3b1a7d2d7679961db1b94633",
+    "metadata-format-correction-receipt-r2.json": "df24d8460fc9ea9f73408ce9c3aa652ec31dd97ebb1abfcc893d0199c913eb5e"
+  },
+  "priorHashes": {
+    "raw": "f9d168775141de3ddce531d5896e408a37003f6eb7a17ea99c927ba22499f804",
+    "r1Report": "ecdb0de6e4f634f129f341b16cbe572e6bc7f65ae6d4c2b09e97051f3e4e6491",
+    "r1Calculations": "1c3d691b7472290c2f62a0ea765dd4a7e624b7d1e1077341ebc97fb7d9fe4a97"
+  },
+  "inputsRawR1ReportCalculationsUnchanged": true,
+  "reportSha256": "ffa1fa433da3115ba2be066f80146a8fc61d51fe0e9bf31822090a9876f74dec",
+  "evidenceSha256": "a1f83d1af08452b02e920f037eb50ec309bdcc4d4611b4d895484172b7a761ff",
+  "currentDigests": {
+    "studentDigest": "c1cd4a22095f2b438597b6dd7d857b460ff541578c72f26c5aa882aa3b4ddbf1",
+    "candidateDigest": "477a0843e6ff6d53249dc6aa205d94e4898a7d85b680c1363d3a7303441c8370",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "solveDigest": "268a71d86955cb4f50451eaed8eb804759d3431b848b74e4986c602b214b48d2"
+  },
+  "countDeltas": {
+    "newQuestion": 0,
+    "newBlindSolve": 0,
+    "newMathApproval": 0
+  },
+  "currentState": {
+    "mathApproved": true,
+    "gradeApproved2015M3": true,
+    "checksPassed": 11,
+    "surfacesPassed": 7,
+    "held": true,
+    "formatMismatchResolved": true
+  },
+  "parentGuardAudit": "not run; scope metadata only"
+}

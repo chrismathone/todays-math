@@ -1,0 +1,81 @@
+{
+  "utc": "2026-10-19T13:57:20.283Z",
+  "candidate": {
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group8-r1/candidates/q14.json",
+    "sha256": "67d23068adbfdb03e223dd0a722f9e79a0734c6f6da64697f368c3c6f158200d"
+  },
+  "studentDigest": "2a6e6079a1fde74d5fde8b75e5db733454f87d3d5f6e0f6ab7f9bd09cfb80401",
+  "candidateDigest": "1ff03e30c191a63dd64f4884f77046a3613bce7dd5f0bac3e9163d84dfcbb9ed",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "productCoefficients": [
+    1,
+    1,
+    -12
+  ],
+  "squareCoefficients": [
+    1,
+    -2,
+    1
+  ],
+  "differenceCoefficients": [
+    0,
+    3,
+    -13
+  ],
+  "target": 77,
+  "divisor": 3,
+  "uniqueN": 30,
+  "calculations": [
+    {
+      "n": 28,
+      "firstProduct": 800,
+      "square": 729,
+      "difference": 71,
+      "linear": 71,
+      "satisfies": false
+    },
+    {
+      "n": 29,
+      "firstProduct": 858,
+      "square": 784,
+      "difference": 74,
+      "linear": 74,
+      "satisfies": false
+    },
+    {
+      "n": 30,
+      "firstProduct": 918,
+      "square": 841,
+      "difference": 77,
+      "linear": 77,
+      "satisfies": true
+    },
+    {
+      "n": 31,
+      "firstProduct": 980,
+      "square": 900,
+      "difference": 80,
+      "linear": 80,
+      "satisfies": false
+    },
+    {
+      "n": 32,
+      "firstProduct": 1044,
+      "square": 961,
+      "difference": 83,
+      "linear": 83,
+      "satisfies": false
+    }
+  ],
+  "originalSubstitution": {
+    "product": 918,
+    "square": 841,
+    "difference": 77
+  },
+  "authorOnly": true,
+  "independentReview": false,
+  "newFigures": 0,
+  "newTables": 0,
+  "loadable": 0,
+  "dbWrites": 0
+}

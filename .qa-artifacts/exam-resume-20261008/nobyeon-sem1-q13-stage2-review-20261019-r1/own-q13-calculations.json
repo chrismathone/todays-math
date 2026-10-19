@@ -1,0 +1,121 @@
+{
+  "records": [
+    {
+      "label": "가",
+      "computed": {
+        "1": "19",
+        "2": "-6"
+      },
+      "stated": {
+        "1": "19",
+        "2": "-6"
+      },
+      "computedMinusStated": {},
+      "correct": true
+    },
+    {
+      "label": "나",
+      "computed": {
+        "1": "16",
+        "15": "4"
+      },
+      "stated": {
+        "1": "16",
+        "15": "2"
+      },
+      "computedMinusStated": {
+        "15": "2"
+      },
+      "correct": false
+    },
+    {
+      "label": "다",
+      "computed": {
+        "1": "2"
+      },
+      "stated": {
+        "1": "2"
+      },
+      "computedMinusStated": {},
+      "correct": true
+    },
+    {
+      "label": "라",
+      "computed": {
+        "1": "-1",
+        "7": "-2"
+      },
+      "stated": {
+        "1": "-1",
+        "7": "2"
+      },
+      "computedMinusStated": {
+        "7": "-4"
+      },
+      "correct": false
+    },
+    {
+      "label": "마",
+      "computed": {
+        "1": "2",
+        "15": "-7"
+      },
+      "stated": {
+        "1": "2",
+        "15": "-7"
+      },
+      "computedMinusStated": {},
+      "correct": true
+    }
+  ],
+  "choices": [
+    {
+      "mark": "①",
+      "pair": [
+        "가",
+        "나"
+      ],
+      "exactWrongSet": false
+    },
+    {
+      "mark": "②",
+      "pair": [
+        "가",
+        "다"
+      ],
+      "exactWrongSet": false
+    },
+    {
+      "mark": "③",
+      "pair": [
+        "나",
+        "라"
+      ],
+      "exactWrongSet": true
+    },
+    {
+      "mark": "④",
+      "pair": [
+        "다",
+        "마"
+      ],
+      "exactWrongSet": false
+    },
+    {
+      "mark": "⑤",
+      "pair": [
+        "라",
+        "마"
+      ],
+      "exactWrongSet": false
+    }
+  ],
+  "wrongRecords": [
+    "나",
+    "라"
+  ],
+  "nonzeroErrorProof": "(나)의 실제값-기록값=2√15>0, (라)는 -4√7<0이므로 두 오류가 확실하다.",
+  "domain": "모든 피제곱수는 양수이다. 분모·미지수·길이·단위가 없어 추가 정의역 제외가 없다.",
+  "signs": "(라)는 √7<4이므로 양수×음수로 음수이다. (마)도 √3<2√5이므로 음수이고 2-7√15와 일치한다.",
+  "uniqueness": "다섯 기록 중 나·라만 틀리고, 다섯 보기 중 그 쌍은 ③ 하나뿐이다."
+}

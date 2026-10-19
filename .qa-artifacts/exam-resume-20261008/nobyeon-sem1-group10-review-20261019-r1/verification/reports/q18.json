@@ -1,0 +1,92 @@
+{
+  "status": "pending",
+  "studentDigest": "c1cd4a22095f2b438597b6dd7d857b460ff541578c72f26c5aa882aa3b4ddbf1",
+  "candidateDigest": "06b16db1444c93646ee6896d9566de8ea2a4e882edf727dd10b73abacf08a659",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-independent-q18-stage2-r1-20261019",
+  "solveDigest": "268a71d86955cb4f50451eaed8eb804759d3431b848b74e4986c602b214b48d2",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "reason": "실수 계산 후 두 제곱근을 수직선 점으로 해석하는 요구는2015중3에서 배운 후 해결 가능.",
+      "basis": "MOE9수01-07/09/10, 경기 공식PDF38쪽 실제 중3 대상 제곱근·실수 수직선·근호 연산 배치.",
+      "evidence": "현재 content의 식을 own-q18-current-calculations.json에서 A18로 독립 검산. 두근±3√2가 음/양 위치에 놓임. own-q18-primary-evidence.json actualM3Placement가 동일 요구에 대응."
+    },
+    "choices": {
+      "status": "passed",
+      "reason": "서술형으로 선택지 학습 요구가 없다.",
+      "basis": "실제 questionType서술형, choices 빈 배열. 객관식 체크를 임의 생성하지 않음.",
+      "evidence": "현재 입력 candidate.choices=[] 및 source.choices=[] 확인. 검토의 choicesCorrect는 해당 없음에 대한 일관성 통과이며5개 선택지가 있다는 뜻이 아니다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "reason": "그림·표 없이 수직선을 말로 해석하며 추가 도형 정리나 측정이 없다.",
+      "basis": "경기 공식PDF38쪽 중3 실수를 수직선에 나타내고 위치/차로 대소를 해석하는 학습.",
+      "evidence": "현재 figureArtifacts=[], assets=[]; assetDigest는 빈 배열 SHA와 일치. 봉인 raw의 직접 인쇄 확인과 현재 텍스트 대조; 계산에 픽셀이나 좌표 측정 사용 없음."
+    },
+    "notation": {
+      "status": "passed",
+      "reason": "근호·괄호 제곱·부호·분수 나눗셈 표기는 해당 중학교 수 연산의 표기이다.",
+      "basis": "MOE records3752/3756/3760 양수음수/유리수,3776제곱근,3788근호사칙,3799수직선·역수·절댓값.",
+      "evidence": "현재 -√((-3)²)와(-√18)² 및√((3/4)²)를 각각-3,+18,+3/4로 구분. own-q18-current-calculations.json의 정확유리수 계산과 sign audit 참조. 분모 양수이며0이 아님."
+    },
+    "answer": {
+      "status": "passed",
+      "reason": "6√2는 두 실수 점 사이의 유일한 양의 거리이며 표기도 중3 근호 연산 결과이다.",
+      "basis": "MOE9수01-07/09/10; 실수 수직선 위치와 차의 실제 중3 배치.",
+      "evidence": "봉인 raw answer6\\sqrt{2}와 현재 answer$6\\sqrt2$는 수학적으로 동일. 두근계수[-3,3]에√2를 곱하고 차의 계수6을 정확 계산. 두제곱근의 제곱은18,거리>0."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "reason": "주값/부호→분수 나눗셈→A→두근→거리의 순서가 중3 학생 방법으로 완결된다.",
+      "basis": "MOE9수01-03/05/07/09/10 및 경기 실제 중3 표. 복소수·고등학교 거리공식 불필요.",
+      "evidence": "현재 해설의 모든 단계는 own-q18-current-calculations.json candidateSolutionStepAudit와 일치. 3/4≠0,A18>0,서로다른두근을 확인하고 오른쪽-왼쪽=6√2를 설명. 원문 답을 oracle로 쓰지 않았음."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "reason": "부호 있는 수·수직선·역수와 분수 나눗셈, 제곱근 뜻/성질 및 근호연산을 배운 뒤 배정하는 조건으로 적합하다.",
+      "basis": "MOE 실제 records3752/3756/3760/3776/3784/3788/3799; 경기PDF38쪽은 실수 수직선 위치와 뺄셈/근호 연산을 실제 중3에 배치.",
+      "evidence": "own-q18-primary-evidence.json의 실제 원문 추출/배치 관찰 및 signedNumberPrerequisites를 현재 placementConditions 네 조건과 대조. 중학교군 코드만으로 학년을 추정하지 않고 실제 중3 표를 사용. 미확인 M1 세부학기/학교진도는 인증하지 않음.2022중3 별도pending."
+    }
+  },
+  "evidence": {
+    "currentMath": "own-q18-current-calculations.json",
+    "primary": "own-q18-primary-evidence.json",
+    "rawSha256": "f9d168775141de3ddce531d5896e408a37003f6eb7a17ea99c927ba22499f804",
+    "parentSealCommit": "5eee59972029dee2002e1d4eb9785e794b88712a",
+    "digestBinding": "입력SHA를 manifest와 대조하고 봉인 raw SHA 및 canonical solveDigest를 검증. candidateDigest는 해시 검증 envelope의 정확한 값으로 바인딩; 미공개 projection의 재계산을 주장하지 않음.",
+    "coreComparison": "원문은 -√((-2)²)×(√3)²+(-√15)²÷√((5/6)²)를 계산하여 양수A의 두제곱근을 답한다. 새문항도 주값·음수제곱·분수나눗셈과 두근을 구하는 같은 핵심 절차. 원문의 근 목록에서 새문항의 수직선 두 점 사이 거리로 최종 목표를 바꿔 두근의 위치/차 해석을 추가했다. 수치변경만의 차별성은 아니지만 구조변화는 마지막 해석단계의 확장으로 제한적이다. 원문 정답키는 제공/사용하지 않았다.",
+    "naturalKorean": "서로 다른 두 제곱근을 나타내는 두 점이라는 표현은 양수A의 음/양근을 가리키며, 거리 및 서술 요구가 분명. 후보 해설은 음의 외부부호와 괄호제곱을 명시하여 오해를 줄인다.",
+    "scoreEditorial": "현재 writtenRubric의1+1+1+1=4를 독립 합산. 주값/부호·분모, A계산, 두근, 거리의 네 단계에 대응하므로4점 제안 편집상 타당. 중복 감점/오류이월 운영 기준의 별도 세칙은 미확정.",
+    "difficultyEditorial": "실제 source label하는 보존되어 있다. 현재 기본 제안은 작은 수의 익숙한 근호/분수 계산과 수직선 한 단계만 요구하므로 편집상 타당. 새목표가 한 단계를 추가하므로 원문과 실측 동난도 또는 학습효과 승인은 아니다.",
+    "metadataHold": "questionType서술형/choices[]/서술형4점rubric과 달리 metadata.answerFormat이single-choice로 남아 있다. 실제 답은 scalar math이며 신규 교정버전이 필요. 입력은 수정하지 않는다.",
+    "unitFamilyHold": "근호 계산Unit99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1와 선수 제곱근Unit1682f01b-5293-4672-91cd-07fc02e305ac는 제안 메타데이터일 뿐. 두근의 수직선거리 서술형 목표까지 맞는 exact live definition 확인 없음. familyKeynull 및 키/개수로 의미 인증하지 않는다.",
+    "mathApproved": true,
+    "gradeApproved2015M3": true,
+    "gradeConditions": "제곱근 뜻/성질·근호 사칙·부호와 수직선·분수 나눗셈을 실제로 배운 뒤,2015중3 source2025/practice2026에 한정. 학교중간고사 진도 인증 아님.",
+    "2022M3": "pending separate placement",
+    "difficultyEqualityApproved": false,
+    "metadataApproved": false,
+    "liveFamilyApproved": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false
+  }
+}

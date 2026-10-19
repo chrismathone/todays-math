@@ -1,0 +1,35 @@
+{
+  "utc": "2026-10-19T14:00:43.346Z",
+  "afterParentSeal": "47087ee7154069dca332cf218ce0fb11d042751b",
+  "files": [
+    {
+      "name": "verification-inputs.json",
+      "sha256": "759a5161d2e88c959ffbc762c540da955958a2d96357c8ad4a8ead70977b6d58"
+    },
+    {
+      "name": "verification-manifest.json",
+      "sha256": "fca87fccbe98ea3893d72e21c64221ce73300f28ed1dd8ee04c56c29d344823e"
+    },
+    {
+      "name": "VERIFY-BRIEF.md",
+      "sha256": "0ba3301b43b6101974345048a56594dd96d9c872aee6878ce65f907cda025ca3"
+    },
+    {
+      "name": "sealed-raw-commit.json",
+      "sha256": "2af97281d79b42223c8cbbe30a51ffcee0db4fab9e3c071a4d7ff277377a4c2f"
+    },
+    {
+      "name": "source-q14-only.json",
+      "sha256": "7eb12485447fa9283c0066f4b13effad2b67dbe8685d58cec38080a84ac6fa00"
+    },
+    {
+      "name": "official-locators-reference.json",
+      "sha256": "efd0d3e4fe4b825bfe8ee8eca37d9da5ca3795ec89e1e7f8dbc57e5b93e105cf"
+    }
+  ],
+  "onlyOriginalQuestion14Exposed": true,
+  "providedStudentFilesCopiedExactToParent": true,
+  "rawBytesModified": false,
+  "initialPrepareRejectedHeadAliasBeforeAnyOutput": true,
+  "dbWrites": 0
+}

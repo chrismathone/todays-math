@@ -1,0 +1,356 @@
+{
+  "kind": "current-authored-twin-review-summary/v1",
+  "createdAt": "2026-10-19T14:15:41.525Z",
+  "index": {
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group9-review-20261019-r2/current-index-parent-r1.json",
+    "sha256": "239c4c7814666ef76922bc34678459000e08fc18ab65b233fd1684775270d6c3"
+  },
+  "selectionPolicy": "exact current author ID and raw author hash; prior versions retained, never reused",
+  "counts": {
+    "authored": 1,
+    "historicalCandidateVersions": 1,
+    "independentSolvesBound": 1,
+    "mathematicalVerified": 1,
+    "gradeReviewed": 0,
+    "contentReportVerified": 0,
+    "contentReviewPassed": 0,
+    "contentReviewHeld": 1,
+    "figureInstances": 1,
+    "overallVerified": 0,
+    "loadable": 0,
+    "productionWrites": 0
+  },
+  "contentReviewPassedNumbers": [],
+  "contentReviewHeldNumbers": [
+    16
+  ],
+  "supersededReviews": [],
+  "questions": [
+    {
+      "n": 16,
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group9-r2-q16",
+      "studentDigest": "d704fdbba699602e19ee63267d1ff951ff0063688ea7f1a4e25602fc754ed7bf",
+      "candidateDigest": "10be0270d47918f979ff5e345356e85074c7ed4fc477245060120d1e321b2686",
+      "assetDigest": "b85a6ee8e22a978cfd31cb7d3fb8d75fab07e129ae483fb81238776abc91a0d6",
+      "solveDigest": "09fd5b62c55dcf167712e7830ed2110c1e9f8adb907e30970f32432d9722cc34",
+      "reportSha256": "ab2617eda1cac22c74a487add2e2a35a1c239eaaa8a9d124bccc7981f7c22bbf",
+      "mathematicalVerified": true,
+      "gradeReviewed": false,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "curriculum-stem-basis-missing",
+        "curriculum-choices-basis-missing",
+        "curriculum-figuresAndTables-basis-missing",
+        "curriculum-notation-basis-missing",
+        "curriculum-answer-basis-missing",
+        "curriculum-studentSolution-basis-missing",
+        "curriculum-prerequisites-basis-missing",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "reviewChecks": {
+        "answerCorrect": true,
+        "solutionCorrect": true,
+        "existenceUniqueness": true,
+        "choicesCorrect": true,
+        "figureConsistent": true,
+        "sameCoreConceptAndProcedure": true,
+        "distinctPresentation": true,
+        "naturalKorean": true,
+        "scoreAppropriate": true,
+        "curriculumAppropriate": true,
+        "allStudentSurfacesInScope": true,
+        "unitFamilyFit": false
+      },
+      "sourceReference": {
+        "sourceReferenceId": "source-ref-nobyeon-2025-1-mid-fresh-r6-q16",
+        "inventoryExamId": "personal-651da9aa806ce1c9d1c3ae5539e6038f",
+        "sourceSchoolInternal": "노변중학교",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceContentSha256": "9d2983204c91a56750686c4ae33603ac84ead6dec2d2e2e4d66bea6c58081c57",
+        "sourceManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-651da9aa806ce1c9d1c3ae5539e6038f/source-manifest.local.json",
+          "sha256": "76749165acccb92c23dd167adfbe16377d0c60735ea5568780c328ee469b0cf9"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[노변중][3][25-1-중간][동아강] (완료).hwp",
+            "sha256": "711bf0e161d5f83ee5261c40c48796ebc13f03b0f7f213f4973be00263190e44",
+            "bytes": 579072
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[노변중][3][25-1-중간][동아강] (완료).PDF",
+            "sha256": "b35bc2edff56bc9b92aaecb77f43a403017254cc48f817099badeb1743eca742",
+            "bytes": 154842
+          }
+        ],
+        "originalIdentitySource": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[노변중][3][25-1-중간] (원본)  (흰닭).pdf",
+          "sha256": "0010d2a15529c79f3407d2b8c461787080247e126dc7e725bb8c7eda461ed643",
+          "bytes": 3313997
+        },
+        "hwpAnchor": {
+          "stream": "BodyText/Section0",
+          "recordIndex": 1833,
+          "inflatedByteOffset": 77679,
+          "tag": 71,
+          "level": 1,
+          "payloadSha256": "893ae9c9ff0a0ab12aabb7bfa0823bf03bd72b7fe3ac5504e1f557416227818f"
+        },
+        "originalHeaderObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/reviewer-observations-r1.json",
+          "sha256": "3eeaf1cc90a8677b850169154fc6ddc83c938d9213e63a9419f4636251267e02"
+        },
+        "actualReference": "Original header date2025-04-29 observed earlier;2026 preparation footer is separate. This component has not received original/body/whole-pair identity certification.",
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "sourceCropViewed": false,
+        "sourceBodyVisualCorrespondence": "pending-N-original-access"
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 5,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "계산",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "인수분해",
+            "semester": 1,
+            "orderIndex": 473,
+            "problemCodePrefix": "J30202"
+          },
+          "familyCandidates": [
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:3-1|다항식의 인수분해|01",
+              "family_code": "A01",
+              "live_count": 24
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:3-1|다항식의 인수분해|02",
+              "family_code": "A02",
+              "live_count": 24
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:3-1|다항식의 인수분해|03",
+              "family_code": "A03",
+              "live_count": 24
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:3-1|다항식의 인수분해|04",
+              "family_code": "A04",
+              "live_count": 24
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:3-1|다항식의 인수분해|05",
+              "family_code": "A05",
+              "live_count": 24
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:3-1|다항식의 인수분해|06",
+              "family_code": "A06",
+              "live_count": 24
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:3-1|다항식의 인수분해|07",
+              "family_code": "A07",
+              "live_count": 24
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:3-1|다항식의 인수분해|08",
+              "family_code": "A08",
+              "live_count": 24
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:3-1|다항식의 인수분해|09",
+              "family_code": "A09",
+              "live_count": 24
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:3-1|다항식의 인수분해|50",
+              "family_code": "A10",
+              "live_count": 24
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:3-1|다항식의 인수분해|55W",
+              "family_code": "A11",
+              "live_count": 24
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:manual-20261018|인수분해|F01",
+              "family_code": "A12",
+              "live_count": 10
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:manual-20261018|인수분해|F02",
+              "family_code": "A13",
+              "live_count": 5
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:manual-20261018|인수분해|F03",
+              "family_code": "A14",
+              "live_count": 10
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "native-desc:m3-factor-error-proof-r1",
+              "family_code": "A15",
+              "live_count": 5
+            }
+          ],
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+            "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+          },
+          "evidence": "실제 인수분해 Unit UUID를 연결한다. 기하 표현과 둘레/소수 조건의 결합 목표를 기존 키/개수만으로 family 배정하지 않는다. 정확한 live family와 선수 소수 Unit UUID는 별도 확인 전 보류한다."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "본문·보기·표·해설에 학교명이 없다. 실제 출처 학교는 내부 메타데이터에만 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "new-v2-strict-renderFigureSpec-vendored-engine",
+          "newTables": 0,
+          "newFigures": 1,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "renderingReviewPending": true,
+          "sourceSpecSha256": "09a1f9ea5599d03118de7bedac7832d4b112a1a9bfd484ecb41fdd2cafb965ee",
+          "sourceSvgSha256": "5340655f8a589234dd79e7b6d2bce30f5541808de0d7cd465399a5e4c0544158",
+          "analyticGeometry": "Eight actual edges form two separate squares with scale10px/cm;side lengths120and110pxderivefromsolved12and11;no private numericlabels. Bothcenternames A/B matchstem; mathematical authority remains exact algebra."
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "hasFigure": true,
+        "sourceDifficultyLabelObserved": "중",
+        "prerequisiteUnits": [],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "정사각형 넓이·둘레",
+            "양의 제곱근",
+            "완전제곱식·제곱의 차 인수분해",
+            "소수의 양의 인수 성질",
+            "일차방정식 또는 두 수의 합·차"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "representation",
+          "structure",
+          "inverse-target"
+        ],
+        "before": "두 문자로 나타낸 이차식이 소수라는 조건을 인수분해하여 가능한 자연수 쌍의 곱 중 최솟값을 구한다.",
+        "after": "이차식을 작은 정사각형의 넓이로 표현하고 둘레의 합과 소수인 넓이 차를 결합하여 두 입력 자연수의 곱을 복원한다.",
+        "sharedConcept": "완전제곱식과 제곱의 차 인수분해, 자연수 인수의 곱이 소수인 조건",
+        "sharedProcedure": "y의 이차식을 완전제곱으로 인수분해 →두 제곱의 차를 합차곱으로 분해 →소수의 양의 인수는1과자기자신임을 적용 →자연수 조건 확인",
+        "actualStructuralChange": "소수 이차식만으로 최소 곱을 탐색하던 원문을 두 정사각형의 넓이 차와 둘레 자료로 재구성한다. 완전제곱 인수분해를 한 변 길이의 양의 제곱근으로 해석하고, 둘레 합으로 큰 인수를 정한 뒤 소수 조건에서 작은 인수를 복원한다. 숫자/학교명 교체만이 아니라 대수-기하 표현과 조건 조직이 달라진다.",
+        "domainProof": "x,y가 자연수여서 작은 변y+6은양수인정수이다. A가커서x-(y+6)>0이며, 둘레조건은x+(y+6)=23이다. 넓이차23[x-(y+6)]가소수이면작은인수1이필요충분하다. 합23·차1의양의정수쌍은12,11하나이고y=5이다. 모든x+y=17후보중큰변조건에맞는y1..5를코드로열거해유일성을추가확인했다. 단위는길이cm/둘레cm/넓이cm²로구별하고그림픽셀은계산에쓰지않는다.",
+        "difficultyBasis": "원문 중/5점의 완전제곱식·합차인수분해·소수 조건을 유지한다. 최솟값 탐색 대신 둘레에서 얻는 합 조건과 두 길이의 차를 이용하므로 새로운 상위 학년 방법은 필요 없다. 목표 난이도 적합성은 새 독립 검토 전 제안이다."
+      },
+      "packageDigest": "2065f8971de1215a60ecc10f868e78fb128995ca5301559a68340ed381843714",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-sem1-authoring-group9-r2\\q16.json",
+        "sha256": "dee1e34701a2a74e536eebf5151a282d98add678fb8fe0c131fce2ad12a2eb2b"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "09a1f9ea5599d03118de7bedac7832d4b112a1a9bfd484ecb41fdd2cafb965ee",
+          "svgSha256": "5340655f8a589234dd79e7b6d2bce30f5541808de0d7cd465399a5e4c0544158",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q16-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-sem1-group9-review-20261019-r2\\blind\\solve\\q16.json",
+        "sha256": "0f914891fd7a5caa92c35b65ad1ac70286c72cb82361ee98e42f2b6c604eb1f4"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group9-review-20261019-r2/verification/reports/q16.json",
+        "sha256": "ab2617eda1cac22c74a487add2e2a35a1c239eaaa8a9d124bccc7981f7c22bbf"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group9-review-20261019-r2/verification/verification-manifest.json",
+        "sha256": "f6321309fdb0685c98dfd8696232e1f51be1cd8eea6b7f2109cf30b75d002c10"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group9-review-20261019-r2/blind/blind-manifest.json",
+        "sha256": "7beaf8e5086852d753e5293a30992ba0270aada256f8e5fd4aea3d43548949c5"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group9-review-20261019-r2/package/private/q16/candidate.json",
+        "sha256": "ba2c9e3aa0d29424ce003e7cdf02199c15689cd98bb6f3ad45dba38ac60dc151"
+      },
+      "candidateContentWithoutRelocatedPaths": "20296bad8ab96d5f260c16ae36a5952970a649245ab0a208fcb6b72f070d66ae",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group9-r2/q16.json",
+        "sha256": "dee1e34701a2a74e536eebf5151a282d98add678fb8fe0c131fce2ad12a2eb2b"
+      },
+      "authorCandidateDigest": "b0a6d6edb3ae8612b8bef85698c46cf781aaa97fd5652423053cd5d737882bdf"
+    }
+  ],
+  "reviewBindingDigest": "d1f06c36959def026ee0fad5b7e84293e801000c98f8c4bb5101b5b0d9f306a4",
+  "limits": [
+    "External review reports supply mathematical/curriculum evidence; hashes never calculate correctness",
+    "Source identity/custody, taxonomy, rights/similarity and native reader/provenance remain separate unresolved gates",
+    "No database, writer, operational approval or original-answer oracle"
+  ]
+}

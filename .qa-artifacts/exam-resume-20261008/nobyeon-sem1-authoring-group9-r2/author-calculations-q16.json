@@ -1,0 +1,77 @@
+{
+  "utc": "2026-10-19T14:03:07.748Z",
+  "candidate": {
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group9-r2/q16.json",
+    "sha256": "dee1e34701a2a74e536eebf5151a282d98add678fb8fe0c131fce2ad12a2eb2b"
+  },
+  "studentDigest": "d704fdbba699602e19ee63267d1ff951ff0063688ea7f1a4e25602fc754ed7bf",
+  "candidateDigest": "b0a6d6edb3ae8612b8bef85698c46cf781aaa97fd5652423053cd5d737882bdf",
+  "assetDigest": "b85a6ee8e22a978cfd31cb7d3fb8d75fab07e129ae483fb81238776abc91a0d6",
+  "enumeratedAllBoundedNaturalPairs": [
+    {
+      "x": 16,
+      "y": 1,
+      "small": 7,
+      "perimeterSum": 92,
+      "areaDifference": 207,
+      "prime": false,
+      "product": 16
+    },
+    {
+      "x": 15,
+      "y": 2,
+      "small": 8,
+      "perimeterSum": 92,
+      "areaDifference": 161,
+      "prime": false,
+      "product": 30
+    },
+    {
+      "x": 14,
+      "y": 3,
+      "small": 9,
+      "perimeterSum": 92,
+      "areaDifference": 115,
+      "prime": false,
+      "product": 42
+    },
+    {
+      "x": 13,
+      "y": 4,
+      "small": 10,
+      "perimeterSum": 92,
+      "areaDifference": 69,
+      "prime": false,
+      "product": 52
+    },
+    {
+      "x": 12,
+      "y": 5,
+      "small": 11,
+      "perimeterSum": 92,
+      "areaDifference": 23,
+      "prime": true,
+      "product": 60
+    }
+  ],
+  "accepted": [
+    {
+      "x": 12,
+      "y": 5,
+      "small": 11,
+      "perimeterSum": 92,
+      "areaDifference": 23,
+      "prime": true,
+      "product": 60
+    }
+  ],
+  "answerValue": 60,
+  "figureSpecSha256": "09a1f9ea5599d03118de7bedac7832d4b112a1a9bfd484ecb41fdd2cafb965ee",
+  "figureSvgSha256": "5340655f8a589234dd79e7b6d2bce30f5541808de0d7cd465399a5e4c0544158",
+  "authorOnly": true,
+  "independentReview": false,
+  "newFigures": 1,
+  "newTables": 0,
+  "loadable": 0,
+  "dbWrites": 0
+}

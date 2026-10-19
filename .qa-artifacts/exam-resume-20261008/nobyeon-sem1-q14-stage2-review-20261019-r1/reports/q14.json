@@ -1,0 +1,220 @@
+{
+  "status": "pending",
+  "studentDigest": "2a6e6079a1fde74d5fde8b75e5db733454f87d3d5f6e0f6ab7f9bd09cfb80401",
+  "candidateDigest": "1ff03e30c191a63dd64f4884f77046a3613bce7dd5f0bac3e9163d84dfcbb9ed",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "fresh-independent-codex-q14-stage2-20261019-r1",
+  "solveDigest": "ea9823d9eaf36529cd2fb7a8b303850587c236b3409bb890a6a108c4cdeb1618",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "calculations": {
+      "coefficientOrder": "constant,linear,quadratic",
+      "product": [
+        -12,
+        1,
+        1
+      ],
+      "square": [
+        1,
+        -2,
+        1
+      ],
+      "difference": [
+        -13,
+        3,
+        0
+      ],
+      "equation": "3n-13=77",
+      "root": "30",
+      "choices": [
+        {
+          "mark": "①",
+          "n": 28,
+          "product": 800,
+          "square": 729,
+          "lhs": 71,
+          "residual": -6,
+          "integer": true,
+          "greaterThan3": true,
+          "satisfies": false
+        },
+        {
+          "mark": "②",
+          "n": 29,
+          "product": 858,
+          "square": 784,
+          "lhs": 74,
+          "residual": -3,
+          "integer": true,
+          "greaterThan3": true,
+          "satisfies": false
+        },
+        {
+          "mark": "③",
+          "n": 30,
+          "product": 918,
+          "square": 841,
+          "lhs": 77,
+          "residual": 0,
+          "integer": true,
+          "greaterThan3": true,
+          "satisfies": true
+        },
+        {
+          "mark": "④",
+          "n": 31,
+          "product": 980,
+          "square": 900,
+          "lhs": 80,
+          "residual": 3,
+          "integer": true,
+          "greaterThan3": true,
+          "satisfies": false
+        },
+        {
+          "mark": "⑤",
+          "n": 32,
+          "product": 1044,
+          "square": 961,
+          "lhs": 83,
+          "residual": 6,
+          "integer": true,
+          "greaterThan3": true,
+          "satisfies": false
+        }
+      ],
+      "existence": "n=30은 3보다 큰 정수이고 34×27-29²=918-841=77이다.",
+      "uniqueness": "이차항이 상쇄되어 계수3이 비영인 일차방정식과 동치이다. 유일한 실수해30이 정수/n>3 조건을 만족하므로 조건부 해도 유일하다.",
+      "domain": "원래 다항식은 모든 실수에서 정의된다. 요청 범위는 n∈Z,n>3이고, 분모·근호·단위·도형 조건은 없다. 나누는 수3은0이 아니다.",
+      "sourceProcedureCheck": {
+        "product": 10290,
+        "square": 10201,
+        "difference": 89,
+        "baseline100ProductExpansion": "100²+(5-2)×100-10",
+        "baseline100SquareExpansion": "100²+2×100+1",
+        "purpose": "허용된 원문의 계산 구조/공식 확인용. 원문 답이나 학교를 후보 승인 oracle로 쓰지 않음."
+      }
+    },
+    "answerCorrect": "현재③은 봉인 raw 및 새 계산의n=30과 일치한다.",
+    "solutionCorrect": "현재 해설의 n²+n-12, n²-2n+1 전개→괄호 앞의 음수 분배→이차항 상쇄→3n-13=77→n=30→정수/범위→918-841=77→비영계수 유일성을 단계마다 독립 계산과 대조했다. 모두 정확하다.",
+    "existenceUniqueness": "n=30은 3보다 큰 정수이고 34×27-29²=918-841=77이다. 이차항이 상쇄되어 계수3이 비영인 일차방정식과 동치이다. 유일한 실수해30이 정수/n>3 조건을 만족하므로 조건부 해도 유일하다.",
+    "choicesCorrect": [
+      {
+        "mark": "①",
+        "n": 28,
+        "product": 800,
+        "square": 729,
+        "lhs": 71,
+        "residual": -6,
+        "integer": true,
+        "greaterThan3": true,
+        "satisfies": false
+      },
+      {
+        "mark": "②",
+        "n": 29,
+        "product": 858,
+        "square": 784,
+        "lhs": 74,
+        "residual": -3,
+        "integer": true,
+        "greaterThan3": true,
+        "satisfies": false
+      },
+      {
+        "mark": "③",
+        "n": 30,
+        "product": 918,
+        "square": 841,
+        "lhs": 77,
+        "residual": 0,
+        "integer": true,
+        "greaterThan3": true,
+        "satisfies": true
+      },
+      {
+        "mark": "④",
+        "n": 31,
+        "product": 980,
+        "square": 900,
+        "lhs": 80,
+        "residual": 3,
+        "integer": true,
+        "greaterThan3": true,
+        "satisfies": false
+      },
+      {
+        "mark": "⑤",
+        "n": 32,
+        "product": 1044,
+        "square": 961,
+        "lhs": 83,
+        "residual": 6,
+        "integer": true,
+        "greaterThan3": true,
+        "satisfies": false
+      }
+    ],
+    "figureConsistent": "순수 대수 문항이며 별도 그림·표·단위 가정은 없다. assets=[]이고 봉인 raw의 인쇄 확인과 현재 식/보기가 대응한다.",
+    "sameCoreConceptAndProcedure": "원문은105×98과101²를 공통기준100에서 각각 두 일차식의 곱과 제곱공식으로 계산하여 차를 구하고 공식/결과 진술을 판단한다. 후보도(n+4)(n-3)의 곱 공식과(n-1)²의 제곱공식을 적용해 차의 이차항을 상쇄한다. 제곱항의 부호는+에서-로 달라지지만 같은 제곱공식의 부호 처리를 사용한다. 원문의 공식 정오 진술 선택은 후보에서 요구하지 않으므로 그 부차목표까지 유지한다고 주장하지 않는다.",
+    "distinctPresentation": "고정수의 수치 결과와 공식의 진술 정오를 선택하던 원문에서, 차의 결과77을 알려주고 입력 기준정수n을 역복원한다. 진술 조합 보기를 정수 입력 보기로 바꿔 정보방향과 응답대상을 실질적으로 바꿨다. 숫자교체만이 아니라3n-13=77이라는 역산단계가 생겼다.",
+    "naturalKorean": "n>3인 정수라는 범위,등식,간단히 할 방법과 구할 대상이 자연스럽게 연결된다. n을 길이나 자연수 개수 등 다른 양으로 해석할 이유가 없고 추가조건이나 단위 혼동이 없다.",
+    "curriculumAppropriate": "실제 교육부HWP에서9수02-12(3956)와9수02-05(3916)를 다시 확인했다. 공식 교육청의 실제 중3 곱셈공식 표와 중1 일차방정식 표를 현재 두 전개/상쇄/역산 단계에 각각 적용했다. 학교명이나 학년군코드만으로 승인하지 않는다.",
+    "allStudentSurfacesInScope": "현재 후보의 일곱표면을 각각검토해passed.2015중3 곱셈공식과 해당선수 학습이후로한정하며 학교별중간진도나2022배치는 별도이다.",
+    "unitFamilyFit": "false/pending: key/count와 넓은 Unit주제만으로 두 전개식의 상쇄에서 정수입력을 복원하는 정확한 family목표/domain를 확인할 수 없다. 이번범위에서 엔진정의를 읽지 않았으므로 강제배정하지 않는다.",
+    "scoreAppropriate": "원문 중/4점이라는 제공 관찰과 저자의 응용 제안은 방향상 모순되지 않으며4점은 편집상 타당하다. 두 곱셈공식의 선택·전개,음수분배와상쇄,역산후 정수/범위검산을 요구한다. 원문의 공식진술판단은 사라지고 일차방정식 한단계가 더해져 인지부담은 달라질 수 있다. 중간수준의 응용이라는 편집판단이며 동일실측난도/정답률/학습효과를 보장하지 않는다.",
+    "curriculumSurfaceEvidence": {
+      "stem": "3보다 큰 정수n, 주어진 등식과 곱셈 공식을 이용할 요구가 명확하다. 등식의 겉모양이 이차여도 전개하면 일차가 되어 중3 곱셈/중1 방정식으로 풀린다.",
+      "choices": "28~32의 다섯 보기 모두3보다 큰 정수이다. 원식 좌변71,74,77,80,83을 각각 계산해③만 성립함을 확인했다.",
+      "figuresAndTables": "순수 대수 문항이며 별도 그림·표·단위 가정은 없다. assets=[]이고 봉인 raw의 인쇄 확인과 현재 식/보기가 대응한다.",
+      "notation": "정수n,괄호곱,제곱,등호와77은 중학교 표기이다. 정수조건이 새로운 고등 정수론을 요구하지 않고 계산된 유일해의 성질 확인만 필요하다.",
+      "answer": "유일한 실수해30이 n∈Z,n>3을 만족하며③에 대응한다. 정수해를 추측이나 유한탐색만으로 주장하지 않았다.",
+      "studentSolution": "현재 해설의 n²+n-12, n²-2n+1 전개→괄호 앞의 음수 분배→이차항 상쇄→3n-13=77→n=30→정수/범위→918-841=77→비영계수 유일성을 단계마다 독립 계산과 대조했다. 모두 정확하다.",
+      "prerequisites": "2015 중3 다항식 곱셈공식 학습 이후에 배치하며, 동류항 정리와 중1 일차방정식이 선수이다. 실제 교육청 중1 표에서9수02-05 배치를 확인했다. 이차방정식/근의공식/인수정리/고등 수열 방법은 필요하지 않다."
+    },
+    "officialEvidence": "own-q14-official-evidence.json",
+    "rawSha256": "54fa990caf8f424a5d84e6dc37e7fe1501c36972727d6d00bcab390f098db20a",
+    "localRawCommit": "1dd15862dcd4a8b0362a98a96d084c0beceeb9f7",
+    "parentRawCommit": "47087ee7154069dca332cf218ce0fb11d042751b",
+    "verificationInputsSha256": "759a5161d2e88c959ffbc762c540da955958a2d96357c8ad4a8ead70977b6d58",
+    "digestBinding": "candidateDigest는SHA256검증된verification-inputs의정확한값으로연결. solveDigest는봉인raw객체의sorted-key canonicalJSONSHA256와일치검증.",
+    "pendingReasons": [
+      "정확한livefamily의정의·목표·domain호환성미확정"
+    ],
+    "scope": "허용stage2여섯입력과본인봉인raw및해당공식기준/학년표만사용.루트코드·다른QA·전체sourceManifest·다른원문은열지않음."
+  },
+  "curriculumSurfaces": {
+    "stem": "passed",
+    "choices": "passed",
+    "figuresAndTables": "passed",
+    "notation": "passed",
+    "answer": "passed",
+    "studentSolution": "passed",
+    "prerequisites": "passed"
+  },
+  "mathApproved": true,
+  "gradeApproved2015M3": true,
+  "sameMeasuredDifficultyApproved": false,
+  "year2022M3": "pending-separate-placement-review",
+  "liveFamily": false,
+  "unitFamilyFit": false,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false
+}

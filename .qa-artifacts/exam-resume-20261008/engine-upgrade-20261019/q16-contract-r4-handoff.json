@@ -1,0 +1,25 @@
+{
+  "utc": "2026-10-19T14:16:42.569Z",
+  "files": [
+    {
+      "name": "verification-inputs.json",
+      "sha256": "da8e067901cb0a241e54efc3255c5109b7bed39e533f9aaa470f576fca97e893"
+    },
+    {
+      "name": "verification-manifest.json",
+      "sha256": "03fd9ff3890c65510c4939d1a7eb4abbf570e3b154bd059ad79098460aadbac2"
+    },
+    {
+      "name": "VERIFY-BRIEF.md",
+      "sha256": "0ba3301b43b6101974345048a56594dd96d9c872aee6878ce65f907cda025ca3"
+    },
+    {
+      "name": "sealed-raw-commit.json",
+      "sha256": "26ea09a5649dd1fd90618b608bbad3d7a2b5645083321d1abe543c0717061972"
+    }
+  ],
+  "reason": "R3 seven object surfaces supplied reason but existing strict contract requires basis/evidence. Collected r3 math1/grade0 preserved. Reviewer must create own NEW explicit seven-surface basis report; parent does not edit reports or loosen contract.",
+  "studentCandidateRawUnchanged": true,
+  "newBlindSolve": false,
+  "dbWrites": 0
+}

@@ -1,0 +1,11 @@
+{
+  "utc": "2026-10-19T14:02:37.780Z",
+  "firstAuthorScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-nobyeon-sem1-q16-r1.mjs",
+  "error": "Named ESM import from installed tsx CommonJS TS module did not expose renderFigureSpec; stopped before any directory/assets/candidate writes.",
+  "observedDefaultExportKeys": [
+    "renderFigureSpec"
+  ],
+  "correctedScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-nobyeon-sem1-q16-r2.mjs",
+  "scope": "Only import interop corrected. Existing figure engine remains authoritative. No engine/source/original/dependency edits.",
+  "dbWrites": 0
+}

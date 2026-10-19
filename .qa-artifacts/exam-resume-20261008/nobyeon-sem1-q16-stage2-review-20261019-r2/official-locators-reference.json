@@ -1,0 +1,67 @@
+{
+  "kind": "primary-locators-reference/not-item-approval",
+  "document": "교육부 고시 제2020-236호 별책8 수학과 교육과정 수정(2020.09.11.)",
+  "indexUrl": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=81884&lev=0",
+  "downloadUrl": "https://www.moe.go.kr/boardCnts/fileDown.do?m=&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84",
+  "actualDownloadedSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+  "candidateDocumentHashMatched": true,
+  "extraction": "HTTP download into memory; existing olefile library; FileHeader compression flag; raw-deflate BodyText/Section0; sequential HWP record headers counted1based; text tag67 decoded UTF-16LE. No install and no repository source reads.",
+  "locators": [
+    {
+      "code": "9수01-07",
+      "stream": "BodyText/Section0",
+      "record1based": 3776,
+      "paraphrase": "제곱근 의미와 성질",
+      "appliesTo": "양의 제곱근 및 제곱식의 부호"
+    },
+    {
+      "code": "9수01-10",
+      "stream": "BodyText/Section0",
+      "record1based": 3788,
+      "paraphrase": "근호식 사칙계산",
+      "appliesTo": "두 양의 제곱근의 차"
+    },
+    {
+      "code": "9수02-12",
+      "stream": "BodyText/Section0",
+      "record1based": 3956,
+      "paraphrase": "다항식 곱셈/인수분해",
+      "appliesTo": "전개된 넓이 두 항을 완전제곱식으로 인수분해"
+    },
+    {
+      "code": "9수02-05",
+      "stream": "BodyText/Section0",
+      "record1based": 3916,
+      "paraphrase": "일차방정식 풀이/활용",
+      "appliesTo": "각 구간의 일차방정식과 해 검토"
+    },
+    {
+      "code": "6수03-05",
+      "stream": "BodyText/Section0",
+      "record1based": 3429,
+      "paraphrase": "직사각형/정사각형 넓이",
+      "appliesTo": "넓이=양수인 변의 제곱이라는 기하 표현의 선수"
+    },
+    {
+      "code": "수와 연산 학습 요소",
+      "stream": "BodyText/Section0",
+      "record1based": 3799,
+      "paraphrase": "절댓값, 제곱근, 근호, 실수 등",
+      "appliesTo": "절댓값 표기는 중학교 학습요소. 고등 절댓값 일차부등식 일반해법을 요구하지 않음"
+    }
+  ],
+  "secondaryOfficialCrosscheck": {
+    "url": "https://www.pen.go.kr/upload/main/na/bbs_2448/ntt_1105533/doc_8000v0afc=28vd5=47v17=bdvdd=2320v7428va20c_v7316.pdf",
+    "document": "부산광역시교육청 고시 제2024-4호 중학교 교육과정 편성 운영 지침",
+    "locators": "PDF zero-based page84/printed76, 수와 연산:9수01-07/10; page85/printed77 문자와 식:9수02-05/12",
+    "note": "공식 교육청 재수록 기준과 원교육부 HWP를 교차 확인."
+  },
+  "era": {
+    "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0",
+    "document": "교육부 고시 제2022-33호",
+    "locator": "부칙1 나/다/라, 부칙3",
+    "conclusion": "2025중1→2026중2→2027중3 적용 일정.2025/2026중3는2015,2027중3부터2022. 이 검토는2015중3만 대상으로 하며2022재출판은 별도 검토."
+  },
+  "priorOtherCandidateAnswersIncluded": false,
+  "newGradeReviewRequired": true
+}

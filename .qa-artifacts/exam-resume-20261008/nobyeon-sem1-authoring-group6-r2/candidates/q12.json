@@ -1,0 +1,356 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 12,
+  "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group6-r1-q12",
+  "authorId": "codex-parent-engine-upgrade-20261019",
+  "questionType": "객관식",
+  "score": 4,
+  "content": "두 수 $u=\\dfrac1{\\sqrt5-1}$, $v=\\dfrac1{\\sqrt5+1}$에 대하여\n\n$u^{3}v-uv^{3}+t(u+v)=\\dfrac{13\\sqrt5}{16}$\n\n이 성립할 때, 실수 $t$의 값은?",
+  "choices": [
+    "$-\\dfrac12$",
+    "$0$",
+    "$\\dfrac12$",
+    "$1$",
+    "$\\dfrac32$"
+  ],
+  "answer": "⑤",
+  "solution": "분모를 유리화하면 $u=\\dfrac{\\sqrt5+1}{4}$, $v=\\dfrac{\\sqrt5-1}{4}$이다. 따라서 $u+v=\\dfrac{\\sqrt5}{2}$, $u-v=\\dfrac12$, $uv=\\dfrac14$이다.\n\n공통인수 $uv$로 묶고 합과 차의 곱을 이용하면 $u^{3}v-uv^{3}=uv(u^{2}-v^{2})=uv(u-v)(u+v)$이다. 그 값은 $\\dfrac14\\times\\dfrac12\\times\\dfrac{\\sqrt5}{2}=\\dfrac{\\sqrt5}{16}$이다.\n\n이를 주어진 등식에 대입하면 $\\dfrac{\\sqrt5}{16}+t\\dfrac{\\sqrt5}{2}=\\dfrac{13\\sqrt5}{16}$이다. $\\sqrt5\\ne0$이므로 양변에 $\\dfrac{16}{\\sqrt5}$를 곱하면 $1+8t=13$이다. 따라서 $t=\\dfrac32$이다.\n\n실제로 $t=\\dfrac32$일 때 좌변은 $\\dfrac{\\sqrt5}{16}+\\dfrac32\\times\\dfrac{\\sqrt5}{2}=\\dfrac{13\\sqrt5}{16}$이다. $u+v=\\dfrac{\\sqrt5}{2}$가 $0$이 아니므로 $t$의 값은 하나뿐이다. 두 분모도 $\\sqrt5>1$에 따라 $0$이 아니어서 처음 정의된 두 수는 모두 실수이다.",
+  "figureArtifacts": [],
+  "sourceReference": {
+    "sourceReferenceId": "source-ref-nobyeon-2025-1-mid-fresh-r6-q12",
+    "inventoryExamId": "personal-651da9aa806ce1c9d1c3ae5539e6038f",
+    "sourceSchoolInternal": "노변중학교",
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 1,
+    "sourceContentSha256": "16202ccedfca52b5e21b8d7823e8326692102d08154368025e24f343ebf18da6",
+    "sourceManifest": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-651da9aa806ce1c9d1c3ae5539e6038f/source-manifest.local.json",
+      "sha256": "76749165acccb92c23dd167adfbe16377d0c60735ea5568780c328ee469b0cf9"
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[노변중][3][25-1-중간][동아강] (완료).hwp",
+        "sha256": "711bf0e161d5f83ee5261c40c48796ebc13f03b0f7f213f4973be00263190e44",
+        "bytes": 579072
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[노변중][3][25-1-중간][동아강] (완료).PDF",
+        "sha256": "b35bc2edff56bc9b92aaecb77f43a403017254cc48f817099badeb1743eca742",
+        "bytes": 154842
+      }
+    ],
+    "originalIdentitySource": {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[노변중][3][25-1-중간] (원본)  (흰닭).pdf",
+      "sha256": "0010d2a15529c79f3407d2b8c461787080247e126dc7e725bb8c7eda461ed643",
+      "bytes": 3313997
+    },
+    "hwpAnchor": {
+      "stream": "BodyText/Section0",
+      "recordIndex": 1508,
+      "inflatedByteOffset": 63596,
+      "tag": 71,
+      "level": 1,
+      "payloadSha256": "84816351de0d6f245e4ced25c675f046e7dfad98afbce9b4e3d02b2e1b3b45a0"
+    },
+    "originalHeaderObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/reviewer-observations-r1.json",
+      "sha256": "3eeaf1cc90a8677b850169154fc6ddc83c938d9213e63a9419f4636251267e02"
+    },
+    "actualReference": "Original header date2025-04-29 observed earlier;2026 preparation footer is separate. This component has not received original/body/whole-pair identity certification.",
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false,
+    "sourceCropViewed": false,
+    "sourceBodyVisualCorrespondence": "pending-N-original-access"
+  },
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "structure"
+    ],
+    "before": "두 근호 분수로 정의한 수를 이용해 고정된 다항식 결합의 결과를 직접 계산한다.",
+    "after": "같은 유형의 근호 분수와 곱셈 공식으로 계산한 결합 결과를 조건으로 주고, 합에 곱해지는 실수 계수를 역으로 구한다.",
+    "sharedConcept": "분모의 유리화, 두 수의 합·차·곱, 공통인수 묶기와 합차 공식",
+    "sharedProcedure": "두 분모 유리화 →합/차/곱 계산 →세제곱항의 공통인수와 제곱의 차로 구조 정리 →결합식에 대입",
+    "actualStructuralChange": "원문의 고정 계수 -1인 결합식을 단순 계산하는 대신 결합값을 제공하고 합의 계수 t를 입력으로 복원한다. 모든 핵심 근호 계산·곱셈 공식 단계를 유지하며 새로 요구하는 것은 이미 배운 한 미지수 일차방정식이다. 숫자·이름 교체만으로 차별성을 주장하지 않는다.",
+    "domainProof": "sqrt5>1로두 원래 분모가0이 아니고실수이다. u+v=sqrt5/2>0이므로t를 구할 때 나누거나 양변에16/sqrt5를 곱해도 동치이다. 등식은1+8t=13과 같아서t=3/2가 유일하며 원래 수치에 정확히 대입해 확인했다.",
+    "difficultyBasis": "실제 원문 source 난도는 하/4점이다. 근호 유리화와 고차항을 합·차·곱으로 줄이는 핵심을 유지하지만 계수 역추론이 한 단계 늘었다. 원문과 같은 목표 난도를 확인하기 전 분류값은 보류한다. 작은 분모와 한 근호로 계산을 제한했다는 저자 판단이나 수학·학년 통과를 동일 난도 승인으로 사용하지 않는다."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수01-10",
+      "9수02-12",
+      "9수02-05"
+    ],
+    "officialBasis": {
+      "document": "MOE2020-236 Book8,2015 revised curriculum",
+      "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "stream": "BodyText/Section0",
+      "records1based": [
+        3788,
+        3956,
+        3916
+      ],
+      "primaryStandardCodes": [
+        "9수01-10",
+        "9수02-12",
+        "9수02-05"
+      ]
+    },
+    "legitimateMethodDraft": "근호 분모를 합차 공식으로 유리화하고 합·차·곱을 계산한다. 분배법칙을 거꾸로 사용하여uv를 묶은 뒤 제곱의 차 공식으로 줄인다. 알려진0이 아닌근호값을 약분하여 한 미지수 일차방정식을 푼다. 인수정리·복소수·고등 항등식 미정계수법·근의공식은 필요 없다.",
+    "sevenSurfaces": {
+      "stem": "author-proposed",
+      "choices": "author-proposed",
+      "figureTable": "not-required-pure-algebra",
+      "notation": "author-proposed",
+      "answer": "author-exact-calculated-only",
+      "studentSolution": "author-proposed",
+      "prerequisites": "author-proposed"
+    },
+    "independentReviewPending": true,
+    "authorCannotApprove": true,
+    "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review"
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 1,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 1,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "answerFormat": "single-choice",
+    "score": 4,
+    "source": "transformed",
+    "originProblemId": null,
+    "difficultyProposal": null,
+    "difficultyStatus": "held-source-difficulty-calibration-required",
+    "problemTypeProposal": "계산",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+        "grade": "중3",
+        "chapter": "2. 다항식의 곱셈과 인수분해",
+        "section": "다항식의 곱셈",
+        "semester": 1,
+        "orderIndex": 472,
+        "problemCodePrefix": "J30201"
+      },
+      "familyCandidates": [
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|01",
+          "family_code": "A01",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|02",
+          "family_code": "A02",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|03",
+          "family_code": "A03",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|04",
+          "family_code": "A04",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|05",
+          "family_code": "A05",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|06",
+          "family_code": "A06",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|07",
+          "family_code": "A07",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|08",
+          "family_code": "A08",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|09",
+          "family_code": "A09",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|10",
+          "family_code": "A10",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|11",
+          "family_code": "A11",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|12",
+          "family_code": "A12",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|13",
+          "family_code": "A13",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|14",
+          "family_code": "A14",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|15",
+          "family_code": "A15",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|16",
+          "family_code": "A16",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|17",
+          "family_code": "A17",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|18",
+          "family_code": "A18",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|52V",
+          "family_code": "A20",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:중3|다항식의 곱셈::중3|근호를 포함한 식의 계산",
+          "family_code": "A19",
+          "live_count": 24
+        }
+      ],
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+        "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+      },
+      "evidence": "실제 다항식 곱셈Unit UUID와 근호 계산 선수 Unit을 연결했다. 혼합 A19의 키/개수만으로 새 계수 역추론까지 호환한다고 승인하지 않는다. 실제 정의·목표·방법 검토 전familyKey는null이다."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "본문·보기·표·해설에 학교명이 없다. 실제 출처 학교는 내부 메타데이터에만 보존한다."
+    },
+    "figureAuthoring": {
+      "method": "pure-algebra-no-figure-required",
+      "newTables": 0,
+      "newFigures": 0,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "prerequisiteUnits": [
+      {
+        "id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "근호를 포함한 식의 계산",
+        "semester": 1,
+        "orderIndex": 471,
+        "problemCodePrefix": "J30103"
+      },
+      {
+        "id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+        "grade": "중3",
+        "chapter": "2. 다항식의 곱셈과 인수분해",
+        "section": "인수분해",
+        "semester": 1,
+        "orderIndex": 473,
+        "problemCodePrefix": "J30202"
+      }
+    ],
+    "exactAuthorArithmetic": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/q12-author-radical-calc-r1.json",
+      "sha256": "6a430aa2de79eed235a0cbfe176d6d73f4566c85a01fd7cebb299a3dabbafc54",
+      "independentReview": false
+    },
+    "sourceDifficultyLabelObserved": "하",
+    "previousDifficultyProposal": "응용",
+    "placementConditions": {
+      "sourceExamYear": 2025,
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "근호 분모의 유리화",
+        "다항식의 곱셈 공식",
+        "공통인수로 묶기",
+        "제곱의 차 인수분해",
+        "수치 일차방정식"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    },
+    "metadataRevision": {
+      "revision": 2,
+      "previous": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group6-r1/candidates/q12.json",
+        "sha256": "05c2ca682a6b78cb017202b8d77fd8087ac6083dedc3a38318c00a147dbb9960",
+        "candidateDigest": "f5ecffefe51058ea55aa7d94ac7bac4f51c6e4dec82d6e387df8f11fc38c5e14"
+      },
+      "change": "Correct source difficulty from false 중 description to observed 하; withhold target difficulty; add actual factorization prerequisite Unit and before-assignment conditions.",
+      "studentPayloadChanged": false,
+      "answerSolutionChanged": false,
+      "existingMathAndGradeEvidenceIsNotDifficultyApproval": true
+    }
+  },
+  "candidateRevision": 2
+}

@@ -1,0 +1,121 @@
+{
+  "status": "pending",
+  "studentDigest": "c1cd4a22095f2b438597b6dd7d857b460ff541578c72f26c5aa882aa3b4ddbf1",
+  "candidateDigest": "477a0843e6ff6d53249dc6aa205d94e4898a7d85b680c1363d3a7303441c8370",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-independent-q18-metadata-review-r2-20261019",
+  "solveDigest": "268a71d86955cb4f50451eaed8eb804759d3431b848b74e4986c602b214b48d2",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "reason": "현재 학생 본문은 동일하며,2015중3의 근호 계산과 두 근의 수직선 거리를 구하는 요구이다.",
+      "basis": "MOE2015 records3776/3784/3788; 실제 경기 공식PDF38쪽의 중3 제곱근·실수 수직선·근호 연산 배치.",
+      "evidence": "현재 본문 전체를 metadata delta 역적용 전후 완전 동일성으로 검증. 전체 이전 후보 SHA도 receipt와 일치. A=-6+24=18을 기존 정확 계산과 다시 대조; own-q18-r2-evidence.json canonicalCandidateReconstruction 및 primaryRefs 참조."
+    },
+    "choices": {
+      "status": "passed",
+      "reason": "서술형에 보기와 선택기호가 없으며 수정 descriptor가 실제 요구와 일치한다.",
+      "basis": "현재 questionType서술형/choices[]/answerFormat scalar-with-working. 객관식 요구가 아님.",
+      "evidence": "choices 빈 배열은 이전 후보 복원 값과 정확히 동일. 현재 descriptor 및 answerFormatEvidence는 거리의 단일 근호식과 서술 풀이를 가리킨다. r1의 single-choice 불일치는 r1 보고서에 보존하고 현재만 해소."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "reason": "그림·표는 없으며 수직선은 언어적으로 두 실수 점을 해석하는 대상이다.",
+      "basis": "실제 중3 배치자료 경기PDF38쪽은 실수 수직선과 뺄셈에 의한 대소 해석을 포함.",
+      "evidence": "현재 figureArtifacts=[]와 assets=[]; 이전후보와 동일. assetDigest4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945는 빈 배열 SHA와 일치. 측정 요구 없음."
+    },
+    "notation": {
+      "status": "passed",
+      "reason": "부호·제곱·근호와 분수 나눗셈은 같은 중학교 표기이며 새 descriptor는 학생에게 새 수학 표기를 추가하지 않는다.",
+      "basis": "MOE2015 records3752/3756/3760의 signed-number 연산,3776제곱근,3788근호사칙,3799수직선·역수.",
+      "evidence": "현재 -√((-3)²),(-√18)²,√((3/4)²)와 solution은 이전 후보 복원과 정확히 동일. 주값3,제곱18,분모3/4>0이 r1 계산과 일치. raw의 답 표기6\\sqrt{2}도 그대로 보존."
+    },
+    "answer": {
+      "status": "passed",
+      "reason": "답은 유일한 양의 거리6√2이며 scalar-with-working은 그 형식을 적절히 설명한다.",
+      "basis": "MOE9수01-07/09/10 및 실제 중3 실수 수직선 배치; 새 답형식 label만으로 수학을 승인하지 않음.",
+      "evidence": "현재 answer$6\\sqrt2$가 이전후보와 정확히 같고 봉인 raw6\\sqrt{2}와 수학적으로 같다. 두근±3√2의 차6√2>0을 기존 정확 계산에 다시 대응시켰다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "reason": "해설은 주값과 부호,분수나눗셈,A,두근,거리의 같은 학생 절차를 유지한다.",
+      "basis": "MOE9수01-03/05/07/09/10과 경기 실제 중3표; 고등 좌표거리공식 또는 복소수 불필요.",
+      "evidence": "현재 solution 전체는 역적용한 이전후보와 정확히 동일하고 이전전체SHA 일치로 바인딩. r1 calcs의 여섯 단계 audit에 현재 해설을 다시 대조했다. 3/4≠0,A>0,두근의제곱18,거리양수 모두 유지."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "reason": "부호 있는 수·역수/분수 나눗셈·수직선과 제곱근/근호연산을 실제 배운 뒤 배정하는 조건이다.",
+      "basis": "MOE records3752/3756/3760/3776/3784/3788/3799; 경기PDF38쪽의 실제 중3 실수 수직선·뺄셈·근호연산 배치.",
+      "evidence": "현재 placementConditions와 모든 선수 metadata는 delta 역적용에서 불변. r1의 실제 primary 관찰을 own-q18-r2-evidence.json primaryRefs에 URL/쪽/표준으로 재명시. 학교 중간고사 진도와 미확인 M1세부학기는 인증하지 않음.2027/2022는 계속pending."
+    }
+  },
+  "evidence": {
+    "metadataAudit": "own-q18-r2-evidence.json",
+    "rawSha256": "f9d168775141de3ddce531d5896e408a37003f6eb7a17ea99c927ba22499f804",
+    "parentSealCommit": "5eee59972029dee2002e1d4eb9785e794b88712a",
+    "priorReport": "../nobyeon-sem1-q18-stage2-review-20261019-r1/reports/q18.json",
+    "priorReportSha256": "ecdb0de6e4f634f129f341b16cbe572e6bc7f65ae6d4c2b09e97051f3e4e6491",
+    "priorCalculations": "../nobyeon-sem1-q18-stage2-review-20261019-r1/own-q18-current-calculations.json",
+    "primaryRefs": {
+      "priorActualReviewReport": "../nobyeon-sem1-q18-stage2-review-20261019-r1/reports/q18.json",
+      "priorActualReviewReportSha256": "ecdb0de6e4f634f129f341b16cbe572e6bc7f65ae6d4c2b09e97051f3e4e6491",
+      "moe2015": {
+        "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84",
+        "actualPreviouslyReadDocumentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "records": {
+          "3752": "9수01-03 양수음수/정수유리수",
+          "3756": "9수01-04 수의 대소",
+          "3760": "9수01-05 사칙연산",
+          "3776": "9수01-07 제곱근 뜻/성질",
+          "3784": "9수01-09 실수 대소",
+          "3788": "9수01-10 근호 사칙계산",
+          "3799": "수직선·역수·절댓값 등 학습요소"
+        }
+      },
+      "actualM3Placement": {
+        "url": "https://www.goe.go.kr/resource/old/BBSMSTR_000000030136/BBS_202202101132253081.pdf",
+        "zeroBasedPdfPage": 38,
+        "printedPage": "38",
+        "actualPriorObservation": "중학교3학년 대상으로 제곱근9수01-07, 실수대소9수01-09, 근호사칙9수01-10을 차시별 배치. 실수 수직선 위치와 두 실수의 뺄셈 해석 포함.",
+        "editionBoundary": "2022 발간 자료를2022개정 교육과정으로 오인하지 않음. source2025/practice2026의2015중3에 한정."
+      },
+      "newResearch": false,
+      "approvalRule": "현재 학생 요구를 위 실제 근거/이전 정확계산과 다시 대응시켰다. descriptor 수정 또는 기존 approval true 자체를 근거로 자동 승인하지 않음."
+    },
+    "mathReview": "A18,양의 분모3/4,두근±3√2,거리6√2. 현재 식/답/해설을 봉인 raw와 이전 계산에 재대응시켰다. 이전 답형식 보류 외의 수학 요구가 변경되지 않았다.",
+    "coreAndPresentation": "이미 검토한 원문의 두 제곱근 목록에서 현재 두 점 사이 거리로 바뀐 해석 목표가 그대로다. 근호·부호·제곱·분수 계산과 두근을 찾는 핵심 절차는 유지. 메타데이터 교정 자체를 새 변형이나 새 문항으로 세지 않는다.",
+    "scoreAndDifficulty": "현재1+1+1+1=4점 rubric의 네 criterion이 이전 자체 계산에 기록된 rubric과 정확히 같다. 기본 제안은 익숙한 근호 계산에 수직선 거리 한 단계가 붙는 편집 판단. source하의 실측 동난도/학습효과를 승인하지 않음.",
+    "metadataFormatMismatchResolved": true,
+    "formatCorrectionApproved": true,
+    "metadataApproved": false,
+    "metadataBoundary": "답 형식만 일관성 통과. 전체 assignment/정확한 family 또는 source/rights/native 승인은 아님.",
+    "mathApproved": true,
+    "gradeApproved2015M3": true,
+    "gradeConditions": "2015중3 source2025/practice2026; 수직선·signed-number/분수 나눗셈·제곱근·근호연산 실제 학습 후만 배정. 새 metadata label이나 이전 approval bool을 승인 근거로 사용하지 않음.",
+    "2022M3": "pending separate actual placement",
+    "liveFamilyApproved": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "newBlindSolveCount": 0,
+    "newMathApprovalCount": 0,
+    "newQuestionCount": 0
+  }
+}

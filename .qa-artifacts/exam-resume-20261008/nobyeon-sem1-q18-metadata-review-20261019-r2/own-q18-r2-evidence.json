@@ -1,0 +1,100 @@
+{
+  "scope": "metadata-only current digest review; not fresh blind/new question/new math approval",
+  "inputHashes": {
+    "verification-inputs.json": "89796cde083d02416cb5fb86870f89fa6879ede76729fd29221e646b0beaaf0e",
+    "verification-manifest.json": "052ee7e55a1aeb52e4422bb5cb4bd3110ea0d6e3201c550a5fa5f41f94df4520",
+    "VERIFY-BRIEF.md": "35f0141b096cf184d92c0fdb4f5da623e99cf1882faa33bff9b2cda745d835b5",
+    "sealed-raw-commit.json": "30ddbf552181f9ca273105d26dfa511e22988fda3b1a7d2d7679961db1b94633",
+    "metadata-format-correction-receipt-r2.json": "df24d8460fc9ea9f73408ce9c3aa652ec31dd97ebb1abfcc893d0199c913eb5e"
+  },
+  "canonicalCandidateReconstruction": {
+    "serialization": "UTF8 JSON indent2, ensure_ascii=False, LF, final LF",
+    "currentCandidateSha256": "5a4a6499c75cf6e35f8dc35422075b60d031be7736223d19ab11ddd219e0d578",
+    "priorCandidateReconstructedSha256": "f994563d8ee2e8d1a83281c6845bf6ea95f9fbfaeb766352d65a3b0c2a93221e",
+    "currentAndPreviousMatchReceipt": true,
+    "reversedChanges": [
+      "candidateRevision removed",
+      "metadata.metadataRevision removed",
+      "metadata.answerFormatEvidence removed",
+      "metadata.answerFormat scalar-with-working -> single-choice"
+    ],
+    "studentFieldExactEquality": {
+      "twinExternalId": true,
+      "questionNumber": true,
+      "questionType": true,
+      "content": true,
+      "choices": true,
+      "answer": true,
+      "solution": true,
+      "score": true,
+      "figureArtifacts": true,
+      "writtenRubric": true
+    },
+    "methodLimitation": "이전 input/candidate를 새로 열지 않고 현재 후보에 허용된 delta만 역적용한 전체 바이트 SHA를 receipt의 이전 SHA와 대조했다. receipt의 이전 파일 해시는 부모 제공 provenance이며 이를 별도 이전파일 열람으로 확인했다는 주장은 하지 않는다."
+  },
+  "rawSeal": {
+    "commit": "5eee59972029dee2002e1d4eb9785e794b88712a",
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-q18-clean-blind-20261019-r1/solve/q18.json",
+    "available": true,
+    "rawSha256": "f9d168775141de3ddce531d5896e408a37003f6eb7a17ea99c927ba22499f804"
+  },
+  "priorHashes": {
+    "raw": "f9d168775141de3ddce531d5896e408a37003f6eb7a17ea99c927ba22499f804",
+    "r1Report": "ecdb0de6e4f634f129f341b16cbe572e6bc7f65ae6d4c2b09e97051f3e4e6491",
+    "r1Calculations": "1c3d691b7472290c2f62a0ea765dd4a7e624b7d1e1077341ebc97fb7d9fe4a97"
+  },
+  "primaryRefs": {
+    "priorActualReviewReport": "../nobyeon-sem1-q18-stage2-review-20261019-r1/reports/q18.json",
+    "priorActualReviewReportSha256": "ecdb0de6e4f634f129f341b16cbe572e6bc7f65ae6d4c2b09e97051f3e4e6491",
+    "moe2015": {
+      "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84",
+      "actualPreviouslyReadDocumentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "records": {
+        "3752": "9수01-03 양수음수/정수유리수",
+        "3756": "9수01-04 수의 대소",
+        "3760": "9수01-05 사칙연산",
+        "3776": "9수01-07 제곱근 뜻/성질",
+        "3784": "9수01-09 실수 대소",
+        "3788": "9수01-10 근호 사칙계산",
+        "3799": "수직선·역수·절댓값 등 학습요소"
+      }
+    },
+    "actualM3Placement": {
+      "url": "https://www.goe.go.kr/resource/old/BBSMSTR_000000030136/BBS_202202101132253081.pdf",
+      "zeroBasedPdfPage": 38,
+      "printedPage": "38",
+      "actualPriorObservation": "중학교3학년 대상으로 제곱근9수01-07, 실수대소9수01-09, 근호사칙9수01-10을 차시별 배치. 실수 수직선 위치와 두 실수의 뺄셈 해석 포함.",
+      "editionBoundary": "2022 발간 자료를2022개정 교육과정으로 오인하지 않음. source2025/practice2026의2015중3에 한정."
+    },
+    "newResearch": false,
+    "approvalRule": "현재 학생 요구를 위 실제 근거/이전 정확계산과 다시 대응시켰다. descriptor 수정 또는 기존 approval true 자체를 근거로 자동 승인하지 않음."
+  },
+  "writtenDescriptorAudit": {
+    "questionType": "서술형",
+    "answerFormat": "scalar-with-working",
+    "answerFormatEvidence": "서로 다른 두 실수 제곱근의 거리인 양의 근호식 하나와 서술 풀이를 답한다. 객관식 보기나 선택 기호가 없다.",
+    "actualRequirements": "거리의 근호식 하나와 서술 풀이; choices[]; MC 기호 없음; four-stage written rubric4",
+    "mismatchResolved": true,
+    "rootGuardRuntimeAudit": "미실시. 부모 guard/content counter 코드를 읽거나 새 API를 검증하지 않았음. 이 범위는 실제 metadata consistency만 검토."
+  },
+  "currentCheck": {
+    "A": "18",
+    "twoRoots": "±3√2",
+    "distance": "6√2",
+    "denominator": "3/4>0",
+    "rubricTotal": 4
+  },
+  "newBlindSolveCount": 0,
+  "newMathApprovalCount": 0,
+  "newQuestionCount": 0,
+  "priorR1MismatchPreserved": true,
+  "remainingHolds": [
+    "exact live family",
+    "source identity",
+    "rights",
+    "similarity",
+    "native",
+    "loadable",
+    "2022 M3 actual placement"
+  ]
+}

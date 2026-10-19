@@ -1,0 +1,43 @@
+{
+  "scope": "grade evidence addendum only; not fresh blind; no new math/question approval count",
+  "independentVisualRead": [
+    {
+      "pdfPage1based": 10,
+      "printedPage": "3",
+      "observation": "본문 첫 문단이 2015 개정 교육과정의 초·중학교 수학과 교육과정을 설명함."
+    },
+    {
+      "pdfPage1based": 34,
+      "printedPage": "27",
+      "observation": "소인수분해 단원 개관에 중학교 1학년 자연수의 소인수분해 학습을 명시. 성취기준 연계표의 중학교 1학년 열에 [9수01-01]과 [9수01-02]가 배치됨."
+    },
+    {
+      "pdfPage1based": 35,
+      "printedPage": "28",
+      "observation": "지도계통의 중1학년 열에서 소인수분해 아래 소수·합성수·거듭제곱·소인수 개념을 배움. 아래 중등 연계 설명도 소수·합성수를 새 학습 요소로 구분함."
+    }
+  ],
+  "documentProvenance": {
+    "officialUrl": "https://cdn.kosac.re.kr/files/legacy_data/jnrepo/upload/jnBrdBoard/202306/95b9735c5c8b423c93cde63b11160add_1687408234715.pdf",
+    "actualIndependentStreamHash": "d7e451601e46c72656719f2cb1c50fd1788f26055dbc9b9d931336e054d16f28",
+    "actualBytes": 62389235,
+    "responseContentType": "application/pdf",
+    "hashMatchesLocator": true,
+    "method": "공식 KOSAC CDN URL을 urllib로 직접 열고 65536 byte 청크 단위 SHA256. 전체 PDF를 파일로 저장하지 않음.",
+    "imageProvenanceBoundary": "세 PNG의 바이트 해시는 locator와 독립 대조하고 각 이미지 내용을 직접 열어 확인. PDF로부터 동일 PNG를 재렌더링한 것은 아니며 페이지 대응은 제공된 locator와 이미지 인쇄쪽수/연속 문맥에 의존. 이 제한과 별개로 문서 원본 해시는 독립 일치."
+  },
+  "itemMapping": "q16에서 쓰는 소수의 양의 약수는 1과 자신뿐이라는 기본 성질은 중1 소수 개념의 직접 적용. 23×양의 정수의 소수 여부에 사용하며 고급 정수론이 필요하지 않음. 기존 r2의 초등 넓이·둘레, 중1 방정식, 중3 완전제곱식·제곱의 차 근거와 합쳐 선수학습 후 2015 중3 범위에 적합.",
+  "gradeDecision": "2015 중3 2025/2026: after-prerequisites passed; 학교 중간고사 진도 또는 실측 난도 인증 아님. 2027/2022는 별도 실제 배치 근거 미확보로 pending.",
+  "remainingHolds": [
+    "정확한 mixed live-family 의미/목표 적합성",
+    "소수 prerequisite Unit UUID",
+    "source identity",
+    "rights",
+    "similarity",
+    "native provenance",
+    "loadability"
+  ],
+  "priorPendingPreserved": true,
+  "noNewMathQuestionCount": true,
+  "fullPdfOrImagesCommitted": false
+}

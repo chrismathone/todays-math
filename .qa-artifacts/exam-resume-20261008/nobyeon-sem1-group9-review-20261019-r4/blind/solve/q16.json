@@ -1,0 +1,232 @@
+{
+  "studentDigest": "d704fdbba699602e19ee63267d1ff951ff0063688ea7f1a4e25602fc754ed7bf",
+  "solverId": "fresh-independent-codex-q16-r2-20261019-r1",
+  "answer": "④",
+  "solution": "B의 넓이는 y²+12y+36=(y+6)² cm²이다. y가 자연수이므로 y+6>0이고, B의 한 변은 y+6 cm이다. 둘레의 합에서 4x+4(y+6)=92이므로 x+y+6=23, 즉 x+y=17이다. A의 넓이가 더 크고 두 변이 양수이므로 x>y+6이다. 따라서 넓이 차를 cm² 단위로 나타낸 수는 x²-(y+6)²=(x-y-6)(x+y+6)=23(x-y-6)이다. x-y-6은 양의 정수이다. 23은 소수이고, 이 곱 자체도 소수이려면 x-y-6=1이어야 한다. 따라서 x-y=7이다. x=17-y를 대입하면 17-y-y=7에서 y=5, x=12가 된다. 그러므로 xy=60이고 ④이다. 실제 두 변은12 cm와11 cm로 양수이고, 둘레 합은48+44=92 cm, 넓이 차는144-121=23 cm²여서 모든 조건을 만족한다. 소수 조건으로 차의 다른 양의 정수 인수가1로 정해지고 x+y=17, x-y=7에서 한 쌍만 나오므로 해는 유일하다. 모든 가능한 자연수 쌍은 (x,y)=(16,1),(15,2),(14,3),(13,4),(12,5)이고, 넓이 차의 수는 각각207=23×9,161=23×7,115=23×5,69=23×3,23이다. 마지막 경우만 소수이다. 보기①40,②48,③54는 둘레 조건 x+y=17을 만족하는 양의 정수 곱이 아니고, ⑤66은 (11,6) 또는(6,11)인데 둘 다 A의 넓이가 더 크다는 조건에 맞지 않는다. 그림은 A,B의 정사각형과 라벨만 확인했으며 길이는 그림에서 재지 않았다. 혹시 자연수에0을 포함하는 관례를 쓰더라도 추가 y=0의 경우 넓이 차253=23×11은 소수가 아니어서 답은 변하지 않는다. 길이·둘레의 단위는cm, 넓이는cm²이고 묻는 xy에는 단위를 붙이지 않는다.",
+  "evidence": {
+    "calculations": {
+      "perimeterEquation": "4x+4(y+6)=92",
+      "sideSum": 23,
+      "xySum": 17,
+      "areaDifferenceFactorization": "x²-(y+6)²=(x-y-6)(x+y+6)=23(x-y-6)",
+      "primeReason": "A>B 및 양수인 두변으로x>y+6이다. 따라서x-y-6은양의정수이며넓이차의수23(x-y-6)가소수이려면x-y-6=1이어야한다.",
+      "linearSolution": "x+y=17,x-y=7에서x=12,y=5. 또는x=17-y를대입하여11-2y=1,y=5,x=12.",
+      "feasibleNaturalPairs": [
+        {
+          "x": 16,
+          "y": 1,
+          "sideAcm": 16,
+          "sideBcm": 7,
+          "perimeterSumCm": 92,
+          "areaAcm2": 256,
+          "areaBcm2": 49,
+          "areaDifferenceCm2": 207,
+          "positiveIntegerFactor": 9,
+          "primeFactors": [
+            3,
+            3,
+            23
+          ],
+          "prime": false,
+          "xy": 16
+        },
+        {
+          "x": 15,
+          "y": 2,
+          "sideAcm": 15,
+          "sideBcm": 8,
+          "perimeterSumCm": 92,
+          "areaAcm2": 225,
+          "areaBcm2": 64,
+          "areaDifferenceCm2": 161,
+          "positiveIntegerFactor": 7,
+          "primeFactors": [
+            7,
+            23
+          ],
+          "prime": false,
+          "xy": 30
+        },
+        {
+          "x": 14,
+          "y": 3,
+          "sideAcm": 14,
+          "sideBcm": 9,
+          "perimeterSumCm": 92,
+          "areaAcm2": 196,
+          "areaBcm2": 81,
+          "areaDifferenceCm2": 115,
+          "positiveIntegerFactor": 5,
+          "primeFactors": [
+            5,
+            23
+          ],
+          "prime": false,
+          "xy": 42
+        },
+        {
+          "x": 13,
+          "y": 4,
+          "sideAcm": 13,
+          "sideBcm": 10,
+          "perimeterSumCm": 92,
+          "areaAcm2": 169,
+          "areaBcm2": 100,
+          "areaDifferenceCm2": 69,
+          "positiveIntegerFactor": 3,
+          "primeFactors": [
+            3,
+            23
+          ],
+          "prime": false,
+          "xy": 52
+        },
+        {
+          "x": 12,
+          "y": 5,
+          "sideAcm": 12,
+          "sideBcm": 11,
+          "perimeterSumCm": 92,
+          "areaAcm2": 144,
+          "areaBcm2": 121,
+          "areaDifferenceCm2": 23,
+          "positiveIntegerFactor": 1,
+          "primeFactors": [
+            23
+          ],
+          "prime": true,
+          "xy": 60
+        }
+      ],
+      "uniqueSolution": {
+        "x": 12,
+        "y": 5,
+        "sideAcm": 12,
+        "sideBcm": 11,
+        "perimeterSumCm": 92,
+        "areaAcm2": 144,
+        "areaBcm2": 121,
+        "areaDifferenceCm2": 23,
+        "positiveIntegerFactor": 1,
+        "primeFactors": [
+          23
+        ],
+        "prime": true,
+        "xy": 60
+      },
+      "choices": [
+        {
+          "mark": "①",
+          "xy": 40,
+          "pairsWithNaturalNumbersAndPerimeter": [],
+          "satisfies": false
+        },
+        {
+          "mark": "②",
+          "xy": 48,
+          "pairsWithNaturalNumbersAndPerimeter": [],
+          "satisfies": false
+        },
+        {
+          "mark": "③",
+          "xy": 54,
+          "pairsWithNaturalNumbersAndPerimeter": [],
+          "satisfies": false
+        },
+        {
+          "mark": "④",
+          "xy": 60,
+          "pairsWithNaturalNumbersAndPerimeter": [
+            {
+              "x": 5,
+              "y": 12,
+              "positiveSides": true,
+              "perimeterSumCm": 92,
+              "areaAGreater": false,
+              "areaDifferenceCm2": -299,
+              "primePositiveDifference": false,
+              "allConditions": false
+            },
+            {
+              "x": 12,
+              "y": 5,
+              "positiveSides": true,
+              "perimeterSumCm": 92,
+              "areaAGreater": true,
+              "areaDifferenceCm2": 23,
+              "primePositiveDifference": true,
+              "allConditions": true
+            }
+          ],
+          "satisfies": true
+        },
+        {
+          "mark": "⑤",
+          "xy": 66,
+          "pairsWithNaturalNumbersAndPerimeter": [
+            {
+              "x": 6,
+              "y": 11,
+              "positiveSides": true,
+              "perimeterSumCm": 92,
+              "areaAGreater": false,
+              "areaDifferenceCm2": -253,
+              "primePositiveDifference": false,
+              "allConditions": false
+            },
+            {
+              "x": 11,
+              "y": 6,
+              "positiveSides": true,
+              "perimeterSumCm": 92,
+              "areaAGreater": false,
+              "areaDifferenceCm2": -23,
+              "primePositiveDifference": false,
+              "allConditions": false
+            }
+          ],
+          "satisfies": false
+        }
+      ],
+      "zeroNaturalConventionCheck": {
+        "x": 17,
+        "y": 0,
+        "areaDifferenceCm2": 253,
+        "prime": false,
+        "primeFactors": [
+          11,
+          23
+        ]
+      },
+      "units": "A변x cm,B변(y+6) cm;넓이cm²;둘레합92cm. 소수조건은넓이차를cm²단위로나타낸정수23에적용한다. xy는자연수변수의곱으로단위를붙이지않는다.",
+      "domain": "x,y는자연수이고모든변은양수이다. y+6>0이므로√((y+6)²)=y+6이다. 원식의분모/근호제외조건은없고둘레식에서나누는4,정리중2는비영이다.",
+      "diagramCheck": {
+        "squareChecks": [
+          {
+            "closedFourSides": true,
+            "rightAngles": true,
+            "equalGraphicSides": true,
+            "usedForNumericalLengths": false
+          },
+          {
+            "closedFourSides": true,
+            "rightAngles": true,
+            "equalGraphicSides": true,
+            "usedForNumericalLengths": false
+          }
+        ],
+        "labels": [
+          "A",
+          "B"
+        ],
+        "svgSha256": "5340655f8a589234dd79e7b6d2bce30f5541808de0d7cd465399a5e4c0544158",
+        "numericalLengthSource": "printed algebra only; no pixels or SVG coordinate dimensions used"
+      }
+    },
+    "method": "2015중3 완전제곱식 인수분해·양의제곱근·제곱의차,중1소수와일차방정식",
+    "priorExposure": "정확한새q16r2 문항/정답은읽기전본적없음. 지정된다섯파일만읽고독립계산함. 이전family답·원문·저자·기존proof를oracle로사용하지않음.",
+    "printedCheck": "q16.png의자연수조건,x cm,(y²+12y+36)cm²,A넓이>B,둘레합92cm,넓이차의수소수,다섯보기40/48/54/60/66을직접확인. 그림과SVG는정사각형/라벨검증만사용함.",
+    "studentProblemsSha256": "ed15ecc183cfe8a11ece29f2bd0b82ef44117c3f35efd20a1aafb965175adcbc"
+  },
+  "status": "solved"
+}

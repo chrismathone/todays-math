@@ -1,0 +1,86 @@
+{
+  "status": "pending",
+  "studentDigest": "d704fdbba699602e19ee63267d1ff951ff0063688ea7f1a4e25602fc754ed7bf",
+  "candidateDigest": "10be0270d47918f979ff5e345356e85074c7ed4fc477245060120d1e321b2686",
+  "assetDigest": "b85a6ee8e22a978cfd31cb7d3fb8d75fab07e129ae483fb81238776abc91a0d6",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-independent-q16-primary-grade-addendum-r3-20261019",
+  "solveDigest": "09fd5b62c55dcf167712e7830ed2110c1e9f8adb907e30970f32432d9722cc34",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "scoreAppropriate": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false
+  },
+  "evidence": {
+    "calculations": "../nobyeon-sem1-q16-stage2-review-20261019-r2/own-q16-calculations.json",
+    "figure": "../nobyeon-sem1-q16-stage2-review-20261019-r2/own-q16-figure-evidence.json",
+    "primary": "../nobyeon-sem1-q16-stage2-review-20261019-r2/own-q16-official-evidence.json",
+    "rawSha256": "0f914891fd7a5caa92c35b65ad1ac70286c72cb82361ee98e42f2b6c604eb1f4",
+    "parentSealCommit": "c999b8e7834a9e29dc0cad2b528cc50143b98fb2",
+    "digestBinding": "원본 입력 SHA 및 raw canonical solveDigest 검증. candidateDigest/assetDigest는 해시 검증한 envelope의 정확한 값이며 미공개 projection 재계산을 주장하지 않음.",
+    "coreComparison": "원문 x²-y²-16y-64=x²-(y+8)²의 완전제곱식·제곱의 차·소수 인수 구조를 재사용. 원문 자연수 곱의 최솟값에서 새 문항의 넓이·둘레 조건으로 유일한 두 변을 역산하는 목표로 변경. 단순 수치 치환은 아니며 기하량을 식으로 옮기는 절차가 추가됨.",
+    "wording": "A/B, cm/cm²와 넓이 차의 수라는 표현은 자연스럽고 수 자체의 소수 조건을 명확히 함. 둘레의 합으로 두 변의 합을 얻는 방식은 중학생에게 읽을 수 있음.",
+    "solutionAudit": "양의 제곱근, 양의 정수 인수, 소수 23, 합·차 풀이, 원조건 재대입 모두 타당. 모든 선택지 및 유일성은 별도 계산 파일에서 확인.",
+    "scoreEditorial": "5점 응용 제안은 넓이식 복원→둘레 식→차의 인수분해→소수 조건→합차→재확인으로 여러 연결이 필요하여 편집상 타당. 원문 중과 난도 동등성/실측 정답률 승인 아님.",
+    "familyHold": "인수분해 Unit 068bcc39-0927-4f43-a919-24b61ca425f9는 주개념 관찰. 정확한 혼합 기하·소수 역산 family 정의 미확인, familyKey null. prime prerequisite UUID도 미확인. 키/학교/개수로 의미 인증하지 않음.",
+    "mathApproved": true,
+    "gradeApproved2015M3": true,
+    "gradeStatus": "passed-after-prerequisites-2015-M3-2025-2026",
+    "difficultyEqualityApproved": false,
+    "liveFamilyApproved": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "2022M3": "pending",
+    "priorReport": {
+      "path": "../nobyeon-sem1-q16-stage2-review-20261019-r2/reports/q16.json",
+      "sha256": "9a0d6ab776b47f75aa47d9c7fa755bee4a7e5c63b0da301329981d8dcbbff5a2",
+      "preserved": true
+    },
+    "gradeAddendum": "own-q16-primary-grade-evidence.json",
+    "gradeDecision": "2015 중3 인수분해와 이전 학년 소수·양의 변·넓이·둘레·합차/방정식 절차로 해결. 인쇄 27/28쪽의 실제 중1 소수 배치로 r2 보류 사유 해소. 2022 중3은 pending.",
+    "noNewMathQuestionCount": true,
+    "gradeEvidenceOnly": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "reason": "인쇄식의 자연수·넓이·둘레·완전제곱식·제곱의 차 및 합차 풀이 범위. 세부 계산/도형/공식 근거 파일 참조."
+    },
+    "choices": {
+      "status": "passed",
+      "reason": "인쇄식의 자연수·넓이·둘레·완전제곱식·제곱의 차 및 합차 풀이 범위. 세부 계산/도형/공식 근거 파일 참조."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "reason": "인쇄식의 자연수·넓이·둘레·완전제곱식·제곱의 차 및 합차 풀이 범위. 세부 계산/도형/공식 근거 파일 참조."
+    },
+    "notation": {
+      "status": "passed",
+      "reason": "인쇄식의 자연수·넓이·둘레·완전제곱식·제곱의 차 및 합차 풀이 범위. 세부 계산/도형/공식 근거 파일 참조."
+    },
+    "answer": {
+      "status": "passed",
+      "reason": "인쇄식의 자연수·넓이·둘레·완전제곱식·제곱의 차 및 합차 풀이 범위. 세부 계산/도형/공식 근거 파일 참조."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "reason": "인쇄식의 자연수·넓이·둘레·완전제곱식·제곱의 차 및 합차 풀이 범위. 세부 계산/도형/공식 근거 파일 참조."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "reason": "새로 직접 확인한 공식 2015 자료 인쇄 27~28쪽의 중1 소인수분해/소수·합성수 실제 배치와 기존 초등 넓이·둘레/중1 방정식/중3 인수분해 근거를 결합. 실제 선수학습 후만 배정. UUID 미확인은 metadata binding hold로 별도 유지."
+    }
+  }
+}

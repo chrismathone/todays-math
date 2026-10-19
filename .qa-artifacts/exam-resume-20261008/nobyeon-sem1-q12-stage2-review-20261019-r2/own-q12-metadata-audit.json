@@ -1,0 +1,136 @@
+{
+  "reviewKind": "metadata-only-r2",
+  "freshBlind": false,
+  "newQuestion": false,
+  "countIncrement": 0,
+  "inputHashes": {
+    "verification-inputs.json": "2131ad89938faccc8672e6636bd7d16cfbc1b3d9bcdea5129b662689d65e9938",
+    "verification-manifest.json": "586c54785421ef98751b12d8f9f5c7533f8cf7c5f0c6509ddc79c5b1025ebf1a",
+    "VERIFY-BRIEF.md": "0ba3301b43b6101974345048a56594dd96d9c872aee6878ce65f907cda025ca3",
+    "sealed-raw-commit.json": "8afa759a23a16921991dfc8b5fae428fd1d42ba908506c4a5ad83176180e3754",
+    "source-q12-only.json": "86c0256538f99f5fa7c96f8ebe936d41a55ece4b1ab07de810b61a0963def8b7",
+    "official-locators-reference.json": "efd0d3e4fe4b825bfe8ee8eca37d9da5ca3795ec89e1e7f8dbc57e5b93e105cf",
+    "metadata-correction-receipt-r2.json": "0fbb7b382b166b4751ab90fccd877642f70f7407a3ea481a38b511129cfcdc5d"
+  },
+  "allowedPriorEvidence": {
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem1-q12-clean-blind-20261019-r1\\solve\\q12.json": "d98157688b6eca3a2ca3886e9ec7bde184985d5d7e65105d0c5c1afdb862e9c6",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem1-q12-stage2-review-20261019-r1\\reports\\q12.json": "6ed9f069540b537e8f860b28a9e2d60f38a61caf3fae878d607b92fcd35738e8",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem1-q12-stage2-review-20261019-r1\\own-q12-calculations.json": "90d926b9798afaac00803b482883c6eaae01fd5159340aa6e9a1e40f512f6de9"
+  },
+  "previousCandidateDigest": "f5ecffefe51058ea55aa7d94ac7bac4f51c6e4dec82d6e387df8f11fc38c5e14",
+  "currentCandidateDigest": "21f052e889ed487d0d9d03c22636012d6313f4e0b9da71d7e6f4a93fa30bc3d3",
+  "studentAssetSolveDigestsUnchanged": true,
+  "exactPriorObservedFieldComparisons": [
+    {
+      "field": "twinExternalId",
+      "exactEqual": true,
+      "previousObservedSha256": "754cbf9350d1af11695ef379bc4795c9606f0b6debbea3ea71b50dcc3615e81d",
+      "currentSha256": "754cbf9350d1af11695ef379bc4795c9606f0b6debbea3ea71b50dcc3615e81d"
+    },
+    {
+      "field": "questionNumber",
+      "exactEqual": true,
+      "previousObservedSha256": "6b51d431df5d7f141cbececcf79edf3dd861c3b4069f0b11661a3eefacbba918",
+      "currentSha256": "6b51d431df5d7f141cbececcf79edf3dd861c3b4069f0b11661a3eefacbba918"
+    },
+    {
+      "field": "grade",
+      "exactEqual": true,
+      "previousObservedSha256": "5ccec5608402aa553bd9238307c2e38e6f487c197d158c4a46e44316d306a163",
+      "currentSha256": "5ccec5608402aa553bd9238307c2e38e6f487c197d158c4a46e44316d306a163"
+    },
+    {
+      "field": "curriculum",
+      "exactEqual": true,
+      "previousObservedSha256": "ac4ffc29e03841aa5b1061f064c3a219395ad2a86dde7c5b9f6122c34a7fe833",
+      "currentSha256": "ac4ffc29e03841aa5b1061f064c3a219395ad2a86dde7c5b9f6122c34a7fe833"
+    },
+    {
+      "field": "questionType",
+      "exactEqual": true,
+      "previousObservedSha256": "139be9da645fb07f1c3f01bc0aad346dddc757a2721e088a73fd1e22716277bd",
+      "currentSha256": "139be9da645fb07f1c3f01bc0aad346dddc757a2721e088a73fd1e22716277bd"
+    },
+    {
+      "field": "score",
+      "exactEqual": true,
+      "previousObservedSha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a",
+      "currentSha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+    },
+    {
+      "field": "content",
+      "exactEqual": true,
+      "previousObservedSha256": "772015746a34fe0a2a0700bda440272fba0ad6e98ad8d7c43445cc44901f3d49",
+      "currentSha256": "772015746a34fe0a2a0700bda440272fba0ad6e98ad8d7c43445cc44901f3d49"
+    },
+    {
+      "field": "choices",
+      "exactEqual": true,
+      "previousObservedSha256": "235101f5741ee6f2039258bb228ad40862b7fc1e09c090d1be405ec0b50a1135",
+      "currentSha256": "235101f5741ee6f2039258bb228ad40862b7fc1e09c090d1be405ec0b50a1135"
+    },
+    {
+      "field": "answer",
+      "exactEqual": true,
+      "previousObservedSha256": "0bdef091c479702584f065d3a3714f8a76f851b3f0cf10912f345a5dd930b0a8",
+      "currentSha256": "0bdef091c479702584f065d3a3714f8a76f851b3f0cf10912f345a5dd930b0a8"
+    },
+    {
+      "field": "solution",
+      "exactEqual": true,
+      "previousObservedSha256": "37c70bd05d8facac66c9583efb610f13bc13c7d98b017bee6c364b3193f65875",
+      "currentSha256": "37c70bd05d8facac66c9583efb610f13bc13c7d98b017bee6c364b3193f65875"
+    },
+    {
+      "field": "figureArtifacts",
+      "exactEqual": true,
+      "previousObservedSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "currentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ],
+  "comparisonBoundary": "Prior authored strings/fields are frozen from earlier authorized session read; old r1 verification-inputs and original standalone candidates were not reopened. Raw/r1report/r1calcs are directly hash-bound; complete original candidate file raw-byte diff is not claimed.",
+  "currentCandidateReconstructedUtf8Sha256": "2a33e1413117e023d13fa0e32c37ab93e44516fb09c103afa30b2dff9f510704",
+  "receiptCurrentStandaloneSha256": "2a33e1413117e023d13fa0e32c37ab93e44516fb09c103afa30b2dff9f510704",
+  "reconstructedStandaloneMatchesReceipt": true,
+  "difficultyCorrection": {
+    "observedSource": "하",
+    "priorFalseDescription": "중",
+    "currentSourceDescription": "하/4점",
+    "difficultyProposal": null,
+    "status": "held-source-difficulty-calibration-required",
+    "sameDifficultyApproved": false
+  },
+  "factorizationPrerequisite": {
+    "id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+    "grade": "중3",
+    "chapter": "2. 다항식의 곱셈과 인수분해",
+    "section": "인수분해",
+    "semester": 1,
+    "orderIndex": 473,
+    "problemCodePrefix": "J30202"
+  },
+  "placementConditions": {
+    "sourceExamYear": 2025,
+    "practiceAcademicYear": 2026,
+    "curriculumEdition": "2015",
+    "grade": "중3",
+    "requiresLearnedBeforeAssignment": [
+      "근호 분모의 유리화",
+      "다항식의 곱셈 공식",
+      "공통인수로 묶기",
+      "제곱의 차 인수분해",
+      "수치 일차방정식"
+    ],
+    "schoolMidtermPacingCertified": false,
+    "m3From2027": "pending-separate-2022-grade-placement-review"
+  },
+  "exactArithmeticLhsSqrt5Coefficients": [
+    "-3/16",
+    "1/16",
+    "5/16",
+    "9/16",
+    "13/16"
+  ],
+  "newMathApproval": false,
+  "newGradeApproval": false
+}

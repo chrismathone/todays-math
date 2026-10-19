@@ -1,0 +1,548 @@
+[
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 16,
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group9-r2-q16",
+      "authorId": "codex-parent-engine-upgrade-20261019",
+      "questionType": "객관식",
+      "score": 5,
+      "content": "자연수 $x$, $y$에 대하여 두 정사각형 A, B가 있다. A의 한 변의 길이는 $x\\,\\mathrm{cm}$이고, B의 넓이는 $(y^2+12y+36)\\,\\mathrm{cm}^2$이다. A의 넓이는 B의 넓이보다 크다.\n\n두 정사각형의 둘레의 합이 $92\\,\\mathrm{cm}$이고, 넓이의 차를 $\\mathrm{cm}^2$ 단위로 나타낸 수가 소수일 때, $xy$의 값은?",
+      "choices": [
+        "$40$",
+        "$48$",
+        "$54$",
+        "$60$",
+        "$66$"
+      ],
+      "answer": "④",
+      "solution": "B의 넓이는 $y^2+12y+36=(y+6)^2$이다. $y$가 자연수이므로 $y+6>0$이고, B의 한 변의 길이는 $(y+6)\\,\\mathrm{cm}$이다.\n\n둘레의 합에서 $4x+4(y+6)=92$이므로 $x+y+6=23$이다. A가 더 크므로 $x>y+6$이다.\n\n넓이의 차를 인수분해하면 $x^2-(y+6)^2=\\{x-(y+6)\\}\\{x+(y+6)\\}=23\\{x-(y+6)\\}$이다. $x-(y+6)$은 양의 정수이고 $23$은 소수이다. 이 곱이 소수이려면 $x-(y+6)=1$이어야 한다.\n\n한 변의 길이의 합이 $23$, 차가 $1$이므로 $x=12$, $y+6=11$, $y=5$이다. 실제 둘레의 합은 $4\\times12+4\\times11=92$, 넓이의 차는 $144-121=23$으로 조건을 만족한다. 따라서 $xy=12\\times5=60$이다.",
+      "figureArtifacts": [
+        {
+          "role": "stem",
+          "specPath": "figure-1.spec.json",
+          "svgPath": "figure-1.svg",
+          "intendedWidthMm": 70
+        }
+      ],
+      "sourceReference": {
+        "sourceReferenceId": "source-ref-nobyeon-2025-1-mid-fresh-r6-q16",
+        "inventoryExamId": "personal-651da9aa806ce1c9d1c3ae5539e6038f",
+        "sourceSchoolInternal": "노변중학교",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceContentSha256": "9d2983204c91a56750686c4ae33603ac84ead6dec2d2e2e4d66bea6c58081c57",
+        "sourceManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-651da9aa806ce1c9d1c3ae5539e6038f/source-manifest.local.json",
+          "sha256": "76749165acccb92c23dd167adfbe16377d0c60735ea5568780c328ee469b0cf9"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[노변중][3][25-1-중간][동아강] (완료).hwp",
+            "sha256": "711bf0e161d5f83ee5261c40c48796ebc13f03b0f7f213f4973be00263190e44",
+            "bytes": 579072
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[노변중][3][25-1-중간][동아강] (완료).PDF",
+            "sha256": "b35bc2edff56bc9b92aaecb77f43a403017254cc48f817099badeb1743eca742",
+            "bytes": 154842
+          }
+        ],
+        "originalIdentitySource": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[노변중][3][25-1-중간] (원본)  (흰닭).pdf",
+          "sha256": "0010d2a15529c79f3407d2b8c461787080247e126dc7e725bb8c7eda461ed643",
+          "bytes": 3313997
+        },
+        "hwpAnchor": {
+          "stream": "BodyText/Section0",
+          "recordIndex": 1833,
+          "inflatedByteOffset": 77679,
+          "tag": 71,
+          "level": 1,
+          "payloadSha256": "893ae9c9ff0a0ab12aabb7bfa0823bf03bd72b7fe3ac5504e1f557416227818f"
+        },
+        "originalHeaderObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/reviewer-observations-r1.json",
+          "sha256": "3eeaf1cc90a8677b850169154fc6ddc83c938d9213e63a9419f4636251267e02"
+        },
+        "actualReference": "Original header date2025-04-29 observed earlier;2026 preparation footer is separate. This component has not received original/body/whole-pair identity certification.",
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "sourceCropViewed": false,
+        "sourceBodyVisualCorrespondence": "pending-N-original-access"
+      },
+      "variantDelta": {
+        "modes": [
+          "representation",
+          "structure",
+          "inverse-target"
+        ],
+        "before": "두 문자로 나타낸 이차식이 소수라는 조건을 인수분해하여 가능한 자연수 쌍의 곱 중 최솟값을 구한다.",
+        "after": "이차식을 작은 정사각형의 넓이로 표현하고 둘레의 합과 소수인 넓이 차를 결합하여 두 입력 자연수의 곱을 복원한다.",
+        "sharedConcept": "완전제곱식과 제곱의 차 인수분해, 자연수 인수의 곱이 소수인 조건",
+        "sharedProcedure": "y의 이차식을 완전제곱으로 인수분해 →두 제곱의 차를 합차곱으로 분해 →소수의 양의 인수는1과자기자신임을 적용 →자연수 조건 확인",
+        "actualStructuralChange": "소수 이차식만으로 최소 곱을 탐색하던 원문을 두 정사각형의 넓이 차와 둘레 자료로 재구성한다. 완전제곱 인수분해를 한 변 길이의 양의 제곱근으로 해석하고, 둘레 합으로 큰 인수를 정한 뒤 소수 조건에서 작은 인수를 복원한다. 숫자/학교명 교체만이 아니라 대수-기하 표현과 조건 조직이 달라진다.",
+        "domainProof": "x,y가 자연수여서 작은 변y+6은양수인정수이다. A가커서x-(y+6)>0이며, 둘레조건은x+(y+6)=23이다. 넓이차23[x-(y+6)]가소수이면작은인수1이필요충분하다. 합23·차1의양의정수쌍은12,11하나이고y=5이다. 모든x+y=17후보중큰변조건에맞는y1..5를코드로열거해유일성을추가확인했다. 단위는길이cm/둘레cm/넓이cm²로구별하고그림픽셀은계산에쓰지않는다.",
+        "difficultyBasis": "원문 중/5점의 완전제곱식·합차인수분해·소수 조건을 유지한다. 최솟값 탐색 대신 둘레에서 얻는 합 조건과 두 길이의 차를 이용하므로 새로운 상위 학년 방법은 필요 없다. 목표 난이도 적합성은 새 독립 검토 전 제안이다."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "status": "author-proposed",
+        "standardCodes": [
+          "9수02-12",
+          "9수02-05"
+        ],
+        "officialBasis": {
+          "document": "MOE2020-236 Book8,2015 revised curriculum",
+          "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+          "stream": "BodyText/Section0",
+          "records1based": [
+            3956,
+            3916
+          ],
+          "primaryStandardCodes": [
+            "9수02-12",
+            "9수02-05"
+          ],
+          "primeAndSquarePrerequisites": "author-proposed; require actual primary grade-placement review, no invented locator"
+        },
+        "legitimateMethodDraft": "正의한변과넓이/둘레를해석하고 완전제곱식·제곱의차로인수분해한다. 소수의양의인수 성질로두변의차1을얻고 이미배운합차계산/일차방정식으로두자연수를구한다. 디오판토스방정식·정수론합동식·고등대수·미적분은요구하지않는다.",
+        "sevenSurfaces": {
+          "stem": "author-proposed",
+          "choices": "author-proposed",
+          "figureTable": "new-strict-engine-vector;author-proposed",
+          "notation": "author-proposed",
+          "answer": "author-exact-calculated-only",
+          "studentSolution": "author-proposed",
+          "prerequisites": "author-proposed"
+        },
+        "independentReviewPending": true,
+        "authorCannotApprove": true,
+        "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review"
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 5,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "계산",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "인수분해",
+            "semester": 1,
+            "orderIndex": 473,
+            "problemCodePrefix": "J30202"
+          },
+          "familyCandidates": [
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:3-1|다항식의 인수분해|01",
+              "family_code": "A01",
+              "live_count": 24
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:3-1|다항식의 인수분해|02",
+              "family_code": "A02",
+              "live_count": 24
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:3-1|다항식의 인수분해|03",
+              "family_code": "A03",
+              "live_count": 24
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:3-1|다항식의 인수분해|04",
+              "family_code": "A04",
+              "live_count": 24
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:3-1|다항식의 인수분해|05",
+              "family_code": "A05",
+              "live_count": 24
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:3-1|다항식의 인수분해|06",
+              "family_code": "A06",
+              "live_count": 24
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:3-1|다항식의 인수분해|07",
+              "family_code": "A07",
+              "live_count": 24
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:3-1|다항식의 인수분해|08",
+              "family_code": "A08",
+              "live_count": 24
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:3-1|다항식의 인수분해|09",
+              "family_code": "A09",
+              "live_count": 24
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:3-1|다항식의 인수분해|50",
+              "family_code": "A10",
+              "live_count": 24
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:3-1|다항식의 인수분해|55W",
+              "family_code": "A11",
+              "live_count": 24
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:manual-20261018|인수분해|F01",
+              "family_code": "A12",
+              "live_count": 10
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:manual-20261018|인수분해|F02",
+              "family_code": "A13",
+              "live_count": 5
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "mid:manual-20261018|인수분해|F03",
+              "family_code": "A14",
+              "live_count": 10
+            },
+            {
+              "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+              "family_key": "native-desc:m3-factor-error-proof-r1",
+              "family_code": "A15",
+              "live_count": 5
+            }
+          ],
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+            "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+          },
+          "evidence": "실제 인수분해 Unit UUID를 연결한다. 기하 표현과 둘레/소수 조건의 결합 목표를 기존 키/개수만으로 family 배정하지 않는다. 정확한 live family와 선수 소수 Unit UUID는 별도 확인 전 보류한다."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "본문·보기·표·해설에 학교명이 없다. 실제 출처 학교는 내부 메타데이터에만 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "new-v2-strict-renderFigureSpec-vendored-engine",
+          "newTables": 0,
+          "newFigures": 1,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "renderingReviewPending": true,
+          "sourceSpecSha256": "09a1f9ea5599d03118de7bedac7832d4b112a1a9bfd484ecb41fdd2cafb965ee",
+          "sourceSvgSha256": "5340655f8a589234dd79e7b6d2bce30f5541808de0d7cd465399a5e4c0544158",
+          "analyticGeometry": "Eight actual edges form two separate squares with scale10px/cm;side lengths120and110pxderivefromsolved12and11;no private numericlabels. Bothcenternames A/B matchstem; mathematical authority remains exact algebra."
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "hasFigure": true,
+        "sourceDifficultyLabelObserved": "중",
+        "prerequisiteUnits": [],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "정사각형 넓이·둘레",
+            "양의 제곱근",
+            "완전제곱식·제곱의 차 인수분해",
+            "소수의 양의 인수 성질",
+            "일차방정식 또는 두 수의 합·차"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        }
+      }
+    },
+    "assets": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-sem1-group9-review-20261019-r2\\package\\private\\q16\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-sem1-group9-review-20261019-r2\\package\\private\\q16\\figure-1.svg",
+        "specSha256": "09a1f9ea5599d03118de7bedac7832d4b112a1a9bfd484ecb41fdd2cafb965ee",
+        "svgSha256": "5340655f8a589234dd79e7b6d2bce30f5541808de0d7cd465399a5e4c0544158",
+        "intendedWidthMm": 70,
+        "studentPath": "figures/q16-1.svg"
+      }
+    ],
+    "studentDigest": "d704fdbba699602e19ee63267d1ff951ff0063688ea7f1a4e25602fc754ed7bf",
+    "candidateDigest": "10be0270d47918f979ff5e345356e85074c7ed4fc477245060120d1e321b2686",
+    "assetDigest": "b85a6ee8e22a978cfd31cb7d3fb8d75fab07e129ae483fb81238776abc91a0d6",
+    "independentSolve": {
+      "studentDigest": "d704fdbba699602e19ee63267d1ff951ff0063688ea7f1a4e25602fc754ed7bf",
+      "solverId": "fresh-independent-codex-q16-r2-20261019-r1",
+      "answer": "④",
+      "solution": "B의 넓이는 y²+12y+36=(y+6)² cm²이다. y가 자연수이므로 y+6>0이고, B의 한 변은 y+6 cm이다. 둘레의 합에서 4x+4(y+6)=92이므로 x+y+6=23, 즉 x+y=17이다. A의 넓이가 더 크고 두 변이 양수이므로 x>y+6이다. 따라서 넓이 차를 cm² 단위로 나타낸 수는 x²-(y+6)²=(x-y-6)(x+y+6)=23(x-y-6)이다. x-y-6은 양의 정수이다. 23은 소수이고, 이 곱 자체도 소수이려면 x-y-6=1이어야 한다. 따라서 x-y=7이다. x=17-y를 대입하면 17-y-y=7에서 y=5, x=12가 된다. 그러므로 xy=60이고 ④이다. 실제 두 변은12 cm와11 cm로 양수이고, 둘레 합은48+44=92 cm, 넓이 차는144-121=23 cm²여서 모든 조건을 만족한다. 소수 조건으로 차의 다른 양의 정수 인수가1로 정해지고 x+y=17, x-y=7에서 한 쌍만 나오므로 해는 유일하다. 모든 가능한 자연수 쌍은 (x,y)=(16,1),(15,2),(14,3),(13,4),(12,5)이고, 넓이 차의 수는 각각207=23×9,161=23×7,115=23×5,69=23×3,23이다. 마지막 경우만 소수이다. 보기①40,②48,③54는 둘레 조건 x+y=17을 만족하는 양의 정수 곱이 아니고, ⑤66은 (11,6) 또는(6,11)인데 둘 다 A의 넓이가 더 크다는 조건에 맞지 않는다. 그림은 A,B의 정사각형과 라벨만 확인했으며 길이는 그림에서 재지 않았다. 혹시 자연수에0을 포함하는 관례를 쓰더라도 추가 y=0의 경우 넓이 차253=23×11은 소수가 아니어서 답은 변하지 않는다. 길이·둘레의 단위는cm, 넓이는cm²이고 묻는 xy에는 단위를 붙이지 않는다.",
+      "evidence": {
+        "calculations": {
+          "perimeterEquation": "4x+4(y+6)=92",
+          "sideSum": 23,
+          "xySum": 17,
+          "areaDifferenceFactorization": "x²-(y+6)²=(x-y-6)(x+y+6)=23(x-y-6)",
+          "primeReason": "A>B 및 양수인 두변으로x>y+6이다. 따라서x-y-6은양의정수이며넓이차의수23(x-y-6)가소수이려면x-y-6=1이어야한다.",
+          "linearSolution": "x+y=17,x-y=7에서x=12,y=5. 또는x=17-y를대입하여11-2y=1,y=5,x=12.",
+          "feasibleNaturalPairs": [
+            {
+              "x": 16,
+              "y": 1,
+              "sideAcm": 16,
+              "sideBcm": 7,
+              "perimeterSumCm": 92,
+              "areaAcm2": 256,
+              "areaBcm2": 49,
+              "areaDifferenceCm2": 207,
+              "positiveIntegerFactor": 9,
+              "primeFactors": [
+                3,
+                3,
+                23
+              ],
+              "prime": false,
+              "xy": 16
+            },
+            {
+              "x": 15,
+              "y": 2,
+              "sideAcm": 15,
+              "sideBcm": 8,
+              "perimeterSumCm": 92,
+              "areaAcm2": 225,
+              "areaBcm2": 64,
+              "areaDifferenceCm2": 161,
+              "positiveIntegerFactor": 7,
+              "primeFactors": [
+                7,
+                23
+              ],
+              "prime": false,
+              "xy": 30
+            },
+            {
+              "x": 14,
+              "y": 3,
+              "sideAcm": 14,
+              "sideBcm": 9,
+              "perimeterSumCm": 92,
+              "areaAcm2": 196,
+              "areaBcm2": 81,
+              "areaDifferenceCm2": 115,
+              "positiveIntegerFactor": 5,
+              "primeFactors": [
+                5,
+                23
+              ],
+              "prime": false,
+              "xy": 42
+            },
+            {
+              "x": 13,
+              "y": 4,
+              "sideAcm": 13,
+              "sideBcm": 10,
+              "perimeterSumCm": 92,
+              "areaAcm2": 169,
+              "areaBcm2": 100,
+              "areaDifferenceCm2": 69,
+              "positiveIntegerFactor": 3,
+              "primeFactors": [
+                3,
+                23
+              ],
+              "prime": false,
+              "xy": 52
+            },
+            {
+              "x": 12,
+              "y": 5,
+              "sideAcm": 12,
+              "sideBcm": 11,
+              "perimeterSumCm": 92,
+              "areaAcm2": 144,
+              "areaBcm2": 121,
+              "areaDifferenceCm2": 23,
+              "positiveIntegerFactor": 1,
+              "primeFactors": [
+                23
+              ],
+              "prime": true,
+              "xy": 60
+            }
+          ],
+          "uniqueSolution": {
+            "x": 12,
+            "y": 5,
+            "sideAcm": 12,
+            "sideBcm": 11,
+            "perimeterSumCm": 92,
+            "areaAcm2": 144,
+            "areaBcm2": 121,
+            "areaDifferenceCm2": 23,
+            "positiveIntegerFactor": 1,
+            "primeFactors": [
+              23
+            ],
+            "prime": true,
+            "xy": 60
+          },
+          "choices": [
+            {
+              "mark": "①",
+              "xy": 40,
+              "pairsWithNaturalNumbersAndPerimeter": [],
+              "satisfies": false
+            },
+            {
+              "mark": "②",
+              "xy": 48,
+              "pairsWithNaturalNumbersAndPerimeter": [],
+              "satisfies": false
+            },
+            {
+              "mark": "③",
+              "xy": 54,
+              "pairsWithNaturalNumbersAndPerimeter": [],
+              "satisfies": false
+            },
+            {
+              "mark": "④",
+              "xy": 60,
+              "pairsWithNaturalNumbersAndPerimeter": [
+                {
+                  "x": 5,
+                  "y": 12,
+                  "positiveSides": true,
+                  "perimeterSumCm": 92,
+                  "areaAGreater": false,
+                  "areaDifferenceCm2": -299,
+                  "primePositiveDifference": false,
+                  "allConditions": false
+                },
+                {
+                  "x": 12,
+                  "y": 5,
+                  "positiveSides": true,
+                  "perimeterSumCm": 92,
+                  "areaAGreater": true,
+                  "areaDifferenceCm2": 23,
+                  "primePositiveDifference": true,
+                  "allConditions": true
+                }
+              ],
+              "satisfies": true
+            },
+            {
+              "mark": "⑤",
+              "xy": 66,
+              "pairsWithNaturalNumbersAndPerimeter": [
+                {
+                  "x": 6,
+                  "y": 11,
+                  "positiveSides": true,
+                  "perimeterSumCm": 92,
+                  "areaAGreater": false,
+                  "areaDifferenceCm2": -253,
+                  "primePositiveDifference": false,
+                  "allConditions": false
+                },
+                {
+                  "x": 11,
+                  "y": 6,
+                  "positiveSides": true,
+                  "perimeterSumCm": 92,
+                  "areaAGreater": false,
+                  "areaDifferenceCm2": -23,
+                  "primePositiveDifference": false,
+                  "allConditions": false
+                }
+              ],
+              "satisfies": false
+            }
+          ],
+          "zeroNaturalConventionCheck": {
+            "x": 17,
+            "y": 0,
+            "areaDifferenceCm2": 253,
+            "prime": false,
+            "primeFactors": [
+              11,
+              23
+            ]
+          },
+          "units": "A변x cm,B변(y+6) cm;넓이cm²;둘레합92cm. 소수조건은넓이차를cm²단위로나타낸정수23에적용한다. xy는자연수변수의곱으로단위를붙이지않는다.",
+          "domain": "x,y는자연수이고모든변은양수이다. y+6>0이므로√((y+6)²)=y+6이다. 원식의분모/근호제외조건은없고둘레식에서나누는4,정리중2는비영이다.",
+          "diagramCheck": {
+            "squareChecks": [
+              {
+                "closedFourSides": true,
+                "rightAngles": true,
+                "equalGraphicSides": true,
+                "usedForNumericalLengths": false
+              },
+              {
+                "closedFourSides": true,
+                "rightAngles": true,
+                "equalGraphicSides": true,
+                "usedForNumericalLengths": false
+              }
+            ],
+            "labels": [
+              "A",
+              "B"
+            ],
+            "svgSha256": "5340655f8a589234dd79e7b6d2bce30f5541808de0d7cd465399a5e4c0544158",
+            "numericalLengthSource": "printed algebra only; no pixels or SVG coordinate dimensions used"
+          }
+        },
+        "method": "2015중3 완전제곱식 인수분해·양의제곱근·제곱의차,중1소수와일차방정식",
+        "priorExposure": "정확한새q16r2 문항/정답은읽기전본적없음. 지정된다섯파일만읽고독립계산함. 이전family답·원문·저자·기존proof를oracle로사용하지않음.",
+        "printedCheck": "q16.png의자연수조건,x cm,(y²+12y+36)cm²,A넓이>B,둘레합92cm,넓이차의수소수,다섯보기40/48/54/60/66을직접확인. 그림과SVG는정사각형/라벨검증만사용함.",
+        "studentProblemsSha256": "ed15ecc183cfe8a11ece29f2bd0b82ef44117c3f35efd20a1aafb965175adcbc"
+      },
+      "status": "solved"
+    },
+    "solveDigest": "09fd5b62c55dcf167712e7830ed2110c1e9f8adb907e30970f32432d9722cc34"
+  }
+]

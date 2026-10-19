@@ -1,0 +1,111 @@
+{
+  "status": "pending",
+  "studentDigest": "d704fdbba699602e19ee63267d1ff951ff0063688ea7f1a4e25602fc754ed7bf",
+  "candidateDigest": "10be0270d47918f979ff5e345356e85074c7ed4fc477245060120d1e321b2686",
+  "assetDigest": "b85a6ee8e22a978cfd31cb7d3fb8d75fab07e129ae483fb81238776abc91a0d6",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-independent-q16-contract-review-r4-20261019",
+  "solveDigest": "09fd5b62c55dcf167712e7830ed2110c1e9f8adb907e30970f32432d9722cc34",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "scoreAppropriate": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false
+  },
+  "evidence": {
+    "calculations": "../nobyeon-sem1-q16-stage2-review-20261019-r2/own-q16-calculations.json",
+    "figure": "../nobyeon-sem1-q16-stage2-review-20261019-r2/own-q16-figure-evidence.json",
+    "primary": "../nobyeon-sem1-q16-stage2-review-20261019-r2/own-q16-official-evidence.json",
+    "rawSha256": "0f914891fd7a5caa92c35b65ad1ac70286c72cb82361ee98e42f2b6c604eb1f4",
+    "parentSealCommit": "c999b8e7834a9e29dc0cad2b528cc50143b98fb2",
+    "digestBinding": "원본 입력 SHA 및 raw canonical solveDigest 검증. candidateDigest/assetDigest는 해시 검증한 envelope의 정확한 값이며 미공개 projection 재계산을 주장하지 않음.",
+    "coreComparison": "원문 x²-y²-16y-64=x²-(y+8)²의 완전제곱식·제곱의 차·소수 인수 구조를 재사용. 원문 자연수 곱의 최솟값에서 새 문항의 넓이·둘레 조건으로 유일한 두 변을 역산하는 목표로 변경. 단순 수치 치환은 아니며 기하량을 식으로 옮기는 절차가 추가됨.",
+    "wording": "A/B, cm/cm²와 넓이 차의 수라는 표현은 자연스럽고 수 자체의 소수 조건을 명확히 함. 둘레의 합으로 두 변의 합을 얻는 방식은 중학생에게 읽을 수 있음.",
+    "solutionAudit": "양의 제곱근, 양의 정수 인수, 소수 23, 합·차 풀이, 원조건 재대입 모두 타당. 모든 선택지 및 유일성은 별도 계산 파일에서 확인.",
+    "scoreEditorial": "5점 응용 제안은 넓이식 복원→둘레 식→차의 인수분해→소수 조건→합차→재확인으로 여러 연결이 필요하여 편집상 타당. 원문 중과 난도 동등성/실측 정답률 승인 아님.",
+    "familyHold": "인수분해 Unit 068bcc39-0927-4f43-a919-24b61ca425f9는 주개념 관찰. 정확한 혼합 기하·소수 역산 family 정의 미확인, familyKey null. prime prerequisite UUID도 미확인. 키/학교/개수로 의미 인증하지 않음.",
+    "mathApproved": true,
+    "gradeApproved2015M3": true,
+    "gradeStatus": "passed-after-prerequisites-2015-M3-2025-2026",
+    "difficultyEqualityApproved": false,
+    "liveFamilyApproved": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "2022M3": "pending",
+    "priorReport": {
+      "path": "../nobyeon-sem1-q16-primary-grade-addendum-20261019-r3/reports/q16.json",
+      "sha256": "ab2617eda1cac22c74a487add2e2a35a1c239eaaa8a9d124bccc7981f7c22bbf",
+      "preserved": true
+    },
+    "gradeAddendum": "../nobyeon-sem1-q16-primary-grade-addendum-20261019-r3/own-q16-primary-grade-evidence.json",
+    "gradeDecision": "2015 중3 인수분해와 이전 학년 소수·양의 변·넓이·둘레·합차/방정식 절차로 해결. 인쇄 27/28쪽의 실제 중1 소수 배치로 r2 보류 사유 해소. 2022 중3은 pending.",
+    "noNewMathQuestionCount": true,
+    "gradeEvidenceOnly": true,
+    "contractAddendum": {
+      "basis": "현재 입력과 봉인 raw를 다시 대조한 뒤 일곱 표면 각각에 구체적인 학생 요구, 실제 표준/학년 배치, 해당 검산/페이지 관찰을 basis와 evidence로 기록. 필드 유무가 학년 승인의 증거를 대신하지 않는다.",
+      "noNewResearch": true,
+      "priorR2R3Preserved": true,
+      "noNewMathOrQuestionCount": true,
+      "currentInputSha256": "da8e067901cb0a241e54efc3255c5109b7bed39e533f9aaa470f576fca97e893",
+      "candidateAndAssetHashesEqualR2": true,
+      "assetPathDifference": "r4 package source paths replace r2 paths; not opened; role/hashes/width/studentPath equal",
+      "initialCheckLimitation": "Full assets equality initially failed solely on source paths, then bounded projection comparison verified actual hashes and properties",
+      "basisReportSha256": "ab2617eda1cac22c74a487add2e2a35a1c239eaaa8a9d124bccc7981f7c22bbf"
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "reason": "2015 중3에서 선수학습 후 읽고 식으로 옮길 수 있는 자연수·정사각형 넓이·둘레 조건이다.",
+      "basis": "MOE 2015 [6수03-03~05], [9수01-07], [9수02-12]; 인천 공식 자료 PDF90쪽(0-based89)의 실제 중3 인수분해 배치.",
+      "evidence": "현재 content의 B넓이=y²+12y+36=(y+6)², 양의 변 y+6, 둘레 합92에서 두 변 합23. r2 own-q16-calculations.json steps 및 own-q16-official-evidence.json actualRecords3421/3425/3429/3776/3956, actualPlacementRead를 대조했다."
+    },
+    "choices": {
+      "status": "passed",
+      "reason": "다섯 선택지는 자연수 곱이며 추가 학년 개념을 요구하지 않는다.",
+      "basis": "자연수 곱과 기존 인수분해 조건 적용; 선택지 자체의 수와 연산은 중3 이전 수 연산 범위.",
+      "evidence": "현재 choices 40/48/54/60/66를 r2 own-q16-calculations.json allChoices와 대조. x+y=17에서 앞 세 수는 가능한 쌍 없음, 60은 (12,5)만 A>B, 66의 두 쌍은 A>B 불충족. 다른 선택지 또는 고급 방정식 풀이 불필요."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "reason": "A/B 정사각형만 제시하는 보조 그림으로 추가 기하 정리나 측정이 필요 없다.",
+      "basis": "초등 [6수03-03~05] 정사각형 넓이·둘레 및 단위. 길이는 인쇄 대수식으로 구한다.",
+      "evidence": "r2 own-q16-figure-evidence.json: spec SHA09a1f9ea5599d03118de7bedac7832d4b112a1a9bfd484ecb41fdd2cafb965ee, SVG SHA5340655f8a589234dd79e7b6d2bce30f5541808de0d7cd465399a5e4c0544158. 8선분, 각 도형 네 변 같고 인접변 수직, A/B 내부 라벨 확인. 대수 풀이 후120:110=12:11의 공통축척10 확인. 좌표/픽셀을 해답 원천으로 사용하지 않았다."
+    },
+    "notation": {
+      "status": "passed",
+      "reason": "자연수 x,y와 cm/cm², 제곱식 및 소수의 표기는 각 학습 범위와 맞는다.",
+      "basis": "MOE [6수03-04] 넓이 단위; [9수01-01] 소인수분해/소수 학습; [9수02-12] 문자식의 인수분해.",
+      "evidence": "r2 공식 근거 record3425/3740/3956; r3 직접 본 KOFAC PDF34/인쇄27과 PDF35/인쇄28은 중1 소인수분해 및 소수·합성수 배치를 명시. 현재 넓이 차는 cm² 단위로 나타낸 수의 소수 조건이어서 물리량에 소수를 직접 부여하는 혼동을 피한다."
+    },
+    "answer": {
+      "status": "passed",
+      "reason": "④는 유일한 자연수 곱60을 선택하는 것으로 중3 범위의 결과이다.",
+      "basis": "기본 자연수 계산과 조건 재대입. 별도 고급 표기나 정리를 요구하지 않는다.",
+      "evidence": "봉인 raw SHA0f914891fd7a5caa92c35b65ad1ac70286c72cb82361ee98e42f2b6c604eb1f4 및 r2 계산: x12,y5,양의 변12/11,둘레92,넓이차23 소수,xy60; 현재 answer④와 일치."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "reason": "현재 해설은 양의 변·인수분해·소수 인수·합차 또는 일차방정식으로 완결된다.",
+      "basis": "MOE [9수01-07], [9수02-12], [9수02-05]; 중3 인수분해 실제 배치와 중1 소수 실제 배치를 결합.",
+      "evidence": "현재 solution은 B변y+6>0, 둘레합23, 차23(x-y-6), 양의 정수 인수1, 두 변12/11, y5와 원조건 검산을 제시. r2 계산 및 공식근거, r3 PDF34/35 독립 관찰과 대조. 고등학교 극값/함수/정수론을 필요로 하지 않는다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "reason": "초등 넓이·둘레, 양의 제곱근, 중1 소수와 일차방정식, 중3 인수분해를 배운 뒤 배정하는 조건으로 적합하다.",
+      "basis": "MOE 기록3421/3425/3429/3740/3776/3916/3956; 인천 중1 방정식PDF54쪽 및 중3 인수분해PDF90쪽; KOFAC2015 자료 인쇄3/27/28쪽의 직접 확인.",
+      "evidence": "r3 own-q16-primary-grade-evidence.json: 공식 PDF 독립 스트림 SHA d7e451601e46c72656719f2cb1c50fd1788f26055dbc9b9d931336e054d16f28,62389235bytes; 페이지10/34/35 해시 검증·직접 열람. 인쇄3쪽2015명시,27쪽 중1열9수01-01,28쪽 중1 소수·합성수. exact prerequisite UUID는 확인하지 않았고 metadata hold로 유지. 2022/2027은 별도 pending."
+    }
+  }
+}

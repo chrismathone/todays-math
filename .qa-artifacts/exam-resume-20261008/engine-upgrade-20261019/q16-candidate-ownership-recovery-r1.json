@@ -1,0 +1,10 @@
+{
+  "utc": "2026-10-19T14:03:06.058Z",
+  "failedCandidate": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group9-r1/candidates/q16.json",
+  "failure": "Candidate asset paths pointed to sibling assets outside own candidate directory. Strict containedPath rejected before freeze/blind/approval.",
+  "oldCandidateAndSpecSvgPreserved": true,
+  "newSelectedCandidateRoot": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group9-r2/",
+  "fix": "New candidate at own root with contained assets and separate r2 ID. Same strict engine, no path/parser relaxation.",
+  "failedDraftNotAdditionalQuestion": true,
+  "dbWrites": 0
+}

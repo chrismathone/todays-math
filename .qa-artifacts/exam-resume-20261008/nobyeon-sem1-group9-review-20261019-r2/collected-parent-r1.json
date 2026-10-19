@@ -1,0 +1,43 @@
+{
+  "kind": "authored-exam-twin-review-result/v1",
+  "packageDigest": "2065f8971de1215a60ecc10f868e78fb128995ca5301559a68340ed381843714",
+  "createdAt": "2026-10-19T14:15:41.296Z",
+  "authored": 1,
+  "mathematicalVerified": 1,
+  "gradeReviewed": 0,
+  "overallVerified": 0,
+  "loadable": 0,
+  "productionWrites": false,
+  "results": [
+    {
+      "n": 16,
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group9-r2-q16",
+      "studentDigest": "d704fdbba699602e19ee63267d1ff951ff0063688ea7f1a4e25602fc754ed7bf",
+      "candidateDigest": "10be0270d47918f979ff5e345356e85074c7ed4fc477245060120d1e321b2686",
+      "assetDigest": "b85a6ee8e22a978cfd31cb7d3fb8d75fab07e129ae483fb81238776abc91a0d6",
+      "solveDigest": "09fd5b62c55dcf167712e7830ed2110c1e9f8adb907e30970f32432d9722cc34",
+      "reportSha256": "ab2617eda1cac22c74a487add2e2a35a1c239eaaa8a9d124bccc7981f7c22bbf",
+      "mathematicalVerified": true,
+      "gradeReviewed": false,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "curriculum-stem-basis-missing",
+        "curriculum-choices-basis-missing",
+        "curriculum-figuresAndTables-basis-missing",
+        "curriculum-notation-basis-missing",
+        "curriculum-answer-basis-missing",
+        "curriculum-studentSolution-basis-missing",
+        "curriculum-prerequisites-basis-missing",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    }
+  ]
+}
