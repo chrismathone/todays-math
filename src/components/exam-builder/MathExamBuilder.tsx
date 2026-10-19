@@ -29,7 +29,6 @@ import {
   bankSourceMaterialsSchema,
   type BankSourceMaterial,
   type BankSourceCounts,
-  type BankSourceAvailability,
 } from "@/contracts/bankSource.contract";
 import {
   bankTextbookSlotsResponseSchema,
@@ -165,10 +164,6 @@ export default function MathExamBuilder({
   const [counts, setCounts] = useState<BankSourceCounts | null>(null);
   const [countsError, setCountsError] = useState<string | null>(null);
   const [countsRetry, setCountsRetry] = useState(0);
-  const [availability, setAvailability] = useState<{
-    filters: string;
-    value: BankSourceAvailability;
-  }>();
   const [slotResult, setSlotResult] = useState<{
     ids: string;
     items: Record<string, BankTextbookSlotReadiness>;
@@ -265,7 +260,6 @@ export default function MathExamBuilder({
       refreshAvailability: true,
       distinctFamilies,
       availabilityCache,
-      onAvailability: (value) => setAvailability({ filters, value }),
     });
     return {
       ...base,
@@ -330,29 +324,71 @@ export default function MathExamBuilder({
       difficulties={MATH_EXAM_DIFFICULTIES}
       maxQuestions={MATH_EXAM_MAX_QUESTIONS}
       canOutput={canOutput}
-      status={
+      scopeControls={
         <div className={s.sourceBar}>
-          <small title="현재 남아 있는 내 확정·인쇄 시험의 생성일 기준입니다. 시험 5개 이상·사용 문항 2개 이상인 차시의 상위 10위만 표시합니다.">
-            {usage.unavailable
-              ? "출제 기록 확인 실패"
-              : "내 문항 출제 순위 · 최근 30일 · 같은 차시 기준"}
-          </small>
-          <label
-            className={s.familyRule}
-            title="숫자만 다른 같은 문항류를 한 시험지에 한 문항만 담습니다. 끄면 같은 문항류도 여러 개 담깁니다."
-          >
-            <input
-              type="checkbox"
-              checked={distinctFamilies}
-              onChange={(event) => setDistinctFamilies(event.target.checked)}
+          <div className={s.sourceRow}>
+            <strong>출처</strong>
+            <div className={s.segments} aria-label="출처 선택">
+              <button
+                type="button"
+                aria-pressed={pick.group === ""}
+                onClick={() => {
+                  setPick({ group: "", books: [], kinds: [] });
+                  setMaterialIds([]);
+                  setMaterialOpen(false);
+                }}
+              >
+                전체
+              </button>
+              <button
+                type="button"
+                aria-pressed={pick.group === "school_textbook"}
+                onClick={() => {
+                  setPick({
+                    group: "school_textbook",
+                    books: pick.books,
+                    kinds: pick.kinds,
+                  });
+                  setMaterialOpen(false);
+                }}
+              >
+                교과서만
+              </button>
+            </div>
+          </div>
+          {pick.group === "school_textbook" && (
+            <button
+              type="button"
+              className={s.bookControl}
+              onClick={() => setSourceOpen(true)}
+            >
+              {pick.books.length ? sourceLabel : "책 · 자료 종류 고르기"}
+            </button>
+          )}
+          <details className={s.extraSources}>
+            <summary>추가 선택</summary>
+            <small title="현재 남아 있는 내 확정·인쇄 시험의 생성일 기준입니다. 시험 5개 이상·사용 문항 2개 이상인 차시의 상위 10위만 표시합니다.">
+              {usage.unavailable
+                ? "출제 기록 확인 실패"
+                : "내 문항 출제 순위 · 최근 30일 · 같은 차시 기준"}
+            </small>
+            <label
+              className={s.familyRule}
+              title="숫자만 다른 같은 문항류를 한 시험지에 한 문항만 담습니다. 끄면 같은 문항류도 여러 개 담깁니다."
+            >
+              <input
+                type="checkbox"
+                checked={distinctFamilies}
+                onChange={(event) => setDistinctFamilies(event.target.checked)}
+              />
+              같은 문항류는 1문항만
+            </label>
+            <BankSourceField
+              text={sourceFieldText(counts, pick)}
+              opener={opener}
+              onOpen={() => setSourceOpen(true)}
             />
-            같은 문항류는 1문항만
-          </label>
-          <BankSourceField
-            text={sourceFieldText(counts, pick)}
-            opener={opener}
-            onOpen={() => setSourceOpen(true)}
-          />
+          </details>
           {pick.group === "school_textbook" && (
             <div className={s.materialControl}>
               <button
@@ -410,15 +446,6 @@ export default function MathExamBuilder({
                 }}
               />
             )}
-          <p aria-live="polite">
-            {availability?.filters === filters
-              ? `이 출처 조건 · 보유 ${availability.value.held.toLocaleString()}문항 · 출제 가능 ${availability.value.available.toLocaleString()}문항`
-              : "이 출처 조건의 출제 가능 수를 확인합니다."}
-            <small>
-              출처 고르기의 수는 전체 보유량입니다. 차시별 출제 가능 수는 범위
-              선택에서 확인합니다.
-            </small>
-          </p>
           {overlap && (
             <p role="status">
               이 학습지에서 이미 연습한 변형이 복습에 다시 나올 수 있습니다.

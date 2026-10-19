@@ -27,6 +27,37 @@
   flex-shrink: 0;
   white-space: nowrap;
 }
+.compactConditionBar {
+  min-width: 0;
+}
+.conditionTitleRow {
+  display: flex;
+  align-items: end;
+  gap: 12px;
+  min-width: 0;
+}
+.conditionTitleRow > label {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+  gap: 4px;
+  color: var(--learn-muted);
+  font-size: var(--text-caption);
+}
+.conditionTitleRow input {
+  width: 100%;
+}
+.compactConditionBar > p {
+  margin: 8px 0 0;
+}
+@container exam-builder (max-width: 600px) {
+  .conditionTitleRow {
+    flex-wrap: wrap;
+  }
+  .conditionTitleRow > label {
+    flex-basis: 100%;
+  }
+}
 
 /* ───────────── 적용한 뒤 — 구성표 위 ───────────── */
 .report {

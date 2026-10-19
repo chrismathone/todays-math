@@ -226,8 +226,10 @@ const line = () =>
   within(document.querySelector("[data-condition-line]") as HTMLElement);
 async function pickAllScopes() {
   const panel = await screen.findByRole("region", { name: "범위 고르기" });
+  fireEvent.click(await within(panel).findByRole("button", { name: "중2" }));
+  fireEvent.click(within(panel).getByRole("button", { name: "전체" }));
   for (const box of panel.querySelectorAll<HTMLInputElement>(
-    "li input[type=checkbox]",
+    "input[type=checkbox]",
   ))
     if (!box.checked && !box.disabled) fireEvent.click(box);
 }
@@ -252,7 +254,7 @@ describe("이름 붙인 출제 조건 (W5 · Hi-fi 1)", () => {
         screen.getByRole("button", { name: "저장한 조건 · 1" }),
       ).toBeInTheDocument(),
     );
-    expect(line().getByText("출제 조건")).toBeInTheDocument();
+    expect(line().getByText("출제 조건 ·")).toBeInTheDocument();
     expect(line().getByText(/직접 정함/)).toBeInTheDocument();
   });
 
@@ -432,7 +434,10 @@ describe("이름 붙인 출제 조건 (W5 · Hi-fi 1)", () => {
     expect(
       screen.queryByRole("spinbutton", { name: "일차부등식의 활용 구성 수" }),
     ).not.toBeInTheDocument();
-    expect(screen.getByText("기본 3")).toBeInTheDocument();
+    fireEvent.click(
+      screen.getByRole("button", { name: "직접 · 난이도별 수 펼치기" }),
+    );
+    expect(screen.getByRole("spinbutton", { name: "기본" })).toHaveValue(3);
     expect(line().getByText("단원 마무리 25")).toBeInTheDocument();
     expect(line().getByText(/적용함/)).toBeInTheDocument();
     // 문항은 [문항 구성 →]을 눌러야 고른다.
@@ -450,10 +455,11 @@ describe("이름 붙인 출제 조건 (W5 · Hi-fi 1)", () => {
     expect(
       screen.getByText(/«일일 3문항»의 조건을 가져왔습니다/),
     ).toBeInTheDocument();
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: "일차부등식의 해와 성질 문항 수 늘리기",
+    fireEvent.change(
+      screen.getByRole("spinbutton", {
+        name: "일차부등식의 해와 성질 구성 수",
       }),
+      { target: { value: "4" } },
     );
     expect(line().queryByText(/적용함/)).not.toBeInTheDocument();
     expect(line().getByText(/직접 정함/)).toBeInTheDocument();

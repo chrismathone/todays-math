@@ -19,7 +19,6 @@ const bankRegion = () =>
 const bankZero = () =>
   bankRegion() ? within(bankRegion()!).queryByText("0") : null;
 
-
 const empty: BankData = {
   problems: [],
   total: 0,
@@ -202,7 +201,9 @@ describe("deferred workspace bank metadata", () => {
       name: "정수 구성 수",
     });
     expect(count).toHaveAttribute("max", "6");
-    expect(screen.getByText(/중1 · 수와 연산 · 출제 가능 6갈래/)).toBeVisible();
+    const restoredRow = count.closest("[data-selected-scope]")!;
+    expect(restoredRow).toHaveTextContent("중1 · 수와 연산");
+    expect(restoredRow).toHaveTextContent("출제 가능 6갈래");
     await waitFor(() =>
       expect(screen.queryByText("출제 범위를 불러오는 중입니다…")).toBeNull(),
     );

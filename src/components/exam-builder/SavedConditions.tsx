@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type RefObject } from "react";
+import { useState, type ReactNode, type RefObject } from "react";
 import { PickerDialog } from "@/components/picker-dialog/PickerDialog";
 import {
   EXAM_CONDITION_NAME_MAX,
@@ -64,13 +64,43 @@ export function ConditionLine({
   disabled,
   opener,
   onOpen,
+  titleField,
 }: {
   appliedName: string | null;
   count: number | null;
   disabled: boolean;
   opener: RefObject<HTMLButtonElement | null>;
   onOpen: () => void;
+  titleField?: ReactNode;
 }) {
+  if (titleField)
+    return (
+      <div className={sc.compactConditionBar} data-condition-line>
+        <div className={sc.conditionTitleRow}>
+          {titleField}
+          <button
+            type="button"
+            ref={opener}
+            disabled={disabled}
+            onClick={onOpen}
+          >
+            {count === null ? "저장한 조건" : `저장한 조건 · ${count}`}
+          </button>
+        </div>
+        <p>
+          <span className={sc.condLabel}>출제 조건 · </span>
+          <span className={sc.condText}>
+            {appliedName ? (
+              <>
+                <b>{appliedName}</b> 적용함
+              </>
+            ) : (
+              "직접 정함"
+            )}
+          </span>
+        </p>
+      </div>
+    );
   return (
     <div className={`${eb.toolbar} ${sc.condBar}`} data-condition-line>
       <span className={sc.condLabel}>출제 조건</span>

@@ -28,6 +28,7 @@ export function useQuestionReorder<T>(
   items: T[],
   onChange: (items: T[]) => void,
   root: RefObject<HTMLElement | null>,
+  rowSelector = "[data-exam-question]",
 ) {
   const [drag, setDrag] = useState<{
     from: number;
@@ -52,9 +53,11 @@ export function useQuestionReorder<T>(
     const state = active.current;
     if (!state) return;
     const rows = Array.from(
-      root.current?.querySelectorAll<HTMLElement>("[data-exam-question]") ?? [],
+      root.current?.querySelectorAll<HTMLElement>(rowSelector) ?? [],
     );
-    const target = rows[to];
+    const target = rows.find(
+      (row, index) => Number(row.dataset.examIndex ?? index) === to,
+    );
     if (!target) return;
     const rect = target.getBoundingClientRect();
     const top = to > state.from ? rect.bottom - 20 : rect.top - 20;
@@ -86,19 +89,20 @@ export function useQuestionReorder<T>(
     const state = active.current;
     if (!state || state.mode !== "pointer") return;
     const rows = Array.from(
-      root.current?.querySelectorAll<HTMLElement>("[data-exam-question]") ?? [],
+      root.current?.querySelectorAll<HTMLElement>(rowSelector) ?? [],
     );
-    let slot = rows.length;
+    const first = Number(rows[0]?.dataset.examIndex ?? 0);
+    let slot = first + rows.length;
     for (let index = 0; index < rows.length; index++) {
       const rect = rows[index].getBoundingClientRect();
       if (event.clientY < rect.top + rect.height / 2) {
-        slot = index;
+        slot = Number(rows[index].dataset.examIndex ?? index);
         break;
       }
     }
     const to = Math.min(
-      rows.length - 1,
-      Math.max(0, slot > state.from ? slot - 1 : slot),
+      first + rows.length - 1,
+      Math.max(first, slot > state.from ? slot - 1 : slot),
     );
     update({ ...state, to });
     position(to);
@@ -145,8 +149,8 @@ export function useQuestionReorder<T>(
               );
       update({ ...state, to });
       root.current
-        ?.querySelectorAll<HTMLElement>("[data-exam-question]")
-        [to]?.scrollIntoView({ block: "nearest" });
+        ?.querySelector<HTMLElement>(`[data-exam-index="${to}"]`)
+        ?.scrollIntoView({ block: "nearest" });
       position(to);
     }
   }

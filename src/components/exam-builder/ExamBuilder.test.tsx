@@ -491,11 +491,11 @@ describe("shared exam builder workflow", () => {
     render(<Harness adapter={adapter} />);
     await screen.findByRole("region", { name: "범위 고르기" });
     const panel = pickerPanel();
+    fireEvent.click(await panel.findByRole("button", { name: "중1" }));
+    fireEvent.click(panel.getByRole("button", { name: "전체" }));
     expect(panel.getByRole("checkbox", { name: /범위 2/ })).toBeDisabled();
     expect(panel.getByText("출제 가능 수 확인 필요")).toBeInTheDocument();
-    fireEvent.click(
-      panel.getByRole("checkbox", { name: "현재 결과 전체 선택" }),
-    );
+    fireEvent.click(panel.getByRole("checkbox", { name: /범위 3/ }));
     fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
     await waitFor(() =>
       expect(adapter.compose).toHaveBeenCalledWith(
@@ -633,16 +633,18 @@ describe("shared exam builder workflow", () => {
     });
     render(<Harness adapter={adapter} />);
     expect(
-      pickerPanel().getByRole("checkbox", { name: /^범위 1 중1/ }),
+      pickerPanel().getByRole("button", {
+        name: "중1 · 출제 가능 수 확인 필요",
+      }),
     ).toBeDisabled();
-    expect(
-      pickerPanel().getAllByText("출제 가능 수 확인 필요").length,
-    ).toBeGreaterThan(0);
+    expect(pickerPanel().queryByRole("checkbox")).toBeNull();
     await act(async () =>
       finish(scopes.map((scope) => ({ ...scope, count: 6 }))),
     );
+    fireEvent.click(pickerPanel().getByRole("button", { name: "중1" }));
+    fireEvent.click(pickerPanel().getByRole("button", { name: "전체" }));
     expect(
-      pickerPanel().getByRole("checkbox", { name: /^범위 1 중1/ }),
+      pickerPanel().getByRole("checkbox", { name: /^범위 1 출제/ }),
     ).toBeEnabled();
     expect(pickerPanel().queryByText("출제 가능 수 확인 필요")).toBeNull();
   });

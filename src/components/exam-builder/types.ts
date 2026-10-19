@@ -173,6 +173,8 @@ export interface ExamBuilderProps<T> {
   onOutputIntent?: () => void;
   disabled?: boolean;
   status?: ReactNode;
+  /** Scope source controls sit above the S2 navigation, inside the left panel. */
+  scopeControls?: ReactNode;
   /** W5 «이름 붙인 출제 조건»(수학). */
   namedConditions?: ExamNamedConditions;
 }
