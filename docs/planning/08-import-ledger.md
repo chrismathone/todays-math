@@ -6,6 +6,9 @@
 
 작성: 2026-08-14 · 기준 DB: 공유 Supabase(`jyaguxwuaxgdnovtulna`)
 
+적재·원문 갱신 뒤에는 승인된 운영 절차로 `scripts/db/backfill-problem-actual-format.ts`를 다시 실행해 실제 형식 캐시를 채운다(기본 드라이런, 공유 DB 적용은 별도 쓰기 승인 필요).
+직접 SQL 수리·질문 키 갱신과 되돌리기도 포함한다. 트리거 비활성화·replica 세션·덤프 복원 등으로 무효화를 건너뛴 이력이 있으면 현재 버전의 비NULL 형식도 `scripts/db/verify-problem-actual-format.ts`로 원문·버전·digest를 대조하고 승인된 백필로 복구한다. 외부 적재·복원 뒤에는 모든 서비스 인스턴스의 `BANK_COUNTS_EPOCH`도 함께 전환한다.
+
 ---
 
 ## 1. 현재 DB 적재 현황 (2026-08-16 갱신)

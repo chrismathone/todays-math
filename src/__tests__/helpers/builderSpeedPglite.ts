@@ -19,8 +19,22 @@ export async function builderSpeedPglite(
   units: Row[],
   materials: Row[] = [],
 ) {
+  rows = rows.map((row) => ({
+    actualFormat: null,
+    actualFormatVersion: null,
+    actualFormatDigest: null,
+    ...row,
+  }));
   const pg = new PGlite();
+  await pg.exec(`CREATE TYPE difficulty AS ENUM ('연산','기본','응용','심화하','심화중','심화상','기초','실력','심화','최상위');
+    CREATE TYPE problem_source AS ENUM ('manual','past_exam','school_textbook','transformed','ai_generated');
+    CREATE TYPE problem_pool AS ENUM ('shared','private');
+    CREATE TYPE review_status AS ENUM ('pending','approved','rejected');`);
   const types: Record<string, string> = {
+    difficulty: "difficulty",
+    source: "problem_source",
+    pool: "problem_pool",
+    reviewStatus: "review_status",
     id: "uuid",
     unitId: "uuid",
     sourceMaterialId: "uuid",
@@ -59,10 +73,14 @@ export async function builderSpeedPglite(
     "questionNumber",
     "figureSvg",
     "figureUrls",
+    "actualFormat",
+    "actualFormatVersion",
+    "actualFormatDigest",
   ];
   await pg.exec(`CREATE TABLE source_material (id uuid, book_id uuid, kind text);
-    CREATE VIEW problem AS SELECT *, ${mapped.map((field) => `${quote(field)} AS ${quote(field.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`))}`).join(",")} FROM fixture_problem;
-    CREATE VIEW unit AS SELECT *, "orderIndex" AS order_index FROM fixture_unit;
+    CREATE TABLE source_book (id uuid);
+    CREATE VIEW problem AS SELECT *, xmin, ${mapped.map((field) => `${quote(field)} AS ${quote(field.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`))}`).join(",")} FROM fixture_problem;
+    CREATE VIEW unit AS SELECT *, xmin, "orderIndex" AS order_index FROM fixture_unit;
     CREATE UNIQUE INDEX ON fixture_problem (id);
     CREATE INDEX ON fixture_problem ("unitId"); CREATE INDEX ON fixture_problem ("questionGroupKey"); ANALYZE fixture_problem;`);
   if (materials.length)
@@ -74,6 +92,7 @@ export async function builderSpeedPglite(
         ),
       ],
     );
+  await pg.exec("SET default_transaction_read_only = on");
 
   function compile(
     where: Row | undefined,

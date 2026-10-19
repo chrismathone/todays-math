@@ -15,7 +15,19 @@ import type { CountBucket, CountDimension } from "../../src/lib/problem/question
 import { familyIdOf } from "../../src/lib/generator/familyKey";
 import { MISSING_ANSWER } from "../../src/lib/missingAnswer";
 import { durableJson } from "./backfill-problem-actual-format";
-import { classifyFact, formatRuleVersion, hasFormatColumns, MIGRATION_PATH, readOnly, readPage, safeCode, sha256, splitMigration, visiblePool } from "./problem-actual-format";
+import { classifyFact, formatRuleVersion, hasFormatColumns, MIGRATION_PATH, readOnly, readPage, safeCode, sha256, splitMigration, visiblePool, matchesFact, type FormatRow, type FormatFact } from "./problem-actual-format";
+
+/** Runtime readers trust the trigger/version. This audit independently compares
+ * all three stored fields, even when a changed input has the same format. */
+export function auditStoredFact(row: FormatRow, fact: FormatFact) {
+  return {
+    matches: matchesFact(row, fact),
+    missing: row.actualFormat === null,
+    formatMismatch: row.actualFormat !== fact.actualFormat,
+    versionMismatch: row.actualFormatVersion !== fact.actualFormatVersion,
+    digestMismatch: row.actualFormatDigest !== fact.actualFormatDigest,
+  };
+}
 
 const dimensions: CountDimension[] = ["unit", "difficulty", "source", "material", "book", "kind", "family", "grade"];
 const bucketKey = (b: CountBucket) => JSON.stringify([b.axis, b.key, b.extra]);
@@ -137,12 +149,19 @@ async function main() {
       const byId = new Map(current.map((r) => [r.id, r]));
       const columns = await hasFormatColumns(tx);
       let cursor: string | null = null, rows = 0, rowMismatches = 0;
+      const storedFacts = { mismatches: 0, missing: 0, formatMismatches: 0, versionMismatches: 0, digestMismatches: 0 };
       let corpusDigest = sha256("problem-format-corpus-v1");
       while (true) {
         const page = await readPage(tx, cursor, 500, columns);
         if (!page.length) break;
         const mirror = page.map((row) => {
           const fact = classifyFact(row, version), baseline = byId.get(row.id);
+          const audit = auditStoredFact(row, fact);
+          if (!audit.matches) storedFacts.mismatches++;
+          if (audit.missing) storedFacts.missing++;
+          if (audit.formatMismatch) storedFacts.formatMismatches++;
+          if (audit.versionMismatch) storedFacts.versionMismatches++;
+          if (audit.digestMismatch) storedFacts.digestMismatches++;
           if (!baseline || (baseline.actualFormat ?? "unknown") !== fact.actualFormat) rowMismatches++;
           if (!baseline) throw new Error("BASELINE_ROW_MISSING");
           const material = baseline.source === "school_textbook" ? byMaterial.get(baseline.sourceMaterialId ?? "") : undefined;
@@ -184,8 +203,8 @@ async function main() {
         comparisons.push({ format: format ?? "all", ...compareBuckets(baseline, cached), familyUnits: actualFamilies.length, familyMismatches });
       }
       return { mode: "independent-read-only-verification", transactionReadOnly: true, rows, baselineRows: current.length,
-        version, corpusDigest, rowMismatches, comparisons,
-        totalMismatches: rowMismatches + comparisons.reduce((n, c) => n + c.mismatches + c.familyMismatches, 0),
+        version, corpusDigest, rowMismatches, storedFacts, comparisons,
+        totalMismatches: rowMismatches + storedFacts.mismatches + comparisons.reduce((n, c) => n + c.mismatches + c.familyMismatches, 0),
         totals: allBuckets.filter((b) => ["all", "format", "source"].includes(b.axis)),
         dimensions, eligibility: "Existing approval/lock/answer/shared-pool rules preserved; unknown is held but unavailable",
       };

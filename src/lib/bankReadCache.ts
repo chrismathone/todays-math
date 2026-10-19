@@ -1,8 +1,10 @@
 import "server-only";
+import { currentBankReadFingerprint } from "./bankReadFingerprint";
 
 /** Public bank reads only. Never put recent/owner/branch-dependent reads here. */
 export const BANK_COUNTS_CACHE_KEY = "question-bank-counts-v1";
 export const BANK_COUNTS_TTL_MS = 15_000;
+export const BANK_VERIFIED_TTL_MS = 60 * 60_000;
 const MAX_ENTRIES = 64;
 const entries = new Map<
   string,
@@ -23,7 +25,8 @@ const lists = new Map<
 >();
 
 /** In-process imports invalidate immediately; direct SQL imports rotate BANK_COUNTS_EPOCH.
- * Other server processes converge within the short TTL. No authorization result is cached.
+ * Question reads additionally validate DB row versions on every request, across
+ * processes. Legacy reads retain the short TTL. No authorization result is cached.
  */
 export function invalidateBankReadCache() {
   entries.clear();
@@ -33,7 +36,10 @@ export function cachedBankRead<T>(
   key: string,
   read: () => Promise<T>,
 ): Promise<T> {
-  const cacheKey = `${BANK_COUNTS_CACHE_KEY}:${process.env.BANK_COUNTS_EPOCH ?? "0"}:${key}`;
+  const fingerprint = currentBankReadFingerprint();
+  // Keep legacy NULL/version fallback and lazy fill live until every fact is current.
+  if (fingerprint && fingerprint.invalid !== "0") return read();
+  const cacheKey = `${BANK_COUNTS_CACHE_KEY}:${process.env.BANK_COUNTS_EPOCH ?? "0"}:${fingerprint?.token ?? "ttl"}:${key}`;
   const current = entries.get(cacheKey);
   if (current && current.expires > Date.now())
     return current.pending as Promise<T>;
@@ -42,7 +48,8 @@ export function cachedBankRead<T>(
   entries.set(cacheKey, entry);
   entry.pending.then(
     () => {
-      entry.expires = Date.now() + BANK_COUNTS_TTL_MS;
+      entry.expires =
+        Date.now() + (fingerprint ? BANK_VERIFIED_TTL_MS : BANK_COUNTS_TTL_MS);
     },
     () => {
       if (entries.get(cacheKey) === entry) entries.delete(cacheKey);
@@ -51,13 +58,15 @@ export function cachedBankRead<T>(
   return entry.pending;
 }
 
-/** Same TTL/epoch/write invalidation as counts, with a separate small list budget. */
+/** Same fingerprint/TTL/epoch/write invalidation as counts; separate list budget. */
 export function cachedBankQuestionList(
   key: string | null,
   read: () => Promise<BankQuestionList>,
 ): Promise<BankQuestionList> {
   if (key === null) return read();
-  const cacheKey = `${process.env.BANK_COUNTS_EPOCH ?? "0"}:${key}`;
+  const fingerprint = currentBankReadFingerprint();
+  if (fingerprint && fingerprint.invalid !== "0") return read();
+  const cacheKey = `${process.env.BANK_COUNTS_EPOCH ?? "0"}:${fingerprint?.token ?? "ttl"}:${key}`;
   const current = lists.get(cacheKey);
   if (current && current.expires > Date.now()) return current.pending;
   // Drop expired values before enforcing both limits. Pending reads coalesce,
@@ -75,7 +84,8 @@ export function cachedBankQuestionList(
   entry.pending.then(
     (value) => {
       if (lists.get(cacheKey) !== entry) return;
-      entry.expires = Date.now() + BANK_COUNTS_TTL_MS;
+      entry.expires =
+        Date.now() + (fingerprint ? BANK_VERIFIED_TTL_MS : BANK_COUNTS_TTL_MS);
       entry.size = value.ids.length;
       if (entry.size > BANK_LIST_CACHE_MAX_IDS) {
         lists.delete(cacheKey);
