@@ -1,0 +1,71 @@
+{
+  "kind": "u51-r1-sealed-followup-binding/v1",
+  "status": "technical-hold",
+  "priorEvidenceImmutable": {
+    "commit": "a85046448ef9121bca09f82a7b7b49eda6f2c8dd",
+    "path": ".qa-artifacts/exam-resume-20261008/vector-replay-code-audit-20261020-r1/own-report.json",
+    "sha256": "f9611573944de0e1e441987cc98efdfde0f03f69183389e6c8847a815a2732e1",
+    "exactGitBytesMatch": true
+  },
+  "independentReproductionImmutable": {
+    "commit": "c18a42497bdb5e05c6500ce7d88b6539f4153be3",
+    "path": ".qa-artifacts/exam-resume-20261008/vector-replay-code-audit-20261020-r1/own-r1-technical-hold.json",
+    "sha256": "d73ab100bb9862c282700c42ab7889ec99718a2946c0822a220bd872d34409be",
+    "exactGitBytesMatch": true
+  },
+  "ownDynamicEvidence": "One additional own fixture/actual renderer scheduling injection was already committed in c18a42497. It returned reproduced and inputsUnchanged:true while expected SVG binding hash differed from later inputHashes. Parent reproduction was not counted as own. No new dynamic test or approval count in this binding addendum.",
+  "cwdAssessment": "Static provenance concern only: module-relative CLI/core/TS imports can differ from CWD-relative source fingerprints/vendor/Python path; frozen R1 lacks module-owning-worktree/CWD equality guard. No alternate-CWD positive CLI executed.",
+  "rootSevenSourceChecks": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\vectorReplay.mjs",
+      "expected": "98b285090d949c581a5413988d71be9fc38bec6a9a9be5479d7ec50b899210f2",
+      "current": "98b285090d949c581a5413988d71be9fc38bec6a9a9be5479d7ec50b899210f2",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs",
+      "expected": "76ab379be797831e925726e5cdbeea6d47ca21342171af7d8c5327ad960e893a",
+      "current": "76ab379be797831e925726e5cdbeea6d47ca21342171af7d8c5327ad960e893a",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\vectorReplay.test.mjs",
+      "expected": "f5db21c28b8082511de5322715df026f93a22cda4aed8a960ceb257ad6731d5c",
+      "current": "f5db21c28b8082511de5322715df026f93a22cda4aed8a960ceb257ad6731d5c",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\candidatePack.mjs",
+      "expected": "0acb61d7f1bbaae37cd6f8164fd532e4dbf8f465d00bcfd73cf2f4a50d6aa345",
+      "current": "0acb61d7f1bbaae37cd6f8164fd532e4dbf8f465d00bcfd73cf2f4a50d6aa345",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\renderFigureSpec.ts",
+      "expected": "19c10c1cb1aa416cbb376314931bb9dcdce45d17b3f707fb3c2b9dfb157598df",
+      "current": "19c10c1cb1aa416cbb376314931bb9dcdce45d17b3f707fb3c2b9dfb157598df",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\render_spec.py",
+      "expected": "773b75c61d5e55f72f1c31a5babff698b61f280c077e305ac35587697d333627",
+      "current": "773b75c61d5e55f72f1c31a5babff698b61f280c077e305ac35587697d333627",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\engine_path.py",
+      "expected": "96e6a07ec22dfa3393c85affd6a6117c8303f4eb31e95bc5a3707388af8b0375",
+      "current": "96e6a07ec22dfa3393c85affd6a6117c8303f4eb31e95bc5a3707388af8b0375",
+      "unchanged": true
+    }
+  ],
+  "preservedConclusion": "Prior 28 bounded controls remain observed passes, but do not remove binding-to-snapshot technical hold. R2 must separately test binding/spec bytes and CWD identity after patch.",
+  "filesChanged": "Only new own-r1-followup-* files. Existing a850/c18 files remain byte-identical.",
+  "mathematicalApproval": false,
+  "gradeApproval": false,
+  "rightsApproval": false,
+  "nativeReaderParity": false,
+  "loadable": false,
+  "newManualQuestions": 0,
+  "dbWrites": 0
+}
