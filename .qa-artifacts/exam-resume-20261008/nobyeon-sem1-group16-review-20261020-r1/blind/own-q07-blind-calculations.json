@@ -1,0 +1,398 @@
+{
+  "method": "Own exact Fraction arithmetic, integer square-factor extraction and strict integer root bounds; no floating/pixel/author oracle",
+  "inputHashes": {
+    "SOLVE-BRIEF.md": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c",
+    "student-problems.json": "8dafa1029321986a1c63d940734ed6b6efbe225ec72da4b0a122e9acf3e35a47",
+    "blind-manifest.json": "8a6bb3919f7adcbfe0d141be53c5298ec53198c6d2acd3b533cab28353cb9577"
+  },
+  "studentDigestRecomputed": "437c39853bafc44982d38911db325ed5a206fd50a99c8788f21cd4ca334994c9",
+  "baseNine": [
+    {
+      "ordinal": 1,
+      "printed": "\\sqrt2",
+      "normalForm": {
+        "radicand": 2,
+        "coefficient": "1",
+        "rationalPart": "0"
+      },
+      "irrational": true,
+      "rational": false,
+      "integer": false,
+      "nonintegerRational": false,
+      "sign": "positive",
+      "negative": false,
+      "exactBound": {
+        "lower": "1",
+        "upper": "2",
+        "strictWhenIrrational": true
+      }
+    },
+    {
+      "ordinal": 2,
+      "printed": "-\\sqrt3",
+      "normalForm": {
+        "radicand": 3,
+        "coefficient": "-1",
+        "rationalPart": "0"
+      },
+      "irrational": true,
+      "rational": false,
+      "integer": false,
+      "nonintegerRational": false,
+      "sign": "negative",
+      "negative": true,
+      "exactBound": {
+        "lower": "-2",
+        "upper": "-1",
+        "strictWhenIrrational": true
+      }
+    },
+    {
+      "ordinal": 3,
+      "printed": "\\sqrt8-2",
+      "normalForm": {
+        "radicand": 2,
+        "coefficient": "2",
+        "rationalPart": "-2"
+      },
+      "irrational": true,
+      "rational": false,
+      "integer": false,
+      "nonintegerRational": false,
+      "sign": "positive",
+      "negative": false,
+      "exactBound": {
+        "lower": "0",
+        "upper": "2",
+        "strictWhenIrrational": true
+      }
+    },
+    {
+      "ordinal": 4,
+      "printed": "-3",
+      "normalForm": {
+        "radicand": 0,
+        "coefficient": "0",
+        "rationalPart": "-3"
+      },
+      "irrational": false,
+      "rational": true,
+      "integer": true,
+      "nonintegerRational": false,
+      "sign": "negative",
+      "negative": true,
+      "exactBound": {
+        "lower": "-3",
+        "upper": "-3",
+        "strictWhenIrrational": false
+      }
+    },
+    {
+      "ordinal": 5,
+      "printed": "0",
+      "normalForm": {
+        "radicand": 0,
+        "coefficient": "0",
+        "rationalPart": "0"
+      },
+      "irrational": false,
+      "rational": true,
+      "integer": true,
+      "nonintegerRational": false,
+      "sign": "zero",
+      "negative": false,
+      "exactBound": {
+        "lower": "0",
+        "upper": "0",
+        "strictWhenIrrational": false
+      }
+    },
+    {
+      "ordinal": 6,
+      "printed": "\\sqrt{16}",
+      "normalForm": {
+        "radicand": 0,
+        "coefficient": "0",
+        "rationalPart": "4"
+      },
+      "irrational": false,
+      "rational": true,
+      "integer": true,
+      "nonintegerRational": false,
+      "sign": "positive",
+      "negative": false,
+      "exactBound": {
+        "lower": "4",
+        "upper": "4",
+        "strictWhenIrrational": false
+      }
+    },
+    {
+      "ordinal": 7,
+      "printed": "0.\\dot6",
+      "normalForm": {
+        "radicand": 0,
+        "coefficient": "0",
+        "rationalPart": "2/3"
+      },
+      "irrational": false,
+      "rational": true,
+      "integer": false,
+      "nonintegerRational": true,
+      "sign": "positive",
+      "negative": false,
+      "exactBound": {
+        "lower": "2/3",
+        "upper": "2/3",
+        "strictWhenIrrational": false
+      }
+    },
+    {
+      "ordinal": 8,
+      "printed": "-1.25",
+      "normalForm": {
+        "radicand": 0,
+        "coefficient": "0",
+        "rationalPart": "-5/4"
+      },
+      "irrational": false,
+      "rational": true,
+      "integer": false,
+      "nonintegerRational": true,
+      "sign": "negative",
+      "negative": true,
+      "exactBound": {
+        "lower": "-5/4",
+        "upper": "-5/4",
+        "strictWhenIrrational": false
+      }
+    },
+    {
+      "ordinal": 9,
+      "printed": "\\sqrt{\\frac9{16}}",
+      "normalForm": {
+        "radicand": 0,
+        "coefficient": "0",
+        "rationalPart": "3/4"
+      },
+      "irrational": false,
+      "rational": true,
+      "integer": false,
+      "nonintegerRational": true,
+      "sign": "positive",
+      "negative": false,
+      "exactBound": {
+        "lower": "3/4",
+        "upper": "3/4",
+        "strictWhenIrrational": false
+      }
+    }
+  ],
+  "baseCounts": {
+    "irrational": 3,
+    "negative": 3,
+    "nonintegerRational": 3,
+    "integer": 3,
+    "rational": 6,
+    "positive": 5,
+    "zero": 1
+  },
+  "requiredAddedClassification": {
+    "irrational": true,
+    "negative": true,
+    "nonintegerRational": false
+  },
+  "allFiveChoices": [
+    {
+      "mark": "①",
+      "printed": "$\\sqrt{25}-5$",
+      "classification": {
+        "normalForm": {
+          "radicand": 0,
+          "coefficient": "0",
+          "rationalPart": "0"
+        },
+        "irrational": false,
+        "rational": true,
+        "integer": true,
+        "nonintegerRational": false,
+        "sign": "zero",
+        "negative": false,
+        "exactBound": {
+          "lower": "0",
+          "upper": "0",
+          "strictWhenIrrational": false
+        }
+      },
+      "tenEntryCounts": {
+        "irrational": 3,
+        "negative": 3,
+        "nonintegerRational": 3,
+        "integer": 4,
+        "rational": 7,
+        "positive": 5,
+        "zero": 2
+      },
+      "meetsAllThreeConditions": false
+    },
+    {
+      "mark": "②",
+      "printed": "$\\sqrt{0.81}$",
+      "classification": {
+        "normalForm": {
+          "radicand": 0,
+          "coefficient": "0",
+          "rationalPart": "9/10"
+        },
+        "irrational": false,
+        "rational": true,
+        "integer": false,
+        "nonintegerRational": true,
+        "sign": "positive",
+        "negative": false,
+        "exactBound": {
+          "lower": "9/10",
+          "upper": "9/10",
+          "strictWhenIrrational": false
+        }
+      },
+      "tenEntryCounts": {
+        "irrational": 3,
+        "negative": 3,
+        "nonintegerRational": 4,
+        "integer": 3,
+        "rational": 7,
+        "positive": 6,
+        "zero": 1
+      },
+      "meetsAllThreeConditions": false
+    },
+    {
+      "mark": "③",
+      "printed": "$-\\sqrt{49}$",
+      "classification": {
+        "normalForm": {
+          "radicand": 0,
+          "coefficient": "0",
+          "rationalPart": "-7"
+        },
+        "irrational": false,
+        "rational": true,
+        "integer": true,
+        "nonintegerRational": false,
+        "sign": "negative",
+        "negative": true,
+        "exactBound": {
+          "lower": "-7",
+          "upper": "-7",
+          "strictWhenIrrational": false
+        }
+      },
+      "tenEntryCounts": {
+        "irrational": 3,
+        "negative": 4,
+        "nonintegerRational": 3,
+        "integer": 4,
+        "rational": 7,
+        "positive": 5,
+        "zero": 1
+      },
+      "meetsAllThreeConditions": false
+    },
+    {
+      "mark": "④",
+      "printed": "$\\sqrt5-1$",
+      "classification": {
+        "normalForm": {
+          "radicand": 5,
+          "coefficient": "1",
+          "rationalPart": "-1"
+        },
+        "irrational": true,
+        "rational": false,
+        "integer": false,
+        "nonintegerRational": false,
+        "sign": "positive",
+        "negative": false,
+        "exactBound": {
+          "lower": "1",
+          "upper": "2",
+          "strictWhenIrrational": true
+        }
+      },
+      "tenEntryCounts": {
+        "irrational": 4,
+        "negative": 3,
+        "nonintegerRational": 3,
+        "integer": 3,
+        "rational": 6,
+        "positive": 6,
+        "zero": 1
+      },
+      "meetsAllThreeConditions": false
+    },
+    {
+      "mark": "⑤",
+      "printed": "$2-\\sqrt7$",
+      "classification": {
+        "normalForm": {
+          "radicand": 7,
+          "coefficient": "-1",
+          "rationalPart": "2"
+        },
+        "irrational": true,
+        "rational": false,
+        "integer": false,
+        "nonintegerRational": false,
+        "sign": "negative",
+        "negative": true,
+        "exactBound": {
+          "lower": "-1",
+          "upper": "0",
+          "strictWhenIrrational": true
+        }
+      },
+      "tenEntryCounts": {
+        "irrational": 4,
+        "negative": 4,
+        "nonintegerRational": 3,
+        "integer": 3,
+        "rational": 6,
+        "positive": 5,
+        "zero": 1
+      },
+      "meetsAllThreeConditions": true
+    }
+  ],
+  "overlapCounts": {
+    "baseIrrationalAndNegative": 1,
+    "baseNonintegerRationalAndNegative": 1,
+    "finalIrrationalAndNegative": 2,
+    "finalNonintegerRationalAndNegative": 1
+  },
+  "irrationalityBasis": "For nonsquare positive integers2,3,5,7 the square roots are irrational (learned M3 property). A nonzero rational multiple plus rational constant remains irrational: otherwise rearrangement would make that square root rational. No theorem on general algebraic numbers is needed.",
+  "signBasis": "1<sqrt2<2 makes sqrt8-2=2sqrt2-2>0. 2<sqrt5<3 makes sqrt5-1>0. 2<sqrt7<3 makes2-sqrt7<0. Negative of positive sqrt3 is negative. Bounds justified by integer squaring.",
+  "domains": {
+    "positiveRadicands": [
+      2,
+      3,
+      8,
+      16,
+      25,
+      49,
+      5,
+      7
+    ],
+    "positiveDecimalRadicand": "81/100",
+    "positiveFractionRadicand": "9/16",
+    "fractionDenominator16Nonzero": true,
+    "principalRootOf9over16": "3/4",
+    "recurringDecimal": "2/3",
+    "negativeFiniteDecimal": "-5/4",
+    "noPhysicalUnitsOrGeometry": true
+  },
+  "existenceUniqueness": "Choice5 is a negative irrational and yields desired counts4/4/3. It is unique among5options; arbitrary negative irrational x values would also work, so x is not unique globally without restricting to choices. Counts refer to ten listed entries, and the three categories overlap rather than forming a disjoint partition.",
+  "utf8WriteReadPassed": true,
+  "authorAnswerExposure": false,
+  "newApprovalCounts": 0
+}

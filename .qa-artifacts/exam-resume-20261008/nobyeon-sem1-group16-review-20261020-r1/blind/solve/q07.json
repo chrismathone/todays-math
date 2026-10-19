@@ -1,0 +1,52 @@
+{
+  "studentDigest": "437c39853bafc44982d38911db325ed5a206fd50a99c8788f21cd4ca334994c9",
+  "solverId": "independent-helper-q07-blind-20261020-r1",
+  "answer": "⑤",
+  "solution": "먼저 아홉 수를 각각 분류한다. √2는 양의 무리수, −√3은 음의 무리수이다. √8−2=2√2−2는 무리수이고 √2>1이므로 양수이다. −3은 음의 정수, 0은 정수이며 양수도 음수도 아니다. √16=4는 양의 정수이다. 순환소수0.666…은 2/3, −1.25는 −5/4, √(9/16)은 양수3/4이므로 이 셋은 정수가 아닌 유리수이고 그중 −5/4만 음수이다.\n\n따라서 원래 무리수는3개, 음수는3개, 정수가 아닌 유리수는3개이다. 추가할 x는 무리수의 수와 음수의 수를 각각1개 늘려야 하므로 음의 무리수여야 한다. 무리수는 유리수가 아니므로 정수가 아닌 유리수의 수는3개 그대로 남는다. −√3은 무리수이면서 음수이고 −5/4는 정수가 아닌 유리수이면서 음수이므로 세 분류의 수를 서로 겹치지 않는 것처럼 더하면 안 된다.\n\n① √25−5=0: 추가 후 무리수3개, 음수3개, 정수가 아닌 유리수3개이므로 틀리다.\n② √0.81=9/10: 추가 후 각각3개,3개,4개이므로 틀리다.\n③ −√49=−7: 추가 후 각각3개,4개,3개이므로 틀리다.\n④ √5−1은 무리수이고 √5>2이므로 양수이다. 추가 후 각각4개,3개,3개이므로 틀리다.\n⑤ 2−√7은 무리수이고 √7>2이므로 음수이다. 추가 후 각각4개,4개,3개가 되어 모든 조건을 만족한다.\n\n√2,√3,√5,√7은 완전제곱수가 아닌 양의 정수의 제곱근이므로 무리수이다. 여기에0아닌 유리수를 곱하거나 유리수를 더해 얻은 위 근호식이 유리수라면 거꾸로 정리하여 원래 제곱근도 유리수가 되므로 무리수임을 확인할 수 있다. 모든 피제곱수는 양수이며 분수9/16의 분모16도0이 아니다. 따라서 모든 식이 실수로 정의되고, ⑤가 실제 조건을 만족하므로 해가 존재하며 다섯 보기 중 정답은⑤ 하나뿐이다. 보기 제한 없이 음의 무리수 전체를 생각하면 다른 x도 가능하므로 임의의 실수 x 자체가 하나로 정해진다는 뜻은 아니다. 단위나 도형 조건은 없다.",
+  "evidence": {
+    "noAuthorAnswerExposureDeclaration": "새 authored q07의 정확한 문항이나 정답을 본 적이 없다고 학생 파일 열람 전에 선언했다. 허용된 학생용 brief/manifest/student-problems만 읽고 부모·private·원문q07·저자답/계산·verification·다른문항·답검색에 노출되지 않고 독립적으로 풀었다.",
+    "ownCalculationsFile": "../own-q07-blind-calculations.json",
+    "allNineBaseValuesAndFiveChoicesChecked": true,
+    "baseCounts": {
+      "irrational": 3,
+      "negative": 3,
+      "nonintegerRational": 3
+    },
+    "choiceTotalCounts": [
+      [
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        4
+      ],
+      [
+        3,
+        4,
+        3
+      ],
+      [
+        4,
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        3
+      ]
+    ],
+    "overlappingCountsChecked": true,
+    "existenceAndUniqueCorrectOption": true,
+    "globalXUniquenessClaimed": false,
+    "allRootDomainsAndSignsChecked": true,
+    "studentMethod": "2015중3 무리수/유리수·정수 분류와 제곱근 성질,이전 순환소수·유리수 계산·부호만 사용. 일반 대수적 수나 함수 도구 불필요. blind raw는 정식 math/grade 승인 집계가 아니다.",
+    "utf8WriteReadPassed": true,
+    "noFloatingPixelsOrAuthorOracle": true,
+    "newApprovalCounts": 0
+  },
+  "status": "solved"
+}
