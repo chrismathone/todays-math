@@ -1,0 +1,63 @@
+{
+  "exposureDeclaration": {
+    "current_authored_q05_r2_answer_or_solution_exposed": false,
+    "current_authored_student_question_unseen_before_this_student_packet": true,
+    "prior_original_q05_page_incidental_exposure": true,
+    "history": "직전 허가된 q06 원본 H 전체 페이지에 원래 q05 그림·조건이 함께 보여 노출된 이력이 있다. 현재 authored q05 r2의 저자 답·해설·비공개 자료는 읽지 않았다. 완전한 원문 비노출을 주장하지 않는다. 이번 답은 현재 학생 조건에서 독립 계산했다."
+  },
+  "method": "지름의 원주각, 같은 현에 대한 원주각, 두 각이 같은 삼각형의 닮음, 피타고라스 정리",
+  "exactCalculations": {
+    "PD_cm": 30,
+    "DR_squared_cm2": 324,
+    "DR_cm": 18,
+    "similarity_ratio": "1/3",
+    "PH_cm": 8,
+    "QH_cm": 6,
+    "HR_squared_cm2": 512,
+    "HR_cm": "16√2",
+    "QR_cm": "6+16√2"
+  },
+  "allChoices": [
+    {
+      "mark": "①",
+      "length_cm": 4,
+      "PQ_squared_from_right_triangle": 80,
+      "equals_100": false,
+      "similarity_ratio_matches": false
+    },
+    {
+      "mark": "②",
+      "length_cm": 5,
+      "PQ_squared_from_right_triangle": 89,
+      "equals_100": false,
+      "similarity_ratio_matches": false
+    },
+    {
+      "mark": "③",
+      "length_cm": 6,
+      "PQ_squared_from_right_triangle": 100,
+      "equals_100": true,
+      "similarity_ratio_matches": true
+    },
+    {
+      "mark": "④",
+      "length_cm": 8,
+      "PQ_squared_from_right_triangle": 128,
+      "equals_100": false,
+      "similarity_ratio_matches": false
+    },
+    {
+      "mark": "⑤",
+      "length_cm": 10,
+      "PQ_squared_from_right_triangle": 164,
+      "equals_100": false,
+      "similarity_ratio_matches": false
+    }
+  ],
+  "existenceAndUniqueness": "18,24,30인 직각삼각형 PRD를 만들고 PD를 지름으로 하는 원을 그리면 반지름은 15이다. R을 지나지 않는 반원 PD에서 P로부터 현의 길이가 10인 Q를 잡을 수 있다(0<10<30). Q는 P와 D 사이에 있고 순서는 P,Q,D,R이다. Q에서의 각은 직각삼각형 PDR의 예각과 같고, R에서의 각도 작은 호 PQ에 대한 예각이므로 P의 수선의 발은 QR 내부에 있다. 따라서 조건을 만족하는 구성이 존재한다. 반사된 배치까지 도형 자체가 유일하다는 주장은 하지 않으며, 모든 허용 배치에서 아래 닮음으로 요구 길이가 유일하다.",
+  "domains": "반지름, 현, 지름과 QH,PH,HR는 모두 양수. 분모 PD=30,DR=18,PR=24는 0이 아니다. 제곱근은 양의 길이만 채택한다. 길이 cm, 제곱 cm².",
+  "figureInspection": "학생 PNG를 육안으로 확인하고 SVG의 라벨만 확인했다. H의 내부 위치, 수선 표시, PD 지름 및 점 순서를 확인했으며 픽셀이나 SVG 좌표를 수치 계산에 쓰지 않았다.",
+  "studentDigestRecomputed": "c5372fbdf123fd7fbfe98b7d7d9ae889787a7b6970e600800fc7e704a7bbf428",
+  "figureSha256Verified": "4e86594dc6d43aa3764f4d4577ab28de75962440beb7e5b67aeddc6ff95f7a01",
+  "limitations": "현재 학생 문제의 독립 수학 풀이이며 학년·권리·출처·가족·배포 승인이나 승인 개수 증가를 뜻하지 않는다."
+}
