@@ -1,0 +1,734 @@
+{
+  "kind": "captured-source-region-audits/v1",
+  "createdAt": "2026-10-19T06:21:27.022184+00:00",
+  "auditorSha256": "81b25cb662722df427766260849593d62090abb6dbb80a598a546f5642ac00f1",
+  "exams": [
+    {
+      "examId": "personal-d41151b46473d01c83ddba87e3428f97",
+      "sourceManifest": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r1\\personal-d41151b46473d01c83ddba87e3428f97\\source-manifest.local.json",
+        "sha256": "a064916617f338e47641060b8773d059183f0c1350ad239dafc7a93e68150187"
+      },
+      "audit": {
+        "kind": "source-region-ownership-audit/v1",
+        "questions": 21,
+        "overlaps": [
+          {
+            "questions": [
+              18,
+              19
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 4,
+            "column": 0,
+            "intersectionBbox": [
+              55,
+              479.47210693359375,
+              375,
+              481.75006103515625
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          }
+        ],
+        "flaggedQuestionNumbers": [
+          18,
+          19
+        ],
+        "status": "review-required",
+        "mathPixelsUsed": false,
+        "questionContentCertified": false,
+        "authorDistributionAllowed": false,
+        "regionsModified": false,
+        "limitation": "Disjoint boxes do not prove correct ownership, complete figures or text equivalence"
+      }
+    },
+    {
+      "examId": "personal-e33ddb52b435f0c6660a4c056cec7a59",
+      "sourceManifest": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r1\\personal-e33ddb52b435f0c6660a4c056cec7a59\\source-manifest.local.json",
+        "sha256": "93ab04b1d80a33f19c176cd77c6d66e77e4d83a0ddeb71cd5c93f3fb5ae36ce3"
+      },
+      "audit": {
+        "kind": "source-region-ownership-audit/v1",
+        "questions": 22,
+        "overlaps": [
+          {
+            "questions": [
+              3,
+              4
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 1,
+            "column": 1,
+            "intersectionBbox": [
+              370,
+              294.7396240234375,
+              688.0,
+              664.256103515625
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              11,
+              12
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 3,
+            "column": 1,
+            "intersectionBbox": [
+              370,
+              502.3752746582031,
+              688.0,
+              504.77313232421875
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          }
+        ],
+        "flaggedQuestionNumbers": [
+          3,
+          4,
+          11,
+          12
+        ],
+        "status": "review-required",
+        "mathPixelsUsed": false,
+        "questionContentCertified": false,
+        "authorDistributionAllowed": false,
+        "regionsModified": false,
+        "limitation": "Disjoint boxes do not prove correct ownership, complete figures or text equivalence"
+      }
+    },
+    {
+      "examId": "personal-f512082a417e154a4c142b47fae20515",
+      "sourceManifest": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r1\\personal-f512082a417e154a4c142b47fae20515\\source-manifest.local.json",
+        "sha256": "114e3970b2aef6d0336f16ccd0905e6b0c82a8e4c1de1d4a99095076135c40c9"
+      },
+      "audit": {
+        "kind": "source-region-ownership-audit/v1",
+        "questions": 18,
+        "overlaps": [
+          {
+            "questions": [
+              2,
+              3
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 1,
+            "column": 0,
+            "intersectionBbox": [
+              55,
+              696.0054931640625,
+              375,
+              698.9107055664062
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              4,
+              5
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 1,
+            "column": 1,
+            "intersectionBbox": [
+              370,
+              536.8043212890625,
+              688.0,
+              539.427734375
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              7,
+              8
+            ],
+            "regionIndexes": [
+              1,
+              0
+            ],
+            "page": 2,
+            "column": 1,
+            "intersectionBbox": [
+              370,
+              83,
+              688.0,
+              225.61802673339844
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              9,
+              10
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 2,
+            "column": 1,
+            "intersectionBbox": [
+              370,
+              649.8670654296875,
+              688.0,
+              652.14501953125
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              11,
+              12
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 3,
+            "column": 0,
+            "intersectionBbox": [
+              55,
+              439.1545715332031,
+              375,
+              439.1813049316406
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          }
+        ],
+        "flaggedQuestionNumbers": [
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "status": "review-required",
+        "mathPixelsUsed": false,
+        "questionContentCertified": false,
+        "authorDistributionAllowed": false,
+        "regionsModified": false,
+        "limitation": "Disjoint boxes do not prove correct ownership, complete figures or text equivalence"
+      }
+    },
+    {
+      "examId": "personal-a31eb17660269c309fe99cbfce1665c3",
+      "sourceManifest": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r2\\personal-a31eb17660269c309fe99cbfce1665c3\\source-manifest.local.json",
+        "sha256": "f735cd154d8d1cb910457c1e4b83e0c118d6744cfbebc209da4e0c259978d724"
+      },
+      "audit": {
+        "kind": "source-region-ownership-audit/v1",
+        "questions": 25,
+        "overlaps": [
+          {
+            "questions": [
+              2,
+              3
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 1,
+            "column": 0,
+            "intersectionBbox": [
+              55,
+              521.898681640625,
+              375,
+              531.3936157226562
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              6,
+              7
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 1,
+            "column": 1,
+            "intersectionBbox": [
+              370,
+              619.9734497070312,
+              688.0,
+              622.5267333984375
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              7,
+              8
+            ],
+            "regionIndexes": [
+              1,
+              0
+            ],
+            "page": 2,
+            "column": 0,
+            "intersectionBbox": [
+              55,
+              83,
+              375,
+              210.3892059326172
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              7,
+              13
+            ],
+            "regionIndexes": [
+              1,
+              0
+            ],
+            "page": 2,
+            "column": 0,
+            "intersectionBbox": [
+              55,
+              103.83970642089844,
+              375,
+              210.3892059326172
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              8,
+              13
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 2,
+            "column": 0,
+            "intersectionBbox": [
+              55,
+              103.83970642089844,
+              375,
+              375.8677673339844
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              9,
+              13
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 2,
+            "column": 0,
+            "intersectionBbox": [
+              55,
+              381.8677673339844,
+              375,
+              602.621337890625
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              10,
+              13
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 2,
+            "column": 0,
+            "intersectionBbox": [
+              55,
+              608.621337890625,
+              375,
+              943.0
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              10,
+              11
+            ],
+            "regionIndexes": [
+              1,
+              0
+            ],
+            "page": 2,
+            "column": 1,
+            "intersectionBbox": [
+              370,
+              83,
+              688.0,
+              291.0899658203125
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              19,
+              20
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 3,
+            "column": 1,
+            "intersectionBbox": [
+              370,
+              598.1578979492188,
+              688.0,
+              598.3045043945312
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          }
+        ],
+        "flaggedQuestionNumbers": [
+          2,
+          3,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          13,
+          19,
+          20
+        ],
+        "status": "review-required",
+        "mathPixelsUsed": false,
+        "questionContentCertified": false,
+        "authorDistributionAllowed": false,
+        "regionsModified": false,
+        "limitation": "Disjoint boxes do not prove correct ownership, complete figures or text equivalence"
+      }
+    },
+    {
+      "examId": "personal-ae2bb575dbaef34005e65cdeedba6860",
+      "sourceManifest": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r2\\personal-ae2bb575dbaef34005e65cdeedba6860\\source-manifest.local.json",
+        "sha256": "9e1fbb7f8b8a5a5a3f6f5bced0530ac62a1174548f19b38dabf1e13df074e701"
+      },
+      "audit": {
+        "kind": "source-region-ownership-audit/v1",
+        "questions": 21,
+        "overlaps": [
+          {
+            "questions": [
+              1,
+              2
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 1,
+            "column": 0,
+            "intersectionBbox": [
+              55,
+              343.37982177734375,
+              375,
+              354.6433410644531
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              2,
+              3
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 1,
+            "column": 0,
+            "intersectionBbox": [
+              55,
+              616.3563842773438,
+              375,
+              629.4816284179688
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              4,
+              5
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 1,
+            "column": 1,
+            "intersectionBbox": [
+              370,
+              357.7859191894531,
+              688.0,
+              358.7203369140625
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              5,
+              6
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 1,
+            "column": 1,
+            "intersectionBbox": [
+              370,
+              629.93115234375,
+              688.0,
+              633.1989135742188
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              7,
+              8
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 2,
+            "column": 0,
+            "intersectionBbox": [
+              55,
+              366.7793273925781,
+              375,
+              367.4739074707031
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              11,
+              12
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 2,
+            "column": 1,
+            "intersectionBbox": [
+              370,
+              633.65478515625,
+              688.0,
+              635.8369750976562
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              16,
+              17
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 3,
+            "column": 1,
+            "intersectionBbox": [
+              370,
+              346.2738037109375,
+              688.0,
+              351.76544189453125
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              18,
+              19
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 4,
+            "column": 0,
+            "intersectionBbox": [
+              55,
+              465.92333984375,
+              375,
+              470.9579772949219
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          }
+        ],
+        "flaggedQuestionNumbers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          11,
+          12,
+          16,
+          17,
+          18,
+          19
+        ],
+        "status": "review-required",
+        "mathPixelsUsed": false,
+        "questionContentCertified": false,
+        "authorDistributionAllowed": false,
+        "regionsModified": false,
+        "limitation": "Disjoint boxes do not prove correct ownership, complete figures or text equivalence"
+      }
+    },
+    {
+      "examId": "personal-ff66f8d1a4f03871955f857a26829560",
+      "sourceManifest": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r2\\personal-ff66f8d1a4f03871955f857a26829560\\source-manifest.local.json",
+        "sha256": "7160a9a92a4c53b63a0574b2c213b03f39603d67be9a460a34d2184f6e725c50"
+      },
+      "audit": {
+        "kind": "source-region-ownership-audit/v1",
+        "questions": 22,
+        "overlaps": [
+          {
+            "questions": [
+              7,
+              8
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 2,
+            "column": 0,
+            "intersectionBbox": [
+              55,
+              327.717529296875,
+              375,
+              345.2901916503906
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              10,
+              11
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 2,
+            "column": 1,
+            "intersectionBbox": [
+              370,
+              351.9751281738281,
+              688.0,
+              355.3628234863281
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              10,
+              12
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 2,
+            "column": 1,
+            "intersectionBbox": [
+              370,
+              122.99823760986328,
+              688.0,
+              355.3628234863281
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              11,
+              12
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 2,
+            "column": 1,
+            "intersectionBbox": [
+              370,
+              351.9751281738281,
+              688.0,
+              621.5674438476562
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          }
+        ],
+        "flaggedQuestionNumbers": [
+          7,
+          8,
+          10,
+          11,
+          12
+        ],
+        "status": "review-required",
+        "mathPixelsUsed": false,
+        "questionContentCertified": false,
+        "authorDistributionAllowed": false,
+        "regionsModified": false,
+        "limitation": "Disjoint boxes do not prove correct ownership, complete figures or text equivalence"
+      }
+    }
+  ],
+  "mathPixelsUsed": false,
+  "sourceOriginalsModified": false,
+  "componentsApproved": 0,
+  "dbWrites": 0
+}

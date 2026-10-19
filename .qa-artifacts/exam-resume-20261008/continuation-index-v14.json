@@ -1,0 +1,90 @@
+{
+  "kind": "exam-continuation-index/v14",
+  "version": 14,
+  "createdAt": "2026-10-19T06:30:47.851Z",
+  "previousIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/continuation-index-v13.json",
+    "sha256": "36c89571a92cd39198e4844933806c6417ede8bf3c5b548d5a93fb22b4b59c56"
+  },
+  "statusLedger": {
+    "path": ".qa-artifacts/exam-resume-20261008/status-ledger-v14.json",
+    "sha256": "081f3d00e86664d3135fa2216db6fab5e5de59646f092943279af51306ad33bf"
+  },
+  "currentCandidateIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v14.json",
+    "sha256": "e31642bfdcb7d37847327981dc54cef16ec8f1c93f91b9aeb7f5f4cb7a73f484"
+  },
+  "progressReport": "docs/planning/tracks/reports/exam-twin-checkpoint-v14-20261019.md",
+  "counts": {
+    "authoredCurrentCandidates": 112,
+    "currentFigureInstances": 88,
+    "recreatedStatTables": 5,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 111,
+    "preExposureRawSolvesIncludingSupersededR1": 112,
+    "independentMathReviewed": 96,
+    "independentFullGradeReviewed": 96,
+    "contentReviewPassed": 15,
+    "contentReviewHeld": 81,
+    "awaitingCollectedIndependentReview": 16,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0,
+    "currentRawSolved": 110,
+    "currentRawPending": 1,
+    "awaitingFirstSealedBlindSolve": 1
+  },
+  "sourceAccess": {
+    "nDriveAvailable": true,
+    "latestRead": {
+      "path": ".qa-artifacts/exam-resume-20261008/source-reconnection-20261019/run-receipt-r1.json",
+      "sha256": "3cc09f702758a702df7c9673c57b0ba8fecd3aafcafb611cfbafd0d4dba06df1"
+    },
+    "allSourcesExtracted": false
+  },
+  "freshExtraction": {
+    "evidence": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r2/aggregate-receipt.json",
+        "sha256": "553685f863cda90cdd94480763cb46a769e97c2daaee5234f32b0ee82193d07b"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r3/aggregate-receipt.json",
+        "sha256": "2507ed4923dcc8738cc2b35f95db6bb97db48dc69bc8e63a76758099c7b4fe12"
+      }
+    ],
+    "priorParentObservations": 314,
+    "newParentObservations": 129,
+    "totalParentObservations": 443,
+    "componentsApproved": 0,
+    "newTwinsApproved": 0,
+    "wholePairsCertified": 0
+  },
+  "engine": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrades-progress-r6.json",
+    "sha256": "b5703b1a3c6aafde4ba0d342662afde27d31649d12d23ebe5f1bc35094f34d17"
+  },
+  "latestClosure": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/past-exam-closure-current.json",
+    "sha256": "b298c06ce5b93f9e7527e137962ba888849234e8f4e06339b8670ffbf9949264"
+  },
+  "cleanup": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unused-worktree-cleanup.json",
+    "sha256": "ab14a261bdaeca2ab258c1d8c3ae654da14ed3688ad9adf39c986aa992c0cc6d"
+  },
+  "sourceQueue": "Preserved initial continuation-index.json and original20261003 inventory; newly successful fresh aggregate receipts exclude repeat extraction jobs.",
+  "nextActions": [
+    "Seal fresh GF14 blind proofs and then perform current-author/grade/content review; q18 remains held",
+    "Independently solve and review new Gangbuk inverse-input candidate with no author-answer exposure",
+    "Continue remaining2025+ sources, isolating overlap/shared-context and source-identity holds",
+    "Continue useful native engine improvements, current-family semantic mapping and feature checkpoint pushes"
+  ],
+  "restrictions": [
+    "No DB apply/delete/reload/unlock/deploy",
+    "Protected82, three correction ledgers and permanent exclusion unchanged",
+    "N/originals/old proof bytes/shared dependencies preserved",
+    "Rights/similarity/source identity and curriculum never auto-approved",
+    "No active or unpreserved worktree cleanup"
+  ],
+  "wholeGoalComplete": false
+}

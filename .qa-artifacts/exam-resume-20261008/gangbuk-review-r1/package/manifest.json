@@ -1,0 +1,31 @@
+{
+  "kind": "authored-exam-twin-review/v1",
+  "version": 1,
+  "createdAt": "2026-10-19T06:27:27.852Z",
+  "questionNumbers": [
+    1
+  ],
+  "packageDigest": "712da8e6b785ac21da23799a1f911673df80962063e7c911937d970e270f1439",
+  "scope": "authored-subset; no source exam completeness or production authorization implied",
+  "bindings": [
+    {
+      "privateCandidatePath": "private/q01/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gangbuk-authoring-r1\\q01.json",
+        "sha256": "333b7c700f0154fe84d8feeec01c277ac6bc85a21ddca72c7708b538159c787d"
+      },
+      "candidateFileSha256": "333b7c700f0154fe84d8feeec01c277ac6bc85a21ddca72c7708b538159c787d",
+      "candidateDigest": "005d9179e12672d6ec72861ddafdf83026d0455eda30024e7c550bbff5bd0ee9",
+      "studentDigest": "3495bdf016028ee78b38c57f6d5afc1d160820896c91102b659bbea3d1983740",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "assets": []
+    }
+  ],
+  "independentReports": "external evidence only; no mathematical correctness inferred from IDs/digests/render or original answer agreement",
+  "gates": {
+    "sourceIdentity": "pending",
+    "taxonomy": "pending",
+    "rights": "pending",
+    "similarity": "pending"
+  }
+}

@@ -89,10 +89,12 @@ def main():
     reader_path = BASE / 'next-five-extraction-r1/extract_source.py'
     converter_path = ROOT / 'scripts/qa/convert-hwp-spans.py'
     pdf_path = pathlib.Path('D:/시험지 한글화/db/textlayer.py')
-    tool_refs = [ref(p) for p in [pathlib.Path(__file__), reader_path, converter_path, pdf_path]]
+    region_path = ROOT / 'scripts/import/exam-twin/source_region_ownership.py'
+    tool_refs = [ref(p) for p in [pathlib.Path(__file__), reader_path, converter_path, pdf_path, region_path]]
     reader = module(reader_path, 'fresh_positional_reader')
     converter = module(converter_path, 'fresh_formula_converter')
     pdf = module(pdf_path, 'fresh_pdf_textlayer')
+    region_auditor = module(region_path, 'fresh_region_ownership')
     import fitz
     for name in ['tc_paths', 'hwpeq_unglue', 'core.hwpeq_to_latex']:
         tool_refs.append(ref(sys.modules[name].__file__))
@@ -128,6 +130,7 @@ def main():
                 if ([q['number'] for q in questions] != [q['number'] for q in parsed_pdf['questions']]
                         or len(positions) != len(questions) or not questions):
                     raise ValueError('HWP/PDF question boundaries differ; held without certification')
+                region_audit = region_auditor.audit_region_ownership(positions)
                 headers = [{'page': n+1,
                             'header': pdf.decode(doc[n].get_text(clip=fitz.Rect(0, 0, doc[n].rect.width, 100))),
                             'footer': pdf.decode(doc[n].get_text(clip=fitz.Rect(0, doc[n].rect.height-80, doc[n].rect.width, doc[n].rect.height)))}
@@ -162,6 +165,7 @@ def main():
                                 'scoreOccurrenceCount': len(q['printedScoreOccurrences']),
                                 'unmappedCount': len(q['unmappedItems']),
                                 'contentDigest': q['sourceContentDigest'],
+                                'pdfRegionOwnership': 'overlap-review-required' if q['number'] in region_audit['flaggedQuestionNumbers'] else 'no-overlap-observed-not-certified',
                                 'uncertainties': ['whole-question-text', 'formula-equivalence', 'figure-correspondence',
                                                   'choices', 'printed-score', 'source-identity', 'grade', 'rights'],
                                 'componentsApproved': 0})
@@ -169,6 +173,7 @@ def main():
                         'inventoryExamId': job_id, 'inputs': selected, 'originalIdentitySource': original,
                         'hwpHeadersFooters': hwp.headers, 'pdfHeadersFooters': headers,
                         'hwpSections': hwp.sections, 'excludedNotes': hwp.excluded,
+                        'regionOwnershipAudit': region_audit,
                         'originalHeaderPreviews': original_preview, 'questions': questions,
                         'originalAnswersExported': False, 'legacyHandCorrectionsUsed': False,
                         'authorDistributionAllowed': False, 'quarantined': True}
@@ -176,6 +181,7 @@ def main():
             manifest_ref = ref(folder / 'source-manifest.local.json')
             local_files.append(manifest_ref)
             entry.update(status='parsed-quarantined', inputs=selected, originalIdentitySource=original,
+                         regionOwnershipAudit=region_audit,
                          localManifest=manifest_ref, questions=details,
                          originalHeaderPreviews=original_preview,
                          headerObservations={'status': 'pending-reviewer-observation',

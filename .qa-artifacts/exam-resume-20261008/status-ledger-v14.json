@@ -1,0 +1,96 @@
+{
+  "kind": "execution-status-ledger/v14",
+  "version": 14,
+  "createdAt": "2026-10-19T06:30:47.851Z",
+  "previousLedger": {
+    "path": ".qa-artifacts/exam-resume-20261008/status-ledger-v13.json",
+    "sha256": "80545110d1b7597f3d10d33107bacdd8b7240f26f8f44ae0773e69dbe2f86c19"
+  },
+  "counts": {
+    "authoredCurrentCandidates": 112,
+    "currentFigureInstances": 88,
+    "recreatedStatTables": 5,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 111,
+    "preExposureRawSolvesIncludingSupersededR1": 112,
+    "independentMathReviewed": 96,
+    "independentFullGradeReviewed": 96,
+    "contentReviewPassed": 15,
+    "contentReviewHeld": 81,
+    "awaitingCollectedIndependentReview": 16,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0,
+    "currentRawSolved": 110,
+    "currentRawPending": 1,
+    "awaitingFirstSealedBlindSolve": 1
+  },
+  "currentIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v14.json",
+    "sha256": "e31642bfdcb7d37847327981dc54cef16ec8f1c93f91b9aeb7f5f4cb7a73f484"
+  },
+  "countsBasis": "112 current author candidates; formal96 math/grade unchanged. New1 awaits first blind solve; GF14 new verifier raw work in progress is not added as final review.",
+  "engine": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrades-progress-r6.json",
+    "sha256": "b5703b1a3c6aafde4ba0d342662afde27d31649d12d23ebe5f1bc35094f34d17"
+  },
+  "sourceReconnection": {
+    "path": ".qa-artifacts/exam-resume-20261008/source-reconnection-20261019/run-receipt-r1.json",
+    "sha256": "3cc09f702758a702df7c9673c57b0ba8fecd3aafcafb611cfbafd0d4dba06df1"
+  },
+  "freshExtraction": {
+    "evidence": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r2/aggregate-receipt.json",
+        "sha256": "553685f863cda90cdd94480763cb46a769e97c2daaee5234f32b0ee82193d07b"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r3/aggregate-receipt.json",
+        "sha256": "2507ed4923dcc8738cc2b35f95db6bb97db48dc69bc8e63a76758099c7b4fe12"
+      }
+    ],
+    "priorParentObservations": 314,
+    "newParentObservations": 129,
+    "totalParentObservations": 443,
+    "componentsApproved": 0,
+    "newTwinsApproved": 0,
+    "wholePairsCertified": 0
+  },
+  "latestClosure": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/past-exam-closure-current.json",
+    "sha256": "b298c06ce5b93f9e7527e137962ba888849234e8f4e06339b8670ffbf9949264"
+  },
+  "unusedWorktreeCleanup": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unused-worktree-cleanup.json",
+    "sha256": "ab14a261bdaeca2ab258c1d8c3ae654da14ed3688ad9adf39c986aa992c0cc6d"
+  },
+  "original82AndPermanentExclusionPreserved": true,
+  "dbWrites": 0,
+  "loadable": 0,
+  "wholeGoalComplete": false,
+  "automaticContinuationControllerChanged": false,
+  "execution": "manual user-requested resume; one root and one independent Codex worker",
+  "independentNB5": {
+    "rawCommit": "c51c84ce57debd1287f5a1d7708f0c4d709ba01b",
+    "reviewCommit": "7bd67c0d0a710a394c4a5314207af73bc49a36f5",
+    "seal": {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/pre-exposure-seal-receipt-r2.json",
+      "sha256": "f96937cc6973a298fd0e768691d50389bfc572206a2b152c2de4fca54ac6ad0d"
+    },
+    "summary": {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/current-author-summary-parent-r1.json",
+      "sha256": "36f59e7384fdff5aea15e264adc484d40106d8639b84f735b2540f7d351ca240"
+    },
+    "newMathReviewed": 5,
+    "newGradeReviewed": 5,
+    "contentHeld": 5
+  },
+  "liveClassification": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+    "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+  },
+  "sourceOwnershipHolds": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/source-region-audit-r1.json",
+    "sha256": "580c4be786cd1b3271d3ad9812bb7000a40d4c5c35b0fca40e88dd449477d29d"
+  }
+}
