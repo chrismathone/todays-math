@@ -1,0 +1,7 @@
+{
+  "failure": "own-controls.mjs line43: expected equivalent, actual unsupported",
+  "cause": "Own false-relation control used a/b lhs while typed schema uses literal \\frac{a}{b}; comparator intentionally does not infer general symbolic notation equivalence.",
+  "productionFinding": false,
+  "preservedOriginalScript": true,
+  "correction": "new own-controls-r2.mjs uses exact authorized typed lhs; source untouched"
+}

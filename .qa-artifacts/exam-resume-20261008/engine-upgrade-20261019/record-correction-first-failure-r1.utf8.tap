@@ -1,0 +1,56 @@
+TAP version 13
+# Subtest: matches the actual distinct sealed presentation without rewriting either answer
+ok 1 - matches the actual distinct sealed presentation without rewriting either answer
+  ---
+  duration_ms: 5.4662
+  type: 'test'
+  ...
+# Subtest: retains label, corrected value, total and expression roles under adverse inputs
+ok 2 - retains label, corrected value, total and expression roles under adverse inputs
+  ---
+  duration_ms: 30.0153
+  type: 'test'
+  ...
+# Subtest: does not discard extra parts, swap values, accept bad schema or infer symbolic identities
+ok 3 - does not discard extra parts, swap values, accept bad schema or infer symbolic identities
+  ---
+  duration_ms: 4.7465
+  type: 'test'
+  ...
+# Subtest: compares other explicitly typed constant corrections without making their equations true
+not ok 4 - compares other explicitly typed constant corrections without making their equations true
+  ---
+  duration_ms: 0.6583
+  type: 'test'
+  location: 'C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\recordCorrectionAnswer.test.mjs:17:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'unsupported'
+    - 'equivalent'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'equivalent'
+  actual: 'unsupported'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/recordCorrectionAnswer.test.mjs:19:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 3
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 166.7732

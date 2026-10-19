@@ -6,6 +6,7 @@ import path from "node:path";
 import { compareConstantParts } from "./constantAnswers.mjs";
 import { compareWrittenAnswerPresentation } from "./answerPresentation.mjs";
 import { unescapedMathCommandWarnings } from "./authoredMathNotation.mjs";
+import { compareRecordCorrectionAnswer } from "./recordCorrectionAnswer.mjs";
 
 export const REVIEW_CHECKS = [
   "answerCorrect",
@@ -461,6 +462,10 @@ export function normalizeAnswer(text) {
  */
 export function independentAnswerMatches(candidate, answer) {
   if (!answer) return false;
+  if (candidate.questionType === "서술형" &&
+      candidate.metadata?.answerFormat === "record-label-and-scalar-with-working")
+    return compareRecordCorrectionAnswer(candidate.answer, answer,
+      candidate.metadata.recordCorrectionAnswerSchema).status === "equivalent";
   const exact = normalizeAnswer(answer) === normalizeAnswer(candidate.answer);
   if (candidate.questionType !== "객관식" || candidate.choices?.length !== 5)
     return exact || compareWrittenAnswerPresentation(candidate.answer, answer).status === "equivalent";

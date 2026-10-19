@@ -1,0 +1,177 @@
+{
+  "status": "pending",
+  "studentDigest": "a487017dbf90fdb24412937f4d8aef375bdf96874252a41b590e4e982769dfe4",
+  "candidateDigest": "73396e537e697cec233243b027522fc5181db156bbaec4d9ad5bc3e99f1b4bbd",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-current-review-20261020-q19",
+  "solveDigest": "6a037e6da189240c0921831a83dcfd00f18742d1452c3b094d8f5708d9cc6dc4",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "정수부분/소수부분, 근호 계산, 세 독립 기록의 오류 진단은 2015 실제 중3 root 및 다항식 곱셈 학습 이후 방법이다.",
+      "evidence": "16<18<25로 a=4,b=3√2−4. 서로 따로 계산한 기록이므로 ㄴ의 오류를 ㄷ에 전파하지 않는다. 고등 바닥함수 정리 불필요."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "객관식 선택지는 없으며 세 기록의 진위를 모두 검토하는 서술형이다. 각 기록은 중3 계산으로 판단된다.",
+      "evidence": "ㄱ 참, ㄴ은 올바른 값보다16작아 거짓, ㄷ은 제곱 전개로 참. 기록 ㄴ 하나만 오류이다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "도형·표나 별도 기하 선수 없이 세 대수 기록만 있다.",
+      "evidence": "assets와 figureArtifacts는 비어 있고 학생 조건/수식만 검토했다. 이미지 측정·외부 자료 없음."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "a/b,(b+3)^2와 세 기록 기호는 중3 분수·제곱 표기이다. r3 typed schema는 학생이 요구한 수정식과 최종식의 역할을 정확히 기록한다.",
+      "evidence": "correctedExpression=\\frac{a}{b},totalExpression=\\frac{a}{b}+(b+3)^2. 기존 답의 세 부분과 sealed raw의 역할/상수값이 실제 parser에서 일치한다. 단순 문자열 일치나 relation truth 증명으로 오인하지 않는다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "ㄴ, a/b=8+6√2, 최종합27은 실제 중3 유리화/동류항 계산으로 구한 결과이다.",
+      "evidence": "분모곱18−16=2, 몫(8+6√2)(3√2−4)=4. ㄷ=19−6√2와 합해27. r3는 이 값이나 raw를 변경하지 않는다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "현재 해설은 양수 제곱 비교, 켤레를 곱하는 유리화, 제곱의 차 및 완전제곱식 전개만 요구한다.",
+      "evidence": "MOE actual9수01-10 및9수02-12, formula records4029/4035/4041; 실제 중3 다항식 학습 배치 확인. 분모b>0/켤레>0/새분모2를 명시해 각 등식의 정당성을 설명한다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "정수부분·소수부분, 근호의 사칙계산·유리화, 다항식 곱셈공식을 학습한 뒤에만 배정한다.",
+      "evidence": "실제2015 중3 root/다항식 primary 배치. UUID1682f01b/28032bdd/99ca37c0/e63d61c6 계열 제안 중 특히 다항식 곱셈 선수472가 필요하다. 9수02-05 선형식 코드를 곱셈공식 근거로 재사용하지 않는다; 실제9수02-12 record3956이다."
+    }
+  },
+  "evidence": {
+    "reviewType": "metadata-only r3; not fresh blind or new question",
+    "currentMath": {
+      "method": "own Fraction pair p+q*sqrt2; exact, not a student algebraic-field prerequisite",
+      "a": 4,
+      "b": [
+        "-4",
+        "3"
+      ],
+      "denominatorProduct": 2,
+      "correctedQuotient": [
+        "8",
+        "6"
+      ],
+      "square": [
+        "19",
+        "-6"
+      ],
+      "total": [
+        "27",
+        "0"
+      ],
+      "recordTruth": [
+        true,
+        false,
+        true
+      ],
+      "wrongRecordConstantDifference": 16,
+      "domain": "16<18<25 gives0<b<1; conjugate positive, denominator2; all real, no units",
+      "unique": "a/b decomposition and all three independent records uniquely determined"
+    },
+    "metadataEqualityAndActualParse": "own-q19-r3-metadata-parse-check.json",
+    "oldFailurePreserved": {
+      "actualRootR2": {
+        "math": 0,
+        "grade": 0
+      },
+      "reason": "unsupported multipart serialization",
+      "source": "user supplied actual collector outcome; former report preserved without rewriting",
+      "currentEvidence": "r3 schema and current adapter actually parsed author/raw; no pass inferred from matching hashes"
+    },
+    "sourceComparison": {
+      "basis": "same source facts previously read in authorized q19 r2 source-question-only.json; no new source file or key read",
+      "observed": "原文 예시 후 2√3의 정수부분/소수부분으로 a/b+(b+2)^2 직접 계산, 중/6점.",
+      "sameCore": "제곱수 비교→소수부분 차→유리화와 제곱공식→동류항 정리",
+      "actualChange": "직접 결과 계산에서 독립 세 기록의 단일 오류 특정/계산 과정 수정/합 완성으로 목표와 구조 변경. 숫자 변경만으로 주장하지 않는다."
+    },
+    "scoreDifficulty": {
+      "sourceObserved": "중/6점",
+      "proposal": "응용/6점",
+      "rubricSum": 6,
+      "basis": "a,b1점+오류위치1점+유리화과정2점+ㄷ확인1점+합1점=6. 진단 부담 추가와 최종 근호항 소거 부담 감소를 함께 본 편집 제안; 실측 동난도/성취효과 인증 아님."
+    },
+    "naturalKorean": "서로 따로 계산한 세 기록과 정확히 하나 오류라는 문장이 오류 전파 혼동을 막으며 수정 과정 및 최종합 요구가 분명하다.",
+    "unitFamily": "captured 근호계산UUID99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1 및 다항식 선수 제안은 있으나 세 기록진단/수정/합 전체 목표의 실제 livefamily는 정의 확인 전 null이다.",
+    "primaryReferences": {
+      "kind": "actual official documents previously directly inspected in this same session; reused locators, no new primary sweep",
+      "moe": {
+        "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84",
+        "sha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "stream": "BodyText/Section0",
+        "records1based": {
+          "3776": "9수01-07 제곱근의 뜻과 성질",
+          "3780": "9수01-08 무리수의 개념",
+          "3784": "9수01-09 실수의 대소 관계",
+          "3788": "9수01-10 근호를 포함한 식의 사칙계산",
+          "3956": "9수02-12 다항식의 곱셈과 인수분해"
+        },
+        "formulaRecordsTag88": [
+          4029,
+          4035,
+          4041
+        ]
+      },
+      "actualM3Roots": {
+        "url": "https://www.goe.go.kr/resource/old/BBSMSTR_000000030136/BBS_202202101132253081.pdf",
+        "pageIndex0": 38,
+        "printedPage": 38,
+        "observed": "중3 표에 9수01-07/08/09/10의 실제 배치; 문서 발행 2022는 2022 개정 교육과정 인증이 아님"
+      },
+      "actualM3Polynomial": {
+        "url": "https://www.ice.go.kr/upload/board/1098/2021/10/1633051011135.pdf",
+        "pageIndex0": 89,
+        "printedPage": 90,
+        "observed": "중3 9수02-12와 곱셈공식·인수분해 관계 및 완전제곱식/공통인수 학습"
+      },
+      "yearScope": "2025 source and 2026 practice M3:2015; 2027 M3/2022 separate pending",
+      "limits": "문서 코드만으로 승인하지 않고 실제 아래 학생 절차와 실제 중3 배치를 결합함. 학교/학기 진도 인증 아님."
+    },
+    "preExposureRaw": {
+      "path": ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem1-group11-review-20261020-r1\\blind\\solve\\q19.json",
+      "sha256": "63801031840a2f3ce65c607595449970b9d2f4024a69452aa2ec578d8e6bf301",
+      "parentSeal": "28ef7f960b815760f8f9c4f9af8eed9d11b9761c",
+      "rawUnchanged": true,
+      "originalDeclarationPreserved": true
+    },
+    "currentBinding": {
+      "studentDigest": "a487017dbf90fdb24412937f4d8aef375bdf96874252a41b590e4e982769dfe4",
+      "candidateDigest": "73396e537e697cec233243b027522fc5181db156bbaec4d9ad5bc3e99f1b4bbd",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "6a037e6da189240c0921831a83dcfd00f18742d1452c3b094d8f5708d9cc6dc4"
+    },
+    "mathReviewed": true,
+    "grade2015M3AfterPrerequisites": true,
+    "newBlindOrQuestionIncrement": 0,
+    "separateHolds": {
+      "unitFamilyFit": false,
+      "sourceIdentityApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "loadable": false,
+      "2022M3": "pending"
+    },
+    "countsAreNotApprovalByHash": true
+  }
+}

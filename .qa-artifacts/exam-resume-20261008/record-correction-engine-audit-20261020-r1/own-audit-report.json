@@ -1,0 +1,66 @@
+{
+  "kind": "independent-u48-record-correction-and-u47-bounded-audit/v1",
+  "status": "bounded-controls-passed-with-explicit-limits",
+  "scopeInputSha256": "efab4e1977a764e695ec99b8e6443b8cb9d17b50c12bec174df55795d14a0c6c",
+  "sourceBaseline": "exact nine absolute paths in supplied scope-input.json; all before/after SHA256 equal",
+  "sourceHashesBefore": "own-source-hashes-before.json",
+  "sourceHashesAfter": "own-source-hashes-after.json",
+  "actualOwnRuns": {
+    "recordAdversarialAndPositiveControls": 29,
+    "constantControls": 10,
+    "notationControls": 12,
+    "currentMockedReports": 2,
+    "negativeMockedReviewControls": 6,
+    "parentTestsClaimedAsOwn": 0
+  },
+  "observed": {
+    "constantMath": "BigInt rational/square-free map parser is bounded to constants, integer nonnegative radicands up to1000000, expression512/token128, numeric token12integer/6decimal, termcount32; division only a single nonzero radical term. No floating point tolerance. Own cases confirmed commuted radicals/sqrt8=2sqrt2/0.5=1/2 match and near-but-unequal/NaN/Infinity/zero denominator/free symbols/out-of-bound radicands fail.",
+    "recordGrammar": "Exactly three ordered top-level comma/semicolon parts; allowed Hangul record label, explicit correction lhs, optional explicit total lhs; exact typed schema keys/version/kind/unique labels; both constant values fully consumed. Wrong record, value, unit, correction lhs, target sign, extra parts, prose, free symbols, missing/changed schema fail in own actual runs.",
+    "candidateAdapter": "record-label-and-scalar-with-working routes to typed comparator BEFORE legacy normalized exact text matching. Without schema even same author string is held; current schema with sealed raw succeeds. Raw answer/solution bytes never rewritten.",
+    "u47": "Dollar-delimited narrow lost-backslash detector masks text/operator literals and catches root/fraction/dots examples. Own12 exact literal/counterexample cases passed. UTF16 offsets include astral prefix correctly by expected warning count; did not assert every possible offset.",
+    "reviewBoundary": "Pure evaluateReview with explicitly mocked validation (not validateCandidate) returns current q03/q19 math=true,grade=true while unitFamilyFit=false, statuspending, overall/loadablefalse. Missing surface basis fails grade; bound-but-wrong answer fails math+grade; notation warning fails math+grade.",
+    "catalogAndCollectorRead": "Read authorized review-exam-twins and summarize code: current exact ID/raw author hash and frozen bindings used; no approval inferred from hash, only evidence binding. No runtime private package/CLI/DB collector executed."
+  },
+  "limitations": [
+    "No general TeX or algebra solver: non-dollar/unclosed-dollar math is not checked; zero warnings cannot certify rendering or mathematics.",
+    "Typed lhs comparison is literal after limited normalization, not general symbolic equivalence; a/b and \\frac{a}{b} are not universally interchangeable.",
+    "Self-matching false equations can compare equivalent, with relationTruthProved=false and permitsGradeOrQuestionApproval=false; independent student calculation remains required.",
+    "Changing a schema to another well-formed internally consistent schema is not a semantic grade/target validator. Current schema was separately read against actual question and raw explicit lhs; bare total presentation alone cannot prove the intended target.",
+    "No validateCandidate/bindCandidate because these would read solver_rules/private package outside scope. Full collector authenticity and keyword-policy execution are not independently run here; mocked boundary is explicit.",
+    "No family/source identity/rights/similarity/native reader/2022 approval; no new question/blind count."
+  ],
+  "preservedOwnDiagnosticFailures": [
+    {
+      "script": "own-controls.mjs",
+      "failure": "false-equation demonstration used plain a/b lhs incompatible with typed fraction lhs; unsupported result was correct"
+    },
+    {
+      "script": "own-controls-r2.mjs",
+      "failure": "PowerShell stdin non-ASCII replacement did not match, so same assertion repeated; original scripts preserved"
+    },
+    {
+      "script": "own-controls-r3.mjs",
+      "result": "ASCII Unicode escape and literal typed lhs fixed own control, all bounded controls completed; no production source change"
+    }
+  ],
+  "q19HistoricalFailure": {
+    "actualR2CollectorMath": 0,
+    "actualR2CollectorGrade": 0,
+    "reason": "unsupported multipart serialization",
+    "oldReportPreserved": true,
+    "r3ActualParse": "typed schema added, exact current student/answer/solution/score/rubric/assets/raw equal; new candidate digest; actual compare equivalent without raw rewrite",
+    "notApprovalByHash": true
+  },
+  "evidenceHashes": {
+    "own-controls-results.json": "793a56df25bdfe6a3d437d9c3ea818b0ae882d644caa8200f3cad94cef261f11",
+    "own-mocked-review-results.json": "ab5fedb8e852ce7e9ec039e2c7792b1894c45e64869886aaa591ea9533cb5cfa",
+    "own-source-hashes-before.json": "f9f5b6e776e19f93a9a57bfac6cf83df80c627488a5724833678e45231da3271",
+    "own-source-hashes-after.json": "1f3fe853fa2b1297f04e450d2e312a4cc8341e74ebf052183b0c342527e001af",
+    "own-initial-control-failure.json": "4fdb3454127a955752d22c9aa084d44fca8cf0d5d509089866905e2c4aea319d",
+    "own-r2-control-edit-failure.json": "9a2877cdc894fb70eefd8af1316a37fc3abf120b9d71b07e840486c0eb31d686"
+  },
+  "dbWrites": 0,
+  "rootEdits": 0,
+  "paidAiApiCalls": 0,
+  "newWorkers": 0
+}

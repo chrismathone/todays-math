@@ -1,0 +1,932 @@
+{
+  "kind": "independent-bounded-u48-audit",
+  "recordControls": [
+    {
+      "name": "actual sealed raw with commuted radical sum",
+      "answer": "ㄴ, \\dfrac{a}{b}=6\\sqrt{2}+8, \\dfrac{a}{b}+(b+3)^2=27",
+      "schema": {
+        "version": 1,
+        "kind": "record-correction-and-total",
+        "recordLabels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ"
+        ],
+        "correctedExpression": "\\frac{a}{b}",
+        "totalExpression": "\\frac{a}{b}+(b+3)^2"
+      },
+      "result": {
+        "status": "equivalent",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "wrong record",
+      "answer": "ㄱ, \\dfrac{a}{b}=6\\sqrt{2}+8, \\dfrac{a}{b}+(b+3)^2=27",
+      "schema": {
+        "version": 1,
+        "kind": "record-correction-and-total",
+        "recordLabels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ"
+        ],
+        "correctedExpression": "\\frac{a}{b}",
+        "totalExpression": "\\frac{a}{b}+(b+3)^2"
+      },
+      "result": {
+        "status": "different",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "unknown record",
+      "answer": "ㅎ, \\dfrac{a}{b}=6\\sqrt{2}+8, \\dfrac{a}{b}+(b+3)^2=27",
+      "schema": {
+        "version": 1,
+        "kind": "record-correction-and-total",
+        "recordLabels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ"
+        ],
+        "correctedExpression": "\\frac{a}{b}",
+        "totalExpression": "\\frac{a}{b}+(b+3)^2"
+      },
+      "result": {
+        "status": "unsupported",
+        "reason": "Unknown record label",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "wrong corrected sign",
+      "answer": "ㄴ, \\dfrac{a}{b}=6\\sqrt{2}-8, \\dfrac{a}{b}+(b+3)^2=27",
+      "schema": {
+        "version": 1,
+        "kind": "record-correction-and-total",
+        "recordLabels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ"
+        ],
+        "correctedExpression": "\\frac{a}{b}",
+        "totalExpression": "\\frac{a}{b}+(b+3)^2"
+      },
+      "result": {
+        "status": "different",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "wrong total",
+      "answer": "ㄴ, \\dfrac{a}{b}=6\\sqrt{2}+8, \\dfrac{a}{b}+(b+3)^2=28",
+      "schema": {
+        "version": 1,
+        "kind": "record-correction-and-total",
+        "recordLabels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ"
+        ],
+        "correctedExpression": "\\frac{a}{b}",
+        "totalExpression": "\\frac{a}{b}+(b+3)^2"
+      },
+      "result": {
+        "status": "different",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "unequal tiny rational",
+      "answer": "ㄴ, \\dfrac{a}{b}=6\\sqrt{2}+8, \\dfrac{a}{b}+(b+3)^2=27+1/1000000",
+      "schema": {
+        "version": 1,
+        "kind": "record-correction-and-total",
+        "recordLabels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ"
+        ],
+        "correctedExpression": "\\frac{a}{b}",
+        "totalExpression": "\\frac{a}{b}+(b+3)^2"
+      },
+      "result": {
+        "status": "different",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "wrong unit",
+      "answer": "ㄴ, \\dfrac{a}{b}=6\\sqrt{2}+8, \\dfrac{a}{b}+(b+3)^2=27cm",
+      "schema": {
+        "version": 1,
+        "kind": "record-correction-and-total",
+        "recordLabels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ"
+        ],
+        "correctedExpression": "\\frac{a}{b}",
+        "totalExpression": "\\frac{a}{b}+(b+3)^2"
+      },
+      "result": {
+        "status": "unsupported",
+        "reason": "Unsupported exact scalar\n+ actual - expected\n\n+ 'unsupported'\n- 'equivalent'\n",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "wrong correction lhs",
+      "answer": "ㄴ, \\dfrac{b}{a}=6\\sqrt{2}+8, \\dfrac{a}{b}+(b+3)^2=27",
+      "schema": {
+        "version": 1,
+        "kind": "record-correction-and-total",
+        "recordLabels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ"
+        ],
+        "correctedExpression": "\\frac{a}{b}",
+        "totalExpression": "\\frac{a}{b}+(b+3)^2"
+      },
+      "result": {
+        "status": "unsupported",
+        "reason": "Changed correction role\n+ actual - expected\n\n+ '\\\\frac{b}{a}'\n- '\\\\frac{a}{b}'\n          ^\n",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "wrong target sign",
+      "answer": "ㄴ, \\dfrac{a}{b}=6\\sqrt{2}+8, \\dfrac{a}{b}-(b+3)^2=27",
+      "schema": {
+        "version": 1,
+        "kind": "record-correction-and-total",
+        "recordLabels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ"
+        ],
+        "correctedExpression": "\\frac{a}{b}",
+        "totalExpression": "\\frac{a}{b}+(b+3)^2"
+      },
+      "result": {
+        "status": "unsupported",
+        "reason": "Changed total role\n+ actual - expected\n\n+ '\\\\frac{a}{b}-(b+3)^2'\n- '\\\\frac{a}{b}+(b+3)^2'\n               ^\n",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "wrong inner target sign",
+      "answer": "ㄴ, \\dfrac{a}{b}=6\\sqrt{2}+8, \\dfrac{a}{b}+(b-3)^2=27",
+      "schema": {
+        "version": 1,
+        "kind": "record-correction-and-total",
+        "recordLabels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ"
+        ],
+        "correctedExpression": "\\frac{a}{b}",
+        "totalExpression": "\\frac{a}{b}+(b+3)^2"
+      },
+      "result": {
+        "status": "unsupported",
+        "reason": "Changed total role\n+ actual - expected\n\n+ '\\\\frac{a}{b}+(b-3)^2'\n- '\\\\frac{a}{b}+(b+3)^2'\n                  ^\n",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "additional part",
+      "answer": "ㄴ, \\dfrac{a}{b}=6\\sqrt{2}+8, \\dfrac{a}{b}+(b+3)^2=27,27",
+      "schema": {
+        "version": 1,
+        "kind": "record-correction-and-total",
+        "recordLabels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ"
+        ],
+        "correctedExpression": "\\frac{a}{b}",
+        "totalExpression": "\\frac{a}{b}+(b+3)^2"
+      },
+      "result": {
+        "status": "unsupported",
+        "reason": "Exactly three ordered answer parts required\n\n4 !== 3\n",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "prose",
+      "answer": "ㄴ, \\dfrac{a}{b}=6\\sqrt{2}+8, \\dfrac{a}{b}+(b+3)^2=27 설명",
+      "schema": {
+        "version": 1,
+        "kind": "record-correction-and-total",
+        "recordLabels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ"
+        ],
+        "correctedExpression": "\\frac{a}{b}",
+        "totalExpression": "\\frac{a}{b}+(b+3)^2"
+      },
+      "result": {
+        "status": "unsupported",
+        "reason": "Unsupported exact scalar\n+ actual - expected\n\n+ 'unsupported'\n- 'equivalent'\n",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "free symbol",
+      "answer": "ㄴ, \\dfrac{a}{b}=6\\sqrt{2}+8, \\dfrac{a}{b}+(b+3)^2=x",
+      "schema": {
+        "version": 1,
+        "kind": "record-correction-and-total",
+        "recordLabels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ"
+        ],
+        "correctedExpression": "\\frac{a}{b}",
+        "totalExpression": "\\frac{a}{b}+(b+3)^2"
+      },
+      "result": {
+        "status": "unsupported",
+        "reason": "Unsupported exact scalar\n+ actual - expected\n\n+ 'unsupported'\n- 'equivalent'\n",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "extra equality",
+      "answer": "ㄴ, \\dfrac{a}{b}=6\\sqrt{2}+8, \\dfrac{a}{b}+(b+3)^2=27=28",
+      "schema": {
+        "version": 1,
+        "kind": "record-correction-and-total",
+        "recordLabels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ"
+        ],
+        "correctedExpression": "\\frac{a}{b}",
+        "totalExpression": "\\frac{a}{b}+(b+3)^2"
+      },
+      "result": {
+        "status": "unsupported",
+        "reason": "The expression evaluated to a falsy value:\n\n  assert(total.length===1||total.length===2)\n",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "separated numerals",
+      "answer": "ㄴ, \\dfrac{a}{b}=6\\sqrt{2}+8, \\dfrac{a}{b}+(b+3)^2=2 7",
+      "schema": {
+        "version": 1,
+        "kind": "record-correction-and-total",
+        "recordLabels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ"
+        ],
+        "correctedExpression": "\\frac{a}{b}",
+        "totalExpression": "\\frac{a}{b}+(b+3)^2"
+      },
+      "result": {
+        "status": "unsupported",
+        "reason": "Separated numerals",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "wrong radical",
+      "answer": "ㄴ, \\dfrac{a}{b}=6\\sqrt{3}+8, \\dfrac{a}{b}+(b+3)^2=27",
+      "schema": {
+        "version": 1,
+        "kind": "record-correction-and-total",
+        "recordLabels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ"
+        ],
+        "correctedExpression": "\\frac{a}{b}",
+        "totalExpression": "\\frac{a}{b}+(b+3)^2"
+      },
+      "result": {
+        "status": "different",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "missing label",
+      "answer": " \\dfrac{a}{b}=6\\sqrt{2}+8, \\dfrac{a}{b}+(b+3)^2=27",
+      "schema": {
+        "version": 1,
+        "kind": "record-correction-and-total",
+        "recordLabels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ"
+        ],
+        "correctedExpression": "\\frac{a}{b}",
+        "totalExpression": "\\frac{a}{b}+(b+3)^2"
+      },
+      "result": {
+        "status": "unsupported",
+        "reason": "Exactly three ordered answer parts required\n\n2 !== 3\n",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "unbalanced dollar",
+      "answer": "ㄴ, \\dfrac{a}{b}=6\\sqrt{2}+8, \\dfrac{a}{b}+(b+3)^2=27$",
+      "schema": {
+        "version": 1,
+        "kind": "record-correction-and-total",
+        "recordLabels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ"
+        ],
+        "correctedExpression": "\\frac{a}{b}",
+        "totalExpression": "\\frac{a}{b}+(b+3)^2"
+      },
+      "result": {
+        "status": "unsupported",
+        "reason": "Unbalanced math delimiters\n\n1 !== 0\n",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "zero denominator",
+      "answer": "ㄴ, \\dfrac{a}{b}=6\\sqrt{2}+8, \\dfrac{a}{b}+(b+3)^2=27/0",
+      "schema": {
+        "version": 1,
+        "kind": "record-correction-and-total",
+        "recordLabels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ"
+        ],
+        "correctedExpression": "\\frac{a}{b}",
+        "totalExpression": "\\frac{a}{b}+(b+3)^2"
+      },
+      "result": {
+        "status": "unsupported",
+        "reason": "Unsupported exact scalar\n+ actual - expected\n\n+ 'unsupported'\n- 'equivalent'\n",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "unevaluated relation",
+      "answer": "ㄴ, \\dfrac{a}{b}=(b+3)^2, \\dfrac{a}{b}+(b+3)^2=27",
+      "schema": {
+        "version": 1,
+        "kind": "record-correction-and-total",
+        "recordLabels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ"
+        ],
+        "correctedExpression": "\\frac{a}{b}",
+        "totalExpression": "\\frac{a}{b}+(b+3)^2"
+      },
+      "result": {
+        "status": "unsupported",
+        "reason": "Unsupported exact scalar\n+ actual - expected\n\n+ 'unsupported'\n- 'equivalent'\n",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "missing schema",
+      "result": {
+        "status": "unsupported",
+        "reason": "The expression evaluated to a falsy value:\n\n  assert(schema && typeof schema === 'object' && !Array.isArray(schema))\n",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "null schema",
+      "result": {
+        "status": "unsupported",
+        "reason": "The expression evaluated to a falsy value:\n\n  assert(schema && typeof schema === 'object' && !Array.isArray(schema))\n",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "changed version",
+      "result": {
+        "status": "unsupported",
+        "reason": "Expected values to be strictly equal:\n\n2 !== 1\n",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "changed kind",
+      "result": {
+        "status": "unsupported",
+        "reason": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'scalar'\n- 'record-correction-and-total'\n",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "changed corrected lhs",
+      "result": {
+        "status": "unsupported",
+        "reason": "Changed correction role\n+ actual - expected\n\n+ '\\\\frac{a}{b}'\n- 'b/a'\n",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "changed total target",
+      "result": {
+        "status": "unsupported",
+        "reason": "Changed total role\n+ actual - expected\n\n+ '\\\\frac{a}{b}+(b+3)^2'\n- 'a/b-(b+3)^2'\n",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "duplicate labels",
+      "result": {
+        "status": "unsupported",
+        "reason": "Expected values to be strictly equal:\n\n1 !== 2\n",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "extra approval key",
+      "result": {
+        "status": "unsupported",
+        "reason": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    'correctedExpression',\n+   'gradeApproved',\n    'kind',\n    'recordLabels',\n    'totalExpression',\n    'version'\n  ]\n",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    },
+    {
+      "name": "missing target key",
+      "result": {
+        "status": "unsupported",
+        "reason": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    'correctedExpression',\n    'kind',\n    'recordLabels',\n-   'totalExpression',\n    'version'\n  ]\n",
+        "presentationComparisonOnly": true,
+        "relationTruthProved": false,
+        "permitsGradeOrQuestionApproval": false,
+        "generalSymbolicEquivalence": false
+      }
+    }
+  ],
+  "recordControlsCount": 29,
+  "constantControls": [
+    {
+      "x": "8+6\\sqrt2",
+      "y": "6\\sqrt{2}+8",
+      "equal": true,
+      "result": {
+        "status": "equivalent",
+        "left": [
+          {
+            "role": "v",
+            "dimension": "scalar",
+            "value": [
+              {
+                "radicand": 1,
+                "numerator": "8",
+                "denominator": "1"
+              },
+              {
+                "radicand": 2,
+                "numerator": "6",
+                "denominator": "1"
+              }
+            ]
+          }
+        ],
+        "right": [
+          {
+            "role": "v",
+            "dimension": "scalar",
+            "value": [
+              {
+                "radicand": 1,
+                "numerator": "8",
+                "denominator": "1"
+              },
+              {
+                "radicand": 2,
+                "numerator": "6",
+                "denominator": "1"
+              }
+            ]
+          }
+        ],
+        "calculationOnly": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    },
+    {
+      "x": "\\sqrt8",
+      "y": "2\\sqrt2",
+      "equal": true,
+      "result": {
+        "status": "equivalent",
+        "left": [
+          {
+            "role": "v",
+            "dimension": "scalar",
+            "value": [
+              {
+                "radicand": 2,
+                "numerator": "2",
+                "denominator": "1"
+              }
+            ]
+          }
+        ],
+        "right": [
+          {
+            "role": "v",
+            "dimension": "scalar",
+            "value": [
+              {
+                "radicand": 2,
+                "numerator": "2",
+                "denominator": "1"
+              }
+            ]
+          }
+        ],
+        "calculationOnly": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    },
+    {
+      "x": "0.5",
+      "y": "1/2",
+      "equal": true,
+      "result": {
+        "status": "equivalent",
+        "left": [
+          {
+            "role": "v",
+            "dimension": "scalar",
+            "value": [
+              {
+                "radicand": 1,
+                "numerator": "1",
+                "denominator": "2"
+              }
+            ]
+          }
+        ],
+        "right": [
+          {
+            "role": "v",
+            "dimension": "scalar",
+            "value": [
+              {
+                "radicand": 1,
+                "numerator": "1",
+                "denominator": "2"
+              }
+            ]
+          }
+        ],
+        "calculationOnly": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    },
+    {
+      "x": "27",
+      "y": "27.000001",
+      "equal": false,
+      "result": {
+        "status": "different",
+        "left": [
+          {
+            "role": "v",
+            "dimension": "scalar",
+            "value": [
+              {
+                "radicand": 1,
+                "numerator": "27",
+                "denominator": "1"
+              }
+            ]
+          }
+        ],
+        "right": [
+          {
+            "role": "v",
+            "dimension": "scalar",
+            "value": [
+              {
+                "radicand": 1,
+                "numerator": "27000001",
+                "denominator": "1000000"
+              }
+            ]
+          }
+        ],
+        "calculationOnly": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    },
+    {
+      "x": "27",
+      "y": "NaN",
+      "equal": false,
+      "result": {
+        "status": "unsupported",
+        "reason": "Unsupported constant syntax",
+        "calculationOnly": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    },
+    {
+      "x": "27",
+      "y": "Infinity",
+      "equal": false,
+      "result": {
+        "status": "unsupported",
+        "reason": "Unsupported constant syntax",
+        "calculationOnly": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    },
+    {
+      "x": "1/0",
+      "y": "1/0",
+      "equal": false,
+      "result": {
+        "status": "unsupported",
+        "reason": "Unsupported or zero denominator",
+        "calculationOnly": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    },
+    {
+      "x": "x",
+      "y": "x",
+      "equal": false,
+      "result": {
+        "status": "unsupported",
+        "reason": "Unsupported constant syntax",
+        "calculationOnly": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    },
+    {
+      "x": "sqrt(1000001)",
+      "y": "sqrt(1000001)",
+      "equal": false,
+      "result": {
+        "status": "unsupported",
+        "reason": "Unsupported radicand",
+        "calculationOnly": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    },
+    {
+      "x": "1 2",
+      "y": "12",
+      "equal": false,
+      "result": {
+        "status": "unsupported",
+        "reason": "Separated numerals are not a scalar expression",
+        "calculationOnly": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    }
+  ],
+  "notationControls": [
+    {
+      "name": "lost root",
+      "text": "$sqrt2$",
+      "warnings": [
+        {
+          "token": "sqrt",
+          "offset": 1,
+          "delimiter": "$"
+        }
+      ]
+    },
+    {
+      "name": "lost fraction",
+      "text": "$frac{1}{2}$",
+      "warnings": [
+        {
+          "token": "frac",
+          "offset": 1,
+          "delimiter": "$"
+        }
+      ]
+    },
+    {
+      "name": "lost dots",
+      "text": "$ldots$",
+      "warnings": [
+        {
+          "token": "ldots",
+          "offset": 1,
+          "delimiter": "$"
+        }
+      ]
+    },
+    {
+      "name": "valid TeX",
+      "text": "$\\sqrt2+\\frac{1}{2},\\ldots$",
+      "warnings": []
+    },
+    {
+      "name": "ordinary outside text",
+      "text": "sqrt2 frac{1}{2} ldots",
+      "warnings": []
+    },
+    {
+      "name": "text literal",
+      "text": "$\\text{sqrt2 frac{1}{2} ldots}$",
+      "warnings": []
+    },
+    {
+      "name": "nested literal",
+      "text": "$\\text{a {sqrt2} ldots}+sqrt3$",
+      "warnings": [
+        {
+          "token": "sqrt",
+          "offset": 24,
+          "delimiter": "$"
+        }
+      ]
+    },
+    {
+      "name": "operator literal",
+      "text": "$\\operatorname{sqrt2}$",
+      "warnings": []
+    },
+    {
+      "name": "word substring",
+      "text": "$asqrt2+myldots$",
+      "warnings": []
+    },
+    {
+      "name": "escaped dollar",
+      "text": "\\$sqrt2\\$",
+      "warnings": []
+    },
+    {
+      "name": "double display",
+      "text": "$$sqrt2+cdots$$",
+      "warnings": [
+        {
+          "token": "sqrt",
+          "offset": 2,
+          "delimiter": "$$"
+        },
+        {
+          "token": "cdots",
+          "offset": 8,
+          "delimiter": "$$"
+        }
+      ]
+    },
+    {
+      "name": "astral prefix offset",
+      "text": "😀 $sqrt2$",
+      "warnings": [
+        {
+          "token": "sqrt",
+          "offset": 4,
+          "delimiter": "$"
+        }
+      ]
+    }
+  ],
+  "notationLimits": [
+    {
+      "name": "non-dollar math not scanned",
+      "text": "\\(sqrt2\\)",
+      "warnings": []
+    },
+    {
+      "name": "unclosed dollar math not scanned",
+      "text": "$sqrt2",
+      "warnings": []
+    },
+    {
+      "name": "valid TeX does not imply true equation",
+      "text": "$1=2$",
+      "warnings": []
+    }
+  ],
+  "falseRelationSelfMatch": {
+    "status": "equivalent",
+    "presentationComparisonOnly": true,
+    "relationTruthProved": false,
+    "permitsGradeOrQuestionApproval": false,
+    "generalSymbolicEquivalence": false
+  },
+  "oldUnsupportedMultipart": {
+    "priorRootCollector": {
+      "math": 0,
+      "grade": 0,
+      "source": "user supplied actual root result; not rerun historical engine"
+    },
+    "currentAdapterWithoutSchema": false,
+    "currentAdapterWithSchema": true
+  },
+  "metadataOnly": {
+    "onlyCandidateDelta": "metadata.recordCorrectionAnswerSchema",
+    "exactStudentAnswerSolutionScoreRubricAssetsAndRawEqual": true,
+    "newQuestionOrBlindIncrement": 0,
+    "canonicalChecks": {
+      "studentDigest": "a487017dbf90fdb24412937f4d8aef375bdf96874252a41b590e4e982769dfe4",
+      "candidateDigest": "73396e537e697cec233243b027522fc5181db156bbaec4d9ad5bc3e99f1b4bbd",
+      "solveDigest": "6a037e6da189240c0921831a83dcfd00f18742d1452c3b094d8f5708d9cc6dc4",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  },
+  "limitations": [
+    "No validateCandidate/bindCandidate/CLI runs: these read solver_rules or private package files outside nine-file scope. Pure adapter/evaluateReview with explicit mocked validation only.",
+    "No DB, real package collection, native reader, full TeX parser, relation truth, general symbolic equivalence or grade approval from parser."
+  ]
+}

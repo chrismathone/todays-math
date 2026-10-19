@@ -1,0 +1,16 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/unit/examStudyCompletion.test.ts (29 tests) 17728ms
+     ✓ provides the selected demands within the grade eligibility gate for 'daeryun-m1'  13555ms
+     ✓ provides the selected demands within the grade eligibility gate for 'daeryun-m2'  386ms
+     ✓ provides the selected demands within the grade eligibility gate for 'kyungmyung-m3'  1094ms
+ ✓ src/__tests__/unit/examStudyCoreLegacy.test.ts (15 tests) 12213ms
+     ✓ preserves original registry identities/counts and exposes actual supported courses only  11800ms
+
+ Test Files  2 passed (2)
+      Tests  44 passed (44)
+   Start at  00:37:09
+   Duration  45.54s (transform 6.65s, setup 3.24s, import 8.60s, tests 29.94s, environment 3.31s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r23.json

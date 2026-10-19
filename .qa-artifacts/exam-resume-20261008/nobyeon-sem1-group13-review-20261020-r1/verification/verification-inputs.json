@@ -1,0 +1,225 @@
+[
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 3,
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group13-r1-q03",
+      "authorId": "codex-parent-engine-upgrade-20261019",
+      "questionType": "객관식",
+      "score": 4,
+      "content": "다섯 실수를 적어 놓았는데, 그중 가장 작은 수 하나가 지워졌다. 남아 있는 네 수는 다음과 같다.\n\n$$\\sqrt7-1,\\quad \\sqrt3-\\sqrt2,\\quad 1,\\quad 2-\\sqrt7$$\n\n원래 다섯 수 중 가장 큰 수에서 가장 작은 수를 뺀 값이 $2\\sqrt7-\\sqrt2-1$일 때, 지워진 수는?",
+      "choices": [
+        "$\\sqrt7-\\sqrt2$",
+        "$\\sqrt2-\\sqrt7$",
+        "$\\sqrt2-1$",
+        "$1+\\sqrt2-\\sqrt7$",
+        "$2-\\sqrt7$"
+      ],
+      "answer": "②",
+      "solution": "$\\sqrt7>2$이므로 $\\sqrt7-1>1$이고 $2-\\sqrt7<0$이다. 또 $\\sqrt3<2$, $\\sqrt2>1$이므로 $\\sqrt3-\\sqrt2<1$이다. 따라서 남은 네 수 중 가장 큰 수는 $\\sqrt7-1$이다. 지워진 수는 가장 작은 수였으므로 원래 다섯 수 중 가장 큰 수도 $\\sqrt7-1$이다.\n\n가장 큰 수에서 주어진 차이를 빼면 지워진 수이므로\n\n$$ (\\sqrt7-1)-(2\\sqrt7-\\sqrt2-1)=\\sqrt2-\\sqrt7 $$\n\n이다. $\\sqrt2<2$이므로 $\\sqrt2-\\sqrt7<2-\\sqrt7<0$이다. 남은 다른 세 수는 모두 양수이므로 이 값은 실제로 남은 네 수보다 작다. 따라서 조건을 만족하는 지워진 수는 하나이며 정답은 ②이다.",
+      "figureArtifacts": [],
+      "sourceReference": {
+        "sourceReferenceId": "source-ref-nobyeon-2025-1-mid-fresh-r6-q03",
+        "inventoryExamId": "personal-651da9aa806ce1c9d1c3ae5539e6038f",
+        "sourceSchoolInternal": "노변중학교",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceContentSha256": "461d2a57b932a4275763713ccd319fc04e04756c618bd50a4ed8f3d6a85d5522",
+        "sourceManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-651da9aa806ce1c9d1c3ae5539e6038f/source-manifest.local.json",
+          "sha256": "76749165acccb92c23dd167adfbe16377d0c60735ea5568780c328ee469b0cf9"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[노변중][3][25-1-중간][동아강] (완료).hwp",
+            "sha256": "711bf0e161d5f83ee5261c40c48796ebc13f03b0f7f213f4973be00263190e44",
+            "bytes": 579072
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[노변중][3][25-1-중간][동아강] (완료).PDF",
+            "sha256": "b35bc2edff56bc9b92aaecb77f43a403017254cc48f817099badeb1743eca742",
+            "bytes": 154842
+          }
+        ],
+        "originalIdentitySource": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[노변중][3][25-1-중간] (원본)  (흰닭).pdf",
+          "sha256": "0010d2a15529c79f3407d2b8c461787080247e126dc7e725bb8c7eda461ed643",
+          "bytes": 3313997
+        },
+        "hwpAnchor": {
+          "stream": "BodyText/Section0",
+          "recordIndex": 477,
+          "inflatedByteOffset": 18497,
+          "tag": 71,
+          "level": 1,
+          "payloadSha256": "3eb5280d25b0a3df2d8458d01685f4ca2dd51745bfdd5a8cdeab2a228403d66a"
+        },
+        "originalHeaderObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/reviewer-observations-r1.json",
+          "sha256": "3eeaf1cc90a8677b850169154fc6ddc83c938d9213e63a9419f4636251267e02"
+        },
+        "actualReference": "Original header date2025-04-29 observed earlier;2026 preparation footer is separate. This component has not received original/body/whole-pair identity certification.",
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "sourceCropViewed": false,
+        "sourceBodyVisualCorrespondence": "pending-N-original-access"
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure"
+        ],
+        "before": "다섯근호수중최댓값과최솟값을찾아둘의합을직접구한다.",
+        "after": "가장작은수가누락된네수의목록과최대·최소차이를주고누락값을복원한다.",
+        "sharedConcept": "근호를포함한실수의대소관계,최댓값·최솟값의의미,동류근호항의계산",
+        "sharedProcedure": "제곱근의대소와유리수경계로수들을비교→최댓값과최솟값의역할확인→주어진관계에대입해근호항계산",
+        "actualStructuralChange": "완성된자료에서극값합을출력하는문제에서,일부자료와극값관계를조건으로누락된최솟값을복원하는문제로바꾼다. 누락값이최솟값이라는조건을명시해임의중간값으로인한비유일성을막고복원뒤실제최솟값여부도검산한다.",
+        "domainProof": "모든근호의피제곱수는양수이다. 보이는네수의최댓값sqrt7-1은유일하고누락값이최솟값이라원래최댓값도동일하다. 주어진차이에서얻는sqrt2-sqrt7은2-sqrt7보다엄격히작고나머지는양수라존재·유일하다. 다섯선택지의정확유리수구간이모두서로겹치지않는다.",
+        "difficultyBasis": "원문 하/4점의근호대소·극값역할·근호항정리를유지한다. 역추론관계를추가하는대신보이는네수와작은정수경계만비교하게했다. 기본/4점은저자제안이며독립난도심사전승인하지않는다."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "status": "author-proposed",
+        "standardCodes": [
+          "9수01-07",
+          "9수01-09",
+          "9수01-10"
+        ],
+        "officialBasis": {
+          "document": "MOE2020-236 Book8,2015 revised curriculum",
+          "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+          "stream": "BodyText/Section0",
+          "primaryStandardCodes": [
+            "9수01-07",
+            "9수01-09",
+            "9수01-10"
+          ]
+        },
+        "legitimateMethodDraft": "양수제곱근과1·2의대소로수들을비교하고최댓값에서주어진차이를빼최솟값을복원한다. 함수극값·미분·절댓값방정식·고등무리식부등식정리는필수방법이아니다.",
+        "sevenSurfaces": {
+          "stem": "author-proposed",
+          "choices": "author-proposed",
+          "figureTable": "pure-algebra-list-no-figure-required",
+          "notation": "author-proposed",
+          "answer": "author-interval-and-exact-calculated-only",
+          "studentSolution": "author-proposed",
+          "prerequisites": "author-proposed"
+        },
+        "independentReviewPending": true,
+        "authorCannotApprove": true,
+        "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review"
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 4,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "기본",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "극값의 차이에서 누락 최솟값 복원",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "무리수와 실수",
+            "semester": 1,
+            "orderIndex": 470,
+            "problemCodePrefix": "J30102"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+            "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+          },
+          "evidence": "실제무리수·실수UnitUUID및제곱근선수UUID를연결한다. 직접극값계산과누락최솟값복원전체목표가일치하는livefamily는실제정의확인전null."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "본문·보기·표·해설에 학교명이 없다. 실제 출처 학교는 내부 메타데이터에만 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "pure-math-finite-list-no-figure-required",
+          "newTables": 0,
+          "newFigures": 0,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "sourceDifficultyLabelObserved": "하",
+        "prerequisiteUnits": [
+          {
+            "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "제곱근의 뜻과 성질",
+            "semester": 1,
+            "orderIndex": 469,
+            "problemCodePrefix": "J30101"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "양수제곱근의대소",
+            "실수의대소와근호항의사칙계산",
+            "최댓값·최솟값의일상적의미"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        }
+      }
+    },
+    "assets": [],
+    "studentDigest": "866725817f9e70d9e5415fc5518940938799086a00f5c0a3134b22bc0acbbefe",
+    "candidateDigest": "cb45a5065f6125e4c4a4243988f8c9d4a08016b52522fe356d3e301467e35752",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "independentSolve": {
+      "studentDigest": "866725817f9e70d9e5415fc5518940938799086a00f5c0a3134b22bc0acbbefe",
+      "solverId": "independent-q03-blind-helper-20261020-r1",
+      "answer": "②",
+      "solution": "지워진 수를 x라 하자. 지워진 수는 가장 작은 수이므로 가장 큰 수는 남은 네 수 중에 있다. 2<√7<3이므로 √7−1>1이고 2−√7<0이다. 또 0<√3−√2<1이다. 마지막 부등식은 √3<√2+1에서 알 수 있는데, 두 양수의 제곱을 비교하면 3<3+2√2이다. 따라서 가장 큰 수는 √7−1이다. 주어진 조건에서 (√7−1)−x=2√7−√2−1이므로 x=√2−√7이다. 이 수는 2−√7보다 작다(√2<2). 나머지 세 수는 모두 양수이고 2−√7은 음수이므로 x는 실제로 유일한 최솟값이다. 따라서 조건을 만족하는 다섯 실수가 존재하며, 최댓값과 범위가 정해져 있으므로 지워진 수도 유일하다. 보기 ①은 양수, ③은 양수, ④는 x+1, ⑤는 x+(2−√2)이므로 모두 x와 다르다. ②만 x와 같다. 모든 제곱근은 양수인 실수의 주값이며, 분모나 길이 단위 조건은 없다. 범위는 양수이다. 정답은 ②이다.",
+      "evidence": {
+        "noAuthorAnswerExposureDeclaration": "이 q03의 정확한 문항과 정답을 사전에 본 적이 없으며, 지정된 학생용 세 파일만 읽고 저자 답·해설·원문·비공개 계산에 노출되기 전에 독립적으로 풀었다.",
+        "calculationsFile": "../own-q03-blind-calculations.json",
+        "missingValue": "sqrt(2)-sqrt(7)",
+        "method": "2015 중3: 양수의 제곱 비교, 제곱근 대소 관계, 동류항 정리와 일차방정식",
+        "domain": "모든 수는 실수; 제곱근의 피제곱수 2,3,7은 양수; 분모 없음",
+        "existenceAndUniqueness": "계산한 x가 남은 네 수보다 엄격히 작고 요구 범위를 만족함; 고정된 최댓값에서 고정된 범위를 빼므로 유일",
+        "allFiveChoicesChecked": true,
+        "exactOwnCode": true,
+        "noPixelsAsOracle": true
+      },
+      "status": "solved"
+    },
+    "solveDigest": "f2f9d1f82df379e9dea36166a6d91c227335c38ea4fd0bf86ab23084a4dfbcf3"
+  }
+]

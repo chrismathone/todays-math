@@ -1,0 +1,58 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/components/ExplorerConceptMemory.test.tsx (21 tests) 6006ms
+     ✓ shows only one student start and device settings, preserving the exact recall next  1268ms
+     ✓ queues cold checks via the first rating receipt and leaves long-term and explorer records unchanged by a minute check  662ms
+     ✓ records partial wrong/give-up evidence before the main step and keeps minute checks separate from explorer progress  319ms
+     ✓ runs the actual local daily planner from first activity to persisted resume inside the explorer  429ms
+     ✓ selects a real catalog concept, opens the shared recall screen inline, and returns keyboard focus  423ms
+     ✓ resumes typed recall without posting an open action and leaves old credits untouched after rating  399ms
+     ✓ offers a future concept as unrecorded practice and sends no pick/open or schedule write  383ms
+ ✓ src/__tests__/unit/examStudyCompletion.test.ts (29 tests) 18234ms
+     ✓ provides the selected demands within the grade eligibility gate for 'daeryun-m1'  13504ms
+     ✓ provides the selected demands within the grade eligibility gate for 'daeryun-m2'  437ms
+     ✓ provides the selected demands within the grade eligibility gate for 'kyungmyung-m3'  1079ms
+ ✓ src/__tests__/unit/mathSrsCourseServer.test.ts (34 tests) 4025ms
+     ✓ bounds retained history while preserving exact lifetime and daily totals  3366ms
+ ✓ src/__tests__/unit/examStudyIntegration.test.ts (7 tests) 14954ms
+     ✓ keeps all nine courses available without multiplying authored families by response format  12405ms
+     ✓ runs authenticated API → actual math → strict Python SVG → reproducible output confirmation  1800ms
+ ✓ src/__tests__/unit/examStudyCoreLegacy.test.ts (15 tests) 13170ms
+     ✓ preserves original registry identities/counts and exposes actual supported courses only  12588ms
+ ✓ src/__tests__/unit/examStudyInverseCoefficient.test.ts (10 tests) 11293ms
+     ✓ retains the internal implementation but excludes it from selectable catalogs without inventing a live family  10961ms
+ ✓ src/__tests__/unit/examStudyInverseRootTable.test.ts (8 tests) 11712ms
+     ✓ independently checks all45 actual tables, integer rounding bounds and unique reverse mappings  341ms
+     ✓ keeps the internal factory hidden and the actual Unit proposal separate from live-family, rights and grade approval  11294ms
+ ✓ src/__tests__/unit/examStudyCurriculumEligibility.test.ts (10 tests) 12095ms
+     ✓ hides the held template from selectable catalogs and retains its definition for internal review  11902ms
+ ✓ src/__tests__/components/ExplorerHomeAtelier.test.tsx (7 tests) 1189ms
+   ✓ shows one journey heading inside the book while retaining board controls and totals  447ms
+ ✓ src/__tests__/unit/courseFollowUpWriter.test.ts (7 tests) 6351ms
+     ✓ follows only the latest wrong first answer, before anything else happens  3188ms
+     ✓ records an opened solution after «모르겠어요» or «다시 연습» only for clients that ask  2941ms
+ ✓ src/__tests__/unit/srsStoredContractWalk.test.ts (4 tests) 1106ms
+     ✓ chooses 초5 and a unit in the settings, then studies every day without a teacher plan  472ms
+ ✓ src/__tests__/unit/courseFollowUpReader.test.ts (7 tests) 3758ms
+     ✓ accepts an opened solution after giving up or a self-check «다시 연습»  3475ms
+ ✓ src/__tests__/unit/courseChoicePlausibility.test.ts (2 tests) 1945ms
+     ✓ keeps every 초5 engine choice set free of far values  1763ms
+ ✓ src/__tests__/components/ExplorerStudyBook.test.tsx (6 tests) 462ms
+     ✓ shows the unit once in C order for todo  317ms
+ ✓ src/__tests__/api/mathSrsCourseRoutes.test.ts (18 tests) 415ms
+ ✓ src/__tests__/unit/examStudyMiddleRemaining.test.ts (13 tests) 645ms
+ ✓ src/__tests__/unit/examStudyMiddle.test.ts (49 tests) 649ms
+     ✓ every displayed formula parses with the existing print math renderer  302ms
+ ✓ src/__tests__/unit/examStudyCore.test.ts (58 tests) 249ms
+ ✓ src/__tests__/unit/examStudyRoutes.test.ts (23 tests) 223ms
+ ✓ src/__tests__/unit/examStudyM1StudentMethods.test.ts (6 tests) 254ms
+ ✓ src/__tests__/unit/examStudyCoreLabel.test.ts (12 tests) 152ms
+ ✓ src/__tests__/unit/examStudyContract.test.ts (17 tests) 106ms
+
+ Test Files  22 passed (22)
+      Tests  363 passed (363)
+   Start at  00:22:41
+   Duration  208.34s (transform 17.61s, setup 28.83s, import 36.98s, tests 108.99s, environment 27.61s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r18.json

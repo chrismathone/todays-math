@@ -1,0 +1,155 @@
+{
+  "status": "pending",
+  "studentDigest": "a487017dbf90fdb24412937f4d8aef375bdf96874252a41b590e4e982769dfe4",
+  "candidateDigest": "7cde97dddc306625c1ed1a57aad886dfbe4e88138616c631b038add831fe27aa",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-independent-helper-q19-current-stage2-20261020-r2",
+  "solveDigest": "6a037e6da189240c0921831a83dcfd00f18742d1452c3b094d8f5708d9cc6dc4",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "reason": "정수·소수부분을구하고독립기록을검토하는요구는2015중3의실수·근호연산과곱셈공식학습후범위이다.",
+      "basis": "MOE2015 records3776/3780/3784/3788와3956; 실제경기중3PDF38쪽과인천중3PDF90쪽의실수/다항식단원배치.",
+      "evidence": "현재본문의3√2,정수a/소수b,세기록및유일오류요구를직접확인. 16<18<25,0<b<1과각기록true/false/true를 own-q19-current-review-calculations.json에서재검산. floor함수이론이나대수적수체는학생요구가아니다."
+    },
+    "choices": {
+      "status": "passed",
+      "reason": "객관식선택지는없으며ㄱㄴㄷ은검토대상본문기록이다.",
+      "basis": "실제questionType서술형/choices[]와record-label-and-scalar-with-working응답형식.",
+      "evidence": "세기록모두를따로검산했다. ㄱ참,ㄴ은올바른값보다16작아거짓,ㄷ참. 정확히한기록이틀리다는조건을가정만하지않고확인했으며존재하지않는5개선택지를만들지않음."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "reason": "그림·표없이세기록이본문으로완전히주어져측정/추가해석이없다.",
+      "basis": "필요정보가명시된대수계산으로MOE9수01-10/9수02-12범위에대응.",
+      "evidence": "현재figureArtifacts=[]/assets=[]를확인했고빈배열assetDigest를대조. 각기록은서로독립적이라고인쇄되어별도시각적연결을추정하지않음. 실제nativeReader/인쇄렌더검증은미실시."
+    },
+    "notation": {
+      "status": "passed",
+      "reason": "근호·분수·정수부분/소수부분과제곱표기는학생수학과일치한다.",
+      "basis": "MOE9수01-07/08/09/10 및제곱공식/합차공식tag88 records4029/4035/4041.",
+      "evidence": "a=4,b=3√2-4와0<b<1로분모의정의가명확. ㄴ의6√2-8과수정6√2+8의차16을구분. 표준코드9수02-12/record3956으로곱셈을뒷받침하며9수02-05를그근거로사용하지않음."
+    },
+    "answer": {
+      "status": "passed",
+      "reason": "오류기호·고친분수값·최종값을모두문자열로답하여실제서술요구와맞는다.",
+      "basis": "제곱근사칙및곱셈공식의계산결과,별도상위학년표기불필요.",
+      "evidence": "현재answer의ㄴ;8+6√2;27은봉인raw의ㄴ;6√2+8;27과동치. exactpair검산은quotient(8,6),square(19,-6),sum(27,0)으로모두일치. 이는revieworacle이며학생방법은유리화와제곱공식이다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "reason": "현재해설은양수비교/분모0아님/켤레유리화/제곱식전개/세기록검토를빠짐없이수행한다.",
+      "basis": "MOE9수01-07/08/09/10 및9수02-12의합차·제곱공식; 실제중3배치두자료를결합.",
+      "evidence": "현재solution에서16<18<25,a4,b3√2-4,분모18-16=2,켤레수>0,ㄷ19-6√2,합27과유일오류를직접대조. 현재해설에고등인수정리/미적분/리뷰코드의체연산이포함되지않음."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "reason": "실수단원과다항식곱셈공식까지배운뒤배정하는조건으로적합하다.",
+      "basis": "경기실제중3PDF38쪽9수01-07~10; 인천실제중3PDF90쪽9수02-12/곱셈공식관계; MOE태그88제곱/제곱의차공식.",
+      "evidence": "현재placementConditions네항목이이필수절차와대응. 기본사칙/분모분자에같은0아닌수곱하기를사용. 근호계산Unit보다곱셈공식선수Unit이뒤에있으므로이후학습조건을명시적으로유지한다. 학교중간고사진도/2022중3는승인하지않음."
+    }
+  },
+  "evidence": {
+    "currentMathEvidence": "own-q19-current-review-calculations.json",
+    "studentIdentityEvidence": "own-q19-student-identity-check.json",
+    "primaryGradeEvidence": "own-q19-primary-review-basis.json",
+    "sourceQuestionSha256": "80f0e8cb39a29dd1b63098e9ce7e8f225ddebfbbbe3f548c3f58b2346f07c880",
+    "sourceQuestionPath": "../source-question-only.json",
+    "sourceComparison": "실제 source는 예시의 방법으로2√3의정수부분/소수부분을구해a/b+(b+2)²를직접계산하는6점서술형이다. 현재후보는같은정수·소수부분결정→켤레유리화/합차→제곱공식→동류항정리를유지하면서세개의서로독립적인부분기록을진단하고오류를복구한뒤합을완성하게한다. source답을계산하거나키와맞추지않았다.",
+    "actualTargetStructureChange": "기존예시따라직접산출에서3개기록의전수정오판정/유일오류특정/과정수정이라는실제목표변경이다. 수치교체만을차별성으로사용하지않았다. 서로따로계산했다고명시하여ㄴ의오류가ㄷ에전파되는해석을차단한다.",
+    "sourceEvidenceBoundary": "source본문은예시의소수부분자리에점선이있는추출텍스트이며원본지면은열지않음. 내용구조비교에는충분하지만whole source pair identity나예시자산대응을승인하지않음.",
+    "sourceMetadataLimit": "provided source JSON grade field is literal ?3, not a clean grade string. Preserved unchanged; actual student method grade is based on official primary placement and explicit2015M3 scope, not this damaged field. Whole source identity remains false.",
+    "naturalKorean": "세기록이서로따로계산됐다고명시하고오류기호/수정과정/최종합을순서대로요구하여자연스럽고자기완결적이다. 기록ㄷ의제곱식은정의된올바른b로다시계산하는문맥이다.",
+    "rubricAndScore": "현재rubric1+1+2+1+1=6점을독립합산. a,b결정1/유일오류특정1/분모유리화와수정과정2/ㄷ제곱검산1/최종합1이현재요구와대응한다. 실제source총6점도JSON에서확인했으나점수가같다는사실만으로승인하지않았다. 오류이월·부분점수운영세칙은별도이며현재기준은편집적제안검토이다.",
+    "difficultyEditorial": "source label중을실제JSON에서확인. 새응용제안은원래의정수소수부분·유리화·제곱식절차에유일오류진단을더하므로편집상타당하다. 새최종식의근호항소거는계산량을줄여부담을상쇄할수있다. source와실측동난도/정답률보정또는학습효과승인을주장하지않는다.",
+    "rawSha256": "63801031840a2f3ce65c607595449970b9d2f4024a69452aa2ec578d8e6bf301",
+    "parentRawCommit": "28ef7f960b815760f8f9c4f9af8eed9d11b9761c",
+    "sealedRawAndDeclarationUnchanged": true,
+    "actualStudentFieldsUnchanged": true,
+    "digestBinding": "verification-inputs SHA matched manifest; canonical sorted-key rawsolveDigest and parent Git sealed raw bytes matched. Exact student JSON serialization reconstructed and matched prior blind inputSHA. candidateDigest is exact hash-bound envelope value, not an invented projection recomputation.",
+    "unitAndFamily": {
+      "providedPrimaryUnitId": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "providedCurrentUnit": {
+        "id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "근호를 포함한 식의 계산",
+        "semester": 1,
+        "orderIndex": 471,
+        "problemCodePrefix": "J30103"
+      },
+      "providedPrerequisiteUnits": [
+        {
+          "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+          "grade": "중3",
+          "chapter": "1. 실수와 그 계산",
+          "section": "제곱근의 뜻과 성질",
+          "semester": 1,
+          "orderIndex": 469,
+          "problemCodePrefix": "J30101"
+        },
+        {
+          "id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+          "grade": "중3",
+          "chapter": "1. 실수와 그 계산",
+          "section": "무리수와 실수",
+          "semester": 1,
+          "orderIndex": 470,
+          "problemCodePrefix": "J30102"
+        },
+        {
+          "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "grade": "중3",
+          "chapter": "2. 다항식의 곱셈과 인수분해",
+          "section": "다항식의 곱셈",
+          "semester": 1,
+          "orderIndex": 472,
+          "problemCodePrefix": "J30201"
+        }
+      ],
+      "conceptUnitObservation": "current section/course is mathematically relevant; q19requires polynomial prerequisite too, q21irrational-numbercountscope. Captured Unit metadata is not a current DB guarantee.",
+      "exactLiveFamilyCompatibility": "unknown; whole record diagnosis/correction or inverse unknown irrational boundary+uniqueness goal has not been matched to an actual exact live definition in this scope. No root code/DB reads; liveFamilyKey remainsnull.",
+      "familyKey": null
+    },
+    "studentMathCorrect": true,
+    "mathApproved": true,
+    "gradeApproved2015M3": true,
+    "gradeConditions": "2015M3 source2025/practice2026, after all listed actual prerequisites; q19after polynomial square/difference formulas, q21after roots/irrational/realorder. No schoolmidterm pacing certificate.",
+    "2022M3": "pending separate actual placement",
+    "nativeReaderParity": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "liveFamilyApproved": false,
+    "loadable": false,
+    "difficultyEqualityApproved": false,
+    "newQuestionOrBlindCount": 0,
+    "reportCreationDiagnostics": [
+      "First source read at verification/source-question-only.json failed: actual source is authorized review-root sibling, read only after explicit clarification.",
+      "Expected reports/qNN.json skeleton absent; verification directory contained quartet only. No skeleton or report-template.json provided, so new report created from actual VERIFY-BRIEF schema and prior own schema memory. No existing report overwritten."
+    ],
+    "sourcePathClarificationApplied": true,
+    "standardMetadataCorrection": {
+      "currentPolynomialCode": "9수02-12",
+      "actualMoeRecord": 3956,
+      "oldLinearCodeNotUsed": "9수02-05",
+      "scope": "newcurrentreport, not extraquestion/blind; originalrawpreserved. No pre-exposure r1 authoranswer was read, so historical authoranswer/solution equality is a parent attestation; current answer/solution were independently audited."
+    }
+  }
+}

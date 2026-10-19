@@ -1,0 +1,135 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ❯ src/__tests__/unit/examStudyCompletion.test.ts (29 tests | 1 failed) 31972ms
+     × provides the selected demands within the grade eligibility gate for 'daeryun-m1' 26479ms
+     ✓ provides the selected demands within the grade eligibility gate for 'daeryun-m2'  941ms
+     ✓ provides the selected demands within the grade eligibility gate for 'kyungmyung-m1' 147ms
+     ✓ provides the selected demands within the grade eligibility gate for 'kyungmyung-m3'  1347ms
+     ✓ provides the selected demands within the grade eligibility gate for 'kyungshin-common2' 156ms
+     ✓ honors eligibility for daeryun-m1 / model.doubling-time-offset without component substitution 136ms
+     ✓ honors eligibility for daeryun-m1 / model.circle-revolution-percentage without component substitution 129ms
+     ✓ honors eligibility for daeryun-m1 / number.coprime-symbolic-sum without component substitution 142ms
+     ✓ honors eligibility for daeryun-m2 / coord.intercept-integer-area without component substitution 136ms
+     ✓ honors eligibility for daeryun-m2 / graph.translated-coefficient-reuse without component substitution 125ms
+     ✓ honors eligibility for kyungmyung-m1 / algebra.candidate-verification without component substitution 131ms
+     ✓ honors eligibility for kyungmyung-m1 / algebra.equality-truth without component substitution 135ms
+     ✓ honors eligibility for kyungmyung-m1 / algebra.equation-classification without component substitution 142ms
+     ✓ honors eligibility for kyungmyung-m1 / algebra.linear-model without component substitution 121ms
+     ✓ honors eligibility for kyungmyung-m1 / algebra.linear-simplify without component substitution 196ms
+     ✓ honors eligibility for kyungmyung-m3 / graph.translated-coefficient-reuse without component substitution 141ms
+     ✓ honors eligibility for kyungmyung-m3 / written.rectangle-domain without component substitution 137ms
+     ✓ honors eligibility for kyungshin-common2 / function.radical-inverse-circle without component substitution 176ms
+     ✓ keeps the approved per-menu output rule for bank 137ms
+     ✓ keeps the approved per-menu output rule for arithmetic 137ms
+     ✓ keeps the approved per-menu output rule for studio 146ms
+     ✓ keeps the approved per-menu output rule for library 130ms
+     ✓ keeps the approved per-menu output rule for conceptBlank 132ms
+     ✓ denies an account with no output menu: [ 'export' ] 2ms
+     ✓ denies an account with no output menu: [ 'textbook' ] 1ms
+     ✓ denies an account with no output menu: [] 3ms
+     ✓ bounds actual count-question choices for reproduced seed 71 139ms
+     ✓ bounds actual count-question choices for reproduced seed 20261019 146ms
+     ✓ keeps native writing unavailable as short answer without silently changing the requested format 66ms
+ ✓ src/__tests__/unit/examStudyIntegration.test.ts (7 tests) 18960ms
+     ✓ keeps all nine courses available without multiplying authored families by response format  16107ms
+     ✓ runs authenticated API → actual math → strict Python SVG → reproducible output confirmation  2086ms
+ ❯ src/__tests__/unit/examStudyCoreLegacy.test.ts (15 tests | 1 failed) 23631ms
+     ✓ forces natural and negative-integer branches and excludes zero/domain endpoints 177ms
+     ✓ independently solves 64 actual outputs of 1-1|좌표와 그래프|06 and rejects wrong answers 200ms
+     ✓ independently solves 64 actual outputs of 2-1|일차함수와 그 그래프 ⑴|01 and rejects wrong answers 87ms
+     ✓ independently solves 64 actual outputs of 2-1|일차함수와 그 그래프 ⑵|01 and rejects wrong answers 97ms
+     ✓ independently solves 64 actual outputs of 2-1|일차부등식|118X and rejects wrong answers 90ms
+     ✓ independently solves 64 actual outputs of 1-1|일차방정식의 풀이|17 and rejects wrong answers 231ms
+     ✓ independently solves 64 actual outputs of 3-1|이차방정식의 활용|53V and rejects wrong answers 78ms
+     ✓ covers every sign-condition/coordinate-transform branch and essential-condition removal 32ms
+     ✓ checks all 56 unordered selections of printed function relations, including nonuniqueness witnesses 8ms
+     ✓ tests all slope/intercept sign combinations, every quadrant, and independent truth/false flips 12ms
+     ✓ enumerates original inequality truth rows at closed boundaries and rejects nonpositive infinite cases 23ms
+     ✓ keeps repeated roots and rejects irrational/negative-discriminant/nonnatural candidates 2ms
+     × preserves original registry identities/counts and exposes actual supported courses only 22540ms
+     ✓ respects author short-only policies and never advertises written derivation 13ms
+     ✓ does not infer school full from a legacy title, and honors unsupported bare formats/difficulties 25ms
+ ✓ src/__tests__/unit/examStudyCurriculumEligibility.test.ts (10 tests) 22462ms
+     ✓ hides the held template from selectable catalogs and retains its definition for internal review  22166ms
+ ✓ src/__tests__/unit/examStudyInverseRootTable.test.ts (8 tests) 16500ms
+     ✓ independently checks all45 actual tables, integer rounding bounds and unique reverse mappings  953ms
+     ✓ keeps the internal factory hidden and the actual Unit proposal separate from live-family, rights and grade approval  15344ms
+ ✓ src/__tests__/unit/examStudyInverseCoefficient.test.ts (10 tests) 16929ms
+     ✓ independently solves every one of32printed tasks, including absent y² terms and negative constants  388ms
+     ✓ retains the internal implementation but excludes it from selectable catalogs without inventing a live family  16432ms
+ ✓ src/__tests__/unit/courseFollowUpWriter.test.ts (7 tests) 8916ms
+     ✓ records a second answer without touching the first attempt or memory  564ms
+     ✓ follows only the latest wrong first answer, before anything else happens  4204ms
+     ✓ records an opened solution after «모르겠어요» or «다시 연습» only for clients that ask  4083ms
+ ✓ src/__tests__/components/ExplorerConceptMemory.test.tsx (21 tests) 6987ms
+     ✓ shows only one student start and device settings, preserving the exact recall next  1248ms
+     ✓ queues cold checks via the first rating receipt and leaves long-term and explorer records unchanged by a minute check  705ms
+     ✓ records partial wrong/give-up evidence before the main step and keeps minute checks separate from explorer progress  339ms
+     ✓ runs the actual local daily planner from first activity to persisted resume inside the explorer  475ms
+     ✓ selects a real catalog concept, opens the shared recall screen inline, and returns keyboard focus  579ms
+     ✓ resumes typed recall without posting an open action and leaves old credits untouched after rating  731ms
+     ✓ offers a future concept as unrecorded practice and sends no pick/open or schedule write  493ms
+     ✓ rereads the shared explorer revision before the next old action without crediting concept results  333ms
+ ✓ src/__tests__/unit/mathSrsCourseServer.test.ts (34 tests) 4479ms
+     ✓ bounds retained history while preserving exact lifetime and daily totals  3742ms
+ ✓ src/__tests__/unit/courseFollowUpReader.test.ts (7 tests) 6304ms
+     ✓ accepts a second answer right after a wrong first answer  327ms
+     ✓ accepts an opened solution after giving up or a self-check «다시 연습»  5819ms
+ ✓ src/__tests__/unit/courseChoicePlausibility.test.ts (2 tests) 2545ms
+     ✓ keeps every 초5 engine choice set free of far values  2284ms
+ ✓ src/__tests__/components/ExplorerHomeAtelier.test.tsx (7 tests) 1347ms
+   ✓ shows one journey heading inside the book while retaining board controls and totals  537ms
+ ✓ src/__tests__/unit/srsStoredContractWalk.test.ts (4 tests) 1468ms
+     ✓ chooses 초5 and a unit in the settings, then studies every day without a teacher plan  630ms
+     ✓ studies from a teacher plan through sections that hand out self-check problems  310ms
+     ✓ finishes a bank day whose given-up problems were resolved on the spot (follow-ups)  355ms
+ ✓ src/__tests__/unit/examStudyMiddle.test.ts (49 tests) 788ms
+     ✓ every displayed formula parses with the existing print math renderer  371ms
+ ✓ src/__tests__/unit/examStudyMiddleRemaining.test.ts (13 tests) 1074ms
+     ✓ every printed math span parses with the actual existing KaTeX renderer  394ms
+ ✓ src/__tests__/components/ExplorerStudyBook.test.tsx (6 tests) 525ms
+     ✓ shows the unit once in C order for todo  374ms
+ ✓ src/__tests__/unit/explorerFollowUpReader.test.ts (3 tests) 181ms
+ ✓ src/__tests__/api/mathSrsCourseRoutes.test.ts (18 tests) 518ms
+ ✓ src/__tests__/unit/examStudyM1StudentMethods.test.ts (6 tests) 250ms
+ ✓ src/__tests__/unit/examStudyCore.test.ts (58 tests) 385ms
+ ✓ src/__tests__/unit/examStudyRoutes.test.ts (23 tests) 246ms
+ ✓ src/__tests__/unit/examStudyCoreLabel.test.ts (12 tests) 225ms
+ ✓ src/__tests__/unit/examStudyContract.test.ts (17 tests) 260ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/unit/examStudyCompletion.test.ts > completed selected school-study demands through the actual API > provides the selected demands within the grade eligibility gate for 'daeryun-m1'
+Error: Test timed out in 20000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/__tests__/unit/examStudyCompletion.test.ts:86:31
+     84|
+     85| describe("completed selected school-study demands through the actual A…
+     86|   it.each(EXAM_STUDY_PROFILES)(
+       |                               ^
+     87|     "provides the selected demands within the grade eligibility gate f…
+     88|     async (profile) => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/__tests__/unit/examStudyCoreLegacy.test.ts > readonly adapters and conservative catalogs > preserves original registry identities/counts and exposes actual supported courses only
+Error: Test timed out in 20000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/__tests__/unit/examStudyCoreLegacy.test.ts:249:3
+    247|
+    248| describe("readonly adapters and conservative catalogs", () => {
+    249|   it("preserves original registry identities/counts and exposes actual…
+       |   ^
+    250|     const middle = registeredTypes().map((e) => [e.key, e.handler]);
+    251|     const high = registeredHighTypes().map((e) => [e.key, e.handler]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 21 passed (23)
+      Tests  2 failed | 364 passed (366)
+   Start at  00:30:04
+   Duration  302.85s (transform 20.10s, setup 39.64s, import 46.69s, tests 166.95s, environment 41.03s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r20.json

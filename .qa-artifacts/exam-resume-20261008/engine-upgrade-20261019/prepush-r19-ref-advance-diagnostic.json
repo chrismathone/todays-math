@@ -1,0 +1,9 @@
+{
+  "utc": "2026-10-19T15:34:05.209963+00:00",
+  "status": "failed-before-any-test-or-output-config",
+  "reason": "Another session updated shared origin/main ref to6718a855c; driver enumerated explorerFollowUpReader.test.ts before it existed in this feature checkout.",
+  "missingPath": "src/__tests__/unit/explorerFollowUpReader.test.ts",
+  "sourceEditsDiscarded": false,
+  "correction": "Merged reader6718a855c preserving own dirty MJS bytes; newr20validation pins integratedMain literal and records beforehashes.",
+  "dbWrites": 0
+}

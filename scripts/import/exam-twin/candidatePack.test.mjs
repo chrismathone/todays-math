@@ -456,3 +456,23 @@ test("lost math command escapes remain readable evidence but cannot inherit pass
   value.choices[4] += String.raw` $frac{1}{2}$`;
   assert.equal(validateCandidate(value).studentMathNotationWarnings[0].surface, "choice-5");
 });
+
+test("record correction answer comparison requires an explicit typed schema and preserves all roles", () => {
+  const value = structuredClone(candidate);
+  value.questionType = "서술형";
+  value.choices = [];
+  value.answer = String.raw`ㄴ; $\dfrac ab=8+6\sqrt2$; $27$`;
+  value.metadata.answerFormat = "record-label-and-scalar-with-working";
+  const raw = String.raw`ㄴ, \dfrac{a}{b}=6\sqrt{2}+8, \dfrac{a}{b}+(b+3)^2=27`;
+  assert.equal(independentAnswerMatches(value, raw), false);
+  assert.equal(independentAnswerMatches(value, value.answer), false);
+  value.metadata.recordCorrectionAnswerSchema = {
+    version: 1, kind: "record-correction-and-total", recordLabels: ["ㄱ", "ㄴ", "ㄷ"],
+    correctedExpression: String.raw`\frac{a}{b}`,
+    totalExpression: String.raw`\frac{a}{b}+(b+3)^2`,
+  };
+  assert.equal(independentAnswerMatches(value, raw), true);
+  for (const bad of [raw.replace("ㄴ", "ㄱ"), raw.replace("+8", "-8"),
+    raw.replace("=27", "=28"), raw.replace("+(b+3)^2", "+(b-3)^2")])
+    assert.equal(independentAnswerMatches(value, bad), false, bad);
+});

@@ -1,0 +1,146 @@
+[
+  {
+    "question": "03",
+    "mockedBoundary": "explicit validation only; no actual package/CLI/DB",
+    "current": {
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    },
+    "missingBasis": {
+      "mathematicalVerified": true,
+      "gradeReviewed": false,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "curriculum-stem-basis-missing",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    },
+    "wrongAnswer": {
+      "mathematicalVerified": false,
+      "gradeReviewed": false,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "independent-answer-mismatch",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    },
+    "lostCommand": {
+      "mathematicalVerified": false,
+      "gradeReviewed": false,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "student-math-notation-command-escape-held",
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    },
+    "actualCurrentSurfaceNotationWarnings": []
+  },
+  {
+    "question": "19",
+    "mockedBoundary": "explicit validation only; no actual package/CLI/DB",
+    "current": {
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    },
+    "missingBasis": {
+      "mathematicalVerified": true,
+      "gradeReviewed": false,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "curriculum-stem-basis-missing",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    },
+    "wrongAnswer": {
+      "mathematicalVerified": false,
+      "gradeReviewed": false,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "independent-answer-mismatch",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    },
+    "lostCommand": {
+      "mathematicalVerified": false,
+      "gradeReviewed": false,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "student-math-notation-command-escape-held",
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    },
+    "actualCurrentSurfaceNotationWarnings": []
+  }
+]

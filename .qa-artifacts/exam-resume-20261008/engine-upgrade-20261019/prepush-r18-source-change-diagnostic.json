@@ -1,0 +1,13 @@
+{
+  "utc": "2026-10-19T15:28:24.680944+00:00",
+  "stage": "after actual22file363passing runtime run; before typecheck",
+  "status": "source-hash-guard-rejected",
+  "path": "scripts/import/exam-twin/candidatePack.mjs",
+  "capturedBeforeSha256": "e211332bf45600db94441f9d824e2b58c07fc1141ad6258a8284c0e2c4767ca1",
+  "actualAfterSha256": "0acb61d7f1bbaae37cd6f8164fd532e4dbf8f465d00bcfd73cf2f4a50d6aa345",
+  "cause": "Parent added record-answer adapter while the bounded main integration check was still running. Guard correctly refused unchanged-source receipt. Runtime JSON/log kept, typecheck had not run.",
+  "next": "Finish own source edits, rerun same22files and types with current code hashes; no reuse as a complete passing validation.",
+  "testEvidence": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\prepush-r18.json",
+  "oldEvidenceModified": false,
+  "dbWrites": 0
+}
