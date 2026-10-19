@@ -942,7 +942,9 @@ export function submitCourseFollowUp(
     );
   const followUps = session.followUps ?? [];
   const existing = followUps.find((f) => f.problemId === input.problemId);
-  const withSession = (next: CourseSession): StoredCourse => ({
+  const withSession = (
+    next: NonNullable<StoredCourse["learner"]["session"]>,
+  ): StoredCourse => ({
     ...state,
     learner: { ...state.learner, session: next },
   });
