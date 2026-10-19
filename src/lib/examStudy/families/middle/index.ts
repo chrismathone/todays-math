@@ -6,6 +6,7 @@ import { fuelModel, minimumTime, stoppedTravel, twoWorkRates } from "./written";
 import { MIDDLE_REMAINING_FAMILIES } from "./remaining";
 import { inverseCoefficientSum } from "./inverseCoefficient";
 import { inverseRootTable } from "./inverseRootTable";
+import { inverseMinimum } from "./inverseMinimum";
 
 export { MIDDLE_REMAINING_FAMILIES } from "./remaining";
 
@@ -26,4 +27,5 @@ export const MIDDLE_STUDY_FAMILIES: readonly ExamStudyFamily[] = [
   ...MIDDLE_REMAINING_FAMILIES,
   inverseCoefficientSum,
   inverseRootTable,
+  inverseMinimum,
 ];

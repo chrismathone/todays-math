@@ -1,0 +1,21 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {spawn} from 'node:child_process';
+import {createHash} from 'node:crypto';
+const e='.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/';
+const tests=['examStudyInverseMinimum','examStudyInverseRootTable','examStudyInverseCoefficient','examStudyContract','examStudyCore','examStudyCoreLegacy','examStudyCurriculumEligibility','examStudyM1StudentMethods','examStudyRoutes','examStudyCompletion','examStudyIntegration','examStudyMiddle','examStudyMiddleRemaining','examStudyCoreLabel'].map(n=>'src/__tests__/unit/'+n+'.test.ts');
+const changed=['src/contracts/examStudy.contract.ts','src/lib/examStudy/requirements.ts','src/lib/examStudy/releaseEligibility.ts','src/lib/examStudy/families/middle/index.ts','src/lib/examStudy/families/middle/inverseRootTable.ts','src/__tests__/unit/examStudyInverseRootTable.test.ts','src/lib/examStudy/families/middle/inverseMinimum.ts','src/__tests__/unit/examStudyInverseMinimum.test.ts'];
+const hash=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+const paths=[...new Set([...Object.keys(JSON.parse(fs.readFileSync(e+'prepush-r23-receipt.json','utf8')).after),...changed,...tests])];
+const before=Object.fromEntries(paths.map(p=>[p,hash(p)]));
+fs.writeFileSync(e+'vitest-inverse-minimum-r1.mts',fs.readFileSync(e+'vitest-inverse-coeff-r1.mts','utf8').replaceAll('inverse-coeff-r1-evidence','inverse-minimum-r1-evidence'),{flag:'wx'});
+const ts=JSON.parse(fs.readFileSync(e+'tsconfig-owned-isolated-r18.json','utf8'));ts.files.push('../../../src/__tests__/unit/examStudyInverseMinimum.test.ts');
+fs.writeFileSync(e+'tsconfig-owned-isolated-r19.json',JSON.stringify(ts,null,2)+'\n',{flag:'wx'});
+const env={...process.env,AUTH_URL:'http://localhost',NEXTAUTH_URL:'http://localhost',DATABASE_URL:'postgresql://test:test@127.0.0.1:1/test',DIRECT_URL:'postgresql://test:test@127.0.0.1:1/test'};
+for(const k of ['STUDIO_ENGINE_URL','VERCEL','VERCEL_ENV'])delete env[k];
+const jobs=[['inverse-minimum-tests-r1.log',['node_modules/vitest/vitest.mjs','run',...tests,'--config',e+'vitest-inverse-minimum-r1.mts','--maxWorkers=1','--reporter=json','--reporter=default','--outputFile.json='+e+'inverse-minimum-tests-r1.json']],['inverse-minimum-types-r1.log',['node_modules/typescript/bin/tsc','--noEmit','--project',e+'tsconfig-owned-isolated-r19.json']],['inverse-minimum-lint-r1.log',['node_modules/eslint/bin/eslint.js',...changed]]];
+const outcomes=[];
+for(const[name,args]of jobs){const log=fs.createWriteStream(e+name,{flags:'wx'}),status=await new Promise((resolve,reject)=>{const proc=spawn(process.execPath,args,{env,stdio:['ignore','pipe','pipe']});console.log(JSON.stringify({name,pid:proc.pid}));proc.stdout.pipe(log,{end:false});proc.stderr.pipe(log,{end:false});proc.on('error',reject);proc.on('close',resolve);});await new Promise(r=>log.end(r));outcomes.push({name,status});for(const[p,h]of Object.entries(before))assert.equal(hash(p),h,p);console.log(JSON.stringify({name,status}));assert.equal(status,0,fs.readFileSync(e+name,'utf8').slice(-9000));}
+const result=JSON.parse(fs.readFileSync(e+'inverse-minimum-tests-r1.json','utf8'));assert.equal(result.numFailedTests,0);
+fs.writeFileSync(e+'inverse-minimum-validation-r1.json',JSON.stringify({utc:new Date().toISOString(),before,after:before,sourceUnchanged:true,files:result.testResults.length,passed:result.numPassedTests,failed:0,skipped:result.numPendingTests,outcomes,newEngineFiniteTuples:24,newManualAuthoredProblems:0,newManualFigures:0,exactOrdering:'Integer premises with independent rational root bounds; symbolic minimum subtraction and strict inequalities; no float tolerance',reviewOnly:true,publicGenerationApproved:false,gradeRightsNativeRegistrationApproved:false,repositoryEnvLoaded:false,dbMocked:true,dbWrites:0,deploy:false},null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({files:result.testResults.length,passed:result.numPassedTests,types:true,lint:true,newManualQuestions:0,publicRelease:0}));

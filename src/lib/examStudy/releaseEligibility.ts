@@ -1,7 +1,7 @@
 import type { ExamStudyFamily } from "@/contracts/examStudy.contract";
 
 export const STUDY_RELEASE_POLICY_VERSION =
-  "20261019-source-informed-template-review-r2";
+  "20261020-source-informed-template-review-r3";
 
 const INVERSE_COEFFICIENT_REVIEW = Object.freeze({
   status: "review-only-template" as const,
@@ -27,16 +27,38 @@ const INVERSE_ROOT_TABLE_REVIEW = Object.freeze({
     "표 근삿값의 정확한 계산과 유일성 검사는 학년·live family·권리·native 사용 승인이 아니다.",
 });
 
+const INVERSE_MINIMUM_REVIEW = Object.freeze({
+  status: "review-only-template" as const,
+  message:
+    "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+  evidence:
+    ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group13-review-20261020-r1/current-author-summary-parent-r1.json",
+  evidenceSha256:
+    "2fe611a5aff0fd79c7abb38ba8592c623d9d5a3a46c0a1f2dfd0a7522e3c64b5",
+  basis:
+    "학생 문장 설계의 검토는 실제 해설·factory·학년·live family·권리·native 사용 승인이 아니다.",
+});
+
 /** No ID, version, confidence or caller-supplied approval clears this study hold. */
 export function studyReleaseHold(
   family: Pick<ExamStudyFamily, "fulfills">,
-): typeof INVERSE_COEFFICIENT_REVIEW | typeof INVERSE_ROOT_TABLE_REVIEW | null {
+):
+  | typeof INVERSE_COEFFICIENT_REVIEW
+  | typeof INVERSE_ROOT_TABLE_REVIEW
+  | typeof INVERSE_MINIMUM_REVIEW
+  | null {
   if (
     family.fulfills.some(
       (f) => f.requirement === "algebra.inverse-coefficient-sum",
     )
   )
     return INVERSE_COEFFICIENT_REVIEW;
+  if (
+    family.fulfills.some(
+      (f) => f.requirement === "number.inverse-extreme-range",
+    )
+  )
+    return INVERSE_MINIMUM_REVIEW;
   return family.fulfills.some(
     (f) => f.requirement === "number.inverse-root-table",
   )

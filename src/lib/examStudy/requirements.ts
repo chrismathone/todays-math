@@ -16,6 +16,19 @@ type Dimensions = readonly [
 
 /** Mathematical demands only. Source wording, coefficients and source figures are absent. */
 const DIMENSIONS: Record<StudyRequirementId, Dimensions> = {
+  "number.inverse-extreme-range": [
+    "최대·최소 차이에서 누락된 최솟값 복원",
+    ["제곱근의 대소", "최댓값·최솟값", "동류근호항 계산"],
+    [
+      "보이는 네 자료",
+      "지워진 값이 최솟값이라는 조건",
+      "최대·최소 차이",
+      "복원값의 실제 최소성·유일성",
+    ],
+    "text",
+    "exclude",
+    ["단답형"],
+  ],
   "number.inverse-root-table": [
     "제곱근표의 근삿값 결합 결과에서 입력 열 복원",
     ["양의 제곱근", "제곱근표", "100분의1 배율", "소수 근삿값"],

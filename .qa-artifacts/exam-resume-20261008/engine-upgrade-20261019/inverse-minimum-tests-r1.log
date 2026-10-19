@@ -1,0 +1,36 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/unit/examStudyCurriculumEligibility.test.ts (10 tests) 10759ms
+     ✓ hides the held template from selectable catalogs and retains its definition for internal review  10451ms
+ ✓ src/__tests__/unit/examStudyIntegration.test.ts (7 tests) 13843ms
+     ✓ keeps all nine courses available without multiplying authored families by response format  11522ms
+     ✓ runs authenticated API → actual math → strict Python SVG → reproducible output confirmation  1615ms
+ ✓ src/__tests__/unit/examStudyCompletion.test.ts (29 tests) 17415ms
+     ✓ provides the selected demands within the grade eligibility gate for 'daeryun-m1'  13138ms
+     ✓ provides the selected demands within the grade eligibility gate for 'daeryun-m2'  432ms
+     ✓ provides the selected demands within the grade eligibility gate for 'kyungmyung-m3'  1066ms
+ ✓ src/__tests__/unit/examStudyInverseCoefficient.test.ts (10 tests) 10537ms
+     ✓ retains the internal implementation but excludes it from selectable catalogs without inventing a live family  10261ms
+ ✓ src/__tests__/unit/examStudyInverseRootTable.test.ts (8 tests) 10331ms
+     ✓ independently checks all45 actual tables, integer rounding bounds and unique reverse mappings  338ms
+     ✓ keeps the internal factory hidden and the actual Unit proposal separate from live-family, rights and grade approval  9917ms
+ ✓ src/__tests__/unit/examStudyCoreLegacy.test.ts (15 tests) 12035ms
+     ✓ preserves original registry identities/counts and exposes actual supported courses only  11600ms
+ ✓ src/__tests__/unit/examStudyMiddleRemaining.test.ts (13 tests) 570ms
+ ✓ src/__tests__/unit/examStudyMiddle.test.ts (49 tests) 464ms
+ ✓ src/__tests__/unit/examStudyCore.test.ts (58 tests) 243ms
+ ✓ src/__tests__/unit/examStudyInverseMinimum.test.ts (9 tests) 10450ms
+     ✓ independently solves all24 printed data sets, including positive and negative fourth values  348ms
+     ✓ retains a captured Unit proposal while the internal factory stays hidden in public catalogs  10031ms
+ ✓ src/__tests__/unit/examStudyContract.test.ts (17 tests) 124ms
+ ✓ src/__tests__/unit/examStudyM1StudentMethods.test.ts (6 tests) 254ms
+ ✓ src/__tests__/unit/examStudyRoutes.test.ts (23 tests) 187ms
+ ✓ src/__tests__/unit/examStudyCoreLabel.test.ts (12 tests) 234ms
+
+ Test Files  14 passed (14)
+      Tests  266 passed (266)
+   Start at  00:53:57
+   Duration  146.74s (transform 7.16s, setup 14.63s, import 22.46s, tests 87.45s, environment 19.04s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-minimum-tests-r1.json
