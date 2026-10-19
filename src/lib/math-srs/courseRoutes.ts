@@ -31,6 +31,7 @@ import {
   type StoredCourse,
 } from "./courseAutomation";
 import { loadCourseBankCandidates } from "./courseBank";
+import { withDefaultCoursePlan } from "./defaultCoursePlan";
 import { courseStudentDto, loadCourseStudent } from "./courseServer";
 import { SrsUnavailable } from "./serverState";
 import { changeSrsState, readSrsState } from "./serverStore";
@@ -83,12 +84,13 @@ export async function handleCourseStudentRequest(
         const parsed = z.strictObject({}).safeParse(body);
         if (!parsed.success) return noStore(validationError(parsed.error));
         const seed = randomInt(0, 0x1_0000_0000);
-        const current = await readSrsState(student.id);
-        const recommended = expeditionCourseRecommendation(current.state, now);
-        const supplied = expeditionCoursePrerequisiteDecision(
-          current.state,
+        const current = withDefaultCoursePlan(
+          (await readSrsState(student.id)).state,
+          student.class.grade,
           now,
         );
+        const recommended = expeditionCourseRecommendation(current, now);
+        const supplied = expeditionCoursePrerequisiteDecision(current, now);
         const bankSectionId =
           supplied || recommended?.mode === "resume"
             ? null
@@ -125,10 +127,15 @@ export async function handleCourseStudentRequest(
       }
       saved = await changeSrsState(
         student.id,
-        (state) => {
+        (stored) => {
+          // Only a start may keep the class grade's default plan; it re-runs on the latest state.
+          const state =
+            operation === "start"
+              ? withDefaultCoursePlan(stored, student.class.grade, now)
+              : stored;
           const previous = state.course ?? emptyCourseState();
           const course = change(previous, state);
-          return course === previous ? state : { ...state, course };
+          return course === previous ? stored : { ...state, course };
         },
         undefined,
         expectedRevision,
@@ -136,9 +143,13 @@ export async function handleCourseStudentRequest(
         now,
       );
     }
+    const view = {
+      ...saved,
+      state: withDefaultCoursePlan(saved.state, student.class.grade, now),
+    };
     return noStore(
       jsonOk(courseStudentResponseSchema, {
-        data: courseStudentDto(student, saved, now, requestedSessionId),
+        data: courseStudentDto(student, view, now, requestedSessionId),
       }),
     );
   } catch (error) {

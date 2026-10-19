@@ -3,6 +3,7 @@ import { fadingDailyPlanResponseSchema } from "@/contracts/fadingDaily.contract"
 import { jsonOk } from "@/lib/apiResponse";
 import { kstDateOf } from "@/lib/kstDate";
 import { noStore } from "@/lib/learn/accountRoutes";
+import { withDefaultCoursePlan } from "@/lib/math-srs/defaultCoursePlan";
 import { readSrsState } from "@/lib/math-srs/serverStore";
 import { fadingConceptMap } from "./catalog";
 import { serverFadingDailyPlan } from "./explorerDailyServer";
@@ -29,7 +30,8 @@ export async function handleFadingDailyRequest(
     return noStore(
       jsonOk(fadingDailyPlanResponseSchema, {
         data: serverFadingDailyPlan({
-          state: saved.state,
+          // The same seeded state the expedition shows, so today's plan follows the class grade.
+          state: withDefaultCoursePlan(saved.state, student.class.grade, now),
           studentId: student.id,
           now,
           concepts: fadingConceptMap(),

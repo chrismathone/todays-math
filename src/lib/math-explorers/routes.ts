@@ -49,6 +49,7 @@ import {
   startExpedition,
 } from "./expeditionStart";
 import { loadCourseBankCandidates } from "@/lib/math-srs/courseBank";
+import { withDefaultCoursePlan } from "@/lib/math-srs/defaultCoursePlan";
 import { requestIdAllocator } from "@/lib/math-prerequisite/requestIds";
 import { expeditionInitialPrerequisiteDecision } from "./expeditionStart";
 
@@ -72,6 +73,7 @@ async function changeExplorer(
   studentId: string,
   input: ExplorerRequest,
   now: Date,
+  classGrade: string | null | undefined,
 ) {
   const date = kstDateOf(now);
   const expeditionStart = input.action.type === "expedition-start";
@@ -102,13 +104,15 @@ async function changeExplorer(
       input.requestId,
     );
     if (receipt) return { ...previous, feedback: receipt };
-    const plan = planExpedition(previous.state, studentId, now);
+    // Bank candidates are chosen here, outside the save — from the same seeded state the save starts from.
+    const seeded = withDefaultCoursePlan(previous.state, classGrade, now);
+    const plan = planExpedition(seeded, studentId, now);
     recommendation =
       plan.kind === "elementary"
-        ? expeditionInitialCourseRecommendation(previous.state, plan, now)
+        ? expeditionInitialCourseRecommendation(seeded, plan, now)
         : null;
     const prerequisite = expeditionInitialPrerequisiteDecision(
-      previous.state,
+      seeded,
       plan,
       now,
     );
@@ -121,7 +125,9 @@ async function changeExplorer(
   try {
     const saved = await changeSrsState(
       studentId,
-      (state) => {
+      (stored) => {
+        // Re-run on the latest state: a plan a teacher saved meanwhile is kept.
+        const state = withDefaultCoursePlan(stored, classGrade, now);
         if (expeditionStart) {
           feedback = startFeedback;
           return startExpedition(
@@ -154,7 +160,9 @@ async function changeExplorer(
           input.requestId,
         );
         feedback = result.feedback;
-        return result.duplicate ? state : { ...state, explorers: result.state };
+        return result.duplicate
+          ? stored
+          : { ...state, explorers: result.state };
       },
       undefined,
       input.expectedRevision,
@@ -204,17 +212,24 @@ export async function handleExplorerRequest(
       if (!parsed.success) return noStore(validationError(parsed.error));
       if (parsed.data.studentId !== studentId)
         return noStore(jsonError("CONFLICT", STUDENT_CHANGED_MESSAGE, 409));
-      const changed = await changeExplorer(studentId, parsed.data, now);
+      const changed = await changeExplorer(
+        studentId,
+        parsed.data,
+        now,
+        student.class.grade,
+      );
       saved = changed;
       feedback = changed.feedback;
     }
+    // Shown with the class grade's default plan until a write keeps it.
+    const view = withDefaultCoursePlan(saved.state, student.class.grade, now);
     return noStore(
       jsonOk(responseSchema, {
         data: {
-          ...explorerView(ownedExplorer(saved.state, studentId, now), date),
+          ...explorerView(ownedExplorer(view, studentId, now), date),
           today: date,
-          journey: expeditionJourney(saved.state, now, studentId),
-          expedition: expeditionDto(saved.state, studentId, now),
+          journey: expeditionJourney(view, now, studentId),
+          expedition: expeditionDto(view, studentId, now),
           student: {
             id: student.id,
             name: student.name,

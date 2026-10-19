@@ -16,6 +16,7 @@ const f = vi.hoisted(() => ({
   withdrawn: false,
   disabled: false,
   missing: false,
+  grade: null as string | null,
 }));
 vi.mock("server-only", () => ({}));
 vi.mock("@/lib/auth", () => ({ auth: async () => f.session }));
@@ -30,7 +31,7 @@ vi.mock("@/lib/db", () => ({
         id: where.id,
         name: "학생",
         classId: f.classId,
-        class: { id: f.classId, name: "테스트반" },
+        class: { id: f.classId, name: "테스트반", grade: f.grade },
         eywaWithdrawnAt: f.withdrawn ? new Date() : null,
         studentAccount: {
           id: f.otherId,
@@ -188,6 +189,7 @@ beforeEach(() => {
   f.withdrawn = false;
   f.disabled = false;
   f.missing = false;
+  f.grade = null;
   f.session = {
     student: { studentId: f.studentId, mustChangePassword: false },
   };
@@ -205,6 +207,57 @@ type MiddleProblem = { answer: number; choices?: string[] };
 const right = (p: MiddleProblem) => correctSrsChoice(p) ?? String(p.answer);
 const wrongOf = (p: MiddleProblem) =>
   p.choices ? p.choices[(p.answer + 1) % 4]! : String(p.answer + 999);
+
+describe("the class grade's default course plan (2026-10-19)", () => {
+  const october = new Date("2026-10-19T10:00:00.000Z");
+  it("shows a new 초5 student the 2nd-semester unit, writes nothing on read and keeps the plan on start", async () => {
+    f.grade = "초5";
+    vi.setSystemTime(october);
+    const view = await data(await read());
+    expect(view.expedition?.next?.unitId).toBe("g5-estimate");
+    expect(f.writes).toBe(0);
+    const started = await action(view, { type: "expedition-start" });
+    expect(started.expedition?.mission?.unitId).toBe("g5-estimate");
+    const stored = parseSrsState(f.rows.get(f.studentId)!.payload);
+    expect(stored.course?.plan).toMatchObject({
+      startSectionId: "5-2-1-1",
+      dailyQuestionCount: 10,
+      enabled: true,
+    });
+  });
+
+  it("keeps a plan a teacher already saved", async () => {
+    f.grade = "초5";
+    vi.setSystemTime(october);
+    await changeSrsState(f.studentId, (state) => ({
+      ...state,
+      course: setCoursePlan(
+        emptyCourseState(),
+        {
+          startSectionId: "5-1-4-1",
+          dailyQuestionCount: 5,
+          enabled: true,
+          expectedRevision: 0,
+        },
+        october,
+      ),
+    }));
+    const view = await data(await read());
+    await action(view, { type: "expedition-start" });
+    const stored = parseSrsState(f.rows.get(f.studentId)!.payload);
+    expect(stored.course?.plan?.startSectionId).toBe("5-1-4-1");
+    expect(stored.course?.plan?.dailyQuestionCount).toBe(5);
+  });
+
+  it("leaves a class without an elementary grade as before", async () => {
+    f.grade = "중2";
+    vi.setSystemTime(october);
+    await action(await data(await read()), { type: "expedition-start" });
+    expect(
+      parseSrsState(f.rows.get(f.studentId)!.payload).course,
+    ).toBeUndefined();
+  });
+});
 
 describe("authenticated math explorer persistence", () => {
   it("freezes one assignment atomically and replays exact concurrent start receipts across reload and midnight", async () => {
