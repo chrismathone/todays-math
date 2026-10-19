@@ -1,0 +1,2378 @@
+{
+  "kind": "own-exact-preimplementation-student-solutions",
+  "inputSha256": "9abde29809d9eb15a226bc0680a9281581ae3def22b57d402a17cb02debd68cf",
+  "utf8ProbePassed": true,
+  "oracle": "Own additive radical parser + exact Fraction intervals with integer isqrt bounds; no float, pixels, author answer, factory or parameters used. Every lower/upper rational bound squared exactly. Student method is separately written using elementary inequalities.",
+  "rootBounds": {
+    "2": {
+      "lower": "7071/5000",
+      "upper": "14143/10000",
+      "squaredLower": "49999041/25000000",
+      "squaredUpper": "200024449/100000000",
+      "strictSquaredCheck": true
+    },
+    "3": {
+      "lower": "433/250",
+      "upper": "17321/10000",
+      "squaredLower": "187489/62500",
+      "squaredUpper": "300017041/100000000",
+      "strictSquaredCheck": true
+    },
+    "7": {
+      "lower": "26457/10000",
+      "upper": "13229/5000",
+      "squaredLower": "699972849/100000000",
+      "squaredUpper": "175006441/25000000",
+      "strictSquaredCheck": true
+    },
+    "11": {
+      "lower": "16583/5000",
+      "upper": "33167/10000",
+      "squaredLower": "274995889/25000000",
+      "squaredUpper": "1100049889/100000000",
+      "strictSquaredCheck": true
+    },
+    "14": {
+      "lower": "4677/1250",
+      "upper": "37417/10000",
+      "squaredLower": "21874329/1562500",
+      "squaredUpper": "1400031889/100000000",
+      "strictSquaredCheck": true
+    }
+  },
+  "rows": [
+    {
+      "variant": 0,
+      "exactStudentPayload": {
+        "variant": 0,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{7}, \\sqrt3-\\sqrt2, 1, 2-\\sqrt{7}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{7}-\\sqrt{2}$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "fccd8df2217a2e2288640c2d9905f4c377bb76c8837c6dbc49cdcd230fe18005",
+      "printedExpressionTokens": [
+        "\\sqrt{7}",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "2-\\sqrt{7}"
+      ],
+      "printedRange": "2\\sqrt{7}-\\sqrt{2}",
+      "answer": "\\sqrt{2}-\\sqrt{7}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √7>2이고 0=0 또는1이므로 첫 수 \\sqrt{7}는1보다 크다. 0<√3−√2<1이고, 2−√7<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{7}이다. 따라서 x=(\\sqrt{7})−(2\\sqrt{7}-\\sqrt{2})=\\sqrt{2}-\\sqrt{7}이다. √2<2≤2이므로 x=√2−√7<2−√7이다. 또한 2<7이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "7": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "7": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "2": "-1",
+          "7": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "7": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "7": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "26457/10000",
+            "13229/5000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-3229/5000",
+            "-6457/10000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-3079/2500",
+          "-6157/5000"
+        ],
+        "rangeExactRationalBounds": [
+          "38771/10000",
+          "19387/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 7,
+          "shiftT": "0",
+          "answerRadicandR": 2,
+          "fourthConstantC": "2"
+        }
+      }
+    },
+    {
+      "variant": 1,
+      "exactStudentPayload": {
+        "variant": 1,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{7}, \\sqrt3-\\sqrt2, 1, 3-\\sqrt{7}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{7}-\\sqrt{2}$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "6640fbc0ad83c898ac1721e16a32e3c7714508afb57e8a645a2db5ea40832827",
+      "printedExpressionTokens": [
+        "\\sqrt{7}",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "3-\\sqrt{7}"
+      ],
+      "printedRange": "2\\sqrt{7}-\\sqrt{2}",
+      "answer": "\\sqrt{2}-\\sqrt{7}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √7>2이고 0=0 또는1이므로 첫 수 \\sqrt{7}는1보다 크다. 0<√3−√2<1이고, 3−√7<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{7}이다. 따라서 x=(\\sqrt{7})−(2\\sqrt{7}-\\sqrt{2})=\\sqrt{2}-\\sqrt{7}이다. √2<2≤3이므로 x=√2−√7<3−√7이다. 또한 2<7이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "7": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "7": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "2": "-1",
+          "7": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "7": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "7": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "26457/10000",
+            "13229/5000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "1771/5000",
+            "3543/10000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-3079/2500",
+          "-6157/5000"
+        ],
+        "rangeExactRationalBounds": [
+          "38771/10000",
+          "19387/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:2",
+          "remaining:4",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "positive",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 7,
+          "shiftT": "0",
+          "answerRadicandR": 2,
+          "fourthConstantC": "3"
+        }
+      }
+    },
+    {
+      "variant": 2,
+      "exactStudentPayload": {
+        "variant": 2,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{7}-1, \\sqrt3-\\sqrt2, 1, 2-\\sqrt{7}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{7}-\\sqrt{2}-1$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "528d4b5c0f21a27744c1b8c38904c12c06c80b09985ab602541cc376139b9604",
+      "printedExpressionTokens": [
+        "\\sqrt{7}-1",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "2-\\sqrt{7}"
+      ],
+      "printedRange": "2\\sqrt{7}-\\sqrt{2}-1",
+      "answer": "\\sqrt{2}-\\sqrt{7}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √7>2이고 1=0 또는1이므로 첫 수 \\sqrt{7}-1는1보다 크다. 0<√3−√2<1이고, 2−√7<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{7}-1이다. 따라서 x=(\\sqrt{7}-1)−(2\\sqrt{7}-1-\\sqrt{2})=\\sqrt{2}-\\sqrt{7}이다. √2<2≤2이므로 x=√2−√7<2−√7이다. 또한 2<7이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "7": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "7": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "2": "-1",
+          "7": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "7": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "7": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "16457/10000",
+            "8229/5000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-3229/5000",
+            "-6457/10000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-3079/2500",
+          "-6157/5000"
+        ],
+        "rangeExactRationalBounds": [
+          "28771/10000",
+          "14387/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 7,
+          "shiftT": "1",
+          "answerRadicandR": 2,
+          "fourthConstantC": "2"
+        }
+      }
+    },
+    {
+      "variant": 3,
+      "exactStudentPayload": {
+        "variant": 3,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{7}-1, \\sqrt3-\\sqrt2, 1, 3-\\sqrt{7}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{7}-\\sqrt{2}-1$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "ee829c286a784b824dca9c2b5bcad7334a35f425ab959cf390a991d863d946c9",
+      "printedExpressionTokens": [
+        "\\sqrt{7}-1",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "3-\\sqrt{7}"
+      ],
+      "printedRange": "2\\sqrt{7}-\\sqrt{2}-1",
+      "answer": "\\sqrt{2}-\\sqrt{7}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √7>2이고 1=0 또는1이므로 첫 수 \\sqrt{7}-1는1보다 크다. 0<√3−√2<1이고, 3−√7<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{7}-1이다. 따라서 x=(\\sqrt{7}-1)−(2\\sqrt{7}-1-\\sqrt{2})=\\sqrt{2}-\\sqrt{7}이다. √2<2≤3이므로 x=√2−√7<3−√7이다. 또한 2<7이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "7": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "7": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "2": "-1",
+          "7": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "7": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "7": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "16457/10000",
+            "8229/5000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "1771/5000",
+            "3543/10000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-3079/2500",
+          "-6157/5000"
+        ],
+        "rangeExactRationalBounds": [
+          "28771/10000",
+          "14387/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:2",
+          "remaining:4",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "positive",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 7,
+          "shiftT": "1",
+          "answerRadicandR": 2,
+          "fourthConstantC": "3"
+        }
+      }
+    },
+    {
+      "variant": 4,
+      "exactStudentPayload": {
+        "variant": 4,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{7}, \\sqrt3-\\sqrt2, 1, 2-\\sqrt{7}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{7}-\\sqrt{3}$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "78defd9ac5b7def187935e38e37324ee1d8525e40dcb8039b103602737cf70a5",
+      "printedExpressionTokens": [
+        "\\sqrt{7}",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "2-\\sqrt{7}"
+      ],
+      "printedRange": "2\\sqrt{7}-\\sqrt{3}",
+      "answer": "\\sqrt{3}-\\sqrt{7}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √7>2이고 0=0 또는1이므로 첫 수 \\sqrt{7}는1보다 크다. 0<√3−√2<1이고, 2−√7<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{7}이다. 따라서 x=(\\sqrt{7})−(2\\sqrt{7}-\\sqrt{3})=\\sqrt{3}-\\sqrt{7}이다. √3<2≤2이므로 x=√3−√7<2−√7이다. 또한 3<7이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "7": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "7": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "3": "-1",
+          "7": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "7": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "7": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "26457/10000",
+            "13229/5000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-3229/5000",
+            "-6457/10000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-4569/5000",
+          "-571/625"
+        ],
+        "rangeExactRationalBounds": [
+          "35593/10000",
+          "8899/2500"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 7,
+          "shiftT": "0",
+          "answerRadicandR": 3,
+          "fourthConstantC": "2"
+        }
+      }
+    },
+    {
+      "variant": 5,
+      "exactStudentPayload": {
+        "variant": 5,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{7}, \\sqrt3-\\sqrt2, 1, 3-\\sqrt{7}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{7}-\\sqrt{3}$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "bfd6e4f6f467c0a48ed8b51fd83df9f27a6fa8cfd75de06c48ac0b6f90af6351",
+      "printedExpressionTokens": [
+        "\\sqrt{7}",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "3-\\sqrt{7}"
+      ],
+      "printedRange": "2\\sqrt{7}-\\sqrt{3}",
+      "answer": "\\sqrt{3}-\\sqrt{7}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √7>2이고 0=0 또는1이므로 첫 수 \\sqrt{7}는1보다 크다. 0<√3−√2<1이고, 3−√7<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{7}이다. 따라서 x=(\\sqrt{7})−(2\\sqrt{7}-\\sqrt{3})=\\sqrt{3}-\\sqrt{7}이다. √3<2≤3이므로 x=√3−√7<3−√7이다. 또한 3<7이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "7": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "7": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "3": "-1",
+          "7": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "7": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "7": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "26457/10000",
+            "13229/5000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "1771/5000",
+            "3543/10000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-4569/5000",
+          "-571/625"
+        ],
+        "rangeExactRationalBounds": [
+          "35593/10000",
+          "8899/2500"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:2",
+          "remaining:4",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "positive",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 7,
+          "shiftT": "0",
+          "answerRadicandR": 3,
+          "fourthConstantC": "3"
+        }
+      }
+    },
+    {
+      "variant": 6,
+      "exactStudentPayload": {
+        "variant": 6,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{7}-1, \\sqrt3-\\sqrt2, 1, 2-\\sqrt{7}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{7}-\\sqrt{3}-1$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "2dea575f97876680ae111b5e4cbf7a34efa7bec6dc0bcd77f3138d5802e3a838",
+      "printedExpressionTokens": [
+        "\\sqrt{7}-1",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "2-\\sqrt{7}"
+      ],
+      "printedRange": "2\\sqrt{7}-\\sqrt{3}-1",
+      "answer": "\\sqrt{3}-\\sqrt{7}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √7>2이고 1=0 또는1이므로 첫 수 \\sqrt{7}-1는1보다 크다. 0<√3−√2<1이고, 2−√7<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{7}-1이다. 따라서 x=(\\sqrt{7}-1)−(2\\sqrt{7}-1-\\sqrt{3})=\\sqrt{3}-\\sqrt{7}이다. √3<2≤2이므로 x=√3−√7<2−√7이다. 또한 3<7이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "7": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "7": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "3": "-1",
+          "7": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "7": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "7": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "16457/10000",
+            "8229/5000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-3229/5000",
+            "-6457/10000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-4569/5000",
+          "-571/625"
+        ],
+        "rangeExactRationalBounds": [
+          "25593/10000",
+          "6399/2500"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 7,
+          "shiftT": "1",
+          "answerRadicandR": 3,
+          "fourthConstantC": "2"
+        }
+      }
+    },
+    {
+      "variant": 7,
+      "exactStudentPayload": {
+        "variant": 7,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{7}-1, \\sqrt3-\\sqrt2, 1, 3-\\sqrt{7}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{7}-\\sqrt{3}-1$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "6a645ed8b69764572dfca70b9c4d8bb2627e93979b9c5368221defb6139cd1a8",
+      "printedExpressionTokens": [
+        "\\sqrt{7}-1",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "3-\\sqrt{7}"
+      ],
+      "printedRange": "2\\sqrt{7}-\\sqrt{3}-1",
+      "answer": "\\sqrt{3}-\\sqrt{7}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √7>2이고 1=0 또는1이므로 첫 수 \\sqrt{7}-1는1보다 크다. 0<√3−√2<1이고, 3−√7<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{7}-1이다. 따라서 x=(\\sqrt{7}-1)−(2\\sqrt{7}-1-\\sqrt{3})=\\sqrt{3}-\\sqrt{7}이다. √3<2≤3이므로 x=√3−√7<3−√7이다. 또한 3<7이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "7": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "7": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "3": "-1",
+          "7": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "7": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "7": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "16457/10000",
+            "8229/5000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "1771/5000",
+            "3543/10000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-4569/5000",
+          "-571/625"
+        ],
+        "rangeExactRationalBounds": [
+          "25593/10000",
+          "6399/2500"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:2",
+          "remaining:4",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "positive",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 7,
+          "shiftT": "1",
+          "answerRadicandR": 3,
+          "fourthConstantC": "3"
+        }
+      }
+    },
+    {
+      "variant": 8,
+      "exactStudentPayload": {
+        "variant": 8,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{11}, \\sqrt3-\\sqrt2, 1, 2-\\sqrt{11}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{11}-\\sqrt{2}$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "d550660432c05a8fa2e3cd82727c4b027c3d058db463d30f5babb0b34cf674fd",
+      "printedExpressionTokens": [
+        "\\sqrt{11}",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "2-\\sqrt{11}"
+      ],
+      "printedRange": "2\\sqrt{11}-\\sqrt{2}",
+      "answer": "\\sqrt{2}-\\sqrt{11}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √11>2이고 0=0 또는1이므로 첫 수 \\sqrt{11}는1보다 크다. 0<√3−√2<1이고, 2−√11<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{11}이다. 따라서 x=(\\sqrt{11})−(2\\sqrt{11}-\\sqrt{2})=\\sqrt{2}-\\sqrt{11}이다. √2<2≤2이므로 x=√2−√11<2−√11이다. 또한 2<11이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "11": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "11": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "2": "-1",
+          "11": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "11": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "11": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "16583/5000",
+            "33167/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-13167/10000",
+            "-6583/5000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-761/400",
+          "-19023/10000"
+        ],
+        "rangeExactRationalBounds": [
+          "52189/10000",
+          "3262/625"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 11,
+          "shiftT": "0",
+          "answerRadicandR": 2,
+          "fourthConstantC": "2"
+        }
+      }
+    },
+    {
+      "variant": 9,
+      "exactStudentPayload": {
+        "variant": 9,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{11}, \\sqrt3-\\sqrt2, 1, 3-\\sqrt{11}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{11}-\\sqrt{2}$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "c58005074d7ab6548688b4cdae8f382863a624af119a2ab7bfd67ef2a3f23ac7",
+      "printedExpressionTokens": [
+        "\\sqrt{11}",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "3-\\sqrt{11}"
+      ],
+      "printedRange": "2\\sqrt{11}-\\sqrt{2}",
+      "answer": "\\sqrt{2}-\\sqrt{11}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √11>2이고 0=0 또는1이므로 첫 수 \\sqrt{11}는1보다 크다. 0<√3−√2<1이고, 3−√11<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{11}이다. 따라서 x=(\\sqrt{11})−(2\\sqrt{11}-\\sqrt{2})=\\sqrt{2}-\\sqrt{11}이다. √2<2≤3이므로 x=√2−√11<3−√11이다. 또한 2<11이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "11": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "11": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "2": "-1",
+          "11": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "11": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "11": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "16583/5000",
+            "33167/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-3167/10000",
+            "-1583/5000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-761/400",
+          "-19023/10000"
+        ],
+        "rangeExactRationalBounds": [
+          "52189/10000",
+          "3262/625"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 11,
+          "shiftT": "0",
+          "answerRadicandR": 2,
+          "fourthConstantC": "3"
+        }
+      }
+    },
+    {
+      "variant": 10,
+      "exactStudentPayload": {
+        "variant": 10,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{11}-1, \\sqrt3-\\sqrt2, 1, 2-\\sqrt{11}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{11}-\\sqrt{2}-1$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "2330e05b363422f70ca15f56b0661045bb3e25cfb2c77f4588d0552aaf48ca92",
+      "printedExpressionTokens": [
+        "\\sqrt{11}-1",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "2-\\sqrt{11}"
+      ],
+      "printedRange": "2\\sqrt{11}-\\sqrt{2}-1",
+      "answer": "\\sqrt{2}-\\sqrt{11}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √11>2이고 1=0 또는1이므로 첫 수 \\sqrt{11}-1는1보다 크다. 0<√3−√2<1이고, 2−√11<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{11}-1이다. 따라서 x=(\\sqrt{11}-1)−(2\\sqrt{11}-1-\\sqrt{2})=\\sqrt{2}-\\sqrt{11}이다. √2<2≤2이므로 x=√2−√11<2−√11이다. 또한 2<11이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "11": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "11": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "2": "-1",
+          "11": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "11": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "11": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "11583/5000",
+            "23167/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-13167/10000",
+            "-6583/5000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-761/400",
+          "-19023/10000"
+        ],
+        "rangeExactRationalBounds": [
+          "42189/10000",
+          "2637/625"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 11,
+          "shiftT": "1",
+          "answerRadicandR": 2,
+          "fourthConstantC": "2"
+        }
+      }
+    },
+    {
+      "variant": 11,
+      "exactStudentPayload": {
+        "variant": 11,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{11}-1, \\sqrt3-\\sqrt2, 1, 3-\\sqrt{11}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{11}-\\sqrt{2}-1$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "9a637c3e1fb70e685763cce52deb1c7120c7cf9bead56b42c3f78d6d98c2df62",
+      "printedExpressionTokens": [
+        "\\sqrt{11}-1",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "3-\\sqrt{11}"
+      ],
+      "printedRange": "2\\sqrt{11}-\\sqrt{2}-1",
+      "answer": "\\sqrt{2}-\\sqrt{11}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √11>2이고 1=0 또는1이므로 첫 수 \\sqrt{11}-1는1보다 크다. 0<√3−√2<1이고, 3−√11<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{11}-1이다. 따라서 x=(\\sqrt{11}-1)−(2\\sqrt{11}-1-\\sqrt{2})=\\sqrt{2}-\\sqrt{11}이다. √2<2≤3이므로 x=√2−√11<3−√11이다. 또한 2<11이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "11": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "11": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "2": "-1",
+          "11": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "11": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "11": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "11583/5000",
+            "23167/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-3167/10000",
+            "-1583/5000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-761/400",
+          "-19023/10000"
+        ],
+        "rangeExactRationalBounds": [
+          "42189/10000",
+          "2637/625"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 11,
+          "shiftT": "1",
+          "answerRadicandR": 2,
+          "fourthConstantC": "3"
+        }
+      }
+    },
+    {
+      "variant": 12,
+      "exactStudentPayload": {
+        "variant": 12,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{11}, \\sqrt3-\\sqrt2, 1, 2-\\sqrt{11}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{11}-\\sqrt{3}$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "7b83f1067d57a08e8e2c3905013a071280fdbcfbb9857be74b2734505422d327",
+      "printedExpressionTokens": [
+        "\\sqrt{11}",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "2-\\sqrt{11}"
+      ],
+      "printedRange": "2\\sqrt{11}-\\sqrt{3}",
+      "answer": "\\sqrt{3}-\\sqrt{11}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √11>2이고 0=0 또는1이므로 첫 수 \\sqrt{11}는1보다 크다. 0<√3−√2<1이고, 2−√11<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{11}이다. 따라서 x=(\\sqrt{11})−(2\\sqrt{11}-\\sqrt{3})=\\sqrt{3}-\\sqrt{11}이다. √3<2≤2이므로 x=√3−√11<2−√11이다. 또한 3<11이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "11": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "11": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "3": "-1",
+          "11": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "11": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "11": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "16583/5000",
+            "33167/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-13167/10000",
+            "-6583/5000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-15847/10000",
+          "-3169/2000"
+        ],
+        "rangeExactRationalBounds": [
+          "49011/10000",
+          "24507/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 11,
+          "shiftT": "0",
+          "answerRadicandR": 3,
+          "fourthConstantC": "2"
+        }
+      }
+    },
+    {
+      "variant": 13,
+      "exactStudentPayload": {
+        "variant": 13,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{11}, \\sqrt3-\\sqrt2, 1, 3-\\sqrt{11}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{11}-\\sqrt{3}$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "82c48d8d41a81158e80dfc105d4513d5a572014979b8c725ac6cd5a8d2c85f8a",
+      "printedExpressionTokens": [
+        "\\sqrt{11}",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "3-\\sqrt{11}"
+      ],
+      "printedRange": "2\\sqrt{11}-\\sqrt{3}",
+      "answer": "\\sqrt{3}-\\sqrt{11}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √11>2이고 0=0 또는1이므로 첫 수 \\sqrt{11}는1보다 크다. 0<√3−√2<1이고, 3−√11<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{11}이다. 따라서 x=(\\sqrt{11})−(2\\sqrt{11}-\\sqrt{3})=\\sqrt{3}-\\sqrt{11}이다. √3<2≤3이므로 x=√3−√11<3−√11이다. 또한 3<11이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "11": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "11": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "3": "-1",
+          "11": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "11": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "11": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "16583/5000",
+            "33167/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-3167/10000",
+            "-1583/5000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-15847/10000",
+          "-3169/2000"
+        ],
+        "rangeExactRationalBounds": [
+          "49011/10000",
+          "24507/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 11,
+          "shiftT": "0",
+          "answerRadicandR": 3,
+          "fourthConstantC": "3"
+        }
+      }
+    },
+    {
+      "variant": 14,
+      "exactStudentPayload": {
+        "variant": 14,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{11}-1, \\sqrt3-\\sqrt2, 1, 2-\\sqrt{11}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{11}-\\sqrt{3}-1$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "493630730bd656083bf69fa665680025366e835c451f498eb2136be18d6db46b",
+      "printedExpressionTokens": [
+        "\\sqrt{11}-1",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "2-\\sqrt{11}"
+      ],
+      "printedRange": "2\\sqrt{11}-\\sqrt{3}-1",
+      "answer": "\\sqrt{3}-\\sqrt{11}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √11>2이고 1=0 또는1이므로 첫 수 \\sqrt{11}-1는1보다 크다. 0<√3−√2<1이고, 2−√11<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{11}-1이다. 따라서 x=(\\sqrt{11}-1)−(2\\sqrt{11}-1-\\sqrt{3})=\\sqrt{3}-\\sqrt{11}이다. √3<2≤2이므로 x=√3−√11<2−√11이다. 또한 3<11이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "11": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "11": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "3": "-1",
+          "11": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "11": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "11": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "11583/5000",
+            "23167/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-13167/10000",
+            "-6583/5000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-15847/10000",
+          "-3169/2000"
+        ],
+        "rangeExactRationalBounds": [
+          "39011/10000",
+          "19507/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 11,
+          "shiftT": "1",
+          "answerRadicandR": 3,
+          "fourthConstantC": "2"
+        }
+      }
+    },
+    {
+      "variant": 15,
+      "exactStudentPayload": {
+        "variant": 15,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{11}-1, \\sqrt3-\\sqrt2, 1, 3-\\sqrt{11}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{11}-\\sqrt{3}-1$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "39c93a1efbb9ef5cfe4bf8571d6c1b257e9651edb6d41c8d4982ced0a94abd07",
+      "printedExpressionTokens": [
+        "\\sqrt{11}-1",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "3-\\sqrt{11}"
+      ],
+      "printedRange": "2\\sqrt{11}-\\sqrt{3}-1",
+      "answer": "\\sqrt{3}-\\sqrt{11}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √11>2이고 1=0 또는1이므로 첫 수 \\sqrt{11}-1는1보다 크다. 0<√3−√2<1이고, 3−√11<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{11}-1이다. 따라서 x=(\\sqrt{11}-1)−(2\\sqrt{11}-1-\\sqrt{3})=\\sqrt{3}-\\sqrt{11}이다. √3<2≤3이므로 x=√3−√11<3−√11이다. 또한 3<11이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "11": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "11": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "3": "-1",
+          "11": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "11": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "11": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "11583/5000",
+            "23167/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-3167/10000",
+            "-1583/5000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-15847/10000",
+          "-3169/2000"
+        ],
+        "rangeExactRationalBounds": [
+          "39011/10000",
+          "19507/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 11,
+          "shiftT": "1",
+          "answerRadicandR": 3,
+          "fourthConstantC": "3"
+        }
+      }
+    },
+    {
+      "variant": 16,
+      "exactStudentPayload": {
+        "variant": 16,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{14}, \\sqrt3-\\sqrt2, 1, 2-\\sqrt{14}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{14}-\\sqrt{2}$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "174a44a2cc20dfdfcc8c6a326d55adf4dc28911e24624913aef41183b5c6e1b0",
+      "printedExpressionTokens": [
+        "\\sqrt{14}",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "2-\\sqrt{14}"
+      ],
+      "printedRange": "2\\sqrt{14}-\\sqrt{2}",
+      "answer": "\\sqrt{2}-\\sqrt{14}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √14>2이고 0=0 또는1이므로 첫 수 \\sqrt{14}는1보다 크다. 0<√3−√2<1이고, 2−√14<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{14}이다. 따라서 x=(\\sqrt{14})−(2\\sqrt{14}-\\sqrt{2})=\\sqrt{2}-\\sqrt{14}이다. √2<2≤2이므로 x=√2−√14<2−√14이다. 또한 2<14이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "14": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "14": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "2": "-1",
+          "14": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "14": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "14": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "4677/1250",
+            "37417/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-17417/10000",
+            "-2177/1250"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-931/400",
+          "-23273/10000"
+        ],
+        "rangeExactRationalBounds": [
+          "60689/10000",
+          "15173/2500"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 14,
+          "shiftT": "0",
+          "answerRadicandR": 2,
+          "fourthConstantC": "2"
+        }
+      }
+    },
+    {
+      "variant": 17,
+      "exactStudentPayload": {
+        "variant": 17,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{14}, \\sqrt3-\\sqrt2, 1, 3-\\sqrt{14}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{14}-\\sqrt{2}$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "0b175ecb928ad5c6fc7d50807a4f2c3c4d205c6b21b8791670e1fe82bbd1c3e9",
+      "printedExpressionTokens": [
+        "\\sqrt{14}",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "3-\\sqrt{14}"
+      ],
+      "printedRange": "2\\sqrt{14}-\\sqrt{2}",
+      "answer": "\\sqrt{2}-\\sqrt{14}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √14>2이고 0=0 또는1이므로 첫 수 \\sqrt{14}는1보다 크다. 0<√3−√2<1이고, 3−√14<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{14}이다. 따라서 x=(\\sqrt{14})−(2\\sqrt{14}-\\sqrt{2})=\\sqrt{2}-\\sqrt{14}이다. √2<2≤3이므로 x=√2−√14<3−√14이다. 또한 2<14이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "14": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "14": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "2": "-1",
+          "14": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "14": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "14": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "4677/1250",
+            "37417/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-7417/10000",
+            "-927/1250"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-931/400",
+          "-23273/10000"
+        ],
+        "rangeExactRationalBounds": [
+          "60689/10000",
+          "15173/2500"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 14,
+          "shiftT": "0",
+          "answerRadicandR": 2,
+          "fourthConstantC": "3"
+        }
+      }
+    },
+    {
+      "variant": 18,
+      "exactStudentPayload": {
+        "variant": 18,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{14}-1, \\sqrt3-\\sqrt2, 1, 2-\\sqrt{14}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{14}-\\sqrt{2}-1$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "9893a44fb95d5754d3f05555ae02b142a6ba203bc489e6bcaa0f5bd17a135020",
+      "printedExpressionTokens": [
+        "\\sqrt{14}-1",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "2-\\sqrt{14}"
+      ],
+      "printedRange": "2\\sqrt{14}-\\sqrt{2}-1",
+      "answer": "\\sqrt{2}-\\sqrt{14}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √14>2이고 1=0 또는1이므로 첫 수 \\sqrt{14}-1는1보다 크다. 0<√3−√2<1이고, 2−√14<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{14}-1이다. 따라서 x=(\\sqrt{14}-1)−(2\\sqrt{14}-1-\\sqrt{2})=\\sqrt{2}-\\sqrt{14}이다. √2<2≤2이므로 x=√2−√14<2−√14이다. 또한 2<14이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "14": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "14": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "2": "-1",
+          "14": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "14": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "14": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "3427/1250",
+            "27417/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-17417/10000",
+            "-2177/1250"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-931/400",
+          "-23273/10000"
+        ],
+        "rangeExactRationalBounds": [
+          "50689/10000",
+          "12673/2500"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 14,
+          "shiftT": "1",
+          "answerRadicandR": 2,
+          "fourthConstantC": "2"
+        }
+      }
+    },
+    {
+      "variant": 19,
+      "exactStudentPayload": {
+        "variant": 19,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{14}-1, \\sqrt3-\\sqrt2, 1, 3-\\sqrt{14}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{14}-\\sqrt{2}-1$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "b743be3db12635adcfff4cdefbdc9ddca05e4ca431c71e6d6562d4decbbb0ed5",
+      "printedExpressionTokens": [
+        "\\sqrt{14}-1",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "3-\\sqrt{14}"
+      ],
+      "printedRange": "2\\sqrt{14}-\\sqrt{2}-1",
+      "answer": "\\sqrt{2}-\\sqrt{14}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √14>2이고 1=0 또는1이므로 첫 수 \\sqrt{14}-1는1보다 크다. 0<√3−√2<1이고, 3−√14<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{14}-1이다. 따라서 x=(\\sqrt{14}-1)−(2\\sqrt{14}-1-\\sqrt{2})=\\sqrt{2}-\\sqrt{14}이다. √2<2≤3이므로 x=√2−√14<3−√14이다. 또한 2<14이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "14": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "14": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "2": "-1",
+          "14": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "14": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "14": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "3427/1250",
+            "27417/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-7417/10000",
+            "-927/1250"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-931/400",
+          "-23273/10000"
+        ],
+        "rangeExactRationalBounds": [
+          "50689/10000",
+          "12673/2500"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 14,
+          "shiftT": "1",
+          "answerRadicandR": 2,
+          "fourthConstantC": "3"
+        }
+      }
+    },
+    {
+      "variant": 20,
+      "exactStudentPayload": {
+        "variant": 20,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{14}, \\sqrt3-\\sqrt2, 1, 2-\\sqrt{14}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{14}-\\sqrt{3}$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "e64e44fc8216b4bd15fcfd5ce5ce7534ece2da55a4d2ea1413df874235455cfc",
+      "printedExpressionTokens": [
+        "\\sqrt{14}",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "2-\\sqrt{14}"
+      ],
+      "printedRange": "2\\sqrt{14}-\\sqrt{3}",
+      "answer": "\\sqrt{3}-\\sqrt{14}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √14>2이고 0=0 또는1이므로 첫 수 \\sqrt{14}는1보다 크다. 0<√3−√2<1이고, 2−√14<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{14}이다. 따라서 x=(\\sqrt{14})−(2\\sqrt{14}-\\sqrt{3})=\\sqrt{3}-\\sqrt{14}이다. √3<2≤2이므로 x=√3−√14<2−√14이다. 또한 3<14이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "14": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "14": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "3": "-1",
+          "14": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "14": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "14": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "4677/1250",
+            "37417/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-17417/10000",
+            "-2177/1250"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-20097/10000",
+          "-4019/2000"
+        ],
+        "rangeExactRationalBounds": [
+          "57511/10000",
+          "28757/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 14,
+          "shiftT": "0",
+          "answerRadicandR": 3,
+          "fourthConstantC": "2"
+        }
+      }
+    },
+    {
+      "variant": 21,
+      "exactStudentPayload": {
+        "variant": 21,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{14}, \\sqrt3-\\sqrt2, 1, 3-\\sqrt{14}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{14}-\\sqrt{3}$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "ae032c5769e17f062cb5f69f70d040116ce1a0b7fb885eb43b91cd1a13964e63",
+      "printedExpressionTokens": [
+        "\\sqrt{14}",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "3-\\sqrt{14}"
+      ],
+      "printedRange": "2\\sqrt{14}-\\sqrt{3}",
+      "answer": "\\sqrt{3}-\\sqrt{14}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √14>2이고 0=0 또는1이므로 첫 수 \\sqrt{14}는1보다 크다. 0<√3−√2<1이고, 3−√14<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{14}이다. 따라서 x=(\\sqrt{14})−(2\\sqrt{14}-\\sqrt{3})=\\sqrt{3}-\\sqrt{14}이다. √3<2≤3이므로 x=√3−√14<3−√14이다. 또한 3<14이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "14": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "14": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "3": "-1",
+          "14": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "14": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "14": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "4677/1250",
+            "37417/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-7417/10000",
+            "-927/1250"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-20097/10000",
+          "-4019/2000"
+        ],
+        "rangeExactRationalBounds": [
+          "57511/10000",
+          "28757/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 14,
+          "shiftT": "0",
+          "answerRadicandR": 3,
+          "fourthConstantC": "3"
+        }
+      }
+    },
+    {
+      "variant": 22,
+      "exactStudentPayload": {
+        "variant": 22,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{14}-1, \\sqrt3-\\sqrt2, 1, 2-\\sqrt{14}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{14}-\\sqrt{3}-1$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "b8f45802f27c6604e70bc124a7c8c56f7fa7e6b72596f2943c73b02e3ab1cc8a",
+      "printedExpressionTokens": [
+        "\\sqrt{14}-1",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "2-\\sqrt{14}"
+      ],
+      "printedRange": "2\\sqrt{14}-\\sqrt{3}-1",
+      "answer": "\\sqrt{3}-\\sqrt{14}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √14>2이고 1=0 또는1이므로 첫 수 \\sqrt{14}-1는1보다 크다. 0<√3−√2<1이고, 2−√14<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{14}-1이다. 따라서 x=(\\sqrt{14}-1)−(2\\sqrt{14}-1-\\sqrt{3})=\\sqrt{3}-\\sqrt{14}이다. √3<2≤2이므로 x=√3−√14<2−√14이다. 또한 3<14이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "14": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "14": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "3": "-1",
+          "14": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "14": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "14": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "3427/1250",
+            "27417/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-17417/10000",
+            "-2177/1250"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-20097/10000",
+          "-4019/2000"
+        ],
+        "rangeExactRationalBounds": [
+          "47511/10000",
+          "23757/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 14,
+          "shiftT": "1",
+          "answerRadicandR": 3,
+          "fourthConstantC": "2"
+        }
+      }
+    },
+    {
+      "variant": 23,
+      "exactStudentPayload": {
+        "variant": 23,
+        "questionType": "단답형",
+        "content": "네 실수 $\\sqrt{14}-1, \\sqrt3-\\sqrt2, 1, 3-\\sqrt{14}$와 지워진 수 하나가 있다. 지워진 수는 다섯 수 중 가장 작은 수였다. 다섯 수의 최댓값에서 최솟값을 뺀 값이 $2\\sqrt{14}-\\sqrt{3}-1$일 때, 지워진 수를 구하시오."
+      },
+      "studentPayloadCanonicalSha256": "7c7de214ce5b791c3022855f8652436a6b1909e4de251882629d37a458f9a4fd",
+      "printedExpressionTokens": [
+        "\\sqrt{14}-1",
+        "\\sqrt3-\\sqrt2",
+        "1",
+        "3-\\sqrt{14}"
+      ],
+      "printedRange": "2\\sqrt{14}-\\sqrt{3}-1",
+      "answer": "\\sqrt{3}-\\sqrt{14}",
+      "solution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √14>2이고 1=0 또는1이므로 첫 수 \\sqrt{14}-1는1보다 크다. 0<√3−√2<1이고, 3−√14<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{14}-1이다. 따라서 x=(\\sqrt{14}-1)−(2\\sqrt{14}-1-\\sqrt{3})=\\sqrt{3}-\\sqrt{14}이다. √3<2≤3이므로 x=√3−√14<3−√14이다. 또한 3<14이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "calculation": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "14": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "14": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "3": "-1",
+          "14": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "14": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "14": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "3427/1250",
+            "27417/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-7417/10000",
+            "-927/1250"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-20097/10000",
+          "-4019/2000"
+        ],
+        "rangeExactRationalBounds": [
+          "47511/10000",
+          "23757/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 14,
+          "shiftT": "1",
+          "answerRadicandR": 3,
+          "fourthConstantC": "3"
+        }
+      }
+    }
+  ],
+  "summary": {
+    "solved": 24,
+    "existenceUniqueStrictMinimum": 24,
+    "firstValueUniqueMaximum": 24,
+    "fourthPositive": 4,
+    "fourthNegative": 20,
+    "distinctAnswerStrings": [
+      "\\sqrt{2}-\\sqrt{11}",
+      "\\sqrt{2}-\\sqrt{14}",
+      "\\sqrt{2}-\\sqrt{7}",
+      "\\sqrt{3}-\\sqrt{11}",
+      "\\sqrt{3}-\\sqrt{14}",
+      "\\sqrt{3}-\\sqrt{7}"
+    ]
+  },
+  "newManualOrBlindCount": 0,
+  "actualFutureFactoryAudited": false
+}

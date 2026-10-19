@@ -1,0 +1,1273 @@
+{
+  "kind": "independent-preimplementation-inverse-minimum-proposal-review/v1",
+  "status": "proposal-only; 24 mathematics solved; future implementation and absent authored solution held",
+  "input": {
+    "path": "student-only24.json",
+    "sha256": "9abde29809d9eb15a226bc0680a9281581ae3def22b57d402a17cb02debd68cf",
+    "kind": "preimplementation-student-only-proposal",
+    "exactStudentPayloadBinding": "Each variant/questionType/content is preserved in own-calculations24 with canonical UTF8 sorted-key compact JSON SHA256. Input raw SHA256 separately binds bytes. These are proposal-local digests, not an existing candidate/factory digest."
+  },
+  "mathSummary": {
+    "solved": 24,
+    "existenceUniqueStrictMinimum": 24,
+    "firstValueUniqueMaximum": 24,
+    "fourthPositive": 4,
+    "fourthNegative": 20,
+    "distinctAnswerStrings": [
+      "\\sqrt{2}-\\sqrt{11}",
+      "\\sqrt{2}-\\sqrt{14}",
+      "\\sqrt{2}-\\sqrt{7}",
+      "\\sqrt{3}-\\sqrt{11}",
+      "\\sqrt{3}-\\sqrt{14}",
+      "\\sqrt{3}-\\sqrt{7}"
+    ]
+  },
+  "methodAndBranches": {
+    "maximum": "For each actual printed first expression √n−t with n7/11/14 and t0/1, √n>2 so it exceeds1. Second expression is strictly between0and1 because √3>√2,√3<2,√2>1. Fourth c−√n<1 since c≤3 and√n>2. Hence first is unique maximum.",
+    "restore": "Subtract the actual printed range from that actual maximum, cancelling t, to obtain√r−√n. Own parser derives this from each printed string rather than using a supplied answer or variant-to-parameter lookup.",
+    "minimum": "Since r2/3<4, √r<2≤c, so restored x<c−√n. Since r<n, x<0; other three remaining entries are positive. Thus all four strict comparisons hold, including branches with positive fourth entry.",
+    "existenceUnique": "M−x equals the actual printed range exactly as coefficient maps; rangepositive; x is strict minimum. Any permitted missing value must equal the fixed M−range, so unique.",
+    "branches": "24/24 full five-value strict orders certified with Fraction intervals; fourthpositive4(n7,c3),negative20. No assumption all fourth terms negative; shift0/1 and answer root2/3 are checked for each actual text.",
+    "oracleVsStudent": "Integer isqrt finds rational bounds at denominator10000, and all endpoints are verified by exact squaring. Student proof uses elementary integer bounds and radical arithmetic, not the oracle algorithm or float approximations."
+  },
+  "primaryReferences": {
+    "status": "reused actual primary inspection in this same session, not q03 item-grade inheritance",
+    "moe": {
+      "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84",
+      "sha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "stream": "BodyText/Section0",
+      "records1based": [
+        {
+          "record": 3776,
+          "code": "9수01-07",
+          "scope": "제곱근의 뜻과 성질"
+        },
+        {
+          "record": 3780,
+          "code": "9수01-08",
+          "scope": "무리수의 개념"
+        },
+        {
+          "record": 3784,
+          "code": "9수01-09",
+          "scope": "실수의 대소 관계"
+        },
+        {
+          "record": 3788,
+          "code": "9수01-10",
+          "scope": "근호를 포함한 식의 사칙계산"
+        }
+      ]
+    },
+    "actualM3Placement": {
+      "url": "https://www.goe.go.kr/resource/old/BBSMSTR_000000030136/BBS_202202101132253081.pdf",
+      "pageIndex0": 38,
+      "printedPage": 38,
+      "observed": "실제 중3 표에 9수01-07/08/09/10이 배치됨; 발행연도2022를 2022개정으로 혼동하지 않음"
+    },
+    "yearScope": "2025 source/2026 practice 중3=2015, 2027부터 중3/2022는 별도 pending",
+    "limits": "표의 중3 배치와 아래 실제24개 방법을 대조했다. 코드/학교/기존q03승인만으로 전체 방법을 인증하지 않는다."
+  },
+  "perStudent": [
+    {
+      "variant": 0,
+      "studentPayloadCanonicalSha256": "fccd8df2217a2e2288640c2d9905f4c377bb76c8837c6dbc49cdcd230fe18005",
+      "answer": "\\sqrt{2}-\\sqrt{7}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √7>2이고 0=0 또는1이므로 첫 수 \\sqrt{7}는1보다 크다. 0<√3−√2<1이고, 2−√7<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{7}이다. 따라서 x=(\\sqrt{7})−(2\\sqrt{7}-\\sqrt{2})=\\sqrt{2}-\\sqrt{7}이다. √2<2≤2이므로 x=√2−√7<2−√7이다. 또한 2<7이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항0는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √7−0>1, 0<√3−√2<1, 2−√7<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√7, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 7]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{2}-\\sqrt{7}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{2}-\\sqrt{7}. √2<2≤2에서 x<2−√7; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{2}-\\sqrt{7}→√2<2≤2로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √7>2는 n>4, √2<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 1,
+      "studentPayloadCanonicalSha256": "6640fbc0ad83c898ac1721e16a32e3c7714508afb57e8a645a2db5ea40832827",
+      "answer": "\\sqrt{2}-\\sqrt{7}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √7>2이고 0=0 또는1이므로 첫 수 \\sqrt{7}는1보다 크다. 0<√3−√2<1이고, 3−√7<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{7}이다. 따라서 x=(\\sqrt{7})−(2\\sqrt{7}-\\sqrt{2})=\\sqrt{2}-\\sqrt{7}이다. √2<2≤3이므로 x=√2−√7<3−√7이다. 또한 2<7이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항1는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √7−0>1, 0<√3−√2<1, 3−√7<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√7, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 7]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{2}-\\sqrt{7}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{2}-\\sqrt{7}. √2<2≤3에서 x<3−√7; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{2}-\\sqrt{7}→√2<2≤3로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √7>2는 n>4, √2<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 2,
+      "studentPayloadCanonicalSha256": "528d4b5c0f21a27744c1b8c38904c12c06c80b09985ab602541cc376139b9604",
+      "answer": "\\sqrt{2}-\\sqrt{7}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √7>2이고 1=0 또는1이므로 첫 수 \\sqrt{7}-1는1보다 크다. 0<√3−√2<1이고, 2−√7<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{7}-1이다. 따라서 x=(\\sqrt{7}-1)−(2\\sqrt{7}-1-\\sqrt{2})=\\sqrt{2}-\\sqrt{7}이다. √2<2≤2이므로 x=√2−√7<2−√7이다. 또한 2<7이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항2는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √7−1>1, 0<√3−√2<1, 2−√7<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√7, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 7]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{2}-\\sqrt{7}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{2}-\\sqrt{7}. √2<2≤2에서 x<2−√7; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{2}-\\sqrt{7}→√2<2≤2로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √7>2는 n>4, √2<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 3,
+      "studentPayloadCanonicalSha256": "ee829c286a784b824dca9c2b5bcad7334a35f425ab959cf390a991d863d946c9",
+      "answer": "\\sqrt{2}-\\sqrt{7}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √7>2이고 1=0 또는1이므로 첫 수 \\sqrt{7}-1는1보다 크다. 0<√3−√2<1이고, 3−√7<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{7}-1이다. 따라서 x=(\\sqrt{7}-1)−(2\\sqrt{7}-1-\\sqrt{2})=\\sqrt{2}-\\sqrt{7}이다. √2<2≤3이므로 x=√2−√7<3−√7이다. 또한 2<7이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항3는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √7−1>1, 0<√3−√2<1, 3−√7<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√7, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 7]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{2}-\\sqrt{7}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{2}-\\sqrt{7}. √2<2≤3에서 x<3−√7; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{2}-\\sqrt{7}→√2<2≤3로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √7>2는 n>4, √2<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 4,
+      "studentPayloadCanonicalSha256": "78defd9ac5b7def187935e38e37324ee1d8525e40dcb8039b103602737cf70a5",
+      "answer": "\\sqrt{3}-\\sqrt{7}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √7>2이고 0=0 또는1이므로 첫 수 \\sqrt{7}는1보다 크다. 0<√3−√2<1이고, 2−√7<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{7}이다. 따라서 x=(\\sqrt{7})−(2\\sqrt{7}-\\sqrt{3})=\\sqrt{3}-\\sqrt{7}이다. √3<2≤2이므로 x=√3−√7<2−√7이다. 또한 3<7이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항4는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √7−0>1, 0<√3−√2<1, 2−√7<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√7, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 7]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{3}-\\sqrt{7}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{3}-\\sqrt{7}. √3<2≤2에서 x<2−√7; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{3}-\\sqrt{7}→√3<2≤2로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √7>2는 n>4, √3<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 5,
+      "studentPayloadCanonicalSha256": "bfd6e4f6f467c0a48ed8b51fd83df9f27a6fa8cfd75de06c48ac0b6f90af6351",
+      "answer": "\\sqrt{3}-\\sqrt{7}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √7>2이고 0=0 또는1이므로 첫 수 \\sqrt{7}는1보다 크다. 0<√3−√2<1이고, 3−√7<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{7}이다. 따라서 x=(\\sqrt{7})−(2\\sqrt{7}-\\sqrt{3})=\\sqrt{3}-\\sqrt{7}이다. √3<2≤3이므로 x=√3−√7<3−√7이다. 또한 3<7이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항5는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √7−0>1, 0<√3−√2<1, 3−√7<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√7, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 7]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{3}-\\sqrt{7}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{3}-\\sqrt{7}. √3<2≤3에서 x<3−√7; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{3}-\\sqrt{7}→√3<2≤3로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √7>2는 n>4, √3<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 6,
+      "studentPayloadCanonicalSha256": "2dea575f97876680ae111b5e4cbf7a34efa7bec6dc0bcd77f3138d5802e3a838",
+      "answer": "\\sqrt{3}-\\sqrt{7}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √7>2이고 1=0 또는1이므로 첫 수 \\sqrt{7}-1는1보다 크다. 0<√3−√2<1이고, 2−√7<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{7}-1이다. 따라서 x=(\\sqrt{7}-1)−(2\\sqrt{7}-1-\\sqrt{3})=\\sqrt{3}-\\sqrt{7}이다. √3<2≤2이므로 x=√3−√7<2−√7이다. 또한 3<7이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항6는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √7−1>1, 0<√3−√2<1, 2−√7<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√7, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 7]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{3}-\\sqrt{7}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{3}-\\sqrt{7}. √3<2≤2에서 x<2−√7; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{3}-\\sqrt{7}→√3<2≤2로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √7>2는 n>4, √3<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 7,
+      "studentPayloadCanonicalSha256": "6a645ed8b69764572dfca70b9c4d8bb2627e93979b9c5368221defb6139cd1a8",
+      "answer": "\\sqrt{3}-\\sqrt{7}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √7>2이고 1=0 또는1이므로 첫 수 \\sqrt{7}-1는1보다 크다. 0<√3−√2<1이고, 3−√7<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{7}-1이다. 따라서 x=(\\sqrt{7}-1)−(2\\sqrt{7}-1-\\sqrt{3})=\\sqrt{3}-\\sqrt{7}이다. √3<2≤3이므로 x=√3−√7<3−√7이다. 또한 3<7이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항7는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √7−1>1, 0<√3−√2<1, 3−√7<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√7, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 7]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{3}-\\sqrt{7}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{3}-\\sqrt{7}. √3<2≤3에서 x<3−√7; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{3}-\\sqrt{7}→√3<2≤3로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √7>2는 n>4, √3<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 8,
+      "studentPayloadCanonicalSha256": "d550660432c05a8fa2e3cd82727c4b027c3d058db463d30f5babb0b34cf674fd",
+      "answer": "\\sqrt{2}-\\sqrt{11}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √11>2이고 0=0 또는1이므로 첫 수 \\sqrt{11}는1보다 크다. 0<√3−√2<1이고, 2−√11<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{11}이다. 따라서 x=(\\sqrt{11})−(2\\sqrt{11}-\\sqrt{2})=\\sqrt{2}-\\sqrt{11}이다. √2<2≤2이므로 x=√2−√11<2−√11이다. 또한 2<11이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항8는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √11−0>1, 0<√3−√2<1, 2−√11<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√11, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 11]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{2}-\\sqrt{11}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{2}-\\sqrt{11}. √2<2≤2에서 x<2−√11; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{2}-\\sqrt{11}→√2<2≤2로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √11>2는 n>4, √2<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 9,
+      "studentPayloadCanonicalSha256": "c58005074d7ab6548688b4cdae8f382863a624af119a2ab7bfd67ef2a3f23ac7",
+      "answer": "\\sqrt{2}-\\sqrt{11}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √11>2이고 0=0 또는1이므로 첫 수 \\sqrt{11}는1보다 크다. 0<√3−√2<1이고, 3−√11<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{11}이다. 따라서 x=(\\sqrt{11})−(2\\sqrt{11}-\\sqrt{2})=\\sqrt{2}-\\sqrt{11}이다. √2<2≤3이므로 x=√2−√11<3−√11이다. 또한 2<11이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항9는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √11−0>1, 0<√3−√2<1, 3−√11<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√11, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 11]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{2}-\\sqrt{11}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{2}-\\sqrt{11}. √2<2≤3에서 x<3−√11; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{2}-\\sqrt{11}→√2<2≤3로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √11>2는 n>4, √2<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 10,
+      "studentPayloadCanonicalSha256": "2330e05b363422f70ca15f56b0661045bb3e25cfb2c77f4588d0552aaf48ca92",
+      "answer": "\\sqrt{2}-\\sqrt{11}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √11>2이고 1=0 또는1이므로 첫 수 \\sqrt{11}-1는1보다 크다. 0<√3−√2<1이고, 2−√11<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{11}-1이다. 따라서 x=(\\sqrt{11}-1)−(2\\sqrt{11}-1-\\sqrt{2})=\\sqrt{2}-\\sqrt{11}이다. √2<2≤2이므로 x=√2−√11<2−√11이다. 또한 2<11이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항10는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √11−1>1, 0<√3−√2<1, 2−√11<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√11, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 11]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{2}-\\sqrt{11}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{2}-\\sqrt{11}. √2<2≤2에서 x<2−√11; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{2}-\\sqrt{11}→√2<2≤2로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √11>2는 n>4, √2<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 11,
+      "studentPayloadCanonicalSha256": "9a637c3e1fb70e685763cce52deb1c7120c7cf9bead56b42c3f78d6d98c2df62",
+      "answer": "\\sqrt{2}-\\sqrt{11}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √11>2이고 1=0 또는1이므로 첫 수 \\sqrt{11}-1는1보다 크다. 0<√3−√2<1이고, 3−√11<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{11}-1이다. 따라서 x=(\\sqrt{11}-1)−(2\\sqrt{11}-1-\\sqrt{2})=\\sqrt{2}-\\sqrt{11}이다. √2<2≤3이므로 x=√2−√11<3−√11이다. 또한 2<11이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항11는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √11−1>1, 0<√3−√2<1, 3−√11<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√11, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 11]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{2}-\\sqrt{11}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{2}-\\sqrt{11}. √2<2≤3에서 x<3−√11; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{2}-\\sqrt{11}→√2<2≤3로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √11>2는 n>4, √2<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 12,
+      "studentPayloadCanonicalSha256": "7b83f1067d57a08e8e2c3905013a071280fdbcfbb9857be74b2734505422d327",
+      "answer": "\\sqrt{3}-\\sqrt{11}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √11>2이고 0=0 또는1이므로 첫 수 \\sqrt{11}는1보다 크다. 0<√3−√2<1이고, 2−√11<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{11}이다. 따라서 x=(\\sqrt{11})−(2\\sqrt{11}-\\sqrt{3})=\\sqrt{3}-\\sqrt{11}이다. √3<2≤2이므로 x=√3−√11<2−√11이다. 또한 3<11이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항12는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √11−0>1, 0<√3−√2<1, 2−√11<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√11, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 11]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{3}-\\sqrt{11}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{3}-\\sqrt{11}. √3<2≤2에서 x<2−√11; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{3}-\\sqrt{11}→√3<2≤2로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √11>2는 n>4, √3<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 13,
+      "studentPayloadCanonicalSha256": "82c48d8d41a81158e80dfc105d4513d5a572014979b8c725ac6cd5a8d2c85f8a",
+      "answer": "\\sqrt{3}-\\sqrt{11}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √11>2이고 0=0 또는1이므로 첫 수 \\sqrt{11}는1보다 크다. 0<√3−√2<1이고, 3−√11<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{11}이다. 따라서 x=(\\sqrt{11})−(2\\sqrt{11}-\\sqrt{3})=\\sqrt{3}-\\sqrt{11}이다. √3<2≤3이므로 x=√3−√11<3−√11이다. 또한 3<11이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항13는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √11−0>1, 0<√3−√2<1, 3−√11<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√11, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 11]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{3}-\\sqrt{11}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{3}-\\sqrt{11}. √3<2≤3에서 x<3−√11; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{3}-\\sqrt{11}→√3<2≤3로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √11>2는 n>4, √3<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 14,
+      "studentPayloadCanonicalSha256": "493630730bd656083bf69fa665680025366e835c451f498eb2136be18d6db46b",
+      "answer": "\\sqrt{3}-\\sqrt{11}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √11>2이고 1=0 또는1이므로 첫 수 \\sqrt{11}-1는1보다 크다. 0<√3−√2<1이고, 2−√11<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{11}-1이다. 따라서 x=(\\sqrt{11}-1)−(2\\sqrt{11}-1-\\sqrt{3})=\\sqrt{3}-\\sqrt{11}이다. √3<2≤2이므로 x=√3−√11<2−√11이다. 또한 3<11이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항14는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √11−1>1, 0<√3−√2<1, 2−√11<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√11, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 11]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{3}-\\sqrt{11}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{3}-\\sqrt{11}. √3<2≤2에서 x<2−√11; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{3}-\\sqrt{11}→√3<2≤2로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √11>2는 n>4, √3<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 15,
+      "studentPayloadCanonicalSha256": "39c93a1efbb9ef5cfe4bf8571d6c1b257e9651edb6d41c8d4982ced0a94abd07",
+      "answer": "\\sqrt{3}-\\sqrt{11}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √11>2이고 1=0 또는1이므로 첫 수 \\sqrt{11}-1는1보다 크다. 0<√3−√2<1이고, 3−√11<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{11}-1이다. 따라서 x=(\\sqrt{11}-1)−(2\\sqrt{11}-1-\\sqrt{3})=\\sqrt{3}-\\sqrt{11}이다. √3<2≤3이므로 x=√3−√11<3−√11이다. 또한 3<11이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항15는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √11−1>1, 0<√3−√2<1, 3−√11<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√11, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 11]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{3}-\\sqrt{11}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{3}-\\sqrt{11}. √3<2≤3에서 x<3−√11; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{3}-\\sqrt{11}→√3<2≤3로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √11>2는 n>4, √3<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 16,
+      "studentPayloadCanonicalSha256": "174a44a2cc20dfdfcc8c6a326d55adf4dc28911e24624913aef41183b5c6e1b0",
+      "answer": "\\sqrt{2}-\\sqrt{14}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √14>2이고 0=0 또는1이므로 첫 수 \\sqrt{14}는1보다 크다. 0<√3−√2<1이고, 2−√14<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{14}이다. 따라서 x=(\\sqrt{14})−(2\\sqrt{14}-\\sqrt{2})=\\sqrt{2}-\\sqrt{14}이다. √2<2≤2이므로 x=√2−√14<2−√14이다. 또한 2<14이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항16는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √14−0>1, 0<√3−√2<1, 2−√14<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√14, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 14]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{2}-\\sqrt{14}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{2}-\\sqrt{14}. √2<2≤2에서 x<2−√14; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{2}-\\sqrt{14}→√2<2≤2로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √14>2는 n>4, √2<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 17,
+      "studentPayloadCanonicalSha256": "0b175ecb928ad5c6fc7d50807a4f2c3c4d205c6b21b8791670e1fe82bbd1c3e9",
+      "answer": "\\sqrt{2}-\\sqrt{14}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √14>2이고 0=0 또는1이므로 첫 수 \\sqrt{14}는1보다 크다. 0<√3−√2<1이고, 3−√14<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{14}이다. 따라서 x=(\\sqrt{14})−(2\\sqrt{14}-\\sqrt{2})=\\sqrt{2}-\\sqrt{14}이다. √2<2≤3이므로 x=√2−√14<3−√14이다. 또한 2<14이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항17는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √14−0>1, 0<√3−√2<1, 3−√14<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√14, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 14]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{2}-\\sqrt{14}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{2}-\\sqrt{14}. √2<2≤3에서 x<3−√14; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{2}-\\sqrt{14}→√2<2≤3로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √14>2는 n>4, √2<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 18,
+      "studentPayloadCanonicalSha256": "9893a44fb95d5754d3f05555ae02b142a6ba203bc489e6bcaa0f5bd17a135020",
+      "answer": "\\sqrt{2}-\\sqrt{14}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √14>2이고 1=0 또는1이므로 첫 수 \\sqrt{14}-1는1보다 크다. 0<√3−√2<1이고, 2−√14<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{14}-1이다. 따라서 x=(\\sqrt{14}-1)−(2\\sqrt{14}-1-\\sqrt{2})=\\sqrt{2}-\\sqrt{14}이다. √2<2≤2이므로 x=√2−√14<2−√14이다. 또한 2<14이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항18는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √14−1>1, 0<√3−√2<1, 2−√14<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√14, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 14]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{2}-\\sqrt{14}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{2}-\\sqrt{14}. √2<2≤2에서 x<2−√14; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{2}-\\sqrt{14}→√2<2≤2로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √14>2는 n>4, √2<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 19,
+      "studentPayloadCanonicalSha256": "b743be3db12635adcfff4cdefbdc9ddca05e4ca431c71e6d6562d4decbbb0ed5",
+      "answer": "\\sqrt{2}-\\sqrt{14}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √14>2이고 1=0 또는1이므로 첫 수 \\sqrt{14}-1는1보다 크다. 0<√3−√2<1이고, 3−√14<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{14}-1이다. 따라서 x=(\\sqrt{14}-1)−(2\\sqrt{14}-1-\\sqrt{2})=\\sqrt{2}-\\sqrt{14}이다. √2<2≤3이므로 x=√2−√14<3−√14이다. 또한 2<14이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항19는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √14−1>1, 0<√3−√2<1, 3−√14<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√14, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 14]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{2}-\\sqrt{14}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{2}-\\sqrt{14}. √2<2≤3에서 x<3−√14; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{2}-\\sqrt{14}→√2<2≤3로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √14>2는 n>4, √2<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 20,
+      "studentPayloadCanonicalSha256": "e64e44fc8216b4bd15fcfd5ce5ce7534ece2da55a4d2ea1413df874235455cfc",
+      "answer": "\\sqrt{3}-\\sqrt{14}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √14>2이고 0=0 또는1이므로 첫 수 \\sqrt{14}는1보다 크다. 0<√3−√2<1이고, 2−√14<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{14}이다. 따라서 x=(\\sqrt{14})−(2\\sqrt{14}-\\sqrt{3})=\\sqrt{3}-\\sqrt{14}이다. √3<2≤2이므로 x=√3−√14<2−√14이다. 또한 3<14이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항20는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √14−0>1, 0<√3−√2<1, 2−√14<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√14, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 14]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{3}-\\sqrt{14}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{3}-\\sqrt{14}. √3<2≤2에서 x<2−√14; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{3}-\\sqrt{14}→√3<2≤2로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √14>2는 n>4, √3<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 21,
+      "studentPayloadCanonicalSha256": "ae032c5769e17f062cb5f69f70d040116ce1a0b7fb885eb43b91cd1a13964e63",
+      "answer": "\\sqrt{3}-\\sqrt{14}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √14>2이고 0=0 또는1이므로 첫 수 \\sqrt{14}는1보다 크다. 0<√3−√2<1이고, 3−√14<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{14}이다. 따라서 x=(\\sqrt{14})−(2\\sqrt{14}-\\sqrt{3})=\\sqrt{3}-\\sqrt{14}이다. √3<2≤3이므로 x=√3−√14<3−√14이다. 또한 3<14이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항21는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √14−0>1, 0<√3−√2<1, 3−√14<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√14, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 14]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{3}-\\sqrt{14}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{3}-\\sqrt{14}. √3<2≤3에서 x<3−√14; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{3}-\\sqrt{14}→√3<2≤3로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √14>2는 n>4, √3<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 22,
+      "studentPayloadCanonicalSha256": "b8f45802f27c6604e70bc124a7c8c56f7fa7e6b72596f2943c73b02e3ab1cc8a",
+      "answer": "\\sqrt{3}-\\sqrt{14}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √14>2이고 1=0 또는1이므로 첫 수 \\sqrt{14}-1는1보다 크다. 0<√3−√2<1이고, 2−√14<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{14}-1이다. 따라서 x=(\\sqrt{14}-1)−(2\\sqrt{14}-1-\\sqrt{3})=\\sqrt{3}-\\sqrt{14}이다. √3<2≤2이므로 x=√3−√14<2−√14이다. 또한 3<14이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항22는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √14−1>1, 0<√3−√2<1, 2−√14<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√14, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 14]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{3}-\\sqrt{14}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{3}-\\sqrt{14}. √3<2≤2에서 x<2−√14; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{3}-\\sqrt{14}→√3<2≤2로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √14>2는 n>4, √3<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    },
+    {
+      "variant": 23,
+      "studentPayloadCanonicalSha256": "7c7de214ce5b791c3022855f8652436a6b1909e4de251882629d37a458f9a4fd",
+      "answer": "\\sqrt{3}-\\sqrt{14}",
+      "ownStudentSolution": "지워진 수를 x라 하자. 지워진 수가 최솟값이므로 최댓값은 남은 네 수 중에 있다. √14>2이고 1=0 또는1이므로 첫 수 \\sqrt{14}-1는1보다 크다. 0<√3−√2<1이고, 3−√14<1이므로 남은 네 수의 유일한 최댓값은 \\sqrt{14}-1이다. 따라서 x=(\\sqrt{14}-1)−(2\\sqrt{14}-1-\\sqrt{3})=\\sqrt{3}-\\sqrt{14}이다. √3<2≤3이므로 x=√3−√14<3−√14이다. 또한 3<14이므로 x<0인 반면 첫 수, √3−√2, 1은 모두 양수이다. 그러므로 x는 실제로 남은 모든 수보다 엄격히 작다. 이 값을 넣으면 최댓값−최솟값이 제시된 값과 정확히 같으므로 존재하며, 고정된 최댓값에서 고정된 차이를 빼므로 해는 유일하다. 모든 제곱근은 양수인 실수의 주값이고 분모·물리 단위는 없다.",
+      "mathStatus": "solved",
+      "existenceUniquenessStrictMinimum": true,
+      "prospectiveOwnMethodGrade2015M3AfterPrerequisites": "passed",
+      "actualStudentSurfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "문항23는 다섯 실수의 누락 최솟값을 차이 조건에서 복원한다. 실제2015중3 제곱근 성질·실수 대소·근호 계산을 배운 뒤 처리한다.",
+          "evidence": "실제 인쇄식 첫 수 √14−1>1, 0<√3−√2<1, 3−√14<1. 제곱근 대소와 뺄셈 역관계만으로 최댓값을 정한다. 유한 자료의 최대·최소이며 함수의 극값정리가 아니다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "실제 questionType은 단답형이고 객관식 보기는 제공되지 않았다. 선택지 때문에 추가되는 학년 요구는 없다.",
+          "evidence": "학생 기록에는 variant/questionType/content만 있다. 가상의 선택지나 보기 승인을 만들지 않았다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "실제 문장에는 네 실수의 텍스트 목록만 있으며 그림·표·길이 측정은 없다.",
+          "evidence": "입력의24개 문장은 모두 두 인라인 수식 블록이다. 좌표·픽셀·도형 정보를 사용하지 않았다."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "√14, √3−√2와 상수의 덧셈·뺄셈, 최댓값/최솟값이라는 일상적 순서 용어는 실제2015중3 scope이다.",
+          "evidence": "모든 피제곱수 [2, 3, 14]는 양수이고 주제곱근으로 해석된다. 출력 답 \\sqrt{3}-\\sqrt{14}는 정확식이다. 분모·단위·고등 함수기호가 없고 dollar 쌍/근호 brace 표기를 실제 입력에서 확인했다. native 렌더러 인증은 아니다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "검토 대상은 제공된 저자 답이 아니라 이번에 독립 계산한 prospective 답이다. 그 정확식은 중3 동류 근호항의 뺄셈으로 얻는다.",
+          "evidence": "x=M−R=\\sqrt{3}-\\sqrt{14}. √3<2≤3에서 x<3−√14; r<n에서 x<0. 첫 수/두 번째 수/1은 양수이므로 x가 엄격한 최솟값이다. own-calculations24의 정확 계수 등식과 유리수 경계가 존재·유일성을 검증한다."
+        },
+        "studentSolution": {
+          "status": "pending",
+          "basis": "실제 저자/향후 factory 해설 문자열은 제공되지 않아 해당 실제 학생 해설 표면은 승인할 수 없다. 이번 자체 완결 풀이의 방법은2015중3 학습 후 범위이다.",
+          "evidence": "자체 풀이: M선정→x=M−R→x=\\sqrt{3}-\\sqrt{14}→√3<2≤3로 남은 넷보다 작은지 검산→등식 재대입/유일성. √3<2와√2>1로 둘째수<1, √3>√2로 양수. 모든 비교는 양수 제곱 비교로 정당하다. 고등 무리부등식/함수/미적분/체이론은 학생에게 요구하지 않는다. 향후 실제 해설이 이 방법을 따르는지는 새 검증 필요."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "양수 제곱근의 뜻·대소, 실수 순서 및 근호항의 덧셈·뺄셈을 학습한2015중3에게만 배정 가능한 제안이다.",
+          "evidence": "실제 중3 primary 표9수01-07/09/10 및3776/3784/3788 내용과 대조. √14>2는 n>4, √3<2는 r<4로 확인. 일차식 x=M−R는 이전 산술 역관계로 충분하며 고등 공식이 없다. 학기 진도나2022배치 보증은 없다."
+        }
+      },
+      "futureAuthoredSolutionGradeApproval": false,
+      "scoreDifficultyEditorialApproval": "pending: no score/rubric/difficulty supplied"
+    }
+  ],
+  "surfaceSummary": {
+    "stemPassed": 24,
+    "choicesAbsenceReviewed": 24,
+    "figuresTablesAbsenceReviewed": 24,
+    "notationPassed": 24,
+    "ownComputedAnswerScopePassed": 24,
+    "ownCompleteStudentMethodScopePassed": 24,
+    "actualFutureStudentSolutionPending": 24,
+    "prerequisitesConditionalPassed": 24,
+    "allSevenActualFutureSurfacesCertified": false
+  },
+  "holds": {
+    "2022M3From2027": "pending actual2022placement review",
+    "futureFactory": "not implemented/read/audited in this scope",
+    "futureRuntimeRoutes": "not audited or approved",
+    "futureRenderedNativeOutput": "not audited or approved",
+    "liveFamilyKey": null,
+    "unitFamilyFit": false,
+    "proposedUnitUuid": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+    "unitUuidSemanticBinding": "proposed only; no live DB/actual family definition checked",
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "publicApproval": false,
+    "loadable": false,
+    "scoreDifficulty": "pending; not supplied"
+  },
+  "futureRequiredValidation": [
+    "Bind every emitted actual student payload exactly to one reviewed proposal text and questionType with explicit version/digest evidence; differences require new review. Proposal-local variant IDs alone do not establish compatibility.",
+    "Independently validate actual factory domain, make/answers/solutions/verifier, mutation rejection, reproducibility and runtime release/route boundaries. No approval from matching payload hashes alone.",
+    "Review actual authored answer/solution/format and all seven emitted student surfaces, plus native rendering separately; absent actual solution remains pending here."
+  ],
+  "evidence": {
+    "calculationsSha256": "8328e6304ee5e304054eb82f2da38a2df0f26a60d9da3e147db015576725933b",
+    "utf8ProbeSha256": "966a570af08995bc17d30b07a664d2f9fe24c347424e7409b3789d121dace6e6",
+    "utf8WriteReadPassed": true,
+    "sourceInputUnchanged": true,
+    "priorQ03ApprovalInherited": false,
+    "authorAnswersRead": false,
+    "newManualOrBlindCount": 0,
+    "newAuthoredMathGradeCounts": 0,
+    "rootCodeReads": 0,
+    "rootEdits": 0,
+    "dbWrites": 0,
+    "paidAiApiCalls": 0,
+    "newWorkers": 0
+  }
+}
