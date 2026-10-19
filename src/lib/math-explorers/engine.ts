@@ -5,6 +5,7 @@ import {
   type ExplorerAction,
   type ExplorerActivity,
   type ExplorerFeedback,
+  type ExplorerSolution,
   type ExplorerView,
   type StoredExplorer,
 } from "@/contracts/mathExplorers.contract";
@@ -110,6 +111,8 @@ export function applyExplorerAction(
   action: ExplorerAction,
   serverDate: string,
   requestId: string,
+  /** `followUps`: the screen shows «한 번 더 → 풀이» (header `x-explorer-follow-up`). */
+  { followUps = false }: { followUps?: boolean } = {},
 ): { state: StoredExplorer; feedback: ExplorerFeedback; duplicate: boolean } {
   const date = isoDateSchema.parse(serverDate);
   if (action.type === "expedition-start")
@@ -172,27 +175,17 @@ export function applyExplorerAction(
     if (!profile.definitions?.cards[action.cardId]) {
       throw new ExplorerActionInvalid("먼저 이 개념의 활동을 마쳐 주세요.");
     }
-    const card = definitionCard(action.cardId);
     feedback = {
       message: "요청한 개념 해설이에요.",
-      solution: {
-        cardId: card.id,
-        name: card.name,
-        // 카드는 내보내는 층에서 이미 보정 표를 입었다(D-143 ④ · ⑦ — definition-cards.ts).
-        definition: card.definition,
-        explanation: card.explanation,
-        note: card.note,
-        examples: card.examples.map((example) => ({
-          label: example.text,
-          correct: example.yes,
-        })),
-        statement: card.trap,
-        truth: card.truth,
-      },
+      solution: cardSolution(action.cardId),
     };
   } else {
+    const onQuestion =
+      action.type === "answer" ||
+      action.type === "read" ||
+      action.type === "understood";
     if (
-      (action.type === "answer" || action.type === "read") &&
+      onQuestion &&
       activeWorkshop?.stage !== "complete" &&
       activeWorkshop?.attachedTo.sessionId === before?.id
     ) {
@@ -201,7 +194,7 @@ export function applyExplorerAction(
       );
     }
     if (
-      (action.type === "answer" || action.type === "read") &&
+      onQuestion &&
       (!before ||
         before.done ||
         action.questionId !== definitionQuestionId(before))
@@ -222,6 +215,8 @@ export function applyExplorerAction(
         questionId: action.questionId,
         // IDs are positions in the shuffled public choices, never source answer indices.
         tiles: action.choiceIds.map((choice) => options[choice]!),
+        choiceIds: action.choiceIds,
+        followUps,
       };
     } else if (action.type === "start") {
       const day = action.dayId
@@ -243,7 +238,7 @@ export function applyExplorerAction(
     }
     // Historical-board practice must not alter earned cards, scheduling or rewards.
     const reviewSnapshot =
-      before?.reviewOnly && (action.type === "answer" || action.type === "read")
+      before?.reviewOnly && onQuestion
         ? {
             stars: profile.stars,
             earned: profile.earned,
@@ -252,7 +247,15 @@ export function applyExplorerAction(
           }
         : null;
     try {
-      feedback = applyDefinitionAction(profile, engineAction, date);
+      const { solutionCardId, ...rest } = applyDefinitionAction(
+        profile,
+        engineAction,
+        date,
+      );
+      // An opened solution (plan §3.2 ②) uses the same shape as «해설 보기».
+      feedback = solutionCardId
+        ? { ...rest, solution: cardSolution(solutionCardId) }
+        : rest;
     } catch (error) {
       throw new ExplorerActionInvalid(
         error instanceof Error
@@ -290,7 +293,7 @@ export function applyExplorerAction(
       feedback.stars = 0;
     }
     if (
-      action.type === "answer" &&
+      (action.type === "answer" || action.type === "understood") &&
       session?.done &&
       !session.reviewOnly &&
       session.unresolved.length === 0 &&
@@ -321,6 +324,8 @@ export function applyExplorerAction(
       session.queue[session.index]?.cardId === "g5-common-denominator" &&
       session.queue[session.index]?.kind === 0 &&
       !definitionNeedsRead(profile, session) &&
+      // Not while the student retries or reads a solution.
+      !session.followUp &&
       profile.workshop?.session?.attachedTo.sessionId !== session.id
     ) {
       const labRoute = !profile.workshop?.blueprintAt
@@ -352,10 +357,31 @@ export function applyExplorerAction(
   };
 }
 
+/** A card's solution — «해설 보기» and an opened follow-up solution share it. */
+function cardSolution(cardId: string): ExplorerSolution {
+  const card = definitionCard(cardId);
+  return {
+    cardId: card.id,
+    name: card.name,
+    // 카드는 내보내는 층에서 이미 보정 표를 입었다(D-143 ④ · ⑦ — definition-cards.ts).
+    definition: card.definition,
+    explanation: card.explanation,
+    note: card.note,
+    examples: card.examples.map((example) => ({
+      label: example.text,
+      correct: example.yes,
+    })),
+    statement: card.trap,
+    truth: card.truth,
+  };
+}
+
 /** Explicit allowlist: full curriculum definitions/answer keys never enter normal JSON. */
 export function explorerView(
   stored: StoredExplorer,
   serverDate: string,
+  /** `followUp`: the screen asked for the follow-up fields (header `x-explorer-follow-up`). */
+  { followUp = false }: { followUp?: boolean } = {},
 ): ExplorerView {
   isoDateSchema.parse(serverDate);
   const profile = stored.profile;
@@ -409,6 +435,16 @@ export function explorerView(
           ? { pieces: card.pieces }
           : {}),
     };
+    // Tabs opened before the reader shipped parse strictly: only on request.
+    const open = session.followUp;
+    if (followUp && open?.questionId === currentActivity.questionId)
+      currentActivity = {
+        ...currentActivity,
+        followUp: { state: open.state, firstChoiceIds: open.firstChoiceIds },
+        ...(open.state === "solution"
+          ? { solution: cardSolution(card.id) }
+          : {}),
+      };
   }
   return explorerViewSchema.parse({
     profile: {

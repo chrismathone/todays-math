@@ -58,6 +58,7 @@ function explorerAction(
   state: StoredSrsState,
   action: Parameters<typeof applyExplorerAction>[1],
   now: Date,
+  followUps = false,
 ) {
   const seeded = withDefaultCoursePlan(state, "초5", now);
   const result = applyExplorerAction(
@@ -65,6 +66,7 @@ function explorerAction(
     action,
     kstDateOf(now),
     randomUUID(),
+    { followUps },
   );
   return persist(state, { ...seeded, explorers: result.state }, now);
 }
@@ -339,5 +341,65 @@ describe("a 초5 student walking the expedition keeps a readable record", () => 
         ).toBe(false);
     expect(bankDays.length).toBeGreaterThan(0);
     expect(bankDays.every((status) => status === "complete")).toBe(true);
+  });
+
+  it("counts a concept activity waiting for its second try once in the mission", () => {
+    let state = persist(
+      emptySrsState(),
+      startExpedition(
+        withDefaultCoursePlan(emptySrsState(), "초5", firstDay),
+        studentId,
+        firstDay,
+        randomUUID(),
+        11,
+        randomUUID,
+      ),
+      firstDay,
+    );
+    expect(state.expedition?.mission?.kind).toBe("explorers");
+    const session = () => state.explorers!.profile.definitions!.session!;
+    if (definitionNeedsRead(state.explorers!.profile, session()))
+      state = explorerAction(
+        state,
+        { type: "read", questionId: definitionQuestionId(session()) },
+        firstDay,
+      );
+    const task = session().queue[session().index];
+    const card = definitionCard(task.cardId);
+    const order = definitionOptions(session(), task);
+    const wrong =
+      task.kind === 0
+        ? [0, 2]
+        : task.kind === 1
+          ? card.examples.map((_, i) => i)
+          : [1 - Number(card.truth)];
+    const questionId = definitionQuestionId(session());
+    const answerWrong = (s: StoredSrsState) =>
+      explorerAction(
+        s,
+        {
+          type: "answer",
+          questionId,
+          choiceIds: wrong.map((id) => order.indexOf(id)),
+        },
+        firstDay,
+        true,
+      );
+    state = answerWrong(state);
+    expect(session().index).toBe(0);
+    expect(session().followUp?.state).toBe("again");
+    expect(state.expedition!.mission!.answered).toBe(1);
+    state = answerWrong(state);
+    expect(session().followUp?.state).toBe("solution");
+    expect(state.expedition!.mission!.answered).toBe(1);
+    state = explorerAction(
+      state,
+      { type: "understood", questionId },
+      firstDay,
+      true,
+    );
+    expect(session().index).toBe(1);
+    expect(session().followUp).toBeUndefined();
+    expect(state.expedition!.mission!.answered).toBe(1);
   });
 });

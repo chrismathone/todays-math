@@ -1,6 +1,7 @@
 import "server-only";
 import { randomInt, randomUUID } from "node:crypto";
 import {
+  EXPLORER_FOLLOW_UP_HEADER,
   explorerRequestSchema,
   explorerStateSchema,
   type ExplorerFeedback,
@@ -74,6 +75,7 @@ async function changeExplorer(
   input: ExplorerRequest,
   now: Date,
   classGrade: string | null | undefined,
+  followUps = false,
 ) {
   const date = kstDateOf(now);
   const expeditionStart = input.action.type === "expedition-start";
@@ -158,6 +160,7 @@ async function changeExplorer(
           input.action,
           date,
           input.requestId,
+          { followUps },
         );
         feedback = result.feedback;
         return result.duplicate
@@ -202,6 +205,8 @@ export async function handleExplorerRequest(
       return noStore(unauthorizedError());
     const now = await learnNow(studentId, request);
     const date = kstDateOf(now);
+    // Screens that show «한 번 더 → 풀이» say so; older tabs keep the old flow and response.
+    const followUps = request.headers.get(EXPLORER_FOLLOW_UP_HEADER) === "1";
     let saved: Awaited<ReturnType<typeof readSrsState>>;
     let feedback: ExplorerFeedback | null = null;
     if (operation === "read") saved = await readSrsState(studentId);
@@ -217,6 +222,7 @@ export async function handleExplorerRequest(
         parsed.data,
         now,
         student.class.grade,
+        followUps,
       );
       saved = changed;
       feedback = changed.feedback;
@@ -226,7 +232,9 @@ export async function handleExplorerRequest(
     return noStore(
       jsonOk(responseSchema, {
         data: {
-          ...explorerView(ownedExplorer(view, studentId, now), date),
+          ...explorerView(ownedExplorer(view, studentId, now), date, {
+            followUp: followUps,
+          }),
           today: date,
           journey: expeditionJourney(view, now, studentId),
           expedition: expeditionDto(view, studentId, now),

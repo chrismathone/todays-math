@@ -1571,3 +1571,84 @@ describe("chest press without a pre-read", () => {
     expect(f.writes).toBe(writes);
   });
 });
+
+describe("concept card follow-ups — «한 번 더 → 풀이» (plan §3.2 ②)", () => {
+  const asking = async (view: ExplorerState, value: ExplorerAction) =>
+    data(
+      await POST(
+        new Request(`${base}${path}`, {
+          method: "POST",
+          headers: {
+            origin: base,
+            "Content-Type": "application/json",
+            "x-explorer-follow-up": "1",
+          },
+          body: JSON.stringify({
+            requestId: randomUUID(),
+            expectedRevision: view.revision,
+            studentId: f.studentId,
+            action: value,
+          }),
+        }),
+      ),
+    );
+  /** A wrong answer: the right choices of a different kind are never right here. */
+  function wrongAction(view: ExplorerState): ExplorerAction {
+    const activity = view.currentActivity!;
+    const card = definitionCard(activity.cardId);
+    const right = (correctAction(view) as { choiceIds: number[] }).choiceIds;
+    const choiceIds =
+      activity.kind === "truth"
+        ? activity.choices.map((c) => c.id).filter((id) => id !== right[0])
+        : activity.kind === "assemble"
+          ? [
+              right[0],
+              activity.choices.find(
+                (c) => c.label !== card.words[0] && c.label !== card.words[1],
+              )!.id,
+            ]
+          : // Every example picked is wrong unless every example belongs.
+            right.length === activity.choices.length
+            ? [right[0]]
+            : activity.choices.map((c) => c.id);
+    return { type: "answer", questionId: activity.questionId, choiceIds };
+  }
+  async function toAnswer(view: ExplorerState) {
+    if (view.currentActivity?.kind === "read")
+      view = await action(view, correctAction(view));
+    return view;
+  }
+
+  it("keeps a wrong answer on the question, opens the solution, and moves on at «알겠어요»", async () => {
+    let view = await toAnswer(await unitStart());
+    const questionId = view.currentActivity!.questionId;
+    view = await asking(view, wrongAction(view));
+    expect(view.feedback).toMatchObject({ correct: false, advance: false });
+    expect(view.currentActivity?.questionId).toBe(questionId);
+    expect(view.currentActivity?.followUp?.state).toBe("again");
+    view = await asking(view, wrongAction(view));
+    expect(view.currentActivity?.followUp?.state).toBe("solution");
+    expect(view.currentActivity?.solution?.cardId).toBe(
+      view.currentActivity!.cardId,
+    );
+    expect(view.feedback?.solution).toBeDefined();
+    // A tab that does not ask still reads the open solution without the new fields.
+    const plain = await data(await read());
+    expect(plain.currentActivity?.questionId).toBe(questionId);
+    expect("followUp" in plain.currentActivity!).toBe(false);
+    view = await asking(view, { type: "understood", questionId });
+    expect(view.currentActivity?.questionId).not.toBe(questionId);
+    expect(view.currentActivity?.followUp).toBeUndefined();
+  });
+
+  it("keeps the old rounds for a screen that does not ask", async () => {
+    let view = await toAnswer(await unitStart());
+    const questionId = view.currentActivity!.questionId;
+    view = await action(view, wrongAction(view));
+    expect(view.feedback).toMatchObject({ correct: false, advance: true });
+    expect(view.currentActivity?.questionId).not.toBe(questionId);
+    expect(view.currentActivity && "followUp" in view.currentActivity).toBe(
+      false,
+    );
+  });
+});
