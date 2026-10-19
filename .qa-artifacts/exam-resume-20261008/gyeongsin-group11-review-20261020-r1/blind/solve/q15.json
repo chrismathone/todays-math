@@ -1,0 +1,61 @@
+{
+  "studentDigest": "55b39a504ac244161e1ab29e3a767a1c323a3be9e5b660ec0d1f22738bc2cad6",
+  "solverId": "independent-helper-gyeongsin-group11-blind-20261020",
+  "answer": "4√3 cm",
+  "solution": "O에서 현BC에 내린 수선의 발을D라 하자. OA는 접선AT에 수직이고 BC∥AT이므로 OA도 BC에 수직이다. 따라서 O와A와D는 한 직선 위에 있고, 현의 수직이등분 성질로 BD=CD이다. 그러므로 AB=AC이다. 또 AT∥BC이므로 ∠ABC=∠BAT=60°이다. 이등변삼각형ABC에서 ∠ACB도60°이므로 ABC는 정삼각형이다. 한 변을a cm라 하면 수선을 내려 피타고라스 정리로 높이는 √3a/2 cm이다. 넓이 √3a²/4=12√3에서 a²=48이다. 길이는 양수이므로 AC=a=4√3 cm이다.",
+  "evidence": {
+    "exposure": {
+      "currentAuthorAnswerOrSolutionExposedBeforeRaw": false,
+      "priorExposure": "이전 원본 H 2·3쪽을 허용된 범위에서 보았고 관련 원주각·접선·삼각형 문제 및 엔진을 검토했다. 현재 q13–17의 저자 답·해설·패키지는 열지 않았다. 이 다섯 원문 각각을 과거 보았는지에 대한 완전한 부정은 하지 않으며, 원본 전체 미노출 주장도 하지 않는다. 이번에는 학생 발문과 새 SVG만 사용했다.",
+      "pixelOrCoordinateOracle": false
+    },
+    "exactCalculation": {
+      "sideSquared": 48,
+      "sideExact": "4√3",
+      "areaExact": "12√3",
+      "existence": "한 변4√3의 정삼각형의 외접원을 잡고 A에서의 접선을 그으면 그 접선은 반대 현BC와 평행하며 그림과 같은 방향의 반직선AT가 AB와60°를 이룬다.",
+      "uniqueness": "평행조건과 현의 수직이등분으로 AB=AC, 밑각60°로 정삼각형이 강제된다. a²=48의 음의 해는 길이가 아니므로 하나."
+    },
+    "figureSha256s": [
+      "79e396c33aa39b5c525cdd9aa2aa4e13ab9ee6732e9eca4381b01eaf3e808294"
+    ],
+    "studentDigestVerified": true,
+    "gradeSurfaceProposals": {
+      "stem": {
+        "status": "proposed-in-scope",
+        "basis": "접선 수직·평행선 각·현의 수직이등분·이등변/정삼각형·피타고라스로 높이와 넓이으로 실제 발문 조건만으로 풀이한다. 2015 중3 원의 성질 이후 제안이며 정식 승인 아님."
+      },
+      "choices": {
+        "status": "not-applicable",
+        "basis": "실제 choices=[]인 서술형이다. 존재하지 않는 5개 보기를 만들지 않는다."
+      },
+      "figuresAndTables": {
+        "status": "student-view-checked",
+        "basis": "q15 학생 SVG를 로컬 렌더하여 실제 보았다. 점·접점·원/반원·선분 배치가 발문과 대응한다. 수치·길이·각은 픽셀이나 SVG 좌표에서 얻지 않았다."
+      },
+      "notation": {
+        "status": "proposed-in-scope",
+        "basis": "원 중심·접점·선분 길이·각도·π와 제곱근 표기는 중학교 기하/실수 범위. 둘레 cm와 넓이 cm²를 구별한다."
+      },
+      "answer": {
+        "status": "independently-solved",
+        "basis": "정확한 정수·유리수·√3 표현으로 4√3 cm를 도출했고 부호와 단위를 확인했다."
+      },
+      "studentSolution": {
+        "status": "own-method-proposed-author-unseen",
+        "basis": "접선 수직·평행선 각·현의 수직이등분·이등변/정삼각형·피타고라스로 높이와 넓이. 일반적인 원의 비례/접선곱·사인법칙·삼각함수 공식은 사용하지 않았다. 저자 해설 미노출이므로 그 해설의 범위는 아직 미판정."
+      },
+      "prerequisites": {
+        "status": "2015-M3-after-prerequisites-proposal",
+        "basis": "이미 실제 확인한 2015 9수04-19 현·접선 성질과 이전 평면도형·삼각형 합동/닮음 기초·피타고라스(9수04-16)·실수 계산 중 실제 풀이에 필요한 사항을 학습한 뒤 배정해야 한다. 2022 배치와 특정 학교 시험 진도는 미확인."
+      }
+    },
+    "choiceCheck": "서술형이며 보기0개",
+    "limits": [
+      "정식 학년/출처/권리/family/native 승인 아님",
+      "저자 전체 해설·채점기준은 미노출",
+      "원문 답안 비교 없음; 새 수동 승인 개수 증가 아님"
+    ]
+  },
+  "status": "solved"
+}

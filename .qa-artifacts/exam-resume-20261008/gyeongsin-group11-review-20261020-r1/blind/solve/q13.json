@@ -1,0 +1,68 @@
+{
+  "studentDigest": "6576a7ea0dd85f0ac49db36dc3002ff57c50ebd64d3c04039e9ff7c7980031d9",
+  "solverId": "independent-helper-gyeongsin-group11-blind-20261020",
+  "answer": "18+18√3 cm",
+  "solution": "한 원의 반지름을 r cm라 하면 2πr=6π이므로 r=3이다. QR에 접하는 두 원의 중심을 J,K, 접점을 H,I라 하자. 각 원의 중심은 접하는 두 변이 이루는 각의 이등분선 위에 있으므로 ∠HQJ=30°이고 JH=3이다. 30°·60°·90° 직각삼각형의 변의 관계로 QH=3√3 cm이다. 이 관계는 정삼각형을 반으로 나누고 피타고라스 정리로 구할 수 있다. 마찬가지로 IR=3√3 cm이다. JH와 KI는 QR에 수직이고 길이가 같으므로 JKIH는 직사각형이다. 두 원이 외접하므로 HI=JK=3+3=6 cm이다. 따라서 QR=6+6√3 cm이고 정삼각형의 둘레는18+18√3 cm이다.",
+  "evidence": {
+    "exposure": {
+      "currentAuthorAnswerOrSolutionExposedBeforeRaw": false,
+      "priorExposure": "이전 원본 H 2·3쪽을 허용된 범위에서 보았고 관련 원주각·접선·삼각형 문제 및 엔진을 검토했다. 현재 q13–17의 저자 답·해설·패키지는 열지 않았다. 이 다섯 원문 각각을 과거 보았는지에 대한 완전한 부정은 하지 않으며, 원본 전체 미노출 주장도 하지 않는다. 이번에는 학생 발문과 새 SVG만 사용했다.",
+      "pixelOrCoordinateOracle": false
+    },
+    "exactCalculation": {
+      "radius": 3,
+      "sideExact": [
+        6,
+        6
+      ],
+      "perimeterExact": [
+        18,
+        18
+      ],
+      "representation": "[a,b] means a+b√3",
+      "existence": "한 변6+6√3의 정삼각형의 세 내각 이등분선에 반지름3의 원 중심을 꼭짓점에서6만큼 잡는다. 아래 두 중심의 차는6이고 대칭에 의해 세 중심거리 모두6이다. 각 원은 해당 두 변에 접하고 세 번째 변까지의 여유 높이3√3>0이므로 내부에 있다.",
+      "uniqueness": "반지름3과 외접 중심거리6, 두 끝 접선 조각3√3이 한 변을 유일하게 정한다."
+    },
+    "figureSha256s": [
+      "dba542fdec9a3c89c05e110e017db74defc10cb3bacc0dddc5795d4c7209bfb7"
+    ],
+    "studentDigestVerified": true,
+    "gradeSurfaceProposals": {
+      "stem": {
+        "status": "proposed-in-scope",
+        "basis": "접선에 수직인 반지름·내각 이등분선·정삼각형 반쪽의 피타고라스·외접 두 원의 중심거리 합으로 실제 발문 조건만으로 풀이한다. 2015 중3 원의 성질 이후 제안이며 정식 승인 아님."
+      },
+      "choices": {
+        "status": "not-applicable",
+        "basis": "실제 choices=[]인 서술형이다. 존재하지 않는 5개 보기를 만들지 않는다."
+      },
+      "figuresAndTables": {
+        "status": "student-view-checked",
+        "basis": "q13 학생 SVG를 로컬 렌더하여 실제 보았다. 점·접점·원/반원·선분 배치가 발문과 대응한다. 수치·길이·각은 픽셀이나 SVG 좌표에서 얻지 않았다."
+      },
+      "notation": {
+        "status": "proposed-in-scope",
+        "basis": "원 중심·접점·선분 길이·각도·π와 제곱근 표기는 중학교 기하/실수 범위. 둘레 cm와 넓이 cm²를 구별한다."
+      },
+      "answer": {
+        "status": "independently-solved",
+        "basis": "정확한 정수·유리수·√3 표현으로 18+18√3 cm를 도출했고 부호와 단위를 확인했다."
+      },
+      "studentSolution": {
+        "status": "own-method-proposed-author-unseen",
+        "basis": "접선에 수직인 반지름·내각 이등분선·정삼각형 반쪽의 피타고라스·외접 두 원의 중심거리 합. 일반적인 원의 비례/접선곱·사인법칙·삼각함수 공식은 사용하지 않았다. 저자 해설 미노출이므로 그 해설의 범위는 아직 미판정."
+      },
+      "prerequisites": {
+        "status": "2015-M3-after-prerequisites-proposal",
+        "basis": "이미 실제 확인한 2015 9수04-19 현·접선 성질과 이전 평면도형·삼각형 합동/닮음 기초·피타고라스(9수04-16)·실수 계산 중 실제 풀이에 필요한 사항을 학습한 뒤 배정해야 한다. 2022 배치와 특정 학교 시험 진도는 미확인."
+      }
+    },
+    "choiceCheck": "서술형이며 보기0개",
+    "limits": [
+      "정식 학년/출처/권리/family/native 승인 아님",
+      "저자 전체 해설·채점기준은 미노출",
+      "원문 답안 비교 없음; 새 수동 승인 개수 증가 아님"
+    ]
+  },
+  "status": "solved"
+}
