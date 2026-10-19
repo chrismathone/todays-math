@@ -133,7 +133,7 @@ const retryOf = (
   minute: number,
   how: "right" | "wrong" | "giveUp",
   doneMinute: number | null = null,
-): CourseFollowUp => ({
+): Extract<CourseFollowUp, { kind: "retry" }> => ({
   problemId: problem.id,
   kind: "retry",
   submittedAnswer:
