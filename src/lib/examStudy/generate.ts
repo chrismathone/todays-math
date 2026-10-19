@@ -40,6 +40,7 @@ import {
 } from "./registry";
 import { REQUIREMENT_BY_ID } from "./requirements";
 import { studyCurriculumHold } from "./curriculumEligibility";
+import { studyReleaseHold } from "./releaseEligibility";
 
 export class ExamStudyRequestError extends Error {
   readonly name = "ExamStudyRequestError";
@@ -273,6 +274,13 @@ export async function generateExamStudy(
       note(family, curriculumHold.message);
       if (!warnings.includes(curriculumHold.message))
         warnings.push(curriculumHold.message);
+      return false;
+    }
+    const releaseHold = studyReleaseHold(family);
+    if (releaseHold) {
+      note(family, releaseHold.message);
+      if (!warnings.includes(releaseHold.message))
+        warnings.push(releaseHold.message);
       return false;
     }
     if (request.format !== "혼합" && !family.formats.includes(request.format)) {

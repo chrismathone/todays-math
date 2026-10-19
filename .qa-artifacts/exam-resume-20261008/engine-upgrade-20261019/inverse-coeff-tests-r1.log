@@ -1,0 +1,61 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/unit/examStudyCompletion.test.ts (29 tests) 16553ms
+     ✓ provides the selected demands within the grade eligibility gate for 'daeryun-m1'  12613ms
+     ✓ provides the selected demands within the grade eligibility gate for 'daeryun-m2'  384ms
+     ✓ provides the selected demands within the grade eligibility gate for 'kyungmyung-m3'  932ms
+ ✓ src/__tests__/unit/examStudyCurriculumEligibility.test.ts (10 tests) 10365ms
+     ✓ hides the held template from selectable catalogs and retains its definition for internal review  10238ms
+ ✓ src/__tests__/unit/examStudyIntegration.test.ts (7 tests) 12127ms
+     ✓ keeps all nine courses available without multiplying authored families by response format  10186ms
+     ✓ runs authenticated API → actual math → strict Python SVG → reproducible output confirmation  1385ms
+ ✓ src/__tests__/unit/examStudyCoreLegacy.test.ts (15 tests) 11024ms
+     ✓ preserves original registry identities/counts and exposes actual supported courses only  10617ms
+ ✓ src/__tests__/unit/examStudyMiddleRemaining.test.ts (13 tests) 581ms
+ ✓ src/__tests__/unit/examStudyMiddle.test.ts (49 tests) 471ms
+ ✓ src/__tests__/unit/examStudyCoreLabel.test.ts (12 tests) 152ms
+ ✓ src/__tests__/unit/examStudyCore.test.ts (58 tests) 252ms
+ ✓ src/__tests__/unit/examStudyRoutes.test.ts (23 tests) 190ms
+ ❯ src/__tests__/unit/examStudyInverseCoefficient.test.ts (10 tests | 1 failed) 10565ms
+     × independently solves every one of32printed tasks, including absent y² terms and negative constants 113ms
+     ✓ rejects both inconsistent and nonunique zero-slope equations before division 2ms
+     ✓ rejects wrong answers, hidden-condition/solution appendices and false format/rubric claims 11ms
+     ✓ keeps the mathematical domain independent of seed/format and returns isolated parameter copies 13ms
+     ✓ cannot offer an unreleased implementation in 혼합, even with renamed/native/approval flags 14ms
+     ✓ cannot offer an unreleased implementation in 단답형, even with renamed/native/approval flags 9ms
+     ✓ cannot offer an unreleased implementation in 객관식, even with renamed/native/approval flags 7ms
+     ✓ cannot offer an unreleased implementation in 서술형, even with renamed/native/approval flags 9ms
+     ✓ keeps the explicit grade exclusion ahead of the template release hold 3ms
+     ✓ retains the internal implementation but excludes it from selectable catalogs without inventing a live family  10378ms
+ ✓ src/__tests__/unit/examStudyM1StudentMethods.test.ts (6 tests) 174ms
+ ✓ src/__tests__/unit/examStudyContract.test.ts (17 tests) 116ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/unit/examStudyInverseCoefficient.test.ts > finite inverse coefficient implementation remains review-only > independently solves every one of32printed tasks, including absent y² terms and negative constants
+AssertionError: expected -0 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ -0
+
+ ❯ src/__tests__/unit/examStudyInverseCoefficient.test.ts:61:36
+     59|       for (const x of [-2, 0, 3])
+     60|         for (const y of [-1, 0, 2])
+     61|           expect(p.evaluate(x, y)).toBe(
+       |                                    ^
+     62|             p.a * p.c * x * x +
+     63|               (p.a * p.d + p.c * p.k) * x * y +
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 11 passed (12)
+      Tests  1 failed | 248 passed (249)
+   Start at  22:17:35
+   Duration  113.84s (transform 7.52s, setup 12.20s, import 18.96s, tests 62.57s, environment 17.39s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-coeff-tests-r1.json

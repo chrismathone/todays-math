@@ -1,0 +1,63 @@
+{
+  "questionNumber": 6,
+  "status": "held-no-exact-supported-existing-family",
+  "candidatePath": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-r1/candidates/q06.json",
+  "candidateSha256": "43eb782c181b71b0ae64c3f172c01660de5bea4262cacc9522149a026b017be5",
+  "existingFamilyProposal": null,
+  "unitObservation": {
+    "snapshotCapturedAt": "2026-10-19 06:14:08.658144+00",
+    "uuid": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+    "course": "중3",
+    "section": "무리수와 실수",
+    "candidateMatchesCapturedUnit": true,
+    "currentDatabasePromise": false,
+    "declaredFamilies": [
+      {
+        "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+        "familyKey": "mid:3-1|무리수와 실수|09",
+        "code": "A09",
+        "capturedCount": 24,
+        "semanticsFromCount": false
+      }
+    ]
+  },
+  "relatedEngineKeys": [
+    "3-1|무리수와 실수|09",
+    "3-1|근호를 포함한 식의 계산|05"
+  ],
+  "verdict": "inverse-target / finite-table composite gap",
+  "reusedConcept": "양의 제곱근과 100배 피제곱수/10배 제곱근 관계, 표 근삿값 계산을 재사용한다.",
+  "changedPurpose": "기존 무리수09는 제공된 단일 근삿값에서 확대된 수의 근삿값을 직접 출력한다. 현재 후보는 다섯 입력 열 중 계산 결과 45.63을 만든 x를 복원한다. b=23 복원과 10s+23 역산이 더해진다.",
+  "procedureAndParameterDomain": "무리수09는 a2 정수 100..999, table a=a2/100, v3=round(sqrt(a)*1000), mult∈{10,100}, 출력 v3/1000×mult이다. 후보는 x∈{5.10..5.14}, 안쪽 /100→바깥 /10, b²=529, 표의 소수값을 사용하는 유한 역대응이다. 기존 generator에는 이 입력열 선택·결과 역산 domain이 없다.",
+  "questionAndAnswerFormat": "기존 handler 출력은 근삿값 문자열이다. 후보 답은 입력 x의 다섯 보기 중 ③이다. 객관식 파생 자체가 가능하더라도 질문 대상이 바뀐다는 차이를 없애지 못한다.",
+  "crossUnitAndMetadataGap": "현재 Unit UUID의 넓은 주제는 제곱근표와 맞지만 계수 역산을 포함한 정확한 기존 family는 확인되지 않는다. calc05는 다른 Unit이고 표 근삿값을 정확한 등식처럼 쓰는 원문 코드 문제도 있어 대안으로 채택하지 않는다.",
+  "proposedNewFamily": {
+    "title": "제곱근표의 근삿값 결합식에서 입력 열 역추론",
+    "provisionalOnly": true,
+    "key": null,
+    "unitIdSuggested": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+    "parameterContract": {
+      "tableInputs": "positive rational array",
+      "roundedRootCells": "integer thousandths array",
+      "aRadicandScale": "1/100",
+      "positiveBRoot": "integer",
+      "coefficientA": "positive integer",
+      "targetRoundedResult": "integer hundredths",
+      "asked": "table-input"
+    },
+    "requiredChecks": [
+      "표 근삿값 계약과 실제 근호값을 분리",
+      "모든 열 결과를 정확한 유리수/정수 자릿수로 계산하고 유일성 검증",
+      "양수 a,b와 /10 스케일을 학생 풀이에 명시"
+    ]
+  },
+  "gradeConditions": "2015 중3 제곱근/근호 계산, 중1 일차방정식 선수. q06은 이번에 저자 노출된 메타 감사이며 새 blind proof나 seven-surface 학년 승인으로 세지 않는다.",
+  "bindingRequired": "별도의 versioned digest-bound metadata attestation after actual family definition/review; no candidate/raw/prior-report bytes changed",
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "liveFamily": false,
+  "unitFamilyFit": false,
+  "loadable": false
+}

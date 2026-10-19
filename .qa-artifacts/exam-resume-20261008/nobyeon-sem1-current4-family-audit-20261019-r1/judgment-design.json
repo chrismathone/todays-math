@@ -1,0 +1,23 @@
+{
+  "skill": ".agents/skills/typesafe-ai/SKILL.md",
+  "skillApplied": true,
+  "liveDocs": [
+    {
+      "url": "https://docs.typesafe.ai/llms.txt",
+      "read": true
+    },
+    {
+      "url": "https://docs.typesafe.ai/cookbooks/entity_alignment",
+      "read": true
+    },
+    {
+      "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
+      "read": false,
+      "reason": "web access failed; no version-dependent API integration designed"
+    }
+  ],
+  "noPaidAPI": true,
+  "inferenceRequests": 0,
+  "design": "Use evidence-backed separate target/procedure/representation/domain/format judgments and explicit related-but-not-same/no-match; deterministic UUID/key joins, parameter arithmetic and hard exclusions stay in code. This audit records reviewer judgments without fabricated model probabilities. All required semantic dimensions must hold; concept overlap cannot compensate for a changed target.",
+  "futureEvaluation": "Before any AI assignment service, create labeled exact/related/different cases including these four inverse/composite negatives and direct-family positives; measure false assignment, not family count. No confidence threshold or release authority inferred from docs."
+}

@@ -54,6 +54,7 @@ export const STUDY_REQUIREMENT_IDS = [
   "elementary.definition-audit",
   "elementary.visual-data",
   "statistics.shift-spread",
+  "algebra.inverse-coefficient-sum",
 ] as const;
 
 export const studyRequirementIdSchema = z.enum(STUDY_REQUIREMENT_IDS);

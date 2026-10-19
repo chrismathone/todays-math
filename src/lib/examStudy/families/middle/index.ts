@@ -4,6 +4,7 @@ import { inverseArea, piecewise, rayPartition, square } from "./graphs";
 import { signedTrapezoid } from "./signedTrapezoid";
 import { fuelModel, minimumTime, stoppedTravel, twoWorkRates } from "./written";
 import { MIDDLE_REMAINING_FAMILIES } from "./remaining";
+import { inverseCoefficientSum } from "./inverseCoefficient";
 
 export { MIDDLE_REMAINING_FAMILIES } from "./remaining";
 
@@ -22,4 +23,5 @@ export const MIDDLE_STUDY_FAMILIES: readonly ExamStudyFamily[] = [
   stoppedTravel,
   twoWorkRates,
   ...MIDDLE_REMAINING_FAMILIES,
+  inverseCoefficientSum,
 ];

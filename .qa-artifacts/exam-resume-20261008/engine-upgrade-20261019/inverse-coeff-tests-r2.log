@@ -1,0 +1,13 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/unit/examStudyInverseCoefficient.test.ts (10 tests) 10486ms
+     ✓ independently solves every one of32printed tasks, including absent y² terms and negative constants  478ms
+     ✓ retains the internal implementation but excludes it from selectable catalogs without inventing a live family  9942ms
+
+ Test Files  1 passed (1)
+      Tests  10 passed (10)
+   Start at  22:29:49
+   Duration  21.40s (transform 6.62s, setup 1.91s, import 7.14s, tests 10.49s, environment 1.64s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-coeff-tests-r2.json

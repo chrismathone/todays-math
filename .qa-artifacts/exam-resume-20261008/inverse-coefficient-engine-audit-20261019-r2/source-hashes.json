@@ -1,0 +1,49 @@
+{
+  "basis": "ROOT current working bytes",
+  "algorithm": "SHA256",
+  "files": {
+    "src/lib/examStudy/families/middle/support.ts": "e89345bd78a46a3c793e01273684885efc654a205c15896854fcd0caa979aa1c",
+    "src/lib/examStudy/families/middle/inverseCoefficient.ts": "d83369af0e4e8117305d03d50d6376c54a316a2860115587444ba31cdf3d16eb",
+    "src/__tests__/unit/examStudyInverseCoefficient.test.ts": "c1800bcd3497f7df2a3d90d186b369e546d56eaf1cbce880397fc596c95656a5",
+    "src/contracts/difficulty.ts": "9a26abf49ca126b06f98051c10b964b423018186b1f5a2011d94b787b853a2fc",
+    "src/contracts/examStudy.contract.ts": "376232c828f0d7d6c033ed5b79325881153966142731d6c0022ae194e26ebd50",
+    "src/lib/examStudy/requirements.ts": "0981467f8a145c52663a922f55e85d9f2154ca9f7918c6627c47a38dbd5b5d4e",
+    "src/lib/examStudy/curriculumEligibility.ts": "2ef9871e67f090f8ef90a804660762e1810e837656f1a447396e75149979e013",
+    "src/lib/examStudy/releaseEligibility.ts": "d621c1b89fae147f1ed92e70d53f4ce33f79a07b89af8afc2bf9c3459235adf9",
+    "src/lib/examStudy/evidence.ts": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8",
+    "src/lib/examStudy/registry.ts": "06cfdee87781d753b8b15767632fc2fd3b7d7ffc39fa0063b388944e2d037378",
+    "src/lib/examStudy/generate.ts": "4a3e920e0df7d40a26549f7099ef6a54271f6820fae4488cd1553d6eb24eb7bc",
+    "src/lib/examStudy/families/middle/index.ts": "70b33fa6f33e08d56ff227a8eacb5ba7333bcd8b9a54dd20abcaaf8f17b9a5a1",
+    "src/lib/examStudyRoutes.ts": "22e94bf55c25d41455561681f4ee7f6c1a41187bbf1eaa877d6ff3960b3a085f"
+  },
+  "r1Commit": "83a151a0b1f2f334a0d94d3ce371e5025947917b",
+  "r1Bindings": {
+    "calculations.json": {
+      "path": ".qa-artifacts/exam-resume-20261008/inverse-coefficient-engine-audit-20261019-r1/calculations.json",
+      "sha256": "536e5d4c16f83b5991069845823c0773443a1d86d95314dbeeab1f1ff8f8dc3f"
+    },
+    "source-hashes.json": {
+      "path": ".qa-artifacts/exam-resume-20261008/inverse-coefficient-engine-audit-20261019-r1/source-hashes.json",
+      "sha256": "04ec998e415fc8e1afdb50de0307347f298b36063bea91adb10a86f0cb1eb7d5"
+    },
+    "report.json": {
+      "path": ".qa-artifacts/exam-resume-20261008/inverse-coefficient-engine-audit-20261019-r1/report.json",
+      "sha256": "e6a184df56b4ad0436f7a38964c4bb3b446f428e2ef5089ddcfe23ac618ec3ce"
+    }
+  },
+  "unchangedFromR1": [
+    "src/lib/examStudy/families/middle/support.ts",
+    "src/contracts/difficulty.ts",
+    "src/contracts/examStudy.contract.ts",
+    "src/lib/examStudy/requirements.ts",
+    "src/lib/examStudy/curriculumEligibility.ts",
+    "src/lib/examStudy/releaseEligibility.ts",
+    "src/lib/examStudy/evidence.ts",
+    "src/lib/examStudy/registry.ts",
+    "src/lib/examStudy/generate.ts",
+    "src/lib/examStudy/families/middle/index.ts",
+    "src/lib/examStudyRoutes.ts"
+  ],
+  "familyOnlyChange": "Exact removal of proposedCurriculumScope block reproduces sealedr1 source SHA256",
+  "diagnosticFile": "Changed assertion read directly; exact=== expression extracted with TypeScript AST; no tolerance"
+}

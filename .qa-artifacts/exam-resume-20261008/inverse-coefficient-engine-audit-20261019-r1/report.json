@@ -1,0 +1,154 @@
+{
+  "status": "bounded-math-and-2015M3-review-passed;release-held;2022M3-pending",
+  "sourceBasis": "Actual ROOT WORKING FILE bytes; source-hashes.json; no frozen-HEAD assumption",
+  "family": {
+    "id": "study-middle-inverse-coefficient-sum",
+    "version": "1",
+    "requirement": "algebra.inverse-coefficient-sum",
+    "unitId": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+    "liveFamilyKey": null,
+    "registrationStatus": "pending",
+    "reviewOnly": true
+  },
+  "independentRun": {
+    "actualPrintedTasks": 32,
+    "uniqueContents": 32,
+    "independentPointSubstitutions": 288,
+    "mutationRejections": 544,
+    "zeroSlopeControls": 2,
+    "releaseBlockedCases": 24,
+    "output409Cases": 2,
+    "publicFactoryCalls": 0,
+    "dbCalls": 0,
+    "paidAIRequests": 0,
+    "oracle": "Printed factors and given coefficient sum only. Factory answer/parameters read only after independent solution; no candidate or earlier question proof as oracle.",
+    "calculationArtifact": "calculations.json"
+  },
+  "mathematicalFindings": {
+    "expansion": "ac*x²+(ad+ck)*xy+dk*y²",
+    "sum": "ad+(c+d)k=S",
+    "recovered": "k=(S-ad)/(c+d)",
+    "allAllowedSlopes": [
+      -3,
+      -1,
+      1
+    ],
+    "allowedAnswers": [
+      -2,
+      0,
+      3,
+      8
+    ],
+    "domain": "x,y arbitrary real variables; k real constant; printed a,c positive and d negative but k has no positivity requirement. Polynomial has no denominator/variable-domain restrictions. No units.",
+    "zeroCoefficient": "At k=0, y² coefficient0 and xy coefficientad remain meaningful even if y² term is absent.",
+    "zeroSlope": "c+d=0 yields fixed sumad. S=ad is nonunique (every realk); S!=ad is inconsistent. Both explicitly classified and rejected before division.",
+    "studentMethods": "Numeric expansion, identify coefficients, one-variable numerical linear equation, original-factor substitution. No general highschool coefficient-method theorem required.",
+    "canonicalVerifier": "Exact content and solution binding rejects harmless whitespace as well as semantic corruption; this is intentional closed-template behavior, not general natural-language equivalence verification."
+  },
+  "gradeDecisions": {
+    "curriculum2015": {
+      "course": "중3",
+      "sourceYear": 2025,
+      "practiceYear": 2026,
+      "status": "passed-after-polynomial-multiplication-learning",
+      "primaryStandards": [
+        "9수02-01",
+        "9수02-04",
+        "9수02-05",
+        "9수02-12"
+      ],
+      "primaryEvidence": "official-grade-evidence.json",
+      "placement": "교육부2015계열 기준과 인천교육청2021-0141 PDFp89/printed90의 명시적 중학교3학년/다항식의 곱셈과 인수분해/9수02-12 배치를 함께 확인한 뒤 새32문항의 실제 절차에 대응했다. source school이나 중학교학년군 코드만을 근거로 승인하지 않았다.",
+      "curriculumSurfaces": {
+        "stem": {
+          "status": "passed",
+          "evidence": "32개의 실제 인쇄 인수(a x+k y)(c x+d y)와 알려진xy+y² 계수합을 파싱했다. k는 상수이고 양수 제한이 없어 음수/0/양수 해 모두 허용된다."
+        },
+        "choices": {
+          "status": "passed",
+          "applicability": "not-applicable-native-short-answer",
+          "evidence": "실제 family는 단답형만 지원한다. 보기 없는 문항을 객관식으로 가장하지 않는다. MC/서술형/가짜 rubric/distractors는 검증기에서 거부된다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "applicability": "no-assets",
+          "evidence": "32개 모두figureSpec=null이고 시각적 가정·축척·단위가 없다. 그림 삽입 mutation도 거부된다."
+        },
+        "notation": {
+          "status": "passed",
+          "evidence": "xy,y²,숫자 계수,상수k와 음수 괄호는 중학교 다항식 표기이다. 모든 출력의 수식 segment를 실제KaTeX strict 모드로 렌더했다."
+        },
+        "answer": {
+          "status": "passed",
+          "evidence": "인쇄 데이터만으로 k=(S-ad)/(c+d)를 계산한 다음 factory answer를 비교했다. 해 집합은-2,0,3,8이며32개 모두c+d∈{-3,-1,1}로 유일하다. k=0일 때 없는y²항은 계수0으로 명시된다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "evidence": "32개 해설의xy/y²계수식,계수합 등식,정리한 일차방정식,중간 수치,복원한k,비영 기울기·유일성 설명,원래 두 계수 재대입과 합을 독립 계산에 맞춰 확인했다. 모순 문장·누락 문장·수치변경은 거부된다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "evidence": "2015 중3 다항식의 곱셈 학습 이후.중1 문자/동류항/계수와 일차방정식이 선수다. a,c,d는 인쇄된 수치라 해설은 수치일차방정식 하나이며 고등 항등식미정계수법/연립방정식/일반이차방정식은 필요하지 않다."
+        }
+      },
+      "notInheritedFromQ10OrQ11": true,
+      "scope": "명시된32tuple 단답형canonical문장·풀이만. 특정학교진도/새버전/임의해설/전체엔진 학년인증 아님."
+    },
+    "curriculum2022": {
+      "course": "중3",
+      "fromYear": 2027,
+      "status": "pending",
+      "reason": "실제2022중3 학년별배치에 대한1차근거를 이번 제한 감사에서 확보하지 않음.2015배치와 중학교학년군 기준만으로 추정통과하지 않음.",
+      "curriculumSurfaces": {
+        "stem": "pending-placement-evidence",
+        "choices": "pending-placement-evidence",
+        "figuresAndTables": "pending-placement-evidence",
+        "notation": "pending-placement-evidence",
+        "answer": "pending-placement-evidence",
+        "studentSolution": "pending-placement-evidence",
+        "prerequisites": "pending-placement-evidence"
+      }
+    }
+  },
+  "releaseFindings": {
+    "requirementBasedHold": true,
+    "renameVersionNativeApprovalConfidenceComponentCannotClear": true,
+    "generationHeldBeforeFactoryAllFourFormats": true,
+    "coverageUnavailable": true,
+    "catalogHidesFamilyButRetainsDemand": true,
+    "actualResolver409ForHeldOutput": true,
+    "m1GradeExclusionPrecedesReleaseHold": true,
+    "source": "Actual releaseEligibility/generate/evidence/registry and resolveExamStudy executed with stated mocks. Actual middle/index registration was checked by read only; other middle families were not imported."
+  },
+  "diagnosticLimitation": {
+    "rootDiagnosticTest": "src/__tests__/unit/examStudyInverseCoefficient.test.ts",
+    "sourceSha256": "35872a0b08c487de712c678c92ceabebfe49559c6bed81bd4c6894f7715ae56c",
+    "ObjectIsNegativeZeroDifference": true,
+    "ownHarnessInitialObjectIsCheckAlsoFailed": true,
+    "resolution": "Only own audit assertion changed to exactnumeric===; no tolerance. ROOT production/test files were not edited. Parent intends later diagnostic-only adjustment; current r1 hashes preserve pre-adjustment bytes.",
+    "evidence": "negative-zero-diagnostic.json",
+    "parentSuite": "Parent pass/fail counts are reported evidence only and are not this independent run."
+  },
+  "mockedBoundaries": [
+    "Bounded registry contains only actual new family; unrelated legacy/advanced/middle entries omitted; actual middle/index read confirms registration line.",
+    "Identity helpers use local deterministic stable SHA256 boundary; planner is empty-selection stub, never needed to produce a held item; no quota-optimizer or whole-engine identity certification.",
+    "Actual requirements, contract schemas,release/grade policy, family verifier,generation filtering,coverage,catalog and actual resolver source executed.",
+    "Resolver authorization is allowed-director mock; strictJSON transport is Request.json mock; no auth/DB/size-depth-parser integration. Resolver uses actual current generate with custom family list; renderer must never be called.",
+    "Actual KaTeX renders mathematical strings only; no full page/UI/SVG render."
+  ],
+  "limitations": [
+    "PDF screenshot attempt was cache-miss; primary placement page text, document hash and locator captured. No full external document is saved.",
+    "No currentDB/live-family registration check; Unit UUID is captured metadata only and liveFamilyKey remainsnull.",
+    "The32 outputs exhaust the declared finite tuple set, not arbitrary content/parameters or all engine families.",
+    "Exact canonical verifier may reject semantically equivalent alternative student solutions; no free-text grading claim.",
+    "2022M3 placement remainspending; no broad repeated search or guessed placement approval."
+  ],
+  "sourceFilesUnchangedAtSeal": true,
+  "rootEdits": 0,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "registrationApproved": false,
+  "loadable": false
+}

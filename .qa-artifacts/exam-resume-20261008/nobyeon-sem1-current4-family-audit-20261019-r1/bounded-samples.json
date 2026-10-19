@@ -1,0 +1,509 @@
+{
+  "sampleCount": 30,
+  "seeds": [
+    19,
+    71
+  ],
+  "method": "actual TypeEntry handlers; actual project seeded RNG; no DB; no other generator modules executed",
+  "samples": [
+    {
+      "engineKey": "3-1|제곱근의 뜻과 성질|05",
+      "seed": 19,
+      "content": "넓이가 $63\\,\\mathrm{cm}^2$ 인 정사각형의 한 변의 길이를 구하시오.",
+      "answer": "$3\\sqrt{7}\\,\\mathrm{cm}$",
+      "solution": "한 변의 길이를 $x\\,\\mathrm{cm}$ 라 하면 $x>0$ 이고 $x^2=63$ 이다.\n따라서 $x=\\sqrt{63}=3\\sqrt{7}$ 이다.",
+      "facts": {
+        "branch": 0,
+        "area": 63,
+        "out": 3,
+        "inner": 7,
+        "p": 0,
+        "q": 0
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|제곱근의 뜻과 성질|05",
+      "seed": 71,
+      "content": "가로의 길이가 $3\\,\\mathrm{cm}$, 세로의 길이가 $6\\,\\mathrm{cm}$ 인 직사각형의 대각선의 길이를 구하시오.",
+      "answer": "$3\\sqrt{5}\\,\\mathrm{cm}$",
+      "solution": "대각선의 길이를 $x\\,\\mathrm{cm}$ 라 하면 피타고라스 정리에 의하여 $x^2=3^2+6^2=45$ 이다.\n$x>0$ 이므로 $x=\\sqrt{45}=3\\sqrt{5}$ 이다.",
+      "facts": {
+        "branch": 1,
+        "area": 0,
+        "out": 3,
+        "inner": 5,
+        "p": 3,
+        "q": 6
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|제곱근의 뜻과 성질|08",
+      "seed": 19,
+      "content": "$a>0$ 일 때, 다음 식을 간단히 하시오.\n$\\sqrt{a^2}-\\sqrt{(-2a)^2}$",
+      "answer": "$-a$",
+      "solution": "$a>0$ 이므로 $\\sqrt{a^2}=|a|=a$, $\\sqrt{(-2a)^2}=|-2a|=2a$ 이다.\n따라서 주어진 식은 $a-2a=-a$ 이다.",
+      "facts": {
+        "p": 1,
+        "q": 2,
+        "sign": 1,
+        "coef": -1
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|제곱근의 뜻과 성질|08",
+      "seed": 71,
+      "content": "$a<0$ 일 때, 다음 식을 간단히 하시오.\n$\\sqrt{(4a)^2}-\\sqrt{(-a)^2}$",
+      "answer": "$-3a$",
+      "solution": "$a<0$ 이므로 $\\sqrt{(4a)^2}=|4a|=-4a$, $\\sqrt{(-a)^2}=|-a|=-a$ 이다.\n따라서 주어진 식은 $(-4a)-(-a)=-3a$ 이다.",
+      "facts": {
+        "p": 4,
+        "q": 1,
+        "sign": -1,
+        "coef": -3
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|제곱근의 뜻과 성질|09",
+      "seed": 19,
+      "content": "$1<x<5$ 일 때, 다음 식을 간단히 하시오.\n$\\sqrt{(x-1)^2}+\\sqrt{(x-5)^2}$",
+      "answer": "$4$",
+      "solution": "$1<x<5$ 이므로 $x-1>0$, $x-5<0$ 이다.\n따라서 $\\sqrt{(x-1)^2}=x-1$, $\\sqrt{(x-5)^2}=5-x$ 이므로 주어진 식은 $(x-1)+(5-x)=4$ 이다.",
+      "facts": {
+        "a": 1,
+        "b": 5,
+        "branch": 0
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|제곱근의 뜻과 성질|09",
+      "seed": 71,
+      "content": "$6<x<9$ 일 때, 다음 식을 간단히 하시오.\n$\\sqrt{(x-6)^2}-\\sqrt{(x-9)^2}$",
+      "answer": "$2x-15$",
+      "solution": "$6<x<9$ 이므로 $x-6>0$, $x-9<0$ 이다.\n따라서 $\\sqrt{(x-6)^2}=x-6$, $\\sqrt{(x-9)^2}=9-x$ 이므로 주어진 식은 $(x-6)-(9-x)=2x-15$ 이다.",
+      "facts": {
+        "a": 6,
+        "b": 9,
+        "branch": 1
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|제곱근의 뜻과 성질|10",
+      "seed": 19,
+      "content": "$a<0$, $b<0$ 일 때, 다음 식을 간단히 하시오.\n$\\sqrt{a^2}+\\sqrt{(2b)^2}-\\sqrt{(-3a)^2}$",
+      "answer": "$2a-2b$",
+      "solution": "$a<0$, $b<0$ 이므로 $\\sqrt{a^2}=-a$, $\\sqrt{(2b)^2}=-2b$, $\\sqrt{(-3a)^2}=-3a$ 이다.\n따라서 주어진 식은 $(-a)+(-2b)-(-3a)=2a-2b$ 이다.",
+      "facts": {
+        "p": 1,
+        "q": 2,
+        "r": 3,
+        "sa": -1,
+        "sb": -1,
+        "ca": 2,
+        "cb": -2
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|제곱근의 뜻과 성질|10",
+      "seed": 71,
+      "content": "$a>0$, $b<0$ 일 때, 다음 식을 간단히 하시오.\n$\\sqrt{(4a)^2}+\\sqrt{(3b)^2}-\\sqrt{(-a)^2}$",
+      "answer": "$3a-3b$",
+      "solution": "$a>0$, $b<0$ 이므로 $\\sqrt{(4a)^2}=4a$, $\\sqrt{(3b)^2}=-3b$, $\\sqrt{(-a)^2}=a$ 이다.\n따라서 주어진 식은 $4a+(-3b)-a=3a-3b$ 이다.",
+      "facts": {
+        "p": 4,
+        "q": 3,
+        "r": 1,
+        "sa": 1,
+        "sb": -1,
+        "ca": 3,
+        "cb": -3
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|무리수와 실수|09",
+      "seed": 19,
+      "content": "제곱근표에 $\\sqrt{1.52}\\approx1.233$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{152}$의 근삿값을 구하시오.",
+      "answer": "$12.33$",
+      "solution": "$152=1.52\\times100$ 이므로 $\\sqrt{152}=10\\sqrt{1.52}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{152}\\approx10\\times1.233=12.33$ 이다.",
+      "facts": {
+        "a2": 152,
+        "v3": 1233,
+        "mult": 10
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|무리수와 실수|09",
+      "seed": 71,
+      "content": "제곱근표에 $\\sqrt{7.86}\\approx2.804$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{786}$의 근삿값을 구하시오.",
+      "answer": "$28.04$",
+      "solution": "$786=7.86\\times100$ 이므로 $\\sqrt{786}=10\\sqrt{7.86}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{786}\\approx10\\times2.804=28.04$ 이다.",
+      "facts": {
+        "a2": 786,
+        "v3": 2804,
+        "mult": 10
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|근호를 포함한 식의 계산|05",
+      "seed": 19,
+      "content": "$\\sqrt{2}=1.414$ 일 때, $\\sqrt{18}$ 의 값을 구하시오.",
+      "answer": "$4.242$",
+      "solution": "$18=3^2\\times2$ 이므로 $\\sqrt{18}=3\\sqrt{2}$ 이다.\n따라서 $\\sqrt{18}=3\\times1.414=4.242$ 이다.",
+      "facts": {
+        "a": 2,
+        "v3": 1414,
+        "mult": 3,
+        "b": 18
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|근호를 포함한 식의 계산|05",
+      "seed": 71,
+      "content": "$\\sqrt{7}=2.646$ 일 때, $\\sqrt{112}$ 의 값을 구하시오.",
+      "answer": "$10.584$",
+      "solution": "$112=4^2\\times7$ 이므로 $\\sqrt{112}=4\\sqrt{7}$ 이다.\n따라서 $\\sqrt{112}=4\\times2.646=10.584$ 이다.",
+      "facts": {
+        "a": 7,
+        "v3": 2646,
+        "mult": 4,
+        "b": 112
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|근호를 포함한 식의 계산|08",
+      "seed": 19,
+      "content": "다음 식을 계산하시오.\n$6\\sqrt{2}\\times2\\sqrt{7}\\div3\\sqrt{2}$",
+      "answer": "$4\\sqrt{7}$",
+      "solution": "근호 안끼리 계산하면 $\\sqrt{\\dfrac{2\\times7}{2}}=\\sqrt{7}$ 이다.\n계수끼리 계산하면 $6\\times2\\div3=4$ 이므로 주어진 식은 $4\\sqrt{7}$ 이다.",
+      "facts": {
+        "p": 6,
+        "a": 2,
+        "q": 2,
+        "b": 7,
+        "r": 3,
+        "c": 2,
+        "out": 4,
+        "inner": 7
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|근호를 포함한 식의 계산|08",
+      "seed": 71,
+      "content": "다음 식을 계산하시오.\n$3\\sqrt{11}\\times\\sqrt{10}\\div3\\sqrt{11}$",
+      "answer": "$\\sqrt{10}$",
+      "solution": "근호 안끼리 계산하면 $\\sqrt{\\dfrac{11\\times10}{11}}=\\sqrt{10}$ 이다.\n계수끼리 계산하면 $3\\times1\\div3=1$ 이므로 주어진 식은 $\\sqrt{10}$ 이다.",
+      "facts": {
+        "p": 3,
+        "a": 11,
+        "q": 1,
+        "b": 10,
+        "r": 3,
+        "c": 11,
+        "out": 1,
+        "inner": 10
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|근호를 포함한 식의 계산|19",
+      "seed": 19,
+      "content": "두 수 $\\sqrt{7}$ 과 $2\\sqrt{11}$ 의 대소를 비교하시오.",
+      "answer": "$\\sqrt{7}<2\\sqrt{11}$",
+      "solution": "근호 안으로 넣으면 $2\\sqrt{11}=\\sqrt{44}$ 이다.\n$7<44$ 이므로 $\\sqrt{7}<2\\sqrt{11}$ 이다.",
+      "facts": {
+        "p": 1,
+        "m": 7,
+        "q": 2,
+        "n": 11,
+        "lt": 1
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|근호를 포함한 식의 계산|19",
+      "seed": 71,
+      "content": "두 수 $4\\sqrt{10}$ 과 $\\sqrt{11}$ 의 대소를 비교하시오.",
+      "answer": "$4\\sqrt{10}>\\sqrt{11}$",
+      "solution": "근호 안으로 넣으면 $4\\sqrt{10}=\\sqrt{160}$ 이다.\n$160>11$ 이므로 $4\\sqrt{10}>\\sqrt{11}$ 이다.",
+      "facts": {
+        "p": 4,
+        "m": 10,
+        "q": 1,
+        "n": 11,
+        "lt": 0
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|다항식의 곱셈|01",
+      "seed": 19,
+      "content": "다음 식을 전개하시오.\n$(2x-3y)(3x-2y+5)$",
+      "answer": "$6x^2-13xy+6y^2+10x-15y$",
+      "solution": "분배법칙으로 앞 다항식의 각 항을 뒤 다항식의 각 항에 곱한다.\n$(2x-3y)(3x-2y+5)=6x^2-13xy+6y^2+10x-15y$",
+      "facts": {
+        "a": 2,
+        "b": -3,
+        "c": 3,
+        "d": -2,
+        "e": 5
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|다항식의 곱셈|01",
+      "seed": 71,
+      "content": "다음 식을 전개하시오.\n$(2x-3y)(3x-2y-1)$",
+      "answer": "$6x^2-13xy+6y^2-2x+3y$",
+      "solution": "분배법칙으로 앞 다항식의 각 항을 뒤 다항식의 각 항에 곱한다.\n$(2x-3y)(3x-2y-1)=6x^2-13xy+6y^2-2x+3y$",
+      "facts": {
+        "a": 2,
+        "b": -3,
+        "c": 3,
+        "d": -2,
+        "e": -1
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|다항식의 곱셈|02",
+      "seed": 19,
+      "content": "$(2x-2)(2x^2+3x+7)$ 의 전개식에서 $x^2$ 의 계수를 구하시오.",
+      "answer": "$2$",
+      "solution": "$x^2$ 항은 $2x\\times 3x$, $(-2)\\times 2x^2$ 두 곳에서만 나온다.\n두 항의 계수를 더하면 $2\\times3+(-2)\\times2=2$ 이다.",
+      "facts": {
+        "a": 2,
+        "b": -2,
+        "c": 2,
+        "d": 3,
+        "e": 7,
+        "which": 2,
+        "coef": 2
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|다항식의 곱셈|02",
+      "seed": 71,
+      "content": "$(5x-4)(3x^2+2x+7)$ 의 전개식에서 $x^2$ 의 계수를 구하시오.",
+      "answer": "$-2$",
+      "solution": "$x^2$ 항은 $5x\\times 2x$, $(-4)\\times 3x^2$ 두 곳에서만 나온다.\n두 항의 계수를 더하면 $5\\times2+(-4)\\times3=-2$ 이다.",
+      "facts": {
+        "a": 5,
+        "b": -4,
+        "c": 3,
+        "d": 2,
+        "e": 7,
+        "which": 2,
+        "coef": -2
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|다항식의 곱셈|05",
+      "seed": 19,
+      "content": "다음 식을 전개하시오.\n$(x-3)(x-1)$",
+      "answer": "$x^2-4x+3$",
+      "solution": "$(x+a)(x+b)=x^2+(a+b)x+ab$ 임을 이용한다.\n두 수의 합은 $-4$, 곱은 $3$ 이므로 $(x-3)(x-1)=x^2-4x+3$ 이다.",
+      "facts": {
+        "mode": 0,
+        "a": -3,
+        "b": -1
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|다항식의 곱셈|05",
+      "seed": 71,
+      "content": "다음 식을 전개하시오.\n$(x-6y)(x+2y)$",
+      "answer": "$x^2-4xy-12y^2$",
+      "solution": "$y$ 를 상수처럼 보고 $(x+a)(x+b)=x^2+(a+b)x+ab$ 임을 이용한다.\n$(x-6y)(x+2y)=x^2-4xy-12y^2$",
+      "facts": {
+        "mode": 1,
+        "a": -6,
+        "b": 2
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|다항식의 인수분해|03",
+      "seed": 19,
+      "content": "다음 식을 인수분해하시오.\n$9x^2-6xy+y^2$",
+      "answer": "$(3x-y)^2$",
+      "solution": "$A=3x$, $B=y$ 로 두면 $A^2=9x^2$, $B^2=y^2$, $2AB=6xy$ 이므로 완전제곱식이다.\n$9x^2-6xy+y^2=(3x-y)^2$",
+      "facts": {
+        "mode": 0,
+        "a": 3,
+        "b": -1
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|다항식의 인수분해|03",
+      "seed": 71,
+      "content": "다음 식을 인수분해하시오.\n$x^2+4x+4$",
+      "answer": "$(x+2)^2$",
+      "solution": "상수항이 $2^2=4$ 이고 $x$ 의 계수가 $2\\times2=4$ 이므로 완전제곱식이다.\n$x^2+4x+4=(x+2)^2$",
+      "facts": {
+        "mode": 1,
+        "k": 1,
+        "m": 2
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|다항식의 인수분해|04",
+      "seed": 19,
+      "content": "$x^2-6x+k$ 가 완전제곱식이 되도록 하는 상수 $k$ 의 값을 구하시오.",
+      "answer": "$9$",
+      "solution": "$x$ 의 계수의 절반의 제곱이 상수항이어야 한다.\n$k=\\left(\\dfrac{-6}{2}\\right)^2=9$ 이다.",
+      "facts": {
+        "mode": 0,
+        "m": -3,
+        "value": 9
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|다항식의 인수분해|04",
+      "seed": 71,
+      "content": "$(x-6)(x+2)+k$ 가 완전제곱식이 되도록 하는 상수 $k$ 의 값을 구하시오.",
+      "answer": "$16$",
+      "solution": "$(x-6)(x+2)=x^2-4x-12$ 이다.\n$x$ 의 계수의 절반의 제곱에서 상수항을 빼면 $k=\\left(\\dfrac{-4}{2}\\right)^2-(-12)=16$ 이다.",
+      "facts": {
+        "mode": 2,
+        "p": -6,
+        "q": 2,
+        "value": 16
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|다항식의 인수분해|13",
+      "seed": 19,
+      "content": "넓이가 $x^2$ 인 정사각형 $1$ 개, 넓이가 $x$ 인 직사각형 $3$ 개, 넓이가 $1$ 인 정사각형 $2$ 개를 빈틈없이 겹치지 않게 모두 붙여 하나의 큰 직사각형을 만들었다. 이 직사각형의 둘레의 길이를 구하시오.",
+      "answer": "$4x+6$",
+      "solution": "조각의 넓이의 합은 $x^2+3x+2$ 이고, 인수분해하면 $(x+1)(x+2)$ 이다.\n큰 직사각형의 가로·세로의 길이가 $x+1$, $x+2$ 이므로 둘레의 길이는 $2\\times(x+1+x+2)=4x+6$ 이다.",
+      "facts": {
+        "p": 1,
+        "q": 2,
+        "b": 3,
+        "c": 2
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|다항식의 인수분해|13",
+      "seed": 71,
+      "content": "넓이가 $x^2$ 인 정사각형 $1$ 개, 넓이가 $x$ 인 직사각형 $6$ 개, 넓이가 $1$ 인 정사각형 $5$ 개를 빈틈없이 겹치지 않게 모두 붙여 하나의 큰 직사각형을 만들었다. 이 직사각형의 둘레의 길이를 구하시오.",
+      "answer": "$4x+12$",
+      "solution": "조각의 넓이의 합은 $x^2+6x+5$ 이고, 인수분해하면 $(x+5)(x+1)$ 이다.\n큰 직사각형의 가로·세로의 길이가 $x+5$, $x+1$ 이므로 둘레의 길이는 $2\\times(x+5+x+1)=4x+12$ 이다.",
+      "facts": {
+        "p": 5,
+        "q": 1,
+        "b": 6,
+        "c": 5
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|다항식의 인수분해|14",
+      "seed": 19,
+      "content": "세로의 길이가 $2x+5$ 인 직사각형의 넓이가 $2x^2+9x+10$ 일 때, 이 직사각형의 가로의 길이를 구하시오.",
+      "answer": "$x+2$",
+      "solution": "넓이를 인수분해하면 $2x^2+9x+10=(x+2)(2x+5)$ 이다.\n세로의 길이가 $2x+5$ 이므로 가로의 길이는 $x+2$ 이다.",
+      "facts": {
+        "a": 1,
+        "b": 2,
+        "c": 2,
+        "d": 5
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    },
+    {
+      "engineKey": "3-1|다항식의 인수분해|14",
+      "seed": 71,
+      "content": "세로의 길이가 $3x+5$ 인 직사각형의 넓이가 $12x^2+23x+5$ 일 때, 이 직사각형의 가로의 길이를 구하시오.",
+      "answer": "$4x+1$",
+      "solution": "넓이를 인수분해하면 $12x^2+23x+5=(4x+1)(3x+5)$ 이다.\n세로의 길이가 $3x+5$ 이므로 가로의 길이는 $4x+1$ 이다.",
+      "facts": {
+        "a": 4,
+        "b": 1,
+        "c": 3,
+        "d": 5
+      },
+      "figureSpec": null,
+      "format": "MidProblem has content/answer/solution; no questionType field",
+      "answerFreshProof": false
+    }
+  ]
+}

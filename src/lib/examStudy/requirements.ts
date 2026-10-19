@@ -16,6 +16,14 @@ type Dimensions = readonly [
 
 /** Mathematical demands only. Source wording, coefficients and source figures are absent. */
 const DIMENSIONS: Record<StudyRequirementId, Dimensions> = {
+  "algebra.inverse-coefficient-sum": [
+    "전개식의 두 계수 합에서 인수 안 상수 복원",
+    ["분배법칙", "동류항", "계수", "일차방정식"],
+    ["두 계수 식별", "주어진 합", "0이 아닌 역산 계수", "원래 식 검산"],
+    "text",
+    "exclude",
+    ["단답형"],
+  ],
   "algebra.linear-simplify": [
     "일차식의 정리와 계수 해석",
     ["분배법칙", "동류항"],

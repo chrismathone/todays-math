@@ -1,0 +1,5753 @@
+{
+  "count": 32,
+  "uniqueContents": 32,
+  "answerSigns": [
+    -2,
+    0,
+    3,
+    8
+  ],
+  "nonzeroSlopes": [
+    -3,
+    -1,
+    1
+  ],
+  "samples": [
+    {
+      "variant": 0,
+      "printed": {
+        "a": 2,
+        "c": 2,
+        "d": -5,
+        "sum": -4,
+        "slope": -3,
+        "k": -2
+      },
+      "coefficients": {
+        "x2": 4,
+        "xy": -14,
+        "y2": 10
+      },
+      "uniqueness": "-3k=6; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": -2,
+          "expanded": -2
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 16,
+          "expanded": 16
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": 112,
+          "expanded": 112
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": 10,
+          "expanded": 10
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": 40,
+          "expanded": 40
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 88,
+          "expanded": 88
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 36,
+          "expanded": 36
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": -8,
+          "expanded": -8
+        }
+      ],
+      "content": "다항식 $(2x+ky)(2x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-4$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $2k-10$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(2k-10)+(-5k)=-4$이다. 이를 정리하면 $-3k-10=-4$, $-3k=6$이므로 $k=-2$이다. 역산할 때 나누는 수 $-3$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=-2$을 대입하면 두 계수는 각각 $-14$, $10$이고 합은 $-14+(10)=-4$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "-2",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 1,
+      "printed": {
+        "a": 2,
+        "c": 2,
+        "d": -5,
+        "sum": -10,
+        "slope": -3,
+        "k": 0
+      },
+      "coefficients": {
+        "x2": 4,
+        "xy": -10,
+        "y2": 0
+      },
+      "uniqueness": "-3k=0; slope !=0; exactly one real constant",
+      "zeroTermMeaning": "y² coefficient is0; absent term represented by coefficient0",
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": -4,
+          "expanded": -4
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 16,
+          "expanded": 16
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": 56,
+          "expanded": 56
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 66,
+          "expanded": 66
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 36,
+          "expanded": 36
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": -24,
+          "expanded": -24
+        }
+      ],
+      "content": "다항식 $(2x+ky)(2x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-10$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $2k-10$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(2k-10)+(-5k)=-10$이다. 이를 정리하면 $-3k-10=-10$, $-3k=0$이므로 $k=0$이다. 역산할 때 나누는 수 $-3$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=0$을 대입하면 두 계수는 각각 $-10$, $0$이고 합은 $-10+(0)=-10$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "0",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 2,
+      "printed": {
+        "a": 2,
+        "c": 2,
+        "d": -5,
+        "sum": -19,
+        "slope": -3,
+        "k": 3
+      },
+      "coefficients": {
+        "x2": 4,
+        "xy": -4,
+        "y2": -15
+      },
+      "uniqueness": "-3k=-9; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": -7,
+          "expanded": -7
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 16,
+          "expanded": 16
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": -28,
+          "expanded": -28
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": -15,
+          "expanded": -15
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": -60,
+          "expanded": -60
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 33,
+          "expanded": 33
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 36,
+          "expanded": 36
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": -48,
+          "expanded": -48
+        }
+      ],
+      "content": "다항식 $(2x+ky)(2x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-19$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $2k-10$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(2k-10)+(-5k)=-19$이다. 이를 정리하면 $-3k-10=-19$, $-3k=-9$이므로 $k=3$이다. 역산할 때 나누는 수 $-3$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=3$을 대입하면 두 계수는 각각 $-4$, $-15$이고 합은 $-4+(-15)=-19$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "3",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 3,
+      "printed": {
+        "a": 2,
+        "c": 2,
+        "d": -5,
+        "sum": -34,
+        "slope": -3,
+        "k": 8
+      },
+      "coefficients": {
+        "x2": 4,
+        "xy": 6,
+        "y2": -40
+      },
+      "uniqueness": "-3k=-24; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": -12,
+          "expanded": -12
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 16,
+          "expanded": 16
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": -168,
+          "expanded": -168
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": -40,
+          "expanded": -40
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": -160,
+          "expanded": -160
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": -22,
+          "expanded": -22
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 36,
+          "expanded": 36
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": -88,
+          "expanded": -88
+        }
+      ],
+      "content": "다항식 $(2x+ky)(2x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-34$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $2k-10$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(2k-10)+(-5k)=-34$이다. 이를 정리하면 $-3k-10=-34$, $-3k=-24$이므로 $k=8$이다. 역산할 때 나누는 수 $-3$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=8$을 대입하면 두 계수는 각각 $6$, $-40$이고 합은 $6+(-40)=-34$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "8",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 4,
+      "printed": {
+        "a": 2,
+        "c": 2,
+        "d": -3,
+        "sum": -4,
+        "slope": -1,
+        "k": -2
+      },
+      "coefficients": {
+        "x2": 4,
+        "xy": -10,
+        "y2": 6
+      },
+      "uniqueness": "-1k=2; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 2,
+          "expanded": 2
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 16,
+          "expanded": 16
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": 80,
+          "expanded": 80
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": 6,
+          "expanded": 6
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": 24,
+          "expanded": 24
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 72,
+          "expanded": 72
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 36,
+          "expanded": 36
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 0,
+          "expanded": 0
+        }
+      ],
+      "content": "다항식 $(2x+ky)(2x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-4$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $2k-6$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(2k-6)+(-3k)=-4$이다. 이를 정리하면 $-k-6=-4$, $-k=2$이므로 $k=-2$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=-2$을 대입하면 두 계수는 각각 $-10$, $6$이고 합은 $-10+(6)=-4$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "-2",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 5,
+      "printed": {
+        "a": 2,
+        "c": 2,
+        "d": -3,
+        "sum": -6,
+        "slope": -1,
+        "k": 0
+      },
+      "coefficients": {
+        "x2": 4,
+        "xy": -6,
+        "y2": 0
+      },
+      "uniqueness": "-1k=0; slope !=0; exactly one real constant",
+      "zeroTermMeaning": "y² coefficient is0; absent term represented by coefficient0",
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 4,
+          "expanded": 4
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 16,
+          "expanded": 16
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": 40,
+          "expanded": 40
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 54,
+          "expanded": 54
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 36,
+          "expanded": 36
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 0,
+          "expanded": 0
+        }
+      ],
+      "content": "다항식 $(2x+ky)(2x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-6$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $2k-6$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(2k-6)+(-3k)=-6$이다. 이를 정리하면 $-k-6=-6$, $-k=0$이므로 $k=0$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=0$을 대입하면 두 계수는 각각 $-6$, $0$이고 합은 $-6+(0)=-6$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "0",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 6,
+      "printed": {
+        "a": 2,
+        "c": 2,
+        "d": -3,
+        "sum": -9,
+        "slope": -1,
+        "k": 3
+      },
+      "coefficients": {
+        "x2": 4,
+        "xy": 0,
+        "y2": -9
+      },
+      "uniqueness": "-1k=-3; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 7,
+          "expanded": 7
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 16,
+          "expanded": 16
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": -20,
+          "expanded": -20
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": -9,
+          "expanded": -9
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": -36,
+          "expanded": -36
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 27,
+          "expanded": 27
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 36,
+          "expanded": 36
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 0,
+          "expanded": 0
+        }
+      ],
+      "content": "다항식 $(2x+ky)(2x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-9$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $2k-6$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(2k-6)+(-3k)=-9$이다. 이를 정리하면 $-k-6=-9$, $-k=-3$이므로 $k=3$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=3$을 대입하면 두 계수는 각각 $0$, $-9$이고 합은 $0+(-9)=-9$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "3",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 7,
+      "printed": {
+        "a": 2,
+        "c": 2,
+        "d": -3,
+        "sum": -14,
+        "slope": -1,
+        "k": 8
+      },
+      "coefficients": {
+        "x2": 4,
+        "xy": 10,
+        "y2": -24
+      },
+      "uniqueness": "-1k=-8; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 12,
+          "expanded": 12
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 16,
+          "expanded": 16
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": -120,
+          "expanded": -120
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": -24,
+          "expanded": -24
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": -96,
+          "expanded": -96
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": -18,
+          "expanded": -18
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 36,
+          "expanded": 36
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 0,
+          "expanded": 0
+        }
+      ],
+      "content": "다항식 $(2x+ky)(2x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-14$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $2k-6$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(2k-6)+(-3k)=-14$이다. 이를 정리하면 $-k-6=-14$, $-k=-8$이므로 $k=8$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=8$을 대입하면 두 계수는 각각 $10$, $-24$이고 합은 $10+(-24)=-14$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "8",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 8,
+      "printed": {
+        "a": 2,
+        "c": 4,
+        "d": -5,
+        "sum": -8,
+        "slope": -1,
+        "k": -2
+      },
+      "coefficients": {
+        "x2": 8,
+        "xy": -18,
+        "y2": 10
+      },
+      "uniqueness": "-1k=2; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 6,
+          "expanded": 6
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 32,
+          "expanded": 32
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": 144,
+          "expanded": 144
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": 10,
+          "expanded": 10
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": 40,
+          "expanded": 40
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 136,
+          "expanded": 136
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 72,
+          "expanded": 72
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 4,
+          "expanded": 4
+        }
+      ],
+      "content": "다항식 $(2x+ky)(4x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-8$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $4k-10$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(4k-10)+(-5k)=-8$이다. 이를 정리하면 $-k-10=-8$, $-k=2$이므로 $k=-2$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=-2$을 대입하면 두 계수는 각각 $-18$, $10$이고 합은 $-18+(10)=-8$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "-2",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 9,
+      "printed": {
+        "a": 2,
+        "c": 4,
+        "d": -5,
+        "sum": -10,
+        "slope": -1,
+        "k": 0
+      },
+      "coefficients": {
+        "x2": 8,
+        "xy": -10,
+        "y2": 0
+      },
+      "uniqueness": "-1k=0; slope !=0; exactly one real constant",
+      "zeroTermMeaning": "y² coefficient is0; absent term represented by coefficient0",
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 12,
+          "expanded": 12
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 32,
+          "expanded": 32
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": 72,
+          "expanded": 72
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 102,
+          "expanded": 102
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 72,
+          "expanded": 72
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 12,
+          "expanded": 12
+        }
+      ],
+      "content": "다항식 $(2x+ky)(4x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-10$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $4k-10$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(4k-10)+(-5k)=-10$이다. 이를 정리하면 $-k-10=-10$, $-k=0$이므로 $k=0$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=0$을 대입하면 두 계수는 각각 $-10$, $0$이고 합은 $-10+(0)=-10$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "0",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 10,
+      "printed": {
+        "a": 2,
+        "c": 4,
+        "d": -5,
+        "sum": -13,
+        "slope": -1,
+        "k": 3
+      },
+      "coefficients": {
+        "x2": 8,
+        "xy": 2,
+        "y2": -15
+      },
+      "uniqueness": "-1k=-3; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 21,
+          "expanded": 21
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 32,
+          "expanded": 32
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": -36,
+          "expanded": -36
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": -15,
+          "expanded": -15
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": -60,
+          "expanded": -60
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 51,
+          "expanded": 51
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 72,
+          "expanded": 72
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 24,
+          "expanded": 24
+        }
+      ],
+      "content": "다항식 $(2x+ky)(4x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-13$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $4k-10$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(4k-10)+(-5k)=-13$이다. 이를 정리하면 $-k-10=-13$, $-k=-3$이므로 $k=3$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=3$을 대입하면 두 계수는 각각 $2$, $-15$이고 합은 $2+(-15)=-13$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "3",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 11,
+      "printed": {
+        "a": 2,
+        "c": 4,
+        "d": -5,
+        "sum": -18,
+        "slope": -1,
+        "k": 8
+      },
+      "coefficients": {
+        "x2": 8,
+        "xy": 22,
+        "y2": -40
+      },
+      "uniqueness": "-1k=-8; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 36,
+          "expanded": 36
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 32,
+          "expanded": 32
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": -216,
+          "expanded": -216
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": -40,
+          "expanded": -40
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": -160,
+          "expanded": -160
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": -34,
+          "expanded": -34
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 72,
+          "expanded": 72
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 44,
+          "expanded": 44
+        }
+      ],
+      "content": "다항식 $(2x+ky)(4x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-18$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $4k-10$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(4k-10)+(-5k)=-18$이다. 이를 정리하면 $-k-10=-18$, $-k=-8$이므로 $k=8$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=8$을 대입하면 두 계수는 각각 $22$, $-40$이고 합은 $22+(-40)=-18$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "8",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 12,
+      "printed": {
+        "a": 2,
+        "c": 4,
+        "d": -3,
+        "sum": -8,
+        "slope": 1,
+        "k": -2
+      },
+      "coefficients": {
+        "x2": 8,
+        "xy": -14,
+        "y2": 6
+      },
+      "uniqueness": "1k=-2; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 10,
+          "expanded": 10
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 32,
+          "expanded": 32
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": 112,
+          "expanded": 112
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": 6,
+          "expanded": 6
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": 24,
+          "expanded": 24
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 120,
+          "expanded": 120
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 72,
+          "expanded": 72
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 12,
+          "expanded": 12
+        }
+      ],
+      "content": "다항식 $(2x+ky)(4x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-8$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $4k-6$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(4k-6)+(-3k)=-8$이다. 이를 정리하면 $k-6=-8$, $k=-2$이므로 $k=-2$이다. 역산할 때 나누는 수 $1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=-2$을 대입하면 두 계수는 각각 $-14$, $6$이고 합은 $-14+(6)=-8$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "-2",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 13,
+      "printed": {
+        "a": 2,
+        "c": 4,
+        "d": -3,
+        "sum": -6,
+        "slope": 1,
+        "k": 0
+      },
+      "coefficients": {
+        "x2": 8,
+        "xy": -6,
+        "y2": 0
+      },
+      "uniqueness": "1k=0; slope !=0; exactly one real constant",
+      "zeroTermMeaning": "y² coefficient is0; absent term represented by coefficient0",
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 20,
+          "expanded": 20
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 32,
+          "expanded": 32
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": 56,
+          "expanded": 56
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 90,
+          "expanded": 90
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 72,
+          "expanded": 72
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 36,
+          "expanded": 36
+        }
+      ],
+      "content": "다항식 $(2x+ky)(4x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-6$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $4k-6$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(4k-6)+(-3k)=-6$이다. 이를 정리하면 $k-6=-6$, $k=0$이므로 $k=0$이다. 역산할 때 나누는 수 $1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=0$을 대입하면 두 계수는 각각 $-6$, $0$이고 합은 $-6+(0)=-6$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "0",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 14,
+      "printed": {
+        "a": 2,
+        "c": 4,
+        "d": -3,
+        "sum": -3,
+        "slope": 1,
+        "k": 3
+      },
+      "coefficients": {
+        "x2": 8,
+        "xy": 6,
+        "y2": -9
+      },
+      "uniqueness": "1k=3; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 35,
+          "expanded": 35
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 32,
+          "expanded": 32
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": -28,
+          "expanded": -28
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": -9,
+          "expanded": -9
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": -36,
+          "expanded": -36
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 45,
+          "expanded": 45
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 72,
+          "expanded": 72
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 72,
+          "expanded": 72
+        }
+      ],
+      "content": "다항식 $(2x+ky)(4x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-3$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $4k-6$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(4k-6)+(-3k)=-3$이다. 이를 정리하면 $k-6=-3$, $k=3$이므로 $k=3$이다. 역산할 때 나누는 수 $1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=3$을 대입하면 두 계수는 각각 $6$, $-9$이고 합은 $6+(-9)=-3$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "3",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 15,
+      "printed": {
+        "a": 2,
+        "c": 4,
+        "d": -3,
+        "sum": 2,
+        "slope": 1,
+        "k": 8
+      },
+      "coefficients": {
+        "x2": 8,
+        "xy": 26,
+        "y2": -24
+      },
+      "uniqueness": "1k=8; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 60,
+          "expanded": 60
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 32,
+          "expanded": 32
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": -168,
+          "expanded": -168
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": -24,
+          "expanded": -24
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": -96,
+          "expanded": -96
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": -30,
+          "expanded": -30
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 72,
+          "expanded": 72
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 132,
+          "expanded": 132
+        }
+      ],
+      "content": "다항식 $(2x+ky)(4x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $2$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $4k-6$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(4k-6)+(-3k)=2$이다. 이를 정리하면 $k-6=2$, $k=8$이므로 $k=8$이다. 역산할 때 나누는 수 $1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=8$을 대입하면 두 계수는 각각 $26$, $-24$이고 합은 $26+(-24)=2$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "8",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 16,
+      "printed": {
+        "a": 3,
+        "c": 2,
+        "d": -5,
+        "sum": -9,
+        "slope": -3,
+        "k": -2
+      },
+      "coefficients": {
+        "x2": 6,
+        "xy": -19,
+        "y2": 10
+      },
+      "uniqueness": "-3k=6; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": -4,
+          "expanded": -4
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 24,
+          "expanded": 24
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": 140,
+          "expanded": 140
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": 10,
+          "expanded": 10
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": 40,
+          "expanded": 40
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 121,
+          "expanded": 121
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 54,
+          "expanded": 54
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": -20,
+          "expanded": -20
+        }
+      ],
+      "content": "다항식 $(3x+ky)(2x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-9$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $2k-15$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(2k-15)+(-5k)=-9$이다. 이를 정리하면 $-3k-15=-9$, $-3k=6$이므로 $k=-2$이다. 역산할 때 나누는 수 $-3$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=-2$을 대입하면 두 계수는 각각 $-19$, $10$이고 합은 $-19+(10)=-9$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "-2",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 17,
+      "printed": {
+        "a": 3,
+        "c": 2,
+        "d": -5,
+        "sum": -15,
+        "slope": -3,
+        "k": 0
+      },
+      "coefficients": {
+        "x2": 6,
+        "xy": -15,
+        "y2": 0
+      },
+      "uniqueness": "-3k=0; slope !=0; exactly one real constant",
+      "zeroTermMeaning": "y² coefficient is0; absent term represented by coefficient0",
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": -6,
+          "expanded": -6
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 24,
+          "expanded": 24
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": 84,
+          "expanded": 84
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 99,
+          "expanded": 99
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 54,
+          "expanded": 54
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": -36,
+          "expanded": -36
+        }
+      ],
+      "content": "다항식 $(3x+ky)(2x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-15$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $2k-15$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(2k-15)+(-5k)=-15$이다. 이를 정리하면 $-3k-15=-15$, $-3k=0$이므로 $k=0$이다. 역산할 때 나누는 수 $-3$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=0$을 대입하면 두 계수는 각각 $-15$, $0$이고 합은 $-15+(0)=-15$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "0",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 18,
+      "printed": {
+        "a": 3,
+        "c": 2,
+        "d": -5,
+        "sum": -24,
+        "slope": -3,
+        "k": 3
+      },
+      "coefficients": {
+        "x2": 6,
+        "xy": -9,
+        "y2": -15
+      },
+      "uniqueness": "-3k=-9; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": -9,
+          "expanded": -9
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 24,
+          "expanded": 24
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": -15,
+          "expanded": -15
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": -60,
+          "expanded": -60
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 66,
+          "expanded": 66
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 54,
+          "expanded": 54
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": -60,
+          "expanded": -60
+        }
+      ],
+      "content": "다항식 $(3x+ky)(2x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-24$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $2k-15$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(2k-15)+(-5k)=-24$이다. 이를 정리하면 $-3k-15=-24$, $-3k=-9$이므로 $k=3$이다. 역산할 때 나누는 수 $-3$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=3$을 대입하면 두 계수는 각각 $-9$, $-15$이고 합은 $-9+(-15)=-24$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "3",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 19,
+      "printed": {
+        "a": 3,
+        "c": 2,
+        "d": -5,
+        "sum": -39,
+        "slope": -3,
+        "k": 8
+      },
+      "coefficients": {
+        "x2": 6,
+        "xy": 1,
+        "y2": -40
+      },
+      "uniqueness": "-3k=-24; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": -14,
+          "expanded": -14
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 24,
+          "expanded": 24
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": -140,
+          "expanded": -140
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": -40,
+          "expanded": -40
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": -160,
+          "expanded": -160
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 11,
+          "expanded": 11
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 54,
+          "expanded": 54
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": -100,
+          "expanded": -100
+        }
+      ],
+      "content": "다항식 $(3x+ky)(2x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-39$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $2k-15$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(2k-15)+(-5k)=-39$이다. 이를 정리하면 $-3k-15=-39$, $-3k=-24$이므로 $k=8$이다. 역산할 때 나누는 수 $-3$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=8$을 대입하면 두 계수는 각각 $1$, $-40$이고 합은 $1+(-40)=-39$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "8",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 20,
+      "printed": {
+        "a": 3,
+        "c": 2,
+        "d": -3,
+        "sum": -7,
+        "slope": -1,
+        "k": -2
+      },
+      "coefficients": {
+        "x2": 6,
+        "xy": -13,
+        "y2": 6
+      },
+      "uniqueness": "-1k=2; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 4,
+          "expanded": 4
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 24,
+          "expanded": 24
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": 100,
+          "expanded": 100
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": 6,
+          "expanded": 6
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": 24,
+          "expanded": 24
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 99,
+          "expanded": 99
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 54,
+          "expanded": 54
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 0,
+          "expanded": 0
+        }
+      ],
+      "content": "다항식 $(3x+ky)(2x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-7$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $2k-9$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(2k-9)+(-3k)=-7$이다. 이를 정리하면 $-k-9=-7$, $-k=2$이므로 $k=-2$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=-2$을 대입하면 두 계수는 각각 $-13$, $6$이고 합은 $-13+(6)=-7$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "-2",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 21,
+      "printed": {
+        "a": 3,
+        "c": 2,
+        "d": -3,
+        "sum": -9,
+        "slope": -1,
+        "k": 0
+      },
+      "coefficients": {
+        "x2": 6,
+        "xy": -9,
+        "y2": 0
+      },
+      "uniqueness": "-1k=0; slope !=0; exactly one real constant",
+      "zeroTermMeaning": "y² coefficient is0; absent term represented by coefficient0",
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 6,
+          "expanded": 6
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 24,
+          "expanded": 24
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": 60,
+          "expanded": 60
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 81,
+          "expanded": 81
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 54,
+          "expanded": 54
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 0,
+          "expanded": 0
+        }
+      ],
+      "content": "다항식 $(3x+ky)(2x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-9$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $2k-9$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(2k-9)+(-3k)=-9$이다. 이를 정리하면 $-k-9=-9$, $-k=0$이므로 $k=0$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=0$을 대입하면 두 계수는 각각 $-9$, $0$이고 합은 $-9+(0)=-9$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "0",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 22,
+      "printed": {
+        "a": 3,
+        "c": 2,
+        "d": -3,
+        "sum": -12,
+        "slope": -1,
+        "k": 3
+      },
+      "coefficients": {
+        "x2": 6,
+        "xy": -3,
+        "y2": -9
+      },
+      "uniqueness": "-1k=-3; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 9,
+          "expanded": 9
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 24,
+          "expanded": 24
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": -9,
+          "expanded": -9
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": -36,
+          "expanded": -36
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 54,
+          "expanded": 54
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 54,
+          "expanded": 54
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 0,
+          "expanded": 0
+        }
+      ],
+      "content": "다항식 $(3x+ky)(2x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-12$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $2k-9$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(2k-9)+(-3k)=-12$이다. 이를 정리하면 $-k-9=-12$, $-k=-3$이므로 $k=3$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=3$을 대입하면 두 계수는 각각 $-3$, $-9$이고 합은 $-3+(-9)=-12$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "3",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 23,
+      "printed": {
+        "a": 3,
+        "c": 2,
+        "d": -3,
+        "sum": -17,
+        "slope": -1,
+        "k": 8
+      },
+      "coefficients": {
+        "x2": 6,
+        "xy": 7,
+        "y2": -24
+      },
+      "uniqueness": "-1k=-8; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 14,
+          "expanded": 14
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 24,
+          "expanded": 24
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": -100,
+          "expanded": -100
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": -24,
+          "expanded": -24
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": -96,
+          "expanded": -96
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 9,
+          "expanded": 9
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 54,
+          "expanded": 54
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 0,
+          "expanded": 0
+        }
+      ],
+      "content": "다항식 $(3x+ky)(2x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-17$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $2k-9$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(2k-9)+(-3k)=-17$이다. 이를 정리하면 $-k-9=-17$, $-k=-8$이므로 $k=8$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=8$을 대입하면 두 계수는 각각 $7$, $-24$이고 합은 $7+(-24)=-17$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "8",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 24,
+      "printed": {
+        "a": 3,
+        "c": 4,
+        "d": -5,
+        "sum": -13,
+        "slope": -1,
+        "k": -2
+      },
+      "coefficients": {
+        "x2": 12,
+        "xy": -23,
+        "y2": 10
+      },
+      "uniqueness": "-1k=2; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 12,
+          "expanded": 12
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 48,
+          "expanded": 48
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": 180,
+          "expanded": 180
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": 10,
+          "expanded": 10
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": 40,
+          "expanded": 40
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 187,
+          "expanded": 187
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 108,
+          "expanded": 108
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 10,
+          "expanded": 10
+        }
+      ],
+      "content": "다항식 $(3x+ky)(4x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-13$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $4k-15$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(4k-15)+(-5k)=-13$이다. 이를 정리하면 $-k-15=-13$, $-k=2$이므로 $k=-2$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=-2$을 대입하면 두 계수는 각각 $-23$, $10$이고 합은 $-23+(10)=-13$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "-2",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 25,
+      "printed": {
+        "a": 3,
+        "c": 4,
+        "d": -5,
+        "sum": -15,
+        "slope": -1,
+        "k": 0
+      },
+      "coefficients": {
+        "x2": 12,
+        "xy": -15,
+        "y2": 0
+      },
+      "uniqueness": "-1k=0; slope !=0; exactly one real constant",
+      "zeroTermMeaning": "y² coefficient is0; absent term represented by coefficient0",
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 18,
+          "expanded": 18
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 48,
+          "expanded": 48
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": 108,
+          "expanded": 108
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 153,
+          "expanded": 153
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 108,
+          "expanded": 108
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 18,
+          "expanded": 18
+        }
+      ],
+      "content": "다항식 $(3x+ky)(4x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-15$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $4k-15$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(4k-15)+(-5k)=-15$이다. 이를 정리하면 $-k-15=-15$, $-k=0$이므로 $k=0$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=0$을 대입하면 두 계수는 각각 $-15$, $0$이고 합은 $-15+(0)=-15$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "0",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 26,
+      "printed": {
+        "a": 3,
+        "c": 4,
+        "d": -5,
+        "sum": -18,
+        "slope": -1,
+        "k": 3
+      },
+      "coefficients": {
+        "x2": 12,
+        "xy": -3,
+        "y2": -15
+      },
+      "uniqueness": "-1k=-3; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 27,
+          "expanded": 27
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 48,
+          "expanded": 48
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": -15,
+          "expanded": -15
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": -60,
+          "expanded": -60
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 102,
+          "expanded": 102
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 108,
+          "expanded": 108
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 30,
+          "expanded": 30
+        }
+      ],
+      "content": "다항식 $(3x+ky)(4x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-18$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $4k-15$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(4k-15)+(-5k)=-18$이다. 이를 정리하면 $-k-15=-18$, $-k=-3$이므로 $k=3$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=3$을 대입하면 두 계수는 각각 $-3$, $-15$이고 합은 $-3+(-15)=-18$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "3",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 27,
+      "printed": {
+        "a": 3,
+        "c": 4,
+        "d": -5,
+        "sum": -23,
+        "slope": -1,
+        "k": 8
+      },
+      "coefficients": {
+        "x2": 12,
+        "xy": 17,
+        "y2": -40
+      },
+      "uniqueness": "-1k=-8; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 42,
+          "expanded": 42
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 48,
+          "expanded": 48
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": -180,
+          "expanded": -180
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": -40,
+          "expanded": -40
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": -160,
+          "expanded": -160
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 17,
+          "expanded": 17
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 108,
+          "expanded": 108
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 50,
+          "expanded": 50
+        }
+      ],
+      "content": "다항식 $(3x+ky)(4x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-23$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $4k-15$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(4k-15)+(-5k)=-23$이다. 이를 정리하면 $-k-15=-23$, $-k=-8$이므로 $k=8$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=8$을 대입하면 두 계수는 각각 $17$, $-40$이고 합은 $17+(-40)=-23$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "8",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 28,
+      "printed": {
+        "a": 3,
+        "c": 4,
+        "d": -3,
+        "sum": -11,
+        "slope": 1,
+        "k": -2
+      },
+      "coefficients": {
+        "x2": 12,
+        "xy": -17,
+        "y2": 6
+      },
+      "uniqueness": "1k=-2; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 20,
+          "expanded": 20
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 48,
+          "expanded": 48
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": 140,
+          "expanded": 140
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": 6,
+          "expanded": 6
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": 24,
+          "expanded": 24
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 165,
+          "expanded": 165
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 108,
+          "expanded": 108
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 30,
+          "expanded": 30
+        }
+      ],
+      "content": "다항식 $(3x+ky)(4x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-11$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $4k-9$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(4k-9)+(-3k)=-11$이다. 이를 정리하면 $k-9=-11$, $k=-2$이므로 $k=-2$이다. 역산할 때 나누는 수 $1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=-2$을 대입하면 두 계수는 각각 $-17$, $6$이고 합은 $-17+(6)=-11$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "-2",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 29,
+      "printed": {
+        "a": 3,
+        "c": 4,
+        "d": -3,
+        "sum": -9,
+        "slope": 1,
+        "k": 0
+      },
+      "coefficients": {
+        "x2": 12,
+        "xy": -9,
+        "y2": 0
+      },
+      "uniqueness": "1k=0; slope !=0; exactly one real constant",
+      "zeroTermMeaning": "y² coefficient is0; absent term represented by coefficient0",
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 30,
+          "expanded": 30
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 48,
+          "expanded": 48
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": 84,
+          "expanded": 84
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 135,
+          "expanded": 135
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 108,
+          "expanded": 108
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 54,
+          "expanded": 54
+        }
+      ],
+      "content": "다항식 $(3x+ky)(4x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-9$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $4k-9$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(4k-9)+(-3k)=-9$이다. 이를 정리하면 $k-9=-9$, $k=0$이므로 $k=0$이다. 역산할 때 나누는 수 $1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=0$을 대입하면 두 계수는 각각 $-9$, $0$이고 합은 $-9+(0)=-9$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "0",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 30,
+      "printed": {
+        "a": 3,
+        "c": 4,
+        "d": -3,
+        "sum": -6,
+        "slope": 1,
+        "k": 3
+      },
+      "coefficients": {
+        "x2": 12,
+        "xy": 3,
+        "y2": -9
+      },
+      "uniqueness": "1k=3; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 45,
+          "expanded": 45
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 48,
+          "expanded": 48
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": -9,
+          "expanded": -9
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": -36,
+          "expanded": -36
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 90,
+          "expanded": 90
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 108,
+          "expanded": 108
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 90,
+          "expanded": 90
+        }
+      ],
+      "content": "다항식 $(3x+ky)(4x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-6$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $4k-9$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(4k-9)+(-3k)=-6$이다. 이를 정리하면 $k-9=-6$, $k=3$이므로 $k=3$이다. 역산할 때 나누는 수 $1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=3$을 대입하면 두 계수는 각각 $3$, $-9$이고 합은 $3+(-9)=-6$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "3",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    },
+    {
+      "variant": 31,
+      "printed": {
+        "a": 3,
+        "c": 4,
+        "d": -3,
+        "sum": -1,
+        "slope": 1,
+        "k": 8
+      },
+      "coefficients": {
+        "x2": 12,
+        "xy": 23,
+        "y2": -24
+      },
+      "uniqueness": "1k=8; slope !=0; exactly one real constant",
+      "zeroTermMeaning": null,
+      "pointChecks": [
+        {
+          "x": -2,
+          "y": -1,
+          "original": 70,
+          "expanded": 70
+        },
+        {
+          "x": -2,
+          "y": 0,
+          "original": 48,
+          "expanded": 48
+        },
+        {
+          "x": -2,
+          "y": 2,
+          "original": -140,
+          "expanded": -140
+        },
+        {
+          "x": 0,
+          "y": -1,
+          "original": -24,
+          "expanded": -24
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "original": 0,
+          "expanded": 0
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "original": -96,
+          "expanded": -96
+        },
+        {
+          "x": 3,
+          "y": -1,
+          "original": 15,
+          "expanded": 15
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "original": 108,
+          "expanded": 108
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "original": 150,
+          "expanded": 150
+        }
+      ],
+      "content": "다항식 $(3x+ky)(4x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-1$일 때, 상수 $k$의 값을 구하시오.",
+      "solution": "$xy$항의 계수는 $4k-9$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(4k-9)+(-3k)=-1$이다. 이를 정리하면 $k-9=-1$, $k=8$이므로 $k=8$이다. 역산할 때 나누는 수 $1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=8$을 대입하면 두 계수는 각각 $23$, $-24$이고 합은 $23+(-24)=-1$으로 조건을 만족한다.",
+      "answerCheckedAfterIndependentSolve": "8",
+      "mathSegmentsRendered": 19,
+      "curriculumSurfaces2015": {
+        "stem": "passed",
+        "choices": "passed-not-applicable-native-short-answer",
+        "figuresAndTables": "passed-not-applicable-no-assets",
+        "notation": "passed",
+        "answer": "passed",
+        "studentSolution": "passed",
+        "prerequisites": "passed"
+      }
+    }
+  ],
+  "mutations": [
+    {
+      "variant": 0,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 0,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 0,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 0,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 0,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 0,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 0,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 0,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 0,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 0,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 0,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 0,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 0,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 0,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 0,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 0,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 0,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 1,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 1,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 1,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 1,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 1,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 1,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 1,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 1,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 1,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 1,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 1,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 1,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 1,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 1,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 1,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 1,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 1,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 2,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 2,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 2,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 2,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 2,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 2,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 2,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 2,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 2,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 2,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 2,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 2,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 2,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 2,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 2,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 2,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 2,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 3,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 3,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 3,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 3,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 3,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 3,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 3,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 3,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 3,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 3,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 3,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 3,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 3,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 3,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 3,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 3,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 3,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 4,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 4,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 4,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 4,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 4,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 4,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 4,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 4,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 4,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 4,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 4,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 4,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 4,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 4,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 4,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 4,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 4,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 5,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 5,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 5,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 5,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 5,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 5,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 5,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 5,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 5,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 5,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 5,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 5,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 5,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 5,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 5,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 5,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 5,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 6,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 6,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 6,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 6,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 6,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 6,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 6,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 6,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 6,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 6,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 6,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 6,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 6,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 6,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 6,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 6,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 6,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 7,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 7,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 7,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 7,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 7,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 7,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 7,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 7,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 7,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 7,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 7,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 7,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 7,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 7,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 7,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 7,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 7,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 8,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 8,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 8,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 8,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 8,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 8,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 8,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 8,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 8,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 8,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 8,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 8,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 8,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 8,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 8,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 8,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 8,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 9,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 9,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 9,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 9,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 9,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 9,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 9,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 9,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 9,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 9,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 9,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 9,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 9,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 9,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 9,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 9,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 9,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 10,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 10,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 10,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 10,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 10,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 10,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 10,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 10,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 10,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 10,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 10,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 10,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 10,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 10,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 10,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 10,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 10,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 11,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 11,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 11,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 11,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 11,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 11,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 11,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 11,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 11,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 11,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 11,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 11,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 11,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 11,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 11,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 11,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 11,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 12,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 12,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 12,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 12,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 12,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 12,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 12,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 12,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 12,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 12,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 12,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 12,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 12,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 12,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 12,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 12,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 12,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 13,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 13,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 13,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 13,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 13,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 13,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 13,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 13,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 13,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 13,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 13,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 13,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 13,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 13,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 13,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 13,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 13,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 14,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 14,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 14,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 14,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 14,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 14,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 14,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 14,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 14,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 14,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 14,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 14,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 14,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 14,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 14,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 14,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 14,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 15,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 15,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 15,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 15,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 15,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 15,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 15,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 15,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 15,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 15,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 15,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 15,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 15,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 15,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 15,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 15,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 15,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 16,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 16,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 16,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 16,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 16,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 16,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 16,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 16,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 16,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 16,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 16,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 16,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 16,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 16,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 16,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 16,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 16,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 17,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 17,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 17,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 17,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 17,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 17,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 17,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 17,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 17,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 17,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 17,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 17,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 17,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 17,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 17,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 17,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 17,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 18,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 18,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 18,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 18,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 18,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 18,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 18,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 18,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 18,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 18,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 18,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 18,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 18,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 18,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 18,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 18,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 18,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 19,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 19,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 19,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 19,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 19,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 19,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 19,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 19,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 19,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 19,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 19,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 19,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 19,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 19,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 19,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 19,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 19,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 20,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 20,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 20,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 20,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 20,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 20,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 20,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 20,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 20,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 20,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 20,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 20,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 20,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 20,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 20,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 20,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 20,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 21,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 21,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 21,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 21,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 21,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 21,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 21,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 21,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 21,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 21,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 21,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 21,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 21,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 21,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 21,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 21,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 21,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 22,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 22,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 22,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 22,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 22,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 22,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 22,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 22,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 22,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 22,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 22,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 22,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 22,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 22,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 22,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 22,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 22,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 23,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 23,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 23,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 23,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 23,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 23,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 23,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 23,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 23,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 23,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 23,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 23,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 23,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 23,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 23,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 23,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 23,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 24,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 24,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 24,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 24,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 24,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 24,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 24,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 24,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 24,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 24,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 24,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 24,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 24,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 24,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 24,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 24,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 24,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 25,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 25,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 25,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 25,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 25,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 25,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 25,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 25,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 25,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 25,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 25,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 25,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 25,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 25,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 25,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 25,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 25,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 26,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 26,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 26,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 26,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 26,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 26,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 26,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 26,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 26,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 26,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 26,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 26,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 26,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 26,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 26,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 26,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 26,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 27,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 27,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 27,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 27,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 27,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 27,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 27,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 27,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 27,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 27,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 27,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 27,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 27,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 27,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 27,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 27,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 27,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 28,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 28,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 28,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 28,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 28,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 28,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 28,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 28,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 28,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 28,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 28,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 28,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 28,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 28,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 28,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 28,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 28,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 29,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 29,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 29,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 29,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 29,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 29,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 29,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 29,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 29,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 29,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 29,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 29,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 29,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 29,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 29,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 29,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 29,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 30,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 30,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 30,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 30,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 30,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 30,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 30,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 30,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 30,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 30,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 30,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 30,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 30,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 30,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 30,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 30,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 30,
+      "label": "difficultyBasis",
+      "rejected": true
+    },
+    {
+      "variant": 31,
+      "label": "answer",
+      "rejected": true
+    },
+    {
+      "variant": 31,
+      "label": "contentAppend",
+      "rejected": true
+    },
+    {
+      "variant": 31,
+      "label": "contentWhitespace",
+      "rejected": true
+    },
+    {
+      "variant": 31,
+      "label": "sumChange",
+      "rejected": true
+    },
+    {
+      "variant": 31,
+      "label": "factorChange",
+      "rejected": true
+    },
+    {
+      "variant": 31,
+      "label": "solutionAppend",
+      "rejected": true
+    },
+    {
+      "variant": 31,
+      "label": "solutionNumber",
+      "rejected": true
+    },
+    {
+      "variant": 31,
+      "label": "missingCoefficient",
+      "rejected": true
+    },
+    {
+      "variant": 31,
+      "label": "parameters",
+      "rejected": true
+    },
+    {
+      "variant": 31,
+      "label": "parameterExtra",
+      "rejected": true
+    },
+    {
+      "variant": 31,
+      "label": "mc",
+      "rejected": true
+    },
+    {
+      "variant": 31,
+      "label": "written",
+      "rejected": true
+    },
+    {
+      "variant": 31,
+      "label": "rubric",
+      "rejected": true
+    },
+    {
+      "variant": 31,
+      "label": "distractors",
+      "rejected": true
+    },
+    {
+      "variant": 31,
+      "label": "figure",
+      "rejected": true
+    },
+    {
+      "variant": 31,
+      "label": "difficulty",
+      "rejected": true
+    },
+    {
+      "variant": 31,
+      "label": "difficultyBasis",
+      "rejected": true
+    }
+  ],
+  "zeroSlope": [
+    {
+      "content": "다항식 $(2x+ky)(5x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-10$일 때, 상수 $k$의 값을 구하시오.",
+      "a": 2,
+      "c": 5,
+      "d": -5,
+      "slope": 0,
+      "sum": -10,
+      "constant": -10,
+      "classification": "all real k: nonunique",
+      "verifierErrors": [
+        "역산 계수가 0이면 해가 유일하지 않음"
+      ]
+    },
+    {
+      "content": "다항식 $(2x+ky)(5x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-9$일 때, 상수 $k$의 값을 구하시오.",
+      "a": 2,
+      "c": 5,
+      "d": -5,
+      "slope": 0,
+      "sum": -9,
+      "constant": -10,
+      "classification": "no k: inconsistent",
+      "verifierErrors": [
+        "역산 계수가 0이면 해가 유일하지 않음"
+      ]
+    }
+  ],
+  "copyAndInvalidSeedChecks": true,
+  "policyRows": [
+    {
+      "label": "current",
+      "format": "혼합",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "current",
+      "format": "단답형",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "current",
+      "format": "객관식",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "current",
+      "format": "서술형",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "renamed",
+      "format": "혼합",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "renamed",
+      "format": "단답형",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "renamed",
+      "format": "객관식",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "renamed",
+      "format": "서술형",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "future",
+      "format": "혼합",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "future",
+      "format": "단답형",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "future",
+      "format": "객관식",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "future",
+      "format": "서술형",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "native",
+      "format": "혼합",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "native",
+      "format": "단답형",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "native",
+      "format": "객관식",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "native",
+      "format": "서술형",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "approval",
+      "format": "혼합",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "approval",
+      "format": "단답형",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "approval",
+      "format": "객관식",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "approval",
+      "format": "서술형",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "component",
+      "format": "혼합",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "component",
+      "format": "단답형",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "component",
+      "format": "객관식",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    },
+    {
+      "label": "component",
+      "format": "서술형",
+      "calls": 0,
+      "status": "unavailable",
+      "coverage": "unavailable"
+    }
+  ],
+  "m1Precedence": {
+    "status": "unavailable",
+    "warnings": [
+      "중1 범위를 벗어나는 필수 식 계산이 포함된 문자 합 유형은 제공하지 않습니다.",
+      "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+    ]
+  },
+  "outputRows": [
+    {
+      "expectedDigest": "5fca40f3419a361c5cce5f815cc5f6c87149593e957ace395962d0f0d931ef1e",
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "CONFLICT",
+          "message": "문항이나 지원 범위가 바뀌었습니다. 다시 만든 뒤 출력해 주세요."
+        }
+      }
+    },
+    {
+      "expectedDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "CONFLICT",
+          "message": "문항이나 지원 범위가 바뀌었습니다. 다시 만든 뒤 출력해 주세요."
+        }
+      }
+    }
+  ],
+  "factoryCalls": 0,
+  "dbCalls": 0
+}

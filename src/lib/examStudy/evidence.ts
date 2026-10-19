@@ -11,6 +11,7 @@ import { circledValueRaw } from "@/lib/math/circledNumber";
 import { parseProblemContent } from "@/lib/problem/parseProblemContent";
 import { REQUIREMENT_BY_ID } from "./requirements";
 import { studyCurriculumHold } from "./curriculumEligibility";
+import { studyReleaseHold } from "./releaseEligibility";
 
 export function requiredEvidenceChecks(
   id: StudyRequirementId,
@@ -36,6 +37,7 @@ export function familyCoverage(
   item?: ExamStudyDraft,
 ): StudyCoverageLevel {
   if (studyCurriculumHold(family)) return "unavailable";
+  if (studyReleaseHold(family)) return "unavailable";
   const intent = family.fulfills.find((f) => f.requirement === id);
   if (!intent || (verification && !verification.valid)) return "unavailable";
   const proof = family.evidence;

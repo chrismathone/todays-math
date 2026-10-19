@@ -19,6 +19,10 @@ import {
   STUDY_CURRICULUM_POLICY_VERSION,
   studyCurriculumHold,
 } from "./curriculumEligibility";
+import {
+  STUDY_RELEASE_POLICY_VERSION,
+  studyReleaseHold,
+} from "./releaseEligibility";
 
 export const EXAM_STUDY_ENGINE_VERSION = "exam-study-1";
 
@@ -117,6 +121,7 @@ export function studyManifestVersion(
   return `exam-study-manifest-${sha256({
     engine: EXAM_STUDY_ENGINE_VERSION,
     curriculumPolicy: STUDY_CURRICULUM_POLICY_VERSION,
+    releasePolicy: STUDY_RELEASE_POLICY_VERSION,
     requirements: STUDY_REQUIREMENTS,
     families: [...families]
       .sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0))
@@ -160,7 +165,8 @@ export function getExamStudyCatalog(
       .filter(
         (f) =>
           (course === undefined || f.course === course) &&
-          !studyCurriculumHold(f),
+          !studyCurriculumHold(f) &&
+          !studyReleaseHold(f),
       )
       .map((f) => ({
         id: f.id,
