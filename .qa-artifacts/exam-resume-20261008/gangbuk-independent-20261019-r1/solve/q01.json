@@ -1,0 +1,143 @@
+{
+  "studentDigest": "3495bdf016028ee78b38c57f6d5afc1d160820896c91102b659bbea3d1983740",
+  "solverId": "codex-gangbuk-independent-20261019-r1",
+  "answer": "?",
+  "solution": "?81? 81? ?? ?? ?????? 9??. ??? a?=9?? a<0??? a=-3??. a+b=7? ???? -3+b=7, ? b=10??. ? ?? b>0? ????. b?=N??? N=10?=100??. ??? ??? ???. ??? N=100, a=-3, b=10? N>0? ? ??? ?? ????. a? ?? ???? a? ??? ????, ?? ???? b? ??? ????? N? ?? ????.",
+  "evidence": {
+    "questionNumber": 1,
+    "twinExternalId": "exam-twin-gangbuk-2025-1-mid-author-r1-q01",
+    "studentOnlyInputs": true,
+    "inputHashes": {
+      "blind-manifest.json": "e0811add642407e2478b0e90e155b1b93f7476038c4e22ea8fef2675f462c1af",
+      "SOLVE-BRIEF.md": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+      "student-problems.json": "ea6ff89a95083612cace29a58c932d279b6efbc062eb18ddb9ae56a3ceb94b21"
+    },
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "N": 16,
+        "positive_b": 4,
+        "a_plus_b": 1,
+        "satisfies_all": false,
+        "studentOption": "$16$",
+        "reason": "a=-3?? b>0??? N=16?? b=4, a+b=1??. 7? ???? ?? (?)? ???? ???."
+      },
+      {
+        "choice": 2,
+        "N": 49,
+        "positive_b": 7,
+        "a_plus_b": 4,
+        "satisfies_all": false,
+        "studentOption": "$49$",
+        "reason": "a=-3?? b>0??? N=49?? b=7, a+b=4??. 7? ???? ?? (?)? ???? ???."
+      },
+      {
+        "choice": 3,
+        "N": 81,
+        "positive_b": 9,
+        "a_plus_b": 6,
+        "satisfies_all": false,
+        "studentOption": "$81$",
+        "reason": "a=-3?? b>0??? N=81?? b=9, a+b=6??. 7? ???? ?? (?)? ???? ???."
+      },
+      {
+        "choice": 4,
+        "N": 100,
+        "positive_b": 10,
+        "a_plus_b": 7,
+        "satisfies_all": true,
+        "studentOption": "$100$",
+        "reason": "a=-3?? b>0??? N=100?? b=10, a+b=7??. 7? ?? ?? ??? ????."
+      },
+      {
+        "choice": 5,
+        "N": 256,
+        "positive_b": 16,
+        "a_plus_b": 13,
+        "satisfies_all": false,
+        "studentOption": "$256$",
+        "reason": "a=-3?? b>0??? N=256?? b=16, a+b=13??. 7? ???? ?? (?)? ???? ???."
+      }
+    ],
+    "existenceUniquenessSignsDomainUnits": "a?=9? ??? ?3??? a<0?? -3? ????. ?? ???? b=10? ???? ????. N=100>0??. ? ???? ?? ??? ??? ??? ????. b=-10?? a=3? ?? ???? ????. ??/??/??/?? ??? ?? ? ????? ?? ?? ? ?? ??? ???? ???.",
+    "figureReading": "student figures=[] and manifest figures=[]; no figure or pixel measurement required.",
+    "koreanConcerns": "?? N, a<0, b>0, a+b=7? ??? ?? N? ?? ????. ? ? a,b? ?? ??? ?? ???? ?? ???? ???. ?81? ?9? ?? ??? ?? ?? ???? ??? ?? ???? ?? ????? ?? ???.",
+    "withinGradeMethodEvidence": {
+      "target": "?3 / 2015",
+      "usedConcepts": [
+        "?? ?? ???? ?",
+        "a?=9? ? ??? ?? ??",
+        "?????? ??/??",
+        "?? ??? ?? ??"
+      ],
+      "derivation": "? ??? ??? ? ??? ?? ???. ?3 ??? ??? ?? ??/??? ??? ????.",
+      "advancedMethodsUsed": false,
+      "gradeMethodConcerns": [],
+      "notFinalGradeApproval": true
+    },
+    "calculation": {
+      "script": "independent-calculations.py",
+      "scriptSha256": "8e8d6f062d9ce0fc96a7e0050f30097d7577004612344e086135ca17a0f52d01",
+      "output": "calculation-results.json",
+      "outputSha256": "82f8858372326dd0895af34fc3d599db92ddc0a26bc36fd86159ac27fce51950",
+      "actualResult": {
+        "sqrt81": 9,
+        "a": -3,
+        "b": 10,
+        "N": 100,
+        "choiceChecks": [
+          {
+            "choice": 1,
+            "N": 16,
+            "positive_b": 4,
+            "a_plus_b": 1,
+            "satisfies_all": false
+          },
+          {
+            "choice": 2,
+            "N": 49,
+            "positive_b": 7,
+            "a_plus_b": 4,
+            "satisfies_all": false
+          },
+          {
+            "choice": 3,
+            "N": 81,
+            "positive_b": 9,
+            "a_plus_b": 6,
+            "satisfies_all": false
+          },
+          {
+            "choice": 4,
+            "N": 100,
+            "positive_b": 10,
+            "a_plus_b": 7,
+            "satisfies_all": true
+          },
+          {
+            "choice": 5,
+            "N": 256,
+            "positive_b": 16,
+            "a_plus_b": 13,
+            "satisfies_all": false
+          }
+        ],
+        "uniqueChoice": 4
+      },
+      "role": "Exact deterministic arithmetic and five-option substitution; not model confidence or classification judgment."
+    },
+    "exposure": {
+      "originalGangbukQ1PreviouslySeen": true,
+      "originalContext": "Prior source inspection; original not reread in this scope.",
+      "newTwinAuthored": false,
+      "newTwinAuthorAnswerOrSolutionSeen": false,
+      "onlyAuthorizedBlindInputsUsed": true,
+      "authorPrivateScriptsQaImagesGitHistoryRead": false
+    },
+    "holds": [
+      "Stage1 raw proof only; author comparison awaits parent seal and explicit stage2 exposure.",
+      "No final curriculum/classification/family/source/rights/native/release approval."
+    ]
+  },
+  "status": "solved"
+}

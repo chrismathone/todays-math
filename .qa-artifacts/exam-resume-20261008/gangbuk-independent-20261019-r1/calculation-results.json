@@ -1,0 +1,44 @@
+{
+  "sqrt81": 9,
+  "a": -3,
+  "b": 10,
+  "N": 100,
+  "choiceChecks": [
+    {
+      "choice": 1,
+      "N": 16,
+      "positive_b": 4,
+      "a_plus_b": 1,
+      "satisfies_all": false
+    },
+    {
+      "choice": 2,
+      "N": 49,
+      "positive_b": 7,
+      "a_plus_b": 4,
+      "satisfies_all": false
+    },
+    {
+      "choice": 3,
+      "N": 81,
+      "positive_b": 9,
+      "a_plus_b": 6,
+      "satisfies_all": false
+    },
+    {
+      "choice": 4,
+      "N": 100,
+      "positive_b": 10,
+      "a_plus_b": 7,
+      "satisfies_all": true
+    },
+    {
+      "choice": 5,
+      "N": 256,
+      "positive_b": 16,
+      "a_plus_b": 13,
+      "satisfies_all": false
+    }
+  ],
+  "uniqueChoice": 4
+}
