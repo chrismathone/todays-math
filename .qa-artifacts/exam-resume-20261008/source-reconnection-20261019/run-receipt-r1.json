@@ -1,0 +1,29 @@
+{
+  "observedAt": "2026-10-19T05:15:27.985Z",
+  "sourceManifests": [
+    ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/source-files.json",
+    ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeonggu/source-manifest.json",
+    ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsan/source-manifest.json",
+    ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsang/source-manifest.json",
+    ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongam/source-manifest.json",
+    ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+    ".qa-artifacts/exam-resume-20261008/next-three-extraction-r1-attempt2/nobyeon/source-manifest.json",
+    ".qa-artifacts/exam-resume-20261008/next-three-extraction-r1-attempt2/gyeseong/source-manifest.json",
+    ".qa-artifacts/exam-resume-20261008/next-three-extraction-r1-attempt2/gyeongilyeo/source-manifest.json",
+    ".qa-artifacts/exam-resume-20261008/next-three-extraction-r2-attempt1/daegok/source-manifest.json",
+    ".qa-artifacts/exam-resume-20261008/next-three-extraction-r2-attempt1/daegudong/source-manifest.json",
+    ".qa-artifacts/exam-resume-20261008/next-three-extraction-r2-attempt1/neungin/source-manifest.json"
+  ],
+  "summary": {
+    "matched": 29
+  },
+  "sourceCount": 29,
+  "duplicateByteGroups": 1,
+  "contentPairIdentity": "unconfirmed",
+  "contentCertification": {
+    "status": "not-performed",
+    "reason": "Byte identity does not certify HWP/PDF question, answer, year, grade or whole-document equivalence."
+  },
+  "manifestSelection": "Existing latest v11 continuation references plus current per-school source manifests; Bumil current_path preserves explicit previously recorded relocation. No N directory scan, fallback path guessing, answer extraction or author answer access.",
+  "reportSha256": "25881f4fa6ed009910f4776a83f979c81949f3c1bb61aa73bef2808425c513df"
+}
