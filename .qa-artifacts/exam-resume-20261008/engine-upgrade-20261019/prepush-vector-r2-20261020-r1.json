@@ -1,0 +1,48 @@
+{
+  "utc": "2026-10-19T18:01:32.083Z",
+  "target": "c0326155f3f0edb602c1b87351a42f4af8e4e65b",
+  "integratedMain": "0e858c133d08c4b6a7a0bd83c5ca08860a9df402",
+  "snapshot": "2a8e622421d39842b60fac7f8c909d2365724c7c",
+  "remoteTargetAncestor": true,
+  "remoteMainAncestor": true,
+  "sourceHashes": {
+    "scripts/import/exam-twin/vectorReplay.mjs": "b40e21897d5a3fbcdc8c3d48f47ada04bf018a30ab2dd9959456ca88abb6066a",
+    "scripts/import/exam-twin/replay-vector-figures.mjs": "26a110d499684bc5398499f5f83aa10c7f5e32009a0e68adc962a82739b02dce",
+    "scripts/import/exam-twin/vectorReplay.test.mjs": "b08da7c4dd2e8a91837cd5da122227c34f1c737d4c9e3458e4004b19eb55d3a0",
+    "scripts/import/exam-twin/answerPresentation.test.mjs": "cda540e57aeedbb57a309fa1b746dcbd5bd942266ca974ae0fc4b33a5af6a92a",
+    "scripts/import/exam-twin/authoredMathNotation.test.mjs": "5e6609605d3bcd6e9854e68fdafde606466eb70642e9060a392c5c719d2b8875",
+    "scripts/import/exam-twin/candidatePack.test.mjs": "1b20e6319a510b2958062166e0db57b1bd76eb392955ca3c22f3bc3209c388f0",
+    "scripts/import/exam-twin/computedChoiceChecks.test.mjs": "7e93b5f266ebc95b71f76dad496c135e2dd71c848bca7a0f5f8995d654174359",
+    "scripts/import/exam-twin/constantAnswers.test.mjs": "77130006f26cfd5edc97616100f16bb85079171dbc640b9e95d6bdeb29cfa511",
+    "scripts/import/exam-twin/prepare-sealed-review.test.mjs": "49980fc2455cc236a05eaccdb221438055179f2a08eb641129988b0ff162a0d4",
+    "scripts/import/exam-twin/rebind-identical-review.test.mjs": "4ffaad3f983d18328c7805beab76dba0bf67484a5effac1179b385fd4822c0a3",
+    "scripts/import/exam-twin/recordCorrectionAnswer.test.mjs": "5b490df946af4fac792d47ef8d8c073b42deedc8faee281bd7faef47c588fd4e",
+    "scripts/import/exam-twin/reviewWorkflow.test.mjs": "39a487451e39ca02f1c20038ad26efc36c79983cbd2617b4ffc8febe22fb162a",
+    "scripts/import/exam-twin/sourceIdentity.test.mjs": "75a034880045119d34bd2c2422c6f503083b7e1eba911952a75e95f5d6760e9a",
+    "scripts/import/exam-twin/statisticsConditions.test.mjs": "fcd129705b430af8ad0ac2706afe80a984160d0a979f682699c725b85fbfff37",
+    "scripts/import/exam-twin/candidatePack.mjs": "0acb61d7f1bbaae37cd6f8164fd532e4dbf8f465d00bcfd73cf2f4a50d6aa345"
+  },
+  "sourceUnchanged": true,
+  "testRun": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r31-tests.tap",
+    "sha256": "c789657de56d6e5c68e25886defc0b8f5ba36b68d15de3880e1fc825652b6f1e",
+    "files": 12,
+    "passed": 148,
+    "failed": 0
+  },
+  "knownPreservedWhitespace": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group5-review-20261020-r2/verification/own-q05-review-calculate.py",
+      "sha256": "0f3fd8274f25918488d1bf6b320b0a86d3c6d62a271e9f363294f52ac0a3f386",
+      "line": 72
+    }
+  ],
+  "allOtherDiffCheckPassed": true,
+  "receiptWriteIncident": "New test execution passed but generic prepush-r31-receipt name was already occupied; wx refused overwrite. Existing receipt preserved, new unique receipt written.",
+  "u51Status": "R2 independently confirmed candidate semantic binding hold; R3repair next",
+  "canonicalSelected": 134,
+  "pendingManualDrafts": 2,
+  "fullVerified": 0,
+  "loadable": 0,
+  "dbWrites": 0
+}
