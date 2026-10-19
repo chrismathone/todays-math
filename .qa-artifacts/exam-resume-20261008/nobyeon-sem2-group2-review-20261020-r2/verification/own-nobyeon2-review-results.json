@@ -1,0 +1,69 @@
+{
+  "results": [
+    {
+      "q": 9,
+      "reportSha256": "568051f8ccbf7a15517df9ed4eb65cde98dbad1800332baa282295051f01136c",
+      "math": "passed",
+      "grade": "passed",
+      "content": "held",
+      "trueChecks": 9,
+      "passedGradeSurfaces": 7
+    },
+    {
+      "q": 10,
+      "reportSha256": "17622b052e7634f34f0f4f3333212ef3c84573503ae65b9c9c77a13a929a0b7e",
+      "math": "passed",
+      "grade": "passed",
+      "content": "held",
+      "trueChecks": 9,
+      "passedGradeSurfaces": 7
+    },
+    {
+      "q": 11,
+      "reportSha256": "235c2c3a046dcd0969733763d342e2dd11c11888a945f3cfa1c16c10055ae64b",
+      "math": "passed",
+      "grade": "passed",
+      "content": "held",
+      "trueChecks": 9,
+      "passedGradeSurfaces": 7
+    }
+  ],
+  "inputBeforeAfterHashes": {
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\blind\\solve\\q09.json": "cf3bda60fb12572115765aa18803b26ecd48fa142c528f9ea6dfe051e26b35a3",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\package\\private\\q09\\candidate.json": "68383dfb31b7d05732bfcb8cb8162895dc3fa0cfcd0f5a540d0c6a16164550ed",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\package\\private\\q09\\figure-1.spec.json": "15bd51bf8b2a2827578c1b0e4d5d892a1a3ac5cfd386d3cdcbf3220b44ff8855",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\package\\private\\q09\\figure-1.svg": "1ecbc9981e8f2715a84099b6dca4d1c698724e1b06a273ad08748123e554bbed",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\blind\\solve\\q10.json": "0232b841266a0a98f3cce8655439f12210be6c4f9000e85cb65068ce5dc75d8c",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\package\\private\\q10\\candidate.json": "9e3fab44a36167b21235a8fb5c9a80d42da654946db19c20cecd72312422b8eb",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\package\\private\\q10\\figure-1.spec.json": "f10caf67e5041aad4cce09b438157094045369dd9f2e53a75ee225b7af748117",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\package\\private\\q10\\figure-1.svg": "c54eb6410f9ff6f40bc336cc817d0ad6dc6e0b5b48290501e7ff779ddb7d47b3",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\blind\\solve\\q11.json": "5ceca7453ea5548bb9af43c198bde342acee9faa69ea1d20ba54e204a0298f08",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group2-review-20261020-r2\\package\\private\\q11\\candidate.json": "7cc5e43b77115211d446e11883d923b3a3475d55d9e7e0167e818f0ea8d43406"
+  },
+  "rawUnchanged": true,
+  "primaryEvidence": {
+    "normative": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "actuallyReadCurrent": true,
+      "edition": "2015 tab lines84–85",
+      "locators": [
+        "line540:9수04-16/17/18 피타고라스·삼각비 정의와 간단한 값·활용",
+        "lines555–557:삼각비 사이 관계 제외,0°~90°값,거리/높이 활용",
+        "line570:9수05-06 대표값 및9수05-07 분산/표준편차",
+        "lines573/583–584:편차 등 용어와 자료의 대표값·산포 해석"
+      ],
+      "methodLimit": "실제 직각삼각형의 정의를 쓰는 것은 삼각비 사이의 항등식을 가정하는 것과 다르다. 현재 저자 해설에는 코사인법칙/일반항등식이 없다."
+    },
+    "actualGradePlacement": {
+      "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+      "sha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+      "locators": [
+        "PDFindex73/physical74/printed72:중3 수학2학기 header,8월9수04-17,9월9수04-18,10월9수05-06",
+        "PDFindex74/physical75/printed73:11월9수05-07; 이번 실제 페이지 렌더/view 확인"
+      ],
+      "newViewedPageSha256": "9a28ae27965caa4f3181604f7700d644d315d4308ff6da98212e1e6fe5729ef8",
+      "limits": "실제 학년/학기 배치 근거이며 노변중 특정 중간고사 진도/2022 배치/출처권리 인증 아님. 전체PDF와 페이지이미지는Git에 넣지 않음."
+    }
+  },
+  "missingSourceOnlyDiagnostic": "Actual failed source-q09/q10/q11-only.json reads at reviewROOT preserved here; no fallback search or extra source reads."
+}
