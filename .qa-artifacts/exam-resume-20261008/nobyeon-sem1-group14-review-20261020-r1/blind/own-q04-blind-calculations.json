@@ -1,0 +1,175 @@
+{
+  "method": "Own integer square-factor extraction and Fraction arithmetic; no float, pixels, author answers or advanced student theorem",
+  "inputHashes": {
+    "SOLVE-BRIEF.md": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c",
+    "student-problems.json": "40b482a282a779972b4d4e2f0ff57027990a9244848ff18676e9ec2e8966406f",
+    "blind-manifest.json": "215405137894d3f6b05c15b4dac329b466ff338ae1ccfb31b454641d2a9dd035"
+  },
+  "studentDigestIndependentlyRecomputed": "a16cc78ef5d329c852b045664c79f9d1076588a6b2eeb05bbfc260a2bfa609bd",
+  "firstCondition": {
+    "factorizations": [
+      {
+        "radicand": 48,
+        "outside": 4,
+        "inside": 3
+      },
+      {
+        "radicand": 3,
+        "outside": 1,
+        "inside": 3
+      }
+    ],
+    "lhs": {
+      "sqrt3Coefficient": 3
+    },
+    "sqrt3PositiveNonzero": true,
+    "a": "3",
+    "whyUnique": "3sqrt3=a sqrt3; divide by positive nonzero sqrt3, so a=3, no coefficient-comparison theorem required"
+  },
+  "secondCondition": {
+    "aSquared": "9",
+    "b": "7",
+    "bPositive": true,
+    "rationalAandB": true,
+    "positiveRootRequested": "sqrt7",
+    "whyUnique": "first condition fixes a; b=16-a^2 fixes b, not a new arbitrary choice of sign"
+  },
+  "allChoices": [
+    {
+      "mark": "①",
+      "printed": "$\\sqrt{28}-\\sqrt7$",
+      "factorizations": [
+        {
+          "radicand": 28,
+          "outside": 2,
+          "inside": 7
+        },
+        {
+          "radicand": 7,
+          "outside": 1,
+          "inside": 7
+        }
+      ],
+      "normalizedRadicalCoefficients": {
+        "7": 1
+      },
+      "positive": true,
+      "exactSquare": 7,
+      "equalsPositiveSqrtB": true
+    },
+    {
+      "mark": "②",
+      "printed": "$\\sqrt{48}-\\sqrt{12}$",
+      "factorizations": [
+        {
+          "radicand": 48,
+          "outside": 4,
+          "inside": 3
+        },
+        {
+          "radicand": 12,
+          "outside": 2,
+          "inside": 3
+        }
+      ],
+      "normalizedRadicalCoefficients": {
+        "3": 2
+      },
+      "positive": true,
+      "exactSquare": 12,
+      "equalsPositiveSqrtB": false
+    },
+    {
+      "mark": "③",
+      "printed": "$\\sqrt{52}-\\sqrt{13}$",
+      "factorizations": [
+        {
+          "radicand": 52,
+          "outside": 2,
+          "inside": 13
+        },
+        {
+          "radicand": 13,
+          "outside": 1,
+          "inside": 13
+        }
+      ],
+      "normalizedRadicalCoefficients": {
+        "13": 1
+      },
+      "positive": true,
+      "exactSquare": 13,
+      "equalsPositiveSqrtB": false
+    },
+    {
+      "mark": "④",
+      "printed": "$\\sqrt{100}-\\sqrt{25}$",
+      "factorizations": [
+        {
+          "radicand": 100,
+          "outside": 10,
+          "inside": 1
+        },
+        {
+          "radicand": 25,
+          "outside": 5,
+          "inside": 1
+        }
+      ],
+      "normalizedRadicalCoefficients": {
+        "1": 5
+      },
+      "positive": true,
+      "exactSquare": 25,
+      "equalsPositiveSqrtB": false
+    },
+    {
+      "mark": "⑤",
+      "printed": "$\\sqrt{12}-\\sqrt3$",
+      "factorizations": [
+        {
+          "radicand": 12,
+          "outside": 2,
+          "inside": 3
+        },
+        {
+          "radicand": 3,
+          "outside": 1,
+          "inside": 3
+        }
+      ],
+      "normalizedRadicalCoefficients": {
+        "3": 1
+      },
+      "positive": true,
+      "exactSquare": 3,
+      "equalsPositiveSqrtB": false
+    }
+  ],
+  "rootDomains": {
+    "allPrintedNumericRadicands": [
+      3,
+      7,
+      12,
+      13,
+      25,
+      28,
+      48,
+      52,
+      100
+    ],
+    "allPositive": true,
+    "variableRadicandB": "7",
+    "principalRoots": true
+  },
+  "existence": {
+    "substitutionFirst": "sqrt48-sqrt3=4sqrt3-sqrt3=3sqrt3",
+    "substitutionSecond": "3^2+7=16",
+    "bGreaterThanZero": true
+  },
+  "units": "abstract scalar; no length or physical units",
+  "figures": [],
+  "utf8WriteReadPassed": true,
+  "authorAnswerExposure": false,
+  "newApprovalCounts": 0
+}
