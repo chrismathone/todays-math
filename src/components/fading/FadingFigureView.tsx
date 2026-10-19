@@ -5,9 +5,11 @@ import s from "./fading.module.css";
 
 /** 이름표의 답은 읽기·완료 뒤 대조에만 DOM으로 만든다. */
 export function FadingFigureView({
+  student = false,
   figure,
   answers = false,
 }: {
+  student?: boolean;
   figure: FadingFigure | null;
   answers?: boolean;
 }) {
@@ -17,11 +19,17 @@ export function FadingFigureView({
       <div className={s.sectionTitle}>
         <h2>
           <FadingIcon name="erase" />{" "}
-          {answers ? "개념의 구조" : "이름표를 비운 개념 그림"}
+          {student
+            ? "개념 그림"
+            : answers
+              ? "개념의 구조"
+              : "이름표를 비운 개념 그림"}
         </h2>
-        <span className={s.sectionTag}>
-          {answers ? "정독 · 대조" : "이름표 빈칸"}
-        </span>
+        {!student && (
+          <span className={s.sectionTag}>
+            {answers ? "정독 · 대조" : "이름표 빈칸"}
+          </span>
+        )}
       </div>
       <div className={s.figureCanvas}>
         <svg

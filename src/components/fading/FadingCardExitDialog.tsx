@@ -4,10 +4,12 @@ import { useEffect, useRef } from "react";
 import s from "./fading.module.css";
 
 export function FadingCardExitDialog({
+  student = false,
   practice,
   onStay,
   onExit,
 }: {
+  student?: boolean;
   practice: boolean;
   onStay: () => void;
   onExit: () => void;
@@ -37,8 +39,12 @@ export function FadingCardExitDialog({
       </h2>
       <p className={s.muted}>
         {practice
-          ? "연습 기록은 남지 않습니다."
-          : "마친 단계는 남아 있어요. 다음에 지금 단계부터 이어 할 수 있습니다. 아직 마치지 않은 단계의 입력은 다시 써요."}
+          ? student
+            ? "연습한 내용은 저장되지 않아요."
+            : "연습 기록은 남지 않습니다."
+          : student
+            ? "마친 단계는 저장돼요. 다음에 이어서 풀 수 있어요. 지금 풀던 단계의 답은 다시 써야 해요."
+            : "마친 단계는 남아 있어요. 다음에 지금 단계부터 이어 할 수 있습니다. 아직 마치지 않은 단계의 입력은 다시 써요."}
       </p>
       <div className={s.actions}>
         <button type="button" ref={stay} className={s.primary} onClick={onStay}>

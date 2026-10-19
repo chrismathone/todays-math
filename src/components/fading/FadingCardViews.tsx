@@ -48,12 +48,14 @@ export function FadingCardCheck({
 }
 
 export function FadingAnkiCard({
+  student = false,
   proposition,
   revealed,
   disabled,
   onReveal,
   onSeen,
 }: {
+  student?: boolean;
   proposition: FadingProposition;
   revealed: boolean;
   disabled: boolean;
@@ -114,14 +116,22 @@ export function FadingAnkiCard({
           </div>
           <p className={s.small}>보기 전에 얼마나 알고 있었나요</p>
           <FadingCardCheck
-            labels={seenLabels}
+            labels={
+              student
+                ? ["처음 봐요", "들어 봤어요", "알고 있었어요"]
+                : seenLabels
+            }
             disabled={disabled}
             onChoose={onSeen}
           />
         </>
       ) : (
         <>
-          <p className={s.muted}>이 용어의 뜻과 문장을 먼저 떠올려 보세요.</p>
+          <p className={s.muted}>
+            {student
+              ? "이 말의 뜻을 먼저 떠올려 보세요."
+              : "이 용어의 뜻과 문장을 먼저 떠올려 보세요."}
+          </p>
           <p className={s.small}>
             5초 뒤 자동으로 문장을 보여줘요 · Enter·Space로 바로 보기
           </p>
@@ -144,6 +154,7 @@ export function FadingAnkiCard({
 
 /** Mounted only after the complete bundle has been submitted. */
 export function FadingTypedComparison({
+  student = false,
   concept,
   answers,
   unjudged,
@@ -155,6 +166,7 @@ export function FadingTypedComparison({
   forwardDisabled = false,
   keyboardTarget,
 }: {
+  student?: boolean;
   concept: FadingConcept;
   answers: Readonly<Record<string, string>>;
   unjudged: readonly { targetId: string; text: string }[];
@@ -168,7 +180,10 @@ export function FadingTypedComparison({
 }) {
   const unknown = new Set(unjudged.map((item) => item.targetId));
   return (
-    <section className={s.typedComparison} aria-label="내 답과 기준안 대조">
+    <section
+      className={s.typedComparison}
+      aria-label={student ? "내 답과 비교해 보기" : "내 답과 기준안 대조"}
+    >
       {concept.propositions.slice(index, index + 1).map((proposition) => (
         <article
           className={s.comparisonRow}
@@ -197,7 +212,7 @@ export function FadingTypedComparison({
               </div>
             </div>
             <div>
-              <p className={s.caps}>기준안</p>
+              <p className={s.caps}>{student ? "답 살펴보기" : "기준안"}</p>
               <div className={s.sentence}>
                 {proposition.pieces.map((piece, i) => (
                   <span
@@ -230,7 +245,10 @@ export function FadingTypedComparison({
                   className={s.selfJudge}
                   disabled={disabled}
                 >
-                  <legend>«{answers[targetId]}»의 뜻이 기준안과 같나요</legend>
+                  <legend>
+                    «{answers[targetId]}»의 뜻이{" "}
+                    {student ? "아래 답과" : "기준안과"} 같나요
+                  </legend>
                   <div className={s.actions}>
                     {(["same", "different"] as const).map((judgment) => (
                       <button
