@@ -1,0 +1,37 @@
+{
+  "kind": "post-main-integration-validation/v1",
+  "createdAt": "2026-10-19T07:16:46.134Z",
+  "integratedMain": "2ffd8833a",
+  "integrationHead": "a2f5ec325eb1b162134621080070304e21214e6b",
+  "originalRun": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/vitest-integration-r2.json",
+    "sha256": "cb0029f684ac991cc9566b1a2fa04e6ff60074f32e5786cf347011570313d557"
+  },
+  "failedFileRecheck": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/vitest-integration-r3.json",
+    "sha256": "e20de98bdba7320cad5eb801f67d77c68733b1df72c67d5f865d339f82ed31d9"
+  },
+  "latestFiles": 40,
+  "latestPassed": 558,
+  "latestFailed": 0,
+  "resolution": "New main SQL migration was checked out CRLF. Pin LF and restore exact release Git blob; no SQL logic/checksum/catalog-check changes.",
+  "sqlPreservation": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/main-revision-sql-line-ending-r1.json",
+    "sha256": "13a27482a2d930e099761a15bc9980974b71334d855f7ecb069c77b1dc23b096"
+  },
+  "ownedTypecheck": "passed against independently generated latest-schema Prisma Client r2",
+  "typecheckConfig": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/tsconfig-owned-isolated-r2.json",
+    "sha256": "2bd7e291207c9c02f7332b3e17a502bbdaa810eb1f3889d911bc2ed3736b95ba"
+  },
+  "fullAppBuild": false,
+  "nodePassed": 51,
+  "pythonPassed": 4,
+  "currentEngineLedger": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrades-progress-r7.json",
+    "sha256": "e787fd7716b3761891a9f7146c8fe799c5261deacd4a3d17e92a4026d92224ba"
+  },
+  "wholeEngineComplete": false,
+  "dbWrites": 0,
+  "deployed": false
+}
