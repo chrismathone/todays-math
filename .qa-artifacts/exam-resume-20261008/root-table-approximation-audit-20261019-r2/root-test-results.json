@@ -1,0 +1,38 @@
+{
+  "command": "node node_modules/vitest/vitest.mjs run src/__tests__/unit/middleRootTableApproximation.test.ts src/__tests__/unit/middleM3Root.test.ts src/__tests__/unit/examStudyCoreLegacy.test.ts",
+  "cwd": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008",
+  "exitCode": 1,
+  "testFiles": {"passed": 1, "failed": 2},
+  "tests": {"passed": 412, "failed": 2, "total": 414},
+  "durationSeconds": 51.01,
+  "newTargetedSuite": {"file": "middleRootTableApproximation.test.ts", "testsPassed": 3},
+  "isolatedRegistryRerun": {
+    "command": "node node_modules/vitest/vitest.mjs run src/__tests__/unit/examStudyCoreLegacy.test.ts -t preserves-original-registry-identities/counts (exact full name substring supplied)",
+    "exitCode": 1,
+    "failed": 1,
+    "skipped": 14,
+    "error": "Test timed out in 20000ms.",
+    "observedDurationMs": 28045,
+    "runDurationSeconds": 43.72,
+    "timeoutUnchanged": true,
+    "conclusion": "Timeout reproduces in isolation; cause not established. No assertion failure or approval inferred."
+  },
+  "failures": [
+    {
+      "file": "src/__tests__/unit/middleM3Root.test.ts",
+      "line": 517,
+      "error": "TypeError: Cannot read properties of null (reading '1')",
+      "cause": "The old printed-target parser requires the removed literal Korean prefix 이때 before sqrt(b). Current wording has the explicit supplied-table approximation instruction instead.",
+      "status": "open-test-maintenance-regression; no parent edit performed",
+      "proposedFix": "Parse the actual requested sqrt(b) approximate target under the new instruction. Keep independent numeric checks; do not weaken them."
+    },
+    {
+      "file": "src/__tests__/unit/examStudyCoreLegacy.test.ts",
+      "line": 249,
+      "error": "Test timed out in 20000ms.",
+      "testName": "preserves original registry identities/counts and exposes actual supported courses only",
+      "observedDurationMs": 27134,
+      "status": "retained; isolated rerun recorded separately without timeout change"
+    }
+  ]
+}

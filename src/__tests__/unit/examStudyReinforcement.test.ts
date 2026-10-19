@@ -206,12 +206,16 @@ describe("six examStudy-only reinforcements", () => {
     expect(inverseChord.version).toBe("20261019-inverse-chord-angle-r1");
     expect(inverseChord.source).toBe("middle");
     expect(inverseChord.evidence).toBeUndefined();
+    const rootTable = get("legacy:mid:3-1|무리수와 실수|09");
+    expect(rootTable.version).toBe("20261019-root-table-approx-r1");
+    expect(rootTable.source).toBe("middle");
+    expect(rootTable.evidence).toBeUndefined();
     expect(
       families
         .filter((f) => f.version !== "9cfbb8683-r1")
         .map((f) => f.id)
         .sort(),
-    ).toEqual([...set, inverseChord.id].sort());
+    ).toEqual([...set, inverseChord.id, rootTable.id].sort());
     const unrelated = get("legacy:mid:1-1|좌표와 그래프|84X");
     expect(familyCoverage(unrelated, "graph.piecewise-multi-claim")).toBe(
       "unverified",

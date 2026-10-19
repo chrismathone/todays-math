@@ -34,6 +34,7 @@ const LEGACY_VERSION = "9cfbb8683-r1";
 // Changed question targets must invalidate old recipe manifests, with family IDs preserved.
 const LEGACY_FAMILY_VERSIONS: Readonly<Record<string, string>> = {
   "3-2|원과 직선|06": "20261019-inverse-chord-angle-r1",
+  "3-1|무리수와 실수|09": "20261019-root-table-approx-r1",
 };
 const courseIsSupported = (course: string): course is ExamStudyCourse =>
   (EXAM_STUDY_COURSES as readonly string[]).includes(course);

@@ -514,7 +514,9 @@ const CHECK: Record<string, Check> = {
   [I("09")]: (p) => {
     const { a2, v3, mult } = p.facts;
     near(v3! / 1000, Math.sqrt(a2! / 100), 0.0005);
-    const b = Number(/이때 \$\\sqrt\{(\d+)\}\$/.exec(p.content)![1]);
+    expect(p.content).toContain("표의 근삿값을 그대로 이용하여");
+    expect(p.content).toContain("\\approx");
+    const b = Number(/\$\\sqrt\{(\d+)\}\$의 근삿값/.exec(p.content)![1]);
     expect(b).toBe(mult === 10 ? a2 : a2! * 100);
     near(Number(mathOf(p.answer)), Math.sqrt(b), mult! * 0.0006);
   },

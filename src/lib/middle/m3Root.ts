@@ -965,9 +965,9 @@ const IRR_TYPES: TypeEntry[] = [
         const aStr = (a2 / 100).toFixed(2);
         const vStr = (v3 / 1000).toFixed(3);
         return {
-          content: `제곱근표에서 $\\sqrt{${aStr}}=${vStr}$ 임을 알았다. 이때 $\\sqrt{${b}}$ 의 값을 구하시오.`,
+          content: `제곱근표에 $\\sqrt{${aStr}}\\approx${vStr}$으로 나와 있다. 표의 근삿값을 그대로 이용하여 $\\sqrt{${b}}$의 근삿값을 구하시오.`,
           answer: `$${trimNum((v3 / 1000) * mult)}$`,
-          solution: `$${b}=${aStr}\\times${mult * mult}$ 이므로 $\\sqrt{${b}}=${mult}\\sqrt{${aStr}}$ 이다.\n따라서 $\\sqrt{${b}}=${mult}\\times${vStr}=${trimNum((v3 / 1000) * mult)}$ 이다.`,
+          solution: `$${b}=${aStr}\\times${mult * mult}$ 이므로 $\\sqrt{${b}}=${mult}\\sqrt{${aStr}}$ 이다.\n표의 근삿값을 그대로 이용하면 $\\sqrt{${b}}\\approx${mult}\\times${vStr}=${trimNum((v3 / 1000) * mult)}$ 이다.`,
           facts: { a2, v3, mult },
           figureSpec: null,
         };

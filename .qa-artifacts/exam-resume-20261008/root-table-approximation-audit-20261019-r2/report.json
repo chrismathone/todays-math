@@ -1,0 +1,144 @@
+{
+  "audit": "root-table-approximation-audit-20261019-r2",
+  "kind": "independent code/actual-output recheck; not fresh candidate proof",
+  "status": "bounded-math-and-student-semantics-pass;legacy-test-failure-retained",
+  "rootHead": "522650bae1db7e44f5cf3da8ee6abe40ade9a2c1",
+  "family": "3-1|무리수와 실수|09",
+  "version": "20261019-root-table-approx-r1",
+  "results": {
+    "tuples": 1800,
+    "tableNonexact": 1756,
+    "tableExact": 44,
+    "failures": 0,
+    "scaledAbsoluteErrorExclusive": {
+      "mult10": 0.005,
+      "mult100": 0.05
+    },
+    "nativeSA": 1800,
+    "MC": 1800,
+    "MCDeterminism": 1800,
+    "renderedMathSpans": 23400,
+    "adapterAndSeededGenerationCases": 64,
+    "rootImports": true,
+    "tsconfig": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/tsconfig.json",
+    "sourceUnchanged": true
+  },
+  "baseline": {
+    "commit": "c430fc3d82eb204c0cd58da6f0760e95d06d31cb",
+    "reportSha256": "4cfd303c577d1903be19bdb1f05930cd4bb73cdafb0c53bad5fa26822c0ab0a2",
+    "falseExactEqualities": 1756,
+    "exactCases": 44,
+    "oldRootTestsPassed": 396,
+    "historicalFilesUnmodified": true
+  },
+  "findings": [
+    {
+      "id": "F1-r1",
+      "severity": "high",
+      "status": "resolved-in-reviewed-outputs",
+      "evidence": "All1800 now print approximate premise and ask for approximation using the supplied table value. All solutions preserve exact positive radical scaling and use approximate substitution. No false exact numerical radical premise/output remains."
+    },
+    {
+      "id": "F2-r1",
+      "severity": "medium",
+      "status": "new-regression-added;old-test-failure-retained",
+      "evidence": "New targeted root test exhausts domain and checks wording/versions. Actual old-suite failure is separately retained in root-test-results.json; no test or parent edits made."
+    }
+  ],
+  "studentSemantics": {
+    "observed": "제곱근표에 sqrt(a)≈s으로 나와 있다. 표의 근삿값을 그대로 이용하여 sqrt(b)의 근삿값을 구하시오.",
+    "judgment": "Natural and unambiguous Korean. The finite supplied decimal controls the expected answer; no unstated final decimal-place rounding is needed. The exact roots still exist uniquely and are positive.44exact-root cases may truthfully use approximation notation too.",
+    "errorBound": "Each supplied root has strict error<0.0005. Positive scaling gives strict error<0.005 or<0.05. Verified directly from actual printed target and integer squared interval endpoints in every tuple. The task does not assert nearest rounding of the exact target radical.",
+    "units": "Dimensionless numbers, no unit conversion.",
+    "surfaces": "Actual native content/answer/solution, parsed SA, derived MC stem/five choices/selected answer, and adapter draft fields checked. This is not a native-written rubric or unrelated seven-surface certification.",
+    "visual": "No figure.23400 math spans parsed through actual KaTeX without errors; no browser/page-layout visual claim."
+  },
+  "packaging": {
+    "nativeSA": 1800,
+    "MC": 1800,
+    "uniqueFiveChoices": true,
+    "selectedAnswersCorrect": true,
+    "deterministicMC": 1800,
+    "seededGeneratorAndAdapterChecks": 64,
+    "adapterVersion": "20261019-root-table-approx-r1",
+    "neighbor08Version": "9cfbb8683-r1",
+    "evidenceNotInvented": true,
+    "notClaimed": "No full HTTP/public generation or historical recipe-manifest replay performed; adapter version change observed directly."
+  },
+  "rootTests": {
+    "command": "node node_modules/vitest/vitest.mjs run src/__tests__/unit/middleRootTableApproximation.test.ts src/__tests__/unit/middleM3Root.test.ts src/__tests__/unit/examStudyCoreLegacy.test.ts",
+    "cwd": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008",
+    "exitCode": 1,
+    "testFiles": {
+      "passed": 1,
+      "failed": 2
+    },
+    "tests": {
+      "passed": 412,
+      "failed": 2,
+      "total": 414
+    },
+    "durationSeconds": 51.01,
+    "newTargetedSuite": {
+      "file": "middleRootTableApproximation.test.ts",
+      "testsPassed": 3
+    },
+    "isolatedRegistryRerun": {
+      "command": "node node_modules/vitest/vitest.mjs run src/__tests__/unit/examStudyCoreLegacy.test.ts -t preserves-original-registry-identities/counts (exact full name substring supplied)",
+      "exitCode": 1,
+      "failed": 1,
+      "skipped": 14,
+      "error": "Test timed out in 20000ms.",
+      "observedDurationMs": 28045,
+      "runDurationSeconds": 43.72,
+      "timeoutUnchanged": true,
+      "conclusion": "Timeout reproduces in isolation; cause not established. No assertion failure or approval inferred."
+    },
+    "failures": [
+      {
+        "file": "src/__tests__/unit/middleM3Root.test.ts",
+        "line": 517,
+        "error": "TypeError: Cannot read properties of null (reading '1')",
+        "cause": "The old printed-target parser requires the removed literal Korean prefix 이때 before sqrt(b). Current wording has the explicit supplied-table approximation instruction instead.",
+        "status": "open-test-maintenance-regression; no parent edit performed",
+        "proposedFix": "Parse the actual requested sqrt(b) approximate target under the new instruction. Keep independent numeric checks; do not weaken them."
+      },
+      {
+        "file": "src/__tests__/unit/examStudyCoreLegacy.test.ts",
+        "line": 249,
+        "error": "Test timed out in 20000ms.",
+        "testName": "preserves original registry identities/counts and exposes actual supported courses only",
+        "observedDurationMs": 27134,
+        "status": "retained; isolated rerun recorded separately without timeout change"
+      }
+    ]
+  },
+  "grade": "M3/2015 operation-level supported by primary9수01-07 and9수01-10. No mandatory upper-grade method. No blanket other-family approval.",
+  "sourceIntegrity": {
+    "beforeAfterClosingEqual": true,
+    "hashFiles": [
+      "src/lib/middle/m3Root.ts",
+      "src/lib/middle/generate.ts",
+      "src/lib/elementary/rng.ts",
+      "src/lib/examStudy/adapters.ts",
+      "src/lib/examStudy/identity.ts",
+      "src/lib/examStudy/legacyVerification.ts",
+      "src/lib/examStudy/legacyReinforcement.ts",
+      "src/lib/engine/deriveFormats.ts",
+      "src/lib/problem/parseProblemContent.ts",
+      "src/__tests__/unit/middleM3Root.test.ts",
+      "src/__tests__/unit/middleRootTableApproximation.test.ts",
+      "src/__tests__/unit/examStudyCoreLegacy.test.ts"
+    ]
+  },
+  "holds": [
+    "No source/rights/similarity/custody/native-provenance approval.",
+    "No q06 author or raw edits; q06 unchanged is parent scope constraint, not independently rehashed here.",
+    "Not a new blind candidate or proof count.",
+    "Whole-manifest prior exposure limitation remains unchanged."
+  ],
+  "operatingDB": 0,
+  "full": 0,
+  "loadable": 0,
+  "rootEdits": false
+}

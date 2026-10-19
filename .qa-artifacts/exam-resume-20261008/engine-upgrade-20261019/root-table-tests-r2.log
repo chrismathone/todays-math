@@ -1,0 +1,14 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/unit/examStudyCoreLegacy.test.ts (15 tests) 19501ms
+     ✓ forces natural and negative-integer branches and excludes zero/domain endpoints  432ms
+     ✓ preserves original registry identities/counts and exposes actual supported courses only  18509ms
+ ✓ src/__tests__/unit/middleM3Root.test.ts (396 tests) 1175ms
+
+ Test Files  2 passed (2)
+      Tests  411 passed (411)
+   Start at  20:40:56
+   Duration  41.42s (transform 9.11s, setup 4.34s, import 10.98s, tests 20.68s, environment 4.78s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/root-table-tests-r2.json

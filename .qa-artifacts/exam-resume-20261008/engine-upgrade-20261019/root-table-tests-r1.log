@@ -1,0 +1,468 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/unit/examStudyIntegration.test.ts (7 tests) 18228ms
+     ✓ keeps all nine courses available without multiplying authored families by response format  15202ms
+     ✓ runs authenticated API → actual math → strict Python SVG → reproducible output confirmation  2093ms
+ ❯ src/__tests__/unit/examStudyCoreLegacy.test.ts (15 tests | 1 failed) 23058ms
+     ✓ forces natural and negative-integer branches and excludes zero/domain endpoints 143ms
+     ✓ independently solves 64 actual outputs of 1-1|좌표와 그래프|06 and rejects wrong answers 136ms
+     ✓ independently solves 64 actual outputs of 2-1|일차함수와 그 그래프 ⑴|01 and rejects wrong answers 35ms
+     ✓ independently solves 64 actual outputs of 2-1|일차함수와 그 그래프 ⑵|01 and rejects wrong answers 50ms
+     ✓ independently solves 64 actual outputs of 2-1|일차부등식|118X and rejects wrong answers 61ms
+     ✓ independently solves 64 actual outputs of 1-1|일차방정식의 풀이|17 and rejects wrong answers 144ms
+     ✓ independently solves 64 actual outputs of 3-1|이차방정식의 활용|53V and rejects wrong answers 32ms
+     ✓ covers every sign-condition/coordinate-transform branch and essential-condition removal 20ms
+     ✓ checks all 56 unordered selections of printed function relations, including nonuniqueness witnesses 5ms
+     ✓ tests all slope/intercept sign combinations, every quadrant, and independent truth/false flips 8ms
+     ✓ enumerates original inequality truth rows at closed boundaries and rejects nonpositive infinite cases 12ms
+     ✓ keeps repeated roots and rejects irrational/negative-discriminant/nonnatural candidates 1ms
+     × preserves original registry identities/counts and exposes actual supported courses only 22356ms
+     ✓ respects author short-only policies and never advertises written derivation 11ms
+     ✓ does not infer school full from a legacy title, and honors unsupported bare formats/difficulties 32ms
+ ✓ src/__tests__/unit/examStudyCurriculumEligibility.test.ts (8 tests) 22562ms
+     ✓ keeps all fourteen mathematical proofs inspectable without offering the out-of-grade M1 task  358ms
+     ✓ hides the held template from selectable catalogs and retains its definition for internal review  22098ms
+ ✓ src/__tests__/unit/examStudyReinforcement.test.ts (20 tests) 6339ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: candidate  548ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: classification  2667ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: model  1233ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: simplify  349ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: rectangle  511ms
+ ❯ src/__tests__/unit/middleM3Root.test.ts (396 tests | 1 failed) 2283ms
+     ✓ evalRadical 이 근호·계수·분수·합을 읽는다 288ms
+     ✓ evalRadical 은 모르는 글자를 만나면 던진다 (조용히 0 금지) 6ms
+     ✓ 근호 정리·유리화 판정기가 일부러 걸리는 입력에서 빨개진다 8ms
+     ✓ 유리수·무리수 분류기가 양쪽 대조군에서 갈린다 4ms
+     ✓ 48유형이 등록돼 있다 (18 · 10 · 20) 5ms
+     ✓ 48유형 전부가 generate.ts 합본에 실려 있다 5ms
+     ✓ RPM 유형 번호·제목·중단원명이 색인 정본과 글자 그대로 같다 15ms
+     ✓ 우리 단원에 실측 이름으로 붙는다 (units.ts 실측 2026-08-24) 4ms
+     ✓ 근호 정리의 예외는 «근호 안으로 넣기» 한 유형뿐이다 4ms
+     ✓ 모든 유형에 독립 검산이 붙어 있다 (검산 없는 유형 금지) 3ms
+       ✓ 같은 씨앗이면 같은 문항 26ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 30ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 7ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 6ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 16ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 19ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 2ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 3ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 12ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 7ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 5ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 17ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 9ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 2ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 7ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 19ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 3ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 5ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 6ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 4ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 2ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 2ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 4ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 2ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 4ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 7ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 5ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 3ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 3ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 11ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 10ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 5ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 11ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 3ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 2ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 2ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 6ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 1ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 3ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 8ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 6ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 3ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 3ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 13ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 4ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 4ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 10ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 6ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 2ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 3ms
+       ✓ 같은 씨앗이면 같은 문항 5ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 18ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 2ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 3ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 6ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 5ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 2ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 1ms
+       ✓ 같은 씨앗이면 같은 문항 3ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 13ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 2ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 2ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 8ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 3ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 1ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 1ms
+       ✓ 같은 씨앗이면 같은 문항 3ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 12ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 3ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 4ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 7ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 8ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 2ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 1ms
+       ✓ 같은 씨앗이면 같은 문항 2ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 10ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 5ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 3ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 8ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 4ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 1ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 2ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 13ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 1ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 3ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 8ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 4ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 1ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 3ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 13ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 3ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 3ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 6ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 4ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 2ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 3ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 10ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 2ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 2ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 7ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 4ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 2ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 10ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 17ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 7ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 3ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 7ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 4ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 1ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 1ms
+       ✓ 같은 씨앗이면 같은 문항 7ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 13ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 3ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 2ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 7ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 9ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 3ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 5ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 14ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 2ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 2ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 4ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 4ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 9ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 1ms
+       ✓ 같은 씨앗이면 같은 문항 4ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 28ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 7ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 13ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 23ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 4ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 4ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 4ms
+       ✓ 같은 씨앗이면 같은 문항 4ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 16ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 3ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 3ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 7ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 6ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 3ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 3ms
+       ✓ 같은 씨앗이면 같은 문항 5ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 15ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 3ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 2ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 14ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 3ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 2ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 6ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 23ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 2ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 4ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 7ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 6ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 3ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 3ms
+       ✓ 같은 씨앗이면 같은 문항 6ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 18ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 5ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 4ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 6ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 4ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 2ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 3ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 12ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 4ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 6ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 5ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 9ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 3ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 3ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 19ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 2ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 2ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 6ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 6ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 3ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 4ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 11ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 2ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 2ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 5ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 5ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 3ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 5ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 17ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 6ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 2ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 6ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 8ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 3ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 5ms
+       × 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 13ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 11ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 10ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 12ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 6ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 2ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 2ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 6ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 2ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 2ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 8ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 4ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 1ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 3ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 9ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 3ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 3ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 6ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 4ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 2ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 3ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 9ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 5ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 2ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 4ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 7ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 2ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 3ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 16ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 3ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 3ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 8ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 7ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 1ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 1ms
+       ✓ 같은 씨앗이면 같은 문항 2ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 15ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 2ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 4ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 8ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 5ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 1ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 1ms
+       ✓ 같은 씨앗이면 같은 문항 2ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 9ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 2ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 2ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 8ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 5ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 2ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 3ms
+       ✓ 같은 씨앗이면 같은 문항 5ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 10ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 2ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 2ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 5ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 4ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 2ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 4ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 9ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 2ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 4ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 6ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 3ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 2ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 3ms
+       ✓ 같은 씨앗이면 같은 문항 5ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 12ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 5ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 3ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 5ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 4ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 1ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 3ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 9ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 3ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 2ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 6ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 5ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 4ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 1ms
+       ✓ 같은 씨앗이면 같은 문항 3ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 10ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 5ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 4ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 5ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 3ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 4ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 2ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 7ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 3ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 3ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 3ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 2ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 2ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 4ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 9ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 3ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 4ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 5ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 4ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 1ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 1ms
+       ✓ 같은 씨앗이면 같은 문항 2ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 15ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 4ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 4ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 5ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 2ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 1ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 4ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 5ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 3ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 2ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 4ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 2ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 1ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 1ms
+       ✓ 같은 씨앗이면 같은 문항 2ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 9ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 3ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 4ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 3ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 2ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 2ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 5ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 9ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 2ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 2ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 4ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 4ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 1ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 1ms
+       ✓ 같은 씨앗이면 같은 문항 2ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 8ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 2ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 4ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 5ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 2ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 1ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 1ms
+       ✓ 같은 씨앗이면 같은 문항 1ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 6ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 2ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 1ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 3ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 2ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 2ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 1ms
+       ✓ 같은 씨앗이면 같은 문항 2ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 5ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 2ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 1ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 3ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 2ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 1ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 2ms
+       ✓ 같은 씨앗이면 같은 문항 3ms
+       ✓ 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다 7ms
+       ✓ 정답의 근호 안에 제곱인수가 없다 1ms
+       ✓ 정답의 분모가 유리화돼 있고 분수가 기약이다 1ms
+       ✓ 숫자가 KaTeX 밖에 없다 (본문·정답·해설) 3ms
+       ✓ 대분수 모양(숫자 뒤에 바로 분수)이 없다 2ms
+       ✓ 3문항을 뽑으면 발문이 전부 다르다 1ms
+       ✓ 그림은 싣지 않는다 (numberLine 이 못 그리는 것은 발문으로 냈다) 1ms
+     ✓ 변형 공간을 넘겨 달라고 하면 조용히 모자란 세트를 내지 않고 던진다 21ms
+     ✓ 등록되지 않은 유형을 부르면 던진다 1ms
+ ✓ src/__tests__/unit/examStudyRoutes.test.ts (23 tests) 282ms
+ ✓ src/__tests__/unit/middleRootTableApproximation.test.ts (3 tests) 26791ms
+     ✓ exhausts900 radicands and both scale factors using integer squared rounding bounds  5008ms
+     ✓ preserves identities and changes only the corrected recipe version without inventing evidence  21682ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/unit/examStudyCoreLegacy.test.ts > readonly adapters and conservative catalogs > preserves original registry identities/counts and exposes actual supported courses only
+Error: Test timed out in 20000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/__tests__/unit/examStudyCoreLegacy.test.ts:249:3
+    247|
+    248| describe("readonly adapters and conservative catalogs", () => {
+    249|   it("preserves original registry identities/counts and exposes actual…
+       |   ^
+    250|     const middle = registeredTypes().map((e) => [e.key, e.handler]);
+    251|     const high = registeredHighTypes().map((e) => [e.key, e.handler]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/__tests__/unit/middleM3Root.test.ts > 물결 4B — 중3 3-1 앞 세 중단원 48유형 > 3-1|무리수와 실수|09 제곱근표를 이용하여 제곱근의 값 구하기 > 씨앗별 독립 검산 — 부동소수·전수 세기로 답을 다시 유도한다
+TypeError: Cannot read properties of null (reading '1')
+ ❯ Object.3-1|무리수와 실수|09 src/__tests__/unit/middleM3Root.test.ts:517:62
+    515|     const { a2, v3, mult } = p.facts;
+    516|     near(v3! / 1000, Math.sqrt(a2! / 100), 0.0005);
+    517|     const b = Number(/이때 \$\\sqrt\{(\d+)\}\$/.exec(p.content)![1]);
+       |                                                              ^
+    518|     expect(b).toBe(mult === 10 ? a2 : a2! * 100);
+    519|     near(Number(mathOf(p.answer)), Math.sqrt(b), mult! * 0.0006);
+ ❯ src/__tests__/unit/middleM3Root.test.ts:838:25
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 5 passed (7)
+      Tests  2 failed | 470 passed (472)
+   Start at  20:35:13
+   Duration  174.01s (transform 9.24s, setup 15.02s, import 39.77s, tests 99.54s, environment 17.27s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/root-table-tests-r1.json
