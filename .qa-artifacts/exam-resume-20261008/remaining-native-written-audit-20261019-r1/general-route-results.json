@@ -1,0 +1,1057 @@
+{
+  "records": [
+    {
+      "name": "doublingTimeOffset",
+      "request": {
+        "course": "중1",
+        "requirementIds": [
+          "model.doubling-time-offset"
+        ],
+        "count": 1,
+        "format": "단답형",
+        "seed": 91
+      },
+      "result": {
+        "engineVersion": "exam-study-1",
+        "manifestVersion": "exam-study-manifest-1d804d7e911e798e0176a804",
+        "profileId": null,
+        "profileVersion": null,
+        "recipe": {
+          "course": "중1",
+          "requirementIds": [
+            "model.doubling-time-offset"
+          ],
+          "count": 1,
+          "format": "단답형",
+          "seed": 91,
+          "maxPerFamily": 1
+        },
+        "digest": "5b3bfe3392a72b5cf76c76fc77648e3ea78f3abf631a518086a2562ca9c834ad",
+        "status": "unavailable",
+        "requestedCount": 1,
+        "deliveredCount": 0,
+        "questions": [],
+        "requirements": [
+          {
+            "id": "model.doubling-time-offset",
+            "title": "배증의 시간차와 단위 변환",
+            "status": "unavailable",
+            "requested": 1,
+            "delivered": 0,
+            "reason": "완결 연습 0/1개. 완결 대응 증거·실제 검산·형식·그림·문항 중복 및 가족 상한을 모두 만족하는 문항이 부족합니다. 요청 형식을 지원하지 않습니다."
+          }
+        ],
+        "warnings": [
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ],
+        "schoolEvidence": null
+      }
+    },
+    {
+      "name": "doublingTimeOffset",
+      "request": {
+        "course": "중1",
+        "requirementIds": [
+          "model.doubling-time-offset"
+        ],
+        "count": 1,
+        "format": "객관식",
+        "seed": 91
+      },
+      "result": {
+        "engineVersion": "exam-study-1",
+        "manifestVersion": "exam-study-manifest-1d804d7e911e798e0176a804",
+        "profileId": null,
+        "profileVersion": null,
+        "recipe": {
+          "course": "중1",
+          "requirementIds": [
+            "model.doubling-time-offset"
+          ],
+          "count": 1,
+          "format": "객관식",
+          "seed": 91,
+          "maxPerFamily": 1
+        },
+        "digest": "05d8bb85cdfc90fd0fee384e86f8bf43b388f9616d6d7e65bc96ecc4c855a524",
+        "status": "unavailable",
+        "requestedCount": 1,
+        "deliveredCount": 0,
+        "questions": [],
+        "requirements": [
+          {
+            "id": "model.doubling-time-offset",
+            "title": "배증의 시간차와 단위 변환",
+            "status": "unavailable",
+            "requested": 1,
+            "delivered": 0,
+            "reason": "완결 연습 0/1개. 완결 대응 증거·실제 검산·형식·그림·문항 중복 및 가족 상한을 모두 만족하는 문항이 부족합니다. 요청 형식을 지원하지 않습니다."
+          }
+        ],
+        "warnings": [
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ],
+        "schoolEvidence": null
+      }
+    },
+    {
+      "name": "doublingTimeOffset",
+      "request": {
+        "course": "중1",
+        "requirementIds": [
+          "model.doubling-time-offset"
+        ],
+        "count": 1,
+        "format": "서술형",
+        "seed": 91
+      },
+      "result": {
+        "engineVersion": "exam-study-1",
+        "manifestVersion": "exam-study-manifest-1d804d7e911e798e0176a804",
+        "profileId": null,
+        "profileVersion": null,
+        "recipe": {
+          "course": "중1",
+          "requirementIds": [
+            "model.doubling-time-offset"
+          ],
+          "count": 1,
+          "format": "서술형",
+          "seed": 91,
+          "maxPerFamily": 1
+        },
+        "digest": "f1c0d384eb9e2bb8c5cc20e456dfe583c50ff51c540785e6dee6e5116babc1cb",
+        "status": "complete",
+        "requestedCount": 1,
+        "deliveredCount": 1,
+        "questions": [
+          {
+            "parameters": {
+              "initialA": 3,
+              "initialB": 6,
+              "period": 7,
+              "known": "A"
+            },
+            "content": "두 배양 상자 A, B는 같은 순간에 관찰을 시작한다. 첫 증가는 관찰 시작으로부터 정확히 한 주기가 지난 순간에 일어난다. 두 상자의 수는 같은 주기마다 동시에 정확히 두 배가 되고, 그 사이에는 변하지 않는다.\n처음 수는 A가 3개, B가 6개이고 공통 주기는 7분이다.\n목표 수는 두 상자의 초기 수보다 큰 같은 수이다. 두 상자가 그 목표에 처음 도달하는 순간이 각각 존재한다.\nA가 목표에 처음 도달하는 시각은 관찰 시작 후 $t$시간이다.\n다른 상자가 목표에 처음 도달하는 시각을 관찰 시작 후 몇 분인지 $t$를 사용한 식으로 나타내시오. 반복 두 배 표와 시간 단위 변환을 풀이에 쓰시오.",
+            "answer": "60t-7 분",
+            "solution": "① 작은 초기 수 3에서 반복 두 배 표는 3 → 6이다. 큰 초기 수까지 1회 차이가 난다.\n② 같은 목표까지는 B가 1회 먼저 도달하므로 시간 차는 $1×7=7$분이다.\n③ A의 도달 시각 $t$시간은 $60t$분이다. B는 A보다 일찍 도달하므로 답은 $60t-7$분이다.\n④ 첫 증가는 관찰 시작 한 주기 후이고 목표가 두 초기 수보다 크므로 두 도달 시각은 모두 적어도 한 주기 후인 양수이다.",
+            "figureSpec": null,
+            "difficulty": "심화하",
+            "difficultyBasis": [
+              "앞 단계의 복원값을 다음 조건에 재사용",
+              "조건의 완전성·단위·비퇴화 검산"
+            ],
+            "questionType": "서술형",
+            "rubric": {
+              "totalPoints": 8,
+              "criteria": [
+                {
+                  "criterionId": "doubling-table",
+                  "expected": "① 작은 초기 수 3에서 반복 두 배 표는 3 → 6이다. 큰 초기 수까지 1회 차이가 난다.",
+                  "points": 2,
+                  "alternatives": [
+                    "초기 수를 같은 횟수만큼 두 배로 늘린 표나 덧셈으로 반복 횟수 차를 구해도 된다."
+                  ],
+                  "errors": [
+                    "임의의 초기 비를 반복 두 배의 횟수로 처리한다."
+                  ]
+                },
+                {
+                  "criterionId": "arrival-offset",
+                  "expected": "② 같은 목표까지는 B가 1회 먼저 도달하므로 시간 차는 $1×7=7$분이다.",
+                  "points": 2,
+                  "alternatives": [
+                    "같은 실제 목표에 이르는 두 시간표를 비교해 시차를 구해도 된다."
+                  ],
+                  "errors": [
+                    "어느 상자가 먼저 도달하는지 또는 주기와 횟수 차의 곱을 잘못 구한다."
+                  ]
+                },
+                {
+                  "criterionId": "hours-to-minutes",
+                  "expected": "③ A의 도달 시각 $t$시간은 $60t$분이다. B는 A보다 일찍 도달하므로 답은 $60t-7$분이다.",
+                  "points": 2,
+                  "alternatives": [
+                    "알려진 시각을 먼저 분으로 바꾼 뒤 시차를 더하거나 빼도 된다."
+                  ],
+                  "errors": [
+                    "시간을 분으로 바꾸지 않거나 시차의 부호를 반대로 쓴다."
+                  ]
+                },
+                {
+                  "criterionId": "positive-arrivals",
+                  "expected": "④ 첫 증가는 관찰 시작 한 주기 후이고 목표가 두 초기 수보다 크므로 두 도달 시각은 모두 적어도 한 주기 후인 양수이다.",
+                  "points": 2,
+                  "alternatives": [
+                    "목표가 두 초기 수보다 크고 첫 증가는 한 주기 후라는 조건으로 양수를 설명한다."
+                  ],
+                  "errors": [
+                    "더 이른 도달 시각이 0 또는 음수인 경우를 허용한다."
+                  ]
+                }
+              ]
+            },
+            "id": "exam-study:f75a8618649010944bfa1b98c9dd8486",
+            "familyId": "study-middle-doubling-time-offset",
+            "familyVersion": "2-native-written",
+            "title": "공통 배증 주기의 도달 시차와 문자 시간",
+            "course": "중1",
+            "unitSections": [
+              "문자의 사용과 식의 계산"
+            ],
+            "logicalKey": "study-middle-doubling-time-offset@2-native-written:{\"initialA\":3,\"initialB\":6,\"known\":\"A\",\"period\":7}",
+            "contentDigest": "4a369b7bed1d1a0eb305d6dc7e46ecfc81469ed73c05a756a05563c6886e2069",
+            "seed": 1541066256,
+            "variant": 0,
+            "requirements": [
+              "model.doubling-time-offset"
+            ],
+            "figureSvg": null
+          }
+        ],
+        "requirements": [
+          {
+            "id": "model.doubling-time-offset",
+            "title": "배증의 시간차와 단위 변환",
+            "status": "full",
+            "requested": 1,
+            "delivered": 1,
+            "reason": null
+          }
+        ],
+        "warnings": [],
+        "schoolEvidence": null
+      }
+    },
+    {
+      "name": "doublingTimeOffset",
+      "request": {
+        "course": "중1",
+        "requirementIds": [
+          "model.doubling-time-offset"
+        ],
+        "count": 1,
+        "format": "혼합",
+        "seed": 91
+      },
+      "result": {
+        "engineVersion": "exam-study-1",
+        "manifestVersion": "exam-study-manifest-1d804d7e911e798e0176a804",
+        "profileId": null,
+        "profileVersion": null,
+        "recipe": {
+          "course": "중1",
+          "requirementIds": [
+            "model.doubling-time-offset"
+          ],
+          "count": 1,
+          "format": "혼합",
+          "seed": 91,
+          "maxPerFamily": 1
+        },
+        "digest": "a404bc964b658da0c473215a9866f068a42c435bd53c3f610abe358ed157681d",
+        "status": "complete",
+        "requestedCount": 1,
+        "deliveredCount": 1,
+        "questions": [
+          {
+            "parameters": {
+              "initialA": 3,
+              "initialB": 24,
+              "period": 13,
+              "known": "B"
+            },
+            "content": "두 배양 상자 A, B는 같은 순간에 관찰을 시작한다. 첫 증가는 관찰 시작으로부터 정확히 한 주기가 지난 순간에 일어난다. 두 상자의 수는 같은 주기마다 동시에 정확히 두 배가 되고, 그 사이에는 변하지 않는다.\n처음 수는 A가 3개, B가 24개이고 공통 주기는 13분이다.\n목표 수는 두 상자의 초기 수보다 큰 같은 수이다. 두 상자가 그 목표에 처음 도달하는 순간이 각각 존재한다.\nB가 목표에 처음 도달하는 시각은 관찰 시작 후 $t$시간이다.\n다른 상자가 목표에 처음 도달하는 시각을 관찰 시작 후 몇 분인지 $t$를 사용한 식으로 나타내시오. 반복 두 배 표와 시간 단위 변환을 풀이에 쓰시오.",
+            "answer": "60t+39 분",
+            "solution": "① 작은 초기 수 3에서 반복 두 배 표는 3 → 6 → 12 → 24이다. 큰 초기 수까지 3회 차이가 난다.\n② 같은 목표까지는 B가 3회 먼저 도달하므로 시간 차는 $3×13=39$분이다.\n③ B의 도달 시각 $t$시간은 $60t$분이다. A는 B보다 늦게 도달하므로 답은 $60t+39$분이다.\n④ 첫 증가는 관찰 시작 한 주기 후이고 목표가 두 초기 수보다 크므로 두 도달 시각은 모두 적어도 한 주기 후인 양수이다.",
+            "figureSpec": null,
+            "difficulty": "심화하",
+            "difficultyBasis": [
+              "앞 단계의 복원값을 다음 조건에 재사용",
+              "조건의 완전성·단위·비퇴화 검산"
+            ],
+            "questionType": "서술형",
+            "rubric": {
+              "totalPoints": 8,
+              "criteria": [
+                {
+                  "criterionId": "doubling-table",
+                  "expected": "① 작은 초기 수 3에서 반복 두 배 표는 3 → 6 → 12 → 24이다. 큰 초기 수까지 3회 차이가 난다.",
+                  "points": 2,
+                  "alternatives": [
+                    "초기 수를 같은 횟수만큼 두 배로 늘린 표나 덧셈으로 반복 횟수 차를 구해도 된다."
+                  ],
+                  "errors": [
+                    "임의의 초기 비를 반복 두 배의 횟수로 처리한다."
+                  ]
+                },
+                {
+                  "criterionId": "arrival-offset",
+                  "expected": "② 같은 목표까지는 B가 3회 먼저 도달하므로 시간 차는 $3×13=39$분이다.",
+                  "points": 2,
+                  "alternatives": [
+                    "같은 실제 목표에 이르는 두 시간표를 비교해 시차를 구해도 된다."
+                  ],
+                  "errors": [
+                    "어느 상자가 먼저 도달하는지 또는 주기와 횟수 차의 곱을 잘못 구한다."
+                  ]
+                },
+                {
+                  "criterionId": "hours-to-minutes",
+                  "expected": "③ B의 도달 시각 $t$시간은 $60t$분이다. A는 B보다 늦게 도달하므로 답은 $60t+39$분이다.",
+                  "points": 2,
+                  "alternatives": [
+                    "알려진 시각을 먼저 분으로 바꾼 뒤 시차를 더하거나 빼도 된다."
+                  ],
+                  "errors": [
+                    "시간을 분으로 바꾸지 않거나 시차의 부호를 반대로 쓴다."
+                  ]
+                },
+                {
+                  "criterionId": "positive-arrivals",
+                  "expected": "④ 첫 증가는 관찰 시작 한 주기 후이고 목표가 두 초기 수보다 크므로 두 도달 시각은 모두 적어도 한 주기 후인 양수이다.",
+                  "points": 2,
+                  "alternatives": [
+                    "목표가 두 초기 수보다 크고 첫 증가는 한 주기 후라는 조건으로 양수를 설명한다."
+                  ],
+                  "errors": [
+                    "더 이른 도달 시각이 0 또는 음수인 경우를 허용한다."
+                  ]
+                }
+              ]
+            },
+            "id": "exam-study:e2ace6f54975618e4f0134bf241a81fd",
+            "familyId": "study-middle-doubling-time-offset",
+            "familyVersion": "2-native-written",
+            "title": "공통 배증 주기의 도달 시차와 문자 시간",
+            "course": "중1",
+            "unitSections": [
+              "문자의 사용과 식의 계산"
+            ],
+            "logicalKey": "study-middle-doubling-time-offset@2-native-written:{\"initialA\":3,\"initialB\":24,\"known\":\"B\",\"period\":13}",
+            "contentDigest": "61a0f856bfdf821d25b2a8002f9a4f3c5d80b6977a6d45b19512bd99b0a4fe25",
+            "seed": 595925831,
+            "variant": 0,
+            "requirements": [
+              "model.doubling-time-offset"
+            ],
+            "figureSvg": null
+          }
+        ],
+        "requirements": [
+          {
+            "id": "model.doubling-time-offset",
+            "title": "배증의 시간차와 단위 변환",
+            "status": "full",
+            "requested": 1,
+            "delivered": 1,
+            "reason": null
+          }
+        ],
+        "warnings": [],
+        "schoolEvidence": null
+      }
+    },
+    {
+      "name": "circleRevolutionPercentage",
+      "request": {
+        "course": "중1",
+        "requirementIds": [
+          "model.circle-revolution-percentage"
+        ],
+        "count": 1,
+        "format": "단답형",
+        "seed": 91
+      },
+      "result": {
+        "engineVersion": "exam-study-1",
+        "manifestVersion": "exam-study-manifest-1d804d7e911e798e0176a804",
+        "profileId": null,
+        "profileVersion": null,
+        "recipe": {
+          "course": "중1",
+          "requirementIds": [
+            "model.circle-revolution-percentage"
+          ],
+          "count": 1,
+          "format": "단답형",
+          "seed": 91,
+          "maxPerFamily": 1
+        },
+        "digest": "aa9b5d8043c0c9748f3dd37d41bc254ac5fc112dabc4e3c8c943ee7c67017437",
+        "status": "unavailable",
+        "requestedCount": 1,
+        "deliveredCount": 0,
+        "questions": [],
+        "requirements": [
+          {
+            "id": "model.circle-revolution-percentage",
+            "title": "지름 변화에 따른 회전수 백분율",
+            "status": "unavailable",
+            "requested": 1,
+            "delivered": 0,
+            "reason": "완결 연습 0/1개. 완결 대응 증거·실제 검산·형식·그림·문항 중복 및 가족 상한을 모두 만족하는 문항이 부족합니다. 요청 형식을 지원하지 않습니다."
+          }
+        ],
+        "warnings": [
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ],
+        "schoolEvidence": null
+      }
+    },
+    {
+      "name": "circleRevolutionPercentage",
+      "request": {
+        "course": "중1",
+        "requirementIds": [
+          "model.circle-revolution-percentage"
+        ],
+        "count": 1,
+        "format": "객관식",
+        "seed": 91
+      },
+      "result": {
+        "engineVersion": "exam-study-1",
+        "manifestVersion": "exam-study-manifest-1d804d7e911e798e0176a804",
+        "profileId": null,
+        "profileVersion": null,
+        "recipe": {
+          "course": "중1",
+          "requirementIds": [
+            "model.circle-revolution-percentage"
+          ],
+          "count": 1,
+          "format": "객관식",
+          "seed": 91,
+          "maxPerFamily": 1
+        },
+        "digest": "cd018f2e2d8197a2acf65bfab4d3622c477865a525614bb6d14e9c2ae5b0281d",
+        "status": "unavailable",
+        "requestedCount": 1,
+        "deliveredCount": 0,
+        "questions": [],
+        "requirements": [
+          {
+            "id": "model.circle-revolution-percentage",
+            "title": "지름 변화에 따른 회전수 백분율",
+            "status": "unavailable",
+            "requested": 1,
+            "delivered": 0,
+            "reason": "완결 연습 0/1개. 완결 대응 증거·실제 검산·형식·그림·문항 중복 및 가족 상한을 모두 만족하는 문항이 부족합니다. 요청 형식을 지원하지 않습니다."
+          }
+        ],
+        "warnings": [
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ],
+        "schoolEvidence": null
+      }
+    },
+    {
+      "name": "circleRevolutionPercentage",
+      "request": {
+        "course": "중1",
+        "requirementIds": [
+          "model.circle-revolution-percentage"
+        ],
+        "count": 1,
+        "format": "서술형",
+        "seed": 91
+      },
+      "result": {
+        "engineVersion": "exam-study-1",
+        "manifestVersion": "exam-study-manifest-1d804d7e911e798e0176a804",
+        "profileId": null,
+        "profileVersion": null,
+        "recipe": {
+          "course": "중1",
+          "requirementIds": [
+            "model.circle-revolution-percentage"
+          ],
+          "count": 1,
+          "format": "서술형",
+          "seed": 91,
+          "maxPerFamily": 1
+        },
+        "digest": "198faee029449fd35984db2b737ab550ab6269d521a8a412dc1e2f0f20569d25",
+        "status": "complete",
+        "requestedCount": 1,
+        "deliveredCount": 1,
+        "questions": [
+          {
+            "parameters": {
+              "diameter": 67,
+              "radius": 30
+            },
+            "content": "원래 바퀴의 지름은 67 cm이고 새 바퀴의 반지름은 30 cm이다.\n한 바퀴 굴러간 거리는 원주와 같고 미끄러짐은 없다. 원래 바퀴와 새 바퀴가 각각 굴러간 총 거리는 같은 양수이다. 마지막의 일부 회전도 회전수에 포함한다.\n새 바퀴의 회전수는 원래 바퀴보다 몇 % 증가하는가? 원래 회전수를 기준량으로 하고, 소수 둘째 자리에서 반올림하여 소수 첫째 자리까지 쓰시오. 원주에서 회전수 비를 얻는 과정을 쓰시오.",
+            "answer": "11.7%",
+            "solution": "① 새 지름은 $2×30=60$ cm이다. 원래 원주는 $67\\pi$ cm, 새 원주는 $60\\pi$ cm이다.\n② 같은 거리에서 회전수는 원주에 반비례한다. 원래 원주:새 원주=$67:60$이므로 새 회전수/원래 회전수=$67/60$이다.\n③ 원래 회전수를 기준으로 한 증가율은 $( 67/60-1 )×100=35/3$ %이다.\n④ 이 유리수를 소수 둘째 자리에서 반올림하면 11.7%이다. 지름의 감소율을 그대로 답하거나 새 회전수를 기준으로 나누면 안 된다.",
+            "figureSpec": null,
+            "difficulty": "심화하",
+            "difficultyBasis": [
+              "앞 단계의 복원값을 다음 조건에 재사용",
+              "조건의 완전성·단위·비퇴화 검산"
+            ],
+            "questionType": "서술형",
+            "rubric": {
+              "totalPoints": 8,
+              "criteria": [
+                {
+                  "criterionId": "radius-circumference",
+                  "expected": "① 새 지름은 $2×30=60$ cm이다. 원래 원주는 $67\\pi$ cm, 새 원주는 $60\\pi$ cm이다.",
+                  "points": 2,
+                  "alternatives": [
+                    "새 반지름을 지름으로 바꾼 뒤 두 원주를 같은 단위로 비교한다."
+                  ],
+                  "errors": [
+                    "새 반지름을 지름으로 읽거나 원주율을 한쪽에만 적용한다."
+                  ]
+                },
+                {
+                  "criterionId": "inverse-turn-ratio",
+                  "expected": "② 같은 거리에서 회전수는 원주에 반비례한다. 원래 원주:새 원주=$67:60$이므로 새 회전수/원래 회전수=$67/60$이다.",
+                  "points": 2,
+                  "alternatives": [
+                    "원래 바퀴와 새 바퀴가 같은 거리를 가는 구체적인 회전수를 만들어 비를 구해도 된다."
+                  ],
+                  "errors": [
+                    "지름의 비와 회전수의 비를 같은 방향으로 놓는다."
+                  ]
+                },
+                {
+                  "criterionId": "original-reference-percent",
+                  "expected": "③ 원래 회전수를 기준으로 한 증가율은 $( 67/60-1 )×100=35/3$ %이다.",
+                  "points": 2,
+                  "alternatives": [
+                    "늘어난 회전수와 원래 회전수를 직접 비교해 백분율을 구해도 된다."
+                  ],
+                  "errors": [
+                    "새 회전수를 기준량으로 나누거나 지름 감소율을 그대로 쓴다."
+                  ]
+                },
+                {
+                  "criterionId": "exact-rounding",
+                  "expected": "④ 이 유리수를 소수 둘째 자리에서 반올림하면 11.7%이다. 지름의 감소율을 그대로 답하거나 새 회전수를 기준으로 나누면 안 된다.",
+                  "points": 2,
+                  "alternatives": [
+                    "정확한 분수나 충분한 소수 자릿수로 반올림 위치를 확인한다."
+                  ],
+                  "errors": [
+                    "중간에 반올림하거나 소수 첫째 자리까지의 답에서 필요한 0을 누락한다."
+                  ]
+                }
+              ]
+            },
+            "id": "exam-study:6e9971afb46fed3a9fb43ed809291bb7",
+            "familyId": "study-middle-circle-revolution-percentage",
+            "familyVersion": "2-native-written",
+            "title": "반지름에서 원주를 거쳐 회전수 증가율",
+            "course": "중1",
+            "unitSections": [
+              "일차방정식의 활용"
+            ],
+            "logicalKey": "study-middle-circle-revolution-percentage@2-native-written:{\"diameter\":67,\"radius\":30}",
+            "contentDigest": "d6ddc72f234a933a5af0da20d89cacfba04501922a08edaad8c995795f61be21",
+            "seed": 1503668037,
+            "variant": 0,
+            "requirements": [
+              "model.circle-revolution-percentage"
+            ],
+            "figureSvg": null
+          }
+        ],
+        "requirements": [
+          {
+            "id": "model.circle-revolution-percentage",
+            "title": "지름 변화에 따른 회전수 백분율",
+            "status": "full",
+            "requested": 1,
+            "delivered": 1,
+            "reason": null
+          }
+        ],
+        "warnings": [],
+        "schoolEvidence": null
+      }
+    },
+    {
+      "name": "circleRevolutionPercentage",
+      "request": {
+        "course": "중1",
+        "requirementIds": [
+          "model.circle-revolution-percentage"
+        ],
+        "count": 1,
+        "format": "혼합",
+        "seed": 91
+      },
+      "result": {
+        "engineVersion": "exam-study-1",
+        "manifestVersion": "exam-study-manifest-1d804d7e911e798e0176a804",
+        "profileId": null,
+        "profileVersion": null,
+        "recipe": {
+          "course": "중1",
+          "requirementIds": [
+            "model.circle-revolution-percentage"
+          ],
+          "count": 1,
+          "format": "혼합",
+          "seed": 91,
+          "maxPerFamily": 1
+        },
+        "digest": "8c31ff437934e53325e0c541dab490f35e5af859d520d54c23fc5c9715643aac",
+        "status": "complete",
+        "requestedCount": 1,
+        "deliveredCount": 1,
+        "questions": [
+          {
+            "parameters": {
+              "diameter": 241,
+              "radius": 100
+            },
+            "content": "원래 바퀴의 지름은 241 cm이고 새 바퀴의 반지름은 100 cm이다.\n한 바퀴 굴러간 거리는 원주와 같고 미끄러짐은 없다. 원래 바퀴와 새 바퀴가 각각 굴러간 총 거리는 같은 양수이다. 마지막의 일부 회전도 회전수에 포함한다.\n새 바퀴의 회전수는 원래 바퀴보다 몇 % 증가하는가? 원래 회전수를 기준량으로 하고, 소수 둘째 자리에서 반올림하여 소수 첫째 자리까지 쓰시오. 원주에서 회전수 비를 얻는 과정을 쓰시오.",
+            "answer": "20.5%",
+            "solution": "① 새 지름은 $2×100=200$ cm이다. 원래 원주는 $241\\pi$ cm, 새 원주는 $200\\pi$ cm이다.\n② 같은 거리에서 회전수는 원주에 반비례한다. 원래 원주:새 원주=$241:200$이므로 새 회전수/원래 회전수=$241/200$이다.\n③ 원래 회전수를 기준으로 한 증가율은 $( 241/200-1 )×100=41/2$ %이다.\n④ 이 유리수를 소수 둘째 자리에서 반올림하면 20.5%이다. 지름의 감소율을 그대로 답하거나 새 회전수를 기준으로 나누면 안 된다.",
+            "figureSpec": null,
+            "difficulty": "심화하",
+            "difficultyBasis": [
+              "앞 단계의 복원값을 다음 조건에 재사용",
+              "조건의 완전성·단위·비퇴화 검산"
+            ],
+            "questionType": "서술형",
+            "rubric": {
+              "totalPoints": 8,
+              "criteria": [
+                {
+                  "criterionId": "radius-circumference",
+                  "expected": "① 새 지름은 $2×100=200$ cm이다. 원래 원주는 $241\\pi$ cm, 새 원주는 $200\\pi$ cm이다.",
+                  "points": 2,
+                  "alternatives": [
+                    "새 반지름을 지름으로 바꾼 뒤 두 원주를 같은 단위로 비교한다."
+                  ],
+                  "errors": [
+                    "새 반지름을 지름으로 읽거나 원주율을 한쪽에만 적용한다."
+                  ]
+                },
+                {
+                  "criterionId": "inverse-turn-ratio",
+                  "expected": "② 같은 거리에서 회전수는 원주에 반비례한다. 원래 원주:새 원주=$241:200$이므로 새 회전수/원래 회전수=$241/200$이다.",
+                  "points": 2,
+                  "alternatives": [
+                    "원래 바퀴와 새 바퀴가 같은 거리를 가는 구체적인 회전수를 만들어 비를 구해도 된다."
+                  ],
+                  "errors": [
+                    "지름의 비와 회전수의 비를 같은 방향으로 놓는다."
+                  ]
+                },
+                {
+                  "criterionId": "original-reference-percent",
+                  "expected": "③ 원래 회전수를 기준으로 한 증가율은 $( 241/200-1 )×100=41/2$ %이다.",
+                  "points": 2,
+                  "alternatives": [
+                    "늘어난 회전수와 원래 회전수를 직접 비교해 백분율을 구해도 된다."
+                  ],
+                  "errors": [
+                    "새 회전수를 기준량으로 나누거나 지름 감소율을 그대로 쓴다."
+                  ]
+                },
+                {
+                  "criterionId": "exact-rounding",
+                  "expected": "④ 이 유리수를 소수 둘째 자리에서 반올림하면 20.5%이다. 지름의 감소율을 그대로 답하거나 새 회전수를 기준으로 나누면 안 된다.",
+                  "points": 2,
+                  "alternatives": [
+                    "정확한 분수나 충분한 소수 자릿수로 반올림 위치를 확인한다."
+                  ],
+                  "errors": [
+                    "중간에 반올림하거나 소수 첫째 자리까지의 답에서 필요한 0을 누락한다."
+                  ]
+                }
+              ]
+            },
+            "id": "exam-study:0d3552ac8e42f063e0103bfd4300c9ec",
+            "familyId": "study-middle-circle-revolution-percentage",
+            "familyVersion": "2-native-written",
+            "title": "반지름에서 원주를 거쳐 회전수 증가율",
+            "course": "중1",
+            "unitSections": [
+              "일차방정식의 활용"
+            ],
+            "logicalKey": "study-middle-circle-revolution-percentage@2-native-written:{\"diameter\":241,\"radius\":100}",
+            "contentDigest": "5d393c5d32a6b5f81ad706c619abe504fa49e9581cd00f6a50a943f16c0d8dc3",
+            "seed": 1559111818,
+            "variant": 0,
+            "requirements": [
+              "model.circle-revolution-percentage"
+            ],
+            "figureSvg": null
+          }
+        ],
+        "requirements": [
+          {
+            "id": "model.circle-revolution-percentage",
+            "title": "지름 변화에 따른 회전수 백분율",
+            "status": "full",
+            "requested": 1,
+            "delivered": 1,
+            "reason": null
+          }
+        ],
+        "warnings": [],
+        "schoolEvidence": null
+      }
+    },
+    {
+      "name": "interceptIntegerArea",
+      "request": {
+        "course": "중2",
+        "requirementIds": [
+          "coord.intercept-integer-area"
+        ],
+        "count": 1,
+        "format": "단답형",
+        "seed": 91
+      },
+      "result": {
+        "engineVersion": "exam-study-1",
+        "manifestVersion": "exam-study-manifest-1d804d7e911e798e0176a804",
+        "profileId": null,
+        "profileVersion": null,
+        "recipe": {
+          "course": "중2",
+          "requirementIds": [
+            "coord.intercept-integer-area"
+          ],
+          "count": 1,
+          "format": "단답형",
+          "seed": 91,
+          "maxPerFamily": 1
+        },
+        "digest": "e0f5c8e253bf7a410b4a4692fa836184685647148bf290ac405878223a72e662",
+        "status": "unavailable",
+        "requestedCount": 1,
+        "deliveredCount": 0,
+        "questions": [],
+        "requirements": [
+          {
+            "id": "coord.intercept-integer-area",
+            "title": "절편·정수 격자 조건에서 넓이 비교",
+            "status": "unavailable",
+            "requested": 1,
+            "delivered": 0,
+            "reason": "완결 연습 0/1개. 완결 대응 증거·실제 검산·형식·그림·문항 중복 및 가족 상한을 모두 만족하는 문항이 부족합니다. 요청 형식을 지원하지 않습니다."
+          }
+        ],
+        "warnings": [
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ],
+        "schoolEvidence": null
+      }
+    },
+    {
+      "name": "interceptIntegerArea",
+      "request": {
+        "course": "중2",
+        "requirementIds": [
+          "coord.intercept-integer-area"
+        ],
+        "count": 1,
+        "format": "객관식",
+        "seed": 91
+      },
+      "result": {
+        "engineVersion": "exam-study-1",
+        "manifestVersion": "exam-study-manifest-1d804d7e911e798e0176a804",
+        "profileId": null,
+        "profileVersion": null,
+        "recipe": {
+          "course": "중2",
+          "requirementIds": [
+            "coord.intercept-integer-area"
+          ],
+          "count": 1,
+          "format": "객관식",
+          "seed": 91,
+          "maxPerFamily": 1
+        },
+        "digest": "1a8a3d831d81c25538482981dc932b32a39427a971dace0a4817515ba3eb2dc3",
+        "status": "unavailable",
+        "requestedCount": 1,
+        "deliveredCount": 0,
+        "questions": [],
+        "requirements": [
+          {
+            "id": "coord.intercept-integer-area",
+            "title": "절편·정수 격자 조건에서 넓이 비교",
+            "status": "unavailable",
+            "requested": 1,
+            "delivered": 0,
+            "reason": "완결 연습 0/1개. 완결 대응 증거·실제 검산·형식·그림·문항 중복 및 가족 상한을 모두 만족하는 문항이 부족합니다. 요청 형식을 지원하지 않습니다."
+          }
+        ],
+        "warnings": [
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ],
+        "schoolEvidence": null
+      }
+    },
+    {
+      "name": "interceptIntegerArea",
+      "request": {
+        "course": "중2",
+        "requirementIds": [
+          "coord.intercept-integer-area"
+        ],
+        "count": 1,
+        "format": "서술형",
+        "seed": 91
+      },
+      "result": {
+        "engineVersion": "exam-study-1",
+        "manifestVersion": "exam-study-manifest-1d804d7e911e798e0176a804",
+        "profileId": null,
+        "profileVersion": null,
+        "recipe": {
+          "course": "중2",
+          "requirementIds": [
+            "coord.intercept-integer-area"
+          ],
+          "count": 1,
+          "format": "서술형",
+          "seed": 91,
+          "maxPerFamily": 1
+        },
+        "digest": "2a95d02b4b604af3b46fd993fb2b3b69d6f218be8ac1b062e12d6a94c2550e9e",
+        "status": "complete",
+        "requestedCount": 1,
+        "deliveredCount": 1,
+        "questions": [
+          {
+            "parameters": {
+              "p": 4,
+              "q": 7,
+              "N": 15
+            },
+            "content": "직선 $\\ell$의 방정식은 $4x+7y=-15$이다.\n$O$는 원점이고, $A$와 $B$는 각각 직선 $\\ell$의 $x$절편과 $y$절편인 점이다.\n$P$는 직선 $\\ell$ 위의 점이며 두 좌표가 모두 음의 정수이다.\n$A,B$의 좌표와 가능한 모든 $P$를 구하고, 삼각형 $OAP$와 $OBP$의 넓이를 각각 구하여 어느 쪽이 더 큰지 쓰시오. 가능한 정수점을 빠짐없이 조사한 과정을 쓰시오.",
+            "answer": "A=(-15/4,0), B=(0,-15/7); P={(-2,-1)}; 넓이 OAP=15/8, OBP=15/7; OBP가 큼",
+            "solution": "① $y=0$, $x=0$을 각각 대입하면 $A=(-15/4,0)$, $B=(0,-15/7)$이다. 두 절편은 0이 아니고 음수이다.\n② $P=(-i,-j)$라 두면 $i,j$는 양의 정수이고 $4i+7j=15$이다. 따라서 $1≤i<15/4$, $1≤j<15/7$이므로 조사할 범위는 유한하다.\n③ 가능한 $i$마다 얻은 $(i,j)$ 전체는 (1,11/7), (2,1), (3,3/7)이다. 두 성분이 모두 양의 정수인 것은 (2,1)뿐이므로 $P=(-2,-1)$로 유일하다.\n④ $OA$와 $OB$를 밑변으로 하면 높이는 각각 1, 2이다. 넓이는 $[OAP]=15/4×1/2=15/8$, $[OBP]=15/7×2/2=15/7$이다. 두 넓이가 양수이고 OBP가 더 크다.",
+            "figureSpec": null,
+            "difficulty": "심화하",
+            "difficultyBasis": [
+              "앞 단계의 복원값을 다음 조건에 재사용",
+              "조건의 완전성·단위·비퇴화 검산"
+            ],
+            "questionType": "서술형",
+            "rubric": {
+              "totalPoints": 8,
+              "criteria": [
+                {
+                  "criterionId": "negative-intercepts",
+                  "expected": "① $y=0$, $x=0$을 각각 대입하면 $A=(-15/4,0)$, $B=(0,-15/7)$이다. 두 절편은 0이 아니고 음수이다.",
+                  "points": 2,
+                  "alternatives": [
+                    "직선과 각 좌표축의 교점을 구해 두 절편의 좌표를 나타낸다."
+                  ],
+                  "errors": [
+                    "절편의 순서·부호를 바꾸거나 좌표를 길이와 혼동한다."
+                  ]
+                },
+                {
+                  "criterionId": "finite-integer-domain",
+                  "expected": "② $P=(-i,-j)$라 두면 $i,j$는 양의 정수이고 $4i+7j=15$이다. 따라서 $1≤i<15/4$, $1≤j<15/7$이므로 조사할 범위는 유한하다.",
+                  "points": 2,
+                  "alternatives": [
+                    "음의 정수 좌표의 범위를 직선식과 양수 조건으로 직접 제한해도 된다."
+                  ],
+                  "errors": [
+                    "음의 실수나 축 위의 점을 허용하거나 조사할 범위를 제한하지 않는다."
+                  ]
+                },
+                {
+                  "criterionId": "complete-integer-points",
+                  "expected": "③ 가능한 $i$마다 얻은 $(i,j)$ 전체는 (1,11/7), (2,1), (3,3/7)이다. 두 성분이 모두 양의 정수인 것은 (2,1)뿐이므로 $P=(-2,-1)$로 유일하다.",
+                  "points": 2,
+                  "alternatives": [
+                    "제한된 범위에서 모든 정수 좌표를 대입해 가능한 점을 빠짐없이 찾는다."
+                  ],
+                  "errors": [
+                    "한 점만 찾고 다른 정수점의 존재 여부를 조사하지 않는다."
+                  ]
+                },
+                {
+                  "criterionId": "positive-area-comparison",
+                  "expected": "④ $OA$와 $OB$를 밑변으로 하면 높이는 각각 1, 2이다. 넓이는 $[OAP]=15/4×1/2=15/8$, $[OBP]=15/7×2/2=15/7$이다. 두 넓이가 양수이고 OBP가 더 크다.",
+                  "points": 2,
+                  "alternatives": [
+                    "좌표축 위의 밑변과 수직 높이를 이용해 각각의 넓이를 양수로 계산한다."
+                  ],
+                  "errors": [
+                    "음의 절편을 그대로 길이로 쓰거나 두 높이를 뒤바꾼다."
+                  ]
+                }
+              ]
+            },
+            "id": "exam-study:c09d318d34f35a6f37e019d1202d3c9b",
+            "familyId": "study-middle-intercept-integer-area",
+            "familyVersion": "2-native-written",
+            "title": "음의 정수점 전체를 결정한 뒤 두 넓이 비교",
+            "course": "중2",
+            "unitSections": [
+              "일차함수와 일차방정식의 관계"
+            ],
+            "logicalKey": "study-middle-intercept-integer-area@2-native-written:{\"N\":15,\"p\":4,\"q\":7}",
+            "contentDigest": "ae625cfeb69cfcf3bbb1ab87cdbb473bf9f2f3531b74550ba0b435c9eb7674fc",
+            "seed": 316969654,
+            "variant": 0,
+            "requirements": [
+              "coord.intercept-integer-area"
+            ],
+            "figureSvg": null
+          }
+        ],
+        "requirements": [
+          {
+            "id": "coord.intercept-integer-area",
+            "title": "절편·정수 격자 조건에서 넓이 비교",
+            "status": "full",
+            "requested": 1,
+            "delivered": 1,
+            "reason": null
+          }
+        ],
+        "warnings": [],
+        "schoolEvidence": null
+      }
+    },
+    {
+      "name": "interceptIntegerArea",
+      "request": {
+        "course": "중2",
+        "requirementIds": [
+          "coord.intercept-integer-area"
+        ],
+        "count": 1,
+        "format": "혼합",
+        "seed": 91
+      },
+      "result": {
+        "engineVersion": "exam-study-1",
+        "manifestVersion": "exam-study-manifest-1d804d7e911e798e0176a804",
+        "profileId": null,
+        "profileVersion": null,
+        "recipe": {
+          "course": "중2",
+          "requirementIds": [
+            "coord.intercept-integer-area"
+          ],
+          "count": 1,
+          "format": "혼합",
+          "seed": 91,
+          "maxPerFamily": 1
+        },
+        "digest": "a48af86f3ec95762764795716f97210eb7a54fb9320ff205b26f76f2deccf1a7",
+        "status": "complete",
+        "requestedCount": 1,
+        "deliveredCount": 1,
+        "questions": [
+          {
+            "parameters": {
+              "p": 3,
+              "q": 5,
+              "N": 8
+            },
+            "content": "직선 $\\ell$의 방정식은 $3x+5y=-8$이다.\n$O$는 원점이고, $A$와 $B$는 각각 직선 $\\ell$의 $x$절편과 $y$절편인 점이다.\n$P$는 직선 $\\ell$ 위의 점이며 두 좌표가 모두 음의 정수이다.\n$A,B$의 좌표와 가능한 모든 $P$를 구하고, 삼각형 $OAP$와 $OBP$의 넓이를 각각 구하여 어느 쪽이 더 큰지 쓰시오. 가능한 정수점을 빠짐없이 조사한 과정을 쓰시오.",
+            "answer": "A=(-8/3,0), B=(0,-8/5); P={(-1,-1)}; 넓이 OAP=4/3, OBP=4/5; OAP가 큼",
+            "solution": "① $y=0$, $x=0$을 각각 대입하면 $A=(-8/3,0)$, $B=(0,-8/5)$이다. 두 절편은 0이 아니고 음수이다.\n② $P=(-i,-j)$라 두면 $i,j$는 양의 정수이고 $3i+5j=8$이다. 따라서 $1≤i<8/3$, $1≤j<8/5$이므로 조사할 범위는 유한하다.\n③ 가능한 $i$마다 얻은 $(i,j)$ 전체는 (1,1), (2,2/5)이다. 두 성분이 모두 양의 정수인 것은 (1,1)뿐이므로 $P=(-1,-1)$로 유일하다.\n④ $OA$와 $OB$를 밑변으로 하면 높이는 각각 1, 1이다. 넓이는 $[OAP]=8/3×1/2=4/3$, $[OBP]=8/5×1/2=4/5$이다. 두 넓이가 양수이고 OAP가 더 크다.",
+            "figureSpec": null,
+            "difficulty": "심화하",
+            "difficultyBasis": [
+              "앞 단계의 복원값을 다음 조건에 재사용",
+              "조건의 완전성·단위·비퇴화 검산"
+            ],
+            "questionType": "서술형",
+            "rubric": {
+              "totalPoints": 8,
+              "criteria": [
+                {
+                  "criterionId": "negative-intercepts",
+                  "expected": "① $y=0$, $x=0$을 각각 대입하면 $A=(-8/3,0)$, $B=(0,-8/5)$이다. 두 절편은 0이 아니고 음수이다.",
+                  "points": 2,
+                  "alternatives": [
+                    "직선과 각 좌표축의 교점을 구해 두 절편의 좌표를 나타낸다."
+                  ],
+                  "errors": [
+                    "절편의 순서·부호를 바꾸거나 좌표를 길이와 혼동한다."
+                  ]
+                },
+                {
+                  "criterionId": "finite-integer-domain",
+                  "expected": "② $P=(-i,-j)$라 두면 $i,j$는 양의 정수이고 $3i+5j=8$이다. 따라서 $1≤i<8/3$, $1≤j<8/5$이므로 조사할 범위는 유한하다.",
+                  "points": 2,
+                  "alternatives": [
+                    "음의 정수 좌표의 범위를 직선식과 양수 조건으로 직접 제한해도 된다."
+                  ],
+                  "errors": [
+                    "음의 실수나 축 위의 점을 허용하거나 조사할 범위를 제한하지 않는다."
+                  ]
+                },
+                {
+                  "criterionId": "complete-integer-points",
+                  "expected": "③ 가능한 $i$마다 얻은 $(i,j)$ 전체는 (1,1), (2,2/5)이다. 두 성분이 모두 양의 정수인 것은 (1,1)뿐이므로 $P=(-1,-1)$로 유일하다.",
+                  "points": 2,
+                  "alternatives": [
+                    "제한된 범위에서 모든 정수 좌표를 대입해 가능한 점을 빠짐없이 찾는다."
+                  ],
+                  "errors": [
+                    "한 점만 찾고 다른 정수점의 존재 여부를 조사하지 않는다."
+                  ]
+                },
+                {
+                  "criterionId": "positive-area-comparison",
+                  "expected": "④ $OA$와 $OB$를 밑변으로 하면 높이는 각각 1, 1이다. 넓이는 $[OAP]=8/3×1/2=4/3$, $[OBP]=8/5×1/2=4/5$이다. 두 넓이가 양수이고 OAP가 더 크다.",
+                  "points": 2,
+                  "alternatives": [
+                    "좌표축 위의 밑변과 수직 높이를 이용해 각각의 넓이를 양수로 계산한다."
+                  ],
+                  "errors": [
+                    "음의 절편을 그대로 길이로 쓰거나 두 높이를 뒤바꾼다."
+                  ]
+                }
+              ]
+            },
+            "id": "exam-study:69a71ec64ed233f21db3d3ba1ac1111e",
+            "familyId": "study-middle-intercept-integer-area",
+            "familyVersion": "2-native-written",
+            "title": "음의 정수점 전체를 결정한 뒤 두 넓이 비교",
+            "course": "중2",
+            "unitSections": [
+              "일차함수와 일차방정식의 관계"
+            ],
+            "logicalKey": "study-middle-intercept-integer-area@2-native-written:{\"N\":8,\"p\":3,\"q\":5}",
+            "contentDigest": "ae5cef1815e58f9d90b356f620c032bab22db4282c9f496208e6af11a740ffbf",
+            "seed": 1091169604,
+            "variant": 0,
+            "requirements": [
+              "coord.intercept-integer-area"
+            ],
+            "figureSvg": null
+          }
+        ],
+        "requirements": [
+          {
+            "id": "coord.intercept-integer-area",
+            "title": "절편·정수 격자 조건에서 넓이 비교",
+            "status": "full",
+            "requested": 1,
+            "delivered": 1,
+            "reason": null
+          }
+        ],
+        "warnings": [],
+        "schoolEvidence": null
+      }
+    }
+  ],
+  "failures": [],
+  "httpTransportTested": false,
+  "sourceStable": true
+}

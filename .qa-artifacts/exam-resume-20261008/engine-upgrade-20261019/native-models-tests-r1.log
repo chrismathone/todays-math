@@ -1,0 +1,100 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/unit/examStudyAdvancedFigures.test.ts (6 tests) 41611ms
+     ✓ re-solves each printed parabola/line chain and checks every essential dependency  618ms
+     ✓ strictly renders graph-1/v2 combinations with their essential printed labels  3965ms
+     ✓ strictly renders every bounded figure tuple with readable, collision-free print labels  36878ms
+ ✓ src/__tests__/unit/middleChordInverse.test.ts (46 tests) 29720ms
+     ✓ routes deterministically through the existing generator and versions only the changed family  12830ms
+     ✓ strictly renders all 42 question/figure tuples without dropping conditions  16634ms
+ ✓ src/__tests__/unit/examStudyCompletion.test.ts (29 tests) 18649ms
+     ✓ provides the selected demands within the grade eligibility gate for 'daeryun-m1'  14566ms
+     ✓ provides the selected demands within the grade eligibility gate for 'daeryun-m2'  410ms
+     ✓ provides the selected demands within the grade eligibility gate for 'kyungmyung-m3'  894ms
+ ✓ src/__tests__/unit/examStudyCoreLegacy.test.ts (15 tests) 12858ms
+     ✓ preserves original registry identities/counts and exposes actual supported courses only  12372ms
+ ✓ src/__tests__/unit/examStudyIntegration.test.ts (7 tests) 15449ms
+     ✓ keeps all nine courses available without multiplying authored families by response format  13162ms
+     ✓ runs authenticated API → actual math → strict Python SVG → reproducible output confirmation  1538ms
+ ✓ src/__tests__/unit/examStudyCurriculumEligibility.test.ts (8 tests) 11298ms
+     ✓ hides the held template from selectable catalogs and retains its definition for internal review  11162ms
+ ✓ src/__tests__/unit/examStudyAdvanced.test.ts (21 tests) 2510ms
+     ✓ checks every rational integer boundary, excluded point, absolute branch and the infinite tail  1242ms
+ ❯ src/__tests__/unit/examStudyReinforcement.test.ts (20 tests | 1 failed) 4105ms
+     ✓ rejects contradictory domain guidance with otherwise matching keywords and serialization 141ms
+     ✓ rejects contradictory model guidance with otherwise matching keywords and serialization 60ms
+     ✓ rejects contradictory roots guidance with otherwise matching keywords and serialization 57ms
+     ✓ rejects contradictory check guidance with otherwise matching keywords and serialization 48ms
+     × preserves IDs, source engines, unrelated versions, and only changes the intended evidence 11ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: candidate  359ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: equality 116ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: classification  1752ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: model  796ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: simplify 219ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: rectangle  318ms
+     ✓ forces exact degree, zero polynomial, nonzero constant, and quadratic-cancellation branches 2ms
+     ✓ exercises every rectangle time branch and rejects root/domain/solution/rubric math mutations 50ms
+     ✓ observes signed model differences and equality/simplification boundary values 26ms
+     ✓ allocates full only in supported formats, preserving logical identity: candidate 50ms
+     ✓ allocates full only in supported formats, preserving logical identity: equality 21ms
+     ✓ allocates full only in supported formats, preserving logical identity: classification 23ms
+     ✓ allocates full only in supported formats, preserving logical identity: model 15ms
+     ✓ allocates full only in supported formats, preserving logical identity: simplify 24ms
+     ✓ allocates full only in supported formats, preserving logical identity: rectangle 10ms
+ ✓ src/__tests__/unit/examStudyWorkspace.test.tsx (13 tests) 1828ms
+     ✓ requires explicit generic types and preserves generic mode for an unreviewed school  488ms
+ ✓ src/__tests__/unit/examStudyMiddle.test.ts (49 tests) 572ms
+ ✓ src/__tests__/unit/examStudyChoiceBounds.test.ts (9 tests) 1115ms
+     ✓ covers every admissible answer at counts 4..12 and 20 option orders, including 0/n  885ms
+ ✓ src/__tests__/unit/examStudyMiddleRemaining.test.ts (13 tests) 641ms
+ ✓ src/__tests__/unit/examStudyAdvancedRemaining.test.ts (11 tests) 379ms
+ ✓ src/__tests__/unit/examStudyCore.test.ts (58 tests) 289ms
+ ✓ src/__tests__/unit/examStudyCoreLabel.test.ts (12 tests) 159ms
+ ✓ src/__tests__/unit/examStudyContract.test.ts (17 tests) 102ms
+ ✓ src/__tests__/unit/middleM3.test.ts (85 tests) 234ms
+ ✓ src/__tests__/unit/examStudyRoutes.test.ts (23 tests) 189ms
+ ✓ src/__tests__/unit/examStudyAccess.test.ts (18 tests) 96ms
+ ✓ src/__tests__/unit/examStudyMiddleFigures.test.ts (6 tests) 15298ms
+     ✓ study-middle-piecewise-multi-claim: every visual tuple preserves the printed data  3533ms
+     ✓ study-middle-shared-side-square: every visual tuple preserves the printed data  2063ms
+     ✓ study-middle-inverse-area-ratio: every visual tuple preserves the printed data  3113ms
+     ✓ study-middle-ray-area-partition: every visual tuple preserves the printed data  3107ms
+     ✓ study-middle-signed-inverse-trapezoid: every visual tuple preserves the printed data  1268ms
+     ✓ study-middle-intercept-trapezoid-cases: every visual tuple preserves the printed data  2207ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/unit/examStudyReinforcement.test.ts > six examStudy-only reinforcements > preserves IDs, source engines, unrelated versions, and only changes the intended evidence
+AssertionError: expected [ …(7) ] to deeply equal [ …(6) ]
+
+- Expected
++ Received
+
+@@ -2,7 +2,8 @@
+    "legacy:mid:1-1|문자의 사용과 식의 계산|13",
+    "legacy:mid:1-1|일차방정식의 풀이|06",
+    "legacy:mid:1-1|일차방정식의 풀이|09",
+    "legacy:mid:1-1|일차방정식의 풀이|11",
+    "legacy:mid:1-1|일차방정식의 활용|01",
++   "legacy:mid:3-2|원과 직선|06",
+    "legacy:native:m3-quadratic-domain-r1",
+  ]
+
+ ❯ src/__tests__/unit/examStudyReinforcement.test.ts:210:7
+    208|         .map((f) => f.id)
+    209|         .sort(),
+    210|     ).toEqual([...set].sort());
+       |       ^
+    211|     const unrelated = get("legacy:mid:1-1|좌표와 그래프|84X");
+    212|     expect(familyCoverage(unrelated, "graph.piecewise-multi-claim")).t…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 19 passed (20)
+      Tests  1 failed | 465 passed (466)
+   Start at  20:04:22
+   Duration  254.50s (transform 9.04s, setup 18.31s, import 48.55s, tests 157.10s, environment 26.37s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-tests-r1.json

@@ -1,0 +1,23 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/unit/middleChordInverse.test.ts (46 tests) 38052ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=+0 mode=+0  346ms
+     ✓ routes deterministically through the existing generator and versions only the changed family  15260ms
+     ✓ strictly renders all 42 question/figure tuples without dropping conditions  22290ms
+ ✓ src/__tests__/unit/examStudyIntegration.test.ts (7 tests) 15422ms
+     ✓ keeps all nine courses available without multiplying authored families by response format  13138ms
+     ✓ runs authenticated API → actual math → strict Python SVG → reproducible output confirmation  1605ms
+ ✓ src/__tests__/unit/examStudyCurriculumEligibility.test.ts (8 tests) 13052ms
+     ✓ hides the held template from selectable catalogs and retains its definition for internal review  12894ms
+ ✓ src/__tests__/unit/examStudyCoreLegacy.test.ts (15 tests) 15676ms
+     ✓ preserves original registry identities/counts and exposes actual supported courses only  15168ms
+ ✓ src/__tests__/unit/examStudyRoutes.test.ts (23 tests) 203ms
+ ✓ src/__tests__/unit/middleM3.test.ts (85 tests) 276ms
+
+ Test Files  6 passed (6)
+      Tests  184 passed (184)
+   Start at  19:57:38
+   Duration  116.82s (transform 8.87s, setup 7.46s, import 15.68s, tests 82.68s, environment 9.51s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-chord-tests-r2.json

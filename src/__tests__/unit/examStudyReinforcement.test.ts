@@ -202,12 +202,16 @@ describe("six examStudy-only reinforcements", () => {
     expect(ids).toHaveLength(6);
     expect(new Set(families.map((f) => f.id)).size).toBe(families.length);
     const set = new Set<string>(Object.values(REINFORCEMENT_IDS));
+    const inverseChord = get("legacy:mid:3-2|원과 직선|06");
+    expect(inverseChord.version).toBe("20261019-inverse-chord-angle-r1");
+    expect(inverseChord.source).toBe("middle");
+    expect(inverseChord.evidence).toBeUndefined();
     expect(
       families
         .filter((f) => f.version !== "9cfbb8683-r1")
         .map((f) => f.id)
         .sort(),
-    ).toEqual([...set].sort());
+    ).toEqual([...set, inverseChord.id].sort());
     const unrelated = get("legacy:mid:1-1|좌표와 그래프|84X");
     expect(familyCoverage(unrelated, "graph.piecewise-multi-claim")).toBe(
       "unverified",

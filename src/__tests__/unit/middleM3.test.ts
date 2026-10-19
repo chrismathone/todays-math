@@ -47,7 +47,9 @@ const VERIFY: Record<string, (f: Record<string, number>) => boolean> = {
   "3-2|원과 직선|05": (f) =>
     f.d! * f.d! + f.h! * f.h! === f.r! * f.r! && f.cd! === 2 * f.h!,
   // 이등변: ∠A + 2∠B == 180
-  "3-2|원과 직선|06": (f) => f.a! + 2 * f.x! === 180 && f.a! > 0 && f.x! > 0,
+  "3-2|원과 직선|06": (f) =>
+    f.a! + 2 * f.b! === 180 && f.a! > 0 && f.b! > 0 &&
+    f.x === (f.mode === 1 ? f.a : f.b),
   // 중심각 == 2×원주각, 답은 mode 가 가리키는 쪽
   "3-2|원주각|01": (f) =>
     f.c! === 2 * f.a! && f.x! === (f.mode === 0 ? f.a! : f.c!),

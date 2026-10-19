@@ -1,0 +1,259 @@
+{
+  "kind": "actual-finite-family-curriculum-audit/v1",
+  "family": "study-middle-circle-revolution-percentage",
+  "version": "1",
+  "status": "pending-response-format;bounded-M1-math-method-supported",
+  "scope": "All10 actual version1 variants inspected through current absolute root module with explicit root cwd/tsconfig. No fresh blind solve claim, unrelated-family grade certificate, root edit or raw source publication.",
+  "rootHead": "b519b378f45cb2116d073714c4597e270bafeea0",
+  "execution": {
+    "cwd": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008",
+    "tsconfig": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/tsconfig.json",
+    "module": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\remaining.ts",
+    "codeHashesBefore": "code-before.json",
+    "codeHashesAfter": "code-after.json",
+    "unchanged": true,
+    "commandAndUtf8ProbeSucceeded": true
+  },
+  "curriculum": {
+    "target": "2025/2026 middle1:2022 curriculum",
+    "cohortPrerequisites": "Both cohorts completed elementary5/6 before2022 elementary5/6 rollout on2026-03-01; historical elementary prerequisites use2015.2022 middle1 implementation began2025-03-01.",
+    "basis": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/curriculum-reference-circle-revolutions-20261019-r1/curriculum-reference-report.json",
+        "sha256": "1e6c224d782fe7e3a0b8eb2f4e0f92123129d10dddd1740031362bce5bf7a377"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/curriculum-reference-circle-revolutions-20261019-r1/official-2015-edition-2020-corroboration.json",
+        "sha256": "4b16f835052b1e2c045a9d6e13d8e9f6126e815c37abec47cdbc873f03d468a9"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/curriculum-reference-circle-revolutions-20261019-r1/official-notice-implementation-extract.json",
+        "sha256": "aabc2137094d94825dba49a01749a5abe33c6c69d860a0ec6a9c64752bb21761"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/curriculum-reference-circle-revolutions-20261019-r1/project-standard-crosswalk.json",
+        "sha256": "d46712e2642579ffe445825084eb2fa76e28c7ceae36ccc394c19d458faee4ab"
+      }
+    ],
+    "official2022DocumentSha256": "aab8eed59ecf244223d04afad75f4cf5ac5085fadcfc3cf52c2f6d54ddfc7856",
+    "nationalBandCaveat": "9수 standards are middle1–3 bands. M1 method placement is based on operation content plus existing project grade references and the prior official KICE M1 corroboration; not titles alone or school-profile permission.",
+    "primaryNotRepublished": true
+  },
+  "standardMapping": {
+    "elementary2015": [
+      {
+        "code": "6수03-07/08",
+        "use": "Circumference/diameter and circumference calculation;2020-236 HWP records3441/3445;2015 PDF physical29 printed25."
+      },
+      {
+        "code": "6수04-02/03",
+        "use": "Ratio and fraction/decimal/percentage;records3545/3549;2015 PDF physical30 printed26."
+      },
+      {
+        "code": "6수03-02",
+        "use": "Rounding;record3413;2015 PDF physical29 printed25."
+      },
+      {
+        "code": "6수01-14/16",
+        "use": "Decimal quotient and estimation;records3169/3177;2015 PDF physical26 printed22."
+      }
+    ],
+    "middle2022": [
+      {
+        "code": "9수02-01",
+        "record": 3604,
+        "use": "Letters, formula interpretation and substitution."
+      },
+      {
+        "code": "9수02-02",
+        "record": 3608,
+        "use": "First-degree expression calculation; pertinent to60t±constant, not quadratic multiplication."
+      },
+      {
+        "code": "9수02-07",
+        "record": 3642,
+        "use": "Direct/inverse proportion; guidance3783 uses real-life distance/time examples."
+      }
+    ],
+    "notation": "Actual official HWP middle geometry notation EQEDIT record4112 script pi confirms π appears in the middle-school notation context. This does not require teaching irrationality or prove everyπ manipulation is M1. New report stores only locator/hash and own interpretation, not raw document."
+  },
+  "math": {
+    "status": "passed-all10-current-finite-variants",
+    "source": "Printed diameter and radius only. Author parameters/answer/solution were not used as the calculation oracle; compared afterwards.",
+    "method": "For one original circumference of travel, old count1 and new countD/(2R). Relative increase=(new−old)/old×100, then exact long division to the rounding digit. Positive equal-distance assumption means the same ratio holds for every allowed distance. Nonzero positive reference, strict smaller new diameter and partial turns are explicit.",
+    "existenceUniqueness": "For positive distance both counts exist and are positive. Absolute counts depend on distance and are not individually determined, but only their percentage change is asked; it is uniquely D/(2R)−1. All10 D>2R>0. Half-open rounding intervals independently checked; exact tie goes upward and required trailing tenths are retained.",
+    "actualVsAbstract": "Actual task asks percentage only, not a given count or recovery of another absolute count. The abstract research supported a broader possible task; no missing-count defect is inferred for this actual question.",
+    "rounding": "BigInt fraction and finite long division; no binary floating-point oracle, premature rounding or π approximation.",
+    "results": "variant-results.json",
+    "cases": [
+      {
+        "variant": 0,
+        "tuple": {
+          "oldDiameterCm": 66,
+          "newRadiusCm": 32
+        },
+        "answer": "3.1%",
+        "roundingCase": "below-half"
+      },
+      {
+        "variant": 1,
+        "tuple": {
+          "oldDiameterCm": 81,
+          "newRadiusCm": 40
+        },
+        "answer": "1.3%",
+        "roundingCase": "tie-half-up"
+      },
+      {
+        "variant": 2,
+        "tuple": {
+          "oldDiameterCm": 2024,
+          "newRadiusCm": 1000
+        },
+        "answer": "1.2%",
+        "roundingCase": "below-half"
+      },
+      {
+        "variant": 3,
+        "tuple": {
+          "oldDiameterCm": 2026,
+          "newRadiusCm": 1000
+        },
+        "answer": "1.3%",
+        "roundingCase": "below-half"
+      },
+      {
+        "variant": 4,
+        "tuple": {
+          "oldDiameterCm": 101,
+          "newRadiusCm": 50
+        },
+        "answer": "1.0%",
+        "roundingCase": "below-half"
+      },
+      {
+        "variant": 5,
+        "tuple": {
+          "oldDiameterCm": 323,
+          "newRadiusCm": 160
+        },
+        "answer": "0.9%",
+        "roundingCase": "below-half"
+      },
+      {
+        "variant": 6,
+        "tuple": {
+          "oldDiameterCm": 317,
+          "newRadiusCm": 120
+        },
+        "answer": "32.1%",
+        "roundingCase": "above-half"
+      },
+      {
+        "variant": 7,
+        "tuple": {
+          "oldDiameterCm": 67,
+          "newRadiusCm": 30
+        },
+        "answer": "11.7%",
+        "roundingCase": "above-half"
+      },
+      {
+        "variant": 8,
+        "tuple": {
+          "oldDiameterCm": 241,
+          "newRadiusCm": 100
+        },
+        "answer": "20.5%",
+        "roundingCase": "below-half"
+      },
+      {
+        "variant": 9,
+        "tuple": {
+          "oldDiameterCm": 118,
+          "newRadiusCm": 45
+        },
+        "answer": "31.1%",
+        "roundingCase": "below-half"
+      }
+    ],
+    "failures": []
+  },
+  "sevenSurfaces": {
+    "stem": {
+      "grade": "within-M1-method",
+      "content": "Different original diameter/new radius distinguished; cm consistent; no slipping, positive same distance, partial turns, original reference and rounding all explicit.",
+      "responseFinding": "Process is expressly requested despite short-answer declaration."
+    },
+    "choices": {
+      "grade": "not-applicable-absent",
+      "content": "All10 actual outputs contain no choices/distractors; no MC distractor approval."
+    },
+    "figuresAndTables": {
+      "grade": "not-applicable-absent",
+      "content": "All10 figureSpec:null and no table; no invented scale/visual assumption or print rendering claimed."
+    },
+    "notation": {
+      "grade": "within-M1-under-direct-ratio-reading",
+      "content": "Numbers, diameter2R,π circumference,L as common positive distance,fractions and% inspected. No variable power, irrationality proof, function composition or polynomial multiplication required. L/(Dπ) is a circumference model here, not a demand to teach general rational-expression division."
+    },
+    "answer": {
+      "grade": "within-scope;math-passed",
+      "content": "All10 percentages correct with one decimal place, original count reference, positive increase, unique decimal rounding."
+    },
+    "studentSolution": {
+      "grade": "legitimate-M1-method-established",
+      "content": "Radius→diameter→circumference→inverse numeric turn ratio→subtract1 and multiply100→round. Same-distance inverse proportion justifies the ratio directly; no formal algebraic-fraction algorithm is necessary. Optional clarity improvement: explicitly state turn ratio is inverse circumference ratio, avoiding any impression that symbolic rational-expression rules are assumed."
+    },
+    "prerequisites": {
+      "grade": "supported-by-cited-2015-elementary-and2022-M1-provisions",
+      "content": "Circumference, ratio/percent, decimal division and rounding plus M1 inverse proportion/formula interpretation. No circle-power theorem,radial-speed model,π irrationality or higher algebra needed. Actual finite arithmetic examined; no arbitrary-domain burden approval."
+    }
+  },
+  "findings": [
+    {
+      "id": "F-format",
+      "severity": "medium",
+      "status": "pending-native-response-classification",
+      "allVariants": true,
+      "observation": "Registered/native questionType is 단답형, formats contains only 단답형, no native rubric. Printed prompt expressly requests a process/explanation. This is a response-format/design finding, not proof of an upper-grade method.",
+      "minimalProposedFix": "Preserve the requested process and mathematical requirement: author native 서술형 output plus a point-total-consistent multi-criterion rubric and correct format declaration, then re-review actual outputs. Merely weakening tests, claiming written coverage from a short-answer record, or dropping the substantive process requirement is not approval.",
+      "exampleTuple": {
+        "oldDiameterCm": 81,
+        "newRadiusCm": 40
+      },
+      "affectedVariants": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "sevenSurfaceImpact": [
+        "stem response instruction",
+        "studentSolution/native format",
+        "native rubric missing"
+      ],
+      "notGradeHardExclude": true
+    }
+  ],
+  "assumptions": "Printed one-turn-distance equals circumference is an explicit ideal model; no additional experimental slip/deformation claim made. Native wheel size realism not independently calibrated.",
+  "limitations": [
+    "Method/notation assessment is bounded to these actual10 version1 outputs. Pending response-format issue prevents claiming full student-delivery approval.",
+    "No copyright, original-source similarity/custody, taxonomy, native parity, corpus coverage or learning-effect certificate.",
+    "No DB/network mapping, network calls, install,push or new worktree. No root/old audit/report edits."
+  ],
+  "finalGates": {
+    "contentDelivery": "pending-format-fix-and-re-review",
+    "requiredUpperGradeMethodFound": false,
+    "blanketOtherFamilyGradeApproval": false,
+    "rightsApproved": false,
+    "fullVerified": 0,
+    "loadable": 0
+  }
+}

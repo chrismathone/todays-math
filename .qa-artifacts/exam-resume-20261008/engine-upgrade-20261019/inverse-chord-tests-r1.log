@@ -1,0 +1,82 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/unit/examStudyCoreLegacy.test.ts (15 tests) 13915ms
+     ✓ forces natural and negative-integer branches and excludes zero/domain endpoints  329ms
+     ✓ preserves original registry identities/counts and exposes actual supported courses only  13142ms
+ ✓ src/__tests__/unit/middleM3.test.ts (85 tests) 312ms
+ ❯ src/__tests__/unit/middleChordInverse.test.ts (46 tests | 1 failed) 29699ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=+0 mode=+0 100ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=+0 mode=1 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=1 mode=+0 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=1 mode=1 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=2 mode=+0 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=2 mode=1 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=3 mode=+0 2ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=3 mode=1 2ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=4 mode=+0 2ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=4 mode=1 2ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=5 mode=+0 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=5 mode=1 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=6 mode=+0 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=6 mode=1 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=7 mode=+0 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=7 mode=1 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=8 mode=+0 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=8 mode=1 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=9 mode=+0 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=9 mode=1 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=10 mode=+0 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=10 mode=1 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=11 mode=+0 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=11 mode=1 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=12 mode=+0 5ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=12 mode=1 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=13 mode=+0 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=13 mode=1 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=14 mode=+0 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=14 mode=1 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=15 mode=+0 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=15 mode=1 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=16 mode=+0 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=16 mode=1 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=17 mode=+0 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=17 mode=1 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=18 mode=+0 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=18 mode=1 2ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=19 mode=+0 2ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=19 mode=1 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=20 mode=+0 1ms
+     ✓ solves printed conditions, without answer/facts/figure oracle: n=20 mode=1 1ms
+     × checks the spec's equal chords, perpendicular feet and actual angles independently of raster pixels 3ms
+     ✓ keeps three actual response formats consistent with the independently solved question 74ms
+     ✓ routes deterministically through the existing generator and versions only the changed family  12064ms
+     ✓ strictly renders all 42 question/figure tuples without dropping conditions  17402ms
+ ✓ src/__tests__/unit/examStudyIntegration.test.ts (7 tests) 15063ms
+     ✓ keeps all nine courses available without multiplying authored families by response format  12885ms
+     ✓ runs authenticated API → actual math → strict Python SVG → reproducible output confirmation  1486ms
+ ✓ src/__tests__/unit/examStudyCurriculumEligibility.test.ts (8 tests) 14251ms
+     ✓ hides the held template from selectable catalogs and retains its definition for internal review  14086ms
+ ✓ src/__tests__/unit/examStudyRoutes.test.ts (23 tests) 315ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/unit/middleChordInverse.test.ts > same live family with a genuinely reversed angle question > checks the spec's equal chords, perpendicular feet and actual angles independently of raster pixels
+AssertionError: expected 25.997249854551928 to be close to 25.987852931706385, received difference is 0.009396922845542832, but expected 5e-9
+ ❯ src/__tests__/unit/middleChordInverse.test.ts:71:27
+     69|       const A=point("A"), B=point("B"), C=point("C"), O=point("O"), M=…
+     70|       expect(length(A,B)).toBeCloseTo(length(A,C),8);
+     71|       expect(length(O,M)).toBeCloseTo(length(O,N),8);
+       |                           ^
+     72|       // M/N coordinates are rounded to hundredths, so compare with th…
+     73|       expect(Math.abs(dot(v(A,B),v(O,M)))/length(A,B)).toBeLessThan(0.…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 5 passed (6)
+      Tests  1 failed | 183 passed (184)
+   Start at  19:55:08
+   Duration  106.67s (transform 8.12s, setup 7.28s, import 14.96s, tests 73.55s, environment 9.24s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-chord-tests-r1.json

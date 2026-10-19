@@ -129,7 +129,8 @@ describe("completed selected school-study demands through the actual API", () =>
     "honors eligibility for %s / %s without component substitution",
     async (profileId, id) => {
       const profile = EXAM_STUDY_PROFILES.find((p) => p.id === profileId)!;
-      const format = id === "written.rectangle-domain" ? "서술형" : "단답형";
+      const format = ["written.rectangle-domain", "model.doubling-time-offset", "model.circle-revolution-percentage", "coord.intercept-integer-area"].includes(id)
+        ? "서술형" : "단답형";
       const data = await generate({
         course: profile.course,
         profileId,

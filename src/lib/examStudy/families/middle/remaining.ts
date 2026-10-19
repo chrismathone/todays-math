@@ -4,7 +4,7 @@ import type {
   ExamStudyFamily,
   StudyRequirementId,
 } from "@/contracts/examStudy.contract";
-import { draft, insist, same } from "./support";
+import { checkRubric, draft, insist, rubric, same, type RubricPart } from "./support";
 
 /** Original finite text models. No source-school text, numbers, figures or answer gold. */
 type Solved = {
@@ -20,12 +20,20 @@ type Definition = {
   requirement: StudyRequirementId;
   domain: readonly CanonicalParams[];
   boundaries: readonly string[];
+  version?: string;
+  writtenParts?: readonly Omit<RubricPart, "expected">[];
   make(p: CanonicalParams): ExamStudyDraft;
   // Only printed content is passed: neither the answer nor generator parameters are an oracle.
   solve(content: string): Solved;
 };
-const checks = ["independent-solution", "essential-conditions"] as const;
 function remainingFamily(d: Definition): ExamStudyFamily {
+  const checks = d.writtenParts
+    ? ["independent-solution", "essential-conditions", "native-rubric"] as const
+    : ["independent-solution", "essential-conditions"] as const;
+  const nativeRubric = (steps: string[]) => {
+    insist(d.writtenParts?.length === steps.length, "풀이와 채점 단계 수 불일치");
+    return rubric(d.writtenParts.map((part, i) => ({...part, expected:steps[i]})));
+  };
   insist(
     d.domain.length > 0 &&
       new Set(d.domain.map((p) => JSON.stringify(p))).size === d.domain.length,
@@ -33,14 +41,14 @@ function remainingFamily(d: Definition): ExamStudyFamily {
   );
   return {
     id: `study-middle-${d.key}`,
-    version: "1",
+    version: d.version ?? "1",
     title: d.title,
     course: d.course,
     unitIds: [`${d.course}|${d.unit}`],
     unitSections: [d.unit],
     source: "authored",
     fulfills: [{ requirement: d.requirement, level: "full" }],
-    formats: ["단답형"],
+    formats: [d.writtenParts ? "서술형" : "단답형"],
     difficulties: ["심화하"],
     representation: "text",
     figureKinds: [],
@@ -64,15 +72,18 @@ function remainingFamily(d: Definition): ExamStudyFamily {
         "seed/variant 범위",
       );
       const size = d.domain.length;
-      return d.make(d.domain[((seed % size) + (variant % size) + size) % size]);
+      const item=d.make(d.domain[((seed % size) + (variant % size) + size) % size]);
+      return d.writtenParts
+        ? {...item, questionType:"서술형", rubric:nativeRubric(item.solution.split("\n"))}
+        : item;
     },
     canonicalParams: (item) => d.solve(item.content).parameters,
     verify(item) {
       try {
         insist(
-          item.questionType === "단답형" &&
+          item.questionType === (d.writtenParts ? "서술형" : "단답형") &&
             item.figureSpec === null &&
-            item.rubric === undefined &&
+            (d.writtenParts || item.rubric === undefined) &&
             item.distractors === undefined &&
             item.difficulty === "심화하" &&
             item.difficultyBasis.length > 0,
@@ -89,6 +100,10 @@ function remainingFamily(d: Definition): ExamStudyFamily {
           item.solution === solved.steps.join("\n"),
           "독립 검산한 풀이 단계 불일치",
         );
+        if (d.writtenParts) {
+          checkRubric(item, solved.steps);
+          insist(same(item.rubric, nativeRubric(solved.steps)), "채점 대안/오류 기준 불일치");
+        }
         return { valid: true, checks, errors: [] };
       } catch (error) {
         return {
@@ -158,7 +173,7 @@ const basis = [
 ];
 
 const doublingRules = [
-  "두 배양 상자 A, B는 같은 순간에 관찰을 시작한다. 두 상자의 수는 같은 주기마다 동시에 정확히 두 배가 되고, 그 사이에는 변하지 않는다.",
+  "두 배양 상자 A, B는 같은 순간에 관찰을 시작한다. 첫 증가는 관찰 시작으로부터 정확히 한 주기가 지난 순간에 일어난다. 두 상자의 수는 같은 주기마다 동시에 정확히 두 배가 되고, 그 사이에는 변하지 않는다.",
   "목표 수는 두 상자의 초기 수보다 큰 같은 수이다. 두 상자가 그 목표에 처음 도달하는 순간이 각각 존재한다.",
 ] as const;
 const doublingQuestion =
@@ -192,12 +207,19 @@ function doublingResult(
       `① 작은 초기 수 ${small}에서 반복 두 배 표는 ${table.join(" → ")}이다. 큰 초기 수까지 ${gap}회 차이가 난다.`,
       `② 같은 목표까지는 ${early}가 ${gap}회 먼저 도달하므로 시간 차는 $${gap}×${period}=${gap * period}$분이다.`,
       `③ ${known}의 도달 시각 $t$시간은 $60t$분이다. ${other}는 ${known}보다 ${delta > 0 ? "늦게" : "일찍"} 도달하므로 답은 $60t${signed(delta)}$분이다.`,
-      "④ 목표가 두 초기 수보다 크므로 먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다. 따라서 구한 두 도달 시각은 모두 양수이다.",
+      "④ 첫 증가는 관찰 시작 한 주기 후이고 목표가 두 초기 수보다 크므로 두 도달 시각은 모두 적어도 한 주기 후인 양수이다.",
     ],
   };
 }
 export const doublingTimeOffset = remainingFamily({
   key: "doubling-time-offset",
+  version: "2-native-written",
+  writtenParts: [
+    {id:"doubling-table",alternative:"초기 수를 같은 횟수만큼 두 배로 늘린 표나 덧셈으로 반복 횟수 차를 구해도 된다.",error:"임의의 초기 비를 반복 두 배의 횟수로 처리한다."},
+    {id:"arrival-offset",alternative:"같은 실제 목표에 이르는 두 시간표를 비교해 시차를 구해도 된다.",error:"어느 상자가 먼저 도달하는지 또는 주기와 횟수 차의 곱을 잘못 구한다."},
+    {id:"hours-to-minutes",alternative:"알려진 시각을 먼저 분으로 바꾼 뒤 시차를 더하거나 빼도 된다.",error:"시간을 분으로 바꾸지 않거나 시차의 부호를 반대로 쓴다."},
+    {id:"positive-arrivals",alternative:"목표가 두 초기 수보다 크고 첫 증가는 한 주기 후라는 조건으로 양수를 설명한다.",error:"더 이른 도달 시각이 0 또는 음수인 경우를 허용한다."},
+  ],
   title: "공통 배증 주기의 도달 시차와 문자 시간",
   course: "중1",
   unit: "문자의 사용과 식의 계산",
@@ -316,7 +338,7 @@ function circleResult(
     answer: `${answer}%`,
     steps: [
       `① 새 지름은 $2×${R}=${2 * R}$ cm이다. 원래 원주는 $${D}\\pi$ cm, 새 원주는 $${2 * R}\\pi$ cm이다.`,
-      `② 같은 거리 $L$에서 회전수는 거리÷원주이다. 원래 회전수는 $L/(${D}\\pi)$, 새 회전수는 $L/(${2 * R}\\pi)$이므로 새 회전수/원래 회전수=$${ratio}$이다.`,
+      `② 같은 거리에서 회전수는 원주에 반비례한다. 원래 원주:새 원주=$${D}:${2 * R}$이므로 새 회전수/원래 회전수=$${ratio}$이다.`,
       `③ 원래 회전수를 기준으로 한 증가율은 $( ${ratio}-1 )×100=${rate}$ %이다.`,
       `④ 이 유리수를 소수 둘째 자리에서 반올림하면 ${answer}%이다. 지름의 감소율을 그대로 답하거나 새 회전수를 기준으로 나누면 안 된다.`,
     ],
@@ -324,6 +346,13 @@ function circleResult(
 }
 export const circleRevolutionPercentage = remainingFamily({
   key: "circle-revolution-percentage",
+  version: "2-native-written",
+  writtenParts: [
+    {id:"radius-circumference",alternative:"새 반지름을 지름으로 바꾼 뒤 두 원주를 같은 단위로 비교한다.",error:"새 반지름을 지름으로 읽거나 원주율을 한쪽에만 적용한다."},
+    {id:"inverse-turn-ratio",alternative:"원래 바퀴와 새 바퀴가 같은 거리를 가는 구체적인 회전수를 만들어 비를 구해도 된다.",error:"지름의 비와 회전수의 비를 같은 방향으로 놓는다."},
+    {id:"original-reference-percent",alternative:"늘어난 회전수와 원래 회전수를 직접 비교해 백분율을 구해도 된다.",error:"새 회전수를 기준량으로 나누거나 지름 감소율을 그대로 쓴다."},
+    {id:"exact-rounding",alternative:"정확한 분수나 충분한 소수 자릿수로 반올림 위치를 확인한다.",error:"중간에 반올림하거나 소수 첫째 자리까지의 답에서 필요한 0을 누락한다."},
+  ],
   title: "반지름에서 원주를 거쳐 회전수 증가율",
   course: "중1",
   unit: "일차방정식의 활용",
@@ -565,6 +594,13 @@ function integerAreaResult(
 }
 export const interceptIntegerArea = remainingFamily({
   key: "intercept-integer-area",
+  version: "2-native-written",
+  writtenParts: [
+    {id:"negative-intercepts",alternative:"직선과 각 좌표축의 교점을 구해 두 절편의 좌표를 나타낸다.",error:"절편의 순서·부호를 바꾸거나 좌표를 길이와 혼동한다."},
+    {id:"finite-integer-domain",alternative:"음의 정수 좌표의 범위를 직선식과 양수 조건으로 직접 제한해도 된다.",error:"음의 실수나 축 위의 점을 허용하거나 조사할 범위를 제한하지 않는다."},
+    {id:"complete-integer-points",alternative:"제한된 범위에서 모든 정수 좌표를 대입해 가능한 점을 빠짐없이 찾는다.",error:"한 점만 찾고 다른 정수점의 존재 여부를 조사하지 않는다."},
+    {id:"positive-area-comparison",alternative:"좌표축 위의 밑변과 수직 높이를 이용해 각각의 넓이를 양수로 계산한다.",error:"음의 절편을 그대로 길이로 쓰거나 두 높이를 뒤바꾼다."},
+  ],
   title: "음의 정수점 전체를 결정한 뒤 두 넓이 비교",
   course: "중2",
   unit: "일차함수와 일차방정식의 관계",

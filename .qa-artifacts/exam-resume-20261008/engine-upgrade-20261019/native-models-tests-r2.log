@@ -1,0 +1,16 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/unit/examStudyReinforcement.test.ts (20 tests) 4697ms
+     ✓ rejects contradictory domain guidance with otherwise matching keywords and serialization  390ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: candidate  400ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: classification  1956ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: model  785ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: rectangle  352ms
+
+ Test Files  1 passed (1)
+      Tests  20 passed (20)
+   Start at  20:10:39
+   Duration  30.37s (transform 6.62s, setup 2.79s, import 18.34s, tests 4.70s, environment 4.14s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-tests-r2.json

@@ -1,0 +1,27 @@
+﻿import fs from 'node:fs';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';import {pathToFileURL} from 'node:url';import {createRequire} from 'node:module';
+const root='C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008';
+const out='C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/wheel-actual-grade-audit-20261019-r1/';
+const hash=(p:string)=>createHash('sha256').update(fs.readFileSync(p)).digest('hex');const textHash=(t:string)=>createHash('sha256').update(t).digest('hex');const write=(n:string,v:any)=>fs.writeFileSync(out+n,JSON.stringify(v,null,2)+'\n',{flag:'wx'});
+assert.equal(process.cwd().replaceAll('\\','/'),root);const paths=['tsconfig.json','src/lib/examStudy/families/middle/remaining.ts','src/lib/examStudy/families/middle/support.ts','src/lib/examStudy/evidence.ts','src/lib/examStudy/curriculumEligibility.ts','src/contracts/examStudy.contract.ts'];const before=Object.fromEntries(paths.map(p=>[p,hash(root+'/'+p)]));write('code-before.json',before);
+const req=createRequire(root+'/package.json');const resolved=req.resolve('@/lib/examStudy/families/middle/remaining');assert(resolved.replaceAll('\\','/').startsWith(root+'/src/'));
+const {circleRevolutionPercentage:f}=await import(pathToFileURL(root+'/src/lib/examStudy/families/middle/remaining.ts').href);assert.equal(f.version,'1');assert.equal(f.paramDomain.kind,'finite');assert.equal(f.paramDomain.size,10);
+const failures:any[]=[];function check(ok:any,variant:any,claim:string,details:any={}){if(!ok)failures.push({variant,claim,details});}
+const results:any[]=[];
+function gcd(a:bigint,b:bigint):bigint{return b?gcd(b,a%b):a;}
+function readRat(s:string){const [a,b='1']=s.split('/');return {n:BigInt(a),d:BigInt(b)};}
+for(let v=0;v<f.paramDomain.size;v++){
+ const item=f.generate(0,v);const m=/^원래 바퀴의 지름은 (\d+) cm이고 새 바퀴의 반지름은 (\d+) cm이다\./.exec(item.content);assert(m);const D=BigInt(m[1]),R=BigInt(m[2]),d=2n*R;check(R>0n&&D>d,v,'positive smaller new diameter');
+ // Set old travel to exactly one old circumference, so new turns D/d; percentage uses old turns1.
+ const numerator=100n*(D-d),denominator=d;const integer=numerator/denominator;let rem=numerator%denominator;const digit1=rem*10n/denominator;rem=rem*10n%denominator;const digit2=rem*10n/denominator;const tenths=integer*10n+digit1+(digit2>=5n?1n:0n);const expected=`${tenths/10n}.${tenths%10n}%`;
+ check(item.answer===expected,v,'exact long-division half-up answer',{expected,actual:item.answer});
+ // Each rounded tenth has a unique half-open preimage [a-.05,a+.05), with ties upwards.
+ check(20n*numerator>=denominator*(2n*tenths-1n)&&20n*numerator<denominator*(2n*tenths+1n),v,'rounding interval uniqueness');
+ const ratio=/새 회전수\/원래 회전수=\$([\d/]+)\$/.exec(item.solution);assert(ratio);const rr=readRat(ratio[1]);check(rr.n*d===rr.d*D,v,'printed ratio exact');const rate=/×100=([\d/]+)\$ %/.exec(item.solution);assert(rate);const pr=readRat(rate[1]);check(pr.n*denominator===pr.d*numerator,v,'printed increase exact');
+ for(const phrase of ['미끄러짐은 없다','총 거리는 같은 양수','일부 회전도 회전수에 포함','원래 회전수를 기준량','소수 둘째 자리에서 반올림','소수 첫째 자리까지'])check(item.content.includes(phrase),v,'explicit condition '+phrase);
+ check(item.questionType==='단답형'&&item.figureSpec===null&&item.distractors===undefined,v,'actual short answer with no figures/choices');check(!/log|로그|미분|n\^|L\^|분모의 유리화/.test(item.solution),v,'no observed advanced method');check(f.verify(item).valid,v,'own verifier agrees (not grade proof)');
+ const g=gcd(numerator,denominator);results.push({variant:v,tuple:{oldDiameterCm:Number(D),newRadiusCm:Number(R)},studentTextSha256:textHash(item.content),answerSha256:textHash(item.answer),solutionSha256:textHash(item.solution),independentFromPrinted:{newDiameterCm:Number(d),oldTurnsAtOneOldCircumference:'1',newTurnsAtSameDistance:`${D}/${d}`,increasePercentExact:`${numerator/g}/${denominator/g}`,decimalDigits:{integer:String(integer),first:String(digit1),second:String(digit2)},roundingCase:2n*(numerator*10n%denominator)===denominator?'tie-half-up':2n*(numerator*10n%denominator)<denominator?'below-half':'above-half',expectedAnswer:expected,actualAnswer:item.answer,uniqueRoundingInterval:true},studentSolutionObservations:{diameterFromRadius:true,circumferenceFactor:'same pi factor',usesLAsSamePositiveDistance:true,inverseProportionOrRatioJustification:'Same distance divided by circumference; concrete rational turn ratio independent of L. Can be justified without general rational-expression algorithms.',finalRoundingOnly:true},gradeDisposition:'method-within-M1-for-this-actual-tuple;format-classification-pending'});
+}
+check(new Set(results.map(r=>JSON.stringify(r.tuple))).size===10,'all','all finite tuples distinct');
+const after=Object.fromEntries(paths.map(p=>[p,hash(root+'/'+p)]));write('code-after.json',after);check(JSON.stringify(before)===JSON.stringify(after),'all','source hashes stable');
+write('variant-results.json',{rootCwd:process.cwd(),rootTsconfig:root+'/tsconfig.json',resolvedCurrentModule:resolved,familyId:f.id,version:f.version,finiteDomain:10,records:results,failures,notFreshBlind:true,sourceUnchanged:JSON.stringify(before)===JSON.stringify(after)});
+console.log(JSON.stringify({variants:results.length,failures,sourceUnchanged:JSON.stringify(before)===JSON.stringify(after),answers:results.map(r=>({tuple:r.tuple,result:r.independentFromPrinted.expectedAnswer,rounding:r.independentFromPrinted.roundingCase}))},null,2));

@@ -31,6 +31,10 @@ import {
 } from "./studyChoiceBounds";
 
 const LEGACY_VERSION = "9cfbb8683-r1";
+// Changed question targets must invalidate old recipe manifests, with family IDs preserved.
+const LEGACY_FAMILY_VERSIONS: Readonly<Record<string, string>> = {
+  "3-2|원과 직선|06": "20261019-inverse-chord-angle-r1",
+};
 const courseIsSupported = (course: string): course is ExamStudyCourse =>
   (EXAM_STUDY_COURSES as readonly string[]).includes(course);
 
@@ -125,7 +129,10 @@ function adapter(definition: AdapterDefinition): ExamStudyFamily | undefined {
   const firstFigure = sample.figureSpec;
   return {
     id: definition.id,
-    version: reinforcement?.version ?? LEGACY_VERSION,
+    version:
+      reinforcement?.version ??
+      LEGACY_FAMILY_VERSIONS[definition.legacyKey ?? ""] ??
+      LEGACY_VERSION,
     title: reinforcement?.title ?? definition.title,
     course: definition.course,
     source: definition.source,

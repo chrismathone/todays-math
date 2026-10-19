@@ -54,6 +54,7 @@ const generation: Record<string, unknown>[] = [];
 
 /** These oracles accept only printed task, answer and solution; no parameters or author helpers. */
 function printedDoubling(text: string, answer: string, solution: string) {
+  expect(text).toContain("첫 증가는 관찰 시작으로부터 정확히 한 주기가 지난 순간에 일어난다.");
   const m = capture(text, /A가 (\d+)개, B가 (\d+)개이고 공통 주기는 (\d+)분/);
   const [A, C, period] = m.slice(1).map(Number);
   const known = capture(
@@ -326,6 +327,7 @@ const oracle = (f: ExamStudyFamily, q: ExamStudyDraft) => {
 
 const essentialChanges: Record<string, [string, string][]> = {
   "model.doubling-time-offset": [
+    ["첫 증가는 관찰 시작으로부터 정확히 한 주기가 지난 순간에 일어난다.", "첫 증가 시각은 주어지지 않았다."],
     ["동시에 정확히 두 배", "서로 다른 순간에 정확히 두 배"],
     ["같은 주기마다", "서로 다른 주기마다"],
     ["초기 수보다 큰 같은 수", "초기 수보다 큰 서로 다른 수"],
@@ -363,12 +365,12 @@ const essentialChanges: Record<string, [string, string][]> = {
 };
 
 describe("remaining middle course demands: every finite canonical tuple", () => {
-  it("has five course demands and exactly 64 canonical tuples, all genuine short answer", () => {
+  it("has five demands and 64 tuples, with native written formats for the three actual process questions", () => {
     expect(families).toHaveLength(5);
     expect(families.map((f) => all(f).length)).toEqual([12, 10, 14, 12, 16]);
     expect(families.reduce((sum, f) => sum + all(f).length, 0)).toBe(64);
     for (const f of families) {
-      expect(f.formats).toEqual(["단답형"]);
+      expect(f.formats).toEqual([f.id === "study-middle-translated-coefficient-reuse-linear" || f.id === "study-middle-coprime-symbolic-sum" ? "단답형" : "서술형"]);
       expect(f.figureKinds).toEqual([]);
       expect(f.evidence?.testFile).toBe(
         "src/__tests__/unit/examStudyMiddleRemaining.test.ts",
@@ -389,7 +391,7 @@ describe("remaining middle course demands: every finite canonical tuple", () => 
         const verdict = verifyDraft(f, q);
         expect(verdict, `${f.id}:${i}`).toEqual({
           valid: true,
-          checks: ["independent-solution", "essential-conditions"],
+          checks: ["independent-solution", "essential-conditions", ...(q.questionType === "서술형" ? ["native-rubric"] : [])],
           errors: [],
         });
         expect(familyCoverage(f, f.fulfills[0].requirement, verdict, q)).toBe(
@@ -431,6 +433,24 @@ describe("remaining middle course demands: every finite canonical tuple", () => 
         });
         rejects({ ...q, parameters: { ...q.parameters, corrupt: true } });
         rejects({ ...q, questionType: "객관식" });
+        if (q.questionType === "서술형") {
+          expect(f.version).toBe("2-native-written");
+          expect(q.rubric?.totalPoints).toBe(8);
+          expect(q.rubric?.criteria.map(c=>c.points)).toEqual([2,2,2,2]);
+          expect(q.rubric?.criteria.map(c=>c.expected)).toEqual(q.solution.split("\n"));
+          rejects({...q, questionType:"단답형"});
+          rejects({...q, rubric:undefined});
+          rejects({...q, rubric:{...q.rubric!,totalPoints:9}});
+          const wrongRubric=structuredClone(q.rubric!);
+          wrongRubric.criteria[0].expected="잘못된 채점 기준";
+          rejects({...q,rubric:wrongRubric});
+          const wrongPoints=structuredClone(q.rubric!);
+          wrongPoints.criteria[0].points=3;
+          rejects({...q,rubric:wrongPoints});
+          const noAlternatives=structuredClone(q.rubric!);
+          noAlternatives.criteria[0].alternatives=[];
+          rejects({...q,rubric:noAlternatives});
+        }
         rejects({ ...q, figureSpec: { version: "graph-1" } });
         const printedLines = q.content.split("\n");
         for (let j = 0; j < printedLines.length; j++)
@@ -496,9 +516,9 @@ describe("remaining middle course demands: every finite canonical tuple", () => 
         }
     expect(count).toBeGreaterThan(700);
   });
-  it("holds the M1 symbolic expansion and delivers the other four demands through mixed and short planning", async () => {
+  it("preserves the M1 hard exclusion and offers each process task only in its actual native format", async () => {
     for (const f of families)
-      for (const format of ["혼합", "단답형"] as const) {
+      for (const format of ["혼합", "단답형", "서술형"] as const) {
         const result = await generateExamStudy(
           {
             course: f.course,
@@ -521,13 +541,19 @@ describe("remaining middle course demands: every finite canonical tuple", () => 
           expect(result.requirements[0].reason).toContain("중1 범위");
           continue;
         }
+        if (format !== "혼합" && !f.formats.includes(format)) {
+          expect(result.status).toBe("unavailable");
+          expect(result.questions).toHaveLength(0);
+          expect(result.requirements[0].delivered).toBe(0);
+          continue;
+        }
         expect(result.status).toBe("complete");
         expect(result.questions).toHaveLength(1);
         expect(result.requirements[0]).toMatchObject({
           status: "full",
           delivered: 1,
         });
-        expect(result.questions[0].questionType).toBe("단답형");
+        expect(result.questions[0].questionType).toBe(f.formats[0]);
         expect(result.questions[0].figureSvg).toBeNull();
         expect(f.verify(result.questions[0]).valid).toBe(true);
         oracle(f, result.questions[0]);

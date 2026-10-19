@@ -1,0 +1,48 @@
+{
+  "kind": "hash-bound-native-inverse-chord-validation/v1",
+  "utc": "2026-10-19T11:00:22.781Z",
+  "before": {
+    "src/lib/middle/m3.ts": "26b3bc42750d6c70a22989c71a45fc4003d5ea3f30df1947ed1bab54858b8b80",
+    "src/lib/middle/m3Figures.ts": "b28273138337848d50e9547e33dc3a2497f325aac06d2029437941b89ec0cc76",
+    "src/lib/examStudy/adapters.ts": "ed5a5dbc728b7bb613610efc57ef5b9b769dc22d4bfe4efe97078290e4251fc8",
+    "src/lib/examStudy/curriculumEligibility.ts": "44f5c606ed553523d98a2d45f4f489a029c433ed7d6e3abf619acddd348ae42a",
+    "src/lib/examStudy/generate.ts": "8eb9656939a016fd729edd0835380e5c314aee6f7d2ceb0955577569a78ad1f9",
+    "src/lib/engine/deriveFormats.ts": "7640ebad4371cdef906be9b62b6e71bf3299c73bd7ca4517410c446ddb62ad50",
+    "src/lib/figure/renderFigureSpec.ts": "19c10c1cb1aa416cbb376314931bb9dcdce45d17b3f707fb3c2b9dfb157598df",
+    "src/__tests__/unit/middleChordInverse.test.ts": "4e68ba09143ae9cff207a6835d6c22f45569307116590e93f417149d3e5f3dda",
+    "src/__tests__/unit/middleM3.test.ts": "cd98068e6bdd6a3dae2a4ebe45e97b47a712c4f6e414a01f73c45655280224ac",
+    "src/__tests__/unit/examStudyCoreLegacy.test.ts": "2154093daa27f044c8f2e6fd1511b22fc901e5ab8128c2b50f48b35ec018bd86",
+    "src/__tests__/unit/examStudyCurriculumEligibility.test.ts": "9e9a3f0a19f6e7fcb2a21a1b54e8bd62db4075304aeb26ab4e94c9a2b26aa07e",
+    "src/__tests__/unit/examStudyIntegration.test.ts": "6eb08882aba636a30d6780f37e5f5401390bf2fd17d3d79408c53253a510241c",
+    "src/__tests__/unit/examStudyRoutes.test.ts": "bc6cd779a153a7142f7f33ebd5fbe61146f09d6eb1d5ea0afe46ff86abd291e9"
+  },
+  "after": {
+    "src/lib/middle/m3.ts": "26b3bc42750d6c70a22989c71a45fc4003d5ea3f30df1947ed1bab54858b8b80",
+    "src/lib/middle/m3Figures.ts": "b28273138337848d50e9547e33dc3a2497f325aac06d2029437941b89ec0cc76",
+    "src/lib/examStudy/adapters.ts": "ed5a5dbc728b7bb613610efc57ef5b9b769dc22d4bfe4efe97078290e4251fc8",
+    "src/lib/examStudy/curriculumEligibility.ts": "44f5c606ed553523d98a2d45f4f489a029c433ed7d6e3abf619acddd348ae42a",
+    "src/lib/examStudy/generate.ts": "8eb9656939a016fd729edd0835380e5c314aee6f7d2ceb0955577569a78ad1f9",
+    "src/lib/engine/deriveFormats.ts": "7640ebad4371cdef906be9b62b6e71bf3299c73bd7ca4517410c446ddb62ad50",
+    "src/lib/figure/renderFigureSpec.ts": "19c10c1cb1aa416cbb376314931bb9dcdce45d17b3f707fb3c2b9dfb157598df",
+    "src/__tests__/unit/middleChordInverse.test.ts": "4e68ba09143ae9cff207a6835d6c22f45569307116590e93f417149d3e5f3dda",
+    "src/__tests__/unit/middleM3.test.ts": "cd98068e6bdd6a3dae2a4ebe45e97b47a712c4f6e414a01f73c45655280224ac",
+    "src/__tests__/unit/examStudyCoreLegacy.test.ts": "2154093daa27f044c8f2e6fd1511b22fc901e5ab8128c2b50f48b35ec018bd86",
+    "src/__tests__/unit/examStudyCurriculumEligibility.test.ts": "9e9a3f0a19f6e7fcb2a21a1b54e8bd62db4075304aeb26ab4e94c9a2b26aa07e",
+    "src/__tests__/unit/examStudyIntegration.test.ts": "6eb08882aba636a30d6780f37e5f5401390bf2fd17d3d79408c53253a510241c",
+    "src/__tests__/unit/examStudyRoutes.test.ts": "bc6cd779a153a7142f7f33ebd5fbe61146f09d6eb1d5ea0afe46ff86abd291e9"
+  },
+  "sourceUnchanged": true,
+  "tests": [
+    "src/__tests__/unit/middleChordInverse.test.ts",
+    "src/__tests__/unit/middleM3.test.ts",
+    "src/__tests__/unit/examStudyCoreLegacy.test.ts",
+    "src/__tests__/unit/examStudyCurriculumEligibility.test.ts",
+    "src/__tests__/unit/examStudyIntegration.test.ts",
+    "src/__tests__/unit/examStudyRoutes.test.ts"
+  ],
+  "actualFigureTuples": 42,
+  "mathOracle": "Printed angle/target and equal-chord/triangle-angle relations; no raster pixel oracle",
+  "newManualCandidates": 0,
+  "newManualApprovals": 0,
+  "dbWrites": 0
+}

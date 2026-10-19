@@ -230,12 +230,25 @@ export const M3_TYPES: TypeEntry[] = [
     "응용",
     (rng) => {
       const a = 2 * intBetween(rng, 20, 40);
-      const x = (180 - a) / 2;
+      const b = (180 - a) / 2;
+      const mode = pick(rng, [0, 1] as const);
+      // 같은 현/이등변 관계를 쓰되, 주어진 밑각에서 꼭지각을 역으로 구한다.
+      // a∈[40,80], b∈[50,70]이므로 모든 각이 양수이고 삼각형이 유일하게 정해진다(닮음까지).
+      if (mode === 1) {
+        return {
+          content: `삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=${b}^\\circ$일 때, $\\angle BAC$의 크기를 구하시오.`,
+          answer: `$${a}^\\circ$`,
+          solution: `한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ACB=\\angle ABC=${b}^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-2\\times${b}^\\circ=${a}^\\circ$이다.`,
+          facts: { a, b, x: a, mode },
+          figureSpec: figInscribedIso({ a, target: "apex" }),
+        };
+      }
+      const x = b;
       return {
         content: `원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=${a}^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.`,
         answer: `$${x}^\\circ$`,
         solution: `$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-${a}^\\circ)=${x}^\\circ$이다.`,
-        facts: { a, x },
+        facts: { a, b, x, mode },
         figureSpec: figInscribedIso({ a }),
       };
     },

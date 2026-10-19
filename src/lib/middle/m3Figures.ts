@@ -131,14 +131,23 @@ export function figTwoChords(opts: { r: number; d: number }): FigureSpec {
   );
 }
 
-/** 내접 이등변삼각형 (원과 직선 06) — OM=ON, ∠A 표시. */
-export function figInscribedIso(opts: { a: number }): FigureSpec {
-  const A = polar(90, R_PX);
-  const B = polar(270 + opts.a, R_PX);
-  const C = polar(270 - opts.a, R_PX);
+/** 내접 이등변삼각형 (원과 직선 06) — 주어진 각과 묻는 각을 함께 전환한다. */
+export function figInscribedIso(opts: {
+  a: number;
+  target?: "apex" | "base";
+}): FigureSpec {
+  // Match on_circle's analytic coordinates before taking chord midpoints.
+  // Rounding both symmetric feet independently can otherwise break OM=ON.
+  const exactPoint = (angle: number): [number, number] => [
+    CX + R_PX * Math.cos(angle * DEG),
+    CY - R_PX * Math.sin(angle * DEG),
+  ];
+  const A = exactPoint(90);
+  const B = exactPoint(270 + opts.a);
+  const C = exactPoint(270 - opts.a);
   const mid = (p: [number, number], q: [number, number]): [number, number] => [
-    r2((p[0] + q[0]) / 2),
-    r2((p[1] + q[1]) / 2),
+    (p[0] + q[0]) / 2,
+    (p[1] + q[1]) / 2,
   ];
   return base(
     {
@@ -157,8 +166,14 @@ export function figInscribedIso(opts: { a: number }): FigureSpec {
         ON: ["O", "N"],
       },
       angles: {
-        angA: { vertex: "A", points: ["B", "C"], label: `${opts.a}°` },
-        angB: { vertex: "B", points: ["A", "C"], label: "x" },
+        angA: {
+          vertex: "A", points: ["B", "C"],
+          label: opts.target === "apex" ? "x" : `${opts.a}°`,
+        },
+        angB: {
+          vertex: "B", points: ["A", "C"],
+          label: opts.target === "apex" ? `${(180 - opts.a) / 2}°` : "x",
+        },
       },
       labels: { O: "O", A: "A", B: "B", C: "C", M: "M", N: "N" },
     },
