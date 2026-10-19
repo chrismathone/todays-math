@@ -3,8 +3,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // Type errors must fail every production build, including Vercel builds.
+  // The build checks the shipped code only (tsconfig.build.json leaves out
+  // src/__tests__ and scripts): the full project needed 6.5 GB and the Vercel
+  // builds stalled or died in «Running TypeScript» (2026-10-19). The pre-push
+  // hook still type-checks everything with tsconfig.json.
   typescript: {
     ignoreBuildErrors: false,
+    tsconfigPath: "tsconfig.build.json",
   },
   // Keep existing image URLs and same-origin PDF/canvas requests. Local public
   // files take precedence until a verified deployment excludes those files.
@@ -31,12 +36,13 @@ const nextConfig: NextConfig = {
    */
   headers() {
     return Promise.resolve(
-      ["/fonts/NotoSerifKR-subset.woff2", "/fonts/PretendardVariable.woff2"].map(
-        (source) => ({
-          source,
-          headers: [{ key: "Access-Control-Allow-Origin", value: "*" }],
-        }),
-      ),
+      [
+        "/fonts/NotoSerifKR-subset.woff2",
+        "/fonts/PretendardVariable.woff2",
+      ].map((source) => ({
+        source,
+        headers: [{ key: "Access-Control-Allow-Origin", value: "*" }],
+      })),
     );
   },
   // Keep the development preview's mobile navigation clear of the Next.js badge.
