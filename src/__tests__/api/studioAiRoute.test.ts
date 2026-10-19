@@ -124,13 +124,13 @@ describe("authenticated production AI execution", () => {
     expect(response.status).toBe(200);
     expect(await response.json()).toMatchObject({
       provider: "auto",
-      model: "deepseek-v4-pro",
+      model: "deepseek-flash",
       result: { answer: "2", solution: "1+1=2" },
     });
     expect(runModelApi).toHaveBeenCalledWith(
       expect.objectContaining({
         vendor: "deepseek",
-        model: "deepseek-v4-pro",
+        model: "deepseek-flash",
         signal: expect.any(AbortSignal),
       }),
     );

@@ -183,6 +183,18 @@ describe("source Mathgen OCR and solution workflow", () => {
     expect(buildDevAiPrompt(request)).toContain("TYPED BLOCKS");
   });
 
+  it("keeps solutions concise while showing the key transformation and unambiguous fractions", () => {
+    const prompt = buildDevAiPrompt({ ...request, action: "solution", grade: "고1", content: "문항" });
+    expect(prompt).toContain("고등도 핵심 단계만 대략 2~5 step");
+    expect(prompt).toContain("같은 말 반복·검산 나열·일반론 설명은 쓰지 않는다");
+    expect(prompt).toContain("인수분해의 묶는 법·완전제곱·치환·경우 나누기");
+    expect(prompt).toContain("분수는 항상 \\frac{분자}{분모}");
+    expect(prompt).toContain("곱셈 앞 계수 분수는 괄호로 감싸");
+    expect(prompt).toContain("step1), step2)");
+    expect(prompt).toContain('JSON 객체 {"content":"","answer":"정답","solution":"풀이","warnings":[]}');
+    expect(prompt).not.toContain("###ANSWER###");
+  });
+
   it("keeps source choice layout and flags partial choices without inventing missing options", () => {
     const result = parseDevAiResult(
       JSON.stringify({

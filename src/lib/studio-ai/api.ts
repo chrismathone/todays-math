@@ -135,8 +135,7 @@ async function runModelApiOnce(input: InferenceInput): Promise<string> {
   const image = input.imageDataUrl?.match(
     /^data:(image\/(?:png|jpeg|webp));base64,(.+)$/,
   );
-  const maxTokens =
-    input.maxOutputTokens ?? (input.vendor === "deepseek" ? 4096 : 16000);
+  const maxTokens = input.maxOutputTokens ?? 16000;
   try {
     if (input.vendor === "gemini") {
       const result = await rest(
