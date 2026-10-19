@@ -1,0 +1,130 @@
+{
+  "arithmetic": "exact Fraction bounds and formal radical coefficients; no floating point or pixels",
+  "rootBounds": {
+    "2": [
+      "141/100",
+      "71/50"
+    ],
+    "3": [
+      "173/100",
+      "87/50"
+    ],
+    "7": [
+      "66/25",
+      "53/20"
+    ]
+  },
+  "allBoundsVerifiedBySquaring": true,
+  "coefficientOrder": [
+    "sqrt7",
+    "sqrt2",
+    "constant"
+  ],
+  "maximum": [
+    1,
+    0,
+    -1
+  ],
+  "requiredRange": [
+    2,
+    -1,
+    -1
+  ],
+  "uniqueMissing": [
+    -1,
+    1,
+    0
+  ],
+  "choices": [
+    {
+      "mark": "①",
+      "coefficients": [
+        1,
+        -1,
+        0
+      ],
+      "strictBounds": [
+        "61/50",
+        "31/25"
+      ],
+      "matches": false
+    },
+    {
+      "mark": "②",
+      "coefficients": [
+        -1,
+        1,
+        0
+      ],
+      "strictBounds": [
+        "-31/25",
+        "-61/50"
+      ],
+      "matches": true
+    },
+    {
+      "mark": "③",
+      "coefficients": [
+        0,
+        1,
+        -1
+      ],
+      "strictBounds": [
+        "41/100",
+        "21/50"
+      ],
+      "matches": false
+    },
+    {
+      "mark": "④",
+      "coefficients": [
+        -1,
+        1,
+        1
+      ],
+      "strictBounds": [
+        "-6/25",
+        "-11/50"
+      ],
+      "matches": false
+    },
+    {
+      "mark": "⑤",
+      "coefficients": [
+        -1,
+        0,
+        2
+      ],
+      "strictBounds": [
+        "-13/20",
+        "-16/25"
+      ],
+      "matches": false
+    }
+  ],
+  "remainingStrictBounds": [
+    [
+      "41/25",
+      "33/20"
+    ],
+    [
+      "31/100",
+      "33/100"
+    ],
+    [
+      "1",
+      "1"
+    ],
+    [
+      "-13/20",
+      "-16/25"
+    ]
+  ],
+  "maximumCertified": true,
+  "missingStrictlyBelowEveryRemaining": true,
+  "rangePositive": true,
+  "choiceIntervalsPairwiseDisjoint": true,
+  "utf8WriteReadPassed": true,
+  "studentProblemsSha256": "657c9dd5fcc0937d5431372c7cfe88210360bb40557d78da9483b2003a99a7bd",
+  "noAuthorAnswerExposure": true
+}
