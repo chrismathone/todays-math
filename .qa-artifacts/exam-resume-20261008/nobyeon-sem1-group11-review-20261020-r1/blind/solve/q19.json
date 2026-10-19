@@ -1,0 +1,108 @@
+{
+  "studentDigest": "a487017dbf90fdb24412937f4d8aef375bdf96874252a41b590e4e982769dfe4",
+  "solverId": "codex-independent-helper-q19-blind-20261020-r1",
+  "answer": "ㄴ, \\dfrac{a}{b}=6\\sqrt{2}+8, \\dfrac{a}{b}+(b+3)^2=27",
+  "solution": "먼저 4²=16<18=(3√2)²<25=5²이고 각 수가 양수이므로 4<3√2<5이다. 따라서 정수부분은 a=4, 소수부분은 b=3√2-4이며 0<b<1이다. 그러므로 ㄱ은 맞고, 분모 b는 0이 아니다.\n\nㄴ을 계산할 때 분모와 분자에 3√2+4를 곱하면\na/b=4/(3√2-4)=4(3√2+4)/{(3√2-4)(3√2+4)}\n=4(3√2+4)/(18-16)=(12√2+16)/2=6√2+8이다. 곱한 3√2+4와 새 분모 2도 0이 아니다. 따라서 ㄴ의 6√2-8은 잘못되었으며 6√2+8로 고쳐야 한다. 두 식은 상수항이 16만큼 달라 같은 수가 아니다.\n\nㄷ은 올바른 b를 이용하여 따로 확인하면 (b+3)²=(3√2-1)²=18-6√2+1=19-6√2이므로 맞다. 따라서 세 기록 중 잘못된 것은 ㄴ 하나뿐이다.\n\n고친 값을 이용하면 a/b+(b+3)²=(6√2+8)+(19-6√2)=27이다. a,b는 정수부분·소수부분의 정의로 유일하고 b>0이므로 계산과 최종값도 유일하다.",
+  "evidence": {
+    "priorExactNewQuestionOrAnswerExposure": false,
+    "authorAnswerExposure": false,
+    "declaration": "현재 맥락에서 정확한 새q19 문항/저자답을 보지 않았다고 학생파일 열람 전에 선언했다. 허용된학생3파일과자체새파일만읽었고,원문q19/저자private/package/이전source/다른문항/답검색/부모code는열지않았다.",
+    "ownExactCalculations": {
+      "representation": "[p,q] 또는 객체는 정확한 유리수 p+q√2를 뜻함. float/pixel/저자 params를 쓰지 않았다.",
+      "bounds": {
+        "squaredLower": 16,
+        "squaredValue": 18,
+        "squaredUpper": 25,
+        "conclusion": "모두 양수이므로 4<3√2<5. 정수부분a=4,소수부분b=3√2-4는0<b<1."
+      },
+      "a": {
+        "rationalPart": "4",
+        "sqrt2Coefficient": "0"
+      },
+      "b": {
+        "rationalPart": "-4",
+        "sqrt2Coefficient": "3"
+      },
+      "rationalization": {
+        "positiveConjugate": "3√2+4>0",
+        "denominatorProduct": {
+          "rationalPart": "2",
+          "sqrt2Coefficient": "0"
+        },
+        "numerator": "4(3√2+4)",
+        "correctQuotient": {
+          "rationalPart": "8",
+          "sqrt2Coefficient": "6"
+        },
+        "quotientTimesOriginalDenominator": {
+          "rationalPart": "4",
+          "sqrt2Coefficient": "0"
+        }
+      },
+      "records": [
+        {
+          "record": "ㄱ",
+          "correct": true,
+          "reason": "4<3√2<5이므로 정수부분4와 소수부분3√2-4가 맞음."
+        },
+        {
+          "record": "ㄴ",
+          "correct": false,
+          "printedValue": {
+            "rationalPart": "-8",
+            "sqrt2Coefficient": "6"
+          },
+          "correctedValue": {
+            "rationalPart": "8",
+            "sqrt2Coefficient": "6"
+          },
+          "correctMinusPrinted": {
+            "rationalPart": "16",
+            "sqrt2Coefficient": "0"
+          },
+          "reason": "분모에 켤레를 곱하면 분모2,분자12√2+16이므로6√2+8. 기록과 차16≠0."
+        },
+        {
+          "record": "ㄷ",
+          "correct": true,
+          "independentlySquaredValue": {
+            "rationalPart": "19",
+            "sqrt2Coefficient": "-6"
+          },
+          "reason": "서로 따로 계산한 기록이므로 올바른b를 사용: b+3=3√2-1,제곱=18-6√2+1=19-6√2."
+        }
+      ],
+      "total": {
+        "rationalPart": "27",
+        "sqrt2Coefficient": "0"
+      },
+      "domainNonzeroSigns": {
+        "originalNumberPositive": true,
+        "fractionalPartStrictlyBetween0And1": true,
+        "originalDenominatorBNonzero": true,
+        "conjugatePositiveNonzero": true,
+        "rationalizedDenominator": 2,
+        "bPlus3Positive": true,
+        "radicand": 2,
+        "allExpressionsReal": true
+      },
+      "existenceUniqueness": "정수부분과0≤소수부분<1의 분해는4<3√2<5에 의해a4,b3√2-4로 유일하게 결정된다. b>0으로나눗셈이정의되고,정확계산결과ㄱ/ㄷ만참·ㄴ만거짓이므로잘못된기록도유일. 고친값및합27도유일.",
+      "units": "추상적인 수의 계산이므로 별도 물리 단위 없음.",
+      "choicesAndFigures": {
+        "questionType": "서술형",
+        "choices": [],
+        "figures": [],
+        "note": "서술형의 세 기록을 모두 검토했다. 객관식5보기는 없으며 임의로 만들지 않음. figure없음; optionalpreview는열람하지않았고인쇄JSON조건으로계산했다."
+      },
+      "studentMethod": "양수의 제곱 대소 비교로 정수부분/소수부분 결정, 켤레를 곱하는 분모 유리화, 제곱공식, 동류 근호항 정리만 사용. 2015중3 학습 후의 학생 방법이며 고등 정리/함수·극값/미적분 불필요. 정식 학년 승인은 이 blind 풀이의 집계에 포함하지 않음."
+    },
+    "inputHashes": {
+      "SOLVE-BRIEF.md": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c",
+      "student-problems.json": "c810a2129adeef3936c1bf6824f0121a2a6c2960492d88801e4bf87cfd6e1b1d",
+      "blind-manifest.json": "bed93193eeb9a71bad8070b647c558f4df8944c7cb158870234f4dacfa6fb7bd"
+    },
+    "ownProbeSha256": "618608f6f36c9ac5cafd1650fd0c1e584f1512f91faf60fc9bd2947d3b844a43",
+    "gradeOrMathApprovalCountAdded": false
+  },
+  "status": "solved"
+}
