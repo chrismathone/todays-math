@@ -4,7 +4,15 @@ import { FadingMath } from "./FadingMath";
 import s from "./fading.module.css";
 
 /** 한글 설명은 두 줄에 맞추되 수식 중간을 자르지 않고 마지막 용어부터 접는다. */
-export function FadingTerms({ terms }: { terms: readonly string[] }) {
+export function FadingTerms({
+  terms,
+  student = false,
+}: {
+  terms: readonly string[];
+  student?: boolean;
+}) {
+  // Terms are authored concept content; the student mode preserves them verbatim.
+  void student;
   const root = useRef<HTMLDivElement>(null);
   const [count, setCount] = useState(terms.length);
   useLayoutEffect(() => {

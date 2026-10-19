@@ -7,21 +7,32 @@ import type {
 import type { FadingSource } from "@/lib/fading/source";
 import { FadingMath as ExplorerMath } from "./FadingMath";
 import { FadingIcon } from "./FadingIcon";
-import { curriculumName, stepNames } from "./labels";
+import {
+  curriculumName as defaultCurriculumName,
+  stepNames as defaultStepNames,
+  studentCurriculumName,
+  studentStepNames,
+} from "./labels";
 import { FadingTerms } from "./FadingTerms";
 import s from "./fading.module.css";
 
 export function FadingEraseScreen({
+  student = false,
   state,
   source,
   onCatalog,
   onOpen,
 }: {
+  student?: boolean;
   state: FadingState;
   source: FadingSource;
   onCatalog: () => void;
   onOpen: (id: string) => void;
 }) {
+  const curriculumName = student
+    ? studentCurriculumName
+    : defaultCurriculumName;
+  const stepNames = student ? studentStepNames : defaultStepNames;
   const [catalog, setCatalog] = useState<FadingCatalog | null>(null);
   useEffect(() => {
     let live = true;
@@ -39,7 +50,7 @@ export function FadingEraseScreen({
   return (
     <div className={s.eraseScreen}>
       <p className={s.summaryBadge}>단서를 지우며 개념 기억 학습</p>
-      <h1>개념 소거</h1>
+      <h1>{student ? "빈칸으로 연습해요" : "개념 소거"}</h1>
       <p className={s.muted}>문맥과 단서가 사라지는 네 단계</p>
       <section className={s.eraseWelcome}>
         <div className={s.eraseIllustration}>
@@ -60,8 +71,9 @@ export function FadingEraseScreen({
             : "진행 중인 풀이가 없습니다"}
         </h2>
         <p>
-          기억하고 싶은 개념을 고르고 정독부터 백지까지 칩으로 문장을 채워
-          보세요.
+          {student
+            ? "기억하고 싶은 개념을 골라 읽고, 칩으로 빈칸을 채워 보세요."
+            : "기억하고 싶은 개념을 고르고 정독부터 백지까지 칩으로 문장을 채워 보세요."}
         </p>
         <div className={s.stageTiles}>
           {([1, 2, 3, 4] as const).map((step) => (
@@ -90,13 +102,19 @@ export function FadingEraseScreen({
         {section?.concepts.slice(0, 3).map((concept) => (
           <article className={s.recommendCard} key={concept.id}>
             <span className={s.sectionTag}>
-              {catalog!.grade} · {curriculumName(section.chapter)}
+              {!student && <>{catalog!.grade} · </>}
+              {curriculumName(section.chapter)}
             </span>
             <h3>
-              {curriculumName(section.unit)} · {concept.level} ·{" "}
-              {concept.ordinal}/{concept.siblings}
+              {curriculumName(section.unit)}
+              {!student && (
+                <>
+                  {" "}
+                  · {concept.level} · {concept.ordinal}/{concept.siblings}
+                </>
+              )}
             </h3>
-            <FadingTerms terms={concept.terms} />
+            <FadingTerms student={student} terms={concept.terms} />
             <div className={s.queueAction}>
               <span className={s.formulaChip}>
                 <ExplorerMath text={concept.terms[0]!} />

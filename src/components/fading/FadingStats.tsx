@@ -6,7 +6,13 @@ import {
 import { fadingDateOf, fadingDayOfDate } from "@/lib/fading/schedule";
 import { toPercent } from "@/lib/fading/numbers";
 import { FadingIcon } from "./FadingIcon";
-import { curriculumName, stepNames } from "./labels";
+import {
+  curriculumName as defaultCurriculumName,
+  stepNames as defaultStepNames,
+  studentCurriculumName,
+  studentStepNames,
+  studentDateLabel,
+} from "./labels";
 import s from "./FadingStats.module.css";
 
 const periods = [
@@ -33,12 +39,20 @@ function LockIcon() {
 }
 
 export function FadingStats({
+  student = false,
   state,
   onCatalog,
 }: {
+  student?: boolean;
   state: FadingState;
   onCatalog: () => void;
 }) {
+  const curriculumName = student
+    ? studentCurriculumName
+    : defaultCurriculumName;
+  const stepNames = student ? studentStepNames : defaultStepNames;
+  const dateLabel = (date: string) =>
+    student ? studentDateLabel(date, state.today) : date;
   const [period, setPeriod] = useState<number>(7);
   const { summary } = state;
   const today = fadingDayOfDate(state.today);
@@ -179,7 +193,7 @@ export function FadingStats({
               <div
                 className={s.dailyBars}
                 role="img"
-                aria-label={`${start}부터 ${state.today}까지 날마다 마친 풀이`}
+                aria-label={`${dateLabel(start)}부터 ${dateLabel(state.today)}까지 날마다 마친 풀이`}
                 data-fading-daily-bars="true"
                 data-days={period}
               >
@@ -191,7 +205,7 @@ export function FadingStats({
                     <div
                       className={s.barColumn}
                       key={date}
-                      title={`${date} · 평가로 닫은 풀이 ${reviews}개 · 다시가 아닌 평가 ${passed}개`}
+                      title={`${dateLabel(date)} · 평가로 닫은 풀이 ${reviews}개 · 다시가 아닌 평가 ${passed}개`}
                     >
                       {period === 7 ? (
                         <span className={s.barCount}>{reviews}</span>
@@ -217,7 +231,9 @@ export function FadingStats({
                       </div>
                       {period === 7 ? (
                         <span className={s.barDate}>
-                          {date.slice(5).replace("-", "/")}
+                          {student
+                            ? dateLabel(date)
+                            : date.slice(5).replace("-", "/")}
                         </span>
                       ) : null}
                     </div>
@@ -234,8 +250,8 @@ export function FadingStats({
               ) : null}
             </div>
             <div className={s.chartDates}>
-              <span>{start}</span>
-              <span>{state.today}</span>
+              <span>{dateLabel(start)}</span>
+              <span>{dateLabel(state.today)}</span>
             </div>
             <div className={s.chartLegend}>
               <span>
@@ -266,8 +282,8 @@ export function FadingStats({
                   <span
                     key={date}
                     data-active={count > 0}
-                    title={`${date} · ${count}개`}
-                    aria-label={`${date} · ${count}개`}
+                    title={`${dateLabel(date)} · ${count}개`}
+                    aria-label={`${dateLabel(date)} · ${count}개`}
                   >
                     {count || "·"}
                   </span>
@@ -324,11 +340,12 @@ export function FadingStats({
                   <article className={s.unitCard} key={unit.key}>
                     <div className={s.unitHeader}>
                       <span className={s.ordinal}>{index + 1}</span>
-                      <h3>{curriculumName(name)}</h3>
+                      <h3>{curriculumName(name ?? "")}</h3>
                       <strong>고른 개념 {unit.picked}개</strong>
                     </div>
                     <div className={s.small}>
-                      {grade} · {curriculumName(chapter)}
+                      {!student && <>{grade} · </>}
+                      {curriculumName(chapter ?? "")}
                     </div>
                     <div
                       className={s.unitTrack}

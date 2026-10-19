@@ -1,7 +1,14 @@
 import type { FadingState } from "@/contracts/fadingApi.contract";
 import { fadingDateOf, fadingDayOfDate } from "@/lib/fading/schedule";
+import { studentDateLabel } from "./labels";
 import s from "./fading.module.css";
-export function FadingHomeHistory({ state }: { state: FadingState }) {
+export function FadingHomeHistory({
+  state,
+  student = false,
+}: {
+  state: FadingState;
+  student?: boolean;
+}) {
   const today = fadingDayOfDate(state.today);
   const byDate = new Map(state.days.map((row) => [row.date, row.reviews]));
   return (
@@ -15,7 +22,11 @@ export function FadingHomeHistory({ state }: { state: FadingState }) {
           const date = fadingDateOf(today - 6 + i);
           return (
             <div key={date} data-today={date === state.today}>
-              <span>{date.slice(5).replace("-", "/")}</span>
+              <span>
+                {student
+                  ? studentDateLabel(date, state.today)
+                  : date.slice(5).replace("-", "/")}
+              </span>
               <strong>{byDate.get(date) ?? 0}개</strong>
             </div>
           );
@@ -29,7 +40,12 @@ export function FadingHomeHistory({ state }: { state: FadingState }) {
             <div
               key={date}
               data-active={!!byDate.get(date)}
-              title={date + " · " + (byDate.get(date) ?? 0) + "개"}
+              title={
+                (student ? studentDateLabel(date, state.today) : date) +
+                " · " +
+                (byDate.get(date) ?? 0) +
+                "개"
+              }
             >
               {byDate.get(date) ?? "·"}
             </div>
