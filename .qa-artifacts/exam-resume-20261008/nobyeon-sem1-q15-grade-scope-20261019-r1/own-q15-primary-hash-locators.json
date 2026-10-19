@@ -1,0 +1,156 @@
+{
+  "moe": {
+    "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84",
+    "sha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+    "bytes": 4598784,
+    "stream": "BodyText/Section0",
+    "inspectedRangeRecords1based": [
+      3890,
+      4078
+    ],
+    "rangePurpose": "문자와 식 해당 영역의 표준·학습요소·교수학습 유의사항 전체 및 평가 유의사항 끝까지 실제 tag67을 읽고,4015 뒤의 수식 객체tag88을 직접 복원. 일반 표준 한 줄만으로 판정하지 않음.",
+    "locators": [
+      {
+        "record1based": 3896,
+        "tag": 67,
+        "payloadSha256": "d67a6c98d4971d3125714aea38f0689efa25127a2f6e6bf6207acd0f3add4c05",
+        "ownParaphrase": "문자식 기초/방정식 절차의 앞뒤 맥락"
+      },
+      {
+        "record1based": 3932,
+        "tag": 67,
+        "payloadSha256": "016c43224e0483d6ad3910523350cbb126c13f4ff91e6cd708f3926a439363bc",
+        "ownParaphrase": "단항식과 다항식의 곱셈/다항식을 단항식으로 나누기"
+      },
+      {
+        "record1based": 3956,
+        "tag": 67,
+        "payloadSha256": "63f53a46f28414ca49037d0c56739c0e8b16866ca96bb729a1e99f8c972b4ca0",
+        "ownParaphrase": "9수02-12 다항식 곱셈 및 인수분해"
+      },
+      {
+        "record1based": 3975,
+        "tag": 67,
+        "payloadSha256": "489df6d898807780cadeadce252155619b100e3fe6d531fcd60a4d6e7d3873f4",
+        "ownParaphrase": "인수·인수분해·완전제곱식 등을 학습요소로 열거"
+      },
+      {
+        "record1based": 3991,
+        "tag": 67,
+        "payloadSha256": "f81d2b8be523fae831529aec522bdb7212ab93b09e8a240160754b067bc94106",
+        "ownParaphrase": "자연수 지수법칙을 단항식 곱셈/나눗셈에 필요한 정도로 한정"
+      },
+      {
+        "record1based": 3995,
+        "tag": 67,
+        "payloadSha256": "098282cfd891bb5ca8f879a73391f0d4bb34df490b8143dad5eeddeab43e8dde",
+        "ownParaphrase": "다항식 나눗셈은 단항식으로 나누어 다항식 몫이 되는 경우에 한정"
+      },
+      {
+        "record1based": 4011,
+        "tag": 67,
+        "payloadSha256": "76ec29e4858c4e35d0e81faf2b1094faa0bfbc3985d19f07f238846c4b9a9f68",
+        "ownParaphrase": "수의 사칙연산/소인수분해의 다항식 확장 관점"
+      },
+      {
+        "record1based": 4015,
+        "tag": 67,
+        "payloadSha256": "0fd2e3e38b3d9074a8b0563fe14289ba841ac17f5f8558f1d60a886dc582c17e",
+        "ownParaphrase": "다항식 곱셈/인수분해의 취급 경우 열거 도입"
+      },
+      {
+        "record1based": 4055,
+        "tag": 67,
+        "payloadSha256": "10b01023e2bf484591261b8b967356180b932c2eec56cd66fd0caaa6013f39b3",
+        "ownParaphrase": "곱셈과 인수분해의 역관계 및 유사 관계 활동"
+      },
+      {
+        "record1based": 4059,
+        "tag": 67,
+        "payloadSha256": "e47510f833007442f783b1892fbc0103ccab143e63669f18a6b98021de4fa22c",
+        "ownParaphrase": "이차방정식은 실수해인 경우"
+      },
+      {
+        "record1based": 4067,
+        "tag": 67,
+        "payloadSha256": "9f7a5e5727b97d9c67c7bcfc7159d62bb6d76a174aa63c0911aafed98752b600",
+        "ownParaphrase": "평가 유의사항 절 시작"
+      },
+      {
+        "record1based": 4071,
+        "tag": 67,
+        "payloadSha256": "3a6efa256492a6028b7d4c99aaa205eca427442f6b1ae8e91250dbaaf7dc2c22",
+        "ownParaphrase": "과도하게 복잡한 방정식/부등식 활용을 제외"
+      },
+      {
+        "record1based": 4075,
+        "tag": 67,
+        "payloadSha256": "de29b182e1dae2611e8a06fc63f0147514534c7c8e2b251aac6c2bcb5dcbc5a5",
+        "ownParaphrase": "이차방정식 근과 계수 관계를 제외"
+      }
+    ],
+    "allSixFormulaObjects": {
+      "4023": {
+        "tag": 88,
+        "script": "m(a+b)`=`ma+mb",
+        "payloadSha256": "957348b6a76d19edb019a3eab7cbe2f3f6c8f753c6c094cf49221ddc61f0879f"
+      },
+      "4029": {
+        "tag": 88,
+        "script": "(a+b)  ^{2} =a  ^{2} +2ab+b  ^{2}",
+        "payloadSha256": "21d537f15448e67e2fe6760aefe396a6f46cfb70db42d0650f7f8c1b180c7d3b"
+      },
+      "4035": {
+        "tag": 88,
+        "script": "(a-b)  ^{2} =a  ^{2} -2ab+b  ^{2}",
+        "payloadSha256": "e3b4372c9ddab35d83e0a03ff22c930ac5571a1b71ae195516bc27981ef98a3c"
+      },
+      "4041": {
+        "tag": 88,
+        "script": "(a+b)(a-b)=a  ^{2} -b  ^{2}",
+        "payloadSha256": "7ef3fb6bdae6197957c152134d98f044d1d3baa715f0caf5b67d65a0e5b5e627"
+      },
+      "4047": {
+        "tag": 88,
+        "script": "(x+a)(x+b)=x  ^{2} +(a+b)x+ab",
+        "payloadSha256": "08e00a04ebb1a2c5b76a0d2977a65d3b01b8db18a54066564e9ba7d16016eb05"
+      },
+      "4053": {
+        "tag": 88,
+        "script": "(ax+b)(cx+d)=acx  ^{2} +(ad+bc)x+bd",
+        "payloadSha256": "1c4cb05cef80739b5c6808ae85887814106b45130f26f67b162f30ec31a5fb14"
+      }
+    },
+    "interpretation": "공통인수 m(a+b)=ma+mb와 두항 제곱, 제곱의 차, 일차식×일차식 형태가 열거됨. 삼차 사항 묶기 자체의 항목/예제는 이 목록에 직접 보이지 않는다. 목록에 없다는 사실만으로 일체의 삼차식이 명시적 금지라고 바꾸어 쓰지 않음.",
+    "divisionExclusion": "다항식÷일차다항식 일반 나눗셈은 단항식 나눗셈 한정을 넘어선다. source 선택지를 시험하려고 이를 기본 방법으로 사용하지 않음."
+  },
+  "actualM3Placement": {
+    "url": "https://www.ice.go.kr/upload/board/1098/2021/10/1633051011135.pdf",
+    "streamSha256": "38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+    "bytes": 6751111,
+    "zeroBasedPdfPagesInspected": [
+      89,
+      90
+    ],
+    "printedPages": [
+      "90",
+      "91"
+    ],
+    "webLines": "5342-5402,5410-5421,5434-5448",
+    "actualObservation": "대상 중3/다항식 인수분해/9수02-12를 명시. 공통인수·완전제곱식 도입, 대수막대로 직사각형 만들기 및 곱셈공식 관계/문제풀이를 설명.",
+    "limitation": "이 실제 중3 자료는 해당 단원 배치를 뒷받침하지만 삼차 사항 묶기→공통일차식 재추출의 전체 과제 또는 그 평가범위의 직접 예시는 확인되지 않음. 학교명/교과서 문제풀기라는 일반 언급으로 그 예시를 추정하지 않음."
+  },
+  "kosacOfficialCurriculumCrosscheck": {
+    "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+    "htmlSha256": "5cee94c0f333c30dde3c56770b438a373a5169c4a2f034b699c7977027193bb7",
+    "bytes": 623404,
+    "actualWebLines": "491-513: 중학교 표준/제한/여섯 공식; 678-698: 고등 수학 인수분해와 나머지정리/인수정리 학습요소, 추가 공식",
+    "observed": "실제 페이지의 중학교 취급 공식 목록 및 제한이 MOE 추출과 일치. 고등 선택중심 수학에는 나머지정리·인수정리와 추가 인수분해 범위가 별도 제시됨.",
+    "interpretation": "고등학교에서 다룬다는 사실만으로 단순 분배법칙까지 중학교 금지라는 역추론은 하지 않음. 고등 인수정리/나머지정리를 중3 허가 근거로도 쓰지 않음."
+  },
+  "retrievalLimits": [
+    "부산 공식 PDF URL은 웹 도구 UnexpectedStatusCode로 열지 못했다. 해당 문서에 관한 새 확인 주장은 없음.",
+    "MOE Section0의 고등10수학 code 문자열 검색은 불일치했고 다른 BodyText 구간에서도 나머지정리 text hit를 얻지 못함. 부재로 해석하지 않고 고등 범위 대조는 실제 KOSAC 페이지에 한정."
+  ],
+  "notSaved": "전체 HWP/PDF/HTML 및 페이지 이미지 저장·Git 포함 없음. 관련 식(일반 수학 항등식), 짧은 자체 요약과 해시/locator만 저장."
+}

@@ -5,6 +5,7 @@ import { signedTrapezoid } from "./signedTrapezoid";
 import { fuelModel, minimumTime, stoppedTravel, twoWorkRates } from "./written";
 import { MIDDLE_REMAINING_FAMILIES } from "./remaining";
 import { inverseCoefficientSum } from "./inverseCoefficient";
+import { inverseRootTable } from "./inverseRootTable";
 
 export { MIDDLE_REMAINING_FAMILIES } from "./remaining";
 
@@ -24,4 +25,5 @@ export const MIDDLE_STUDY_FAMILIES: readonly ExamStudyFamily[] = [
   twoWorkRates,
   ...MIDDLE_REMAINING_FAMILIES,
   inverseCoefficientSum,
+  inverseRootTable,
 ];

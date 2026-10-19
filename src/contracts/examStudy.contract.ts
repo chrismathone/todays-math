@@ -55,6 +55,7 @@ export const STUDY_REQUIREMENT_IDS = [
   "elementary.visual-data",
   "statistics.shift-spread",
   "algebra.inverse-coefficient-sum",
+  "number.inverse-root-table",
 ] as const;
 
 export const studyRequirementIdSchema = z.enum(STUDY_REQUIREMENT_IDS);

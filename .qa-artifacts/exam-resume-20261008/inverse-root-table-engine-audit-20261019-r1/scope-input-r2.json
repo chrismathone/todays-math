@@ -1,0 +1,72 @@
+{
+  "kind": "new-internal-engine-independent-audit-scope",
+  "files": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\examStudy.contract.ts",
+      "sha256": "1bbd90a0bbd19b5e8ef2c984234f41d22c983931c93fca2e62b9127339bc3c41"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\difficulty.ts",
+      "sha256": "9a26abf49ca126b06f98051c10b964b423018186b1f5a2011d94b787b853a2fc"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\requirements.ts",
+      "sha256": "a1d0efd3851a379ecdbb411fd128aca929a1e661440e2041bd4296718948e77b"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\releaseEligibility.ts",
+      "sha256": "cf50bf9d335a10bf06560729de15d0dbdfa01c42ea0937235f1f5de8d4d9eba8"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\index.ts",
+      "sha256": "45350afec57a03ddc3c34e966b04e2ddc14c9c77e552aea388bf7f58328ad892"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\inverseRootTable.ts",
+      "sha256": "cac928c19fd494b76e31cbf06d125f49ae95bd07efdd53e47b9e0a6592547d86"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\support.ts",
+      "sha256": "e89345bd78a46a3c793e01273684885efc654a205c15896854fcd0caa979aa1c"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\generate.ts",
+      "sha256": "4a3e920e0df7d40a26549f7099ef6a54271f6820fae4488cd1553d6eb24eb7bc"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\evidence.ts",
+      "sha256": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\registry.ts",
+      "sha256": "06cfdee87781d753b8b15767632fc2fd3b7d7ffc39fa0063b388944e2d037378"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\identity.ts",
+      "sha256": "1f9042a4e0d7f8f2370b394fc29a84e8541827d8d31e20e6cd83c2c399c4ddf5"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\curriculumEligibility.ts",
+      "sha256": "2ef9871e67f090f8ef90a804660762e1810e837656f1a447396e75149979e013"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudyRoutes.ts",
+      "sha256": "22e94bf55c25d41455561681f4ee7f6c1a41187bbf1eaa877d6ff3960b3a085f"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseRootTable.test.ts",
+      "sha256": "1b03db6cbf048702a84a7664f22abe1b8e623d786a757b32e4bef53f2006d808"
+    }
+  ],
+  "parentWorkspace": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008",
+  "newFactoryId": "study-middle-inverse-root-table",
+  "requirement": "number.inverse-root-table",
+  "actualFiniteTuples": 45,
+  "newManualQuestions": 0,
+  "publicGenerationMustRemainBlocked": true,
+  "gradeRightsLiveFamilyNativeApproved": false,
+  "dbWrites": 0,
+  "revision": "type-only-release-return-union",
+  "oldScopeSha256": "3de12ea6755cda7af160fe75389df09a16292c0d31cd705decee7e3b72357f72",
+  "change": "Return annotation now includes both frozen hold object literal types. First257tests passed; first typecheck failed on old coefficient-only literal annotation; no runtime/math/student/gate logic changed."
+}

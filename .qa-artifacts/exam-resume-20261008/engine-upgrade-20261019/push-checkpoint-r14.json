@@ -1,0 +1,56 @@
+{
+  "utc": "2026-10-19T14:34:08.015Z",
+  "branch": "chrismathone/exam-extraction-resume-20261008",
+  "fetchedTarget": "1c9fcdf0797efbe803531a1cd5beafc1edf3d55e",
+  "fetchedMain": "8f99e1f9e6423e8df521b7abb157fa21c9b2c6bc",
+  "localSha": "a7fae00b871afc7267dbcdd23842c26c0ca01524",
+  "remoteSha": "a7fae00b871afc7267dbcdd23842c26c0ca01524",
+  "ffOnly": true,
+  "force": false,
+  "aheadBeforePush": "6\t0",
+  "largeBlobs": 0,
+  "currentCodeHashesMatchValidation": true,
+  "validatedScopes": {
+    "typescriptIntegration": {
+      "files": 18,
+      "passed": 468,
+      "typesPassed": true,
+      "evidence": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r14-receipt.json"
+    },
+    "nodeContract": {
+      "files": 9,
+      "passed": 122,
+      "failed": 0,
+      "skipped": 0,
+      "evidence": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/surface-and-format-contract-summary-r2.json"
+    },
+    "currentCandidateBindings": 125
+  },
+  "counts": {
+    "authoredCurrentCandidates": 125,
+    "currentFigureInstances": 92,
+    "recreatedStatTables": 8,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 125,
+    "independentMathReviewed": 124,
+    "independentFullGradeReviewed": 124,
+    "contentReviewPassed": 15,
+    "contentReviewHeld": 109,
+    "awaitingCollectedIndependentReview": 1,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0,
+    "currentRawSolved": 124,
+    "currentRawPending": 1,
+    "awaitingFirstSealedBlindSolve": 0,
+    "historicalRawEncodingHoldVersions": 1,
+    "historicalRawAnswerFormatHoldVersions": 2
+  },
+  "knownGeneratedWhitespaceRetained": 10,
+  "privateFullPdfAndPrimaryPageImagesNotPublished": true,
+  "mainMergedIntoFeature": true,
+  "featureMergedIntoMain": false,
+  "dbWrites": 0,
+  "deploy": false,
+  "pushOutput": "To https://github.com/chrismathone/todays-math.git\n \tHEAD:refs/heads/chrismathone/exam-extraction-resume-20261008\t1c9fcdf07..a7fae00b8\nDone\n"
+}

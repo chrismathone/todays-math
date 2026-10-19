@@ -16,6 +16,14 @@ type Dimensions = readonly [
 
 /** Mathematical demands only. Source wording, coefficients and source figures are absent. */
 const DIMENSIONS: Record<StudyRequirementId, Dimensions> = {
+  "number.inverse-root-table": [
+    "제곱근표의 근삿값 결합 결과에서 입력 열 복원",
+    ["양의 제곱근", "제곱근표", "100분의1 배율", "소수 근삿값"],
+    ["표의 다섯 입력", "양수 조건", "표값으로 계산한 결과", "유일한 역대응"],
+    "text",
+    "enumerate",
+    ["단답형"],
+  ],
   "algebra.inverse-coefficient-sum": [
     "전개식의 두 계수 합에서 인수 안 상수 복원",
     ["분배법칙", "동류항", "계수", "일차방정식"],

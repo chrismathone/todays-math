@@ -1,0 +1,33 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/unit/examStudyCompletion.test.ts (29 tests) 22108ms
+     ✓ provides the selected demands within the grade eligibility gate for 'daeryun-m1'  18114ms
+     ✓ provides the selected demands within the grade eligibility gate for 'daeryun-m2'  404ms
+     ✓ provides the selected demands within the grade eligibility gate for 'kyungmyung-m3'  998ms
+ ✓ src/__tests__/unit/examStudyIntegration.test.ts (7 tests) 14237ms
+     ✓ keeps all nine courses available without multiplying authored families by response format  12076ms
+     ✓ runs authenticated API → actual math → strict Python SVG → reproducible output confirmation  1430ms
+ ✓ src/__tests__/unit/examStudyCoreLegacy.test.ts (15 tests) 12127ms
+     ✓ preserves original registry identities/counts and exposes actual supported courses only  11667ms
+ ✓ src/__tests__/unit/examStudyInverseCoefficient.test.ts (10 tests) 10957ms
+     ✓ retains the internal implementation but excludes it from selectable catalogs without inventing a live family  10680ms
+ ✓ src/__tests__/unit/examStudyInverseRootTable.test.ts (8 tests) 10799ms
+     ✓ independently checks all45 actual tables, integer rounding bounds and unique reverse mappings  337ms
+     ✓ keeps the internal factory hidden and the actual Unit proposal separate from live-family, rights and grade approval  10387ms
+ ✓ src/__tests__/unit/examStudyCurriculumEligibility.test.ts (10 tests) 9954ms
+     ✓ hides the held template from selectable catalogs and retains its definition for internal review  9832ms
+ ✓ src/__tests__/unit/examStudyMiddleRemaining.test.ts (13 tests) 782ms
+ ✓ src/__tests__/unit/examStudyMiddle.test.ts (49 tests) 475ms
+ ✓ src/__tests__/unit/examStudyCore.test.ts (58 tests) 245ms
+ ✓ src/__tests__/unit/examStudyM1StudentMethods.test.ts (6 tests) 171ms
+ ✓ src/__tests__/unit/examStudyRoutes.test.ts (23 tests) 175ms
+ ✓ src/__tests__/unit/examStudyCoreLabel.test.ts (12 tests) 153ms
+ ✓ src/__tests__/unit/examStudyContract.test.ts (17 tests) 110ms
+
+ Test Files  13 passed (13)
+      Tests  257 passed (257)
+   Start at  23:41:05
+   Duration  137.35s (transform 7.30s, setup 12.85s, import 20.67s, tests 82.29s, environment 18.68s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-root-table-tests-r1.json

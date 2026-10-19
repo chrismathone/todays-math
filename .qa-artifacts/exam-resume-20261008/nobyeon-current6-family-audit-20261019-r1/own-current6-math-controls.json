@@ -1,0 +1,82 @@
+{
+  "scope": "current authored six semantic controls; already exposed; no fresh blind or math approval counts",
+  "q11": {
+    "positiveA": "3/4",
+    "linearCoefficient": "-6",
+    "inverseTargetK": "4",
+    "differenceFromEngine": "MUL02 asks a forward coefficient; MUL03 exposes numerical integer coefficients; neither recovers a positive unknown leading coefficient using a positive rational square root and sum constraint."
+  },
+  "q12": {
+    "uPlusV": "sqrt(5)/2",
+    "uMinusV": "1/2",
+    "uv": "1/4",
+    "quarticExpression": "sqrt(5)/16",
+    "inverseT": "3/2",
+    "slopeNonzero": true,
+    "differenceFromEngine": "rationalization is a component; full target adds uv(u-v)(u+v) and inverse real t, not a direct value."
+  },
+  "q13": {
+    "recordTruthValues": [
+      true,
+      false,
+      true,
+      false,
+      true
+    ],
+    "wrongRecords": [
+      "나",
+      "라"
+    ],
+    "correctedValues": [
+      "19 - 6*sqrt(2)",
+      "4*sqrt(15) + 16",
+      "2",
+      "-2*sqrt(7) - 1",
+      "2 - 7*sqrt(15)"
+    ],
+    "differenceFromEngine": "five printed claims/exactly two false/paired-choice target; one forward radical calculation does not supply this diagnosis contract."
+  },
+  "q14": {
+    "reducedExpression": "3*n - 13",
+    "quadraticCoefficient": 0,
+    "linearCoefficient": 3,
+    "targetN": 30,
+    "integerGreaterThan3": true,
+    "engineMUL07Constraint": "a*a-c*c !==0; the factory explicitly excludes quadratic cancellation, contrary to current inverse-linear target."
+  },
+  "q16": {
+    "uniquePositiveNaturalPair": [
+      [
+        12,
+        5
+      ]
+    ],
+    "sideLengthsFromPrintedAlgebra": [
+      12,
+      11
+    ],
+    "perimeterSum": 92,
+    "primeAreaDifference": 23,
+    "product": 60,
+    "differenceFromEngine": "two squares, prime integer area difference, given perimeter sum and inverse xy are absent in inspected forward geometry/factorization definitions.",
+    "figureCheck": {
+      "specAndSvgMatchSuppliedAssetHashes": true,
+      "twoSquaresWithLabelsAB": true,
+      "postAlgebraGraphicSides": [
+        120,
+        110
+      ],
+      "commonGraphicUnitsPerCm": 10,
+      "measurementOracleUsed": false,
+      "engineFigureDifference": "inspected m3Poly family handler fixes figureSpec:null; does not express candidate-specific two-square/prime constraints."
+    }
+  },
+  "q18": {
+    "A": "18",
+    "distance": "6*sqrt(2)",
+    "positiveA": true,
+    "denominator": "3/4>0",
+    "differenceFromEngine": "CALC13 returns endpoint coordinate of a directed walk; SQRT06 can output negative A; neither is positive-A -> two roots -> positive distance with written rubric."
+  },
+  "verificationBoundary": "Exact symbolic reviewer arithmetic is not new student-method or grade certification. No original source answer keys recomputed."
+}

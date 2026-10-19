@@ -1,0 +1,353 @@
+{
+  "samples": 34,
+  "passed": 34,
+  "parameterOracleUsed": false,
+  "inputSource": "generated content strings only; no factory facts/parameters used",
+  "boundaries": "sympy exact arithmetic is reviewer verification, not student grade permission. Sparse branch samples are not all-engine certification.",
+  "results": [
+    {
+      "key": "3-1|다항식의 곱셈|02",
+      "seed": 1103,
+      "printedContentSha256": "9818e6e1360b5c56552876471d94ba89c91097da68568b1de00bab6258359822",
+      "method": "printed product expansion coefficient",
+      "independentlyCalculated": "-28",
+      "printedEngineAnswerComparedAfterCalculation": "$-28$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 곱셈|02",
+      "seed": 1907,
+      "printedContentSha256": "3e1487674dd64728feab3e05c17eb552fc35bf15890444b05befc80ad1fbc1d0",
+      "method": "printed product expansion coefficient",
+      "independentlyCalculated": "-22",
+      "printedEngineAnswerComparedAfterCalculation": "$-22$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 곱셈|03",
+      "seed": 1103,
+      "printedContentSha256": "6a82cdbeefbff1090bfc530f23bf71cbcc1cffa35b3798df136f78ba348f2771",
+      "method": "printed expression exact expansion/radical arithmetic",
+      "independentlyCalculated": "(x - 7)**2",
+      "printedEngineAnswerComparedAfterCalculation": "$x^2-14x+49$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 곱셈|03",
+      "seed": 1907,
+      "printedContentSha256": "a7bbb9724094c7775f0f823749a4182b7a84d38d492b74bb173d502259b40d49",
+      "method": "printed expression exact expansion/radical arithmetic",
+      "independentlyCalculated": "(4*x + 9)**2",
+      "printedEngineAnswerComparedAfterCalculation": "$16x^2+72x+81$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 곱셈|07",
+      "seed": 1103,
+      "printedContentSha256": "b60f8418fada292b5203fca53f637d13de4f5b89262f78ec6e59a5ec38f57920",
+      "method": "printed expression exact expansion/radical arithmetic",
+      "independentlyCalculated": "15*x**2 - 32*x + 20",
+      "printedEngineAnswerComparedAfterCalculation": "$15x^2-32x+20$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 곱셈|07",
+      "seed": 1907,
+      "printedContentSha256": "f2f8b433d98e1d37b56f2a54c8d05f97a3462ccb273a53fae4e3b982b3624c9c",
+      "method": "printed expression exact expansion/radical arithmetic",
+      "independentlyCalculated": "9*x**2 + 60*x + 100",
+      "printedEngineAnswerComparedAfterCalculation": "$9x^2+60x+100$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 곱셈|11",
+      "seed": 1103,
+      "printedContentSha256": "f842739cca5ef8404abffab21cf6ff27f4fca92f304ea764bbf55c6ac663a9e0",
+      "method": "printed expression exact expansion/radical arithmetic",
+      "independentlyCalculated": "1004004",
+      "printedEngineAnswerComparedAfterCalculation": "$1004004$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 곱셈|11",
+      "seed": 1907,
+      "printedContentSha256": "e236c748b27bcb8fd11fd72beff84b264a33c49b43b22e9cdc70f7eebc7e7914",
+      "method": "printed expression exact expansion/radical arithmetic",
+      "independentlyCalculated": "9025",
+      "printedEngineAnswerComparedAfterCalculation": "$9025$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 곱셈|12",
+      "seed": 1103,
+      "printedContentSha256": "eb2274bf6ece081d3fd4fc6f0eb594428a0f1049a4bed9c29df12a2cce386826",
+      "method": "printed expression exact expansion/radical arithmetic",
+      "independentlyCalculated": "(6 - sqrt(5))**2",
+      "printedEngineAnswerComparedAfterCalculation": "$41-12\\sqrt{5}$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 곱셈|12",
+      "seed": 1907,
+      "printedContentSha256": "cb30c5c669c9033f19396867571d1545b489d140a9795cfecd0ec373ed9dfef8",
+      "method": "printed expression exact expansion/radical arithmetic",
+      "independentlyCalculated": "40*sqrt(17) + 297",
+      "printedEngineAnswerComparedAfterCalculation": "$297+40\\sqrt{17}$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 곱셈|13",
+      "seed": 1103,
+      "printedContentSha256": "1b5346c205c1f11145cd7140fa2112cecfc7c16a4551e80a462437dcce63cb07",
+      "method": "printed expression exact expansion/radical arithmetic",
+      "independentlyCalculated": "-1/4 + sqrt(5)/4",
+      "printedEngineAnswerComparedAfterCalculation": "$\\dfrac{\\sqrt{5}-1}{4}$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 곱셈|13",
+      "seed": 1907,
+      "printedContentSha256": "d8a667a818ab8fcb8f178951786ab04e3be3809de8a9eefe870d824688458bc5",
+      "method": "printed expression exact expansion/radical arithmetic",
+      "independentlyCalculated": "36/19 - 6*sqrt(17)/19",
+      "printedEngineAnswerComparedAfterCalculation": "$\\dfrac{36-6\\sqrt{17}}{19}$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 곱셈|14",
+      "seed": 1103,
+      "printedContentSha256": "00581cf487e261cc144e73a0d2fd4972d1dec1e70597e6e1ad40ffedc7996768",
+      "method": "printed radical x substitution",
+      "independentlyCalculated": "-20",
+      "printedEngineAnswerComparedAfterCalculation": "$-20$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 곱셈|14",
+      "seed": 1907,
+      "printedContentSha256": "a1d040c9ade3628d0ec30c14f227e4d0bab8a2f6f1990e0ad487944868df76b5",
+      "method": "printed radical x substitution",
+      "independentlyCalculated": "8",
+      "printedEngineAnswerComparedAfterCalculation": "$8$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 인수분해|04",
+      "seed": 1103,
+      "printedContentSha256": "22ce41afeff8ec8ca60038a4fa723bebad01de6e2beb60b41e4f18afd93ae533",
+      "method": "printed quadratic zero discriminant as independent coefficient identity check, not grade-method permission",
+      "independentlyCalculated": "6",
+      "printedEngineAnswerComparedAfterCalculation": "$6$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 인수분해|04",
+      "seed": 1907,
+      "printedContentSha256": "a6aa676a8c11b070e717eb6df61635a8c531ee6a108558ad19f9cfb4078d9252",
+      "method": "printed quadratic zero discriminant as independent coefficient identity check, not grade-method permission",
+      "independentlyCalculated": "64",
+      "printedEngineAnswerComparedAfterCalculation": "$64$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 인수분해|05",
+      "seed": 1103,
+      "printedContentSha256": "831cafda9e4e4aea8225fa7bbe0983245ec19bfef2b8bc298a1aa1753604b1a9",
+      "method": "interval sign checked at three exact rational points plus code sign-case reading",
+      "points": [
+        "-5/2",
+        "-2",
+        "-3/2"
+      ],
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 인수분해|05",
+      "seed": 1907,
+      "printedContentSha256": "f2085fca6620593506a5e0a34d0bad19a8aa1fe23e7eb6f6d5099f0e5910d2ae",
+      "method": "interval sign checked at three exact rational points plus code sign-case reading",
+      "points": [
+        "-3",
+        "-2",
+        "-1"
+      ],
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 인수분해|06",
+      "seed": 1103,
+      "printedContentSha256": "d2f8b711051e25cb191d74dae44a21ae20c014e3614b7964b553776397b3aac7",
+      "method": "printed expression exact expansion/radical arithmetic",
+      "independentlyCalculated": "x**2 - 9",
+      "printedEngineAnswerComparedAfterCalculation": "$(x+3)(x-3)$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 인수분해|06",
+      "seed": 1907,
+      "printedContentSha256": "e10b3a7eab8ca4a810299dd4366e79c29f0385f23e5faacf9f17d63d095729a5",
+      "method": "printed expression exact expansion/radical arithmetic",
+      "independentlyCalculated": "x**2 - 25*y**2",
+      "printedEngineAnswerComparedAfterCalculation": "$(x+5y)(x-5y)$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 인수분해|13",
+      "seed": 1103,
+      "printedContentSha256": "b3ec8b39ef010a9159b7a6cc7833d99884d0a62b1a87f9be03c551a476f089b1",
+      "method": "printed tile counts -> area -> exact factors -> perimeter; x positive geometric interpretation",
+      "independentlyCalculated": "4*x + 12",
+      "printedEngineAnswerComparedAfterCalculation": "$4x+12$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 인수분해|13",
+      "seed": 1907,
+      "printedContentSha256": "e98ad3d7889fdbb868a2d9c9e65ea1807b8c64fe915086390b706e49ce0acaf3",
+      "method": "printed tile counts -> area -> exact factors -> perimeter; x positive geometric interpretation",
+      "independentlyCalculated": "4*x + 6",
+      "printedEngineAnswerComparedAfterCalculation": "$4x+6$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 인수분해|14",
+      "seed": 1103,
+      "printedContentSha256": "29b25c5c58ac7f1e600bed937c55707e281153baf62065f2d7dde0c13e8433e7",
+      "method": "printed area/side quotient computed independently; algebra control only, not school division approval",
+      "independentlyCalculated": "3*x + 2",
+      "printedEngineAnswerComparedAfterCalculation": "$3x+2$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 인수분해|14",
+      "seed": 1907,
+      "printedContentSha256": "62cdc8edfefe1342852f92621064f5d54a43f7696dd96a95790d1b29fecdd4ac",
+      "method": "printed area/side quotient computed independently; algebra control only, not school division approval",
+      "independentlyCalculated": "2*x + 3",
+      "printedEngineAnswerComparedAfterCalculation": "$2x+3$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 인수분해|20",
+      "seed": 1103,
+      "printedContentSha256": "263a017e51274f831096604b4c9f8ae6efa4eeb180823aa3d7fc3e6914510348",
+      "method": "printed assignments and target direct exact evaluation",
+      "independentlyCalculated": "4",
+      "printedEngineAnswerComparedAfterCalculation": "$4$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|다항식의 인수분해|20",
+      "seed": 1907,
+      "printedContentSha256": "34a4462fbfb68bfba976151c03c55deaa04c0793e00492a5dd511cb77121466b",
+      "method": "printed assignments and target direct exact evaluation",
+      "independentlyCalculated": "600",
+      "printedEngineAnswerComparedAfterCalculation": "$600$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|제곱근의 뜻과 성질|06",
+      "seed": 1103,
+      "printedContentSha256": "7f675d944b41fee8c894d14d177251b7c3646d8563dc16f2ecbf0c9c682bbc04",
+      "method": "printed expression exact expansion/radical arithmetic",
+      "independentlyCalculated": "7",
+      "printedEngineAnswerComparedAfterCalculation": "$7$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|제곱근의 뜻과 성질|06",
+      "seed": 1907,
+      "printedContentSha256": "f3603fadae112258c0fe38aca7e8009b3afd59ce1437073cd57f74927bc2274b",
+      "method": "printed expression exact expansion/radical arithmetic",
+      "independentlyCalculated": "-6",
+      "printedEngineAnswerComparedAfterCalculation": "$-6$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|제곱근의 뜻과 성질|07",
+      "seed": 1103,
+      "printedContentSha256": "a824854133de5434357543644438e244dfe7a892bd47d2f70abd6338274b4f45",
+      "method": "printed expression exact expansion/radical arithmetic",
+      "independentlyCalculated": "3",
+      "printedEngineAnswerComparedAfterCalculation": "$3$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|제곱근의 뜻과 성질|07",
+      "seed": 1907,
+      "printedContentSha256": "0b16f9643e710f5088f988ca9061ed117aa1172f037b0096d6214f7190682cd4",
+      "method": "printed expression exact expansion/radical arithmetic",
+      "independentlyCalculated": "12",
+      "printedEngineAnswerComparedAfterCalculation": "$12$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|근호를 포함한 식의 계산|13",
+      "seed": 1103,
+      "printedContentSha256": "9a8f5b9acec687852d06fd71719fce20238ffd55dfd91d6e4bc1c4fc6f0dfb3d",
+      "method": "printed initial coordinate + right displacement - left displacement",
+      "independentlyCalculated": "-2 - sqrt(3)",
+      "printedEngineAnswerComparedAfterCalculation": "$-2-\\sqrt{3}$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|근호를 포함한 식의 계산|13",
+      "seed": 1907,
+      "printedContentSha256": "d7fdcf68d8a059d63cb8c50255d060212b089aa38b726e216e7addafc2a346db",
+      "method": "printed initial coordinate + right displacement - left displacement",
+      "independentlyCalculated": "-1 + sqrt(5)",
+      "printedEngineAnswerComparedAfterCalculation": "$-1+\\sqrt{5}$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|근호를 포함한 식의 계산|16",
+      "seed": 1103,
+      "printedContentSha256": "c9e200daf191dc45bc2e0437f0b256dca9669b6b39e8777025ee26e51ee142c3",
+      "method": "printed expression exact expansion/radical arithmetic",
+      "independentlyCalculated": "sqrt(15)",
+      "printedEngineAnswerComparedAfterCalculation": "$\\sqrt{15}$",
+      "difference": "0",
+      "passed": true
+    },
+    {
+      "key": "3-1|근호를 포함한 식의 계산|16",
+      "seed": 1907,
+      "printedContentSha256": "51cb01814c0e2023e7ab8fa3f315c11e64726394c7a72cab81ea43daaa494e90",
+      "method": "printed expression exact expansion/radical arithmetic",
+      "independentlyCalculated": "sqrt(3)",
+      "printedEngineAnswerComparedAfterCalculation": "$\\sqrt{3}$",
+      "difference": "0",
+      "passed": true
+    }
+  ]
+}
