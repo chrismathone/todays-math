@@ -1,3 +1,24 @@
+.home.bookHome {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.home.bookHome .tools {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+.home.bookHome .tools > button {
+  min-height: 44px;
+  padding: 8px 12px;
+  background: var(--learn-surface);
+  border-color: var(--learn-control);
+  color: var(--learn-ink);
+}
+.home.bookHome .tools > button > span {
+  color: var(--learn-accent);
+}
 /*
  * 학생 수학 홈 — «수학 탐험 아틀리에» 표면 (3자 합의 v2 7 · 9항, 2026-10-04).
  *

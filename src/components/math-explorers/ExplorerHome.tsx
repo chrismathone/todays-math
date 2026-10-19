@@ -38,6 +38,7 @@ import {
   baseStageName,
   baseUpgradeCost,
 } from "@/lib/math-explorers/starEconomy";
+import { ExplorerStudyBook } from "./ExplorerStudyBook";
 import { ExplorerMath } from "./ExplorerMath";
 import { ExplorerChests, TileStars } from "./ExplorerPieces";
 import { BaseArt, StarMark } from "./JourneyArt";
@@ -328,6 +329,9 @@ export default function ExplorerHome({
   state,
   journeyTheme,
   conceptMemory,
+  studyBook = false,
+  separateExpedition = false,
+  dailyUnit,
   readOnly = false,
   dailyStartAllowed,
   dailyStartNote,
@@ -354,6 +358,9 @@ export default function ExplorerHome({
   journeyTheme?: JourneyThemeId;
   /** Inline concept memory; its schedule and results belong to its own source. */
   conceptMemory?: ReactNode;
+  studyBook?: boolean;
+  separateExpedition?: boolean;
+  dailyUnit?: string;
   /** Read-only previews keep their action names instead of pretending to load. */
   readOnly?: boolean;
   dailyStartAllowed?: boolean;
@@ -478,140 +485,183 @@ export default function ExplorerHome({
   return (
     // 순서는 미션 → 지도 → 도구 → 다시 살펴볼 개념 — 넓은 PC 의 두 열은 CSS 만 바꾼다(explorer-home-atelier).
     <div
-      className={`${s.expeditionHome} ${a.home} ${conceptMemory ? a.withMemory : ""}`}
+      className={`${s.expeditionHome} ${a.home} ${studyBook ? a.bookHome : conceptMemory ? a.withMemory : ""}`}
       data-explorer-home="true"
     >
-      <section
-        className={`${s.todayMission} ${a.mission}`}
-        aria-labelledby="today-mission-title"
-        data-expedition-mission="true"
-        data-explorer-home-part="mission"
-      >
-        <div className={s.missionMeta}>
-          <span>
-            {activeReview
-              ? "다시 걷는 여정"
-              : complete && !active
-                ? "오늘의 한 칸 완료"
-                : dailyStartAllowed === undefined
-                  ? "오늘의 한 칸"
-                  : "탐험의 한 칸"}
-          </span>
-          <span>
-            {answered} / {goal}{" "}
-            {plan?.kind === "explorers" || activeReview || !plan
-              ? "활동"
-              : "문제"}
-          </span>
-        </div>
-        <p className={`${s.missionSubtitle} ${a.muted}`}>{subtitle}</p>
-        <h1 id="today-mission-title">
-          <ExplorerMath text={title} />
-        </h1>
-        <div
-          className={s.missionProgress}
-          role="progressbar"
-          aria-label="오늘의 학습"
-          aria-valuemin={0}
-          aria-valuemax={goal}
-          aria-valuenow={Math.min(answered, goal)}
-        >
-          <span
-            style={{
-              width: `${Math.min(100, (answered / Math.max(goal, 1)) * 100)}%`,
-            }}
-          />
-        </div>
-        {retryRemaining > 0 ? (
-          <p className={`${s.missionRetry} ${a.retry}`}>
-            다시 풀 문제 {retryRemaining}개를 마치면 한 칸 전진해요.
-          </p>
-        ) : null}
-        {prerequisiteContext?.reason ? (
-          <p
-            className={`${s.missionRetry} ${a.retry}`}
-            role={unavailable ? "status" : undefined}
-          >
-            {prerequisiteContext.reason}
-          </p>
-        ) : null}
-        {dailyStartAllowed === false && dailyStartNote ? (
-          <p className={`${s.missionRetry} ${a.retry}`} role="status">
-            {dailyStartNote}
-          </p>
-        ) : null}
-        {activeReview || active || pendingRetry || !complete ? (
-          <button
-            type="button"
-            className={
-              dailyStartAllowed === undefined ? s.primary : s.secondary
-            }
-            disabled={
-              busy ||
-              saving ||
-              dailyStartAllowed === false ||
-              (!activeReview && !pendingRetry && unavailable) ||
-              (!activeReview &&
-                !active &&
-                !pendingRetry &&
-                state.expedition?.canStart === false)
-            }
-            data-expedition-start="true"
-            data-expedition-retry={pendingRetry ? "true" : undefined}
-            onClick={activeReview ? onResume : pendingRetry ? onRetry : onStart}
-          >
-            {busy && !readOnly
-              ? "준비하고 있어요…"
-              : activeReview
-                ? "지난 학습 이어하기"
-                : pendingRetry
-                  ? "남은 문제 다시 풀기"
-                  : active
-                    ? "이어서 탐험하기"
-                    : dailyStartAllowed === undefined
-                      ? "오늘의 탐험 시작"
-                      : "탐험 문제 시작"}
-            <span aria-hidden="true"> →</span>
-          </button>
-        ) : (
-          <p className={`${s.missionComplete} ${a.done}`}>
-            <span aria-hidden="true">✓</span> 한 칸 전진했어요.
-            {state.expedition?.todayStars ? (
-              <TileStars {...state.expedition.todayStars} />
-            ) : null}{" "}
-            다음 탐험은 내일 열려요.
-          </p>
-        )}
-        {complete && !active && !activeReview && !pendingRetry ? (
-          <SupplementLine
-            state={state}
-            busy={busy || saving}
-            onStart={(cardId) => onStartSupplement?.(cardId)}
-          />
-        ) : null}
-      </section>
-
-      {conceptMemory ? (
-        <div className={a.memory} data-explorer-home-part="concept-memory">
-          {conceptMemory}
-        </div>
-      ) : null}
-
-      <section
-        className={`${s.journeyPanel} ${a.journey}`}
-        data-explorer-home-part="journey"
-      >
-        <JourneyBoard
-          journey={journey}
-          variant="map"
+      {studyBook ? (
+        <ExplorerStudyBook
+          grade={gradeLabel(state.profile.courseGrade)}
+          unit={dailyUnit ?? currentUnit?.title ?? title}
           theme={journeyTheme}
-          // Behind the open base sheet the board cannot be pressed, so a chest
-          // save does not re-render it; once the sheet closes it waits too.
-          busy={busy || (saving && sheet !== "base")}
-          onReviewDay={reviewDay}
+          study={conceptMemory}
+          journey={
+            <JourneyBoard
+              hideTitle
+              journey={journey}
+              variant="map"
+              theme={journeyTheme}
+              busy={busy || (saving && sheet !== "base")}
+              onReviewDay={reviewDay}
+            />
+          }
         />
-      </section>
+      ) : (
+        <>
+          <section
+            className={`${s.todayMission} ${a.mission}`}
+            aria-labelledby="today-mission-title"
+            data-expedition-mission="true"
+            data-explorer-home-part="mission"
+          >
+            <div className={s.missionMeta}>
+              <span>
+                {activeReview
+                  ? "다시 걷는 여정"
+                  : complete && !active
+                    ? "오늘의 한 칸 완료"
+                    : dailyStartAllowed === undefined
+                      ? "오늘의 한 칸"
+                      : "탐험의 한 칸"}
+              </span>
+              <span>
+                {answered} / {goal}{" "}
+                {plan?.kind === "explorers" || activeReview || !plan
+                  ? "활동"
+                  : "문제"}
+              </span>
+            </div>
+            <p className={`${s.missionSubtitle} ${a.muted}`}>{subtitle}</p>
+            <h1 id="today-mission-title">
+              <ExplorerMath text={title} />
+            </h1>
+            <div
+              className={s.missionProgress}
+              role="progressbar"
+              aria-label="오늘의 학습"
+              aria-valuemin={0}
+              aria-valuemax={goal}
+              aria-valuenow={Math.min(answered, goal)}
+            >
+              <span
+                style={{
+                  width: `${Math.min(100, (answered / Math.max(goal, 1)) * 100)}%`,
+                }}
+              />
+            </div>
+            {retryRemaining > 0 ? (
+              <p className={`${s.missionRetry} ${a.retry}`}>
+                다시 풀 문제 {retryRemaining}개를 마치면 한 칸 전진해요.
+              </p>
+            ) : null}
+            {prerequisiteContext?.reason ? (
+              <p
+                className={`${s.missionRetry} ${a.retry}`}
+                role={unavailable ? "status" : undefined}
+              >
+                {prerequisiteContext.reason}
+              </p>
+            ) : null}
+            {dailyStartAllowed === false && dailyStartNote ? (
+              <p className={`${s.missionRetry} ${a.retry}`} role="status">
+                {dailyStartNote}
+              </p>
+            ) : null}
+            {activeReview || active || pendingRetry || !complete ? (
+              <button
+                type="button"
+                className={
+                  dailyStartAllowed === undefined ? s.primary : s.secondary
+                }
+                disabled={
+                  busy ||
+                  saving ||
+                  dailyStartAllowed === false ||
+                  (!activeReview && !pendingRetry && unavailable) ||
+                  (!activeReview &&
+                    !active &&
+                    !pendingRetry &&
+                    state.expedition?.canStart === false)
+                }
+                data-expedition-start="true"
+                data-expedition-retry={pendingRetry ? "true" : undefined}
+                onClick={
+                  activeReview ? onResume : pendingRetry ? onRetry : onStart
+                }
+              >
+                {busy && !readOnly
+                  ? "준비하고 있어요…"
+                  : activeReview
+                    ? "지난 학습 이어하기"
+                    : pendingRetry
+                      ? "남은 문제 다시 풀기"
+                      : active
+                        ? "이어서 탐험하기"
+                        : dailyStartAllowed === undefined
+                          ? "오늘의 탐험 시작"
+                          : "탐험 문제 시작"}
+                <span aria-hidden="true"> →</span>
+              </button>
+            ) : (
+              <p className={`${s.missionComplete} ${a.done}`}>
+                <span aria-hidden="true">✓</span> 한 칸 전진했어요.
+                {state.expedition?.todayStars ? (
+                  <TileStars {...state.expedition.todayStars} />
+                ) : null}{" "}
+                다음 탐험은 내일 열려요.
+              </p>
+            )}
+            {complete && !active && !activeReview && !pendingRetry ? (
+              <SupplementLine
+                state={state}
+                busy={busy || saving}
+                onStart={(cardId) => onStartSupplement?.(cardId)}
+              />
+            ) : null}
+          </section>
 
+          {conceptMemory ? (
+            <div className={a.memory} data-explorer-home-part="concept-memory">
+              {conceptMemory}
+            </div>
+          ) : null}
+
+          <section
+            className={`${s.journeyPanel} ${a.journey}`}
+            data-explorer-home-part="journey"
+          >
+            <JourneyBoard
+              journey={journey}
+              variant="map"
+              theme={journeyTheme}
+              // Behind the open base sheet the board cannot be pressed, so a chest
+              // save does not re-render it; once the sheet closes it waits too.
+              busy={busy || (saving && sheet !== "base")}
+              onReviewDay={reviewDay}
+            />
+          </section>
+        </>
+      )}
+      {studyBook &&
+      separateExpedition &&
+      (activeReview || active || pendingRetry || !complete) ? (
+        <button
+          type="button"
+          className={s.secondary}
+          disabled={
+            busy ||
+            saving ||
+            dailyStartAllowed === false ||
+            (!activeReview && !pendingRetry && unavailable) ||
+            (!activeReview &&
+              !active &&
+              !pendingRetry &&
+              state.expedition?.canStart === false)
+          }
+          onClick={activeReview ? onResume : pendingRetry ? onRetry : onStart}
+        >
+          탐험 문제 시작
+        </button>
+      ) : null}
       <div
         className={`${s.resourceLinks} ${a.tools}`}
         aria-label="탐험 도구"
@@ -621,7 +671,8 @@ export default function ExplorerHome({
           <span aria-hidden="true">▤</span>도감
         </button>
         <button type="button" onClick={() => setSheet("settings")}>
-          <span aria-hidden="true">⚙</span>학습 설정
+          <span aria-hidden="true">⚙</span>
+          {studyBook ? "이 기기 설정" : "학습 설정"}
         </button>
         <button
           type="button"
@@ -722,43 +773,50 @@ export default function ExplorerHome({
       ) : null}
 
       {sheet === "settings" ? (
-        <ExplorerSheet title="학습 설정" onClose={closeSheet}>
+        <ExplorerSheet
+          title={studyBook ? "이 기기 설정" : "학습 설정"}
+          onClose={closeSheet}
+        >
           {/* 기기 설정은 맨 위 — 아래 학년 · 단원이 잠겨 있어도(미션 진행 중 · 저장 중) 눌린다. */}
           <DeviceSettings />
-          <p className={`${s.quietNote} ${a.sheetNote}`}>
-            {settingsLocked
-              ? "진행 중인 오늘의 탐험을 마치면 설정을 바꿀 수 있어요."
-              : "지금 배우는 학년과 목표 단원을 정해 주세요."}
-          </p>
-          <h3 className={s.subheading}>학년</h3>
-          <div className={s.grades} aria-label="학년 선택">
-            {[3, 4, 5, 6, 7, 8, 9].map((grade) => (
-              <button
-                type="button"
-                key={grade}
-                aria-pressed={state.profile.courseGrade === grade}
-                disabled={settingsLocked || saving}
-                onClick={() => onAction({ type: "course", grade })}
-              >
-                {grade < 7 ? `초${grade}` : `중${grade - 6}`}
-              </button>
-            ))}
-          </div>
-          <h3 className={s.subheading}>목표 단원</h3>
-          <div className={s.settingUnits}>
-            {units.map((unit) => (
-              <button
-                type="button"
-                key={unit.id}
-                aria-pressed={state.profile.goalUnitId === unit.id}
-                disabled={settingsLocked || saving}
-                onClick={() => onAction({ type: "goal", unitId: unit.id })}
-              >
-                <span>{unit.title}</span>
-                <small>{unit.subtitle}</small>
-              </button>
-            ))}
-          </div>
+          {!studyBook ? (
+            <>
+              <p className={`${s.quietNote} ${a.sheetNote}`}>
+                {settingsLocked
+                  ? "진행 중인 오늘의 탐험을 마치면 설정을 바꿀 수 있어요."
+                  : "지금 배우는 학년과 목표 단원을 정해 주세요."}
+              </p>
+              <h3 className={s.subheading}>학년</h3>
+              <div className={s.grades} aria-label="학년 선택">
+                {[3, 4, 5, 6, 7, 8, 9].map((grade) => (
+                  <button
+                    type="button"
+                    key={grade}
+                    aria-pressed={state.profile.courseGrade === grade}
+                    disabled={settingsLocked || saving}
+                    onClick={() => onAction({ type: "course", grade })}
+                  >
+                    {grade < 7 ? `초${grade}` : `중${grade - 6}`}
+                  </button>
+                ))}
+              </div>
+              <h3 className={s.subheading}>목표 단원</h3>
+              <div className={s.settingUnits}>
+                {units.map((unit) => (
+                  <button
+                    type="button"
+                    key={unit.id}
+                    aria-pressed={state.profile.goalUnitId === unit.id}
+                    disabled={settingsLocked || saving}
+                    onClick={() => onAction({ type: "goal", unitId: unit.id })}
+                  >
+                    <span>{unit.title}</span>
+                    <small>{unit.subtitle}</small>
+                  </button>
+                ))}
+              </div>
+            </>
+          ) : null}
         </ExplorerSheet>
       ) : null}
 

@@ -105,6 +105,21 @@ const openSettings = () =>
 const motionSwitch = () =>
   screen.getByRole("switch", { name: "움직임 줄이기" });
 
+it("shows one journey heading inside the book while retaining board controls and totals", () => {
+  home(view(), { studyBook: true, conceptMemory: <p>오늘 공부</p> });
+  expect(
+    screen.getAllByRole("heading", { name: "나의 수학 여정" }),
+  ).toHaveLength(1);
+  expect(
+    screen.getByRole("button", { name: "이전 진도판" }),
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole("button", { name: "다음 진도판" }),
+  ).toBeInTheDocument();
+  expect(screen.getByText("일 학습 완료")).toBeInTheDocument();
+  expect(screen.getByText(/1–12일차/)).toBeInTheDocument();
+});
+
 beforeEach(() => {
   osReduced = false;
   mediaListeners.clear();

@@ -947,6 +947,9 @@ function ExplorerGame({
         state={state}
         journeyTheme={journeyTheme}
         conceptMemory={conceptMemory}
+        studyBook={options?.studyBook}
+        separateExpedition={options?.separateExpedition}
+        dailyUnit={options?.dailyUnit}
         readOnly={preview}
         dailyStartAllowed={options?.dailyExplorerAllowed}
         dailyStartNote={options?.dailyExplorerNote}
@@ -1173,6 +1176,7 @@ function ExplorerGame({
                 relearnController={relearn}
                 studentId={state.student.id}
                 preview={preview}
+                studyBook={!preview}
                 busy={busy || saving || !!error}
                 onSessionChange={setInConceptMemory}
                 onExit={() => void reconcileExplorerAfterMemory()}
