@@ -1,0 +1,4280 @@
+{
+  "actual24MatchesPacketAndProposal": true,
+  "finiteTuples": 24,
+  "distinctStatements": 24,
+  "distinctAnswers": 6,
+  "kernelMutations": [
+    {
+      "variant": 0,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 0,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 0,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 0,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 0,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 0,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 0,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 0,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 0,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 0,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 0,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 0,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 0,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 0,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 0,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 0,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 0,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 0,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 0,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 0,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 0,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 0,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 0,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 1,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 2,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 3,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 4,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 5,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 6,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 7,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 8,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 9,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 10,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 11,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 12,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 13,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 14,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 15,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 16,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 17,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 18,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 19,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 20,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 21,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 22,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "minimum condition",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "range order",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "visible pair sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "first root",
+      "errors": [
+        "인쇄된 최대항·제4자료·극값 차이의 관계 불일치"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "range sign",
+      "errors": [
+        "발문의 조건 또는 자료가 없거나 바뀜"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "answer zero",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "answer opposite",
+      "errors": [
+        "인쇄된 최대항과 차이로 복원한 최솟값 불일치"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "params radicand",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "params small",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "params offset",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "params fourth",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "params extra seed",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "params NaN",
+      "errors": [
+        "인쇄 자료와 매개변수 불일치"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "solution theorem",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "solution sign",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "solution empty",
+      "errors": [
+        "검토한 학생 문장·풀이와 불일치"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "format MC",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "format written",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "difficulty",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "difficulty basis",
+      "errors": [
+        "난이도 근거 불일치"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "figure",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "distractors",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    },
+    {
+      "variant": 23,
+      "name": "rubric",
+      "errors": [
+        "지원하지 않는 형식·난이도·그림"
+      ]
+    }
+  ],
+  "kernelMutationCount": 552,
+  "safeSeedCases": 35,
+  "invalidSeedCases": 5,
+  "invalidVariantCases": 5,
+  "enumerationAndDraftAndCanonicalCopiesIsolated": true,
+  "releaseHeldCases": [
+    {
+      "change": 0,
+      "format": "혼합",
+      "status": "unavailable",
+      "digest": "c46fc1536a64c1beae4b6f7bf87676f0ebbfbae339ae92c4423b10196f955e39",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-818bf1191866fa54b562223a"
+    },
+    {
+      "change": 0,
+      "format": "객관식",
+      "status": "unavailable",
+      "digest": "e42f9eae0f55ce14bbc382c78b72340816fe4c08756d8acba1729aef70e96863",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-818bf1191866fa54b562223a"
+    },
+    {
+      "change": 0,
+      "format": "단답형",
+      "status": "unavailable",
+      "digest": "6be9e09790d8f1ddc6340ea971bdf6ef0a8205fb91b47d114d82ec6979488736",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-818bf1191866fa54b562223a"
+    },
+    {
+      "change": 0,
+      "format": "서술형",
+      "status": "unavailable",
+      "digest": "18caca6ce97de2ae97d95c054efe56d304acec8c61e7b6c356986cf2e7fb6289",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-818bf1191866fa54b562223a"
+    },
+    {
+      "change": 1,
+      "format": "혼합",
+      "status": "unavailable",
+      "digest": "fe0f2ca23fd097711cf595b9402cb8e14354ebdd49d90e12704ca55b4ca1702c",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-f5831f829dcba21a35e0fda8"
+    },
+    {
+      "change": 1,
+      "format": "객관식",
+      "status": "unavailable",
+      "digest": "f2f1ad87ef23b6affd8c91c2607f7f697d99398e7c21ec557e84c6f10366ec83",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-f5831f829dcba21a35e0fda8"
+    },
+    {
+      "change": 1,
+      "format": "단답형",
+      "status": "unavailable",
+      "digest": "44bb61bbe327cfdb572e93a856b7607f3b2cc1f163fb820ad926df929c73c352",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-f5831f829dcba21a35e0fda8"
+    },
+    {
+      "change": 1,
+      "format": "서술형",
+      "status": "unavailable",
+      "digest": "c0bf3dc5193ad86eb1d85508884a2dc5a6c0cf2fd079f48da8dae4ce241875e2",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-f5831f829dcba21a35e0fda8"
+    },
+    {
+      "change": 2,
+      "format": "혼합",
+      "status": "unavailable",
+      "digest": "2da595d80452ddf33c380e65f1787c8db939f650cfbe90e40f14d0235bad52e8",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-9b90dda0f2c3515a43d24986"
+    },
+    {
+      "change": 2,
+      "format": "객관식",
+      "status": "unavailable",
+      "digest": "075c046d98f3172a57d244bbf503ef78c56559ea83842e9a5bed4f854c10f242",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-9b90dda0f2c3515a43d24986"
+    },
+    {
+      "change": 2,
+      "format": "단답형",
+      "status": "unavailable",
+      "digest": "6e6aca530277260437cdbdda42358ccf080df391f810d2772b7e20b21c2d79e6",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-9b90dda0f2c3515a43d24986"
+    },
+    {
+      "change": 2,
+      "format": "서술형",
+      "status": "unavailable",
+      "digest": "82adde415863cc159c3a88c809377697a6dc5583383ac21c9974ad6c51f9b7ee",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-9b90dda0f2c3515a43d24986"
+    },
+    {
+      "change": 3,
+      "format": "혼합",
+      "status": "unavailable",
+      "digest": "96694b1e7e05f6cab67811715a772a0b6959d88a73d41fb7fdc61d2fec1f922f",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-6c412200fc23ced8a90dc4f1"
+    },
+    {
+      "change": 3,
+      "format": "객관식",
+      "status": "unavailable",
+      "digest": "87eaa805b5a188b95ae87c27cd308bb0aa4e2f251108814dfe9822a393d6de9b",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-6c412200fc23ced8a90dc4f1"
+    },
+    {
+      "change": 3,
+      "format": "단답형",
+      "status": "unavailable",
+      "digest": "7f1b5241ba87fedb49079b11307e768746d03e122fec24a3968c841b6a6353bc",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-6c412200fc23ced8a90dc4f1"
+    },
+    {
+      "change": 3,
+      "format": "서술형",
+      "status": "unavailable",
+      "digest": "3fdb3a3a41fb112d18079aa60bb0e703e596bdef6c06e689077c15b50127003b",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-6c412200fc23ced8a90dc4f1"
+    },
+    {
+      "change": 4,
+      "format": "혼합",
+      "status": "unavailable",
+      "digest": "461023d3d553003cd793f58e00ff5bf486a4c0ec61856cd6a6f38c2acc3f16b4",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-190ebce8b69dcdf7f5b0cd47"
+    },
+    {
+      "change": 4,
+      "format": "객관식",
+      "status": "unavailable",
+      "digest": "0a287ef6b770afea119f0ed3c5c3df1279b7619ad63034d23aae24f847a21566",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-190ebce8b69dcdf7f5b0cd47"
+    },
+    {
+      "change": 4,
+      "format": "단답형",
+      "status": "unavailable",
+      "digest": "7c7a838f00327cedfbe7fccf3c1f5e5a91cd6d79c58e0ab04748e04dffa437a0",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-190ebce8b69dcdf7f5b0cd47"
+    },
+    {
+      "change": 4,
+      "format": "서술형",
+      "status": "unavailable",
+      "digest": "e8a7b8310e760679adf8e316bcb5c1aeb09d6b70044f1de7aaafc0224d016bb1",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-190ebce8b69dcdf7f5b0cd47"
+    },
+    {
+      "change": 5,
+      "format": "혼합",
+      "status": "unavailable",
+      "digest": "4df7b8e505e10a2c7c5bd1fb1889ebd128c6298f45369c02f48243dc56780a99",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-6b308e085d72089821c80fcc"
+    },
+    {
+      "change": 5,
+      "format": "객관식",
+      "status": "unavailable",
+      "digest": "3394d4f865fa7374e6039516038a93da90dc26a69c6793eab163f88710118a76",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-6b308e085d72089821c80fcc"
+    },
+    {
+      "change": 5,
+      "format": "단답형",
+      "status": "unavailable",
+      "digest": "8457fa63f5fa8d2609f45dcaffe4bc45054b1ccc4040a996f2316069e3efdc36",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-6b308e085d72089821c80fcc"
+    },
+    {
+      "change": 5,
+      "format": "서술형",
+      "status": "unavailable",
+      "digest": "726f4f742729416bbe77199c18c99b4326ff091b9524cb91d72c7b34a3c31c16",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-6b308e085d72089821c80fcc"
+    },
+    {
+      "change": 6,
+      "format": "혼합",
+      "status": "unavailable",
+      "digest": "43e81b1167a8c15fd8d59cd6b5f67dc3ba12be06ad1c55b3caecefe4e0ac0172",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-4b289bdb7bd81d943f71a45e"
+    },
+    {
+      "change": 6,
+      "format": "객관식",
+      "status": "unavailable",
+      "digest": "b86f73486782e89b3f3354fcbdcd6e38dafae0aac0a6b500e64971413bbbb812",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-4b289bdb7bd81d943f71a45e"
+    },
+    {
+      "change": 6,
+      "format": "단답형",
+      "status": "unavailable",
+      "digest": "0c24fa33994bf0775a82d7be071393eba71537a80affef55cbc606653ff3461a",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-4b289bdb7bd81d943f71a45e"
+    },
+    {
+      "change": 6,
+      "format": "서술형",
+      "status": "unavailable",
+      "digest": "b99bb2cae1a35d14c8371d9d0b5692df645c16dd6fadf4cf692336562f36c840",
+      "warning": [
+        "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+        "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+      ],
+      "manifestVersion": "exam-study-manifest-4b289bdb7bd81d943f71a45e"
+    }
+  ],
+  "releaseCaseCount": 28,
+  "factoryCalls": 0,
+  "renderCalls": 0,
+  "adapterCalls": 0,
+  "plannerCalls": 0,
+  "catalogHidden": true,
+  "catalogRouteMockStatus": 200,
+  "m1Priority": {
+    "warnings": [
+      "중1 범위를 벗어나는 필수 식 계산이 포함된 문자 합 유형은 제공하지 않습니다.",
+      "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+    ],
+    "status": "unavailable"
+  },
+  "manifest": {
+    "policy": "20261020-source-informed-template-review-r3",
+    "current": "exam-study-manifest-5467c537a0da5e5631cfa60a",
+    "oldPolicyMaterialOnly": "exam-study-manifest-0394b9bafb09096f972c1c11",
+    "changedFamilyVersion": "exam-study-manifest-01f69ba9515ddc3fc3618277"
+  },
+  "strictSchemaInjectionRejections": 7,
+  "resolverMockResults": [
+    {
+      "expectedDigest": "bbc587ce04d479dc55a2b18b4e0f69036448c577799dee533434933ac85416eb",
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "CONFLICT",
+          "message": "문항이나 지원 범위가 바뀌었습니다. 다시 만든 뒤 출력해 주세요."
+        }
+      }
+    },
+    {
+      "expectedDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+      "status": 409,
+      "body": {
+        "error": {
+          "code": "CONFLICT",
+          "message": "문항이나 지원 범위가 바뀌었습니다. 다시 만든 뒤 출력해 주세요."
+        }
+      }
+    },
+    {
+      "injection": {
+        "gradeApproved": true
+      },
+      "status": 400
+    },
+    {
+      "injection": {
+        "family": "study-middle-inverse-extreme-minimum"
+      },
+      "status": 400
+    }
+  ],
+  "mockedImports": [
+    "@/lib/problem/parseProblemContent",
+    "@/lib/math/circledNumber",
+    "node:crypto",
+    "./adapters",
+    "./families/advanced",
+    "./families/middle",
+    "./profiles",
+    "runtime-zod",
+    "./planner",
+    "server-only",
+    "@/lib/accountAccess",
+    "@/lib/accountRouteAccess",
+    "@/lib/routeAccess",
+    "@/lib/textbook/strictJson",
+    "@/lib/figure/renderFigureSpec",
+    "@/lib/examStudy"
+  ],
+  "actualModulesExecuted": [
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\inverseMinimum.ts",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\support.ts",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\identity.ts",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\registry.ts",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\examStudy.contract.ts",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\evidence.ts",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\requirements.ts",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\curriculumEligibility.ts",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\releaseEligibility.ts",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\difficulty.ts",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\generate.ts",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudyRoutes.ts"
+  ],
+  "limits": [
+    "No full registry or real DB/HTTP/auth/strictJson/native renderer. Explicit custom family list and mocks for outside-scope imports.",
+    "Planner mock only handles empty eligible pool; no positive delivered generation/MC derivation or full planning certification.",
+    "Node built-in TypeScript transformation in memory; no root writes. Zod runtime resolved read-only.",
+    "Old policy test changes digest material only, not a historical runtime execution."
+  ]
+}

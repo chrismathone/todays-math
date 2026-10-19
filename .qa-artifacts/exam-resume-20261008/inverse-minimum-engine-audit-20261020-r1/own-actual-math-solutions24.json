@@ -1,0 +1,4711 @@
+{
+  "proposalCommit": "8cf329d7ed464b6ca76d0eedded4b64f88a5013c",
+  "proposalRawInputSha256": "9abde29809d9eb15a226bc0680a9281581ae3def22b57d402a17cb02debd68cf",
+  "proposalOracleSha256": "8328e6304ee5e304054eb82f2da38a2df0f26a60d9da3e147db015576725933b",
+  "actualPacketSha256": "6e37899a8c961892dfcf44790282379a367e53ee748554ab4a0f2987f4d5e9a9",
+  "actualRuntimeDraftsSha256": "4c84fca6543facd805a88a460e08dc2dbf195e8c9b3297c441a3c47ab3e9f168",
+  "oracleMethod": "Exact Fraction coefficients and squared rational bounds from preimplementation printed-only oracle; independent parentheses/implicit constant product expression parser checks every math fragment in actual solutions. No float or factory parameter used as answer oracle.",
+  "rows": [
+    {
+      "variant": 0,
+      "exactProposalPayloadBinding": "fccd8df2217a2e2288640c2d9905f4c377bb76c8837c6dbc49cdcd230fe18005",
+      "actualContentSha256": "82277018d3ac9eb86e3b9ec21e42073e37363db4a5a16de1396da36915ee70d6",
+      "actualSolutionSha256": "00b3fd83ae2ef9214faa88cc7067fca98012f3793dcfabbc9a2d72737d0a7acd",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{2}-\\sqrt{7}",
+      "solutionMath": [
+        {
+          "fragment": "7>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2-\\sqrt{7}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}",
+          "type": "expression",
+          "coefficients": {
+            "7": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{7})-(2\\sqrt{7}-\\sqrt{2})=\\sqrt{2}-\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<2<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2<\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2\\le2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}-\\sqrt{7}<2-\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}",
+          "type": "expression",
+          "coefficients": {
+            "7": "1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{7})-(\\sqrt{2}-\\sqrt{7})=2\\sqrt{7}-\\sqrt{2}",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "7": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "7": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "2": "-1",
+          "7": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "7": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "7": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "26457/10000",
+            "13229/5000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-3229/5000",
+            "-6457/10000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-3079/2500",
+          "-6157/5000"
+        ],
+        "rangeExactRationalBounds": [
+          "38771/10000",
+          "19387/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 7,
+          "shiftT": "0",
+          "answerRadicandR": 2,
+          "fourthConstantC": "2"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 1,
+      "exactProposalPayloadBinding": "6640fbc0ad83c898ac1721e16a32e3c7714508afb57e8a645a2db5ea40832827",
+      "actualContentSha256": "678775a31da0a0c2f2bcffea610712d4e198a4c4ebb40e057337b3d0524ce617",
+      "actualSolutionSha256": "addb90d739e06c75b2f7c0d813a9c569c761c16300e1916384d75e9add41f9a6",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{2}-\\sqrt{7}",
+      "solutionMath": [
+        {
+          "fragment": "7>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3-\\sqrt{7}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}",
+          "type": "expression",
+          "coefficients": {
+            "7": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{7})-(2\\sqrt{7}-\\sqrt{2})=\\sqrt{2}-\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<2<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2<\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}-\\sqrt{7}<3-\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}",
+          "type": "expression",
+          "coefficients": {
+            "7": "1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{7})-(\\sqrt{2}-\\sqrt{7})=2\\sqrt{7}-\\sqrt{2}",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "7": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "7": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "2": "-1",
+          "7": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "7": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "7": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "26457/10000",
+            "13229/5000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "1771/5000",
+            "3543/10000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-3079/2500",
+          "-6157/5000"
+        ],
+        "rangeExactRationalBounds": [
+          "38771/10000",
+          "19387/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:2",
+          "remaining:4",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "positive",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 7,
+          "shiftT": "0",
+          "answerRadicandR": 2,
+          "fourthConstantC": "3"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 2,
+      "exactProposalPayloadBinding": "528d4b5c0f21a27744c1b8c38904c12c06c80b09985ab602541cc376139b9604",
+      "actualContentSha256": "b177278655785dfe4865d781bd4d7f39041b07c69bfd96835ddd933b8fdb1113",
+      "actualSolutionSha256": "fab08aad1c96856117c5cfc697711aa8a276d6d546860458ed11020d4a976475",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{2}-\\sqrt{7}",
+      "solutionMath": [
+        {
+          "fragment": "7>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}-1>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2-\\sqrt{7}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}-1",
+          "type": "expression",
+          "coefficients": {
+            "7": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{7}-1)-(2\\sqrt{7}-\\sqrt{2}-1)=\\sqrt{2}-\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<2<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2<\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2\\le2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}-\\sqrt{7}<2-\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}-1",
+          "type": "expression",
+          "coefficients": {
+            "7": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{7}-1)-(\\sqrt{2}-\\sqrt{7})=2\\sqrt{7}-\\sqrt{2}-1",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "7": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "7": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "2": "-1",
+          "7": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "7": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "7": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "16457/10000",
+            "8229/5000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-3229/5000",
+            "-6457/10000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-3079/2500",
+          "-6157/5000"
+        ],
+        "rangeExactRationalBounds": [
+          "28771/10000",
+          "14387/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 7,
+          "shiftT": "1",
+          "answerRadicandR": 2,
+          "fourthConstantC": "2"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 3,
+      "exactProposalPayloadBinding": "ee829c286a784b824dca9c2b5bcad7334a35f425ab959cf390a991d863d946c9",
+      "actualContentSha256": "d598de8e7f10d160605953e85e10be86a762b6d3addd908a0eded97d89951292",
+      "actualSolutionSha256": "467eb382d3f274e1f0ab5d2749b062358053ef44369168fc4c3d93b1b5ad243c",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{2}-\\sqrt{7}",
+      "solutionMath": [
+        {
+          "fragment": "7>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}-1>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3-\\sqrt{7}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}-1",
+          "type": "expression",
+          "coefficients": {
+            "7": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{7}-1)-(2\\sqrt{7}-\\sqrt{2}-1)=\\sqrt{2}-\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<2<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2<\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}-\\sqrt{7}<3-\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}-1",
+          "type": "expression",
+          "coefficients": {
+            "7": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{7}-1)-(\\sqrt{2}-\\sqrt{7})=2\\sqrt{7}-\\sqrt{2}-1",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "7": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "7": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "2": "-1",
+          "7": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "7": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "7": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "16457/10000",
+            "8229/5000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "1771/5000",
+            "3543/10000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-3079/2500",
+          "-6157/5000"
+        ],
+        "rangeExactRationalBounds": [
+          "28771/10000",
+          "14387/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:2",
+          "remaining:4",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "positive",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 7,
+          "shiftT": "1",
+          "answerRadicandR": 2,
+          "fourthConstantC": "3"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 4,
+      "exactProposalPayloadBinding": "78defd9ac5b7def187935e38e37324ee1d8525e40dcb8039b103602737cf70a5",
+      "actualContentSha256": "531f6575e382b203e9aba99773862471ffdbc1de08028f0969cb1c78e3a39199",
+      "actualSolutionSha256": "4fbf02807ebf258b688637c6a639b8148d69902af69aa9090f729ce9a8673158",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{3}-\\sqrt{7}",
+      "solutionMath": [
+        {
+          "fragment": "7>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2-\\sqrt{7}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}",
+          "type": "expression",
+          "coefficients": {
+            "7": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{7})-(2\\sqrt{7}-\\sqrt{3})=\\sqrt{3}-\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<3<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2<\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2\\le2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}-\\sqrt{7}<2-\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}",
+          "type": "expression",
+          "coefficients": {
+            "7": "1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{7})-(\\sqrt{3}-\\sqrt{7})=2\\sqrt{7}-\\sqrt{3}",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "7": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "7": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "3": "-1",
+          "7": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "7": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "7": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "26457/10000",
+            "13229/5000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-3229/5000",
+            "-6457/10000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-4569/5000",
+          "-571/625"
+        ],
+        "rangeExactRationalBounds": [
+          "35593/10000",
+          "8899/2500"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 7,
+          "shiftT": "0",
+          "answerRadicandR": 3,
+          "fourthConstantC": "2"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 5,
+      "exactProposalPayloadBinding": "bfd6e4f6f467c0a48ed8b51fd83df9f27a6fa8cfd75de06c48ac0b6f90af6351",
+      "actualContentSha256": "ab679ea77ed5e20ab8af86cccfc116afa2191a6e041750c4e48135db4fe5bf94",
+      "actualSolutionSha256": "c571692a44077c02963ddbf1431d82950915b0fdfb494c68fb05eb70d2116e15",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{3}-\\sqrt{7}",
+      "solutionMath": [
+        {
+          "fragment": "7>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3-\\sqrt{7}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}",
+          "type": "expression",
+          "coefficients": {
+            "7": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{7})-(2\\sqrt{7}-\\sqrt{3})=\\sqrt{3}-\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<3<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2<\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}-\\sqrt{7}<3-\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}",
+          "type": "expression",
+          "coefficients": {
+            "7": "1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{7})-(\\sqrt{3}-\\sqrt{7})=2\\sqrt{7}-\\sqrt{3}",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "7": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "7": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "3": "-1",
+          "7": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "7": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "7": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "26457/10000",
+            "13229/5000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "1771/5000",
+            "3543/10000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-4569/5000",
+          "-571/625"
+        ],
+        "rangeExactRationalBounds": [
+          "35593/10000",
+          "8899/2500"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:2",
+          "remaining:4",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "positive",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 7,
+          "shiftT": "0",
+          "answerRadicandR": 3,
+          "fourthConstantC": "3"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 6,
+      "exactProposalPayloadBinding": "2dea575f97876680ae111b5e4cbf7a34efa7bec6dc0bcd77f3138d5802e3a838",
+      "actualContentSha256": "2b288e2faf7bed0ffbc543a1055b5bffcb78595e0b17c71553e53f7a6afac9f5",
+      "actualSolutionSha256": "e0683fb186392e680c4f8093f2ba84a58424c1341d7365bef429b02c44ccbb90",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{3}-\\sqrt{7}",
+      "solutionMath": [
+        {
+          "fragment": "7>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}-1>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2-\\sqrt{7}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}-1",
+          "type": "expression",
+          "coefficients": {
+            "7": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{7}-1)-(2\\sqrt{7}-\\sqrt{3}-1)=\\sqrt{3}-\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<3<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2<\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2\\le2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}-\\sqrt{7}<2-\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}-1",
+          "type": "expression",
+          "coefficients": {
+            "7": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{7}-1)-(\\sqrt{3}-\\sqrt{7})=2\\sqrt{7}-\\sqrt{3}-1",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "7": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "7": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "3": "-1",
+          "7": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "7": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "7": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "16457/10000",
+            "8229/5000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-3229/5000",
+            "-6457/10000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-4569/5000",
+          "-571/625"
+        ],
+        "rangeExactRationalBounds": [
+          "25593/10000",
+          "6399/2500"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 7,
+          "shiftT": "1",
+          "answerRadicandR": 3,
+          "fourthConstantC": "2"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 7,
+      "exactProposalPayloadBinding": "6a645ed8b69764572dfca70b9c4d8bb2627e93979b9c5368221defb6139cd1a8",
+      "actualContentSha256": "18bf0783fe6a38c3f4c9bdff8326c83a558b4ac43b67a9e7cd223322e9855f82",
+      "actualSolutionSha256": "a603b056d9b60b14642cd947f917ad59043d6491e8e9c4a65ce0364328f4ede5",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{3}-\\sqrt{7}",
+      "solutionMath": [
+        {
+          "fragment": "7>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}-1>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3-\\sqrt{7}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}-1",
+          "type": "expression",
+          "coefficients": {
+            "7": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{7}-1)-(2\\sqrt{7}-\\sqrt{3}-1)=\\sqrt{3}-\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<3<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2<\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}-\\sqrt{7}<3-\\sqrt{7}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{7}-1",
+          "type": "expression",
+          "coefficients": {
+            "7": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{7}-1)-(\\sqrt{3}-\\sqrt{7})=2\\sqrt{7}-\\sqrt{3}-1",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "7": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "7": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "3": "-1",
+          "7": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "7": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "7": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "16457/10000",
+            "8229/5000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "1771/5000",
+            "3543/10000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-4569/5000",
+          "-571/625"
+        ],
+        "rangeExactRationalBounds": [
+          "25593/10000",
+          "6399/2500"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:2",
+          "remaining:4",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "positive",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 7,
+          "shiftT": "1",
+          "answerRadicandR": 3,
+          "fourthConstantC": "3"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 8,
+      "exactProposalPayloadBinding": "d550660432c05a8fa2e3cd82727c4b027c3d058db463d30f5babb0b34cf674fd",
+      "actualContentSha256": "84257430ad18b3d5d980cc9743d9531beeb19eac5335bf72b541403a27a488af",
+      "actualSolutionSha256": "b7f991fbd41f7609b2dfed77be270ef635fbdcde565c1cf0b8ffe4447d28fb6a",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{2}-\\sqrt{11}",
+      "solutionMath": [
+        {
+          "fragment": "11>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2-\\sqrt{11}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}",
+          "type": "expression",
+          "coefficients": {
+            "11": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{11})-(2\\sqrt{11}-\\sqrt{2})=\\sqrt{2}-\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<2<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2<\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2\\le2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}-\\sqrt{11}<2-\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}",
+          "type": "expression",
+          "coefficients": {
+            "11": "1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{11})-(\\sqrt{2}-\\sqrt{11})=2\\sqrt{11}-\\sqrt{2}",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "11": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "11": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "2": "-1",
+          "11": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "11": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "11": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "16583/5000",
+            "33167/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-13167/10000",
+            "-6583/5000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-761/400",
+          "-19023/10000"
+        ],
+        "rangeExactRationalBounds": [
+          "52189/10000",
+          "3262/625"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 11,
+          "shiftT": "0",
+          "answerRadicandR": 2,
+          "fourthConstantC": "2"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 9,
+      "exactProposalPayloadBinding": "c58005074d7ab6548688b4cdae8f382863a624af119a2ab7bfd67ef2a3f23ac7",
+      "actualContentSha256": "e22c6b93818fd0702934cf7da411691ea99f3bcaefd7909fc988da68376a2e8c",
+      "actualSolutionSha256": "1a2595e57889e1832dcd82c52e51fc168e913d0e2ece8307f4b3c72b36c02fe7",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{2}-\\sqrt{11}",
+      "solutionMath": [
+        {
+          "fragment": "11>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3-\\sqrt{11}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}",
+          "type": "expression",
+          "coefficients": {
+            "11": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{11})-(2\\sqrt{11}-\\sqrt{2})=\\sqrt{2}-\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<2<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2<\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}-\\sqrt{11}<3-\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}",
+          "type": "expression",
+          "coefficients": {
+            "11": "1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{11})-(\\sqrt{2}-\\sqrt{11})=2\\sqrt{11}-\\sqrt{2}",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "11": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "11": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "2": "-1",
+          "11": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "11": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "11": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "16583/5000",
+            "33167/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-3167/10000",
+            "-1583/5000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-761/400",
+          "-19023/10000"
+        ],
+        "rangeExactRationalBounds": [
+          "52189/10000",
+          "3262/625"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 11,
+          "shiftT": "0",
+          "answerRadicandR": 2,
+          "fourthConstantC": "3"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 10,
+      "exactProposalPayloadBinding": "2330e05b363422f70ca15f56b0661045bb3e25cfb2c77f4588d0552aaf48ca92",
+      "actualContentSha256": "f901ca6590121c46ad95c66620ecf958fa23162094a9ce60c5a68a4c02b76d87",
+      "actualSolutionSha256": "d31a89a076f2128f38d847204a2a3c3c09b19095bbf55c781c8438dc4294a35a",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{2}-\\sqrt{11}",
+      "solutionMath": [
+        {
+          "fragment": "11>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}-1>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2-\\sqrt{11}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}-1",
+          "type": "expression",
+          "coefficients": {
+            "11": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{11}-1)-(2\\sqrt{11}-\\sqrt{2}-1)=\\sqrt{2}-\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<2<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2<\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2\\le2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}-\\sqrt{11}<2-\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}-1",
+          "type": "expression",
+          "coefficients": {
+            "11": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{11}-1)-(\\sqrt{2}-\\sqrt{11})=2\\sqrt{11}-\\sqrt{2}-1",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "11": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "11": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "2": "-1",
+          "11": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "11": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "11": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "11583/5000",
+            "23167/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-13167/10000",
+            "-6583/5000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-761/400",
+          "-19023/10000"
+        ],
+        "rangeExactRationalBounds": [
+          "42189/10000",
+          "2637/625"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 11,
+          "shiftT": "1",
+          "answerRadicandR": 2,
+          "fourthConstantC": "2"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 11,
+      "exactProposalPayloadBinding": "9a637c3e1fb70e685763cce52deb1c7120c7cf9bead56b42c3f78d6d98c2df62",
+      "actualContentSha256": "d1b1e32bca6ca415edbf022113e42d7ed9f35f1dbc4f75d1d94f88ebb1584f4e",
+      "actualSolutionSha256": "c8bb46c605665e98462c3c93531a0a398c41e0b95e51c85895845f385bac56fb",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{2}-\\sqrt{11}",
+      "solutionMath": [
+        {
+          "fragment": "11>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}-1>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3-\\sqrt{11}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}-1",
+          "type": "expression",
+          "coefficients": {
+            "11": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{11}-1)-(2\\sqrt{11}-\\sqrt{2}-1)=\\sqrt{2}-\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<2<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2<\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}-\\sqrt{11}<3-\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}-1",
+          "type": "expression",
+          "coefficients": {
+            "11": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{11}-1)-(\\sqrt{2}-\\sqrt{11})=2\\sqrt{11}-\\sqrt{2}-1",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "11": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "11": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "2": "-1",
+          "11": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "11": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "11": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "11583/5000",
+            "23167/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-3167/10000",
+            "-1583/5000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-761/400",
+          "-19023/10000"
+        ],
+        "rangeExactRationalBounds": [
+          "42189/10000",
+          "2637/625"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 11,
+          "shiftT": "1",
+          "answerRadicandR": 2,
+          "fourthConstantC": "3"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 12,
+      "exactProposalPayloadBinding": "7b83f1067d57a08e8e2c3905013a071280fdbcfbb9857be74b2734505422d327",
+      "actualContentSha256": "cb1f84b317e113db05de227eb2b382f65ed2da2435769f5a8c82cb8942a26aa9",
+      "actualSolutionSha256": "cabd9a4342f7963c727aa1d3adac0d805dbbbf8de6f793adbd1a3589780d6425",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{3}-\\sqrt{11}",
+      "solutionMath": [
+        {
+          "fragment": "11>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2-\\sqrt{11}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}",
+          "type": "expression",
+          "coefficients": {
+            "11": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{11})-(2\\sqrt{11}-\\sqrt{3})=\\sqrt{3}-\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<3<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2<\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2\\le2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}-\\sqrt{11}<2-\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}",
+          "type": "expression",
+          "coefficients": {
+            "11": "1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{11})-(\\sqrt{3}-\\sqrt{11})=2\\sqrt{11}-\\sqrt{3}",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "11": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "11": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "3": "-1",
+          "11": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "11": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "11": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "16583/5000",
+            "33167/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-13167/10000",
+            "-6583/5000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-15847/10000",
+          "-3169/2000"
+        ],
+        "rangeExactRationalBounds": [
+          "49011/10000",
+          "24507/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 11,
+          "shiftT": "0",
+          "answerRadicandR": 3,
+          "fourthConstantC": "2"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 13,
+      "exactProposalPayloadBinding": "82c48d8d41a81158e80dfc105d4513d5a572014979b8c725ac6cd5a8d2c85f8a",
+      "actualContentSha256": "30ef73393dc602c35d3a3c06f9ab9d212d41c0351479679b2234021b40663ebf",
+      "actualSolutionSha256": "f76ff11364e1688020031404ec80ca2c09bf62f8d17f52e02da12eea03fcba59",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{3}-\\sqrt{11}",
+      "solutionMath": [
+        {
+          "fragment": "11>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3-\\sqrt{11}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}",
+          "type": "expression",
+          "coefficients": {
+            "11": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{11})-(2\\sqrt{11}-\\sqrt{3})=\\sqrt{3}-\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<3<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2<\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}-\\sqrt{11}<3-\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}",
+          "type": "expression",
+          "coefficients": {
+            "11": "1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{11})-(\\sqrt{3}-\\sqrt{11})=2\\sqrt{11}-\\sqrt{3}",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "11": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "11": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "3": "-1",
+          "11": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "11": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "11": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "16583/5000",
+            "33167/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-3167/10000",
+            "-1583/5000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-15847/10000",
+          "-3169/2000"
+        ],
+        "rangeExactRationalBounds": [
+          "49011/10000",
+          "24507/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 11,
+          "shiftT": "0",
+          "answerRadicandR": 3,
+          "fourthConstantC": "3"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 14,
+      "exactProposalPayloadBinding": "493630730bd656083bf69fa665680025366e835c451f498eb2136be18d6db46b",
+      "actualContentSha256": "37c73198ffb58d7f9bce7dd5898a827c24b1b71797e24fd318261d7677d77ffe",
+      "actualSolutionSha256": "d5e4fd469a204118899623a02c1fed6311780cd17c95a9c94b85cd68c017c1bb",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{3}-\\sqrt{11}",
+      "solutionMath": [
+        {
+          "fragment": "11>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}-1>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2-\\sqrt{11}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}-1",
+          "type": "expression",
+          "coefficients": {
+            "11": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{11}-1)-(2\\sqrt{11}-\\sqrt{3}-1)=\\sqrt{3}-\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<3<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2<\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2\\le2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}-\\sqrt{11}<2-\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}-1",
+          "type": "expression",
+          "coefficients": {
+            "11": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{11}-1)-(\\sqrt{3}-\\sqrt{11})=2\\sqrt{11}-\\sqrt{3}-1",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "11": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "11": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "3": "-1",
+          "11": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "11": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "11": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "11583/5000",
+            "23167/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-13167/10000",
+            "-6583/5000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-15847/10000",
+          "-3169/2000"
+        ],
+        "rangeExactRationalBounds": [
+          "39011/10000",
+          "19507/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 11,
+          "shiftT": "1",
+          "answerRadicandR": 3,
+          "fourthConstantC": "2"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 15,
+      "exactProposalPayloadBinding": "39c93a1efbb9ef5cfe4bf8571d6c1b257e9651edb6d41c8d4982ced0a94abd07",
+      "actualContentSha256": "6edec2773573e1a76b1f2486937afbfc75ae0329048cc0e9e6c1b65fc179ebd4",
+      "actualSolutionSha256": "80e425507ac748ddc4bc7405e8fa2adf0a516aa77869037951b44f29d0bbfeb2",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{3}-\\sqrt{11}",
+      "solutionMath": [
+        {
+          "fragment": "11>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}-1>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3-\\sqrt{11}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}-1",
+          "type": "expression",
+          "coefficients": {
+            "11": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{11}-1)-(2\\sqrt{11}-\\sqrt{3}-1)=\\sqrt{3}-\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<3<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2<\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}-\\sqrt{11}<3-\\sqrt{11}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{11}-1",
+          "type": "expression",
+          "coefficients": {
+            "11": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{11}-1)-(\\sqrt{3}-\\sqrt{11})=2\\sqrt{11}-\\sqrt{3}-1",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "11": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "11": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "3": "-1",
+          "11": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "11": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "11": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "11583/5000",
+            "23167/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-3167/10000",
+            "-1583/5000"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-15847/10000",
+          "-3169/2000"
+        ],
+        "rangeExactRationalBounds": [
+          "39011/10000",
+          "19507/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 11,
+          "shiftT": "1",
+          "answerRadicandR": 3,
+          "fourthConstantC": "3"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 16,
+      "exactProposalPayloadBinding": "174a44a2cc20dfdfcc8c6a326d55adf4dc28911e24624913aef41183b5c6e1b0",
+      "actualContentSha256": "6d26a585d8798759d979480eaee633ad61202c627142bfd56f1d752a99192cca",
+      "actualSolutionSha256": "acfcdee8c500306474e9dbac7f018af8563c937baef15c3f3bedbb4f733867c2",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{2}-\\sqrt{14}",
+      "solutionMath": [
+        {
+          "fragment": "14>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2-\\sqrt{14}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}",
+          "type": "expression",
+          "coefficients": {
+            "14": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{14})-(2\\sqrt{14}-\\sqrt{2})=\\sqrt{2}-\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<2<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2<\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2\\le2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}-\\sqrt{14}<2-\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}",
+          "type": "expression",
+          "coefficients": {
+            "14": "1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{14})-(\\sqrt{2}-\\sqrt{14})=2\\sqrt{14}-\\sqrt{2}",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "14": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "14": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "2": "-1",
+          "14": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "14": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "14": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "4677/1250",
+            "37417/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-17417/10000",
+            "-2177/1250"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-931/400",
+          "-23273/10000"
+        ],
+        "rangeExactRationalBounds": [
+          "60689/10000",
+          "15173/2500"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 14,
+          "shiftT": "0",
+          "answerRadicandR": 2,
+          "fourthConstantC": "2"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 17,
+      "exactProposalPayloadBinding": "0b175ecb928ad5c6fc7d50807a4f2c3c4d205c6b21b8791670e1fe82bbd1c3e9",
+      "actualContentSha256": "62dc572edb23b3dbc6daa2d671e2ed085503c7d371e39446910bd76c32db482b",
+      "actualSolutionSha256": "89b7d656883c332fac8726a25c3123550d9e800c686101cc0aedbfa525812afc",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{2}-\\sqrt{14}",
+      "solutionMath": [
+        {
+          "fragment": "14>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3-\\sqrt{14}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}",
+          "type": "expression",
+          "coefficients": {
+            "14": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{14})-(2\\sqrt{14}-\\sqrt{2})=\\sqrt{2}-\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<2<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2<\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}-\\sqrt{14}<3-\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}",
+          "type": "expression",
+          "coefficients": {
+            "14": "1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{14})-(\\sqrt{2}-\\sqrt{14})=2\\sqrt{14}-\\sqrt{2}",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "14": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "14": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "2": "-1",
+          "14": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "14": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "14": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "4677/1250",
+            "37417/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-7417/10000",
+            "-927/1250"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-931/400",
+          "-23273/10000"
+        ],
+        "rangeExactRationalBounds": [
+          "60689/10000",
+          "15173/2500"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 14,
+          "shiftT": "0",
+          "answerRadicandR": 2,
+          "fourthConstantC": "3"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 18,
+      "exactProposalPayloadBinding": "9893a44fb95d5754d3f05555ae02b142a6ba203bc489e6bcaa0f5bd17a135020",
+      "actualContentSha256": "9c92db3a8b4e4a385fe56d628ddb9e477b09ec080a43e3283ea926295b903e14",
+      "actualSolutionSha256": "c9d3611dd643b111df551c52253b4faa1be129ccdc5d8c164adb0f1b016a153a",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{2}-\\sqrt{14}",
+      "solutionMath": [
+        {
+          "fragment": "14>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}-1>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2-\\sqrt{14}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}-1",
+          "type": "expression",
+          "coefficients": {
+            "14": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{14}-1)-(2\\sqrt{14}-\\sqrt{2}-1)=\\sqrt{2}-\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<2<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2<\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2\\le2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}-\\sqrt{14}<2-\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}-1",
+          "type": "expression",
+          "coefficients": {
+            "14": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{14}-1)-(\\sqrt{2}-\\sqrt{14})=2\\sqrt{14}-\\sqrt{2}-1",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "14": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "14": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "2": "-1",
+          "14": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "14": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "14": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "3427/1250",
+            "27417/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-17417/10000",
+            "-2177/1250"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-931/400",
+          "-23273/10000"
+        ],
+        "rangeExactRationalBounds": [
+          "50689/10000",
+          "12673/2500"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 14,
+          "shiftT": "1",
+          "answerRadicandR": 2,
+          "fourthConstantC": "2"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 19,
+      "exactProposalPayloadBinding": "b743be3db12635adcfff4cdefbdc9ddca05e4ca431c71e6d6562d4decbbb0ed5",
+      "actualContentSha256": "27f0c2d291e1585b406835c9ed89007b2d2028b8ddee20cc0c546009184c6c21",
+      "actualSolutionSha256": "3510832d25d667ad8d75ccd4ebcb35d0075d144545f760b7d74fa6f951042d9a",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{2}-\\sqrt{14}",
+      "solutionMath": [
+        {
+          "fragment": "14>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}-1>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3-\\sqrt{14}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}-1",
+          "type": "expression",
+          "coefficients": {
+            "14": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{14}-1)-(2\\sqrt{14}-\\sqrt{2}-1)=\\sqrt{2}-\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<2<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2<\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}<2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{2}-\\sqrt{14}<3-\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}-1",
+          "type": "expression",
+          "coefficients": {
+            "14": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{14}-1)-(\\sqrt{2}-\\sqrt{14})=2\\sqrt{14}-\\sqrt{2}-1",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "14": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "14": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "2": "-1",
+          "14": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "14": "1"
+        },
+        "missingCoefficients": {
+          "2": "1",
+          "14": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "3427/1250",
+            "27417/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-7417/10000",
+            "-927/1250"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-931/400",
+          "-23273/10000"
+        ],
+        "rangeExactRationalBounds": [
+          "50689/10000",
+          "12673/2500"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 14,
+          "shiftT": "1",
+          "answerRadicandR": 2,
+          "fourthConstantC": "3"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 20,
+      "exactProposalPayloadBinding": "e64e44fc8216b4bd15fcfd5ce5ce7534ece2da55a4d2ea1413df874235455cfc",
+      "actualContentSha256": "56226616121c8cf9427ee6cdc8ff26a77dfdc93b34d971a20ed99eb468185c4f",
+      "actualSolutionSha256": "293164df482dc2f4496bd425aa4a4318fb4673323107f07dc8ec617d7fd7034d",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{3}-\\sqrt{14}",
+      "solutionMath": [
+        {
+          "fragment": "14>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2-\\sqrt{14}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}",
+          "type": "expression",
+          "coefficients": {
+            "14": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{14})-(2\\sqrt{14}-\\sqrt{3})=\\sqrt{3}-\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<3<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2<\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2\\le2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}-\\sqrt{14}<2-\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}",
+          "type": "expression",
+          "coefficients": {
+            "14": "1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{14})-(\\sqrt{3}-\\sqrt{14})=2\\sqrt{14}-\\sqrt{3}",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "14": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "14": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "3": "-1",
+          "14": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "14": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "14": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "4677/1250",
+            "37417/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-17417/10000",
+            "-2177/1250"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-20097/10000",
+          "-4019/2000"
+        ],
+        "rangeExactRationalBounds": [
+          "57511/10000",
+          "28757/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 14,
+          "shiftT": "0",
+          "answerRadicandR": 3,
+          "fourthConstantC": "2"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 21,
+      "exactProposalPayloadBinding": "ae032c5769e17f062cb5f69f70d040116ce1a0b7fb885eb43b91cd1a13964e63",
+      "actualContentSha256": "1f72b0345cbc472e792326c879c1b23dac045021199e12673a2bfd4cca25f624",
+      "actualSolutionSha256": "fbcf0833926e7ae4fe5c33ea38a75eb745ab2497d183894a854140c60ad5453c",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{3}-\\sqrt{14}",
+      "solutionMath": [
+        {
+          "fragment": "14>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3-\\sqrt{14}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}",
+          "type": "expression",
+          "coefficients": {
+            "14": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{14})-(2\\sqrt{14}-\\sqrt{3})=\\sqrt{3}-\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<3<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2<\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}-\\sqrt{14}<3-\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}",
+          "type": "expression",
+          "coefficients": {
+            "14": "1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{14})-(\\sqrt{3}-\\sqrt{14})=2\\sqrt{14}-\\sqrt{3}",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "14": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "14": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "3": "-1",
+          "14": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "14": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "14": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "4677/1250",
+            "37417/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-7417/10000",
+            "-927/1250"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-20097/10000",
+          "-4019/2000"
+        ],
+        "rangeExactRationalBounds": [
+          "57511/10000",
+          "28757/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 14,
+          "shiftT": "0",
+          "answerRadicandR": 3,
+          "fourthConstantC": "3"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 22,
+      "exactProposalPayloadBinding": "b8f45802f27c6604e70bc124a7c8c56f7fa7e6b72596f2943c73b02e3ab1cc8a",
+      "actualContentSha256": "4feae0ed8be3397efda0e3f6a920f25fab97eb457c1ce66daddeb85311c8e464",
+      "actualSolutionSha256": "b071574732ac25fc9c01a218d46672171aa7f8503ca181ebfc123d78c70f01f8",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{3}-\\sqrt{14}",
+      "solutionMath": [
+        {
+          "fragment": "14>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}-1>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "2-\\sqrt{14}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}-1",
+          "type": "expression",
+          "coefficients": {
+            "14": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{14}-1)-(2\\sqrt{14}-\\sqrt{3}-1)=\\sqrt{3}-\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<3<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2<\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2\\le2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}-\\sqrt{14}<2-\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}-1",
+          "type": "expression",
+          "coefficients": {
+            "14": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{14}-1)-(\\sqrt{3}-\\sqrt{14})=2\\sqrt{14}-\\sqrt{3}-1",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "14": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "2",
+            "14": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "3": "-1",
+          "14": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "14": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "14": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "3427/1250",
+            "27417/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-17417/10000",
+            "-2177/1250"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-20097/10000",
+          "-4019/2000"
+        ],
+        "rangeExactRationalBounds": [
+          "47511/10000",
+          "23757/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 14,
+          "shiftT": "1",
+          "answerRadicandR": 3,
+          "fourthConstantC": "2"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    },
+    {
+      "variant": 23,
+      "exactProposalPayloadBinding": "7c7de214ce5b791c3022855f8652436a6b1909e4de251882629d37a458f9a4fd",
+      "actualContentSha256": "d2ff8f4c00a7b6764714c398da710fc525e1be1b6e4aa2f10d828193404dbb87",
+      "actualSolutionSha256": "f2d64d02b02dd435137e139ef8ec53f2617eb92b3cfe5e03ec2f0cd5c03c50bf",
+      "actualAnswerMatchesIndependentPrintedOracle": true,
+      "answer": "\\sqrt{3}-\\sqrt{14}",
+      "solutionMath": [
+        {
+          "fragment": "14>4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}-1>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt3<2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt2>1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<\\sqrt3-\\sqrt2<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}>2",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "3-\\sqrt{14}<1",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}-1",
+          "type": "expression",
+          "coefficients": {
+            "14": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{14}-1)-(2\\sqrt{14}-\\sqrt{3}-1)=\\sqrt{3}-\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "0<3<4",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2<\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}<2\\le3",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{3}-\\sqrt{14}<3-\\sqrt{14}",
+          "type": "exact-relation",
+          "true": true
+        },
+        {
+          "fragment": "\\sqrt{14}-1",
+          "type": "expression",
+          "coefficients": {
+            "14": "1",
+            "0": "-1"
+          }
+        },
+        {
+          "fragment": "\\sqrt3-\\sqrt2",
+          "type": "expression",
+          "coefficients": {
+            "3": "1",
+            "2": "-1"
+          }
+        },
+        {
+          "fragment": "1",
+          "type": "expression",
+          "coefficients": {
+            "0": "1"
+          }
+        },
+        {
+          "fragment": "(\\sqrt{14}-1)-(\\sqrt{3}-\\sqrt{14})=2\\sqrt{14}-\\sqrt{3}-1",
+          "type": "exact-relation",
+          "true": true
+        }
+      ],
+      "solutionLogicComplete": true,
+      "domainAndStrictMinMax": {
+        "coefficientKey": "0=constant; positive integer key=that square root",
+        "remainingCoefficients": [
+          {
+            "0": "-1",
+            "14": "1"
+          },
+          {
+            "2": "-1",
+            "3": "1"
+          },
+          {
+            "0": "1"
+          },
+          {
+            "0": "3",
+            "14": "-1"
+          }
+        ],
+        "rangeCoefficients": {
+          "0": "-1",
+          "3": "-1",
+          "14": "2"
+        },
+        "maximumIndex1based": 1,
+        "maximumCoefficients": {
+          "0": "-1",
+          "14": "1"
+        },
+        "missingCoefficients": {
+          "3": "1",
+          "14": "-1"
+        },
+        "remainingExactRationalBounds": [
+          [
+            "3427/1250",
+            "27417/10000"
+          ],
+          [
+            "3177/10000",
+            "3179/10000"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "-7417/10000",
+            "-927/1250"
+          ]
+        ],
+        "missingExactRationalBounds": [
+          "-20097/10000",
+          "-4019/2000"
+        ],
+        "rangeExactRationalBounds": [
+          "47511/10000",
+          "23757/5000"
+        ],
+        "fullFiveStrictOrder": [
+          "missing",
+          "remaining:4",
+          "remaining:2",
+          "remaining:3",
+          "remaining:1"
+        ],
+        "fourthValueSign": "negative",
+        "maxMinusMissingEqualsPrintedRange": true,
+        "missingStrictlyBelowAllFour": true,
+        "rangePositive": true,
+        "domainAllRealAndNoDenominator": true,
+        "existence": true,
+        "unique": true,
+        "studentBranchValues": {
+          "radicandN": 14,
+          "shiftT": "1",
+          "answerRadicandR": 3,
+          "fourthConstantC": "3"
+        }
+      },
+      "editorialNote": "해설의 0<√3−√2는3>2의 제곱근 순서를 암묵적으로 사용한다. 바로 앞 √3<2,√2>1은 상한만 직접 설명하지만 하한은 동일 학습 범위의 즉각 비교로 보충 가능하며 결론은 참이다."
+    }
+  ],
+  "summary": {
+    "actualSolutionsReviewed": 24,
+    "mathFragmentsChecked": 456,
+    "exactRelationsChecked": 360,
+    "positiveFourth": 4,
+    "negativeFourth": 20,
+    "distinctStatements": 24,
+    "distinctAnswers": 6
+  }
+}
