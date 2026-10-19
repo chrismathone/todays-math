@@ -1,0 +1,132 @@
+{
+  "status": "pending",
+  "studentDigest": "1d08f7cb77a61502a4c8cab332828ce287b2619c99e9401ccbd736610079df52",
+  "candidateDigest": "d5a27a94562f51d42e2cfbb12fd5d3c20fd851b5411ee4e46de6fd7ea6927210",
+  "assetDigest": "9ddc4eb1210e0d6e4cb8436d764f4db4a7a468d282bd5d86e15c5da3f35c6eeb",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-gyeongsin-group3-clean-blind-20261019-r1-q04",
+  "solveDigest": "1b4e5f9d69b6d819d3c69926bec26fdcfda3db66d06d2725df8448adad9c7519",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "states": {"math": "passed", "grade": "passed", "authoredContent": "pending-visual-correction", "taxonomy": "held-unassigned", "fullRelease": "held"},
+    "counts": {"substantiveMath": 1, "substantiveGrade": 1, "formalCollectedMath": 0, "formalCollectedGrade": 0, "authoredContentPassed": 0, "full": 0, "loadable": 0},
+    "collectionBindingHold": {
+      "status": "held-independent-answer-mismatch",
+      "explanation": "수치의 불일치가 아니다. 현행 번호별 답 비교는 각 소문항에 이름을 붙인 등식 대입을 요구하므로 이번 이름 없는 길이 답은 unsupported이다. 원시 답의 세미콜론은 이 비교기의 제거 대상이지만 완전 일치 정규화에는 남는다. 번호·값·단위의 실질 비교는 별도 증거로 남기고 기존 수집기의 불일치를 면제하지 않는다.",
+      "rawAnswerUnchanged": "(1) 18 cm; (2) 10 cm",
+      "formalMathematicalVerified": 0,
+      "formalGradeReviewed": 0,
+      "engineOrInputsChanged": false
+    },
+    "preExposureBinding": {
+      "rawCommit": "d63cc2c5747e66ab61057646fb9182c40e2541a4",
+      "gitPath": ".qa-artifacts/exam-resume-20261008/gyeongsin-group3-clean-blind-20261019-r1/q04.json",
+      "rawSha256": "3b853a525dbaeb7e068b1506e6722efdb5f56b856cff07d0a16f730a6f69c465",
+      "answer": "(1) 18 cm; (2) 10 cm",
+      "declaration": "내가 저자 노출 전에 작성해 봉인한 기하 풀이와 노출 이력을 그대로 사용한다. 사용자가 부모의 실제 Git/current/blind 검증 완료와 2단계 허용을 알린 뒤 처음 최종 저자 답·해설을 읽었다. Orca 재시작 전후의 같은 대화이며 원시 풀이를 바꾸지 않았다. 봉인은 사람의 노출 이력 자체를 자동 인증하지 않는다.",
+      "rawEdited": false
+    },
+    "answerCorrect": "(1) PR+QR=18cm, (2) PR=10cm가 봉인 전 독립 풀이와 일치한다. QS=QE=6, PS=PT=12, RT=RE, QR=6+RE, PR=12-RT로 합이18이다. PR=x, QR=18-x와 피타고라스에서 36x=360이므로 x=10, QR=8이다. 두 답의 번호와 cm 단위를 모두 확인했다.",
+    "solutionCorrect": "저자의 직사각형 QSOE에서 QS=QE=6을 얻는 단계, P와 R의 같은 접선 길이를 이용한 합18, x²=6²+(18-x)²의 전개와 x²항 소거, PR10 및 QR8>6 확인이 모두 맞다. (1)의 수치18은 전체 둘레가 아니라 PR+QR이다. 별도 원 종류 공식이나 좌표가 학생 해설에 필요하지 않고, 저자의 좌표 존재 검산은 비학생 메타데이터로 분리돼 있다.",
+    "existenceUniqueness": "원시 독립 풀이가 좌표 없이 구성까지 확인했다. PQ6,QR8,PR10의 삼각형에 바깥쪽 정사각형 QSOE를 만들면 반지름6인 원은 PQ의 연장선 S 및 QR 내부 E에 접한다. F=PO∩QR에서 닮음으로 QF3,RF5이고 넓이 POR=30cm²이므로 O에서 PR 직선까지 거리6이다. 그 수선발 H까지 PH=12이며, H가 P의 뒤쪽이면 RO²=520이어야 하나 실제 RO²=40이므로 모순이다. 따라서 H는 R을 지난 T이고 RT2이다. 원은 QR의 삼각형과 반대쪽에 있어 삼각형 내부와 겹치지 않는다. 모든 허용 도형이 합18과 선형식36x=360을 만족하므로 두 물은 길이는 유일하다. 존재 검산의 긴 보조선 증명을 5점 학생 답안의 필수 채점 요소로 요구하는 것은 아니다.",
+    "exactConditionChecks": {
+      "numberedAnswers": [{"part": 1, "value": 18, "unit": "cm"}, {"part": 2, "value": 10, "unit": "cm"}],
+      "lengthsCm": {"PQ": 6, "QR": 8, "PR": 10, "QS": 6, "QE": 6, "PS": 12, "PT": 12, "RE": 2, "RT": 2, "radius": 6},
+      "Pythagoras": "100=36+64",
+      "tangentEqualities": "PS=PT=12; QS=QE=6; RE=RT=2",
+      "PQSOrder": "PQ6>0 and QS6>0",
+      "PRTOrder": "PR10>0 and RT2>0",
+      "EInterior": "0<QE6<QR8; ER2>0",
+      "existenceWitness": {"QFcm": 3, "RFcm": 5, "areaPORcm2": 30, "distanceToPRcm": 6, "OPsquaredCm2": 180, "PHcm": 12, "ROsquaredCm2": 40, "wrongSideROsquaredCm2": 520}
+    },
+    "choicesCorrect": "서술형으로 선택지는 없다. choices=[]와 (1) 18cm, (2) 10cm의 번호·대상·길이 단위를 대조했다. 객관식 보기 검토로 가장하지 않았다.",
+    "figureConsistent": "수학적 배치와 본문 대응은 맞다. 세 접점 S,T,E가 지정된 두 반직선 및 변에 있고, P-Q-S와 P-R-T의 순서, E의 내부 위치, 세 반지름과 직각 표지가 스펙·벡터에 대응한다. 이 true는 수학적 형상 일치만 뜻한다. 아래 70mm 시각 검수의 R 라벨 수정 요구를 해소하거나 내용 통과로 바꾸지 않는다.",
+    "visualReadability": {
+      "status": "needs-correction",
+      "passed": false,
+      "intendedWidthMm": 70,
+      "inspected": ["70mm 환산 96dpi 전체 렌더", "70mm 환산 300dpi 렌더", "R/T 주변 확대 렌더"],
+      "finding": "T의 글자와 접점은 구별된다. 그러나 R 글자의 오른쪽 아래 끝과 사선 PR 사이 여백이 극히 좁아 70mm 화면·인쇄에서 글자가 선과 붙어 보일 위험이 있다. R 점 주위에는 QR·PR·원 둘레도 가깝다. 단순히 라벨을 W로 고정했다는 메타데이터만으로 가독성 통과를 인정하지 않는다.",
+      "requiredCorrection": "R 글자의 위치를 선 PR에서 더 떨어뜨리거나 명확한 짧은 지시선을 두어, 70mm에서 글자 윤곽과 사선 사이에 뚜렷한 흰 여백이 남도록 새 벡터를 제출하고 재검수한다. 현재 파일을 이 검수자가 고치지 않는다.",
+      "nonBlockingWordingSuggestion": "수학적으로 명확하지만 긴 조건문과 일곱 점 이름은 읽기 부담이 있다. 반직선 설명과 접점 대응, 두 점 순서 및 E의 내부 조건을 문장 또는 줄로 나누면 추적하기 쉽다. 현재 명시된 조건을 삭제해서 단순화하면 안 된다.",
+      "newAssetReviewRequired": true,
+      "currentContentApproval": false
+    },
+    "sameCoreConceptAndProcedure": "허용된 원본 q4 크롭을 이번 봉인 뒤 직접 보았다. 원본 A,F,D가 만드는 직각삼각형은 AF=3, AD=5를 주고, 두 접선의 접점 B,C와 세 번째 접선의 접점 E를 이용해 반지름을 묻는다. 새 P,Q,R은 A,F,D에, S,T,E는 B,C,E에 대응한다. 같은 접선 길이·접점 수직·피타고라스의 연결이 보존된다. 원본 정답을 읽거나 계산해 새 정답 검증의 근거로 삼지 않았다.",
+    "distinctPresentation": "원본의 알려진 빗변·직각변과 물은 반지름을, 새 알려진 반지름6·직각변6과 물은 두 변의 합 및 빗변으로 바꾸었다. (1) 접선 관계를 먼저 도출하고 (2) 그 합으로 제곱식을 세우도록 2/3점 서술형으로 재구성했다. 알려진 양과 목표 및 단계·답 형식이 달라 숫자·점 이름만 바꾼 변형이 아니다. 이는 법적 유사성 심사 통과를 뜻하지 않는다.",
+    "naturalKorean": "본문의 문법과 수학적 뜻은 자연스럽다. 반직선 PQ,PR은 P에서 시작하며 P,Q,S 및 P,R,T의 순서와 E 내부를 별도로 명시해 어느 연장선인지 결정한다. 원이 삼각형 바깥에서 변과 두 연장 부분에 접하는 조건도 모순이 없다. 다만 문장 밀도와 그림 추적 부담은 위 시각·읽기 보류에서 별도로 처리하며 자연스러운 문법이라는 이유로 면제하지 않는다. 학생 본문·답·해설·새 그림에는 학교명이 없고 실제 학교는 내부 출처에만 남는다.",
+    "curriculumAppropriate": {
+      "grade": "중3",
+      "edition": "2015",
+      "provisions": [
+        {"id": "9수04-19", "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다.", "role": "접선 길이의 같음과 접점 반지름 수직"},
+        {"id": "9수04-16", "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다.", "role": "직각삼각형 세 변의 관계"},
+        {"id": "9수04-12", "text": "[9수04-12]사각형의 성질을 이해하고 설명할 수 있다.", "role": "직사각형과 같은 두 인접변으로 정사각형 확인"},
+        {"id": "9수02-12", "text": "[9수02-12]다항식의 곱셈과 인수분해를 할 수 있다.", "role": "(18-x)² 전개 후 공통 x²항 소거"}
+      ],
+      "officialExtract": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+      "officialExtractSha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7",
+      "primaryParagraphExtractSha256": "185fb860e76e42f33bd5f75158681a1f3f44dc5a63b6036db4886eafcd233c95",
+      "basis": "인용된 공식 조항 모음과 그 MOE 원문 단락의 실제 문장·해시를 대조했다. 중3 접선·다항식 전개와 이전 사각형·피타고라스·일차식 정리면 학생 해설이 완결된다. 원의 별도 종류에 관한 공식·명칭이나 좌표 배치를 학생에게 요구하지 않는다. 독립 존재 확인의 닮음·넓이도 이전 선수 범위이다. 중학교군 공식 범위와 현재 중3 2학기 Unit 배치를 구분했다. 그림의 시각 배치 보류는 학년 밖 방법 판정과 별개이며 2022 재출판 승인은 아니다."
+    },
+    "allStudentSurfacesInScope": "아래 일곱 표면에서 쓰이는 수학·기호가 중3/2015 안에 있는지 각각 확인했다. 표면 범위 passed는 70mm 레이아웃 통과가 아니며 visualReadability=false와 내용 승인0을 그대로 유지한다.",
+    "unitFamilyFit": {
+      "status": "held-no-exact-current-variant-assignment",
+      "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "unit": "중3 / 2학기 / 원의 접선 / J30602",
+      "candidateFamilyKeyUnchanged": null,
+      "recommendedFamilyKey": null,
+      "closestExistingFamilyKey": "mid:3-2|원과 직선|10",
+      "closestFamilyCode": "A04",
+      "recommendation": "10을 분류 담당자의 구체적 비교 대상으로 제안하되, 이 두 단계·역목표 분기를 포함하는 정확한 family 배정은 보류한다.",
+      "actualSemantics": "실제 m3Tangent.ts의 10 및 m10Body는 두 접선과 그 사이를 가로지르는 세 번째 접선으로 원 밖 삼각형을 만들고, 같은 접선 길이에서 둘레=두 긴 접선의 합을 얻어 접선 길이·세 번째 변 또는 둘레를 묻는다. mode3은 피타고라스와 반지름으로 긴 접선 길이를 얻는다. 새 문항과 외부 세 접선의 배치·길이 합 핵심은 가깝지만, 직각에서 정사각형을 얻고 반지름/한 변으로 PR+QR와 빗변을 차례로 구하는 분기는 없다. 12·13과145X는 원이 삼각형 안에 놓이는 내접 배치이므로 제목에 삼각형·직각·접선이 있다는 이유로 선택할 수 없다.",
+      "generatorEvidence": ["src/lib/middle/m3Tangent.ts:1040-1079", "src/lib/middle/m3Tangent.ts:1499-1544", "src/lib/middle/m3Tangent.ts:1136-1262", "src/lib/middle/m3Top5b.ts:595-668"],
+      "snapshot": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+      "snapshotSha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0",
+      "snapshotCapturedAt": "2026-10-19 06:14:08.658144+00",
+      "closestLiveRow": {"unit_id": "635abab8-4a87-452b-ad6c-d59065822f29", "family_key": "mid:3-2|원과 직선|10", "family_code": "A04", "live_count": 48},
+      "limitation": "실제 의미와 배치를 읽은 비교이며 제목·건수만으로 배정하지 않았다. 현재 null과 unitFamilyFit=false를 보존했고 DB·후보 수정은 없다."
+    },
+    "scoreAppropriate": "조건을 읽고 정사각형과 접선 관계로 합을 얻는 (1) 2점, 이를 이용해 피타고라스 식을 세우고 전개·정리하는 (2) 3점의 5점 구성은 합리적이다. 읽기 부담을 포함한 응용 수준이며 특수 공식을 아는 학생만 풀 수 있는 문제로 볼 필요가 없다. 상세 채점안은 제공되지 않았으므로 아래 안은 추천일 뿐 실제 채점 규정으로 임의 확정하지 않았다.",
+    "rubricReview": {
+      "total": 5,
+      "parts": [{"part": 1, "points": 2, "proposedCriteria": [{"points": 1, "basis": "QS=QE=6 및 PT=12, RT=RE 등 접선 관계를 옳게 세움"}, {"points": 1, "basis": "두 변의 합18을 옳게 도출하고 cm 단위를 명시"}]}, {"part": 2, "points": 3, "proposedCriteria": [{"points": 1, "basis": "PR=x, QR=18-x 및 피타고라스 식을 옳게 세움"}, {"points": 1, "basis": "제곱 전개·소거로 PR10cm를 얻음"}, {"points": 1, "basis": "QR8과 E 내부 조건, 또는 동등한 길이·순서 적합성을 확인"}]}],
+      "status": "split-reviewed-detailed-criteria-proposed-only",
+      "note": "동등한 올바른 풀이를 인정하고, 답안에 긴 존재 구성이나 좌표법을 강요하지 않는다. 70mm 그림 문제를 채점의 일부로 상쇄하지 않는다."
+    },
+    "sourceAndReleaseHolds": {
+      "limitedDirectObservation": "허용된 원본 q04와 첫 쪽 상단·하단 크롭만 봤다. 상단에 중3·2학기·중간 및2025-09-19, 하단에 경신중학교와 저작권 고지가 보인다. 이는 한 문항의 제한된2025 대응 관찰이며 이용 허락이 아니다.",
+      "incidentalExposure": "허용된 상단 크롭에는 원본 q1/q3 문항 일부도 포함되어 보였다. 그 문항을 풀거나 답안·원본 전체를 열지 않았으며 이번 검증의 근거로 사용하지 않았다. 향후 그 문항의 블라인드 작업에는 이 노출을 별도로 고지해야 한다.",
+      "wholePair": "hold_year_header_conflict: 2024/2025 remains unresolved",
+      "sourceIdentity": "pending",
+      "custody": "pending",
+      "rights": "pending-copyright-notice-observed",
+      "similarity": "pending; structural change is not legal clearance",
+      "nativeProvenance": "not-implemented/held",
+      "loadable": 0
+    },
+    "typesafe": "프로젝트 skill과 live index/building guide/hierarchical-classification 문서를 읽었다. 수학·교육과정·가독성·분류·출처와 권리를 별도 판단으로 남기고 숫자·ID·바이트 대조는 결정적 코드로 수행했다. 모델·유료 API·DB 호출은 없다."
+  },
+  "curriculumSurfaces": {
+    "stem": {"status": "passed", "evidence": "반직선·변·내부·점 순서·접선은 중학교 용어이며 별도의 원 종류 공식을 암기하도록 요구하지 않는다. 점 순서 추적의 읽기 부담은 별도로 기록했다."},
+    "choices": {"status": "passed", "evidence": "선택지 없는 두 소문항 서술형이다. 번호 (1)/(2), 2/3점, 합/길이 대상과 cm 단위가 명시된다."},
+    "figuresAndTables": {"status": "passed", "evidence": "원의 중심·접점·직각·삼각형·연장 부분은 모두 중학교 도형 표면이다. 이는 교육과정 범위 판정이며 R 글자의 70mm 여백 문제는 미통과 상태로 남긴다."},
+    "notation": {"status": "passed", "evidence": "선분 길이·반직선 이름·직각·cm·x² 및 두 길이의 합은 중3 이하 기호이다. 좌표나 별도 원 공식이 학생 표면에 없다."},
+    "answer": {"status": "passed", "evidence": "(1)18cm (2)10cm가 원시 독립 답과 같고 번호·단위를 보존한다."},
+    "studentSolution": {"status": "passed", "evidence": "접점 수직·직사각형·접선 길이 같음·피타고라스·제곱 전개 후 일차식 정리만 사용하며 네 공식 조항의 범위에 맞는다."},
+    "prerequisites": {"status": "passed", "evidence": "이전 사각형 성질·피타고라스·일차식과 중3 접선·다항식 전개가 충분하다. 독립 존재 확인의 닮음·넓이도 이전 선수이고 좌표·특수 원 공식이 필수는 아니다."}
+  }
+}

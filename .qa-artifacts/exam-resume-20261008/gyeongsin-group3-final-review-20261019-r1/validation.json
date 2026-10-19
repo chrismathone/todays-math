@@ -1,0 +1,267 @@
+{
+  "kind": "gyeongsin-group3-q04-stage2-validation/v1",
+  "reportSha256": "53d07cc3c27e2030799922ed04e28d9429556db43e60f04b80a84f435022eecc",
+  "rawProofSha256": "3b853a525dbaeb7e068b1506e6722efdb5f56b856cff07d0a16f730a6f69c465",
+  "rawCommit": "d63cc2c5747e66ab61057646fb9182c40e2541a4",
+  "actualNumberedAnswer": "(1) 18 cm; (2) 10 cm",
+  "strictUtf8Reopened": true,
+  "answers": [
+    {
+      "part": 1,
+      "value": 18,
+      "unit": "cm"
+    },
+    {
+      "part": 2,
+      "value": 10,
+      "unit": "cm"
+    }
+  ],
+  "exactArithmetic": {
+    "coefficient": 36,
+    "numerator": 360,
+    "pr": 10,
+    "qr": 8,
+    "re": 2,
+    "rt": 2,
+    "qf": 3,
+    "rf": 5,
+    "area": 30,
+    "distance": 6,
+    "op2": 180,
+    "ph2": 144,
+    "ro2": 40,
+    "wrongSide": 520
+  },
+  "figureGeometryValidationOnly": {
+    "tangentContacts": {
+      "S": {
+        "radius": 60,
+        "perpendicularDot": 0
+      },
+      "E": {
+        "radius": 60,
+        "perpendicularDot": 0
+      },
+      "T": {
+        "radius": 60,
+        "perpendicularDot": 0
+      }
+    },
+    "orderParameters": {
+      "SOnPQ": 2,
+      "TOnPR": 1.2,
+      "EOnQR": 0.75
+    }
+  },
+  "contentGate": {
+    "passed": false,
+    "reason": "R label needs clear separation from PR at 70mm; no correction or waiver applied",
+    "newAssetReviewRequired": true
+  },
+  "familyGate": {
+    "assigned": false,
+    "recommendedFamilyKey": null,
+    "closestExistingFamilyKey": "mid:3-2|원과 직선|10",
+    "exactVariantFit": "held"
+  },
+  "generatorEvidence": [
+    {
+      "path": "src/lib/middle/m3Tangent.ts",
+      "sha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa"
+    },
+    {
+      "path": "src/lib/middle/m3Top5b.ts",
+      "sha256": "0bbf9b87c69f138eb9dbad2fb2f7ff169d9b5bf1e82a68002de75d484bc51a2e"
+    }
+  ],
+  "immutableInputs": [
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group3-review-20261019-r2\\blind\\blind-manifest.json",
+      "sha256": "e88b4a6ec255e0f490119ae61cac1a7337276180a07d06178e698333ca4e2f5c",
+      "bytes": 335,
+      "afterSha256": "e88b4a6ec255e0f490119ae61cac1a7337276180a07d06178e698333ca4e2f5c"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group3-review-20261019-r2\\blind\\SOLVE-BRIEF.md",
+      "sha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+      "bytes": 676,
+      "afterSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group3-review-20261019-r2\\blind\\student-problems.json",
+      "sha256": "0c040494bf6c240e42e8564ce6c4964ad13e92c15dcd54597ddf1ab49df98008",
+      "bytes": 1078,
+      "afterSha256": "0c040494bf6c240e42e8564ce6c4964ad13e92c15dcd54597ddf1ab49df98008"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group3-review-20261019-r2\\blind\\figures\\q04-1.svg",
+      "sha256": "4241cf67ee7c9e03ff869dc0424f749136f51a14e7b5dde87ff0a8168a1dcbd9",
+      "bytes": 8871,
+      "afterSha256": "4241cf67ee7c9e03ff869dc0424f749136f51a14e7b5dde87ff0a8168a1dcbd9"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group3-review-20261019-r2\\blind\\solve\\q04.json",
+      "sha256": "3b853a525dbaeb7e068b1506e6722efdb5f56b856cff07d0a16f730a6f69c465",
+      "bytes": 8976,
+      "afterSha256": "3b853a525dbaeb7e068b1506e6722efdb5f56b856cff07d0a16f730a6f69c465"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group3-review-20261019-r2\\package\\manifest.json",
+      "sha256": "b7d93273a7fddf802b40f3fb7b710fd8d058379957424bea6eeffa0dc6937e15",
+      "bytes": 1684,
+      "afterSha256": "b7d93273a7fddf802b40f3fb7b710fd8d058379957424bea6eeffa0dc6937e15"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group3-review-20261019-r2\\package\\private\\q04\\candidate.json",
+      "sha256": "5d164ae58f18a1f2bf8f5cb4aeea34e076e8e61a1b03a95425425cd4b5e64f74",
+      "bytes": 9171,
+      "afterSha256": "5d164ae58f18a1f2bf8f5cb4aeea34e076e8e61a1b03a95425425cd4b5e64f74"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group3-review-20261019-r2\\package\\private\\q04\\figure-1.spec.json",
+      "sha256": "253eaf1c46e94e989a02586a078c8d8838efe6396cfd90df6333e92ec9ad74c8",
+      "bytes": 1605,
+      "afterSha256": "253eaf1c46e94e989a02586a078c8d8838efe6396cfd90df6333e92ec9ad74c8"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group3-review-20261019-r2\\package\\private\\q04\\figure-1.svg",
+      "sha256": "4241cf67ee7c9e03ff869dc0424f749136f51a14e7b5dde87ff0a8168a1dcbd9",
+      "bytes": 8871,
+      "afterSha256": "4241cf67ee7c9e03ff869dc0424f749136f51a14e7b5dde87ff0a8168a1dcbd9"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group3-review-20261019-r2\\verification\\sealed-raw-commit.json",
+      "sha256": "e0c44169ed72a2561e7c67bd605920cb2c709d3d48e0bfd33e454482b2a6f080",
+      "bytes": 621,
+      "afterSha256": "e0c44169ed72a2561e7c67bd605920cb2c709d3d48e0bfd33e454482b2a6f080"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group3-review-20261019-r2\\verification\\verification-inputs.json",
+      "sha256": "efee1db6131ac422457dedd3ade896861f80fe0cf248f33d9c259fdd1ede9b13",
+      "bytes": 20658,
+      "afterSha256": "efee1db6131ac422457dedd3ade896861f80fe0cf248f33d9c259fdd1ede9b13"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group3-review-20261019-r2\\verification\\verification-manifest.json",
+      "sha256": "394a1e00e4c76dd2c3a90289e4b0e6e07a0074537df6f9159284d8c194805768",
+      "bytes": 712,
+      "afterSha256": "394a1e00e4c76dd2c3a90289e4b0e6e07a0074537df6f9159284d8c194805768"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group3-review-20261019-r2\\verification\\VERIFY-BRIEF.md",
+      "sha256": "0ba3301b43b6101974345048a56594dd96d9c872aee6878ce65f907cda025ca3",
+      "bytes": 1238,
+      "afterSha256": "0ba3301b43b6101974345048a56594dd96d9c872aee6878ce65f907cda025ca3"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group3-r2\\q04.json",
+      "sha256": "17bc3c3eba3ae3ed5c1e067c2216f721fee2531c554cb69adcca1dbc3c025ae0",
+      "bytes": 9175,
+      "afterSha256": "17bc3c3eba3ae3ed5c1e067c2216f721fee2531c554cb69adcca1dbc3c025ae0"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group3-r2\\q04.figure.spec.json",
+      "sha256": "253eaf1c46e94e989a02586a078c8d8838efe6396cfd90df6333e92ec9ad74c8",
+      "bytes": 1605,
+      "afterSha256": "253eaf1c46e94e989a02586a078c8d8838efe6396cfd90df6333e92ec9ad74c8"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group3-r2\\q04.figure.svg",
+      "sha256": "4241cf67ee7c9e03ff869dc0424f749136f51a14e7b5dde87ff0a8168a1dcbd9",
+      "bytes": 8871,
+      "afterSha256": "4241cf67ee7c9e03ff869dc0424f749136f51a14e7b5dde87ff0a8168a1dcbd9"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group3-clean-blind-20261019-r1\\q04.json",
+      "sha256": "3b853a525dbaeb7e068b1506e6722efdb5f56b856cff07d0a16f730a6f69c465",
+      "bytes": 8976,
+      "afterSha256": "3b853a525dbaeb7e068b1506e6722efdb5f56b856cff07d0a16f730a6f69c465"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group3-clean-blind-20261019-r1\\seal-evidence.json",
+      "sha256": "b67af714886cacf42727ef213974b17e26f26fc0c14a6890f1fa123f16a88b64",
+      "bytes": 2829,
+      "afterSha256": "b67af714886cacf42727ef213974b17e26f26fc0c14a6890f1fa123f16a88b64"
+    },
+    {
+      "path": "src\\lib\\middle\\m3Tangent.ts",
+      "sha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+      "bytes": 69470,
+      "afterSha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa"
+    },
+    {
+      "path": "src\\lib\\middle\\m3Top5b.ts",
+      "sha256": "0bbf9b87c69f138eb9dbad2fb2f7ff169d9b5bf1e82a68002de75d484bc51a2e",
+      "bytes": 47695,
+      "afterSha256": "0bbf9b87c69f138eb9dbad2fb2f7ff169d9b5bf1e82a68002de75d484bc51a2e"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\live-family-snapshot-r1.json",
+      "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0",
+      "bytes": 66122,
+      "afterSha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-final14-r1\\claude-review-r1\\official-provisions.json",
+      "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7",
+      "bytes": 119981,
+      "afterSha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-source-component-review-20261019-r1\\q04-component-review.json",
+      "sha256": "32630eb61922e3c0387aed67c3e0673d2640e82109733148c18fe62139467859",
+      "bytes": 3002,
+      "afterSha256": "32630eb61922e3c0387aed67c3e0673d2640e82109733148c18fe62139467859"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-source-component-review-20261019-r1\\original-p1-q04.local.png",
+      "sha256": "80462e889c6fbf2152229ea4ea706f0f68bf342888772e8b09dabe6a911811f5",
+      "bytes": 2081471,
+      "afterSha256": "80462e889c6fbf2152229ea4ea706f0f68bf342888772e8b09dabe6a911811f5"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-source-component-review-20261019-r1\\original-p1-top.png",
+      "sha256": "3b77cba53a44d6035320d8ba8880161af3e8e667413dd71871b5626cdf09e7e3",
+      "bytes": 7990202,
+      "afterSha256": "3b77cba53a44d6035320d8ba8880161af3e8e667413dd71871b5626cdf09e7e3"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-source-component-review-20261019-r1\\original-p1-footer.png",
+      "sha256": "765cb640c2b70548ebd1b67058ab299684002c83229d220e3c63f8b95c085241",
+      "bytes": 1149251,
+      "afterSha256": "765cb640c2b70548ebd1b67058ab299684002c83229d220e3c63f8b95c085241"
+    }
+  ],
+  "rawProofCandidatePackageInputsUnchanged": true,
+  "officialIdsReopened": [
+    "9수04-19",
+    "9수04-16",
+    "9수04-12",
+    "9수02-12"
+  ],
+  "substantiveMathCount": 1,
+  "substantiveGradeCount": 1,
+  "formalCollectedMathCount": 0,
+  "formalCollectedGradeCount": 0,
+  "presentationBinding": {
+    "authorAnswer": "(1) $18\\,\\mathrm{cm}$ (2) $10\\,\\mathrm{cm}$",
+    "rawAnswer": "(1) 18 cm; (2) 10 cm",
+    "productionComparison": {
+      "status": "unsupported",
+      "reason": "Unique named assignment required",
+      "presentationComparisonOnly": true,
+      "relationTruthProved": false,
+      "permitsGradeOrQuestionApproval": false,
+      "generalSymbolicEquivalence": false
+    },
+    "numberedValuesMatch": true,
+    "collectorOverride": false
+  },
+  "authoredContentPassedCount": 0,
+  "fullCount": 0,
+  "loadable": 0,
+  "dbWrites": 0,
+  "sourceYearCustodyRightsSimilarityNativeHoldsPreserved": true,
+  "originalCropsCommitted": false
+}
