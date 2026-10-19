@@ -1,0 +1,909 @@
+{
+  "geometry": [
+    {
+      "caseId": "case01",
+      "exactRationalWorldPoints": {
+        "A": [
+          "0",
+          "6"
+        ],
+        "B": [
+          "0",
+          "0"
+        ],
+        "C": [
+          "4",
+          "0"
+        ],
+        "D": [
+          "4",
+          "6"
+        ],
+        "O": [
+          "2",
+          "4"
+        ],
+        "E": [
+          "0",
+          "3"
+        ],
+        "F": [
+          "4/5",
+          "12/5"
+        ]
+      },
+      "allCircleTangenciesFootAndSegmentLengthsProvedExactly": true,
+      "encodedSpecCoordinatesComparedToRationalConstruction": true,
+      "maxCoordinateEncodingError": "3/351843720888320",
+      "encodingBound": "8 IEEE754 ulps per coordinate; only representational error, never tolerance on mathematical answer",
+      "strictRenderedSvgSha256": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38"
+    },
+    {
+      "caseId": "case02",
+      "exactRationalWorldPoints": {
+        "A": [
+          "0",
+          "12"
+        ],
+        "B": [
+          "0",
+          "0"
+        ],
+        "C": [
+          "8",
+          "0"
+        ],
+        "D": [
+          "8",
+          "12"
+        ],
+        "O": [
+          "4",
+          "8"
+        ],
+        "E": [
+          "0",
+          "6"
+        ],
+        "F": [
+          "8/5",
+          "24/5"
+        ]
+      },
+      "allCircleTangenciesFootAndSegmentLengthsProvedExactly": true,
+      "encodedSpecCoordinatesComparedToRationalConstruction": true,
+      "maxCoordinateEncodingError": "3/351843720888320",
+      "encodingBound": "8 IEEE754 ulps per coordinate; only representational error, never tolerance on mathematical answer",
+      "strictRenderedSvgSha256": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38"
+    },
+    {
+      "caseId": "case03",
+      "exactRationalWorldPoints": {
+        "A": [
+          "0",
+          "12"
+        ],
+        "B": [
+          "0",
+          "0"
+        ],
+        "C": [
+          "6",
+          "0"
+        ],
+        "D": [
+          "6",
+          "12"
+        ],
+        "O": [
+          "3",
+          "9"
+        ],
+        "E": [
+          "0",
+          "8"
+        ],
+        "F": [
+          "3/5",
+          "36/5"
+        ]
+      },
+      "allCircleTangenciesFootAndSegmentLengthsProvedExactly": true,
+      "encodedSpecCoordinatesComparedToRationalConstruction": true,
+      "maxCoordinateEncodingError": "1/351843720888320",
+      "encodingBound": "8 IEEE754 ulps per coordinate; only representational error, never tolerance on mathematical answer",
+      "strictRenderedSvgSha256": "9467c9d93293fd519039e702007769c743c38e190f6d86f1b4378a837e9f4171"
+    },
+    {
+      "caseId": "case04",
+      "exactRationalWorldPoints": {
+        "A": [
+          "0",
+          "15"
+        ],
+        "B": [
+          "0",
+          "0"
+        ],
+        "C": [
+          "12",
+          "0"
+        ],
+        "D": [
+          "12",
+          "15"
+        ],
+        "O": [
+          "6",
+          "9"
+        ],
+        "E": [
+          "0",
+          "5"
+        ],
+        "F": [
+          "48/13",
+          "45/13"
+        ]
+      },
+      "allCircleTangenciesFootAndSegmentLengthsProvedExactly": true,
+      "encodedSpecCoordinatesComparedToRationalConstruction": true,
+      "maxCoordinateEncodingError": "1/114349209288704",
+      "encodingBound": "8 IEEE754 ulps per coordinate; only representational error, never tolerance on mathematical answer",
+      "strictRenderedSvgSha256": "4fe1c766f1050e542fc6e39e102a0f2825c62cf15eb5d34e45a3d1b9bcabe0c2"
+    },
+    {
+      "caseId": "case05",
+      "exactRationalWorldPoints": {
+        "A": [
+          "0",
+          "18"
+        ],
+        "B": [
+          "0",
+          "0"
+        ],
+        "C": [
+          "12",
+          "0"
+        ],
+        "D": [
+          "12",
+          "18"
+        ],
+        "O": [
+          "6",
+          "12"
+        ],
+        "E": [
+          "0",
+          "9"
+        ],
+        "F": [
+          "12/5",
+          "36/5"
+        ]
+      },
+      "allCircleTangenciesFootAndSegmentLengthsProvedExactly": true,
+      "encodedSpecCoordinatesComparedToRationalConstruction": true,
+      "maxCoordinateEncodingError": "1/175921860444160",
+      "encodingBound": "8 IEEE754 ulps per coordinate; only representational error, never tolerance on mathematical answer",
+      "strictRenderedSvgSha256": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38"
+    },
+    {
+      "caseId": "case06",
+      "exactRationalWorldPoints": {
+        "A": [
+          "0",
+          "20"
+        ],
+        "B": [
+          "0",
+          "0"
+        ],
+        "C": [
+          "8",
+          "0"
+        ],
+        "D": [
+          "8",
+          "20"
+        ],
+        "O": [
+          "4",
+          "16"
+        ],
+        "E": [
+          "0",
+          "15"
+        ],
+        "F": [
+          "8/17",
+          "240/17"
+        ]
+      },
+      "allCircleTangenciesFootAndSegmentLengthsProvedExactly": true,
+      "encodedSpecCoordinatesComparedToRationalConstruction": true,
+      "maxCoordinateEncodingError": "3/598134325510144",
+      "encodingBound": "8 IEEE754 ulps per coordinate; only representational error, never tolerance on mathematical answer",
+      "strictRenderedSvgSha256": "c5dc793820a0bf77cc69647ea9573f3d108fe7604a91b97a5d223bf2bc54b78a"
+    },
+    {
+      "caseId": "case07",
+      "exactRationalWorldPoints": {
+        "A": [
+          "0",
+          "24"
+        ],
+        "B": [
+          "0",
+          "0"
+        ],
+        "C": [
+          "12",
+          "0"
+        ],
+        "D": [
+          "12",
+          "24"
+        ],
+        "O": [
+          "6",
+          "18"
+        ],
+        "E": [
+          "0",
+          "16"
+        ],
+        "F": [
+          "6/5",
+          "72/5"
+        ]
+      },
+      "allCircleTangenciesFootAndSegmentLengthsProvedExactly": true,
+      "encodedSpecCoordinatesComparedToRationalConstruction": true,
+      "maxCoordinateEncodingError": "1/351843720888320",
+      "encodingBound": "8 IEEE754 ulps per coordinate; only representational error, never tolerance on mathematical answer",
+      "strictRenderedSvgSha256": "9467c9d93293fd519039e702007769c743c38e190f6d86f1b4378a837e9f4171"
+    },
+    {
+      "caseId": "case08",
+      "exactRationalWorldPoints": {
+        "A": [
+          "0",
+          "24"
+        ],
+        "B": [
+          "0",
+          "0"
+        ],
+        "C": [
+          "16",
+          "0"
+        ],
+        "D": [
+          "16",
+          "24"
+        ],
+        "O": [
+          "8",
+          "16"
+        ],
+        "E": [
+          "0",
+          "12"
+        ],
+        "F": [
+          "16/5",
+          "48/5"
+        ]
+      },
+      "allCircleTangenciesFootAndSegmentLengthsProvedExactly": true,
+      "encodedSpecCoordinatesComparedToRationalConstruction": true,
+      "maxCoordinateEncodingError": "3/351843720888320",
+      "encodingBound": "8 IEEE754 ulps per coordinate; only representational error, never tolerance on mathematical answer",
+      "strictRenderedSvgSha256": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38"
+    },
+    {
+      "caseId": "case09",
+      "exactRationalWorldPoints": {
+        "A": [
+          "0",
+          "30"
+        ],
+        "B": [
+          "0",
+          "0"
+        ],
+        "C": [
+          "20",
+          "0"
+        ],
+        "D": [
+          "20",
+          "30"
+        ],
+        "O": [
+          "10",
+          "20"
+        ],
+        "E": [
+          "0",
+          "15"
+        ],
+        "F": [
+          "4",
+          "12"
+        ]
+      },
+      "allCircleTangenciesFootAndSegmentLengthsProvedExactly": true,
+      "encodedSpecCoordinatesComparedToRationalConstruction": true,
+      "maxCoordinateEncodingError": "3/351843720888320",
+      "encodingBound": "8 IEEE754 ulps per coordinate; only representational error, never tolerance on mathematical answer",
+      "strictRenderedSvgSha256": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38"
+    },
+    {
+      "caseId": "case10",
+      "exactRationalWorldPoints": {
+        "A": [
+          "0",
+          "28"
+        ],
+        "B": [
+          "0",
+          "0"
+        ],
+        "C": [
+          "24",
+          "0"
+        ],
+        "D": [
+          "24",
+          "28"
+        ],
+        "O": [
+          "12",
+          "16"
+        ],
+        "E": [
+          "0",
+          "7"
+        ],
+        "F": [
+          "216/25",
+          "112/25"
+        ]
+      },
+      "allCircleTangenciesFootAndSegmentLengthsProvedExactly": true,
+      "encodedSpecCoordinatesComparedToRationalConstruction": true,
+      "maxCoordinateEncodingError": "7/439804651110400",
+      "encodingBound": "8 IEEE754 ulps per coordinate; only representational error, never tolerance on mathematical answer",
+      "strictRenderedSvgSha256": "d55dde524b6053d2f77b4165ff867651c3d60a1250fbe44a5ee79cf6541e7f53"
+    }
+  ],
+  "gradeDecisions": [
+    {
+      "caseId": "case01",
+      "studentDigest": "d906446e27a930acb0710fd9dcff18e414c6e71abecd0547a40d175c50d50964",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "case01의 실제발문은 직사각형3변 접촉과 추가접선EC, BC=4,AE=3에서전체EC를묻는다.2015원의접선9수04-19학습후접선길이·부분길이의역추론이며필요조건을직접명시한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "case01은단답형이므로선택지면은해당없음이다. 현재draft.questionType=단답형,distractors/rubric없음을확인했고객관식/서술형/불필요선택지변조는검산기에서거부됐다. 선택지검토를한것처럼꾸미지않는다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "case01학생SVG해시3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38와현재spec의실제strict렌더출력이일치한다. A-B-C-D직사각형,세변접촉,AB위E,EC내부F와OF수직을확인. 독립길이계산후별도정확유리수모형에서세접선거리r=2,EF=1,CF=4를증명하고spec좌표표현오차만분리했다. 픽셀계산아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "case01현재발문/해설의선분윗줄,접점H/I/G/F,cm,미지수x,제곱·전개·부등호는중학교도형과식표기다. 단위는길이cm이며제곱비교는cm². 삼각함수/원의방정식/접선곱기호는없다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "case01봉인답5 cm와현재답이일치하며이번독립높이탐색/정확항등식으로EC=5를다시얻었다. x=CF=4>k=1이므로EB=3>0. 계수4k=4>0인일차식으로길이가유일하다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "case01전체저자해설을읽고모든수치단계를검산: 반지름2→AI=DG=2→EI=EF=1→CF=CG=x→EB=x−1,EC=x+1→(x+1)²=(x−1)²+4²→4x=16→x=4→EC=5. 접선길이같음은실제직각삼각형의합동으로정당화되고corner의AI=AH=r은반지름과직각으로만든정사각형에근거한다. 고등원의비례/접선곱·사인법칙없이9수04-19와9수04-16및일차식으로전체방법이닫힌다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "case01은2015중3원의접선9수04-19후에배정하며접점반지름수직·한점의두접선같음,직사각형,피타고라스9수04-16,다항식전개와이전일차방정식을배운학생에한정한다. 기존에실제본KOSAC2015기하기준line540,원과비례제외line558과공식2024중3계획physical74/printed72접선행을근거로했다. 학교원문이라는권위나q08승인자동상속은근거가아니다.2022는pending."
+        }
+      },
+      "actualFullSolutionNumericStepsChecked": [
+        "4\\div2=2",
+        "AI=AH=2",
+        "DG=DH=2",
+        "EI=AE-AI=3-2=1",
+        "EF=1",
+        "CF=CG=x",
+        "CD=x+2",
+        "EB=AB-AE=x+2-3=x-1",
+        "EC=EF+FC=x+1",
+        "(x+1)^2=(x-1)^2+4^2",
+        "4x=16",
+        "x=4",
+        "EC=4+1=5",
+        "EB=3>0",
+        "EF=1>0"
+      ],
+      "gradeScope": "2015 M3 after explicit prerequisites only; source2025/practice2026. 2027 M3 requires separate2022 placement."
+    },
+    {
+      "caseId": "case02",
+      "studentDigest": "162d0e70072f858c0f0c07e86dc267b40742eeec2e2338b70ff1a1f1d598ba86",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "case02의 실제발문은 직사각형3변 접촉과 추가접선EC, BC=8,AE=6에서전체EC를묻는다.2015원의접선9수04-19학습후접선길이·부분길이의역추론이며필요조건을직접명시한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "case02은단답형이므로선택지면은해당없음이다. 현재draft.questionType=단답형,distractors/rubric없음을확인했고객관식/서술형/불필요선택지변조는검산기에서거부됐다. 선택지검토를한것처럼꾸미지않는다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "case02학생SVG해시3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38와현재spec의실제strict렌더출력이일치한다. A-B-C-D직사각형,세변접촉,AB위E,EC내부F와OF수직을확인. 독립길이계산후별도정확유리수모형에서세접선거리r=4,EF=2,CF=8를증명하고spec좌표표현오차만분리했다. 픽셀계산아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "case02현재발문/해설의선분윗줄,접점H/I/G/F,cm,미지수x,제곱·전개·부등호는중학교도형과식표기다. 단위는길이cm이며제곱비교는cm². 삼각함수/원의방정식/접선곱기호는없다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "case02봉인답10 cm와현재답이일치하며이번독립높이탐색/정확항등식으로EC=10를다시얻었다. x=CF=8>k=2이므로EB=6>0. 계수4k=8>0인일차식으로길이가유일하다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "case02전체저자해설을읽고모든수치단계를검산: 반지름4→AI=DG=4→EI=EF=2→CF=CG=x→EB=x−2,EC=x+2→(x+2)²=(x−2)²+8²→8x=64→x=8→EC=10. 접선길이같음은실제직각삼각형의합동으로정당화되고corner의AI=AH=r은반지름과직각으로만든정사각형에근거한다. 고등원의비례/접선곱·사인법칙없이9수04-19와9수04-16및일차식으로전체방법이닫힌다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "case02은2015중3원의접선9수04-19후에배정하며접점반지름수직·한점의두접선같음,직사각형,피타고라스9수04-16,다항식전개와이전일차방정식을배운학생에한정한다. 기존에실제본KOSAC2015기하기준line540,원과비례제외line558과공식2024중3계획physical74/printed72접선행을근거로했다. 학교원문이라는권위나q08승인자동상속은근거가아니다.2022는pending."
+        }
+      },
+      "actualFullSolutionNumericStepsChecked": [
+        "8\\div2=4",
+        "AI=AH=4",
+        "DG=DH=4",
+        "EI=AE-AI=6-4=2",
+        "EF=2",
+        "CF=CG=x",
+        "CD=x+4",
+        "EB=AB-AE=x+4-6=x-2",
+        "EC=EF+FC=x+2",
+        "(x+2)^2=(x-2)^2+8^2",
+        "8x=64",
+        "x=8",
+        "EC=8+2=10",
+        "EB=6>0",
+        "EF=2>0"
+      ],
+      "gradeScope": "2015 M3 after explicit prerequisites only; source2025/practice2026. 2027 M3 requires separate2022 placement."
+    },
+    {
+      "caseId": "case03",
+      "studentDigest": "86718eccb6610c2fdb058db4533292bc5bc53594e80e77da1e4550e90e33b9f2",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "case03의 실제발문은 직사각형3변 접촉과 추가접선EC, BC=6,AE=4에서전체EC를묻는다.2015원의접선9수04-19학습후접선길이·부분길이의역추론이며필요조건을직접명시한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "case03은단답형이므로선택지면은해당없음이다. 현재draft.questionType=단답형,distractors/rubric없음을확인했고객관식/서술형/불필요선택지변조는검산기에서거부됐다. 선택지검토를한것처럼꾸미지않는다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "case03학생SVG해시9467c9d93293fd519039e702007769c743c38e190f6d86f1b4378a837e9f4171와현재spec의실제strict렌더출력이일치한다. A-B-C-D직사각형,세변접촉,AB위E,EC내부F와OF수직을확인. 독립길이계산후별도정확유리수모형에서세접선거리r=3,EF=1,CF=9를증명하고spec좌표표현오차만분리했다. 픽셀계산아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "case03현재발문/해설의선분윗줄,접점H/I/G/F,cm,미지수x,제곱·전개·부등호는중학교도형과식표기다. 단위는길이cm이며제곱비교는cm². 삼각함수/원의방정식/접선곱기호는없다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "case03봉인답10 cm와현재답이일치하며이번독립높이탐색/정확항등식으로EC=10를다시얻었다. x=CF=9>k=1이므로EB=8>0. 계수4k=4>0인일차식으로길이가유일하다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "case03전체저자해설을읽고모든수치단계를검산: 반지름3→AI=DG=3→EI=EF=1→CF=CG=x→EB=x−1,EC=x+1→(x+1)²=(x−1)²+6²→4x=36→x=9→EC=10. 접선길이같음은실제직각삼각형의합동으로정당화되고corner의AI=AH=r은반지름과직각으로만든정사각형에근거한다. 고등원의비례/접선곱·사인법칙없이9수04-19와9수04-16및일차식으로전체방법이닫힌다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "case03은2015중3원의접선9수04-19후에배정하며접점반지름수직·한점의두접선같음,직사각형,피타고라스9수04-16,다항식전개와이전일차방정식을배운학생에한정한다. 기존에실제본KOSAC2015기하기준line540,원과비례제외line558과공식2024중3계획physical74/printed72접선행을근거로했다. 학교원문이라는권위나q08승인자동상속은근거가아니다.2022는pending."
+        }
+      },
+      "actualFullSolutionNumericStepsChecked": [
+        "6\\div2=3",
+        "AI=AH=3",
+        "DG=DH=3",
+        "EI=AE-AI=4-3=1",
+        "EF=1",
+        "CF=CG=x",
+        "CD=x+3",
+        "EB=AB-AE=x+3-4=x-1",
+        "EC=EF+FC=x+1",
+        "(x+1)^2=(x-1)^2+6^2",
+        "4x=36",
+        "x=9",
+        "EC=9+1=10",
+        "EB=8>0",
+        "EF=1>0"
+      ],
+      "gradeScope": "2015 M3 after explicit prerequisites only; source2025/practice2026. 2027 M3 requires separate2022 placement."
+    },
+    {
+      "caseId": "case04",
+      "studentDigest": "bea33f44cabad9303ff228f18c270b7cbcfa5684598049582a1da7438765454a",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "case04의 실제발문은 직사각형3변 접촉과 추가접선EC, BC=12,AE=10에서전체EC를묻는다.2015원의접선9수04-19학습후접선길이·부분길이의역추론이며필요조건을직접명시한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "case04은단답형이므로선택지면은해당없음이다. 현재draft.questionType=단답형,distractors/rubric없음을확인했고객관식/서술형/불필요선택지변조는검산기에서거부됐다. 선택지검토를한것처럼꾸미지않는다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "case04학생SVG해시4fe1c766f1050e542fc6e39e102a0f2825c62cf15eb5d34e45a3d1b9bcabe0c2와현재spec의실제strict렌더출력이일치한다. A-B-C-D직사각형,세변접촉,AB위E,EC내부F와OF수직을확인. 독립길이계산후별도정확유리수모형에서세접선거리r=6,EF=4,CF=9를증명하고spec좌표표현오차만분리했다. 픽셀계산아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "case04현재발문/해설의선분윗줄,접점H/I/G/F,cm,미지수x,제곱·전개·부등호는중학교도형과식표기다. 단위는길이cm이며제곱비교는cm². 삼각함수/원의방정식/접선곱기호는없다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "case04봉인답13 cm와현재답이일치하며이번독립높이탐색/정확항등식으로EC=13를다시얻었다. x=CF=9>k=4이므로EB=5>0. 계수4k=16>0인일차식으로길이가유일하다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "case04전체저자해설을읽고모든수치단계를검산: 반지름6→AI=DG=6→EI=EF=4→CF=CG=x→EB=x−4,EC=x+4→(x+4)²=(x−4)²+12²→16x=144→x=9→EC=13. 접선길이같음은실제직각삼각형의합동으로정당화되고corner의AI=AH=r은반지름과직각으로만든정사각형에근거한다. 고등원의비례/접선곱·사인법칙없이9수04-19와9수04-16및일차식으로전체방법이닫힌다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "case04은2015중3원의접선9수04-19후에배정하며접점반지름수직·한점의두접선같음,직사각형,피타고라스9수04-16,다항식전개와이전일차방정식을배운학생에한정한다. 기존에실제본KOSAC2015기하기준line540,원과비례제외line558과공식2024중3계획physical74/printed72접선행을근거로했다. 학교원문이라는권위나q08승인자동상속은근거가아니다.2022는pending."
+        }
+      },
+      "actualFullSolutionNumericStepsChecked": [
+        "12\\div2=6",
+        "AI=AH=6",
+        "DG=DH=6",
+        "EI=AE-AI=10-6=4",
+        "EF=4",
+        "CF=CG=x",
+        "CD=x+6",
+        "EB=AB-AE=x+6-10=x-4",
+        "EC=EF+FC=x+4",
+        "(x+4)^2=(x-4)^2+12^2",
+        "16x=144",
+        "x=9",
+        "EC=9+4=13",
+        "EB=5>0",
+        "EF=4>0"
+      ],
+      "gradeScope": "2015 M3 after explicit prerequisites only; source2025/practice2026. 2027 M3 requires separate2022 placement."
+    },
+    {
+      "caseId": "case05",
+      "studentDigest": "b40928e4f3742284e78b31da8439c80a6fd128e8a04a766fbc4524515d999e97",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "case05의 실제발문은 직사각형3변 접촉과 추가접선EC, BC=12,AE=9에서전체EC를묻는다.2015원의접선9수04-19학습후접선길이·부분길이의역추론이며필요조건을직접명시한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "case05은단답형이므로선택지면은해당없음이다. 현재draft.questionType=단답형,distractors/rubric없음을확인했고객관식/서술형/불필요선택지변조는검산기에서거부됐다. 선택지검토를한것처럼꾸미지않는다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "case05학생SVG해시3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38와현재spec의실제strict렌더출력이일치한다. A-B-C-D직사각형,세변접촉,AB위E,EC내부F와OF수직을확인. 독립길이계산후별도정확유리수모형에서세접선거리r=6,EF=3,CF=12를증명하고spec좌표표현오차만분리했다. 픽셀계산아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "case05현재발문/해설의선분윗줄,접점H/I/G/F,cm,미지수x,제곱·전개·부등호는중학교도형과식표기다. 단위는길이cm이며제곱비교는cm². 삼각함수/원의방정식/접선곱기호는없다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "case05봉인답15 cm와현재답이일치하며이번독립높이탐색/정확항등식으로EC=15를다시얻었다. x=CF=12>k=3이므로EB=9>0. 계수4k=12>0인일차식으로길이가유일하다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "case05전체저자해설을읽고모든수치단계를검산: 반지름6→AI=DG=6→EI=EF=3→CF=CG=x→EB=x−3,EC=x+3→(x+3)²=(x−3)²+12²→12x=144→x=12→EC=15. 접선길이같음은실제직각삼각형의합동으로정당화되고corner의AI=AH=r은반지름과직각으로만든정사각형에근거한다. 고등원의비례/접선곱·사인법칙없이9수04-19와9수04-16및일차식으로전체방법이닫힌다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "case05은2015중3원의접선9수04-19후에배정하며접점반지름수직·한점의두접선같음,직사각형,피타고라스9수04-16,다항식전개와이전일차방정식을배운학생에한정한다. 기존에실제본KOSAC2015기하기준line540,원과비례제외line558과공식2024중3계획physical74/printed72접선행을근거로했다. 학교원문이라는권위나q08승인자동상속은근거가아니다.2022는pending."
+        }
+      },
+      "actualFullSolutionNumericStepsChecked": [
+        "12\\div2=6",
+        "AI=AH=6",
+        "DG=DH=6",
+        "EI=AE-AI=9-6=3",
+        "EF=3",
+        "CF=CG=x",
+        "CD=x+6",
+        "EB=AB-AE=x+6-9=x-3",
+        "EC=EF+FC=x+3",
+        "(x+3)^2=(x-3)^2+12^2",
+        "12x=144",
+        "x=12",
+        "EC=12+3=15",
+        "EB=9>0",
+        "EF=3>0"
+      ],
+      "gradeScope": "2015 M3 after explicit prerequisites only; source2025/practice2026. 2027 M3 requires separate2022 placement."
+    },
+    {
+      "caseId": "case06",
+      "studentDigest": "a0b9d94d4a6fe6511f1a2b1b60edceaf90c69c58fff9fff681419e394db8fa1a",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "case06의 실제발문은 직사각형3변 접촉과 추가접선EC, BC=8,AE=5에서전체EC를묻는다.2015원의접선9수04-19학습후접선길이·부분길이의역추론이며필요조건을직접명시한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "case06은단답형이므로선택지면은해당없음이다. 현재draft.questionType=단답형,distractors/rubric없음을확인했고객관식/서술형/불필요선택지변조는검산기에서거부됐다. 선택지검토를한것처럼꾸미지않는다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "case06학생SVG해시c5dc793820a0bf77cc69647ea9573f3d108fe7604a91b97a5d223bf2bc54b78a와현재spec의실제strict렌더출력이일치한다. A-B-C-D직사각형,세변접촉,AB위E,EC내부F와OF수직을확인. 독립길이계산후별도정확유리수모형에서세접선거리r=4,EF=1,CF=16를증명하고spec좌표표현오차만분리했다. 픽셀계산아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "case06현재발문/해설의선분윗줄,접점H/I/G/F,cm,미지수x,제곱·전개·부등호는중학교도형과식표기다. 단위는길이cm이며제곱비교는cm². 삼각함수/원의방정식/접선곱기호는없다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "case06봉인답17 cm와현재답이일치하며이번독립높이탐색/정확항등식으로EC=17를다시얻었다. x=CF=16>k=1이므로EB=15>0. 계수4k=4>0인일차식으로길이가유일하다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "case06전체저자해설을읽고모든수치단계를검산: 반지름4→AI=DG=4→EI=EF=1→CF=CG=x→EB=x−1,EC=x+1→(x+1)²=(x−1)²+8²→4x=64→x=16→EC=17. 접선길이같음은실제직각삼각형의합동으로정당화되고corner의AI=AH=r은반지름과직각으로만든정사각형에근거한다. 고등원의비례/접선곱·사인법칙없이9수04-19와9수04-16및일차식으로전체방법이닫힌다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "case06은2015중3원의접선9수04-19후에배정하며접점반지름수직·한점의두접선같음,직사각형,피타고라스9수04-16,다항식전개와이전일차방정식을배운학생에한정한다. 기존에실제본KOSAC2015기하기준line540,원과비례제외line558과공식2024중3계획physical74/printed72접선행을근거로했다. 학교원문이라는권위나q08승인자동상속은근거가아니다.2022는pending."
+        }
+      },
+      "actualFullSolutionNumericStepsChecked": [
+        "8\\div2=4",
+        "AI=AH=4",
+        "DG=DH=4",
+        "EI=AE-AI=5-4=1",
+        "EF=1",
+        "CF=CG=x",
+        "CD=x+4",
+        "EB=AB-AE=x+4-5=x-1",
+        "EC=EF+FC=x+1",
+        "(x+1)^2=(x-1)^2+8^2",
+        "4x=64",
+        "x=16",
+        "EC=16+1=17",
+        "EB=15>0",
+        "EF=1>0"
+      ],
+      "gradeScope": "2015 M3 after explicit prerequisites only; source2025/practice2026. 2027 M3 requires separate2022 placement."
+    },
+    {
+      "caseId": "case07",
+      "studentDigest": "97332c255ebecb8d42fd44e88b80f7aa6ff87b7a0fbd8fca4f898b47c6b6edde",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "case07의 실제발문은 직사각형3변 접촉과 추가접선EC, BC=12,AE=8에서전체EC를묻는다.2015원의접선9수04-19학습후접선길이·부분길이의역추론이며필요조건을직접명시한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "case07은단답형이므로선택지면은해당없음이다. 현재draft.questionType=단답형,distractors/rubric없음을확인했고객관식/서술형/불필요선택지변조는검산기에서거부됐다. 선택지검토를한것처럼꾸미지않는다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "case07학생SVG해시9467c9d93293fd519039e702007769c743c38e190f6d86f1b4378a837e9f4171와현재spec의실제strict렌더출력이일치한다. A-B-C-D직사각형,세변접촉,AB위E,EC내부F와OF수직을확인. 독립길이계산후별도정확유리수모형에서세접선거리r=6,EF=2,CF=18를증명하고spec좌표표현오차만분리했다. 픽셀계산아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "case07현재발문/해설의선분윗줄,접점H/I/G/F,cm,미지수x,제곱·전개·부등호는중학교도형과식표기다. 단위는길이cm이며제곱비교는cm². 삼각함수/원의방정식/접선곱기호는없다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "case07봉인답20 cm와현재답이일치하며이번독립높이탐색/정확항등식으로EC=20를다시얻었다. x=CF=18>k=2이므로EB=16>0. 계수4k=8>0인일차식으로길이가유일하다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "case07전체저자해설을읽고모든수치단계를검산: 반지름6→AI=DG=6→EI=EF=2→CF=CG=x→EB=x−2,EC=x+2→(x+2)²=(x−2)²+12²→8x=144→x=18→EC=20. 접선길이같음은실제직각삼각형의합동으로정당화되고corner의AI=AH=r은반지름과직각으로만든정사각형에근거한다. 고등원의비례/접선곱·사인법칙없이9수04-19와9수04-16및일차식으로전체방법이닫힌다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "case07은2015중3원의접선9수04-19후에배정하며접점반지름수직·한점의두접선같음,직사각형,피타고라스9수04-16,다항식전개와이전일차방정식을배운학생에한정한다. 기존에실제본KOSAC2015기하기준line540,원과비례제외line558과공식2024중3계획physical74/printed72접선행을근거로했다. 학교원문이라는권위나q08승인자동상속은근거가아니다.2022는pending."
+        }
+      },
+      "actualFullSolutionNumericStepsChecked": [
+        "12\\div2=6",
+        "AI=AH=6",
+        "DG=DH=6",
+        "EI=AE-AI=8-6=2",
+        "EF=2",
+        "CF=CG=x",
+        "CD=x+6",
+        "EB=AB-AE=x+6-8=x-2",
+        "EC=EF+FC=x+2",
+        "(x+2)^2=(x-2)^2+12^2",
+        "8x=144",
+        "x=18",
+        "EC=18+2=20",
+        "EB=16>0",
+        "EF=2>0"
+      ],
+      "gradeScope": "2015 M3 after explicit prerequisites only; source2025/practice2026. 2027 M3 requires separate2022 placement."
+    },
+    {
+      "caseId": "case08",
+      "studentDigest": "a9ca2e42e8e786e934581a2f0b2447cfe332e6edbadfb86b47ef9d1006fb8ada",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "case08의 실제발문은 직사각형3변 접촉과 추가접선EC, BC=16,AE=12에서전체EC를묻는다.2015원의접선9수04-19학습후접선길이·부분길이의역추론이며필요조건을직접명시한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "case08은단답형이므로선택지면은해당없음이다. 현재draft.questionType=단답형,distractors/rubric없음을확인했고객관식/서술형/불필요선택지변조는검산기에서거부됐다. 선택지검토를한것처럼꾸미지않는다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "case08학생SVG해시3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38와현재spec의실제strict렌더출력이일치한다. A-B-C-D직사각형,세변접촉,AB위E,EC내부F와OF수직을확인. 독립길이계산후별도정확유리수모형에서세접선거리r=8,EF=4,CF=16를증명하고spec좌표표현오차만분리했다. 픽셀계산아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "case08현재발문/해설의선분윗줄,접점H/I/G/F,cm,미지수x,제곱·전개·부등호는중학교도형과식표기다. 단위는길이cm이며제곱비교는cm². 삼각함수/원의방정식/접선곱기호는없다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "case08봉인답20 cm와현재답이일치하며이번독립높이탐색/정확항등식으로EC=20를다시얻었다. x=CF=16>k=4이므로EB=12>0. 계수4k=16>0인일차식으로길이가유일하다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "case08전체저자해설을읽고모든수치단계를검산: 반지름8→AI=DG=8→EI=EF=4→CF=CG=x→EB=x−4,EC=x+4→(x+4)²=(x−4)²+16²→16x=256→x=16→EC=20. 접선길이같음은실제직각삼각형의합동으로정당화되고corner의AI=AH=r은반지름과직각으로만든정사각형에근거한다. 고등원의비례/접선곱·사인법칙없이9수04-19와9수04-16및일차식으로전체방법이닫힌다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "case08은2015중3원의접선9수04-19후에배정하며접점반지름수직·한점의두접선같음,직사각형,피타고라스9수04-16,다항식전개와이전일차방정식을배운학생에한정한다. 기존에실제본KOSAC2015기하기준line540,원과비례제외line558과공식2024중3계획physical74/printed72접선행을근거로했다. 학교원문이라는권위나q08승인자동상속은근거가아니다.2022는pending."
+        }
+      },
+      "actualFullSolutionNumericStepsChecked": [
+        "16\\div2=8",
+        "AI=AH=8",
+        "DG=DH=8",
+        "EI=AE-AI=12-8=4",
+        "EF=4",
+        "CF=CG=x",
+        "CD=x+8",
+        "EB=AB-AE=x+8-12=x-4",
+        "EC=EF+FC=x+4",
+        "(x+4)^2=(x-4)^2+16^2",
+        "16x=256",
+        "x=16",
+        "EC=16+4=20",
+        "EB=12>0",
+        "EF=4>0"
+      ],
+      "gradeScope": "2015 M3 after explicit prerequisites only; source2025/practice2026. 2027 M3 requires separate2022 placement."
+    },
+    {
+      "caseId": "case09",
+      "studentDigest": "d4b9c21ecf16c54c6fe6a9c006c647046b67994c0a4e55baba6031935ef87e5b",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "case09의 실제발문은 직사각형3변 접촉과 추가접선EC, BC=20,AE=15에서전체EC를묻는다.2015원의접선9수04-19학습후접선길이·부분길이의역추론이며필요조건을직접명시한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "case09은단답형이므로선택지면은해당없음이다. 현재draft.questionType=단답형,distractors/rubric없음을확인했고객관식/서술형/불필요선택지변조는검산기에서거부됐다. 선택지검토를한것처럼꾸미지않는다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "case09학생SVG해시3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38와현재spec의실제strict렌더출력이일치한다. A-B-C-D직사각형,세변접촉,AB위E,EC내부F와OF수직을확인. 독립길이계산후별도정확유리수모형에서세접선거리r=10,EF=5,CF=20를증명하고spec좌표표현오차만분리했다. 픽셀계산아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "case09현재발문/해설의선분윗줄,접점H/I/G/F,cm,미지수x,제곱·전개·부등호는중학교도형과식표기다. 단위는길이cm이며제곱비교는cm². 삼각함수/원의방정식/접선곱기호는없다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "case09봉인답25 cm와현재답이일치하며이번독립높이탐색/정확항등식으로EC=25를다시얻었다. x=CF=20>k=5이므로EB=15>0. 계수4k=20>0인일차식으로길이가유일하다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "case09전체저자해설을읽고모든수치단계를검산: 반지름10→AI=DG=10→EI=EF=5→CF=CG=x→EB=x−5,EC=x+5→(x+5)²=(x−5)²+20²→20x=400→x=20→EC=25. 접선길이같음은실제직각삼각형의합동으로정당화되고corner의AI=AH=r은반지름과직각으로만든정사각형에근거한다. 고등원의비례/접선곱·사인법칙없이9수04-19와9수04-16및일차식으로전체방법이닫힌다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "case09은2015중3원의접선9수04-19후에배정하며접점반지름수직·한점의두접선같음,직사각형,피타고라스9수04-16,다항식전개와이전일차방정식을배운학생에한정한다. 기존에실제본KOSAC2015기하기준line540,원과비례제외line558과공식2024중3계획physical74/printed72접선행을근거로했다. 학교원문이라는권위나q08승인자동상속은근거가아니다.2022는pending."
+        }
+      },
+      "actualFullSolutionNumericStepsChecked": [
+        "20\\div2=10",
+        "AI=AH=10",
+        "DG=DH=10",
+        "EI=AE-AI=15-10=5",
+        "EF=5",
+        "CF=CG=x",
+        "CD=x+10",
+        "EB=AB-AE=x+10-15=x-5",
+        "EC=EF+FC=x+5",
+        "(x+5)^2=(x-5)^2+20^2",
+        "20x=400",
+        "x=20",
+        "EC=20+5=25",
+        "EB=15>0",
+        "EF=5>0"
+      ],
+      "gradeScope": "2015 M3 after explicit prerequisites only; source2025/practice2026. 2027 M3 requires separate2022 placement."
+    },
+    {
+      "caseId": "case10",
+      "studentDigest": "e7cecdc9017170672b4df442c5f3b47aa59ba390a5efa431d094a290a1dbf44c",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "case10의 실제발문은 직사각형3변 접촉과 추가접선EC, BC=24,AE=21에서전체EC를묻는다.2015원의접선9수04-19학습후접선길이·부분길이의역추론이며필요조건을직접명시한다."
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "case10은단답형이므로선택지면은해당없음이다. 현재draft.questionType=단답형,distractors/rubric없음을확인했고객관식/서술형/불필요선택지변조는검산기에서거부됐다. 선택지검토를한것처럼꾸미지않는다."
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "case10학생SVG해시d55dde524b6053d2f77b4165ff867651c3d60a1250fbe44a5ee79cf6541e7f53와현재spec의실제strict렌더출력이일치한다. A-B-C-D직사각형,세변접촉,AB위E,EC내부F와OF수직을확인. 독립길이계산후별도정확유리수모형에서세접선거리r=12,EF=9,CF=16를증명하고spec좌표표현오차만분리했다. 픽셀계산아님."
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "case10현재발문/해설의선분윗줄,접점H/I/G/F,cm,미지수x,제곱·전개·부등호는중학교도형과식표기다. 단위는길이cm이며제곱비교는cm². 삼각함수/원의방정식/접선곱기호는없다."
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "case10봉인답25 cm와현재답이일치하며이번독립높이탐색/정확항등식으로EC=25를다시얻었다. x=CF=16>k=9이므로EB=7>0. 계수4k=36>0인일차식으로길이가유일하다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "case10전체저자해설을읽고모든수치단계를검산: 반지름12→AI=DG=12→EI=EF=9→CF=CG=x→EB=x−9,EC=x+9→(x+9)²=(x−9)²+24²→36x=576→x=16→EC=25. 접선길이같음은실제직각삼각형의합동으로정당화되고corner의AI=AH=r은반지름과직각으로만든정사각형에근거한다. 고등원의비례/접선곱·사인법칙없이9수04-19와9수04-16및일차식으로전체방법이닫힌다."
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "case10은2015중3원의접선9수04-19후에배정하며접점반지름수직·한점의두접선같음,직사각형,피타고라스9수04-16,다항식전개와이전일차방정식을배운학생에한정한다. 기존에실제본KOSAC2015기하기준line540,원과비례제외line558과공식2024중3계획physical74/printed72접선행을근거로했다. 학교원문이라는권위나q08승인자동상속은근거가아니다.2022는pending."
+        }
+      },
+      "actualFullSolutionNumericStepsChecked": [
+        "24\\div2=12",
+        "AI=AH=12",
+        "DG=DH=12",
+        "EI=AE-AI=21-12=9",
+        "EF=9",
+        "CF=CG=x",
+        "CD=x+12",
+        "EB=AB-AE=x+12-21=x-9",
+        "EC=EF+FC=x+9",
+        "(x+9)^2=(x-9)^2+24^2",
+        "36x=576",
+        "x=16",
+        "EC=16+9=25",
+        "EB=7>0",
+        "EF=9>0"
+      ],
+      "gradeScope": "2015 M3 after explicit prerequisites only; source2025/practice2026. 2027 M3 requires separate2022 placement."
+    }
+  ],
+  "cases": 10,
+  "sevenSurfacesEach": true,
+  "noFullExternalDocumentCopied": true
+}

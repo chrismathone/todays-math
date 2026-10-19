@@ -1,0 +1,168 @@
+{
+  "kind": "independent-U52-engine-audit-r2/v1",
+  "status": "bounded-math-grade-render-controls-passed-public-release-held",
+  "rawBinding": {
+    "helperRawCommit": "d523943cf20881528060754a84162701fc9b67a1",
+    "parentRawCommit": "8fca23581a992f072942f7a5aa2b137d9d177bae",
+    "rawSha256": "e0c77da61cd8cd157fe0fbb7d3323352fae395def53555ce55f0ecd269e4ead4",
+    "sealedOwnFilesByteIdentical": true,
+    "priorExposureDeclaration": {
+      "relatedManualQ08RawAndAuthorReviewExposed": true,
+      "oldFamily16CodeAnd12ActualSamplesExposed": true,
+      "priorOriginalQ08PageExposed": true,
+      "newU52FactoryCodePrivateDraftAnswersFullSolutionsExposedBeforeSeal": false,
+      "declaration": "관련 GYEONGSIN q08 raw/저자 검토와 기존 family16 코드·실제12표본에 이미 노출되었다. 원본 H q08도 이전 허가된 페이지에서 보았다. 현재 U52 inverseTangentRectangle.ts, private-drafts10.json, 새 factory 답/해설은 읽지 않았다. 완전한 관련자료 비노출 주장이 아닌, 학생전용10페이로드에 대한 독립 정확계산이다."
+    },
+    "firstNewFactoryAuthorExposure": "Only after both raw seals, reading authorized scope-r2/private-drafts10.",
+    "studentInputSha256": "81e1a3ed6814ef5ab6d8b38c388d6eec885bbfa6f9985e0625a28b1a3665e267",
+    "currentPrivateDraftsSha256": "39712d923b7d289385e4326ca2dd2c12b03d37c015f3d1358cdf54b672a22b49",
+    "exactAll10ContentFormatAndStrictFigureBindingsVerified": true,
+    "studentDigestProjectionLimit": "Supplied studentDigest labels retained from sealed packet; opaque internal digest projection not separately reproduced. Exact printed content,format,all10figureSHAs plus input file SHA and same draft bindings independently verified."
+  },
+  "ownIndependentResults": {
+    "actualFactoryCases": 10,
+    "currentFullStudentSolutionsReviewed": 10,
+    "gradeSurfaceDecisions": 70,
+    "actualStrictRendererCases": 10,
+    "renderedSvgHashesMatchStudents": 10,
+    "zeroDroppedDimensions": true,
+    "mutationsRejected": 200,
+    "producerAnswerOnlyPoisonRejected": 10,
+    "safeSeedReproducibilityCases": 20,
+    "invalidSeedVariantCases": 9,
+    "domainAndDraftCopyIsolation": true,
+    "publicHoldMatrixCases": 96,
+    "m1HardExclusionPriorityCases": 1,
+    "boundedCatalogCases": 2,
+    "manifestVersionPolicyControlCases": 2,
+    "strictRequestSchemaInjectionRejections": 8,
+    "publicFactoryCalls": 0,
+    "publicPrepareCalls": 0,
+    "publicPlannerCalls": 0
+  },
+  "verifierIndependence": {
+    "numericAnswer": "solvePrinted reads BC/AE from content; member finite-domain check, then exact BigInt constructor arithmetic in different z=whole tangent equation. Does not read generator parameters/answer/geometry as numeric oracle. Own exactFraction student raw and independent height enumeration agree. make-answer-only poison rejected10/10.",
+    "canonicalSurfaces": "make is still used for exact canonical content/solution/figure/difficultyBasis binding. This is a textual/canonical anti-mutation check, not an independent semantic theorem prover. Actual ten full student solutions were independently checked here; source changes need new bound review.",
+    "ES2017": "Source uses BigInt(number/string) constructors and has no numeric n literals. Modern JS BigInt runtime still required; browser availability outside present Node runtime not certified."
+  },
+  "geometry": "Exact own rational construction proves existence,all three side tangencies,OF⊥EC,OF=r,EF/CF and positive internal foot for every case; actual spec floats compared separately within8ulps encoding error. Mathematical answers/equations use exact rationals/integers without tolerance. Current strict renderer10 matches original student SVG bytes.",
+  "grade": {
+    "status": "passed-for-these-current-ten-student-surfaces-2015M3-after-prerequisites",
+    "all7FacesForEveryCase": "own-review-geometry-grade10.json",
+    "primaryReferences": [
+      {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "actuallyPreviouslyViewed": "2015 tab;line5409수04-19/16/14;line558no generalcircleproportion;line561tangent-length terminology allowed;line565no complexformal logic required"
+      },
+      {
+        "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+        "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+        "actualPreviouslyViewed": "M3 math semester2 header; PDFindex73physical74printed72,9수04-19chord/tangent row. Not originalschoolpacing/2022permission."
+      }
+    ],
+    "conditions": [
+      "Already learned tangency/radius perpendicular/equal tangents",
+      "Rectangle/right-triangle congruence",
+      "Pythagoras",
+      "Polynomial expansion and simple linear equation"
+    ],
+    "curriculum2022": "pending-separate-actual-placement-review",
+    "noAutomaticManualQ08CertificateInheritance": true
+  },
+  "unitFamilyAndRegistration": {
+    "capturedUnit": "635abab8-4a87-452b-ad6c-d59065822f29",
+    "proposedLiveFamilyKey": "mid:3-2|원과 직선|16",
+    "internalStudyRegistration": "Scoped middle/index.ts statically imports and lists factory. Bounded registry execution uses actual factory only, not full engine enumeration.",
+    "exactLiveFamily16Adoption": "pending. Previous own q08r2 review supported geometric/domain relationship but recorded absent inverse input-target/format path. This new internal factory implements that proposed inverse pair; it does not alter legacy m3Tangent or prove exact live family adoption. Legacy untouched is parent-reported in this11scope, not a new full legacy-source audit.",
+    "difficulty": "Current internal SA difficulty심화하 has structural basis: tangent partition, inverse target, Pythagorean expansion. Editorial only, no statistical calibration or equality with old manual표준. Noscore/rubric is invented for internal SA.",
+    "additionalFutureCoverageGap": "Source evidence.checks has independent-solution/essential-conditions but lacks visual-information required by figure-required requirement. Current release hold already returns unavailable; if a later release policy changes, full coverage still needs separate valid visual evidence/registration updates."
+  },
+  "publicRuntime": {
+    "releasePolicy": "20261020-source-informed-template-review-r4",
+    "requirementLevelHold": "geometry.inverse-tangent-rectangle blocks unchanged/renamed/old/future/native/approval-confidence/component/forged-format variants before factory across M1/M2/M3 and all4requestformats in scoped mocks. M1coprime hard exclusion observed before releasehold.",
+    "mocks": [
+      "legacy/MC adapters disabled",
+      "middle registry bounded to actual U52 family; index reviewed statically",
+      "identity: deterministic SHA/stable keys only",
+      "profiles empty bounded collection",
+      "planner: quotas1 only, plan must not run"
+    ],
+    "boundary": "Actual scoped release/curriculum/evidence/registry/generate implementations executed after TS transpilation, real request Zod schema and actual U52 factory used as bounded collection. Outside11 identity/profiles/planner/adapters/full registries are explicit mocks. No DB/HTTP/auth/outputresolver/full registry/native-renderer integration claim.",
+    "noRealHTTPOutputResolverOrDBClaim": true
+  },
+  "sourceBefore": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\inverseTangentRectangle.ts": "4b21ee3433d80b4a16e7d8c37cdda912879893eb5a92bba1c21b865d1f8e65e4",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\examStudy.contract.ts": "21184e4d4f3da04783547fa9745eec8515add9cca0071309b0e7172a147cde21",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\requirements.ts": "6a658cba843b54c78108e49f7e59cc84b8c861693d39e06eb14d3177efb58246",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\index.ts": "41937596d7a70d22f384caa67d4c168ce2a89c19d0d9fa57e75bcead6e2ec6f2",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\releaseEligibility.ts": "29c59cbdd968984f8193d4286a8d8d681ffbb085f8bbbab5e184130b04f2747e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseTangentRectangle.test.ts": "be38fc8ddd57398e88378ea9caaf5d7fe6713be55ebf455a32581acddfd1c5e5",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseMinimum.test.ts": "cd29cdf53f20acec2d1544822027cc547877db2d53acd19a00cefab07e3b8222",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\registry.ts": "06cfdee87781d753b8b15767632fc2fd3b7d7ffc39fa0063b388944e2d037378",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\evidence.ts": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\generate.ts": "4a3e920e0df7d40a26549f7099ef6a54271f6820fae4488cd1553d6eb24eb7bc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\curriculumEligibility.ts": "2ef9871e67f090f8ef90a804660762e1810e837656f1a447396e75149979e013"
+  },
+  "sourceAfter": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\inverseTangentRectangle.ts": "4b21ee3433d80b4a16e7d8c37cdda912879893eb5a92bba1c21b865d1f8e65e4",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\examStudy.contract.ts": "21184e4d4f3da04783547fa9745eec8515add9cca0071309b0e7172a147cde21",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\requirements.ts": "6a658cba843b54c78108e49f7e59cc84b8c861693d39e06eb14d3177efb58246",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\index.ts": "41937596d7a70d22f384caa67d4c168ce2a89c19d0d9fa57e75bcead6e2ec6f2",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\releaseEligibility.ts": "29c59cbdd968984f8193d4286a8d8d681ffbb085f8bbbab5e184130b04f2747e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseTangentRectangle.test.ts": "be38fc8ddd57398e88378ea9caaf5d7fe6713be55ebf455a32581acddfd1c5e5",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseMinimum.test.ts": "cd29cdf53f20acec2d1544822027cc547877db2d53acd19a00cefab07e3b8222",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\registry.ts": "06cfdee87781d753b8b15767632fc2fd3b7d7ffc39fa0063b388944e2d037378",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\evidence.ts": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\generate.ts": "4a3e920e0df7d40a26549f7099ef6a54271f6820fae4488cd1553d6eb24eb7bc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\curriculumEligibility.ts": "2ef9871e67f090f8ef90a804660762e1810e837656f1a447396e75149979e013"
+  },
+  "all11HashesEqualDeclaredAndUnchanged": true,
+  "additionalRendererHash": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\renderFigureSpec.ts",
+    "sha256": "19c10c1cb1aa416cbb376314931bb9dcdce45d17b3f707fb3c2b9dfb157598df",
+    "additionalRuntimeDependencyClosureNotCertified": true
+  },
+  "parentValidationEvidenceOnly": {
+    "initialArchiveDiscovery": "Parent reported15/236 included2archive copies; intended13/220 retained as separate parent count. Neither claimed as own.",
+    "currentCanonicalFiveTypeLint": "Pending in suppliedscope; no pass inferred from parent tests/lint/type.",
+    "ownParentTestCountsClaimed": false
+  },
+  "holds": {
+    "publicRelease": true,
+    "fullNativeReaderPrintApproval": false,
+    "rightsApproved": false,
+    "sourceIdentityApproved": false,
+    "wholeSourcePairApproved": false,
+    "similarityApproved": false,
+    "exactLiveFamily16AdoptionApproved": false,
+    "loadable": false,
+    "curriculum2022": "pending"
+  },
+  "counts": {
+    "newApprovedManualQuestions": 0,
+    "newCountedFigures": 0,
+    "newBlindCorpusClaims": 0,
+    "dbWrites": 0,
+    "paidApiCalls": 0
+  },
+  "evidenceFiles": {
+    "native": {
+      "path": "own-review-native-results.json",
+      "sha256": "98d3aa58de3dc1894a089aec245028dd20232027a6078ff34adc60c17b9c4692"
+    },
+    "runtime": {
+      "path": "own-review-runtime-results.json",
+      "sha256": "03a910da44f423d60650b8396de6203e4dd18d6025cc0798bdc35cb0709f97f0"
+    },
+    "geometryGrade": {
+      "path": "own-review-geometry-grade10.json",
+      "sha256": "9a381d703a20e9b81f001c6b80beacd21f8df244c97e89a78acfe7482319be13"
+    }
+  },
+  "limitations": [
+    "11source hashes checked before/after, not filesystem locks; installed dependency closure/executable identity not comprehensively certified.",
+    "Direct actual rendering adds renderer source hash and uses same existing parent/vendor runtime with PYTHONDONTWRITEBYTECODE/TSX_DISABLE_CACHE; full renderer-source closure/native layout/print integration not reaudited here.",
+    "Public generation/catalog/coverage run scoped production functions with explicit mocks for outside11 planner/identity/profiles/adapters/full registries. No real route/auth/DB/AI integration exercised.",
+    "Current ten finite items and actual student solutions only; no general grade approval for unreviewed family/engine/future modes."
+  ]
+}
