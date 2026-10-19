@@ -1,0 +1,5 @@
+{
+  "failure": "r2 repeated line43 assertion",
+  "cause": "PowerShell piped Python non-ASCII replacement did not match original Korean line; no source or prior evidence overwritten.",
+  "correction": "r3 replaces identified whole line using ASCII JavaScript Unicode escape"
+}

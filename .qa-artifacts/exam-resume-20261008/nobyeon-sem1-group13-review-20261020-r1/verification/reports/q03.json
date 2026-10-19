@@ -1,0 +1,268 @@
+{
+  "status": "pending",
+  "studentDigest": "866725817f9e70d9e5415fc5518940938799086a00f5c0a3134b22bc0acbbefe",
+  "candidateDigest": "cb45a5065f6125e4c4a4243988f8c9d4a08016b52522fe356d3e301467e35752",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-current-review-20261020-q03",
+  "solveDigest": "f2f9d1f82df379e9dea36166a6d91c227335c38ea4fd0bf86ab23084a4dfbcf3",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "제곱근의 대소와 다섯 실수의 최댓값·최솟값을 해석한다. 9수01-07/09/10의 실제 중3 배치 및 학습 이후 범위이다.",
+      "evidence": "남은 최댓값 M=√7−1>1, 다른 수는 1 이하; 누락 최솟값 x=M−주어진차이. 함수의 극값정리 없이 유한 목록만 비교한다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "다섯 보기는 양의 정수의 제곱근과 덧셈·뺄셈뿐이다. 실제 중3 실수 대소/근호 계산으로 구별된다.",
+      "evidence": "②=x=√2−√7. ①/③은 양수,④=x+1,⑤=x+2−√2이며 모두 x와 다르다. 자체 정확 유리수 구간도 다섯 개가 서로 겹치지 않는다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "도형·표·측정이나 별도 기하 선수는 없다. 네 수의 목록은 실수 자료이다.",
+      "evidence": "assets=[], figureArtifacts=[], 원본 그림/픽셀을 쓰지 않고 인쇄 JSON만 계산했다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "√7,√3,√2는 양수의 주제곱근이며 수 목록과 차이 표기가 중3 범위이다.",
+      "evidence": "피제곱수 양수, 괄호를 포함한 차이 계산이 일관된다. 근삿값을 학생의 정확한 답으로 대체하지 않았다. 렌더러 실제 검증은 별도 보류."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "②의 정확한 실수값 √2−√7은 9수01-09/10의 대소·근호항 정리로 구한다.",
+      "evidence": "M−x=2√7−√2−1>0, x<2−√7<0<나머지 세 수. 최솟값이 엄격하고 유일하다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "현재 해설은 √7>2,√3<2,√2>1 비교와 두 근호식의 뺄셈만 사용한다. 실제 중3 제곱근 성질·실수 대소·근호 계산 이후 정당하다.",
+      "evidence": "√3−√2<1, M=√7−1; 주어진 차이를 빼 x 산출 후 √2<2로 최소성 재확인한다. 남은 세 수의 양수성은 √3>√2 및 √7>2로 즉시 확인 가능. 고등 무리부등식/함수정리 없음."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "제곱근의 뜻과 성질, 양수 제곱 비교, 실수의 순서, 동류 근호항 계산 및 이전의 뺄셈 역관계를 배운 뒤 배정한다.",
+      "evidence": "2015 실제 중3 root 표의 9수01-07/09/10. captured 제곱근 UUID1682f01b-5293-4672-91cd-07fc02e305ac 및 근호 계산 학습이 먼저 필요; 중간고사라는 학교명/시기만으로 진도 인증하지 않는다."
+    }
+  },
+  "evidence": {
+    "independentCalculation": {
+      "arithmetic": "exact Fraction bounds and formal radical coefficients; no floating point or pixels",
+      "rootBounds": {
+        "2": [
+          "141/100",
+          "71/50"
+        ],
+        "3": [
+          "173/100",
+          "87/50"
+        ],
+        "7": [
+          "66/25",
+          "53/20"
+        ]
+      },
+      "allBoundsVerifiedBySquaring": true,
+      "coefficientOrder": [
+        "sqrt7",
+        "sqrt2",
+        "constant"
+      ],
+      "maximum": [
+        1,
+        0,
+        -1
+      ],
+      "requiredRange": [
+        2,
+        -1,
+        -1
+      ],
+      "uniqueMissing": [
+        -1,
+        1,
+        0
+      ],
+      "choices": [
+        {
+          "mark": "①",
+          "coefficients": [
+            1,
+            -1,
+            0
+          ],
+          "strictBounds": [
+            "61/50",
+            "31/25"
+          ],
+          "matches": false
+        },
+        {
+          "mark": "②",
+          "coefficients": [
+            -1,
+            1,
+            0
+          ],
+          "strictBounds": [
+            "-31/25",
+            "-61/50"
+          ],
+          "matches": true
+        },
+        {
+          "mark": "③",
+          "coefficients": [
+            0,
+            1,
+            -1
+          ],
+          "strictBounds": [
+            "41/100",
+            "21/50"
+          ],
+          "matches": false
+        },
+        {
+          "mark": "④",
+          "coefficients": [
+            -1,
+            1,
+            1
+          ],
+          "strictBounds": [
+            "-6/25",
+            "-11/50"
+          ],
+          "matches": false
+        },
+        {
+          "mark": "⑤",
+          "coefficients": [
+            -1,
+            0,
+            2
+          ],
+          "strictBounds": [
+            "-13/20",
+            "-16/25"
+          ],
+          "matches": false
+        }
+      ],
+      "remainingStrictBounds": [
+        [
+          "41/25",
+          "33/20"
+        ],
+        [
+          "31/100",
+          "33/100"
+        ],
+        [
+          "1",
+          "1"
+        ],
+        [
+          "-13/20",
+          "-16/25"
+        ]
+      ],
+      "maximumCertified": true,
+      "missingStrictlyBelowEveryRemaining": true,
+      "rangePositive": true,
+      "choiceIntervalsPairwiseDisjoint": true,
+      "utf8WriteReadPassed": true,
+      "studentProblemsSha256": "657c9dd5fcc0937d5431372c7cfe88210360bb40557d78da9483b2003a99a7bd",
+      "noAuthorAnswerExposure": true
+    },
+    "sourceComparison": {
+      "sourceSha256": "1644fb16b4a29b8ba3685f70ba7172104e7d27b3b231be402925a83b9e53d984",
+      "observed": "원문은 완성된 다섯 근호 수에서 최댓값 a·최솟값 b를 찾아 a+b를 출력하는 4점/하 문항이다. 원문 답 계산/정답키는 사용하지 않았다.",
+      "sameCore": "양수 제곱근의 순서와 정수 경계로 유한 수를 비교한 뒤 극값 역할에 맞게 근호항을 계산한다.",
+      "actualChange": "새 문항은 최솟값이 지워진 불완전 목록과 최댓값−최솟값 조건에서 누락 입력을 복원한다. 합→차이만 바꾼 것이 아니라 미지 자료의 역할과 검산이 추가된 역추론이다.",
+      "sourceGradeField": "제공 source grade 문자열은 ?3으로 손상되어 학년 근거로 쓰지 않았다. 실제 primary 중3 배치와 학생 방법으로 판단."
+    },
+    "scoreDifficulty": {
+      "sourceObserved": "하/4점",
+      "currentProposal": "기본/4점",
+      "decision": "편집상 수용 가능한 제안; 실측 동난도 인증 아님",
+      "basis": "보이는 최댓값 파악, 차이 관계로 복원, 최솟값 검산의 짧은 과정이다. 역추론은 추가되지만 작은 정수 경계만 쓰고 복잡한 근삿값 계산이 없어 기본 4점 제안은 합리적이다."
+    },
+    "naturalKorean": "가장 작은 수 하나가 지워졌다는 조건과 원래 다섯 수의 차이를 명확히 연결한다. 실제 해가 엄격한 최솟값이므로 동률의 모호성이 정답에 영향을 주지 않는다.",
+    "unitFamily": "captured Unit28032bdd-3db3-4788-9e7a-2f1909233fdb는 실수 대소와 관련되지만 근호 계산/누락최솟값 역추론 전체 목표에 맞는 실제 family 정의를 이 범위에서 확인하지 못했다. familyKey=null 유지.",
+    "primaryReferences": {
+      "kind": "actual official documents previously directly inspected in this same session; reused locators, no new primary sweep",
+      "moe": {
+        "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84",
+        "sha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "stream": "BodyText/Section0",
+        "records1based": {
+          "3776": "9수01-07 제곱근의 뜻과 성질",
+          "3780": "9수01-08 무리수의 개념",
+          "3784": "9수01-09 실수의 대소 관계",
+          "3788": "9수01-10 근호를 포함한 식의 사칙계산",
+          "3956": "9수02-12 다항식의 곱셈과 인수분해"
+        },
+        "formulaRecordsTag88": [
+          4029,
+          4035,
+          4041
+        ]
+      },
+      "actualM3Roots": {
+        "url": "https://www.goe.go.kr/resource/old/BBSMSTR_000000030136/BBS_202202101132253081.pdf",
+        "pageIndex0": 38,
+        "printedPage": 38,
+        "observed": "중3 표에 9수01-07/08/09/10의 실제 배치; 문서 발행 2022는 2022 개정 교육과정 인증이 아님"
+      },
+      "actualM3Polynomial": {
+        "url": "https://www.ice.go.kr/upload/board/1098/2021/10/1633051011135.pdf",
+        "pageIndex0": 89,
+        "printedPage": 90,
+        "observed": "중3 9수02-12와 곱셈공식·인수분해 관계 및 완전제곱식/공통인수 학습"
+      },
+      "yearScope": "2025 source and 2026 practice M3:2015; 2027 M3/2022 separate pending",
+      "limits": "문서 코드만으로 승인하지 않고 실제 아래 학생 절차와 실제 중3 배치를 결합함. 학교/학기 진도 인증 아님."
+    },
+    "preExposureRaw": {
+      "path": ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem1-group13-review-20261020-r1\\blind\\solve\\q03.json",
+      "sha256": "accda029527ffd990eea601444fb0d512e2824864b1755912cbd76e81535f266",
+      "parentSeal": "5cf146bdb52b78f5bdb31e3ab79da72a320a42fe",
+      "rawUnchanged": true,
+      "originalDeclarationPreserved": true
+    },
+    "currentBinding": {
+      "studentDigest": "866725817f9e70d9e5415fc5518940938799086a00f5c0a3134b22bc0acbbefe",
+      "candidateDigest": "cb45a5065f6125e4c4a4243988f8c9d4a08016b52522fe356d3e301467e35752",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "f2f9d1f82df379e9dea36166a6d91c227335c38ea4fd0bf86ab23084a4dfbcf3"
+    },
+    "mathReviewed": true,
+    "grade2015M3AfterPrerequisites": true,
+    "newBlindOrQuestionIncrement": 0,
+    "separateHolds": {
+      "unitFamilyFit": false,
+      "sourceIdentityApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "loadable": false,
+      "2022M3": "pending"
+    },
+    "countsAreNotApprovalByHash": true
+  }
+}

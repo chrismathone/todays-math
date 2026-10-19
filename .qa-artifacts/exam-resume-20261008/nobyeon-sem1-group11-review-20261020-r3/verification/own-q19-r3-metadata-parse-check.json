@@ -1,0 +1,30 @@
+{
+  "metadataOnly": {
+    "onlyCandidateDelta": "metadata.recordCorrectionAnswerSchema",
+    "exactStudentAnswerSolutionScoreRubricAssetsAndRawEqual": true,
+    "newQuestionOrBlindIncrement": 0,
+    "canonicalChecks": {
+      "studentDigest": "a487017dbf90fdb24412937f4d8aef375bdf96874252a41b590e4e982769dfe4",
+      "candidateDigest": "73396e537e697cec233243b027522fc5181db156bbaec4d9ad5bc3e99f1b4bbd",
+      "solveDigest": "6a037e6da189240c0921831a83dcfd00f18742d1452c3b094d8f5708d9cc6dc4",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  },
+  "oldUnsupportedMultipart": {
+    "priorRootCollector": {
+      "math": 0,
+      "grade": 0,
+      "source": "user supplied actual root result; not rerun historical engine"
+    },
+    "currentAdapterWithoutSchema": false,
+    "currentAdapterWithSchema": true
+  },
+  "currentComparison": {
+    "status": "equivalent",
+    "presentationComparisonOnly": true,
+    "relationTruthProved": false,
+    "permitsGradeOrQuestionApproval": false,
+    "generalSymbolicEquivalence": false
+  },
+  "recordControlEvidence": "record-correction-engine-audit-20261020-r1/own-controls-results.json"
+}
