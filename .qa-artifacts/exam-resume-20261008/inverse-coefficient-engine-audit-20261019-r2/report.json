@@ -1,0 +1,81 @@
+{
+  "status": "focused-r2-passed;release-held;2022M3-pending",
+  "r1Commit": "83a151a0b1f2f334a0d94d3ce371e5025947917b",
+  "r1Evidence": {
+    "calculations.json": {
+      "path": ".qa-artifacts/exam-resume-20261008/inverse-coefficient-engine-audit-20261019-r1/calculations.json",
+      "sha256": "536e5d4c16f83b5991069845823c0773443a1d86d95314dbeeab1f1ff8f8dc3f"
+    },
+    "source-hashes.json": {
+      "path": ".qa-artifacts/exam-resume-20261008/inverse-coefficient-engine-audit-20261019-r1/source-hashes.json",
+      "sha256": "04ec998e415fc8e1afdb50de0307347f298b36063bea91adb10a86f0cb1eb7d5"
+    },
+    "report.json": {
+      "path": ".qa-artifacts/exam-resume-20261008/inverse-coefficient-engine-audit-20261019-r1/report.json",
+      "sha256": "e6a184df56b4ad0436f7a38964c4bb3b446f428e2ef5089ddcfe23ac618ec3ce"
+    }
+  },
+  "comparisons": {
+    "outputs": 32,
+    "contentSolutionAnswerIdentical": true,
+    "verifierValid": true,
+    "exactComparison": "JavaScript string === on each complete content/solution/answer, then SHA256 records",
+    "artifact": "comparisons.json"
+  },
+  "sourceComparison": {
+    "artifact": "source-hashes.json",
+    "allOtherAuditedFilesIdentical": true,
+    "familyExactOnlyMetadataAddition": true,
+    "workingBytesStableDuringAudit": true
+  },
+  "metadata": {
+    "proposalIsNotApproval": true,
+    "source2025Edition2015": true,
+    "practice2026Edition2015": true,
+    "year2027M3": "requires-2022-grade-placement-review",
+    "curriculumReviewStillPending": true,
+    "liveFamilyKey": null,
+    "registrationStatus": "pending",
+    "rightsApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false
+  },
+  "diagnostic": {
+    "actualExpression": "p.evaluate(x, y) === expanded",
+    "exactNumericComparison": true,
+    "tolerance": false,
+    "negativeZeroEqualsPositiveZero": true,
+    "unequalNonzeroRejected": true,
+    "adjacentRepresentableNumbersRejected": true,
+    "NaNRejectedIncludingNaNvsNaN": true,
+    "checks": 9,
+    "scope": "Only comparison semantics; no broader claim about all possible floating-point inputs."
+  },
+  "release": {
+    "status": "held",
+    "unchangedPolicy": true,
+    "pureVariantChecks": 5,
+    "coverageCatalogGenerationResolver": "Sealed r1 executed evidence remains applicable because corresponding current working files hash-identical; no broad re-run claimed.",
+    "m1Precedence": "Unchanged curriculum/generate/evidence hashes bind sealedr1 precedence checks."
+  },
+  "grade": {
+    "newApproval": false,
+    "primarySweepRepeated": false,
+    "r1DecisionOnly": "2015M3 after polynomial multiplication learning per sealedr1; no repeated grade approval",
+    "year2022M3": "pending-actual-placement-evidence"
+  },
+  "boundaries": [
+    "Only actual finite factory/verifier, support and pure release policy executed in r2; unrelated engines, generator planner, catalog and HTTP were not rerun.",
+    "No paidAI,DB,registration or live-bank call.",
+    "Parent tests/types/lint are external evidence and not this independent run."
+  ],
+  "rootEdits": 0,
+  "oldEvidenceUnchanged": true,
+  "dbCalls": 0,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "registrationApproved": false,
+  "loadable": false
+}
