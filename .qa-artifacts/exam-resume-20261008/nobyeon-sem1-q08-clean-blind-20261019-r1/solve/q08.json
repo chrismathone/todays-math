@@ -1,0 +1,34 @@
+{
+    "studentDigest":  "1d6563056697661a1c4a56c3883cfc51998879e10674b3953412963d5dd1e827",
+    "solverId":  "codex-clean-blind-20261019-r1",
+    "answer":  {
+                   "choice":  4,
+                   "value":  4,
+                   "possibleX":  [
+                                     1,
+                                     3
+                                 ]
+               },
+    "solution":  [
+                     "넓이를 인수분해하면 A는 (x+2)^2 cm², B는 (2x-3)^2 cm²이다. 양수인 한 변의 길이는 각각 |x+2| cm, |2x-3| cm이다. 그러므로 |x+2|-|2x-3|=2이며 x=-2, 3/2는 한 변이 0이므로 제외한다.",
+                     "x\u003c-2이면 -x-2-(-2x+3)=2, 즉 x=7이다. 해당 구간에 없으므로 해가 아니다.",
+                     "-2\u003cx\u003c3/2이면 x+2-(-2x+3)=2, 즉 3x=3에서 x=1이다. 구간 안에 있고 A와 B의 한 변은 각각 3 cm, 1 cm로 모두 양수이며 차는 2 cm이다. 넓이도 각각 9 cm², 1 cm²로 표와 일치한다.",
+                     "x\u003e3/2이면 x+2-(2x-3)=2, 즉 x=3이다. 구간 안에 있고 한 변은 각각 5 cm, 3 cm로 모두 양수이며 차는 2 cm이다. 넓이는 각각 25 cm², 9 cm²로 표와 일치한다.",
+                     "모든 실수의 허용 범위를 세 구간으로 빠짐없이 나누었고 각 일차방정식의 해는 하나뿐이다. 따라서 가능한 모든 x는 1과 3이며 합은 4이다. 보기 ① 1, ② 2, ③ 3, ⑤ 6은 합과 다르고 ④ 4만 일치하므로 요청한 답은 유일하다."
+                 ],
+    "evidence":  {
+                     "inputs":  [
+                                    "student-problems.json",
+                                    "blind-manifest.json",
+                                    "SOLVE-BRIEF.md",
+                                    "q08.png"
+                                ],
+                     "visualCheck":  "q08.png의 문장, 표, 양수 조건 및 다섯 보기를 학생 JSON과 대조함. 별도 도형은 없으며 픽셀로 수치를 측정하지 않음.",
+                     "method":  "중3 2015: 완전제곱식 인수분해, 제곱근의 뜻, 부호에 따른 경우 나누기, 일차방정식",
+                     "exposure":  "exposure-declaration.json",
+                     "computationScript":  "calculate.ps1",
+                     "computationResult":  "calculations.json",
+                     "units":  "한 변 cm, 넓이 cm², 요청값은 실수 x들의 합이며 길이 단위를 붙이지 않음."
+                 },
+    "status":  "solved"
+}
