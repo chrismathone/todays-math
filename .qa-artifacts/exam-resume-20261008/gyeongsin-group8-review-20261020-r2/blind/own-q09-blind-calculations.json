@@ -1,0 +1,78 @@
+{
+  "exposureDeclaration": {
+    "currentGyeongsinQ09R2AuthorAnswerSolutionMetadataExposedBeforeRaw": false,
+    "priorOriginalGyeongsinQ09ExposureKnown": false,
+    "declaration": "보존된허가이력에서원본GYEONGSINq09를읽은이력은없다. 이전허가된원본H페이지에서보인원래문항은q05~q08이며이번현재authoredq09R2답·해설·메타데이터는읽지않았다. 다른시험Nobyeonq09와관련원/접선문항및기존코드검토이력은있으므로수학주제전체미노출은주장하지않는다. 현재학생패킷만으로풀이했고rootgroup8저자/원본/비공개패키지/R1은열지않았다."
+  },
+  "exactCalculations": {
+    "radius_cm": "3",
+    "RF_RG_OF_OG_cm": "3",
+    "RP_cm": "5",
+    "PF_cm": "2",
+    "small_to_big_ratio": "2/5",
+    "RQ_cm": "15/2",
+    "GQ_cm": "9/2",
+    "PO_over_PQ": "2/5",
+    "PQ_squared_cm2": "325/4",
+    "PO_squared_cm2": "13"
+  },
+  "AAjustification": {
+    "small": "PFO",
+    "large": "PRQ",
+    "mapping": {
+      "P": "P",
+      "F": "R",
+      "O": "Q"
+    },
+    "rightAngles": "radius OF perpendicular to tangent RP gives anglePFO90; anglePRQ90 isgiven.",
+    "otherAngle": "F lies on PR and O on PQ so angleFPO equals angleRPQ.",
+    "sideCorrespondence": "PF↔PR,FO↔RQ,PO↔PQ; 2/5=3/(15/2)."
+  },
+  "allChoices": [
+    {
+      "mark": "①",
+      "RQ_cm": "7",
+      "PF_times_RQ_cm2": "14",
+      "OF_times_PR_cm2": "15",
+      "matches_AA": false
+    },
+    {
+      "mark": "②",
+      "RQ_cm": "15/2",
+      "PF_times_RQ_cm2": "15",
+      "OF_times_PR_cm2": "15",
+      "matches_AA": true
+    },
+    {
+      "mark": "③",
+      "RQ_cm": "8",
+      "PF_times_RQ_cm2": "16",
+      "OF_times_PR_cm2": "15",
+      "matches_AA": false
+    },
+    {
+      "mark": "④",
+      "RQ_cm": "17/2",
+      "PF_times_RQ_cm2": "17",
+      "OF_times_PR_cm2": "15",
+      "matches_AA": false
+    },
+    {
+      "mark": "⑤",
+      "RQ_cm": "9",
+      "PF_times_RQ_cm2": "18",
+      "OF_times_PR_cm2": "15",
+      "matches_AA": false
+    }
+  ],
+  "existenceUniqueness": "서로 수직인 변 RP=5 cm,RQ=15/2 cm인 삼각형을 만들고 R에서 각각3 cm인 F,G를 잡는다. RFOG를 정사각형이 되게 O를 잡으면 OF=OG=3이고 두 변에수직이다. PF=2이므로 직각삼각형PFO와PRQ의두직각변은 PF/PR=2/5=FO/RQ로대응하며 끼인각도90°라 닮음이다. 따라서 P에서의각이같아 P,O,Q가한직선위에있고 PO/PQ=2/5이므로 O는PQ내부다. 중심O반지름3의원은두변에F,G에서접하며조건을모두만족한다. 반대로모든허용배치에서는PF2,FO3과AA닮음으로RQ15/2가강제된다. 도형의회전/반사까지하나라는주장이아니라요구길이의유일성이다. 원전체가삼각형내부라는조건은없고 중심이빗변위라원은빗변양쪽으로나올수있다.",
+  "domainSignUnits": "r=3,PF=2,RP=5,RQ=15/2,GQ=9/2는모두양의길이다. 분모5와PF2및비례식에쓰는RQ15/2는0이아니다. 길이cm,곱과제곱cm²,각90°,길이비는무차원이다. 음의길이는허용하지않는다.",
+  "studentMethod": "원의반지름과접선의수직,직사각형/정사각형,두각이같은삼각형의닮음과단순분수비례식이다.2015M3원의접선과이전닮음을학습한학생의방법이며사인법칙/원의방정식/좌표/원의비례일반공식/외접반지름을쓰지않는다.",
+  "figureInspection": "학생SVG를PyMuPDF로자체PNG변환하여 R의직각,F/G의접점수직,O가PQ위에있는관계를육안확인했다. 픽셀길이·각이나SVG좌표를수치oracle로쓰지않았다.",
+  "bindings": {
+    "studentDigest": "92eb522c8513e9d7c10364bdfa12410853ea95abcb404adbc4daeadf27954939",
+    "studentProblemsSha256": "6ae9a1cf5e027ef74de708c050c219fa00c9424ef55edca5db37f434d755853f",
+    "svgSha256": "1c3e01139591707cb98d5fe060d3cca1fc45faf3230e350d575a43beb5bdb85b"
+  },
+  "limits": "학생raw풀이만봉인하며별도저자/학년7면/출처/권리/family/native/배포승인또는새승인개수증가가아니다."
+}
