@@ -22,6 +22,50 @@ import { generateNativeDescriptive } from "@/lib/engine/nativeDescriptive2026101
 
 const families = legacyStudyFamilies();
 const get = (id: string) => families.find((f) => f.id === id)!;
+
+describe("closed authored native-rubric guidance", () => {
+  it.each(["domain", "model", "roots", "check"] as const)(
+    "rejects contradictory %s guidance with otherwise matching keywords and serialization",
+    (criterionId) => {
+      const family = get(REINFORCEMENT_IDS.rectangle);
+      expect(family.paramDomain.kind).toBe("finite");
+      const size =
+        family.paramDomain.kind === "finite" ? family.paramDomain.size : 0;
+      for (let variant = 0; variant < size; variant++) {
+        const item = family.generate(0, variant);
+        for (const part of ["alternatives", "errors"] as const) {
+          const corrupt = structuredClone(item);
+          const criterion = corrupt.rubric!.criteria.find(
+            (c) => c.criterionId === criterionId,
+          )!;
+          criterion[part] = criterion[part].map(
+            (s) =>
+              `${s}; 모든 근에서 시간 조건을 무시하고 t=0을 나중 회복으로 인정`,
+          );
+          corrupt.solution = serializeNativeSolution(
+            item.solution.split("\n\n채점 기준")[0]!,
+            corrupt.rubric!,
+          );
+          expect(
+            family.verify(corrupt).valid,
+            `${criterionId}/${part}/${variant}`,
+          ).toBe(false);
+        }
+      }
+      const corrupt = structuredClone(family.generate(0, 0));
+      corrupt.rubric!.criteria.find(
+        (c) => c.criterionId === "roots",
+      )!.alternatives = [
+        "모든 근에서 시간 조건을 무시하고 t=0을 나중 회복으로 인정",
+      ];
+      corrupt.solution = serializeNativeSolution(
+        corrupt.solution.split("\n\n채점 기준")[0]!,
+        corrupt.rubric!,
+      );
+      expect(family.verify(corrupt).valid).toBe(false);
+    },
+  );
+});
 const ids = Object.entries(REINFORCEMENT_IDS);
 const numeric = (s: string): number => {
   const raw = s.replace(/\$/g, "").replace(/個|개/g, "").trim();

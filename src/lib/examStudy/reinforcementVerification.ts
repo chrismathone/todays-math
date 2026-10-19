@@ -697,18 +697,41 @@ export const verifyReinforcedRectangle = (
         roots: rectangleRootsProof,
         check: rectangleCheckProof,
       };
-      const alternatives = {
-        domain: /두 변.*양수.*시간.*범위/,
-        model: /두 길이.*곱.*처음 넓이.*방정식/,
-        roots: /모든 근.*시간 조건/,
-        check: /원래 두 길이.*넓이.*양수.*모든 근.*시간 조건/,
-      };
-      const errors = {
-        domain: /t=0|줄어드는 변.*0/,
-        model: /줄어드는 변.*부호/,
-        roots: /0인 근.*누락|음의 시간/,
-        check: /두 길이.*넓이.*검산/,
-      };
+      // These are closed authored guidance, not free-form grading input. Broad
+      // keyword matches accept the opposite instruction with the same words.
+      // Numerical expected proofs above remain independently solved from text.
+      const guidance = {
+        domain: {
+          alternatives: [
+            "두 변의 양수 조건을 시간 부등식으로 각각 구해 공통 범위를 제시",
+          ],
+          errors: [
+            "처음 시각 t=0을 나중 회복으로 인정",
+            "줄어드는 변이 0인 시각을 허용",
+          ],
+        },
+        model: {
+          alternatives: [
+            "변화한 두 길이의 곱에서 처음 넓이를 빼서 방정식 작성",
+          ],
+          errors: ["줄어드는 변의 변화 부호를 반대로 둠"],
+        },
+        roots: {
+          alternatives: [
+            "인수분해 또는 이차방정식 근의 공식으로 모든 근을 구하고 시간 조건으로 판정",
+          ],
+          errors: [
+            "t로 나누어 0인 근을 누락",
+            "음의 시간을 나중 회복으로 인정",
+          ],
+        },
+        check: {
+          alternatives: [
+            "허용한 시간을 원래 두 길이에 대입하고 넓이와 양수 조건 확인; 허용 근이 없으면 모든 근의 시간 조건 확인",
+          ],
+          errors: ["원래 두 길이와 넓이의 대입 검산 생략"],
+        },
+      } as const;
       for (const c of rubric.criteria) {
         demand(
           Object.hasOwn(validators, c.criterionId) && c.points === 2,
@@ -717,9 +740,10 @@ export const verifyReinforcedRectangle = (
         const id = c.criterionId as keyof typeof validators;
         validators[id](c.expected, m);
         demand(
-          c.alternatives.every((s) => alternatives[id].test(s)) &&
-            c.errors.every((s) => errors[id].test(s)),
-          "Rubric alternatives/errors unrelated to the required mathematics",
+          JSON.stringify(c.alternatives) ===
+            JSON.stringify(guidance[id].alternatives) &&
+            JSON.stringify(c.errors) === JSON.stringify(guidance[id].errors),
+          "Rubric guidance is unsupported or contradicts the reviewed methods/errors",
         );
         // The teacher's serialized rubric must carry the same reviewed semantics as its structured form.
         demand(

@@ -182,7 +182,7 @@ describe("completed selected school-study demands through the actual API", () =>
     },
   );
 
-  it.each([{ menus: ["export"] }, { menus: [] }])(
+  it.each([{ menus: ["export"] }, { menus: ["textbook"] }, { menus: [] }])(
     "denies an account with no output menu: $menus",
     async ({ menus }) => {
       fixture.session = approved(menus);
