@@ -1,0 +1,31 @@
+{
+  "kind": "r1-verifier-independence-finding-addendum",
+  "status": "strengthening-required-before-claiming-independent-kernel-answer-verification",
+  "baselineCommit": "b7944b8bc48c0b7380c3b0cbe16f9c94e0e9ea8d",
+  "baselineReportSha256": "58417e0dfbca3a2ea59e46a5501b483b9b4c615a94d1ce31530a8a0d7eaf1a2e",
+  "baselineReportUnchanged": true,
+  "finding": {
+    "id": "R1-ANSWER-CALCULATION-COUPLING",
+    "assessment": "Material verifier-independence limitation, despite all24 current outputs being mathematically correct.",
+    "observed": "verify parses roots/offsets from printed task, checks finite domain/parameters, then calls make(parameters); item.answer is checked against expected.answer. This is template-consistency verification for the answer, not independently derived printed coefficient subtraction.",
+    "consequence": "A shared answer-expression error in make can affect both generated answer and verifier expectation. Canonical content/solution equality rejects external mutations but does not remove this common failure path. Evidence label independent-solution is stronger than the current answer-verifier path alone establishes.",
+    "demonstrated": "Controlled in-memory replacement of shared make answer with0 leaves actual printed statement unchanged and faulty generated draft is accepted by same verifier. Independent sealed printed-only oracle says sqrt2-sqrt7, so the injected answer is wrong. No production source/draft changed.",
+    "requiredR2": "Derive the maximum coefficient map and range coefficient map directly from printed expressions, subtract them in a verifier-owned calculation, and compare the answer parsed as exact coefficients to that result. Retain domain, strict maximum/minimum, content, solution and format binding separately. make may remain a canonical text/solution check but must not supply the arithmetic answer oracle.",
+    "focusedRecheckNeeded": [
+      "Confirm exact24 content/answer/solution bytes unchanged from R1.",
+      "Inspect actual verifier-owned printed coefficient subtraction and its domain/order/minimum checks.",
+      "Rerun independent oracle comparisons and answer/root/sign/parameter/solution controls, plus a shared generator-answer fault that the strengthened calculation must reject.",
+      "Keep requirement-level release hold and all registration/rights/native/2022 gates; no approval from unchanged correct answers or parent test counts."
+    ]
+  },
+  "preservedValidEvidence": "Actual R1 all24 printed tasks/answers/solutions independently checked with own Fraction oracle; their2015 student-method findings remain. This does not grant verifier independence, runtime release or general engine approval.",
+  "controlEvidence": {
+    "path": "own-r1-coupling-control-result.json",
+    "sha256": "18626031aa7c2d2b84cfefe465e79d19b532b1001d34ea0d4de25abb70fed5ed"
+  },
+  "limits": "This is a targeted in-memory counterfactual fault, not a production bug in the actual24 numerical answers. No root edits, DB, new question/blind count or source-scope widening. Parent test/type/lint totals are not an independent-verifier proof.",
+  "newManualQuestions": 0,
+  "newBlindQuestions": 0,
+  "rootEdits": 0,
+  "dbWrites": 0
+}
