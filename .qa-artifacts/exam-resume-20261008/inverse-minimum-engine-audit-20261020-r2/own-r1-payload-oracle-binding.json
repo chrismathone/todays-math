@@ -1,0 +1,24 @@
+{
+  "all69DraftObjectsExactlyEqualPriorOwnR1": true,
+  "boundFields": "full draft object: content, answer, solution, parameters, questionType, difficulty, difficultyBasis, figureSpec and any optional fields",
+  "minimum24": {
+    "priorCommit": "b7944b8bc48c0b7380c3b0cbe16f9c94e0e9ea8d",
+    "priorDraftsSha256": "4c84fca6543facd805a88a460e08dc2dbf195e8c9b3297c441a3c47ab3e9f168",
+    "priorMathSha256": "20d483ee8d1bf14d8d1692ee74e63dcd1ca6ca53e275a6dc044230f5f24edfe9",
+    "priorReportSha256": "58417e0dfbca3a2ea59e46a5501b483b9b4c615a94d1ce31530a8a0d7eaf1a2e",
+    "answersAgainstPrintedOracle": 24
+  },
+  "table45": {
+    "priorCommit": "76069c1b63358b841f9048bf04504f099cdb6877",
+    "priorDraftsSha256": "97a343d4a56c594cf2ec7c4341a319e2bcff1101b392106c0a50b1d46fa483fe",
+    "priorOracleSha256": "2ba8c672254a046c781c2bc50436f6f81c8bca5cb9974709f5031986bf623c38",
+    "priorSolutionChecksSha256": "74ef10ab4594cca497b2cd6a5d8fdccfbc6376b394dee6a01c10470d601a48b0",
+    "priorPrimaryEvidenceSha256": "f2bc22e657ad9815229f9d9a4f2951598fc3a3879406c951628ee1eac570b985",
+    "answersAgainstPrintedOracle": 45,
+    "rootCellsBound": 225,
+    "allFiveColumnOutputsBound": 225
+  },
+  "inputPacketSha256": "94c2a0583411f5cd3b88c3d925bf7cfb5e2079a5483c066ccd732ab96d4ebe7f",
+  "oracleReuseAfterExactBinding": true,
+  "newMathOrGradeQuestionCounts": 0
+}
