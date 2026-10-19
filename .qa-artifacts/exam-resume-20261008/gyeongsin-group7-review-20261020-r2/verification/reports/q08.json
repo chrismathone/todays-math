@@ -1,0 +1,278 @@
+{
+  "status": "pending",
+  "studentDigest": "9dbc5be8b02b581861d09a8cd91d8d792fd864ffbacf25ca0cb65602e78c720d",
+  "candidateDigest": "13de4e76339158dc722178f6e53c5ded687e7c935fb865ec0b8c20988a64d798",
+  "assetDigest": "1e80de645119dac8e42de488399da797e137ab2453e5065cc4212219c82d0352",
+  "solveDigest": "a6a218794c9413aae09c40c9b234002df11bac3ae7794c6d01aa79a026cfed51",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-retained-helper-gyeongsin-q08-metadata-r2",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "현재r2 학생발문은r1과같은직사각형/세변접촉/추가접선,폭12와부분변PE9이다. 실제2015기준9수04-19 접선의성질과공식중3계획printed72의접선배치후조건에맞다. 가족제안메타데이터는학생의필수방법을추가하지않는다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "다섯 양수길이12,13,14,15,16 cm는 r1과 바이트상 동등한 학생내용이다. 이번 재계산에서 ER²−(ER−6)²−144 잔차−36,−24,−12,0,12 중④만0. 학년밖보기표현은추가되지않았다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "현재r2 spec/SVG바이트를r1과직접비교하고 두해시도manifest와일치했다. r1에서 실제본 P-Q-R-S직사각형,세접점H/I/G,ER위F수직,PE9/QR12가 그대로다. 새좌표·치수·학생면추가없음. native reader인증은별도보류."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "현재수학문자열·해설·정답을r1과정확비교: 선분윗줄,원O,접점,cm,x,제곱·전개가동일하다. 초과학교과정기호를추가한메타데이터변경이아니며 2015중학교표기범위다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "현재저자답④와oldraw가동일하고 이번독립식에서 RF12,ER15를다시얻었다. 양의 접선부분3과12, EQ9를검산해 전체접선15의선택이유일하다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "현재전체해설은r1과동일한문자열이며 실제변수x=RF=RG>3로읽었다. 반지름6,PI/SG6,EF3,EQx−3,ERx+3,피타고라스로12x144순서가맞다. 접선-반지름직각과합동으로같은점접선길이를정당화하며 원과비례공식이나고등원의방정식을쓰지않는다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "2015M3 원의접선9수04-19 후,직사각형·반지름수직·같은점접선,피타고라스9수04-16,식전개와이전일차방정식을학습한학생에게만배정. 실제공식2024중3계획의physical74/printed72접선행과규범KOSAC기준을r1증거로정확연결한다. source학교진도·2022및미포착선수UUID는인증하지않는다."
+    }
+  },
+  "evidence": {
+    "currentAudit": "Metadata-only r2, no fresh blind/question/math count. Old raw/oldreport immutable, current digests independently recomputed. Approval is not copied solely by hash; exact student/answer/solution/assets equality plus current math/choices/source correction/family code audit performed.",
+    "checkBasis": {
+      "answerCorrect": "정확현재학생/저자답/oldraw결합과새Fraction검산에서④/15cm.",
+      "solutionCorrect": {
+        "RF": "12",
+        "EQ": "9",
+        "ER": "15",
+        "equation": "(x+3)^2=144+(x-3)^2 ->12x144",
+        "actualSolutionEqualsR1": true
+      },
+      "existenceUniqueness": {
+        "basis": "x=RF>3에서일차식의유일해12. EQ9,EF3,RF12,ER15와반지름6모두양수. exact기하학생페이로드가불변임을확인한후r1자체구성의존재증거와연결.",
+        "ownSealedConstruction": "가로12, 세로18인 직사각형에서 위쪽 변과 왼쪽·오른쪽 변으로부터 각각6 떨어진 점을 O로 삼아 반지름6의 원을 그리면 세 변에 접하고 아래쪽 변까지 거리는12라 원이 직사각형 내부에 놓인다. 왼쪽 변 위에서 PE=9인 E를 잡는다. EI=3, OI=6이므로 EO²=45이고, OG=6, GR=12이므로 OR²=180이다. ER²=9²+12²=225=EO²+OR²이므로 △EOR는 O가 직각인 삼각형이다. 이 삼각형의 넓이를 두 방식으로 구하면 O에서 빗변 ER에 내린 높이는 EO·OR/ER=90/15=6이다. 따라서 ER는 반지름6인 원에 접하며 발 F는 빗변 내부에 있다. AA닮음으로 EF=EO²/ER=3, FR=OR²/ER=12도 확인된다. 이 비는 실제 직각삼각형의 닮음으로 정당화하는 구성 검산이며 원의 할선곱·접선곱 정리를 쓰는 학생 방법이 아니다. 조건을 만족하는 도형이 존재하며, 유일한 양의 높이18에서 요구 길이15가 강제된다."
+      },
+      "choicesCorrect": [
+        {
+          "mark": "①",
+          "ER": 12,
+          "EQ": 6,
+          "residual": -36,
+          "valid": false
+        },
+        {
+          "mark": "②",
+          "ER": 13,
+          "EQ": 7,
+          "residual": -24,
+          "valid": false
+        },
+        {
+          "mark": "③",
+          "ER": 14,
+          "EQ": 8,
+          "residual": -12,
+          "valid": false
+        },
+        {
+          "mark": "④",
+          "ER": 15,
+          "EQ": 9,
+          "residual": 0,
+          "valid": true
+        },
+        {
+          "mark": "⑤",
+          "ER": 16,
+          "EQ": 10,
+          "residual": 12,
+          "valid": false
+        }
+      ],
+      "figureConsistent": "현재r2 spec/SVG바이트를r1과직접비교하고 두해시도manifest와일치했다. r1에서 실제본 P-Q-R-S직사각형,세접점H/I/G,ER위F수직,PE9/QR12가 그대로다. 새좌표·치수·학생면추가없음. native reader인증은별도보류.",
+      "sameCoreConceptAndProcedure": "원본전체접선CE10/반지름4→부분변AE 질문. 현재는폭QR12/부분변PE9→전체접선ER 질문. 동일접선분해·직사각형·피타고라스의실제역방향. 원본답은계산/키대조하지않았다.",
+      "distinctPresentation": "실제입력/출력역전이있고현재r2설명은그방향을올바르게기록한다. 단순수치/이름변경아님.",
+      "naturalKorean": "학생발문/해설은불변이며수선/접점/변의역할과단위가일관된다. r1의q7참조·뒤집힌입출력메타문구는r2에서고쳐졌다.",
+      "curriculumAppropriate": {
+        "normative": {
+          "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+          "edition": "2015년 tab (lines84-85)",
+          "locators": "line540: 9수04-13/14 similarity;9수04-16 Pythagoras;9수04-19 chords/tangents. line558 excludes general circle proportionality; line561 permits tangent-length terminology; lines560/565 student-level justification, not complex formal logic.",
+          "interpretation": "실제 삼각형의 합동·닮음과 접선의 성질을 직접 쓰는 풀이만 심사했다. 원의 일반 비례/현곱·접선곱 공식을 이름만 바꾸어 허용하지 않는다.",
+          "currentHtmlSha256": "5cee94c0f333c30dde3c56770b438a373a5169c4a2f034b699c7977027193bb7"
+        },
+        "gradePlacement": {
+          "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+          "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+          "pageSha256": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12",
+          "pdfIndex0": 73,
+          "physicalPage": 74,
+          "printedPage": 72,
+          "actuallyViewed": "표 머리: 중학교3학년 수학2학기. 9월 원과직선/9수04-19 행에 원의 수직이등분선, 현과접선 성질이 명시되어 있다.",
+          "limits": "실제 공식2024 M3배치 근거이며 경신 원본의 시험 진도·출처년도 인증이나2022배치 승인 아님. 과거 잠정 printed73 오류를 그대로 승인하지 않고 실제 printed72를 인용한다."
+        }
+      },
+      "allStudentSurfacesInScope": "아래7면을현재동일페이로드와정확결합하여각각근거를기록. 2015M3선수학습후로한정.",
+      "unitFamilyFit": {
+        "capturedUnit": {
+          "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+          "grade": "중3",
+          "chapter": "6. 원의 성질",
+          "section": "원의 접선",
+          "semester": 2,
+          "orderIndex": 485,
+          "problemCodePrefix": "J30602"
+        },
+        "capturedFamily": {
+          "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+          "family_key": "mid:3-2|원과 직선|16",
+          "family_code": "A10",
+          "live_count": 42
+        },
+        "snapshotCapturedAt": "2026-10-19 18:07:30.165227+00",
+        "snapshotSha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2",
+        "actualModuleSha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+        "definition": "def16 modes0,1,2,4 are rectangle/three-side circle/extra tangent; mode3 is a separate trapezoid branch. figRectTan line627 builds same full geometry after rotation.",
+        "purposeEvidence": "Three-side radius/contact, equal tangent lengths partition, opposite-side sums derived from tangents, then Pythagorean inversion. Not mere family/unit-name or count42 matching.",
+        "rigidMapping": {
+          "familyA": "S",
+          "familyB": "P",
+          "familyC": "Q",
+          "familyD": "R",
+          "familyE": "E",
+          "w12_t9_d15_L18": true,
+          "familyMode4": "w=12,L=18 ->BE=PE=9",
+          "candidate": "w=12,BE=PE=9 ->DE=ER=15; this inverse pair is not an existing handler branch"
+        },
+        "domain": "T16 explicitly contains [w12,t9,d15], L18. Thus candidate geometric values lie in current finite rectangle pool. Positive t9,d15,L18,w12,BE9>w/2=6; ratio/length conditions all valid.",
+        "boundedSamples": "12 actual handler outputs from four rectangular modes and three finite tuples, printed numeric givens parsed before own integer-square/linear calculations; all expected answers matched. Neither facts nor answer used as oracle.",
+        "reuseVersusChangedPurpose": "Mode4 givenw,L asksBE. New question givenw,BE asksDE, requiring an inverse recovery of L/CE and the whole tangent. Same complete mathematical structure and natural candidate-family relationship, but this precise input/output pair is absent from existing branches.",
+        "supportGaps": [
+          "No existing mode asks DE from w and BE; needs separately versioned inverse-target attestation or handler support, not silent claim that current handler emits this question.",
+          "Existing handler returns scalar length text and facts; explicit five-choice MC format/score5/current standard difficulty are not part of inspected TypeEntry output contract. Shared MC/registration adapters were not audited.",
+          "Type16 difficulty is 심화하 while candidate proposal is 표준; these labels/scales cannot be assumed identical or automatic measured calibration.",
+          "Exact live generator registration/semantics now partially evidenced by captured mapping and full code; current DB status or runtime route/native/rights certification remains outside scope."
+        ],
+        "verdict": "Strong existing-family16 structural/domain proposal supported; exact current target/format binding remains pending. Do not force unitFamilyFit true or auto-assign.",
+        "proposedFamilyKey": "mid:3-2|원과 직선|16",
+        "unitFamilyFitApproved": false
+      },
+      "scoreAppropriate": "원문5점및현재5점, 접선부분길이설정→합/차→피타고라스전개→역전체길이의복합절차로편집상제안을지지. 기존family의심화하와현재표준을동일척도로승인하지않고 실측난도/동일난도승인도없다."
+    },
+    "family16Assessment": {
+      "capturedUnit": {
+        "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원의 접선",
+        "semester": 2,
+        "orderIndex": 485,
+        "problemCodePrefix": "J30602"
+      },
+      "capturedFamily": {
+        "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "family_key": "mid:3-2|원과 직선|16",
+        "family_code": "A10",
+        "live_count": 42
+      },
+      "snapshotCapturedAt": "2026-10-19 18:07:30.165227+00",
+      "snapshotSha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2",
+      "actualModuleSha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+      "definition": "def16 modes0,1,2,4 are rectangle/three-side circle/extra tangent; mode3 is a separate trapezoid branch. figRectTan line627 builds same full geometry after rotation.",
+      "purposeEvidence": "Three-side radius/contact, equal tangent lengths partition, opposite-side sums derived from tangents, then Pythagorean inversion. Not mere family/unit-name or count42 matching.",
+      "rigidMapping": {
+        "familyA": "S",
+        "familyB": "P",
+        "familyC": "Q",
+        "familyD": "R",
+        "familyE": "E",
+        "w12_t9_d15_L18": true,
+        "familyMode4": "w=12,L=18 ->BE=PE=9",
+        "candidate": "w=12,BE=PE=9 ->DE=ER=15; this inverse pair is not an existing handler branch"
+      },
+      "domain": "T16 explicitly contains [w12,t9,d15], L18. Thus candidate geometric values lie in current finite rectangle pool. Positive t9,d15,L18,w12,BE9>w/2=6; ratio/length conditions all valid.",
+      "boundedSamples": "12 actual handler outputs from four rectangular modes and three finite tuples, printed numeric givens parsed before own integer-square/linear calculations; all expected answers matched. Neither facts nor answer used as oracle.",
+      "reuseVersusChangedPurpose": "Mode4 givenw,L asksBE. New question givenw,BE asksDE, requiring an inverse recovery of L/CE and the whole tangent. Same complete mathematical structure and natural candidate-family relationship, but this precise input/output pair is absent from existing branches.",
+      "supportGaps": [
+        "No existing mode asks DE from w and BE; needs separately versioned inverse-target attestation or handler support, not silent claim that current handler emits this question.",
+        "Existing handler returns scalar length text and facts; explicit five-choice MC format/score5/current standard difficulty are not part of inspected TypeEntry output contract. Shared MC/registration adapters were not audited.",
+        "Type16 difficulty is 심화하 while candidate proposal is 표준; these labels/scales cannot be assumed identical or automatic measured calibration.",
+        "Exact live generator registration/semantics now partially evidenced by captured mapping and full code; current DB status or runtime route/native/rights certification remains outside scope."
+      ],
+      "verdict": "Strong existing-family16 structural/domain proposal supported; exact current target/format binding remains pending. Do not force unitFamilyFit true or auto-assign.",
+      "proposedFamilyKey": "mid:3-2|원과 직선|16",
+      "unitFamilyFitApproved": false
+    },
+    "metadataCorrectionsVerified": {
+      "q8ActualReference": "Observed originalH page2 printedq8 rectangle/three-side circle/tangent component. Shared geometric relationships only; whole-paper/pair/year/rights certification remains separate.",
+      "inputOutputWording": "원문의 접선 전체 길이 입력과 변의 부분 길이 출력을 서로 뒤집고, 반지름 조건을 직사각형의 가로 길이 조건으로 재조직했다. 두 접선의 합과 직사각형 변의 차를 미지수로 세우는 순서다. 원문의 반지름 선분 숫자 대신 가로 길이를 새 그림과 본문에 명시했다.",
+      "r1ErrorsRemainHistorical": true
+    },
+    "rawSeal": {
+      "originalParentCommit": "9f24d13935e7e806717a34cdb1f09ed3fb20a15d",
+      "helperCommit": "30da2f6795d23fe30959293483813d4a89175fb8",
+      "rawSha256": "b5cfd361f72c42a2ce5793e1031e87f9fcfc3d672b92b5c6b5483b5aa5004858",
+      "exposureDeclarationUnchanged": {
+        "currentAuthoredAnswerSolutionMetadataExposedBeforeRaw": false,
+        "priorOriginalQ08PageExposure": true,
+        "declaration": "현재 authored GYEONGSIN q08 r1의 답·해설·비공개 자료는 읽지 않았다. 이전 허가된 원본 H 전체 페이지 검토에서 원래 q08의 조건·그림에 우연히 노출되었다. 완전한 원문 비노출을 주장하지 않으며, 현재 학생 조건만으로 독립 계산했다. 원본·root저자·비공개 패키지를 이번 풀이 중 열지 않았다."
+      }
+    },
+    "r1ReportSha256": "f618ac5b7b1c85d91d694f2d0fd89e8cd5fdf0a7ef31a4d38a1a6cddd756bdb1",
+    "primaryReferences": {
+      "normative": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "edition": "2015년 tab (lines84-85)",
+        "locators": "line540: 9수04-13/14 similarity;9수04-16 Pythagoras;9수04-19 chords/tangents. line558 excludes general circle proportionality; line561 permits tangent-length terminology; lines560/565 student-level justification, not complex formal logic.",
+        "interpretation": "실제 삼각형의 합동·닮음과 접선의 성질을 직접 쓰는 풀이만 심사했다. 원의 일반 비례/현곱·접선곱 공식을 이름만 바꾸어 허용하지 않는다.",
+        "currentHtmlSha256": "5cee94c0f333c30dde3c56770b438a373a5169c4a2f034b699c7977027193bb7"
+      },
+      "gradePlacement": {
+        "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+        "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+        "pageSha256": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12",
+        "pdfIndex0": 73,
+        "physicalPage": 74,
+        "printedPage": 72,
+        "actuallyViewed": "표 머리: 중학교3학년 수학2학기. 9월 원과직선/9수04-19 행에 원의 수직이등분선, 현과접선 성질이 명시되어 있다.",
+        "limits": "실제 공식2024 M3배치 근거이며 경신 원본의 시험 진도·출처년도 인증이나2022배치 승인 아님. 과거 잠정 printed73 오류를 그대로 승인하지 않고 실제 printed72를 인용한다."
+      }
+    },
+    "receiptContext": "Author-file before/after receipt SHAs verified; author candidate/student/solution/assets compare. Its author binding candidateDigest differs from prepared-package verification digest context (figure paths/layout); do not substitute receipt digest for current verification digest.",
+    "holds": {
+      "unitFamilyFit": false,
+      "proposedFamilyKey": "mid:3-2|원과 직선|16",
+      "approvedFamilyKey": null,
+      "sourceIdentityApproved": false,
+      "sourcePairApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "loadable": false,
+      "curriculum2022": "pending"
+    },
+    "counts": {
+      "mathematicsPassForSameItem": 1,
+      "gradePassForSameItem": 1,
+      "contentHeld": 1,
+      "newQuestionCount": 0,
+      "newBlindCount": 0,
+      "newFigureCount": 0,
+      "releaseApprovals": 0
+    }
+  }
+}

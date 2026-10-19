@@ -1,0 +1,278 @@
+{
+  "kind": "bounded-family16-semantic-samples/v1",
+  "sourceBefore": {
+    "src/lib/middle/m3Tangent.ts": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+    "src/lib/middle/types.ts": "bd95a101d93599998fcffc441c738f7c32599774030cb99ba8e3874993091a3c",
+    "src/lib/middle/figureDims.ts": "daa3f0d5abfecabb7dd001e5cd4b008738cf11860e5422733b96b658ff34cd98",
+    "src/lib/middle/m1Shared.ts": "4341dba9b3305707c5410948a65d20149225bf4789c3c0c7587295bc06b87663",
+    "src/lib/elementary/rng.ts": "a91a03e74d14bbbad7a550f5e3daa78bf4646b06a8d584476f9321adc2e6a3f0"
+  },
+  "sourceAfter": {
+    "src/lib/middle/m3Tangent.ts": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+    "src/lib/middle/types.ts": "bd95a101d93599998fcffc441c738f7c32599774030cb99ba8e3874993091a3c",
+    "src/lib/middle/figureDims.ts": "daa3f0d5abfecabb7dd001e5cd4b008738cf11860e5422733b96b658ff34cd98",
+    "src/lib/middle/m1Shared.ts": "4341dba9b3305707c5410948a65d20149225bf4789c3c0c7587295bc06b87663",
+    "src/lib/elementary/rng.ts": "a91a03e74d14bbbad7a550f5e3daa78bf4646b06a8d584476f9321adc2e6a3f0"
+  },
+  "entry": {
+    "key": "3-2|원과 직선|16",
+    "unitSection": "원의 접선",
+    "grade": "중3",
+    "rpmTitle": "원에 외접하는 사각형의 응용"
+  },
+  "samples": [
+    {
+      "mode": 0,
+      "tupleIndex": 0,
+      "printedContent": "원 $O$가 직사각형 $ABCD$의 세 변 $AB$, $BC$, $DA$에 접하고, 꼭짓점 $D$에서 원 $O$에 그은 접선이 변 $BC$와 만나는 점을 $E$라 하자. $\\overline{CD}=4\\,\\mathrm{cm}$, $\\overline{DE}=5\\,\\mathrm{cm}$일 때, $\\overline{AD}$의 길이를 구하시오.",
+      "printedSolution": "직각삼각형 $DEC$에서 $\\overline{CE}=\\sqrt{5^2-4^2}=3\\,(\\mathrm{cm})$이다.\n원 $O$는 사각형 $ABED$의 네 변에 모두 접하므로 $\\overline{AB}+\\overline{DE}=\\overline{AD}+\\overline{BE}$이다.\n$\\overline{BE}=\\overline{AD}-3\\,(\\mathrm{cm})$이므로 $4+5=2\\overline{AD}-3$, 즉 $\\overline{AD}=6\\,(\\mathrm{cm})$이다.",
+      "printedAnswer": "$6\\,\\mathrm{cm}$",
+      "ownParsedGivens": {
+        "CD": 4,
+        "DE": 5
+      },
+      "ownDerived": {
+        "w": 4,
+        "L": 6,
+        "t": 3,
+        "d": 5,
+        "answer": 6
+      },
+      "scoreNotInHandler": true,
+      "format": "scalar length; no explicit MC choices"
+    },
+    {
+      "mode": 0,
+      "tupleIndex": 4,
+      "printedContent": "원 $O$가 직사각형 $ABCD$의 세 변 $AB$, $BC$, $DA$에 접하고, 꼭짓점 $D$에서 원 $O$에 그은 접선이 변 $BC$와 만나는 점을 $E$라 하자. $\\overline{CD}=12\\,\\mathrm{cm}$, $\\overline{DE}=15\\,\\mathrm{cm}$일 때, $\\overline{AD}$의 길이를 구하시오.",
+      "printedSolution": "직각삼각형 $DEC$에서 $\\overline{CE}=\\sqrt{15^2-12^2}=9\\,(\\mathrm{cm})$이다.\n원 $O$는 사각형 $ABED$의 네 변에 모두 접하므로 $\\overline{AB}+\\overline{DE}=\\overline{AD}+\\overline{BE}$이다.\n$\\overline{BE}=\\overline{AD}-9\\,(\\mathrm{cm})$이므로 $12+15=2\\overline{AD}-9$, 즉 $\\overline{AD}=18\\,(\\mathrm{cm})$이다.",
+      "printedAnswer": "$18\\,\\mathrm{cm}$",
+      "ownParsedGivens": {
+        "CD": 12,
+        "DE": 15
+      },
+      "ownDerived": {
+        "w": 12,
+        "L": 18,
+        "t": 9,
+        "d": 15,
+        "answer": 18
+      },
+      "scoreNotInHandler": true,
+      "format": "scalar length; no explicit MC choices"
+    },
+    {
+      "mode": 0,
+      "tupleIndex": 8,
+      "printedContent": "원 $O$가 직사각형 $ABCD$의 세 변 $AB$, $BC$, $DA$에 접하고, 꼭짓점 $D$에서 원 $O$에 그은 접선이 변 $BC$와 만나는 점을 $E$라 하자. $\\overline{CD}=20\\,\\mathrm{cm}$, $\\overline{DE}=25\\,\\mathrm{cm}$일 때, $\\overline{AD}$의 길이를 구하시오.",
+      "printedSolution": "직각삼각형 $DEC$에서 $\\overline{CE}=\\sqrt{25^2-20^2}=15\\,(\\mathrm{cm})$이다.\n원 $O$는 사각형 $ABED$의 네 변에 모두 접하므로 $\\overline{AB}+\\overline{DE}=\\overline{AD}+\\overline{BE}$이다.\n$\\overline{BE}=\\overline{AD}-15\\,(\\mathrm{cm})$이므로 $20+25=2\\overline{AD}-15$, 즉 $\\overline{AD}=30\\,(\\mathrm{cm})$이다.",
+      "printedAnswer": "$30\\,\\mathrm{cm}$",
+      "ownParsedGivens": {
+        "CD": 20,
+        "DE": 25
+      },
+      "ownDerived": {
+        "w": 20,
+        "L": 30,
+        "t": 15,
+        "d": 25,
+        "answer": 30
+      },
+      "scoreNotInHandler": true,
+      "format": "scalar length; no explicit MC choices"
+    },
+    {
+      "mode": 1,
+      "tupleIndex": 0,
+      "printedContent": "원 $O$가 직사각형 $ABCD$의 세 변 $AB$, $BC$, $DA$에 접하고, 꼭짓점 $D$에서 원 $O$에 그은 접선이 변 $BC$와 만나는 점을 $E$라 하자. 점 $G$는 변 $BC$ 위의 접점이다. $\\overline{AB}=4\\,\\mathrm{cm}$, $\\overline{AD}=6\\,\\mathrm{cm}$일 때, $\\overline{GE}$의 길이를 구하시오.",
+      "printedSolution": "$\\overline{CE}=e\\,\\mathrm{cm}$라 하면 원 $O$는 사각형 $ABED$의 네 변에 접하므로 $4+\\overline{DE}=6+(6-e)$, 즉 $\\overline{DE}=(8-e)\\,\\mathrm{cm}$이다.\n직각삼각형 $DEC$에서 $(8-e)^2=e^2+4^2$을 풀면 $e=3$이다.\n$\\overline{BG}=\\dfrac{1}{2}\\times4=2\\,(\\mathrm{cm})$이므로 $\\overline{GE}=(6-3)-2=1\\,(\\mathrm{cm})$이다.",
+      "printedAnswer": "$1\\,\\mathrm{cm}$",
+      "ownParsedGivens": {
+        "AB": 4,
+        "AD": 6
+      },
+      "ownDerived": {
+        "w": 4,
+        "L": 6,
+        "t": 3,
+        "d": 5,
+        "answer": 1
+      },
+      "scoreNotInHandler": true,
+      "format": "scalar length; no explicit MC choices"
+    },
+    {
+      "mode": 1,
+      "tupleIndex": 4,
+      "printedContent": "원 $O$가 직사각형 $ABCD$의 세 변 $AB$, $BC$, $DA$에 접하고, 꼭짓점 $D$에서 원 $O$에 그은 접선이 변 $BC$와 만나는 점을 $E$라 하자. 점 $G$는 변 $BC$ 위의 접점이다. $\\overline{AB}=12\\,\\mathrm{cm}$, $\\overline{AD}=18\\,\\mathrm{cm}$일 때, $\\overline{GE}$의 길이를 구하시오.",
+      "printedSolution": "$\\overline{CE}=e\\,\\mathrm{cm}$라 하면 원 $O$는 사각형 $ABED$의 네 변에 접하므로 $12+\\overline{DE}=18+(18-e)$, 즉 $\\overline{DE}=(24-e)\\,\\mathrm{cm}$이다.\n직각삼각형 $DEC$에서 $(24-e)^2=e^2+12^2$을 풀면 $e=9$이다.\n$\\overline{BG}=\\dfrac{1}{2}\\times12=6\\,(\\mathrm{cm})$이므로 $\\overline{GE}=(18-9)-6=3\\,(\\mathrm{cm})$이다.",
+      "printedAnswer": "$3\\,\\mathrm{cm}$",
+      "ownParsedGivens": {
+        "AB": 12,
+        "AD": 18
+      },
+      "ownDerived": {
+        "w": 12,
+        "L": 18,
+        "t": 9,
+        "d": 15,
+        "answer": 3
+      },
+      "scoreNotInHandler": true,
+      "format": "scalar length; no explicit MC choices"
+    },
+    {
+      "mode": 1,
+      "tupleIndex": 8,
+      "printedContent": "원 $O$가 직사각형 $ABCD$의 세 변 $AB$, $BC$, $DA$에 접하고, 꼭짓점 $D$에서 원 $O$에 그은 접선이 변 $BC$와 만나는 점을 $E$라 하자. 점 $G$는 변 $BC$ 위의 접점이다. $\\overline{AB}=20\\,\\mathrm{cm}$, $\\overline{AD}=30\\,\\mathrm{cm}$일 때, $\\overline{GE}$의 길이를 구하시오.",
+      "printedSolution": "$\\overline{CE}=e\\,\\mathrm{cm}$라 하면 원 $O$는 사각형 $ABED$의 네 변에 접하므로 $20+\\overline{DE}=30+(30-e)$, 즉 $\\overline{DE}=(40-e)\\,\\mathrm{cm}$이다.\n직각삼각형 $DEC$에서 $(40-e)^2=e^2+20^2$을 풀면 $e=15$이다.\n$\\overline{BG}=\\dfrac{1}{2}\\times20=10\\,(\\mathrm{cm})$이므로 $\\overline{GE}=(30-15)-10=5\\,(\\mathrm{cm})$이다.",
+      "printedAnswer": "$5\\,\\mathrm{cm}$",
+      "ownParsedGivens": {
+        "AB": 20,
+        "AD": 30
+      },
+      "ownDerived": {
+        "w": 20,
+        "L": 30,
+        "t": 15,
+        "d": 25,
+        "answer": 5
+      },
+      "scoreNotInHandler": true,
+      "format": "scalar length; no explicit MC choices"
+    },
+    {
+      "mode": 2,
+      "tupleIndex": 0,
+      "printedContent": "원 $O$가 직사각형 $ABCD$의 세 변 $AB$, $BC$, $DA$에 접하고, 꼭짓점 $D$에서 원 $O$에 그은 접선이 변 $BC$와 만나는 점을 $E$라 하자. $\\overline{AB}=4\\,\\mathrm{cm}$, $\\overline{AD}=6\\,\\mathrm{cm}$일 때, 삼각형 $DEC$의 둘레의 길이를 구하시오.",
+      "printedSolution": "$\\overline{CE}=e\\,\\mathrm{cm}$라 하면 원 $O$는 사각형 $ABED$의 네 변에 접하므로 $\\overline{DE}=(8-e)\\,\\mathrm{cm}$이다.\n직각삼각형 $DEC$에서 $(8-e)^2=e^2+4^2$을 풀면 $e=3$, $\\overline{DE}=5\\,\\mathrm{cm}$이다.\n따라서 둘레의 길이는 $4+3+5=12\\,(\\mathrm{cm})$이다.",
+      "printedAnswer": "$12\\,\\mathrm{cm}$",
+      "ownParsedGivens": {
+        "AB": 4,
+        "AD": 6
+      },
+      "ownDerived": {
+        "w": 4,
+        "L": 6,
+        "t": 3,
+        "d": 5,
+        "answer": 12
+      },
+      "scoreNotInHandler": true,
+      "format": "scalar length; no explicit MC choices"
+    },
+    {
+      "mode": 2,
+      "tupleIndex": 4,
+      "printedContent": "원 $O$가 직사각형 $ABCD$의 세 변 $AB$, $BC$, $DA$에 접하고, 꼭짓점 $D$에서 원 $O$에 그은 접선이 변 $BC$와 만나는 점을 $E$라 하자. $\\overline{AB}=12\\,\\mathrm{cm}$, $\\overline{AD}=18\\,\\mathrm{cm}$일 때, 삼각형 $DEC$의 둘레의 길이를 구하시오.",
+      "printedSolution": "$\\overline{CE}=e\\,\\mathrm{cm}$라 하면 원 $O$는 사각형 $ABED$의 네 변에 접하므로 $\\overline{DE}=(24-e)\\,\\mathrm{cm}$이다.\n직각삼각형 $DEC$에서 $(24-e)^2=e^2+12^2$을 풀면 $e=9$, $\\overline{DE}=15\\,\\mathrm{cm}$이다.\n따라서 둘레의 길이는 $12+9+15=36\\,(\\mathrm{cm})$이다.",
+      "printedAnswer": "$36\\,\\mathrm{cm}$",
+      "ownParsedGivens": {
+        "AB": 12,
+        "AD": 18
+      },
+      "ownDerived": {
+        "w": 12,
+        "L": 18,
+        "t": 9,
+        "d": 15,
+        "answer": 36
+      },
+      "scoreNotInHandler": true,
+      "format": "scalar length; no explicit MC choices"
+    },
+    {
+      "mode": 2,
+      "tupleIndex": 8,
+      "printedContent": "원 $O$가 직사각형 $ABCD$의 세 변 $AB$, $BC$, $DA$에 접하고, 꼭짓점 $D$에서 원 $O$에 그은 접선이 변 $BC$와 만나는 점을 $E$라 하자. $\\overline{AB}=20\\,\\mathrm{cm}$, $\\overline{AD}=30\\,\\mathrm{cm}$일 때, 삼각형 $DEC$의 둘레의 길이를 구하시오.",
+      "printedSolution": "$\\overline{CE}=e\\,\\mathrm{cm}$라 하면 원 $O$는 사각형 $ABED$의 네 변에 접하므로 $\\overline{DE}=(40-e)\\,\\mathrm{cm}$이다.\n직각삼각형 $DEC$에서 $(40-e)^2=e^2+20^2$을 풀면 $e=15$, $\\overline{DE}=25\\,\\mathrm{cm}$이다.\n따라서 둘레의 길이는 $20+15+25=60\\,(\\mathrm{cm})$이다.",
+      "printedAnswer": "$60\\,\\mathrm{cm}$",
+      "ownParsedGivens": {
+        "AB": 20,
+        "AD": 30
+      },
+      "ownDerived": {
+        "w": 20,
+        "L": 30,
+        "t": 15,
+        "d": 25,
+        "answer": 60
+      },
+      "scoreNotInHandler": true,
+      "format": "scalar length; no explicit MC choices"
+    },
+    {
+      "mode": 4,
+      "tupleIndex": 0,
+      "printedContent": "원 $O$가 직사각형 $ABCD$의 세 변 $AB$, $BC$, $DA$에 접하고, 꼭짓점 $D$에서 원 $O$에 그은 접선이 변 $BC$와 만나는 점을 $E$라 하자. $\\overline{AB}=4\\,\\mathrm{cm}$, $\\overline{AD}=6\\,\\mathrm{cm}$일 때, $\\overline{BE}$의 길이를 구하시오.",
+      "printedSolution": "$\\overline{CE}=e\\,\\mathrm{cm}$라 하면 원 $O$는 사각형 $ABED$의 네 변에 접하므로 $\\overline{DE}=(8-e)\\,\\mathrm{cm}$이다.\n직각삼각형 $DEC$에서 $(8-e)^2=e^2+4^2$을 풀면 $e=3$이다.\n따라서 $\\overline{BE}=6-3=3\\,(\\mathrm{cm})$이다.",
+      "printedAnswer": "$3\\,\\mathrm{cm}$",
+      "ownParsedGivens": {
+        "AB": 4,
+        "AD": 6
+      },
+      "ownDerived": {
+        "w": 4,
+        "L": 6,
+        "t": 3,
+        "d": 5,
+        "answer": 3
+      },
+      "scoreNotInHandler": true,
+      "format": "scalar length; no explicit MC choices"
+    },
+    {
+      "mode": 4,
+      "tupleIndex": 4,
+      "printedContent": "원 $O$가 직사각형 $ABCD$의 세 변 $AB$, $BC$, $DA$에 접하고, 꼭짓점 $D$에서 원 $O$에 그은 접선이 변 $BC$와 만나는 점을 $E$라 하자. $\\overline{AB}=12\\,\\mathrm{cm}$, $\\overline{AD}=18\\,\\mathrm{cm}$일 때, $\\overline{BE}$의 길이를 구하시오.",
+      "printedSolution": "$\\overline{CE}=e\\,\\mathrm{cm}$라 하면 원 $O$는 사각형 $ABED$의 네 변에 접하므로 $\\overline{DE}=(24-e)\\,\\mathrm{cm}$이다.\n직각삼각형 $DEC$에서 $(24-e)^2=e^2+12^2$을 풀면 $e=9$이다.\n따라서 $\\overline{BE}=18-9=9\\,(\\mathrm{cm})$이다.",
+      "printedAnswer": "$9\\,\\mathrm{cm}$",
+      "ownParsedGivens": {
+        "AB": 12,
+        "AD": 18
+      },
+      "ownDerived": {
+        "w": 12,
+        "L": 18,
+        "t": 9,
+        "d": 15,
+        "answer": 9
+      },
+      "scoreNotInHandler": true,
+      "format": "scalar length; no explicit MC choices"
+    },
+    {
+      "mode": 4,
+      "tupleIndex": 8,
+      "printedContent": "원 $O$가 직사각형 $ABCD$의 세 변 $AB$, $BC$, $DA$에 접하고, 꼭짓점 $D$에서 원 $O$에 그은 접선이 변 $BC$와 만나는 점을 $E$라 하자. $\\overline{AB}=20\\,\\mathrm{cm}$, $\\overline{AD}=30\\,\\mathrm{cm}$일 때, $\\overline{BE}$의 길이를 구하시오.",
+      "printedSolution": "$\\overline{CE}=e\\,\\mathrm{cm}$라 하면 원 $O$는 사각형 $ABED$의 네 변에 접하므로 $\\overline{DE}=(40-e)\\,\\mathrm{cm}$이다.\n직각삼각형 $DEC$에서 $(40-e)^2=e^2+20^2$을 풀면 $e=15$이다.\n따라서 $\\overline{BE}=30-15=15\\,(\\mathrm{cm})$이다.",
+      "printedAnswer": "$15\\,\\mathrm{cm}$",
+      "ownParsedGivens": {
+        "AB": 20,
+        "AD": 30
+      },
+      "ownDerived": {
+        "w": 20,
+        "L": 30,
+        "t": 15,
+        "d": 25,
+        "answer": 15
+      },
+      "scoreNotInHandler": true,
+      "format": "scalar length; no explicit MC choices"
+    }
+  ],
+  "sampleCount": 12,
+  "oracle": "Read numeric givens from actual printed content first; integer-square and integer-division checks derive values; compare generated answer only afterwards. No facts/answer as oracle. No pixel/figure-coordinate calculations.",
+  "candidateMapping": {
+    "familyA": "S",
+    "familyB": "P",
+    "familyC": "Q",
+    "familyD": "R",
+    "familyE": "E",
+    "w12_t9_d15_L18": true,
+    "familyMode4": "w=12,L=18 ->BE=PE=9",
+    "candidate": "w=12,BE=PE=9 ->DE=ER=15; this inverse pair is not an existing handler branch"
+  },
+  "gradeOrRightsApproval": false
+}
