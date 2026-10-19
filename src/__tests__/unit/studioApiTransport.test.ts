@@ -45,7 +45,7 @@ describe("source model API routing and compatibility", () => {
         model: "gemini-3.8-flash",
       });
     expect(resolveApiModel("auto", "solution", env).model).toBe(
-      "deepseek-v4-pro",
+      "deepseek-flash",
     );
     // 2026-09-18 실측(그림 3장): 사양 생성이 Flash LOW 4~7초 · Opus 5 medium 8~40초 · Codex 10~72초
     expect(resolveApiModel("auto", "figure-redraw", env)).toEqual({
@@ -195,10 +195,10 @@ describe("source model API routing and compatibility", () => {
       temperature: 0.1,
     });
   });
-  it("keeps DeepSeek text-only with low effort and disables nested SDK retries", async () => {
+  it.each(["deepseek-v4-pro", "deepseek-flash"])("keeps %s text-only with 16000 tokens, low effort and no nested SDK retries", async (model) => {
     await runModelApi({
       vendor: "deepseek",
-      model: "deepseek-v4-pro",
+      model,
       prompt: "solve",
       imageDataUrl,
       signal: signal(),
@@ -210,10 +210,15 @@ describe("source model API routing and compatibility", () => {
       }),
     );
     expect(sdk.chat.mock.calls[0][0]).toMatchObject({
-      max_tokens: 4096,
+      max_tokens: 16000,
       reasoning_effort: "low",
       messages: [{ role: "user", content: "solve" }],
     });
+  });
+  it.each(["deepseek-v4-pro", "deepseek-flash"])("selects %s through the server override for auto and explicit solutions", (model) => {
+    const env = { NODE_ENV: "test" as const, STUDIO_AI_DEEPSEEK_MODEL: model };
+    for (const provider of ["auto", "deepseek"] as const)
+      expect(resolveApiModel(provider, "solution", env)).toEqual({ vendor: "deepseek", model });
   });
   it("recovers Responses message text and explicitly reports incomplete token output", async () => {
     sdk.responses.mockResolvedValueOnce({
@@ -306,16 +311,16 @@ describe("source model API routing and compatibility", () => {
       getModelApiStatus().providers.find((provider) => provider.id === "auto")
         ?.detail;
     expect(detail()).toBe(
-      "문항 인식 Gemini 3.8 Flash · 해설 DeepSeek V4 Pro · 도형 Gemini 3.8 Flash (작업별 서버 키 필요)",
+      "문항 인식 Gemini 3.8 Flash · 해설 DeepSeek Flash · 도형 Gemini 3.8 Flash (작업별 서버 키 필요)",
     );
     vi.stubEnv("STUDIO_AI_FIGURE_VENDOR", "anthropic");
     expect(detail()).toBe(
-      "문항 인식 Gemini 3.8 Flash · 해설 DeepSeek V4 Pro · 도형 Claude Opus 5 · 검토 Gemini 3.8 Flash (작업별 서버 키 필요)",
+      "문항 인식 Gemini 3.8 Flash · 해설 DeepSeek Flash · 도형 Claude Opus 5 · 검토 Gemini 3.8 Flash (작업별 서버 키 필요)",
     );
     vi.stubEnv("STUDIO_AI_FIGURE_VENDOR", "");
     vi.stubEnv("STUDIO_AI_GEMINI_MODEL", "gemini-2.5-pro");
     expect(detail()).toBe(
-      "문항 인식 Gemini 2.5 Pro · 해설 DeepSeek V4 Pro · 도형 Gemini 2.5 Pro (작업별 서버 키 필요)",
+      "문항 인식 Gemini 2.5 Pro · 해설 DeepSeek Flash · 도형 Gemini 2.5 Pro (작업별 서버 키 필요)",
     );
     vi.stubEnv("STUDIO_AI_FIGURE_VENDOR", "deepseek");
     expect(detail()).toBe("서버의 AI 모델 설정을 확인해 주세요.");
