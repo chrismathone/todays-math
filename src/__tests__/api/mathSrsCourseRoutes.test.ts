@@ -14,6 +14,7 @@ const f = vi.hoisted(() => ({
   withdrawn: false,
   disabled: false,
   missing: false,
+  grade: null as string | null,
   audit: vi.fn<(args: unknown) => Promise<unknown>>(async () => ({})),
   render: vi.fn(async () => ({
     ok: true,
@@ -40,6 +41,7 @@ vi.mock("@/lib/db", () => {
     class: {
       id: f.classId,
       name: "초3",
+      grade: f.grade,
       userId: f.ownerId,
       branchId: null,
       eywaBindingId: null,
@@ -201,12 +203,32 @@ beforeEach(() => {
   f.withdrawn = false;
   f.disabled = false;
   f.missing = false;
+  f.grade = null;
   f.render.mockClear();
   f.audit.mockReset();
   vi.stubEnv("AUTH_URL", base);
   studentSession();
 });
 afterEach(() => vi.unstubAllEnvs());
+
+describe("the class grade's default course plan (2026-10-19)", () => {
+  afterEach(() => vi.useRealTimers());
+  it("shows a 초5 student the 2nd-semester start without writing, and keeps the plan when practice starts", async () => {
+    vi.useFakeTimers({ toFake: ["Date"] });
+    vi.setSystemTime(new Date("2026-10-19T10:00:00.000Z"));
+    f.grade = "초5";
+    const read = courseStudentResponseSchema.parse(
+      await (await GET(request())).json(),
+    ).data;
+    expect(read.summary.status).not.toBe("setup");
+    expect(read.summary.currentSectionId).toBe("5-2-1-1");
+    expect(f.rows.size).toBe(0);
+    expect((await POST(request(coursePath, "POST", {}))).status).toBe(200);
+    const stored = parseSrsState(f.rows.get(f.studentId)!.payload);
+    expect(stored.course?.plan?.startSectionId).toBe("5-2-1-1");
+    expect(stored.course?.learner.session?.sectionId).toBe("5-2-1-1");
+  });
+});
 
 describe("student course API", () => {
   it("requires an active student session, including account and withdrawal checks", async () => {

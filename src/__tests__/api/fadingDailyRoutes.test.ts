@@ -427,6 +427,8 @@ describe("탐험과 이어 짓는다 — 분량 · 추천은 탐험이 낸 그�
         expect(activity.reason.code).toBe("progress-section");
     }
     expect(unit).toBeTruthy();
+    // 반 학년(초5) · 10월 = 2학기 첫 소단원의 단원 — 기록이 없어도 초3 에서 시작하지 않는다(2026-10-19).
+    expect(unit).toBe("g5-estimate");
   });
 
   it("시범 목표 소단원의 문제은행 날: 선수 개념 확인 하나 → 문제 10 → 그 소단원의 새 개념, 합계는 분량을 넘지 않는다", async () => {

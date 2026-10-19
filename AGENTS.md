@@ -66,6 +66,17 @@ gate `MATH_FADING_RELEARN` is open when unset or `on`, and closed otherwise.
 The reader floor was verified in production at `7c9e9a4b8` (2026-10-07,
 GitHub deployment 6900206486) before this default was enabled.
 
+**Default course plan (2026-10-19, owner «반 학년 + 지금 학기로 시작»):** a student
+whose course has no plan gets one from the class grade (exactly 초3 ~ 초6) and the
+Korean semester (Mar–Aug 1st, Sep–Feb 2nd) — `withDefaultCoursePlan`
+(`src/lib/math-srs/defaultCoursePlan.ts`), a stored elementary explorer goal decides
+the start instead. The explorer route, today's plan and the student course route show
+it without saving; a write re-applies it to the latest state inside its CAS (a
+teacher's plan is never overwritten). Existing fields only — no new reader floor.
+The teacher's plan comes first and a student's unit choice is browsing only
+(docs/planning/srs-e5-30day-plan-20261019.md §2) — the student goal/plan controls
+are removed together with the screen batch, not by a server-only block.
+
 **Unhinted self-check compatibility (2026-10-19):** a first-round answer to a
 `self-check` course problem given without opening the hint is a valid stored
 attempt (`storedCourseSchema` no longer requires `usedHint` for self-assessed
