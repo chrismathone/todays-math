@@ -1,0 +1,16 @@
+{
+  "status": "actual42-local-rendered-and-viewed;precision-finding-separate",
+  "strictRenderCount": 42,
+  "strictDroppedCount": 0,
+  "cssWidthMm": 70,
+  "deviceScale": 1,
+  "viewedImages": [
+    "local-render/contact-1.png",
+    "local-render/contact-2.png",
+    "local-render/contact-3.png",
+    "local-render/bottom-rows.png"
+  ],
+  "inspection": "A/B/C,O,M/N and x labels legible. The unknown is at requested vertex, and only supplied angle is numerically labelled. At a=60 the given angle and target happen to equal60; that is a mathematical special case, not an independent target-label leak. Some angle numbers use exterior leader lines (e.g.a62..66 apex labels and a62..80 base labels); leaders remain associated with the correct angle. No critical overlap or missing condition found at70mm. No pixels used to calculate angles.",
+  "captureLimitationResolved": "First contact images clipped their last row;52 and66 both modes were re-viewed completely in bottom-rows.png.",
+  "localOnly": "SVG/PNG/HTML kept in this helper for inspection and hashes only; not included in commit."
+}

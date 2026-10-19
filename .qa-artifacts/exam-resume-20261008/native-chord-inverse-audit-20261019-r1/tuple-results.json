@@ -1,0 +1,3324 @@
+{
+  "rootCwd": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008",
+  "rootTsconfig": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/tsconfig.json",
+  "resolvedModule": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3.ts",
+  "records": [
+    {
+      "tuple": {
+        "apexParameter": 40,
+        "mode": 0
+      },
+      "independent": {
+        "givenVertex": "BAC",
+        "givenDegrees": 40,
+        "askedVertex": "ABC",
+        "apex": 40,
+        "base": 70,
+        "answer": 70
+      },
+      "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=40^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.",
+      "answer": "$70^\\circ$",
+      "solution": "$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-40^\\circ)=70^\\circ$이다.",
+      "studentContentSha256": "cf9a55e0302f3dccebdb22d8a6e4b1f1abba3317d2703c5e60f041aa1cb91f7f",
+      "figureSpecSha256": "beea01cbbdcc5f819f9303fd4fef2d7bd36430c4cf75c513d243b796fbe6d9f8",
+      "geometry": {
+        "equalChordError": 0,
+        "equalDistanceError": 0.009396922845542832,
+        "rightFootMErrorPx": 0.0016847026593618801,
+        "rightFootNErrorPx": 0.0017354987738905086,
+        "footMFromMidpointPx": 0.004082706690145288,
+        "footNFromMidpointPx": 0.0059373273185501,
+        "apex": 39.99999999999999,
+        "base": 70
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "40°"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "x"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$70^\\circ$",
+          "$60^\\circ$",
+          "$68^\\circ$",
+          "$71^\\circ$",
+          "$72^\\circ$"
+        ],
+        "answer": "①",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=40^\\circ$일 때, $\\angle ABC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "90b6bcd83ff33c533b35fc3e841c411484f98eb3ef9e7b096808d82f7eb2b8b5",
+        "localFile": "local-render/a40-m0.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 40,
+        "mode": 1
+      },
+      "independent": {
+        "givenVertex": "ABC",
+        "givenDegrees": 70,
+        "askedVertex": "BAC",
+        "apex": 40,
+        "base": 70,
+        "answer": 40
+      },
+      "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=70^\\circ$일 때, $\\angle BAC$의 크기를 구하시오.",
+      "answer": "$40^\\circ$",
+      "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ACB=\\angle ABC=70^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-2\\times70^\\circ=40^\\circ$이다.",
+      "studentContentSha256": "7356fe3419ec145a9cec87b312c10a0c2998748f34b9fe14c8ad405654d0ad14",
+      "figureSpecSha256": "e5ad170efefd70bfbee983c2e94beed790779e7bf2e6fc1014714ab3cb66c190",
+      "geometry": {
+        "equalChordError": 0,
+        "equalDistanceError": 0.009396922845542832,
+        "rightFootMErrorPx": 0.0016847026593618801,
+        "rightFootNErrorPx": 0.0017354987738905086,
+        "footMFromMidpointPx": 0.004082706690145288,
+        "footNFromMidpointPx": 0.0059373273185501,
+        "apex": 39.99999999999999,
+        "base": 70
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "x"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "70°"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$20^\\circ$",
+          "$38^\\circ$",
+          "$80^\\circ$",
+          "$30^\\circ$",
+          "$40^\\circ$"
+        ],
+        "answer": "⑤",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=70^\\circ$일 때, $\\angle BAC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "e9cf634d55a4cabc60b8f01183f39245859a404e75a164ebfe14e49a5c2620e4",
+        "localFile": "local-render/a40-m1.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 42,
+        "mode": 0
+      },
+      "independent": {
+        "givenVertex": "BAC",
+        "givenDegrees": 42,
+        "askedVertex": "ABC",
+        "apex": 42,
+        "base": 69,
+        "answer": 69
+      },
+      "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=42^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.",
+      "answer": "$69^\\circ$",
+      "solution": "$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-42^\\circ)=69^\\circ$이다.",
+      "studentContentSha256": "421fde260c0128f13741439bed14c1f7bc6cd24a26279775b90a4f6fd30fbf07",
+      "figureSpecSha256": "7216b519ff122531ab6c484fdb76a6df0c1f4ead7e04b24e9d882b16d605b292",
+      "geometry": {
+        "equalChordError": 0,
+        "equalDistanceError": 0.009335772683463972,
+        "rightFootMErrorPx": 0.0015519943242870851,
+        "rightFootNErrorPx": 0.0020316851711534114,
+        "footMFromMidpointPx": 0.003077297402653809,
+        "footNFromMidpointPx": 0.006980730050413907,
+        "apex": 42.000000000000014,
+        "base": 68.99999999999999
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "42°"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "x"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$71^\\circ$",
+          "$138^\\circ$",
+          "$79^\\circ$",
+          "$69^\\circ$",
+          "$72^\\circ$"
+        ],
+        "answer": "④",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=42^\\circ$일 때, $\\angle ABC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "20589984b536ec7cd87a156350c117313f31150634e55752e00a8d613b083d73",
+        "localFile": "local-render/a42-m0.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 42,
+        "mode": 1
+      },
+      "independent": {
+        "givenVertex": "ABC",
+        "givenDegrees": 69,
+        "askedVertex": "BAC",
+        "apex": 42,
+        "base": 69,
+        "answer": 42
+      },
+      "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=69^\\circ$일 때, $\\angle BAC$의 크기를 구하시오.",
+      "answer": "$42^\\circ$",
+      "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ACB=\\angle ABC=69^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-2\\times69^\\circ=42^\\circ$이다.",
+      "studentContentSha256": "a8e302eab7b8395a017aa5eb777f264c4b5665f29d9c31dc941308446830e8ce",
+      "figureSpecSha256": "4c50d5495164f8b233faea473c136bbee7d7f55a0f57f3379c2d83cdebce6f31",
+      "geometry": {
+        "equalChordError": 0,
+        "equalDistanceError": 0.009335772683463972,
+        "rightFootMErrorPx": 0.0015519943242870851,
+        "rightFootNErrorPx": 0.0020316851711534114,
+        "footMFromMidpointPx": 0.003077297402653809,
+        "footNFromMidpointPx": 0.006980730050413907,
+        "apex": 42.000000000000014,
+        "base": 68.99999999999999
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "x"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "69°"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$21^\\circ$",
+          "$42^\\circ$",
+          "$41^\\circ$",
+          "$52^\\circ$",
+          "$40^\\circ$"
+        ],
+        "answer": "②",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=69^\\circ$일 때, $\\angle BAC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "3fe4cd6af9ed9bff750aaaa35624aad80d3afe4e0c5d28d7a46493117255910b",
+        "localFile": "local-render/a42-m1.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 44,
+        "mode": 0
+      },
+      "independent": {
+        "givenVertex": "BAC",
+        "givenDegrees": 44,
+        "askedVertex": "ABC",
+        "apex": 44,
+        "base": 68,
+        "answer": 68
+      },
+      "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=44^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.",
+      "answer": "$68^\\circ$",
+      "solution": "$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-44^\\circ)=68^\\circ$이다.",
+      "studentContentSha256": "cebc23658f3554351b3336913f76a26c0818e6cde556a97c72980934f7709ac9",
+      "figureSpecSha256": "1d108738affbd8b6e476309591554ece57d8e1cf2ed1e318e6935b5c73d5b97f",
+      "geometry": {
+        "equalChordError": 2.842170943040401e-14,
+        "equalDistanceError": 0.009272359708113243,
+        "rightFootMErrorPx": 0.002088110563951628,
+        "rightFootNErrorPx": 0.005834176498131963,
+        "footMFromMidpointPx": 0.008668157462718009,
+        "footNFromMidpointPx": 0.005897067488236912,
+        "apex": 43.99999999999999,
+        "base": 68
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "44°"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "x"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$58^\\circ$",
+          "$136^\\circ$",
+          "$34^\\circ$",
+          "$68^\\circ$",
+          "$66^\\circ$"
+        ],
+        "answer": "④",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=44^\\circ$일 때, $\\angle ABC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "fe491bff446d61075a560d5ba98fd860b520a12a3d6645855b6cf2c0011625b4",
+        "localFile": "local-render/a44-m0.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 44,
+        "mode": 1
+      },
+      "independent": {
+        "givenVertex": "ABC",
+        "givenDegrees": 68,
+        "askedVertex": "BAC",
+        "apex": 44,
+        "base": 68,
+        "answer": 44
+      },
+      "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=68^\\circ$일 때, $\\angle BAC$의 크기를 구하시오.",
+      "answer": "$44^\\circ$",
+      "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ACB=\\angle ABC=68^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-2\\times68^\\circ=44^\\circ$이다.",
+      "studentContentSha256": "e8d787f05dc76328d31add39e6b0f180ef3ce1fd9676cb4f57187adfc1ea3072",
+      "figureSpecSha256": "920f5b15f2d8219ebc379111f8c4ae8c5f0f826be643bedd332f30cf6fe3952f",
+      "geometry": {
+        "equalChordError": 2.842170943040401e-14,
+        "equalDistanceError": 0.009272359708113243,
+        "rightFootMErrorPx": 0.002088110563951628,
+        "rightFootNErrorPx": 0.005834176498131963,
+        "footMFromMidpointPx": 0.008668157462718009,
+        "footNFromMidpointPx": 0.005897067488236912,
+        "apex": 43.99999999999999,
+        "base": 68
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "x"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "68°"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$42^\\circ$",
+          "$47^\\circ$",
+          "$43^\\circ$",
+          "$34^\\circ$",
+          "$44^\\circ$"
+        ],
+        "answer": "⑤",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=68^\\circ$일 때, $\\angle BAC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "375013285c359b367bc8b5c1de52c624d121846f5dd3db69b1edf0fe9aa891d3",
+        "localFile": "local-render/a44-m1.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 46,
+        "mode": 0
+      },
+      "independent": {
+        "givenVertex": "BAC",
+        "givenDegrees": 46,
+        "askedVertex": "ABC",
+        "apex": 46,
+        "base": 67,
+        "answer": 67
+      },
+      "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=46^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.",
+      "answer": "$67^\\circ$",
+      "solution": "$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-46^\\circ)=67^\\circ$이다.",
+      "studentContentSha256": "0e7006943fbb7b4893f47c06d1d708ccef53cacc3a90d285447a6afa97ffe18c",
+      "figureSpecSha256": "52bf52e12a8c19dc1f39416d9a70a3bd8e8b4c388c23aed76c7421556211eb57",
+      "geometry": {
+        "equalChordError": 0,
+        "equalDistanceError": 1.7763568394002505e-14,
+        "rightFootMErrorPx": 0.0008254415635470952,
+        "rightFootNErrorPx": 0.0008254415635454702,
+        "footMFromMidpointPx": 0.005746621819401576,
+        "footNFromMidpointPx": 0.005746621819421098,
+        "apex": 45.999999999999986,
+        "base": 67.00000000000001
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "46°"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "x"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$134^\\circ$",
+          "$77^\\circ$",
+          "$70^\\circ$",
+          "$69^\\circ$",
+          "$67^\\circ$"
+        ],
+        "answer": "⑤",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=46^\\circ$일 때, $\\angle ABC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "57b2668166f8a39532a2af1aee789ae826b48c451f517c91b36ab43991a5006c",
+        "localFile": "local-render/a46-m0.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 46,
+        "mode": 1
+      },
+      "independent": {
+        "givenVertex": "ABC",
+        "givenDegrees": 67,
+        "askedVertex": "BAC",
+        "apex": 46,
+        "base": 67,
+        "answer": 46
+      },
+      "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=67^\\circ$일 때, $\\angle BAC$의 크기를 구하시오.",
+      "answer": "$46^\\circ$",
+      "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ACB=\\angle ABC=67^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-2\\times67^\\circ=46^\\circ$이다.",
+      "studentContentSha256": "1c5f18655e9463792347ef8ef95bdf416246820b2b83a516d1bbb7cf2882c273",
+      "figureSpecSha256": "84c3ec156e5af58c5fae77db0a4bd7be7efc08a8aa3e2c3ece293911b0de935f",
+      "geometry": {
+        "equalChordError": 0,
+        "equalDistanceError": 1.7763568394002505e-14,
+        "rightFootMErrorPx": 0.0008254415635470952,
+        "rightFootNErrorPx": 0.0008254415635454702,
+        "footMFromMidpointPx": 0.005746621819401576,
+        "footNFromMidpointPx": 0.005746621819421098,
+        "apex": 45.999999999999986,
+        "base": 67.00000000000001
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "x"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "67°"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$44^\\circ$",
+          "$92^\\circ$",
+          "$46^\\circ$",
+          "$56^\\circ$",
+          "$48^\\circ$"
+        ],
+        "answer": "③",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=67^\\circ$일 때, $\\angle BAC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "9a9c8522307cc1762f72f06cda3542b31648e5d58b9ef85731a72eafa9df7159",
+        "localFile": "local-render/a46-m1.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 48,
+        "mode": 0
+      },
+      "independent": {
+        "givenVertex": "BAC",
+        "givenDegrees": 48,
+        "askedVertex": "ABC",
+        "apex": 48,
+        "base": 66,
+        "answer": 66
+      },
+      "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=48^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.",
+      "answer": "$66^\\circ$",
+      "solution": "$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-48^\\circ)=66^\\circ$이다.",
+      "studentContentSha256": "f5ec6fa78693e06b1aed261fcfb769c7a0869fc856440ef98f9b94dee6511d6f",
+      "figureSpecSha256": "f2fd172eabbf1acf2f0a73f77562d6c95a62ee7ce1c6de41d3daf0d4b37074f7",
+      "geometry": {
+        "equalChordError": 2.842170943040401e-14,
+        "equalDistanceError": 1.7763568394002505e-14,
+        "rightFootMErrorPx": 0.002976397893117647,
+        "rightFootNErrorPx": 0.0029763978931094605,
+        "footMFromMidpointPx": 0.003077297402656102,
+        "footNFromMidpointPx": 0.003077297402653809,
+        "apex": 48.00000000000002,
+        "base": 66
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "48°"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "x"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$66^\\circ$",
+          "$65^\\circ$",
+          "$67^\\circ$",
+          "$64^\\circ$",
+          "$33^\\circ$"
+        ],
+        "answer": "①",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=48^\\circ$일 때, $\\angle ABC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "b8254544e318b651d6d92009b6f8635d23c3d7fae3fa259f36d7f11d5dbbba14",
+        "localFile": "local-render/a48-m0.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 48,
+        "mode": 1
+      },
+      "independent": {
+        "givenVertex": "ABC",
+        "givenDegrees": 66,
+        "askedVertex": "BAC",
+        "apex": 48,
+        "base": 66,
+        "answer": 48
+      },
+      "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=66^\\circ$일 때, $\\angle BAC$의 크기를 구하시오.",
+      "answer": "$48^\\circ$",
+      "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ACB=\\angle ABC=66^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-2\\times66^\\circ=48^\\circ$이다.",
+      "studentContentSha256": "3d702b1da0c624faf35637c6bc3f051bf54a36e8cf75c512756772c381a1834c",
+      "figureSpecSha256": "c70d47cb8d5df98e9a58ba3dc66ca610fff7be3a16380e48b7d638aaf7127d5f",
+      "geometry": {
+        "equalChordError": 2.842170943040401e-14,
+        "equalDistanceError": 1.7763568394002505e-14,
+        "rightFootMErrorPx": 0.002976397893117647,
+        "rightFootNErrorPx": 0.0029763978931094605,
+        "footMFromMidpointPx": 0.003077297402656102,
+        "footNFromMidpointPx": 0.003077297402653809,
+        "apex": 48.00000000000002,
+        "base": 66
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "x"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "66°"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$47^\\circ$",
+          "$46^\\circ$",
+          "$48^\\circ$",
+          "$58^\\circ$",
+          "$38^\\circ$"
+        ],
+        "answer": "③",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=66^\\circ$일 때, $\\angle BAC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "4f0f3e6ecad10f5c307d2e35c7d4036456b15eed4e579ecfe2f2a147add84125",
+        "localFile": "local-render/a48-m1.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 50,
+        "mode": 0
+      },
+      "independent": {
+        "givenVertex": "BAC",
+        "givenDegrees": 50,
+        "askedVertex": "ABC",
+        "apex": 50,
+        "base": 65,
+        "answer": 65
+      },
+      "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=50^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.",
+      "answer": "$65^\\circ$",
+      "solution": "$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-50^\\circ)=65^\\circ$이다.",
+      "studentContentSha256": "7bb2f7c527a3babebf0b3c5f1acf2fb5a287ca6255e6beb6bafb676f3fbfaae7",
+      "figureSpecSha256": "56fc86faaade7ca8e9f7d604bbd74fd10c5b6bfae4fe639003588d1088c3bd0a",
+      "geometry": {
+        "equalChordError": 2.842170943040401e-14,
+        "equalDistanceError": 7.105427357601002e-15,
+        "rightFootMErrorPx": 0.0038209291844249786,
+        "rightFootNErrorPx": 0.0038209291844299308,
+        "footMFromMidpointPx": 0.004082706690133285,
+        "footNFromMidpointPx": 0.004082706690145288,
+        "apex": 50,
+        "base": 65
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "50°"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "x"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$67^\\circ$",
+          "$64^\\circ$",
+          "$65^\\circ$",
+          "$68^\\circ$",
+          "$75^\\circ$"
+        ],
+        "answer": "③",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=50^\\circ$일 때, $\\angle ABC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "cdce101744fc70dd40d701a9aefa4db7f7625fb5fb542104999820123a026dd9",
+        "localFile": "local-render/a50-m0.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 50,
+        "mode": 1
+      },
+      "independent": {
+        "givenVertex": "ABC",
+        "givenDegrees": 65,
+        "askedVertex": "BAC",
+        "apex": 50,
+        "base": 65,
+        "answer": 50
+      },
+      "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=65^\\circ$일 때, $\\angle BAC$의 크기를 구하시오.",
+      "answer": "$50^\\circ$",
+      "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ACB=\\angle ABC=65^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-2\\times65^\\circ=50^\\circ$이다.",
+      "studentContentSha256": "8b09231037b0134dc60177341c16af2872aa9de63b50818fd9f81e58c683ad75",
+      "figureSpecSha256": "4d19208ac515f4de6c7970ea89bbf71bacb46f9b03a1e5f9ab5833bf0b4a4482",
+      "geometry": {
+        "equalChordError": 2.842170943040401e-14,
+        "equalDistanceError": 7.105427357601002e-15,
+        "rightFootMErrorPx": 0.0038209291844249786,
+        "rightFootNErrorPx": 0.0038209291844299308,
+        "footMFromMidpointPx": 0.004082706690133285,
+        "footNFromMidpointPx": 0.004082706690145288,
+        "apex": 50,
+        "base": 65
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "x"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "65°"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$50^\\circ$",
+          "$60^\\circ$",
+          "$40^\\circ$",
+          "$48^\\circ$",
+          "$49^\\circ$"
+        ],
+        "answer": "①",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=65^\\circ$일 때, $\\angle BAC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "582ef3bce1a9d5b1c292665f7b7c2a776ab50deac39995e1a7879143a5cdbe9e",
+        "localFile": "local-render/a50-m1.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 52,
+        "mode": 0
+      },
+      "independent": {
+        "givenVertex": "BAC",
+        "givenDegrees": 52,
+        "askedVertex": "ABC",
+        "apex": 52,
+        "base": 64,
+        "answer": 64
+      },
+      "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=52^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.",
+      "answer": "$64^\\circ$",
+      "solution": "$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-52^\\circ)=64^\\circ$이다.",
+      "studentContentSha256": "bb099bd4ec1646b04736c78ee24b5557b26c505cf7104c1f55bb4507fce7289f",
+      "figureSpecSha256": "157809da87acc1250abf693c018fb379ed8ba8567cf180465c66c7ce46493305",
+      "geometry": {
+        "equalChordError": 2.842170943040401e-14,
+        "equalDistanceError": 0.008988549716846705,
+        "rightFootMErrorPx": 0.006822770365019448,
+        "rightFootNErrorPx": 0.0024390588971527787,
+        "footMFromMidpointPx": 0.007410885830839175,
+        "footNFromMidpointPx": 0.006564599752200973,
+        "apex": 51.999999999999986,
+        "base": 63.99999999999999
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "52°"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "x"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$54^\\circ$",
+          "$67^\\circ$",
+          "$63^\\circ$",
+          "$64^\\circ$",
+          "$62^\\circ$"
+        ],
+        "answer": "④",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=52^\\circ$일 때, $\\angle ABC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "d45f976d9e9eb6740c01d6d40ccf0ec41c5d8c794dafbbd0affc389711d0f287",
+        "localFile": "local-render/a52-m0.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 52,
+        "mode": 1
+      },
+      "independent": {
+        "givenVertex": "ABC",
+        "givenDegrees": 64,
+        "askedVertex": "BAC",
+        "apex": 52,
+        "base": 64,
+        "answer": 52
+      },
+      "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=64^\\circ$일 때, $\\angle BAC$의 크기를 구하시오.",
+      "answer": "$52^\\circ$",
+      "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ACB=\\angle ABC=64^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-2\\times64^\\circ=52^\\circ$이다.",
+      "studentContentSha256": "75f57d86e5dc15b58f7e73abe31381ba32155569b5fb00f55ccb6c57c037ec72",
+      "figureSpecSha256": "962be9d866e0e2fe76bd1c320839db939cf09b027af73af6ac7755a29259e5d2",
+      "geometry": {
+        "equalChordError": 2.842170943040401e-14,
+        "equalDistanceError": 0.008988549716846705,
+        "rightFootMErrorPx": 0.006822770365019448,
+        "rightFootNErrorPx": 0.0024390588971527787,
+        "footMFromMidpointPx": 0.007410885830839175,
+        "footNFromMidpointPx": 0.006564599752200973,
+        "apex": 51.999999999999986,
+        "base": 63.99999999999999
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "x"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "64°"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$52^\\circ$",
+          "$54^\\circ$",
+          "$26^\\circ$",
+          "$51^\\circ$",
+          "$55^\\circ$"
+        ],
+        "answer": "①",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=64^\\circ$일 때, $\\angle BAC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "7c1144b806d02e6d495463be0803ffd7cd8e11b3c50868bdb0e7f07c75853506",
+        "localFile": "local-render/a52-m1.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 54,
+        "mode": 0
+      },
+      "independent": {
+        "givenVertex": "BAC",
+        "givenDegrees": 54,
+        "askedVertex": "ABC",
+        "apex": 54,
+        "base": 63,
+        "answer": 63
+      },
+      "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=54^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.",
+      "answer": "$63^\\circ$",
+      "solution": "$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-54^\\circ)=63^\\circ$이다.",
+      "studentContentSha256": "c43ad67b40bb1d93c5a2eeef61564651899e26aa3f3949c4ef66cc44f536f57b",
+      "figureSpecSha256": "9aae7febffb3eda6461c66e6096acef110adbfb69050a2a0e465d2993e73ac7e",
+      "geometry": {
+        "equalChordError": 0,
+        "equalDistanceError": 0.0089095212441066,
+        "rightFootMErrorPx": 0.0018643670406601226,
+        "rightFootNErrorPx": 0.006404272038058474,
+        "footMFromMidpointPx": 0.009390699525158976,
+        "footNFromMidpointPx": 0.0064110032391152755,
+        "apex": 54.000000000000014,
+        "base": 63
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "54°"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "x"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$66^\\circ$",
+          "$63^\\circ$",
+          "$61^\\circ$",
+          "$73^\\circ$",
+          "$126^\\circ$"
+        ],
+        "answer": "②",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=54^\\circ$일 때, $\\angle ABC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "0561c41eda90b59c37211dd074c7851d05a24b50342e369045de3ab02d2306c7",
+        "localFile": "local-render/a54-m0.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 54,
+        "mode": 1
+      },
+      "independent": {
+        "givenVertex": "ABC",
+        "givenDegrees": 63,
+        "askedVertex": "BAC",
+        "apex": 54,
+        "base": 63,
+        "answer": 54
+      },
+      "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=63^\\circ$일 때, $\\angle BAC$의 크기를 구하시오.",
+      "answer": "$54^\\circ$",
+      "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ACB=\\angle ABC=63^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-2\\times63^\\circ=54^\\circ$이다.",
+      "studentContentSha256": "b830d714b5b19857c0d31493f43d901318d293df6b474a9bccda0424a925722f",
+      "figureSpecSha256": "dd8ce4038bd81a12dbe0f0cde640f69dd7f88db50deb156d5af3e47a3b06367c",
+      "geometry": {
+        "equalChordError": 0,
+        "equalDistanceError": 0.0089095212441066,
+        "rightFootMErrorPx": 0.0018643670406601226,
+        "rightFootNErrorPx": 0.006404272038058474,
+        "footMFromMidpointPx": 0.009390699525158976,
+        "footNFromMidpointPx": 0.0064110032391152755,
+        "apex": 54.000000000000014,
+        "base": 63
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "x"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "63°"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$64^\\circ$",
+          "$54^\\circ$",
+          "$55^\\circ$",
+          "$56^\\circ$",
+          "$57^\\circ$"
+        ],
+        "answer": "②",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=63^\\circ$일 때, $\\angle BAC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "6f259c7afb5e0dbbe65849030bf81efb3cac27d89b3fd6d5e8e49c58cd77d248",
+        "localFile": "local-render/a54-m1.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 56,
+        "mode": 0
+      },
+      "independent": {
+        "givenVertex": "BAC",
+        "givenDegrees": 56,
+        "askedVertex": "ABC",
+        "apex": 56,
+        "base": 62,
+        "answer": 62
+      },
+      "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=56^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.",
+      "answer": "$62^\\circ$",
+      "solution": "$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-56^\\circ)=62^\\circ$이다.",
+      "studentContentSha256": "b9f9e866acb1e1d302fd3c06e6e13cf5db1856cb1eeb99bc25c45f6c9a5c9dc5",
+      "figureSpecSha256": "78fa2ddf8ab7bcb508c3ade905b7e2c572d239b9110107752806e281914a3533",
+      "geometry": {
+        "equalChordError": 5.684341886080802e-14,
+        "equalDistanceError": 0.00882965081981979,
+        "rightFootMErrorPx": 0.003676762996377203,
+        "rightFootNErrorPx": 0.001017952631463286,
+        "footMFromMidpointPx": 0.006606272188379382,
+        "footNFromMidpointPx": 0.0034925598146129007,
+        "apex": 55.99999999999999,
+        "base": 62.00000000000001
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "56°"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "x"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$61^\\circ$",
+          "$31^\\circ$",
+          "$52^\\circ$",
+          "$64^\\circ$",
+          "$62^\\circ$"
+        ],
+        "answer": "⑤",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=56^\\circ$일 때, $\\angle ABC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "4a6c69e9d8c781f6ce583a3d60d260c247e8918673d8ad62fa580ab0746392d7",
+        "localFile": "local-render/a56-m0.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 56,
+        "mode": 1
+      },
+      "independent": {
+        "givenVertex": "ABC",
+        "givenDegrees": 62,
+        "askedVertex": "BAC",
+        "apex": 56,
+        "base": 62,
+        "answer": 56
+      },
+      "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=62^\\circ$일 때, $\\angle BAC$의 크기를 구하시오.",
+      "answer": "$56^\\circ$",
+      "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ACB=\\angle ABC=62^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-2\\times62^\\circ=56^\\circ$이다.",
+      "studentContentSha256": "56242c6469f6444eec3a6faf646f5c251cf3cf14964394f6fcafedfe021d2f07",
+      "figureSpecSha256": "f549b59742fb0414f1c3aa38e448e3a52faad0419ac66cfadea85ed6f81ad7a6",
+      "geometry": {
+        "equalChordError": 5.684341886080802e-14,
+        "equalDistanceError": 0.00882965081981979,
+        "rightFootMErrorPx": 0.003676762996377203,
+        "rightFootNErrorPx": 0.001017952631463286,
+        "footMFromMidpointPx": 0.006606272188379382,
+        "footNFromMidpointPx": 0.0034925598146129007,
+        "apex": 55.99999999999999,
+        "base": 62.00000000000001
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "x"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "62°"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$28^\\circ$",
+          "$112^\\circ$",
+          "$58^\\circ$",
+          "$56^\\circ$",
+          "$46^\\circ$"
+        ],
+        "answer": "④",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=62^\\circ$일 때, $\\angle BAC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "71af45eca98624b3661b5340d49d7a12eb2ff9a0c9e4460075066ea9db800281",
+        "localFile": "local-render/a56-m1.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 58,
+        "mode": 0
+      },
+      "independent": {
+        "givenVertex": "BAC",
+        "givenDegrees": 58,
+        "askedVertex": "ABC",
+        "apex": 58,
+        "base": 61,
+        "answer": 61
+      },
+      "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=58^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.",
+      "answer": "$61^\\circ$",
+      "solution": "$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-58^\\circ)=61^\\circ$이다.",
+      "studentContentSha256": "22c4b0b988c6e5cdded9816ceab3df7e727d6c13b9c85bffdb7d292b459a6be4",
+      "figureSpecSha256": "5a83948f57cfdf4240c25f18a2959d9bcc7f44e22b0cc9c4c9049fa12b978ed4",
+      "geometry": {
+        "equalChordError": 5.684341886080802e-14,
+        "equalDistanceError": 0.00874649732250532,
+        "rightFootMErrorPx": 0.004706091029808288,
+        "rightFootNErrorPx": 0.0001420051726253893,
+        "footMFromMidpointPx": 0.005178884521107596,
+        "footNFromMidpointPx": 0.0065858882291672085,
+        "apex": 57.999999999999964,
+        "base": 61
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "58°"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "x"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$122^\\circ$",
+          "$64^\\circ$",
+          "$59^\\circ$",
+          "$61^\\circ$",
+          "$51^\\circ$"
+        ],
+        "answer": "④",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=58^\\circ$일 때, $\\angle ABC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "957fd888b22335a9d55715acc1efec3b1cb988e2cc30b0ba3623bebaa768fbda",
+        "localFile": "local-render/a58-m0.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 58,
+        "mode": 1
+      },
+      "independent": {
+        "givenVertex": "ABC",
+        "givenDegrees": 61,
+        "askedVertex": "BAC",
+        "apex": 58,
+        "base": 61,
+        "answer": 58
+      },
+      "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=61^\\circ$일 때, $\\angle BAC$의 크기를 구하시오.",
+      "answer": "$58^\\circ$",
+      "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ACB=\\angle ABC=61^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-2\\times61^\\circ=58^\\circ$이다.",
+      "studentContentSha256": "2155841dd13f969428fcfa7a11a5336db0040745c1816204b3c1552813694d00",
+      "figureSpecSha256": "65be92d3626d22da013ca8f6162a3b1faacc484ece5e00db6a868048a2ca93c8",
+      "geometry": {
+        "equalChordError": 5.684341886080802e-14,
+        "equalDistanceError": 0.00874649732250532,
+        "rightFootMErrorPx": 0.004706091029808288,
+        "rightFootNErrorPx": 0.0001420051726253893,
+        "footMFromMidpointPx": 0.005178884521107596,
+        "footNFromMidpointPx": 0.0065858882291672085,
+        "apex": 57.999999999999964,
+        "base": 61
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "x"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "61°"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$58^\\circ$",
+          "$116^\\circ$",
+          "$60^\\circ$",
+          "$57^\\circ$",
+          "$61^\\circ$"
+        ],
+        "answer": "①",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=61^\\circ$일 때, $\\angle BAC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "8855893e71b7ebe475d4c787fa473f5040a84fc8fe4d8770e9db386e7d811996",
+        "localFile": "local-render/a58-m1.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 60,
+        "mode": 0
+      },
+      "independent": {
+        "givenVertex": "BAC",
+        "givenDegrees": 60,
+        "askedVertex": "ABC",
+        "apex": 60,
+        "base": 60,
+        "answer": 60
+      },
+      "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=60^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.",
+      "answer": "$60^\\circ$",
+      "solution": "$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-60^\\circ)=60^\\circ$이다.",
+      "studentContentSha256": "7d04b855a424d63828fbc31be76cfde92804f864e81e15e5c4302eaf647ae90d",
+      "figureSpecSha256": "b9d989974478605b0ad638e4f11b2c345614a526b6668d6fd4c2e879bae6eb11",
+      "geometry": {
+        "equalChordError": 2.842170943040401e-14,
+        "equalDistanceError": 0,
+        "rightFootMErrorPx": 0.000517328095654816,
+        "rightFootNErrorPx": 0.0005173280956617253,
+        "footMFromMidpointPx": 0.0010346561913365804,
+        "footNFromMidpointPx": 0.0010346561913365804,
+        "apex": 59.99999999999999,
+        "base": 60.00000000000001
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "60°"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "x"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$63^\\circ$",
+          "$70^\\circ$",
+          "$60^\\circ$",
+          "$61^\\circ$",
+          "$120^\\circ$"
+        ],
+        "answer": "③",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=60^\\circ$일 때, $\\angle ABC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "585d2ee6dddd8acb7dbbb55e6c9e342da4e4c181dfe718020b4b7cd7b4a4b949",
+        "localFile": "local-render/a60-m0.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 60,
+        "mode": 1
+      },
+      "independent": {
+        "givenVertex": "ABC",
+        "givenDegrees": 60,
+        "askedVertex": "BAC",
+        "apex": 60,
+        "base": 60,
+        "answer": 60
+      },
+      "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=60^\\circ$일 때, $\\angle BAC$의 크기를 구하시오.",
+      "answer": "$60^\\circ$",
+      "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ACB=\\angle ABC=60^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-2\\times60^\\circ=60^\\circ$이다.",
+      "studentContentSha256": "6db12d8458bbfea488d0e21e9310c707882d0a36635f1b37f38c34deefbe0cdd",
+      "figureSpecSha256": "a187618e303be3594aae03ded78bd5f3c3f8348034f605d988f376738092199a",
+      "geometry": {
+        "equalChordError": 2.842170943040401e-14,
+        "equalDistanceError": 0,
+        "rightFootMErrorPx": 0.000517328095654816,
+        "rightFootNErrorPx": 0.0005173280956617253,
+        "footMFromMidpointPx": 0.0010346561913365804,
+        "footNFromMidpointPx": 0.0010346561913365804,
+        "apex": 59.99999999999999,
+        "base": 60.00000000000001
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "x"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "60°"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$63^\\circ$",
+          "$120^\\circ$",
+          "$62^\\circ$",
+          "$60^\\circ$",
+          "$61^\\circ$"
+        ],
+        "answer": "④",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=60^\\circ$일 때, $\\angle BAC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "464468b4fc70007daf83ad1bddaa5e0999372ebf8f635ed0f22136b60fb3503b",
+        "localFile": "local-render/a60-m1.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 62,
+        "mode": 0
+      },
+      "independent": {
+        "givenVertex": "BAC",
+        "givenDegrees": 62,
+        "askedVertex": "ABC",
+        "apex": 62,
+        "base": 59,
+        "answer": 59
+      },
+      "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=62^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.",
+      "answer": "$59^\\circ$",
+      "solution": "$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-62^\\circ)=59^\\circ$이다.",
+      "studentContentSha256": "0660a001a38bb6b946a8aa8912d51fd47a1881a8e96e72b6ea9a1974d98442cb",
+      "figureSpecSha256": "0f95bdb792b0d4bcd25bc9ac33fe7b5ad9390fbf600c5227f797c1516c0c13a9",
+      "geometry": {
+        "equalChordError": 0,
+        "equalDistanceError": 1.4210854715202004e-14,
+        "rightFootMErrorPx": 0.0009653689222599666,
+        "rightFootNErrorPx": 0.0009653689222669471,
+        "footMFromMidpointPx": 0.0020101457493101773,
+        "footNFromMidpointPx": 0.002010145749324377,
+        "apex": 61.999999999999986,
+        "base": 59
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "62°"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "x"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$59^\\circ$",
+          "$69^\\circ$",
+          "$61^\\circ$",
+          "$57^\\circ$",
+          "$58^\\circ$"
+        ],
+        "answer": "①",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=62^\\circ$일 때, $\\angle ABC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "d9a0a561106bba32ea9267bb4ca161d0a197b892022db9d53fc5a59d4f392f79",
+        "localFile": "local-render/a62-m0.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 62,
+        "mode": 1
+      },
+      "independent": {
+        "givenVertex": "ABC",
+        "givenDegrees": 59,
+        "askedVertex": "BAC",
+        "apex": 62,
+        "base": 59,
+        "answer": 62
+      },
+      "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=59^\\circ$일 때, $\\angle BAC$의 크기를 구하시오.",
+      "answer": "$62^\\circ$",
+      "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ACB=\\angle ABC=59^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-2\\times59^\\circ=62^\\circ$이다.",
+      "studentContentSha256": "228f18c19852215bba261e5d877540088e0bc22840a4e8225f78ad0ef472382a",
+      "figureSpecSha256": "21e2ea0685cc91ea47c5f99d49b5f2acdcddeef4df07a6d6ca7e795db56ead37",
+      "geometry": {
+        "equalChordError": 0,
+        "equalDistanceError": 1.4210854715202004e-14,
+        "rightFootMErrorPx": 0.0009653689222599666,
+        "rightFootNErrorPx": 0.0009653689222669471,
+        "footMFromMidpointPx": 0.0020101457493101773,
+        "footNFromMidpointPx": 0.002010145749324377,
+        "apex": 61.999999999999986,
+        "base": 59
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "x"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "59°"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$62^\\circ$",
+          "$65^\\circ$",
+          "$63^\\circ$",
+          "$60^\\circ$",
+          "$31^\\circ$"
+        ],
+        "answer": "①",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=59^\\circ$일 때, $\\angle BAC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "315a125a3f149a726da6ed8c20030069168e61ba72b311fe67814b972990962f",
+        "localFile": "local-render/a62-m1.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 64,
+        "mode": 0
+      },
+      "independent": {
+        "givenVertex": "BAC",
+        "givenDegrees": 64,
+        "askedVertex": "ABC",
+        "apex": 64,
+        "base": 58,
+        "answer": 58
+      },
+      "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=64^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.",
+      "answer": "$58^\\circ$",
+      "solution": "$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-64^\\circ)=58^\\circ$이다.",
+      "studentContentSha256": "b0343ed9b1309aaface084949df0364e8d1e2df3f875a02f8d7e17e72db0f578",
+      "figureSpecSha256": "97180be5c62e87f8402256fb63f80f55973b1b36858c4c812a36651959d28f0d",
+      "geometry": {
+        "equalChordError": 2.842170943040401e-14,
+        "equalDistanceError": 0.008480750157715988,
+        "rightFootMErrorPx": 0.004695694228152715,
+        "rightFootNErrorPx": 0.0006034984141712311,
+        "footMFromMidpointPx": 0.006127111583535726,
+        "footNFromMidpointPx": 0.004584395677081924,
+        "apex": 64.00000000000001,
+        "base": 57.99999999999999
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "64°"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "x"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$59^\\circ$",
+          "$56^\\circ$",
+          "$29^\\circ$",
+          "$68^\\circ$",
+          "$58^\\circ$"
+        ],
+        "answer": "⑤",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=64^\\circ$일 때, $\\angle ABC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "0a8e1ceee25738fd835cb8e79aeeb1e548ebd1da9733043e91b4abe8c6b9f433",
+        "localFile": "local-render/a64-m0.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 64,
+        "mode": 1
+      },
+      "independent": {
+        "givenVertex": "ABC",
+        "givenDegrees": 58,
+        "askedVertex": "BAC",
+        "apex": 64,
+        "base": 58,
+        "answer": 64
+      },
+      "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=58^\\circ$일 때, $\\angle BAC$의 크기를 구하시오.",
+      "answer": "$64^\\circ$",
+      "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ACB=\\angle ABC=58^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-2\\times58^\\circ=64^\\circ$이다.",
+      "studentContentSha256": "80990346eb53e83f1cffb5b625c51dff5739850e3500348441a0bfc1833e87fe",
+      "figureSpecSha256": "507b6ca48c576ab9aefcc042ec2c81cf20cfc3892c3402b7aacc2d8d865f6c85",
+      "geometry": {
+        "equalChordError": 2.842170943040401e-14,
+        "equalDistanceError": 0.008480750157715988,
+        "rightFootMErrorPx": 0.004695694228152715,
+        "rightFootNErrorPx": 0.0006034984141712311,
+        "footMFromMidpointPx": 0.006127111583535726,
+        "footNFromMidpointPx": 0.004584395677081924,
+        "apex": 64.00000000000001,
+        "base": 57.99999999999999
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "x"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "58°"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$66^\\circ$",
+          "$63^\\circ$",
+          "$64^\\circ$",
+          "$54^\\circ$",
+          "$32^\\circ$"
+        ],
+        "answer": "③",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=58^\\circ$일 때, $\\angle BAC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "c3c7bfa1e5e5f8279be8d84c302af01648c502d43d004df90ee174af56a209db",
+        "localFile": "local-render/a64-m1.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 66,
+        "mode": 0
+      },
+      "independent": {
+        "givenVertex": "BAC",
+        "givenDegrees": 66,
+        "askedVertex": "ABC",
+        "apex": 66,
+        "base": 57,
+        "answer": 57
+      },
+      "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=66^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.",
+      "answer": "$57^\\circ$",
+      "solution": "$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-66^\\circ)=57^\\circ$이다.",
+      "studentContentSha256": "ca7154aa724e4ed73e0044ce4edf7d147ab29e2e3b2429ce158ab22f6db1e4ae",
+      "figureSpecSha256": "92ca38f3f654394372d65810fa51d6107380cdb0fbdbba7de4ebf065700bc243",
+      "geometry": {
+        "equalChordError": 4.263256414560601e-14,
+        "equalDistanceError": 0.0083871674291629,
+        "rightFootMErrorPx": 0.0062326942318773546,
+        "rightFootNErrorPx": 0.0007863038817327216,
+        "footMFromMidpointPx": 0.006622761807048862,
+        "footNFromMidpointPx": 0.006197481934609934,
+        "apex": 66.00000000000001,
+        "base": 56.999999999999986
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "66°"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "x"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$57^\\circ$",
+          "$47^\\circ$",
+          "$114^\\circ$",
+          "$60^\\circ$",
+          "$55^\\circ$"
+        ],
+        "answer": "①",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=66^\\circ$일 때, $\\angle ABC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "fa09d1656a1e84dfcc82e29f4f80f81916a73a0749efa2e90eb229474adf8287",
+        "localFile": "local-render/a66-m0.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 66,
+        "mode": 1
+      },
+      "independent": {
+        "givenVertex": "ABC",
+        "givenDegrees": 57,
+        "askedVertex": "BAC",
+        "apex": 66,
+        "base": 57,
+        "answer": 66
+      },
+      "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=57^\\circ$일 때, $\\angle BAC$의 크기를 구하시오.",
+      "answer": "$66^\\circ$",
+      "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ACB=\\angle ABC=57^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-2\\times57^\\circ=66^\\circ$이다.",
+      "studentContentSha256": "bbc5ab5b1d2c81b1cac39d5dcb9fca505dd53041d3f04461f295442d3a64fad7",
+      "figureSpecSha256": "d5b4d5f05dec0d93b188ee3af0042fefc24f17731f23e35daf647af35723bbe1",
+      "geometry": {
+        "equalChordError": 4.263256414560601e-14,
+        "equalDistanceError": 0.0083871674291629,
+        "rightFootMErrorPx": 0.0062326942318773546,
+        "rightFootNErrorPx": 0.0007863038817327216,
+        "footMFromMidpointPx": 0.006622761807048862,
+        "footNFromMidpointPx": 0.006197481934609934,
+        "apex": 66.00000000000001,
+        "base": 56.999999999999986
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "x"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "57°"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$68^\\circ$",
+          "$66^\\circ$",
+          "$56^\\circ$",
+          "$69^\\circ$",
+          "$64^\\circ$"
+        ],
+        "answer": "②",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=57^\\circ$일 때, $\\angle BAC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "1cc1780732ccd0e8cb0cfd1f6756bfeb86ab5bce2d4164fab0a27575710719d7",
+        "localFile": "local-render/a66-m1.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 68,
+        "mode": 0
+      },
+      "independent": {
+        "givenVertex": "BAC",
+        "givenDegrees": 68,
+        "askedVertex": "ABC",
+        "apex": 68,
+        "base": 56,
+        "answer": 56
+      },
+      "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=68^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.",
+      "answer": "$56^\\circ$",
+      "solution": "$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-68^\\circ)=56^\\circ$이다.",
+      "studentContentSha256": "5f171dcc864ebe3ae911121319169020f5cdedc2b6c2117404e070d85b6c8050",
+      "figureSpecSha256": "9fc39ae80fcdf7e449b2844473025ba886406d60d1152b8ff0391337987659d0",
+      "geometry": {
+        "equalChordError": 4.263256414560601e-14,
+        "equalDistanceError": 0.008291063719198632,
+        "rightFootMErrorPx": 0.008025194401322225,
+        "rightFootNErrorPx": 0.002433265366619013,
+        "footMFromMidpointPx": 0.008584090555815094,
+        "footNFromMidpointPx": 0.005780664445271854,
+        "apex": 68,
+        "base": 55.99999999999999
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "68°"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "x"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$66^\\circ$",
+          "$28^\\circ$",
+          "$56^\\circ$",
+          "$58^\\circ$",
+          "$112^\\circ$"
+        ],
+        "answer": "③",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=68^\\circ$일 때, $\\angle ABC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "2431c4f5e40e3763c01c60ae7f51898a84f467ac6f08c2b69b0befa28d00d392",
+        "localFile": "local-render/a68-m0.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 68,
+        "mode": 1
+      },
+      "independent": {
+        "givenVertex": "ABC",
+        "givenDegrees": 56,
+        "askedVertex": "BAC",
+        "apex": 68,
+        "base": 56,
+        "answer": 68
+      },
+      "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=56^\\circ$일 때, $\\angle BAC$의 크기를 구하시오.",
+      "answer": "$68^\\circ$",
+      "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ACB=\\angle ABC=56^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-2\\times56^\\circ=68^\\circ$이다.",
+      "studentContentSha256": "d4392e841bf298293f619e88e5247450907e676d16a846c93385dda61d703581",
+      "figureSpecSha256": "44510a7bbb12bd18a825840e0b15c3316d47c5c796bf961f7e856fb7d63b1142",
+      "geometry": {
+        "equalChordError": 4.263256414560601e-14,
+        "equalDistanceError": 0.008291063719198632,
+        "rightFootMErrorPx": 0.008025194401322225,
+        "rightFootNErrorPx": 0.002433265366619013,
+        "footMFromMidpointPx": 0.008584090555815094,
+        "footNFromMidpointPx": 0.005780664445271854,
+        "apex": 68,
+        "base": 55.99999999999999
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "x"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "56°"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$67^\\circ$",
+          "$69^\\circ$",
+          "$70^\\circ$",
+          "$68^\\circ$",
+          "$136^\\circ$"
+        ],
+        "answer": "④",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=56^\\circ$일 때, $\\angle BAC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "b3e17e5b9baa8cd66a7d1ae085d1ec4bb1e8d49f3be9822d0a98e272ae037058",
+        "localFile": "local-render/a68-m1.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 70,
+        "mode": 0
+      },
+      "independent": {
+        "givenVertex": "BAC",
+        "givenDegrees": 70,
+        "askedVertex": "ABC",
+        "apex": 70,
+        "base": 55,
+        "answer": 55
+      },
+      "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=70^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.",
+      "answer": "$55^\\circ$",
+      "solution": "$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-70^\\circ)=55^\\circ$이다.",
+      "studentContentSha256": "4fa4b1b584382a61fa97e0afd56f1367bb27ea7b3c1ac9a90b4fcff52e320585",
+      "figureSpecSha256": "d1e7fbebc953ca3e3bd697ed0be7ca31b629627cdff03849927fae74b1b6ac5b",
+      "geometry": {
+        "equalChordError": 2.842170943040401e-14,
+        "equalDistanceError": 7.105427357601002e-15,
+        "rightFootMErrorPx": 0.0036134348710678134,
+        "rightFootNErrorPx": 0.0036134348710641605,
+        "footMFromMidpointPx": 0.0036450123969390988,
+        "footNFromMidpointPx": 0.0036450123969325476,
+        "apex": 70,
+        "base": 55
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "70°"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "x"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$54^\\circ$",
+          "$58^\\circ$",
+          "$55^\\circ$",
+          "$65^\\circ$",
+          "$110^\\circ$"
+        ],
+        "answer": "③",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=70^\\circ$일 때, $\\angle ABC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "f03f5ecd7c63fbc336779348be556976f3c4b2cdb7494d665d10e1c1174ccb19",
+        "localFile": "local-render/a70-m0.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 70,
+        "mode": 1
+      },
+      "independent": {
+        "givenVertex": "ABC",
+        "givenDegrees": 55,
+        "askedVertex": "BAC",
+        "apex": 70,
+        "base": 55,
+        "answer": 70
+      },
+      "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=55^\\circ$일 때, $\\angle BAC$의 크기를 구하시오.",
+      "answer": "$70^\\circ$",
+      "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ACB=\\angle ABC=55^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-2\\times55^\\circ=70^\\circ$이다.",
+      "studentContentSha256": "a4c94286b1c295570602a9b5297a18cab45fd185cfa3282e33aeda9bd95da0f3",
+      "figureSpecSha256": "3a9020c9d6f749c113a82f983fe949889cf0318c5815b883b7745968257c6a77",
+      "geometry": {
+        "equalChordError": 2.842170943040401e-14,
+        "equalDistanceError": 7.105427357601002e-15,
+        "rightFootMErrorPx": 0.0036134348710678134,
+        "rightFootNErrorPx": 0.0036134348710641605,
+        "footMFromMidpointPx": 0.0036450123969390988,
+        "footNFromMidpointPx": 0.0036450123969325476,
+        "apex": 70,
+        "base": 55
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "x"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "55°"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$70^\\circ$",
+          "$69^\\circ$",
+          "$140^\\circ$",
+          "$68^\\circ$",
+          "$60^\\circ$"
+        ],
+        "answer": "①",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=55^\\circ$일 때, $\\angle BAC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "cf728693b46413a6eb101c2ff04304bac324f97e193bbbdfde9c126b5af2ea8f",
+        "localFile": "local-render/a70-m1.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 72,
+        "mode": 0
+      },
+      "independent": {
+        "givenVertex": "BAC",
+        "givenDegrees": 72,
+        "askedVertex": "ABC",
+        "apex": 72,
+        "base": 54,
+        "answer": 54
+      },
+      "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=72^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.",
+      "answer": "$54^\\circ$",
+      "solution": "$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-72^\\circ)=54^\\circ$이다.",
+      "studentContentSha256": "a66944de74608484d7a785fe62f892de2d5bbc98be42751ea0810de150fcbde7",
+      "figureSpecSha256": "be1abdbfc176be58a7a0e12917350b5fe5ae68ccca8d67c7f8103e231291d3b7",
+      "geometry": {
+        "equalChordError": 0,
+        "equalDistanceError": 1.4210854715202004e-14,
+        "rightFootMErrorPx": 0.005862915507595231,
+        "rightFootNErrorPx": 0.005862915507602627,
+        "footMFromMidpointPx": 0.007355695163811661,
+        "footNFromMidpointPx": 0.007355695163811376,
+        "apex": 72,
+        "base": 54
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "72°"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "x"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$27^\\circ$",
+          "$44^\\circ$",
+          "$54^\\circ$",
+          "$55^\\circ$",
+          "$53^\\circ$"
+        ],
+        "answer": "③",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=72^\\circ$일 때, $\\angle ABC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "0fc534b1794d85f3278ccc7072691addf66578ba7a3b6ab87ab0cc3ac2e611d0",
+        "localFile": "local-render/a72-m0.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 72,
+        "mode": 1
+      },
+      "independent": {
+        "givenVertex": "ABC",
+        "givenDegrees": 54,
+        "askedVertex": "BAC",
+        "apex": 72,
+        "base": 54,
+        "answer": 72
+      },
+      "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=54^\\circ$일 때, $\\angle BAC$의 크기를 구하시오.",
+      "answer": "$72^\\circ$",
+      "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ACB=\\angle ABC=54^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-2\\times54^\\circ=72^\\circ$이다.",
+      "studentContentSha256": "b81c122c4279f19ab2d9b21d5d213966e3b3255ff6d828a8998689d903e71a72",
+      "figureSpecSha256": "5a504b92c92a588fb759a393086f030f0b3e621e73abe59691b18e3700530c65",
+      "geometry": {
+        "equalChordError": 0,
+        "equalDistanceError": 1.4210854715202004e-14,
+        "rightFootMErrorPx": 0.005862915507595231,
+        "rightFootNErrorPx": 0.005862915507602627,
+        "footMFromMidpointPx": 0.007355695163811661,
+        "footNFromMidpointPx": 0.007355695163811376,
+        "apex": 72,
+        "base": 54
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "x"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "54°"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$72^\\circ$",
+          "$75^\\circ$",
+          "$62^\\circ$",
+          "$70^\\circ$",
+          "$82^\\circ$"
+        ],
+        "answer": "①",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=54^\\circ$일 때, $\\angle BAC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "dbb6ab87fa14cbd43623a69f7be4d690036014332cc3a2c3f9fc3cbf91821dfe",
+        "localFile": "local-render/a72-m1.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 74,
+        "mode": 0
+      },
+      "independent": {
+        "givenVertex": "BAC",
+        "givenDegrees": 74,
+        "askedVertex": "ABC",
+        "apex": 74,
+        "base": 53,
+        "answer": 53
+      },
+      "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=74^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.",
+      "answer": "$53^\\circ$",
+      "solution": "$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-74^\\circ)=53^\\circ$이다.",
+      "studentContentSha256": "0978a6221b9832ccc0d1a60f4b38eeb4cd1b1f9649420e742f5cf3ac8f05e5a3",
+      "figureSpecSha256": "d05fb9ed1221b9eb033b1e2d4ced8fc8967682f5d4a28d0a6c2f7b38da2d21fe",
+      "geometry": {
+        "equalChordError": 4.263256414560601e-14,
+        "equalDistanceError": 0,
+        "rightFootMErrorPx": 0.002132795857657636,
+        "rightFootNErrorPx": 0.0021327958576426525,
+        "footMFromMidpointPx": 0.0046935766232442284,
+        "footNFromMidpointPx": 0.004693576623218677,
+        "apex": 74,
+        "base": 52.999999999999986
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "74°"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "x"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$54^\\circ$",
+          "$63^\\circ$",
+          "$56^\\circ$",
+          "$43^\\circ$",
+          "$53^\\circ$"
+        ],
+        "answer": "⑤",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=74^\\circ$일 때, $\\angle ABC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "325208749e4b999dc5b4f048479bcff9b55c1b94d9f4aa64fd2f7fc3b80518b6",
+        "localFile": "local-render/a74-m0.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 74,
+        "mode": 1
+      },
+      "independent": {
+        "givenVertex": "ABC",
+        "givenDegrees": 53,
+        "askedVertex": "BAC",
+        "apex": 74,
+        "base": 53,
+        "answer": 74
+      },
+      "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=53^\\circ$일 때, $\\angle BAC$의 크기를 구하시오.",
+      "answer": "$74^\\circ$",
+      "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ACB=\\angle ABC=53^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-2\\times53^\\circ=74^\\circ$이다.",
+      "studentContentSha256": "ba8b5ba4fe29b75fe2812d3bd375023af9d5456acf6088f3ad184aa64ce785f8",
+      "figureSpecSha256": "4d175ccbb949d90dc9e254eccef8fb0d17f46d535f833f8dba6baada4fbeb019",
+      "geometry": {
+        "equalChordError": 4.263256414560601e-14,
+        "equalDistanceError": 0,
+        "rightFootMErrorPx": 0.002132795857657636,
+        "rightFootNErrorPx": 0.0021327958576426525,
+        "footMFromMidpointPx": 0.0046935766232442284,
+        "footNFromMidpointPx": 0.004693576623218677,
+        "apex": 74,
+        "base": 52.999999999999986
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "x"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "53°"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$74^\\circ$",
+          "$77^\\circ$",
+          "$84^\\circ$",
+          "$72^\\circ$",
+          "$37^\\circ$"
+        ],
+        "answer": "①",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=53^\\circ$일 때, $\\angle BAC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "e9a005f87db0713a5767d0c4d0acf84581d299bd627d45925e5462531ce1b469",
+        "localFile": "local-render/a74-m1.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 76,
+        "mode": 0
+      },
+      "independent": {
+        "givenVertex": "BAC",
+        "givenDegrees": 76,
+        "askedVertex": "ABC",
+        "apex": 76,
+        "base": 52,
+        "answer": 52
+      },
+      "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=76^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.",
+      "answer": "$52^\\circ$",
+      "solution": "$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-76^\\circ)=52^\\circ$이다.",
+      "studentContentSha256": "f79385b12994863226c7021df28edca70d929bdc2e20964da1520c870562b6dd",
+      "figureSpecSha256": "9adb4bba76fef1291ff5768d0ef17a3d323c51a031978b14809c665285ad4fbb",
+      "geometry": {
+        "equalChordError": 1.4210854715202004e-14,
+        "equalDistanceError": 0,
+        "rightFootMErrorPx": 0.0031512161526378773,
+        "rightFootNErrorPx": 0.003151216152626488,
+        "footMFromMidpointPx": 0.0032748851645498698,
+        "footNFromMidpointPx": 0.0032748851645235558,
+        "apex": 76,
+        "base": 51.999999999999986
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "76°"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "x"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$52^\\circ$",
+          "$26^\\circ$",
+          "$62^\\circ$",
+          "$53^\\circ$",
+          "$51^\\circ$"
+        ],
+        "answer": "①",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=76^\\circ$일 때, $\\angle ABC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "d8f998cfc837480d4fcc5ba0368cd76ab8bf2cdba748c8959acea9756c14790b",
+        "localFile": "local-render/a76-m0.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 76,
+        "mode": 1
+      },
+      "independent": {
+        "givenVertex": "ABC",
+        "givenDegrees": 52,
+        "askedVertex": "BAC",
+        "apex": 76,
+        "base": 52,
+        "answer": 76
+      },
+      "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=52^\\circ$일 때, $\\angle BAC$의 크기를 구하시오.",
+      "answer": "$76^\\circ$",
+      "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ACB=\\angle ABC=52^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-2\\times52^\\circ=76^\\circ$이다.",
+      "studentContentSha256": "2f564918f9f576dfdd4de6100e30646d323b46f92246a6a8ffed3e045e58135b",
+      "figureSpecSha256": "4f72051b7ca76c8e59033db4b0e8393aa0a0254a12ea18617f22b7d7cc0c087f",
+      "geometry": {
+        "equalChordError": 1.4210854715202004e-14,
+        "equalDistanceError": 0,
+        "rightFootMErrorPx": 0.0031512161526378773,
+        "rightFootNErrorPx": 0.003151216152626488,
+        "footMFromMidpointPx": 0.0032748851645498698,
+        "footNFromMidpointPx": 0.0032748851645235558,
+        "apex": 76,
+        "base": 51.999999999999986
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "x"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "52°"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$76^\\circ$",
+          "$77^\\circ$",
+          "$75^\\circ$",
+          "$74^\\circ$",
+          "$38^\\circ$"
+        ],
+        "answer": "①",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=52^\\circ$일 때, $\\angle BAC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "76df0b8fa9b8b8f279ca023383970608a4342dd9001f1b7569fa7e53e322244a",
+        "localFile": "local-render/a76-m1.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 78,
+        "mode": 0
+      },
+      "independent": {
+        "givenVertex": "BAC",
+        "givenDegrees": 78,
+        "askedVertex": "ABC",
+        "apex": 78,
+        "base": 51,
+        "answer": 51
+      },
+      "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=78^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.",
+      "answer": "$51^\\circ$",
+      "solution": "$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-78^\\circ)=51^\\circ$이다.",
+      "studentContentSha256": "0563fca60a85a0d0e5ca5ea9aa993146b073c21c9d458b30321f9f075156ad10",
+      "figureSpecSha256": "4e0c86c38995af5f5c6bbef691ef8123d7e4d12cef2947dd8c32b4c05602d9cd",
+      "geometry": {
+        "equalChordError": 5.684341886080802e-14,
+        "equalDistanceError": 7.105427357601002e-15,
+        "rightFootMErrorPx": 0.00025450453237735256,
+        "rightFootNErrorPx": 0.0002545045323542546,
+        "footMFromMidpointPx": 0.0007537075502610376,
+        "footNFromMidpointPx": 0.0007537075502441189,
+        "apex": 78,
+        "base": 50.99999999999999
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "78°"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "x"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$49^\\circ$",
+          "$53^\\circ$",
+          "$54^\\circ$",
+          "$41^\\circ$",
+          "$51^\\circ$"
+        ],
+        "answer": "⑤",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=78^\\circ$일 때, $\\angle ABC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "5dcf3732308119dc7bac12fadc166b8f56dd1fe5321a55673124c8b40acaad16",
+        "localFile": "local-render/a78-m0.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 78,
+        "mode": 1
+      },
+      "independent": {
+        "givenVertex": "ABC",
+        "givenDegrees": 51,
+        "askedVertex": "BAC",
+        "apex": 78,
+        "base": 51,
+        "answer": 78
+      },
+      "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=51^\\circ$일 때, $\\angle BAC$의 크기를 구하시오.",
+      "answer": "$78^\\circ$",
+      "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ACB=\\angle ABC=51^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-2\\times51^\\circ=78^\\circ$이다.",
+      "studentContentSha256": "9d0512114e5ab406216fda04f2cf8fbe3f07e9a709cda3aa1205353b6f575961",
+      "figureSpecSha256": "e67e4793733770d22650a67d8208af2a4f4e90a42ab6b45c63ba9fb1c3367df8",
+      "geometry": {
+        "equalChordError": 5.684341886080802e-14,
+        "equalDistanceError": 7.105427357601002e-15,
+        "rightFootMErrorPx": 0.00025450453237735256,
+        "rightFootNErrorPx": 0.0002545045323542546,
+        "footMFromMidpointPx": 0.0007537075502610376,
+        "footNFromMidpointPx": 0.0007537075502441189,
+        "apex": 78,
+        "base": 50.99999999999999
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "x"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "51°"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$80^\\circ$",
+          "$78^\\circ$",
+          "$76^\\circ$",
+          "$156^\\circ$",
+          "$81^\\circ$"
+        ],
+        "answer": "②",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=51^\\circ$일 때, $\\angle BAC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "73c4f9bf8c8ed0e54e795bc082a2ca9aee32d79a9717b5094adb01ec44d75bac",
+        "localFile": "local-render/a78-m1.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 80,
+        "mode": 0
+      },
+      "independent": {
+        "givenVertex": "BAC",
+        "givenDegrees": 80,
+        "askedVertex": "ABC",
+        "apex": 80,
+        "base": 50,
+        "answer": 50
+      },
+      "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=80^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.",
+      "answer": "$50^\\circ$",
+      "solution": "$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-80^\\circ)=50^\\circ$이다.",
+      "studentContentSha256": "4b8b8a622ca4b4e58cf866860465ef89e78304b5e4401dedf0a725e3581a8200",
+      "figureSpecSha256": "5e8babac5a4a1ef7be9e35e20bb1125b95e163917c8ab0ad7f53fec3fe590e17",
+      "geometry": {
+        "equalChordError": 4.263256414560601e-14,
+        "equalDistanceError": 0.007660777395479101,
+        "rightFootMErrorPx": 0.005744716631235986,
+        "rightFootNErrorPx": 0.0006831594656077913,
+        "footMFromMidpointPx": 0.007432597104303774,
+        "footNFromMidpointPx": 0.0030225467726423183,
+        "apex": 79.99999999999997,
+        "base": 50.000000000000014
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "80°"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "x"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$50^\\circ$",
+          "$48^\\circ$",
+          "$53^\\circ$",
+          "$49^\\circ$",
+          "$52^\\circ$"
+        ],
+        "answer": "①",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=80^\\circ$일 때, $\\angle ABC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "72ea6d99de1e6674f6426cff91a673ce7765719da5961ef03bd057d51381f968",
+        "localFile": "local-render/a80-m0.svg",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 80,
+        "mode": 1
+      },
+      "independent": {
+        "givenVertex": "ABC",
+        "givenDegrees": 50,
+        "askedVertex": "BAC",
+        "apex": 80,
+        "base": 50,
+        "answer": 80
+      },
+      "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=50^\\circ$일 때, $\\angle BAC$의 크기를 구하시오.",
+      "answer": "$80^\\circ$",
+      "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ACB=\\angle ABC=50^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-2\\times50^\\circ=80^\\circ$이다.",
+      "studentContentSha256": "cb0cc716a8a1b792743a3a8fbac45893004719039c996957572ab930ba66ae8b",
+      "figureSpecSha256": "5ca8900b17b364361e7ccb45206867ef07b14ae323778bfd945e2613b219e7ca",
+      "geometry": {
+        "equalChordError": 4.263256414560601e-14,
+        "equalDistanceError": 0.007660777395479101,
+        "rightFootMErrorPx": 0.005744716631235986,
+        "rightFootNErrorPx": 0.0006831594656077913,
+        "footMFromMidpointPx": 0.007432597104303774,
+        "footNFromMidpointPx": 0.0030225467726423183,
+        "apex": 79.99999999999997,
+        "base": 50.000000000000014
+      },
+      "angleLabels": {
+        "angA": {
+          "vertex": "A",
+          "points": [
+            "B",
+            "C"
+          ],
+          "label": "x"
+        },
+        "angB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "C"
+          ],
+          "label": "50°"
+        }
+      },
+      "mc": {
+        "choices": [
+          "$80^\\circ$",
+          "$160^\\circ$",
+          "$79^\\circ$",
+          "$70^\\circ$",
+          "$78^\\circ$"
+        ],
+        "answer": "①",
+        "solutionUnchanged": true
+      },
+      "descriptive": {
+        "content": "삼각형 $ABC$가 원 $O$에 내접한다. 중심 $O$에서 변 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 할 때 $\\overline{OM}=\\overline{ON}$이다. $\\angle ABC=50^\\circ$일 때, $\\angle BAC$의 크기를 구하는 풀이 과정과 답을 쓰시오.",
+        "answerUnchanged": true,
+        "genericConverterOnly": true,
+        "noNativeRubricApproval": true
+      },
+      "render": {
+        "ok": true,
+        "sha256": "646b6da277fcd81b9e93cece8e0e2deae7a8c1e13f38d4badb1a20a9d499de53",
+        "localFile": "local-render/a80-m1.svg",
+        "droppedDimensions": []
+      }
+    }
+  ],
+  "failures": [
+    {
+      "tuple": {
+        "apexParameter": 40,
+        "mode": 0
+      },
+      "claim": "geometry equal chords/distances and perpendicular internal feet at declared rounding",
+      "details": {
+        "equalChordError": 0,
+        "equalDistanceError": 0.009396922845542832,
+        "rightFootMErrorPx": 0.0016847026593618801,
+        "rightFootNErrorPx": 0.0017354987738905086,
+        "footMFromMidpointPx": 0.004082706690145288,
+        "footNFromMidpointPx": 0.0059373273185501,
+        "apex": 39.99999999999999,
+        "base": 70
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 40,
+        "mode": 1
+      },
+      "claim": "geometry equal chords/distances and perpendicular internal feet at declared rounding",
+      "details": {
+        "equalChordError": 0,
+        "equalDistanceError": 0.009396922845542832,
+        "rightFootMErrorPx": 0.0016847026593618801,
+        "rightFootNErrorPx": 0.0017354987738905086,
+        "footMFromMidpointPx": 0.004082706690145288,
+        "footNFromMidpointPx": 0.0059373273185501,
+        "apex": 39.99999999999999,
+        "base": 70
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 42,
+        "mode": 0
+      },
+      "claim": "geometry equal chords/distances and perpendicular internal feet at declared rounding",
+      "details": {
+        "equalChordError": 0,
+        "equalDistanceError": 0.009335772683463972,
+        "rightFootMErrorPx": 0.0015519943242870851,
+        "rightFootNErrorPx": 0.0020316851711534114,
+        "footMFromMidpointPx": 0.003077297402653809,
+        "footNFromMidpointPx": 0.006980730050413907,
+        "apex": 42.000000000000014,
+        "base": 68.99999999999999
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 42,
+        "mode": 1
+      },
+      "claim": "geometry equal chords/distances and perpendicular internal feet at declared rounding",
+      "details": {
+        "equalChordError": 0,
+        "equalDistanceError": 0.009335772683463972,
+        "rightFootMErrorPx": 0.0015519943242870851,
+        "rightFootNErrorPx": 0.0020316851711534114,
+        "footMFromMidpointPx": 0.003077297402653809,
+        "footNFromMidpointPx": 0.006980730050413907,
+        "apex": 42.000000000000014,
+        "base": 68.99999999999999
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 44,
+        "mode": 0
+      },
+      "claim": "geometry equal chords/distances and perpendicular internal feet at declared rounding",
+      "details": {
+        "equalChordError": 2.842170943040401e-14,
+        "equalDistanceError": 0.009272359708113243,
+        "rightFootMErrorPx": 0.002088110563951628,
+        "rightFootNErrorPx": 0.005834176498131963,
+        "footMFromMidpointPx": 0.008668157462718009,
+        "footNFromMidpointPx": 0.005897067488236912,
+        "apex": 43.99999999999999,
+        "base": 68
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 44,
+        "mode": 1
+      },
+      "claim": "geometry equal chords/distances and perpendicular internal feet at declared rounding",
+      "details": {
+        "equalChordError": 2.842170943040401e-14,
+        "equalDistanceError": 0.009272359708113243,
+        "rightFootMErrorPx": 0.002088110563951628,
+        "rightFootNErrorPx": 0.005834176498131963,
+        "footMFromMidpointPx": 0.008668157462718009,
+        "footNFromMidpointPx": 0.005897067488236912,
+        "apex": 43.99999999999999,
+        "base": 68
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 52,
+        "mode": 0
+      },
+      "claim": "geometry equal chords/distances and perpendicular internal feet at declared rounding",
+      "details": {
+        "equalChordError": 2.842170943040401e-14,
+        "equalDistanceError": 0.008988549716846705,
+        "rightFootMErrorPx": 0.006822770365019448,
+        "rightFootNErrorPx": 0.0024390588971527787,
+        "footMFromMidpointPx": 0.007410885830839175,
+        "footNFromMidpointPx": 0.006564599752200973,
+        "apex": 51.999999999999986,
+        "base": 63.99999999999999
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 52,
+        "mode": 1
+      },
+      "claim": "geometry equal chords/distances and perpendicular internal feet at declared rounding",
+      "details": {
+        "equalChordError": 2.842170943040401e-14,
+        "equalDistanceError": 0.008988549716846705,
+        "rightFootMErrorPx": 0.006822770365019448,
+        "rightFootNErrorPx": 0.0024390588971527787,
+        "footMFromMidpointPx": 0.007410885830839175,
+        "footNFromMidpointPx": 0.006564599752200973,
+        "apex": 51.999999999999986,
+        "base": 63.99999999999999
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 54,
+        "mode": 0
+      },
+      "claim": "geometry equal chords/distances and perpendicular internal feet at declared rounding",
+      "details": {
+        "equalChordError": 0,
+        "equalDistanceError": 0.0089095212441066,
+        "rightFootMErrorPx": 0.0018643670406601226,
+        "rightFootNErrorPx": 0.006404272038058474,
+        "footMFromMidpointPx": 0.009390699525158976,
+        "footNFromMidpointPx": 0.0064110032391152755,
+        "apex": 54.000000000000014,
+        "base": 63
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 54,
+        "mode": 1
+      },
+      "claim": "geometry equal chords/distances and perpendicular internal feet at declared rounding",
+      "details": {
+        "equalChordError": 0,
+        "equalDistanceError": 0.0089095212441066,
+        "rightFootMErrorPx": 0.0018643670406601226,
+        "rightFootNErrorPx": 0.006404272038058474,
+        "footMFromMidpointPx": 0.009390699525158976,
+        "footNFromMidpointPx": 0.0064110032391152755,
+        "apex": 54.000000000000014,
+        "base": 63
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 56,
+        "mode": 0
+      },
+      "claim": "geometry equal chords/distances and perpendicular internal feet at declared rounding",
+      "details": {
+        "equalChordError": 5.684341886080802e-14,
+        "equalDistanceError": 0.00882965081981979,
+        "rightFootMErrorPx": 0.003676762996377203,
+        "rightFootNErrorPx": 0.001017952631463286,
+        "footMFromMidpointPx": 0.006606272188379382,
+        "footNFromMidpointPx": 0.0034925598146129007,
+        "apex": 55.99999999999999,
+        "base": 62.00000000000001
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 56,
+        "mode": 1
+      },
+      "claim": "geometry equal chords/distances and perpendicular internal feet at declared rounding",
+      "details": {
+        "equalChordError": 5.684341886080802e-14,
+        "equalDistanceError": 0.00882965081981979,
+        "rightFootMErrorPx": 0.003676762996377203,
+        "rightFootNErrorPx": 0.001017952631463286,
+        "footMFromMidpointPx": 0.006606272188379382,
+        "footNFromMidpointPx": 0.0034925598146129007,
+        "apex": 55.99999999999999,
+        "base": 62.00000000000001
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 58,
+        "mode": 0
+      },
+      "claim": "geometry equal chords/distances and perpendicular internal feet at declared rounding",
+      "details": {
+        "equalChordError": 5.684341886080802e-14,
+        "equalDistanceError": 0.00874649732250532,
+        "rightFootMErrorPx": 0.004706091029808288,
+        "rightFootNErrorPx": 0.0001420051726253893,
+        "footMFromMidpointPx": 0.005178884521107596,
+        "footNFromMidpointPx": 0.0065858882291672085,
+        "apex": 57.999999999999964,
+        "base": 61
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 58,
+        "mode": 1
+      },
+      "claim": "geometry equal chords/distances and perpendicular internal feet at declared rounding",
+      "details": {
+        "equalChordError": 5.684341886080802e-14,
+        "equalDistanceError": 0.00874649732250532,
+        "rightFootMErrorPx": 0.004706091029808288,
+        "rightFootNErrorPx": 0.0001420051726253893,
+        "footMFromMidpointPx": 0.005178884521107596,
+        "footNFromMidpointPx": 0.0065858882291672085,
+        "apex": 57.999999999999964,
+        "base": 61
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 64,
+        "mode": 0
+      },
+      "claim": "geometry equal chords/distances and perpendicular internal feet at declared rounding",
+      "details": {
+        "equalChordError": 2.842170943040401e-14,
+        "equalDistanceError": 0.008480750157715988,
+        "rightFootMErrorPx": 0.004695694228152715,
+        "rightFootNErrorPx": 0.0006034984141712311,
+        "footMFromMidpointPx": 0.006127111583535726,
+        "footNFromMidpointPx": 0.004584395677081924,
+        "apex": 64.00000000000001,
+        "base": 57.99999999999999
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 64,
+        "mode": 1
+      },
+      "claim": "geometry equal chords/distances and perpendicular internal feet at declared rounding",
+      "details": {
+        "equalChordError": 2.842170943040401e-14,
+        "equalDistanceError": 0.008480750157715988,
+        "rightFootMErrorPx": 0.004695694228152715,
+        "rightFootNErrorPx": 0.0006034984141712311,
+        "footMFromMidpointPx": 0.006127111583535726,
+        "footNFromMidpointPx": 0.004584395677081924,
+        "apex": 64.00000000000001,
+        "base": 57.99999999999999
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 66,
+        "mode": 0
+      },
+      "claim": "geometry equal chords/distances and perpendicular internal feet at declared rounding",
+      "details": {
+        "equalChordError": 4.263256414560601e-14,
+        "equalDistanceError": 0.0083871674291629,
+        "rightFootMErrorPx": 0.0062326942318773546,
+        "rightFootNErrorPx": 0.0007863038817327216,
+        "footMFromMidpointPx": 0.006622761807048862,
+        "footNFromMidpointPx": 0.006197481934609934,
+        "apex": 66.00000000000001,
+        "base": 56.999999999999986
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 66,
+        "mode": 1
+      },
+      "claim": "geometry equal chords/distances and perpendicular internal feet at declared rounding",
+      "details": {
+        "equalChordError": 4.263256414560601e-14,
+        "equalDistanceError": 0.0083871674291629,
+        "rightFootMErrorPx": 0.0062326942318773546,
+        "rightFootNErrorPx": 0.0007863038817327216,
+        "footMFromMidpointPx": 0.006622761807048862,
+        "footNFromMidpointPx": 0.006197481934609934,
+        "apex": 66.00000000000001,
+        "base": 56.999999999999986
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 68,
+        "mode": 0
+      },
+      "claim": "geometry equal chords/distances and perpendicular internal feet at declared rounding",
+      "details": {
+        "equalChordError": 4.263256414560601e-14,
+        "equalDistanceError": 0.008291063719198632,
+        "rightFootMErrorPx": 0.008025194401322225,
+        "rightFootNErrorPx": 0.002433265366619013,
+        "footMFromMidpointPx": 0.008584090555815094,
+        "footNFromMidpointPx": 0.005780664445271854,
+        "apex": 68,
+        "base": 55.99999999999999
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 68,
+        "mode": 1
+      },
+      "claim": "geometry equal chords/distances and perpendicular internal feet at declared rounding",
+      "details": {
+        "equalChordError": 4.263256414560601e-14,
+        "equalDistanceError": 0.008291063719198632,
+        "rightFootMErrorPx": 0.008025194401322225,
+        "rightFootNErrorPx": 0.002433265366619013,
+        "footMFromMidpointPx": 0.008584090555815094,
+        "footNFromMidpointPx": 0.005780664445271854,
+        "apex": 68,
+        "base": 55.99999999999999
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 80,
+        "mode": 0
+      },
+      "claim": "geometry equal chords/distances and perpendicular internal feet at declared rounding",
+      "details": {
+        "equalChordError": 4.263256414560601e-14,
+        "equalDistanceError": 0.007660777395479101,
+        "rightFootMErrorPx": 0.005744716631235986,
+        "rightFootNErrorPx": 0.0006831594656077913,
+        "footMFromMidpointPx": 0.007432597104303774,
+        "footNFromMidpointPx": 0.0030225467726423183,
+        "apex": 79.99999999999997,
+        "base": 50.000000000000014
+      }
+    },
+    {
+      "tuple": {
+        "apexParameter": 80,
+        "mode": 1
+      },
+      "claim": "geometry equal chords/distances and perpendicular internal feet at declared rounding",
+      "details": {
+        "equalChordError": 4.263256414560601e-14,
+        "equalDistanceError": 0.007660777395479101,
+        "rightFootMErrorPx": 0.005744716631235986,
+        "rightFootNErrorPx": 0.0006831594656077913,
+        "footMFromMidpointPx": 0.007432597104303774,
+        "footNFromMidpointPx": 0.0030225467726423183,
+        "apex": 79.99999999999997,
+        "base": 50.000000000000014
+      }
+    }
+  ],
+  "observations": []
+}
