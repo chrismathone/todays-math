@@ -1,0 +1,1485 @@
+{
+  "rootCwd": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008",
+  "rootTsconfig": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/tsconfig.json",
+  "family": "study-middle-intercept-integer-area",
+  "version": "2-native-written",
+  "records": [
+    {
+      "variant": 0,
+      "printedTuple": {
+        "p": 2,
+        "q": 3,
+        "N": 5
+      },
+      "studentSurfaceHashes": {
+        "content": "9624daf9ad2cada14afcd28fce06c2d447c9971e3e0909d80fceb426db1f4495",
+        "answer": "953aaf3cf158505bd3c01bc28cbb83c0ae9b0c6f1638d8e4af629d982b2727d2",
+        "solution": "c3b054093c3a6c7d9e0bf5912b0094b3320203e1385933daad90fc05c5d4f72d",
+        "rubric": "ed68456411144bfa534d41b557aab7168aa2d824c369c13d1eaa8ef013574e36",
+        "figureSpec": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      "independent": {
+        "A": [
+          "-5/2",
+          "0"
+        ],
+        "B": [
+          "0",
+          "-5/3"
+        ],
+        "finiteCandidates": [
+          {
+            "i": 1,
+            "j": "1",
+            "integral": true
+          },
+          {
+            "i": 2,
+            "j": "1/3",
+            "integral": false
+          }
+        ],
+        "uniqueP": [
+          -1,
+          -1
+        ],
+        "areas": {
+          "OAP": "5/4",
+          "OBP": "5/6"
+        },
+        "bigger": "OAP",
+        "positiveLengths": true,
+        "feetWithinAxisBases": true
+      },
+      "rubric": {
+        "totalPoints": 8,
+        "criteria": [
+          {
+            "criterionId": "negative-intercepts",
+            "expected": "① $y=0$, $x=0$을 각각 대입하면 $A=(-5/2,0)$, $B=(0,-5/3)$이다. 두 절편은 0이 아니고 음수이다.",
+            "points": 2,
+            "alternatives": [
+              "직선과 각 좌표축의 교점을 구해 두 절편의 좌표를 나타낸다."
+            ],
+            "errors": [
+              "절편의 순서·부호를 바꾸거나 좌표를 길이와 혼동한다."
+            ]
+          },
+          {
+            "criterionId": "finite-integer-domain",
+            "expected": "② $P=(-i,-j)$라 두면 $i,j$는 양의 정수이고 $2i+3j=5$이다. 따라서 $1≤i<5/2$, $1≤j<5/3$이므로 조사할 범위는 유한하다.",
+            "points": 2,
+            "alternatives": [
+              "음의 정수 좌표의 범위를 직선식과 양수 조건으로 직접 제한해도 된다."
+            ],
+            "errors": [
+              "음의 실수나 축 위의 점을 허용하거나 조사할 범위를 제한하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "complete-integer-points",
+            "expected": "③ 가능한 $i$마다 얻은 $(i,j)$ 전체는 (1,1), (2,1/3)이다. 두 성분이 모두 양의 정수인 것은 (1,1)뿐이므로 $P=(-1,-1)$로 유일하다.",
+            "points": 2,
+            "alternatives": [
+              "제한된 범위에서 모든 정수 좌표를 대입해 가능한 점을 빠짐없이 찾는다."
+            ],
+            "errors": [
+              "한 점만 찾고 다른 정수점의 존재 여부를 조사하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "positive-area-comparison",
+            "expected": "④ $OA$와 $OB$를 밑변으로 하면 높이는 각각 1, 1이다. 넓이는 $[OAP]=5/2×1/2=5/4$, $[OBP]=5/3×1/2=5/6$이다. 두 넓이가 양수이고 OAP가 더 크다.",
+            "points": 2,
+            "alternatives": [
+              "좌표축 위의 밑변과 수직 높이를 이용해 각각의 넓이를 양수로 계산한다."
+            ],
+            "errors": [
+              "음의 절편을 그대로 길이로 쓰거나 두 높이를 뒤바꾼다."
+            ]
+          }
+        ]
+      },
+      "priorActualSurfacesByteEquivalent": true,
+      "studentRequiredOperations": [
+        "substitution of zero into linear equation",
+        "positive/negative rational arithmetic",
+        "negating integer coordinates",
+        "positive linear inequality bounds",
+        "finite substitution and integrality check",
+        "axis-parallel perpendicular height",
+        "positive triangle base times height divided by2",
+        "numeric rational comparison"
+      ],
+      "notStudentMethods": [
+        "modular inverse",
+        "general Diophantine solution",
+        "determinant area",
+        "distance formula",
+        "slope perpendicularity product",
+        "quadratic polynomial expansion"
+      ]
+    },
+    {
+      "variant": 1,
+      "printedTuple": {
+        "p": 2,
+        "q": 3,
+        "N": 8
+      },
+      "studentSurfaceHashes": {
+        "content": "2c7b73f74f4de8e3bf9eae231e973e1a2cc7813b8453da2f006320b2c4ee1de2",
+        "answer": "0c73d2229a39496483aba22e52e949903ed06f17fb900ab3a497203cc9ccd624",
+        "solution": "67e5f9c555995550338e327e4779cfee559cd482d35641e109f8c0c8b4671f4a",
+        "rubric": "102647dbf25df4e8b7b5fb92ed69cbf6e065be6e5c91ddf0fd070412eaedf527",
+        "figureSpec": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      "independent": {
+        "A": [
+          "-4",
+          "0"
+        ],
+        "B": [
+          "0",
+          "-8/3"
+        ],
+        "finiteCandidates": [
+          {
+            "i": 1,
+            "j": "2",
+            "integral": true
+          },
+          {
+            "i": 2,
+            "j": "4/3",
+            "integral": false
+          },
+          {
+            "i": 3,
+            "j": "2/3",
+            "integral": false
+          }
+        ],
+        "uniqueP": [
+          -1,
+          -2
+        ],
+        "areas": {
+          "OAP": "4",
+          "OBP": "4/3"
+        },
+        "bigger": "OAP",
+        "positiveLengths": true,
+        "feetWithinAxisBases": true
+      },
+      "rubric": {
+        "totalPoints": 8,
+        "criteria": [
+          {
+            "criterionId": "negative-intercepts",
+            "expected": "① $y=0$, $x=0$을 각각 대입하면 $A=(-4,0)$, $B=(0,-8/3)$이다. 두 절편은 0이 아니고 음수이다.",
+            "points": 2,
+            "alternatives": [
+              "직선과 각 좌표축의 교점을 구해 두 절편의 좌표를 나타낸다."
+            ],
+            "errors": [
+              "절편의 순서·부호를 바꾸거나 좌표를 길이와 혼동한다."
+            ]
+          },
+          {
+            "criterionId": "finite-integer-domain",
+            "expected": "② $P=(-i,-j)$라 두면 $i,j$는 양의 정수이고 $2i+3j=8$이다. 따라서 $1≤i<8/2$, $1≤j<8/3$이므로 조사할 범위는 유한하다.",
+            "points": 2,
+            "alternatives": [
+              "음의 정수 좌표의 범위를 직선식과 양수 조건으로 직접 제한해도 된다."
+            ],
+            "errors": [
+              "음의 실수나 축 위의 점을 허용하거나 조사할 범위를 제한하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "complete-integer-points",
+            "expected": "③ 가능한 $i$마다 얻은 $(i,j)$ 전체는 (1,2), (2,4/3), (3,2/3)이다. 두 성분이 모두 양의 정수인 것은 (1,2)뿐이므로 $P=(-1,-2)$로 유일하다.",
+            "points": 2,
+            "alternatives": [
+              "제한된 범위에서 모든 정수 좌표를 대입해 가능한 점을 빠짐없이 찾는다."
+            ],
+            "errors": [
+              "한 점만 찾고 다른 정수점의 존재 여부를 조사하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "positive-area-comparison",
+            "expected": "④ $OA$와 $OB$를 밑변으로 하면 높이는 각각 2, 1이다. 넓이는 $[OAP]=8/2×2/2=4$, $[OBP]=8/3×1/2=4/3$이다. 두 넓이가 양수이고 OAP가 더 크다.",
+            "points": 2,
+            "alternatives": [
+              "좌표축 위의 밑변과 수직 높이를 이용해 각각의 넓이를 양수로 계산한다."
+            ],
+            "errors": [
+              "음의 절편을 그대로 길이로 쓰거나 두 높이를 뒤바꾼다."
+            ]
+          }
+        ]
+      },
+      "priorActualSurfacesByteEquivalent": true,
+      "studentRequiredOperations": [
+        "substitution of zero into linear equation",
+        "positive/negative rational arithmetic",
+        "negating integer coordinates",
+        "positive linear inequality bounds",
+        "finite substitution and integrality check",
+        "axis-parallel perpendicular height",
+        "positive triangle base times height divided by2",
+        "numeric rational comparison"
+      ],
+      "notStudentMethods": [
+        "modular inverse",
+        "general Diophantine solution",
+        "determinant area",
+        "distance formula",
+        "slope perpendicularity product",
+        "quadratic polynomial expansion"
+      ]
+    },
+    {
+      "variant": 2,
+      "printedTuple": {
+        "p": 2,
+        "q": 3,
+        "N": 7
+      },
+      "studentSurfaceHashes": {
+        "content": "e86916ba6c252f56d18c9edfcb3dd77a11698aa053ab02aa6911ff17b236bd3e",
+        "answer": "cbd0925bc407718f1c41c0ae1d31ffc97785d0e4dad86d20c18537837f2d5218",
+        "solution": "4a0044342c54d58b5c75b6e5c6f0ff9141d0bfa57afd097b211ac00123de6460",
+        "rubric": "ea67acc5439b0b891ee63e35fea0b0d1d5a88463378f5bc6eadab65ddc3884db",
+        "figureSpec": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      "independent": {
+        "A": [
+          "-7/2",
+          "0"
+        ],
+        "B": [
+          "0",
+          "-7/3"
+        ],
+        "finiteCandidates": [
+          {
+            "i": 1,
+            "j": "5/3",
+            "integral": false
+          },
+          {
+            "i": 2,
+            "j": "1",
+            "integral": true
+          },
+          {
+            "i": 3,
+            "j": "1/3",
+            "integral": false
+          }
+        ],
+        "uniqueP": [
+          -2,
+          -1
+        ],
+        "areas": {
+          "OAP": "7/4",
+          "OBP": "7/3"
+        },
+        "bigger": "OBP",
+        "positiveLengths": true,
+        "feetWithinAxisBases": true
+      },
+      "rubric": {
+        "totalPoints": 8,
+        "criteria": [
+          {
+            "criterionId": "negative-intercepts",
+            "expected": "① $y=0$, $x=0$을 각각 대입하면 $A=(-7/2,0)$, $B=(0,-7/3)$이다. 두 절편은 0이 아니고 음수이다.",
+            "points": 2,
+            "alternatives": [
+              "직선과 각 좌표축의 교점을 구해 두 절편의 좌표를 나타낸다."
+            ],
+            "errors": [
+              "절편의 순서·부호를 바꾸거나 좌표를 길이와 혼동한다."
+            ]
+          },
+          {
+            "criterionId": "finite-integer-domain",
+            "expected": "② $P=(-i,-j)$라 두면 $i,j$는 양의 정수이고 $2i+3j=7$이다. 따라서 $1≤i<7/2$, $1≤j<7/3$이므로 조사할 범위는 유한하다.",
+            "points": 2,
+            "alternatives": [
+              "음의 정수 좌표의 범위를 직선식과 양수 조건으로 직접 제한해도 된다."
+            ],
+            "errors": [
+              "음의 실수나 축 위의 점을 허용하거나 조사할 범위를 제한하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "complete-integer-points",
+            "expected": "③ 가능한 $i$마다 얻은 $(i,j)$ 전체는 (1,5/3), (2,1), (3,1/3)이다. 두 성분이 모두 양의 정수인 것은 (2,1)뿐이므로 $P=(-2,-1)$로 유일하다.",
+            "points": 2,
+            "alternatives": [
+              "제한된 범위에서 모든 정수 좌표를 대입해 가능한 점을 빠짐없이 찾는다."
+            ],
+            "errors": [
+              "한 점만 찾고 다른 정수점의 존재 여부를 조사하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "positive-area-comparison",
+            "expected": "④ $OA$와 $OB$를 밑변으로 하면 높이는 각각 1, 2이다. 넓이는 $[OAP]=7/2×1/2=7/4$, $[OBP]=7/3×2/2=7/3$이다. 두 넓이가 양수이고 OBP가 더 크다.",
+            "points": 2,
+            "alternatives": [
+              "좌표축 위의 밑변과 수직 높이를 이용해 각각의 넓이를 양수로 계산한다."
+            ],
+            "errors": [
+              "음의 절편을 그대로 길이로 쓰거나 두 높이를 뒤바꾼다."
+            ]
+          }
+        ]
+      },
+      "priorActualSurfacesByteEquivalent": true,
+      "studentRequiredOperations": [
+        "substitution of zero into linear equation",
+        "positive/negative rational arithmetic",
+        "negating integer coordinates",
+        "positive linear inequality bounds",
+        "finite substitution and integrality check",
+        "axis-parallel perpendicular height",
+        "positive triangle base times height divided by2",
+        "numeric rational comparison"
+      ],
+      "notStudentMethods": [
+        "modular inverse",
+        "general Diophantine solution",
+        "determinant area",
+        "distance formula",
+        "slope perpendicularity product",
+        "quadratic polynomial expansion"
+      ]
+    },
+    {
+      "variant": 3,
+      "printedTuple": {
+        "p": 2,
+        "q": 3,
+        "N": 10
+      },
+      "studentSurfaceHashes": {
+        "content": "8a4df51e1297cd1c7e0e8ffe0eb624de40a16aad702263f54a0dc465ab68c11d",
+        "answer": "80f5ed8ff00f9a4c3f57c07192401c1faed9fe7f416061322a817488cd9415b9",
+        "solution": "22c35ce7078500acffe33ecffa8b4bf643c3c159148fde01e119e5539cfa105a",
+        "rubric": "583b19907a0ba8b85f847b7e1ceafabcf05e53b8808f0d00a63a70fcae79bcc1",
+        "figureSpec": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      "independent": {
+        "A": [
+          "-5",
+          "0"
+        ],
+        "B": [
+          "0",
+          "-10/3"
+        ],
+        "finiteCandidates": [
+          {
+            "i": 1,
+            "j": "8/3",
+            "integral": false
+          },
+          {
+            "i": 2,
+            "j": "2",
+            "integral": true
+          },
+          {
+            "i": 3,
+            "j": "4/3",
+            "integral": false
+          },
+          {
+            "i": 4,
+            "j": "2/3",
+            "integral": false
+          }
+        ],
+        "uniqueP": [
+          -2,
+          -2
+        ],
+        "areas": {
+          "OAP": "5",
+          "OBP": "10/3"
+        },
+        "bigger": "OAP",
+        "positiveLengths": true,
+        "feetWithinAxisBases": true
+      },
+      "rubric": {
+        "totalPoints": 8,
+        "criteria": [
+          {
+            "criterionId": "negative-intercepts",
+            "expected": "① $y=0$, $x=0$을 각각 대입하면 $A=(-5,0)$, $B=(0,-10/3)$이다. 두 절편은 0이 아니고 음수이다.",
+            "points": 2,
+            "alternatives": [
+              "직선과 각 좌표축의 교점을 구해 두 절편의 좌표를 나타낸다."
+            ],
+            "errors": [
+              "절편의 순서·부호를 바꾸거나 좌표를 길이와 혼동한다."
+            ]
+          },
+          {
+            "criterionId": "finite-integer-domain",
+            "expected": "② $P=(-i,-j)$라 두면 $i,j$는 양의 정수이고 $2i+3j=10$이다. 따라서 $1≤i<10/2$, $1≤j<10/3$이므로 조사할 범위는 유한하다.",
+            "points": 2,
+            "alternatives": [
+              "음의 정수 좌표의 범위를 직선식과 양수 조건으로 직접 제한해도 된다."
+            ],
+            "errors": [
+              "음의 실수나 축 위의 점을 허용하거나 조사할 범위를 제한하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "complete-integer-points",
+            "expected": "③ 가능한 $i$마다 얻은 $(i,j)$ 전체는 (1,8/3), (2,2), (3,4/3), (4,2/3)이다. 두 성분이 모두 양의 정수인 것은 (2,2)뿐이므로 $P=(-2,-2)$로 유일하다.",
+            "points": 2,
+            "alternatives": [
+              "제한된 범위에서 모든 정수 좌표를 대입해 가능한 점을 빠짐없이 찾는다."
+            ],
+            "errors": [
+              "한 점만 찾고 다른 정수점의 존재 여부를 조사하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "positive-area-comparison",
+            "expected": "④ $OA$와 $OB$를 밑변으로 하면 높이는 각각 2, 2이다. 넓이는 $[OAP]=10/2×2/2=5$, $[OBP]=10/3×2/2=10/3$이다. 두 넓이가 양수이고 OAP가 더 크다.",
+            "points": 2,
+            "alternatives": [
+              "좌표축 위의 밑변과 수직 높이를 이용해 각각의 넓이를 양수로 계산한다."
+            ],
+            "errors": [
+              "음의 절편을 그대로 길이로 쓰거나 두 높이를 뒤바꾼다."
+            ]
+          }
+        ]
+      },
+      "priorActualSurfacesByteEquivalent": true,
+      "studentRequiredOperations": [
+        "substitution of zero into linear equation",
+        "positive/negative rational arithmetic",
+        "negating integer coordinates",
+        "positive linear inequality bounds",
+        "finite substitution and integrality check",
+        "axis-parallel perpendicular height",
+        "positive triangle base times height divided by2",
+        "numeric rational comparison"
+      ],
+      "notStudentMethods": [
+        "modular inverse",
+        "general Diophantine solution",
+        "determinant area",
+        "distance formula",
+        "slope perpendicularity product",
+        "quadratic polynomial expansion"
+      ]
+    },
+    {
+      "variant": 4,
+      "printedTuple": {
+        "p": 3,
+        "q": 5,
+        "N": 8
+      },
+      "studentSurfaceHashes": {
+        "content": "d67dc4d6145a06ebe783aa1de7ef27442a80531db26065bc709419a4ef38b078",
+        "answer": "223150a8c931aaa9794091c3954fee4b3568a4af6ee41cb184e9cd72aa164279",
+        "solution": "333eb413bfb68f7a875ee4270dcb04c1c97bebfaf747ac569aeec424956d7227",
+        "rubric": "46f23d52fce2e87b4a334288a9cbf2e65bc90e88c78b46bbc7d796b83ccb6c76",
+        "figureSpec": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      "independent": {
+        "A": [
+          "-8/3",
+          "0"
+        ],
+        "B": [
+          "0",
+          "-8/5"
+        ],
+        "finiteCandidates": [
+          {
+            "i": 1,
+            "j": "1",
+            "integral": true
+          },
+          {
+            "i": 2,
+            "j": "2/5",
+            "integral": false
+          }
+        ],
+        "uniqueP": [
+          -1,
+          -1
+        ],
+        "areas": {
+          "OAP": "4/3",
+          "OBP": "4/5"
+        },
+        "bigger": "OAP",
+        "positiveLengths": true,
+        "feetWithinAxisBases": true
+      },
+      "rubric": {
+        "totalPoints": 8,
+        "criteria": [
+          {
+            "criterionId": "negative-intercepts",
+            "expected": "① $y=0$, $x=0$을 각각 대입하면 $A=(-8/3,0)$, $B=(0,-8/5)$이다. 두 절편은 0이 아니고 음수이다.",
+            "points": 2,
+            "alternatives": [
+              "직선과 각 좌표축의 교점을 구해 두 절편의 좌표를 나타낸다."
+            ],
+            "errors": [
+              "절편의 순서·부호를 바꾸거나 좌표를 길이와 혼동한다."
+            ]
+          },
+          {
+            "criterionId": "finite-integer-domain",
+            "expected": "② $P=(-i,-j)$라 두면 $i,j$는 양의 정수이고 $3i+5j=8$이다. 따라서 $1≤i<8/3$, $1≤j<8/5$이므로 조사할 범위는 유한하다.",
+            "points": 2,
+            "alternatives": [
+              "음의 정수 좌표의 범위를 직선식과 양수 조건으로 직접 제한해도 된다."
+            ],
+            "errors": [
+              "음의 실수나 축 위의 점을 허용하거나 조사할 범위를 제한하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "complete-integer-points",
+            "expected": "③ 가능한 $i$마다 얻은 $(i,j)$ 전체는 (1,1), (2,2/5)이다. 두 성분이 모두 양의 정수인 것은 (1,1)뿐이므로 $P=(-1,-1)$로 유일하다.",
+            "points": 2,
+            "alternatives": [
+              "제한된 범위에서 모든 정수 좌표를 대입해 가능한 점을 빠짐없이 찾는다."
+            ],
+            "errors": [
+              "한 점만 찾고 다른 정수점의 존재 여부를 조사하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "positive-area-comparison",
+            "expected": "④ $OA$와 $OB$를 밑변으로 하면 높이는 각각 1, 1이다. 넓이는 $[OAP]=8/3×1/2=4/3$, $[OBP]=8/5×1/2=4/5$이다. 두 넓이가 양수이고 OAP가 더 크다.",
+            "points": 2,
+            "alternatives": [
+              "좌표축 위의 밑변과 수직 높이를 이용해 각각의 넓이를 양수로 계산한다."
+            ],
+            "errors": [
+              "음의 절편을 그대로 길이로 쓰거나 두 높이를 뒤바꾼다."
+            ]
+          }
+        ]
+      },
+      "priorActualSurfacesByteEquivalent": true,
+      "studentRequiredOperations": [
+        "substitution of zero into linear equation",
+        "positive/negative rational arithmetic",
+        "negating integer coordinates",
+        "positive linear inequality bounds",
+        "finite substitution and integrality check",
+        "axis-parallel perpendicular height",
+        "positive triangle base times height divided by2",
+        "numeric rational comparison"
+      ],
+      "notStudentMethods": [
+        "modular inverse",
+        "general Diophantine solution",
+        "determinant area",
+        "distance formula",
+        "slope perpendicularity product",
+        "quadratic polynomial expansion"
+      ]
+    },
+    {
+      "variant": 5,
+      "printedTuple": {
+        "p": 3,
+        "q": 5,
+        "N": 13
+      },
+      "studentSurfaceHashes": {
+        "content": "634713c8921323f67150210bb66a8b1b33aa3dc79216985667e815e7d733abbe",
+        "answer": "d093379f888154da476bf315621bc4252a59f58faf520bd6323cf39b2cd98f41",
+        "solution": "31125e86f02207ae16d9a0d292c0f65d66d5fbec2027c3b9e448384fc586bad7",
+        "rubric": "a763ad92c7be8ef18d5eda5aa9093d2ccb83aa2b9cc1227e53c52e3e3df28afe",
+        "figureSpec": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      "independent": {
+        "A": [
+          "-13/3",
+          "0"
+        ],
+        "B": [
+          "0",
+          "-13/5"
+        ],
+        "finiteCandidates": [
+          {
+            "i": 1,
+            "j": "2",
+            "integral": true
+          },
+          {
+            "i": 2,
+            "j": "7/5",
+            "integral": false
+          },
+          {
+            "i": 3,
+            "j": "4/5",
+            "integral": false
+          },
+          {
+            "i": 4,
+            "j": "1/5",
+            "integral": false
+          }
+        ],
+        "uniqueP": [
+          -1,
+          -2
+        ],
+        "areas": {
+          "OAP": "13/3",
+          "OBP": "13/10"
+        },
+        "bigger": "OAP",
+        "positiveLengths": true,
+        "feetWithinAxisBases": true
+      },
+      "rubric": {
+        "totalPoints": 8,
+        "criteria": [
+          {
+            "criterionId": "negative-intercepts",
+            "expected": "① $y=0$, $x=0$을 각각 대입하면 $A=(-13/3,0)$, $B=(0,-13/5)$이다. 두 절편은 0이 아니고 음수이다.",
+            "points": 2,
+            "alternatives": [
+              "직선과 각 좌표축의 교점을 구해 두 절편의 좌표를 나타낸다."
+            ],
+            "errors": [
+              "절편의 순서·부호를 바꾸거나 좌표를 길이와 혼동한다."
+            ]
+          },
+          {
+            "criterionId": "finite-integer-domain",
+            "expected": "② $P=(-i,-j)$라 두면 $i,j$는 양의 정수이고 $3i+5j=13$이다. 따라서 $1≤i<13/3$, $1≤j<13/5$이므로 조사할 범위는 유한하다.",
+            "points": 2,
+            "alternatives": [
+              "음의 정수 좌표의 범위를 직선식과 양수 조건으로 직접 제한해도 된다."
+            ],
+            "errors": [
+              "음의 실수나 축 위의 점을 허용하거나 조사할 범위를 제한하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "complete-integer-points",
+            "expected": "③ 가능한 $i$마다 얻은 $(i,j)$ 전체는 (1,2), (2,7/5), (3,4/5), (4,1/5)이다. 두 성분이 모두 양의 정수인 것은 (1,2)뿐이므로 $P=(-1,-2)$로 유일하다.",
+            "points": 2,
+            "alternatives": [
+              "제한된 범위에서 모든 정수 좌표를 대입해 가능한 점을 빠짐없이 찾는다."
+            ],
+            "errors": [
+              "한 점만 찾고 다른 정수점의 존재 여부를 조사하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "positive-area-comparison",
+            "expected": "④ $OA$와 $OB$를 밑변으로 하면 높이는 각각 2, 1이다. 넓이는 $[OAP]=13/3×2/2=13/3$, $[OBP]=13/5×1/2=13/10$이다. 두 넓이가 양수이고 OAP가 더 크다.",
+            "points": 2,
+            "alternatives": [
+              "좌표축 위의 밑변과 수직 높이를 이용해 각각의 넓이를 양수로 계산한다."
+            ],
+            "errors": [
+              "음의 절편을 그대로 길이로 쓰거나 두 높이를 뒤바꾼다."
+            ]
+          }
+        ]
+      },
+      "priorActualSurfacesByteEquivalent": true,
+      "studentRequiredOperations": [
+        "substitution of zero into linear equation",
+        "positive/negative rational arithmetic",
+        "negating integer coordinates",
+        "positive linear inequality bounds",
+        "finite substitution and integrality check",
+        "axis-parallel perpendicular height",
+        "positive triangle base times height divided by2",
+        "numeric rational comparison"
+      ],
+      "notStudentMethods": [
+        "modular inverse",
+        "general Diophantine solution",
+        "determinant area",
+        "distance formula",
+        "slope perpendicularity product",
+        "quadratic polynomial expansion"
+      ]
+    },
+    {
+      "variant": 6,
+      "printedTuple": {
+        "p": 3,
+        "q": 5,
+        "N": 11
+      },
+      "studentSurfaceHashes": {
+        "content": "97a16d81c72ea1f75b96d5fb0f8b66c3d0f233ee2c0c9c8ec6f46117fe43e774",
+        "answer": "8d6606de5b24ca3bc6f6cacb33d9cf4555230209d14cbd65ca82dff1e1aaf4eb",
+        "solution": "1fa76e375530e0e5554f91d0fc068b01674ed11c30939870856db9cc95f48212",
+        "rubric": "818cf59017c7b83fd9f11e5dcf9ecfdc7e92515ab029e6b69627ebbdc8795e98",
+        "figureSpec": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      "independent": {
+        "A": [
+          "-11/3",
+          "0"
+        ],
+        "B": [
+          "0",
+          "-11/5"
+        ],
+        "finiteCandidates": [
+          {
+            "i": 1,
+            "j": "8/5",
+            "integral": false
+          },
+          {
+            "i": 2,
+            "j": "1",
+            "integral": true
+          },
+          {
+            "i": 3,
+            "j": "2/5",
+            "integral": false
+          }
+        ],
+        "uniqueP": [
+          -2,
+          -1
+        ],
+        "areas": {
+          "OAP": "11/6",
+          "OBP": "11/5"
+        },
+        "bigger": "OBP",
+        "positiveLengths": true,
+        "feetWithinAxisBases": true
+      },
+      "rubric": {
+        "totalPoints": 8,
+        "criteria": [
+          {
+            "criterionId": "negative-intercepts",
+            "expected": "① $y=0$, $x=0$을 각각 대입하면 $A=(-11/3,0)$, $B=(0,-11/5)$이다. 두 절편은 0이 아니고 음수이다.",
+            "points": 2,
+            "alternatives": [
+              "직선과 각 좌표축의 교점을 구해 두 절편의 좌표를 나타낸다."
+            ],
+            "errors": [
+              "절편의 순서·부호를 바꾸거나 좌표를 길이와 혼동한다."
+            ]
+          },
+          {
+            "criterionId": "finite-integer-domain",
+            "expected": "② $P=(-i,-j)$라 두면 $i,j$는 양의 정수이고 $3i+5j=11$이다. 따라서 $1≤i<11/3$, $1≤j<11/5$이므로 조사할 범위는 유한하다.",
+            "points": 2,
+            "alternatives": [
+              "음의 정수 좌표의 범위를 직선식과 양수 조건으로 직접 제한해도 된다."
+            ],
+            "errors": [
+              "음의 실수나 축 위의 점을 허용하거나 조사할 범위를 제한하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "complete-integer-points",
+            "expected": "③ 가능한 $i$마다 얻은 $(i,j)$ 전체는 (1,8/5), (2,1), (3,2/5)이다. 두 성분이 모두 양의 정수인 것은 (2,1)뿐이므로 $P=(-2,-1)$로 유일하다.",
+            "points": 2,
+            "alternatives": [
+              "제한된 범위에서 모든 정수 좌표를 대입해 가능한 점을 빠짐없이 찾는다."
+            ],
+            "errors": [
+              "한 점만 찾고 다른 정수점의 존재 여부를 조사하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "positive-area-comparison",
+            "expected": "④ $OA$와 $OB$를 밑변으로 하면 높이는 각각 1, 2이다. 넓이는 $[OAP]=11/3×1/2=11/6$, $[OBP]=11/5×2/2=11/5$이다. 두 넓이가 양수이고 OBP가 더 크다.",
+            "points": 2,
+            "alternatives": [
+              "좌표축 위의 밑변과 수직 높이를 이용해 각각의 넓이를 양수로 계산한다."
+            ],
+            "errors": [
+              "음의 절편을 그대로 길이로 쓰거나 두 높이를 뒤바꾼다."
+            ]
+          }
+        ]
+      },
+      "priorActualSurfacesByteEquivalent": true,
+      "studentRequiredOperations": [
+        "substitution of zero into linear equation",
+        "positive/negative rational arithmetic",
+        "negating integer coordinates",
+        "positive linear inequality bounds",
+        "finite substitution and integrality check",
+        "axis-parallel perpendicular height",
+        "positive triangle base times height divided by2",
+        "numeric rational comparison"
+      ],
+      "notStudentMethods": [
+        "modular inverse",
+        "general Diophantine solution",
+        "determinant area",
+        "distance formula",
+        "slope perpendicularity product",
+        "quadratic polynomial expansion"
+      ]
+    },
+    {
+      "variant": 7,
+      "printedTuple": {
+        "p": 3,
+        "q": 5,
+        "N": 16
+      },
+      "studentSurfaceHashes": {
+        "content": "82962a9453aebbb4da7ce87e3d1b0553558dc18b94a641873d009c81d49ee5ee",
+        "answer": "1765a47cd1ed14a15ecf586704bbec17a7c6ae3f0449025aac7b0929cd419931",
+        "solution": "08dfa8a847c2c2e50834192d88d5ae1de1bdb53671708fcf121f9dbf7b2e2c4e",
+        "rubric": "d09524920ab695019d8cfac20971d7c1964ebafa826b5c2cbf86f51bd99ac656",
+        "figureSpec": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      "independent": {
+        "A": [
+          "-16/3",
+          "0"
+        ],
+        "B": [
+          "0",
+          "-16/5"
+        ],
+        "finiteCandidates": [
+          {
+            "i": 1,
+            "j": "13/5",
+            "integral": false
+          },
+          {
+            "i": 2,
+            "j": "2",
+            "integral": true
+          },
+          {
+            "i": 3,
+            "j": "7/5",
+            "integral": false
+          },
+          {
+            "i": 4,
+            "j": "4/5",
+            "integral": false
+          },
+          {
+            "i": 5,
+            "j": "1/5",
+            "integral": false
+          }
+        ],
+        "uniqueP": [
+          -2,
+          -2
+        ],
+        "areas": {
+          "OAP": "16/3",
+          "OBP": "16/5"
+        },
+        "bigger": "OAP",
+        "positiveLengths": true,
+        "feetWithinAxisBases": true
+      },
+      "rubric": {
+        "totalPoints": 8,
+        "criteria": [
+          {
+            "criterionId": "negative-intercepts",
+            "expected": "① $y=0$, $x=0$을 각각 대입하면 $A=(-16/3,0)$, $B=(0,-16/5)$이다. 두 절편은 0이 아니고 음수이다.",
+            "points": 2,
+            "alternatives": [
+              "직선과 각 좌표축의 교점을 구해 두 절편의 좌표를 나타낸다."
+            ],
+            "errors": [
+              "절편의 순서·부호를 바꾸거나 좌표를 길이와 혼동한다."
+            ]
+          },
+          {
+            "criterionId": "finite-integer-domain",
+            "expected": "② $P=(-i,-j)$라 두면 $i,j$는 양의 정수이고 $3i+5j=16$이다. 따라서 $1≤i<16/3$, $1≤j<16/5$이므로 조사할 범위는 유한하다.",
+            "points": 2,
+            "alternatives": [
+              "음의 정수 좌표의 범위를 직선식과 양수 조건으로 직접 제한해도 된다."
+            ],
+            "errors": [
+              "음의 실수나 축 위의 점을 허용하거나 조사할 범위를 제한하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "complete-integer-points",
+            "expected": "③ 가능한 $i$마다 얻은 $(i,j)$ 전체는 (1,13/5), (2,2), (3,7/5), (4,4/5), (5,1/5)이다. 두 성분이 모두 양의 정수인 것은 (2,2)뿐이므로 $P=(-2,-2)$로 유일하다.",
+            "points": 2,
+            "alternatives": [
+              "제한된 범위에서 모든 정수 좌표를 대입해 가능한 점을 빠짐없이 찾는다."
+            ],
+            "errors": [
+              "한 점만 찾고 다른 정수점의 존재 여부를 조사하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "positive-area-comparison",
+            "expected": "④ $OA$와 $OB$를 밑변으로 하면 높이는 각각 2, 2이다. 넓이는 $[OAP]=16/3×2/2=16/3$, $[OBP]=16/5×2/2=16/5$이다. 두 넓이가 양수이고 OAP가 더 크다.",
+            "points": 2,
+            "alternatives": [
+              "좌표축 위의 밑변과 수직 높이를 이용해 각각의 넓이를 양수로 계산한다."
+            ],
+            "errors": [
+              "음의 절편을 그대로 길이로 쓰거나 두 높이를 뒤바꾼다."
+            ]
+          }
+        ]
+      },
+      "priorActualSurfacesByteEquivalent": true,
+      "studentRequiredOperations": [
+        "substitution of zero into linear equation",
+        "positive/negative rational arithmetic",
+        "negating integer coordinates",
+        "positive linear inequality bounds",
+        "finite substitution and integrality check",
+        "axis-parallel perpendicular height",
+        "positive triangle base times height divided by2",
+        "numeric rational comparison"
+      ],
+      "notStudentMethods": [
+        "modular inverse",
+        "general Diophantine solution",
+        "determinant area",
+        "distance formula",
+        "slope perpendicularity product",
+        "quadratic polynomial expansion"
+      ]
+    },
+    {
+      "variant": 8,
+      "printedTuple": {
+        "p": 4,
+        "q": 7,
+        "N": 11
+      },
+      "studentSurfaceHashes": {
+        "content": "441d0c580ee9fe6e3bace2f693a5264da6efdd7f514d66a41720210993b5ca72",
+        "answer": "f9a7120d22b8c0c4915c97c46dee68ccc93a6b257937e38c7bbb53edb0659bf1",
+        "solution": "9052c521c0fe646021b98806ba78518cf6fec43cf381a6fd4d3ff27adcca9c2b",
+        "rubric": "9b9360df250e7ea11ac03f49945d1511dd42eed15fa4e4fe5d48cfb5b2c3a53c",
+        "figureSpec": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      "independent": {
+        "A": [
+          "-11/4",
+          "0"
+        ],
+        "B": [
+          "0",
+          "-11/7"
+        ],
+        "finiteCandidates": [
+          {
+            "i": 1,
+            "j": "1",
+            "integral": true
+          },
+          {
+            "i": 2,
+            "j": "3/7",
+            "integral": false
+          }
+        ],
+        "uniqueP": [
+          -1,
+          -1
+        ],
+        "areas": {
+          "OAP": "11/8",
+          "OBP": "11/14"
+        },
+        "bigger": "OAP",
+        "positiveLengths": true,
+        "feetWithinAxisBases": true
+      },
+      "rubric": {
+        "totalPoints": 8,
+        "criteria": [
+          {
+            "criterionId": "negative-intercepts",
+            "expected": "① $y=0$, $x=0$을 각각 대입하면 $A=(-11/4,0)$, $B=(0,-11/7)$이다. 두 절편은 0이 아니고 음수이다.",
+            "points": 2,
+            "alternatives": [
+              "직선과 각 좌표축의 교점을 구해 두 절편의 좌표를 나타낸다."
+            ],
+            "errors": [
+              "절편의 순서·부호를 바꾸거나 좌표를 길이와 혼동한다."
+            ]
+          },
+          {
+            "criterionId": "finite-integer-domain",
+            "expected": "② $P=(-i,-j)$라 두면 $i,j$는 양의 정수이고 $4i+7j=11$이다. 따라서 $1≤i<11/4$, $1≤j<11/7$이므로 조사할 범위는 유한하다.",
+            "points": 2,
+            "alternatives": [
+              "음의 정수 좌표의 범위를 직선식과 양수 조건으로 직접 제한해도 된다."
+            ],
+            "errors": [
+              "음의 실수나 축 위의 점을 허용하거나 조사할 범위를 제한하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "complete-integer-points",
+            "expected": "③ 가능한 $i$마다 얻은 $(i,j)$ 전체는 (1,1), (2,3/7)이다. 두 성분이 모두 양의 정수인 것은 (1,1)뿐이므로 $P=(-1,-1)$로 유일하다.",
+            "points": 2,
+            "alternatives": [
+              "제한된 범위에서 모든 정수 좌표를 대입해 가능한 점을 빠짐없이 찾는다."
+            ],
+            "errors": [
+              "한 점만 찾고 다른 정수점의 존재 여부를 조사하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "positive-area-comparison",
+            "expected": "④ $OA$와 $OB$를 밑변으로 하면 높이는 각각 1, 1이다. 넓이는 $[OAP]=11/4×1/2=11/8$, $[OBP]=11/7×1/2=11/14$이다. 두 넓이가 양수이고 OAP가 더 크다.",
+            "points": 2,
+            "alternatives": [
+              "좌표축 위의 밑변과 수직 높이를 이용해 각각의 넓이를 양수로 계산한다."
+            ],
+            "errors": [
+              "음의 절편을 그대로 길이로 쓰거나 두 높이를 뒤바꾼다."
+            ]
+          }
+        ]
+      },
+      "priorActualSurfacesByteEquivalent": true,
+      "studentRequiredOperations": [
+        "substitution of zero into linear equation",
+        "positive/negative rational arithmetic",
+        "negating integer coordinates",
+        "positive linear inequality bounds",
+        "finite substitution and integrality check",
+        "axis-parallel perpendicular height",
+        "positive triangle base times height divided by2",
+        "numeric rational comparison"
+      ],
+      "notStudentMethods": [
+        "modular inverse",
+        "general Diophantine solution",
+        "determinant area",
+        "distance formula",
+        "slope perpendicularity product",
+        "quadratic polynomial expansion"
+      ]
+    },
+    {
+      "variant": 9,
+      "printedTuple": {
+        "p": 4,
+        "q": 7,
+        "N": 18
+      },
+      "studentSurfaceHashes": {
+        "content": "8ba404b9a3780ea67e2e60e6473618a39f10c34b18b62cbedf352d23988f4841",
+        "answer": "b025f58ff84e634087114ced0703a29e1851361cc9d282643eb6195de6ebe6dc",
+        "solution": "18ec55e10da6cb61332f76c8c3af1862f3c37251ba65832c6e8b4acba02870b2",
+        "rubric": "85942aa04460d20d2dcdea7567e1271ef3c89bafa5a4bc6c00b6c1b5456c772a",
+        "figureSpec": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      "independent": {
+        "A": [
+          "-9/2",
+          "0"
+        ],
+        "B": [
+          "0",
+          "-18/7"
+        ],
+        "finiteCandidates": [
+          {
+            "i": 1,
+            "j": "2",
+            "integral": true
+          },
+          {
+            "i": 2,
+            "j": "10/7",
+            "integral": false
+          },
+          {
+            "i": 3,
+            "j": "6/7",
+            "integral": false
+          },
+          {
+            "i": 4,
+            "j": "2/7",
+            "integral": false
+          }
+        ],
+        "uniqueP": [
+          -1,
+          -2
+        ],
+        "areas": {
+          "OAP": "9/2",
+          "OBP": "9/7"
+        },
+        "bigger": "OAP",
+        "positiveLengths": true,
+        "feetWithinAxisBases": true
+      },
+      "rubric": {
+        "totalPoints": 8,
+        "criteria": [
+          {
+            "criterionId": "negative-intercepts",
+            "expected": "① $y=0$, $x=0$을 각각 대입하면 $A=(-9/2,0)$, $B=(0,-18/7)$이다. 두 절편은 0이 아니고 음수이다.",
+            "points": 2,
+            "alternatives": [
+              "직선과 각 좌표축의 교점을 구해 두 절편의 좌표를 나타낸다."
+            ],
+            "errors": [
+              "절편의 순서·부호를 바꾸거나 좌표를 길이와 혼동한다."
+            ]
+          },
+          {
+            "criterionId": "finite-integer-domain",
+            "expected": "② $P=(-i,-j)$라 두면 $i,j$는 양의 정수이고 $4i+7j=18$이다. 따라서 $1≤i<18/4$, $1≤j<18/7$이므로 조사할 범위는 유한하다.",
+            "points": 2,
+            "alternatives": [
+              "음의 정수 좌표의 범위를 직선식과 양수 조건으로 직접 제한해도 된다."
+            ],
+            "errors": [
+              "음의 실수나 축 위의 점을 허용하거나 조사할 범위를 제한하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "complete-integer-points",
+            "expected": "③ 가능한 $i$마다 얻은 $(i,j)$ 전체는 (1,2), (2,10/7), (3,6/7), (4,2/7)이다. 두 성분이 모두 양의 정수인 것은 (1,2)뿐이므로 $P=(-1,-2)$로 유일하다.",
+            "points": 2,
+            "alternatives": [
+              "제한된 범위에서 모든 정수 좌표를 대입해 가능한 점을 빠짐없이 찾는다."
+            ],
+            "errors": [
+              "한 점만 찾고 다른 정수점의 존재 여부를 조사하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "positive-area-comparison",
+            "expected": "④ $OA$와 $OB$를 밑변으로 하면 높이는 각각 2, 1이다. 넓이는 $[OAP]=18/4×2/2=9/2$, $[OBP]=18/7×1/2=9/7$이다. 두 넓이가 양수이고 OAP가 더 크다.",
+            "points": 2,
+            "alternatives": [
+              "좌표축 위의 밑변과 수직 높이를 이용해 각각의 넓이를 양수로 계산한다."
+            ],
+            "errors": [
+              "음의 절편을 그대로 길이로 쓰거나 두 높이를 뒤바꾼다."
+            ]
+          }
+        ]
+      },
+      "priorActualSurfacesByteEquivalent": true,
+      "studentRequiredOperations": [
+        "substitution of zero into linear equation",
+        "positive/negative rational arithmetic",
+        "negating integer coordinates",
+        "positive linear inequality bounds",
+        "finite substitution and integrality check",
+        "axis-parallel perpendicular height",
+        "positive triangle base times height divided by2",
+        "numeric rational comparison"
+      ],
+      "notStudentMethods": [
+        "modular inverse",
+        "general Diophantine solution",
+        "determinant area",
+        "distance formula",
+        "slope perpendicularity product",
+        "quadratic polynomial expansion"
+      ]
+    },
+    {
+      "variant": 10,
+      "printedTuple": {
+        "p": 4,
+        "q": 7,
+        "N": 15
+      },
+      "studentSurfaceHashes": {
+        "content": "1adaddf8a6aba7284e420ab7c8edd44a15b27c0610ac49b8590f02341e31e8fd",
+        "answer": "c346f8043e16025f3309ac7494ddf9c892cac35049922ce6e2dd4cd1d0b303d7",
+        "solution": "f49bde70932c8473dbf3b6136a5d41149c432d9a555eb1fa91f8c265e2f0b424",
+        "rubric": "3372dd681af4c13c56c72d4207c11374d548f1b005f32a9650dc3cbe15950122",
+        "figureSpec": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      "independent": {
+        "A": [
+          "-15/4",
+          "0"
+        ],
+        "B": [
+          "0",
+          "-15/7"
+        ],
+        "finiteCandidates": [
+          {
+            "i": 1,
+            "j": "11/7",
+            "integral": false
+          },
+          {
+            "i": 2,
+            "j": "1",
+            "integral": true
+          },
+          {
+            "i": 3,
+            "j": "3/7",
+            "integral": false
+          }
+        ],
+        "uniqueP": [
+          -2,
+          -1
+        ],
+        "areas": {
+          "OAP": "15/8",
+          "OBP": "15/7"
+        },
+        "bigger": "OBP",
+        "positiveLengths": true,
+        "feetWithinAxisBases": true
+      },
+      "rubric": {
+        "totalPoints": 8,
+        "criteria": [
+          {
+            "criterionId": "negative-intercepts",
+            "expected": "① $y=0$, $x=0$을 각각 대입하면 $A=(-15/4,0)$, $B=(0,-15/7)$이다. 두 절편은 0이 아니고 음수이다.",
+            "points": 2,
+            "alternatives": [
+              "직선과 각 좌표축의 교점을 구해 두 절편의 좌표를 나타낸다."
+            ],
+            "errors": [
+              "절편의 순서·부호를 바꾸거나 좌표를 길이와 혼동한다."
+            ]
+          },
+          {
+            "criterionId": "finite-integer-domain",
+            "expected": "② $P=(-i,-j)$라 두면 $i,j$는 양의 정수이고 $4i+7j=15$이다. 따라서 $1≤i<15/4$, $1≤j<15/7$이므로 조사할 범위는 유한하다.",
+            "points": 2,
+            "alternatives": [
+              "음의 정수 좌표의 범위를 직선식과 양수 조건으로 직접 제한해도 된다."
+            ],
+            "errors": [
+              "음의 실수나 축 위의 점을 허용하거나 조사할 범위를 제한하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "complete-integer-points",
+            "expected": "③ 가능한 $i$마다 얻은 $(i,j)$ 전체는 (1,11/7), (2,1), (3,3/7)이다. 두 성분이 모두 양의 정수인 것은 (2,1)뿐이므로 $P=(-2,-1)$로 유일하다.",
+            "points": 2,
+            "alternatives": [
+              "제한된 범위에서 모든 정수 좌표를 대입해 가능한 점을 빠짐없이 찾는다."
+            ],
+            "errors": [
+              "한 점만 찾고 다른 정수점의 존재 여부를 조사하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "positive-area-comparison",
+            "expected": "④ $OA$와 $OB$를 밑변으로 하면 높이는 각각 1, 2이다. 넓이는 $[OAP]=15/4×1/2=15/8$, $[OBP]=15/7×2/2=15/7$이다. 두 넓이가 양수이고 OBP가 더 크다.",
+            "points": 2,
+            "alternatives": [
+              "좌표축 위의 밑변과 수직 높이를 이용해 각각의 넓이를 양수로 계산한다."
+            ],
+            "errors": [
+              "음의 절편을 그대로 길이로 쓰거나 두 높이를 뒤바꾼다."
+            ]
+          }
+        ]
+      },
+      "priorActualSurfacesByteEquivalent": true,
+      "studentRequiredOperations": [
+        "substitution of zero into linear equation",
+        "positive/negative rational arithmetic",
+        "negating integer coordinates",
+        "positive linear inequality bounds",
+        "finite substitution and integrality check",
+        "axis-parallel perpendicular height",
+        "positive triangle base times height divided by2",
+        "numeric rational comparison"
+      ],
+      "notStudentMethods": [
+        "modular inverse",
+        "general Diophantine solution",
+        "determinant area",
+        "distance formula",
+        "slope perpendicularity product",
+        "quadratic polynomial expansion"
+      ]
+    },
+    {
+      "variant": 11,
+      "printedTuple": {
+        "p": 4,
+        "q": 7,
+        "N": 22
+      },
+      "studentSurfaceHashes": {
+        "content": "ad3bb5735fd813e985b686116d241ad92c35b1aed9a1dd14574a2b34044e7e95",
+        "answer": "7fda672f350e1035b2b90f4301366b891d18894eb6ea1ec9b49eb666d730164c",
+        "solution": "f6ad2497c35885d995939eceee9147073610dacb5ea50b05956135224f81927a",
+        "rubric": "987c433042c69bb3e61fc77ec1e75bf908d47cfd23dc7fc71c73c9175af36418",
+        "figureSpec": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      "independent": {
+        "A": [
+          "-11/2",
+          "0"
+        ],
+        "B": [
+          "0",
+          "-22/7"
+        ],
+        "finiteCandidates": [
+          {
+            "i": 1,
+            "j": "18/7",
+            "integral": false
+          },
+          {
+            "i": 2,
+            "j": "2",
+            "integral": true
+          },
+          {
+            "i": 3,
+            "j": "10/7",
+            "integral": false
+          },
+          {
+            "i": 4,
+            "j": "6/7",
+            "integral": false
+          },
+          {
+            "i": 5,
+            "j": "2/7",
+            "integral": false
+          }
+        ],
+        "uniqueP": [
+          -2,
+          -2
+        ],
+        "areas": {
+          "OAP": "11/2",
+          "OBP": "22/7"
+        },
+        "bigger": "OAP",
+        "positiveLengths": true,
+        "feetWithinAxisBases": true
+      },
+      "rubric": {
+        "totalPoints": 8,
+        "criteria": [
+          {
+            "criterionId": "negative-intercepts",
+            "expected": "① $y=0$, $x=0$을 각각 대입하면 $A=(-11/2,0)$, $B=(0,-22/7)$이다. 두 절편은 0이 아니고 음수이다.",
+            "points": 2,
+            "alternatives": [
+              "직선과 각 좌표축의 교점을 구해 두 절편의 좌표를 나타낸다."
+            ],
+            "errors": [
+              "절편의 순서·부호를 바꾸거나 좌표를 길이와 혼동한다."
+            ]
+          },
+          {
+            "criterionId": "finite-integer-domain",
+            "expected": "② $P=(-i,-j)$라 두면 $i,j$는 양의 정수이고 $4i+7j=22$이다. 따라서 $1≤i<22/4$, $1≤j<22/7$이므로 조사할 범위는 유한하다.",
+            "points": 2,
+            "alternatives": [
+              "음의 정수 좌표의 범위를 직선식과 양수 조건으로 직접 제한해도 된다."
+            ],
+            "errors": [
+              "음의 실수나 축 위의 점을 허용하거나 조사할 범위를 제한하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "complete-integer-points",
+            "expected": "③ 가능한 $i$마다 얻은 $(i,j)$ 전체는 (1,18/7), (2,2), (3,10/7), (4,6/7), (5,2/7)이다. 두 성분이 모두 양의 정수인 것은 (2,2)뿐이므로 $P=(-2,-2)$로 유일하다.",
+            "points": 2,
+            "alternatives": [
+              "제한된 범위에서 모든 정수 좌표를 대입해 가능한 점을 빠짐없이 찾는다."
+            ],
+            "errors": [
+              "한 점만 찾고 다른 정수점의 존재 여부를 조사하지 않는다."
+            ]
+          },
+          {
+            "criterionId": "positive-area-comparison",
+            "expected": "④ $OA$와 $OB$를 밑변으로 하면 높이는 각각 2, 2이다. 넓이는 $[OAP]=22/4×2/2=11/2$, $[OBP]=22/7×2/2=22/7$이다. 두 넓이가 양수이고 OAP가 더 크다.",
+            "points": 2,
+            "alternatives": [
+              "좌표축 위의 밑변과 수직 높이를 이용해 각각의 넓이를 양수로 계산한다."
+            ],
+            "errors": [
+              "음의 절편을 그대로 길이로 쓰거나 두 높이를 뒤바꾼다."
+            ]
+          }
+        ]
+      },
+      "priorActualSurfacesByteEquivalent": true,
+      "studentRequiredOperations": [
+        "substitution of zero into linear equation",
+        "positive/negative rational arithmetic",
+        "negating integer coordinates",
+        "positive linear inequality bounds",
+        "finite substitution and integrality check",
+        "axis-parallel perpendicular height",
+        "positive triangle base times height divided by2",
+        "numeric rational comparison"
+      ],
+      "notStudentMethods": [
+        "modular inverse",
+        "general Diophantine solution",
+        "determinant area",
+        "distance formula",
+        "slope perpendicularity product",
+        "quadratic polynomial expansion"
+      ]
+    }
+  ],
+  "failures": [],
+  "maximumCandidateRows": 5,
+  "priorEvidence": "../remaining-native-written-audit-20261019-r1/results.json",
+  "sourceStable": true,
+  "noFreshBlindClaim": true
+}

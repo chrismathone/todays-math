@@ -1,0 +1,374 @@
+{
+  "sources": {
+    "2015Original": {
+      "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\worktree-cleanup-20261012-r1\\exam-twin-curriculum-20261008\\local-evidence\\.qa-artifacts\\exam-resume-20261008\\sources\\moe-2015-74-book8-math.pdf",
+      "sha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+      "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=040401&s=moe&fileSeq=dc926a43bf953203951fb928ff098b1c",
+      "selectedPageLocators": "Relevant standards physical34,36; elementary29; function restriction37. Individual code pages in records."
+    },
+    "2015Consolidated": {
+      "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\worktree-cleanup-20261012-r1\\exam-twin-curriculum-20261008\\local-evidence\\.qa-artifacts\\exam-resume-20261008\\sources\\moe-2020-236-book8-math.hwp",
+      "sha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "paragraphExtractionSha256": "185fb860e76e42f33bd5f75158681a1f3f44dc5a63b6036db4886eafcd233c95",
+      "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=0404&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84"
+    },
+    "2022": {
+      "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-curriculum-primary-20261019-r1\\curriculum-reference-circle-revolutions-20261019-r1\\moe-2022-33-book8-math.hwp",
+      "sha256": "aab8eed59ecf244223d04afad75f4cf5ac5085fadcfc3cf52c2f6d54ddfc7856",
+      "paragraphExtractionSha256": "1f50538143506403e15c8f2b9691ddf5c86670f917acc22c142b2f339206f24b",
+      "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=040401&s=moe&fileSeq=1512facbda6c234a1641ac7e9c156ca2"
+    },
+    "2022GradePlacementSupplement": {
+      "publisher": "EBS, primary account of its own course; supplementary placement evidence, not MOE legal standard",
+      "url": "https://mid.ebs.co.kr/course/view?courseId=100006274&left=subject",
+      "rawHtmlSha256": "a162002b91baf546199c08656b77f6c0b04c22ba7d3b9566e6b20063f347a3ca",
+      "textNodesSha256": "672f8f2988270fb98e10ccd4e1fbe2f6ee7b3f40bdf026915aa425c8b64b6d3e",
+      "actualObjectiveNodes": [
+        {
+          "term": "[중2] 포텐 수학2(상)(2022개정)",
+          "firstNodeIndex0based": 2,
+          "nodeSha256": "98f515545b34fe4870ebefbd451a159c5be6394ebc18964ce5514a8dc960d750"
+        },
+        {
+          "term": "일차함수의 그래프의 x절편과 y절편",
+          "firstNodeIndex0based": 1010,
+          "nodeSha256": "5ebb903c38728c7f6dae5d9ad03055a3af3daabde0fafb5c6d2821e46f7d3a5c"
+        },
+        {
+          "term": "일차함수와 일차방정식의 관계",
+          "firstNodeIndex0based": 1058,
+          "nodeSha256": "fff010c68a3ab38b371ddc543d3342de4a81d60d4346526c857f930ad91fc59f"
+        },
+        {
+          "term": "부등식의 성질",
+          "firstNodeIndex0based": 914,
+          "nodeSha256": "edeb78c7f56113fc634f94b5bbae59737ea70e53693825ca82d3c95e9d81b89d"
+        },
+        {
+          "term": "일차부등식의 풀이",
+          "firstNodeIndex0based": 922,
+          "nodeSha256": "ef2f1f668d4bd5a0b48b0c0b9b562d79362eb3d1cf969325617c3059b1ecbbc9"
+        }
+      ],
+      "observed": "Course explicitly targets grade2 and2022 edition; actual lesson objectives13–18 cover inequalities,26 intercepts,32 relation of linear functions/equations,33 line equations. No lessons/videos or answer keys used."
+    },
+    "Kice2026NegativeResult": {
+      "url": "https://www.goe.go.kr/resource/goe/na/bbs_2675/2026/05/34866f8c-3e6b-45c1-84fb-4b232c919650.pdf",
+      "sha256": "e3134915686021e9badf0ff5f8536b0ae2206de2a392907076eb83c9b6d5e08e",
+      "result": "Grade-specific M1/M3 math examples were present; search for M2 math placement found none. Not cited as M2 placement proof."
+    }
+  },
+  "provisions": [
+    {
+      "edition": "2015",
+      "stream": "BodyText/Section0",
+      "record1based": 3752,
+      "standard": "9수01-03",
+      "actualParagraphSha256": "6558abf2b13e67574bdcdebcf3c620ff345e9bff7827d76f9f9341bc85d59e71",
+      "observedScopeSummary": "Signed integers/rationals; negative coordinate condition.",
+      "original2015PdfPhysicalPages1based": [
+        32
+      ]
+    },
+    {
+      "edition": "2015",
+      "stream": "BodyText/Section0",
+      "record1based": 3756,
+      "standard": "9수01-04",
+      "actualParagraphSha256": "21010e6fc546a3022e9dff3031f8ccd956fdbd8c5488c2f8f209fb7717450f64",
+      "observedScopeSummary": "Order of rational values; positive areas and their comparison.",
+      "original2015PdfPhysicalPages1based": [
+        32
+      ]
+    },
+    {
+      "edition": "2015",
+      "stream": "BodyText/Section0",
+      "record1based": 3760,
+      "standard": "9수01-05",
+      "actualParagraphSha256": "9958811c805b878dd72a3ae8c638d51c94647fb015e18a0555b4a41ec2f266fc",
+      "observedScopeSummary": "Signed rational arithmetic.",
+      "original2015PdfPhysicalPages1based": [
+        32
+      ]
+    },
+    {
+      "edition": "2015",
+      "stream": "BodyText/Section0",
+      "record1based": 3900,
+      "standard": "9수02-02",
+      "actualParagraphSha256": "e526cd814b09fc4dd0654d3f3bc2c3357cc78fc470f52df97ec5adc601015ea5",
+      "observedScopeSummary": "Evaluate expressions by substitution.",
+      "original2015PdfPhysicalPages1based": [
+        34
+      ]
+    },
+    {
+      "edition": "2015",
+      "stream": "BodyText/Section0",
+      "record1based": 3916,
+      "standard": "9수02-05",
+      "actualParagraphSha256": "60b6d718ef139601805f746410077e592b0cc8ac395915a257a79a6a4a9ff32a",
+      "observedScopeSummary": "Solve a linear equation for a substituted variable.",
+      "original2015PdfPhysicalPages1based": [
+        34
+      ]
+    },
+    {
+      "edition": "2015",
+      "stream": "BodyText/Section0",
+      "record1based": 3940,
+      "standard": "9수02-09",
+      "actualParagraphSha256": "86e84bd8a9b6cb97d7379f062a16750bfbe355ece7454dc4eee63f36369fd2bf",
+      "observedScopeSummary": "Inequality meaning/properties for positive-variable bounds.",
+      "original2015PdfPhysicalPages1based": [
+        34
+      ]
+    },
+    {
+      "edition": "2015",
+      "stream": "BodyText/Section0",
+      "record1based": 3944,
+      "standard": "9수02-10",
+      "actualParagraphSha256": "b3a186c3aba6d097cc4ab5361e31fad98eeef3529af69a5083b27fd564661c81",
+      "observedScopeSummary": "Solve the simple linear bounds.",
+      "original2015PdfPhysicalPages1based": [
+        34
+      ]
+    },
+    {
+      "edition": "2015",
+      "stream": "BodyText/Section0",
+      "record1based": 4102,
+      "standard": "9수03-01",
+      "actualParagraphSha256": "25f73ef4d5e4b84bb7a4cc37a3a24cb6c5b53bfa204ea58de86351e4b6f37618",
+      "observedScopeSummary": "Ordered pairs and coordinates.",
+      "original2015PdfPhysicalPages1based": [
+        36
+      ]
+    },
+    {
+      "edition": "2015",
+      "stream": "BodyText/Section0",
+      "record1based": 4126,
+      "standard": "9수03-06",
+      "actualParagraphSha256": "f786b2009405ebfdf8d4ac6719e5da3f1fef6fed51466c79da240652a3604629",
+      "observedScopeSummary": "Use linear graph properties.",
+      "original2015PdfPhysicalPages1based": [
+        36
+      ]
+    },
+    {
+      "edition": "2015",
+      "stream": "BodyText/Section0",
+      "record1based": 4134,
+      "standard": "9수03-07",
+      "actualParagraphSha256": "fa5570903bc0ed2b91df6650d1299d81860548a131777a20dd4504bea6e55246",
+      "observedScopeSummary": "Linear equation with2 unknowns as a line.",
+      "original2015PdfPhysicalPages1based": [
+        36
+      ]
+    },
+    {
+      "edition": "2015",
+      "stream": "BodyText/Section0",
+      "record1based": 4161,
+      "standard": null,
+      "actualParagraphSha256": "ed204692ec3792ab3cfeaab6f651794a24adf03a64e15e1b236e932f7a16b6fb",
+      "observedScopeSummary": "Notation list includes axes, coordinates, intercepts and line equation; exact x/y glyphs recovered in original PDF.",
+      "original2015PdfPhysicalPages1based": []
+    },
+    {
+      "edition": "2015",
+      "stream": "BodyText/Section0",
+      "record1based": 3433,
+      "standard": "6수03-06",
+      "actualParagraphSha256": "408466f556010e72f33891a9325a1648470e2d3c2fe0790d9e3936c4efea35af",
+      "observedScopeSummary": "Earlier elementary triangle area.",
+      "original2015PdfPhysicalPages1based": [
+        29
+      ]
+    },
+    {
+      "edition": "2015",
+      "stream": "BodyText/Section0",
+      "record1based": 3480,
+      "standard": null,
+      "actualParagraphSha256": "7f0b395fbd1ffc79b34d138cdb1346bf26bf670c95e1527a05361290dd5a511b",
+      "observedScopeSummary": "Triangle-height guidance includes exterior heights; current cases need only internal axis feet.",
+      "original2015PdfPhysicalPages1based": []
+    },
+    {
+      "edition": "2015",
+      "stream": "BodyText/Section0",
+      "record1based": 3865,
+      "standard": null,
+      "actualParagraphSha256": "5e778e4455a3135ddfc678ee8b5f687de2c1d6a5dd773da9de676c61a97a9e2e",
+      "observedScopeSummary": "Reject overly complicated integer/rational calculation.",
+      "original2015PdfPhysicalPages1based": []
+    },
+    {
+      "edition": "2015",
+      "stream": "BodyText/Section0",
+      "record1based": 4071,
+      "standard": null,
+      "actualParagraphSha256": "093de21cf2c37a01ffac05588cf116a30364ade79641e22553f3a45bbe517266",
+      "observedScopeSummary": "Reject overly complicated equation/inequality applications.",
+      "original2015PdfPhysicalPages1based": []
+    },
+    {
+      "edition": "2015",
+      "stream": "BodyText/Section0",
+      "record1based": 4221,
+      "standard": null,
+      "actualParagraphSha256": "9fe195da73a24d121e5395c233131a00a4f66cc4db4fe27a47f88185aa746feb",
+      "observedScopeSummary": "Reject overly complicated function applications.",
+      "original2015PdfPhysicalPages1based": []
+    },
+    {
+      "edition": "2022",
+      "stream": "BodyText/Section0",
+      "record1based": 3479,
+      "standard": "9수01-03",
+      "actualParagraphSha256": "41bcc5861bd36060728b46756f556f1f8cfb5eb781ca1d9553ba5e12a1630dff",
+      "observedScopeSummary": "Signed integers/rationals.",
+      "original2015PdfPhysicalPages1based": null
+    },
+    {
+      "edition": "2022",
+      "stream": "BodyText/Section0",
+      "record1based": 3483,
+      "standard": "9수01-04",
+      "actualParagraphSha256": "665090ccff930d994e451fa6b22f16a0f30a74a4c5c0dd1eb887e92beca55279",
+      "observedScopeSummary": "Rational order.",
+      "original2015PdfPhysicalPages1based": null
+    },
+    {
+      "edition": "2022",
+      "stream": "BodyText/Section0",
+      "record1based": 3487,
+      "standard": "9수01-05",
+      "actualParagraphSha256": "037c3c3c7b9736b0d069997efd15b780034b75177c09793c5661d050025a11b5",
+      "observedScopeSummary": "Signed rational arithmetic.",
+      "original2015PdfPhysicalPages1based": null
+    },
+    {
+      "edition": "2022",
+      "stream": "BodyText/Section0",
+      "record1based": 3604,
+      "standard": "9수02-01",
+      "actualParagraphSha256": "b2ed6a194bb50bd7de11b1f22b26d3117b7c3edf2e6c422c48a05e55e7bb1d41",
+      "observedScopeSummary": "Literal expressions and substitution.",
+      "original2015PdfPhysicalPages1based": null
+    },
+    {
+      "edition": "2022",
+      "stream": "BodyText/Section0",
+      "record1based": 3623,
+      "standard": "9수02-04",
+      "actualParagraphSha256": "b2378cb10f4c02ee26c75fc0e53a3586f6cf289d6465273750d7efc061cafc3e",
+      "observedScopeSummary": "Linear equation solving.",
+      "original2015PdfPhysicalPages1based": null
+    },
+    {
+      "edition": "2022",
+      "stream": "BodyText/Section0",
+      "record1based": 3634,
+      "standard": "9수02-05",
+      "actualParagraphSha256": "f9bf8e889634cfa94079bae90e572d1ac924703855f68a49315cd7c76c97b9cd",
+      "observedScopeSummary": "Ordered pairs and coordinates.",
+      "original2015PdfPhysicalPages1based": null
+    },
+    {
+      "edition": "2022",
+      "stream": "BodyText/Section0",
+      "record1based": 3676,
+      "standard": "9수02-11",
+      "actualParagraphSha256": "3f4700a8cc1bfba0b0b05a3c758ac3c581acfcb1fdf6342eb11a665cccb03097",
+      "observedScopeSummary": "Inequality meaning/properties.",
+      "original2015PdfPhysicalPages1based": null
+    },
+    {
+      "edition": "2022",
+      "stream": "BodyText/Section0",
+      "record1based": 3680,
+      "standard": "9수02-12",
+      "actualParagraphSha256": "3c20a0680fdbd827a633720a2f0e22cca7c7a6168634fb992b253a9de377fc76",
+      "observedScopeSummary": "Simple linear inequality solving.",
+      "original2015PdfPhysicalPages1based": null
+    },
+    {
+      "edition": "2022",
+      "stream": "BodyText/Section0",
+      "record1based": 3710,
+      "standard": "9수02-16",
+      "actualParagraphSha256": "e3816f18c3584e8326e6572e9ddfaa7af776e601a35f6659074d4a7cb77652d6",
+      "observedScopeSummary": "Use properties of linear function graphs.",
+      "original2015PdfPhysicalPages1based": null
+    },
+    {
+      "edition": "2022",
+      "stream": "BodyText/Section0",
+      "record1based": 3721,
+      "standard": "9수02-17",
+      "actualParagraphSha256": "9c2a40c6292beae6cac33e96ff841a563a9c1b71e1e4f4342c6a41a08fd22e63",
+      "observedScopeSummary": "Relation of linear functions and equations with2 unknowns.",
+      "original2015PdfPhysicalPages1based": null
+    },
+    {
+      "edition": "2022",
+      "stream": "BodyText/Section0",
+      "record1based": 3823,
+      "standard": null,
+      "actualParagraphSha256": "8f7be1a196303b621b6d47c831e16097c5246cb38dc0ec731891a8994ec4404e",
+      "observedScopeSummary": "Notation list includes coordinate axes, intercepts and line equation; control placeholders in glyph extraction are not treated as literal notation.",
+      "original2015PdfPhysicalPages1based": null
+    },
+    {
+      "edition": "2022",
+      "stream": "BodyText/Section0",
+      "record1based": 3172,
+      "standard": "6수03-14",
+      "actualParagraphSha256": "cf7ad3c949714f1e21219b741d96a3ecd7a8583382b68927c418cf531e5b4625",
+      "observedScopeSummary": "Equivalent elementary2022 triangle area; historical cohorts instead completed2015 elementary.",
+      "original2015PdfPhysicalPages1based": null
+    },
+    {
+      "edition": "2022",
+      "stream": "BodyText/Section0",
+      "record1based": 3279,
+      "standard": null,
+      "actualParagraphSha256": "45cb00797466074ec5aa5bee63065d9c6ccd064a77a7f761476025dd4d71749f",
+      "observedScopeSummary": "Triangle area height guidance.",
+      "original2015PdfPhysicalPages1based": null
+    },
+    {
+      "edition": "2022",
+      "stream": "BodyText/Section0",
+      "record1based": 3855,
+      "standard": null,
+      "actualParagraphSha256": "b29d864776a4086ffa7f75c3fa8d9d70532abccb45b798debb5826c0e6bb26c5",
+      "observedScopeSummary": "Use alternative equation-solving methods and test contextual validity.",
+      "original2015PdfPhysicalPages1based": null
+    },
+    {
+      "edition": "2022",
+      "stream": "BodyText/Section0",
+      "record1based": 3583,
+      "standard": null,
+      "actualParagraphSha256": "5e778e4455a3135ddfc678ee8b5f687de2c1d6a5dd773da9de676c61a97a9e2e",
+      "observedScopeSummary": "No overly complicated signed-rational calculation.",
+      "original2015PdfPhysicalPages1based": null
+    },
+    {
+      "edition": "2022",
+      "stream": "BodyText/Section0",
+      "record1based": 3887,
+      "standard": null,
+      "actualParagraphSha256": "21d08ac2e53fa6206a893b403c823e2f5ec3ee70cfb39c31d7e05166b5c7e280",
+      "observedScopeSummary": "No overly complicated equation/inequality/function applications.",
+      "original2015PdfPhysicalPages1based": null
+    }
+  ],
+  "fullThirdPartyFilesPublished": false
+}
