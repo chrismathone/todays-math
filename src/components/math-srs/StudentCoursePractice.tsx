@@ -2,9 +2,20 @@
 
 import dynamic from "next/dynamic";
 import { BackButton } from "@/components/ui/BackLink";
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type FormEvent,
+  type CSSProperties,
+} from "react";
+import {
+  JOURNEY_THEMES,
+  type JourneyThemeId,
+} from "@/lib/math-explorers/journeyThemes";
 import type {
   CourseAttemptInput,
+  CourseFollowUpInput,
   CoursePublicProblem,
   CoursePublicSession,
   CourseSummary,
@@ -20,6 +31,7 @@ import { answerKey, useAnswerKeys } from "./useAnswerKeys";
 import s from "./elementary-practice.module.css";
 import pageTurn from "./question-page-turn.module.css";
 import { useQuestionPageTurn } from "./useQuestionPageTurn";
+import f from "./course-follow-up.module.css";
 
 const ProblemContent = dynamic(() =>
   import("@/components/math/ProblemContent").then((mod) => mod.ProblemContent),
@@ -32,10 +44,12 @@ interface Props {
   session: CoursePublicSession;
   summary: CourseSummary;
   journey?: MathSrsJourney;
+  journeyTheme?: JourneyThemeId;
   prerequisiteContext?: PrerequisiteContext;
   feedbackId: string | null;
   busy: boolean;
   onAnswer: (input: CourseAttemptInput) => void;
+  onFollowUp?: (input: CourseFollowUpInput) => void;
   onHint: (problemId: string) => void;
   onNext: () => void;
   onContinue: () => void;
@@ -56,23 +70,36 @@ export default function StudentCoursePractice(props: Props) {
     }
   ).retry;
   const retryActive = !!retry && !retry.completedAt;
-  const problem = feedbackId
-    ? session.problems.find((item) => item.id === feedbackId)
-    : retryActive
-      ? session.problems.find((item) => item.id === retry.pendingProblemIds[0])
-      : session.problems.find(
-          (item) =>
-            !session.attempts.some((attempt) => attempt.problemId === item.id),
-        );
+  const pendingFollowUp = session.problems.find(
+    (item) => item.followUp && !item.followUp.done,
+  );
+  const problem =
+    pendingFollowUp ??
+    (feedbackId
+      ? session.problems.find((item) => item.id === feedbackId)
+      : retryActive
+        ? session.problems.find(
+            (item) => item.id === retry.pendingProblemIds[0],
+          )
+        : session.problems.find(
+            (item) =>
+              !session.attempts.some(
+                (attempt) => attempt.problemId === item.id,
+              ),
+          ));
   const inRetry =
+    !pendingFollowUp &&
     !!retry &&
     (feedbackId
       ? retry.attempts.some((item) => item.problemId === feedbackId)
       : retryActive);
-  const questionKey = problem
+  const paperKey = problem
     ? `${problem.id}:${inRetry ? retry!.attempts.length - (feedbackId ? 1 : 0) : "first"}`
     : null;
-  const turnPage = useQuestionPageTurn(questionKey);
+  const questionKey = paperKey
+    ? `${paperKey}:${pendingFollowUp?.followUp?.state ?? "initial"}`
+    : null;
+  const turnPage = useQuestionPageTurn(paperKey);
   if (!problem) return <CourseComplete {...props} />;
   const index = session.problems.findIndex((item) => item.id === problem.id);
   const nextIsRetry =
@@ -85,7 +112,16 @@ export default function StudentCoursePractice(props: Props) {
     (attempt) => !attempt.correct,
   ).length;
   return (
-    <div className={`${s.practice} ${s.studentPractice} ${s.fixedPractice}`}>
+    <div
+      className={`${s.practice} ${s.studentPractice} ${s.fixedPractice} ${pendingFollowUp ? f.practice : ""}`}
+      style={
+        props.journeyTheme && JOURNEY_THEMES[props.journeyTheme].boardImage
+          ? ({
+              "--learn-course-theme": `url("${JOURNEY_THEMES[props.journeyTheme].boardImage}")`,
+            } as CSSProperties)
+          : undefined
+      }
+    >
       <header className={s.header}>
         <BackButton type="button" onClick={onExit} disabled={props.busy}>
           학습 홈
@@ -148,8 +184,8 @@ export default function StudentCoursePractice(props: Props) {
           problem.feedback?.correct === false
         }
         retryAttempt={
-          retry?.attempts
-            .slice()
+          (inRetry ? retry?.attempts : undefined)
+            ?.slice()
             .reverse()
             .find((item) => item.problemId === problem.id) ?? null
         }
@@ -177,7 +213,11 @@ function useProblemFigure(
     const controller = new AbortController();
     async function load() {
       try {
+        const { COURSE_FOLLOW_UP_HEADER } =
+          await import("@/contracts/mathSrsCourse.contract");
+        if (controller.signal.aborted) return;
         const response = await fetch(url!, {
+          headers: { [COURSE_FOLLOW_UP_HEADER]: "1" },
           signal: controller.signal,
           cache: "no-store",
           credentials: "same-origin",
@@ -223,6 +263,7 @@ function CourseQuestion({
   feedbackId,
   busy,
   onAnswer,
+  onFollowUp,
   onHint,
   onNext,
   onAuthFailure,
@@ -257,6 +298,11 @@ function CourseQuestion({
   const attempt =
     retryAttempt ??
     session.attempts.find((item) => item.problemId === problem.id);
+  const followUp =
+    retryIndex === null && problem.followUp && !problem.followUp.done
+      ? problem.followUp
+      : null;
+  const awaiting = followUp?.state === "awaiting";
   // Opening the retry queue can redact problem.feedback in the same response
   // that saved the final first attempt. Its persisted grade still drives the
   // brief overlay before we move into that queue.
@@ -282,7 +328,7 @@ function CourseQuestion({
   ).interactive;
   const useChoices = !selfCheck && !interactive && answerChoices?.length === 4;
   const useInteractive = !selfCheck && interactive?.kind === "fraction-parts";
-  const hasFeedback = !!feedback && !!attempt;
+  const hasFeedback = !awaiting && !!feedback && !!attempt;
   const resultMessage =
     submittedAction === "give-up"
       ? retryIndex === null
@@ -304,7 +350,16 @@ function CourseQuestion({
       message={resultMessage}
     />
   );
-  const selectedAnswer = hasFeedback ? attempt.submittedAnswer : answer;
+  const selectedAnswer = followUp
+    ? answer
+    : hasFeedback
+      ? attempt.submittedAnswer
+      : answer;
+  // Rotate only the displayed values. Submission and number keys use this order's actual value.
+  const displayedChoices =
+    awaiting && answerChoices
+      ? [...answerChoices.slice(1), answerChoices[0]!]
+      : answerChoices;
   const ready = figure.status === "ready";
   const locked = busy || !ready;
   const instantAnswer = useChoices || useInteractive;
@@ -314,15 +369,16 @@ function CourseQuestion({
   }, [busy, hasFeedback]);
 
   useEffect(() => {
-    if (!hasFeedback || busy || !instantAnswer) return;
+    if (!hasFeedback || busy || !instantAnswer || followUp) return;
     const timer = window.setTimeout(onNext, 1200);
     return () => window.clearTimeout(timer);
-  }, [hasFeedback, busy, instantAnswer, onNext]);
+  }, [hasFeedback, busy, instantAnswer, onNext, followUp]);
 
   useEffect(() => {
-    if (hasFeedback) nextButton.current?.focus({ preventScroll: true });
+    if (hasFeedback || (followUp && !awaiting))
+      nextButton.current?.focus({ preventScroll: true });
     else questionHeading.current?.focus({ preventScroll: true });
-  }, [hasFeedback]);
+  }, [hasFeedback, followUp, awaiting]);
 
   useEffect(() => {
     const dialog = explanationDialog.current;
@@ -368,12 +424,21 @@ function CourseQuestion({
       ...payload,
       ...(retryIndex === null ? {} : { retryIndex }),
     };
-    onAnswer(request);
+    if (awaiting)
+      onFollowUp?.({
+        sessionId: session.id,
+        problemId: problem.id,
+        action: "answer",
+        ...(payload.giveUp
+          ? { giveUp: true }
+          : { submittedAnswer: payload.submittedAnswer }),
+      });
+    else onAnswer(request);
   }
 
   function submit(event: FormEvent) {
     event.preventDefault();
-    if (locked || feedback || selfCheck) return;
+    if (locked || hasFeedback || selfCheck) return;
     const submittedAnswer = useInteractive
       ? selectedParts.length > 0
         ? `${selectedParts.length}/${interactive.denominator}`
@@ -416,7 +481,7 @@ function CourseQuestion({
   return (
     <section
       ref={questionRoot}
-      className={`${s.question} ${s.studentQuestion} ${s.fixedQuestion}`}
+      className={`${s.question} ${s.studentQuestion} ${s.fixedQuestion} ${followUp ? f.question : ""}`}
       data-answer-mode={
         useChoices ? "choices" : useInteractive ? "fraction" : "written"
       }
@@ -424,7 +489,7 @@ function CourseQuestion({
       aria-busy={busy}
     >
       <div
-        className={`${s.problemPane} ${pageTurn.page}`}
+        className={`${s.problemPane} ${pageTurn.page} ${followUp ? f.problem : ""}`}
         data-page-turn="true"
         data-question-transition={turnPage}
       >
@@ -473,8 +538,75 @@ function CourseQuestion({
           ) : null}
         </div>
       </div>
-      <div className={s.responsePane}>
-        {hasFeedback && selfCheck ? (
+      <div className={`${s.responsePane} ${followUp ? f.response : ""}`}>
+        {followUp && !awaiting ? (
+          followUp.state === "correct" ? (
+            <div className={f.correct}>
+              <p role="status">맞았어요</p>
+              <button
+                ref={nextButton}
+                type="button"
+                className={s.primary}
+                disabled={busy}
+                onClick={() =>
+                  onFollowUp?.({
+                    sessionId: session.id,
+                    problemId: problem.id,
+                    action: "done",
+                  })
+                }
+              >
+                다음
+              </button>
+            </div>
+          ) : (
+            <section
+              className={f.solution}
+              aria-labelledby="course-inline-solution-title"
+            >
+              <span className={f.tag}>다시 살펴봐요</span>
+              <h3 id="course-inline-solution-title">정답과 풀이</h3>
+              <div className={f.columns}>
+                <div>
+                  {problem.hint ? (
+                    <Solution solution={problem.hint} />
+                  ) : (
+                    <p role="alert">
+                      풀이를 불러오지 못했어요. 다시 불러와 주세요.
+                    </p>
+                  )}
+                </div>
+                {problem.figureUrl ? (
+                  <div className={f.figure}>
+                    {figure.svg ? (
+                      <div dangerouslySetInnerHTML={{ __html: figure.svg }} />
+                    ) : (
+                      <p role="status">문제의 그림을 확인해 주세요.</p>
+                    )}
+                  </div>
+                ) : null}
+              </div>
+              <footer className={f.solutionFooter}>
+                <p>이 문제는 다음 복습에서 다시 만나요.</p>
+                <button
+                  ref={nextButton}
+                  type="button"
+                  className={s.primary}
+                  disabled={busy || !problem.hint}
+                  onClick={() =>
+                    onFollowUp?.({
+                      sessionId: session.id,
+                      problemId: problem.id,
+                      action: "done",
+                    })
+                  }
+                >
+                  알겠어요
+                </button>
+              </footer>
+            </section>
+          )
+        ) : hasFeedback && selfCheck ? (
           <div className={s.feedback}>
             <div
               className={s.responseScroll}
@@ -601,7 +733,11 @@ function CourseQuestion({
               aria-label="답안 작성"
             >
               <div className={s.answerDockHeader}>
-                {hasFeedback ? (
+                {awaiting ? (
+                  <p role="status" className={f.warning}>
+                    다시 해 볼까요
+                  </p>
+                ) : hasFeedback ? (
                   result
                 ) : (
                   <p className={s.feedbackLabel}>
@@ -669,7 +805,7 @@ function CourseQuestion({
                     role="group"
                     aria-label="답 고르기"
                   >
-                    {answerChoices.map((choice, choiceIndex) => (
+                    {displayedChoices!.map((choice, choiceIndex) => (
                       <button
                         key={`${choiceIndex}-${choice}`}
                         type="button"
@@ -677,6 +813,11 @@ function CourseQuestion({
                         aria-keyshortcuts={answerKey(choiceIndex)}
                         aria-pressed={selectedAnswer === choice}
                         data-answer-control=""
+                        data-previous={
+                          awaiting && attempt?.submittedAnswer === choice
+                            ? "true"
+                            : undefined
+                        }
                         data-result={
                           hasFeedback && selectedAnswer === choice
                             ? feedback.correct
@@ -697,6 +838,9 @@ function CourseQuestion({
                           className={s.choiceNumber}
                         />
                         <MathText text={choice} as="span" />
+                        {awaiting && attempt?.submittedAnswer === choice ? (
+                          <span className={f.previous}>앞에서 고른 답</span>
+                        ) : null}
                       </button>
                     ))}
                   </div>
@@ -776,60 +920,62 @@ function CourseQuestion({
           </div>
         )}
       </div>
-      <dialog
-        ref={explanationDialog}
-        className={s.explanationDialog}
-        aria-labelledby="course-explanation-title"
-        onCancel={() => setExplanationOpen(false)}
-        onClose={() => {
-          setExplanationOpen(false);
-          explanationOpener.current?.focus({ preventScroll: true });
-        }}
-      >
-        <div className={s.dialogHeader}>
-          <h3 id="course-explanation-title">풀이</h3>
-          <button
-            ref={explanationClose}
-            type="button"
-            className={s.dialogClose}
-            onClick={closeExplanation}
-            aria-label="풀이 닫기"
-          >
-            ×
-          </button>
-        </div>
-        <div className={s.dialogBody}>
-          {problem.hint ? (
-            <Solution solution={problem.hint} />
-          ) : (
-            <p role={busy ? "status" : "alert"}>
-              {busy
-                ? "풀이를 불러오고 있어요…"
-                : "풀이를 불러오지 못했어요. 닫고 다시 시도해 주세요."}
-            </p>
-          )}
-        </div>
-        {selfCheck && problem.hint && !feedback ? (
-          <div className={s.dialogActions}>
+      {!followUp ? (
+        <dialog
+          ref={explanationDialog}
+          className={s.explanationDialog}
+          aria-labelledby="course-explanation-title"
+          onCancel={() => setExplanationOpen(false)}
+          onClose={() => {
+            setExplanationOpen(false);
+            explanationOpener.current?.focus({ preventScroll: true });
+          }}
+        >
+          <div className={s.dialogHeader}>
+            <h3 id="course-explanation-title">풀이</h3>
             <button
+              ref={explanationClose}
               type="button"
-              className={s.primary}
-              disabled={busy}
-              onClick={() => recordSelf(true)}
+              className={s.dialogClose}
+              onClick={closeExplanation}
+              aria-label="풀이 닫기"
             >
-              맞았어요
-            </button>
-            <button
-              type="button"
-              className={s.secondary}
-              disabled={busy}
-              onClick={() => recordSelf(false)}
-            >
-              다시 연습할래요
+              ×
             </button>
           </div>
-        ) : null}
-      </dialog>
+          <div className={s.dialogBody}>
+            {problem.hint ? (
+              <Solution solution={problem.hint} />
+            ) : (
+              <p role={busy ? "status" : "alert"}>
+                {busy
+                  ? "풀이를 불러오고 있어요…"
+                  : "풀이를 불러오지 못했어요. 닫고 다시 시도해 주세요."}
+              </p>
+            )}
+          </div>
+          {selfCheck && problem.hint && !feedback ? (
+            <div className={s.dialogActions}>
+              <button
+                type="button"
+                className={s.primary}
+                disabled={busy}
+                onClick={() => recordSelf(true)}
+              >
+                맞았어요
+              </button>
+              <button
+                type="button"
+                className={s.secondary}
+                disabled={busy}
+                onClick={() => recordSelf(false)}
+              >
+                다시 연습할래요
+              </button>
+            </div>
+          ) : null}
+        </dialog>
+      ) : null}
     </section>
   );
 }
