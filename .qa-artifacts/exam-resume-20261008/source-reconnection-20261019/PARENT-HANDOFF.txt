@@ -1,0 +1,8 @@
+﻿Parent handoff — source identity task, 2026-10-19
+Implementation/evidence commit: c5edd9fdfd5982810a08289301daf20b457cb599
+Base: fast-forward merged local chrismathone/exam-extraction-resume-20261008 at 627a093f788d9b1ca382d91e8d828890b019dbcd.
+Result: 29/29 current N source entries matched expected SHA256 and sizes across 12 manifests; one duplicate-byte group. HWP/PDF content-pair identity remains unconfirmed; no content certification, rights/grade approvals or extraction-complete claim.
+Checks: sourceIdentity 7/7; full Node suite 39/40, existing reviewWorkflow dependency-junction expected-exception test fails at line 344. Full logs preserved. Cached diff check reported only one trailing blank line in the preserved run-r2 runner; prior evidence is retained unchanged.
+Report: docs/planning/tracks/reports/exam-source-reconnection-20261019.md
+Evidence: .qa-artifacts/exam-resume-20261008/source-reconnection-20261019/n-source-verification-r1.json and run-receipt-r1.json
+Scope: only owned helper/tests/new report/new evidence. No workers, source edits, DB/AI calls, controller changes, engine sibling changes, push/main merge/deploy. Working tree clean after implementation commit. Follow-up handoff commit contains this receipt only; integrate both commits or the branch tip.
