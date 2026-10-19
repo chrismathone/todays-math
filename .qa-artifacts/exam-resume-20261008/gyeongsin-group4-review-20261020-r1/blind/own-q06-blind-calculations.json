@@ -1,0 +1,110 @@
+{
+  "inputHashes": {
+    "SOLVE-BRIEF.md": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c",
+    "student-problems.json": "d68e3e5e63b226d4ea509d0aeebd7f7334636dd5e2aad8771e936b3998c4f934",
+    "blind-manifest.json": "0c62361c425bbb154473aea6f6671473b78935fea93437f25c24d0fd02e2145a"
+  },
+  "studentDigestRecomputed": "225b5e64ceb422692469fc64ee3406b4e535decdb3510afa871c6f164dbb6856",
+  "figure": {
+    "svgSha256": "69f53b0c707230d6a2c7e9554100ad1a7dfd293e986e8cb177971cc4cccf9160",
+    "pngSha256": "48593a970836e31d17f3bf412979b9fd7799a211b3a436664c9672e9132d3761",
+    "labels": [
+      "95°",
+      "108°",
+      "x",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T"
+    ],
+    "visuallyChecked": "P,Q,R,S,T occur consecutively around circle; center O and radii OQ/OR;95 atP betweenPQ/PT,108 atS betweenSR/ST; targetx atO betweenOQ/OR.",
+    "coordinatesOrPixelsUsedAsNumericOracle": false
+  },
+  "primaryStudentMethod": {
+    "auxiliary": "draw chord PR",
+    "cyclicQuadrilateral": "PRST has opposite angles RPT and RST supplementary",
+    "RPT": "72",
+    "angleSubtraction": "ray PR lies inside angleQPT due to confirmed cyclic order P-Q-R-S-T;QPR=QPT-RPT",
+    "QPR": "23",
+    "centralAngle": "same arcQR center angle is twice inscribed angleQPR;46<180 so this is the small angle",
+    "targetDegrees": "46",
+    "otherReflexDegrees": "314"
+  },
+  "arcCheck": {
+    "arcQRST": "190",
+    "complementArcQPT": "170",
+    "arcRQPT": "216",
+    "arcQR": "46"
+  },
+  "existenceWitness": {
+    "consecutiveArcsDegrees": {
+      "PQ": "85",
+      "QR": "46",
+      "RS": "72",
+      "ST": "72",
+      "TP": "85"
+    },
+    "sum360": true,
+    "allStrictlyPositive": true,
+    "allLessThan180": true,
+    "angleQPT": "95",
+    "angleRST": "108",
+    "reason": "Place5distinctpoints in this arc order on any positive-radius circle. The intercepted arcs give exactly95and108, andQRgives46. This construction uses angle measures only, not SVG positions."
+  },
+  "allFiveOptions": [
+    {
+      "mark": "①",
+      "candidateCentralDegrees": "42",
+      "impliedQPRDegrees": "21",
+      "RPTFromRST": "72",
+      "impliedQPTDegrees": "93",
+      "matchesStated95": false,
+      "validSmallAngleDomain": true
+    },
+    {
+      "mark": "②",
+      "candidateCentralDegrees": "44",
+      "impliedQPRDegrees": "22",
+      "RPTFromRST": "72",
+      "impliedQPTDegrees": "94",
+      "matchesStated95": false,
+      "validSmallAngleDomain": true
+    },
+    {
+      "mark": "③",
+      "candidateCentralDegrees": "46",
+      "impliedQPRDegrees": "23",
+      "RPTFromRST": "72",
+      "impliedQPTDegrees": "95",
+      "matchesStated95": true,
+      "validSmallAngleDomain": true
+    },
+    {
+      "mark": "④",
+      "candidateCentralDegrees": "48",
+      "impliedQPRDegrees": "24",
+      "RPTFromRST": "72",
+      "impliedQPTDegrees": "96",
+      "matchesStated95": false,
+      "validSmallAngleDomain": true
+    },
+    {
+      "mark": "⑤",
+      "candidateCentralDegrees": "50",
+      "impliedQPRDegrees": "25",
+      "RPTFromRST": "72",
+      "impliedQPTDegrees": "97",
+      "matchesStated95": false,
+      "validSmallAngleDomain": true
+    }
+  ],
+  "uniqueness": "Target angle is forced by180-108=72,95-72=23,and2*23=46. Shape/radius/individual other arcs are not unique; the requested angle and correct option are unique under the given cyclic ordering.",
+  "domainUnits": "angles in degrees; positive radius, distinct ordered circle points, positive arcs and chords in existence witness; no denominator or radical domains in task",
+  "studentGradeMethod": "M3 circle geometry: cyclic quadrilateral opposite angles and inscribed/central angle relation, basic angle subtraction; no trigonometry, coordinate geometry or advanced cyclic-polygon formula. Blind raw is not a formal grade approval.",
+  "utf8WriteReadPassed": true,
+  "currentAuthorAnswerExposure": false,
+  "priorExposureHistory": "Earlier work included other authorized item/source summaries; no claim of never seeing any original exam. Current GYEONGSIN authoredq06/answer unseen before student packet.",
+  "newApprovalCounts": 0
+}
