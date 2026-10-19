@@ -51,6 +51,33 @@ export interface CourseAttempt {
   selfAssessed: boolean;
   answeredAt: string;
 }
+/**
+ * What happened right after a wrong first answer (plan §3.2, decisions 2 and 6):
+ * a second answer (`retry`), or the solution opened without one (`reveal` — the
+ * first answer gave up, or a self-check was marked «다시 연습»). The first attempt
+ * and the section's memory stay as they were; a followed-up problem leaves the
+ * end-of-session retry queue and comes back at the next review.
+ */
+export type CourseFollowUp =
+  | {
+      problemId: string;
+      kind: "retry";
+      /** "" when the student gave up again (`giveUp`). */
+      submittedAnswer: string;
+      giveUp?: true;
+      correct: boolean;
+      answeredAt: string;
+      /** When the student pressed «알겠어요» · «다음»; null keeps the screen open. */
+      doneAt: string | null;
+    }
+  | {
+      problemId: string;
+      kind: "reveal";
+      correct: false;
+      /** The first attempt's own time — written by the same transition. */
+      answeredAt: string;
+      doneAt: string | null;
+    };
 export interface CourseSession {
   id: string;
   sectionId: string;
@@ -61,6 +88,7 @@ export interface CourseSession {
   completedAt: string | null;
   hintedProblemIds?: string[];
   revealedProblemIds?: string[];
+  followUps?: CourseFollowUp[];
   retry?: {
     pendingProblemIds: string[];
     attempts: CourseAttempt[];

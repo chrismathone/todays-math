@@ -117,6 +117,24 @@ const retrySchema = z.strictObject({
   requests: z.array(retryRequestSchema),
   completedAt: timestamp.nullable(),
 });
+const followUpSchema = z.discriminatedUnion("kind", [
+  z.strictObject({
+    problemId: identifier,
+    kind: z.literal("retry"),
+    submittedAnswer: z.string().max(2_000),
+    giveUp: z.literal(true).optional(),
+    correct: z.boolean(),
+    answeredAt: timestamp,
+    doneAt: timestamp.nullable(),
+  }),
+  z.strictObject({
+    problemId: identifier,
+    kind: z.literal("reveal"),
+    correct: z.literal(false),
+    answeredAt: timestamp,
+    doneAt: timestamp.nullable(),
+  }),
+]);
 
 function matchesProblem(
   problem: CourseProblem,
@@ -145,6 +163,7 @@ const sessionSchema = z
     hintedProblemIds: z.array(identifier).max(SESSION_SIZE).optional(),
     revealedProblemIds: z.array(identifier).max(SESSION_SIZE).optional(),
     retry: retrySchema.optional(),
+    followUps: z.array(followUpSchema).max(SESSION_SIZE).optional(),
   })
   .superRefine((session, context) => {
     const fail = (message: string) =>
@@ -201,11 +220,49 @@ const sessionSchema = z
     } else if (session.completedAt !== null) {
       fail("진행 중인 학습을 완료 처리할 수 없습니다.");
     }
+    const followUps = session.followUps ?? [];
+    const followed = new Set(followUps.map((entry) => entry.problemId));
+    if (followed.size !== followUps.length)
+      fail("다시 풀기 기록이 문제마다 하나가 아닙니다.");
+    for (const entry of followUps) {
+      const index = session.attempts.findIndex(
+        (a) => a.problemId === entry.problemId,
+      );
+      const first = session.attempts[index];
+      const problem = session.problems[index];
+      // A follow-up happens before the next first answer and before the retry round.
+      const before =
+        session.attempts[index + 1]?.answeredAt ??
+        session.retry?.attempts[0]?.answeredAt;
+      // Auto-graded first answers are "" only when the student gave up.
+      const gaveUp = first?.submittedAnswer === "";
+      const selfCheck = problem?.input.mode === "self-check";
+      if (
+        !first ||
+        first.correct ||
+        (entry.kind === "retry"
+          ? selfCheck ||
+            gaveUp ||
+            (entry.giveUp === true) !== (entry.submittedAnswer === "") ||
+            !matchesProblem(problem, {
+              ...first,
+              submittedAnswer: entry.submittedAnswer,
+              correct: entry.correct,
+            }) ||
+            Date.parse(entry.answeredAt) < Date.parse(first.answeredAt)
+          : !(selfCheck || gaveUp) || entry.answeredAt !== first.answeredAt) ||
+        (before && Date.parse(entry.answeredAt) > Date.parse(before)) ||
+        (entry.doneAt &&
+          Date.parse(entry.doneAt) < Date.parse(entry.answeredAt))
+      )
+        fail("다시 풀기 기록이 첫 풀이와 일치하지 않습니다.");
+    }
     if (session.retry) {
       if (!session.completedAt)
         fail("첫 풀이가 끝나기 전에 오답 복습을 시작할 수 없습니다.");
+      // A problem resolved on the spot is not asked again in this session.
       const wrong = session.attempts
-        .filter((a) => !a.correct)
+        .filter((a) => !a.correct && !followed.has(a.problemId))
         .map((a) => a.problemId);
       if (
         !wrong.length ||
