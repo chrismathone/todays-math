@@ -6,6 +6,7 @@ import {
 } from "@/contracts/bankSource.contract";
 import { PROBLEM_CODE_PATTERN } from "@/contracts/problemCode.contract";
 import { db } from "@/lib/db";
+import { cachedBankRead } from "@/lib/bankReadCache";
 import {
   problemEligibleWhere,
   problemIneligibleReason,
@@ -26,10 +27,13 @@ import { QUESTION_REVISION_SELECT } from "@/lib/problem/questionSelection";
 import {
   loadQuestionCandidates,
   projectQuestionCandidates,
-  questionReadMetadata,
   countProjectedQuestions,
+  questionReadMetadata,
   type QuestionCandidate,
 } from "@/lib/problem/questionProjection";
+import { loadQuestionCounts } from "@/lib/problem/questionCountProjection";
+import { questionBucketTally } from "@/lib/problem/questionCountBuckets";
+import { questionPageSql } from "@/lib/problem/questionCountSql";
 import type { ProblemSourceReference } from "@/contracts/problemSourceReference.contract";
 import type { BankQueryContext } from "@/lib/bankQueryContext";
 import type {
@@ -519,23 +523,10 @@ export async function loadUnifiedBankBootstrap(
   identity?: "question",
 ): Promise<UnifiedBankBootstrap> {
   if (identity === "question") {
-    return db.$transaction(
-      async (tx) => {
-        const [rows, units] = await Promise.all([
-          loadQuestionCandidates(problemEligibleWhere(), undefined, tx),
-          tx.unit.findMany({
-            select: QUESTION_UNIT_SELECT,
-            orderBy: { orderIndex: "asc" },
-          }),
-        ]);
-        return {
-          total: countProjectedQuestions(rows, true),
-          ...questionBankMetadata(rows, units),
-          ...questionReadMetadata(new URLSearchParams({ identity })),
-        };
-      },
-      { isolationLevel: "RepeatableRead", timeout: 20000 },
-    );
+    return {
+      ...(await loadQuestionBankSummary(problemEligibleWhere())),
+      ...questionReadMetadata(new URLSearchParams({ identity })),
+    };
   }
   return loadUnifiedBankMetadata(await resolveUnifiedBankQuery());
 }
@@ -594,50 +585,88 @@ async function loadQuestionBank(
 ): Promise<BankData> {
   return db.$transaction(
     async (tx) => {
-      const {
-        where,
-        format,
-        visibility,
-        requestedPage,
-        pageSize,
-        orderBy,
-        exactIds,
-        grade,
-        semester,
-      } = resolved;
       const cache = new Map<string, ReturnType<typeof classifyFormat>>();
+      const metadata = await loadQuestionBankSummary(
+        resolved.visibility,
+        resolved.grade,
+        resolved.semester,
+        params.has("reviewStatus"),
+        cache,
+        tx,
+      );
+      const { where, format, requestedPage, pageSize, orderBy, exactIds } =
+        resolved;
       const listingWhere = {
         AND: [problemVisibleWhere(), ...resolved.selection],
       };
-      const globalCandidates = await loadQuestionCandidates(
-        visibility,
-        undefined,
-        tx,
-        cache,
-      );
-      const [candidates, units] = await Promise.all([
-        loadQuestionCandidates(listingWhere, orderBy, tx, cache),
-        tx.unit.findMany({
-          select: QUESTION_UNIT_SELECT,
-          orderBy: { orderIndex: "asc" },
-        }),
-      ]);
       const inspection = params.has("reviewStatus");
-      const groups = projectQuestionCandidates(candidates, {
-        format,
-        availableOnly: !inspection && !exactIds,
-      });
-      const exact = exactIds
-        ? candidates.filter((r) => !format || r.actualFormat === format)
-        : null;
-      const total = groups.length;
-      const page = Math.min(
-        requestedPage,
-        Math.max(1, Math.ceil((exact?.length ?? total) / pageSize)),
-      );
-      const ids = (exact ?? groups.map((g) => g.representative))
-        .slice((page - 1) * pageSize, page * pageSize)
-        .map((r) => r.id);
+      let total: number, page: number, ids: string[];
+      if (
+        // Keep the fast replacement page. Ordinary additions use the pre-R1
+        // ordered metadata scan, avoiding an extra SQL page after counting.
+        (params.has("excludeIds") || params.has("excludeFamiliesOf")) &&
+        !exactIds &&
+        typeof tx.$queryRaw === "function" &&
+        questionPageSql(
+          listingWhere,
+          orderBy,
+          !inspection,
+          format,
+          0,
+          pageSize,
+          cache,
+        )
+      ) {
+        const counts = await loadQuestionCounts(
+          listingWhere,
+          tx,
+          [],
+          format,
+          cache,
+        );
+        const tally = questionBucketTally(counts);
+        total = inspection ? tally.held : tally.available;
+        page = Math.min(
+          requestedPage,
+          Math.max(1, Math.ceil(total / pageSize)),
+        );
+        const representatives = total
+          ? await tx.$queryRaw<{ id: string }[]>(
+              questionPageSql(
+                listingWhere,
+                orderBy,
+                !inspection,
+                format,
+                (page - 1) * pageSize,
+                pageSize,
+                cache,
+              )!,
+            )
+          : [];
+        ids = representatives.map((row) => row.id);
+      } else {
+        const candidates = await loadQuestionCandidates(
+          listingWhere,
+          orderBy,
+          tx,
+          cache,
+        );
+        const groups = projectQuestionCandidates(candidates, {
+          format,
+          availableOnly: !inspection && !exactIds,
+        });
+        const exact = exactIds
+          ? candidates.filter((r) => !format || r.actualFormat === format)
+          : null;
+        total = groups.length;
+        page = Math.min(
+          requestedPage,
+          Math.max(1, Math.ceil((exact?.length ?? total) / pageSize)),
+        );
+        ids = (exact ?? groups.map((g) => g.representative))
+          .slice((page - 1) * pageSize, page * pageSize)
+          .map((r) => r.id);
+      }
       const rows = ids.length
         ? await tx.problem.findMany({
             where: {
@@ -656,18 +685,13 @@ async function loadQuestionBank(
       );
       return {
         problems,
-        total,
         page,
         pageSize,
         ...questionReadMetadata(params),
         ...(exactIds ? { queryMode: "exact_ids" as const } : {}),
-        ...questionBankMetadata(
-          globalCandidates,
-          units,
-          grade,
-          semester,
-          inspection,
-        ),
+        ...metadata,
+        // The cached global summary must never replace this request's filtered total.
+        total,
       };
     },
     { isolationLevel: "RepeatableRead", timeout: 20000 },
@@ -682,6 +706,38 @@ const QUESTION_UNIT_SELECT = {
   orderIndex: true,
   semester: true,
 } as const;
+async function loadQuestionBankSummary(
+  visibility: Prisma.ProblemWhereInput,
+  grade?: string,
+  semester?: string,
+  inspection = false,
+  formats = new Map<string, ReturnType<typeof classifyFormat>>(),
+  client?: Prisma.TransactionClient,
+): Promise<UnifiedBankBootstrap> {
+  const read = async (tx: Prisma.TransactionClient) => {
+    const [rows, units] = await Promise.all([
+      loadQuestionCandidates(visibility, undefined, tx, formats),
+      tx.unit.findMany({
+        select: QUESTION_UNIT_SELECT,
+        orderBy: { orderIndex: "asc" },
+      }),
+    ]);
+    return {
+      total: countProjectedQuestions(rows, true),
+      ...questionBankMetadata(rows, units, grade, semester, inspection),
+    };
+  };
+  return cachedBankRead(
+    `bank-summary:${JSON.stringify([visibility, grade, semester, inspection])}`,
+    () =>
+      client
+        ? read(client)
+        : db.$transaction(read, {
+            isolationLevel: "RepeatableRead",
+            timeout: 20000,
+          }),
+  );
+}
 function questionBankMetadata(
   rows: readonly QuestionCandidate[],
   units: readonly {

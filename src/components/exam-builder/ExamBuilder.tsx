@@ -105,14 +105,18 @@ export default function ExamBuilder<T>({
       recent: boolean;
       scopes: ExamScope[];
       error?: string;
+      retry: number;
     }[]
   >([]);
+  const [retry, setRetry] = useState(0);
   const loadedFor = (recent: boolean) =>
     loadedList.find(
-      (entry) => entry.source === source && entry.recent === recent,
+      (entry) =>
+        entry.source === source &&
+        entry.recent === recent &&
+        entry.retry === retry,
     );
   const loaded = loadedFor(excludeRecent);
-  const [retry, setRetry] = useState(0);
   const scopes = useMemo(
     () => loaded?.scopes ?? source.initialScopes ?? [],
     [loaded, source],
@@ -212,13 +216,14 @@ export default function ExamBuilder<T>({
   }, [focusRequest, step]);
   useEffect(() => () => operation.current?.abort(), [source]);
   useEffect(() => {
+    if (loaded) return;
     const controller = new AbortController();
     const store = (entry: { scopes: ExamScope[]; error?: string }) =>
       setLoadedList((current) => [
         ...current.filter(
           (item) => item.source === source && item.recent !== excludeRecent,
         ),
-        { source, recent: excludeRecent, ...entry },
+        { source, recent: excludeRecent, retry, ...entry },
       ]);
     void source
       .loadScopes(controller.signal, conditions ? { excludeRecent } : undefined)
@@ -236,7 +241,7 @@ export default function ExamBuilder<T>({
           });
       });
     return () => controller.abort();
-  }, [source, retry, excludeRecent, conditions]);
+  }, [source, retry, excludeRecent, conditions, loaded]);
   // 창이 열려 있으면 반대쪽(최근 출제를 넣은 · 뺀) 수도 센다 — «지금 해당» · 켜고 끈 나뉠 모습에 쓴다.
   const otherLoaded = !!loadedFor(!excludeRecent);
   useEffect(() => {
@@ -251,12 +256,12 @@ export default function ExamBuilder<T>({
             ...current.filter(
               (item) => item.source === source && item.recent !== recent,
             ),
-            { source, recent, scopes: result },
+            { source, recent, retry, scopes: result },
           ]);
       })
       .catch(() => {});
     return () => controller.abort();
-  }, [conditionsOpen, conditions, source, excludeRecent, otherLoaded]);
+  }, [conditionsOpen, conditions, source, excludeRecent, otherLoaded, retry]);
   const scopeMap = useMemo(
     () => new Map(scopes.map((scope) => [scope.id, scope])),
     [scopes],
@@ -1098,7 +1103,11 @@ export default function ExamBuilder<T>({
                     />
                   )}
                   <div className={s.tableWrap}>
-                    <table className={conditions ? `${s.table} ${s.withRowActions}` : s.table}>
+                    <table
+                      className={
+                        conditions ? `${s.table} ${s.withRowActions}` : s.table
+                      }
+                    >
                       <thead>
                         <tr>
                           <th>선택한 출제 범위</th>

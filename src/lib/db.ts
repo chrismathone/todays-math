@@ -1,4 +1,5 @@
 import { Prisma, PrismaClient } from "@prisma/client";
+import { invalidateBankReadCache } from "./bankReadCache";
 
 import {
   PROBLEM_READ_OPERATIONS,
@@ -38,7 +39,30 @@ export const db = baseDb.$extends({
           };
           scopedArgs.where = scopeProblemWhere(operation, scopedArgs.where);
         }
-        return query(args);
+        const result = await query(args);
+        if (!PROBLEM_READ_OPERATIONS.has(operation)) invalidateBankReadCache();
+        return result;
+      },
+    },
+    sourceBook: {
+      async $allOperations({ operation, args, query }) {
+        const result = await query(args);
+        if (!PROBLEM_READ_OPERATIONS.has(operation)) invalidateBankReadCache();
+        return result;
+      },
+    },
+    sourceMaterial: {
+      async $allOperations({ operation, args, query }) {
+        const result = await query(args);
+        if (!PROBLEM_READ_OPERATIONS.has(operation)) invalidateBankReadCache();
+        return result;
+      },
+    },
+    unit: {
+      async $allOperations({ operation, args, query }) {
+        const result = await query(args);
+        if (!PROBLEM_READ_OPERATIONS.has(operation)) invalidateBankReadCache();
+        return result;
       },
     },
   },

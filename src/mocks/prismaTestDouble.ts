@@ -10,6 +10,10 @@
 import { randomUUID } from "node:crypto";
 
 import { Prisma } from "@prisma/client";
+import { invalidateBankReadCache } from "@/lib/bankReadCache";
+import type { CountSql } from "@/lib/problem/questionCountSql";
+import { questionFormatWithoutContent } from "@/lib/problem/questionFormat";
+import { problemIneligibleCode } from "@/lib/problemEligibility";
 
 import type {
   ClassEntity,
@@ -715,6 +719,7 @@ let conceptLectureViewRows: ConceptLectureViewRow[] = [];
 
 /** 매 테스트 시작 전 Mock 픽스처 상태로 되돌린다 — 테스트 간 상태 오염 방지. */
 export function resetPrismaTestDouble() {
+  invalidateBankReadCache();
   resetErrorLogTestDouble();
   resetEnglishTestDouble();
   classRows = [...MOCK_CLASSES, MOCK_CLASS_OTHER_USER].map(toClassRow);
@@ -3165,15 +3170,87 @@ function restoreRows(snapshot: ReturnType<typeof snapshotRows>) {
  * accepted here; unknown SQL fails. Runtime code always executes real database locks.
  */
 async function testLockQuery(query: { sql: string }): Promise<unknown[]> {
+  const count = (query as CountSql).questionCountRead;
+  if (count) {
+    const rows = problemRows.filter(
+      (row) =>
+        row.pool === "shared" &&
+        matchesWhere(
+          row,
+          count.where as Record<string, unknown>,
+          PROBLEM_RELATIONS,
+        ),
+    );
+    if (count.mode === "page") {
+      const formats = new Map(count.formats);
+      const groups = new Map<string, typeof rows>();
+      for (const row of applyOrder(rows, count.orderBy)) {
+        const key = row.questionGroupKey ?? `row:${row.id}`;
+        groups.set(key, [...(groups.get(key) ?? []), row]);
+      }
+      return paginate(
+        [...groups.values()].flatMap((members) => {
+          const row = members.find((row) => {
+            const format =
+              formats.get(row.id) ?? questionFormatWithoutContent(row);
+            return (
+              (!count.availableOnly ||
+                (format !== null &&
+                  format !== "unknown" &&
+                  problemIneligibleCode(row) === null)) &&
+              (!count.format || format === count.format)
+            );
+          });
+          return row ? [{ id: row.id }] : [];
+        }),
+        count.skip,
+        count.take,
+      );
+    }
+  }
+
   const sql = query.sql.replace(/\s+/g, " ").trim();
   if (
-    /^SELECT pg_advisory_xact_lock\(hashtextextended\(\?,0\)\)::text AS locked$/.test(sql) ||
+    /^SELECT pg_advisory_xact_lock\(hashtextextended\(\?,0\)\)::text AS locked$/.test(
+      sql,
+    ) ||
     /^SELECT id FROM public\.problem WHERE id IN \([?, ]+\) ORDER BY id FOR SHARE$/.test(
       sql,
     )
   )
     return [];
   throw new Error(`Unsupported raw SQL in prismaTestDouble: ${sql}`);
+}
+
+// Match the real client's public-count invalidation, including writes in a test transaction.
+for (const model of [
+  prismaModels.problem,
+  prismaModels.sourceBook,
+  prismaModels.sourceMaterial,
+  prismaModels.unit,
+]) {
+  const methods = model as unknown as Record<
+    string,
+    (...args: unknown[]) => Promise<unknown>
+  >;
+  for (const operation of [
+    "create",
+    "createMany",
+    "createManyAndReturn",
+    "update",
+    "updateMany",
+    "upsert",
+    "delete",
+    "deleteMany",
+  ]) {
+    if (!methods[operation]) continue;
+    const write = methods[operation].bind(model);
+    methods[operation] = async (...args) => {
+      const result = await write(...args);
+      invalidateBankReadCache();
+      return result;
+    };
+  }
 }
 
 export const prismaTestDouble = {
@@ -3198,7 +3275,7 @@ export const prismaTestDouble = {
     const snapshot = snapshotRows();
     try {
       return typeof arg === "function"
-        ? await arg({ ...prismaModels, $queryRaw: testLockQuery })
+        ? await arg({ ...prismaModels, $queryRaw: prismaTestDouble.$queryRaw })
         : await Promise.all(arg);
     } catch (error) {
       restoreRows(snapshot);

@@ -23,6 +23,10 @@ import type { ExamBuilderSource } from "./types";
 
 export const MATH_EXAM_DIFFICULTIES = DIFFICULTY_LADDER;
 export const MATH_EXAM_MAX_QUESTIONS = 100;
+export type MathAvailabilityCache = Map<
+  string,
+  { expires: number; pending: Promise<BankSourceAvailability> }
+>;
 
 interface MathSourceOptions {
   initialUnits?: readonly UnitEntity[];
@@ -40,6 +44,8 @@ interface MathSourceOptions {
    * 추가 · 교체 후보는 같은 문항류를 빼지 않고, 구성도 행 단위로 뽑는다.
    */
   distinctFamilies?: boolean;
+  /** Component-local, shared across family-rule changes. No owner data crosses components. */
+  availabilityCache?: MathAvailabilityCache;
 }
 
 /**
@@ -106,17 +112,20 @@ export function createMathExamBuilderSource(
       };
     });
   }
-  const initialScopes =
-    options.initialUnits &&
-    options.initialCountUnit === "question" &&
-    !options.refreshAvailability &&
-    !options.filters
-      ? toScopes(options.initialUnits, options.initialUnitCounts)
-      : undefined;
+  const initialScopes = options.initialUnits
+    ? toScopes(
+        options.initialUnits,
+        options.initialCountUnit === "question" &&
+          !options.refreshAvailability &&
+          !options.filters
+          ? options.initialUnitCounts
+          : undefined,
+      )
+    : undefined;
 
   async function request<T>(
     url: string,
-    signal: AbortSignal,
+    signal: AbortSignal | undefined,
     init?: RequestInit,
   ): Promise<T> {
     const response = await (options.fetch ?? fetch)(url, {
@@ -185,13 +194,48 @@ export function createMathExamBuilderSource(
       // 최근 출제 빼기 — 계정의 시험지는 서버가 찾는다(id 목록을 싣지 않는다).
       if (recent) params.set("recent", "1");
       // D-111: a sheet takes one problem per family, so the gate is families.
-      if (distinct) params.set("families", "1");
+      params.set("families", "1");
+      const inventoryKey = `${endpoint()}:${params}`;
+      const readInventory = async () => {
+        const value = bankSourceAvailabilitySchema.parse(
+          await request<unknown>(
+            `${endpoint()}/sources`,
+            options.availabilityCache ? undefined : signal,
+            {
+              method: "POST",
+              headers: { "content-type": "application/json" },
+              body: JSON.stringify(Object.fromEntries(params)),
+            },
+          ),
+        );
+        requireQuestionRead(value);
+        return value;
+      };
+      const cached = options.availabilityCache?.get(inventoryKey);
+      let pending =
+        cached && cached.expires > Date.now() ? cached.pending : undefined;
+      if (!pending) {
+        pending = readInventory();
+        if (options.availabilityCache) {
+          const entry = { expires: Infinity, pending };
+          if (options.availabilityCache.size >= 8)
+            options.availabilityCache.delete(
+              options.availabilityCache.keys().next().value!,
+            );
+          options.availabilityCache.set(inventoryKey, entry);
+          const cache = options.availabilityCache;
+          pending.then(
+            () => {
+              entry.expires = Date.now() + 15000;
+            },
+            () => {
+              if (cache.get(inventoryKey) === entry) cache.delete(inventoryKey);
+            },
+          );
+        }
+      }
       const [inventory, curriculum] = await Promise.all([
-        request<unknown>(`${endpoint()}/sources`, signal, {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify(Object.fromEntries(params)),
-        }),
+        pending,
         options.initialUnits
           ? Promise.resolve({ units: options.initialUnits })
           : request<BankData>(

@@ -1,5 +1,8 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { createMathExamBuilderSource } from "@/components/exam-builder/mathSource";
+import {
+  createMathExamBuilderSource,
+  type MathAvailabilityCache,
+} from "@/components/exam-builder/mathSource";
 import type { StudioProblem } from "@/components/unified/types";
 import { MOCK_UNITS } from "@/mocks/data";
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
@@ -91,11 +94,66 @@ const listRequest = {
   excludeIds: ["old"],
 };
 afterEach(() => {
+  vi.restoreAllMocks();
   vi.unstubAllEnvs();
   window.history.replaceState({}, "", "/");
 });
 
 describe("Math exam builder source", () => {
+  it("shares pending inventory across family-rule changes without letting an old consumer abort the new one", async () => {
+    const availabilityCache: MathAvailabilityCache = new Map();
+    let finish!: (value: Response) => void;
+    const fetcher = vi.fn<typeof fetch>(
+      () =>
+        new Promise((resolve) => {
+          finish = resolve;
+        }),
+    );
+    const firstController = new AbortController();
+    const first = createMathExamBuilderSource({
+      initialUnits: MOCK_UNITS,
+      availabilityCache,
+      fetch: fetcher,
+    });
+    const pending = first.loadScopes(firstController.signal);
+    firstController.abort();
+    const next = createMathExamBuilderSource({
+      initialUnits: MOCK_UNITS,
+      availabilityCache,
+      fetch: fetcher,
+      distinctFamilies: false,
+    });
+    const second = next.loadScopes(signal);
+    const counts = inventory({ [unit.id]: 6 });
+    counts.facets.units[unit.id] = { held: 12, available: 12 };
+    finish(reply(counts));
+    await expect(pending).rejects.toMatchObject({ name: "AbortError" });
+    expect((await second)[0].count).toBe(12);
+    expect(fetcher).toHaveBeenCalledOnce();
+    expect(fetcher.mock.calls[0][1]?.signal).toBeUndefined();
+    expect(JSON.parse(String(fetcher.mock.calls[0][1]?.body)).families).toBe(
+      "1",
+    );
+  });
+  it("retries failed inventory and expires component-local counts after fifteen seconds", async () => {
+    const now = vi.spyOn(Date, "now").mockReturnValue(1000);
+    const fetcher = vi
+      .fn<typeof fetch>()
+      .mockResolvedValueOnce(reply({ error: "다시 확인" }, 500))
+      .mockResolvedValueOnce(reply(inventory({ [unit.id]: 6 })))
+      .mockResolvedValueOnce(reply(inventory({ [unit.id]: 8 })));
+    const source = createMathExamBuilderSource({
+      initialUnits: MOCK_UNITS,
+      availabilityCache: new Map(),
+      fetch: fetcher,
+    });
+    await expect(source.loadScopes(signal)).rejects.toThrow("다시 확인");
+    expect((await source.loadScopes(signal))[0].count).toBe(6);
+    expect((await source.loadScopes(signal))[0].count).toBe(6);
+    expect(fetcher).toHaveBeenCalledTimes(2);
+    now.mockReturnValue(16001);
+    expect((await source.loadScopes(signal))[0].count).toBe(8);
+  });
   it("reports the recorded eligibility reason if a saved problem is no longer issuable", async () => {
     const id = "e4e83b15-0e42-4f77-9bd1-14892741964d";
     const fetcher = vi.fn<typeof fetch>().mockResolvedValueOnce(
@@ -157,7 +215,12 @@ describe("Math exam builder source", () => {
       fetch: fetcher,
       problemsUrl: "/api/studio/problems",
     });
-    expect(source.initialScopes).toBeUndefined();
+    expect(source.initialScopes?.map((scope) => scope.id)).toEqual(
+      MOCK_UNITS.map((unit) => unit.id),
+    );
+    expect(
+      source.initialScopes?.every((scope) => scope.count === undefined),
+    ).toBe(true);
     const scopes = await source.loadScopes(signal);
     // D-111: the gate is the number of issuable problem families, not rows.
     expect(scopes[0]).toMatchObject({ count: 6, countUnit: "갈래" });
@@ -298,7 +361,9 @@ describe("Math exam builder source", () => {
     });
     expect((await source.loadScopes(signal))[0].count).toBeUndefined();
     await expect(source.loadScopes(signal)).rejects.toThrow("수량 확인 실패");
-    expect(source.initialScopes).toBeUndefined();
+    expect(
+      source.initialScopes?.every((scope) => scope.count === undefined),
+    ).toBe(true);
   });
 
   it("reuses the ordered curriculum but confirms question capacity and maps legacy unit metadata", async () => {
@@ -311,7 +376,9 @@ describe("Math exam builder source", () => {
       initialUnits: MOCK_UNITS,
       fetch: fetcher,
     });
-    expect(source.initialScopes).toBeUndefined();
+    expect(
+      source.initialScopes?.every((scope) => scope.count === undefined),
+    ).toBe(true);
     const scopes = await source.loadScopes(signal);
     expect(fetcher).toHaveBeenCalledOnce();
     expect(JSON.parse(String(fetcher.mock.calls[0][1]?.body)).identity).toBe(

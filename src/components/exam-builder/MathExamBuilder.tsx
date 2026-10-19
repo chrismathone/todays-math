@@ -60,6 +60,7 @@ import {
   createMathExamBuilderSource,
   MATH_EXAM_DIFFICULTIES,
   MATH_EXAM_MAX_QUESTIONS,
+  type MathAvailabilityCache,
 } from "./mathSource";
 
 const loadWorksheetEditor = () =>
@@ -110,6 +111,7 @@ export default function MathExamBuilder({
   const [sourceOpen, setSourceOpen] = useState(false);
   // D-111 — 기본 켜짐, 원장님이 끌 수 있다(2026-10-16). 일일테스트 경로는 늘 켜짐이다.
   const [distinctFamilies, setDistinctFamilies] = useState(true);
+  const [availabilityCache] = useState<MathAvailabilityCache>(() => new Map());
   const [materialIds, setMaterialIds] = useState<string[]>([]);
   const [candidateIds, setCandidateIds] = useState<string[]>([]);
   const usage = useUsageLabels({
@@ -262,6 +264,7 @@ export default function MathExamBuilder({
       filters,
       refreshAvailability: true,
       distinctFamilies,
+      availabilityCache,
       onAvailability: (value) => setAvailability({ filters, value }),
     });
     return {
@@ -279,6 +282,7 @@ export default function MathExamBuilder({
     initialData.countUnit,
     filters,
     distinctFamilies,
+    availabilityCache,
   ]);
   // W5 «이름 붙인 출제 조건» — 출처 고르기 · 자료 · 같은 문항류 규칙을 조건에 함께 담고, 적용하면 되돌린다.
   const conditionsClient = useMemo(() => createExamConditionsClient(), []);

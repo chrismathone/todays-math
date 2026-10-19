@@ -3,6 +3,7 @@ import { StrictMode, useState, type ComponentProps } from "react";
 import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 import {
   cleanup,
+  act,
   fireEvent,
   render,
   screen,
@@ -618,6 +619,33 @@ describe("shared exam builder workflow", () => {
     ).toBeChecked();
     expect(screen.getAllByText("범위 1").length).toBeGreaterThan(0);
   });
+  it("shows the initial curriculum while counts are pending and enables it only after confirmed counts arrive", async () => {
+    let finish!: (value: typeof scopes) => void;
+    const adapter = source({
+      requireScopeCounts: true,
+      initialScopes: scopes.map((scope) => ({ ...scope, count: undefined })),
+      loadScopes: vi.fn(
+        () =>
+          new Promise<typeof scopes>((resolve) => {
+            finish = resolve;
+          }),
+      ),
+    });
+    render(<Harness adapter={adapter} />);
+    expect(
+      pickerPanel().getByRole("checkbox", { name: /^범위 1 중1/ }),
+    ).toBeDisabled();
+    expect(
+      pickerPanel().getAllByText("출제 가능 수 확인 필요").length,
+    ).toBeGreaterThan(0);
+    await act(async () =>
+      finish(scopes.map((scope) => ({ ...scope, count: 6 }))),
+    );
+    expect(
+      pickerPanel().getByRole("checkbox", { name: /^범위 1 중1/ }),
+    ).toBeEnabled();
+    expect(pickerPanel().queryByText("출제 가능 수 확인 필요")).toBeNull();
+  });
   it("moves, deletes, undoes and keeps edits across output and scope navigation", async () => {
     render(
       <Harness adapter={source()} initial={questions} initialStep="review" />,
@@ -808,7 +836,7 @@ describe("shared exam builder workflow", () => {
     );
     expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a2,b");
   });
-  it("shows the source's composition counts by the review heading and answers beside each question", async () => {
+  it("shows composition counts and reveals answers only through the existing toggle", async () => {
     const summarize = vi.fn(
       (items: Item[]) => `단원 1개 · ${items.length}문항 요약`,
     );
@@ -827,6 +855,10 @@ describe("shared exam builder workflow", () => {
     expect(summarize).toHaveBeenLastCalledWith(questions);
     const cards = review.querySelectorAll("[data-exam-question]");
     expect(cards).toHaveLength(3);
+    expect(within(review).queryByText("정답 a")).toBeNull();
+    fireEvent.click(
+      within(review).getByRole("button", { name: "정답·해설 보기" }),
+    );
     expect(
       within(cards[0] as HTMLElement).getByText("정답 a"),
     ).toBeInTheDocument();
@@ -972,7 +1004,7 @@ describe("구성 조건 (W4 · Hi-fi 2)", () => {
     expect(summaryOf().getByText("난이도 지정 없음")).toBeInTheDocument();
   });
 
-  it("turning recent exclusion off shows both counts, reloads availability and stops asking the server to drop them", async () => {
+  it("turning recent exclusion off reuses both loaded counts and stops asking the server to drop them", async () => {
     const adapter = conditioned();
     render(<Harness adapter={adapter} initial={questions} />);
     await ready();
@@ -995,6 +1027,7 @@ describe("구성 조건 (W4 · Hi-fi 2)", () => {
       excludeRecent: false,
     });
     expect(summaryOf().getByText("최근 출제 포함")).toBeInTheDocument();
+    expect(adapter.loadScopes).toHaveBeenCalledTimes(2);
     fireEvent.click(
       screen.getByRole("button", { name: "범위 2 문항 수 늘리기" }),
     );

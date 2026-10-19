@@ -1,6 +1,7 @@
 import "server-only";
 import type { Prisma } from "@prisma/client";
 import { db } from "@/lib/db";
+import { cachedBankRead, publicBankQueryKey } from "./bankReadCache";
 import { problemVisibleWhere } from "@/lib/problemPool";
 import { familyIdOf } from "@/lib/generator/familyKey";
 import { SOURCE_MATERIAL_KINDS } from "@/contracts/sourceMaterial.contract";
@@ -29,7 +30,7 @@ import {
 import {
   resolveUnifiedBankQuery,
   UnifiedBankQueryError,
-} from "@/lib/unifiedPreview";
+} from "./unifiedPreview";
 
 type QSets = { held: Set<string>; available: Set<string> };
 const sets = (): QSets => ({ held: new Set(), available: new Set() });
@@ -84,6 +85,17 @@ export async function loadQuestionSourceAvailability(
   context?: BankQueryContext,
 ): Promise<BankSourceAvailability> {
   check(params);
+  const key = publicBankQueryKey(params);
+  return key === null
+    ? readQuestionSourceAvailability(params, context)
+    : cachedBankRead(`availability:${key}`, () =>
+        readQuestionSourceAvailability(params, context),
+      );
+}
+async function readQuestionSourceAvailability(
+  params: URLSearchParams,
+  context?: BankQueryContext,
+): Promise<BankSourceAvailability> {
   const filters = clean(params);
   const [main, units, difficulties, sources] = await Promise.all([
     resolveUnifiedBankQuery(filters, context),
@@ -256,6 +268,14 @@ export async function loadQuestionSourceCounts(
   params: URLSearchParams,
 ): Promise<BankSourceCounts> {
   check(params);
+  const key = publicBankQueryKey(params);
+  return key === null
+    ? readQuestionSourceCounts(params)
+    : cachedBankRead(`counts:${key}`, () => readQuestionSourceCounts(params));
+}
+async function readQuestionSourceCounts(
+  params: URLSearchParams,
+): Promise<BankSourceCounts> {
   return db.$transaction(
     async (tx) => {
       const [rows, books, units] = await Promise.all([
