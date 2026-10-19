@@ -1,0 +1,113 @@
+{
+  "scope": "Gangbuk q1 stage2 independent-solve-then-review",
+  "rawCommit": "e454116eb7de621be8a4476b6ca853a22e4b6043",
+  "result": {
+    "mathSupported": 1,
+    "withinGradeStudentSurfacesPassed": 7,
+    "checksReviewed": 12,
+    "choicesChecked": 5,
+    "overall": "pending",
+    "componentsApproved": 0,
+    "twinsLoadable": 0
+  },
+  "criticalCaveat": "Raw answer/prose encoding damaged before seal; surviving exact numeric/code record proves option4/N100, but no clean pre-exposure Korean proof or glyph match is claimed. Raw bytes unchanged. Parent evidence-sufficiency decision remains required.",
+  "bindings": {
+    "parentBundleByteExactCopies": 10,
+    "gitWorkingCopiedRawMatch": true,
+    "currentPackageVerified": true,
+    "verificationSolveDigestVerified": true,
+    "preExposureNumericCalculationRerunMatches": true
+  },
+  "exposure": "Prior original q1 exposure disclosed. New author answer was unseen before raw seal; stage2 exposure authorized afterward.",
+  "inputs": [
+    {
+      "path": "pre-exposure-seal-receipt.json",
+      "sha256": "27ccef6058052ccba525cec8c1c0e4f708b2a842531a5fe4a2ac43b067e71ad6"
+    },
+    {
+      "path": "blind/blind-manifest.json",
+      "sha256": "e0811add642407e2478b0e90e155b1b93f7476038c4e22ea8fef2675f462c1af"
+    },
+    {
+      "path": "blind/SOLVE-BRIEF.md",
+      "sha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5"
+    },
+    {
+      "path": "blind/student-problems.json",
+      "sha256": "ea6ff89a95083612cace29a58c932d279b6efbc062eb18ddb9ae56a3ceb94b21"
+    },
+    {
+      "path": "blind/solve/q01.json",
+      "sha256": "b8c79027b13a3365f90b4a254e449a7527bd17739bcd2d3925ac57b6ccd6df7e"
+    },
+    {
+      "path": "package/manifest.json",
+      "sha256": "7fb0aa55832d5116a05133ca0b63b1d7a1cbd4d6699f3940b291bfd8e5f4d0d3"
+    },
+    {
+      "path": "package/private/q01/candidate.json",
+      "sha256": "333b7c700f0154fe84d8feeec01c277ac6bc85a21ddca72c7708b538159c787d"
+    },
+    {
+      "path": "verification/verification-inputs.json",
+      "sha256": "9294c47c5fad6048bfefccf76551e44b2f1c78944eb2191c6734d6bc308605cf"
+    },
+    {
+      "path": "verification/verification-manifest.json",
+      "sha256": "d8d92c4b1d9d732c0c85727a5a1c3a2ceb2d64cf8c20577634ed144e1b7b4cfc"
+    },
+    {
+      "path": "verification/VERIFY-BRIEF.md",
+      "sha256": "0ba3301b43b6101974345048a56594dd96d9c872aee6878ce65f907cda025ca3"
+    }
+  ],
+  "references": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r2/personal-ae2bb575dbaef34005e65cdeedba6860/source-manifest.local.json",
+      "sha256": "9e1fbb7f8b8a5a5a3f6f5bced0530ac62a1174548f19b38dabf1e13df074e701",
+      "hashVerified": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r2/personal-ae2bb575dbaef34005e65cdeedba6860/reviewer-only/question-01-part1.png",
+      "sha256": "73680509f84c827219a8dd94d68ee89cc30c34800b0defab4d787528b23046c4",
+      "hashVerified": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+      "sha256": "c01d053fee29d98087c6366a9ccb2136a15a12e5c0f6c0c2ef27d9be8bc755dc",
+      "hashVerified": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+      "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0",
+      "hashVerified": true
+    }
+  ],
+  "previewsViewed": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gangbuk-authoring-r1/preview-student/q01.png",
+      "sha256": "cc9a05f31a44ee2dbe229e0c053f0a7dcf923d4ed50b9874b61a38eb1431f543"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gangbuk-authoring-r1/preview-review/q01.solution.png",
+      "sha256": "acdd985cccd9e54d151736278293b0f68aaf7efdab6bfdb5fb3cc2efc201bfb3"
+    }
+  ],
+  "sourceComparison": "The viewed source asks for the sum of the negative square root of sqrt16 and the positive square root of36. The candidate turns the sum into the supplied condition7 and asks for the previously fixed second radicand N; conditions are reorganized into signed square relations. This is an actual inverse target and condition-structure change, beyond numeral/name substitution. The root/sign principle and dependency chain remain the same, with one final inverse squaring step.",
+  "familyHold": "Snapshot2026-10-19 06:14:08.658144+00 includes proposed unit1682f01b-5293-4672-91cd-07fc02e305ac, M3 semester1 root meaning/properties, and20 eligible family rows. The snapshot contains counts, not full rule/example semantics. No complete current inverse-radicand family fit is demonstrated; familyKey stays null. A unit/title match is not a family assignment.",
+  "gradeMethodEvidence": "The principal square root of81 is9. Then a^2=9 has roots3 and-3; a<0 selects-3. The linear sum gives b=10>0, and N=b^2=100>0. These are root definitions/sign selection, elementary addition and squaring, not a general quadratic formula or advanced method.",
+  "sourceScore": 3,
+  "candidateScore": 3,
+  "difficulty": "Plausible basic3point scope; not measured equal difficulty.",
+  "separateHolds": [
+    "raw serialization/evidence sufficiency",
+    "null live family fit",
+    "source identity/content pair/custody",
+    "rights",
+    "similarity",
+    "native provenance",
+    "release"
+  ],
+  "rawAuthorOrOldFilesModified": false,
+  "noDbNetworkAiInstallPush": true
+}
