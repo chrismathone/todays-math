@@ -1,0 +1,58 @@
+{
+  "firstPrincipalRoot": "3",
+  "sqrt2Squared": "2",
+  "negativeSqrt18Squared": "18",
+  "denominator": "3/4",
+  "firstTerm": "-6",
+  "secondTerm": "24",
+  "A": "18",
+  "rootCoefficientsTimesSqrt2": [
+    -3,
+    3
+  ],
+  "rootSquares": [
+    18,
+    18
+  ],
+  "distanceCoefficientTimesSqrt2": 6,
+  "sourceCalculationForCoreComparison": {
+    "A": "12",
+    "roots": "±2√3",
+    "sourceAnswerKeyUsed": false
+  },
+  "domain": "9,2,18,9/16 모두 음이 아닌 피제곱수; 분모3/4>0; A18>0; 부호 반대인 두 근은 서로 다르다.",
+  "uniqueness": "양수18의 제곱근은 정의와 제곱근 성질로 ±3√2뿐. 오른쪽양수-왼쪽음수=6√2>0이므로 거리 유일. 중3 제곱근 성질만으로 충분.",
+  "unit": "수직선의 추상적인 거리; cm 등 임의 단위 추가 없음.",
+  "choices": "서술형이고 실제 choices=[], 선택지5개 검토는 해당 없음.",
+  "figure": "figureArtifacts=[]/assets=[]; 도형 측정이나 표 자료 없음.",
+  "rubricAudit": {
+    "criteria": [
+      {
+        "point": 1,
+        "criterion": "주값·부호·제곱·분모3/4계산"
+      },
+      {
+        "point": 1,
+        "criterion": "A=18계산"
+      },
+      {
+        "point": 1,
+        "criterion": "서로다른두제곱근±3sqrt2"
+      },
+      {
+        "point": 1,
+        "criterion": "두근차와양수거리6sqrt2"
+      }
+    ],
+    "sum": 4,
+    "interpretation": "주값/부호/분모1점, A계산1점, 두근1점, 거리1점은 각 학생 단계에 대응. 오류 이월/부분 채점 세칙의 운영 인증은 별도."
+  },
+  "candidateSolutionStepAudit": [
+    "첫째 항의 외부 음수 부호 유지와 주값3 구분: 맞음",
+    "괄호 안 음의 근호를 제곱하여18: 맞음",
+    "양의 분수 제곱의 제곱근3/4 및0아님: 맞음",
+    "18÷3/4=24; A18: 맞음",
+    "A>0으로 서로 다른 두 근±3√2: 맞음",
+    "오른쪽 수-왼쪽 수=6√2, 순서 무관한 거리 해석: 맞음"
+  ]
+}

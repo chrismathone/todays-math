@@ -1,0 +1,30 @@
+{
+  "inputs": {
+    "verification-inputs.json": "04ef7c33a2eac746d50ef367f5c3f2508d6a3356fe16435d513090489cae89d9",
+    "verification-manifest.json": "772537891d53f2cb8478e2bcd628a1fca76b6a6941ae411b769f121a581c8f53",
+    "VERIFY-BRIEF.md": "0ba3301b43b6101974345048a56594dd96d9c872aee6878ce65f907cda025ca3",
+    "sealed-raw-commit.json": "9ae3d4f5a9dd14bf7378b66af0b930cd979a3ee397bb2541a42127a4b71217c8",
+    "source-q18-only.json": "7fdaf5c6901765b7a43032a51cbeaa7887e2285581ce906130a183d63fc72f2e",
+    "official-locators-reference.json": "efd0d3e4fe4b825bfe8ee8eca37d9da5ca3795ec89e1e7f8dbc57e5b93e105cf"
+  },
+  "rawSha256": "f9d168775141de3ddce531d5896e408a37003f6eb7a17ea99c927ba22499f804",
+  "inputsAndRawUnchanged": true,
+  "reportSha256": "ecdb0de6e4f634f129f341b16cbe572e6bc7f65ae6d4c2b09e97051f3e4e6491",
+  "calculationSha256": "1c3d691b7472290c2f62a0ea765dd4a7e624b7d1e1077341ebc97fb7d9fe4a97",
+  "primaryEvidenceSha256": "b897fc501b03a70b536f90ac47aa17c2ab374c0e46f03353ead40e7f65b21529",
+  "counts": {
+    "mathApproved": 1,
+    "gradeApproved2015M3": 1,
+    "held": 1,
+    "checksPassed": 11,
+    "checksHeld": 1,
+    "surfacesPassed": 7
+  },
+  "heldReasons": [
+    "exact live family unknown",
+    "written versus metadata single-choice mismatch",
+    "source/rights/similarity/native/loadable",
+    "2022M3 actual placement pending"
+  ],
+  "contractLocalCheck": "七個surfaceがstatus/reason/basis/evidenceを持つことのみローカル検証。親のcontract実装を読んだ/実行したとは主張しない。"
+}

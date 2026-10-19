@@ -1,0 +1,45 @@
+{
+  "inputs": {
+    "verification-inputs.json": "da8e067901cb0a241e54efc3255c5109b7bed39e533f9aaa470f576fca97e893",
+    "verification-manifest.json": "03fd9ff3890c65510c4939d1a7eb4abbf570e3b154bd059ad79098460aadbac2",
+    "VERIFY-BRIEF.md": "0ba3301b43b6101974345048a56594dd96d9c872aee6878ce65f907cda025ca3",
+    "sealed-raw-commit.json": "26ea09a5649dd1fd90618b608bbad3d7a2b5645083321d1abe543c0717061972"
+  },
+  "rawSha256": "0f914891fd7a5caa92c35b65ad1ac70286c72cb82361ee98e42f2b6c604eb1f4",
+  "rawSealCommit": "c999b8e7834a9e29dc0cad2b528cc50143b98fb2",
+  "r2ReportSha256": "9a0d6ab776b47f75aa47d9c7fa755bee4a7e5c63b0da301329981d8dcbbff5a2",
+  "r3ReportSha256": "ab2617eda1cac22c74a487add2e2a35a1c239eaaa8a9d124bccc7981f7c22bbf",
+  "r3PrimaryEvidenceSha256": "41bbda1a44c7d984f1a0ce0c1d9f4377830b26ace246a8bd00e2c36735615650",
+  "currentDigests": {
+    "studentDigest": "d704fdbba699602e19ee63267d1ff951ff0063688ea7f1a4e25602fc754ed7bf",
+    "candidateDigest": "10be0270d47918f979ff5e345356e85074c7ed4fc477245060120d1e321b2686",
+    "assetDigest": "b85a6ee8e22a978cfd31cb7d3fb8d75fab07e129ae483fb81238776abc91a0d6",
+    "solveDigest": "09fd5b62c55dcf167712e7830ed2110c1e9f8adb907e30970f32432d9722cc34"
+  },
+  "reportSha256": "d7b7c33d8c4fbbb6db2cd02ae2331bc289ab7291ef9a69319163cf192368241b",
+  "sameCandidateAssetsRaw": true,
+  "surfaceSpecificBasisAndEvidence": [
+    "stem",
+    "choices",
+    "figuresAndTables",
+    "notation",
+    "answer",
+    "studentSolution",
+    "prerequisites"
+  ],
+  "approvalScope": "2015 M3 after prerequisites; semantic review based on already directly viewed official pages; not contract field names as approval",
+  "newQuestionCount": 0,
+  "newMathApprovalCount": 0,
+  "checksPassed": 11,
+  "surfacesPassed": 7,
+  "remainingHolds": [
+    "exact live family",
+    "prime prerequisite UUID",
+    "source identity",
+    "rights",
+    "similarity",
+    "native",
+    "loadable",
+    "2022 M3 placement"
+  ]
+}
