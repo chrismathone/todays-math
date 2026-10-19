@@ -1,0 +1,27 @@
+{
+  "inputSha256": "ee7511ea5fcb3c67a2cd767ad7e5aeaa24c83b613b6900ca43e5d6b7ce498bf6",
+  "probeSha256": "d8ec00c82a93e1f87b2887643fdab91f65862f81c3f7ab3c33532f3d87396348",
+  "probeRoundTripPassed": true,
+  "sourceShapeOnly": {
+    "twoQuadraticFactors": true,
+    "sameQuadraticPrefixInBoth": true,
+    "plusOuterConstant": true,
+    "compositeDegree": 4,
+    "expressionExpanded": false,
+    "answerOrFinalFactorsComputed": false
+  },
+  "formalControl": {
+    "algebraicPrinciple": "다항식 항등식에서 같은 문자를 같은 다항식으로 대입하면 등식이 보존된다. 대수적 타당성과 교육과정 허용 깊이는 별개.",
+    "scope": "source계수/정답/최종인수/선택지 계산 없이 일반 polynomial composition 연산의 분배 일관성만 검증",
+    "checked": true,
+    "notGradeEvidence": true
+  },
+  "policyChecks": {
+    "noSchoolOrDifficultyAsPermission": true,
+    "noGenericBandOnlyApproval": true,
+    "noHighSchoolTheoremAsPermission": true,
+    "noCrossCourseSubstitutionBanImported": true,
+    "noBlanketAllQuarticExclusion": true,
+    "newQuestionCount": 0
+  }
+}

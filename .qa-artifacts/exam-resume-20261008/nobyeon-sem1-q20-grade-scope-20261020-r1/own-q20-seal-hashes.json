@@ -1,0 +1,15 @@
+{
+  "inputSha256": "ee7511ea5fcb3c67a2cd767ad7e5aeaa24c83b613b6900ca43e5d6b7ce498bf6",
+  "inputUnchanged": true,
+  "outputs": {
+    "own-utf8-probe-r2.txt": "d8ec00c82a93e1f87b2887643fdab91f65862f81c3f7ab3c33532f3d87396348",
+    "own-q20-primary-evidence.json": "b854f377c73694956cd7f8ed9401f579a909ec7c0dc5ca372bb715cb2225e352",
+    "own-q20-reproducible-checks.json": "6b675c88d275a809d02aa9215bd55f153ed543951c63d5fb04c95bcdb79d18f1",
+    "own-q20-scope-report.json": "3b753d95d452492ad28bf8b5d40c92a0986fb0c4b81a313a6c40eca724a58826",
+    "own-utf8-probe.txt": "8ea24806f312f277b0830ebf5dba63dd636258e635b58b23f044657aa1fc9a64"
+  },
+  "commandProbe": "actual Get-Location/git status; escaped-Unicode UTF8 exclusive write/read equality checked",
+  "probeDiagnostic": "First stdin probe did not preserve Korean through shell encoding; initial own-utf8-probe.txt preserved. New r2 Unicode-escape probe verifies intended Korean UTF8 bytes independently.",
+  "rootWrites": 0,
+  "externalFullDocumentsStaged": false
+}
