@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { AppChrome } from "@/components/chrome/AppChrome";
-import { ExamListSkeleton } from "@/components/ui/PageSkeletons";
+import { ExamStudyEntry } from "@/components/exam-practice/ExamStudyEntry";
 
 import type { ExamRoundSummary } from "./examScreen.contract";
 import { loadExamRounds } from "./examApi";
@@ -47,13 +47,21 @@ export function ExamDashboard() {
   }
 
   if (state.status === "loading") {
-    return <ExamListSkeleton />;
+    return (
+      <AppChrome tab="exam">
+        <div className="px-4 pt-4 pb-6 sm:px-6">
+          <ExamStudyEntry />
+          <p role="status">진행 중인 내신 회차를 불러오는 중입니다…</p>
+        </div>
+      </AppChrome>
+    );
   }
 
   if (state.status === "error") {
     return (
       <AppChrome tab="exam">
         <div className="mx-5 my-5 rounded-xl border border-[var(--learn-track,#dde3ec)] bg-[var(--learn-surface,#fff)] p-6 text-[14px] text-[var(--learn-ink,#172b4d)]">
+          <ExamStudyEntry />
           <h1 className="text-[18px] font-bold">회차를 확인할 수 없습니다</h1>
           <p role="alert" className="mt-2 text-[var(--learn-muted,#596c86)]">
             {state.message}
@@ -75,25 +83,13 @@ export function ExamDashboard() {
   return (
     <AppChrome tab="exam">
       <div className="px-4 pt-4 pb-6 sm:px-6">
+        <ExamStudyEntry />
         {/* 시안의 우측 「+ 새 회차」는 회차 생성 API·폼이 없어 넣지 않았다.
             누르면 아무 일도 안 하는 컨트롤을 두는 것이 D-30 이 막는 바로 그 버그다. */}
         <h1 className="border-b border-[var(--learn-track,#dde3ec)] pb-2 text-[18px] font-bold text-[var(--learn-ink,#172b4d)]">
           진행 중인 내신
         </h1>
         {rounds.length === 0 ? (
-          /*
-            🔴 **문구가 할 수 없는 일을 시켰다** (UI-03, 2026-09-08).
-            종전 문구는 「예측을 실행하면 여기에 쌓입니다」였는데, **실행할 자리가
-            화면 어디에도 없다.** 처음 여는 사람은 어디서 눌러야 하는지 찾다가 만다.
-
-            실측(2026-09-08 공유 DB): `Exam` **1편** · `ExamQuestion` **19** ·
-            `PredictionRun` **0**. 곧 지금은 화면이 부족한 게 아니라 **근거로 쓸 기출이
-            없다.** 예측을 돌리는 길도 `POST /api/predictions` 하나뿐이고 CLI 도 없다.
-
-            그래서 버튼을 만들지 않는다(D-30 — 누르면 아무 일도 안 하는 컨트롤을 두는 것이
-            이 규칙이 막는 바로 그 버그다). 대신 **무엇이 있어야 회차가 생기는지**를 적는다.
-            기출이 쌓이고 실행 경로가 생기면 그때 이 문구와 함께 진입점을 만든다.
-          */
           <div className="rounded-xl border border-[var(--learn-track,#dde3ec)] bg-[var(--learn-surface,#fff)] p-6 text-[14px] text-[var(--learn-muted,#596c86)]">
             <p>아직 회차가 없습니다.</p>
             <p className="mt-1">
@@ -101,7 +97,8 @@ export function ExamDashboard() {
               만들어집니다.
             </p>
             <p className="mt-1">
-              지금은 기출 적재가 먼저이고, 예측을 실행하는 화면은 아직 없습니다.
+              원문을 보관하지 않고 새 문제로 공부하려면 위의 기출 대비 연습을
+              이용해 주세요. 예측 회차 이력과 별도로 사용할 수 있습니다.
             </p>
           </div>
         ) : (

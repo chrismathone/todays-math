@@ -1,0 +1,1469 @@
+{
+  "schemaVersion": 1,
+  "auditDate": "2026-10-18",
+  "sourceCommit": "d70137271e36e6f9c22209574e9ff224217f7296",
+  "sourceUrl": "https://kimbjmath-qbank.pages.dev/만들기",
+  "scope": {
+    "primaryPaper": "경명여중 2025 중1-1 1학기 기말",
+    "primaryQuestionCount": 22,
+    "displayedFormats": {
+      "objective": 17,
+      "subjective": 5
+    },
+    "additionalFocusedPaper": "경명여중 2025 중3-1 1학기 기말",
+    "additionalQuestionNumbers": [17, 19, 20, 21, 22],
+    "operation": "audit-only; no product edits, DB queries, provider calls or site mutations"
+  },
+  "coverageDefinitions": {
+    "covered": "등록 생성기가 핵심 수학적 행동을 이미 수행한다. 응답 포장 차이는 별도 기재하며 원문·학교별 재현 지원을 뜻하지 않는다.",
+    "partial": "기초/이웃 family는 있으나 주어진 의존 관계·표현·합성 표적·native 채점의 일부가 없다.",
+    "unverified": "원자료 손상·불확실성으로 정확 매핑을 확정할 수 없다. 생성기 부재와 다르다.",
+    "unverified_missing": "이번 등록부·구현·표본에서 정확한 family를 확인하지 못했다. 코드베이스 전체의 부재 증명은 아니다."
+  },
+  "primaryCounts": {
+    "partial": 19,
+    "covered": 2,
+    "unverified": 1
+  },
+  "primaryQuestions": [
+    {
+      "number": 1,
+      "reference": "경명여중 2025 중1-1 1학기 기말 01번",
+      "structure": "괄호가 있는 일차식을 정리한 뒤 계수와 상수항을 추출해 합산",
+      "coverageClass": "partial",
+      "mathCoreStatus": "covered",
+      "evidenceRefs": ["EX13", "EX09"],
+      "alreadyImplemented": "정리와 계수·상수항 읽기는 각각 등록되어 있다.",
+      "remainingGap": "한 family가 두 동작을 연결하여 수식·표적값·오답을 함께 생성하는 문형은 확인하지 못했다.",
+      "sourceQualityFlags": [],
+      "sourceEvidence": {
+        "domArtifact": "benchmark-g1-paper-content-private.json",
+        "questionNumber": 1,
+        "mathMlRead": true,
+        "figureInspected": false,
+        "figureArtifact": null
+      }
+    },
+    {
+      "number": 2,
+      "reference": "경명여중 2025 중1-1 1학기 기말 02번",
+      "structure": "여러 등식 중 정리 후 일차방정식이 되지 않는 대상을 판별",
+      "coverageClass": "covered",
+      "mathCoreStatus": "covered",
+      "evidenceRefs": ["EQ09"],
+      "alreadyImplemented": "일차방정식/항등식/해 없음/이차식을 정리해 구분하는 동작이 구현되어 있다.",
+      "remainingGap": "현재 문형은 해당 식의 개수를 답한다. 원자료처럼 다섯 번호 중 예외 하나를 고르는 포장은 별도이며 동일 시험지 재현을 뜻하지 않는다.",
+      "sourceQualityFlags": [],
+      "sourceEvidence": {
+        "domArtifact": "benchmark-g1-paper-content-private.json",
+        "questionNumber": 2,
+        "mathMlRead": true,
+        "figureInspected": false,
+        "figureArtifact": null
+      }
+    },
+    {
+      "number": 3,
+      "reference": "경명여중 2025 중1-1 1학기 기말 03번",
+      "structure": "주어진 비례 등식에서 등식 변형 진술들의 참인 부분집합을 선택",
+      "coverageClass": "partial",
+      "mathCoreStatus": "covered",
+      "evidenceRefs": ["EQ06", "ELSTAT", "JUDGE"],
+      "alreadyImplemented": "등식 변형의 참거짓 개수와 초등 조합형 보기 장치가 있다.",
+      "remainingGap": "비단위 배수 관계를 전제로 하는 진술별 항등성, 진술 ID 집합, 조합 보기 유일성 검증을 중등 가족에 등록해야 한다.",
+      "sourceQualityFlags": [],
+      "sourceEvidence": {
+        "domArtifact": "benchmark-g1-paper-content-private.json",
+        "questionNumber": 3,
+        "mathMlRead": true,
+        "figureInspected": false,
+        "figureArtifact": null
+      }
+    },
+    {
+      "number": 4,
+      "reference": "경명여중 2025 중1-1 1학기 기말 04번",
+      "structure": "각기 다른 식과 후보 해 쌍을 대입 검산하여 틀린 쌍 선택",
+      "coverageClass": "partial",
+      "mathCoreStatus": "covered",
+      "evidenceRefs": ["EQ33", "EQ11", "EQ12", "JUDGE"],
+      "alreadyImplemented": "고정 수를 다섯 식에 대입하여 참인 식을 세는 family가 있다.",
+      "remainingGap": "보기마다 다른 후보 해와 괄호가 있는 양변을 묶어 네 참/한 거짓으로 생성·독립 재판정하는 문형은 확인하지 못했다.",
+      "sourceQualityFlags": [],
+      "sourceEvidence": {
+        "domArtifact": "benchmark-g1-paper-content-private.json",
+        "questionNumber": 4,
+        "mathMlRead": true,
+        "figureInspected": false,
+        "figureArtifact": null
+      }
+    },
+    {
+      "number": 5,
+      "reference": "경명여중 2025 중1-1 1학기 기말 05번",
+      "structure": "말로 주어진 두 선형 계산 결과가 같다는 조건을 식으로 세워 풀기",
+      "coverageClass": "covered",
+      "mathCoreStatus": "covered",
+      "evidenceRefs": ["L01"],
+      "alreadyImplemented": "어떤 수의 배수·덧셈·차 조건으로 일차방정식을 세우고 푼다.",
+      "remainingGap": "문장 어휘·괄호 위치·객관식 보기는 동일하지 않다. 학교별 예측 호출 가능성은 별도다.",
+      "sourceQualityFlags": [],
+      "sourceEvidence": {
+        "domArtifact": "benchmark-g1-paper-content-private.json",
+        "questionNumber": 5,
+        "mathMlRead": true,
+        "figureInspected": false,
+        "figureArtifact": null
+      }
+    },
+    {
+      "number": 6,
+      "reference": "경명여중 2025 중1-1 1학기 기말 06번",
+      "structure": "월별 자료 그래프에서 극값·증감 구간·두 값 합·범위를 함께 판단",
+      "coverageClass": "partial",
+      "mathCoreStatus": "covered",
+      "evidenceRefs": ["C08", "ELGRAPH", "JUDGE"],
+      "alreadyImplemented": "중등 구간 그래프 해석과 초등 그래프의 수치·극값·차 해석이 있다.",
+      "remainingGap": "하나의 자료와 그림에서 다섯 서로 다른 주장 유형을 생성하고 각각 재판정해야 한다. 단순 좌표 목록 서술로 시각 읽기를 대체하면 안 된다.",
+      "sourceQualityFlags": [],
+      "sourceEvidence": {
+        "domArtifact": "benchmark-g1-paper-content-private.json",
+        "questionNumber": 6,
+        "mathMlRead": true,
+        "figureInspected": true,
+        "figureArtifact": "benchmark-figures/g1-q06-0.png"
+      }
+    },
+    {
+      "number": 7,
+      "reference": "경명여중 2025 중1-1 1학기 기말 07번",
+      "structure": "좌표·축·순서쌍·사분면의 서로 다른 개념 진술 중 오류 선택",
+      "coverageClass": "partial",
+      "mathCoreStatus": "covered",
+      "evidenceRefs": ["C01", "C04", "C12", "C13", "C15", "C16", "ELSTAT"],
+      "alreadyImplemented": "순서쌍 성분·축의 0좌표·사분면을 묻는 개별 family가 등록되어 있다.",
+      "remainingGap": "서로 다른 개념을 하나의 판정형으로 묶고 좌표 순서 바꿈 등의 오개념을 독립 검증하는 등록이 필요하다.",
+      "sourceQualityFlags": [],
+      "sourceEvidence": {
+        "domArtifact": "benchmark-g1-paper-content-private.json",
+        "questionNumber": 7,
+        "mathMlRead": true,
+        "figureInspected": false,
+        "figureArtifact": null
+      }
+    },
+    {
+      "number": 8,
+      "reference": "경명여중 2025 중1-1 1학기 기말 08번",
+      "structure": "여러 점이 표시된 좌표평면에서 사분면·최대 좌표·축 소속·좌표 순서를 함께 판단",
+      "coverageClass": "partial",
+      "mathCoreStatus": "covered",
+      "evidenceRefs": ["C01", "C04", "C12", "C13", "C15", "C16"],
+      "alreadyImplemented": "각 점의 성분·축·사분면 개념은 있다.",
+      "remainingGap": "문자 점 여러 개를 공유하는 FigureSpec과 다섯 주장 사이의 수학적 대응이 필요하다. 현재 개별 점 문항을 지원으로 합산할 수 없다.",
+      "sourceQualityFlags": [],
+      "sourceEvidence": {
+        "domArtifact": "benchmark-g1-paper-content-private.json",
+        "questionNumber": 8,
+        "mathMlRead": true,
+        "figureInspected": true,
+        "figureArtifact": "benchmark-figures/g1-q08-0.png"
+      }
+    },
+    {
+      "number": 9,
+      "reference": "경명여중 2025 중1-1 1학기 기말 09번",
+      "structure": "연속하는 세 짝수의 합으로 가장 큰 수를 구하기",
+      "coverageClass": "partial",
+      "mathCoreStatus": "covered",
+      "evidenceRefs": ["L02", "L45"],
+      "alreadyImplemented": "세 연속 자연수와 두 연속 짝수/홀수는 각각 생성한다.",
+      "remainingGap": "항 수 3과 간격 2가 함께 있는 매개변수화는 확인하지 못했다. 새로운 수학 영역의 결손으로 볼 필요는 없다.",
+      "sourceQualityFlags": [],
+      "sourceEvidence": {
+        "domArtifact": "benchmark-g1-paper-content-private.json",
+        "questionNumber": 9,
+        "mathMlRead": true,
+        "figureInspected": false,
+        "figureArtifact": null
+      }
+    },
+    {
+      "number": 10,
+      "reference": "경명여중 2025 중1-1 1학기 기말 10번",
+      "structure": "오목한 직교 도형의 미표기 길이를 보완하여 둘레를 일차식으로 나타내기",
+      "coverageClass": "partial",
+      "mathCoreStatus": "covered",
+      "evidenceRefs": ["EX19", "EX13"],
+      "alreadyImplemented": "삼각형·직사각형의 일차식 둘레와 일차식 계산이 있다.",
+      "remainingGap": "오목한 직교 도형의 가로·세로 닫힘 조건과 보이지 않는 길이 추론을 생성해야 한다. EX19는 그림 배치 의존 도형을 제외한다고 명시한다.",
+      "sourceQualityFlags": [],
+      "sourceEvidence": {
+        "domArtifact": "benchmark-g1-paper-content-private.json",
+        "questionNumber": 10,
+        "mathMlRead": true,
+        "figureInspected": true,
+        "figureArtifact": "benchmark-figures/g1-q10-0.png"
+      }
+    },
+    {
+      "number": 11,
+      "reference": "경명여중 2025 중1-1 1학기 기말 11번",
+      "structure": "분수 계수와 소수/분수 혼합인 두 방정식을 풀어 해의 차를 구하기",
+      "coverageClass": "partial",
+      "mathCoreStatus": "covered",
+      "evidenceRefs": ["EQ11", "EQ12", "EQ13", "EQ92"],
+      "alreadyImplemented": "각 계수 형태의 풀이와 두 해의 합을 낸다.",
+      "remainingGap": "두 방정식의 다른 수 표현을 같은 문항에 배치하고 표적 연산을 차로 바꾸어 검산하는 조합이 필요하다.",
+      "sourceQualityFlags": ["edited-item-note-present"],
+      "sourceEvidence": {
+        "domArtifact": "benchmark-g1-paper-content-private.json",
+        "questionNumber": 11,
+        "mathMlRead": true,
+        "figureInspected": false,
+        "figureArtifact": null
+      }
+    },
+    {
+      "number": 12,
+      "reference": "경명여중 2025 중1-1 1학기 기말 12번",
+      "structure": "증정·단일 할인·연속 할인 정책을 문자 가격으로 모델링하여 진술과 최저가 비교",
+      "coverageClass": "partial",
+      "mathCoreStatus": "covered",
+      "evidenceRefs": ["EX02", "L34", "L35", "ELSTAT"],
+      "alreadyImplemented": "일회 할인 문자식·할인 역산·연속 증감의 곱셈 비율이 있다.",
+      "remainingGap": "수량 문턱이 있는 증정 정책, 연속 할인 곱, 단품/묶음 적용 범위와 최저가를 한 표·진술집합으로 결합하는 family는 확인하지 못했다.",
+      "sourceQualityFlags": [],
+      "sourceEvidence": {
+        "domArtifact": "benchmark-g1-paper-content-private.json",
+        "questionNumber": 12,
+        "mathMlRead": true,
+        "figureInspected": false,
+        "figureArtifact": null
+      }
+    },
+    {
+      "number": 13,
+      "reference": "경명여중 2025 중1-1 1학기 기말 13번",
+      "structure": "분수 계수 정비례 식의 관계 종류·음수 대입·지나는 사분면에 대한 참인 진술집합",
+      "coverageClass": "partial",
+      "mathCoreStatus": "covered",
+      "evidenceRefs": ["P01", "P07", "P08", "ELSTAT"],
+      "alreadyImplemented": "정비례의 식·대입·사분면은 개별로 등록되어 있다.",
+      "remainingGap": "한 식을 공유하는 세 진술의 조합형과 분수 계수·음수 대입의 오류 검증이 필요하다.",
+      "sourceQualityFlags": [],
+      "sourceEvidence": {
+        "domArtifact": "benchmark-g1-paper-content-private.json",
+        "questionNumber": 13,
+        "mathMlRead": true,
+        "figureInspected": false,
+        "figureArtifact": null
+      }
+    },
+    {
+      "number": 14,
+      "reference": "경명여중 2025 중1-1 1학기 기말 14번",
+      "structure": "여러 생활 상황을 식으로 바꾸어 반비례와 아핀 관계를 구별",
+      "coverageClass": "partial",
+      "mathCoreStatus": "covered",
+      "evidenceRefs": ["P13", "EX02", "P03"],
+      "alreadyImplemented": "넓이·거리·분배의 반비례 식과 가격/거스름돈 식이 있다.",
+      "remainingGap": "생활 상황 다섯 개를 동시에 식으로 만들고 반비례가 아닌 일차식 하나를 가리는 판정 family가 필요하다.",
+      "sourceQualityFlags": [],
+      "sourceEvidence": {
+        "domArtifact": "benchmark-g1-paper-content-private.json",
+        "questionNumber": 14,
+        "mathMlRead": true,
+        "figureInspected": false,
+        "figureArtifact": null
+      }
+    },
+    {
+      "number": 15,
+      "reference": "경명여중 2025 중1-1 1학기 기말 15번",
+      "structure": "음의 반비례 그래프에 표시된 두 미지 좌표를 읽고 그 차를 구하기",
+      "coverageClass": "partial",
+      "mathCoreStatus": "covered",
+      "evidenceRefs": ["P11", "P15", "P17"],
+      "alreadyImplemented": "반비례의 두 미지 값 합, 그림과 한 미지 좌표 계산이 있다.",
+      "remainingGap": "한 그래프의 두 안내선·기호에 대응하는 좌표를 각각 풀어 차로 합성하는 출력이 필요하다.",
+      "sourceQualityFlags": [],
+      "sourceEvidence": {
+        "domArtifact": "benchmark-g1-paper-content-private.json",
+        "questionNumber": 15,
+        "mathMlRead": true,
+        "figureInspected": true,
+        "figureArtifact": "benchmark-figures/g1-q15-0.png"
+      }
+    },
+    {
+      "number": 16,
+      "reference": "경명여중 2025 중1-1 1학기 기말 16번",
+      "structure": "곱의 부호와 두 수의 순서 조건에서 차·제곱이 포함된 점의 사분면 추론",
+      "coverageClass": "partial",
+      "mathCoreStatus": "covered",
+      "evidenceRefs": ["C06"],
+      "alreadyImplemented": "곱 부호·순서 관계와 차의 부호를 결합하는 family가 이미 있다.",
+      "remainingGap": "좌표 변환 목록에는 차와 제곱 곱을 함께 쓰는 대상이 없다. 짝수 지수의 부호 규칙과 좌표 축/0 제외 검증을 확장해야 한다.",
+      "sourceQualityFlags": [],
+      "sourceEvidence": {
+        "domArtifact": "benchmark-g1-paper-content-private.json",
+        "questionNumber": 16,
+        "mathMlRead": true,
+        "figureInspected": false,
+        "figureArtifact": null
+      }
+    },
+    {
+      "number": 17,
+      "reference": "경명여중 2025 중1-1 1학기 기말 17번",
+      "structure": "해가 자연수가 되도록 하는 자연수 매개변수의 가능 집합에서 순위 선택",
+      "coverageClass": "partial",
+      "mathCoreStatus": "covered",
+      "evidenceRefs": ["EQ17"],
+      "alreadyImplemented": "가능한 자연수 매개변수 전부를 생성·열거한다. 두 모드 모두 실제 호출·독립 검산했다.",
+      "remainingGap": "해/매개변수의 양의 정수 조건을 유지하며 정렬한 집합의 두 번째 값을 묻는 표적과 오답을 추가하면 된다. 자연수 조건 탐색 자체가 없는 상태가 아니다.",
+      "sourceQualityFlags": [],
+      "sourceEvidence": {
+        "domArtifact": "benchmark-g1-paper-content-private.json",
+        "questionNumber": 17,
+        "mathMlRead": true,
+        "figureInspected": false,
+        "figureArtifact": null
+      }
+    },
+    {
+      "number": 18,
+      "reference": "경명여중 2025 중1-1 1학기 기말 18번",
+      "structure": "비례 맥락에서 변수의 방향을 정한 식과 특정 대응 값을 함께 선택",
+      "coverageClass": "partial",
+      "mathCoreStatus": "covered",
+      "evidenceRefs": ["P02", "P03", "P01"],
+      "alreadyImplemented": "생활 정비례 식과 대응 값은 개별 생성된다.",
+      "remainingGap": "관계식·단위 값의 이중 출력 및 짝 보기 검증이 필요하다. 현재 태그만으로 주관식 생성 지원을 주장할 수 없다.",
+      "sourceQualityFlags": [
+        "subjective-tag-with-five-choice-pairs",
+        "flattened-fractions-ambiguous-use-mathml"
+      ],
+      "sourceEvidence": {
+        "domArtifact": "benchmark-g1-paper-content-private.json",
+        "questionNumber": 18,
+        "mathMlRead": true,
+        "figureInspected": false,
+        "figureArtifact": null
+      }
+    },
+    {
+      "number": 19,
+      "reference": "경명여중 2025 중1-1 1학기 기말 19번",
+      "structure": "고정된 한 자리 숫자와 자리 합의 배수 조건으로 두 자리 수 모델링 후 설명",
+      "coverageClass": "partial",
+      "mathCoreStatus": "covered",
+      "evidenceRefs": ["L03", "L50", "NATIVE", "EXPAND"],
+      "alreadyImplemented": "자리 수 10a+b 모델링과 자리 숫자 배수 관계는 있다.",
+      "remainingGap": "고정 일의 자리와 원래 수/자리 합 배수를 묶는 문형 및 미지수·방정식·자릿수 범위·원조건 검산의 native 채점 기준이 필요하다.",
+      "sourceQualityFlags": [],
+      "sourceEvidence": {
+        "domArtifact": "benchmark-g1-paper-content-private.json",
+        "questionNumber": 19,
+        "mathMlRead": true,
+        "figureInspected": false,
+        "figureArtifact": null
+      }
+    },
+    {
+      "number": 20,
+      "reference": "경명여중 2025 중1-1 1학기 기말 20번",
+      "structure": "정비례와 반비례의 공통 교점에서 두 계수를 각각 구하여 곱을 설명",
+      "coverageClass": "partial",
+      "mathCoreStatus": "covered",
+      "evidenceRefs": ["P21", "COMBO", "NATIVE", "EXPAND"],
+      "alreadyImplemented": "두 그래프·교점 및 계수 a 또는 b를 구하는 세 갈래가 있다.",
+      "remainingGap": "a와 b가 모두 필요한 표적과 단계별 설명·채점 기준을 새로 저술해야 한다. 교점 그림이 있다는 이유만으로 현재의 한 계수 물음을 완전 지원으로 세면 안 된다.",
+      "sourceQualityFlags": [],
+      "sourceEvidence": {
+        "domArtifact": "benchmark-g1-paper-content-private.json",
+        "questionNumber": 20,
+        "mathMlRead": true,
+        "figureInspected": true,
+        "figureArtifact": "benchmark-figures/g1-q20-0.png"
+      }
+    },
+    {
+      "number": 21,
+      "reference": "경명여중 2025 중1-1 1학기 기말 21번",
+      "structure": "두 방정식의 같은 해에서 공유 해와 상수를 함께 구하고 설명",
+      "coverageClass": "unverified",
+      "mathCoreStatus": "partial",
+      "evidenceRefs": ["EQ16", "NATIVE", "EXPAND"],
+      "alreadyImplemented": "동일 해를 대입하여 상수를 구하는 핵심은 이미 등록되어 있다.",
+      "remainingGap": "원자료 둘째 식의 MathML 분수 분자가 비어 있어 정확한 식·답·동일 구조를 확정할 수 없다. 원본 교정 후 공유 해와 상수의 이중 출력 및 native rubric을 비교해야 한다.",
+      "sourceQualityFlags": [
+        "site-answer-unresolved",
+        "empty-mathml-fraction-numerator"
+      ],
+      "sourceEvidence": {
+        "domArtifact": "benchmark-g1-paper-content-private.json",
+        "questionNumber": 21,
+        "mathMlRead": true,
+        "figureInspected": false,
+        "figureArtifact": null
+      }
+    },
+    {
+      "number": 22,
+      "reference": "경명여중 2025 중1-1 1학기 기말 22번",
+      "structure": "서로 반대 부호인 정비례 직선과 공통 높이에서 두 점을 구한 뒤 삼각형 넓이를 설명",
+      "coverageClass": "partial",
+      "mathCoreStatus": "covered",
+      "evidenceRefs": ["P10", "C03", "NATIVE", "EXPAND"],
+      "alreadyImplemented": "직선에서 점을 구한 뒤 축 관련 도형 넓이를 계산하는 family와 좌표 삼각형 넓이가 있다.",
+      "remainingGap": "두 직선·공통 수평선의 의존 관계와 두 좌표+넓이의 이중/다중 출력, 단계별 rubric이 필요하다.",
+      "sourceQualityFlags": ["site-answer-disagreement-retained"],
+      "sourceEvidence": {
+        "domArtifact": "benchmark-g1-paper-content-private.json",
+        "questionNumber": 22,
+        "mathMlRead": true,
+        "figureInspected": true,
+        "figureArtifact": "benchmark-figures/g1-q22-0.png"
+      }
+    }
+  ],
+  "additionalFocusedQuestions": [
+    {
+      "number": 17,
+      "reference": "경명여중 2025 중3-1 1학기 기말 17번",
+      "structure": "포물선 위 한 점으로 계수를 정한 뒤 그 점을 지나는 주어진 기울기의 직선과 다른 교점을 찾고 좌표를 결합",
+      "coverageClass": "unverified_missing",
+      "evidenceRefs": ["G3POINT", "G3RECT", "HIGHSECANT"],
+      "finding": "동일 제목 G3RECT의 실제 생성물은 직사각형 둘레/넓이이다. 중3에서 기울기와 두 번째 교점을 결합하는 정확한 family는 이번 등록부·표본·m3Func 검토에서 확인하지 못했다. 고등의 직선·포물선 교점 family를 중3 지원으로 대체 집계하지 않는다.",
+      "sourceQualityFlags": [],
+      "figureInspected": true
+    },
+    {
+      "number": 19,
+      "reference": "경명여중 2025 중3-1 1학기 기말 19번",
+      "structure": "한 변은 늘고 다른 변은 줄어드는 시간 모델로 원래 넓이 회복 시점을 구하고 해의 시간/길이 정의역을 확인",
+      "coverageClass": "partial",
+      "evidenceRefs": ["NATIVE"],
+      "finding": "native m3-quadratic-domain-r1은 길이 조건·두 해·부적합 해 제외·원조건 검산을 이미 저술한다. 두 변의 반대 방향 변화와 초기 시점 해를 제외할 조건은 새 모델이 필요하다.",
+      "sourceQualityFlags": [
+        "wording-must-distinguish-initial-time-from-positive-return-time"
+      ],
+      "figureInspected": false
+    },
+    {
+      "number": 20,
+      "reference": "경명여중 2025 중3-1 1학기 기말 20번",
+      "structure": "두 근이 모두 유리수가 되도록 하는 자연수 매개변수를 전부 찾고 설명",
+      "coverageClass": "covered",
+      "evidenceRefs": ["G3RAT", "NATIVE", "EXPAND"],
+      "finding": "G3RAT가 유한 범위→제곱수 판별→살아남은 매개변수 전부→근 검산을 이미 생성한다. 원자료는 매개변수 집합과 서술을 요구하고 현재 family 정답은 집합의 합이며 native rubric이 없는 출력 차이는 남는다.",
+      "sourceQualityFlags": [],
+      "figureInspected": false
+    },
+    {
+      "number": 21,
+      "reference": "경명여중 2025 중3-1 1학기 기말 21번",
+      "structure": "그림에서 꼭짓점·절편으로 계수를 복원하고 그 계수를 다른 위치로 재배치한 이차함수의 꼭짓점·축·절편을 산출",
+      "coverageClass": "partial",
+      "evidenceRefs": ["G3FIT", "G3VERTEX", "G3MOVE2"],
+      "finding": "계수 복원·일반형 전개·꼭짓점/축은 있다. a(x+b)^2의 꼭짓점 부호를 그림과 대응시키고 계수를 재배치하는 의존 문형 및 다중 출력은 확인하지 못했다.",
+      "sourceQualityFlags": [],
+      "figureInspected": true
+    },
+    {
+      "number": 22,
+      "reference": "경명여중 2025 중3-1 1학기 기말 22번",
+      "structure": "표에 제시된 시행 결과를 홀짝 규칙으로 이동 벡터로 바꾸고 누적 이동 후 식을 전개하며 이동 근거 설명",
+      "coverageClass": "partial",
+      "evidenceRefs": ["G3MOVE", "G3MOVE2", "NATIVE"],
+      "finding": "수평·수직 평행이동 및 일반형 계수 결합은 있다. 그림의 시행 결과→규칙→누적 이동→식/설명의 연결은 별도 저술이 필요하다.",
+      "sourceQualityFlags": ["site-answer-unresolved"],
+      "figureInspected": true
+    }
+  ],
+  "evidenceIndex": {
+    "EX09": {
+      "registry": "registeredTypes",
+      "key": "1-1|문자의 사용과 식의 계산|09",
+      "sourceFile": "src/lib/middle/m1Book1.ts",
+      "line": 436,
+      "title": "다항식",
+      "observedSupport": "계수·상수항을 식에서 읽어 합산한다. 먼저 괄호를 풀어 얻은 식과 연결하는 전용 문형은 아니다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "EX13": {
+      "registry": "registeredTypes",
+      "key": "1-1|문자의 사용과 식의 계산|13",
+      "sourceFile": "src/lib/middle/m1Book1.ts",
+      "line": 551,
+      "title": "일차식의 덧셈과 뺄셈",
+      "observedSupport": "두 일차식의 괄호 전개·덧셈·뺄셈을 낸다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "EX02": {
+      "registry": "registeredTypes",
+      "key": "1-1|문자의 사용과 식의 계산|02",
+      "sourceFile": "src/lib/middle/m1Expr.ts",
+      "line": 614,
+      "title": "문자를 사용한 식으로 나타내기 수 단위 금액",
+      "observedSupport": "금액·단위·일회 할인율을 문자식으로 나타낸다. 복수 판촉 정책 비교는 아니다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "EX19": {
+      "registry": "registeredTypes",
+      "key": "1-1|문자의 사용과 식의 계산|19",
+      "sourceFile": "src/lib/middle/m1Expr.ts",
+      "line": 1222,
+      "title": "도형에서의 일차식의 덧셈과 뺄셈의 활용",
+      "observedSupport": "글로 주어진 직사각형·삼각형의 둘레 등 일차식 계산. 오목한 직교 도형은 제외한다고 명시한다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "EQ06": {
+      "registry": "registeredTypes",
+      "key": "1-1|일차방정식의 풀이|06",
+      "sourceFile": "src/lib/middle/m1Expr.ts",
+      "line": 1545,
+      "title": "등식의 성질",
+      "observedSupport": "a=b를 전제로 여러 등식의 참거짓을 판별하여 개수를 답한다. 선택한 진술의 정체를 답하는 조합형과 다르다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "EQ09": {
+      "registry": "registeredTypes",
+      "key": "1-1|일차방정식의 풀이|09",
+      "sourceFile": "src/lib/middle/m1Expr.ts",
+      "line": 1653,
+      "title": "일차방정식",
+      "observedSupport": "항등식·해 없음·이차식 등을 섞어 일차방정식인 것의 개수를 묻는다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "EQ11": {
+      "registry": "registeredTypes",
+      "key": "1-1|일차방정식의 풀이|11",
+      "sourceFile": "src/lib/middle/m1Expr.ts",
+      "line": 1720,
+      "title": "계수가 소수인 일차방정식의 풀이",
+      "observedSupport": "소수 계수 일차방정식을 푼다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "EQ12": {
+      "registry": "registeredTypes",
+      "key": "1-1|일차방정식의 풀이|12",
+      "sourceFile": "src/lib/middle/m1Expr.ts",
+      "line": 1746,
+      "title": "계수가 분수인 일차방정식의 풀이",
+      "observedSupport": "분수 계수 일차방정식을 푼다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "EQ13": {
+      "registry": "registeredTypes",
+      "key": "1-1|일차방정식의 풀이|13",
+      "sourceFile": "src/lib/middle/m1Expr.ts",
+      "line": 1781,
+      "title": "계수에 소수와 분수가 섞인 일차방정식의 풀이",
+      "observedSupport": "소수·분수 혼합 일차방정식을 푼다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "EQ16": {
+      "registry": "registeredTypes",
+      "key": "1-1|일차방정식의 풀이|16",
+      "sourceFile": "src/lib/middle/m1Expr.ts",
+      "line": 1877,
+      "title": "두 일차방정식의 해가 서로 같은 경우",
+      "observedSupport": "첫 방정식을 풀고 공통인 해를 둘째 방정식에 대입해 상수를 구한다. 답은 상수 하나다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "EQ17": {
+      "registry": "registeredTypes",
+      "key": "1-1|일차방정식의 풀이|17",
+      "sourceFile": "src/lib/middle/m1Expr.ts",
+      "line": 1911,
+      "title": "해에 대한 조건이 주어진 경우",
+      "observedSupport": "자연수 매개변수에 대해 해가 자연수인 값의 집합 또는 음의 정수인 경우의 개수를 생성한다. 순위 선택은 없다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "EQ33": {
+      "registry": "registeredTypes",
+      "key": "1-1|일차방정식의 풀이|33",
+      "sourceFile": "src/lib/middle/m1Expr.ts",
+      "line": 354,
+      "title": "주어진 수가 해가 되는 방정식",
+      "observedSupport": "한 고정 값을 다섯 방정식에 대입해 해가 되는 방정식의 개수를 센다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "EQ92": {
+      "registry": "registeredTypes",
+      "key": "1-1|일차방정식의 풀이|92",
+      "sourceFile": "src/lib/middle/m1Types10.ts",
+      "line": 246,
+      "title": "두 일차방정식의 해의 합",
+      "observedSupport": "정수 계수 두 방정식의 해를 각각 구한 뒤 합을 낸다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "L01": {
+      "registry": "registeredTypes",
+      "key": "1-1|일차방정식의 활용|01",
+      "sourceFile": "src/lib/middle/m1LinearApply.ts",
+      "line": 116,
+      "title": "어떤 수에 대한 문제",
+      "observedSupport": "말로 주어진 어떤 수의 선형 조건을 방정식으로 모델링하여 푼다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "L02": {
+      "registry": "registeredTypes",
+      "key": "1-1|일차방정식의 활용|02",
+      "sourceFile": "src/lib/middle/m1LinearApply.ts",
+      "line": 136,
+      "title": "연속하는 자연수에 대한 문제",
+      "observedSupport": "연속하는 세 자연수의 합에서 가장 큰 수를 구한다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "L03": {
+      "registry": "registeredTypes",
+      "key": "1-1|일차방정식의 활용|03",
+      "sourceFile": "src/lib/middle/m1LinearApply.ts",
+      "line": 147,
+      "title": "자릿수에 대한 문제",
+      "observedSupport": "두 자리 수를 10a+b로 모델링하고 자릿수 교환·합을 사용한다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "L34": {
+      "registry": "registeredTypes",
+      "key": "1-1|일차방정식의 활용|34",
+      "sourceFile": "src/lib/middle/m1LinearApply.ts",
+      "line": 696,
+      "title": "할인율과 정가",
+      "observedSupport": "할인된 판매가에서 정가를 역산한다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "L35": {
+      "registry": "registeredTypes",
+      "key": "1-1|일차방정식의 활용|35",
+      "sourceFile": "src/lib/middle/m1LinearApply.ts",
+      "line": 708,
+      "title": "연속한 증가와 감소",
+      "observedSupport": "연속한 증가·감소의 곱셈 비율을 쓴다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "L45": {
+      "registry": "registeredTypes",
+      "key": "1-1|일차방정식의 활용|45",
+      "sourceFile": "src/lib/middle/m1LinearApply.ts",
+      "line": 879,
+      "title": "연속하는 두 짝수 홀수",
+      "observedSupport": "연속하는 두 짝수 또는 홀수의 합을 모델링한다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "L50": {
+      "registry": "registeredTypes",
+      "key": "1-1|일차방정식의 활용|50",
+      "sourceFile": "src/lib/middle/m1LinearApply.ts",
+      "line": 959,
+      "title": "자릿수 배수 관계",
+      "observedSupport": "자릿수의 배수 조건과 교환 관계를 쓴다. 고정된 일의 자리와 자리 합의 배수 조건을 묶는 문형은 아니다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "C01": {
+      "registry": "registeredTypes",
+      "key": "1-1|좌표와 그래프|01",
+      "sourceFile": "src/lib/middle/m1Prop.ts",
+      "line": 272,
+      "title": "순서쌍과 좌표평면 위의 점의 좌표",
+      "observedSupport": "순서쌍의 같은 위치 성분을 비교하여 미지수를 구한다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "C03": {
+      "registry": "registeredTypes",
+      "key": "1-1|좌표와 그래프|03",
+      "sourceFile": "src/lib/middle/m1Book1.ts",
+      "line": 581,
+      "title": "좌표평면 위의 도형의 넓이",
+      "observedSupport": "좌표가 주어진 삼각형의 밑변·높이로 넓이를 구한다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "C04": {
+      "registry": "registeredTypes",
+      "key": "1-1|좌표와 그래프|04",
+      "sourceFile": "src/lib/middle/m1Book1.ts",
+      "line": 611,
+      "title": "사분면",
+      "observedSupport": "좌표의 부호로 사분면을 판별한다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "C06": {
+      "registry": "registeredTypes",
+      "key": "1-1|좌표와 그래프|06",
+      "sourceFile": "src/lib/middle/m1Book1.ts",
+      "line": 656,
+      "title": "사분면 위의 점 두 수의 부호를 이용하는 경우",
+      "observedSupport": "ab의 부호와 순서 관계에서 부호를 추론한다. 점 변환은 (a,b), (b,a), 부호 반전, (ab,a-b), (ab,b-a)의 일곱 가지다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      },
+      "supportingLines": [72, 87]
+    },
+    "C12": {
+      "registry": "registeredTypes",
+      "key": "1-1|좌표와 그래프|12",
+      "sourceFile": "src/lib/middle/m1Extra.ts",
+      "line": 480,
+      "title": "점의 x좌표",
+      "observedSupport": "주어진 점의 x좌표를 읽는다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "C13": {
+      "registry": "registeredTypes",
+      "key": "1-1|좌표와 그래프|13",
+      "sourceFile": "src/lib/middle/m1Extra.ts",
+      "line": 498,
+      "title": "점의 y좌표",
+      "observedSupport": "주어진 점의 y좌표를 읽는다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "C15": {
+      "registry": "registeredTypes",
+      "key": "1-1|좌표와 그래프|15",
+      "sourceFile": "src/lib/middle/m1Extra.ts",
+      "line": 535,
+      "title": "x축 위의 점",
+      "observedSupport": "x축 위의 점 조건을 쓴다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "C16": {
+      "registry": "registeredTypes",
+      "key": "1-1|좌표와 그래프|16",
+      "sourceFile": "src/lib/middle/m1Extra.ts",
+      "line": 554,
+      "title": "y축 위의 점",
+      "observedSupport": "y축 위의 점 조건을 쓴다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "C08": {
+      "registry": "registeredTypes",
+      "key": "1-1|좌표와 그래프|08",
+      "sourceFile": "src/lib/middle/m1Prop.ts",
+      "line": 438,
+      "title": "그래프의 해석",
+      "observedSupport": "구간별 거리·시간 그래프를 좌표 목록으로 설명하고 시간·속력 등을 묻는다. 월별 자료의 다섯 주장 묶음은 아니다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "P01": {
+      "registry": "registeredTypes",
+      "key": "1-1|정비례와 반비례|01",
+      "sourceFile": "src/lib/middle/m1Prop.ts",
+      "line": 615,
+      "title": "정비례 관계",
+      "observedSupport": "정비례의 일정한 비율과 미지 값을 구한다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "P02": {
+      "registry": "registeredTypes",
+      "key": "1-1|정비례와 반비례|02",
+      "sourceFile": "src/lib/middle/m1Prop.ts",
+      "line": 658,
+      "title": "정비례 관계의 식 구하기",
+      "observedSupport": "정비례 식 또는 대응 값을 구한다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "P03": {
+      "registry": "registeredTypes",
+      "key": "1-1|정비례와 반비례|03",
+      "sourceFile": "src/lib/middle/m1Prop.ts",
+      "line": 700,
+      "title": "정비례 관계 의 활용 와 사이의 관계를 나타내는 식 구하기",
+      "observedSupport": "생활 맥락에서 정비례 관계식을 만든다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "P07": {
+      "registry": "registeredTypes",
+      "key": "1-1|정비례와 반비례|07",
+      "sourceFile": "src/lib/middle/m1Prop.ts",
+      "line": 819,
+      "title": "정비례 관계 의 그래프가 지나는 점",
+      "observedSupport": "정비례 그래프 위 점의 미지 좌표·상수를 구한다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "P08": {
+      "registry": "registeredTypes",
+      "key": "1-1|정비례와 반비례|08",
+      "sourceFile": "src/lib/middle/m1Prop.ts",
+      "line": 864,
+      "title": "정비례 관계 의 그래프의 성질",
+      "observedSupport": "정비례 그래프의 사분면·증감·계수 부호를 개별로 묻는다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "P11": {
+      "registry": "registeredTypes",
+      "key": "1-1|정비례와 반비례|11",
+      "sourceFile": "src/lib/middle/m1Prop.ts",
+      "line": 1133,
+      "title": "반비례 관계",
+      "observedSupport": "반비례의 일정한 곱을 써서 대응 값 또는 두 미지 값의 합을 구한다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "P13": {
+      "registry": "registeredTypes",
+      "key": "1-1|정비례와 반비례|13",
+      "sourceFile": "src/lib/middle/m1Prop.ts",
+      "line": 1239,
+      "title": "반비례 관계 의 활용 와 사이의 관계를 나타내는 식 구하기",
+      "observedSupport": "넓이·거리·분배 등 맥락에서 반비례 식을 만든다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "P15": {
+      "registry": "registeredTypes",
+      "key": "1-1|정비례와 반비례|15",
+      "sourceFile": "src/lib/middle/m1Prop.ts",
+      "line": 1294,
+      "title": "반비례 관계 의 그래프",
+      "observedSupport": "반비례 그래프를 FigureSpec으로 만들고 한 미지 좌표를 구한다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "P17": {
+      "registry": "registeredTypes",
+      "key": "1-1|정비례와 반비례|17",
+      "sourceFile": "src/lib/middle/m1Prop.ts",
+      "line": 1361,
+      "title": "반비례 관계 의 그래프가 지나는 점",
+      "observedSupport": "반비례 그래프 위의 한 좌표나 비례상수를 구한다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "P10": {
+      "registry": "registeredTypes",
+      "key": "1-1|정비례와 반비례|10",
+      "sourceFile": "src/lib/middle/m1Prop.ts",
+      "line": 950,
+      "title": "정비례 관계 의 그래프와 도형의 넓이",
+      "observedSupport": "정비례 식으로 한 점을 구하고 축에 내린 수선으로 삼각형 또는 직사각형의 넓이를 구한다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "P20": {
+      "registry": "registeredTypes",
+      "key": "1-1|정비례와 반비례|20",
+      "sourceFile": "src/lib/middle/m1Prop.ts",
+      "line": 1496,
+      "title": "반비례 관계 의 그래프와 도형의 넓이",
+      "observedSupport": "반비례 식과 축에 내린 수선으로 직사각형 또는 삼각형의 넓이를 구한다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "P21": {
+      "registry": "registeredTypes",
+      "key": "1-1|정비례와 반비례|21",
+      "sourceFile": "src/lib/middle/m1Prop.ts",
+      "line": 1541,
+      "title": "정비례 관계와 반비례 관계의 그래프가 만나는 점",
+      "observedSupport": "정비례·반비례 교점과 두 그래프를 생성한다. 세 갈래는 a 하나, b 하나, 대칭인 다른 교점이다. ab를 구하는 공동 사용은 없다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "JUDGE": {
+      "sourceFile": "src/lib/middle/judge/registry.ts",
+      "line": 536,
+      "observedSupport": "등록된 판정형 15개는 유리수 계산·대입 계산과 비교이다. 다섯 보기 중 참/거짓 하나를 고르는 기능을 중1 개념·그래프 진술까지 등록한 것은 아니다.",
+      "registry": "judgementDefinitions",
+      "registeredKeys": [
+        "중1|유리수의 덧셈과 뺄셈|calc-add2",
+        "중1|유리수의 덧셈과 뺄셈|calc-sub2",
+        "중1|유리수의 덧셈과 뺄셈|calc-mix4",
+        "중1|유리수의 곱셈|calc-mul2",
+        "중1|유리수의 나눗셈|calc-div2",
+        "중1|유리수의 나눗셈|calc-muldiv",
+        "중1|문자의 사용과 식의 값|calc-value",
+        "중1|유리수의 덧셈과 뺄셈|odd-addsub2",
+        "중1|유리수의 덧셈과 뺄셈|max-addsub2",
+        "중1|유리수의 곱셈|odd-pow",
+        "중1|유리수의 곱셈|max-mul2",
+        "중1|유리수의 나눗셈|odd-div2",
+        "중1|유리수의 나눗셈|max-div2",
+        "중1|문자의 사용과 식의 값|odd-value",
+        "중1|문자의 사용과 식의 값|max-value"
+      ]
+    },
+    "ELSTAT": {
+      "sourceFile": "src/lib/elementary/statementForms.ts",
+      "line": 394,
+      "observedSupport": "31번은 다섯 진술 중 하나 선택, 32번은 세 진술의 참인 부분집합을 다섯 조합 보기에서 선택한다. 7개 초등 소단원만 등록되어 있고 중등 등록으로 볼 수 없다.",
+      "registry": "listedForms",
+      "forms": ["31", "32"],
+      "registeredUnitCodes": [
+        "초3|2-4-4",
+        "초3|2-4-5",
+        "초5|2-1-1",
+        "초5|2-1-2",
+        "초5|2-1-6",
+        "초6|2-4-1",
+        "초6|2-4-4"
+      ]
+    },
+    "ELGRAPH": {
+      "sourceFile": "src/lib/elementary/g4.ts",
+      "line": 16424,
+      "observedSupport": "초4 막대·꺾은선·표의 값 읽기, 두 값 합·차, 최댓값·최솟값, 변화량을 이미 생성한다. 중1 단원으로 자동 공유하거나 월별 자료의 판정형을 생성하는 등록은 확인하지 못했다.",
+      "registry": "generateElementaryProblem",
+      "registeredSections": [
+        "초4|1-5-3 막대그래프의 활용",
+        "초4|2-5-1 꺾은선그래프 알아보기",
+        "초4|2-5-3 꺾은선그래프 그리기와 활용하기"
+      ],
+      "supportingLines": [16545, 16424]
+    },
+    "COMBO": {
+      "sourceFile": "src/lib/middle/combo.ts",
+      "line": 516,
+      "observedSupport": "결합형 등록은 6개이며 중1 앵커는 없다. 일반 유형 P21의 존재는 별도로 인정한다.",
+      "registry": "middleComboDefinitions",
+      "registeredIds": [
+        "중3|원주각::중3|이차방정식의 풀이",
+        "중2|일차함수의 활용::중2|일차부등식의 풀이",
+        "중3|다항식의 곱셈::중3|근호를 포함한 식의 계산",
+        "중2|여러 가지 연립방정식의 풀이::중2|순환소수의 분수 표현",
+        "중2|여러 가지 연립방정식의 풀이::중2|지수법칙",
+        "중3|이차방정식의 풀이::중3|인수분해"
+      ]
+    },
+    "NATIVE": {
+      "sourceFile": "src/lib/engine/nativeDescriptive20261018.ts",
+      "line": 13,
+      "observedSupport": "native 서술형 6개: 초4 3개, 중3 3개. 독립 모델 답안과 채점 기준을 갖지만 중1 서술형은 이 등록부에 없다.",
+      "registry": "nativeDescriptiveDefinitions",
+      "registeredIds": [
+        "e4-equilateral-audit-r1",
+        "e4-triangle-dual-proof-r1",
+        "e4-trapezoid-sufficiency-r1",
+        "m3-factor-error-proof-r1",
+        "m3-quadratic-domain-r1",
+        "m3-statistics-shift-spread-r1"
+      ]
+    },
+    "EXPAND": {
+      "sourceFile": "src/lib/engine/expandEngine.ts",
+      "line": 60,
+      "observedSupport": "현재 파생 경로는 단답·객관식이다. 발문 끝을 바꾼 서술형을 다시 만들지 말라는 기존 결정을 명시한다."
+    },
+    "PREDGEN": {
+      "sourceFile": "src/lib/predictor/generatePredictedPaper.ts",
+      "line": 200,
+      "observedSupport": "후보는 DB에서 승인·직접 사용 가능·정답 존재·선택 단원 조건으로 읽고 unitId/difficulty/questionType/source/originProblemId/score만 전달한다. 즉시 생성기를 호출하지 않는다."
+    },
+    "PREDCOMPOSE": {
+      "sourceFile": "src/lib/predictor/composePredictedPaper.ts",
+      "line": 275,
+      "observedSupport": "단원·난이도·답 형식의 칸 일치와 출처 순위로 기존 후보를 고른다. 수학 과제 구조·진술 의존성·familyKey·서술 채점 기준을 매칭하지 않는다."
+    },
+    "G3RAT": {
+      "registry": "registeredTypes",
+      "key": "3-1|이차방정식의 활용|53V",
+      "sourceFile": "src/lib/middle/m3Top3.ts",
+      "line": 1203,
+      "title": "두 근이 모두 유리수가 되도록 하는 상수를 모두 구하기",
+      "observedSupport": "자연수 매개변수의 유한 범위를 증명하고 판별식이 제곱수인 경우를 모두 나열·검산하여 합을 낸다. 유리근 조건 탐색은 이미 있다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "G3POINT": {
+      "registry": "registeredTypes",
+      "key": "3-1|이차함수의 그래프 ⑴|07",
+      "sourceFile": "src/lib/middle/m3Func.ts",
+      "line": 789,
+      "title": "이차함수 의 그래프 위의 점",
+      "observedSupport": "원점을 꼭짓점으로 하는 포물선 위 점에서 계수·함숫값을 구한다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "G3RECT": {
+      "registry": "registeredTypes",
+      "key": "3-1|이차함수의 그래프 ⑴|21",
+      "sourceFile": "src/lib/middle/m3Func.ts",
+      "line": 1402,
+      "title": "이차함수의 그래프의 활용",
+      "observedSupport": "이차함수 활용이라는 같은 제목이지만 실제 문형은 축에 내린 수선의 직사각형 넓이/둘레이다. 할선 기울기 문형이 아니다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "G3MOVE": {
+      "registry": "registeredTypes",
+      "key": "3-1|이차함수의 그래프 ⑴|19",
+      "sourceFile": "src/lib/middle/m3Func.ts",
+      "line": 1274,
+      "title": "이차함수 의 그래프의 평행이동",
+      "observedSupport": "주어진 수평·수직 이동량으로 식·꼭짓점 또는 이동량을 구한다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "G3MOVE2": {
+      "registry": "registeredTypes",
+      "key": "3-1|이차함수의 그래프 ⑵|07",
+      "sourceFile": "src/lib/middle/m3Func.ts",
+      "line": 1623,
+      "title": "이차함수 의 그래프의 평행이동",
+      "observedSupport": "일반형 이차함수의 이동 후 계수를 구해 결합한다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "G3VERTEX": {
+      "registry": "registeredTypes",
+      "key": "3-1|이차함수의 그래프 ⑵|02",
+      "sourceFile": "src/lib/middle/m3Func.ts",
+      "line": 1457,
+      "title": "이차함수 의 그래프의 꼭짓점과 축",
+      "observedSupport": "완전제곱으로 바꾸어 꼭짓점과 축을 함께 구한다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "G3FIT": {
+      "registry": "registeredTypes",
+      "key": "3-1|이차함수의 그래프 ⑵|10",
+      "sourceFile": "src/lib/middle/m3Func.ts",
+      "line": 1779,
+      "title": "이차함수의 식 구하기 꼭짓점과 다른 한 점을 알 때",
+      "observedSupport": "꼭짓점과 한 점을 주고 계수를 구해 일반형으로 전개한다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "HIGHRECIP": {
+      "registry": "registeredHighTypes",
+      "key": "공통수학1|여러 가지 방정식|17",
+      "sourceFile": "src/lib/high/h1Equations.ts",
+      "line": 2103,
+      "title": "정수 조건의 부정방정식",
+      "observedSupport": "고등 자연수 해 조건 탐색이 등록되어 있다. 이 사실을 중1·중3 학교시험 가족 지원으로 합산하지 않는다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    },
+    "HIGHSECANT": {
+      "registry": "registeredHighTypes",
+      "key": "공통수학1|이차방정식과 이차함수|02",
+      "sourceFile": "src/lib/high/h1QuadFunc.ts",
+      "line": 1266,
+      "title": "이차함수의 그래프와 직선의 교점",
+      "observedSupport": "이차함수와 직선의 두 교점을 다루지만 중3 할선 기울기 맥락·방법을 그대로 지원하는 등록은 아니다.",
+      "sample": {
+        "seed": 20261018,
+        "variant": 0,
+        "generated": true
+      }
+    }
+  },
+  "prioritizedUpgradeCandidates": [
+    {
+      "id": "U1",
+      "priority": 1,
+      "title": "중등 개념 진술·참인 부분집합 family",
+      "benchmarkQuestions": [2, 3, 4, 7, 13, 14, 16],
+      "evidenceRefs": ["EQ06", "EQ09", "EQ33", "ELSTAT", "JUDGE", "C06"],
+      "alreadyImplemented": "초등 31/32의 단일/조합 보기, 중등 등식·방정식의 개수 판별과 계산 판정형의 독립 truthOf 관문이 있다.",
+      "mustChange": "중등 등식·좌표·비례 진술의 의미 데이터와 판정기를 저술하고, 진술 ID 집합을 보존하여 개수 판별과 부분집합 선택을 구분한다. 모든 영역을 일반 문자열 판정에 맡기지 않는다.",
+      "minimalAcceptanceTest": "등록된 각 새 family에서 결정적 3 seed 이상으로 각 인쇄 진술을 별도 계산기로 판정한다. 오직 한 조합 보기가 참인 ID 집합과 같고, 참 개수가 같아도 ID 집합이 다른 오답은 배제되는지 확인한다. 자연수 0 제외·축 위 점·항등식/일차방정식 구분의 음성 사례도 포함한다.",
+      "sourceQualityConstraints": "Q18 태그를 진술/서술 분류의 정답으로 쓰지 않는다. 초등 7개 소단원 등록을 중등 지원 수로 올리지 않는다."
+    },
+    {
+      "id": "U2",
+      "priority": 2,
+      "title": "공유 자료·좌표 그림에 근거한 여러 주장 판정",
+      "benchmarkQuestions": [6, 8, 10, 15],
+      "evidenceRefs": ["ELGRAPH", "C08", "C04", "P15", "P17", "EX19"],
+      "alreadyImplemented": "막대/꺾은선/표, 수치 읽기·극값·차와 정·반비례 그림이 있다.",
+      "mustChange": "월별 자료, 여러 문자 점, 직교 도형 각각에 그림과 텍스트가 공유하는 구조 데이터를 두고 해당 범위에서 극값·증감·합/차·축 소속·길이 닫힘 진술을 생성한다. EX19의 문형을 오목한 도형 지원으로 단순 재명명하지 않는다.",
+      "minimalAcceptanceTest": "새 자료 하나를 텍스트 없이 그림에서 읽는 렌더 확인과 독립 수치 oracle을 함께 통과시킨다. 같은 원자료로 표/그래프의 모든 라벨·안내선·범위가 일치하고, 수치 하나를 바꾸면 영향받는 진술의 진위만 변하는지 확인한다. 오목한 직교 도형은 변 길이 양수와 가로·세로 닫힘을 검산한다.",
+      "sourceQualityConstraints": "실제 표시된 6개 중1 PNG를 확인했지만 재사용 자산으로 공개·편입하지 않는다. 새 그림은 자체 데이터에서 생성한다."
+    },
+    {
+      "id": "U3",
+      "priority": 3,
+      "title": "중1 다중 출력 native 서술형부터 저술",
+      "benchmarkQuestions": [19, 20, 21, 22],
+      "evidenceRefs": [
+        "L03",
+        "L50",
+        "EQ16",
+        "P21",
+        "P10",
+        "C03",
+        "NATIVE",
+        "EXPAND"
+      ],
+      "alreadyImplemented": "자릿수 모델, 공통 해, 정/반비례 교점, 좌표 넓이와 독립 rubric 계약이 있다. native 등록은 초4·중3에 한정된다.",
+      "mustChange": "첫 범위는 정/반비례 교점에서 두 계수를 모두 사용하고 원조건을 검산하는 한 native family로 고정한다. 다음으로 자릿수/공통해/두 직선의 점·넓이 모델을 각각 독립 저술한다. 발문 변경만으로 서술형을 만들거나 combo 명부에 없는 것을 자동 승인하지 않는다.",
+      "minimalAcceptanceTest": "첫 family의 seed/variant별 인쇄 교점으로 두 계수를 각각 재계산하고 표적·모델 답안·기준별 배점 합을 검산한다. 한 계수만 쓰거나 계수 비와 곱을 바꾼 응답은 서로 다른 오류 기준으로 설명되어야 한다. 두 선/넓이 확장 시 점을 각 직선 식에 대입하고 행렬식 넓이와 맞춰 본다.",
+      "sourceQualityConstraints": "Q21은 빈 분수 분자와 정답 미정 경고가 해결되기 전 정확 변형의 기준으로 금지한다. Q22는 표시된 정답 불일치 경고를 보존하고 공식 정답을 검증했다고 쓰지 않는다."
+    },
+    {
+      "id": "U4",
+      "priority": 4,
+      "title": "문자 가격과 판촉 정책 비교",
+      "benchmarkQuestions": [12, 18],
+      "evidenceRefs": ["EX02", "L34", "L35", "P02", "ELSTAT"],
+      "alreadyImplemented": "일회 할인 문자식과 연속 증감의 곱셈, 비례 식·대응 값이 있다.",
+      "mustChange": "증정/단일 할인/연속 할인은 별도 정책으로 정의하고 구입 수량·적용 문턱·잔여 단품을 명시한다. 현재 범위는 공통 양의 단가의 문자 계수 비교와 짝 보기까지로 제한한다.",
+      "minimalAcceptanceTest": "자체 예시에서 수량 1과 할인/증정 경계 전후를 정확한 유리수로 재계산한다. 연속 할인은 두 잔존 비율의 곱으로만 맞아야 하고 합산 할인 오답은 틀려야 한다. 양의 단가에서 최저가와 동률 여부를 독립 계산하여 보기 유일성을 확인한다.",
+      "sourceQualityConstraints": "원자료 표의 학교 문제 문구·수치를 복제하지 않는다. 분수식과 x/y 방향은 MathML/의미 데이터로 읽고 평탄 텍스트로 추정하지 않는다."
+    },
+    {
+      "id": "U5",
+      "priority": 5,
+      "title": "기존 자연수 조건 집합의 순위·표적 확장",
+      "benchmarkQuestions": [9, 17],
+      "evidenceRefs": ["EQ17", "L02", "L45", "G3RAT", "HIGHRECIP"],
+      "alreadyImplemented": "EQ17은 자연수 매개변수 집합 자체를 생성한다. 중3 G3RAT는 유리근 조건을 완전히 나열하고 고등에도 자연수 해 탐색이 있다.",
+      "mustChange": "가능 집합을 반환하는 내부 결과에 정렬·순위·집합/합/개수 표적을 명시한다. 중1 연속수에는 항 수와 간격을 분리한다. 중3 유리근 탐색을 다시 구현하거나 고등 family를 중1 범위로 이식하지 않는다.",
+      "minimalAcceptanceTest": "별도 전수 계산이 유한 경계를 조건에서 유도하고 매개변수와 해에서 0을 제외한 집합을 만든 뒤 생성기 집합과 정확히 비교한다. 최소/두 번째/최대 표적 및 짝수 3항의 경계 seed를 검산하고 필요한 순위만큼 해가 없으면 생성을 거절한다.",
+      "sourceQualityConstraints": "어떤 조건 검색도 임의의 스캔 상한으로 참 집합을 잘라서는 안 된다. 정수·유리수·자연수 조건과 집합/합 응답을 구분한다."
+    },
+    {
+      "id": "U6",
+      "priority": 6,
+      "title": "학교 예측 조립에 과제 구조·family 경로 연결",
+      "benchmarkQuestions": [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+        21, 22
+      ],
+      "evidenceRefs": ["PREDGEN", "PREDCOMPOSE", "EXPAND"],
+      "alreadyImplemented": "시간 분리, 원본 만점 신뢰 가드, 단원·난이도·답 형식 후보 선택, 배점 100 보정은 있다.",
+      "mustChange": "검증된 구조 태그와 family/의존 관계를 후보 및 목표에 명시하는 계약부터 만들고, 기존 문항 선택과 온디맨드 생성의 경로를 구분한다. 생성기 family가 있다는 이유만으로 학교 예측이 그 family를 만들거나 선택한다고 보고하지 않는다.",
+      "minimalAcceptanceTest": "DB 없이 합성 후보 두 개의 단원·난이도·유형·점수를 같게 두고 수학 과제 구조만 다르게 한다. 구조를 요구하는 표적에서 맞는 후보만 선택되고 잘못된 동일-family 중복을 막으며, 부족하면 구조 미충족을 명시해야 한다. 과거/대상 시점 분리와 배점 100 검산도 유지한다.",
+      "sourceQualityConstraints": "이 22개를 학교 고유 경향의 학습 표본으로 자동 적재하지 않는다. Q18 형식 충돌과 Q21/22 불확실성은 별도 상태로 유지한다."
+    }
+  ],
+  "predictionPath": {
+    "generatorTemplatesAvailableDoesNotImplySchoolPredictionSupport": true,
+    "observedSelectionDimensions": [
+      "unitId",
+      "difficulty",
+      "questionType",
+      "source",
+      "originProblemId",
+      "score"
+    ],
+    "generatorCalledInInspectedPredictionPath": false,
+    "familyOrMathematicalStructureMatched": false,
+    "databaseLoadedOrEligibleInventoryVerified": false,
+    "evidenceRefs": ["PREDGEN", "PREDCOMPOSE"]
+  },
+  "sourceQuality": {
+    "allSixPrimaryFiguresVisuallyInspected": true,
+    "primaryFigureQuestionNumbers": [6, 8, 10, 15, 20, 22],
+    "mathMlUsedInsteadOfFlattenedFractions": true,
+    "quarantinedQuestionNumbers": [21],
+    "formatConflictQuestionNumbers": [18],
+    "unresolvedAnswerWarningQuestionNumbers": [21, 22],
+    "editedItemNoteQuestionNumbers": [11],
+    "automaticImportOrRelabelAuthorized": false,
+    "privateInputs": [
+      {
+        "privateArtifact": "benchmark-g1-paper-content-private.json",
+        "sha256": "4d7e583e5739e53b69fe440226aec5ec5d3a908ed6598fc185a055177653cc4b"
+      },
+      {
+        "privateArtifact": "benchmark-kyungmyung-edit.json",
+        "sha256": "3bb8f2a6b0f34e31e2b6d0efd3bf9a0b8a114e304ba351dd08d42ee9052bbbb5"
+      },
+      {
+        "privateArtifact": "benchmark-g1-paper-with-figures-private.json",
+        "sha256": "5acf9904145b4effc984e08d3def19cb3faf2e3504e6063a53950498d0a11593"
+      },
+      {
+        "privateArtifact": "benchmark-g1-figures-manifest.json",
+        "sha256": "fc536a2e51b6bd3f68aee745b656888533019bf63cb6142f27c7739215812691"
+      },
+      {
+        "privateArtifact": "benchmark-g3-paper-content-private.json",
+        "sha256": "4961e3afcbfab9ddac7b36943e16498fc7b7a1219663e25f4fda12e8f84c8181"
+      },
+      {
+        "privateArtifact": "benchmark-g3-figures-manifest.json",
+        "sha256": "fdd6820f48af93337ba2081dfc90f6b8c456c86a6de2eec263830e6bbe426cd0"
+      }
+    ]
+  },
+  "verification": {
+    "registrySmoke": {
+      "seed": 20261018,
+      "variant": 0,
+      "middle": 1517,
+      "middleGrade1": 578,
+      "high": 168,
+      "highHeldNotCounted": 2,
+      "judge": 15,
+      "elementaryTierSamples": 1088,
+      "errors": 0,
+      "totalGenerated": 2788
+    },
+    "focused": {
+      "seeds": [20261018, 20261019, 42],
+      "variants": [0, 1, 2, 3],
+      "registeredMiddleFamiliesProbed": 19,
+      "middleGenerated": 228,
+      "independentlyCheckedMiddle": 156,
+      "checksByFamily": {
+        "1-1|문자의 사용과 식의 계산|13": 12,
+        "1-1|일차방정식의 풀이|06": 12,
+        "1-1|일차방정식의 풀이|09": 12,
+        "1-1|일차방정식의 풀이|11": 12,
+        "1-1|일차방정식의 풀이|12": 12,
+        "1-1|일차방정식의 풀이|13": 12,
+        "1-1|일차방정식의 풀이|16": 12,
+        "1-1|일차방정식의 풀이|17": 12,
+        "1-1|일차방정식의 풀이|33": 12,
+        "1-1|일차방정식의 풀이|92": 12,
+        "1-1|정비례와 반비례|10": 12,
+        "1-1|정비례와 반비례|20": 12,
+        "1-1|정비례와 반비례|21": 12
+      },
+      "branchesObserved": {
+        "1-1|일차방정식의 풀이|17": [
+          "natural_parameter_set",
+          "negative_integer_count"
+        ],
+        "1-1|정비례와 반비례|21": [
+          "coefficient_a",
+          "coefficient_b",
+          "other_intersection"
+        ]
+      },
+      "elementaryStatementGenerated": 8,
+      "independentlyCheckedElementaryStatements": 4,
+      "elementaryStatementShapeChecked": 8,
+      "elementaryGraphGenerated": 3,
+      "highReciprocalEquationChecked": {
+        "family": "공통수학1|여러 가지 방정식|17",
+        "orderedPairCount": 3
+      },
+      "middle3Generated": 21,
+      "middle3RationalParameterChecks": [
+        {
+          "seed": 20261018,
+          "values": [3, 5, 6],
+          "sum": 14
+        },
+        {
+          "seed": 20261019,
+          "values": [3, 6, 7],
+          "sum": 16
+        },
+        {
+          "seed": 42,
+          "values": [6, 8, 10],
+          "sum": 24
+        }
+      ],
+      "nativeGenerated": 6,
+      "nativeGrades": ["중3", "초4"],
+      "result": "passed",
+      "limitations": "Selected exact arithmetic and shape checks, not full registry correctness, site figures, school fidelity, DB inventory or learning outcomes."
+    },
+    "privateCheckpoint": "ROOT/.qa-artifacts/exam-engine-capacity-20261018/benchmark-recovery-evidence",
+    "method": "생성 실행과 등록 확인 외에 Python Fraction 기반 별도 인쇄 수식 판독기로 선택된 중등 문항을 재계산했다. 전수 수학적 품질 증명으로 확대하지 않는다.",
+    "deterministicReplay": {
+      "deterministic": true,
+      "sha256": {
+        "benchmark-mapping-catalog.json": "509f4abc4d7b1ea299308fca3f5f6960d610d5f2ee7a4e74535bfc423c7e1426",
+        "benchmark-focused-probes.json": "50953d31fe2a7c7d2782bbba432c7cbaa648813253615146d0e55c56c1675771"
+      }
+    },
+    "sourceFigureArithmetic": {
+      "questionNumbers": [6, 8, 10, 15, 20, 22],
+      "result": "passed",
+      "privateArtifact": "benchmark-figure-review.json",
+      "limits": "수동으로 읽은 표시 그림의 값과 구조를 Fraction으로 검산한 것이며 공식 정답지 검증은 아니다."
+    }
+  },
+  "limitations": [
+    "웹사이트 전체 문항·전체 기능 감사가 아니다.",
+    "학교 원본 시험지 충실도·공식 정답·교육과정 완전 정합성을 검증하지 않았다.",
+    "학생 학습효과·학교별 예측 적중·실제 성적 개선을 측정하지 않았다.",
+    "실제 DB의 적재·승인·출제 자격 및 학교별 후보 재고를 조회하지 않았다.",
+    "공개 보고서에는 문항 원문·원본 그림·정답지를 싣지 않는다. 보관된 원자료는 코디네이터의 ignored private evidence이다.",
+    "sourceCommit 이후 제품 변경은 이 판정의 근거가 아니다."
+  ],
+  "learningReadinessInterpretationUpdate20261018": {
+    "supersededBy": "../math-engine-study-readiness-20261018/study-structures.md",
+    "scope": "Historical per-task structural mapping; partial19 is not19 independent missing pedagogy families. Reassess equivalent reasoning regardless of minor output/count/rank changes, while retaining complete conditional/visual/native-response requirements.",
+    "originalSourceReplicationRequired": false
+  }
+}

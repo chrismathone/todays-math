@@ -124,6 +124,16 @@
 
 학생 목록은 지점 권한과 반 소속을 검사하는 `/api/branch/students`로 읽으며, 반 선택기는 운영 중인 반만 받는다. 실계정·실DB 검증과 구분한 예시 데이터의 폭별 화면·동작 검증은 [수정 보고서](../planning/tracks/reports/branch-accounts-fix-codex-20261019.md)에 기록한다.
 
+### 기출 대비 자작 연습 — `/exam/practice` (2026-10-18)
+
+현재 진입은 `/exam`의 [ExamStudyEntry](../../src/components/exam-practice/ExamStudyEntry.tsx)이며 독립 경로의 `AppChrome`을 유지한다. `UnifiedWorkspace`의 새 메뉴나 기존 시험지 만들기의 저장 문항 필터를 대체한 것은 아니다. [ExamPracticeWorkspace](../../src/components/exam-practice/ExamPracticeWorkspace.tsx)와 [CSS](../../src/components/exam-practice/ExamPracticeWorkspace.module.css)가 조건·문항 검토를 소유한다.
+
+- 조건 `.85fr` + 결과 `1.15fr`, gap 24px이며 named container 860px 이하에서 쌓고 420px 이하에서 세부 조건을 한 열로 배치한다. 공통 제목·토큰·44px 조작·초점 표시를 사용한다.
+- 검토된 학교·학년 범위와 일반 유형 선택을 구분한다. 일반 유형에 입력한 학교 이름은 수학 조건을 바꾸지 않는다. 학교 자료의 확인 범위와 완결/기초 요소/확인 전/미제공 요구를 표시하며, 실제 난도 보정이나 학교 전체 대응률로 설명하지 않는다.
+- 결과는 실제 제공 문항 수와 완전/부분/미제공 상태를 보여 준다. 정답·풀이는 기본으로 닫혀 있고 본래 서술형에는 채점 기준을 보존한다. 다른 조건으로 재생성할 때 같은 논리 조합이면 유한 재시도 후 기존 문항과 안내를 유지한다. 조건 변경 뒤 도착한 응답은 버린다.
+- 출력은 기존 `WorksheetEditor`·여섯 양식·PDF/HWPX 클라이언트다. 기본은 자작 연습 표시와 풀이 공간이 있는 워크북이며, 추가·제거·순서 변경·저장 행동은 노출하지 않는다. 출력 직전 서버에서 같은 레시피와 내용 지문을 재확인한다. 기존 양식의 인쇄 예외를 유지한다.
+- 새 생성은 원문 DB 복원·학교 원문 입력·유료 모델을 요구하지 않는다. 부족한 요구를 다른 학년·형식·난도나 정답만 쓰는 문제로 채우지 않는다. 실제 제공 범위와 후속 보강 대상은 [업그레이드 검수 기록](../reports/math-exam-engine-upgrade-20261018/README.md)에서 구분한다. 소스 적용과 운영 배포는 별도다.
+
 ### 수학 채점 · 오답 복습 — `/tests/{id}/grade` (2026-10-11)
 
 현재 진입은 확정·인쇄 시험지의 채점 버튼이며, 독립 채점 경로의 `AppChrome`을 유지한다. `UnifiedWorkspace`의 새 메뉴를 추가한 것은 아니다. [GradeSheet](../../src/components/test/GradeSheet.tsx)가 채점표와 저장을, [SavedRetryPanel](../../src/components/test/SavedRetryPanel.tsx)이 학생 선택·저장된 기록의 오답·원문별 변형 검토를 소유한다.

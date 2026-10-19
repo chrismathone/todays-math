@@ -1,0 +1,154 @@
+{
+  "auditDate": "2026-10-18",
+  "sourceUrl": "https://kimbjmath-qbank.pages.dev/%EB%A7%8C%EB%93%A4%EA%B8%B0",
+  "access": "User logged in directly in Orca; read displayed paper bodies and displayed source figures",
+  "scope": "Two selected school papers, 44 questions, 12 figure assets; not whole-site inspection",
+  "samples": [
+    {
+      "school": "경명여중",
+      "grade": 1,
+      "year": 2025,
+      "semester": 1,
+      "round": "기말",
+      "observedQuestions": 22,
+      "uiFormats": {
+        "객관식": 17,
+        "주관식": 5
+      },
+      "figuresFetched": 6,
+      "explicitUncertainQuestionNumbers": [
+        21,
+        22
+      ]
+    },
+    {
+      "school": "경명여중",
+      "grade": 3,
+      "year": 2025,
+      "semester": 1,
+      "round": "기말",
+      "observedQuestions": 22,
+      "uiFormats": {
+        "객관식": 17,
+        "주관식": 5
+      },
+      "figuresFetched": 6,
+      "explicitUncertainQuestionNumbers": [
+        6,
+        13,
+        22
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "file": "benchmark-g1-paper-with-figures-private.json",
+      "sha256": "5acf9904145b4effc984e08d3def19cb3faf2e3504e6063a53950498d0a11593",
+      "bytes": 19252
+    },
+    {
+      "file": "benchmark-g3-paper-content-private.json",
+      "sha256": "4961e3afcbfab9ddac7b36943e16498fc7b7a1219663e25f4fda12e8f84c8181",
+      "bytes": 22515
+    },
+    {
+      "file": "benchmark-g1-figures-manifest.json",
+      "sha256": "fc536a2e51b6bd3f68aee745b656888533019bf63cb6142f27c7739215812691",
+      "images": [
+        {
+          "number": 6,
+          "bytes": 11271,
+          "sha256": "da4395405776d552eaae5f641da452cafd6e628f7f1b08e49dcc2db62a1d58ec"
+        },
+        {
+          "number": 8,
+          "bytes": 60358,
+          "sha256": "b3c9c0eff382337b227e8057d0d19454d497ab6d8cfd8e5339a2bca89a128d05"
+        },
+        {
+          "number": 10,
+          "bytes": 102548,
+          "sha256": "02eb434a3cc9db184125eabb04658142a3708948df8b2be489cfa67ea1267f79"
+        },
+        {
+          "number": 15,
+          "bytes": 8530,
+          "sha256": "440d0b235e312d3cefb758f142b189900525b7ce913ac5a8f37b7431d6570e1d"
+        },
+        {
+          "number": 20,
+          "bytes": 98514,
+          "sha256": "d0f0c185b7205123260e6ceba4ff6e8f737b7b3b11ebbf19669402753c5e2d41"
+        },
+        {
+          "number": 22,
+          "bytes": 8710,
+          "sha256": "e608c31c4e8d793d1baf268ce3a45d36a7d39f1930b09594f0dcdca135e3278b"
+        }
+      ]
+    },
+    {
+      "file": "benchmark-g3-figures-manifest.json",
+      "sha256": "fdd6820f48af93337ba2081dfc90f6b8c456c86a6de2eec263830e6bbe426cd0",
+      "images": [
+        {
+          "number": 12,
+          "bytes": 71028,
+          "sha256": "3463286c261bf18922d40c60890c635f854f197431bbcf85606383a9d16d8018"
+        },
+        {
+          "number": 15,
+          "bytes": 62694,
+          "sha256": "cbdecd468189667ea6aa132ceb0753f531255a3624ec699843439befe0bd1c86"
+        },
+        {
+          "number": 17,
+          "bytes": 92365,
+          "sha256": "a0a241587f3baf33e670d3b4d67fd51378273616bc9c46821cc834c682eca3fe"
+        },
+        {
+          "number": 21,
+          "bytes": 76544,
+          "sha256": "013618466638fe2ddf6f9a38481281952d89addece16e57e10c385987b2f5297"
+        },
+        {
+          "number": 22,
+          "bytes": 89254,
+          "sha256": "689200920e30716cc7373cce7c4aae05d91492895f8f9c6b0abca8e8ef60889e"
+        },
+        {
+          "number": 22,
+          "bytes": 210029,
+          "sha256": "46f3ed4f9a5638f0b6cc2b5112126155e1f1f0866b7142b9dc6967ba7df11894"
+        }
+      ]
+    }
+  ],
+  "sourceQualityFindings": [
+    {
+      "paper": "경명여중 2025 중1 1학기 기말",
+      "question": 18,
+      "observed": "UI marks subjective while body includes numbered choices",
+      "decision": "format correspondence must be reviewed"
+    },
+    {
+      "paper": "경명여중 2025 중1 1학기 기말",
+      "question": 21,
+      "observed": "site uncertainty flag plus empty numerator in displayed MathML",
+      "decision": "not a reliable ready-to-use source until original correspondence checked"
+    },
+    {
+      "paper": "경명여중 2025 중1 1학기 기말",
+      "question": 22,
+      "observed": "explicit answer discrepancy flag; graph itself visibly contains relevant coordinates/height",
+      "decision": "use task-structure reference separately from answer approval"
+    }
+  ],
+  "substitutionUiDisclosure": "Both same-type and similar modes described as other-school replacement in the same small unit, retaining score and response format",
+  "substitutionExecution": "not executed; no claim about semantic similarity precision",
+  "newWorksheetSaved": false,
+  "corpusImported": false,
+  "credentialsExported": false,
+  "siteQualityTotals": "Displayed global counts not independently verified and not compared as quality-approved unique tasks",
+  "nextConsumer": "benchmark-engine-gap.md and integrated README"
+}

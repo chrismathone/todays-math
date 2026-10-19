@@ -1,0 +1,1448 @@
+{
+  "schemaVersion": 1,
+  "auditDate": "2026-10-18",
+  "sourceCommit": "d70137271e36e6f9c22209574e9ff224217f7296",
+  "verdict": "No current own-school evidence or issuable own-school questions for either alias; school-specific content generation is not demonstrated",
+  "definitions": {
+    "metadataIndexed": "A fresh exam_index snapshot was not supplied or queried; its target-school total and unparsed backlog are unknown",
+    "historicallyLoaded": "The 2026-08-19 committed ingestion ledger and 2026-08-27 offline deletion archive agree on 18 school papers",
+    "extractedOrStored": "Archived ExamQuestion metadata and nonempty Problem contents are separate counts; neither guarantees complete original-paper extraction",
+    "trusted": "Current numerical guard and source-path classifier only; not a content-quality or original-PDF completeness certification",
+    "issuable": "Current shared pool, approved, directUseAllowed, non-sentinel answer, then requested range constraints",
+    "distinctStoredQuestion": "questionGroupKey when present, otherwise the legacy row identity; same-task MC/short variants count once when proven linked",
+    "generatorCapacity": "Not measured here; stored rows, family tags, choice shuffles and sampled unique outputs cannot be treated as total new mathematical capacity"
+  },
+  "currentSnapshot": {
+    "auditedSource": "d70137271e36e6f9c22209574e9ff224217f7296",
+    "observedAt": "2026-10-18T11:08:34.847Z",
+    "exportVerification": {
+      "readOnlyTransactionVerified": true,
+      "isolation": "RepeatableRead",
+      "problemStudentExamDml": 0,
+      "files": [
+        {
+          "name": "exams-private.json",
+          "rows": 5,
+          "bytes": 30018,
+          "sha256": "af8399e1645e44d78577c862c5ed02670e806656ae526e23d51ad0f764d8bb9b",
+          "hashVerified": true
+        },
+        {
+          "name": "bank-private.json",
+          "rows": 118166,
+          "bytes": 73535166,
+          "sha256": "b2405d4aefd97e8deb0a481554fd96850da6bfc40ee4a905a71a20c08ddf7019",
+          "hashVerified": true
+        },
+        {
+          "name": "units-private.json",
+          "rows": 735,
+          "bytes": 114397,
+          "sha256": "f6c38899e554553d646bccd54fb6d7eed912dee1c819b12202a2f3ebb6ed5d8a",
+          "hashVerified": true
+        }
+      ],
+      "readMetaSha256": "fcee8e828d05199cc66aac565825c9125f65396dc926eafe0453f9b7fd82110f"
+    },
+    "scope": {
+      "allExamRows": 5,
+      "allExamQuestionRows": 101,
+      "allBankRows": 118166,
+      "allUnitRows": 735,
+      "classSectionInExamSchema": false
+    },
+    "school": {
+      "requestedAliases": [
+        "경명여중",
+        "경명여자중학교"
+      ],
+      "canonicalKey": "경명여중",
+      "examPapers": 0,
+      "examQuestions": 0,
+      "contractValidPapers": 0,
+      "trustedActualSchoolPapers": 0,
+      "excludedByTrust": 0,
+      "excludedBySource": 0,
+      "bankRows": 0,
+      "bankDistinctStoredQuestions": 0,
+      "bankEligibleRows": 0,
+      "bankEligibleDistinctStoredQuestions": 0,
+      "metadata": {
+        "count": 0,
+        "qtype": {},
+        "withPositiveScore": 0,
+        "withDifficultyLabel": 0,
+        "withTopicRaw": 0,
+        "withUnitId": 0,
+        "withAnswer": 0,
+        "withFigureFlag": 0,
+        "withProblemId": 0,
+        "withExistingProblem": 0,
+        "linkedEligible": 0
+      },
+      "completenessDenominator": null,
+      "completenessRate": null,
+      "rawOriginalSourceComparison": "Unavailable: no own-school Exam or bank rows in current snapshot; no original documents re-read"
+    },
+    "currentSchoolPaperInventory": [
+      {
+        "externalExamId": "경산여중|중3|중3|2025-2-중간",
+        "school": "경산여중",
+        "level": "중",
+        "grade": 3,
+        "subject": "중3",
+        "subjectRaw": null,
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "totalScore": 100,
+        "questionCount": 26,
+        "actualQuestions": 26,
+        "scoreSum": 100,
+        "contractValid": true,
+        "trust": {
+          "trusted": true
+        },
+        "source": "기출",
+        "questionMetadata": {
+          "count": 26,
+          "qtype": {
+            "객관식": 26
+          },
+          "withPositiveScore": 26,
+          "withDifficultyLabel": 0,
+          "withTopicRaw": 0,
+          "withUnitId": 0,
+          "withAnswer": 26,
+          "withFigureFlag": 23,
+          "withProblemId": 26,
+          "withExistingProblem": 26,
+          "linkedEligible": 0
+        }
+      },
+      {
+        "externalExamId": "협성경복중|중3|중3|2025-2-중간",
+        "school": "협성경복중",
+        "level": "중",
+        "grade": 3,
+        "subject": "중3",
+        "subjectRaw": null,
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "totalScore": 100,
+        "questionCount": 19,
+        "actualQuestions": 19,
+        "scoreSum": 100,
+        "contractValid": true,
+        "trust": {
+          "trusted": true
+        },
+        "source": "기출",
+        "questionMetadata": {
+          "count": 19,
+          "qtype": {
+            "객관식": 14,
+            "서술형": 5
+          },
+          "withPositiveScore": 19,
+          "withDifficultyLabel": 0,
+          "withTopicRaw": 0,
+          "withUnitId": 0,
+          "withAnswer": 19,
+          "withFigureFlag": 17,
+          "withProblemId": 19,
+          "withExistingProblem": 19,
+          "linkedEligible": 0
+        }
+      },
+      {
+        "externalExamId": "동도중|중3|중3|2025-2-중간",
+        "school": "동도중",
+        "level": "중",
+        "grade": 3,
+        "subject": "중3",
+        "subjectRaw": null,
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "totalScore": 100,
+        "questionCount": 16,
+        "actualQuestions": 16,
+        "scoreSum": 100,
+        "contractValid": true,
+        "trust": {
+          "trusted": true
+        },
+        "source": "기출",
+        "questionMetadata": {
+          "count": 16,
+          "qtype": {
+            "객관식": 8,
+            "서술형": 8
+          },
+          "withPositiveScore": 16,
+          "withDifficultyLabel": 0,
+          "withTopicRaw": 0,
+          "withUnitId": 0,
+          "withAnswer": 8,
+          "withFigureFlag": 15,
+          "withProblemId": 16,
+          "withExistingProblem": 16,
+          "linkedEligible": 0
+        }
+      },
+      {
+        "externalExamId": "강동중|중3|중3|2025-2-중간",
+        "school": "강동중",
+        "level": "중",
+        "grade": 3,
+        "subject": "중3",
+        "subjectRaw": null,
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "totalScore": 100,
+        "questionCount": 21,
+        "actualQuestions": 21,
+        "scoreSum": 100,
+        "contractValid": true,
+        "trust": {
+          "trusted": true
+        },
+        "source": "기출",
+        "questionMetadata": {
+          "count": 21,
+          "qtype": {
+            "객관식": 17,
+            "서술형": 4
+          },
+          "withPositiveScore": 21,
+          "withDifficultyLabel": 0,
+          "withTopicRaw": 0,
+          "withUnitId": 0,
+          "withAnswer": 17,
+          "withFigureFlag": 12,
+          "withProblemId": 21,
+          "withExistingProblem": 21,
+          "linkedEligible": 0
+        }
+      },
+      {
+        "externalExamId": "정화중|중3|중3|2025-2-중간",
+        "school": "정화중",
+        "level": "중",
+        "grade": 3,
+        "subject": "중3",
+        "subjectRaw": null,
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "totalScore": 100,
+        "questionCount": 19,
+        "actualQuestions": 19,
+        "scoreSum": 100,
+        "contractValid": true,
+        "trust": {
+          "trusted": true
+        },
+        "source": "기출",
+        "questionMetadata": {
+          "count": 19,
+          "qtype": {
+            "객관식": 11,
+            "단답형": 4,
+            "서술형": 4
+          },
+          "withPositiveScore": 19,
+          "withDifficultyLabel": 0,
+          "withTopicRaw": 0,
+          "withUnitId": 0,
+          "withAnswer": 19,
+          "withFigureFlag": 18,
+          "withProblemId": 19,
+          "withExistingProblem": 19,
+          "linkedEligible": 0
+        }
+      }
+    ],
+    "globalExamMetadata": {
+      "count": 101,
+      "qtype": {
+        "객관식": 76,
+        "단답형": 4,
+        "서술형": 21
+      },
+      "withPositiveScore": 101,
+      "withDifficultyLabel": 0,
+      "withTopicRaw": 0,
+      "withUnitId": 0,
+      "withAnswer": 89,
+      "withFigureFlag": 85,
+      "withProblemId": 101,
+      "withExistingProblem": 101,
+      "linkedEligible": 0
+    },
+    "globalLinkChecks": {
+      "linked": 101,
+      "dangling": 0,
+      "schoolMatched": 101,
+      "questionNumberMatched": 101,
+      "typeMatched": 101,
+      "scoreMatched": 101,
+      "answerMatched": 89,
+      "unitMatched": 0,
+      "bankSourcePastExam": 101,
+      "linkedFamilyNonEmpty": 101,
+      "linkedFamilyNonSolo": 101,
+      "linkedGroupKeyNonEmpty": 0
+    },
+    "currentPastExamBank": {
+      "rows": 101,
+      "distinctStoredQuestions": 101,
+      "eligibleRows": 0,
+      "eligibilityFirstBlockerCounts": {
+        "locked": 101
+      },
+      "reviewStatus": {
+        "approved": 101
+      },
+      "directUseAllowed": {
+        "false": 101
+      },
+      "qtype": {
+        "객관식": 76,
+        "단답형": 4,
+        "서술형": 21
+      }
+    },
+    "targetEvidence": [
+      {
+        "grade": 1,
+        "subject": "중1",
+        "target": {
+          "year": 2025,
+          "semester": 2,
+          "round": "중간"
+        },
+        "own": 0,
+        "cohort": 0
+      },
+      {
+        "grade": 1,
+        "subject": "중1",
+        "target": {
+          "year": 2025,
+          "semester": 2,
+          "round": "기말"
+        },
+        "own": 0,
+        "cohort": 0
+      },
+      {
+        "grade": 1,
+        "subject": "중1",
+        "target": {
+          "year": 2026,
+          "semester": 2,
+          "round": "중간"
+        },
+        "own": 0,
+        "cohort": 0
+      },
+      {
+        "grade": 1,
+        "subject": "중1",
+        "target": {
+          "year": 2026,
+          "semester": 2,
+          "round": "기말"
+        },
+        "own": 0,
+        "cohort": 0
+      },
+      {
+        "grade": 2,
+        "subject": "중2",
+        "target": {
+          "year": 2025,
+          "semester": 2,
+          "round": "중간"
+        },
+        "own": 0,
+        "cohort": 0
+      },
+      {
+        "grade": 2,
+        "subject": "중2",
+        "target": {
+          "year": 2025,
+          "semester": 2,
+          "round": "기말"
+        },
+        "own": 0,
+        "cohort": 0
+      },
+      {
+        "grade": 2,
+        "subject": "중2",
+        "target": {
+          "year": 2026,
+          "semester": 2,
+          "round": "중간"
+        },
+        "own": 0,
+        "cohort": 0
+      },
+      {
+        "grade": 2,
+        "subject": "중2",
+        "target": {
+          "year": 2026,
+          "semester": 2,
+          "round": "기말"
+        },
+        "own": 0,
+        "cohort": 0
+      },
+      {
+        "grade": 3,
+        "subject": "중3",
+        "target": {
+          "year": 2025,
+          "semester": 2,
+          "round": "중간"
+        },
+        "own": 0,
+        "cohort": 0
+      },
+      {
+        "grade": 3,
+        "subject": "중3",
+        "target": {
+          "year": 2025,
+          "semester": 2,
+          "round": "기말"
+        },
+        "own": 0,
+        "cohort": 5
+      },
+      {
+        "grade": 3,
+        "subject": "중3",
+        "target": {
+          "year": 2026,
+          "semester": 2,
+          "round": "중간"
+        },
+        "own": 0,
+        "cohort": 5
+      },
+      {
+        "grade": 3,
+        "subject": "중3",
+        "target": {
+          "year": 2026,
+          "semester": 2,
+          "round": "기말"
+        },
+        "own": 0,
+        "cohort": 5
+      }
+    ]
+  },
+  "aliasProbe": [
+    {
+      "input": "경명여중",
+      "output": "경명여중"
+    },
+    {
+      "input": "경명여자중학교",
+      "output": "경명여중"
+    },
+    {
+      "input": "대구광역시 경명여자중학교",
+      "output": "경명여중"
+    }
+  ],
+  "historicalIngestionLedger": {
+    "path": "scripts/qa/handoff/exam-metadata-loaded.json",
+    "sha256": "b2348964977419225cea4717fa2b27f56514ba3a52346646d4ba2d607e812ee1",
+    "total": 2584,
+    "schoolRecords": [
+      "경명여중|중1|중1|2023-1-기말",
+      "경명여중|중1|중1|2024-1-기말",
+      "경명여중|중1|중1|2025-1-기말",
+      "경명여중|중1|중1|2025-1-중간",
+      "경명여중|중2|중2|2023-1-기말",
+      "경명여중|중2|중2|2023-1-중간",
+      "경명여중|중2|중2|2023-2-기말",
+      "경명여중|중2|중2|2024-1-기말",
+      "경명여중|중2|중2|2024-1-중간",
+      "경명여중|중2|중2|2024-2-중간",
+      "경명여중|중2|중2|2025-1-기말",
+      "경명여중|중2|중2|2025-1-중간",
+      "경명여중|중3|중3|2023-1-기말",
+      "경명여중|중3|중3|2023-1-중간",
+      "경명여중|중3|중3|2023-2-기말",
+      "경명여중|중3|중3|2024-2-기말",
+      "경명여중|중3|중3|2025-1-기말",
+      "경명여중|중3|중3|2025-1-중간"
+    ],
+    "byGrade": {
+      "중1": [
+        "2023-1-기말",
+        "2024-1-기말",
+        "2025-1-기말",
+        "2025-1-중간"
+      ],
+      "중2": [
+        "2023-1-기말",
+        "2023-1-중간",
+        "2023-2-기말",
+        "2024-1-기말",
+        "2024-1-중간",
+        "2024-2-중간",
+        "2025-1-기말",
+        "2025-1-중간"
+      ],
+      "중3": [
+        "2023-1-기말",
+        "2023-1-중간",
+        "2023-2-기말",
+        "2024-2-기말",
+        "2025-1-기말",
+        "2025-1-중간"
+      ]
+    },
+    "scope": "Committed 2026-08-19 ingestion ledger; not current DB or trusted/issuable capacity"
+  },
+  "offlineCorpusDiscovery": {
+    "defaultExtractionCorpusAvailable": false,
+    "defaultPeriodMapAvailable": false,
+    "freshMetadataIndexSchoolCount": null,
+    "freshUnparsedSchoolPaperCount": null,
+    "sourceOriginalPdfComparisonPerformed": false,
+    "archive": {
+      "path": "scripts/import/ledgers/legacy-corpus-delete.json.gz",
+      "compressedSha256": "5de3c92f1245b2ed827e7b743f32c2b884c5c73a2674e251a6dd887d9891dde5",
+      "scope": "Offline deletion ledger only; absent from current live export; not restored or issuable inventory",
+      "rounds": [
+        {
+          "archivedAt": "2026-08-27T07:40:43.871Z",
+          "overallArchivedPapers": 2584,
+          "overallArchivedQuestions": 39190,
+          "school": {
+            "papers": 18,
+            "questions": 266,
+            "bankRows": 251,
+            "bankRowsWithNonEmptyContent": 251,
+            "bankRowsWithRealAnswer": 243,
+            "storedEligibilityAtDeletion": {
+              "notShared": 251
+            },
+            "bankRowsWithFamilyKey": 0,
+            "trustedActualSchoolPapersUnderCurrentGuard": 9,
+            "trustedQuestions": 197,
+            "untrustedPapers": 9,
+            "untrustedReasons": {
+              "만점 미달": 4,
+              "문항 과소": 5
+            },
+            "source": {
+              "기출": 18
+            },
+            "gradeCoverage": [
+              {
+                "grade": 1,
+                "subject": "중1",
+                "papers": 4,
+                "questions": 77,
+                "trustedPapers": 3,
+                "trustedQuestions": 66
+              },
+              {
+                "grade": 2,
+                "subject": "중2",
+                "papers": 8,
+                "questions": 119,
+                "trustedPapers": 4,
+                "trustedQuestions": 87
+              },
+              {
+                "grade": 3,
+                "subject": "중3",
+                "papers": 6,
+                "questions": 70,
+                "trustedPapers": 2,
+                "trustedQuestions": 44
+              }
+            ]
+          },
+          "papers": [
+            {
+              "externalExamId": "경명여중|중1|중1|2023-1-기말",
+              "school": "경명여중",
+              "level": "중",
+              "grade": 1,
+              "subject": "중1",
+              "year": 2023,
+              "semester": 1,
+              "round": "기말",
+              "totalScore": 52,
+              "questions": 11,
+              "declaredQuestionCount": 11,
+              "scoreSum": 52,
+              "questionNumberGaps": 10,
+              "contractValid": true,
+              "source": "기출",
+              "trust": {
+                "trusted": false,
+                "reason": "만점 미달",
+                "shortfall": "면 유실",
+                "detail": "총점 52 · 문항 11 — 만점 100 미달, 원본 결손"
+              },
+              "qtype": {
+                "객관식": 9,
+                "서술형": 2
+              },
+              "withDifficultyLabel": 0,
+              "withTopicRaw": 0,
+              "withUnitId": 0,
+              "withAnswer": 9,
+              "withLinkedArchivedProblem": 11,
+              "linkedNonEmptyContent": 11,
+              "linkedMatchingQuestionNumber": 11,
+              "linkedMatchingQuestionType": 11,
+              "linkedMatchingScore": 11,
+              "linkedExactSourceFile": 11,
+              "linkedFamilyTagged": 0,
+              "linkedContentDigestMapSha256": "22f8168b398dfbd78d42c7bf7b7f740841ea4b770db2d707d5e0fd9467fd2cb5"
+            },
+            {
+              "externalExamId": "경명여중|중1|중1|2024-1-기말",
+              "school": "경명여중",
+              "level": "중",
+              "grade": 1,
+              "subject": "중1",
+              "year": 2024,
+              "semester": 1,
+              "round": "기말",
+              "totalScore": 100,
+              "questions": 22,
+              "declaredQuestionCount": 22,
+              "scoreSum": 100,
+              "questionNumberGaps": 0,
+              "contractValid": true,
+              "source": "기출",
+              "trust": {
+                "trusted": true
+              },
+              "qtype": {
+                "객관식": 18,
+                "서술형": 4
+              },
+              "withDifficultyLabel": 0,
+              "withTopicRaw": 0,
+              "withUnitId": 0,
+              "withAnswer": 22,
+              "withLinkedArchivedProblem": 22,
+              "linkedNonEmptyContent": 22,
+              "linkedMatchingQuestionNumber": 22,
+              "linkedMatchingQuestionType": 22,
+              "linkedMatchingScore": 22,
+              "linkedExactSourceFile": 22,
+              "linkedFamilyTagged": 0,
+              "linkedContentDigestMapSha256": "80ee62524b95e7890c5327cac6f1364f6e88bdc33e35a58bcf5a03af734bd7cb"
+            },
+            {
+              "externalExamId": "경명여중|중1|중1|2025-1-중간",
+              "school": "경명여중",
+              "level": "중",
+              "grade": 1,
+              "subject": "중1",
+              "year": 2025,
+              "semester": 1,
+              "round": "중간",
+              "totalScore": 100,
+              "questions": 22,
+              "declaredQuestionCount": 22,
+              "scoreSum": 100,
+              "questionNumberGaps": 0,
+              "contractValid": true,
+              "source": "기출",
+              "trust": {
+                "trusted": true
+              },
+              "qtype": {
+                "객관식": 18,
+                "서술형": 4
+              },
+              "withDifficultyLabel": 22,
+              "withTopicRaw": 22,
+              "withUnitId": 0,
+              "withAnswer": 22,
+              "withLinkedArchivedProblem": 22,
+              "linkedNonEmptyContent": 22,
+              "linkedMatchingQuestionNumber": 22,
+              "linkedMatchingQuestionType": 22,
+              "linkedMatchingScore": 22,
+              "linkedExactSourceFile": 22,
+              "linkedFamilyTagged": 0,
+              "linkedContentDigestMapSha256": "3169acacb3e5cd6a8d0a5767401bb38604fa93b4efea6a6a035dbe28c21d2701"
+            },
+            {
+              "externalExamId": "경명여중|중1|중1|2025-1-기말",
+              "school": "경명여중",
+              "level": "중",
+              "grade": 1,
+              "subject": "중1",
+              "year": 2025,
+              "semester": 1,
+              "round": "기말",
+              "totalScore": 100,
+              "questions": 22,
+              "declaredQuestionCount": 22,
+              "scoreSum": 100,
+              "questionNumberGaps": 0,
+              "contractValid": true,
+              "source": "기출",
+              "trust": {
+                "trusted": true
+              },
+              "qtype": {
+                "객관식": 18,
+                "서술형": 4
+              },
+              "withDifficultyLabel": 22,
+              "withTopicRaw": 22,
+              "withUnitId": 0,
+              "withAnswer": 22,
+              "withLinkedArchivedProblem": 11,
+              "linkedNonEmptyContent": 11,
+              "linkedMatchingQuestionNumber": 11,
+              "linkedMatchingQuestionType": 11,
+              "linkedMatchingScore": 11,
+              "linkedExactSourceFile": 11,
+              "linkedFamilyTagged": 0,
+              "linkedContentDigestMapSha256": "8be4f3e3051bde230ea2de589256cf895d77425246accbd7113bd1beab0802c0"
+            },
+            {
+              "externalExamId": "경명여중|중2|중2|2023-1-중간",
+              "school": "경명여중",
+              "level": "중",
+              "grade": 2,
+              "subject": "중2",
+              "year": 2023,
+              "semester": 1,
+              "round": "중간",
+              "totalScore": 28,
+              "questions": 8,
+              "declaredQuestionCount": 8,
+              "scoreSum": 28,
+              "questionNumberGaps": 10,
+              "contractValid": true,
+              "source": "기출",
+              "trust": {
+                "trusted": false,
+                "reason": "문항 과소",
+                "shortfall": "면 유실",
+                "detail": "총점 28 · 문항 8 — 문항 10개 미만, 시험지로 보기 어렵다"
+              },
+              "qtype": {
+                "객관식": 8
+              },
+              "withDifficultyLabel": 0,
+              "withTopicRaw": 0,
+              "withUnitId": 0,
+              "withAnswer": 8,
+              "withLinkedArchivedProblem": 8,
+              "linkedNonEmptyContent": 8,
+              "linkedMatchingQuestionNumber": 8,
+              "linkedMatchingQuestionType": 8,
+              "linkedMatchingScore": 8,
+              "linkedExactSourceFile": 8,
+              "linkedFamilyTagged": 0,
+              "linkedContentDigestMapSha256": "c4e71caebb049e10dbc628ce6a0c7978c1d6845a5e42353f7590b917fea7c194"
+            },
+            {
+              "externalExamId": "경명여중|중2|중2|2023-1-기말",
+              "school": "경명여중",
+              "level": "중",
+              "grade": 2,
+              "subject": "중2",
+              "year": 2023,
+              "semester": 1,
+              "round": "기말",
+              "totalScore": 12,
+              "questions": 4,
+              "declaredQuestionCount": 4,
+              "scoreSum": 12,
+              "questionNumberGaps": 3,
+              "contractValid": true,
+              "source": "기출",
+              "trust": {
+                "trusted": false,
+                "reason": "문항 과소",
+                "shortfall": "면 유실",
+                "detail": "총점 12 · 문항 4 — 문항 10개 미만, 시험지로 보기 어렵다"
+              },
+              "qtype": {
+                "객관식": 4
+              },
+              "withDifficultyLabel": 0,
+              "withTopicRaw": 0,
+              "withUnitId": 0,
+              "withAnswer": 4,
+              "withLinkedArchivedProblem": 4,
+              "linkedNonEmptyContent": 4,
+              "linkedMatchingQuestionNumber": 4,
+              "linkedMatchingQuestionType": 4,
+              "linkedMatchingScore": 4,
+              "linkedExactSourceFile": 4,
+              "linkedFamilyTagged": 0,
+              "linkedContentDigestMapSha256": "8e2ff5367db88bdc7eb66b1e30371b92935ed75ac61aac146de33c240c54a174"
+            },
+            {
+              "externalExamId": "경명여중|중2|중2|2023-2-기말",
+              "school": "경명여중",
+              "level": "중",
+              "grade": 2,
+              "subject": "중2",
+              "year": 2023,
+              "semester": 2,
+              "round": "기말",
+              "totalScore": 9,
+              "questions": 3,
+              "declaredQuestionCount": 3,
+              "scoreSum": 9,
+              "questionNumberGaps": 6,
+              "contractValid": true,
+              "source": "기출",
+              "trust": {
+                "trusted": false,
+                "reason": "문항 과소",
+                "shortfall": "면 유실",
+                "detail": "총점 9 · 문항 3 — 문항 10개 미만, 시험지로 보기 어렵다"
+              },
+              "qtype": {
+                "객관식": 3
+              },
+              "withDifficultyLabel": 0,
+              "withTopicRaw": 0,
+              "withUnitId": 0,
+              "withAnswer": 3,
+              "withLinkedArchivedProblem": 3,
+              "linkedNonEmptyContent": 3,
+              "linkedMatchingQuestionNumber": 3,
+              "linkedMatchingQuestionType": 3,
+              "linkedMatchingScore": 3,
+              "linkedExactSourceFile": 3,
+              "linkedFamilyTagged": 0,
+              "linkedContentDigestMapSha256": "aaa4dc4c6aa70ce470086687e431f1664ff98286ea1570f8ea866cee25cf6702"
+            },
+            {
+              "externalExamId": "경명여중|중2|중2|2024-1-중간",
+              "school": "경명여중",
+              "level": "중",
+              "grade": 2,
+              "subject": "중2",
+              "year": 2024,
+              "semester": 1,
+              "round": "중간",
+              "totalScore": 96,
+              "questions": 21,
+              "declaredQuestionCount": 21,
+              "scoreSum": 96,
+              "questionNumberGaps": 1,
+              "contractValid": true,
+              "source": "기출",
+              "trust": {
+                "trusted": true
+              },
+              "qtype": {
+                "객관식": 17,
+                "서술형": 4
+              },
+              "withDifficultyLabel": 0,
+              "withTopicRaw": 0,
+              "withUnitId": 0,
+              "withAnswer": 21,
+              "withLinkedArchivedProblem": 21,
+              "linkedNonEmptyContent": 21,
+              "linkedMatchingQuestionNumber": 21,
+              "linkedMatchingQuestionType": 21,
+              "linkedMatchingScore": 21,
+              "linkedExactSourceFile": 21,
+              "linkedFamilyTagged": 0,
+              "linkedContentDigestMapSha256": "01c1fa5fb57b4e42281a657e9a2caaeb2bb5e8c6445fe429136f41aee0c59077"
+            },
+            {
+              "externalExamId": "경명여중|중2|중2|2024-1-기말",
+              "school": "경명여중",
+              "level": "중",
+              "grade": 2,
+              "subject": "중2",
+              "year": 2024,
+              "semester": 1,
+              "round": "기말",
+              "totalScore": 100,
+              "questions": 22,
+              "declaredQuestionCount": 22,
+              "scoreSum": 100,
+              "questionNumberGaps": 0,
+              "contractValid": true,
+              "source": "기출",
+              "trust": {
+                "trusted": true
+              },
+              "qtype": {
+                "객관식": 19,
+                "서술형": 3
+              },
+              "withDifficultyLabel": 0,
+              "withTopicRaw": 0,
+              "withUnitId": 0,
+              "withAnswer": 22,
+              "withLinkedArchivedProblem": 22,
+              "linkedNonEmptyContent": 22,
+              "linkedMatchingQuestionNumber": 22,
+              "linkedMatchingQuestionType": 22,
+              "linkedMatchingScore": 22,
+              "linkedExactSourceFile": 22,
+              "linkedFamilyTagged": 0,
+              "linkedContentDigestMapSha256": "9b7d5e31b15a5b85cdcc7eed866ce2b289ce0596862c3911799db848c9e1edd4"
+            },
+            {
+              "externalExamId": "경명여중|중2|중2|2024-2-중간",
+              "school": "경명여중",
+              "level": "중",
+              "grade": 2,
+              "subject": "중2",
+              "year": 2024,
+              "semester": 2,
+              "round": "중간",
+              "totalScore": 100,
+              "questions": 22,
+              "declaredQuestionCount": 22,
+              "scoreSum": 100,
+              "questionNumberGaps": 0,
+              "contractValid": true,
+              "source": "기출",
+              "trust": {
+                "trusted": true
+              },
+              "qtype": {
+                "객관식": 18,
+                "서술형": 4
+              },
+              "withDifficultyLabel": 0,
+              "withTopicRaw": 0,
+              "withUnitId": 0,
+              "withAnswer": 22,
+              "withLinkedArchivedProblem": 22,
+              "linkedNonEmptyContent": 22,
+              "linkedMatchingQuestionNumber": 22,
+              "linkedMatchingQuestionType": 22,
+              "linkedMatchingScore": 17,
+              "linkedExactSourceFile": 22,
+              "linkedFamilyTagged": 0,
+              "linkedContentDigestMapSha256": "7472469c6c4264b9f41a1e90e17fa8212a79e6db95cf7ebf9366aae38182f140"
+            },
+            {
+              "externalExamId": "경명여중|중2|중2|2025-1-중간",
+              "school": "경명여중",
+              "level": "중",
+              "grade": 2,
+              "subject": "중2",
+              "year": 2025,
+              "semester": 1,
+              "round": "중간",
+              "totalScore": 100,
+              "questions": 22,
+              "declaredQuestionCount": 22,
+              "scoreSum": 100,
+              "questionNumberGaps": 0,
+              "contractValid": true,
+              "source": "기출",
+              "trust": {
+                "trusted": true
+              },
+              "qtype": {
+                "객관식": 18,
+                "서술형": 4
+              },
+              "withDifficultyLabel": 22,
+              "withTopicRaw": 22,
+              "withUnitId": 0,
+              "withAnswer": 22,
+              "withLinkedArchivedProblem": 21,
+              "linkedNonEmptyContent": 21,
+              "linkedMatchingQuestionNumber": 21,
+              "linkedMatchingQuestionType": 21,
+              "linkedMatchingScore": 21,
+              "linkedExactSourceFile": 21,
+              "linkedFamilyTagged": 0,
+              "linkedContentDigestMapSha256": "541ca8bbf827ed37e5186e21b126adc547808b6d73594856edb0669030f3d274"
+            },
+            {
+              "externalExamId": "경명여중|중2|중2|2025-1-기말",
+              "school": "경명여중",
+              "level": "중",
+              "grade": 2,
+              "subject": "중2",
+              "year": 2025,
+              "semester": 1,
+              "round": "기말",
+              "totalScore": 81,
+              "questions": 17,
+              "declaredQuestionCount": 17,
+              "scoreSum": 81,
+              "questionNumberGaps": 5,
+              "contractValid": true,
+              "source": "기출",
+              "trust": {
+                "trusted": false,
+                "reason": "만점 미달",
+                "shortfall": "면 유실",
+                "detail": "총점 81 · 문항 17 — 만점 100 미달, 원본 결손"
+              },
+              "qtype": {
+                "객관식": 13,
+                "서술형": 4
+              },
+              "withDifficultyLabel": 0,
+              "withTopicRaw": 0,
+              "withUnitId": 0,
+              "withAnswer": 13,
+              "withLinkedArchivedProblem": 17,
+              "linkedNonEmptyContent": 17,
+              "linkedMatchingQuestionNumber": 17,
+              "linkedMatchingQuestionType": 17,
+              "linkedMatchingScore": 17,
+              "linkedExactSourceFile": 17,
+              "linkedFamilyTagged": 0,
+              "linkedContentDigestMapSha256": "331298ec80f25598fc6da8c5306f24e4e6c89877c0c612539da195af994da0fc"
+            },
+            {
+              "externalExamId": "경명여중|중3|중3|2023-1-중간",
+              "school": "경명여중",
+              "level": "중",
+              "grade": 3,
+              "subject": "중3",
+              "year": 2023,
+              "semester": 1,
+              "round": "중간",
+              "totalScore": 10,
+              "questions": 3,
+              "declaredQuestionCount": 3,
+              "scoreSum": 10,
+              "questionNumberGaps": 12,
+              "contractValid": true,
+              "source": "기출",
+              "trust": {
+                "trusted": false,
+                "reason": "문항 과소",
+                "shortfall": "면 유실",
+                "detail": "총점 10 · 문항 3 — 문항 10개 미만, 시험지로 보기 어렵다"
+              },
+              "qtype": {
+                "객관식": 3
+              },
+              "withDifficultyLabel": 0,
+              "withTopicRaw": 0,
+              "withUnitId": 0,
+              "withAnswer": 3,
+              "withLinkedArchivedProblem": 3,
+              "linkedNonEmptyContent": 3,
+              "linkedMatchingQuestionNumber": 3,
+              "linkedMatchingQuestionType": 3,
+              "linkedMatchingScore": 3,
+              "linkedExactSourceFile": 3,
+              "linkedFamilyTagged": 0,
+              "linkedContentDigestMapSha256": "9029a53f89311238c3ac689edb770b993d7dfd722ff7cd2e99cd8623bbf3bc10"
+            },
+            {
+              "externalExamId": "경명여중|중3|중3|2023-1-기말",
+              "school": "경명여중",
+              "level": "중",
+              "grade": 3,
+              "subject": "중3",
+              "year": 2023,
+              "semester": 1,
+              "round": "기말",
+              "totalScore": 35,
+              "questions": 10,
+              "declaredQuestionCount": 10,
+              "scoreSum": 35,
+              "questionNumberGaps": 7,
+              "contractValid": true,
+              "source": "기출",
+              "trust": {
+                "trusted": false,
+                "reason": "만점 미달",
+                "shortfall": "면 유실",
+                "detail": "총점 35 · 문항 10 — 만점 100 미달, 원본 결손"
+              },
+              "qtype": {
+                "객관식": 10
+              },
+              "withDifficultyLabel": 0,
+              "withTopicRaw": 0,
+              "withUnitId": 0,
+              "withAnswer": 10,
+              "withLinkedArchivedProblem": 10,
+              "linkedNonEmptyContent": 10,
+              "linkedMatchingQuestionNumber": 10,
+              "linkedMatchingQuestionType": 10,
+              "linkedMatchingScore": 10,
+              "linkedExactSourceFile": 10,
+              "linkedFamilyTagged": 0,
+              "linkedContentDigestMapSha256": "2d8c75ef4757eac15d329fb202bfcc047a91aff4c53ccc02ced15fd8de342d49"
+            },
+            {
+              "externalExamId": "경명여중|중3|중3|2023-2-기말",
+              "school": "경명여중",
+              "level": "중",
+              "grade": 3,
+              "subject": "중3",
+              "year": 2023,
+              "semester": 2,
+              "round": "기말",
+              "totalScore": 54,
+              "questions": 12,
+              "declaredQuestionCount": 12,
+              "scoreSum": 54,
+              "questionNumberGaps": 10,
+              "contractValid": true,
+              "source": "기출",
+              "trust": {
+                "trusted": false,
+                "reason": "만점 미달",
+                "shortfall": "면 유실",
+                "detail": "총점 54 · 문항 12 — 만점 100 미달, 원본 결손"
+              },
+              "qtype": {
+                "객관식": 10,
+                "서술형": 2
+              },
+              "withDifficultyLabel": 0,
+              "withTopicRaw": 0,
+              "withUnitId": 0,
+              "withAnswer": 10,
+              "withLinkedArchivedProblem": 12,
+              "linkedNonEmptyContent": 12,
+              "linkedMatchingQuestionNumber": 12,
+              "linkedMatchingQuestionType": 12,
+              "linkedMatchingScore": 12,
+              "linkedExactSourceFile": 12,
+              "linkedFamilyTagged": 0,
+              "linkedContentDigestMapSha256": "3f60f3a07c6d2f09f170c306485ec51bfdafa782dd939b0f4ecfc1417c74693d"
+            },
+            {
+              "externalExamId": "경명여중|중3|중3|2024-2-기말",
+              "school": "경명여중",
+              "level": "중",
+              "grade": 3,
+              "subject": "중3",
+              "year": 2024,
+              "semester": 2,
+              "round": "기말",
+              "totalScore": 9,
+              "questions": 1,
+              "declaredQuestionCount": 1,
+              "scoreSum": 9,
+              "questionNumberGaps": 19,
+              "contractValid": true,
+              "source": "기출",
+              "trust": {
+                "trusted": false,
+                "reason": "문항 과소",
+                "shortfall": "면 유실",
+                "detail": "총점 9 · 문항 1 — 문항 10개 미만, 시험지로 보기 어렵다"
+              },
+              "qtype": {
+                "서술형": 1
+              },
+              "withDifficultyLabel": 0,
+              "withTopicRaw": 0,
+              "withUnitId": 0,
+              "withAnswer": 1,
+              "withLinkedArchivedProblem": 1,
+              "linkedNonEmptyContent": 1,
+              "linkedMatchingQuestionNumber": 1,
+              "linkedMatchingQuestionType": 1,
+              "linkedMatchingScore": 1,
+              "linkedExactSourceFile": 1,
+              "linkedFamilyTagged": 0,
+              "linkedContentDigestMapSha256": "548997cadfea03960c988b1588d6c9dea238f2b9f3f4e93e941059035f8751c1"
+            },
+            {
+              "externalExamId": "경명여중|중3|중3|2025-1-중간",
+              "school": "경명여중",
+              "level": "중",
+              "grade": 3,
+              "subject": "중3",
+              "year": 2025,
+              "semester": 1,
+              "round": "중간",
+              "totalScore": 100,
+              "questions": 22,
+              "declaredQuestionCount": 22,
+              "scoreSum": 100,
+              "questionNumberGaps": 0,
+              "contractValid": true,
+              "source": "기출",
+              "trust": {
+                "trusted": true
+              },
+              "qtype": {
+                "객관식": 17,
+                "서술형": 5
+              },
+              "withDifficultyLabel": 22,
+              "withTopicRaw": 22,
+              "withUnitId": 0,
+              "withAnswer": 22,
+              "withLinkedArchivedProblem": 19,
+              "linkedNonEmptyContent": 19,
+              "linkedMatchingQuestionNumber": 19,
+              "linkedMatchingQuestionType": 19,
+              "linkedMatchingScore": 19,
+              "linkedExactSourceFile": 19,
+              "linkedFamilyTagged": 0,
+              "linkedContentDigestMapSha256": "5b098d976e8415cbfdeb131af0225e212fcad183aa2cb65420b5e4f5ac3c7118"
+            },
+            {
+              "externalExamId": "경명여중|중3|중3|2025-1-기말",
+              "school": "경명여중",
+              "level": "중",
+              "grade": 3,
+              "subject": "중3",
+              "year": 2025,
+              "semester": 1,
+              "round": "기말",
+              "totalScore": 100,
+              "questions": 22,
+              "declaredQuestionCount": 22,
+              "scoreSum": 100,
+              "questionNumberGaps": 0,
+              "contractValid": true,
+              "source": "기출",
+              "trust": {
+                "trusted": true
+              },
+              "qtype": {
+                "객관식": 17,
+                "서술형": 5
+              },
+              "withDifficultyLabel": 22,
+              "withTopicRaw": 22,
+              "withUnitId": 0,
+              "withAnswer": 22,
+              "withLinkedArchivedProblem": 22,
+              "linkedNonEmptyContent": 22,
+              "linkedMatchingQuestionNumber": 22,
+              "linkedMatchingQuestionType": 22,
+              "linkedMatchingScore": 22,
+              "linkedExactSourceFile": 22,
+              "linkedFamilyTagged": 0,
+              "linkedContentDigestMapSha256": "1a5c8bf13cc8641bb3a19bd1f8aa26d385b8af076edd8c1e040ba8af270206d7"
+            }
+          ]
+        }
+      ]
+    },
+    "archivedOwnBankIdsPresentInCurrentBank": 0,
+    "archivedOwnExternalIdsPresentInCurrentBank": 0,
+    "archivedOwnBankStatus": {
+      "private": 251,
+      "rejected": 251,
+      "directUseAllowedFalse": 251
+    },
+    "archiveQuestionTotals": {
+      "questions": 266,
+      "withDifficultyLabel": 110,
+      "withTopicRaw": 110,
+      "withUnitId": 0,
+      "withAnswer": 258,
+      "withLinkedArchivedProblem": 251,
+      "linkedNonEmptyContent": 251,
+      "linkedMatchingQuestionNumber": 251,
+      "linkedMatchingQuestionType": 251,
+      "linkedMatchingScore": 246,
+      "linkedExactSourceFile": 251,
+      "linkedFamilyTagged": 0
+    },
+    "archivedFormats": {
+      "객관식": 220,
+      "서술형": 46
+    },
+    "archivedTrustedQuestionsWithLinkedContent": 182,
+    "archivedQuestionsWithoutProblemId": 15,
+    "archivedDanglingProblemLinks": 0
+  },
+  "findings": [
+    {
+      "id": "no-own-school-data",
+      "observed": true,
+      "detail": "Both normalized school aliases have 0 current Exam, ExamQuestion, bank rows, own-school trusted inputs and own-school issuable questions"
+    },
+    {
+      "id": "alias-not-wired",
+      "observed": true,
+      "detail": "Pure normalizer maps both aliases correctly, but prediction request schema and source lookup do not invoke it; raw equality can change own/cohort membership"
+    },
+    {
+      "id": "cohort-only",
+      "observed": true,
+      "detail": "Only five other-school middle3 papers from 2025 semester2 midterm exist; grades1/2 have no matching cohorts; same-period targets exclude all five"
+    },
+    {
+      "id": "metadata-not-issuance",
+      "observed": true,
+      "detail": "All current five papers pass schema/trust/path classification, while all 101 linked past_exam bank rows are direct-use locked"
+    },
+    {
+      "id": "missing-tags-on-current-papers",
+      "observed": true,
+      "detail": "All 101 current ExamQuestion rows lack source difficulty labels, raw topics and unitId; 12 lack ExamQuestion answers even though linked bank rows have answers"
+    },
+    {
+      "id": "no-school-family-contract",
+      "observed": true,
+      "detail": "ExamQuestion has no generator family field; archived school bank familyKey is empty on all 251 rows; current composer does not consume familyKey/questionGroupKey"
+    },
+    {
+      "id": "source-filter-divergence",
+      "observed": true,
+      "detail": "Automatic PredictionRun excludes 대비 and 미상, but generatePredictedPaper applies trust/time without paperSource; zero current school rows means this is a latent policy divergence, not observed school-specific contamination"
+    },
+    {
+      "id": "raw-correspondence-limited",
+      "observed": true,
+      "detail": "Archive joins match source-file/number/format on 251 linked rows; 15 of 266 metadata questions lack archived linked content and five scores differ; no raw original PDF extraction correspondence was certified"
+    }
+  ],
+  "exampleRecommendation": {
+    "ownSchoolSuccessExample": null,
+    "reason": "Current own-school data is absent for every grade and period",
+    "cohortOnlyDemonstration": {
+      "school": "경명여중",
+      "grade": 3,
+      "subject": "중3",
+      "target": {
+        "year": 2026,
+        "semester": 2,
+        "round": "중간"
+      },
+      "ownPapers": 0,
+      "cohortPapers": 5,
+      "claimAllowed": "Other-school cohort fallback only; no school-style or content-equivalence certification",
+      "paperSelectionExecutedByThisWorker": false
+    },
+    "futureOfflineMetadataReviewCandidate": {
+      "school": "경명여중",
+      "grade": 1,
+      "subject": "중1",
+      "target": {
+        "year": 2025,
+        "semester": 1,
+        "round": "기말"
+      },
+      "scope": "Prior archived-corpus recovery/holdout suggestion withdrawn from current upgrade recommendations. Historical metadata only; not an original restoration task, study-readiness prerequisite, or executed demonstration."
+    }
+  },
+  "verification": {
+    "exportHashesMatched": true,
+    "exportCountsMatched": true,
+    "allCurrentPapersSchemaValid": true,
+    "allCurrentPaperCountsAndScoreSumsMatched": true,
+    "historicalLedgerAndArchiveSchoolKeysMatched": true,
+    "workerDatabaseQueries": 0,
+    "databaseMutationCalls": 0,
+    "providerCalls": 0,
+    "productionSourceFilesChanged": 0,
+    "rawExamContentsPublished": false,
+    "generatedPaperSelectedByThisWorker": false
+  },
+  "sourceReferences": [
+    {
+      "path": "prisma/schema.prisma",
+      "line": 1080,
+      "role": "Exam and ExamQuestion preserve paper metadata; no class section or family key on ExamQuestion"
+    },
+    {
+      "path": "src/contracts/predictor.contract.ts",
+      "line": 79,
+      "role": "Question and paper schemas"
+    },
+    {
+      "path": "src/lib/schools/normalizeSchoolName.ts",
+      "line": 61,
+      "role": "Alias normalization"
+    },
+    {
+      "path": "src/lib/predictor/predictionRunService.ts",
+      "line": 257,
+      "role": "Automatic evidence: exact school lookup, conversion, cutoff, trust, source filter"
+    },
+    {
+      "path": "src/lib/predictor/predictionRunService.ts",
+      "line": 317,
+      "role": "Pinned replay bypasses trust/source filtering; time guard still applies"
+    },
+    {
+      "path": "src/lib/predictor/paperSource.ts",
+      "line": 52,
+      "role": "Path-only source heuristic"
+    },
+    {
+      "path": "src/lib/predictor/paperTrust.ts",
+      "line": 76,
+      "role": "At least 10 questions and 95 through 105 points"
+    },
+    {
+      "path": "src/lib/import/buildExamPaper.ts",
+      "line": 116,
+      "role": "Paper construction, raw tags, score filling, null unit mapping"
+    },
+    {
+      "path": "scripts/predictor/loadCorpus.ts",
+      "line": 92,
+      "role": "Offline extraction loader and missing default corpus/period-map"
+    },
+    {
+      "path": "src/lib/predictor/generatePredictedPaper.ts",
+      "line": 240,
+      "role": "Generation service independently reloads papers; trust/time filters but no paperSource filter"
+    },
+    {
+      "path": "src/lib/predictor/composePredictedPaper.ts",
+      "line": 203,
+      "role": "Slots use mapped units and formats, not raw topics or families"
+    },
+    {
+      "path": "src/lib/problemEligibility.ts",
+      "line": 32,
+      "role": "Shared, approved, direct use, answer sentinel eligibility"
+    },
+    {
+      "path": "src/lib/problem/questionIdentity.ts",
+      "line": 2,
+      "role": "Canonical same-task representation grouping"
+    },
+    {
+      "path": "scripts/import/delete-legacy-corpus.ts",
+      "line": 1,
+      "role": "Documented deletion of old papers, questions and quarantined bank contents"
+    }
+  ],
+  "ownerInterpretationUpdate20261018": {
+    "criterion": "Engine-authored practice must prepare for exam concepts, conditions, task structures, difficulty and response demands across schools; Daeryun is one example",
+    "originalDbAbsence": "intentional by owner; not a study-readiness failure",
+    "originalRestorationRecommendation": "withdrawn",
+    "priorEvidenceScope": "historical current database/service behavior, not a verdict of mathematical study capability",
+    "followup": "../math-engine-study-readiness-20261018/OWNER-CRITERIA.md"
+  }
+}

@@ -128,6 +128,38 @@ export const ITEMS: PrintCheckItem[] = [
     changedOn: "2026-10-19",
   },
   {
+    id: "exam-study-original-graphs-20261018",
+    title: "기출 대비 자작 그래프·복합 도형",
+    changed:
+      "새 기출 대비 연습의 필수 그래프·도형을 기존 Python SVG 경로와 공통 시험지 양식으로 출력한다.",
+    look: "제안: 축 눈금·점 이름·길이·음영 영역이 화면과 같고, 1단/2단에서 잘리거나 다음 문항에 겹치지 않는지 확인한다. 그림만 주는 핵심 정보가 빠지면 불합격이다.",
+    lookFromSource: false,
+    evidence: [
+      "docs/planning/math-exam-engine-upgrade-20261018.md",
+      "src/lib/examStudyRoutes.ts",
+    ],
+    needs:
+      "/exam/practice에서 그림이 필요한 자작 유형을 만들어 공통 양식으로 출력",
+    status: "대기",
+    changedOn: "2026-10-18",
+  },
+  {
+    id: "exam-study-native-written-20261018",
+    title: "기출 대비 과정 서술·교사용 채점 기준",
+    changed:
+      "본래 서술형 문제와 모범 풀이·기준을 공통 시험지 및 교사용 해설로 출력한다.",
+    look: "제안: 학생용에 정답·채점 기준이 나오지 않고 풀이 공간이 충분한지, 교사용에 단계별 배점·허용 풀이·오류가 잘리지 않고 이어지는지 확인한다.",
+    lookFromSource: false,
+    evidence: [
+      "src/components/exam-practice/examStudyClient.ts",
+      "src/components/exam-practice/ExamPracticeWorkspace.tsx",
+    ],
+    needs:
+      "/exam/practice에서 서술형 연습을 만들어 학생용과 정답·해설 포함 양식을 각각 출력",
+    status: "대기",
+    changedOn: "2026-10-18",
+  },
+  {
     id: "exam-report-confirmed-print",
     title: "실제 월말평가 성적표 — 확정 보관 PDF · 반 인쇄",
     changed:
