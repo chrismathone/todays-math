@@ -1,0 +1,122 @@
+{
+  "currentDigestsIndependentlyRecomputed": {
+    "studentDigest": "c6028b4627faffb3396c3759885a744c79379139800cd23a29cb99696c2a8c31",
+    "candidateDigest": "06a122b42d8dd31a15d0878c6ae063f53e5e9931f1dbd61667c4c32a2849a7e0",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "solveDigest": "00c59dd2ed6568606748f1af856201e838a51625eea2834cc55a3b2867fd03cf"
+  },
+  "rawSha256": "7180540fb931239b6a5e6d9fb40eb8d62953cdc3ca56eee5b587fd8231cea7b6",
+  "a": "54",
+  "b": "108",
+  "allFiveOptions": [
+    {
+      "mark": "①",
+      "candidateB": "27",
+      "positive": true,
+      "firstLeftSquareAtA54": "27/2",
+      "firstRightSquare": "27/8",
+      "firstEquationAtA54": false,
+      "aImpliedByFirst": "27/2",
+      "secondLeftSquareIfFirstHolds": "27",
+      "secondRequiredSquare": "108",
+      "satisfiesBoth": false
+    },
+    {
+      "mark": "②",
+      "candidateB": "54",
+      "positive": true,
+      "firstLeftSquareAtA54": "27/2",
+      "firstRightSquare": "27/4",
+      "firstEquationAtA54": false,
+      "aImpliedByFirst": "27",
+      "secondLeftSquareIfFirstHolds": "54",
+      "secondRequiredSquare": "108",
+      "satisfiesBoth": false
+    },
+    {
+      "mark": "③",
+      "candidateB": "72",
+      "positive": true,
+      "firstLeftSquareAtA54": "27/2",
+      "firstRightSquare": "9",
+      "firstEquationAtA54": false,
+      "aImpliedByFirst": "36",
+      "secondLeftSquareIfFirstHolds": "72",
+      "secondRequiredSquare": "108",
+      "satisfiesBoth": false
+    },
+    {
+      "mark": "④",
+      "candidateB": "108",
+      "positive": true,
+      "firstLeftSquareAtA54": "27/2",
+      "firstRightSquare": "27/2",
+      "firstEquationAtA54": true,
+      "aImpliedByFirst": "54",
+      "secondLeftSquareIfFirstHolds": "108",
+      "secondRequiredSquare": "108",
+      "satisfiesBoth": true
+    },
+    {
+      "mark": "⑤",
+      "candidateB": "216",
+      "positive": true,
+      "firstLeftSquareAtA54": "27/2",
+      "firstRightSquare": "27",
+      "firstEquationAtA54": false,
+      "aImpliedByFirst": "108",
+      "secondLeftSquareIfFirstHolds": "216",
+      "secondRequiredSquare": "108",
+      "satisfiesBoth": false
+    }
+  ],
+  "bothOriginalEquations": {
+    "first": "sqrt54/2 =3sqrt6/2 =sqrt(108/8); both squares27/2 and both positive",
+    "second": "sqrt(2*54)=sqrt108=6sqrt3; both positive, squared value108",
+    "existence": true,
+    "uniqueAFromSecond": true,
+    "uniqueBFromFirstGivenA": true
+  },
+  "domains": {
+    "aPositive": true,
+    "bPositive": true,
+    "aRadicand": "54",
+    "bOver8Radicand": "27/2",
+    "twoARadicand": "108",
+    "constantRadicands": [
+      3,
+      4,
+      108
+    ],
+    "denominators": [
+      2,
+      4,
+      8
+    ],
+    "allDenominatorsNonzero": true,
+    "noExtraneousRootSigns": true,
+    "units": "abstract scalars; no geometry/physical units"
+  },
+  "authorFullSolutionAudit": {
+    "route": "author uses6sqrt3=sqrt108, sqrt(a)/2=sqrt(a/4), then equal positive roots imply equal radicands; raw uses root-square identity instead. Both give same exact linear numerical relations.",
+    "domain": "positive a/b and denominators2/4/8 make all transformations valid",
+    "substitution": "author explicitly substitutes a54/b108 to verify both equalities",
+    "uniqueness": "author explicitly fixes a bysecond then b byfirst",
+    "choiceCoverage": "author need not enumerate5options once b108 is unique; own code checks all5 and only4works",
+    "higherGradeTools": "actual student solution uses no general radical-equation procedure, quadratic formula, extraneous-root algorithm, high-school system or root-function monotonicity theorem"
+  },
+  "sourceComparison": {
+    "sourceArtifactSha256": "21805bf322eb9d150c805773e524c879f88e2b5bfb642f562f25d1d5f6fe672a",
+    "observed": "source asks smallest of values filling5independent radical-equality boxes; source하/4points",
+    "sameCore": "root product/quotient, moving a positive coefficient/denominator inside a root as a square factor, equal positive root radicands, numerical substitution",
+    "actualChange": "source already contains inverse blank-value recovery. New novelty is not simply an unknown under a radical: five independent restorations plus minimum comparison become two equations coupled by shared a, with a second-condition value fed into first to determine target b. This changes dependency/target and organizes data substantively.",
+    "sourceKeyNotComputedOrUsed": true
+  },
+  "inputHashes": {
+    "VERIFY-BRIEF.md": "35f0141b096cf184d92c0fdb4f5da623e99cf1882faa33bff9b2cda745d835b5",
+    "verification-inputs.json": "11442ff0dd7f57e87e9d8c974f80820f67501c25390a32bd32b1a0985463dac5",
+    "verification-manifest.json": "d86773f638b89ec46657c077353cd48899afc1a5fb874f4c4655029ac62fd2b3",
+    "sealed-raw-commit.json": "976138be611a7fe8b7d3e003665fd18bf0507463d890f0cb09dd5448064cab98"
+  },
+  "utf8WriteReadPassed": true
+}
