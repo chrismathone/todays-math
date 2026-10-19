@@ -1,0 +1,79 @@
+{
+  "kind": "NB5-stage2-review-summary/v1",
+  "rawSolveCommit": "c51c84ce57debd1287f5a1d7708f0c4d709ba01b",
+  "packageDigest": "1d10751277a998b36ffd0cdda3a2c27b6b5759f53871e5256752c2e161795bd1",
+  "verifierId": "codex-nobyeon-independent-20261019-r2-stage2",
+  "reports": [
+    {
+      "questionNumber": 1,
+      "reportSha256": "8bc17885db5314ff3461b67b55d67c229c669232ec06f36a0ba41f65a3d1a84c",
+      "status": "pending",
+      "math": "passed-manual",
+      "sevenSurfaces": "passed",
+      "contentClassification": "pending",
+      "loadable": false
+    },
+    {
+      "questionNumber": 2,
+      "reportSha256": "dc1c9e051d423134275e4110efaed128ecb7997abebeedf2cb8704973ca1478f",
+      "status": "pending",
+      "math": "passed-manual",
+      "sevenSurfaces": "passed",
+      "contentClassification": "pending",
+      "loadable": false
+    },
+    {
+      "questionNumber": 4,
+      "reportSha256": "61e3e2ec530265e61e185caa3e86644f44201d61c7bfe8e53003e3978d9b7e4d",
+      "status": "pending",
+      "math": "passed-manual",
+      "sevenSurfaces": "passed",
+      "contentClassification": "pending",
+      "loadable": false
+    },
+    {
+      "questionNumber": 6,
+      "reportSha256": "bf8a05ab50bf637fa6cb39fcde0dc42411a96ed5e6f918ed5a6c285665f3a6f4",
+      "status": "pending",
+      "math": "passed-manual",
+      "sevenSurfaces": "passed",
+      "contentClassification": "pending",
+      "loadable": false
+    },
+    {
+      "questionNumber": 8,
+      "reportSha256": "c48e873a9e35db62d466c81c0075ac4e66fc1dc14449c38f8af649c25245c53a",
+      "status": "pending",
+      "math": "passed-manual",
+      "sevenSurfaces": "passed",
+      "contentClassification": "pending",
+      "loadable": false
+    }
+  ],
+  "counts": {
+    "mathManualPassed": 5,
+    "sevenSurfaceGradeReviewed": 5,
+    "transformationAndKoreanReviewed": 5,
+    "statusPending": 5,
+    "statusVerified": 0,
+    "statusRejected": 0,
+    "fullContentVerified": 0,
+    "familyFitApproved": 0,
+    "rightsApproved": 0,
+    "sourceWholePairCertified": 0,
+    "loadable": 0
+  },
+  "holds": [
+    "all5 null/unproven whole-item family and problemType; historical snapshot only",
+    "source whole-pair identity/custody and rights/similarity not cleared",
+    "native/production gates not approved",
+    "legacy collector option-only vs option+value formatting mismatch; parent fixing separately"
+  ],
+  "notes": [
+    "Q1 actual rectangle/diagonal representation is credited, but the claimed different abstract cos/tan pair is not. Transformation modest, no legal similarity inference.",
+    "Q6 swaps input/target triangles and quantity but is not a literal inverse of the same perimeter equation.",
+    "Qualitative school-level difficulty/score review only; no empirical calibration claim.",
+    "Legacy Claude NB5 solve provenance is unverified and those solves/reviews were not opened or used."
+  ],
+  "scope": "Independent blind-solve-then-author-review. Author checks were not used as independent proof. All raw/candidate/author bytes preserved; no shared code/DB/install/worker/network/push."
+}
