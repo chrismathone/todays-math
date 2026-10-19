@@ -1,0 +1,224 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-19T09:32:26.391Z",
+  "sourceBase": "261a5e263e4e104949d7a21673c9c9ad5850a380",
+  "registrations": {
+    "legacyBefore": 4190,
+    "legacyAfter": 4190,
+    "existingIdsUpgraded": 6,
+    "added": 0
+  },
+  "families": [
+    {
+      "kind": "candidate",
+      "id": "legacy:mid:1-1|일차방정식의 풀이|11",
+      "version": "exam-candidate-reinforced-r2",
+      "domain": "finite",
+      "baseOutputs": 120,
+      "uniqueCanonicalKeys": 120,
+      "formats": [
+        "단답형",
+        "객관식"
+      ],
+      "checkedRequirements": [
+        "algebra.candidate-verification"
+      ],
+      "checks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "testFile": "src/__tests__/unit/examStudyReinforcement.test.ts"
+    },
+    {
+      "kind": "equality",
+      "id": "legacy:mid:1-1|일차방정식의 풀이|06",
+      "version": "exam-equality-reinforced-r2",
+      "domain": "finite",
+      "baseOutputs": 32,
+      "uniqueCanonicalKeys": 32,
+      "formats": [
+        "단답형",
+        "객관식"
+      ],
+      "checkedRequirements": [
+        "algebra.equality-truth"
+      ],
+      "checks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "testFile": "src/__tests__/unit/examStudyReinforcement.test.ts"
+    },
+    {
+      "kind": "classification",
+      "id": "legacy:mid:1-1|일차방정식의 풀이|09",
+      "version": "exam-exact-classification-r2",
+      "domain": "sampled",
+      "baseOutputs": 512,
+      "uniqueCanonicalKeys": 512,
+      "formats": [
+        "단답형",
+        "객관식"
+      ],
+      "checkedRequirements": [
+        "algebra.equation-classification"
+      ],
+      "checks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "testFile": "src/__tests__/unit/examStudyReinforcement.test.ts"
+    },
+    {
+      "kind": "model",
+      "id": "legacy:mid:1-1|일차방정식의 활용|01",
+      "version": "exam-original-model-check-r2",
+      "domain": "sampled",
+      "baseOutputs": 512,
+      "uniqueCanonicalKeys": 441,
+      "formats": [
+        "단답형",
+        "객관식"
+      ],
+      "checkedRequirements": [
+        "algebra.linear-model"
+      ],
+      "checks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "testFile": "src/__tests__/unit/examStudyReinforcement.test.ts"
+    },
+    {
+      "kind": "simplify",
+      "id": "legacy:mid:1-1|문자의 사용과 식의 계산|13",
+      "version": "exam-simplify-reinforced-r2",
+      "domain": "finite",
+      "baseOutputs": 144,
+      "uniqueCanonicalKeys": 144,
+      "formats": [
+        "단답형",
+        "객관식"
+      ],
+      "checkedRequirements": [
+        "algebra.linear-simplify"
+      ],
+      "checks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "testFile": "src/__tests__/unit/examStudyReinforcement.test.ts"
+    },
+    {
+      "kind": "rectangle",
+      "id": "legacy:native:m3-quadratic-domain-r1",
+      "version": "exam-rectangle-reinforced-r2",
+      "domain": "finite",
+      "baseOutputs": 60,
+      "uniqueCanonicalKeys": 60,
+      "formats": [
+        "서술형"
+      ],
+      "checkedRequirements": [
+        "written.rectangle-domain"
+      ],
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "native-rubric"
+      ],
+      "testFile": "src/__tests__/unit/examStudyReinforcement.test.ts"
+    }
+  ],
+  "execution": {
+    "testsPassed": 25,
+    "testsFailed": 0,
+    "finiteBaseOutputs": 356,
+    "sampledBaseOutputs": 1024,
+    "totalBaseOutputs": 1380,
+    "mcRepackagings": 1320,
+    "negativeRejected": 8940,
+    "negativeAccepted": 0,
+    "negativeClasses": [
+      "impossible-answer",
+      "plausible-wrong-answer",
+      "removed-essential-condition",
+      "incorrect-solution",
+      "unrelated-solution",
+      "wrong-MC-mark",
+      "unrelated-native-rubric-expected-alternative-error"
+    ],
+    "rectangleBranches": {
+      "positive": 34,
+      "negative": 17,
+      "zero": 9
+    }
+  },
+  "countChoices": {
+    "domainOrderCases": 1620,
+    "oldFamilySeeds": [
+      {
+        "type": "EQ06",
+        "seed": 1638860089
+      },
+      {
+        "type": "EQ09",
+        "seed": 648800451
+      },
+      {
+        "type": "EQ09",
+        "seed": 1360768244
+      }
+    ],
+    "ordersPerOldRepro": 20,
+    "coreRequestSeeds": [
+      71,
+      20261019
+    ],
+    "coreCheckedRecords": 12,
+    "failClosedStatementCounts": [
+      1,
+      2,
+      3
+    ],
+    "injectedCountAlternativesRejected": [
+      "out-of-range",
+      "negative",
+      "equivalent",
+      "fractional",
+      "malformed",
+      "equal-to-correct"
+    ]
+  },
+  "validation": {
+    "ownedTests": "passed",
+    "eslint": "passed",
+    "fullTypeScript8Gb": "passed",
+    "finalScopedTypeScript": "passed",
+    "broadExistingSuite": {
+      "passed": 227,
+      "failed": 4,
+      "skipped": 6,
+      "expectedParentUpdate": "src/__tests__/unit/examStudyCoreLegacy.test.ts:308 evidence count 6 -> 12",
+      "environmentFailures": 3,
+      "environmentFailureReason": "strict Python renderer: sanitized PATH does not provide python; coordinator owns configured integration run"
+    },
+    "buildPushDeploy": "not run"
+  },
+  "rawEvidenceDirectory": ".qa-artifacts/math-exam-engine-completion-20261019/",
+  "sourceFilesSha256": {
+    "src/lib/examStudy/adapters.ts": "6ef7595551aaa59f25264938c73938358b3c168ee5499c31db497f85667ae10a",
+    "src/lib/examStudy/legacyReinforcement.ts": "0e1aae8a51e2d7c1bd588dfddbc0bab3c71557866558d73a66a969e2e07a4318",
+    "src/lib/examStudy/reinforcementMath.ts": "e4ff06d37b86961c01473ed8aa0491edc1d3269b6fef7f1e001a5580ddb9cee4",
+    "src/lib/examStudy/reinforcementVerification.ts": "fd10287c3b1491b8d19b9cbbe2b83260472248023da69165c3b6e43bce5b3997",
+    "src/lib/examStudy/studyChoiceBounds.ts": "c61863aa2dcae1c02b65e45883f817cb24ce8b24c6a03d3000b2fc6c0be359c4",
+    "src/__tests__/unit/examStudyReinforcement.test.ts": "4da8cf3ecdabe996089013f9e3cc7a6fdf794032df767b6fd2e740001558864d",
+    "src/__tests__/unit/examStudyChoiceBounds.test.ts": "bc0b91f2adac23e4a24d73c9519069884e18e319f17be75137afd14c02130258"
+  },
+  "limitations": [
+    "Classification/model are sampled existing scopes, not exhaustive finite-capacity claims.",
+    "Base/MC/mutation counts are verification records, not independent families or unique questions.",
+    "No school-original database restoration or student-data change.",
+    "Other six unavailable demands and final integration/build/push/deployment remain coordinator-owned."
+  ]
+}
