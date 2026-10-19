@@ -51,8 +51,7 @@ export function canonicalJson(value) {
   return JSON.stringify(value);
 }
 export const digest = (value) => sha256(canonicalJson(value));
-export const readJson = (file) => {
-  const raw = fs.readFileSync(file);
+function parseJsonArtifact(raw) {
   assert(
     !(raw[0] === 0xff && raw[1] === 0xfe) &&
       !(raw[0] === 0xfe && raw[1] === 0xff),
@@ -63,8 +62,40 @@ export const readJson = (file) => {
     fatal: true,
     ignoreBOM: true,
   }).decode(raw.subarray(offset));
+  assert(
+    !text.includes("\u0000"),
+    "JSON artifact contains NUL bytes; preserve the raw file and create a new version",
+  );
   return JSON.parse(text);
-};
+}
+export const readJson = (file) => parseJsonArtifact(fs.readFileSync(file));
+
+// UTF-8 decoding must not silently replace damaged diagram bytes. These checks
+// establish readable transport only; native geometry and independent review remain.
+function readableFigureText(text, label) {
+  assert(
+    !/[\u0000-\u0008\u000b\u000c\u000e-\u001f\ufffd]/u.test(text),
+    `Unreadable ${label}; preserve damaged bytes and create a new figure version`,
+  );
+  return text;
+}
+function readableFigureSpec(value) {
+  assert(
+    value && typeof value === "object" && !Array.isArray(value),
+    "Figure spec must be a JSON object; native geometry review is still required",
+  );
+  const pending = [value];
+  while (pending.length) {
+    const current = pending.pop();
+    if (typeof current === "string") readableFigureText(current, "figure spec text");
+    else if (current && typeof current === "object") {
+      for (const [key, child] of Object.entries(current)) {
+        readableFigureText(key, "figure spec key");
+        pending.push(child);
+      }
+    }
+  }
+}
 // MOE 2022 general-education phase-in (93458): middle3 starts in 2027.
 // This offline pilot supports middle3/2015. A 2022 candidate requires new
 // template/standards and seven-surface review, never a relabel.
@@ -297,8 +328,13 @@ export function bindCandidate(file) {
     );
     const spec = assetPath(a.specPath);
     const svg = assetPath(a.svgPath);
+    const specBytes = fs.readFileSync(spec);
+    readableFigureSpec(parseJsonArtifact(specBytes));
     const bytes = fs.readFileSync(svg);
-    const markup = bytes.toString("utf8");
+    const markup = readableFigureText(
+      new TextDecoder("utf-8", { fatal: true }).decode(bytes),
+      "figure SVG",
+    );
     const resources = (a.rasterResources ?? []).map((r) => {
       const rasterPath = assetPath(r.path);
       const generationPath = assetPath(r.generationPath);
@@ -349,7 +385,7 @@ export function bindCandidate(file) {
       role,
       sourceSpecPath: spec,
       sourceSvgPath: svg,
-      specSha256: sha256(fs.readFileSync(spec)),
+      specSha256: sha256(specBytes),
       svgSha256: sha256(bytes),
       intendedWidthMm: a.intendedWidthMm,
       studentPath: `figures/q${String(candidate.questionNumber).padStart(2, "0")}-${index + 1}.svg`,

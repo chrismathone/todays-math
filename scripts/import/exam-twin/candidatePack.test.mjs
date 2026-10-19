@@ -15,6 +15,7 @@ import {
   validateCandidate,
   readJson,
   sha256,
+  bindCandidate,
 } from "./candidatePack.mjs";
 
 test("sealed marked answers validate their annotated value and dimension against the actual option", () => {
@@ -68,6 +69,80 @@ test("UTF-8 BOM parsing keeps raw-byte evidence distinct and rejects UTF-16 or c
       fs.unlinkSync(path.join(dir, "input.json"));
     fs.rmdirSync(dir);
   }
+});
+
+function figureEncodingFixture() {
+  const folder = fs.mkdtempSync(path.join(os.tmpdir(), "twin-figure-encoding-"));
+  const file = (name) => path.join(folder, name);
+  const current = structuredClone(candidate);
+  current.figureArtifacts = [{ role: "stem", specPath: "figure.json", svgPath: "figure.svg", intendedWidthMm: 70 }];
+  const svg = Buffer.from('<svg xmlns="http://www.w3.org/2000/svg">\r\n<text>점 A</text>\r\n</svg>', "utf8");
+  fs.writeFileSync(file("candidate.json"), JSON.stringify(current), "utf8");
+  fs.writeFileSync(file("figure.json"), '{"version":2}', "utf8");
+  fs.writeFileSync(file("figure.svg"), svg);
+  return { file, svg, bind: () => bindCandidate(file("candidate.json")),
+    close() {
+      // Three known fixture files only; no recursive deletion or shared assets.
+      for (const name of ["candidate.json", "figure.json", "figure.svg"]) fs.unlinkSync(file(name));
+      fs.rmdirSync(folder);
+    } };
+}
+
+test("a corrupt or nonobject figure spec cannot bind behind an otherwise valid SVG", () => {
+  const f = figureEncodingFixture();
+  try {
+    assert.equal(f.bind().validation.semanticGradeReviewStillRequired, true);
+    const cases = [
+      Buffer.alloc(10764), // Actual interrupted-draft failure shape: all NUL bytes.
+      Buffer.from('42'), Buffer.from('null'), Buffer.from('[]'),
+      Buffer.from('{"labels":{"A":"\\u0000"}}'),
+      Buffer.from('{"labels":{"A":"\ufffd"}}'),
+      Buffer.concat([Buffer.from([0xff, 0xfe]), Buffer.from('{}', "utf16le")]),
+    ];
+    const candidateBytes = fs.readFileSync(f.file("candidate.json"));
+    for (const raw of cases) {
+      fs.writeFileSync(f.file("figure.json"), raw);
+      assert.throws(f.bind, /NUL|JSON object|Unreadable|UTF-16/);
+      assert.deepEqual(fs.readFileSync(f.file("figure.json")), raw);
+      assert.deepEqual(fs.readFileSync(f.file("figure.svg")), f.svg);
+      assert.deepEqual(fs.readFileSync(f.file("candidate.json")), candidateBytes);
+    }
+  } finally { f.close(); }
+});
+
+test("invalid UTF-8 and unreadable XML diagram characters reject without byte repair", () => {
+  const f = figureEncodingFixture();
+  try {
+    const cases = [
+      Buffer.concat([Buffer.from('<svg><text>'), Buffer.from([0xff]), Buffer.from('</text></svg>')]),
+      Buffer.from('<svg><text>A\u0000B</text></svg>'),
+      Buffer.from('<svg><text>A\u000bB</text></svg>'),
+      Buffer.from('<svg><text>A\ufffdB</text></svg>'),
+    ];
+    for (const raw of cases) {
+      fs.writeFileSync(f.file("figure.svg"), raw);
+      assert.throws(f.bind);
+      assert.deepEqual(fs.readFileSync(f.file("figure.svg")), raw);
+    }
+  } finally { f.close(); }
+});
+
+test("valid Korean/BOM/CRLF figure transports keep exact raw hashes and no semantic approval", () => {
+  const f = figureEncodingFixture();
+  try {
+    const prefix = Buffer.from([0xef, 0xbb, 0xbf]);
+    const spec = Buffer.concat([prefix, Buffer.from('{\r\n"version":2, "labels":{"A":"점 A"}\r\n}', "utf8")]);
+    const svg = Buffer.concat([prefix, f.svg]);
+    fs.writeFileSync(f.file("figure.json"), spec);
+    fs.writeFileSync(f.file("figure.svg"), svg);
+    const bound = f.bind();
+    assert.equal(bound.assets[0].specSha256, sha256(spec));
+    assert.equal(bound.assets[0].svgSha256, sha256(svg));
+    assert.notEqual(bound.assets[0].svgSha256, sha256(f.svg));
+    assert.equal(bound.validation.semanticGradeReviewStillRequired, true);
+    assert.deepEqual(fs.readFileSync(f.file("figure.json")), spec);
+    assert.deepEqual(fs.readFileSync(f.file("figure.svg")), svg);
+  } finally { f.close(); }
 });
 
 test("middle3 rollout cannot reuse 2015 source mapping for 2027", () => {

@@ -1,0 +1,436 @@
+TAP version 13
+# Subtest: numbered length roles preserve x coefficients and every written subpart
+ok 1 - numbered length roles preserve x coefficients and every written subpart
+  ---
+  duration_ms: 53.2268
+  type: 'test'
+  ...
+# Subtest: perpendicular notation and named angle/ratio outputs compare without deriving identities
+ok 2 - perpendicular notation and named angle/ratio outputs compare without deriving identities
+  ---
+  duration_ms: 9.3258
+  type: 'test'
+  ...
+# Subtest: explicit unit conversion is exact but dimensions and roles cannot disappear
+ok 3 - explicit unit conversion is exact but dimensions and roles cannot disappear
+  ---
+  duration_ms: 2.2301
+  type: 'test'
+  ...
+# Subtest: unsupported prose, mixed syntax, extra/missing parts and contradictory duplicate roles stay unapproved
+ok 4 - unsupported prose, mixed syntax, extra/missing parts and contradictory duplicate roles stay unapproved
+  ---
+  duration_ms: 4.3841
+  type: 'test'
+  ...
+# Subtest: sealed marked answers validate their annotated value and dimension against the actual option
+ok 5 - sealed marked answers validate their annotated value and dimension against the actual option
+  ---
+  duration_ms: 16.2975
+  type: 'test'
+  ...
+# Subtest: UTF-8 BOM parsing keeps raw-byte evidence distinct and rejects UTF-16 or corrupt UTF-8
+ok 6 - UTF-8 BOM parsing keeps raw-byte evidence distinct and rejects UTF-16 or corrupt UTF-8
+  ---
+  duration_ms: 67.6754
+  type: 'test'
+  ...
+# Subtest: a corrupt or nonobject figure spec cannot bind behind an otherwise valid SVG
+ok 7 - a corrupt or nonobject figure spec cannot bind behind an otherwise valid SVG
+  ---
+  duration_ms: 373.1126
+  type: 'test'
+  ...
+# Subtest: invalid UTF-8 and unreadable XML diagram characters reject without byte repair
+ok 8 - invalid UTF-8 and unreadable XML diagram characters reject without byte repair
+  ---
+  duration_ms: 135.2112
+  type: 'test'
+  ...
+# Subtest: valid Korean/BOM/CRLF figure transports keep exact raw hashes and no semantic approval
+ok 9 - valid Korean/BOM/CRLF figure transports keep exact raw hashes and no semantic approval
+  ---
+  duration_ms: 39.7367
+  type: 'test'
+  ...
+# Subtest: middle3 rollout cannot reuse 2015 source mapping for 2027
+ok 10 - middle3 rollout cannot reuse 2015 source mapping for 2027
+  ---
+  duration_ms: 2.1621
+  type: 'test'
+  ...
+# Subtest: ordinary program wording is not a logarithm, while explicit logarithms remain forbidden
+ok 11 - ordinary program wording is not a logarithm, while explicit logarithms remain forbidden
+  ---
+  duration_ms: 41.8929
+  type: 'test'
+  ...
+# Subtest: student payload exposes no answer, solution, private calibration or origin key
+ok 12 - student payload exposes no answer, solution, private calibration or origin key
+  ---
+  duration_ms: 0.9178
+  type: 'test'
+  ...
+# Subtest: answer presentation permits TeX braces but preserves value and unit differences
+ok 13 - answer presentation permits TeX braces but preserves value and unit differences
+  ---
+  duration_ms: 1.2086
+  type: 'test'
+  ...
+# Subtest: different key order preserves semantic digest and content changes invalidate it
+ok 14 - different key order preserves semantic digest and content changes invalidate it
+  ---
+  duration_ms: 1.5958
+  type: 'test'
+  ...
+# Subtest: stale content/figure/solution evidence fails closed
+ok 15 - stale content/figure/solution evidence fails closed
+  ---
+  duration_ms: 29.1809
+  type: 'test'
+  ...
+# Subtest: author's self-review cannot pass independent verification
+ok 16 - author's self-review cannot pass independent verification
+  ---
+  duration_ms: 9.5002
+  type: 'test'
+  ...
+# Subtest: uncertain or rejected surface/curriculum evidence blocks
+ok 17 - uncertain or rejected surface/curriculum evidence blocks
+  ---
+  duration_ms: 10.2793
+  type: 'test'
+  ...
+# Subtest: detailed curriculum audit preserves each surface basis and fails closed without it
+ok 18 - detailed curriculum audit preserves each surface basis and fails closed without it
+  ---
+  duration_ms: 13.8732
+  type: 'test'
+  ...
+# Subtest: new math evidence never clears provenance, rights or production gates
+ok 19 - new math evidence never clears provenance, rights or production gates
+  ---
+  duration_ms: 8.9237
+  type: 'test'
+  ...
+# Subtest: mathematics, grade and unresolved taxonomy are separate review dimensions
+ok 20 - mathematics, grade and unresolved taxonomy are separate review dimensions
+  ---
+  duration_ms: 4.8784
+  type: 'test'
+  ...
+# Subtest: known forbidden method in any student surface rejects
+ok 21 - known forbidden method in any student surface rejects
+  ---
+  duration_ms: 19.8941
+  type: 'test'
+  ...
+# Subtest: numeric-only variants, duplicate choices and original ID reuse reject
+ok 22 - numeric-only variants, duplicate choices and original ID reuse reject
+  ---
+  duration_ms: 2.3907
+  type: 'test'
+  ...
+# Subtest: metadata cannot silently change source year, curriculum, score or Unit UUID
+ok 23 - metadata cannot silently change source year, curriculum, score or Unit UUID
+  ---
+  duration_ms: 46.1105
+  type: 'test'
+  ...
+# Subtest: Gyeongsan22 has one correct answer but two globally equivalent distractors also coincide exactly at a legal witness
+ok 24 - Gyeongsan22 has one correct answer but two globally equivalent distractors also coincide exactly at a legal witness
+  ---
+  duration_ms: 18.2933
+  type: 'test'
+  ...
+# Subtest: unit aliases and multipart answer roles cannot hide duplicate computed values
+ok 25 - unit aliases and multipart answer roles cannot hide duplicate computed values
+  ---
+  duration_ms: 7.5398
+  type: 'test'
+  ...
+# Subtest: unknown units, functions and missing option calculations remain unsupported
+ok 26 - unknown units, functions and missing option calculations remain unsupported
+  ---
+  duration_ms: 7.5156
+  type: 'test'
+  ...
+# Subtest: Gyeonggu exact written area uses algebraic constants, never literal string equality
+ok 27 - Gyeonggu exact written area uses algebraic constants, never literal string equality
+  ---
+  duration_ms: 8.7105
+  type: 'test'
+  ...
+# Subtest: role, order, angle/length/area dimension and unit scale remain part of an answer
+ok 28 - role, order, angle/length/area dimension and unit scale remain part of an answer
+  ---
+  duration_ms: 5.3911
+  type: 'test'
+  ...
+# Subtest: unknown expressions, zero denominators and ambiguous role data hold instead of matching
+ok 29 - unknown expressions, zero denominators and ambiguous role data hold instead of matching
+  ---
+  duration_ms: 5.8599
+  type: 'test'
+  ...
+# Subtest: a single selected mark can carry annotations without treating them as checked math
+ok 30 - a single selected mark can carry annotations without treating them as checked math
+  ---
+  duration_ms: 1.2911
+  type: 'test'
+  ...
+# Subtest: a hundred distributed and rationalized constants retain exact equivalence
+ok 31 - a hundred distributed and rationalized constants retain exact equivalence
+  ---
+  duration_ms: 18.8297
+  type: 'test'
+  ...
+# Subtest: actual Git blob, working proof and blind proof bind before answer exposure
+ok 32 - actual Git blob, working proof and blind proof bind before answer exposure
+  ---
+  duration_ms: 2310.0972
+  type: 'test'
+  ...
+# Subtest: post-seal raw edits fail before creating answer-exposing outputs
+ok 33 - post-seal raw edits fail before creating answer-exposing outputs
+  ---
+  duration_ms: 1279.5371
+  type: 'test'
+  ...
+# Subtest: a mismatching blind copy cannot expose authored answers
+ok 34 - a mismatching blind copy cannot expose authored answers
+  ---
+  duration_ms: 1060.0637
+  type: 'test'
+  ...
+# Subtest: an author-labelled raw proof cannot act as independent evidence
+ok 35 - an author-labelled raw proof cannot act as independent evidence
+  ---
+  duration_ms: 1057.8709
+  type: 'test'
+  ...
+# Subtest: encoding-damaged answers or proofs cannot expose authored answers
+ok 36 - encoding-damaged answers or proofs cannot expose authored answers
+  ---
+  duration_ms: 4576.2532
+  type: 'test'
+  ...
+# Subtest: nested freeze rebinds original author by ID, preserves raw/report bytes and all holds
+ok 37 - nested freeze rebinds original author by ID, preserves raw/report bytes and all holds
+  ---
+  duration_ms: 3868.4137
+  type: 'test'
+  ...
+# Subtest: rejected report remains rejected without new math approval
+ok 38 - rejected report remains rejected without new math approval
+  ---
+  duration_ms: 2832.7594
+  type: 'test'
+  ...
+# Subtest: reordered multi-question selection binds by exact ID, never array position
+ok 39 - reordered multi-question selection binds by exact ID, never array position
+  ---
+  duration_ms: 3906.6149
+  type: 'test'
+  ...
+# Subtest: changed source metadata with same student payload requires NEW review even with current SHA
+ok 40 - changed source metadata with same student payload requires NEW review even with current SHA
+  ---
+  duration_ms: 1636.7802
+  type: 'test'
+  ...
+# Subtest: changed answer requires NEW review even with current SHA
+ok 41 - changed answer requires NEW review even with current SHA
+  ---
+  duration_ms: 1933.0162
+  type: 'test'
+  ...
+# Subtest: changed solution requires NEW review even with current SHA
+ok 42 - changed solution requires NEW review even with current SHA
+  ---
+  duration_ms: 1955.9876
+  type: 'test'
+  ...
+# Subtest: changed classification metadata requires NEW review even with current SHA
+ok 43 - changed classification metadata requires NEW review even with current SHA
+  ---
+  duration_ms: 1998.3741
+  type: 'test'
+  ...
+# Subtest: changed grade standard metadata requires NEW review even with current SHA
+ok 44 - changed grade standard metadata requires NEW review even with current SHA
+  ---
+  duration_ms: 1617.0704
+  type: 'test'
+  ...
+# Subtest: changed asset bytes require NEW review
+ok 45 - changed asset bytes require NEW review
+  ---
+  duration_ms: 1953.4951
+  type: 'test'
+  ...
+# Subtest: wrong exact ID cannot match by question number
+ok 46 - wrong exact ID cannot match by question number
+  ---
+  duration_ms: 1116.4727
+  type: 'test'
+  ...
+# Subtest: wrong raw author SHA fails before output
+ok 47 - wrong raw author SHA fails before output
+  ---
+  duration_ms: 1092.1244
+  type: 'test'
+  ...
+# Subtest: actual working raw must equal sealed Git blob
+ok 48 - actual working raw must equal sealed Git blob
+  ---
+  duration_ms: 1664.6457
+  type: 'test'
+  ...
+# Subtest: old blind raw must equal sealed Git blob
+ok 49 - old blind raw must equal sealed Git blob
+  ---
+  duration_ms: 1447.2626
+  type: 'test'
+  ...
+# Subtest: stale report candidate binding cannot be reused
+ok 50 - stale report candidate binding cannot be reused
+  ---
+  duration_ms: 1550.0448
+  type: 'test'
+  ...
+# Subtest: output refuses input-tree, outside-workspace and dependency writes
+ok 51 - output refuses input-tree, outside-workspace and dependency writes
+  ---
+  duration_ms: 1110.7403
+  type: 'test'
+  ...
+# Subtest: strict CLI rejects extra flags and exposes no writer mode
+ok 52 - strict CLI rejects extra flags and exposes no writer mode
+  ---
+  duration_ms: 110.0173
+  type: 'test'
+  ...
+# Subtest: internal junction aliases cannot write into dependencies or old evidence
+ok 53 - internal junction aliases cannot write into dependencies or old evidence
+  ---
+  duration_ms: 1544.3885
+  type: 'test'
+  ...
+# Subtest: freeze and blind input bind actual assets; stale spec blocks dry-run
+ok 54 - freeze and blind input bind actual assets; stale spec blocks dry-run
+  ---
+  duration_ms: 926.8844
+  type: 'test'
+  ...
+# Subtest: independent solve is frozen before new answer exposure; later alteration rejects
+ok 55 - independent solve is frozen before new answer exposure; later alteration rejects
+  ---
+  duration_ms: 1031.1845
+  type: 'test'
+  ...
+# Subtest: collection rechecks blind student bytes after answer exposure
+ok 56 - collection rechecks blind student bytes after answer exposure
+  ---
+  duration_ms: 876.9386
+  type: 'test'
+  ...
+# Subtest: batch counts select the exact current ID and never reuse an old question-number review
+ok 57 - batch counts select the exact current ID and never reuse an old question-number review
+  ---
+  duration_ms: 1573.664
+  type: 'test'
+  ...
+# Subtest: image composition binds both generated pixels and generation record
+ok 58 - image composition binds both generated pixels and generation record
+  ---
+  duration_ms: 430.8482
+  type: 'test'
+  ...
+# Subtest: outputs cannot escape through a worktree dependency junction
+ok 59 - outputs cannot escape through a worktree dependency junction
+  ---
+  duration_ms: 2.0702
+  type: 'test'
+  ...
+# Subtest: local dependency and git directories cannot become artifact outputs either
+ok 60 - local dependency and git directories cannot become artifact outputs either
+  ---
+  duration_ms: 9.7942
+  type: 'test'
+  ...
+# Subtest: matches exact bytes reproducibly and never certifies a same-name pair
+ok 61 - matches exact bytes reproducibly and never certifies a same-name pair
+  ---
+  duration_ms: 103.8123
+  type: 'test'
+  ...
+# Subtest: stale hashes, missing sources, size mismatch and invalid expectations fail independently
+ok 62 - stale hashes, missing sources, size mismatch and invalid expectations fail independently
+  ---
+  duration_ms: 47.0249
+  type: 'test'
+  ...
+# Subtest: duplicate manifest entries are retained rather than silently certified away
+ok 63 - duplicate manifest entries are retained rather than silently certified away
+  ---
+  duration_ms: 59.274
+  type: 'test'
+  ...
+# Subtest: bounded reads and entry limits fail closed
+ok 64 - bounded reads and entry limits fail closed
+  ---
+  duration_ms: 60.3983
+  type: 'test'
+  ...
+# Subtest: only explicit source arrays are projected; current relocation is explicit
+ok 65 - only explicit source arrays are projected; current relocation is explicit
+  ---
+  duration_ms: 1.1767
+  type: 'test'
+  ...
+# Subtest: source directories are rejected
+ok 66 - source directories are rejected
+  ---
+  duration_ms: 33.6071
+  type: 'test'
+  ...
+# Subtest: CLI exits nonzero on a stale source and emits structured evidence
+ok 67 - CLI exits nonzero on a stale source and emits structured evidence
+  ---
+  duration_ms: 234.6226
+  type: 'test'
+  ...
+# Subtest: weighted table preserves count, even median and exact population variance
+ok 68 - weighted table preserves count, even median and exact population variance
+  ---
+  duration_ms: 4.6536
+  type: 'test'
+  ...
+# Subtest: missing observations and deviations are explicit, exact and not grade approvals
+ok 69 - missing observations and deviations are explicit, exact and not grade approvals
+  ---
+  duration_ms: 4.569
+  type: 'test'
+  ...
+# Subtest: ties, equal-value option aliases and nonexistent observations cannot become unique answers
+ok 70 - ties, equal-value option aliases and nonexistent observations cannot become unique answers
+  ---
+  duration_ms: 3.1375
+  type: 'test'
+  ...
+# Subtest: one hundred deterministic distributions match an independent expanded-data calculation
+ok 71 - one hundred deterministic distributions match an independent expanded-data calculation
+  ---
+  duration_ms: 19.8502
+  type: 'test'
+  ...
+1..71
+# tests 71
+# suites 0
+# pass 71
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 31800.274
