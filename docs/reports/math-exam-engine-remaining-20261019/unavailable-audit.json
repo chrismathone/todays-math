@@ -1,0 +1,1805 @@
+{
+  "schemaVersion": "math-exam-engine-unavailable-audit-v1",
+  "auditDate": "2026-10-19",
+  "auditOnly": true,
+  "sourceCommit": "f8c55083bfb529b95c89a70d9ce95c915264b402",
+  "manifestVersion": "exam-study-manifest-afaac8127d86b8d051ad4b37",
+  "verdict": "6 unique requirements / 7 course-qualified entries have no registered fulfills mapping; neighboring support does not prove the coupled demands",
+  "counts": {
+    "uniqueRequirementIds": 6,
+    "courseQualifiedEntries": 7,
+    "affectedProfiles": 4,
+    "registeredFamiliesCompared": 4213,
+    "directMappingsForAnyTargetAnyCourse": 0,
+    "runtimeEmptyGenerations": 7,
+    "neighborRegistrationsSampled": 16,
+    "neighborOutputsObserved": 48,
+    "inventoryMeaning": "registrations only, not distinct logical capacity, independent pedagogy, or school coverage"
+  },
+  "requirements": [
+    {
+      "id": "model.circle-revolution-percentage",
+      "entryIds": [
+        "model.circle-revolution-percentage@중1"
+      ]
+    },
+    {
+      "id": "model.doubling-time-offset",
+      "entryIds": [
+        "model.doubling-time-offset@중1"
+      ]
+    },
+    {
+      "id": "graph.translated-coefficient-reuse",
+      "entryIds": [
+        "graph.translated-coefficient-reuse@중2",
+        "graph.translated-coefficient-reuse@중3"
+      ]
+    },
+    {
+      "id": "coord.intercept-integer-area",
+      "entryIds": [
+        "coord.intercept-integer-area@중2"
+      ]
+    },
+    {
+      "id": "number.coprime-symbolic-sum",
+      "entryIds": [
+        "number.coprime-symbolic-sum@중1"
+      ]
+    },
+    {
+      "id": "function.radical-inverse-circle",
+      "entryIds": [
+        "function.radical-inverse-circle@공통수학2"
+      ]
+    }
+  ],
+  "catalogSemantics": {
+    "noIntent": "unavailable",
+    "intentWithoutSufficientEvidence": "unverified",
+    "neighborSupportIsNotMappingOrFullProof": true,
+    "noMappingExistsBeforeFormatDifficultyAndRendererFilters": true,
+    "olderAdvancedReportUsesUnverifiedAsAuthoringDescription": "current runtime has no fulfills entry, so radical-inverse-circle is unavailable",
+    "evidence": [
+      {
+        "path": "src/lib/examStudy/registry.ts",
+        "line": 98
+      },
+      {
+        "path": "src/lib/examStudy/adapters.ts",
+        "line": 160
+      },
+      {
+        "path": "src/lib/examStudy/evidence.ts",
+        "line": 31
+      },
+      {
+        "path": "src/lib/examStudy/generate.ts",
+        "line": 257
+      },
+      {
+        "path": "src/lib/examStudy/generate.ts",
+        "line": 569
+      }
+    ]
+  },
+  "entries": [
+    {
+      "entryId": "model.circle-revolution-percentage@중1",
+      "requirementId": "model.circle-revolution-percentage",
+      "title": "지름 변화와 회전수 증가율",
+      "course": "중1",
+      "profileIds": [
+        "daeryun-m1"
+      ],
+      "currentCatalog": {
+        "requirementDefined": true,
+        "profileEligible": true,
+        "representation": "text",
+        "caseAnalysis": "none",
+        "allowedResponses": [
+          "객관식",
+          "단답형"
+        ],
+        "matchingFamilyIds": [],
+        "matchingRegistrationCount": 0,
+        "coverageStatus": "unavailable",
+        "absenceKind": "no-fulfills-mapping-before-format-difficulty-or-render-filtering",
+        "existingFamilyCanFulfillAsRegistered": false
+      },
+      "runtime": {
+        "request": {
+          "profileId": "daeryun-m1",
+          "course": "중1",
+          "requirementIds": [
+            "model.circle-revolution-percentage"
+          ],
+          "format": "혼합",
+          "count": 1,
+          "seed": 20261019,
+          "maxPerFamily": 1
+        },
+        "status": "unavailable",
+        "deliveredCount": 0,
+        "requirementResult": {
+          "id": "model.circle-revolution-percentage",
+          "title": "지름 변화에 따른 회전수 백분율",
+          "status": "unavailable",
+          "requested": 1,
+          "delivered": 0,
+          "reason": "완결 연습 0/1개. 이 요구에 등록된 대응 문형이 없습니다."
+        },
+        "digest": "5739770bfdf5460daf786f95fc265df5eb2fce9a8a99f2fc7f3ee85dfe99e406"
+      },
+      "requiredMathematics": [
+        "원주 πd와 고정 거리 L에서 회전수 L/(πd) 연결",
+        "지름 배율 q에서 회전수 배율 1/q 도출",
+        "원래 회전수를 기준으로 증가율 100(1/q−1)% 계산",
+        "발문에 지정한 자리에서 반올림"
+      ],
+      "neighboringSupport": [
+        {
+          "familyId": "legacy:mid:1-1|일차방정식의 활용|30",
+          "course": "중1",
+          "source": "middle",
+          "provides": "톱니 수×회전수 불변",
+          "doesNotEstablish": "원주 모델·회전수 증가율·반올림의 연결",
+          "evidence": [
+            {
+              "path": "src/lib/middle/m1LinearApply.ts",
+              "line": 642
+            }
+          ],
+          "observation": "static-source-and-three-runtime-outputs"
+        },
+        {
+          "familyId": "legacy:mid:1-1|일차방정식의 활용|25",
+          "course": "중1",
+          "source": "middle",
+          "provides": "전체량과 부분 백분율",
+          "doesNotEstablish": "역비례로 변한 회전수의 증가율",
+          "evidence": [
+            {
+              "path": "src/lib/middle/m1LinearApply.ts",
+              "line": 580
+            }
+          ],
+          "observation": "static-source-and-three-runtime-outputs"
+        },
+        {
+          "familyId": "legacy:mid:1-1|일차방정식의 활용|31",
+          "course": "중1",
+          "source": "middle",
+          "provides": "증가율에서 원래 양 역산",
+          "doesNotEstablish": "지름 변화와 원주 모델의 연결",
+          "evidence": [
+            {
+              "path": "src/lib/middle/m1LinearApply.ts",
+              "line": 660
+            }
+          ],
+          "observation": "static-source-and-three-runtime-outputs"
+        }
+      ],
+      "missingCoupling": [
+        "지름 변화→역비례 회전수→원래 양 기준 증가율→반올림의 단일 과제"
+      ],
+      "minimumIndependentAuthoring": [
+        "자체 지름 변화·거리·반올림 자리와 양의 매개변수 영역",
+        "증가를 묻는 영역의 q<1 보장과 q=1 또는 감소 결과의 처리"
+      ],
+      "minimumIndependentProof": [
+        "출력된 조건에서 유리수로 원주비·회전수비·증가율을 독립 재계산",
+        "원래/새 회전수 기준량과 지름/반지름을 바꾼 오독 대조",
+        "반올림 경계 양쪽 및 정확한 경계, q의 유효 범위 확인"
+      ],
+      "difficultyAndPriority": {
+        "structuralChallenge": "역비례와 백분율 기준량 전환의 연쇄",
+        "authoringBurden": "낮음~중간",
+        "relativeAuthoringPriorityRank": 1,
+        "measuredStudentDifficulty": null,
+        "priorityIsAuditJudgmentNotApproval": true
+      },
+      "evidence": [
+        {
+          "path": "src/lib/examStudy/requirements.ts",
+          "line": 201
+        },
+        {
+          "path": "src/lib/examStudy/profiles.ts",
+          "line": 51
+        },
+        {
+          "path": "docs/reports/math-engine-study-readiness-20261018/source-profiles.json",
+          "line": 137
+        }
+      ]
+    },
+    {
+      "entryId": "model.doubling-time-offset@중1",
+      "requirementId": "model.doubling-time-offset",
+      "title": "초기비에서 배증 시간차와 문자 시간",
+      "course": "중1",
+      "profileIds": [
+        "daeryun-m1"
+      ],
+      "currentCatalog": {
+        "requirementDefined": true,
+        "profileEligible": true,
+        "representation": "text",
+        "caseAnalysis": "none",
+        "allowedResponses": [
+          "객관식",
+          "단답형"
+        ],
+        "matchingFamilyIds": [],
+        "matchingRegistrationCount": 0,
+        "coverageStatus": "unavailable",
+        "absenceKind": "no-fulfills-mapping-before-format-difficulty-or-render-filtering",
+        "existingFamilyCanFulfillAsRegistered": false
+      },
+      "runtime": {
+        "request": {
+          "profileId": "daeryun-m1",
+          "course": "중1",
+          "requirementIds": [
+            "model.doubling-time-offset"
+          ],
+          "format": "혼합",
+          "count": 1,
+          "seed": 20261019,
+          "maxPerFamily": 1
+        },
+        "status": "unavailable",
+        "deliveredCount": 0,
+        "requirementResult": {
+          "id": "model.doubling-time-offset",
+          "title": "배증의 시간차와 단위 변환",
+          "status": "unavailable",
+          "requested": 1,
+          "delivered": 0,
+          "reason": "완결 연습 0/1개. 이 요구에 등록된 대응 문형이 없습니다."
+        },
+        "digest": "f5e0e240fe2ca87246cc7cafc7eb4c6aa42eca3994f5b75e1d685f18c96669e8"
+      },
+      "requiredMathematics": [
+        "같은 배증 주기에서 초기비 2^k의 반복 횟수차 도출",
+        "같은 목표에 도달하는 시차 kτ와 부호 결정",
+        "다른 시간 단위로 표현된 문자 시간과 결합"
+      ],
+      "neighboringSupport": [
+        {
+          "familyId": "legacy:mid:1-1|일차방정식의 활용|01",
+          "course": "중1",
+          "source": "middle",
+          "provides": "고정 배수의 일차 모델",
+          "doesNotEstablish": "반복 배증 횟수차 역추론",
+          "evidence": [
+            {
+              "path": "src/lib/middle/m1LinearApply.ts",
+              "line": 116
+            }
+          ],
+          "observation": "static-source-and-three-runtime-outputs"
+        },
+        {
+          "familyId": "legacy:mid:1-1|일차방정식의 활용|26",
+          "course": "중1",
+          "source": "middle",
+          "provides": "분과 각속도의 속률",
+          "doesNotEstablish": "초기비·동일 목표·시차·다른 단위의 문자식",
+          "evidence": [
+            {
+              "path": "src/lib/middle/m1LinearApply.ts",
+              "line": 593
+            }
+          ],
+          "observation": "static-source-and-three-runtime-outputs"
+        },
+        {
+          "familyId": null,
+          "registryKey": "1-1|소인수분해|14",
+          "course": "중1",
+          "provides": "거듭제곱의 지수 구하기",
+          "doesNotEstablish": "동일 목표 도달 시차 모델",
+          "observation": "static-source-only-not-in-48-runtime-samples",
+          "evidence": [
+            {
+              "path": "src/lib/middle/m1Book1.ts",
+              "line": 320
+            }
+          ]
+        }
+      ],
+      "missingCoupling": [
+        "초기 양의 비와 반복 횟수차를 도달 시각차로 전환",
+        "시차의 방향과 다른 단위의 문자 시간을 결합"
+      ],
+      "minimumIndependentAuthoring": [
+        "양의 초기량·공통 주기·동일 목표·시간 원점·문자 시간 범위를 갖춘 자체 모델",
+        "로그를 전제하지 않는 중1 반복표/역산 풀이"
+      ],
+      "minimumIndependentProof": [
+        "독립 시간표에서 두 목표 도달을 원조건에 다시 대입",
+        "초기비 방향 반전과 k=0, 시차 부호 검사",
+        "음의 시각 또는 2의 거듭제곱이 아닌 비를 허용하는지 명시하고 검증",
+        "분·시간 등 단위를 따로 환산해 문자식 동치 확인"
+      ],
+      "difficultyAndPriority": {
+        "structuralChallenge": "횟수와 시간 구분, 시차 방향, 단위 전환",
+        "authoringBurden": "중간",
+        "relativeAuthoringPriorityRank": 2,
+        "measuredStudentDifficulty": null,
+        "priorityIsAuditJudgmentNotApproval": true
+      },
+      "evidence": [
+        {
+          "path": "src/lib/examStudy/requirements.ts",
+          "line": 196
+        },
+        {
+          "path": "src/lib/examStudy/profiles.ts",
+          "line": 46
+        },
+        {
+          "path": "docs/reports/math-engine-study-readiness-20261018/source-profiles.json",
+          "line": 77
+        }
+      ]
+    },
+    {
+      "entryId": "graph.translated-coefficient-reuse@중2",
+      "requirementId": "graph.translated-coefficient-reuse",
+      "title": "이동 직선의 절편을 다른 직선의 계수로",
+      "course": "중2",
+      "profileIds": [
+        "daeryun-m2"
+      ],
+      "currentCatalog": {
+        "requirementDefined": true,
+        "profileEligible": true,
+        "representation": "figure-optional",
+        "caseAnalysis": "none",
+        "allowedResponses": [
+          "객관식",
+          "단답형"
+        ],
+        "matchingFamilyIds": [],
+        "matchingRegistrationCount": 0,
+        "coverageStatus": "unavailable",
+        "absenceKind": "no-fulfills-mapping-before-format-difficulty-or-render-filtering",
+        "existingFamilyCanFulfillAsRegistered": false
+      },
+      "runtime": {
+        "request": {
+          "profileId": "daeryun-m2",
+          "course": "중2",
+          "requirementIds": [
+            "graph.translated-coefficient-reuse"
+          ],
+          "format": "혼합",
+          "count": 1,
+          "seed": 20261019,
+          "maxPerFamily": 1
+        },
+        "status": "unavailable",
+        "deliveredCount": 0,
+        "requirementResult": {
+          "id": "graph.translated-coefficient-reuse",
+          "title": "그래프에서 복원한 계수의 재배치",
+          "status": "unavailable",
+          "requested": 1,
+          "delivered": 0,
+          "reason": "완결 연습 0/1개. 이 요구에 등록된 대응 문형이 없습니다."
+        },
+        "digest": "4b265d8acd2d4d2146c474454ddfce06634227ca15cbba6ddc0397692a2841eb"
+      },
+      "requiredMathematics": [
+        "이동한 첫 직선 복원",
+        "두 축절편 복원",
+        "절편을 명시된 둘째 직선의 계수로 전달",
+        "둘째 직선의 사분면 성질 판단"
+      ],
+      "neighboringSupport": [
+        {
+          "familyId": "legacy:mid:2-1|일차함수와 그 그래프  ⑴|05",
+          "course": "중2",
+          "source": "middle",
+          "provides": "수직 이동량을 점 대입으로 계산",
+          "doesNotEstablish": "이동 후 두 절편→둘째 직선 의존",
+          "evidence": [
+            {
+              "path": "src/lib/middle/m2Func.ts",
+              "line": 271
+            }
+          ],
+          "observation": "static-source-and-three-runtime-outputs"
+        },
+        {
+          "familyId": "legacy:mid:2-1|일차함수와 그 그래프  ⑵|02",
+          "course": "중2",
+          "source": "middle",
+          "provides": "그림의 계수 부호를 실제 다른 직선식에 재사용",
+          "doesNotEstablish": "수치 없는 부호 그림이므로 이동·두 절편 복원 단계 없음",
+          "evidence": [
+            {
+              "path": "src/lib/middle/m2Line.ts",
+              "line": 453
+            }
+          ],
+          "observation": "static-source-and-three-runtime-outputs"
+        }
+      ],
+      "missingCoupling": [
+        "이동 정보→절편 복원→절편의 계수 배치가 한 출력 과제에서 이어지지 않음",
+        "계수 재사용 자체는 존재하므로 전면 부재로 판정하지 않음"
+      ],
+      "minimumIndependentAuthoring": [
+        "자체 이동량·점/그림·절편 역할과 둘째 식을 명시한 단일 과제",
+        "0 기울기·0 절편의 배제 또는 별도 분기"
+      ],
+      "minimumIndependentProof": [
+        "g(x)=f(x−h)+v로 이동 관계와 축 교점을 별도 검산",
+        "둘째 식의 기울기·절편으로 사분면 조건 독립 판정",
+        "이동 조건 또는 절편 배치를 바꾸거나 제거한 필요성 대조",
+        "그림 사용 시 실제 곡선·표기와 조건 일치 확인"
+      ],
+      "difficultyAndPriority": {
+        "structuralChallenge": "표현 전환과 공유 값의 의존",
+        "authoringBurden": "중간",
+        "relativeAuthoringPriorityRank": 3,
+        "measuredStudentDifficulty": null,
+        "priorityIsAuditJudgmentNotApproval": true
+      },
+      "evidence": [
+        {
+          "path": "src/lib/examStudy/requirements.ts",
+          "line": 119
+        },
+        {
+          "path": "src/lib/examStudy/profiles.ts",
+          "line": 67
+        },
+        {
+          "path": "docs/reports/math-engine-study-readiness-20261018/source-profiles.json",
+          "line": 244
+        }
+      ]
+    },
+    {
+      "entryId": "coord.intercept-integer-area@중2",
+      "requirementId": "coord.intercept-integer-area",
+      "title": "음의 정수 격자점 결정 후 두 넓이 비교",
+      "course": "중2",
+      "profileIds": [
+        "daeryun-m2"
+      ],
+      "currentCatalog": {
+        "requirementDefined": true,
+        "profileEligible": true,
+        "representation": "figure-optional",
+        "caseAnalysis": "exclude",
+        "allowedResponses": [
+          "객관식",
+          "단답형"
+        ],
+        "matchingFamilyIds": [],
+        "matchingRegistrationCount": 0,
+        "coverageStatus": "unavailable",
+        "absenceKind": "no-fulfills-mapping-before-format-difficulty-or-render-filtering",
+        "existingFamilyCanFulfillAsRegistered": false
+      },
+      "runtime": {
+        "request": {
+          "profileId": "daeryun-m2",
+          "course": "중2",
+          "requirementIds": [
+            "coord.intercept-integer-area"
+          ],
+          "format": "혼합",
+          "count": 1,
+          "seed": 20261019,
+          "maxPerFamily": 1
+        },
+        "status": "unavailable",
+        "deliveredCount": 0,
+        "requirementResult": {
+          "id": "coord.intercept-integer-area",
+          "title": "절편·정수 격자 조건에서 넓이 비교",
+          "status": "unavailable",
+          "requested": 1,
+          "delivered": 0,
+          "reason": "완결 연습 0/1개. 이 요구에 등록된 대응 문형이 없습니다."
+        },
+        "digest": "da617ae85a95b52a2e7b8f0040e685da25ee4b9c0b64740a3b5d96ec188a95e0"
+      },
+      "requiredMathematics": [
+        "절편 복원",
+        "직선의 부호·정수 격자 제약으로 후보 점 결정",
+        "그 점에 의존하는 두 삼각형 넓이 비교"
+      ],
+      "neighboringSupport": [
+        {
+          "familyId": "legacy:mid:2-1|일차함수와 그 그래프  ⑴|11",
+          "course": "중2",
+          "source": "middle",
+          "provides": "미리 생성한 정수 절편과 한 축절편 삼각형 넓이",
+          "doesNotEstablish": "학생이 음의 정수 조건으로 점을 찾은 뒤 두 넓이를 비교하는 단계",
+          "evidence": [
+            {
+              "path": "src/lib/middle/m2Func.ts",
+              "line": 405
+            }
+          ],
+          "observation": "static-source-and-three-runtime-outputs"
+        },
+        {
+          "familyId": "legacy:mid:1-1|정비례와 반비례|61W",
+          "course": "중1",
+          "source": "middle",
+          "provides": "반비례의 양의 정수 격자점과 약수 열거",
+          "doesNotEstablish": "다른 과정·다른 곡선이며 대상 직선의 음의 정수 조건이 아님",
+          "evidence": [
+            {
+              "path": "src/lib/middle/m1Top4.ts",
+              "line": 306
+            }
+          ],
+          "observation": "static-source-and-three-runtime-outputs"
+        }
+      ],
+      "missingCoupling": [
+        "정수 좌표의 사전 선택을 넘어 정수 조건이 실제 점 결정을 담당해야 함",
+        "결정한 점이 두 넓이의 실제 입력이어야 함"
+      ],
+      "minimumIndependentAuthoring": [
+        "자체 직선·음의 정수 조건·두 삼각형과 목표의 명시",
+        "허용 점의 유한화 근거 또는 필요한 추가 제한을 발문에서 갖추고 유일성 보장"
+      ],
+      "minimumIndependentProof": [
+        "허용 정수점 전체를 독립 열거하여 0개·하나·복수 후보 구분",
+        "절댓값을 포함한 좌표 행렬식으로 두 넓이 재계산",
+        "축 위·공선 퇴화 및 격자 조건 제거 대조"
+      ],
+      "difficultyAndPriority": {
+        "structuralChallenge": "정수 실행 가능성과 기하량의 의존",
+        "authoringBurden": "중간~높음",
+        "relativeAuthoringPriorityRank": 4,
+        "measuredStudentDifficulty": null,
+        "priorityIsAuditJudgmentNotApproval": true
+      },
+      "evidence": [
+        {
+          "path": "src/lib/examStudy/requirements.ts",
+          "line": 175
+        },
+        {
+          "path": "src/lib/examStudy/profiles.ts",
+          "line": 71
+        },
+        {
+          "path": "docs/reports/math-engine-study-readiness-20261018/source-profiles.json",
+          "line": 278
+        }
+      ]
+    },
+    {
+      "entryId": "graph.translated-coefficient-reuse@중3",
+      "requirementId": "graph.translated-coefficient-reuse",
+      "title": "포물선 계수를 재배치한 다른 이차함수",
+      "course": "중3",
+      "profileIds": [
+        "kyungmyung-m3"
+      ],
+      "currentCatalog": {
+        "requirementDefined": true,
+        "profileEligible": true,
+        "representation": "figure-optional",
+        "caseAnalysis": "none",
+        "allowedResponses": [
+          "객관식",
+          "단답형"
+        ],
+        "matchingFamilyIds": [],
+        "matchingRegistrationCount": 0,
+        "coverageStatus": "unavailable",
+        "absenceKind": "no-fulfills-mapping-before-format-difficulty-or-render-filtering",
+        "existingFamilyCanFulfillAsRegistered": false
+      },
+      "runtime": {
+        "request": {
+          "profileId": "kyungmyung-m3",
+          "course": "중3",
+          "requirementIds": [
+            "graph.translated-coefficient-reuse"
+          ],
+          "format": "혼합",
+          "count": 1,
+          "seed": 20261019,
+          "maxPerFamily": 1
+        },
+        "status": "unavailable",
+        "deliveredCount": 0,
+        "requirementResult": {
+          "id": "graph.translated-coefficient-reuse",
+          "title": "그래프에서 복원한 계수의 재배치",
+          "status": "unavailable",
+          "requested": 1,
+          "delivered": 0,
+          "reason": "완결 연습 0/1개. 이 요구에 등록된 대응 문형이 없습니다."
+        },
+        "digest": "0a42840704ba6e8f3a52263673c0c66048e2dadc2e5ea637dfac3cc6c1358dcb"
+      },
+      "requiredMathematics": [
+        "첫 포물선의 꼭짓점·점/절편 등으로 계수 복원",
+        "계수 위치 대응에 따라 다른 이차함수 구성",
+        "새 이차함수의 축·꼭짓점·절편 등 지정 성질 계산"
+      ],
+      "neighboringSupport": [
+        {
+          "familyId": "legacy:mid:3-1|이차함수의 그래프 ⑵|10",
+          "course": "중3",
+          "source": "middle",
+          "provides": "꼭짓점·한 점에서 일반형 계수 복원",
+          "doesNotEstablish": "계수 재배치 후 둘째 함수 성질",
+          "evidence": [
+            {
+              "path": "src/lib/middle/m3Func.ts",
+              "line": 1777
+            }
+          ],
+          "observation": "static-source-and-three-runtime-outputs"
+        },
+        {
+          "familyId": "legacy:mid:3-1|이차함수의 그래프 ⑵|07",
+          "course": "중3",
+          "source": "middle",
+          "provides": "평행이동·전개·계수 결합값",
+          "doesNotEstablish": "계수 위치가 달라진 둘째 이차함수",
+          "evidence": [
+            {
+              "path": "src/lib/middle/m3Func.ts",
+              "line": 1623
+            }
+          ],
+          "observation": "static-source-and-three-runtime-outputs"
+        },
+        {
+          "familyId": "exam-advanced:parabola-line-chain",
+          "course": "중3",
+          "source": "authored",
+          "provides": "포물선에서 복원한 계수를 새 직선의 기울기에 재사용",
+          "doesNotEstablish": "둘째 함수가 직선이며 계수 재배치 이차함수의 성질을 묻지 않음",
+          "evidence": [
+            {
+              "path": "src/lib/examStudy/families/advanced/graph.ts",
+              "line": 367
+            }
+          ],
+          "observation": "static-source-and-three-runtime-outputs"
+        }
+      ],
+      "missingCoupling": [
+        "계수를 더하거나 직선에 재사용하는 과제로 이차함수의 계수 역할 전환을 대체할 수 없음",
+        "중2 직선과 동일 ID이지만 과정별 수학 및 검증이 별개"
+      ],
+      "minimumIndependentAuthoring": [
+        "자체 첫 그래프·계수 위치 대응·둘째 함수의 목표를 명시",
+        "둘째 최고차항 0과 같은 계수 때문에 재배치가 무의미한 영역을 처리"
+      ],
+      "minimumIndependentProof": [
+        "독립 전개로 첫 (A,B,C)와 둘째 (A′,B′,C′) 재구성",
+        "A′≠0 및 축·꼭짓점·지정 절편 대입 검산; x절편 목표면 실근 분기 확인",
+        "앞 그래프 정보와 재배치 각각의 필요성 대조",
+        "그림 사용 시 복원한 계수·표기·곡선의 일치"
+      ],
+      "difficultyAndPriority": {
+        "structuralChallenge": "계수 역할 전환과 두 이차함수의 연쇄",
+        "authoringBurden": "중간~높음",
+        "relativeAuthoringPriorityRank": 5,
+        "measuredStudentDifficulty": null,
+        "priorityIsAuditJudgmentNotApproval": true
+      },
+      "evidence": [
+        {
+          "path": "src/lib/examStudy/requirements.ts",
+          "line": 119
+        },
+        {
+          "path": "src/lib/examStudy/profiles.ts",
+          "line": 113
+        },
+        {
+          "path": "docs/reports/math-engine-study-readiness-20261018/study-structures.json",
+          "line": 1582,
+          "jsonPointer": "/prior27Reclassified/25"
+        }
+      ]
+    },
+    {
+      "entryId": "number.coprime-symbolic-sum@중1",
+      "requirementId": "number.coprime-symbolic-sum",
+      "title": "기약 잔여류의 문자 구간 합",
+      "course": "중1",
+      "profileIds": [
+        "daeryun-m1"
+      ],
+      "currentCatalog": {
+        "requirementDefined": true,
+        "profileEligible": true,
+        "representation": "text",
+        "caseAnalysis": "enumerate",
+        "allowedResponses": [
+          "객관식",
+          "단답형"
+        ],
+        "matchingFamilyIds": [],
+        "matchingRegistrationCount": 0,
+        "coverageStatus": "unavailable",
+        "absenceKind": "no-fulfills-mapping-before-format-difficulty-or-render-filtering",
+        "existingFamilyCanFulfillAsRegistered": false
+      },
+      "runtime": {
+        "request": {
+          "profileId": "daeryun-m1",
+          "course": "중1",
+          "requirementIds": [
+            "number.coprime-symbolic-sum"
+          ],
+          "format": "혼합",
+          "count": 1,
+          "seed": 20261019,
+          "maxPerFamily": 1
+        },
+        "status": "unavailable",
+        "deliveredCount": 0,
+        "requirementResult": {
+          "id": "number.coprime-symbolic-sum",
+          "title": "서로소 잔여류의 기약분수 합",
+          "status": "unavailable",
+          "requested": 1,
+          "delivered": 0,
+          "reason": "완결 연습 0/1개. 이 요구에 등록된 대응 문형이 없습니다."
+        },
+        "digest": "2dbd179e3eb4223e64436d1d3ff4125610bdbe7b2ad1e4e2f093750a376f11b3"
+      },
+      "requiredMathematics": [
+        "고정 합성수 분모 D에서 gcd(분자,D)=1 필터",
+        "a=Dk+r의 유일 표현과 완전 잔여류",
+        "서로소 잔여류의 합과 문자 경계 사이 전체 합",
+        "제공된 합 항등식 적용"
+      ],
+      "neighboringSupport": [
+        {
+          "familyId": "legacy:mid:1-1|최대공약수와 최소공배수|32T",
+          "course": "중1",
+          "source": "middle",
+          "provides": "곱이 고정인 서로소 인수쌍의 모든 합",
+          "doesNotEstablish": "고정 분모의 기약 잔여류 또는 문자 구간 합이 아님",
+          "evidence": [
+            {
+              "path": "src/lib/middle/m1Top.ts",
+              "line": 272
+            }
+          ],
+          "observation": "static-source-and-three-runtime-outputs"
+        },
+        {
+          "familyId": "legacy:mid:1-1|정비례와 반비례|61W",
+          "course": "중1",
+          "source": "middle",
+          "provides": "약수 집합과 약수 합",
+          "doesNotEstablish": "서로소 잔여류의 문자 경계 합이 아님",
+          "evidence": [
+            {
+              "path": "src/lib/middle/m1Top4.ts",
+              "line": 306
+            }
+          ],
+          "observation": "static-source-and-three-runtime-outputs"
+        }
+      ],
+      "missingCoupling": [
+        "인수쌍/약수 집합에서 고정 분모의 기약 잔여류로 집합 자체가 달라짐",
+        "구체적 합계에서 문자 경계 전체의 일반화로 넘어가야 함"
+      ],
+      "minimumIndependentAuthoring": [
+        "자체 합성수 분모·문자 경계의 정수 범위·제공할 합 항등식",
+        "중1 답안에서 설명 없이 고등 정리를 사용하지 않음"
+      ],
+      "minimumIndependentProof": [
+        "각 분자의 유일한 Dk+r 표현 및 서로소 잔여류의 빠짐없는 목록 증명",
+        "r↔D−r 짝짓기로 잔여류 합 증명",
+        "여러 문자 경계를 대입하여 분자 전수 gcd 필터의 합과 문자식 대조",
+        "소수 거듭제곱/여러 소인수, 구간 길이 1, 잘못된 경계·분모 처리"
+      ],
+      "difficultyAndPriority": {
+        "structuralChallenge": "완전성 및 문자 일반화",
+        "authoringBurden": "높음",
+        "relativeAuthoringPriorityRank": 6,
+        "measuredStudentDifficulty": null,
+        "priorityIsAuditJudgmentNotApproval": true
+      },
+      "evidence": [
+        {
+          "path": "src/lib/examStudy/requirements.ts",
+          "line": 206
+        },
+        {
+          "path": "src/lib/examStudy/profiles.ts",
+          "line": 52
+        },
+        {
+          "path": "docs/reports/math-engine-study-readiness-20261018/source-profiles.json",
+          "line": 150
+        }
+      ]
+    },
+    {
+      "entryId": "function.radical-inverse-circle@공통수학2",
+      "requirementId": "function.radical-inverse-circle",
+      "title": "근호·연속 역함수·사선·외접원의 결합",
+      "course": "공통수학2",
+      "profileIds": [
+        "kyungshin-common2"
+      ],
+      "currentCatalog": {
+        "requirementDefined": true,
+        "profileEligible": true,
+        "representation": "figure-optional",
+        "caseAnalysis": "exclude",
+        "allowedResponses": [
+          "객관식",
+          "단답형"
+        ],
+        "matchingFamilyIds": [],
+        "matchingRegistrationCount": 0,
+        "coverageStatus": "unavailable",
+        "absenceKind": "no-fulfills-mapping-before-format-difficulty-or-render-filtering",
+        "existingFamilyCanFulfillAsRegistered": false
+      },
+      "runtime": {
+        "request": {
+          "profileId": "kyungshin-common2",
+          "course": "공통수학2",
+          "requirementIds": [
+            "function.radical-inverse-circle"
+          ],
+          "format": "혼합",
+          "count": 1,
+          "seed": 20261019,
+          "maxPerFamily": 1
+        },
+        "status": "unavailable",
+        "deliveredCount": 0,
+        "requirementResult": {
+          "id": "function.radical-inverse-circle",
+          "title": "근호함수·역함수와 외접원 연결",
+          "status": "unavailable",
+          "requested": 1,
+          "delivered": 0,
+          "reason": "완결 연습 0/1개. 이 요구에 등록된 대응 문형이 없습니다."
+        },
+        "digest": "deb2deaa6cffc34af200fd098a83250fe4042841ab8842bde7903814143b21bd"
+      },
+      "requiredMathematics": [
+        "근호함수의 단사 구간과 역함수 정의역 확정",
+        "각 곡선의 점 입사와 사선 조건 결합",
+        "비퇴화 삼각형과 비자명 외접원 조건",
+        "직선 매개변수의 모든 허용 해와 목표의 유일성"
+      ],
+      "neighboringSupport": [
+        {
+          "familyId": "exam-advanced:radical-triangle-area",
+          "course": "공통수학2",
+          "source": "authored",
+          "provides": "근호곡선 입사·좌표 넓이·최댓값",
+          "doesNotEstablish": "역함수·사선·외접원 결합 없음",
+          "evidence": [
+            {
+              "path": "src/lib/examStudy/families/advanced/continuous.ts",
+              "line": 227
+            }
+          ],
+          "observation": "static-source-and-three-runtime-outputs"
+        },
+        {
+          "familyId": "exam-advanced:finite-bijection-chain",
+          "course": "공통수학2",
+          "source": "authored",
+          "provides": "유한 집합의 직접·역·합성 대응",
+          "doesNotEstablish": "연속 근호 역함수의 가지·기하 조건이 아님",
+          "evidence": [
+            {
+              "path": "src/lib/examStudy/families/advanced/finite.ts",
+              "line": 103
+            }
+          ],
+          "observation": "static-source-and-three-runtime-outputs"
+        },
+        {
+          "familyId": "exam-advanced:two-centers-angle",
+          "course": "중2",
+          "source": "authored",
+          "provides": "중2 내심·외심 각 연결",
+          "doesNotEstablish": "다른 과정이며 연속함수와 직선 매개변수를 결합하지 않음",
+          "evidence": [
+            {
+              "path": "src/lib/examStudy/families/advanced/geometry.ts",
+              "line": 451
+            }
+          ],
+          "observation": "static-source-and-three-runtime-outputs"
+        }
+      ],
+      "missingCoupling": [
+        "역함수 그래프 위 두 점이 자동으로 좌표를 뒤바꾼 한 쌍이라는 가정은 불가",
+        "비퇴화 삼각형의 외접원 존재 자체는 매개변수 결정의 추가 제약이 아님",
+        "근호·역함수·원 조건의 동시 일관성과 모든 해/유일성 증명이 없음"
+      ],
+      "minimumIndependentAuthoring": [
+        "자체 근호함수·단사 구간·역함수 정의역·점 역할·사선·목표를 명시",
+        "중심/반지름/통과점 등 실제로 매개변수를 제한하는 자작 외접원 조건",
+        "원자료의 불일치 답안을 gold로 사용하지 않음"
+      ],
+      "minimumIndependentProof": [
+        "대칭 반사와 각 곡선 입사식을 따로 수립",
+        "제곱 전 부호/정의역 보존 및 모든 후보 원식 재대입",
+        "다른 원 방정식 또는 좌표 행렬식으로 외접원 조건 독립 검산",
+        "중복점·공선·접선·무해·복수해와 조건 제거 대조"
+      ],
+      "difficultyAndPriority": {
+        "structuralChallenge": "연속함수의 가지·좌표 기하·유일성",
+        "authoringBurden": "가장 높음",
+        "relativeAuthoringPriorityRank": 7,
+        "measuredStudentDifficulty": null,
+        "priorityIsAuditJudgmentNotApproval": true
+      },
+      "evidence": [
+        {
+          "path": "src/lib/examStudy/requirements.ts",
+          "line": 302
+        },
+        {
+          "path": "src/lib/examStudy/profiles.ts",
+          "line": 133
+        },
+        {
+          "path": "docs/reports/math-engine-study-readiness-20261018/source-profiles.json",
+          "line": 414
+        },
+        {
+          "path": "src/__tests__/unit/examStudyAdvanced.test.ts",
+          "line": 44
+        },
+        {
+          "path": "docs/reports/math-exam-engine-upgrade-20261018/advanced-implementation.md",
+          "line": 5
+        }
+      ]
+    }
+  ],
+  "sharedMinimumEvidenceForFutureFull": {
+    "checks": [
+      "independent-solution",
+      "essential-conditions"
+    ],
+    "additionalWhereApplicable": [
+      "strict rendering and information correspondence for actual figures",
+      "native rubric for explicitly written-response authoring"
+    ],
+    "proofDesignOnlyNotExecutedHere": true,
+    "requirements": [
+      "independent printed-condition solution, not generator facts/answer reuse",
+      "bounded domain with completeness and boundary cases",
+      "wrong-answer and essential-condition negative controls"
+    ],
+    "evidence": [
+      {
+        "path": "src/lib/examStudy/evidence.ts",
+        "line": 14
+      }
+    ]
+  },
+  "priorityPolicy": {
+    "order": [
+      "model.circle-revolution-percentage@중1",
+      "model.doubling-time-offset@중1",
+      "graph.translated-coefficient-reuse@중2",
+      "coord.intercept-integer-area@중2",
+      "graph.translated-coefficient-reuse@중3",
+      "number.coprime-symbolic-sum@중1",
+      "function.radical-inverse-circle@공통수학2"
+    ],
+    "basis": "audit judgment using neighboring reuse and independent proof burden; no implementation was requested",
+    "notMeasuredStudentDifficultyOrSchoolFrequency": true
+  },
+  "schoolCrossUse": {
+    "sameCourseSameDemandReusable": true,
+    "familiesNotSchoolOwned": true,
+    "knownSchoolCourseAndProfileRequirementsAreEnforced": true,
+    "explicitGeneralFamilySelectionExcludesSchoolNameFromMathSeed": true,
+    "m2AndM3TranslatedCoefficientEntriesNeedSeparateMathematicalProof": true,
+    "renamingSchoolDoesNotEstablishNewCoverage": true,
+    "evidence": [
+      {
+        "path": "src/lib/examStudy/profiles.ts",
+        "line": 1
+      },
+      {
+        "path": "src/lib/examStudy/generate.ts",
+        "line": 81
+      },
+      {
+        "path": "src/lib/examStudy/generate.ts",
+        "line": 232
+      }
+    ]
+  },
+  "sourceScope": {
+    "siteReopened": false,
+    "originalQuestionTextOrImagesCopiedOrSaved": false,
+    "source": "retained abstract audits and current source only; no source-site call",
+    "profiles": [
+      {
+        "profileId": "daeryun-m1",
+        "sourceYear": 2025,
+        "semester": 1,
+        "round": "기말",
+        "visible": 19,
+        "listed": 22,
+        "unconfirmed": 3,
+        "currentSelectedRequirements": 11,
+        "selection": "purposive abstract demands; three hidden tasks remain unknown",
+        "evidence": [
+          {
+            "path": "src/lib/examStudy/profiles.ts",
+            "line": 32
+          },
+          {
+            "path": "docs/reports/math-engine-study-readiness-20261018/source-profiles.json",
+            "line": 18
+          }
+        ]
+      },
+      {
+        "profileId": "daeryun-m2",
+        "sourceYear": 2025,
+        "semester": 1,
+        "round": "기말",
+        "visible": 18,
+        "listed": 18,
+        "unconfirmed": 0,
+        "currentSelectedRequirements": 10,
+        "historicalAbstractBundles": 9,
+        "countExplanation": "last selected source card contains two independent modeling subproblems; current profile has ten requirements",
+        "evidence": [
+          {
+            "path": "src/lib/examStudy/profiles.ts",
+            "line": 58
+          },
+          {
+            "path": "docs/reports/math-engine-study-readiness-20261018/source-profiles.json",
+            "line": 214
+          },
+          {
+            "path": "docs/reports/math-engine-study-readiness-20261018/source-profiles.json",
+            "line": 314
+          }
+        ]
+      },
+      {
+        "profileId": "kyungmyung-m3",
+        "sourceYear": 2025,
+        "semester": 1,
+        "round": "기말",
+        "visible": 22,
+        "listed": 22,
+        "unconfirmed": 1,
+        "currentSelectedRequirements": 4,
+        "historicalSource": "prior-middle3-focused5 in study-structures, not the new profiles list in source-profiles",
+        "evidence": [
+          {
+            "path": "src/lib/examStudy/profiles.ts",
+            "line": 101
+          },
+          {
+            "path": "docs/reports/math-engine-study-readiness-20261018/study-structures.json",
+            "line": 1582
+          }
+        ]
+      },
+      {
+        "profileId": "kyungshin-common2",
+        "sourceYear": 2025,
+        "semester": 2,
+        "round": "기말",
+        "visible": 20,
+        "listed": 20,
+        "unconfirmedInCurrentProfile": 0,
+        "currentSelectedRequirements": 8,
+        "sourceQuality": "three unresolved answer discrepancies and unclassified difficulty; not answer gold or calibration",
+        "qualityWarningsNotAssignedToThisSpecificDemandWithoutEvidence": true,
+        "evidence": [
+          {
+            "path": "src/lib/examStudy/profiles.ts",
+            "line": 117
+          },
+          {
+            "path": "docs/reports/math-engine-study-readiness-20261018/source-profiles.json",
+            "line": 327
+          }
+        ]
+      }
+    ],
+    "notRandomSampleSchoolCensusOrCurriculumCensus": true,
+    "difficultyCalibration": "unmeasured",
+    "rawTypeLabelsDoNotEstablishMathematicalCorrespondence": true
+  },
+  "execution": {
+    "status": "passed",
+    "finalProbeFiles": 1,
+    "finalProbeTests": 1,
+    "nodeVersion": "v24.22.0",
+    "vitestVersion": "4.1.11",
+    "runtimeOutputTimestamp": "2026-10-19T00:32:31.582Z",
+    "publicExportsExecuted": [
+      "examStudyFamilies",
+      "getExamStudyCatalog",
+      "familyCoverage",
+      "generateExamStudy"
+    ],
+    "environment": {
+      "cleanEnvironment": true,
+      "NODE_ENV": "test",
+      "envDir": false,
+      "guardActiveInWorker": true,
+      "blockedOperationsDuringFinalRun": []
+    },
+    "requestScope": "one mixed-format, one-question, seed-20261019 request per selected profile/course/requirement; no prepare callback",
+    "neighborScope": "16 registered neighbors, three seed/variant pairs each; output observation only, no independent mathematical or render proof",
+    "seedVariantPairs": [
+      [
+        17,
+        0
+      ],
+      [
+        20261019,
+        1
+      ],
+      [
+        271828,
+        2
+      ]
+    ],
+    "independentMathematicalProofPerformed": false,
+    "apiAuthUiRenderOrPrintPerformed": false,
+    "harnessHistory": "initial output observation passed; guard-global visibility assertion then failed in Vitest isolation; setup bridged the observation array and final run passed; production code unchanged",
+    "reproduceCommand": "env -i PATH=/Users/pss/.nvm/versions/node/v24.22.0/bin:/usr/bin:/bin NODE_ENV=test /Users/pss/.nvm/versions/node/v24.22.0/bin/node --require ./.qa-artifacts/math-exam-engine-remaining-20261019/guard.cjs ./node_modules/vitest/vitest.mjs run --config .qa-artifacts/math-exam-engine-remaining-20261019/vitest.audit.config.mts",
+    "dependencies": {
+      "installationPerformed": false,
+      "localNodeModulesSymlinkTarget": "/Users/pss/Desktop/creative/today_/node_modules"
+    },
+    "artifactDirectory": ".qa-artifacts/math-exam-engine-remaining-20261019",
+    "artifacts": [
+      {
+        "path": ".qa-artifacts/math-exam-engine-remaining-20261019/runtime-results.json",
+        "sha256": "4f61b01fdca73e6133f8a8879f636932871eab0a21ffa65148129be5ab1ac60a"
+      },
+      {
+        "path": ".qa-artifacts/math-exam-engine-remaining-20261019/runtime-run.log",
+        "sha256": "84a6659fc05f7101db55f3cb88a22844ac83c5115609a2232cbb717f482d0ac3"
+      },
+      {
+        "path": ".qa-artifacts/math-exam-engine-remaining-20261019/runtime-guard-visibility-failed.log",
+        "sha256": "fe84117cc1067963978ea2dff2d65c6f0382e9449038fef1dfe2fce2fec636ba"
+      },
+      {
+        "path": ".qa-artifacts/math-exam-engine-remaining-20261019/vitest.audit.config.mts",
+        "sha256": "bff8257065f3095c7fa3c127a1026d148e70fc821000ef149890299f69267a43"
+      },
+      {
+        "path": ".qa-artifacts/math-exam-engine-remaining-20261019/unavailable.probe.test.ts",
+        "sha256": "f77b88e26667d9600297e20540491904e15fdac83ea3bc96138dbb760d56b845"
+      },
+      {
+        "path": ".qa-artifacts/math-exam-engine-remaining-20261019/guard.cjs",
+        "sha256": "1bc3f533121d6ec348d9a8864a4dea5c4bf99d5b7f31e81d78b9d7eec713ecbb"
+      },
+      {
+        "path": ".qa-artifacts/math-exam-engine-remaining-20261019/setup.guard.ts",
+        "sha256": "bbe255b32ec03a5f70a853c78983730891587e580dc23d2be794167cff51e2a4"
+      }
+    ],
+    "neighborOutputObservations": [
+      {
+        "familyId": "legacy:mid:1-1|일차방정식의 활용|01",
+        "course": "중1",
+        "title": "어떤 수에 대한 문제",
+        "source": "middle",
+        "fulfills": [
+          {
+            "requirement": "algebra.linear-model",
+            "level": "component"
+          },
+          {
+            "requirement": "written.dependent-formula-min-time",
+            "level": "component"
+          }
+        ],
+        "coverageForAuditedRequirements": {
+          "model.circle-revolution-percentage": "unavailable",
+          "model.doubling-time-offset": "unavailable",
+          "number.coprime-symbolic-sum": "unavailable",
+          "coord.intercept-integer-area": "unavailable",
+          "graph.translated-coefficient-reuse": "unavailable",
+          "function.radical-inverse-circle": "unavailable"
+        },
+        "samples": [
+          {
+            "seed": 17,
+            "variant": 0,
+            "digest": "4d2d4ec39a11afb1642215ce9c86bdc5c50e5fbdc0272eef88661400eacb6881"
+          },
+          {
+            "seed": 20261019,
+            "variant": 1,
+            "digest": "6998a4b59e2976f6db4717dd2f1ef9af728032cc480f24438e375ad58e9c62d5"
+          },
+          {
+            "seed": 271828,
+            "variant": 2,
+            "digest": "db71a720b6bc994e5a4305aa4f6b9bd3fdf3cfe5d0f6c191ff36c6cafa33d9cf"
+          }
+        ]
+      },
+      {
+        "familyId": "legacy:mid:1-1|일차방정식의 활용|25",
+        "course": "중1",
+        "title": "전체에 대한 백분율",
+        "source": "middle",
+        "fulfills": [],
+        "coverageForAuditedRequirements": {
+          "model.circle-revolution-percentage": "unavailable",
+          "model.doubling-time-offset": "unavailable",
+          "number.coprime-symbolic-sum": "unavailable",
+          "coord.intercept-integer-area": "unavailable",
+          "graph.translated-coefficient-reuse": "unavailable",
+          "function.radical-inverse-circle": "unavailable"
+        },
+        "samples": [
+          {
+            "seed": 17,
+            "variant": 0,
+            "digest": "4783925977dd63a7c2caa70fa96a4279054383bf5e43dae78cb539d6913d0a3c"
+          },
+          {
+            "seed": 20261019,
+            "variant": 1,
+            "digest": "6c922c2bd14e84ae6a3cfdca978cc8be8d32cff2c173438363fe1a976b8d3ab1"
+          },
+          {
+            "seed": 271828,
+            "variant": 2,
+            "digest": "6c922c2bd14e84ae6a3cfdca978cc8be8d32cff2c173438363fe1a976b8d3ab1"
+          }
+        ]
+      },
+      {
+        "familyId": "legacy:mid:1-1|일차방정식의 활용|26",
+        "course": "중1",
+        "title": "시계의 분침이 움직인 각",
+        "source": "middle",
+        "fulfills": [],
+        "coverageForAuditedRequirements": {
+          "model.circle-revolution-percentage": "unavailable",
+          "model.doubling-time-offset": "unavailable",
+          "number.coprime-symbolic-sum": "unavailable",
+          "coord.intercept-integer-area": "unavailable",
+          "graph.translated-coefficient-reuse": "unavailable",
+          "function.radical-inverse-circle": "unavailable"
+        },
+        "samples": [
+          {
+            "seed": 17,
+            "variant": 0,
+            "digest": "00c49df88ff9e093ea8179269f33704f4fc45abe3b2e3de61a78b653a72efa1d"
+          },
+          {
+            "seed": 20261019,
+            "variant": 1,
+            "digest": "98fd657366b3d65033fa893b2bd5367bc00d78785bb12f2622464bfcb0cabde7"
+          },
+          {
+            "seed": 271828,
+            "variant": 2,
+            "digest": "6d4c62697d91a2e3e112dabdd8cb5e7e807a550b748e701caddf63adc792e17a"
+          }
+        ]
+      },
+      {
+        "familyId": "legacy:mid:1-1|일차방정식의 활용|30",
+        "course": "중1",
+        "title": "톱니바퀴의 회전수 비",
+        "source": "middle",
+        "fulfills": [],
+        "coverageForAuditedRequirements": {
+          "model.circle-revolution-percentage": "unavailable",
+          "model.doubling-time-offset": "unavailable",
+          "number.coprime-symbolic-sum": "unavailable",
+          "coord.intercept-integer-area": "unavailable",
+          "graph.translated-coefficient-reuse": "unavailable",
+          "function.radical-inverse-circle": "unavailable"
+        },
+        "samples": [
+          {
+            "seed": 17,
+            "variant": 0,
+            "digest": "317b94c91d9991ac597146cc89c2e9ecc5912cc706f731d3ce7be8a787d4c0b7"
+          },
+          {
+            "seed": 20261019,
+            "variant": 1,
+            "digest": "1c2a61b7d9c19e4cf8feeb6c811c04be52bb2d1498f20928b2ab334e332a96b7"
+          },
+          {
+            "seed": 271828,
+            "variant": 2,
+            "digest": "2e7a828f9bbb14fa6d669c15ee25ac583d6ef8043512402cbab4f98787ee9846"
+          }
+        ]
+      },
+      {
+        "familyId": "legacy:mid:1-1|일차방정식의 활용|31",
+        "course": "중1",
+        "title": "증가한 양으로 처음 값 구하기",
+        "source": "middle",
+        "fulfills": [],
+        "coverageForAuditedRequirements": {
+          "model.circle-revolution-percentage": "unavailable",
+          "model.doubling-time-offset": "unavailable",
+          "number.coprime-symbolic-sum": "unavailable",
+          "coord.intercept-integer-area": "unavailable",
+          "graph.translated-coefficient-reuse": "unavailable",
+          "function.radical-inverse-circle": "unavailable"
+        },
+        "samples": [
+          {
+            "seed": 17,
+            "variant": 0,
+            "digest": "c85a1a2a17f8c9c2d8aa728c85ef4d820f4e24b10ce8b5387dcf8fb8b08956c9"
+          },
+          {
+            "seed": 20261019,
+            "variant": 1,
+            "digest": "5d888e89ea76d558ebea3c1c75631cd14e3bcf75cb97bec5ff616919a6aeb335"
+          },
+          {
+            "seed": 271828,
+            "variant": 2,
+            "digest": "336d1312dc63957d10c738c9208b5cce3e5fb444ba1fcbdc2cd26901b715f6f7"
+          }
+        ]
+      },
+      {
+        "familyId": "legacy:mid:1-1|최대공약수와 최소공배수|32T",
+        "course": "중1",
+        "title": "최대공약수와 최소공배수만 주어질 때 두 수의 합이 될 수 있는 값",
+        "source": "middle",
+        "fulfills": [],
+        "coverageForAuditedRequirements": {
+          "model.circle-revolution-percentage": "unavailable",
+          "model.doubling-time-offset": "unavailable",
+          "number.coprime-symbolic-sum": "unavailable",
+          "coord.intercept-integer-area": "unavailable",
+          "graph.translated-coefficient-reuse": "unavailable",
+          "function.radical-inverse-circle": "unavailable"
+        },
+        "samples": [
+          {
+            "seed": 17,
+            "variant": 0,
+            "digest": "a6baa24cfd312b355b6c53e97ff7b95915aadc5f54b5260e0853b273f341a13d"
+          },
+          {
+            "seed": 20261019,
+            "variant": 1,
+            "digest": "e2b3da548c35cd8d7428842a15062816e5f1683348a2836b018dedc7b3f6cb38"
+          },
+          {
+            "seed": 271828,
+            "variant": 2,
+            "digest": "c7bc1804b5c220f393b428493d13b0c0b7a07ce99b80bf19b59a7557afea82bf"
+          }
+        ]
+      },
+      {
+        "familyId": "legacy:mid:1-1|정비례와 반비례|61W",
+        "course": "중1",
+        "title": "반비례 관계의 그래프 위에서 좌표가 모두 자연수인 점",
+        "source": "middle",
+        "fulfills": [],
+        "coverageForAuditedRequirements": {
+          "model.circle-revolution-percentage": "unavailable",
+          "model.doubling-time-offset": "unavailable",
+          "number.coprime-symbolic-sum": "unavailable",
+          "coord.intercept-integer-area": "unavailable",
+          "graph.translated-coefficient-reuse": "unavailable",
+          "function.radical-inverse-circle": "unavailable"
+        },
+        "samples": [
+          {
+            "seed": 17,
+            "variant": 0,
+            "digest": "3a87551fac54ced909a06e2a7a2c0a955f79258d8b056308c044be229fe825d6"
+          },
+          {
+            "seed": 20261019,
+            "variant": 1,
+            "digest": "d70ff97b5b7e01196f9486d1b78f1245cb58af5f7c8d5ded19a3e06f190e26b1"
+          },
+          {
+            "seed": 271828,
+            "variant": 2,
+            "digest": "abca1868751061b0ad341a45b907b4b5eb3b1079c17bdecc300b376ca11f7f8d"
+          }
+        ]
+      },
+      {
+        "familyId": "legacy:mid:2-1|일차함수와 그 그래프  ⑴|05",
+        "course": "중2",
+        "title": "일차함수의 그래프의 평행이동",
+        "source": "middle",
+        "fulfills": [],
+        "coverageForAuditedRequirements": {
+          "model.circle-revolution-percentage": "unavailable",
+          "model.doubling-time-offset": "unavailable",
+          "number.coprime-symbolic-sum": "unavailable",
+          "coord.intercept-integer-area": "unavailable",
+          "graph.translated-coefficient-reuse": "unavailable",
+          "function.radical-inverse-circle": "unavailable"
+        },
+        "samples": [
+          {
+            "seed": 17,
+            "variant": 0,
+            "digest": "a9627cd9c95650423be77b14b4946c89324185ca6e5eadec189b3dcd62024f74"
+          },
+          {
+            "seed": 20261019,
+            "variant": 1,
+            "digest": "1c3c92ac938bf23ed0024ca04ee3879930ace1da15447d3cd6b38f9eaf2dba1b"
+          },
+          {
+            "seed": 271828,
+            "variant": 2,
+            "digest": "acda000cfceab9411c378fd565a641e78cb00cfd4047ad3b4dc70fd6dcc743b9"
+          }
+        ]
+      },
+      {
+        "familyId": "legacy:mid:2-1|일차함수와 그 그래프  ⑴|11",
+        "course": "중2",
+        "title": "일차함수의 그래프와 좌표축으로 둘러싸인 도형의 넓이",
+        "source": "middle",
+        "fulfills": [],
+        "coverageForAuditedRequirements": {
+          "model.circle-revolution-percentage": "unavailable",
+          "model.doubling-time-offset": "unavailable",
+          "number.coprime-symbolic-sum": "unavailable",
+          "coord.intercept-integer-area": "unavailable",
+          "graph.translated-coefficient-reuse": "unavailable",
+          "function.radical-inverse-circle": "unavailable"
+        },
+        "samples": [
+          {
+            "seed": 17,
+            "variant": 0,
+            "digest": "970bd967d43f49414167d0277e840c960e7bb2e2f056c6be65f331844664f3d2"
+          },
+          {
+            "seed": 20261019,
+            "variant": 1,
+            "digest": "c113d5c7ab67c0e6185325274eaf7f12697ffbb331fd8579a247afb19ba90a3d"
+          },
+          {
+            "seed": 271828,
+            "variant": 2,
+            "digest": "10e305641c53bd1b05dc4d79f3f2cc15bfca4bdf0e29c953af26a5e2f03250d7"
+          }
+        ]
+      },
+      {
+        "familyId": "legacy:mid:2-1|일차함수와 그 그래프  ⑵|02",
+        "course": "중2",
+        "title": "일차함수 의 그래프와 의 부호",
+        "source": "middle",
+        "fulfills": [],
+        "coverageForAuditedRequirements": {
+          "model.circle-revolution-percentage": "unavailable",
+          "model.doubling-time-offset": "unavailable",
+          "number.coprime-symbolic-sum": "unavailable",
+          "coord.intercept-integer-area": "unavailable",
+          "graph.translated-coefficient-reuse": "unavailable",
+          "function.radical-inverse-circle": "unavailable"
+        },
+        "samples": [
+          {
+            "seed": 17,
+            "variant": 0,
+            "digest": "30e77cfc6a3f788bbac7d5bf001894473813d2df5ac32a1bdf66da1cee8a9144"
+          },
+          {
+            "seed": 20261019,
+            "variant": 1,
+            "digest": "805e03074e782adcef35ba38d66aff6ffa130e790ef586511faf69112f6c1926"
+          },
+          {
+            "seed": 271828,
+            "variant": 2,
+            "digest": "4a773f4d97de6fc927b64f0fabd5ddda0c4fcb03ad8370bac9c4f99c78d5fd61"
+          }
+        ]
+      },
+      {
+        "familyId": "legacy:mid:3-1|이차함수의 그래프 ⑵|07",
+        "course": "중3",
+        "title": "이차함수 의 그래프의 평행이동",
+        "source": "middle",
+        "fulfills": [],
+        "coverageForAuditedRequirements": {
+          "model.circle-revolution-percentage": "unavailable",
+          "model.doubling-time-offset": "unavailable",
+          "number.coprime-symbolic-sum": "unavailable",
+          "coord.intercept-integer-area": "unavailable",
+          "graph.translated-coefficient-reuse": "unavailable",
+          "function.radical-inverse-circle": "unavailable"
+        },
+        "samples": [
+          {
+            "seed": 17,
+            "variant": 0,
+            "digest": "342d7fb09cd30a11023e863d9a8a713aa6a25881db60a5f530a0369c87c0de0f"
+          },
+          {
+            "seed": 20261019,
+            "variant": 1,
+            "digest": "2f1de2181adc77e031362ede6190f68c5563b31ce67d053ed8ad5cd2da0e6a74"
+          },
+          {
+            "seed": 271828,
+            "variant": 2,
+            "digest": "ef682e2c8abba6d1a82f5c487ff8d2bff37ac9171abe55d6c474899ce3fd9b25"
+          }
+        ]
+      },
+      {
+        "familyId": "legacy:mid:3-1|이차함수의 그래프 ⑵|10",
+        "course": "중3",
+        "title": "이차함수의 식 구하기 꼭짓점과 다른 한 점을 알 때",
+        "source": "middle",
+        "fulfills": [],
+        "coverageForAuditedRequirements": {
+          "model.circle-revolution-percentage": "unavailable",
+          "model.doubling-time-offset": "unavailable",
+          "number.coprime-symbolic-sum": "unavailable",
+          "coord.intercept-integer-area": "unavailable",
+          "graph.translated-coefficient-reuse": "unavailable",
+          "function.radical-inverse-circle": "unavailable"
+        },
+        "samples": [
+          {
+            "seed": 17,
+            "variant": 0,
+            "digest": "863ca228926bf5b0e589c378921e2505607c9953264c5c5fe9aaf972987b4415"
+          },
+          {
+            "seed": 20261019,
+            "variant": 1,
+            "digest": "a9506a7ca7aa1c2280afe65c15f561640b8fcc02f227d649dd15b9edb46adaa5"
+          },
+          {
+            "seed": 271828,
+            "variant": 2,
+            "digest": "5f126ec4cfd71a70996059cc89f5366e765d92f86bd5690bcbb3588d7fba7784"
+          }
+        ]
+      },
+      {
+        "familyId": "exam-advanced:parabola-line-chain",
+        "course": "중3",
+        "title": "포물선 계수에서 직선과 다른 교점까지",
+        "source": "authored",
+        "fulfills": [
+          {
+            "requirement": "graph.parabola-line-chain",
+            "level": "full"
+          }
+        ],
+        "coverageForAuditedRequirements": {
+          "model.circle-revolution-percentage": "unavailable",
+          "model.doubling-time-offset": "unavailable",
+          "number.coprime-symbolic-sum": "unavailable",
+          "coord.intercept-integer-area": "unavailable",
+          "graph.translated-coefficient-reuse": "unavailable",
+          "function.radical-inverse-circle": "unavailable"
+        },
+        "samples": [
+          {
+            "seed": 17,
+            "variant": 0,
+            "digest": "d01ab20ef773af9fc6c0e327c90b920b18f4d1e9db6195ebe704a0376058a677"
+          },
+          {
+            "seed": 20261019,
+            "variant": 1,
+            "digest": "6f998329761f9d5bfb14e14a9fca80b669fb8a5475e9f685fa2c3039d1e74614"
+          },
+          {
+            "seed": 271828,
+            "variant": 2,
+            "digest": "66da2b6351aa251b75bfaf71dc1cd28b3608cf99e8d155842a80e4aa76fafe6c"
+          }
+        ]
+      },
+      {
+        "familyId": "exam-advanced:radical-triangle-area",
+        "course": "공통수학2",
+        "title": "근호곡선 위 움직이는 점과 넓이의 최댓값",
+        "source": "authored",
+        "fulfills": [
+          {
+            "requirement": "function.radical-area-maximum",
+            "level": "full"
+          }
+        ],
+        "coverageForAuditedRequirements": {
+          "model.circle-revolution-percentage": "unavailable",
+          "model.doubling-time-offset": "unavailable",
+          "number.coprime-symbolic-sum": "unavailable",
+          "coord.intercept-integer-area": "unavailable",
+          "graph.translated-coefficient-reuse": "unavailable",
+          "function.radical-inverse-circle": "unavailable"
+        },
+        "samples": [
+          {
+            "seed": 17,
+            "variant": 0,
+            "digest": "b3523ffb28e31deaac33cced2be08ee93504be38475782e91b80bf28b617868a"
+          },
+          {
+            "seed": 20261019,
+            "variant": 1,
+            "digest": "26060e964b08de06cf6816fa6e4c2bbd84a8630b4f2e6315f6841d85f1ce49ee"
+          },
+          {
+            "seed": 271828,
+            "variant": 2,
+            "digest": "16bf339efed0ca643eac5e82d0ee10c38ff68833ac3acd2dbdf5bd63851f27c3"
+          }
+        ]
+      },
+      {
+        "familyId": "exam-advanced:finite-bijection-chain",
+        "course": "공통수학2",
+        "title": "세 집합의 직접·역·합성 대응 복원",
+        "source": "authored",
+        "fulfills": [
+          {
+            "requirement": "function.finite-bijection-chain",
+            "level": "full"
+          }
+        ],
+        "coverageForAuditedRequirements": {
+          "model.circle-revolution-percentage": "unavailable",
+          "model.doubling-time-offset": "unavailable",
+          "number.coprime-symbolic-sum": "unavailable",
+          "coord.intercept-integer-area": "unavailable",
+          "graph.translated-coefficient-reuse": "unavailable",
+          "function.radical-inverse-circle": "unavailable"
+        },
+        "samples": [
+          {
+            "seed": 17,
+            "variant": 0,
+            "digest": "7e30d522abde05b024a8d937adf57f0bc53c8cd61512809ee9971bfebeb01de6"
+          },
+          {
+            "seed": 20261019,
+            "variant": 1,
+            "digest": "3b6e9534f8ab393857980135519902ccd3b8712e23264c0faea1f10680371a7f"
+          },
+          {
+            "seed": 271828,
+            "variant": 2,
+            "digest": "85c24fcca17d41d1b6ffc31d651d2fef05b80327bb189ec102c4dc2a575732e1"
+          }
+        ]
+      },
+      {
+        "familyId": "exam-advanced:two-centers-angle",
+        "course": "중2",
+        "title": "외심·내심의 순서와 이등변삼각형 각",
+        "source": "authored",
+        "fulfills": [
+          {
+            "requirement": "geometry.two-centers-angle",
+            "level": "full"
+          }
+        ],
+        "coverageForAuditedRequirements": {
+          "model.circle-revolution-percentage": "unavailable",
+          "model.doubling-time-offset": "unavailable",
+          "number.coprime-symbolic-sum": "unavailable",
+          "coord.intercept-integer-area": "unavailable",
+          "graph.translated-coefficient-reuse": "unavailable",
+          "function.radical-inverse-circle": "unavailable"
+        },
+        "samples": [
+          {
+            "seed": 17,
+            "variant": 0,
+            "digest": "4498e6e7d0b8f65e551d1675955635da4d10fef704343cc00bbb263507e6f3ab"
+          },
+          {
+            "seed": 20261019,
+            "variant": 1,
+            "digest": "2ac90d01cd6bf334bea2dd4e4915300371026b2388baac76124a22b7776385cd"
+          },
+          {
+            "seed": 271828,
+            "variant": 2,
+            "digest": "e5edb7e3fb35b8c1738bee7446cfbba0c6ce7cfc567c3fa6a7ce0aedcba9df56"
+          }
+        ]
+      }
+    ]
+  },
+  "limitations": [
+    "Only these six unique IDs and seven course-qualified entries were audited; the separate unverified audit is outside ownership.",
+    "No new generator, mapping change, evidence promotion, or independent solution proof was implemented.",
+    "Neighbor source review and observed outputs are not all-branch execution or full coupled-demand proof.",
+    "Pure runtime, not API/authentication/UI/render/print/production verification.",
+    "No DB, network/provider, production login, .env read, install, Prisma, build, or push.",
+    "No school-wide coverage, calibrated difficulty, prediction rate, student learning effect, or full official standards alignment claim.",
+    "Registrations, formats, seeds, answer order, target sum/count/rank variants are not new logical families.",
+    "Absence of a catalog mapping is not proof that all other banks, textbooks, or unregistered authoring paths lack the underlying mathematics.",
+    "This audit does not imply six or seven new families are necessarily required; reuse/extension needs later authoring and evidence."
+  ],
+  "trackedChanges": [
+    "docs/reports/math-exam-engine-remaining-20261019/unavailable-audit.md",
+    "docs/reports/math-exam-engine-remaining-20261019/unavailable-audit.json"
+  ],
+  "sourceFileSha256": {
+    "AGENTS.md": "a2aec37746e1c76c3f559e93e544686dc3f67ddf6ede37e18a2210b771f6dac0",
+    "docs/reports/math-engine-study-readiness-20261018/source-profiles.json": "f21fa9edbb18399d57b6ca3278f6d393306fdd4e2c5d277efb861372a844b75a",
+    "docs/reports/math-engine-study-readiness-20261018/study-structures.json": "38910e063a180bb84d025300e8ea5947e444b76c738c28d318625587a48ccc53",
+    "docs/reports/math-engine-study-readiness-20261018/study-structures.md": "bf7034e56a2b61311e0ecc2135b32ac6c46a87cb0cf6463a60afcae473d018fe",
+    "docs/reports/math-exam-engine-upgrade-20261018/README.md": "c4cf0800280fc5c4e19492162f08a2336190e990ad3dfdb60a3388c78200d3f1",
+    "docs/reports/math-exam-engine-upgrade-20261018/advanced-implementation.md": "fec6df65a672c661d1fc52f9aa53a3e444c81608917adf4e5e961e740c88c792",
+    "docs/reports/math-exam-engine-upgrade-20261018/core-implementation.md": "a9a260cf8aae2ed25b5523251f87d410d63817dc1aa0ddd078be9ad97d0e4c4a",
+    "src/__tests__/unit/examStudyAdvanced.test.ts": "125cc81668cbf275f1e132dff532e282a4ae5fb4c00b54461e82001bbdd9403e",
+    "src/contracts/examStudy.contract.ts": "c2ba339ba930dc7cf96404276194b34827ae52a0035874a437626d861155f42c",
+    "src/lib/examStudy/adapters.ts": "3f0d36d3d8bda2233eb9c8941af5d4d23580cf6ffad4a99f9feb11b415deeba5",
+    "src/lib/examStudy/evidence.ts": "0208e4d17853e282dccda015eef76b53eadee86e89094ac1f01a73489fa8708b",
+    "src/lib/examStudy/families/advanced/continuous.ts": "ecdfd37782d7e8db2574ed081d8b78f7dfa2254b89637fc00be4105dc28d8270",
+    "src/lib/examStudy/families/advanced/finite.ts": "d3ed53f3db341517d18498f5ea94f843c88e71ef1991665f35cf97a0fa76ec62",
+    "src/lib/examStudy/families/advanced/geometry.ts": "875ca67d24ac5812fdb179015f1a5b1ccfea2f53fd006df1f2afdc0b51ef71eb",
+    "src/lib/examStudy/families/advanced/graph.ts": "216567f4a87ad14d034905bf8619df86ea338a7642e48a04df157232126f1efb",
+    "src/lib/examStudy/families/advanced/index.ts": "a69e45e87edeb84cb0109316f02685484f8f7e1c72b6be46dd3a85721487f150",
+    "src/lib/examStudy/families/middle/index.ts": "d26bcd8c684ed79140f15b8d0b0112ba7c30b1a5f8a562822af702d85570cbeb",
+    "src/lib/examStudy/generate.ts": "9f1e7349690692b01a28fbbdee73a34a45b1a6f16ed30fe2e5ca5bc07cd68206",
+    "src/lib/examStudy/index.ts": "923e360c828f00784ed8bd4b2c53c2c3cb481aa67b3a018019bf28999a4776ee",
+    "src/lib/examStudy/profiles.ts": "25370538b3d290cfc0bcf078db42916864bd576b45b7bfdd809b1a9225879de6",
+    "src/lib/examStudy/registry.ts": "0062167b48cd9e6ff19a65d5b6810e9283041c40a97335da2a4ac5d74712a618",
+    "src/lib/examStudy/requirements.ts": "060a46bcd488aaeb138af98ef095887a141f2689d5a499e346e6daab4d0bdde1",
+    "src/lib/middle/m1Book1.ts": "a2c8dd593e019e6f8ac04cc28ed6ec036885014f62b5bc946dbcec20fefd447c",
+    "src/lib/middle/m1LinearApply.ts": "f7071cb8c6bfa47db9db23eaf5d1f8c54256701dbd47399b338c3d1694cd4cca",
+    "src/lib/middle/m1Top.ts": "b94d743f7bf1746b7941e4980cb80cee44f0f49bf4ad75d852399cbfb98be130",
+    "src/lib/middle/m1Top4.ts": "a0274a78deb521e64c567acda1e65c342c15970121a46e84c2b1b11a9e1401e4",
+    "src/lib/middle/m2Func.ts": "3100f78bf8ae2e0bf60c4ff83e4d1f164e001a174367d7e3be3ae20cd0b6d4b7",
+    "src/lib/middle/m2Line.ts": "d3e1df2cf37a51fb723a4a9a5be40c3ec37ee1e32ac3aba0a0594a5a43430ee9",
+    "src/lib/middle/m3Func.ts": "02cb0e9de68a42ca30f96f3979e5a0c4e9657b7e84f0890562867f074f60a553"
+  }
+}
