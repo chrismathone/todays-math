@@ -1,0 +1,42 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/unit/examStudyCompletion.test.ts (29 tests) 16668ms
+     ✓ provides the selected demands within the grade eligibility gate for 'daeryun-m1'  12457ms
+     ✓ provides the selected demands within the grade eligibility gate for 'daeryun-m2'  416ms
+     ✓ provides the selected demands within the grade eligibility gate for 'kyungmyung-m3'  1119ms
+ ✓ src/__tests__/unit/examStudyIntegration.test.ts (7 tests) 13339ms
+     ✓ keeps all nine courses available without multiplying authored families by response format  11097ms
+     ✓ runs authenticated API → actual math → strict Python SVG → reproducible output confirmation  1582ms
+ ✓ src/__tests__/unit/examStudyCoreLegacy.test.ts (15 tests) 12494ms
+     ✓ preserves original registry identities/counts and exposes actual supported courses only  12038ms
+ ✓ src/__tests__/unit/examStudyInverseCoefficient.test.ts (10 tests) 11673ms
+     ✓ retains the internal implementation but excludes it from selectable catalogs without inventing a live family  11328ms
+ ✓ src/__tests__/unit/examStudyInverseRootTable.test.ts (8 tests) 11473ms
+     ✓ independently checks all45 actual tables, integer rounding bounds and unique reverse mappings  428ms
+     ✓ keeps the internal factory hidden and the actual Unit proposal separate from live-family, rights and grade approval  10956ms
+ ✓ src/__tests__/unit/mathSrsCourseServer.test.ts (34 tests) 2739ms
+     ✓ bounds retained history while preserving exact lifetime and daily totals  2250ms
+ ✓ src/__tests__/unit/examStudyCurriculumEligibility.test.ts (10 tests) 11225ms
+     ✓ hides the held template from selectable catalogs and retains its definition for internal review  11052ms
+ ✓ src/__tests__/unit/courseFollowUpReader.test.ts (7 tests) 3238ms
+     ✓ accepts an opened solution after giving up or a self-check «다시 연습»  2971ms
+ ✓ src/__tests__/unit/courseChoicePlausibility.test.ts (2 tests) 1528ms
+     ✓ keeps every 초5 engine choice set free of far values  1392ms
+ ✓ src/__tests__/unit/srsStoredContractWalk.test.ts (4 tests) 1030ms
+     ✓ chooses 초5 and a unit in the settings, then studies every day without a teacher plan  478ms
+ ✓ src/__tests__/api/mathSrsCourseRoutes.test.ts (15 tests) 394ms
+ ✓ src/__tests__/unit/examStudyMiddleRemaining.test.ts (13 tests) 782ms
+ ✓ src/__tests__/unit/examStudyMiddle.test.ts (49 tests) 504ms
+ ✓ src/__tests__/unit/examStudyCore.test.ts (58 tests) 295ms
+ ✓ src/__tests__/unit/examStudyRoutes.test.ts (23 tests) 226ms
+ ✓ src/__tests__/unit/examStudyM1StudentMethods.test.ts (6 tests) 203ms
+ ✓ src/__tests__/unit/examStudyCoreLabel.test.ts (12 tests) 174ms
+ ✓ src/__tests__/unit/examStudyContract.test.ts (17 tests) 119ms
+
+ Test Files  18 passed (18)
+      Tests  319 passed (319)
+   Start at  00:01:52
+   Duration  162.24s (transform 12.10s, setup 20.29s, import 29.36s, tests 88.10s, environment 20.04s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r16.json
