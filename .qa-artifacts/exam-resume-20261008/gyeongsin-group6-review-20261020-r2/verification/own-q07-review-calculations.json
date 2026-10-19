@@ -1,0 +1,104 @@
+{
+  "calculations": {
+    "radius_cm": 6,
+    "diameter_cm": 12,
+    "OT_cm": "3√3",
+    "OU_cm": "2√3",
+    "TU_cm": "√3",
+    "OM_cm": 3,
+    "RT_cm": 3,
+    "OT_squared_cm2": 27,
+    "OU_squared_cm2": 12,
+    "AAauthor": "OMU~OTR: O↔O,M↔T,U↔R. Both right at M,T; ∠MOU=∠TOR=30°. Thus OU/OR=OM/OT=1/√3. Distinct from own raw using OTQ; both correspondences valid because OQR equilateral.",
+    "noTrigJustification": "OM=r/2 follows equilateral OPQ altitude to base OQ. A 30° right triangle half-hypotenuse property here follows that equilateral construction, without sine/cosine. OT²=3r²/4 by Pythagoras; TU=r√3/6 and TU=√3 give r6 by positive-length division, no calculus/monotonicity theorem required.",
+    "allChoices": [
+      {
+        "mark": "①",
+        "diameter_cm": 8,
+        "implied_TU_squared_cm2": "4/3",
+        "matches": false
+      },
+      {
+        "mark": "②",
+        "diameter_cm": 10,
+        "implied_TU_squared_cm2": "25/12",
+        "matches": false
+      },
+      {
+        "mark": "③",
+        "diameter_cm": 12,
+        "implied_TU_squared_cm2": "3",
+        "matches": true
+      },
+      {
+        "mark": "④",
+        "diameter_cm": 14,
+        "implied_TU_squared_cm2": "49/12",
+        "matches": false
+      },
+      {
+        "mark": "⑤",
+        "diameter_cm": 16,
+        "implied_TU_squared_cm2": "16/3",
+        "matches": false
+      }
+    ],
+    "existence": "반지름6의 원에서 OQ=OR=QR=6인 정삼각형 OQR를 만들고 R을 직선 OQ에 대칭시킨 점을 P로 잡는다. 반사로 OP=6, PQ=QR=6이므로 P도 원 위에 있다. PR⊥OQ이고 M은 OQ의 중점이다. T는 QR의 중점으로 OT=3√3>0이다. OMU~OTQ의 닮음에서 OU=2OT/3=2√3이므로 U는 OT 내부, TU=√3>0이다. 양의 한 반지름에서 모든 조건이 동시에 성립하므로 존재한다. 닮음은 모든 허용 배치에서 r²=36을 강제하고 양의 r만 취하여 지름이 유일하다. 반사·회전된 도형까지 배치가 하나라는 주장은 하지 않는다.",
+    "domain": "r>0, OM=r/2>0, OT=r√3/2>0, OU=2OT/3>0, TU=OT/3>0. r−6 forbidden; denominator√3,r,OT nonzero. Units cm/cm²."
+  },
+  "primary": {
+    "normative": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "edition": "2015년 tab (lines84-85)",
+      "locators": "line540: 9수04-13/14 similarity;9수04-16 Pythagoras;9수04-19 chords/tangents. line558 excludes general circle proportionality; line561 permits tangent-length terminology; lines560/565 student-level justification, not complex formal logic.",
+      "interpretation": "실제 삼각형의 합동·닮음과 접선의 성질을 직접 쓰는 풀이만 심사했다. 원의 일반 비례/현곱·접선곱 공식을 이름만 바꾸어 허용하지 않는다.",
+      "currentHtmlSha256": "5cee94c0f333c30dde3c56770b438a373a5169c4a2f034b699c7977027193bb7"
+    },
+    "gradePlacement": {
+      "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+      "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+      "pageSha256": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12",
+      "pdfIndex0": 73,
+      "physicalPage": 74,
+      "printedPage": 72,
+      "actuallyViewed": "표 머리: 중학교3학년 수학2학기. 9월 원과직선/9수04-19 행에 원의 수직이등분선, 현과접선 성질이 명시되어 있다.",
+      "limits": "실제 공식2024 M3배치 근거이며 경신 원본의 시험 진도·출처년도 인증이나2022배치 승인 아님. 과거 잠정 printed73 오류를 그대로 승인하지 않고 실제 printed72를 인용한다."
+    }
+  },
+  "inputSha256Before": {
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group6-review-20261020-r2\\verification\\VERIFY-BRIEF.md": "35f0141b096cf184d92c0fdb4f5da623e99cf1882faa33bff9b2cda745d835b5",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group6-review-20261020-r2\\verification\\verification-inputs.json": "7ed9012c101c64ce7598f5bcd040120fb337ad869e70cfc3ac51f87380f686aa",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group6-review-20261020-r2\\verification\\verification-manifest.json": "9beeee12874fe6749cead79a7250d4013983409db90439db4f0d7f6f8e6009b7",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group6-review-20261020-r2\\verification\\sealed-raw-commit.json": "38d91abf4c6c34caf88b402f2c7d45bf70e5ee30faebe9eec4cc7b9cba0c9c38",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group6-review-20261020-r2\\blind\\solve\\q07.json": "7f445e88791ae1d4d9d9ac2b3422733073cd20299a4407ed4ecdad0229cab3f4",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group6-review-20261020-r2\\blind\\student-problems.json": "604f11313de87b1291aacb53da290cdda672e987f85dc130a5afcd6571e95b52",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group6-review-20261020-r2\\blind\\figures\\q07-1.svg": "523965a2d7fad582b2098725d5869a4c83ebd340f1543852eb533eaf83084c22",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group6-r2\\source-q07-component-observation-r1.json": "8452c457f50532b1175f40c065642dc64c7665714cad96e72187b9540de6d544",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group6-review-20261020-r2\\package\\private\\q07\\figure-1.spec.json": "d4a13a5e3e75ac97800bdb5c8cb80c747124c071177706217ecc029a45865cf1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group6-review-20261020-r2\\package\\private\\q07\\figure-1.svg": "523965a2d7fad582b2098725d5869a4c83ebd340f1543852eb533eaf83084c22",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-grade-reference-20261020-r1\\school-2024-plan.local.pdf": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-grade-reference-20261020-r1\\school-2024-m3-page74.local.png": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12"
+  },
+  "inputSha256After": {
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group6-review-20261020-r2\\verification\\VERIFY-BRIEF.md": "35f0141b096cf184d92c0fdb4f5da623e99cf1882faa33bff9b2cda745d835b5",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group6-review-20261020-r2\\verification\\verification-inputs.json": "7ed9012c101c64ce7598f5bcd040120fb337ad869e70cfc3ac51f87380f686aa",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group6-review-20261020-r2\\verification\\verification-manifest.json": "9beeee12874fe6749cead79a7250d4013983409db90439db4f0d7f6f8e6009b7",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group6-review-20261020-r2\\verification\\sealed-raw-commit.json": "38d91abf4c6c34caf88b402f2c7d45bf70e5ee30faebe9eec4cc7b9cba0c9c38",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group6-review-20261020-r2\\blind\\solve\\q07.json": "7f445e88791ae1d4d9d9ac2b3422733073cd20299a4407ed4ecdad0229cab3f4",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group6-review-20261020-r2\\blind\\student-problems.json": "604f11313de87b1291aacb53da290cdda672e987f85dc130a5afcd6571e95b52",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group6-review-20261020-r2\\blind\\figures\\q07-1.svg": "523965a2d7fad582b2098725d5869a4c83ebd340f1543852eb533eaf83084c22",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group6-r2\\source-q07-component-observation-r1.json": "8452c457f50532b1175f40c065642dc64c7665714cad96e72187b9540de6d544",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group6-review-20261020-r2\\package\\private\\q07\\figure-1.spec.json": "d4a13a5e3e75ac97800bdb5c8cb80c747124c071177706217ecc029a45865cf1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group6-review-20261020-r2\\package\\private\\q07\\figure-1.svg": "523965a2d7fad582b2098725d5869a4c83ebd340f1543852eb533eaf83084c22",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-grade-reference-20261020-r1\\school-2024-plan.local.pdf": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-grade-reference-20261020-r1\\school-2024-m3-page74.local.png": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12"
+  },
+  "digestValidation": {
+    "student": "ea9087ec3172bb66a4cb5f19df3644a2394e1434c593abf55ec30054eaaa7e2e",
+    "candidate": "04401fee6ad250af2d8840a1632f2bb36a2cbe5400a85c0f68192b017994dd13",
+    "asset": "da9e7e6955341bfe618e26420ba63a24f6d6490705d70f1c7a5d6748942098c9",
+    "solve": "3743f05085bd460a7de3e41dd5648e15ca653f905c553772dcadb2931e71b273",
+    "allIndependentlyRecomputed": true
+  },
+  "metadataIssues": []
+}
