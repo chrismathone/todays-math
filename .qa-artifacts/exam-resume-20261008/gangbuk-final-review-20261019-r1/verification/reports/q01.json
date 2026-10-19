@@ -1,0 +1,231 @@
+{
+  "studentDigest": "3495bdf016028ee78b38c57f6d5afc1d160820896c91102b659bbea3d1983740",
+  "candidateDigest": "005d9179e12672d6ec72861ddafdf83026d0455eda30024e7c550bbff5bd0ee9",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "solveDigest": "016dfa30c8a99f474c4b7371338e5a27ecebe08eea65fa5d117a47ad6f039870",
+  "questionNumber": 1,
+  "twinExternalId": "exam-twin-gangbuk-2025-1-mid-author-r1-q01",
+  "status": "pending",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-gangbuk-independent-20261019-r1",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "checkEvidence": {
+    "answerCorrect": "Author answer option4/value100 matches the sealed exact numeric record: sqrt81=9,a=-3,b=10,N=100,uniqueChoice4. IMPORTANT: raw top-level answer is literal question mark and raw Korean prose is encoding-damaged; this is not a clean glyph-string match. No raw bytes repaired or post-exposure proof passed off as pre-exposure.",
+    "solutionCorrect": "The principal square root of81 is9. Then a^2=9 has roots3 and-3; a<0 selects-3. The linear sum gives b=10>0, and N=b^2=100>0. These are root definitions/sign selection, elementary addition and squaring, not a general quadratic formula or advanced method. Author explicitly checks b>0,N>0; every displayed equality is valid.",
+    "existenceUniqueness": "The triple(a,b,N)=(-3,10,100) satisfies every condition. The negative-root condition fixes a uniquely, the sum fixes b uniquely, and b^2 fixes N uniquely. Positive N and b are verified. No geometric length or physical unit is involved; units/positive lengths are inapplicable.",
+    "choicesCorrect": "For candidate N16,49,81,100,256 the positive b values are4,7,9,10,16; with a=-3 the sums are1,4,6,7,13. Only option4 satisfies sum7. All other sign/square constraints checked in sealed calculation.",
+    "figureConsistent": "No figures in candidate or blind manifest. Actual student and full solution preview PNGs viewed: conditions, five options,3points and author solution are legible, with no observed crop/overlap. Algebraic notation agrees with bound JSON; previews are visual observations, not native approval.",
+    "sameCoreConceptAndProcedure": "The viewed source asks for the sum of the negative square root of sqrt16 and the positive square root of36. The candidate turns the sum into the supplied condition7 and asks for the previously fixed second radicand N; conditions are reorganized into signed square relations. This is an actual inverse target and condition-structure change, beyond numeral/name substitution. The root/sign principle and dependency chain remain the same, with one final inverse squaring step.",
+    "distinctPresentation": "The viewed source asks for the sum of the negative square root of sqrt16 and the positive square root of36. The candidate turns the sum into the supplied condition7 and asks for the previously fixed second radicand N; conditions are reorganized into signed square relations. This is an actual inverse target and condition-structure change, beyond numeral/name substitution. The root/sign principle and dependency chain remain the same, with one final inverse squaring step.",
+    "naturalKorean": "The question asks N clearly and labels three conditions. Positive N,a<0,b>0 and the sum have unambiguous referents. Principal root notation is conventional. The actual student/solution previews contain intact Korean (unlike the damaged raw serialization). No visible school name occurs, so no fictional substitution is required.",
+    "curriculumAppropriate": "The principal square root of81 is9. Then a^2=9 has roots3 and-3; a<0 selects-3. The linear sum gives b=10>0, and N=b^2=100>0. These are root definitions/sign selection, elementary addition and squaring, not a general quadratic formula or advanced method. Official2015 standard9\uc21801-07 at printedpage29/physical33 explicitly covers square-root meaning/properties; cited artifact hash verified. Prior integer/linear arithmetic is sufficient.",
+    "allStudentSurfacesInScope": "Seven surfaces individually checked below; no required higher-grade tool found. Code substantiates exact arithmetic, not family/grade confidence.",
+    "unitFamilyFit": "Snapshot2026-10-19 06:14:08.658144+00 includes proposed unit1682f01b-5293-4672-91cd-07fc02e305ac, M3 semester1 root meaning/properties, and20 eligible family rows. The snapshot contains counts, not full rule/example semantics. No complete current inverse-radicand family fit is demonstrated; familyKey stays null. A unit/title match is not a family assignment.",
+    "scoreAppropriate": "Source crop visibly prints3points and five options; candidate preserves3points and five-choice format. Root evaluation, sign selection and elementary sum/square operations are a plausible basic3point task. Inverse targeting adds a final squaring step but no new prerequisite. This is reasoned task-band assessment, not measured equal difficulty."
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "Positive N and signed real a,b are explicit; nested root evaluates unambiguously. The triple(a,b,N)=(-3,10,100) satisfies every condition. The negative-root condition fixes a uniquely, the sum fixes b uniquely, and b^2 fixes N uniquely. Positive N and b are verified. No geometric length or physical unit is involved; units/positive lengths are inapplicable.",
+      "officialProvisions": [
+        "9\uc21801-07"
+      ],
+      "restrictionsReviewed": [
+        "principal-root-nonnegative",
+        "signed-root-selection",
+        "real-positive-domain",
+        "no-required-higher-grade-method"
+      ],
+      "restrictionEvidence": "The required student steps are stated concretely in the author-step review and use root definitions plus elementary prior arithmetic only."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "All five choices are positive integers. Exact substitution results1,4,6,7,13 leave only option4.",
+      "officialProvisions": [
+        "9\uc21801-07"
+      ],
+      "restrictionsReviewed": [
+        "principal-root-nonnegative",
+        "signed-root-selection",
+        "real-positive-domain",
+        "no-required-higher-grade-method"
+      ],
+      "restrictionEvidence": "The required student steps are stated concretely in the author-step review and use root definitions plus elementary prior arithmetic only."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "No figure/table is required; preview conditions and choices are legible.",
+      "officialProvisions": [
+        "9\uc21801-07"
+      ],
+      "restrictionsReviewed": [
+        "principal-root-nonnegative",
+        "signed-root-selection",
+        "real-positive-domain",
+        "no-required-higher-grade-method"
+      ],
+      "restrictionEvidence": "The required student steps are stated concretely in the author-step review and use root definitions plus elementary prior arithmetic only."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "Principal sqrt81 is9, not plus/minus9; a^2=9 admits plus/minus3 before a<0. N and b are dimensionless positive numbers.",
+      "officialProvisions": [
+        "9\uc21801-07"
+      ],
+      "restrictionsReviewed": [
+        "principal-root-nonnegative",
+        "signed-root-selection",
+        "real-positive-domain",
+        "no-required-higher-grade-method"
+      ],
+      "restrictionEvidence": "The required student steps are stated concretely in the author-step review and use root definitions plus elementary prior arithmetic only."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "Author selected option4 is100, which matches the surviving sealed numeric proof. Raw answer glyph encoding defect is separately held; it is not a flaw in the candidate student answer.",
+      "officialProvisions": [
+        "9\uc21801-07"
+      ],
+      "restrictionsReviewed": [
+        "principal-root-nonnegative",
+        "signed-root-selection",
+        "real-positive-domain",
+        "no-required-higher-grade-method"
+      ],
+      "restrictionEvidence": "The required student steps are stated concretely in the author-step review and use root definitions plus elementary prior arithmetic only."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "The principal square root of81 is9. Then a^2=9 has roots3 and-3; a<0 selects-3. The linear sum gives b=10>0, and N=b^2=100>0. These are root definitions/sign selection, elementary addition and squaring, not a general quadratic formula or advanced method.",
+      "officialProvisions": [
+        "9\uc21801-07"
+      ],
+      "restrictionsReviewed": [
+        "principal-root-nonnegative",
+        "signed-root-selection",
+        "real-positive-domain",
+        "no-required-higher-grade-method"
+      ],
+      "restrictionEvidence": "The required student steps are stated concretely in the author-step review and use root definitions plus elementary prior arithmetic only."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "Principal root and signed square roots, integer arithmetic, substitution and one-step linear equation. No general quadratic solution, identities, calculus or other advanced method.",
+      "officialProvisions": [
+        "9\uc21801-07"
+      ],
+      "restrictionsReviewed": [
+        "principal-root-nonnegative",
+        "signed-root-selection",
+        "real-positive-domain",
+        "no-required-higher-grade-method"
+      ],
+      "restrictionEvidence": "The required student steps are stated concretely in the author-step review and use root definitions plus elementary prior arithmetic only."
+    }
+  },
+  "evidence": {
+    "rawCommit": "e454116eb7de621be8a4476b6ca853a22e4b6043",
+    "rawSha256": "b8c79027b13a3365f90b4a254e449a7527bd17739bcd2d3925ac57b6ccd6df7e",
+    "gitWorkingAndCopiedRawBytesMatch": true,
+    "survivingSealedCalculation": {
+      "sqrt81": 9,
+      "a": -3,
+      "b": 10,
+      "N": 100,
+      "choiceChecks": [
+        {
+          "choice": 1,
+          "N": 16,
+          "positive_b": 4,
+          "a_plus_b": 1,
+          "satisfies_all": false
+        },
+        {
+          "choice": 2,
+          "N": 49,
+          "positive_b": 7,
+          "a_plus_b": 4,
+          "satisfies_all": false
+        },
+        {
+          "choice": 3,
+          "N": 81,
+          "positive_b": 9,
+          "a_plus_b": 6,
+          "satisfies_all": false
+        },
+        {
+          "choice": 4,
+          "N": 100,
+          "positive_b": 10,
+          "a_plus_b": 7,
+          "satisfies_all": true
+        },
+        {
+          "choice": 5,
+          "N": 256,
+          "positive_b": 16,
+          "a_plus_b": 13,
+          "satisfies_all": false
+        }
+      ],
+      "uniqueChoice": 4
+    },
+    "rawEncodingDefect": {
+      "topLevelAnswer": "?",
+      "koreanProseDamaged": true,
+      "numericCalculationIntact": true,
+      "rawRewritten": false,
+      "cleanPreExposureKoreanProofClaimed": false
+    },
+    "authorStepReview": "The principal square root of81 is9. Then a^2=9 has roots3 and-3; a<0 selects-3. The linear sum gives b=10>0, and N=b^2=100>0. These are root definitions/sign selection, elementary addition and squaring, not a general quadratic formula or advanced method.",
+    "domain": "The triple(a,b,N)=(-3,10,100) satisfies every condition. The negative-root condition fixes a uniquely, the sum fixes b uniquely, and b^2 fixes N uniquely. Positive N and b are verified. No geometric length or physical unit is involved; units/positive lengths are inapplicable.",
+    "sourceComparison": "The viewed source asks for the sum of the negative square root of sqrt16 and the positive square root of36. The candidate turns the sum into the supplied condition7 and asks for the previously fixed second radicand N; conditions are reorganized into signed square relations. This is an actual inverse target and condition-structure change, beyond numeral/name substitution. The root/sign principle and dependency chain remain the same, with one final inverse squaring step.",
+    "inputAndReferenceReceipt": "review-summary-r1.json",
+    "exposure": "Original Gangbuk q1 seen during prior source inspection; no new twin author answer/solution seen before e454116eb raw seal. Stage2 author exposure authorized afterward. Damaged prose remains as sealed; surviving numeric proof is explicitly identified."
+  },
+  "unitFamily": {
+    "unitId": "1682f01b-5293-4672-91cd-07fc02e305ac",
+    "unitStatus": "proposal-conceptually-supported",
+    "familyKey": null,
+    "status": "held",
+    "basis": "Snapshot2026-10-19 06:14:08.658144+00 includes proposed unit1682f01b-5293-4672-91cd-07fc02e305ac, M3 semester1 root meaning/properties, and20 eligible family rows. The snapshot contains counts, not full rule/example semantics. No complete current inverse-radicand family fit is demonstrated; familyKey stays null. A unit/title match is not a family assignment."
+  },
+  "findings": [
+    {
+      "severity": "fix",
+      "surface": "raw-evidence-encoding",
+      "text": "Pre-exposure raw Korean, mathematical superscript/root glyphs and circled answer were serialized as question marks. Exact ASCII numeric calculation and uniqueChoice4 survived and were sealed. Preserve raw bytes; do not treat its literal answer as option4 or silently repair proof. Overall remains pending; parent must explicitly decide evidence sufficiency."
+    },
+    {
+      "severity": "blocker",
+      "surface": "unitFamilyFit",
+      "text": "Snapshot2026-10-19 06:14:08.658144+00 includes proposed unit1682f01b-5293-4672-91cd-07fc02e305ac, M3 semester1 root meaning/properties, and20 eligible family rows. The snapshot contains counts, not full rule/example semantics. No complete current inverse-radicand family fit is demonstrated; familyKey stays null. A unit/title match is not a family assignment."
+    },
+    {
+      "severity": "note",
+      "surface": "source-and-release",
+      "text": "Source manifest explicitly has identityApproved=false and wholePairCertified=false;2025 headers coexist with2026 preparation footers. Q1 crop supports local concept/3point comparison, not whole-pair identity, rights, similarity or native/release approval."
+    }
+  ],
+  "gates": {
+    "loadable": false,
+    "rightsCleared": false,
+    "sourceIdentityApproved": false,
+    "similarityApproved": false,
+    "nativeApproved": false
+  }
+}
