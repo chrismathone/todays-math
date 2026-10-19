@@ -295,7 +295,7 @@ function Fixture() {
       <style>{EXAM_REPORT_PAPER_CSS}</style>
       <div style={{ padding: 12 }}>
         <button type="button" onClick={() => void measurePaper()}>
-          H1 S1·M1 문장 자리와 이어지는 쪽 실측
+          H1 요약·기존 M1 호환 문장 자리와 표의 이어지는 쪽 실측
         </button>
         <pre style={{ whiteSpace: "pre-wrap" }}>{result}</pre>
       </div>

@@ -3,14 +3,11 @@ import type {
   ClassExamReport,
   StudentExamReport,
 } from "@/contracts/examReport.contract";
-import { MathText, SolutionText } from "@/components/math/MathText";
 import { A4Page } from "@/components/print/A4Page";
-import { PaperProblemView } from "@/components/print/PaperProblemView";
 import { PAPER_COLORS } from "@/components/print/tokens";
-import {
-  paginateWrongQuestions,
-  type ExamReportQuestion,
-} from "@/lib/examReport/paginate";
+import { ExamReportTrend } from "./ExamReportTrend";
+import { originalScoreLabel, scoreTo100 } from "@/lib/examReport/score100";
+import { recentExamHistory } from "@/lib/examReport/trend";
 import {
   estimateWrongTableLayout,
   wrongTableColumns,
@@ -18,11 +15,14 @@ import {
 } from "@/lib/examReport/wrongTable";
 
 export interface ExamReportOutputOptions {
+  /** 저장된 M1도 S1 요약으로 출력한다. 기존 호출의 읽기 호환용이다. */
   mode?: "S1" | "M1";
   wrong?: boolean;
   retry?: boolean;
   note?: boolean;
-  /** 글꼴 적재 후 실측한 표의 행 수. 문항/풀이 쪽과 독립적으로 배치한다. */
+  /** 선택 이력이 두 회 이상 있을 때만. 기본 켬. */
+  trend?: boolean;
+  /** 글꼴 적재 후 실측한 표의 행 수. */
   wrongTableLayout?: WrongTableLayout;
   /** 켜기로 선택한 경우에만, 반 집계에서 받은 값을 함께 넘긴다. */
   average?: Pick<
@@ -30,6 +30,8 @@ export interface ExamReportOutputOptions {
     "averageScore" | "gradedCount"
   > | null;
 }
+
+type ExamReportQuestion = StudentExamReport["wrongQuestions"][number];
 
 const statusLabels = {
   absent: "결시",
@@ -97,6 +99,10 @@ function Summary({
   const { wrong = true, retry = true, note = true, average } = options;
   const graded = report.status === "graded";
   const retries = retry ? report.retries : [];
+  const score100 = graded
+    ? scoreTo100(report.score.value, report.score.maximum)
+    : null;
+  const original = originalScoreLabel(report.score);
   return (
     <>
       <Head report={report} name={report.student.name} title="요약" />
@@ -104,13 +110,22 @@ function Summary({
         <div>
           <p>이번 시험</p>
           <strong>
-            {graded ? report.score.value : statusLabels[report.status]}
+            {graded
+              ? score100 === null
+                ? "점수 확인 필요"
+                : `${score100}점`
+              : statusLabels[report.status]}
           </strong>
           <span>
             {graded
-              ? `/ ${report.score.maximum ?? "—"}${scoreUnit(report.score)}`
+              ? score100 === null
+                ? "만점 확인 필요"
+                : "/ 100점 만점"
               : report.publication.testDate.replaceAll("-", ". ") + "."}
           </span>
+          {graded && original && (
+            <span className="er-originalScore">{original}</span>
+          )}
         </div>
         <div>
           <p>맞힌 문항</p>
@@ -121,12 +136,21 @@ function Summary({
         </div>
         {average && average.averageScore !== null && (
           <div>
-            <p>반 평균</p>
-            <strong>{average.averageScore.toFixed(1)}</strong>
+            <p>반 평균 · 100점 환산</p>
+            <strong>
+              {scoreTo100(average.averageScore, report.score.maximum) ?? "—"}
+            </strong>
             <span>응시 {average.gradedCount}명 기준</span>
           </div>
         )}
       </div>
+      {options.trend !== false &&
+        recentExamHistory(report.history).length > 0 && (
+          <section className="er-area">
+            <h3>월말평가 추이</h3>
+            <ExamReportTrend history={report.history} />
+          </section>
+        )}
       {wrong && (
         <section className="er-area er-wrongArea">
           <h3>틀린 문항</h3>
@@ -230,53 +254,6 @@ function WrongTable({
   );
 }
 
-function WrongSheet({
-  report,
-  questions,
-}: {
-  report: StudentExamReport;
-  questions: readonly ExamReportQuestion[];
-}) {
-  return (
-    <>
-      <Head report={report} name={report.student.name} title="틀린 문항 풀이" />
-      <div className="er-problemList" data-question-count={questions.length}>
-        {questions.map((q) => (
-          <section
-            key={q.problemId}
-            className="er-problem"
-            data-report-question={q.no}
-          >
-            <h3>
-              {q.no}번{" "}
-              <span>
-                {q.unitName} · {q.typeLabel ?? "—"}
-              </span>
-            </h3>
-            <div className="er-stem">
-              <PaperProblemView {...q} framed={false} staticLayout />
-            </div>
-            <dl>
-              <dt>정답</dt>
-              <dd>
-                <MathText text={q.answer} staticLayout />
-              </dd>
-              <dt>해설</dt>
-              <dd>
-                <SolutionText
-                  text={q.solution}
-                  fallback="해설이 등록되지 않았습니다."
-                  staticLayout
-                />
-              </dd>
-            </dl>
-          </section>
-        ))}
-      </div>
-    </>
-  );
-}
-
 const inkVariables = {
   "--paper-ink15": PAPER_COLORS.ink15,
   "--paper-ink30": PAPER_COLORS.ink30,
@@ -354,13 +331,7 @@ export function studentExamReportPages(
     offset += count * columns;
     return questions;
   });
-  const wrongPages =
-    options.mode === "M1" &&
-    options.wrong !== false &&
-    report.status === "graded"
-      ? paginateWrongQuestions(report.wrongQuestions)
-      : [];
-  const total = tablePages.length + wrongPages.length;
+  const total = tablePages.length;
   return [
     <Page key="summary" index={0} total={total} summary>
       <Summary report={report} options={options} questions={tablePages[0]} />
@@ -376,11 +347,6 @@ export function studentExamReportPages(
           <h3>틀린 문항 (이어서)</h3>
           <WrongTable questions={questions} columns={columns} />
         </section>
-      </Page>
-    )),
-    ...wrongPages.map((questions, i) => (
-      <Page key={`wrong-${i}`} index={i + tablePages.length} total={total}>
-        <WrongSheet report={report} questions={questions} />
       </Page>
     )),
   ];
@@ -428,7 +394,11 @@ function ClassSheet({ report }: { report: ClassExamReport }) {
                 {q.no}
               </th>
             ))}
-            <th scope="col">점수</th>
+            <th scope="col">
+              점수
+              <br />
+              100점 만점
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -446,8 +416,14 @@ function ClassSheet({ report }: { report: ClassExamReport }) {
               ))}
               <td>
                 {student.status === "graded"
-                  ? student.score.value
+                  ? `${scoreTo100(student.score.value, student.score.maximum) ?? "—"}점`
                   : statusLabels[student.status]}
+                {student.status === "graded" &&
+                  originalScoreLabel(student.score) && (
+                    <span className="er-originalScore">
+                      {originalScoreLabel(student.score)}
+                    </span>
+                  )}
               </td>
             </tr>
           ))}

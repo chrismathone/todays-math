@@ -14,7 +14,7 @@ describe("합의한 H1 틀린 문항 표", () => {
     [20, 1, 2],
     [40, 2, 2],
   ])(
-    "틀린 %i개: S1 %i쪽 · %i단, M1은 풀이 앞에 같은 요약을 둔다",
+    "틀린 %i개: S1과 기존 M1 모두 %i쪽 · %i단 요약 표만 둔다",
     (count, total, columns) => {
       const report = wrongTableFixture(count);
       const before = JSON.stringify(report);
@@ -24,7 +24,7 @@ describe("합의한 H1 틀린 문항 표", () => {
           <StudentExamReportPaper report={report} options={{ mode }} />,
         );
         expect(root.querySelectorAll("[data-exam-report-page]")).toHaveLength(
-          total + (mode === "M1" ? Math.ceil(count / 2) : 0),
+          total,
         );
         expect(
           [...root.querySelectorAll("[data-er-wrong-no]")].map((node) =>
@@ -106,7 +106,7 @@ describe("합의한 H1 틀린 문항 표", () => {
     for (let pass = 0; pass < 2; pass++) {
       examReportTableDom(root, [3, 4, 3]);
       const sheets = root.querySelectorAll(".er-sheet");
-      expect(sheets).toHaveLength(13);
+      expect(sheets).toHaveLength(3);
       expect(
         [...root.querySelectorAll("[data-er-wrong-no]")].map((node) =>
           Number(node.getAttribute("data-er-wrong-no")),
@@ -123,7 +123,7 @@ describe("합의한 H1 틀린 문항 표", () => {
       for (const [i, sheet] of [...sheets].entries()) {
         expect(sheet.getAttribute("aria-label")).toBe(`학생 성적표 ${i + 1}쪽`);
         expect(sheet.querySelector(".er-footer")?.textContent).toContain(
-          `${i + 1} / 13쪽`,
+          `${i + 1} / 3쪽`,
         );
       }
     }

@@ -131,8 +131,8 @@ export const ITEMS: PrintCheckItem[] = [
     id: "exam-report-confirmed-print",
     title: "실제 월말평가 성적표 — 확정 보관 PDF · 반 인쇄",
     changed:
-      "실제 작업실에서 문장·반 지면 설정을 저장하고 H1 S1·M1 PDF를 확정 보관한다. 확정된 학생은 보관 PDF, 확정 전 학생은 현재 저장 내용으로 반 인쇄 PDF를 합친다. C2는 가로 A4다.",
-    look: "문장 없음·상한 길이·긴 이름·많은 오답에서 요약 첫 쪽의 잘림·겹침이 없어야 한다. M1 쪽 나눔과 정답·해설, C2 가로 방향, 배경 인쇄를 꺼도 정오가 남는지 확인한다. 확정 후 반 인쇄의 해당 학생 쪽은 받은 확정 PDF와 같아야 한다.",
+      "실제 작업실에서 문장·반 지면 설정을 저장하고 풀이 없는 H1 요약 PDF를 확정 보관한다. 기존 M1 선택값도 요약으로 읽고 이미 확정한 PDF는 그대로 둔다. 확정된 학생은 보관 PDF, 확정 전 학생은 현재 저장 내용으로 반 인쇄 PDF를 합친다. C2는 가로 A4다.",
+    look: "문장 없음·상한 길이·긴 이름·많은 오답에서 요약 첫 쪽의 잘림·겹침이 없어야 한다. 긴 오답 표의 이어지는 쪽과 풀이 미노출, C2 가로 방향, 배경 인쇄를 꺼도 정오가 남는지 확인한다. 확정 후 반 인쇄의 해당 학생 쪽은 받은 확정 PDF와 같아야 한다.",
     lookFromSource: true,
     evidence: [
       "docs/planning/tracks/brief-exam-report-screen-impl-codex.md",
@@ -140,16 +140,32 @@ export const ITEMS: PrintCheckItem[] = [
       "src/lib/examReport/server.ts",
     ],
     needs:
-      "낸 시험의 채점을 마친 반 → 성적표 → S1·M1 각각 확정 및 확정 전 포함 인쇄. 문장 상한 실측 뒤 프린터 100% 배율로 확인.",
+      "낸 시험의 채점을 마친 반 → 성적표 → 요약 형식 확정 및 확정 전 포함 인쇄. 기존 M1 보관본은 원래 쪽이 유지되는지 확인. 문장 상한 실측 뒤 프린터 100% 배율로 확인.",
     status: "대기",
-    changedOn: "2026-10-18",
+    changedOn: "2026-10-19",
+  },
+  {
+    id: "exam-report-styles",
+    title: "월말평가 성적표 — H1 + 지면 후보 여섯 가지",
+    changed:
+      "같은 블록 목록을 편지·증서·신문·정오 격자·큰 숫자·장부로 비교한다. 100점 환산과 원점수, 최근 여섯 회 추이, 표의 이어지는 쪽을 그린다.",
+    look: "A4 세로 · 9pt 이상 · 긴 문장과 틀린 10·16·20개 · 틀린 문항 표의 다음 쪽 · 결시 추이의 끊김 · 배경 인쇄를 꺼도 숫자와 굵은 ✕·밑줄이 남는지 확인한다.",
+    lookFromSource: true,
+    evidence: [
+      "src/app/dev/exam-report-styles/page.tsx",
+      "docs/planning/tracks/brief-exam-report-styles-codex.md",
+    ],
+    scale:
+      "지어낸 학생·20문항·월말평가 이력. 블록 구성 예 두 가지와 예시 상황 13가지.",
+    status: "대기",
+    changedOn: "2026-10-19",
   },
   {
     id: "exam-report-hifi",
     title: "월말평가 성적표 — H1 선택 · 새 부품",
     changed:
-      "H1 선택 · 새 부품으로 S1 요약 · M1 오답 풀이 · C2 반 정오 격자를 그린다. 시안과 서버 HTML이 같은 지면을 쓴다.",
-    look: "선택된 H1을 실물에서 9pt 이상 글자 · 긴 이름과 원장님 문장의 잘림 · M1 쪽 나눔 · C2 가로 A4 · 배경 인쇄를 꺼도 정오와 수치가 남는지 확인한다.",
+      "H1 선택 · 새 부품으로 S1 요약 · C2 반 정오 격자를 그린다. 시안과 서버 HTML이 같은 지면을 쓴다.",
+    look: "선택된 H1을 실물에서 9pt 이상 글자 · 긴 이름과 원장님 문장의 잘림 · 긴 오답 표의 이어지는 쪽 · 풀이 미노출 · C2 가로 A4 · 배경 인쇄를 꺼도 정오와 수치가 남는지 확인한다.",
     lookFromSource: true,
     evidence: [
       "src/app/dev/exam-report-hifi/page.tsx",
@@ -161,7 +177,7 @@ export const ITEMS: PrintCheckItem[] = [
     scale:
       "지어낸 20문항 · 8명. 기본·많은 오답·0점·만점·결시·미채점·긴 이름과 문장 예시.",
     status: "대기",
-    changedOn: "2026-10-18",
+    changedOn: "2026-10-19",
   },
   {
     id: "math-question-content-repair-20261018",

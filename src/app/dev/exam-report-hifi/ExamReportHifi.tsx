@@ -52,7 +52,6 @@ const VARIANTS = [
 ] as const;
 const MODES = {
   S1: "요약 한 장",
-  M1: "요약 + 틀린 문항 풀이",
   C2: "반 정오 격자",
 } as const;
 type Mode = keyof typeof MODES;
@@ -89,17 +88,7 @@ export function ExamReportHifi() {
           })
       : mode === "C2"
         ? [<ClassSheet key="class" data={data} />]
-        : [
-            <Summary key="summary" data={data} options={options} />,
-            ...(mode === "M1" && options.wrong
-              ? Array.from(
-                  { length: Math.ceil(data.wrong.length / 2) },
-                  (_, i) => (
-                    <WrongSheet key={`wrong-${i}`} data={data} start={i * 2} />
-                  ),
-                )
-              : []),
-          ];
+        : [<Summary key="summary" data={data} options={options} />];
   const pageNode = (node: ReactNode, i: number) =>
     variant.id === "H1" ? (
       <div
@@ -144,7 +133,7 @@ export function ExamReportHifi() {
   const pages: PaperStripPage[] = nodes.map((node, i) => ({
     key: `${variant.id}-${mode}-${scenario}-${i}`,
     node: pageNode(node, i),
-    caption: `${i + 1}쪽 · ${i === 0 ? MODES[mode] : "틀린 문항 풀이"}`,
+    caption: `${i + 1}쪽 · ${i === 0 ? MODES[mode] : "틀린 문항 (이어서)"}`,
     enlargeLabel: `${i + 1}쪽 확대`,
   }));
   return (
@@ -154,8 +143,7 @@ export function ExamReportHifi() {
           <div>
             <h1>월말평가 성적표 · Hi-fi</h1>
             <p>
-              S1 · M1 · C2의 세부 모양 4안입니다. 지어낸 자료이며 저장하지
-              않습니다.
+              S1 · C2의 세부 모양 4안입니다. 지어낸 자료이며 저장하지 않습니다.
             </p>
           </div>
           <button type="button" onClick={() => window.print()}>
@@ -240,11 +228,7 @@ export function ExamReportHifi() {
           key={`${variant.id}-${mode}-${scenario}`}
           pages={pages}
           label={`${variant.id} · ${mode} 지면`}
-          hint={
-            variant.id === "H1"
-              ? "쪽을 누르면 크게 볼 수 있습니다. M1은 문항·그림 크기에 따라 쪽을 나눕니다."
-              : "쪽을 누르면 크게 볼 수 있습니다. M1은 틀린 문항 두 개마다 한 쪽을 덧붙입니다."
-          }
+          hint="쪽을 누르면 크게 볼 수 있습니다. 틀린 문항 표가 길면 다음 쪽으로 이어집니다."
         />
       </div>
       <div className={s.printOnly}>{nodes.map(pageNode)}</div>
@@ -362,33 +346,6 @@ function Summary({ data, options }: { data: Data; options: Options }) {
         {options.retry && marks && wrong.length > 0 ? " · 재시험 1회" : ""}
         {options.note ? " · 원장님 문장" : ""}.
       </p>
-    </>
-  );
-}
-
-function WrongSheet({ data, start }: { data: Data; start: number }) {
-  return (
-    <>
-      <Head data={data} title="틀린 문항 풀이" />
-      <div className={s.problemList}>
-        {data.wrong.slice(start, start + 2).map((q) => (
-          <section key={q.no} className={s.problem}>
-            <h3>
-              {q.no}번{" "}
-              <span>
-                {q.unit} · {q.type}
-              </span>
-            </h3>
-            <p className={s.stem}>{q.content}</p>
-            <dl>
-              <dt>정답</dt>
-              <dd>{q.answer}</dd>
-              <dt>해설</dt>
-              <dd>{q.solution}</dd>
-            </dl>
-          </section>
-        ))}
-      </div>
     </>
   );
 }

@@ -21,7 +21,7 @@ const requireAsset = createRequire(import.meta.url);
 let mathCss: string | undefined;
 
 /** 실제 KaTeX CSS와 woff2를 함께 싣는다. CDN·Next의 가변 CSS 해시 주소에 의존하지 않는다. */
-function selfHostedMathCss(): string {
+export function selfHostedMathCss(): string {
   if (mathCss !== undefined) return mathCss;
   const cssPath = requireAsset.resolve("katex/dist/katex.min.css");
   mathCss = readFileSync(cssPath, "utf8").replace(

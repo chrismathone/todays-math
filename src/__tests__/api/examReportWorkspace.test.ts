@@ -75,6 +75,17 @@ beforeEach(() => {
   });
 });
 describe("실제 성적표 라우트 계약과 원장 관문", () => {
+  it("새 M1 설정 저장은 400으로 거절하고 저장 함수에 이르지 않는다", async () => {
+    const response = await settings(
+      request("PATCH", "/settings", {
+        expectedOptionsDigest: "a".repeat(64),
+        options: { format: "M1" },
+      }),
+      context,
+    );
+    expect(response.status).toBe(400);
+    expect(m.settings).not.toHaveBeenCalled();
+  });
   it("모든 메서드는 로그인·원장·출력 메뉴와 오류 기록을 거친다", async () => {
     for (const [handler, method, suffix] of methods) {
       expect(handler[ERROR_LOG_ROUTE]).toContain("/api/exam-reports/[testId]");

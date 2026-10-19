@@ -1,5 +1,6 @@
 import type { StudentExamReport } from "@/contracts/examReport.contract";
 import { EXAM_REPORT_WRONG_TABLE_SINGLE_LIMIT } from "./settings";
+import { recentExamHistory } from "./trend";
 
 export type WrongTableLayout = readonly number[];
 
@@ -28,7 +29,7 @@ export const wrongTableColumns = (count: number): 1 | 2 =>
 /** 최초 HTML의 보수적 추정치. 확정 전에는 같은 표의 실제 행 높이로 다시 배치한다. */
 export function estimateWrongTableLayout(
   report: StudentExamReport,
-  options: { note?: boolean; retry?: boolean },
+  options: { note?: boolean; retry?: boolean; trend?: boolean },
 ): WrongTableLayout {
   const columns = wrongTableColumns(report.wrongQuestions.length);
   const lines = (text: string, width: number) =>
@@ -64,5 +65,9 @@ export function estimateWrongTableLayout(
     options.retry !== false && report.retries.length
       ? 13 + report.retries.length * 5.6
       : 0;
-  return paginateWrongTableRows(heights, 145 - note - retry, 210);
+  const trend =
+    options.trend !== false && recentExamHistory(report.history).length
+      ? 60
+      : 0;
+  return paginateWrongTableRows(heights, 145 - note - retry - trend, 210);
 }

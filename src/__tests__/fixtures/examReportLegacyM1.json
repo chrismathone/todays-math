@@ -1,0 +1,71 @@
+{
+  "snapshot": {
+    "report": {
+      "publication": {
+        "id": "00000003-0000-4000-8000-000000000000",
+        "title": "10월 월말평가",
+        "testDate": "2026-10-24"
+      },
+      "testId": "00000004-0000-4000-8000-000000000000",
+      "classId": "00000005-0000-4000-8000-000000000000",
+      "className": "가람반",
+      "student": {
+        "id": "00000006-0000-4000-8000-000000000000",
+        "name": "서하린"
+      },
+      "resultId": "00000007-0000-4000-8000-000000000000",
+      "takenAt": "2026-10-24T04:00:00.000Z",
+      "status": "graded",
+      "score": {
+        "value": 0,
+        "maximum": 1,
+        "unit": "questions",
+        "storedValue": 0
+      },
+      "correctCount": 0,
+      "questionCount": 1,
+      "questions": [
+        {
+          "problemId": "00000008-0000-4000-8000-000000000000",
+          "no": 1,
+          "content": "x + 3 = 10의 해를 구하시오.",
+          "answer": "x = 7",
+          "solution": "양변에서 3을 뺍니다.",
+          "questionType": "short-answer",
+          "figureUrls": [],
+          "figureSvg": null,
+          "unitName": "일차방정식",
+          "typeLabel": "계산",
+          "isCorrect": false
+        }
+      ],
+      "wrongQuestions": [
+        {
+          "problemId": "00000008-0000-4000-8000-000000000000",
+          "no": 1,
+          "content": "x + 3 = 10의 해를 구하시오.",
+          "answer": "x = 7",
+          "solution": "양변에서 3을 뺍니다.",
+          "questionType": "short-answer",
+          "figureUrls": [],
+          "figureSvg": null,
+          "unitName": "일차방정식",
+          "typeLabel": "계산",
+          "isCorrect": false
+        }
+      ],
+      "teacherNote": "양변에 같은 수를 더하고 빼 보세요.",
+      "retries": []
+    },
+    "layoutVersion": "h1-v2",
+    "options": {
+      "format": "M1",
+      "wrongQuestions": true,
+      "retries": true,
+      "teacherNote": true,
+      "classAverage": false
+    },
+    "classComparison": null
+  },
+  "sourceDigest": "30570c8edb88127e095e04e9ee5cd6f40c0ab362248aa85c8a283110bdab3cba"
+}
