@@ -927,5 +927,223 @@
     "Single isolated seed and one delivered item per supported format in root probe; not a complete mathematical domain proof",
     "Source selected demand scope and structural difficulty only; no measured learning effects or calibrated exam difficulty",
     "Production engine source unchanged by this audit"
-  ]
+  ],
+  "independentAudits": {
+    "unavailable": {
+      "commit": "c7f06185fb23321f9a27a78e763394e5bfa778ff",
+      "outcome": "succeeded",
+      "report": "unavailable-audit.json",
+      "uniqueRequirements": 6,
+      "courseQualifiedEntries": 7,
+      "pureEngineRequests": 7,
+      "mappedFamilies": 0,
+      "neighborRegistrationsObserved": 16,
+      "neighborOutputsObserved": 48,
+      "neighborIndependentMathProof": false
+    },
+    "unverified": {
+      "commit": "7606b72f56af9ebe0bcf20a40a5fea1c4bfdc9f0",
+      "outcome": "succeeded",
+      "report": "unverified-audit.json",
+      "directDraftRecords": 72,
+      "pureCoreRequests": 48,
+      "deliveredCoreRecords": 34,
+      "independentMathSummary": {
+        "checkedRecords": 106,
+        "origins": {
+          "direct": 72,
+          "core": 34
+        },
+        "recordsByRequirement": {
+          "algebra.candidate-verification": 18,
+          "algebra.equality-truth": 18,
+          "algebra.equation-classification": 18,
+          "algebra.linear-model": 18,
+          "algebra.linear-simplify": 18,
+          "written.rectangle-domain": 16
+        },
+        "mathFailures": 0,
+        "mcRecords": 10,
+        "qualityIssueRecords": 3,
+        "qualityIssues": [
+          {
+            "requirement": "algebra.equality-truth",
+            "origin": "core",
+            "requestSeed": 71,
+            "format": "객관식",
+            "familyId": "legacy:mid:1-1|일차방정식의 풀이|06",
+            "seed": 1638860089,
+            "variant": 0,
+            "contentDigest": "8bfa62436c6f46d6ee3afe5c3004ae9012568e736c02af5e94c0a7d04f42adc2",
+            "issues": [
+              {
+                "kind": "out-of-range-count-distractor",
+                "choice": 3,
+                "value": 6,
+                "statementCount": 5
+              }
+            ]
+          },
+          {
+            "requirement": "algebra.equation-classification",
+            "origin": "core",
+            "requestSeed": 71,
+            "format": "객관식",
+            "familyId": "legacy:mid:1-1|일차방정식의 풀이|09",
+            "seed": 648800451,
+            "variant": 0,
+            "contentDigest": "c75adfe8d6a43480094f3f99bda3fdc387f9302bd0d454ee27e7b5db60400be6",
+            "issues": [
+              {
+                "kind": "out-of-range-count-distractor",
+                "choice": 3,
+                "value": 6,
+                "statementCount": 5
+              }
+            ]
+          },
+          {
+            "requirement": "algebra.equation-classification",
+            "origin": "core",
+            "requestSeed": 20261019,
+            "format": "객관식",
+            "familyId": "legacy:mid:1-1|일차방정식의 풀이|09",
+            "seed": 1360768244,
+            "variant": 0,
+            "contentDigest": "e7a188b1f5439393890ab5ffc3310d65714146a6a47a6f61ea74949ce5cfe4cf",
+            "issues": [
+              {
+                "kind": "out-of-range-count-distractor",
+                "choice": 3,
+                "value": 6,
+                "statementCount": 5
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "Printed-template parser only; sampled seeds are not domain exhaustion.",
+          "No student-answer grading, figure rendering, real UI/API/authentication, print, or difficulty calibration."
+        ],
+        "independentProbeNegativeControlsRejected": 19
+      },
+      "negativeControlSummary": [
+        {
+          "requirement": "algebra.candidate-verification",
+          "mutation": "wrong-answer",
+          "independentProbeRejected": true,
+          "productionFallbackValid": true
+        },
+        {
+          "requirement": "algebra.candidate-verification",
+          "mutation": "missing-printed-conditions",
+          "independentProbeRejected": true,
+          "productionFallbackValid": true
+        },
+        {
+          "requirement": "algebra.candidate-verification",
+          "mutation": "unrelated-solution",
+          "independentProbeRejected": true,
+          "productionFallbackValid": true
+        },
+        {
+          "requirement": "algebra.equality-truth",
+          "mutation": "wrong-answer",
+          "independentProbeRejected": true,
+          "productionFallbackValid": true
+        },
+        {
+          "requirement": "algebra.equality-truth",
+          "mutation": "missing-printed-conditions",
+          "independentProbeRejected": true,
+          "productionFallbackValid": true
+        },
+        {
+          "requirement": "algebra.equality-truth",
+          "mutation": "unrelated-solution",
+          "independentProbeRejected": true,
+          "productionFallbackValid": true
+        },
+        {
+          "requirement": "algebra.equation-classification",
+          "mutation": "wrong-answer",
+          "independentProbeRejected": true,
+          "productionFallbackValid": true
+        },
+        {
+          "requirement": "algebra.equation-classification",
+          "mutation": "missing-printed-conditions",
+          "independentProbeRejected": true,
+          "productionFallbackValid": true
+        },
+        {
+          "requirement": "algebra.equation-classification",
+          "mutation": "unrelated-solution",
+          "independentProbeRejected": true,
+          "productionFallbackValid": true
+        },
+        {
+          "requirement": "algebra.linear-model",
+          "mutation": "wrong-answer",
+          "independentProbeRejected": true,
+          "productionFallbackValid": true
+        },
+        {
+          "requirement": "algebra.linear-model",
+          "mutation": "missing-printed-conditions",
+          "independentProbeRejected": true,
+          "productionFallbackValid": true
+        },
+        {
+          "requirement": "algebra.linear-model",
+          "mutation": "unrelated-solution",
+          "independentProbeRejected": true,
+          "productionFallbackValid": true
+        },
+        {
+          "requirement": "algebra.linear-simplify",
+          "mutation": "wrong-answer",
+          "independentProbeRejected": true,
+          "productionFallbackValid": true
+        },
+        {
+          "requirement": "algebra.linear-simplify",
+          "mutation": "missing-printed-conditions",
+          "independentProbeRejected": true,
+          "productionFallbackValid": true
+        },
+        {
+          "requirement": "algebra.linear-simplify",
+          "mutation": "unrelated-solution",
+          "independentProbeRejected": true,
+          "productionFallbackValid": true
+        },
+        {
+          "requirement": "written.rectangle-domain",
+          "mutation": "wrong-answer",
+          "independentProbeRejected": true,
+          "productionFallbackValid": true
+        },
+        {
+          "requirement": "written.rectangle-domain",
+          "mutation": "missing-printed-conditions",
+          "independentProbeRejected": true,
+          "productionFallbackValid": true
+        },
+        {
+          "requirement": "written.rectangle-domain",
+          "mutation": "unrelated-solution",
+          "independentProbeRejected": true,
+          "productionFallbackValid": true
+        },
+        {
+          "requirement": "written.rectangle-domain",
+          "mutation": "unrelated-rubric-expectations",
+          "independentProbeRejected": true,
+          "productionFallbackValid": true
+        }
+      ],
+      "countsAreDistinctCapacity": false
+    }
+  }
 }
