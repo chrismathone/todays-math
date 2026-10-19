@@ -1,0 +1,56 @@
+{
+  "utc": "2026-10-19T17:19:47.398Z",
+  "snapshot": "5362d06a18c72d5e7be923efc0c6d556a845634e",
+  "fetchedMain": "0e858c133d08c4b6a7a0bd83c5ca08860a9df402",
+  "targetBefore": "f0f6dbb7839f254ec3486306186b7f8044e5f6cf",
+  "affectedValidation": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r30-receipt.json",
+    "sha256": "63dead2d73617e9548da149b03059b44529074959ff7a8e5ebfdb43d8c61bbf0"
+  },
+  "priorIntegration": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r27-receipt.json",
+    "sha256": "17c329cf632b39aea57b3103dc5ac025f2053b9c03736c4ce01b3e30efb63290"
+  },
+  "actualRerun": {
+    "files": 18,
+    "passed": 212,
+    "typesPassed": true
+  },
+  "priorRun": {
+    "files": 8,
+    "passed": 102,
+    "typesPassed": true
+  },
+  "currentCandidateBindings": 133,
+  "counts": {
+    "authoredCurrentCandidates": 133,
+    "currentFigureInstances": 93,
+    "recreatedStatTables": 8,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 133,
+    "independentMathReviewed": 132,
+    "independentFullGradeReviewed": 132,
+    "contentReviewPassed": 15,
+    "contentReviewHeld": 117,
+    "awaitingCollectedIndependentReview": 1,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0,
+    "currentRawSolved": 132,
+    "currentRawPending": 1,
+    "awaitingFirstSealedBlindSolve": 0,
+    "historicalRawEncodingHoldVersions": 1,
+    "historicalRawAnswerFormatHoldVersions": 2,
+    "historicalCollectedAnswerGrammarHolds": 1,
+    "failedStudentRenderDraftVersions": 1
+  },
+  "additionalPublishedWorkingQuestion": "Gyeongsin q05 authored and raw-sealed, current formal review pending outside canonical v31; no additional full approval",
+  "unpublishedLocalWork": "No additional unpublished manual item claimed by this receipt",
+  "sourceAndCandidateHashesRechecked": true,
+  "newBlobsOver100MiB": 0,
+  "normalDiffCheckPassed": true,
+  "fullAppBuildValidated": false,
+  "dbWrites": 0,
+  "deploy": false,
+  "featureMergedIntoMain": false
+}
