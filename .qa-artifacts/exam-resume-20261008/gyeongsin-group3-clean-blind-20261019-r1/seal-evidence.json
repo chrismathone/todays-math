@@ -1,0 +1,100 @@
+{
+  "kind": "stage1-independent-blind-proof-seal/v1",
+  "solverId": "codex-gyeongsin-group3-clean-blind-20261019-r1-q04",
+  "studentDigest": "1d08f7cb77a61502a4c8cab332828ce287b2619c99e9401ccbd736610079df52",
+  "proofFile": "q04.json",
+  "proofSha256": "3b853a525dbaeb7e068b1506e6722efdb5f56b856cff07d0a16f730a6f69c465",
+  "numberedAnswers": [
+    {
+      "part": 1,
+      "quantity": "PR+QR",
+      "value": 18,
+      "unit": "cm"
+    },
+    {
+      "part": 2,
+      "quantity": "PR",
+      "value": 10,
+      "unit": "cm"
+    }
+  ],
+  "actualAnswer": "(1) 18 cm; (2) 10 cm",
+  "strictUtf8Reopened": true,
+  "fullKoreanProofPrintedFromActualBytes": true,
+  "encodingCorruptionRejected": true,
+  "calculationMethod": "Python Fraction; exact arithmetic only, no coordinates or outside-grade circle formula",
+  "exactChecks": {
+    "PRplusQRcm": 18,
+    "PRcm": 10,
+    "QRcm": 8,
+    "REcm": 2,
+    "RTcm": 2,
+    "PythagorasSquared": {
+      "PR": 100,
+      "PQplusQR": 100
+    },
+    "tangentsAtPCm": [
+      12,
+      12
+    ],
+    "tangentsAtQCm": [
+      6,
+      6
+    ],
+    "tangentsAtRCm": [
+      2,
+      2
+    ],
+    "PQSstrictOrder": true,
+    "PRTstrictOrder": true,
+    "EstrictInterior": true,
+    "existenceWitness": {
+      "QFcm": 3,
+      "RFcm": 5,
+      "areaPORcm2": 30,
+      "distanceOToPRcm": 6,
+      "OPsquaredCm2": 180,
+      "PHsquaredCm2": 144,
+      "PHcm": 12,
+      "ROsquaredCm2": 40,
+      "wrongSideROsquaredCm2": 520
+    }
+  },
+  "existenceAndRequestedLengthUniquenessReasoned": true,
+  "blindInputFiles": [
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group3-review-20261019-r2\\blind\\student-problems.json",
+      "sha256": "0c040494bf6c240e42e8564ce6c4964ad13e92c15dcd54597ddf1ab49df98008",
+      "bytes": 1078
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group3-review-20261019-r2\\blind\\blind-manifest.json",
+      "sha256": "e88b4a6ec255e0f490119ae61cac1a7337276180a07d06178e698333ca4e2f5c",
+      "bytes": 335
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group3-review-20261019-r2\\blind\\figures\\q04-1.svg",
+      "sha256": "4241cf67ee7c9e03ff869dc0424f749136f51a14e7b5dde87ff0a8168a1dcbd9",
+      "bytes": 8871
+    }
+  ],
+  "preservedLocalEvidence": [
+    {
+      "path": "figure-inspection.local.png",
+      "sha256": "d69c274b9968db35a901c5d54026a1edea680f0eccb2e23d45e13c99738dde2a",
+      "committed": false
+    },
+    {
+      "path": "tool-ready-resume-r1.json",
+      "sha256": "09ae4c0be9d492dc957ddf2063ba95c022636cdc3509f8972f40111e449b53ec",
+      "committed": false
+    }
+  ],
+  "figureViewed": true,
+  "pixelOrCoordinateOracleUsed": false,
+  "authorAnswerExposure": false,
+  "stage1Only": true,
+  "finalMathGradeContentSourceRightsApproval": false,
+  "loadable": 0,
+  "dbWrites": 0
+}
