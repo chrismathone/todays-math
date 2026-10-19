@@ -1,0 +1,122 @@
+{
+  "studentDigest": "e8e2cd65469c93106cf535a49b233675fa1b741a3fea60e9d5fbf636208a61ad",
+  "solverId": "codex-gf14-independent-20261019-r2",
+  "answer": "④",
+  "solution": "탄젠트 행에서 0.7813이 적힌 각도는 38°이므로 x=38이다. 코사인 행에서 0.7771이 적힌 각도는 39°이므로 y=39이다. 두 행을 구별하여 읽으면 y−x=39−38=1이므로 ④이다. 두 기록은 허용된 네 각 중 각각 하나에만 대응한다.",
+  "evidence": {
+    "questionNumber": 6,
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q06",
+    "studentOnlyInputs": true,
+    "figureReading": "No SVG supplied. Read the actual tables in student text; no hidden graph or image presumed.",
+    "renderedFiguresViewed": [],
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "studentOption": "$-2$",
+        "test": {
+          "choice": 1,
+          "encodedValue": "-2",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 2,
+        "studentOption": "$-1$",
+        "test": {
+          "choice": 2,
+          "encodedValue": "-1",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 3,
+        "studentOption": "$0$",
+        "test": {
+          "choice": 3,
+          "encodedValue": "0",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 4,
+        "studentOption": "$1$",
+        "test": {
+          "choice": 4,
+          "encodedValue": "1",
+          "correct": true
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 5,
+        "studentOption": "$2$",
+        "test": {
+          "choice": 5,
+          "encodedValue": "2",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      }
+    ],
+    "parts": [],
+    "existenceUniquenessPositiveLengthsUnits": "x,y belong to {37,38,39,40}; the specified row entries occur once each, giving a unique difference1. x,y are angle numbers; no extra length units.",
+    "withinGradeMethodEvidence": {
+      "target": "M3 / 2015",
+      "usedConcepts": [
+        "삼각비 표의 행·열 읽기",
+        "유한한 허용 각도의 기록값 대조"
+      ],
+      "derivationBasis": "Actual student-level proof written above; no formal live-family/classification or release approval is asserted.",
+      "forbiddenMethodsUsed": false,
+      "restrictionsChecked": [
+        "no general trig identities or function relationships",
+        "no sine/cosine laws",
+        "no Heron",
+        "no vectors",
+        "no higher-grade shortcuts",
+        "no pixel measurement"
+      ]
+    },
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q06",
+      "actualResult": {
+        "calculated": "1",
+        "choices": [
+          {
+            "choice": 1,
+            "encodedValue": "-2",
+            "correct": false
+          },
+          {
+            "choice": 2,
+            "encodedValue": "-1",
+            "correct": false
+          },
+          {
+            "choice": 3,
+            "encodedValue": "0",
+            "correct": false
+          },
+          {
+            "choice": 4,
+            "encodedValue": "1",
+            "correct": true
+          },
+          {
+            "choice": 5,
+            "encodedValue": "2",
+            "correct": false
+          }
+        ],
+        "uniqueChoice": 4
+      }
+    },
+    "exposure": "No GF14 candidate/private/source/old solves or actual author answers read. Prior unbound generic REVIEW-KIT example disclosed in input receipt and unused as answer evidence.",
+    "authorAnswersUsed": false
+  },
+  "status": "solved"
+}

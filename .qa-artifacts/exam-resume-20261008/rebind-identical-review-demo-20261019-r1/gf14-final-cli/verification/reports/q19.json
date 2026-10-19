@@ -1,0 +1,265 @@
+{
+  "studentDigest": "8a288ba524f8e0508bca7471f09f5ee7284677aa0e4a0150ac5e45c71e088254",
+  "candidateDigest": "c19b0e15a4171801222b7510f57bf2354949ebcc56e10483f7024ea2ca3210e2",
+  "assetDigest": "889a51e617be78399466d7c1d4c94bf4353d7530f8ae8deca574e11e9e8f03c6",
+  "solveDigest": "725672a4f1d8f2574fd60f7cf5dd0273f0b72bb4a41b66c9d74c9979b7d4217e",
+  "questionNumber": 19,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q19",
+  "status": "pending",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-gf14-independent-20261019-r2",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "checkEvidence": {
+    "answerCorrect": "(1)QR=3x/5, PR=?(x??9x?/25)=4x/5 for x>0. (2)Area6x?/25=24 gives x?100 and x10cm only. (3)QR6cm,PR8cm. All three author parts match sealed proofs; 2+4+2=8. Compared mathematically against this verifier?s sealed new raw solve; representation differences do not rewrite that proof.",
+    "solutionCorrect": "(1)QR=3x/5, PR=?(x??9x?/25)=4x/5 for x>0. (2)Area6x?/25=24 gives x?100 and x10cm only. (3)QR6cm,PR8cm. All three author parts match sealed proofs; 2+4+2=8.",
+    "existenceUniqueness": "x>0 and area24 exclude zero/negative roots. Area=(6/25)x² fixes x²=100 and only x10. Legs6,8 are positive, satisfy Pythagoras and give area24. Part1 lengths in cm expressed using the positive numerical parameterx; part2/3 cm.",
+    "choicesCorrect": "All three written subparts and their separate units/derivations match the sealed proof. Child scores total8, counted once.",
+    "figureConsistent": "RightR, hypotenusePQ=x, cosQ in text; solution recovers two legs; no answer is leaked as a given. Actual bound SVG rendered/viewed in stage1 and actual expanded author-answer/solution PNG viewed in stage2. Preview student/candidate digests and PNG hash verified; no overflow/clipping observed. Strict record binds exact SVG/spec bytes, not native/rights approval.",
+    "sameCoreConceptAndProcedure": "Original given hypotenuse18/cos1/3 asks area. Candidate given area24/cos3/5 asks hypotenuse and both legs in three parts. Reverse dependency chain; direct cos, positive Pythagoras and right-triangle area retained.",
+    "distinctPresentation": "Original given hypotenuse18/cos1/3 asks area. Candidate given area24/cos3/5 asks hypotenuse and both legs in three parts. Reverse dependency chain; direct cos, positive Pythagoras and right-triangle area retained.",
+    "naturalKorean": "No original school name appears on student surfaces; metadata-only substitution is not claimed as a displayed context change. Question target, conditions and answer format are readable Korean in the actual expanded preview; no unresolved referent found.",
+    "curriculumAppropriate": "(1)QR=3x/5, PR=?(x??9x?/25)=4x/5 for x>0. (2)Area6x?/25=24 gives x?100 and x10cm only. (3)QR6cm,PR8cm. All three author parts match sealed proofs; 2+4+2=8. Methods: 코사인의 정의, 실제 길이에 대한 피타고라스 정리, 직각삼각형의 넓이, 양의 제곱근. Applied2015 M3; angles remain0?90?. No trig relationships/identities, sine/cosine law, Heron, vectors or advanced shortcut in author student solution.",
+    "allStudentSurfacesInScope": "All seven surfaces individually reviewed below; mathematical calculation is deterministic supporting evidence, not an AI confidence/classification approval.",
+    "unitFamilyFit": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family.",
+    "scoreAppropriate": "Parent score8 matches the printed source score; 3 written parts with stated child allocation sum8. Operations described in source comparison remain plausible within this school-level task band; no measured equal-difficulty claim. Explicit scaffolding/inversion differences above remain visible."
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "직각삼각형 $PQR$에서 $\\angle R=90^\\circ$, $\\cos Q=\\frac35$이고 넓이는 $24\\,\\mathrm{cm}^2$이다. 빗변의 길이를 $\\overline{PQ}=x\\,\\mathrm{cm}$라 하자. $(x>0)$\n\n다음 기록을 복구하고 풀이를 쓰시오.\n\n(1) $QR$, $PR$의 길이를 각각 $x$를 사용하여 나타내시오. [2점]\n\n(2) 빗변 $PQ$의 길이를 구하시오. [4점]\n\n(3) 두 직각변 $QR$, $PR$의 길이를 차례로 구하시오. [2점]",
+      "officialProvisions": [
+        "6수03-06",
+        "9수04-16",
+        "9수04-17",
+        "9수04-18",
+        "9수01-07",
+        "9수01-10",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "Three written subparts, including explanation and positive-length selection, checked separately.",
+      "officialProvisions": [
+        "6수03-06",
+        "9수04-16",
+        "9수04-17",
+        "9수04-18",
+        "9수01-07",
+        "9수01-10",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "RightR, hypotenusePQ=x, cosQ in text; solution recovers two legs; no answer is leaked as a given.",
+      "officialProvisions": [
+        "6수03-06",
+        "9수04-16",
+        "9수04-17",
+        "9수04-18",
+        "9수01-07",
+        "9수01-10",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "Right-angle labels, acute degree measures, segment notation, fractions/radicals and cm/m/area units are conventional and agree with target. x>0 and area24 exclude zero/negative roots. Area=(6/25)x² fixes x²=100 and only x10. Legs6,8 are positive, satisfy Pythagoras and give area24. Part1 lengths in cm expressed using the positive numerical parameterx; part2/3 cm.",
+      "officialProvisions": [
+        "6수03-06",
+        "9수04-16",
+        "9수04-17",
+        "9수04-18",
+        "9수01-07",
+        "9수01-10",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "(1)QR=3x/5, PR=?(x??9x?/25)=4x/5 for x>0. (2)Area6x?/25=24 gives x?100 and x10cm only. (3)QR6cm,PR8cm. All three author parts match sealed proofs; 2+4+2=8.",
+      "officialProvisions": [
+        "6수03-06",
+        "9수04-16",
+        "9수04-17",
+        "9수04-18",
+        "9수01-07",
+        "9수01-10",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "(1)QR=3x/5, PR=?(x??9x?/25)=4x/5 for x>0. (2)Area6x?/25=24 gives x?100 and x10cm only. (3)QR6cm,PR8cm. All three author parts match sealed proofs; 2+4+2=8.",
+      "officialProvisions": [
+        "6수03-06",
+        "9수04-16",
+        "9수04-17",
+        "9수04-18",
+        "9수01-07",
+        "9수01-10",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "코사인의 정의, 실제 길이에 대한 피타고라스 정리, 직각삼각형의 넓이, 양의 제곱근. x>0 and area24 exclude zero/negative roots. Area=(6/25)x² fixes x²=100 and only x10. Legs6,8 are positive, satisfy Pythagoras and give area24. Part1 lengths in cm expressed using the positive numerical parameterx; part2/3 cm.",
+      "officialProvisions": [
+        "6수03-06",
+        "9수04-16",
+        "9수04-17",
+        "9수04-18",
+        "9수01-07",
+        "9수01-10",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    }
+  },
+  "unitFamily": {
+    "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+    "familyKey": null,
+    "status": "held-current-proof-missing",
+    "basis": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family."
+  },
+  "evidence": {
+    "rawCommit": "9870f836a8221a23d4cea3c08b43af1e9c3f7891",
+    "rawFile": "blind/solve/q19.json",
+    "independentAnswer": "(1) QR=3x/5 cm, PR=4x/5 cm; (2) PQ=10 cm; (3) QR=6 cm, PR=8 cm",
+    "independentProof": "(1) R이 직각이고 PQ=x>0이므로 cosQ=QR/PQ=3/5에서 QR=3x/5 cm이다. 피타고라스 정리에 의해 PR²=x²−(3x/5)²=16x²/25이다. PR,x>0이므로 PR=4x/5 cm이다.\n(2) 두 직각변이 서로 수직이므로 넓이는 (1/2)×(3x/5)×(4x/5)=6x²/25이다. 이것이24이므로 x²=100이다. x>0이므로 PQ=x=10 cm이다.\n(3) QR=3×10/5=6 cm, PR=4×10/5=8 cm이다. 6²+8²=10²이고 넓이6×8/2=24 cm²도 다시 확인된다. PR을 구할 때 삼각비 관계식이 아니라 실제 변에 피타고라스 정리를 적용하였다.",
+    "authorStepReview": "(1)QR=3x/5, PR=?(x??9x?/25)=4x/5 for x>0. (2)Area6x?/25=24 gives x?100 and x10cm only. (3)QR6cm,PR8cm. All three author parts match sealed proofs; 2+4+2=8.",
+    "choiceChecks": [],
+    "writtenParts": [
+      {
+        "label": "(1)",
+        "answer": "QR=3x/5 cm, PR=4x/5 cm",
+        "points": 2
+      },
+      {
+        "label": "(2)",
+        "answer": "PQ=10 cm",
+        "points": 4
+      },
+      {
+        "label": "(3)",
+        "answer": "QR=6 cm, PR=8 cm",
+        "points": 2
+      }
+    ],
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q19",
+      "actualResult": {
+        "part1": {
+          "QR": "3x/5",
+          "PR": "4x/5",
+          "xDomain": "x>0"
+        },
+        "areaCoefficient": "6/25",
+        "xSquared": "100",
+        "part2Hypotenuse": 10,
+        "part3Legs": [
+          6,
+          8
+        ],
+        "positiveRootOnly": true,
+        "rubricPoints": [
+          2,
+          4,
+          2
+        ]
+      }
+    },
+    "existenceUniquenessPositiveLengthsUnits": "x>0 and area24 exclude zero/negative roots. Area=(6/25)x² fixes x²=100 and only x10. Legs6,8 are positive, satisfy Pythagoras and give area24. Part1 lengths in cm expressed using the positive numerical parameterx; part2/3 cm.",
+    "sourceComparison": "Original given hypotenuse18/cos1/3 asks area. Candidate given area24/cos3/5 asks hypotenuse and both legs in three parts. Reverse dependency chain; direct cos, positive Pythagoras and right-triangle area retained.",
+    "preview": "gyeongsang-remaining-final14-r1/inspection/q19-expanded.png",
+    "exposure": "Before seal: no actual new GF14 author answers/authorship. Prior unbound generic REVIEW-KIT q7/? illustration had been read in NB5; disclosed and unused. Actual q7 independently yielded?. Stage2 actual author exposure authorized after raw seal; no legacy Claude proof/review used."
+  },
+  "findings": [
+    {
+      "severity": "blocker",
+      "surface": "unitFamilyFit",
+      "text": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family."
+    },
+    {
+      "severity": "note",
+      "surface": "source",
+      "text": "Question-only image comparison performed. Supplied sourceIdentity says original header/footer and completed-question identity supported; this review does not reopen immutable source bytes or independently certify full content pair/custody/rights. Existing source/loading holds remain."
+    }
+  ],
+  "gates": {
+    "loadable": false,
+    "rightsCleared": false,
+    "nativeApproved": false,
+    "sourceCertification": false
+  }
+}

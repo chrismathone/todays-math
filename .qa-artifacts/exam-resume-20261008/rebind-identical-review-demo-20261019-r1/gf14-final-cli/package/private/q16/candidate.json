@@ -1,0 +1,349 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 16,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q16",
+  "authorId": "orca-codex-exam-twin-source-identity-20261008",
+  "questionType": "객관식",
+  "score": 5,
+  "content": "삼각형 $PQR$에서 다음 기록이 남아 있다. $H$는 $P$에서 $QR$에 내린 수선의 발이며 선분 $QR$의 내부에 있다.\n\n| 항목 | 기록 |\n|---|---|\n| $\\overline{PQ}$ | $12\\,\\mathrm{cm}$ |\n| $\\angle PQR$ | $60^\\circ$ |\n| 삼각형 $PQR$의 넓이 | $36\\sqrt3\\,\\mathrm{cm}^2$ |\n\n이 기록을 만족하는 밑변 $\\overline{QR}$의 길이는?",
+  "choices": [
+    "$6\\,\\mathrm{cm}$",
+    "$12\\sqrt3\\,\\mathrm{cm}$",
+    "$12\\,\\mathrm{cm}$",
+    "$18\\,\\mathrm{cm}$",
+    "$24\\,\\mathrm{cm}$"
+  ],
+  "answer": "③",
+  "solution": "직각삼각형 $PQH$에서 $\\sin60^\\circ=\\frac{PH}{PQ}=\\frac{\\sqrt3}{2}$이므로 $PH=12\\times\\frac{\\sqrt3}{2}=6\\sqrt3\\,\\mathrm{cm}$이다.\n\n삼각형의 넓이는 밑변 $QR$과 높이 $PH$로 구한다. $\\frac12\\times QR\\times6\\sqrt3=36\\sqrt3$이므로 $QR=12\\,\\mathrm{cm}$이다. 이때 $QH=12\\cos60^\\circ=6\\,\\mathrm{cm}$이므로 수선의 발은 실제로 밑변 내부에 있다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "sourceReference": {
+    "externalId": "2025-gyeongsang-3-2-mid-16",
+    "sourceContentSha256": "b51ea62f810afde0fe32d3b3f25c825e8d2ffd17ce97e17a99229d22e72bd743",
+    "sourceSchoolInternal": "경상중",
+    "sourceExamYear": 2025,
+    "packet": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsang/packet/questions.json",
+      "sha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b"
+    },
+    "sourceCommit": "4cc9278da",
+    "questionOnlyImageRefs": [
+      {
+        "file": "images/q16-part1.png",
+        "sha256": "6e84f20a9d3c2a7f9e00a960b0cb3c069f5124041384a470658e15cc130c66f8",
+        "page": 4,
+        "column": 0,
+        "bbox": [
+          55,
+          476.47430419921875,
+          375,
+          943
+        ]
+      }
+    ],
+    "providedOriginalFileRefs": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경상중][3][25-2-중간][동아강] (완료).hwp",
+        "sha256": "bc0bb8c93f2e246b234c80c7fb89fcbdf8eda24536435e2fbe551ad916c1d4a1",
+        "bytes": 1635840
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경상중][3][25-2-중간][동아강] (완료).PDF",
+        "sha256": "08917520000308226e93d261861ee419d2cc0b3b61658271e78462da12da8af4",
+        "bytes": 14846744
+      }
+    ],
+    "sourceIdentityAsProvided": "2025_original_header_school_footer_and_completed_question_identity_supported",
+    "sourceManifestOrOriginalAnswerInput": false
+  },
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "structure"
+    ],
+    "before": "$\\mathrm{\\overline{AB}}=4,~\\overline{BC}=5,~\\angle B=40^\\circ$인 $\\triangle \\mathrm{ABC}$의 넓이는?\n(단, $\\sin 40^\\circ =0.6428,~\\cos 40^\\circ =0.7660,~\\tan 40^\\circ =0.8391$)\n[$5$점]\nAB=4, BC=5; ∠B=40°; 삼각비 표 값은 본문에 직접 제시.",
+    "after": "두 변/끼인각의 표 값으로 넓이를 구하던 것을 실제 한 변/끼인각/넓이 표로 바꾸어 밑변을 역산한다. 새 특수각은 정확한 값으로 계산한다.",
+    "sharedConcept": "수선 높이에 삼각비를 적용하고 밑변×높이/2로 삼각형 넓이를 구성",
+    "sharedProcedure": "수선의 실제 높이를 사인 정의로 구하고 동일 넓이 식을 밑변에 대해 역으로 푼다.",
+    "originalAnswerOrNumericalAgreementUsed": false
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "6수03-06",
+      "9수04-17",
+      "9수04-18",
+      "6수03-04"
+    ],
+    "legitimateMethodDraft": "수선의 실제 높이를 사인 정의로 구하고 동일 넓이 식을 밑변에 대해 역으로 푼다.",
+    "officialProvisions": [
+      {
+        "id": "6수03-06",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 3433,
+          "paragraph1based": 737,
+          "offset": 176573,
+          "text": "[6수03-06]\u001e평행사변형, 삼각형, 사다리꼴, 마름모의 넓이를 구하는 방법을 다양하게 추론하고, 이와 관련된 문제를 해결할 수 있다.\r"
+        },
+        "pdfPhysicalPage1based": 29,
+        "pdfPrintedPage": 25,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "9수04-17",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4341,
+          "paragraph1based": 948,
+          "offset": 219120,
+          "text": "[9수04-17]\u001e삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다. \r"
+        },
+        "pdfPhysicalPage1based": 38,
+        "pdfPrintedPage": 34,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "9수04-18",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4345,
+          "paragraph1based": 949,
+          "offset": 219292,
+          "text": "[9수04-18]\u001e삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.\r"
+        },
+        "pdfPhysicalPage1based": 38,
+        "pdfPrintedPage": 34,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "6수03-04",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 3425,
+          "paragraph1based": 735,
+          "offset": 176051,
+          "text": "[6수03-04]\u001e넓이를 나타내는 표준 단위의 필요성을 인식하여 1cm², 1m², 1km²의 단위를 알며, 그 관계를 이해한다. \r"
+        },
+        "pdfPhysicalPage1based": 29,
+        "pdfPrintedPage": 25,
+        "wholeClausePdfMatch": true
+      }
+    ],
+    "restrictionClauses": [
+      {
+        "id": "no_trig_ratio_relationships",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4440,
+          "paragraph1based": 966,
+          "offset": 224820,
+          "text": "삼각비 사이의 관계는 다루지 않는다.\r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "angle_range",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4444,
+          "paragraph1based": 967,
+          "offset": 224946,
+          "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.\r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "no_circle_proportionality",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4452,
+          "paragraph1based": 969,
+          "offset": 225374,
+          "text": "원과 비례에 관한 성질은 다루지 않는다.\r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "no_complex_geometry_measurement",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4472,
+          "paragraph1based": 974,
+          "offset": 226554,
+          "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.\r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "no_formal_complex_justification",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4476,
+          "paragraph1based": 975,
+          "offset": 226792,
+          "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다. \r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      }
+    ],
+    "independentReviewPending": true,
+    "authorCannotApprove": true,
+    "sourceEraBasis": "Actual2025 middle3 uses2015; middle3 rollout of2022 begins2027; future republication needs its own review.",
+    "preauthorGate": "author-method-proposed-independent-review-pending"
+  },
+  "metadata": {
+    "grade": "중3",
+    "semester": 2,
+    "subject": "수학",
+    "source": "transformed",
+    "originProblemId": null,
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "2027Republication": "requiresnew2022review"
+    },
+    "sourceExamYear": 2025,
+    "sourceSchoolInternal": "경상중",
+    "fictionalVisibleSchool": "해솔중학교",
+    "schoolReplacementMap": {
+      "경상중": "해솔중학교"
+    },
+    "fictionalSchoolUsedInStudentText": false,
+    "sourceQuestionId": "2025-gyeongsang-3-2-mid-16",
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q16",
+    "sourceSchoolNamesInStudentSurfaces": false,
+    "questionType": "객관식",
+    "score": 5,
+    "parentScoreCountedOnce": true,
+    "newSubpartRubric": [],
+    "sourcePrintedScore": {
+      "selectedHwpPdfPrintedParentScore": 5,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 5,
+      "referenceParentScore": 5,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "difficultyProposal": "응용",
+    "difficultyStatus": "author-proposed",
+    "difficultyEvidence": "Task operations: 수선의 실제 높이를 사인 정의로 구하고 동일 넓이 식을 밑변에 대해 역으로 푼다.. Exact original points preserved; descriptor is not a measured difficulty claim.",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending",
+    "problemTypeEvidence": {
+      "path": "classification-limits.json",
+      "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+    },
+    "assignment": {
+      "status": "proposed",
+      "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "unitSection": "삼각비의 활용",
+      "familyKey": "mid:3-2|삼각비의 활용|08",
+      "evidence": {
+        "actualCapturedUnit": {
+          "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "section": "삼각비의 활용",
+          "semester": 2,
+          "orderIndex": 483,
+          "problemCodePrefix": "J30503"
+        },
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "snapshotOnly": true,
+        "comparison": "활용08 triangleArea mode1의 한 변/끼인60도/넓이→다른 변 목적이 맞는다. a12,b12,면적36√3 제안이며 독립 배정 검토는 남는다.",
+        "comparedRegistryEntries": [
+          {
+            "registry": {
+              "key": "3-2|삼각비의 활용|08",
+              "grade": "중3",
+              "unitSection": "삼각비의 활용",
+              "rpmBook": "3-2",
+              "rpmMinor": "삼각비의 활용",
+              "rpmType": "08",
+              "rpmTitle": "삼각형의 넓이 예각이 주어진 경우"
+            },
+            "liveMatches": [
+              {
+                "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+                "family_key": "mid:3-2|삼각비의 활용|08",
+                "live_count": 24
+              }
+            ],
+            "actualRule": {
+              "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+              "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+              "startLine1based": 2266,
+              "endLine1based": 2275,
+              "text": "def(\n    \"삼각비의 활용\",\n    \"08\",\n    \"삼각형의 넓이 예각이 주어진 경우\",\n    SEC.활용,\n    \"응용\",\n    (rng) => triangleArea(rng, [30, 45, 60]),\n  ),\n\n  "
+            }
+          }
+        ],
+        "TRIPLESPoolCheckedForQ01": null
+      }
+    },
+    "authorMathEvidence": {
+      "file": "../../author-calculations.json",
+      "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a",
+      "questionNumber": 16
+    },
+    "sourcePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "rightsApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "limits": [
+      "Independent solve and full seven-surface review pending.",
+      "Rights/native/custody/loading remain pending.",
+      "Historical taxonomy snapshot is not a currentDB assertion."
+    ],
+    "authorFigureEvidence": {
+      "path": "figure-author-checks.json",
+      "sha256": "1b266062bc26877dafbead127ed6ea0ecada7dad2b05e31199fba862210fd2e1"
+    },
+    "authorVisualEvidence": {
+      "path": "visual-inspection.json",
+      "sha256": "8e336cb4203c74bf8180d0edf9412ab87ea3e2f9d0b76dba87a7c43c249798e5"
+    },
+    "officialAuthorCurriculumEvidence": {
+      "path": "curriculum-author-basis.json",
+      "sha256": "cd0128904d4f378eb0310f9edde0fa55ed96e02a6c0ff6272bdd30c1443ed347"
+    },
+    "authorSevenSurfaceEvidence": {
+      "path": "author-checks/q16.json",
+      "sha256": "126eb7015e5228d710362de6bd3b3adc64b555fb2ebfcf0a908bf7a16be751f7"
+    }
+  }
+}

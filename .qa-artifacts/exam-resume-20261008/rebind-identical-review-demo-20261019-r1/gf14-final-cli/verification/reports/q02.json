@@ -1,0 +1,290 @@
+{
+  "studentDigest": "2039110f3818cd3448b9c2acd07361522692ab86f041150967390673ca37e67e",
+  "candidateDigest": "3582fe2e9b52a54e6b1b54199c83e427fa2b527fdc68b8860a718110fee66a05",
+  "assetDigest": "54314aaff47a988bbd4711991cb50368ec1f193bbc3cf51588b6e081268278c8",
+  "solveDigest": "bda28d93338952fa209dafd9711dfc348706a2f20ff5d7278dcdaa7721e130a7",
+  "questionNumber": 2,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q02",
+  "status": "pending",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-gf14-independent-20261019-r2",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "checkEvidence": {
+    "answerCorrect": "Positive axis coordinates give PR=a, QR=b. a/20=4/5 gives a=16; b=12 establishes existence. Author selects?. Compared mathematically against this verifier?s sealed new raw solve; representation differences do not rewrite that proof.",
+    "solutionCorrect": "Positive axis coordinates give PR=a, QR=b. a/20=4/5 gives a=16; b=12 establishes existence. Author selects?.",
+    "existenceUniqueness": "a=16,b=12 makes a positive16–12–20 right triangle with the required coordinate positions; a is unique by a/20=4/5. Coordinate units unspecified; do not introduce cm.",
+    "choicesCorrect": "All five literal options compared to the exact sealed result; precisely one is true. Full per-option tests below.",
+    "figureConsistent": "Positive coordinate axes meet atR; P lies on positive horizontal and Q on positive vertical, agreeing with a,b>0. Actual bound SVG rendered/viewed in stage1 and actual expanded author-answer/solution PNG viewed in stage2. Preview student/candidate digests and PNG hash verified; no overflow/clipping observed. Strict record binds exact SVG/spec bytes, not native/rights approval.",
+    "sameCoreConceptAndProcedure": "Original asks cos from printed sides; candidate gives positive axis coordinates, a hypotenuse and cos, then asks a coordinate. Actual inverse/coordinate representation; same adjacent/hypotenuse principle.",
+    "distinctPresentation": "Original asks cos from printed sides; candidate gives positive axis coordinates, a hypotenuse and cos, then asks a coordinate. Actual inverse/coordinate representation; same adjacent/hypotenuse principle.",
+    "naturalKorean": "No original school name appears on student surfaces; metadata-only substitution is not claimed as a displayed context change. Question target, conditions and answer format are readable Korean in the actual expanded preview; no unresolved referent found.",
+    "curriculumAppropriate": "Positive axis coordinates give PR=a, QR=b. a/20=4/5 gives a=16; b=12 establishes existence. Author selects?. Methods: 좌표축의 수직과 양의 좌표, 코사인의 정의, 피타고라스 정리. Applied2015 M3; angles remain0?90?. No trig relationships/identities, sine/cosine law, Heron, vectors or advanced shortcut in author student solution.",
+    "allStudentSurfacesInScope": "All seven surfaces individually reviewed below; mathematical calculation is deterministic supporting evidence, not an AI confidence/classification approval.",
+    "unitFamilyFit": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family.",
+    "scoreAppropriate": "Parent score3 matches the printed source score; Five-choice single-parent format retained. Operations described in source comparison remain plausible within this school-level task band; no measured equal-difficulty claim. Explicit scaffolding/inversion differences above remain visible."
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "좌표평면 위의 세 점 $R(0,0)$, $P(a,0)$, $Q(0,b)$에 대하여 $a>0$, $b>0$이다.\n삼각형 $PQR$의 기록이 다음과 같다.\n\n| 항목 | 기록 |\n|---|---|\n| $\\overline{PQ}$의 길이 | $20$ |\n| $\\cos\\angle QPR$ | $\\frac{4}{5}$ |\n\n점 $P$의 $x$좌표 $a$의 값은?",
+      "officialProvisions": [
+        "9수04-01",
+        "9수04-17",
+        "9수04-18",
+        "9수03-01"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "Five choices checked against sealed exact result; radicals/fractions/decimals are within M3.",
+      "officialProvisions": [
+        "9수04-01",
+        "9수04-17",
+        "9수04-18",
+        "9수03-01"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "Positive coordinate axes meet atR; P lies on positive horizontal and Q on positive vertical, agreeing with a,b>0.",
+      "officialProvisions": [
+        "9수04-01",
+        "9수04-17",
+        "9수04-18",
+        "9수03-01"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "Right-angle labels, acute degree measures, segment notation, fractions/radicals and cm/m/area units are conventional and agree with target. a=16,b=12 makes a positive16–12–20 right triangle with the required coordinate positions; a is unique by a/20=4/5. Coordinate units unspecified; do not introduce cm.",
+      "officialProvisions": [
+        "9수04-01",
+        "9수04-17",
+        "9수04-18",
+        "9수03-01"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "Positive axis coordinates give PR=a, QR=b. a/20=4/5 gives a=16; b=12 establishes existence. Author selects?.",
+      "officialProvisions": [
+        "9수04-01",
+        "9수04-17",
+        "9수04-18",
+        "9수03-01"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "Positive axis coordinates give PR=a, QR=b. a/20=4/5 gives a=16; b=12 establishes existence. Author selects?.",
+      "officialProvisions": [
+        "9수04-01",
+        "9수04-17",
+        "9수04-18",
+        "9수03-01"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "좌표축의 수직과 양의 좌표, 코사인의 정의, 피타고라스 정리. a=16,b=12 makes a positive16–12–20 right triangle with the required coordinate positions; a is unique by a/20=4/5. Coordinate units unspecified; do not introduce cm.",
+      "officialProvisions": [
+        "9수04-01",
+        "9수04-17",
+        "9수04-18",
+        "9수03-01"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    }
+  },
+  "unitFamily": {
+    "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+    "familyKey": null,
+    "status": "held-current-proof-missing",
+    "basis": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family."
+  },
+  "evidence": {
+    "rawCommit": "9870f836a8221a23d4cea3c08b43af1e9c3f7891",
+    "rawFile": "blind/solve/q02.json",
+    "independentAnswer": "④",
+    "independentProof": "a,b>0이므로 PR은 양의 x축 위, QR은 양의 y축 위에 놓이고 R은 직각이다. 각 QPR에 대하여 cos∠QPR=PR/PQ=a/20=4/5이므로 a=16이다. 따라서 ④이다. 피타고라스 정리에 의해 b=√(20²−16²)=12>0이므로 주어진 좌표 조건을 만족한다.",
+    "authorStepReview": "Positive axis coordinates give PR=a, QR=b. a/20=4/5 gives a=16; b=12 establishes existence. Author selects?.",
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "studentOption": "$12$",
+        "test": {
+          "choice": 1,
+          "encodedValue": "12",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 2,
+        "studentOption": "$4$",
+        "test": {
+          "choice": 2,
+          "encodedValue": "4",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 3,
+        "studentOption": "$20$",
+        "test": {
+          "choice": 3,
+          "encodedValue": "20",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 4,
+        "studentOption": "$16$",
+        "test": {
+          "choice": 4,
+          "encodedValue": "16",
+          "correct": true
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 5,
+        "studentOption": "$25$",
+        "test": {
+          "choice": 5,
+          "encodedValue": "25",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      }
+    ],
+    "writtenParts": [],
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q02",
+      "actualResult": {
+        "calculated": "16",
+        "choices": [
+          {
+            "choice": 1,
+            "encodedValue": "12",
+            "correct": false
+          },
+          {
+            "choice": 2,
+            "encodedValue": "4",
+            "correct": false
+          },
+          {
+            "choice": 3,
+            "encodedValue": "20",
+            "correct": false
+          },
+          {
+            "choice": 4,
+            "encodedValue": "16",
+            "correct": true
+          },
+          {
+            "choice": 5,
+            "encodedValue": "25",
+            "correct": false
+          }
+        ],
+        "uniqueChoice": 4
+      }
+    },
+    "existenceUniquenessPositiveLengthsUnits": "a=16,b=12 makes a positive16–12–20 right triangle with the required coordinate positions; a is unique by a/20=4/5. Coordinate units unspecified; do not introduce cm.",
+    "sourceComparison": "Original asks cos from printed sides; candidate gives positive axis coordinates, a hypotenuse and cos, then asks a coordinate. Actual inverse/coordinate representation; same adjacent/hypotenuse principle.",
+    "preview": "gyeongsang-remaining-final14-r1/inspection/q02-expanded.png",
+    "exposure": "Before seal: no actual new GF14 author answers/authorship. Prior unbound generic REVIEW-KIT q7/? illustration had been read in NB5; disclosed and unused. Actual q7 independently yielded?. Stage2 actual author exposure authorized after raw seal; no legacy Claude proof/review used."
+  },
+  "findings": [
+    {
+      "severity": "blocker",
+      "surface": "unitFamilyFit",
+      "text": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family."
+    },
+    {
+      "severity": "note",
+      "surface": "source",
+      "text": "Question-only image comparison performed. Supplied sourceIdentity says original header/footer and completed-question identity supported; this review does not reopen immutable source bytes or independently certify full content pair/custody/rights. Existing source/loading holds remain."
+    }
+  ],
+  "gates": {
+    "loadable": false,
+    "rightsCleared": false,
+    "nativeApproved": false,
+    "sourceCertification": false
+  }
+}

@@ -1,0 +1,288 @@
+{
+  "studentDigest": "77c7086a0c79113ec148fdd060350757db2d2eaa960d67f071d66ac3485cefba",
+  "candidateDigest": "098d18d1bda8d6c2e0997764bfbf2d09b953fd0d545a53095a112b0e486b828e",
+  "assetDigest": "dde2a6c4241688b07141c50239d4bb17604a230292a111872d181f9836ab02b6",
+  "solveDigest": "058775ef9c7160fd5fec417caa8e67565964a9b4420e7d4e3c3e8b488aedbbcc",
+  "questionNumber": 3,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q03",
+  "status": "pending",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-gf14-independent-20261019-r2",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "checkEvidence": {
+    "answerCorrect": "QR?=13??10?=69; QR=?69>0, tan P=?69/10. Author selects? and takes the positive root. Compared mathematically against this verifier?s sealed new raw solve; representation differences do not rewrite that proof.",
+    "solutionCorrect": "QR?=13??10?=69; QR=?69>0, tan P=?69/10. Author selects? and takes the positive root.",
+    "existenceUniqueness": "13>10>0 and69>0 give a single positive QR=√69; tan denominator10 positive. QR is cm, tan dimensionless.",
+    "choicesCorrect": "All five literal options compared to the exact sealed result; precisely one is true. Full per-option tests below.",
+    "figureConsistent": "Right R, hypotenuse13 and adjacent10 agree; unknown QR is not printed as a given. Actual bound SVG rendered/viewed in stage1 and actual expanded author-answer/solution PNG viewed in stage2. Preview student/candidate digests and PNG hash verified; no overflow/clipping observed. Strict record binds exact SVG/spec bytes, not native/rights approval.",
+    "sameCoreConceptAndProcedure": "The actual original crop prints ONLY AC5 and AB6, not BC?11. Both original and candidate require Pythagoras followed by opposite/adjacent tangent. Candidate asks a paired missing length/tangent record instead of only tangent; substantive paired target. Extracted figureGivenObservation and variantDelta.before wrongly present the derived original BC as a given; image takes precedence.",
+    "distinctPresentation": "The actual original crop prints ONLY AC5 and AB6, not BC?11. Both original and candidate require Pythagoras followed by opposite/adjacent tangent. Candidate asks a paired missing length/tangent record instead of only tangent; substantive paired target. Extracted figureGivenObservation and variantDelta.before wrongly present the derived original BC as a given; image takes precedence.",
+    "naturalKorean": "No original school name appears on student surfaces; metadata-only substitution is not claimed as a displayed context change. Question target, conditions and answer format are readable Korean in the actual expanded preview; no unresolved referent found.",
+    "curriculumAppropriate": "QR?=13??10?=69; QR=?69>0, tan P=?69/10. Author selects? and takes the positive root. Methods: 피타고라스 정리, 양의 제곱근, 탄젠트의 정의. Applied2015 M3; angles remain0?90?. No trig relationships/identities, sine/cosine law, Heron, vectors or advanced shortcut in author student solution.",
+    "allStudentSurfacesInScope": "All seven surfaces individually reviewed below; mathematical calculation is deterministic supporting evidence, not an AI confidence/classification approval.",
+    "unitFamilyFit": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family.",
+    "scoreAppropriate": "Parent score4 matches the printed source score; Five-choice single-parent format retained. Operations described in source comparison remain plausible within this school-level task band; no measured equal-difficulty claim. Explicit scaffolding/inversion differences above remain visible."
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "직각삼각형 $PQR$에서 $\\angle R=90^\\circ$, $\\overline{PQ}=13\\,\\mathrm{cm}$, $\\overline{PR}=10\\,\\mathrm{cm}$이다.\n다음 두 기록을 완성하려고 한다.\n\n| 기록 항목 | $\\overline{QR}$의 길이 | $\\tan P$ |\n|---|---|---|\n| 기록 | ㉠ $\\mathrm{cm}$ | ㉡ |\n\n㉠, ㉡에 들어갈 값을 차례로 바르게 짝지은 것은?",
+      "officialProvisions": [
+        "9수01-07",
+        "9수04-16",
+        "9수04-17"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "Five choices checked against sealed exact result; radicals/fractions/decimals are within M3.",
+      "officialProvisions": [
+        "9수01-07",
+        "9수04-16",
+        "9수04-17"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "Right R, hypotenuse13 and adjacent10 agree; unknown QR is not printed as a given.",
+      "officialProvisions": [
+        "9수01-07",
+        "9수04-16",
+        "9수04-17"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "Right-angle labels, acute degree measures, segment notation, fractions/radicals and cm/m/area units are conventional and agree with target. 13>10>0 and69>0 give a single positive QR=√69; tan denominator10 positive. QR is cm, tan dimensionless.",
+      "officialProvisions": [
+        "9수01-07",
+        "9수04-16",
+        "9수04-17"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "QR?=13??10?=69; QR=?69>0, tan P=?69/10. Author selects? and takes the positive root.",
+      "officialProvisions": [
+        "9수01-07",
+        "9수04-16",
+        "9수04-17"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "QR?=13??10?=69; QR=?69>0, tan P=?69/10. Author selects? and takes the positive root.",
+      "officialProvisions": [
+        "9수01-07",
+        "9수04-16",
+        "9수04-17"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "피타고라스 정리, 양의 제곱근, 탄젠트의 정의. 13>10>0 and69>0 give a single positive QR=√69; tan denominator10 positive. QR is cm, tan dimensionless.",
+      "officialProvisions": [
+        "9수01-07",
+        "9수04-16",
+        "9수04-17"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    }
+  },
+  "unitFamily": {
+    "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+    "familyKey": null,
+    "status": "held-current-proof-missing",
+    "basis": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family."
+  },
+  "evidence": {
+    "rawCommit": "9870f836a8221a23d4cea3c08b43af1e9c3f7891",
+    "rawFile": "blind/solve/q03.json",
+    "independentAnswer": "②",
+    "independentProof": "R이 직각이므로 QR²=PQ²−PR²=13²−10²=69이다. 길이는 양수이므로 QR=√69 cm이다. 각 P의 탄젠트는 마주 보는 직각변 QR을 이웃한 직각변 PR로 나눈 비이므로 tan P=QR/PR=√69/10이다. 따라서 (㉠,㉡)=(√69,√69/10), 정답은 ②이다.",
+    "authorStepReview": "QR?=13??10?=69; QR=?69>0, tan P=?69/10. Author selects? and takes the positive root.",
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "studentOption": "$\\sqrt{69},\\ \\frac{10}{\\sqrt{69}}$",
+        "test": {
+          "choice": 1,
+          "encodedValue": "((Fraction(1, 1), 69), (Fraction(10, 69), 69))",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 2,
+        "studentOption": "$\\sqrt{69},\\ \\frac{\\sqrt{69}}{10}$",
+        "test": {
+          "choice": 2,
+          "encodedValue": "((Fraction(1, 1), 69), (Fraction(1, 10), 69))",
+          "correct": true
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 3,
+        "studentOption": "$3,\\ \\frac{3}{10}$",
+        "test": {
+          "choice": 3,
+          "encodedValue": "((Fraction(3, 1), 1), (Fraction(3, 10), 1))",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 4,
+        "studentOption": "$\\sqrt{159},\\ \\frac{\\sqrt{159}}{10}$",
+        "test": {
+          "choice": 4,
+          "encodedValue": "((Fraction(1, 1), 159), (Fraction(1, 10), 159))",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 5,
+        "studentOption": "$\\sqrt{69},\\ \\frac{\\sqrt{69}}{13}$",
+        "test": {
+          "choice": 5,
+          "encodedValue": "((Fraction(1, 1), 69), (Fraction(1, 13), 69))",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      }
+    ],
+    "writtenParts": [],
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q03",
+      "actualResult": {
+        "calculated": "((Fraction(1, 1), 69), (Fraction(1, 10), 69))",
+        "choices": [
+          {
+            "choice": 1,
+            "encodedValue": "((Fraction(1, 1), 69), (Fraction(10, 69), 69))",
+            "correct": false
+          },
+          {
+            "choice": 2,
+            "encodedValue": "((Fraction(1, 1), 69), (Fraction(1, 10), 69))",
+            "correct": true
+          },
+          {
+            "choice": 3,
+            "encodedValue": "((Fraction(3, 1), 1), (Fraction(3, 10), 1))",
+            "correct": false
+          },
+          {
+            "choice": 4,
+            "encodedValue": "((Fraction(1, 1), 159), (Fraction(1, 10), 159))",
+            "correct": false
+          },
+          {
+            "choice": 5,
+            "encodedValue": "((Fraction(1, 1), 69), (Fraction(1, 13), 69))",
+            "correct": false
+          }
+        ],
+        "uniqueChoice": 2
+      }
+    },
+    "existenceUniquenessPositiveLengthsUnits": "13>10>0 and69>0 give a single positive QR=√69; tan denominator10 positive. QR is cm, tan dimensionless.",
+    "sourceComparison": "The actual original crop prints ONLY AC5 and AB6, not BC?11. Both original and candidate require Pythagoras followed by opposite/adjacent tangent. Candidate asks a paired missing length/tangent record instead of only tangent; substantive paired target. Extracted figureGivenObservation and variantDelta.before wrongly present the derived original BC as a given; image takes precedence.",
+    "preview": "gyeongsang-remaining-final14-r1/inspection/q03-expanded.png",
+    "exposure": "Before seal: no actual new GF14 author answers/authorship. Prior unbound generic REVIEW-KIT q7/? illustration had been read in NB5; disclosed and unused. Actual q7 independently yielded?. Stage2 actual author exposure authorized after raw seal; no legacy Claude proof/review used."
+  },
+  "findings": [
+    {
+      "severity": "blocker",
+      "surface": "unitFamilyFit",
+      "text": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family."
+    },
+    {
+      "severity": "note",
+      "surface": "source",
+      "text": "Question-only image comparison performed. Supplied sourceIdentity says original header/footer and completed-question identity supported; this review does not reopen immutable source bytes or independently certify full content pair/custody/rights. Existing source/loading holds remain."
+    },
+    {
+      "severity": "fix",
+      "surface": "source-reference-metadata",
+      "text": "selected-source-questions.json q3 figureGivenObservation and candidate.variantDelta.before say original BC=?11 is supplied. Actual q03-part1.png prints AC5 and AB6 only; BC?11 is derived. Correct future source annotation after preserving current frozen bytes. This does not invalidate candidate math or core-method match."
+    }
+  ],
+  "gates": {
+    "loadable": false,
+    "rightsCleared": false,
+    "nativeApproved": false,
+    "sourceCertification": false
+  }
+}
