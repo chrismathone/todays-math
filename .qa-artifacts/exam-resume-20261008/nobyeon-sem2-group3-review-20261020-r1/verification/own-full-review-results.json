@@ -1,0 +1,69 @@
+{
+  "results": [
+    {
+      "q": 12,
+      "reportSha256": "e63921a71e2e0edc809d970da9917257bf8fecc57da8611e52ca6581da40d1cf",
+      "passedChecks": 11,
+      "passedGradeSurfaces": 7,
+      "math": "passed",
+      "grade": "passed",
+      "content": "held"
+    },
+    {
+      "q": 13,
+      "reportSha256": "7dd5e6e046322b554ec41a73d570c73992b2ee4e479de0f3b94cbd23d8eff151",
+      "passedChecks": 11,
+      "passedGradeSurfaces": 7,
+      "math": "passed",
+      "grade": "passed",
+      "content": "held"
+    },
+    {
+      "q": 14,
+      "reportSha256": "1a7a8feaf7b9151fe1d04735d61819ed88e209c57f6e278b7fb148f58fc3ea5b",
+      "passedChecks": 11,
+      "passedGradeSurfaces": 7,
+      "math": "passed",
+      "grade": "passed",
+      "content": "held"
+    }
+  ],
+  "inputsBeforeAfterHashes": {
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group3-review-20261020-r1\\blind\\solve\\q12.json": "e4a79e3619c99bc1df01b5c064e668016bd4f89cd422620fb0199af0081bf655",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group3-review-20261020-r1\\package\\private\\q12\\candidate.json": "329b704fa242ea09e66639b7265dfbd93b8f68545c63e97c52c51de37f0be2cd",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group3-review-20261020-r1\\source-only-context\\q12-original-question-only.json": "9d57e886c3808108025e695d15883d65a1a71ffb0e58760285df87ad75714e0f",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group3-review-20261020-r1\\blind\\student-problems.json": "a479459f67523a368c215c94efd3e5e0f180088d622e8000b4e5ed3558b6ba96",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group3-review-20261020-r1\\blind\\solve\\q13.json": "1ac5ab4530052186e7515d35dd8be828e4c78304035c2873074012a4887a67ad",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group3-review-20261020-r1\\package\\private\\q13\\candidate.json": "b774211ab588b612b68130c835fcecd001d9cc96f9ecc5c89558a236a0c03909",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group3-review-20261020-r1\\source-only-context\\q13-original-question-only.json": "c8b0fb01e2360aca555c450545db691d05910c9cc1a79dddac3e7722804567d3",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group3-review-20261020-r1\\blind\\solve\\q14.json": "f6f308cba7898c388114b65ffd4ce53511ad4afb021ac1a15a79a4e5fd80c457",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group3-review-20261020-r1\\package\\private\\q14\\candidate.json": "766c2a224c4b9dc4a0d768f92d9548047219769c4688a277cb6f907088c3f5a2",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group3-review-20261020-r1\\source-only-context\\q14-original-question-only.json": "0691a0319470fb9d39659b74c2c8324015ba46f164f1cd9aa2f6c9453bbd8c32"
+  },
+  "rawUnchanged": true,
+  "currentQ14r2StudentBindingVerified": true,
+  "primaryEvidence": {
+    "normative": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "actuallyViewedPrior": true,
+      "edition": "2015",
+      "locators": [
+        "line570:9수05-06 평균/중앙값/최빈값,9수05-08 쌍자료·산점도와상관관계",
+        "line573 통계학습용어",
+        "line585 양/음/상관없음의분류"
+      ],
+      "wholeMethodLimit": "대표값정의·정렬·자료합·빈도및질적인산점도경향에한정;고등공분산/회귀/인과추론필요없음"
+    },
+    "actualM3Placement": {
+      "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+      "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+      "previouslyActuallyViewed": true,
+      "locators": [
+        "PDFindex73/physical74/printed72:중3수학2학기header 및10월9수05-06",
+        "PDFindex74/physical75/printed73:11월9수05-08 산점도로상관관계말하기"
+      ],
+      "limits": "특정노변중시험진도·2022교육과정·학교원문출처/권리인증아님"
+    }
+  },
+  "noStudentCovarianceOrCausation": true
+}

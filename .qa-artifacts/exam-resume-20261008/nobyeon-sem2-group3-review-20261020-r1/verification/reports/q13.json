@@ -1,0 +1,174 @@
+{
+  "status": "pending",
+  "studentDigest": "af62231ac743740f6043a3809993e34c59c93506af0102a78086fd9a923693a7",
+  "candidateDigest": "71c405575eace88aebddd889172722bb9971d1e0529d78c580a6afdf86299462",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-nobyeon-sem2-group3-full-review-20261020",
+  "solveDigest": "8fc09f61bf62b88ac17e151b8eb5df469991b6ccc41c9590bbd80a61c72bd879",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "evidence": {
+    "classification": {
+      "math": "passed",
+      "grade": "2015-M3-after-prerequisites-passed",
+      "content": "held"
+    },
+    "ownExecutableChecks": {
+      "knownSum": 48,
+      "requiredTotal": 56,
+      "a": 8,
+      "data": [
+        3,
+        7,
+        8,
+        4,
+        8,
+        9,
+        10,
+        7
+      ],
+      "frequencies": {
+        "3": 1,
+        "7": 2,
+        "8": 2,
+        "4": 1,
+        "9": 1,
+        "10": 1
+      },
+      "allModes": [
+        7,
+        8
+      ],
+      "existenceUniqueness": "합관계로a8유일한자연수, 분모8>0, 최대빈도2를갖는값은7/8뿐.",
+      "allFiveChoiceChecks": {
+        "①": false,
+        "②": false,
+        "③": true,
+        "④": false,
+        "⑤": false
+      }
+    },
+    "fullAuthorSolutionReview": "평균7×자료8개=합56, 고정합48에서a8. 실제자료의빈도7/8각2회,3/4/9/10각1회. 최빈값7·8을빠짐없이선택하는③. 저자전체해설의모든산술과정의를검증했다.",
+    "sourceComparison": {
+      "status": "question-only-core-and-transformation-passed",
+      "observations": {
+        "observed": "원문은8자료에서주어진복수최빈값으로미지자료를정하고평균b와a의합을묻는다. 원문질문/5보기와자료목록을실제읽었으나원문답/키는계산하지않았다.",
+        "core": "자료의빈도와최빈값복수가능성, 평균과자료합관계라는같은두정의를연결한다.",
+        "change": "새문항은평균을입력으로미지자료를복원한뒤두최빈값을출력으로선택한다. 원문과입출력순서를역전하고전체최빈목록의누락/불필요값오류를선택지로구성한다."
+      },
+      "sourceQuestionSha256": "c8b0fb01e2360aca555c450545db691d05910c9cc1a79dddac3e7722804567d3",
+      "noOriginalAnswerKeyOrNumericConclusionCompared": true,
+      "scope": "질문전용자료의수학적구조대응만;전문서/답안쌍/저작권인증아님"
+    },
+    "primaryEvidence": {
+      "normative": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "actuallyViewedPrior": true,
+        "edition": "2015",
+        "locators": [
+          "line570:9수05-06 평균/중앙값/최빈값,9수05-08 쌍자료·산점도와상관관계",
+          "line573 통계학습용어",
+          "line585 양/음/상관없음의분류"
+        ],
+        "wholeMethodLimit": "대표값정의·정렬·자료합·빈도및질적인산점도경향에한정;고등공분산/회귀/인과추론필요없음"
+      },
+      "actualM3Placement": {
+        "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+        "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+        "previouslyActuallyViewed": true,
+        "locators": [
+          "PDFindex73/physical74/printed72:중3수학2학기header 및10월9수05-06",
+          "PDFindex74/physical75/printed73:11월9수05-08 산점도로상관관계말하기"
+        ],
+        "limits": "특정노변중시험진도·2022교육과정·학교원문출처/권리인증아님"
+      }
+    },
+    "naturalWording": "현재발문은요구하는기록/자료/목표가명확하다. 빠짐없이라는말이복수최빈값을전부선택하도록분명히한다.",
+    "scoreDifficulty": {
+      "score": 4,
+      "scoreBasis": "원문과같은4점이며 자료합과빈도연결를요구하므로배점제안은내용상수용가능. 실제측정난도는미제공.",
+      "proposal": "기본",
+      "sourceLabelAsProvided": "하",
+      "difficultyApproval": "pending",
+      "basis": "원문하라벨은참고자료이며새기본제안의실측동등성/보정은미확인. difficultyStatus의source-label-unknown일반문구와관측라벨의동시존재도별도편집정리대상."
+    },
+    "unitFamily": {
+      "capturedUnitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "capturedSection": "대푯값과 산포도",
+      "familyKey": null,
+      "unitFamilyFit": false,
+      "basis": "제공캡처단원과내용대응은있으나새역추론/새표과제의정확한livefamily정의·등록상태는미검증. UUID나label만으로적합판정하지않음."
+    },
+    "rawBinding": {
+      "helperRawCommit": "b8099cf72515e54944507cb55c1307a88cfb2e7c",
+      "parentRawCommit": "77ea33927ed8c8c7b0c0c860c261404ac8056dd0",
+      "rawSha256": "1ac5ab4530052186e7515d35dd8be828e4c78304035c2873074012a4887a67ad",
+      "byteEqualGit": true,
+      "originalExposureDeclarationPreserved": {
+        "currentAuthorAnswerSolutionPackageExposed": false,
+        "priorSourceExposure": "이전 노변1학기 다수문항과노변2학기q09~11의학생풀이/저자해설/질문전용원문을검토했다. 관련대표값·산포도와다른시험기하검토이력도있다. 이번q12~14의현재저자답·해설·비공개패키지와원문은열지않았다. 전체원본코퍼스의완전미노출은주장하지않는다.",
+        "inputsUsed": "현재학생발문·표·5보기만; 저자답/원문키검색없음",
+        "noCovarianceFormulaUsed": true
+      },
+      "newSourceExposure": "이번전체검토에서원문질문에노출;원시Git봉인이후이며원문답키는미제공"
+    },
+    "releasePolicyInterpretation": "원문staging의authoringRelease=false는일반상태표시일뿐특정학년/출처hold를해제하거나운영승인을주는값이아니다. 해당원문전체/권리와livefamily/native각각별도보류.",
+    "holds": {
+      "sourceIdentityApproved": false,
+      "wholeSourcePairApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "liveFamilyApproved": false,
+      "loadable": false,
+      "2022Placement": "pending",
+      "schoolSpecificPacing": "pending",
+      "difficultyEquivalence": "pending"
+    },
+    "sharedConceptBankChanged": false
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "평균에서누락자료를구하고복수최빈값을찾는실제발문은2015 9수05-06의대표값정의적용이다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "7단독,8단독,7·8,7·9,8·9를모두빈도와대조하여7·8만완전한최빈값목록이다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "8개자료의한행표에서a의위치와기지값7개·반복횟수를확인했다. 평균/최빈값계산에필요한모든자료가있다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "자연수a·평균7·최빈값의복수목록은중학교대표값표기이다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "독립raw와저자③이일치하며모든5보기를검토했다. 최빈값집합7/8이유일하며a8은자연수이다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "평균7×자료8개=합56, 고정합48에서a8. 실제자료의빈도7/8각2회,3/4/9/10각1회. 최빈값7·8을빠짐없이선택하는③. 저자전체해설의모든산술과정의를검증했다. 이전실제공식primary의범위/학년배치와전체학생방법을대조했다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "대표값9수05-06의홀수/짝수중앙값정렬,평균/최빈값정의및이전일차식·자연수·분수계산이후배정한다. 실제공식중3계획printed72에9수05-06배치가있다. 특정노변중중간고사진도및2022배치는인증하지않는다."
+    }
+  }
+}
