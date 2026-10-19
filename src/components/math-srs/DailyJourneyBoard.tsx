@@ -62,6 +62,8 @@ export interface DailyJourneyBoardProps {
   nextLabel?: string;
   busy?: boolean;
   variant?: "full" | "map";
+  /** A surrounding book page already names this board. Keep its totals and navigation. */
+  hideTitle?: boolean;
   /** 진도판 테마(학원 전체 한 벌) — 없으면 지금 판. */
   theme?: JourneyThemeId;
   onReviewDay: (day: DailyJourneyDay, opener: HTMLButtonElement) => void;
@@ -294,6 +296,7 @@ export default function DailyJourneyBoard({
   nextLabel = "이어서 학습하기",
   busy = false,
   variant = "full",
+  hideTitle = false,
   theme = "classic",
   onReviewDay,
 }: DailyJourneyBoardProps) {
@@ -395,9 +398,11 @@ export default function DailyJourneyBoard({
           {variant === "full" ? (
             <p className={s.eyebrow}>하루 한 칸, 차곡차곡</p>
           ) : null}
-          <h2 className={s.heading}>
-            {variant === "map" ? "나의 수학 여정" : "전체 학습 진도"}
-          </h2>
+          {!hideTitle ? (
+            <h2 className={s.heading}>
+              {variant === "map" ? "나의 수학 여정" : "전체 학습 진도"}
+            </h2>
+          ) : null}
         </div>
         <p className={s.total} aria-live="polite">
           <strong>{completed}</strong>

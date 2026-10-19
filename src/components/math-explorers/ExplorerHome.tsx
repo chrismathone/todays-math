@@ -496,6 +496,7 @@ export default function ExplorerHome({
           study={conceptMemory}
           journey={
             <JourneyBoard
+              hideTitle
               journey={journey}
               variant="map"
               theme={journeyTheme}
