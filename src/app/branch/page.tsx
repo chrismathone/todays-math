@@ -3,6 +3,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import TodayMathMark from "@/components/brand/TodayMathMark";
 import BranchAccounts from "@/components/branch/BranchAccounts";
+import BranchMenus from "@/components/branch/BranchMenus";
 import AdminSignOut from "@/components/admin/AdminSignOut";
 import TeachingView from "@/components/unified/TeachingView";
 import RouteLinkStatus from "@/components/ui/RouteLinkStatus";
@@ -24,7 +25,15 @@ export default async function BranchPage({
     !["owner", "manager"].includes(account.branchRole ?? "")
   )
     redirect(account.isSuperAdmin ? "/admin" : "/");
-  const tab = (await searchParams)?.tab === "classes" ? "classes" : "accounts";
+  const isOwner = account.branchRole === "owner";
+  const requested = (await searchParams)?.tab;
+  // 사용 메뉴는 원장만(원장님 2026-10-19) — 관리자에게는 탭도 없고 주소로 와도 계정 관리로.
+  const tab =
+    requested === "classes"
+      ? "classes"
+      : requested === "menus" && isOwner
+        ? "menus"
+        : "accounts";
 
   return (
     <div className={s.shell}>
@@ -87,9 +96,19 @@ export default async function BranchPage({
             계정 관리
             <RouteLinkStatus />
           </Link>
+          {isOwner && (
+            <Link
+              href="/branch?tab=menus"
+              aria-current={tab === "menus" ? "page" : undefined}
+            >
+              사용 메뉴
+              <RouteLinkStatus />
+            </Link>
+          )}
         </nav>
         {tab === "classes" && <TeachingView embedded />}
-        {account.branchId && (
+        {tab === "menus" && <BranchMenus />}
+        {account.branchId && tab !== "menus" && (
           <BranchAccounts
             canCreateManagers={account.branchRole === "owner"}
             section={tab}

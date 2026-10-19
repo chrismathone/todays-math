@@ -162,6 +162,8 @@ model Branch {
   createdAt DateTime @default(now()) @map("created_at")
   disabledMenus String[] @default([]) @map("disabled_menus")
   menuRevision Int @default(1) @map("menu_revision")
+  /// 지점 원장이 상한(disabledMenus) 안에서 끈 메뉴 — 에이와 원장도 같은 칸을 쓴다(2026-10-19)
+  ownerDisabledMenus String[] @default([]) @map("owner_disabled_menus")
   users     User[]
   sharedDocuments WorkspaceDocument[]
 

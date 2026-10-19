@@ -13,6 +13,7 @@ export type AuditDetailRow = {
 
 const ACTION_LABELS: Record<string, string> = {
   "account.settings_changed": "계정 설정 변경",
+  "branch.owner_menus_changed": "지점 사용 메뉴 변경",
   "admin.private_material_view": "관리자 자료 열람 요청",
   "admin.account_view": "관리자 계정 열람",
   "admin.bootstrap": "관리자 계정 설정",
@@ -237,6 +238,14 @@ export function auditDetailRows(details: AuditEntry["details"]) {
       ) ?? "기록 확인 필요",
     "previousBranchRole",
   );
+  // 지점 사용 메뉴(2026-10-19) — 오늘 수학 지점관리 또는 에이와에서 바꾼다.
+  add(
+    "source",
+    "변경한 곳",
+    (value) =>
+      labelFrom({ today: "오늘 수학", eywa: "에이와" }, value) ??
+      "기록 확인 필요",
+  );
   add(
     "kind",
     "자료 유형",
@@ -250,6 +259,7 @@ export function auditDetailRows(details: AuditEntry["details"]) {
       : "기록 확인 필요",
   );
   for (const [key, label] of Object.entries({
+    actorName: "변경한 사람",
     title: "자료 제목",
     revision: "자료 버전",
     page: "페이지",

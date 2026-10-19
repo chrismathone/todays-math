@@ -120,7 +120,13 @@ export async function teacher(
   const user = await tx.user.findUnique({
     where: { id: actor.userId },
     include: {
-      branch: { select: { disabledMenus: true, menuRevision: true } },
+      branch: {
+        select: {
+          disabledMenus: true,
+          ownerDisabledMenus: true,
+          menuRevision: true,
+        },
+      },
     },
   });
   if (

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>지점 사용 메뉴 · 시각 시안 비교</title>
+<style>
+:root{--ink:#172b4d;--muted:#596c86;--accent:#3159df;--accent-h:#2448bd;--bg:#f4f6fa;--surface:#fff;--nav:#14243d;--soft:#edf2ff;--neutral:#edf0f6;--track:#dde3ec;--control:#b8c4d6;--en:#b54458;--en-soft:#fbeef0;--warn:#8a5a06;--warn-bg:#fff4df}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 Pretendard,system-ui,sans-serif}
+button,input{font:inherit;color:inherit}button{cursor:pointer}
+.top{padding:16px 24px;background:#fff;border-bottom:1px solid var(--track)}.top h1{font-size:20px;margin:0}.top p{margin:4px 0 0;color:var(--muted)}
+.choices{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}.choices button{min-height:36px;border:1px solid var(--control);background:#fff;border-radius:8px;padding:4px 12px}.choices button[aria-pressed=true]{background:var(--accent);color:#fff;border-color:var(--accent)}
+main{max-width:1280px;margin:20px auto;padding:0 20px}.desc h2{font-size:16px;margin:0}.desc p{margin:4px 0 14px;color:var(--muted)}
+/* 화면 */
+.app{background:var(--bg);border:1px solid var(--track);border-radius:12px;overflow:hidden}
+.hdr{display:flex;align-items:center;gap:16px;padding:12px 24px;background:var(--nav);color:#fff}.hdr b{font-size:15px}.hdr .lbl{font-size:12px;opacity:.75;border:1px solid rgba(255,255,255,.35);border-radius:4px;padding:1px 6px}.hdr nav{margin-left:auto;display:flex;gap:16px;font-size:13px;opacity:.9}
+.page{padding:20px 24px}.ph{display:flex;align-items:baseline;gap:10px;margin-bottom:12px}.ph h3{font-size:24px;letter-spacing:-.035em;margin:0;font-weight:750}.ph span{color:var(--muted)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--track);margin-bottom:16px}.tabs span{padding:8px 12px;color:var(--muted);font-weight:600}.tabs .cur{color:var(--ink);box-shadow:inset 0 -2px var(--accent)}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.foot{display:flex;align-items:center;gap:8px;margin-top:16px;padding:12px 16px;background:#fff;border:1px solid var(--track);border-radius:10px}.foot .s{margin-right:auto;font-size:13px;color:var(--muted)}.foot .s b{color:var(--ink)}
+.btn{min-height:40px;border-radius:8px;padding:0 16px;font-weight:600;border:1px solid var(--control);background:#fff}.btn.p{background:var(--accent);border-color:var(--accent);color:#fff}
+.tools{display:flex;gap:2px;font-size:12px}.tools button{border:0;background:none;color:var(--accent);padding:2px 6px;border-radius:4px;font-weight:600}
+.cnt{font-variant-numeric:tabular-nums;color:var(--muted);font-size:12px;font-weight:500}
+input[type=checkbox]{width:16px;height:16px;accent-color:var(--accent);margin:0}
+.closed{color:#8a97aa}.why{font-size:12px;color:#8a97aa}
+/* H1 */
+.h1 .box{background:#fff;border:1px solid var(--track);border-radius:10px;overflow:hidden}.h1 .bh{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--neutral);border-bottom:1px solid var(--track)}.h1 .bh h4{margin:0;font-size:14px}.h1 .bh .tools{margin-left:auto}
+.h1 label{display:flex;align-items:center;gap:10px;height:34px;padding:0 12px;border-bottom:1px solid var(--track)}.h1 label:last-child{border-bottom:0}.h1 label .why{margin-left:auto}
+/* H2 */
+.h2 .box{background:#fff;border-radius:10px;padding:6px;box-shadow:0 0 0 1px var(--track)}.h2 .bh{display:flex;align-items:center;gap:8px;padding:6px 8px 8px}.h2 .bh h4{margin:0;font-size:14px}.h2 .bh .tools{margin-left:auto}
+.h2 label{display:flex;align-items:center;gap:10px;height:34px;padding:0 10px;border-radius:6px;margin:2px 0}.h2 label.on{background:var(--soft)}.h2 label .why{margin-left:auto}
+/* H3 */
+.h3 .box{background:#fff;border:1px solid var(--track);border-radius:8px}.h3 table{border-collapse:collapse;width:100%}.h3 th{font-size:12px;color:var(--muted);text-align:left;font-weight:600;padding:6px 12px;border-bottom:1px solid var(--track)}.h3 th.r,.h3 td.r{text-align:right}
+.h3 td{padding:0 12px;height:30px;border-bottom:1px solid #eef1f5}.h3 tr:last-child td{border-bottom:0}.h3 .bh{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--track)}.h3 .bh h4{margin:0;font-size:14px}.h3 .bh .tools{margin-left:auto}
+/* H4 */
+.h4 .box{background:#fff;border:1px solid var(--track);border-radius:10px;overflow:hidden}.h4 .bh{display:flex;align-items:center;gap:8px;padding:9px 12px;color:#fff;background:var(--accent)}.h4 .en .bh{background:var(--en)}.h4 .bh h4{margin:0;font-size:14px}.h4 .bh .cnt{color:rgba(255,255,255,.85)}.h4 .bh .tools{margin-left:auto}.h4 .bh .tools button{color:#fff}
+.h4 label{display:flex;align-items:center;gap:10px;height:34px;padding:0 12px;border-bottom:1px solid var(--track)}.h4 label:last-child{border-bottom:0}.h4 .en input{accent-color:var(--en)}.h4 label .why{margin-left:auto}
+/* H5 */
+.h5 .box{background:#fff;border:1px solid var(--track);border-radius:10px;padding:4px 0}.h5 .bh{display:flex;align-items:center;gap:8px;padding:8px 14px}.h5 .bh h4{margin:0;font-size:14px}.h5 .bh .tools{margin-left:auto}
+.h5 label{display:grid;grid-template-columns:16px 1fr auto;align-items:center;gap:10px;height:34px;padding:0 14px}.h5 label+label{border-top:1px solid #eef1f5}
+.tag{font-size:12px;font-weight:600;border-radius:4px;padding:1px 8px}.tag.u{color:var(--accent);background:var(--soft)}.tag.o{color:var(--muted);background:var(--neutral)}.tag.x{color:var(--warn);background:var(--warn-bg)}
+.note{margin-top:12px;color:var(--muted);font-size:13px}
+@media(max-width:860px){.cols{grid-template-columns:1fr}.hdr nav{display:none}.page{padding:16px}}
+</style>
+<div class="top"><h1>지점 사용 메뉴 · 시각 시안 5안 (Hi-fi · A 두 열 표)</h1>
+<p>구조는 A안(수학·영어 두 표) 그대로, 색·선·밀도만 다릅니다. 색은 작업실 토큰만 씁니다. 저장되지 않습니다.</p>
+<nav class="choices"><button data-v="h1" aria-pressed="true">H1 · 회청 머리 + 행 선</button><button data-v="h2">H2 · 켠 줄만 선택 면</button><button data-v="h3">H3 · 가장 촘촘한 표</button><button data-v="h4">H4 · 제품색 머리</button><button data-v="h5">H5 · 상태 라벨</button></nav></div>
+<main><div class="desc"><h2 id="h"></h2><p id="p"></p></div>
+<div class="app"><div class="hdr"><b>오늘 수학</b><span class="lbl">지점관리</span><nav><span>지점관리</span><span>작업실로 이동</span></nav></div>
+<div class="page"><div class="ph"><h3>지점관리</h3><span>인재원 침산</span></div>
+<div class="tabs"><span>교직원 계정</span><span>반 관리</span><span class="cur">사용 메뉴</span></div>
+<div id="c"></div>
+<div class="foot"><span class="s"><b>사용 메뉴 7개</b> · 적용 대상: 이 지점의 원장·관리자·강사 · 저장하지 않은 변경 없음</span><button class="btn">변경 취소</button><button class="btn p">사용 메뉴 저장</button></div></div></div>
+<p class="note">회색 줄 = 최고관리자가 열지 않은 메뉴(켤 수 없음). '모두 켜기'는 열린 메뉴만 켭니다.</p></main>
+<script>
+const M=["오늘의 작업","시험지 만들기","연산대장","문제 추출","시험지 · 내보내기","우리학원 시험지","교재 제작","수업 · 학생 관리","오늘의 개념","개념 백지","오늘의 기억 · SRS"];
+const E=["학교별 내신 대비","문제 만들기","문제 보관함","영어듣기","자료은행"];
+const OPEN=n=>!["교재 제작","오늘의 기억 · SRS","영어듣기"].includes(n);
+const ON=n=>["시험지 만들기","연산대장","우리학원 시험지","개념 백지","오늘의 작업","문제 만들기","문제 보관함"].includes(n);
+const cnt=l=>`<span class="cnt">${l.filter(ON).length} / 열림 ${l.filter(OPEN).length}</span>`;
+const tools=`<span class="tools"><button>모두 켜기</button><button>모두 끄기</button></span>`;
+const ck=n=>OPEN(n)?`<input type="checkbox" ${ON(n)?"checked":""}>`:`<input type="checkbox" disabled>`;
+const name=n=>OPEN(n)?`<span>${n}</span>`:`<span class="closed">${n}</span>`;
+const row=n=>`<label class="${ON(n)?"on":""}">${ck(n)}${name(n)}${OPEN(n)?"":`<span class="why">열리지 않음</span>`}</label>`;
+const card=(t,l,cls="")=>`<section class="box ${cls}"><div class="bh"><h4>${t}</h4>${cnt(l)}${tools}</div>${l.map(row).join("")}</section>`;
+const tcard=(t,l)=>`<section class="box"><div class="bh"><h4>${t}</h4>${cnt(l)}${tools}</div><table><thead><tr><th style="width:36px"></th><th>메뉴</th><th class="r">상태</th></tr></thead><tbody>${l.map(n=>`<tr><td>${ck(n)}</td><td>${name(n)}</td><td class="r ${OPEN(n)?"cnt":"why"}">${OPEN(n)?(ON(n)?"사용":"끔"):"열리지 않음"}</td></tr>`).join("")}</tbody></table></section>`;
+const lcard=(t,l)=>`<section class="box"><div class="bh"><h4>${t}</h4>${cnt(l)}${tools}</div>${l.map(n=>`<label>${ck(n)}${name(n)}<span class="tag ${OPEN(n)?(ON(n)?"u":"o"):"x"}">${OPEN(n)?(ON(n)?"사용":"끔"):"열리지 않음"}</span></label>`).join("")}</section>`;
+const V={
+h1:{h:"H1 · 회청 머리 + 행 선 — 추천",p:"표 머리만 중립 면(#edf0f6), 줄은 34px에 얇은 구분선. 가장 사무적이고 계정 관리 화면과 결이 같다.",b:()=>`<div class="cols h1">${card("오늘 수학",M)}${card("오늘 영어",E)}</div>`},
+h2:{h:"H2 · 켠 줄만 선택 면",p:"구분선 없이 켠 줄을 선택 면(#edf2ff)으로 채운다. 무엇이 켜져 있는지 한눈에 보이지만 줄 경계는 약하다.",b:()=>`<div class="cols h2">${card("오늘 수학",M)}${card("오늘 영어",E)}</div>`},
+h3:{h:"H3 · 가장 촘촘한 표",p:"30px 줄 + 오른쪽 '상태' 칸(사용 · 끔 · 열리지 않음). 가장 관리 표답고 짧다. 글자는 14px 그대로.",b:()=>`<div class="cols h3">${tcard("오늘 수학",M)}${tcard("오늘 영어",E)}</div>`},
+h4:{h:"H4 · 제품색 머리",p:"표 머리를 제품 색으로 칠한다 — 수학 코발트, 영어 차분한 붉은색(2026-10-14 제품색 결정). 두 제품이 바로 구분되지만 관리 화면에서 색이 가장 많다.",b:()=>`<div class="cols h4">${card("오늘 수학",M)}${card("오늘 영어",E,"en")}</div>`},
+h5:{h:"H5 · 상태 라벨",p:"줄 오른쪽에 글자 라벨(사용 · 끔 · 열리지 않음 — 주의색). 색만으로 판정하지 않는 규칙에 가장 충실하지만 라벨이 많다.",b:()=>`<div class="cols h5">${lcard("오늘 수학",M)}${lcard("오늘 영어",E)}</div>`}
+};
+function show(k){const v=V[k];h.textContent=v.h;p.textContent=v.p;c.innerHTML=v.b();document.querySelectorAll("[data-v]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===k))}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-v]");if(b)show(b.dataset.v)});show("h1");
+</script></html>
