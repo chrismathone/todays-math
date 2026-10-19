@@ -1,5 +1,9 @@
 import { generateElementaryProblem } from "../../elementary/generate";
-import { gradeCourseAnswer, validateCourseAnswer } from "./answers";
+import {
+  gradeCourseAnswer,
+  parseCourseAnswerQuantity,
+  validateCourseAnswer,
+} from "./answers";
 import { getCourseSection } from "./catalog";
 import type { CourseProblem } from "./types";
 
@@ -104,6 +108,37 @@ function nearbyAnswers(answer: string): string[] {
         ? `${text.startsWith("$") ? "$" : ""}\\${tex[1]}{${n}}{${d}}${text.endsWith("$") ? "$" : ""}`
         : `${n}/${d}`,
     );
+}
+
+const quantityValue = (raw: string) => {
+  const quantity = parseCourseAnswerQuantity(raw);
+  return quantity
+    ? (Number(quantity.value.numerator) / Number(quantity.value.denominator)) *
+        (quantity.unit?.multiplier ?? 1)
+    : null;
+};
+
+/**
+ * Wrong values a student could reach: within half the answer, or three steps of it (the
+ * smallest written unit — 1 · 0.1 · 1/denominator). Another question's answer from the same
+ * section is often far away (answer 4 offered with 210 · 37 · 42) and gives the answer away.
+ */
+function closeToAnswer(answer: string): (candidate: string) => boolean {
+  const target = quantityValue(answer);
+  if (target === null) return () => true;
+  const decimals = /\.(\d+)/.exec(answer)?.[1].length ?? 0;
+  const denominator = Number(
+    /\\(?:dfrac|tfrac|frac)\{\d+\}\{(\d+)\}|\d\s*\/\s*(\d+)/
+      .exec(answer)
+      ?.slice(1)
+      .find(Boolean) ?? 0,
+  );
+  const step = denominator ? 1 / denominator : 10 ** -decimals;
+  const window = Math.max(3 * step, Math.abs(target) / 2) + 1e-9;
+  return (candidate) => {
+    const value = quantityValue(candidate);
+    return value !== null && Math.abs(value - target) <= window;
+  };
 }
 
 /** Reuse a generator's own four candidates when its question asks to select one. */
@@ -214,35 +249,38 @@ export function makeCourseAnswerChoices(
     const j = Math.floor(candidateRandom() * (i + 1));
     [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
   }
-  for (const candidate of candidates) {
-    if (canUse(candidate)) choices.push(candidate.trim());
-    if (choices.length === 4) break;
-  }
-
   // The existing elementary problem generator is the safe fallback when the
   // approved bank has too few comparable answers for this section.
-  if (choices.length < 4) {
+  let generated: string[] | null = null;
+  const generatorAnswers = () => {
+    if (generated) return generated;
+    generated = [];
     const section = getCourseSection(problem.sectionId);
-    if (section) {
-      for (let offset = 1; offset <= 32 && choices.length < 4; offset++) {
+    if (section)
+      for (let offset = 1; offset <= 32; offset++) {
         const seed =
           ((problem.seed >>> 0) + Math.imul(offset, 2654435761)) >>> 0;
-        const source = generateElementaryProblem(
-          section.unit,
-          seed,
-          problem.tier,
+        generated.push(
+          generateElementaryProblem(section.unit, seed, problem.tier).answer,
         );
-        if (canUse(source.answer)) choices.push(source.answer.trim());
       }
+    return generated;
+  };
+  const close = closeToAnswer(problem.answer);
+  const fill = (pool: readonly string[], keep: (value: string) => boolean) => {
+    for (const candidate of pool) {
+      if (choices.length === 4) return;
+      if (keep(candidate) && canUse(candidate)) choices.push(candidate.trim());
     }
-  }
-
-  // Nearby wrong values keep numeric items tappable even in sections whose
-  // bank/generator repeats one answer (for example a fixed conversion fact).
-  for (const candidate of nearbyAnswers(problem.answer)) {
-    if (choices.length === 4) break;
-    if (canUse(candidate)) choices.push(candidate);
-  }
+  };
+  // Near values first: the section's answers, the generator's, then the
+  // nearest values (which keep sections that repeat one answer tappable).
+  // A far value only completes a set nothing nearer can fill.
+  fill(candidates, close);
+  if (choices.length < 4) fill(generatorAnswers(), close);
+  if (choices.length < 4) fill(nearbyAnswers(problem.answer), () => true);
+  if (choices.length < 4) fill(candidates, () => true);
+  if (choices.length < 4) fill(generatorAnswers(), () => true);
 
   const interactive = fractionOf(problem.answer);
   if (choices.length !== 4) return { answerChoices: null, interactive };
