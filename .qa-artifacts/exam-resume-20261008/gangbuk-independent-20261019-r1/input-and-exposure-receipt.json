@@ -1,0 +1,40 @@
+{
+  "scope": "Gangbuk q1 stage1 blind only",
+  "solverId": "codex-gangbuk-independent-20261019-r1",
+  "exposure": {
+    "originalQuestionPreviouslySeen": true,
+    "originalExposureContext": "Prior source inspection of original Gangbuk q1; not reread for this blind solve.",
+    "newTwinAuthored": false,
+    "newTwinAuthorAnswerSeen": false,
+    "newTwinAuthorSolutionSeen": false,
+    "onlyCurrentInputsOpened": [
+      "blind/student-problems.json",
+      "blind/blind-manifest.json",
+      "blind/SOLVE-BRIEF.md"
+    ],
+    "authorPrivateScriptsQaImagesGitHistoryOpened": false
+  },
+  "inputs": [
+    {
+      "source": "gangbuk-review-r1/blind/student-problems.json",
+      "copy": "blind/student-problems.json",
+      "sha256": "ea6ff89a95083612cace29a58c932d279b6efbc062eb18ddb9ae56a3ceb94b21",
+      "byteExact": true
+    },
+    {
+      "source": "gangbuk-review-r1/blind/blind-manifest.json",
+      "copy": "blind/blind-manifest.json",
+      "sha256": "e0811add642407e2478b0e90e155b1b93f7476038c4e22ea8fef2675f462c1af",
+      "byteExact": true
+    },
+    {
+      "source": "gangbuk-review-r1/blind/SOLVE-BRIEF.md",
+      "copy": "blind/SOLVE-BRIEF.md",
+      "sha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+      "byteExact": true
+    }
+  ],
+  "studentProblemsManifestHashVerified": true,
+  "figuresRequired": false,
+  "approval": "Raw independent solve only; no final grade/rights/classification approval."
+}
