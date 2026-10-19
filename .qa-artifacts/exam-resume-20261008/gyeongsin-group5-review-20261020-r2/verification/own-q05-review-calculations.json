@@ -1,0 +1,105 @@
+{
+  "math": {
+    "PD_cm": 30,
+    "PH_cm": "8",
+    "QH_squared_cm2": "36",
+    "DR_squared_cm2": 324,
+    "QH_cm": 6,
+    "HR_squared_cm2": 512,
+    "allChoices": [
+      {
+        "mark": "①",
+        "QH_cm": 4,
+        "PQ_squared": "80",
+        "matches": false
+      },
+      {
+        "mark": "②",
+        "QH_cm": 5,
+        "PQ_squared": "89",
+        "matches": false
+      },
+      {
+        "mark": "③",
+        "QH_cm": 6,
+        "PQ_squared": "100",
+        "matches": true
+      },
+      {
+        "mark": "④",
+        "QH_cm": 8,
+        "PQ_squared": "128",
+        "matches": false
+      },
+      {
+        "mark": "⑤",
+        "QH_cm": 10,
+        "PQ_squared": "164",
+        "matches": false
+      }
+    ],
+    "AA": {
+      "rightAngles": "∠PHQ=∠PRD=90°: PH⊥QR and PD diameter.",
+      "equalAngles": "H内部 gives ∠PQH=∠PQR; Q and D on same arc PR in actual diagram, hence ∠PQR=∠PDR. H内部 also makes angle Q acute; D angle is acute in right triangle PDR, ruling out the supplementary opposite-segment alternative.",
+      "correspondence": {
+        "P": "P",
+        "Q": "D",
+        "H": "R"
+      },
+      "sides": "PQ↔PD,PH↔PR,QH↔DR",
+      "ratio": "10/30=8/24=6/18=1/3"
+    },
+    "existence": "18,24,30인 직각삼각형 PRD를 만들고 PD를 지름으로 하는 원을 그리면 반지름은 15이다. R을 지나지 않는 반원 PD에서 P로부터 현의 길이가 10인 Q를 잡을 수 있다(0<10<30). Q는 P와 D 사이에 있고 순서는 P,Q,D,R이다. Q에서의 각은 직각삼각형 PDR의 예각과 같고, R에서의 각도 작은 호 PQ에 대한 예각이므로 P의 수선의 발은 QR 내부에 있다. 따라서 조건을 만족하는 구성이 존재한다. 반사된 배치까지 도형 자체가 유일하다는 주장은 하지 않으며, 모든 허용 배치에서 아래 닮음으로 요구 길이가 유일하다.",
+    "uniqueness": "PD,PQ,PR force PH=8 by AA; positive QH=√36=6 only. Mirrored figures do not invalidate uniqueness of requested length. HR=16√2>0; PH,PQ,PR,PD,DR,QH all positive; denominators30,24,18 nonzero.",
+    "negativeControls": {
+      "wrongSimilarityPairing": "10/24 != 8/30 (5/12 !=4/15); swapping hypotenuse/corresponding leg fails.",
+      "negativeSquareRoot": "-6 rejected because a segment length is positive.",
+      "zeroDenominator": "PD=30,PR=24,DR=18; no zero divisor."
+    }
+  },
+  "primary": {
+    "normative": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "observedEdition": "2015년 (page lines84-85)",
+      "locators": "lines540: 9수04-13/14 similarity, 9수04-16 Pythagoras, 9수04-20 inscribed angles; line558 circle proportionality excluded; lines560,565 student-level explanation permitted without complex formal logic",
+      "interpretation": "실제 원주각의 각 대응으로 AA닮음을 직접 증명한 뒤 대응변 비를 쓰는 이 풀이를 검토했다. 원과 비례 일반공식, 현곱/할선곱, 사인법칙, 외접반지름 공식을 학생에게 요구하지 않는다.",
+      "retrievedHtmlSha256": "5cee94c0f333c30dde3c56770b438a373a5169c4a2f034b699c7977027193bb7",
+      "retrievedHtmlBytes": 623404
+    },
+    "actualGradePlacement": {
+      "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+      "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+      "viewedPageSha256": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12",
+      "pdfIndex0": 73,
+      "physicalPage": 74,
+      "printedPage": 72,
+      "observed": "실제 페이지 상단 중3 수학 2학기, 10월 원주각 9수04-20. 최초 내려받기 기록의 잠정 printed73은 실제 printed72와 다르며 그 오류를 고쳐 쓰거나 숨기지 않는다.",
+      "limits": "공식 2024 학교계획의 실제 M3 배치 증거이지 경신 원본 중간고사 진도·년도·2022 배치 인증은 아니다. 닮음과 피타고라스를 이미 학습한 학생에게만 적용한다."
+    }
+  },
+  "inputSha256": {
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group5-review-20261020-r2\\verification\\VERIFY-BRIEF.md": "35f0141b096cf184d92c0fdb4f5da623e99cf1882faa33bff9b2cda745d835b5",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group5-review-20261020-r2\\verification\\verification-inputs.json": "f92c8a96149a77b74144a330c60539439268517c0c0a494d6299bff714bba1ab",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group5-review-20261020-r2\\verification\\verification-manifest.json": "c281850dff8ecea79b0ca5160862054615ee498e011f8812ecbf5da5a05f713d",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group5-review-20261020-r2\\verification\\sealed-raw-commit.json": "7a1c290949111c2e4a02620a13dbb75efb07b2d15ea58e8a2642b4010d3de323",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group5-review-20261020-r2\\source-q05-only.json": "6d479c9127ba09ff6d3f35b0bcf880d61b48e53a34d64a7dd517ae6dda50e7dd",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group5-review-20261020-r2\\source-completed-q05.local.png": "60d50e2c270f310bfacd9a694ea4d1d2650f0d14573250ac6dc39cdb77095a68",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group5-review-20261020-r2\\source-original-H-page2.local.webp": "69c01d1bbcbf7ed5906adaf1961cb5b9f0a377e84b9493901b0712828675a5e0",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group5-review-20261020-r2\\student-preview\\q05.png": "fa162b0fc021604c37a9cdb0b387f96d8d763ce9b4506419dee52dbf93694c47",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group5-review-20261020-r2\\blind\\figures\\q05-1.svg": "4e86594dc6d43aa3764f4d4577ab28de75962440beb7e5b67aeddc6ff95f7a01",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group5-review-20261020-r2\\blind\\solve\\q05.json": "95166e93887c2655dfedf57f81eee3082a809356de238afeb96d7e2941b7abb1",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-grade-reference-20261020-r1\\school-2024-plan.local.pdf": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-grade-reference-20261020-r1\\school-2024-m3-page74.local.png": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-grade-reference-20261020-r1\\actual-visual-grade-locator-r1.json": "dd1890a91a9f6ea491e4585655260eb486bd590007e58bb9a78c4014d7a88977",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-grade-reference-20261020-r1\\download-and-locator-r1.json": "bdf19ba92eedbc2d4acbe99999c79c684c797c1aa6a0be91f2cd12166bf67921"
+  },
+  "digestChecks": {
+    "student": "c5372fbdf123fd7fbfe98b7d7d9ae889787a7b6970e600800fc7e704a7bbf428",
+    "candidateManifestValue": "28097999c8fc94bad3345029c2ea505ac3016a1e5ede11545b10ffd1cb53a636",
+    "assetManifestValue": "2eb15c2abe2667236bc8ff88befb081fdf48214726ce713a22a54c89af4e3087",
+    "fullCandidateCanonicalDiagnostic": "e7b19450956f7330af532c418a50841dbe96b4c55f494144ff9a0e2b3f2850f9",
+    "fullAssetsCanonicalDiagnostic": "03e45adf0fd2f89054c1f851da1be708785090de285975e4f0590b6bae362715",
+    "solve": "b1786cfb1e194c6836bbc8fd52388bc285bc42f15d9728bfa15ed2e161c1a1c1"
+  },
+  "rawExposedOnlyAfterSeal": true
+}
