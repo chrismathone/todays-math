@@ -1,0 +1,19 @@
+{
+  "ownHumanReview": {
+    "math": 5,
+    "grade2015AfterPrerequisites": 5,
+    "fullContentApproved": 0
+  },
+  "actualCurrentCollector": {
+    "math": 3,
+    "grade": 3,
+    "overall": 0,
+    "heldItems": [
+      13,
+      15
+    ]
+  },
+  "reason": "q13/q15 독립 raw의 Unicode √와 저자 TeX sqrt가 현재 독립답 비교에서 unsupported/mismatch로 남는다. 값은 정확 계산으로 같지만 실제 collector의0을 임의로1로 바꾸지 않는다. 원시 답이나 보고서를 고쳐 통과시키지 않았고 코드 범위를 넓히지 않았다. q14 각도는 이번 bounded degree 비교로 일치한다.",
+  "preservedRawCommit": "f4a9aa7c978906cf021e02029bd0511ff2d4190f",
+  "gradeReasoningLimit": "각 보고서의 7면 판단은 개별 실제 해설의 성질과 기존 실제 공식 primary 배치에 근거한다. 출처학교/배점/label은 학년 승인 근거 아님."
+}

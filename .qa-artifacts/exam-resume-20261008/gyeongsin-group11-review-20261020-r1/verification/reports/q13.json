@@ -1,0 +1,140 @@
+{
+  "status": "pending",
+  "studentDigest": "6576a7ea0dd85f0ac49db36dc3002ff57c50ebd64d3c04039e9ff7c7980031d9",
+  "candidateDigest": "9cd4585ad917971324d30f2e80dae03a025b7b8f4e3d9e53ca444c4c66415ab3",
+  "assetDigest": "657473a9bea00ac648fb3367fd5872b0d45d33a39d32a4b589c56521bc42a184",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-gyeongsin-group11-review-20261020",
+  "solveDigest": "b76271f3f126e423d8a58df9cae30abdb627bde715e6259b4cbe817af0b905e9",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "evidence": {
+    "classification": {
+      "math": "passed",
+      "grade": "2015-M3-after-prerequisites-passed",
+      "content": "held"
+    },
+    "ownExactCalculationAndExistence": {
+      "radius": 3,
+      "sideExact": [
+        6,
+        6
+      ],
+      "perimeterExact": [
+        18,
+        18
+      ],
+      "representation": "[a,b] means a+b√3",
+      "existence": "한 변6+6√3의 정삼각형의 세 내각 이등분선에 반지름3의 원 중심을 꼭짓점에서6만큼 잡는다. 아래 두 중심의 차는6이고 대칭에 의해 세 중심거리 모두6이다. 각 원은 해당 두 변에 접하고 세 번째 변까지의 여유 높이3√3>0이므로 내부에 있다.",
+      "uniqueness": "반지름3과 외접 중심거리6, 두 끝 접선 조각3√3이 한 변을 유일하게 정한다."
+    },
+    "fullAuthorMethodReview": "r=3, 같은 높이의 두 원 중심거리JK=HI=6, 꼭짓각 이등분30°에서QJ=6, 피타고라스로QH=IR=3√3, 한 변6+6√3, 둘레18+18√3. 30° 맞은편 변이 빗변 절반이라는 성질은 고등 삼각함수 공식이 아니다. 직각삼각형을 짧은 변에 대하여 반사하면60° 꼭짓각과 같은 두 변을 가진 정삼각형이 되어 빗변이 그 짧은 변의 두 배임을 삼각형 합동·각합으로 증명할 수 있다. 저자 QJ=6의 생략된 정당화는 이 초등 기하 증명으로 완결된다.",
+    "sourceRelation": {
+      "observedPacketReference": "OriginalH page4 written3: three mutually tangent equal circles each near a different equilateral-triangle vertex; triangle perimeter15+15sqrt3; ask one circle circumference;7points. Component only; no wholepaper/pair/year/rights certification.",
+      "comparison": "정삼각형 전체 둘레를 주고 같은 세 접원의 한 원 둘레를 구한다. → 한 원의 둘레를 주고 정삼각형 전체 둘레를 복원한다.",
+      "independentJudgment": "입력과 목표의 역할을 역전하고 핵심 접선/원주각/피타고라스의 연결을 유지한다. 새 그림·명칭 변경만을 실질변형 근거로 쓰지 않는다. 제공 구성정보에 따른 성분 비교이며 이번에 원본/답안키를 재열람하거나 원본 답을 계산하지 않았다.",
+      "sourceComponentOnly": true
+    },
+    "wording": "조건과 목표가 한국어로 명시되고, 질문에서 원하는 길이/둘레와 단위가 명확하다.",
+    "scoreAndDifficulty": {
+      "score": 7,
+      "scoreBasis": "제공 원문과 같은 7점 서술형으로 여러 성질의 연결과 과정 설명을 요구하므로 배점 제안은 수용 가능. 구체적 부분점표는 제공되지 않아 창작하지 않는다.",
+      "proposal": "심화하",
+      "approval": "pending",
+      "basis": "실제 풀이 단계는 위에서 개별 검토했으나 sourceDifficultyLabelObserved=null이고 측정된 학생 난도·원문 동등성 자료가 없다. 심화하 라벨은 제안으로 유지한다."
+    },
+    "unitFamily": {
+      "capturedUnitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "section": "원의 접선",
+      "familyKey": null,
+      "fit": false,
+      "basis": "단원 개념 대응은 있으나 정확한 평가목적·조건·형식에 맞는 live family 정의·실시간 상태를 확인하지 않았다. 코드/이름/개수로 승인하지 않음."
+    },
+    "primaryEvidence": {
+      "normative": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "previouslyActuallyViewed": true,
+        "edition": "2015",
+        "locators": "9수04-19 원의 현·접선 성질;9수04-20 원주각;9수04-16 피타고라스; 일반적인 원의 비례관계 제외",
+        "limit": "학교나 코드만으로 승인하지 않음; 풀이가 해당 성질과 이전 평면도형·연산으로 실제 완결되는지 개별 확인"
+      },
+      "actualM3Placement": {
+        "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+        "sha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+        "previouslyActuallyViewed": true,
+        "locator": "PDFindex73/physical74/printed72, 중3 수학2학기,9월9수04-19/10월9수04-20",
+        "limit": "경신중 해당 시험의 진도나2022 배치 인증은 아님"
+      }
+    },
+    "rawBinding": {
+      "helperRawCommit": "f4a9aa7c978906cf021e02029bd0511ff2d4190f",
+      "parentRawCommit": "27675600865d132c73425be059e79825cd8d4d63",
+      "rawSha256": "620dcdf3464f8d7710a5773513c9fb3fbf2d855bafd5dc34342c4c2e6aa490b8",
+      "gitBlobByteIdentical": true,
+      "exposureDeclaration": {
+        "currentAuthorAnswerOrSolutionExposedBeforeRaw": false,
+        "priorExposure": "이전 원본 H 2·3쪽을 허용된 범위에서 보았고 관련 원주각·접선·삼각형 문제 및 엔진을 검토했다. 현재 q13–17의 저자 답·해설·패키지는 열지 않았다. 이 다섯 원문 각각을 과거 보았는지에 대한 완전한 부정은 하지 않으며, 원본 전체 미노출 주장도 하지 않는다. 이번에는 학생 발문과 새 SVG만 사용했다.",
+        "pixelOrCoordinateOracle": false
+      }
+    },
+    "assetBinding": {
+      "specSha256": "b935b7c660ebd19966c052b6e60d20ee07c066d5cf3e372221b866162b198afb",
+      "svgSha256": "dba542fdec9a3c89c05e110e017db74defc10cb3bacc0dddc5795d4c7209bfb7",
+      "privateStudentByteEqual": true
+    },
+    "holds": {
+      "sourceIdentityApproved": false,
+      "wholeSourcePairApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "liveFamilyApproved": false,
+      "loadable": false,
+      "2022Placement": "pending",
+      "difficultyEquivalence": "pending"
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "현재 q13 발문의 조건은 r=3, 같은 높이의 두 원 중심거리JK=HI=6, 꼭짓각 이등분30°에서QJ=6, 피타고라스로QH=IR=3√3, 한 변6+6√3, 둘레18+18√3. 조건의 순서·호 위치·접선/반원 여부를 그대로 사용한다. 위 공식2015 범위와 이전 평면도형 계산으로 완결된다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제 choices=[]인 서술형이다. 없는 객관식 보기를 가정하지 않고 값과 과정을 평가한다. 추가 학년 개념이 없다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "학생 SVG를 봉인 전 실제 렌더하여 확인했다. 현재 package SVG와학생 SVG 바이트가 같고 spec/SVG 해시가 일치한다. 현재 spec의 원·접선·점위치도 별도 수치검사를 했다. 점·선·호·원과 라벨이 실제 발문과 대응한다. spec 실수연산은 그림 검증 전용이며 학생 수치답은 정확한 별도 계산이다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "선분·접점·π·제곱근과 cm 둘레/길이가 실제 문맥에 맞고 고등 함수/좌표 표기가 학생 필수 입력에 없다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "봉인 raw 18+18√3 cm와 저자 $(18+18\\sqrt3)\\,\\mathrm{cm}$의 값·단위가 같음을 자체 정확 계산으로 확인했다. 모든 길이의 음의 해를 배제하고 각은0°보다 크고180°보다 작다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "저자 전체 해설의 순서를 실제 검토했다: r=3, 같은 높이의 두 원 중심거리JK=HI=6, 꼭짓각 이등분30°에서QJ=6, 피타고라스로QH=IR=3√3, 한 변6+6√3, 둘레18+18√3. 30° 맞은편 변이 빗변 절반이라는 성질은 고등 삼각함수 공식이 아니다. 직각삼각형을 짧은 변에 대하여 반사하면60° 꼭짓각과 같은 두 변을 가진 정삼각형이 되어 빗변이 그 짧은 변의 두 배임을 삼각형 합동·각합으로 증명할 수 있다. 저자 QJ=6의 생략된 정당화는 이 초등 기하 증명으로 완결된다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "2015 중3 원의 현·접선(9수04-19) 학습 후, 이전 합동·평행선·삼각형각합·원의 둘레/넓이 중 실제 필요한 성질 및 피타고라스/제곱근·전개·일차식 학습 후 배정한다. 30° 맞은편 변이 빗변 절반이라는 성질은 고등 삼각함수 공식이 아니다. 직각삼각형을 짧은 변에 대하여 반사하면60° 꼭짓각과 같은 두 변을 가진 정삼각형이 되어 빗변이 그 짧은 변의 두 배임을 삼각형 합동·각합으로 증명할 수 있다. 저자 QJ=6의 생략된 정당화는 이 초등 기하 증명으로 완결된다. 실제 중3 배치는 이전 확인한 공식 중3 2학기 계획 printed72로 뒷받침하며 특정 학교 진도/2022를 인증하지 않는다."
+    }
+  }
+}

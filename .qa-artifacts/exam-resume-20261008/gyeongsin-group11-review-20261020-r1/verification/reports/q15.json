@@ -1,0 +1,133 @@
+{
+  "status": "pending",
+  "studentDigest": "55b39a504ac244161e1ab29e3a767a1c323a3be9e5b660ec0d1f22738bc2cad6",
+  "candidateDigest": "f62cdfc6d798f5eb83bd6a814edcc770e89e65eec95cfe40f31873395cb1c148",
+  "assetDigest": "fbc0ee3a0188efa5e6d30c3a644af364d0827d2f07a03863f2d4f53513a67d1a",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-gyeongsin-group11-review-20261020",
+  "solveDigest": "304baf445a993d73b6820a68932b399d02d0252a977f575923494367896b87ad",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "evidence": {
+    "classification": {
+      "math": "passed",
+      "grade": "2015-M3-after-prerequisites-passed",
+      "content": "held"
+    },
+    "ownExactCalculationAndExistence": {
+      "sideSquared": 48,
+      "sideExact": "4√3",
+      "areaExact": "12√3",
+      "existence": "한 변4√3의 정삼각형의 외접원을 잡고 A에서의 접선을 그으면 그 접선은 반대 현BC와 평행하며 그림과 같은 방향의 반직선AT가 AB와60°를 이룬다.",
+      "uniqueness": "평행조건과 현의 수직이등분으로 AB=AC, 밑각60°로 정삼각형이 강제된다. a²=48의 음의 해는 길이가 아니므로 하나."
+    },
+    "fullAuthorMethodReview": "OA⊥AT∥BC로A가BC의 수직이등분선 위에 있음→AB=AC. 평행선 각60°로 정삼각형. 피타고라스 높이√3a/2와넓이에서a²48, 양의a=4√3. 실제 해설은 접현각 정리를 사용하지 않고 반지름의 수직, 현의 수직이등분 및 평행선 각으로 정삼각형을 직접 증명한다.",
+    "sourceRelation": {
+      "observedPacketReference": "OriginalH page4 written5: chordBC parallel tangentAT atA, BAT60, AC9; ask areaABC;7points. Component only; no wholepaper/pair/year/rights certification.",
+      "comparison": "접선과 평행한 현,60°각과 한 변을 주고 삼각형의 넓이를 구한다. → 접선·평행 현의 관계와 삼각형 넓이를 주고 양의 한 변 길이를 복원한다.",
+      "independentJudgment": "입력과 목표의 역할을 역전하고 핵심 접선/원주각/피타고라스의 연결을 유지한다. 새 그림·명칭 변경만을 실질변형 근거로 쓰지 않는다. 제공 구성정보에 따른 성분 비교이며 이번에 원본/답안키를 재열람하거나 원본 답을 계산하지 않았다.",
+      "sourceComponentOnly": true
+    },
+    "wording": "조건과 목표가 한국어로 명시되고, 질문에서 원하는 길이/둘레와 단위가 명확하다.",
+    "scoreAndDifficulty": {
+      "score": 7,
+      "scoreBasis": "제공 원문과 같은 7점 서술형으로 여러 성질의 연결과 과정 설명을 요구하므로 배점 제안은 수용 가능. 구체적 부분점표는 제공되지 않아 창작하지 않는다.",
+      "proposal": "심화하",
+      "approval": "pending",
+      "basis": "실제 풀이 단계는 위에서 개별 검토했으나 sourceDifficultyLabelObserved=null이고 측정된 학생 난도·원문 동등성 자료가 없다. 심화하 라벨은 제안으로 유지한다."
+    },
+    "unitFamily": {
+      "capturedUnitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "section": "원의 접선",
+      "familyKey": null,
+      "fit": false,
+      "basis": "단원 개념 대응은 있으나 정확한 평가목적·조건·형식에 맞는 live family 정의·실시간 상태를 확인하지 않았다. 코드/이름/개수로 승인하지 않음."
+    },
+    "primaryEvidence": {
+      "normative": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "previouslyActuallyViewed": true,
+        "edition": "2015",
+        "locators": "9수04-19 원의 현·접선 성질;9수04-20 원주각;9수04-16 피타고라스; 일반적인 원의 비례관계 제외",
+        "limit": "학교나 코드만으로 승인하지 않음; 풀이가 해당 성질과 이전 평면도형·연산으로 실제 완결되는지 개별 확인"
+      },
+      "actualM3Placement": {
+        "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+        "sha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+        "previouslyActuallyViewed": true,
+        "locator": "PDFindex73/physical74/printed72, 중3 수학2학기,9월9수04-19/10월9수04-20",
+        "limit": "경신중 해당 시험의 진도나2022 배치 인증은 아님"
+      }
+    },
+    "rawBinding": {
+      "helperRawCommit": "f4a9aa7c978906cf021e02029bd0511ff2d4190f",
+      "parentRawCommit": "27675600865d132c73425be059e79825cd8d4d63",
+      "rawSha256": "ba83a05eb711be5e216726c7b8c04d1990bed219f0d639f7225fad840dce797b",
+      "gitBlobByteIdentical": true,
+      "exposureDeclaration": {
+        "currentAuthorAnswerOrSolutionExposedBeforeRaw": false,
+        "priorExposure": "이전 원본 H 2·3쪽을 허용된 범위에서 보았고 관련 원주각·접선·삼각형 문제 및 엔진을 검토했다. 현재 q13–17의 저자 답·해설·패키지는 열지 않았다. 이 다섯 원문 각각을 과거 보았는지에 대한 완전한 부정은 하지 않으며, 원본 전체 미노출 주장도 하지 않는다. 이번에는 학생 발문과 새 SVG만 사용했다.",
+        "pixelOrCoordinateOracle": false
+      }
+    },
+    "assetBinding": {
+      "specSha256": "ca464a9c4e8cd54d39db7a856c22020e14b50e5072f393e60b79804343efe775",
+      "svgSha256": "79e396c33aa39b5c525cdd9aa2aa4e13ab9ee6732e9eca4381b01eaf3e808294",
+      "privateStudentByteEqual": true
+    },
+    "holds": {
+      "sourceIdentityApproved": false,
+      "wholeSourcePairApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "liveFamilyApproved": false,
+      "loadable": false,
+      "2022Placement": "pending",
+      "difficultyEquivalence": "pending"
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "현재 q15 발문의 조건은 OA⊥AT∥BC로A가BC의 수직이등분선 위에 있음→AB=AC. 평행선 각60°로 정삼각형. 피타고라스 높이√3a/2와넓이에서a²48, 양의a=4√3. 조건의 순서·호 위치·접선/반원 여부를 그대로 사용한다. 위 공식2015 범위와 이전 평면도형 계산으로 완결된다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제 choices=[]인 서술형이다. 없는 객관식 보기를 가정하지 않고 값과 과정을 평가한다. 추가 학년 개념이 없다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "학생 SVG를 봉인 전 실제 렌더하여 확인했다. 현재 package SVG와학생 SVG 바이트가 같고 spec/SVG 해시가 일치한다. 현재 spec의 원·접선·점위치도 별도 수치검사를 했다. 점·선·호·원과 라벨이 실제 발문과 대응한다. spec 실수연산은 그림 검증 전용이며 학생 수치답은 정확한 별도 계산이다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "선분·접점·π·제곱근과 cm² 넓이에서 cm 길이로의 변환가 실제 문맥에 맞고 고등 함수/좌표 표기가 학생 필수 입력에 없다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "봉인 raw 4√3 cm와 저자 $4\\sqrt3\\,\\mathrm{cm}$의 값·단위가 같음을 자체 정확 계산으로 확인했다. 모든 길이의 음의 해를 배제하고 각은0°보다 크고180°보다 작다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "저자 전체 해설의 순서를 실제 검토했다: OA⊥AT∥BC로A가BC의 수직이등분선 위에 있음→AB=AC. 평행선 각60°로 정삼각형. 피타고라스 높이√3a/2와넓이에서a²48, 양의a=4√3. 실제 해설은 접현각 정리를 사용하지 않고 반지름의 수직, 현의 수직이등분 및 평행선 각으로 정삼각형을 직접 증명한다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "2015 중3 원의 현·접선(9수04-19) 학습 후, 이전 합동·평행선·삼각형각합·원의 둘레/넓이 중 실제 필요한 성질 및 피타고라스/제곱근·전개·일차식 학습 후 배정한다. 실제 해설은 접현각 정리를 사용하지 않고 반지름의 수직, 현의 수직이등분 및 평행선 각으로 정삼각형을 직접 증명한다. 실제 중3 배치는 이전 확인한 공식 중3 2학기 계획 printed72로 뒷받침하며 특정 학교 진도/2022를 인증하지 않는다."
+    }
+  }
+}

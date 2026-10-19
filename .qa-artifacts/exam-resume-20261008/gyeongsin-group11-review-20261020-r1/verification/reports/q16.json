@@ -1,0 +1,137 @@
+{
+  "status": "pending",
+  "studentDigest": "788030111f5419175154ece438df6bd6956d0fb5a59c78dc02a7a7c4415a9e8f",
+  "candidateDigest": "44de5c5befee45366926ce70d842b69a5401daf7a8a469b1fc6ec62b9fa94a94",
+  "assetDigest": "56507edc98918880f6304e338ce076677bf1bdf2a9cf504bf124181719ec0ccb",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-gyeongsin-group11-review-20261020",
+  "solveDigest": "206bbe5bcdede59496dd00c6aa7318ca0b40f0a75b0bbab8db21d0212bfacf53",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "evidence": {
+    "classification": {
+      "math": "passed",
+      "grade": "2015-M3-after-prerequisites-passed",
+      "content": "held"
+    },
+    "ownExactCalculationAndExistence": {
+      "radiusSquared": 24,
+      "diameterSquared": 96,
+      "AD": 3,
+      "BC": 8,
+      "DC": 11,
+      "heightDifference": 5,
+      "pythagoras": "121=96+25",
+      "existence": "자체 존재 예: A=(0,0), B=(0,2r), D=(3,0), C=(8,2r), r²=24. 원 중심(0,r)에서 DC까지 거리=11r/11=r, 수선발의 DC 내분비는3:8이므로 선분 내부에서 접한다. 이 좌표는 존재 증명 전용이며 SVG 좌표를 쓰지 않는다.",
+      "uniqueness": "접선 분할과 피타고라스를 전개하면12x=96만 남으며 x=8>0. 반원의 넓이를 원 전체로 잘못 계산하면 안 된다."
+    },
+    "fullAuthorMethodReview": "실제 반원넓이πr²/2=12π로r²24. DF=DA3,CF=CBx로DC=x+3. 평행 접선 간격2r와 차|x−3|의 피타고라스 (x+3)²=(x−3)²+4r²에서12x96, x8. 실제 해설은 원 전체와 반원을 구별한다. |x−3|의 제곱을 사용하여 x가3보다 작은 가능성을 미리 배제하지 않고 전개한 결과8만 남는다. 접선곱 공식을 가정하지 않는다.",
+    "sourceRelation": {
+      "observedPacketReference": "OriginalH page4 written6: diameterAB, endpoint tangentsAD3/BC5 andcommon tangentCD; ask semicircle area;8points. Component only; no wholepaper/pair/year/rights certification.",
+      "comparison": "지름 양 끝의 두 접선 길이를 주고 반원 넓이를 구한다. → 반원 넓이와 한쪽 접선 길이를 주고 다른 접선 길이를 역추론한다.",
+      "independentJudgment": "입력과 목표의 역할을 역전하고 핵심 접선/원주각/피타고라스의 연결을 유지한다. 새 그림·명칭 변경만을 실질변형 근거로 쓰지 않는다. 제공 구성정보에 따른 성분 비교이며 이번에 원본/답안키를 재열람하거나 원본 답을 계산하지 않았다.",
+      "sourceComponentOnly": true
+    },
+    "wording": "조건과 목표가 한국어로 명시되고, 반원 넓이와 접선 길이를 구별한다.",
+    "scoreAndDifficulty": {
+      "score": 8,
+      "scoreBasis": "제공 원문과 같은 8점 서술형으로 여러 성질의 연결과 과정 설명을 요구하므로 배점 제안은 수용 가능. 구체적 부분점표는 제공되지 않아 창작하지 않는다.",
+      "proposal": "심화하",
+      "approval": "pending",
+      "basis": "실제 풀이 단계는 위에서 개별 검토했으나 sourceDifficultyLabelObserved=null이고 측정된 학생 난도·원문 동등성 자료가 없다. 심화하 라벨은 제안으로 유지한다."
+    },
+    "unitFamily": {
+      "capturedUnitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "section": "원의 접선",
+      "familyKey": null,
+      "fit": false,
+      "basis": "단원 개념 대응은 있으나 정확한 평가목적·조건·형식에 맞는 live family 정의·실시간 상태를 확인하지 않았다. 코드/이름/개수로 승인하지 않음."
+    },
+    "primaryEvidence": {
+      "normative": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "previouslyActuallyViewed": true,
+        "edition": "2015",
+        "locators": "9수04-19 원의 현·접선 성질;9수04-20 원주각;9수04-16 피타고라스; 일반적인 원의 비례관계 제외",
+        "limit": "학교나 코드만으로 승인하지 않음; 풀이가 해당 성질과 이전 평면도형·연산으로 실제 완결되는지 개별 확인"
+      },
+      "actualM3Placement": {
+        "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+        "sha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+        "previouslyActuallyViewed": true,
+        "locator": "PDFindex73/physical74/printed72, 중3 수학2학기,9월9수04-19/10월9수04-20",
+        "limit": "경신중 해당 시험의 진도나2022 배치 인증은 아님"
+      }
+    },
+    "rawBinding": {
+      "helperRawCommit": "f4a9aa7c978906cf021e02029bd0511ff2d4190f",
+      "parentRawCommit": "27675600865d132c73425be059e79825cd8d4d63",
+      "rawSha256": "fe7fcf936c383f845ed5e937a507ebd8a75c10f7a1cbd87e24e98f22b7a9eff0",
+      "gitBlobByteIdentical": true,
+      "exposureDeclaration": {
+        "currentAuthorAnswerOrSolutionExposedBeforeRaw": false,
+        "priorExposure": "이전 원본 H 2·3쪽을 허용된 범위에서 보았고 관련 원주각·접선·삼각형 문제 및 엔진을 검토했다. 현재 q13–17의 저자 답·해설·패키지는 열지 않았다. 이 다섯 원문 각각을 과거 보았는지에 대한 완전한 부정은 하지 않으며, 원본 전체 미노출 주장도 하지 않는다. 이번에는 학생 발문과 새 SVG만 사용했다.",
+        "pixelOrCoordinateOracle": false
+      }
+    },
+    "assetBinding": {
+      "specSha256": "dfa2de949da434d984521da5b6f244ae1f4d400d6dcea60ba8f45f4d91acbe5a",
+      "svgSha256": "665c6b63d503aaf37682f0dddb580652d1689e5a4705d4d96cbc7fdbddded817",
+      "privateStudentByteEqual": true
+    },
+    "holds": {
+      "sourceIdentityApproved": false,
+      "wholeSourcePairApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "liveFamilyApproved": false,
+      "loadable": false,
+      "2022Placement": "pending",
+      "difficultyEquivalence": "pending"
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "현재 q16 발문의 조건은 실제 반원넓이πr²/2=12π로r²24. DF=DA3,CF=CBx로DC=x+3. 평행 접선 간격2r와 차|x−3|의 피타고라스 (x+3)²=(x−3)²+4r²에서12x96, x8. 조건의 순서·호 위치·접선/반원 여부를 그대로 사용한다. 위 공식2015 범위와 이전 평면도형 계산으로 완결된다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제 choices=[]인 서술형이다. 없는 객관식 보기를 가정하지 않고 값과 과정을 평가한다. 추가 학년 개념이 없다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "학생 SVG를 봉인 전 실제 렌더하여 확인했다. 현재 package SVG와학생 SVG 바이트가 같고 spec/SVG 해시가 일치한다. 현재 spec의 원·접선·점위치도 별도 수치검사를 했다. 실제 반원 arc만 그리며 지름/양 끝접선/공통접선이 대응한다. spec 실수연산은 그림 검증 전용이며 학생 수치답은 정확한 별도 계산이다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "선분·접점·π·제곱근과 cm² 넓이에서 cm 길이로의 변환가 실제 문맥에 맞고 고등 함수/좌표 표기가 학생 필수 입력에 없다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "봉인 raw 8 cm와 저자 $8\\,\\mathrm{cm}$의 값·단위가 같음을 자체 정확 계산으로 확인했다. 모든 길이의 음의 해를 배제하고 각은0°보다 크고180°보다 작다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "저자 전체 해설의 순서를 실제 검토했다: 실제 반원넓이πr²/2=12π로r²24. DF=DA3,CF=CBx로DC=x+3. 평행 접선 간격2r와 차|x−3|의 피타고라스 (x+3)²=(x−3)²+4r²에서12x96, x8. 실제 해설은 원 전체와 반원을 구별한다. |x−3|의 제곱을 사용하여 x가3보다 작은 가능성을 미리 배제하지 않고 전개한 결과8만 남는다. 접선곱 공식을 가정하지 않는다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "2015 중3 원의 현·접선(9수04-19) 학습 후, 이전 합동·평행선·삼각형각합·원의 둘레/넓이 중 실제 필요한 성질 및 피타고라스/제곱근·전개·일차식 학습 후 배정한다. 실제 해설은 원 전체와 반원을 구별한다. |x−3|의 제곱을 사용하여 x가3보다 작은 가능성을 미리 배제하지 않고 전개한 결과8만 남는다. 접선곱 공식을 가정하지 않는다. 실제 중3 배치는 이전 확인한 공식 중3 2학기 계획 printed72로 뒷받침하며 특정 학교 진도/2022를 인증하지 않는다."
+    }
+  }
+}
