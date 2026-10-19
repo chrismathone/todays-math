@@ -1,0 +1,323 @@
+{
+  "kind": "fresh-sem1-source-inspection-and-preservation/v1",
+  "aggregateReceiptSha256": "553685f863cda90cdd94480763cb46a769e97c2daaee5234f32b0ee82193d07b",
+  "extractionToolUnmodified": {
+    "path": "scripts/import/exam-twin/extract-fresh-sources-20261019.py",
+    "sha256": "20c3bcfecf18dd1298ac3fae3532ac507067907f934439ab7418fb1e21403e7e"
+  },
+  "selection": {
+    "explicitEligibleIds": [
+      "personal-ae2bb575dbaef34005e65cdeedba6860",
+      "personal-a31eb17660269c309fe99cbfce1665c3",
+      "personal-ff66f8d1a4f03871955f857a26829560",
+      "personal-302b6b0d179d92356859f600256e917a"
+    ],
+    "sourceJobsAttempted": [
+      "personal-ae2bb575dbaef34005e65cdeedba6860",
+      "personal-a31eb17660269c309fe99cbfce1665c3",
+      "personal-ff66f8d1a4f03871955f857a26829560"
+    ],
+    "fallbackNotAttempted": "personal-302b6b0d179d92356859f600256e917a",
+    "inventoryScope": "2025 / middle3 / semester1 / midterm; ready completed pairs; historical existingExamIds/count empty",
+    "protectedSchoolsExcluded": [
+      "동도중",
+      "강동중",
+      "경산여중",
+      "정화중"
+    ],
+    "closureSnapshot": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\past-exam-closure-current.json",
+      "sha256": "b298c06ce5b93f9e7527e137962ba888849234e8f4e06339b8670ffbf9949264",
+      "capturedAt": "2026-10-19 05:35:39.321763+00",
+      "closedOriginalSchoolPrefixes": [
+        "dongdo",
+        "gangdong",
+        "gyeongsanyeo",
+        "hyeopseonggyeongbok",
+        "jeonghwa"
+      ],
+      "selectedSchoolPrefixesNotInClosedOriginals": true,
+      "note": "Read existing metadata only; no fresh DB query. These sources remain unapproved."
+    }
+  },
+  "totals": {
+    "previousObservedParents": 314,
+    "newObservedParents": 68,
+    "combinedObservedParents": 382,
+    "schools": 3,
+    "multipleChoiceParents": 53,
+    "writtenParents": 15,
+    "notesWithheld": 68,
+    "questionPages": 12,
+    "answerPageStarts": [
+      5,
+      5,
+      5
+    ],
+    "hwpFormulaCount": 566,
+    "hwpFigureCount": 13,
+    "pdfFigureCorrespondenceCount": 13,
+    "scoreOccurrenceCount": 79,
+    "unmappedCount": 0,
+    "componentsApproved": 0,
+    "twins": 0,
+    "wholePairCertified": 0,
+    "gradeApprovals": 0,
+    "rightsApprovals": 0,
+    "dbWrites": 0
+  },
+  "headerObservations": [
+    {
+      "inventoryExamId": "personal-ae2bb575dbaef34005e65cdeedba6860",
+      "school": "강북중",
+      "metadataFilenameYear": 2025,
+      "metadataGrade": 3,
+      "metadataSemester": 1,
+      "metadataRound": "midterm",
+      "completedHwpPdfHeaderObserved": {
+        "year": 2025,
+        "grade": 3,
+        "semester": 1,
+        "round": "midterm",
+        "schoolNameMatchesInventory": true
+      },
+      "preparationFooterYear": 2026,
+      "preparationFooterIsNotExamYear": true,
+      "originalIdentityObserved": {
+        "year": 2025,
+        "grade": 3,
+        "semester": 1,
+        "roundLiteral": "midterm",
+        "printedSchoolObserved": true,
+        "handwrittenSchoolObserved": false,
+        "examDate": "2025-04-30"
+      },
+      "identityLimit": "Printed header/footer fields observed only; full HWP/PDF/original content and custody equivalence not certified.",
+      "questionComponentsApproved": 0,
+      "wholePairCertified": false
+    },
+    {
+      "inventoryExamId": "personal-a31eb17660269c309fe99cbfce1665c3",
+      "school": "경구중",
+      "metadataFilenameYear": 2025,
+      "metadataGrade": 3,
+      "metadataSemester": 1,
+      "metadataRound": "midterm",
+      "completedHwpPdfHeaderObserved": {
+        "year": 2025,
+        "grade": 3,
+        "semester": 1,
+        "round": "midterm",
+        "schoolNameMatchesInventory": true
+      },
+      "preparationFooterYear": 2026,
+      "preparationFooterIsNotExamYear": true,
+      "originalIdentityObserved": {
+        "year": 2025,
+        "grade": 3,
+        "semester": 1,
+        "roundLiteral": "first-written-evaluation",
+        "printedSchoolObserved": false,
+        "handwrittenSchoolObserved": true,
+        "examDate": "2025-04-29"
+      },
+      "identityLimit": "Gyeonggu school name is handwriting in the margin; do not treat it as independently printed school certification.",
+      "questionComponentsApproved": 0,
+      "wholePairCertified": false
+    },
+    {
+      "inventoryExamId": "personal-ff66f8d1a4f03871955f857a26829560",
+      "school": "경명여중",
+      "metadataFilenameYear": 2025,
+      "metadataGrade": 3,
+      "metadataSemester": 1,
+      "metadataRound": "midterm",
+      "completedHwpPdfHeaderObserved": {
+        "year": 2025,
+        "grade": 3,
+        "semester": 1,
+        "round": "midterm",
+        "schoolNameMatchesInventory": true
+      },
+      "preparationFooterYear": 2026,
+      "preparationFooterIsNotExamYear": true,
+      "originalIdentityObserved": {
+        "year": 2025,
+        "grade": 3,
+        "semester": 1,
+        "roundLiteral": "midterm",
+        "printedSchoolObserved": true,
+        "handwrittenSchoolObserved": false,
+        "examDate": "2025-04-30"
+      },
+      "identityLimit": "Printed header/footer fields observed only; full HWP/PDF/original content and custody equivalence not certified.",
+      "questionComponentsApproved": 0,
+      "wholePairCertified": false
+    }
+  ],
+  "actualInspectionFindings": [
+    {
+      "school": "강북중",
+      "numbers": [
+        1
+      ],
+      "observation": "Completed q1 crop has five choices and printed3 points; no picture is required. Sample only, not whole-question approval."
+    },
+    {
+      "school": "경구중",
+      "numbers": [
+        10,
+        11,
+        13
+      ],
+      "observation": "q10 part1 has the paper-folding figure/choices/4 points; part2 wrongly carries the shared11–12 passage and tangram. q11 has that shared tangram (HWP per-item figure0 vsPDF1). q13 part1 wrongly carries earlier8–10 material/table/paper figure, while part2 contains actualq13 choices/3 points. Cross-question region contamination is confirmed. HWP13 and decoded PDF13 question text identify the right target, but region/correspondence provenance is unsafe.",
+      "decision": "Quarantine q10/q13 regions and all dependent image/correspondence claims; do not distribute these raw packets to authors. Repair/validate shared passage and column/metadata grouping separately."
+    },
+    {
+      "school": "경명여중",
+      "numbers": [
+        22
+      ],
+      "observation": "Completed q22 is a10-point written item with dialogue table and boxed code-cell placeholders. HWP figure records3 vsPDF bitmap correspondence0 is not by itself proof of missing semantic content; actual raster/vector/placeholder correspondence needs review.",
+      "decision": "Hold component equivalence; no solution or automatic authoring performed."
+    }
+  ],
+  "codeChecks": {
+    "pythonAst": true,
+    "selectionAssertionsPassed": 12,
+    "freshRepeatJobRejectedBeforeDirectoryCreation": true,
+    "repeatProbeExit": 2,
+    "preservedReferencesRehashed": 30,
+    "allSourcesToolsInventoryAndPriorReceiptsUnchanged": true
+  },
+  "localIgnoredHashIndex": [
+    {
+      "path": "personal-a31eb17660269c309fe99cbfce1665c3\\reviewer-only\\footer.png",
+      "sha256": "dc73735e5a6378083c1d34d5b355d32f77375b761777dbf4055bf8a711b25d61",
+      "bytes": 92943,
+      "copyrightedQuestionMaterialOrReviewerImage": true,
+      "commitAllowed": false
+    },
+    {
+      "path": "personal-a31eb17660269c309fe99cbfce1665c3\\reviewer-only\\header.png",
+      "sha256": "1107adc48ce3f242d288f0cb47a1cd95c0df5dbe79776604f134989fd0bea14e",
+      "bytes": 146244,
+      "copyrightedQuestionMaterialOrReviewerImage": true,
+      "commitAllowed": false
+    },
+    {
+      "path": "personal-a31eb17660269c309fe99cbfce1665c3\\reviewer-only\\original-header-oriented-r2.png",
+      "sha256": "a23df8b6eaf9cfc44d6309f9ba43ed5cf597579ac7db5ac914564af740dcf3f2",
+      "bytes": 163034,
+      "copyrightedQuestionMaterialOrReviewerImage": true,
+      "commitAllowed": false
+    },
+    {
+      "path": "personal-a31eb17660269c309fe99cbfce1665c3\\reviewer-only\\question-10-part1.png",
+      "sha256": "60af2a4488757ffa604244d97a1ff0552c8a7b28797c4012c36fff4453cbb4c4",
+      "bytes": 33089,
+      "copyrightedQuestionMaterialOrReviewerImage": true,
+      "commitAllowed": false
+    },
+    {
+      "path": "personal-a31eb17660269c309fe99cbfce1665c3\\reviewer-only\\question-10-part2.png",
+      "sha256": "7cb24e24696a946d085d82801026d1fa79bad50b028a571806e5a004c5867c0a",
+      "bytes": 104385,
+      "copyrightedQuestionMaterialOrReviewerImage": true,
+      "commitAllowed": false
+    },
+    {
+      "path": "personal-a31eb17660269c309fe99cbfce1665c3\\reviewer-only\\question-11-part1.png",
+      "sha256": "c7202e1568831e6dcbd97285796389655768e62e2e6085230257180e67d6bd6a",
+      "bytes": 118002,
+      "copyrightedQuestionMaterialOrReviewerImage": true,
+      "commitAllowed": false
+    },
+    {
+      "path": "personal-a31eb17660269c309fe99cbfce1665c3\\reviewer-only\\question-13-part1.png",
+      "sha256": "ae88ecd300203f6bcdfd212a642c662c6e91ad5bd4af49ed19b6d929452ad610",
+      "bytes": 92494,
+      "copyrightedQuestionMaterialOrReviewerImage": true,
+      "commitAllowed": false
+    },
+    {
+      "path": "personal-a31eb17660269c309fe99cbfce1665c3\\reviewer-only\\question-13-part2.png",
+      "sha256": "211abac03ad1ee109bca340eaeb3b0a6aadf856b088584a007954e805bc12123",
+      "bytes": 18800,
+      "copyrightedQuestionMaterialOrReviewerImage": true,
+      "commitAllowed": false
+    },
+    {
+      "path": "personal-a31eb17660269c309fe99cbfce1665c3\\source-manifest.local.json",
+      "sha256": "f735cd154d8d1cb910457c1e4b83e0c118d6744cfbebc209da4e0c259978d724",
+      "bytes": 2093141,
+      "copyrightedQuestionMaterialOrReviewerImage": true,
+      "commitAllowed": false
+    },
+    {
+      "path": "personal-ae2bb575dbaef34005e65cdeedba6860\\reviewer-only\\footer.png",
+      "sha256": "73b6855392508688c76e95cba8cca3717b7652fc81975b6782be9c38e7ebbee1",
+      "bytes": 9569,
+      "copyrightedQuestionMaterialOrReviewerImage": true,
+      "commitAllowed": false
+    },
+    {
+      "path": "personal-ae2bb575dbaef34005e65cdeedba6860\\reviewer-only\\header.png",
+      "sha256": "e7ce4dbd266d63be21f6d22480e8fe9daae8a5c0d312fde2cc354051bbec778c",
+      "bytes": 71044,
+      "copyrightedQuestionMaterialOrReviewerImage": true,
+      "commitAllowed": false
+    },
+    {
+      "path": "personal-ae2bb575dbaef34005e65cdeedba6860\\reviewer-only\\question-01-part1.png",
+      "sha256": "73680509f84c827219a8dd94d68ee89cc30c34800b0defab4d787528b23046c4",
+      "bytes": 12602,
+      "copyrightedQuestionMaterialOrReviewerImage": true,
+      "commitAllowed": false
+    },
+    {
+      "path": "personal-ae2bb575dbaef34005e65cdeedba6860\\source-manifest.local.json",
+      "sha256": "9e1fbb7f8b8a5a5a3f6f5bced0530ac62a1174548f19b38dabf1e13df074e701",
+      "bytes": 1363597,
+      "copyrightedQuestionMaterialOrReviewerImage": true,
+      "commitAllowed": false
+    },
+    {
+      "path": "personal-ff66f8d1a4f03871955f857a26829560\\reviewer-only\\footer.png",
+      "sha256": "579b4d4cca541f323f4eb225bd7157ac69d8f8daf4427f96520e0045589e2441",
+      "bytes": 21090,
+      "copyrightedQuestionMaterialOrReviewerImage": true,
+      "commitAllowed": false
+    },
+    {
+      "path": "personal-ff66f8d1a4f03871955f857a26829560\\reviewer-only\\header.png",
+      "sha256": "450b2de0f208008b3a47df215fc3351fdf3784298ed6275850302457ec604c57",
+      "bytes": 58162,
+      "copyrightedQuestionMaterialOrReviewerImage": true,
+      "commitAllowed": false
+    },
+    {
+      "path": "personal-ff66f8d1a4f03871955f857a26829560\\reviewer-only\\original-cover-metadata-r2.png",
+      "sha256": "824c49f229d2880bad5f299d1a61cb8b1e5abc1fe7bc77230ba50189479ceb08",
+      "bytes": 155267,
+      "copyrightedQuestionMaterialOrReviewerImage": true,
+      "commitAllowed": false
+    },
+    {
+      "path": "personal-ff66f8d1a4f03871955f857a26829560\\reviewer-only\\question-22-part1.png",
+      "sha256": "22193c97debe9290569b6492cbea8e4d08f90574f9dc7159688dccfc1dc1518b",
+      "bytes": 37100,
+      "copyrightedQuestionMaterialOrReviewerImage": true,
+      "commitAllowed": false
+    },
+    {
+      "path": "personal-ff66f8d1a4f03871955f857a26829560\\source-manifest.local.json",
+      "sha256": "7160a9a92a4c53b63a0574b2c213b03f39603d67be9a460a34d2184f6e725c50",
+      "bytes": 1506875,
+      "copyrightedQuestionMaterialOrReviewerImage": true,
+      "commitAllowed": false
+    }
+  ],
+  "copyrightBoundary": "Raw manifests, question text and original/reviewer crops remain ignored locally; commit only aggregate metadata, this receipt and findings. Original scan header crops can contain handwriting; no original answer/solution key was parsed or used. No pending authored answer files opened.",
+  "approval": "All content/source-pair, classification, grade, rights and production approvals remain0."
+}
