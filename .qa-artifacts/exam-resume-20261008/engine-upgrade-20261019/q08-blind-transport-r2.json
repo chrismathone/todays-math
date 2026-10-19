@@ -1,0 +1,37 @@
+{
+  "utc": "2026-10-19T12:08:29.769Z",
+  "helperCommit": "e0384dbf06b23a8f0b3db550b4ea63c24ff7d89d",
+  "files": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-q08-clean-blind-20261019-r2/calculate.ps1",
+      "sha256": "0347411c65691fa0949a937a0027f5625f29fb103030a8513a0105da95dd825a"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-q08-clean-blind-20261019-r2/calculations.json",
+      "sha256": "315c3e002347cb654b85543dd2aed6415aad61eb3bc66f16046afd944e726fe7"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-q08-clean-blind-20261019-r2/exposure-declaration.json",
+      "sha256": "321fb59ddab7cc6e7f4abdd0decc1350c60499a6f4e4523eeb95f4a4f2c3b7b1"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-q08-clean-blind-20261019-r2/serialization-receipt.json",
+      "sha256": "f8b26547b495ca97b5a0eaaddcf65970e2ca53558d73ef399eb9e9a9a0eb6d2e"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-q08-clean-blind-20261019-r2/serialize.ps1",
+      "sha256": "623ee485c24f6a8df675b071caff9bd633b2879f6c1ebd6baa8458ab5662e82b"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-q08-clean-blind-20261019-r2/solve/q08.json",
+      "sha256": "0e1a5c9f889e6e0a10332e9de6e8de944dc953b3f15c88a4d3d1baa8fd5ecc89"
+    }
+  ],
+  "blind": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group2-review-20261019-r2/blind-r2/",
+  "serializationCorrectionOnly": true,
+  "newIndependentSolvers": 0,
+  "priorRawImmutable": true,
+  "priorFailure": "r1 answer object/solution array rejected before author exposure",
+  "authorExposureBeforeParentSeal": false,
+  "dbWrites": 0
+}

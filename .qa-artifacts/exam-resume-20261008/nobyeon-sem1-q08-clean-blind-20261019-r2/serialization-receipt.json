@@ -1,0 +1,17 @@
+{
+    "correctionOnly":  true,
+    "additionalIndependentSolverCount":  0,
+    "authorExposure":  false,
+    "sourceRawSha256":  "1eb7e1eeb9b542fb57f53fce6103ce61d7bf5156415eca6504f1ae5f1e7a27fe",
+    "sourceRawUnchanged":  true,
+    "studentDigest":  "1d6563056697661a1c4a56c3883cfc51998879e10674b3953412963d5dd1e827",
+    "solverId":  "codex-clean-blind-20261019-r1",
+    "changes":  [
+                    "answer object serialized as readable choice string",
+                    "solution array joined as readable Korean string",
+                    "literal Unicode inequality escapes decoded in r2 JSON only",
+                    "own evidence references copied into r2"
+                ],
+    "rawSha256":  "0e1a5c9f889e6e0a10332e9de6e8de944dc953b3f15c88a4d3d1baa8fd5ecc89",
+    "readScope":  "Only own r1 raw proof and own exposure/calculation evidence; no author answers, root sources, original papers, or other sessions read."
+}
