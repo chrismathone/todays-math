@@ -1,0 +1,57 @@
+{
+  "kind": "interim-authoring-progress/v1",
+  "utc": "2026-10-19T09:03:49.586Z",
+  "priorIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v15.json",
+    "sha256": "a770ff3d76ebcc9a644e2dcea7c8b3773dceabc48357b6dd6c4e0ab995149915"
+  },
+  "prior112BindingsRevalidated": true,
+  "newCandidates": [
+    {
+      "id": "exam-twin-gyeongsin-2025-2-mid-author-r2-q01",
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-r2/q01.json",
+      "sha256": "a55a100e29c46ea07b91bebe2fae5cc7e956000e5637dc319a8d3e9377c42f64",
+      "studentDigest": "1926b5e6809401ef62d86c962defff8aec71099435d0e8c9a556a225ec9f8811",
+      "assetDigest": "07601ddf2cf96a80e3d6fbb03cd43b315a31effefe0af83da8f8fa142de5a64b",
+      "candidateDigest": "b27ce365ad6f426b78b14f9406dcd6ac813050255c4089f190cabf2864c78ea2"
+    },
+    {
+      "id": "exam-twin-gyeongsin-2025-2-mid-author-group2-r1-q02",
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group2-r1/q02.json",
+      "sha256": "acf96c3329dfa977723b432c53c9f702d6dd7935e04784ed68e3ce4c943fbcf4",
+      "studentDigest": "ef764a890044e19cd0193e18785dacd1d771a46f3a3db28a98be886281468a22",
+      "assetDigest": "f8e63d35321d51014560fc40d0a79857a93c466f30c2823aa004b9365a8c4248",
+      "candidateDigest": "f95d71df5f16fafaf79e0e8355cd3e12ecfbf13b23b7efe476a24c8502768ed5"
+    },
+    {
+      "id": "exam-twin-gyeongsin-2025-2-mid-author-group3-r2-q04",
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group3-r2/q04.json",
+      "sha256": "17bc3c3eba3ae3ed5c1e067c2216f721fee2531c554cb69adcca1dbc3c025ae0",
+      "studentDigest": "1d08f7cb77a61502a4c8cab332828ce287b2619c99e9401ccbd736610079df52",
+      "assetDigest": "9ddc4eb1210e0d6e4cb8436d764f4db4a7a468d282bd5d86e15c5da3f35c6eeb",
+      "candidateDigest": "3761d6647d643e138bd0d5909db6906d1402107245794757b2cb09cbb8045c6f"
+    }
+  ],
+  "counts": {
+    "authoredCurrentCandidates": 115,
+    "currentFigureInstances": 91,
+    "recreatedStatTables": 5,
+    "builtinImagegenRasters": 2,
+    "independentMathReviewed": 113,
+    "independentFullGradeReviewed": 113,
+    "contentClassificationPassed": 15,
+    "contentClassificationHeld": 98,
+    "awaitingCollectedIndependentReview": 2,
+    "preExposureRawSolvesBound": 114,
+    "currentRawSolved": 113,
+    "currentRawPending": 1,
+    "awaitingFirstSealedBlindSolve": 1,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0
+  },
+  "basis": "Prior111 formal plus independent q01/q02 reports; q04 stage1 in progress and q18 held. Same candidate/figure draft revisions are not new questions.",
+  "sourceParentObservations": 634,
+  "sourceParentObservationsAreContentCertified": false,
+  "wholeGoalComplete": false
+}

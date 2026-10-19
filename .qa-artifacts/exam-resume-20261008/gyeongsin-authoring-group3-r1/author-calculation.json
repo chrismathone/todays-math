@@ -1,0 +1,29 @@
+{
+  "authorOnly": true,
+  "pq": 6,
+  "qr": 8,
+  "pr": 10,
+  "radius": 6,
+  "part1": 18,
+  "part2": 10,
+  "pythagoras": true,
+  "tangentLengths": {
+    "PS": 12,
+    "PT": 12,
+    "QS": 6,
+    "QE": 6,
+    "RT": 2,
+    "RE": 2
+  },
+  "eInterior": true,
+  "rInteriorToPT": true,
+  "answerUniqueness": "PR+QR18; PR²-QR²=36 gives (PR-QR)*18=36, hence PR-QR2 and PR10,QR8. Student solution instead expands the square.",
+  "candidateDigest": "efe332c5dae72baa594c347f651c1eac7cc8e3e59cacd2f583535cf5a21eb771",
+  "studentDigest": "0f160b9187248ae6fc1ca371a3bec83faa3c31383dce39ed9007a290c597e147",
+  "assetDigest": "3f7cf9300fe1ab149b6d1b5266282942b98d68bc1f0530443abb414af9884790",
+  "strictNativeRender": true,
+  "originalUnchanged": true,
+  "independentMathApprovals": 0,
+  "gradeApprovals": 0,
+  "loadable": 0
+}

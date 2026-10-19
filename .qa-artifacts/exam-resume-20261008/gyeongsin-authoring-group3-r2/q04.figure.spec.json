@@ -1,0 +1,135 @@
+{
+  "version": 2,
+  "style": {
+    "show_points": true
+  },
+  "points": {
+    "P": [
+      30,
+      155
+    ],
+    "Q": [
+      90,
+      155
+    ],
+    "R": [
+      90,
+      75
+    ],
+    "O": [
+      150,
+      95
+    ],
+    "S": [
+      150,
+      155
+    ],
+    "E": [
+      90,
+      95
+    ],
+    "T": [
+      102,
+      59
+    ]
+  },
+  "circles": {
+    "c": {
+      "center": "O",
+      "radius": 60
+    }
+  },
+  "segments": {
+    "PQ": [
+      "P",
+      "Q"
+    ],
+    "QS": [
+      "Q",
+      "S"
+    ],
+    "PR": [
+      "P",
+      "R"
+    ],
+    "RT": [
+      "R",
+      "T"
+    ],
+    "QE": [
+      "Q",
+      "E"
+    ],
+    "ER": [
+      "E",
+      "R"
+    ],
+    "SO": [
+      "S",
+      "O"
+    ],
+    "EO": [
+      "E",
+      "O"
+    ],
+    "TO": [
+      "T",
+      "O"
+    ]
+  },
+  "angles": {
+    "rightQ": {
+      "vertex": "Q",
+      "points": [
+        "P",
+        "E"
+      ],
+      "right": true,
+      "label": ""
+    },
+    "rightS": {
+      "vertex": "S",
+      "points": [
+        "Q",
+        "O"
+      ],
+      "right": true,
+      "label": ""
+    },
+    "rightE": {
+      "vertex": "E",
+      "points": [
+        "Q",
+        "O"
+      ],
+      "right": true,
+      "label": ""
+    },
+    "rightT": {
+      "vertex": "T",
+      "points": [
+        "R",
+        "O"
+      ],
+      "right": true,
+      "label": ""
+    }
+  },
+  "labels": {
+    "P": "P",
+    "Q": "Q",
+    "R": {
+      "point": "R",
+      "text": "R",
+      "position": "W"
+    },
+    "O": "O",
+    "S": "S",
+    "E": "E",
+    "T": {
+      "point": "T",
+      "text": "T",
+      "position": "N"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "kind": "source-concept-grade-method-hold/v1",
+  "questionNumber": 3,
+  "reviewer": "codex-parent-engine-upgrade-20261019",
+  "observedOriginal": {
+    "page": 1,
+    "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9",
+    "year": 2025,
+    "grade": "중3",
+    "curriculum": "2015"
+  },
+  "observation": "외부점에서 접선과 할선을 그어 접선 길이를 묻는 관계를 원본 첫 쪽에서 직접 보았다. 학교가 출제했다는 사실로 학년 적합성을 승인하지 않는다.",
+  "commonMethod": "접선 길이의 제곱과 외부점에서 할선의 두 교점까지 길이의 곱을 연결하는 원과 비례 성질",
+  "commonMethodDisposition": "excluded-for-2015-student-method",
+  "officialRestriction": {
+    "id": "no_circle_proportionality",
+    "text": "원과 비례에 관한 성질은 다루지 않는다.",
+    "source": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json"
+  },
+  "legitimateAlternativeMethodEstablished": false,
+  "disposition": "hold-no-confirmed-in-grade-student-method",
+  "newCandidateAuthored": false,
+  "mathematicalApproval": false,
+  "gradeApproval": false,
+  "loadable": 0,
+  "nextCondition": "동일 핵심 풀이를 지키는 해당 학년의 정당한 학생 풀이가 확인되기 전에는 쌍둥이 제작/승인/출제에 자동 통과시키지 않는다. 이 개별 보류는 다른 문항의 진행을 막지 않는다.",
+  "rightsReview": "separate-pending",
+  "oldEvidenceModified": false,
+  "originalAnswerKeyUsed": false
+}

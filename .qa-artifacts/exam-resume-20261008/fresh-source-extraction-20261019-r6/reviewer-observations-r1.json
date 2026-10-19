@@ -1,0 +1,145 @@
+{
+  "kind": "fresh-source-reviewer-observations/v1",
+  "utc": "2026-10-19T08:21:37.564Z",
+  "originalAggregate": {
+    "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/aggregate-receipt.json",
+    "sha256": "5918ee507fa9f3f23e7c5c182cbd1872a850f8101afeaf35fa1bb991a874c3c1"
+  },
+  "selectedRender": {
+    "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/selected-render-receipt.json",
+    "sha256": "1c6b88ad7aac3e46334a59b4f4d7846544d120b57d232660279c73ae62c6cb73"
+  },
+  "findings": {
+    "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/FINDINGS.md",
+    "sha256": "b7bd261b0697bde76db34625b290931649021e41cf0c1bf4e89792441c8ffce4"
+  },
+  "rows": [
+    {
+      "inventoryExamId": "personal-651da9aa806ce1c9d1c3ae5539e6038f",
+      "schoolInternal": "노변중",
+      "originalObservedDate": "2025-04-29",
+      "originalObservedGrade": 3,
+      "originalObservedSemester": 1,
+      "originalObservedRound": "midterm",
+      "printedOriginalSchoolObserved": true,
+      "rightsNoticeObserved": true,
+      "selectedHeaderExamYear": 2025,
+      "selectedFooterPreparationYear": 2026,
+      "observationMethod": "read-only PDF render and view_image; no pixel math",
+      "localManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-651da9aa806ce1c9d1c3ae5539e6038f/source-manifest.local.json",
+        "sha256": "76749165acccb92c23dd167adfbe16377d0c60735ea5568780c328ee469b0cf9"
+      },
+      "localImages": [
+        {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-651da9aa806ce1c9d1c3ae5539e6038f/reviewer-only/header.png",
+          "sha256": "bf8d15fa56ba420e9cb899548c901365d2671e61c6b01e225d3a8680c337e612"
+        },
+        {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-651da9aa806ce1c9d1c3ae5539e6038f/reviewer-only/footer.png",
+          "sha256": "ffc42e6e67539a0229be6b9c277a9d5d50526d7144a3f7eb674b002897f98cf8"
+        },
+        {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-651da9aa806ce1c9d1c3ae5539e6038f/reviewer-only/selected-header.local.png",
+          "sha256": "7c1df0e0a860f0720b235037c99a68dcee8ae9bfd1ab440f14ac16e61650730b"
+        },
+        {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-651da9aa806ce1c9d1c3ae5539e6038f/reviewer-only/selected-footer-context.local.png",
+          "sha256": "8e65b35fa4f9a46c958dd4b465db7585c828a7ad1a02ddd39bfcf0a1b3857540"
+        }
+      ],
+      "wholePairCertified": false,
+      "sourceIdentityApproved": false,
+      "rightsApproved": false,
+      "loadable": 0
+    },
+    {
+      "inventoryExamId": "personal-b2ef50a88428d49f8d93876973df4878",
+      "schoolInternal": "다사중",
+      "originalObservedDate": "2025-05-01",
+      "originalObservedGrade": 3,
+      "originalObservedSemester": 1,
+      "originalObservedRound": "midterm",
+      "printedOriginalSchoolObserved": true,
+      "rightsNoticeObserved": true,
+      "selectedHeaderExamYear": 2025,
+      "selectedFooterPreparationYear": 2026,
+      "observationMethod": "read-only PDF render and view_image; no pixel math",
+      "localManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-b2ef50a88428d49f8d93876973df4878/source-manifest.local.json",
+        "sha256": "495f03cfbe0138b11aad116ce3c356a7808fe6cdb3995a9c15537f4add8bf727"
+      },
+      "localImages": [
+        {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-b2ef50a88428d49f8d93876973df4878/reviewer-only/header.png",
+          "sha256": "0eb5ba85c7aba772873726df13f0ff6d44420df1a080ba851254a63f8e9603b4"
+        },
+        {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-b2ef50a88428d49f8d93876973df4878/reviewer-only/footer.png",
+          "sha256": "f4aee31e136a7a92421c23c296ad02e13d1b1f6dbb1d914eff11b63e417907c5"
+        },
+        {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-b2ef50a88428d49f8d93876973df4878/reviewer-only/selected-header.local.png",
+          "sha256": "27811ef2ca94ffa0180d944faa112ff1f141f79f5b7afe1391b14a071dfeeb97"
+        },
+        {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-b2ef50a88428d49f8d93876973df4878/reviewer-only/selected-footer-context.local.png",
+          "sha256": "b66bb8ef2f48f565ce60e380567546defbc0c825820bb90343f45ebc7f97338a"
+        }
+      ],
+      "wholePairCertified": false,
+      "sourceIdentityApproved": false,
+      "rightsApproved": false,
+      "loadable": 0
+    },
+    {
+      "inventoryExamId": "personal-b2e69f430977a73f85b7ab43a6fe7be3",
+      "schoolInternal": "대곡중",
+      "originalObservedDate": "2025-05-02",
+      "originalObservedGrade": 3,
+      "originalObservedSemester": 1,
+      "originalObservedRound": "midterm",
+      "printedOriginalSchoolObserved": true,
+      "rightsNoticeObserved": true,
+      "selectedHeaderExamYear": 2025,
+      "selectedFooterPreparationYear": 2026,
+      "observationMethod": "read-only PDF render and view_image; no pixel math",
+      "localManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-b2e69f430977a73f85b7ab43a6fe7be3/source-manifest.local.json",
+        "sha256": "4e41bbb77d6cb610d09fcc101d06ac8007d95412cc2ed29f9b0dfbaa7129fd13"
+      },
+      "localImages": [
+        {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-b2e69f430977a73f85b7ab43a6fe7be3/reviewer-only/header.png",
+          "sha256": "835e1636c96b781c6ee773011edf1d44aa58cadd1d2b9af06a3a44f5e043879b"
+        },
+        {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-b2e69f430977a73f85b7ab43a6fe7be3/reviewer-only/footer.png",
+          "sha256": "c2d180943ca9561780a31c64f480436735484f91cbafd7fb49a60c11b45c1bfe"
+        },
+        {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-b2e69f430977a73f85b7ab43a6fe7be3/reviewer-only/selected-header.local.png",
+          "sha256": "d1874ad813fea3c599763b1d73d25f2dc3682b560afdf29589fbd762372aa88d"
+        },
+        {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-b2e69f430977a73f85b7ab43a6fe7be3/reviewer-only/selected-footer-context.local.png",
+          "sha256": "949cb541260118d5c7e5f827a86b8e075fe44e70a62973b8a4c25c24e16dcc3e"
+        }
+      ],
+      "wholePairCertified": false,
+      "sourceIdentityApproved": false,
+      "rightsApproved": false,
+      "loadable": 0
+    }
+  ],
+  "actualNewParents": 66,
+  "totalParsedParentObservations": 634,
+  "overlaps": 12,
+  "flaggedQuestionObservations": 22,
+  "oldReceiptOrRawManifestsModified": false,
+  "originalAnswerKeyUsed": false,
+  "questionContentCertified": 0,
+  "newTwins": 0,
+  "dbWrites": 0,
+  "loadable": 0
+}

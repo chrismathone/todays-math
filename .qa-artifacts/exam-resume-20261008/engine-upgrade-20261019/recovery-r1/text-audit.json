@@ -1,0 +1,20 @@
+{
+  "kind": "post-runtime-restart-text-audit/v1",
+  "utc": "2026-10-19T09:01:51.536Z",
+  "runtimeId": "6b34d6af-4289-4f4a-b766-3ab900d0af5a",
+  "checkedTextFiles": 98,
+  "damaged": [
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\build-resume-v16.mjs",
+      "bytes": 10764,
+      "sha256": "962e9b0cf8eea40c250295c78633ed68a4871def5ee361687f92220b20ffdbce",
+      "zeroBytes": 10764
+    }
+  ],
+  "preservedDamagedScript": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/recovery-r1/build-resume-v16-null-preserved.bin",
+    "sha256": "962e9b0cf8eea40c250295c78633ed68a4871def5ee361687f92220b20ffdbce"
+  },
+  "originalFileOverwritten": false,
+  "newVersionRequired": true
+}

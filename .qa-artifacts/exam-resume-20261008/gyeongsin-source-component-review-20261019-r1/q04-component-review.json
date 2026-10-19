@@ -1,0 +1,63 @@
+{
+  "kind": "source-question-component-observation/v1",
+  "createdAt": "2026-10-19T08:11:28.650Z",
+  "reviewer": "codex-parent-engine-upgrade-20261019",
+  "sourceOriginal": {
+    "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+    "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9",
+    "page": 1,
+    "observedGrade": "중3",
+    "observedYear": 2025,
+    "observedSemester": 2,
+    "observedRound": "중간",
+    "schoolFooterOrNoticeObserved": "경신중",
+    "observedExamDate": "2025-09-19",
+    "observedSchool": "경신중학교",
+    "copyrightNoticeObserved": true
+  },
+  "priorCompletedPairManifest": {
+    "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+    "sha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+  },
+  "oldWholePairStatus": "hold_year_header_conflict",
+  "observedOriginalPages": [
+    1
+  ],
+  "originalAnswerKeyRead": false,
+  "question": {
+    "number": 4,
+    "priorSourceContentDigest": "a6006900595245207da916b3bf99271d70b823f1c35d87ec0d08dd50c0f2f958",
+    "completedCrop": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/packet/images/q04-part1.png",
+      "sha256": "b23d1a8c49e409163583b160763bc98724d69c9da2ca07bc254a5993f1369030"
+    },
+    "originalLocalObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-source-component-review-20261019-r1/original-p1-q04.local.png",
+      "sha256": "80462e889c6fbf2152229ea4ea706f0f68bf342888772e8b09dabe6a911811f5"
+    },
+    "conditionRolesMatch": true,
+    "requestedRadiusRoleMatch": true,
+    "choiceValuesAndOrderMatch": true,
+    "threeTangentRightTrianglePointOrderMatch": true,
+    "printedScoreMatch": true,
+    "printedScore": 5,
+    "evidence": "2025 원본 첫 쪽 하단 q4와 완료본 q4를 view_image로 대조했다. 세 접선, 직각삼각형, 변/연장선 위의 점 순서, 주어진 길이, 묻는 반지름, 보기와 배점이 대응한다. 답안은 읽지 않았고 그림 픽셀을 계산에 쓰지 않았다.",
+    "observationStatus": "matches-2025-original-question-component",
+    "authoringReference": "2025-original-only"
+  },
+  "wholePairCertified": false,
+  "otherQuestionsCertified": false,
+  "oldFilesModified": false,
+  "sourceIdentityApproved": false,
+  "custodyReview": "pending",
+  "rightsReview": "pending-copyright-notice-observed",
+  "similarityReview": "pending-new-authored-candidate",
+  "mathematicalApprovals": 0,
+  "gradeApprovals": 0,
+  "loadable": 0,
+  "limitations": [
+    "완료본 HWP/PDF 전체의 2024/2025 헤더 충돌은 해결하지 않았다.",
+    "이 관찰은 첫 문항의 2025 원본 대응에 한정된다. 이용 허락이나 저작권 위험 해소를 뜻하지 않는다.",
+    "원본 크롭은 로컬 검토 자료이며 Git에 게시하거나 새 그림으로 세지 않는다."
+  ]
+}
