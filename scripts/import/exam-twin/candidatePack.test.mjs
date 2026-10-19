@@ -413,3 +413,28 @@ test("metadata cannot silently change source year, curriculum, score or Unit UUI
   invalid.metadata.assignment.unitId = "invented-unit";
   assert.throws(() => validateCandidate(invalid));
 });
+
+test("copied choice descriptors are held on written responses without erasing independent math or grade evidence", () => {
+  for (const format of ["single-choice", " SINGLE-CHOICE ", "single circled choice"]) {
+    const c = control();
+    c.binding.candidate.questionType = "서술형";
+    c.binding.candidate.choices = [];
+    c.binding.candidate.answer = "$3$";
+    c.binding.candidate.metadata.questionType = "서술형";
+    c.binding.candidate.metadata.answerFormat = format;
+    c.binding.validation = validateCandidate(c.binding.candidate);
+    assert.equal(c.binding.validation.metadataAnswerFormatMismatch, true);
+    c.solve.answer = "3";
+    c.review.solveDigest = digest(c.solve);
+    const actual = evaluateReview(c.binding, c.solve, c.review);
+    assert.equal(actual.mathematicalVerified, true);
+    assert.equal(actual.gradeReviewed, true);
+    assert(actual.reasons.includes("metadata-answer-format-mismatch"));
+    assert.equal(actual.loadable, false);
+    c.binding.candidate.metadata.answerFormat = "scalar-with-working";
+    assert.equal(validateCandidate(c.binding.candidate).metadataAnswerFormatMismatch, false);
+  }
+  const mc = structuredClone(candidate);
+  mc.metadata.answerFormat = "single-choice";
+  assert.equal(validateCandidate(mc).metadataAnswerFormatMismatch, false);
+});

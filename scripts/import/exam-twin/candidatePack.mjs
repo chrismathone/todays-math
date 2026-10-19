@@ -300,6 +300,14 @@ export function validateCandidate(candidate) {
     structurallyValid: true,
     surfaceKeywordViolations: violations,
     semanticGradeReviewStillRequired: true,
+    // Preserve readable historical drafts, but never count a known copied MC
+    // answer descriptor as valid metadata for a non-choice response.
+    metadataAnswerFormatMismatch:
+      candidate.questionType !== "객관식" &&
+      typeof metadata.answerFormat === "string" &&
+      ["single-choice", "single circled choice"].includes(
+        metadata.answerFormat.trim().toLowerCase(),
+      ),
   };
 }
 
@@ -489,6 +497,8 @@ export function evaluateReview(binding, solve, review, gates = {}) {
   const fail = (reason) => reasons.push(reason);
   if (binding.validation.surfaceKeywordViolations.length)
     fail("student-surface-out-of-grade-keyword");
+  if (binding.validation.metadataAnswerFormatMismatch)
+    fail("metadata-answer-format-mismatch");
   if (!solve || !review) fail("independent-evidence-missing");
   else {
     if (

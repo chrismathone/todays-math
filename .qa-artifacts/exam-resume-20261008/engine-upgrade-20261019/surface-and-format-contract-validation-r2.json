@@ -1,0 +1,33 @@
+{
+  "utc": "2026-10-19T14:22:51.666Z",
+  "files": [
+    "scripts/import/exam-twin/answerPresentation.test.mjs",
+    "scripts/import/exam-twin/candidatePack.test.mjs",
+    "scripts/import/exam-twin/computedChoiceChecks.test.mjs",
+    "scripts/import/exam-twin/constantAnswers.test.mjs",
+    "scripts/import/exam-twin/prepare-sealed-review.test.mjs",
+    "scripts/import/exam-twin/rebind-identical-review.test.mjs",
+    "scripts/import/exam-twin/reviewWorkflow.test.mjs",
+    "scripts/import/exam-twin/sourceIdentity.test.mjs",
+    "scripts/import/exam-twin/statisticsConditions.test.mjs"
+  ],
+  "before": {
+    "scripts/import/exam-twin/review-exam-twins.mjs": "66dcd8a0f529442177b6902f90705a491186b74d98f014ff6bb8c9abb579f5ac",
+    "scripts/import/exam-twin/reviewWorkflow.test.mjs": "dddbc7cac6d67a8a1ea803dab03ae0ff476509a6f76d7fc502c88287c3e351fd",
+    "scripts/import/exam-twin/candidatePack.mjs": "458e8579de079c05c6e006bf589a969cd1ff71583af8890dbeb9bd2c096dc0bb",
+    "scripts/import/exam-twin/candidatePack.test.mjs": "91439b65aa282e42b91f2560a42583d634699b7a92debd85b4e5aa572f793c39",
+    "scripts/import/exam-twin/summarize-reviewed-batch.mjs": "08494568df8f67922c0c9bd19d750b77b55ed0d6892e27246036baa5752d08b8"
+  },
+  "after": {
+    "scripts/import/exam-twin/review-exam-twins.mjs": "66dcd8a0f529442177b6902f90705a491186b74d98f014ff6bb8c9abb579f5ac",
+    "scripts/import/exam-twin/reviewWorkflow.test.mjs": "dddbc7cac6d67a8a1ea803dab03ae0ff476509a6f76d7fc502c88287c3e351fd",
+    "scripts/import/exam-twin/candidatePack.mjs": "458e8579de079c05c6e006bf589a969cd1ff71583af8890dbeb9bd2c096dc0bb",
+    "scripts/import/exam-twin/candidatePack.test.mjs": "91439b65aa282e42b91f2560a42583d634699b7a92debd85b4e5aa572f793c39",
+    "scripts/import/exam-twin/summarize-reviewed-batch.mjs": "08494568df8f67922c0c9bd19d750b77b55ed0d6892e27246036baa5752d08b8"
+  },
+  "status": 0,
+  "strictSurfaceBasisContractNotRelaxed": true,
+  "metadataMismatchHoldsClassificationNotValidMathOrGrade": true,
+  "oldReportBytesUnchanged": true,
+  "dbWrites": 0
+}

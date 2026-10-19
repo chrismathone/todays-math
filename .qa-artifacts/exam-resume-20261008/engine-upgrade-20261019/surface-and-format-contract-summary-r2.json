@@ -1,0 +1,22 @@
+{
+  "utc": "2026-10-19T14:24:58.791Z",
+  "files": 9,
+  "tests": 122,
+  "passed": 122,
+  "failed": 0,
+  "skipped": 0,
+  "sourceUnchanged": true,
+  "currentHashes": {
+    "scripts/import/exam-twin/review-exam-twins.mjs": "66dcd8a0f529442177b6902f90705a491186b74d98f014ff6bb8c9abb579f5ac",
+    "scripts/import/exam-twin/reviewWorkflow.test.mjs": "dddbc7cac6d67a8a1ea803dab03ae0ff476509a6f76d7fc502c88287c3e351fd",
+    "scripts/import/exam-twin/candidatePack.mjs": "458e8579de079c05c6e006bf589a969cd1ff71583af8890dbeb9bd2c096dc0bb",
+    "scripts/import/exam-twin/candidatePack.test.mjs": "91439b65aa282e42b91f2560a42583d634699b7a92debd85b4e5aa572f793c39",
+    "scripts/import/exam-twin/summarize-reviewed-batch.mjs": "08494568df8f67922c0c9bd19d750b77b55ed0d6892e27246036baa5752d08b8"
+  },
+  "validation": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/surface-and-format-contract-validation-r2.json",
+  "tap": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/surface-and-format-contract-tests-r2.tap",
+  "previous120RunRetained": true,
+  "strictGradeBasisNotRelaxed": true,
+  "newKnownMetadataFormatHold": true,
+  "dbWrites": 0
+}

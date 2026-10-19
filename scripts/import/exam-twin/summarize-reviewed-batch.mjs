@@ -20,6 +20,7 @@ const fileEvidence = (file) => ({
 });
 const contentAndClassificationPassed = (q) =>
   q.reportStatus === "verified" && q.mathematicalVerified && q.gradeReviewed &&
+  !q.reasons.includes("metadata-answer-format-mismatch") &&
   REVIEW_CHECKS.every((key) => q.reviewChecks?.[key] === true);
 function relocatedCandidateContent(candidate) {
   const copy = structuredClone(candidate);

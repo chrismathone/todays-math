@@ -338,6 +338,79 @@ test("a verified report cannot inflate content/classification passes while a req
   } finally { f.clean(); }
 });
 
+test("reason-only surface objects cannot inflate grade counts; explicit per-surface evidence retains independent math and holds", () => {
+  const f = fixture();
+  try {
+    const root = path.join(f.root, "review"), source = path.join(f.root, "candidate.json");
+    fs.mkdirSync(root);
+    assert.equal(f.run("freeze", root + "/package", source).status, 0);
+    assert.equal(f.run("blind", root + "/package", root + "/blind").status, 0);
+    const b = bindCandidate(root + "/package/private/q02/candidate.json");
+    const solve = { studentDigest: b.studentDigest, solverId: "independent", answer: "②",
+      solution: "Synthetic independent control only", evidence: "control", status: "solved" };
+    fs.writeFileSync(root + "/blind/solve/q02.json", JSON.stringify(solve));
+    assert.equal(f.run("verify-pack", root + "/package", root + "/blind", root + "/verification").status, 0);
+    const report = { status: "pending", studentDigest: b.studentDigest,
+      candidateDigest: b.candidateDigest, assetDigest: b.assetDigest,
+      method: "independent-solve-then-review", verifierId: "independent", solveDigest: digest(solve),
+      evidence: "Synthetic report contract control, no actual grade approval",
+      checks: { ...Object.fromEntries(REVIEW_CHECKS.map(k => [k, true])), unitFamilyFit: false },
+      curriculumSurfaces: {} };
+    const index = path.join(f.root, "index.json");
+    fs.writeFileSync(index, JSON.stringify({ questions: [{ n: 2, id: f.candidate.twinExternalId,
+      candidate: source, sha256: sha256(fs.readFileSync(source)) }] }));
+    for (const field of ["reason", "basis", "evidence"]) {
+      report.curriculumSurfaces = Object.fromEntries(SURFACES.map(surface =>
+        [surface, { status: "passed", [field]: `Synthetic ${surface} evidence` }]));
+      fs.writeFileSync(root + "/verification/reports/q02.json", JSON.stringify(report));
+      const actual = summarizeReviewedBatch(index, [root]);
+      assert.equal(actual.counts.mathematicalVerified, 1, field);
+      assert.equal(actual.counts.gradeReviewed, field === "reason" ? 0 : 1, field);
+      assert.equal(actual.counts.contentReviewPassed, 0, field);
+      assert.equal(actual.counts.contentReviewHeld, 1, field);
+      assert.equal(actual.counts.loadable, 0, field);
+      if (field === "reason") for (const surface of SURFACES)
+        assert(actual.questions[0].reasons.includes(`curriculum-${surface}-basis-missing`));
+    }
+  } finally { f.clean(); }
+});
+
+test("a verified written report cannot inflate classification counts with copied single-choice metadata", () => {
+  const f = fixture();
+  try {
+    for (const answerFormat of ["single-choice", "scalar-with-working"]) {
+      const root = path.join(f.root, answerFormat), source = path.join(f.root, "candidate.json");
+      fs.mkdirSync(root);
+      const candidate = { ...f.candidate, questionType: "서술형", choices: [], answer: "$3$",
+        metadata: { ...f.candidate.metadata, questionType: "서술형", answerFormat } };
+      fs.writeFileSync(source, JSON.stringify(candidate));
+      assert.equal(f.run("freeze", root + "/package", source).status, 0);
+      assert.equal(f.run("blind", root + "/package", root + "/blind").status, 0);
+      const b = bindCandidate(root + "/package/private/q02/candidate.json");
+      const solve = { studentDigest: b.studentDigest, solverId: "independent", answer: "3",
+        solution: "Synthetic independent control only", evidence: "control", status: "solved" };
+      fs.writeFileSync(root + "/blind/solve/q02.json", JSON.stringify(solve));
+      assert.equal(f.run("verify-pack", root + "/package", root + "/blind", root + "/verification").status, 0);
+      const report = { status: "verified", studentDigest: b.studentDigest,
+        candidateDigest: b.candidateDigest, assetDigest: b.assetDigest,
+        method: "independent-solve-then-review", verifierId: "independent", solveDigest: digest(solve),
+        evidence: "Synthetic count control, no actual written problem approval",
+        checks: Object.fromEntries(REVIEW_CHECKS.map(k => [k, true])),
+        curriculumSurfaces: Object.fromEntries(SURFACES.map(s => [s, { status: "passed", basis: `Synthetic ${s} control` }])) };
+      fs.writeFileSync(root + "/verification/reports/q02.json", JSON.stringify(report));
+      const index = path.join(root, "index.json");
+      fs.writeFileSync(index, JSON.stringify({ questions: [{ n: 2, id: candidate.twinExternalId,
+        candidate: source, sha256: sha256(fs.readFileSync(source)) }] }));
+      const actual = summarizeReviewedBatch(index, [root]);
+      assert.equal(actual.counts.mathematicalVerified, 1);
+      assert.equal(actual.counts.gradeReviewed, 1);
+      assert.equal(actual.counts.contentReviewPassed, answerFormat === "single-choice" ? 0 : 1);
+      assert.equal(actual.counts.contentReviewHeld, answerFormat === "single-choice" ? 1 : 0);
+      assert.equal(actual.counts.loadable, 0);
+    }
+  } finally { f.clean(); }
+});
+
 test("image composition binds both generated pixels and generation record", () => {
   const f = fixture();
   try {

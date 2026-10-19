@@ -1,0 +1,29 @@
+{
+  "utc": "2026-10-19T14:19:48.910Z",
+  "files": [
+    "scripts/import/exam-twin/answerPresentation.test.mjs",
+    "scripts/import/exam-twin/candidatePack.test.mjs",
+    "scripts/import/exam-twin/computedChoiceChecks.test.mjs",
+    "scripts/import/exam-twin/constantAnswers.test.mjs",
+    "scripts/import/exam-twin/prepare-sealed-review.test.mjs",
+    "scripts/import/exam-twin/rebind-identical-review.test.mjs",
+    "scripts/import/exam-twin/reviewWorkflow.test.mjs",
+    "scripts/import/exam-twin/sourceIdentity.test.mjs",
+    "scripts/import/exam-twin/statisticsConditions.test.mjs"
+  ],
+  "before": {
+    "scripts/import/exam-twin/review-exam-twins.mjs": "66dcd8a0f529442177b6902f90705a491186b74d98f014ff6bb8c9abb579f5ac",
+    "scripts/import/exam-twin/reviewWorkflow.test.mjs": "0db412c3479bc12152beb4d1220e47906f90c509350cbdae217232189f44e302",
+    "scripts/import/exam-twin/candidatePack.mjs": "1f5038bfa48d2e539ac5b85aea7ffb5aafc6472add2e50fca0df25d0992897b2"
+  },
+  "after": {
+    "scripts/import/exam-twin/review-exam-twins.mjs": "66dcd8a0f529442177b6902f90705a491186b74d98f014ff6bb8c9abb579f5ac",
+    "scripts/import/exam-twin/reviewWorkflow.test.mjs": "0db412c3479bc12152beb4d1220e47906f90c509350cbdae217232189f44e302",
+    "scripts/import/exam-twin/candidatePack.mjs": "1f5038bfa48d2e539ac5b85aea7ffb5aafc6472add2e50fca0df25d0992897b2"
+  },
+  "status": 0,
+  "strictParserChanged": false,
+  "syntheticGradeCountRegression": true,
+  "oldReportBytesUnchanged": true,
+  "dbWrites": 0
+}
