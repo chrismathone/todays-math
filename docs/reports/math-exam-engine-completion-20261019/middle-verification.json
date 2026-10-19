@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "baseSha": "261a5e263e4e104949d7a21673c9c9ad5850a380",
+  "executedOn": "2026-10-19",
+  "node": "v24.22.0",
+  "testFile": "src/__tests__/unit/examStudyMiddleRemaining.test.ts",
+  "result": {
+    "testsPassed": 13,
+    "testsFailed": 0,
+    "canonicalTuples": 64,
+    "negativeChecks": 1286,
+    "printedConditionDeletions": 242,
+    "essentialConditionChanges": 276,
+    "meaningfulWrongSteps": 256,
+    "removedSteps": 256,
+    "commonTargetTimeTables": 60,
+    "coprimeDirectEnumerations": 168,
+    "generationCalls": 10,
+    "fullDelivered": 10,
+    "tscExit": 0,
+    "eslintExit": 0,
+    "guardBlocked": []
+  },
+  "families": [
+    {
+      "id": "study-middle-doubling-time-offset",
+      "course": "중1",
+      "canonicalTuples": 12,
+      "negativeChecks": 252
+    },
+    {
+      "id": "study-middle-circle-revolution-percentage",
+      "course": "중1",
+      "canonicalTuples": 10,
+      "negativeChecks": 210
+    },
+    {
+      "id": "study-middle-coprime-symbolic-sum",
+      "course": "중1",
+      "canonicalTuples": 14,
+      "negativeChecks": 280
+    },
+    {
+      "id": "study-middle-intercept-integer-area",
+      "course": "중2",
+      "canonicalTuples": 12,
+      "negativeChecks": 240
+    },
+    {
+      "id": "study-middle-translated-coefficient-reuse-linear",
+      "course": "중2",
+      "canonicalTuples": 16,
+      "negativeChecks": 304
+    }
+  ],
+  "formats": [
+    "단답형"
+  ],
+  "supportedRequestFormats": [
+    "혼합",
+    "단답형"
+  ],
+  "figures": {
+    "count": 0,
+    "representation": "printed coordinate data; figure-optional requirements",
+    "visualReadingProven": false,
+    "pythonRenderingClaimed": false
+  },
+  "proofChecks": [
+    "independent-solution",
+    "essential-conditions"
+  ],
+  "sourceHashes": {
+    "src/lib/examStudy/families/middle/remaining.ts": "8f25537a569a693879c2847f00a707ecb43a141159069df88b93dd14d81db98d",
+    "src/lib/examStudy/families/middle/index.ts": "ba46dea6fbd4ca94c9c237911922e4fa032b34cf17f972e7750ccfa56d0b3cbb",
+    "src/__tests__/unit/examStudyMiddleRemaining.test.ts": "a6a445ac3a8ade115b2d451c6e2a3897dc3857c93c2d0afff87a04dcfab85179"
+  },
+  "rawDirectory": "/Users/pss/orca/workspaces/today_/exam-complete-middle-20261019/.qa-artifacts/math-exam-engine-completion-20261019/",
+  "artifactHashes": {
+    "middle-raw-evidence.json": "c964eae5215a58d087ece14c08ea694fc125a5f1c5c740997477a8e9756d02a5",
+    "middle-vitest.json": "33ab4407bf8a57a85751b79479b8fdb4ebc144e906698b11f148f4f614e89827",
+    "middle-guard.json": "6889ff93c0738cebcd2a21ed30f631e5d4d9f098d61463685f728c8082f61036",
+    "middle-test-final.log": "4b8851152e15d676bce024cc5612054a3fa4b3eceaa354525ed6facae732304a",
+    "middle-eslint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "middle-tsc.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "vitest.middle.config.mts": "08f6b18f6e77dffa67e1047e61eabbd1b150ec4fc65f570db8824d207e01655c",
+    "guard.middle.ts": "1f7a5c1517e54b62b131ad3ca57ec792644a0edb2a94238d299cfdcfb4e4562e",
+    "tsconfig.middle.json": "21b24208c598b9449021098fbc9aa9af40434bfe2b6f989143008dfb1358b0af"
+  },
+  "limitations": [
+    "64 finite canonical input tuples are not 64 independent thought structures or school-wide coverage.",
+    "Public generation checks inject the new authored cohort; whole-registry regression, build, push and Vercel status belong to the coordinator.",
+    "No MC/written formats, UI/print-template changes, visual reading or actual figure render claims.",
+    "No source-school originals retained, DB/provider/network/env reads, installs, Prisma execution, main changes, push or deployment."
+  ],
+  "archive": {
+    "path": ".qa-artifacts/math-exam-engine-completion-20261019/middle-evidence.tar.gz",
+    "sha256": "9cb011766ef8b8e19fee2232e50618bcccf54f75f43589719d7ebaeacdf56c58",
+    "copyBeforeWorktreeCleanup": true
+  }
+}

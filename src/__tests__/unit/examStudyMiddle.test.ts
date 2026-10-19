@@ -6,7 +6,27 @@ import type {
   ExamStudyDraft,
   ExamStudyFamily,
 } from "@/contracts/examStudy.contract";
-import { MIDDLE_STUDY_FAMILIES } from "@/lib/examStudy/families/middle";
+import { MIDDLE_STUDY_FAMILIES as REGISTERED_MIDDLE_FAMILIES } from "@/lib/examStudy/families/middle";
+
+// This oracle covers the original twelve. New demands have their own independent
+// domain oracles in examStudyMiddleRemaining.test.ts and actual API completion tests.
+const originalRequirements = new Set([
+  "graph.piecewise-multi-claim",
+  "coord.shared-side-square",
+  "coord.inverse-area-ratio",
+  "coord.inverse-equal-legs",
+  "coord.ray-area-partition",
+  "coord.signed-inverse-trapezoid",
+  "algebra.shifted-system-coupling",
+  "coord.intercept-trapezoid-cases",
+  "written.dependent-formula-min-time",
+  "written.linear-fuel-model",
+  "written.stopped-travel",
+  "written.two-work-rates",
+]);
+const MIDDLE_STUDY_FAMILIES = REGISTERED_MIDDLE_FAMILIES.filter((f) =>
+  f.fulfills.some((r) => originalRequirements.has(r.requirement)),
+);
 
 type Point = [number, number];
 type Scene = {

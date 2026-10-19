@@ -110,6 +110,7 @@ describe("exam study authenticated route boundary", () => {
     [{ student: { id: "student", mustChangePassword: false } }, 401],
     [{ user: { ...teacher, role: "reviewer" } }, 403],
     [{ user: { ...teacher, menus: ["export"] } }, 403],
+    [{ user: { ...teacher, menus: ["textbook"] } }, 403],
     [{ user: { ...teacher, menus: [], branchRole: "manager" } }, 403],
     [{ user: { ...teacher, approvalStatus: "pending" } }, 403],
   ])(

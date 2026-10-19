@@ -10,6 +10,7 @@ import type {
   StudyRequirementId,
 } from "@/contracts/examStudy.contract";
 import type { WorkspaceMenu } from "@/contracts/accountAccess.contract";
+import { canUseExamStudy } from "@/lib/examStudyAccess";
 import { DIFFICULTY_LADDER, type Difficulty } from "@/contracts/difficulty";
 import WorkspacePageHeader from "@/components/unified/WorkspacePageHeader";
 import {
@@ -151,7 +152,7 @@ export function ExamPracticeWorkspace({
     conditions.familyIds.includes(item.id),
   );
   const selectedProblems = result?.questions.map(studyProblem) ?? [];
-  const canOutput = allowedMenus.includes("export");
+  const canOutput = canUseExamStudy(allowedMenus);
 
   function change(patch: Partial<Conditions>) {
     generation.current?.abort();

@@ -4,6 +4,7 @@ import {
   type AccountAccess,
   type WorkspaceMenu,
 } from "@/contracts/accountAccess.contract";
+import { canUseExamStudy } from "./examStudyAccess";
 
 const under = (path: string, base: string) =>
   path === base || path.startsWith(`${base}/`);
@@ -250,6 +251,8 @@ export function accountRouteAllowed(
     ].some((base) => under(path, base))
   )
     return any("bank");
+  if (under(path, "/exam/practice") || under(path, "/api/exam/practice"))
+    return canUseExamStudy(account.menus);
   if (
     [
       "/tests",

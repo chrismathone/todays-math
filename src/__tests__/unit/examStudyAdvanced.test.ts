@@ -1,5 +1,24 @@
 import { describe, expect, it } from "vitest";
-import { ADVANCED_STUDY_FAMILIES } from "@/lib/examStudy/families/advanced";
+import { ADVANCED_STUDY_FAMILIES as REGISTERED_ADVANCED_FAMILIES } from "@/lib/examStudy/families/advanced";
+
+// Keep the original eleven-family oracle and its 1,121-tuple evidence intact.
+// The two remaining demands are independently tested in AdvancedRemaining.
+const originalRequirements = new Set([
+  "logic.truth-set-inclusion-param",
+  "logic.intermediate-truth-set-count",
+  "function.restricted-quadratic-bijection",
+  "function.radical-area-maximum",
+  "function.absolute-rational-level-count",
+  "function.finite-bijection-chain",
+  "function.iterated-finite-range",
+  "graph.parabola-line-chain",
+  "geometry.split-incenters",
+  "geometry.two-centers-angle",
+  "geometry.incircle-shaded-area",
+]);
+const ADVANCED_STUDY_FAMILIES = REGISTERED_ADVANCED_FAMILIES.filter((f) =>
+  f.fulfills.some((r) => originalRequirements.has(r.requirement)),
+);
 import {
   inclusionHolds,
   readInclusion,

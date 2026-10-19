@@ -1,0 +1,437 @@
+{
+  "date": "2026-10-19",
+  "baseCommit": "261a5e263e4e104949d7a21673c9c9ad5850a380",
+  "branch": "BIGSHOL/exam-complete-advanced-20261019",
+  "scope": "two independently authored advanced engine families; coordinator owns integration/publication",
+  "sourceSha256": {
+    "src/lib/examStudy/families/advanced/remaining.ts": "8da4e488e66ad3627e03784a11f8be479e3633fa7c6396ebe1e2a5198eac020d",
+    "src/lib/examStudy/families/advanced/remainingExact.ts": "c63186aa3cce6461a7597c9f5a825feac6fcc3231fbc7495179de42d3fc0dff9",
+    "src/lib/examStudy/families/advanced/index.ts": "aac5fc7705178d093ddb635d98d79ce8b333e4f1bda52b1543eac2263501d409",
+    "src/__tests__/unit/examStudyAdvancedRemaining.test.ts": "10552ba5eb39988886dacafeb94e88ababfe3114851579a7bd2a61b6b602b583",
+    "docs/reports/math-exam-engine-completion-20261019/advanced-implementation.md": "df03b3d3758162f80ad1a1be130021a7d1d855912795d5118b3992702e7f1a8d"
+  },
+  "families": [
+    {
+      "id": "exam-advanced:quadratic-coefficient-reuse",
+      "requirement": "graph.translated-coefficient-reuse",
+      "course": "중3",
+      "version": "1.0.0",
+      "formats": [
+        "단답형"
+      ],
+      "representation": "text",
+      "figures": 0,
+      "canonicalCount": 25,
+      "uniquePrintedTasks": 25,
+      "evidenceTestFile": "src/__tests__/unit/examStudyAdvancedRemaining.test.ts",
+      "checks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "parameters": [
+        {
+          "a": -2,
+          "h": -2,
+          "k": -3
+        },
+        {
+          "a": -2,
+          "h": -2,
+          "k": 2
+        },
+        {
+          "a": -2,
+          "h": -1,
+          "k": -3
+        },
+        {
+          "a": -2,
+          "h": 1,
+          "k": -3
+        },
+        {
+          "a": -2,
+          "h": 2,
+          "k": -3
+        },
+        {
+          "a": -2,
+          "h": 2,
+          "k": 2
+        },
+        {
+          "a": -1,
+          "h": -2,
+          "k": -3
+        },
+        {
+          "a": -1,
+          "h": -2,
+          "k": 2
+        },
+        {
+          "a": -1,
+          "h": -1,
+          "k": -3
+        },
+        {
+          "a": -1,
+          "h": -1,
+          "k": 2
+        },
+        {
+          "a": -1,
+          "h": 1,
+          "k": -3
+        },
+        {
+          "a": -1,
+          "h": 1,
+          "k": 2
+        },
+        {
+          "a": -1,
+          "h": 2,
+          "k": -3
+        },
+        {
+          "a": -1,
+          "h": 2,
+          "k": 2
+        },
+        {
+          "a": 1,
+          "h": -2,
+          "k": 2
+        },
+        {
+          "a": 1,
+          "h": -1,
+          "k": -3
+        },
+        {
+          "a": 1,
+          "h": -1,
+          "k": 2
+        },
+        {
+          "a": 1,
+          "h": 1,
+          "k": 2
+        },
+        {
+          "a": 1,
+          "h": 2,
+          "k": 2
+        },
+        {
+          "a": 2,
+          "h": -2,
+          "k": -3
+        },
+        {
+          "a": 2,
+          "h": -2,
+          "k": 2
+        },
+        {
+          "a": 2,
+          "h": -1,
+          "k": -3
+        },
+        {
+          "a": 2,
+          "h": 1,
+          "k": 2
+        },
+        {
+          "a": 2,
+          "h": 2,
+          "k": -3
+        },
+        {
+          "a": 2,
+          "h": 2,
+          "k": 2
+        }
+      ]
+    },
+    {
+      "id": "exam-advanced:radical-inverse-circle",
+      "requirement": "function.radical-inverse-circle",
+      "course": "공통수학2",
+      "version": "1.0.0",
+      "formats": [
+        "단답형"
+      ],
+      "representation": "text",
+      "figures": 0,
+      "canonicalCount": 7,
+      "uniquePrintedTasks": 7,
+      "evidenceTestFile": "src/__tests__/unit/examStudyAdvancedRemaining.test.ts",
+      "checks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "parameters": [
+        {
+          "a": 1,
+          "k": 3,
+          "upper": 0,
+          "cx": -1,
+          "cy": -2
+        },
+        {
+          "a": 1,
+          "k": 9,
+          "upper": 0,
+          "cx": -1,
+          "cy": 8
+        },
+        {
+          "a": 2,
+          "k": 7,
+          "upper": 0,
+          "cx": -1,
+          "cy": 3
+        },
+        {
+          "a": 3,
+          "k": 13,
+          "upper": 0,
+          "cx": -1,
+          "cy": 4
+        },
+        {
+          "a": 1,
+          "k": 1,
+          "upper": 10,
+          "cx": 3,
+          "cy": -8
+        },
+        {
+          "a": 2,
+          "k": 0,
+          "upper": 10,
+          "cx": -8,
+          "cy": -4
+        },
+        {
+          "a": 1,
+          "k": 5,
+          "upper": 0,
+          "cx": 0,
+          "cy": 5
+        }
+      ]
+    }
+  ],
+  "totalCanonicalTuples": 32,
+  "reasoningFamilies": 2,
+  "capacityExcludes": [
+    "formats",
+    "seeds",
+    "answer-label variants",
+    "C-only rotations"
+  ],
+  "fullRealBranchProof": {
+    "m3": 25,
+    "radical": 7,
+    "rational_deletion_witnesses": 21,
+    "line_interval_witnesses": 7,
+    "real_t_candidates": 23,
+    "domain_excluded_positive_t": 5,
+    "negative_t_excluded": 11,
+    "negative_z_excluded": 2,
+    "zero_endpoints": 1,
+    "radical_tuples": [
+      {
+        "a": "1",
+        "k": "3",
+        "upper": "0",
+        "normC": "5",
+        "zRoots": [
+          "1",
+          "4"
+        ],
+        "acceptedT": "1",
+        "answer": "-1",
+        "determinant": "-6",
+        "radiusSquared": "5"
+      },
+      {
+        "a": "1",
+        "k": "9",
+        "upper": "0",
+        "normC": "65",
+        "zRoots": [
+          "1",
+          "16"
+        ],
+        "acceptedT": "1",
+        "answer": "-7",
+        "determinant": "126",
+        "radiusSquared": "65"
+      },
+      {
+        "a": "2",
+        "k": "7",
+        "upper": "0",
+        "normC": "10",
+        "zRoots": [
+          "1",
+          "9"
+        ],
+        "acceptedT": "1",
+        "answer": "-2",
+        "determinant": "16",
+        "radiusSquared": "10"
+      },
+      {
+        "a": "3",
+        "k": "13",
+        "upper": "0",
+        "normC": "17",
+        "zRoots": [
+          "1",
+          "16"
+        ],
+        "acceptedT": "1",
+        "answer": "-3",
+        "determinant": "30",
+        "radiusSquared": "17"
+      },
+      {
+        "a": "1",
+        "k": "1",
+        "upper": "10",
+        "normC": "73",
+        "zRoots": [
+          "-8",
+          "9"
+        ],
+        "acceptedT": "3",
+        "answer": "11",
+        "determinant": "80",
+        "radiusSquared": "73"
+      },
+      {
+        "a": "2",
+        "k": "0",
+        "upper": "10",
+        "normC": "80",
+        "zRoots": [
+          "-20",
+          "16"
+        ],
+        "acceptedT": "4",
+        "answer": "12",
+        "determinant": "96",
+        "radiusSquared": "80"
+      },
+      {
+        "a": "1",
+        "k": "5",
+        "upper": "0",
+        "normC": "25",
+        "zRoots": [
+          "0",
+          "9"
+        ],
+        "acceptedT": "0",
+        "answer": "-5",
+        "determinant": "50",
+        "radiusSquared": "25"
+      }
+    ]
+  },
+  "necessity": {
+    "rationalGraphOrCircleDeletionWitnesses": 21,
+    "slopeDeletionRealIntervalWitnesses": 7,
+    "slopeWitnessCircleCenter": [
+      "0",
+      "1/100"
+    ],
+    "slopeWitnessProof": "exact endpoint signs, strict derivative enclosure, 44 rational bisections, original domains, nonzero determinant, negative slope excluding -1 and intercept excluding original answer",
+    "positiveDomainBranchesActuallyExcluded": 5,
+    "coincidentAndCollinearSyntheticDesignsRejected": true
+  },
+  "tests": {
+    "focusedVitest": {
+      "files": 1,
+      "passed": 11,
+      "failed": 0
+    },
+    "ownedTypeScript": "passed (ES2017 target, no emit)",
+    "independentPythonFraction": "passed: 25 M3 + 7 radical, 21 rational witnesses + 7 interval witnesses",
+    "mutationControls": [
+      "wrong answer",
+      "irrelevant or numerically wrong proof",
+      "canonical mismatch",
+      "deleted vertex/point",
+      "changed second quadratic coefficient order",
+      "removed/changed radical or inverse incidence",
+      "removed/changed inverse relation or domain",
+      "changed fixed slope",
+      "removed/changed circle center condition",
+      "vacuous circle existence",
+      "changed C",
+      "coincident or collinear triangle",
+      "actual positive out-of-domain root",
+      "negative pre-squaring branch",
+      "unsupported format or attached figure"
+    ],
+    "firstRunFindings": [
+      "one M3 original/second vertex coincidence removed (26 to 25)",
+      "one solution corruption control was a no-op and was corrected to match actual proof text"
+    ],
+    "firstFailureLogPreserved": true
+  },
+  "commands": [
+    "env -i PATH=/Users/pss/.nvm/versions/node/v24.22.0/bin:/usr/bin:/bin NODE_ENV=test /Users/pss/.nvm/versions/node/v24.22.0/bin/node --require ./.qa-artifacts/math-exam-engine-completion-20261019/advanced/guard.cjs node_modules/vitest/vitest.mjs run --config .qa-artifacts/math-exam-engine-completion-20261019/advanced/vitest.config.mts",
+    "env -i PATH=/Users/pss/.nvm/versions/node/v24.22.0/bin:/usr/bin:/bin NODE_ENV=test /Users/pss/.nvm/versions/node/v24.22.0/bin/node node_modules/typescript/bin/tsc --project .qa-artifacts/math-exam-engine-completion-20261019/advanced/tsconfig.json",
+    "/Users/pss/.local/share/uv/python/cpython-3.12.15-macos-aarch64-none/bin/python3.12 .qa-artifacts/math-exam-engine-completion-20261019/advanced/verify_printed.py"
+  ],
+  "runtime": {
+    "node": "24.22.0",
+    "vitest": "4.1.11",
+    "python": "3.12.15",
+    "dependencySource": "existing /Users/pss/Desktop/creative/today_/node_modules symlink",
+    "envDir": false,
+    "cleanEnv": true,
+    "offlineGuard": [
+      "env-file reads",
+      "socket/HTTP/fetch",
+      "provider/DB import"
+    ]
+  },
+  "rawArtifactRoot": ".qa-artifacts/math-exam-engine-completion-20261019/advanced",
+  "rawArtifactSha256": {
+    "printed-proof-evidence.json": "bf1c7ebc7e9ed5d9fede7c54f666d270974f6c19f78754cb82d63110f45360aa",
+    "python-proof-results.json": "b5078884d42296d0285c170c0448f42d00656ce5132715e731859618456e0c35",
+    "verify_printed.py": "7d02977554f3cf8bcc5a621b1614578c2ef0fdce33fdff065e9ede10c4138589",
+    "vitest.config.mts": "8c9b3f99e97f6ee6dda6f79fd0947dfa3745c0cb299394c39a1192234dbab091",
+    "guard.cjs": "c10fb0dd19a060fe416d428c9bd4df898620796871fe29ebb0d964deb7830d63",
+    "tsconfig.json": "0d01152a21ef0578d2fb3a5426b997af4211b8a9ec9ff85e732e1f57de0aa1bb",
+    "vitest-first.log": "a00093817756756062dc71c07af9ec45afb0718d0fd0ca16cf715b7033b87a5e",
+    "vitest-second.log": "d089a94a6f26b8459ef1cea9705abe1fd2ca2e7b763296ac1a9ce9bbddf3c4ce",
+    "vitest-final.log": "b3b4790c4226fa6224016e14281a539e26caca6f753d5d1bfb2394d779504a7d",
+    "types-final.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "python-proof.log": "b5078884d42296d0285c170c0448f42d00656ce5132715e731859618456e0c35"
+  },
+  "notClaimed": [
+    "visual reading or strict figure rendering (no figure)",
+    "API/auth/UI/print verification",
+    "whole-school readiness",
+    "official achievement-standard exhaustive alignment",
+    "measured difficulty or learning effects",
+    "publication by this worker"
+  ],
+  "unchanged": [
+    "existing families/shared helper",
+    "registry/contract/generate/profiles/adapters/routes/UI/CSS/print-template",
+    "output/auth policy",
+    "database/env/provider/schema",
+    "local main"
+  ]
+}

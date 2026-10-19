@@ -1,0 +1,492 @@
+{
+  "schema": "math-exam-independent-acceptance-1",
+  "date": "2026-10-19",
+  "verdict": "accepted-in-reviewed-scope",
+  "reviewedSourceSha": "2fac1748c034be7f461e727cad449b4c47c10bd2",
+  "fullMathProbeSha": "337b1d980586830baa6c67933fe965281b0bf9b9",
+  "advancedProbeSha": "e2726528a7f352f3bee72286afe79c72a978dbe9",
+  "sourceReuse": "Mathematical generators, adapters, core planner, identity and metadata are unchanged between full probe and final pin; all60 native outputs equal the original probe records.",
+  "scope": {
+    "schoolCourseProfiles": 5,
+    "profileQualifiedSelectedDemands": 40,
+    "formerlyMissingUniqueRequirements": 12,
+    "formerlyMissingCourseQualifiedCases": 13,
+    "deepMath": "seven new authored families and six existing-ID overlays; retained families use their unchanged existing evidence",
+    "notClaimed": [
+      "all50 catalog requirements complete",
+      "school-wide coverage",
+      "original-school corpus restoration",
+      "measured learning effects",
+      "difficulty calibration",
+      "production authenticated/API/browser/build/release verification by this reviewer"
+    ]
+  },
+  "accepted": {
+    "newFiniteTuples": 96,
+    "reinforcedFiniteTuples": 356,
+    "sampledClassificationRecords": 512,
+    "sampledModelRecords": 512,
+    "sampledModelUniqueCanonical": 445,
+    "totalBaseOutputRecords": 1476,
+    "totalUniqueCanonicalTasksInBaseProbe": 1409,
+    "derivedMCRecords": 1320,
+    "syntheticCountMCRecords": 324,
+    "exactFormerRequestSeedMCRecords": 12,
+    "forcedIndependentFixtures": 4,
+    "allFiveProfilesMixed12Max3": true,
+    "everyProfileQuestionHasFullRequirements": true,
+    "isolatedFormerCasesFull": 13,
+    "emptySVGRejected": true,
+    "newFigureAuthorship": false
+  },
+  "mathDetails": {
+    "middle": {
+      "study-middle-doubling-time-offset": 12,
+      "study-middle-circle-revolution-percentage": 10,
+      "study-middle-coprime-symbolic-sum": 14,
+      "study-middle-intercept-integer-area": 12,
+      "study-middle-translated-coefficient-reuse-linear": 16
+    },
+    "advanced": {
+      "quadraticTuples": 25,
+      "radicalTuples": 7,
+      "negativeZRoots": 2,
+      "realTCandidates": 23,
+      "rejections": {
+        "negativeT": 11,
+        "outsideDomain": 5
+      },
+      "accepted": 7,
+      "rationalIncidenceCircleDeletionWitnesses": 21,
+      "rigorousSlopeDeletionWitnesses": 7
+    },
+    "reinforcedUniqueCanonical": {
+      "candidate": 120,
+      "equality": 32,
+      "classification": 512,
+      "model": 445,
+      "simplify": 144,
+      "rectangle": 60
+    },
+    "sampleAndForcedBranches": {
+      "classification:항등식": 390,
+      "classification:일차방정식": 1290,
+      "classification:이차방정식": 462,
+      "classification:불가능한 등식": 423,
+      "model:negative-difference:smaller": 305,
+      "model:positive-difference:greater": 156,
+      "model:negative-difference:greater": 54,
+      "rectangle:zero": 9,
+      "rectangle:negative": 17,
+      "rectangle:positive": 34
+    }
+  },
+  "findings": [
+    {
+      "id": "IA-01",
+      "severity": "blocking-before-fix",
+      "status": "resolved",
+      "foundAtSha": "337b1d980586830baa6c67933fe965281b0bf9b9",
+      "description": "Closed native rubric accepted explicitly contradictory alternative/error guidance through keyword regexes; original stored repro returned valid=true.",
+      "initialAcceptedCorruptControls": 480,
+      "fixedAtSha": "2fac1748c034be7f461e727cad449b4c47c10bd2",
+      "closure": "All480 reject; stored original repro rejects; 60 valid printed native tasks unchanged.",
+      "proof": ".qa-artifacts/math-exam-engine-completion-20261019/independent/rubric-closure.json"
+    },
+    {
+      "id": "IA-02",
+      "severity": "blocking-before-fix",
+      "status": "resolved",
+      "foundAtSha": "337b1d980586830baa6c67933fe965281b0bf9b9",
+      "description": "Textbook-only account passed exam/practice page/API shared output policy despite the five-menu feature scope.",
+      "fixedAtSha": "2fac1748c034be7f461e727cad449b4c47c10bd2",
+      "closure": "Exact five-menu predicate used by page/API policy and UI; export-only, textbook-only and all other single menus deny; common textbook output stays available.",
+      "policyObservations": 128,
+      "relatedCoordinatorFinding": "Coordinator browser found stale export-only UI disabling authorized bank users; reviewer confirmed final predicate-only UI diff, without layout change.",
+      "proof": ".qa-artifacts/math-exam-engine-completion-20261019/independent/authorization-closure.json"
+    }
+  ],
+  "unresolvedBlockingFindings": [],
+  "negativeControls": {
+    "advancedInitialRejected": 252,
+    "advancedSpuriousAndDegenerateRejected": 23,
+    "middleRejected": 320,
+    "additionalBoundaryRejected": 79,
+    "reinforcementOtherRejectedAtProbe": 7080,
+    "reinforcementRubricRejectedAtFinalRecheck": 480,
+    "allReinforcementControlsNowRejected": 7560,
+    "syntheticImpossibleCountDomainsAndDistractorInjectionsRejected": 14,
+    "note": "Counts include repeated controls on different tuples and response repackaging; they are not capacity or independent family counts."
+  },
+  "catalog": {
+    "manifestVersion": "exam-study-manifest-e256f76631b5268f56e09bd5",
+    "totalRegistrations": 4220,
+    "legacyRegistrations": 4190,
+    "authoredRegistrations": 30,
+    "newRegistrations": 7,
+    "overlayAddedRegistrations": 0,
+    "sourceCounts": {
+      "authored": 30,
+      "elementary": 2499,
+      "middle": 1517,
+      "high": 168,
+      "native": 6
+    },
+    "reviewedFamilyIdsVersionsAndDomains": [
+      {
+        "id": "study-middle-doubling-time-offset",
+        "version": "1",
+        "domain": {
+          "kind": "finite",
+          "size": 12
+        },
+        "fulfills": [
+          {
+            "requirement": "model.doubling-time-offset",
+            "level": "full",
+            "computed": "full"
+          }
+        ]
+      },
+      {
+        "id": "study-middle-circle-revolution-percentage",
+        "version": "1",
+        "domain": {
+          "kind": "finite",
+          "size": 10
+        },
+        "fulfills": [
+          {
+            "requirement": "model.circle-revolution-percentage",
+            "level": "full",
+            "computed": "full"
+          }
+        ]
+      },
+      {
+        "id": "study-middle-coprime-symbolic-sum",
+        "version": "1",
+        "domain": {
+          "kind": "finite",
+          "size": 14
+        },
+        "fulfills": [
+          {
+            "requirement": "number.coprime-symbolic-sum",
+            "level": "full",
+            "computed": "full"
+          }
+        ]
+      },
+      {
+        "id": "study-middle-intercept-integer-area",
+        "version": "1",
+        "domain": {
+          "kind": "finite",
+          "size": 12
+        },
+        "fulfills": [
+          {
+            "requirement": "coord.intercept-integer-area",
+            "level": "full",
+            "computed": "full"
+          }
+        ]
+      },
+      {
+        "id": "study-middle-translated-coefficient-reuse-linear",
+        "version": "1",
+        "domain": {
+          "kind": "finite",
+          "size": 16
+        },
+        "fulfills": [
+          {
+            "requirement": "graph.translated-coefficient-reuse",
+            "level": "full",
+            "computed": "full"
+          }
+        ]
+      },
+      {
+        "id": "exam-advanced:quadratic-coefficient-reuse",
+        "version": "1.0.0",
+        "domain": {
+          "kind": "finite",
+          "size": 25
+        },
+        "fulfills": [
+          {
+            "requirement": "graph.translated-coefficient-reuse",
+            "level": "full",
+            "computed": "full"
+          }
+        ]
+      },
+      {
+        "id": "exam-advanced:radical-inverse-circle",
+        "version": "1.0.0",
+        "domain": {
+          "kind": "finite",
+          "size": 7
+        },
+        "fulfills": [
+          {
+            "requirement": "function.radical-inverse-circle",
+            "level": "full",
+            "computed": "full"
+          }
+        ]
+      },
+      {
+        "id": "legacy:mid:1-1|일차방정식의 활용|01",
+        "version": "exam-original-model-check-r2",
+        "domain": {
+          "kind": "sampled",
+          "description": "기존 생성 영역의 256 seeds × 2 variants 검사 및 별도 경계 강제; 전체 용량 미측정",
+          "maxAttempts": 48
+        },
+        "fulfills": [
+          {
+            "requirement": "algebra.linear-model",
+            "level": "full",
+            "computed": "full"
+          },
+          {
+            "requirement": "written.dependent-formula-min-time",
+            "level": "component",
+            "computed": "unverified"
+          }
+        ]
+      },
+      {
+        "id": "legacy:mid:1-1|문자의 사용과 식의 계산|13",
+        "version": "exam-simplify-reinforced-r2",
+        "domain": {
+          "kind": "finite",
+          "size": 144
+        },
+        "fulfills": [
+          {
+            "requirement": "algebra.linear-simplify",
+            "level": "full",
+            "computed": "full"
+          }
+        ]
+      },
+      {
+        "id": "legacy:mid:1-1|일차방정식의 풀이|06",
+        "version": "exam-equality-reinforced-r2",
+        "domain": {
+          "kind": "finite",
+          "size": 32
+        },
+        "fulfills": [
+          {
+            "requirement": "algebra.equality-truth",
+            "level": "full",
+            "computed": "full"
+          }
+        ]
+      },
+      {
+        "id": "legacy:mid:1-1|일차방정식의 풀이|09",
+        "version": "exam-exact-classification-r2",
+        "domain": {
+          "kind": "sampled",
+          "description": "기존 생성 영역의 256 seeds × 2 variants 검사 및 별도 경계 강제; 전체 용량 미측정",
+          "maxAttempts": 48
+        },
+        "fulfills": [
+          {
+            "requirement": "algebra.equation-classification",
+            "level": "full",
+            "computed": "full"
+          }
+        ]
+      },
+      {
+        "id": "legacy:mid:1-1|일차방정식의 풀이|11",
+        "version": "exam-candidate-reinforced-r2",
+        "domain": {
+          "kind": "finite",
+          "size": 120
+        },
+        "fulfills": [
+          {
+            "requirement": "algebra.candidate-verification",
+            "level": "full",
+            "computed": "full"
+          }
+        ]
+      },
+      {
+        "id": "legacy:native:m3-quadratic-domain-r1",
+        "version": "exam-rectangle-reinforced-r2",
+        "domain": {
+          "kind": "finite",
+          "size": 60
+        },
+        "fulfills": [
+          {
+            "requirement": "written.rectangle-domain",
+            "level": "full",
+            "computed": "full"
+          }
+        ]
+      }
+    ]
+  },
+  "profiles": [
+    {
+      "id": "daeryun-m1",
+      "provided": 12,
+      "requirements": 11,
+      "everyQuestionHasFullRequirement": true
+    },
+    {
+      "id": "daeryun-m2",
+      "provided": 12,
+      "requirements": 10,
+      "everyQuestionHasFullRequirement": true
+    },
+    {
+      "id": "kyungmyung-m1",
+      "provided": 12,
+      "requirements": 7,
+      "everyQuestionHasFullRequirement": true
+    },
+    {
+      "id": "kyungmyung-m3",
+      "provided": 12,
+      "requirements": 4,
+      "everyQuestionHasFullRequirement": true
+    },
+    {
+      "id": "kyungshin-common2",
+      "provided": 12,
+      "requirements": 8,
+      "everyQuestionHasFullRequirement": true
+    }
+  ],
+  "environment": {
+    "node": "/Users/pss/.nvm/versions/node/v24.22.0/bin/node",
+    "python": "/Users/pss/.local/share/uv/python/cpython-3.12.15-macos-aarch64-none/bin/python3.12",
+    "dependencies": "existing symlink to /Users/pss/Desktop/creative/today_/node_modules",
+    "isolation": "env -i; PATH fixed to Node24,/usr/bin,/bin; NODE_ENV=test; custom Vitest envDir:false; guard for env-file/network/provider/DB access",
+    "installedNextDocsRead": [
+      "node_modules/next/dist/docs/01-app/02-guides/testing/index.md",
+      "node_modules/next/dist/docs/01-app/02-guides/testing/vitest.md"
+    ],
+    "noSourceTestUIRegistryEditsByReviewer": true,
+    "localMainModifiedByReviewer": false,
+    "pushBuildDeployByReviewer": false
+  },
+  "reproduction": {
+    "vitestPrefix": "env -i PATH=/Users/pss/.nvm/versions/node/v24.22.0/bin:/usr/bin:/bin NODE_ENV=test /Users/pss/.nvm/versions/node/v24.22.0/bin/node --require ./.qa-artifacts/math-exam-engine-completion-20261019/independent/guard.cjs node_modules/vitest/vitest.mjs run --config",
+    "runs": [
+      {
+        "kind": "vitest",
+        "config": ".qa-artifacts/math-exam-engine-completion-20261019/independent/vitest.config.mts",
+        "log": ".qa-artifacts/math-exam-engine-completion-20261019/independent/advanced-probe.log",
+        "passed": 1,
+        "purpose": "advanced extraction and 252 rejection controls"
+      },
+      {
+        "kind": "vitest",
+        "config": ".qa-artifacts/math-exam-engine-completion-20261019/independent/vitest.combined.config.mts",
+        "log": ".qa-artifacts/math-exam-engine-completion-20261019/independent/combined-extraction.log",
+        "passed": 6,
+        "purpose": "output extraction, known open rubric defect recorded rather than counted as rejection"
+      },
+      {
+        "kind": "vitest",
+        "config": ".qa-artifacts/math-exam-engine-completion-20261019/independent/vitest.repro.config.mts",
+        "log": ".qa-artifacts/math-exam-engine-completion-20261019/independent/rubric-repro.log",
+        "passed": 1,
+        "purpose": "pre-fix defect reproduced: valid=true was observed intentionally"
+      },
+      {
+        "kind": "vitest",
+        "config": ".qa-artifacts/math-exam-engine-completion-20261019/independent/vitest.branches.config.mts",
+        "log": ".qa-artifacts/math-exam-engine-completion-20261019/independent/advanced-spurious.log",
+        "passed": 1,
+        "purpose": "23 spurious/degenerate controls rejected"
+      },
+      {
+        "kind": "vitest",
+        "config": ".qa-artifacts/math-exam-engine-completion-20261019/independent/vitest.boundaries.config.mts",
+        "log": ".qa-artifacts/math-exam-engine-completion-20261019/independent/boundary-controls.log",
+        "passed": 1,
+        "purpose": "79 forced boundaries rejected"
+      },
+      {
+        "kind": "vitest",
+        "config": ".qa-artifacts/math-exam-engine-completion-20261019/independent/vitest.countrepro.config.mts",
+        "log": ".qa-artifacts/math-exam-engine-completion-20261019/independent/core-count-repros.log",
+        "passed": 1,
+        "purpose": "12 exact former count-MC request-seed records"
+      },
+      {
+        "kind": "vitest",
+        "config": ".qa-artifacts/math-exam-engine-completion-20261019/independent/vitest.closure.config.mts",
+        "log": ".qa-artifacts/math-exam-engine-completion-20261019/independent/closure.log",
+        "passed": 2,
+        "purpose": "480 contradictory rubric controls and complete menu matrix closed"
+      }
+    ],
+    "pythonScripts": [
+      ".qa-artifacts/math-exam-engine-completion-20261019/independent/check_advanced.py",
+      ".qa-artifacts/math-exam-engine-completion-20261019/independent/check_combined.py",
+      ".qa-artifacts/math-exam-engine-completion-20261019/independent/check_count_repros.py"
+    ],
+    "harnessCorrections": [
+      "Initial combined control treated an actual common-error description as incorrect rubric; replaced it with explicitly contradictory guidance and retained a separate exact bug reproduction.",
+      "First Python circle-proof regex selected a diameter multiplication when radius=100; narrowed it to the printed percentage step and reran successfully."
+    ],
+    "productionCheckSeparation": "Pure profile tests use an explicitly labeled opaque SVG planning sentinel. They do not render figures or authenticate a production user; API strictPython, browser, build, lint and release are coordinator-owned."
+  },
+  "evidence": {
+    "rawDirectory": ".qa-artifacts/math-exam-engine-completion-20261019/independent",
+    "manifest": ".qa-artifacts/math-exam-engine-completion-20261019/independent/artifact-manifest.json",
+    "archive": ".qa-artifacts/math-exam-engine-completion-20261019/independent/raw-evidence.tar.gz",
+    "archiveSha256": "207c29e6e76cd6758f7ce06a78b643e0c210843ce1307b713056ab1dc48d15c0",
+    "archiveBytes": 539695,
+    "criticalSha256": {
+      "advanced-output.json": "cb3de5cfd7f9282c43d6d1276e4c650517339ac4825f0e52c0f2a340317c922c",
+      "advanced-proof.json": "46b22d628ab802fe584b13a541752f21cee600b74501f95289a73dcf9413e8cf",
+      "middle-output.json": "7a02750f45799bc8a57a9f75a2f55bf400a82f1dfe0ab4f092e162f72e426786",
+      "reinforcement-output.json": "a9e69812c073cbf9b7a95939aeb07077ddf370d96d478ad3f4995eaef45e6b50",
+      "combined-proof.json": "070e70aa5b7ec1ceda606c6bfcab1fd80d4aea1b851a485e36fdd2cb9b8166bc",
+      "contradictory-rubric.json": "10c6d50f2be9ebc5e71bcc87de8e5c5b01162a5570de2f52bcdf6f76e50304a8",
+      "rubric-closure.json": "a510d7fbc8b2790fd997760637f9a9cb6676bf43f2e53d11a8688e4ac750027c",
+      "authorization-closure.json": "317d31fede47bd8e7dad951d9c7f32b01d9779b9dd47ad66200cc311ad9f117d",
+      "core-output.json": "50a0555c912cee53409bd878a63241144c977b96c8050bcc0dfea00061f13734",
+      "core-count-proof.json": "acdc170723785d1cbb3251c56c9f28a107d214f39ff7c09b03315f0bf9253318",
+      "final-source-scope.json": "0809229e85b66a7fc6e1b424d2c755d3f37c08c0114ff62bd2bf3720aa3e50e7",
+      "artifact-manifest.json": "eed074276e56cb884eac20218d2303b46e76a0ee45d93c9321a4ae00403dc394"
+    },
+    "sourceSha256": {
+      "src/components/exam-practice/ExamPracticeWorkspace.tsx": "dbe1001f9d2e19cf5a046f48ee0146e74b1bb80fcc57196fd1deba9849c16cc0",
+      "src/lib/accountRouteAccess.ts": "2b9f42da5c1699049b507667e7ec8465c67e7c615730ddf6edc0c94f00398273",
+      "src/lib/examStudy/adapters.ts": "6ef7595551aaa59f25264938c73938358b3c168ee5499c31db497f85667ae10a",
+      "src/lib/examStudy/families/advanced/index.ts": "aac5fc7705178d093ddb635d98d79ce8b333e4f1bda52b1543eac2263501d409",
+      "src/lib/examStudy/families/advanced/remaining.ts": "8da4e488e66ad3627e03784a11f8be479e3633fa7c6396ebe1e2a5198eac020d",
+      "src/lib/examStudy/families/advanced/remainingExact.ts": "c63186aa3cce6461a7597c9f5a825feac6fcc3231fbc7495179de42d3fc0dff9",
+      "src/lib/examStudy/families/middle/index.ts": "ba46dea6fbd4ca94c9c237911922e4fa032b34cf17f972e7750ccfa56d0b3cbb",
+      "src/lib/examStudy/families/middle/remaining.ts": "8f25537a569a693879c2847f00a707ecb43a141159069df88b93dd14d81db98d",
+      "src/lib/examStudy/legacyReinforcement.ts": "0e1aae8a51e2d7c1bd588dfddbc0bab3c71557866558d73a66a969e2e07a4318",
+      "src/lib/examStudy/reinforcementMath.ts": "e4ff06d37b86961c01473ed8aa0491edc1d3269b6fef7f1e001a5580ddb9cee4",
+      "src/lib/examStudy/reinforcementVerification.ts": "f49d15aae3970084f745be4c78b330796a709b6bc2de19da52ff979d6281de57",
+      "src/lib/examStudy/studyChoiceBounds.ts": "c61863aa2dcae1c02b65e45883f817cb24ce8b24c6a03d3000b2fc6c0be359c4",
+      "src/lib/examStudyAccess.ts": "46821d9fd52e8b6ff9e2a661bd723e9c5a6477e55dcf722fd1a3976bf718ff1b"
+    }
+  },
+  "limitations": [
+    "Only the declared finite authored/expanded domains are exhausted; classification/model generators remain sampled with forced branches and no total-capacity claim.",
+    "Native solution/rubric validators verify the closed authored output grammar, not arbitrary student free-text grading.",
+    "New coordinate/function tasks are complete text tasks with no new figures; existing figure transport was source-reviewed and empty-SVG failure tested only.",
+    "Deep math review is independent Fraction/polynomial/coordinate reasoning from printed outputs; production solvers, generator facts and stored answers are not derivation oracles.",
+    "No source originals, imports/copies of original school questions, DB, provider, paid AI, installation, Prisma, build, push or deployment were used."
+  ]
+}
