@@ -1,11 +1,35 @@
 /** Bounded numbered-answer comparison, not a solver or geometry/grade proof.
  * Roles, explicit units, subpart order and a single x factor are preserved.
+ * Unnamed lengths have a separate, decimal-only grammar and cannot erase roles.
  * No prose, general symbolic identities, substitutions or sampled equivalence.
  */
 import assert from 'node:assert/strict';
 import { compareConstantParts } from './constantAnswers.mjs';
 
-function parse(source) {
+function parseNumberedLengths(source) {
+  assert(typeof source === 'string' && source.length <= 4096);
+  assert(!/\d\s+\d/u.test(source), 'Separated numerals');
+  // Normalize only explicit presentation tokens, not arbitrary Unicode numerals
+  // or expressions. Each part must be consumed in full, including its unit.
+  const text = source.replace(/[⑴-⑿]/gu, (s) => `(${s.codePointAt(0) - 0x2474 + 1})`)
+    .replace(/\$([^$]*)\$/g, ' $1 ')
+    .replace(/\\(?:mathrm|text)\{(cm|m)\}/g, ' $1 ')
+    .replace(/\\[,!; ]/g, ' ').trim();
+  const labels = [...text.matchAll(/\((\d{1,2})\)/g)];
+  assert(labels.length > 0 && labels.length <= 12 && labels[0].index === 0, 'Numbered parts required');
+  return labels.map((mark, index) => {
+    assert.equal(mark[1], String(index + 1), 'Ordered canonical unique subparts required');
+    const body = text.slice(mark.index + mark[0].length, labels[index + 1]?.index ?? text.length)
+      .trim().replace(/;$/, '').trim();
+    const scalar = /^(\d{1,12}(?:\.\d{1,6})?)\s*(cm|m)$/u.exec(body);
+    assert(scalar, 'One explicit decimal length per subpart required');
+    return { label: index + 1, terms: [{
+      part: { role: 'numbered-scalar-length', value: scalar[1], unit: scalar[2] }, variable: null,
+    }] };
+  });
+}
+
+function parseNamed(source) {
   assert(typeof source === 'string' && source.length <= 4096);
   assert(!/\d\s+\d/u.test(source), 'Separated numerals');
   let text = source.replace(/²/g, '^{2}').replace(/³/g, '^{3}').normalize('NFKC')
@@ -51,6 +75,11 @@ function parse(source) {
     });
     return { label: index + 1, terms };
   });
+}
+
+function parse(source) {
+  try { return parseNumberedLengths(source); }
+  catch { return parseNamed(source); }
 }
 
 export function compareWrittenAnswerPresentation(author, independent) {
