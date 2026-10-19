@@ -23,6 +23,7 @@ import type {
 import type { MathSrsJourney } from "@/contracts/mathSrsJourney.contract";
 import type { PrerequisiteContext } from "@/contracts/mathPrerequisite.contract";
 import { getCourseSection } from "@/lib/math-srs/elementary/catalog";
+import { previewCardFor } from "@/lib/math-srs/preview";
 import { solutionForDisplay } from "@/lib/solutionSteps";
 import CourseProgressBoard from "./CourseProgressBoard";
 import AnswerFeedbackEffect from "./AnswerFeedbackEffect";
@@ -44,6 +45,7 @@ const ProblemContent = dynamic(() =>
 const MathText = dynamic(() =>
   import("@/components/math/MathText").then((mod) => mod.MathText),
 );
+const StudentCoursePreview = dynamic(() => import("./StudentCoursePreview"));
 
 interface Props {
   session: CoursePublicSession;
@@ -64,6 +66,9 @@ interface Props {
 
 export default function StudentCoursePractice(props: Props) {
   const { session, feedbackId, onExit } = props;
+  const [previewDismissedFor, setPreviewDismissedFor] = useState<string | null>(
+    null,
+  );
   const section = getCourseSection(session.sectionId);
   const retry = (
     session as CoursePublicSession & {
@@ -106,6 +111,27 @@ export default function StudentCoursePractice(props: Props) {
     : null;
   const turnPage = useQuestionPageTurn(paperKey);
   if (!problem) return <CourseComplete {...props} />;
+  const preview =
+    session.mode === "learn" &&
+    session.attempts.length === 0 &&
+    !session.completedAt &&
+    !pendingFollowUp &&
+    !retryActive &&
+    previewDismissedFor !== session.id
+      ? previewCardFor(session.sectionId)
+      : null;
+  if (preview) {
+    return (
+      <StudentCoursePreview
+        key={session.id}
+        card={preview}
+        journeyTheme={props.journeyTheme}
+        busy={props.busy}
+        onStart={() => setPreviewDismissedFor(session.id)}
+        onExit={onExit}
+      />
+    );
+  }
   const index = session.problems.findIndex((item) => item.id === problem.id);
   const nextIsRetry =
     !!retry &&
