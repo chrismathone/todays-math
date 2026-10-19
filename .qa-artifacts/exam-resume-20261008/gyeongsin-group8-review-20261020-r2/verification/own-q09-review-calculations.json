@@ -1,0 +1,123 @@
+{
+  "math": {
+    "authorAreaMethod": {
+      "RQ_cm": "15/2",
+      "areaPQR_cm2": "75/4",
+      "areaPRO_cm2": "15/2",
+      "areaQRO_cm2": "45/4",
+      "equation": "(5x)/2=(5·3)/2+(3x)/2 ->5x=15+3x ->2x=15 ->x15/2",
+      "justification": "RO splits trianglePQR because O lies on segmentPQ; OF andOG are perpendicular heights of trianglesPRO andQRO. Both individual areas positive. No height to PQ term is needed or allowed; this is not an incircle sum over all three sides."
+    },
+    "independentRawAA": {
+      "square": "RFOG has3rightangles andOF=OG=3, hence squareRF=RG3",
+      "triangles": "PFO~PRQ, P↔P,F↔R,O↔Q",
+      "angles": "PFO=PRQ90°, FPO=RPQ since F onPR,O onPQ",
+      "sideRatio": "PF/PR=FO/RQ=2/5; PO/PQ=2/5 internal"
+    },
+    "allChoices": [
+      {
+        "choice": "①",
+        "RQ_cm": "7",
+        "wholeArea_cm2": "35/2",
+        "twoPartAreaSum_cm2": "18",
+        "areaResidual_cm2": "-1/2",
+        "AAcrossProductResidual_cm2": "-1",
+        "valid": false
+      },
+      {
+        "choice": "②",
+        "RQ_cm": "15/2",
+        "wholeArea_cm2": "75/4",
+        "twoPartAreaSum_cm2": "75/4",
+        "areaResidual_cm2": "0",
+        "AAcrossProductResidual_cm2": "0",
+        "valid": true
+      },
+      {
+        "choice": "③",
+        "RQ_cm": "8",
+        "wholeArea_cm2": "20",
+        "twoPartAreaSum_cm2": "39/2",
+        "areaResidual_cm2": "1/2",
+        "AAcrossProductResidual_cm2": "1",
+        "valid": false
+      },
+      {
+        "choice": "④",
+        "RQ_cm": "17/2",
+        "wholeArea_cm2": "85/4",
+        "twoPartAreaSum_cm2": "81/4",
+        "areaResidual_cm2": "1",
+        "AAcrossProductResidual_cm2": "2",
+        "valid": false
+      },
+      {
+        "choice": "⑤",
+        "RQ_cm": "9",
+        "wholeArea_cm2": "45/2",
+        "twoPartAreaSum_cm2": "21",
+        "areaResidual_cm2": "3/2",
+        "AAcrossProductResidual_cm2": "3",
+        "valid": false
+      }
+    ],
+    "positiveExistenceAndUniqueness": "서로 수직인 변 RP=5 cm,RQ=15/2 cm인 삼각형을 만들고 R에서 각각3 cm인 F,G를 잡는다. RFOG를 정사각형이 되게 O를 잡으면 OF=OG=3이고 두 변에수직이다. PF=2이므로 직각삼각형PFO와PRQ의두직각변은 PF/PR=2/5=FO/RQ로대응하며 끼인각도90°라 닮음이다. 따라서 P에서의각이같아 P,O,Q가한직선위에있고 PO/PQ=2/5이므로 O는PQ내부다. 중심O반지름3의원은두변에F,G에서접하며조건을모두만족한다. 반대로모든허용배치에서는PF2,FO3과AA닮음으로RQ15/2가강제된다. 도형의회전/반사까지하나라는주장이아니라요구길이의유일성이다. 원전체가삼각형내부라는조건은없고 중심이빗변위라원은빗변양쪽으로나올수있다.",
+    "domainsUnits": "r3,PR5,PF2,RQ15/2,RG3,GQ9/2 allpositive; PR−r=2 and divisionby2,5 nonzero. Center cannot be endpointP/Q since either haszero distance tooneleg butradius3>0. Requested lengthunique; triangleorientation/reflection notclaimedunique. Lengthcm,area/productcm²,ratio dimensionless,angle90°.",
+    "negativeInterpretation": "No third tangency toPQ: its center lies onPQ, so circle crosseshypotenuse. Applying incircle area r·semiperimeter would add an unsupported third triangle term and is rejected. No family16rectangle mapping or source-answer computation."
+  },
+  "primary": {
+    "normative": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "actualPreviouslyViewed": "2015tab;line5409수04-19circlechord/tangents;9수04-14AA;line558generalcircleproportionexcluded;line560studentleveljustification;line565no complexformal logic required",
+      "interpretation": "Student author method uses tangency perpendicular radius, elementary triangle area/additivity and a previous linear equation only. Own raw AA alternative legitimately adds previously learned triangle similarity; Pythagoras is optional checking, not a prerequisite of the actual area solution."
+    },
+    "actualM3Placement": {
+      "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+      "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+      "viewedPageSha256": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12",
+      "pdfIndex0": 73,
+      "physicalPage": 74,
+      "printedPage": 72,
+      "observed": "Official2024 plan actualM3mathsemester2 header and9수04-19chord/tangent row. Provisionalprinted73notused.",
+      "limits": "ActualM3placement evidence, not originalschoolpacing/year/wholepair approval or2022 certificate. Requires learned triangle-area/additivity and simplelinear equation."
+    }
+  },
+  "digestRecomputed": {
+    "candidate": "5a3bf8e38c03fdfbe9b8c561fc4f814a6bfec5606cdc4102aef72b8a965d5587",
+    "student": "92eb522c8513e9d7c10364bdfa12410853ea95abcb404adbc4daeadf27954939",
+    "asset": "c76f56042290f73073466bea9e19ff08215b16112625a8d7f76c7672af3bc337",
+    "solve": "ebc0e46d5f7d4d5ec2dd2503a5f996d6d9fa78036b658ed55373ce96eef71f79"
+  },
+  "sourceSha256": "99cbd314f5fd5da2c598297601b290435a93e2d96e11b678e7bd05bf06bbc137",
+  "originalPageSha256": "0663a680ec641aa045a9b81db40fbfa5c5a73e32e0b204f38dd68749a2ccf1fe",
+  "inputSha256Before": {
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group8-review-20261020-r2\\verification\\VERIFY-BRIEF.md": "35f0141b096cf184d92c0fdb4f5da623e99cf1882faa33bff9b2cda745d835b5",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group8-review-20261020-r2\\verification\\verification-inputs.json": "1c3d448255cc911517728ae07832a3c0c122c43d469597678fff38f6714b200f",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group8-review-20261020-r2\\verification\\verification-manifest.json": "e9a644eccc5e5d518f22f68b91127aa8708671f0ffa7edfa3866925a626a4f12",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group8-review-20261020-r2\\verification\\sealed-raw-commit.json": "0e1154b2fbbd348d8824defc6a7e243805d9c28535545ec6b0cd278ada306d5d",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group8-review-20261020-r2\\blind\\solve\\q09.json": "f5ca72453f31011fad382e599c10ad4eb32b3a7f5e04237c3fd642da987fc665",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group8-review-20261020-r2\\blind\\student-problems.json": "6ae9a1cf5e027ef74de708c050c219fa00c9424ef55edca5db37f434d755853f",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group8-review-20261020-r2\\blind\\figures\\q09-1.svg": "1c3e01139591707cb98d5fe060d3cca1fc45faf3230e350d575a43beb5bdb85b",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group8-r2\\source-q09-component-observation-r1.json": "99cbd314f5fd5da2c598297601b290435a93e2d96e11b678e7bd05bf06bbc137",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongsin\\evidence\\additional-original-H-page-03.webp": "0663a680ec641aa045a9b81db40fbfa5c5a73e32e0b204f38dd68749a2ccf1fe",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group8-review-20261020-r2\\package\\private\\q09\\figure-1.spec.json": "25ac1af1d60c87af63d6f4b8874b3c3a15db1958c9f9e82dc2efc9f8e7d9ab92",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group8-review-20261020-r2\\package\\private\\q09\\figure-1.svg": "1c3e01139591707cb98d5fe060d3cca1fc45faf3230e350d575a43beb5bdb85b",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-grade-reference-20261020-r1\\school-2024-plan.local.pdf": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-grade-reference-20261020-r1\\school-2024-m3-page74.local.png": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12"
+  },
+  "inputSha256After": {
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group8-review-20261020-r2\\verification\\VERIFY-BRIEF.md": "35f0141b096cf184d92c0fdb4f5da623e99cf1882faa33bff9b2cda745d835b5",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group8-review-20261020-r2\\verification\\verification-inputs.json": "1c3d448255cc911517728ae07832a3c0c122c43d469597678fff38f6714b200f",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group8-review-20261020-r2\\verification\\verification-manifest.json": "e9a644eccc5e5d518f22f68b91127aa8708671f0ffa7edfa3866925a626a4f12",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group8-review-20261020-r2\\verification\\sealed-raw-commit.json": "0e1154b2fbbd348d8824defc6a7e243805d9c28535545ec6b0cd278ada306d5d",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group8-review-20261020-r2\\blind\\solve\\q09.json": "f5ca72453f31011fad382e599c10ad4eb32b3a7f5e04237c3fd642da987fc665",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group8-review-20261020-r2\\blind\\student-problems.json": "6ae9a1cf5e027ef74de708c050c219fa00c9424ef55edca5db37f434d755853f",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group8-review-20261020-r2\\blind\\figures\\q09-1.svg": "1c3e01139591707cb98d5fe060d3cca1fc45faf3230e350d575a43beb5bdb85b",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group8-r2\\source-q09-component-observation-r1.json": "99cbd314f5fd5da2c598297601b290435a93e2d96e11b678e7bd05bf06bbc137",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongsin\\evidence\\additional-original-H-page-03.webp": "0663a680ec641aa045a9b81db40fbfa5c5a73e32e0b204f38dd68749a2ccf1fe",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group8-review-20261020-r2\\package\\private\\q09\\figure-1.spec.json": "25ac1af1d60c87af63d6f4b8874b3c3a15db1958c9f9e82dc2efc9f8e7d9ab92",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group8-review-20261020-r2\\package\\private\\q09\\figure-1.svg": "1c3e01139591707cb98d5fe060d3cca1fc45faf3230e350d575a43beb5bdb85b",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-grade-reference-20261020-r1\\school-2024-plan.local.pdf": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-grade-reference-20261020-r1\\school-2024-m3-page74.local.png": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12"
+  }
+}
