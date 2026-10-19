@@ -28,6 +28,7 @@ vi.mock("@/components/unified/WorksheetEditor", () => ({
         구성 고정: {String(props.fixedComposition)} · 초안 저장:{" "}
         {String(props.draftActions)}
       </p>
+      <p>작업실 메뉴 권한: {props.allowedMenus?.join(",") || "없음"}</p>
       {props.selected.map((p) => (
         <p key={p.id}>{p.section}</p>
       ))}
@@ -79,6 +80,7 @@ describe("저장된 교과서 오답 → 지정 변형 → 기존 학습지", ()
     expect(screen.getAllByText("검토 완료 변형 2 / 2문항")).toHaveLength(2);
     await user.click(screen.getByRole("button", { name: "양식 구성 · 출력" }));
     await screen.findByText("구성 고정: true · 초안 저장: false");
+    expect(screen.getByText("작업실 메뉴 권한: 없음")).toBeInTheDocument();
     expect(screen.getByText("원문 1번 · 변형 1")).toBeInTheDocument();
     expect(screen.getByText("원문 2번 · 변형 2")).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "채점 결과 저장" })).toBeNull();

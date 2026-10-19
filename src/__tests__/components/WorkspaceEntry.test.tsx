@@ -1,5 +1,8 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { ALL_WORKSPACE_MENUS } from "@/contracts/accountAccess.contract";
+import {
+  ALL_WORKSPACE_MENUS,
+  WORKSPACE_OUTPUT_MENUS,
+} from "@/contracts/accountAccess.contract";
 vi.mock("server-only", () => ({}));
 
 const mocks = vi.hoisted(() => ({ auth: vi.fn(), bootstrap: vi.fn() }));
@@ -41,6 +44,21 @@ beforeEach(() => {
 });
 
 describe("public landing and authenticated main entry", () => {
+  it.each(WORKSPACE_OUTPUT_MENUS)(
+    "opens a report from %s access without the retired export flag",
+    async (source) => {
+      mocks.auth.mockResolvedValue({
+        user: { ...user, role: "director", menus: [source] },
+      });
+      const testId = "00000004-0000-4000-8000-000000000000";
+      const page = await ExamReportPage({
+        params: Promise.resolve({ testId }),
+      });
+      expect(page.type).toBe(WorkspacePage);
+      expect(page.props.examReportTestId).toBe(testId);
+      expect(mocks.bootstrap).not.toHaveBeenCalled();
+    },
+  );
   it("성적표는 같은 작업실 셸로 열며 문제은행을 미리 읽지 않는다", async () => {
     const testId = "00000004-0000-4000-8000-000000000000";
     const page = await ExamReportPage({ params: Promise.resolve({ testId }) });
@@ -59,6 +77,8 @@ describe("public landing and authenticated main entry", () => {
     for (const account of [
       { ...user, role: "reviewer" },
       { ...user, role: "director", menus: [] },
+      { ...user, role: "director", menus: ["export"] },
+      { ...user, role: "director", menus: ["teaching"] },
     ]) {
       mocks.auth.mockResolvedValue({ user: account });
       await expect(ExamReportPage({ params })).rejects.toThrow("notFound");

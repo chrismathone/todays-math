@@ -5,7 +5,10 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { ComponentProps } from "react";
 
 import { AppChrome } from "@/components/chrome/AppChrome";
-import type { WorkspaceMenu } from "@/contracts/accountAccess.contract";
+import {
+  canOutputFrom,
+  type WorkspaceMenu,
+} from "@/contracts/accountAccess.contract";
 import { recordProgress } from "@/lib/class/classApi";
 import {
   loadClassProgress,
@@ -67,14 +70,13 @@ export function MainScreen({
   const committedProgress = useRef<MainDashboardData["progressByClass"]>({});
   const [recording, setRecording] = useState(false);
   const recordBusy = useRef(false);
-  const canExport =
-    allowedMenus === undefined || allowedMenus.includes("export");
+  const canExport = allowedMenus === undefined || canOutputFrom(allowedMenus);
   const menuKey = allowedMenus?.join(",");
   const effectiveMenus = useMemo(
     () =>
       menuKey === undefined
         ? undefined
-        : (menuKey.split(",") as WorkspaceMenu[]),
+        : (menuKey.split(",").filter(Boolean) as WorkspaceMenu[]),
     [menuKey],
   );
   // 차시이동 화살표로 "열람 중인" 차시(진도 미기록). null이면 현재 기록된 진도를 본다.

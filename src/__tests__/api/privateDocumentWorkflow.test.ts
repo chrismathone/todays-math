@@ -21,7 +21,12 @@ vi.mock("@/lib/privateWorkspace", () => ({
   readableDocumentWhere: () => ({
     OR: [{ userId: "owner-a" }, { sharedBranchId: "branch-a" }],
   }),
-  arithmeticDocumentsOnly: () => false,
+  privateDocumentKinds: () => [
+    "draft",
+    "extraction",
+    "conceptBlank",
+    "arithmeticSheet",
+  ],
   privateError: (_: string, status: number) => new Response(null, { status }),
 }));
 import {

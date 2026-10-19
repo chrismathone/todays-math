@@ -124,15 +124,15 @@ describe("account menu product tabs", () => {
     (branchId, libraryLabel) => {
       review({ ...pendingAccount, branchId });
       expect(tab("오늘 수학")).toHaveAttribute("aria-selected", "true");
-      expect(labels()).toEqual([
-        ...mathLabels.map((label) =>
+      expect(labels()).toEqual(
+        mathLabels.map((label) =>
           label === "내 시험지" ? libraryLabel : label,
         ),
-        "시험지 · 내보내기",
-      ]);
+      );
       expect(
-        panel().getByRole("heading", { name: "추가 기능 권한" }),
-      ).toBeInTheDocument();
+        screen.queryByLabelText("시험지 · 내보내기"),
+      ).not.toBeInTheDocument();
+      expect(screen.queryByText("추가 기능 권한")).not.toBeInTheDocument();
       expect(panel().getByRole("group")).toHaveAccessibleName(
         "오늘 수학 2 / 10",
       );
@@ -186,8 +186,9 @@ describe("account menu product tabs", () => {
     fireEvent.click(tab("오늘 수학"));
     expect(screen.getByRole("checkbox", { name: "문제 추출" })).toBeChecked();
     expect(
-      screen.getByRole("checkbox", { name: "시험지 · 내보내기" }),
-    ).toBeChecked();
+      screen.queryByLabelText("시험지 · 내보내기"),
+    ).not.toBeInTheDocument();
+    expect(panel().getByRole("group")).toHaveAccessibleName("오늘 수학 3 / 10");
     expect(onLockChange).toHaveBeenLastCalledWith(true);
     fireEvent.click(tab("오늘 영어"));
     expect(screen.getByRole("checkbox", { name: "문제 만들기" })).toBeChecked();
@@ -211,28 +212,40 @@ describe("account menu product tabs", () => {
     });
   });
 
-  it("moves export to its sidebar position when every entry menu is off", () => {
+  it("keeps legacy export hidden and uncounted when every selectable menu is off", () => {
     review({ ...pendingAccount, menus: ["export"] });
-    expect(labels()).toEqual([
-      ...mathLabels.slice(0, 4),
-      "시험지 · 내보내기",
-      ...mathLabels.slice(4),
-    ]);
+    expect(labels()).toEqual(mathLabels);
+    expect(panel().getByRole("group")).toHaveAccessibleName("오늘 수학 0 / 10");
+    expect(
+      screen.queryByLabelText("시험지 · 내보내기"),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByText(/사용할 수 있는 메뉴가 없습니다/),
+    ).toBeInTheDocument();
     expect(
       panel().queryByRole("heading", { name: "추가 기능 권한" }),
     ).not.toBeInTheDocument();
     for (const name of ["시험지 만들기", "문제 추출", "내 시험지"]) {
       fireEvent.click(screen.getByRole("checkbox", { name }));
-      expect(labels()).toEqual([...mathLabels, "시험지 · 내보내기"]);
+      expect(labels()).toEqual(mathLabels);
+      expect(panel().getByRole("group")).toHaveAccessibleName(
+        "오늘 수학 1 / 10",
+      );
       expect(
-        screen.getByRole("checkbox", { name: "시험지 · 내보내기" }),
-      ).toBeChecked();
+        screen.queryByLabelText("시험지 · 내보내기"),
+      ).not.toBeInTheDocument();
+      expect(screen.queryByText("추가 기능 권한")).not.toBeInTheDocument();
       fireEvent.click(screen.getByRole("checkbox", { name }));
     }
     expect(
       panel().queryByRole("heading", { name: "추가 기능 권한" }),
     ).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "변경 저장" })).toBeDisabled();
+    fireEvent.click(tab("오늘 영어"));
+    expect(panel().getByRole("group")).toHaveAccessibleName("오늘 영어 0 / 5");
+    expect(
+      screen.queryByLabelText("시험지 · 내보내기"),
+    ).not.toBeInTheDocument();
   });
 
   it("updates the library label immediately with a branch draft and saves it with English permissions", async () => {

@@ -291,6 +291,45 @@ describe("private material ownership and revision control", () => {
       }),
     });
   });
+  it.each(["bank", "studio", "library"] as const)(
+    "%s alone may save a worksheet draft without export permission",
+    async (source) => {
+      login({ menus: [source] });
+      const response = await saveDocument(
+        request("PUT", {
+          kind: "draft",
+          title: "시험지",
+          payload: { problems: [] },
+          expectedRevision: 1,
+        }),
+        "draft-1",
+      );
+      expect(response.status).toBe(200);
+      expect(mocks.doc.updateMany).toHaveBeenCalled();
+    },
+  );
+  it.each([
+    { menus: [] },
+    { menus: ["export"] },
+    { menus: ["arithmetic"] },
+    { menus: ["textbook"] },
+  ])(
+    "does not grant worksheet-draft storage through unrelated output menus $menus",
+    async ({ menus }) => {
+      login({ menus: menus as AccountAccess["menus"] });
+      const response = await saveDocument(
+        request("PUT", {
+          kind: "draft",
+          title: "시험지",
+          payload: { problems: [] },
+          expectedRevision: 1,
+        }),
+        "draft-1",
+      );
+      expect(response.status).toBe(403);
+      expect(mocks.doc.updateMany).not.toHaveBeenCalled();
+    },
+  );
   it("rejects a concurrent update between the initial read and the revision-fenced write", async () => {
     mocks.doc.updateMany.mockResolvedValue({ count: 0 });
     const response = await saveDocument(
@@ -326,15 +365,15 @@ describe("private material ownership and revision control", () => {
     expect(mocks.doc.updateMany).not.toHaveBeenCalled();
     expect(mocks.audit.create).not.toHaveBeenCalled();
   });
-  it("checks the editor menu even when library reads are permitted", async () => {
+  it("requires studio to save an extraction even when library reads are permitted", async () => {
     login({ menus: ["library"] });
     expect(
       (
         await saveDocument(
           request("PUT", {
-            kind: "draft",
-            title: "시험지",
-            payload: { problems: [] },
+            kind: "extraction",
+            title: "추출한 자료",
+            payload: { data: { crops: [] } },
             expectedRevision: 1,
           }),
           "draft-1",
@@ -351,16 +390,16 @@ describe("private material ownership and revision control", () => {
         (
           await saveDocument(
             request("PUT", {
-              kind: "draft",
-              title: "시험지",
-              payload: { problems: [] },
+              kind: "extraction",
+              title: "추출한 자료",
+              payload: { data: { crops: [] } },
               expectedRevision: 1,
             }),
             "draft-1",
           )
         ).status,
       ).toBe(403);
-      login({ isAdmin: true, isSuperAdmin, menus: ["export"] });
+      login({ isAdmin: true, isSuperAdmin, menus: ["bank"] });
       expect(
         (
           await deleteDocument(
