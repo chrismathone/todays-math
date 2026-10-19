@@ -1,0 +1,33 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import {bindCandidate,digest} from '../../../scripts/import/exam-twin/candidatePack.mjs';
+const b='.qa-artifacts/exam-resume-20261008/',e=b+'engine-upgrade-20261019/';
+const hash=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+const git=(...a)=>execFileSync('git',a,{encoding:'utf8',maxBuffer:20*1024*1024}).trim();
+const old=JSON.parse(fs.readFileSync(e+'prepush-r14-receipt.json','utf8'));
+const node=JSON.parse(fs.readFileSync(e+'surface-and-format-contract-summary-r2.json','utf8'));
+const expected={...old.after,...node.currentHashes};
+assert.equal(git('status','--porcelain'),'');
+assert.equal(git('rev-parse','origin/main'),old.integratedMain);
+for(const[p,h]of Object.entries(expected))assert.equal(hash(p),h,p);
+git('merge-base','--is-ancestor','origin/main','HEAD');
+git('merge-base','--is-ancestor','origin/chrismathone/exam-extraction-resume-20261008','HEAD');
+const index=JSON.parse(fs.readFileSync(b+'current-authored-batches-v26.json','utf8'));
+let checked=0;
+for(const row of index.groups.flatMap(g=>g.candidates)){
+  const x=bindCandidate(row.candidate.path);
+  assert.equal(x.candidateFileSha256,row.candidate.sha256);
+  for(const k of ['studentDigest','candidateDigest','assetDigest'])assert.equal(x[k],row[k]);
+  assert.equal(digest(x.candidate.metadata),row.metadataDigest);
+  assert.equal(digest(x.candidate.sourceReference),row.sourceReferenceDigest);
+  assert.equal(x.validation.metadataAnswerFormatMismatch,false);
+  checked++;
+}
+assert.equal(checked,125);
+const receipt=e+'prepush-r15-receipt.json';
+fs.writeFileSync(receipt,JSON.stringify({utc:new Date().toISOString(),fetchedMain:git('rev-parse','origin/main'),fetchedTarget:git('rev-parse','origin/chrismathone/exam-extraction-resume-20261008'),snapshot:git('rev-parse','HEAD'),currentCombinedSourceHashes:expected,sourceHashesMatchExactPassingRuns:true,typescriptIntegration:{files:old.files,passed:old.passed,typesPassed:true,evidence:e+'prepush-r14-receipt.json'},nodeContract:{files:node.files,passed:node.passed,failed:0,skipped:0,evidence:e+'surface-and-format-contract-summary-r2.json'},currentCandidateBindingChecks:checked,knownMetadataFormatMismatches:0,knownGeneratedSvgWhitespaceWarnings:10,svgWarningEvidence:e+'q16-sealed-svg-whitespace-preservation-r1.json',sealedBytesModified:false,counts:index.counts,fullAppBuildValidated:false,dbWrites:0,deploy:false,featureMergedIntoMain:false},null,2)+'\n',{flag:'wx'});
+execFileSync('git',['add','-f','--',receipt,e+'validate-prepush-r15.mjs']);
+execFileSync('git',['commit','-m','chore(exam-twins): checkpoint current 125 bindings and exact passing source scopes'],{stdio:['ignore','pipe','pipe']});
+console.log(JSON.stringify({commit:git('rev-parse','HEAD'),candidates:checked,nodeTests:node.passed,priorIntegrationTests:old.passed}));
