@@ -1,0 +1,169 @@
+{
+  "kind": "fresh-extraction-checks/v1",
+  "aggregateReceiptSha256": "7b8cf0c4538b619f4d24fdbf3bfe74079f6da18eef457804c99079df0a9e2367",
+  "selectionAssertionsPassed": 9,
+  "pythonAstParsed": true,
+  "allSevenCapturedReaderDependenciesMatchPriorR2Hashes": true,
+  "preservedInputChecks": 29,
+  "allPreservedInputsRehashedAgain": true,
+  "localOutputHashIndexValidated": true,
+  "headerObservations": [
+    {
+      "inventoryExamId": "personal-e33ddb52b435f0c6660a4c056cec7a59",
+      "school": "대구일중",
+      "completedHwpHeaderObserved": {
+        "year": 2025,
+        "grade": 3,
+        "semester": 2,
+        "round": "midterm",
+        "subject": "mathematics",
+        "schoolMatchesInventory": true
+      },
+      "completedPdfHeaderObserved": {
+        "year": 2025,
+        "grade": 3,
+        "semester": 2,
+        "round": "midterm",
+        "schoolAlias": "DGI"
+      },
+      "preparationFooterYear": 2026,
+      "preparationFooterIsNotExamYear": true,
+      "originalFirstPageCropsViewed": true,
+      "originalPrintedHeaderObserved": {
+        "year": null,
+        "grade": 3,
+        "semester": null,
+        "round": null,
+        "schoolMatchesInventory": true
+      },
+      "identityDecision": "hold-original-year-semester-round-not-visible-on-selected-first-page",
+      "identityApproved": false,
+      "wholePairCertified": false,
+      "componentsApproved": 0,
+      "twins": 0
+    },
+    {
+      "inventoryExamId": "personal-d41151b46473d01c83ddba87e3428f97",
+      "school": "대진중",
+      "completedHwpHeaderObserved": {
+        "year": 2025,
+        "grade": 3,
+        "semester": 2,
+        "round": "midterm",
+        "subject": "mathematics",
+        "schoolMatchesInventory": true
+      },
+      "completedPdfHeaderObserved": {
+        "year": 2025,
+        "grade": 3,
+        "semester": 2,
+        "round": "midterm",
+        "schoolAlias": "DJ"
+      },
+      "preparationFooterYear": 2026,
+      "preparationFooterIsNotExamYear": true,
+      "originalFirstPageCropsViewed": true,
+      "originalPrintedHeaderObserved": {
+        "year": 2025,
+        "grade": 3,
+        "semester": 2,
+        "round": "midterm",
+        "schoolMatchesInventory": true
+      },
+      "identityDecision": "header-fields-supported-only-whole-question-comparison-pending",
+      "identityApproved": false,
+      "wholePairCertified": false,
+      "componentsApproved": 0,
+      "twins": 0
+    },
+    {
+      "inventoryExamId": "personal-f512082a417e154a4c142b47fae20515",
+      "school": "덕원중",
+      "completedHwpHeaderObserved": {
+        "year": 2025,
+        "grade": 3,
+        "semester": 2,
+        "round": "midterm",
+        "subject": "mathematics",
+        "schoolMatchesInventory": true
+      },
+      "completedPdfHeaderObserved": {
+        "year": 2025,
+        "grade": 3,
+        "semester": 2,
+        "round": "midterm",
+        "schoolAlias": "DEW"
+      },
+      "preparationFooterYear": 2026,
+      "preparationFooterIsNotExamYear": true,
+      "originalFirstPageCropsViewed": true,
+      "originalPrintedHeaderObserved": {
+        "year": 2025,
+        "grade": 3,
+        "semester": 2,
+        "round": "midterm",
+        "schoolMatchesInventory": true
+      },
+      "identityDecision": "header-fields-supported-only-whole-question-comparison-pending",
+      "identityApproved": false,
+      "wholePairCertified": false,
+      "componentsApproved": 0,
+      "twins": 0
+    }
+  ],
+  "summary": {
+    "schoolsParsed": 3,
+    "newParents": 61,
+    "previousObservedParents": 253,
+    "combinedObservedParents": 314,
+    "hwpFormulaRecords": 680,
+    "hwpFigureRecords": 52,
+    "pdfImageCorrespondenceRecords": 52,
+    "scoreOccurrences": 62,
+    "notesWithheld": 61,
+    "unknownControls": 0,
+    "componentsApproved": 0,
+    "twins": 0,
+    "gradeApprovals": 0,
+    "rightsApprovals": 0,
+    "wholePairCertifications": 0,
+    "dbWrites": 0
+  },
+  "sourceIssues": [
+    {
+      "inventoryExamId": "personal-e33ddb52b435f0c6660a4c056cec7a59",
+      "choiceCountMismatches": [
+        {
+          "number": 3,
+          "hwp": 5,
+          "pdf": 0
+        },
+        {
+          "number": 4,
+          "hwp": 5,
+          "pdf": 6
+        }
+      ],
+      "scoreNotDetectedNumbers": [
+        3,
+        4,
+        5,
+        6,
+        8
+      ],
+      "figureCountMismatchNumbers": [
+        3,
+        4
+      ],
+      "decision": "quarantine; manually compare boundaries/choices/figures/scores before any author distribution"
+    },
+    {
+      "inventoryExamId": "personal-f512082a417e154a4c142b47fae20515",
+      "figureCountMismatchNumbers": [
+        8
+      ],
+      "decision": "quarantine; record count mismatch is not proof of missing figure, inspect actual correspondence"
+    }
+  ],
+  "copyrightBoundary": "Only tool, metadata/hash receipts and report may be committed. Local manifests and reviewer crops remain ignored."
+}
