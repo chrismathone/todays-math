@@ -227,6 +227,7 @@ export function checkRubric(item: ExamStudyDraft, expected: readonly string[]) {
 
 type Definition = {
   key: string;
+  version?: string;
   title: string;
   course: "중1" | "중2";
   unit: string;
@@ -234,6 +235,8 @@ type Definition = {
   domain: readonly CanonicalParams[];
   visual?: boolean;
   written?: boolean;
+  /** Limit reviewed student methods to this finite template, not arbitrary prose. */
+  bindStudentSolution?: boolean;
   boundaries: readonly string[];
   make(p: CanonicalParams): ExamStudyDraft;
   solve(item: ExamStudyDraft): {
@@ -257,7 +260,7 @@ export function family(d: Definition): ExamStudyFamily {
   ];
   return {
     id: `study-middle-${d.key}`,
-    version: "1",
+    version: d.version ?? "1",
     title: d.title,
     course: d.course,
     unitIds: [`${d.course}|${d.unit}`],
@@ -319,6 +322,11 @@ export function family(d: Definition): ExamStudyFamily {
           item.answer === solved.answer,
           "인쇄 조건으로 독립 계산한 정답과 불일치",
         );
+        if (d.bindStudentSolution)
+          insist(
+            item.solution === d.make(solved.parameters).solution,
+            "검토된 학생용 풀이 템플릿과 불일치",
+          );
         if (d.written) checkRubric(item, solved.rubric ?? []);
         return { valid: true, checks, errors: [] };
       } catch (error) {

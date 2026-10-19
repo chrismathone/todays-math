@@ -20,6 +20,8 @@ const equalDomain: CanonicalParams[] = [];
 for (const p of [2, 3]) for (const q of [5, 7]) equalDomain.push({ p, q });
 export const equalLegs = family({
   key: "inverse-equal-legs",
+  version: "2-m1-single-variable",
+  bindStudentSolution: true,
   title: "반비례 두 좌표차의 같은 길이",
   course: "중1",
   unit: "정비례와 반비례",
@@ -38,7 +40,7 @@ export const equalLegs = family({
       p,
       `$k>0$인 반비례 그래프 $y=k/x$ 위에 두 점 $A=(${x1},u)$, $B=(${x2},v)$가 있다. $u>v>0$이고, 두 점의 가로 좌표 차와 세로 좌표 차가 같다. $k,u,v$를 모두 구하시오.`,
       `k=${k}, u=${x2}, v=${x1}`,
-      `가로 차는 ${x2 - x1}이므로 $u-v=${x2 - x1}$. 두 점이 같은 반비례 그래프 위에 있어 $${x1}u=${x2}v$이다. 첫 식에 ${x1}을 곱해 빼면 $${x2 - x1}v=${x1 * (x2 - x1)}$이므로 $v=${x1}$, $u=${x2}$, $k=${k}$이다. 어느 한 점의 세로 좌표를 먼저 알려 주지 않았으므로 같은 길이 조건이 계수 결정에 필요하다.`,
+      `가로 차는 ${x2 - x1}이다. $v$를 $t$라 하면 같은 길이 조건에서 $u=t+${x2 - x1}$이다. 반비례 관계에서 두 점의 좌표의 곱이 같으므로 $${x1}(t+${x2 - x1})=${x2}t$이다. 분배법칙으로 $${x1}t+${x1 * (x2 - x1)}=${x2}t$, 이를 정리하면 $${x2 - x1}t=${x1 * (x2 - x1)}$이므로 $t=${x1}$이다. 따라서 $v=${x1}$, $u=${x2}$, $k=${k}$이다. 두 세로 좌표는 양수이고 차는 ${x2 - x1}이며, $${x1}×${x2}=${x2}×${x1}=${k}$이므로 원래 조건도 모두 만족한다.`,
       null,
       ["같은 반비례식의 두 입사", "두 좌표차의 길이 조건을 결합"],
     );
@@ -56,6 +58,19 @@ export const equalLegs = family({
     insist(0 < p && p < q, "서로 다른 양의 x좌표");
     const [u, v] = linear2(1, -1, q - p, p, -q, 0);
     insist(u > v && v > 0 && near(p * u, q * v), "동일 곡선/길이 원조건 실패");
+    // A correct numerical answer does not approve a later-grade student method.
+    clauses(item.solution, [
+      "$v$를 $t$라 하면",
+      `$u=t+${q - p}$`,
+      `$${p}(t+${q - p})=${q}t$`,
+      `$${p}t+${p * (q - p)}=${q}t$`,
+      `$${q - p}t=${p * (q - p)}$`,
+      `$t=${fmt(v)}$`,
+    ]);
+    insist(
+      !/첫 식에|연립방정식|가감법|소거/u.test(item.solution),
+      "중1 한 미지수 풀이가 필요함",
+    );
     return {
       answer: `k=${fmt(p * u)}, u=${fmt(u)}, v=${fmt(v)}`,
       parameters: { p, q },

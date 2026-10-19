@@ -1,0 +1,14 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/unit/examStudyMiddle.test.ts (49 tests) 1483ms
+     ✓ has twelve distinct demands and exactly 120 mathematical tuples, with no format clones  409ms
+     ✓ every displayed formula parses with the existing print math renderer  692ms
+ ✓ src/__tests__/unit/examStudyM1StudentMethods.test.ts (5 tests) 222ms
+
+ Test Files  2 passed (2)
+      Tests  54 passed (54)
+   Start at  21:10:32
+   Duration  17.55s (transform 1.41s, setup 4.08s, import 296ms, tests 1.71s, environment 10.70s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m1-method-tests-r1.json

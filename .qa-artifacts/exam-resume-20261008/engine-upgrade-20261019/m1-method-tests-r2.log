@@ -1,0 +1,51 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/unit/examStudyAdvancedFigures.test.ts (6 tests) 39802ms
+     ✓ re-solves each printed parabola/line chain and checks every essential dependency  436ms
+     ✓ strictly renders graph-1/v2 combinations with their essential printed labels  3252ms
+     ✓ strictly renders every bounded figure tuple with readable, collision-free print labels  36037ms
+ ✓ src/__tests__/unit/examStudyCoreLegacy.test.ts (15 tests) 11185ms
+     ✓ preserves original registry identities/counts and exposes actual supported courses only  10734ms
+ ✓ src/__tests__/unit/examStudyCompletion.test.ts (29 tests) 16819ms
+     ✓ provides the selected demands within the grade eligibility gate for 'daeryun-m1'  12848ms
+     ✓ provides the selected demands within the grade eligibility gate for 'daeryun-m2'  409ms
+     ✓ provides the selected demands within the grade eligibility gate for 'kyungmyung-m3'  999ms
+ ✓ src/__tests__/unit/examStudyIntegration.test.ts (7 tests) 12775ms
+     ✓ keeps all nine courses available without multiplying authored families by response format  10422ms
+     ✓ runs authenticated API → actual math → strict Python SVG → reproducible output confirmation  1656ms
+ ✓ src/__tests__/unit/examStudyMiddleFigures.test.ts (6 tests) 21363ms
+     ✓ study-middle-piecewise-multi-claim: every visual tuple preserves the printed data  4108ms
+     ✓ study-middle-shared-side-square: every visual tuple preserves the printed data  3019ms
+     ✓ study-middle-inverse-area-ratio: every visual tuple preserves the printed data  5137ms
+     ✓ study-middle-ray-area-partition: every visual tuple preserves the printed data  4745ms
+     ✓ study-middle-signed-inverse-trapezoid: every visual tuple preserves the printed data  1261ms
+     ✓ study-middle-intercept-trapezoid-cases: every visual tuple preserves the printed data  3085ms
+ ✓ src/__tests__/unit/examStudyCurriculumEligibility.test.ts (10 tests) 20311ms
+     ✓ hides the held template from selectable catalogs and retains its definition for internal review  20110ms
+ ✓ src/__tests__/unit/examStudyReinforcement.test.ts (20 tests) 4605ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: candidate  431ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: classification  1407ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: model  1152ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: rectangle  363ms
+ ✓ src/__tests__/unit/examStudyChoiceBounds.test.ts (9 tests) 2291ms
+     ✓ covers every admissible answer at counts 4..12 and 20 option orders, including 0/n  1860ms
+ ✓ src/__tests__/unit/examStudyAdvanced.test.ts (21 tests) 3213ms
+     ✓ checks every rational integer boundary, excluded point, absolute branch and the infinite tail  1789ms
+ ✓ src/__tests__/unit/examStudyMiddle.test.ts (49 tests) 565ms
+ ✓ src/__tests__/unit/examStudyMiddleRemaining.test.ts (13 tests) 1509ms
+     ✓ every printed math span parses with the actual existing KaTeX renderer  499ms
+ ✓ src/__tests__/unit/examStudyAdvancedRemaining.test.ts (11 tests) 510ms
+ ✓ src/__tests__/unit/examStudyCore.test.ts (58 tests) 363ms
+ ✓ src/__tests__/unit/examStudyRoutes.test.ts (23 tests) 288ms
+ ✓ src/__tests__/unit/examStudyM1StudentMethods.test.ts (6 tests) 207ms
+ ✓ src/__tests__/unit/examStudyCoreLabel.test.ts (12 tests) 381ms
+ ✓ src/__tests__/unit/examStudyContract.test.ts (17 tests) 128ms
+ ✓ src/__tests__/unit/examStudyAccess.test.ts (18 tests) 148ms
+
+ Test Files  18 passed (18)
+      Tests  330 passed (330)
+   Start at  21:27:39
+   Duration  266.57s (transform 7.73s, setup 24.34s, import 60.18s, tests 136.46s, environment 39.40s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m1-method-tests-r2.json

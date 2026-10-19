@@ -1,0 +1,197 @@
+{
+  "method": "Official HTTP downloads in memory only, existing olefile and raw-deflate HWP parsing. Exact locators, hashes and reviewer paraphrases retained; no full publications written/copied.",
+  "documents": [
+    {
+      "edition": "2015",
+      "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=0404&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84",
+      "downloadContainerSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "zipMemberRawName": null,
+      "actualSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "expectedHashMatched": true,
+      "locators": [
+        {
+          "code": "4수02-10",
+          "stream": "BodyText/Section0",
+          "record1based": 2731,
+          "paragraphUtf16DecodedSha256": "23232f6ae2746c6a38f9422d0942ece59cec382117145ff5ad394caeb6fbaa50",
+          "normalizedTextSha256": "c5cc14c82a3a263969702ebee60af0119410c37cc64b1d3aaa5dc22424401ab1",
+          "reviewerParaphrase": "여러 사각형의 종류와 성질: square의 같은 변 및 축평행 표현의 초등 선수"
+        },
+        {
+          "code": "6수03-06",
+          "stream": "BodyText/Section0",
+          "record1based": 3433,
+          "paragraphUtf16DecodedSha256": "7b15537bee985c323ac2fb991c28cc35f384d0fa4f689ada77a604c74019550b",
+          "normalizedTextSha256": "408466f556010e72f33891a9325a1648470e2d3c2fe0790d9e3936c4efea35af",
+          "reviewerParaphrase": "삼각형 등 평면도형 넓이의 추론과 문제 해결: 밑변×높이÷2 및 분할"
+        },
+        {
+          "code": "삼각형 넓이 지도 유의",
+          "stream": "BodyText/Section0",
+          "record1based": 3480,
+          "paragraphUtf16DecodedSha256": "f8752023a70840c16004eb22a4f9c82b2edcfd07b50d480be23291d6f2187f56",
+          "normalizedTextSha256": "7f0b395fbd1ffc79b34d138cdb1346bf26bf670c95e1527a05361290dd5a511b",
+          "reviewerParaphrase": "삼각형 바깥에 높이가 놓이는 경우 포함: OBC의 외부 높이 사용 가능"
+        },
+        {
+          "code": "6수04-02",
+          "stream": "BodyText/Section0",
+          "record1based": 3545,
+          "paragraphUtf16DecodedSha256": "b6bb8c99ad3973401e0ff10b6da87fd9f49073468695b21b4b44c148147725e2",
+          "normalizedTextSha256": "7ae5c8075e1b7c3bfa98840c9197395dee58222af1b17f53e6f2cab0a399d1d8",
+          "reviewerParaphrase": "두 양의 크기를 비교하는 비: 두 삼각형의 넓이비"
+        },
+        {
+          "code": "6수04-04",
+          "stream": "BodyText/Section0",
+          "record1based": 3558,
+          "paragraphUtf16DecodedSha256": "1a0394e973362461aadd250dfd5c31b539cf12474fc9611e98ae1ec1e5070dde",
+          "normalizedTextSha256": "9593a0c5d13cf0a42100660f323120103b4520ee9eae7c1fbbe100bebe8c8756",
+          "reviewerParaphrase": "비례식 성질 및 간단한 비례식의 풀이: 동일 밑변을 갖는 넓이비에서 수치 높이 복원"
+        }
+      ]
+    },
+    {
+      "edition": "2022",
+      "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=040401&s=moe&fileSeq=1512facbda6c234a1641ac7e9c156ca2",
+      "downloadContainerSha256": "b37a372a90d6d00bb3985888bbb41caae7a35f28877dc243a6f4b28861c53146",
+      "zipMemberRawName": "[║░├Ñ8] ╝÷╟╨░· ▒│└░░·┴ñ.hwp",
+      "actualSha256": "aab8eed59ecf244223d04afad75f4cf5ac5085fadcfc3cf52c2f6d54ddfc7856",
+      "expectedHashMatched": true,
+      "locators": [
+        {
+          "code": "9수02-01",
+          "stream": "BodyText/Section0",
+          "record1based": 3604,
+          "paragraphUtf16DecodedSha256": "184d4a2af88d1724e072caf524053e074fde2e633c36234602db536d45173488",
+          "normalizedTextSha256": "b2ed6a194bb50bd7de11b1f22b26d3117b7c3edf2e6c422c48a05e55e7bb1d41",
+          "reviewerParaphrase": "상황을 문자식으로 표현하고 식의 값 계산"
+        },
+        {
+          "code": "9수02-02",
+          "stream": "BodyText/Section0",
+          "record1based": 3608,
+          "paragraphUtf16DecodedSha256": "30b73cb2f508377e1cd71d3844608b18633ebaaf7fc4048f122352a8a096217b",
+          "normalizedTextSha256": "5adb26cb110e9a40ec34fcc285ae26af802bc52c9c2835590e8c719220e0fbc0",
+          "reviewerParaphrase": "일차식 덧셈과 뺄셈"
+        },
+        {
+          "code": "9수02-03",
+          "stream": "BodyText/Section0",
+          "record1based": 3619,
+          "paragraphUtf16DecodedSha256": "3d5e781cae912be58d59cd19a82a344b5021d1095fb426bc41ec0966180f568a",
+          "normalizedTextSha256": "373e510fe398c0eef6f7e2ef6fd12416c6784a4c56cdb8c3ebd9782efd09c6de",
+          "reviewerParaphrase": "방정식과 해의 의미 및 등식 성질"
+        },
+        {
+          "code": "9수02-04",
+          "stream": "BodyText/Section0",
+          "record1based": 3623,
+          "paragraphUtf16DecodedSha256": "8a2fe59821df540cfce3ea6824bfb3fcdd3cdd9ac47843a8c10025652b98ec92",
+          "normalizedTextSha256": "b2378cb10f4c02ee26c75fc0e53a3586f6cf289d6465273750d7efc061cafc3e",
+          "reviewerParaphrase": "일차방정식 풀이와 활용"
+        },
+        {
+          "code": "9수02-05",
+          "stream": "BodyText/Section0",
+          "record1based": 3634,
+          "paragraphUtf16DecodedSha256": "ffa3a215de3f6d8cdfab39c64cd1b42c8d0c8f547d106bc88451d160a2436146",
+          "normalizedTextSha256": "f9bf8e889634cfa94079bae90e572d1ac924703855f68a49315cd7c76c97b9cd",
+          "reviewerParaphrase": "순서쌍과 좌표"
+        },
+        {
+          "code": "9수02-06",
+          "stream": "BodyText/Section0",
+          "record1based": 3638,
+          "paragraphUtf16DecodedSha256": "3b399628d3c2529db6e12d8c9074e86f743ac1ee8052e870db438965b7ed65e1",
+          "normalizedTextSha256": "5d9428718aad51b87d367ed7d837b8565fc6736402ad13371615c0244384dc08",
+          "reviewerParaphrase": "그래프로 표현하고 해석"
+        },
+        {
+          "code": "9수02-07",
+          "stream": "BodyText/Section0",
+          "record1based": 3642,
+          "paragraphUtf16DecodedSha256": "55d5d0a1d717f7aa399e49120d6636d1fea8f8f5da99e562daee7b3b222dddd4",
+          "normalizedTextSha256": "a132e4bfb12a9a6dc276a2d6ab3d00aad8785c437d422abfb2cae47d3e1060ff",
+          "reviewerParaphrase": "정비례/반비례와 표·식·그래프 표현"
+        },
+        {
+          "code": "9수02-13",
+          "stream": "BodyText/Section0",
+          "record1based": 3691,
+          "paragraphUtf16DecodedSha256": "ddec4c8c4758664d95959e39a2555f9eb55de4fedf8489e69bf2e13d1ae910fa",
+          "normalizedTextSha256": "e8a4a5394123d88332f2ee8015c28125466d3e7a921f72bc450b414e625105f3",
+          "reviewerParaphrase": "두 미지수의 연립일차방정식은 별개의 후속 기준이며 이번 M1 학생 풀이에 필요하지 않음"
+        },
+        {
+          "code": "9수02-07 해설",
+          "stream": "BodyText/Section0",
+          "record1based": 3783,
+          "paragraphUtf16DecodedSha256": "0255f2dedef226d2e26b0bce86417f403a9c4d66d765025ee496a391732e505c",
+          "normalizedTextSha256": "a13fcd86efe032f7b5e9dabc1ce5a200b02fa40160a8692f2619161011a2237e",
+          "reviewerParaphrase": "정비례/반비례의 직관적 실생활 관계를 통한 이해"
+        },
+        {
+          "code": "방정식 지도 유의",
+          "stream": "BodyText/Section0",
+          "record1based": 3855,
+          "paragraphUtf16DecodedSha256": "4ad1e82cccbe284f8241108e48df9e226e07342a9fc7f73f2825404d566ee55b",
+          "normalizedTextSha256": "b29d864776a4086ffa7f75c3fa8d9d70532abccb45b798debb5826c0e6bb26c5",
+          "reviewerParaphrase": "해를 구한 뒤 문제 상황 적합성을 확인하는 논리적 검토"
+        },
+        {
+          "code": "활용 문제 범위 유의",
+          "stream": "BodyText/Section0",
+          "record1based": 3887,
+          "paragraphUtf16DecodedSha256": "76ca7dc61f73960e338d1a883ff13e16c66398851574cb20375942e9eee54677",
+          "normalizedTextSha256": "21d08ac2e53fa6206a893b403c823e2f5ec3ee70cfb39c31d7e05166b5c7e280",
+          "reviewerParaphrase": "방정식·부등식·함수의 지나친 복잡화 금지; 유한 실제 출력의 수치 부담 별도 평가"
+        }
+      ]
+    }
+  ],
+  "actualM1Placement": {
+    "url": "https://www.goe.go.kr/resource/goe/na/bbs_2675/2026/05/34866f8c-3e6b-45c1-84fb-4b232c919650.pdf",
+    "pdfSha256": "e3134915686021e9badf0ff5f8536b0ae2206de2a392907076eb83c9b6d5e08e",
+    "pages": [
+      {
+        "physicalPage1based": 24,
+        "pageTextSha256": "529619332c240dc1c80dbfe8e02eb8b977e64c2b4d4d51ca27af3847b1ae0f3b",
+        "observedCodes": [
+          "9수02-01",
+          "9수02-02",
+          "9수02-03",
+          "9수02-04",
+          "9수02-05",
+          "9수02-06"
+        ],
+        "containsGrade1Semester1Example": true,
+        "containsKICE": false,
+        "containsPublicationNumber": false
+      },
+      {
+        "physicalPage1based": 61,
+        "pageTextSha256": "3fc6e849cd09ce4a8f2146a127d0497a40e4bf50493794e1dde23cc8cfd8042c",
+        "observedCodes": [],
+        "containsGrade1Semester1Example": false,
+        "containsKICE": true,
+        "containsPublicationNumber": true
+      }
+    ],
+    "reviewerObservation": "공식2026 중1 1학기 평가계획 예시의9수02-01~06은 문자식/일차방정식/좌표·그래프를 포함한다. 중1 사례로 실제 수업·평가 배치를 확인하는 근거이며 법적 전국 학기 배당은 아니다. 정비례/반비례9수02-07는 해당 단원 학습 후라는 조건으로 판단한다.",
+    "limit": "예시 자료로2025 모든 학교/2026 모든 학기 준비도를 인증하지 않는다."
+  },
+  "cohort": {
+    "noticeUrl": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&m=040401",
+    "noticeHtmlSha256": "530421aa696dd228db124f6cd920cef692746e0a642cfe226a13db4c789b1cb4",
+    "locator": "교육부 고시 제2022-33호 부칙1 나/다/라",
+    "rollout": {
+      "M1_2022": "2025-03-01",
+      "E5E6_2022": "2026-03-01"
+    },
+    "exam2025M1": "초5/초6 이수는2023/2024:2015개정. 중1은2025부터2022개정.",
+    "exam2026M1": "초5/초6 이수는2024/2025:2015개정. 중1은2022개정.",
+    "limit": "현재2026의 초5/6가2022를 쓴다는 사실을2026중1이 과거 이수한 초등 선수교육과정에 소급하지 않는다. 유급·조기진급·개별 이력과 학교 진도는 별도 확인."
+  },
+  "fullThirdPartyPublished": false
+}

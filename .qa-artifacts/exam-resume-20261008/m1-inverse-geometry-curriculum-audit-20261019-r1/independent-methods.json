@@ -1,0 +1,766 @@
+[
+  {
+    "familyId": "study-middle-inverse-equal-legs",
+    "variant": 0,
+    "parameters": {
+      "p": 2,
+      "q": 5
+    },
+    "proof": {
+      "oneVariable": "Let lower ordinate be t. Upper ordinate is t+d; substitute into the inverse relation to get the one-variable equation p(t+d)=q t. All p,q,d are printed numerical constants.",
+      "numericEquation": "2(t+3)=5t",
+      "solution": {
+        "k": 10,
+        "u": 5,
+        "v": 2
+      },
+      "unique": "The coefficient q-p=d is positive, so the single linear equation has exactly one solution.",
+      "currentSolutionUsesElimination": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-equal-legs",
+    "variant": 1,
+    "parameters": {
+      "p": 2,
+      "q": 7
+    },
+    "proof": {
+      "oneVariable": "Let lower ordinate be t. Upper ordinate is t+d; substitute into the inverse relation to get the one-variable equation p(t+d)=q t. All p,q,d are printed numerical constants.",
+      "numericEquation": "2(t+5)=7t",
+      "solution": {
+        "k": 14,
+        "u": 7,
+        "v": 2
+      },
+      "unique": "The coefficient q-p=d is positive, so the single linear equation has exactly one solution.",
+      "currentSolutionUsesElimination": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-equal-legs",
+    "variant": 2,
+    "parameters": {
+      "p": 3,
+      "q": 5
+    },
+    "proof": {
+      "oneVariable": "Let lower ordinate be t. Upper ordinate is t+d; substitute into the inverse relation to get the one-variable equation p(t+d)=q t. All p,q,d are printed numerical constants.",
+      "numericEquation": "3(t+2)=5t",
+      "solution": {
+        "k": 15,
+        "u": 5,
+        "v": 3
+      },
+      "unique": "The coefficient q-p=d is positive, so the single linear equation has exactly one solution.",
+      "currentSolutionUsesElimination": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-equal-legs",
+    "variant": 3,
+    "parameters": {
+      "p": 3,
+      "q": 7
+    },
+    "proof": {
+      "oneVariable": "Let lower ordinate be t. Upper ordinate is t+d; substitute into the inverse relation to get the one-variable equation p(t+d)=q t. All p,q,d are printed numerical constants.",
+      "numericEquation": "3(t+4)=7t",
+      "solution": {
+        "k": 21,
+        "u": 7,
+        "v": 3
+      },
+      "unique": "The coefficient q-p=d is positive, so the single linear equation has exactly one solution.",
+      "currentSolutionUsesElimination": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "variant": 0,
+    "parameters": {
+      "a": 2,
+      "y": 6,
+      "r": 1,
+      "s": 1
+    },
+    "proof": {
+      "a": 2,
+      "y": 6,
+      "r": 1,
+      "s": 1,
+      "b": 4,
+      "z": 3,
+      "triangles": {
+        "OAC": {
+          "base": "AC",
+          "baseLength": 6,
+          "height": 2,
+          "area": 6
+        },
+        "ABC": {
+          "base": "AC",
+          "baseLength": 6,
+          "height": 2,
+          "area": 6
+        },
+        "OBC": {
+          "base": "OC",
+          "baseLength": 2,
+          "height": 3,
+          "area": 3
+        }
+      },
+      "decomposition": "Simple convex quadrilateral OABC is partitioned by AC into OAC+ABC and by OB into OAB+OBC. Thus OAB=OAC+ABC-OBC.",
+      "area": 9,
+      "unique": "Shared positive AC gives unique positive horizontal offset a*r/s; b>a then unique z=k/b. Finite task does not require similarity, determinant or slope formula.",
+      "currentVagueTriangleStep": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "variant": 1,
+    "parameters": {
+      "a": 2,
+      "y": 6,
+      "r": 2,
+      "s": 1
+    },
+    "proof": {
+      "a": 2,
+      "y": 6,
+      "r": 2,
+      "s": 1,
+      "b": 6,
+      "z": 2,
+      "triangles": {
+        "OAC": {
+          "base": "AC",
+          "baseLength": 6,
+          "height": 2,
+          "area": 6
+        },
+        "ABC": {
+          "base": "AC",
+          "baseLength": 6,
+          "height": 4,
+          "area": 12
+        },
+        "OBC": {
+          "base": "OC",
+          "baseLength": 2,
+          "height": 2,
+          "area": 2
+        }
+      },
+      "decomposition": "Simple convex quadrilateral OABC is partitioned by AC into OAC+ABC and by OB into OAB+OBC. Thus OAB=OAC+ABC-OBC.",
+      "area": 16,
+      "unique": "Shared positive AC gives unique positive horizontal offset a*r/s; b>a then unique z=k/b. Finite task does not require similarity, determinant or slope formula.",
+      "currentVagueTriangleStep": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "variant": 2,
+    "parameters": {
+      "a": 2,
+      "y": 6,
+      "r": 1,
+      "s": 2
+    },
+    "proof": {
+      "a": 2,
+      "y": 6,
+      "r": 1,
+      "s": 2,
+      "b": 3,
+      "z": 4,
+      "triangles": {
+        "OAC": {
+          "base": "AC",
+          "baseLength": 6,
+          "height": 2,
+          "area": 6
+        },
+        "ABC": {
+          "base": "AC",
+          "baseLength": 6,
+          "height": 1,
+          "area": 3
+        },
+        "OBC": {
+          "base": "OC",
+          "baseLength": 2,
+          "height": 4,
+          "area": 4
+        }
+      },
+      "decomposition": "Simple convex quadrilateral OABC is partitioned by AC into OAC+ABC and by OB into OAB+OBC. Thus OAB=OAC+ABC-OBC.",
+      "area": 5,
+      "unique": "Shared positive AC gives unique positive horizontal offset a*r/s; b>a then unique z=k/b. Finite task does not require similarity, determinant or slope formula.",
+      "currentVagueTriangleStep": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "variant": 3,
+    "parameters": {
+      "a": 2,
+      "y": 12,
+      "r": 1,
+      "s": 1
+    },
+    "proof": {
+      "a": 2,
+      "y": 12,
+      "r": 1,
+      "s": 1,
+      "b": 4,
+      "z": 6,
+      "triangles": {
+        "OAC": {
+          "base": "AC",
+          "baseLength": 12,
+          "height": 2,
+          "area": 12
+        },
+        "ABC": {
+          "base": "AC",
+          "baseLength": 12,
+          "height": 2,
+          "area": 12
+        },
+        "OBC": {
+          "base": "OC",
+          "baseLength": 2,
+          "height": 6,
+          "area": 6
+        }
+      },
+      "decomposition": "Simple convex quadrilateral OABC is partitioned by AC into OAC+ABC and by OB into OAB+OBC. Thus OAB=OAC+ABC-OBC.",
+      "area": 18,
+      "unique": "Shared positive AC gives unique positive horizontal offset a*r/s; b>a then unique z=k/b. Finite task does not require similarity, determinant or slope formula.",
+      "currentVagueTriangleStep": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "variant": 4,
+    "parameters": {
+      "a": 2,
+      "y": 12,
+      "r": 2,
+      "s": 1
+    },
+    "proof": {
+      "a": 2,
+      "y": 12,
+      "r": 2,
+      "s": 1,
+      "b": 6,
+      "z": 4,
+      "triangles": {
+        "OAC": {
+          "base": "AC",
+          "baseLength": 12,
+          "height": 2,
+          "area": 12
+        },
+        "ABC": {
+          "base": "AC",
+          "baseLength": 12,
+          "height": 4,
+          "area": 24
+        },
+        "OBC": {
+          "base": "OC",
+          "baseLength": 2,
+          "height": 4,
+          "area": 4
+        }
+      },
+      "decomposition": "Simple convex quadrilateral OABC is partitioned by AC into OAC+ABC and by OB into OAB+OBC. Thus OAB=OAC+ABC-OBC.",
+      "area": 32,
+      "unique": "Shared positive AC gives unique positive horizontal offset a*r/s; b>a then unique z=k/b. Finite task does not require similarity, determinant or slope formula.",
+      "currentVagueTriangleStep": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "variant": 5,
+    "parameters": {
+      "a": 2,
+      "y": 12,
+      "r": 1,
+      "s": 2
+    },
+    "proof": {
+      "a": 2,
+      "y": 12,
+      "r": 1,
+      "s": 2,
+      "b": 3,
+      "z": 8,
+      "triangles": {
+        "OAC": {
+          "base": "AC",
+          "baseLength": 12,
+          "height": 2,
+          "area": 12
+        },
+        "ABC": {
+          "base": "AC",
+          "baseLength": 12,
+          "height": 1,
+          "area": 6
+        },
+        "OBC": {
+          "base": "OC",
+          "baseLength": 2,
+          "height": 8,
+          "area": 8
+        }
+      },
+      "decomposition": "Simple convex quadrilateral OABC is partitioned by AC into OAC+ABC and by OB into OAB+OBC. Thus OAB=OAC+ABC-OBC.",
+      "area": 10,
+      "unique": "Shared positive AC gives unique positive horizontal offset a*r/s; b>a then unique z=k/b. Finite task does not require similarity, determinant or slope formula.",
+      "currentVagueTriangleStep": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "variant": 6,
+    "parameters": {
+      "a": 4,
+      "y": 6,
+      "r": 1,
+      "s": 1
+    },
+    "proof": {
+      "a": 4,
+      "y": 6,
+      "r": 1,
+      "s": 1,
+      "b": 8,
+      "z": 3,
+      "triangles": {
+        "OAC": {
+          "base": "AC",
+          "baseLength": 6,
+          "height": 4,
+          "area": 12
+        },
+        "ABC": {
+          "base": "AC",
+          "baseLength": 6,
+          "height": 4,
+          "area": 12
+        },
+        "OBC": {
+          "base": "OC",
+          "baseLength": 4,
+          "height": 3,
+          "area": 6
+        }
+      },
+      "decomposition": "Simple convex quadrilateral OABC is partitioned by AC into OAC+ABC and by OB into OAB+OBC. Thus OAB=OAC+ABC-OBC.",
+      "area": 18,
+      "unique": "Shared positive AC gives unique positive horizontal offset a*r/s; b>a then unique z=k/b. Finite task does not require similarity, determinant or slope formula.",
+      "currentVagueTriangleStep": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "variant": 7,
+    "parameters": {
+      "a": 4,
+      "y": 6,
+      "r": 2,
+      "s": 1
+    },
+    "proof": {
+      "a": 4,
+      "y": 6,
+      "r": 2,
+      "s": 1,
+      "b": 12,
+      "z": 2,
+      "triangles": {
+        "OAC": {
+          "base": "AC",
+          "baseLength": 6,
+          "height": 4,
+          "area": 12
+        },
+        "ABC": {
+          "base": "AC",
+          "baseLength": 6,
+          "height": 8,
+          "area": 24
+        },
+        "OBC": {
+          "base": "OC",
+          "baseLength": 4,
+          "height": 2,
+          "area": 4
+        }
+      },
+      "decomposition": "Simple convex quadrilateral OABC is partitioned by AC into OAC+ABC and by OB into OAB+OBC. Thus OAB=OAC+ABC-OBC.",
+      "area": 32,
+      "unique": "Shared positive AC gives unique positive horizontal offset a*r/s; b>a then unique z=k/b. Finite task does not require similarity, determinant or slope formula.",
+      "currentVagueTriangleStep": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "variant": 8,
+    "parameters": {
+      "a": 4,
+      "y": 6,
+      "r": 1,
+      "s": 2
+    },
+    "proof": {
+      "a": 4,
+      "y": 6,
+      "r": 1,
+      "s": 2,
+      "b": 6,
+      "z": 4,
+      "triangles": {
+        "OAC": {
+          "base": "AC",
+          "baseLength": 6,
+          "height": 4,
+          "area": 12
+        },
+        "ABC": {
+          "base": "AC",
+          "baseLength": 6,
+          "height": 2,
+          "area": 6
+        },
+        "OBC": {
+          "base": "OC",
+          "baseLength": 4,
+          "height": 4,
+          "area": 8
+        }
+      },
+      "decomposition": "Simple convex quadrilateral OABC is partitioned by AC into OAC+ABC and by OB into OAB+OBC. Thus OAB=OAC+ABC-OBC.",
+      "area": 10,
+      "unique": "Shared positive AC gives unique positive horizontal offset a*r/s; b>a then unique z=k/b. Finite task does not require similarity, determinant or slope formula.",
+      "currentVagueTriangleStep": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "variant": 9,
+    "parameters": {
+      "a": 4,
+      "y": 12,
+      "r": 1,
+      "s": 1
+    },
+    "proof": {
+      "a": 4,
+      "y": 12,
+      "r": 1,
+      "s": 1,
+      "b": 8,
+      "z": 6,
+      "triangles": {
+        "OAC": {
+          "base": "AC",
+          "baseLength": 12,
+          "height": 4,
+          "area": 24
+        },
+        "ABC": {
+          "base": "AC",
+          "baseLength": 12,
+          "height": 4,
+          "area": 24
+        },
+        "OBC": {
+          "base": "OC",
+          "baseLength": 4,
+          "height": 6,
+          "area": 12
+        }
+      },
+      "decomposition": "Simple convex quadrilateral OABC is partitioned by AC into OAC+ABC and by OB into OAB+OBC. Thus OAB=OAC+ABC-OBC.",
+      "area": 36,
+      "unique": "Shared positive AC gives unique positive horizontal offset a*r/s; b>a then unique z=k/b. Finite task does not require similarity, determinant or slope formula.",
+      "currentVagueTriangleStep": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "variant": 10,
+    "parameters": {
+      "a": 4,
+      "y": 12,
+      "r": 2,
+      "s": 1
+    },
+    "proof": {
+      "a": 4,
+      "y": 12,
+      "r": 2,
+      "s": 1,
+      "b": 12,
+      "z": 4,
+      "triangles": {
+        "OAC": {
+          "base": "AC",
+          "baseLength": 12,
+          "height": 4,
+          "area": 24
+        },
+        "ABC": {
+          "base": "AC",
+          "baseLength": 12,
+          "height": 8,
+          "area": 48
+        },
+        "OBC": {
+          "base": "OC",
+          "baseLength": 4,
+          "height": 4,
+          "area": 8
+        }
+      },
+      "decomposition": "Simple convex quadrilateral OABC is partitioned by AC into OAC+ABC and by OB into OAB+OBC. Thus OAB=OAC+ABC-OBC.",
+      "area": 64,
+      "unique": "Shared positive AC gives unique positive horizontal offset a*r/s; b>a then unique z=k/b. Finite task does not require similarity, determinant or slope formula.",
+      "currentVagueTriangleStep": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "variant": 11,
+    "parameters": {
+      "a": 4,
+      "y": 12,
+      "r": 1,
+      "s": 2
+    },
+    "proof": {
+      "a": 4,
+      "y": 12,
+      "r": 1,
+      "s": 2,
+      "b": 6,
+      "z": 8,
+      "triangles": {
+        "OAC": {
+          "base": "AC",
+          "baseLength": 12,
+          "height": 4,
+          "area": 24
+        },
+        "ABC": {
+          "base": "AC",
+          "baseLength": 12,
+          "height": 2,
+          "area": 12
+        },
+        "OBC": {
+          "base": "OC",
+          "baseLength": 4,
+          "height": 8,
+          "area": 16
+        }
+      },
+      "decomposition": "Simple convex quadrilateral OABC is partitioned by AC into OAC+ABC and by OB into OAB+OBC. Thus OAB=OAC+ABC-OBC.",
+      "area": 20,
+      "unique": "Shared positive AC gives unique positive horizontal offset a*r/s; b>a then unique z=k/b. Finite task does not require similarity, determinant or slope formula.",
+      "currentVagueTriangleStep": true
+    }
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "variant": 0,
+    "parameters": {
+      "a": 1,
+      "gap": 1,
+      "u": 2
+    },
+    "proof": {
+      "a": 1,
+      "b": 2,
+      "R": 4,
+      "u": 2,
+      "side": 2,
+      "C": [
+        4,
+        4
+      ],
+      "oneVariableEquation": "u+1u=4",
+      "unique": "Positive numerical coefficient 1+b-a gives unique u>0. Square side equality uses elementary square properties and one-variable linear arithmetic; no distance formula or similarity.",
+      "noLiteralProductRequired": true
+    }
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "variant": 1,
+    "parameters": {
+      "a": 1,
+      "gap": 1,
+      "u": 3
+    },
+    "proof": {
+      "a": 1,
+      "b": 2,
+      "R": 6,
+      "u": 3,
+      "side": 3,
+      "C": [
+        6,
+        6
+      ],
+      "oneVariableEquation": "u+1u=6",
+      "unique": "Positive numerical coefficient 1+b-a gives unique u>0. Square side equality uses elementary square properties and one-variable linear arithmetic; no distance formula or similarity.",
+      "noLiteralProductRequired": true
+    }
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "variant": 2,
+    "parameters": {
+      "a": 1,
+      "gap": 2,
+      "u": 2
+    },
+    "proof": {
+      "a": 1,
+      "b": 3,
+      "R": 6,
+      "u": 2,
+      "side": 4,
+      "C": [
+        6,
+        6
+      ],
+      "oneVariableEquation": "u+2u=6",
+      "unique": "Positive numerical coefficient 1+b-a gives unique u>0. Square side equality uses elementary square properties and one-variable linear arithmetic; no distance formula or similarity.",
+      "noLiteralProductRequired": true
+    }
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "variant": 3,
+    "parameters": {
+      "a": 1,
+      "gap": 2,
+      "u": 3
+    },
+    "proof": {
+      "a": 1,
+      "b": 3,
+      "R": 9,
+      "u": 3,
+      "side": 6,
+      "C": [
+        9,
+        9
+      ],
+      "oneVariableEquation": "u+2u=9",
+      "unique": "Positive numerical coefficient 1+b-a gives unique u>0. Square side equality uses elementary square properties and one-variable linear arithmetic; no distance formula or similarity.",
+      "noLiteralProductRequired": true
+    }
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "variant": 4,
+    "parameters": {
+      "a": 2,
+      "gap": 1,
+      "u": 2
+    },
+    "proof": {
+      "a": 2,
+      "b": 3,
+      "R": 4,
+      "u": 2,
+      "side": 2,
+      "C": [
+        4,
+        6
+      ],
+      "oneVariableEquation": "u+1u=4",
+      "unique": "Positive numerical coefficient 1+b-a gives unique u>0. Square side equality uses elementary square properties and one-variable linear arithmetic; no distance formula or similarity.",
+      "noLiteralProductRequired": true
+    }
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "variant": 5,
+    "parameters": {
+      "a": 2,
+      "gap": 1,
+      "u": 3
+    },
+    "proof": {
+      "a": 2,
+      "b": 3,
+      "R": 6,
+      "u": 3,
+      "side": 3,
+      "C": [
+        6,
+        9
+      ],
+      "oneVariableEquation": "u+1u=6",
+      "unique": "Positive numerical coefficient 1+b-a gives unique u>0. Square side equality uses elementary square properties and one-variable linear arithmetic; no distance formula or similarity.",
+      "noLiteralProductRequired": true
+    }
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "variant": 6,
+    "parameters": {
+      "a": 2,
+      "gap": 2,
+      "u": 2
+    },
+    "proof": {
+      "a": 2,
+      "b": 4,
+      "R": 6,
+      "u": 2,
+      "side": 4,
+      "C": [
+        6,
+        8
+      ],
+      "oneVariableEquation": "u+2u=6",
+      "unique": "Positive numerical coefficient 1+b-a gives unique u>0. Square side equality uses elementary square properties and one-variable linear arithmetic; no distance formula or similarity.",
+      "noLiteralProductRequired": true
+    }
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "variant": 7,
+    "parameters": {
+      "a": 2,
+      "gap": 2,
+      "u": 3
+    },
+    "proof": {
+      "a": 2,
+      "b": 4,
+      "R": 9,
+      "u": 3,
+      "side": 6,
+      "C": [
+        9,
+        12
+      ],
+      "oneVariableEquation": "u+2u=9",
+      "unique": "Positive numerical coefficient 1+b-a gives unique u>0. Square side equality uses elementary square properties and one-variable linear arithmetic; no distance formula or similarity.",
+      "noLiteralProductRequired": true
+    }
+  }
+]

@@ -1,5 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { coprimeSymbolicSum } from "@/lib/examStudy/families/middle/remaining";
+import { equalLegs } from "@/lib/examStudy/families/middle/algebra";
+import { inverseArea } from "@/lib/examStudy/families/middle/graphs";
 import { familyCoverage } from "@/lib/examStudy/evidence";
 import { generateExamStudy } from "@/lib/examStudy/generate";
 import {
@@ -114,4 +116,39 @@ describe("grade eligibility precedes mathematical proof and profile completion",
       }),
     ).toBeNull();
   });
+
+  it.each([equalLegs, inverseArea])(
+    "only the reviewed full student-method version may generate for $id",
+    async (current) => {
+      expect(studyCurriculumHold(current)).toBeNull();
+      for (const change of [
+        { version: "1" },
+        { version: "999", confidence: 1, gradeApproved: true },
+        { id: `renamed-${current.id}` },
+      ]) {
+        const generate = vi.fn(current.generate);
+        const stale = { ...current, ...change, generate };
+        expect(studyCurriculumHold(stale)?.status).toBe(
+          "pending-reviewed-student-method-version",
+        );
+        expect(familyCoverage(stale, current.fulfills[0].requirement)).toBe(
+          "unavailable",
+        );
+        const result = await generateExamStudy(
+          {
+            course: "중1",
+            familyIds: [stale.id],
+            count: 1,
+            seed: 5,
+            format: "혼합",
+            maxPerFamily: 1,
+          },
+          { families: [stale] },
+        );
+        expect(result.status).toBe("unavailable");
+        expect(result.questions).toEqual([]);
+        expect(generate).not.toHaveBeenCalled();
+      }
+    },
+  );
 });

@@ -309,6 +309,8 @@ for (const a of [2, 4])
       inverseAreaDomain.push({ a, y, r, s });
 export const inverseArea = family({
   key: "inverse-area-ratio",
+  version: "2-m1-elementary-area",
+  bindStudentSolution: true,
   title: "반비례 두 점과 보조 삼각형의 넓이비",
   course: "중1",
   unit: "정비례와 반비례",
@@ -357,13 +359,7 @@ export const inverseArea = family({
       p,
       content,
       ans,
-      `$AC=${y}$를 공통 밑변으로 보면 높이 비는 $(x_B-${a}):${a}=${r}:${s}$이다. 따라서 $x_B=${fmt(b)}$. $k=${a}×${y}=${k}$이므로 $y_B=${fmt(z)}$. 큰 삼각형에서 작은 삼각형을 빼면 넓이는 $(${fmt(b * y)}-${fmt(a * z)})/2=${fmt(
-        area([
-          [0, 0],
-          [a, y],
-          [b, z],
-        ]),
-      )}$이다.`,
+      `$AC=${y}$를 공통 밑변으로 보면 높이 비는 $(x_B-${a}):${a}=${r}:${s}$이다. 따라서 $x_B=${fmt(b)}$. $k=${a}×${y}=${k}$이므로 $y_B=${fmt(z)}$. 밑변과 높이로 구한 세 삼각형의 넓이는 각각 $[OAC]=${a}×${y}÷2=${fmt((a * y) / 2)}$, $[ABC]=${fmt(b - a)}×${y}÷2=${fmt(((b - a) * y) / 2)}$, $[OBC]=${a}×${fmt(z)}÷2=${fmt((a * z) / 2)}$이다. 여기서 $[OAC]$는 삼각형 $OAC$의 넓이를 뜻한다. 사각형 $OABC$는 삼각형 $OAC,ABC$로도, 삼각형 $OAB,OBC$로도 나뉜다. 그러므로 $[OAB]=[OAC]+[ABC]-[OBC]=${fmt((a * y) / 2)}+${fmt(((b - a) * y) / 2)}-${fmt((a * z) / 2)}=${fmt((b * y - a * z) / 2)}$이다.`,
       g,
       graphBasis,
     );
@@ -420,6 +416,17 @@ export const inverseArea = family({
         [a, 0],
       ]);
     insist(near(ratio, r / s), "넓이비와 그림 불일치");
+    clauses(item.solution, [
+      `$[OAC]=${a}×${y}÷2=${fmt((a * y) / 2)}$`,
+      `$[ABC]=${fmt(x - a)}×${y}÷2=${fmt(((x - a) * y) / 2)}$`,
+      `$[OBC]=${a}×${fmt(z)}÷2=${fmt((a * z) / 2)}$`,
+      "삼각형 $OAC,ABC$로도, 삼각형 $OAB,OBC$로도 나뉜다",
+      `$[OAB]=[OAC]+[ABC]-[OBC]=${fmt((a * y) / 2)}+${fmt(((x - a) * y) / 2)}-${fmt((a * z) / 2)}=${fmt((x * y - a * z) / 2)}$`,
+    ]);
+    insist(
+      !/큰 삼각형에서|행렬식|신발끈|닮음/u.test(item.solution),
+      "초등 넓이 분할의 근거가 필요함",
+    );
     return {
       answer: `B=(${fmt(x)},${fmt(z)}), 넓이=${fmt((x * y - a * z) / 2)}`,
       parameters: { a, y, r, s },

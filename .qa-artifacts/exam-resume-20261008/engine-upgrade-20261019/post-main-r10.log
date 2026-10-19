@@ -1,0 +1,33 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/unit/middleRootTableApproximation.test.ts (3 tests) 24803ms
+     ✓ exhausts900 radicands and both scale factors using integer squared rounding bounds  6194ms
+     ✓ preserves identities and changes only the corrected recipe version without inventing evidence  18512ms
+ ✓ src/__tests__/api/mathExplorersRoutes.test.ts (31 tests) 6372ms
+     ✓ shows a new 초5 student the 2nd-semester unit, writes nothing on read and keeps the plan on start  446ms
+     ✓ awards the actual Korea completion day once and keeps historical replay read only  627ms
+     ✓ keeps an exhausted concept mission open across midnight until retry-unresolved solves the rest  1332ms
+     ✓ never adds a second tile on a day that already has one  480ms
+     ✓ stores selected grade and goal, then supports due-memory and prerequisite-repair sessions  993ms
+     ✓ collects wrong answers, awards one completed day, unlocks chests, and replays old days without rewards  401ms
+ ✓ src/__tests__/unit/examStudyReinforcement.test.ts (20 tests) 7365ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: candidate  718ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: classification  2119ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: model  1499ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: simplify  451ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: rectangle  1068ms
+     ✓ exercises every rectangle time branch and rejects root/domain/solution/rubric math mutations  325ms
+ ✓ src/__tests__/unit/srsStoredContractWalk.test.ts (3 tests) 927ms
+     ✓ chooses 초5 and a unit in the settings, then studies every day without a teacher plan  592ms
+ ✓ src/__tests__/api/fadingDailyRoutes.test.ts (15 tests) 442ms
+ ✓ src/__tests__/api/mathSrsCourseRoutes.test.ts (15 tests) 294ms
+ ✓ src/__tests__/unit/defaultCoursePlan.test.ts (18 tests) 149ms
+ ✓ src/__tests__/unit/examStudyRoutes.test.ts (23 tests) 230ms
+
+ Test Files  8 passed (8)
+      Tests  128 passed (128)
+   Start at  20:46:59
+   Duration  107.79s (transform 22.56s, setup 13.32s, import 43.98s, tests 40.58s, environment 7.78s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/post-main-r10.json

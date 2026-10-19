@@ -1,0 +1,306 @@
+{
+  "kind": "focused-independent-engine-template-binding-regression/v3",
+  "status": "verified-bounded-template-regression",
+  "reviewerId": "codex-clean-blind-20261019-r1-same-session-engine-audit",
+  "createdAt": "2026-10-19T12:25:56.656444+00:00",
+  "conclusion": "r2의두모순추가오통과가검토된두유한템플릿에서해소됐다. 실제24출력은그대로이고기존128반례와변경16개전체의추가48반례가거부된다. 자유형식해설의의미검증이나전엔진학년승인으로확장하지않는다.",
+  "scope": {
+    "rootReadOnly": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008",
+    "rootFiles": [
+      "src/lib/examStudy/families/middle/algebra.ts",
+      "src/lib/examStudy/families/middle/graphs.ts",
+      "src/lib/examStudy/families/middle/support.ts",
+      "src/__tests__/unit/examStudyM1StudentMethods.test.ts"
+    ],
+    "families": 3,
+    "actualVariants": 24,
+    "changedMethodVariants": 16,
+    "unchangedSquareVariants": 8,
+    "broadAudits": 0,
+    "newPrimaryWebSweep": false,
+    "otherExamQuestionsRead": 0,
+    "newWorkers": 0,
+    "newWorktrees": 0,
+    "newIndependentBlindSolverCount": 0
+  },
+  "summary": {
+    "actualVariants": 24,
+    "counts": {
+      "equalLegs": 4,
+      "inverseArea": 12,
+      "unchangedSquare": 8
+    },
+    "actualVerifierPass": 24,
+    "negativeCases": 128,
+    "negativeCasesRejected": 128,
+    "allNegativeAnswersUnchanged": true,
+    "suffixControls": 48,
+    "suffixRejected": 48,
+    "contradictorySuffixControls": 32,
+    "unknownProseControls": 16,
+    "r2ExactCounterexamplesRejected": 2,
+    "all24StudentOutputsUnchangedFromR2": true,
+    "allVersionsUnchanged": true,
+    "mathBlocksRendered": 484,
+    "exactExistingFigureSpecs": 20,
+    "sourceBeforeAfterEqual": true,
+    "noRootAnswerHelperOracle": true,
+    "fullRegistryImported": false,
+    "rootEdits": 0,
+    "dbWrites": 0,
+    "deploys": 0
+  },
+  "bindingReview": {
+    "optionalDefinitionField": "bindStudentSolution?: boolean",
+    "optedIn": [
+      "equalLegs",
+      "inverseArea"
+    ],
+    "withinReadModulesOptinsExactlyTwo": true,
+    "scopeLimit": "Only the two reviewed declarations in the authorized algebra.ts/graphs.ts modules were inspected for opt-in. No repository-wide registry scan or certification of other families.",
+    "order": "Existing d.solve(item) still derives answer/parameters from printed content/labels and retains bounded method clauses. family.verify then compares parameters with the derived parameters and finite domain, checks answer equality, and only afterward checks item.solution===d.make(solved.parameters).solution for opt-in families.",
+    "bindingMeaning": "Exact complete canonical student-solution string for the reviewed finite template; an unreviewed suffix, including harmless prose or equivalent formatting, is rejected. This is template integrity, not semantic understanding or acceptance of arbitrary equivalent proofs.",
+    "oracleSeparation": "Own numeric calculations read printed content and figure labels; no import of root support.area/linear2/solve as the independent answer oracle. Actual family.verify is separately called as the system under test.",
+    "versions": {
+      "equalLegs": "2-m1-single-variable",
+      "inverseArea": "2-m1-elementary-area",
+      "square": "1"
+    },
+    "versionReason": "Parent states these local drafts were not committed/pushed/served, so no version bump was needed. Exported values and unchanged current student outputs were observed. Historical deployment/DB state was not independently inspected.",
+    "evidence": "binding-scope.json"
+  },
+  "numericalReview": {
+    "result": "all24passed",
+    "source": "actual24-and-independent-findings.json",
+    "method": "Rerun numerical one-variable equalLegs, elementary common-base/three-area inverseArea, and numerical one-variable square directly from printed text/labels. All positive lengths/coordinates, nonzero coefficients, original relations and unique requested quantities verified. 484actualmathblocks rendered with KaTeX; no app run.",
+    "equalLegs": "all4: positive coefficientq-p, lower ordinatet>0, upper=t+d, same inverse product and equal differences. Student operation path unchanged fromr2.",
+    "inverseArea": "all12: positive commonACbase fixes offseta*r/s uniquely, b>a,z>0,z<y,bz=ay; elementaryOAC/ABC/OBC numerical areas sum/difference gives positive uniqueOAB. No determinant/similarity or new prerequisite introduced.",
+    "square": "all8: positive coefficient1+b-a determinesu uniquely, positive equal sides and two direct-proportion incidences; same first-quadrant vertices andC. Student output/version unaffected; square was not opted into new solution binding."
+  },
+  "regression": {
+    "all24OutputComparison": "r2-output-comparison.json: all24printed content,answer,solution,figureSpec,version,format exactly equal r2.",
+    "same128Controls": "verifier-negative-cases.json is JSON-byte-equivalent in serialized data to r2 controls, including actual16oldv1solutions; all rejected with original current final answers unchanged.",
+    "all16SuffixControls": "suffix-controls-all16.json: both contradictory suffixes t=99 and[ABC]=999 on each4+12variant, plus arbitrary unreviewed prose on each;48total rejected specifically by canonical template mismatch.",
+    "r2FailureClosure": "verifier-semantic-limits.json: exacttwo r2variant0counterexamples nowvalid=false. R2evidence remains immutable, and those earlier failures are not overwritten.",
+    "squareEffect": "All8square current outputs and their factory pass results unchanged. The new branch is opt-in and square declaration has no bindStudentSolution flag. No claim that square now has freeform semantic solution verification."
+  },
+  "findings": [
+    {
+      "id": "R2-G3",
+      "status": "resolved-within-reviewed-template",
+      "coverage": "all4equalLegs",
+      "evidence": "All4t=99suffixes rejected, includingexactr2counterexample; canonical actualoutputs remainvalid."
+    },
+    {
+      "id": "R2-G4",
+      "status": "resolved-within-reviewed-template",
+      "coverage": "all12inverseArea",
+      "evidence": "All12ABC=999suffixes rejected, includingexactr2counterexample; canonicalactualoutputs remainvalid."
+    }
+  ],
+  "familyOutcomes": {
+    "equalLegs": {
+      "familyId": "study-middle-inverse-equal-legs",
+      "version": "2-m1-single-variable",
+      "variants": 4,
+      "sevenSurfaces": {
+        "stem": {
+          "status": "passed",
+          "evidence": "모든4발문에서양수서로다른x좌표p=2/3,q=5/7, u>v>0,가로/세로차의동일조건,동일반비례식이주어진다. k,u,v라는세이름은세미지수연립법을필수화하지않는다."
+        },
+        "choices": {
+          "status": "not-present",
+          "evidence": "현재4출력은단답형이다. 객관식보기/오답선지/서술형rubric은없고검토하지않았다."
+        },
+        "figuresAndTables": {
+          "status": "not-present",
+          "evidence": "figureSpec=null. 좌표와조건은발문에직접인쇄되어숨은도형전제가없다."
+        },
+        "notation": {
+          "status": "passed",
+          "evidence": "y=k/x, 좌표쌍, k/u/v와새변수t는문자사용/좌표/반비례범위이다. p와q는검토자표기이며학생출력은숫자계수2,3,5,7만쓴다. 상수×(t+수)분배는일차식계산이다."
+        },
+        "answer": {
+          "status": "passed",
+          "evidence": "독립계산k/u/v는순서대로10/5/2,14/7/2,15/5/3,21/7/3. 각쌍은양수·두곱일치·두차일치. q-p>0인수치계수로유일해이다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "evidence": "실제4풀이가v=t,u=t+d에서p(t+d)=qt라는한미지수수치방정식을세우고분배/이항/나눗셈으로t를복원한다. 두미지수식의가감·소거가없다. 2022의9수02-01~04와07로지원된다."
+        },
+        "prerequisites": {
+          "status": "passed-with-readiness-condition",
+          "evidence": "일차식/등식성질/일차방정식/좌표/반비례를배운후가능. 2025/2026중1의2022범위. 두미지수연립9수02-13을필수선수로추가하지않았다. 개별학교진도는확인하지않았다."
+        }
+      },
+      "primitiveOperations": "좌표차빼기→v=t,u=t+d→같은반비례좌표곱→숫자계수분배→일차식정리→양수계수나눗셈→나머지수치대입. 실제4개방정식/원조건수치는actual24-and-independent-findings.json에모두보존.",
+      "basis": "r2 full seven-surface/primary/cohort findings retained only because all24current printed content/answers/figures/solutions/formats/versions match r2 exactly; actual numerical methods rerun in focusedr3."
+    },
+    "inverseArea": {
+      "familyId": "study-middle-inverse-area-ratio",
+      "version": "2-m1-elementary-area",
+      "variants": 12,
+      "sevenSurfaces": {
+        "stem": {
+          "status": "passed",
+          "evidence": "모든12발문에서동일양수반비례의제1사분면A/B,B가A오른쪽,C가수선의발,ABC:OAC넓이비를명시한다. 인쇄A좌표와양수비가B와면적을유일하게정한다."
+        },
+        "choices": {
+          "status": "not-present",
+          "evidence": "현재12출력은단답형. 보기도native서술rubric도없다."
+        },
+        "figuresAndTables": {
+          "status": "passed-with-visual-limit",
+          "evidence": "현재12명세가기존그림명세와일치. A숫자좌표/C발/O및B라벨,OA/AB/OB/AC/CB가조건을나타낸다. A/B입사,제1사분면곡선,점선두개를수치검사했다. 대표4area70mm뷰를다시보았으며전12배치인증은아니다."
+        },
+        "notation": {
+          "status": "passed",
+          "evidence": "x_B,y_B는B좌표를명명한표기이며좌표성분이상의정리가아니다. [OAC]는해설에서삼각형넓이라고정의한다. 숫자비와×,÷2및수치곱/나눗셈이다. 행렬식·신발끈·닮음·기울기공식이필요없다."
+        },
+        "answer": {
+          "status": "passed",
+          "evidence": "공유양수밑변AC로offset=a*r/s가유일하게정해지고b=a+offset>a,z=ay/b>0. 각12개에서z<y,곱bz=ay,넓이비및양수최종넓이를확인했다. 12개정확한B/세넓이/최종합은독립수치파일에있다."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "evidence": "실제12해설에OAC,ABC,OBC의숫자밑변×높이÷2가모두나온다. 사각형OABC=OAC+ABC=OAB+OBC라는두분할을밝혀OAB=OAC+ABC-OBC를설명한다. 막연한큰삼각형빼기또는좌표면적공식으로건너뛰지않는다. OBC의높이는삼각형밖에있을수있으며2015초등공식지도유의가이를포함한다."
+        },
+        "prerequisites": {
+          "status": "passed-with-readiness-condition",
+          "evidence": "2022중1의좌표/반비례/수치일차표현과2015초5~6삼각형넓이(외부높이포함),비/간단한비례식. 2025중1은2023/2024초5/6,2026중1은2024/2025초5/6를2015로이수한정상학년코호트이다. 학기/개별진도는별도이다."
+        }
+      },
+      "primitiveOperations": "공유AC밑변의넓이비→수치가로높이비→단순비례식→반비례수치곱/나눗셈→삼각형세개의밑변×수직높이÷2→넓이가법성에의한합/차. 원점좌표행렬식은학생필수방법이아니다.",
+      "basis": "r2 full seven-surface/primary/cohort findings retained only because all24current printed content/answers/figures/solutions/formats/versions match r2 exactly; actual numerical methods rerun in focusedr3."
+    },
+    "sharedSquare": {
+      "familyId": "study-middle-shared-side-square",
+      "version": "1",
+      "variants": 8,
+      "sevenSurfaces": {
+        "stem": {
+          "status": "passed",
+          "evidence": "축평행정사각형,왼쪽A/D의서로다른정비례입사,오른쪽좌표R및C제1사분면조건이정해진다. 8개모두기존발문동일."
+        },
+        "choices": {
+          "status": "not-present",
+          "evidence": "8개모두단답형이며선지/rubric인증은범위밖이다."
+        },
+        "figuresAndTables": {
+          "status": "passed-with-visual-limit",
+          "evidence": "8개현재명세/곡선계수/꼭짓점라벨/R점선과기존명세동일. 두숫자정비례식과R을읽어먼저풀었고이후네점을대조했다. 기존square0/7뷰재확인. 모든8인쇄배치인증은아니다."
+        },
+        "notation": {
+          "status": "passed",
+          "evidence": "A=(u,숫자u),D=(u,숫자u)의같은u와숫자계수일차식만쓴다. 보이는숫자계수의합/차를추상변수끼리곱으로오분류하지않는다. y=1x는문체상간소화가능하다."
+        },
+        "answer": {
+          "status": "passed",
+          "evidence": "양수숫자계수1+b-a로u=R/(1+b-a)>0가유일하고side=(b-a)u>0. C=(R,bu),나머지세점도제1사분면. 8개실제좌표/같은변/입사조건수치확인."
+        },
+        "studentSolution": {
+          "status": "passed",
+          "evidence": "실제8개는세로길이=(b-a)u,가로길이=R-u,같은변에서u+(b-a)u=R인한미지수방정식이다. 좌표거리공식·피타고라스·닮음·연립법·문자끼리곱이필수아니다. 기존8개해설/답/발문/명세가바이트직렬화비교상그대로이다."
+        },
+        "prerequisites": {
+          "status": "passed-with-readiness-condition",
+          "evidence": "2015초3~4의정사각형성질4수02-10을배운정상2025/2026중1코호트에2022중1문자식/일차방정식/좌표/정비례를연결한다. 해당정비례단원학습후만지원하며학교진도는인증하지않는다."
+        }
+      },
+      "primitiveOperations": "같은x=u의정비례세로좌표→숫자계수일차식의차→정사각형같은두변→한미지수수치방정식→C세로좌표대입. 실제8개필수계산은독립수치파일에있다.",
+      "basis": "r2 full seven-surface/primary/cohort findings retained only because all24current printed content/answers/figures/solutions/formats/versions match r2 exactly; actual numerical methods rerun in focusedr3."
+    }
+  },
+  "primaryAndCohortReferences": {
+    "report.json": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\m1-inverse-geometry-curriculum-audit-20261019-r2\\report.json",
+      "sha256": "330afd66d2a0e11dd2b0e73c7b3cf4b42d8c5847ef215abe2cbe888761c0f378"
+    },
+    "primary-locators.json": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\m1-inverse-geometry-curriculum-audit-20261019-r2\\primary-locators.json",
+      "sha256": "6e077512ec0796e48478c751663edf34d6cea2689320b814a98d61f799272ff6"
+    },
+    "actual24-and-independent-findings.json": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\m1-inverse-geometry-curriculum-audit-20261019-r2\\actual24-and-independent-findings.json",
+      "sha256": "0b13697a9840c4d7f7d405e4762bf47aa78b453f525aa698586178f7a99fc69a"
+    },
+    "verifier-negative-cases.json": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\m1-inverse-geometry-curriculum-audit-20261019-r2\\verifier-negative-cases.json",
+      "sha256": "757b327798b1f579d664200d776257cd0bb71ce840060b2c0352d244d5388980"
+    },
+    "verifier-semantic-limits.json": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\m1-inverse-geometry-curriculum-audit-20261019-r2\\verifier-semantic-limits.json",
+      "sha256": "7e24598b3250d1f28270aad0a663594e4e5108cf0955ccaf96edd56ea5dbaced"
+    },
+    "visual-review.json": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\m1-inverse-geometry-curriculum-audit-20261019-r2\\visual-review.json",
+      "sha256": "7eba2d6b6bbb4f31a3946b3c2fee8bc48a68c5df8df4e1ce221a4f8fbd25c58f"
+    }
+  },
+  "cohortApplicability": {
+    "noticeUrl": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&m=040401",
+    "noticeHtmlSha256": "530421aa696dd228db124f6cd920cef692746e0a642cfe226a13db4c789b1cb4",
+    "locator": "교육부 고시 제2022-33호 부칙1 나/다/라",
+    "rollout": {
+      "M1_2022": "2025-03-01",
+      "E5E6_2022": "2026-03-01"
+    },
+    "exam2025M1": "초5/초6 이수는2023/2024:2015개정. 중1은2025부터2022개정.",
+    "exam2026M1": "초5/초6 이수는2024/2025:2015개정. 중1은2022개정.",
+    "limit": "현재2026의 초5/6가2022를 쓴다는 사실을2026중1이 과거 이수한 초등 선수교육과정에 소급하지 않는다. 유급·조기진급·개별 이력과 학교 진도는 별도 확인."
+  },
+  "curriculumLimits": "Reuse r2 actual official2022middle-band records/KICE2026M1example and2015E5/E6prerequisite evidence. 2025/2026M1 normal cohorts learned elementary prerequisites under2015; M1uses2022. Only after necessary linear-equation/coordinate/proportion units are taught. No new legal annual allocation, school-specific pacing, individual learner readiness, source-paper or future curriculum approval.",
+  "visualLimits": "Existing20specs andSVGhashes rebound in this run; no new render or new visual inspection. R2selectedsix70mmviews referenced, not a newall20layoutclearance. CurrentfigureSpec exactlyunchanged.",
+  "sourceIntegrity": {
+    "before": {
+      "src/lib/examStudy/families/middle/algebra.ts": "86e909f20bc56e93aef2c95aa0991c32a668334a77b4fb83bfe979b2394fe7ed",
+      "src/lib/examStudy/families/middle/graphs.ts": "197b1f343d38fe65ef082a741de9917fa77459accc801fc389384e617a61e47f",
+      "src/lib/examStudy/families/middle/support.ts": "e89345bd78a46a3c793e01273684885efc654a205c15896854fcd0caa979aa1c",
+      "src/__tests__/unit/examStudyM1StudentMethods.test.ts": "ea0f363c66f1f3d7cdcf643f5bd04ea6c68a214f286e069f37f20c84c59f1fd2"
+    },
+    "after": {
+      "src/lib/examStudy/families/middle/algebra.ts": "86e909f20bc56e93aef2c95aa0991c32a668334a77b4fb83bfe979b2394fe7ed",
+      "src/lib/examStudy/families/middle/graphs.ts": "197b1f343d38fe65ef082a741de9917fa77459accc801fc389384e617a61e47f",
+      "src/lib/examStudy/families/middle/support.ts": "e89345bd78a46a3c793e01273684885efc654a205c15896854fcd0caa979aa1c",
+      "src/__tests__/unit/examStudyM1StudentMethods.test.ts": "ea0f363c66f1f3d7cdcf643f5bd04ea6c68a214f286e069f37f20c84c59f1fd2"
+    },
+    "closing": {
+      "src/lib/examStudy/families/middle/algebra.ts": "86e909f20bc56e93aef2c95aa0991c32a668334a77b4fb83bfe979b2394fe7ed",
+      "src/lib/examStudy/families/middle/graphs.ts": "197b1f343d38fe65ef082a741de9917fa77459accc801fc389384e617a61e47f",
+      "src/lib/examStudy/families/middle/support.ts": "e89345bd78a46a3c793e01273684885efc654a205c15896854fcd0caa979aa1c",
+      "src/__tests__/unit/examStudyM1StudentMethods.test.ts": "ea0f363c66f1f3d7cdcf643f5bd04ea6c68a214f286e069f37f20c84c59f1fd2"
+    },
+    "allEqual": true,
+    "oldR2SourceBefore": {
+      "src/lib/examStudy/families/middle/algebra.ts": "94f45accc2c807397a8ee1af54c7377ace730924d3614c83d9592b87494383d9",
+      "src/lib/examStudy/families/middle/graphs.ts": "60fc9eebe44f1af7481fa738e328171a00040fb59f05581d9a610a486011537c",
+      "src/lib/examStudy/families/middle/support.ts": "1774fa1ca0dfcf68eae092f28904714514912f37111ae8b43fbaf4d41b81f829",
+      "src/__tests__/unit/examStudyM1StudentMethods.test.ts": "680d84c7efdb159b03838b112d6f4e7ecbce57e1e2963e1aa0873c1cacb6e72b"
+    },
+    "limits": "Exact hashes cover only the four authorized current source/test files. No root files edited, no claim about unrelated root modifications."
+  },
+  "parentEvidenceOnly": "Parent tests/type/lint and claim of never-served localdrafts are parent evidence; not substituted for independent numerical or curriculum review. No fullregistry or broadtests run.",
+  "remainingLimits": [
+    "Bounded current canonical finite templates only; no arbitrary prose semantic certification.",
+    "Exact string equality intentionally rejects altered formatting, benign suffixes and alternative valid solutions as unreviewed; not a claim such alternatives are mathematically false.",
+    "Other families and other methods, routes, persistence, deployment history and all futurecodechanges are outside thisfocusedregression.",
+    "No student outcome study, timed difficultycalibration, fullpapergrading or automatic school/unit/family assignment.",
+    "Source identity, custody, rights, similarity, nativeprovenance, nativerendering and releaseholds remain; no automaticloadapproval."
+  ],
+  "holds": {
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "nativeRenderingApproved": false,
+    "familyAssignmentApproved": false,
+    "releaseApproved": false,
+    "loadable": false
+  },
+  "operatingDB": 0,
+  "deploys": 0,
+  "pushes": 0,
+  "installs": 0,
+  "rootEdits": 0,
+  "fullThirdPartyPublished": false
+}

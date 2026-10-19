@@ -1,0 +1,219 @@
+{
+  "audit": "m1-inverse-geometry-curriculum-audit-20261019-r1",
+  "kind": "actual authored-family grade/method audit; not blind proof",
+  "rootHead": "ebda12b238b8a7523c3f6ce912fc55a5fe025aa1",
+  "status": "current-two-student-solution-holds;shared-square-bounded-method-supported",
+  "summary": {
+    "families": [
+      {
+        "id": "study-middle-inverse-equal-legs",
+        "version": "1",
+        "domainSize": 4,
+        "formats": [
+          "단답형"
+        ]
+      },
+      {
+        "id": "study-middle-inverse-area-ratio",
+        "version": "1",
+        "domainSize": 12,
+        "formats": [
+          "단답형"
+        ]
+      },
+      {
+        "id": "study-middle-shared-side-square",
+        "version": "1",
+        "domainSize": 8,
+        "formats": [
+          "단답형"
+        ]
+      }
+    ],
+    "totalVariants": 24,
+    "mathFailures": 0,
+    "actualVerifierPasses": 24,
+    "archivedFiguresExactlyBound": 20,
+    "formatRouteChecks": 12,
+    "independentMethod": "Student printed text and labels, numerical linear equations and elementary triangle dissection; no author-only linear2/area oracle imported.",
+    "noNewRender": true,
+    "sourceUnchanged": true
+  },
+  "cohort": {
+    "exam2025M1": "2022 curriculum from2025-03-01. E5/E6 completed2023/2024 under2015.",
+    "exam2026M1": "2022 curriculum. E5/E6 completed2024/2025 under2015;2022E5/E6 starts only2026-03-01.",
+    "readiness": "Proportional graph unit must have been taught. No school-semester readiness approval."
+  },
+  "findings": [
+    {
+      "id": "G1",
+      "severity": "high",
+      "familyId": "study-middle-inverse-equal-legs",
+      "variants": "all4",
+      "location": "src/lib/examStudy/families/middle/algebra.ts:41",
+      "status": "current-student-solution-held;rewrite-required",
+      "operation": "Multiply and subtract two equations in u,v to eliminateu.",
+      "curriculum": "MOE2022record3691[9수02-13]two-unknown systems; actualEBSgrade2lesson20includeselimination/substitution. KICEactualM1linear-equationrecord and standard9수02-04 support the replacement one-variable path, not current automatic approval.",
+      "minimalFix": "Let lower ordinate bet, upper ist+(q-p); substitute immediately into the inverse relation and solve the single equationp(t+q-p)=qt with allp,q numerical. Recoveru,v,k. Numeric distribution of a constant is M1; do not classify this as a prohibited blanket use of two letters."
+    },
+    {
+      "id": "G2",
+      "severity": "medium",
+      "familyId": "study-middle-inverse-area-ratio",
+      "variants": "all12",
+      "location": "src/lib/examStudy/families/middle/graphs.ts:360",
+      "status": "current-student-solution-held;name-elementary-regions",
+      "operation": "Unidentified large-small triangle explanation for(by-az)/2.",
+      "math": "Correct number in all12; no required determinant/similarity. The remedy follows visible triangles and elementary base×height/2.",
+      "minimalFix": "Name OAC,ABC,OBC. OAC+ABC and OAB+OBC each equal quadrilateralOABC. ThereforeOAB=OAC+ABC-OBC. Show three numerical elementary areas before reducing to final number. No new figure is necessary."
+    }
+  ],
+  "familyOutcomes": {
+    "equalLegs": "M1task-path-established;current provided elimination solution not approved for M1;hold until rewrite reviewed.",
+    "inverseArea": "M1task-path-established;current vague final-area explanation pending revision.",
+    "sharedSquare": "All8actual student operations supported for2022M1 with2015elementary square prerequisites; bounded curricular-method finding only."
+  },
+  "sevenStudentSurfaces": {
+    "study-middle-inverse-equal-legs": {
+      "choices": {
+        "status": "not-present",
+        "basis": "Native SA only. Actual public-core incompatible MC/written requests are unavailable; no distractors or rubric are silently approved."
+      },
+      "prerequisites": {
+        "status": "supported-after-M1-graph-unit",
+        "basis": "2022M1 linear expressions/equations/coordinates/proportional relations plus actual2015elementary square/ratio/triangle area prerequisites. School progress not verified."
+      },
+      "stem": {
+        "status": "supported",
+        "basis": "Several names k,u,v are legitimate target quantities. p,q are supplied constants, not unknown coefficients; no general two-variable equation theorem is indispensable."
+      },
+      "figuresAndTables": {
+        "status": "not-present",
+        "basis": "Text defines coordinates, positivity, order and differences."
+      },
+      "notation": {
+        "status": "supported",
+        "basis": "Inverse expression k/x, coordinate pairs and named ordinates are meaningful M1 notation; no blanket multi-letter ban."
+      },
+      "answer": {
+        "status": "passed",
+        "basis": "All4correct, positive and unique by a single-variable linear equation."
+      },
+      "studentSolution": {
+        "status": "held-current-elimination-method",
+        "basis": "All4explicitly multiply the first two-unknown equation and subtract to eliminate u. This is the later system elimination route; the supplied solution should be hard-excluded as written for the owner M1 constraint, rather than excused by a correct answer. The task itself has a legitimate M1 single-variable path."
+      }
+    },
+    "study-middle-inverse-area-ratio": {
+      "choices": {
+        "status": "not-present",
+        "basis": "Native SA only. Actual public-core incompatible MC/written requests are unavailable; no distractors or rubric are silently approved."
+      },
+      "prerequisites": {
+        "status": "supported-after-M1-graph-unit",
+        "basis": "2022M1 linear expressions/equations/coordinates/proportional relations plus actual2015elementary square/ratio/triangle area prerequisites. School progress not verified."
+      },
+      "stem": {
+        "status": "supported",
+        "basis": "Given A, positive inverse curve, rightward B and defined footC. Shared AC base and elementary area ratio determine B uniquely."
+      },
+      "figuresAndTables": {
+        "status": "supported-for-grade;selected-layouts-viewed",
+        "basis": "All12current specs/text match archived outputs. Existing OA,AB,OB,AC,CB and axes allow elementary triangle dissection; six-view sheet includes area0,1,2,11. No measurements used as oracle."
+      },
+      "notation": {
+        "status": "supported",
+        "basis": "x_B denotes the x-coordinate of B in the solution; numerical coordinates, ratio notation and products of known numbers require no upper-grade formula."
+      },
+      "answer": {
+        "status": "passed",
+        "basis": "All12correct, positive and unique. Domain yields finite exact ordinary rational arithmetic."
+      },
+      "studentSolution": {
+        "status": "held-area-explanation-gap",
+        "basis": "All12say large triangle minus small triangle but neither region is identified. Numeric result is correct. Actual figure supplies a rigorous M1/elementary route OAB=OAC+ABC-OBC. Do not identify the larger quadrilateral OABC as a triangle or certify an unexplained determinant-shaped shortcut."
+      }
+    },
+    "study-middle-shared-side-square": {
+      "choices": {
+        "status": "not-present",
+        "basis": "Native SA only. Actual public-core incompatible MC/written requests are unavailable; no distractors or rubric are silently approved."
+      },
+      "prerequisites": {
+        "status": "supported-after-M1-graph-unit",
+        "basis": "2022M1 linear expressions/equations/coordinates/proportional relations plus actual2015elementary square/ratio/triangle area prerequisites. School progress not verified."
+      },
+      "stem": {
+        "status": "supported",
+        "basis": "Axis-parallel square and two proportional graph incidences, with given right coordinateR. No distance formula needed."
+      },
+      "figuresAndTables": {
+        "status": "supported-for-grade;selected-layouts-viewed",
+        "basis": "All8current specs/text match archive. Current figure labels give numeric direct-proportion constants and R; no target C y-coordinate printed. Existing square0and7shown at70mm."
+      },
+      "notation": {
+        "status": "supported",
+        "basis": "Numerical coefficient timesu is a linear expression. Reviewer symbolic a,b are fixed numerical coefficients in actual student outputs; no multiplication of unknowns required. y=1x/1u is stylistically reducible, not an upper-grade operation."
+      },
+      "answer": {
+        "status": "passed",
+        "basis": "All8Ccoordinatescorrect; positive coefficient1+(b-a)gives uniqueu and positive side."
+      },
+      "studentSolution": {
+        "status": "supported",
+        "basis": "All8use only equal square side lengths, numerical linear expression subtraction and the one-variable equationu+(b-a)u=R. No system elimination, literal square, determinant, Pythagoras or similarity theorem is needed."
+      }
+    }
+  },
+  "formatAudit": {
+    "file": "actual-format-routes.json",
+    "actual12routes": true,
+    "native": "All3advertiseSAonly;SAandmixedreturnreproducibleSAitems.",
+    "incompatible": "All3MC/writtenrequests unavailable. No native rubric present or approved.",
+    "gateLimit": "Current code can serve these authored families; route success and family.verify valid24 are not curriculum approvals. No code gate edits performed."
+  },
+  "mathematics": {
+    "file": "independent-methods.json",
+    "all24Correct": true,
+    "existenceUniqueness": "Explicit positive/order domain, distinct numerical coordinates and positive coefficients give unique solutions in all24. Inverse-area proof uses actual printed ratios/labels and elementary dissection; no author area()/linear2()oracle."
+  },
+  "visual": {
+    "file": "visual-view-metadata.json",
+    "selectedActual70mmViews": 6,
+    "all20FigureSpecsExactlyBound": true,
+    "criticalFinding": "No missing required label or target-answer-coordinate leak in selected views. Area curve/chord close atB in narrow-ratio examples butBdot/label and dashedC-toBremain identifiable. All required mathematical conditions read from text/spec, not pixel lengths.",
+    "limits": "Selected visual inspection only, not all20layout certification; no heavy engine render.",
+    "toolFailuresRetained": [
+      "CairoSVGcould not load systemCairolibraries;noinstall.",
+      "First Edgecapture succeeded butstderrdecoder emittedcp949UnicodeDecodeError;imageexistedandwasviewed. Script now decodesUTF8withreplacement;noadditionalbrowserrunrequired."
+    ]
+  },
+  "primary": "primary-locators.json: actual official text, hashes, URLs, implementation dates and inferred annual placement limits.",
+  "judgmentDesign": "ProjectTypeSafeskill reread. Liveindex accessible, buildingguidemarkdown inaccessible; noAIintegration orprobabilityapprovalused. Exactcalculations and applicabilityconditionsremainreviewercode/evidence.",
+  "sourceIntegrity": {
+    "beforeAfterClosingEqual": true,
+    "files": [
+      "tsconfig.json",
+      "src/lib/examStudy/families/middle/algebra.ts",
+      "src/lib/examStudy/families/middle/graphs.ts",
+      "src/lib/examStudy/families/middle/support.ts",
+      "src/lib/examStudy/generate.ts",
+      "src/lib/examStudy/registry.ts",
+      "src/lib/examStudy/evidence.ts",
+      "src/lib/examStudy/curriculumEligibility.ts",
+      "src/contracts/examStudy.contract.ts",
+      "src/__tests__/unit/examStudyMiddle.test.ts"
+    ]
+  },
+  "holds": [
+    "Allsource/custody/rights/similarity/native/family/releaseholdsremain.",
+    "No unrelated family grade certification, no fresh candidate/proof count.",
+    "No school profile or math-test pass substitutes for grade evidence.",
+    "Actual user report411root/CoreLegacytests is parent evidence; not rerun here."
+  ],
+  "operatingDB": 0,
+  "full": 0,
+  "loadable": 0,
+  "rootEdits": false,
+  "fullThirdPartyPublished": false
+}
