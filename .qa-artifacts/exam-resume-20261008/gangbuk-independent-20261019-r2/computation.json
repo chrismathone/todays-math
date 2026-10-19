@@ -1,0 +1,55 @@
+{
+  "principalSquareRoot81": 9,
+  "rootsOfASquaredEquals9": [
+    -3,
+    3
+  ],
+  "negativeA": -3,
+  "forcedB": 10,
+  "forcedN": 100,
+  "allFiveOptions": [
+    {
+      "choice": 1,
+      "glyph": "①",
+      "N": 16,
+      "positiveB": 4,
+      "aPlusB": 1,
+      "satisfiesAllConditions": false
+    },
+    {
+      "choice": 2,
+      "glyph": "②",
+      "N": 49,
+      "positiveB": 7,
+      "aPlusB": 4,
+      "satisfiesAllConditions": false
+    },
+    {
+      "choice": 3,
+      "glyph": "③",
+      "N": 81,
+      "positiveB": 9,
+      "aPlusB": 6,
+      "satisfiesAllConditions": false
+    },
+    {
+      "choice": 4,
+      "glyph": "④",
+      "N": 100,
+      "positiveB": 10,
+      "aPlusB": 7,
+      "satisfiesAllConditions": true
+    },
+    {
+      "choice": 5,
+      "glyph": "⑤",
+      "N": 256,
+      "positiveB": 16,
+      "aPlusB": 13,
+      "satisfiesAllConditions": false
+    }
+  ],
+  "existence": true,
+  "uniqueRealSolution": true,
+  "positiveDomain": true
+}
