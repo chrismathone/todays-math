@@ -1,0 +1,290 @@
+{
+  "studentDigest": "6d6742ec5d913f57b328eac371e82666284f907bf5778af5c1c7624225953f94",
+  "candidateDigest": "23eff1b9c0ffe692ae364fb1b450ddcfaa35555f4d2390896af005ceb899bcab",
+  "assetDigest": "2ba2e5a725089bf7b9fdabe086df9bdfbbed025abd5a9ab170d8e9f02a65f373",
+  "solveDigest": "931be1aee0141337795eede78299a4b5df605e04f8c160cefd4e007ef68b87b4",
+  "questionNumber": 17,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q17",
+  "status": "pending",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-gf14-independent-20261019-r2",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "checkEvidence": {
+    "answerCorrect": "tan15=QH/PH=.2679, so PH=2.7/.2679=9000/893?10.0784m, rounded10.1m,?. Positive unique horizontal distance; m remains m. Compared mathematically against this verifier?s sealed new raw solve; representation differences do not rewrite that proof.",
+    "solutionCorrect": "tan15=QH/PH=.2679, so PH=2.7/.2679=9000/893?10.0784m, rounded10.1m,?. Positive unique horizontal distance; m remains m.",
+    "existenceUniqueness": "Given table coefficient0.2679>0 gives one positivePH=9000/893 m. This lies in[10.05,10.15), so rounding to tenths uniquely gives10.1m. No trigonometric identity or high-grade15° formula is needed.",
+    "choicesCorrect": "All five literal options compared to the exact sealed result; precisely one is true. Full per-option tests below.",
+    "figureConsistent": "PH horizontal, QH vertical2.7m,15? atP; labels and ground/ramp roles agree. Actual bound SVG rendered/viewed in stage1 and actual expanded author-answer/solution PNG viewed in stage2. Preview student/candidate digests and PNG hash verified; no overflow/clipping observed. Strict record binds exact SVG/spec bytes, not native/rights approval.",
+    "sameCoreConceptAndProcedure": "Original slide gives horizontal distance and asks height. Candidate accessible ramp gives height and asks horizontal distance with specified rounding. Context and inverse target change; tangent in a right triangle retained.",
+    "distinctPresentation": "Original slide gives horizontal distance and asks height. Candidate accessible ramp gives height and asks horizontal distance with specified rounding. Context and inverse target change; tangent in a right triangle retained.",
+    "naturalKorean": "No original school name appears on student surfaces; metadata-only substitution is not claimed as a displayed context change. Question target, conditions and answer format are readable Korean in the actual expanded preview; no unresolved referent found.",
+    "curriculumAppropriate": "tan15=QH/PH=.2679, so PH=2.7/.2679=9000/893?10.0784m, rounded10.1m,?. Positive unique horizontal distance; m remains m. Methods: 직각삼각형의 탄젠트 정의, 제시된 표의 근삿값, 나눗셈과 반올림. Applied2015 M3; angles remain0?90?. No trig relationships/identities, sine/cosine law, Heron, vectors or advanced shortcut in author student solution.",
+    "allStudentSurfacesInScope": "All seven surfaces individually reviewed below; mathematical calculation is deterministic supporting evidence, not an AI confidence/classification approval.",
+    "unitFamilyFit": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family.",
+    "scoreAppropriate": "Parent score4 matches the printed source score; Five-choice single-parent format retained. Operations described in source comparison remain plausible within this school-level task band; no measured equal-difficulty claim. Explicit scaffolding/inversion differences above remain visible."
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "물품을 옮기는 경사판 $PQ$가 수평 지면 $PH$와 $15^\\circ$를 이룬다. $Q$에서 지면에 내린 수선의 발은 $H$이고, 경사판의 위쪽 끝 높이 $QH$는 $2.7\\,\\mathrm{m}$이다.\n\n| 각 | sin의 근삿값 | cos의 근삿값 | tan의 근삿값 |\n|---|---|---|---|\n| $15^\\circ$ | $0.2588$ | $0.9659$ | $0.2679$ |\n\n표의 근삿값을 사용하여 계산한 수평 거리 $PH$를 소수 첫째 자리까지 나타낸 것은?",
+      "officialProvisions": [
+        "9수04-17",
+        "9수04-18",
+        "6수03-02",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "Five choices checked against sealed exact result; radicals/fractions/decimals are within M3.",
+      "officialProvisions": [
+        "9수04-17",
+        "9수04-18",
+        "6수03-02",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "PH horizontal, QH vertical2.7m,15? atP; labels and ground/ramp roles agree.",
+      "officialProvisions": [
+        "9수04-17",
+        "9수04-18",
+        "6수03-02",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "Right-angle labels, acute degree measures, segment notation, fractions/radicals and cm/m/area units are conventional and agree with target. Given table coefficient0.2679>0 gives one positivePH=9000/893 m. This lies in[10.05,10.15), so rounding to tenths uniquely gives10.1m. No trigonometric identity or high-grade15° formula is needed.",
+      "officialProvisions": [
+        "9수04-17",
+        "9수04-18",
+        "6수03-02",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "tan15=QH/PH=.2679, so PH=2.7/.2679=9000/893?10.0784m, rounded10.1m,?. Positive unique horizontal distance; m remains m.",
+      "officialProvisions": [
+        "9수04-17",
+        "9수04-18",
+        "6수03-02",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "tan15=QH/PH=.2679, so PH=2.7/.2679=9000/893?10.0784m, rounded10.1m,?. Positive unique horizontal distance; m remains m.",
+      "officialProvisions": [
+        "9수04-17",
+        "9수04-18",
+        "6수03-02",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "직각삼각형의 탄젠트 정의, 제시된 표의 근삿값, 나눗셈과 반올림. Given table coefficient0.2679>0 gives one positivePH=9000/893 m. This lies in[10.05,10.15), so rounding to tenths uniquely gives10.1m. No trigonometric identity or high-grade15° formula is needed.",
+      "officialProvisions": [
+        "9수04-17",
+        "9수04-18",
+        "6수03-02",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    }
+  },
+  "unitFamily": {
+    "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+    "familyKey": null,
+    "status": "held-current-proof-missing",
+    "basis": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family."
+  },
+  "evidence": {
+    "rawCommit": "9870f836a8221a23d4cea3c08b43af1e9c3f7891",
+    "rawFile": "blind/solve/q17.json",
+    "independentAnswer": "④",
+    "independentProof": "직각삼각형 PHQ에서 tan15°=QH/PH이다. 주어진 표의 기록값0.2679를 사용하면 PH≈2.7/0.2679=9000/893≈10.0784 m이다. 소수 첫째 자리까지 반올림하면10.1 m이므로 ④이다. 수평 거리 PH를 구하는 것이므로 빗변을 구하는 사인을 분모로 쓰지 않는다.",
+    "authorStepReview": "tan15=QH/PH=.2679, so PH=2.7/.2679=9000/893?10.0784m, rounded10.1m,?. Positive unique horizontal distance; m remains m.",
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "studentOption": "$2.6\\,\\mathrm{m}$",
+        "test": {
+          "choice": 1,
+          "encodedValue": "2.6",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 2,
+        "studentOption": "$5.2\\,\\mathrm{m}$",
+        "test": {
+          "choice": 2,
+          "encodedValue": "5.2",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 3,
+        "studentOption": "$10.4\\,\\mathrm{m}$",
+        "test": {
+          "choice": 3,
+          "encodedValue": "10.4",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 4,
+        "studentOption": "$10.1\\,\\mathrm{m}$",
+        "test": {
+          "choice": 4,
+          "encodedValue": "10.1",
+          "correct": true
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 5,
+        "studentOption": "$5.1\\,\\mathrm{m}$",
+        "test": {
+          "choice": 5,
+          "encodedValue": "5.1",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      }
+    ],
+    "writtenParts": [],
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q17",
+      "actualResult": {
+        "calculated": "10.1",
+        "choices": [
+          {
+            "choice": 1,
+            "encodedValue": "2.6",
+            "correct": false
+          },
+          {
+            "choice": 2,
+            "encodedValue": "5.2",
+            "correct": false
+          },
+          {
+            "choice": 3,
+            "encodedValue": "10.4",
+            "correct": false
+          },
+          {
+            "choice": 4,
+            "encodedValue": "10.1",
+            "correct": true
+          },
+          {
+            "choice": 5,
+            "encodedValue": "5.1",
+            "correct": false
+          }
+        ],
+        "uniqueChoice": 4
+      }
+    },
+    "existenceUniquenessPositiveLengthsUnits": "Given table coefficient0.2679>0 gives one positivePH=9000/893 m. This lies in[10.05,10.15), so rounding to tenths uniquely gives10.1m. No trigonometric identity or high-grade15° formula is needed.",
+    "sourceComparison": "Original slide gives horizontal distance and asks height. Candidate accessible ramp gives height and asks horizontal distance with specified rounding. Context and inverse target change; tangent in a right triangle retained.",
+    "preview": "gyeongsang-remaining-final14-r1/inspection/q17-expanded.png",
+    "exposure": "Before seal: no actual new GF14 author answers/authorship. Prior unbound generic REVIEW-KIT q7/? illustration had been read in NB5; disclosed and unused. Actual q7 independently yielded?. Stage2 actual author exposure authorized after raw seal; no legacy Claude proof/review used."
+  },
+  "findings": [
+    {
+      "severity": "blocker",
+      "surface": "unitFamilyFit",
+      "text": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family."
+    },
+    {
+      "severity": "note",
+      "surface": "source",
+      "text": "Question-only image comparison performed. Supplied sourceIdentity says original header/footer and completed-question identity supported; this review does not reopen immutable source bytes or independently certify full content pair/custody/rights. Existing source/loading holds remain."
+    }
+  ],
+  "gates": {
+    "loadable": false,
+    "rightsCleared": false,
+    "nativeApproved": false,
+    "sourceCertification": false
+  }
+}

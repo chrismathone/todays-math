@@ -1,0 +1,103 @@
+{
+  "kind": "gf14-identical-review-rebind-demo/v1",
+  "selected": 14,
+  "excludedQuestionNumbers": [
+    18
+  ],
+  "currentIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v14.json",
+    "sha256": "e31642bfdcb7d37847327981dc54cef16ec8f1c93f91b9aeb7f5f4cb7a73f484"
+  },
+  "comparedCurrentRoot": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3",
+  "currentManifestSha256": "eb5f47a3586019c48aee7d72f100fd69bfcfe738ff9b3ef8f05a3fbd478e3278",
+  "packageDigest": "6fc7974b96cf5f6c5aa63fac6aac3c20a61f8bb8ae97928142f9886a0c898605",
+  "currentDigestsMatch": true,
+  "currentHeldOutcomesMatch": true,
+  "existingMathCountPreserved": 14,
+  "existingGradeCountPreserved": 14,
+  "statuses": [
+    {
+      "id": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q01",
+      "n": 1,
+      "status": "pending"
+    },
+    {
+      "id": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q02",
+      "n": 2,
+      "status": "pending"
+    },
+    {
+      "id": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q03",
+      "n": 3,
+      "status": "pending"
+    },
+    {
+      "id": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q04",
+      "n": 4,
+      "status": "pending"
+    },
+    {
+      "id": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q05",
+      "n": 5,
+      "status": "pending"
+    },
+    {
+      "id": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q06",
+      "n": 6,
+      "status": "pending"
+    },
+    {
+      "id": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q07",
+      "n": 7,
+      "status": "pending"
+    },
+    {
+      "id": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q08",
+      "n": 8,
+      "status": "pending"
+    },
+    {
+      "id": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q09",
+      "n": 9,
+      "status": "pending"
+    },
+    {
+      "id": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q16",
+      "n": 16,
+      "status": "pending"
+    },
+    {
+      "id": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q17",
+      "n": 17,
+      "status": "pending"
+    },
+    {
+      "id": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q19",
+      "n": 19,
+      "status": "pending"
+    },
+    {
+      "id": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q20",
+      "n": 20,
+      "status": "pending"
+    },
+    {
+      "id": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q21",
+      "n": 21,
+      "status": "pending"
+    }
+  ],
+  "newMathApprovals": 0,
+  "newGradeApprovals": 0,
+  "newRightsApprovals": 0,
+  "loadable": 0,
+  "unchangedOldRawAndReportHashes": "gf14-original-author/rebind-receipt.json",
+  "typesafe": {
+    "skill": ".agents/skills/typesafe-ai/SKILL.md",
+    "liveDocsRead": [
+      "https://docs.typesafe.ai/llms.txt",
+      "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md"
+    ],
+    "implementation": "Deterministic byte/digest/ID/Git comparisons only; no model calls"
+  }
+}

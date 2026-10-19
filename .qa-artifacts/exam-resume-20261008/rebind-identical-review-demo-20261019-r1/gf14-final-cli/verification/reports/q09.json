@@ -1,0 +1,290 @@
+{
+  "studentDigest": "07084e43a02bf3a7bc2d78c451910ffab9f2f349da51158ce7de64953fe386bf",
+  "candidateDigest": "63851faa5a81ffce75d4169758fedd293904df580e6e009200afd12b60f61ca8",
+  "assetDigest": "8265e94e19d24602f235ac4c4c55d6d8ee34908e4c7f8501d8629618834a0066",
+  "solveDigest": "84ba90948742b337af015102a8a9be4501873b9823b75bd106a2645de7d15b9f",
+  "questionNumber": 9,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q09",
+  "status": "pending",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-gf14-independent-20261019-r2",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "checkEvidence": {
+    "answerCorrect": "P+Q=90?,Q=2P gives P30?,Q60?. Substitute sin60=?3/2,cos60=1/2,tan60=?3 separately: product3/4, pair(60?,3/4),?. Author does not cancel via a general identity. Compared mathematically against this verifier?s sealed new raw solve; representation differences do not rewrite that proof.",
+    "solutionCorrect": "P+Q=90?,Q=2P gives P30?,Q60?. Substitute sin60=?3/2,cos60=1/2,tan60=?3 separately: product3/4, pair(60?,3/4),?. Author does not cancel via a general identity.",
+    "existenceUniqueness": "P+Q=90 and Q=2P force P30,Q60; an arbitrary positive30–60–90 triangle realizes this, so scale does not matter. Angle in degrees; product dimensionless.",
+    "choicesCorrect": "All five literal options compared to the exact sealed result; precisely one is true. Full per-option tests below.",
+    "figureConsistent": "RightR and P/Q labels agree with Q=2P; paired choices visible. Actual bound SVG rendered/viewed in stage1 and actual expanded author-answer/solution PNG viewed in stage2. Preview student/candidate digests and PNG hash verified; no overflow/clipping observed. Strict record binds exact SVG/spec bytes, not native/rights approval.",
+    "sameCoreConceptAndProcedure": "Original angle ratio1:2:3 asks a product at the smallest angle. Candidate explicit right angle plus Q=2P asks both Q and its product. Changed constraint representation, angle queried and paired output; angle sum then special-value evaluation retained.",
+    "distinctPresentation": "Original angle ratio1:2:3 asks a product at the smallest angle. Candidate explicit right angle plus Q=2P asks both Q and its product. Changed constraint representation, angle queried and paired output; angle sum then special-value evaluation retained.",
+    "naturalKorean": "No original school name appears on student surfaces; metadata-only substitution is not claimed as a displayed context change. Question target, conditions and answer format are readable Korean in the actual expanded preview; no unresolved referent found.",
+    "curriculumAppropriate": "P+Q=90?,Q=2P gives P30?,Q60?. Substitute sin60=?3/2,cos60=1/2,tan60=?3 separately: product3/4, pair(60?,3/4),?. Author does not cancel via a general identity. Methods: 삼각형 내각의 합, 30°·60° 특수각의 변의 비, 수치로 주어진 삼각비의 곱. Applied2015 M3; angles remain0?90?. No trig relationships/identities, sine/cosine law, Heron, vectors or advanced shortcut in author student solution.",
+    "allStudentSurfacesInScope": "All seven surfaces individually reviewed below; mathematical calculation is deterministic supporting evidence, not an AI confidence/classification approval.",
+    "unitFamilyFit": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family.",
+    "scoreAppropriate": "Parent score4 matches the printed source score; Five-choice single-parent format retained. Operations described in source comparison remain plausible within this school-level task band; no measured equal-difficulty claim. Explicit scaffolding/inversion differences above remain visible."
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "직각삼각형 $PQR$에서 $\\angle R=90^\\circ$이고 $\\angle Q$의 크기는 $\\angle P$의 크기의 2배이다.\n다음 두 기록을 완성하려고 한다.\n\n| 기록 항목 | $\\angle Q$의 크기 | $\\sin Q\\times\\cos Q\\times\\tan Q$ |\n|---|---|---|\n| 기록 | ㉠ | ㉡ |\n\n㉠, ㉡을 차례로 바르게 짝지은 것은?",
+      "officialProvisions": [
+        "9수04-05",
+        "9수04-17",
+        "9수01-10",
+        "9수02-05"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "Five choices checked against sealed exact result; radicals/fractions/decimals are within M3.",
+      "officialProvisions": [
+        "9수04-05",
+        "9수04-17",
+        "9수01-10",
+        "9수02-05"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "RightR and P/Q labels agree with Q=2P; paired choices visible.",
+      "officialProvisions": [
+        "9수04-05",
+        "9수04-17",
+        "9수01-10",
+        "9수02-05"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "Right-angle labels, acute degree measures, segment notation, fractions/radicals and cm/m/area units are conventional and agree with target. P+Q=90 and Q=2P force P30,Q60; an arbitrary positive30–60–90 triangle realizes this, so scale does not matter. Angle in degrees; product dimensionless.",
+      "officialProvisions": [
+        "9수04-05",
+        "9수04-17",
+        "9수01-10",
+        "9수02-05"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "P+Q=90?,Q=2P gives P30?,Q60?. Substitute sin60=?3/2,cos60=1/2,tan60=?3 separately: product3/4, pair(60?,3/4),?. Author does not cancel via a general identity.",
+      "officialProvisions": [
+        "9수04-05",
+        "9수04-17",
+        "9수01-10",
+        "9수02-05"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "P+Q=90?,Q=2P gives P30?,Q60?. Substitute sin60=?3/2,cos60=1/2,tan60=?3 separately: product3/4, pair(60?,3/4),?. Author does not cancel via a general identity.",
+      "officialProvisions": [
+        "9수04-05",
+        "9수04-17",
+        "9수01-10",
+        "9수02-05"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "삼각형 내각의 합, 30°·60° 특수각의 변의 비, 수치로 주어진 삼각비의 곱. P+Q=90 and Q=2P force P30,Q60; an arbitrary positive30–60–90 triangle realizes this, so scale does not matter. Angle in degrees; product dimensionless.",
+      "officialProvisions": [
+        "9수04-05",
+        "9수04-17",
+        "9수01-10",
+        "9수02-05"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    }
+  },
+  "unitFamily": {
+    "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+    "familyKey": null,
+    "status": "held-current-proof-missing",
+    "basis": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family."
+  },
+  "evidence": {
+    "rawCommit": "9870f836a8221a23d4cea3c08b43af1e9c3f7891",
+    "rawFile": "blind/solve/q09.json",
+    "independentAnswer": "⑤",
+    "independentProof": "P,Q는 직각삼각형의 두 예각이므로 P+Q=90°이고 Q=2P이다. 따라서 P=30°, Q=60°이다. 60°의 삼각비를 각각 정의로 구한 값으로 대입하면 sinQ×cosQ×tanQ=(√3/2)×(1/2)×√3=3/4이다. 따라서 (㉠,㉡)=(60°,3/4), 정답은 ⑤이다. 일반적인 삼각비 사이의 관계식으로 식을 바꾸지 않는다.",
+    "authorStepReview": "P+Q=90?,Q=2P gives P30?,Q60?. Substitute sin60=?3/2,cos60=1/2,tan60=?3 separately: product3/4, pair(60?,3/4),?. Author does not cancel via a general identity.",
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "studentOption": "$30^\\circ,\\ \\frac14$",
+        "test": {
+          "choice": 1,
+          "encodedValue": "(30, (Fraction(1, 4), 1))",
+          "correct": false
+        },
+        "explanation": "Pairs compare both the angle and the direct numeric special-angle product; either failed component rejects a pair."
+      },
+      {
+        "choice": 2,
+        "studentOption": "$60^\\circ,\\ \\frac14$",
+        "test": {
+          "choice": 2,
+          "encodedValue": "(60, (Fraction(1, 4), 1))",
+          "correct": false
+        },
+        "explanation": "Pairs compare both the angle and the direct numeric special-angle product; either failed component rejects a pair."
+      },
+      {
+        "choice": 3,
+        "studentOption": "$30^\\circ,\\ \\frac34$",
+        "test": {
+          "choice": 3,
+          "encodedValue": "(30, (Fraction(3, 4), 1))",
+          "correct": false
+        },
+        "explanation": "Pairs compare both the angle and the direct numeric special-angle product; either failed component rejects a pair."
+      },
+      {
+        "choice": 4,
+        "studentOption": "$60^\\circ,\\ \\frac{\\sqrt3}{4}$",
+        "test": {
+          "choice": 4,
+          "encodedValue": "(60, (Fraction(1, 4), 3))",
+          "correct": false
+        },
+        "explanation": "Pairs compare both the angle and the direct numeric special-angle product; either failed component rejects a pair."
+      },
+      {
+        "choice": 5,
+        "studentOption": "$60^\\circ,\\ \\frac34$",
+        "test": {
+          "choice": 5,
+          "encodedValue": "(60, (Fraction(3, 4), 1))",
+          "correct": true
+        },
+        "explanation": "Pairs compare both the angle and the direct numeric special-angle product; either failed component rejects a pair."
+      }
+    ],
+    "writtenParts": [],
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q09",
+      "actualResult": {
+        "calculated": "(60, (Fraction(3, 4), 1))",
+        "choices": [
+          {
+            "choice": 1,
+            "encodedValue": "(30, (Fraction(1, 4), 1))",
+            "correct": false
+          },
+          {
+            "choice": 2,
+            "encodedValue": "(60, (Fraction(1, 4), 1))",
+            "correct": false
+          },
+          {
+            "choice": 3,
+            "encodedValue": "(30, (Fraction(3, 4), 1))",
+            "correct": false
+          },
+          {
+            "choice": 4,
+            "encodedValue": "(60, (Fraction(1, 4), 3))",
+            "correct": false
+          },
+          {
+            "choice": 5,
+            "encodedValue": "(60, (Fraction(3, 4), 1))",
+            "correct": true
+          }
+        ],
+        "uniqueChoice": 5
+      }
+    },
+    "existenceUniquenessPositiveLengthsUnits": "P+Q=90 and Q=2P force P30,Q60; an arbitrary positive30–60–90 triangle realizes this, so scale does not matter. Angle in degrees; product dimensionless.",
+    "sourceComparison": "Original angle ratio1:2:3 asks a product at the smallest angle. Candidate explicit right angle plus Q=2P asks both Q and its product. Changed constraint representation, angle queried and paired output; angle sum then special-value evaluation retained.",
+    "preview": "gyeongsang-remaining-final14-r1/inspection/q09-expanded.png",
+    "exposure": "Before seal: no actual new GF14 author answers/authorship. Prior unbound generic REVIEW-KIT q7/? illustration had been read in NB5; disclosed and unused. Actual q7 independently yielded?. Stage2 actual author exposure authorized after raw seal; no legacy Claude proof/review used."
+  },
+  "findings": [
+    {
+      "severity": "blocker",
+      "surface": "unitFamilyFit",
+      "text": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family."
+    },
+    {
+      "severity": "note",
+      "surface": "source",
+      "text": "Question-only image comparison performed. Supplied sourceIdentity says original header/footer and completed-question identity supported; this review does not reopen immutable source bytes or independently certify full content pair/custody/rights. Existing source/loading holds remain."
+    }
+  ],
+  "gates": {
+    "loadable": false,
+    "rightsCleared": false,
+    "nativeApproved": false,
+    "sourceCertification": false
+  }
+}

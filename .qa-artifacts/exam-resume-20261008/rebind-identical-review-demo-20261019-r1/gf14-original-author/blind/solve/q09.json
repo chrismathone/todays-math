@@ -1,0 +1,130 @@
+{
+  "studentDigest": "07084e43a02bf3a7bc2d78c451910ffab9f2f349da51158ce7de64953fe386bf",
+  "solverId": "codex-gf14-independent-20261019-r2",
+  "answer": "⑤",
+  "solution": "P,Q는 직각삼각형의 두 예각이므로 P+Q=90°이고 Q=2P이다. 따라서 P=30°, Q=60°이다. 60°의 삼각비를 각각 정의로 구한 값으로 대입하면 sinQ×cosQ×tanQ=(√3/2)×(1/2)×√3=3/4이다. 따라서 (㉠,㉡)=(60°,3/4), 정답은 ⑤이다. 일반적인 삼각비 사이의 관계식으로 식을 바꾸지 않는다.",
+  "evidence": {
+    "questionNumber": 9,
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q09",
+    "studentOnlyInputs": true,
+    "figureReading": "Right angleR and P,Q acute; the 2:1 relation is given by text, not inferred from scale.",
+    "renderedFiguresViewed": [
+      {
+        "svgPath": "figures/q09-1.svg",
+        "sha256": "94d17dd51dad0aa8b979b4e7c849df0aebec286b873075f2899b5fb44408440a",
+        "pngPath": "rendered/q09-1.png",
+        "pixelMeasurement": false
+      }
+    ],
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "studentOption": "$30^\\circ,\\ \\frac14$",
+        "test": {
+          "choice": 1,
+          "encodedValue": "(30, (Fraction(1, 4), 1))",
+          "correct": false
+        },
+        "explanation": "Pairs compare both the angle and the direct numeric special-angle product; either failed component rejects a pair."
+      },
+      {
+        "choice": 2,
+        "studentOption": "$60^\\circ,\\ \\frac14$",
+        "test": {
+          "choice": 2,
+          "encodedValue": "(60, (Fraction(1, 4), 1))",
+          "correct": false
+        },
+        "explanation": "Pairs compare both the angle and the direct numeric special-angle product; either failed component rejects a pair."
+      },
+      {
+        "choice": 3,
+        "studentOption": "$30^\\circ,\\ \\frac34$",
+        "test": {
+          "choice": 3,
+          "encodedValue": "(30, (Fraction(3, 4), 1))",
+          "correct": false
+        },
+        "explanation": "Pairs compare both the angle and the direct numeric special-angle product; either failed component rejects a pair."
+      },
+      {
+        "choice": 4,
+        "studentOption": "$60^\\circ,\\ \\frac{\\sqrt3}{4}$",
+        "test": {
+          "choice": 4,
+          "encodedValue": "(60, (Fraction(1, 4), 3))",
+          "correct": false
+        },
+        "explanation": "Pairs compare both the angle and the direct numeric special-angle product; either failed component rejects a pair."
+      },
+      {
+        "choice": 5,
+        "studentOption": "$60^\\circ,\\ \\frac34$",
+        "test": {
+          "choice": 5,
+          "encodedValue": "(60, (Fraction(3, 4), 1))",
+          "correct": true
+        },
+        "explanation": "Pairs compare both the angle and the direct numeric special-angle product; either failed component rejects a pair."
+      }
+    ],
+    "parts": [],
+    "existenceUniquenessPositiveLengthsUnits": "P+Q=90 and Q=2P force P30,Q60; an arbitrary positive30–60–90 triangle realizes this, so scale does not matter. Angle in degrees; product dimensionless.",
+    "withinGradeMethodEvidence": {
+      "target": "M3 / 2015",
+      "usedConcepts": [
+        "삼각형 내각의 합",
+        "30°·60° 특수각의 변의 비",
+        "수치로 주어진 삼각비의 곱"
+      ],
+      "derivationBasis": "Actual student-level proof written above; no formal live-family/classification or release approval is asserted.",
+      "forbiddenMethodsUsed": false,
+      "restrictionsChecked": [
+        "no general trig identities or function relationships",
+        "no sine/cosine laws",
+        "no Heron",
+        "no vectors",
+        "no higher-grade shortcuts",
+        "no pixel measurement"
+      ]
+    },
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q09",
+      "actualResult": {
+        "calculated": "(60, (Fraction(3, 4), 1))",
+        "choices": [
+          {
+            "choice": 1,
+            "encodedValue": "(30, (Fraction(1, 4), 1))",
+            "correct": false
+          },
+          {
+            "choice": 2,
+            "encodedValue": "(60, (Fraction(1, 4), 1))",
+            "correct": false
+          },
+          {
+            "choice": 3,
+            "encodedValue": "(30, (Fraction(3, 4), 1))",
+            "correct": false
+          },
+          {
+            "choice": 4,
+            "encodedValue": "(60, (Fraction(1, 4), 3))",
+            "correct": false
+          },
+          {
+            "choice": 5,
+            "encodedValue": "(60, (Fraction(3, 4), 1))",
+            "correct": true
+          }
+        ],
+        "uniqueChoice": 5
+      }
+    },
+    "exposure": "No GF14 candidate/private/source/old solves or actual author answers read. Prior unbound generic REVIEW-KIT example disclosed in input receipt and unused as answer evidence.",
+    "authorAnswersUsed": false
+  },
+  "status": "solved"
+}

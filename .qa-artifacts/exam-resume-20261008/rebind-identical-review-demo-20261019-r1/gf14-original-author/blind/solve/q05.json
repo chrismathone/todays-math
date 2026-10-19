@@ -1,0 +1,122 @@
+{
+  "studentDigest": "723138c4a39dbafc52c654ac94dd040dcadb785ed568a1eac93a0858ee319ba3",
+  "solverId": "codex-gf14-independent-20261019-r2",
+  "answer": "④",
+  "solution": "제시된 표에서 sin31°=0.5150, cos34°=0.8290이므로 가=1.3440이다. sin32°=0.5299, cos33°=0.8387이므로 나=1.3686이다. 따라서 가−나=1.3440−1.3686=−0.0246이므로 ④이다. 실제 삼각비를 다시 계산하는 것이 아니라 표에 적힌 수를 그대로 사용한다.",
+  "evidence": {
+    "questionNumber": 5,
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q05",
+    "studentOnlyInputs": true,
+    "figureReading": "No SVG supplied. Read the actual tables in student text; no hidden graph or image presumed.",
+    "renderedFiguresViewed": [],
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "studentOption": "$1.3440$",
+        "test": {
+          "choice": 1,
+          "encodedValue": "168/125",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 2,
+        "studentOption": "$0.0246$",
+        "test": {
+          "choice": 2,
+          "encodedValue": "123/5000",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 3,
+        "studentOption": "$2.7126$",
+        "test": {
+          "choice": 3,
+          "encodedValue": "13563/5000",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 4,
+        "studentOption": "$-0.0246$",
+        "test": {
+          "choice": 4,
+          "encodedValue": "-123/5000",
+          "correct": true
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 5,
+        "studentOption": "$1.3686$",
+        "test": {
+          "choice": 5,
+          "encodedValue": "6843/5000",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      }
+    ],
+    "parts": [],
+    "existenceUniquenessPositiveLengthsUnits": "All eight table entries are explicit approximate records; the requested difference of recorded sums is unique and may be negative. No monotonicity/trig identity or physical length domain is needed. Dimensionless.",
+    "withinGradeMethodEvidence": {
+      "target": "M3 / 2015",
+      "usedConcepts": [
+        "삼각비 표의 행·열 읽기",
+        "소수의 덧셈과 뺄셈"
+      ],
+      "derivationBasis": "Actual student-level proof written above; no formal live-family/classification or release approval is asserted.",
+      "forbiddenMethodsUsed": false,
+      "restrictionsChecked": [
+        "no general trig identities or function relationships",
+        "no sine/cosine laws",
+        "no Heron",
+        "no vectors",
+        "no higher-grade shortcuts",
+        "no pixel measurement"
+      ]
+    },
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q05",
+      "actualResult": {
+        "calculated": "-123/5000",
+        "choices": [
+          {
+            "choice": 1,
+            "encodedValue": "168/125",
+            "correct": false
+          },
+          {
+            "choice": 2,
+            "encodedValue": "123/5000",
+            "correct": false
+          },
+          {
+            "choice": 3,
+            "encodedValue": "13563/5000",
+            "correct": false
+          },
+          {
+            "choice": 4,
+            "encodedValue": "-123/5000",
+            "correct": true
+          },
+          {
+            "choice": 5,
+            "encodedValue": "6843/5000",
+            "correct": false
+          }
+        ],
+        "uniqueChoice": 4
+      }
+    },
+    "exposure": "No GF14 candidate/private/source/old solves or actual author answers read. Prior unbound generic REVIEW-KIT example disclosed in input receipt and unused as answer evidence.",
+    "authorAnswersUsed": false
+  },
+  "status": "solved"
+}

@@ -1,0 +1,290 @@
+{
+  "studentDigest": "91c18fc29aa9f2d61ff05d5ce0e024c4a6fdb962cdb69204c73a33c438afc4c5",
+  "candidateDigest": "05ce927bf0cf049442a8ab234338aa7b23f4f6510f428577df3c285a117c8192",
+  "assetDigest": "c6941b96c702330b86eee779736105a193178ac7735397037d468c92239a7c6f",
+  "solveDigest": "d77bfb9183d318da6fdaaa99cddf3559957fa61ec9aae50e4595b7767f89863b",
+  "questionNumber": 16,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q16",
+  "status": "pending",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-gf14-independent-20261019-r2",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "checkEvidence": {
+    "answerCorrect": "PH=12sin60=6?3 cm. Area=(QR)(6?3)/2=36?3 yields QR12cm,?. QH=6<12 verifies the required internal foot. The author explicitly uses a height, not a memorized area-sine formula. Compared mathematically against this verifier?s sealed new raw solve; representation differences do not rewrite that proof.",
+    "solutionCorrect": "PH=12sin60=6?3 cm. Area=(QR)(6?3)/2=36?3 yields QR12cm,?. QH=6<12 verifies the required internal foot. The author explicitly uses a height, not a memorized area-sine formula.",
+    "existenceUniqueness": "PH=6√3>0,QH=6 and QR=12 satisfy the area36√3 and Hinternal since0<6<12. The fixed positive height makes area strictly proportional to base, so only base12 works; lengthcm and areacm².",
+    "choicesCorrect": "All five literal options compared to the exact sealed result; precisely one is true. Full per-option tests below.",
+    "figureConsistent": "H lies internally onQR, PH perpendicular QR, angleQ60?, sidePQ12; area given in text. Alllabels agree. Actual bound SVG rendered/viewed in stage1 and actual expanded author-answer/solution PNG viewed in stage2. Preview student/candidate digests and PNG hash verified; no overflow/clipping observed. Strict record binds exact SVG/spec bytes, not native/rights approval.",
+    "sameCoreConceptAndProcedure": "Original given two sides and40? asks area with table values. Candidate given one side,60? and area asks the other side, with internal altitude. Real inverse area target. Both use height from direct sine then base?height/2; approximation vs exact radicals is a difficulty difference, not measured equivalence.",
+    "distinctPresentation": "Original given two sides and40? asks area with table values. Candidate given one side,60? and area asks the other side, with internal altitude. Real inverse area target. Both use height from direct sine then base?height/2; approximation vs exact radicals is a difficulty difference, not measured equivalence.",
+    "naturalKorean": "No original school name appears on student surfaces; metadata-only substitution is not claimed as a displayed context change. Question target, conditions and answer format are readable Korean in the actual expanded preview; no unresolved referent found.",
+    "curriculumAppropriate": "PH=12sin60=6?3 cm. Area=(QR)(6?3)/2=36?3 yields QR12cm,?. QH=6<12 verifies the required internal foot. The author explicitly uses a height, not a memorized area-sine formula. Methods: 수선 높이, 특수각의 변의 비, 밑변×높이÷2, 양의 밑변과 내부 수선의 발. Applied2015 M3; angles remain0?90?. No trig relationships/identities, sine/cosine law, Heron, vectors or advanced shortcut in author student solution.",
+    "allStudentSurfacesInScope": "All seven surfaces individually reviewed below; mathematical calculation is deterministic supporting evidence, not an AI confidence/classification approval.",
+    "unitFamilyFit": "Non-null proposed family mid:3-2|삼각비의 활용|08 has historical 2026-10-08 evidence. Its triangleArea acute-angle inverse mode is plausible; a title/def wrapper alone is insufficient for complete current rule proof. Current live state was not read; preserve hold rather than promote proposal.",
+    "scoreAppropriate": "Parent score5 matches the printed source score; Five-choice single-parent format retained. Operations described in source comparison remain plausible within this school-level task band; no measured equal-difficulty claim. Explicit scaffolding/inversion differences above remain visible."
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "삼각형 $PQR$에서 다음 기록이 남아 있다. $H$는 $P$에서 $QR$에 내린 수선의 발이며 선분 $QR$의 내부에 있다.\n\n| 항목 | 기록 |\n|---|---|\n| $\\overline{PQ}$ | $12\\,\\mathrm{cm}$ |\n| $\\angle PQR$ | $60^\\circ$ |\n| 삼각형 $PQR$의 넓이 | $36\\sqrt3\\,\\mathrm{cm}^2$ |\n\n이 기록을 만족하는 밑변 $\\overline{QR}$의 길이는?",
+      "officialProvisions": [
+        "6수03-06",
+        "9수04-17",
+        "9수04-18",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "Five choices checked against sealed exact result; radicals/fractions/decimals are within M3.",
+      "officialProvisions": [
+        "6수03-06",
+        "9수04-17",
+        "9수04-18",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "H lies internally onQR, PH perpendicular QR, angleQ60?, sidePQ12; area given in text. Alllabels agree.",
+      "officialProvisions": [
+        "6수03-06",
+        "9수04-17",
+        "9수04-18",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "Right-angle labels, acute degree measures, segment notation, fractions/radicals and cm/m/area units are conventional and agree with target. PH=6√3>0,QH=6 and QR=12 satisfy the area36√3 and Hinternal since0<6<12. The fixed positive height makes area strictly proportional to base, so only base12 works; lengthcm and areacm².",
+      "officialProvisions": [
+        "6수03-06",
+        "9수04-17",
+        "9수04-18",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "PH=12sin60=6?3 cm. Area=(QR)(6?3)/2=36?3 yields QR12cm,?. QH=6<12 verifies the required internal foot. The author explicitly uses a height, not a memorized area-sine formula.",
+      "officialProvisions": [
+        "6수03-06",
+        "9수04-17",
+        "9수04-18",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "PH=12sin60=6?3 cm. Area=(QR)(6?3)/2=36?3 yields QR12cm,?. QH=6<12 verifies the required internal foot. The author explicitly uses a height, not a memorized area-sine formula.",
+      "officialProvisions": [
+        "6수03-06",
+        "9수04-17",
+        "9수04-18",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "수선 높이, 특수각의 변의 비, 밑변×높이÷2, 양의 밑변과 내부 수선의 발. PH=6√3>0,QH=6 and QR=12 satisfy the area36√3 and Hinternal since0<6<12. The fixed positive height makes area strictly proportional to base, so only base12 works; lengthcm and areacm².",
+      "officialProvisions": [
+        "6수03-06",
+        "9수04-17",
+        "9수04-18",
+        "6수03-04"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    }
+  },
+  "unitFamily": {
+    "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+    "familyKey": "mid:3-2|삼각비의 활용|08",
+    "status": "held-current-proof-missing",
+    "basis": "Non-null proposed family mid:3-2|삼각비의 활용|08 has historical 2026-10-08 evidence. Its triangleArea acute-angle inverse mode is plausible; a title/def wrapper alone is insufficient for complete current rule proof. Current live state was not read; preserve hold rather than promote proposal."
+  },
+  "evidence": {
+    "rawCommit": "9870f836a8221a23d4cea3c08b43af1e9c3f7891",
+    "rawFile": "blind/solve/q16.json",
+    "independentAnswer": "③",
+    "independentProof": "H가 QR의 내부에 있고 PH⊥QR이므로 직각삼각형 PQH에서 PH=PQ×sin60°=12×√3/2=6√3 cm이다. QH=12×cos60°=6 cm이다. QR=b>0이라 하면 삼각형의 넓이는 밑변×높이÷2에 의해 b×6√3/2=36√3이다. 따라서 b=12 cm이고, 12>QH=6이므로 H가 내부라는 조건도 맞는다. 정답은 ③이다. 높이를 먼저 구했으며 삼각비를 쓴 넓이 공식을 외워 적용하지 않았다.",
+    "authorStepReview": "PH=12sin60=6?3 cm. Area=(QR)(6?3)/2=36?3 yields QR12cm,?. QH=6<12 verifies the required internal foot. The author explicitly uses a height, not a memorized area-sine formula.",
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "studentOption": "$6\\,\\mathrm{cm}$",
+        "test": {
+          "choice": 1,
+          "encodedValue": "(Fraction(18, 1), 3)",
+          "correct": false
+        },
+        "explanation": "Code compares the area resulting from each proposedQR, using fixed height6√3, against the given36√3. Encoded values are areas, not base labels."
+      },
+      {
+        "choice": 2,
+        "studentOption": "$12\\sqrt3\\,\\mathrm{cm}$",
+        "test": {
+          "choice": 2,
+          "encodedValue": "(Fraction(108, 1), 1)",
+          "correct": false
+        },
+        "explanation": "Code compares the area resulting from each proposedQR, using fixed height6√3, against the given36√3. Encoded values are areas, not base labels."
+      },
+      {
+        "choice": 3,
+        "studentOption": "$12\\,\\mathrm{cm}$",
+        "test": {
+          "choice": 3,
+          "encodedValue": "(Fraction(36, 1), 3)",
+          "correct": true
+        },
+        "explanation": "Code compares the area resulting from each proposedQR, using fixed height6√3, against the given36√3. Encoded values are areas, not base labels."
+      },
+      {
+        "choice": 4,
+        "studentOption": "$18\\,\\mathrm{cm}$",
+        "test": {
+          "choice": 4,
+          "encodedValue": "(Fraction(54, 1), 3)",
+          "correct": false
+        },
+        "explanation": "Code compares the area resulting from each proposedQR, using fixed height6√3, against the given36√3. Encoded values are areas, not base labels."
+      },
+      {
+        "choice": 5,
+        "studentOption": "$24\\,\\mathrm{cm}$",
+        "test": {
+          "choice": 5,
+          "encodedValue": "(Fraction(72, 1), 3)",
+          "correct": false
+        },
+        "explanation": "Code compares the area resulting from each proposedQR, using fixed height6√3, against the given36√3. Encoded values are areas, not base labels."
+      }
+    ],
+    "writtenParts": [],
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q16",
+      "actualResult": {
+        "calculated": "(Fraction(36, 1), 3)",
+        "choices": [
+          {
+            "choice": 1,
+            "encodedValue": "(Fraction(18, 1), 3)",
+            "correct": false
+          },
+          {
+            "choice": 2,
+            "encodedValue": "(Fraction(108, 1), 1)",
+            "correct": false
+          },
+          {
+            "choice": 3,
+            "encodedValue": "(Fraction(36, 1), 3)",
+            "correct": true
+          },
+          {
+            "choice": 4,
+            "encodedValue": "(Fraction(54, 1), 3)",
+            "correct": false
+          },
+          {
+            "choice": 5,
+            "encodedValue": "(Fraction(72, 1), 3)",
+            "correct": false
+          }
+        ],
+        "uniqueChoice": 3
+      }
+    },
+    "existenceUniquenessPositiveLengthsUnits": "PH=6√3>0,QH=6 and QR=12 satisfy the area36√3 and Hinternal since0<6<12. The fixed positive height makes area strictly proportional to base, so only base12 works; lengthcm and areacm².",
+    "sourceComparison": "Original given two sides and40? asks area with table values. Candidate given one side,60? and area asks the other side, with internal altitude. Real inverse area target. Both use height from direct sine then base?height/2; approximation vs exact radicals is a difficulty difference, not measured equivalence.",
+    "preview": "gyeongsang-remaining-final14-r1/inspection/q16-expanded.png",
+    "exposure": "Before seal: no actual new GF14 author answers/authorship. Prior unbound generic REVIEW-KIT q7/? illustration had been read in NB5; disclosed and unused. Actual q7 independently yielded?. Stage2 actual author exposure authorized after raw seal; no legacy Claude proof/review used."
+  },
+  "findings": [
+    {
+      "severity": "blocker",
+      "surface": "unitFamilyFit",
+      "text": "Non-null proposed family mid:3-2|삼각비의 활용|08 has historical 2026-10-08 evidence. Its triangleArea acute-angle inverse mode is plausible; a title/def wrapper alone is insufficient for complete current rule proof. Current live state was not read; preserve hold rather than promote proposal."
+    },
+    {
+      "severity": "note",
+      "surface": "source",
+      "text": "Question-only image comparison performed. Supplied sourceIdentity says original header/footer and completed-question identity supported; this review does not reopen immutable source bytes or independently certify full content pair/custody/rights. Existing source/loading holds remain."
+    }
+  ],
+  "gates": {
+    "loadable": false,
+    "rightsCleared": false,
+    "nativeApproved": false,
+    "sourceCertification": false
+  }
+}

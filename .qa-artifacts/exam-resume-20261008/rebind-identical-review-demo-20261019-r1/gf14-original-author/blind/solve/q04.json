@@ -1,0 +1,130 @@
+{
+  "studentDigest": "7573787736f2193f4671a6f5d5ba596c08813d348e6070457f2e9073ecd1f167",
+  "solverId": "codex-gf14-independent-20261019-r2",
+  "answer": "④",
+  "solution": "P는 반지름10인 호 위에 있으므로 OP=OA=10이다. PH⊥OA인 직각삼각형 OPH에서 cos40°=OH/OP이다. 또 OA⊥AD이고 O,P,D가 같은 반직선 위에 있으므로 직각삼각형 OAD에서 tan40°=AD/OA이다. 표의 기록값으로 계산하면 cos40°≈7.6604/10=0.76604, tan40°≈8.3910/10=0.83910이다. 각각 소수 넷째 자리까지 나타내면 0.7660,0.8391이므로 ④이다. 기록된 길이는 반올림된 수이며 정확한 삼각형의 길이로 간주해 별도의 등식을 강제하지 않는다.",
+  "evidence": {
+    "questionNumber": 4,
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q04",
+    "studentOnlyInputs": true,
+    "figureReading": "Quarter-circle centreO, A on horizontal radius, B on vertical radius, P on arc, H onOA, O/P/D collinear, AD and PH perpendicularOA. External40° label has leader to the O angle arc, so it identifies the stated acute angle.",
+    "renderedFiguresViewed": [
+      {
+        "svgPath": "figures/q04-1.svg",
+        "sha256": "38ea7364c29363f02e4c316ec6d33bd6d2c592fa80ecb00eedfc58260e9a073a",
+        "pngPath": "rendered/q04-1.png",
+        "pixelMeasurement": false
+      }
+    ],
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "studentOption": "$0.6428,\\ 0.7660$",
+        "test": {
+          "choice": 1,
+          "encodedValue": "(Decimal('0.6428'), Decimal('0.7660'))",
+          "correct": false
+        },
+        "explanation": "Pairs are the two recorded ratios rounded to4decimal places with half-up rounding."
+      },
+      {
+        "choice": 2,
+        "studentOption": "$0.7660,\\ 8.3910$",
+        "test": {
+          "choice": 2,
+          "encodedValue": "(Decimal('0.7660'), Decimal('8.3910'))",
+          "correct": false
+        },
+        "explanation": "Pairs are the two recorded ratios rounded to4decimal places with half-up rounding."
+      },
+      {
+        "choice": 3,
+        "studentOption": "$7.6604,\\ 0.8391$",
+        "test": {
+          "choice": 3,
+          "encodedValue": "(Decimal('7.6604'), Decimal('0.8391'))",
+          "correct": false
+        },
+        "explanation": "Pairs are the two recorded ratios rounded to4decimal places with half-up rounding."
+      },
+      {
+        "choice": 4,
+        "studentOption": "$0.7660,\\ 0.8391$",
+        "test": {
+          "choice": 4,
+          "encodedValue": "(Decimal('0.7660'), Decimal('0.8391'))",
+          "correct": true
+        },
+        "explanation": "Pairs are the two recorded ratios rounded to4decimal places with half-up rounding."
+      },
+      {
+        "choice": 5,
+        "studentOption": "$0.6428,\\ 0.8391$",
+        "test": {
+          "choice": 5,
+          "encodedValue": "(Decimal('0.6428'), Decimal('0.8391'))",
+          "correct": false
+        },
+        "explanation": "Pairs are the two recorded ratios rounded to4decimal places with half-up rounding."
+      }
+    ],
+    "parts": [],
+    "existenceUniquenessPositiveLengthsUnits": "The40° ray is strictly inside the first quadrant, giving H insideOA and a unique finite vertical-line intersectionD. OP=OA=10; all target ratios positive. Length records are rounded, not exact simultaneous equations. Question asks table-record arithmetic; answer ratios dimensionless.",
+    "withinGradeMethodEvidence": {
+      "target": "M3 / 2015",
+      "usedConcepts": [
+        "원호의 반지름",
+        "실제 직각삼각형의 코사인·탄젠트 정의",
+        "기록 근삿값과 반올림"
+      ],
+      "derivationBasis": "Actual student-level proof written above; no formal live-family/classification or release approval is asserted.",
+      "forbiddenMethodsUsed": false,
+      "restrictionsChecked": [
+        "no general trig identities or function relationships",
+        "no sine/cosine laws",
+        "no Heron",
+        "no vectors",
+        "no higher-grade shortcuts",
+        "no pixel measurement"
+      ]
+    },
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q04",
+      "actualResult": {
+        "calculated": "(Decimal('0.7660'), Decimal('0.8391'))",
+        "choices": [
+          {
+            "choice": 1,
+            "encodedValue": "(Decimal('0.6428'), Decimal('0.7660'))",
+            "correct": false
+          },
+          {
+            "choice": 2,
+            "encodedValue": "(Decimal('0.7660'), Decimal('8.3910'))",
+            "correct": false
+          },
+          {
+            "choice": 3,
+            "encodedValue": "(Decimal('7.6604'), Decimal('0.8391'))",
+            "correct": false
+          },
+          {
+            "choice": 4,
+            "encodedValue": "(Decimal('0.7660'), Decimal('0.8391'))",
+            "correct": true
+          },
+          {
+            "choice": 5,
+            "encodedValue": "(Decimal('0.6428'), Decimal('0.8391'))",
+            "correct": false
+          }
+        ],
+        "uniqueChoice": 4
+      }
+    },
+    "exposure": "No GF14 candidate/private/source/old solves or actual author answers read. Prior unbound generic REVIEW-KIT example disclosed in input receipt and unused as answer evidence.",
+    "authorAnswersUsed": false
+  },
+  "status": "solved"
+}

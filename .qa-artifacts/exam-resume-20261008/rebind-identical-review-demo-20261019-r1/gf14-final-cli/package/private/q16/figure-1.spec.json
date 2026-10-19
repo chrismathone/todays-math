@@ -1,0 +1,77 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "style": {
+    "font_size": 18,
+    "angle_font_size": 17,
+    "angle_radius": 16,
+    "padding": 22,
+    "show_points": false
+  },
+  "points": {
+    "Q": [
+      0,
+      0
+    ],
+    "R": [
+      180,
+      0
+    ],
+    "P": [
+      90,
+      -155.88457268119896
+    ],
+    "H": [
+      90,
+      0
+    ]
+  },
+  "segments": {
+    "PQ": [
+      "P",
+      "Q"
+    ],
+    "QR": [
+      "Q",
+      "R"
+    ],
+    "RP": [
+      "R",
+      "P"
+    ],
+    "PH": {
+      "points": [
+        "P",
+        "H"
+      ],
+      "dash": "4 3"
+    }
+  },
+  "labels": {
+    "Q": "Q",
+    "R": "R",
+    "P": "P",
+    "H": "H"
+  },
+  "angles": {
+    "angle_H": {
+      "vertex": "H",
+      "points": [
+        "P",
+        "R"
+      ],
+      "right": true,
+      "radius": 8
+    },
+    "angle_Q": {
+      "vertex": "Q",
+      "points": [
+        "R",
+        "P"
+      ],
+      "label": "$60^\\circ$",
+      "radius": 23,
+      "label_distance": 35
+    }
+  }
+}

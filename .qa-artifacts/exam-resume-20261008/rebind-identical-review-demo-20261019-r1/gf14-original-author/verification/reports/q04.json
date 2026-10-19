@@ -1,0 +1,283 @@
+{
+  "studentDigest": "7573787736f2193f4671a6f5d5ba596c08813d348e6070457f2e9073ecd1f167",
+  "candidateDigest": "8337a911ed20a64cb5caa4dcbd1dff95cf52b21915604b8527c68029ebd4e5da",
+  "assetDigest": "c5657a52125dd0a961aa11183a05a414918cb40cb38ee584fab77b617b8325b6",
+  "solveDigest": "718357ce81b21df33ae5270655c2449a531601d6e3e29f8d60bf0b8252fd3ca0",
+  "questionNumber": 4,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q04",
+  "status": "pending",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-gf14-independent-20261019-r2",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "checkEvidence": {
+    "answerCorrect": "Using the recorded lengths rather than pretending they are exact transcendental values: OH/OP=7.6604/10=.76604 rounds .7660; AD/OA=8.3910/10=.8391. Author selects?. PH is not needed to infer an identity. Compared mathematically against this verifier?s sealed new raw solve; representation differences do not rewrite that proof.",
+    "solutionCorrect": "Using the recorded lengths rather than pretending they are exact transcendental values: OH/OP=7.6604/10=.76604 rounds .7660; AD/OA=8.3910/10=.8391. Author selects?. PH is not needed to infer an identity.",
+    "existenceUniqueness": "The40° ray is strictly inside the first quadrant, giving H insideOA and a unique finite vertical-line intersectionD. OP=OA=10; all target ratios positive. Length records are rounded, not exact simultaneous equations. Question asks table-record arithmetic; answer ratios dimensionless.",
+    "choicesCorrect": "All five literal options compared to the exact sealed result; precisely one is true. Full per-option tests below.",
+    "figureConsistent": "O,A,B quarter-circle, OP radius10, PH perpendicular OA and AD perpendicular OA, O/P/D collinear.40? and recorded lengths align; direct ratios are unambiguous. Actual bound SVG rendered/viewed in stage1 and actual expanded author-answer/solution PNG viewed in stage2. Preview student/candidate digests and PNG hash verified; no overflow/clipping observed. Strict record binds exact SVG/spec bytes, not native/rights approval.",
+    "sameCoreConceptAndProcedure": "Original unit quarter-circle asks a single cos from a projection label. Candidate radius10 uses recorded lengths to report a rounded cos/tan pair, requiring two direct normalizations. Not solely a scale/name change.",
+    "distinctPresentation": "Original unit quarter-circle asks a single cos from a projection label. Candidate radius10 uses recorded lengths to report a rounded cos/tan pair, requiring two direct normalizations. Not solely a scale/name change.",
+    "naturalKorean": "No original school name appears on student surfaces; metadata-only substitution is not claimed as a displayed context change. Question target, conditions and answer format are readable Korean in the actual expanded preview; no unresolved referent found.",
+    "curriculumAppropriate": "Using the recorded lengths rather than pretending they are exact transcendental values: OH/OP=7.6604/10=.76604 rounds .7660; AD/OA=8.3910/10=.8391. Author selects?. PH is not needed to infer an identity. Methods: 원호의 반지름, 실제 직각삼각형의 코사인·탄젠트 정의, 기록 근삿값과 반올림. Applied2015 M3; angles remain0?90?. No trig relationships/identities, sine/cosine law, Heron, vectors or advanced shortcut in author student solution.",
+    "allStudentSurfacesInScope": "All seven surfaces individually reviewed below; mathematical calculation is deterministic supporting evidence, not an AI confidence/classification approval.",
+    "unitFamilyFit": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family.",
+    "scoreAppropriate": "Parent score4 matches the printed source score; Five-choice single-parent format retained. Operations described in source comparison remain plausible within this school-level task band; no measured equal-difficulty claim. Explicit scaffolding/inversion differences above remain visible."
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "반지름이 $10$인 사분원에서 $O$는 중심이고 $A$, $B$는 두 반지름의 끝점이다. 호 위의 점 $P$에 대하여 $\\angle POA=40^\\circ$이다.\n$H$는 $P$에서 $OA$에 내린 수선의 발이다. 반직선 $OP$와 $A$를 지나 $OA$에 수직인 직선의 교점을 $D$라 한다.\n\n아래 표는 각 길이를 소수 다섯째 자리에서 반올림한 기록이다.\n\n| 선분 | $PH$ | $OH$ | $AD$ |\n|---|---|---|---|\n| 길이 기록 | $6.4279$ | $7.6604$ | $8.3910$ |\n\n표의 기록값을 이용하여 계산한 $\\cos40^\\circ$, $\\tan40^\\circ$를 각각 소수 넷째 자리까지 나타낸 것은?",
+      "officialProvisions": [
+        "9수04-17",
+        "9수04-18",
+        "6수03-02"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "Five choices checked against sealed exact result; radicals/fractions/decimals are within M3.",
+      "officialProvisions": [
+        "9수04-17",
+        "9수04-18",
+        "6수03-02"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "O,A,B quarter-circle, OP radius10, PH perpendicular OA and AD perpendicular OA, O/P/D collinear.40? and recorded lengths align; direct ratios are unambiguous.",
+      "officialProvisions": [
+        "9수04-17",
+        "9수04-18",
+        "6수03-02"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "Right-angle labels, acute degree measures, segment notation, fractions/radicals and cm/m/area units are conventional and agree with target. The40° ray is strictly inside the first quadrant, giving H insideOA and a unique finite vertical-line intersectionD. OP=OA=10; all target ratios positive. Length records are rounded, not exact simultaneous equations. Question asks table-record arithmetic; answer ratios dimensionless.",
+      "officialProvisions": [
+        "9수04-17",
+        "9수04-18",
+        "6수03-02"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "Using the recorded lengths rather than pretending they are exact transcendental values: OH/OP=7.6604/10=.76604 rounds .7660; AD/OA=8.3910/10=.8391. Author selects?. PH is not needed to infer an identity.",
+      "officialProvisions": [
+        "9수04-17",
+        "9수04-18",
+        "6수03-02"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "Using the recorded lengths rather than pretending they are exact transcendental values: OH/OP=7.6604/10=.76604 rounds .7660; AD/OA=8.3910/10=.8391. Author selects?. PH is not needed to infer an identity.",
+      "officialProvisions": [
+        "9수04-17",
+        "9수04-18",
+        "6수03-02"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "원호의 반지름, 실제 직각삼각형의 코사인·탄젠트 정의, 기록 근삿값과 반올림. The40° ray is strictly inside the first quadrant, giving H insideOA and a unique finite vertical-line intersectionD. OP=OA=10; all target ratios positive. Length records are rounded, not exact simultaneous equations. Question asks table-record arithmetic; answer ratios dimensionless.",
+      "officialProvisions": [
+        "9수04-17",
+        "9수04-18",
+        "6수03-02"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    }
+  },
+  "unitFamily": {
+    "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+    "familyKey": null,
+    "status": "held-current-proof-missing",
+    "basis": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family."
+  },
+  "evidence": {
+    "rawCommit": "9870f836a8221a23d4cea3c08b43af1e9c3f7891",
+    "rawFile": "blind/solve/q04.json",
+    "independentAnswer": "④",
+    "independentProof": "P는 반지름10인 호 위에 있으므로 OP=OA=10이다. PH⊥OA인 직각삼각형 OPH에서 cos40°=OH/OP이다. 또 OA⊥AD이고 O,P,D가 같은 반직선 위에 있으므로 직각삼각형 OAD에서 tan40°=AD/OA이다. 표의 기록값으로 계산하면 cos40°≈7.6604/10=0.76604, tan40°≈8.3910/10=0.83910이다. 각각 소수 넷째 자리까지 나타내면 0.7660,0.8391이므로 ④이다. 기록된 길이는 반올림된 수이며 정확한 삼각형의 길이로 간주해 별도의 등식을 강제하지 않는다.",
+    "authorStepReview": "Using the recorded lengths rather than pretending they are exact transcendental values: OH/OP=7.6604/10=.76604 rounds .7660; AD/OA=8.3910/10=.8391. Author selects?. PH is not needed to infer an identity.",
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "studentOption": "$0.6428,\\ 0.7660$",
+        "test": {
+          "choice": 1,
+          "encodedValue": "(Decimal('0.6428'), Decimal('0.7660'))",
+          "correct": false
+        },
+        "explanation": "Pairs are the two recorded ratios rounded to4decimal places with half-up rounding."
+      },
+      {
+        "choice": 2,
+        "studentOption": "$0.7660,\\ 8.3910$",
+        "test": {
+          "choice": 2,
+          "encodedValue": "(Decimal('0.7660'), Decimal('8.3910'))",
+          "correct": false
+        },
+        "explanation": "Pairs are the two recorded ratios rounded to4decimal places with half-up rounding."
+      },
+      {
+        "choice": 3,
+        "studentOption": "$7.6604,\\ 0.8391$",
+        "test": {
+          "choice": 3,
+          "encodedValue": "(Decimal('7.6604'), Decimal('0.8391'))",
+          "correct": false
+        },
+        "explanation": "Pairs are the two recorded ratios rounded to4decimal places with half-up rounding."
+      },
+      {
+        "choice": 4,
+        "studentOption": "$0.7660,\\ 0.8391$",
+        "test": {
+          "choice": 4,
+          "encodedValue": "(Decimal('0.7660'), Decimal('0.8391'))",
+          "correct": true
+        },
+        "explanation": "Pairs are the two recorded ratios rounded to4decimal places with half-up rounding."
+      },
+      {
+        "choice": 5,
+        "studentOption": "$0.6428,\\ 0.8391$",
+        "test": {
+          "choice": 5,
+          "encodedValue": "(Decimal('0.6428'), Decimal('0.8391'))",
+          "correct": false
+        },
+        "explanation": "Pairs are the two recorded ratios rounded to4decimal places with half-up rounding."
+      }
+    ],
+    "writtenParts": [],
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q04",
+      "actualResult": {
+        "calculated": "(Decimal('0.7660'), Decimal('0.8391'))",
+        "choices": [
+          {
+            "choice": 1,
+            "encodedValue": "(Decimal('0.6428'), Decimal('0.7660'))",
+            "correct": false
+          },
+          {
+            "choice": 2,
+            "encodedValue": "(Decimal('0.7660'), Decimal('8.3910'))",
+            "correct": false
+          },
+          {
+            "choice": 3,
+            "encodedValue": "(Decimal('7.6604'), Decimal('0.8391'))",
+            "correct": false
+          },
+          {
+            "choice": 4,
+            "encodedValue": "(Decimal('0.7660'), Decimal('0.8391'))",
+            "correct": true
+          },
+          {
+            "choice": 5,
+            "encodedValue": "(Decimal('0.6428'), Decimal('0.8391'))",
+            "correct": false
+          }
+        ],
+        "uniqueChoice": 4
+      }
+    },
+    "existenceUniquenessPositiveLengthsUnits": "The40° ray is strictly inside the first quadrant, giving H insideOA and a unique finite vertical-line intersectionD. OP=OA=10; all target ratios positive. Length records are rounded, not exact simultaneous equations. Question asks table-record arithmetic; answer ratios dimensionless.",
+    "sourceComparison": "Original unit quarter-circle asks a single cos from a projection label. Candidate radius10 uses recorded lengths to report a rounded cos/tan pair, requiring two direct normalizations. Not solely a scale/name change.",
+    "preview": "gyeongsang-remaining-final14-r1/inspection/q04-expanded.png",
+    "exposure": "Before seal: no actual new GF14 author answers/authorship. Prior unbound generic REVIEW-KIT q7/? illustration had been read in NB5; disclosed and unused. Actual q7 independently yielded?. Stage2 actual author exposure authorized after raw seal; no legacy Claude proof/review used."
+  },
+  "findings": [
+    {
+      "severity": "blocker",
+      "surface": "unitFamilyFit",
+      "text": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family."
+    },
+    {
+      "severity": "note",
+      "surface": "source",
+      "text": "Question-only image comparison performed. Supplied sourceIdentity says original header/footer and completed-question identity supported; this review does not reopen immutable source bytes or independently certify full content pair/custody/rights. Existing source/loading holds remain."
+    }
+  ],
+  "gates": {
+    "loadable": false,
+    "rightsCleared": false,
+    "nativeApproved": false,
+    "sourceCertification": false
+  }
+}

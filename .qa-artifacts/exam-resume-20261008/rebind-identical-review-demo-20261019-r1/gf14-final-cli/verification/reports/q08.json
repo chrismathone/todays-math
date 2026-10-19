@@ -1,0 +1,283 @@
+{
+  "studentDigest": "c858d84e85ac38c9e0abf8128b07be51d4742244e6030ad8ebed15c3fa7f2887",
+  "candidateDigest": "e769adbe8ced0cc7ad5e220d55d038d050cddb8c70df37aefc28f79ec8c34c12",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "solveDigest": "e56330f7e73599976c506bfd2cae2c41b0d10b316898a817a553d018dff2039f",
+  "questionNumber": 8,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q08",
+  "status": "pending",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-gf14-independent-20261019-r2",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "checkEvidence": {
+    "answerCorrect": "Fixed special-angle substitution gives left?3/2 and multiplier coefficient?6/6>0. k=(?3/2)/(?6/6)=3?2/2,?. This is numerical substitution, not a general trig relationship. Compared mathematically against this verifier?s sealed new raw solve; representation differences do not rewrite that proof.",
+    "solutionCorrect": "Fixed special-angle substitution gives left?3/2 and multiplier coefficient?6/6>0. k=(?3/2)/(?6/6)=3?2/2,?. This is numerical substitution, not a general trig relationship.",
+    "existenceUniqueness": "All special angles acute; left√3/2>0 and the coefficient√6/6>0, giving exactly one positivek=3√2/2. k is dimensionless. General relationships between different trig functions are not invoked.",
+    "choicesCorrect": "All five literal options compared to the exact sealed result; precisely one is true. Full per-option tests below.",
+    "figureConsistent": "No figure; fixed-angle expression and positive k are typeset legibly. Actual bound SVG rendered/viewed in stage1 and actual expanded author-answer/solution PNG viewed in stage2. Preview student/candidate digests and PNG hash verified; no overflow/clipping observed. Strict record binds exact SVG/spec bytes, not native/rights approval.",
+    "sameCoreConceptAndProcedure": "Original asks a product of two special-angle values; candidate gives equality of two fixed-angle products with a positive unknown multiplier. Actual inverse algebraic target; special-angle numerical substitution retained.",
+    "distinctPresentation": "Original asks a product of two special-angle values; candidate gives equality of two fixed-angle products with a positive unknown multiplier. Actual inverse algebraic target; special-angle numerical substitution retained.",
+    "naturalKorean": "No original school name appears on student surfaces; metadata-only substitution is not claimed as a displayed context change. Question target, conditions and answer format are readable Korean in the actual expanded preview; no unresolved referent found.",
+    "curriculumAppropriate": "Fixed special-angle substitution gives left?3/2 and multiplier coefficient?6/6>0. k=(?3/2)/(?6/6)=3?2/2,?. This is numerical substitution, not a general trig relationship. Methods: 30°·45°·60° 직각삼각형의 변의 비, 분수·근호의 곱셈과 나눗셈, 양의 계수를 갖는 일차식. Applied2015 M3; angles remain0?90?. No trig relationships/identities, sine/cosine law, Heron, vectors or advanced shortcut in author student solution.",
+    "allStudentSurfacesInScope": "All seven surfaces individually reviewed below; mathematical calculation is deterministic supporting evidence, not an AI confidence/classification approval.",
+    "unitFamilyFit": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family.",
+    "scoreAppropriate": "Parent score4 matches the printed source score; Five-choice single-parent format retained. Operations described in source comparison remain plausible within this school-level task band; no measured equal-difficulty claim. Explicit scaffolding/inversion differences above remain visible."
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "두 계산 기록의 값이 같도록 양수 $k$를 정하려고 한다.\n\n| 기록 | 계산식 |\n|---|---|\n| 가 | $\\sin60^\\circ\\times\\tan45^\\circ$ |\n| 나 | $k\\times\\sin45^\\circ\\times\\tan30^\\circ$ |\n\n$k$의 값은?",
+      "officialProvisions": [
+        "9수04-17",
+        "9수01-10",
+        "9수02-05"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "Five choices checked against sealed exact result; radicals/fractions/decimals are within M3.",
+      "officialProvisions": [
+        "9수04-17",
+        "9수01-10",
+        "9수02-05"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "No figure; fixed-angle expression and positive k are typeset legibly.",
+      "officialProvisions": [
+        "9수04-17",
+        "9수01-10",
+        "9수02-05"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "Right-angle labels, acute degree measures, segment notation, fractions/radicals and cm/m/area units are conventional and agree with target. All special angles acute; left√3/2>0 and the coefficient√6/6>0, giving exactly one positivek=3√2/2. k is dimensionless. General relationships between different trig functions are not invoked.",
+      "officialProvisions": [
+        "9수04-17",
+        "9수01-10",
+        "9수02-05"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "Fixed special-angle substitution gives left?3/2 and multiplier coefficient?6/6>0. k=(?3/2)/(?6/6)=3?2/2,?. This is numerical substitution, not a general trig relationship.",
+      "officialProvisions": [
+        "9수04-17",
+        "9수01-10",
+        "9수02-05"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "Fixed special-angle substitution gives left?3/2 and multiplier coefficient?6/6>0. k=(?3/2)/(?6/6)=3?2/2,?. This is numerical substitution, not a general trig relationship.",
+      "officialProvisions": [
+        "9수04-17",
+        "9수01-10",
+        "9수02-05"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "30°·45°·60° 직각삼각형의 변의 비, 분수·근호의 곱셈과 나눗셈, 양의 계수를 갖는 일차식. All special angles acute; left√3/2>0 and the coefficient√6/6>0, giving exactly one positivek=3√2/2. k is dimensionless. General relationships between different trig functions are not invoked.",
+      "officialProvisions": [
+        "9수04-17",
+        "9수01-10",
+        "9수02-05"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    }
+  },
+  "unitFamily": {
+    "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+    "familyKey": null,
+    "status": "held-current-proof-missing",
+    "basis": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family."
+  },
+  "evidence": {
+    "rawCommit": "9870f836a8221a23d4cea3c08b43af1e9c3f7891",
+    "rawFile": "blind/solve/q08.json",
+    "independentAnswer": "⑤",
+    "independentProof": "특수각의 값 sin60°=√3/2, tan45°=1, sin45°=√2/2, tan30°=√3/3을 각각 실제 특수 직각삼각형의 변의 비로 구해 사용한다. 가=√3/2이고 나=k×(√2/2)×(√3/3)=k√6/6이다. 따라서 k√6/6=√3/2, k=3/√2=3√2/2>0이다. 정답은 ⑤이다. 서로 다른 삼각비를 연결하는 일반 관계식은 쓰지 않고 네 특수각의 수치값을 곱하고 나눈 것이다.",
+    "authorStepReview": "Fixed special-angle substitution gives left?3/2 and multiplier coefficient?6/6>0. k=(?3/2)/(?6/6)=3?2/2,?. This is numerical substitution, not a general trig relationship.",
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "studentOption": "$\\frac{\\sqrt2}{2}$",
+        "test": {
+          "choice": 1,
+          "encodedValue": "(Fraction(1, 6), 3)",
+          "correct": false
+        },
+        "explanation": "Code compares each proposedk multiplied by the common positive√6/6 with the left side√3/2; encoded values are RHS results, not thek labels."
+      },
+      {
+        "choice": 2,
+        "studentOption": "$\\sqrt2$",
+        "test": {
+          "choice": 2,
+          "encodedValue": "(Fraction(1, 3), 3)",
+          "correct": false
+        },
+        "explanation": "Code compares each proposedk multiplied by the common positive√6/6 with the left side√3/2; encoded values are RHS results, not thek labels."
+      },
+      {
+        "choice": 3,
+        "studentOption": "$\\frac{\\sqrt6}{2}$",
+        "test": {
+          "choice": 3,
+          "encodedValue": "(Fraction(1, 2), 1)",
+          "correct": false
+        },
+        "explanation": "Code compares each proposedk multiplied by the common positive√6/6 with the left side√3/2; encoded values are RHS results, not thek labels."
+      },
+      {
+        "choice": 4,
+        "studentOption": "$3$",
+        "test": {
+          "choice": 4,
+          "encodedValue": "(Fraction(1, 2), 6)",
+          "correct": false
+        },
+        "explanation": "Code compares each proposedk multiplied by the common positive√6/6 with the left side√3/2; encoded values are RHS results, not thek labels."
+      },
+      {
+        "choice": 5,
+        "studentOption": "$\\frac{3\\sqrt2}{2}$",
+        "test": {
+          "choice": 5,
+          "encodedValue": "(Fraction(1, 2), 3)",
+          "correct": true
+        },
+        "explanation": "Code compares each proposedk multiplied by the common positive√6/6 with the left side√3/2; encoded values are RHS results, not thek labels."
+      }
+    ],
+    "writtenParts": [],
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q08",
+      "actualResult": {
+        "calculated": "(Fraction(1, 2), 3)",
+        "choices": [
+          {
+            "choice": 1,
+            "encodedValue": "(Fraction(1, 6), 3)",
+            "correct": false
+          },
+          {
+            "choice": 2,
+            "encodedValue": "(Fraction(1, 3), 3)",
+            "correct": false
+          },
+          {
+            "choice": 3,
+            "encodedValue": "(Fraction(1, 2), 1)",
+            "correct": false
+          },
+          {
+            "choice": 4,
+            "encodedValue": "(Fraction(1, 2), 6)",
+            "correct": false
+          },
+          {
+            "choice": 5,
+            "encodedValue": "(Fraction(1, 2), 3)",
+            "correct": true
+          }
+        ],
+        "uniqueChoice": 5
+      }
+    },
+    "existenceUniquenessPositiveLengthsUnits": "All special angles acute; left√3/2>0 and the coefficient√6/6>0, giving exactly one positivek=3√2/2. k is dimensionless. General relationships between different trig functions are not invoked.",
+    "sourceComparison": "Original asks a product of two special-angle values; candidate gives equality of two fixed-angle products with a positive unknown multiplier. Actual inverse algebraic target; special-angle numerical substitution retained.",
+    "preview": "gyeongsang-remaining-final14-r1/inspection/q08-expanded.png",
+    "exposure": "Before seal: no actual new GF14 author answers/authorship. Prior unbound generic REVIEW-KIT q7/? illustration had been read in NB5; disclosed and unused. Actual q7 independently yielded?. Stage2 actual author exposure authorized after raw seal; no legacy Claude proof/review used."
+  },
+  "findings": [
+    {
+      "severity": "blocker",
+      "surface": "unitFamilyFit",
+      "text": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family."
+    },
+    {
+      "severity": "note",
+      "surface": "source",
+      "text": "Question-only image comparison performed. Supplied sourceIdentity says original header/footer and completed-question identity supported; this review does not reopen immutable source bytes or independently certify full content pair/custody/rights. Existing source/loading holds remain."
+    }
+  ],
+  "gates": {
+    "loadable": false,
+    "rightsCleared": false,
+    "nativeApproved": false,
+    "sourceCertification": false
+  }
+}

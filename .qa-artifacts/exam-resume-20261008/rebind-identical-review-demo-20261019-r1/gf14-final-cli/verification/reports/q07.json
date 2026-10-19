@@ -1,0 +1,283 @@
+{
+  "studentDigest": "e50a69925cee1b85a85af824a2f35617704372861ee872f7f8f60d4e866b4100",
+  "candidateDigest": "f61238e077bccc45057a9f035e4e9264fc9d062da33de57211e6aed9145dfa2f",
+  "assetDigest": "b56f1d586bed9fe38d6d41b460c2fcebc778d4975363d537c10bc3cb9856f683",
+  "solveDigest": "1204651a461ce9de987fbd913b4679aeaeb43f84fa02f764e3b8b21271aa175d",
+  "questionNumber": 7,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q07",
+  "status": "pending",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-gf14-independent-20261019-r2",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "checkEvidence": {
+    "answerCorrect": "R=90?,P=45? implies equal legs. PR=12?2??2/2=12 and QR=12; sum minus hypotenuse=24?12?2 cm,?. Direct side definition/equal angles. Compared mathematically against this verifier?s sealed new raw solve; representation differences do not rewrite that proof.",
+    "solutionCorrect": "R=90?,P=45? implies equal legs. PR=12?2??2/2=12 and QR=12; sum minus hypotenuse=24?12?2 cm,?. Direct side definition/equal angles.",
+    "existenceUniqueness": "A45–45–90 triangle with legs12 and hypotenuse12√2 exists and fixes the requested difference. Since1<√2<2, 0<24−12√2<12. Length unitcm; triangle inequality satisfied.",
+    "choicesCorrect": "All five literal options compared to the exact sealed result; precisely one is true. Full per-option tests below.",
+    "figureConsistent": "RightR and45? atP, PQ12?2 is hypotenuse; figure is consistent without scale measurement. Actual bound SVG rendered/viewed in stage1 and actual expanded author-answer/solution PNG viewed in stage2. Preview student/candidate digests and PNG hash verified; no overflow/clipping observed. Strict record binds exact SVG/spec bytes, not native/rights approval.",
+    "sameCoreConceptAndProcedure": "Original45? triangle gives one leg and asks other leg/hypotenuse pair. Candidate gives hypotenuse and asks legs-sum minus hypotenuse. Inverse side recovery and changed target; equal-angle triangle/direct definitions retained.",
+    "distinctPresentation": "Original45? triangle gives one leg and asks other leg/hypotenuse pair. Candidate gives hypotenuse and asks legs-sum minus hypotenuse. Inverse side recovery and changed target; equal-angle triangle/direct definitions retained.",
+    "naturalKorean": "No original school name appears on student surfaces; metadata-only substitution is not claimed as a displayed context change. Question target, conditions and answer format are readable Korean in the actual expanded preview; no unresolved referent found.",
+    "curriculumAppropriate": "R=90?,P=45? implies equal legs. PR=12?2??2/2=12 and QR=12; sum minus hypotenuse=24?12?2 cm,?. Direct side definition/equal angles. Methods: 삼각형 내각의 합, 이등변직각삼각형, 피타고라스 정리, 근호의 계산. Applied2015 M3; angles remain0?90?. No trig relationships/identities, sine/cosine law, Heron, vectors or advanced shortcut in author student solution.",
+    "allStudentSurfacesInScope": "All seven surfaces individually reviewed below; mathematical calculation is deterministic supporting evidence, not an AI confidence/classification approval.",
+    "unitFamilyFit": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family.",
+    "scoreAppropriate": "Parent score4 matches the printed source score; Five-choice single-parent format retained. Operations described in source comparison remain plausible within this school-level task band; no measured equal-difficulty claim. Explicit scaffolding/inversion differences above remain visible."
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "직각삼각형 $PQR$에서 $\\angle R=90^\\circ$, $\\angle P=45^\\circ$이고 $\\overline{PQ}=12\\sqrt2\\,\\mathrm{cm}$이다.\n\n두 직각변의 길이 합과 빗변 길이의 차 $\\overline{PR}+\\overline{RQ}-\\overline{PQ}$의 값은?",
+      "officialProvisions": [
+        "9수04-10",
+        "9수04-17",
+        "9수04-18"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "Five choices checked against sealed exact result; radicals/fractions/decimals are within M3.",
+      "officialProvisions": [
+        "9수04-10",
+        "9수04-17",
+        "9수04-18"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "RightR and45? atP, PQ12?2 is hypotenuse; figure is consistent without scale measurement.",
+      "officialProvisions": [
+        "9수04-10",
+        "9수04-17",
+        "9수04-18"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "Right-angle labels, acute degree measures, segment notation, fractions/radicals and cm/m/area units are conventional and agree with target. A45–45–90 triangle with legs12 and hypotenuse12√2 exists and fixes the requested difference. Since1<√2<2, 0<24−12√2<12. Length unitcm; triangle inequality satisfied.",
+      "officialProvisions": [
+        "9수04-10",
+        "9수04-17",
+        "9수04-18"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "R=90?,P=45? implies equal legs. PR=12?2??2/2=12 and QR=12; sum minus hypotenuse=24?12?2 cm,?. Direct side definition/equal angles.",
+      "officialProvisions": [
+        "9수04-10",
+        "9수04-17",
+        "9수04-18"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "R=90?,P=45? implies equal legs. PR=12?2??2/2=12 and QR=12; sum minus hypotenuse=24?12?2 cm,?. Direct side definition/equal angles.",
+      "officialProvisions": [
+        "9수04-10",
+        "9수04-17",
+        "9수04-18"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "삼각형 내각의 합, 이등변직각삼각형, 피타고라스 정리, 근호의 계산. A45–45–90 triangle with legs12 and hypotenuse12√2 exists and fixes the requested difference. Since1<√2<2, 0<24−12√2<12. Length unitcm; triangle inequality satisfied.",
+      "officialProvisions": [
+        "9수04-10",
+        "9수04-17",
+        "9수04-18"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    }
+  },
+  "unitFamily": {
+    "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+    "familyKey": null,
+    "status": "held-current-proof-missing",
+    "basis": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family."
+  },
+  "evidence": {
+    "rawCommit": "9870f836a8221a23d4cea3c08b43af1e9c3f7891",
+    "rawFile": "blind/solve/q07.json",
+    "independentAnswer": "②",
+    "independentProof": "R=90°, P=45°이므로 Q=45°이다. 따라서 두 직각변 PR,RQ는 같고, 그 길이를 t>0이라 하면 피타고라스 정리에 의해 2t²=(12√2)²=288이다. t²=144이므로 t=12 cm이다. 구하는 차는 PR+RQ−PQ=12+12−12√2=24−12√2 cm이므로 ②이다. 1<√2<2이므로 이 차는 0과12 사이이며 다른 보기와도 구별된다.",
+    "authorStepReview": "R=90?,P=45? implies equal legs. PR=12?2??2/2=12 and QR=12; sum minus hypotenuse=24?12?2 cm,?. Direct side definition/equal angles.",
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "studentOption": "$12\\,\\mathrm{cm}$",
+        "test": {
+          "choice": 1,
+          "encodedValue": "(12, 0)",
+          "correct": false
+        },
+        "explanation": "Pairs encode rational part and coefficient of√2. Positivity/order proof0<24−12√2<12 additionally separates all distractors."
+      },
+      {
+        "choice": 2,
+        "studentOption": "$(24-12\\sqrt2)\\,\\mathrm{cm}$",
+        "test": {
+          "choice": 2,
+          "encodedValue": "(24, -12)",
+          "correct": true
+        },
+        "explanation": "Pairs encode rational part and coefficient of√2. Positivity/order proof0<24−12√2<12 additionally separates all distractors."
+      },
+      {
+        "choice": 3,
+        "studentOption": "$12\\sqrt2\\,\\mathrm{cm}$",
+        "test": {
+          "choice": 3,
+          "encodedValue": "(0, 12)",
+          "correct": false
+        },
+        "explanation": "Pairs encode rational part and coefficient of√2. Positivity/order proof0<24−12√2<12 additionally separates all distractors."
+      },
+      {
+        "choice": 4,
+        "studentOption": "$(24+12\\sqrt2)\\,\\mathrm{cm}$",
+        "test": {
+          "choice": 4,
+          "encodedValue": "(24, 12)",
+          "correct": false
+        },
+        "explanation": "Pairs encode rational part and coefficient of√2. Positivity/order proof0<24−12√2<12 additionally separates all distractors."
+      },
+      {
+        "choice": 5,
+        "studentOption": "$24\\,\\mathrm{cm}$",
+        "test": {
+          "choice": 5,
+          "encodedValue": "(24, 0)",
+          "correct": false
+        },
+        "explanation": "Pairs encode rational part and coefficient of√2. Positivity/order proof0<24−12√2<12 additionally separates all distractors."
+      }
+    ],
+    "writtenParts": [],
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q07",
+      "actualResult": {
+        "calculated": "(24, -12)",
+        "choices": [
+          {
+            "choice": 1,
+            "encodedValue": "(12, 0)",
+            "correct": false
+          },
+          {
+            "choice": 2,
+            "encodedValue": "(24, -12)",
+            "correct": true
+          },
+          {
+            "choice": 3,
+            "encodedValue": "(0, 12)",
+            "correct": false
+          },
+          {
+            "choice": 4,
+            "encodedValue": "(24, 12)",
+            "correct": false
+          },
+          {
+            "choice": 5,
+            "encodedValue": "(24, 0)",
+            "correct": false
+          }
+        ],
+        "uniqueChoice": 2
+      }
+    },
+    "existenceUniquenessPositiveLengthsUnits": "A45–45–90 triangle with legs12 and hypotenuse12√2 exists and fixes the requested difference. Since1<√2<2, 0<24−12√2<12. Length unitcm; triangle inequality satisfied.",
+    "sourceComparison": "Original45? triangle gives one leg and asks other leg/hypotenuse pair. Candidate gives hypotenuse and asks legs-sum minus hypotenuse. Inverse side recovery and changed target; equal-angle triangle/direct definitions retained.",
+    "preview": "gyeongsang-remaining-final14-r1/inspection/q07-expanded.png",
+    "exposure": "Before seal: no actual new GF14 author answers/authorship. Prior unbound generic REVIEW-KIT q7/? illustration had been read in NB5; disclosed and unused. Actual q7 independently yielded?. Stage2 actual author exposure authorized after raw seal; no legacy Claude proof/review used."
+  },
+  "findings": [
+    {
+      "severity": "blocker",
+      "surface": "unitFamilyFit",
+      "text": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family."
+    },
+    {
+      "severity": "note",
+      "surface": "source",
+      "text": "Question-only image comparison performed. Supplied sourceIdentity says original header/footer and completed-question identity supported; this review does not reopen immutable source bytes or independently certify full content pair/custody/rights. Existing source/loading holds remain."
+    }
+  ],
+  "gates": {
+    "loadable": false,
+    "rightsCleared": false,
+    "nativeApproved": false,
+    "sourceCertification": false
+  }
+}

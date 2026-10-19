@@ -1,0 +1,310 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 6,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q06",
+  "authorId": "orca-codex-exam-twin-source-identity-20261008",
+  "questionType": "객관식",
+  "score": 3,
+  "content": "다음은 코사인과 탄젠트의 근삿값을 정리한 표이다.\n\n| 삼각비 | $37^\\circ$ | $38^\\circ$ | $39^\\circ$ | $40^\\circ$ |\n|---|---|---|---|---|\n| cos | $0.7986$ | $0.7880$ | $0.7771$ | $0.7660$ |\n| tan | $0.7536$ | $0.7813$ | $0.8098$ | $0.8391$ |\n\n$x$, $y$는 표의 각도를 나타내는 수 중 하나씩이다. 표에서 $\\tan x^\\circ$의 기록은 $0.7813$이고, $\\cos y^\\circ$의 기록은 $0.7771$이다.\n두 각도 기록의 차 $y-x$의 값은?",
+  "choices": [
+    "$-2$",
+    "$-1$",
+    "$0$",
+    "$1$",
+    "$2$"
+  ],
+  "answer": "④",
+  "solution": "tan 행에서 $0.7813$이 적힌 열의 각도는 $38^\\circ$이므로 $x=38$이다.\ncos 행에서 $0.7771$이 적힌 열의 각도는 $39^\\circ$이므로 $y=39$이다.\n\n따라서 $y-x=39-38=1$이다. 서로 다른 두 각을 표에서 각각 찾는 계산이다.",
+  "figureArtifacts": [],
+  "sourceReference": {
+    "externalId": "2025-gyeongsang-3-2-mid-6",
+    "sourceContentSha256": "a44fe870412df398071e49c54a11b62fc96b018a9ca343913a64bdd15b5790eb",
+    "sourceSchoolInternal": "경상중",
+    "sourceExamYear": 2025,
+    "packet": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsang/packet/questions.json",
+      "sha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b"
+    },
+    "sourceCommit": "4cc9278da",
+    "questionOnlyImageRefs": [
+      {
+        "file": "images/q05-part1.png",
+        "sha256": "945e7f2ce7e2add5f68f700674e9595ac8a1ae57820db194224e91af2d017c44",
+        "page": 2,
+        "column": 0,
+        "bbox": [
+          55,
+          83,
+          375,
+          334.977783203125
+        ],
+        "role": "shared_context_page_contains_question5_not_an_answer"
+      },
+      {
+        "file": "images/q06-part1.png",
+        "sha256": "afbf2fe6163d11429b5629e4e931905e70135b151b50d169e506d125e0c66e2e",
+        "page": 2,
+        "column": 0,
+        "bbox": [
+          55,
+          340.977783203125,
+          375,
+          495.77978515625
+        ]
+      }
+    ],
+    "providedOriginalFileRefs": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경상중][3][25-2-중간][동아강] (완료).hwp",
+        "sha256": "bc0bb8c93f2e246b234c80c7fb89fcbdf8eda24536435e2fbe551ad916c1d4a1",
+        "bytes": 1635840
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경상중][3][25-2-중간][동아강] (완료).PDF",
+        "sha256": "08917520000308226e93d261861ee419d2cc0b3b61658271e78462da12da8af4",
+        "bytes": 14846744
+      }
+    ],
+    "sourceIdentityAsProvided": "2025_original_header_school_footer_and_completed_question_identity_supported",
+    "sourceManifestOrOriginalAnswerInput": false
+  },
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation"
+    ],
+    "before": "$\\tan \\,x^\\circ =2.7475$를 만족시키는 $x$의 값으로 옳은 것은?\n[$3$점]\nNo bitmap figure; positioned HWP math/text and any table remain the source givens.",
+    "after": "tan값으로 한 각을 선택하던 공유 문항을 두 독립적인 함수별 역조회와 각도 기록 차로 재구성한다.",
+    "sharedConcept": "삼각비 표의 값→해당 각 역조회",
+    "sharedProcedure": "다른 두 행에서 각각 유일한 각 열을 찾고 그 수의 차를 구한다.",
+    "originalAnswerOrNumericalAgreementUsed": false
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수04-17"
+    ],
+    "legitimateMethodDraft": "다른 두 행에서 각각 유일한 각 열을 찾고 그 수의 차를 구한다.",
+    "officialProvisions": [
+      {
+        "id": "9수04-17",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4341,
+          "paragraph1based": 948,
+          "offset": 219120,
+          "text": "[9수04-17]\u001e삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다. \r"
+        },
+        "pdfPhysicalPage1based": 38,
+        "pdfPrintedPage": 34,
+        "wholeClausePdfMatch": true
+      }
+    ],
+    "restrictionClauses": [
+      {
+        "id": "no_trig_ratio_relationships",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4440,
+          "paragraph1based": 966,
+          "offset": 224820,
+          "text": "삼각비 사이의 관계는 다루지 않는다.\r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "angle_range",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4444,
+          "paragraph1based": 967,
+          "offset": 224946,
+          "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.\r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "no_circle_proportionality",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4452,
+          "paragraph1based": 969,
+          "offset": 225374,
+          "text": "원과 비례에 관한 성질은 다루지 않는다.\r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "no_complex_geometry_measurement",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4472,
+          "paragraph1based": 974,
+          "offset": 226554,
+          "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.\r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "no_formal_complex_justification",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4476,
+          "paragraph1based": 975,
+          "offset": 226792,
+          "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다. \r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      }
+    ],
+    "independentReviewPending": true,
+    "authorCannotApprove": true,
+    "sourceEraBasis": "Actual2025 middle3 uses2015; middle3 rollout of2022 begins2027; future republication needs its own review.",
+    "preauthorGate": "author-method-proposed-independent-review-pending"
+  },
+  "metadata": {
+    "grade": "중3",
+    "semester": 2,
+    "subject": "수학",
+    "source": "transformed",
+    "originProblemId": null,
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "2027Republication": "requiresnew2022review"
+    },
+    "sourceExamYear": 2025,
+    "sourceSchoolInternal": "경상중",
+    "fictionalVisibleSchool": "해솔중학교",
+    "schoolReplacementMap": {
+      "경상중": "해솔중학교"
+    },
+    "fictionalSchoolUsedInStudentText": false,
+    "sourceQuestionId": "2025-gyeongsang-3-2-mid-6",
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q06",
+    "sourceSchoolNamesInStudentSurfaces": false,
+    "questionType": "객관식",
+    "score": 3,
+    "parentScoreCountedOnce": true,
+    "newSubpartRubric": [],
+    "sourcePrintedScore": {
+      "selectedHwpPdfPrintedParentScore": 3,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 3,
+      "referenceParentScore": 3,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "difficultyProposal": "기본",
+    "difficultyStatus": "author-proposed",
+    "difficultyEvidence": "Task operations: 다른 두 행에서 각각 유일한 각 열을 찾고 그 수의 차를 구한다.. Exact original points preserved; descriptor is not a measured difficulty claim.",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending",
+    "problemTypeEvidence": {
+      "path": "classification-limits.json",
+      "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+    },
+    "assignment": {
+      "status": "pending",
+      "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "unitSection": "삼각비의 값",
+      "familyKey": null,
+      "evidence": {
+        "actualCapturedUnit": {
+          "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "section": "삼각비의 값",
+          "semester": 2,
+          "orderIndex": 482,
+          "problemCodePrefix": "J30502"
+        },
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "snapshotOnly": true,
+        "comparison": "16 mode0의 한 각 역조회와 부분적으로 같지만 두 독립 조회 후 차인 전체 갈래는 미확인이다.",
+        "comparedRegistryEntries": [
+          {
+            "registry": {
+              "key": "3-2|삼각비|16",
+              "grade": "중3",
+              "unitSection": "삼각비의 값",
+              "rpmBook": "3-2",
+              "rpmMinor": "삼각비",
+              "rpmType": "16",
+              "rpmTitle": "삼각비의 표를 이용하여 삼각비의 값 구하기"
+            },
+            "liveMatches": [
+              {
+                "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+                "family_key": "mid:3-2|삼각비|16",
+                "live_count": 20
+              }
+            ],
+            "actualRule": {
+              "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+              "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+              "startLine1based": 1526,
+              "endLine1based": 1575,
+              "text": "def(\n    \"삼각비\",\n    \"16\",\n    \"삼각비의 표를 이용하여 삼각비의 값 구하기\",\n    SEC.값,\n    \"기본\",\n    (rng) => {\n      const b = intBetween(rng, 30, 58);\n      const fn = intBetween(rng, 0, 2);\n      const table = [0, 1, 2].map((i) => tableValue(fn, b + i));\n      const mode = intBetween(rng, 0, 2);\n      const rows = [0, 1, 2]\n        .map((i) => `$${trigText(fn, b + i)}=${table[i]!.toFixed(4)}$`)\n        .join(\", \");\n      const head = `삼각비의 표에서 ${rows}이다.`;\n      if (mode === 0) {\n        return {\n          // 소수 넷째 자리까지 적으므로 마지막에 읽는 숫자는 만 배 한 정수의 끝 자리다.\n          content: `${head} 이때 $${FN_NAMES[fn]} x=${table[2]!.toFixed(4)}$${eulReul(Math.round(table[2]! * 10000))} 만족시키는 $x$의 크기를 구하시오.`,\n          answer: `$${b + 2}^\\\\circ$`,\n          solution: `표에서 값이 $${table[2]!.toFixed(4)}$인 각을 찾으면 $${b + 2}^\\\\circ$이다.\\n따라서 $x=${b + 2}^\\\\circ$이다.`,\n          facts: { b, fn, mode, target: b + 2, val: table[2]! },\n          figureSpec: null,\n        };\n      }\n      if (mode === 1) {\n        const sum = Number((table[0]! + table[2]!).toFixed(4));\n        return {\n          content: `${head} 이때 $${trigText(fn, b)}+${trigText(fn, b + 2)}$의 값을 구하시오.`,\n          answer: `$${sum.toFixed(4)}$`,\n          solution: `표에서 $${trigText(fn, b)}=${table[0]!.toFixed(4)}$, $${trigText(fn, b + 2)}=${table[2]!.toFixed(4)}$이다.\\n따라서 구하는 값은 $${table[0]!.toFixed(4)}+${table[2]!.toFixed(4)}=${sum.toFixed(4)}$이다.`,\n          facts: { b, fn, mode, target: b, val: sum },\n          figureSpec: null,\n        };\n      }\n      // 차 — 큰 값에서 작은 값을 뺀다($\\cos$ 는 각이 커질수록 작아진다).\n      const hi = fn === 1 ? b : b + 2;\n      const lo = fn === 1 ? b + 2 : b;\n      const diff = Number((tableValue(fn, hi) - tableValue(fn, lo)).toFixed(4));\n      return {\n        content: `${head} 이때 $${trigText(fn, hi)}-${trigText(fn, lo)}$의 값을 구하시오.`,\n        answer: `$${diff.toFixed(4)}$`,\n        solution: `표에서 $${trigText(fn, hi)}=${tableValue(fn, hi).toFixed(4)}$, $${trigText(fn, lo)}=${tableValue(fn, lo).toFixed(4)}$이다.\\n따라서 구하는 값은 $${tableValue(fn, hi).toFixed(4)}-${tableValue(fn, lo).toFixed(4)}=${diff.toFixed(4)}$이다.`,\n        facts: { b, fn, mode, target: hi, val: diff },\n        figureSpec: null,\n      };\n    },\n  ),\n\n  "
+            }
+          }
+        ],
+        "TRIPLESPoolCheckedForQ01": null
+      }
+    },
+    "authorMathEvidence": {
+      "file": "../../author-calculations.json",
+      "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a",
+      "questionNumber": 6
+    },
+    "sourcePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "rightsApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "limits": [
+      "Independent solve and full seven-surface review pending.",
+      "Rights/native/custody/loading remain pending.",
+      "Historical taxonomy snapshot is not a currentDB assertion."
+    ],
+    "authorFigureEvidence": {
+      "path": "figure-author-checks.json",
+      "sha256": "1b266062bc26877dafbead127ed6ea0ecada7dad2b05e31199fba862210fd2e1"
+    },
+    "authorVisualEvidence": {
+      "path": "visual-inspection.json",
+      "sha256": "8e336cb4203c74bf8180d0edf9412ab87ea3e2f9d0b76dba87a7c43c249798e5"
+    },
+    "officialAuthorCurriculumEvidence": {
+      "path": "curriculum-author-basis.json",
+      "sha256": "cd0128904d4f378eb0310f9edde0fa55ed96e02a6c0ff6272bdd30c1443ed347"
+    },
+    "authorSevenSurfaceEvidence": {
+      "path": "author-checks/q06.json",
+      "sha256": "232f8a3c20ba1ffd6c9e87ba88f0c8e9e14eb60d35a45e9a69477713a0b8bdfa"
+    }
+  }
+}
