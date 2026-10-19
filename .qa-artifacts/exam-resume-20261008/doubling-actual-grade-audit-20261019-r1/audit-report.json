@@ -1,0 +1,395 @@
+{
+  "kind": "actual-finite-family-curriculum-audit/v1",
+  "family": "study-middle-doubling-time-offset",
+  "version": "1",
+  "status": "pending-first-event-claim-and-response-format;M1-method-supported",
+  "scope": "All12 current finite variants; printed initial populations,period,known-box only independently used to calculate offsets. Actual output afterwards compared; no fresh blind claim.",
+  "execution": {
+    "cwd": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008",
+    "tsconfig": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/tsconfig.json",
+    "module": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\remaining.ts",
+    "codeBefore": "code-before.json",
+    "codeAfter": "code-after.json",
+    "unchanged": true,
+    "commandAndUtf8ProbeSucceeded": true
+  },
+  "curriculum": {
+    "target": "2025/2026 middle1:2022 curriculum",
+    "cohortPrerequisites": "Both cohorts completed elementary5/6 before2022 elementary5/6 rollout on2026-03-01; historical elementary prerequisites use2015.2022 middle1 implementation began2025-03-01.",
+    "basis": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/curriculum-reference-circle-revolutions-20261019-r1/curriculum-reference-report.json",
+        "sha256": "1e6c224d782fe7e3a0b8eb2f4e0f92123129d10dddd1740031362bce5bf7a377"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/curriculum-reference-circle-revolutions-20261019-r1/official-2015-edition-2020-corroboration.json",
+        "sha256": "4b16f835052b1e2c045a9d6e13d8e9f6126e815c37abec47cdbc873f03d468a9"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/curriculum-reference-circle-revolutions-20261019-r1/official-notice-implementation-extract.json",
+        "sha256": "aabc2137094d94825dba49a01749a5abe33c6c69d860a0ec6a9c64752bb21761"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/curriculum-reference-circle-revolutions-20261019-r1/project-standard-crosswalk.json",
+        "sha256": "d46712e2642579ffe445825084eb2fa76e28c7ceae36ccc394c19d458faee4ab"
+      }
+    ],
+    "official2022DocumentSha256": "aab8eed59ecf244223d04afad75f4cf5ac5085fadcfc3cf52c2f6d54ddfc7856",
+    "nationalBandCaveat": "9수 standards are middle1–3 bands. M1 method placement is based on operation content plus existing project grade references and the prior official KICE M1 corroboration; not titles alone or school-profile permission.",
+    "primaryNotRepublished": true
+  },
+  "standardMapping": {
+    "middle2022": [
+      {
+        "code": "9수02-01",
+        "record": 3604,
+        "use": "Letters, formula interpretation and substitution."
+      },
+      {
+        "code": "9수02-02",
+        "record": 3608,
+        "use": "First-degree expression calculation; pertinent to60t±constant, not quadratic multiplication."
+      }
+    ],
+    "elementary": "Concrete doubling is addition/multiplication of natural numbers; count events and convert1 hour=60 minutes. No geometric sequence formula or logarithm used in any actual solution. Units and expression work are ordinary elementary/M1 prerequisites."
+  },
+  "math": {
+    "offsetStatus": "passed-all12",
+    "simulations": 144,
+    "targetCasesPerVariant": 6,
+    "firstEventPhasesPerTarget": [
+      "one-full-period",
+      "one-minute-after-observation"
+    ],
+    "answerFailures": [],
+    "explanation": "The two boxes stay a fixed number of common doubling events apart. Equal target sizes imply constant arrival-time difference gap×period independently of the shared starting phase. For every allowed common target greater than both initials, both arrivals are positive; known t ranges over actual admissible target times, not arbitrary positive real t.",
+    "existenceUniqueness": "All initial ratios are concrete2,4,8. Common targets exist by repeatedly doubling the larger initial value. For any fixed target the first arrivals are unique under a fixed common schedule; phase changes both arrivals equally and leaves asked affine relation unchanged. The symbolic expression does not ask a unique numerical t.",
+    "results": "variant-results.json"
+  },
+  "sevenSurfaces": {
+    "stem": {
+      "grade": "within-M1-method;phase-anchor-unclear",
+      "content": "Common simultaneous discrete doubling,unchanged between events,common target above both and existence stated. First common event after observation is not explicitly anchored to exactly one period. Prompt also requires a doubling table and unit-conversion explanation despite short-answer format."
+    },
+    "choices": {
+      "grade": "not-applicable-absent",
+      "content": "No choices/distractors in12 actual outputs."
+    },
+    "figuresAndTables": {
+      "grade": "within-scope",
+      "content": "No figureSpec. Student solution prints concrete doubling-number chains; only elementary multiplication, no exponential graph or infinite table."
+    },
+    "notation": {
+      "grade": "within-M1",
+      "content": "Only t and60t±fixed integer minutes in answer; concrete numbers in table. No variable exponent/logarithm or geometric-sum notation."
+    },
+    "answer": {
+      "grade": "within-M1;math-passed",
+      "content": "All12 affine expressions correct as relation on admissible t; minutes and early/late sign independently checked."
+    },
+    "studentSolution": {
+      "grade": "within-M1-method;correctness-clarification-pending",
+      "content": "Table and offset reasoning pass; step4 claim earliest arrival at least one period after start depends on an unstated first-event anchor. This is an assumption/explanation issue, not an out-of-grade-method rejection."
+    },
+    "prerequisites": {
+      "grade": "within-M1-for-actual-operations",
+      "content": "Repeated doubling of concrete integers,event counting,minute/hour conversion and linear expression. No logarithmic recovery of an arbitrary ratio: every actual ratio is found by a short finite table."
+    }
+  },
+  "findings": [
+    {
+      "id": "F-phase",
+      "severity": "medium",
+      "status": "pending-explicit-model-clarification",
+      "allVariants": true,
+      "exactExample": {
+        "variant": 0,
+        "tuple": {
+          "initialA": 3,
+          "initialB": 6,
+          "periodMinutes": 7,
+          "known": "A"
+        },
+        "target": 12,
+        "firstCommonDoublingMinute": 1,
+        "AarrivalMinute": 8,
+        "BarrivalMinute": 1,
+        "earlyArrivalMinute": 1,
+        "periodMinutes": 7,
+        "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+        "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+        "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+      },
+      "allCounterexamples": [
+        {
+          "variant": 0,
+          "tuple": {
+            "initialA": 3,
+            "initialB": 6,
+            "periodMinutes": 7,
+            "known": "A"
+          },
+          "target": 12,
+          "firstCommonDoublingMinute": 1,
+          "AarrivalMinute": 8,
+          "BarrivalMinute": 1,
+          "earlyArrivalMinute": 1,
+          "periodMinutes": 7,
+          "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+          "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+          "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+        },
+        {
+          "variant": 1,
+          "tuple": {
+            "initialA": 3,
+            "initialB": 6,
+            "periodMinutes": 7,
+            "known": "B"
+          },
+          "target": 12,
+          "firstCommonDoublingMinute": 1,
+          "AarrivalMinute": 8,
+          "BarrivalMinute": 1,
+          "earlyArrivalMinute": 1,
+          "periodMinutes": 7,
+          "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+          "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+          "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+        },
+        {
+          "variant": 2,
+          "tuple": {
+            "initialA": 3,
+            "initialB": 12,
+            "periodMinutes": 7,
+            "known": "A"
+          },
+          "target": 24,
+          "firstCommonDoublingMinute": 1,
+          "AarrivalMinute": 15,
+          "BarrivalMinute": 1,
+          "earlyArrivalMinute": 1,
+          "periodMinutes": 7,
+          "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+          "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+          "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+        },
+        {
+          "variant": 3,
+          "tuple": {
+            "initialA": 3,
+            "initialB": 12,
+            "periodMinutes": 7,
+            "known": "B"
+          },
+          "target": 24,
+          "firstCommonDoublingMinute": 1,
+          "AarrivalMinute": 15,
+          "BarrivalMinute": 1,
+          "earlyArrivalMinute": 1,
+          "periodMinutes": 7,
+          "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+          "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+          "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+        },
+        {
+          "variant": 4,
+          "tuple": {
+            "initialA": 3,
+            "initialB": 24,
+            "periodMinutes": 7,
+            "known": "A"
+          },
+          "target": 48,
+          "firstCommonDoublingMinute": 1,
+          "AarrivalMinute": 22,
+          "BarrivalMinute": 1,
+          "earlyArrivalMinute": 1,
+          "periodMinutes": 7,
+          "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+          "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+          "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+        },
+        {
+          "variant": 5,
+          "tuple": {
+            "initialA": 3,
+            "initialB": 24,
+            "periodMinutes": 7,
+            "known": "B"
+          },
+          "target": 48,
+          "firstCommonDoublingMinute": 1,
+          "AarrivalMinute": 22,
+          "BarrivalMinute": 1,
+          "earlyArrivalMinute": 1,
+          "periodMinutes": 7,
+          "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+          "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+          "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+        },
+        {
+          "variant": 6,
+          "tuple": {
+            "initialA": 3,
+            "initialB": 6,
+            "periodMinutes": 13,
+            "known": "A"
+          },
+          "target": 12,
+          "firstCommonDoublingMinute": 1,
+          "AarrivalMinute": 14,
+          "BarrivalMinute": 1,
+          "earlyArrivalMinute": 1,
+          "periodMinutes": 13,
+          "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+          "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+          "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+        },
+        {
+          "variant": 7,
+          "tuple": {
+            "initialA": 3,
+            "initialB": 6,
+            "periodMinutes": 13,
+            "known": "B"
+          },
+          "target": 12,
+          "firstCommonDoublingMinute": 1,
+          "AarrivalMinute": 14,
+          "BarrivalMinute": 1,
+          "earlyArrivalMinute": 1,
+          "periodMinutes": 13,
+          "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+          "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+          "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+        },
+        {
+          "variant": 8,
+          "tuple": {
+            "initialA": 3,
+            "initialB": 12,
+            "periodMinutes": 13,
+            "known": "A"
+          },
+          "target": 24,
+          "firstCommonDoublingMinute": 1,
+          "AarrivalMinute": 27,
+          "BarrivalMinute": 1,
+          "earlyArrivalMinute": 1,
+          "periodMinutes": 13,
+          "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+          "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+          "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+        },
+        {
+          "variant": 9,
+          "tuple": {
+            "initialA": 3,
+            "initialB": 12,
+            "periodMinutes": 13,
+            "known": "B"
+          },
+          "target": 24,
+          "firstCommonDoublingMinute": 1,
+          "AarrivalMinute": 27,
+          "BarrivalMinute": 1,
+          "earlyArrivalMinute": 1,
+          "periodMinutes": 13,
+          "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+          "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+          "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+        },
+        {
+          "variant": 10,
+          "tuple": {
+            "initialA": 3,
+            "initialB": 24,
+            "periodMinutes": 13,
+            "known": "A"
+          },
+          "target": 48,
+          "firstCommonDoublingMinute": 1,
+          "AarrivalMinute": 40,
+          "BarrivalMinute": 1,
+          "earlyArrivalMinute": 1,
+          "periodMinutes": 13,
+          "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+          "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+          "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+        },
+        {
+          "variant": 11,
+          "tuple": {
+            "initialA": 3,
+            "initialB": 24,
+            "periodMinutes": 13,
+            "known": "B"
+          },
+          "target": 48,
+          "firstCommonDoublingMinute": 1,
+          "AarrivalMinute": 40,
+          "BarrivalMinute": 1,
+          "earlyArrivalMinute": 1,
+          "periodMinutes": 13,
+          "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+          "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+          "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+        }
+      ],
+      "sevenSurfaceImpact": [
+        "stem timing assumption",
+        "studentSolution step4"
+      ],
+      "minimalProposedFix": "Either explicitly state the first doubling occurs exactly one common period after observation begins (and every period thereafter), then recheck all surfaces; or replace step4 lower bound with the sufficient statement that the target is above both initial amounts and first arrivals occur after observation, so both times are positive. Retain exact offset checks; do not weaken tests to certify the unanchored bound.",
+      "interpretiveLimit": "Natural classroom reading might intend phase0. The literal text does not make it explicit, so report an ambiguity and hold the stronger step4 claim rather than declaring the offset formula mathematically wrong."
+    },
+    {
+      "id": "F-format",
+      "severity": "medium",
+      "status": "pending-native-response-classification",
+      "allVariants": true,
+      "observation": "Registered/native questionType is 단답형, formats contains only 단답형, no native rubric. Printed prompt expressly requests a process/explanation. This is a response-format/design finding, not proof of an upper-grade method.",
+      "minimalProposedFix": "Preserve the requested process and mathematical requirement: author native 서술형 output plus a point-total-consistent multi-criterion rubric and correct format declaration, then re-review actual outputs. Merely weakening tests, claiming written coverage from a short-answer record, or dropping the substantive process requirement is not approval.",
+      "exampleTuple": {
+        "initialA": 3,
+        "initialB": 6,
+        "periodMinutes": 7,
+        "known": "A"
+      },
+      "affectedVariants": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "sevenSurfaceImpact": [
+        "stem explanation/table instruction",
+        "short-answer declaration",
+        "native rubric missing"
+      ]
+    }
+  ],
+  "limitations": [
+    "No grade approval of unrelated exponential/sequence families; finite repeated-doubling method only.",
+    "No original-school source,copyright,custody,taxonomy,coverage or empirical-difficulty approval.",
+    "Root unchanged; no DB/network mapping,network calls,install,push,new tree or old evidence edits."
+  ],
+  "finalGates": {
+    "contentDelivery": "pending-model-clarification-and-format-review",
+    "requiredUpperGradeMethodFound": false,
+    "otherFamilyGradeApproved": false,
+    "rightsApproved": false,
+    "fullVerified": 0,
+    "loadable": 0
+  }
+}

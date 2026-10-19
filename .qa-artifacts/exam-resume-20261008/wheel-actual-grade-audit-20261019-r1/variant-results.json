@@ -1,0 +1,343 @@
+{
+  "rootCwd": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008",
+  "rootTsconfig": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/tsconfig.json",
+  "resolvedCurrentModule": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\remaining.ts",
+  "familyId": "study-middle-circle-revolution-percentage",
+  "version": "1",
+  "finiteDomain": 10,
+  "records": [
+    {
+      "variant": 0,
+      "tuple": {
+        "oldDiameterCm": 66,
+        "newRadiusCm": 32
+      },
+      "studentTextSha256": "b94b686cef38fe3733a3984a4f93829bd2fa35d117a0a19820710a78063da605",
+      "answerSha256": "2089bf4b72ce53cd7d5db61396829937f5bd41a66b9cbdef3b5c55fa010245fc",
+      "solutionSha256": "5c373fdb8fae85cfcb7f9700a6652f641210c2e3f7e5a4b913c6c63b9f5fb26d",
+      "independentFromPrinted": {
+        "newDiameterCm": 64,
+        "oldTurnsAtOneOldCircumference": "1",
+        "newTurnsAtSameDistance": "66/64",
+        "increasePercentExact": "25/8",
+        "decimalDigits": {
+          "integer": "3",
+          "first": "1",
+          "second": "2"
+        },
+        "roundingCase": "below-half",
+        "expectedAnswer": "3.1%",
+        "actualAnswer": "3.1%",
+        "uniqueRoundingInterval": true
+      },
+      "studentSolutionObservations": {
+        "diameterFromRadius": true,
+        "circumferenceFactor": "same pi factor",
+        "usesLAsSamePositiveDistance": true,
+        "inverseProportionOrRatioJustification": "Same distance divided by circumference; concrete rational turn ratio independent of L. Can be justified without general rational-expression algorithms.",
+        "finalRoundingOnly": true
+      },
+      "gradeDisposition": "method-within-M1-for-this-actual-tuple;format-classification-pending"
+    },
+    {
+      "variant": 1,
+      "tuple": {
+        "oldDiameterCm": 81,
+        "newRadiusCm": 40
+      },
+      "studentTextSha256": "938695a8be6744aee6184a4e2cb5f6ef90284cb7803ecb827ac46ae319c03d64",
+      "answerSha256": "93b447ba1ed409d245300f61c2c4c763dd2fff3e0fe8b5178b39f48ef0a57393",
+      "solutionSha256": "656cf63a37dcecbf13edb151ef7c09560c619cb57ea33921aa2968c78f39276d",
+      "independentFromPrinted": {
+        "newDiameterCm": 80,
+        "oldTurnsAtOneOldCircumference": "1",
+        "newTurnsAtSameDistance": "81/80",
+        "increasePercentExact": "5/4",
+        "decimalDigits": {
+          "integer": "1",
+          "first": "2",
+          "second": "5"
+        },
+        "roundingCase": "tie-half-up",
+        "expectedAnswer": "1.3%",
+        "actualAnswer": "1.3%",
+        "uniqueRoundingInterval": true
+      },
+      "studentSolutionObservations": {
+        "diameterFromRadius": true,
+        "circumferenceFactor": "same pi factor",
+        "usesLAsSamePositiveDistance": true,
+        "inverseProportionOrRatioJustification": "Same distance divided by circumference; concrete rational turn ratio independent of L. Can be justified without general rational-expression algorithms.",
+        "finalRoundingOnly": true
+      },
+      "gradeDisposition": "method-within-M1-for-this-actual-tuple;format-classification-pending"
+    },
+    {
+      "variant": 2,
+      "tuple": {
+        "oldDiameterCm": 2024,
+        "newRadiusCm": 1000
+      },
+      "studentTextSha256": "8ab4db17c150613484278f479e1fc312078e6d227de33c243f8593f3a4f30f4d",
+      "answerSha256": "0e92b41e857bf2b75357a9d139578077ec11de82487e672da1c187cd06d0c3c9",
+      "solutionSha256": "5d5b54daaaf3ddf7c2dce2a2280b537ceaa58570563e70fc551783bbedb57860",
+      "independentFromPrinted": {
+        "newDiameterCm": 2000,
+        "oldTurnsAtOneOldCircumference": "1",
+        "newTurnsAtSameDistance": "2024/2000",
+        "increasePercentExact": "6/5",
+        "decimalDigits": {
+          "integer": "1",
+          "first": "2",
+          "second": "0"
+        },
+        "roundingCase": "below-half",
+        "expectedAnswer": "1.2%",
+        "actualAnswer": "1.2%",
+        "uniqueRoundingInterval": true
+      },
+      "studentSolutionObservations": {
+        "diameterFromRadius": true,
+        "circumferenceFactor": "same pi factor",
+        "usesLAsSamePositiveDistance": true,
+        "inverseProportionOrRatioJustification": "Same distance divided by circumference; concrete rational turn ratio independent of L. Can be justified without general rational-expression algorithms.",
+        "finalRoundingOnly": true
+      },
+      "gradeDisposition": "method-within-M1-for-this-actual-tuple;format-classification-pending"
+    },
+    {
+      "variant": 3,
+      "tuple": {
+        "oldDiameterCm": 2026,
+        "newRadiusCm": 1000
+      },
+      "studentTextSha256": "222a79e885280428cb585832ec48c81170d9389268e1ab047162db9073d0928f",
+      "answerSha256": "93b447ba1ed409d245300f61c2c4c763dd2fff3e0fe8b5178b39f48ef0a57393",
+      "solutionSha256": "d59736579fa176afab256f95ce8ea9b44eaa2d12b2876f50a1626c0a9ee39aa5",
+      "independentFromPrinted": {
+        "newDiameterCm": 2000,
+        "oldTurnsAtOneOldCircumference": "1",
+        "newTurnsAtSameDistance": "2026/2000",
+        "increasePercentExact": "13/10",
+        "decimalDigits": {
+          "integer": "1",
+          "first": "3",
+          "second": "0"
+        },
+        "roundingCase": "below-half",
+        "expectedAnswer": "1.3%",
+        "actualAnswer": "1.3%",
+        "uniqueRoundingInterval": true
+      },
+      "studentSolutionObservations": {
+        "diameterFromRadius": true,
+        "circumferenceFactor": "same pi factor",
+        "usesLAsSamePositiveDistance": true,
+        "inverseProportionOrRatioJustification": "Same distance divided by circumference; concrete rational turn ratio independent of L. Can be justified without general rational-expression algorithms.",
+        "finalRoundingOnly": true
+      },
+      "gradeDisposition": "method-within-M1-for-this-actual-tuple;format-classification-pending"
+    },
+    {
+      "variant": 4,
+      "tuple": {
+        "oldDiameterCm": 101,
+        "newRadiusCm": 50
+      },
+      "studentTextSha256": "2b8425ebdcd9d9b6359e4a6751d0173fa066bf80c4b8d16e3fc13f1724b1519b",
+      "answerSha256": "9d401b9f375755ad1ddea54aa49896239fe65e96512597489acc1a9365bdafc4",
+      "solutionSha256": "cc9607ad8e5ff62d955a6d2bd0294e36c6963922dbc52b9d19bb33d9bda762b0",
+      "independentFromPrinted": {
+        "newDiameterCm": 100,
+        "oldTurnsAtOneOldCircumference": "1",
+        "newTurnsAtSameDistance": "101/100",
+        "increasePercentExact": "1/1",
+        "decimalDigits": {
+          "integer": "1",
+          "first": "0",
+          "second": "0"
+        },
+        "roundingCase": "below-half",
+        "expectedAnswer": "1.0%",
+        "actualAnswer": "1.0%",
+        "uniqueRoundingInterval": true
+      },
+      "studentSolutionObservations": {
+        "diameterFromRadius": true,
+        "circumferenceFactor": "same pi factor",
+        "usesLAsSamePositiveDistance": true,
+        "inverseProportionOrRatioJustification": "Same distance divided by circumference; concrete rational turn ratio independent of L. Can be justified without general rational-expression algorithms.",
+        "finalRoundingOnly": true
+      },
+      "gradeDisposition": "method-within-M1-for-this-actual-tuple;format-classification-pending"
+    },
+    {
+      "variant": 5,
+      "tuple": {
+        "oldDiameterCm": 323,
+        "newRadiusCm": 160
+      },
+      "studentTextSha256": "4a03fcc51a7940c4b4c23fae177aac2d87a2c1775ab66ed12586d869daa9bd30",
+      "answerSha256": "8a1e50d65c6eb1df8a28145c3ecec68f5124885c24fef78cecd370e940376a4e",
+      "solutionSha256": "8092024dab4e2e4f2cdbe2ecb312929e98cba3d2291e3bc7de4202be67a30acc",
+      "independentFromPrinted": {
+        "newDiameterCm": 320,
+        "oldTurnsAtOneOldCircumference": "1",
+        "newTurnsAtSameDistance": "323/320",
+        "increasePercentExact": "15/16",
+        "decimalDigits": {
+          "integer": "0",
+          "first": "9",
+          "second": "3"
+        },
+        "roundingCase": "below-half",
+        "expectedAnswer": "0.9%",
+        "actualAnswer": "0.9%",
+        "uniqueRoundingInterval": true
+      },
+      "studentSolutionObservations": {
+        "diameterFromRadius": true,
+        "circumferenceFactor": "same pi factor",
+        "usesLAsSamePositiveDistance": true,
+        "inverseProportionOrRatioJustification": "Same distance divided by circumference; concrete rational turn ratio independent of L. Can be justified without general rational-expression algorithms.",
+        "finalRoundingOnly": true
+      },
+      "gradeDisposition": "method-within-M1-for-this-actual-tuple;format-classification-pending"
+    },
+    {
+      "variant": 6,
+      "tuple": {
+        "oldDiameterCm": 317,
+        "newRadiusCm": 120
+      },
+      "studentTextSha256": "324ac419aca140e51a619a2eec08f7fde0a4d14c360177c162686b2bd1c4915a",
+      "answerSha256": "8a2696683d1da57b658d7acb0d5cf30086edee7b7033cc80bc2707defb48cbdd",
+      "solutionSha256": "faead3087d5aa851a4b3c8ec77c6a56d59fa68b4fa44ff83a143f8af1b6450a9",
+      "independentFromPrinted": {
+        "newDiameterCm": 240,
+        "oldTurnsAtOneOldCircumference": "1",
+        "newTurnsAtSameDistance": "317/240",
+        "increasePercentExact": "385/12",
+        "decimalDigits": {
+          "integer": "32",
+          "first": "0",
+          "second": "8"
+        },
+        "roundingCase": "above-half",
+        "expectedAnswer": "32.1%",
+        "actualAnswer": "32.1%",
+        "uniqueRoundingInterval": true
+      },
+      "studentSolutionObservations": {
+        "diameterFromRadius": true,
+        "circumferenceFactor": "same pi factor",
+        "usesLAsSamePositiveDistance": true,
+        "inverseProportionOrRatioJustification": "Same distance divided by circumference; concrete rational turn ratio independent of L. Can be justified without general rational-expression algorithms.",
+        "finalRoundingOnly": true
+      },
+      "gradeDisposition": "method-within-M1-for-this-actual-tuple;format-classification-pending"
+    },
+    {
+      "variant": 7,
+      "tuple": {
+        "oldDiameterCm": 67,
+        "newRadiusCm": 30
+      },
+      "studentTextSha256": "620f8506e114136873f8aa1ea633da675211fd58495e14fa43b9fdbcd60aeada",
+      "answerSha256": "cda0663d2450b0c868a7addd96918e7e6a9ed0b79f466a946d8f6b6b6a3d225f",
+      "solutionSha256": "dcec2ce25faec21382529755e9813566171336edff95779be121a54c45abd652",
+      "independentFromPrinted": {
+        "newDiameterCm": 60,
+        "oldTurnsAtOneOldCircumference": "1",
+        "newTurnsAtSameDistance": "67/60",
+        "increasePercentExact": "35/3",
+        "decimalDigits": {
+          "integer": "11",
+          "first": "6",
+          "second": "6"
+        },
+        "roundingCase": "above-half",
+        "expectedAnswer": "11.7%",
+        "actualAnswer": "11.7%",
+        "uniqueRoundingInterval": true
+      },
+      "studentSolutionObservations": {
+        "diameterFromRadius": true,
+        "circumferenceFactor": "same pi factor",
+        "usesLAsSamePositiveDistance": true,
+        "inverseProportionOrRatioJustification": "Same distance divided by circumference; concrete rational turn ratio independent of L. Can be justified without general rational-expression algorithms.",
+        "finalRoundingOnly": true
+      },
+      "gradeDisposition": "method-within-M1-for-this-actual-tuple;format-classification-pending"
+    },
+    {
+      "variant": 8,
+      "tuple": {
+        "oldDiameterCm": 241,
+        "newRadiusCm": 100
+      },
+      "studentTextSha256": "afff75cb2b9c19d5aee9cb99af66b084c90cff2bfb8d513f2e193ab2c0b893af",
+      "answerSha256": "fa24abb5fbec57b0646705015aeb97051152349c0e9e8d8524c0db866b9f9078",
+      "solutionSha256": "73d1c0a756bfd434d8ea9c953e42370448e0441cac24685688f7f39b0e4b704f",
+      "independentFromPrinted": {
+        "newDiameterCm": 200,
+        "oldTurnsAtOneOldCircumference": "1",
+        "newTurnsAtSameDistance": "241/200",
+        "increasePercentExact": "41/2",
+        "decimalDigits": {
+          "integer": "20",
+          "first": "5",
+          "second": "0"
+        },
+        "roundingCase": "below-half",
+        "expectedAnswer": "20.5%",
+        "actualAnswer": "20.5%",
+        "uniqueRoundingInterval": true
+      },
+      "studentSolutionObservations": {
+        "diameterFromRadius": true,
+        "circumferenceFactor": "same pi factor",
+        "usesLAsSamePositiveDistance": true,
+        "inverseProportionOrRatioJustification": "Same distance divided by circumference; concrete rational turn ratio independent of L. Can be justified without general rational-expression algorithms.",
+        "finalRoundingOnly": true
+      },
+      "gradeDisposition": "method-within-M1-for-this-actual-tuple;format-classification-pending"
+    },
+    {
+      "variant": 9,
+      "tuple": {
+        "oldDiameterCm": 118,
+        "newRadiusCm": 45
+      },
+      "studentTextSha256": "cefea0c570ae1cf5bded2b66d85148e08ec26733d847a38393994f5430469086",
+      "answerSha256": "8aef6623212a08f7af215f56c8699060a60c46c815d4b2aaea467a760678aa30",
+      "solutionSha256": "deed40f41e4db94657514a7812bb4df2c14020b11da044e9761fb1f2b835a1dd",
+      "independentFromPrinted": {
+        "newDiameterCm": 90,
+        "oldTurnsAtOneOldCircumference": "1",
+        "newTurnsAtSameDistance": "118/90",
+        "increasePercentExact": "280/9",
+        "decimalDigits": {
+          "integer": "31",
+          "first": "1",
+          "second": "1"
+        },
+        "roundingCase": "below-half",
+        "expectedAnswer": "31.1%",
+        "actualAnswer": "31.1%",
+        "uniqueRoundingInterval": true
+      },
+      "studentSolutionObservations": {
+        "diameterFromRadius": true,
+        "circumferenceFactor": "same pi factor",
+        "usesLAsSamePositiveDistance": true,
+        "inverseProportionOrRatioJustification": "Same distance divided by circumference; concrete rational turn ratio independent of L. Can be justified without general rational-expression algorithms.",
+        "finalRoundingOnly": true
+      },
+      "gradeDisposition": "method-within-M1-for-this-actual-tuple;format-classification-pending"
+    }
+  ],
+  "failures": [],
+  "notFreshBlind": true,
+  "sourceUnchanged": true
+}

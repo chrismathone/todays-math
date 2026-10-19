@@ -1,0 +1,1647 @@
+{
+  "rootCwd": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008",
+  "rootTsconfig": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/tsconfig.json",
+  "resolvedCurrentModule": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\remaining.ts",
+  "familyId": "study-middle-doubling-time-offset",
+  "version": "1",
+  "finiteDomain": 12,
+  "records": [
+    {
+      "variant": 0,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 6,
+        "periodMinutes": 7,
+        "known": "A"
+      },
+      "contentSha256": "8d85d2d7eb1eadb88368a43b3949ac0a02093280976586bc4c7e98046a8d4661",
+      "answerSha256": "d80f55387f6dc05996de074852ea139ea30cd6969ebf5c65925f53763db5c1f6",
+      "solutionSha256": "366f6a8e490513e45ff9aa756534165ea719a9af895086c97f469d5a69566af1",
+      "independentAnswer": "60t-7 분",
+      "table": [
+        3,
+        6
+      ],
+      "simulations": [
+        {
+          "target": 12,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 14,
+          "Bminute": 7,
+          "knownTExactHours": "14/60",
+          "otherAnswerMinutes": 7
+        },
+        {
+          "target": 12,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 8,
+          "Bminute": 1,
+          "knownTExactHours": "8/60",
+          "otherAnswerMinutes": 1
+        },
+        {
+          "target": 24,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 21,
+          "Bminute": 14,
+          "knownTExactHours": "21/60",
+          "otherAnswerMinutes": 14
+        },
+        {
+          "target": 24,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 15,
+          "Bminute": 8,
+          "knownTExactHours": "15/60",
+          "otherAnswerMinutes": 8
+        },
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 28,
+          "Bminute": 21,
+          "knownTExactHours": "28/60",
+          "otherAnswerMinutes": 21
+        },
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 22,
+          "Bminute": 15,
+          "knownTExactHours": "22/60",
+          "otherAnswerMinutes": 15
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 35,
+          "Bminute": 28,
+          "knownTExactHours": "35/60",
+          "otherAnswerMinutes": 28
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 29,
+          "Bminute": 22,
+          "knownTExactHours": "29/60",
+          "otherAnswerMinutes": 22
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 42,
+          "Bminute": 35,
+          "knownTExactHours": "42/60",
+          "otherAnswerMinutes": 35
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 36,
+          "Bminute": 29,
+          "knownTExactHours": "36/60",
+          "otherAnswerMinutes": 29
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 49,
+          "Bminute": 42,
+          "knownTExactHours": "49/60",
+          "otherAnswerMinutes": 42
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 43,
+          "Bminute": 36,
+          "knownTExactHours": "43/60",
+          "otherAnswerMinutes": 36
+        }
+      ],
+      "method": "Repeated doubling of concrete integers, count difference in events times P, t hours=60t minutes, add/subtract constant. No variable exponent, logarithm or geometric-series formula required.",
+      "gradeDisposition": "method-within-M1;solution-phase-claim-and-response-format-pending"
+    },
+    {
+      "variant": 1,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 6,
+        "periodMinutes": 7,
+        "known": "B"
+      },
+      "contentSha256": "e998ce439b6f751baf916babd537da73949167ae184cb9c4bc0055c162aa5e1f",
+      "answerSha256": "58ef7bf9a0cf580687995a3f11d04144a839e2b183c542e5f09f7be77769451a",
+      "solutionSha256": "28ed3140bb14c7509b6b12c553a8faa9ee40553c67fbdf8506831da5ddbefdd4",
+      "independentAnswer": "60t+7 분",
+      "table": [
+        3,
+        6
+      ],
+      "simulations": [
+        {
+          "target": 12,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 14,
+          "Bminute": 7,
+          "knownTExactHours": "7/60",
+          "otherAnswerMinutes": 14
+        },
+        {
+          "target": 12,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 8,
+          "Bminute": 1,
+          "knownTExactHours": "1/60",
+          "otherAnswerMinutes": 8
+        },
+        {
+          "target": 24,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 21,
+          "Bminute": 14,
+          "knownTExactHours": "14/60",
+          "otherAnswerMinutes": 21
+        },
+        {
+          "target": 24,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 15,
+          "Bminute": 8,
+          "knownTExactHours": "8/60",
+          "otherAnswerMinutes": 15
+        },
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 28,
+          "Bminute": 21,
+          "knownTExactHours": "21/60",
+          "otherAnswerMinutes": 28
+        },
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 22,
+          "Bminute": 15,
+          "knownTExactHours": "15/60",
+          "otherAnswerMinutes": 22
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 35,
+          "Bminute": 28,
+          "knownTExactHours": "28/60",
+          "otherAnswerMinutes": 35
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 29,
+          "Bminute": 22,
+          "knownTExactHours": "22/60",
+          "otherAnswerMinutes": 29
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 42,
+          "Bminute": 35,
+          "knownTExactHours": "35/60",
+          "otherAnswerMinutes": 42
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 36,
+          "Bminute": 29,
+          "knownTExactHours": "29/60",
+          "otherAnswerMinutes": 36
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 49,
+          "Bminute": 42,
+          "knownTExactHours": "42/60",
+          "otherAnswerMinutes": 49
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 43,
+          "Bminute": 36,
+          "knownTExactHours": "36/60",
+          "otherAnswerMinutes": 43
+        }
+      ],
+      "method": "Repeated doubling of concrete integers, count difference in events times P, t hours=60t minutes, add/subtract constant. No variable exponent, logarithm or geometric-series formula required.",
+      "gradeDisposition": "method-within-M1;solution-phase-claim-and-response-format-pending"
+    },
+    {
+      "variant": 2,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 12,
+        "periodMinutes": 7,
+        "known": "A"
+      },
+      "contentSha256": "3c6d5d92950d31970b0eb01a9ee839683952c2b8393debb1eb6fe44afb34dd31",
+      "answerSha256": "8e5e54405f817dd82a99c3f5fbd3449cb1aa425f3df7c45455490a1d58a8ccac",
+      "solutionSha256": "5d91f01005db1c8a7067dc083938c3dd724d5786bc7143e7a21f68bf9a27aa44",
+      "independentAnswer": "60t-14 분",
+      "table": [
+        3,
+        6,
+        12
+      ],
+      "simulations": [
+        {
+          "target": 24,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 21,
+          "Bminute": 7,
+          "knownTExactHours": "21/60",
+          "otherAnswerMinutes": 7
+        },
+        {
+          "target": 24,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 15,
+          "Bminute": 1,
+          "knownTExactHours": "15/60",
+          "otherAnswerMinutes": 1
+        },
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 28,
+          "Bminute": 14,
+          "knownTExactHours": "28/60",
+          "otherAnswerMinutes": 14
+        },
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 22,
+          "Bminute": 8,
+          "knownTExactHours": "22/60",
+          "otherAnswerMinutes": 8
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 35,
+          "Bminute": 21,
+          "knownTExactHours": "35/60",
+          "otherAnswerMinutes": 21
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 29,
+          "Bminute": 15,
+          "knownTExactHours": "29/60",
+          "otherAnswerMinutes": 15
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 42,
+          "Bminute": 28,
+          "knownTExactHours": "42/60",
+          "otherAnswerMinutes": 28
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 36,
+          "Bminute": 22,
+          "knownTExactHours": "36/60",
+          "otherAnswerMinutes": 22
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 49,
+          "Bminute": 35,
+          "knownTExactHours": "49/60",
+          "otherAnswerMinutes": 35
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 43,
+          "Bminute": 29,
+          "knownTExactHours": "43/60",
+          "otherAnswerMinutes": 29
+        },
+        {
+          "target": 768,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 56,
+          "Bminute": 42,
+          "knownTExactHours": "56/60",
+          "otherAnswerMinutes": 42
+        },
+        {
+          "target": 768,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 50,
+          "Bminute": 36,
+          "knownTExactHours": "50/60",
+          "otherAnswerMinutes": 36
+        }
+      ],
+      "method": "Repeated doubling of concrete integers, count difference in events times P, t hours=60t minutes, add/subtract constant. No variable exponent, logarithm or geometric-series formula required.",
+      "gradeDisposition": "method-within-M1;solution-phase-claim-and-response-format-pending"
+    },
+    {
+      "variant": 3,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 12,
+        "periodMinutes": 7,
+        "known": "B"
+      },
+      "contentSha256": "e198aa58accd83973d11015744514fba90444b9da3ffe049900a69c5d231e3a1",
+      "answerSha256": "986e3e629cfc1cf37e50cb516788430b29a8da2fb30060313e3987c7b807b261",
+      "solutionSha256": "43f76b6641e771e18d3c650b26a03131ea91e9a8500c3ac46b576856134bf11a",
+      "independentAnswer": "60t+14 분",
+      "table": [
+        3,
+        6,
+        12
+      ],
+      "simulations": [
+        {
+          "target": 24,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 21,
+          "Bminute": 7,
+          "knownTExactHours": "7/60",
+          "otherAnswerMinutes": 21
+        },
+        {
+          "target": 24,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 15,
+          "Bminute": 1,
+          "knownTExactHours": "1/60",
+          "otherAnswerMinutes": 15
+        },
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 28,
+          "Bminute": 14,
+          "knownTExactHours": "14/60",
+          "otherAnswerMinutes": 28
+        },
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 22,
+          "Bminute": 8,
+          "knownTExactHours": "8/60",
+          "otherAnswerMinutes": 22
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 35,
+          "Bminute": 21,
+          "knownTExactHours": "21/60",
+          "otherAnswerMinutes": 35
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 29,
+          "Bminute": 15,
+          "knownTExactHours": "15/60",
+          "otherAnswerMinutes": 29
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 42,
+          "Bminute": 28,
+          "knownTExactHours": "28/60",
+          "otherAnswerMinutes": 42
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 36,
+          "Bminute": 22,
+          "knownTExactHours": "22/60",
+          "otherAnswerMinutes": 36
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 49,
+          "Bminute": 35,
+          "knownTExactHours": "35/60",
+          "otherAnswerMinutes": 49
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 43,
+          "Bminute": 29,
+          "knownTExactHours": "29/60",
+          "otherAnswerMinutes": 43
+        },
+        {
+          "target": 768,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 56,
+          "Bminute": 42,
+          "knownTExactHours": "42/60",
+          "otherAnswerMinutes": 56
+        },
+        {
+          "target": 768,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 50,
+          "Bminute": 36,
+          "knownTExactHours": "36/60",
+          "otherAnswerMinutes": 50
+        }
+      ],
+      "method": "Repeated doubling of concrete integers, count difference in events times P, t hours=60t minutes, add/subtract constant. No variable exponent, logarithm or geometric-series formula required.",
+      "gradeDisposition": "method-within-M1;solution-phase-claim-and-response-format-pending"
+    },
+    {
+      "variant": 4,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 24,
+        "periodMinutes": 7,
+        "known": "A"
+      },
+      "contentSha256": "dfe2c5322df349ffb16b3d1305111e9daf3ef119cdd77d993ea439ca028ab12e",
+      "answerSha256": "b00635d3cd39a52021890cf1400811828a47c214d7796cc867d46a23b71b3089",
+      "solutionSha256": "1d8517bf1a218217f777e0763cf80e18c17385348c8b041be2cb5dc7433e38d5",
+      "independentAnswer": "60t-21 분",
+      "table": [
+        3,
+        6,
+        12,
+        24
+      ],
+      "simulations": [
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 28,
+          "Bminute": 7,
+          "knownTExactHours": "28/60",
+          "otherAnswerMinutes": 7
+        },
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 22,
+          "Bminute": 1,
+          "knownTExactHours": "22/60",
+          "otherAnswerMinutes": 1
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 35,
+          "Bminute": 14,
+          "knownTExactHours": "35/60",
+          "otherAnswerMinutes": 14
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 29,
+          "Bminute": 8,
+          "knownTExactHours": "29/60",
+          "otherAnswerMinutes": 8
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 42,
+          "Bminute": 21,
+          "knownTExactHours": "42/60",
+          "otherAnswerMinutes": 21
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 36,
+          "Bminute": 15,
+          "knownTExactHours": "36/60",
+          "otherAnswerMinutes": 15
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 49,
+          "Bminute": 28,
+          "knownTExactHours": "49/60",
+          "otherAnswerMinutes": 28
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 43,
+          "Bminute": 22,
+          "knownTExactHours": "43/60",
+          "otherAnswerMinutes": 22
+        },
+        {
+          "target": 768,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 56,
+          "Bminute": 35,
+          "knownTExactHours": "56/60",
+          "otherAnswerMinutes": 35
+        },
+        {
+          "target": 768,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 50,
+          "Bminute": 29,
+          "knownTExactHours": "50/60",
+          "otherAnswerMinutes": 29
+        },
+        {
+          "target": 1536,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 63,
+          "Bminute": 42,
+          "knownTExactHours": "63/60",
+          "otherAnswerMinutes": 42
+        },
+        {
+          "target": 1536,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 57,
+          "Bminute": 36,
+          "knownTExactHours": "57/60",
+          "otherAnswerMinutes": 36
+        }
+      ],
+      "method": "Repeated doubling of concrete integers, count difference in events times P, t hours=60t minutes, add/subtract constant. No variable exponent, logarithm or geometric-series formula required.",
+      "gradeDisposition": "method-within-M1;solution-phase-claim-and-response-format-pending"
+    },
+    {
+      "variant": 5,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 24,
+        "periodMinutes": 7,
+        "known": "B"
+      },
+      "contentSha256": "b7baa18ddbedf5d40aa9577163829812d6235ea1415b6d04245735687adfab10",
+      "answerSha256": "e967bf12d062625fe704502ed028bf2bce1d70c3d574ed375842f5878964e3c4",
+      "solutionSha256": "83d082b1c9507390ed8394a71ad0ca111b01dbd4966b54bcf298959bace91522",
+      "independentAnswer": "60t+21 분",
+      "table": [
+        3,
+        6,
+        12,
+        24
+      ],
+      "simulations": [
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 28,
+          "Bminute": 7,
+          "knownTExactHours": "7/60",
+          "otherAnswerMinutes": 28
+        },
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 22,
+          "Bminute": 1,
+          "knownTExactHours": "1/60",
+          "otherAnswerMinutes": 22
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 35,
+          "Bminute": 14,
+          "knownTExactHours": "14/60",
+          "otherAnswerMinutes": 35
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 29,
+          "Bminute": 8,
+          "knownTExactHours": "8/60",
+          "otherAnswerMinutes": 29
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 42,
+          "Bminute": 21,
+          "knownTExactHours": "21/60",
+          "otherAnswerMinutes": 42
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 36,
+          "Bminute": 15,
+          "knownTExactHours": "15/60",
+          "otherAnswerMinutes": 36
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 49,
+          "Bminute": 28,
+          "knownTExactHours": "28/60",
+          "otherAnswerMinutes": 49
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 43,
+          "Bminute": 22,
+          "knownTExactHours": "22/60",
+          "otherAnswerMinutes": 43
+        },
+        {
+          "target": 768,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 56,
+          "Bminute": 35,
+          "knownTExactHours": "35/60",
+          "otherAnswerMinutes": 56
+        },
+        {
+          "target": 768,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 50,
+          "Bminute": 29,
+          "knownTExactHours": "29/60",
+          "otherAnswerMinutes": 50
+        },
+        {
+          "target": 1536,
+          "firstCommonDoublingMinute": 7,
+          "Aminute": 63,
+          "Bminute": 42,
+          "knownTExactHours": "42/60",
+          "otherAnswerMinutes": 63
+        },
+        {
+          "target": 1536,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 57,
+          "Bminute": 36,
+          "knownTExactHours": "36/60",
+          "otherAnswerMinutes": 57
+        }
+      ],
+      "method": "Repeated doubling of concrete integers, count difference in events times P, t hours=60t minutes, add/subtract constant. No variable exponent, logarithm or geometric-series formula required.",
+      "gradeDisposition": "method-within-M1;solution-phase-claim-and-response-format-pending"
+    },
+    {
+      "variant": 6,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 6,
+        "periodMinutes": 13,
+        "known": "A"
+      },
+      "contentSha256": "17b852f8bf6501a2e92e2e55b72aadb9c528405e5e447e020bb9cf3f380d4623",
+      "answerSha256": "5f83c7458ab79645e4e26a400645808bb393e262c127ee588aef3f40fcfa58e6",
+      "solutionSha256": "0ab1427a2366c95d881e84280bf1542a91719e8ddec2aaf327ef8b7aaa4f2586",
+      "independentAnswer": "60t-13 분",
+      "table": [
+        3,
+        6
+      ],
+      "simulations": [
+        {
+          "target": 12,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 26,
+          "Bminute": 13,
+          "knownTExactHours": "26/60",
+          "otherAnswerMinutes": 13
+        },
+        {
+          "target": 12,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 14,
+          "Bminute": 1,
+          "knownTExactHours": "14/60",
+          "otherAnswerMinutes": 1
+        },
+        {
+          "target": 24,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 39,
+          "Bminute": 26,
+          "knownTExactHours": "39/60",
+          "otherAnswerMinutes": 26
+        },
+        {
+          "target": 24,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 27,
+          "Bminute": 14,
+          "knownTExactHours": "27/60",
+          "otherAnswerMinutes": 14
+        },
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 52,
+          "Bminute": 39,
+          "knownTExactHours": "52/60",
+          "otherAnswerMinutes": 39
+        },
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 40,
+          "Bminute": 27,
+          "knownTExactHours": "40/60",
+          "otherAnswerMinutes": 27
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 65,
+          "Bminute": 52,
+          "knownTExactHours": "65/60",
+          "otherAnswerMinutes": 52
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 53,
+          "Bminute": 40,
+          "knownTExactHours": "53/60",
+          "otherAnswerMinutes": 40
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 78,
+          "Bminute": 65,
+          "knownTExactHours": "78/60",
+          "otherAnswerMinutes": 65
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 66,
+          "Bminute": 53,
+          "knownTExactHours": "66/60",
+          "otherAnswerMinutes": 53
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 91,
+          "Bminute": 78,
+          "knownTExactHours": "91/60",
+          "otherAnswerMinutes": 78
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 79,
+          "Bminute": 66,
+          "knownTExactHours": "79/60",
+          "otherAnswerMinutes": 66
+        }
+      ],
+      "method": "Repeated doubling of concrete integers, count difference in events times P, t hours=60t minutes, add/subtract constant. No variable exponent, logarithm or geometric-series formula required.",
+      "gradeDisposition": "method-within-M1;solution-phase-claim-and-response-format-pending"
+    },
+    {
+      "variant": 7,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 6,
+        "periodMinutes": 13,
+        "known": "B"
+      },
+      "contentSha256": "1e4cf6df212246a6aabe52e07259119ee44a01f03afa52a435a9df644d67c103",
+      "answerSha256": "9180c414f18a26c56782a5137bbf346514dc278ddc3ad7eda17b9723029e8f83",
+      "solutionSha256": "884465ed4f4b58c4e57559c33eeec97e4c06aa18862f219fc257f0b67167a288",
+      "independentAnswer": "60t+13 분",
+      "table": [
+        3,
+        6
+      ],
+      "simulations": [
+        {
+          "target": 12,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 26,
+          "Bminute": 13,
+          "knownTExactHours": "13/60",
+          "otherAnswerMinutes": 26
+        },
+        {
+          "target": 12,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 14,
+          "Bminute": 1,
+          "knownTExactHours": "1/60",
+          "otherAnswerMinutes": 14
+        },
+        {
+          "target": 24,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 39,
+          "Bminute": 26,
+          "knownTExactHours": "26/60",
+          "otherAnswerMinutes": 39
+        },
+        {
+          "target": 24,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 27,
+          "Bminute": 14,
+          "knownTExactHours": "14/60",
+          "otherAnswerMinutes": 27
+        },
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 52,
+          "Bminute": 39,
+          "knownTExactHours": "39/60",
+          "otherAnswerMinutes": 52
+        },
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 40,
+          "Bminute": 27,
+          "knownTExactHours": "27/60",
+          "otherAnswerMinutes": 40
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 65,
+          "Bminute": 52,
+          "knownTExactHours": "52/60",
+          "otherAnswerMinutes": 65
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 53,
+          "Bminute": 40,
+          "knownTExactHours": "40/60",
+          "otherAnswerMinutes": 53
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 78,
+          "Bminute": 65,
+          "knownTExactHours": "65/60",
+          "otherAnswerMinutes": 78
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 66,
+          "Bminute": 53,
+          "knownTExactHours": "53/60",
+          "otherAnswerMinutes": 66
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 91,
+          "Bminute": 78,
+          "knownTExactHours": "78/60",
+          "otherAnswerMinutes": 91
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 79,
+          "Bminute": 66,
+          "knownTExactHours": "66/60",
+          "otherAnswerMinutes": 79
+        }
+      ],
+      "method": "Repeated doubling of concrete integers, count difference in events times P, t hours=60t minutes, add/subtract constant. No variable exponent, logarithm or geometric-series formula required.",
+      "gradeDisposition": "method-within-M1;solution-phase-claim-and-response-format-pending"
+    },
+    {
+      "variant": 8,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 12,
+        "periodMinutes": 13,
+        "known": "A"
+      },
+      "contentSha256": "9849c6589df79c3081a871c09e194182376f76fe01efbfad944b83657b36d45a",
+      "answerSha256": "5a0a8451df33aef1293bb87bb9d09568f8cd4f4f9fd5dea33154560dda78bd97",
+      "solutionSha256": "a67012b28ddf634ebb735d9228a59320fbf4a190d8d6c583416de34dee8a1c63",
+      "independentAnswer": "60t-26 분",
+      "table": [
+        3,
+        6,
+        12
+      ],
+      "simulations": [
+        {
+          "target": 24,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 39,
+          "Bminute": 13,
+          "knownTExactHours": "39/60",
+          "otherAnswerMinutes": 13
+        },
+        {
+          "target": 24,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 27,
+          "Bminute": 1,
+          "knownTExactHours": "27/60",
+          "otherAnswerMinutes": 1
+        },
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 52,
+          "Bminute": 26,
+          "knownTExactHours": "52/60",
+          "otherAnswerMinutes": 26
+        },
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 40,
+          "Bminute": 14,
+          "knownTExactHours": "40/60",
+          "otherAnswerMinutes": 14
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 65,
+          "Bminute": 39,
+          "knownTExactHours": "65/60",
+          "otherAnswerMinutes": 39
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 53,
+          "Bminute": 27,
+          "knownTExactHours": "53/60",
+          "otherAnswerMinutes": 27
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 78,
+          "Bminute": 52,
+          "knownTExactHours": "78/60",
+          "otherAnswerMinutes": 52
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 66,
+          "Bminute": 40,
+          "knownTExactHours": "66/60",
+          "otherAnswerMinutes": 40
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 91,
+          "Bminute": 65,
+          "knownTExactHours": "91/60",
+          "otherAnswerMinutes": 65
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 79,
+          "Bminute": 53,
+          "knownTExactHours": "79/60",
+          "otherAnswerMinutes": 53
+        },
+        {
+          "target": 768,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 104,
+          "Bminute": 78,
+          "knownTExactHours": "104/60",
+          "otherAnswerMinutes": 78
+        },
+        {
+          "target": 768,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 92,
+          "Bminute": 66,
+          "knownTExactHours": "92/60",
+          "otherAnswerMinutes": 66
+        }
+      ],
+      "method": "Repeated doubling of concrete integers, count difference in events times P, t hours=60t minutes, add/subtract constant. No variable exponent, logarithm or geometric-series formula required.",
+      "gradeDisposition": "method-within-M1;solution-phase-claim-and-response-format-pending"
+    },
+    {
+      "variant": 9,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 12,
+        "periodMinutes": 13,
+        "known": "B"
+      },
+      "contentSha256": "59ad4a12791f4e34b9b50059386ae4290aabb1b225f33a0a5952f5c014be4c65",
+      "answerSha256": "755c0f4bd303c03e88d0bab8119c614bbc7b60ccd26871d87c7dcb561c324f74",
+      "solutionSha256": "8c0f96995e54918a770ef60907acaf3e7d3884c764c39b591c4c7c34b18ab757",
+      "independentAnswer": "60t+26 분",
+      "table": [
+        3,
+        6,
+        12
+      ],
+      "simulations": [
+        {
+          "target": 24,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 39,
+          "Bminute": 13,
+          "knownTExactHours": "13/60",
+          "otherAnswerMinutes": 39
+        },
+        {
+          "target": 24,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 27,
+          "Bminute": 1,
+          "knownTExactHours": "1/60",
+          "otherAnswerMinutes": 27
+        },
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 52,
+          "Bminute": 26,
+          "knownTExactHours": "26/60",
+          "otherAnswerMinutes": 52
+        },
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 40,
+          "Bminute": 14,
+          "knownTExactHours": "14/60",
+          "otherAnswerMinutes": 40
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 65,
+          "Bminute": 39,
+          "knownTExactHours": "39/60",
+          "otherAnswerMinutes": 65
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 53,
+          "Bminute": 27,
+          "knownTExactHours": "27/60",
+          "otherAnswerMinutes": 53
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 78,
+          "Bminute": 52,
+          "knownTExactHours": "52/60",
+          "otherAnswerMinutes": 78
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 66,
+          "Bminute": 40,
+          "knownTExactHours": "40/60",
+          "otherAnswerMinutes": 66
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 91,
+          "Bminute": 65,
+          "knownTExactHours": "65/60",
+          "otherAnswerMinutes": 91
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 79,
+          "Bminute": 53,
+          "knownTExactHours": "53/60",
+          "otherAnswerMinutes": 79
+        },
+        {
+          "target": 768,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 104,
+          "Bminute": 78,
+          "knownTExactHours": "78/60",
+          "otherAnswerMinutes": 104
+        },
+        {
+          "target": 768,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 92,
+          "Bminute": 66,
+          "knownTExactHours": "66/60",
+          "otherAnswerMinutes": 92
+        }
+      ],
+      "method": "Repeated doubling of concrete integers, count difference in events times P, t hours=60t minutes, add/subtract constant. No variable exponent, logarithm or geometric-series formula required.",
+      "gradeDisposition": "method-within-M1;solution-phase-claim-and-response-format-pending"
+    },
+    {
+      "variant": 10,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 24,
+        "periodMinutes": 13,
+        "known": "A"
+      },
+      "contentSha256": "da16aabde12015411c707f3981a0e4aa43d62ea8ae4c3e69ef71bb15b1888c93",
+      "answerSha256": "0724a5d504a5f0d7da9cb09eb85436dd52d7bf146f11cdd8ea36f1f130db10ee",
+      "solutionSha256": "ff1bce486fca269f7cd3993dcdb3cf2f5ca058de0093b3da3596352f87624434",
+      "independentAnswer": "60t-39 분",
+      "table": [
+        3,
+        6,
+        12,
+        24
+      ],
+      "simulations": [
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 52,
+          "Bminute": 13,
+          "knownTExactHours": "52/60",
+          "otherAnswerMinutes": 13
+        },
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 40,
+          "Bminute": 1,
+          "knownTExactHours": "40/60",
+          "otherAnswerMinutes": 1
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 65,
+          "Bminute": 26,
+          "knownTExactHours": "65/60",
+          "otherAnswerMinutes": 26
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 53,
+          "Bminute": 14,
+          "knownTExactHours": "53/60",
+          "otherAnswerMinutes": 14
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 78,
+          "Bminute": 39,
+          "knownTExactHours": "78/60",
+          "otherAnswerMinutes": 39
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 66,
+          "Bminute": 27,
+          "knownTExactHours": "66/60",
+          "otherAnswerMinutes": 27
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 91,
+          "Bminute": 52,
+          "knownTExactHours": "91/60",
+          "otherAnswerMinutes": 52
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 79,
+          "Bminute": 40,
+          "knownTExactHours": "79/60",
+          "otherAnswerMinutes": 40
+        },
+        {
+          "target": 768,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 104,
+          "Bminute": 65,
+          "knownTExactHours": "104/60",
+          "otherAnswerMinutes": 65
+        },
+        {
+          "target": 768,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 92,
+          "Bminute": 53,
+          "knownTExactHours": "92/60",
+          "otherAnswerMinutes": 53
+        },
+        {
+          "target": 1536,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 117,
+          "Bminute": 78,
+          "knownTExactHours": "117/60",
+          "otherAnswerMinutes": 78
+        },
+        {
+          "target": 1536,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 105,
+          "Bminute": 66,
+          "knownTExactHours": "105/60",
+          "otherAnswerMinutes": 66
+        }
+      ],
+      "method": "Repeated doubling of concrete integers, count difference in events times P, t hours=60t minutes, add/subtract constant. No variable exponent, logarithm or geometric-series formula required.",
+      "gradeDisposition": "method-within-M1;solution-phase-claim-and-response-format-pending"
+    },
+    {
+      "variant": 11,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 24,
+        "periodMinutes": 13,
+        "known": "B"
+      },
+      "contentSha256": "4b96759bfdbc25dd8861f9431d3691720793e313ff5a7f646777846273ebeb80",
+      "answerSha256": "def30193e9c45e6ca3c74205bd6fb7f90ad098a1c1e0d109b381783527a12e96",
+      "solutionSha256": "3b2c33283075312de1993ea7b0f5030b0465aac7109f337360f01a1c78786546",
+      "independentAnswer": "60t+39 분",
+      "table": [
+        3,
+        6,
+        12,
+        24
+      ],
+      "simulations": [
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 52,
+          "Bminute": 13,
+          "knownTExactHours": "13/60",
+          "otherAnswerMinutes": 52
+        },
+        {
+          "target": 48,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 40,
+          "Bminute": 1,
+          "knownTExactHours": "1/60",
+          "otherAnswerMinutes": 40
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 65,
+          "Bminute": 26,
+          "knownTExactHours": "26/60",
+          "otherAnswerMinutes": 65
+        },
+        {
+          "target": 96,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 53,
+          "Bminute": 14,
+          "knownTExactHours": "14/60",
+          "otherAnswerMinutes": 53
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 78,
+          "Bminute": 39,
+          "knownTExactHours": "39/60",
+          "otherAnswerMinutes": 78
+        },
+        {
+          "target": 192,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 66,
+          "Bminute": 27,
+          "knownTExactHours": "27/60",
+          "otherAnswerMinutes": 66
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 91,
+          "Bminute": 52,
+          "knownTExactHours": "52/60",
+          "otherAnswerMinutes": 91
+        },
+        {
+          "target": 384,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 79,
+          "Bminute": 40,
+          "knownTExactHours": "40/60",
+          "otherAnswerMinutes": 79
+        },
+        {
+          "target": 768,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 104,
+          "Bminute": 65,
+          "knownTExactHours": "65/60",
+          "otherAnswerMinutes": 104
+        },
+        {
+          "target": 768,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 92,
+          "Bminute": 53,
+          "knownTExactHours": "53/60",
+          "otherAnswerMinutes": 92
+        },
+        {
+          "target": 1536,
+          "firstCommonDoublingMinute": 13,
+          "Aminute": 117,
+          "Bminute": 78,
+          "knownTExactHours": "78/60",
+          "otherAnswerMinutes": 117
+        },
+        {
+          "target": 1536,
+          "firstCommonDoublingMinute": 1,
+          "Aminute": 105,
+          "Bminute": 66,
+          "knownTExactHours": "66/60",
+          "otherAnswerMinutes": 105
+        }
+      ],
+      "method": "Repeated doubling of concrete integers, count difference in events times P, t hours=60t minutes, add/subtract constant. No variable exponent, logarithm or geometric-series formula required.",
+      "gradeDisposition": "method-within-M1;solution-phase-claim-and-response-format-pending"
+    }
+  ],
+  "failures": [],
+  "solutionAmbiguities": [
+    {
+      "variant": 0,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 6,
+        "periodMinutes": 7,
+        "known": "A"
+      },
+      "target": 12,
+      "firstCommonDoublingMinute": 1,
+      "AarrivalMinute": 8,
+      "BarrivalMinute": 1,
+      "earlyArrivalMinute": 1,
+      "periodMinutes": 7,
+      "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+      "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+      "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+    },
+    {
+      "variant": 1,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 6,
+        "periodMinutes": 7,
+        "known": "B"
+      },
+      "target": 12,
+      "firstCommonDoublingMinute": 1,
+      "AarrivalMinute": 8,
+      "BarrivalMinute": 1,
+      "earlyArrivalMinute": 1,
+      "periodMinutes": 7,
+      "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+      "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+      "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+    },
+    {
+      "variant": 2,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 12,
+        "periodMinutes": 7,
+        "known": "A"
+      },
+      "target": 24,
+      "firstCommonDoublingMinute": 1,
+      "AarrivalMinute": 15,
+      "BarrivalMinute": 1,
+      "earlyArrivalMinute": 1,
+      "periodMinutes": 7,
+      "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+      "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+      "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+    },
+    {
+      "variant": 3,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 12,
+        "periodMinutes": 7,
+        "known": "B"
+      },
+      "target": 24,
+      "firstCommonDoublingMinute": 1,
+      "AarrivalMinute": 15,
+      "BarrivalMinute": 1,
+      "earlyArrivalMinute": 1,
+      "periodMinutes": 7,
+      "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+      "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+      "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+    },
+    {
+      "variant": 4,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 24,
+        "periodMinutes": 7,
+        "known": "A"
+      },
+      "target": 48,
+      "firstCommonDoublingMinute": 1,
+      "AarrivalMinute": 22,
+      "BarrivalMinute": 1,
+      "earlyArrivalMinute": 1,
+      "periodMinutes": 7,
+      "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+      "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+      "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+    },
+    {
+      "variant": 5,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 24,
+        "periodMinutes": 7,
+        "known": "B"
+      },
+      "target": 48,
+      "firstCommonDoublingMinute": 1,
+      "AarrivalMinute": 22,
+      "BarrivalMinute": 1,
+      "earlyArrivalMinute": 1,
+      "periodMinutes": 7,
+      "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+      "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+      "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+    },
+    {
+      "variant": 6,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 6,
+        "periodMinutes": 13,
+        "known": "A"
+      },
+      "target": 12,
+      "firstCommonDoublingMinute": 1,
+      "AarrivalMinute": 14,
+      "BarrivalMinute": 1,
+      "earlyArrivalMinute": 1,
+      "periodMinutes": 13,
+      "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+      "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+      "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+    },
+    {
+      "variant": 7,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 6,
+        "periodMinutes": 13,
+        "known": "B"
+      },
+      "target": 12,
+      "firstCommonDoublingMinute": 1,
+      "AarrivalMinute": 14,
+      "BarrivalMinute": 1,
+      "earlyArrivalMinute": 1,
+      "periodMinutes": 13,
+      "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+      "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+      "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+    },
+    {
+      "variant": 8,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 12,
+        "periodMinutes": 13,
+        "known": "A"
+      },
+      "target": 24,
+      "firstCommonDoublingMinute": 1,
+      "AarrivalMinute": 27,
+      "BarrivalMinute": 1,
+      "earlyArrivalMinute": 1,
+      "periodMinutes": 13,
+      "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+      "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+      "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+    },
+    {
+      "variant": 9,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 12,
+        "periodMinutes": 13,
+        "known": "B"
+      },
+      "target": 24,
+      "firstCommonDoublingMinute": 1,
+      "AarrivalMinute": 27,
+      "BarrivalMinute": 1,
+      "earlyArrivalMinute": 1,
+      "periodMinutes": 13,
+      "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+      "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+      "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+    },
+    {
+      "variant": 10,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 24,
+        "periodMinutes": 13,
+        "known": "A"
+      },
+      "target": 48,
+      "firstCommonDoublingMinute": 1,
+      "AarrivalMinute": 40,
+      "BarrivalMinute": 1,
+      "earlyArrivalMinute": 1,
+      "periodMinutes": 13,
+      "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+      "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+      "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+    },
+    {
+      "variant": 11,
+      "tuple": {
+        "initialA": 3,
+        "initialB": 24,
+        "periodMinutes": 13,
+        "known": "B"
+      },
+      "target": 48,
+      "firstCommonDoublingMinute": 1,
+      "AarrivalMinute": 40,
+      "BarrivalMinute": 1,
+      "earlyArrivalMinute": 1,
+      "periodMinutes": 13,
+      "claim": "먼저 도달하는 상자도 적어도 한 주기 뒤에 도달한다",
+      "interpretation": "If observation begins partway through a synchronized doubling cycle, the first event may be after1 minute rather than a full period. Printed wording does not explicitly anchor that first event; this challenges the solution lower-bound sentence, not the offset formula.",
+      "classification": "solution-assumption-ambiguity;not-out-of-grade-method"
+    }
+  ],
+  "notFreshBlind": true,
+  "sourceUnchanged": true
+}
