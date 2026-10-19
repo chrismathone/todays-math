@@ -559,6 +559,15 @@ label.checkField {
   padding: 0 2px;
   font-size: 12px;
 }
+/* 시험 종류 · 폰트 — 템플릿 · 강조 색과 같은 세 칸 격자(원장님 2026-10-19 «보기 좋게 정렬») */
+.choiceWrap.choiceGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.choiceGrid button {
+  min-width: 0;
+  padding: 0 4px;
+}
 .choiceWrap.colorGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

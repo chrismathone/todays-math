@@ -23,7 +23,7 @@ export default function SheetTagPicker({
       data-tag-pick
     >
       <span className={o.fieldCaption}>시험 종류</span>
-      <div className={we.choiceWrap}>
+      <div className={`${we.choiceWrap} ${we.choiceGrid}`}>
         <button
           type="button"
           aria-pressed={value === null}
