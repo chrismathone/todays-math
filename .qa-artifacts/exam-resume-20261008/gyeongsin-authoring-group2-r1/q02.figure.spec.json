@@ -1,0 +1,75 @@
+{
+  "version": 2,
+  "style": {
+    "show_points": true
+  },
+  "circles": {
+    "c": {
+      "center": "O",
+      "radius": 66
+    }
+  },
+  "points": {
+    "O": [
+      120,
+      95
+    ],
+    "T": [
+      252,
+      95
+    ],
+    "U": {
+      "type": "on_circle",
+      "circle": "c",
+      "angle": 60
+    },
+    "K": {
+      "type": "on_circle",
+      "circle": "c",
+      "angle": 0
+    }
+  },
+  "segments": {
+    "TU": [
+      "T",
+      "U"
+    ],
+    "OU": [
+      "O",
+      "U"
+    ],
+    "OK": [
+      "O",
+      "K"
+    ],
+    "KT": [
+      "K",
+      "T"
+    ]
+  },
+  "angles": {
+    "tangentRight": {
+      "vertex": "U",
+      "points": [
+        "O",
+        "T"
+      ],
+      "right": true,
+      "label": ""
+    },
+    "askedT": {
+      "vertex": "T",
+      "points": [
+        "U",
+        "K"
+      ],
+      "label": "x"
+    }
+  },
+  "labels": {
+    "O": "O",
+    "T": "T",
+    "U": "U",
+    "K": "K"
+  }
+}

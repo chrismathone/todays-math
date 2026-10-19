@@ -1,0 +1,52 @@
+{
+  "authorOnly": true,
+  "radius": 8,
+  "outerSegment": 8,
+  "centerDistance": 16,
+  "requiredSineExact": "1/2",
+  "requiredAngleDegrees": 30,
+  "existence": true,
+  "uniqueness": "사인비가1/2인 예각은30도; 표시된 외부점의 두 접선은 같은 크기의 예각을 이룬다.",
+  "options": [
+    {
+      "choice": 1,
+      "degrees": 10,
+      "authorNumericalSineCheck": 0.17364817766693033,
+      "satisfiesExactRequiredAngle": false
+    },
+    {
+      "choice": 2,
+      "degrees": 20,
+      "authorNumericalSineCheck": 0.3420201433256687,
+      "satisfiesExactRequiredAngle": false
+    },
+    {
+      "choice": 3,
+      "degrees": 30,
+      "authorNumericalSineCheck": 0.49999999999999994,
+      "satisfiesExactRequiredAngle": true
+    },
+    {
+      "choice": 4,
+      "degrees": 40,
+      "authorNumericalSineCheck": 0.6427876096865393,
+      "satisfiesExactRequiredAngle": false
+    },
+    {
+      "choice": 5,
+      "degrees": 50,
+      "authorNumericalSineCheck": 0.766044443118978,
+      "satisfiesExactRequiredAngle": false
+    }
+  ],
+  "candidateDigest": "f95d71df5f16fafaf79e0e8355cd3e12ecfbf13b23b7efe476a24c8502768ed5",
+  "studentDigest": "ef764a890044e19cd0193e18785dacd1d771a46f3a3db28a98be886281468a22",
+  "assetDigest": "f8e63d35321d51014560fc40d0a79857a93c466f30c2823aa004b9365a8c4248",
+  "strictNativeRender": true,
+  "typeset": true,
+  "originalUnchanged": true,
+  "independentMathApprovals": 0,
+  "gradeApprovals": 0,
+  "loadable": 0,
+  "numericalCheckLimitation": "부동소수 삼각함수는 저자 보조 계산이다. 학생용 정당한 특수각 풀이와 독립 검산을 대신하지 않는다."
+}

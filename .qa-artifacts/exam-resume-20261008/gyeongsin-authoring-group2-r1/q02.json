@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 2,
+  "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group2-r1-q02",
+  "authorId": "codex-parent-engine-upgrade-20261019",
+  "questionType": "객관식",
+  "score": 4,
+  "content": "반지름의 길이가 $8\\,\\mathrm{cm}$인 원 $O$가 있다. 원 밖의 점 $T$에서 원에 그은 접선의 접점을 $U$라 하고, 선분 $OT$와 원이 만나는 점을 $K$라 하자. $\\overline{TK}=8\\,\\mathrm{cm}$일 때, $\\angle UTO$의 크기는?",
+  "choices": [
+    "$10^\\circ$",
+    "$20^\\circ$",
+    "$30^\\circ$",
+    "$40^\\circ$",
+    "$50^\\circ$"
+  ],
+  "answer": "③",
+  "solution": "$\\overline{OK}$는 원의 반지름이므로 $\\overline{OK}=8\\,\\mathrm{cm}$이다. 점 $K$는 선분 $OT$ 위에 있으므로 $\\overline{OT}=8+8=16\\,(\\mathrm{cm})$이다.\n\n접점에 그은 반지름은 접선과 수직이므로 $\\angle OUT=90^\\circ$이다. 따라서 직각삼각형 $OUT$에서 $\\sin\\angle UTO=\\dfrac{\\overline{OU}}{\\overline{OT}}=\\dfrac{8}{16}=\\dfrac{1}{2}$이다.\n\n$\\angle UTO$는 예각이고 $\\sin30^\\circ=\\dfrac{1}{2}$이므로 $\\angle UTO=30^\\circ$이다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "q02.figure.spec.json",
+      "svgPath": "q02.figure.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "inverse-target"
+    ],
+    "before": "접선과 중심선의 각 및 외부점에서 원까지의 길이로 반지름을 구한다.",
+    "after": "반지름과 외부점에서 원까지의 길이를 주고 접선과 중심선의 각을 구한다. 필요 없는 두 번째 접선은 제거한다.",
+    "sharedConcept": "접선과 접점의 반지름의 수직 관계, 선분 길이의 덧셈, 직각삼각형의 삼각비",
+    "sharedProcedure": "중심까지 거리=반지름+바깥 선분 → 접점의 직각 → 사인비 관계로 미지량 결정",
+    "actualStructuralChange": "주어졌던 각을 질문 대상으로, 물었던 반지름을 주어진 값으로 전환했다. 두 접선의 대칭 배치 대신 한 접선과 실제 계산에 쓰는 반지름·중심선만 새로 그렸다.",
+    "numericalChangeIsNotSufficient": true,
+    "domainProof": "반지름8, 중심과 외부점 거리16은16>8이므로 실제 접선이 존재한다. 가까운 교점까지8이고 삼각형OUT는 비퇴화 직각삼각형이다. 사인비1/2인 예각은30도로 하나뿐이며 위/아래 접선 선택은 그 크기를 바꾸지 않는다.",
+    "difficultyBasis": "원문과 같은 접선 수직·거리 합·삼각비의 관계를 역방향으로 읽는다. 학생 해설에 역삼각함수, 일반각, 삼각비 항등식이나 사인/코사인법칙을 쓰지 않는다. 난이도·배점은 독립 검토 대기."
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsin-3-2-mid-2",
+    "newSourceReferenceId": "source-ref-gyeongsin-2025-2-mid-group2-r1-q02",
+    "sourceContentSha256": "5f5829e713c3c83495db6413dee96bc8fa1408548c7ba9fac5659ee8f4ab7390",
+    "sourceSchoolInternal": "경신중학교",
+    "sourceExamYear": 2025,
+    "inventoryExamId": "personal-57fc57dc583e9f120f45ebc6abedfee4",
+    "sourceManifest": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+      "sha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+        "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9"
+      }
+    ],
+    "actualReference": "observed-2025-original-scan-page1-question2; completed-pair header conflict retained",
+    "componentObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-source-component-review-20261019-r1/q02-component-review.json",
+      "sha256": "49344fa0ead1583a83494c3add80756121639aaeab97dd350c42263cf2078b10"
+    },
+    "originalQuestionCrop": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/packet/images/q02-part1.png",
+      "sha256": "6d43e57dc9a2abd9143c9114948004df775990ecfe601e17c480340da1ae963b"
+    },
+    "sourceCropViewed": true,
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수04-19",
+      "9수04-17",
+      "9수04-18"
+    ],
+    "officialProvisions": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+      "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+    },
+    "legitimateMethodDraft": "중3 원의 접선과 반지름의 수직 및 예각의 삼각비/특수각30도만 사용한다. 학생에게 수치 근사, 역삼각함수 표기나 항등식·사인/코사인법칙이 필요하지 않다.",
+    "independentReviewPending": true
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "answerFormat": "single-choice",
+    "score": 4,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "author-proposed",
+    "problemTypeProposal": "계산",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원의 접선",
+        "semester": 2,
+        "orderIndex": 485,
+        "problemCodePrefix": "J30602"
+      },
+      "evidence": "현재 원의 접선 Unit UUID를 확인했다. 반지름을 구하는 원본과 달리 주어진 길이에서 각을 구하는 풀이 목적에 맞는 실제 live family는 별도 검토한다.",
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+        "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+      }
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+    },
+    "figureAuthoring": {
+      "method": "existing-native-figTangentPair+single-tangent-role-recomposition",
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "newVector": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false
+  }
+}

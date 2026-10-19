@@ -1,0 +1,269 @@
+[
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 2,
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group2-r1-q02",
+      "authorId": "codex-parent-engine-upgrade-20261019",
+      "questionType": "객관식",
+      "score": 4,
+      "content": "반지름의 길이가 $8\\,\\mathrm{cm}$인 원 $O$가 있다. 원 밖의 점 $T$에서 원에 그은 접선의 접점을 $U$라 하고, 선분 $OT$와 원이 만나는 점을 $K$라 하자. $\\overline{TK}=8\\,\\mathrm{cm}$일 때, $\\angle UTO$의 크기는?",
+      "choices": [
+        "$10^\\circ$",
+        "$20^\\circ$",
+        "$30^\\circ$",
+        "$40^\\circ$",
+        "$50^\\circ$"
+      ],
+      "answer": "③",
+      "solution": "$\\overline{OK}$는 원의 반지름이므로 $\\overline{OK}=8\\,\\mathrm{cm}$이다. 점 $K$는 선분 $OT$ 위에 있으므로 $\\overline{OT}=8+8=16\\,(\\mathrm{cm})$이다.\n\n접점에 그은 반지름은 접선과 수직이므로 $\\angle OUT=90^\\circ$이다. 따라서 직각삼각형 $OUT$에서 $\\sin\\angle UTO=\\dfrac{\\overline{OU}}{\\overline{OT}}=\\dfrac{8}{16}=\\dfrac{1}{2}$이다.\n\n$\\angle UTO$는 예각이고 $\\sin30^\\circ=\\dfrac{1}{2}$이므로 $\\angle UTO=30^\\circ$이다.",
+      "figureArtifacts": [
+        {
+          "role": "stem",
+          "specPath": "figure-1.spec.json",
+          "svgPath": "figure-1.svg",
+          "intendedWidthMm": 70
+        }
+      ],
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "before": "접선과 중심선의 각 및 외부점에서 원까지의 길이로 반지름을 구한다.",
+        "after": "반지름과 외부점에서 원까지의 길이를 주고 접선과 중심선의 각을 구한다. 필요 없는 두 번째 접선은 제거한다.",
+        "sharedConcept": "접선과 접점의 반지름의 수직 관계, 선분 길이의 덧셈, 직각삼각형의 삼각비",
+        "sharedProcedure": "중심까지 거리=반지름+바깥 선분 → 접점의 직각 → 사인비 관계로 미지량 결정",
+        "actualStructuralChange": "주어졌던 각을 질문 대상으로, 물었던 반지름을 주어진 값으로 전환했다. 두 접선의 대칭 배치 대신 한 접선과 실제 계산에 쓰는 반지름·중심선만 새로 그렸다.",
+        "numericalChangeIsNotSufficient": true,
+        "domainProof": "반지름8, 중심과 외부점 거리16은16>8이므로 실제 접선이 존재한다. 가까운 교점까지8이고 삼각형OUT는 비퇴화 직각삼각형이다. 사인비1/2인 예각은30도로 하나뿐이며 위/아래 접선 선택은 그 크기를 바꾸지 않는다.",
+        "difficultyBasis": "원문과 같은 접선 수직·거리 합·삼각비의 관계를 역방향으로 읽는다. 학생 해설에 역삼각함수, 일반각, 삼각비 항등식이나 사인/코사인법칙을 쓰지 않는다. 난이도·배점은 독립 검토 대기."
+      },
+      "sourceReference": {
+        "externalId": "2025-gyeongsin-3-2-mid-2",
+        "newSourceReferenceId": "source-ref-gyeongsin-2025-2-mid-group2-r1-q02",
+        "sourceContentSha256": "5f5829e713c3c83495db6413dee96bc8fa1408548c7ba9fac5659ee8f4ab7390",
+        "sourceSchoolInternal": "경신중학교",
+        "sourceExamYear": 2025,
+        "inventoryExamId": "personal-57fc57dc583e9f120f45ebc6abedfee4",
+        "sourceManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+          "sha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+            "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9"
+          }
+        ],
+        "actualReference": "observed-2025-original-scan-page1-question2; completed-pair header conflict retained",
+        "componentObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-source-component-review-20261019-r1/q02-component-review.json",
+          "sha256": "49344fa0ead1583a83494c3add80756121639aaeab97dd350c42263cf2078b10"
+        },
+        "originalQuestionCrop": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/packet/images/q02-part1.png",
+          "sha256": "6d43e57dc9a2abd9143c9114948004df775990ecfe601e17c480340da1ae963b"
+        },
+        "sourceCropViewed": true,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "status": "author-proposed",
+        "standardCodes": [
+          "9수04-19",
+          "9수04-17",
+          "9수04-18"
+        ],
+        "officialProvisions": {
+          "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+          "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+        },
+        "legitimateMethodDraft": "중3 원의 접선과 반지름의 수직 및 예각의 삼각비/특수각30도만 사용한다. 학생에게 수치 근사, 역삼각함수 표기나 항등식·사인/코사인법칙이 필요하지 않다.",
+        "independentReviewPending": true
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 4,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "author-proposed",
+        "problemTypeProposal": "계산",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원의 접선",
+            "semester": 2,
+            "orderIndex": 485,
+            "problemCodePrefix": "J30602"
+          },
+          "evidence": "현재 원의 접선 Unit UUID를 확인했다. 반지름을 구하는 원본과 달리 주어진 길이에서 각을 구하는 풀이 목적에 맞는 실제 live family는 별도 검토한다.",
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+            "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+          }
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+        },
+        "figureAuthoring": {
+          "method": "existing-native-figTangentPair+single-tangent-role-recomposition",
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "newVector": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false
+      }
+    },
+    "assets": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group2-review-20261019-r1\\package\\private\\q02\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group2-review-20261019-r1\\package\\private\\q02\\figure-1.svg",
+        "specSha256": "aafd93cccae36579f52cc295d2be6c9f6b3bd9230fd6c0d8ab485a4baa159529",
+        "svgSha256": "d85a7bc950ca01abaa05deb6ab5fa43cfda5c253ef644983b51dbabe68967ad3",
+        "intendedWidthMm": 70,
+        "studentPath": "figures/q02-1.svg"
+      }
+    ],
+    "studentDigest": "ef764a890044e19cd0193e18785dacd1d771a46f3a3db28a98be886281468a22",
+    "candidateDigest": "41ec7ee3ab6fb501e215ff348bb741133f3a2fe862ce3cf3b60540502caf56f5",
+    "assetDigest": "f8e63d35321d51014560fc40d0a79857a93c466f30c2823aa004b9365a8c4248",
+    "independentSolve": {
+      "studentDigest": "ef764a890044e19cd0193e18785dacd1d771a46f3a3db28a98be886281468a22",
+      "solverId": "codex-gyeongsin-group2-clean-blind-20261019-r1-q02",
+      "status": "solved",
+      "answer": "③",
+      "solution": "K와 U는 원 O 위의 점이므로 OK=OU=8cm이다. K는 선분 OT 위에 있고 T는 원 밖에 있으므로 O, K, T의 순서로 놓인다. 따라서 OT=OK+KT=8+8=16cm이고, OK=KT이므로 K는 OT의 중점이다.\n\n접점에 그은 반지름은 접선과 수직이므로 OU⊥UT이다. 따라서 삼각형 OUT는 빗변이 OT인 직각삼각형이다. 직각삼각형의 외심은 빗변의 중점이므로 K는 삼각형 OUT의 외심이다. 그러므로 KU=KO=KT=8cm이다.\n\n삼각형 OUK에서 OU=OK=KU=8cm이므로 이 삼각형은 정삼각형이다. 따라서 ∠UOK=60°이다. 반직선 OK와 OT는 같으므로 ∠UOT=60°이다. 직각삼각형 OUT의 세 내각의 크기의 합을 이용하면 ∠UTO=180°-90°-60°=30°이다. 따라서 정답은 ③이다.\n\n보기의 각을 차례로 10°,20°,30°,40°,50°라고 하면 직각삼각형 OUT에서 ∠UOT는 각각 80°,70°,60°,50°,40°가 된다. 그런데 길이 조건과 접선의 성질로 삼각형 OUK가 정삼각형이어서 ∠UOT는 반드시 60°여야 한다. 따라서 ①,②,④,⑤는 조건과 양립하지 않고 ③만 가능하다.\n\n존재도 확인할 수 있다. 한 변의 길이가 8cm인 정삼각형 OUK를 만들고, 반직선 OK 위에 KT=8cm가 되도록 T를 잡는다. 그러면 O, K, T의 순서이고 OT=16cm이다. ∠UKT=180°-60°=120°이며 KU=KT이므로 삼각형 UKT의 두 밑각은 각각 30°이다. 따라서 ∠OUT=∠OUK+∠KUT=60°+30°=90°이다. 중심이 O이고 반지름이 8cm인 원에 대해 U와 K는 원 위에 있고, OU와 수직인 직선 UT는 U에서의 접선이다. 그러므로 주어진 모든 조건을 만족하는 도형이 실제로 존재한다.\n\n모든 길이는 양수이고 T는 OT=16cm>8cm이므로 원 밖에 있다. 직각삼각형 OUT에서 나머지 두 각은 60°,30°로 모두 양수이므로 퇴화하지 않는다. 어느 방향으로 도형을 그리거나 반대편 접점을 선택해도 같은 논리로 물은 각은 30°가 된다. 여기서 유일하다는 것은 물은 각의 값이며, 도형의 위치나 방향까지 하나라는 뜻은 아니다. 그림의 픽셀이나 좌표로 길이 또는 각도를 재지 않았다.",
+      "evidence": {
+        "givenAndDerivedLengthsCm": {
+          "radius": 8,
+          "OU": 8,
+          "OK": 8,
+          "KT": 8,
+          "OT": 16,
+          "KU": 8
+        },
+        "exactOptionChecks": [
+          {
+            "choice": "①",
+            "angleUTODegrees": 10,
+            "rightAngleOUTDegrees": 90,
+            "forcedAngleUOTDegrees": 80,
+            "requiredAngleUOTDegrees": 60,
+            "angleSumDegrees": 180,
+            "anglesPositive": true,
+            "satisfiesAllConditions": false
+          },
+          {
+            "choice": "②",
+            "angleUTODegrees": 20,
+            "rightAngleOUTDegrees": 90,
+            "forcedAngleUOTDegrees": 70,
+            "requiredAngleUOTDegrees": 60,
+            "angleSumDegrees": 180,
+            "anglesPositive": true,
+            "satisfiesAllConditions": false
+          },
+          {
+            "choice": "③",
+            "angleUTODegrees": 30,
+            "rightAngleOUTDegrees": 90,
+            "forcedAngleUOTDegrees": 60,
+            "requiredAngleUOTDegrees": 60,
+            "angleSumDegrees": 180,
+            "anglesPositive": true,
+            "satisfiesAllConditions": true
+          },
+          {
+            "choice": "④",
+            "angleUTODegrees": 40,
+            "rightAngleOUTDegrees": 90,
+            "forcedAngleUOTDegrees": 50,
+            "requiredAngleUOTDegrees": 60,
+            "angleSumDegrees": 180,
+            "anglesPositive": true,
+            "satisfiesAllConditions": false
+          },
+          {
+            "choice": "⑤",
+            "angleUTODegrees": 50,
+            "rightAngleOUTDegrees": 90,
+            "forcedAngleUOTDegrees": 40,
+            "requiredAngleUOTDegrees": 60,
+            "angleSumDegrees": 180,
+            "anglesPositive": true,
+            "satisfiesAllConditions": false
+          }
+        ],
+        "gradeMethod": {
+          "target": "중3 / 2015",
+          "method": "원의 반지름, 접점의 반지름과 접선의 수직 관계, 직각삼각형의 외심과 빗변의 중점, 정삼각형·이등변삼각형의 각, 삼각형 내각의 합",
+          "prerequisites": "이전 학년의 삼각형 외심과 기본 도형 성질에 중3 접선의 성질을 결합했다.",
+          "scope": "삼각비의 역함수 표기, 사인·코사인법칙, 배각·덧셈공식, 좌표 원 방정식, 원과 비례, 미적분 또는 픽셀 측정을 학생 풀이에 사용하지 않았다. 이번 풀이는 삼각비 자체도 필요하지 않다.",
+          "approval": "1단계 독립 풀이의 방법 기록이며 최종 학년·내용·출처·권리 검수 또는 사용 승인이 아니다."
+        },
+        "existence": "정삼각형 OUK와 KT=8cm인 T의 구성으로 모든 조건과 접선을 확인했다.",
+        "uniqueness": "길이 조건과 접선으로 ∠UOT=60°가 강제되므로 물은 각은 30°로 유일하다. 도형의 위치·방향이나 접점 선택의 유일성을 주장하지 않는다.",
+        "figureInspection": {
+          "input": "../gyeongsin-group2-review-20261019-r1/blind/figures/q02-1.svg",
+          "sha256": "d85a7bc950ca01abaa05deb6ab5fa43cfda5c253ef644983b51dbabe68967ad3",
+          "renderedAndViewed": true,
+          "readability": "원과 중심 O, 원 밖의 T, 접점 U, 선분 OT와 원의 만나는 점 K, OU와 UT 및 U의 직각 표시, T의 물은 각 x가 구별된다. O-K-T의 점 표시와 선분 연결이 읽히며 점 이름이나 x가 잘려 보이지 않는 곳은 없다. 8cm라는 길이는 본문의 조건에서 읽었다.",
+          "pixelOrCoordinateOracleUsed": false,
+          "limitation": "SVG 렌더는 점·선·기호의 대응과 가독성만 확인했다. 그림의 생김새나 SVG 좌표로 30°를 얻지 않았다."
+        },
+        "exposureHistory": {
+          "stage": "STAGE 1 blind only",
+          "authorAnswerSeen": false,
+          "authorSolutionSeen": false,
+          "thisCandidateSeenBeforeAuthorizedBlindRead": false,
+          "originalQ02OrAnswerKnowinglyRead": false,
+          "actualEarlierExposure": "이 세션에서 경신 q01의 독립 풀이와 허용된 2단계 검수를 했고, 그 과정에서 기존 원과 직선 06의 내접이등변삼각형 생성기와 그림 함수, 그 다음 접선 그림 함수의 일부를 보았다. 최초 생성기 위치 검색이 무관한 다른 학교 파일의 짧은 일치 문맥도 반환했으나 이번 문항이나 원문 q02의 답을 받은 적은 없고 그 파일들을 추가로 열지 않았다. 다른 학교의 추출·검수와 경신 집계 메타데이터에도 노출된 적이 있다. 이번 group2 q02의 후보·저자 답·해설 및 원문 q02·정답을 의도적으로 열람한 이력은 없으며, 위의 일반 기하·파일 문맥 노출은 숨기지 않고 기록한다.",
+          "thisStageReads": [
+            "사용자의 이번 지시와 이미 제공된 AGENTS 지시",
+            "허용된 blind/student-problems.json",
+            "blind/blind-manifest.json",
+            "그 안의 q02 SVG와 그것만 렌더링한 로컬 이미지",
+            "이번 새 독립 풀이 및 봉인 증거"
+          ],
+          "authorPackageSourceOrOriginalOpenedThisStage": false,
+          "answerSearchOrModelCalls": false,
+          "newApprovalClaimed": false
+        },
+        "calculation": "봉인 전 코드에서 실제 학생 보기 5개와 본문의 8cm 두 길이를 읽고 OT=16, OT/2=8, 정삼각형 각 60°, 물은 각 30° 및 각 보기의 나머지 각을 정확한 정수·유리수 산술로 계산해 이 JSON과 대조했다."
+      }
+    },
+    "solveDigest": "0f30ceb6450403debed9e616907b0670d07d6d919c194d57e5313a7dd0422a62"
+  }
+]
