@@ -1,0 +1,103 @@
+{
+  "status": "pending",
+  "studentDigest": "1926b5e6809401ef62d86c962defff8aec71099435d0e8c9a556a225ec9f8811",
+  "candidateDigest": "0802996095cb9b947b0d97b71ee8c4aed8613a97b80095b8240ff4fdd708a819",
+  "assetDigest": "07601ddf2cf96a80e3d6fbb03cd43b315a31effefe0af83da8f8fa142de5a64b",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-gyeongsin-clean-blind-20261019-r1",
+  "solveDigest": "6eba4e6878c589357a6b2e2cfc927681236e1fb992e380bdaa8e29ab91dba763",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "states": {"math": "passed", "grade": "passed", "authoredContent": "passed", "taxonomy": "pending-assignment", "release": "held"},
+    "preExposureBinding": {
+      "rawCommit": "d45f5e9732d2edd24a7e7931ff059936b53e0b1a",
+      "gitPath": ".qa-artifacts/exam-resume-20261008/gyeongsin-clean-blind-20261019-r1/q01.json",
+      "rawSha256": "1ed5729bdb2693028fffaa3e315819d50ec74f36f7255679f515ccb7bc1968f1",
+      "actualAnswer": "③",
+      "codePoint": "U+2462",
+      "declaration": "내가 이번 r2 학생판을 보고 먼저 작성한 독립 증거를 사용한다. 1단계의 실제 노출 이력은 원본 그대로 보존한다. 2단계 저자 답·해설 열람은 사용자가 Git/current/blind 검증 완료를 알리고 명시적으로 허용한 뒤에 처음 했다. Git 봉인은 사람의 과거 노출 여부를 자동 인증하지 않는다.",
+      "rawEdited": false
+    },
+    "answerCorrect": "봉인 전 독립 풀이와 저자 답이 모두 ③(46°)이다. OM=ON에서 PQ=PR, 두 밑각 67°, 67°, 꼭지각 180°-134°=46°로 직접 확인했다. 원문 정답과의 일치를 승인 근거로 삼지 않았다.",
+    "solutionCorrect": "저자 해설의 세 단계는 같은 원의 중심에서 같은 거리에 있는 현의 길이가 같다는 성질, 이등변삼각형의 밑각, 삼각형 내각의 합이다. 내 독립 풀이에서는 OP 보조선과 두 직각삼각형의 합동으로 첫 성질을 확인했다. 저자 해설의 생략은 이미 배우는 현의 성질을 직접 적용한 것이며 논리 누락이나 부호·각 계산 오류가 아니다.",
+    "existenceUniqueness": "67°,67°,46°는 양수이고 합이 180°이다. 양의 길이 QR 양 끝에서 같은 쪽으로 67°씩 그은 반직선이 만나는 P로 비퇴화 이등변삼각형을 만들고 외접원을 잡으면, 같은 두 현의 중심 거리가 같아 조건을 만족한다. 모든 허용 도형에서 두 밑각이 67°로 강제되어 물은 각은 46°로 유일하다. 도형의 크기·위치까지 유일하다고 주장하지 않는다. OM=ON=0이면 PQ와 PR이 모두 지름이어서 Q=R이 되므로 서로 다른 세 점 조건으로 제외된다.",
+    "choicesCorrect": [
+      {"choice": "①", "angleQPR": 42, "givenAnglePQR": 67, "forcedAnglePRQ": 71, "isoscelesBaseAngle": 69, "anglesPositive": true, "valid": false},
+      {"choice": "②", "angleQPR": 44, "givenAnglePQR": 67, "forcedAnglePRQ": 69, "isoscelesBaseAngle": 68, "anglesPositive": true, "valid": false},
+      {"choice": "③", "angleQPR": 46, "givenAnglePQR": 67, "forcedAnglePRQ": 67, "isoscelesBaseAngle": 67, "anglesPositive": true, "valid": true},
+      {"choice": "④", "angleQPR": 48, "givenAnglePQR": 67, "forcedAnglePRQ": 65, "isoscelesBaseAngle": 66, "anglesPositive": true, "valid": false},
+      {"choice": "⑤", "angleQPR": 50, "givenAnglePQR": 67, "forcedAnglePRQ": 63, "isoscelesBaseAngle": 65, "anglesPositive": true, "valid": false}
+    ],
+    "figureConsistent": "검수 대상은 r2에 결합된 새 벡터뿐이다. P,Q,R은 같은 원 위에 있고 M은 PQ, N은 PR 위에 있다. 중심 O와 두 수선, 두 직각 표지가 각 현에 대응한다. P의 x와 Q의 67°가 올바른 각에 놓이고 점 이름·숫자·호·직각 기호가 읽힌다. OM=ON은 본문에서 주며, 동일성 표시를 그림의 대칭이나 픽셀 측정으로 대신하지 않았다. 그림 스펙 수치 검산은 봉인된 정답 이후의 도형 충실도 확인만을 위한 것이다. 상위 학년 학생 풀이로 쓰지 않았다. 그림에 원본 스캔이나 학교명이 보이지 않는다.",
+    "sameCoreConceptAndProcedure": "저자가 명시한 원문 역할 및 인용된 q1 한정 성분 관찰을 출처 범위로 유지하고, 실제 기존 06 생성기의 조건·목표·해설을 읽어 비교했다. 그 생성기는 중심에서 두 현까지의 같은 거리로 같은 현을 얻고, 이등변삼각형의 밑각과 내각의 합으로 각을 구한다. 새 문항도 정확히 같은 연쇄와 선수 개념을 쓴다. 원문 전체나 다른 문항, 원본 정답을 재열람하거나 대응 관계를 독립적인 출처 승인으로 확대하지 않았다.",
+    "distinctPresentation": "현재 새 문항의 조건은 같음과 밑각 67°이고 목표는 꼭지각이다. 실제 06 생성기의 조건은 같음과 꼭지각 a, 목표는 밑각 x=(180-a)/2이다. 새 문항은 밑각 b로부터 꼭지각 a=180-2b를 묻는 역방향이며 조건 목록과 역할 표지를 새로 구성했다. 단순 숫자나 점 이름 변경으로 판정하지 않았다. 원문 역할 비교는 후보의 before 선언 및 제한된 q1 관찰에 근거하는 범위이며, 원본 스캔을 이 검수에서 새로 인증한 것은 아니다. 구조적 변화 확인은 법적 유사성·이용 허락 판정과 별개이다.",
+    "naturalKorean": "원 O 위의 서로 다른 세 점, 현에 내린 수선의 발, 두 조건, 각의 크기라는 표현은 자연스럽고 각 점의 역할이 명확하다. 선택지는 모두 각도이며 정답은 단일 선택 ③이다. 저자 해설의 이므로·따라서 연결이 자연스럽다. 본문·보기·답·해설·새 그림에는 학교명이 보이지 않는다. 내부 출처의 경신중학교는 학생 표시 영역과 구분한다.",
+    "curriculumAppropriate": {
+      "grade": "중3",
+      "edition": "2015",
+      "provisions": [
+        {"id": "9수04-19", "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다.", "role": "중심에서 같은 거리에 있는 두 현의 길이와 현에 내린 수선의 성질"},
+        {"id": "9수04-10", "text": "[9수04-10]이등변삼각형의 성질을 이해하고 설명할 수 있다.", "role": "이전 학년에서 배운 두 밑각의 같음"}
+      ],
+      "officialExtract": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+      "officialExtractSha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7",
+      "primaryParagraphExtractSha256": "185fb860e76e42f33bd5f75158681a1f3f44dc5a63b6036db4886eafcd233c95",
+      "basis": "인용된 2015 공식 조항 모음의 해시와, 그 모음이 지시하는 MOE 2020-236 원문 단락 추출의 해시·실제 조항 문장을 대조했다. 공식 조항은 중학교군의 범위이며 중3 2학기 배치는 현재 Unit 스냅샷과 함께 확인했다. 현의 성질과 중2 이등변삼각형·합동·외심 및 이전 내각의 합이면 충분하다. 삼각비의 역함수, 사인·코사인법칙, 원과 비례, 좌표 원 방정식 등 학년 밖 필수 도구가 없다. 2022 교육과정 재출판 승인은 포함하지 않는다."
+    },
+    "allStudentSurfacesInScope": "아래 일곱 영역을 각각 검토했다. 그림 계산용 내부 좌표와 학생에게 요구되는 수학을 분리했다.",
+    "unitFamilyFit": {
+      "status": "held-unassigned",
+      "unitId": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+      "unit": "중3 / 2학기 / 6. 원의 성질 / 원과 현 / J30601",
+      "candidateFamilyKeyUnchanged": null,
+      "recommendedFamilyKey": "mid:3-2|원과 직선|06",
+      "familyCode": "A06",
+      "recommendationStatus": "semantic-fit-recommended-with-inverse-target-scope-note; no assignment",
+      "generator": "src/lib/middle/m3.ts:225-246",
+      "figureHelper": "src/lib/middle/m3Figures.ts:135-172",
+      "actualSemantics": "06은 응용 유형이다. a=2*intBetween(rng,20,40), x=(180-a)/2로 꼭지각 40~80°를 주고 밑각을 묻는다. OM=ON, 두 같은 현, 같은 밑각을 쓰며 figInscribedIso를 부른다. 새 문항의 꼭지각 46°/밑각 67°는 바로 그 유효 범위에 들어가고 풀이 연쇄가 같다. 다만 현재 생성기에 밑각에서 꼭지각을 묻는 발문 분기는 없다. 따라서 유형 의미상 기존 06을 추천하되 역목표 변형을 같은 family로 허용하는 정책 확인과 명시 배정은 별도 단계이다.",
+      "snapshot": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+      "snapshotSha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0",
+      "snapshotCapturedAt": "2026-10-19 06:14:08.658144+00",
+      "liveSnapshotRow": {"unit_id": "43b3be19-badc-47cf-8e0d-edf19766e62c", "family_key": "mid:3-2|원과 직선|06", "family_code": "A06", "live_count": 16},
+      "limitation": "추천은 제목·보유 건수만으로 하지 않았다. 새로운 DB 조회·쓰기나 후보 수정은 없고, familyKey=null이므로 unitFamilyFit=false를 유지한다."
+    },
+    "scoreAppropriate": "여러 성질을 연결하는 초급 응용 수준으로, 기존 06 생성기의 응용 분류와 의미상 맞는다. 역방향 계산은 단순하지만 현의 같음에서 밑각을 추론하는 단계가 있어 계산형 5지선다·4점은 무리하지 않다. 인용된 제한된 원문 성분 관찰도 4점으로 기록한다. 실측 난도나 평가 타당도가 검증됐다는 뜻은 아니다.",
+    "sourceAndReleaseHolds": {
+      "componentReference": ".qa-artifacts/exam-resume-20261008/gyeongsin-source-component-review-20261019-r1/q01-component-review.json",
+      "componentReferenceSha256": "643c8aa1abcd820100cd5804546af71a4015744e91d037efd32411db2cc35de5",
+      "limitedObservation": "부모의 q1 성분 관찰은 첫 쪽의 2025년·중3·2학기·중간 및 해당 한 문항의 역할 대응에 한정된다. 독립 source/rights 승인이 아니다.",
+      "wholePair": "hold_year_header_conflict: 2024/2025 conflict remains unresolved",
+      "sourceIdentity": "pending",
+      "custody": "pending",
+      "rights": "pending-copyright-notice-observed; no permission inferred",
+      "similarity": "pending; inverse-target review is not legal clearance",
+      "nativeProvenance": "not-implemented/held",
+      "loadable": 0
+    },
+    "typesafe": "프로젝트 skill과 live index/building guide/hierarchical classification 문서를 읽었다. 의미 판단과 파일·숫자·ID 검산을 분리했고, 모델·유료 API 호출 없이 실제 생성기와 공식 조항으로 검토했다. 확률이나 코드가 출처·권리 승인 근거가 되지 않는다.",
+    "scopeDisclosure": "이 단계에서 허용된 r2 후보·패키지·입력·자기 봉인 증거와 인용된 공식 조항·스냅샷·q1 성분 관찰, 실제 06 생성기만 판단 자료로 사용했다. 생성기 위치를 찾는 첫 rg 검색이 무관한 다른 문항 파일의 짧은 일치 문맥도 반환했다. 그 결과는 이번 수학·출처 판정의 근거로 쓰지 않았고, 해당 파일이나 원본 답안을 추가로 열지 않았다. r1 후보/검수는 읽지 않았으며 어떤 기존 증거도 수정하지 않았다."
+  },
+  "curriculumSurfaces": {
+    "stem": {"status": "passed", "evidence": "중3 현과 중심 거리, 수선의 발, 두 각 관계 조건이며 새 선수 개념이 없다. 9수04-19에 해당한다."},
+    "choices": {"status": "passed", "evidence": "42°,44°,46°,48°,50°를 모두 검산했다. 각도 단위가 같고 중복이 없으며 ③만 같은 두 밑각 조건을 만족한다."},
+    "figuresAndTables": {"status": "passed", "evidence": "r2에 결합된 원·세 현·수선·직각·점 이름·각 표시는 중학교 기하 표현이다. 실제 벡터 렌더를 보았고 표·원본 스캔·추가 상위 개념이 없다."},
+    "notation": {"status": "passed", "evidence": "원 O, 현 PQ/PR, 선분 길이의 같음, ∠QPR/∠PQR, °와 x는 일반 중학교 기호이다. 픽셀 좌표는 학생 표면에 노출되지 않는다."},
+    "answer": {"status": "passed", "evidence": "③(46°)는 저자 노출 전의 읽을 수 있는 독립 풀이와 일치하고 모든 조건을 만족한다."},
+    "studentSolution": {"status": "passed", "evidence": "같은 거리인 현의 길이, 이등변삼각형의 밑각, 180°-67°-67°만으로 완결되며 9수04-19 및 9수04-10 범위이다."},
+    "prerequisites": {"status": "passed", "evidence": "이전 삼각형의 합동·밑각·내각의 합, 외심과 외접원으로 존재를 설명할 수 있다. 삼각비·고등 원 방정식·원과 비례·미적분이 필요 없다."}
+  }
+}
