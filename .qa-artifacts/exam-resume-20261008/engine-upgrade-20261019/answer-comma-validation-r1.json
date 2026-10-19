@@ -1,0 +1,19 @@
+{
+  "kind": "answer-punctuation-grammar-validation/v1",
+  "utc": "2026-10-19T09:48:49.930Z",
+  "code": {
+    "path": "scripts/import/exam-twin/answerPresentation.mjs",
+    "sha256": "f16698209652f0c0e0815baa8dabef2e13330bbf9a1134cf5dfbf4fb56c6f076"
+  },
+  "fullNodeTests": 118,
+  "passed": 118,
+  "failed": 0,
+  "log": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/answer-comma-regressions-r1.tap",
+    "sha256": "b027ab2e7225a570ade8e146240c4f39f3382ade42dba7f4c50a7677599f4999"
+  },
+  "scope": "At most one comma between a complete explicitly unit-bearing scalar length and next canonical part number. Final commas, decimal commas and extra terms/prose remain unsupported.",
+  "rawEdits": 0,
+  "newMathApprovals": 0,
+  "loadable": 0
+}

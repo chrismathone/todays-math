@@ -20,7 +20,7 @@ function parseNumberedLengths(source) {
   return labels.map((mark, index) => {
     assert.equal(mark[1], String(index + 1), 'Ordered canonical unique subparts required');
     const body = text.slice(mark.index + mark[0].length, labels[index + 1]?.index ?? text.length)
-      .trim().replace(/;$/, '').trim();
+      .trim().replace(index + 1 < labels.length ? /[;,]$/ : /;$/, '').trim();
     const scalar = /^(\d{1,12}(?:\.\d{1,6})?)\s*(cm|m)$/u.exec(body);
     assert(scalar, 'One explicit decimal length per subpart required');
     return { label: index + 1, terms: [{

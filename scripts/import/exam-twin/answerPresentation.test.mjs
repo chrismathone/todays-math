@@ -130,3 +130,15 @@ test('numbered scalar grammar retains input and subpart bounds', () => {
   assert.equal(compare(scalarReference + ' '.repeat(4096), scalarReference).status, 'unsupported');
   for (const bad of [null, undefined, 18, {}, []]) assert.equal(compare(bad, scalarReference).status, 'unsupported');
 });
+
+test('one interpart comma separates complete scalar lengths without becoming a decimal or erasing content', () => {
+  const raw = Object.freeze({ answer: '(1) 18 cm, (2) 10 cm' });
+  const before = JSON.stringify(raw);
+  assert.equal(compare(scalarReference, raw.answer).status, 'equivalent');
+  assert.equal(compare(raw.answer, scalarReference).status, 'equivalent');
+  assert.equal(compare('(1) 18cm, (2) 10cm, (3) 4cm', '(1) 0.18m; (2) 0.1m; (3) 0.04m').status, 'equivalent');
+  for (const bad of ['(1) 1,8cm, (2) 10cm', '(1) 18cm,, (2) 10cm', '(1) 18cm,; (2) 10cm', '(1) 18cm, 18cm, (2) 10cm', '(1) 18cm, 설명 (2) 10cm', '(1) 18cm, (2) 10cm,']) {
+    assert.equal(compare(scalarReference, bad).status, 'unsupported', bad);
+  }
+  assert.equal(JSON.stringify(raw), before);
+});
