@@ -30,9 +30,8 @@ import {
   setCoursePlan,
   startRecommendedCourse,
   submitCourseAttempt,
-  type StoredCourse,
+  submitCourseFollowUp,
 } from "@/lib/math-srs/courseAutomation";
-import type { CourseFollowUp } from "@/lib/math-srs/elementary/types";
 import { updateDailyJourney } from "@/lib/math-srs/dailyJourney";
 import { withDefaultCoursePlan } from "@/lib/math-srs/defaultCoursePlan";
 import {
@@ -95,51 +94,6 @@ function solveDefinitionStep(state: StoredSrsState, now: Date) {
   );
 }
 
-/**
- * What the follow-up writer (plan §3.2) does after «모르겠어요» on a first answer:
- * record the opened solution and keep the problem out of today's retry queue.
- */
-function resolveGiveUp(course: StoredCourse, problemId: string): StoredCourse {
-  const session = course.learner.session!;
-  const answeredAt = session.attempts.find(
-    (a) => a.problemId === problemId,
-  )!.answeredAt;
-  const opened: CourseFollowUp = {
-    problemId,
-    kind: "reveal",
-    correct: false,
-    answeredAt,
-    doneAt: answeredAt,
-  };
-  return withoutFollowedRetries(course, [...(session.followUps ?? []), opened]);
-}
-
-/** The follow-up writer's queue rule: a resolved problem is not retried today. */
-function withoutFollowedRetries(
-  course: StoredCourse,
-  followUps = course.learner.session!.followUps ?? [],
-): StoredCourse {
-  const session = course.learner.session!;
-  const { retry, ...rest } = session;
-  const pending = retry?.pendingProblemIds.filter(
-    (id) => !followUps.some((f) => f.problemId === id),
-  );
-  if (!followUps.length) return course;
-  return {
-    ...course,
-    learner: {
-      ...course.learner,
-      session: {
-        ...rest,
-        followUps,
-        ...(retry && pending?.length
-          ? { retry: { ...retry, pendingProblemIds: pending } }
-          : {}),
-      },
-    },
-  };
-}
-
 /** One course answer the way the student screen sends it: right answers, self-checks without a hint. */
 function answerCourse(state: StoredSrsState, now: Date, giveUpFirst = false) {
   const course = state.course!;
@@ -153,6 +107,7 @@ function answerCourse(state: StoredSrsState, now: Date, giveUpFirst = false) {
       session.problems.findIndex((p) => p.input.mode !== "self-check") ===
         session.attempts.length
     ) {
+      // «모르겠어요» on the follow-up screen opens the solution; «알겠어요» closes it.
       const gaveUp = submitCourseAttempt(
         course,
         {
@@ -162,10 +117,19 @@ function answerCourse(state: StoredSrsState, now: Date, giveUpFirst = false) {
           giveUp: true,
         },
         now,
+        { followUps: true },
       );
+      const opened = persist(state, { ...state, course: gaveUp }, now);
       return persist(
-        state,
-        { ...state, course: resolveGiveUp(gaveUp, problem.id) },
+        opened,
+        {
+          ...opened,
+          course: submitCourseFollowUp(
+            opened.course!,
+            { sessionId: session.id, problemId: problem.id, action: "done" },
+            now,
+          ),
+        },
         now,
       );
     }
@@ -178,12 +142,9 @@ function answerCourse(state: StoredSrsState, now: Date, giveUpFirst = false) {
         ...(selfCheck ? { selfCorrect: true } : {}),
       },
       now,
+      { followUps: giveUpFirst },
     );
-    return persist(
-      state,
-      { ...state, course: giveUpFirst ? withoutFollowedRetries(next) : next },
-      now,
-    );
+    return persist(state, { ...state, course: next }, now);
   }
   const retry = session.retry!;
   const problem = session.problems.find(
@@ -343,7 +304,7 @@ describe("a 초5 student walking the expedition keeps a readable record", () => 
     expect(selfChecks).toBeGreaterThan(0);
   });
 
-  it("finishes a bank day whose given-up problems were resolved on the spot (follow-up reader)", () => {
+  it("finishes a bank day whose given-up problems were resolved on the spot (follow-ups)", () => {
     let state: StoredSrsState = {
       ...emptySrsState(),
       course: setCoursePlan(

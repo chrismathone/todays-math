@@ -138,6 +138,30 @@ export const courseAttemptInputSchema = courseHintInputSchema.extend({
   retryIndex: z.number().int().min(0).optional(),
 });
 export type CourseAttemptInput = z.infer<typeof courseAttemptInputSchema>;
+/**
+ * Right after a wrong first answer: `answer` sends the second try (or «모르겠어요»),
+ * `done` records «알겠어요» · «다음». Clients that send these also send the header
+ * `x-course-follow-up: 1`, which turns on the response's `followUp` field.
+ */
+export const COURSE_FOLLOW_UP_HEADER = "x-course-follow-up";
+export const courseFollowUpInputSchema = z
+  .strictObject({
+    sessionId: uuidSchema,
+    problemId: uuidSchema,
+    action: z.enum(["answer", "done"]),
+    submittedAnswer: z.string().trim().max(2000).optional(),
+    giveUp: z.literal(true).optional(),
+  })
+  .refine(
+    (input) =>
+      input.action === "done"
+        ? input.submittedAnswer === undefined && !input.giveUp
+        : input.giveUp
+          ? !input.submittedAnswer
+          : input.submittedAnswer !== undefined,
+    "다시 푼 답을 확인해 주세요.",
+  );
+export type CourseFollowUpInput = z.infer<typeof courseFollowUpInputSchema>;
 export const courseStudentStateSchema = z.strictObject({
   journey: mathSrsJourneySchema.optional(),
   prerequisiteContext: prerequisiteContextSchema.optional(),

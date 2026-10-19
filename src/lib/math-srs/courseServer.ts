@@ -71,6 +71,7 @@ export function courseStudentDto(
   saved: Saved,
   now: Date,
   requestedSessionId?: string,
+  options: { followUp?: boolean } = {},
 ): CourseStudentState {
   const course = saved.state.course ?? emptyCourseState();
   const session = requestedSessionId
@@ -103,7 +104,7 @@ export function courseStudentDto(
         ? { todayAnswered: mission.answered, todayGoal: 10 as const }
         : {}),
     },
-    session: session ? publicCourseSession(session) : null,
+    session: session ? publicCourseSession(session, options) : null,
   };
 }
 

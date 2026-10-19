@@ -92,16 +92,21 @@ whose first answer was wrong: `retry` (the second answer) or `reveal` (the solut
 opened after «모르겠어요» or a self-check «다시 연습»), each with `doneAt` for
 «알겠어요». A followed-up problem leaves the end-of-session retry queue
 (`progress.ts`), the elementary mission's remaining count (`expedition.ts`), and
-the first attempt · memories · activity are never rewritten. The reader ships
+the first attempt · memories · activity are never rewritten. The reader shipped
 alone (commit "feat(srs): read course follow-ups before anything writes them");
-the writer (transitions · `/api/learn/math-srs/course/follow-up` · response
-`followUp` only for clients that ask · blocking the next session until `doneAt`)
-comes after it is Ready in production, and that reader commit becomes the floor:
-never run older code against the shared database once a student has a follow-up.
-The public problem contract already accepts `followUp` (strict client parse) —
-the server must not send it to clients that did not ask, because tabs opened
-before the reader deploy still parse strictly. Explorer card activities keep their
-own retry state in the explorer record (plan §3.2), not this field.
+it is the floor: never run older code against the shared database once a student
+has a follow-up. The writer (commit "feat(srs): write course follow-ups for
+screens that ask") acts only for requests with the header `x-course-follow-up: 1`
+(`COURSE_FOLLOW_UP_HEADER`): `submitCourseFollowUp` (`POST
+/api/learn/math-srs/course/follow-up`, `action` answer | done) takes one second
+answer for the latest wrong auto-graded first answer before anything else
+happens, a first answer «모르겠어요» or self-check «다시 연습» records `reveal` in
+the same write, and only those requests get the response `followUp` — tabs opened
+before the reader parse strictly. The server does not hold the next session or
+the mission on `doneAt` (a closed tab would block tomorrow's start); the screen
+reopens an unfinished solution from `followUp.done === false`. Explorer card
+activities keep their own retry state in the explorer record (plan §3.2), not
+this field.
 
 On 2026-10-06 the user split this work: **Codex owns the design** (screens,
 components, CSS in the user's "v2" Stitch look) and **Claude owns the internals**

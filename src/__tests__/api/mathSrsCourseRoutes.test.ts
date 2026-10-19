@@ -136,6 +136,7 @@ import { GET, POST } from "@/app/api/learn/math-srs/course/route";
 import { POST as PLAN } from "@/app/api/learn/math-srs/course/plan/route";
 import { POST as ATTEMPT } from "@/app/api/learn/math-srs/course/attempts/route";
 import { POST as HINT } from "@/app/api/learn/math-srs/course/hint/route";
+import { POST as FOLLOW_UP } from "@/app/api/learn/math-srs/course/follow-up/route";
 import { GET as FIGURE } from "@/app/api/learn/math-srs/course/figure/route";
 import { GET as ROSTER } from "@/app/api/math-srs/course/route";
 import {
@@ -149,6 +150,7 @@ import {
   courseStudentResponseSchema,
 } from "@/contracts/mathSrsCourse.contract";
 import { parseSrsState } from "@/lib/math-srs/serverState";
+import { gradeCourseAnswer } from "@/lib/math-srs/elementary/answers";
 import { db } from "@/lib/db";
 
 const base = "http://localhost:3000";
@@ -210,6 +212,144 @@ beforeEach(() => {
   studentSession();
 });
 afterEach(() => vi.unstubAllEnvs());
+
+describe("course follow-ups — «한 번 더 → 풀이» (plan §3.2)", () => {
+  const asking = (path: string, body: unknown) =>
+    new Request(`${base}${path}`, {
+      method: "POST",
+      headers: {
+        origin: base,
+        "Content-Type": "application/json",
+        "x-course-follow-up": "1",
+      },
+      body: JSON.stringify(body),
+    });
+  const read = async (response: Response) => {
+    expect(response.status).toBe(200);
+    return courseStudentResponseSchema.parse(await response.json()).data;
+  };
+  const stored = () =>
+    parseSrsState(f.rows.get(f.studentId)!.payload).course!.learner.session!;
+
+  it("records «모르겠어요» as an opened solution and «알겠어요» for a screen that asks", async () => {
+    const { session } = await started();
+    const p0 = session!.problems[0];
+    const ids = { sessionId: session!.id, problemId: p0.id };
+    const gave = await read(
+      await ATTEMPT(
+        asking(`${coursePath}/attempts`, {
+          ...ids,
+          submittedAnswer: "",
+          giveUp: true,
+        }),
+      ),
+    );
+    expect(gave.session!.problems[0].followUp).toEqual({
+      state: "solution",
+      done: false,
+    });
+    expect(gave.session!.problems[0].hint).not.toBeNull();
+    const done = await read(
+      await FOLLOW_UP(
+        asking(`${coursePath}/follow-up`, { ...ids, action: "done" }),
+      ),
+    );
+    expect(done.session!.problems[0].followUp).toEqual({
+      state: "solution",
+      done: true,
+    });
+    expect(stored().followUps?.[0].doneAt).not.toBeNull();
+  });
+
+  it("keeps the old records and response for a screen that does not ask", async () => {
+    const { session } = await started();
+    const ids = { sessionId: session!.id, problemId: session!.problems[0].id };
+    const gave = await read(
+      await ATTEMPT(
+        request(`${coursePath}/attempts`, "POST", {
+          ...ids,
+          submittedAnswer: "",
+          giveUp: true,
+        }),
+      ),
+    );
+    expect("followUp" in gave.session!.problems[0]).toBe(false);
+    expect(stored().followUps).toBeUndefined();
+    expect(
+      (
+        await FOLLOW_UP(
+          request(`${coursePath}/follow-up`, "POST", {
+            ...ids,
+            action: "done",
+          }),
+        )
+      ).status,
+    ).toBe(409);
+  });
+
+  it("takes a second answer right after a wrong one", async () => {
+    let { session } = await started();
+    let followed = false;
+    for (const problem of stored().problems) {
+      const ids = { sessionId: session!.id, problemId: problem.id };
+      const wrong =
+        problem.input.mode !== "self-check"
+          ? problem.answerChoices?.find(
+              (choice) => gradeCourseAnswer(problem, choice) === false,
+            )
+          : undefined;
+      if (!wrong || followed) {
+        session = (
+          await read(
+            await ATTEMPT(
+              asking(`${coursePath}/attempts`, {
+                ...ids,
+                submittedAnswer:
+                  problem.input.mode === "self-check" ? "" : problem.answer,
+                ...(problem.input.mode === "self-check"
+                  ? { selfCorrect: true }
+                  : {}),
+              }),
+            ),
+          )
+        ).session;
+        continue;
+      }
+      const missed = await read(
+        await ATTEMPT(
+          asking(`${coursePath}/attempts`, { ...ids, submittedAnswer: wrong }),
+        ),
+      );
+      const view = missed.session!.problems.find((p) => p.id === problem.id)!;
+      expect(view.followUp).toEqual({ state: "awaiting", done: false });
+      expect(view.hint).toBeNull();
+      const again = await read(
+        await FOLLOW_UP(
+          asking(`${coursePath}/follow-up`, {
+            ...ids,
+            action: "answer",
+            submittedAnswer: problem.answer,
+          }),
+        ),
+      );
+      expect(
+        again.session!.problems.find((p) => p.id === problem.id)!.followUp,
+      ).toEqual({ state: "correct", done: false });
+      expect(stored().followUps).toMatchObject([
+        { problemId: problem.id, kind: "retry", correct: true },
+      ]);
+      // The first answer stays wrong.
+      expect(
+        stored().attempts.find((a) => a.problemId === problem.id)?.correct,
+      ).toBe(false);
+      followed = true;
+      session = again.session;
+    }
+    expect(followed).toBe(true);
+    expect(stored().completedAt).not.toBeNull();
+    expect(stored().retry).toBeUndefined();
+  });
+});
 
 describe("the class grade's default course plan (2026-10-19)", () => {
   afterEach(() => vi.useRealTimers());
