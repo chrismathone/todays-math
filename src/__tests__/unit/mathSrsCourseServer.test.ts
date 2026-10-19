@@ -514,7 +514,31 @@ describe("durable elementary scheduling", () => {
       selfAssessed: 1,
       mastery: 0,
     });
+    // The saved record must pass the stored contract — otherwise the route answers 503.
+    expect(storedCourseSchema.parse(answered)).toEqual(answered);
   });
+  it.each([true, false])(
+    "saves a first-round self-check answered without a hint (selfCorrect %s)",
+    (selfCorrect) => {
+      const state = start();
+      const problem = state.learner.session!.problems[0];
+      problem.content = "이유를 설명하시오.";
+      problem.input.mode = "self-check";
+      problem.answerChoices = null;
+      problem.interactive = null;
+      const answered = submitCourseAttempt(
+        state,
+        { ...inputFor(state), submittedAnswer: "", selfCorrect },
+        now,
+      );
+      expect(answered.learner.session!.attempts[0]).toMatchObject({
+        correct: selfCorrect,
+        usedHint: false,
+        selfAssessed: true,
+      });
+      expect(storedCourseSchema.parse(answered)).toEqual(answered);
+    },
+  );
   it("completes a self-check retry without disclosing the answer", () => {
     let state = start();
     const first = state.learner.session!.problems[0];

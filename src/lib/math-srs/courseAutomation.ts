@@ -115,9 +115,11 @@ export const storedCourseSchema = z
           a.usedHint !==
             (session.hintedProblemIds ?? []).includes(a.problemId) ||
           (request.giveUp && a.correct) ||
+          // A self-check problem is assessed by the student with or without
+          // a hint; `usedHint` itself is checked against hintedProblemIds above.
           (a.selfAssessed &&
             !request.giveUp &&
-            (request.selfCorrect !== a.correct || !a.usedHint))
+            request.selfCorrect !== a.correct)
         )
           fail();
         if (!state.memories[session.sectionId]) fail();
