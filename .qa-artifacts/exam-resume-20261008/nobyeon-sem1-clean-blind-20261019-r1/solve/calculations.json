@@ -1,0 +1,88 @@
+{
+  "method": "Python Decimal for printed decimal arithmetic; integer squares for table consistency; no code/root/candidate/private imports and no numerical square-root oracle.",
+  "rows": [
+    {
+      "choice": 1,
+      "x": "5.10",
+      "printedSqrtApproximation": "2.258",
+      "aApproximation": "0.2258",
+      "bExact": 23,
+      "computed100aApproxPlusB": "45.58",
+      "matchesPrintedTarget": false,
+      "threeDecimalRootTableCheck": {
+        "method": "Compare squared positive half-thousandth bounds using integers only.",
+        "lowerSquaredNumeratorOver4000000": 20385225,
+        "xNumeratorOver4000000": 20400000,
+        "upperSquaredNumeratorOver4000000": 20403289,
+        "strictlyInside": true
+      }
+    },
+    {
+      "choice": 2,
+      "x": "5.11",
+      "printedSqrtApproximation": "2.261",
+      "aApproximation": "0.2261",
+      "bExact": 23,
+      "computed100aApproxPlusB": "45.61",
+      "matchesPrintedTarget": false,
+      "threeDecimalRootTableCheck": {
+        "method": "Compare squared positive half-thousandth bounds using integers only.",
+        "lowerSquaredNumeratorOver4000000": 20439441,
+        "xNumeratorOver4000000": 20440000,
+        "upperSquaredNumeratorOver4000000": 20457529,
+        "strictlyInside": true
+      }
+    },
+    {
+      "choice": 3,
+      "x": "5.12",
+      "printedSqrtApproximation": "2.263",
+      "aApproximation": "0.2263",
+      "bExact": 23,
+      "computed100aApproxPlusB": "45.63",
+      "matchesPrintedTarget": true,
+      "threeDecimalRootTableCheck": {
+        "method": "Compare squared positive half-thousandth bounds using integers only.",
+        "lowerSquaredNumeratorOver4000000": 20475625,
+        "xNumeratorOver4000000": 20480000,
+        "upperSquaredNumeratorOver4000000": 20493729,
+        "strictlyInside": true
+      }
+    },
+    {
+      "choice": 4,
+      "x": "5.13",
+      "printedSqrtApproximation": "2.265",
+      "aApproximation": "0.2265",
+      "bExact": 23,
+      "computed100aApproxPlusB": "45.65",
+      "matchesPrintedTarget": false,
+      "threeDecimalRootTableCheck": {
+        "method": "Compare squared positive half-thousandth bounds using integers only.",
+        "lowerSquaredNumeratorOver4000000": 20511841,
+        "xNumeratorOver4000000": 20520000,
+        "upperSquaredNumeratorOver4000000": 20529961,
+        "strictlyInside": true
+      }
+    },
+    {
+      "choice": 5,
+      "x": "5.14",
+      "printedSqrtApproximation": "2.267",
+      "aApproximation": "0.2267",
+      "bExact": 23,
+      "computed100aApproxPlusB": "45.67",
+      "matchesPrintedTarget": false,
+      "threeDecimalRootTableCheck": {
+        "method": "Compare squared positive half-thousandth bounds using integers only.",
+        "lowerSquaredNumeratorOver4000000": 20548089,
+        "xNumeratorOver4000000": 20560000,
+        "upperSquaredNumeratorOver4000000": 20566225,
+        "strictlyInside": true
+      }
+    }
+  ],
+  "uniqueChoice": 3,
+  "uniqueX": "5.12",
+  "status": "passed"
+}

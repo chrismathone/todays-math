@@ -1,0 +1,139 @@
+{
+  "studentDigest": "ca2b0892a21f3ec00dbe110218e60c87f8679dc54da997e26bff17d525120065",
+  "solverId": "codex-nobyeon-sem1-q06-blind-20261019-r1-independent-01",
+  "answer": "③",
+  "solution": "두 수 a,b가 양수이므로 b²=529=23²에서 b=23이다. 또한 (√x/10)²=x/100이고 √x/10>0이므로 a=√x/10이다. 표의 √x 근삿값을 s라 쓰면 문제에서 지시한 a의 근삿값은 s/10이고, 그 값으로 계산한 100a+b는 10s+23이다. 주어진 계산 결과가45.63이므로 10s+23=45.63, 10s=22.63, s=2.263이다. 표에서2.263에 대응하는 x는5.12이므로 정답은③이다. 다섯 보기를 각각 확인하면 x=5.10,5.11,5.12,5.13,5.14에서 a의 근삿값은 각각0.2258,0.2261,0.2263,0.2265,0.2267이고, 계산 결과는 각각45.58,45.61,45.63,45.65,45.67이다.45.63을 얻는 것은 세 번째뿐이다. 이 등식은 정확한 a의 값이 아니라 표의 소수값으로 만든 근삿값을 이용한 계산임을 따른다.",
+  "evidence": {
+    "selectedChoice": {
+      "index1based": 3,
+      "value": "5.12"
+    },
+    "independentCalculationFile": "calculations.json",
+    "independentCalculationSha256": "1e4935b91e0300b4541a6b3ca1316459071b262de7e70c4954451c438cd360fe",
+    "allFiveChoicesChecked": [
+      {
+        "choice": 1,
+        "x": "5.10",
+        "printedSqrtApproximation": "2.258",
+        "aApproximation": "0.2258",
+        "bExact": 23,
+        "computed100aApproxPlusB": "45.58",
+        "matchesPrintedTarget": false,
+        "threeDecimalRootTableCheck": {
+          "method": "Compare squared positive half-thousandth bounds using integers only.",
+          "lowerSquaredNumeratorOver4000000": 20385225,
+          "xNumeratorOver4000000": 20400000,
+          "upperSquaredNumeratorOver4000000": 20403289,
+          "strictlyInside": true
+        }
+      },
+      {
+        "choice": 2,
+        "x": "5.11",
+        "printedSqrtApproximation": "2.261",
+        "aApproximation": "0.2261",
+        "bExact": 23,
+        "computed100aApproxPlusB": "45.61",
+        "matchesPrintedTarget": false,
+        "threeDecimalRootTableCheck": {
+          "method": "Compare squared positive half-thousandth bounds using integers only.",
+          "lowerSquaredNumeratorOver4000000": 20439441,
+          "xNumeratorOver4000000": 20440000,
+          "upperSquaredNumeratorOver4000000": 20457529,
+          "strictlyInside": true
+        }
+      },
+      {
+        "choice": 3,
+        "x": "5.12",
+        "printedSqrtApproximation": "2.263",
+        "aApproximation": "0.2263",
+        "bExact": 23,
+        "computed100aApproxPlusB": "45.63",
+        "matchesPrintedTarget": true,
+        "threeDecimalRootTableCheck": {
+          "method": "Compare squared positive half-thousandth bounds using integers only.",
+          "lowerSquaredNumeratorOver4000000": 20475625,
+          "xNumeratorOver4000000": 20480000,
+          "upperSquaredNumeratorOver4000000": 20493729,
+          "strictlyInside": true
+        }
+      },
+      {
+        "choice": 4,
+        "x": "5.13",
+        "printedSqrtApproximation": "2.265",
+        "aApproximation": "0.2265",
+        "bExact": 23,
+        "computed100aApproxPlusB": "45.65",
+        "matchesPrintedTarget": false,
+        "threeDecimalRootTableCheck": {
+          "method": "Compare squared positive half-thousandth bounds using integers only.",
+          "lowerSquaredNumeratorOver4000000": 20511841,
+          "xNumeratorOver4000000": 20520000,
+          "upperSquaredNumeratorOver4000000": 20529961,
+          "strictlyInside": true
+        }
+      },
+      {
+        "choice": 5,
+        "x": "5.14",
+        "printedSqrtApproximation": "2.267",
+        "aApproximation": "0.2267",
+        "bExact": 23,
+        "computed100aApproxPlusB": "45.67",
+        "matchesPrintedTarget": false,
+        "threeDecimalRootTableCheck": {
+          "method": "Compare squared positive half-thousandth bounds using integers only.",
+          "lowerSquaredNumeratorOver4000000": 20548089,
+          "xNumeratorOver4000000": 20560000,
+          "upperSquaredNumeratorOver4000000": 20566225,
+          "strictlyInside": true
+        }
+      }
+    ],
+    "approximateTableSemantics": "The row is explicitly approximate, and the prompt explicitly instructs retaining the printed decimal values and calculating with the approximate a.45.63 is the exact result of that decimal procedure, not an asserted exact100sqrt(x/100)+23. No premature extra rounding or replacement by a calculator root.",
+    "existenceUniquenessDomain": "Every offered x is positive, hence x/100 has a unique positive square root a. b=23 is the unique positive root of529. Negative roots are excluded by the printed positivity. All five table approximations are positive and pairwise distinct;10s+23 preserves order, so exactly one can meet45.63, as the exhaustive check establishes. The x-domain is the five listed entries, not an arbitrary real interval. No length or physical unit is printed; all quantities are dimensionless numbers.",
+    "gradeConstraints": {
+      "grade": "중3",
+      "curriculum": "2015",
+      "studentMethods": [
+        "positive square-root definition",
+        "529=23²",
+        "scaling square root by10 verified by squaring",
+        "linear equation with decimal coefficients",
+        "decimal place-value multiplication/division and table lookup"
+      ],
+      "noUpperGradeMethodRequired": true,
+      "verificationOnlyCode": "Decimal arithmetic and integer squared bounds; no calculus, logarithms, general radical expansion, numerical root as answer oracle."
+    },
+    "actualVisualInspection": {
+      "file": "q06.png",
+      "tool": "view_image",
+      "observed": "Actual supplied PNG shows q06,4points, the full five-column square-root approximation table, positive a/b conditions and the five choices matching JSON. No geometric figure, extra unit or answer marking. The row says approximate values. Text wraps across lines but no critical numerical condition is obscured.",
+      "criticalFindings": [],
+      "pixelCalculationOracle": false,
+      "manifestFigureList": "empty; supplemental PNG is hash-recorded separately, not falsely claimed as a listed manifest figure"
+    },
+    "exposureDeclaration": "exposure-declaration.json",
+    "priorAnswerExposure": "none",
+    "sourcesSha256": {
+      "student-problems.json": "a86f8814a865eef289f042355a98fe1b9a0e48807f9a860dfd8dcfa9209c6fac",
+      "blind-manifest.json": "58a4667c77d407d3ccbec1ba4b9a46517748cb85f5a65b2045bf7417a10d93d3",
+      "SOLVE-BRIEF.md": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+      "q06.png": "a1ea7d07f85c5411808bd4adc638daa478e04a09c704320de25a025b9e90b6dc"
+    },
+    "sourceManifestCheck": "student-problems.json SHA256 equals blind-manifest studentProblemsSha256. studentDigest copied from supplied student record; no private digest algorithm or author package opened.",
+    "limits": {
+      "freshBlindSolveOfThisQuestion": true,
+      "authorExposure": false,
+      "privatePacketOpened": false,
+      "operatingDB": 0,
+      "productionApproval": false,
+      "rightsApproval": false,
+      "full": 0,
+      "loadable": 0
+    }
+  },
+  "status": "solved"
+}
