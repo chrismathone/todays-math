@@ -1,0 +1,269 @@
+[
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 1,
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-r2-q01",
+      "authorId": "codex-parent-engine-upgrade-20261019",
+      "questionType": "객관식",
+      "score": 4,
+      "content": "원 $O$ 위의 서로 다른 세 점 $P$, $Q$, $R$을 이어 삼각형을 만들었다. 중심 $O$에서 현 $PQ$, $PR$에 내린 수선의 발을 각각 $M$, $N$이라 하자. 다음 두 조건을 만족시킬 때, $\\angle QPR$의 크기는?\n\n(가) $\\overline{OM}=\\overline{ON}$\n(나) $\\angle PQR=67^\\circ$",
+      "choices": [
+        "$42^\\circ$",
+        "$44^\\circ$",
+        "$46^\\circ$",
+        "$48^\\circ$",
+        "$50^\\circ$"
+      ],
+      "answer": "③",
+      "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{PQ}=\\overline{PR}$이다.\n\n따라서 삼각형 $PQR$은 이등변삼각형이고, $\\angle PRQ=\\angle PQR=67^\\circ$이다.\n\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle QPR=180^\\circ-67^\\circ-67^\\circ=46^\\circ$이다.",
+      "figureArtifacts": [
+        {
+          "role": "stem",
+          "specPath": "figure-1.spec.json",
+          "svgPath": "figure-1.svg",
+          "intendedWidthMm": 70
+        }
+      ],
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "before": "중심에서 두 현까지의 거리가 같고 꼭지각이 주어진 내접삼각형에서 밑각을 묻는다.",
+        "after": "거리의 같음과 한 밑각을 조건 목록으로 제시하고 꼭지각을 역으로 묻는다.",
+        "sharedConcept": "한 원의 같은 거리인 현의 길이, 이등변삼각형의 두 밑각, 삼각형의 내각의 합",
+        "sharedProcedure": "같은 거리 → 같은 현 → 같은 두 밑각 → 세 각의 합으로 미지각 계산",
+        "actualStructuralChange": "원문의 알려진 꼭지각/구하는 밑각을 알려진 밑각/구하는 꼭지각으로 바꾸었다. 새로운 도형은 꼭짓점을 위에 두고 수선의 발을 명시한다. 숫자/점 이름 교체를 변경의 근거로 삼지 않는다.",
+        "numericalChangeIsNotSufficient": true,
+        "domainProof": "세 각 46°,67°,67°는 모두 양수이고 합이180°여서 비퇴화 이등변삼각형이 존재한다. 그 외접원에서 같은 두 현까지의 거리는 같다. 두 밑각은67°로 결정되어 꼭지각은 하나뿐이다.",
+        "difficultyBasis": "동일한 세 성질과 한 번의 각 계산을 사용한다. 삼각비·원과 비례·좌표·상위 학년 정리는 학생 풀이에 필요 없다. 난이도는 독립 검토 대기."
+      },
+      "sourceReference": {
+        "externalId": "2025-gyeongsin-3-2-mid-1",
+        "newSourceReferenceId": "source-ref-gyeongsin-2025-2-mid-r1-q01",
+        "sourceContentSha256": "e5b2e011d9fcb788322419eddc0c38290bc259dba63248e238807b2fd6da4340",
+        "sourceSchoolInternal": "경신중학교",
+        "sourceExamYear": 2025,
+        "inventoryExamId": "personal-57fc57dc583e9f120f45ebc6abedfee4",
+        "sourceManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+          "sha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+            "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9"
+          }
+        ],
+        "actualReference": "observed-2025-original-scan-page1-question1; completed-pair header conflict retained",
+        "componentObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-source-component-review-20261019-r1/q01-component-review.json",
+          "sha256": "643c8aa1abcd820100cd5804546af71a4015744e91d037efd32411db2cc35de5"
+        },
+        "originalQuestionCrop": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/packet/images/q01-part1.png",
+          "sha256": "bbf1cf477607f8d847d95c54b1880c3366660c0b31738d61284adc38a7856c8f"
+        },
+        "sourceCropViewed": true,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "status": "author-proposed",
+        "standardCodes": [
+          "9수04-19",
+          "9수04-10"
+        ],
+        "officialProvisions": {
+          "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+          "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+        },
+        "legitimateMethodDraft": "원의 현에 관한 성질과 중2 이등변삼각형의 성질 및 내각의 합만 사용한다. 삼각비나 원과 비례는 사용하지 않는다. 그림 생성의 내부 좌표 계산은 학생 풀이가 아니다.",
+        "independentReviewPending": true
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 4,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "author-proposed",
+        "problemTypeProposal": "계산",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원과 현",
+            "semester": 2,
+            "orderIndex": 484,
+            "problemCodePrefix": "J30601"
+          },
+          "familyCandidate": {
+            "unit_id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+            "family_key": "mid:3-2|원과 직선|06",
+            "family_code": "A06",
+            "live_count": 16
+          },
+          "evidence": "현재 Unit UUID와 live06 family를 읽었다. 역방향 질문의 실제 풀이 목적/난이도와 family 적합성은 독립 검토 전 자동 확정하지 않는다.",
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+            "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+          }
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+        },
+        "figureAuthoring": {
+          "method": "existing-native-figInscribedIso+new-role-labels",
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "newVector": true,
+          "visualRevision": "r1의 90도 호/텍스트가 중심 주변에 혼잡해 작은 직각 기호로 새로 렌더했다. 본문·답·해설은 같지만 그림 변경이므로 r1 검수는 재사용하지 않는다."
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "previousCandidate": {
+          "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-r1/q01.json",
+          "sha256": "74e1caee4a10ded71418f5e91fb66d90c37d25c3f25bc8366127333ba92483a7"
+        }
+      }
+    },
+    "assets": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-review-20261019-r2\\package\\private\\q01\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-review-20261019-r2\\package\\private\\q01\\figure-1.svg",
+        "specSha256": "ab64b02da783b5b263f3943e982effb3ba5e355434281192ba2349343668c24a",
+        "svgSha256": "7cc128cefeb54521cc5f895d6b2b372fa9883540f5d47469b7472801067288d7",
+        "intendedWidthMm": 70,
+        "studentPath": "figures/q01-1.svg"
+      }
+    ],
+    "studentDigest": "1926b5e6809401ef62d86c962defff8aec71099435d0e8c9a556a225ec9f8811",
+    "candidateDigest": "0802996095cb9b947b0d97b71ee8c4aed8613a97b80095b8240ff4fdd708a819",
+    "assetDigest": "07601ddf2cf96a80e3d6fbb03cd43b315a31effefe0af83da8f8fa142de5a64b",
+    "independentSolve": {
+      "studentDigest": "1926b5e6809401ef62d86c962defff8aec71099435d0e8c9a556a225ec9f8811",
+      "solverId": "codex-gyeongsin-clean-blind-20261019-r1",
+      "status": "solved",
+      "answer": "③",
+      "solution": "O와 P를 잇는다. 원의 중심에서 현에 내린 수선은 그 현을 이등분하므로 PM=MQ, PN=NR이다. 두 직각삼각형 OMP와 ONP에서 빗변 OP는 공통이고, 조건 (가)에 의해 OM=ON이다. 따라서 빗변과 다른 한 변의 길이가 각각 같으므로 두 직각삼각형은 합동이다. 그러므로 PM=PN이고, PQ=2PM=2PN=PR이다.\n\n삼각형 PQR은 PQ=PR인 이등변삼각형이므로 밑각 ∠PQR과 ∠PRQ가 같다. 조건 (나)에서 ∠PQR=67°이므로 ∠PRQ=67°이다. 삼각형의 세 내각의 크기의 합은 180°이므로 ∠QPR=180°-67°-67°=46°이다. 따라서 정답은 ③이다.\n\n각 보기를 직접 확인하면, ∠QPR이 차례로 42°, 44°, 46°, 48°, 50°일 때 ∠PRQ=180°-67°-∠QPR은 각각 71°, 69°, 67°, 65°, 63°이다. PQ=PR이므로 ∠PRQ는 반드시 67°여야 한다. 따라서 ①, ②, ④, ⑤는 조건 (가)와 양립하지 않고, ③만 두 조건을 모두 만족시킨다.\n\n실제로 길이가 양수인 선분 QR을 잡고, Q와 R에서 같은 쪽에 각각 67°의 각을 이루는 두 반직선을 그리면 만나는 점 P를 정할 수 있다. 세 내각은 67°, 67°, 46°로 모두 양수이고 합이 180°이므로 퇴화하지 않는 이등변삼각형이 만들어진다. 이 삼각형의 외접원을 그리고 그 중심을 O라 하자. 같은 현 PQ와 PR의 중점까지 중심에서 내린 수선의 길이는 같다. 구체적으로, 각 현의 중점을 M, N이라 하면 PM=PN이고 OP는 공통인 빗변이므로 직각삼각형 OMP와 ONP가 합동이어서 OM=ON이다. 따라서 주어진 조건을 만족하는 도형이 존재한다.\n\n서로 다른 세 점이므로 두 현의 길이는 양수이다. 만약 OM=ON=0이라면 두 현 PQ와 PR이 모두 지름이 되어 Q와 R이 모두 P의 맞은편 같은 점이어야 하므로 서로 다르다는 조건에 어긋난다. 따라서 이 경우도 생기지 않는다. 위의 합동과 내각의 합으로 모든 가능한 도형에서 ∠QPR은 46°로 강제된다. 삼각형의 크기나 위치까지 하나로 정해진다는 뜻은 아니며, 묻는 각의 크기가 유일하다. 그림의 생김새나 픽셀에서 각도를 재어 정답을 정하지 않았다.",
+      "evidence": {
+        "exactOptionChecks": [
+          {
+            "choice": "①",
+            "angleQPRDegrees": 42,
+            "givenAnglePQRDegrees": 67,
+            "forcedAnglePRQDegrees": 71,
+            "equalBaseAngleIfIsoscelesDegrees": 69,
+            "allAnglesPositive": true,
+            "angleSumDegrees": 180,
+            "satisfiesBothConditions": false
+          },
+          {
+            "choice": "②",
+            "angleQPRDegrees": 44,
+            "givenAnglePQRDegrees": 67,
+            "forcedAnglePRQDegrees": 69,
+            "equalBaseAngleIfIsoscelesDegrees": 68,
+            "allAnglesPositive": true,
+            "angleSumDegrees": 180,
+            "satisfiesBothConditions": false
+          },
+          {
+            "choice": "③",
+            "angleQPRDegrees": 46,
+            "givenAnglePQRDegrees": 67,
+            "forcedAnglePRQDegrees": 67,
+            "equalBaseAngleIfIsoscelesDegrees": 67,
+            "allAnglesPositive": true,
+            "angleSumDegrees": 180,
+            "satisfiesBothConditions": true
+          },
+          {
+            "choice": "④",
+            "angleQPRDegrees": 48,
+            "givenAnglePQRDegrees": 67,
+            "forcedAnglePRQDegrees": 65,
+            "equalBaseAngleIfIsoscelesDegrees": 66,
+            "allAnglesPositive": true,
+            "angleSumDegrees": 180,
+            "satisfiesBothConditions": false
+          },
+          {
+            "choice": "⑤",
+            "angleQPRDegrees": 50,
+            "givenAnglePQRDegrees": 67,
+            "forcedAnglePRQDegrees": 63,
+            "equalBaseAngleIfIsoscelesDegrees": 65,
+            "allAnglesPositive": true,
+            "angleSumDegrees": 180,
+            "satisfiesBothConditions": false
+          }
+        ],
+        "gradeMethod": {
+          "target": "중3 / 2015",
+          "method": "원의 중심에서 현에 내린 수선의 성질, 직각삼각형의 빗변과 한 변에 의한 합동, 이등변삼각형의 밑각, 삼각형 내각의 합",
+          "existencePrerequisites": "두 각과 한 변으로 삼각형을 작도하는 방법, 삼각형의 외심과 외접원, 같은 밑각에 대한 같은 변의 성질",
+          "scope": "중3 원의 성질과 이전 학년의 삼각형 성질만으로 독립 풀이했다. 삼각함수, 역삼각함수, 사인법칙, 코사인법칙, 좌표계산, 원주각 이외의 상위 학년 정리, 미적분 또는 프로그램을 학생 풀이의 필수 도구로 쓰지 않았다.",
+          "approval": "1단계 풀이 방법 기록이며 최종 학년·내용·권리 승인이 아니다."
+        },
+        "figureInspection": {
+          "input": "../gyeongsin-review-20261019-r2/blind/figures/q01-1.svg",
+          "sha256": "7cc128cefeb54521cc5f895d6b2b372fa9883540f5d47469b7472801067288d7",
+          "viewedRenderedSvg": true,
+          "readability": "P, Q, R, O, M, N과 꼭짓점 P의 x, Q의 67° 표시가 구별된다. 원, 두 현, 중심에서 각 현까지의 선분과 직각 표시가 읽히며 글자 잘림이나 겹침으로 조건을 읽지 못하는 부분은 보이지 않는다. OP는 풀이 중 보조선으로 잇는다.",
+          "limitation": "OM=ON은 본문의 명시된 조건으로 사용했다. SVG 좌표나 픽셀 길이·각도, 그림의 대칭 모양을 계산의 근거로 사용하지 않았다."
+        },
+        "exposureHistory": {
+          "stage": "STAGE 1 blind only",
+          "authorAnswerSeen": false,
+          "authorSolutionSeen": false,
+          "originalQuestionOrAnswerSeenForThisItem": false,
+          "actualPriorExposure": "이 재사용 세션에서 예전에 경신중 fresh r3 추출분이 20개 parsed-quarantined 관측이라는 집계 메타데이터와, 사용자가 경신중 2학기 q1 저작을 진행 중이라는 작업 상태를 알게 되었다. 이 q01의 저자 답·해설, 원문 문항·정답 또는 사설 패키지를 받은 적은 없다. 과거 강북 독립 풀이, 경상 GF14 재연결, 구남·구암·능인 추출은 다른 범위이며 이번 풀이의 정답 근거로 사용하지 않았다.",
+          "thisStageReadScope": [
+            "사용자의 이번 지시와 이미 제공된 AGENTS 지시",
+            "blind/student-problems.json",
+            "blind/blind-manifest.json",
+            "blind/figures/q01-1.svg 및 그것만 렌더링한 로컬 이미지",
+            "이번 새 q01.json 및 봉인 증거"
+          ],
+          "prohibitedMaterialsOpenedThisStage": false,
+          "answerSearchOrModelCalls": false,
+          "newApprovalClaimed": false
+        },
+        "existence": "67°, 67°, 46°인 삼각형의 외접원과 현의 중점을 이용한 구성으로 확인",
+        "uniqueness": "요구된 각은 내각의 합으로 46°로 유일하며 도형의 크기·위치의 유일성을 주장하지 않음",
+        "calculation": "봉인 전 Python Fraction의 정확한 유리수 산술로 실제 보기 5개를 모두 계산하고 이 JSON의 수치·판정과 대조함"
+      }
+    },
+    "solveDigest": "6eba4e6878c589357a6b2e2cfc927681236e1fb992e380bdaa8e29ab91dba763"
+  }
+]
