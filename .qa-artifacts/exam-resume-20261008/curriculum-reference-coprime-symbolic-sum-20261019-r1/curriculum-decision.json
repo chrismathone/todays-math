@@ -1,0 +1,300 @@
+{
+  "kind": "abstract-M1-algebra-surface-curriculum-decision/v1",
+  "requirement": "number.coprime-symbolic-sum",
+  "target": {
+    "grade": "중1",
+    "examYears": [
+      2025,
+      2026
+    ],
+    "curriculum": "2022"
+  },
+  "inputObservedFromUser": {
+    "suppliedIdentity": "0+1+...+(n-1)=n(n-1)/2",
+    "askedForm": "sum as polynomial in n",
+    "studentSolutionDescription": "expands to a quadratic expression",
+    "codeOrGeneratedOutputsOpened": false,
+    "numericalSampleAnswersReceived": false,
+    "scope": "User-described abstract surface only. No existing/new coauthor module or generated answer/solution opened, and no original-school source inspected."
+  },
+  "decision": {
+    "status": "hard-exclude-described-M1-polynomial-expansion-variant",
+    "severity": "hard-out-of-grade-method",
+    "basis": "The described student task requires symbolic multiplication/simplification resulting in a quadratic polynomial, beyond the evidenced M1 first-degree calculation scope. Official Book8 distinguishes first-degree addition/subtraction9수02-02 from later polynomial addition/subtraction9수02-09, monomial×polynomial9수02-10 and polynomial multiplication9수02-19. Official2026 KICE M1 semester standards/example confirms the first-degree scope. Under the owner hard-exclusion rule, supplying the summation identity does not waive the remaining operation.",
+    "noLegitimateM1MethodEstablishedForSameRequiredOutput": true,
+    "mathematicalCorrectnessApproval": false,
+    "finalWholeFamilyApproval": false,
+    "doNotInfer": "Original-school use, profile labels, deterministic correctness, full-coverage claims, or supplied formulas do not grant target-grade permission. A rewrite or later-grade reclassification is new work requiring its own actual surface review."
+  },
+  "observedPrimaryEvidence": {
+    "book8": {
+      "noticeUrl": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&m=040401",
+      "attachmentUrl": "https://www.moe.go.kr/boardCnts/fileDown.do?m=040401&s=moe&fileSeq=1512facbda6c234a1641ac7e9c156ca2",
+      "hwpPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-reference-circle-revolutions-20261019-r1\\moe-2022-33-book8-math.hwp",
+      "sha256": "aab8eed59ecf244223d04afad75f4cf5ac5085fadcfc3cf52c2f6d54ddfc7856",
+      "method": "Actual official HWP BodyText tag67 paragraph reading plus targeted tag88 equation script reading. Equation scripts recover multiplication/division signs and listed expansion formulas instead of inventing symbols from text placeholders.",
+      "provisions": [
+        {
+          "source": "교육부2022-33 별책8",
+          "record1based": 3604,
+          "stream": "BodyText/Section0",
+          "textExact": "[9수02-01] 다양한 상황을 문자를 사용한 식으로 나타내어 그 유용성을 인식하고, 식의 값을 구할 수 있다."
+        },
+        {
+          "source": "교육부2022-33 별책8",
+          "record1based": 3608,
+          "stream": "BodyText/Section0",
+          "textExact": "[9수02-02] 일차식의 덧셈과 뺄셈의 원리를 이해하고, 그 계산을 할 수 있다."
+        },
+        {
+          "source": "교육부2022-33 별책8",
+          "record1based": 3653,
+          "stream": "BodyText/Section0",
+          "textExact": "[9수02-08] 지수법칙을 이해하고, 이를 이용하여 식을 간단히 할 수 있다."
+        },
+        {
+          "source": "교육부2022-33 별책8",
+          "record1based": 3657,
+          "stream": "BodyText/Section0",
+          "textExact": "[9수02-09] 다항식의 덧셈과 뺄셈의 원리를 이해하고, 그 계산을 할 수 있다."
+        },
+        {
+          "source": "교육부2022-33 별책8",
+          "record1based": 3661,
+          "stream": "BodyText/Section0",
+          "textExact": "[9수02-10] ‘(단항식)敤敱(다항식)’, ‘(다항식)敤敱(단항식)’과 같은 곱셈과 나눗셈의 원리를 이해하고, 그 계산을 할 수 있다."
+        },
+        {
+          "source": "교육부2022-33 별책8",
+          "record1based": 3736,
+          "stream": "BodyText/Section0",
+          "textExact": "[9수02-19] 다항식의 곱셈과 인수분해를 할 수 있다."
+        },
+        {
+          "source": "교육부2022-33 별책8",
+          "record1based": 3787,
+          "stream": "BodyText/Section0",
+          "textExact": "[9수02-08] 지수법칙은 지수가 자연수인 범위에서 단항식의 곱셈과 나눗셈을 하는 데 필요한 정도로 다룬다."
+        },
+        {
+          "source": "교육부2022-33 별책8",
+          "record1based": 3791,
+          "stream": "BodyText/Section0",
+          "textExact": "[9수02-10] 다항식의 나눗셈에서는 다항식을 단항식으로 나누어 그 몫이 다항식이 되는 경우만 다룬다."
+        },
+        {
+          "source": "교육부2022-33 별책8",
+          "record1based": 3795,
+          "stream": "BodyText/Section0",
+          "textExact": "[9수02-19] 다항식의 곱셈과 다항식의 인수분해의 역관계를 이해하고, 이와 유사한 관계를 찾아보는 활동을 하게 한다. 다항식의 곱셈과 인수분해는 다음의 경우를 다룬다. \n敤敱 \n敤敱 \n敤敱 \n敤敱 \n敤敱 \n敤敱"
+        },
+        {
+          "source": "교육부2022-33 별책8",
+          "record1based": 3529,
+          "stream": "BodyText/Section0",
+          "textExact": "[9수01-02] 초등학교에서 학습한 최대공약수와 최소공배수의 개념을 바탕으로 소인수분해를 이용하여 최대공약수와 최소공배수를 구하게 한다. 최대공약수와 최소공배수는 자연수의 소인수분해를 이용하는 범위에서 다루고, 최대공약수와 최소공배수의 활용 문제는 다루지 않는다."
+        },
+        {
+          "source": "교육부2022-33 별책8",
+          "record1based": 3549,
+          "stream": "BodyText/Section0",
+          "textExact": "‘수와 연산’ 영역에서는 용어와 기호로 ‘소수, 합성수, 거듭제곱, 지수, 밑, 소인수, 소인수분해, 서로소, 양수, 음수, 양의 정수, 음의 정수, 정수, 수직선, 양의 유리수, 음의 유리수, 유리수, 절댓값, 교환법칙, 결합법칙, 분배법칙, 역수, 유한소수, 무한소수, 순환소수, 순환마디, 제곱근, 근호, 무리수, 실수, 분모의 유리화, 양의 부호(敤敱), 음의 부호(敤敱), 敤敱 , 敤敱, 敤敱, 순환소수 표현(예. 敤敱), 敤敱’를 다룬다."
+        },
+        {
+          "source": "교육부2022-33 별책8",
+          "record1based": 3887,
+          "stream": "BodyText/Section0",
+          "textExact": "방정식, 부등식, 함수에 대한 지나치게 복잡한 활용 문제는 다루지 않는다."
+        },
+        {
+          "source": "교육부2022-33 별책8",
+          "record1based": 3891,
+          "stream": "BodyText/Section0",
+          "textExact": "‘식의 값’, ‘좌변’, ‘우변’, ‘양변’, ‘이차식’, ‘전개식’, ‘연립일차방정식’, ‘소거’, ‘가감법’, ‘대입법’, ‘함수의 그래프’ 용어는 교수⋅학습 상황에서 사용할 수 있다."
+        },
+        {
+          "source": "교육부2022-33 별책8",
+          "record1based": 8472,
+          "stream": "BodyText/Section0",
+          "textExact": "[12대수03-02] 등차수열의 뜻을 알고, 일반항, 첫째항부터 제敤敱항까지의 합을 구할 수 있다."
+        },
+        {
+          "source": "교육부2022-33 별책8",
+          "record1based": 8490,
+          "stream": "BodyText/Section0",
+          "textExact": "[12대수03-05] 여러 가지 수열의 첫째항부터 제敤敱항까지의 합을 구하는 방법을 설명할 수 있다."
+        }
+      ],
+      "equationScripts": [
+        {
+          "record1based": 3665,
+          "tag": 88,
+          "script": "times"
+        },
+        {
+          "record1based": 3667,
+          "tag": 88,
+          "script": "div"
+        },
+        {
+          "record1based": 3799,
+          "tag": 88,
+          "script": "m(a+b)`=`ma+mb"
+        },
+        {
+          "record1based": 3801,
+          "tag": 88,
+          "script": "(a+b)  ^{2} =a  ^{2} +2ab+b  ^{2}"
+        },
+        {
+          "record1based": 3803,
+          "tag": 88,
+          "script": "(a-b)  ^{2} =a  ^{2} -2ab+b  ^{2}"
+        },
+        {
+          "record1based": 3805,
+          "tag": 88,
+          "script": "(a+b)(a-b)=a  ^{2} -b  ^{2}"
+        },
+        {
+          "record1based": 3807,
+          "tag": 88,
+          "script": "(x+a)(x+b)=x  ^{2} +(a+b)x+ab"
+        },
+        {
+          "record1based": 3809,
+          "tag": 88,
+          "script": "(ax+b)(cx+d)=acx  ^{2} +(ad+bc)x+bd"
+        },
+        {
+          "record1based": 3815,
+          "tag": 88,
+          "script": "y=f(x)"
+        },
+        {
+          "record1based": 3817,
+          "tag": 88,
+          "script": "x"
+        },
+        {
+          "record1based": 3827,
+          "tag": 88,
+          "script": "x"
+        },
+        {
+          "record1based": 3829,
+          "tag": 88,
+          "script": "y"
+        }
+      ]
+    },
+    "officialGradePlacementCorroboration": {
+      "publication": "교육부·17개 시도교육청·한국교육과정평가원,2022 개정 교육과정에 따른 중학교 학생평가 톺아보기, ORM2026-32,2026-05",
+      "url": "https://www.goe.go.kr/resource/goe/na/bbs_2675/2026/05/34866f8c-3e6b-45c1-84fb-4b232c919650.pdf",
+      "extract": "official-kice-2026-selected-pages.json",
+      "actuallyViewedPhysicalPages": [
+        1,
+        20,
+        24,
+        61
+      ],
+      "locators": {
+        "M1": "physical24, printed20:1학년1학기 수학과 예시;9수02-01/02/03/04 plus graph standards; highest semester description mentions first-degree addition/subtraction and one-variable equations.",
+        "M3": "physical20, printed16:3학년1학기 수학과 평가계획; polynomial multiplication/factorization9수02-19.",
+        "publication": "physical61 publication colophon2026-05."
+      },
+      "limit": "Official application example corroborates grade placement, not a statute enumerating every forbidden M1 symbol or a complete M2 syllabus."
+    }
+  },
+  "observedPolicy": "Owner expressly hard-excludes any required out-of-grade method/notation even if the original school used it or a formula is supplied. This is the project approval policy, distinguished from quoted national standards.",
+  "inferredOperationClassification": [
+    {
+      "surface": "literal square n² alone",
+      "decision": "not a valid blanket hard-exclusion test; context pending",
+      "reason": "Natural-number powers and basic expression notation/substitution are different from polynomial multiplication. The cited primary provisions do not say every n² glyph is forbidden in M1. A square-area formula or a known-number substitution cannot be rejected merely because the same glyph occurs. No specific unseen n² surface is approved here."
+    },
+    {
+      "surface": "n(n-1) expanded to n²-n",
+      "decision": "outside evidenced M1 calculation scope; sufficient for current hard exclusion",
+      "reason": "Here n is a monomial and n-1 a linear binomial, so the operation is monomial×polynomial9수02-10; collecting quadratic terms also invokes polynomial rather than first-degree calculation. It need not be overstated as necessarily the full M3 general binomial-product case. Project units place this 식의 계산 work in M2.",
+      "gradeMapping": "Minimum later M2-level operation inferred from primary operation definitions plus existing project placement; primary9수 codes themselves are middle1–3 band codes."
+    },
+    {
+      "surface": "two general linear binomials multiplied/expanded",
+      "decision": "later M3 polynomial multiplication if genuinely required",
+      "reason": "Official9수02-19 equation scripts explicitly list (x+a)(x+b) and (ax+b)(cx+d) formulas; official KICE M3 plan corroborates placement. Numeric constants times a linear expression are not the same operation."
+    },
+    {
+      "surface": "distributive law",
+      "decision": "not a universal M1 exemption",
+      "reason": "Using rational-number distribution or a numerical coefficient with a linear expression does not establish permission to multiply two variable-bearing expressions and produce quadratic terms. Re-labelling the described expansion as merely 분배법칙 leaves the operation unchanged."
+    },
+    {
+      "surface": "given summation identity",
+      "decision": "does not authorize the described expansion",
+      "reason": "The identity can remove a derivation burden but cannot authorize out-of-grade operations still required in the stem/answer/solution. Official high-school 대수12대수03-02/05 addresses arithmetic/other sequence sums; that location does not prove every finite concrete pairing problem is prohibited earlier. No universal ban on displaying a supplied numeric rule is asserted; no M1 exemption for this symbolic quadratic output is established."
+    },
+    {
+      "surface": "symbolic residue ranges and coprimality",
+      "decision": "unknown-held unless a separate explicit within-M1 argument is reviewed",
+      "reason": "M1 prime factorization/coprime meaning does not automatically certify complete residue systems, modulo notation, variable-length ranges, general coprime counts/sums, Euler-totient formulas, inclusion-exclusion or general symbolic summation. Elementary inequalities/ellipsis by themselves are not sufficient grounds for a blanket out-of-grade ruling either. Actual definitions/domain and every step must be reviewed.",
+      "explicitRestriction": "Book8 record3529 limits gcd/lcm to natural-number factorization and says gcd/lcm application problems are not handled. Whether a particular residue construction triggers that restriction is additional review, not assumed solely from the requirement name."
+    }
+  ],
+  "sevenSurfaces": {
+    "stem": {
+      "status": "rejected-for-described-M1-variant",
+      "basis": "Asks a polynomial in n requiring the described out-of-grade expansion; supplied formula does not waive it."
+    },
+    "choices": {
+      "status": "pending-unseen",
+      "basis": "No choices supplied. No assertion of grade or correctness."
+    },
+    "figuresAndTables": {
+      "status": "pending-unseen",
+      "basis": "None supplied; do not infer absence from an abstract description."
+    },
+    "notation": {
+      "status": "pending-context;not-blanket-n²-ban",
+      "basis": "Exact symbolic residue/set/modulo/ellipsis and quadratic notation surfaces unseen. The method-level hard exclusion already applies independently."
+    },
+    "answer": {
+      "status": "rejected-for-described-required-M1-form",
+      "basis": "Required expanded quadratic polynomial is tied to the out-of-grade operation; no actual answer inspected or calculated."
+    },
+    "studentSolution": {
+      "status": "rejected-for-described-M1-expansion",
+      "basis": "User reports expansion to a quadratic. No claim to have inspected code or all generated solution steps."
+    },
+    "prerequisites": {
+      "status": "rejected-required-later-algebra;residue-reasoning-pending",
+      "basis": "At least monomial×linear/polynomial collection is required by the stated output. General coprime/residue argument remains unestablished."
+    }
+  },
+  "unknownHeld": [
+    "Exact candidate domains, whether n is any natural number or a restricted class, and boundary n values are not supplied. No existence/uniqueness or empty-range assertions are approved.",
+    "Actual outputs might be alterable, but a hypothetical easier unexpanded/numeric task is a different task and does not clear the described one.",
+    "No actual family code/sample or whole-template surface review occurred. Neither hard exclusion of this method nor partial knowledge establishes the status of every possible family variant.",
+    "M2 grade labels are an operation-to-sequence inference from official standards and project unit placement; national9수 band codes alone do not specify a within-year calendar.",
+    "Raw HWP paragraph placeholders are retained. Only targeted recovered equation scripts are interpreted; no guessed HWP page numbers or missing glyphs certified."
+  ],
+  "wheelFindingsPreserved": {
+    "report": ".qa-artifacts/exam-resume-20261008/curriculum-reference-circle-revolutions-20261019-r1/curriculum-reference-report.json",
+    "commit": "c75723200b85d0af2c5c9c6af6125a9b80cc55a2",
+    "sha256": "1e6c224d782fe7e3a0b8eb2f4e0f92123129d10dddd1740031362bce5bf7a377",
+    "unchangedFromGit": true,
+    "effect": "No change to wheel method-level potential fit or seven-surface pending status. No duplicate wheel family authored."
+  },
+  "judgmentDesign": "Prior TypeSafe skill/live-doc reading reused. Deterministic evidence hashes and operation classification remain distinct from semantic support and actual grade approval. No API, AI probability score or confidence threshold is approval evidence.",
+  "finalGates": {
+    "describedM1Variant": "hard-excluded",
+    "actualUnseenFamilyGradeApproval": false,
+    "mathApproval": false,
+    "rightsApproval": false,
+    "release": false,
+    "fullVerified": 0,
+    "loadable": 0,
+    "rootEdits": 0,
+    "dbWrites": 0
+  }
+}
