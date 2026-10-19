@@ -1,70 +1,791 @@
 <!doctype html>
 <html lang="ko">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>초5 혼자 공부 · Wire 5안</title>
-<style>
-@font-face{font-family:Pretendard;src:url('../../../public/fonts/PretendardVariable.woff2') format('woff2');font-weight:100 900;font-display:swap}
-:root{--ink:#161616;--muted:#61615e;--line:#b9b9b6;--control:#8e8e8b;--panel:#e9e9e6;--blue:#2064b3;--white:#fff}
-*{box-sizing:border-box}body{margin:0;background:var(--white);color:var(--ink);font:15px/1.6 Pretendard,'Malgun Gothic',sans-serif}button,select{font:inherit;color:inherit;background:var(--white);border:1px solid var(--control);padding:10px 16px;min-height:44px;cursor:pointer}button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}button[aria-selected=true],button[aria-pressed=true]{background:var(--ink);color:white}h1{font-size:28px;line-height:1.3;margin:0 0 16px}h2{font-size:24px;margin:0 0 12px}h3{font-size:20px;margin:0}p{margin:8px 0}.board{max-width:1600px;margin:auto;padding:32px}.intro{max-width:900px}.muted{color:var(--muted)}.bar{position:sticky;top:0;background:white;z-index:5;border-block:1px solid var(--line);padding:12px 0;margin:24px 0;display:flex;gap:16px;align-items:center;flex-wrap:wrap}.tabs,.widths,.states{display:flex;gap:8px;flex-wrap:wrap}.widths{margin-left:auto}.thesis{padding:0 0 20px;border-bottom:1px solid var(--line)}.thesis p{max-width:1000px}.review{margin:32px 0}.review-head{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:16px}.pair{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:24px;align-items:start}.device{min-width:0}.device-label{font-size:12px;color:var(--muted);margin-bottom:8px}.viewport{width:100%;position:relative;overflow:hidden;border:1px solid var(--control);background:var(--panel)}iframe{display:block;border:0;transform-origin:top left;background:white}.phone iframe{width:390px}.desktop iframe{width:1366px}.phone .viewport{max-width:392px}.notes{font-size:13px;color:var(--muted);max-width:1050px;margin-top:12px}.source{border-top:1px solid var(--line);padding-top:24px;margin-top:48px;font-size:13px}.source li{margin:8px 0}.only-pc .pair,.only-phone .pair{grid-template-columns:minmax(0,1fr)}.only-pc .phone,.only-phone .desktop{display:none}.only-phone .phone{max-width:392px;margin:auto;width:100%}.audit{border:1px solid var(--line);padding:20px;margin:24px 0}.audit summary{cursor:pointer;font-weight:700;min-height:44px}.audit table{border-collapse:collapse;width:100%;margin-top:16px}.audit td,.audit th{text-align:left;border-bottom:1px solid var(--line);padding:10px;vertical-align:top}.audit th{font-weight:700}a{color:var(--blue)}[hidden]{display:none!important}@media(max-width:1150px){.pair{grid-template-columns:minmax(0,1fr)}.phone{width:min(100%,392px);margin:auto}}@media(max-width:600px){.board{padding:16px}.widths{margin-left:0}.bar{position:static}.tabs button{padding:8px 12px}.audit{padding:12px}.audit td,.audit th{padding:8px 4px}h1{font-size:24px}}
-</style>
-</head>
-<body>
-<main class="board">
-<header class="intro"><h1>초5 혼자 공부 · Wire 5안</h1><p>첫 화면, 틀렸을 때, 예습 카드의 구조를 한 묶음으로 비교합니다. 색·질감·캐릭터의 생김새는 구조를 고른 뒤 정합니다.</p><p class="muted">검토용 정적 시안 · 2026-10-19 · 제품 저장 없음</p></header>
-<nav class="bar" aria-label="시안 비교"><div class="tabs" role="tablist" aria-label="구조안"></div><div class="widths" aria-label="미리보기 폭"><button data-width="both" aria-pressed="true">PC + 폰</button><button data-width="pc" aria-pressed="false">PC 1366</button><button data-width="phone" aria-pressed="false">폰 390</button></div></nav>
-<section id="proposal" role="tabpanel" aria-labelledby="tab-A"><div class="thesis" id="thesis"></div><div id="screens"></div></section>
-<details class="audit"><summary>공통 동작과 검토 기준</summary><p>화면 안 단추로 흐름을 확인할 수 있습니다. PC와 폰의 상태는 함께 바뀝니다. 화면 위 상태 단추는 검토 도구입니다.</p><table><thead><tr><th>상황</th><th>모든 안의 동작</th></tr></thead><tbody><tr><td>첫 화면</td><td>시작은 ‘오늘 공부 시작’ 하나. 도감은 둘러보기이며 학년·목표 단원 설정은 없음. 순서는 엔진에 맡김.</td></tr><tr><td>첫 오답</td><td>‘다시 해 볼까요’와 같은 문제. 보기 값은 그대로, 표시 순서만 바꿈. 답을 공개하지 않음.</td></tr><tr><td>두 번째 오답 / 모르겠어요</td><td>정답과 풀이를 공개. ‘알겠어요’를 눌러야 이동. 그날 다시 요구하지 않고 다음 복습에 다시 만남.</td></tr><tr><td>개념 카드 풀이</td><td>뜻만 다시 보여 주지 않음. 예시의 정오, 참거짓의 정답, 카드 설명을 함께 보여 줌.</td></tr><tr><td>예습</td><td>새 소단원 첫 회차 앞에 개념 → 수학 그림 자리 → 풀어 보인 예 → 따라 풀기. 소수 곱셈은 모눈 넓이 모형 자리.</td></tr><tr><td>그림</td><td>점선은 제작할 그림의 자리. 수학 그림은 정확한 SVG, 직육면체는 Blender, 캐릭터·보상은 이미지 생성 대상. 이 Wire에는 이미지 생성 결과를 넣지 않음.</td></tr><tr><td>기록과 일정</td><td>첫 오답을 두 번째 성공으로 덮지 않는 계약은 별도 내부 작업. 이 파일은 서버 호출·저장·일정 계산을 하지 않음.</td></tr></tbody></table></details>
-<footer class="source"><h3>근거와 선택할 것</h3><p>원본 지시서: D:\todays-math-srs-e5\docs\planning\tracks\brief-srs-e5-wire-codex.md<br>계획서: 같은 저장소 docs/planning/srs-e5-30day-plan-20261019.md §1·2·3.2·3.4·3.6·3.7</p><ul><li>첫 화면: 05-home-e5.png, 하루 마침: 12-day1-done.png. 첫날 개념 활동 15개와 단원 이름만 사용. 29-day3-summary.png는 하루 전체 마침이 아니므로 그 수치를 완료 실적으로 섞지 않음.</li><li>은행 문제: 24-q3-wrong-a.png의 ‘42, 44, 45, 38, 36 중에서 44 이하인 수는 모두 몇 개입니까?’ 및 보기 63·8·4·70을 유지. 보기 품질 개선은 별도 내부 작업. 풀이 문구는 이 문제의 수를 직접 대조해 시안용으로 작성.</li><li>개념 카드: src/lib/math-explorers/definition-content.ts의 g5-decimal-multiply. 뜻·예시 4개·참거짓·설명은 제품 데이터. 존댓말과 띄어쓰기만 화면 톤에 맞춤.</li><li>예습: 06-start.png와 위 카드의 0.2 × 0.3 = 0.06, 1.2 × 0.4 = 0.48. 모눈 설명과 따라 풀기는 이 예시로 만든 시안 문구이며, 본 콘텐츠 확정·검수는 별도.</li><li>30-fading-1.png·33-fading-step2.png·43-fading-rating.png는 빈칸 쓰기 연결의 참고. 빈칸 쓰기의 단계·평가 정책 변경은 이번 시안 범위에 없음.</li></ul><p><b>원장님께:</b> A~E 중 기본 묶음을 골라 주세요. 다른 안에서 가져오고 싶은 첫 화면·오답 판·예습 틀이 있으면 함께 지정해 주세요. 단추 위치와 문구는 선택한 구조의 Hi-fi에서 다시 확인합니다.</p><p id="verification" class="muted">검증 기록은 최종 점검 뒤 여기에 남깁니다.</p></footer>
-</main>
-<script>
-'use strict';
-const variants=[
- {id:'A',name:'진도판',diff:'진도판을 크게 두고 오늘의 출발점을 붙입니다. 오답은 같은 카드 안에서 펼치고, 예습은 한 장으로 읽습니다.',cost:'여정의 맥락이 잘 보이지만 시작 단추까지 시선이 이동하고, 예습은 세로로 깁니다.'},
- {id:'B',name:'오늘 할 일',diff:'오늘 공부 한 장을 먼저 보여 줍니다. 풀이는 아래 판에 모으고, 예습은 한 단계씩 넘깁니다.',cost:'시작할 일이 분명하지만 진도판은 작아지고, 예습 앞뒤 내용을 한눈에 비교하기 어렵습니다.'},
- {id:'C',name:'길잡이',diff:'길잡이 자리와 짧은 안내가 먼저 보입니다. 풀이를 옆 칸에 두고, 예습은 큰 그림과 설명을 나란히 둡니다.',cost:'공부 중에도 길잡이와 그림의 자리가 생기지만 PC 가로 공간을 많이 쓰고 폰에서는 아래로 쌓입니다.'},
- {id:'D',name:'목록',diff:'오늘 할 내용과 여정을 목록으로 정리합니다. 풀이는 별도 화면에서 읽고, 예습은 순서대로 펼치는 목록입니다.',cost:'화면이 단순하고 읽을 순서가 명확하지만 여정 그림이 작고, 풀이 화면에서 이전 보기와 비교하기 어렵습니다.'},
- {id:'E',name:'펼친 책',diff:'오늘 공부와 여정을 양쪽 면으로 나눕니다. 문제와 풀이를 위아래로 연결하고, 예습은 뜻·그림과 예·연습의 두 면입니다.',cost:'개념과 예를 함께 보기 좋지만 폰에서는 한 면씩 쌓여 PC의 펼친 책 구도가 약해집니다.'}
-];
-let selected='A';
-const state={home:{done:false},wrong:{kind:'bank',phase:'retry'},preview:{step:0,checked:false}};
-function app(option,screen,initial){
- const root=document.getElementById('app');let s=initial;
- const box=(name,cls='')=>`<div class="art ${cls}"><span>${name}</span></div>`;
- const btn=(text,action,primary=false)=>`<button data-action="${action}" class="${primary?'primary':''}">${text}</button>`;
- const unit='소수 곱셈과 어림';
- function send(next){s={...s,...next};parent.postMessage({wire:true,screen,state:s},'*');render();}
- function top(session=false){return `<header><b>오늘 수학</b><span>${session?'': '검수학생'}</span>${session?btn('학습 홈','home'):btn('로그아웃','logout')}</header>`;}
- function journey(){const titles=[unit,'대응·평균·가능성','합동·대칭과 직육면체','다각형의 둘레와 넓이'];return `<section class="journey"><h2>나의 수학 여정</h2>${box('진도판 테마 그림 자리','map-art')}<ol class="path">${titles.map((t,i)=>`<li class="${i===0?'current':''}"><span>${i===0?(s.done?'오늘 마침':'오늘 여기'):''}</span><b>${t}</b></li>`).join('')}</ol></section>`;}
- function today(){return `<section class="today"><p>초등 5학년</p><h1>${s.done?'오늘 공부를 마쳤어요':'오늘도 한 칸씩 배워요'}</h1><h2>${unit}</h2>${s.done?`<div class="result"><h3>오늘 한 것</h3><p>소수의 곱셈 · 개념 활동 15개</p><h3>내일 할 것</h3><p>기억 복습과 다음 공부를 이어 가요.</p></div>${box('하루 마침 · 보상 그림 자리','reward')}`:`<p>배운 것을 떠올리고, 새 내용을 배워요.</p>${btn('오늘 공부 시작','start',true)}`}</section>`;}
- function home(){let content='';const guide=box('길잡이 캐릭터 자리','guide');if(option==='A')content=`<div class="home-map">${journey()}${today()}</div>`;if(option==='B')content=`<div class="home-focus">${today()}${journey()}</div>`;if(option==='C')content=`<div class="home-guide">${guide}<div>${today()}${journey()}</div></div>`;if(option==='D')content=`<div class="home-list">${today()}<section class="lesson-list"><h3>오늘 공부</h3><p>소수의 곱셈</p><p>기억 복습</p>${box('길잡이 · 작은 안내 그림 자리')}</section>${journey()}</div>`;if(option==='E')content=`<div class="home-book">${today()}${journey()}</div>`;return `${top()}<nav class="student-nav"><b>탐험</b>${btn('도감','catalog')}</nav><main>${content}<p class="quiet">공부할 순서대로 이어서 보여 드려요.</p></main>`;}
- function question(){return s.kind==='bank'?`<p>수의 범위와 어림하기</p><h1>이상과 이하 알아보기</h1><p class="question">42, 44, 45, 38, 36 중에서<br>44 이하인 수는 모두 몇 개입니까?</p>`:`<p>${unit}</p><h1>소수의 곱셈</h1><p class="question">0.2 × 0.3은 0.06이다.</p>`;}
- function choices(){let values=s.kind==='bank'?(s.phase==='initial'?['63','8','4','70']:['70','4','63','8']):(s.phase==='initial'?['맞다','아니다']:['아니다','맞다']);return `<div class="choices">${values.map(v=>`<button data-answer="${v}">${v}</button>`).join('')}</div>${btn('아직 모르겠어요','giveup')}`;}
- function explanation(){return `<section class="explanation" tabindex="-1"><h2>정답과 풀이</h2>${s.kind==='bank'?`<p class="answer">정답은 4개예요.</p><p>44 이하에는 44도 들어가요.<br>42, 44, 38, 36이므로 모두 4개예요.<br>45는 44보다 커서 들어가지 않아요.</p>${box('44 이하 · 경계 포함 수직선 SVG 자리')}`:`<p class="answer">정답은 ‘맞다’예요.</p><p>자연수처럼 계산한 뒤 두 수의 소수 자릿수의 합만큼 소수점 아래 자리를 둬요.</p><ul class="examples"><li>맞는 예: 0.2 × 0.3 = 0.06</li><li>맞는 예: 1.2 × 0.4 = 0.48</li><li>틀린 예: 0.2 × 0.3 = 0.6</li><li>틀린 예: 1.2 × 0.4 = 4.8</li></ul><p>‘0.2 × 0.3은 0.06이다’는 참이에요.<br>0.1 × 0.1은 0.01임을 생각해요.</p>${box('소수 곱셈 · 모눈 SVG 자리')}`}<p class="quiet">이 문제는 다음 복습에서 다시 만나요.</p>${btn('알겠어요','understood',true)}</section>`;}
- function wrong(){const solved=s.phase==='solution';let area;if(s.phase==='next')area=`<section class="next"><h1>풀이를 확인했어요</h1><p>다음 공부를 이어 가요.</p>${box('길잡이 · 이어 가기 그림 자리')}${btn('학습 홈','home',true)}</section>`;else if(s.phase==='success')area=`<section class="next"><h1>맞았어요</h1><p>다음 공부를 이어 가요.</p>${btn('다음','understood',true)}</section>`;else {const q=`<section class="problem">${question()}${!solved?`<p class="feedback" role="status">${s.phase==='retry'?'다시 해 볼까요':''}</p>${choices()}`:''}</section>`;area=option==='D'&&solved?`<div class="full-solution"><p class="quiet">${s.kind==='bank'?'42, 44, 45, 38, 36 중에서 44 이하인 수는 모두 몇 개입니까?':'0.2 × 0.3은 0.06이다.'}</p>${explanation()}</div>`:`<div class="wrong-layout ${solved?'has-solution':''}">${q}${solved?explanation():box('공부 화면 · 테마 그림 자리','study-art')}</div>`;}return `${top(true)}<main class="session"><p class="quiet">${s.kind==='bank'?'문제 풀기 · 3 / 5':'개념 탐험 · 3 / 15'}</p>${area}</main>`;}
- const parts=[()=>`<h2>소수의 곱셈</h2><p>자연수처럼 계산한 뒤 두 수의 소수 자릿수의 합만큼 소수점 아래 자리를 둬요.</p>`,()=>`${box('0.2 × 0.3 · 10 × 10 모눈 넓이 모형 SVG 자리','math-art')}<p>한 변이 1인 정사각형을 100칸으로 나눠요.<br>가로 0.2, 세로 0.3인 부분은 6칸이에요.</p>`,()=>`<h2>함께 풀어 봐요</h2><p class="equation">0.2 × 0.3 = 0.06</p><p>작은 한 칸은 0.01이에요.<br>6칸이므로 넓이는 0.06이에요.</p><p>2 × 3 = 6에서 소수점 아래 두 자리를 둬요.</p>`,()=>`<h2>따라 풀어 봐요</h2><p>1.2 × 0.4를 계산해 보세요.</p><p>12 × 4 = 48이에요.<br>두 수의 소수 자릿수의 합만큼 소수점을 옮겨요.</p><label>1.2 × 0.4 = <input id="practice" inputmode="decimal" aria-label="1.2 곱하기 0.4의 답" value="${s.checked?'0.48':''}"></label>${btn('확인','check')}<p class="practice-feedback" role="status">${s.checked?'0.48이에요. 소수점 아래 두 자리를 둬요.':''}</p>`];
- function preview(){let content;if(option==='B'){content=`<div class="steps"><p>${s.step+1} / 4</p>${parts[s.step]()}<div class="actions">${s.step>0?btn('이전','prev'):''}${s.step<3?btn('다음','forward',true):btn('문제 풀기','practice',true)}</div></div>`;}else if(option==='D'){content=`<div class="preview-list">${parts.map((f,i)=>`<details ${i<=s.step?'open':''}><summary>${['뜻 읽기','그림 보기','함께 풀기','따라 풀기'][i]}</summary>${f()}</details>`).join('')}${btn('문제 풀기','practice',true)}</div>`;}else if(option==='C'){content=`<div class="preview-split"><div>${parts[0]()}${parts[1]()}</div><div>${parts[2]()}${parts[3]()}${btn('문제 풀기','practice',true)}</div></div>`;}else if(option==='E'){content=`<div class="preview-book"><div>${parts[0]()}${parts[1]()}</div><div>${parts[2]()}${parts[3]()}${btn('문제 풀기','practice',true)}</div></div>`;}else content=`<div class="preview-stack">${parts.map(f=>`<section>${f()}</section>`).join('')}${btn('문제 풀기','practice',true)}</div>`;return `${top(true)}<main class="session"><p class="quiet">처음 배우는 내용</p><h1>소수의 곱셈을 배워요</h1>${content}</main>`;}
- function render(){root.innerHTML=screen==='home'?home():screen==='wrong'?wrong():preview();}
- root.addEventListener('click',e=>{const a=e.target.closest('button');if(!a)return;if(a.dataset.answer){const correct=s.kind==='bank'?a.dataset.answer==='4':a.dataset.answer==='맞다';send({phase:correct?'success':s.phase==='initial'?'retry':'solution'});if(!correct&&s.phase==='solution')root.querySelector('.explanation')?.focus();return;}switch(a.dataset.action){case 'start':parent.postMessage({wireNavigate:'preview'},'*');break;case 'giveup':send({phase:'solution'});root.querySelector('.explanation')?.focus();break;case 'understood':send({phase:'next'});break;case 'forward':send({step:Math.min(3,s.step+1)});break;case 'prev':send({step:Math.max(0,s.step-1)});break;case 'check':{const v=root.querySelector('#practice').value.trim();if(v==='0.48')send({checked:true});else root.querySelector('.practice-feedback').textContent='12 × 4 = 48から、置く位置を考えてみましょう。';break;}case 'practice':parent.postMessage({wireNavigate:'wrong'},'*');break;case 'home':parent.postMessage({wireNavigate:'home'},'*');break;case 'catalog':root.querySelector('main').innerHTML='<h1>도감 · 둘러보기</h1><p>소수 곱셈과 어림</p><p>대응·평균·가능성</p><p>배운 내용을 살펴봐요.</p>'+btn('탐험으로','home');break;case 'logout':a.textContent='시안에서는 로그아웃하지 않아요';break;}});
- addEventListener('message',e=>{if(e.source===parent&&e.data.sync&&e.data.screen===screen){s=e.data.state;render();}});render();
-}
-const innerCSS=`
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>초5 혼자 공부 · Wire 5안</title>
+    <style>
+      @font-face {
+        font-family: Pretendard;
+        src: url("../../../public/fonts/PretendardVariable.woff2")
+          format("woff2");
+        font-weight: 100 900;
+        font-display: swap;
+      }
+      :root {
+        --ink: #161616;
+        --muted: #61615e;
+        --line: #b9b9b6;
+        --control: #8e8e8b;
+        --panel: #e9e9e6;
+        --blue: #2064b3;
+        --white: #fff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--white);
+        color: var(--ink);
+        font:
+          15px/1.6 Pretendard,
+          "Malgun Gothic",
+          sans-serif;
+      }
+      button,
+      select {
+        font: inherit;
+        color: inherit;
+        background: var(--white);
+        border: 1px solid var(--control);
+        padding: 10px 16px;
+        min-height: 44px;
+        cursor: pointer;
+      }
+      button:focus-visible,
+      select:focus-visible,
+      a:focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 3px;
+      }
+      button[aria-selected="true"],
+      button[aria-pressed="true"] {
+        background: var(--ink);
+        color: white;
+      }
+      h1 {
+        font-size: 28px;
+        line-height: 1.3;
+        margin: 0 0 16px;
+      }
+      h2 {
+        font-size: 24px;
+        margin: 0 0 12px;
+      }
+      h3 {
+        font-size: 20px;
+        margin: 0;
+      }
+      p {
+        margin: 8px 0;
+      }
+      .board {
+        max-width: 1600px;
+        margin: auto;
+        padding: 32px;
+      }
+      .intro {
+        max-width: 900px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .bar {
+        position: sticky;
+        top: 0;
+        background: white;
+        z-index: 5;
+        border-block: 1px solid var(--line);
+        padding: 12px 0;
+        margin: 24px 0;
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .tabs,
+      .widths,
+      .states {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .widths {
+        margin-left: auto;
+      }
+      .thesis {
+        padding: 0 0 20px;
+        border-bottom: 1px solid var(--line);
+      }
+      .thesis p {
+        max-width: 1000px;
+      }
+      .review {
+        margin: 32px 0;
+      }
+      .review-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+      .pair {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 390px;
+        gap: 24px;
+        align-items: start;
+      }
+      .device {
+        min-width: 0;
+      }
+      .device-label {
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+      .viewport {
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--control);
+        background: var(--panel);
+      }
+      iframe {
+        display: block;
+        border: 0;
+        transform-origin: top left;
+        background: white;
+      }
+      .phone iframe {
+        width: 390px;
+      }
+      .desktop iframe {
+        width: 1366px;
+      }
+      .phone .viewport {
+        max-width: 392px;
+      }
+      .notes {
+        font-size: 13px;
+        color: var(--muted);
+        max-width: 1050px;
+        margin-top: 12px;
+      }
+      .source {
+        border-top: 1px solid var(--line);
+        padding-top: 24px;
+        margin-top: 48px;
+        font-size: 13px;
+      }
+      .source li {
+        margin: 8px 0;
+      }
+      .only-pc .pair,
+      .only-phone .pair {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .only-pc .phone,
+      .only-phone .desktop {
+        display: none;
+      }
+      .only-phone .phone {
+        max-width: 392px;
+        margin: auto;
+        width: 100%;
+      }
+      .audit {
+        border: 1px solid var(--line);
+        padding: 20px;
+        margin: 24px 0;
+      }
+      .audit summary {
+        cursor: pointer;
+        font-weight: 700;
+        min-height: 44px;
+      }
+      .audit table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 16px;
+      }
+      .audit td,
+      .audit th {
+        text-align: left;
+        border-bottom: 1px solid var(--line);
+        padding: 10px;
+        vertical-align: top;
+      }
+      .audit th {
+        font-weight: 700;
+      }
+      a {
+        color: var(--blue);
+      }
+      [hidden] {
+        display: none !important;
+      }
+      @media (max-width: 1150px) {
+        .pair {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .phone {
+          width: min(100%, 392px);
+          margin: auto;
+        }
+      }
+      @media (max-width: 600px) {
+        .board {
+          padding: 16px;
+        }
+        .widths {
+          margin-left: 0;
+        }
+        .bar {
+          position: static;
+        }
+        .tabs button {
+          padding: 8px 12px;
+        }
+        .audit {
+          padding: 12px;
+        }
+        .audit td,
+        .audit th {
+          padding: 8px 4px;
+        }
+        h1 {
+          font-size: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="board">
+      <header class="intro">
+        <h1>초5 혼자 공부 · Wire 5안</h1>
+        <p>
+          첫 화면, 틀렸을 때, 예습 카드의 구조를 한 묶음으로 비교합니다.
+          색·질감·캐릭터의 생김새는 구조를 고른 뒤 정합니다.
+        </p>
+        <p class="muted">검토용 정적 시안 · 2026-10-19 · 제품 저장 없음</p>
+      </header>
+      <nav class="bar" aria-label="시안 비교">
+        <div class="tabs" role="tablist" aria-label="구조안"></div>
+        <div class="widths" aria-label="미리보기 폭">
+          <button data-width="both" aria-pressed="true">PC + 폰</button
+          ><button data-width="pc" aria-pressed="false">PC 1366</button
+          ><button data-width="phone" aria-pressed="false">폰 390</button>
+        </div>
+      </nav>
+      <section id="proposal" role="tabpanel" aria-labelledby="tab-A">
+        <div class="thesis" id="thesis"></div>
+        <div id="screens"></div>
+      </section>
+      <details class="audit">
+        <summary>공통 동작과 검토 기준</summary>
+        <p>
+          화면 안 단추로 흐름을 확인할 수 있습니다. PC와 폰의 상태는 함께
+          바뀝니다. 화면 위 상태 단추는 검토 도구입니다.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>상황</th>
+              <th>모든 안의 동작</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>첫 화면</td>
+              <td>
+                시작은 ‘오늘 공부 시작’ 하나. 도감은 둘러보기이며 학년·목표 단원
+                설정은 없음. 순서는 엔진에 맡김.
+              </td>
+            </tr>
+            <tr>
+              <td>첫 오답</td>
+              <td>
+                ‘다시 해 볼까요’와 같은 문제. 보기 값은 그대로, 표시 순서만
+                바꿈. 답을 공개하지 않음.
+              </td>
+            </tr>
+            <tr>
+              <td>두 번째 오답 / 모르겠어요</td>
+              <td>
+                정답과 풀이를 공개. ‘알겠어요’를 눌러야 이동. 그날 다시 요구하지
+                않고 다음 복습에 다시 만남.
+              </td>
+            </tr>
+            <tr>
+              <td>개념 카드 풀이</td>
+              <td>
+                뜻만 다시 보여 주지 않음. 예시의 정오, 참거짓의 정답, 카드
+                설명을 함께 보여 줌.
+              </td>
+            </tr>
+            <tr>
+              <td>예습</td>
+              <td>
+                새 소단원 첫 회차 앞에 개념 → 수학 그림 자리 → 풀어 보인 예 →
+                따라 풀기. 소수 곱셈은 모눈 넓이 모형 자리.
+              </td>
+            </tr>
+            <tr>
+              <td>그림</td>
+              <td>
+                점선은 제작할 그림의 자리. 수학 그림은 정확한 SVG, 직육면체는
+                Blender, 캐릭터·보상은 이미지 생성 대상. 이 Wire에는 이미지 생성
+                결과를 넣지 않음.
+              </td>
+            </tr>
+            <tr>
+              <td>기록과 일정</td>
+              <td>
+                첫 오답을 두 번째 성공으로 덮지 않는 계약은 별도 내부 작업. 이
+                파일은 서버 호출·저장·일정 계산을 하지 않음.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </details>
+      <footer class="source">
+        <h3>근거와 선택할 것</h3>
+        <p>
+          원본 지시서:
+          D:\todays-math-srs-e5\docs\planning\tracks\brief-srs-e5-wire-codex.md<br />계획서:
+          같은 저장소 docs/planning/srs-e5-30day-plan-20261019.md
+          §1·2·3.2·3.4·3.6·3.7
+        </p>
+        <ul>
+          <li>
+            첫 화면: 05-home-e5.png, 하루 마침: 12-day1-done.png. 첫날 개념 활동
+            15개와 단원 이름만 사용. 29-day3-summary.png는 하루 전체 마침이
+            아니므로 그 수치를 완료 실적으로 섞지 않음.
+          </li>
+          <li>
+            은행 문제: 24-q3-wrong-a.png의 ‘42, 44, 45, 38, 36 중에서 44 이하인
+            수는 모두 몇 개입니까?’ 및 보기 63·8·4·70을 유지. 보기 품질 개선은
+            별도 내부 작업. 풀이 문구는 이 문제의 수를 직접 대조해 시안용으로
+            작성.
+          </li>
+          <li>
+            개념 카드: src/lib/math-explorers/definition-content.ts의
+            g5-decimal-multiply. 뜻·예시 4개·참거짓·설명은 제품 데이터. 존댓말과
+            띄어쓰기만 화면 톤에 맞춤.
+          </li>
+          <li>
+            예습: 06-start.png와 위 카드의 0.2 × 0.3 = 0.06, 1.2 × 0.4 = 0.48.
+            모눈 설명과 따라 풀기는 이 예시로 만든 시안 문구이며, 본 콘텐츠
+            확정·검수는 별도.
+          </li>
+          <li>
+            30-fading-1.png·33-fading-step2.png·43-fading-rating.png는 빈칸 쓰기
+            연결의 참고. 빈칸 쓰기의 단계·평가 정책 변경은 이번 시안 범위에
+            없음.
+          </li>
+        </ul>
+        <p>
+          <b>원장님께:</b> A~E 중 기본 묶음을 골라 주세요. 다른 안에서 가져오고
+          싶은 첫 화면·오답 판·예습 틀이 있으면 함께 지정해 주세요. 단추 위치와
+          문구는 선택한 구조의 Hi-fi에서 다시 확인합니다.
+        </p>
+        <p>
+          오답 화면의 다음 문항은 자리만 표시합니다. 다음 문항의 내용과 순서는
+          실제 엔진을 연결하는 구현 단계의 범위입니다.
+        </p>
+        <p>
+          검증 캡처: <a href="srs-e5-wire-shots/A-solution.png">A 풀이</a> ·
+          <a href="srs-e5-wire-shots/B-solution.png">B 풀이</a> ·
+          <a href="srs-e5-wire-shots/C-solution.png">C 풀이</a> ·
+          <a href="srs-e5-wire-shots/D-solution.png">D 풀이</a> ·
+          <a href="srs-e5-wire-shots/E-solution.png">E 풀이</a>. 같은 폴더에 각
+          안의 PC·폰 전체 캡처도 있습니다.
+        </p>
+        <p id="verification" class="muted">
+          2026-10-19 · Edge/Playwright: 5안 × 3화면 × 2폭(1366·390), 가로
+          넘침·JavaScript 오류 없음. 보기 값 보존과 순서 변경, 첫 오답, 두 번째
+          오답·모르겠어요, 자동 넘김 없음, 알겠어요 이동, 예습 단계·0.48 입력,
+          하루 마침을 확인했습니다. 제품 코드 수정·API·DB 접근과 설치 작업은
+          하지 않았습니다.
+        </p>
+      </footer>
+    </main>
+    <script>
+      "use strict";
+      const variants = [
+        {
+          id: "A",
+          name: "진도판",
+          diff: "진도판을 크게 두고 오늘의 출발점을 붙입니다. 오답은 같은 카드 안에서 펼치고, 예습은 한 장으로 읽습니다.",
+          cost: "여정의 맥락이 잘 보이지만 시작 단추까지 시선이 이동하고, 예습은 세로로 깁니다.",
+        },
+        {
+          id: "B",
+          name: "오늘 할 일",
+          diff: "오늘 공부 한 장을 먼저 보여 줍니다. 풀이는 아래 판에 모으고, 예습은 한 단계씩 넘깁니다.",
+          cost: "시작할 일이 분명하지만 진도판은 작아지고, 예습 앞뒤 내용을 한눈에 비교하기 어렵습니다.",
+        },
+        {
+          id: "C",
+          name: "길잡이",
+          diff: "길잡이 자리와 짧은 안내가 먼저 보입니다. 풀이를 옆 칸에 두고, 예습은 큰 그림과 설명을 나란히 둡니다.",
+          cost: "공부 중에도 길잡이와 그림의 자리가 생기지만 PC 가로 공간을 많이 쓰고 폰에서는 아래로 쌓입니다.",
+        },
+        {
+          id: "D",
+          name: "목록",
+          diff: "오늘 할 내용과 여정을 목록으로 정리합니다. 풀이는 별도 화면에서 읽고, 예습은 순서대로 펼치는 목록입니다.",
+          cost: "화면이 단순하고 읽을 순서가 명확하지만 여정 그림이 작고, 풀이 화면에서 이전 보기와 비교하기 어렵습니다.",
+        },
+        {
+          id: "E",
+          name: "펼친 책",
+          diff: "오늘 공부와 여정을 양쪽 면으로 나눕니다. 문제와 풀이를 위아래로 연결하고, 예습은 뜻·그림과 예·연습의 두 면입니다.",
+          cost: "개념과 예를 함께 보기 좋지만 폰에서는 한 면씩 쌓여 PC의 펼친 책 구도가 약해집니다.",
+        },
+      ];
+      let selected = "A";
+      const state = {
+        home: { done: false },
+        wrong: { kind: "bank", phase: "retry" },
+        preview: { step: 0, checked: false },
+      };
+      function app(option, screen, initial) {
+        const root = document.getElementById("app");
+        let s = initial;
+        const box = (name, cls = "") =>
+          `<div class="art ${cls}"><span>${name}</span></div>`;
+        const btn = (text, action, primary = false) =>
+          `<button data-action="${action}" class="${primary ? "primary" : ""}">${text}</button>`;
+        const unit = "소수 곱셈과 어림";
+        function send(next) {
+          s = { ...s, ...next };
+          parent.postMessage({ wire: true, screen, state: s }, "*");
+          render();
+        }
+        function top(session = false) {
+          return `<header><b>오늘 수학</b><span>${session ? "" : "검수학생"}</span>${session ? btn("학습 홈", "home") : btn("로그아웃", "logout")}</header>`;
+        }
+        function journey() {
+          const titles = [
+            unit,
+            "대응·평균·가능성",
+            "합동·대칭과 직육면체",
+            "다각형의 둘레와 넓이",
+          ];
+          return `<section class="journey"><h2>나의 수학 여정</h2>${box("진도판 테마 그림 자리", "map-art")}<ol class="path">${titles.map((t, i) => `<li class="${i === 0 ? "current" : ""}"><span>${i === 0 ? (s.done ? "오늘 마침" : "오늘 여기") : ""}</span><b>${t}</b></li>`).join("")}</ol></section>`;
+        }
+        function today() {
+          return `<section class="today"><p>초등 5학년</p><h1>${s.done ? "오늘 공부를 마쳤어요" : "오늘도 한 칸씩 배워요"}</h1><h2>${unit}</h2>${s.done ? `<div class="result"><h3>오늘 한 것</h3><p>소수의 곱셈 · 개념 활동 15개</p><h3>내일 할 것</h3><p>기억 복습과 다음 공부를 이어 가요.</p></div>${box("하루 마침 · 보상 그림 자리", "reward")}` : `<p>배운 것을 떠올리고, 새 내용을 배워요.</p>${option === "C" || option === "D" ? "" : box("길잡이 · 작은 안내 그림 자리")}${btn("오늘 공부 시작", "start", true)}`}</section>`;
+        }
+        function home() {
+          let content = "";
+          const guide = box("길잡이 캐릭터 자리", "guide");
+          if (option === "A")
+            content = `<div class="home-map">${journey()}${today()}</div>`;
+          if (option === "B")
+            content = `<div class="home-focus">${today()}${journey()}</div>`;
+          if (option === "C")
+            content = `<div class="home-guide">${guide}<div>${today()}${journey()}</div></div>`;
+          if (option === "D")
+            content = `<div class="home-list">${today()}<section class="lesson-list"><h3>오늘 공부</h3><p>소수의 곱셈</p><p>기억 복습</p>${box("길잡이 · 작은 안내 그림 자리")}</section>${journey()}</div>`;
+          if (option === "E")
+            content = `<div class="home-book">${today()}${journey()}</div>`;
+          return `${top()}<nav class="student-nav"><b>탐험</b>${btn("도감", "catalog")}</nav><main>${content}<p class="quiet">공부할 순서대로 이어서 보여 드려요.</p></main>`;
+        }
+        function question() {
+          return s.kind === "bank"
+            ? `<p>수의 범위와 어림하기</p><h1>이상과 이하 알아보기</h1><p class="question">42, 44, 45, 38, 36 중에서<br>44 이하인 수는 모두 몇 개입니까?</p>`
+            : `<p>${unit}</p><h1>소수의 곱셈</h1><p class="question">0.2 × 0.3은 0.06이다.</p>`;
+        }
+        function choices() {
+          let values =
+            s.kind === "bank"
+              ? s.phase === "initial"
+                ? ["63", "8", "4", "70"]
+                : ["70", "4", "63", "8"]
+              : s.phase === "initial"
+                ? ["맞다", "아니다"]
+                : ["아니다", "맞다"];
+          return `<div class="choices">${values.map((v) => `<button data-answer="${v}">${v}</button>`).join("")}</div>${btn("아직 모르겠어요", "giveup")}`;
+        }
+        function explanation() {
+          return `<section class="explanation" tabindex="-1"><h2>정답과 풀이</h2>${s.kind === "bank" ? `<p class="answer">정답은 4개예요.</p><p>44 이하에는 44도 들어가요.<br>42, 44, 38, 36이므로 모두 4개예요.<br>45는 44보다 커서 들어가지 않아요.</p>${box("44 이하 · 경계 포함 수직선 SVG 자리")}` : `<p class="answer">정답은 ‘맞다’예요.</p><p>자연수처럼 계산한 뒤 두 수의 소수 자릿수의 합만큼 소수점 아래 자리를 둬요.</p><ul class="examples"><li>맞는 예: 0.2 × 0.3 = 0.06</li><li>맞는 예: 1.2 × 0.4 = 0.48</li><li>틀린 예: 0.2 × 0.3 = 0.6</li><li>틀린 예: 1.2 × 0.4 = 4.8</li></ul><p>‘0.2 × 0.3은 0.06이다’는 참이에요.<br>0.1 × 0.1은 0.01임을 생각해요.</p>${box("소수 곱셈 · 모눈 SVG 자리")}`}<p class="quiet">이 문제는 다음 복습에서 다시 만나요.</p>${btn("알겠어요", "understood", true)}</section>`;
+        }
+        function wrong() {
+          const solved = s.phase === "solution";
+          let area;
+          if (s.phase === "next")
+            area = `<section class="next"><h1>다음 공부</h1><p>${s.readSolution ? "풀이를 확인했어요. 다음 공부를 이어 가요." : "다음 공부를 이어 가요."}</p>${box("엔진이 정한 다음 문항 자리")}</section>`;
+          else if (s.phase === "success")
+            area = `<section class="next"><h1>맞았어요</h1><p>다음 공부를 이어 가요.</p>${btn("다음", "advance", true)}</section>`;
+          else {
+            const q = `<section class="problem">${question()}${!solved ? `<p class="feedback" role="status">${s.phase === "retry" ? "다시 해 볼까요" : ""}</p>${choices()}` : ""}</section>`;
+            area =
+              option === "D" && solved
+                ? `<div class="full-solution"><p class="quiet">${s.kind === "bank" ? "42, 44, 45, 38, 36 중에서 44 이하인 수는 모두 몇 개입니까?" : "0.2 × 0.3은 0.06이다."}</p>${explanation()}</div>`
+                : `<div class="wrong-layout ${solved ? "has-solution" : ""}">${q}${solved ? explanation() : box("공부 화면 · 테마 그림 자리", "study-art")}</div>`;
+          }
+          return `${top(true)}<main class="session"><p class="quiet">${s.kind === "bank" ? "문제 풀기 · 3 / 5" : "개념 탐험 · 3 / 15"}</p>${area}</main>`;
+        }
+        const parts = [
+          () =>
+            `<h2>소수의 곱셈</h2><p>자연수처럼 계산한 뒤 두 수의 소수 자릿수의 합만큼 소수점 아래 자리를 둬요.</p>`,
+          () =>
+            `${box("0.2 × 0.3 · 10 × 10 모눈 넓이 모형 SVG 자리", "math-art")}<p>한 변이 1인 정사각형을 100칸으로 나눠요.<br>가로 0.2, 세로 0.3인 부분은 6칸이에요.</p>`,
+          () =>
+            `<h2>함께 풀어 봐요</h2><p class="equation">0.2 × 0.3 = 0.06</p><p>작은 한 칸은 0.01이에요.<br>6칸이므로 넓이는 0.06이에요.</p><p>2 × 3 = 6에서 소수점 아래 두 자리를 둬요.</p>`,
+          () =>
+            `<h2>따라 풀어 봐요</h2><p>1.2 × 0.4를 계산해 보세요.</p><p>12 × 4 = 48이에요.<br>두 수의 소수 자릿수의 합만큼 소수점을 옮겨요.</p><label>1.2 × 0.4 = <input id="practice" inputmode="decimal" aria-label="1.2 곱하기 0.4의 답" value="${s.checked ? "0.48" : ""}"></label>${btn("확인", "check")}<p class="practice-feedback" role="status">${s.checked ? "0.48이에요. 소수점 아래 두 자리를 둬요." : ""}</p>`,
+        ];
+        function preview() {
+          let content;
+          if (option === "B") {
+            content = `<div class="steps"><p>${s.step + 1} / 4</p>${parts[s.step]()}<div class="actions">${s.step > 0 ? btn("이전", "prev") : ""}${s.step < 3 ? btn("다음", "forward", true) : btn("문제 풀기", "practice", true)}</div></div>`;
+          } else if (option === "D") {
+            content = `<div class="preview-list">${parts.map((f, i) => `<details ${i <= s.step ? "open" : ""}><summary>${["뜻 읽기", "그림 보기", "함께 풀기", "따라 풀기"][i]}</summary>${f()}</details>`).join("")}${btn("문제 풀기", "practice", true)}</div>`;
+          } else if (option === "C") {
+            content = `<div class="preview-split"><div>${parts[0]()}${parts[1]()}</div><div>${parts[2]()}${parts[3]()}${btn("문제 풀기", "practice", true)}</div></div>`;
+          } else if (option === "E") {
+            content = `<div class="preview-book"><div>${parts[0]()}${parts[1]()}</div><div>${parts[2]()}${parts[3]()}${btn("문제 풀기", "practice", true)}</div></div>`;
+          } else
+            content = `<div class="preview-stack">${parts.map((f) => `<section>${f()}</section>`).join("")}${btn("문제 풀기", "practice", true)}</div>`;
+          return `${top(true)}<main class="session"><p class="quiet">처음 배우는 내용</p><h1>소수의 곱셈을 배워요</h1>${content}</main>`;
+        }
+        function render() {
+          root.innerHTML =
+            screen === "home"
+              ? home()
+              : screen === "wrong"
+                ? wrong()
+                : preview();
+        }
+        root.addEventListener("click", (e) => {
+          const a = e.target.closest("button");
+          if (!a) return;
+          if (a.dataset.answer) {
+            const correct =
+              s.kind === "bank"
+                ? a.dataset.answer === "4"
+                : a.dataset.answer === "맞다";
+            send({
+              phase: correct
+                ? "success"
+                : s.phase === "initial"
+                  ? "retry"
+                  : "solution",
+            });
+            if (!correct && s.phase === "solution")
+              root.querySelector(".explanation")?.focus();
+            return;
+          }
+          switch (a.dataset.action) {
+            case "start":
+              parent.postMessage({ wireNavigate: "preview" }, "*");
+              break;
+            case "giveup":
+              send({ phase: "solution" });
+              root.querySelector(".explanation")?.focus();
+              break;
+            case "understood":
+              send({ phase: "next", readSolution: true });
+              break;
+            case "advance":
+              send({ phase: "next", readSolution: false });
+              break;
+            case "forward":
+              send({ step: Math.min(3, s.step + 1) });
+              break;
+            case "prev":
+              send({ step: Math.max(0, s.step - 1) });
+              break;
+            case "check": {
+              const v = root.querySelector("#practice").value.trim();
+              if (v === "0.48") send({ checked: true });
+              else
+                root.querySelector(".practice-feedback").textContent =
+                  "12 × 4 = 48에서 소수점의 위치를 생각해 봐요.";
+              break;
+            }
+            case "practice":
+              parent.postMessage({ wireNavigate: "wrong" }, "*");
+              break;
+            case "home":
+              parent.postMessage({ wireNavigate: "home" }, "*");
+              break;
+            case "catalog":
+              root.querySelector("main").innerHTML =
+                "<h1>도감 · 둘러보기</h1><p>소수 곱셈과 어림</p><p>대응·평균·가능성</p><p>배운 내용을 살펴봐요.</p>" +
+                btn("탐험으로", "home");
+              break;
+            case "logout":
+              a.textContent = "시안에서는 로그아웃하지 않아요";
+              break;
+          }
+        });
+        addEventListener("message", (e) => {
+          if (e.source === parent && e.data.sync && e.data.screen === screen) {
+            s = e.data.state;
+            render();
+          }
+        });
+        render();
+      }
+      const innerCSS = `
 @font-face{font-family:Pretendard;src:url('../../../public/fonts/PretendardVariable.woff2') format('woff2');font-display:swap;font-weight:100 900}
 :root{--ink:#161616;--muted:#61615e;--line:#b9b9b6;--control:#8e8e8b;--panel:#e9e9e6;--blue:#2064b3;--white:#fff}*{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--white);font:18px/1.65 Pretendard,'Malgun Gothic',sans-serif}h1{font-size:32px;line-height:1.4;margin:8px 0 24px}h2{font-size:24px;line-height:1.4;margin:0 0 16px}h3{font-size:20px;margin:16px 0 8px}p{margin:12px 0}button,input,summary{font:inherit;color:inherit}button{background:white;border:1px solid var(--control);padding:12px 24px;min-height:48px;cursor:pointer}button:hover{border-color:var(--ink)}button.primary{background:var(--ink);color:white;border-color:var(--ink)}button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--blue);outline-offset:3px}header{height:80px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:24px;padding:16px 32px}header>b{font-size:24px;margin-right:auto}header>span{font-size:14px}.student-nav{display:flex;align-items:center;gap:24px;padding:20px 48px;border-bottom:1px solid var(--line)}main{padding:40px 48px 48px;max-width:1366px;margin:auto}.quiet{color:var(--muted);font-size:16px}.art{border:1px dashed var(--control);background:var(--panel);display:flex;align-items:center;justify-content:center;min-height:120px;text-align:center;color:var(--muted);padding:24px;font-size:16px}.art span{max-width:25ch}.map-art{height:240px}.path{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding:0;margin:16px 0 0;gap:8px}.path li{border:1px solid var(--line);padding:16px;min-height:100px;display:flex;flex-direction:column;font-size:16px}.path span{color:var(--muted);font-size:14px;min-height:24px}.path .current{border:2px solid var(--ink)}.today{padding:32px;border:1px solid var(--line)}.today .primary{width:100%;margin-top:24px}.journey{padding:24px;border:1px solid var(--line)}.home-map{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:start}.home-focus{max-width:860px;margin:auto}.home-focus .today{padding:48px}.home-focus .journey{margin-top:24px;display:grid;grid-template-columns:1fr 1.5fr;gap:16px}.home-focus .map-art{height:140px;grid-column:1}.home-focus .path{grid-column:2;grid-row:1/3;margin:0}.home-guide{display:grid;grid-template-columns:340px 1fr;gap:32px}.guide{height:440px}.home-guide .journey{margin-top:24px}.home-guide .map-art{height:140px}.home-list{max-width:1040px;margin:auto}.home-list .today{border:0;padding:0 0 32px}.lesson-list{border-block:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;padding:24px 0}.lesson-list h3{grid-column:1/-1;margin:0}.home-list .journey{margin-top:32px;display:grid;grid-template-columns:1fr 3fr;gap:16px}.home-list .map-art{height:120px;grid-column:1}.home-list .path{grid-column:2;grid-row:1/3;display:block;margin:0}.home-list .path li{min-height:0;border:0;border-bottom:1px solid var(--line);flex-direction:row;gap:24px}.home-book{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line)}.home-book .today,.home-book .journey{border:0;padding:40px}.home-book .journey{border-left:1px solid var(--line)}.reward{height:130px}.result{border-block:1px solid var(--line);margin-bottom:24px;padding-bottom:16px}.session{padding-top:32px}.wrong-layout{border:1px solid var(--line);padding:32px;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:32px}.question{font-size:26px;margin:32px 0}.feedback{font-weight:700;min-height:30px}.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:24px}.choices button{min-height:72px;font-size:24px}.study-art{height:300px;align-self:center}.explanation{outline:0}.explanation .answer{font-weight:700;font-size:26px}.explanation .art{margin:24px 0}.explanation .primary{margin-top:16px;min-width:220px}.examples{padding-left:24px}.vA .has-solution,.vB .has-solution,.vE .has-solution{grid-template-columns:1fr}.vA .explanation{border-top:1px solid var(--line);padding-top:24px}.vB .has-solution{position:relative;padding-bottom:0;gap:24px}.vB .explanation{background:var(--panel);padding:32px;margin-inline:-32px;border-top:2px solid var(--ink)}.vB .explanation .art{background:white;min-height:100px}.vC .has-solution{grid-template-columns:1fr 1fr}.vC .explanation{border-left:1px solid var(--line);padding-left:32px}.full-solution{max-width:840px;margin:auto;border:1px solid var(--line);padding:32px}.vE .problem{border-bottom:1px solid var(--line);padding-bottom:24px}.vE .explanation{display:grid;grid-template-columns:1fr 1fr;gap:0 32px}.vE .explanation h2,.vE .explanation .quiet{grid-column:1/-1}.vE .explanation .art{grid-column:2;grid-row:2/5}.vE .explanation .primary{grid-column:1/-1}.next{padding:48px;border:1px solid var(--line);max-width:800px;margin:auto}.next button{margin-top:24px}.preview-stack{max-width:800px;margin:auto;border:1px solid var(--line);padding:32px}.preview-stack section+section{border-top:1px solid var(--line);padding-top:24px;margin-top:24px}.math-art{height:300px}.equation{font-size:32px}.preview-split,.preview-book{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;border:1px solid var(--line);padding:32px}.preview-split .math-art{height:360px}.preview-book{gap:0;padding:0;grid-template-columns:1fr 1fr}.preview-book>div{padding:32px}.preview-book>div+div{border-left:1px solid var(--line)}.steps{max-width:840px;margin:auto;border:1px solid var(--line);padding:40px;min-height:580px;display:flex;flex-direction:column}.steps .actions{margin-top:auto;padding-top:32px;display:flex;gap:16px;justify-content:space-between}.preview-list{max-width:900px;margin:auto}.preview-list details{border-bottom:1px solid var(--line);padding:24px}.preview-list summary{cursor:pointer;font-size:24px;min-height:48px}.preview-list>.primary{margin-top:32px}input{width:140px;padding:12px;border:1px solid var(--control);background:white;margin:12px 8px}label{display:inline-block}.practice-feedback{min-height:30px}.preview-split .primary,.preview-book .primary,.preview-stack>.primary{display:block;width:100%;margin-top:32px}
 @media(max-width:600px){body{font-size:16px}h1{font-size:26px;margin-bottom:20px}h2{font-size:22px}header{height:68px;padding:12px 16px;gap:12px}header>b{font-size:20px}header>span{display:none}header button{padding:8px 12px;font-size:14px}main{padding:24px 16px}.student-nav{padding:12px 16px}.home-map,.home-guide,.home-book{display:flex;flex-direction:column;gap:20px}.home-map>.today{order:-1}.home-map>*{width:100%}.today,.journey{padding:20px}.home-focus .today{padding:24px}.home-focus .journey,.home-list .journey{display:block}.home-focus .map-art,.home-list .map-art{height:120px}.home-focus .path{margin-top:16px}.home-guide .guide{height:160px;width:100%;min-height:0}.home-guide>div{width:100%}.home-guide .journey{margin-top:20px}.home-book .today,.home-book .journey{padding:20px;width:100%}.home-book .journey{border-left:0;border-top:1px solid var(--line)}.map-art{height:180px}.path li{padding:12px;font-size:14px}.home-list .path li{gap:12px}.lesson-list{grid-template-columns:1fr}.lesson-list h3{grid-column:auto}.lesson-list p{margin:0}.lesson-list .art{min-height:100px}.wrong-layout,.vC .has-solution{display:block;padding:20px}.study-art{height:120px;margin-top:24px}.question{font-size:22px;margin:24px 0}.choices{gap:12px}.choices button{padding:12px;min-height:60px}.problem>button{width:100%}.explanation{margin-top:24px}.explanation .answer{font-size:24px}.explanation .primary{width:100%;min-width:0}.vB .explanation{margin-inline:-20px;padding:24px 20px}.vC .explanation{border-left:0;border-top:1px solid var(--line);padding:24px 0 0}.vE .explanation{display:block}.full-solution{padding:20px}.preview-stack{padding:20px}.math-art{height:240px}.preview-split,.preview-book{display:block;padding:20px}.preview-split>div+div{border-top:1px solid var(--line);padding-top:24px;margin-top:24px}.preview-split .math-art{height:280px}.preview-book{padding:0}.preview-book>div{padding:20px}.preview-book>div+div{border-left:0;border-top:1px solid var(--line)}.steps{padding:24px;min-height:600px}.steps .actions button{padding:12px 20px}.preview-list details{padding:20px 8px}.preview-list summary{font-size:22px}.equation{font-size:28px}.next{padding:24px}input{width:112px;margin-inline:4px}.session{padding-top:20px}}
 `;
-function doc(v,k){return '<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>'+innerCSS+'</style></head><body class="v'+v+'"><div id="app"></div><script>('+app.toString()+')('+JSON.stringify(v)+','+JSON.stringify(k)+','+JSON.stringify(state[k])+')<\/script></body></html>';}
-function states(k){if(k==='home')return '<button data-state="home:start">시작 전</button><button data-state="home:done">하루 마침</button>';if(k==='wrong')return '<select aria-label="문제 종류" id="kind"><option value="bank">은행 문제</option><option value="concept">개념 카드</option></select><button data-state="wrong:initial">풀기 전</button><button data-state="wrong:retry">첫 오답</button><button data-state="wrong:solution">두 번째 오답 / 모르겠어요</button>';return '<button data-state="preview:reset">처음부터</button>';}
-function select(v){selected=v;const data=variants.find(x=>x.id===v);document.querySelectorAll('[role=tab]').forEach(b=>{b.setAttribute('aria-selected',b.dataset.variant===v);b.tabIndex=b.dataset.variant===v?0:-1;});document.getElementById('proposal').setAttribute('aria-labelledby','tab-'+v);document.getElementById('thesis').innerHTML=`<h2>${v} · ${data.name}</h2><p><b>무엇이 다른가</b> ${data.diff}</p><p><b>대가</b> ${data.cost}</p>`;document.getElementById('screens').innerHTML=[['home','A. 첫 화면'],['wrong','B. 틀렸을 때'],['preview','C. 예습 카드']].map(([k,title])=>`<section class="review" id="review-${k}"><div class="review-head"><h3>${title}</h3><div class="states">${states(k)}</div></div><div class="pair">${['desktop','phone'].map(d=>`<div class="device ${d}"><div class="device-label">${d==='desktop'?'PC · 실제 화면 폭 1366px (공간에 맞춰 축소)':'폰 · 실제 화면 폭 390px'}</div><div class="viewport"><iframe title="${v}안 ${title} ${d==='desktop'?'PC':'폰'}" data-screen="${k}" data-device="${d}" sandbox="allow-scripts allow-same-origin"></iframe></div></div>`).join('')}</div><p class="notes">${k==='home'?'하루 마침은 첫날 12-day1-done.png 기준. ‘내일 할 것’의 세부 내용은 엔진 응답으로 채울 자리입니다.':k==='wrong'?'첫 오답은 보기 순서만 섞습니다. 두 번째 오답·모르겠어요는 풀이를 연 채 기다립니다. ‘알겠어요’를 누르면 다음 공부 안내로 이동합니다.':v==='B'?'네 단계를 차례로 넘겨 봐 주세요. 마지막 따라 풀기에서 0.48을 입력해 확인할 수 있습니다.':'따라 풀기에서 0.48을 입력해 확인할 수 있습니다. 그림은 정확한 SVG가 들어갈 자리이며, 현재는 점선 상자입니다.'}</p></section>`).join('');document.getElementById('kind').value=state.wrong.kind;document.querySelectorAll('iframe').forEach(f=>{f.srcdoc=doc(v,f.dataset.screen);f.onload=()=>{new ResizeObserver(()=>fit(f)).observe(f.contentDocument.documentElement);fit(f);};});}
-function fit(f){const width=f.dataset.device==='desktop'?1366:390;const available=f.parentElement.clientWidth;const scale=Math.min(1,available/width);const height=Math.max(700,f.contentDocument?.getElementById('app')?.getBoundingClientRect().height||700);f.style.width=width+'px';f.style.height=height+'px';f.style.transform=`scale(${scale})`;f.parentElement.style.height=Math.ceil(height*scale)+'px';}
-document.querySelector('.tabs').innerHTML=variants.map(v=>`<button id="tab-${v.id}" role="tab" aria-controls="proposal" aria-selected="${v.id==='A'}" data-variant="${v.id}">${v.id} ${v.name}</button>`).join('');
-document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.variant)select(b.dataset.variant);if(b.dataset.width){document.body.classList.remove('only-pc','only-phone');if(b.dataset.width!=='both')document.body.classList.add('only-'+b.dataset.width);document.querySelectorAll('[data-width]').forEach(x=>x.setAttribute('aria-pressed',x===b));requestAnimationFrame(()=>document.querySelectorAll('iframe').forEach(fit));}if(b.dataset.state){const[k,value]=b.dataset.state.split(':');if(k==='home')state.home.done=value==='done';if(k==='wrong')state.wrong.phase=value;if(k==='preview')state.preview={step:0,checked:false};sync(k);}});
-document.querySelector('.tabs').addEventListener('keydown',e=>{let i=variants.findIndex(v=>v.id===selected);if(!['ArrowRight','ArrowLeft','Home','End'].includes(e.key))return;e.preventDefault();i=e.key==='Home'?0:e.key==='End'?4:(i+(e.key==='ArrowRight'?1:4))%5;select(variants[i].id);document.getElementById('tab-'+selected).focus();});
-document.addEventListener('change',e=>{if(e.target.id==='kind'){state.wrong={kind:e.target.value,phase:'retry'};sync('wrong');}});
-function sync(k){document.querySelectorAll(`iframe[data-screen="${k}"]`).forEach(f=>f.contentWindow.postMessage({sync:true,screen:k,state:state[k]},'*'));setTimeout(()=>document.querySelectorAll('iframe').forEach(fit),100);}
-addEventListener('message',e=>{const frame=Array.from(document.querySelectorAll('iframe')).find(f=>f.contentWindow===e.source);if(!frame)return;if(e.data.wire&&e.data.screen===frame.dataset.screen){state[e.data.screen]=e.data.state;sync(e.data.screen);}if(e.data.wireNavigate){const k=e.data.wireNavigate;if(!['home','wrong','preview'].includes(k))return;if(k==='wrong'){state.wrong.phase='initial';sync(k);}document.getElementById('review-'+k).scrollIntoView({behavior:'instant',block:'start'});}});
-new ResizeObserver(()=>document.querySelectorAll('iframe').forEach(fit)).observe(document.querySelector('.board'));select('A');
-</script>
-</body>
+      function doc(v, k) {
+        return (
+          '<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>' +
+          innerCSS +
+          '</style></head><body class="v' +
+          v +
+          '"><div id="app"></div><script>(' +
+          app.toString() +
+          ")(" +
+          JSON.stringify(v) +
+          "," +
+          JSON.stringify(k) +
+          "," +
+          JSON.stringify(state[k]) +
+          ")<\/script></body></html>"
+        );
+      }
+      function states(k) {
+        if (k === "home")
+          return '<button data-state="home:start">시작 전</button><button data-state="home:done">하루 마침</button>';
+        if (k === "wrong")
+          return '<select aria-label="문제 종류" id="kind"><option value="bank">은행 문제</option><option value="concept">개념 카드</option></select><button data-state="wrong:initial">풀기 전</button><button data-state="wrong:retry">첫 오답</button><button data-state="wrong:solution">두 번째 오답 / 모르겠어요</button>';
+        return '<button data-state="preview:reset">처음부터</button>';
+      }
+      function select(v) {
+        selected = v;
+        const data = variants.find((x) => x.id === v);
+        document.querySelectorAll("[role=tab]").forEach((b) => {
+          b.setAttribute("aria-selected", b.dataset.variant === v);
+          b.tabIndex = b.dataset.variant === v ? 0 : -1;
+        });
+        document
+          .getElementById("proposal")
+          .setAttribute("aria-labelledby", "tab-" + v);
+        document.getElementById("thesis").innerHTML =
+          `<h2>${v} · ${data.name}</h2><p><b>무엇이 다른가</b> ${data.diff}</p><p><b>대가</b> ${data.cost}</p>`;
+        document.getElementById("screens").innerHTML = [
+          ["home", "A. 첫 화면"],
+          ["wrong", "B. 틀렸을 때"],
+          ["preview", "C. 예습 카드"],
+        ]
+          .map(
+            ([k, title]) =>
+              `<section class="review" id="review-${k}"><div class="review-head"><h3>${title}</h3><div class="states">${states(k)}</div></div><div class="pair">${["desktop", "phone"].map((d) => `<div class="device ${d}"><div class="device-label">${d === "desktop" ? "PC · 실제 화면 폭 1366px (공간에 맞춰 축소)" : "폰 · 실제 화면 폭 390px"}</div><div class="viewport"><iframe title="${v}안 ${title} ${d === "desktop" ? "PC" : "폰"}" data-screen="${k}" data-device="${d}" sandbox="allow-scripts allow-same-origin"></iframe></div></div>`).join("")}</div><p class="notes">${k === "home" ? "하루 마침은 첫날 12-day1-done.png 기준. ‘내일 할 것’의 세부 내용은 엔진 응답으로 채울 자리입니다." : k === "wrong" ? "첫 오답은 보기 순서만 섞습니다. 두 번째 오답·모르겠어요는 풀이를 연 채 기다립니다. ‘알겠어요’를 누르면 다음 공부 안내로 이동합니다." : v === "B" ? "네 단계를 차례로 넘겨 봐 주세요. 마지막 따라 풀기에서 0.48을 입력해 확인할 수 있습니다." : "따라 풀기에서 0.48을 입력해 확인할 수 있습니다. 그림은 정확한 SVG가 들어갈 자리이며, 현재는 점선 상자입니다."}</p></section>`,
+          )
+          .join("");
+        document.getElementById("kind").value = state.wrong.kind;
+        document.querySelectorAll("iframe").forEach((f) => {
+          f.srcdoc = doc(v, f.dataset.screen);
+          f.onload = () => {
+            new ResizeObserver(() => fit(f)).observe(
+              f.contentDocument.documentElement,
+            );
+            fit(f);
+          };
+        });
+      }
+      function fit(f) {
+        const width = f.dataset.device === "desktop" ? 1366 : 390;
+        const available = f.parentElement.clientWidth;
+        const scale = Math.min(1, available / width);
+        const height = Math.max(
+          700,
+          f.contentDocument?.getElementById("app")?.getBoundingClientRect()
+            .height || 700,
+        );
+        f.style.width = width + "px";
+        f.style.height = height + "px";
+        f.style.transform = `scale(${scale})`;
+        f.parentElement.style.height = Math.ceil(height * scale) + "px";
+      }
+      document.querySelector(".tabs").innerHTML = variants
+        .map(
+          (v) =>
+            `<button id="tab-${v.id}" role="tab" aria-controls="proposal" aria-selected="${v.id === "A"}" data-variant="${v.id}">${v.id} ${v.name}</button>`,
+        )
+        .join("");
+      document.addEventListener("click", (e) => {
+        const b = e.target.closest("button");
+        if (!b) return;
+        if (b.dataset.variant) select(b.dataset.variant);
+        if (b.dataset.width) {
+          document.body.classList.remove("only-pc", "only-phone");
+          if (b.dataset.width !== "both")
+            document.body.classList.add("only-" + b.dataset.width);
+          document
+            .querySelectorAll("[data-width]")
+            .forEach((x) => x.setAttribute("aria-pressed", x === b));
+          requestAnimationFrame(() =>
+            document.querySelectorAll("iframe").forEach(fit),
+          );
+        }
+        if (b.dataset.state) {
+          const [k, value] = b.dataset.state.split(":");
+          if (k === "home") state.home.done = value === "done";
+          if (k === "wrong") state.wrong.phase = value;
+          if (k === "preview") state.preview = { step: 0, checked: false };
+          sync(k);
+        }
+      });
+      document.querySelector(".tabs").addEventListener("keydown", (e) => {
+        let i = variants.findIndex((v) => v.id === selected);
+        if (!["ArrowRight", "ArrowLeft", "Home", "End"].includes(e.key)) return;
+        e.preventDefault();
+        i =
+          e.key === "Home"
+            ? 0
+            : e.key === "End"
+              ? 4
+              : (i + (e.key === "ArrowRight" ? 1 : 4)) % 5;
+        select(variants[i].id);
+        document.getElementById("tab-" + selected).focus();
+      });
+      document.addEventListener("change", (e) => {
+        if (e.target.id === "kind") {
+          state.wrong = { kind: e.target.value, phase: "retry" };
+          sync("wrong");
+        }
+      });
+      function sync(k) {
+        document
+          .querySelectorAll(`iframe[data-screen="${k}"]`)
+          .forEach((f) =>
+            f.contentWindow.postMessage(
+              { sync: true, screen: k, state: state[k] },
+              "*",
+            ),
+          );
+        setTimeout(() => document.querySelectorAll("iframe").forEach(fit), 100);
+      }
+      addEventListener("message", (e) => {
+        const frame = Array.from(document.querySelectorAll("iframe")).find(
+          (f) => f.contentWindow === e.source,
+        );
+        if (!frame) return;
+        if (e.data.wire && e.data.screen === frame.dataset.screen) {
+          state[e.data.screen] = e.data.state;
+          sync(e.data.screen);
+        }
+        if (e.data.wireNavigate) {
+          const k = e.data.wireNavigate;
+          if (!["home", "wrong", "preview"].includes(k)) return;
+          if (k === "wrong") {
+            state.wrong = { kind: "concept", phase: "initial" };
+            document.getElementById("kind").value = "concept";
+            sync(k);
+          }
+          if (k === "home") sync(k);
+          document
+            .getElementById("review-" + k)
+            .scrollIntoView({ behavior: "instant", block: "start" });
+        }
+      });
+      new ResizeObserver(() =>
+        document.querySelectorAll("iframe").forEach(fit),
+      ).observe(document.querySelector(".board"));
+      select("A");
+    </script>
+  </body>
 </html>
