@@ -1,0 +1,88 @@
+{
+  "coefficientOrder": "constant,linear,quadratic",
+  "product": [
+    -12,
+    1,
+    1
+  ],
+  "square": [
+    1,
+    -2,
+    1
+  ],
+  "difference": [
+    -13,
+    3,
+    0
+  ],
+  "equation": "3n-13=77",
+  "root": "30",
+  "choices": [
+    {
+      "mark": "①",
+      "n": 28,
+      "product": 800,
+      "square": 729,
+      "lhs": 71,
+      "residual": -6,
+      "integer": true,
+      "greaterThan3": true,
+      "satisfies": false
+    },
+    {
+      "mark": "②",
+      "n": 29,
+      "product": 858,
+      "square": 784,
+      "lhs": 74,
+      "residual": -3,
+      "integer": true,
+      "greaterThan3": true,
+      "satisfies": false
+    },
+    {
+      "mark": "③",
+      "n": 30,
+      "product": 918,
+      "square": 841,
+      "lhs": 77,
+      "residual": 0,
+      "integer": true,
+      "greaterThan3": true,
+      "satisfies": true
+    },
+    {
+      "mark": "④",
+      "n": 31,
+      "product": 980,
+      "square": 900,
+      "lhs": 80,
+      "residual": 3,
+      "integer": true,
+      "greaterThan3": true,
+      "satisfies": false
+    },
+    {
+      "mark": "⑤",
+      "n": 32,
+      "product": 1044,
+      "square": 961,
+      "lhs": 83,
+      "residual": 6,
+      "integer": true,
+      "greaterThan3": true,
+      "satisfies": false
+    }
+  ],
+  "existence": "n=30은 3보다 큰 정수이고 34×27-29²=918-841=77이다.",
+  "uniqueness": "이차항이 상쇄되어 계수3이 비영인 일차방정식과 동치이다. 유일한 실수해30이 정수/n>3 조건을 만족하므로 조건부 해도 유일하다.",
+  "domain": "원래 다항식은 모든 실수에서 정의된다. 요청 범위는 n∈Z,n>3이고, 분모·근호·단위·도형 조건은 없다. 나누는 수3은0이 아니다.",
+  "sourceProcedureCheck": {
+    "product": 10290,
+    "square": 10201,
+    "difference": 89,
+    "baseline100ProductExpansion": "100²+(5-2)×100-10",
+    "baseline100SquareExpansion": "100²+2×100+1",
+    "purpose": "허용된 원문의 계산 구조/공식 확인용. 원문 답이나 학교를 후보 승인 oracle로 쓰지 않음."
+  }
+}
