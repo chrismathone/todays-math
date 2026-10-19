@@ -23,6 +23,7 @@ import type { EnglishBankMakerSeed } from "@/contracts/englishBank.contract";
 import { signOutAction } from "@/app/actions/auth";
 import {
   WORKSPACE_MENUS,
+  WORKSPACE_OUTPUT_MENUS,
   workspaceMenuProduct,
   type WorkspaceMenu,
 } from "@/contracts/accountAccess.contract";
@@ -169,8 +170,8 @@ vi.mock("next/dynamic", () => ({
   default: (
     loader: () => Promise<{ default: ComponentType } | ComponentType>,
   ) => {
-    // Keep this shell test isolated from the separately tested bank builder,
-    // including its eager preload path.
+    // Keep the shell probes stable across both lazy rendering and eager preload paths.
+    if (loader.toString().includes("/StudioView")) return StudioProbe;
     if (loader.toString().includes("MathExamBuilder")) {
       return function BankProbe({
         editor,
@@ -251,38 +252,43 @@ vi.mock("../../components/exam-builder/MathExamBuilder", () => ({
     );
   },
 }));
-vi.mock("@/components/unified/StudioView", () => ({
-  default: function StudioProbe({
-    canExport,
-    documentId,
-  }: {
-    canExport: boolean;
-    documentId?: string;
-  }) {
-    const [value, setValue] = useState("");
-    useEffect(() => {
-      mocks.studioMount();
-    }, []);
-    return (
-      <>
-        <h2>자료 패널</h2>
-        <input
-          aria-label="진행 중인 자료"
-          value={value}
-          onChange={(event) => setValue(event.target.value)}
-        />
-        <span data-testid="studio-export-access">{String(canExport)}</span>
-        <span data-testid="studio-document-id">{documentId ?? ""}</span>
-      </>
-    );
-  },
-}));
+function StudioProbe({
+  canExport,
+  documentId,
+  onExport,
+}: {
+  canExport: boolean;
+  documentId?: string;
+  onExport: () => void;
+}) {
+  const [value, setValue] = useState("");
+  useEffect(() => {
+    mocks.studioMount();
+  }, []);
+  return (
+    <>
+      <h2>자료 패널</h2>
+      <input
+        aria-label="진행 중인 자료"
+        value={value}
+        onChange={(event) => setValue(event.target.value)}
+      />
+      <span data-testid="studio-export-access">{String(canExport)}</span>
+      <button disabled={!canExport} onClick={onExport}>
+        자료 출력 단계 열기
+      </button>
+      <span data-testid="studio-document-id">{documentId ?? ""}</span>
+    </>
+  );
+}
+vi.mock("@/components/unified/StudioView", () => ({ default: StudioProbe }));
 vi.mock("@/components/arithmetic/ArithmeticWorkbench", () => ({
-  default: function ArithmeticProbe() {
+  default: function ArithmeticProbe({ canOutput }: { canOutput: boolean }) {
     const [value, setValue] = useState("");
     return (
       <>
         <h2>연산 패널</h2>
+        <span data-testid="arithmetic-output-access">{String(canOutput)}</span>
         <input
           aria-label="연산 작업 초안"
           value={value}
@@ -469,12 +475,146 @@ afterEach(() => {
 });
 
 describe("per-account workspace menu access", () => {
+  it.each(["bank", "studio"] as const)(
+    "%s may restore its worksheet without library or export",
+    async (source) => {
+      const cloud = privateServer();
+      cloud.switchAccount("teacher-one");
+      cloud.documents.set("teacher-one:source-draft", {
+        id: "source-draft",
+        kind: "draft",
+        title: "소속 메뉴 초안",
+        problemCount: 1,
+        revision: 1,
+        createdAt: "2026-10-19T00:00:00.000Z",
+        updatedAt: "2026-10-19T00:00:00.000Z",
+        payload: {
+          version: 1,
+          title: "소속 메뉴 초안",
+          problems: [{ id: "p1", content: "1+1" }],
+          columns: 1,
+          answers: false,
+        },
+      });
+      fetchMock.mockImplementation(async () => response([source]));
+      vi.stubGlobal("fetch", (url: RequestInfo | URL, init?: RequestInit) =>
+        String(url).startsWith("/api/library/")
+          ? cloud.transport(url, init)
+          : fetchMock(url, init),
+      );
+      window.history.replaceState(null, "", "/#export");
+      render(
+        <UnifiedWorkspace
+          initialData={initialData}
+          allowedMenus={[source]}
+          currentUser={user}
+          storageScope="teacher-one"
+        />,
+      );
+      const restore = await screen.findByRole("button", {
+        name: "저장한 작업 불러오기",
+      });
+      expect(restore).toBeEnabled();
+      fireEvent.click(restore);
+      await waitFor(() => {
+        expect(window.location.hash).toBe(source === "bank" ? "#bank" : "#export");
+        expect(screen.getByDisplayValue("소속 메뉴 초안")).toBeVisible();
+      });
+      expect(
+        cloud.transport.mock.calls.some(([url]) =>
+          String(url).endsWith("/source-draft"),
+        ),
+      ).toBe(true);
+    },
+  );
+  it.each(WORKSPACE_OUTPUT_MENUS)(
+    "opens the common output view and presets with %s as the only source",
+    async (source) => {
+      fetchMock.mockImplementation(async (url) =>
+        String(url) === "/api/studio/print-presets"
+          ? Response.json({ data: [], meta: { limit: 50 } })
+          : response([source]),
+      );
+      window.history.replaceState(null, "", "/#export");
+      render(
+        <UnifiedWorkspace
+          initialData={initialData}
+          allowedMenus={[source]}
+          currentUser={user}
+          storageScope="teacher-one"
+        />,
+      );
+      expect(
+        await screen.findByRole("heading", { name: "시험지 만들기" }),
+      ).toBeVisible();
+      expect(window.location.hash).toBe("#export");
+      expect(
+        nav().queryByRole("button", { name: "시험지 · 내보내기" }),
+      ).not.toBeInTheDocument();
+      await waitFor(() =>
+        expect(fetchMock).toHaveBeenCalledWith(
+          "/api/studio/print-presets",
+          expect.objectContaining({ signal: expect.any(AbortSignal) }),
+        ),
+      );
+      if (["arithmetic", "textbook", "conceptBlank"].includes(source)) {
+        expect(screen.queryByLabelText("시험지 작업 파일 가져오기")).toBeNull();
+        expect(
+          screen.queryByRole("button", { name: "저장한 작업 불러오기" }),
+        ).toBeNull();
+        expect(
+          screen.queryByRole("button", { name: "새 시험지 만들기" }),
+        ).toBeNull();
+      }
+    },
+  );
+
+  it("enables extraction output through the studio source alone", async () => {
+    render(
+      <UnifiedWorkspace initialData={initialData} allowedMenus={["studio"]} />,
+    );
+    await screen.findByRole("heading", { name: "자료 패널" });
+    expect(screen.getByTestId("studio-export-access")).toHaveTextContent(
+      "true",
+    );
+    fireEvent.click(
+      screen.getByRole("button", { name: "자료 출력 단계 열기" }),
+    );
+    expect(
+      await screen.findByRole("heading", { name: "시험지 만들기" }),
+    ).toBeVisible();
+    expect(window.location.hash).toBe("#export");
+  });
+
+  it("blocks a direct common output view and preset reads when there are no menus", async () => {
+    window.history.replaceState(null, "", "/#export");
+    render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={[]}
+        currentUser={user}
+        storageScope="teacher-one"
+      />,
+    );
+    expect(
+      screen.getByRole("heading", { name: "사용할 수 있는 메뉴가 없습니다" }),
+    ).toBeVisible();
+    expect(screen.queryByTestId("arithmetic-output-access")).toBeNull();
+    expect(screen.queryByLabelText("시험지 작업 파일 가져오기")).toBeNull();
+    await waitFor(() => expect(window.location.hash).toBe(""));
+    expect(
+      fetchMock.mock.calls.some(
+        ([url]) => String(url) === "/api/studio/print-presets",
+      ),
+    ).toBe(false);
+  });
+
   it("opens arithmetic as a separate sidebar view and preserves its draft across bank navigation", async () => {
     window.history.replaceState(null, "", "/#arithmetic");
     render(
       <UnifiedWorkspace
         initialData={initialData}
-        allowedMenus={["bank", "arithmetic", "export"]}
+        allowedMenus={["bank", "arithmetic"]}
       />,
     );
     expect(
@@ -544,6 +684,12 @@ describe("per-account workspace menu access", () => {
       within(menu).queryByRole("button", { name: "시험지 만들기" }),
     ).not.toBeInTheDocument();
     expect(mocks.bankMount).not.toHaveBeenCalled();
+    expect(screen.getByTestId("arithmetic-output-access")).toHaveTextContent(
+      "true",
+    );
+    expect(
+      within(menu).queryByRole("button", { name: "시험지 · 내보내기" }),
+    ).not.toBeInTheDocument();
     await waitFor(() => expect(window.location.hash).toBe("#arithmetic"));
   });
   it("opens the standalone English bank without mounting exam-dependent screens", async () => {
@@ -827,7 +973,7 @@ describe("per-account workspace menu access", () => {
   it("starts a new worksheet explicitly from SRS without requiring a prior worksheet visit", async () => {
     const cloud = privateServer();
     cloud.switchAccount("teacher-one");
-    const menus: WorkspaceMenu[] = ["srs", "export"];
+    const menus: WorkspaceMenu[] = ["srs", "bank"];
     fetchMock.mockImplementation(async () => response(menus));
     vi.stubGlobal("fetch", (url: RequestInfo | URL, init?: RequestInit) =>
       String(url).startsWith("/api/library/")
@@ -1009,7 +1155,7 @@ describe("per-account workspace menu access", () => {
     expect(window.location.hash).toBe("#teaching");
   });
 
-  it("hides disabled navigation, home cards, search, create choices and AI controls", () => {
+  it("hides disabled source controls while retaining library output", () => {
     render(
       <UnifiedWorkspace
         initialData={initialData}
@@ -1024,8 +1170,8 @@ describe("per-account workspace menu access", () => {
       screen.queryByRole("button", { name: "자료 가져오기" }),
     ).not.toBeInTheDocument();
     expect(
-      screen.queryByRole("button", { name: "새 시험지 만들기" }),
-    ).not.toBeInTheDocument();
+      screen.getByRole("button", { name: "새 시험지 만들기" }),
+    ).toBeVisible();
     expect(
       screen.queryByRole("button", { name: "AI 연결 설정" }),
     ).not.toBeInTheDocument();
@@ -1074,9 +1220,10 @@ describe("per-account workspace menu access", () => {
       });
       expect(window.location.hash).toBe("#bank");
     }
+    expect(screen.getByTestId("bank-export-access")).toHaveTextContent("true");
     fireEvent.click(screen.getByRole("button", { name: "내보내기 우회 검증" }));
-    expect(window.location.hash).toBe("#bank");
-    expect(screen.getByTestId("bank-export-access")).toHaveTextContent("false");
+    await screen.findByRole("heading", { name: "시험지 만들기" });
+    expect(window.location.hash).toBe("#export");
     expect(mocks.studioMount).not.toHaveBeenCalled();
     expect(mocks.teachingMount).not.toHaveBeenCalled();
   });
@@ -1142,7 +1289,7 @@ describe("per-account workspace menu access", () => {
     ).toBeVisible();
   });
 
-  it("shows worksheet access in the sidebar without a duplicate header button", () => {
+  it("does not grant output or a sidebar entry from the retired export flag", () => {
     render(
       <UnifiedWorkspace
         initialData={initialData}
@@ -1151,8 +1298,12 @@ describe("per-account workspace menu access", () => {
       />,
     );
     expect(
-      nav().getByRole("button", { name: "시험지 · 내보내기" }),
+      nav().queryByRole("button", { name: "시험지 · 내보내기" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "사용할 수 있는 메뉴가 없습니다" }),
     ).toBeVisible();
+    expect(screen.queryByLabelText("시험지 작업 파일 가져오기")).toBeNull();
     // 상단 줄은 걷었다(2026-10-17) — 겹치는 머리 단추가 없다.
     expect(screen.queryByRole("banner")).toBeNull();
     expect(
@@ -1201,14 +1352,15 @@ describe("per-account workspace menu access", () => {
     expect(screen.queryByRole("banner")).toBeNull();
     expect(screen.queryByRole("button", { name: /화면 최대화/ })).toBeNull();
     rerender(
-      <UnifiedWorkspace initialData={initialData} allowedMenus={["export"]} />,
+      <UnifiedWorkspace initialData={initialData} allowedMenus={["bank"]} />,
     );
     expect(sideButton(container)).toBeVisible();
   });
 
   it("filters new worksheet choices and editor links to permitted destinations", async () => {
+    window.history.replaceState(null, "", "/#export");
     render(
-      <UnifiedWorkspace initialData={initialData} allowedMenus={["export"]} />,
+      <UnifiedWorkspace initialData={initialData} allowedMenus={["library"]} />,
     );
     // 안 A(2026-09-21) — 큰 제목 대신 같은 띠다. 자료 제작을 못 쓰는 계정이면
     // 앞 세 탭은 아예 서지 않고 제목도 「시험지 구성」이 된다.
@@ -1244,49 +1396,61 @@ describe("per-account workspace menu access", () => {
     ).not.toBeInTheDocument();
   });
 
-  it("ignores a pending worksheet file read after export access is revoked", async () => {
-    const { rerender } = render(
-      <UnifiedWorkspace initialData={initialData} allowedMenus={["export"]} />,
-    );
-    await screen.findByRole("button", { name: "저장한 작업 불러오기" });
-    let finishRead: ((value: string) => void) | undefined;
-    const file = new File(["pending"], "worksheet.json", {
-      type: "application/json",
-    });
-    Object.defineProperty(file, "text", {
-      value: () =>
-        new Promise<string>((resolve) => {
-          finishRead = resolve;
-        }),
-    });
-    fireEvent.change(screen.getByLabelText("시험지 작업 파일 가져오기"), {
-      target: { files: [file] },
-    });
-    rerender(
-      <UnifiedWorkspace initialData={initialData} allowedMenus={["library"]} />,
-    );
-    await act(async () =>
-      finishRead!(
-        JSON.stringify({
-          version: 1,
-          title: "권한 없는 가져오기",
-          problems: [{ id: "p1", content: "1+1" }],
-          columns: 1,
-          answers: false,
-        }),
-      ),
-    );
-    expect(window.location.hash).toBe("#library");
-    expect(screen.queryByText("권한 없는 가져오기")).not.toBeInTheDocument();
-    expect(
-      screen.queryByRole("button", { name: "작업 파일 불러오기" }),
-    ).not.toBeInTheDocument();
-    expect(localStorage.getItem(DRAFT_STORE_KEY) ?? "").not.toContain(
-      "권한 없는 가져오기",
-    );
-  });
+  it.each(["teaching", "arithmetic"] as const)(
+    "ignores a pending worksheet file after draft access is revoked, leaving %s",
+    async (remainingMenu) => {
+      window.history.replaceState(null, "", "/#export");
+      const { rerender } = render(
+        <UnifiedWorkspace
+          initialData={initialData}
+          allowedMenus={["library"]}
+        />,
+      );
+      await screen.findByRole("button", { name: "저장한 작업 불러오기" });
+      let finishRead: ((value: string) => void) | undefined;
+      const file = new File(["pending"], "worksheet.json", {
+        type: "application/json",
+      });
+      Object.defineProperty(file, "text", {
+        value: () =>
+          new Promise<string>((resolve) => {
+            finishRead = resolve;
+          }),
+      });
+      fireEvent.change(screen.getByLabelText("시험지 작업 파일 가져오기"), {
+        target: { files: [file] },
+      });
+      rerender(
+        <UnifiedWorkspace
+          initialData={initialData}
+          allowedMenus={[remainingMenu]}
+        />,
+      );
+      await act(async () =>
+        finishRead!(
+          JSON.stringify({
+            version: 1,
+            title: "권한 없는 가져오기",
+            problems: [{ id: "p1", content: "1+1" }],
+            columns: 1,
+            answers: false,
+          }),
+        ),
+      );
+      expect(window.location.hash).toBe(
+        remainingMenu === "arithmetic" ? "#export" : "#teaching",
+      );
+      expect(screen.queryByText("권한 없는 가져오기")).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("button", { name: "작업 파일 불러오기" }),
+      ).not.toBeInTheDocument();
+      expect(localStorage.getItem(DRAFT_STORE_KEY) ?? "").not.toContain(
+        "권한 없는 가져오기",
+      );
+    },
+  );
 
-  it("keeps saved worksheets readable without exposing their disabled editor", async () => {
+  it("opens saved worksheets for library-only access without granting a source editor", async () => {
     const store = createWorkspaceDraftStore();
     store.hydrate();
     store.importDraft({
@@ -1303,15 +1467,25 @@ describe("per-account workspace menu access", () => {
       await screen.findByText("보관 중인 시험지", { exact: true }),
     ).toBeVisible();
     expect(
-      screen.queryByRole("button", { name: "보관 중인 시험지 편집" }),
-    ).not.toBeInTheDocument();
+      screen.getByRole("button", { name: "보관 중인 시험지 편집" }),
+    ).toBeVisible();
     expect(
       screen.getByRole("button", { name: "보관 중인 시험지 이름 변경" }),
     ).toBeVisible();
     expect(window.location.hash).toBe("#library");
+    fireEvent.click(
+      screen.getByRole("button", { name: "보관 중인 시험지 편집" }),
+    );
+    expect(await screen.findByRole("textbox", { name: "제목" })).toHaveValue(
+      "보관 중인 시험지",
+    );
+    expect(window.location.hash).toBe("#export");
+    expect(mocks.bankMount).not.toHaveBeenCalled();
+    expect(mocks.studioMount).not.toHaveBeenCalled();
   });
 
   it("updates access on focus, unmounts revoked panels and retains the current scoped draft", async () => {
+    window.history.replaceState(null, "", "/#export");
     const store = createWorkspaceDraftStore(() => ({
       getItem: (key) => localStorage.getItem(`${key}:teacher-one`),
       setItem: (key, value) =>
@@ -1365,8 +1539,15 @@ describe("per-account workspace menu access", () => {
       "false",
     );
     nextCheck();
-    fetchMock.mockImplementation(async () => response(["export"]));
+    fetchMock.mockImplementation(async () => response(["library"]));
     fireEvent.focus(window);
+    await waitFor(() =>
+      expect(nav().getByRole("button", { name: "내 시험지" })).toBeVisible(),
+    );
+    act(() => {
+      window.history.pushState(null, "", "/#export");
+      window.dispatchEvent(new Event("hashchange"));
+    });
     expect(
       await screen.findByDisplayValue("권한 변경 중인 시험지"),
     ).toBeVisible();
@@ -1393,7 +1574,13 @@ describe("per-account workspace menu access", () => {
       name: "진행 중인 자료",
     });
     fireEvent.change(field, { target: { value: "검토 중인 크롭" } });
-    await waitFor(() => expect(fetchMock).toHaveBeenCalledOnce());
+    await waitFor(() =>
+      expect(
+        fetchMock.mock.calls.filter(
+          ([url]) => String(url) === "/api/account/access",
+        ),
+      ).toHaveLength(1),
+    );
     expect(interval).toHaveBeenCalledWith(expect.any(Function), 30_000);
     const accessInterval = interval.mock.calls.findIndex(
       ([, delay]) => delay === 30_000,

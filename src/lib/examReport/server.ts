@@ -12,7 +12,11 @@ import type {
 import { assertClassWrite } from "@/lib/classAccess";
 import { db } from "@/lib/db";
 import { noteErrorLog } from "@/lib/errorLog/scope";
-import { buildPdf, type PdfPayload } from "@/lib/export/pdfServer";
+import {
+  buildPdf,
+  buildPdfBatch,
+  type PdfPayload,
+} from "@/lib/export/pdfServer";
 import { examReportSnapshotDigest } from "@/lib/eywa/managedExamReports";
 import { personalViewer } from "@/lib/ownerScope";
 import { requireOwnedClass } from "@/lib/ownership";
@@ -98,17 +102,16 @@ const transactionOptions = {
   isolationLevel: Prisma.TransactionIsolationLevel.ReadCommitted,
   timeout: 30_000,
 };
+function reportPdfError(error: unknown): never {
+  if (
+    error instanceof Error &&
+    /성적표 \d+쪽이 지면을 벗어납니다/.test(error.message)
+  )
+    throw new ExamReportError(422, error.message);
+  throw error;
+}
 async function renderPdf(payload: PdfPayload, origin: string) {
-  try {
-    return await buildPdf(payload, origin);
-  } catch (error) {
-    if (
-      error instanceof Error &&
-      /성적표 \d+쪽이 지면을 벗어납니다/.test(error.message)
-    )
-      throw new ExamReportError(422, error.message);
-    throw error;
-  }
+  return buildPdf(payload, origin).catch(reportPdfError);
 }
 async function transaction<T>(
   run: (tx: Prisma.TransactionClient) => Promise<T>,
@@ -392,18 +395,20 @@ export async function printExamReports(
   );
   if (!targets.length)
     throw new ExamReportError(422, "선택한 범위에 인쇄할 학생이 없습니다.");
-  const combined = await PDFDocument.create();
-  for (const target of targets) {
-    const bytes =
-      target.summary.status === "confirmed"
-        ? (await archivedPdf(target)).bytes
-        : await renderPdf(
-            await buildExamReportPaperHtml(
+  const pdfs = await buildPdfBatch(
+    targets.map(
+      (target) => async () =>
+        target.summary.status === "confirmed"
+          ? (await archivedPdf(target)).bytes
+          : buildExamReportPaperHtml(
               target.report,
               paperOptions(target.snapshot!),
             ),
-            origin,
-          );
+    ),
+    origin,
+  ).catch(reportPdfError);
+  const combined = await PDFDocument.create();
+  for (const bytes of pdfs) {
     const document = await PDFDocument.load(bytes);
     for (const page of await combined.copyPages(
       document,

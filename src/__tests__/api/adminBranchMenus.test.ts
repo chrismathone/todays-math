@@ -56,6 +56,7 @@ beforeEach(() => {
     name: "A",
     createdAt: new Date("2026-10-01T00:00:00.000Z"),
     disabledMenus: [],
+    ownerDisabledMenus: [],
     menuRevision: 1,
     _count: { users: 4 },
     users: [

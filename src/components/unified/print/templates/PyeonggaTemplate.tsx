@@ -1,3 +1,4 @@
+import { PrintHeader } from "../PrintHeader";
 import { printPagePadding, scaledItemStyle } from "../geometry";
 // PyeonggaTemplate.tsx (T1) — 평가원 정밀형 (수능·모의평가 클론)
 // design_handoff 의 동명 파일 그대로 + import path 조정 + ProblemBody placeholder
@@ -7,13 +8,13 @@ import type { ProblemReview } from "../types";
 import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
 import { BodyContainer } from "./BodyContainer";
-import { ArithmeticRoundLabel, ProblemHeader } from "./ProblemMeta";
+import { ProblemHeader } from "./ProblemMeta";
 import { ProblemBody } from "./ProblemBody";
 import type { PrintTemplateProps } from "../types";
-import { ExamDetails } from "../ExamDetails";
 
 export function PyeonggaTemplate({
   page,
+  totalProblems,
   round,
   firstPage,
   meta,
@@ -25,7 +26,6 @@ export function PyeonggaTemplate({
   itemScales,
   measure,
 }: PrintTemplateProps) {
-  const isFirstPage = firstPage ?? page === 1;
   const fs = bodyFontSize("pyeongga", columns);
   const gap = Math.max(0, options.spacing);
 
@@ -92,106 +92,14 @@ export function PyeonggaTemplate({
         flexDirection: "column",
       }}
     >
-      {/* 연산은 회차 칸이 있는 영역 표를 매 쪽 유지; 일반 시험지는 기존 간소 헤더. */}
-      {isFirstPage || round !== undefined ? (
-        <div style={{ padding: "0 0 18px", flexShrink: 0 }}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "stretch",
-              border: `2.5px solid ${PAPER_COLORS.ink}`,
-              height: 56,
-              marginBottom: isFirstPage ? 22 : 0,
-            }}
-          >
-            <div
-              style={{
-                flex: 1,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 26,
-                fontWeight: 800,
-                letterSpacing: "0.18em",
-                borderRight: `2.5px solid ${PAPER_COLORS.ink}`,
-              }}
-            >
-              {meta.subject} 영역
-            </div>
-            {round !== undefined && (
-              <div
-                style={{
-                  width: 100,
-                  display: "grid",
-                  placeItems: "center",
-                  borderRight: `2.5px solid ${PAPER_COLORS.ink}`,
-                  flexShrink: 0,
-                }}
-              >
-                <ArithmeticRoundLabel round={round} />
-              </div>
-            )}
-            <div
-              style={{
-                width: 124,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 14,
-                fontWeight: 700,
-                letterSpacing: "0.08em",
-              }}
-            >
-              제 1 교시
-            </div>
-          </div>
-          {isFirstPage && (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                fontSize: 11.5,
-                color: PAPER_COLORS.ink70,
-              }}
-            >
-              <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <span
-                  style={{
-                    display: "inline-grid",
-                    placeItems: "center",
-                    width: 24,
-                    height: 16,
-                    border: `1.5px solid ${PAPER_COLORS.ink}`,
-                    fontSize: 10,
-                    fontWeight: 700,
-                  }}
-                >
-                  홀
-                </span>
-                <span style={{ fontWeight: 600 }}>{meta.title}</span>
-              </span>
-              <span style={{ fontWeight: 600 }}>● 다음 물음에 답하시오.</span>
-            </div>
-          )}
-        </div>
-      ) : (
-        <div
-          style={{
-            padding: "0 0 16px",
-            fontSize: 11,
-            color: PAPER_COLORS.ink50,
-            display: "flex",
-            justifyContent: "space-between",
-            flexShrink: 0,
-          }}
-        >
-          <span>{meta.subject} 영역</span>
-          <span style={{ fontFamily: "var(--paper-font-mono)" }}>{page}</span>
-        </div>
-      )}
-
-      {isFirstPage && <ExamDetails meta={meta} options={options} />}
+      <PrintHeader
+        page={page}
+        round={round}
+        firstPage={firstPage}
+        totalProblems={totalProblems}
+        meta={meta}
+        options={options}
+      />
 
       <BodyContainer
         solvingArea={options.solvingArea}

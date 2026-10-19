@@ -1,7 +1,7 @@
 // Pure in-memory database boundary: never connects to the configured remote DB.
 /**
  * 시험지 만들기 3단계 «내 양식»(W6 · 2026-10-16)의 길 — `/api/studio/print-presets`.
- * 주인만 · 늘 비공개 · 출력(export) 메뉴 · 이름은 한 사람 안에서 하나 · 50개까지 · 바꾸기는 버전을 맞춰야 ·
+ * 주인만 · 늘 비공개 · 출처 메뉴의 출력 · 이름은 한 사람 안에서 하나 · 50개까지 · 바꾸기는 버전을 맞춰야 ·
  * 적용하면 마지막 사용이 오늘 · 새 시험지 기본 양식은 한 사람에 하나.
  */
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -120,7 +120,7 @@ beforeEach(() => {
     role: "director",
     isAdmin: false,
     approvalStatus: "approved",
-    menus: ["export"],
+    menus: ["arithmetic"],
     branchId: null,
   };
   docs = [
@@ -187,6 +187,47 @@ beforeEach(() => {
 });
 
 describe("print presets API (W6)", () => {
+  it.each([
+    "bank",
+    "arithmetic",
+    "studio",
+    "library",
+    "textbook",
+    "conceptBlank",
+  ] as const)(
+    "%s alone may read and save its shared print layout",
+    async (source) => {
+      account.menus = [source];
+      expect((await GET(request("GET"))).status).toBe(200);
+      expect(
+        (await POST(request("POST", "", { preset: preset({ name: source }) })))
+          .status,
+      ).toBe(201);
+    },
+  );
+  it.each([
+    { menus: [] },
+    { menus: ["export"] },
+    { menus: ["home", "teaching"] },
+  ])(
+    "denies all direct print-layout methods with non-output menus $menus",
+    async ({ menus }) => {
+      account.menus = menus as AccountAccess["menus"];
+      expect((await GET(request("GET"))).status).toBe(403);
+      expect(
+        (await POST(request("POST", "", { preset: preset() }))).status,
+      ).toBe(403);
+      expect(
+        (await PATCH(request("PATCH", "/p1", { action: "use" }), ctx("p1")))
+          .status,
+      ).toBe(403);
+      expect(
+        (await DELETE(request("DELETE", "/p1?revision=1"), ctx("p1"))).status,
+      ).toBe(403);
+      expect(mocks.document.findMany).not.toHaveBeenCalled();
+      expect(mocks.document.create).not.toHaveBeenCalled();
+    },
+  );
   it("lists only my presets, newest use first, never documents, conditions or a colleague's", async () => {
     const response = await GET(request("GET"));
     expect(response.status).toBe(200);
@@ -392,9 +433,9 @@ describe("print presets API (W6)", () => {
       headers: { "x-workspace-owner": other },
     });
     expect((await GET(switched)).status).toBe(403);
-    account.menus = ["bank", "library"];
-    expect((await GET(request("GET"))).status).toBe(403);
     account.menus = ["export"];
+    expect((await GET(request("GET"))).status).toBe(403);
+    account.menus = ["bank"];
     userOk = false;
     expect((await GET(request("GET"))).status).toBe(403);
   });

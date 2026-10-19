@@ -1,4 +1,5 @@
 import type { PrintMeta, PrintOptions } from "./types";
+import { readablePaperColor } from "./readableColor";
 
 /** Fields omitted by individual original headers still have a real printed destination. */
 export function ExamDetails({
@@ -27,7 +28,7 @@ export function ExamDetails({
         fontFamily: "var(--paper-font-sans)",
         fontSize: 10,
         lineHeight: 1.6,
-        color: options.color,
+        color: readablePaperColor(options.color),
         margin: "8px 0",
         overflowWrap: "anywhere",
       }}

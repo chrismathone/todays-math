@@ -10,6 +10,7 @@ import {
   examReportStudentResponseSchema,
 } from "@/contracts/examReportWorkspace.contract";
 import { getAccountAccess } from "@/lib/accountAccess";
+import { canOutputFrom } from "@/contracts/accountAccess.contract";
 import {
   jsonError,
   jsonOk,
@@ -41,7 +42,7 @@ export async function examReportHttp(
   if (
     session.approvalStatus !== "approved" ||
     session.role !== "director" ||
-    !session.menus.includes("export")
+    !canOutputFrom(session.menus)
   )
     return jsonError("FORBIDDEN", "성적표를 열 권한이 없습니다.", 403);
   const studentAction = ["student", "note", "confirm", "pdf"].includes(action);

@@ -12,7 +12,7 @@ import SheetTagPicker from "@/components/unified/print/SheetTagPicker";
 afterEach(cleanup);
 
 describe("3단계 «시험 종류» (W8 · Hi-fi 1)", () => {
-  it("is one pressed choice among 없음 + the eight, and says it is not printed", () => {
+  it("is one pressed choice among 없음 + the eight, and explains printing and None", () => {
     const onChange = vi.fn();
     render(<SheetTagPicker value="일일TEST" onChange={onChange} />);
     const group = screen.getByRole("group", { name: "시험 종류" });
@@ -38,7 +38,7 @@ describe("3단계 «시험 종류» (W8 · Hi-fi 1)", () => {
       within(group).getByRole("button", { name: "일일TEST" }),
     ).toHaveAttribute("aria-pressed", "true");
     expect(group).toHaveTextContent(
-      "지면에 찍히지 않습니다 — 내 시험지에서 거를 때 씁니다.",
+      "모든 양식에 표시합니다. «없음»을 고르면 지면에서 생략합니다.",
     );
     fireEvent.click(within(group).getByRole("button", { name: "숙제" }));
     expect(onChange).toHaveBeenLastCalledWith("숙제");

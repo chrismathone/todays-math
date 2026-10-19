@@ -1,0 +1,457 @@
+{
+  "fixtureRows": 1200,
+  "fixtureProblemRows": 1248,
+  "curriculumUnits": 15,
+  "kind": "problem reads: local PGlite PostgreSQL; other metadata: Prisma mock; logical returned rows; JSON UTF-8 return bytes; excludes transaction/auth/network",
+  "measures": [
+    {
+      "path": "1 initial scopes",
+      "ms": 37.72,
+      "queries": 6,
+      "rows": 884,
+      "bytes": 383751,
+      "responseBytes": 1096,
+      "responseSha256": "5b8a049a7177c09dd6b019dacd91bc011459aed92efdb222666e5fee5efefe70",
+      "reads": [
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 2,
+          "bytes": 187,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 2,
+          "bytes": 187,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 2,
+          "bytes": 187,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 2,
+          "bytes": 187,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "$queryRaw",
+          "mode": "formats",
+          "ms": 8.06,
+          "rows": 855,
+          "bytes": 380434,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "$queryRaw",
+          "mode": "counts",
+          "ms": 9.61,
+          "rows": 21,
+          "bytes": 2569,
+          "content": false,
+          "answer": false
+        }
+      ]
+    },
+    {
+      "path": "2 add questions",
+      "ms": 34.24,
+      "queries": 7,
+      "rows": 1262,
+      "bytes": 532493,
+      "responseBytes": 15497,
+      "responseSha256": "bc57bfa08906ebb567887f7d733ed5a2db0fef98db1088a31f22fc5996ff3d10",
+      "reads": [
+        {
+          "model": "unit",
+          "operation": "findMany",
+          "rows": 15,
+          "bytes": 2832,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "$queryRaw",
+          "mode": "formats",
+          "ms": 7.65,
+          "rows": 1194,
+          "bytes": 506781,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "$queryRaw",
+          "mode": "counts",
+          "ms": 4.71,
+          "rows": 16,
+          "bytes": 2052,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "$queryRaw",
+          "mode": "counts",
+          "ms": 2.69,
+          "rows": 1,
+          "bytes": 99,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "$queryRaw",
+          "mode": "page",
+          "ms": 2.74,
+          "rows": 12,
+          "bytes": 553,
+          "content": false,
+          "answer": false,
+          "take": 12
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 12,
+          "bytes": 11504,
+          "content": true,
+          "answer": true
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 12,
+          "bytes": 8672,
+          "content": true,
+          "answer": true
+        }
+      ]
+    },
+    {
+      "path": "3 replace questions",
+      "ms": 8.13,
+      "queries": 6,
+      "rows": 90,
+      "bytes": 38726,
+      "responseBytes": 12816,
+      "responseSha256": "0b573b04e788a0eac2c88cb5361f62c463b93e7088dd1669e332a20737ecf548",
+      "reads": [
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 1,
+          "bytes": 94,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "$queryRaw",
+          "mode": "formats",
+          "ms": 0.95,
+          "rows": 58,
+          "bytes": 22191,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "$queryRaw",
+          "mode": "counts",
+          "ms": 1.08,
+          "rows": 1,
+          "bytes": 96,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "$queryRaw",
+          "mode": "page",
+          "ms": 1.06,
+          "rows": 10,
+          "bytes": 461,
+          "content": false,
+          "answer": false,
+          "take": 10
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 10,
+          "bytes": 9122,
+          "content": true,
+          "answer": true
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 10,
+          "bytes": 6762,
+          "content": true,
+          "answer": true
+        }
+      ]
+    },
+    {
+      "path": "4 source picker",
+      "ms": 23.42,
+      "queries": 4,
+      "rows": 1214,
+      "bytes": 510153,
+      "responseBytes": 478,
+      "responseSha256": "2c06dea0ce352af4bbdfe4318cbd5dbe5bb7340d876c4990f9a263714449143d",
+      "reads": [
+        {
+          "model": "sourceBook",
+          "operation": "findMany",
+          "rows": 0,
+          "bytes": 2,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "unit",
+          "operation": "findMany",
+          "rows": 15,
+          "bytes": 2832,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "$queryRaw",
+          "mode": "formats",
+          "ms": 7.43,
+          "rows": 1194,
+          "bytes": 506781,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "$queryRaw",
+          "mode": "counts",
+          "ms": 5.34,
+          "rows": 5,
+          "bytes": 538,
+          "content": false,
+          "answer": false
+        }
+      ]
+    },
+    {
+      "path": "1 initial scopes warm",
+      "ms": 21.13,
+      "queries": 6,
+      "rows": 884,
+      "bytes": 383751,
+      "responseBytes": 1096,
+      "responseSha256": "5b8a049a7177c09dd6b019dacd91bc011459aed92efdb222666e5fee5efefe70",
+      "reads": [
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 2,
+          "bytes": 187,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 2,
+          "bytes": 187,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 2,
+          "bytes": 187,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 2,
+          "bytes": 187,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "$queryRaw",
+          "mode": "formats",
+          "ms": 6.13,
+          "rows": 855,
+          "bytes": 380434,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "$queryRaw",
+          "mode": "counts",
+          "ms": 7,
+          "rows": 21,
+          "bytes": 2569,
+          "content": false,
+          "answer": false
+        }
+      ]
+    },
+    {
+      "path": "2 add questions warm",
+      "ms": 12.39,
+      "queries": 5,
+      "rows": 419,
+      "bytes": 184786,
+      "responseBytes": 15497,
+      "responseSha256": "bc57bfa08906ebb567887f7d733ed5a2db0fef98db1088a31f22fc5996ff3d10",
+      "reads": [
+        {
+          "model": "problem",
+          "operation": "$queryRaw",
+          "mode": "formats",
+          "ms": 2.82,
+          "rows": 382,
+          "bytes": 163958,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "$queryRaw",
+          "mode": "counts",
+          "ms": 1.72,
+          "rows": 1,
+          "bytes": 99,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "$queryRaw",
+          "mode": "page",
+          "ms": 1.8,
+          "rows": 12,
+          "bytes": 553,
+          "content": false,
+          "answer": false,
+          "take": 12
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 12,
+          "bytes": 11504,
+          "content": true,
+          "answer": true
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 12,
+          "bytes": 8672,
+          "content": true,
+          "answer": true
+        }
+      ]
+    },
+    {
+      "path": "3 replace questions warm",
+      "ms": 7.59,
+      "queries": 6,
+      "rows": 90,
+      "bytes": 38726,
+      "responseBytes": 12816,
+      "responseSha256": "0b573b04e788a0eac2c88cb5361f62c463b93e7088dd1669e332a20737ecf548",
+      "reads": [
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 1,
+          "bytes": 94,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "$queryRaw",
+          "mode": "formats",
+          "ms": 0.99,
+          "rows": 58,
+          "bytes": 22191,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "$queryRaw",
+          "mode": "counts",
+          "ms": 1.1,
+          "rows": 1,
+          "bytes": 96,
+          "content": false,
+          "answer": false
+        },
+        {
+          "model": "problem",
+          "operation": "$queryRaw",
+          "mode": "page",
+          "ms": 1.01,
+          "rows": 10,
+          "bytes": 461,
+          "content": false,
+          "answer": false,
+          "take": 10
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 10,
+          "bytes": 9122,
+          "content": true,
+          "answer": true
+        },
+        {
+          "model": "problem",
+          "operation": "findMany",
+          "rows": 10,
+          "bytes": 6762,
+          "content": true,
+          "answer": true
+        }
+      ]
+    },
+    {
+      "path": "4 source picker warm",
+      "ms": 0.02,
+      "queries": 0,
+      "rows": 0,
+      "bytes": 0,
+      "responseBytes": 478,
+      "responseSha256": "2c06dea0ce352af4bbdfe4318cbd5dbe5bb7340d876c4990f9a263714449143d",
+      "reads": []
+    }
+  ]
+}

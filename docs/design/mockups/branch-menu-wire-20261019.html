@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>지점 사용 메뉴 · 구성안 비교</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f6fa;color:#172b4d;font:14px/1.5 system-ui,sans-serif}
+button,input{font:inherit;color:inherit}button{min-height:36px;border:1px solid #b8c4d6;background:#fff;border-radius:6px;padding:4px 12px;cursor:pointer}
+button[aria-pressed=true],.primary{background:#3159df;color:#fff;border-color:#3159df}.ghost{background:#fff}
+header{padding:16px 24px;background:#fff;border-bottom:1px solid #dde3ec}h1{font-size:20px;margin:0}h2{font-size:16px;margin:0}h3{font-size:14px;margin:0}p{margin:4px 0}
+.muted{color:#596c86}.choices{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}main{max-width:1280px;margin:20px auto;padding:0 20px}
+.frame{border:1px solid #b8c4d6;background:#fff;border-radius:10px;overflow:hidden;filter:grayscale(1)}
+.shell{display:grid;grid-template-columns:200px 1fr;min-height:520px}.side{background:#1f2a44;color:#fff;padding:14px;font-size:13px}.side .on{background:rgba(255,255,255,.15);border-radius:6px;padding:6px 8px;margin:4px -8px}.side div{padding:6px 0}
+.work{padding:16px 20px}.tabs{display:flex;gap:16px;border-bottom:1px solid #dde3ec;margin-bottom:14px}.tabs span{padding:6px 0}.tabs .cur{border-bottom:2px solid #172b4d;font-weight:700}
+.bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}.bar h2{margin-right:auto}
+.desc{margin:16px 0 8px}.note{margin-top:12px;color:#596c86;font-size:13px}
+table{border-collapse:collapse;width:100%}th,td{border-bottom:1px solid #e3e8ef;padding:4px 8px;text-align:left;height:32px}th{background:#f4f6fa;font-weight:600;font-size:13px}td.c,th.c{text-align:center;width:72px}
+.off{color:#9aa5b5}.lock{font-size:12px;color:#9aa5b5}.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}.box{border:1px solid #dde3ec;border-radius:8px;overflow:hidden}.box>h3{padding:8px 10px;background:#f4f6fa;border-bottom:1px solid #dde3ec;display:flex;justify-content:space-between}
+.chips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.chip{border:1px solid #b8c4d6;border-radius:6px;padding:6px 8px;display:flex;gap:6px;align-items:center;height:36px}.chip.sel{background:#e7ecf7;border-color:#172b4d}.chip.dis{border-style:dashed;color:#9aa5b5}
+.split{display:grid;grid-template-columns:180px 1fr;gap:16px}.list{border:1px solid #dde3ec;border-radius:8px}.list div{padding:8px 10px;border-bottom:1px solid #eef1f5;display:flex;justify-content:space-between}.list .cur{background:#e7ecf7;font-weight:700}
+.sw{display:inline-block;width:30px;height:16px;border-radius:8px;background:#b8c4d6;position:relative;vertical-align:middle}.sw::after{content:"";position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:#fff}.sw.on{background:#172b4d}.sw.on::after{left:16px}.sw.dis{opacity:.35}
+.save{position:sticky;bottom:0;background:#fff;border-top:1px solid #dde3ec;margin:14px -20px -16px;padding:10px 20px;display:flex;align-items:center;gap:8px}.save span{margin-right:auto;font-size:13px}
+.rowtools{font-size:12px;color:#3159df}
+@media(max-width:860px){.shell{grid-template-columns:1fr}.side{display:none}.cols,.split{grid-template-columns:1fr}.chips{grid-template-columns:repeat(2,1fr)}}
+</style>
+<header><h1>지점 사용 메뉴 · 구성안 5안 (Wire)</h1>
+<p class="muted">지점장(원장·지점 관리자)이 /branch 에서 직접 메뉴를 켜고 끕니다. 최고관리자가 열어 준 메뉴 안에서만 고를 수 있습니다. 구조 비교용이며 저장되지 않습니다.</p>
+<nav class="choices" aria-label="구성안"><button data-d="A" aria-pressed="true">A · 두 열 표</button><button data-d="B">B · 상한·사용 두 칸 표</button><button data-d="C">C · 조밀 격자</button><button data-d="D">D · 제품 목록 + 스위치</button><button data-d="E">E · 한 줄 요약 + 펼침</button></nav></header>
+<main><div class="desc"><h2 id="h"></h2><p id="p" class="muted"></p></div>
+<div class="frame"><div class="shell"><div class="side"><b>오늘 수학 · 지점관리</b><div class="on">지점관리</div><div>작업실로 이동</div></div>
+<div class="work"><div class="tabs"><span>교직원 계정</span><span>반 관리</span><span class="cur">사용 메뉴</span></div><div id="c"></div>
+<div class="save"><span id="sum">사용 메뉴 7개 · 적용 대상: 이 지점의 원장·관리자·강사 · 저장하지 않은 변경 없음</span><button class="ghost">변경 취소</button><button class="primary">사용 메뉴 저장</button></div></div></div></div>
+<p class="note">공통 규칙: ① 최고관리자가 열지 않은 메뉴는 지점장이 켤 수 없다(서버도 거절) ② 지점장이 끈 메뉴는 원장 본인을 포함해 지점 전원에게 꺼진다 ③ 개인 메뉴 설정은 보존되고, 지점이 다시 켜면 개인 설정대로 돌아온다 ④ 최고관리자가 닫았다가 다시 열면 지점장의 선택이 되살아난다.<br>구성안을 고르시면 같은 구조로 색·선·밀도의 Hi-fi 4~5안을 이어서 보여 드립니다.</p></main>
+<script>
+const M=["오늘의 작업","시험지 만들기","연산대장","문제 추출","시험지 · 내보내기","우리학원 시험지","교재 제작","수업 · 학생 관리","오늘의 개념","개념 백지","오늘의 기억 · SRS"];
+const E=["학교별 내신 대비","문제 만들기","문제 보관함","영어듣기","자료은행"];
+// 예시 상태: open = 최고관리자가 열어 줌, on = 지점 사용
+const S=n=>({open:!["교재 제작","오늘의 기억 · SRS","영어듣기"].includes(n),on:["시험지 만들기","연산대장","우리학원 시험지","개념 백지","오늘의 작업","문제 만들기","문제 보관함"].includes(n)});
+const cb=(n)=>{const s=S(n);return s.open?`<input type="checkbox" ${s.on?"checked":""}>`:`<input type="checkbox" disabled>`};
+const nm=n=>S(n).open?n:`<span class="off">${n}</span> <span class="lock">열리지 않음</span>`;
+const tbl=(t,list)=>`<div class="box"><h3>${t}<span class="rowtools">모두 켜기 · 모두 끄기</span></h3><table><tbody>${list.map(n=>`<tr><td class="c">${cb(n)}</td><td>${nm(n)}</td></tr>`).join("")}</tbody></table></div>`;
+const sw=n=>{const s=S(n);return `<span class="sw ${s.open?(s.on?"on":""):"dis"}"></span>`};
+const D={
+A:{h:"A · 두 열 표 — 추천",p:"수학·영어를 나란히 두 표로. 한 줄 32px에 체크 + 이름. 열리지 않은 메뉴는 회색으로 남겨 '왜 못 켜는지'를 보인다. 16개가 한 화면에 들어온다.",
+ b:()=>`<div class="bar"><h2>지점 사용 메뉴</h2></div><div class="cols">${tbl("오늘 수학",M)}${tbl("오늘 영어",E)}</div>`},
+B:{h:"B · 상한·사용 두 칸 표",p:"한 표에 행 = 메뉴, 칸 = '열림(최고관리자)'·'지점 사용'. 지점장은 오른쪽 칸만 바꾼다. 최고관리자 화면도 같은 표를 쓰고 왼쪽 칸을 바꾼다 — 두 화면이 한 벌.",
+ b:()=>`<div class="bar"><h2>지점 사용 메뉴</h2></div><table><thead><tr><th style="width:90px">제품</th><th>메뉴</th><th class="c">열림</th><th class="c">지점 사용</th></tr></thead><tbody>${[...M.map(n=>["오늘 수학",n]),...E.map(n=>["오늘 영어",n])].map(([g,n],i,a)=>`<tr><td class="muted">${i===0||a[i-1][0]!==g?g:""}</td><td>${S(n).open?n:`<span class="off">${n}</span>`}</td><td class="c">${S(n).open?"●":"<span class=off>—</span>"}</td><td class="c">${cb(n)}</td></tr>`).join("")}</tbody></table>`},
+C:{h:"C · 조밀 격자",p:"메뉴를 4열 칩 격자로. 가장 작다(수학 3줄 · 영어 2줄). 켠 칩은 진하게, 열리지 않은 칩은 점선. 메뉴 이름이 길어지면 잘릴 수 있다.",
+ b:()=>`<div class="bar"><h2>지점 사용 메뉴</h2></div><h3 style="margin:6px 0">오늘 수학 <span class="rowtools">모두 켜기 · 모두 끄기</span></h3><div class="chips">${M.map(n=>{const s=S(n);return `<label class="chip ${s.open?(s.on?"sel":""):"dis"}">${cb(n)}${n}</label>`}).join("")}</div><h3 style="margin:14px 0 6px">오늘 영어 <span class="rowtools">모두 켜기 · 모두 끄기</span></h3><div class="chips">${E.map(n=>{const s=S(n);return `<label class="chip ${s.open?(s.on?"sel":""):"dis"}">${cb(n)}${n}</label>`}).join("")}</div>`},
+D:{h:"D · 제품 목록 + 스위치",p:"왼쪽에 제품(켠 수/열린 수), 오른쪽에 그 제품 메뉴를 스위치 목록으로. 제품이 늘어날 때 가장 잘 버틴다. 한 번에 한 제품만 보인다.",
+ b:()=>`<div class="bar"><h2>지점 사용 메뉴</h2></div><div class="split"><div class="list"><div class="cur">오늘 수학<span>5 / 9</span></div><div>오늘 영어<span>2 / 4</span></div></div><table><tbody>${M.map(n=>`<tr><td>${nm(n)}</td><td class="c">${sw(n)}</td></tr>`).join("")}</tbody></table></div>`},
+E:{h:"E · 한 줄 요약 + 펼침",p:"제품마다 '켠 메뉴' 한 줄 요약만 보이고, [변경]을 누르면 그 자리에서 체크 목록이 펼쳐진다. 평소엔 가장 짧지만 바꿀 땐 한 단계 더.",
+ b:()=>`<div class="bar"><h2>지점 사용 메뉴</h2></div><table><tbody><tr><th style="width:110px">오늘 수학</th><td>시험지 만들기 · 연산대장 · 우리학원 시험지 · 개념 백지 · 오늘의 작업 <span class="muted">(5 / 열림 9)</span></td><td class="c"><button>접기</button></td></tr><tr><td colspan="3"><div class="cols">${tbl("켜기 / 끄기",M.slice(0,6))}${tbl("　",M.slice(6))}</div></td></tr><tr><th>오늘 영어</th><td>문제 만들기 · 문제 보관함 <span class="muted">(2 / 열림 4)</span></td><td class="c"><button>변경</button></td></tr></tbody></table>`}
+};
+function show(k){const d=D[k];h.textContent=d.h;p.textContent=d.p;c.innerHTML=d.b();document.querySelectorAll("[data-d]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.d===k))}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-d]");if(b)show(b.dataset.d)});show("A");
+</script></html>

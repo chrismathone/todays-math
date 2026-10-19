@@ -1,0 +1,2721 @@
+{
+  "measuredAt": "2026-10-19T06:17:19.450Z",
+  "baselineRef": "5051fea68f0abe6877a4a3001601846cb1d3a9a3",
+  "verifiedTransactions": 3,
+  "rounds": 3,
+  "solverRandomSeed": 19102026,
+  "planCacheMode": "force_custom_plan",
+  "maxParallelWorkersPerGather": 0,
+  "scope": "server readers; each path clears app caches; auth/HTTP/compile/client excluded; read-only same-snapshot rounds",
+  "samples": [
+    {
+      "round": 1,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "문제은행 전체 1쪽",
+      "ms": 2601.661,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 181113,
+      "responseSha256": "f6886df4864332d17678da2a7a11b8831ecf6fb5eef04250f76aeba3413f4fe6",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 246.483,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 969.659,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 399.463,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 809.732,
+          "rows": 12
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "다른 필터 중2 5쪽",
+      "ms": 1571.452,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 158442,
+      "responseSha256": "0d48f7dc9f70549380c4768662fb939d951c8e0d4fe1f2f0cfc7fc6a98dd3248",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 244.509,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 936.675,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 103.538,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 176.67,
+          "rows": 12
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "객관식 1쪽",
+      "ms": 2506.382,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 181787,
+      "responseSha256": "77d838bbee470a07f38a53441e358e7ad150bea99da1f9788297a32d7805d562",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 251.436,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 945.552,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 350.95,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 828.648,
+          "rows": 12
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "범위 수량 전체·갈래",
+      "ms": 2072.247,
+      "reads": 2,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 72498,
+      "responseSha256": "0d2cb8a971dd7dd87485637ba68bff7d9f3865667c98b5f3781f113a89e0e4bb",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 243.449,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 1812.079,
+          "rows": 17134
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "범위 수량 중2·기본·단답형",
+      "ms": 555.361,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 8506,
+      "responseSha256": "ef8a6b6123f39d0f3ea33adcaf1d58b6ed1440b5ead67cede5fbdd8902bd6236",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 251.683,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 177.829,
+          "rows": 1163
+        },
+        {
+          "mode": "counts",
+          "ms": 124.015,
+          "rows": 7
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "출처 고르기",
+      "ms": 1283.165,
+      "reads": 5,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 10030,
+      "responseSha256": "da7e85d8ff7345b6d38b7080b1171187b1035b510cdf4cf7adeeb49584254752",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 246.371,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 974.632,
+          "rows": 2180
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "작업실 bootstrap",
+      "ms": 1179.653,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 141161,
+      "responseSha256": "3e05839a110c69ee686d40e8da6f27ba345b649e1d40d42c4d6ffcf9c674271f",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 241.991,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 936.896,
+          "rows": 583
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "자료 안 목록",
+      "ms": 1348.176,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 150700,
+      "responseSha256": "c4b0e8c616dab63c80eb202f14aa93e5d477f19923a559454c7588f567fd33d2",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 243.839,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 959.422,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 26.88,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 27.48,
+          "rows": 6
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "책의 자료 수량",
+      "ms": 115.306,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 61665,
+      "responseSha256": "98c2a8420e49556370ac9b3cf80835b152258243386b422f66b015d051a3daca",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "formats",
+          "ms": 64.645,
+          "rows": 0
+        },
+        {
+          "mode": "counts",
+          "ms": 49.433,
+          "rows": 171
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "저장된 실제 ID",
+      "ms": 1335.357,
+      "reads": 7,
+      "candidateScans": 1,
+      "candidateRows": 1,
+      "responseBytes": 142737,
+      "responseSha256": "eceb996409421d6a024d1dca6f9decfe365fb9dc7659c6506846c699976f6ada",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 242.646,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 950.203,
+          "rows": 583
+        },
+        {
+          "mode": "formats",
+          "ms": 29.952,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "시험지 후보 선택",
+      "ms": 160.869,
+      "reads": 4,
+      "candidateScans": 1,
+      "candidateRows": 241,
+      "responseBytes": 3326,
+      "responseSha256": "c96af7a4c52db005feff01d863e9b239404620f4d27566071e274f483c8c1829",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "formats",
+          "ms": 34.188,
+          "rows": 241
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "문제은행 전체 1쪽",
+      "ms": 2725.46,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 181113,
+      "responseSha256": "f6886df4864332d17678da2a7a11b8831ecf6fb5eef04250f76aeba3413f4fe6",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 243.015,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 944.046,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 400.403,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 1008.065,
+          "rows": 12
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "문제은행 전체 1쪽",
+      "ms": 337.158,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 181113,
+      "responseSha256": "f6886df4864332d17678da2a7a11b8831ecf6fb5eef04250f76aeba3413f4fe6",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 244.546,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "다른 필터 중2 5쪽",
+      "ms": 1580.736,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 158442,
+      "responseSha256": "0d48f7dc9f70549380c4768662fb939d951c8e0d4fe1f2f0cfc7fc6a98dd3248",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 245.551,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 948.233,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 105.938,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 183.493,
+          "rows": 12
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "다른 필터 중2 5쪽",
+      "ms": 335.975,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 158442,
+      "responseSha256": "0d48f7dc9f70549380c4768662fb939d951c8e0d4fe1f2f0cfc7fc6a98dd3248",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 246.331,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "객관식 1쪽",
+      "ms": 2517.364,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 181787,
+      "responseSha256": "77d838bbee470a07f38a53441e358e7ad150bea99da1f9788297a32d7805d562",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 243.981,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 977.921,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 351.119,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 823.099,
+          "rows": 12
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "객관식 1쪽",
+      "ms": 339.301,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 181787,
+      "responseSha256": "77d838bbee470a07f38a53441e358e7ad150bea99da1f9788297a32d7805d562",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 246.586,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "범위 수량 전체·갈래",
+      "ms": 2155.156,
+      "reads": 2,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 72498,
+      "responseSha256": "0d2cb8a971dd7dd87485637ba68bff7d9f3865667c98b5f3781f113a89e0e4bb",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 244.34,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 1898.199,
+          "rows": 17134
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "범위 수량 전체·갈래",
+      "ms": 254.995,
+      "reads": 1,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 72498,
+      "responseSha256": "0d2cb8a971dd7dd87485637ba68bff7d9f3865667c98b5f3781f113a89e0e4bb",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 254.922,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "범위 수량 중2·기본·단답형",
+      "ms": 490.306,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 8506,
+      "responseSha256": "ef8a6b6123f39d0f3ea33adcaf1d58b6ed1440b5ead67cede5fbdd8902bd6236",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 243.739,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 117.775,
+          "rows": 1163
+        },
+        {
+          "mode": "counts",
+          "ms": 127.375,
+          "rows": 7
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "범위 수량 중2·기본·단답형",
+      "ms": 243.291,
+      "reads": 1,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 8506,
+      "responseSha256": "ef8a6b6123f39d0f3ea33adcaf1d58b6ed1440b5ead67cede5fbdd8902bd6236",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 243.226,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "출처 고르기",
+      "ms": 1297.943,
+      "reads": 5,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 10030,
+      "responseSha256": "da7e85d8ff7345b6d38b7080b1171187b1035b510cdf4cf7adeeb49584254752",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 242.261,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 995.022,
+          "rows": 2180
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "출처 고르기",
+      "ms": 244.685,
+      "reads": 1,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 10030,
+      "responseSha256": "da7e85d8ff7345b6d38b7080b1171187b1035b510cdf4cf7adeeb49584254752",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 244.624,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "작업실 bootstrap",
+      "ms": 1196.213,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 141161,
+      "responseSha256": "3e05839a110c69ee686d40e8da6f27ba345b649e1d40d42c4d6ffcf9c674271f",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 244.778,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 950.653,
+          "rows": 583
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "작업실 bootstrap",
+      "ms": 246.046,
+      "reads": 1,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 141161,
+      "responseSha256": "3e05839a110c69ee686d40e8da6f27ba345b649e1d40d42c4d6ffcf9c674271f",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 245.943,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "자료 안 목록",
+      "ms": 1333.963,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 150700,
+      "responseSha256": "c4b0e8c616dab63c80eb202f14aa93e5d477f19923a559454c7588f567fd33d2",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 242.077,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 945.337,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 31.002,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 26.896,
+          "rows": 6
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "자료 안 목록",
+      "ms": 330.857,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 150700,
+      "responseSha256": "c4b0e8c616dab63c80eb202f14aa93e5d477f19923a559454c7588f567fd33d2",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 242.105,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "책의 자료 수량",
+      "ms": 114.287,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 61665,
+      "responseSha256": "98c2a8420e49556370ac9b3cf80835b152258243386b422f66b015d051a3daca",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "formats",
+          "ms": 63.954,
+          "rows": 0
+        },
+        {
+          "mode": "counts",
+          "ms": 49.468,
+          "rows": 171
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "책의 자료 수량",
+      "ms": 109.328,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 61665,
+      "responseSha256": "98c2a8420e49556370ac9b3cf80835b152258243386b422f66b015d051a3daca",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "formats",
+          "ms": 63.321,
+          "rows": 0
+        },
+        {
+          "mode": "counts",
+          "ms": 45.313,
+          "rows": 171
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "저장된 실제 ID",
+      "ms": 1338.738,
+      "reads": 7,
+      "candidateScans": 1,
+      "candidateRows": 1,
+      "responseBytes": 142737,
+      "responseSha256": "eceb996409421d6a024d1dca6f9decfe365fb9dc7659c6506846c699976f6ada",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 243.33,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 954.21,
+          "rows": 583
+        },
+        {
+          "mode": "formats",
+          "ms": 27.753,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "저장된 실제 ID",
+      "ms": 383.719,
+      "reads": 5,
+      "candidateScans": 1,
+      "candidateRows": 1,
+      "responseBytes": 142737,
+      "responseSha256": "eceb996409421d6a024d1dca6f9decfe365fb9dc7659c6506846c699976f6ada",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 243.016,
+          "rows": 1
+        },
+        {
+          "mode": "formats",
+          "ms": 29.074,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "시험지 후보 선택",
+      "ms": 161.163,
+      "reads": 4,
+      "candidateScans": 1,
+      "candidateRows": 241,
+      "responseBytes": 3326,
+      "responseSha256": "c96af7a4c52db005feff01d863e9b239404620f4d27566071e274f483c8c1829",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "formats",
+          "ms": 31.814,
+          "rows": 241
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 1,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "시험지 후보 선택",
+      "ms": 153.091,
+      "reads": 4,
+      "candidateScans": 1,
+      "candidateRows": 241,
+      "responseBytes": 3326,
+      "responseSha256": "c96af7a4c52db005feff01d863e9b239404620f4d27566071e274f483c8c1829",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "formats",
+          "ms": 30.986,
+          "rows": 241
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "문제은행 전체 1쪽",
+      "ms": 2565.416,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 181113,
+      "responseSha256": "f6886df4864332d17678da2a7a11b8831ecf6fb5eef04250f76aeba3413f4fe6",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 246.399,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 965.072,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 400.12,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 820.869,
+          "rows": 12
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "다른 필터 중2 5쪽",
+      "ms": 1589.237,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 158442,
+      "responseSha256": "0d48f7dc9f70549380c4768662fb939d951c8e0d4fe1f2f0cfc7fc6a98dd3248",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 246.361,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 957.607,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 105.213,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 180.404,
+          "rows": 12
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "객관식 1쪽",
+      "ms": 2517.502,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 181787,
+      "responseSha256": "77d838bbee470a07f38a53441e358e7ad150bea99da1f9788297a32d7805d562",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 244.082,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 951.629,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 355.559,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 834.923,
+          "rows": 12
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "범위 수량 전체·갈래",
+      "ms": 2073.594,
+      "reads": 2,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 72498,
+      "responseSha256": "0d2cb8a971dd7dd87485637ba68bff7d9f3865667c98b5f3781f113a89e0e4bb",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 244.826,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 1805.896,
+          "rows": 17134
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "범위 수량 중2·기본·단답형",
+      "ms": 498.364,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 8506,
+      "responseSha256": "ef8a6b6123f39d0f3ea33adcaf1d58b6ed1440b5ead67cede5fbdd8902bd6236",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 254.448,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 117.308,
+          "rows": 1163
+        },
+        {
+          "mode": "counts",
+          "ms": 124.556,
+          "rows": 7
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "출처 고르기",
+      "ms": 1302.277,
+      "reads": 5,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 10030,
+      "responseSha256": "da7e85d8ff7345b6d38b7080b1171187b1035b510cdf4cf7adeeb49584254752",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 244.766,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 991.913,
+          "rows": 2180
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "작업실 bootstrap",
+      "ms": 1212.717,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 141161,
+      "responseSha256": "3e05839a110c69ee686d40e8da6f27ba345b649e1d40d42c4d6ffcf9c674271f",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 247.23,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 964.326,
+          "rows": 583
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "자료 안 목록",
+      "ms": 1354.445,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 150700,
+      "responseSha256": "c4b0e8c616dab63c80eb202f14aa93e5d477f19923a559454c7588f567fd33d2",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 244.63,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 955.625,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 30.347,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 30.558,
+          "rows": 6
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "책의 자료 수량",
+      "ms": 111.596,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 61665,
+      "responseSha256": "98c2a8420e49556370ac9b3cf80835b152258243386b422f66b015d051a3daca",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "formats",
+          "ms": 64.397,
+          "rows": 0
+        },
+        {
+          "mode": "counts",
+          "ms": 46.075,
+          "rows": 171
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "저장된 실제 ID",
+      "ms": 1347.341,
+      "reads": 7,
+      "candidateScans": 1,
+      "candidateRows": 1,
+      "responseBytes": 142737,
+      "responseSha256": "eceb996409421d6a024d1dca6f9decfe365fb9dc7659c6506846c699976f6ada",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 244.879,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 956.92,
+          "rows": 583
+        },
+        {
+          "mode": "formats",
+          "ms": 28.941,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "시험지 후보 선택",
+      "ms": 155.337,
+      "reads": 4,
+      "candidateScans": 1,
+      "candidateRows": 241,
+      "responseBytes": 3326,
+      "responseSha256": "c96af7a4c52db005feff01d863e9b239404620f4d27566071e274f483c8c1829",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "formats",
+          "ms": 30.743,
+          "rows": 241
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "문제은행 전체 1쪽",
+      "ms": 2554.285,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 181113,
+      "responseSha256": "f6886df4864332d17678da2a7a11b8831ecf6fb5eef04250f76aeba3413f4fe6",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 246.519,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 961.344,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 398.873,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 822.534,
+          "rows": 12
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "문제은행 전체 1쪽",
+      "ms": 337.89,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 181113,
+      "responseSha256": "f6886df4864332d17678da2a7a11b8831ecf6fb5eef04250f76aeba3413f4fe6",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 244.774,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "다른 필터 중2 5쪽",
+      "ms": 1590.187,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 158442,
+      "responseSha256": "0d48f7dc9f70549380c4768662fb939d951c8e0d4fe1f2f0cfc7fc6a98dd3248",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 246.071,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 951.417,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 105.233,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 180.474,
+          "rows": 12
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "다른 필터 중2 5쪽",
+      "ms": 340.883,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 158442,
+      "responseSha256": "0d48f7dc9f70549380c4768662fb939d951c8e0d4fe1f2f0cfc7fc6a98dd3248",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 245.779,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "객관식 1쪽",
+      "ms": 2528.169,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 181787,
+      "responseSha256": "77d838bbee470a07f38a53441e358e7ad150bea99da1f9788297a32d7805d562",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 247.037,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 954.508,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 356.198,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 840.711,
+          "rows": 12
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "객관식 1쪽",
+      "ms": 340.977,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 181787,
+      "responseSha256": "77d838bbee470a07f38a53441e358e7ad150bea99da1f9788297a32d7805d562",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 245.731,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "범위 수량 전체·갈래",
+      "ms": 2074.622,
+      "reads": 2,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 72498,
+      "responseSha256": "0d2cb8a971dd7dd87485637ba68bff7d9f3865667c98b5f3781f113a89e0e4bb",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 244.754,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 1815.839,
+          "rows": 17134
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "범위 수량 전체·갈래",
+      "ms": 255.167,
+      "reads": 1,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 72498,
+      "responseSha256": "0d2cb8a971dd7dd87485637ba68bff7d9f3865667c98b5f3781f113a89e0e4bb",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 255.086,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "범위 수량 중2·기본·단답형",
+      "ms": 490.333,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 8506,
+      "responseSha256": "ef8a6b6123f39d0f3ea33adcaf1d58b6ed1440b5ead67cede5fbdd8902bd6236",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 244.546,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 119.171,
+          "rows": 1163
+        },
+        {
+          "mode": "counts",
+          "ms": 125.12,
+          "rows": 7
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "범위 수량 중2·기본·단답형",
+      "ms": 242.703,
+      "reads": 1,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 8506,
+      "responseSha256": "ef8a6b6123f39d0f3ea33adcaf1d58b6ed1440b5ead67cede5fbdd8902bd6236",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 242.642,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "출처 고르기",
+      "ms": 1298.765,
+      "reads": 5,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 10030,
+      "responseSha256": "da7e85d8ff7345b6d38b7080b1171187b1035b510cdf4cf7adeeb49584254752",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 245.345,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 992.221,
+          "rows": 2180
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "출처 고르기",
+      "ms": 241.709,
+      "reads": 1,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 10030,
+      "responseSha256": "da7e85d8ff7345b6d38b7080b1171187b1035b510cdf4cf7adeeb49584254752",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 241.646,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "작업실 bootstrap",
+      "ms": 1217.243,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 141161,
+      "responseSha256": "3e05839a110c69ee686d40e8da6f27ba345b649e1d40d42c4d6ffcf9c674271f",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 245.875,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 970.601,
+          "rows": 583
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "작업실 bootstrap",
+      "ms": 243.254,
+      "reads": 1,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 141161,
+      "responseSha256": "3e05839a110c69ee686d40e8da6f27ba345b649e1d40d42c4d6ffcf9c674271f",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 243.152,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "자료 안 목록",
+      "ms": 1352.903,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 150700,
+      "responseSha256": "c4b0e8c616dab63c80eb202f14aa93e5d477f19923a559454c7588f567fd33d2",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 247.341,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 960.819,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 27.856,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 28.282,
+          "rows": 6
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "자료 안 목록",
+      "ms": 333.219,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 150700,
+      "responseSha256": "c4b0e8c616dab63c80eb202f14aa93e5d477f19923a559454c7588f567fd33d2",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 241.543,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "책의 자료 수량",
+      "ms": 107.061,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 61665,
+      "responseSha256": "98c2a8420e49556370ac9b3cf80835b152258243386b422f66b015d051a3daca",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "formats",
+          "ms": 59.749,
+          "rows": 0
+        },
+        {
+          "mode": "counts",
+          "ms": 46.666,
+          "rows": 171
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "책의 자료 수량",
+      "ms": 107.697,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 61665,
+      "responseSha256": "98c2a8420e49556370ac9b3cf80835b152258243386b422f66b015d051a3daca",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "formats",
+          "ms": 60.638,
+          "rows": 0
+        },
+        {
+          "mode": "counts",
+          "ms": 46.458,
+          "rows": 171
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "저장된 실제 ID",
+      "ms": 1354.464,
+      "reads": 7,
+      "candidateScans": 1,
+      "candidateRows": 1,
+      "responseBytes": 142737,
+      "responseSha256": "eceb996409421d6a024d1dca6f9decfe365fb9dc7659c6506846c699976f6ada",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 248.167,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 967.198,
+          "rows": 583
+        },
+        {
+          "mode": "formats",
+          "ms": 27.77,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "저장된 실제 ID",
+      "ms": 384.455,
+      "reads": 5,
+      "candidateScans": 1,
+      "candidateRows": 1,
+      "responseBytes": 142737,
+      "responseSha256": "eceb996409421d6a024d1dca6f9decfe365fb9dc7659c6506846c699976f6ada",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 245.741,
+          "rows": 1
+        },
+        {
+          "mode": "formats",
+          "ms": 28.129,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "시험지 후보 선택",
+      "ms": 160.895,
+      "reads": 4,
+      "candidateScans": 1,
+      "candidateRows": 241,
+      "responseBytes": 3326,
+      "responseSha256": "c96af7a4c52db005feff01d863e9b239404620f4d27566071e274f483c8c1829",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "formats",
+          "ms": 33.129,
+          "rows": 241
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 2,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "시험지 후보 선택",
+      "ms": 151.486,
+      "reads": 4,
+      "candidateScans": 1,
+      "candidateRows": 241,
+      "responseBytes": 3326,
+      "responseSha256": "c96af7a4c52db005feff01d863e9b239404620f4d27566071e274f483c8c1829",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "formats",
+          "ms": 31.903,
+          "rows": 241
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "문제은행 전체 1쪽",
+      "ms": 2560.968,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 181113,
+      "responseSha256": "f6886df4864332d17678da2a7a11b8831ecf6fb5eef04250f76aeba3413f4fe6",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 244.604,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 960.072,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 407.314,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 825.448,
+          "rows": 12
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "다른 필터 중2 5쪽",
+      "ms": 1582.033,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 158442,
+      "responseSha256": "0d48f7dc9f70549380c4768662fb939d951c8e0d4fe1f2f0cfc7fc6a98dd3248",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 243.349,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 961.742,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 103.258,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 178.947,
+          "rows": 12
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "객관식 1쪽",
+      "ms": 2522.253,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 181787,
+      "responseSha256": "77d838bbee470a07f38a53441e358e7ad150bea99da1f9788297a32d7805d562",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 243.116,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 962.585,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 352.312,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 836.771,
+          "rows": 12
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "범위 수량 전체·갈래",
+      "ms": 2090.901,
+      "reads": 2,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 72498,
+      "responseSha256": "0d2cb8a971dd7dd87485637ba68bff7d9f3865667c98b5f3781f113a89e0e4bb",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 244.94,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 1835.584,
+          "rows": 17134
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "범위 수량 중2·기본·단답형",
+      "ms": 500.769,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 8506,
+      "responseSha256": "ef8a6b6123f39d0f3ea33adcaf1d58b6ed1440b5ead67cede5fbdd8902bd6236",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 257.113,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 115.598,
+          "rows": 1163
+        },
+        {
+          "mode": "counts",
+          "ms": 127.052,
+          "rows": 7
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "출처 고르기",
+      "ms": 1282.11,
+      "reads": 5,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 10030,
+      "responseSha256": "da7e85d8ff7345b6d38b7080b1171187b1035b510cdf4cf7adeeb49584254752",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 243.021,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 983.678,
+          "rows": 2180
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "작업실 bootstrap",
+      "ms": 1239.415,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 141161,
+      "responseSha256": "3e05839a110c69ee686d40e8da6f27ba345b649e1d40d42c4d6ffcf9c674271f",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 244.721,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 994.143,
+          "rows": 583
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "자료 안 목록",
+      "ms": 1340.162,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 150700,
+      "responseSha256": "c4b0e8c616dab63c80eb202f14aa93e5d477f19923a559454c7588f567fd33d2",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 244.635,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 949.019,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 30.358,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 27.647,
+          "rows": 6
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "책의 자료 수량",
+      "ms": 111.315,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 61665,
+      "responseSha256": "98c2a8420e49556370ac9b3cf80835b152258243386b422f66b015d051a3daca",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "formats",
+          "ms": 63.181,
+          "rows": 0
+        },
+        {
+          "mode": "counts",
+          "ms": 47.696,
+          "rows": 171
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "저장된 실제 ID",
+      "ms": 1339.311,
+      "reads": 7,
+      "candidateScans": 1,
+      "candidateRows": 1,
+      "responseBytes": 142737,
+      "responseSha256": "eceb996409421d6a024d1dca6f9decfe365fb9dc7659c6506846c699976f6ada",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 242.018,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 961.284,
+          "rows": 583
+        },
+        {
+          "mode": "formats",
+          "ms": 26.605,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "before",
+      "cacheMode": "cold",
+      "scenario": "시험지 후보 선택",
+      "ms": 149.14,
+      "reads": 4,
+      "candidateScans": 1,
+      "candidateRows": 241,
+      "responseBytes": 3326,
+      "responseSha256": "c96af7a4c52db005feff01d863e9b239404620f4d27566071e274f483c8c1829",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "formats",
+          "ms": 36.842,
+          "rows": 241
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "문제은행 전체 1쪽",
+      "ms": 2552.565,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 181113,
+      "responseSha256": "f6886df4864332d17678da2a7a11b8831ecf6fb5eef04250f76aeba3413f4fe6",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 247.671,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 958.683,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 395.809,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 830.643,
+          "rows": 12
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "문제은행 전체 1쪽",
+      "ms": 366.761,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 181113,
+      "responseSha256": "f6886df4864332d17678da2a7a11b8831ecf6fb5eef04250f76aeba3413f4fe6",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 245.601,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "다른 필터 중2 5쪽",
+      "ms": 1573.281,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 158442,
+      "responseSha256": "0d48f7dc9f70549380c4768662fb939d951c8e0d4fe1f2f0cfc7fc6a98dd3248",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 259.48,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 945.093,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 104.597,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 174.771,
+          "rows": 12
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "다른 필터 중2 5쪽",
+      "ms": 332.585,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 158442,
+      "responseSha256": "0d48f7dc9f70549380c4768662fb939d951c8e0d4fe1f2f0cfc7fc6a98dd3248",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 242.502,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "객관식 1쪽",
+      "ms": 2505.716,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 181787,
+      "responseSha256": "77d838bbee470a07f38a53441e358e7ad150bea99da1f9788297a32d7805d562",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 245.152,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 958.241,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 348.858,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 827.137,
+          "rows": 12
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "객관식 1쪽",
+      "ms": 333.061,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 181787,
+      "responseSha256": "77d838bbee470a07f38a53441e358e7ad150bea99da1f9788297a32d7805d562",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 244.389,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "범위 수량 전체·갈래",
+      "ms": 2052.147,
+      "reads": 2,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 72498,
+      "responseSha256": "0d2cb8a971dd7dd87485637ba68bff7d9f3865667c98b5f3781f113a89e0e4bb",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 243.375,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 1798.403,
+          "rows": 17134
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "범위 수량 전체·갈래",
+      "ms": 253.585,
+      "reads": 1,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 72498,
+      "responseSha256": "0d2cb8a971dd7dd87485637ba68bff7d9f3865667c98b5f3781f113a89e0e4bb",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 253.515,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "범위 수량 중2·기본·단답형",
+      "ms": 486.145,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 8506,
+      "responseSha256": "ef8a6b6123f39d0f3ea33adcaf1d58b6ed1440b5ead67cede5fbdd8902bd6236",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 247.439,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 113.845,
+          "rows": 1163
+        },
+        {
+          "mode": "counts",
+          "ms": 123.759,
+          "rows": 7
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "범위 수량 중2·기본·단답형",
+      "ms": 246.715,
+      "reads": 1,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 8506,
+      "responseSha256": "ef8a6b6123f39d0f3ea33adcaf1d58b6ed1440b5ead67cede5fbdd8902bd6236",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 246.655,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "출처 고르기",
+      "ms": 1278.283,
+      "reads": 5,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 10030,
+      "responseSha256": "da7e85d8ff7345b6d38b7080b1171187b1035b510cdf4cf7adeeb49584254752",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 242.663,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 982.932,
+          "rows": 2180
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "출처 고르기",
+      "ms": 242.475,
+      "reads": 1,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 10030,
+      "responseSha256": "da7e85d8ff7345b6d38b7080b1171187b1035b510cdf4cf7adeeb49584254752",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 242.421,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "작업실 bootstrap",
+      "ms": 1187.47,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 141161,
+      "responseSha256": "3e05839a110c69ee686d40e8da6f27ba345b649e1d40d42c4d6ffcf9c674271f",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 241.546,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 945.36,
+          "rows": 583
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "작업실 bootstrap",
+      "ms": 242.665,
+      "reads": 1,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 141161,
+      "responseSha256": "3e05839a110c69ee686d40e8da6f27ba345b649e1d40d42c4d6ffcf9c674271f",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 242.58,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "자료 안 목록",
+      "ms": 1342.936,
+      "reads": 7,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 150700,
+      "responseSha256": "c4b0e8c616dab63c80eb202f14aa93e5d477f19923a559454c7588f567fd33d2",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 242.333,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 953.566,
+          "rows": 583
+        },
+        {
+          "mode": "counts",
+          "ms": 27.726,
+          "rows": 1
+        },
+        {
+          "mode": "page",
+          "ms": 28.298,
+          "rows": 6
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "자료 안 목록",
+      "ms": 330.806,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 150700,
+      "responseSha256": "c4b0e8c616dab63c80eb202f14aa93e5d477f19923a559454c7588f567fd33d2",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 244.38,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "책의 자료 수량",
+      "ms": 107.778,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 61665,
+      "responseSha256": "98c2a8420e49556370ac9b3cf80835b152258243386b422f66b015d051a3daca",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "formats",
+          "ms": 60.318,
+          "rows": 0
+        },
+        {
+          "mode": "counts",
+          "ms": 47.017,
+          "rows": 171
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "책의 자료 수량",
+      "ms": 103.966,
+      "reads": 3,
+      "candidateScans": 0,
+      "candidateRows": 0,
+      "responseBytes": 61665,
+      "responseSha256": "98c2a8420e49556370ac9b3cf80835b152258243386b422f66b015d051a3daca",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "formats",
+          "ms": 58.598,
+          "rows": 0
+        },
+        {
+          "mode": "counts",
+          "ms": 44.973,
+          "rows": 171
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "저장된 실제 ID",
+      "ms": 1329.415,
+      "reads": 7,
+      "candidateScans": 1,
+      "candidateRows": 1,
+      "responseBytes": 142737,
+      "responseSha256": "eceb996409421d6a024d1dca6f9decfe365fb9dc7659c6506846c699976f6ada",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 242.206,
+          "rows": 1
+        },
+        {
+          "mode": "counts",
+          "ms": 950.897,
+          "rows": 583
+        },
+        {
+          "mode": "formats",
+          "ms": 28.754,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "저장된 실제 ID",
+      "ms": 384.081,
+      "reads": 5,
+      "candidateScans": 1,
+      "candidateRows": 1,
+      "responseBytes": 142737,
+      "responseSha256": "eceb996409421d6a024d1dca6f9decfe365fb9dc7659c6506846c699976f6ada",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "fingerprint",
+          "ms": 246.689,
+          "rows": 1
+        },
+        {
+          "mode": "formats",
+          "ms": 27.973,
+          "rows": 1
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "after",
+      "cacheMode": "cold",
+      "scenario": "시험지 후보 선택",
+      "ms": 146.438,
+      "reads": 4,
+      "candidateScans": 1,
+      "candidateRows": 241,
+      "responseBytes": 3326,
+      "responseSha256": "c96af7a4c52db005feff01d863e9b239404620f4d27566071e274f483c8c1829",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "formats",
+          "ms": 30.112,
+          "rows": 241
+        }
+      ],
+      "byteEqual": true
+    },
+    {
+      "round": 3,
+      "version": "after",
+      "cacheMode": "validated",
+      "scenario": "시험지 후보 선택",
+      "ms": 154.016,
+      "reads": 4,
+      "candidateScans": 1,
+      "candidateRows": 241,
+      "responseBytes": 3326,
+      "responseSha256": "c96af7a4c52db005feff01d863e9b239404620f4d27566071e274f483c8c1829",
+      "invalidFormatRows": 0,
+      "queries": [
+        {
+          "mode": "formats",
+          "ms": 32.563,
+          "rows": 241
+        }
+      ],
+      "byteEqual": true
+    }
+  ]
+}

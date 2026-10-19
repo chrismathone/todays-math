@@ -9,7 +9,8 @@ export const API_MODELS = {
     "gemini-2.5-flash",
     "gemini-2.5-pro",
   ],
-  deepseek: ["deepseek-v4-pro"],
+  // 해설 기본은 V4.1 Flash(원장님 2026-10-19 — 50문항 50/50 · v4-pro 48/50). `STUDIO_AI_DEEPSEEK_MODEL=deepseek-v4-pro` 로 되돌린다.
+  deepseek: ["deepseek-flash", "deepseek-v4-pro"],
   anthropic: [
     "claude-opus-5",
     "claude-opus-4-7",

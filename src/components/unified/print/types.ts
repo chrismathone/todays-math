@@ -23,6 +23,8 @@ export type PrintTemplate =
 
 /** 시험지 메타데이터. 헤더 / 푸터 / 워터마크 등에서 사용. */
 export interface PrintMeta {
+  /** Render-only bridge from the existing draft/presentation tag; never saved in printMeta or presets. */
+  sheetTag?: import("@/contracts/sheetTag.contract").SheetTag;
   /** 시험지 타이틀. 예: "2025학년도 1학기 중간고사" */
   title: string;
   /** 학교명. 예: "○○고등학교" */

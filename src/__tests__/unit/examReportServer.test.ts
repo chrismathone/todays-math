@@ -2,7 +2,13 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { PDFDocument } from "pdf-lib";
 import type { ExamReportArtifact, ExamReportDraft } from "@prisma/client";
-import { reportCandidate, reportId } from "../helpers/examReportFeedFixture";
+import type { PdfBatchInput, PdfPayload } from "@/lib/export/pdfServer";
+import {
+  reportBinding,
+  reportCandidate,
+  reportId,
+} from "../helpers/examReportFeedFixture";
+import legacyM1 from "../fixtures/examReportLegacyM1.json";
 
 const m = vi.hoisted(() => ({
   db: {
@@ -22,6 +28,7 @@ const m = vi.hoisted(() => ({
     $transaction: vi.fn(),
   },
   buildPdf: vi.fn(),
+  buildPdfBatch: vi.fn(),
   upload: vi.fn(),
   read: vi.fn(),
   owned: vi.fn(),
@@ -41,6 +48,7 @@ vi.mock("@/lib/errorLog/scope", () => ({ noteErrorLog: m.noteLog }));
 vi.mock("@/lib/export/pdfServer", async (original) => ({
   ...(await original<typeof import("@/lib/export/pdfServer")>()),
   buildPdf: m.buildPdf,
+  buildPdfBatch: m.buildPdfBatch,
 }));
 
 import {
@@ -54,9 +62,16 @@ import {
 } from "@/lib/examReport/server";
 import {
   examReportOptionsSchema,
+  examReportSettingsInputSchema,
   examReportStudentResponseSchema,
 } from "@/contracts/examReportWorkspace.contract";
 import type { SessionUser } from "@/lib/session";
+import { paperOptions, reportSnapshot } from "@/lib/examReport/read";
+import { examReportSnapshotSchema } from "@/contracts/eywaExamReport.contract";
+import {
+  eligibleExamReports,
+  examReportSnapshotDigest,
+} from "@/lib/eywa/managedExamReports";
 
 const session: SessionUser = {
   id: reportId(20),
@@ -149,6 +164,18 @@ let world = seed();
 const testId = reportId(4),
   studentId = reportId(6);
 let pdf: Uint8Array;
+async function pdfWithWidths(widths: number[]) {
+  const document = await PDFDocument.create();
+  for (const width of widths) document.addPage([width, 100]);
+  return new Uint8Array(await document.save());
+}
+function deferredPdf() {
+  let resolve!: (bytes: Uint8Array) => void;
+  const promise = new Promise<Uint8Array>((done) => {
+    resolve = done;
+  });
+  return { promise, resolve };
+}
 function decorated() {
   return world.drafts.map((row) => ({
     ...row,
@@ -169,6 +196,19 @@ beforeEach(async () => {
   document.addPage([100, 100]);
   pdf = new Uint8Array(await document.save());
   m.buildPdf.mockReset().mockResolvedValue(pdf);
+  m.buildPdfBatch
+    .mockReset()
+    .mockImplementation(
+      async (inputs: readonly PdfBatchInput[], origin: string) =>
+        Promise.all(
+          inputs.map(async (input) => {
+            const source = await input();
+            return source instanceof Uint8Array
+              ? source
+              : m.buildPdf(source, origin);
+          }),
+        ),
+    );
   m.upload.mockReset().mockResolvedValue(undefined);
   m.read.mockReset().mockResolvedValue(pdf);
   m.owned.mockResolvedValue({ ok: true, data: world.test.class });
@@ -255,6 +295,32 @@ beforeEach(async () => {
 });
 
 describe("실제 성적표 읽기·쓰기 — DB·Chromium·외부 호출 없는 더블", () => {
+  it("고정 M1 JSON과 지문을 그대로 유지하고 외부 목록에서도 확정 보관본을 읽는다", () => {
+    // 기대 지문은 구현 함수로 재계산하지 않는 고정 합성 기록이다.
+    const snapshot = examReportSnapshotSchema.parse(legacyM1.snapshot);
+    expect(snapshot).toEqual(legacyM1.snapshot);
+    expect(examReportSnapshotDigest(snapshot)).toBe(legacyM1.sourceDigest);
+    const current = reportSnapshot(snapshot.report, snapshot.options, {
+      averageScore: 0,
+      gradedCount: 1,
+    })!;
+    expect(current).toEqual(snapshot);
+    expect(examReportSnapshotDigest(current)).toBe(legacyM1.sourceDigest);
+    expect(paperOptions(current).mode).toBe("S1");
+    const candidate = reportCandidate();
+    candidate.current = current;
+    candidate.confirmation = {
+      ...candidate.confirmation!,
+      snapshot,
+      sourceDigest: legacyM1.sourceDigest,
+    };
+    expect(
+      eligibleExamReports(reportBinding, "2026-10-24", [candidate]),
+    ).toHaveLength(1);
+    expect(m.db.examReportDraft.create).not.toHaveBeenCalled();
+    expect(m.buildPdf).not.toHaveBeenCalled();
+    expect(m.read).not.toHaveBeenCalled();
+  });
   it("읽기는 편집 줄을 만들지 않으며 기존 발행 문항·점수 계산과 명단을 쓴다", async () => {
     const data = await readExamReportList(session, testId);
     expect(data.students[0]).toMatchObject({
@@ -456,7 +522,9 @@ describe("실제 성적표 읽기·쓰기 — DB·Chromium·외부 호출 없는
       name: "둘째",
     });
     const before = await readExamReportList(session, testId);
-    const options = examReportOptionsSchema.parse({ format: "M1" });
+    const options = examReportSettingsInputSchema.shape.options.parse({
+      wrongQuestions: false,
+    });
     const data = await saveExamReportSettings(session, testId, {
       expectedOptionsDigest: before.optionsDigest,
       options,
@@ -489,7 +557,9 @@ describe("실제 성적표 읽기·쓰기 — DB·Chromium·외부 호출 없는
     const before = await readExamReportList(session, testId);
     await saveExamReportSettings(session, testId, {
       expectedOptionsDigest: before.optionsDigest,
-      options: examReportOptionsSchema.parse({ classAverage: true }),
+      options: examReportSettingsInputSchema.shape.options.parse({
+        classAverage: true,
+      }),
     });
     let student = await readExamReportStudent(session, testId, studentId);
     expect(
@@ -548,6 +618,72 @@ describe("실제 성적표 읽기·쓰기 — DB·Chromium·외부 호출 없는
     expect(world.artifacts).toHaveLength(0);
     expect(world.drafts[0].state).toBe("draft");
     expect(m.noteLog).toHaveBeenCalled();
+  });
+  it("기존 M1 보관본은 모든 쪽을 유지하고 반 인쇄의 미확정 학생만 요약으로 만든다", async () => {
+    const draft = await saveExamReportNote(session, testId, studentId, {
+      expectedRevision: 0,
+      teacherNote: "기존 문장",
+    });
+    world.drafts[0].options = examReportOptionsSchema.parse({ format: "M1" });
+    // 과거 풀이 쪽까지 들어 있던 보관 PDF를 세 쪽으로 구분한다.
+    const legacyPdf = await pdfWithWidths([100, 101, 102]);
+    m.buildPdf.mockResolvedValueOnce(legacyPdf);
+    await confirmExamReport(
+      session,
+      testId,
+      studentId,
+      {
+        expectedRevision: draft.summary.revision,
+      },
+      "https://math.example.test",
+    );
+    expect(world.artifacts[0].snapshot).toMatchObject({
+      options: { format: "M1" },
+      layoutVersion: "h1-v2",
+    });
+    const before = structuredClone({
+      drafts: world.drafts,
+      artifacts: world.artifacts,
+    });
+    m.read.mockResolvedValue(legacyPdf);
+    m.buildPdf.mockClear();
+    m.upload.mockClear();
+    expect(
+      (await readExamReportStudent(session, testId, studentId)).summary.status,
+    ).toBe("confirmed");
+    expect(
+      await readConfirmedExamReportPdf(session, testId, studentId),
+    ).toEqual(legacyPdf);
+    const second = reportId(66);
+    world.students.push({ ...world.students[0], id: second, name: "둘째" });
+    world.results.push({
+      ...world.results[0],
+      id: reportId(77),
+      studentId: second,
+    });
+    const combined = await PDFDocument.load(
+      await printExamReports(
+        session,
+        testId,
+        {
+          scope: "all",
+          kind: "students",
+        },
+        "https://math.example.test",
+      ),
+    );
+    expect(combined.getPages().map((page) => page.getWidth())).toEqual([
+      100, 101, 102, 100,
+    ]);
+    expect(m.buildPdf).toHaveBeenCalledTimes(1);
+    const payload: PdfPayload = m.buildPdf.mock.calls[0][0];
+    expect(payload.html.match(/data-exam-report-page=/g)).toHaveLength(1);
+    expect(payload.html).toContain('data-er-wrong-no="1"');
+    expect(payload.html).not.toMatch(/data-report-question|틀린 문항 풀이/);
+    expect({ drafts: world.drafts, artifacts: world.artifacts }).toEqual(
+      before,
+    );
+    expect(m.upload).not.toHaveBeenCalled();
   });
   it("확정 PDF는 보관 바이트를 주며 읽는 동안 재채점되면 거절한다", async () => {
     await confirmExamReport(
@@ -609,5 +745,114 @@ describe("실제 성적표 읽기·쓰기 — DB·Chromium·외부 호출 없는
       "https://math.example.test",
     );
     expect(m.buildPdf.mock.calls.at(-1)![0]).toMatchObject({ landscape: true });
+  });
+  it("미확정 렌더가 거꾸로 끝나도 보관본과 여러 쪽을 학생 명단 순서로 합친다", async () => {
+    await confirmExamReport(
+      session,
+      testId,
+      studentId,
+      { expectedRevision: 0 },
+      "https://math.example.test",
+    );
+    for (const [index, name] of ["둘째", "셋째"].entries()) {
+      const id = reportId(66 + index);
+      world.students.push({ ...world.students[0], id, name });
+      world.results.push({
+        ...world.results[0],
+        id: reportId(77 + index),
+        studentId: id,
+      });
+    }
+    const second = deferredPdf();
+    const third = deferredPdf();
+    m.buildPdf
+      .mockReset()
+      .mockImplementation(async (input: PdfPayload) =>
+        input.title.includes("둘째") ? second.promise : third.promise,
+      );
+    m.read.mockClear();
+    m.upload.mockClear();
+    const pending = printExamReports(
+      session,
+      testId,
+      { scope: "all", kind: "students" },
+      "https://math.example.test",
+    );
+    await vi.waitFor(() => expect(m.buildPdf).toHaveBeenCalledTimes(2));
+    third.resolve(await pdfWithWidths([300, 301]));
+    second.resolve(await pdfWithWidths([200]));
+    const combined = await PDFDocument.load(await pending);
+    expect(combined.getPages().map((page) => page.getWidth())).toEqual([
+      100, 200, 300, 301,
+    ]);
+    expect(m.read).toHaveBeenCalledTimes(1);
+    expect(m.upload).not.toHaveBeenCalled();
+    expect(world.artifacts).toHaveLength(1);
+  });
+  it.each(["archive", "render", "overflow", "malformed"])(
+    "%s 실패는 인쇄 전체를 거절하고 보관본·확정을 바꾸지 않는다",
+    async (stage) => {
+      await confirmExamReport(
+        session,
+        testId,
+        studentId,
+        { expectedRevision: 0 },
+        "https://math.example.test",
+      );
+      const second = reportId(66);
+      world.students.push({ ...world.students[0], id: second, name: "둘째" });
+      world.results.push({
+        ...world.results[0],
+        id: reportId(77),
+        studentId: second,
+      });
+      const error = new Error(
+        stage === "overflow"
+          ? "성적표 1쪽이 지면을 벗어납니다. 문장·지면 설정을 확인해 주세요."
+          : `${stage} failed`,
+      );
+      if (stage === "archive") m.read.mockRejectedValueOnce(error);
+      else if (stage === "malformed")
+        m.buildPdf.mockResolvedValueOnce(new Uint8Array([0, 1, 2]));
+      else m.buildPdf.mockRejectedValueOnce(error);
+      m.upload.mockClear();
+      m.db.$transaction.mockClear();
+      const before = structuredClone({
+        drafts: world.drafts,
+        artifacts: world.artifacts,
+      });
+      const pending = printExamReports(
+        session,
+        testId,
+        { scope: "all", kind: "students" },
+        "https://math.example.test",
+      );
+      if (stage === "overflow")
+        await expect(pending).rejects.toMatchObject({
+          status: 422,
+          message: error.message,
+        });
+      else if (stage === "malformed") await expect(pending).rejects.toThrow();
+      else await expect(pending).rejects.toBe(error);
+      expect({ drafts: world.drafts, artifacts: world.artifacts }).toEqual(
+        before,
+      );
+      expect(m.upload).not.toHaveBeenCalled();
+      expect(m.db.$transaction).not.toHaveBeenCalled();
+    },
+  );
+  it("동시 인쇄 중 원본이 바뀌면 합친 PDF를 내보내지 않는다", async () => {
+    m.buildPdf.mockImplementationOnce(async () => {
+      world.results[0].answers[0].isCorrect = true;
+      return pdf;
+    });
+    await expect(
+      printExamReports(
+        session,
+        testId,
+        { scope: "all", kind: "students" },
+        "https://math.example.test",
+      ),
+    ).rejects.toMatchObject({ status: 409 });
   });
 });

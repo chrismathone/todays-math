@@ -165,132 +165,30 @@ interface QuestionNumberProps {
   accent: string;
 }
 
-export function QuestionNumber({ template, num, accent }: QuestionNumberProps) {
-  const textAccent = readablePaperColor(accent);
-  const boxWidth =
-    num >= 1000 ? { minWidth: 22, padding: "0 4px" } : { width: 22 };
-  const printStyle: React.CSSProperties = {
-    WebkitPrintColorAdjust: "exact" as const,
-  };
-
-  switch (template) {
-    case "pyeongga":
-      // 평가원 — 두꺼운 본문 글자 번호 + 마침표
-      return (
-        <span
-          style={{
-            fontWeight: 800,
-            fontFamily: "var(--paper-font-serif)",
-            fontSize: 14,
-            color: textAccent,
-            marginRight: 6,
-            ...printStyle,
-          }}
-        >
-          {num}.
-        </span>
-      );
-
-    case "jeongtong":
-      // 정통 — 단순 번호 + 마침표 (큰 글자)
-      return (
-        <span
-          style={{
-            fontWeight: 800,
-            fontFamily: "var(--paper-font-serif)",
-            fontSize: 14,
-            color: textAccent,
-            marginRight: 6,
-            ...printStyle,
-          }}
-        >
-          {num}.
-        </span>
-      );
-
-    case "modern":
-      // 모던 — 큰 sans-serif 번호, accent 색, zero-pad
-      return (
-        <span
-          style={{
-            fontSize: 22,
-            fontWeight: 800,
-            color: textAccent,
-            fontFamily: "var(--paper-font-sans)",
-            letterSpacing: "-0.02em",
-            fontVariantNumeric: "tabular-nums",
-            ...printStyle,
-          }}
-        >
-          {String(num).padStart(2, "0")}.
-        </span>
-      );
-
-    case "workbook":
-      // 워크북 — 채워진 박스
-      return (
-        <span
-          style={{
-            display: "inline-grid",
-            placeItems: "center",
-            ...boxWidth,
-            height: 22,
-            background: accent,
-            color: inkOnColor(accent),
-            fontWeight: 700,
-            fontSize: 12,
-            marginRight: 6,
-            verticalAlign: "middle",
-            ...printStyle,
-          }}
-        >
-          {num}
-        </span>
-      );
-
-    case "jaseup":
-      // 자습 — "문 N" 큰 serif
-      return (
-        <span
-          style={{
-            fontFamily: "var(--paper-font-serif)",
-            fontWeight: 800,
-            fontSize: 18,
-            color: textAccent,
-            marginRight: 8,
-            lineHeight: 1,
-            ...printStyle,
-          }}
-        >
-          문 {num}
-        </span>
-      );
-
-    case "yuhyung":
-      // 유형 — 외곽선 박스
-      return (
-        <span
-          style={{
-            display: "inline-grid",
-            placeItems: "center",
-            ...boxWidth,
-            height: 22,
-            border: `1.5px solid ${accent}`,
-            fontWeight: 700,
-            fontSize: 12,
-            marginRight: 6,
-            verticalAlign: "middle",
-            color: textAccent,
-            ...printStyle,
-          }}
-        >
-          {num}
-        </span>
-      );
-
-    default:
-      return <span style={{ fontWeight: 700, marginRight: 6 }}>{num}.</span>;
-  }
+export function QuestionNumber({ num, accent }: QuestionNumberProps) {
+  return (
+    <span
+      data-question-number
+      style={{
+        display: "inline-grid",
+        placeItems: "center",
+        minWidth: 26,
+        minHeight: 26,
+        padding: "0 4px",
+        background: accent,
+        color: inkOnColor(accent),
+        border: `1px solid ${PAPER_COLORS.ink15}`,
+        fontFamily: "var(--paper-font-sans)",
+        fontSize: 14,
+        fontWeight: 800,
+        fontVariantNumeric: "tabular-nums",
+        WebkitPrintColorAdjust: "exact",
+        printColorAdjust: "exact",
+      }}
+    >
+      {String(num).padStart(2, "0")}
+    </span>
+  );
 }
 
 interface PointsLabelProps {

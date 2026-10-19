@@ -15,6 +15,11 @@ import {
 } from "@/contracts/bankSource.contract";
 import type { UnitEntity } from "@/contracts/unit.contract";
 import type { BankData, StudioProblem } from "@/components/unified/types";
+import {
+  unifiedBankBootstrapSchema,
+  unifiedBankCurriculumSchema,
+  unifiedBankScopeCountsSchema,
+} from "@/contracts/unifiedBankBootstrap.contract";
 import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
 import { familyIdOf } from "@/lib/generator/familyKey";
 import { DUPLICATE_EXCLUSION_DAYS } from "@/lib/tests/constants";
@@ -23,8 +28,14 @@ import type { ExamBuilderSource } from "./types";
 
 export const MATH_EXAM_DIFFICULTIES = DIFFICULTY_LADDER;
 export const MATH_EXAM_MAX_QUESTIONS = 100;
+export type MathAvailabilityCache = Map<
+  string,
+  { expires: number; pending: Promise<unknown> }
+>;
 
 interface MathSourceOptions {
+  /** Production S2: navigation and counts are requested only as needed. */
+  deferScopes?: boolean;
   initialUnits?: readonly UnitEntity[];
   initialUnitCounts?: Readonly<Record<string, number>>;
   initialCountUnit?: "question";
@@ -40,6 +51,8 @@ interface MathSourceOptions {
    * 추가 · 교체 후보는 같은 문항류를 빼지 않고, 구성도 행 단위로 뽑는다.
    */
   distinctFamilies?: boolean;
+  /** Component-local, shared across family-rule changes. No owner data crosses components. */
+  availabilityCache?: MathAvailabilityCache;
 }
 
 /**
@@ -71,12 +84,16 @@ const tally = (values: readonly string[], order: readonly string[]) => {
 
 const unitKey = (unit: Pick<UnitEntity, "grade" | "chapter" | "section">) =>
   JSON.stringify([unit.grade, unit.chapter, unit.section]);
+const SCOPE_CHANGED_MESSAGE =
+  "문항의 단원이나 출처가 바뀌었습니다. 현재 문항은 유지했습니다. 다시 선택해 주세요.";
 
 /** Native Studio rows are passed through intact, including figure and format evidence. */
 export function createMathExamBuilderSource(
   options: MathSourceOptions = {},
 ): ExamBuilderSource<StudioProblem> {
   const scopeIds = new Map<string, string>();
+  const unitsById = new Map<string, UnitEntity>();
+  let curriculumUnits = options.initialUnits;
   const distinct = options.distinctFamilies !== false;
   const endpoint = () => options.problemsUrl ?? getStudioEndpoints().problems;
   const scopeId = (item: StudioProblem) =>
@@ -87,36 +104,43 @@ export function createMathExamBuilderSource(
     item.eligible === undefined &&
     Boolean(item.studioCrop || item.croppedImage || item.ocr);
 
+  function rememberUnits(units: readonly UnitEntity[]) {
+    for (const unit of units) {
+      scopeIds.set(unitKey(unit), unit.id);
+      unitsById.set(unit.id, unit);
+    }
+  }
+
   function toScopes(
     units: readonly UnitEntity[],
     counts?: Readonly<Record<string, number>>,
     countUnit?: string,
   ) {
-    scopeIds.clear();
-    return units.map((unit) => {
-      scopeIds.set(unitKey(unit), unit.id);
-      return {
-        id: unit.id,
-        label: unit.section,
-        group: unit.grade,
-        detail: unit.chapter,
-        ...(counts && unit.id in counts
-          ? { count: counts[unit.id], ...(countUnit ? { countUnit } : {}) }
-          : {}),
-      };
-    });
+    rememberUnits(units);
+    return units.map((unit) => ({
+      id: unit.id,
+      label: unit.section,
+      group: unit.grade,
+      detail: unit.chapter,
+      ...(counts && unit.id in counts
+        ? { count: counts[unit.id], ...(countUnit ? { countUnit } : {}) }
+        : {}),
+    }));
   }
-  const initialScopes =
-    options.initialUnits &&
-    options.initialCountUnit === "question" &&
-    !options.refreshAvailability &&
-    !options.filters
-      ? toScopes(options.initialUnits, options.initialUnitCounts)
-      : undefined;
+  const initialScopes = options.initialUnits
+    ? toScopes(
+        options.initialUnits,
+        options.initialCountUnit === "question" &&
+          !options.refreshAvailability &&
+          !options.filters
+          ? options.initialUnitCounts
+          : undefined,
+      )
+    : undefined;
 
   async function request<T>(
     url: string,
-    signal: AbortSignal,
+    signal: AbortSignal | undefined,
     init?: RequestInit,
   ): Promise<T> {
     const response = await (options.fetch ?? fetch)(url, {
@@ -132,6 +156,133 @@ export function createMathExamBuilderSource(
           "문제은행을 불러오지 못했습니다.",
       );
     return body as T;
+  }
+
+  async function loadCurriculum(signal: AbortSignal) {
+    const units =
+      curriculumUnits ??
+      unifiedBankBootstrapSchema.parse(
+        await request<unknown>(
+          `${endpoint()}?identity=question&view=bootstrap`,
+          signal,
+        ),
+      ).units;
+    if (signal.aborted) throw new DOMException("Aborted", "AbortError");
+    curriculumUnits = units;
+    rememberUnits(units);
+    return { units };
+  }
+
+  async function navigation(
+    selection: Record<string, string>,
+    signal: AbortSignal,
+  ) {
+    const params = new URLSearchParams({
+      identity: "question",
+      view: "curriculum",
+      ...selection,
+    });
+    const value = unifiedBankCurriculumSchema.parse(
+      await request<unknown>(`${endpoint()}?${params}`, signal),
+    );
+    if (signal.aborted) throw new DOMException("Aborted", "AbortError");
+    rememberUnits(value.units);
+    return value;
+  }
+
+  async function restoreCurriculum(
+    items: readonly StudioProblem[],
+    signal: AbortSignal,
+  ) {
+    const bankItems = items.filter((item) => !localCrop(item));
+    const ids = [...new Set(bankItems.map(scopeId).filter(Boolean))];
+    const missingIds = ids.filter((id) => !unitsById.has(id));
+    const paths = new Map<string, { grade: string; chapter: string }>();
+    for (const item of bankItems)
+      if (!scopeId(item) && item.grade && item.chapter)
+        paths.set(JSON.stringify([item.grade, item.chapter]), {
+          grade: item.grade,
+          chapter: item.chapter,
+        });
+    const loaded = await Promise.all([
+      ...(missingIds.length
+        ? [navigation({ unitIds: missingIds.join(",") }, signal)]
+        : []),
+      ...[...paths.values()].map((path) => navigation(path, signal)),
+    ]);
+    const units = new Map(
+      [
+        ...ids.flatMap((id) => (unitsById.has(id) ? [unitsById.get(id)!] : [])),
+        ...loaded.flatMap((value) => value.units),
+      ].map((unit) => [unit.id, unit]),
+    );
+    return toScopes([...units.values()]);
+  }
+
+  async function demandScopes(
+    ids: readonly string[],
+    recent: boolean,
+    signal: AbortSignal,
+  ) {
+    if (!ids.length) return [];
+    const params = new URLSearchParams(options.filters);
+    params.set("identity", "question");
+    params.set("view", "scope-counts");
+    params.set("unitIds", [...new Set(ids)].sort().join(","));
+    params.set("families", "1");
+    if (recent) params.set("recent", "1");
+    const key = `${endpoint()}:${params}`;
+    const cached = options.availabilityCache?.get(key);
+    let pending =
+      cached && cached.expires > Date.now() ? cached.pending : undefined;
+    if (!pending) {
+      pending = request<unknown>(
+        `${endpoint()}/sources`,
+        options.availabilityCache ? undefined : signal,
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(Object.fromEntries(params)),
+        },
+      ).then((value) => unifiedBankScopeCountsSchema.parse(value));
+      if (options.availabilityCache) {
+        const entry = { expires: Infinity, pending };
+        if (options.availabilityCache.size >= 8)
+          options.availabilityCache.delete(
+            options.availabilityCache.keys().next().value!,
+          );
+        options.availabilityCache.set(key, entry);
+        const cache = options.availabilityCache;
+        pending.then(
+          () => {
+            entry.expires = Date.now() + 15000;
+          },
+          () => {
+            if (cache.get(key) === entry) cache.delete(key);
+          },
+        );
+      }
+    }
+    const missingIds = ids.filter((id) => !unitsById.has(id));
+    const [inventory] = await Promise.all([
+      pending,
+      missingIds.length
+        ? navigation({ unitIds: missingIds.join(",") }, signal)
+        : undefined,
+    ]);
+    if (signal.aborted) throw new DOMException("Aborted", "AbortError");
+    const counts = unifiedBankScopeCountsSchema.parse(inventory);
+    requireQuestionRead(counts);
+    return toScopes(
+      ids.flatMap((id) => (unitsById.has(id) ? [unitsById.get(id)!] : [])),
+      Object.fromEntries(
+        ids.map((id) => [
+          id,
+          (distinct ? counts.unitFamilies : counts.unitCounts)[id] ?? 0,
+        ]),
+      ),
+      distinct ? "갈래" : undefined,
+    );
   }
 
   function eligible(items: StudioProblem[]) {
@@ -152,11 +303,32 @@ export function createMathExamBuilderSource(
 
   return {
     requireScopeCounts: true,
+    ...(options.deferScopes
+      ? {
+          scopeNavigation: {
+            groups: async (signal: AbortSignal) =>
+              (await navigation({}, signal)).grades,
+            details: async (group: string, signal: AbortSignal) =>
+              (await navigation({ grade: group }, signal)).chapters,
+            lessons: async (
+              group: string,
+              detail: string,
+              signal: AbortSignal,
+            ) =>
+              toScopes(
+                (await navigation({ grade: group, chapter: detail }, signal))
+                  .units,
+              ),
+            restore: restoreCurriculum,
+          },
+        }
+      : {}),
     questionFormats: {
       options: (item) => item.questionFormats ?? [],
       async load(item, option, signal) {
         const params = new URLSearchParams({
           identity: "question",
+          view: "page",
           ids: option.problemId,
           pageSize: "1",
         });
@@ -178,6 +350,12 @@ export function createMathExamBuilderSource(
     compareReplace: true,
     ...(initialScopes ? { initialScopes } : {}),
     async loadScopes(signal, scopeOptions) {
+      if (options.deferScopes)
+        return demandScopes(
+          scopeOptions?.scopeIds ?? [],
+          scopeOptions?.excludeRecent === true,
+          signal,
+        );
       const recent = scopeOptions?.excludeRecent === true;
       const params = new URLSearchParams(options.filters);
       params.set("identity", "question");
@@ -185,19 +363,49 @@ export function createMathExamBuilderSource(
       // 최근 출제 빼기 — 계정의 시험지는 서버가 찾는다(id 목록을 싣지 않는다).
       if (recent) params.set("recent", "1");
       // D-111: a sheet takes one problem per family, so the gate is families.
-      if (distinct) params.set("families", "1");
+      params.set("families", "1");
+      const inventoryKey = `${endpoint()}:${params}`;
+      const readInventory = async () => {
+        const value = bankSourceAvailabilitySchema.parse(
+          await request<unknown>(
+            `${endpoint()}/sources`,
+            options.availabilityCache ? undefined : signal,
+            {
+              method: "POST",
+              headers: { "content-type": "application/json" },
+              body: JSON.stringify(Object.fromEntries(params)),
+            },
+          ),
+        );
+        requireQuestionRead(value);
+        return value;
+      };
+      const cached = options.availabilityCache?.get(inventoryKey);
+      let pending =
+        cached && cached.expires > Date.now() ? cached.pending : undefined;
+      if (!pending) {
+        pending = readInventory();
+        if (options.availabilityCache) {
+          const entry = { expires: Infinity, pending };
+          if (options.availabilityCache.size >= 8)
+            options.availabilityCache.delete(
+              options.availabilityCache.keys().next().value!,
+            );
+          options.availabilityCache.set(inventoryKey, entry);
+          const cache = options.availabilityCache;
+          pending.then(
+            () => {
+              entry.expires = Date.now() + 15000;
+            },
+            () => {
+              if (cache.get(inventoryKey) === entry) cache.delete(inventoryKey);
+            },
+          );
+        }
+      }
       const [inventory, curriculum] = await Promise.all([
-        request<unknown>(`${endpoint()}/sources`, signal, {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify(Object.fromEntries(params)),
-        }),
-        options.initialUnits
-          ? Promise.resolve({ units: options.initialUnits })
-          : request<BankData>(
-              `${endpoint()}?identity=question&pageSize=1`,
-              signal,
-            ),
+        pending,
+        loadCurriculum(signal),
       ]);
       const available = bankSourceAvailabilitySchema.parse(inventory);
       requireQuestionRead(available);
@@ -234,6 +442,7 @@ export function createMathExamBuilderSource(
       const params = new URLSearchParams(options.filters);
       params.set("identity", "question");
       params.set("unitIds", [...new Set(input.scopeIds)].join(","));
+      params.set("view", "page");
       params.set("page", String(input.page));
       params.set("pageSize", String(input.pageSize));
       if (input.difficulty) params.set("difficulty", input.difficulty);
@@ -370,6 +579,7 @@ export function createMathExamBuilderSource(
       if (!bankItems.length) return items;
       const params = new URLSearchParams({
         identity: "question",
+        view: "page",
         ids: bankItems.map((item) => item.id).join(","),
         pageSize: String(bankItems.length),
       });
@@ -422,6 +632,12 @@ export function createMathExamBuilderSource(
       // rather than a cached flag, decide whether they can still be printed.
       const bankItems = items.filter((item) => !localCrop(item));
       if (!bankItems.length) return items;
+      // Save validation also uses a fresh source without calling loadScopes first.
+      // Resolve legacy labels here before comparing them with the current bank row.
+      if (bankItems.some((item) => !scopeId(item)))
+        await restoreCurriculum(bankItems, signal);
+      if (bankItems.some((item) => !scopeId(item)))
+        throw new Error(SCOPE_CHANGED_MESSAGE);
       if (
         bankItems.some(
           (item) => item.questionFormats && !selectedQuestionFormat(item),
@@ -469,9 +685,7 @@ export function createMathExamBuilderSource(
           );
         })
       )
-        throw new Error(
-          "문항의 단원이나 출처가 바뀌었습니다. 현재 문항은 유지했습니다. 다시 선택해 주세요.",
-        );
+        throw new Error(SCOPE_CHANGED_MESSAGE);
       // Validation never refreshes a saved payload into today's content. A chosen
       // representation is kept whole; revision conflicts require an explicit choice.
       return items;

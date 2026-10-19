@@ -1,4 +1,5 @@
 import {
+  canOutputFrom,
   normalizeWorkspaceMenus,
   type AccountAccess,
   type WorkspaceMenu,
@@ -189,15 +190,19 @@ export function accountRouteAllowed(
     path === "/api/arithmetic/v2/regenerate"
   )
     return any("arithmetic") && method === "POST";
-  // Handlers restrict arithmetic-only access to arithmeticSheet; assets stay separate.
+  // 전용 제작 메뉴의 문서 종류는 처리기에서 다시 검사한다. 원본 파일 경로는 열지 않는다.
   if (
-    any("arithmetic") &&
+    (canOutputFrom(account.menus, "arithmetic") ||
+      canOutputFrom(account.menus, "conceptBlank")) &&
     ((path === "/api/library/documents" && ["GET", "HEAD"].includes(method)) ||
       (/^\/api\/library\/documents\/[^/]+$/.test(path) &&
         ["GET", "HEAD", "PUT", "POST", "PATCH", "DELETE"].includes(method)))
   )
     return true;
-  if (under(path, "/api/library")) return any("library", "studio", "export");
+  if (under(path, "/api/library"))
+    return (["library", "studio", "bank"] as const).some((source) =>
+      canOutputFrom(account.menus, source),
+    );
   if (
     under(path, "/api/studio/ai") ||
     under(path, "/api/studio/pdf-worker") ||
@@ -259,15 +264,15 @@ export function accountRouteAllowed(
       "/api/predictions",
     ].some((base) => under(path, base))
   )
-    return any("export");
-  // 시험지 만들기 3단계 «내 양식»(W6) — 3단계를 여는 출력 메뉴를 따른다(`canOutput={can("export")}`).
-  if (under(path, "/api/studio/print-presets")) return any("export");
+    return canOutputFrom(account.menus);
+  // 공용 양식은 출력 단계가 있는 메뉴에서 함께 쓴다.
+  if (under(path, "/api/studio/print-presets"))
+    return canOutputFrom(account.menus);
   if (under(path, "/api/exports"))
     return (
-      any("export") ||
-      (method === "POST" &&
-        ["/api/exports/pdf", "/api/exports/hwpx"].includes(path) &&
-        any("english-library"))
+      method === "POST" &&
+      ["/api/exports/pdf", "/api/exports/hwpx"].includes(path) &&
+      (canOutputFrom(account.menus) || any("english-library"))
     );
   // 오늘의 개념(D-124) — 읽기는 메뉴가 켜진 계정, 쓰기는 라우트가 isAdmin 을 따로 막는다.
   if (under(path, "/api/concept")) return any("concept");

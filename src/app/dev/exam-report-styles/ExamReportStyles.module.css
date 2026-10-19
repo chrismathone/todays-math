@@ -1,0 +1,140 @@
+.shell {
+  min-height: 100vh;
+  padding: 24px;
+  color: var(--learn-ink);
+  background: var(--learn-bg);
+  font-family: var(--font-pretendard), Pretendard, sans-serif;
+}
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 750;
+  line-height: 1.3;
+}
+.header p {
+  margin: 8px 0 20px;
+  max-width: 900px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--learn-muted);
+}
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.controls legend {
+  padding: 0;
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: var(--learn-muted);
+}
+.compositions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.controls button,
+.controls select {
+  min-height: 44px;
+  border: 1px solid var(--learn-control);
+  border-radius: 8px;
+  padding: 8px 14px;
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  font:
+    600 14px/1.5 Pretendard,
+    sans-serif;
+}
+.controls button {
+  cursor: pointer;
+}
+.controls button:hover {
+  background: var(--learn-soft-hover);
+}
+.controls button[aria-pressed="true"] {
+  border-color: var(--learn-accent);
+  background: var(--learn-soft);
+  color: var(--learn-accent);
+}
+.controls :is(button, select, input):focus-visible {
+  outline: 2px solid var(--learn-accent);
+  outline-offset: 3px;
+}
+.settings {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 20px;
+}
+.scenario {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 14px;
+}
+.outputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+}
+.outputs label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-size: 14px;
+}
+.outputs input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--learn-accent);
+}
+.compositionNote,
+.notice {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--learn-muted);
+}
+.pageSlot {
+  width: calc(210mm * var(--paper-strip-scale, 1));
+  height: calc(297mm * var(--paper-strip-scale, 1));
+  flex: none;
+}
+.pageSlot > div {
+  transform: scale(var(--paper-strip-scale, 1));
+  transform-origin: top left;
+}
+.caption {
+  max-width: 460px;
+  text-align: left;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--learn-muted);
+}
+.caption strong {
+  color: var(--learn-ink);
+  font-size: 14px;
+}
+.caption p {
+  margin: 4px 0 0;
+}
+@media (max-width: 600px) {
+  .shell {
+    padding: 16px;
+  }
+  .settings {
+    gap: 12px;
+  }
+  .scenario select {
+    max-width: 100%;
+  }
+}

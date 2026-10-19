@@ -47,8 +47,8 @@ describe("성적표 서버 HTML", () => {
     const { student } = reportFixture("normal");
     const input = await buildExamReportPaperHtml(student, { mode: "M1" });
     expect(PdfPayloadSchema.safeParse(input).success).toBe(true);
-    expect(input.html.match(/data-unified-paper=/g)).toHaveLength(3);
-    expect(input.html.match(/data-print-page=/g)).toHaveLength(3);
+    expect(input.html.match(/data-unified-paper=/g)).toHaveLength(1);
+    expect(input.html.match(/data-print-page=/g)).toHaveLength(1);
     expect(input.html).toContain("data-mathgen-document");
     expect(input.title).toContain("서하린");
     expect(input.cssText).toContain("NotoSerifKR-subset.woff2");
@@ -64,7 +64,7 @@ describe("성적표 서버 HTML", () => {
     }
   });
 
-  it("수식·그림·정답·해설은 브라우저 effect 없이 HTML에 있다", async () => {
+  it("기존 M1의 문항·수식·그림·정답·해설은 서버 HTML에서 제외한다", async () => {
     const { student } = reportFixture("normal");
     const question = {
       ...student.wrongQuestions[0],
@@ -78,9 +78,9 @@ describe("성적표 서버 HTML", () => {
       { ...student, wrongQuestions: [question] },
       { mode: "M1" },
     );
-    expect(input.html).toContain('class="katex"');
-    expect(input.html).toContain("<circle");
-    expect(input.html).toContain("양변에서");
+    expect(input.html).not.toContain('class="katex"');
+    expect(input.html).not.toContain("<circle");
+    expect(input.html).not.toContain("양변에서");
     expect(input.cssText).toContain("data:font/woff2;base64,");
     expect(input.html).not.toContain('loading="lazy"');
     expect(
@@ -103,7 +103,7 @@ describe("성적표 서버 HTML", () => {
     expect(input.html).not.toContain("<script>");
   });
 
-  it("낸 문항의 그림 폭과 번호·본문·풀이를 서버 HTML에서 보존한다", async () => {
+  it("기존 M1도 틀린 문항의 번호·단원·유형만 표에 남기고 그림은 싣지 않는다", async () => {
     const { student } = reportFixture("normal");
     const question = {
       ...student.wrongQuestions[0],
@@ -115,9 +115,11 @@ describe("성적표 서버 HTML", () => {
       { ...student, wrongQuestions: [question] },
       { mode: "M1" },
     );
-    expect(input.html).toContain('src="/figures/example.png"');
-    expect(input.html).toContain("width:40.00mm");
-    expect(input.html).toContain(`data-report-question="${question.no}"`);
-    expect(input.html).toContain("풀이");
+    expect(input.html).not.toContain('src="/figures/example.png"');
+    expect(input.html).not.toContain("width:40.00mm");
+    expect(input.html).toContain(`data-er-wrong-no="${question.no}"`);
+    expect(input.html).toContain(question.unitName);
+    expect(input.html).toContain(question.typeLabel!);
+    expect(input.html).not.toContain("틀린 문항 풀이");
   });
 });

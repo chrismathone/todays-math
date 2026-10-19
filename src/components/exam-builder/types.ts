@@ -25,6 +25,8 @@ export interface ExamAllocation {
 export interface ExamExclusion {
   /** 최근 출제 문항 빼기(D-20) — 서버가 지금 계정의 최근 14일 시험으로 뺀다. */
   excludeRecent?: boolean;
+  /** Demand-loaded math inventory: count only visible and selected lessons. */
+  scopeIds?: readonly string[];
 }
 export interface ExamComposeOptions extends ExamExclusion {
   /** 난이도 의도 — 정한 칸만 싣는다. 없는 칸은 지정 없음, 0 은 내지 않음. */
@@ -81,6 +83,17 @@ export interface ExamQuestionInfo {
   origin?: string;
 }
 export interface ExamBuilderSource<T> {
+  /** Optional S2 data navigation; legacy/local sources can keep full scope lists. */
+  scopeNavigation?: {
+    groups: (signal: AbortSignal) => Promise<string[]>;
+    details: (group: string, signal: AbortSignal) => Promise<string[]>;
+    lessons: (
+      group: string,
+      detail: string,
+      signal: AbortSignal,
+    ) => Promise<ExamScope[]>;
+    restore: (items: readonly T[], signal: AbortSignal) => Promise<ExamScope[]>;
+  };
   /** Optional: English and local sources retain their existing selection flow. */
   questionFormats?: {
     options: (item: T) => readonly QuestionRepresentation[];
@@ -173,6 +186,8 @@ export interface ExamBuilderProps<T> {
   onOutputIntent?: () => void;
   disabled?: boolean;
   status?: ReactNode;
+  /** Scope source controls sit above the S2 navigation, inside the left panel. */
+  scopeControls?: ReactNode;
   /** W5 «이름 붙인 출제 조건»(수학). */
   namedConditions?: ExamNamedConditions;
 }

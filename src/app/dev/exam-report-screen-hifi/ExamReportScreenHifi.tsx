@@ -100,7 +100,7 @@ function Preview({
   return (
     <PaperStrip
       label="선택한 학생의 성적표"
-      hint={`${settings.mode === "S1" ? "요약 한 장" : "요약 + 틀린 문항 풀이"} · ${pages.length}쪽 · 쪽을 누르면 크게 봅니다.`}
+      hint={`요약 한 장 · ${pages.length}쪽 · 쪽을 누르면 크게 봅니다.`}
       pages={pages.map((node, i) => ({
         key: `${student.report.student.id}-${i}`,
         node: <div className={s.paper}>{node}</div>,
@@ -676,11 +676,7 @@ export function ExamReportScreenHifi() {
               확정 {counts.confirmed} / {eligible.length}명
             </span>
           </p>
-          <p className={s.meta}>
-            지면: H1 ·{" "}
-            {settings.mode === "S1" ? "요약 한 장" : "요약 + 틀린 문항 풀이"} ·
-            반 전체에 적용
-          </p>
+          <p className={s.meta}>지면: H1 · 요약 한 장 · 반 전체에 적용</p>
         </div>
         {variant !== "H4" && (
           <section className={s.printBar} aria-label="반 인쇄">
@@ -739,12 +735,7 @@ export function ExamReportScreenHifi() {
             </header>
             {variant === "H4" && (
               <div className={s.inlineSettings}>
-                <span className={s.meta}>
-                  이 반의 지면 ·{" "}
-                  {settings.mode === "S1"
-                    ? "요약 한 장"
-                    : "요약 + 틀린 문항 풀이"}
-                </span>
+                <span className={s.meta}>이 반의 지면 · 요약 한 장</span>
                 {settingsButton}
               </div>
             )}
@@ -810,12 +801,7 @@ export function ExamReportScreenHifi() {
           </p>
           <fieldset className={s.settingFields}>
             <legend>학생 성적표 구성</legend>
-            {(
-              [
-                ["S1", "요약 한 장"],
-                ["M1", "요약 + 틀린 문항 풀이"],
-              ] as const
-            ).map(([value, label]) => (
+            {([["S1", "요약 한 장"]] as const).map(([value, label]) => (
               <label key={value}>
                 <input
                   type="radio"

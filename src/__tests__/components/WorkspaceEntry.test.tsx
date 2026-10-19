@@ -1,5 +1,8 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { ALL_WORKSPACE_MENUS } from "@/contracts/accountAccess.contract";
+import {
+  ALL_WORKSPACE_MENUS,
+  WORKSPACE_OUTPUT_MENUS,
+} from "@/contracts/accountAccess.contract";
 vi.mock("server-only", () => ({}));
 
 const mocks = vi.hoisted(() => ({ auth: vi.fn(), bootstrap: vi.fn() }));
@@ -41,6 +44,21 @@ beforeEach(() => {
 });
 
 describe("public landing and authenticated main entry", () => {
+  it.each(WORKSPACE_OUTPUT_MENUS)(
+    "opens a report from %s access without the retired export flag",
+    async (source) => {
+      mocks.auth.mockResolvedValue({
+        user: { ...user, role: "director", menus: [source] },
+      });
+      const testId = "00000004-0000-4000-8000-000000000000";
+      const page = await ExamReportPage({
+        params: Promise.resolve({ testId }),
+      });
+      expect(page.type).toBe(WorkspacePage);
+      expect(page.props.examReportTestId).toBe(testId);
+      expect(mocks.bootstrap).not.toHaveBeenCalled();
+    },
+  );
   it("성적표는 같은 작업실 셸로 열며 문제은행을 미리 읽지 않는다", async () => {
     const testId = "00000004-0000-4000-8000-000000000000";
     const page = await ExamReportPage({ params: Promise.resolve({ testId }) });
@@ -59,6 +77,8 @@ describe("public landing and authenticated main entry", () => {
     for (const account of [
       { ...user, role: "reviewer" },
       { ...user, role: "director", menus: [] },
+      { ...user, role: "director", menus: ["export"] },
+      { ...user, role: "director", menus: ["teaching"] },
     ]) {
       mocks.auth.mockResolvedValue({ user: account });
       await expect(ExamReportPage({ params })).rejects.toThrow("notFound");
@@ -88,21 +108,9 @@ describe("public landing and authenticated main entry", () => {
     expect(mocks.bootstrap).not.toHaveBeenCalled();
   });
 
-  it("does not share the previous user's draft scope when another account opens the main", async () => {
-    mocks.bootstrap.mockResolvedValue({
-      total: 23,
-      grades: [{ grade: "중1", count: 23 }],
-      chapters: ["1학기 1. 소인수분해"],
-      units: [
-        {
-          id: "unit-one",
-          grade: "중1",
-          chapter: "1학기 1. 소인수분해",
-          section: "소인수분해",
-          orderIndex: 1,
-        },
-      ],
-    });
+  it("renders each account's shell without starting or awaiting bank bootstrap", async () => {
+    // A bank that never finishes must not hold the server entry open.
+    mocks.bootstrap.mockImplementation(() => new Promise(() => {}));
     for (const id of ["teacher-one", "teacher-two"]) {
       mocks.auth.mockResolvedValue({ user: { ...user, id, role: "director" } });
       const page = await WorkspacePage({ user: { ...user, id } });
@@ -110,17 +118,18 @@ describe("public landing and authenticated main entry", () => {
       expect(page.props.currentUser.id).toBe(id);
       expect(page.key).toBe(id);
       expect(page.props.initialData.problems).toEqual([]);
+      expect(page.props.deferBankMetadata).toBe(true);
       expect(page.props.initialData).toMatchObject({
-        total: 23,
-        grades: [{ grade: "중1", count: 23 }],
-        chapters: ["1학기 1. 소인수분해"],
-        units: [expect.objectContaining({ id: "unit-one" })],
+        total: 0,
+        grades: [],
+        chapters: [],
         page: 1,
         pageSize: 12,
       });
+      expect(page.props.initialData.units).toBeUndefined();
     }
-    expect(mocks.bootstrap).toHaveBeenCalledTimes(2);
-  });
+    expect(mocks.bootstrap).not.toHaveBeenCalled();
+  }, 1000);
 
   it("does not fetch a disabled question bank or redirect a disabled reviewer in a loop", async () => {
     mocks.auth.mockResolvedValue({
@@ -133,11 +142,12 @@ describe("public landing and authenticated main entry", () => {
     expect(mocks.bootstrap).not.toHaveBeenCalled();
   });
 
-  it("keeps source editing available when the bank cannot be loaded", async () => {
+  it("keeps the shell independent of bank failure", async () => {
     mocks.bootstrap.mockRejectedValue(new Error("database unavailable"));
     const page = await WorkspacePage({ user });
     expect(page.props.storageScope).toBe(user.id);
     expect(page.props.initialData.problems).toEqual([]);
-    expect(page.props.initialData.error).toContain("문제 추출은 바로");
+    expect(page.props.initialData.error).toBeUndefined();
+    expect(mocks.bootstrap).not.toHaveBeenCalled();
   });
 });

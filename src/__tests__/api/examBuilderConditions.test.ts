@@ -327,7 +327,14 @@ describe("형식 의도(M3) — 객관식 · 단답형 · 서술형 수", () => 
     for (let i = 0; i < n; i += 1) {
       const familyKey = `mid:fmt|${String(patch.difficulty ?? "기본")}|${i}`;
       await plant({ familyKey, questionType: "단답형", ...patch });
-      await plant({ familyKey, questionType: "객관식", ...patch });
+      await plant({
+        familyKey,
+        questionType: "객관식",
+        // The current classifier requires actual choices and a choice answer.
+        content: `${marker}\n\n① 3\n② 5\n③ 7\n④ 9\n⑤ 11`,
+        answer: "③",
+        ...patch,
+      });
     }
   }
 

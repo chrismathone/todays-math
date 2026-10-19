@@ -201,8 +201,9 @@ export function ArithmeticWorkflow({
         </section>
       ) : step === "output" && sheet ? (
         <WorksheetEditor
+          sheetTag={currentPresentation.tag ?? null}
           settingsSlots={{
-            // W8 «시험 종류» 태그 — 출력 설정과 같은 자리(presentation)에 담는다. 지면에 찍지 않는다.
+            // W8 «시험 종류» — 기존 presentation.tag를 문제지 머리에 전달한다.
             metaTop: (
               <SheetTagPicker
                 value={currentPresentation.tag ?? null}

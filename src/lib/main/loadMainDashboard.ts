@@ -3,7 +3,10 @@ import type {
   ProgressEntity,
   ProgressSuggestion,
 } from "@/contracts/class.contract";
-import type { WorkspaceMenu } from "@/contracts/accountAccess.contract";
+import {
+  canOutputFrom,
+  type WorkspaceMenu,
+} from "@/contracts/accountAccess.contract";
 import type { WeeklyMetrics } from "@/contracts/metrics.contract";
 import type { TestEntity } from "@/contracts/test.contract";
 import type { UnitEntity } from "@/contracts/unit.contract";
@@ -80,8 +83,7 @@ export async function loadMainDashboard(
   } = {},
 ): Promise<MainDashboardData> {
   const { signal, onPartial, allowedMenus } = options;
-  const canExport =
-    allowedMenus === undefined || allowedMenus.includes("export");
+  const canExport = allowedMenus === undefined || canOutputFrom(allowedMenus);
   const canSeeMetrics =
     allowedMenus === undefined || allowedMenus.includes("home");
   const [classes, unitsRes, contracts] = await Promise.all([

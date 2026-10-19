@@ -1,0 +1,1560 @@
+{
+  "measuredAt": "2026-10-19T06:20:49.116Z",
+  "readOnly": true,
+  "verifiedTransactions": 3,
+  "revisionReader": "off",
+  "source": "shared DB, server readers",
+  "timingIncludes": "DB/network/fingerprint",
+  "timingExcludes": "harness BEGIN/COMMIT, auth/HTTP/compile/browser",
+  "note": "Cold clears process caches, not DB buffers. Validated repeats still query the DB fingerprint where used. New reduced responses compare only declared payload fields. New scoped book kind-record key order differs from the global scan: rawRecordBytesEqual records that failure; all keyed count values are checked separately. Unchanged API whole-response parity is measured separately, without sorting/normalizing/deleting fields.",
+  "samples": [
+    {
+      "round": 1,
+      "scenario": "initial-grades",
+      "mode": "cold",
+      "ms": 29.235,
+      "bytes": 215,
+      "sha256": "0886683dbb5c4a8933e7c71abc269d3151d48888ffc3d48fa465bed6058ecf02",
+      "queries": [
+        {
+          "kind": "unit.groupBy",
+          "rows": 16,
+          "ms": 28.647
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "scenario": "initial-grades",
+      "mode": "validated",
+      "ms": 26.576,
+      "bytes": 215,
+      "sha256": "0886683dbb5c4a8933e7c71abc269d3151d48888ffc3d48fa465bed6058ecf02",
+      "queries": [
+        {
+          "kind": "unit.groupBy",
+          "rows": 16,
+          "ms": 26.512
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "scenario": "selected-grade-chapters",
+      "mode": "cold",
+      "ms": 26.101,
+      "bytes": 221,
+      "sha256": "b54277187f8880da991f23733ee7b9dce0d11515f0795415058bfb888794d78c",
+      "queries": [
+        {
+          "kind": "unit.groupBy",
+          "rows": 9,
+          "ms": 25.947
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "scenario": "selected-grade-chapters",
+      "mode": "validated",
+      "ms": 26.464,
+      "bytes": 221,
+      "sha256": "b54277187f8880da991f23733ee7b9dce0d11515f0795415058bfb888794d78c",
+      "queries": [
+        {
+          "kind": "unit.groupBy",
+          "rows": 9,
+          "ms": 26.396
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "scenario": "selected-chapter-lessons",
+      "mode": "cold",
+      "ms": 27.146,
+      "bytes": 1197,
+      "sha256": "4f66dc06c15e2e593390dcdc1e565e69c8ede89c478da123c11b238a5f04f12d",
+      "queries": [
+        {
+          "kind": "unit.findMany",
+          "rows": 8,
+          "ms": 27.062
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "scenario": "selected-chapter-lessons",
+      "mode": "validated",
+      "ms": 27.363,
+      "bytes": 1197,
+      "sha256": "4f66dc06c15e2e593390dcdc1e565e69c8ede89c478da123c11b238a5f04f12d",
+      "queries": [
+        {
+          "kind": "unit.findMany",
+          "rows": 8,
+          "ms": 27.31
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "scenario": "visible-lesson-counts",
+      "mode": "cold",
+      "ms": 335.444,
+      "bytes": 853,
+      "sha256": "5e111d823601be62a51b8dff5cb2cf17846064ef1fc7da85703caf70d846bf1e",
+      "queries": [
+        {
+          "kind": "xmin-fingerprint",
+          "rows": 1,
+          "ms": 241.935
+        },
+        {
+          "kind": "counts",
+          "rows": 915,
+          "ms": 87.381
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "requested unitCounts",
+          "requested unitFamilies"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 1,
+      "scenario": "visible-lesson-counts",
+      "mode": "validated",
+      "ms": 257.841,
+      "bytes": 853,
+      "sha256": "5e111d823601be62a51b8dff5cb2cf17846064ef1fc7da85703caf70d846bf1e",
+      "queries": [
+        {
+          "kind": "xmin-fingerprint",
+          "rows": 1,
+          "ms": 257.755
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "requested unitCounts",
+          "requested unitFamilies"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 1,
+      "scenario": "visible-lesson-page",
+      "mode": "cold",
+      "ms": 428.259,
+      "bytes": 16929,
+      "sha256": "397c1971759c39a5abf51731229a55801fc297c4459eac937cbeb8c3ea748e6a",
+      "queries": [
+        {
+          "kind": "xmin-fingerprint",
+          "rows": 1,
+          "ms": 247.326
+        },
+        {
+          "kind": "counts",
+          "rows": 1,
+          "ms": 39.565
+        },
+        {
+          "kind": "page",
+          "rows": 12,
+          "ms": 47.964
+        },
+        {
+          "kind": "problem.findMany",
+          "rows": 12,
+          "ms": 58.457
+        },
+        {
+          "kind": "problem.findMany",
+          "rows": 12,
+          "ms": 30.108
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "problems",
+          "total",
+          "page",
+          "pageSize",
+          "version",
+          "countUnit"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 1,
+      "scenario": "visible-lesson-page",
+      "mode": "validated",
+      "ms": 334.104,
+      "bytes": 16929,
+      "sha256": "397c1971759c39a5abf51731229a55801fc297c4459eac937cbeb8c3ea748e6a",
+      "queries": [
+        {
+          "kind": "xmin-fingerprint",
+          "rows": 1,
+          "ms": 245.183
+        },
+        {
+          "kind": "problem.findMany",
+          "rows": 12,
+          "ms": 57.934
+        },
+        {
+          "kind": "problem.findMany",
+          "rows": 12,
+          "ms": 30.434
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "problems",
+          "total",
+          "page",
+          "pageSize",
+          "version",
+          "countUnit"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 1,
+      "scenario": "source-picker-groups",
+      "mode": "cold",
+      "ms": 646.456,
+      "bytes": 231,
+      "sha256": "19d2ac4fcf027cf6e3d6178a329cd5e41699d0967481fec1231d69016263c2f8",
+      "queries": [
+        {
+          "kind": "xmin-fingerprint",
+          "rows": 1,
+          "ms": 245.935
+        },
+        {
+          "kind": "other-select",
+          "rows": 1,
+          "ms": 400.063
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "sources"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 1,
+      "scenario": "source-picker-groups",
+      "mode": "validated",
+      "ms": 245.085,
+      "bytes": 231,
+      "sha256": "19d2ac4fcf027cf6e3d6178a329cd5e41699d0967481fec1231d69016263c2f8",
+      "queries": [
+        {
+          "kind": "xmin-fingerprint",
+          "rows": 1,
+          "ms": 245.001
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "sources"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 1,
+      "scenario": "source-picker-book-grades",
+      "mode": "cold",
+      "ms": 54.561,
+      "bytes": 483,
+      "sha256": "a95cdc784fe7336ee5ac895039b8618ba960c6bddb38e818795f632e99dc6791",
+      "queries": [
+        {
+          "kind": "sourceBook.groupBy",
+          "rows": 8,
+          "ms": 54.307
+        },
+        {
+          "kind": "unit.groupBy",
+          "rows": 16,
+          "ms": 54.289
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "scenario": "source-picker-book-grades",
+      "mode": "validated",
+      "ms": 56.61,
+      "bytes": 483,
+      "sha256": "a95cdc784fe7336ee5ac895039b8618ba960c6bddb38e818795f632e99dc6791",
+      "queries": [
+        {
+          "kind": "sourceBook.groupBy",
+          "rows": 8,
+          "ms": 56.536
+        },
+        {
+          "kind": "unit.groupBy",
+          "rows": 16,
+          "ms": 56.521
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "scenario": "source-picker-visible-books",
+      "mode": "cold",
+      "ms": 82.37,
+      "bytes": 1401,
+      "sha256": "aca25654b5a5c2202e3a96a4d6f5357274420fd83bd06e9a1c666e023711e4a8",
+      "queries": [
+        {
+          "kind": "sourceBook.groupBy",
+          "rows": 8,
+          "ms": 82.178
+        },
+        {
+          "kind": "unit.groupBy",
+          "rows": 16,
+          "ms": 82.166
+        },
+        {
+          "kind": "sourceBook.findMany",
+          "rows": 7,
+          "ms": 82.162
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "scenario": "source-picker-visible-books",
+      "mode": "validated",
+      "ms": 78.232,
+      "bytes": 1401,
+      "sha256": "aca25654b5a5c2202e3a96a4d6f5357274420fd83bd06e9a1c666e023711e4a8",
+      "queries": [
+        {
+          "kind": "sourceBook.groupBy",
+          "rows": 8,
+          "ms": 78.12
+        },
+        {
+          "kind": "unit.groupBy",
+          "rows": 16,
+          "ms": 78.103
+        },
+        {
+          "kind": "sourceBook.findMany",
+          "rows": 7,
+          "ms": 78.098
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "scenario": "source-picker-visible-book-counts",
+      "mode": "cold",
+      "ms": 250.891,
+      "bytes": 1312,
+      "sha256": "3d718a71fdadc1563608d06b2f9194df2396f433b5d2c68842181a90264863c4",
+      "queries": [
+        {
+          "kind": "sourceBook.findMany",
+          "rows": 7,
+          "ms": 26.36
+        },
+        {
+          "kind": "formats",
+          "rows": 0,
+          "ms": 140.011
+        },
+        {
+          "kind": "counts",
+          "rows": 36,
+          "ms": 83.887
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "requested book count/open and keyed kind counts"
+        ],
+        "rawRecordBytesEqual": false,
+        "kindKeyOrderEqual": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "valuesEqual": true
+      }
+    },
+    {
+      "round": 1,
+      "scenario": "source-picker-visible-book-counts",
+      "mode": "validated",
+      "ms": 246.986,
+      "bytes": 1312,
+      "sha256": "3d718a71fdadc1563608d06b2f9194df2396f433b5d2c68842181a90264863c4",
+      "queries": [
+        {
+          "kind": "sourceBook.findMany",
+          "rows": 7,
+          "ms": 28.289
+        },
+        {
+          "kind": "formats",
+          "rows": 0,
+          "ms": 136.56
+        },
+        {
+          "kind": "counts",
+          "rows": 36,
+          "ms": 81.757
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "requested book count/open and keyed kind counts"
+        ],
+        "rawRecordBytesEqual": false,
+        "kindKeyOrderEqual": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "valuesEqual": true
+      }
+    },
+    {
+      "round": 1,
+      "scenario": "visible-materials-page",
+      "mode": "cold",
+      "ms": 115.299,
+      "bytes": 3074,
+      "sha256": "471bb2f37e13be8334e16e7107b42083d96c00a16c3244ff43e97ec9f26bbbdc",
+      "queries": [
+        {
+          "kind": "sourceMaterial.findMany",
+          "rows": 8,
+          "ms": 27.216
+        },
+        {
+          "kind": "sourceMaterial.findMany",
+          "rows": 8,
+          "ms": 56.377
+        },
+        {
+          "kind": "formats",
+          "rows": 0,
+          "ms": 56.274
+        },
+        {
+          "kind": "counts",
+          "rows": 9,
+          "ms": 30.968
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "first 20 material rows",
+          "total",
+          "selectedAvailable"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 1,
+      "scenario": "visible-materials-page",
+      "mode": "validated",
+      "ms": 117.688,
+      "bytes": 3074,
+      "sha256": "471bb2f37e13be8334e16e7107b42083d96c00a16c3244ff43e97ec9f26bbbdc",
+      "queries": [
+        {
+          "kind": "sourceMaterial.findMany",
+          "rows": 8,
+          "ms": 29.639
+        },
+        {
+          "kind": "sourceMaterial.findMany",
+          "rows": 8,
+          "ms": 56.187
+        },
+        {
+          "kind": "formats",
+          "rows": 0,
+          "ms": 56.094
+        },
+        {
+          "kind": "counts",
+          "rows": 9,
+          "ms": 31.491
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "first 20 material rows",
+          "total",
+          "selectedAvailable"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 2,
+      "scenario": "initial-grades",
+      "mode": "cold",
+      "ms": 25.968,
+      "bytes": 215,
+      "sha256": "0886683dbb5c4a8933e7c71abc269d3151d48888ffc3d48fa465bed6058ecf02",
+      "queries": [
+        {
+          "kind": "unit.groupBy",
+          "rows": 16,
+          "ms": 25.88
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "scenario": "initial-grades",
+      "mode": "validated",
+      "ms": 28.058,
+      "bytes": 215,
+      "sha256": "0886683dbb5c4a8933e7c71abc269d3151d48888ffc3d48fa465bed6058ecf02",
+      "queries": [
+        {
+          "kind": "unit.groupBy",
+          "rows": 16,
+          "ms": 27.991
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "scenario": "selected-grade-chapters",
+      "mode": "cold",
+      "ms": 28.138,
+      "bytes": 221,
+      "sha256": "b54277187f8880da991f23733ee7b9dce0d11515f0795415058bfb888794d78c",
+      "queries": [
+        {
+          "kind": "unit.groupBy",
+          "rows": 9,
+          "ms": 28.062
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "scenario": "selected-grade-chapters",
+      "mode": "validated",
+      "ms": 25.877,
+      "bytes": 221,
+      "sha256": "b54277187f8880da991f23733ee7b9dce0d11515f0795415058bfb888794d78c",
+      "queries": [
+        {
+          "kind": "unit.groupBy",
+          "rows": 9,
+          "ms": 25.795
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "scenario": "selected-chapter-lessons",
+      "mode": "cold",
+      "ms": 24.767,
+      "bytes": 1197,
+      "sha256": "4f66dc06c15e2e593390dcdc1e565e69c8ede89c478da123c11b238a5f04f12d",
+      "queries": [
+        {
+          "kind": "unit.findMany",
+          "rows": 8,
+          "ms": 24.695
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "scenario": "selected-chapter-lessons",
+      "mode": "validated",
+      "ms": 29.621,
+      "bytes": 1197,
+      "sha256": "4f66dc06c15e2e593390dcdc1e565e69c8ede89c478da123c11b238a5f04f12d",
+      "queries": [
+        {
+          "kind": "unit.findMany",
+          "rows": 8,
+          "ms": 29.58
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "scenario": "visible-lesson-counts",
+      "mode": "cold",
+      "ms": 310.763,
+      "bytes": 853,
+      "sha256": "5e111d823601be62a51b8dff5cb2cf17846064ef1fc7da85703caf70d846bf1e",
+      "queries": [
+        {
+          "kind": "xmin-fingerprint",
+          "rows": 1,
+          "ms": 243.929
+        },
+        {
+          "kind": "counts",
+          "rows": 915,
+          "ms": 66.112
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "requested unitCounts",
+          "requested unitFamilies"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 2,
+      "scenario": "visible-lesson-counts",
+      "mode": "validated",
+      "ms": 258.157,
+      "bytes": 853,
+      "sha256": "5e111d823601be62a51b8dff5cb2cf17846064ef1fc7da85703caf70d846bf1e",
+      "queries": [
+        {
+          "kind": "xmin-fingerprint",
+          "rows": 1,
+          "ms": 258.073
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "requested unitCounts",
+          "requested unitFamilies"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 2,
+      "scenario": "visible-lesson-page",
+      "mode": "cold",
+      "ms": 428.919,
+      "bytes": 16929,
+      "sha256": "397c1971759c39a5abf51731229a55801fc297c4459eac937cbeb8c3ea748e6a",
+      "queries": [
+        {
+          "kind": "xmin-fingerprint",
+          "rows": 1,
+          "ms": 247.398
+        },
+        {
+          "kind": "counts",
+          "rows": 1,
+          "ms": 43.021
+        },
+        {
+          "kind": "page",
+          "rows": 12,
+          "ms": 48.95
+        },
+        {
+          "kind": "problem.findMany",
+          "rows": 12,
+          "ms": 56.481
+        },
+        {
+          "kind": "problem.findMany",
+          "rows": 12,
+          "ms": 32.229
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "problems",
+          "total",
+          "page",
+          "pageSize",
+          "version",
+          "countUnit"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 2,
+      "scenario": "visible-lesson-page",
+      "mode": "validated",
+      "ms": 336.189,
+      "bytes": 16929,
+      "sha256": "397c1971759c39a5abf51731229a55801fc297c4459eac937cbeb8c3ea748e6a",
+      "queries": [
+        {
+          "kind": "xmin-fingerprint",
+          "rows": 1,
+          "ms": 246.265
+        },
+        {
+          "kind": "problem.findMany",
+          "rows": 12,
+          "ms": 58.753
+        },
+        {
+          "kind": "problem.findMany",
+          "rows": 12,
+          "ms": 30.609
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "problems",
+          "total",
+          "page",
+          "pageSize",
+          "version",
+          "countUnit"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 2,
+      "scenario": "source-picker-groups",
+      "mode": "cold",
+      "ms": 646.381,
+      "bytes": 231,
+      "sha256": "19d2ac4fcf027cf6e3d6178a329cd5e41699d0967481fec1231d69016263c2f8",
+      "queries": [
+        {
+          "kind": "xmin-fingerprint",
+          "rows": 1,
+          "ms": 245.14
+        },
+        {
+          "kind": "other-select",
+          "rows": 1,
+          "ms": 401.071
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "sources"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 2,
+      "scenario": "source-picker-groups",
+      "mode": "validated",
+      "ms": 250.205,
+      "bytes": 231,
+      "sha256": "19d2ac4fcf027cf6e3d6178a329cd5e41699d0967481fec1231d69016263c2f8",
+      "queries": [
+        {
+          "kind": "xmin-fingerprint",
+          "rows": 1,
+          "ms": 250.136
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "sources"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 2,
+      "scenario": "source-picker-book-grades",
+      "mode": "cold",
+      "ms": 51.839,
+      "bytes": 483,
+      "sha256": "a95cdc784fe7336ee5ac895039b8618ba960c6bddb38e818795f632e99dc6791",
+      "queries": [
+        {
+          "kind": "sourceBook.groupBy",
+          "rows": 8,
+          "ms": 51.744
+        },
+        {
+          "kind": "unit.groupBy",
+          "rows": 16,
+          "ms": 51.727
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "scenario": "source-picker-book-grades",
+      "mode": "validated",
+      "ms": 52.563,
+      "bytes": 483,
+      "sha256": "a95cdc784fe7336ee5ac895039b8618ba960c6bddb38e818795f632e99dc6791",
+      "queries": [
+        {
+          "kind": "sourceBook.groupBy",
+          "rows": 8,
+          "ms": 52.471
+        },
+        {
+          "kind": "unit.groupBy",
+          "rows": 16,
+          "ms": 52.449
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "scenario": "source-picker-visible-books",
+      "mode": "cold",
+      "ms": 77.277,
+      "bytes": 1401,
+      "sha256": "aca25654b5a5c2202e3a96a4d6f5357274420fd83bd06e9a1c666e023711e4a8",
+      "queries": [
+        {
+          "kind": "sourceBook.groupBy",
+          "rows": 8,
+          "ms": 77.176
+        },
+        {
+          "kind": "unit.groupBy",
+          "rows": 16,
+          "ms": 77.162
+        },
+        {
+          "kind": "sourceBook.findMany",
+          "rows": 7,
+          "ms": 77.157
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "scenario": "source-picker-visible-books",
+      "mode": "validated",
+      "ms": 78.669,
+      "bytes": 1401,
+      "sha256": "aca25654b5a5c2202e3a96a4d6f5357274420fd83bd06e9a1c666e023711e4a8",
+      "queries": [
+        {
+          "kind": "sourceBook.groupBy",
+          "rows": 8,
+          "ms": 78.542
+        },
+        {
+          "kind": "unit.groupBy",
+          "rows": 16,
+          "ms": 78.529
+        },
+        {
+          "kind": "sourceBook.findMany",
+          "rows": 7,
+          "ms": 78.524
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "scenario": "source-picker-visible-book-counts",
+      "mode": "cold",
+      "ms": 243.252,
+      "bytes": 1312,
+      "sha256": "3d718a71fdadc1563608d06b2f9194df2396f433b5d2c68842181a90264863c4",
+      "queries": [
+        {
+          "kind": "sourceBook.findMany",
+          "rows": 7,
+          "ms": 25.788
+        },
+        {
+          "kind": "formats",
+          "rows": 0,
+          "ms": 135.479
+        },
+        {
+          "kind": "counts",
+          "rows": 36,
+          "ms": 81.636
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "requested book count/open and keyed kind counts"
+        ],
+        "rawRecordBytesEqual": false,
+        "kindKeyOrderEqual": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "valuesEqual": true
+      }
+    },
+    {
+      "round": 2,
+      "scenario": "source-picker-visible-book-counts",
+      "mode": "validated",
+      "ms": 247.352,
+      "bytes": 1312,
+      "sha256": "3d718a71fdadc1563608d06b2f9194df2396f433b5d2c68842181a90264863c4",
+      "queries": [
+        {
+          "kind": "sourceBook.findMany",
+          "rows": 7,
+          "ms": 25.981
+        },
+        {
+          "kind": "formats",
+          "rows": 0,
+          "ms": 136.779
+        },
+        {
+          "kind": "counts",
+          "rows": 36,
+          "ms": 84.281
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "requested book count/open and keyed kind counts"
+        ],
+        "rawRecordBytesEqual": false,
+        "kindKeyOrderEqual": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "valuesEqual": true
+      }
+    },
+    {
+      "round": 2,
+      "scenario": "visible-materials-page",
+      "mode": "cold",
+      "ms": 114.57,
+      "bytes": 3074,
+      "sha256": "471bb2f37e13be8334e16e7107b42083d96c00a16c3244ff43e97ec9f26bbbdc",
+      "queries": [
+        {
+          "kind": "sourceMaterial.findMany",
+          "rows": 8,
+          "ms": 29.051
+        },
+        {
+          "kind": "sourceMaterial.findMany",
+          "rows": 8,
+          "ms": 56.108
+        },
+        {
+          "kind": "formats",
+          "rows": 0,
+          "ms": 56.014
+        },
+        {
+          "kind": "counts",
+          "rows": 9,
+          "ms": 29.02
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "first 20 material rows",
+          "total",
+          "selectedAvailable"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 2,
+      "scenario": "visible-materials-page",
+      "mode": "validated",
+      "ms": 112.619,
+      "bytes": 3074,
+      "sha256": "471bb2f37e13be8334e16e7107b42083d96c00a16c3244ff43e97ec9f26bbbdc",
+      "queries": [
+        {
+          "kind": "sourceMaterial.findMany",
+          "rows": 8,
+          "ms": 26.456
+        },
+        {
+          "kind": "sourceMaterial.findMany",
+          "rows": 8,
+          "ms": 53.861
+        },
+        {
+          "kind": "formats",
+          "rows": 0,
+          "ms": 53.751
+        },
+        {
+          "kind": "counts",
+          "rows": 9,
+          "ms": 31.969
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "first 20 material rows",
+          "total",
+          "selectedAvailable"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 3,
+      "scenario": "initial-grades",
+      "mode": "cold",
+      "ms": 25.674,
+      "bytes": 215,
+      "sha256": "0886683dbb5c4a8933e7c71abc269d3151d48888ffc3d48fa465bed6058ecf02",
+      "queries": [
+        {
+          "kind": "unit.groupBy",
+          "rows": 16,
+          "ms": 25.604
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "scenario": "initial-grades",
+      "mode": "validated",
+      "ms": 25.6,
+      "bytes": 215,
+      "sha256": "0886683dbb5c4a8933e7c71abc269d3151d48888ffc3d48fa465bed6058ecf02",
+      "queries": [
+        {
+          "kind": "unit.groupBy",
+          "rows": 16,
+          "ms": 25.554
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "scenario": "selected-grade-chapters",
+      "mode": "cold",
+      "ms": 26.315,
+      "bytes": 221,
+      "sha256": "b54277187f8880da991f23733ee7b9dce0d11515f0795415058bfb888794d78c",
+      "queries": [
+        {
+          "kind": "unit.groupBy",
+          "rows": 9,
+          "ms": 26.233
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "scenario": "selected-grade-chapters",
+      "mode": "validated",
+      "ms": 26.166,
+      "bytes": 221,
+      "sha256": "b54277187f8880da991f23733ee7b9dce0d11515f0795415058bfb888794d78c",
+      "queries": [
+        {
+          "kind": "unit.groupBy",
+          "rows": 9,
+          "ms": 26.109
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "scenario": "selected-chapter-lessons",
+      "mode": "cold",
+      "ms": 28.086,
+      "bytes": 1197,
+      "sha256": "4f66dc06c15e2e593390dcdc1e565e69c8ede89c478da123c11b238a5f04f12d",
+      "queries": [
+        {
+          "kind": "unit.findMany",
+          "rows": 8,
+          "ms": 28.029
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "scenario": "selected-chapter-lessons",
+      "mode": "validated",
+      "ms": 27.054,
+      "bytes": 1197,
+      "sha256": "4f66dc06c15e2e593390dcdc1e565e69c8ede89c478da123c11b238a5f04f12d",
+      "queries": [
+        {
+          "kind": "unit.findMany",
+          "rows": 8,
+          "ms": 26.995
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "scenario": "visible-lesson-counts",
+      "mode": "cold",
+      "ms": 314.544,
+      "bytes": 853,
+      "sha256": "5e111d823601be62a51b8dff5cb2cf17846064ef1fc7da85703caf70d846bf1e",
+      "queries": [
+        {
+          "kind": "xmin-fingerprint",
+          "rows": 1,
+          "ms": 244.587
+        },
+        {
+          "kind": "counts",
+          "rows": 915,
+          "ms": 69.331
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "requested unitCounts",
+          "requested unitFamilies"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 3,
+      "scenario": "visible-lesson-counts",
+      "mode": "validated",
+      "ms": 256.356,
+      "bytes": 853,
+      "sha256": "5e111d823601be62a51b8dff5cb2cf17846064ef1fc7da85703caf70d846bf1e",
+      "queries": [
+        {
+          "kind": "xmin-fingerprint",
+          "rows": 1,
+          "ms": 256.274
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "requested unitCounts",
+          "requested unitFamilies"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 3,
+      "scenario": "visible-lesson-page",
+      "mode": "cold",
+      "ms": 425.322,
+      "bytes": 16929,
+      "sha256": "397c1971759c39a5abf51731229a55801fc297c4459eac937cbeb8c3ea748e6a",
+      "queries": [
+        {
+          "kind": "xmin-fingerprint",
+          "rows": 1,
+          "ms": 244.867
+        },
+        {
+          "kind": "counts",
+          "rows": 1,
+          "ms": 41.87
+        },
+        {
+          "kind": "page",
+          "rows": 12,
+          "ms": 50.903
+        },
+        {
+          "kind": "problem.findMany",
+          "rows": 12,
+          "ms": 57.371
+        },
+        {
+          "kind": "problem.findMany",
+          "rows": 12,
+          "ms": 29.564
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "problems",
+          "total",
+          "page",
+          "pageSize",
+          "version",
+          "countUnit"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 3,
+      "scenario": "visible-lesson-page",
+      "mode": "validated",
+      "ms": 352.495,
+      "bytes": 16929,
+      "sha256": "397c1971759c39a5abf51731229a55801fc297c4459eac937cbeb8c3ea748e6a",
+      "queries": [
+        {
+          "kind": "xmin-fingerprint",
+          "rows": 1,
+          "ms": 262.51
+        },
+        {
+          "kind": "problem.findMany",
+          "rows": 12,
+          "ms": 59.495
+        },
+        {
+          "kind": "problem.findMany",
+          "rows": 12,
+          "ms": 29.966
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "problems",
+          "total",
+          "page",
+          "pageSize",
+          "version",
+          "countUnit"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 3,
+      "scenario": "source-picker-groups",
+      "mode": "cold",
+      "ms": 643.053,
+      "bytes": 231,
+      "sha256": "19d2ac4fcf027cf6e3d6178a329cd5e41699d0967481fec1231d69016263c2f8",
+      "queries": [
+        {
+          "kind": "xmin-fingerprint",
+          "rows": 1,
+          "ms": 243.671
+        },
+        {
+          "kind": "other-select",
+          "rows": 1,
+          "ms": 399.241
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "sources"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 3,
+      "scenario": "source-picker-groups",
+      "mode": "validated",
+      "ms": 244.943,
+      "bytes": 231,
+      "sha256": "19d2ac4fcf027cf6e3d6178a329cd5e41699d0967481fec1231d69016263c2f8",
+      "queries": [
+        {
+          "kind": "xmin-fingerprint",
+          "rows": 1,
+          "ms": 244.868
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "sources"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 3,
+      "scenario": "source-picker-book-grades",
+      "mode": "cold",
+      "ms": 53.814,
+      "bytes": 483,
+      "sha256": "a95cdc784fe7336ee5ac895039b8618ba960c6bddb38e818795f632e99dc6791",
+      "queries": [
+        {
+          "kind": "sourceBook.groupBy",
+          "rows": 8,
+          "ms": 53.722
+        },
+        {
+          "kind": "unit.groupBy",
+          "rows": 16,
+          "ms": 53.702
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "scenario": "source-picker-book-grades",
+      "mode": "validated",
+      "ms": 50.49,
+      "bytes": 483,
+      "sha256": "a95cdc784fe7336ee5ac895039b8618ba960c6bddb38e818795f632e99dc6791",
+      "queries": [
+        {
+          "kind": "sourceBook.groupBy",
+          "rows": 8,
+          "ms": 50.418
+        },
+        {
+          "kind": "unit.groupBy",
+          "rows": 16,
+          "ms": 50.402
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "scenario": "source-picker-visible-books",
+      "mode": "cold",
+      "ms": 80.909,
+      "bytes": 1401,
+      "sha256": "aca25654b5a5c2202e3a96a4d6f5357274420fd83bd06e9a1c666e023711e4a8",
+      "queries": [
+        {
+          "kind": "sourceBook.groupBy",
+          "rows": 8,
+          "ms": 80.812
+        },
+        {
+          "kind": "unit.groupBy",
+          "rows": 16,
+          "ms": 80.797
+        },
+        {
+          "kind": "sourceBook.findMany",
+          "rows": 7,
+          "ms": 80.791
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "scenario": "source-picker-visible-books",
+      "mode": "validated",
+      "ms": 85.447,
+      "bytes": 1401,
+      "sha256": "aca25654b5a5c2202e3a96a4d6f5357274420fd83bd06e9a1c666e023711e4a8",
+      "queries": [
+        {
+          "kind": "sourceBook.groupBy",
+          "rows": 8,
+          "ms": 85.329
+        },
+        {
+          "kind": "unit.groupBy",
+          "rows": 16,
+          "ms": 85.33
+        },
+        {
+          "kind": "sourceBook.findMany",
+          "rows": 7,
+          "ms": 85.325
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "scenario": "source-picker-visible-book-counts",
+      "mode": "cold",
+      "ms": 249.385,
+      "bytes": 1312,
+      "sha256": "3d718a71fdadc1563608d06b2f9194df2396f433b5d2c68842181a90264863c4",
+      "queries": [
+        {
+          "kind": "sourceBook.findMany",
+          "rows": 7,
+          "ms": 27.104
+        },
+        {
+          "kind": "formats",
+          "rows": 0,
+          "ms": 136.033
+        },
+        {
+          "kind": "counts",
+          "rows": 36,
+          "ms": 85.829
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "requested book count/open and keyed kind counts"
+        ],
+        "rawRecordBytesEqual": false,
+        "kindKeyOrderEqual": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "valuesEqual": true
+      }
+    },
+    {
+      "round": 3,
+      "scenario": "source-picker-visible-book-counts",
+      "mode": "validated",
+      "ms": 240.788,
+      "bytes": 1312,
+      "sha256": "3d718a71fdadc1563608d06b2f9194df2396f433b5d2c68842181a90264863c4",
+      "queries": [
+        {
+          "kind": "sourceBook.findMany",
+          "rows": 7,
+          "ms": 24.974
+        },
+        {
+          "kind": "formats",
+          "rows": 0,
+          "ms": 133.143
+        },
+        {
+          "kind": "counts",
+          "rows": 36,
+          "ms": 82.353
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "requested book count/open and keyed kind counts"
+        ],
+        "rawRecordBytesEqual": false,
+        "kindKeyOrderEqual": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "valuesEqual": true
+      }
+    },
+    {
+      "round": 3,
+      "scenario": "visible-materials-page",
+      "mode": "cold",
+      "ms": 113.89,
+      "bytes": 3074,
+      "sha256": "471bb2f37e13be8334e16e7107b42083d96c00a16c3244ff43e97ec9f26bbbdc",
+      "queries": [
+        {
+          "kind": "sourceMaterial.findMany",
+          "rows": 8,
+          "ms": 29.092
+        },
+        {
+          "kind": "sourceMaterial.findMany",
+          "rows": 8,
+          "ms": 53.678
+        },
+        {
+          "kind": "formats",
+          "rows": 0,
+          "ms": 53.574
+        },
+        {
+          "kind": "counts",
+          "rows": 9,
+          "ms": 30.659
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "first 20 material rows",
+          "total",
+          "selectedAvailable"
+        ],
+        "bytesEqual": true
+      }
+    },
+    {
+      "round": 3,
+      "scenario": "visible-materials-page",
+      "mode": "validated",
+      "ms": 115.543,
+      "bytes": 3074,
+      "sha256": "471bb2f37e13be8334e16e7107b42083d96c00a16c3244ff43e97ec9f26bbbdc",
+      "queries": [
+        {
+          "kind": "sourceMaterial.findMany",
+          "rows": 8,
+          "ms": 27.708
+        },
+        {
+          "kind": "sourceMaterial.findMany",
+          "rows": 8,
+          "ms": 54.652
+        },
+        {
+          "kind": "formats",
+          "rows": 0,
+          "ms": 54.542
+        },
+        {
+          "kind": "counts",
+          "rows": 9,
+          "ms": 32.82
+        }
+      ],
+      "comparison": {
+        "fields": [
+          "first 20 material rows",
+          "total",
+          "selectedAvailable"
+        ],
+        "bytesEqual": true
+      }
+    }
+  ]
+}

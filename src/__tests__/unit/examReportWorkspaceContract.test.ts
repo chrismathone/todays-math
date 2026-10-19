@@ -2,12 +2,26 @@ import { describe, expect, it } from "vitest";
 import {
   examReportConfirmInputSchema,
   examReportNoteInputSchema,
+  examReportOptionsSchema,
   examReportPrintInputSchema,
   examReportSettingsInputSchema,
 } from "@/contracts/examReportWorkspace.contract";
 import { EXAM_REPORT_NOTE_LIMIT } from "@/lib/examReport/settings";
 
 describe("실제 성적표 편집 계약", () => {
+  it("M1 저장값은 그대로 읽고 새 설정 요청은 S1만 받는다", () => {
+    expect(examReportOptionsSchema.parse({ format: "M1" }).format).toBe("M1");
+    const input = { expectedOptionsDigest: "a".repeat(64), options: {} };
+    expect(examReportSettingsInputSchema.parse(input).options.format).toBe(
+      "S1",
+    );
+    expect(
+      examReportSettingsInputSchema.safeParse({
+        ...input,
+        options: { format: "M1" },
+      }).success,
+    ).toBe(false);
+  });
   it("고정 180자 대신 DB와 같은 1000자만 하드 상한으로 둔다", () => {
     expect(EXAM_REPORT_NOTE_LIMIT).toBe(1000);
     expect(

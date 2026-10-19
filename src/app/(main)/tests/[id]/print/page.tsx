@@ -2,6 +2,7 @@ import { accessibleTestsWhere } from "@/lib/classAccess";
 import { notFound, redirect } from "next/navigation";
 
 import { TestPrint } from "@/components/print/TestPrint";
+import { canOutputFrom } from "@/contracts/accountAccess.contract";
 import { idParamSchema } from "@/contracts/common.contract";
 import { db } from "@/lib/db";
 import { toPrintProblem } from "@/lib/print/toPrintProblem";
@@ -16,7 +17,7 @@ type TestPrintPageProps = {
 export default async function TestPrintPage({ params }: TestPrintPageProps) {
   const [session, routeParams] = await Promise.all([getSessionUser(), params]);
   if (!session) redirect("/login");
-  if (!session.menus?.includes("export")) notFound();
+  if (!canOutputFrom(session.menus ?? [])) notFound();
 
   const parsed = idParamSchema.safeParse(routeParams);
   if (!parsed.success) notFound();

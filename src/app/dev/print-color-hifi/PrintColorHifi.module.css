@@ -1,0 +1,685 @@
+.root {
+  min-height: 100vh;
+  padding: 32px 24px 64px;
+  background: var(--learn-bg);
+  color: var(--learn-ink);
+  font-family: var(--font-pretendard), sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.content {
+  max-width: 1480px;
+  margin: auto;
+  min-width: 0;
+}
+.root h1 {
+  margin: 4px 0 8px;
+  font-size: 24px;
+  font-weight: 750;
+}
+.root h2 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.root h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 700;
+}
+.root p {
+  margin: 0 0 12px;
+}
+.root .kicker,
+.root .small {
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+.heading {
+  margin-bottom: 24px;
+}
+.jumpLinks,
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.root button,
+.jumpLinks a {
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid var(--learn-control);
+  border-radius: 8px;
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+.root button:hover,
+.jumpLinks a:hover {
+  background: var(--learn-soft-hover);
+}
+.root button[aria-pressed="true"] {
+  border: 2px solid var(--learn-accent);
+  padding: 7px 13px;
+  background: var(--learn-soft);
+  color: var(--learn-accent);
+}
+.buttons small {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+}
+.root button:focus-visible,
+.root a:focus-visible,
+.root input:focus-visible,
+.root textarea:focus-visible,
+.root select:focus-visible,
+.tableScroll:focus-visible {
+  outline: 3px solid var(--learn-accent);
+  outline-offset: 3px;
+}
+.composition {
+  padding: 20px;
+  background: var(--learn-surface);
+  border: 1px solid var(--learn-track);
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+.tableScroll {
+  overflow-x: auto;
+  margin-bottom: 12px;
+}
+.compositionTable {
+  width: 100%;
+  min-width: 780px;
+  border-collapse: collapse;
+  text-align: left;
+}
+.compositionTable th,
+.compositionTable td {
+  border-bottom: 1px solid var(--learn-track);
+  padding: 12px;
+  vertical-align: top;
+}
+.compositionTable thead th {
+  background: var(--learn-neutral);
+  font-size: 12px;
+}
+.compositionTable tbody th {
+  width: 80px;
+  white-space: nowrap;
+}
+.compositionTable td:nth-child(2),
+.compositionTable td:nth-child(3) {
+  width: 35%;
+}
+.compositionTable tr[data-active] {
+  background: var(--learn-soft);
+}
+.controls {
+  margin-bottom: 24px;
+  scroll-margin-top: 16px;
+}
+.editorAndSheet {
+  display: grid;
+  grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
+  align-items: start;
+  gap: 24px;
+}
+.panel,
+.detail {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--learn-track);
+  border-radius: 12px;
+  background: var(--learn-surface);
+  scroll-margin-top: 20px;
+}
+.panel > .buttons {
+  margin-bottom: 12px;
+}
+.inputs {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  margin: 12px 0;
+}
+.inputField {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  font-weight: 600;
+}
+.inputField small {
+  display: block;
+  color: var(--learn-muted);
+  font-size: 12px;
+  font-weight: 400;
+}
+.inputField[data-omitted] {
+  padding: 10px;
+  border-left: 3px solid var(--learn-control);
+  background: var(--learn-neutral);
+}
+.inputField input,
+.inputField select,
+.inputField textarea,
+.selectLabel select {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  border: 1px solid var(--learn-control);
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  font: inherit;
+  font-weight: 400;
+}
+.inputField textarea {
+  resize: vertical;
+}
+.inputField input:disabled,
+.inputField textarea:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.checkbox input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.examTag {
+  display: inline-block;
+  border: 1px solid currentColor;
+  padding: 2px 8px;
+  font-family: var(--paper-font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.examPeriod {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.modernTop,
+.selfKicker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.selfKicker {
+  font-family: var(--paper-font-sans);
+  font-size: 10px;
+}
+.inputField select,
+.selectLabel select {
+  cursor: pointer;
+}
+label.checkbox {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 44px;
+  cursor: pointer;
+}
+.checkbox input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--learn-accent);
+}
+.checkbox small {
+  font-size: 12px;
+  color: var(--learn-muted);
+}
+.omittedList {
+  padding: 10px 0;
+  border-top: 1px solid var(--learn-track);
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+.detailOptions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin: 12px 0;
+}
+.selectLabel {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.selectLabel select {
+  width: auto;
+}
+.previewWindow {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 210 / 297;
+  background: white;
+  border: 1px solid var(--learn-track);
+  overflow: hidden;
+}
+.previewWindow[data-gray] {
+  filter: grayscale(1);
+}
+.paperScale {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 793.7007874px;
+  height: 1122.519685px;
+  transform-origin: top left;
+}
+.contrast {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px 0;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.colorSwatch {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--learn-control);
+}
+.contrast > span:last-child {
+  margin-left: auto;
+}
+.comparisons {
+  margin-top: 32px;
+  scroll-margin-top: 16px;
+}
+.variantRow {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--learn-track);
+}
+.comparisonGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+.sample {
+  margin: 0;
+  min-width: 0;
+}
+.sample figcaption {
+  margin-bottom: 8px;
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+.sample > button {
+  width: 100%;
+  margin-top: 8px;
+}
+.finalNote {
+  margin-top: 32px !important;
+  color: var(--learn-muted);
+}
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Dev-only A4 comparisons. C5 preserves the pre-C2 product appearance. */
+.paper,
+.currentPaper {
+  --paper-font-serif: var(--font-noto-serif-kr), "Batang", serif;
+  --paper-font-sans: var(--font-pretendard), sans-serif;
+  --paper-font-mono: monospace;
+  width: 793.7007874px;
+  height: 1122.519685px;
+  background: #fff;
+  color: #0e0e10;
+  text-align: left;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.paper {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 45.3543px 56.6929px;
+  font-family: var(--paper-font-serif);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.paperHeader {
+  flex-shrink: 0;
+  margin-bottom: 20px;
+}
+.paper .paperTitle {
+  font-family: var(--paper-font-sans);
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.4;
+  margin: 10px 0;
+}
+.paper .prominentField {
+  display: inline;
+}
+.paperInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  padding: 8px 0;
+  font-family: var(--paper-font-sans);
+  font-size: 11px;
+}
+.infoField {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+.fieldLabel {
+  flex-shrink: 0;
+  font-family: var(--paper-font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--demo-info);
+}
+.examBand {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-top: 3px solid var(--demo-rule);
+  border-bottom: 2px solid var(--demo-rule);
+  background: var(--demo-fill);
+  color: var(--demo-onFill);
+  font-family: var(--paper-font-sans);
+}
+.examBand strong {
+  font-size: 26px;
+  font-weight: 800;
+}
+.examBand > span {
+  font-size: 12px;
+  flex-shrink: 0;
+}
+.examBand .paperTitle {
+  margin: 0;
+  font-size: 22px;
+}
+.schoolTable {
+  border: 2px solid var(--demo-rule);
+}
+.schoolTable .examBand {
+  justify-content: center;
+  border-top: none;
+}
+.tableFields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  background: var(--demo-soft);
+}
+.tableFields > .infoField {
+  padding: 8px 10px;
+  border-right: 1px solid var(--demo-line);
+  border-bottom: 1px solid var(--demo-line);
+  font-size: 11px;
+  flex-wrap: wrap;
+}
+.studentLine {
+  padding: 8px 10px;
+  margin-top: 10px;
+  border-top: 1px solid var(--demo-line);
+  border-bottom: 1px solid var(--demo-line);
+  font-family: var(--paper-font-sans);
+  font-size: 11px;
+}
+.modernHead {
+  border-bottom: 3px solid var(--demo-rule);
+  padding: 10px 14px;
+  background: var(--demo-fill);
+  color: var(--demo-onFill);
+}
+.modernHead .fieldLabel {
+  color: inherit;
+}
+.schoolTitle {
+  font-family: var(--paper-font-sans);
+  font-size: 26px;
+  font-weight: 800;
+}
+.academyHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.academyName {
+  font-family: var(--paper-font-sans);
+  font-size: 19px;
+  font-weight: 800;
+}
+.academyHead .paperInfo {
+  justify-content: flex-end;
+}
+.noteBox {
+  padding: 10px 14px;
+  border: 1px solid var(--demo-rule);
+  border-left: 5px solid var(--demo-rule);
+  background: var(--demo-soft);
+  margin: 10px 0;
+}
+.noteBox > .infoField {
+  display: flex;
+  margin: 3px 0;
+}
+.noteBox p {
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 4px 0 0;
+}
+.noteLabel {
+  color: var(--demo-info);
+  font-family: var(--paper-font-sans);
+  font-size: 11px;
+  font-weight: 700;
+}
+.selfHead {
+  border-top: 3px solid var(--demo-rule);
+  padding: 10px 14px;
+  background: var(--demo-fill);
+  color: var(--demo-onFill);
+}
+.selfHead .kicker {
+  color: inherit;
+  font-size: 10px;
+}
+.selfHead .fieldLabel {
+  color: inherit;
+}
+.goal {
+  padding: 8px 0;
+}
+.goal .infoField {
+  display: flex;
+  font-size: 12px;
+}
+.patternTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.patternTop .paperTitle {
+  font-size: 16px;
+}
+.patternName {
+  font-family: var(--paper-font-sans);
+  font-size: 21px;
+  font-weight: 800;
+}
+.strategy {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--demo-line);
+  background: var(--demo-soft);
+}
+.strategy .infoField {
+  font-size: 12px;
+}
+.questionArea {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  flex: 1;
+  min-height: 0;
+}
+.question {
+  min-width: 0;
+  padding: 10px 0;
+  border-top: 1px solid var(--demo-line);
+  break-inside: avoid;
+}
+.questionText {
+  min-width: 0;
+}
+.number {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.number > span {
+  display: grid;
+  place-items: center;
+  min-width: 26px;
+  min-height: 26px;
+  background: var(--demo-numberFill);
+  color: var(--demo-numberInk);
+  border: 1px solid var(--demo-line);
+  padding: 0 4px;
+  font-family: var(--paper-font-sans);
+  font-size: 14px;
+  font-weight: 800;
+}
+.paper[data-variant="C1"] .number > span {
+  border: none;
+  justify-content: start;
+}
+.paper[data-variant="C2"] .examBand {
+  border-color: var(--demo-accent);
+}
+.paper[data-variant="C2"] .schoolTable {
+  border-color: var(--demo-accent);
+}
+.paper[data-variant="C2"] .modernHead,
+.paper[data-variant="C2"] .selfHead {
+  border-color: var(--demo-accent);
+}
+.paper[data-variant="C3"] .tableFields,
+.paper[data-variant="C4"] .tableFields {
+  background: var(--demo-soft);
+}
+.paper[data-variant="C3"] .number > span {
+  background: var(--demo-soft);
+}
+.paper[data-variant="C4"] .examBand,
+.paper[data-variant="C4"] .modernHead,
+.paper[data-variant="C4"] .selfHead {
+  border-color: var(--demo-fill);
+}
+.questionArea[data-workspace="true"] {
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.questionArea[data-workspace="true"] .question {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 18px;
+  border: 1px solid var(--demo-line);
+  padding: 12px;
+}
+.scratch {
+  border-left: 1px dashed var(--demo-line);
+  padding-left: 10px;
+  background-image: repeating-linear-gradient(
+    transparent 0 23px,
+    var(--demo-line) 23px 24px
+  );
+}
+.scratch > span {
+  font-family: var(--paper-font-sans);
+  font-size: 9px;
+  background: #fff;
+  padding: 2px 4px;
+}
+.scratch[data-grid="true"] {
+  background-image:
+    linear-gradient(var(--demo-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--demo-line) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+.answerLine {
+  font-family: var(--paper-font-sans);
+  font-size: 10px;
+  margin-top: 14px;
+  background: var(--demo-soft);
+}
+.paperFooter {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--demo-rule);
+  padding-top: 8px;
+  margin-top: 16px;
+  font-family: var(--paper-font-sans);
+  font-size: 10px;
+  flex-shrink: 0;
+}
+.paper,
+.currentPaper {
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+@media (max-width: 1100px) {
+  .comparisonGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .root {
+    padding: 20px 16px 40px;
+  }
+  .editorAndSheet {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .panel,
+  .detail,
+  .composition {
+    padding: 16px;
+  }
+  .contrast > span:last-child {
+    margin-left: 0;
+  }
+}
+@media (max-width: 480px) {
+  .comparisonGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

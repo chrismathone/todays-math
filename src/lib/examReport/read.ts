@@ -224,7 +224,7 @@ export function reportListData(context: ExamReportContext) {
 export function paperOptions(snapshot: ExamReportSnapshot) {
   const options = examReportOptionsSchema.parse(snapshot.options);
   return {
-    mode: options.format,
+    mode: "S1" as const,
     wrong: options.wrongQuestions,
     retry: options.retries,
     note: options.teacherNote && Boolean(snapshot.report.teacherNote.trim()),

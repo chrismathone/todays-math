@@ -282,7 +282,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           branchRole: true,
           approvalStatus: true,
           disabledMenus: true,
-          branch: { select: { disabledMenus: true, menuRevision: true } },
+          branch: {
+            select: {
+              disabledMenus: true,
+              ownerDisabledMenus: true,
+              menuRevision: true,
+            },
+          },
           deletedAt: true,
           suspendedAt: true,
           sessionVersion: true,

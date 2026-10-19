@@ -15,5 +15,10 @@ export const unitSchema = z.strictObject({
 });
 export type UnitEntity = z.infer<typeof unitSchema>;
 
+/** Current problem cards need their own unit labels, not the whole catalogue. */
+export const unitIdsParamSchema = z.string()
+  .transform((value) => [...new Set(value.split(","))])
+  .pipe(z.array(uuidSchema).min(1).max(1000));
+
 export const unitListResponseSchema = dataResponseSchema(z.array(unitSchema));
 export type UnitListResponse = z.infer<typeof unitListResponseSchema>;

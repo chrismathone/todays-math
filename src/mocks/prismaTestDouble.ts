@@ -10,6 +10,14 @@
 import { randomUUID } from "node:crypto";
 
 import { Prisma } from "@prisma/client";
+import { invalidateBankReadCache } from "@/lib/bankReadCache";
+import type { CountSql } from "@/lib/problem/questionCountSql";
+import { questionFormatWithoutContent } from "@/lib/problem/questionFormat";
+import { ACTUAL_FORMAT_VERSION } from "@/lib/problem/actualFormat";
+import { classifyFormat, type ProblemFormat } from "@/lib/problem/provenance";
+import { questionBucketsFromRows } from "@/lib/problem/questionCountBuckets";
+import { problemIneligibleCode } from "@/lib/problemEligibility";
+import { BANK_SOURCE_GROUPS, BANK_SOURCE_GROUP_SOURCES } from "@/contracts/bankSource.contract";
 
 import type {
   ClassEntity,
@@ -715,6 +723,7 @@ let conceptLectureViewRows: ConceptLectureViewRow[] = [];
 
 /** 매 테스트 시작 전 Mock 픽스처 상태로 되돌린다 — 테스트 간 상태 오염 방지. */
 export function resetPrismaTestDouble() {
+  invalidateBankReadCache();
   resetErrorLogTestDouble();
   resetEnglishTestDouble();
   classRows = [...MOCK_CLASSES, MOCK_CLASS_OTHER_USER].map(toClassRow);
@@ -1126,6 +1135,41 @@ function groupRows<T extends object>(
 
 function paginate<T>(rows: T[], skip = 0, take?: number): T[] {
   return take === undefined ? rows.slice(skip) : rows.slice(skip, skip + take);
+}
+
+/** Curriculum/source metadata GROUP BY; never compute problem inventory here. */
+function groupMetadataRows<T extends object>(rows: T[], args: {
+  by: string[]; where?: Record<string, unknown>; _min?: { orderIndex?: boolean }; orderBy?: unknown;
+}) {
+  if (Object.keys(args).some((key) => !["by", "where", "_min", "orderBy"].includes(key)) ||
+      args.by.some((key) => !["grade", "chapter"].includes(key)) ||
+      (args._min && Object.keys(args._min).some((key) => key !== "orderIndex")))
+    throw new Error("prismaTestDouble: unsupported metadata groupBy");
+  const groups = new Map<string, Record<string, unknown>>();
+  for (const row of rows.filter((row) => matchesWhere(row, args.where))) {
+    const record = row as Record<string, unknown>;
+    const values = Object.fromEntries(args.by.map((key) => [key, record[key]]));
+    const key = JSON.stringify(values);
+    const current = groups.get(key);
+    const previous = (current?._min as { orderIndex: number } | undefined)?.orderIndex ?? Infinity;
+    groups.set(key, { ...values, ...(args._min?.orderIndex ? {
+      _min: { orderIndex: Math.min(previous, Number(record.orderIndex)) },
+    } : {}) });
+  }
+  const specs = (Array.isArray(args.orderBy) ? args.orderBy : [args.orderBy]).flatMap((spec) =>
+    spec ? Object.entries(spec as Record<string, unknown>).flatMap(([key, order]) =>
+      key === "_min" ? Object.entries(order as Record<string, string>).map(([field, dir]) => [`_min.${field}`, dir]) : [[key, String(order)]],
+    ) : [],
+  );
+  return [...groups.values()].sort((a, b) => {
+    for (const [field, dir] of specs) {
+      const value = (row: Record<string, unknown>) => field.startsWith("_min.")
+        ? (row._min as Record<string, number>)[field.slice(5)] : row[field];
+      const av = value(a) as string | number, bv = value(b) as string | number;
+      if (av !== bv) return (av < bv ? -1 : 1) * (dir === "desc" ? -1 : 1);
+    }
+    return 0;
+  });
 }
 
 /**
@@ -1767,6 +1811,9 @@ const prismaModels = {
     },
   },
   unit: {
+    async groupBy(args: Parameters<typeof groupMetadataRows>[1]) {
+      return groupMetadataRows(unitRows, args);
+    },
     async findUnique({ where }: { where: { id: string } }) {
       return unitRows.find((row) => row.id === where.id) ?? null;
     },
@@ -1804,6 +1851,9 @@ const prismaModels = {
   },
   /** 출처 책(D-161). 문제은행 «출처 고르기»가 부르는 것만 — 심기(`create`)와 읽기(`findMany`). */
   sourceBook: {
+    async groupBy(args: Parameters<typeof groupMetadataRows>[1]) {
+      return groupMetadataRows(sourceBookRows, args);
+    },
     async create({
       data,
     }: {
@@ -3165,15 +3215,164 @@ function restoreRows(snapshot: ReturnType<typeof snapshotRows>) {
  * accepted here; unknown SQL fails. Runtime code always executes real database locks.
  */
 async function testLockQuery(query: { sql: string }): Promise<unknown[]> {
+  if ((query as { bankHeldSourceGroups?: boolean }).bankHeldSourceGroups) {
+    const shared = problemRows.filter((row) => row.pool === "shared");
+    const identity = (row: (typeof shared)[number]) => row.questionGroupKey ?? `row:${row.id}`;
+    return [{
+      total: new Set(shared.map(identity)).size,
+      ...Object.fromEntries(BANK_SOURCE_GROUPS.map((group) => [group,
+        new Set(shared.filter((row) => BANK_SOURCE_GROUP_SOURCES[group].includes(row.source)).map(identity)).size,
+      ])),
+    }];
+  }
+  const revision = (query as { bankReadRevision?: boolean }).bankReadRevision;
+  if ((query as { bankReadFingerprint?: boolean }).bankReadFingerprint || revision) {
+    const shared = problemRows.filter((row) => row.pool === "shared");
+    return [{
+      // This double observes mutations for reader tests; the actual statement
+      // revision/counter is tested with the real migration in PGlite.
+      token: `${revision ? "revision-v1:" : ""}${JSON.stringify([shared, unitRows, sourceMaterialRows, sourceBookRows])}`,
+      ...(revision ? { formatVersion: ACTUAL_FORMAT_VERSION, schemaVersion: 1 } : {}),
+      invalid: String(shared.filter((row) => {
+        const fact = row as typeof row & { actualFormat?: string | null; actualFormatVersion?: string | null };
+        return fact.actualFormat == null || fact.actualFormatVersion !== ACTUAL_FORMAT_VERSION;
+      }).length),
+    }];
+  }
+  const count = (query as CountSql).questionCountRead;
+  if (count) {
+    const rows = problemRows.filter(
+      (row) =>
+        row.pool === "shared" &&
+        matchesWhere(
+          row,
+          count.where as Record<string, unknown>,
+          PROBLEM_RELATIONS,
+        ),
+    );
+    const actual = (row: (typeof rows)[number]) => {
+      const cached = row as typeof row & {
+        actualFormat?: ProblemFormat | null;
+        actualFormatVersion?: string | null;
+        actualFormatDigest?: string | null;
+      };
+      return cached.actualFormatVersion === ACTUAL_FORMAT_VERSION
+        ? (cached.actualFormat ?? null)
+        : null;
+    };
+    if (count.mode === "formats")
+      return rows
+        .filter((row) => !count.onlyInvalid || actual(row) === null)
+        .map((row) => ({
+          ...row,
+          actualFormat: actual(row),
+          storedFormat:
+            (row as unknown as { actualFormat?: string }).actualFormat ?? null,
+          actualFormatVersion: null,
+          actualFormatDigest: null,
+          writable: false,
+        }));
+    if (count.mode === "counts") {
+      const formats = new Map(count.formats);
+      return questionBucketsFromRows(
+        rows.map((row) => {
+          const format =
+            formats.get(row.id) ??
+            actual(row) ??
+            questionFormatWithoutContent(row) ??
+            classifyFormat(row);
+          return {
+            ...row,
+            questionId: row.questionGroupKey ?? `row:${row.id}`,
+            sourceMaterialId: row.sourceMaterialId ?? null,
+            actualFormat:
+              format === "unknown"
+                ? null
+                : (format as Exclude<ProblemFormat, "unknown">),
+            available:
+              format !== "unknown" && problemIneligibleCode(row) === null,
+            weight: 1,
+            rowCount: 1,
+          };
+        }),
+        count.dimensions ?? [],
+        count.format,
+        { units: unitRows, materials: sourceMaterialRows },
+      );
+    }
+    if (count.mode === "page") {
+      const formats = new Map(count.formats);
+      const groups = new Map<string, typeof rows>();
+      for (const row of applyOrder(rows, count.orderBy)) {
+        const key = row.questionGroupKey ?? `row:${row.id}`;
+        groups.set(key, [...(groups.get(key) ?? []), row]);
+      }
+      return paginate(
+        [...groups.values()].flatMap((members) => {
+          const row = members.find((row) => {
+            const format =
+              formats.get(row.id) ??
+              actual(row) ??
+              questionFormatWithoutContent(row) ??
+              classifyFormat(row);
+            return (
+              (!count.availableOnly ||
+                (format !== null &&
+                  format !== "unknown" &&
+                  problemIneligibleCode(row) === null)) &&
+              (!count.format || format === count.format)
+            );
+          });
+          return row ? [{ id: row.id }] : [];
+        }),
+        count.skip,
+        count.take,
+      );
+    }
+  }
+
   const sql = query.sql.replace(/\s+/g, " ").trim();
   if (
-    /^SELECT pg_advisory_xact_lock\(hashtextextended\(\?,0\)\)::text AS locked$/.test(sql) ||
+    /^SELECT pg_advisory_xact_lock\(hashtextextended\(\?,0\)\)::text AS locked$/.test(
+      sql,
+    ) ||
     /^SELECT id FROM public\.problem WHERE id IN \([?, ]+\) ORDER BY id FOR SHARE$/.test(
       sql,
     )
   )
     return [];
   throw new Error(`Unsupported raw SQL in prismaTestDouble: ${sql}`);
+}
+
+// Match the real client's public-count invalidation, including writes in a test transaction.
+for (const model of [
+  prismaModels.problem,
+  prismaModels.sourceBook,
+  prismaModels.sourceMaterial,
+  prismaModels.unit,
+]) {
+  const methods = model as unknown as Record<
+    string,
+    (...args: unknown[]) => Promise<unknown>
+  >;
+  for (const operation of [
+    "create",
+    "createMany",
+    "createManyAndReturn",
+    "update",
+    "updateMany",
+    "upsert",
+    "delete",
+    "deleteMany",
+  ]) {
+    if (!methods[operation]) continue;
+    const write = methods[operation].bind(model);
+    methods[operation] = async (...args) => {
+      const result = await write(...args);
+      invalidateBankReadCache();
+      return result;
+    };
+  }
 }
 
 export const prismaTestDouble = {
@@ -3198,7 +3397,7 @@ export const prismaTestDouble = {
     const snapshot = snapshotRows();
     try {
       return typeof arg === "function"
-        ? await arg({ ...prismaModels, $queryRaw: testLockQuery })
+        ? await arg({ ...prismaModels, $queryRaw: prismaTestDouble.$queryRaw })
         : await Promise.all(arg);
     } catch (error) {
       restoreRows(snapshot);

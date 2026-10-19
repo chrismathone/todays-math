@@ -171,6 +171,17 @@ async function preparePage(page: Page, input: PdfPayload, origin: string) {
   });
 }
 
+async function printPdfPage(page: Page, input: PdfPayload, origin: string) {
+  await preparePage(page, input, origin);
+  return page.pdf({
+    format: "A4",
+    ...(input.landscape ? { landscape: true } : {}),
+    printBackground: true,
+    preferCSSPageSize: false,
+    margin: { top: "0mm", right: "0mm", bottom: "0mm", left: "0mm" },
+  });
+}
+
 /** Shared browser runtime for server PDF and bounded SVG comparison rendering. Callers must close it. */
 export async function launchExportBrowser() {
   const localCandidates =
@@ -233,17 +244,90 @@ export async function buildPdf(
   try {
     if (signal?.aborted) throw new Error("내보내기가 취소되었습니다.");
     const page = await browser.newPage();
-    await preparePage(page, input, origin);
-    return await page.pdf({
-      format: "A4",
-      ...(input.landscape ? { landscape: true } : {}),
-      printBackground: true,
-      preferCSSPageSize: false,
-      margin: { top: "0mm", right: "0mm", bottom: "0mm", left: "0mm" },
-    });
+    return await printPdfPage(page, input, origin);
   } finally {
     clearTimeout(timeout);
     signal?.removeEventListener("abort", close);
     await browser.close();
   }
+}
+
+const PDF_BATCH_CONCURRENCY = 3;
+export type PdfBatchInput = () => Promise<PdfPayload | Uint8Array>;
+
+/** Ordered, all-or-nothing batch. Existing PDFs bypass Chromium; other inputs share one browser. */
+export async function buildPdfBatch(
+  inputs: readonly PdfBatchInput[],
+  origin: string,
+): Promise<Uint8Array[]> {
+  const output = new Array<Uint8Array>(inputs.length);
+  let next = 0;
+  let failed = false;
+  let failure: unknown;
+  let browser: Awaited<ReturnType<typeof launchExportBrowser>> | undefined;
+  let launching: ReturnType<typeof launchExportBrowser> | undefined;
+  let closing: Promise<void> | undefined;
+  const fail = (error: unknown) => {
+    if (!failed) {
+      failed = true;
+      failure = error;
+    }
+  };
+  const closeBrowser = () => {
+    if (browser) return (closing ??= browser.close());
+  };
+  const worker = async () => {
+    while (!failed) {
+      const index = next++;
+      if (index >= inputs.length) return;
+      let page: Page | undefined;
+      let timeout: ReturnType<typeof setTimeout> | undefined;
+      try {
+        const input = await inputs[index]();
+        if (failed) return;
+        if (input instanceof Uint8Array) {
+          output[index] = input;
+          continue;
+        }
+        launching ??= launchExportBrowser().then((value) => {
+          browser = value;
+          return value;
+        });
+        const shared = await launching;
+        if (failed) return;
+        // Keep the existing per-PDF deadline, rather than timing the entire class.
+        timeout = setTimeout(() => {
+          void closeBrowser()?.catch(fail);
+        }, 60000);
+        page = await shared.newPage();
+        output[index] = await printPdfPage(page, input, origin);
+      } catch (error) {
+        fail(error);
+      } finally {
+        clearTimeout(timeout);
+        try {
+          await page?.close();
+        } catch (error) {
+          fail(error);
+        }
+      }
+    }
+  };
+  try {
+    await Promise.all(
+      Array.from(
+        { length: Math.min(PDF_BATCH_CONCURRENCY, inputs.length) },
+        worker,
+      ),
+    );
+  } finally {
+    // Workers settle before the shared browser closes, including on a render failure.
+    try {
+      await closeBrowser();
+    } catch (error) {
+      fail(error);
+    }
+  }
+  if (failed) throw failure;
+  return output;
 }

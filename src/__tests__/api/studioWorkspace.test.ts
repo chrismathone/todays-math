@@ -68,6 +68,59 @@ beforeEach(() => {
 });
 afterEach(() => vi.unstubAllEnvs());
 describe("production workspace resources", () => {
+  it("checks authentication again for repeated metadata-only reads", async () => {
+    const path = "problems?identity=question&view=bootstrap";
+    const first = await bank(request(path));
+    expect(first.status).toBe(200);
+    expect(first.headers.get("Cache-Control")).toContain("no-store");
+    expect(loadUnifiedBank).toHaveBeenCalledOnce();
+    vi.mocked(getSessionUser).mockResolvedValueOnce(null);
+    expect((await bank(request(path))).status).toBe(401);
+    expect(loadUnifiedBank).toHaveBeenCalledOnce();
+  });
+  it.each([false, true])(
+    "applies the existing admin exemption to reviewer metadata reads: admin=%s",
+    async (isAdmin) => {
+      vi.mocked(getSessionUser).mockResolvedValue({
+        id: "owner-17",
+        name: "Teacher",
+        email: "teacher@example.test",
+        isAdmin,
+      });
+      vi.mocked(auth as () => Promise<unknown>).mockResolvedValue({
+        user: { id: "owner-17", role: "reviewer", isAdmin },
+      });
+      expect(
+        (await bank(request("problems?identity=question&view=bootstrap")))
+          .status,
+      ).toBe(isAdmin ? 200 : 403);
+      expect(loadUnifiedBank).toHaveBeenCalledTimes(isAdmin ? 1 : 0);
+    },
+  );
+  it("still checks the origin of POSTs made by an admin reviewer", async () => {
+    vi.stubEnv("AUTH_URL", "https://math.example");
+    vi.mocked(getSessionUser).mockResolvedValue({
+      id: "owner-17",
+      name: "Teacher",
+      email: "teacher@example.test",
+      isAdmin: true,
+    });
+    vi.mocked(auth as () => Promise<unknown>).mockResolvedValue({
+      user: { id: "owner-17", role: "reviewer", isAdmin: true },
+    });
+    const post = (origin: string) =>
+      new Request("https://math.example/api/studio/problems", {
+        method: "POST",
+        headers: { origin, "content-type": "application/json" },
+        body: JSON.stringify({ identity: "question", view: "bootstrap" }),
+      });
+    expect((await scopedBank(post("https://elsewhere.example"))).status).toBe(
+      403,
+    );
+    expect(loadUnifiedBank).not.toHaveBeenCalled();
+    expect((await scopedBank(post("https://math.example"))).status).toBe(200);
+    expect(loadUnifiedBank).toHaveBeenCalledOnce();
+  });
   it("uses the same login and origin gate for large scope reads and bounds the body", async () => {
     vi.stubEnv("AUTH_URL", "https://math.example");
     const post = (body: string, origin = "https://math.example") =>

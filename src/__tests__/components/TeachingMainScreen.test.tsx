@@ -3,10 +3,15 @@ import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { MainScreen } from "@/components/main/MainScreen";
 import { loadMainDashboard } from "@/lib/main/loadMainDashboard";
+import { MOCK_CLASS_A } from "@/mocks/data";
+import type { WorkspaceMenu } from "@/contracts/accountAccess.contract";
 
 const { replace } = vi.hoisted(() => ({ replace: vi.fn() }));
 vi.mock("next/navigation", () => ({ useRouter: () => ({ replace }) }));
 vi.mock("@/lib/main/loadMainDashboard", () => ({ loadMainDashboard: vi.fn() }));
+vi.mock("@/components/main/DailyReviewSection", () => ({
+  DailyReviewSection: () => <section aria-label="오늘의 확인테스트" />,
+}));
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -29,6 +34,37 @@ beforeEach(() => {
 });
 
 describe("embedded MainScreen", () => {
+  it.each<{ allowedMenus: WorkspaceMenu[]; output: boolean }>([
+    { allowedMenus: ["arithmetic"], output: true },
+    { allowedMenus: ["bank"], output: true },
+    { allowedMenus: ["studio"], output: true },
+    { allowedMenus: ["library"], output: true },
+    { allowedMenus: [], output: false },
+    { allowedMenus: ["export"], output: false },
+    { allowedMenus: ["teaching"], output: false },
+  ])(
+    "uses source access for common output ($allowedMenus)",
+    async ({ allowedMenus, output }) => {
+      vi.mocked(loadMainDashboard).mockResolvedValue({
+        classes: [MOCK_CLASS_A],
+        tests: [],
+        progressByClass: {},
+        suggestByClass: {},
+        units: [],
+        metrics: null,
+        testsStatus: output ? "ready" : "unavailable",
+      });
+      render(<MainScreen embedded allowedMenus={allowedMenus} />);
+      await screen.findByRole("article", { name: MOCK_CLASS_A.name });
+      expect(
+        screen.queryByRole("region", { name: "오늘의 확인테스트" }) !== null,
+      ).toBe(output);
+      expect(loadMainDashboard).toHaveBeenCalledWith(
+        expect.objectContaining({ allowedMenus }),
+      );
+    },
+  );
+
   it("keeps the empty state in the workspace and calls onEmpty only on request", async () => {
     const onEmpty = vi.fn();
     const user = userEvent.setup();

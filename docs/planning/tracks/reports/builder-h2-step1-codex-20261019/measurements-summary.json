@@ -1,0 +1,104 @@
+{
+  "status": "passed",
+  "generatedAt": "2026-10-19T02:55:52.971Z",
+  "browser": {
+    "path": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "version": "Chrome/155.0.8059.85"
+  },
+  "measurementCount": 560,
+  "screenCount": 12,
+  "step1Variants": ["S1", "S2", "S3", "S4"],
+  "curriculum": {
+    "grades": 16,
+    "chapters": 117,
+    "lessons": 735
+  },
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "scenes": 80,
+      "maxDocumentOverflowPx": 0,
+      "maxScreenOverflowPx": 0,
+      "clippedElements": 0,
+      "escapedElements": 0,
+      "maxDialogOverflowPx": 0
+    },
+    {
+      "width": 1050,
+      "height": 900,
+      "scenes": 80,
+      "maxDocumentOverflowPx": 0,
+      "maxScreenOverflowPx": 0,
+      "clippedElements": 0,
+      "escapedElements": 0,
+      "maxDialogOverflowPx": 0
+    },
+    {
+      "width": 1040,
+      "height": 900,
+      "scenes": 80,
+      "maxDocumentOverflowPx": 0,
+      "maxScreenOverflowPx": 0,
+      "clippedElements": 0,
+      "escapedElements": 0,
+      "maxDialogOverflowPx": 0
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "scenes": 80,
+      "maxDocumentOverflowPx": 0,
+      "maxScreenOverflowPx": 0,
+      "clippedElements": 0,
+      "escapedElements": 0,
+      "maxDialogOverflowPx": 0
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "scenes": 80,
+      "maxDocumentOverflowPx": 0,
+      "maxScreenOverflowPx": 0,
+      "clippedElements": 0,
+      "escapedElements": 0,
+      "maxDialogOverflowPx": 0
+    },
+    {
+      "width": 320,
+      "height": 640,
+      "scenes": 80,
+      "maxDocumentOverflowPx": 0,
+      "maxScreenOverflowPx": 0,
+      "clippedElements": 0,
+      "escapedElements": 0,
+      "maxDialogOverflowPx": 0
+    },
+    {
+      "width": 1440,
+      "height": 600,
+      "scenes": 80,
+      "maxDocumentOverflowPx": 0,
+      "maxScreenOverflowPx": 0,
+      "clippedElements": 0,
+      "escapedElements": 0,
+      "maxDialogOverflowPx": 0
+    }
+  ],
+  "pickerKeyboardChecks": {
+    "stages": ["grade", "chapter", "lesson"],
+    "perViewport": true,
+    "checks": [
+      "native modal",
+      "initial close focus",
+      "Shift+Tab and Tab return inside modal",
+      "Escape closes",
+      "opener focus returns"
+    ]
+  },
+  "problems": [],
+  "blockedRequests": [],
+  "browserErrors": [],
+  "temporaryFullReport": "/tmp/builder-simple-hifi-QberS1/measurements.json",
+  "temporaryPreview": "/tmp/builder-simple-hifi-QberS1/standalone.html"
+}

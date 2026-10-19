@@ -25,6 +25,8 @@ import {
 } from "@/lib/apiResponse";
 import { deriveQuestionType } from "@/lib/ai/questionType";
 import { db } from "@/lib/db";
+import { withBankReadFingerprint } from "@/lib/bankReadFingerprint";
+import { cachedBankRead, publicBankQueryKey } from "@/lib/bankReadCache";
 import { PROBLEM_CODE_PATTERN } from "@/contracts/problemCode.contract";
 import { MISSING_ANSWER } from "@/lib/missingAnswer";
 import { DEFAULT_PROBLEM_POOL, problemVisibleWhere } from "@/lib/problemPool";
@@ -38,6 +40,10 @@ import {
   questionReadMetadata,
 } from "@/lib/problem/questionProjection";
 import { withQuestionMetadata } from "@/lib/problem/questionQueries";
+import { loadQuestionCounts } from "@/lib/problem/questionCountProjection";
+import { questionBucketTally } from "@/lib/problem/questionCountBuckets";
+import { questionPageSql } from "@/lib/problem/questionCountSql";
+import type { ProblemFormat } from "@/lib/problem/provenance";
 import { problemEligibleWhere } from "@/lib/problemEligibility";
 import { getSessionUser } from "@/lib/session";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
@@ -261,47 +267,105 @@ async function handleGet(request: NextRequest) {
     );
   if (identity === "question") {
     const payload = await db.$transaction(
-      async (tx) => {
-        const inspection = filters.reviewStatus !== undefined;
-        const base = {
-          AND: [...baseAnd, ...(!inspection ? [problemEligibleWhere()] : [])],
-        };
-        const candidates = await loadQuestionCandidates(
-          base,
-          PROBLEM_BANK_ORDER_BY,
-          tx,
-        );
-        const groups = projectQuestionCandidates(candidates, {
-          format: availableFormat ?? format,
-          availableOnly: !inspection,
-        });
-        const currentPage = Math.min(
-          page,
-          Math.max(1, Math.ceil(groups.length / pageSize)),
-        );
-        const ids = groups
-          .slice((currentPage - 1) * pageSize, currentPage * pageSize)
-          .map((g) => g.representative.id);
-        const rows = ids.length
-          ? await tx.problem.findMany({
-              where: { AND: [base, { id: { in: ids } }] },
-            })
-          : [];
-        const index = new Map(ids.map((id, i) => [id, i]));
-        rows.sort((a, b) => index.get(a.id)! - index.get(b.id)!);
-        const annotated = await withQuestionMetadata(rows, tx, {
-          AND: baseAnd,
-        });
-        return {
-          data: (await withProblemSourceReferences(annotated)).map((row) => ({
-            ...serializeProblem(row),
-            questionId: row.questionId,
-            questionFormats: row.questionFormats,
-          })),
-          meta: { page: currentPage, pageSize, total: groups.length },
-          ...questionReadMetadata(url.searchParams),
-        };
-      },
+      async (tx) =>
+        withBankReadFingerprint(tx, async () => {
+          const inspection = filters.reviewStatus !== undefined;
+          const base = {
+            AND: [...baseAnd, ...(!inspection ? [problemEligibleWhere()] : [])],
+          };
+          const chosenFormat = availableFormat ?? format;
+          const formats = new Map<string, ProblemFormat>();
+          let total: number, currentPage: number, ids: string[];
+          if (
+            questionPageSql(
+              base,
+              PROBLEM_BANK_ORDER_BY,
+              !inspection,
+              chosenFormat,
+              0,
+              pageSize,
+              formats,
+            )
+          ) {
+            const readPage = async () => {
+              const counts = questionBucketTally(
+                await loadQuestionCounts(
+                  base,
+                  tx,
+                  [],
+                  chosenFormat,
+                  formats,
+                  false,
+                ),
+              );
+              const total = inspection ? counts.held : counts.available;
+              const currentPage = Math.min(
+                page,
+                Math.max(1, Math.ceil(total / pageSize)),
+              );
+              const ids = (
+                await tx.$queryRaw<{ id: string }[]>(
+                  questionPageSql(
+                    base,
+                    PROBLEM_BANK_ORDER_BY,
+                    !inspection,
+                    chosenFormat,
+                    (currentPage - 1) * pageSize,
+                    pageSize,
+                    formats,
+                    tx,
+                  )!,
+                )
+              ).map((r) => r.id);
+              return { total, currentPage, ids };
+            };
+            const key = publicBankQueryKey(url.searchParams);
+            ({ total, currentPage, ids } =
+              key === null
+                ? await readPage()
+                : await cachedBankRead(
+                    `problems-page:${JSON.stringify([key, base, chosenFormat, page, pageSize, inspection])}`,
+                    readPage,
+                  ));
+          } else {
+            const candidates = await loadQuestionCandidates(
+              base,
+              PROBLEM_BANK_ORDER_BY,
+              tx,
+            );
+            const groups = projectQuestionCandidates(candidates, {
+              format: chosenFormat,
+              availableOnly: !inspection,
+            });
+            total = groups.length;
+            currentPage = Math.min(
+              page,
+              Math.max(1, Math.ceil(total / pageSize)),
+            );
+            ids = groups
+              .slice((currentPage - 1) * pageSize, currentPage * pageSize)
+              .map((g) => g.representative.id);
+          }
+          const rows = ids.length
+            ? await tx.problem.findMany({
+                where: { AND: [base, { id: { in: ids } }] },
+              })
+            : [];
+          const index = new Map(ids.map((id, i) => [id, i]));
+          rows.sort((a, b) => index.get(a.id)! - index.get(b.id)!);
+          const annotated = await withQuestionMetadata(rows, tx, {
+            AND: baseAnd,
+          });
+          return {
+            data: (await withProblemSourceReferences(annotated)).map((row) => ({
+              ...serializeProblem(row),
+              questionId: row.questionId,
+              questionFormats: row.questionFormats,
+            })),
+            meta: { page: currentPage, pageSize, total },
+            ...questionReadMetadata(url.searchParams),
+          };
+        }),
       { isolationLevel: "RepeatableRead", timeout: 20000 },
     );
     return jsonOk(problemListResponseSchema, payload);

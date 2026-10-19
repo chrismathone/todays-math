@@ -149,7 +149,7 @@ beforeEach(() => {
     role: "director",
     isAdmin: false,
     approvalStatus: "approved",
-    menus: ["library", "export", "studio", "conceptBlank"],
+    menus: ["library", "studio", "conceptBlank"],
     branchId: branch,
   };
   users = new Map(
@@ -279,6 +279,17 @@ beforeEach(() => {
       links.push(...data);
     },
   );
+});
+
+it("bank alone reads only worksheet drafts while keeping other document outputs closed", async () => {
+  account.menus = ["bank"];
+  expect((await readDocument(req(), "same-id")).status).toBe(200);
+  expect((await listDocuments(req("GET", "?kind=draft"))).status).toBe(200);
+  for (const kind of ["extraction", "conceptBlank", "arithmeticSheet"]) {
+    docs[0].kind = kind;
+    expect((await readDocument(req(), "same-id")).status).toBe(404);
+    expect((await listDocuments(req("GET", `?kind=${kind}`))).status).toBe(403);
+  }
 });
 
 describe("branch library read boundaries", () => {
@@ -612,6 +623,8 @@ describe("document-bound assets and independent copies", () => {
   });
   it("requires the source editor menu to create a copy", async () => {
     account.menus = ["library"];
+    docs[1].kind = "extraction";
+    docs[1].payload = { data: { crops: [] } };
     expect(
       (await copyDocument(req("POST", shareQuery), "same-id")).status,
     ).toBe(403);
@@ -724,7 +737,7 @@ describe("arithmetic document persistence", () => {
     ]);
     expect(mocks.document.findMany).toHaveBeenCalledWith(
       expect.objectContaining({
-        where: expect.objectContaining({ kind: "arithmeticSheet" }),
+        where: expect.objectContaining({ kind: { in: ["arithmeticSheet"] } }),
         select: expect.not.objectContaining({ payload: true }),
       }),
     );
@@ -1100,7 +1113,7 @@ describe("arithmetic document persistence", () => {
 
   it("keeps arithmetic sheets closed to a bank-only account — 연산대장 no longer rides on 시험지 만들기 (2026-10-16)", async () => {
     account.menus = ["bank"];
-    expect((await readDocument(req(), "same-id")).status).toBe(403);
+    expect((await readDocument(req(), "same-id")).status).toBe(404);
     expect(
       (await listDocuments(req("GET", "?kind=arithmeticSheet"))).status,
     ).toBe(403);
@@ -1127,7 +1140,7 @@ describe("arithmetic document persistence", () => {
   });
 
   it("cannot convert an existing kind to bypass revision or writer rules", async () => {
-    account.menus = ["arithmetic", "export"];
+    account.menus = ["arithmetic", "bank"];
     vi.stubEnv("ARITHMETIC_SHEET_WRITE", "off");
     expect(
       (await saveDocument(req("PUT", "", saveBody()), "same-id")).status,

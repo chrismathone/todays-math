@@ -198,7 +198,13 @@ describe("existing session access refresh", () => {
       expect(mocks.findUnique).toHaveBeenLastCalledWith(
         expect.objectContaining({
           select: expect.objectContaining({
-            branch: { select: { disabledMenus: true, menuRevision: true } },
+            branch: {
+              select: {
+                disabledMenus: true,
+                ownerDisabledMenus: true,
+                menuRevision: true,
+              },
+            },
           }),
         }),
       );

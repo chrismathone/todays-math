@@ -12,7 +12,7 @@ import {
   sharedDocumentWhere,
   mutationOwnerError,
   documentAssetIds,
-  arithmeticDocumentsOnly,
+  privateDocumentKinds,
 } from "@/lib/privateWorkspace";
 import {
   documentIdSchema,
@@ -21,7 +21,10 @@ import {
   saveDocumentSchema,
   type DocumentKind,
 } from "@/contracts/privateWorkspace.contract";
-import type { WorkspaceMenu } from "@/contracts/accountAccess.contract";
+import {
+  canOutputFrom,
+  type WorkspaceMenu,
+} from "@/contracts/accountAccess.contract";
 import {
   CONCEPT_BLANK_TITLE_MAX,
   conceptBlankDocumentSchema,
@@ -46,13 +49,20 @@ import {
 } from "@/lib/arithmeticDocumentPolicy";
 
 /** 자료를 저장하려면 있어야 하는 메뉴 — 그 자료를 만드는 화면. */
-const EDITOR_MENU: Readonly<Record<DocumentKind, WorkspaceMenu>> = {
-  draft: "export",
-  extraction: "studio",
-  conceptBlank: "conceptBlank",
-  // 2026-10-16 — 연산대장은 제 메뉴다(«시험지 만들기»가 아니다).
-  arithmeticSheet: "arithmetic",
-};
+function canEditDocument(menus: readonly WorkspaceMenu[], kind: DocumentKind) {
+  if (kind === "draft")
+    return (["bank", "studio", "library"] as const).some((source) =>
+      canOutputFrom(menus, source),
+    );
+  return canOutputFrom(
+    menus,
+    kind === "extraction"
+      ? "studio"
+      : kind === "arithmeticSheet"
+        ? "arithmetic"
+        : "conceptBlank",
+  );
+}
 
 /**
  * 자료의 문항 수 — 꼴이 틀리면 null. 개념 백지(26 §9 ⑾)는 고르기만 담으므로 지면을 합쳐 찍히는 문항을 센다
@@ -121,11 +131,7 @@ export async function readDocument(
       });
   if (!document || !isLibraryDocumentKind(document.kind))
     return privateError("자료를 찾지 못했습니다.", 404);
-  if (
-    !owner &&
-    arithmeticDocumentsOnly(access.account!) &&
-    document.kind !== ARITHMETIC_SHEET_KIND
-  )
+  if (!owner && !privateDocumentKinds(access.account!).includes(document.kind))
     return privateError("자료를 찾지 못했습니다.", 404);
   if (document.kind === ARITHMETIC_SHEET_KIND) {
     const invalid = arithmeticSheetPayloadError(document.payload);
@@ -173,7 +179,7 @@ export async function saveDocument(request: Request, id: string) {
     return privateError("저장할 자료 형식을 확인해 주세요.", 400);
   const { kind, title, payload, expectedRevision, visibility, sharedBranchId } =
     parsed.data;
-  if (!access.account!.menus.includes(EDITOR_MENU[kind]))
+  if (!canEditDocument(access.account!.menus, kind))
     return privateError("이 자료를 편집할 권한이 없습니다.", 403);
   // 시험지 태그(W8) — 시험지는 `payload.tag` 에 정해진 여덟 가운데 하나만. 연산 연습지는 `presentation.tag` 를
   // 연산 본문 검사가 가린다(본문 맨 위 칸은 받지 않는다). 다른 종류에는 태그가 없다.
@@ -491,9 +497,7 @@ export async function copyDocument(request: Request, id: string) {
       },
     });
     if (!source) return null;
-    if (
-      !access.account!.menus.includes(EDITOR_MENU[source.kind as DocumentKind])
-    )
+    if (!canEditDocument(access.account!.menus, source.kind as DocumentKind))
       return "forbidden" as const;
     let problemCount = source.problemCount;
     if (source.kind === ARITHMETIC_SHEET_KIND) {

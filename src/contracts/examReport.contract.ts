@@ -62,6 +62,16 @@ export const studentExamReportSchema = z.strictObject({
   questions: z.array(examReportQuestionSchema),
   wrongQuestions: z.array(examReportQuestionSchema),
   teacherNote: z.string(),
+  /** 읽기 배선은 별도 단계. 지면 시안에서는 선택 이력과 지어낸 픽스처만 쓴다. */
+  history: z
+    .array(
+      z.strictObject({
+        date: isoDateSchema,
+        title: z.string(),
+        score100: z.number().int().min(0).max(100).nullable(),
+      }),
+    )
+    .optional(),
   /** 명시적인 원기록 연결이 있는 재시험만. 날짜·제목·단원 유사성으로 추측하지 않는다. */
   retries: z.array(
     z.strictObject({ testId: uuidSchema, testDate: isoDateSchema, ...outcome }),

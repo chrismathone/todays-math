@@ -11,6 +11,7 @@ import { classifyFormat } from "./provenance";
 import { questionFormatWithoutContent } from "./questionFormat";
 import { questionIdOf, groupQuestionRows } from "./questionIdentity";
 import type { QuestionDb } from "./questionQueries";
+import { loadActualFormats } from "./actualFormatProjection";
 
 /** No SVG, solution or full payload in a corpus scan. Only ambiguous formats read content. */
 export const QUESTION_CANDIDATE_SELECT = {
@@ -63,9 +64,11 @@ export async function loadQuestionCandidates(
     ...(orderBy ? { orderBy } : {}),
     select: QUESTION_CANDIDATE_SELECT,
   });
+  const stored = await loadActualFormats(where, client, formatCache, false);
   const undecided = rows.filter(
     (row) =>
-      questionFormatWithoutContent(row) === null && !formatCache.has(row.id),
+      !formatCache.has(row.id) &&
+      (stored || questionFormatWithoutContent(row) === null),
   );
   const formats = formatCache;
   for (let i = 0; i < undecided.length; i += 5000) {
@@ -89,7 +92,7 @@ export async function loadQuestionCandidates(
     const cached = intern.get(row.id);
     if (cached) return cached;
     const classified =
-      questionFormatWithoutContent(row) ?? formats.get(row.id) ?? "unknown";
+      formats.get(row.id) ?? questionFormatWithoutContent(row) ?? "unknown";
     const actualFormat = classified === "unknown" ? null : classified;
     const candidate: QuestionCandidate = {
       ...row,

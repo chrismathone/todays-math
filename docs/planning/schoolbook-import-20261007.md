@@ -10,6 +10,9 @@
 > ⚠️ 이름 — 이 저장소에서 `textbook` 은 이미 «교재»(자체 교재 제작 `Textbook*`)다. 교과서는 **`school_textbook`** 이다.
 > 추출 도구 폴더 `scripts/import/textbook/` 은 그 전에 지은 이름이라 그대로 뒀다.
 
+적재·원문 갱신 뒤에는 승인된 운영 절차로 `scripts/db/backfill-problem-actual-format.ts`를 다시 실행해 실제 형식 캐시를 채운다(기본 드라이런, 공유 DB 적용은 별도 쓰기 승인 필요).
+refresh/recovery·원문 수리·질문 키 갱신과 되돌리기도 이 절차에 포함한다. 트리거 비활성화·replica 세션·덤프 복원으로 무효화를 건너뛴 경우에는 비NULL 형식도 `scripts/db/verify-problem-actual-format.ts`로 세 칸 전체를 대조하고 승인된 백필로 복구한다. 외부 적재·복원 뒤에는 모든 서비스 인스턴스의 `BANK_COUNTS_EPOCH`도 전환한다.
+
 ## 1. 무엇이 어디에 있나
 
 | 것 | 자리 |

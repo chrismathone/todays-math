@@ -1,6 +1,9 @@
 .root {
   container: exam-builder / inline-size;
   min-width: 0;
+  width: 100%;
+  max-width: 1040px;
+  margin-inline: auto;
   color: var(--learn-ink);
   --builder-border: var(--learn-track);
   --builder-control: var(--learn-control);
@@ -93,6 +96,9 @@
   margin-top: 12px;
   align-items: start;
 }
+.sequenceLayout {
+  grid-template-columns: minmax(0, 1fr) 300px;
+}
 .settings,
 .review,
 .reviewStep {
@@ -118,7 +124,7 @@
   padding: 10px 16px;
   background: var(--learn-surface);
   border: 1px solid var(--builder-border);
-  border-radius: 12px;
+  border-radius: 0;
   font-size: 14px;
 }
 .stepSummary > span {
@@ -167,14 +173,14 @@
   cursor: not-allowed;
 }
 .toolbar {
-  min-height: 70px;
+  min-height: 64px;
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 12px 16px;
   background: var(--learn-surface);
   border: 1px solid var(--builder-border);
-  border-radius: 12px;
+  border-radius: 0;
 }
 .toolbar label {
   font-size: 12px;
@@ -216,10 +222,9 @@
 }
 .panel {
   min-width: 0;
-  overflow: hidden;
   border: 1px solid var(--builder-border);
   background: var(--learn-surface);
-  border-radius: 12px;
+  border-radius: 0;
   scroll-margin-top: calc(var(--workspace-sticky-inset, 0px) + 150px);
 }
 .panel:focus,
@@ -231,7 +236,7 @@
   align-items: center;
   gap: 8px;
   padding: 12px 16px;
-  min-height: 70px;
+  min-height: 56px;
   border-bottom: 1px solid var(--builder-border);
 }
 .panelHeader > strong {
@@ -380,12 +385,12 @@
   font-weight: 600;
 }
 .questions {
-  padding: 0 20px;
+  padding: 0 16px;
   container: exam-questions / inline-size;
 }
 .question {
   min-width: 0;
-  padding: 20px 0;
+  padding: 16px 0;
 }
 .question + .question {
   border-top: 1px solid var(--builder-border);
@@ -880,6 +885,463 @@
 @media print {
   .root {
     display: none;
+  }
+}
+
+.sequencePicker {
+  padding: 0 16px 16px;
+}
+.sequencePicker > .panelHeader {
+  padding-inline: 0;
+}
+.scopeBrowser,
+.scopeBrowser > section {
+  min-width: 0;
+}
+.scopeBrowser h3 {
+  margin: 0;
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--builder-border);
+  font-size: var(--text-body);
+  font-weight: 600;
+}
+.scopeBrowser h3:focus {
+  outline: 2px solid var(--learn-accent);
+  outline-offset: -2px;
+}
+.stageList {
+  min-width: 0;
+  max-height: 360px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+.root .stageList > button {
+  display: block;
+  width: 100%;
+  padding: 10px 8px;
+  border: 0;
+  border-bottom: 1px solid var(--builder-border);
+  border-radius: 0;
+  background: var(--learn-surface);
+  text-align: left;
+  font-weight: 400;
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.root .stageList > button[aria-pressed="true"] {
+  color: var(--learn-accent);
+  font-weight: 700;
+}
+label.sequenceLesson {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  align-items: start;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--builder-border);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+.sequenceLesson:hover {
+  background: var(--learn-soft);
+}
+.sequenceLesson:has(input:disabled) {
+  color: var(--learn-muted);
+  cursor: not-allowed;
+}
+.sequenceLesson small {
+  display: block;
+}
+.sequenceLesson input[type="checkbox"] {
+  margin-top: 4px;
+}
+.collapsedScope {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding-block: 12px;
+  border-bottom: 1px solid var(--builder-border);
+}
+.collapsedScope > span {
+  color: var(--learn-muted);
+  font-size: var(--text-caption);
+}
+.collapsedScope > strong {
+  min-width: 0;
+  font-weight: 500;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.lessonSearch {
+  display: grid;
+  gap: 4px;
+  padding: 12px 8px;
+  font-size: var(--text-caption);
+  color: var(--learn-muted);
+}
+.selectedScopes {
+  padding: 16px;
+}
+.selectedScope {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 8px;
+  align-items: end;
+  padding: 12px 0;
+  border-top: 1px solid var(--builder-border);
+}
+.selectedScope:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+.selectedScope > span {
+  grid-column: 1 / -1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+.selectedScope small {
+  display: block;
+}
+.selectedScope > label:first-of-type {
+  display: grid;
+  gap: 4px;
+  width: min(100%, 76px);
+  font-size: var(--text-caption);
+  color: var(--learn-muted);
+}
+.selectedScope input[type="number"] {
+  width: 100%;
+}
+.quickConditions {
+  padding: 16px;
+  border-top: 1px solid var(--builder-border);
+}
+.quickConditions h3 {
+  margin: 0 0 16px;
+  font-size: var(--text-body);
+}
+.quickField {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+  font-size: var(--text-caption);
+  color: var(--learn-muted);
+}
+.quickField input {
+  width: 100%;
+}
+.quickPresets,
+.quickSteps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+  margin-block: 8px 16px;
+}
+.root .quickPresets button,
+.root .quickSteps button {
+  min-width: 0;
+  padding: 8px 4px;
+}
+.quickSteps {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.root :is(.quickSteps, .quickPresets) button[aria-pressed="true"] {
+  border-color: var(--learn-accent);
+  color: var(--learn-accent);
+  background: var(--learn-soft);
+}
+.quickLadder {
+  min-width: 0;
+  margin: 0;
+  padding: 12px 0;
+  border: 0;
+  border-top: 1px solid var(--builder-border);
+}
+.quickLadder legend {
+  padding: 0;
+  font-size: var(--text-body);
+}
+.quickNumbers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-block: 12px;
+}
+.quickCheck {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-size: var(--text-body);
+}
+.root .quickCheck input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  accent-color: var(--learn-accent);
+}
+.quickDisclosure {
+  padding-block: 12px;
+  border-top: 1px solid var(--builder-border);
+}
+.quickDisclosure > summary {
+  min-height: 44px;
+  align-content: center;
+  cursor: pointer;
+  font-size: var(--text-body);
+}
+.quickDisclosure summary small {
+  display: block;
+}
+.conditionNote {
+  margin: 0;
+  padding: 12px 16px;
+  color: var(--learn-muted);
+  font-size: var(--text-caption);
+  overflow-wrap: anywhere;
+}
+.sequenceComposition > .panelHeader > .summary {
+  display: none;
+}
+.sequenceComposition > .panelFooter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  background: var(--learn-surface);
+  border-top: 1px solid var(--builder-border);
+}
+.sequenceComposition > .panelFooter > div:last-child {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin-left: 0;
+  width: 100%;
+}
+.sequenceComposition .compositionTotal {
+  padding-block: 4px 12px;
+}
+.quickSummary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 16px;
+  font-size: var(--text-caption);
+}
+.review {
+  gap: 0;
+  background: var(--learn-surface);
+  border: 1px solid var(--builder-border);
+}
+.review > .toolbar {
+  border: 0;
+  border-bottom: 1px solid var(--builder-border);
+}
+.review > .panel {
+  border: 0;
+}
+.review .panelHeader h3 {
+  font-size: var(--text-body);
+}
+.review .groupNumber {
+  display: none;
+}
+.review > .pagination {
+  border-top: 1px solid var(--builder-border);
+}
+.reviewLayout {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.8fr) minmax(0, 1.2fr);
+  gap: 20px;
+  align-items: start;
+}
+.reviewRail {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+.reviewRail .panelHeader h2 {
+  margin: 0;
+  font-size: var(--text-body);
+  font-weight: 650;
+}
+.statistics {
+  padding: 0 16px 16px;
+  font-variant-numeric: tabular-nums;
+}
+.statistics > .panelHeader {
+  padding-inline: 0;
+}
+.statTotal {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding-block: 16px;
+  border-bottom: 1px solid var(--builder-border);
+}
+.statTotal > span {
+  color: var(--learn-muted);
+  font-size: var(--text-caption);
+}
+.statTotal strong {
+  margin-left: auto;
+  color: var(--learn-accent);
+  font-size: 32px;
+  line-height: 1.2;
+}
+.formatStats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding-block: 12px 16px;
+}
+.formatStats dt {
+  font-size: var(--text-caption);
+  color: var(--learn-muted);
+}
+.formatStats dd {
+  margin: 4px 0 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+.distribution {
+  display: grid;
+  gap: 8px;
+}
+.distribution > div {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) 24px;
+  gap: 12px;
+  align-items: center;
+  font-size: var(--text-caption);
+}
+.distribution strong {
+  text-align: right;
+}
+.barTrack {
+  display: block;
+  height: 5px;
+  background: var(--learn-track);
+}
+.barTrack > span {
+  display: block;
+  height: 100%;
+  background: var(--learn-muted);
+}
+.orderPanel {
+  padding: 0 16px;
+}
+.orderPanel .panelHeader,
+.orderPanel .conditionNote {
+  padding-inline: 0;
+}
+.orderTable {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: var(--text-caption);
+}
+.orderTable :is(th, td) {
+  padding: 8px 4px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--builder-border);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.orderTable th {
+  color: var(--learn-muted);
+  font-weight: 500;
+}
+.orderTable th:first-child {
+  width: 48px;
+}
+.orderTable th:nth-child(2) {
+  width: 52px;
+}
+.orderTable th:nth-child(3) {
+  width: 56px;
+}
+.orderTable small {
+  display: block;
+}
+.root .orderHandle {
+  width: 44px;
+  padding-inline: 0;
+  border-color: transparent;
+  border-radius: 0;
+  background: var(--learn-neutral);
+  touch-action: none;
+  cursor: grab;
+}
+.outputAction {
+  padding: 16px;
+  display: grid;
+  gap: 16px;
+}
+.outputReason {
+  padding: 12px;
+  border-left: 3px solid var(--learn-warning);
+  background: var(--learn-warning-bg);
+  font-size: var(--text-body);
+  overflow-wrap: anywhere;
+}
+.outputReason p {
+  margin: 4px 0;
+}
+.outputAction[data-output-status="ready"] .outputReason {
+  border-color: var(--learn-done);
+  background: var(--learn-done-bg);
+}
+.outputButtons {
+  display: grid;
+  gap: 8px;
+}
+@container exam-builder (max-width: 900px) {
+  .layout,
+  .reviewLayout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@container exam-builder (max-width: 600px) {
+  .collapsedScope {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 4px 8px;
+  }
+  .collapsedScope > strong {
+    grid-column: 1;
+  }
+  .collapsedScope > button {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+  .orderTable thead {
+    display: none;
+  }
+  .orderTable tr {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr) minmax(0, 1fr);
+    border-bottom: 1px solid var(--builder-border);
+  }
+  .orderTable td {
+    border: 0;
+    align-self: center;
+  }
+  .orderTable td:last-child {
+    grid-column: 1 / -1;
+  }
+  .review .toolbar {
+    flex-wrap: wrap;
+  }
+  .review .toolbar > .actions {
+    margin-left: 0;
   }
 }
 

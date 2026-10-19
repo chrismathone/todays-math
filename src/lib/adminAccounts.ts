@@ -13,7 +13,14 @@ export const managedAccountSelect = {
   isSuperAdmin: true,
   branchId: true,
   branchRole: true,
-  branch: { select: { name: true, disabledMenus: true, menuRevision: true } },
+  branch: {
+    select: {
+      name: true,
+      disabledMenus: true,
+      ownerDisabledMenus: true,
+      menuRevision: true,
+    },
+  },
   eywaUserId: true,
   eywaManagedAccounts: {
     select: accountSyncSelect,

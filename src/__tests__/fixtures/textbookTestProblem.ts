@@ -16,11 +16,17 @@ export const CAPTURED_AT = "2026-10-03T01:00:00.000Z";
 export const SOURCE_UPDATED_AT = "2026-10-02T02:00:00.000Z";
 
 export function liveProblem(): Problem & {
+  actualFormat: string | null;
+  actualFormatVersion: string | null;
+  actualFormatDigest: string | null;
   unit: { id: string; grade: string; chapter: string; section: string };
 } {
   return {
     id: PROBLEM_ID,
     questionGroupKey: null,
+    actualFormat: null,
+    actualFormatVersion: null,
+    actualFormatDigest: null,
     userId: null,
     unitId: LIVE_UNIT_ID,
     source: "manual",

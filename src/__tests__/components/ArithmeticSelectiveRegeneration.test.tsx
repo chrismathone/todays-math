@@ -121,6 +121,10 @@ let noChange = false;
 let release: (() => void) | undefined;
 let delay = false;
 beforeEach(() => {
+  // 숫자 변경 분기를 검증한다. 무작위 seed는 자리만 교환하는 정상 분기를 고르기도 한다.
+  vi.spyOn(crypto, "randomUUID").mockReturnValue(
+    "00000000-0000-4000-8000-000000000019",
+  );
   fail = false;
   noChange = false;
   delay = false;

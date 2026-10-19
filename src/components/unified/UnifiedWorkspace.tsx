@@ -30,6 +30,8 @@ import RouteLinkStatus from "@/components/ui/RouteLinkStatus";
 import {
   WORKSPACE_MENUS,
   WORKSPACE_PRODUCTS,
+  canOutputFrom,
+  workspaceMenuInSidebar,
   workspaceMenusOf,
   type WorkspaceMenu,
   type WorkspaceProduct,
@@ -358,6 +360,7 @@ const productOf = (view: View | null): WorkspaceProduct =>
     : "math";
 /** 세트 딥링크 `/?set=<uuid>#english` 의 id 모양 */
 const SET_LINK = /^[0-9a-f-]{36}$/i;
+const WORKSHEET_DRAFT_MENUS = ["bank", "studio", "library"] as const;
 
 function SidebarSignOutButton() {
   const { pending } = useFormStatus();
@@ -370,6 +373,7 @@ function SidebarSignOutButton() {
 
 export default function UnifiedWorkspace({
   initialData,
+  deferBankMetadata = false,
   storageScope,
   currentUser,
   allowedMenus,
@@ -377,6 +381,7 @@ export default function UnifiedWorkspace({
   examReportTestId,
 }: {
   initialData: BankData;
+  deferBankMetadata?: boolean;
   storageScope?: string;
   currentUser?: WorkspaceIdentity;
   allowedMenus?: WorkspaceMenu[];
@@ -389,6 +394,7 @@ export default function UnifiedWorkspace({
       <UnifiedWorkspaceContent
         key={storageScope ?? "development"}
         initialData={initialData}
+        deferBankMetadata={deferBankMetadata}
         storageScope={storageScope}
         currentUser={access.currentUser}
         allowedMenus={access.allowedMenus}
@@ -400,6 +406,7 @@ export default function UnifiedWorkspace({
 }
 function UnifiedWorkspaceContent({
   initialData,
+  deferBankMetadata,
   storageScope,
   currentUser,
   allowedMenus,
@@ -407,6 +414,7 @@ function UnifiedWorkspaceContent({
   examReportTestId,
 }: {
   initialData: BankData;
+  deferBankMetadata: boolean;
   storageScope?: string;
   currentUser?: WorkspaceIdentity;
   allowedMenus: WorkspaceMenu[];
@@ -421,15 +429,20 @@ function UnifiedWorkspaceContent({
     () => new Set(menuKey.split(",").filter(menuValid)),
     [menuKey],
   );
-  const can = useCallback(
-    (view: View) => enabledMenus.has(menuOf(view)),
-    [enabledMenus],
+  const canOutput = canOutputFrom([...enabledMenus]);
+  const canUseWorksheetDrafts = WORKSHEET_DRAFT_MENUS.some((menu) =>
+    enabledMenus.has(menu),
   );
-  const firstMenu = [...enabledMenus][0];
+  const can = useCallback(
+    (view: View) =>
+      view === "export" ? canOutput : enabledMenus.has(menuOf(view)),
+    [canOutput, enabledMenus],
+  );
+  const firstMenu = [...enabledMenus].find((menu) => menu !== "export");
   const defaultView: View | null =
     firstMenu === "english-school" ? "english" : (firstMenu ?? null);
-  const hasMenus = enabledMenus.size > 0;
-  const canCreate = can("bank") || can("studio") || can("export");
+  const hasMenus = defaultView !== null;
+  const canCreate = canUseWorksheetDrafts;
   const canEnglish = englishNav.some(
     (item) => isEnglishView(item.id) && can(item.id),
   );
@@ -438,7 +451,7 @@ function UnifiedWorkspaceContent({
   const [requestedView, setView] = useState<View | null>(defaultView);
   const [navigationReady, setNavigationReady] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
-  const reportView: View | null = examReportTestId && can("export")
+  const reportView: View | null = examReportTestId && canOutput
     ? (can("library") ? "library" : "export")
     : null;
   const view = reportView ??
@@ -449,16 +462,16 @@ function UnifiedWorkspaceContent({
     "오늘 수학";
   /** 권한 있는 제품만(25 §1.1) — 하나뿐이면 고르기 단추 없이 지금 모습 그대로 */
   const products = WORKSPACE_PRODUCTS.filter((item) =>
-    workspaceMenusOf(item.id).some((menu) => enabledMenus.has(menu)),
+    workspaceMenusOf(item.id).some(
+      (menu) => menu !== "export" && enabledMenus.has(menu),
+    ),
   );
-  // 원장님 2026-10-01 «메뉴가 두 개가 필요한가 — 내보내기는 문제 추출 가장 마지막 단계»: «시험지 · 내보내기»는
-  // 문제 추출(넷째 단계) · 시험지 만들기(담기) · 내 시험지(열기)의 끝 단계라 옆 메뉴에 줄을 따로 두지 않는다.
-  // 화면 · 권한 · 관문은 그대로다(옆 «현재 시험지 · 편집 이어가기» 칸 · 빠른 검색으로도 연다). 그 입구가 하나도 없는
-  // 계정(내보내기만 켠 계정)에만 줄을 남긴다.
-  const hiddenInSidebar = (id: View) =>
-    id === "export" && (can("studio") || can("bank") || can("library"));
+  // 출력은 각 출처 메뉴의 마지막 단계이며, 공용 export 뷰는 빠른 검색과 현재 시험지에서 연다.
   const availableNav = navItemsOf[product]
-    .filter((item) => can(item.id) && !hiddenInSidebar(item.id))
+    .filter(
+      (item) =>
+        can(item.id) && workspaceMenuInSidebar(menuOf(item.id)),
+    )
     .map((item) =>
       item.id === "library" ? { ...item, label: libraryLabel } : item,
     );
@@ -512,7 +525,7 @@ function UnifiedWorkspaceContent({
     forgetPrivateDraft,
   } = useWorkspaceDrafts(
     storageScope,
-    can("library") || can("studio") || can("export"),
+    canUseWorksheetDrafts,
     navigationReady &&
       (worksheetView || (product === "math" && view === "home")),
     branchId,
@@ -521,7 +534,7 @@ function UnifiedWorkspaceContent({
    * 3단계 «내 양식»(W6) — 새 시험지 기본 양식이 있으면 새 시험지가 그 서식 · 머리 정보로 열린다.
    * 출력 메뉴(3단계를 여는 메뉴)가 있는 로그인 계정만 읽는다. 읽지 못하면 처음 값 그대로다.
    */
-  const canPrintPresets = Boolean(storageScope) && can("export");
+  const canPrintPresets = Boolean(storageScope) && canOutput;
   const printPresetClient = useMemo(() => createPrintPresetsClient(), []);
   const seedFromDefault = useCallback(
     (preset: PrintPreset | null) =>
@@ -1134,6 +1147,7 @@ function UnifiedWorkspaceContent({
     visibility,
   );
   async function persistWorksheet(sharing?: DocumentSharing) {
+    if (!canUseWorksheetDrafts) return false;
     setDismissedSaveError(null);
     setUndo(null);
     if (
@@ -1204,10 +1218,13 @@ function UnifiedWorkspaceContent({
     return () => window.removeEventListener("keydown", keydown);
   }, [toggleSidebar, hasMenus, canCreate, worksheetView, hydrated]);
   async function openSaved(id: string, options?: LibraryOpenOptions) {
-    if (!can("export")) return;
+    if (!canUseWorksheetDrafts) return;
     await prepareDrafts();
-    if (!permissionsRef.current.has("export")) return;
+    if (!WORKSHEET_DRAFT_MENUS.some((menu) => permissionsRef.current.has(menu)))
+      return;
     if (await openDraft(id)) {
+      if (!WORKSHEET_DRAFT_MENUS.some((menu) => permissionsRef.current.has(menu)))
+        return;
       setUndo(null);
       const openedDraft = getCurrentDraft();
       const workflow = openedDraft.workflow;
@@ -1240,15 +1257,21 @@ function UnifiedWorkspaceContent({
     }
   }
   function restore() {
+    if (!canUseWorksheetDrafts) return;
     if (recent.length) openSaved(recent[0].id);
     else draftFileRef.current?.click();
   }
   async function startNew(next: "bank" | "studio" | "export") {
-    if (!can(next)) return;
+    if (!canUseWorksheetDrafts || !can(next)) return;
     if (next === "bank") void loadMathBuilder().catch(() => {});
     if (next === "studio") void loadStudioView().catch(() => {});
     await prepareDrafts();
-    if (!permissionsRef.current.has(next)) return;
+    if (
+      next === "export"
+        ? !WORKSHEET_DRAFT_MENUS.some((menu) => permissionsRef.current.has(menu))
+        : !permissionsRef.current.has(next)
+    )
+      return;
     if (!(await createDraft())) return;
     setUndo(null);
     if (newTitle.trim()) setTitle(newTitle.trim());
@@ -1262,15 +1285,19 @@ function UnifiedWorkspaceContent({
     navigate("studio");
   }
   async function receiveDraft(file: File | undefined) {
-    if (!can("export") || !file) return;
+    if (!canUseWorksheetDrafts || !file) return;
     try {
       if (file.size > 20 * 1024 * 1024)
         return setNotice("20 MB 이하의 작업 파일을 선택해 주세요.", true);
       const value = JSON.parse(await file.text());
-      if (!permissionsRef.current.has("export")) return;
+      if (!WORKSHEET_DRAFT_MENUS.some((menu) => permissionsRef.current.has(menu)))
+        return;
       await prepareDrafts();
-      if (!permissionsRef.current.has("export")) return;
+      if (!WORKSHEET_DRAFT_MENUS.some((menu) => permissionsRef.current.has(menu)))
+        return;
       if (await importDraft(value)) {
+        if (!WORKSHEET_DRAFT_MENUS.some((menu) => permissionsRef.current.has(menu)))
+          return;
         setUndo(null);
         navigate("export");
         setNotice("작업 파일을 불러왔습니다.");
@@ -1283,7 +1310,7 @@ function UnifiedWorkspaceContent({
     }
   }
   function download() {
-    if (!can("export")) return;
+    if (!canOutput) return;
     const url = URL.createObjectURL(
       new Blob(
         [
@@ -1316,6 +1343,8 @@ function UnifiedWorkspaceContent({
     item.title.toLocaleLowerCase().includes(libraryQuery.toLocaleLowerCase()),
   );
   const editorProps: ComponentProps<typeof WorksheetEditorComponent> = {
+    draftActions: canUseWorksheetDrafts,
+    sheetTag: draft.tag ?? null,
     selected,
     title,
     columns,
@@ -1337,7 +1366,7 @@ function UnifiedWorkspaceContent({
     reorder,
     navigate,
     allowedMenus,
-    cloudSaveStatus: storageScope
+    cloudSaveStatus: storageScope && canUseWorksheetDrafts
       ? saveStatus === "saved"
         ? savedAt
           ? "계정에 저장됨"
@@ -1404,7 +1433,7 @@ function UnifiedWorkspaceContent({
           }}
         />
       )}
-      {can("export") && (
+      {canUseWorksheetDrafts && (
         <input
           ref={draftFileRef}
           hidden
@@ -1624,7 +1653,7 @@ function UnifiedWorkspaceContent({
             </div>
           ))}
         </nav>
-        {worksheetView && hydrated && can("export") && (
+        {worksheetView && hydrated && canUseWorksheetDrafts && (
           <div className={s.sideDraft}>
             <div>
               <span className={s.sideDraftIcon}>
@@ -1753,7 +1782,7 @@ function UnifiedWorkspaceContent({
         </div>
         <div id="workspace-content" className={s.content} tabIndex={-1}>
           {examReportTestId ? (
-            can("export") ? (
+            canOutput ? (
               <ExamReportWorkspace key={examReportTestId} testId={examReportTestId} />
             ) : (
               <main className={s.noMenus}>
@@ -1782,7 +1811,7 @@ function UnifiedWorkspaceContent({
                 >
                   <Icon name="warning" size={19} />
                   <p>{saveError}</p>
-                  {can("export") && (
+                  {canOutput && (
                     <button onClick={download}>작업 파일 내려받기</button>
                   )}
                   <button onClick={save}>다시 저장</button>
@@ -1811,6 +1840,8 @@ function UnifiedWorkspaceContent({
           {view === "home" && (
             <WorkroomHome
               data={initialData}
+              deferBankMetadata={deferBankMetadata}
+              navigationReady={navigationReady}
               draft={draft}
               recent={recent}
               hydrated={hydrated}
@@ -1865,7 +1896,7 @@ function UnifiedWorkspaceContent({
                   onIntentIssueChange={receiveBankIntentIssue}
                   editor={editorProps}
                   onQuestionsChange={changeBankSelection}
-                  canOutput={can("export")}
+                  canOutput={canOutputFrom(allowedMenus, "bank")}
                   sheetTag={{
                     value: draft.tag ?? null,
                     onChange: setSheetTag,
@@ -1890,7 +1921,7 @@ function UnifiedWorkspaceContent({
                   storageScope={storageScope}
                   initialDocumentId={arithmeticDocument.id}
                   initialStep={arithmeticDocument.initialStep}
-                  canOutput={can("export")}
+                  canOutput={canOutputFrom(allowedMenus, "arithmetic")}
                   academyName={printMeta.academyName || "오늘 수학"}
                   preview={!storageScope}
                   onDirtyChange={setArithmeticDirty}
@@ -1921,7 +1952,7 @@ function UnifiedWorkspaceContent({
                     performNavigation("export");
                   }}
                   exportRequest={studioExportRequest}
-                  canExport={can("export")}
+                  canExport={canOutputFrom(allowedMenus, "studio")}
                   importRequest={importRequest}
                   stepRequest={studioStepRequest}
                   onCropCountChange={setStudioCropCount}
@@ -2070,7 +2101,7 @@ function UnifiedWorkspaceContent({
             <PrivateLibrary
               storageScope={storageScope}
               branchId={branchId}
-              canExport={can("export")}
+              canExport={canOutputFrom(allowedMenus, "library")}
               canStudio={can("studio")}
               canBank={can("bank")}
               canArithmetic={can("arithmetic")}
@@ -2120,7 +2151,9 @@ function UnifiedWorkspaceContent({
                 navigate("conceptBlank");
               }}
               onImport={
-                can("export") ? () => draftFileRef.current?.click() : undefined
+                canOutputFrom(allowedMenus, "library")
+                  ? () => draftFileRef.current?.click()
+                  : undefined
               }
               onNew={canCreate ? () => setModal("new") : undefined}
               onDeleted={async (item) => {
@@ -2160,7 +2193,7 @@ function UnifiedWorkspaceContent({
                 title="내 시험지"
                 description="저장한 작업을 이어가거나 다른 기기의 작업 파일을 불러오세요."
               >
-                {can("export") && (
+                {canOutputFrom(allowedMenus, "library") && (
                   <button
                     className={s.outlineButton}
                     onClick={() => draftFileRef.current?.click()}
@@ -2247,7 +2280,7 @@ function UnifiedWorkspaceContent({
                             </span>
                           </td>
                           <td className={cloudStyles.titleCell}>
-                            {can("export") ? (
+                            {canOutputFrom(allowedMenus, "library") ? (
                               <button
                                 type="button"
                                 className={cloudStyles.titleButton}

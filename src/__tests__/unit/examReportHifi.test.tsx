@@ -20,8 +20,11 @@ describe("월말평가 성적표 Hi-fi 시안", () => {
       container.querySelector("[data-exam-report-page='H1']"),
     ).not.toBeNull();
   });
-  it("H1~H4마다 S1 · M1 · C2를 공용 지면 띠로 비교한다", () => {
+  it("H1~H4마다 S1 · C2를 공용 지면 띠로 비교한다", () => {
     render(<ExamReportHifi />);
+    expect(
+      screen.queryByRole("button", { name: /^M1 ·/ }),
+    ).not.toBeInTheDocument();
     expect(
       screen.getAllByRole("region", { name: "학생 성적표 1쪽" }).length,
     ).toBeGreaterThan(0);
@@ -29,7 +32,7 @@ describe("월말평가 성적표 Hi-fi 시안", () => {
       fireEvent.click(
         screen.getByRole("button", { name: new RegExp(`^${id} ·`) }),
       );
-      for (const mode of ["S1", "M1", "C2"]) {
+      for (const mode of ["S1", "C2"]) {
         fireEvent.click(
           screen.getByRole("button", { name: new RegExp(`^${mode} ·`) }),
         );

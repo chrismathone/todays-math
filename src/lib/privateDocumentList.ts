@@ -7,14 +7,14 @@ import {
   documentSummarySelect,
   privateHeaders,
   readableDocumentWhere,
-  arithmeticDocumentsOnly,
+  privateDocumentKinds,
   privateError,
 } from "@/lib/privateWorkspace";
-import { ARITHMETIC_SHEET_KIND } from "@/contracts/arithmetic.contract";
 import {
   documentKindSchema,
   LIBRARY_DOCUMENT_KINDS,
   libraryDocumentKindSchema,
+  type DocumentKind,
 } from "@/contracts/privateWorkspace.contract";
 import {
   listDocumentWorkflows,
@@ -31,22 +31,20 @@ export async function listDocuments(request: Request, owner?: string) {
   );
   // 출제 조건(W5) · 내 양식(W6)은 같은 표에 있지만 자료가 아니다 — 목록 · 수 어디에도 싣지 않는다(종류를 콕 집어 물어도).
   const requested = documentKindSchema.safeParse(url.searchParams.get("kind"));
-  const libraryKinds =
-    requested.success && !kind.success
-      ? { in: [] as string[] }
-      : { in: [...LIBRARY_DOCUMENT_KINDS] as string[] };
-  const arithmeticOnly = !owner && arithmeticDocumentsOnly(access.account!);
-  if (arithmeticOnly && kind.success && kind.data !== ARITHMETIC_SHEET_KIND)
+  const libraryKinds: DocumentKind[] =
+    requested.success && !kind.success ? [] : [...LIBRARY_DOCUMENT_KINDS];
+  const allowedKinds = owner
+    ? [...LIBRARY_DOCUMENT_KINDS]
+    : privateDocumentKinds(access.account!);
+  if (kind.success && !allowedKinds.includes(kind.data))
     return privateError("이 자료 목록을 볼 권한이 없습니다.", 403);
   const where = {
     ...(owner || url.searchParams.get("mine") === "true"
       ? { userId: access.ownerId! }
       : readableDocumentWhere(access.account!)),
-    ...(arithmeticOnly
-      ? { kind: ARITHMETIC_SHEET_KIND }
-      : kind.success
-        ? { kind: kind.data }
-        : { kind: libraryKinds }),
+    kind: kind.success
+      ? kind.data
+      : { in: libraryKinds.filter((item) => allowedKinds.includes(item)) },
   };
   const [items, total] = await Promise.all([
     db.workspaceDocument.findMany({

@@ -310,18 +310,58 @@ describe("실제 성적표 H3 화면", () => {
     fireEvent.click(screen.getByRole("button", { name: "닫기" }));
     fireEvent.click(screen.getByRole("button", { name: "반 지면 설정" }));
     const dialog = screen.getByRole("dialog", { name: "반 지면 설정" });
-    fireEvent.click(within(dialog).getByLabelText("요약 + 틀린 문항 풀이"));
+    expect(within(dialog).getAllByRole("radio")).toHaveLength(1);
+    expect(within(dialog).getByLabelText("요약 한 장")).toBeChecked();
+    fireEvent.click(within(dialog).getByLabelText("틀린 문항"));
     fireEvent.click(within(dialog).getByRole("button", { name: "취소" }));
     expect(source.settings).not.toHaveBeenCalled();
     fireEvent.click(screen.getByRole("button", { name: "반 지면 설정" }));
-    fireEvent.click(screen.getByLabelText("요약 + 틀린 문항 풀이"));
+    expect(screen.getByLabelText("틀린 문항")).toBeChecked();
+    fireEvent.click(screen.getByLabelText("틀린 문항"));
     fireEvent.click(screen.getByRole("button", { name: "적용" }));
     await waitFor(() =>
       expect(source.settings).toHaveBeenCalledWith(
         "fixture-test",
         "a".repeat(64),
-        expect.objectContaining({ format: "M1" }),
+        expect.objectContaining({ format: "S1", wrongQuestions: false }),
       ),
     );
+  });
+  it("기존 M1을 요약으로 열고 같은 설정 적용은 확정을 보존하며 변경할 때만 S1을 전송한다", async () => {
+    const { source, list, rows } = fixture();
+    list.options = { ...options, format: "M1" };
+    rows[0].summary.status = "confirmed";
+    rows[0].summary.confirmedAt = "2026-10-24T05:00:00Z";
+    rows.forEach((row) => {
+      row.options = list.options;
+    });
+    const { container } = await ready(source);
+    expect(
+      screen.getByText("지면: 요약 한 장 · 반 전체에 적용"),
+    ).toBeInTheDocument();
+    expect(container.querySelector("[data-report-question]")).toBeNull();
+    expect(container.querySelectorAll("[data-exam-report-page]")).toHaveLength(
+      1,
+    );
+    expect(source.settings).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole("button", { name: "반 지면 설정" }));
+    expect(screen.getByRole("radio", { name: "요약 한 장" })).toBeChecked();
+    expect(
+      screen.queryByRole("radio", { name: /풀이/ }),
+    ).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "적용" }));
+    expect(source.settings).not.toHaveBeenCalled();
+    expect(screen.getByRole("button", { name: "확정됨" })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "반 지면 설정" }));
+    fireEvent.click(screen.getByLabelText("틀린 문항"));
+    fireEvent.click(screen.getByRole("button", { name: "적용" }));
+    await waitFor(() =>
+      expect(source.settings).toHaveBeenCalledWith(
+        "fixture-test",
+        "a".repeat(64),
+        expect.objectContaining({ format: "S1" }),
+      ),
+    );
+    expect(list.options.format).toBe("M1");
   });
 });
