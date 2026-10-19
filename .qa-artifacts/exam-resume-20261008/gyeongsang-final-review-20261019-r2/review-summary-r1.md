@@ -1,0 +1,17 @@
+# GF14 stage2 review ? 2026-10-19 r2
+
+Math14/14 and within-grade student surfaces14/14 pass this review. All55 choices and9 written subparts match the new sealed independent proofs. All14 reports remain pending: current live family/source custody and release gates are not proved. Components approved0; twins/loadable0. q18 remains excluded/held.
+
+Concrete annotation finding: q3 original image prints AC5 and AB6 only. The extracted figure observation and candidate variant.before wrongly describe derived BC=?11 as a given. Actual original and candidate both require Pythagoras then direct tangent, so this is a source-description error, not a candidate math or grade failure. See verification/reports/q03.json. Frozen bytes were preserved.
+
+Each report records12 checks,7 surfaces, author-step comparison,55 total option tests/9 subpart proofs, domain/positivity/units, source comparison and substantive inverse/structural/context differences. Scores total66 across14 parents; written children sum8 each and are not added twice. Original and candidate difficulty/scaffolding differences are stated; equal measured difficulty is not claimed. q21 uses fictional ?????; other items do not falsely claim a visible school substitution.
+
+q1 andq16 have plausible non-null historical family proposals;12 others have null family. None was promoted from title, original school or AI confidence. 2026-10-08 captured taxonomy is historical, not a current DB read. Supplied source identity support is acknowledged, but full source-pair/custody/rights certification was not rerun in this review.
+
+Binding checks:69 copied files match parent,65 seal-receipt entries match,14 raw files match git9870f836a8221a23d4cea3c08b43af1e9c3f7891 exactly,14 current package and verification digests match,14 viewed expanded PNGs match candidate/student digests and PNG hashes,11 strict render records bind the exact spec/SVG bytes. Stage1 bound figure renderings and stage2 actual expanded author/student/solution previews were viewed; no clipping/overlap defect found. These are scoped visual observations, not native provenance approval.
+
+Exposure: this session did not author the actual GF14 candidates or see their actual new author answers before sealing. A generic unbound REVIEW-KIT q7/? illustration was previously seen during NB5, disclosed before seal and not used; actualq7 was derived?. Stage2 author exposure was authorized after the new raw commit. Legacy Claude solves/reports and prior math-review.json were not evidence. Gangbuk author files/answers remain unopened.
+
+Strict2015 M3 review uses direct side ratios, elementary table/special-value substitution, Pythagoras, simple congruence, angle sums and base?height/2. No general trig identity/relationship, sine/cosine law, Heron, vector or advanced student shortcut appears in the reviewed solutions. Calculations substantiate arithmetic; they do not provide AI judgments or family approval.
+
+Raw written answers retain their sealed prose/Unicode representation. Mathematical subpart equality was reviewed here; parent reports its bounded written-answer comparator now matches all14 current representations, with four counterexample tests (46 Node tests total). That is parent-reported validation, not rerun here and not math/grade/geometry proof. No raw proof was rewritten. No source/candidate/raw bytes changed; no DB/network AI/install/push. Only new reports and this input/summary receipt are committed. Rights, source custody, native approval and release remain held.

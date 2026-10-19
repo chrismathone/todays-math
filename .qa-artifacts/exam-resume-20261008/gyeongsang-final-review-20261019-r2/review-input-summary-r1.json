@@ -1,0 +1,432 @@
+{
+  "kind": "gf14-stage2-input-review-receipt/v1",
+  "rawCommit": "9870f836a8221a23d4cea3c08b43af1e9c3f7891",
+  "parentBundleCopies": 69,
+  "sealReceiptCopiesVerified": 65,
+  "sealedRawGitByteMatches": 14,
+  "currentPackageBindingsVerified": 14,
+  "verificationInputSolveDigestsVerified": 14,
+  "previewCandidateStudentAndPngHashesVerified": 14,
+  "strictSpecSvgBindingsVerified": 11,
+  "inputs": [
+    {
+      "path": "pre-exposure-seal-receipt-r1.json",
+      "sha256": "a4a099279def0f6f5df7eb5471e9434b2b3df32c7e6cf6727cc987597ed55bb5"
+    },
+    {
+      "path": "blind/blind-manifest.json",
+      "sha256": "471c5e8754dd3f219d52306bfa7dba941100987cf4129dcfae41459192f85aef"
+    },
+    {
+      "path": "blind/SOLVE-BRIEF.md",
+      "sha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5"
+    },
+    {
+      "path": "blind/student-problems.json",
+      "sha256": "e2e08c7cf6e5bc46b4e7ecb962f10e386c53030f7ea61a6d59255970bd4b109d"
+    },
+    {
+      "path": "blind/figures/q01-1.svg",
+      "sha256": "596ab0a4a5bdf2fe7f99d64915eaff2077717b085bf0cb6c3e2d55798baffe76"
+    },
+    {
+      "path": "blind/figures/q02-1.svg",
+      "sha256": "8fa8ed74705016ff969a492d66227e37efefc62da08e8084bcc724a6d12a62c7"
+    },
+    {
+      "path": "blind/figures/q03-1.svg",
+      "sha256": "1d8a4b296cdfae1da1e056ca99636a9bf4b3e1af1bd9261a6a32c3b8655a87da"
+    },
+    {
+      "path": "blind/figures/q04-1.svg",
+      "sha256": "38ea7364c29363f02e4c316ec6d33bd6d2c592fa80ecb00eedfc58260e9a073a"
+    },
+    {
+      "path": "blind/figures/q07-1.svg",
+      "sha256": "7dfd74e8fcfae4bf45df5049313461b8ec7fb4b1912b33df4492c7f30ad2b1e8"
+    },
+    {
+      "path": "blind/figures/q09-1.svg",
+      "sha256": "94d17dd51dad0aa8b979b4e7c849df0aebec286b873075f2899b5fb44408440a"
+    },
+    {
+      "path": "blind/figures/q16-1.svg",
+      "sha256": "d7914810a8b49c895a08d3ec9ebda0e76f48575b346be96a0ac350be59fd98b1"
+    },
+    {
+      "path": "blind/figures/q17-1.svg",
+      "sha256": "6c1ca8318654e10257b87f02a1591708451dc814e14f1150058d533e5b21357c"
+    },
+    {
+      "path": "blind/figures/q19-1.svg",
+      "sha256": "f20873d5f9b8459b755075e8aca5ef71c14d5f1d5f06b17b68835885591de7fc"
+    },
+    {
+      "path": "blind/figures/q20-1.svg",
+      "sha256": "ec5d27710c8b985a6f1acfd9ac87005b85e85a0a2276a317251dfdbd12dfe63c"
+    },
+    {
+      "path": "blind/figures/q21-1.svg",
+      "sha256": "c6e898b6a95b15b1231782c8c1dc97d9c93a57c92d8d34b1de025276018e3e0d"
+    },
+    {
+      "path": "blind/solve/q01.json",
+      "sha256": "37dfbf5bf6c1067c1a51d3eb574471aa774acb4e88410e3baa8e42f6ab656e71"
+    },
+    {
+      "path": "blind/solve/q02.json",
+      "sha256": "33becc05dfaea16f3eea63e8c8c88573c401d922b4e7c7da669e93d02487effc"
+    },
+    {
+      "path": "blind/solve/q03.json",
+      "sha256": "17ae8c04b2b5a81fb17dcf8c7b5fe4a5de4c546c4f8fe657dd48ae034f5ed6fe"
+    },
+    {
+      "path": "blind/solve/q04.json",
+      "sha256": "7a900366be02b11c07584ccf015a9dabadf5847bcb99e79d34a635ab4ac81f03"
+    },
+    {
+      "path": "blind/solve/q05.json",
+      "sha256": "9a49b251472006e7e9bdc7a3d2c830466e88de29944dd0ebf155f5005e5f2210"
+    },
+    {
+      "path": "blind/solve/q06.json",
+      "sha256": "6e68296b6decc3b324de983a2956c15e3841fe22565625d273da66894ae03c8c"
+    },
+    {
+      "path": "blind/solve/q07.json",
+      "sha256": "9ea99d9a7d00a70ec792fc079d2a5e88830a096e0d23e7849701b711808efb5d"
+    },
+    {
+      "path": "blind/solve/q08.json",
+      "sha256": "cda0a98efa2146f6c8898443f14f8c492d705e07ecec217de9b2bf446b856758"
+    },
+    {
+      "path": "blind/solve/q09.json",
+      "sha256": "5d49975ac8ff8a2e7cb1502bdd66055478866e8b8bb111bc8970f396accda1ff"
+    },
+    {
+      "path": "blind/solve/q16.json",
+      "sha256": "759497ebb3d101ae603fcc57e305257922c971b2d90502ea29cc6eed648c46b1"
+    },
+    {
+      "path": "blind/solve/q17.json",
+      "sha256": "c39ad367ac2467dd154daeee75401c2af9fe8a59485302b172515f082dba4a8a"
+    },
+    {
+      "path": "blind/solve/q19.json",
+      "sha256": "78c99877c650115eee3b56ffa3b24dd6a99ca0500305dff3a501b8fc799a5a93"
+    },
+    {
+      "path": "blind/solve/q20.json",
+      "sha256": "d125639e1bd8e9e1e106b8e5462236228561549eedf97f19ae7df68760ec333a"
+    },
+    {
+      "path": "blind/solve/q21.json",
+      "sha256": "8ecd9eaaf324d5c92046ecdbdecd90b7e10f3bb8b995a4ae01afb147e793d0e0"
+    },
+    {
+      "path": "package/manifest.json",
+      "sha256": "750ee5adb2a1671b9fc71dd56f56fd901911504deaa25d96b1fe8b0501c81a26"
+    },
+    {
+      "path": "package/private/q01/candidate.json",
+      "sha256": "1ee5a36d7423eecf49280e0b1c54525aa30122291665ff266cef6142c32237e5"
+    },
+    {
+      "path": "package/private/q01/figure-1.spec.json",
+      "sha256": "4a0adb5783f53b969ab6f84892e23def7dc884f26d5ff92298ccaf94bdd86c3b"
+    },
+    {
+      "path": "package/private/q01/figure-1.svg",
+      "sha256": "596ab0a4a5bdf2fe7f99d64915eaff2077717b085bf0cb6c3e2d55798baffe76"
+    },
+    {
+      "path": "package/private/q02/candidate.json",
+      "sha256": "9aa5d4ae9a85cee0a1f7119cfe725272a8bd049a9a303e373a11814d5e00fd3c"
+    },
+    {
+      "path": "package/private/q02/figure-1.spec.json",
+      "sha256": "a6812f3efef5fb083eb5ae9c28ac856af8dc9412fa2396d05c8812e03b9ce680"
+    },
+    {
+      "path": "package/private/q02/figure-1.svg",
+      "sha256": "8fa8ed74705016ff969a492d66227e37efefc62da08e8084bcc724a6d12a62c7"
+    },
+    {
+      "path": "package/private/q03/candidate.json",
+      "sha256": "27b6cd96c24844665b86cf3cafad3d7e01ad8559cd16895a46b6d6bca1a93c98"
+    },
+    {
+      "path": "package/private/q03/figure-1.spec.json",
+      "sha256": "93336e0dc357d0f6d718a0b90a838cfad6999409c34a08bff90c0f625f432138"
+    },
+    {
+      "path": "package/private/q03/figure-1.svg",
+      "sha256": "1d8a4b296cdfae1da1e056ca99636a9bf4b3e1af1bd9261a6a32c3b8655a87da"
+    },
+    {
+      "path": "package/private/q04/candidate.json",
+      "sha256": "e701bccc37bfc42cd9536575c33e6cfc6fac8b9e9abc5020a0c403b3daa6b640"
+    },
+    {
+      "path": "package/private/q04/figure-1.spec.json",
+      "sha256": "9ef5e2530a298b421d028b8d44c95f6b69795f8c20e2f1d51fb947af85341007"
+    },
+    {
+      "path": "package/private/q04/figure-1.svg",
+      "sha256": "38ea7364c29363f02e4c316ec6d33bd6d2c592fa80ecb00eedfc58260e9a073a"
+    },
+    {
+      "path": "package/private/q05/candidate.json",
+      "sha256": "82b5e386aaa7b9e947bc9e8b374f6099eeceffe1e7947ca672a20081b0b76a40"
+    },
+    {
+      "path": "package/private/q06/candidate.json",
+      "sha256": "0d7e7d8fe0a7f6ad2c3dbcd05f62ff5f5caa5ceec314a98ef40aa9e29a41176a"
+    },
+    {
+      "path": "package/private/q07/candidate.json",
+      "sha256": "f0acd3fed3a027219dc8a31369ef2795d9e034ed7bef5062ff977d0a5d58f574"
+    },
+    {
+      "path": "package/private/q07/figure-1.spec.json",
+      "sha256": "f19adc33b9952dc1e1f73947aa602caea2d1af55b3997467cf088683b94dd609"
+    },
+    {
+      "path": "package/private/q07/figure-1.svg",
+      "sha256": "7dfd74e8fcfae4bf45df5049313461b8ec7fb4b1912b33df4492c7f30ad2b1e8"
+    },
+    {
+      "path": "package/private/q08/candidate.json",
+      "sha256": "e9df41c8daf3069c24aeda6441543711fcb448bb644a51ee5b96205b03cc412d"
+    },
+    {
+      "path": "package/private/q09/candidate.json",
+      "sha256": "dae04fcd8a8f868be69ef662dcd5313efad8d088242939eb52b41fa4e0a632c9"
+    },
+    {
+      "path": "package/private/q09/figure-1.spec.json",
+      "sha256": "d1446aad050681011c4761f02abb10311d2ffb56d9caecf8bd5a56c1f0281a29"
+    },
+    {
+      "path": "package/private/q09/figure-1.svg",
+      "sha256": "94d17dd51dad0aa8b979b4e7c849df0aebec286b873075f2899b5fb44408440a"
+    },
+    {
+      "path": "package/private/q16/candidate.json",
+      "sha256": "b199b483c5f09cec256dd6af27407914b9d2dde3518fad234a26f4f5c96b925f"
+    },
+    {
+      "path": "package/private/q16/figure-1.spec.json",
+      "sha256": "2b3363de8a388849f6f3e38cc8929888f4e7734fd1f9b34c10178764149c4c48"
+    },
+    {
+      "path": "package/private/q16/figure-1.svg",
+      "sha256": "d7914810a8b49c895a08d3ec9ebda0e76f48575b346be96a0ac350be59fd98b1"
+    },
+    {
+      "path": "package/private/q17/candidate.json",
+      "sha256": "ad21b75f5764c6a1192613e8c150ed086869550360655d60ace0d473dea639e9"
+    },
+    {
+      "path": "package/private/q17/figure-1.spec.json",
+      "sha256": "551080e198ac493474b8c4c13aab4017052e79a89f7ecc9b48ccc60294b9bcc2"
+    },
+    {
+      "path": "package/private/q17/figure-1.svg",
+      "sha256": "6c1ca8318654e10257b87f02a1591708451dc814e14f1150058d533e5b21357c"
+    },
+    {
+      "path": "package/private/q19/candidate.json",
+      "sha256": "ffbd57c62b1fbb26bd26fa311f873eced64134421f3cf8e94e90bddf38acf160"
+    },
+    {
+      "path": "package/private/q19/figure-1.spec.json",
+      "sha256": "1a611b422fac37c97833460b2db724956915596d6a6edef71dba6129b7239793"
+    },
+    {
+      "path": "package/private/q19/figure-1.svg",
+      "sha256": "f20873d5f9b8459b755075e8aca5ef71c14d5f1d5f06b17b68835885591de7fc"
+    },
+    {
+      "path": "package/private/q20/candidate.json",
+      "sha256": "9f823e4ecf504dc3513fdec3b9766af89552c7970d490f6e96d621145791c2fb"
+    },
+    {
+      "path": "package/private/q20/figure-1.spec.json",
+      "sha256": "79bfcc7fc1cc5d8a1dc9b224b8cfa3d8a136992dbf8e316dc97d30c739240ddd"
+    },
+    {
+      "path": "package/private/q20/figure-1.svg",
+      "sha256": "ec5d27710c8b985a6f1acfd9ac87005b85e85a0a2276a317251dfdbd12dfe63c"
+    },
+    {
+      "path": "package/private/q21/candidate.json",
+      "sha256": "c5a59442c46c226a5186aa8186ec23852334dfa98e41070a690c6b21681ce405"
+    },
+    {
+      "path": "package/private/q21/figure-1.spec.json",
+      "sha256": "c2b557961055ec2cc8e92f3620dab4c398a6c69acf6092b4410973b2a31e3f1a"
+    },
+    {
+      "path": "package/private/q21/figure-1.svg",
+      "sha256": "c6e898b6a95b15b1231782c8c1dc97d9c93a57c92d8d34b1de025276018e3e0d"
+    },
+    {
+      "path": "verification/verification-inputs.json",
+      "sha256": "93f7829386624566a098ced4f8490a75f0871c93ea9f9d7e3506dccef0d56fb7"
+    },
+    {
+      "path": "verification/verification-manifest.json",
+      "sha256": "b22277b83017b5da454dc20b4f8a0ab87bd983dd9564d8793d4430bfa9f071ca"
+    },
+    {
+      "path": "verification/VERIFY-BRIEF.md",
+      "sha256": "0ba3301b43b6101974345048a56594dd96d9c872aee6878ce65f907cda025ca3"
+    }
+  ],
+  "reviewReferences": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/evidence/selected-source-questions.json",
+      "sha256": "366ec06c16867b571887b7dfd0523802963c21f0feadaa3ec4f58cbc8effcf43"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/evidence/strict-render.json",
+      "sha256": "9232d84100711c7bd2702976717f32c137bd62d7e05aac420294e99352f5ae7b"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/inspection/layout.json",
+      "sha256": "c150ce5c42e17f5695fccdf3ceb358842bd0249679f00578bc23d73f2b80933d"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+      "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/REVIEW-KIT.md",
+      "sha256": "37033ca204f5a19e64c0885e297bfa6ee06f96db4316214f161dd87e8648c135"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/context/bank-read-fresh-r3-20261008.json",
+      "sha256": "31f6e3369f5d62072e6728566f8cd71f44f4d451c4ff2dd87a132a6ff6fa1a26"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/inspection/q01-expanded.png",
+      "sha256": "9f8ca865d0ecb4fb7c8cc0f3f1de7932469aff6424a70fbe4a913ca1c9983673"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/context/packet/images/q01-part1.png",
+      "sha256": "580276b65358f9e8dc13c58dc3119e2c656135b80b8b7d56344a2ebfe48976d1"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/inspection/q02-expanded.png",
+      "sha256": "e41d7a577725041f49fe794f7f8500fde6cf226fdc1b6c92ae12ece94ce2d1d6"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/context/packet/images/q02-part1.png",
+      "sha256": "4fc7396fde5ffab4fac25aad42890a7818b8c18e3eb81837e08f9ce6babfa4d1"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/inspection/q03-expanded.png",
+      "sha256": "5475a0595cc20ac47f5c418642ba3d506bbdaf645300ffb4c214355877202c2e"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/context/packet/images/q03-part1.png",
+      "sha256": "e789a00452faee0f04137927379107b8923ca8a61cd908c94b640120556ed4f4"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/inspection/q04-expanded.png",
+      "sha256": "2152d6a2726cf17749d3b7e14628220614043e8e6c3556b23bec18a93ebd72d5"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/context/packet/images/q04-part1.png",
+      "sha256": "922d1199f5a783c0e141b036d5d3af374f43b846e181b040791ad1c2ef77398c"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/inspection/q05-expanded.png",
+      "sha256": "c67aa8876b49827ebe33399aa3551628bad676ed5598ed60c857f923f6cae6ba"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/context/packet/images/q05-part1.png",
+      "sha256": "945e7f2ce7e2add5f68f700674e9595ac8a1ae57820db194224e91af2d017c44"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/inspection/q06-expanded.png",
+      "sha256": "5be4d5179f724da370a5580f8fb82423da1502a56e8f17ca96687fe6196cb8a4"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/context/packet/images/q06-part1.png",
+      "sha256": "afbf2fe6163d11429b5629e4e931905e70135b151b50d169e506d125e0c66e2e"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/inspection/q07-expanded.png",
+      "sha256": "ff68a973641325294992c4157ff4421b204e05c0bff65566aaeec66d99bb92d1"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/context/packet/images/q07-part1.png",
+      "sha256": "49beaae1ef091598a3470e45f9ae77aa9c416014382e753d703fbd5675d362dd"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/inspection/q08-expanded.png",
+      "sha256": "01d6202ac2b06b86ea921bbf809fda6035ca5779a03c519d43122713022fde5c"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/context/packet/images/q08-part1.png",
+      "sha256": "ed81ef7263d7a121f16f22bcbb63a964bb73c31f6c367319b4417f48d2fb7af1"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/inspection/q09-expanded.png",
+      "sha256": "151e3b7896fea3f41071942105b56add429cd0e9cc6323c476cc5a47e0132e50"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/context/packet/images/q09-part1.png",
+      "sha256": "275b646f7db7e8433346507dbaf0168e5288c193011af8c0f51e2f3f9a7f6ccd"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/inspection/q16-expanded.png",
+      "sha256": "5c889260861465fc31ef492da9ece51f657cdbe00886b43f92a036b5a98c0ec6"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/context/packet/images/q16-part1.png",
+      "sha256": "6e84f20a9d3c2a7f9e00a960b0cb3c069f5124041384a470658e15cc130c66f8"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/inspection/q17-expanded.png",
+      "sha256": "766fadfbcfdb8797d43ae08f545440544efd9170d6164f2c36ff2d4d0cce37ea"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/context/packet/images/q17-part1.png",
+      "sha256": "c04807cf6397b93ae0106c3f742571c28b55798791c4d8bd438f71410954fcde"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/inspection/q19-expanded.png",
+      "sha256": "4ffdd56f4f17026c26cbfce8e5a1185d525d07331042db165944db6cf0fc72a7"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/context/packet/images/q19-part1.png",
+      "sha256": "8a7e07fcdb40612a8dd229c42ecb994cbadd3377783b87eed169f5e1fda4876f"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/inspection/q20-expanded.png",
+      "sha256": "7cc10109c335533bd0fc51d53a3c81f0734d897aecba3542dc57efc19fdb26d9"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/context/packet/images/q20-part1.png",
+      "sha256": "37f4d6b0396f6d74f8c40da9c1efe1ef9fc48a26dc969b883d844190bceb0e2d"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/inspection/q21-expanded.png",
+      "sha256": "03eaab7cca67b429fb4a5998350f167b4675626a81f1295574f0a1f444d7d09e"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/context/packet/images/q21-part1.png",
+      "sha256": "0c90e365ba51bf41ed328cb8050b249e100ccbb08760bfb0582c3b67b2a72a2b"
+    }
+  ],
+  "legacySolvesOrMathReviewsUsed": false,
+  "gangbukAuthorFilesOpened": false,
+  "exposureDisclosure": "No actual GF14 author answers or authorship before raw seal. Previously saw unbound generic q7/? REVIEW-KIT example during NB5. Not answer evidence; actualq7 solved?. Authorized stage2 author exposure occurred only after9870f836 raw commit.",
+  "copiedBytesPreserved": true,
+  "oldFilesModified": false
+}

@@ -1,0 +1,269 @@
+{
+  "studentDigest": "e8e2cd65469c93106cf535a49b233675fa1b741a3fea60e9d5fbf636208a61ad",
+  "candidateDigest": "7e6f5eca851cc950c4383188038620d73f495a704047b96fd372ff73dcb6b701",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "solveDigest": "636965988973eba973d3f71d60c466f5d3e08076287b2f8239fa56a2d96e8638",
+  "questionNumber": 6,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q06",
+  "status": "pending",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-gf14-independent-20261019-r2",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "checkEvidence": {
+    "answerCorrect": "Within the given rows tan x=.7813 identifies38?, cos y=.7771 identifies39? uniquely; y?x=1,?. No inverse-function formula is used. Compared mathematically against this verifier?s sealed new raw solve; representation differences do not rewrite that proof.",
+    "solutionCorrect": "Within the given rows tan x=.7813 identifies38?, cos y=.7771 identifies39? uniquely; y?x=1,?. No inverse-function formula is used.",
+    "existenceUniqueness": "x,y belong to {37,38,39,40}; the specified row entries occur once each, giving a unique difference1. x,y are angle numbers; no extra length units.",
+    "choicesCorrect": "All five literal options compared to the exact sealed result; precisely one is true. Full per-option tests below.",
+    "figureConsistent": "Rows37?40 and cos/tan columns match given table; no geometric figure. Actual bound SVG rendered/viewed in stage1 and actual expanded author-answer/solution PNG viewed in stage2. Preview student/candidate digests and PNG hash verified; no overflow/clipping observed. Strict record binds exact SVG/spec bytes, not native/rights approval.",
+    "sameCoreConceptAndProcedure": "Original asks one angle from one tangent-table cell; candidate independently reverse-reads tangent and cosine then reports angle difference. Same row-lookup core with two records and changed output.",
+    "distinctPresentation": "Original asks one angle from one tangent-table cell; candidate independently reverse-reads tangent and cosine then reports angle difference. Same row-lookup core with two records and changed output.",
+    "naturalKorean": "No original school name appears on student surfaces; metadata-only substitution is not claimed as a displayed context change. Question target, conditions and answer format are readable Korean in the actual expanded preview; no unresolved referent found.",
+    "curriculumAppropriate": "Within the given rows tan x=.7813 identifies38?, cos y=.7771 identifies39? uniquely; y?x=1,?. No inverse-function formula is used. Methods: 삼각비 표의 행·열 읽기, 유한한 허용 각도의 기록값 대조. Applied2015 M3; angles remain0?90?. No trig relationships/identities, sine/cosine law, Heron, vectors or advanced shortcut in author student solution.",
+    "allStudentSurfacesInScope": "All seven surfaces individually reviewed below; mathematical calculation is deterministic supporting evidence, not an AI confidence/classification approval.",
+    "unitFamilyFit": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family.",
+    "scoreAppropriate": "Parent score3 matches the printed source score; Five-choice single-parent format retained. Operations described in source comparison remain plausible within this school-level task band; no measured equal-difficulty claim. Explicit scaffolding/inversion differences above remain visible."
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "다음은 코사인과 탄젠트의 근삿값을 정리한 표이다.\n\n| 삼각비 | $37^\\circ$ | $38^\\circ$ | $39^\\circ$ | $40^\\circ$ |\n|---|---|---|---|---|\n| cos | $0.7986$ | $0.7880$ | $0.7771$ | $0.7660$ |\n| tan | $0.7536$ | $0.7813$ | $0.8098$ | $0.8391$ |\n\n$x$, $y$는 표의 각도를 나타내는 수 중 하나씩이다. 표에서 $\\tan x^\\circ$의 기록은 $0.7813$이고, $\\cos y^\\circ$의 기록은 $0.7771$이다.\n두 각도 기록의 차 $y-x$의 값은?",
+      "officialProvisions": [
+        "9수04-17"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "Five choices checked against sealed exact result; radicals/fractions/decimals are within M3.",
+      "officialProvisions": [
+        "9수04-17"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "Rows37?40 and cos/tan columns match given table; no geometric figure.",
+      "officialProvisions": [
+        "9수04-17"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "Right-angle labels, acute degree measures, segment notation, fractions/radicals and cm/m/area units are conventional and agree with target. x,y belong to {37,38,39,40}; the specified row entries occur once each, giving a unique difference1. x,y are angle numbers; no extra length units.",
+      "officialProvisions": [
+        "9수04-17"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "Within the given rows tan x=.7813 identifies38?, cos y=.7771 identifies39? uniquely; y?x=1,?. No inverse-function formula is used.",
+      "officialProvisions": [
+        "9수04-17"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "Within the given rows tan x=.7813 identifies38?, cos y=.7771 identifies39? uniquely; y?x=1,?. No inverse-function formula is used.",
+      "officialProvisions": [
+        "9수04-17"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "삼각비 표의 행·열 읽기, 유한한 허용 각도의 기록값 대조. x,y belong to {37,38,39,40}; the specified row entries occur once each, giving a unique difference1. x,y are angle numbers; no extra length units.",
+      "officialProvisions": [
+        "9수04-17"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    }
+  },
+  "unitFamily": {
+    "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+    "familyKey": null,
+    "status": "held-current-proof-missing",
+    "basis": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family."
+  },
+  "evidence": {
+    "rawCommit": "9870f836a8221a23d4cea3c08b43af1e9c3f7891",
+    "rawFile": "blind/solve/q06.json",
+    "independentAnswer": "④",
+    "independentProof": "탄젠트 행에서 0.7813이 적힌 각도는 38°이므로 x=38이다. 코사인 행에서 0.7771이 적힌 각도는 39°이므로 y=39이다. 두 행을 구별하여 읽으면 y−x=39−38=1이므로 ④이다. 두 기록은 허용된 네 각 중 각각 하나에만 대응한다.",
+    "authorStepReview": "Within the given rows tan x=.7813 identifies38?, cos y=.7771 identifies39? uniquely; y?x=1,?. No inverse-function formula is used.",
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "studentOption": "$-2$",
+        "test": {
+          "choice": 1,
+          "encodedValue": "-2",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 2,
+        "studentOption": "$-1$",
+        "test": {
+          "choice": 2,
+          "encodedValue": "-1",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 3,
+        "studentOption": "$0$",
+        "test": {
+          "choice": 3,
+          "encodedValue": "0",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 4,
+        "studentOption": "$1$",
+        "test": {
+          "choice": 4,
+          "encodedValue": "1",
+          "correct": true
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 5,
+        "studentOption": "$2$",
+        "test": {
+          "choice": 5,
+          "encodedValue": "2",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      }
+    ],
+    "writtenParts": [],
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q06",
+      "actualResult": {
+        "calculated": "1",
+        "choices": [
+          {
+            "choice": 1,
+            "encodedValue": "-2",
+            "correct": false
+          },
+          {
+            "choice": 2,
+            "encodedValue": "-1",
+            "correct": false
+          },
+          {
+            "choice": 3,
+            "encodedValue": "0",
+            "correct": false
+          },
+          {
+            "choice": 4,
+            "encodedValue": "1",
+            "correct": true
+          },
+          {
+            "choice": 5,
+            "encodedValue": "2",
+            "correct": false
+          }
+        ],
+        "uniqueChoice": 4
+      }
+    },
+    "existenceUniquenessPositiveLengthsUnits": "x,y belong to {37,38,39,40}; the specified row entries occur once each, giving a unique difference1. x,y are angle numbers; no extra length units.",
+    "sourceComparison": "Original asks one angle from one tangent-table cell; candidate independently reverse-reads tangent and cosine then reports angle difference. Same row-lookup core with two records and changed output.",
+    "preview": "gyeongsang-remaining-final14-r1/inspection/q06-expanded.png",
+    "exposure": "Before seal: no actual new GF14 author answers/authorship. Prior unbound generic REVIEW-KIT q7/? illustration had been read in NB5; disclosed and unused. Actual q7 independently yielded?. Stage2 actual author exposure authorized after raw seal; no legacy Claude proof/review used."
+  },
+  "findings": [
+    {
+      "severity": "blocker",
+      "surface": "unitFamilyFit",
+      "text": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family."
+    },
+    {
+      "severity": "note",
+      "surface": "source",
+      "text": "Question-only image comparison performed. Supplied sourceIdentity says original header/footer and completed-question identity supported; this review does not reopen immutable source bytes or independently certify full content pair/custody/rights. Existing source/loading holds remain."
+    }
+  ],
+  "gates": {
+    "loadable": false,
+    "rightsCleared": false,
+    "nativeApproved": false,
+    "sourceCertification": false
+  }
+}

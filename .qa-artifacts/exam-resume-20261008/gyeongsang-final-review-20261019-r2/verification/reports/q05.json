@@ -1,0 +1,269 @@
+{
+  "studentDigest": "723138c4a39dbafc52c654ac94dd040dcadb785ed568a1eac93a0858ee319ba3",
+  "candidateDigest": "75e38dc2d1884dcb3bd3f063db1a12ba5dfe3804ab471eff5cf4c1f4e6dc6a5f",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "solveDigest": "06c44b7528ae3a18301e3b41e673963a00838865957a3ff0c10d28370dca71a5",
+  "questionNumber": 5,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q05",
+  "status": "pending",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-gf14-independent-20261019-r2",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "checkEvidence": {
+    "answerCorrect": "g=.5150+.8290=1.3440; n=.5299+.8387=1.3686; g?n=?.0246. Author selects? and preserves the minus sign. Compared mathematically against this verifier?s sealed new raw solve; representation differences do not rewrite that proof.",
+    "solutionCorrect": "g=.5150+.8290=1.3440; n=.5299+.8387=1.3686; g?n=?.0246. Author selects? and preserves the minus sign.",
+    "existenceUniqueness": "All eight table entries are explicit approximate records; the requested difference of recorded sums is unique and may be negative. No monotonicity/trig identity or physical length domain is needed. Dimensionless.",
+    "choicesCorrect": "All five literal options compared to the exact sealed result; precisely one is true. Full per-option tests below.",
+    "figureConsistent": "Four horizontal table columns31?34 and sin/cos rows match lookup values; no geometric figure. Actual bound SVG rendered/viewed in stage1 and actual expanded author-answer/solution PNG viewed in stage2. Preview student/candidate digests and PNG hash verified; no overflow/clipping observed. Strict record binds exact SVG/spec bytes, not native/rights approval.",
+    "sameCoreConceptAndProcedure": "Original shared vertical table asks one sin+cos sum. Candidate horizontal function table asks the difference of two separately defined sums, preserving table lookup/arithmetic while changing structure and target.",
+    "distinctPresentation": "Original shared vertical table asks one sin+cos sum. Candidate horizontal function table asks the difference of two separately defined sums, preserving table lookup/arithmetic while changing structure and target.",
+    "naturalKorean": "No original school name appears on student surfaces; metadata-only substitution is not claimed as a displayed context change. Question target, conditions and answer format are readable Korean in the actual expanded preview; no unresolved referent found.",
+    "curriculumAppropriate": "g=.5150+.8290=1.3440; n=.5299+.8387=1.3686; g?n=?.0246. Author selects? and preserves the minus sign. Methods: 삼각비 표의 행·열 읽기, 소수의 덧셈과 뺄셈. Applied2015 M3; angles remain0?90?. No trig relationships/identities, sine/cosine law, Heron, vectors or advanced shortcut in author student solution.",
+    "allStudentSurfacesInScope": "All seven surfaces individually reviewed below; mathematical calculation is deterministic supporting evidence, not an AI confidence/classification approval.",
+    "unitFamilyFit": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family.",
+    "scoreAppropriate": "Parent score4 matches the printed source score; Five-choice single-parent format retained. Operations described in source comparison remain plausible within this school-level task band; no measured equal-difficulty claim. Explicit scaffolding/inversion differences above remain visible."
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "다음 표의 근삿값을 사용하여 두 계산 기록의 차를 구하려고 한다.\n\n| 삼각비 | $31^\\circ$ | $32^\\circ$ | $33^\\circ$ | $34^\\circ$ |\n|---|---|---|---|---|\n| sin | $0.5150$ | $0.5299$ | $0.5446$ | $0.5592$ |\n| cos | $0.8572$ | $0.8480$ | $0.8387$ | $0.8290$ |\n\n| 기록 | 계산식 |\n|---|---|\n| 가 | $\\sin31^\\circ+\\cos34^\\circ$ |\n| 나 | $\\sin32^\\circ+\\cos33^\\circ$ |\n\n표에 적힌 수로 계산한 (가의 값)−(나의 값)은?",
+      "officialProvisions": [
+        "9수04-17"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "Five choices checked against sealed exact result; radicals/fractions/decimals are within M3.",
+      "officialProvisions": [
+        "9수04-17"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "Four horizontal table columns31?34 and sin/cos rows match lookup values; no geometric figure.",
+      "officialProvisions": [
+        "9수04-17"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "Right-angle labels, acute degree measures, segment notation, fractions/radicals and cm/m/area units are conventional and agree with target. All eight table entries are explicit approximate records; the requested difference of recorded sums is unique and may be negative. No monotonicity/trig identity or physical length domain is needed. Dimensionless.",
+      "officialProvisions": [
+        "9수04-17"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "g=.5150+.8290=1.3440; n=.5299+.8387=1.3686; g?n=?.0246. Author selects? and preserves the minus sign.",
+      "officialProvisions": [
+        "9수04-17"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "g=.5150+.8290=1.3440; n=.5299+.8387=1.3686; g?n=?.0246. Author selects? and preserves the minus sign.",
+      "officialProvisions": [
+        "9수04-17"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "삼각비 표의 행·열 읽기, 소수의 덧셈과 뺄셈. All eight table entries are explicit approximate records; the requested difference of recorded sums is unique and may be negative. No monotonicity/trig identity or physical length domain is needed. Dimensionless.",
+      "officialProvisions": [
+        "9수04-17"
+      ],
+      "restrictionsReviewed": [
+        "angle_range",
+        "no_trig_ratio_relationships",
+        "no_circle_proportionality",
+        "no_complex_geometry_measurement",
+        "no_formal_complex_justification"
+      ],
+      "restrictionEvidence": "Only direct definitions, fixed special-angle numerical values/table lookup, elementary algebra and the geometric steps explicitly documented above; no excluded method required."
+    }
+  },
+  "unitFamily": {
+    "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+    "familyKey": null,
+    "status": "held-current-proof-missing",
+    "basis": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family."
+  },
+  "evidence": {
+    "rawCommit": "9870f836a8221a23d4cea3c08b43af1e9c3f7891",
+    "rawFile": "blind/solve/q05.json",
+    "independentAnswer": "④",
+    "independentProof": "제시된 표에서 sin31°=0.5150, cos34°=0.8290이므로 가=1.3440이다. sin32°=0.5299, cos33°=0.8387이므로 나=1.3686이다. 따라서 가−나=1.3440−1.3686=−0.0246이므로 ④이다. 실제 삼각비를 다시 계산하는 것이 아니라 표에 적힌 수를 그대로 사용한다.",
+    "authorStepReview": "g=.5150+.8290=1.3440; n=.5299+.8387=1.3686; g?n=?.0246. Author selects? and preserves the minus sign.",
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "studentOption": "$1.3440$",
+        "test": {
+          "choice": 1,
+          "encodedValue": "168/125",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 2,
+        "studentOption": "$0.0246$",
+        "test": {
+          "choice": 2,
+          "encodedValue": "123/5000",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 3,
+        "studentOption": "$2.7126$",
+        "test": {
+          "choice": 3,
+          "encodedValue": "13563/5000",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 4,
+        "studentOption": "$-0.0246$",
+        "test": {
+          "choice": 4,
+          "encodedValue": "-123/5000",
+          "correct": true
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 5,
+        "studentOption": "$1.3686$",
+        "test": {
+          "choice": 5,
+          "encodedValue": "6843/5000",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      }
+    ],
+    "writtenParts": [],
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q05",
+      "actualResult": {
+        "calculated": "-123/5000",
+        "choices": [
+          {
+            "choice": 1,
+            "encodedValue": "168/125",
+            "correct": false
+          },
+          {
+            "choice": 2,
+            "encodedValue": "123/5000",
+            "correct": false
+          },
+          {
+            "choice": 3,
+            "encodedValue": "13563/5000",
+            "correct": false
+          },
+          {
+            "choice": 4,
+            "encodedValue": "-123/5000",
+            "correct": true
+          },
+          {
+            "choice": 5,
+            "encodedValue": "6843/5000",
+            "correct": false
+          }
+        ],
+        "uniqueChoice": 4
+      }
+    },
+    "existenceUniquenessPositiveLengthsUnits": "All eight table entries are explicit approximate records; the requested difference of recorded sums is unique and may be negative. No monotonicity/trig identity or physical length domain is needed. Dimensionless.",
+    "sourceComparison": "Original shared vertical table asks one sin+cos sum. Candidate horizontal function table asks the difference of two separately defined sums, preserving table lookup/arithmetic while changing structure and target.",
+    "preview": "gyeongsang-remaining-final14-r1/inspection/q05-expanded.png",
+    "exposure": "Before seal: no actual new GF14 author answers/authorship. Prior unbound generic REVIEW-KIT q7/? illustration had been read in NB5; disclosed and unused. Actual q7 independently yielded?. Stage2 actual author exposure authorized after raw seal; no legacy Claude proof/review used."
+  },
+  "findings": [
+    {
+      "severity": "blocker",
+      "surface": "unitFamilyFit",
+      "text": "Candidate family is null; no complete current live family proof. Historical unit is conceptually plausible but does not certify the whole-item family."
+    },
+    {
+      "severity": "note",
+      "surface": "source",
+      "text": "Question-only image comparison performed. Supplied sourceIdentity says original header/footer and completed-question identity supported; this review does not reopen immutable source bytes or independently certify full content pair/custody/rights. Existing source/loading holds remain."
+    }
+  ],
+  "gates": {
+    "loadable": false,
+    "rightsCleared": false,
+    "nativeApproved": false,
+    "sourceCertification": false
+  }
+}
