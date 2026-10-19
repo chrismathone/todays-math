@@ -1,0 +1,39 @@
+{
+  "kind": "authored-exam-twin-review/v1",
+  "version": 1,
+  "createdAt": "2026-10-19T09:35:21.556Z",
+  "questionNumbers": [
+    4
+  ],
+  "packageDigest": "2d5b4509a7035ec84baf243a8fe6f7d3d1c7d948dd934d02b6e09a73ee73b290",
+  "scope": "authored-subset; no source exam completeness or production authorization implied",
+  "bindings": [
+    {
+      "privateCandidatePath": "private/q04/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group3-r4\\q04.json",
+        "sha256": "174815bb578f82ac6f729e28c66b614d3836ff68f5e34c93b37a5ecca5fd11e9"
+      },
+      "candidateFileSha256": "8aaf3f925c0a49ca11ebfa18c838477248447cb4292f42906b95a9d4762b4633",
+      "candidateDigest": "44c3a61fc3cdf15fdc919c29c486b49791a91763f2ce9e50bb714d46ca0d58df",
+      "studentDigest": "fcca4ce290ea6f3e26d0591de1ec75a10e7cb2472a7f2797323d1f081820c4c9",
+      "assetDigest": "ea0c65528f3fb80b76368eb0ad33d1650620a670d7769409a05b7787defeaefe",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "3559be3943f70a6b251a1e9a9f0826257408900cc0933680a9196cd59be951d1",
+          "svgSha256": "1b7391c02598645709fa5d8e8c2dc05f5b06e317908fa65922baef925ad1296a",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q04-1.svg"
+        }
+      ]
+    }
+  ],
+  "independentReports": "external evidence only; no mathematical correctness inferred from IDs/digests/render or original answer agreement",
+  "gates": {
+    "sourceIdentity": "pending",
+    "taxonomy": "pending",
+    "rights": "pending",
+    "similarity": "pending"
+  }
+}

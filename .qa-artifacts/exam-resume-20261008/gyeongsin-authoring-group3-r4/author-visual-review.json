@@ -1,0 +1,28 @@
+{
+  "kind": "author-visual-correction/v1",
+  "utc": "2026-10-19T09:36:38.855Z",
+  "current": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group3-r4/q04.json",
+    "sha256": "174815bb578f82ac6f729e28c66b614d3836ff68f5e34c93b37a5ecca5fd11e9"
+  },
+  "studentPreview": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group3-preview-20261019-r4/q04.png",
+    "sha256": "8ee9cd3d774d0d5a554e7ef811c00f569d138f08225b53784c8b45a42e04c603"
+  },
+  "renderReview": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group3-preview-20261019-r4/render-review.json",
+    "sha256": "20286425f77733cd413a5c478943939c92044187728989994b2982562edfe74d"
+  },
+  "priorHeldReview": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group3-review-20261019-r2/verification/reports/q04.json",
+    "sha256": "53d07cc3c27e2030799922ed04e28d9429556db43e60f04b80a84f435022eecc"
+  },
+  "inspectedWithViewImage": true,
+  "r3Preserved": true,
+  "r3Finding": "dx is absolute point offset; -12 only shifted label by1.276 canvas units. r3 not independently approved or selected.",
+  "r4Finding": "R label shifted left13.276 canvas units relative to r2 with clear white separation from PR. Point/line/circle model unchanged. Paragraph split preserves every condition.",
+  "freshBlindReviewRequired": true,
+  "canonicalVersionPending": true,
+  "independentApprovals": 0,
+  "loadable": 0
+}
