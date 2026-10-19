@@ -1,0 +1,931 @@
+{
+  "sourceCommit": "f8c55083bfb529b95c89a70d9ce95c915264b402",
+  "reviewDate": "2026-10-19",
+  "method": "synthetic approved director; real API/core/strict local Python; no production DB/server",
+  "scope": "Existing five selected school/course profiles and their remaining demands only; no whole-school coverage claim",
+  "check": {
+    "testsPassed": 18,
+    "testsFailed": 0,
+    "actualApiRequests": 57,
+    "wholeProfileRequests": 5,
+    "isolatedDemandFormatRequests": 52
+  },
+  "remaining": {
+    "schoolCourseOccurrences": 13,
+    "uniqueRequirements": 12,
+    "unavailableUnique": 6,
+    "unverifiedUnique": 6
+  },
+  "profiles": [
+    {
+      "kind": "profile",
+      "profileId": "daeryun-m1",
+      "status": "partial",
+      "delivered": 12,
+      "digest": "c609c75f858af0d91fe0820fda091c6b0eb924dc38fac9bf420f442e1db97626",
+      "requirements": [
+        {
+          "id": "coord.inverse-area-ratio",
+          "title": "두 반비례 점과 넓이비의 결합",
+          "status": "full",
+          "requested": 2,
+          "delivered": 2,
+          "reason": null
+        },
+        {
+          "id": "coord.inverse-equal-legs",
+          "title": "반비례 위 두 점의 같은 다리 조건",
+          "status": "full",
+          "requested": 1,
+          "delivered": 1,
+          "reason": null
+        },
+        {
+          "id": "coord.ray-area-partition",
+          "title": "두 광선의 넓이비에서 기울기 복원",
+          "status": "full",
+          "requested": 1,
+          "delivered": 2,
+          "reason": null
+        },
+        {
+          "id": "coord.shared-side-square",
+          "title": "두 비례 그래프와 정사각형의 공통 변",
+          "status": "full",
+          "requested": 1,
+          "delivered": 1,
+          "reason": null
+        },
+        {
+          "id": "coord.sign-quadrant",
+          "title": "숨은 두 수의 부호에서 변환점의 사분면",
+          "status": "full",
+          "requested": 1,
+          "delivered": 1,
+          "reason": null
+        },
+        {
+          "id": "coord.signed-inverse-trapezoid",
+          "title": "서로 다른 부호의 반비례와 사다리꼴",
+          "status": "full",
+          "requested": 1,
+          "delivered": 1,
+          "reason": null
+        },
+        {
+          "id": "graph.piecewise-multi-claim",
+          "title": "꺾은선의 방향·거리·반복 통과 판단",
+          "status": "full",
+          "requested": 1,
+          "delivered": 2,
+          "reason": null
+        },
+        {
+          "id": "model.circle-revolution-percentage",
+          "title": "지름 변화에 따른 회전수 백분율",
+          "status": "unavailable",
+          "requested": 1,
+          "delivered": 0,
+          "reason": "완결 연습 0/1개. 이 요구에 등록된 대응 문형이 없습니다."
+        },
+        {
+          "id": "model.doubling-time-offset",
+          "title": "배증의 시간차와 단위 변환",
+          "status": "unavailable",
+          "requested": 1,
+          "delivered": 0,
+          "reason": "완결 연습 0/1개. 이 요구에 등록된 대응 문형이 없습니다."
+        },
+        {
+          "id": "number.coprime-symbolic-sum",
+          "title": "서로소 잔여류의 기약분수 합",
+          "status": "unavailable",
+          "requested": 1,
+          "delivered": 0,
+          "reason": "완결 연습 0/1개. 이 요구에 등록된 대응 문형이 없습니다."
+        },
+        {
+          "id": "written.dependent-formula-min-time",
+          "title": "공식 의존·잔여량·최소 시간 설명",
+          "status": "full",
+          "requested": 1,
+          "delivered": 2,
+          "reason": null
+        }
+      ],
+      "formatCounts": {
+        "객관식": 0,
+        "단답형": 9,
+        "서술형": 3
+      },
+      "figures": 8
+    },
+    {
+      "kind": "profile",
+      "profileId": "daeryun-m2",
+      "status": "partial",
+      "delivered": 12,
+      "digest": "543147fe535ca81a9bde7b93ca7dcffe3a2a9daf128865355ff5b9bcdf97148e",
+      "requirements": [
+        {
+          "id": "algebra.inequality-solution-count",
+          "title": "자연수 해의 개수로 계수 역산",
+          "status": "full",
+          "requested": 2,
+          "delivered": 2,
+          "reason": null
+        },
+        {
+          "id": "algebra.shifted-system-coupling",
+          "title": "이동한 두 연립방정식 해의 결합",
+          "status": "full",
+          "requested": 2,
+          "delivered": 2,
+          "reason": null
+        },
+        {
+          "id": "concept.function-uniqueness",
+          "title": "입력마다 출력이 유일한 함수 판단",
+          "status": "full",
+          "requested": 1,
+          "delivered": 1,
+          "reason": null
+        },
+        {
+          "id": "coord.intercept-integer-area",
+          "title": "절편·정수 격자 조건에서 넓이 비교",
+          "status": "unavailable",
+          "requested": 1,
+          "delivered": 0,
+          "reason": "완결 연습 0/1개. 이 요구에 등록된 대응 문형이 없습니다."
+        },
+        {
+          "id": "coord.intercept-trapezoid-cases",
+          "title": "축절편 사다리꼴의 모든 평행변 경우",
+          "status": "full",
+          "requested": 1,
+          "delivered": 2,
+          "reason": null
+        },
+        {
+          "id": "graph.line-multi-properties",
+          "title": "한 직선의 여러 성질 공동 판단",
+          "status": "full",
+          "requested": 1,
+          "delivered": 1,
+          "reason": null
+        },
+        {
+          "id": "graph.translated-coefficient-reuse",
+          "title": "그래프에서 복원한 계수의 재배치",
+          "status": "unavailable",
+          "requested": 1,
+          "delivered": 0,
+          "reason": "완결 연습 0/1개. 이 요구에 등록된 대응 문형이 없습니다."
+        },
+        {
+          "id": "written.linear-fuel-model",
+          "title": "연료 잔량 함수와 값의 모델 설명",
+          "status": "full",
+          "requested": 1,
+          "delivered": 1,
+          "reason": null
+        },
+        {
+          "id": "written.stopped-travel",
+          "title": "정지 구간이 있는 이동 모델 설명",
+          "status": "full",
+          "requested": 1,
+          "delivered": 1,
+          "reason": null
+        },
+        {
+          "id": "written.two-work-rates",
+          "title": "두 작업 일정에서 개별 작업률 설명",
+          "status": "full",
+          "requested": 1,
+          "delivered": 2,
+          "reason": null
+        }
+      ],
+      "formatCounts": {
+        "객관식": 0,
+        "단답형": 8,
+        "서술형": 4
+      },
+      "figures": 2
+    },
+    {
+      "kind": "profile",
+      "profileId": "kyungmyung-m1",
+      "status": "partial",
+      "delivered": 12,
+      "digest": "6613a5d681d9ca4d7edc752ae4bdc7931dc11535320c7cdbf0e0c1464c588a8f",
+      "requirements": [
+        {
+          "id": "algebra.candidate-verification",
+          "title": "식과 후보 해를 각각 대입 검산",
+          "status": "unverified",
+          "requested": 2,
+          "delivered": 0,
+          "reason": "완결 연습 0/2개. 완결 대응 증거·실제 검산·형식·그림·문항 중복 및 가족 상한을 모두 만족하는 문항이 부족합니다."
+        },
+        {
+          "id": "algebra.equality-truth",
+          "title": "등식 변형의 참인 진술 판단",
+          "status": "unverified",
+          "requested": 2,
+          "delivered": 0,
+          "reason": "완결 연습 0/2개. 완결 대응 증거·실제 검산·형식·그림·문항 중복 및 가족 상한을 모두 만족하는 문항이 부족합니다."
+        },
+        {
+          "id": "algebra.equation-classification",
+          "title": "방정식·항등식·불가능한 등식 구별",
+          "status": "unverified",
+          "requested": 2,
+          "delivered": 0,
+          "reason": "완결 연습 0/2개. 완결 대응 증거·실제 검산·형식·그림·문항 중복 및 가족 상한을 모두 만족하는 문항이 부족합니다."
+        },
+        {
+          "id": "algebra.linear-model",
+          "title": "말로 주어진 관계의 일차 모델",
+          "status": "unverified",
+          "requested": 2,
+          "delivered": 0,
+          "reason": "완결 연습 0/2개. 완결 대응 증거·실제 검산·형식·그림·문항 중복 및 가족 상한을 모두 만족하는 문항이 부족합니다."
+        },
+        {
+          "id": "algebra.linear-simplify",
+          "title": "일차식의 정리와 계수 해석",
+          "status": "unverified",
+          "requested": 2,
+          "delivered": 0,
+          "reason": "완결 연습 0/2개. 완결 대응 증거·실제 검산·형식·그림·문항 중복 및 가족 상한을 모두 만족하는 문항이 부족합니다."
+        },
+        {
+          "id": "algebra.natural-parameter",
+          "title": "해의 정수 조건에서 매개변수 모두 찾기",
+          "status": "full",
+          "requested": 1,
+          "delivered": 3,
+          "reason": null
+        },
+        {
+          "id": "coord.sign-quadrant",
+          "title": "숨은 두 수의 부호에서 변환점의 사분면",
+          "status": "full",
+          "requested": 1,
+          "delivered": 3,
+          "reason": null
+        }
+      ],
+      "formatCounts": {
+        "객관식": 0,
+        "단답형": 12,
+        "서술형": 0
+      },
+      "figures": 0
+    },
+    {
+      "kind": "profile",
+      "profileId": "kyungmyung-m3",
+      "status": "partial",
+      "delivered": 9,
+      "digest": "5a74ac9d56a0e03a6626ddd1b815b6e2727f7f29887a287feabcc649b75beff9",
+      "requirements": [
+        {
+          "id": "algebra.rational-root-parameter",
+          "title": "두 유리근을 갖는 모든 자연수 매개변수",
+          "status": "full",
+          "requested": 3,
+          "delivered": 3,
+          "reason": null
+        },
+        {
+          "id": "graph.parabola-line-chain",
+          "title": "포물선에서 직선을 거쳐 다른 교점",
+          "status": "full",
+          "requested": 3,
+          "delivered": 3,
+          "reason": null
+        },
+        {
+          "id": "graph.translated-coefficient-reuse",
+          "title": "그래프에서 복원한 계수의 재배치",
+          "status": "unavailable",
+          "requested": 3,
+          "delivered": 0,
+          "reason": "완결 연습 0/3개. 이 요구에 등록된 대응 문형이 없습니다."
+        },
+        {
+          "id": "written.rectangle-domain",
+          "title": "직사각형 변화의 해와 정의역 설명",
+          "status": "unverified",
+          "requested": 3,
+          "delivered": 0,
+          "reason": "완결 연습 0/3개. 완결 대응 증거·실제 검산·형식·그림·문항 중복 및 가족 상한을 모두 만족하는 문항이 부족합니다."
+        }
+      ],
+      "formatCounts": {
+        "객관식": 0,
+        "단답형": 6,
+        "서술형": 3
+      },
+      "figures": 3
+    },
+    {
+      "kind": "profile",
+      "profileId": "kyungshin-common2",
+      "status": "partial",
+      "delivered": 12,
+      "digest": "5dce7569fd4d899956513e66ec21447741253c2de9571310982482eec59fdb25",
+      "requirements": [
+        {
+          "id": "function.absolute-rational-level-count",
+          "title": "결손 정의역의 절댓값 유리함수 교점 수",
+          "status": "full",
+          "requested": 2,
+          "delivered": 2,
+          "reason": null
+        },
+        {
+          "id": "function.finite-bijection-chain",
+          "title": "유한 대응의 합성·역함수 동시 제약",
+          "status": "full",
+          "requested": 2,
+          "delivered": 2,
+          "reason": null
+        },
+        {
+          "id": "function.iterated-finite-range",
+          "title": "반복함수·정확한 치역의 유한 추론",
+          "status": "full",
+          "requested": 2,
+          "delivered": 2,
+          "reason": null
+        },
+        {
+          "id": "function.radical-area-maximum",
+          "title": "근호곡선 위 이동점의 넓이 최댓값",
+          "status": "full",
+          "requested": 2,
+          "delivered": 2,
+          "reason": null
+        },
+        {
+          "id": "function.radical-inverse-circle",
+          "title": "근호함수·역함수와 외접원 연결",
+          "status": "unavailable",
+          "requested": 1,
+          "delivered": 0,
+          "reason": "완결 연습 0/1개. 이 요구에 등록된 대응 문형이 없습니다."
+        },
+        {
+          "id": "function.restricted-quadratic-bijection",
+          "title": "제한된 이차함수의 일대일대응",
+          "status": "full",
+          "requested": 1,
+          "delivered": 1,
+          "reason": null
+        },
+        {
+          "id": "logic.intermediate-truth-set-count",
+          "title": "교집합과 합집합 사이 진리집합 수",
+          "status": "full",
+          "requested": 1,
+          "delivered": 1,
+          "reason": null
+        },
+        {
+          "id": "logic.truth-set-inclusion-param",
+          "title": "진리집합 포함의 매개변수 경계",
+          "status": "full",
+          "requested": 1,
+          "delivered": 2,
+          "reason": null
+        }
+      ],
+      "formatCounts": {
+        "객관식": 0,
+        "단답형": 11,
+        "서술형": 1
+      },
+      "figures": 0
+    }
+  ],
+  "demands": [
+    {
+      "profileId": "daeryun-m1",
+      "requirement": "model.circle-revolution-percentage",
+      "title": "지름 변화에 따른 회전수 백분율",
+      "mappedFamilyIds": [],
+      "registeredCoverage": [],
+      "requiredChecks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "formats": [
+        {
+          "requested": "혼합",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "객관식",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "단답형",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "서술형",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        }
+      ]
+    },
+    {
+      "profileId": "daeryun-m1",
+      "requirement": "model.doubling-time-offset",
+      "title": "배증의 시간차와 단위 변환",
+      "mappedFamilyIds": [],
+      "registeredCoverage": [],
+      "requiredChecks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "formats": [
+        {
+          "requested": "혼합",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "객관식",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "단답형",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "서술형",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        }
+      ]
+    },
+    {
+      "profileId": "daeryun-m1",
+      "requirement": "number.coprime-symbolic-sum",
+      "title": "서로소 잔여류의 기약분수 합",
+      "mappedFamilyIds": [],
+      "registeredCoverage": [],
+      "requiredChecks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "formats": [
+        {
+          "requested": "혼합",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "객관식",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "단답형",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "서술형",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        }
+      ]
+    },
+    {
+      "profileId": "daeryun-m2",
+      "requirement": "coord.intercept-integer-area",
+      "title": "절편·정수 격자 조건에서 넓이 비교",
+      "mappedFamilyIds": [],
+      "registeredCoverage": [],
+      "requiredChecks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "formats": [
+        {
+          "requested": "혼합",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "객관식",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "단답형",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "서술형",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        }
+      ]
+    },
+    {
+      "profileId": "daeryun-m2",
+      "requirement": "graph.translated-coefficient-reuse",
+      "title": "그래프에서 복원한 계수의 재배치",
+      "mappedFamilyIds": [],
+      "registeredCoverage": [],
+      "requiredChecks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "formats": [
+        {
+          "requested": "혼합",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "객관식",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "단답형",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "서술형",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        }
+      ]
+    },
+    {
+      "profileId": "kyungmyung-m1",
+      "requirement": "algebra.candidate-verification",
+      "title": "식과 후보 해를 각각 대입 검산",
+      "mappedFamilyIds": [
+        "legacy:mid:1-1|일차방정식의 풀이|11"
+      ],
+      "registeredCoverage": [
+        "unverified"
+      ],
+      "requiredChecks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "formats": [
+        {
+          "requested": "혼합",
+          "generationStatus": "partial",
+          "questions": 1,
+          "coverage": "unverified"
+        },
+        {
+          "requested": "객관식",
+          "generationStatus": "partial",
+          "questions": 1,
+          "coverage": "unverified"
+        },
+        {
+          "requested": "단답형",
+          "generationStatus": "partial",
+          "questions": 1,
+          "coverage": "unverified"
+        },
+        {
+          "requested": "서술형",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        }
+      ]
+    },
+    {
+      "profileId": "kyungmyung-m1",
+      "requirement": "algebra.equality-truth",
+      "title": "등식 변형의 참인 진술 판단",
+      "mappedFamilyIds": [
+        "legacy:mid:1-1|일차방정식의 풀이|06"
+      ],
+      "registeredCoverage": [
+        "unverified"
+      ],
+      "requiredChecks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "formats": [
+        {
+          "requested": "혼합",
+          "generationStatus": "partial",
+          "questions": 1,
+          "coverage": "unverified"
+        },
+        {
+          "requested": "객관식",
+          "generationStatus": "partial",
+          "questions": 1,
+          "coverage": "unverified"
+        },
+        {
+          "requested": "단답형",
+          "generationStatus": "partial",
+          "questions": 1,
+          "coverage": "unverified"
+        },
+        {
+          "requested": "서술형",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        }
+      ]
+    },
+    {
+      "profileId": "kyungmyung-m1",
+      "requirement": "algebra.equation-classification",
+      "title": "방정식·항등식·불가능한 등식 구별",
+      "mappedFamilyIds": [
+        "legacy:mid:1-1|일차방정식의 풀이|09"
+      ],
+      "registeredCoverage": [
+        "unverified"
+      ],
+      "requiredChecks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "formats": [
+        {
+          "requested": "혼합",
+          "generationStatus": "partial",
+          "questions": 1,
+          "coverage": "unverified"
+        },
+        {
+          "requested": "객관식",
+          "generationStatus": "partial",
+          "questions": 1,
+          "coverage": "unverified"
+        },
+        {
+          "requested": "단답형",
+          "generationStatus": "partial",
+          "questions": 1,
+          "coverage": "unverified"
+        },
+        {
+          "requested": "서술형",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        }
+      ]
+    },
+    {
+      "profileId": "kyungmyung-m1",
+      "requirement": "algebra.linear-model",
+      "title": "말로 주어진 관계의 일차 모델",
+      "mappedFamilyIds": [
+        "legacy:mid:1-1|일차방정식의 활용|01"
+      ],
+      "registeredCoverage": [
+        "unverified"
+      ],
+      "requiredChecks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "formats": [
+        {
+          "requested": "혼합",
+          "generationStatus": "partial",
+          "questions": 1,
+          "coverage": "unverified"
+        },
+        {
+          "requested": "객관식",
+          "generationStatus": "partial",
+          "questions": 1,
+          "coverage": "unverified"
+        },
+        {
+          "requested": "단답형",
+          "generationStatus": "partial",
+          "questions": 1,
+          "coverage": "unverified"
+        },
+        {
+          "requested": "서술형",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        }
+      ]
+    },
+    {
+      "profileId": "kyungmyung-m1",
+      "requirement": "algebra.linear-simplify",
+      "title": "일차식의 정리와 계수 해석",
+      "mappedFamilyIds": [
+        "legacy:mid:1-1|문자의 사용과 식의 계산|13"
+      ],
+      "registeredCoverage": [
+        "unverified"
+      ],
+      "requiredChecks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "formats": [
+        {
+          "requested": "혼합",
+          "generationStatus": "partial",
+          "questions": 1,
+          "coverage": "unverified"
+        },
+        {
+          "requested": "객관식",
+          "generationStatus": "partial",
+          "questions": 1,
+          "coverage": "unverified"
+        },
+        {
+          "requested": "단답형",
+          "generationStatus": "partial",
+          "questions": 1,
+          "coverage": "unverified"
+        },
+        {
+          "requested": "서술형",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        }
+      ]
+    },
+    {
+      "profileId": "kyungmyung-m3",
+      "requirement": "graph.translated-coefficient-reuse",
+      "title": "그래프에서 복원한 계수의 재배치",
+      "mappedFamilyIds": [],
+      "registeredCoverage": [],
+      "requiredChecks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "formats": [
+        {
+          "requested": "혼합",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "객관식",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "단답형",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "서술형",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        }
+      ]
+    },
+    {
+      "profileId": "kyungmyung-m3",
+      "requirement": "written.rectangle-domain",
+      "title": "직사각형 변화의 해와 정의역 설명",
+      "mappedFamilyIds": [
+        "legacy:native:m3-quadratic-domain-r1"
+      ],
+      "registeredCoverage": [
+        "unverified"
+      ],
+      "requiredChecks": [
+        "independent-solution",
+        "essential-conditions",
+        "native-rubric"
+      ],
+      "formats": [
+        {
+          "requested": "혼합",
+          "generationStatus": "partial",
+          "questions": 1,
+          "coverage": "unverified"
+        },
+        {
+          "requested": "객관식",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "단답형",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "서술형",
+          "generationStatus": "partial",
+          "questions": 1,
+          "coverage": "unverified"
+        }
+      ]
+    },
+    {
+      "profileId": "kyungshin-common2",
+      "requirement": "function.radical-inverse-circle",
+      "title": "근호함수·역함수와 외접원 연결",
+      "mappedFamilyIds": [],
+      "registeredCoverage": [],
+      "requiredChecks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "formats": [
+        {
+          "requested": "혼합",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "객관식",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "단답형",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        },
+        {
+          "requested": "서술형",
+          "generationStatus": "unavailable",
+          "questions": 0,
+          "coverage": "unavailable"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Synthetic approved authentication; not production login/deployment",
+    "No school originals/database copied or restored",
+    "Single isolated seed and one delivered item per supported format in root probe; not a complete mathematical domain proof",
+    "Source selected demand scope and structural difficulty only; no measured learning effects or calibrated exam difficulty",
+    "Production engine source unchanged by this audit"
+  ]
+}
