@@ -1,0 +1,99 @@
+{
+  "productCoefficients": {
+    "2": 1,
+    "1": 1,
+    "0": -12
+  },
+  "squareCoefficients": {
+    "2": 1,
+    "1": -2,
+    "0": 1
+  },
+  "differenceCoefficients": {
+    "0": -13,
+    "1": 3,
+    "2": 0
+  },
+  "equation": "3n-13=77",
+  "root": "30",
+  "choices": [
+    {
+      "mark": "①",
+      "n": 28,
+      "firstFactor": 32,
+      "secondFactor": 25,
+      "squaredFactor": 27,
+      "product": 800,
+      "square": 729,
+      "lhs": 71,
+      "rhs": 77,
+      "residual": -6,
+      "integer": true,
+      "greaterThan3": true,
+      "satisfies": false
+    },
+    {
+      "mark": "②",
+      "n": 29,
+      "firstFactor": 33,
+      "secondFactor": 26,
+      "squaredFactor": 28,
+      "product": 858,
+      "square": 784,
+      "lhs": 74,
+      "rhs": 77,
+      "residual": -3,
+      "integer": true,
+      "greaterThan3": true,
+      "satisfies": false
+    },
+    {
+      "mark": "③",
+      "n": 30,
+      "firstFactor": 34,
+      "secondFactor": 27,
+      "squaredFactor": 29,
+      "product": 918,
+      "square": 841,
+      "lhs": 77,
+      "rhs": 77,
+      "residual": 0,
+      "integer": true,
+      "greaterThan3": true,
+      "satisfies": true
+    },
+    {
+      "mark": "④",
+      "n": 31,
+      "firstFactor": 35,
+      "secondFactor": 28,
+      "squaredFactor": 30,
+      "product": 980,
+      "square": 900,
+      "lhs": 80,
+      "rhs": 77,
+      "residual": 3,
+      "integer": true,
+      "greaterThan3": true,
+      "satisfies": false
+    },
+    {
+      "mark": "⑤",
+      "n": 32,
+      "firstFactor": 36,
+      "secondFactor": 29,
+      "squaredFactor": 31,
+      "product": 1044,
+      "square": 961,
+      "lhs": 83,
+      "rhs": 77,
+      "residual": 6,
+      "integer": true,
+      "greaterThan3": true,
+      "satisfies": false
+    }
+  ],
+  "existence": "n=30은3보다큰정수이며34×27-29²=918-841=77로원식을만족한다.",
+  "uniqueness": "두이차항이상쇄되어3n=90이된다. 계수3이0이아니므로실수해도하나뿐이며그유일해가정수조건을충족한다.",
+  "domain": "원래식은다항식이므로모든실수에서정의되며문제는n∈Z,n>3으로제한한다. 분모·근호는없고방정식을풀때나누는3은비영이다. n>3에서n+4,n-3,n-1도모두양수이다. 길이·단위·도형조건은없다."
+}
