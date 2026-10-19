@@ -1,0 +1,59 @@
+{
+  "exactRationalCalculations": {
+    "sqrtOfNegative3Squared": "3",
+    "sqrt2Squared": "2",
+    "negativeSqrt18Squared": "18",
+    "denominator": "3/4",
+    "firstTerm": "-6",
+    "secondTerm": "24",
+    "A": "18"
+  },
+  "exactRadicalRepresentation": {
+    "meaning": "[coefficient, squarefree radicand]",
+    "roots": [
+      [
+        -3,
+        2
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "distance": [
+      6,
+      2
+    ],
+    "rootSquares": [
+      "18",
+      "18"
+    ],
+    "distanceSquared": "72"
+  },
+  "domainAndSign": {
+    "radicands": [
+      9,
+      2,
+      18,
+      "9/16"
+    ],
+    "allRadicandsNonnegative": true,
+    "denominatorNonzero": true,
+    "APositive": true,
+    "twoDistinctRealRoots": true,
+    "distancePositive": true
+  },
+  "existenceUniqueness": "A=18>0이므로 제곱근 r=3√2>0와 -r가 존재. t²=18이면 (t-r)(t+r)=0이므로 이 둘뿐. 왼쪽 점 -r와 오른쪽 점 r의 거리는 r-(-r)=2r로 유일.",
+  "signChecks": [
+    "-√((-3)²)=-3; √((-3)²) 자체는 +3",
+    "(-√18)²=+18; -18이 아님",
+    "√((3/4)²)=|3/4|=3/4; 18÷(3/4)=18×4/3=24"
+  ],
+  "choicesReview": {
+    "applicable": false,
+    "reason": "서술형이며 choices=[]; 존재하지 않는 5개 선택지를 만들지 않음"
+  },
+  "units": "수직선의 수 사이 거리이며 별도 물리 단위가 주어지지 않음. 답은 6√2.",
+  "printedImageCheck": "q18.png를 직접 확인하여 부호, 제곱 위치, 분수와 나눗셈, 두 제곱근 거리 요구가 student JSON과 일치함. 이미지 측정은 계산에 사용하지 않음.",
+  "studentMethod": "제곱근의 뜻/성질, 양수 제곱근, 유리수 분수 나눗셈, 근호 간단히 하기, 수직선 거리. 2015 중3 학생 방법으로 풀이; 학년별 공식 배치의 별도 심사 승인 주장은 없음."
+}

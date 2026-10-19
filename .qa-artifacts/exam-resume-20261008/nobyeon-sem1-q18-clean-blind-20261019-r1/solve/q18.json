@@ -1,0 +1,77 @@
+{
+  "studentDigest": "c1cd4a22095f2b438597b6dd7d857b460ff541578c72f26c5aa882aa3b4ddbf1",
+  "solverId": "codex-independent-q18-clean-blind-r1-20261019",
+  "answer": "6\\sqrt{2}",
+  "solution": "제곱근 기호는 음이 아닌 값을 나타내므로 √((-3)²)=3이고, (√2)²=2이다. 또 (-√18)²=18이며, √((3/4)²)=|3/4|=3/4이다. 나누는 수 3/4은 0이 아니므로\nA=-(3×2)+18÷(3/4)=-6+18×(4/3)=-6+24=18이다.\nA=18>0이므로 A의 서로 다른 두 제곱근은 √18=3√2와 -√18=-3√2이다. 실제로 두 수의 제곱은 모두 18이고, 하나는 양수이고 하나는 음수이므로 서로 다르다. 제곱이 18인 실수는 이 두 수뿐이다.\n수직선에서 오른쪽 점의 수에서 왼쪽 점의 수를 빼면 두 점 사이의 거리는 3√2-(-3√2)=6√2이다. 따라서 구하는 유일한 양의 거리는 6√2이다.",
+  "evidence": {
+    "status": "independently-solved-before-author-exposure",
+    "exactQuestionOrAnswerPriorExposure": false,
+    "exposureDeclaration": "허용된 q18 학생 파일을 읽기 전에 정확한 새 q18 문항과 정답을 본 적 없다고 선언함. 원문·저자·이전 풀이·코드·다른 QA를 읽지 않음.",
+    "calculations": {
+      "exactRationalCalculations": {
+        "sqrtOfNegative3Squared": "3",
+        "sqrt2Squared": "2",
+        "negativeSqrt18Squared": "18",
+        "denominator": "3/4",
+        "firstTerm": "-6",
+        "secondTerm": "24",
+        "A": "18"
+      },
+      "exactRadicalRepresentation": {
+        "meaning": "[coefficient, squarefree radicand]",
+        "roots": [
+          [
+            -3,
+            2
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        "distance": [
+          6,
+          2
+        ],
+        "rootSquares": [
+          "18",
+          "18"
+        ],
+        "distanceSquared": "72"
+      },
+      "domainAndSign": {
+        "radicands": [
+          9,
+          2,
+          18,
+          "9/16"
+        ],
+        "allRadicandsNonnegative": true,
+        "denominatorNonzero": true,
+        "APositive": true,
+        "twoDistinctRealRoots": true,
+        "distancePositive": true
+      },
+      "existenceUniqueness": "A=18>0이므로 제곱근 r=3√2>0와 -r가 존재. t²=18이면 (t-r)(t+r)=0이므로 이 둘뿐. 왼쪽 점 -r와 오른쪽 점 r의 거리는 r-(-r)=2r로 유일.",
+      "signChecks": [
+        "-√((-3)²)=-3; √((-3)²) 자체는 +3",
+        "(-√18)²=+18; -18이 아님",
+        "√((3/4)²)=|3/4|=3/4; 18÷(3/4)=18×4/3=24"
+      ],
+      "choicesReview": {
+        "applicable": false,
+        "reason": "서술형이며 choices=[]; 존재하지 않는 5개 선택지를 만들지 않음"
+      },
+      "units": "수직선의 수 사이 거리이며 별도 물리 단위가 주어지지 않음. 답은 6√2.",
+      "printedImageCheck": "q18.png를 직접 확인하여 부호, 제곱 위치, 분수와 나눗셈, 두 제곱근 거리 요구가 student JSON과 일치함. 이미지 측정은 계산에 사용하지 않음.",
+      "studentMethod": "제곱근의 뜻/성질, 양수 제곱근, 유리수 분수 나눗셈, 근호 간단히 하기, 수직선 거리. 2015 중3 학생 방법으로 풀이; 학년별 공식 배치의 별도 심사 승인 주장은 없음."
+    },
+    "inputHashes": {
+      "student-problems.json": "757956087bd2894bf2bd942eebb18d785d972c40321a684b76ffe58f74524d75",
+      "blind-manifest.json": "cb2fc05b028da8c1b26007eb6189adaeac3f64a68f1f3bccd3bbdc51e0d269e5",
+      "SOLVE-BRIEF.md": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c",
+      "q18.png": "4128b203885133fb529854b010ddc4c09b69b3008f3f1abca77607fe6bdf5369"
+    }
+  },
+  "status": "solved"
+}
