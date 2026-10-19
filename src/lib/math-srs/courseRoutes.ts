@@ -2,7 +2,9 @@ import "server-only";
 import { randomInt, randomUUID } from "node:crypto";
 import { z } from "zod";
 import {
+  COURSE_FOLLOW_UP_HEADER,
   courseAttemptInputSchema,
+  courseFollowUpInputSchema,
   courseHintInputSchema,
   coursePlanInputSchema,
   courseStudentResponseSchema,
@@ -28,6 +30,7 @@ import {
   setCoursePlan,
   startRecommendedCourse,
   submitCourseAttempt,
+  submitCourseFollowUp,
   type StoredCourse,
 } from "./courseAutomation";
 import { loadCourseBankCandidates } from "./courseBank";
@@ -53,13 +56,15 @@ export function courseFailureResponse(error: unknown) {
 
 export async function handleCourseStudentRequest(
   request: Request,
-  operation: "read" | "start" | "plan" | "attempt" | "hint",
+  operation: "read" | "start" | "plan" | "attempt" | "hint" | "follow-up",
 ) {
   const gate = await requireStudent({ active: true });
   if (gate.response) return noStore(gate.response);
   if (operation !== "read" && !sameOriginMutation(request))
     return noStore(crossSiteError());
   const now = await learnNow(gate.student.studentId, request);
+  // Screens that show «한 번 더 → 풀이» say so; older tabs keep the old records and response.
+  const followUps = request.headers.get(COURSE_FOLLOW_UP_HEADER) === "1";
   try {
     const student = await loadCourseStudent(gate.student.studentId);
     if (
@@ -119,11 +124,16 @@ export async function handleCourseStudentRequest(
         if (!parsed.success) return noStore(validationError(parsed.error));
         requestedSessionId = parsed.data.sessionId;
         change = (c) => revealCourseHint(c, parsed.data);
+      } else if (operation === "follow-up") {
+        const parsed = courseFollowUpInputSchema.safeParse(body);
+        if (!parsed.success) return noStore(validationError(parsed.error));
+        requestedSessionId = parsed.data.sessionId;
+        change = (c) => submitCourseFollowUp(c, parsed.data, now);
       } else {
         const parsed = courseAttemptInputSchema.safeParse(body);
         if (!parsed.success) return noStore(validationError(parsed.error));
         requestedSessionId = parsed.data.sessionId;
-        change = (c) => submitCourseAttempt(c, parsed.data, now);
+        change = (c) => submitCourseAttempt(c, parsed.data, now, { followUps });
       }
       saved = await changeSrsState(
         student.id,
@@ -149,7 +159,9 @@ export async function handleCourseStudentRequest(
     };
     return noStore(
       jsonOk(courseStudentResponseSchema, {
-        data: courseStudentDto(student, view, now, requestedSessionId),
+        data: courseStudentDto(student, view, now, requestedSessionId, {
+          followUp: followUps,
+        }),
       }),
     );
   } catch (error) {

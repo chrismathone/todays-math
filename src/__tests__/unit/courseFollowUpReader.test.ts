@@ -193,14 +193,16 @@ describe("course follow-up records (reader)", () => {
     for (let i = 2; i < 5; i++) state = answer(state, "right", 2 + i * 2);
     const session = state.learner.session!;
     expect(session.completedAt).not.toBeNull();
-    // The current writer queues every wrong first answer; the follow-up writer
-    // leaves out the ones the student already resolved on the spot.
-    expect(session.retry?.pendingProblemIds).toEqual([
-      problems[0].id,
-      problems[1].id,
-    ]);
-    rejects(state);
-    accepts(withFollowUps(state, session.followUps!, [problems[1].id]));
+    // The writer leaves out the problems resolved on the spot; a queue that still
+    // holds one is not a state any writer produces.
+    expect(session.retry?.pendingProblemIds).toEqual([problems[1].id]);
+    accepts(state);
+    rejects(
+      withFollowUps(state, session.followUps!, [
+        problems[0].id,
+        problems[1].id,
+      ]),
+    );
 
     const both = withFollowUps(
       state,

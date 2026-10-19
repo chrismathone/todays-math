@@ -9,6 +9,7 @@ import {
   courseSectionIdSchema,
   courseSectionReportSchema,
   type CourseAttemptInput,
+  type CourseFollowUpInput,
   type CourseHintInput,
   type CoursePlanInput,
   type CoursePublicSession,
@@ -31,7 +32,7 @@ import {
   markCourseHint,
   recordCourseAttempt,
 } from "./elementary/progress";
-import type { CourseSession } from "./elementary/types";
+import type { CourseFollowUp, CourseSession } from "./elementary/types";
 import {
   coursePrerequisiteDecision,
   prerequisiteRecommendation,
@@ -658,6 +659,8 @@ export function submitCourseAttempt(
   state: StoredCourse,
   input: CourseAttemptInput,
   now: Date,
+  /** `followUps`: the client shows «한 번 더 → 풀이» (header `x-course-follow-up`). */
+  options: { followUps?: boolean } = {},
 ): StoredCourse {
   const activeSession = state.learner.session;
   if (activeSession?.id === input.sessionId && activeSession.retry) {
@@ -723,10 +726,34 @@ export function submitCourseAttempt(
     answeredAt,
   };
   let learner = recordCourseAttempt(state.learner, attempt);
+  // «모르겠어요» · a self-check «다시 연습» opens the solution at once: that problem is
+  // done for today (decision 6). Only clients that can show and close it get the record.
+  if (options.followUps && !attempt.correct && (input.giveUp || selfAssessed))
+    learner = {
+      ...learner,
+      session: {
+        ...learner.session!,
+        followUps: [
+          ...(learner.session!.followUps ?? []),
+          {
+            problemId: problem.id,
+            kind: "reveal",
+            correct: false,
+            answeredAt,
+            doneAt: null,
+          },
+        ],
+      },
+    };
   const finished = !!learner.session?.completedAt;
   if (finished) {
+    const followed = new Set(
+      (learner.session!.followUps ?? []).map((entry) => entry.problemId),
+    );
     const pendingProblemIds = learner
-      .session!.attempts.filter((entry) => !entry.correct)
+      .session!.attempts.filter(
+        (entry) => !entry.correct && !followed.has(entry.problemId),
+      )
       .map((entry) => entry.problemId);
     if (pendingProblemIds.length)
       learner = {
@@ -898,8 +925,121 @@ export function submitCourseAttempt(
   } as StoredCourse;
 }
 
+/**
+ * The second try right after a wrong first answer, or «알겠어요» on an open solution
+ * (plan §3.2). The first attempt, memories and activity stay as they were; the
+ * problem leaves today's retry queue. A resent request returns the state as it is.
+ */
+export function submitCourseFollowUp(
+  state: StoredCourse,
+  input: CourseFollowUpInput,
+  now: Date,
+): StoredCourse {
+  const session = state.learner.session;
+  if (!session || session.id !== input.sessionId)
+    throw new CourseConflict(
+      "학습 또는 문제 순서가 변경되었습니다. 다시 불러와 주세요.",
+    );
+  const followUps = session.followUps ?? [];
+  const existing = followUps.find((f) => f.problemId === input.problemId);
+  const withSession = (
+    next: NonNullable<StoredCourse["learner"]["session"]>,
+  ): StoredCourse => ({
+    ...state,
+    learner: { ...state.learner, session: next },
+  });
+  if (input.action === "done") {
+    if (!existing)
+      throw new CourseConflict("확인할 풀이가 없습니다. 다시 불러와 주세요.");
+    if (existing.doneAt) return state;
+    const doneAt = new Date(
+      Math.max(now.getTime(), Date.parse(existing.answeredAt)),
+    ).toISOString();
+    return withSession({
+      ...session,
+      followUps: followUps.map((f) => (f === existing ? { ...f, doneAt } : f)),
+    });
+  }
+  const submittedAnswer = input.giveUp ? "" : (input.submittedAnswer ?? "");
+  if (existing) {
+    if (
+      existing.kind === "retry" &&
+      existing.submittedAnswer === submittedAnswer &&
+      !!existing.giveUp === !!input.giveUp
+    )
+      return state;
+    throw new CourseConflict("이미 다시 푼 문제입니다.");
+  }
+  const index = session.attempts.findIndex(
+    (a) => a.problemId === input.problemId,
+  );
+  const first = session.attempts[index];
+  const problem = session.problems[index];
+  if (
+    !first ||
+    first.correct ||
+    index !== session.attempts.length - 1 ||
+    state.requests.find((r) => r.problemId === input.problemId)?.giveUp ||
+    problem.input.mode === "self-check" ||
+    session.retry?.attempts.length
+  )
+    throw new CourseConflict(
+      "지금 다시 풀 수 있는 문제가 아닙니다. 다시 불러와 주세요.",
+    );
+  if (!input.giveUp) {
+    const invalid = validateCourseAnswer(problem, submittedAnswer);
+    if (invalid) throw new CourseInvalidInput(invalid);
+  }
+  const record: CourseFollowUp = {
+    problemId: problem.id,
+    kind: "retry",
+    submittedAnswer,
+    ...(input.giveUp ? { giveUp: true as const } : {}),
+    correct:
+      !input.giveUp && gradeCourseAnswer(problem, submittedAnswer) === true,
+    answeredAt: new Date(
+      Math.max(now.getTime(), Date.parse(first.answeredAt)),
+    ).toISOString(),
+    doneAt: null,
+  };
+  // The last problem's follow-up comes after the session finished and queued it.
+  const { retry, ...rest } = session;
+  const pending = retry?.pendingProblemIds.filter((id) => id !== problem.id);
+  return withSession({
+    ...rest,
+    followUps: [...followUps, record],
+    ...(retry && pending?.length
+      ? { retry: { ...retry, pendingProblemIds: pending } }
+      : {}),
+  });
+}
+
+/** What the screen shows after a wrong first answer (`followUp` in the response). */
+function publicFollowUp(
+  session: CourseSession,
+  problemId: string,
+): NonNullable<CoursePublicSession["problems"][number]["followUp"]> | null {
+  const record = session.followUps?.find((f) => f.problemId === problemId);
+  if (record)
+    return {
+      state: record.kind === "retry" && record.correct ? "correct" : "solution",
+      done: record.doneAt !== null,
+    };
+  const last = session.attempts.at(-1);
+  const problem = session.problems.find((p) => p.id === problemId);
+  return last?.problemId === problemId &&
+    !last.correct &&
+    last.submittedAnswer !== "" &&
+    problem?.input.mode !== "self-check" &&
+    !session.retry?.attempts.length
+    ? { state: "awaiting", done: false }
+    : null;
+}
+
 export function publicCourseSession(
   session: CourseSession,
+  /** `followUp`: the client asked for the follow-up fields (header `x-course-follow-up`). */
+  options: { followUp?: boolean } = {},
 ): CoursePublicSession {
   // Older persisted sessions predate answerChoices. Derive their options from
   // stable problem seeds and the session's own answers without changing records.
@@ -935,6 +1075,7 @@ export function publicCourseSession(
           ? makeCourseAnswerChoices(p, sessionAnswers)
           : null;
       const solution = { answer: p.answer, solution: p.solution };
+      const followUp = options.followUp ? publicFollowUp(session, p.id) : null;
       return {
         id: p.id,
         sectionId: p.sectionId,
@@ -957,7 +1098,8 @@ export function publicCourseSession(
               (p.input.mode === "self-check" &&
                 !session.completedAt &&
                 session.problems[session.attempts.length]?.id === p.id))) ||
-          session.revealedProblemIds?.includes(p.id)
+          session.revealedProblemIds?.includes(p.id) ||
+          followUp?.state === "solution"
             ? solution
             : null,
         feedback: latestRetry
@@ -967,6 +1109,8 @@ export function publicCourseSession(
             : attempt
               ? { correct: attempt.correct }
               : null,
+        // Tabs opened before the reader shipped parse strictly: only on request.
+        ...(options.followUp ? { followUp } : {}),
       };
     }),
   };
