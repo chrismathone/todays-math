@@ -1,0 +1,55 @@
+{
+  "actualEntrypoints": true,
+  "actualCoreNotMocked": true,
+  "mockedOnly": [
+    "server-only",
+    "@/lib/accountAccess",
+    "@/lib/accountRouteAccess",
+    "@/lib/routeAccess",
+    "@/lib/figure/renderFigureSpec",
+    "@/lib/errorLog/withErrorLog"
+  ],
+  "authAndDatabaseNotAudited": true,
+  "noDatabaseAccess": true,
+  "results": [
+    {
+      "name": "actual-GET-catalog",
+      "status": 200,
+      "heldHidden": true
+    },
+    {
+      "name": "actual-POST-generate",
+      "status": 200,
+      "delivered": 0,
+      "statusValue": "unavailable"
+    },
+    {
+      "name": "actual-resolve-current-empty-digest",
+      "status": 409,
+      "error": {
+        "code": "CONFLICT",
+        "message": "문항이나 지원 범위가 바뀌었습니다. 다시 만든 뒤 출력해 주세요."
+      }
+    },
+    {
+      "name": "actual-resolve-old-or-forged-digest",
+      "status": 409,
+      "error": {
+        "code": "CONFLICT",
+        "message": "문항이나 지원 범위가 바뀌었습니다. 다시 만든 뒤 출력해 주세요."
+      }
+    },
+    {
+      "name": "strict-http-reject-families",
+      "status": 400
+    },
+    {
+      "name": "strict-http-reject-confidence",
+      "status": 400
+    },
+    {
+      "name": "strict-http-reject-gradeApproved",
+      "status": 400
+    }
+  ]
+}
