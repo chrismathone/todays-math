@@ -1,0 +1,59 @@
+{
+  "kind": "stage1-independent-blind-proof-seal/v1",
+  "solverId": "codex-gyeongsin-group2-clean-blind-20261019-r1-q02",
+  "studentDigest": "ef764a890044e19cd0193e18785dacd1d771a46f3a3db28a98be886281468a22",
+  "proofFile": "q02.json",
+  "proofSha256": "f3f959a291114ad2f2db1f2748171a96114fd3342112466394271f6b15e2aab2",
+  "answer": "③",
+  "answerCodePoint": "U+2462",
+  "strictUtf8Reopened": true,
+  "fullKoreanSolutionPrintedFromActualBytes": true,
+  "replacementOrQuestionMarkCorruption": false,
+  "calculation": {
+    "actualOptions": [
+      10,
+      20,
+      30,
+      40,
+      50
+    ],
+    "givenRadiusCm": 8,
+    "givenTKCm": 8,
+    "computedOTCm": 16,
+    "computedHalfHypotenuseCm": 8,
+    "equilateralAngleDegrees": 60,
+    "requestedAngleDegrees": 30,
+    "allFiveOptionChecksMatch": true,
+    "outsideGradeIdentityOrInverseNotationUsed": false
+  },
+  "existenceAndAngleUniquenessReasoned": true,
+  "blindInputs": [
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group2-review-20261019-r1\\blind\\student-problems.json",
+      "sha256": "dcc83c5b3ff0a664266138496e343ec891ee3b4e39af597f990e2dd1aa5fc9ef",
+      "bytes": 926
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group2-review-20261019-r1\\blind\\blind-manifest.json",
+      "sha256": "90b26738600dcfd4741af991716a1dadfd79399f62e7e73e41372d8aeba24634",
+      "bytes": 335
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group2-review-20261019-r1\\blind\\figures\\q02-1.svg",
+      "sha256": "d85a7bc950ca01abaa05deb6ab5fa43cfda5c253ef644983b51dbabe68967ad3",
+      "bytes": 6492
+    }
+  ],
+  "localFigureRender": {
+    "path": "figure-inspection.local.png",
+    "sha256": "f424c37d5f7765b5dbe1ecd7c9937e52b412ec7fc5456d8a7179fd02c5f97317",
+    "viewed": true,
+    "committed": false,
+    "pixelOracleUsed": false
+  },
+  "stage1Only": true,
+  "authorAnswerExposure": false,
+  "finalMathGradeContentSourceRightsApproval": false,
+  "loadable": 0,
+  "dbWrites": 0
+}
